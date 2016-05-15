@@ -30,7 +30,7 @@ class logTest extends \PHPUnit_Framework_TestCase {
 		return array(
 			array('StreamHandler', 'foo', false, true),
 			array('SyslogHandler', 'bar', false, true),
-			array('SyslogUdp', 'baz', false, null),
+			array('SyslogUdp', 'baz', false, true),
 		);
 	}
 

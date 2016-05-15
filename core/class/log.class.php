@@ -26,14 +26,6 @@ use Monolog\Logger;
 
 class log {
 	/*     * *************************Constantes****************************** */
-	const LEVEL_DEBUG = 100;
-	const LEVEL_INFO = 200;
-	const LEVEL_NOTICE = 250;
-	const LEVEL_WARNING = 300;
-	const LEVEL_ERROR = 400;
-	const LEVEL_CRITICAL = 500;
-	const LEVEL_ALERT = 550;
-	const LEVEL_EMERGENCY = 600;
 
 	const DEFAULT_MAX_LINE = 200;
 
@@ -84,18 +76,14 @@ class log {
 	}
 
 	public static function convertLogLevel($_level = 100) {
-		$convert = array(
-			self::LEVEL_DEBUG => 'debug',
-			self::LEVEL_INFO => 'info',
-			self::LEVEL_NOTICE => 'notice',
-			self::LEVEL_WARNING => 'warning',
-			self::LEVEL_ERROR => 'error',
-			self::LEVEL_CRITICAL => 'critical',
-			self::LEVEL_ALERT => 'alert',
-			self::LEVEL_EMERGENCY => 'emergency',
-			1000 => 'none',
-		);
-		return $convert[$_level];
+		if ($_level > logger::EMERGENCY) {
+			return 'none';
+		}
+		try {
+			return Logger::getLevelName($_leve);
+		} catch (Exception $e) {
+
+		}
 	}
 
 	/**
@@ -112,10 +100,15 @@ class log {
 		$action = 'add' . ucwords(strtolower($_type));
 		if (method_exists($logger, $action)) {
 			$logger->$action($_message);
-			if ($action == 'addError' && config::byKey('addMessageForErrorLog') == 1) {
-				@message::add($_log, $_message, '', $_logicalId);
-			} else if ($action == 'addCritical' || $action == 'addEmergency') {
-				@message::add($_log, $_message, '', $_logicalId);
+			try {
+				$level = Logger::toMonologLevel($_type);
+				if ($level == Logger::ERROR && config::byKey('addMessageForErrorLog') == 1) {
+					@message::add($_log, $_message, '', $_logicalId);
+				} elseif ($level > Logger::ERROR) {
+					@message::add($_log, $_message, '', $_logicalId);
+				}
+			} catch (Exception $e) {
+
 			}
 		}
 	}
@@ -260,24 +253,24 @@ class log {
 	 */
 	public static function define_error_reporting($log_level) {
 		switch ($log_level) {
-			case self::LEVEL_DEBUG:
-			case self::LEVEL_INFO:
-			case self::LEVEL_NOTICE:
+			case logger::DEBUG:
+			case logger::INFO:
+			case logger::NOTICE:
 				error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 				break;
-			case self::LEVEL_WARNING:
+			case logger::WARNING:
 				error_reporting(E_ERROR | E_WARNING | E_PARSE);
 				break;
-			case self::LEVEL_ERROR:
+			case logger::ERROR:
 				error_reporting(E_ERROR | E_PARSE);
 				break;
-			case self::LEVEL_CRITICAL:
+			case logger::CRITICAL:
 				error_reporting(E_ERROR | E_PARSE);
 				break;
-			case self::LEVEL_ALERT:
+			case logger::ALERT:
 				error_reporting(E_ERROR | E_PARSE);
 				break;
-			case self::LEVEL_EMERGENCY:
+			case logger::EMERGENCY:
 				error_reporting(E_ERROR | E_PARSE);
 				break;
 			default:

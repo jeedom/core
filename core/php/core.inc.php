@@ -24,6 +24,7 @@ require_once dirname(__FILE__) . '/../class/jeedom.class.php';
 require_once dirname(__FILE__) . '/../class/plugin.class.php';
 require_once dirname(__FILE__) . '/../class/translate.class.php';
 require_once dirname(__FILE__) . '/utils.inc.php';
+require_once dirname(__FILE__) . '/../../vendor/autoload.php';
 include_file('core', 'jeedom', 'config');
 include_file('core', 'compatibility', 'config');
 include_file('core', 'utils', 'class');
@@ -100,5 +101,5 @@ function jeedomPluginAutoload($classname) {
 spl_autoload_register('jeedomCoreAutoload', true, true);
 spl_autoload_register('jeedomPluginAutoload', true, true);
 spl_autoload_register('jeedomOtherAutoload', true, true);
-require_once dirname(__FILE__) . '/../../vendor/autoload.php';
+
 ?>
