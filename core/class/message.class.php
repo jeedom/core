@@ -31,14 +31,14 @@ class message {
 
 	/*     * ***********************Methode static*************************** */
 
-	public static function add($_type, $_message, $_action = '', $_logicalId = '') {
+	public static function add($_type, $_message, $_action = '', $_logicalId = '', $_writeMessage = true) {
 		$message = new message();
 		$message->setPlugin(secureXSS($_type));
 		$message->setMessage(secureXSS($_message));
 		$message->setAction(secureXSS($_action));
 		$message->setDate(date('Y-m-d H:i:m'));
 		$message->setLogicalId(secureXSS($_logicalId));
-		$message->save();
+		$message->save($_writeMessage);
 	}
 
 	public static function removeAll($_plugin = '', $_logicalId = '', $_search = false) {
@@ -118,7 +118,7 @@ class message {
 
 	/*     * *********************Methode d'instance************************* */
 
-	public function save() {
+	public function save($_writeMessage = true) {
 		if ($this->getMessage() == '') {
 			return;
 		}
@@ -137,16 +137,18 @@ class message {
 						OR message=:message)';
 		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 		if ($result['count(*)'] == 0) {
-			DB::save($this);
-			$cmds = explode(('&&'), config::byKey('emailAdmin'));
-			if (count($cmds) > 0 && trim(config::byKey('emailAdmin')) != '') {
-				foreach ($cmds as $id) {
-					$cmd = cmd::byId(str_replace('#', '', $id));
-					if (is_object($cmd)) {
-						$cmd->execCmd(array(
-							'title' => __('[' . config::byKey('name', 'core', 'JEEDOM') . '] Message de ', __FILE__) . $this->getPlugin(),
-							'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $this->getMessage(),
-						));
+			if ($_writeMessage) {
+				DB::save($this);
+				$cmds = explode(('&&'), config::byKey('emailAdmin'));
+				if (count($cmds) > 0 && trim(config::byKey('emailAdmin')) != '') {
+					foreach ($cmds as $id) {
+						$cmd = cmd::byId(str_replace('#', '', $id));
+						if (is_object($cmd)) {
+							$cmd->execCmd(array(
+								'title' => __('[' . config::byKey('name', 'core', 'JEEDOM') . '] Message de ', __FILE__) . $this->getPlugin(),
+								'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $this->getMessage(),
+							));
+						}
 					}
 				}
 			}
