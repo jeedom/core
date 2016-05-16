@@ -41,6 +41,7 @@ class cmd {
 	protected $value = null;
 	protected $isVisible = 1;
 	protected $_eqLogic = null;
+	protected $_needRefreshWidget;
 	private static $_templateArray = array();
 
 	/*     * ***********************Méthodes statiques*************************** */
@@ -678,7 +679,9 @@ class cmd {
 			$this->setEqType($this->getEqLogic()->getEqType_name());
 		}
 		DB::save($this);
-		$this->getEqLogic()->emptyCacheWidget();
+		if ($this->_needRefreshWidget) {
+			$this->getEqLogic()->refreshWidget();
+		}
 		return true;
 	}
 
@@ -1394,6 +1397,7 @@ class cmd {
 			$_value = '';
 		}
 		$this->html = utils::setJsonAttr($this->html, $_key, $_value);
+		$this->_needRefreshWidget = true;
 	}
 
 	public function getTemplate($_key = '', $_default = '') {
@@ -1402,6 +1406,7 @@ class cmd {
 
 	public function setTemplate($_key, $_value) {
 		$this->template = utils::setJsonAttr($this->template, $_key, $_value);
+		$this->_needRefreshWidget = true;
 	}
 
 	public function getConfiguration($_key = '', $_default = '') {
@@ -1421,6 +1426,7 @@ class cmd {
 
 	public function setDisplay($_key, $_value) {
 		$this->display = utils::setJsonAttr($this->display, $_key, $_value);
+		$this->_needRefreshWidget = true;
 	}
 
 	public function getCollectDate() {
@@ -1464,6 +1470,7 @@ class cmd {
 
 	public function setOrder($order) {
 		$this->order = $order;
+		$this->_needRefreshWidget = true;
 	}
 
 	public function getLogicalId() {
