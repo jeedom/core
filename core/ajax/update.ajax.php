@@ -92,6 +92,7 @@ try {
 	}
 
 	if (init('action') == 'save') {
+		$new = false;
 		$update_json = json_decode(init('update'), true);
 		if (isset($update_json['id'])) {
 			$update = update::byId($update_json['id']);
@@ -101,10 +102,17 @@ try {
 		}
 		if (!isset($update) || !is_object($update)) {
 			$update = new update();
+			$new = true;
 		}
 		utils::a2o($update, $update_json);
 		$update->save();
-		$update->doUpdate();
+		try {
+			$update->doUpdate();
+		} catch (Exception $e) {
+			if ($new) {
+				throw $e;
+			}
+		}
 		ajax::success(utils::o2a($update));
 	}
 

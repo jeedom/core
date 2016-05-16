@@ -49,6 +49,7 @@ try {
 			$update->setLogicalId($repo->getLogicalId());
 			$update->setType($repo->getType());
 			$update->setLocalVersion($repo->getDatetime(init('version', 'stable')));
+
 		}
 		$update->setConfiguration('version', init('version', 'stable'));
 		$update->save();
@@ -78,9 +79,6 @@ try {
 			$repo = $class::byId($repo_ajax['id']);
 		} catch (Exception $e) {
 			$repo = new $class();
-		}
-		if (isset($repo_ajax['rating'])) {
-			unset($repo_ajax['rating']);
 		}
 		utils::a2o($repo, $repo_ajax);
 		$repo->save();
