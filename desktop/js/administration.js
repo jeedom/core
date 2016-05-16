@@ -74,6 +74,15 @@
     });
 });
 
+ $("#bt_genKeyAPIPro").on('click', function (event) {
+    $.hideAlert();
+    bootbox.confirm('{{Etes-vous sûr de vouloir réinitialiser la clef API PRO de Jeedom ?}}', function (result) {
+        if (result) {
+            genKeyAPIPro();
+        }
+    });
+});
+
  $('#bt_forceSyncHour').on('click', function () {
     $.hideAlert();
     jeedom.forceSyncHour({
@@ -315,6 +324,26 @@ function genKeyAPI() {
 });
 }
 
+function genKeyAPIPro() {
+    $.ajax({// fonction permettant de faire de l'ajax
+        type: "POST", // methode de transmission des données au fichier php
+        url: "core/ajax/config.ajax.php", // url du fichier php
+        data: {
+            action: "genKeyAPIPro"
+        },
+        dataType: 'json',
+        error: function (request, status, error) {
+            handleAjaxError(request, status, error);
+        },
+        success: function (data) { // si l'appel a bien fonctionné
+        if (data.state != 'ok') {
+            $('#div_alert').showAlert({message: data.result, level: 'danger'});
+            return;
+        }
+        $('#in_keyAPIPro').value(data.result);
+    }
+});
+}
 
 function clearJeedomDate() {
     $.ajax({// fonction permettant de faire de l'ajax

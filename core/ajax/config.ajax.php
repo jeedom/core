@@ -31,6 +31,14 @@ try {
 		config::save('api', config::genKey());
 		ajax::success(config::byKey('api'));
 	}
+	
+	if (init('action') == 'genKeyAPIPro') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		config::save('apipro', config::genKey());
+		ajax::success(config::byKey('apipro'));
+	}
 
 	if (init('action') == 'getKey') {
 		$keys = init('key');

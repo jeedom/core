@@ -33,6 +33,15 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                 <a class="btn btn-default form-control" id="bt_genKeyAPI"><i class="fa fa-refresh"></i> {{Générer}}</a>
                             </div>
                         </div>
+                        <div class="form-group expertModeVisible">
+                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API Pro de Jeedom}}">{{Clef API Pro}}</label>
+                            <div class="col-lg-4 col-md-5 col-sm-6 col-xs-6">
+                                <textarea id="in_keyAPIPro" style="width:100%;" rows="5" disabled><?php echo config::byKey('apipro'); ?></textarea>
+                            </div>
+                            <div class="col-lg-2 col-md-3 col-sm-3">
+                                <a class="btn btn-default form-control" id="bt_genKeyAPIPro"><i class="fa fa-refresh"></i> {{Générer}}</a>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Indique votre type de matériel}}">{{Système}}</label>
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
