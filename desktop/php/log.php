@@ -22,7 +22,6 @@ natcasesort($list_logfile);
 	<div class="col-lg-2 col-md-3 col-sm-4" id="div_displayLogList">
 		<div class="bs-sidebar">
 			<ul id="ul_object" class="nav nav-list bs-sidenav">
-				<li class="nav-header">{{Logs}} </li>
 				<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
 				<?php
 foreach ($list_logfile as $file) {
