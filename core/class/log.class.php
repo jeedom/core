@@ -81,7 +81,7 @@ class log {
 			return 'none';
 		}
 		try {
-			return Logger::getLevelName($_leve);
+			return strtolower(Logger::getLevelName($_level));
 		} catch (Exception $e) {
 
 		}
