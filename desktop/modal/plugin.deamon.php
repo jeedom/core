@@ -14,7 +14,6 @@ if (count($deamon_info) == 0) {
 }
 $refresh = array();
 ?>
-<div class="alert alert-warning">{{Suite à l'installation du plugin ou à la mise à jour des dépendances veuillez attendre au moins 5min pour que le démon se relance automatiquement}}</div>
 <table class="table table-bordered">
 	<thead>
 		<tr>

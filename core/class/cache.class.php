@@ -147,7 +147,7 @@ class cache {
 			default:
 				return;
 		}
-		shell_exec('rm -rf ' . $cache_dir . ';mkdir ' . $cache_dir . ';cd ' . $cache_dir . ';tar  xfz ' . dirname(__FILE__) . '/../../cache.tar.gz');
+		com_shell::execute('rm -rf ' . $cache_dir . ';mkdir ' . $cache_dir . ';cd ' . $cache_dir . ';tar  xfz ' . dirname(__FILE__) . '/../../cache.tar.gz');
 	}
 
 	/*     * *********************Methode d'instance************************* */

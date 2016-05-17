@@ -191,9 +191,10 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
      $('#div_plugin_toggleState').closest('.panel').removeClass('panel-default panel-success').addClass('panel-danger');
      $('#div_plugin_toggleState').html('{{Votre version de jeedom ne permet pas d\'activer ce plugin}}');
    }
-   var log_conf = '<form class="form-horizontal">';
+   var log_conf = '';
+   log_conf = '<form class="form-horizontal">';
    log_conf += '<div class="form-group">';
-   log_conf += '<label class="col-sm-2 control-label">{{Niveau de log}}</label>';
+   log_conf += '<label class="col-sm-2 control-label">{{Niveau de log local}}</label>';
    log_conf += '<div class="col-sm-6">';
    log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + '" class="configKey" data-l1key="log::level::' + data.id + '" data-l2key="1000" /> {{Aucun}}</label>';
    log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + '" class="configKey" data-l1key="log::level::' + data.id + '" data-l2key="default" /> {{Defaut}}</label>';
@@ -208,7 +209,20 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
     if(!isset(data.logs[i].log) || !$.isArray(data.logs[i].log)){
      continue;
    }
-   log_conf += '<form class="form-horizontal">';
+   if(i != -1){
+     log_conf += '<div class="form-group slaveConfig" data-slave_id="'+i+'">';
+     log_conf += '<label class="col-sm-2 control-label">{{Niveau de log}} '+data.logs[i].name+'</label>';
+     log_conf += '<div class="col-sm-6">';
+     log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + '" class="slaveConfigKey" data-l1key="log::level::' + data.id + '" data-l2key="1000" /> {{Aucun}}</label>';
+     log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + '" class="slaveConfigKey" data-l1key="log::level::' + data.id + '" data-l2key="default" /> {{Defaut}}</label>';
+     log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + '" class="slaveConfigKey" data-l1key="log::level::' + data.id + '" data-l2key="100" /> {{Debug}}</label>';
+     log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + '" class="slaveConfigKey" data-l1key="log::level::' + data.id + '" data-l2key="200" /> {{Info}}</label>';
+     log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + '" class="slaveConfigKey" data-l1key="log::level::' + data.id + '" data-l2key="250" /> {{Notice}}</label>';
+     log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + '" class="slaveConfigKey" data-l1key="log::level::' + data.id + '" data-l2key="300" /> {{Warning}}</label>';
+     log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + '" class="slaveConfigKey" data-l1key="log::level::' + data.id + '" data-l2key="400" /> {{Error}}</label>';
+     log_conf += '</div>';
+     log_conf += '</div>';
+   }
    log_conf += '<div class="form-group">';
    log_conf += '<label class="col-sm-2 control-label">{{Voir les logs de}} '+data.logs[i].name+'</label>';
    log_conf += '<div class="col-sm-10">';
@@ -218,7 +232,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
   log_conf += '</div>';
   log_conf += '</div>';
 }
-
+log_conf += '</form>';
 $('#div_plugin_log').empty().append(log_conf);
 
 initExpertMode();
@@ -406,6 +420,21 @@ $('#bt_savePluginLogConfig').off('click').on('click',function(){
     modifyWithoutSave = false;
   }
 });
+
+ $('#div_plugin_log .slaveConfig').each(function(){
+  var slave_id = $(this).attr('data-slave_id');
+  jeedom.jeeNetwork.saveConfig({
+    configuration: $('#div_plugin_log .slaveConfig[data-slave_id='+slave_id+']').getValues('.slaveConfigKey')[0],
+    id: slave_id,
+    error: function (error) {
+      alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
+    },
+    success: function () {
+      alert_div_plugin_configuration.showAlert({message: '{{Sauvegarde effectuée}}', level: 'success'});
+      modifyWithoutSave = false;
+    }
+  });
+});
 })
 
 $('#div_plugin_log').on('click','.bt_plugin_conf_view_log',function(){
@@ -451,7 +480,7 @@ function savePluginConfig(_param) {
     }
   });
 
-  $('.slaveConfig').each(function(){
+  $('#div_plugin_configuration .slaveConfig').each(function(){
     var slave_id = $(this).attr('data-slave_id');
     jeedom.jeeNetwork.saveConfig({
       configuration: $('#div_plugin_configuration .slaveConfig[data-slave_id='+slave_id+']').getValues('.slaveConfigKey')[0],
