@@ -282,19 +282,27 @@ class network {
 		try {
 			$plugin = plugin::byId('openvpn');
 			if (!is_object($plugin)) {
-				$update = new update();
+				$update = update::byLogicalId('openvpn');
+				if (!is_object($update)) {
+					$update = new update();
+				}
 				$update->setLogicalId('openvpn');
 				$update->setSource('market');
 				$update->setConfiguration('version', 'stable');
 				$update->save();
+				$update->doUpdate();
 				$plugin = plugin::byId('openvpn');
 			}
 		} catch (Exception $e) {
-			$update = new update();
+			$update = update::byLogicalId('openvpn');
+			if (!is_object($update)) {
+				$update = new update();
+			}
 			$update->setLogicalId('openvpn');
 			$update->setSource('market');
 			$update->setConfiguration('version', 'stable');
 			$update->save();
+			$update->doUpdate();
 			$plugin = plugin::byId('openvpn');
 		}
 		if (!$plugin->isActive()) {
