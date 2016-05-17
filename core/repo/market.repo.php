@@ -156,11 +156,16 @@ class repo_market {
 		return $market->getResult();
 	}
 
-	public static function retoreBackup($_backup) {
-		$url = config::byKey('market::address') . "/core/php/downloadBackup.php?backup=" . $_backup . '&hwkey=' . jeedom::getHardwareKey() . '&username=' . urlencode(config::byKey('market::username')) . '&password=' . config::byKey('market::password');
-		if (preg_match('/^[0-9a-f]{40}$/i', config::byKey('market::password'))) {
-			$url .= '&password_type=sha1';
+	public static function getPassword() {
+		$password = config::byKey('market::password');
+		if (!is_sha1($password)) {
+			return sha1($password);
 		}
+		return $password;
+	}
+
+	public static function retoreBackup($_backup) {
+		$url = config::byKey('market::address') . "/core/php/downloadBackup.php?backup=" . $_backup . '&hwkey=' . jeedom::getHardwareKey() . '&username=' . urlencode(config::byKey('market::username')) . '&password=' . self::getPassword() . '&password_type=sha1';
 		$tmp_dir = dirname(__FILE__) . '/../../tmp';
 		$tmp = $tmp_dir . '/' . $_backup;
 		file_put_contents($tmp, fopen($url, 'r'));
@@ -341,8 +346,8 @@ class repo_market {
 		if (config::byKey('market::username') != '' && config::byKey('market::password') != '') {
 			$params = array(
 				'username' => config::byKey('market::username'),
-				'password' => config::byKey('market::password'),
-				'password_type' => (preg_match('/^[0-9a-f]{40}$/i', config::byKey('market::password'))) ? 'sha1' : '',
+				'password' => self::getPassword(),
+				'password_type' => 'sha1',
 				'jeedomversion' => jeedom::version(),
 				'hwkey' => jeedom::getHardwareKey(),
 				'addrComplement' => config::byKey('externalComplement'),
@@ -626,10 +631,7 @@ class repo_market {
 		if (!is_writable($tmp_dir)) {
 			throw new Exception(__('Impossible d\'écrire dans le répertoire : ', __FILE__) . $tmp . __('. Exécuter la commande suivante en SSH : sudo chmod 777 -R ', __FILE__) . $tmp_dir);
 		}
-		$url = config::byKey('market::address') . "/core/php/downloadFile.php?id=" . $this->getId() . '&version=' . $_version . '&jeedomversion=' . jeedom::version() . '&hwkey=' . jeedom::getHardwareKey() . '&username=' . urlencode(config::byKey('market::username')) . '&password=' . urlencode(config::byKey('market::password'));
-		if (preg_match('/^[0-9a-f]{40}$/i', config::byKey('market::password'))) {
-			$url .= '&password_type=sha1';
-		}
+		$url = config::byKey('market::address') . "/core/php/downloadFile.php?id=" . $this->getId() . '&version=' . $_version . '&jeedomversion=' . jeedom::version() . '&hwkey=' . jeedom::getHardwareKey() . '&username=' . urlencode(config::byKey('market::username')) . '&password=' . self::getPassword() . '&password_type=sha1';
 		log::add('update', 'alert', __('Téléchargement de ', __FILE__) . $this->getLogicalId() . '...');
 		file_put_contents($tmp, fopen($url, 'r'));
 

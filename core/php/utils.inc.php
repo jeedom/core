@@ -150,18 +150,20 @@ function redirect($_url, $_forceType = null) {
 
 function convertDuration($time) {
 	$result = '';
-	$unities = array('j'=>86400,'h'=>3600,'min'=>60);
-	foreach ($unities as $unity => $value)
-	if ($time >= $value || $result != '') {
-		$result .= floor($time / $value) . $unity . ' ';
-		$time %= $value;
+	$unities = array('j' => 86400, 'h' => 3600, 'min' => 60);
+	foreach ($unities as $unity => $value) {
+		if ($time >= $value || $result != '') {
+			$result .= floor($time / $value) . $unity . ' ';
+			$time %= $value;
+		}
 	}
+
 	$result .= $time . 's';
 	return $result;
 }
 
 function getClientIp() {
-	$sources = array(			
+	$sources = array(
 		'HTTP_X_REAL_IP',
 		'HTTP_X_FORWARDED_FOR',
 		'HTTP_CLIENT_IP',
@@ -191,6 +193,10 @@ function displayExeption($e) {
 
 function is_json($_string) {
 	return ((is_string($_string) && (is_object(json_decode($_string)) || is_array(json_decode($_string))))) ? true : false;
+}
+
+function is_sha1($_string) {
+	return preg_match('/^[0-9a-f]{40}$/i', $_string);
 }
 
 function cleanPath($path) {
