@@ -558,7 +558,7 @@ class scenario {
 		$cmd .= ' scenario_id=' . $this->getId();
 		$cmd .= ' force=' . $_force;
 		$cmd .= ' trigger=' . escapeshellarg($_trigger);
-		$cmd .= ' message=' . escapeshellarg($_message);
+		$cmd .= ' message=' . escapeshellarg(sanitizeAccent($_message));
 		$cmd .= ' >> ' . log::getPathToLog('scenario_execution') . ' 2>&1 &';
 		system::php($cmd);
 		return true;
@@ -1109,7 +1109,7 @@ class scenario {
 		if (isConnect('admin')) {
 			return true;
 		}
-		$assocRights = array('x'=>'action', 'w'=>'edit', 'r'=>'view');
+		$assocRights = array('x' => 'action', 'w' => 'edit', 'r' => 'view');
 		$rights = null;
 		if (array_key_exists($_right, $assocRights)) {
 			$rights = rights::byuserIdAndEntity($_user->getId(), 'scenario' . $this->getId() . $assocRights[$_right]);
@@ -1121,7 +1121,7 @@ class scenario {
 		if ($this->getConfiguration('noLog', 0) == 1) {
 			return;
 		}
-		$path = getRootPath().'/log/scenarioLog';
+		$path = getRootPath() . '/log/scenarioLog';
 		if (!file_exists($path)) {
 			mkdir($path);
 		}
