@@ -41,7 +41,7 @@ Encore une fois cela est souvent dû à un plugin en beta alors que Jeedom est e
 ''''
 
 Je n'ai plus accès à Jeedom ni en SSH::
-Cette erreur n'est pas dû à Jeedom mais à un problème avec le système. 
+Cette erreur n'est pas dûe à Jeedom mais à un problème avec le système. 
 Si celui ci persiste suite à une réinstallation il est conseillé de voir avec le SAV pour un souci hardware
 
 ''''
@@ -52,7 +52,7 @@ souvent cela vient d'une commande qui ne se termine pas
 
 ''''
 
-Mon scenario est lent à se declencher::
+Mon scénario est lent à se déclencher::
 Si dans le scénario il n'y a pas de pause il est conseillé de cocher la case "exécuter le plus rapidement possible" (disponible en mode expert)
 
 ''''
