@@ -325,7 +325,6 @@ En plus des commandes domotiques vous avez accès aux actions suivantes :
 * *scenario* : permet le controle des scénarios
 * *stop* : arrête le scénario
 * *icon* : permet de changer l'icône de représentation du scénario
-* *say* : permet de faire dire un texte à Jeedom (ne marche que si un onglet Jeedom est ouvert dans le navigateur)
 * *gotodesign* : change le design affiché sur tous les navigateurs par le design demandé
 * *log* : permet de rajouter un message dans les logs
 * *message* : permet d'ajouter un message dans le centre de message
