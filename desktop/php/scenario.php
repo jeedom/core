@@ -390,7 +390,6 @@ foreach (object::all() as $object) {
                         <option value="variable">{{Variable}}</option>
                         <option value="scenario">{{Scénario}}</option>
                         <option value="stop">{{Stop}}</option>
-                        <option value="say">{{Dit}}</option>
                         <option value="wait">{{Attendre}}</option>
                         <option value="return">{{Retourner}}</option>
                         <option value="gotodesign">{{Aller au design}}</option>

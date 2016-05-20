@@ -1007,10 +1007,6 @@ class scenarioExpression {
 							break;
 					}
 					return;
-				} else if ($this->getExpression() == 'say') {
-					$this->setLog($scenario, __('Je dis : ', __FILE__) . $options['message']);
-					event::add('jeedom::say', $options['message']);
-					return;
 				} else if ($this->getExpression() == 'gotodesign') {
 					$this->setLog($scenario, __('Changement design : ', __FILE__) . $options['plan_id']);
 					event::add('jeedom::gotoplan', $options['plan_id']);

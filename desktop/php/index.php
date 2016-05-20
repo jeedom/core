@@ -132,7 +132,6 @@ include_file('3rdparty', 'bootstrap.slider/js/bootstrap-slider', 'js');
 include_file('3rdparty', 'jwerty/jwerty', 'js');
 include_file('3rdparty', 'jquery.packery/jquery.packery', 'js');
 include_file('3rdparty', 'jquery.lazyload/jquery.lazyload', 'js');
-include_file('3rdparty', 'responsivevoices/responsivevoices', 'js');
 include_file('3rdparty', 'jquery.sew/jquery.sew', 'css');
 include_file('3rdparty', 'codemirror/lib/codemirror', 'js');
 include_file('3rdparty', 'codemirror/lib/codemirror', 'css');
