@@ -25,12 +25,26 @@ try {
 	}
 
 	if (init('action') == 'clear') {
-		log::clear(init('logfile'));
+		if (init('jeeNetwork_id') != '') {
+			$jeeNetwork = jeeNetwork::byId(init('jeeNetwork_id'));
+			if (is_object($jeeNetwork)) {
+				$jeeNetwork->emptyLog(init('log'));
+			}
+		} else {
+			log::clear(init('log'));
+		}
 		ajax::success();
 	}
 
 	if (init('action') == 'remove') {
-		log::remove(init('logfile'));
+		if (init('jeeNetwork_id') != '') {
+			$jeeNetwork = jeeNetwork::byId(init('jeeNetwork_id'));
+			if (is_object($jeeNetwork)) {
+				$jeeNetwork->removeLog(init('log'));
+			}
+		} else {
+			log::remove(init('log'));
+		}
 		ajax::success();
 	}
 
@@ -46,7 +60,7 @@ try {
 				$jeeNetwork->getLog(init('log'), init('start', 0), init('nbLine', 99999));
 			}
 		} else {
-			ajax::success(log::get(init('logfile'), init('start', 0), init('nbLine', 99999)));
+			ajax::success(log::get(init('log'), init('start', 0), init('nbLine', 99999)));
 		}
 	}
 

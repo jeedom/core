@@ -469,11 +469,11 @@ $('#bt_saveGeneraleConfig').on('click',function(){
 function getJeedomSlaveLog(_autoUpdate, _log,_el) {
     $.ajax({
         type: 'POST',
-        url: 'core/ajax/jeeNetwork.ajax.php',
+        url: 'core/ajax/log.ajax.php',
         data: {
             action: 'getLog',
-            log: _log,
-            id: $('.li_jeeNetwork.active').attr('data-jeeNetwork_id')
+            logfile: _log,
+            jeeNetwork_id: $('.li_jeeNetwork.active').attr('data-jeeNetwork_id')
         },
         dataType: 'json',
         global: false,

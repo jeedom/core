@@ -29,45 +29,15 @@
 });
 
  $("#bt_clearLog").on('click', function(event) {
-  $.ajax({
-    type: "POST", 
-    url: "core/ajax/log.ajax.php", 
-    data: {
-     action: "clear",
-     logfile: $('.li_log.active').attr('data-log')
-   },
-   dataType: 'json',
-   error: function(request, status, error) {
-     handleAjaxError(request, status, error);
-   },
-   success: function(data) { 
-    if (data.state != 'ok') {
-     $('#div_alertError').showAlert({message: data.result, level: 'danger'});
-   }
- }
-});
+  jeedom.log.clear({
+    log : $('.li_log.active').attr('data-log'),
+  });
 });
 
  $("#bt_removeLog").on('click', function(event) {
-  $.ajax({
-    type: "POST", 
-    url: "core/ajax/log.ajax.php", 
-    data: {
-     action: "remove",
-     logfile: $('.li_log.active').attr('data-log')
-   },
-   dataType: 'json',
-   error: function(request, status, error) {
-     handleAjaxError(request, status, error);
-   },
-   success: function(data) { 
-    if (data.state != 'ok') {
-     $('#div_alertError').showAlert({message: data.result, level: 'danger'});
-     return;
-   } 
-   window.location.reload();
- }
-});
+  jeedom.log.remove({
+    log : $('.li_log.active').attr('data-log'),
+  });
 });
 
  $("#bt_removeAllLog").on('click', function(event) {

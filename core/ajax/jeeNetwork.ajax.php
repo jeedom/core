@@ -76,30 +76,6 @@ try {
 		ajax::success($jeeNetwork->checkUpdate());
 	}
 
-	if (init('action') == 'getLog') {
-		$jeeNetwork = jeeNetwork::byId(init('id'));
-		if (!is_object($jeeNetwork)) {
-			throw new Exception(__('Objet inconnu, vérifiez l\'ID : ', __FILE__) . init('id'));
-		}
-		ajax::success($jeeNetwork->getLog(init('log'), init('start', 0), init('nbLine', 3000)));
-	}
-
-	if (init('action') == 'emptyLog') {
-		$jeeNetwork = jeeNetwork::byId(init('id'));
-		if (!is_object($jeeNetwork)) {
-			throw new Exception(__('Objet inconnu, vérifiez l\'ID : ', __FILE__) . init('id'));
-		}
-		ajax::success($jeeNetwork->emptyLog(init('log')));
-	}
-
-	if (init('action') == 'removeLog') {
-		$jeeNetwork = jeeNetwork::byId(init('id'));
-		if (!is_object($jeeNetwork)) {
-			throw new Exception(__('Objet inconnu, vérifiez l\'ID : ', __FILE__) . init('id'));
-		}
-		ajax::success($jeeNetwork->removeLog(init('log')));
-	}
-
 	if (init('action') == 'getListLog') {
 		$jeeNetwork = jeeNetwork::byId(init('id'));
 		if (!is_object($jeeNetwork)) {

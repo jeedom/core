@@ -26,6 +26,9 @@ if (init('slave_id', '') == -1) {
 }
 ?>
 <div class="alert alert-info">{{Vous devez activer tous les log de niveau event pour suivre en temps réel toute votre domotique}}</div>
+<a class="btn btn-danger pull-right" id="bt_logdisplayremoveLog"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>
+<a class="btn btn-warning pull-right" id="bt_logdisplayclearLog"><i class="fa fa-times"></i> {{Vider}}</a>
+<a class="btn btn-success pull-right" id="bt_logdisplaydownloadLog"><i class="fa fa-cloud-download"></i> {{Télécharger}}</a>
 <a class="btn btn-warning pull-right" data-state="1" id="bt_eventLogStopStart"><i class="fa fa-pause"></i> {{Pause}}</a>
 <input class="form-control pull-right" id="in_eventLogSearch" style="width : 300px;" placeholder="{{Rechercher}}" />
 <br/><br/><br/>
@@ -39,4 +42,26 @@ if (init('slave_id', '') == -1) {
 		search : $('#in_eventLogSearch'),
 		control : $('#bt_eventLogStopStart'),
 	});
+
+	$("#bt_logdisplayclearLog").on('click', function(event) {
+		jeedom.log.clear({
+			log : log_display_name,
+			slaveId : log_slave_id,
+		});
+	});
+
+	$("#bt_logdisplayremoveLog").on('click', function(event) {
+		jeedom.log.remove({
+			log : log_display_name,
+			slaveId : log_slave_id,
+		});
+	});
+	if(log_slave_id == ''){
+		$('#bt_logdisplaydownloadLog').click(function() {
+			window.open('core/php/downloadFile.php?pathfile=log/' + log_display_name, "_blank", null);
+		});
+	}else{
+		$('#bt_logdisplaydownloadLog').hide();
+	}
+
 </script>
