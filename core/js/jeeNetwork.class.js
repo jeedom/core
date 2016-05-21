@@ -183,11 +183,11 @@ jeedom.jeeNetwork.getLog = function (_params) {
     }
     var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
-    paramsAJAX.url = 'core/ajax/log.ajax.php';
+    paramsAJAX.url = 'core/ajax/jeeNetwork.ajax.php';
     paramsAJAX.data = {
         action: 'getLog',
-        jeeNetwork_id: _params.id,
-        logfile: _params.log,
+        id: _params.id,
+        log: _params.log,
     };
     $.ajax(paramsAJAX);
 };
