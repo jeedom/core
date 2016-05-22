@@ -41,7 +41,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 	'plugin' => array(
 		'category' => array(
 			'security' => array('name' => 'Sécurité', 'icon' => 'fa-lock'),
-			'automation protocol' => array('name' => 'Protocole domotique', 'icon' => 'fa-rss'),
+			'automation protocol' => array('name' => 'Proto. domotique', 'icon' => 'fa-rss'),
 			'programming' => array('name' => 'Programmation', 'icon' => 'fa-code'),
 			'Panel' => array('name' => 'Panel', 'icon' => 'fa-thumb-tack'),
 			'organization' => array('name' => 'Organisation', 'icon' => 'fa-calendar'),
@@ -105,10 +105,10 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'CAMERA_DOWN' => array('name' => 'Mouvement caméra vers le bas (action)'),
 			'CAMERA_LEFT' => array('name' => 'Mouvement caméra vers le gauche (action)'),
 			'CAMERA_RIGHT' => array('name' => 'Mouvement caméra vers le droite (action)'),
-			'CAMERA_ZOOM'  => array('name' => 'Zoom caméra vers l\'avant (action)'),
-			'CAMERA_DEZOOM'  => array('name' => 'Zoom caméra vers l\'arrière (action)'),
-			'CAMERA_STOP'  => array('name' => 'Stop caméra (action)'),
-			'CAMERA_PRESET'  => array('name' => 'Preset caméra (action)'),
+			'CAMERA_ZOOM' => array('name' => 'Zoom caméra vers l\'avant (action)'),
+			'CAMERA_DEZOOM' => array('name' => 'Zoom caméra vers l\'arrière (action)'),
+			'CAMERA_STOP' => array('name' => 'Stop caméra (action)'),
+			'CAMERA_PRESET' => array('name' => 'Preset caméra (action)'),
 			'MODE_STATE' => array('name' => 'Mode (info)'),
 			'MODE_SET_STATE' => array('name' => 'Mode (action)'),
 			'ALARM_STATE' => array('name' => 'Alarme état (info)'),
