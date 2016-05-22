@@ -37,6 +37,9 @@
  $("#bt_removeLog").on('click', function(event) {
   jeedom.log.remove({
     log : $('.li_log.active').attr('data-log'),
+     success: function(data) {
+        window.location.reload();
+     }
   });
 });
 
