@@ -21,9 +21,6 @@ try {
 	include_file('core', 'authentification', 'php');
 
 	if (init('action') == 'useTwoFactorAuthentification') {
-		if (network::getUserLocation() == 'internal') {
-			ajax::success(0);
-		}
 		$user = user::byLogin(init('login'));
 		if (!is_object($user)) {
 			ajax::success(0);
@@ -48,41 +45,6 @@ try {
 		if (init('storeConnection') == 1) {
 			setcookie('registerDevice', $_SESSION['user']->getHash(), time() + 365 * 24 * 3600, "/", '', false, true);
 		}
-		ajax::success();
-	}
-
-	if (init('action') == 'forgotPassword') {
-		log::add('user', 'info', __('Demande de récupération de mot de passe pour : ', __FILE__) . init('login'));
-		$user = user::byLogin(init('login'));
-		if (!is_object($user)) {
-			connection::failed();
-			throw new Exception('Utilisateur introuvable');
-		}
-		$newPassword = config::genKey();
-		$oldPassword = $user->getPassword();
-		$user->setPassword(sha1($newPassword));
-		$cmds = explode(('&&'), config::byKey('emailAdmin'));
-		$found = false;
-		try {
-			if (count($cmds) > 0) {
-				foreach ($cmds as $id) {
-					$cmd = cmd::byId(str_replace('#', '', $id));
-					if (is_object($cmd)) {
-						$found = true;
-						$cmd->execCmd(array(
-							'title' => __('[JEEDOM] Récuperation de mot de passe', __FILE__),
-							'message' => 'Voici votre nouveau mot de passe pour votre installation jeedom : ' . $newPassword,
-						));
-					}
-				}
-			}
-		} catch (Exception $e) {
-			throw new Exception(__('Aucune commande trouvé pour envoyé le nouveau mot de passe, la demande de récupération a echouée', __FILE__));
-		}
-		if (!$found) {
-			throw new Exception(__('Aucune commande trouvé pour envoyé le nouveau mot de passe, la demande de récupération a echouée, vous pouvez trouver une procedure <a href="https://www.jeedom.com/doc/documentation/howto/fr_FR/doc-howto-reset.password.html" target="_blank">ici</a>', __FILE__));
-		}
-		$user->save();
 		ajax::success();
 	}
 
