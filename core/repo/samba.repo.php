@@ -122,7 +122,7 @@ class repo_samba {
 		$cmd .= self::makeSambaCommand('cd ' . config::byKey('samba::plugin::folder') . ';get ' . $_update->getConfiguration('path'), 'plugin');
 		com_shell::execute($cmd);
 		$pathinfo = pathinfo($_update->getConfiguration('path'));
-		com_shell::execute('mv ' . $tmp_dir . '/' . $pathinfo['filename'] . '.' . $pathinfo['extension'] . ' ' . $tmp);
+		com_shell::execute('mv ' . $tmp_dir . '/' . $pathinfo['basename'] . ' ' . $tmp);
 		$file = self::ls(config::byKey('samba::plugin::folder') . '/' . $_update->getConfiguration('path'), 'plugin');
 		if (count($file) != 1 || !isset($file[0]['datetime'])) {
 			return array('path' => $tmp, 'localVersion' => date('Y-m-d H:i:s'));
@@ -183,7 +183,7 @@ class repo_samba {
 	public static function sendBackup($_path) {
 		$pathinfo = pathinfo($_path);
 		$cmd = 'cd ' . $pathinfo['dirname'] . ';';
-		$cmd .= self::makeSambaCommand('cd ' . config::byKey('samba::backup::folder') . ';put ' . $pathinfo['filename'] . '.' . $pathinfo['extension']);
+		$cmd .= self::makeSambaCommand('cd ' . config::byKey('samba::backup::folder') . ';put ' . $pathinfo['basename']);
 		com_shell::execute($cmd);
 		self::cleanBackupFolder();
 	}
