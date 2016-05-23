@@ -121,9 +121,3 @@ ServerSignature Off
 	deny from all
 	satisfy all
 </Files>
-
-<Files ~ ".*\vendor\.*">
-	order allow,deny
-	deny from all
-	satisfy all
-</Files>
