@@ -15,36 +15,37 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
+header('Content-Type: application/json');
 
 try {
-    require_once(dirname(__FILE__) . '/../../core/php/core.inc.php');
-    include_file('core', 'authentification', 'php');
+	require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
+	include_file('core', 'authentification', 'php');
 
-    if (!isConnect('admin')) {
-        throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
-    }
+	if (!isConnect('admin')) {
+		throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
+	}
 
-    if (init('action') == 'remove') {
-        $connection = connection::byId(init('id'));
-        if (!is_object($connection)) {
-            throw new Exception(__('Connexion inconnue. Vérifiez l\'id', __FILE__));
-        }
-        $connection->remove();
-        ajax::success();
-    }
-    
-    if (init('action') == 'ban') {
-        $connection = connection::byId(init('id'));
-        if (!is_object($connection)) {
-            throw new Exception(__('Connexion inconnue. Vérifiez l\'id', __FILE__));
-        }
-        $connection->setStatus('Ban');
-        $connection->save();
-        ajax::success();
-    }
+	if (init('action') == 'remove') {
+		$connection = connection::byId(init('id'));
+		if (!is_object($connection)) {
+			throw new Exception(__('Connexion inconnue. Vérifiez l\'id', __FILE__));
+		}
+		$connection->remove();
+		ajax::success();
+	}
 
-    throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
-    /*     * *********Catch exeption*************** */
+	if (init('action') == 'ban') {
+		$connection = connection::byId(init('id'));
+		if (!is_object($connection)) {
+			throw new Exception(__('Connexion inconnue. Vérifiez l\'id', __FILE__));
+		}
+		$connection->setStatus('Ban');
+		$connection->save();
+		ajax::success();
+	}
+
+	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
+	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
-    ajax::error(displayExeption($e), $e->getCode());
+	ajax::error(displayExeption($e), $e->getCode());
 }
