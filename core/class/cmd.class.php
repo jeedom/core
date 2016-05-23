@@ -453,13 +453,13 @@ class cmd {
 				continue;
 			}
 			$mc = cache::byKey('cmd' . $cmd_id);
-			if ($mc->getValue() !== null) {
+			if ($mc->getValue() !== null && $mc->getValue() !== '') {
 				$collectDate = $mc->getOptions('collectDate', $mc->getDatetime());
 				$valueDate = $mc->getOptions('valueDate', $mc->getDatetime());
 				$cmd_value = $mc->getValue();
 			} else {
 				$cmd = self::byId($cmd_id);
-				if (!is_object($cmd)) {
+				if (!is_object($cmd) || $cmd->getType() != 'info') {
 					continue;
 				}
 				$cmd_value = $cmd->execCmd(null, true, $_quote);
@@ -968,6 +968,8 @@ class cmd {
 				}
 				$replace['#title_placeholder#'] = $this->getDisplay('title_placeholder', __('Titre', __FILE__));
 				$replace['#message_placeholder#'] = $this->getDisplay('message_placeholder', __('Message', __FILE__));
+				$replace['#message_cmd_type#'] = $this->getDisplay('message_cmd_type', 'info');
+				$replace['#message_cmd_subtype#'] = $this->getDisplay('message_cmd_subtype', '');
 				$replace['#message_disable#'] = $this->getDisplay('message_disable', 0);
 				$replace['#title_disable#'] = $this->getDisplay('title_disable', 0);
 				$replace['#title_possibility_list#'] = str_replace("'", "\'", $this->getDisplay('title_possibility_list', ''));
