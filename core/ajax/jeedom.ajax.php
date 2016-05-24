@@ -24,12 +24,12 @@ try {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
 	}
 
-	ajax::init();
+	ajax::init(false);
 
 	if (init('action') == 'getInfoApplication') {
-
 		$_SESSION['user']->refresh();
 		$return = array();
+		$return['jeedom_token'] = ajax::getToken();
 		$return['user_id'] = $_SESSION['user']->getId();
 		$return['serverDatetime'] = strtotime('now') * 1000;
 		$return['userProfils'] = $_SESSION['user']->getOptions();
@@ -67,6 +67,8 @@ try {
 	if (!isConnect('admin')) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
 	}
+
+	ajax::init(true);
 
 	if (init('action') == 'ssh') {
 		$command = init('command');

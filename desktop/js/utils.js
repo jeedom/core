@@ -62,7 +62,6 @@ setInterval(function () {
     $('#horloge').text(horloge);
 }, 1000);
 
-
     // Ajax Loading Screen
     $(document).ajaxStart(function () {
         nbActiveAjaxRequest++;

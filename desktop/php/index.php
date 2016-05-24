@@ -1,5 +1,6 @@
 <?php
 include_file('core', 'authentification', 'php');
+
 global $JEEDOM_INTERNAL_CONFIG;
 if (isConnect()) {
 	if (config::byKey('jeeNetwork::mode') == 'master') {
@@ -91,7 +92,6 @@ if (count($plugins_list) > 0) {
 		var io = null;
 	</script>
 	<?php
-
 if (!isConnect() || $_SESSION['user']->getOptions('bootstrap_theme') == '') {
 	include_file('3rdparty', 'bootstrap/css/bootstrap.min', 'css');
 } else {
@@ -114,6 +114,16 @@ include_file('3rdparty', 'jquery.ui/jquery-ui-bootstrap/jquery-ui', 'css');
 include_file('3rdparty', 'jquery.utils/jquery.utils', 'css');
 include_file('3rdparty', 'bootstrap.slider/css/slider', 'css');
 include_file('3rdparty', 'jquery/jquery.min', 'js');
+?>
+	<script>
+		$.ajaxSetup({
+			type: "POST",
+			data: {
+				jeedom_token: '<?php echo ajax::getToken() ?>'
+			}
+		})
+	</script>
+	<?php
 include_file('3rdparty', 'jquery.utils/jquery.utils', 'js');
 include_file('core', 'core', 'js');
 include_file('3rdparty', 'bootstrap/bootstrap.min', 'js');
@@ -462,12 +472,12 @@ if (isConnect('admin')) {
 		?>
 
 
-													<li class="divider"></li>
-													<li><a href="index.php?v=m"><i class="fa fa-mobile"></i> {{Version mobile}}</a></li>
-													<li class="divider"></li>
-													<li><a href="#" id="bt_jeedomAbout"><i class="fa fa-info-circle"></i> {{Version}} v<?php echo jeedom::version(); ?></a></li>
+														<li class="divider"></li>
+														<li><a href="index.php?v=m"><i class="fa fa-mobile"></i> {{Version mobile}}</a></li>
+														<li class="divider"></li>
+														<li><a href="#" id="bt_jeedomAbout"><i class="fa fa-info-circle"></i> {{Version}} v<?php echo jeedom::version(); ?></a></li>
 
-													<?php	if (jeedom::isCapable('sudo')) {
+														<?php	if (jeedom::isCapable('sudo')) {
 			echo '<li class="divider expertModeVisible"></li>';
 			echo '<li class="cursor expertModeVisible"><a id="bt_rebootSystem" state="0"><i class="fa fa-repeat"></i> {{Redémarrer}}</a></li>';
 			echo '<li class="cursor expertModeVisible"><a id="bt_haltSystem" state="0"><i class="fa fa-power-off"></i> {{Eteindre}}</a></li>';
