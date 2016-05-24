@@ -33,7 +33,6 @@ if (isset($argv)) {
 		}
 	}
 }
-
 if (init('scenarioElement_id') != '') {
 	scenario::doIn(array('scenario_id' => init('scenario_id'), 'scenarioElement_id' => init('scenarioElement_id'), 'second' => 0));
 } else {
@@ -42,11 +41,9 @@ if (init('scenarioElement_id') != '') {
 		log::add('scenario', 'info', __('Scénario non trouvé vérifier id : ', __FILE__) . init('scenario_id'));
 		die(__('Scénario non trouvé vérifier id : ', __FILE__) . init('scenario_id'));
 	}
-
 	if (is_numeric($scenario->getTimeout()) && $scenario->getTimeout() != '' && $scenario->getTimeout() != 0) {
 		set_time_limit($scenario->getTimeout(config::byKey('maxExecTimeScript', 1) * 60));
 	}
-
 	try {
 		if ($scenario->getState() == 'in progress' && $scenario->getConfiguration('allowMultiInstance', 0) == 0) {
 			sleep(1);
