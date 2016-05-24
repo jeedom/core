@@ -1,4 +1,2 @@
-<Files version>
-Order Allow,Deny
+Order allow,deny
 Deny from all
-</Files>
