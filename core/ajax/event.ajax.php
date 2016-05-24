@@ -15,11 +15,12 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
-header('Content-Type: application/json');
 
 try {
 	require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 	include_file('core', 'authentification', 'php');
+
+	ajax::init();
 
 	if (init('action') == 'changes') {
 		ajax::success(event::changes(init('datetime', 0)));

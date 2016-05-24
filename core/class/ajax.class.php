@@ -24,6 +24,12 @@ class ajax {
 
 	/*     * *********************Methode static ************************* */
 
+	public static function init() {
+		if (!headers_sent()) {
+			header('Content-Type: application/json');
+		}
+	}
+
 	public static function success($_data = '') {
 		echo self::getResponse($_data);
 		die();

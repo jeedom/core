@@ -15,16 +15,19 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
-header('Content-Type: application/json');
 
 try {
 	require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 	include_file('core', 'authentification', 'php');
 
+	if (!isConnect()) {
+		throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
+	}
+
+	ajax::init();
+
 	if (init('action') == 'getInfoApplication') {
-		if (!isConnect()) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
-		}
+
 		$_SESSION['user']->refresh();
 		$return = array();
 		$return['user_id'] = $_SESSION['user']->getId();
