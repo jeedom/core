@@ -290,6 +290,18 @@ try {
 	} catch (Exception $e) {
 
 	}
+
+	try {
+		echo __("Renommage adminer en cours...", __FILE__);
+		jeedom::renameAdminerFolder();
+		echo __("OK\n", __FILE__);
+		echo __("Renommage sysinfo en cours...", __FILE__);
+		jeedom::renameSysInfoFolder();
+		echo __("OK\n", __FILE__);
+	} catch (Exception $e) {
+
+	}
+
 } catch (Exception $e) {
 	echo "Error : ";
 	echo $e->getMessage();

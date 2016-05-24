@@ -197,12 +197,6 @@ try {
 					rrmdir($cibDir);
 					unlink($tmp);
 					echo __("OK\n", __FILE__);
-					echo __("Renommage adminer en cours...", __FILE__);
-					jeedom::renameAdminerFolder();
-					echo __("OK\n", __FILE__);
-					echo __("Renommage sysinfo en cours...", __FILE__);
-					jeedom::renameSysInfoFolder();
-					echo __("OK\n", __FILE__);
 				} catch (Exception $e) {
 					if (init('mode') != 'force') {
 						throw $e;
