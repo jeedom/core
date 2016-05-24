@@ -565,25 +565,13 @@ class scenario {
 	}
 
 	public function execute($_trigger = '', $_message = '') {
-		if ($this->getIsActive() != 1 && $this->getConfiguration('allowMultiInstance', 0) == 0) {
+		if ($this->getIsActive() != 1) {
 			$this->setLog(__('Impossible d\'exécuter le scénario : ', __FILE__) . $this->getHumanName() . __(' sur : ', __FILE__) . $_message . __(' car il est désactivé', __FILE__));
 			$this->persistLog();
 			return;
 		}
-		if ($this->getConfiguration('timeDependency', 0) == 1 && !jeedom::isDateOk()) {
-			$this->setLog(__('Lancement du scénario : ', __FILE__) . $this->getHumanName() . __(' annulé car il utilise une condition de type temporelle et que la date système n\'est pas OK', __FILE__));
-			$this->persistLog();
-			return;
-		}
-		$cmd = cmd::byId(str_replace('#', '', $_trigger));
-		if (is_object($cmd)) {
-			log::add('event', 'info', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclenché par : ', __FILE__) . $cmd->getHumanName());
-		} else {
-			log::add('event', 'info', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclenché par : ', __FILE__) . $_trigger);
-		}
-		$this->setLog(__('Début d\'exécution du scénario : ', __FILE__) . $this->getHumanName() . '. ' . $_message);
+		$this->setLog('Start : ' . $_message);
 		$this->setLastLaunch(date('Y-m-d H:i:s'));
-		$this->setDisplay('icon', '');
 		$this->setState('in progress');
 		$this->setPID(getmypid());
 		$this->save();
@@ -600,6 +588,7 @@ class scenario {
 			$this->setIsActive($scenario->getIsActive());
 		}
 		$this->save();
+		log::add('event', 'info', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclenché par : ', __FILE__) . $_trigger);
 		return true;
 	}
 
