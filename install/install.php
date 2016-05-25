@@ -197,6 +197,7 @@ try {
 					rrmdir($cibDir);
 					unlink($tmp);
 					echo __("OK\n", __FILE__);
+					config::save('update::lastDateCore', date('Y-m-d H:i:s'));
 				} catch (Exception $e) {
 					if (init('mode') != 'force') {
 						throw $e;

@@ -222,12 +222,13 @@ function printUpdate() {
     });
 
     jeedom.config.load({
-        configuration: "update::lastCheck",
+        configuration: {"update::lastCheck":0,"update::lastDateCore": 0},
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {
-            $('#span_lastUpdateCheck').value(data);
+            $('#span_lastUpdateCheck').value(data['update::lastCheck']);
+            $('#span_lastCoreUpdate').value(data['update::lastDateCore']);
         }
     });
 }

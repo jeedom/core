@@ -7,6 +7,7 @@ if (!hasRight('updateview', true)) {
 <div class="row row-overflow">
     <div class="col-sm-8">
     <i class="fa fa-clock-o"></i>  {{Dernière vérification : }}<span class="label label-info" id="span_lastUpdateCheck" style="margin-bottom: 5px;font-size:1em;"></span>
+    {{Dernière mise à jour du core : }}<span class="label label-info" id="span_lastCoreUpdate" style="margin-bottom: 5px;font-size:1em;"></span>
 
         <a class="btn btn-success pull-right" id="bt_saveUpdate" style="margin-top:5px;"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
         <a class="btn btn-warning pull-right" id="bt_checkAllUpdate" style="margin-top:5px;"><i class="fa fa-refresh"></i> {{Vérifier les objets et mises à jour}}</a>
