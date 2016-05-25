@@ -573,6 +573,17 @@ class scenario {
 			$this->persistLog();
 			return;
 		}
+		if ($this->getConfiguration('timeDependency', 0) == 1 && !jeedom::isDateOk()) {
+			$this->setLog(__('Lancement du scénario : ', __FILE__) . $this->getHumanName() . __(' annulé car il utilise une condition de type temporelle et que la date système n\'est pas OK', __FILE__));
+			$this->persistLog();
+			return;
+		}
+		$cmd = cmd::byId(str_replace('#', '', $_trigger));
+		if (is_object($cmd)) {
+			log::add('event', 'info', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclenché par : ', __FILE__) . $cmd->getHumanName());
+		} else {
+			log::add('event', 'info', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclenché par : ', __FILE__) . $_trigger);
+		}
 		$this->setLog('Start : ' . $_message);
 		$this->setLastLaunch(date('Y-m-d H:i:s'));
 		$this->setState('in progress');
@@ -591,7 +602,6 @@ class scenario {
 			$this->setIsActive($scenario->getIsActive());
 		}
 		$this->save();
-		log::add('event', 'info', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclenché par : ', __FILE__) . $_trigger);
 		return true;
 	}
 
