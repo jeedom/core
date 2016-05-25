@@ -16,6 +16,7 @@ if (!isConnect()) {
 			<th>{{Actif}}</th>
 			<th>{{Visible}}</th>
 			<th>{{Pas de log}}</th>
+			<th>{{Mode synchrone}}</th>
 			<th>{{Actions}}</th>
 		</tr>
 	</thead>
@@ -66,13 +67,16 @@ if (!isConnect()) {
 					tr += '<span class="scenarioAttr" data-l1key="lastLaunch"></span>';
 					tr += '</td>';
 					tr += '<td>';
-					tr += '<input type="checkbox" class="scenarioAttr bootstrapSwitch" data-label-text="{{Actif}}" data-size="mini" data-l1key="isActive">';
+					tr += '<input type="checkbox" class="scenarioAttr" data-label-text="{{Actif}}" data-l1key="isActive">';
 					tr += '</td>';
 					tr += '<td>';
-					tr += '<input type="checkbox" class="scenarioAttr bootstrapSwitch" data-label-text="{{Visible}}" data-size="mini" data-l1key="isVisible">';
+					tr += '<input type="checkbox" class="scenarioAttr" data-label-text="{{Visible}}" data-l1key="isVisible">';
 					tr += '</td>';
 					tr += '<td>';
-					tr += '<input type="checkbox" class="scenarioAttr bootstrapSwitch" data-l1key="configuration" data-l2key="noLog" data-size="mini">';
+					tr += '<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="noLog">';
+					tr += '</td>';
+					tr += '<td>';
+					tr += '<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="syncmode">';
 					tr += '</td>';
 					tr += '<td>';
 					tr += '<a class="btn btn-default tooltips btn-xs bt_summarayViewLog" title="{{Voir les logs}}"><i class="fa fa-file-o"></i></a> ';

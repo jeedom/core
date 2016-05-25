@@ -267,13 +267,19 @@ foreach (object::all() as $object) {
              <div class="form-group expertModeVisible">
                 <label class="col-xs-6 control-label">{{Autoriser plusieurs lancement en parallèle}}</label>
                 <div class="col-xs-1">
-                    <input type="checkbox" class="scenarioAttr bootstrapSwitch" data-l1key="configuration" data-l2key="allowMultiInstance" title="{{Le scénario pourra tourné plusieurs fois en même temps}}">
+                    <input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="allowMultiInstance" title="{{Le scénario pourra tourné plusieurs fois en même temps}}">
                 </div>
             </div>
             <div class="form-group expertModeVisible">
                 <label class="col-xs-6 control-label">{{Pas de log}}</label>
                 <div class="col-xs-1">
-                    <input type="checkbox" class="scenarioAttr bootstrapSwitch" data-l1key="configuration" data-l2key="noLog" title="{{Le scénario n'écrit plus de log}}">
+                    <input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="noLog" title="{{Le scénario n'écrit plus de log}}">
+                </div>
+            </div>
+             <div class="form-group expertModeVisible">
+                <label class="col-xs-6 control-label">{{Mode synchone}}</label>
+                <div class="col-xs-1">
+                    <input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="syncmode" title="{{Le scénario est mode synchrone, attention peux rendre le système instable}}">
                 </div>
             </div>
             <div class="form-group">
