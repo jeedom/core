@@ -1024,9 +1024,9 @@ class scenarioExpression {
 						case 'start':
 							$this->setLog($scenario, __('Lancement du scénario : ', __FILE__) . $actionScenario->getName());
 							if ($scenario != null) {
-								return $actionScenario->launch(false, __('Lancement provoqué par le scénario  : ', __FILE__) . $scenario->getHumanName());
+								return $actionScenario->launch(__('Lancement provoqué par le scénario  : ', __FILE__) . $scenario->getHumanName());
 							} else {
-								return $actionScenario->launch(false, __('Lancement provoqué', __FILE__));
+								return $actionScenario->launch(__('Lancement provoqué', __FILE__));
 							}
 							break;
 						case 'stop':

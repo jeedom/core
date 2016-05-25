@@ -496,7 +496,7 @@ if (init('type') != '') {
 					$jsonrpc->makeSuccess($scenario->stop());
 				}
 				if ($params['state'] == 'run') {
-					$jsonrpc->makeSuccess($scenario->launch(false, __('Scénario exécuté sur appel API', __FILE__)));
+					$jsonrpc->makeSuccess($scenario->launch(__('Scénario exécuté sur appel API', __FILE__)));
 				}
 				if ($params['state'] == 'enable') {
 					$scenario->setIsActive(1);

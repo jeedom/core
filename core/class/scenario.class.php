@@ -239,7 +239,7 @@ class scenario {
 			return true;
 		}
 		foreach ($scenarios as $scenario_) {
-			$scenario_->launch(false, $trigger, $message);
+			$scenario_->launch($trigger, $message);
 		}
 		return true;
 	}
@@ -550,17 +550,20 @@ class scenario {
 
 /*     * *********************Méthodes d'instance************************* */
 
-	public function launch($_force = false, $_trigger = '', $_message = '') {
+	public function launch($_trigger = '', $_message = '') {
 		if (config::byKey('enableScenario') != 1 || $this->getIsActive() != 1) {
 			return false;
 		}
-		$cmd = dirname(__FILE__) . '/../../core/php/jeeScenario.php ';
-		$cmd .= ' scenario_id=' . $this->getId();
-		$cmd .= ' force=' . $_force;
-		$cmd .= ' trigger=' . escapeshellarg($_trigger);
-		$cmd .= ' message=' . escapeshellarg(sanitizeAccent($_message));
-		$cmd .= ' >> ' . log::getPathToLog('scenario_execution') . ' 2>&1 &';
-		system::php($cmd);
+		if ($this->getConfiguration('syncmode') == 1) {
+			$this->execute($_trigger, $_message);
+		} else {
+			$cmd = dirname(__FILE__) . '/../../core/php/jeeScenario.php ';
+			$cmd .= ' scenario_id=' . $this->getId();
+			$cmd .= ' trigger=' . escapeshellarg($_trigger);
+			$cmd .= ' message=' . escapeshellarg(sanitizeAccent($_message));
+			$cmd .= ' >> ' . log::getPathToLog('scenario_execution') . ' 2>&1 &';
+			system::php($cmd);
+		}
 		return true;
 	}
 

@@ -39,7 +39,7 @@ try {
 				if (!$scenario->getIsActive()) {
 					throw new Exception(__('Impossible de lancer le scénario car il est désactivé. Veuillez l\'activer', __FILE__));
 				}
-				$scenario->launch(init('force', false), 'user', 'Scenario lance manuellement', 0);
+				$scenario->launch('user', 'Scenario lance manuellement', 0);
 				break;
 			case 'stop':
 				$scenario->stop();
