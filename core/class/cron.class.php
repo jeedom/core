@@ -26,7 +26,7 @@ class cron {
 	private $enable = 1;
 	private $class = '';
 	private $function;
-	private $lastRun = '0000-00-00 00:00:00';
+	private $lastRun = null;
 	private $duration = '0';
 	private $state = 'stop';
 	private $pid = null;
@@ -428,7 +428,7 @@ class cron {
 	}
 
 	public function getLastRun() {
-		if ($this->lastRun == '0000-00-00 00:00:00') {
+		if ($this->lastRun == '0000-00-00 00:00:00' || $this->lastRun == null) {
 			return date('Y-m-d H:i:s');
 		}
 		return $this->lastRun;
