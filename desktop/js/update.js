@@ -160,7 +160,7 @@
         url: 'core/ajax/log.ajax.php',
         data: {
             action: 'get',
-            logfile: _log,
+            log: _log,
         },
         dataType: 'json',
         global: false,

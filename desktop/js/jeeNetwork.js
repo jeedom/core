@@ -471,8 +471,8 @@ function getJeedomSlaveLog(_autoUpdate, _log,_el) {
         type: 'POST',
         url: 'core/ajax/log.ajax.php',
         data: {
-            action: 'getLog',
-            logfile: _log,
+            action: 'get',
+            log: _log,
             jeeNetwork_id: $('.li_jeeNetwork.active').attr('data-jeeNetwork_id')
         },
         dataType: 'json',
