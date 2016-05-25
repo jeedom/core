@@ -1005,6 +1005,11 @@ class cmd {
 		$_loop++;
 		$this->setCollectDate($collectDate);
 		$this->setValueDate($valueDate);
+		$message = __('Evènement sur la commande ', __FILE__) . $this->getHumanName() . __(' valeur : ', __FILE__) . $value;
+		if ($repeat) {
+			$message .= ' (répétition)';
+		}
+		log::add('event', 'info', $message);
 		cache::set('cmd' . $this->getId(), $value, 0, array('collectDate' => $this->getCollectDate(), 'valueDate' => $this->getValueDate()));
 		if (!$repeat) {
 			scenario::check($this);
