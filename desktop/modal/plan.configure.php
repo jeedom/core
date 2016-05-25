@@ -25,7 +25,7 @@ sendVarToJS('id', $plan->getId());
         <input type="text"  class="planAttr form-control" data-l1key="link_type" style="display: none;"/>
         <?php if ($plan->getLink_type() == 'eqLogic' || $plan->getLink_type() == 'scenario') {
 	?>
-           <div class="form-group">
+         <div class="form-group">
             <label class="col-lg-4 control-label">{{Taille du widget}}</label>
             <div class="col-lg-2">
                 <?php
@@ -38,7 +38,7 @@ if ($plan->getLink_type() == 'eqLogic') {
 	?>
           </div>
       </div>
-    <div class="form-group">
+      <div class="form-group">
         <label class="col-lg-4 control-label">{{Profondeur}}</label>
         <div class="col-lg-2">
             <select class="form-control planAttr" data-l1key="css" data-l2key="z-index" >
@@ -47,6 +47,16 @@ if ($plan->getLink_type() == 'eqLogic') {
                 <option value="1001">Niveau 2</option>
                 <option value="1002">Niveau 3</option>
             </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-4 control-label">{{Position X (%)}}</label>
+        <div class="col-lg-2">
+            <input type="text" class="planAttr form-control" data-l1key="position" data-l2key="top" />
+        </div>
+        <label class="col-lg-2 control-label">{{Position Y (%)}}</label>
+        <div class="col-lg-2">
+            <input type="text" class="planAttr form-control" data-l1key="position" data-l2key="left" />
         </div>
     </div>
     <legend>Spécifique</legend>
@@ -162,10 +172,10 @@ foreach (view::all() as $views) {
 			echo '<option value="' . $views->getId() . '">' . $views->getName() . '</option>';
 		}
 		?>
-         </select>
-     </div>
- </div>
- <?php
+           </select>
+       </div>
+   </div>
+   <?php
 }
 	if ($plan->getLink_type() == 'plan') {
 		?>
