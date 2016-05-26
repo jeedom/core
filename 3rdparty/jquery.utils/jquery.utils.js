@@ -372,6 +372,9 @@
             } else {
                 if ($(this).is('input')) {
                     if ($(this).attr('type') == 'checkbox') {
+                        if(init(_value) === ''){
+                            return;
+                        }
                         if($(this).hasClass('bootstrapSwitch')){
                             $(this).bootstrapSwitch('destroy');
                             $(this).prop('checked', (init(_value) == 1) ? true : false);
