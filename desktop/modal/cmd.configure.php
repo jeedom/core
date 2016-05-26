@@ -480,8 +480,10 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 			?>
              <select class="form-control cmdAttr" data-l1key="template" data-l2key="dashboard">
               <?php
-foreach ($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()] as $widget) {
-				echo '<option value="' . $widget['name'] . '">' . $widget['name'] . ' (' . $widget['location'] . ')</option>';
+if (is_array($cmd_widgetDashboard[$cmd->getType()]) && is_array($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()]) && count($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()]) > 0) {
+				foreach ($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()] as $widget) {
+					echo '<option value="' . $widget['name'] . '">' . $widget['name'] . ' (' . $widget['location'] . ')</option>';
+				}
 			}
 			?>
             </select>
@@ -493,8 +495,10 @@ foreach ($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()] as $widget) {
 			?>
              <select class="form-control cmdAttr" data-l1key="template" data-l2key="mobile">
               <?php
-foreach ($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()] as $widget) {
-				echo '<option value="' . $widget['name'] . '">' . $widget['name'] . ' (' . $widget['location'] . ')</option>';
+if (is_array($cmd_widgetMobile[$cmd->getType()]) && is_array($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()]) && count($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()]) > 0) {
+				foreach ($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()] as $widget) {
+					echo '<option value="' . $widget['name'] . '">' . $widget['name'] . ' (' . $widget['location'] . ')</option>';
+				}
 			}
 			?>
             </select>
