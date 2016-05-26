@@ -1,12 +1,24 @@
-<div class="eqLogic eqLogic-widget" data-eqLogic_id="#id#" data-version="mobile" style="margin:0px;border:#border#;border-radius:#border-radius#;background-color: #background-color#;color: #text-color#;#style#" data-category="#category#">
-    <span class="statusCmd" style="position : absolute;left : 5px; width : 30px;"></span>
-    <center>
-        <span class="widget-name">
-            <span style="#hideEqLogicName#">#name_display# <span style="font-size: 0.85em;">#object_name#</span></span><br/>
-        </span>
-        <div style="padding: 5px;">
-            #cmd#
-        </div>
-    </center>
+<div class="eqLogic eqLogic-widget" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-version="mobile" style="margin:0px;border:#border#;border-radius:#border-radius#;background-color: #background-color#;color: #text-color#;#style#" data-category="#category#">
+	<span class="cmd refresh pull-right cursor" data-cmd_id="#refresh_id#" style="margin-top: 3px;margin-right: 3px;">
+		<i class='fa fa-refresh'></i>
+	</span>
+	<span class="statusCmd" style="position : absolute;left : 5px; width : 30px;"></span>
+	<center>
+		<span class="widget-name">
+			<span style="#hideEqLogicName#">#name_display# <span style="font-size: 0.85em;">#object_name#</span></span><br/>
+		</span>
+		<div style="padding: 5px;">
+			#cmd#
+		</div>
+	</center>
+	<script>
+		if ('#refresh_id#' != ''){
+			$('.eqLogic[data-eqLogic_uid=#uid#] .refresh').on('click', function () {
+				jeedom.cmd.execute({id: '#refresh_id#'});
+			});
+		}else{
+			$('.eqLogic[data-eqLogic_uid=#uid#] .refresh').hide();
+		}
+	</script>
 </div>
 
