@@ -463,7 +463,7 @@ foreach (jeedom::getConfiguration('cmd::generic_type') as $key => $value) {
       <thead>
         <tr>
           <th></th>
-                  <?php
+          <?php
 foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 		echo '<th>{{' . $value['name'] . '}}</th>';
 	}
@@ -479,40 +479,48 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
            <?php if ($cmd->widgetPossibility('custom::widget::dashboard')) {
 			?>
              <select class="form-control cmdAttr" data-l1key="template" data-l2key="dashboard">
+              <option value="default">defaut (core)</option>';
               <?php
 if (is_array($cmd_widgetDashboard[$cmd->getType()]) && is_array($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()]) && count($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()]) > 0) {
 				foreach ($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()] as $widget) {
+					if ($widget['name'] == 'default') {
+						continue;
+					}
 					echo '<option value="' . $widget['name'] . '">' . $widget['name'] . ' (' . $widget['location'] . ')</option>';
 				}
 			}
 			?>
-            </select>
-            <?php }
+          </select>
+          <?php }
 		?>
-          </td>
-          <td>
-           <?php if ($cmd->widgetPossibility('custom::widget::mobile')) {
+        </td>
+        <td>
+         <?php if ($cmd->widgetPossibility('custom::widget::mobile')) {
 			?>
-             <select class="form-control cmdAttr" data-l1key="template" data-l2key="mobile">
-              <?php
+           <select class="form-control cmdAttr" data-l1key="template" data-l2key="mobile">
+            <option value="default">defaut (core)</option>';
+            <?php
 if (is_array($cmd_widgetMobile[$cmd->getType()]) && is_array($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()]) && count($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()]) > 0) {
 				foreach ($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()] as $widget) {
+					if ($widget['name'] == 'default') {
+						continue;
+					}
 					echo '<option value="' . $widget['name'] . '">' . $widget['name'] . ' (' . $widget['location'] . ')</option>';
 				}
 			}
 			?>
-            </select>
-            <?php }
+          </select>
+          <?php }
 		?>
-          </td>
-        </tr>
-        <?php }
+        </td>
+      </tr>
+      <?php }
 	?>
-        <?php if ($cmd->widgetPossibility('custom::visibility')) {
+      <?php if ($cmd->widgetPossibility('custom::visibility')) {
 		?>
-          <tr>
-            <td>{{Visible}}</td>
- <?php
+        <tr>
+          <td>{{Visible}}</td>
+          <?php
 foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 			echo '<td>';
 			if ($cmd->widgetPossibility('custom::visibility::' . $key)) {
@@ -521,14 +529,14 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 			echo '</td>';
 		}
 		?>
-           </tr>
-           <?php }
+      </tr>
+      <?php }
 	?>
-           <?php if ($cmd->widgetPossibility('custom::displayName')) {
+      <?php if ($cmd->widgetPossibility('custom::displayName')) {
 		?>
-            <tr>
-              <td>{{Afficher le nom}}</td>
-              <?php
+        <tr>
+          <td>{{Afficher le nom}}</td>
+          <?php
 foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 			echo '<td>';
 			if ($cmd->widgetPossibility('custom::displayName::' . $key)) {
@@ -537,15 +545,15 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 			echo '</td>';
 		}
 		?>
-            </tr>
-            <?php }
+      </tr>
+      <?php }
 	?>
-            <?php if (config::byKey('displayStatsWidget') == 1 && $cmd->getSubType() != 'string' && $cmd->widgetPossibility('custom::displayStats')) {
+      <?php if (config::byKey('displayStatsWidget') == 1 && $cmd->getSubType() != 'string' && $cmd->widgetPossibility('custom::displayStats')) {
 
 		?>
-              <tr>
-                <td>{{Afficher les statistiques}}</td>
-              <?php
+        <tr>
+          <td>{{Afficher les statistiques}}</td>
+          <?php
 foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 			echo '<td>';
 			if ($cmd->widgetPossibility('custom::displayStats::' . $key)) {
@@ -554,38 +562,38 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 			echo '</td>';
 		}
 		?>
-              </tr>
-              <?php
+      </tr>
+      <?php
 }
 	?>
-            </tbody>
-          </table>
+  </tbody>
+</table>
 
-          <div class="form-group">
-            <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Retour à la ligne forcé avant le widget}}</label>
-            <div class="col-xs-1">
-              <input type="checkbox" class="cmdAttr bootstrapSwitch" data-size="small" data-l1key="display" data-l2key="forceReturnLineBefore" />
-            </div>
-            <label class="col-xs-2 control-label">{{après le widget}}</label>
-            <div class="col-xs-1">
-              <input type="checkbox" class="cmdAttr bootstrapSwitch" data-size="small" data-l1key="display" data-l2key="forceReturnLineAfter" />
-            </div>
-          </div>
+<div class="form-group">
+  <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Retour à la ligne forcé avant le widget}}</label>
+  <div class="col-xs-1">
+    <input type="checkbox" class="cmdAttr bootstrapSwitch" data-size="small" data-l1key="display" data-l2key="forceReturnLineBefore" />
+  </div>
+  <label class="col-xs-2 control-label">{{après le widget}}</label>
+  <div class="col-xs-1">
+    <input type="checkbox" class="cmdAttr bootstrapSwitch" data-size="small" data-l1key="display" data-l2key="forceReturnLineAfter" />
+  </div>
+</div>
 
-          <br/><br/>
-           <?php if ($cmd->widgetPossibility('custom::optionalParameters')) {
+<br/><br/>
+<?php if ($cmd->widgetPossibility('custom::optionalParameters')) {
 		?>
-          <legend><i class="fa fa-pencil-square-o"></i> {{Paramètres optionnels widget}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fa fa-plus-circle"></i> Ajouter</a></legend>
-          <table class="table table-bordered table-condensed" id="table_widgetParameters">
-            <thead class="table table-bordered">
-              <tr>
-                <th>Nom</th>
-                <th>Valeur</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php
+  <legend><i class="fa fa-pencil-square-o"></i> {{Paramètres optionnels widget}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fa fa-plus-circle"></i> Ajouter</a></legend>
+  <table class="table table-bordered table-condensed" id="table_widgetParameters">
+    <thead class="table table-bordered">
+      <tr>
+        <th>Nom</th>
+        <th>Valeur</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php
 if ($cmd->getDisplay('parameters') != '') {
 			foreach ($cmd->getDisplay('parameters') as $key => $value) {
 				echo '<tr>';
@@ -602,250 +610,250 @@ if ($cmd->getDisplay('parameters') != '') {
 			}
 		}
 		?>
-           </tbody>
-         </table>
-                 <?php
+  </tbody>
+</table>
+<?php
 }
 	?>
-       </div>
-       <?php }
+</div>
+<?php }
 ?>
-     </div>
+</div>
 
 
-     <div id="md_cmdConfigureSelectMultiple" title="{{Sélection multiple de commandes}}"></div>
+<div id="md_cmdConfigureSelectMultiple" title="{{Sélection multiple de commandes}}"></div>
 
 
-     <script>
-      initTooltips();
+<script>
+  initTooltips();
+  initCheckBox();
+
+
+  $("#md_cmdConfigureSelectMultiple").dialog({
+    autoOpen: false,
+    modal: true,
+    height: (jQuery(window).height() - 150),
+    width: ((jQuery(window).width() - 150) < 1200) ? (jQuery(window).width() - 50) : 1200,
+    position: {my: 'center', at: 'center', of: window},
+    open: function () {
+      $("body").css({overflow: 'hidden'});
+    },
+    beforeClose: function (event, ui) {
+      $("body").css({overflow: 'inherit'});
+    }
+  });
+
+
+
+  $('#table_widgetParameters').delegate('.removeWidgetParameter', 'click', function () {
+    $(this).closest('tr').remove();
+  });
+
+  $('#bt_addWidgetParameters').off().on('click', function () {
+    var tr = '<tr>';
+    tr += '<td>';
+    tr += '<input class="form-control key" />';
+    tr += '</td>';
+    tr += '<td>';
+    tr += '<input class="form-control value" />';
+    tr += '</td>';
+    tr += '<td>';
+    tr += '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fa fa-times"></i> Supprimer</a>';
+    tr += '</td>';
+    tr += '</tr>';
+    $('#table_widgetParameters tbody').append(tr);
+  });
+
+  $('#div_displayCmdConfigure').setValues(cmdInfo, '.cmdAttr');
+  if(isset(cmdInfo.configuration.actionCheckCmd) && $.isArray(cmdInfo.configuration.actionCheckCmd) && cmdInfo.configuration.actionCheckCmd.length != null){
+    for(var i in cmdInfo.configuration.actionCheckCmd){
+      addActionCheckCmd(cmdInfo.configuration.actionCheckCmd[i], 'actionCheckCmd','{{Action}}');
+    }
+  }
+
+  editorCodeDview = null;
+  editorCodeDplan = null;
+  editorCodeMobile = null;
+  editorCodeMview = null;
+  editorCodeDashboard = null;
+
+  $('#bt_codeDashboard').one('click',function(){
+    setTimeout(function () {
+      editorCodeDashboard = CodeMirror.fromTextArea(document.getElementById("ta_codeDashboard"), {
+        lineNumbers: true,
+        mode: "text/javascript",
+        matchBrackets: true,
+        viewportMargin: Infinity
+      });
+    }, 1);
+  });
+
+  $('#bt_codeDview').one('click',function(){
+    setTimeout(function () {
+      editorCodeDview = CodeMirror.fromTextArea(document.getElementById("ta_codeDview"), {
+        lineNumbers: true,
+        mode: "text/javascript",
+        matchBrackets: true,
+        viewportMargin: Infinity
+      });
+    }, 1);
+  });
+
+  $('#bt_codeDplan').one('click',function(){
+    setTimeout(function () {
+      editorCodeDplan = CodeMirror.fromTextArea(document.getElementById("ta_codeDplan"), {
+        lineNumbers: true,
+        mode: "text/javascript",
+        matchBrackets: true,
+        viewportMargin: Infinity
+      });
+    }, 1);
+  });
+
+  $('#bt_codeMobile').one('click',function(){
+    setTimeout(function () {
+      editorCodeMobile = CodeMirror.fromTextArea(document.getElementById("ta_codeMobile"), {
+        lineNumbers: true,
+        mode: "text/javascript",
+        matchBrackets: true,
+        viewportMargin: Infinity
+      });
+    }, 1);
+  });
+
+  $('#bt_codeMview').one('click',function(){
+    setTimeout(function () {
+      editorCodeMview = CodeMirror.fromTextArea(document.getElementById("ta_codeMview"), {
+        lineNumbers: true,
+        mode: "text/javascript",
+        matchBrackets: true,
+        viewportMargin: Infinity
+      });
+    }, 1);
+  });
+
+  $('#bt_reinitHtmlCode').on('click',function(){
+    $('#ta_codeDashboard').value('');
+    $('#ta_codeDview').value('');
+    $('#ta_codeDplan').value('');
+    $('#ta_codeMobile').value('');
+    $('#ta_codeMview').value('');
+    if(editorCodeDashboard != null){
+     editorCodeDashboard.setValue('');
+   }
+   if(editorCodeDview != null){
+     editorCodeDview.setValue('');
+   }
+   if(editorCodeDplan != null){
+     editorCodeDplan.setValue('');
+   }
+   if(editorCodeMobile != null){
+    editorCodeMobile.setValue('');
+  }
+  if(editorCodeMview != null){
+   editorCodeMview.setValue('');
+ }
+ $('#md_displayCmdConfigure').showAlert({message: '{{Opération faite, n\'oubliez pas de sauvegarder}}', level: 'success'});
+});
+
+
+  $('#bt_cmdConfigureSave').on('click', function () {
+    var cmd = $('#div_displayCmdConfigure').getValues('.cmdAttr')[0];
+    if (!isset(cmd.display)) {
+      cmd.display = {};
+    }
+    if (!isset(cmd.display.parameters)) {
+      cmd.display.parameters = {};
+    }
+    $('#table_widgetParameters tbody tr').each(function () {
+      cmd.display.parameters[$(this).find('.key').value()] = $(this).find('.value').value();
+    });
+    var checkCmdParameter = $('#div_jeedomCheckCmdCmdOption').getValues('.expressionAttr')[0];
+    if (isset(checkCmdParameter) && isset(checkCmdParameter.options)) {
+      cmd.configuration.jeedomCheckCmdCmdActionOption = checkCmdParameter.options;
+    }
+    cmd.configuration.actionCheckCmd = {};
+    cmd.configuration.actionCheckCmd = $('#div_actionCheckCmd .actionCheckCmd').getValues('.expressionAttr');
+
+    if(editorCodeDashboard != null){
+      cmd.html.dashboard = editorCodeDashboard.getValue();
+    }
+    if(editorCodeDview != null){
+      cmd.html.dview = editorCodeDview.getValue();
+    }
+    if(editorCodeDplan != null){
+      cmd.html.dplan = editorCodeDplan.getValue();
+    }
+    if(editorCodeMobile != null){
+      cmd.html.mobile = editorCodeMobile.getValue();
+    }
+    if(editorCodeMview != null){
+      cmd.html.mview = editorCodeMview.getValue();
+    }
+    jeedom.cmd.save({
+      cmd: cmd,
+      error: function (error) {
+        $('#md_displayCmdConfigure').showAlert({message: error.message, level: 'danger'});
+      },
+      success: function () {
+        $('#md_displayCmdConfigure').showAlert({message: '{{Enregistrement réussi}}', level: 'success'});
+      }
+    });
+  });
+
+
+  $('#bt_cmdConfigureSaveOn').on('click',function(){
+    var cmd = $('#div_displayCmdConfigure').getValues('.cmdAttr')[0];
+    if (!isset(cmd.display)) {
+      cmd.display = {};
+    }
+    if (!isset(cmd.display.parameters)) {
+      cmd.display.parameters = {};
+    }
+    $('#table_widgetParameters tbody tr').each(function () {
+      cmd.display.parameters[$(this).find('.key').value()] = $(this).find('.value').value();
+    });
+    cmd = {display : cmd.display,template : cmd.template };
+    $('#md_cmdConfigureSelectMultiple').load('index.php?v=d&modal=cmd.selectMultiple&cmd_id='+cmdInfo.id, function() {
+      initTableSorter();
       initCheckBox();
-
-
-      $("#md_cmdConfigureSelectMultiple").dialog({
-        autoOpen: false,
-        modal: true,
-        height: (jQuery(window).height() - 150),
-        width: ((jQuery(window).width() - 150) < 1200) ? (jQuery(window).width() - 50) : 1200,
-        position: {my: 'center', at: 'center', of: window},
-        open: function () {
-          $("body").css({overflow: 'hidden'});
-        },
-        beforeClose: function (event, ui) {
-          $("body").css({overflow: 'inherit'});
+      $('#bt_cmdConfigureSelectMultipleAlertToogle').off().on('click', function () {
+        var state = false;
+        if ($(this).attr('data-state') == 0) {
+          state = true;
+          $(this).attr('data-state', 1);
+          $(this).find('i').removeClass('fa-check-circle-o').addClass('fa-circle-o');
+        } else {
+          state = false;
+          $(this).attr('data-state', 0);
+          $(this).find('i').removeClass('fa-circle-o').addClass('fa-check-circle-o');
         }
+        $('#table_cmdConfigureSelectMultiple tbody tr').each(function () {
+          if ($(this).is(':visible')) {
+           $(this).find('.selectMultipleApplyCmd').bootstrapSwitch('destroy');
+           $(this).find('.selectMultipleApplyCmd').prop('checked', state);
+           $(this).find('.selectMultipleApplyCmd').bootstrapSwitch();
+         }
+       });
       });
 
+      $('#bt_cmdConfigureSelectMultipleAlertApply').off().on('click', function () {
+        $('#table_cmdConfigureSelectMultiple tbody tr').each(function () {
+          if ($(this).find('.selectMultipleApplyCmd').prop('checked')) {
+            cmd.id = $(this).attr('data-cmd_id');
+            jeedom.cmd.save({
+              cmd: cmd,
+              error: function (error) {
+                $('#md_cmdConfigureSelectMultipleAlert').showAlert({message: error.message, level: 'danger'});
+              },
+              success: function () {
 
-
-      $('#table_widgetParameters').delegate('.removeWidgetParameter', 'click', function () {
-        $(this).closest('tr').remove();
-      });
-
-      $('#bt_addWidgetParameters').off().on('click', function () {
-        var tr = '<tr>';
-        tr += '<td>';
-        tr += '<input class="form-control key" />';
-        tr += '</td>';
-        tr += '<td>';
-        tr += '<input class="form-control value" />';
-        tr += '</td>';
-        tr += '<td>';
-        tr += '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fa fa-times"></i> Supprimer</a>';
-        tr += '</td>';
-        tr += '</tr>';
-        $('#table_widgetParameters tbody').append(tr);
-      });
-
-      $('#div_displayCmdConfigure').setValues(cmdInfo, '.cmdAttr');
-      if(isset(cmdInfo.configuration.actionCheckCmd) && $.isArray(cmdInfo.configuration.actionCheckCmd) && cmdInfo.configuration.actionCheckCmd.length != null){
-        for(var i in cmdInfo.configuration.actionCheckCmd){
-          addActionCheckCmd(cmdInfo.configuration.actionCheckCmd[i], 'actionCheckCmd','{{Action}}');
-        }
-      }
-
-      editorCodeDview = null;
-      editorCodeDplan = null;
-      editorCodeMobile = null;
-      editorCodeMview = null;
-      editorCodeDashboard = null;
-
-      $('#bt_codeDashboard').one('click',function(){
-        setTimeout(function () {
-          editorCodeDashboard = CodeMirror.fromTextArea(document.getElementById("ta_codeDashboard"), {
-            lineNumbers: true,
-            mode: "text/javascript",
-            matchBrackets: true,
-            viewportMargin: Infinity
-          });
-        }, 1);
-      });
-
-      $('#bt_codeDview').one('click',function(){
-        setTimeout(function () {
-          editorCodeDview = CodeMirror.fromTextArea(document.getElementById("ta_codeDview"), {
-            lineNumbers: true,
-            mode: "text/javascript",
-            matchBrackets: true,
-            viewportMargin: Infinity
-          });
-        }, 1);
-      });
-
-      $('#bt_codeDplan').one('click',function(){
-        setTimeout(function () {
-          editorCodeDplan = CodeMirror.fromTextArea(document.getElementById("ta_codeDplan"), {
-            lineNumbers: true,
-            mode: "text/javascript",
-            matchBrackets: true,
-            viewportMargin: Infinity
-          });
-        }, 1);
-      });
-
-      $('#bt_codeMobile').one('click',function(){
-        setTimeout(function () {
-          editorCodeMobile = CodeMirror.fromTextArea(document.getElementById("ta_codeMobile"), {
-            lineNumbers: true,
-            mode: "text/javascript",
-            matchBrackets: true,
-            viewportMargin: Infinity
-          });
-        }, 1);
-      });
-
-      $('#bt_codeMview').one('click',function(){
-        setTimeout(function () {
-          editorCodeMview = CodeMirror.fromTextArea(document.getElementById("ta_codeMview"), {
-            lineNumbers: true,
-            mode: "text/javascript",
-            matchBrackets: true,
-            viewportMargin: Infinity
-          });
-        }, 1);
-      });
-
-      $('#bt_reinitHtmlCode').on('click',function(){
-        $('#ta_codeDashboard').value('');
-        $('#ta_codeDview').value('');
-        $('#ta_codeDplan').value('');
-        $('#ta_codeMobile').value('');
-        $('#ta_codeMview').value('');
-        if(editorCodeDashboard != null){
-         editorCodeDashboard.setValue('');
-       }
-       if(editorCodeDview != null){
-         editorCodeDview.setValue('');
-       }
-       if(editorCodeDplan != null){
-         editorCodeDplan.setValue('');
-       }
-       if(editorCodeMobile != null){
-        editorCodeMobile.setValue('');
-      }
-      if(editorCodeMview != null){
-       editorCodeMview.setValue('');
-     }
-     $('#md_displayCmdConfigure').showAlert({message: '{{Opération faite, n\'oubliez pas de sauvegarder}}', level: 'success'});
-   });
-
-
-      $('#bt_cmdConfigureSave').on('click', function () {
-        var cmd = $('#div_displayCmdConfigure').getValues('.cmdAttr')[0];
-        if (!isset(cmd.display)) {
-          cmd.display = {};
-        }
-        if (!isset(cmd.display.parameters)) {
-          cmd.display.parameters = {};
-        }
-        $('#table_widgetParameters tbody tr').each(function () {
-          cmd.display.parameters[$(this).find('.key').value()] = $(this).find('.value').value();
-        });
-        var checkCmdParameter = $('#div_jeedomCheckCmdCmdOption').getValues('.expressionAttr')[0];
-        if (isset(checkCmdParameter) && isset(checkCmdParameter.options)) {
-          cmd.configuration.jeedomCheckCmdCmdActionOption = checkCmdParameter.options;
-        }
-        cmd.configuration.actionCheckCmd = {};
-        cmd.configuration.actionCheckCmd = $('#div_actionCheckCmd .actionCheckCmd').getValues('.expressionAttr');
-
-        if(editorCodeDashboard != null){
-          cmd.html.dashboard = editorCodeDashboard.getValue();
-        }
-        if(editorCodeDview != null){
-          cmd.html.dview = editorCodeDview.getValue();
-        }
-        if(editorCodeDplan != null){
-          cmd.html.dplan = editorCodeDplan.getValue();
-        }
-        if(editorCodeMobile != null){
-          cmd.html.mobile = editorCodeMobile.getValue();
-        }
-        if(editorCodeMview != null){
-          cmd.html.mview = editorCodeMview.getValue();
-        }
-        jeedom.cmd.save({
-          cmd: cmd,
-          error: function (error) {
-            $('#md_displayCmdConfigure').showAlert({message: error.message, level: 'danger'});
-          },
-          success: function () {
-            $('#md_displayCmdConfigure').showAlert({message: '{{Enregistrement réussi}}', level: 'success'});
-          }
-        });
-      });
-
-
-      $('#bt_cmdConfigureSaveOn').on('click',function(){
-        var cmd = $('#div_displayCmdConfigure').getValues('.cmdAttr')[0];
-        if (!isset(cmd.display)) {
-          cmd.display = {};
-        }
-        if (!isset(cmd.display.parameters)) {
-          cmd.display.parameters = {};
-        }
-        $('#table_widgetParameters tbody tr').each(function () {
-          cmd.display.parameters[$(this).find('.key').value()] = $(this).find('.value').value();
-        });
-        cmd = {display : cmd.display,template : cmd.template };
-        $('#md_cmdConfigureSelectMultiple').load('index.php?v=d&modal=cmd.selectMultiple&cmd_id='+cmdInfo.id, function() {
-          initTableSorter();
-          initCheckBox();
-          $('#bt_cmdConfigureSelectMultipleAlertToogle').off().on('click', function () {
-            var state = false;
-            if ($(this).attr('data-state') == 0) {
-              state = true;
-              $(this).attr('data-state', 1);
-              $(this).find('i').removeClass('fa-check-circle-o').addClass('fa-circle-o');
-            } else {
-              state = false;
-              $(this).attr('data-state', 0);
-              $(this).find('i').removeClass('fa-circle-o').addClass('fa-check-circle-o');
-            }
-            $('#table_cmdConfigureSelectMultiple tbody tr').each(function () {
-              if ($(this).is(':visible')) {
-               $(this).find('.selectMultipleApplyCmd').bootstrapSwitch('destroy');
-               $(this).find('.selectMultipleApplyCmd').prop('checked', state);
-               $(this).find('.selectMultipleApplyCmd').bootstrapSwitch();
-             }
-           });
-          });
-
-          $('#bt_cmdConfigureSelectMultipleAlertApply').off().on('click', function () {
-            $('#table_cmdConfigureSelectMultiple tbody tr').each(function () {
-              if ($(this).find('.selectMultipleApplyCmd').prop('checked')) {
-                cmd.id = $(this).attr('data-cmd_id');
-                jeedom.cmd.save({
-                  cmd: cmd,
-                  error: function (error) {
-                    $('#md_cmdConfigureSelectMultipleAlert').showAlert({message: error.message, level: 'danger'});
-                  },
-                  success: function () {
-
-                  }
-                });
               }
             });
-            $('#md_cmdConfigureSelectMultipleAlert').showAlert({message: "{{Modification(s) appliquée(s) avec succès}}", level: 'success'});
-          });
-        }).dialog('open');
+          }
+        });
+        $('#md_cmdConfigureSelectMultipleAlert').showAlert({message: "{{Modification(s) appliquée(s) avec succès}}", level: 'success'});
       });
-    </script>
+    }).dialog('open');
+  });
+</script>
