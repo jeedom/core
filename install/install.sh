@@ -176,6 +176,7 @@ done
 
 case ${STEP} in
    0)
+	echo "${JAUNE}Start of all install step${NORMAL}"
 	step_1_upgrade
 	step_2_mainpackage
 	step_3_mysql
