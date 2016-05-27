@@ -128,20 +128,6 @@ while getopts ":s:" opt; do
   esac
 done
 
-if [ ${STEP} -eq -1 ]; then
-	echo 'Launching complete install step'
-	step_1_upgrade
-	step_2_mainpackage
-	step_3_mysql
-	step_4_apache
-	step_5_jeedom_download
-	step_6_jeedom_customization
-	step_7_jeedom_installation
-	step_8_jeedom_crontab
-	step_9_jeedom_sudo
-else
-fi
-
 case ${STEP} in
    0)
 	step_1_upgrade
