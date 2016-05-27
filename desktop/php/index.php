@@ -116,6 +116,7 @@ include_file('3rdparty', 'bootstrap.slider/css/slider', 'css');
 include_file('3rdparty', 'jquery/jquery.min', 'js');
 ?>
 	<script>
+		JEEDOM_AJAX_TOKEN='<?php echo ajax::getToken() ?>';
 		$.ajaxSetup({
 			type: "POST",
 			data: {

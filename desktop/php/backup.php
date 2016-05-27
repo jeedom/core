@@ -60,7 +60,7 @@ if (!hasRight('backupview', true)) {
                         <label class="col-sm-4 col-xs-6 control-label">{{Envoyer une sauvegarde}}</label>
                         <div class="col-sm-8 col-xs-6">
                             <span class="btn btn-default btn-file">
-                                <i class="fa fa-cloud-upload"></i> {{Envoyer}}<input id="bt_uploadBackup" type="file" name="file" data-url="core/ajax/jeedom.ajax.php?action=backupupload">
+                                <i class="fa fa-cloud-upload"></i> {{Envoyer}}<input id="bt_uploadBackup" type="file" name="file" data-url="core/ajax/jeedom.ajax.php?action=backupupload&jeedom_token=<?php echo ajax::getToken(); ?>">
                             </span>
                         </div>
                     </div>

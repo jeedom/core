@@ -90,7 +90,7 @@ sendVarToJS('id', $planHeader->getId())
 
     $('#bt_uploadImage').fileupload({
         replaceFileInput: false,
-        url: 'core/ajax/plan.ajax.php?action=uploadImage&id=' + planHeader_id,
+        url: 'core/ajax/plan.ajax.php?action=uploadImage&id=' + planHeader_id+'&jeedom_token='+JEEDOM_AJAX_TOKEN,
         dataType: 'json',
         done: function (e, data) {
             if (data.result.state != 'ok') {
