@@ -117,7 +117,7 @@ step_6_jeedom_customization() {
 step_7_jeedom_installation() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_7_jeedom_installation${NORMAL}"
-	mysql_sql "DROP USER 'jeedom'@'%';"
+	echo "DROP USER 'jeedom'@'%';" | mysql -uroot -proot
 	mysql_sql "CREATE USER 'jeedom'@'%' IDENTIFIED BY 'jeedom';"
 	mysql_sql "DROP DATABASE IF EXISTS jeedom;"
 	mysql_sql "CREATE DATABASE jeedom;"
