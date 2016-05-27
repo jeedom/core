@@ -71,7 +71,7 @@ step_4_apache() {
 step_5_jeedom_download() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_5_jeedom_download${NORMAL}"
-	wget https://github.com/jeedom/core/archive/stable.zip -O /tmp/jeedom.zip
+	wget https://github.com/jeedom/core/archive/${VERSION}.zip -O /tmp/jeedom.zip
 	if [ $? -ne 0 ]; then
 		echo "${JAUNE}Could not download jeedom from github, use preadd version if exist${NORMAL}"
 		if [ -f /root/jeedom.zip ]; then
@@ -173,10 +173,13 @@ step_10_jeedom_check() {
 
 echo "${JAUNE}Welcome to jeedom installer${NORMAL}"
 STEP=0
+VERSION=stable
 
-while getopts ":s:" opt; do
+while getopts ":s:v:" opt; do
   case $opt in
     s) STEP="$OPTARG"
+    ;;
+    v) VERSION="$OPTARG"
     ;;
     \?) echo "${ROUGE}Invalid option -$OPTARG${NORMAL}" >&2
     ;;
@@ -215,7 +218,7 @@ case ${STEP} in
 	;;
    9) step_9_jeedom_sudo
 	;;
-   9) step_10_jeedom_check
+   10) step_10_jeedom_check
 	;;
    *) echo "${ROUGE}Sorry, I can not get a ${STEP} step for you!${NORMAL}"
 	;;
