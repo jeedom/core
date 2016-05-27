@@ -83,7 +83,7 @@ step_5_jeedom_download() {
     	exit 1
 	fi
 	mkdir -p /var/www/html
-	rm /var/www/html/index.html 2>&1 >> /dev/null
+	rm /var/www/html/index.html > /dev/null 2>&1
 	rm -rf /root/core-*
 	unzip -q /tmp/jeedom.zip -d /root/
 	if [ $? -ne 0 ]; then
@@ -99,10 +99,10 @@ step_6_jeedom_customization() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_6_jeedom_customization${NORMAL}"
 	cp /var/www/html/install/apache_security /etc/apache2/conf-available/security.conf
-	rm /etc/apache2/conf-enabled/security.conf
+	rm /etc/apache2/conf-enabled/security.conf > /dev/null 2>&1
 	ln -s /etc/apache2/conf-available/security.conf /etc/apache2/conf-enabled/
-	rm /etc/apache2/conf-available/other-vhosts-access-log.conf
-	rm /etc/apache2/conf-enabled/other-vhosts-access-log.conf
+	rm /etc/apache2/conf-available/other-vhosts-access-log.conf > /dev/null 2>&1
+	rm /etc/apache2/conf-enabled/other-vhosts-access-log.conf > /dev/null 2>&1
 	systemctl restart apache2
 	if [ $? -ne 0 ]; then
 		service apache2 restart
