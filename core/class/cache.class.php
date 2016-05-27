@@ -154,7 +154,8 @@ class cache {
 		$cmd .= 'tar xfz ' . dirname(__FILE__) . '/../../cache.tar.gz;';
 		$cmd .= 'cd /tmp;';
 		$cmd .= 'sudo rm -rf ' . $cache_dir . ';';
-		$cmd .= 'sudo mv ' . $cache_dir . '2 ' . $cache_dir . ';';
+		$cmd .= 'sudo cp -R ' . $cache_dir . '2 ' . $cache_dir . ';';
+		$cmd .= 'sudo chmod -R 777 ' . $cache_dir . ';';
 		$cmd .= 'sudo rm -rf ' . $cache_dir . '2;';
 		com_shell::execute($cmd);
 	}
