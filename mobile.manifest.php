@@ -90,6 +90,9 @@ foreach (ls($root_dir, '*') as $dir) {
 foreach (ls(dirname(__FILE__) . '/core/themes') as $dir) {
 	if (is_dir(dirname(__FILE__) . '/core/themes/' . $dir . '/mobile')) {
 		$other_file[] = 'core/themes/' . $dir . 'mobile/' . trim($dir, '/') . '.css';
+		if (file_exists(dirname(__FILE__) . '/core/themes/' . $dir . 'mobile/' . trim($dir, '/') . '.js')) {
+			$other_file[] = 'core/themes/' . $dir . 'mobile/' . trim($dir, '/') . '.js';
+		}
 	}
 }
 ?>

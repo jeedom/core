@@ -115,6 +115,7 @@ function initApplication(_reinit) {
                 if (isset(userProfils) && userProfils != null) {
                     if (isset(userProfils.mobile_theme_color) && userProfils.mobile_theme_color != '') {
                         $('#jQMnDColor').attr('href', 'core/themes/'+userProfils.mobile_theme_color+'/mobile/' + userProfils.mobile_theme_color + '.css');
+                        include.push( 'core/themes/'+userProfils.mobile_theme_color+'/mobile/' + userProfils.mobile_theme_color + '.js');
                     }
                     if (isset(userProfils.mobile_highcharts_theme) && userProfils.mobile_highcharts_theme != '') {
                         include.push('3rdparty/highstock/themes/' + userProfils.mobile_highcharts_theme + '.js');
@@ -250,6 +251,9 @@ function page(_page, _title, _option, _plugin,_dialog) {
                 $('#pagecontainer').css('padding-top','64px');
                 $('#page').fadeIn(400);
                 setTimeout(function(){$('#pagecontainer').css('padding-top','64px');; }, 100);
+                if (isset(userProfils.mobile_theme_color) && userProfils.mobile_theme_color != '' && 'function' == typeof (window[userProfils.mobile_theme_color]['init'])) {
+                   window[userProfils.mobile_theme_color]['init']();
+                }
             });
             }
         }
