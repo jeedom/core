@@ -54,7 +54,7 @@ step_5_jeedom_download() {
 	if [ $? -ne 0 ]; then
 		echo "Could not download jeedom from github, use preadd version if exist"
 		if [ -f /root/jeedom.zip ]; then
-
+			cp /root/jeedom.zip /tmp/jeedom.zip
 		fi
 	fi
 	if [ ! -e /tmp/jeedom.zip ]; then
