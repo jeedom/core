@@ -208,7 +208,7 @@ foreach (jeedom::getConfiguration('cmd::generic_type') as $key => $value) {
        <div class="form-group">
         <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Confirmer l'action}}</label>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-          <input type="checkbox" class="cmdAttr bootstrapSwitch" data-l1key="configuration" data-l2key="actionConfirm" />
+          <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="actionConfirm" />
         </div>
       </div>
       <div class="form-group">
@@ -315,7 +315,7 @@ foreach (jeedom::getConfiguration('cmd::generic_type') as $key => $value) {
     <div class="form-group">
       <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Historiser}}</label>
       <div class="col-xs-1">
-        <input type="checkbox" class="cmdAttr bootstrapSwitch" data-l1key="isHistorized" />
+        <input type="checkbox" class="cmdAttr" data-l1key="isHistorized" />
       </div>
     </div>
     <div class="form-group">
@@ -349,7 +349,7 @@ foreach (jeedom::getConfiguration('cmd::generic_type') as $key => $value) {
    <div class="form-group">
     <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Ignorer évènement si la valeur ne change pas}}</label>
     <div class="col-xs-1">
-      <input type="checkbox" class="cmdAttr bootstrapSwitch" data-l1key="configuration" data-l2key="doNotRepeatEvent" />
+      <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="doNotRepeatEvent" />
     </div>
   </div>
   <div class="form-group">
@@ -370,7 +370,7 @@ foreach (jeedom::getConfiguration('cmd::generic_type') as $key => $value) {
     <div class="form-group">
       <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Activer la personalisation du widget}}</label>
       <div class="col-xs-2">
-        <input type="checkbox" class="cmdAttr bootstrapSwitch" data-l1key="html" data-l2key="enable" />
+        <input type="checkbox" class="cmdAttr" data-l1key="html" data-l2key="enable" />
       </div>
       <div class="col-xs-3">
         <a class="btn btn-warning" id="bt_reinitHtmlCode"><i class="fa fa-times"></i> {{Reinitialiser la personalisation}}</a>
@@ -524,7 +524,7 @@ if (is_array($cmd_widgetMobile[$cmd->getType()]) && is_array($cmd_widgetMobile[$
 foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 			echo '<td>';
 			if ($cmd->widgetPossibility('custom::visibility::' . $key)) {
-				echo '<input type="checkbox" class="cmdAttr bootstrapSwitch" data-size="small" data-l1key="display" data-l2key="showOn' . $key . '" checked />';
+				echo '<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="showOn' . $key . '" checked />';
 			}
 			echo '</td>';
 		}
@@ -540,7 +540,7 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 			echo '<td>';
 			if ($cmd->widgetPossibility('custom::displayName::' . $key)) {
-				echo '<input type="checkbox" class="cmdAttr bootstrapSwitch" data-size="small" data-l1key="display" data-l2key="showNameOn' . $key . '" checked />';
+				echo '<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="showNameOn' . $key . '" checked />';
 			}
 			echo '</td>';
 		}
@@ -557,7 +557,7 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 			echo '<td>';
 			if ($cmd->widgetPossibility('custom::displayStats::' . $key)) {
-				echo '<input type="checkbox" class="cmdAttr bootstrapSwitch" data-size="small" data-l1key="display" data-l2key="showStatsOn' . $key . '" checked />';
+				echo '<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="showStatsOn' . $key . '" checked />';
 			}
 			echo '</td>';
 		}
@@ -572,11 +572,11 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 <div class="form-group">
   <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Retour à la ligne forcé avant le widget}}</label>
   <div class="col-xs-1">
-    <input type="checkbox" class="cmdAttr bootstrapSwitch" data-size="small" data-l1key="display" data-l2key="forceReturnLineBefore" />
+    <input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="forceReturnLineBefore" />
   </div>
   <label class="col-xs-2 control-label">{{après le widget}}</label>
   <div class="col-xs-1">
-    <input type="checkbox" class="cmdAttr bootstrapSwitch" data-size="small" data-l1key="display" data-l2key="forceReturnLineAfter" />
+    <input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="forceReturnLineAfter" />
   </div>
 </div>
 

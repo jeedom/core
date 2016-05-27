@@ -370,13 +370,13 @@ function addGraphService(_viewData){
     tr += '</select>'
     tr += '</td>';
     tr += '<td>';
-    tr += '<input type="checkbox" data-size="mini" class="viewDataAttr bootstrapSwitch" data-l1key="configuration" data-l2key="graphStep">'
+    tr += '<input type="checkbox" data-size="mini" class="viewDataAttr" data-l1key="configuration" data-l2key="graphStep">'
     tr += '</td>';
     tr += '<td>';
-    tr += '<input type="checkbox" data-size="mini" class="viewDataAttr bootstrapSwitch" data-l1key="configuration" data-l2key="graphStack">'
+    tr += '<input type="checkbox" data-size="mini" class="viewDataAttr" data-l1key="configuration" data-l2key="graphStack">'
     tr += '</td>';
     tr += '<td>';
-    tr += '<input type="checkbox" data-size="mini" class="viewDataAttr bootstrapSwitch" data-l1key="configuration" data-l2key="derive">'
+    tr += '<input type="checkbox" data-size="mini" class="viewDataAttr" data-l1key="configuration" data-l2key="derive">'
     tr += '</td>';
     tr += '</tr>';
     var result = $(tr);

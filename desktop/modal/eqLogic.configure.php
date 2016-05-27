@@ -159,7 +159,7 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 			echo '<td>';
 			if ($eqLogic->widgetPossibility('custom::visibility::' . $key)) {
-				echo '<input type="checkbox" class="eqLogicAttr bootstrapSwitch" data-size="small" data-l1key="display" data-l2key="showOn' . $key . '" checked />';
+				echo '<input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="showOn' . $key . '" checked />';
 			}
 			echo '</td>';
 		}
@@ -175,7 +175,7 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 			echo '<td>';
 			if ($eqLogic->widgetPossibility('custom::displayName::' . $key)) {
-				echo '<input type="checkbox" class="eqLogicAttr bootstrapSwitch" data-size="small" data-l1key="display" data-l2key="showNameOn' . $key . '" checked />';
+				echo '<input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="showNameOn' . $key . '" checked />';
 			}
 			echo '</td>';
 		}
@@ -191,7 +191,7 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 			echo '<td>';
 			if ($eqLogic->widgetPossibility('custom::displayObjectName::' . $key)) {
-				echo '<input type="checkbox" class="eqLogicAttr bootstrapSwitch" data-size="small" data-l1key="display" data-l2key="showObjectNameOn' . $key . '" />';
+				echo '<input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="showObjectNameOn' . $key . '" />';
 			}
 			echo '</td>';
 		}

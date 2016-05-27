@@ -34,7 +34,7 @@ sendVarToJS('id', $planHeader->getId())
         <div class="form-group">
             <label class="col-lg-4 control-label">{{Disponible sur téléphone}}</label>
             <div class="col-lg-8">
-                <input type="checkbox" class="planHeaderAttr bootstrapSwitch" data-l1key="configuration" data-l2key="enableOnMobile"/>
+                <input type="checkbox" class="planHeaderAttr" data-l1key="configuration" data-l2key="enableOnMobile"/>
             </div>
         </div>
         <div class="form-group">
@@ -46,9 +46,9 @@ sendVarToJS('id', $planHeader->getId())
         </div>
     </div>
     <div class="form-group expertModeVisible">
-        <label class="col-lg-4 control-label">{{Afficher la flèche de retour lors de la mise en plein écran}}</label>
+        <label class="col-lg-4 control-label">{{Masquer la flèche de retour lors de la mise en plein écran}}</label>
         <div class="col-lg-4">
-            <input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" class="planHeaderAttr bootstrapSwitch" data-l1key='configuration' data-l2key="noReturnFullScreen" />
+            <input type="checkbox" class="planHeaderAttr" data-l1key='configuration' data-l2key="noReturnFullScreen" />
         </div>
     </div>
     <legend><i class="icon techno-fleches"></i> {{Tailles}}</legend>
