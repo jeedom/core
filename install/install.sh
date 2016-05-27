@@ -6,15 +6,15 @@ if [ $(id -u) != 0 ] ; then
     exit 1
 fi
 
-function apt_install {
-  sudo apt-get -y install "$@"
+apt_install {
+  apt-get -y install "$@"
   if [ $? -ne 0 ]; then
     echo "Could not install $@ - abort"
     exit 1
   fi
 }
 
-function step_1_upgrade {
+step_1_upgrade() {
 	echo "---------------------------------------------------------------------"
 	echo "Start " ${FUNCNAME[ 0 ]}
 	apt-get update
@@ -22,14 +22,14 @@ function step_1_upgrade {
 	echo  ${FUNCNAME[ 0 ]} " success"
 }
 
-function step_2_mainpackage {
+step_2_mainpackage() {
 	echo "---------------------------------------------------------------------"
 	echo "Start " ${FUNCNAME[ 0 ]}
 	apt_install ntp ca-certificates unzip curl sudo
 	echo  ${FUNCNAME[ 0 ]} " success"
 }
 
-function step_3_mysql {
+step_3_mysql() {
 	echo "---------------------------------------------------------------------"
 	echo "Start " ${FUNCNAME[ 0 ]}
 	echo "mysql-server mysql-server/root_password password root" | debconf-set-selections
@@ -39,7 +39,7 @@ function step_3_mysql {
 	echo  ${FUNCNAME[ 0 ]} " success"
 }
 
-function step_4_apache {
+step_4_apache() {
 	echo "---------------------------------------------------------------------"
 	echo "Start " ${FUNCNAME[ 0 ]}
 	apt_install apache2 apache2-mpm-prefork apache2-utils libexpat1 ssl-cert
@@ -47,7 +47,7 @@ function step_4_apache {
 	echo  ${FUNCNAME[ 0 ]} " success"
 }
 
-function step_5_jeedom_download {
+step_5_jeedom_download() {
 	echo "---------------------------------------------------------------------"
 	echo "Start " ${FUNCNAME[ 0 ]}
 	wget https://github.com/jeedom/core/archive/stable.zip -O /tmp/jeedom.zip
@@ -70,7 +70,7 @@ function step_5_jeedom_download {
 	echo  ${FUNCNAME[ 0 ]} " success"
 }
 
-function step_6_jeedom_customization {
+step_6_jeedom_customization() {
 	echo "---------------------------------------------------------------------"
 	echo "Start " ${FUNCNAME[ 0 ]}
 	cp /var/www/html/install/apache_security /etc/apache2/conf-available/security.conf
@@ -82,7 +82,7 @@ function step_6_jeedom_customization {
 	echo  ${FUNCNAME[ 0 ]} " success"
 }
 
-function step_7_jeedom_installation {
+step_7_jeedom_installation() {
 	echo "---------------------------------------------------------------------"
 	echo "Start " ${FUNCNAME[ 0 ]}
 	echo "DROP USER 'jeedom'@'%';" | mysql -uroot -proot
@@ -102,14 +102,14 @@ function step_7_jeedom_installation {
 	echo  ${FUNCNAME[ 0 ]} " success"
 }
 
-function step_8_jeedom_crontab {
+step_8_jeedom_crontab() {
 	echo "---------------------------------------------------------------------"
 	echo "Start " ${FUNCNAME[ 0 ]}
 	echo "* * * * * su --shell=/bin/bash - www-data -c '/usr/bin/php /var/www/html/core/php/jeeCron.php' >> /dev/null" | crontab -
 	echo  ${FUNCNAME[ 0 ]} " success"
 }
 
-function step_9_jeedom_sudo {
+step_9_jeedom_sudo() {
 	echo "---------------------------------------------------------------------"
 	echo "Start " ${FUNCNAME[ 0 ]}
 	echo "www-data ALL=(ALL) NOPASSWD: ALL" | (EDITOR="tee -a" visudo)
