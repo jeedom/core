@@ -160,6 +160,17 @@ step_9_jeedom_sudo() {
 	echo "${VERT}step_9_jeedom_sudo success${NORMAL}"
 }
 
+step_10_jeedom_check() {
+	echo "---------------------------------------------------------------------"
+	echo "${JAUNE}Start step_10_jeedom_check${NORMAL}"
+	php /var/www/html/sick.php
+	if [ $? -ne 0 ]; then
+    	echo "${ROUGE}Could not install make jeedom sudo - abort${NORMAL}"
+    	exit 1
+  	fi
+	echo "${VERT}step_10_jeedom_check success${NORMAL}"
+}
+
 echo "${JAUNE}Welcome to jeedom installer${NORMAL}"
 STEP=0
 
@@ -184,6 +195,7 @@ case ${STEP} in
 	step_7_jeedom_installation
 	step_8_jeedom_crontab
 	step_9_jeedom_sudo
+	step_10_jeedom_check
 	;;
    1) step_1_upgrade
 	;;
@@ -202,6 +214,8 @@ case ${STEP} in
    8) step_8_jeedom_crontab
 	;;
    9) step_9_jeedom_sudo
+	;;
+   9) step_10_jeedom_check
 	;;
    *) echo "${ROUGE}Sorry, I can not get a ${STEP} step for you!${NORMAL}"
 	;;
