@@ -467,8 +467,8 @@ class jeedom {
 			} catch (Error $e) {
 				log::add('starting', 'error', __('Erreur sur la connexion au market : ', __FILE__) . log::exception($e));
 			}
-
 			log::add('starting', 'debug', __('Démarrage de jeedom fini avec succès', __FILE__));
+			event::add('refresh');
 		}
 		self::isDateOk();
 		if (config::byKey('update::autocheck') == 1) {

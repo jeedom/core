@@ -84,6 +84,9 @@ jeedom.init = function () {
     $('body').on('eqLogic::update', function (_event,eqLogic_id) {
         jeedom.eqLogic.refreshValue({id: eqLogic_id});
     });
+     $('body').on('refresh', function (_event) {
+        window.location.reload()
+    });
     $('body').on('jeedom::gotoplan', function (_event,_plan_id) {
         if(getUrlVars('p') == 'plan' && 'function' == typeof (displayPlan)){
          if (_plan_id != $('#sel_planHeader').attr('data-link_id')) {
