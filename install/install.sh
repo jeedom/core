@@ -52,6 +52,11 @@ step_3_mysql() {
 	echo "mysql-server mysql-server/root_password password root" | debconf-set-selections
 	echo "mysql-server mysql-server/root_password_again password root" | debconf-set-selections
 	apt_install mysql-client mysql-common mysql-server
+	service mysql start
+	if [ $? -ne 0 ]; then
+    	echo -e "${ROUGE}Could not start database - abort${NORMAL}"
+    	exit 1
+  	fi
 	mysqladmin -u root password root
 	if [ $? -ne 0 ]; then
     	echo -e "${ROUGE}Could not connect to database - abort${NORMAL}"
