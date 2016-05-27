@@ -25,14 +25,13 @@ if (init('slave_id', '') == -1) {
 	sendVarToJS('log_slave_id', init('slave_id', ''));
 }
 ?>
-<div class="alert alert-info">{{Vous devez activer tous les log de niveau event pour suivre en temps réel toute votre domotique}}</div>
 <a class="btn btn-danger pull-right" id="bt_logdisplayremoveLog"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>
 <a class="btn btn-warning pull-right" id="bt_logdisplayclearLog"><i class="fa fa-times"></i> {{Vider}}</a>
 <a class="btn btn-success pull-right" id="bt_logdisplaydownloadLog"><i class="fa fa-cloud-download"></i> {{Télécharger}}</a>
 <a class="btn btn-warning pull-right" data-state="1" id="bt_eventLogStopStart"><i class="fa fa-pause"></i> {{Pause}}</a>
 <input class="form-control pull-right" id="in_eventLogSearch" style="width : 300px;" placeholder="{{Rechercher}}" />
 <br/><br/><br/>
-<pre id='pre_eventlog' style='overflow: auto; height: calc(100% - 135px);with:90%;'></pre>
+<pre id='pre_eventlog' style='overflow: auto; height: calc(100% - 65px);with:90%;'></pre>
 
 <script>
 	jeedom.log.autoupdate({
