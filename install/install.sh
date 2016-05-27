@@ -186,6 +186,8 @@ while getopts ":s:v:" opt; do
   esac
 done
 
+echo "${JAUNE}Jeedom install version : ${VERSION}${NORMAL}"
+
 case ${STEP} in
    0)
 	echo "${JAUNE}Start of all install step${NORMAL}"
