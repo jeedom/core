@@ -63,7 +63,7 @@ step_3_mysql() {
 step_4_apache() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_4_apache${NORMAL}"
-	apt_install apache2 apache2-mpm-prefork apache2-utils libexpat1 ssl-cert
+	apt_install apache2 apache2-utils libexpat1 ssl-cert
 	apt_install	libapache2-mod-php5 php5 php5-common php5-curl php5-dev php5-gd php-pear php5-json php5-memcached php5-mysql php5-cli
 	echo "${VERT}step_4_apache success${NORMAL}"
 }
