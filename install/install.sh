@@ -16,40 +16,40 @@ apt_install() {
 
 step_1_upgrade() {
 	echo "---------------------------------------------------------------------"
-	echo "Start " ${FUNCNAME[ 0 ]}
+	echo "Start step_1_upgrade"
 	apt-get update
 	apt-get -y dist-upgrade
-	echo  ${FUNCNAME[ 0 ]} " success"
+	echo "step_1_upgrade success"
 }
 
 step_2_mainpackage() {
 	echo "---------------------------------------------------------------------"
-	echo "Start " ${FUNCNAME[ 0 ]}
+	echo "Start step_2_mainpackage"
 	apt_install ntp ca-certificates unzip curl sudo
-	echo  ${FUNCNAME[ 0 ]} " success"
+	echo "step_2_mainpackage success"
 }
 
 step_3_mysql() {
 	echo "---------------------------------------------------------------------"
-	echo "Start " ${FUNCNAME[ 0 ]}
+	echo "Start step_3_mysql"
 	echo "mysql-server mysql-server/root_password password root" | debconf-set-selections
 	echo "mysql-server mysql-server/root_password_again password root" | debconf-set-selections
 	apt_install mysql-client mysql-common mysql-server
 	mysqladmin -u root password root
-	echo  ${FUNCNAME[ 0 ]} " success"
+	echo "step_3_mysql success"
 }
 
 step_4_apache() {
 	echo "---------------------------------------------------------------------"
-	echo "Start " ${FUNCNAME[ 0 ]}
+	echo "Start step_4_apache"
 	apt_install apache2 apache2-mpm-prefork apache2-utils libexpat1 ssl-cert
 	apt_install	libapache2-mod-php5 php5 php5-common php5-curl php5-dev php5-gd php-pear php5-json php5-memcached php5-mysql php5-cli
-	echo  ${FUNCNAME[ 0 ]} " success"
+	echo "step_4_apache success"
 }
 
 step_5_jeedom_download() {
 	echo "---------------------------------------------------------------------"
-	echo "Start " ${FUNCNAME[ 0 ]}
+	echo "Start step_5_jeedom_download"
 	wget https://github.com/jeedom/core/archive/stable.zip -O /tmp/jeedom.zip
 	if [ $? -ne 0 ]; then
 		echo "Could not download jeedom from github, use preadd version if exist"
@@ -67,24 +67,24 @@ step_5_jeedom_download() {
 	unzip -q /tmp/jeedom.zip -d /root/
 	cp -R /root/core-*/* /var/www/html/
 	rm -rf /root/core-*
-	echo  ${FUNCNAME[ 0 ]} " success"
+	echo "step_5_jeedom_download success"
 }
 
 step_6_jeedom_customization() {
 	echo "---------------------------------------------------------------------"
-	echo "Start " ${FUNCNAME[ 0 ]}
+	echo "Start step_6_jeedom_customization"
 	cp /var/www/html/install/apache_security /etc/apache2/conf-available/security.conf
 	rm /etc/apache2/conf-enabled/security.conf
 	ln -s /etc/apache2/conf-available/security.conf /etc/apache2/conf-enabled/
 	rm /etc/apache2/conf-available/other-vhosts-access-log.conf
 	rm /etc/apache2/conf-enabled/other-vhosts-access-log.conf
 	systemctl restart apache2
-	echo  ${FUNCNAME[ 0 ]} " success"
+	echo "step_6_jeedom_customization success"
 }
 
 step_7_jeedom_installation() {
 	echo "---------------------------------------------------------------------"
-	echo "Start " ${FUNCNAME[ 0 ]}
+	echo "Start step_7_jeedom_installation"
 	echo "DROP USER 'jeedom'@'%';" | mysql -uroot -proot
 	echo "CREATE USER 'jeedom'@'%' IDENTIFIED BY 'jeedom';" | mysql -uroot -proot
 	echo "DROP DATABASE IF EXISTS jeedom;" | mysql -uroot -proot
@@ -99,21 +99,21 @@ step_7_jeedom_installation() {
 	chmod 775 -R /var/www/html
 	chown -R www-data:www-data /var/www/html
 	php /var/www/html/install/install.php mode=force
-	echo  ${FUNCNAME[ 0 ]} " success"
+	echo "step_7_jeedom_installation success"
 }
 
 step_8_jeedom_crontab() {
 	echo "---------------------------------------------------------------------"
-	echo "Start " ${FUNCNAME[ 0 ]}
+	echo "Start step_8_jeedom_crontab"
 	echo "* * * * * su --shell=/bin/bash - www-data -c '/usr/bin/php /var/www/html/core/php/jeeCron.php' >> /dev/null" | crontab -
-	echo  ${FUNCNAME[ 0 ]} " success"
+	echo "step_8_jeedom_crontab success"
 }
 
 step_9_jeedom_sudo() {
 	echo "---------------------------------------------------------------------"
-	echo "Start " ${FUNCNAME[ 0 ]}
+	echo "Start step_9_jeedom_sudo"
 	echo "www-data ALL=(ALL) NOPASSWD: ALL" | (EDITOR="tee -a" visudo)
-	echo  ${FUNCNAME[ 0 ]} " success"
+	echo "step_9_jeedom_sudo success"
 }
 
 echo "Welcome to jeedom installer"
