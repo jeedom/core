@@ -42,7 +42,7 @@ step_1_upgrade() {
 step_2_mainpackage() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_2_mainpackage${NORMAL}"
-	apt_install ntp ca-certificates unzip curl sudo crontab
+	apt_install ntp ca-certificates unzip curl sudo cron
 	echo "${VERT}step_2_mainpackage success${NORMAL}"
 }
 
