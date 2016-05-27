@@ -6,7 +6,7 @@ if [ $(id -u) != 0 ] ; then
     exit 1
 fi
 
-apt_install {
+apt_install() {
   apt-get -y install "$@"
   if [ $? -ne 0 ]; then
     echo "Could not install $@ - abort"
