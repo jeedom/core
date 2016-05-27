@@ -91,7 +91,7 @@ step_5_jeedom_download() {
     	exit 1
   	fi
 	cp -R /root/core-*/* /var/www/html/
-	rm -rf /root/core-*
+	rm -rf /root/core-* > /dev/null 2>&1
 	echo "${VERT}step_5_jeedom_download success${NORMAL}"
 }
 
