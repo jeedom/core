@@ -141,10 +141,12 @@ step_7_jeedom_installation() {
 step_8_jeedom_crontab() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_8_jeedom_crontab${NORMAL}"
-	echo "* * * * * su --shell=/bin/bash - www-data -c '/usr/bin/php /var/www/html/core/php/jeeCron.php' >> /dev/null" | crontab -
-	if [ $? -ne 0 ]; then
-    	echo "${ROUGE}Could not install jeedom cron - abort${NORMAL}"
-    	exit 1
+	if [ $(crontab -l | grep /var/www/html/core/php/jeeCron.php | wc -l) -eq 0 ];then
+		echo "* * * * * su --shell=/bin/bash - www-data -c '/usr/bin/php /var/www/html/core/php/jeeCron.php' >> /dev/null" | crontab -
+		if [ $? -ne 0 ]; then
+	    	echo "${ROUGE}Could not install jeedom cron - abort${NORMAL}"
+	    	exit 1
+	  	fi
   	fi
 	echo "${VERT}step_8_jeedom_crontab success${NORMAL}"
 }
@@ -152,10 +154,12 @@ step_8_jeedom_crontab() {
 step_9_jeedom_sudo() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_9_jeedom_sudo${NORMAL}"
-	echo "www-data ALL=(ALL) NOPASSWD: ALL" | (EDITOR="tee -a" visudo)
-	if [ $? -ne 0 ]; then
-    	echo "${ROUGE}Could not install make jeedom sudo - abort${NORMAL}"
-    	exit 1
+	if [ $(grep "www-data ALL=(ALL) NOPASSWD: ALL" /etc/sudoers | wc -l) -eq 0 ];then
+		echo "www-data ALL=(ALL) NOPASSWD: ALL" | (EDITOR="tee -a" visudo)
+		if [ $? -ne 0 ]; then
+    		echo "${ROUGE}Could not install make jeedom sudo - abort${NORMAL}"
+    		exit 1
+  		fi
   	fi
 	echo "${VERT}step_9_jeedom_sudo success${NORMAL}"
 }
@@ -225,3 +229,5 @@ case ${STEP} in
    *) echo "${ROUGE}Sorry, I can not get a ${STEP} step for you!${NORMAL}"
 	;;
 esac
+
+exit 0
