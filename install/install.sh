@@ -42,7 +42,7 @@ step_1_upgrade() {
 step_2_mainpackage() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_2_mainpackage${NORMAL}"
-	apt_install ntp ca-certificates unzip curl sudo
+	apt_install ntp ca-certificates unzip curl sudo crontab
 	echo "${VERT}step_2_mainpackage success${NORMAL}"
 }
 
@@ -103,7 +103,7 @@ step_6_jeedom_customization() {
 	ln -s /etc/apache2/conf-available/security.conf /etc/apache2/conf-enabled/
 	rm /etc/apache2/conf-available/other-vhosts-access-log.conf > /dev/null 2>&1
 	rm /etc/apache2/conf-enabled/other-vhosts-access-log.conf > /dev/null 2>&1
-	systemctl restart apache2
+	systemctl restart apache2 > /dev/null 2>&1
 	if [ $? -ne 0 ]; then
 		service apache2 restart
 		if [ $? -ne 0 ]; then
@@ -117,7 +117,7 @@ step_6_jeedom_customization() {
 step_7_jeedom_installation() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_7_jeedom_installation${NORMAL}"
-	echo "DROP USER 'jeedom'@'%';" | mysql -uroot -proot
+	echo "DROP USER 'jeedom'@'%';" | mysql -uroot -proot > /dev/null 2>&1
 	mysql_sql "CREATE USER 'jeedom'@'%' IDENTIFIED BY 'jeedom';"
 	mysql_sql "DROP DATABASE IF EXISTS jeedom;"
 	mysql_sql "CREATE DATABASE jeedom;"
