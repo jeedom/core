@@ -57,11 +57,6 @@ step_3_mysql() {
     	echo "${ROUGE}Could not start database - abort${NORMAL}"
     	exit 1
   	fi
-	mysqladmin -u root password root
-	if [ $? -ne 0 ]; then
-    	echo "${ROUGE}Could not connect to database - abort${NORMAL}"
-    	exit 1
-  	fi
 	echo "${VERT}step_3_mysql success${NORMAL}"
 }
 
