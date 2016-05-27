@@ -105,8 +105,11 @@ step_6_jeedom_customization() {
 	rm /etc/apache2/conf-enabled/other-vhosts-access-log.conf
 	systemctl restart apache2
 	if [ $? -ne 0 ]; then
-    	echo "${ROUGE}Could not restart apache - abort${NORMAL}"
-    	exit 1
+		service apache2 restart
+		if [ $? -ne 0 ]; then
+    		echo "${ROUGE}Could not restart apache - abort${NORMAL}"
+    		exit 1
+  		fi
   	fi
 	echo "${VERT}step_6_jeedom_customization success${NORMAL}"
 }
