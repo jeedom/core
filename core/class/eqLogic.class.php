@@ -442,7 +442,7 @@ class eqLogic {
 		}
 		$mc = cache::byKey('widgetHtml' . $_version . $this->getId());
 		if ($mc->getValue() != '') {
-			return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
+			//return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
 		}
 
 		$replace = array(
@@ -473,11 +473,6 @@ class eqLogic {
 			}
 		} else {
 			$replace['#background-color#'] = ($this->getDisplay('background-color-transparent' . $version, 0) == 1) ? 'transparent' : $this->getDisplay('background-color' . $version, $this->getBackgroundColor($version));
-		}
-		$opacity = $this->getDisplay('background-opacity' . $version, config::byKey('widget::background-opacity'));
-		if ($opacity != '' && $opacity < 1) {
-			list($r, $g, $b) = sscanf($replace['#background-color#'], "#%02x%02x%02x");
-			$replace['#background-color#'] = 'rgba(' . $r . ',' . $g . ',' . $b . ',' . $opacity . ')';
 		}
 
 		if ($this->getDisplay('color-default' . $version, 1) != 1) {
@@ -551,6 +546,11 @@ class eqLogic {
 						break;
 				}
 			}
+		}
+		$opacity = $this->getDisplay('background-opacity' . $version, config::byKey('widget::background-opacity'));
+		if ($opacity != '' && $opacity < 1) {
+			list($r, $g, $b) = sscanf($replace['#background-color#'], "#%02x%02x%02x");
+			$replace['#background-color#'] = 'rgba(' . $r . ',' . $g . ',' . $b . ',' . $opacity . ')';
 		}
 		return $replace;
 	}
