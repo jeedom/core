@@ -464,6 +464,7 @@ class eqLogic {
 			'#uid#' => 'eqLogic' . $this->getId() . self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER,
 			'#refresh_id#' => '',
 		);
+
 		if ($this->getDisplay('background-color-default' . $version, 1) == 1) {
 			if (isset($_default['#background-color#'])) {
 				$replace['#background-color#'] = $_default['#background-color#'];
@@ -473,6 +474,12 @@ class eqLogic {
 		} else {
 			$replace['#background-color#'] = ($this->getDisplay('background-color-transparent' . $version, 0) == 1) ? 'transparent' : $this->getDisplay('background-color' . $version, $this->getBackgroundColor($version));
 		}
+		$opacity = $this->getDisplay('background-opacity' . $version, config::byKey('widget::background-opacity'));
+		if ($opacity != '' && $opacity < 1) {
+			list($r, $g, $b) = sscanf($replace['#background-color#'], "#%02x%02x%02x");
+			$replace['#background-color#'] = 'rgba(' . $r . ',' . $g . ',' . $b . ',' . $opacity . ')';
+		}
+
 		if ($this->getDisplay('color-default' . $version, 1) != 1) {
 			$replace['#color#'] = $this->getDisplay('color' . $version, '#ffffff');
 		}
@@ -545,7 +552,6 @@ class eqLogic {
 				}
 			}
 		}
-
 		return $replace;
 	}
 

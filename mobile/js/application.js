@@ -251,9 +251,6 @@ function page(_page, _title, _option, _plugin,_dialog) {
                 $('#pagecontainer').css('padding-top','64px');
                 $('#page').fadeIn(400);
                 setTimeout(function(){$('#pagecontainer').css('padding-top','64px');; }, 100);
-                if (isset(userProfils.mobile_theme_color) && userProfils.mobile_theme_color != '' && 'function' == typeof (window[userProfils.mobile_theme_color]['init'])) {
-                   window[userProfils.mobile_theme_color]['init']();
-                }
             });
             }
         }

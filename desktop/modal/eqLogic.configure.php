@@ -219,6 +219,22 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 </tr>
 <?php }
 	?>
+    <?php if ($eqLogic->widgetPossibility('custom::background-opacity')) {
+		?>
+  <tr>
+    <td>{{Opacité}}</td>
+    <?php
+foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
+			echo '<td>';
+			if ($eqLogic->widgetPossibility('custom::background-opacity::' . $key)) {
+				echo '<input type="numeric" class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="background-opacity' . $key . '" placeholder="{{Entre 0 et 1}}" />';
+			}
+			echo '</td>';
+		}
+		?>
+</tr>
+<?php }
+	?>
 <?php if ($eqLogic->widgetPossibility('custom::text-color')) {
 		?>
   <tr>

@@ -56,47 +56,6 @@ dark_sobre.config = $.extend(true, {
   }
 
 }, dark_sobre.config);
-
-dark_sobre.setOpacity = function() {
-  var el = $(this);
-  var background = el.css('background-color');
-  if (background.indexOf('rgba') < 0) {
-    el.css('background-color', background.replace(')', ', ' + dark_sobre.config.advanced.opacity + ')').replace('rgb', 'rgba')).change(dark_sobre.setOpacity);
-  }
-  dark_sobre.showContent();
-};
-dark_sobre.observer = new MutationObserver(function(mutations) {
-  mutations.forEach(function(mutation) {
-    for (var i = 0; i < mutation.addedNodes.length; i++) {
-      dark_sobre.onMutationProcess(mutation.addedNodes[i]);
-    }
-  })   
-});
-dark_sobre.observe = function() {
-  dark_sobre.observer.observe(this, {
-    childList : true
-  });
-};
-dark_sobre.delayProcess = function(selector, delay) {
-  setTimeout((function() {
-      $(selector).each(dark_sobre.setOpacity);
-  }), delay); 
-};
-dark_sobre.process = function(selector, type) {
-  if (dark_sobre.config[type].enable) {
-    if (!dark_sobre.config.delay.enable) {
-      $(selector).each(dark_sobre.observe);
-      dark_sobre.delayProcess('.eqLogic-widget', dark_sobre.config.advanced.force_visible_delay);
-    }
-    else {
-      dark_sobre.delayProcess('.eqLogic-widget', window.location.href.indexOf(dark_sobre.config.delay.local_adress > -1) ? 
-        dark_sobre.config.delay.local_timeout : dark_sobre.config.delay.external_timeout);
-    }
-  }
-  else {
-    dark_sobre.showContent();
-  }
-};
 dark_sobre.showContent = function() {
   if (!dark_sobre.contentVisible) {
     dark_sobre.contentVisible = true;
@@ -125,57 +84,6 @@ dark_sobre.onInit = function() {
   }
   var type = null;
   var url = window.location.href;
-  if (url.indexOf("p=dashboard") > -1) {
-      type = 'dashboard';
-      dark_sobre.onInit = function() { 
-        dark_sobre.process('.div_displayEquipement', type);
-      };
-      dark_sobre.onMutationProcess = function(elMutation) { 
-        if (elMutation.classList && elMutation.classList.contains("eqLogic-widget")) {
-          dark_sobre.setOpacity.bind(elMutation)();
-        }
-      };
-   }
-   else if (url.indexOf("p=view") > -1) {
-      type = 'view';
-      dark_sobre.onInit = function() { 
-        dark_sobre.process('.div_displayView', type);
-      };
-      dark_sobre.onMutationProcess = function(elMutation) { 
-        var el = $(elMutation)
-        if (el.hasClass("col-xs-3")) {
-          el.find(".eqLogic-widget").each(dark_sobre.setOpacity);
-        }
-      };
-   }
-   else if (url.indexOf("p=plan") > -1) {
-      type = 'plan';
-      dark_sobre.onInit = function() { 
-        dark_sobre.process('.div_displayObject', type);
-      };
-      dark_sobre.onMutationProcess = function(elMutation) { 
-        if (elMutation.classList && elMutation.classList.contains("eqLogic-widget")) {
-          dark_sobre.setOpacity.bind(elMutation)();
-        }
-      };
-   }
-   else if (url.indexOf("p=panel") > -1) {
-     for (var i = 0; i < dark_sobre.config.panel.enableNames.length; i++) {
-       if (url.indexOf("m=" + dark_sobre.config.panel.enableNames[i]) > -1) {
-         type = 'panel';
-         dark_sobre.config[type].enable = true;
-         dark_sobre.onInit = function() { 
-           dark_sobre.delayProcess('.eqLogic-widget', dark_sobre.config.advanced.force_visible_delay);
-         };
-         break;
-       }
-     }
-   }
-   else if (url.indexOf("p=display") > -1) {
-      dark_sobre.onInit = function() { 
-        $('div.col-xs-4.object.col-xs-height').each(dark_sobre.setOpacity);
-      };
-   }
    if (type && dark_sobre.config[type].removeBackground) {
        dark_sobre.style+= 'body{background-image:none!important}';
    }
