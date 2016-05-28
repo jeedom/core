@@ -15,3 +15,5 @@ install:
   - sudo chmod 777 -R /home/travis/build/jeedom
   - sudo chown www-data:www-data -R /home/travis/build/jeedom
   - sudo install/install.sh -w /home/travis/build/jeedom/core -s 12
+notifications:
+  slack: jeedom:uVLJjs0ANyRFWpFcUok4QFLr
