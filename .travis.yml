@@ -4,8 +4,13 @@ php:
   - 5.6
   - 7.0
 install:
-  - sudo chmod +x install/travis.sh
-  - sudo install/travis.sh
+  - sudo chmod +x install/install.sh
+  - sudo install/install.sh -w /home/travis/build/jeedom -s 1
+  - sudo install/install.sh -w /home/travis/build/jeedom -s 2
+  - sudo install/install.sh -w /home/travis/build/jeedom -s 3
+  - sudo install/install.sh -w /home/travis/build/jeedom -s 4
+  - sudo install/install.sh -w /home/travis/build/jeedom -s 6
+  - sudo install/install.sh -w /home/travis/build/jeedom -s 7
   - php install/install.php mode=force
   - sudo chmod 777 -R /home/travis/build/jeedom
   - sudo chown www-data:www-data -R /home/travis/build/jeedom
