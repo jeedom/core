@@ -83,7 +83,7 @@ step_5_jeedom_download() {
     	exit 1
 	fi
 	mkdir -p /var/www/html
-	rm /var/www/html/index.html > /dev/null 2>&1
+	rm /var/www/html/* > /dev/null 2>&1
 	rm -rf /root/core-*
 	unzip -q /tmp/jeedom.zip -d /root/
 	if [ $? -ne 0 ]; then
