@@ -548,7 +548,7 @@ class eqLogic {
 			}
 		}
 		$opacity = $this->getDisplay('background-opacity' . $version, config::byKey('widget::background-opacity'));
-		if ($opacity != '' && $opacity < 1) {
+		if ($replace['#background-color#'] != 'transparent' && $opacity != '' && $opacity < 1) {
 			list($r, $g, $b) = sscanf($replace['#background-color#'], "#%02x%02x%02x");
 			$replace['#background-color#'] = 'rgba(' . $r . ',' . $g . ',' . $b . ',' . $opacity . ')';
 		}
