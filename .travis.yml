@@ -4,8 +4,8 @@ php:
   - 5.6
   - 7.0
 install:
+  - sudo apt-get update
   - sudo chmod +x install/install.sh
-  - sudo install/install.sh -w /home/travis/build/jeedom -s 1
   - sudo install/install.sh -w /home/travis/build/jeedom -s 2
   - sudo install/install.sh -w /home/travis/build/jeedom -s 3
   - sudo install/install.sh -w /home/travis/build/jeedom -s 4
