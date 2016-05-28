@@ -160,7 +160,7 @@ try {
 	$cron->setSchedule('00 * * * * *');
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
-	$cron->setTimeout(59);
+	$cron->setTimeout(60);
 	$cron->save();
 
 	$cron = cron::byClassAndFunction('jeedom', 'cron5');
