@@ -85,7 +85,14 @@ step_4_apache() {
 step_5_php() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_5_php${NORMAL}"
-	apt_install	libapache2-mod-php php php-common php-curl php-dev php-gd php-pear php-json php-memcached php-mysql php-cli
+	apt-get -y install libapache2-mod-php php php-common php-curl php-dev php-gd php-pear php-json php-memcached php-mysql php-cli
+	if [ $? -ne 0 ]; then
+		apt-get -y install libapache2-mod-php5 php5 php5-common php5-curl php5-dev php5-gd php5-pear php5-json php5-memcached php5-mysql php5-cli
+		if [ $? -ne 0 ]; then
+    		echo "${ROUGE}Could not install php - abort${NORMAL}"
+    		exit 1
+  		fi
+	fi
 	echo "${VERT}step_5_php success${NORMAL}"
 }
 
