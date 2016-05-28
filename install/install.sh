@@ -62,6 +62,7 @@ step_3_mysql() {
     			exit 1
   		fi
   	fi
+  	mysqladmin -u root password root > /dev/null 2>&1
 	echo "${VERT}step_3_mysql success${NORMAL}"
 }
 
