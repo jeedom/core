@@ -186,7 +186,7 @@ STEP=0
 VERSION=stable
 WEBSERVER_HOME=/var/www/html
 
-while getopts ":s:v:w" opt; do
+while getopts ":s:v:w:" opt; do
   case $opt in
     s) STEP="$OPTARG"
     ;;
