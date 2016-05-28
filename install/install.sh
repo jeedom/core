@@ -54,7 +54,7 @@ step_3_mysql() {
 	apt_install mysql-client mysql-common mysql-server
 	systemctl restart mysql > /dev/null 2>&1
 	service mysql start > /dev/null 2>&1
-	systemctl status mysql
+	systemctl status mysql > /dev/null 2>&1
 	if [ $? -ne 0 ]; then
     	service mysql status
 		if [ $? -ne 0 ]; then
@@ -62,7 +62,7 @@ step_3_mysql() {
     			exit 1
   		fi
   	fi
-  	mysqladmin -u root password root > /dev/null 2>&1
+  	mysqladmin -u root password root
 	echo "${VERT}step_3_mysql success${NORMAL}"
 }
 
