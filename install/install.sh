@@ -52,7 +52,26 @@ step_3_mysql() {
 	echo "mysql-server mysql-server/root_password password root" | debconf-set-selections
 	echo "mysql-server mysql-server/root_password_again password root" | debconf-set-selections
 	apt_install mysql-client mysql-common mysql-server
-  	mysqladmin -u root password root
+	mysqladmin -u root password root
+	
+	systemctl status mysql > /dev/null 2>&1
+	if [ $? -ne 0 ]; then
+    	service mysql status
+		if [ $? -ne 0 ]; then
+    		systemctl start mysql > /dev/null 2>&1
+    		if [ $? -ne 0 ]; then
+				service mysql start > /dev/null 2>&1
+			fi
+  		fi
+  	fi
+  	systemctl status mysql > /dev/null 2>&1
+	if [ $? -ne 0 ]; then
+    	service mysql status
+		if [ $? -ne 0 ]; then
+    		echo "${ROUGE}Could not start mysql - abort${NORMAL}"
+    		exit 1
+  		fi
+  	fi
 	echo "${VERT}step_3_mysql success${NORMAL}"
 }
 
