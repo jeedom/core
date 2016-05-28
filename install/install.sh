@@ -52,11 +52,15 @@ step_3_mysql() {
 	echo "mysql-server mysql-server/root_password password root" | debconf-set-selections
 	echo "mysql-server mysql-server/root_password_again password root" | debconf-set-selections
 	apt_install mysql-client mysql-common mysql-server
-	service mysql start
-	service mysql status
+	systemctl restart mysql > /dev/null 2>&1
+	service mysql start > /dev/null 2>&1
+	systemctl status mysql
 	if [ $? -ne 0 ]; then
-    	echo "${ROUGE}Could not start database - abort${NORMAL}"
-    	exit 1
+    	service mysql status
+		if [ $? -ne 0 ]; then
+    			echo "${ROUGE}Could not start database - abort${NORMAL}"
+    			exit 1
+  		fi
   	fi
 	echo "${VERT}step_3_mysql success${NORMAL}"
 }
@@ -65,13 +69,19 @@ step_4_apache() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_4_apache${NORMAL}"
 	apt_install apache2 apache2-utils libexpat1 ssl-cert
-	apt_install	libapache2-mod-php php php-common php-curl php-dev php-gd php-pear php-json php-memcached php-mysql php-cli
 	echo "${VERT}step_4_apache success${NORMAL}"
 }
 
-step_5_jeedom_download() {
+step_5_php() {
 	echo "---------------------------------------------------------------------"
-	echo "${JAUNE}Start step_5_jeedom_download${NORMAL}"
+	echo "${JAUNE}Start step_5_php${NORMAL}"
+	apt_install	libapache2-mod-php php php-common php-curl php-dev php-gd php-pear php-json php-memcached php-mysql php-cli
+	echo "${VERT}step_5_php success${NORMAL}"
+}
+
+step_6_jeedom_download() {
+	echo "---------------------------------------------------------------------"
+	echo "${JAUNE}Start step_6_jeedom_download${NORMAL}"
 	wget https://github.com/jeedom/core/archive/${VERSION}.zip -O /tmp/jeedom.zip
 	if [ $? -ne 0 ]; then
 		echo "${JAUNE}Could not download jeedom from github, use preadd version if exist${NORMAL}"
@@ -93,12 +103,12 @@ step_5_jeedom_download() {
   	fi
 	cp -R /root/core-*/* ${WEBSERVER_HOME}
 	rm -rf /root/core-* > /dev/null 2>&1
-	echo "${VERT}step_5_jeedom_download success${NORMAL}"
+	echo "${VERT}step_6_jeedom_download success${NORMAL}"
 }
 
-step_6_jeedom_customization() {
+step_7_jeedom_customization() {
 	echo "---------------------------------------------------------------------"
-	echo "${JAUNE}Start step_6_jeedom_customization${NORMAL}"
+	echo "${JAUNE}Start step_7_jeedom_customization${NORMAL}"
 	cp ${WEBSERVER_HOME}/install/apache_security /etc/apache2/conf-available/security.conf
 	rm /etc/apache2/conf-enabled/security.conf > /dev/null 2>&1
 	ln -s /etc/apache2/conf-available/security.conf /etc/apache2/conf-enabled/
@@ -112,12 +122,12 @@ step_6_jeedom_customization() {
     		exit 1
   		fi
   	fi
-	echo "${VERT}step_6_jeedom_customization success${NORMAL}"
+	echo "${VERT}step_7_jeedom_customization success${NORMAL}"
 }
 
-step_7_jeedom_configuration() {
+step_8_jeedom_configuration() {
 	echo "---------------------------------------------------------------------"
-	echo "${JAUNE}Start step_7_jeedom_configuration${NORMAL}"
+	echo "${JAUNE}Start step_8_jeedom_configuration${NORMAL}"
 	echo "DROP USER 'jeedom'@'%';" | mysql -uroot -proot > /dev/null 2>&1
 	mysql_sql "CREATE USER 'jeedom'@'%' IDENTIFIED BY 'jeedom';"
 	mysql_sql "DROP DATABASE IF EXISTS jeedom;"
@@ -131,23 +141,23 @@ step_7_jeedom_configuration() {
 	sed -i "s/#HOST#/localhost/g" ${WEBSERVER_HOME}/core/config/common.config.php 
 	chmod 775 -R ${WEBSERVER_HOME}
 	chown -R www-data:www-data ${WEBSERVER_HOME}
-	echo "${VERT}step_7_jeedom_configuration success${NORMAL}"
+	echo "${VERT}step_8_jeedom_configuration success${NORMAL}"
 }
 
-step_8_jeedom_installation() {
+step_9_jeedom_installation() {
 	echo "---------------------------------------------------------------------"
-	echo "${JAUNE}Start step_8_jeedom_installation${NORMAL}"
+	echo "${JAUNE}Start step_9_jeedom_installation${NORMAL}"
 	php ${WEBSERVER_HOME}/install/install.php mode=force
 	if [ $? -ne 0 ]; then
     	echo "${ROUGE}Could not install jeedom - abort${NORMAL}"
     	exit 1
   	fi
-	echo "${VERT}step_8_jeedom_installation success${NORMAL}"
+	echo "${VERT}step_9_jeedom_installation success${NORMAL}"
 }
 
-step_9_jeedom_crontab() {
+step_10_jeedom_crontab() {
 	echo "---------------------------------------------------------------------"
-	echo "${JAUNE}Start step_9_jeedom_crontab${NORMAL}"
+	echo "${JAUNE}Start step_10_jeedom_crontab${NORMAL}"
 	if [ $(crontab -l | grep ${WEBSERVER_HOME}/core/php/jeeCron.php | wc -l) -eq 0 ];then
 		echo "* * * * * su --shell=/bin/bash - www-data -c '/usr/bin/php ${WEBSERVER_HOME}/core/php/jeeCron.php' >> /dev/null" | crontab -
 		if [ $? -ne 0 ]; then
@@ -155,12 +165,12 @@ step_9_jeedom_crontab() {
 	    	exit 1
 	  	fi
   	fi
-	echo "${VERT}step_9_jeedom_crontab success${NORMAL}"
+	echo "${VERT}step_10_jeedom_crontab success${NORMAL}"
 }
 
-step_10_jeedom_sudo() {
+step_11_jeedom_sudo() {
 	echo "---------------------------------------------------------------------"
-	echo "${JAUNE}Start step_10_jeedom_sudo${NORMAL}"
+	echo "${JAUNE}Start step_11_jeedom_sudo${NORMAL}"
 	if [ $(grep "www-data ALL=(ALL) NOPASSWD: ALL" /etc/sudoers | wc -l) -eq 0 ];then
 		echo "www-data ALL=(ALL) NOPASSWD: ALL" | (EDITOR="tee -a" visudo)
 		if [ $? -ne 0 ]; then
@@ -168,18 +178,18 @@ step_10_jeedom_sudo() {
     		exit 1
   		fi
   	fi
-	echo "${VERT}step_10_jeedom_sudo success${NORMAL}"
+	echo "${VERT}step_11_jeedom_sudo success${NORMAL}"
 }
 
-step_11_jeedom_check() {
+step_12_jeedom_check() {
 	echo "---------------------------------------------------------------------"
-	echo "${JAUNE}Start step_11_jeedom_check${NORMAL}"
+	echo "${JAUNE}Start step_12_jeedom_check${NORMAL}"
 	php ${WEBSERVER_HOME}/sick.php
 	if [ $? -ne 0 ]; then
     	echo "${ROUGE}Could not install make jeedom sudo - abort${NORMAL}"
     	exit 1
   	fi
-	echo "${VERT}step_11_jeedom_check success${NORMAL}"
+	echo "${VERT}step_12_jeedom_check success${NORMAL}"
 }
 
 echo "${JAUNE}Welcome to jeedom installer${NORMAL}"
@@ -210,13 +220,14 @@ case ${STEP} in
 	step_2_mainpackage
 	step_3_mysql
 	step_4_apache
-	step_5_jeedom_download
-	step_6_jeedom_customization
-	step_7_jeedom_configuration
-	step_8_jeedom_installation
-	step_9_jeedom_crontab
-	step_10_jeedom_sudo
-	step_11_jeedom_check
+	step_5_php
+	step_6_jeedom_download
+	step_7_jeedom_customization
+	step_8_jeedom_configuration
+	step_9_jeedom_installation
+	step_10_jeedom_crontab
+	step_11_jeedom_sudo
+	step_12_jeedom_check
 	;;
    1) step_1_upgrade
 	;;
@@ -226,19 +237,21 @@ case ${STEP} in
 	;;
    4) step_4_apache
 	;;
-   5) step_5_jeedom_download
+   5) step_5_php
 	;;
-   6) step_6_jeedom_customization
+   6) step_6_jeedom_download
 	;;
-   7) step_7_jeedom_configuration
+   7) step_7_jeedom_customization
 	;;
-   8) step_8_jeedom_installation
+   8) step_8_jeedom_configuration
 	;;
-   9) step_9_jeedom_crontab
+   9) step_9_jeedom_installation
 	;;
-   10) step_10_jeedom_sudo
+   10) step_10_jeedom_crontab
 	;;
-   11) step_11_jeedom_check
+   11) step_11_jeedom_sudo
+	;;
+   12) step_12_jeedom_check
 	;;
    *) echo "${ROUGE}Sorry, I can not get a ${STEP} step for you!${NORMAL}"
 	;;
