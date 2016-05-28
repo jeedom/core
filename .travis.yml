@@ -11,6 +11,6 @@ install:
   - sudo install/install.sh -w /home/travis/build/jeedom/core -s 4
   - sudo install/install.sh -w /home/travis/build/jeedom/core -s 7
   - sudo install/install.sh -w /home/travis/build/jeedom/core -s 8
-  - php install/install.php mode=force
+  - sudo php install/install.php mode=force
   - sudo chmod 777 -R /home/travis/build/jeedom
   - sudo chown www-data:www-data -R /home/travis/build/jeedom
