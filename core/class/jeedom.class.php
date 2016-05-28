@@ -508,9 +508,24 @@ class jeedom {
 			cron::clean();
 			DB::optimize();
 		} catch (Exception $e) {
-			log::add('scenario', 'error', $e->getMessage());
+			log::add('jeedom', 'error', $e->getMessage());
 		} catch (Error $e) {
-			log::add('scenario', 'error', $e->getMessage());
+			log::add('jeedom', 'error', $e->getMessage());
+		}
+	}
+
+	public static function cronHourly() {
+		try {
+			foreach (repo::all() as $name => $repo) {
+				$class = 'repo_' . $name;
+				if (class_exists($class) && method_exists($class, 'cronHourly') && config::byKey($name . '::enable') == 1) {
+					$class::cronHourly();
+				}
+			}
+		} catch (Exception $e) {
+			log::add('jeedom', 'error', $e->getMessage());
+		} catch (Error $e) {
+			log::add('jeedom', 'error', $e->getMessage());
 		}
 	}
 

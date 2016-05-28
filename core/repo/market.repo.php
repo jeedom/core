@@ -185,6 +185,14 @@ class repo_market {
 		jeedom::restore('backup/' . $_backup, true);
 	}
 
+	public static function cronHourly() {
+		try {
+			self::test();
+		} catch (Exception $e) {
+
+		}
+	}
+
 	public static function test() {
 		$market = self::getJsonRpc();
 		if ($market->sendRequest('market::test')) {
