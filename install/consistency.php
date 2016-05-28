@@ -150,6 +150,19 @@ try {
 	$cron->setTimeout(240);
 	$cron->save();
 
+	$cron = cron::byClassAndFunction('jeedom', 'cronHourly');
+	if (!is_object($cron)) {
+		echo "Création de jeedom::cronHourly\n";
+		$cron = new cron();
+	}
+	$cron->setClass('jeedom');
+	$cron->setFunction('cronHourly');
+	$cron->setSchedule('00 * * * * *');
+	$cron->setEnable(1);
+	$cron->setDeamon(0);
+	$cron->setTimeout(59);
+	$cron->save();
+
 	$cron = cron::byClassAndFunction('jeedom', 'cron5');
 	if (!is_object($cron)) {
 		echo "Création de jeedom::cron5\n";
