@@ -183,61 +183,59 @@ if (init('cron_id') != '') {
 
 	set_time_limit(59);
 	cron::setPidFile();
-	while (true) {
-		if ($started && config::byKey('enableCron', 'core', 1, true) == 0) {
-			die(__('Tous les crons sont actuellement désactivés', __FILE__));
-		}
-		foreach (cron::all() as $cron) {
-			try {
-				if ($cron->getDeamon() == 1) {
-					continue;
-				}
-				if (!$started && $cron->getClass() != 'jeedom' && $cron->getFunction() != 'cron') {
-					continue;
-				}
 
-				if (!$cron->refresh()) {
-					continue;
-				}
-				$duration = strtotime('now') - strtotime($cron->getLastRun());
-				if ($cron->getEnable() == 1 && $cron->getState() != 'run' && $cron->getState() != 'starting' && $cron->getState() != 'stoping') {
-					if ($cron->isDue()) {
-						$cron->start();
-					}
-				}
-				if ($cron->getState() == 'run' && ($duration / 60) >= $cron->getTimeout()) {
-					$cron->stop();
-				}
+	if ($started && config::byKey('enableCron', 'core', 1, true) == 0) {
+		die(__('Tous les crons sont actuellement désactivés', __FILE__));
+	}
+	foreach (cron::all() as $cron) {
+		try {
+			if ($cron->getDeamon() == 1) {
+				continue;
+			}
+			if (!$started && $cron->getClass() != 'jeedom' && $cron->getFunction() != 'cron') {
+				continue;
+			}
 
-				switch ($cron->getState()) {
-					case 'starting':
-						$cron->run();
-						break;
-					case 'stoping':
-						$cron->halt();
-						break;
-				}
-			} catch (Exception $e) {
-				if ($cron->getOnce() != 1) {
-					$cron->setState('error');
-					$cron->setPID('');
-					$cron->setDuration(-1);
-					$cron->save();
-					echo __('[Erreur master] ', __FILE__) . $cron->getName() . ' : ' . log::exception($e);
-					log::add('cron', 'error', __('[Erreur master] ', __FILE__) . $cron->getName() . ' : ' . $e->getMessage());
-				}
-			} catch (Error $e) {
-				if ($cron->getOnce() != 1) {
-					$cron->setState('error');
-					$cron->setPID('');
-					$cron->setDuration(-1);
-					$cron->save();
-					echo __('[Erreur master] ', __FILE__) . $cron->getName() . ' : ' . log::exception($e);
-					log::add('cron', 'error', __('[Erreur master] ', __FILE__) . $cron->getName() . ' : ' . $e->getMessage());
+			if (!$cron->refresh()) {
+				continue;
+			}
+			$duration = strtotime('now') - strtotime($cron->getLastRun());
+			if ($cron->getEnable() == 1 && $cron->getState() != 'run' && $cron->getState() != 'starting' && $cron->getState() != 'stoping') {
+				if ($cron->isDue()) {
+					$cron->start();
 				}
 			}
+			if ($cron->getState() == 'run' && ($duration / 60) >= $cron->getTimeout()) {
+				$cron->stop();
+			}
+
+			switch ($cron->getState()) {
+				case 'starting':
+					$cron->run();
+					break;
+				case 'stoping':
+					$cron->halt();
+					break;
+			}
+		} catch (Exception $e) {
+			if ($cron->getOnce() != 1) {
+				$cron->setState('error');
+				$cron->setPID('');
+				$cron->setDuration(-1);
+				$cron->save();
+				echo __('[Erreur master] ', __FILE__) . $cron->getName() . ' : ' . log::exception($e);
+				log::add('cron', 'error', __('[Erreur master] ', __FILE__) . $cron->getName() . ' : ' . $e->getMessage());
+			}
+		} catch (Error $e) {
+			if ($cron->getOnce() != 1) {
+				$cron->setState('error');
+				$cron->setPID('');
+				$cron->setDuration(-1);
+				$cron->save();
+				echo __('[Erreur master] ', __FILE__) . $cron->getName() . ' : ' . log::exception($e);
+				log::add('cron', 'error', __('[Erreur master] ', __FILE__) . $cron->getName() . ' : ' . $e->getMessage());
+			}
 		}
-		die();
 	}
 }
 ?>
