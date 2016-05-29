@@ -36,8 +36,6 @@ if (isset($argv)) {
 
 require_once dirname(__FILE__) . "/core.inc.php";
 
-$startTime = getmicrotime();
-
 if (init('cron_id') != '') {
 	if (jeedom::isStarted() && config::byKey('enableCron', 'core', 1, true) == 0) {
 		die(__('Tous les crons sont actuellement désactivés', __FILE__));
@@ -195,7 +193,6 @@ if (init('cron_id') != '') {
 			if (!$started && $cron->getClass() != 'jeedom' && $cron->getFunction() != 'cron') {
 				continue;
 			}
-
 			if (!$cron->refresh()) {
 				continue;
 			}
@@ -208,7 +205,6 @@ if (init('cron_id') != '') {
 			if ($cron->getState() == 'run' && ($duration / 60) >= $cron->getTimeout()) {
 				$cron->stop();
 			}
-
 			switch ($cron->getState()) {
 				case 'starting':
 					$cron->run();
