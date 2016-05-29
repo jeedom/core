@@ -628,7 +628,7 @@ class scenario {
 			return $mc->getValue();
 		}
 
-		$_version = jeedom::versionAlias($_version);
+		$version = jeedom::versionAlias($_version);
 		$replace = array(
 			'#id#' => $this->getId(),
 			'#state#' => $this->getState(),
@@ -638,16 +638,18 @@ class scenario {
 			'#treename#' => $this->getHumanName(false, false, false, false, true),
 			'#icon#' => $this->getIcon(),
 			'#lastLaunch#' => $this->getLastLaunch(),
+			'#lastLaunch#' => $this->getLastLaunch(),
 			'#scenarioLink#' => $this->getLinkToConfiguration(),
+			'#version#' => $_version,
 		);
 		if (!isset(self::$_templateArray)) {
 			self::$_templateArray = array();
 		}
-		if (!isset(self::$_templateArray[$_version])) {
-			self::$_templateArray[$_version] = getTemplate('core', $_version, 'scenario');
+		if (!isset(self::$_templateArray[$version])) {
+			self::$_templateArray[$version] = getTemplate('core', $version, 'scenario');
 		}
-		$html = template_replace($replace, self::$_templateArray[$_version]);
-		cache::set('scenarioHtml' . $_version . $this->getId(), $html, 0);
+		$html = template_replace($replace, self::$_templateArray[$version]);
+		cache::set('scenarioHtml' . $version . $this->getId(), $html, 0);
 		return $html;
 	}
 
