@@ -442,7 +442,7 @@ class eqLogic {
 		}
 		$mc = cache::byKey('widgetHtml' . $_version . $this->getId());
 		if ($mc->getValue() != '') {
-			//return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
+			return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
 		}
 
 		$replace = array(
@@ -463,6 +463,7 @@ class eqLogic {
 			'#width#' => $this->getDisplay('width', 'auto'),
 			'#uid#' => 'eqLogic' . $this->getId() . self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER,
 			'#refresh_id#' => '',
+			'#version#' => $_version,
 		);
 
 		if ($this->getDisplay('background-color-default' . $version, 1) == 1) {
