@@ -179,7 +179,6 @@ if (init('cron_id') != '') {
 	if (cron::jeeCronRun()) {
 		die();
 	}
-	$sleepTime = config::byKey('cronSleepTime');
 	$started = jeedom::isStarted();
 
 	set_time_limit(59);
@@ -238,13 +237,7 @@ if (init('cron_id') != '') {
 				}
 			}
 		}
-		if ($sleepTime > 59) {
-			die();
-		}
-		sleep($sleepTime);
-		if ((getmicrotime() - $startTime) > 59) {
-			die();
-		}
+		die();
 	}
 }
 ?>

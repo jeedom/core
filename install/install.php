@@ -395,7 +395,6 @@ try {
 		$user->setPassword(sha1('admin'));
 		$user->setRights('admin', 1);
 		$user->save();
-		config::save('cronSleepTime', 60);
 		config::save('log::level', 400);
 		echo "OK\n";
 	}
