@@ -422,6 +422,17 @@ class network {
 		return false;
 	}
 
+	public static function getInterfaces() {
+		$result = explode("\n", shell_exec("sudo ip -o link show | awk -F': ' '{print $2}'"));
+		foreach ($result as $value) {
+			if (trim($value) == '') {
+				continue;
+			}
+			$return[] = $value;
+		}
+		return $return;
+	}
+
 	public static function getRoute() {
 		$return = array();
 		$results = trim(shell_exec('sudo route -n 2>&1'));
@@ -456,6 +467,12 @@ class network {
 				$return[$iface] = array('destination' => $destination, 'gateway' => $gw, 'iface' => $iface);
 			}
 		}
+		foreach (self::getInterfaces() as $iface) {
+			if (isset($return[$iface])) {
+				continue;
+			}
+			$return[$iface] = array('destination' => -1, 'gateway' => '-1', 'iface' => $iface);
+		}
 		return $return;
 	}
 
@@ -465,21 +482,26 @@ class network {
 			$return[$route['iface']] = array('destination' => $route['destination'], 'gateway' => $route['gateway'], 'iface' => $route['iface']);
 			$output = array();
 			$return_val = -1;
-			if ($route['gateway'] != '0.0.0.0' && $route['gateway'] != '127.0.0.1') {
+			if ($route['gateway'] == '0.0.0.0' || $route['gateway'] == '127.0.0.1') {
+				$return[$route['iface']]['ping'] = 'ok';
+				continue;
+			}
+			if ($route['gateway'] == -1) {
+				$return[$route['iface']]['ping'] = (shell_exec('sudo ip link show ' . $route['iface'] . ' | grep "state UP" | wc -l') == 1) ? 'nok' : 'ok';
+				continue;
+			}
+			exec('sudo ping -n -c 1 -t 255 ' . $route['gateway'] . ' 2>&1 > /dev/null', $output, $return_val);
+			$return[$route['iface']]['ping'] = ($return_val == 0) ? 'ok' : 'nok';
+			if ($return[$route['iface']]['ping'] == 'nok') {
 				exec('sudo ping -n -c 1 -t 255 ' . $route['gateway'] . ' 2>&1 > /dev/null', $output, $return_val);
 				$return[$route['iface']]['ping'] = ($return_val == 0) ? 'ok' : 'nok';
-				if ($return[$route['iface']]['ping'] == 'nok') {
-					exec('sudo ping -n -c 1 -t 255 ' . $route['gateway'] . ' 2>&1 > /dev/null', $output, $return_val);
-					$return[$route['iface']]['ping'] = ($return_val == 0) ? 'ok' : 'nok';
-				}
-			} else {
-				$return[$route['iface']]['ping'] = 'ok';
 			}
+
 		}
 		return $return;
 	}
 
-	public static function cron() {
+	public static function cron5() {
 		if (config::byKey('network::disableMangement') == 1) {
 			return;
 		}

@@ -351,7 +351,7 @@ class jeedom {
 
 	public static function cron5() {
 		try {
-			network::cron();
+			network::cron5();
 		} catch (Exception $e) {
 			log::add('network', 'error', 'network::cron : ' . $e->getMessage());
 		} catch (Error $e) {
