@@ -189,7 +189,7 @@ class cache {
 	}
 
 	public function getValue($_default = '') {
-		return ($this->value === null || trim($this->value) === '') ? $_default : $this->value;
+		return ($this->value === null || (is_string($this->value) && trim($this->value) === '')) ? $_default : $this->value;
 	}
 
 	public function setValue($value) {
