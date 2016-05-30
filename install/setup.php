@@ -67,7 +67,7 @@ $loadExtensions = get_loaded_extensions();
 </head>
 <body>
 	<center>
-		<img src="../../core/img/logo-jeedom-grand-nom-couleur-460x320.png" class="img-responsive" />
+		<img src="../core/img/logo-jeedom-grand-nom-couleur-460x320.png" class="img-responsive" />
 	</center>
 	<?php
 $error = false;
@@ -79,7 +79,7 @@ if (version_compare(PHP_VERSION, '5.6.0', '<')) {
 }
 if (shell_exec('sudo -l > /dev/null 2>&1; echo $?') != 0) {
 	$error = true;
-	
+
 	echo '<div class="alert alert-warning" style="margin:15px;">';
 	echo '<center style="font-size:1.2em;">Jeedom has not sudo right please do in ssh : </center>';
 	echo '<pre>';
