@@ -209,18 +209,33 @@ step_12_jeedom_check() {
 	echo "${VERT}step_12_jeedom_check success${NORMAL}"
 }
 
+addon_1_openzwave(){
+	echo "---------------------------------------------------------------------"
+	echo "${JAUNE}Start addon_1_openzwave${NORMAL}"
+	wget https://raw.githubusercontent.com/jeedom/plugin-openzwave/master/ressources/install.sh -O /root/openzwave_install.sh
+	chmod +x /root/openzwave_install.sh
+	/root/openzwave_install.sh
+	if [ $? -ne 0 ]; then
+    	echo "${ROUGE}Could not install openzwave dependancy - abort${NORMAL}"
+    	exit 1
+  	fi
+}
+
 echo "${JAUNE}Welcome to jeedom installer${NORMAL}"
 STEP=0
 VERSION=stable
 WEBSERVER_HOME=/var/www/html
+INSTALL_ZWAVE_DEP=0
 
-while getopts ":s:v:w:" opt; do
+while getopts ":s:v:w:z:" opt; do
   case $opt in
     s) STEP="$OPTARG"
     ;;
     v) VERSION="$OPTARG"
     ;;
     w) WEBSERVER_HOME="$OPTARG"
+    ;;
+    z) INSTALL_ZWAVE_DEP=1
     ;;
     \?) echo "${ROUGE}Invalid option -$OPTARG${NORMAL}" >&2
     ;;
@@ -274,4 +289,10 @@ case ${STEP} in
 	;;
 esac
 
+if [ ${INSTALL_ZWAVE_DEP} -eq 1 ]; then
+	echo "${JAUNE}Start installation of openzwave dep${NORMAL}"
+	addon_1_openzwave
+fi
+
 exit 0
+
