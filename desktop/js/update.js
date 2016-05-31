@@ -243,7 +243,7 @@ function addUpdate(_update) {
     tr += '<td style="width:50px;"><span class="updateAttr label label-success" data-l1key="status" style="font-size:0.96em;"></span>';
     tr += '</td>';
     tr += '<td><span class="updateAttr" data-l1key="id" style="display:none;"></span><span class="updateAttr" data-l1key="source"></span> / <span class="updateAttr" data-l1key="type"></span> : <span class="updateAttr label label-info" data-l1key="name" style="font-size:0.96em;"></span></td>';
-    tr += '<td><span class="updateAttr label label-primary" data-l1key="localVersion" style="font-size:0.96em;" title="{{Derniere version : }}'+_update.remoteVersion+'"></span></td>';
+    tr += '<td><span class="updateAttr label label-primary" data-l1key="localVersion" style="font-size:0.96em;" title="{{Dernière version : }}'+_update.remoteVersion+'"></span></td>';
     tr += '<td style="width:175px;">';
     tr += '<input type="checkbox" class="updateAttr" data-l1key="configuration" data-l2key="doNotUpdate">{{Ne pas mettre à jour}}';
     tr += '</td>';
