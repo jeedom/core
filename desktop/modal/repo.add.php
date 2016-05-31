@@ -51,7 +51,7 @@ foreach ($repos as $key => $value) {
 	if (!isset($value['configuration']['parameters_for_add'])) {
 		continue;
 	}
-	echo '<div class="repoSource ' . $key . '" style="display:none;">';
+	echo '<div class="repoSource repo_' . $key . '" style="display:none;">';
 	echo '<div class="form-group">';
 	echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">';
 	echo '{{ID logique du plugin}}';
@@ -95,7 +95,7 @@ foreach ($repos as $key => $value) {
  <script type="text/javascript">
  	$('.updateAttr[data-l1key=source]').on('change',function(){
  		$('.repoSource').hide();
- 		$('.repoSource.'+$(this).value()).show();
+ 		$('.repoSource.repo_'+$(this).value()).show();
  	});
 
  	$('#bt_uploadPlugin').fileupload({
