@@ -134,7 +134,7 @@ class repo_market {
 	public static function objectInfo($_update) {
 		return array(
 			'doc' => 'https://jeedom.com/doc/documentation/plugins/' . $_update->getLogicalId() . '/' . config::byKey('language', 'core', 'fr_FR') . '/' . $_update->getLogicalId() . '.html',
-			'changelog' => 'https://market.jeedom.fr/index.php?v=d&p=market&type=plugin&plugin_id='+$_update->getLogicalId(),
+			'changelog' => 'https://market.jeedom.fr/index.php?v=d&p=market&type=plugin&plugin_id=' . $_update->getLogicalId(),
 		);
 	}
 
