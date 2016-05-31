@@ -6,8 +6,8 @@ if (!hasRight('updateview', true)) {
 <br/>
 <div class="row row-overflow">
     <div class="col-sm-8">
-    <i class="fa fa-clock-o"></i>  {{Dernière vérification : }}<span class="label label-info" id="span_lastUpdateCheck" style="margin-bottom: 5px;font-size:1em;"></span>
-    {{Dernière mise à jour du core : }}<span class="label label-info" id="span_lastCoreUpdate" style="margin-bottom: 5px;font-size:1em;"></span>
+        <i class="fa fa-clock-o"></i>  {{Dernière vérification : }}<span class="label label-info" id="span_lastUpdateCheck" style="margin-bottom: 5px;font-size:1em;"></span>
+        {{Dernière mise à jour du core : }}<span class="label label-info" id="span_lastCoreUpdate" style="margin-bottom: 5px;font-size:1em;"></span>
 
         <a class="btn btn-success pull-right" id="bt_saveUpdate" style="margin-top:5px;"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
         <a class="btn btn-warning pull-right" id="bt_checkAllUpdate" style="margin-top:5px;"><i class="fa fa-refresh"></i> {{Vérifier les objets et mises à jour}}</a>
@@ -31,9 +31,9 @@ if (!hasRight('updateview', true)) {
         <table class="table table-condensed table-bordered tablesorter" id="table_update" style="margin-top: 5px;">
             <thead>
                 <tr>
+                    <th data-sorter="false" style="width:50px;"></th>
                     <th>{{Nom}}</th>
                     <th>{{Version}}</th>
-                    <th>{{Statut}}</th>
                     <th data-sorter="false" data-filter="false">{{Options}}</th>
                     <th data-sorter="false" data-filter="false">{{Actions}}</th>
                 </tr>
@@ -49,11 +49,11 @@ if (!hasRight('updateview', true)) {
 </div>
 
 <div id="md_specifyUpdate">
-   <form class="form-horizontal">
+ <form class="form-horizontal">
     <fieldset>
-     <div class="form-group">
-         <label class="col-xs-6 control-label">{{Mise à jour à réappliquer}}</label>
-         <div class="col-xs-6">
+       <div class="form-group">
+           <label class="col-xs-6 control-label">{{Mise à jour à réappliquer}}</label>
+           <div class="col-xs-6">
             <select id="sel_updateVersion" class="form-control">
                 <option value="">{{Aucune}}</option>
                 <?php
