@@ -742,10 +742,12 @@ class repo_market {
 			$update = new update();
 			$update->setLogicalId($this->getLogicalId());
 			$update->setType($this->getType());
+			$update->setConfiguration('version', 'beta');
 		}
-		$update->setConfiguration('version', 'beta');
-		$update->setLocalVersion(date('Y-m-d H:i:s', strtotime('+10 minute' . date('Y-m-d H:i:s'))));
-		$update->save();
+		if ($update->getSource() == 'market') {
+			$update->setLocalVersion(date('Y-m-d H:i:s', strtotime('+10 minute' . date('Y-m-d H:i:s'))));
+			$update->save();
+		}
 		$update->checkUpdate();
 	}
 
