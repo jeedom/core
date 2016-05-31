@@ -200,7 +200,6 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
    log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + '" class="configKey" data-l1key="log::level::' + data.id + '" data-l2key="default" /> {{Defaut}}</label>';
    log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + '" class="configKey" data-l1key="log::level::' + data.id + '" data-l2key="100" /> {{Debug}}</label>';
    log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + '" class="configKey" data-l1key="log::level::' + data.id + '" data-l2key="200" /> {{Info}}</label>';
-   log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + '" class="configKey" data-l1key="log::level::' + data.id + '" data-l2key="250" /> {{Notice}}</label>';
    log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + '" class="configKey" data-l1key="log::level::' + data.id + '" data-l2key="300" /> {{Warning}}</label>';
    log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + '" class="configKey" data-l1key="log::level::' + data.id + '" data-l2key="400" /> {{Error}}</label>';
    log_conf += '</div>';
@@ -217,7 +216,6 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
      log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + '" class="slaveConfigKey" data-l1key="log::level::' + data.id + '" data-l2key="default" /> {{Defaut}}</label>';
      log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + '" class="slaveConfigKey" data-l1key="log::level::' + data.id + '" data-l2key="100" /> {{Debug}}</label>';
      log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + '" class="slaveConfigKey" data-l1key="log::level::' + data.id + '" data-l2key="200" /> {{Info}}</label>';
-     log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + '" class="slaveConfigKey" data-l1key="log::level::' + data.id + '" data-l2key="250" /> {{Notice}}</label>';
      log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + '" class="slaveConfigKey" data-l1key="log::level::' + data.id + '" data-l2key="300" /> {{Warning}}</label>';
      log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + '" class="slaveConfigKey" data-l1key="log::level::' + data.id + '" data-l2key="400" /> {{Error}}</label>';
      log_conf += '</div>';
