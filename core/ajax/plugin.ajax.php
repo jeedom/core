@@ -41,6 +41,18 @@ try {
 			if (method_exists($class, 'getInfo')) {
 				$return['status'] = $class::getInfo(array('logicalId' => $plugin->getId(), 'type' => 'plugin'));
 			}
+			if ($update->getSource() != 'market') {
+				$class = 'repo_market';
+				if (config::byKey('market::enable')) {
+					$info = $class::getInfo(array('logicalId' => $plugin->getId(), 'type' => 'plugin'));
+					if (!isset($return['status'])) {
+						$return['status'] = array();
+					}
+					if (isset($info['market_owner'])) {
+						$return['status']['market_owner'] = $info['market_owner'];
+					}
+				}
+			}
 		}
 		$return['update'] = utils::o2a($update);
 		$return['logs'] = array();
