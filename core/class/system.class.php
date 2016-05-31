@@ -68,7 +68,7 @@ class system {
 		return $return;
 	}
 
-	public static function kill($_find = '') {
+	public static function kill($_find = '', $_kill9 = true) {
 		if (trim($_find) == '') {
 			return;
 		}
@@ -77,19 +77,28 @@ class system {
 			if ($kill) {
 				return true;
 			}
-			usleep(100);
-			$kill = posix_kill($_find, 9);
-			if ($kill) {
-				return true;
+			if ($_kill9) {
+				usleep(100);
+				$kill = posix_kill($_find, 9);
+				if ($kill) {
+					return true;
+				}
+				usleep(100);
+				$cmd = 'kill -9 ' . $_find;
+				$cmd .= '; sudo kill -9 ' . $_find;
+				exec($cmd);
+			} else {
+				$kill = posix_kill($_find, 15);
 			}
-			usleep(100);
-			$cmd = 'kill -9 ' . $_find;
-			$cmd .= '; sudo kill -9 ' . $_find;
-			exec($cmd);
 			return;
 		}
-		$cmd = "(ps ax || ps w) | grep -ie '" . $_find . "' | grep -v grep | awk '{print $1}' | xargs kill -9 > /dev/null 2>&1";
-		$cmd .= "; (ps ax || ps w) | grep -ie '" . $_find . "' | grep -v grep | awk '{print $1}' | xargs sudo kill -9 > /dev/null 2>&1";
+		if ($_kill9) {
+			$cmd = "(ps ax || ps w) | grep -ie '" . $_find . "' | grep -v grep | awk '{print $1}' | xargs kill -9 > /dev/null 2>&1";
+			$cmd .= "; (ps ax || ps w) | grep -ie '" . $_find . "' | grep -v grep | awk '{print $1}' | xargs sudo kill -9 > /dev/null 2>&1";
+		} else {
+			$cmd = "(ps ax || ps w) | grep -ie '" . $_find . "' | grep -v grep | awk '{print $1}' | xargs kill > /dev/null 2>&1";
+			$cmd .= "; (ps ax || ps w) | grep -ie '" . $_find . "' | grep -v grep | awk '{print $1}' | xargs sudo kill > /dev/null 2>&1";
+		}
 		exec($cmd);
 	}
 
