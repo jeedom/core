@@ -109,12 +109,13 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
       }
 
       $('#span_plugin_market').empty();
-      if (isset(data.update) && isset(data.update.source) && data.update.source == 'market' && isset(data.status) && isset(data.status.market) && data.status.market == 1) {
-        $('#span_plugin_market').append('<a class="btn btn-default btn-xs viewOnMarket" data-market_logicalId="' + data.id + '" style="margin-right : 5px;"><i class="fa fa-cloud-download"></i> {{Voir sur le market}}</a>')
-      }
-
-      if (isset(data.update) && isset(data.update.source) && isset(data.status) && isset(data.status.market_owner) && data.status.market_owner == 1) {
-        $('#span_plugin_market').append('<a class="btn btn-warning btn-xs sendOnMarket" data-market_logicalId="' + data.id + '"><i class="fa fa-cloud-upload"></i> {{Envoyer sur le market}}</a>')
+      if (isset(data.status) && isset(data.status.owner)) {
+        for(var i in data.status.owner){
+          if(data.status.owner[i] != 1){
+            continue;
+          }
+          $('#span_plugin_market').append('<a class="btn btn-warning btn-xs sendPluginTo" data-repo="'+i+'" data-logicalId="' + data.id + '"><i class="fa fa-cloud-upload"></i> {{Envoyer sur le}} '+i+'</a>')
+        }
       }
       $('#span_plugin_delete').empty().append('<a class="btn btn-danger btn-xs removePlugin" data-market_logicalId="' + data.id + '"><i class="fa fa-trash"></i> {{Supprimer}}</a>');
       $('#span_plugin_doc').empty();
@@ -123,6 +124,9 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
       }
       if(isset(data.info.changelog) && data.info.changelog != ''){
         $('#span_plugin_doc').append('<a class="btn btn-primary btn-xs" target="_blank" href="'+data.info.changelog+'"><i class="fa fa-book"></i> {{Changelog}}</a>');
+      }
+      if(isset(data.info.display) && data.info.display != ''){
+        $('#span_plugin_doc').append('<a class="btn btn-primary btn-xs" target="_blank" href="'+data.info.display+'"><i class="fa fa-book"></i> {{Détails}}</a>');
       }
 
       if (data.checkVersion != -1) {
@@ -369,19 +373,14 @@ $("#bt_savePluginConfig").on('click', function (event) {
   return false;
 });
 
-$('#bt_displayMarket,#bt_displayMarket2').on('click', function () {
-  $('#md_modal').dialog({title: "{{Market Jeedom}}"});
-  $('#md_modal').load('index.php?v=d&modal=market.list&type=plugin').dialog('open');
+$('.displayStore').on('click', function () {
+  $('#md_modal').dialog({title: "{{Store}}"});
+  $('#md_modal').load('index.php?v=d&modal=update.list&type=plugin&repo='+$(this).attr('data-repo')).dialog('open');
 });
 
-$('body').delegate('.viewOnMarket', 'click', function () {
-  $('#md_modal2').dialog({title: "{{Market Jeedom}}"});
-  $('#md_modal2').load('index.php?v=d&modal=market.display&type=plugin&logicalId=' + $(this).attr('data-market_logicalId')).dialog('open');
-});
-
-$('body').delegate('.sendOnMarket', 'click', function () {
-  $('#md_modal2').dialog({title: "{{Envoyer sur le market}}"});
-  $('#md_modal2').load('index.php?v=d&modal=market.send&type=plugin&logicalId=' + $(this).attr('data-market_logicalId')).dialog('open');
+$('body').delegate('.sendPluginTo', 'click', function () {
+  $('#md_modal2').dialog({title: "{{Envoyer sur le}} "+$(this).attr('data-repo')});
+  $('#md_modal2').load('index.php?v=d&modal=update.send&type=plugin&logicalId=' + $(this).attr('data-logicalId')+'&repo='+$(this).attr('data-repo')).dialog('open');
 });
 
 $('body').delegate('.configKey', 'change', function () {

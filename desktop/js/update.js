@@ -140,15 +140,6 @@ jeedom.update.doAll({
 
 });
 
- $('#table_update').delegate('.view', 'click', function () {
-    $('#md_modal').dialog({title: "Market"});
-    $('#md_modal').load('index.php?v=d&modal=market.display&type=' + $(this).closest('tr').attr('data-type') + '&logicalId=' + encodeURI($(this).closest('tr').attr('data-logicalId'))).dialog('open');
-});
-
- $('#table_update').delegate('.sendToMarket', 'click', function () {
-    $('#md_modal').dialog({title: "Partager sur le market"});
-    $('#md_modal').load('index.php?v=d&modal=market.send&type=' + $(this).closest('tr').attr('data-type') + '&logicalId=' + encodeURI($(this).closest('tr').attr('data-logicalId')) + '&name=' + encodeURI($(this).closest('tr').attr('data-logicalId'))).dialog('open');
-});
 
  $('#bt_expertMode').on('click', function () {
     printUpdate();

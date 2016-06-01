@@ -38,9 +38,6 @@ switch ($market->getType()) {
 	case 'plugin':
 		$default_image = 'core/img/no-image-plugin.png';
 		break;
-	case 'camera':
-		$default_image = 'core/img/no-image-camera.png';
-		break;
 	case 'script':
 		$default_image = 'core/img/no-image-script.png';
 		break;

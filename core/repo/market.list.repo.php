@@ -23,7 +23,7 @@ $markets = repo_market::byFilter(
 );
 
 function buildUrl($_key, $_value) {
-	$url = 'index.php?v=d&modal=market.display&';
+	$url = 'index.php?v=d&modal=update.display&';
 	foreach ($_GET as $key => $value) {
 		if ($_key != $key) {
 			$url .= $key . '=' . urlencode($value) . '&';
@@ -419,7 +419,7 @@ foreach ($markets as $market) {
 
 		$('.market').on('click', function () {
 			$('#md_modal2').dialog({title: "{{Market Jeedom}}"});
-			$('#md_modal2').load('index.php?v=d&modal=market.display&type=' + $(this).attr('data-market_type') + '&id=' + $(this).attr('data-market_id')).dialog('open');
+			$('#md_modal2').load('index.php?v=d&modal=update.display&type=' + $(this).attr('data-market_type') + '&id=' + $(this).attr('data-market_id')+'&repo=market').dialog('open');
 		});
 	});
 </script>

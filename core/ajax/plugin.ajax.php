@@ -41,15 +41,24 @@ try {
 			if (method_exists($class, 'getInfo')) {
 				$return['status'] = $class::getInfo(array('logicalId' => $plugin->getId(), 'type' => 'plugin'));
 			}
-			if ($update->getSource() != 'market') {
-				$class = 'repo_market';
-				if (config::byKey('market::enable')) {
-					$info = $class::getInfo(array('logicalId' => $plugin->getId(), 'type' => 'plugin'));
-					if (!isset($return['status'])) {
-						$return['status'] = array();
-					}
-					if (isset($info['market_owner'])) {
-						$return['status']['market_owner'] = $info['market_owner'];
+			if (!isset($return['status'])) {
+				$return['status'] = array();
+			}
+			if (!isset($return['status']['owner'])) {
+				$return['status']['owner'] = array();
+			}
+			foreach (update::listRepo() as $key => $repo) {
+				$return['status']['owner'][$key] = 0;
+				if (!isset($repo['scope']['sendPlugin']) || !$repo['scope']['sendPlugin']) {
+					continue;
+				}
+				if ($update->getSource() != $key) {
+					$class = 'repo_' . $key;
+					if (config::byKey($key . '::enable')) {
+						$info = $class::getInfo(array('logicalId' => $plugin->getId(), 'type' => 'plugin'));
+						if (isset($info['owner']) && isset($info['owner'][$key])) {
+							$return['status']['owner'][$key] = $info['owner'][$key];
+						}
 					}
 				}
 			}

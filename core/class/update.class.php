@@ -76,6 +76,9 @@ class update {
 	public static function listRepo() {
 		$return = array();
 		foreach (ls(dirname(__FILE__) . '/../repo', '*.repo.php') as $file) {
+			if (substr_count($file, '.') != 2) {
+				continue;
+			}
 			$id = str_replace('.repo.php', '', $file);
 			$class = 'repo_' . str_replace('.repo.php', '', $file);
 			$return[str_replace('.repo.php', '', $file)] = array(
@@ -83,17 +86,20 @@ class update {
 				'configuration' => $class::$_configuration,
 				'scope' => $class::$_scope,
 			);
+			$return[str_replace('.repo.php', '', $file)]['enable'] = config::byKey(str_replace('.repo.php', '', $file) . '::enable');
 		}
 		return $return;
 	}
 
 	public static function repoById($_id) {
 		$class = 'repo_' . $_id;
-		return array(
+		$return = array(
 			'name' => $class::$_name,
 			'configuration' => $class::$_configuration,
 			'scope' => $class::$_scope,
 		);
+		$return['enable'] = config::byKey($_id . '::enable');
+		return $return;
 	}
 
 	public static function makeUpdateLevel($_mode = '', $_level = 1, $_version = '', $_onlyThisVersion = '') {

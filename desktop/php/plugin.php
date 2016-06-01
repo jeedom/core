@@ -45,14 +45,21 @@ foreach ($plugins_list as $category_name => $category) {
 <div class="col-md-9 col-sm-8" id="div_resumePluginList" style="border-left: solid 1px #EEE; padding-left: 25px;">
  <legend><i class="fa fa-list-alt"></i>  {{Mes plugins}}</legend>
  <div class="pluginListContainer">
-   <?php if (config::byKey('market::enable') == 1) {?>
-    <div class="cursor" id="bt_displayMarket2" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+ <?php
+foreach (update::listRepo() as $key => $value) {
+	if (!$value['enable']) {
+		continue;
+	}
+	if (!isset($value['scope']['hasStore']) || !$value['scope']['hasStore']) {
+		continue;
+	}
+	echo '<div class="cursor displayStore" data-repo="' . $key . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
      <center>
       <i class="fa fa-shopping-cart" style="font-size : 6em;color:#94ca02;margin-top:20px;"></i>
     </center>
-    <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>{{Ajout depuis le market}}</center></span>
-  </div>
-  <?php }
+    <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>{{Ajout depuis le}} ' . $key . '</center></span>
+  </div>';
+}
 ?>
   <div class="cursor" id="bt_addPluginFromOtherSource" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
    <center>

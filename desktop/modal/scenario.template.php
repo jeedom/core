@@ -80,7 +80,7 @@ sendVarToJS('scenario_template_id', init('scenario_id'));
 
     $('#bt_scenarioTemplateDisplayMarket').on('click', function () {
      $('#div_listScenarioTemplate').hide();
-     $('#div_marketScenarioTemplate').load('index.php?v=d&modal=market.list&type=scenario').show();
+     $('#div_marketScenarioTemplate').load('index.php?v=d&modal=update.list&type=scenario&repo=market').show();
  });
 
     $('#bt_scenarioTemplateShare').on('click', function () {
@@ -90,7 +90,7 @@ sendVarToJS('scenario_template_id', init('scenario_id'));
         }
         var logicalId = $('#ul_scenarioTemplateList li.active').attr('data-template').replace(".json", "");
         $('#md_modal2').dialog({title: "{{Partager sur le market}}"});
-        $('#md_modal2').load('index.php?v=d&modal=market.send&type=scenario&logicalId=' + encodeURI(logicalId) + '&name=' + encodeURI(logicalId)).dialog('open');
+        $('#md_modal2').load('index.php?v=d&modal=market.send&type=scenario&logicalId=' + encodeURI(logicalId) + '&name=' + encodeURI(logicalId)+'&repo=market').dialog('open');
     });
 
     $('#bt_scenarioTemplateConvert').on('click', function () {
