@@ -454,7 +454,7 @@ foreach (array('eth0', 'wlan0', 'bond0') as $value) {
   </div>
   <div class="col-sm-6">
     <?php if (config::byKey('jeeNetwork::mode') != 'slave') {
-	foreach (repo::all() as $key => $value) {
+	foreach (update::listRepo() as $key => $value) {
 		if (!isset($value['scope']['proxy']) || $value['scope']['proxy'] == false) {
 			continue;
 		}
@@ -1043,7 +1043,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
                             <select class="configKey form-control" data-l1key="core::repo::provider">
                              <option value="default">{{Défaut}}</option>
                              <?php
-foreach (repo::all() as $key => $value) {
+foreach (update::listRepo() as $key => $value) {
 	if (!isset($value['scope']['core']) || $value['scope']['core'] == false) {
 		continue;
 	}
@@ -1072,7 +1072,7 @@ foreach (repo::all() as $key => $value) {
 
             <?php
 
-foreach (repo::all() as $key => $value) {
+foreach (update::listRepo() as $key => $value) {
 	echo '<legend>' . $value['name'] . '</legend>';
 	echo '<div class="form-group">';
 	echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer}} ' . $value['name'] . '</label>';

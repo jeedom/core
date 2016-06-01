@@ -516,7 +516,7 @@ class jeedom {
 
 	public static function cronHourly() {
 		try {
-			foreach (repo::all() as $name => $repo) {
+			foreach (update::listRepo() as $name => $repo) {
 				$class = 'repo_' . $name;
 				if (class_exists($class) && method_exists($class, 'cronHourly') && config::byKey($name . '::enable') == 1) {
 					$class::cronHourly();

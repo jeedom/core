@@ -2,7 +2,7 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-$repos = repo::all();
+$repos = update::listRepo();
 ?>
  <div style="display: none;" id="div_repoAddAlert"></div>
  <legend>{{Source}}</legend>

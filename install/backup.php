@@ -190,7 +190,7 @@ try {
 	echo __("OK", __FILE__) . "\n";
 	global $NO_CLOUD_BAKCUP;
 	if ((!isset($NO_CLOUD_BAKCUP) || $NO_CLOUD_BAKCUP == false)) {
-		foreach (repo::all() as $key => $value) {
+		foreach (update::listRepo() as $key => $value) {
 			if ($value['scope']['backup'] == false) {
 				continue;
 			}

@@ -73,6 +73,29 @@ class update {
 		config::save('update::lastCheck', date('Y-m-d H:i:s'));
 	}
 
+	public static function listRepo() {
+		$return = array();
+		foreach (ls(dirname(__FILE__) . '/../repo', '*.repo.php') as $file) {
+			$id = str_replace('.repo.php', '', $file);
+			$class = 'repo_' . str_replace('.repo.php', '', $file);
+			$return[str_replace('.repo.php', '', $file)] = array(
+				'name' => $class::$_name,
+				'configuration' => $class::$_configuration,
+				'scope' => $class::$_scope,
+			);
+		}
+		return $return;
+	}
+
+	public static function repoById($_id) {
+		$class = 'repo_' . $_id;
+		return array(
+			'name' => $class::$_name,
+			'configuration' => $class::$_configuration,
+			'scope' => $class::$_scope,
+		);
+	}
+
 	public static function makeUpdateLevel($_mode = '', $_level = 1, $_version = '', $_onlyThisVersion = '') {
 		jeedom::update($_mode, $_level, $_version, $_onlyThisVersion);
 	}
