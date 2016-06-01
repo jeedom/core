@@ -13,7 +13,7 @@ sendVarToJS('scenario_template_id', init('scenario_id'));
 
 
 <div class="row row-overflow" id='div_scenarioTemplate'>
- <div class="col-lg-2 col-md-3 col-sm-5" id="div_listScenario" style="z-index:999">
+   <div class="col-lg-2 col-md-3 col-sm-5" id="div_listScenario" style="z-index:999">
     <div class="bs-sidebar nav nav-list bs-sidenav" >
         <center>
             <span class="btn btn-default btn-file">
@@ -21,7 +21,17 @@ sendVarToJS('scenario_template_id', init('scenario_id'));
             </span>
         </center>
         <br/>
-        <center><a class="btn btn-default" id="bt_scenarioTemplateDisplayMarket" style="width : 91%"><i class="fa fa-shopping-cart"></i> {{Market}}</a></center><br/>
+<?php
+foreach (update::listRepo() as $key => $value) {
+	if (!$value['enable']) {
+		continue;
+	}
+	if (!isset($value['scope']['hasScenarioStore']) || !$value['scope']['hasScenarioStore']) {
+		continue;
+	}
+	echo '<center><a class="btn btn-default bt_scenarioTemplateDisplayStore" style="width : 91%" data-repo="' . $key . '"><i class="fa fa-shopping-cart"></i> ' . $value['name'] . '</a></center><br/>';
+}
+?>
         <div class="form-group" style="position:relative;left : -5px;">
           <div class="col-xs-9">
               <input class='form-control' id='in_newTemplateName' placeholder="{{Nom du template}}" />
@@ -41,7 +51,17 @@ sendVarToJS('scenario_template_id', init('scenario_id'));
         <div class="form-group">
             <label class="col-xs-2 control-label">{{Gérer}}</label>
             <div class="col-xs-6">
-                <a class='btn btn-warning' id='bt_scenarioTemplateShare'><i class="fa fa-cloud-upload"></i> {{Partager}}</a>
+            <?php
+foreach (update::listRepo() as $key => $value) {
+	if (!$value['enable']) {
+		continue;
+	}
+	if (!isset($value['scope']['hasScenarioStore']) || !$value['scope']['hasScenarioStore']) {
+		continue;
+	}
+	echo '<a class="btn btn-warning bt_scenarioTemplateShare" data-repo="' . $key . '"><i class="fa fa-cloud-upload"></i> {{Partager sur}} ' . $value['name'] . '</a>';
+}
+?>
                 <a class='btn btn-danger' id='bt_scenarioTemplateRemove'><i class="fa fa-times"></i> {{Supprimer}}</a>
                 <a class="btn btn-primary" id="bt_scenarioTemplateDownload"><i class="fa fa-cloud-download"></i> {{Télécharger}}</a>
             </div>
@@ -73,27 +93,27 @@ sendVarToJS('scenario_template_id', init('scenario_id'));
     }
 
     function refreshListAfterMarketObjectInstall(){
-         refreshScenarioTemplateList();
+       refreshScenarioTemplateList();
+   }
+
+   refreshScenarioTemplateList();
+
+   $('.bt_scenarioTemplateDisplayStore').on('click', function () {
+       $('#div_listScenarioTemplate').hide();
+       $('#div_marketScenarioTemplate').load('index.php?v=d&modal=update.list&type=scenario&repo='+$(this).attr('data-repo')).show();
+   });
+
+   $('#bt_scenarioTemplateShare').on('click', function () {
+    if($('#ul_scenarioTemplateList li.active').attr('data-template') == undefined){
+        $('#md_scenarioTemplate').showAlert({message: 'Vous devez d\'abord selectionner un template', level: 'danger'});
+        return;
     }
+    var logicalId = $('#ul_scenarioTemplateList li.active').attr('data-template').replace(".json", "");
+    $('#md_modal2').dialog({title: "{{Partager sur le market}}"});
+    $('#md_modal2').load('index.php?v=d&modal=update.send&type=scenario&logicalId=' + encodeURI(logicalId) + '&name=' + encodeURI(logicalId)+'&repo='+$(this).attr('data-repo')).dialog('open');
+});
 
-    refreshScenarioTemplateList();
-
-    $('#bt_scenarioTemplateDisplayMarket').on('click', function () {
-     $('#div_listScenarioTemplate').hide();
-     $('#div_marketScenarioTemplate').load('index.php?v=d&modal=update.list&type=scenario&repo=market').show();
- });
-
-    $('#bt_scenarioTemplateShare').on('click', function () {
-        if($('#ul_scenarioTemplateList li.active').attr('data-template') == undefined){
-            $('#md_scenarioTemplate').showAlert({message: 'Vous devez d\'abord selectionner un template', level: 'danger'});
-            return;
-        }
-        var logicalId = $('#ul_scenarioTemplateList li.active').attr('data-template').replace(".json", "");
-        $('#md_modal2').dialog({title: "{{Partager sur le market}}"});
-        $('#md_modal2').load('index.php?v=d&modal=market.send&type=scenario&logicalId=' + encodeURI(logicalId) + '&name=' + encodeURI(logicalId)+'&repo=market').dialog('open');
-    });
-
-    $('#bt_scenarioTemplateConvert').on('click', function () {
+   $('#bt_scenarioTemplateConvert').on('click', function () {
       jeedom.scenario.convertToTemplate({
         id: scenario_template_id,
         template: $('#in_newTemplateName').value()+'.json',
@@ -107,44 +127,44 @@ sendVarToJS('scenario_template_id', init('scenario_id'));
     });
   });
 
-    $('#bt_scenarioTemplateRemove').on('click', function () {
-        if($('#ul_scenarioTemplateList li.active').attr('data-template') == undefined){
-            $('#md_scenarioTemplate').showAlert({message: 'Vous devez d\'abord selectionner un template', level: 'danger'});
-            return;
+   $('#bt_scenarioTemplateRemove').on('click', function () {
+    if($('#ul_scenarioTemplateList li.active').attr('data-template') == undefined){
+        $('#md_scenarioTemplate').showAlert({message: 'Vous devez d\'abord selectionner un template', level: 'danger'});
+        return;
+    }
+    jeedom.scenario.removeTemplate({
+        template: $('#ul_scenarioTemplateList li.active').attr('data-template'),
+        error: function (error) {
+            $('#md_scenarioTemplate').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+            refreshScenarioTemplateList();
+            $('#md_scenarioTemplate').showAlert({message: 'Suppression du template réussi', level: 'success'});
         }
-        jeedom.scenario.removeTemplate({
-            template: $('#ul_scenarioTemplateList li.active').attr('data-template'),
-            error: function (error) {
-                $('#md_scenarioTemplate').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function (data) {
-                refreshScenarioTemplateList();
-                $('#md_scenarioTemplate').showAlert({message: 'Suppression du template réussi', level: 'success'});
-            }
-        });
     });
+});
 
-    $('#bt_scenarioTemplateApply').on('click', function () {
-        bootbox.confirm('{{Etes-vous sûr de vouloir appliquer le template ? Cela écrasera votre scénario}}', function (result) {
-            if (result) {
-                var convert = $('.templateScenario').getValues('.templateScenarioAttr');
-                jeedom.scenario.applyTemplate({
-                    template:$('#ul_scenarioTemplateList li.active').attr('data-template'),
-                    id: scenario_template_id,
-                    convert: json_encode(convert),
-                    error: function (error) {
-                        $('#md_scenarioTemplate').showAlert({message: error.message, level: 'danger'});
-                    },
-                    success: function (data) {
-                        $('#md_scenarioTemplate').showAlert({message: 'Template appliqué avec succès', level: 'success'});
-                        $('.li_scenario[data-scenario_id='+scenario_template_id+']').click();
-                    }
-                });
-            }
-        });
+   $('#bt_scenarioTemplateApply').on('click', function () {
+    bootbox.confirm('{{Etes-vous sûr de vouloir appliquer le template ? Cela écrasera votre scénario}}', function (result) {
+        if (result) {
+            var convert = $('.templateScenario').getValues('.templateScenarioAttr');
+            jeedom.scenario.applyTemplate({
+                template:$('#ul_scenarioTemplateList li.active').attr('data-template'),
+                id: scenario_template_id,
+                convert: json_encode(convert),
+                error: function (error) {
+                    $('#md_scenarioTemplate').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function (data) {
+                    $('#md_scenarioTemplate').showAlert({message: 'Template appliqué avec succès', level: 'success'});
+                    $('.li_scenario[data-scenario_id='+scenario_template_id+']').click();
+                }
+            });
+        }
     });
+});
 
-$('#ul_scenarioTemplateList').delegate('.li_scenarioTemplate','click', function () {
+   $('#ul_scenarioTemplateList').delegate('.li_scenarioTemplate','click', function () {
     $('#div_listScenarioTemplate').show();
     $('#div_marketScenarioTemplate').hide();
     $('#ul_scenarioTemplateList .li_scenarioTemplate').removeClass('active');
@@ -176,7 +196,7 @@ $('#ul_scenarioTemplateList').delegate('.li_scenarioTemplate','click', function 
 
 });
 
-$('#bt_scenarioTemplateDownload').on('click',function(){
+   $('#bt_scenarioTemplateDownload').on('click',function(){
     if($('#ul_scenarioTemplateList li.active').attr('data-template') == undefined){
         $('#md_scenarioTemplate').showAlert({message: 'Vous devez d\'abord selectionner un template', level: 'danger'});
         return;
@@ -184,7 +204,7 @@ $('#bt_scenarioTemplateDownload').on('click',function(){
     window.open('core/php/downloadFile.php?pathfile=core/config/scenario/' + $('#ul_scenarioTemplateList li.active').attr('data-template'), "_blank", null);
 });
 
-$('#div_scenarioTemplate').delegate('.bt_scenarioTemplateSelectCmd', 'click', function () {
+   $('#div_scenarioTemplate').delegate('.bt_scenarioTemplateSelectCmd', 'click', function () {
     var el = $(this);
     jeedom.cmd.getSelectModal({}, function (result) {
         el.closest('.templateScenario').find('.templateScenarioAttr[data-l1key=end]').value(result.human);
@@ -192,7 +212,7 @@ $('#div_scenarioTemplate').delegate('.bt_scenarioTemplateSelectCmd', 'click', fu
 });
 
 
-$('#bt_uploadScenarioTemplate').fileupload({
+   $('#bt_uploadScenarioTemplate').fileupload({
     dataType: 'json',
     replaceFileInput: false,
     done: function (e, data) {

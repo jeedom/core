@@ -32,6 +32,7 @@ class repo_market {
 		'proxy' => true,
 		'sendPlugin' => true,
 		'hasStore' => true,
+		'hasScenarioStore' => true,
 	);
 
 	public static $_configuration = array(
