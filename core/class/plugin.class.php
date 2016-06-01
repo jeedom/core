@@ -474,8 +474,15 @@ class plugin {
 					return;
 				}
 				if ($deamon_info['launchable'] == 'ok' && $deamon_info['state'] == 'nok' && method_exists($plugin_id, 'deamon_start')) {
+					$inprogress = cache::bykey('deamonStart' . $this->getId() . 'inprogress');
+					$info = $inprogress->getValue(array('state' => 0, 'datetime' => strtotime('now')));
+					if ($info['state'] == 1 && (strtotime('now') - 30) <= $info['datetime']) {
+						return;
+					}
+					cache::set('deamonStart' . $this->getId() . 'inprogress', array('state' => 1, 'datetime' => strtotime('now')));
 					config::save('lastDeamonLaunchTime', date('Y-m-d H:i:s'), $plugin_id);
 					$plugin_id::deamon_start();
+					cache::set('deamonStart' . $this->getId() . 'inprogress', array('state' => 0));
 				}
 			}
 		} catch (Exception $e) {
