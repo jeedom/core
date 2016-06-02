@@ -1010,13 +1010,15 @@ class eqLogic {
 	}
 
 	public function getTimeout($_default = null) {
-
+		if ($this->timeout == '' || !is_numeric($this->timeout)) {
+			return $_default;
+		}
 		return $this->timeout;
 	}
 
 	public function setTimeout($timeout) {
 		if ($timeout == '' || is_string($timeout) || is_nan(intval($timeout)) || $timeout < 1) {
-			$timeout == 0;
+			$timeout == null;
 		}
 		$this->timeout = $timeout;
 	}
@@ -1044,7 +1046,7 @@ class eqLogic {
 	}
 
 	public function getOrder() {
-		if ($this->order == '') {
+		if ($this->order == '' || !is_numeric($this->order)) {
 			return 0;
 		}
 		return $this->order;
