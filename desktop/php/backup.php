@@ -74,11 +74,11 @@ if (!hasRight('backupview', true)) {
             </form>
             <?php
 
-foreach (repo::all() as $rkey => $value) {
+foreach (update::listRepo() as $rkey => $value) {
 	if ($value['scope']['backup'] == false) {
 		continue;
 	}
-	if (config::byKey($rkey . '::enable') == 0) {
+	if ($value['enable'] == 0) {
 		continue;
 	}
 	$class = 'repo_' . $rkey;

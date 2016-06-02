@@ -41,7 +41,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 	'plugin' => array(
 		'category' => array(
 			'security' => array('name' => 'Sécurité', 'icon' => 'fa-lock'),
-			'automation protocol' => array('name' => 'Proto. domotique', 'icon' => 'fa-rss'),
+			'automation protocol' => array('name' => 'Protocole domotique', 'icon' => 'fa-rss'),
 			'programming' => array('name' => 'Programmation', 'icon' => 'fa-code'),
 			'Panel' => array('name' => 'Panel', 'icon' => 'fa-thumb-tack'),
 			'organization' => array('name' => 'Organisation', 'icon' => 'fa-calendar'),
