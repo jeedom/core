@@ -95,7 +95,7 @@ class repo_market {
 	public static function checkUpdate($_update) {
 		$market_info = repo_market::getInfo(array('logicalId' => $_update->getLogicalId(), 'type' => $_update->getType()), $_update->getConfiguration('version', 'stable'));
 		$_update->setStatus($market_info['status']);
-		$_update->setConfiguration('market_owner', $market_info['market_owner']);
+		$_update->setConfiguration('market_owner', $market_info['owner']['market']);
 		$_update->setConfiguration('market', $market_info['market']);
 		$_update->setRemoteVersion($market_info['datetime']);
 		$_update->save();
