@@ -519,6 +519,8 @@ class plugin {
 			}
 			config::save('active', $_state, $this->getId());
 		}
+		$deamonAutoState = config::byKey('deamonAutoMode', $this->getId(), 1);
+		config::save('deamonAutoMode', 0, $this->getId());
 		if ($_state == 0) {
 			$eqLogics = eqLogic::byType($this->getId());
 			if (is_array($eqLogics)) {
@@ -597,6 +599,9 @@ class plugin {
 		}
 		if ($_state == 0) {
 			config::save('active', $_state, $this->getId());
+		}
+		if ($deamonAutoState) {
+			config::save('deamonAutoMode', 1, $this->getId());
 		}
 		return true;
 	}
