@@ -212,7 +212,7 @@ step_12_jeedom_check() {
 addon_1_openzwave(){
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start addon_1_openzwave${NORMAL}"
-	wget https://raw.githubusercontent.com/jeedom/plugin-openzwave/master/ressources/install.sh -O /root/openzwave_install.sh
+	wget https://raw.githubusercontent.com/jeedom/plugin-openzwave/master/resources/install.sh -O /root/openzwave_install.sh
 	chmod +x /root/openzwave_install.sh
 	/root/openzwave_install.sh
 	if [ $? -ne 0 ]; then
@@ -244,6 +244,9 @@ done
 
 echo "${JAUNE}Jeedom install version : ${VERSION}${NORMAL}"
 echo "${JAUNE}Webserver home folder : ${WEBSERVER_HOME}${NORMAL}"
+if [ ${INSTALL_ZWAVE_DEP} -eq 1 ]; then
+	echo "${JAUNE}With openzwave${NORMAL}"
+fi
 
 case ${STEP} in
    0)
