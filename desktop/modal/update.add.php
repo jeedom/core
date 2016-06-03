@@ -113,7 +113,7 @@ foreach ($repos as $key => $value) {
 
  	$('#bt_repoAddSaveUpdate').on('click',function(){
  		var source = $('.updateAttr[data-l1key=source]').value();
- 		var update =  $('.repoSource.'+source).getValues('.updateAttr')[0];
+ 		var update =  $('.repoSource.repo_'+source).getValues('.updateAttr')[0];
  		update.source = source;
  		jeedom.update.save({
  			update : update,
