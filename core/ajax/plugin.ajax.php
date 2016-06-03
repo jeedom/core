@@ -48,11 +48,11 @@ try {
 				$return['status']['owner'] = array();
 			}
 			foreach (update::listRepo() as $key => $repo) {
-				$return['status']['owner'][$key] = 0;
 				if (!isset($repo['scope']['sendPlugin']) || !$repo['scope']['sendPlugin']) {
 					continue;
 				}
 				if ($update->getSource() != $key) {
+					$return['status']['owner'][$key] = 0;
 					$class = 'repo_' . $key;
 					if (config::byKey($key . '::enable')) {
 						$info = $class::getInfo(array('logicalId' => $plugin->getId(), 'type' => 'plugin'));
