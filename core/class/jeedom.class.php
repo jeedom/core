@@ -703,6 +703,53 @@ class jeedom {
 		}
 		return false;
 	}
+
+	/*     * ******************Benchmark*************************** */
+
+	public static function benchmark() {
+		$return = array();
+
+		$param = array('cache_write' => 5000, 'cache_read' => 5000, 'database_write' => 2000, 'database_read' => 50000, 'subprocess' => 200);
+
+		$starttime = getmicrotime();
+		for ($i = 0; $i < $param['cache_write']; $i++) {
+			cache::set('jeedom_benchmark', $i);
+		}
+		$return['cache_write_' . $param['cache_write']] = getmicrotime() - $starttime;
+
+		$starttime = getmicrotime();
+		for ($i = 0; $i < $param['cache_read']; $i++) {
+			$cache = cache::byKey('jeedom_benchmark');
+			$cache->getValue();
+		}
+		$return['cache_read_' . $param['cache_read']] = getmicrotime() - $starttime;
+
+		$starttime = getmicrotime();
+		for ($i = 0; $i < $param['database_write']; $i++) {
+			config::save('jeedom_benchmark', $i);
+		}
+		$return['database_write_' . $param['database_write']] = getmicrotime() - $starttime;
+
+		$starttime = getmicrotime();
+		for ($i = 0; $i < $param['database_read']; $i++) {
+			config::byKey('jeedom_benchmark');
+		}
+		$return['database_read_' . $param['database_read']] = getmicrotime() - $starttime;
+
+		$starttime = getmicrotime();
+		for ($i = 0; $i < $param['subprocess']; $i++) {
+			com_shell::execute('echo ' . $i);
+		}
+		$return['subprocess_' . $param['subprocess']] = getmicrotime() - $starttime;
+
+		$total = 0;
+		foreach ($return as $value) {
+			$total += $value;
+		}
+		$return['total'] = $total;
+		return $return;
+	}
+
 }
 
 ?>
