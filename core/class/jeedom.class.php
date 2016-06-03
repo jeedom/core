@@ -738,7 +738,7 @@ class jeedom {
 
 		$starttime = getmicrotime();
 		for ($i = 0; $i < $param['subprocess']; $i++) {
-			com_shell::execute('echo ' . $i);
+			shell_exec('echo ' . $i);
 		}
 		$return['subprocess_' . $param['subprocess']] = getmicrotime() - $starttime;
 
