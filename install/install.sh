@@ -112,7 +112,7 @@ step_6_jeedom_download() {
     	exit 1
 	fi
 	mkdir -p ${WEBSERVER_HOME}
-	rm ${WEBSERVER_HOME}/* > /dev/null 2>&1
+	find ${WEBSERVER_HOME} ! -name 'index.html' -type f -exec rm -rf {} +
 	rm -rf /root/core-*
 	unzip -q /tmp/jeedom.zip -d /root/
 	if [ $? -ne 0 ]; then
