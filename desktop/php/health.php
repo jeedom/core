@@ -3,7 +3,9 @@ if (!hasRight('health', true)) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 ?>
-<legend><i class="icon divers-caduceus3"></i>  {{Santé de Jeedom}}</legend>
+<legend><i class="icon divers-caduceus3"></i>  {{Santé de Jeedom}}
+		<i class="fa fa-dashboard pull-right cursor" id="bt_benchmarkJeedom"></i>
+</legend>
 <table class="table table-condensed table-bordered">
 	<thead><tr><th style="width : 250px;"></th><th style="width : 200px;">{{Résultat}}</th><th>{{Conseil}}</th></tr></thead>
 	<tbody>

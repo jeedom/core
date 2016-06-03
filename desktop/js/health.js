@@ -17,11 +17,15 @@
 
  $('.bt_configurationPlugin').on('click',function(){
  	$('#md_modal').dialog({title: "{{Configuration du plugin}}"});
-    $("#md_modal").load('index.php?v=d&p=plugin&ajax=1&id='+$(this).attr('data-pluginid')).dialog('open');
+ 	$("#md_modal").load('index.php?v=d&p=plugin&ajax=1&id='+$(this).attr('data-pluginid')).dialog('open');
  });
  
-  $('.bt_healthSpecific').on('click', function () {
-    $('#md_modal').dialog({title: "{{Santé}} " + $(this).attr('data-pluginname')});
-	console.log($(this).attr('data-pluginid'));
-    $('#md_modal').load('index.php?v=d&plugin='+$(this).attr('data-pluginid')+'&modal=health').dialog('open');
-});
+ $('.bt_healthSpecific').on('click', function () {
+ 	$('#md_modal').dialog({title: "{{Santé}} " + $(this).attr('data-pluginname')});
+ 	$('#md_modal').load('index.php?v=d&plugin='+$(this).attr('data-pluginid')+'&modal=health').dialog('open');
+ });
+
+ $('#bt_benchmarkJeedom').on('click',function(){
+ 	$('#md_modal').dialog({title: "{{Jeedom benchmark}}"});
+ 	$("#md_modal").load('index.php?v=d&modal=jeedom.benchmark').dialog('open');
+ });

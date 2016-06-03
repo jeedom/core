@@ -46,12 +46,13 @@ step_2_mainpackage() {
 	echo "${VERT}step_2_mainpackage success${NORMAL}"
 }
 
-step_3_mysql() {
+step_3_database() {
 	echo "---------------------------------------------------------------------"
-	echo "${JAUNE}Start step_3_mysql${NORMAL}"
+	echo "${JAUNE}Start step_3_database${NORMAL}"
 	echo "mysql-server mysql-server/root_password password root" | debconf-set-selections
 	echo "mysql-server mysql-server/root_password_again password root" | debconf-set-selections
 	apt_install mysql-client mysql-common mysql-server
+	
 	mysqladmin -u root password root
 	
 	systemctl status mysql > /dev/null 2>&1
@@ -72,7 +73,7 @@ step_3_mysql() {
     		exit 1
   		fi
   	fi
-	echo "${VERT}step_3_mysql success${NORMAL}"
+	echo "${VERT}step_3_database success${NORMAL}"
 }
 
 step_4_apache() {
@@ -227,7 +228,7 @@ VERSION=stable
 WEBSERVER_HOME=/var/www/html
 INSTALL_ZWAVE_DEP=0
 
-while getopts ":s:v:w:z:" opt; do
+while getopts ":s:v:w:z:d:" opt; do
   case $opt in
     s) STEP="$OPTARG"
     ;;
@@ -253,7 +254,7 @@ case ${STEP} in
 	echo "${JAUNE}Start of all install step${NORMAL}"
 	step_1_upgrade
 	step_2_mainpackage
-	step_3_mysql
+	step_3_database
 	step_4_apache
 	step_5_php
 	step_6_jeedom_download
@@ -268,7 +269,7 @@ case ${STEP} in
 	;;
    2) step_2_mainpackage
 	;;
-   3) step_3_mysql
+   3) step_3_database
 	;;
    4) step_4_apache
 	;;
