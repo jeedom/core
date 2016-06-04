@@ -257,6 +257,9 @@ echo "${JAUNE}Webserver home folder : ${WEBSERVER_HOME}${NORMAL}"
 if [ ${INSTALL_ZWAVE_DEP} -eq 1 ]; then
 	echo "${JAUNE}With openzwave${NORMAL}"
 fi
+if [ ${FALLBACK_ALLOW} -eq 1 ]; then
+	echo "${JAUNE}Fallback is allow${NORMAL}"
+fi
 
 case ${STEP} in
    0)
