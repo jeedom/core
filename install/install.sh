@@ -18,8 +18,10 @@ fi
 apt_install() {
   apt-get -y install "$@"
   if [ $? -ne 0 ]; then
-    echo "${ROUGE}Could not install $@ - abort${NORMAL}"
-    exit 1
+  	if [ ${FALLBACK_ALLOW} -ne 1 ]; then
+	    echo "${ROUGE}Could not install $@ - abort${NORMAL}"
+	    exit 1
+	fi
   fi
 }
 
@@ -88,11 +90,7 @@ step_5_php() {
 	echo "${JAUNE}Start step_5_php${NORMAL}"
 	apt-get -y install libapache2-mod-php php php-common php-curl php-dev php-gd php-json php-memcached php-mysql php-cli
 	if [ $? -ne 0 ]; then
-		apt-get -y install libapache2-mod-php5 php5 php5-common php5-curl php5-dev php5-gd php5-json php5-memcached php5-mysql php5-cli
-		if [ $? -ne 0 ]; then
-    		echo "${ROUGE}Could not install php - abort${NORMAL}"
-    		exit 1
-  		fi
+		apt_install libapache2-mod-php5 php5 php5-common php5-curl php5-dev php5-gd php5-json php5-memcached php5-mysql php5-cli
 	fi
 	echo "${VERT}step_5_php success${NORMAL}"
 }
@@ -177,7 +175,7 @@ step_10_jeedom_crontab() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_10_jeedom_crontab${NORMAL}"
 	if [ $(crontab -l | grep ${WEBSERVER_HOME}/core/php/jeeCron.php | wc -l) -eq 0 ];then
-		echo "* * * * * su --shell=/bin/bash - www-data -c '/usr/bin/php ${WEBSERVER_HOME}/core/php/jeeCron.php' >> /dev/null" | crontab -
+		(echo "* * * * * su --shell=/bin/bash - www-data -c '/usr/bin/php ${WEBSERVER_HOME}/core/php/jeeCron.php' >> /dev/null"; crontab -l) | crontab -
 		if [ $? -ne 0 ]; then
 	    	echo "${ROUGE}Could not install jeedom cron - abort${NORMAL}"
 	    	exit 1
@@ -213,9 +211,17 @@ step_12_jeedom_check() {
 addon_1_openzwave(){
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start addon_1_openzwave${NORMAL}"
-	wget https://raw.githubusercontent.com/jeedom/plugin-openzwave/master/resources/install.sh -O /root/openzwave_install.sh
-	chmod +x /root/openzwave_install.sh
-	/root/openzwave_install.sh
+	wget https://raw.githubusercontent.com/jeedom/plugin-openzwave/master/resources/install.sh -O /tmp/openzwave_install.sh
+	if [ $? -ne 0 ]; then
+		if [ ${FALLBACK_ALLOW} -ne 1 ]; then
+			echo "${ROUGE}Could not install openzwave dependancy - abort${NORMAL}"
+    		exit 1
+    	fi
+    	echo "${JAUNE}Could not install openzwave dependancy but fallback allow - abort${NORMAL}"
+    	exit 0
+	fi
+	chmod +x /tmp/openzwave_install.sh
+	/tmp/openzwave_install.sh
 	if [ $? -ne 0 ]; then
     	echo "${ROUGE}Could not install openzwave dependancy - abort${NORMAL}"
     	exit 1
@@ -227,8 +233,9 @@ STEP=0
 VERSION=stable
 WEBSERVER_HOME=/var/www/html
 INSTALL_ZWAVE_DEP=0
+FALLBACK_ALLOW=0
 
-while getopts ":s:v:w:z:d:" opt; do
+while getopts ":s:v:w:z:f:" opt; do
   case $opt in
     s) STEP="$OPTARG"
     ;;
@@ -237,6 +244,8 @@ while getopts ":s:v:w:z:d:" opt; do
     w) WEBSERVER_HOME="$OPTARG"
     ;;
     z) INSTALL_ZWAVE_DEP=1
+    ;;
+    f) FALLBACK_ALLOW=1
     ;;
     \?) echo "${ROUGE}Invalid option -$OPTARG${NORMAL}" >&2
     ;;
