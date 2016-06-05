@@ -247,6 +247,15 @@ while getopts ":s:v:w:z:h:" opt; do
 done
 
 if [ ${HTML_OUTPUT} -eq 1 ]; then
+	VERT="</pre><span style='color:green;font-weight: bold;'>"
+	NORMAL="</span><pre>"
+	ROUGE="<span style='color:red;font-weight: bold;'>"
+	ROSE="<span style='color:pink;font-weight: bold;'>"
+	BLEU="<span style='color:blue;font-weight: bold;'>"
+	BLANC="<span style='color:white;font-weight: bold;'>"
+	BLANCLAIR="<span style='color:blue;font-weight: bold;'>"
+	JAUNE="<span style='color:yellow;font-weight: bold;'>"
+	CYAN="<span style='color:blue;font-weight: bold;'>"
 	echo "<pre>"
 fi
 
