@@ -173,7 +173,7 @@ step_10_jeedom_crontab() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_10_jeedom_crontab${NORMAL}"
 	if [ $(crontab -l | grep ${WEBSERVER_HOME}/core/php/jeeCron.php | wc -l) -eq 0 ];then
-		(echo "* * * * * su --shell=/bin/bash - www-data -c '/usr/bin/php ${WEBSERVER_HOME}/core/php/jeeCron.php' >> /dev/null"; crontab -l | grep -v -e "jeedom|jeeCron") | crontab -
+		(echo "* * * * * su --shell=/bin/bash - www-data -c '/usr/bin/php ${WEBSERVER_HOME}/core/php/jeeCron.php' >> /dev/null"; crontab -l | grep -v "jeedom" | grep -v "jeeCron") | crontab -
 		if [ $? -ne 0 ]; then
 	    	echo "${ROUGE}Could not install jeedom cron - abort${NORMAL}"
 	    	exit 1
