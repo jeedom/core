@@ -135,13 +135,13 @@ if (ini_get('max_execution_time') < 600) {
 	echo '<center style="font-size:1.2em;">max_execution_time must be >= 600, edit ' . php_ini_loaded_file() . ' and change this value (current ' . ini_get('max_execution_time') . ')</center>';
 	echo '</div>';
 }
-if (ini_get('upload_max_filesize') != '1G' or ini_get('upload_max_filesize') != '1024M') {
+if (ini_get('upload_max_filesize') != '1G' && ini_get('upload_max_filesize') != '1024M') {
 	$error = true;
 	echo '<div class="alert alert-warning" style="margin:15px;">';
 	echo '<center style="font-size:1.2em;">upload_max_filesize must be = 1G, edit ' . php_ini_loaded_file() . ' and change this value (current ' . ini_get('upload_max_filesize') . ')</center>';
 	echo '</div>';
 }
-if (ini_get('post_max_size') != '1G' or ini_get('post_max_size') != '1024M') {
+if (ini_get('post_max_size') != '1G' && ini_get('post_max_size') != '1024M') {
 	$error = true;
 	echo '<div class="alert alert-warning" style="margin:15px;">';
 	echo '<center style="font-size:1.2em;">post_max_size must be = 1G, edit ' . php_ini_loaded_file() . ' and change this value (current ' . ini_get('post_max_size') . ')</center>';
