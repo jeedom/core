@@ -217,25 +217,6 @@ class network {
 				}
 			}
 		}
-
-		if (file_exists('/etc/nginx/sites-available/default')) {
-			$data = file_get_contents('/etc/nginx/sites-available/default');
-			if (strpos($data, 'root /usr/share/nginx/www;') !== false || strpos($data, 'root /var/www/html;') !== false) {
-				if ($_mode == 'internal') {
-					config::save('internalComplement', '/jeedom');
-				}
-				if ($_mode == 'external') {
-					config::save('externalComplement', '/jeedom');
-				}
-			} else {
-				if ($_mode == 'internal') {
-					config::save('internalComplement', '');
-				}
-				if ($_mode == 'external') {
-					config::save('externalComplement', '');
-				}
-			}
-		}
 	}
 
 	public static function test($_mode = 'external', $_test = true, $_timeout = 10) {
