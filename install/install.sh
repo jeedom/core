@@ -222,7 +222,6 @@ addon_1_openzwave(){
   	fi
 }
 
-echo "${JAUNE}Welcome to jeedom installer${NORMAL}"
 STEP=0
 VERSION=stable
 WEBSERVER_HOME=/var/www/html
@@ -264,6 +263,7 @@ if [ ${HTML_OUTPUT} -eq 1 ]; then
 	echo "<pre>"
 fi
 
+echo "${JAUNE}Welcome to jeedom installer${NORMAL}"
 echo "${JAUNE}Jeedom install version : ${VERSION}${NORMAL}"
 echo "${JAUNE}Webserver home folder : ${WEBSERVER_HOME}${NORMAL}"
 if [ ${INSTALL_ZWAVE_DEP} -eq 1 ]; then
