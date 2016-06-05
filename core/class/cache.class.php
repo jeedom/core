@@ -116,7 +116,7 @@ class cache {
 			default:
 				return;
 		}
-		com_shell::execute('sudo rm -rf ' . dirname(__FILE__) . '/../../cache.tar.gz;cd ' . $cache_dir . ';sudo tar cfz ' . dirname(__FILE__) . '/../../cache.tar.gz * 2>&1 > /dev/null;sudo chmod 775 ' . dirname(__FILE__) . '/../../cache.tar.gz;sudo chown www-data:www-data ' . dirname(__FILE__) . '/../../cache.tar.gz');
+		com_shell::execute('sudo rm -rf ' . dirname(__FILE__) . '/../../cache.tar.gz;cd ' . $cache_dir . ';sudo tar cfz ' . dirname(__FILE__) . '/../../cache.tar.gz * 2>&1 > /dev/null;sudo chmod 775 ' . dirname(__FILE__) . '/../../cache.tar.gz;sudo chown www-data:www-data ' . dirname(__FILE__) . '/../../cache.tar.gz;sudo chmod 777 -R ' . $cache_dir);
 	}
 
 	public static function isPersistOk() {
@@ -134,9 +134,7 @@ class cache {
 	}
 
 	public static function restore() {
-		if (!file_exists(dirname(__FILE__) . '/../../cache.tar.gz')) {
-			return;
-		}
+
 		switch (config::byKey('cache::engine')) {
 			case 'FilesystemCache':
 				$cache_dir = '/tmp/jeedom-cache';
@@ -146,6 +144,12 @@ class cache {
 				break;
 			default:
 				return;
+		}
+		if (!file_exists(dirname(__FILE__) . '/../../cache.tar.gz')) {
+			$cmd = 'sudo mkdir ' . $cache_dir . ';';
+			$cmd .= 'sudo chmod -R 777 ' . $cache_dir . ';';
+			com_shell::execute($cmd);
+			return;
 		}
 		$cmd = 'sudo rm -rf ' . $cache_dir . ';';
 		$cmd .= 'sudo mkdir ' . $cache_dir . ';';
