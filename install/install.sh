@@ -185,6 +185,7 @@ step_10_jeedom_crontab() {
 step_11_jeedom_sudo() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_11_jeedom_sudo${NORMAL}"
+	useradd -G dialout www-data
 	if [ $(grep "www-data ALL=(ALL) NOPASSWD: ALL" /etc/sudoers | wc -l) -eq 0 ];then
 		echo "www-data ALL=(ALL) NOPASSWD: ALL" | (EDITOR="tee -a" visudo)
 		if [ $? -ne 0 ]; then
