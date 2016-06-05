@@ -256,6 +256,11 @@ if [ ${HTML_OUTPUT} -eq 1 ]; then
 	BLANCLAIR="<span style='color:blue;font-weight: bold;'>"
 	JAUNE="<span style='color:#FFBF00;font-weight: bold;'>"
 	CYAN="<span style='color:blue;font-weight: bold;'>"
+	echo "<!DOCTYPE html>"
+	echo "<html>"
+	echo "<head></head>"
+	echo "<body onload='window.scrollTo(0,document.body.scrollHeight)'>"
+	echo "<script>window.scrollTo(0,document.body.scrollHeight);</script>"
 	echo "<pre>"
 fi
 
