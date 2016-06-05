@@ -347,7 +347,7 @@ function rcopy($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = 
 	}
 	if (is_dir($src)) {
 		if (!file_exists($dst)) {
-			mkdir($dst);
+			@mkdir($dst);
 		}
 		$files = scandir($src);
 		foreach ($files as $file) {
