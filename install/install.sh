@@ -31,18 +31,6 @@ mysql_sql() {
   fi
 }
 
-echo_log(){
-	if [ ${HTML_OUTPUT} -ne 1 ]; then
-		if [ -z "${2}" ]; then
-			echo "${1}"
-		else
-			echo "${2}${1}${NORMAL}"
-		fi
-	else
-		echo "${1}<br/>"
-	fi
-}
-
 step_1_upgrade() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_1_upgrade${NORMAL}"
@@ -257,6 +245,10 @@ while getopts ":s:v:w:z:h:" opt; do
     ;;
   esac
 done
+
+if [ ${HTML_OUTPUT} -eq 1 ]; then
+	echo "<pre>"
+fi
 
 echo "${JAUNE}Jeedom install version : ${VERSION}${NORMAL}"
 echo "${JAUNE}Webserver home folder : ${WEBSERVER_HOME}${NORMAL}"
