@@ -254,7 +254,7 @@ if [ ${HTML_OUTPUT} -eq 1 ]; then
 	BLEU="<span style='color:blue;font-weight: bold;'>"
 	BLANC="<span style='color:white;font-weight: bold;'>"
 	BLANCLAIR="<span style='color:blue;font-weight: bold;'>"
-	JAUNE="<span style='color:yellow;font-weight: bold;'>"
+	JAUNE="<span style='color:#FFBF00;font-weight: bold;'>"
 	CYAN="<span style='color:blue;font-weight: bold;'>"
 	echo "<pre>"
 fi
