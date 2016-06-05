@@ -134,7 +134,6 @@ class cache {
 	}
 
 	public static function restore() {
-
 		switch (config::byKey('cache::engine')) {
 			case 'FilesystemCache':
 				$cache_dir = '/tmp/jeedom-cache';
