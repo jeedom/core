@@ -18,10 +18,8 @@ fi
 apt_install() {
   apt-get -y install "$@"
   if [ $? -ne 0 ]; then
-  	if [ ${FALLBACK_ALLOW} -ne 1 ]; then
-	    echo "${ROUGE}Could not install $@ - abort${NORMAL}"
-	    exit 1
-	fi
+	echo "${ROUGE}Could not install $@ - abort${NORMAL}"
+	exit 1
   fi
 }
 
@@ -31,6 +29,18 @@ mysql_sql() {
     echo "C${ROUGE}ould not execute $@ into mysql - abort${NORMAL}"
     exit 1
   fi
+}
+
+echo_log(){
+	if [ ${HTML_OUTPUT} -ne 1 ]; then
+		if [ -z "${2}" ]; then
+			echo "${1}"
+		else
+			echo "${2}${1}${NORMAL}"
+		fi
+	else
+		echo "${1}<br/>"
+	fi
 }
 
 step_1_upgrade() {
@@ -213,12 +223,8 @@ addon_1_openzwave(){
 	echo "${JAUNE}Start addon_1_openzwave${NORMAL}"
 	wget https://raw.githubusercontent.com/jeedom/plugin-openzwave/master/resources/install.sh -O /tmp/openzwave_install.sh
 	if [ $? -ne 0 ]; then
-		if [ ${FALLBACK_ALLOW} -ne 1 ]; then
-			echo "${ROUGE}Could not install openzwave dependancy - abort${NORMAL}"
-    		exit 1
-    	fi
-    	echo "${JAUNE}Could not install openzwave dependancy but fallback allow - abort${NORMAL}"
-    	exit 0
+		echo "${ROUGE}Could not install openzwave dependancy - abort${NORMAL}"
+    	exit 1
 	fi
 	chmod +x /tmp/openzwave_install.sh
 	/tmp/openzwave_install.sh
@@ -233,9 +239,9 @@ STEP=0
 VERSION=stable
 WEBSERVER_HOME=/var/www/html
 INSTALL_ZWAVE_DEP=0
-FALLBACK_ALLOW=0
+HTML_OUTPUT=0
 
-while getopts ":s:v:w:z:f:" opt; do
+while getopts ":s:v:w:z:h:" opt; do
   case $opt in
     s) STEP="$OPTARG"
     ;;
@@ -245,7 +251,7 @@ while getopts ":s:v:w:z:f:" opt; do
     ;;
     z) INSTALL_ZWAVE_DEP=1
     ;;
-    f) FALLBACK_ALLOW=1
+    h) HTML_OUTPUT=1
     ;;
     \?) echo "${ROUGE}Invalid option -$OPTARG${NORMAL}" >&2
     ;;
@@ -256,9 +262,6 @@ echo "${JAUNE}Jeedom install version : ${VERSION}${NORMAL}"
 echo "${JAUNE}Webserver home folder : ${WEBSERVER_HOME}${NORMAL}"
 if [ ${INSTALL_ZWAVE_DEP} -eq 1 ]; then
 	echo "${JAUNE}With openzwave${NORMAL}"
-fi
-if [ ${FALLBACK_ALLOW} -eq 1 ]; then
-	echo "${JAUNE}Fallback is allow${NORMAL}"
 fi
 
 case ${STEP} in
@@ -309,6 +312,8 @@ if [ ${INSTALL_ZWAVE_DEP} -eq 1 ]; then
 	echo "${JAUNE}Start installation of openzwave dep${NORMAL}"
 	addon_1_openzwave
 fi
+
+rm -rf ${WEBSERVER_HOME}/index.html > /dev/null 2>&1
 
 exit 0
 
