@@ -257,7 +257,8 @@ if [ ${HTML_OUTPUT} -eq 1 ]; then
 	CYAN="<span style='color:blue;font-weight: bold;'>"
 	echo "<script>"
 	echo "setTimeout(function(){ window.scrollTo(0,document.body.scrollHeight); }, 100);"
-	echo "setTimeout(function(){ window.scrollTo(0,document.body.scrollHeight); }, 500);"
+	echo "setTimeout(function(){ window.scrollTo(0,document.body.scrollHeight); }, 300);"
+	echo "setTimeout(function(){ location.reload(); }, 1000);"
 	echo "</script>"
 	echo "<pre>"
 fi
