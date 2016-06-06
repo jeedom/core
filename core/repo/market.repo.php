@@ -387,7 +387,7 @@ class repo_market {
 				'plugin_install_list' => plugin::listPlugin(true, false, false, true),
 			));
 		}
-		$jsonrpc->setCb_class('market');
+		$jsonrpc->setCb_class('repo_market');
 		$jsonrpc->setCb_function('postJsonRpc');
 		$jsonrpc->setNoSslCheck(true);
 		return $jsonrpc;
