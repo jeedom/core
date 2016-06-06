@@ -33,6 +33,7 @@ class repo_market {
 		'sendPlugin' => true,
 		'hasStore' => true,
 		'hasScenarioStore' => true,
+		'test' => true,
 	);
 
 	public static $_configuration = array(

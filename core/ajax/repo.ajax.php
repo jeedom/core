@@ -59,6 +59,12 @@ try {
 		ajax::success();
 	}
 
+	if (init('action') == 'test') {
+		$class = 'repo_' . init('repo');
+		$class::test();
+		ajax::success();
+	}
+
 	if (init('action') == 'remove') {
 		$class = 'repo_' . init('repo');
 		$repo = $class::byId(init('id'));

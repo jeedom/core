@@ -1108,6 +1108,14 @@ foreach (update::listRepo() as $key => $value) {
 		echo '</div>';
 		echo '</div>';
 	}
+	if (isset($value['scope']['test']) && $value['scope']['test']) {
+		echo '<div class="form-group expertModeVisible">';
+		echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Tester}}</label>';
+		echo '<div class="col-sm-1">';
+		echo '<a class="btn btn-default testRepoConnection" data-repo="' . $key . '"><i class="fa fa-check"></i> {{Tester}}</a>';
+		echo '</div>';
+		echo '</div>';
+	}
 	echo '</div>';
 }
 ?>

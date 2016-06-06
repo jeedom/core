@@ -86,3 +86,24 @@
  	};
  	$.ajax(paramsAJAX);
  }
+
+ jeedom.repo.test = function (_params) {
+ 	var paramsRequired = ['repo'];
+ 	var paramsSpecifics = {
+ 		global: _params.global || true,
+ 	};
+ 	try {
+ 		jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+ 	} catch (e) {
+ 		(_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+ 		return;
+ 	}
+ 	var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+ 	var paramsAJAX = jeedom.private.getParamsAJAX(params);
+ 	paramsAJAX.url = 'core/ajax/repo.ajax.php';
+ 	paramsAJAX.data = {
+ 		action: 'test',
+ 		repo: _params.repo,
+ 	};
+ 	$.ajax(paramsAJAX);
+ }

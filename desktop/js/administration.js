@@ -474,6 +474,18 @@ $('.bt_resetColor').on('click', function () {
     });
 });
 
+$('.testRepoConnection').on('click',function(){
+jeedom.repo.test({
+    repo: $(this).attr('data-repo'),
+    error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (data) {
+        $('#div_alert').showAlert({message: '{{Test réussi}}', level: 'success'});
+    }
+});
+});
+
 /**************************SYSTEM***********************************/
 $('#bt_accessSystemAdministration').on('click',function(){
     $('#md_modal').dialog({title: "{{Administration système}}"});
