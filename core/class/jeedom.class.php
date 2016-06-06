@@ -709,7 +709,7 @@ class jeedom {
 	public static function benchmark() {
 		$return = array();
 
-		$param = array('cache_write' => 5000, 'cache_read' => 5000, 'database_write' => 2000, 'database_read' => 50000, 'subprocess' => 200);
+		$param = array('cache_write' => 5000, 'cache_read' => 5000, 'database_write_delete' => 1000, 'database_update' => 1000, 'database_replace' => 1000, 'database_read' => 50000, 'subprocess' => 200);
 
 		$starttime = getmicrotime();
 		for ($i = 0; $i < $param['cache_write']; $i++) {
@@ -725,10 +725,51 @@ class jeedom {
 		$return['cache_read_' . $param['cache_read']] = getmicrotime() - $starttime;
 
 		$starttime = getmicrotime();
-		for ($i = 0; $i < $param['database_write']; $i++) {
+		for ($i = 0; $i < $param['database_write_delete']; $i++) {
+			$sql = 'DELETE FROM config
+                	WHERE `key`="jeedom_benchmark"
+                    	AND plugin="core"';
+			try {
+				DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+			} catch (Exception $e) {
+
+			}
+			$sql = 'INSERT INTO config
+                	SET `key`="jeedom_benchmark",plugin="core",`value`="' . $i . '"';
+			try {
+				DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+			} catch (Exception $e) {
+
+			}
+		}
+		$return['database_write_delete_' . $param['database_write_delete']] = getmicrotime() - $starttime;
+
+		$sql = 'INSERT INTO config
+                SET `key`="jeedom_benchmark",plugin="core",`value`="0"';
+		try {
+			DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+		} catch (Exception $e) {
+
+		}
+		$starttime = getmicrotime();
+		for ($i = 0; $i < $param['database_update']; $i++) {
+			$sql = 'UPDATE config
+                	SET `value`="' . $i . '"
+                	WHERE `key`="jeedom_benchmark"
+                		AND plugin="core"';
+			try {
+				DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+			} catch (Exception $e) {
+
+			}
+		}
+		$return['database_update_' . $param['database_update']] = getmicrotime() - $starttime;
+
+		$starttime = getmicrotime();
+		for ($i = 0; $i < $param['database_replace']; $i++) {
 			config::save('jeedom_benchmark', $i);
 		}
-		$return['database_write_' . $param['database_write']] = getmicrotime() - $starttime;
+		$return['database_replace_' . $param['database_replace']] = getmicrotime() - $starttime;
 
 		$starttime = getmicrotime();
 		for ($i = 0; $i < $param['database_read']; $i++) {
