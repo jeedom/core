@@ -118,6 +118,7 @@ step_6_jeedom_download() {
   	fi
 	cp -R /root/core-*/* ${WEBSERVER_HOME}
 	rm -rf /root/core-* > /dev/null 2>&1
+	rm /tmp/jeedom.zip
 	echo "${VERT}step_6_jeedom_download success${NORMAL}"
 }
 
