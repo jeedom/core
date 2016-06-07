@@ -5,8 +5,6 @@ systemctl mask serial-getty@ttymxc0.service
 systemctl stop serial-getty@ttymxc0.service
 systemctl stop serial-getty@ttyS0.service
 systemctl mask serial-getty@ttyS0.service
-systemctl stop dietpi-service
-systemctl mask dietpi-service
 echo "tmpfs  	      /tmp            tmpfs  defaults,size=64M                                       0 0" >> /etc/fstab
 echo "deb http://repozytorium.mati75.eu/raspbian jessie-backports main contrib non-free" >> /etc/apt/sources.list
 echo "#deb-src http://repozytorium.mati75.eu/raspbian jessie-backports main contrib non-free" >> /etc/apt/sources.list
