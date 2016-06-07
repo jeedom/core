@@ -43,7 +43,7 @@ step_2_mainpackage() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_2_mainpackage${NORMAL}"
 	apt_install ntp ca-certificates unzip curl sudo cron
-	apt-get -y install smbclient
+	apt-get -y install smbclient htop iotop vim iftop
 	echo "${VERT}step_2_mainpackage success${NORMAL}"
 }
 
