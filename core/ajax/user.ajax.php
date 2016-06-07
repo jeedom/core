@@ -94,7 +94,7 @@ try {
 		}
 		$users = json_decode(init('users'), true);
 		$user = null;
-		foreach ($users as $user_json) {
+		foreach ($users as &$user_json) {
 			if (isset($user_json['id'])) {
 				$user = user::byId($user_json['id']);
 			}
@@ -104,13 +104,10 @@ try {
 				}
 				$user = new user();
 			}
-			utils::a2o($user, $user_json);
-			if (isset($user_json['password'])) {
-				if (config::byKey('ldap::enable') == '1') {
-					throw new Exception(__('Vous devez desactiver l\'authentification LDAP pour pouvoir editer un utilisateur', __FILE__));
-				}
-				$user->setPassword(sha1($user_json['password']));
+			if (!is_sha1($user_json['password'])) {
+				$user_json['password'] = sha1($user_json['password']);
 			}
+			utils::a2o($user, $user_json);
 			$user->save();
 
 		}
@@ -137,7 +134,6 @@ try {
 	}
 
 	if (init('action') == 'saveProfils') {
-
 		$user_json = json_decode(init('profils'), true);
 		if (isset($user_json['id']) && $user_json['id'] != $_SESSION['user']->getId()) {
 			throw new Exception('401 unautorized');
@@ -147,14 +143,14 @@ try {
 		$login = $_SESSION['user']->getLogin();
 		$rights = $_SESSION['user']->getRights();
 		$password = $_SESSION['user']->getPassword();
+		if (!is_sha1($user_json['password'])) {
+			$user_json['password'] = sha1($user_json['password']);
+		}
 		utils::a2o($_SESSION['user'], $user_json);
 		foreach ($rights as $right => $value) {
 			$_SESSION['user']->setRights($right, $value);
 		}
 		$_SESSION['user']->setLogin($login);
-		if ($password != $_SESSION['user']->getPassword()) {
-			$_SESSION['user']->setPassword(sha1($_SESSION['user']->getPassword()));
-		}
 		$_SESSION['user']->save();
 		@session_write_close();
 		ajax::success();

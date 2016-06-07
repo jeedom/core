@@ -49,8 +49,8 @@ class user {
 	 * @param string $_mdp motsz de passe en sha1
 	 * @return user object user
 	 */
-	public static function connect($_login, $_mdp, $_hash = false) {
-		if (!$_hash) {
+	public static function connect($_login, $_mdp) {
+		if (!is_sha1($_mdp)) {
 			$sMdp = sha1($_mdp);
 		}
 		if (config::byKey('ldap:enable') == '1' && !$_hash) {
@@ -108,11 +108,7 @@ class user {
 				log::add("connection", "info", __('Impossible de se connecter au LDAP', __FILE__));
 			}
 		}
-		if (!$_hash) {
-			$user = user::byLoginAndPassword($_login, $sMdp);
-		} else {
-			$user = user::byLoginAndHash($_login, $_mdp);
-		}
+		$user = user::byLoginAndPassword($_login, $sMdp);
 		if (is_object($user)) {
 			$user->getHash();
 			$user->setOptions('lastConnection', date('Y-m-d H:i:s'));
