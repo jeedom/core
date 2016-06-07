@@ -195,7 +195,10 @@ function is_json($_string) {
 	return ((is_string($_string) && (is_object(json_decode($_string)) || is_array(json_decode($_string))))) ? true : false;
 }
 
-function is_sha1($_string) {
+function is_sha1($_string = '') {
+	if ($_string == '') {
+		return false;
+	}
 	return preg_match('/^[0-9a-f]{40}$/i', $_string);
 }
 

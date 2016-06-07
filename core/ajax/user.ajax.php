@@ -104,9 +104,6 @@ try {
 				}
 				$user = new user();
 			}
-			if (!is_sha1($user_json['password'])) {
-				$user_json['password'] = sha1($user_json['password']);
-			}
 			utils::a2o($user, $user_json);
 			$user->save();
 
@@ -142,10 +139,6 @@ try {
 		$_SESSION['user']->refresh();
 		$login = $_SESSION['user']->getLogin();
 		$rights = $_SESSION['user']->getRights();
-		$password = $_SESSION['user']->getPassword();
-		if (!is_sha1($user_json['password'])) {
-			$user_json['password'] = sha1($user_json['password']);
-		}
 		utils::a2o($_SESSION['user'], $user_json);
 		foreach ($rights as $right => $value) {
 			$_SESSION['user']->setRights($right, $value);

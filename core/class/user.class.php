@@ -261,7 +261,7 @@ class user {
 	}
 
 	public function setPassword($password) {
-		$this->password = $password;
+		$this->password = (!is_sha1($password)) ? sha1($password) : $password;
 	}
 
 	public function getOptions($_key = '', $_default = '') {

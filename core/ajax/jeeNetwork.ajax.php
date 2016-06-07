@@ -235,7 +235,7 @@ try {
 		}
 		$values = json_decode(init('value'), true);
 		foreach ($values as $key => $value) {
-			if ($key == 'market::password' && !preg_match('/^[0-9a-f]{40}$/i', $value)) {
+			if ($key == 'market::password' && !is_sha1($value)) {
 				$value = sha1($value);
 			}
 			$jeeNetwork->configSave($key, jeedom::fromHumanReadable($value), init('plugin', 'core'));
