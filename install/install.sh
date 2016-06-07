@@ -87,7 +87,7 @@ step_4_apache() {
 step_5_php() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_5_php${NORMAL}"
-	apt-get -y install php7.0 php7.0-curl php7.0-gd php7.0-imap php7.0-json php7.0-mcrypt php7.0-mysql php7.0-opcache php7.0-xmlrpc libapache2-mod-php7.0 php7.0-common php7.0-dev   
+	apt-get -y install php7.0 php7.0-curl php7.0-gd php7.0-imap php7.0-json php7.0-mcrypt php7.0-mysql php7.0-opcache php7.0-xmlrpc libapache2-mod-php7.0 php7.0-common php7.0-dev php7.0-zip
 	if [ $? -ne 0 ]; then
 		apt-get -y install php7 php7-curl php7-gd php7-imap php7-json php7-mcrypt php7-mysql php7-opcache php7-xmlrpc libapache2-mod-php7 php7-common php7-dev   
 		if [ $? -ne 0 ]; then
