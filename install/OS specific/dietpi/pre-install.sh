@@ -5,6 +5,18 @@ systemctl mask serial-getty@ttymxc0.service
 systemctl stop serial-getty@ttymxc0.service
 systemctl stop serial-getty@ttyS0.service
 systemctl mask serial-getty@ttyS0.service
+systemctl stop dietpi-service
+systemctl mask dietpi-service
+cat /etc/fstab | grep -v "DietPi" > /etc/fstab2
+mv /etc/fstab2 /etc/fstab
+cat /etc/fstab | grep -v "/tmp" > /etc/fstab2
+mv /etc/fstab2 /etc/fstab
+cat /etc/fstab | grep -v "Internal Drives" > /etc/fstab2
+mv /etc/fstab2 /etc/fstab
+cat /etc/fstab | grep -v "/dev/mmcblk0p2" > /etc/fstab2
+mv /etc/fstab2 /etc/fstab
+echo "/dev/mmcblk0p2  /               ext4	 defaults,noatime,nodiratime,commit=600,errors=remount-ro 0 0" >> /etc/fstab
+echo "tmpfs  	      /tmp            tmpfs  defaults,size=128M                                       0 0" >> /etc/fstab
 apt-get -y install locate tar unzip telnet wget logrotate dos2unix fail2ban
 apt-get -y install apache2 apache2-utils libexpat1 ssl-cert
 echo jeedom > /etc/hostname
