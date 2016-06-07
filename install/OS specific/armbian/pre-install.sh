@@ -5,14 +5,25 @@ systemctl mask serial-getty@ttymxc0.service
 systemctl stop serial-getty@ttymxc0.service
 systemctl stop serial-getty@ttyS0.service
 systemctl mask serial-getty@ttyS0.service
-apt-get -y install locate tar unzip telnet wget logrotate dos2unix fail2ban iftop
+systemctl stop dietpi-service
+systemctl mask dietpi-service
+cat /etc/fstab | grep -v "DietPi" > /etc/fstab2
+mv /etc/fstab2 /etc/fstab
+cat /etc/fstab | grep -v "/tmp" > /etc/fstab2
+mv /etc/fstab2 /etc/fstab
+cat /etc/fstab | grep -v "Internal Drives" > /etc/fstab2
+mv /etc/fstab2 /etc/fstab
+cat /etc/fstab | grep -v "/dev/mmcblk0p2" > /etc/fstab2
+mv /etc/fstab2 /etc/fstab
+echo "/dev/mmcblk0p2  /               ext4	 defaults,noatime,nodiratime,commit=600,errors=remount-ro 0 0" >> /etc/fstab
+echo "tmpfs  	      /tmp            tmpfs  defaults,size=128M                                       0 0" >> /etc/fstab
+apt-get -y install locate tar unzip telnet wget logrotate dos2unix fail2ban
 apt-get -y install apache2 apache2-utils libexpat1 ssl-cert
 echo jeedom > /etc/hostname
 (echo "Mjeedom96";echo "Mjeedom96";) | passwd root
 rm /root/.not_logged_in_yet
-rm /var/run/motd
-wget https://raw.githubusercontent.com/jeedom/core/beta/install/motd -O /var/run/motd
-tail -n 6 /etc/motd >> /var/run/motd
+rm /etc/motd
+wget https://raw.githubusercontent.com/jeedom/core/beta/install/motd -O /etc/motd
 rm -rf /root/.bashrc
 wget https://raw.githubusercontent.com/jeedom/helper/master/install-server/bashrc?token=ABdwJOoJCWA01DFrg4ANxuEP6AKTa665ks5XWm4EwA%3D%3D -O /root/.bashrc
 (echo "@reboot root [[ -f /var/www/html/core/config/common.config.php ]] && exit 0;cd /root;echo '<script>setTimeout(function(){ location.reload(); }, 1000);</script>Start installation of jeedom in 30s, please wait.' > /var/www/html/index.html;sleep 30;rm -rf /root/install.sh;wget https://raw.githubusercontent.com/jeedom/core/beta/install/install.sh -O /root/install.sh;chmod +x /root/install.sh;PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin;/root/install.sh -h 1 > /var/www/html/index.html 2>&1;"; crontab -l) | crontab -
