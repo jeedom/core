@@ -59,7 +59,7 @@ try {
 		if (init('jeeNetwork_id') != '') {
 			$jeeNetwork = jeeNetwork::byId(init('jeeNetwork_id'));
 			if (is_object($jeeNetwork)) {
-				$jeeNetwork->getLog(init('log'), init('start', 0), init('nbLine', 99999));
+				ajax::success($jeeNetwork->getLog(init('log'), init('start', 0), init('nbLine', 99999)));
 			}
 		} else {
 			ajax::success(log::get(init('log'), init('start', 0), init('nbLine', 99999)));
