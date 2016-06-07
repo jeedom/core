@@ -87,9 +87,15 @@ step_4_apache() {
 step_5_php() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_5_php${NORMAL}"
-	apt-get -y install libapache2-mod-php php php-common php-curl php-dev php-gd php-json php-memcached php-mysql php-cli
+	apt-get -y install php7.0 php7.0-curl php7.0-gd php7.0-imap php7.0-json php7.0-mcrypt php7.0-mysql php7.0-opcache php7.0-xmlrpc libapache2-mod-php7.0 php7.0-common php7.0-dev   
 	if [ $? -ne 0 ]; then
-		apt_install libapache2-mod-php5 php5 php5-common php5-curl php5-dev php5-gd php5-json php5-memcached php5-mysql php5-cli
+		apt-get -y install php7 php7-curl php7-gd php7-imap php7-json php7-mcrypt php7-mysql php7-opcache php7-xmlrpc libapache2-mod-php7 php7-common php7-dev   
+		if [ $? -ne 0 ]; then
+			apt-get -y install libapache2-mod-php php php-common php-curl php-dev php-gd php-json php-memcached php-mysql php-cli
+			if [ $? -ne 0 ]; then
+				apt_install libapache2-mod-php5 php5 php5-common php5-curl php5-dev php5-gd php5-json php5-memcached php5-mysql php5-cli
+			fi
+		fi
 	fi
 	echo "${VERT}step_5_php success${NORMAL}"
 }
@@ -130,6 +136,14 @@ step_7_jeedom_customization() {
 	ln -s /etc/apache2/conf-available/security.conf /etc/apache2/conf-enabled/
 	rm /etc/apache2/conf-available/other-vhosts-access-log.conf > /dev/null 2>&1
 	rm /etc/apache2/conf-enabled/other-vhosts-access-log.conf > /dev/null 2>&1
+	for file in ` find / -name php.ini -type f`;do
+		echo "Update php file ${file}"
+		sed -i 's/max_execution_time = 30/max_execution_time = 300/g' ${file} > /dev/null 2>&1
+	    sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 1G/g' ${file} > /dev/null 2>&1
+	    sed -i 's/post_max_size = 8M/post_max_size = 1G/g' ${file} > /dev/null 2>&1
+	    sed -i 's/expose_php = On/expose_php = Off/g' ${file} > /dev/null 2>&1
+	done
+	
 	systemctl restart apache2 > /dev/null 2>&1
 	if [ $? -ne 0 ]; then
 		service apache2 restart
