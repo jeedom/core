@@ -182,12 +182,16 @@
                     log += data.result[i]+"\n";
                     if(data.result[i].indexOf('[END ' + _log.toUpperCase() + ' SUCCESS]') != -1){
                         $('#div_alert').showAlert({message: '{{L\'opération est réussie}}', level: 'success'});
-                        jeedom.user.refresh();
+                        if(_log == 'restore'){
+                            jeedom.user.refresh();
+                        }
                         _autoUpdate = 0;
                     }
                     if(data.result[i].indexOf('[END ' + _log.toUpperCase() + ' ERROR]') != -1){
                         $('#div_alert').showAlert({message: '{{L\'opération a échoué}}', level: 'danger'});
-                        jeedom.user.refresh();
+                        if(_log == 'restore'){
+                            jeedom.user.refresh();
+                        }
                         _autoUpdate = 0;
                     }
                 }
