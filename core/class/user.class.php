@@ -110,7 +110,6 @@ class user {
 		}
 		$user = user::byLoginAndPassword($_login, $sMdp);
 		if (is_object($user)) {
-			$user->getHash();
 			$user->setOptions('lastConnection', date('Y-m-d H:i:s'));
 			$user->save();
 			jeedom::event('user_connect');

@@ -106,7 +106,6 @@ try {
 			}
 			utils::a2o($user, $user_json);
 			$user->save();
-
 		}
 		$_SESSION['user']->refresh();
 		ajax::success();
