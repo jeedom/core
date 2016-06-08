@@ -35,6 +35,11 @@ if (!headers_sent()) {
 if (!isConnect() && isset($_COOKIE['registerDevice'])) {
 	if (loginByHash($_COOKIE['registerDevice'])) {
 		setcookie('registerDevice', $_COOKIE['registerDevice'], time() + 365 * 24 * 3600, "/", '', false, true);
+		if (isset($_COOKIE['jeedom_token'])) {
+			@session_start();
+			$_SESSION['jeedom_token'] = $_COOKIE['jeedom_token'];
+			@session_write_close();
+		}
 	} else {
 		setcookie('registerDevice', '', time() - 3600, "/", '', false, true);
 	}
@@ -100,6 +105,9 @@ function login($_login, $_password, $_twoFactor = null) {
 	$_SESSION['user'] = $user;
 	if (init('v') == 'd' && init('registerDevice') == 'on') {
 		setcookie('registerDevice', $_SESSION['user']->getHash(), time() + 365 * 24 * 3600, "/", '', false, true);
+		if (!isset($_COOKIE['jeedom_token'])) {
+			setcookie('jeedom_token', ajax::getToken(), time() + 365 * 24 * 3600, "/", '', false, true);
+		}
 	}
 	@session_write_close();
 	log::add('connection', 'info', __('Connexion de l\'utilisateur : ', __FILE__) . $_login);
@@ -123,6 +131,9 @@ function loginByHash($_key) {
 	$_SESSION['user'] = $user;
 	@session_write_close();
 	setcookie('registerDevice', $_key, time() + 365 * 24 * 3600, "/", '', false, true);
+	if (!isset($_COOKIE['jeedom_token'])) {
+		setcookie('jeedom_token', ajax::getToken(), time() + 365 * 24 * 3600, "/", '', false, true);
+	}
 	log::add('connection', 'info', __('Connexion de l\'utilisateur par clef : ', __FILE__) . $user->getLogin());
 	unset($_GET['auth']);
 	return true;

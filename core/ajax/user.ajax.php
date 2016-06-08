@@ -45,6 +45,9 @@ try {
 		}
 		if (init('storeConnection') == 1) {
 			setcookie('registerDevice', $_SESSION['user']->getHash(), time() + 365 * 24 * 3600, "/", '', false, true);
+			if (!isset($_COOKIE['jeedom_token'])) {
+				setcookie('jeedom_token', ajax::getToken(), time() + 365 * 24 * 3600, "/", '', false, true);
+			}
 		}
 		ajax::success();
 	}
