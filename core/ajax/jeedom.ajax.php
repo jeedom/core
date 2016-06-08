@@ -27,7 +27,9 @@ try {
 	ajax::init(false);
 
 	if (init('action') == 'getInfoApplication') {
+		@session_start();
 		$_SESSION['user']->refresh();
+		@session_write_close();
 		$return = array();
 		$return['jeedom_token'] = ajax::getToken();
 		$return['user_id'] = $_SESSION['user']->getId();
