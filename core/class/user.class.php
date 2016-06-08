@@ -50,9 +50,7 @@ class user {
 	 * @return user object user
 	 */
 	public static function connect($_login, $_mdp) {
-		if (!is_sha1($_mdp)) {
-			$sMdp = sha1($_mdp);
-		}
+		$sMdp = (!is_sha1($_mdp)) ? sha1($_mdp) : $_mdp;
 		if (config::byKey('ldap:enable') == '1' && !$_hash) {
 			log::add("connection", "debug", __('Authentification par LDAP', __FILE__));
 			$ad = self::connectToLDAP();
