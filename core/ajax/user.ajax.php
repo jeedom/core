@@ -71,6 +71,13 @@ try {
 		ajax::success();
 	}
 
+	if (init('action') == 'refresh') {
+		@session_start();
+		$_SESSION['user']->refresh();
+		@session_write_close();
+		ajax::success();
+	}
+
 	if (init('action') == 'logout') {
 		logout();
 		ajax::success();
