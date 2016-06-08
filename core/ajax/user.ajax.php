@@ -107,7 +107,9 @@ try {
 			utils::a2o($user, $user_json);
 			$user->save();
 		}
+		@session_start();
 		$_SESSION['user']->refresh();
+		@session_write_close();
 		ajax::success();
 	}
 
