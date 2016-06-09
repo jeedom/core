@@ -72,9 +72,9 @@ RUN echo "root:${SHELL_ROOT_PASSWORD}" | chpasswd && \
   sed -i 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' /etc/pam.d/sshd
 
 RUN mkdir -p /var/run/sshd /var/log/supervisor
-ADD install/OS\ specific/Docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+ADD install/OS_specific/Docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-ADD install/OS\ specific/Docker/init.sh /root/init.sh
+ADD install/OS_specific/Docker/init.sh /root/init.sh
 RUN chmod +x /root/init.sh
 CMD ["/root/init.sh"]
 
