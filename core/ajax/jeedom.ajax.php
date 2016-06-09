@@ -74,7 +74,7 @@ try {
 
 	if (init('action') == 'ssh') {
 		$command = init('command');
-		if (strpos($command, '2>&1') === false) {
+		if (strpos($command, '2>&1') === false && strpos($command, '>') === false) {
 			$command .= ' 2>&1';
 		}
 		ajax::success(shell_exec($command));
