@@ -5,5 +5,3 @@ export VDPAU_DRIVER=sunxi
 KERNELID=$(uname -r)
 toilet -f standard Jeedom
 echo ""
-printf 'Welcome to Jeedom "$PRETTY_NAME $KERNELID"
-echo ""
