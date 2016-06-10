@@ -239,6 +239,13 @@ addon_1_openzwave(){
   	fi
 }
 
+distrib_1_spe(){
+	if [ -f /etc/armbian.txt ]; then
+		chmod +x ${WEBSERVER_HOME}/install/OS_specific/armbian/post-install.sh
+		${WEBSERVER_HOME}/install/OS_specific/armbian/post-install.sh
+	fi
+}
+
 STEP=0
 VERSION=stable
 WEBSERVER_HOME=/var/www/html
@@ -302,6 +309,7 @@ case ${STEP} in
 	step_10_jeedom_crontab
 	step_11_jeedom_sudo
 	step_12_jeedom_check
+	distrib_1_spe
 	;;
    1) step_1_upgrade
 	;;
