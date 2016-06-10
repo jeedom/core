@@ -241,8 +241,10 @@ addon_1_openzwave(){
 
 distrib_1_spe(){
 	if [ -f /etc/armbian.txt ]; then
-		chmod +x ${WEBSERVER_HOME}/install/OS_specific/armbian/post-install.sh
-		${WEBSERVER_HOME}/install/OS_specific/armbian/post-install.sh
+		https://raw.githubusercontent.com/jeedom/core/beta/install/OS_specific/armbian/post-install.sh
+		chmod +x post-install.sh
+		./post-install.sh
+		rm post-install.sh
 	fi
 }
 
