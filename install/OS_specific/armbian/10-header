@@ -1,0 +1,9 @@
+#!/bin/bash
+export TERM=linux
+export VDPAU_DRIVER=sunxi
+. /etc/os-release
+KERNELID=$(uname -r)
+toilet -f standard -F Jeedom
+echo ""
+printf 'Welcome to Jeedom "$PRETTY_NAME $KERNELID"
+echo ""
