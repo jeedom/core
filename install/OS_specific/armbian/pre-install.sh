@@ -5,8 +5,6 @@ systemctl mask serial-getty@ttymxc0.service
 systemctl stop serial-getty@ttymxc0.service
 systemctl stop serial-getty@ttyS0.service
 systemctl mask serial-getty@ttyS0.service
-systemctl stop motd
-systemctl mask motd
 apt-get -y install locate tar unzip telnet wget logrotate dos2unix fail2ban
 apt-get -y install apache2 apache2-utils libexpat1 ssl-cert
 echo jeedom > /etc/hostname
