@@ -317,7 +317,7 @@ function addGraphService(_viewData){
     if (!isset(_viewData.configuration) || _viewData.configuration == '') {
         _viewData.configuration = {};
     }
-    var tr = '<tr class="viewData">';
+    var tr = '<tr class="viewData" style="cursor : move;">';
     tr += '<td><i class="fa fa-trash-o cursor bt_removeViewData"></i></td>';
     tr += '<td>';
     tr += '<input class="viewDataAttr" data-l1key="link_id" style="display  : none;"/>';
@@ -397,7 +397,7 @@ function addWidgetService(_viewData){
     if (!isset(_viewData.configuration) || _viewData.configuration == '') {
         _viewData.configuration = {};
     }
-    var tr = '<tr class="viewData">';
+    var tr = '<tr class="viewData" style="cursor : move;">';
     tr += '<td><i class="fa fa-trash-o cursor bt_removeViewData"></i></td>';
     tr += '<td>';
     tr += '<input class="viewDataAttr" data-l1key="link_id" style="display  : none;"/>';
