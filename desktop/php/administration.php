@@ -1083,7 +1083,7 @@ foreach (update::listRepo() as $key => $value) {
 	if ($value['scope']['hasConfiguration'] == false) {
 		continue;
 	}
-	echo '<div class="repositoryConfiguration' . $key . '">';
+	echo '<div class="repositoryConfiguration' . $key . '" style="display:none;">';
 	foreach ($value['configuration']['configuration'] as $pKey => $parameter) {
 		echo '<div class="form-group">';
 		echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">';
