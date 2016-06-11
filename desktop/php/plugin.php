@@ -147,13 +147,6 @@ foreach (plugin::listPlugin() as $plugin) {
 </div>
 </div>
 
-<div class="panel panel-primary">
-  <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-map"></i> {{Installation}}</h3></div>
-  <div class="panel-body">
-   <span id="span_plugin_installation"></span>
- </div>
-</div>
-
 <div class="row">
  <div class="col-md-6 col-sm-12">
   <div class="panel panel-success">
@@ -171,6 +164,13 @@ foreach (plugin::listPlugin() as $plugin) {
    </div>
  </div>
 </div>
+</div>
+
+<div class="panel panel-primary">
+  <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-map"></i> {{Installation}}</h3></div>
+  <div class="panel-body">
+   <span id="span_plugin_installation"></span>
+ </div>
 </div>
 
 <div class="panel panel-primary">
