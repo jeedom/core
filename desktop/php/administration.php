@@ -485,15 +485,13 @@ foreach (array('eth0', 'wlan0', 'bond0') as $value) {
 		echo '<div class="form-group">';
 		echo '<label class="col-xs-4 control-label">{{Gestion}}</label>';
 		echo '<div class="col-xs-8">';
-		echo '<a class="btn btn-success" id="bt_restartDns"><i class=\'fa fa-play\'></i> {{(Re)démarrer}}</a>';
+		echo '<a class="btn btn-success" id="bt_restartDns"><i class=\'fa fa-play\'></i> {{(Re)démarrer}}</a> ';
 		echo '<a class="btn btn-danger" id="bt_haltDns"><i class=\'fa fa-stop\'></i> {{Arrêter}}</a>';
 		echo '</div>';
 		echo '</div>';
 	}
 }
 ?>
-
-
 </div>
 </div>
 
