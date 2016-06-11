@@ -95,14 +95,20 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
         $('#span_plugin_installation').html(data.installation);
       }
 
+      $('#div_plugin_dependancy').closest('.panel').parent().addClass('col-md-6')
+      $('#div_plugin_deamon').closest('.panel').parent().addClass('col-md-6')
       if(data.hasDependency == 0 || data.activate != 1){
         $('#div_plugin_dependancy').closest('.panel').hide();
+        $('#div_plugin_deamon').closest('.panel').parent().removeClass('col-md-6')
       }else{
         $('#div_plugin_dependancy').closest('.panel').show();
+        $('#div_plugin_dependancy').closest('.panel')
         $("#div_plugin_dependancy").load('index.php?v=d&modal=plugin.dependancy&plugin_id='+data.id);
       }
+
       if(data.hasOwnDeamon == 0 || data.activate != 1){
         $('#div_plugin_deamon').closest('.panel').hide();
+        $('#div_plugin_dependancy').closest('.panel').parent().removeClass('col-md-6')
       }else{
         $('#div_plugin_deamon').closest('.panel').show();
         $("#div_plugin_deamon").load('index.php?v=d&modal=plugin.deamon&plugin_id='+data.id);
@@ -166,7 +172,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
        var html = '<form class="form-horizontal">';
        html += '<div class="form-group">';
        html += '<label class="col-sm-2 control-label">{{Statut}}</label>';
-       html += '<div class="col-sm-2">';
+       html += '<div class="col-sm-4">';
        if (data.activate == 1) {
         $('#div_plugin_toggleState').closest('.panel').removeClass('panel-default panel-danger').addClass('panel-success');
         html += '<span class="label label-success" style="font-size:1em;position:relative;top:7px;">{{Actif}}</span>';
@@ -178,9 +184,9 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
       html += '<label class="col-sm-2 control-label">{{Action}}</label>';
       html += '<div class="col-sm-4">';
       if (data.activate == 1) {
-       html += '<a class="btn btn-danger togglePlugin" data-state="0" data-plugin_id="' + data.id + '" style="position:relative;top:-2px;"><i class="fa fa-times"></i> {{Désactiver}}</a>';
+       html += '<a class="btn btn-danger btn-sm togglePlugin" data-state="0" data-plugin_id="' + data.id + '" style="position:relative;top:-2px;"><i class="fa fa-times"></i> {{Désactiver}}</a>';
      }else{
-       html += '<a class="btn btn-success togglePlugin" data-state="1" data-plugin_id="' + data.id + '" style="position:relative;top:-2px;"><i class="fa fa-check"></i> {{Activer}}</a>';
+       html += '<a class="btn btn-success btn-sm togglePlugin" data-state="1" data-plugin_id="' + data.id + '" style="position:relative;top:-2px;"><i class="fa fa-check"></i> {{Activer}}</a>';
      }
      html += '</div>';
      html += '</div>';
@@ -221,7 +227,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
      log_conf += '</div>';
    }
    log_conf += '<div class="form-group">';
-   log_conf += '<label class="col-sm-2 control-label">{{Voir les logs de}} '+data.logs[i].name+'</label>';
+   log_conf += '<label class="col-sm-2 control-label">{{Logs de}} '+data.logs[i].name+'</label>';
    log_conf += '<div class="col-sm-10">';
    for(j in data.logs[i].log){
     log_conf += '<a class="btn btn-info bt_plugin_conf_view_log" data-slaveId="'+i+'" data-log="'+data.logs[i].log[j]+'"><i class="fa fa-paperclip"></i>  '+data.logs[i].log[j].charAt(0).toUpperCase() + data.logs[i].log[j].slice(1)+'</a> ';

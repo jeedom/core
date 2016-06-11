@@ -45,7 +45,7 @@ foreach ($plugins_list as $category_name => $category) {
 <div class="col-md-9 col-sm-8" id="div_resumePluginList" style="border-left: solid 1px #EEE; padding-left: 25px;">
  <legend><i class="fa fa-list-alt"></i>  {{Mes plugins}}</legend>
  <div class="pluginListContainer">
- <?php
+   <?php
 foreach (update::listRepo() as $key => $value) {
 	if (!$value['enable']) {
 		continue;
@@ -54,21 +54,21 @@ foreach (update::listRepo() as $key => $value) {
 		continue;
 	}
 	echo '<div class="cursor displayStore" data-repo="' . $key . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-     <center>
+    <center>
       <i class="fa fa-shopping-cart" style="font-size : 6em;color:#94ca02;margin-top:20px;"></i>
     </center>
     <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>{{Ajout depuis le}} ' . $value['name'] . '</center></span>
   </div>';
 }
 ?>
-  <div class="cursor" id="bt_addPluginFromOtherSource" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-   <center>
-     <i class="fa fa-plus" style="font-size : 6em;color:#94ca02;margin-top:20px;"></i>
-   </center>
-   <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>{{Ajout depuis une autre source}}</center></span>
- </div>
+<div class="cursor" id="bt_addPluginFromOtherSource" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+ <center>
+   <i class="fa fa-plus" style="font-size : 6em;color:#94ca02;margin-top:20px;"></i>
+ </center>
+ <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>{{Ajout depuis une autre source}}</center></span>
+</div>
 
- <?php
+<?php
 foreach (plugin::listPlugin() as $plugin) {
 	$opacity = ($plugin->isActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
 	echo '<div class="pluginDisplayCard cursor" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
@@ -95,11 +95,56 @@ foreach (plugin::listPlugin() as $plugin) {
    <span id="span_plugin_doc" class="pull-right"></span>
  </legend>
 
- <div class="panel panel-default">
-   <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-circle-o-notch"></i> {{Etat}}</h3></div>
-   <div class="panel-body">
-    <div id="div_plugin_toggleState"></div>
+ <div class="row">
+  <div class="col-md-6 col-sm-12">
+    <div class="panel panel-default">
+     <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-circle-o-notch"></i> {{Etat}}</h3></div>
+     <div class="panel-body">
+      <div id="div_plugin_toggleState"></div>
+      <form class="form-horizontal">
+        <fieldset>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">{{Version}}</label>
+            <div class="col-sm-4">
+              <span id="span_plugin_install_date" style="position:relative;top:9px;"></span>
+            </div>
+            <label class="col-sm-2 control-label">{{Version Jeedom}}</label>
+            <div class="col-sm-4">
+              <span id="span_plugin_require" style="position:relative;top:9px;"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">{{Auteur}}</label>
+            <div class="col-sm-4">
+              <span id="span_plugin_author" style="position:relative;top:9px;"></span>
+            </div>
+            <label class="col-sm-2 control-label">{{Licence}}</label>
+            <div class="col-sm-4">
+              <span id="span_plugin_licence" style="position:relative;top:9px;"></span>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
   </div>
+</div>
+<div class="col-md-6 col-sm-12">
+  <div class="panel panel-primary" id="div_configLog">
+    <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-file-o"></i> {{Log}}
+      <a class="btn btn-success btn-xs pull-right" id="bt_savePluginLogConfig"><i class="fa fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
+    </h3></div>
+    <div class="panel-body">
+      <form class="form-horizontal">
+        <fieldset>
+          <div id="div_plugin_log"></div>
+        </fieldset>
+      </form>
+      <div class="form-actions">
+
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 
 <div class="panel panel-primary">
@@ -109,41 +154,34 @@ foreach (plugin::listPlugin() as $plugin) {
  </div>
 </div>
 
-<div class="panel panel-success">
-  <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-certificate"></i> {{Dépendances}}</h3></div>
-  <div class="panel-body">
-   <div id="div_plugin_dependancy"></div>
+<div class="row">
+ <div class="col-md-6 col-sm-12">
+  <div class="panel panel-success">
+    <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-certificate"></i> {{Dépendances}}</h3></div>
+    <div class="panel-body">
+     <div id="div_plugin_dependancy"></div>
+   </div>
  </div>
 </div>
-
-<div class="panel panel-success">
-  <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-university"></i> {{Démon}}</h3></div>
-  <div class="panel-body">
-   <div id="div_plugin_deamon"></div>
+<div class="col-md-6 col-sm-12">
+  <div class="panel panel-success">
+    <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-university"></i> {{Démon}}</h3></div>
+    <div class="panel-body">
+     <div id="div_plugin_deamon"></div>
+   </div>
  </div>
-</div>
-
-<div class="panel panel-primary" id="div_configLog">
-  <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-file-o"></i> {{Log}}</h3></div>
-  <div class="panel-body">
-    <form class="form-horizontal">
-      <fieldset>
-      <div id="div_plugin_log"></div>
-     </fieldset>
-   </form>
-   <div class="form-actions">
-    <a class="btn btn-success" id="bt_savePluginLogConfig"><i class="fa fa-check-circle icon-white" style="position:relative;left:-5px;top:1px"></i>{{Sauvegarder}}</a>
-  </div>
 </div>
 </div>
 
 <div class="panel panel-primary">
-  <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-cogs"></i> {{Configuration}}</h3></div>
+  <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-cogs"></i> {{Configuration}}
+    <a class="btn btn-success btn-xs pull-right" id="bt_savePluginConfig"><i class="fa fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
+  </h3></div>
   <div class="panel-body">
     <div id="div_plugin_configuration"></div>
 
     <div class="form-actions">
-      <a class="btn btn-success" id="bt_savePluginConfig"><i class="fa fa-check-circle icon-white" style="position:relative;left:-5px;top:1px"></i>{{Sauvegarder}}</a>
+
     </div>
   </div>
 </div>
@@ -160,16 +198,6 @@ foreach (plugin::listPlugin() as $plugin) {
     <a class="btn btn-success" id="bt_savePluginPanelConfig"><i class="fa fa-check-circle icon-white" style="position:relative;left:-5px;top:1px"></i>{{Sauvegarder}}</a>
   </div>
 </div>
-</div>
-
-<div class="panel panel-primary">
-  <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-info-circle"></i> {{Informations}}</h3></div>
-  <div class="panel-body">
-   <h5 style="display: inline-block;font-weight: bold;">{{Version}} : </h5> <span id="span_plugin_install_date"></span><br/>
-   <h5 style="display: inline-block;font-weight: bold;">{{Version Jeedom requise}} : </h5> <span id="span_plugin_require"></span><br/>
-   <h5 style="display: inline-block;font-weight: bold;">{{Auteur}} : </h5> <span id="span_plugin_author"></span> -
-   <h5 style="display: inline-block;font-weight: bold;">{{Licence}} : </h5> <span id="span_plugin_licence"></span>
- </div>
 </div>
 
 </div>
