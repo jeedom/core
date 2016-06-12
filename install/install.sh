@@ -35,12 +35,8 @@ step_1_upgrade() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_1_upgrade${NORMAL}"
 	apt-get update
+	apt-get -f install
 	apt-get -y dist-upgrade
-	apt-get -f install
-	apt-get update
-	DEBIAN_FRONTEND=noninteractive \
-	apt-get -o Dpkg::Options::="--force-confnew" --force-yes -fuy dist-upgrade
-	apt-get -f install
 	echo "${VERT}step_1_upgrade success${NORMAL}"
 }
 
