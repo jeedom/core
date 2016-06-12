@@ -7,9 +7,11 @@ systemctl stop serial-getty@ttyS0.service
 systemctl mask serial-getty@ttyS0.service
 sed -i 's/jessie/stretch/g' /etc/apt/sources.list
 apt-get update
+apt-get -y autoremove
 DEBIAN_FRONTEND=noninteractive
 apt-get -o Dpkg::Options::="--force-confnew" --force-yes -fuy dist-upgrade
 apt-get -f install
+apt-get -y autoremove
 apt-get update
 apt-get -y dist-upgrade
 apt-get -f install
