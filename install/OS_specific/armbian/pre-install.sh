@@ -5,10 +5,17 @@ systemctl mask serial-getty@ttymxc0.service
 systemctl stop serial-getty@ttymxc0.service
 systemctl stop serial-getty@ttyS0.service
 systemctl mask serial-getty@ttyS0.service
+apt-get update
+apt-get -y dist-upgrade
+apt-get -f install
+apt-get update
+DEBIAN_FRONTEND=noninteractive \
+apt-get -o Dpkg::Options::="--force-confnew" --force-yes -fuy dist-upgrade
+apt-get -f install
 apt-get -y install locate tar unzip telnet wget logrotate dos2unix fail2ban
 apt-get -y install apache2 apache2-utils libexpat1 ssl-cert
 sed -i 's/jessie/stretch/g' /etc/apt/sources.list
-apt-get update
+
 echo jeedom > /etc/hostname
 (echo "Mjeedom96";echo "Mjeedom96";) | passwd root
 rm /root/.not_logged_in_yet
