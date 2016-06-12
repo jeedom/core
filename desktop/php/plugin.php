@@ -187,16 +187,15 @@ foreach (plugin::listPlugin() as $plugin) {
 </div>
 
 <div class="panel panel-primary" id="div_configPanel">
-  <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-picture-o"></i> {{Panel}}</h3></div>
+  <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-picture-o"></i> {{Panel}}
+    <a class="btn btn-success btn-xs pull-right" id="bt_savePluginPanelConfig"><i class="fa fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
+  </h3></div>
   <div class="panel-body">
     <form class="form-horizontal">
       <fieldset>
        <div id="div_plugin_panel"></div>
      </fieldset>
    </form>
-   <div class="form-actions">
-    <a class="btn btn-success" id="bt_savePluginPanelConfig"><i class="fa fa-check-circle icon-white" style="position:relative;left:-5px;top:1px"></i>{{Sauvegarder}}</a>
-  </div>
 </div>
 </div>
 
