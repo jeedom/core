@@ -146,7 +146,9 @@ sendVarToJs('refresh_dependancy_info', $refresh);
 						$("#div_plugin_dependancy").closest('.panel').removeClass('panel-danger panel-info').addClass('panel-success');
 					}
 				}
-				setTimeout(refreshDependancyInfo, 5000);
+				if(nok){
+					setTimeout(refreshDependancyInfo, 5000);
+				}
 			}
 		});
 }
