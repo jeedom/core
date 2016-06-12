@@ -37,6 +37,7 @@ step_1_upgrade() {
 	apt-get update
 	apt-get -y dist-upgrade
 	apt-get -f install
+	apt-get update
 	apt-get -y dist-upgrade
 	apt-get -f install
 	echo "${VERT}step_1_upgrade success${NORMAL}"
