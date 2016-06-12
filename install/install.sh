@@ -36,6 +36,9 @@ step_1_upgrade() {
 	echo "${JAUNE}Start step_1_upgrade${NORMAL}"
 	apt-get update
 	apt-get -y dist-upgrade
+	apt-get -f install
+	apt-get -y dist-upgrade
+	apt-get -f install
 	echo "${VERT}step_1_upgrade success${NORMAL}"
 }
 
