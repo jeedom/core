@@ -127,6 +127,15 @@ if (version_compare(phpversion(), '5.5', '>=')) {
 ?>
 		</tr>
 		<tr>
+			<td style="font-weight : bold;">{{Version database}}</td>
+			<?php
+$version = DB::Prepare('select version()', array(), DB::FETCH_TYPE_ROW);
+echo '<td class="alert alert-success">' . $version['version()'] . '</td>';
+echo '<td></td>';
+
+?>
+		</tr>
+		<tr>
 			<td style="font-weight : bold;">{{Espace disque libre}}</td>
 			<?php
 $value = jeedom::checkSpaceLeft();
