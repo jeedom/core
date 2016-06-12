@@ -6,7 +6,7 @@ systemctl stop serial-getty@ttymxc0.service
 systemctl stop serial-getty@ttyS0.service
 systemctl mask serial-getty@ttyS0.service
 sed -i 's/jessie/stretch/g' /etc/apt/sources.list
-apt-mark hold initramfs
+apt-mark hold initramfs-tools
 apt-get update
 apt-get -y autoremove
 DEBIAN_FRONTEND=noninteractive
