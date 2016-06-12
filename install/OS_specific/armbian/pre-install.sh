@@ -17,6 +17,7 @@ apt-get update
 apt-get -y dist-upgrade
 apt-get -f install
 apt-get -y autoremove
+rm /etc/apt/apt.conf.d/50unattended-upgrades.ucf-old
 apt-get -y install locate tar unzip telnet wget logrotate dos2unix fail2ban
 apt-get -y install apache2 apache2-utils libexpat1 ssl-cert
 echo jeedom > /etc/hostname
