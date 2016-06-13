@@ -2,6 +2,7 @@
 if (!hasRight('health', true)) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
+$starttime = getmicrotime();
 ?>
 <legend><i class="icon divers-caduceus3"></i>  {{Santé de Jeedom}}
 		<i class="fa fa-dashboard pull-right cursor" id="bt_benchmarkJeedom"></i>
@@ -232,7 +233,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 	}
 	try {
 		if ($plugin->getHasDependency() == 1) {
-			$dependancy_info = $plugin_id::dependancy_info();
+			$dependancy_info = $plugin->dependancy_info();
 			echo '<tr>';
 			echo '<td style="font-weight : bold;">';
 			echo '{{Dépendance}}';
@@ -409,6 +410,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 		echo '</table>';
 	}
 }
+
 ?>
 
 <?php include_file("desktop", "health", "js");?>
