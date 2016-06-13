@@ -338,6 +338,10 @@ class plugin {
 
 	public static function checkDeamon() {
 		foreach (self::listPlugin(true) as $plugin) {
+			$dependancy_info = $plugin->dependancy_info();
+			if ($dependancy_info['state'] == 'nok') {
+				$plugin->dependancy_install();
+			}
 			$plugin->deamon_start(false, true);
 		}
 	}
@@ -414,7 +418,7 @@ class plugin {
 		return $return;
 	}
 
-	public function dependancy_install() {
+	public function dependancy_install($_force = true) {
 		$plugin_id = $this->getId();
 		if ($this->getHasDependency() != 1 || !method_exists($plugin_id, 'dependancy_install')) {
 			return;
