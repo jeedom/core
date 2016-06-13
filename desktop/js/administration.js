@@ -15,7 +15,6 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-
  $('body').delegate('.configKey[data-l1key="market::allowDNS"]', 'change switchChange.bootstrapSwitch', function () {
     if($(this).value() == 1){
      $('.configKey[data-l1key=externalProtocol]').attr('disabled',true);
