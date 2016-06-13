@@ -379,11 +379,20 @@ class plugin {
 		}
 	}
 
-	public function dependancy_info() {
+	public function dependancy_info($_refresh = false) {
 		$plugin_id = $this->getId();
 		if ($this->getHasDependency() != 1 || !method_exists($plugin_id, 'dependancy_info')) {
 			return array('state' => 'nok', 'log' => 'nok');
 		}
+		$cache = cache::byKey('dependancy' . $this->getID());
+		if ($_refresh) {
+			$cache->remove();
+		} else {
+			if (is_array($cache->getValue())) {
+				return $cache->getValue();
+			}
+		}
+
 		$return = $plugin_id::dependancy_info();
 		if (!isset($return['log'])) {
 			$return['log'] = '';
@@ -399,6 +408,9 @@ class plugin {
 			}
 		}
 		$return['last_launch'] = config::byKey('lastDependancyInstallTime', $this->getId(), __('Inconnue', __FILE__));
+		if ($return['state'] == 'ok') {
+			cache::set('dependancy' . $this->getID(), $return);
+		}
 		return $return;
 	}
 
@@ -411,6 +423,8 @@ class plugin {
 		$this->deamon_stop();
 		config::save('lastDependancyInstallTime', date('Y-m-d H:i:s'), $plugin_id);
 		$plugin_id::dependancy_install();
+		$cache = cache::byKey('dependancy' . $this->getID());
+		$cache->remove();
 		return;
 	}
 
@@ -573,7 +587,7 @@ class plugin {
 				} else {
 					$out = $this->callInstallFunction('install');
 				}
-				$dependancy_info = $this->dependancy_info();
+				$dependancy_info = $this->dependancy_info(true);
 				log::add($this->getId(), 'info', 'Info sur les dépendances : ' . print_r($dependancy_info, true));
 				if ($dependancy_info['state'] == 'nok') {
 					$this->dependancy_install();
