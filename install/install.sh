@@ -45,6 +45,16 @@ step_2_mainpackage() {
 	echo "${JAUNE}Start step_2_mainpackage${NORMAL}"
 	apt_install ntp ca-certificates unzip curl sudo cron
 	apt-get -y install smbclient htop iotop vim iftop
+	apt-get -y install python
+	apt-get -y install python-pip
+	apt-get -y install python-serial
+	apt-get -y install python-requests
+	apt-get -y install python-pyudev
+	apt-get install -y python-nut
+	apt-get install -y python-dev python-setuptools python-louie python-sphinx make build-essential libudev-dev g++ gcc python-lxml libjpeg-dev
+	apt-get -y install openvpn
+	pip install enum-compat
+	pip install beautifulsoup4
 	echo "${VERT}step_2_mainpackage success${NORMAL}"
 }
 
