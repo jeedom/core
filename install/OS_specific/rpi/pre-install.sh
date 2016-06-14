@@ -6,10 +6,10 @@ systemctl stop serial-getty@ttymxc0.service
 systemctl stop serial-getty@ttyS0.service
 systemctl mask serial-getty@ttyS0.service
 echo "tmpfs  	      /tmp            tmpfs  defaults,size=128M                                       0 0" >> /etc/fstab
-echo "deb http://repozytorium.mati75.eu/raspbian jessie-backports main contrib non-free" >> /etc/apt/sources.list
-echo "#deb-src http://repozytorium.mati75.eu/raspbian jessie-backports main contrib non-free" >> /etc/apt/sources.list
-gpg --keyserver pgpkeys.mit.edu --recv-key CCD91D6111A06851
-gpg --armor --export CCD91D6111A06851 | apt-key add -
+#echo "deb http://repozytorium.mati75.eu/raspbian jessie-backports main contrib non-free" >> /etc/apt/sources.list
+#echo "#deb-src http://repozytorium.mati75.eu/raspbian jessie-backports main contrib non-free" >> /etc/apt/sources.list
+#gpg --keyserver pgpkeys.mit.edu --recv-key CCD91D6111A06851
+#gpg --armor --export CCD91D6111A06851 | apt-key add -
 apt-get -y install locate tar unzip telnet wget logrotate dos2unix fail2ban
 apt-get -y install apache2 apache2-utils libexpat1 ssl-cert
 echo jeedom > /etc/hostname
