@@ -9,6 +9,8 @@ systemctl stop dietpi-service
 systemctl mask dietpi-service
 cat /etc/fstab | grep -v "DietPi" > /etc/fstab2
 mv /etc/fstab2 /etc/fstab
+cat /etc/fstab | grep -v "/var/log" > /etc/fstab2
+mv /etc/fstab2 /etc/fstab
 apt-get -y install locate tar unzip telnet wget logrotate dos2unix fail2ban
 apt-get -y install apache2 apache2-utils libexpat1 ssl-cert
 a2dismod mpm_worker
@@ -17,7 +19,6 @@ a2enmod mpm_prefork
 mkdir -p /var/log/apache2
 echo jeedom > /etc/hostname
 (echo "Mjeedom96";echo "Mjeedom96";) | passwd root
-rm /root/.not_logged_in_yet
 rm /etc/motd
 wget https://raw.githubusercontent.com/jeedom/core/beta/install/motd -O /etc/motd
 rm -rf /root/.bashrc
