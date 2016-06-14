@@ -1,2 +1,0 @@
-ALTER TABLE `jeedom`.`cache` 
-CHANGE COLUMN `value` `value` MEDIUMTEXT NULL DEFAULT NULL ;

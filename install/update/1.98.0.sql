@@ -1,2 +1,0 @@
-ALTER TABLE `jeedom`.`interactDef` 
-ADD COLUMN `name` VARCHAR(255) NULL DEFAULT NULL AFTER `id`;

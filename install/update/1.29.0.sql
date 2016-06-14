@@ -1,2 +1,0 @@
-ALTER TABLE `cron` 
-ADD COLUMN `deamonSleepTime` INT(11) NULL DEFAULT NULL AFTER `deamon`;

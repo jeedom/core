@@ -1,2 +1,0 @@
-ALTER TABLE `jeedom`.`cmd` 
-ADD COLUMN `eqType` VARCHAR(127) NULL DEFAULT NULL AFTER `eqLogic_id`;

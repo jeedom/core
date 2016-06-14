@@ -1,3 +1,0 @@
-ALTER TABLE `scenario` 
-DROP COLUMN `lastUse`,
-CHANGE COLUMN `lastCheck` `lastLaunch` DATETIME NULL DEFAULT NULL ;
