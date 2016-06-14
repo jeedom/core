@@ -69,7 +69,7 @@ try {
 		if (config::byKey('jeeNetwork::mode') == 'master') {
 			foreach (jeeNetwork::byPlugin($plugin->getId()) as $jeeNetwork) {
 				try {
-					$return['logs'][$jeeNetwork->getId()] = array('name' => $jeeNetwork->getName(), 'log' => $jeeNetwork->sendRawRequest('log::list', array('filtre' => $plugin->getId())));
+					$return['logs'][$jeeNetwork->getId()] = array('id' => $jeeNetwork->getId(), 'name' => $jeeNetwork->getName(), 'log' => $jeeNetwork->sendRawRequest('log::list', array('filtre' => $plugin->getId())));
 				} catch (Exception $e) {
 
 				}

@@ -230,7 +230,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
    log_conf += '<label class="col-sm-2 control-label">{{Logs de}} '+data.logs[i].name+'</label>';
    log_conf += '<div class="col-sm-10">';
    for(j in data.logs[i].log){
-    log_conf += '<a class="btn btn-info bt_plugin_conf_view_log" data-slaveId="'+i+'" data-log="'+data.logs[i].log[j]+'"><i class="fa fa-paperclip"></i>  '+data.logs[i].log[j].charAt(0).toUpperCase() + data.logs[i].log[j].slice(1)+'</a> ';
+    log_conf += '<a class="btn btn-info bt_plugin_conf_view_log" data-slaveId="'+data.logs[i].id+'" data-log="'+data.logs[i].log[j]+'"><i class="fa fa-paperclip"></i>  '+data.logs[i].log[j].charAt(0).toUpperCase() + data.logs[i].log[j].slice(1)+'</a> ';
   }
   log_conf += '</div>';
   log_conf += '</div>';
