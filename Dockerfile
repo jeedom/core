@@ -74,6 +74,8 @@ RUN echo "root:${SHELL_ROOT_PASSWORD}" | chpasswd && \
 RUN mkdir -p /var/run/sshd /var/log/supervisor
 RUN rm /etc/motd
 ADD install/motd /etc/motd
+RUN rm /root/.bashrc
+ADD install/bashrc /root/.bashrc
 ADD install/OS_specific/Docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 ADD install/OS_specific/Docker/init.sh /root/init.sh
