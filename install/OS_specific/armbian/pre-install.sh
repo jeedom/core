@@ -5,19 +5,11 @@ systemctl mask serial-getty@ttymxc0.service
 systemctl stop serial-getty@ttymxc0.service
 systemctl stop serial-getty@ttyS0.service
 systemctl mask serial-getty@ttyS0.service
-sed -i 's/jessie/stretch/g' /etc/apt/sources.list
 sed -i 's/interactive/ondemand/g' /etc/default/cpufrequtils
-apt-mark hold initramfs-tools
 apt-get update
 apt-get -y autoremove
-DEBIAN_FRONTEND=noninteractive
-apt-get -o Dpkg::Options::="--force-confnew" --force-yes -fuy dist-upgrade
-apt-get -f install
-apt-get -y autoremove
-apt-get update
 apt-get -y dist-upgrade
 apt-get -f install
-apt-get -y autoremove
 rm /etc/apt/apt.conf.d/50unattended-upgrades.ucf-old
 apt-get -y install locate tar unzip telnet wget logrotate dos2unix fail2ban
 apt-get -y install apache2 apache2-utils libexpat1 ssl-cert
