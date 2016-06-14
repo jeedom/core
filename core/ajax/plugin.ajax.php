@@ -65,7 +65,7 @@ try {
 		}
 		$return['update'] = utils::o2a($update);
 		$return['logs'] = array();
-		$return['logs'][-1] = array('name' => 'local', 'log' => log::liste($plugin->getId()));
+		$return['logs'][-1] = array('id' => -1, 'name' => 'local', 'log' => log::liste($plugin->getId()));
 		if (config::byKey('jeeNetwork::mode') == 'master') {
 			foreach (jeeNetwork::byPlugin($plugin->getId()) as $jeeNetwork) {
 				try {

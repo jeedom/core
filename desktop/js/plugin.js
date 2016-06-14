@@ -214,7 +214,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
      continue;
    }
    if(data.logs[i].id != -1){
-     log_conf += '<div class="form-group slaveConfig" data-slave_id="'+i+'">';
+     log_conf += '<div class="form-group slaveConfig" data-slave_id="'+data.logs[i].id+'">';
      log_conf += '<label class="col-sm-2 control-label">{{Niveau de log}} '+data.logs[i].name+'</label>';
      log_conf += '<div class="col-sm-6">';
      log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + '" class="slaveConfigKey" data-slaveId="'+data.logs[i].id+'" data-l1key="log::level::' + data.id + '" data-l2key="1000" /> {{Aucun}}</label>';
