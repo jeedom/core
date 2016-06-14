@@ -61,6 +61,7 @@ try {
 			if (is_object($jeeNetwork)) {
 				ajax::success($jeeNetwork->getLog(init('log'), init('start', 0), init('nbLine', 99999)));
 			}
+			throw new Exception(__('Impossible de trouver l\'esclave : ', __FILE__) . init('jeeNetwork_id'));
 		} else {
 			ajax::success(log::get(init('log'), init('start', 0), init('nbLine', 99999)));
 		}
