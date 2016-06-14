@@ -11,6 +11,7 @@ fi
 if [ -d /var/www/html/core/config/common.config.php ]; then
 	echo 'Jeedom is already install'
 else
+	echo 'Start jeedom installation'
 	rm -rf /root/install.sh
 	wget https://raw.githubusercontent.com/jeedom/core/beta/install/install.sh -O /root/install.sh
 	chmod +x /root/install.sh
