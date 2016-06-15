@@ -95,6 +95,12 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
         $('#span_plugin_installation').html(data.installation);
       }
 
+      if(isset(data.update) && isset(data.update.configuration) && isset(data.update.configuration.version)){
+        $('#span_plugin_install_version').html(data.update.configuration.version);
+      }else{
+        $('#span_plugin_install_version').html('');
+      }
+
       $('#div_plugin_dependancy').closest('.panel').parent().addClass('col-md-6')
       $('#div_plugin_deamon').closest('.panel').parent().addClass('col-md-6')
       if(data.hasDependency == 0 || data.activate != 1){
