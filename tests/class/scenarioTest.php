@@ -16,16 +16,15 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-class scenarioTest extends \PHPUnit_Framework_TestCase
-{	
+class scenarioTest extends \PHPUnit_Framework_TestCase {
 	protected function setUp() {
 		if (!extension_loaded('mysqli')) {
 			$this->markTestSkipped(
-					'The MySQL extension is not available.'
+				'The MySQL extension is not available.'
 			);
 		}
 	}
-	
+
 	public function getGetSets() {
 		return array(
 			array('Id', 'foo', 'foo'),
@@ -37,17 +36,17 @@ class scenarioTest extends \PHPUnit_Framework_TestCase
 			array('LastLaunch', 'foo', 'foo'),
 			array('Type', 'foo', 'foo'),
 			array('Mode', 'foo', 'foo'),
-			array('Schedule', array('foo'=>'bar'), array('foo'=>'bar')),
-			array('Schedule', '{"foo":"bar"}', array('foo'=>'bar')),
+			array('Schedule', array('foo' => 'bar'), array('foo' => 'bar')),
+			array('Schedule', '{"foo":"bar"}', array('foo' => 'bar')),
 			array('Schedule', 'foo', 'foo'),
 			array('PID', '', null),
 			array('PID', 'foo', null),
 			array('PID', 1, 1),
-			array('ScenarioElement', array('foo'=>'bar'), array('foo'=>'bar')),
-			array('ScenarioElement', '{"foo":"bar"}', array('foo'=>'bar')),
+			array('ScenarioElement', array('foo' => 'bar'), array('foo' => 'bar')),
+			array('ScenarioElement', '{"foo":"bar"}', array('foo' => 'bar')),
 			array('ScenarioElement', 'foo', 'foo'),
-			array('Trigger', array('foo'=>'bar'), array('foo'=>'bar')),
-			array('Trigger', '{"foo":"bar"}', array('foo'=>'bar')),
+			array('Trigger', array('foo' => 'bar'), array('foo' => 'bar')),
+			array('Trigger', '{"foo":"bar"}', array('foo' => 'bar')),
 			array('Trigger', 'foo', 'foo'),
 			array('Timeout', '', null),
 			array('Timeout', 'foo', null),
@@ -65,7 +64,7 @@ class scenarioTest extends \PHPUnit_Framework_TestCase
 			array('RealTrigger', 'foo', 'foo'),
 		);
 	}
-	
+
 	/**
 	 * @dataProvider getGetSets
 	 * @param unknown $attribute
@@ -79,7 +78,7 @@ class scenarioTest extends \PHPUnit_Framework_TestCase
 		$scenario->$setter($in);
 		$this->assertSame($out, $scenario->$getter());
 	}
-	
+
 	public function testPersistLog() {
 		$path = dirname(__FILE__) . '/../../log/scenarioLog/scenarioTest.log';
 		if (file_exists($path)) {
@@ -89,18 +88,18 @@ class scenarioTest extends \PHPUnit_Framework_TestCase
 		$scenario->setId('Test');
 		$scenario->persistLog();
 		$this->assertTrue(file_exists($path));
-		shell_exec('rm '.$path);
+		shell_exec('rm ' . $path);
 	}
-	
+
 	public function testHasRight() {
 		$scenId = 50000;
 		$r = 25;
-		
+
 		$scenario = new scenario();
 		$config = config::byKey('rights::enable');
 		config::save('rights::enable', 0);
 		$this->assertTrue($scenario->hasRight('foo'));
-		
+
 		config::save('rights::enable', 1);
 		$this->assertTrue($scenario->hasRight('foo'));
 		$_SESSION['user'] = 'foo';
@@ -111,29 +110,28 @@ class scenarioTest extends \PHPUnit_Framework_TestCase
 		$_SESSION['user']->setRights('admin');
 		$_SESSION['user']->save();
 		$userId = $_SESSION['user']->getId();
-		$this->assertFalse($scenario->hasRight('foo'));
-		
-		
+		$this->assertTrue($scenario->hasRight('foo'));
+
 		$scenario->setId($scenId);
 		$right = new rights();
 		$right->setUser_id($userId);
 		$right->setRight($r);
-		
-		$this->assertFalse($scenario->hasRight('x'));
+
+		$this->assertTrue($scenario->hasRight('x'));
 		$right->setEntity('scenario' . $scenId . 'action');
 		$right->save();
 		$this->assertEquals($r, $scenario->hasRight('x'));
-		
-		$this->assertFalse($scenario->hasRight('w'));
+
+		$this->assertTrue($scenario->hasRight('w'));
 		$right->setEntity('scenario' . $scenId . 'edit');
 		$right->save();
 		$this->assertEquals($r, $scenario->hasRight('w'));
-		
-		$this->assertFalse($scenario->hasRight('r'));
+
+		$this->assertTrue($scenario->hasRight('r'));
 		$right->setEntity('scenario' . $scenId . 'view');
 		$right->save();
 		$this->assertEquals($r, $scenario->hasRight('r'));
-		
+
 		$right->remove();
 		$_SESSION['user']->remove();
 		config::save('rights::enable', $config);
