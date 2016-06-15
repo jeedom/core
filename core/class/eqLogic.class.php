@@ -780,7 +780,7 @@ class eqLogic {
 			$rights = rights::byuserIdAndEntity($_user->getId(), 'eqLogic' . $this->getId() . 'view');
 		}
 		if (!is_object($rights)) {
-			return false;
+			return true;
 		}
 		return $rights->getRight();
 	}

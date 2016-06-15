@@ -1116,7 +1116,7 @@ class scenario {
 		if (array_key_exists($_right, $assocRights)) {
 			$rights = rights::byuserIdAndEntity($_user->getId(), 'scenario' . $this->getId() . $assocRights[$_right]);
 		}
-		return (!is_object($rights)) ? false : $rights->getRight();
+		return (!is_object($rights)) ? true : $rights->getRight();
 	}
 
 	public function persistLog() {
