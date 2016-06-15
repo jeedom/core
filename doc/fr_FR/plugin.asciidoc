@@ -47,13 +47,13 @@ image::../images/plugin5.png[]
 Tout en haut comme sur le market vous avez des filtres : 
 
 * *Gratuit/Payant* : permet de ne filtrer que sur les gratuits ou les payants, la petite croix permet de réinitialiser le filtre
-* *Nouveau/Populaire* : permet d'afficher les derniers plugin ou ceux les plus téléchargés, la petite croix permet de réinitialiser le filtre
+* *Nouveau/Populaire* : permet d'afficher les derniers plugins ou ceux les plus téléchargés, la petite croix permet de réinitialiser le filtre
 * *Installé/Non installé* : permet de n'afficher que les plugins installés ou non, la petite croix permet de réinitialiser le filtre
 * *Catégorie* : permet de n'afficher que certaines catégories de plugins
 * *Rechercher* : permet de rechercher un plugin (dans le nom ou la description de celui-ci)
 * *Nom d'utilisateur* : affiche le nom d'utilisateur utilisé pour la connexion au market ainsi que le statut de la connexion (ici ok)
 
-Un fois le plugin voulu trouvé il suffit de cliquer sur celui-ci pour faire apparaitre la fiche du plugin :
+Un fois le plugin voulu trouvé il suffit de cliquer sur celui-ci pour faire apparaître la fiche du plugin :
 
 image::../images/plugin6.png[]
 
@@ -65,7 +65,7 @@ Cette fiche vous donne plein d'informations sur le plugin, entre autre :
 ** *Installer beta* : permet d'installer le plugin dans sa version beta (seulement pour les betatesteurs)
 ** *Supprimer* : si le plugin est actuellement installé, ce bouton permet de le supprimer
 
-En dessous vous retrouvez sur la gauche la description du plugin, la compatibilité (si Jeedom détecte une incompatibilité il vous le signalera), les avis sur le plugin (vous pouvez ici le noter), les commentaires sur celui-ci et des information complémentaires (l'auteur, la personne ayant fait la dernière mise à jour, un lien vers la doc, le nombre de téléchargements).
+En dessous vous retrouvez sur la gauche la description du plugin, la compatibilité (si Jeedom détecte une incompatibilité il vous le signalera), les avis sur le plugin (vous pouvez ici le noter), les commentaires sur celui-ci et des informations complémentaires (l'auteur, la personne ayant fait la dernière mise à jour, un lien vers la doc, le nombre de téléchargements).
 Sur la droite vous retrouvez la liste des dernières mises à jour (un bouton tout voir vous permet d'avoir tout l'historique), une documentation rapide d'utilisation (il est recommandé quand même de lire la documentation complète) et enfin le type (plugin, widget...), la langue et les diverses informations sur la date de la dernière stable, la beta et si vous pouvez sans crainte revenir sur la beta.
 
 [IMPORTANT]
@@ -75,11 +75,11 @@ Il n'est vraiment pas recommandé de mettre un plugin beta sur un Jeedom beta, b
 Certains plugins sont payants, dans ce cas la fiche du plugin vous proposera de l'acheter, une fois cela fait il faut attendre une dizaine de minutes (temps de validation du paiement), puis retourner sur la fiche du plugin pour l'installer normalement.
 
 [TIP]
-Vous pouvez aussi en mode expert pousser directement l'archive ZIP d'un plugin a Jeedom, pour cela il faut mettre la souris tout à gauche pour faire apparaitre le menu de la page plugin puis cliquer sur "Envoyer un plugin". Attention le nom du zip doit être le meme que l'id du plugin et dès l'ouverture du ZIP un dossier plugin_info doit être présent
+Vous pouvez aussi en mode expert pousser directement l'archive ZIP d'un plugin à Jeedom. Pour cela, il faut mettre la souris tout à gauche pour faire apparaitre le menu de la page plugin puis cliquer sur "Envoyer un plugin". Attention le nom du zip doit être le même que l'id du plugin et dès l'ouverture du ZIP un dossier plugin_info doit être présent
 
 == La partie démon des plugins
 
-Certain plugin ont des démons, vous trouverez ici le statut des démons par jeedom (maitre ou esclave)
+Certains plugins ont des démons, vous trouverez ici le statut des démons par jeedom (maitre ou esclave)
 
 image::../images/plugin7.png[]
 
@@ -89,15 +89,15 @@ Vous avez ici :
 * *Statut* : indique le statut du démon
 * *Configuration* : indique si tout est bon niveau configuration pour que le démon tourne
 * *(Re)Démarrer* : permet de redémarrer le démon
-* *Arrêter* : permet d'arreter le démon (disponible seulement di la gestion automatique est désactivée)
-* *Debug* : permet de lancer le démon en debug (une icone sur le statut vous indiquera que vous êtes en debug)
+* *Arrêter* : permet d'arreter le démon (disponible seulement si la gestion automatique est désactivée)
+* *Debug* : permet de lancer le démon en debug (une icône sur le statut vous indiquera que vous êtes en debug)
 * *Log* : permet d'afficher la log du démon
 * *Gestion automatique* : autorise Jeedom à démarrer et à relancer le démon en cas de soucis. Elle est à désactiver quand vous êtes en déporté et que par exemple sur le maître vous n'avez pas besoin que le démon tourne
 * *Dernier lancement* : date de démarrage du démon
 
 == La partie dépendance
 
-Certain plugin ont des dépendances, vous trouverez ici le statut des dépendances par jeedom (maitre ou esclave)
+Certains plugins ont des dépendances, vous trouverez ici le statut des dépendances par jeedom (maitre ou esclave)
 
 image::../images/plugin8.png[]
 
