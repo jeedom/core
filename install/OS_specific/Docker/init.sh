@@ -8,7 +8,7 @@ else
 	echo "root:${ROOT_PASSWORD}" | chpasswd
 fi
 
-if [ -d /var/www/html/core/config/common.config.php ]; then
+if [ -f /var/www/html/core/config/common.config.php ]; then
 	echo 'Jeedom is already install'
 else
 	echo 'Start jeedom installation'
