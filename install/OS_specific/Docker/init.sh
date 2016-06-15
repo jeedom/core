@@ -15,9 +15,9 @@ else
 	rm -rf /root/install.sh
 	wget https://raw.githubusercontent.com/jeedom/core/beta/install/install.sh -O /root/install.sh
 	chmod +x /root/install.sh
-	echo "max_execution_time = 600" > /usr/local/etc/php.ini
-	echo "upload_max_filesize = 1G" >> /usr/local/etc/php.ini
-	echo "post_max_size = 1G" >> /usr/local/etc/php.ini
+	echo "max_execution_time = 600" > /usr/local/etc/php/php.ini
+	echo "upload_max_filesize = 1G" >> /usr/local/etc/php/php.ini
+	echo "post_max_size = 1G" >> /usr/local/etc/php/php.ini
 	/root/install.sh -h 1 -s 0 > /var/www/html/index.html
 	/root/install.sh -h 1 -s 1 >> /var/www/html/index.html
 	/root/install.sh -h 1 -s 6 >> /var/www/html/index.html
