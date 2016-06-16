@@ -992,15 +992,11 @@ class cmd {
 		if (!is_object($eqLogic) || $eqLogic->getIsEnable() == 0) {
 			return;
 		}
-		$collectDate = ($this->getCollectDate() != '') ? $this->getCollectDate() : date('Y-m-d H:i:s');
-		$repeat = ($this->execCmd() == $value && $this->getConfiguration('doNotRepeatEvent', 0) == 1);
-		if ($repeat) {
-			$valueDate = $this->getValueDate();
-		} else {
-			$valueDate = $collectDate;
-		}
-
 		$_loop++;
+		$collectDate = ($this->getCollectDate() != '') ? $this->getCollectDate() : date('Y-m-d H:i:s');
+		$repeat = ($this->execCmd() == $value);
+		$valueDate = ($repeat) ? $this->getValueDate() : $collectDate;
+		$repeat = ($repeat && $this->getConfiguration('doNotRepeatEvent', 0) == 1);
 		$this->setCollectDate($collectDate);
 		$this->setValueDate($valueDate);
 		$message = __('Evènement sur la commande ', __FILE__) . $this->getHumanName() . __(' valeur : ', __FILE__) . $value;
