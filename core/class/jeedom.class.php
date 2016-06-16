@@ -324,22 +324,25 @@ class jeedom {
 	}
 
 	public static function isDateOk() {
-		if (file_exists('/tmp/jeedom_dateOk')) {
-			return true;
-		}
 		if (config::byKey('ignoreHourCheck') == 1) {
-			touch('/tmp/jeedom_dateOk');
 			return true;
 		}
-		if (strtotime('now') < strtotime('2015-01-01 00:00:00') || strtotime('now') > strtotime('2019-01-01 00:00:00')) {
+		$maxdate = strtotime('2019-01-01 00:00:00');
+		$mindate = strtotime('2015-01-01 00:00:00');
+		$cachetime = cache::byKey('jeedom::currentHour');
+		if ($cachetime->getValue() !== null && $cachetime->getValue() <= strtotime('now') && strtotime('now') > $mindate && strtotime('now') < $maxdate) {
+			cache::set('jeedom::currentHour', strtotime('now'));
+			return true;
+		}
+		if (strtotime('now') < $mindate || strtotime('now') > $maxdate) {
 			jeedom::forceSyncHour();
 			sleep(3);
 		}
-		if (strtotime('now') < strtotime('2015-01-01 00:00:00') || strtotime('now') > strtotime('2019-01-01 00:00:00')) {
+		if (strtotime('now') < $mindate || strtotime('now') > $maxdate) {
 			log::add('core', 'error', __('La date du système est incorrect (avant 2014-01-01 ou après 2019-01-01) : ', __FILE__) . date('Y-m-d H:i:s'), 'dateCheckFailed');
 			return false;
 		}
-		touch('/tmp/jeedom_dateOk');
+		cache::set('jeedom::currentHour', strtotime('now'));
 		return true;
 	}
 
@@ -596,6 +599,7 @@ class jeedom {
 	}
 
 	public static function forceSyncHour() {
+		cache::set('jeedom::currentHour', null);
 		shell_exec('sudo service ntp stop;sudo ntpdate -s ' . config::byKey('ntp::optionalServer', 'core', '0.debian.pool.ntp.org') . ';sudo service ntp start');
 	}
 
