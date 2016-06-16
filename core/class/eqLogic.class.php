@@ -563,16 +563,19 @@ class eqLogic {
 		}
 		$version = jeedom::versionAlias($_version);
 		$cmd_html = '';
+		$br_before = 0;
 		foreach ($this->getCmd(null, null, true) as $cmd) {
 			if ($cmd->getLogicalId() == 'refresh') {
 				continue;
 			}
-			if ($cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
+			if ($br_before == 0 && $cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
 				$cmd_html .= '<br/>';
 			}
 			$cmd_html .= $cmd->toHtml($_version, '', $replace['#cmd-background-color#']);
+			$br_before = 0;
 			if ($cmd->getDisplay('forceReturnLineAfter', 0) == 1) {
 				$cmd_html .= '<br/>';
+				$br_before = 1;
 			}
 		}
 		$replace['#cmd#'] = $cmd_html;
