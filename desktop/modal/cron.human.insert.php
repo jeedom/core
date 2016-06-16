@@ -8,7 +8,7 @@ if (!isConnect()) {
     <div class="col-xs-9">
         <select class="form-control" id="mod_cron_sel_scheduleMode">
             <option value="once">une seule fois</option>
-            <option value="repete">répététivement</option>
+            <option value="repete">répétitivement</option>
         </select>
     </div>
 </div>
