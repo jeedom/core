@@ -38,17 +38,17 @@ image::../images/update3.png[]
 Sur la branche beta le numéro de version n'est pas toujours mise à jour après chaque modification, il faut donc cliquer sur "Mettre à jour" régulièrement pour être sur d'avoir la dernière version. Ce n'est le cas bien sûr que sur la branche beta.
 
 [IMPORTANT]
-Avant une mise à jour, Jeedom va par défaut faire une sauvegarde. En cas de soucis lors de l'application d'une mise à jour, Jeedom va automatiquement restaurer la sauvegarde faite juste avant. Ce principe n'est bien sûr valable que pour les mises à jour de Jeedom et non des plugins.
+Avant une mise à jour, Jeedom va par défaut faire une sauvegarde. En cas de souci lors de l'application d'une mise à jour, Jeedom va automatiquement restaurer la sauvegarde faite juste avant. Ce principe n'est bien sûr valable que pour les mises à jour de Jeedom et non des plugins.
 
 En cliquant sur la flêche à côté du bouton "Mettre à jour" on a un certain nombre d'options de mise à jour.
 
 image::../images/update5.png[]
 
-* *Tout forcer* : met à jour Jeedom et les plugin en mode forcé c'est à dire que même s'il y a une erreur Jeedom continue et ne restaurera pas la sauvegarde
+* *Tout forcer* : met à jour Jeedom et les plugins en mode forcé c'est-à-dire que même s'il y a une erreur Jeedom continue et ne restaurera pas la sauvegarde
 * *Plugins seulement* : met à jour seulement les plugins
 * *Plugins seulement forcés* : met à jour seulement les plugins en mode forcé (continue en cas d'erreur)
 * *Jeedom seulement* : met à jour seulement Jeedom
-* *Jeedom seulement forcés* : met à jour seulement Jeedom en mode forcé c'est à dire que même s'il y a une erreur Jeedom continue et ne restaurera pas la sauvegarde
+* *Jeedom seulement forcés* : met à jour seulement Jeedom en mode forcé c'est-à-dire que même s'il y a une erreur Jeedom continue et ne restaurera pas la sauvegarde
 * *Réappliquer une mise à jour* : permet de réappliquer une mise à jour. Toutes les mises à jour ne peuvent être réappliquées. En cliquant dessus vous obtenez cette fenêtre : 
 
 image::../images/update6.png[]

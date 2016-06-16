@@ -57,7 +57,7 @@ Vous permet de définir certains comportements de l'interface :
 ** *Déplier le panneau des scénarios* : permet de rendre visible par défaut le menu des scénarios (à droite) sur le dashboard
 ** *Déplier le panneau des objets* : permet de rendre visible par défaut le menu des objets (à gauche) sur le dashboard
 * *Vue*
-** *Déplier le panneau des vues* : permet de rendre visible par défaut le menu des vue (à gauche) sur les vues
+** *Déplier le panneau des vues* : permet de rendre visible par défaut le menu des vues (à gauche) sur les vues
 
 === Notifications
 

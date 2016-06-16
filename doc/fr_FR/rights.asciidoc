@@ -1,6 +1,6 @@
 = Droits
 
-C'est ici que vous allez pouvoir gérer finements les droits des utilisateurs sur les pages, équipements et scénarios.
+C'est ici que vous allez pouvoir gérer finement les droits des utilisateurs sur les pages, équipements et scénarios.
 
 Accessible depuis Administration -> Gestion des droits avancés :
 
@@ -23,7 +23,7 @@ Rien de bien compliqué ici, vous activez ou non le droit d'accès à la page ou
 
 image::../images/rights3.png[]
 
-Ici pour chaque équipement, vous pouvez décider si l'utilisateur à le droit de le voir sur le dahsboard/vue/design (droit voir) et si il peut faire une action dessus (droit action)
+Ici pour chaque équipement, vous pouvez décider si l'utilisateur a le droit de le voir sur le dahsboard/vue/design (droit voir) et s'il peut faire une action dessus (droit action)
 
 == Scénario
 
