@@ -6,6 +6,7 @@ systemctl stop serial-getty@ttymxc0.service
 systemctl stop serial-getty@ttyS0.service
 systemctl mask serial-getty@ttyS0.service
 sed -i 's/interactive/ondemand/g' /etc/default/cpufrequtils
+sed -i 's/odroidc2/jeedom/g' /etc/hosts
 apt-get update
 apt-get -y autoremove
 apt-get -y dist-upgrade
