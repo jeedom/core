@@ -591,12 +591,7 @@ class plugin {
 				} else {
 					$out = $this->callInstallFunction('install');
 				}
-				$dependancy_info = $this->dependancy_info(true);
-				log::add($this->getId(), 'info', 'Info sur les dépendances : ' . print_r($dependancy_info, true));
-				if ($dependancy_info['state'] == 'nok') {
-					$this->dependancy_install();
-				}
-				$this->deamon_start(false, true);
+				$this->dependancy_info(true);
 			} else {
 				$this->deamon_stop();
 				if ($alreadyActive == 1) {
