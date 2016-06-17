@@ -423,7 +423,7 @@ class plugin {
 		if ($this->getHasDependency() != 1 || !method_exists($plugin_id, 'dependancy_install')) {
 			return;
 		}
-		message::add($plugin_id, __(' Attention, installation des dépendances lancée', __FILE__));
+		message::add($plugin_id, __('Attention, installation des dépendances lancée', __FILE__));
 		$this->deamon_stop();
 		config::save('lastDependancyInstallTime', date('Y-m-d H:i:s'), $plugin_id);
 		$plugin_id::dependancy_install();
