@@ -340,9 +340,17 @@ class plugin {
 		foreach (self::listPlugin(true) as $plugin) {
 			$dependancy_info = $plugin->dependancy_info();
 			if ($dependancy_info['state'] == 'nok') {
-				$plugin->dependancy_install();
+				try {
+					$plugin->dependancy_install();
+				} catch (Exception $e) {
+
+				}
 			}
-			$plugin->deamon_start(false, true);
+			try {
+				$plugin->deamon_start(false, true);
+			} catch (Exception $e) {
+
+			}
 		}
 	}
 
@@ -423,10 +431,20 @@ class plugin {
 		if ($this->getHasDependency() != 1 || !method_exists($plugin_id, 'dependancy_install')) {
 			return;
 		}
+		if ((strtotime('now') - 60) <= strtotime(config::byKey('lastDependancyInstallTime', $plugin_id))) {
+			$cache = cache::byKey('dependancy' . $this->getID());
+			$cache->remove();
+			throw new Exception(__('Vous devez attendre au moins 60s entre 2 lancements d\'installation de dépendances', __FILE__));
+		}
+		$dependancy_info = $this->dependancy_info(true);
+		if ($dependancy_info['state'] == 'in_progress') {
+			throw new Exception(__('Les dépendances sont déja en cours d\'installation', __FILE__));
+		}
 		message::add($plugin_id, __('Attention, installation des dépendances lancée', __FILE__));
 		$this->deamon_stop();
 		config::save('lastDependancyInstallTime', date('Y-m-d H:i:s'), $plugin_id);
 		$plugin_id::dependancy_install();
+		sleep(1);
 		$cache = cache::byKey('dependancy' . $this->getID());
 		$cache->remove();
 		return;
@@ -495,6 +513,7 @@ class plugin {
 					$inprogress = cache::bykey('deamonStart' . $this->getId() . 'inprogress');
 					$info = $inprogress->getValue(array('state' => 0, 'datetime' => strtotime('now')));
 					if ($info['state'] == 1 && (strtotime('now') - 45) <= $info['datetime']) {
+						throw new Exception(__('Vous devez attendre au moins 45s entre 2 lancements du démon', __FILE__));
 						return;
 					}
 					cache::set('deamonStart' . $this->getId() . 'inprogress', array('state' => 1, 'datetime' => strtotime('now')));
