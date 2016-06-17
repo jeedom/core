@@ -392,11 +392,11 @@ class plugin {
 		if ($_refresh) {
 			$cache->remove();
 		} else {
-			if (is_array($cache->getValue())) {
+			$return = $cache->getValue();
+			if (is_array($return) && $return['state'] == 'ok') {
 				return $cache->getValue();
 			}
 		}
-
 		$return = $plugin_id::dependancy_info();
 		if (!isset($return['log'])) {
 			$return['log'] = '';
