@@ -440,6 +440,12 @@ class plugin {
 		if ($dependancy_info['state'] == 'in_progress') {
 			throw new Exception(__('Les dépendances sont déja en cours d\'installation', __FILE__));
 		}
+		foreach (self::listPlugin(true) as $plugin) {
+			$dependancy_info = $plugin->dependancy_info();
+			if ($dependancy_info['state'] == 'in_progress') {
+				throw new Exception(__('Les dépendances d\'un autre plugin sont déjà en cours, veuillez attendre qu\'elles soient finies : ', __FILE__) . $plugin->getId());
+			}
+		}
 		message::add($plugin_id, __('Attention, installation des dépendances lancée', __FILE__));
 		$this->deamon_stop();
 		config::save('lastDependancyInstallTime', date('Y-m-d H:i:s'), $plugin_id);
