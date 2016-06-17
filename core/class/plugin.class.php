@@ -441,6 +441,9 @@ class plugin {
 			throw new Exception(__('Les dépendances sont déja en cours d\'installation', __FILE__));
 		}
 		foreach (self::listPlugin(true) as $plugin) {
+			if ($plugin->getId() == $this->getId()) {
+				continue;
+			}
 			$dependancy_info = $plugin->dependancy_info();
 			if ($dependancy_info['state'] == 'in_progress') {
 				throw new Exception(__('Les dépendances d\'un autre plugin sont déjà en cours, veuillez attendre qu\'elles soient finies : ', __FILE__) . $plugin->getId());
