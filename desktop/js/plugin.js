@@ -203,101 +203,102 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
      $('#div_plugin_toggleState').html('{{Votre version de jeedom ne permet pas d\'activer ce plugin}}');
    }
    var log_conf = '';
-   log_conf = '<form class="form-horizontal">';
-   log_conf += '<div class="form-group">';
-   log_conf += '<label class="col-sm-2 control-label">{{Niveau de log local}}</label>';
-   log_conf += '<div class="col-sm-6">';
-   log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + '" class="configKey" data-l1key="log::level::' + data.id + '" data-l2key="1000" /> {{Aucun}}</label>';
-   log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + '" class="configKey" data-l1key="log::level::' + data.id + '" data-l2key="default" /> {{Defaut}}</label>';
-   log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + '" class="configKey" data-l1key="log::level::' + data.id + '" data-l2key="100" /> {{Debug}}</label>';
-   log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + '" class="configKey" data-l1key="log::level::' + data.id + '" data-l2key="200" /> {{Info}}</label>';
-   log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + '" class="configKey" data-l1key="log::level::' + data.id + '" data-l2key="300" /> {{Warning}}</label>';
-   log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + '" class="configKey" data-l1key="log::level::' + data.id + '" data-l2key="400" /> {{Error}}</label>';
-   log_conf += '</div>';
-   log_conf += '</div>';
-   log_conf += '<div class="form-group">';
-   log_conf += '<label class="col-sm-2 control-label">{{Logs}}</label>';
-   log_conf += '<div class="col-sm-10">';
-   for(j in data.logs[i].log){
-    log_conf += '<a class="btn btn-info bt_plugin_conf_view_log" data-slaveId="'+data.logs[i].id+'" data-log="'+data.logs[i].log[j]+'"><i class="fa fa-paperclip"></i>  '+data.logs[i].log[j].charAt(0).toUpperCase() + data.logs[i].log[j].slice(1)+'</a> ';
+   for(var i in  data.logs){
+     log_conf = '<form class="form-horizontal">';
+     log_conf += '<div class="form-group">';
+     log_conf += '<label class="col-sm-2 control-label">{{Niveau de log local}}</label>';
+     log_conf += '<div class="col-sm-6">';
+     log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + '" class="configKey" data-l1key="log::level::' + data.id + '" data-l2key="1000" /> {{Aucun}}</label>';
+     log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + '" class="configKey" data-l1key="log::level::' + data.id + '" data-l2key="default" /> {{Defaut}}</label>';
+     log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + '" class="configKey" data-l1key="log::level::' + data.id + '" data-l2key="100" /> {{Debug}}</label>';
+     log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + '" class="configKey" data-l1key="log::level::' + data.id + '" data-l2key="200" /> {{Info}}</label>';
+     log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + '" class="configKey" data-l1key="log::level::' + data.id + '" data-l2key="300" /> {{Warning}}</label>';
+     log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + '" class="configKey" data-l1key="log::level::' + data.id + '" data-l2key="400" /> {{Error}}</label>';
+     log_conf += '</div>';
+     log_conf += '</div>';
+     log_conf += '<div class="form-group">';
+     log_conf += '<label class="col-sm-2 control-label">{{Logs}}</label>';
+     log_conf += '<div class="col-sm-10">';
+     for(j in data.logs[i].log){
+      log_conf += '<a class="btn btn-info bt_plugin_conf_view_log" data-slaveId="'+data.logs[i].id+'" data-log="'+data.logs[i].log[j]+'"><i class="fa fa-paperclip"></i>  '+data.logs[i].log[j].charAt(0).toUpperCase() + data.logs[i].log[j].slice(1)+'</a> ';
+    }
+    log_conf += '</div>';
+    log_conf += '</div>';
   }
-  log_conf += '</div>';
-  log_conf += '</div>';
-}
-log_conf += '</form>';
-$('#div_plugin_log').empty().append(log_conf);
+  log_conf += '</form>';
+  $('#div_plugin_log').empty().append(log_conf);
 
-initExpertMode();
-$('#div_plugin_configuration').empty();
-if (data.checkVersion != -1) {
-  if (data.configurationPath != '' && data.activate == 1) {
-   $('#div_plugin_configuration').load('index.php?v=d&plugin='+data.id+'&configure=1', function () {
-    if($.trim($('#div_plugin_configuration').html()) == ''){
-      $('#div_plugin_configuration').closest('.panel').hide();
-      return;
-    }else{
-     $('#div_plugin_configuration').closest('.panel').show();
-   }
-   jeedom.config.load({
-    configuration: $('#div_plugin_configuration').getValues('.configKey')[0],
-    plugin: $('.li_plugin.active').attr('data-plugin_id'),
-    error: function (error) {
-      alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
-    },
-    success: function (data) {
-      $('#div_plugin_configuration').setValues(data, '.configKey');
-      $('#div_plugin_configuration').parent().show();
-      modifyWithoutSave = false;
-      initTooltips();
-      initExpertMode();
-    }
-  });
-   jeedom.config.load({
-    configuration: $('#div_plugin_panel').getValues('.configKey')[0],
-    plugin: $('.li_plugin.active').attr('data-plugin_id'),
-    error: function (error) {
-      alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
-    },
-    success: function (data) {
-      $('#div_plugin_panel').setValues(data, '.configKey');
-      modifyWithoutSave = false;
-      initTooltips();
-      initExpertMode();
-    }
-  });
-   jeedom.config.load({
-    configuration: $('#div_plugin_log').getValues('.configKey')[0],
-    error: function (error) {
-      alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
-    },
-    success: function (data) {
-      $('#div_plugin_log').setValues(data, '.configKey');
-      modifyWithoutSave = false;
-      initTooltips();
-      initExpertMode();
-    }
-  });
-   $('.slaveConfig').each(function(){
-    var slave_id = $(this).attr('data-slave_id');
-    jeedom.jeeNetwork.loadConfig({
-      configuration: $('#div_plugin_configuration .slaveConfig[data-slave_id='+slave_id+']').getValues('.slaveConfigKey')[0],
+  initExpertMode();
+  $('#div_plugin_configuration').empty();
+  if (data.checkVersion != -1) {
+    if (data.configurationPath != '' && data.activate == 1) {
+     $('#div_plugin_configuration').load('index.php?v=d&plugin='+data.id+'&configure=1', function () {
+      if($.trim($('#div_plugin_configuration').html()) == ''){
+        $('#div_plugin_configuration').closest('.panel').hide();
+        return;
+      }else{
+       $('#div_plugin_configuration').closest('.panel').show();
+     }
+     jeedom.config.load({
+      configuration: $('#div_plugin_configuration').getValues('.configKey')[0],
       plugin: $('.li_plugin.active').attr('data-plugin_id'),
-      id: slave_id,
       error: function (error) {
         alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
       },
       success: function (data) {
-        $('#div_plugin_configuration .slaveConfig[data-slave_id='+slave_id+']').setValues(data, '.slaveConfigKey');
+        $('#div_plugin_configuration').setValues(data, '.configKey');
+        $('#div_plugin_configuration').parent().show();
         modifyWithoutSave = false;
         initTooltips();
         initExpertMode();
       }
     });
-  })
- });
- } else {
-  $('#div_plugin_configuration').closest('.panel').hide();
-}
+     jeedom.config.load({
+      configuration: $('#div_plugin_panel').getValues('.configKey')[0],
+      plugin: $('.li_plugin.active').attr('data-plugin_id'),
+      error: function (error) {
+        alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
+      },
+      success: function (data) {
+        $('#div_plugin_panel').setValues(data, '.configKey');
+        modifyWithoutSave = false;
+        initTooltips();
+        initExpertMode();
+      }
+    });
+     jeedom.config.load({
+      configuration: $('#div_plugin_log').getValues('.configKey')[0],
+      error: function (error) {
+        alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
+      },
+      success: function (data) {
+        $('#div_plugin_log').setValues(data, '.configKey');
+        modifyWithoutSave = false;
+        initTooltips();
+        initExpertMode();
+      }
+    });
+     $('.slaveConfig').each(function(){
+      var slave_id = $(this).attr('data-slave_id');
+      jeedom.jeeNetwork.loadConfig({
+        configuration: $('#div_plugin_configuration .slaveConfig[data-slave_id='+slave_id+']').getValues('.slaveConfigKey')[0],
+        plugin: $('.li_plugin.active').attr('data-plugin_id'),
+        id: slave_id,
+        error: function (error) {
+          alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+          $('#div_plugin_configuration .slaveConfig[data-slave_id='+slave_id+']').setValues(data, '.slaveConfigKey');
+          modifyWithoutSave = false;
+          initTooltips();
+          initExpertMode();
+        }
+      });
+    })
+   });
+   } else {
+    $('#div_plugin_configuration').closest('.panel').hide();
+  }
 } else {
   $('#div_plugin_configuration').closest('.alert').hide();
 }
