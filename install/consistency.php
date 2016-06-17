@@ -291,17 +291,16 @@ try {
 		@chgrp(dirname(__FILE__) . '/../plugins', 'www-data');
 		@chmod(dirname(__FILE__) . '/../plugins', 0775);
 	}
-
 	config::save('hardware_name', '');
-
 	if (config::byKey('api') == '') {
 		config::save('api', config::genKey());
 	}
-
 	if (file_exists(dirname(__FILE__) . '/../../core/nodeJS')) {
 		shell_exec('sudo rm -rf ' . dirname(__FILE__) . '/../../core/nodeJS');
 	}
-
+	if (file_exists(dirname(__FILE__) . '/../../script/ngrok')) {
+		shell_exec('sudo rm -Rf ' . dirname(__FILE__) . '/../../script/ngrok');
+	}
 	try {
 		foreach (eqLogic::all() as $eqLogic) {
 			$eqLogic->emptyCacheWidget();
