@@ -38,7 +38,13 @@ if (isset($argv)) {
 
 try {
 	require_once dirname(__FILE__) . '/../core/php/core.inc.php';
-
+	try {
+		echo __("Mise à plat des droits...", __FILE__);
+		jeedom::cleanFileSytemRight();
+		echo __("OK\n", __FILE__);
+	} catch (Exception $e) {
+		echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+	}
 	$crons = cron::all();
 	if (is_array($crons)) {
 		if (class_exists('Cron\CronExpression')) {
