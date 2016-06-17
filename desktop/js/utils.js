@@ -465,7 +465,7 @@ function chooseIcon(_callback) {
 
 
 function positionEqLogic(_id) {
-    var eqLogics = (_id != undefined) ? [$('.eqLogic-widget[data-eqlogic_id='+_id+']')] : $('.eqLogic-widget:not(.jeedomAlreadyPosition)');
+    var eqLogics = (_id != undefined) ? $('.eqLogic-widget[data-eqlogic_id='+_id+']') : $('.eqLogic-widget:not(.jeedomAlreadyPosition)');
     eqLogics.each(function () {
      eqLogics.css('margin','0px').css('padding','0px');
      var width = (Math.ceil($(this).width() / 40) - 1) * 40 + (Math.ceil($(this).width() / 40)-2) * 2;
