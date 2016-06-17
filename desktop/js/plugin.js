@@ -215,25 +215,8 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
    log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + '" class="configKey" data-l1key="log::level::' + data.id + '" data-l2key="400" /> {{Error}}</label>';
    log_conf += '</div>';
    log_conf += '</div>';
-   for(i in data.logs){
-    if(!isset(data.logs[i].log) || !$.isArray(data.logs[i].log)){
-     continue;
-   }
-   if(data.logs[i].id != -1){
-     log_conf += '<div class="form-group slaveConfig" data-slave_id="'+data.logs[i].id+'">';
-     log_conf += '<label class="col-sm-2 control-label">{{Niveau de log}} '+data.logs[i].name+'</label>';
-     log_conf += '<div class="col-sm-6">';
-     log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + i +'" class="slaveConfigKey" data-slaveId="'+data.logs[i].id+'" data-l1key="log::level::' + data.id + '" data-l2key="1000" /> {{Aucun}}</label>';
-     log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + i + '" class="slaveConfigKey" data-slaveId="'+data.logs[i].id+'" data-l1key="log::level::' + data.id + '" data-l2key="default" /> {{Defaut}}</label>';
-     log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + i + '" class="slaveConfigKey" data-slaveId="'+data.logs[i].id+'" data-l1key="log::level::' + data.id + '" data-l2key="100" /> {{Debug}}</label>';
-     log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + i + '" class="slaveConfigKey" data-slaveId="'+data.logs[i].id+'" data-l1key="log::level::' + data.id + '" data-l2key="200" /> {{Info}}</label>';
-     log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + i + '" class="slaveConfigKey" data-slaveId="'+data.logs[i].id+'" data-l1key="log::level::' + data.id + '" data-l2key="300" /> {{Warning}}</label>';
-     log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + i + '" class="slaveConfigKey" data-slaveId="'+data.logs[i].id+'" data-l1key="log::level::' + data.id + '" data-l2key="400" /> {{Error}}</label>';
-     log_conf += '</div>';
-     log_conf += '</div>';
-   }
    log_conf += '<div class="form-group">';
-   log_conf += '<label class="col-sm-2 control-label">{{Logs de}} '+data.logs[i].name+'</label>';
+   log_conf += '<label class="col-sm-2 control-label">{{Logs}}</label>';
    log_conf += '<div class="col-sm-10">';
    for(j in data.logs[i].log){
     log_conf += '<a class="btn btn-info bt_plugin_conf_view_log" data-slaveId="'+data.logs[i].id+'" data-log="'+data.logs[i].log[j]+'"><i class="fa fa-paperclip"></i>  '+data.logs[i].log[j].charAt(0).toUpperCase() + data.logs[i].log[j].slice(1)+'</a> ';

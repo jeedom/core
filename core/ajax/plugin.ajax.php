@@ -66,15 +66,6 @@ try {
 		$return['update'] = utils::o2a($update);
 		$return['logs'] = array();
 		$return['logs'][-1] = array('id' => -1, 'name' => 'local', 'log' => log::liste($plugin->getId()));
-		if (config::byKey('jeeNetwork::mode') == 'master') {
-			foreach (jeeNetwork::byPlugin($plugin->getId()) as $jeeNetwork) {
-				try {
-					$return['logs'][$jeeNetwork->getId()] = array('id' => $jeeNetwork->getId(), 'name' => $jeeNetwork->getName(), 'log' => $jeeNetwork->sendRawRequest('log::list', array('filtre' => $plugin->getId())));
-				} catch (Exception $e) {
-
-				}
-			}
-		}
 		ajax::success($return);
 	}
 
