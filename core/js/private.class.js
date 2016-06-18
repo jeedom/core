@@ -68,6 +68,7 @@ jeedom.private.handleAjaxErrorAPI = function(_request, _status, _error) {
             return {type: 'AJAX', code: code, message: _request.status + ' : ' + _error};
         }
     }
+    return {type: 'AJAX', code: code, message: 'Unknown error'};
 };
 
 
