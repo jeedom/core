@@ -162,7 +162,7 @@ step_7_jeedom_customization() {
 	    sed -i 's/;opcache.enable_cli=0/opcache.enable_cli=1/g' ${file} > /dev/null 2>&1
 	    sed -i 's/opcache.enable_cli=0/opcache.enable_cli=1/g' ${file} > /dev/null 2>&1
 	done
-	
+	a2dismod status
 	systemctl restart apache2 > /dev/null 2>&1
 	if [ $? -ne 0 ]; then
 		service apache2 restart
