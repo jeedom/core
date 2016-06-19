@@ -180,7 +180,7 @@ function addChart(_cmd_id, _action) {
             dateRange : 'all',
             dateStart : $('#in_startDate').value(),
             dateEnd :  $('#in_endDate').value(),
-            height : $('#div_graph').height() - 100,
+            height : $('#div_graph').height(),
             success: function (data) {
                 if(isset(data.cmd.display)){
                     if (init(data.cmd.display.graphStep) != '') {

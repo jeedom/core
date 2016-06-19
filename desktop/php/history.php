@@ -73,7 +73,7 @@ foreach (cmd::allHistoryCmd() as $cmd) {
 			</select>
 			<span class="pull-right"><input type="checkbox" data-label-text="{{Variation}}" class="bootstrapSwitch" id="cb_derive" /></span>
 			<span class="pull-right"><input type="checkbox" data-label-text="{{Escalier}}" class="bootstrapSwitch" id="cb_step" /></span>
-			<div id="div_graph" style="margin-top: 50px;height:100%"></div>
+			<div id="div_graph" style="margin-top: 50px;height:calc(100% - 120px)"></div>
 		</div>
 	</div>
 
