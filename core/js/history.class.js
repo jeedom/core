@@ -144,7 +144,6 @@ jeedom.history.drawChart = function (_params) {
         if(isset(_params.newGraph) && _params.newGraph == true){
             delete jeedom.history.chart[_params.el];
         }
-
         var charts = {
           zoomType: 'x',
           renderTo: _params.el,
@@ -153,6 +152,10 @@ jeedom.history.drawChart = function (_params) {
           spacingTop: 5,
           spacingRight: 5,
           spacingLeft: 5,
+          height : _params.height || null
+      }
+      if(charts.height < 10){
+        charts.height = null;
       }
 
       if(isset(_params.transparentBackground) && _params.transparentBackground == "1"){

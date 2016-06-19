@@ -46,19 +46,20 @@ if (init('step', 0) == 1) {
 ?>
        <center><div id="div_historyChart"></div></center>
        <script>
-         initCheckBox();
-         $(".in_datepicker").datepicker();
-         $('#ui-datepicker-div').hide();
+           initCheckBox();
+           $(".in_datepicker").datepicker();
+           $('#ui-datepicker-div').hide();
 
-         $('#div_historyChart').css('position', 'relative').css('width', '100%');
-         delete jeedom.history.chart['div_historyChart'];
-         jeedom.history.drawChart({
+           $('#div_historyChart').css('position', 'relative').css('width', '100%');
+           delete jeedom.history.chart['div_historyChart'];
+           jeedom.history.drawChart({
             cmd_id: "<?php echo init('id'); ?>",
             el: 'div_historyChart',
             dateRange : 'all',
             dateStart : $('#in_startDate').value(),
             dateEnd :  $('#in_endDate').value(),
             newGraph : true,
+            height : jQuery(window).height() - 270,
             success: function (data) {
                 if(isset(data.cmd.display)){
                     if (init(data.cmd.display.graphStep) != '') {
@@ -129,7 +130,7 @@ if (init('step', 0) == 1) {
                 });
             }
         });
-    </script>
+</script>
 </div>
 
 
