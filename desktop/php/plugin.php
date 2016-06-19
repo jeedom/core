@@ -13,6 +13,7 @@ $plugins_list = plugin::listPlugin(false, true);
   <div class="col-md-3 col-sm-4" id="sd_pluginList" style="z-index:999;display:none">
     <div class="bs-sidebar">
       <ul id="ul_plugin" class="nav nav-list bs-sidenav">
+       <a class="btn btn-default expertModeVisible" id="bt_addPluginFromOtherSource" style="width:100%"><i class="fa fa-plus"></i> {{Ajout depuis une autre source}}</a>
        <li class="filter" style="margin-bottom: 5px;margin-top: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
        <?php
 foreach ($plugins_list as $category_name => $category) {
@@ -60,15 +61,6 @@ foreach (update::listRepo() as $key => $value) {
     <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>{{Ajout depuis le}} ' . $value['name'] . '</center></span>
   </div>';
 }
-?>
-<div class="cursor" id="bt_addPluginFromOtherSource" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
- <center>
-   <i class="fa fa-plus" style="font-size : 6em;color:#94ca02;margin-top:20px;"></i>
- </center>
- <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>{{Ajout depuis une autre source}}</center></span>
-</div>
-
-<?php
 foreach (plugin::listPlugin() as $plugin) {
 	$opacity = ($plugin->isActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
 	echo '<div class="pluginDisplayCard cursor" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
@@ -196,7 +188,7 @@ foreach (plugin::listPlugin() as $plugin) {
        <div id="div_plugin_panel"></div>
      </fieldset>
    </form>
-</div>
+ </div>
 </div>
 
 </div>
