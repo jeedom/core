@@ -1038,7 +1038,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
                 <fieldset>
                     <legend>{{Mise à jour de jeedom}}</legend>
                     <div class="form-group">
-                        <label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Branche}}</label>
+                        <label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Source de mise à jour}}</label>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                             <select class="configKey form-control" data-l1key="core::repo::provider">
                                <option value="default">{{Défaut}}</option>
@@ -1094,7 +1094,7 @@ foreach (update::listRepo() as $key => $value) {
 	echo '<div class="form-group">';
 	echo '<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Activer}} ' . $value['name'] . '</label>';
 	echo '<div class="col-sm-1">';
-	echo '<input type="checkbox" class="configKey bootstrapSwitch enableRepository" data-repo="' . $key . '" data-l1key="' . $key . '::enable"/>';
+	echo '<input type="checkbox" class="configKey enableRepository" data-repo="' . $key . '" data-l1key="' . $key . '::enable"/>';
 	echo '</div>';
 	echo '</div>';
 	if ($value['scope']['hasConfiguration'] == false) {
