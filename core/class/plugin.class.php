@@ -338,6 +338,9 @@ class plugin {
 
 	public static function checkDeamon() {
 		foreach (self::listPlugin(true) as $plugin) {
+			if (config::byKey('deamonAutoMode', $plugin->getId(), 1) != 1) {
+				continue;
+			}
 			$dependancy_info = $plugin->dependancy_info();
 			if ($dependancy_info['state'] == 'nok') {
 				try {
