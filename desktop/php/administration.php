@@ -76,7 +76,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                             <div class="expertModeVisible">
                               <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Générer les traductions}}</label>
                               <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-                                  <input type="checkbox" class="configKey tooltips bootstrapSwitch" data-l1key="generateTranslation" title="{{Option pour les développeurs permettant à Jeedom de générer les phrases à traduire}}" />
+                                  <input type="checkbox" class="configKey tooltips" data-l1key="generateTranslation" title="{{Option pour les développeurs permettant à Jeedom de générer les phrases à traduire}}" />
                               </div>
                           </div>
                       </div>
@@ -196,7 +196,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                     <div class="form-group expertModeVisible">
                         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Indique à Jeedom de ne pas prendre en compte l'heure du système}}">{{Ignorer la vérification de l'heure}}</label>
                         <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-                         <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="ignoreHourCheck" />
+                         <input type="checkbox" class="configKey" data-l1key="ignoreHourCheck" />
                      </div>
                  </div>
                  <div class="form-group expertModeVisible has-error">
@@ -234,13 +234,13 @@ if (config::byKey('jeeNetwork::mode') == 'master') {
                    <div class="form-group expertModeVisible">
                     <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer la gestion des droits avancés}}</label>
                     <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-                        <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="rights::enable" />
+                        <input type="checkbox" class="configKey" data-l1key="rights::enable" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 col-xs-6 control-label">{{Activer la sécurité anti-piratage}}</label>
                     <div class="col-sm-3 col-xs-6">
-                        <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="security::enable"/>
+                        <input type="checkbox" class="configKey" data-l1key="security::enable"/>
                     </div>
                 </div>
             </fieldset>
@@ -435,7 +435,7 @@ if (network::test('external')) {
         <div class="form-group expertModeVisible has-error">
             <label class="col-xs-4 control-label">{{Désactiver la gestion du réseau par Jeedom}}</label>
             <div class="col-xs-8">
-                <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="network::disableMangement" />
+                <input type="checkbox" class="configKey" data-l1key="network::disableMangement" />
             </div>
         </div>
         <?php
@@ -469,7 +469,7 @@ foreach (array('eth0', 'wlan0', 'bond0') as $value) {
 		echo '<div class="form-group">';
 		echo '<label class="col-xs-4 control-label">{{Utiliser les DNS Jeedom}}</label>';
 		echo '<div class="col-xs-8">';
-		echo '<input type="checkbox" class="configKey bootstrapSwitch" data-l1key="' . $key . '::allowDNS" />';
+		echo '<input type="checkbox" class="configKey" data-l1key="' . $key . '::allowDNS" />';
 		echo '</div>';
 		echo '</div>';
 		echo '<div class="form-group">';
@@ -584,7 +584,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
                     <div class="form-group">
                         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Afficher les statistiques sur les widgets}}</label>
                         <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                            <input type="checkbox"  class="configKey bootstrapSwitch" data-l1key="displayStatsWidget" />
+                            <input type="checkbox"  class="configKey" data-l1key="displayStatsWidget" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -759,7 +759,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
                           <div class="form-group">
                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Ne pas répondre si l'interaction n'est pas comprise}}</label>
                             <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="interact::noResponseIfEmpty"/>
+                                <input type="checkbox" class="configKey" data-l1key="interact::noResponseIfEmpty"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -804,7 +804,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
                         <div class="form-group">
                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Ajouter un message à chaque erreur dans les logs}}</label>
                             <div class="col-sm-1">
-                                <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="addMessageForErrorLog" checked/>
+                                <input type="checkbox" class="configKey" data-l1key="addMessageForErrorLog" checked/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -919,7 +919,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
                     <div class="form-group">
                         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer l'authentification LDAP}}</label>
                         <div class="col-sm-1">
-                            <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="ldap:enable"/>
+                            <input type="checkbox" class="configKey" data-l1key="ldap:enable"/>
                         </div>
                     </div>
                     <div id="div_config_ldap">
@@ -968,7 +968,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
                         <div class="form-group has-error">
                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Autoriser REMOTE_USER}}</label>
                             <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="checkbox"  class="configKey bootstrapSwitch" data-l1key="sso:allowRemoteUser" />
+                                <input type="checkbox"  class="configKey" data-l1key="sso:allowRemoteUser" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -1060,13 +1060,13 @@ foreach (update::listRepo() as $key => $value) {
                   <div class="form-group expertModeVisible">
                     <label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Faire une sauvegarde avant la mise à jour}}</label>
                     <div class="col-sm-1">
-                        <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="update::backupBefore"/>
+                        <input type="checkbox" class="configKey" data-l1key="update::backupBefore"/>
                     </div>
                 </div>
                 <div class="form-group expertModeVisible">
                     <label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Vérifier automatiquement si il y a des mises à jour}}</label>
                     <div class="col-sm-1">
-                        <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="update::autocheck"/>
+                        <input type="checkbox" class="configKey" data-l1key="update::autocheck"/>
                     </div>
                     </div>
             </fieldset>

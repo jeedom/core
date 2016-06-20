@@ -27,24 +27,52 @@ if (!hasRight('updateview', true)) {
             </div>
         </div>
         <br/><br/>
-        <table class="table table-condensed table-bordered tablesorter" id="table_update" style="margin-top: 5px;">
-            <thead>
-                <tr>
-                    <th data-sorter="false" style="width:50px;"></th>
-                    <th>{{Nom}}</th>
-                    <th>{{Version}}</th>
-                    <th data-sorter="false" data-filter="false">{{Options}}</th>
-                    <th data-sorter="false" data-filter="false">{{Actions}}</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
+
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#coreplugin" aria-controls="home" role="tab" data-toggle="tab">{{Core et plugins}}</a></li>
+            <li role="presentation"><a href="#other" aria-controls="profile" role="tab" data-toggle="tab">{{Autre}}</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="coreplugin">
+                <table class="table table-condensed table-bordered tablesorter" id="table_update" style="margin-top: 5px;">
+                    <thead>
+                        <tr>
+                            <th data-sorter="false" style="width:50px;"></th>
+                            <th>{{Nom}}</th>
+                            <th>{{Version}}</th>
+                            <th data-sorter="false" data-filter="false">{{Options}}</th>
+                            <th data-sorter="false" data-filter="false">{{Actions}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+
+            <div role="tabpanel" class="tab-pane" id="other">
+                <table class="table table-condensed table-bordered tablesorter" id="table_updateOther" style="margin-top: 5px;">
+                    <thead>
+                        <tr>
+                            <th data-sorter="false" style="width:50px;"></th>
+                            <th>{{Nom}}</th>
+                            <th>{{Version}}</th>
+                            <th data-sorter="false" data-filter="false">{{Options}}</th>
+                            <th data-sorter="false" data-filter="false">{{Actions}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
     </div>
-    <div class="col-sm-4">
-        <legend><i class="fa fa-info-circle"></i>  {{Informations :}}</legend>
-        <pre id="pre_updateInfo"></pre>
-    </div>
+</div>
+<div class="col-sm-4">
+    <legend><i class="fa fa-info-circle"></i>  {{Informations :}}</legend>
+    <pre id="pre_updateInfo"></pre>
+</div>
 </div>
 
 <div id="md_specifyUpdate">

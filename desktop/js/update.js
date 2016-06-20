@@ -89,7 +89,7 @@ jeedom.update.doAll({
 });
 
 
- $('#table_update').delegate('.update', 'click', function () {
+ $('#table_update,#table_updateOther').delegate('.update', 'click', function () {
     var id = $(this).closest('tr').attr('data-id');
     bootbox.confirm('{{Etes vous sur de vouloir mettre à jour cet objet ?}}', function (result) {
         if (result) {
@@ -107,7 +107,7 @@ jeedom.update.doAll({
     });
 });
 
- $('#table_update').delegate('.remove', 'click', function () {
+ $('#table_update,#table_updateOther').delegate('.remove', 'click', function () {
     var id = $(this).closest('tr').attr('data-id');
     bootbox.confirm('{{Etes vous sur de vouloir supprimer cet objet ?}}', function (result) {
         if (result) {
@@ -125,7 +125,7 @@ jeedom.update.doAll({
     });
 });
 
- $('#table_update').delegate('.checkUpdate', 'click', function () {
+ $('#table_update,#table_updateOther').delegate('.checkUpdate', 'click', function () {
     var id = $(this).closest('tr').attr('data-id');
     $.hideAlert();
     jeedom.update.check({
@@ -225,11 +225,6 @@ function printUpdate() {
 }
 
 function addUpdate(_update) {
-    if (_update.status != 'update' && _update.type != 'core') {
-        if ($('#bt_expertMode').attr('state') == 0) {
-            return;
-        }
-    }
     var tr = '<tr data-id="' + init(_update.id) + '" data-logicalId="' + init(_update.logicalId) + '" data-type="' + init(_update.type) + '">';
     tr += '<td style="width:50px;"><span class="updateAttr label label-success" data-l1key="status" style="font-size:0.96em;"></span>';
     tr += '</td>';
@@ -255,11 +250,15 @@ function addUpdate(_update) {
    if (_update.type != 'core') {
     tr += '<a class="btn btn-danger btn-xs pull-right remove expertModeVisible tooltips" style="margin-bottom : 5px;" ><i class="fa fa-trash-o"></i> {{Supprimer}}</a>';  
 }
-
 tr += '</td>';
 tr += '</tr>';
-$('#table_update').append(tr);
-$('#table_update tbody tr:last').setValues(_update, '.updateAttr');
+if(_update.type == 'core' || _update.type == 'plugin'){
+    $('#table_update').append(tr);
+    $('#table_update tbody tr:last').setValues(_update, '.updateAttr');
+}else{
+    $('#table_updateOther').append(tr);
+    $('#table_updateOther tbody tr:last').setValues(_update, '.updateAttr');
+}
 }
 
 $('#bt_saveUpdate').on('click',function(){
