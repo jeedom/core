@@ -415,32 +415,8 @@ class repo_market {
 			if (isset($_result['market::allowBeta']) && config::byKey('market::allowBeta') != $_result['market::allowBeta']) {
 				config::save('market::allowBeta', $_result['market::allowBeta']);
 			}
-			if (isset($_result['register::ngrokAddr'])) {
-				unset($_result['register::ngrokAddr']);
-			}
-			if (isset($_result['register::ngrokPort'])) {
-				unset($_result['register::ngrokPort']);
-			}
-			if (isset($_result['register::ngrokToken'])) {
-				unset($_result['register::ngrokToken']);
-			}
-			if (isset($_result['register::dnsNumber'])) {
-				unset($_result['register::dnsNumber']);
-			}
-			if (isset($_result['register::dnsToken'])) {
-				unset($_result['register::dnsToken']);
-			}
-			if (isset($_result['jeedom::url'])) {
-				unset($_result['jeedom::url']);
-			}
-			if (isset($_result['market::allowBeta'])) {
-				unset($_result['market::allowBeta']);
-			}
-			if (isset($_result['register::dnsToken'])) {
-				unset($_result['register::dnsToken']);
-			}
-			if (isset($_result['register::dnsNumber'])) {
-				unset($_result['register::dnsNumber']);
+			if (isset($_result['market::allowAllRepo']) && config::byKey('market::allowAllRepo') != $_result['market::allowAllRepo']) {
+				config::save('market::allowAllRepo', $_result['market::allowAllRepo']);
 			}
 			if (isset($_result['register::hwkey_nok']) && $_result['register::hwkey_nok'] == 1) {
 				config::save('jeedom::installKey', '');

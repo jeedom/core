@@ -27,7 +27,6 @@ class cron {
 	private $class = '';
 	private $function;
 	private $lastRun = null;
-	private $duration = '0';
 	private $state = 'stop';
 	private $pid = null;
 	private $schedule = '';
@@ -351,7 +350,6 @@ class cron {
 				}
 			} else {
 				$this->setState('stop');
-				$this->setDuration(-1);
 				$this->setPID();
 				$this->save();
 			}
@@ -445,10 +443,6 @@ class cron {
 		return $this->enable;
 	}
 
-	public function getDuration() {
-		return $this->duration;
-	}
-
 	public function getPID($_default = null) {
 		if ($this->pid == '' || !is_numeric($this->pid)) {
 			return $_default;
@@ -474,10 +468,6 @@ class cron {
 
 	public function setLastRun($lastRun) {
 		$this->lastRun = $lastRun;
-	}
-
-	public function setDuration($duration) {
-		$this->duration = $duration;
 	}
 
 	public function setState($state) {

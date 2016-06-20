@@ -49,7 +49,6 @@ if (init('cron_id') != '') {
 	}
 	try {
 		$cron->setState('run');
-		$cron->setDuration('0s');
 		$cron->setPID(getmypid());
 		$cron->setLastRun($datetime);
 		$cron->save();
@@ -133,14 +132,12 @@ if (init('cron_id') != '') {
 			}
 			$cron->setState('stop');
 			$cron->setPID();
-			$cron->setDuration(convertDuration(strtotime('now') - $datetimeStart));
 			$cron->save();
 		}
 		die();
 	} catch (Exception $e) {
 		$cron->setState('error');
 		$cron->setPID('');
-		$cron->setDuration(-1);
 		$cron->save();
 		$logicalId = config::genKey();
 		if ($e->getCode() != 0) {
@@ -158,7 +155,6 @@ if (init('cron_id') != '') {
 	} catch (Error $e) {
 		$cron->setState('error');
 		$cron->setPID('');
-		$cron->setDuration(-1);
 		$cron->save();
 		$logicalId = config::genKey();
 		if ($e->getCode() != 0) {
@@ -217,7 +213,6 @@ if (init('cron_id') != '') {
 			if ($cron->getOnce() != 1) {
 				$cron->setState('error');
 				$cron->setPID('');
-				$cron->setDuration(-1);
 				$cron->save();
 				echo __('[Erreur master] ', __FILE__) . $cron->getName() . ' : ' . log::exception($e);
 				log::add('cron', 'error', __('[Erreur master] ', __FILE__) . $cron->getName() . ' : ' . $e->getMessage());
@@ -226,7 +221,6 @@ if (init('cron_id') != '') {
 			if ($cron->getOnce() != 1) {
 				$cron->setState('error');
 				$cron->setPID('');
-				$cron->setDuration(-1);
 				$cron->save();
 				echo __('[Erreur master] ', __FILE__) . $cron->getName() . ' : ' . log::exception($e);
 				log::add('cron', 'error', __('[Erreur master] ', __FILE__) . $cron->getName() . ' : ' . $e->getMessage());

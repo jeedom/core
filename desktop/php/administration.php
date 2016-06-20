@@ -1080,6 +1080,9 @@ foreach (update::listRepo() as $key => $value) {
         <ul class="nav nav-tabs" role="tablist">
             <?php
 foreach (update::listRepo() as $key => $value) {
+	if ($key == 'github' && config::byKey('market::allowBeta') != 1 && config::byKey('market::allowAllRepo') != 1) {
+		continue;
+	}
 	$active = ($key == 'market') ? 'active' : '';
 	echo '<li role="presentation" class="' . $active . '"><a href="#tab' . $key . '" aria-controls="tab' . $key . '" role="tab" data-toggle="tab">' . $value['name'] . '</a></li>';
 }
