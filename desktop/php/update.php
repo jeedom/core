@@ -7,7 +7,7 @@ if (!hasRight('updateview', true)) {
 <div class="row row-overflow">
     <div class="col-sm-8">
         <i class="fa fa-clock-o"></i>  {{Dernière vérification : }}<span class="label label-info" id="span_lastUpdateCheck" style="margin-bottom: 5px;font-size:1em;"></span>
-        {{Dernière mise à jour du core : }}<span class="label label-info" id="span_lastCoreUpdate" style="margin-bottom: 5px;font-size:1em;"></span>
+        <i class="icon divers-svg"></i>  {{Dernière mise à jour du core : }}<span class="label label-info" id="span_lastCoreUpdate" style="margin-bottom: 5px;font-size:1em;"></span>
         <a class="btn btn-success pull-right" id="bt_saveUpdate" style="margin-top:5px;"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
         <a class="btn btn-info pull-right" id="bt_checkAllUpdate" style="margin-top:5px;"><i class="fa fa-refresh"></i> {{Vérifier les mises à jour}}</a>
         <div class="btn-group pull-right" style="margin-top:5px;">
@@ -29,8 +29,8 @@ if (!hasRight('updateview', true)) {
         <br/><br/>
 
         <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#coreplugin" aria-controls="home" role="tab" data-toggle="tab">{{Core et plugins}}</a></li>
-            <li role="presentation"><a href="#other" aria-controls="profile" role="tab" data-toggle="tab">{{Autre}}</a></li>
+            <li role="presentation" class="active"><a href="#coreplugin" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-archive"></i>  {{Core et plugins}}</a></li>
+            <li role="presentation"><a href="#other" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-pencil-square-o"></i>  {{Autre}}</a></li>
         </ul>
 
         <div class="tab-content">
