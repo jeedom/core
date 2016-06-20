@@ -68,19 +68,18 @@ if (!hasRight('updateview', true)) {
         </div>
 
     </div>
-</div>
-<div class="col-sm-4">
-    <legend><i class="fa fa-info-circle"></i>  {{Informations :}}</legend>
-    <pre id="pre_updateInfo"></pre>
-</div>
+    <div class="col-sm-4">
+        <legend><i class="fa fa-info-circle"></i>  {{Informations :}}</legend>
+        <pre id="pre_updateInfo"></pre>
+    </div>
 </div>
 
 <div id="md_specifyUpdate">
- <form class="form-horizontal">
+   <form class="form-horizontal">
     <fieldset>
-       <div class="form-group">
-           <label class="col-xs-6 control-label">{{Mise à jour à réappliquer}}</label>
-           <div class="col-xs-6">
+     <div class="form-group">
+         <label class="col-xs-6 control-label">{{Mise à jour à réappliquer}}</label>
+         <div class="col-xs-6">
             <select id="sel_updateVersion" class="form-control">
                 <option value="">{{Aucune}}</option>
                 <?php
