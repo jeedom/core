@@ -106,7 +106,7 @@ class log {
 				$write_message = ($level != Logger::ALERT && $logger->isHandling($level));
 				if ($level == Logger::ERROR && config::byKey('addMessageForErrorLog') == 1) {
 					@message::add($_log, $_message, '', $_logicalId, $write_message);
-				} elseif ($level > Logger::ERROR) {
+				} elseif ($level > Logger::ALERT) {
 					@message::add($_log, $_message, '', $_logicalId, $write_message);
 				}
 			} catch (Exception $e) {
