@@ -244,7 +244,7 @@ function addUpdate(_update) {
             tr += '<a class="btn btn-default btn-xs tooltips cursor" target="_blank" href="'+_update.info.changelog+'" style="margin-bottom : 5px;"><i class="fa fa-book"></i> {{Changelog}}</a>';
         }
     }else{
-       tr += '<a class="btn btn-default btn-xs" href="https://jeedom.com/roadmap/index.php?changelog" target="_blank" style="margin-bottom : 5px;"><i class="fa fa-book"></i> {{Changelog}}</a>'; 
+       tr += '<a class="btn btn-default btn-xs" href="https://github.com/jeedom/core/releases" target="_blank" style="margin-bottom : 5px;"><i class="fa fa-book"></i> {{Changelog}}</a>'; 
    }
    tr += '<a class="btn btn-info btn-xs pull-right checkUpdate expertModeVisible tooltips" style="margin-bottom : 5px;" ><i class="fa fa-check"></i> {{Vérifier les mises à jour}}</a>';
    if (_update.type != 'core') {
