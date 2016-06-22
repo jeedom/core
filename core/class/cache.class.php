@@ -116,7 +116,14 @@ class cache {
 			default:
 				return;
 		}
-		com_shell::execute('sudo rm -rf ' . dirname(__FILE__) . '/../../cache.tar.gz;cd ' . $cache_dir . ';sudo tar cfz ' . dirname(__FILE__) . '/../../cache.tar.gz * 2>&1 > /dev/null;sudo chmod 775 ' . dirname(__FILE__) . '/../../cache.tar.gz;sudo chown www-data:www-data ' . dirname(__FILE__) . '/../../cache.tar.gz;sudo chmod 777 -R ' . $cache_dir);
+		try {
+			com_shell::execute('sudo rm -rf ' . dirname(__FILE__) . '/../../cache.tar.gz;cd ' . $cache_dir . ';sudo tar cfz ' . dirname(__FILE__) . '/../../cache.tar.gz * 2>&1 > /dev/null;sudo chmod 775 ' . dirname(__FILE__) . '/../../cache.tar.gz;sudo chown www-data:www-data ' . dirname(__FILE__) . '/../../cache.tar.gz;sudo chmod 777 -R ' . $cache_dir);
+		} catch (Exception $e) {
+			if (strpos($e->getMessage(), 'fichier modifié pendant sa lecture') === false) {
+				throw new $e;
+			}
+		}
+
 	}
 
 	public static function isPersistOk() {
