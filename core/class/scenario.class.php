@@ -179,7 +179,7 @@ class scenario {
 
 	public static function byElement($_element_id) {
 		$values = array(
-			'element_id' => '%' . $_element_id . '%',
+			'element_id' => '%"' . $_element_id . '"%',
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM scenario
