@@ -56,14 +56,6 @@
    $('.logEngine.'+$(this).value()).show();
 });
 
- $('body').delegate('.configKey[data-l1key="core::branch"]', 'change', function () {
-    if($(this).value() == 'url'){
-        $('#div_githubupdate').show();
-    }else{
-        $('#div_githubupdate').hide();
-    }
-});
-
  $("#bt_genKeyAPI").on('click', function (event) {
     $.hideAlert();
     bootbox.confirm('{{Etes-vous sûr de vouloir réinitialiser la clef API de Jeedom ? Vous devrez reconfigurer tous les équipements communiquant avec Jeedom et utilisant la clef API}}', function (result) {

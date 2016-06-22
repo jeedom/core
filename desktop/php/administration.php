@@ -1026,7 +1026,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
     <div class="panel-heading">
         <h3 class="panel-title">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_market">
-                <i class="fa fa-credit-card"></i>  {{Repositories, plugins et mise à jour}}
+                <i class="fa fa-credit-card"></i> {{Mises à jour et fichiers}}
             </a>
         </h3>
     </div>

@@ -41,7 +41,6 @@ class repo_market {
 			'address' => array(
 				'name' => 'Adresse',
 				'type' => 'input',
-				'default' => 'https://market.jeedom.fr',
 			),
 			'username' => array(
 				'name' => 'Nom d\'utilisateur',
@@ -346,9 +345,6 @@ class repo_market {
 	}
 
 	public static function getJsonRpc() {
-		if (config::byKey('market::address') == '') {
-			config::save('market::address', self::$_configuration['configuration']['address']['default']);
-		}
 		$internalIp = '';
 		try {
 			$internalIp = network::getNetworkAccess('internal', 'ip');

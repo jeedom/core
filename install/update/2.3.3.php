@@ -3,7 +3,6 @@ try {
 	if (config::byKey('market::username') != '') {
 		config::save('market::enable', 1);
 	}
-	config::save('core::branch', config::byKey('market::branch'));
 	config::save('market::cloudUpload', config::byKey('backup::cloudUpload'));
 	shell_exec('sudo rm -Rf ' . dirname(__FILE__) . '/../../script/ngrok/* > /dev/null 2&>1');
 } catch (Exception $exc) {
