@@ -83,8 +83,16 @@ if (init('step', 0) == 1) {
                             $('#div_alert').showAlert({message: error.message, level: 'danger'});
                         },
                         success: function () {
-                            $('#md_modal2').dialog({title: "{{Historique}}"});
-                            $("#md_modal2").load('index.php?v=d&modal=cmd.history&id=<?php echo init('id'); ?>&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open');
+                            var modal = false;
+                            if($('#md_modal').is(':visible')){
+                                modal = $('#md_modal');
+                            }else if($('#md_modal2').is(':visible')){
+                                modal = $('#md_modal2');
+                            }
+                            if(modal !== false){
+                                modal.dialog({title: "{{Historique}}"});
+                                modal.load('index.php?v=d&modal=cmd.history&id=<?php echo init('id'); ?>&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open');
+                            }
                         }
                     });
                 });
@@ -95,8 +103,8 @@ if (init('step', 0) == 1) {
                             $('#div_alert').showAlert({message: error.message, level: 'danger'});
                         },
                         success: function () {
-                            $('#md_modal2').dialog({title: "{{Historique}}"});
-                            $("#md_modal2").load('index.php?v=d&modal=cmd.history&id=<?php echo init('id'); ?>&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open');
+                            modal.dialog({title: "{{Historique}}"});
+                            modal.load('index.php?v=d&modal=cmd.history&id=<?php echo init('id'); ?>&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open');
                         }
                     });
                 });
@@ -107,8 +115,16 @@ if (init('step', 0) == 1) {
                             $('#div_alert').showAlert({message: error.message, level: 'danger'});
                         },
                         success: function () {
-                            $('#md_modal2').dialog({title: "{{Historique}}"});
-                            $("#md_modal2").load('index.php?v=d&modal=cmd.history&id=<?php echo init('id'); ?>&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open');
+                            var modal = false;
+                            if($('#md_modal').is(':visible')){
+                                modal = $('#md_modal');
+                            }else if($('#md_modal2').is(':visible')){
+                                modal = $('#md_modal2');
+                            }
+                            if(modal !== false){
+                                modal.dialog({title: "{{Historique}}"});
+                                modal.load('index.php?v=d&modal=cmd.history&id=<?php echo init('id'); ?>&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open');
+                            }
                         }
                     });
                 });
@@ -119,18 +135,34 @@ if (init('step', 0) == 1) {
                             $('#div_alert').showAlert({message: error.message, level: 'danger'});
                         },
                         success: function () {
-                            $('#md_modal2').dialog({title: "{{Historique}}"});
-                            $("#md_modal2").load('index.php?v=d&modal=cmd.history&id=<?php echo init('id'); ?>&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open');
+                            var modal = false;
+                            if($('#md_modal').is(':visible')){
+                                modal = $('#md_modal');
+                            }else if($('#md_modal2').is(':visible')){
+                                modal = $('#md_modal2');
+                            }
+                            if(modal !== false){
+                                modal.dialog({title: "{{Historique}}"});
+                                modal.load('index.php?v=d&modal=cmd.history&id=<?php echo init('id'); ?>&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open');
+                            }
                         }
                     });
                 });
                 $('#bt_validChangeDate').on('click',function(){
-                    $('#md_modal2').dialog({title: "{{Historique}}"});
-                    $("#md_modal2").load('index.php?v=d&modal=cmd.history&id=<?php echo init('id'); ?>&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open');
+                    var modal = false;
+                    if($('#md_modal').is(':visible')){
+                        modal = $('#md_modal');
+                    }else if($('#md_modal2').is(':visible')){
+                        modal = $('#md_modal2');
+                    }
+                    if(modal !== false){
+                        modal.dialog({title: "{{Historique}}"});
+                        modal.load('index.php?v=d&modal=cmd.history&id=<?php echo init('id'); ?>&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open');
+                    }
                 });
             }
         });
-</script>
+    </script>
 </div>
 
 
