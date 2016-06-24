@@ -465,14 +465,20 @@ function chooseIcon(_callback) {
 
 
 function positionEqLogic(_id) {
-    var eqLogics = (_id != undefined) ? $('.eqLogic-widget[data-eqlogic_id='+_id+']') : $('.eqLogic-widget:not(.jeedomAlreadyPosition)');
-    eqLogics.each(function () {
-       eqLogics.css('margin','0px').css('padding','0px');
-       var width = Math.ceil($(this).width() / 40) * 40 + (Math.ceil($(this).width() / 40)-1) * 2;
-       var  height = Math.ceil($(this).height() / 80) * 80 + (Math.ceil($(this).height() / 80)-1) * 2;   
-       $(this).width(width);
-       $(this).height(height);
-       eqLogics.addClass('jeedomAlreadyPosition');
-   });
+    if(_id != undefined){
+        var eqLogic = $('.eqLogic-widget[data-eqlogic_id='+_id+']');
+        eqLogic.css('margin','0px').css('padding','0px');
+        eqLogic.width(Math.floor(eqLogic.width() / 40) * 40);
+        eqLogic.height(Math.floor(eqLogic.height() / 80) * 80);
+        eqLogic.width(Math.ceil(eqLogic.width() / 40) * 40 + (Math.ceil(eqLogic.width() / 40)-1) * 2);
+        eqLogic.height(Math.ceil(eqLogic.height() / 80) * 80 + (Math.ceil(eqLogic.height() / 80)-1) * 2);
+    }else{
+        $('.eqLogic-widget:not(.jeedomAlreadyPosition)').css('margin','0px').css('padding','0px');
+        $('.eqLogic-widget:not(.jeedomAlreadyPosition)').each(function () {
+            $(this).width(Math.ceil($(this).width() / 40) * 40 + (Math.ceil($(this).width() / 40)-1) * 2);
+            $(this).height(Math.ceil($(this).height() / 80) * 80 + (Math.ceil($(this).height() / 80)-1) * 2);
+        });
+        $('.eqLogic-widget').addClass('jeedomAlreadyPosition');
+    }
 }
 
