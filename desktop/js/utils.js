@@ -26,13 +26,13 @@
 
 $(function () {
 
- $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
+   $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
     event.preventDefault();
     event.stopPropagation();
     $(this).parent().siblings().removeClass('open');
     $(this).parent().toggleClass('open');
 });
- if (!navigator.userAgent.match(/Android/i)
+   if (!navigator.userAgent.match(/Android/i)
     && !navigator.userAgent.match(/webOS/i)
     && !navigator.userAgent.match(/iPhone/i)
     && !navigator.userAgent.match(/iPad/i)
@@ -244,9 +244,9 @@ setInterval(function () {
     });
 
     $('#bt_showEventInRealTime').on('click',function(){
-     $('#md_modal').dialog({title: "{{Evènement en temps réel}}"});
-     $("#md_modal").load('index.php?v=d&modal=log.display&log=event').dialog('open');
- });
+       $('#md_modal').dialog({title: "{{Evènement en temps réel}}"});
+       $("#md_modal").load('index.php?v=d&modal=log.display&log=event').dialog('open');
+   });
 
     $('#bt_gotoDashboard').on('click',function(){
         $('ul.dropdown-menu [data-toggle=dropdown]').parent().parent().parent().siblings().removeClass('open');
@@ -467,18 +467,12 @@ function chooseIcon(_callback) {
 function positionEqLogic(_id) {
     var eqLogics = (_id != undefined) ? $('.eqLogic-widget[data-eqlogic_id='+_id+']') : $('.eqLogic-widget:not(.jeedomAlreadyPosition)');
     eqLogics.each(function () {
-     eqLogics.css('margin','0px').css('padding','0px');
-     var width = (Math.ceil($(this).width() / 40) - 1) * 40 + (Math.ceil($(this).width() / 40)-2) * 2;
-     var height = (Math.ceil($(this).height() / 80) -1 ) * 80 + (Math.ceil($(this).height() / 80)-2) * 2;
-     if(width < $(this).width()){
-        width = Math.ceil($(this).width() / 40) * 40 + (Math.ceil($(this).width() / 40)-1) * 2;
-    }
-    if(height < $(this).height()){
-     height = Math.ceil($(this).height() / 80) * 80 + (Math.ceil($(this).height() / 80)-1) * 2;        
- }
- $(this).width(width);
- $(this).height(height);
- eqLogics.addClass('jeedomAlreadyPosition');
-});
+       eqLogics.css('margin','0px').css('padding','0px');
+       var width = Math.ceil($(this).width() / 40) * 40 + (Math.ceil($(this).width() / 40)-1) * 2;
+       var  height = Math.ceil($(this).height() / 80) * 80 + (Math.ceil($(this).height() / 80)-1) * 2;   
+       $(this).width(width);
+       $(this).height(height);
+       eqLogics.addClass('jeedomAlreadyPosition');
+   });
 }
 
