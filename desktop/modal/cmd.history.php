@@ -46,13 +46,13 @@ if (init('step', 0) == 1) {
 ?>
        <center><div id="div_historyChart"></div></center>
        <script>
-           initCheckBox();
-           $(".in_datepicker").datepicker();
-           $('#ui-datepicker-div').hide();
+         initCheckBox();
+         $(".in_datepicker").datepicker();
+         $('#ui-datepicker-div').hide();
 
-           $('#div_historyChart').css('position', 'relative').css('width', '100%');
-           delete jeedom.history.chart['div_historyChart'];
-           jeedom.history.drawChart({
+         $('#div_historyChart').css('position', 'relative').css('width', '100%');
+         delete jeedom.history.chart['div_historyChart'];
+         jeedom.history.drawChart({
             cmd_id: "<?php echo init('id'); ?>",
             el: 'div_historyChart',
             dateRange : 'all',
@@ -103,10 +103,18 @@ if (init('step', 0) == 1) {
                             $('#div_alert').showAlert({message: error.message, level: 'danger'});
                         },
                         success: function () {
+                           var modal = false;
+                           if($('#md_modal').is(':visible')){
+                            modal = $('#md_modal');
+                        }else if($('#md_modal2').is(':visible')){
+                            modal = $('#md_modal2');
+                        }
+                        if(modal !== false){
                             modal.dialog({title: "{{Historique}}"});
                             modal.load('index.php?v=d&modal=cmd.history&id=<?php echo init('id'); ?>&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open');
                         }
-                    });
+                    }
+                });
                 });
                 $('.cb_derive').on('switchChange.bootstrapSwitch', function () {
                     jeedom.cmd.save({
