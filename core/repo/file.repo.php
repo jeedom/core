@@ -56,7 +56,7 @@ class repo_file {
 
 	public static function objectInfo($_update) {
 		return array(
-			'doc' => 'plugins/' . $_update->getLogicalId() . '/doc/' . config::byKey('language', 'core', 'fr_FR') . '/index.asciidoc',
+			'doc' => '',
 			'changelog' => '',
 		);
 	}
