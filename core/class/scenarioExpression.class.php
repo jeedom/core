@@ -1106,6 +1106,11 @@ class scenarioExpression {
 					}
 					$this->setLog($scenario, __('Réponse ', __FILE__) . $value);
 					return;
+				} else if ($this->getExpression() == 'jeedom::poweroff') {
+					$this->setLog($scenario, __('Lancement de l\'arret de jeedom', __FILE__));
+					$scenario->persistLog();
+					jeedom::haltSystem();
+					return;
 				} else {
 					$cmd = cmd::byId(str_replace('#', '', $this->getExpression()));
 					if (is_object($cmd)) {
