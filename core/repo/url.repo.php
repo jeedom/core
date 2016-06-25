@@ -44,9 +44,7 @@ class repo_url {
 				'name' => 'URL core Jeedom',
 				'type' => 'input',
 			),
-		),
-		'configuration' => array(
-			'core::url::version' => array(
+			'core::version' => array(
 				'name' => 'URL version core Jeedom',
 				'type' => 'input',
 			),
