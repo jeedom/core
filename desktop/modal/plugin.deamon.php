@@ -171,10 +171,7 @@ sendVarToJs('refresh_deamon_info', $refresh);
 ?>
 <script>
 	var timeout_refreshDeamonInfo = null;
-	function refreshDeamonInfo(_refreshOnly){
-		if(!isset(_refreshOnly)){
-			_refreshOnly = false;
-		}
+	function refreshDeamonInfo(){
 		var in_progress = true;
 		var nok = false;
 		jeedom.plugin.getDeamonInfo({
@@ -238,21 +235,6 @@ sendVarToJs('refresh_deamon_info', $refresh);
 					}else{
 						$("#div_plugin_deamon").closest('.panel').removeClass('panel-success').addClass('panel-danger');
 					}
-					if(!_refreshOnly && data.launchable == 'ok' && data.state != 'ok' && data.auto == 1){
-						clearTimeout(timeout_refreshDeamonInfo);
-						jeedom.plugin.deamonStart({
-							id : plugin_id,
-							slave_id: i,
-							global : false,
-							error: function (error) {
-								$('#div_alert').showAlert({message: error.message, level: 'danger'});
-								timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000);
-							},
-							success :function(){
-								timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000);
-							}
-						});
-					}
 				}
 				if($("#div_plugin_deamon").is(':visible')){
 					timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000);
@@ -275,11 +257,11 @@ sendVarToJs('refresh_deamon_info', $refresh);
 						forceRestart: 1,
 						error: function (error) {
 							$('#div_alert').showAlert({message: error.message, level: 'danger'});
-							refreshDeamonInfo(true);
+							refreshDeamonInfo();
 							timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000);
 						},
 						success:function(){
-							refreshDeamonInfo(true);
+							refreshDeamonInfo();
 							timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000);
 						}
 					});
@@ -296,11 +278,11 @@ sendVarToJs('refresh_deamon_info', $refresh);
 			slave_id: slave_id,
 			error: function (error) {
 				$('#div_alert').showAlert({message: error.message, level: 'danger'});
-				refreshDeamonInfo(true);
+				refreshDeamonInfo();
 				timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000);
 			},
 			success:function(){
-				refreshDeamonInfo(true);
+				refreshDeamonInfo();
 				timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000);
 			}
 		});
@@ -316,11 +298,11 @@ sendVarToJs('refresh_deamon_info', $refresh);
 			mode : mode,
 			error: function (error) {
 				$('#div_alert').showAlert({message: error.message, level: 'danger'});
-				refreshDeamonInfo(true);
+				refreshDeamonInfo();
 				timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000);
 			},
 			success:function(){
-				refreshDeamonInfo(true);
+				refreshDeamonInfo();
 				timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000);
 			}
 		});
