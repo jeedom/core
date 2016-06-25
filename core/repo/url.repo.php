@@ -91,14 +91,14 @@ class repo_url {
 	}
 
 	public static function versionCore() {
-		if (config::byKey('url::core::url::version') == '') {
+		if (config::byKey('url::core::version') == '') {
 			return null;
 		}
 		try {
 			if (file_exists('/tmp/jeedom_version')) {
 				com_shell::execute('sudo rm /tmp/jeedom_version');
 			}
-			exec('wget --no-check-certificate --progress=dot --dot=mega ' . config::byKey('url::core::url::version') . ' -O /tmp/jeedom_version');
+			exec('wget --no-check-certificate --progress=dot --dot=mega ' . config::byKey('url::core::version') . ' -O /tmp/jeedom_version');
 			if (!file_exists('/tmp/jeedom_version')) {
 				return null;
 			}
