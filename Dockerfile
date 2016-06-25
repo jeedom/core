@@ -40,7 +40,8 @@ usbutils \
 libtinyxml-dev \
 libjsoncpp-dev \
 snmp \
-libsnmp-dev
+libsnmp-dev \
+iputils-ping
 
 ####################################################################PHP7 EXTENSION#######################################################################################
 
