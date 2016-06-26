@@ -49,16 +49,21 @@ try {
 		}
 		try {
 			if ($update->getType() != 'core') {
-				log::add('update', 'alert', __("[START UPDATE]\n", __FILE__));
+				log::add('update', 'alert', __("[START UPDATE]", __FILE__));
 			}
 			$update->doUpdate();
 			if ($update->getType() != 'core') {
-				log::add('update', 'alert', __("[END UPDATE SUCCESS]\n", __FILE__));
+				log::add('update', 'alert', __("Launch cron dependancy plugins", __FILE__));
+				$cron = cron::byClassAndFunction('plugin', 'checkDeamon');
+				if (is_object($cron)) {
+					$cron->start();
+				}
+				log::add('update', 'alert', __("[END UPDATE SUCCESS]", __FILE__));
 			}
 		} catch (Exception $e) {
 			if ($update->getType() != 'core') {
 				log::add('update', 'alert', $e->getMessage());
-				log::add('update', 'alert', __("[END UPDATE ERROR]\n", __FILE__));
+				log::add('update', 'alert', __("[END UPDATE ERROR]", __FILE__));
 			}
 		}
 		ajax::success();
