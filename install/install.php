@@ -413,9 +413,13 @@ try {
 	throw $e;
 }
 echo 'Launch cron dependancy plugins';
-$cron = cron::byClassAndFunction('plugin', 'checkDeamon');
-if (is_object($cron)) {
-	$cron->start();
+try {
+	$cron = cron::byClassAndFunction('plugin', 'checkDeamon');
+	if (is_object($cron)) {
+		$cron->start();
+	}
+} catch (Exception $e) {
+
 }
 echo "[END UPDATE SUCCESS]\n";
 

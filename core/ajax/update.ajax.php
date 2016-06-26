@@ -54,9 +54,13 @@ try {
 			$update->doUpdate();
 			if ($update->getType() != 'core') {
 				log::add('update', 'alert', __("Launch cron dependancy plugins", __FILE__));
-				$cron = cron::byClassAndFunction('plugin', 'checkDeamon');
-				if (is_object($cron)) {
-					$cron->start();
+				try {
+					$cron = cron::byClassAndFunction('plugin', 'checkDeamon');
+					if (is_object($cron)) {
+						$cron->start();
+					}
+				} catch (Exception $e) {
+
 				}
 				log::add('update', 'alert', __("[END UPDATE SUCCESS]", __FILE__));
 			}
