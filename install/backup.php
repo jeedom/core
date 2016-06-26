@@ -44,12 +44,6 @@ try {
 	}
 	$backup_dir = calculPath(config::byKey('backup::path'));
 
-	echo __("Vérification du système de fichiers (corruption)...", __FILE__);
-	if (jeedom::checkFilesystem()) {
-		echo __("OK", __FILE__) . "\n";
-	} else {
-		echo __("NOK\n", __FILE__);
-	}
 	if (!file_exists($backup_dir)) {
 		mkdir($backup_dir, 0770, true);
 	}

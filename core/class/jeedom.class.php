@@ -603,15 +603,6 @@ class jeedom {
 		shell_exec('sudo service ntp stop;sudo ntpdate -s ' . config::byKey('ntp::optionalServer', 'core', '0.debian.pool.ntp.org') . ';sudo service ntp start');
 	}
 
-	public static function checkFilesystem() {
-		$result = exec('dmesg | grep "I/O error" | wc -l');
-		if ($result != 0) {
-			log::add('core', 'error', __('Erreur : corruption sur le filesystem detecter (I/O error sur dmesg)', __FILE__));
-			return false;
-		}
-		return true;
-	}
-
 	public static function cleanFileSytemRight() {
 		$processUser = posix_getpwuid(posix_geteuid());
 		$processGroup = posix_getgrgid(posix_getegid());
