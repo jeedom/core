@@ -142,7 +142,7 @@ sendVarToJs('refresh_dependancy_info', $refresh);
 							html += ' - '+data.progression+' %';
 						}
 						if(isset(data.duration) && data.duration != -1){
-							html += ' - '+data.progression+' min';
+							html += ' - '+data.duration+' min';
 						}
 						html += '</span>';
 						$('.dependancyState[data-slave_id='+i+']').empty().append(html);
