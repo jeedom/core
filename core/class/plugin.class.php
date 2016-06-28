@@ -38,6 +38,7 @@ class plugin {
 	private $allowRemote;
 	private $eventjs;
 	private $hasDependency;
+	private $maxDependancyInstallTime;
 	private $hasOwnDeamon;
 	private $info = array();
 	private $include = array();
@@ -86,6 +87,12 @@ class plugin {
 		if (isset($plugin_xml->hasOwnDeamon)) {
 			$plugin->hasOwnDeamon = $plugin_xml->hasOwnDeamon;
 		}
+		if (isset($plugin_xml->maxDependancyInstallTime)) {
+			$plugin->maxDependancyInstallTime = $plugin_xml->maxDependancyInstallTime;
+		} else {
+			$plugin->maxDependancyInstallTime = 10;
+		}
+
 		$plugin->eventjs = 0;
 		if (isset($plugin_xml->eventjs)) {
 			$plugin->eventjs = 1;
@@ -348,6 +355,12 @@ class plugin {
 				} catch (Exception $e) {
 
 				}
+			} else if ($dependancy_info['state'] == 'in_progress' && $dependancy_info['duration'] > $plugin->getMaxDependancyInstallTime()) {
+				if (isset($return['progress_file']) && file_exists($return['progress_file'])) {
+					shell_exec('sudo rm ' . $return['progress_file']);
+				}
+				config::save('deamonAutoMode', 0, $plugin->getId());
+				log::add($plugin->getId(), 'error', __('Attention l\'installation des dépendances ont dépassées le temps maximum autorisé : ', __FILE__) . $plugin->getMaxDependancyInstallTime() . 'min');
 			}
 			try {
 				$plugin->deamon_start(false, true);
@@ -421,6 +434,11 @@ class plugin {
 					$return['progression'] = $progression;
 				}
 			}
+		}
+		if ($return['state'] == 'in_progress') {
+			$return['duration'] = (strtotime('now') - strtotime(config::byKey('lastDependancyInstallTime', $plugin_id))) / 60;
+		} else {
+			$return['duration'] = -1;
 		}
 		$return['last_launch'] = config::byKey('lastDependancyInstallTime', $this->getId(), __('Inconnue', __FILE__));
 		if ($return['state'] == 'ok') {
@@ -815,6 +833,14 @@ class plugin {
 
 	public function setHasOwnDeamony($hasOwnDeamon) {
 		$this->hasOwnDeamon = $hasOwnDeamon;
+	}
+
+	public function getMaxDependancyInstallTime() {
+		return $this->maxDependancyInstallTime;
+	}
+
+	public function setMaxDependancyInstallTime($maxDependancyInstallTime) {
+		$this->maxDependancyInstallTime = $maxDependancyInstallTime;
 	}
 
 }
