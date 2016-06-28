@@ -36,7 +36,10 @@ switch ($dependancy_info['state']) {
 	case 'in_progress':
 		echo '<span class="label label-primary" style="font-size:1em;"><i class="fa fa-spinner fa-spin"></i> {{Installation en cours}}';
 		if (isset($dependancy_info['progression']) && $dependancy_info['progression'] !== '') {
-			echo ' (' . $dependancy_info['progression'] . ' %)';
+			echo ' - ' . $dependancy_info['progression'] . ' %';
+		}
+		if (isset($dependancy_info['duration']) && $dependancy_info['duration'] != -1) {
+			echo ' - ' . $dependancy_info['duration'] . ' min';
 		}
 		echo '</span>';
 		break;
@@ -80,7 +83,10 @@ $refresh[$jeeNetwork->getId()] = 1;
 				case 'in_progress':
 					echo '<span class="label label-primary" style="font-size:1em;"><i class="fa fa-spinner fa-spin"></i> {{Installation en cours}}';
 					if (isset($dependancy_info['progression']) && $dependancy_info['progression'] !== '') {
-						echo ' (' . $dependancy_info['progression'] . ' %)';
+						echo ' - ' . $dependancy_info['progression'] . ' %';
+					}
+					if (isset($dependancy_info['duration']) && $dependancy_info['duration'] != -1) {
+						echo ' - ' . $dependancy_info['duration'] . ' min';
 					}
 					echo '</span>';
 					break;
@@ -133,7 +139,10 @@ sendVarToJs('refresh_dependancy_info', $refresh);
 						refresh_dependancy_info[i] = 1;
 						var html = '<span class="label label-primary" style="font-size:1em;"><i class="fa fa-spinner fa-spin"></i> {{Installation en cours}}';
 						if(isset(data.progression) && data.progression !== ''){
-							html += ' ('+data.progression+' %)';
+							html += ' - '+data.progression+' %';
+						}
+						if(isset(data.duration) && data.duration != -1){
+							html += ' - '+data.progression+' min';
 						}
 						html += '</span>';
 						$('.dependancyState[data-slave_id='+i+']').empty().append(html);
@@ -151,20 +160,20 @@ sendVarToJs('refresh_dependancy_info', $refresh);
 				}
 			}
 		});
-}
-refreshDependancyInfo();
+	}
+	refreshDependancyInfo();
 
-$('.launchInstallPluginDependancy').on('click',function(){
-	var slave_id = $(this).attr('data-slave_id');
-	jeedom.plugin.dependancyInstall({
-		id : plugin_id,
-		slave_id: slave_id,
-		error: function (error) {
-			$('#div_alert').showAlert({message: error.message, level: 'danger'});
-		},
-		success: function (data) {
-			$("#div_plugin_dependancy").load('index.php?v=d&modal=plugin.dependancy&plugin_id='+plugin_id);
-		}
+	$('.launchInstallPluginDependancy').on('click',function(){
+		var slave_id = $(this).attr('data-slave_id');
+		jeedom.plugin.dependancyInstall({
+			id : plugin_id,
+			slave_id: slave_id,
+			error: function (error) {
+				$('#div_alert').showAlert({message: error.message, level: 'danger'});
+			},
+			success: function (data) {
+				$("#div_plugin_dependancy").load('index.php?v=d&modal=plugin.dependancy&plugin_id='+plugin_id);
+			}
+		});
 	});
-});
 </script>
