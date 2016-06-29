@@ -223,7 +223,11 @@ if (init('type') != '') {
 
 			/*             * ***********************changes********************************* */
 			if ($jsonrpc->getMethod() == 'event::changes') {
-				$jsonrpc->makeSuccess(event::changes($params['datetime']));
+				$longPolling = null;
+				if (isset($params['longPolling'])) {
+					$params['longPolling'] = $longPolling;
+				}
+				$jsonrpc->makeSuccess(event::changes($params['datetime'], $longPolling));
 			}
 
 			/*             * ************************Plugin*************************** */
