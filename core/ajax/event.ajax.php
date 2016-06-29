@@ -23,7 +23,7 @@ try {
 	ajax::init();
 
 	if (init('action') == 'changes') {
-		ajax::success(event::changes(init('datetime', 0)));
+		ajax::success(event::changes(init('datetime', 0), 300));
 	}
 
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));

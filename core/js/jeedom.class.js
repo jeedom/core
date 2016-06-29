@@ -37,10 +37,10 @@ jeedom.changes = function(){
                 $('body').trigger(data.result[i].name);
             }
         }
-        setTimeout(jeedom.changes, 1000);
+        setTimeout(jeedom.changes, 1);
     },
     error: function(){
-        setTimeout(jeedom.changes, 1000);
+        setTimeout(jeedom.changes, 1);
     }
 };
 try {

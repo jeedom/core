@@ -33,7 +33,21 @@ class event {
 		cache::set('event', json_encode(array_slice($value, -self::$limit, self::$limit)), 0);
 	}
 
-	public static function changes($_datetime) {
+	public static function changes($_datetime, $_longPolling = null) {
+		$return = self::changesSince($_datetime);
+		if ($_longPolling == null || count($return['result']) > 0) {
+			return $return;
+		}
+		$i = 0;
+		while (count($return['result']) == 0 && $i < $_longPolling) {
+			sleep(1);
+			$return = self::changesSince($_datetime);
+			$i++;
+		}
+		return $return;
+	}
+
+	private static function changesSince($_datetime) {
 		$return = array('datetime' => getmicrotime(), 'result' => array());
 		$cache = cache::byKey('event');
 		$values = array_reverse(json_decode($cache->getValue('[]'), true));
