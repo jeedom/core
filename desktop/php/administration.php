@@ -461,7 +461,7 @@ foreach (array('eth0', 'wlan0', 'bond0') as $value) {
 		if (config::byKey($key . '::enable') == 0) {
 			continue;
 		}
-		echo '<legend>Proxy ' . $value['name'] . '</legend>';
+		echo '<legend>{{Proxy}} ' . $value['name'] . '</legend>';
 		if (config::byKey('dns::token') == '') {
 			echo '<div class="alert alert-warning">{{Attention : cette fonctionnalité n\'est pas disponible dans le service pack community (voir votre service pack sur votre page profil sur le market)}}</div>';
 			continue;
@@ -717,6 +717,12 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
                                     <a class="btn btn-warning" id="bt_flushMemcache"><i class="fa fa-trash"></i> {{Vider}}</a>
                                 </div>
                             </div>
+                             <div class="form-group">
+                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Temps de pause pour le long polling}}</label>
+                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                <input class="configKey form-control" data-l1key="event::waitPollingTime"/>
+                            </div>
+                        </div>
                         </fieldset>
                     </form>
                 </div>

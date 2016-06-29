@@ -38,8 +38,15 @@ class event {
 		if ($_longPolling == null || count($return['result']) > 0) {
 			return $return;
 		}
+		$waitTime = config::byKey('event::waitPollingTime');
 		$i = 0;
-		while (count($return['result']) == 0 && $i < $_longPolling) {
+		$max_cycle = $_longPolling / $waitTime;
+		while (count($return['result']) == 0 && $i < $max_cycle) {
+			if ($waitTime < 1) {
+				usleep(1000000 * $waitTime);
+			} else {
+				sleep(round($waitTime));
+			}
 			sleep(1);
 			$return = self::changesSince($_datetime);
 			$i++;
