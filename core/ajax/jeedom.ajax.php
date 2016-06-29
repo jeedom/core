@@ -33,7 +33,7 @@ try {
 		$return = array();
 		$return['jeedom_token'] = ajax::getToken();
 		$return['user_id'] = $_SESSION['user']->getId();
-		$return['serverDatetime'] = strtotime('now') * 1000;
+		$return['serverDatetime'] = getmicrotime();
 		$return['userProfils'] = $_SESSION['user']->getOptions();
 		$return['userProfils']['defaultMobileViewName'] = __('Vue', __FILE__);
 		if ($_SESSION['user']->getOptions('defaultDesktopView') != '') {
