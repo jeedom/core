@@ -33,6 +33,8 @@ jeedom.changes = function(){
         for(var i in data.result){
             if(isset(data.result[i].option)){
                 $('body').trigger(data.result[i].name,data.result[i].option);
+            }else{
+                $('body').trigger(data.result[i].name);
             }
         }
         setTimeout(jeedom.changes, 1000);
