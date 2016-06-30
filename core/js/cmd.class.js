@@ -305,17 +305,16 @@ jeedom.cmd.test = function(_params) {
 };
 
 jeedom.cmd.refreshValue = function(_params) {
-    console.log(_params);
     var paramsRequired = [];
     var cmds = {};
     var sends = {};
     for(var i in _params){
-        var cmd = $('.cmd[data-cmd_id=' + _params.cmd_id + ']');
+        var cmd = $('.cmd[data-cmd_id=' + _params[i].cmd_id + ']');
         if (cmd.html() == undefined || cmd.closest('.eqLogic').attr('data-version') == undefined || cmd.hasClass('noRefresh')) {
             continue;
         }
-        cmds[_params.cmd_id] = {cmd : cmd, version : cmd.closest('.eqLogic').attr('data-version')};
-        sends[_params.cmd_id] = {version : cmd.closest('.eqLogic').attr('data-version')};
+        cmds[_params[i].cmd_id] = {cmd : cmd, version : cmd.closest('.eqLogic').attr('data-version')};
+        sends[_params[i].cmd_id] = {version : cmd.closest('.eqLogic').attr('data-version')};
     }
     if (cmds.length == 0){
         return;

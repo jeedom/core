@@ -32,20 +32,20 @@ jeedom.changes = function(){
         jeedom.datetime = data.datetime;
         var cmd_update = [];
         for(var i in data.result){
+            if(data.result[i].name == 'cmd::update'){
+                cmd_update.push(data.result[i].option);
+                continue;
+            }
             if(isset(data.result[i].option)){
-                if(data.result[i].name == 'cmd::update'){
-                    cmd_update.push(data.result[i].option);
-                }else{
-                   $('body').trigger(data.result[i].name,data.result[i].option);   
-               }
+               $('body').trigger(data.result[i].name,data.result[i].option);   
            }else{
             $('body').trigger(data.result[i].name);
         }
     }
     if(cmd_update.length > 0){
-     $('body').trigger('cmd::update',cmd_update); 
- }
- setTimeout(jeedom.changes, 1);
+       $('body').trigger('cmd::update',[cmd_update]); 
+   }
+   setTimeout(jeedom.changes, 1);
 },
 error: function(){
     setTimeout(jeedom.changes, 1);
