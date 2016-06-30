@@ -28,7 +28,7 @@ class event {
 
 	public static function add($_event, $_option = array()) {
 		while (file_exists('/tmp/jeedom__event_cache_lock')) {
-			usleep(10);
+			usleep(rand(1, 10));
 		}
 		touch('/tmp/jeedom__event_cache_lock');
 		chmod('/tmp/jeedom__event_cache_lock', 0777);
@@ -45,7 +45,7 @@ class event {
 			$value[] = array('datetime' => getmicrotime(), 'name' => $_event, 'option' => $option);
 		}
 		while (file_exists('/tmp/jeedom__event_cache_lock')) {
-			usleep(10);
+			usleep(rand(1, 10));
 		}
 		touch('/tmp/jeedom__event_cache_lock');
 		chmod('/tmp/jeedom__event_cache_lock', 0777);
