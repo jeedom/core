@@ -316,7 +316,7 @@ jeedom.cmd.refreshValue = function(_params) {
         cmds[_params.cmd_id] = {cmd : cmd, version : cmd.closest('.eqLogic').attr('data-version')};
         sends[_params.cmd_id] = {version : cmd.closest('.eqLogic').attr('data-version')};
     }
-    if (cmds.lenght == 0){
+    if (cmds.length == 0){
         return;
     }
     var paramsSpecifics = {
