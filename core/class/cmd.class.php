@@ -1009,14 +1009,14 @@ class cmd {
 			scenario::check($this);
 		}
 		$eqLogic->emptyCacheWidget();
-		event::add('cmd::update', array('cmd_id' => $this->getId(), 'value' => $value));
+		$events = array(array('cmd_id' => $this->getId(), 'value' => $value));
 		$foundInfo = false;
 		if (!$repeat) {
 			$value_cmd = self::byValue($this->getId(), null, true);
 			if (is_array($value_cmd)) {
 				foreach ($value_cmd as $cmd) {
 					if ($cmd->getType() == 'action') {
-						event::add('cmd::update', array('cmd_id' => $cmd->getId()));
+						$events[] = array('cmd_id' => $cmd->getId());
 					} else {
 						if ($_loop > 1) {
 							$cValue = $cmd->execute();
@@ -1035,6 +1035,7 @@ class cmd {
 			$this->checkCmdAlert($value);
 			$this->pushUrl($value);
 		}
+		event::adds('cmd::update', $events);
 		if (strpos($value, 'error') === false) {
 			$eqLogic->setStatus('lastCommunication', $collectDate);
 			$this->addHistoryValue($value, $collectDate);

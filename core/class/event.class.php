@@ -33,6 +33,15 @@ class event {
 		cache::set('event', json_encode(array_slice($value, -self::$limit, self::$limit)), 0);
 	}
 
+	public static function adds($_event, $_values = array()) {
+		$value = array();
+		foreach ($_values as $option) {
+			$value[] = array('datetime' => getmicrotime(), 'name' => $_event, 'option' => $option);
+		}
+		$cache = cache::byKey('event');
+		cache::set('event', json_encode(array_slice(array_merge(json_decode($cache->getValue('[]'), true), $value), -self::$limit, self::$limit)), 0);
+	}
+
 	public static function changes($_datetime, $_longPolling = null) {
 		$return = self::changesSince($_datetime);
 		if ($_longPolling == null || count($return['result']) > 0) {
