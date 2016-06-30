@@ -225,7 +225,7 @@ if (init('type') != '') {
 			if ($jsonrpc->getMethod() == 'event::changes') {
 				$longPolling = null;
 				if (isset($params['longPolling'])) {
-					$params['longPolling'] = $longPolling;
+					$longPolling = $params['longPolling'];
 				}
 				$jsonrpc->makeSuccess(event::changes($params['datetime'], $longPolling));
 			}
