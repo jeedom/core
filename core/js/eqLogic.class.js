@@ -344,7 +344,7 @@ var paramsSpecifics = {
          eqLogic.trigger('change');
          initTooltips();
          if ($.mobile) {
-            eqLogic.trigger("create");
+            $('.eqLogic[data-eqLogic_id=' + i + ']').trigger("create");
             setTileSize('.eqLogic');
         }else{
             if (typeof editWidgetMode == 'function') {

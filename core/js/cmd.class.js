@@ -333,7 +333,7 @@ jeedom.cmd.refreshValue = function(_params) {
             cmd.replaceWith(result[i].html); 
             initTooltips();
             if ($.mobile) {
-                $('.cmd[data-cmd_id=' + params.id + ']').trigger("create");
+                $('.cmd[data-cmd_id=' + i + ']').trigger("create");
             }
         }
     }
