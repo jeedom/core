@@ -759,7 +759,7 @@ class eqLogic {
 
 	public function refreshWidget() {
 		$this->emptyCacheWidget();
-		event::add('eqLogic::update', $this->getId());
+		event::add('eqLogic::update', array('eqLogic_id' => $this->getId()));
 	}
 
 	public function hasRight($_right) {

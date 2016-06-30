@@ -25,27 +25,35 @@
 }
 
 jeedom.changes = function(){
- var paramsRequired = [];
- var paramsSpecifics = {
+   var paramsRequired = [];
+   var paramsSpecifics = {
     global: false,
     success: function(data) {
         jeedom.datetime = data.datetime;
         var cmd_update = [];
+        var eqLogic_update = [];
         for(var i in data.result){
             if(data.result[i].name == 'cmd::update'){
                 cmd_update.push(data.result[i].option);
                 continue;
             }
+            if(data.result[i].name == 'eqLogic::update'){
+                eqLogic_update.push(data.result[i].option);
+                continue;
+            }
             if(isset(data.result[i].option)){
-               $('body').trigger(data.result[i].name,data.result[i].option);   
-           }else{
+             $('body').trigger(data.result[i].name,data.result[i].option);   
+         }else{
             $('body').trigger(data.result[i].name);
         }
     }
     if(cmd_update.length > 0){
-       $('body').trigger('cmd::update',[cmd_update]); 
-   }
-   setTimeout(jeedom.changes, 1);
+     $('body').trigger('cmd::update',[cmd_update]); 
+ }
+ if(eqLogic_update.length > 0){
+     $('body').trigger('eqLogic::update',[eqLogic_update]); 
+ }
+ setTimeout(jeedom.changes, 1);
 },
 error: function(){
     setTimeout(jeedom.changes, 1);
@@ -91,15 +99,15 @@ jeedom.init = function () {
     $('body').on('scenario::update', function (_event,_options) {
         jeedom.scenario.refreshValue({id: _options.scenario_id });
     });
-    $('body').on('eqLogic::update', function (_event,eqLogic_id) {
-        jeedom.eqLogic.refreshValue({id: eqLogic_id});
+    $('body').on('eqLogic::update', function (_event,_options) {
+        jeedom.eqLogic.refreshValue(_options);
     });
     $('body').on('refresh', function (_event) {
         window.location.reload()
     });
     $('body').on('jeedom::gotoplan', function (_event,_plan_id) {
         if(getUrlVars('p') == 'plan' && 'function' == typeof (displayPlan)){
-           if (_plan_id != $('#sel_planHeader').attr('data-link_id')) {
+         if (_plan_id != $('#sel_planHeader').attr('data-link_id')) {
             planHeader_id = _plan_id;
             displayPlan();
         }
@@ -108,7 +116,7 @@ jeedom.init = function () {
 
     $('body').on('jeedom::alert', function (_event,_options) {
         if (!isset(_options.message) || $.trim(_options.message) == '') {
-           if(isset(_options.page) && _options.page != ''){
+         if(isset(_options.page) && _options.page != ''){
             if(getUrlVars('p') == _options.page || ($.mobile && isset(CURRENT_PAGE) && CURRENT_PAGE == _options.page)){
                 $.hideAlert();
             }

@@ -294,61 +294,67 @@ jeedom.eqLogic.getSelectModal = function (_options, callback) {
 };
 
 jeedom.eqLogic.refreshValue = function (_params) {
-    if ($('.eqLogic[data-eqLogic_id=' + _params.id + ']').html() != undefined) {
-        var version = $('.eqLogic[data-eqLogic_id=' + _params.id + ']').attr('data-version');
-        if(getUrlVars('p') == 'plan'){
-            version = 'dplan';
-        }else if(getUrlVars('p') == 'view'){
-            if(version == 'dashboard'){
-                version = 'dview';
-           }else{
-               version = 'mview';
-           }
-       }
-       var paramsRequired = ['id'];
-       var paramsSpecifics = {
-        global: false,
-        success: function (result) {
-            var html = $(result.html);
+   var paramsRequired = [];
+   var eqLogics = {};
+   var sends = {};
+   for(var i in _params){
+    var eqLogic = $('.eqLogic[data-eqLogic_id=' + _params[i].eqLogic_id + ']');
+    if (eqLogic.html() == undefined || eqLogic.attr('data-version') == undefined) {
+        continue;
+    }
+    eqLogics[_params[i].eqLogic_id] = {eqLogic : eqLogic, version : eqLogic.attr('data-version')};
+    sends[_params[i].eqLogic_id] = {version : eqLogic.attr('data-version')};
+}
+if (eqLogics.length == 0){
+    return;
+}
+
+var paramsSpecifics = {
+    global: false,
+    success: function (result) {
+        for(var i in result){
+            var html = $(result[i].html);
+            var eqLogic = eqLogics[i].eqLogic;
             var uid = html.attr('data-eqLogic_uid');
             if(uid != 'undefined'){
-                $('.eqLogic[data-eqLogic_id=' + params.id + ']').attr('data-eqLogic_uid',uid);
-            }
-            $('.eqLogic[data-eqLogic_id=' + params.id + ']').empty().html(html.children());
-            var top =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('top');
-            var left =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('left');
-            var width =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('width');
-            var height =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('height');
-            var margin =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('margin');
-            var padding =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('padding');
-            var position =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('position');
-            var transform_origin =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('transform-origin');
-            var transform =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('transform');
-            var zindex =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('zindex');
-            $('.eqLogic[data-eqLogic_id=' + params.id + ']').attr("style", html.attr("style"));
-            $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('top',top);
-            $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('left',left);
-            $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('width',width);
-            $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('height',height);
-            $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('margin',margin);
-            $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('padding',padding);
-            $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('position',position);
-            $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('transform-origin',transform_origin);
-            $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('transform',transform);
-            $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('zindex',zindex);
-            $('.eqLogic[data-eqLogic_id=' + params.id + ']').trigger('change');
-            initTooltips();
-            if ($.mobile) {
-                $('.eqLogic[data-eqLogic_id=' + params.id + ']').trigger("create");
-                setTileSize('.eqLogic');
-            }else{
-                if (typeof editWidgetMode == 'function') {
-                   editWidgetMode(); 
-               }
-           }
-       }
-   };
-   try {
+             eqLogic.attr('data-eqLogic_uid',uid);
+         }
+         eqLogic.empty().html(html.children());
+         var top =  eqLogic.css('top');
+         var left =  eqLogic.css('left');
+         var width =  eqLogic.css('width');
+         var height =  eqLogic.css('height');
+         var margin =  eqLogic.css('margin');
+         var padding =  eqLogic.css('padding');
+         var position =  eqLogic.css('position');
+         var transform_origin =  eqLogic.css('transform-origin');
+         var transform =  eqLogic.css('transform');
+         var zindex =  eqLogic.css('zindex');
+         eqLogic.attr("style", html.attr("style"));
+         eqLogic.css('top',top);
+         eqLogic.css('left',left);
+         eqLogic.css('width',width);
+         eqLogic.css('height',height);
+         eqLogic.css('margin',margin);
+         eqLogic.css('padding',padding);
+         eqLogic.css('position',position);
+         eqLogic.css('transform-origin',transform_origin);
+         eqLogic.css('transform',transform);
+         eqLogic.css('zindex',zindex);
+         eqLogic.trigger('change');
+         initTooltips();
+         if ($.mobile) {
+            eqLogic.trigger("create");
+            setTileSize('.eqLogic');
+        }else{
+            if (typeof editWidgetMode == 'function') {
+             editWidgetMode(); 
+         }
+     }
+ }
+}
+};
+try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
 } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
@@ -359,11 +365,9 @@ var paramsAJAX = jeedom.private.getParamsAJAX(params);
 paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
 paramsAJAX.data = {
     action: 'toHtml',
-    id: _params.id,
-    version: _params.version || version
+    ids: json_encode(sends),
 };
 $.ajax(paramsAJAX);
-}
 };
 
 

@@ -56,16 +56,33 @@ try {
 	}
 
 	if (init('action') == 'toHtml') {
-		$eqLogic = eqLogic::byId(init('id'));
-		if (!is_object($eqLogic)) {
-			throw new Exception(__('Eqlogic inconnu verifié l\'id', __FILE__));
+		if (init('ids') != '') {
+			$return = array();
+			foreach (json_decode(init('ids'), true) as $id => $value) {
+				$eqLogic = eqLogic::byId($id);
+				if (!is_object($eqLogic)) {
+					continue;
+				}
+				$return[$eqLogic->getId()] = array(
+					'html' => $eqLogic->toHtml($value['version']),
+					'id' => $eqLogic->getId(),
+					'type' => $eqLogic->getEqType_name(),
+					'object_id' => $eqLogic->getObject_id(),
+				);
+			}
+			ajax::success($return);
+		} else {
+			$eqLogic = eqLogic::byId(init('id'));
+			if (!is_object($eqLogic)) {
+				throw new Exception(__('Eqlogic inconnu verifié l\'id', __FILE__));
+			}
+			$info_eqLogic = array();
+			$info_eqLogic['id'] = $eqLogic->getId();
+			$info_eqLogic['type'] = $eqLogic->getEqType_name();
+			$info_eqLogic['object_id'] = $eqLogic->getObject_id();
+			$info_eqLogic['html'] = $eqLogic->toHtml(init('version'));
+			ajax::success($info_eqLogic);
 		}
-		$info_eqLogic = array();
-		$info_eqLogic['id'] = $eqLogic->getId();
-		$info_eqLogic['type'] = $eqLogic->getEqType_name();
-		$info_eqLogic['object_id'] = $eqLogic->getObject_id();
-		$info_eqLogic['html'] = $eqLogic->toHtml(init('version'));
-		ajax::success($info_eqLogic);
 	}
 
 	if (init('action') == 'listByType') {
