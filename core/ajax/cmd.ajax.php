@@ -27,14 +27,29 @@ try {
 	ajax::init();
 
 	if (init('action') == 'toHtml') {
-		$cmd = cmd::byId(init('id'));
-		if (!is_object($cmd)) {
-			throw new Exception(__('Cmd inconnu - Vérifiez l\'id', __FILE__));
+		if (init('ids') != '') {
+			$return = array();
+			foreach (json_decode(init('ids'), true) as $id => $value) {
+				$cmd = cmd::byId($id);
+				if (!is_object($cmd)) {
+					continue;
+				}
+				$return[$cmd->getId()] = array(
+					'html' => $cmd->toHtml($value['version']),
+					'id' => $cmd->getId(),
+				);
+			}
+			ajax::success($return);
+		} else {
+			$cmd = cmd::byId(init('id'));
+			if (!is_object($cmd)) {
+				throw new Exception(__('Cmd inconnu - Vérifiez l\'id', __FILE__));
+			}
+			$info_cmd = array();
+			$info_cmd['id'] = $cmd->getId();
+			$info_cmd['html'] = $cmd->toHtml(init('version'), init('option'), init('cmdColor', null));
+			ajax::success($info_cmd);
 		}
-		$info_cmd = array();
-		$info_cmd['id'] = $cmd->getId();
-		$info_cmd['html'] = $cmd->toHtml(init('version'), init('option'), init('cmdColor', null));
-		ajax::success($info_cmd);
 	}
 
 	if (init('action') == 'execCmd') {

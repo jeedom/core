@@ -305,32 +305,36 @@ jeedom.cmd.test = function(_params) {
 };
 
 jeedom.cmd.refreshValue = function(_params) {
-    var cmd = $('.cmd[data-cmd_id=' + _params.id + ']');
-    if (cmd.html() != undefined && cmd.closest('.eqLogic').attr('data-version') != undefined && !cmd.hasClass('noRefresh')) {
-        var version = cmd.closest('.eqLogic').attr('data-version');
-        if(getUrlVars('p') == 'plan'){
-            version = 'dplan';
-        }else if(getUrlVars('p') == 'view'){
-            if(version == 'dashboard'){
-                version = 'dview';
-            }else{
-             version = 'mview';
-         }
-     }
-     var paramsRequired = ['id'];
-     var paramsSpecifics = {
+    var paramsRequired = [];
+    var cmds = {};
+    var sends = {};
+    for(var i in _params){
+        var cmd = $('.cmd[data-cmd_id=' + _params.cmd_id + ']');
+        if (cmd.html() == undefined || cmd.closest('.eqLogic').attr('data-version') == undefined || cmd.hasClass('noRefresh')) {
+            continue;
+        }
+        cmds[_params.cmd_id] = {cmd : cmd, version : cmd.closest('.eqLogic').attr('data-version')};
+        sends[_params.cmd_id] = {version : cmd.closest('.eqLogic').attr('data-version')};
+    }
+    if (cmds.lenght == 0){
+        return;
+    }
+    var paramsSpecifics = {
         global: false,
         success: function(result) {
-          var html = $(result.html);
-          var uid = html.attr('data-cmd_uid');
-          if(uid != 'undefined'){
-            cmd.attr('data-cmd_uid',uid);
-        }
-        cmd.show();
-        cmd.replaceWith(result.html); 
-        initTooltips();
-        if ($.mobile) {
-            $('.cmd[data-cmd_id=' + params.id + ']').trigger("create");
+         for(var i in result){
+            var cmd = cmds[i].cmd;
+            var html = $(result[i].html);
+            var uid = html.attr('data-cmd_uid');
+            if(uid != 'undefined'){
+                cmd.attr('data-cmd_uid',uid);
+            }
+            cmd.show();
+            cmd.replaceWith(result[i].html); 
+            initTooltips();
+            if ($.mobile) {
+                $('.cmd[data-cmd_id=' + params.id + ']').trigger("create");
+            }
         }
     }
 };
@@ -345,12 +349,10 @@ var paramsAJAX = jeedom.private.getParamsAJAX(params);
 paramsAJAX.url = 'core/ajax/cmd.ajax.php';
 paramsAJAX.data = {
     action: 'toHtml',
-    id: _params.id,
-    version: _params.version || version,
-    cache: _params.cache || 2,
+    ids: json_encode(sends),
 };
 $.ajax(paramsAJAX);
-}
+
 };
 
 jeedom.cmd.save = function(_params) {
