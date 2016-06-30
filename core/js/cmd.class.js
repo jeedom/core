@@ -305,6 +305,7 @@ jeedom.cmd.test = function(_params) {
 };
 
 jeedom.cmd.refreshValue = function(_params) {
+    console.log(_params);
     var paramsRequired = [];
     var cmds = {};
     var sends = {};
