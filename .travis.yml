@@ -4,6 +4,8 @@ php:
   - 5.6
   - 7.0
 install:
+  - sudo mkdir -p /var/www/html/log
+  - sudo chmod 777 -R /var/www/html/log
   - sudo apt-get update
   - sudo chmod +x install/install.sh
   - sudo install/install.sh -w /home/travis/build/jeedom/core -s 2
