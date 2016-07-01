@@ -23,36 +23,42 @@ class event {
 	/*     * *************************Attributs****************************** */
 
 	static $limit = 250;
+	private static $_fd = null;
 
 	/*     * ***********************Methode static*************************** */
 
+	public static function getFileDescriptorLock() {
+		if (self::$_fd == null) {
+			self::$_fd = fopen('/tmp/jeedom__event_cache_lock', 'w');
+			chmod('/tmp/jeedom__event_cache_lock', 0777);
+		}
+		return self::$_fd;
+	}
+
 	public static function add($_event, $_option = array()) {
 		$waitIfLocked = true;
-		$fp = fopen('/tmp/jeedom__event_cache_lock', 'w');
-		if (flock($fp, LOCK_EX, $waitIfLocked)) {
+		$fd = self::getFileDescriptorLock();
+		if (flock($fd, LOCK_EX, $waitIfLocked)) {
 			$cache = cache::byKey('event');
 			$value = json_decode($cache->getValue('[]'), true);
 			$value[] = array('datetime' => getmicrotime(), 'name' => $_event, 'option' => $_option);
 			cache::set('event', json_encode(array_slice($value, -self::$limit, self::$limit)), 0);
-			flock($fp, LOCK_UN);
+			flock($fd, LOCK_UN);
 		}
-		chmod('/tmp/jeedom__event_cache_lock', 0777);
 	}
 
 	public static function adds($_event, $_values = array()) {
-
 		$value = array();
 		foreach ($_values as $option) {
 			$value[] = array('datetime' => getmicrotime(), 'name' => $_event, 'option' => $option);
 		}
 		$waitIfLocked = true;
-		$fp = fopen('/tmp/jeedom__event_cache_lock', 'w');
-		if (flock($fp, LOCK_EX, $waitIfLocked)) {
+		$fd = self::getFileDescriptorLock();
+		if (flock($fd, LOCK_EX, $waitIfLocked)) {
 			$cache = cache::byKey('event');
 			cache::set('event', json_encode(array_slice(array_merge(json_decode($cache->getValue('[]'), true), $value), -self::$limit, self::$limit)), 0);
-			flock($fp, LOCK_UN);
+			flock($fd, LOCK_UN);
 		}
-		chmod('/tmp/jeedom__event_cache_lock', 0777);
 	}
 
 	public static function changes($_datetime, $_longPolling = null) {
