@@ -332,10 +332,10 @@ class jeedom {
 		if (strtotime('now') < $mindate || strtotime('now') > $maxdate) {
 			jeedom::forceSyncHour();
 			sleep(3);
-		}
-		if (strtotime('now') < $mindate || strtotime('now') > $maxdate) {
-			log::add('core', 'error', __('La date du système est incorrect (avant 2016-01-01 ou après 2019-01-01) : ', __FILE__) . date('Y-m-d H:i:s'), 'dateCheckFailed');
-			return false;
+			if (strtotime('now') < $mindate || strtotime('now') > $maxdate) {
+				log::add('core', 'error', __('La date du système est incorrect (avant 2016-01-01 ou après 2019-01-01) : ', __FILE__) . date('Y-m-d H:i:s'), 'dateCheckFailed');
+				return false;
+			}
 		}
 		return true;
 	}
