@@ -136,26 +136,26 @@ class message {
 					AND (logicalId=:logicalId
 						OR message=:message)';
 		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-		if ($result['count(*)'] == 0) {
-			if ($_writeMessage) {
-				DB::save($this);
-				$cmds = explode(('&&'), config::byKey('emailAdmin'));
-				if (count($cmds) > 0 && trim(config::byKey('emailAdmin')) != '') {
-					foreach ($cmds as $id) {
-						$cmd = cmd::byId(str_replace('#', '', $id));
-						if (is_object($cmd)) {
-							$cmd->execCmd(array(
-								'title' => __('[' . config::byKey('name', 'core', 'JEEDOM') . '] Message de ', __FILE__) . $this->getPlugin(),
-								'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $this->getMessage(),
-							));
-						}
+		if ($result['count(*)'] != 0) {
+			return;
+		}
+		event::add('notify', array('title' => __('Message de ', __FILE__) . $this->getPlugin(), 'message' => $this->getMessage(), 'category' => 'message'));
+		if ($_writeMessage) {
+			DB::save($this);
+			$cmds = explode(('&&'), config::byKey('emailAdmin'));
+			if (count($cmds) > 0 && trim(config::byKey('emailAdmin')) != '') {
+				foreach ($cmds as $id) {
+					$cmd = cmd::byId(str_replace('#', '', $id));
+					if (is_object($cmd)) {
+						$cmd->execCmd(array(
+							'title' => __('[' . config::byKey('name', 'core', 'JEEDOM') . '] Message de ', __FILE__) . $this->getPlugin(),
+							'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $this->getMessage(),
+						));
 					}
 				}
 			}
-			event::add('notify', array('title' => __('Message de ', __FILE__) . $this->getPlugin(), 'message' => $this->getMessage(), 'category' => 'message'));
 			event::add('message::refreshMessageNumber');
 		}
-
 	}
 
 	public function remove() {
