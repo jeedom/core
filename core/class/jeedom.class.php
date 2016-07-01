@@ -328,21 +328,15 @@ class jeedom {
 			return true;
 		}
 		$maxdate = strtotime('2019-01-01 00:00:00');
-		$mindate = strtotime('2015-01-01 00:00:00');
-		$cachetime = cache::byKey('jeedom::currentHour');
-		if ($cachetime->getValue() !== null && $cachetime->getValue() <= strtotime('now') && strtotime('now') > $mindate && strtotime('now') < $maxdate) {
-			cache::set('jeedom::currentHour', strtotime('now'));
-			return true;
-		}
+		$mindate = strtotime('2016-01-01 00:00:00');
 		if (strtotime('now') < $mindate || strtotime('now') > $maxdate) {
 			jeedom::forceSyncHour();
 			sleep(3);
 		}
 		if (strtotime('now') < $mindate || strtotime('now') > $maxdate) {
-			log::add('core', 'error', __('La date du système est incorrect (avant 2014-01-01 ou après 2019-01-01) : ', __FILE__) . date('Y-m-d H:i:s'), 'dateCheckFailed');
+			log::add('core', 'error', __('La date du système est incorrect (avant 2016-01-01 ou après 2019-01-01) : ', __FILE__) . date('Y-m-d H:i:s'), 'dateCheckFailed');
 			return false;
 		}
-		cache::set('jeedom::currentHour', strtotime('now'));
 		return true;
 	}
 
