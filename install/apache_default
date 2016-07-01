@@ -2,7 +2,7 @@
         ServerAdmin webmaster@localhost
         DocumentRoot /var/www/html
         ErrorLog /var/www/html/log/http.error
-        IncludeOptional /etc/apache2/jeedom.conf/*.conf 
+        IncludeOptional jeedom.conf/*.conf 
 </VirtualHost>
 
 # vim: syntax=apache ts=4 sw=4 sts=4 sr noet
