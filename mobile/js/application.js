@@ -105,7 +105,7 @@ function initApplication(_reinit) {
                 /*************Initialisation environement********************/
                 serverDatetime  = data.result.serverDatetime ;
                 var clientDatetime = new Date();
-                clientServerDiffDatetime = serverDatetime - clientDatetime.getTime();
+                clientServerDiffDatetime = serverDatetime*1000 - clientDatetime.getTime();
                 user_id = data.result.user_id;
                 plugins = data.result.plugins;
                 userProfils = data.result.userProfils;
