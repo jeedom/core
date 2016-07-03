@@ -436,6 +436,9 @@ class plugin {
 			}
 		}
 		if ($return['state'] == 'in_progress') {
+			if (config::byKey('lastDependancyInstallTime', $plugin_id) == '') {
+				config::save('lastDependancyInstallTime', date('Y-m-d H:i:s'), $plugin_id);
+			}
 			$return['duration'] = round((strtotime('now') - strtotime(config::byKey('lastDependancyInstallTime', $plugin_id))) / 60);
 		} else {
 			$return['duration'] = -1;
