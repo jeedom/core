@@ -166,7 +166,11 @@ class config {
 		$key = '';
 		$chaine = "abcdefghijklmnpqrstuvwxy1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		for ($i = 0; $i < $_car; $i++) {
-			$key .= $chaine[random_int(0, strlen($chaine) - 1)];
+			if (function_exists('random_int')) {
+				$key .= $chaine[random_int(0, strlen($chaine) - 1)];
+			} else {
+				$key .= $chaine[rand(0, strlen($chaine) - 1)];
+			}
 		}
 		return $key;
 	}
