@@ -1106,10 +1106,18 @@ class scenarioExpression {
 					}
 					$this->setLog($scenario, __('Réponse ', __FILE__) . $value);
 					return;
-				} else if ($this->getExpression() == 'jeedom::poweroff') {
+				} else if ($this->getExpression() == 'jeedom_poweroff') {
 					$this->setLog($scenario, __('Lancement de l\'arret de jeedom', __FILE__));
 					$scenario->persistLog();
 					jeedom::haltSystem();
+					return;
+				} else if ($this->getExpression() == 'scenario_return') {
+					$this->setLog($scenario, __('Demande de retour d\'information : ', __FILE__) . $options['message']);
+					if ($scenario->getReturn() === true) {
+						$scenario->setReturn($options['message']);
+					} else {
+						$scenario->setReturn($scenario->getReturn() . ' ' . $options['message']);
+					}
 					return;
 				} else {
 					$cmd = cmd::byId(str_replace('#', '', $this->getExpression()));

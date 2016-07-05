@@ -329,6 +329,8 @@ En plus des commandes domotiques vous avez accès aux actions suivantes :
 * *log* : permet de rajouter un message dans les logs
 * *message* : permet d'ajouter un message dans le centre de message
 * *equipement* : permet de modifier les propriétés visible/invisible actif/inactif d'un équipement
+* *jeedom_poweroff* : demande à Jeedom de s'éteindre
+* *scenario_return* : Retour un texte ou une valeur pour une intéraction par exemple
 * *ask* : permet d'indiquer à jeedom qu'il faut poser une question à l'utilisateur. La réponse est stockée dans une variable, il suffit ensuite de tester sa valeur. Pour le moment seul les plugins sms et slack sont compatibles. Attention l'action ask est bloquante, tant qu'il n'y a pas de réponse ou que le timeout n'est pas atteint le scénario attend. Voila un exemple d'utilisation : 
 
 image::../images/scenario20.JPG[]

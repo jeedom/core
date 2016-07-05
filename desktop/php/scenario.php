@@ -27,8 +27,8 @@ if (config::byKey('enableScenario') == 0) {
 	echo '<a class="btn btn-sm btn-danger expertModeVisible" id="bt_changeAllScenarioState" data-state="0" style="width : 48%;min-width : 127px;margin-top : 3px;text-shadow: none;" ><i class="fa fa-times"></i> {{Désac. scénarios}}</a>';
 }
 ?>
-             </div>
-             <div class="col-xs-6">
+               </div>
+               <div class="col-xs-6">
                 <a class="btn btn-default btn-sm tooltips expertModeVisible" id="bt_displayScenarioVariable" title="{{Voir toutes les variables des scénarios}}" style="margin-top : 3px;text-shadow: none;"><i class="fa fa fa-eye"></i> {{Voir variables}}</a>
             </div>
         </center>
@@ -39,18 +39,18 @@ if (config::byKey('enableScenario') == 0) {
             <ul id="ul_scenario" >
                 <?php if (count($scenarios[-1]) > 0) {
 	?>
-                <li data-jstree='{"opened":true}'>
+                   <li data-jstree='{"opened":true}'>
                     <a>Aucune</a>
                     <ul>
-                    <?php
+                        <?php
 foreach ($scenarios[-1] as $scenario) {
 		echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
 		echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-scenario_id="' . $scenario->getId() . '" title="{{Scénario ID :}} ' . $scenario->getId() . '">' . $scenario->getHumanName(false, true) . '</a>';
 		echo '</li>';
 	}
 	?>
-             </ul>
-             <?php
+                  </ul>
+                  <?php
 }
 foreach ($scenarioListGroup as $group) {
 	if ($group['group'] != '') {
@@ -67,54 +67,54 @@ foreach ($scenarioListGroup as $group) {
 	}
 }
 ?>
-</ul>
-</div>
+     </ul>
+ </div>
 </div>
 </div>
 
 <div id="scenarioThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
 
- <div class="scenarioListContainer">
-     <legend>{{Gestion}}</legend>
-     <div class="cursor" id="bt_addScenario2" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-       <center>
-        <i class="fa fa-plus-circle" style="font-size : 6em;color:#94ca02;"></i>
-    </center>
-    <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>{{Ajouter}}</center></span>
-</div>
-<?php if (config::byKey('enableScenario') == 0) {?>
-    <div class="cursor expertModeVisible" id="bt_changeAllScenarioState2" data-state="1" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-       <center>
-           <i class="fa fa-check" style="font-size : 6em;color:#5cb85c;"></i>
-       </center>
-       <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#5cb85c"><center>{{Activer scénarios}}</center></span>
-   </div>
-   <?php } else {?>
-   <div class="cursor expertModeVisible" id="bt_changeAllScenarioState2" data-state="0" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-       <center>
-           <i class="fa fa-times" style="font-size : 6em;color:#d9534f;"></i>
-       </center>
-       <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#d9534f"><center>{{Désactiver scénarios}}</center></span>
-   </div>
-   <?php }
+   <div class="scenarioListContainer">
+       <legend>{{Gestion}}</legend>
+       <div class="cursor" id="bt_addScenario2" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+         <center>
+            <i class="fa fa-plus-circle" style="font-size : 6em;color:#94ca02;"></i>
+        </center>
+        <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>{{Ajouter}}</center></span>
+    </div>
+    <?php if (config::byKey('enableScenario') == 0) {?>
+        <div class="cursor expertModeVisible" id="bt_changeAllScenarioState2" data-state="1" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+         <center>
+             <i class="fa fa-check" style="font-size : 6em;color:#5cb85c;"></i>
+         </center>
+         <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#5cb85c"><center>{{Activer scénarios}}</center></span>
+     </div>
+     <?php } else {?>
+         <div class="cursor expertModeVisible" id="bt_changeAllScenarioState2" data-state="0" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+             <center>
+                 <i class="fa fa-times" style="font-size : 6em;color:#d9534f;"></i>
+             </center>
+             <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#d9534f"><center>{{Désactiver scénarios}}</center></span>
+         </div>
+         <?php }
 ?>
 
-   <div class="cursor expertModeVisible" id="bt_displayScenarioVariable2" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-       <center>
-        <i class="fa fa-eye" style="font-size : 6em;color:#337ab7;"></i>
-    </center>
-    <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Voir variables}}</center></span>
-</div>
+         <div class="cursor expertModeVisible" id="bt_displayScenarioVariable2" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+             <center>
+                <i class="fa fa-eye" style="font-size : 6em;color:#337ab7;"></i>
+            </center>
+            <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Voir variables}}</center></span>
+        </div>
 
-   <div class="cursor expertModeVisible bt_showScenarioSummary" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-       <center>
-        <i class="fa fa-list" style="font-size : 6em;color:#337ab7;"></i>
-    </center>
-    <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Vue d'ensemble}}</center></span>
-</div>
+        <div class="cursor expertModeVisible bt_showScenarioSummary" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+         <center>
+            <i class="fa fa-list" style="font-size : 6em;color:#337ab7;"></i>
+        </center>
+        <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Vue d'ensemble}}</center></span>
+    </div>
 
-   <div class="cursor expertModeVisible bt_showExpressionTest" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-       <center>
+    <div class="cursor expertModeVisible bt_showExpressionTest" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+     <center>
         <i class="fa fa-check" style="font-size : 6em;color:#337ab7;"></i>
     </center>
     <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Testeur d'expression}}</center></span>
@@ -212,10 +212,10 @@ foreach (object::all() as $object) {
 	echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
 }
 ?>
-                         </select>
-                     </div>
-                 </div>
-                 <div class="form-group expertModeVisible">
+                           </select>
+                       </div>
+                   </div>
+                   <div class="form-group expertModeVisible">
                     <label class="col-xs-6 control-label">{{Timeout secondes (0 = illimité)}}</label>
                     <div class="col-xs-6">
                         <input class="form-control scenarioAttr input-sm" data-l1key="timeout">
@@ -264,7 +264,7 @@ foreach (object::all() as $object) {
                     <textarea class="form-control scenarioAttr" data-l1key="description" placeholder="Description"></textarea>
                 </div>
             </div>
-             <div class="form-group expertModeVisible">
+            <div class="form-group expertModeVisible">
                 <label class="col-xs-6 control-label">{{Autoriser plusieurs lancement en parallèle}}</label>
                 <div class="col-xs-1">
                     <input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="allowMultiInstance" title="{{Le scénario pourra tourné plusieurs fois en même temps}}">
@@ -276,7 +276,7 @@ foreach (object::all() as $object) {
                     <input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="noLog" title="{{Le scénario n'écrit plus de log}}">
                 </div>
             </div>
-             <div class="form-group expertModeVisible">
+            <div class="form-group expertModeVisible">
                 <label class="col-xs-6 control-label">{{Mode synchrone}}</label>
                 <div class="col-xs-1">
                     <input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="syncmode" title="{{Le scénario est mode synchrone, attention peux rendre le système instable}}">
@@ -358,14 +358,14 @@ foreach (object::all() as $object) {
                 </div>
 
                 <div class="alert alert-info addElementTypeDescription in" style="display:none;">
-                 Permet de faire une action dans X min. Par exemple : Dans 5 min éteindre la lumière.
-             </div>
+                   Permet de faire une action dans X min. Par exemple : Dans 5 min éteindre la lumière.
+               </div>
 
-             <div class="alert alert-info addElementTypeDescription at" style="display:none;">
-                 A un temps précis, cet élément permet de lancer une action. Par exemple : A 9h30 ouvrir les volets.
-             </div>
+               <div class="alert alert-info addElementTypeDescription at" style="display:none;">
+                   A un temps précis, cet élément permet de lancer une action. Par exemple : A 9h30 ouvrir les volets.
+               </div>
 
-             <div class="alert alert-info addElementTypeDescription code" style="display:none;">
+               <div class="alert alert-info addElementTypeDescription code" style="display:none;">
                 Cet élément permet de rajouter dans votre scénario de la programmation à l’aide d’un code, PHP/Shell etc...
             </div>
 
@@ -397,12 +397,13 @@ foreach (object::all() as $object) {
                         <option value="scenario">{{Scénario}}</option>
                         <option value="stop">{{Stop}}</option>
                         <option value="wait">{{Attendre}}</option>
-                        <option value="return">{{Retourner}}</option>
                         <option value="gotodesign">{{Aller au design}}</option>
                         <option value="log">{{Ajouter un log}}</option>
                         <option value="message">{{Creer un message}}</option>
                         <option value="equipement">{{Activer/Desactiver Masquer/Afficher un équipement}}</option>
                         <option value="ask">{{Faire une demande}}</option>
+                        <option value="jeedom_poweroff">{{Arrêter Jeedom}}</option>
+                        <option value="scenario_return">{{Retourner un texte/une données}}</option>
                     </select>
                 </center>
                 <br/>
@@ -423,15 +424,11 @@ foreach (object::all() as $object) {
                 </div>
 
                 <div class="alert alert-info sel_otherActionDescription stop" style="display:none;">
-                   {{Arrête le scénario}}
-               </div>
+                 {{Arrête le scénario}}
+             </div>
 
-               <div class="alert alert-info sel_otherActionDescription say" style="display:none;">
+             <div class="alert alert-info sel_otherActionDescription say" style="display:none;">
                 {{Permet de faire dire un texte à Jeedom (ne marche que si un onglet jeedom est ouvert dans le navigateur)}}
-            </div>
-
-            <div class="alert alert-info sel_otherActionDescription return" style="display:none;">
-                {{Retourne un message à la fin du scénario. Cela ne sert que pour retourner un message spécifique suite à une intération. Attention à bien cocher la case "Exécuter le plus rapidement possible" pour que ça fonctionne.}}
             </div>
 
             <div class="alert alert-info sel_otherActionDescription gotodesign" style="display:none;">
@@ -439,14 +436,14 @@ foreach (object::all() as $object) {
             </div>
 
             <div class="alert alert-info sel_otherActionDescription log" style="display:none;">
-               {{Permet de rajouter un message dans les logs}}
-           </div>
+             {{Permet de rajouter un message dans les logs}}
+         </div>
 
-           <div class="alert alert-info sel_otherActionDescription message" style="display:none;">
-               {{Permet d'ajouter une message dans le centre de message}}
-           </div>
+         <div class="alert alert-info sel_otherActionDescription message" style="display:none;">
+             {{Permet d'ajouter une message dans le centre de message}}
+         </div>
 
-           <div class="alert alert-info sel_otherActionDescription equipement" style="display:none;">
+         <div class="alert alert-info sel_otherActionDescription equipement" style="display:none;">
             {{Permet de modifier les prorietés visible/invisible actif/inactif d'un équipement}}
         </div>
 
@@ -454,6 +451,13 @@ foreach (object::all() as $object) {
             {{Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finie que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec le plugin SMS, Slack et SARAH.}}
         </div>
 
+        <div class="alert alert-info sel_otherActionDescription jeedom_poweroff" style="display:none;">
+            {{Envoi l'ordre à Jeedom de s'éteindre}}
+        </div>
+
+        <div class="alert alert-info sel_otherActionDescription scenario_return" style="display:none;">
+            {{Retour un texte ou une valeur pour une intéraction par exemple}}
+        </div>
     </div>
     <div class="modal-footer">
         <a class="btn btn-default" data-dismiss="modal">{{Annuler}}</a>

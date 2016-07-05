@@ -45,6 +45,7 @@ class scenario {
 	private $_elements = array();
 	private $_changeState = false;
 	private $_realTrigger = '';
+	private $_return = true;
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -555,7 +556,8 @@ class scenario {
 			return false;
 		}
 		if ($this->getConfiguration('syncmode') == 1) {
-			$this->execute($_trigger, $_message);
+			$this->setLog(__('Lancement du scénario en mode synchrone', __FILE__));
+			return $this->execute($_trigger, $_message);
 		} else {
 			$cmd = dirname(__FILE__) . '/../../core/php/jeeScenario.php ';
 			$cmd .= ' scenario_id=' . $this->getId();
@@ -602,7 +604,7 @@ class scenario {
 			$this->setIsActive($scenario->getIsActive());
 		}
 		$this->save();
-		return true;
+		return $this->getReturn();
 	}
 
 	public function copy($_name) {
@@ -713,6 +715,9 @@ class scenario {
 		}
 		if (($this->getMode() == 'schedule' || $this->getMode() == 'all') && $this->getSchedule() == '') {
 			throw new Exception(__('Le scénario est de type programmé mais la programmation est vide', __FILE__));
+		}
+		if ($this->getConfiguration('has_return', 0) == 1) {
+			$this->setConfiguration('syncmode', 1);
 		}
 	}
 
@@ -1336,6 +1341,14 @@ class scenario {
 
 	public function setRealTrigger($_realTrigger) {
 		$this->_realTrigger = $_realTrigger;
+	}
+
+	public function getReturn() {
+		return $this->_return;
+	}
+
+	public function setReturn($_return) {
+		$this->_return = $_return;
 	}
 
 }

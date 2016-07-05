@@ -296,10 +296,17 @@ try {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 		$time_dependance = 0;
-		$time_keyword = array('#time#', '#seconde#', '#heure#', '#minute#', '#jour#', '#mois#', '#annee#', '#timestamp#', '#date#', '#semaine#', '#sjour#', '#njour#', '#smois#');
-		foreach ($time_keyword as $keyword) {
+		foreach (array('#time#', '#seconde#', '#heure#', '#minute#', '#jour#', '#mois#', '#annee#', '#timestamp#', '#date#', '#semaine#', '#sjour#', '#njour#', '#smois#') as $keyword) {
 			if (strpos(init('scenario'), $keyword) !== false) {
 				$time_dependance = 1;
+				break;
+			}
+		}
+
+		$has_return = 0;
+		foreach (array('scenario_return') as $keyword) {
+			if (strpos(init('scenario'), $keyword) !== false) {
+				$has_return = 1;
 				break;
 			}
 		}
@@ -319,6 +326,7 @@ try {
 		$scenario_db->setSchedule(array());
 		utils::a2o($scenario_db, $scenario_ajax);
 		$scenario_db->setConfiguration('timeDependency', $time_dependance);
+		$scenario_db->setConfiguration('has_return', $has_return);
 		$scenario_db->save();
 		$scenario_element_list = array();
 		if (isset($scenario_ajax['elements'])) {

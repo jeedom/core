@@ -51,7 +51,7 @@
  {val: 'collectDate(cmd)'},
  {val: 'eqEnable(equipement)'}
  ];
- autoCompleteAction = ['sleep', 'variable', 'scenario', 'stop', 'wait','gotodesign','log','message','equipement','ask','jeedom::poweroff'];
+ autoCompleteAction = ['sleep', 'variable', 'scenario', 'stop', 'wait','gotodesign','log','message','equipement','ask','jeedom_poweroff','scenario_return'];
 
  if (getUrlVars('saveSuccessFull') == 1) {
   $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
