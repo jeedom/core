@@ -207,7 +207,7 @@ class scenario {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function check($_event = null) {
+	public static function check($_event = null, $_forceSyncMode = false) {
 		$message = '';
 		if ($_event != null) {
 			if (is_object($_event)) {
@@ -240,7 +240,7 @@ class scenario {
 			return true;
 		}
 		foreach ($scenarios as $scenario_) {
-			$scenario_->launch($trigger, $message);
+			$scenario_->launch($trigger, $message, $_forceSyncMode);
 		}
 		return true;
 	}
@@ -551,11 +551,11 @@ class scenario {
 
 /*     * *********************Méthodes d'instance************************* */
 
-	public function launch($_trigger = '', $_message = '') {
+	public function launch($_trigger = '', $_message = '', $_forceSyncMode = false) {
 		if (config::byKey('enableScenario') != 1 || $this->getIsActive() != 1) {
 			return false;
 		}
-		if ($this->getConfiguration('syncmode') == 1) {
+		if ($this->getConfiguration('syncmode') == 1 || $_forceSyncMode) {
 			$this->setLog(__('Lancement du scénario en mode synchrone', __FILE__));
 			return $this->execute($_trigger, $_message);
 		} else {
