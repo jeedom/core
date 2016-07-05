@@ -307,6 +307,9 @@ class interactDef {
 		if ($this->getOptions('allowSyntaxCheck') === '') {
 			$this->setOptions('allowSyntaxCheck', 1);
 		}
+		if ($this->getReply() == '') {
+			$this->setReply('#valeur#');
+		}
 	}
 
 	public function save() {
