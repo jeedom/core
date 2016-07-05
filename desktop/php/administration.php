@@ -338,10 +338,8 @@ echo $CONFIG['db']['password'];
             <form class="form-horizontal">
                 <fieldset>
                     <div class="alert alert-warning">{{Attention : cette configuration n'est là que pour informer Jeedom de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre Jeedom}}</div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                         <legend>{{Accès interne}}</legend>
-                         <?php
+                    <legend>{{Accès interne}}</legend>
+                    <?php
 if (config::byKey('jeeNetwork::mode') == 'slave') {
 	echo '<div class="form-group expertModeVisible">';
 	echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{IP Maître}}</label>';
@@ -351,85 +349,73 @@ if (config::byKey('jeeNetwork::mode') == 'slave') {
 	echo '</div>';
 }
 ?>
-                       <div class="form-group">
-                        <label class="col-xs-3 control-label">{{Protocole}}</label>
-                        <div class="col-xs-3">
+                   <div class="form-group">
+                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Protocole}}</label>
+                    <div class="col-lg-8 col-md-9 col-sm-8 col-xs-6">
+                        <div class="input-group">
                             <select class="configKey form-control" data-l1key="internalProtocol">
                                 <option value="">Aucun</option>
                                 <option value="http://">HTTP</option>
                                 <option value="https://">HTTPS</option>
                             </select>
-                        </div>
-                        <label class="col-xs-3 control-label">{{Port}}</label>
-                        <div class="col-xs-3">
-                            <input type="number"class="configKey form-control" data-l1key="internalPort" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-xs-3 control-label">{{Adresse IP}}</label>
-                        <div class="col-xs-3">
+                            <span class="input-group-addon">://</span>
                             <input type="text" class="configKey form-control" data-l1key="internalAddr" />
-                        </div>
-                        <label class="col-xs-3 control-label">{{Complément}}</label>
-                        <div class="col-xs-3">
+                            <span class="input-group-addon">:</span>
+                            <input type="number"class="configKey form-control" data-l1key="internalPort" />
+                            <span class="input-group-addon">/</span>
                             <input type="text" class="configKey form-control" data-l1key="internalComplement" />
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-xs-3 control-label">{{Statut}}</label>
-                        <div class="col-xs-8">
-                          <?php
+                </div>
+
+                <div class="form-group">
+                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Statut}}</label>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <?php
 if (network::test('internal')) {
 	echo '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
 } else {
 	echo '<span class="label label-warning tooltips">{{NOK}}</span>';
 }
 ?>
-                   </div>
                </div>
            </div>
-           <div class="col-sm-6">
-            <legend>{{Accès externe}}</legend>
-            <div class="form-group">
-                <label class="col-xs-3 control-label">{{Protocole}}</label>
-                <div class="col-xs-3">
+
+
+           <legend>{{Accès externe}}</legend>
+           <div class="form-group">
+            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Protocole}}</label>
+            <div class="col-lg-8 col-md-9 col-sm-8 col-xs-6">
+                <div class="input-group">
                     <select class="configKey form-control" data-l1key="externalProtocol">
                         <option value="">Aucun</option>
                         <option value="http://">HTTP</option>
                         <option value="https://">HTTPS</option>
                     </select>
-                </div>
-                <label class="col-xs-3 control-label">{{Port}}</label>
-                <div class="col-xs-3">
-                    <input type="number" class="configKey form-control" data-l1key="externalPort" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-xs-3 control-label">{{Adresse URL ou IP}}</label>
-                <div class="col-xs-3">
+                    <span class="input-group-addon">://</span>
                     <input type="text" class="configKey form-control" data-l1key="externalAddr" />
-                </div>
-                <label class="col-xs-3 control-label">{{Complément}}</label>
-                <div class="col-xs-3">
-                    <input type="text"  class="configKey form-control" data-l1key="externalComplement" />
+                    <span class="input-group-addon">:</span>
+                    <input type="number"class="configKey form-control" data-l1key="externalPort" />
+                    <span class="input-group-addon">/</span>
+                    <input type="text" class="configKey form-control" data-l1key="externalComplement" />
                 </div>
             </div>
-            <div class="form-group">
-                <label class="col-xs-3 control-label">{{Statut}}</label>
-                <div class="col-xs-3">
-                  <?php
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Statut}}</label>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+              <?php
 if (network::test('external')) {
 	echo '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
 } else {
 	echo '<span class="label label-warning tooltips">{{NOK}}</span>';
 }
 ?>
-           </div>
        </div>
    </div>
-</div>
 
-<div class="row">
+
+   <div class="row">
     <div class="col-sm-6">
         <legend>{{Gestion avancée}}</legend>
         <div class="form-group expertModeVisible has-error">
@@ -717,12 +703,12 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
                                     <a class="btn btn-warning" id="bt_flushMemcache"><i class="fa fa-trash"></i> {{Vider}}</a>
                                 </div>
                             </div>
-                             <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Temps de pause pour le long polling}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input class="configKey form-control" data-l1key="event::waitPollingTime"/>
+                            <div class="form-group">
+                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Temps de pause pour le long polling}}</label>
+                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                    <input class="configKey form-control" data-l1key="event::waitPollingTime"/>
+                                </div>
                             </div>
-                        </div>
                         </fieldset>
                     </form>
                 </div>
@@ -1038,17 +1024,17 @@ foreach (plugin::listPlugin(true) as $plugin) {
     </div>
     <div id="configuration_market" class="panel-collapse collapse">
         <div class="panel-body">
-<div class="row">
-        <div class="col-sm-6">
-            <form class="form-horizontal">
-                <fieldset>
-                    <legend>{{Mise à jour de jeedom}}</legend>
-                    <div class="form-group">
-                        <label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Source de mise à jour}}</label>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                            <select class="configKey form-control" data-l1key="core::repo::provider">
-                               <option value="default">{{Défaut}}</option>
-                               <?php
+            <div class="row">
+                <div class="col-sm-6">
+                    <form class="form-horizontal">
+                        <fieldset>
+                            <legend>{{Mise à jour de jeedom}}</legend>
+                            <div class="form-group">
+                                <label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Source de mise à jour}}</label>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <select class="configKey form-control" data-l1key="core::repo::provider">
+                                       <option value="default">{{Défaut}}</option>
+                                       <?php
 foreach (update::listRepo() as $key => $value) {
 	if (!isset($value['scope']['core']) || $value['scope']['core'] == false) {
 		continue;
@@ -1060,31 +1046,31 @@ foreach (update::listRepo() as $key => $value) {
 
 }
 ?>
-                          </select>
-                      </div>
-                  </div>
-                  <div class="form-group expertModeVisible">
-                    <label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Faire une sauvegarde avant la mise à jour}}</label>
-                    <div class="col-sm-1">
-                        <input type="checkbox" class="configKey" data-l1key="update::backupBefore"/>
-                    </div>
-                </div>
-                <div class="form-group expertModeVisible">
-                    <label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Vérifier automatiquement si il y a des mises à jour}}</label>
-                    <div class="col-sm-1">
-                        <input type="checkbox" class="configKey" data-l1key="update::autocheck"/>
-                    </div>
-                    </div>
-            </fieldset>
-        </form>
-        </div>
+                                  </select>
+                              </div>
+                          </div>
+                          <div class="form-group expertModeVisible">
+                            <label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Faire une sauvegarde avant la mise à jour}}</label>
+                            <div class="col-sm-1">
+                                <input type="checkbox" class="configKey" data-l1key="update::backupBefore"/>
+                            </div>
+                        </div>
+                        <div class="form-group expertModeVisible">
+                            <label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Vérifier automatiquement si il y a des mises à jour}}</label>
+                            <div class="col-sm-1">
+                                <input type="checkbox" class="configKey" data-l1key="update::autocheck"/>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
 
-<div class="col-sm-6">
-          <form class="form-horizontal">
+            <div class="col-sm-6">
+              <form class="form-horizontal">
                 <fieldset>
 
-        <ul class="nav nav-tabs" role="tablist">
-            <?php
+                    <ul class="nav nav-tabs" role="tablist">
+                        <?php
 foreach (update::listRepo() as $key => $value) {
 	if ($key == 'github' && config::byKey('market::allowBeta') != 1 && config::byKey('market::allowAllRepo') != 1) {
 		continue;
@@ -1093,9 +1079,9 @@ foreach (update::listRepo() as $key => $value) {
 	echo '<li role="presentation" class="' . $active . '"><a href="#tab' . $key . '" aria-controls="tab' . $key . '" role="tab" data-toggle="tab">' . $value['name'] . '</a></li>';
 }
 ?>
-       </ul>
-       <div class="tab-content">
-        <?php
+                  </ul>
+                  <div class="tab-content">
+                    <?php
 foreach (update::listRepo() as $key => $value) {
 	$active = ($key == 'market') ? 'active' : '';
 	echo '<div role="tabpanel" class="tab-pane ' . $active . '" id="tab' . $key . '">';
@@ -1147,10 +1133,10 @@ foreach (update::listRepo() as $key => $value) {
 	echo '</div>';
 }
 ?>
-    </fieldset>
-        </form>
-        </div>
-         </div>
+          </fieldset>
+      </form>
+  </div>
+</div>
 </div>
 
 </div>
