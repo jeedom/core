@@ -15,10 +15,11 @@ image::../images/administration1.png[]
 
 Dans cet onglet on retrouve des informations générales sur Jeedom : 
 
+* *Nom de votre Jeedom* : peut etre réutilisé dans les scénarios ou permettre d'identifier un backup
 * *Clef API* : votre clef API, à utiliser pour toute requête vers l'API Jeedom
+* *Clef API Pro* : utilisé pour communiquer avec le systeme de gestion de parc
 * *Système* : type de votre hardware
-* *Clef hardware* : clef hardware de votre Jeedom sur le market. Si votre Jeedom n'apparait pas dans la liste de vos Jeedom sur le market il est conseillé de cliquer sur ce bouton
-* *Commande d'information utilisateur* : permet de spécifier une commande de type message qui sera utilisée par Jeedom pour vous communiquer des messages importants. Vous pouvez indiquer plusieurs commandes séparées par des &&
+* *Clef d'installation* : clef hardware de votre Jeedom sur le market. Si votre Jeedom n'apparait pas dans la liste de vos Jeedom sur le market il est conseillé de cliquer sur ce bouton
 * *Langue* : Langue de votre Jeedom
 * *Durée de vie des sessions (heure)* : durée de vie des sessions PHP, il est conseillé de ne pas y toucher
 * *Date et heure* : votre fuseau horaire
@@ -28,7 +29,7 @@ Dans cet onglet on retrouve des informations générales sur Jeedom :
 
 == Composants Jeedom
 
-image::../images/administration11.png[]
+image::../images/administration12.png[]
 
 Cette partie permet d'activer/désactiver certains composants du core jeedom : 
 
@@ -64,9 +65,9 @@ Partie très importante dans Jeedom, il faut absolument la configurer correcteme
 ** *Statut* : Indique si la configuration réseau externe est correcte
 * *Gestion avancée* : peut ne pas apparaitre en fonction de la compatibilité avec votre matériel
 ** *Désactiver la gestion du réseaux par Jeedom* : indique à Jeedom de ne pas monitorer le réseau (à activer si jeedom n'est connecté à aucun réseau)
-* *DNS Jeedom* : permet un accès distant à votre Jeedom sans avoir besoin d'un DNS, d'une IP fixe ou d'ouvrir les ports de votre box
+* *Proxy market* : permet un accès distant à votre Jeedom sans avoir besoin d'un DNS, d'une IP fixe ou d'ouvrir les ports de votre box
 ** *Utiliser les DNS Jeedom* : active les DNS Jeedom (attention cela nécessite au moins un service pack)
-** *Statut http* : statut du DNS http
+** *Statut DNS* : statut du DNS http
 ** *Gestion* : permet d'arrêter et relancer le service DNS
 
 [TIP]
@@ -93,6 +94,8 @@ En cliquant sur la couleur une fenêtre s'ouvre, permettant de choisir sa couleu
 
 image::../images/display7.png[]
 
+Vous pouvez aussi configurer ici la transparence des widgets de maniere global (qui sera la valeur par défaut, il est possible ensuite de modifier cette valeur widget par widget)
+
 [TIP]
 N'oubliez pas de sauvegarder après toute modification
 
@@ -109,19 +112,6 @@ image::../images/administration4.png[]
 image::../images/administration5.png[]
 
 Voir link:https://jeedom.com/doc/documentation/core/fr_FR/doc-core-interact.html#_configuration_2[ici]
-
-== Configuration des crontask, scripts & démons
-
-image::../images/administration6.png[]
-
-[IMPORTANT]
-Il n'est pas recommandé de modifier ces paramètres
-
-* *Rattrapage maximum autorisé (en minutes, -1 pour infini)* : délai de rattrapage maximum en minute pour un Job au cas où son lancement serait passé
-* *Crontask : temps d'exécution max (en minutes)* : durée maximum par défaut d'une tache cron
-* *Script : temps d'exécution max (en minutes)* : temps maximum d'exécution d'un script par défaut
-* *Temps de sommeil Jeecron* : temps de sommeil du cron principal (entre 1 et 59 secondes)
-* *Temps de sommeil des Démons* : temps de sommeil entre 2 cycles par défaut des démons
 
 == Configuration des logs & messages
 
@@ -149,20 +139,63 @@ image::../images/administration9.png[]
 * *Nombre d'échecs avant désactivation de l'équipement* : nombre d'échecs de communication avec l'équipement avant desactivation de celui-ci (un message vous préviendra si cela arrive)
 * *Seuils des piles* : permet de gérer les seuils d'alertes globaux sur les piles
 
-== Market et mise à jour
+== Mise à jour et fichiers
 
 image::../images/administration10.png[]
+
+* Source de mise à jour : 
+* Faire une sauvegarde avant la mise à jour
+* Vérifier automatiquement si il y a des mises à jour
+
+=== Les dépots
+
+Les dépots sont des espaces de stockage (et de service) pour pouvoir mettre des backups, récuperer des plugins, récuperer le core de jeedom....
+
+==== Market
+
+Dépot servant à reliéer Jeedom au market, il est vivement conseillé d'utiliser ce dépot. Attention toute demande de support pourra être refusée si vous utilisé un autre de dépot que celui-ci.
+
+image::../images/administration17.png[]
 
 * *Adresse* : adresse du market
 * *Nom d'utilisateur* : votre nom d'utilisateur sur le market
 * *Mot de passe* : votre mot de passe du market
-* *Installer automatiquement les widgets manquants* : autorise Jeedom à installer automatiquement les widgets manquants (il faut le plugin widget)
-* *Voir les modules en beta (à vos risques et périls)* : permet de voir les plugins, widgets... beta
-* *Faire une sauvegarde avant la mise à jour* : indique à Jeedom de faire un backup avant chaque mise à jour
-* *Branche* : permet de changer la version de Jeedom.
 
-[NOTE]
-Seuls les betatesteurs peuvent voir la branche beta de Jeedom
+==== Fichier
 
-[ATTENTION]
-L'option URL est dangereuse et réservée à un public d'expert. Toute demande de support après la mise en place de cette option sera systématiquement refusée.
+Dépot servant à activer l'envoi de plugin par des fichiers
+
+image::../images/administration15.png[]
+
+==== Github
+
+Dépot servant à relier Jeedom à Github
+
+image::../images/administration16.png[]
+
+* *Token* : Token pour l'accès au dépot privé
+* *Utilisateur ou organisation du dépot pour le core Jeedom*
+* *Nom du dépôt pour le core Jeedom*
+* *Branche pour le core Jeedom*
+
+==== Samba
+
+Dépot permettant d'envoyer automatique un backup de jeedom sur un partage samba (ex NAS Synology)
+
+image::../images/administration18.png[]
+
+* *[Backup] IP* : IP du serveur Samba
+* *[Backup] Utilisateur* : Nom d'utilisateur pour la connexion (les connexions anonyme ne sont pas possible)
+* *[Backup] Mot de passe* : Mot de passe de l'utilisateur
+* *[Backup] Partage* : Chemin du partage (attention à bien s'arreter au niveau du partage)
+* *[Backup] Chemin* : Chemin dans le partage (à mettre en relatif), celui-ci doit exister
+
+[IMPORTANT]
+Il vous faudra peut etre installer le package smbclient pour que le dépot fonctionne
+
+==== URL
+
+image::../images/administration19.png[]
+
+* *URL core Jeedom*
+* *URL version core Jeedom*

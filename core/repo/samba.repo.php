@@ -60,26 +60,6 @@ class repo_samba {
 				'name' => '[Backup] Chemin',
 				'type' => 'input',
 			),
-			'plugin::ip' => array(
-				'name' => '[Plugin] IP',
-				'type' => 'input',
-			),
-			'plugin::username' => array(
-				'name' => '[Plugin] Utilisateur',
-				'type' => 'input',
-			),
-			'plugin::password' => array(
-				'name' => '[Plugin] Mot de passe',
-				'type' => 'password',
-			),
-			'plugin::share' => array(
-				'name' => '[Plugin] Partage',
-				'type' => 'input',
-			),
-			'core::path' => array(
-				'name' => '[Core] Chemin',
-				'type' => 'input',
-			),
 		),
 	);
 
