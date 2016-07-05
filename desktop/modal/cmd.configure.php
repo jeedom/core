@@ -113,9 +113,9 @@ echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fa 
                   </div>
 
                   <div class="form-group">
-                    <label class="col-xs-4 control-label"></label>
+                    <label class="col-xs-4 control-label">{{Visible}}</label>
                     <div class="col-xs-4">
-                      <input type="checkbox" data-label-text="{{Visible}}" class="cmdAttr bootstrapSwitch" data-l1key="isVisible" />
+                      <input type="checkbox" class="cmdAttr" data-l1key="isVisible" />
                     </div>
                   </div>
 

@@ -6,7 +6,7 @@ if (!hasRight('customview', true)) {
 <div class="alert alert-warning" id="div_spanAlertMessage">
     {{Attention tout ce que vous écrivez ici est global et inclus sur toutes les pages, la moindre erreur peut rendre votre jeedom non fonctionel}}
     <span class="pull-right">
-    <input type="checkbox" class="configKey tooltips bootstrapSwitch" data-l1key="enableCustomCss" data-size="mini" data-label-text="{{Activer}}" checked />
+    {{Activer}} : <input type="checkbox" class="configKey tooltips" data-l1key="enableCustomCss" checked />
    </span>
 </div>
 <div role="tabpanel">

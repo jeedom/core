@@ -27,7 +27,7 @@ foreach (cmd::all() as $cmd) {
 		$object = $cmd->getEqLogic()->getObject();
 		echo '<tr data-link_id="' . $cmd->getId() . '" data-type="graph" data-viewDataType="cmd">';
 		echo '<td>';
-		echo '<input type="checkbox" class="enable bootstrapSwitch" data-size="mini" />';
+		echo '<input type="checkbox" class="enable" />';
 		echo '<input class="graphDataOption" data-l1key="link_id" value="' . $cmd->getId() . '" hidden/>';
 		echo '</td>';
 		echo '<td class="object_name">';
@@ -72,17 +72,13 @@ foreach (cmd::all() as $cmd) {
 		echo '</select> ';
 		echo '</div> ';
 		echo '<div class="form-group">';
-		echo ' <label><input type="checkbox" class="graphDataOption bootstrapSwitch" data-label-text="{{Escalier}}" data-size="mini" data-l1key="configuration" data-l2key="graphStep">';
-		echo '</label> ';
-		echo ' <label><input type="checkbox" class="graphDataOption bootstrapSwitch" data-label-text="{{Empiler}}" data-size="mini" data-l1key="configuration" data-l2key="graphStack">';
-		echo '</label> ';
-		echo ' <label><input type="checkbox" class="graphDataOption bootstrapSwitch" data-label-text="{{Variation}}" data-size="mini" data-l1key="configuration" data-l2key="derive">';
-		echo '</label> ';
-		echo ' <label>Echelle :</label> <select class="graphDataOption form-control input-sm" data-l1key="configuration" data-l2key="graphScale" style="width : 60px;">';
+		echo '<label>{{Escalier}} :</label> <input type="checkbox" class="graphDataOption" data-l1key="configuration" data-l2key="graphStep"> ';
+		echo '<label>{{Empiler}} :</label> <input type="checkbox" class="graphDataOption" data-l1key="configuration" data-l2key="graphStack"> ';
+		echo '<label>{{Variation}} :</label> <input type="checkbox" class="graphDataOption" data-l1key="configuration" data-l2key="derive"> ';
+		echo '<label>{{Echelle}} :</label> <select class="graphDataOption form-control input-sm" data-l1key="configuration" data-l2key="graphScale" style="width : 60px;">';
 		echo '<option value="0">Droite</option>';
 		echo '<option value="1">Gauche</option>';
 		echo '</select>';
-
 		echo '</div>';
 		echo '</form>';
 		echo '</div>';

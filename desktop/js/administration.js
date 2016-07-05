@@ -15,7 +15,7 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
- $('body').delegate('.configKey[data-l1key="market::allowDNS"]', 'change switchChange.bootstrapSwitch', function () {
+ $('body').delegate('.configKey[data-l1key="market::allowDNS"]', 'change', function () {
     if($(this).value() == 1){
      $('.configKey[data-l1key=externalProtocol]').attr('disabled',true);
      $('.configKey[data-l1key=externalAddr]').attr('disabled',true);
@@ -30,7 +30,7 @@
 });
 
 
- $('body').delegate('.enableRepository', 'change switchChange.bootstrapSwitch', function () {
+ $('body').delegate('.enableRepository', 'change', function () {
     if($(this).value() == 1){
         $('.repositoryConfiguration'+$(this).attr('data-repo')).show();
     }else{
@@ -38,7 +38,7 @@
     }
 });
 
- $('body').delegate('.configKey[data-l1key="ldap:enable"]', 'change switchChange.bootstrapSwitch', function () {
+ $('body').delegate('.configKey[data-l1key="ldap:enable"]', 'change', function () {
     if($(this).value() == 1){
         $('#div_config_ldap').show();
     }else{

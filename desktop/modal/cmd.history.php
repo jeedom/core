@@ -34,14 +34,14 @@ $date = array(
 
         <?php
 if (init('derive', 0) == 1) {
-	echo '<span class="pull-right"><input type="checkbox" id="toto" class="bootstrapSwitch cb_derive" data-label-text="{{Variation}}" checked /></span>';
+	echo '{{Variation}} <span class="pull-right"><input type="checkbox" id="toto" class="cb_derive" checked /></span>';
 } else {
-	echo '<span class="pull-right"><input type="checkbox" id="toto" class="bootstrapSwitch cb_derive" data-label-text="{{Variation}}" /></span>';
+	echo '{{Variation}} <span class="pull-right"><input type="checkbox" id="toto" class="cb_derive" /></span>';
 }
 if (init('step', 0) == 1) {
-	echo '<span class="pull-right"><input type="checkbox" class="bootstrapSwitch cb_step" data-label-text="{{Escalier}}" checked /></span>';
+	echo '{{Escalier}} <span class="pull-right"><input type="checkbox" class="cb_step" checked /></span>';
 } else {
-	echo '<span class="pull-right"><input type="checkbox" class="bootstrapSwitch cb_step" data-label-text="{{Escalier}}" /></span>';
+	echo '{{Escalier}} <span class="pull-right"><input type="checkbox" class="cb_step" /></span>';
 }
 ?>
        <center><div id="div_historyChart"></div></center>
@@ -116,7 +116,7 @@ if (init('step', 0) == 1) {
                     }
                 });
                 });
-                $('.cb_derive').on('switchChange.bootstrapSwitch', function () {
+                $('.cb_derive').on('change', function () {
                     jeedom.cmd.save({
                         cmd: {id: <?php echo init('id'); ?>, display: {graphDerive: $(this).value()}},
                         error: function (error) {
@@ -136,7 +136,7 @@ if (init('step', 0) == 1) {
                         }
                     });
                 });
-                $('.cb_step').on('switchChange.bootstrapSwitch', function () {
+                $('.cb_step').on('change', function () {
                     jeedom.cmd.save({
                         cmd: {id: <?php echo init('id'); ?>, display: {graphStep: $(this).value()}},
                         error: function (error) {

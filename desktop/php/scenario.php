@@ -74,50 +74,50 @@ foreach ($scenarioListGroup as $group) {
 
 <div id="scenarioThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
 
-   <div class="scenarioListContainer">
-       <legend>{{Gestion}}</legend>
-       <div class="cursor" id="bt_addScenario2" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-         <center>
-            <i class="fa fa-plus-circle" style="font-size : 6em;color:#94ca02;"></i>
-        </center>
-        <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>{{Ajouter}}</center></span>
-    </div>
-    <?php if (config::byKey('enableScenario') == 0) {?>
-        <div class="cursor expertModeVisible" id="bt_changeAllScenarioState2" data-state="1" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-         <center>
-             <i class="fa fa-check" style="font-size : 6em;color:#5cb85c;"></i>
-         </center>
-         <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#5cb85c"><center>{{Activer scénarios}}</center></span>
-     </div>
-     <?php } else {?>
-         <div class="cursor expertModeVisible" id="bt_changeAllScenarioState2" data-state="0" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-             <center>
-                 <i class="fa fa-times" style="font-size : 6em;color:#d9534f;"></i>
-             </center>
-             <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#d9534f"><center>{{Désactiver scénarios}}</center></span>
-         </div>
-         <?php }
+ <div class="scenarioListContainer">
+     <legend>{{Gestion}}</legend>
+     <div class="cursor" id="bt_addScenario2" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+       <center>
+        <i class="fa fa-plus-circle" style="font-size : 6em;color:#94ca02;"></i>
+    </center>
+    <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>{{Ajouter}}</center></span>
+</div>
+<?php if (config::byKey('enableScenario') == 0) {?>
+    <div class="cursor expertModeVisible" id="bt_changeAllScenarioState2" data-state="1" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+       <center>
+           <i class="fa fa-check" style="font-size : 6em;color:#5cb85c;"></i>
+       </center>
+       <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#5cb85c"><center>{{Activer scénarios}}</center></span>
+   </div>
+   <?php } else {?>
+       <div class="cursor expertModeVisible" id="bt_changeAllScenarioState2" data-state="0" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+           <center>
+               <i class="fa fa-times" style="font-size : 6em;color:#d9534f;"></i>
+           </center>
+           <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#d9534f"><center>{{Désactiver scénarios}}</center></span>
+       </div>
+       <?php }
 ?>
 
-         <div class="cursor expertModeVisible" id="bt_displayScenarioVariable2" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-             <center>
-                <i class="fa fa-eye" style="font-size : 6em;color:#337ab7;"></i>
-            </center>
-            <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Voir variables}}</center></span>
-        </div>
-
-        <div class="cursor expertModeVisible bt_showScenarioSummary" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-         <center>
-            <i class="fa fa-list" style="font-size : 6em;color:#337ab7;"></i>
+       <div class="cursor expertModeVisible" id="bt_displayScenarioVariable2" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+           <center>
+            <i class="fa fa-eye" style="font-size : 6em;color:#337ab7;"></i>
         </center>
-        <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Vue d'ensemble}}</center></span>
+        <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Voir variables}}</center></span>
     </div>
 
-    <div class="cursor expertModeVisible bt_showExpressionTest" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-     <center>
-        <i class="fa fa-check" style="font-size : 6em;color:#337ab7;"></i>
+    <div class="cursor expertModeVisible bt_showScenarioSummary" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+       <center>
+        <i class="fa fa-list" style="font-size : 6em;color:#337ab7;"></i>
     </center>
-    <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Testeur d'expression}}</center></span>
+    <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Vue d'ensemble}}</center></span>
+</div>
+
+<div class="cursor expertModeVisible bt_showExpressionTest" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+   <center>
+    <i class="fa fa-check" style="font-size : 6em;color:#337ab7;"></i>
+</center>
+<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Testeur d'expression}}</center></span>
 </div>
 </div>
 
@@ -196,11 +196,13 @@ if (count($scenarios) == 0) {
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-xs-6 control-label"></label>
-                        <div class="col-xs-6">
-                            <input type="checkbox" class="scenarioAttr bootstrapSwitch" data-label-text="{{Actif}}" data-l1key="isActive">
-                            <input type="checkbox" class="scenarioAttr bootstrapSwitch" data-label-text="{{Visible}}" data-l1key="isVisible">
-                        </div>
+                    <label class="col-xs-6 control-label"></label>
+                        <label>
+                            {{Actif}} <input type="checkbox" class="scenarioAttr" data-l1key="isActive">
+                        </label>
+                        <label>
+                           {{Visible}} <input type="checkbox" class="scenarioAttr" data-l1key="isVisible">
+                        </label>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-6 control-label" >{{Objet parent}}</label>
@@ -358,14 +360,14 @@ foreach (object::all() as $object) {
                 </div>
 
                 <div class="alert alert-info addElementTypeDescription in" style="display:none;">
-                   Permet de faire une action dans X min. Par exemple : Dans 5 min éteindre la lumière.
-               </div>
+                 Permet de faire une action dans X min. Par exemple : Dans 5 min éteindre la lumière.
+             </div>
 
-               <div class="alert alert-info addElementTypeDescription at" style="display:none;">
-                   A un temps précis, cet élément permet de lancer une action. Par exemple : A 9h30 ouvrir les volets.
-               </div>
+             <div class="alert alert-info addElementTypeDescription at" style="display:none;">
+                 A un temps précis, cet élément permet de lancer une action. Par exemple : A 9h30 ouvrir les volets.
+             </div>
 
-               <div class="alert alert-info addElementTypeDescription code" style="display:none;">
+             <div class="alert alert-info addElementTypeDescription code" style="display:none;">
                 Cet élément permet de rajouter dans votre scénario de la programmation à l’aide d’un code, PHP/Shell etc...
             </div>
 
@@ -424,10 +426,10 @@ foreach (object::all() as $object) {
                 </div>
 
                 <div class="alert alert-info sel_otherActionDescription stop" style="display:none;">
-                 {{Arrête le scénario}}
-             </div>
+                   {{Arrête le scénario}}
+               </div>
 
-             <div class="alert alert-info sel_otherActionDescription say" style="display:none;">
+               <div class="alert alert-info sel_otherActionDescription say" style="display:none;">
                 {{Permet de faire dire un texte à Jeedom (ne marche que si un onglet jeedom est ouvert dans le navigateur)}}
             </div>
 
@@ -436,14 +438,14 @@ foreach (object::all() as $object) {
             </div>
 
             <div class="alert alert-info sel_otherActionDescription log" style="display:none;">
-             {{Permet de rajouter un message dans les logs}}
-         </div>
+               {{Permet de rajouter un message dans les logs}}
+           </div>
 
-         <div class="alert alert-info sel_otherActionDescription message" style="display:none;">
-             {{Permet d'ajouter une message dans le centre de message}}
-         </div>
+           <div class="alert alert-info sel_otherActionDescription message" style="display:none;">
+               {{Permet d'ajouter une message dans le centre de message}}
+           </div>
 
-         <div class="alert alert-info sel_otherActionDescription equipement" style="display:none;">
+           <div class="alert alert-info sel_otherActionDescription equipement" style="display:none;">
             {{Permet de modifier les prorietés visible/invisible actif/inactif d'un équipement}}
         </div>
 

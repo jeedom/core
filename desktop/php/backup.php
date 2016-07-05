@@ -88,7 +88,7 @@ foreach (update::listRepo() as $rkey => $value) {
 	echo '<div class="form-group">';
 	echo '<label class="col-sm-4 col-xs-6 control-label">{{Envoyer les sauvegardes dans le cloud}}</label>';
 	echo '<div class="col-sm-4 col-xs-6">';
-	echo '<input type="checkbox" class="configKey bootstrapSwitch" data-l1key="' . $rkey . '::cloudUpload" />';
+	echo '<input type="checkbox" class="configKey" data-l1key="' . $rkey . '::cloudUpload" />';
 	echo '</div>';
 	echo '</div>';
 	try {

@@ -96,7 +96,7 @@
     }
 });
 
- $('#cb_actifDisplay').on('switchChange.bootstrapSwitch change',function(){
+ $('#cb_actifDisplay').on('change',function(){
     if($(this).value() == 1){
         $('.eqLogic[data-enable=0]').show();
     }else{

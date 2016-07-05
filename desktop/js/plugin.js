@@ -154,7 +154,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
         var config_panel_html = '<div class="form-group">';
         config_panel_html += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Afficher le panel desktop}}</label>';
         config_panel_html += '<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">';
-        config_panel_html += '<input type="checkbox" class="configKey tooltips bootstrapSwitch" data-l1key="displayDesktopPanel" />';
+        config_panel_html += '<input type="checkbox" class="configKey tooltips" data-l1key="displayDesktopPanel" />';
         config_panel_html += '</div>';
         config_panel_html += '</div>';
         $('#div_plugin_panel').append(config_panel_html);
@@ -165,7 +165,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
         var config_panel_html = '<div class="form-group">';
         config_panel_html += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Afficher le panel mobile}}</label>';
         config_panel_html += '<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">';
-        config_panel_html += '<input type="checkbox" class="configKey tooltips bootstrapSwitch" data-l1key="displayMobilePanel" />';
+        config_panel_html += '<input type="checkbox" class="configKey tooltips" data-l1key="displayMobilePanel" />';
         config_panel_html += '</div>';
         config_panel_html += '</div>';
         $('#div_plugin_panel').append(config_panel_html);

@@ -194,7 +194,7 @@ foreach ($scenarioListGroup as $group) {
                 <div class="form-group">
                     <label class="col-sm-4 col-xs-4 control-label"></label>
                     <div class="col-sm-8 col-xs-8">
-                        <input type="checkbox" class="scenarioAttr bootstrapSwitch" data-label-text="{{Actif}}" data-l1key="isActive">
+                       {{Actif}} <input type="checkbox" class="scenarioAttr" data-l1key="isActive">
                     </div>
                 </div>
                 <div class="form-group">
@@ -273,7 +273,7 @@ foreach ($scenarioListGroup as $group) {
                 <div class="form-group">
                     <label class="col-xs-3 control-label" >{{Condition optionnelle}}</label>
                     <div class="col-xs-2">
-                        <input type="checkbox" class="bootstrapSwitch" id="cb_conditionStart" />
+                        <input type="checkbox" id="cb_conditionStart" />
                     </div>
                 </div>
                 <div class="form-group condition" style="display: none;">

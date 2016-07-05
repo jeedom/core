@@ -160,7 +160,7 @@ $("#ul_view").sortable("enable");
 
 $("#div_viewZones").sortable({axis: "y", cursor: "move", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
 
-$('body').delegate('#table_addViewData .enable','change switchChange.bootstrapSwitch', function() {
+$('body').delegate('#table_addViewData .enable','change', function() {
     var selectTr = $(this).closest('tr');
     if ($(this).value() == 1) {
         selectTr.find('div.option').show();

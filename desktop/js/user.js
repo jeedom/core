@@ -153,7 +153,7 @@
                 ligne += '<label style="margin-right:25px;"><input type="checkbox" class="userAttr" data-l1key="options" data-l2key="localOnly" />{{Local seulement}}</label>';
                 ligne += '</td>';
                 ligne += '<td>';
-                ligne += '<input type="checkbox" data-size="mini" class="userAttr bootstrapSwitch" data-label-text="{{Admin}}" data-l1key="rights" data-l2key="admin"/>';
+                ligne += '<input type="checkbox" data-size="mini" class="userAttr" data-l1key="rights" data-l2key="admin"/>';
                 ligne += '</td>';
                 ligne += '<td>';
                 ligne += '<a class="cursor bt_changeHash" title="{{Renouveler la clef API}}"><i class="fa fa-refresh"></i></a> <textarea class="userAttr" data-l1key="hash" style="width:100%;" rows="7" disabled></textarea>';

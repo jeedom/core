@@ -119,13 +119,11 @@ foreach (ls(dirname(__FILE__) . '/../../core/themes') as $dir) {
           <fieldset>
             <legend><i class="fa fa-home"></i>  {{Général}}</legend>
             <div class="form-group">
-              <label class="col-sm-3 control-label">{{Masquer les menus automatiquement}}</label>
+              <label class="col-sm-3 control-label">{{Afficher les menus}}</label>
               <div class="col-sm-1">
-                <input type="checkbox" class="userAttr bootstrapSwitch" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-l1key="options" data-l2key="doNotAutoHideMenu"/>
+                <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="doNotAutoHideMenu"/>
               </div>
             </div>
-
-
             <legend><i class="fa fa-file-o"></i>  {{Page par défaut}}</legend>
             <div class="form-group">
               <label class="col-sm-3 control-label">{{Desktop}}</label>
@@ -223,7 +221,7 @@ foreach (planHeader::all() as $plan) {
 <div class="form-group">
   <label class="col-sm-3 control-label">{{Plein écran}}</label>
   <div class="col-sm-1">
-    <input type="checkbox" class="userAttr bootstrapSwitch" data-l1key="options" data-l2key="defaultPlanFullScreen" />
+    <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="defaultPlanFullScreen" />
   </div>
 </div>
 
@@ -231,20 +229,20 @@ foreach (planHeader::all() as $plan) {
 <div class="form-group">
   <label class="col-sm-3 control-label">{{Déplier le panneau des scénarios}}</label>
   <div class="col-sm-1">
-    <input type="checkbox" class="userAttr bootstrapSwitch" data-l1key="options" data-l2key="displayScenarioByDefault"/>
+    <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayScenarioByDefault"/>
   </div>
 </div>
 <div class="form-group">
   <label class="col-sm-3 control-label">{{Déplier le panneau des objets}}</label>
   <div class="col-sm-1">
-    <input type="checkbox" class="userAttr bootstrapSwitch" data-l1key="options" data-l2key="displayObjetByDefault"/>
+    <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayObjetByDefault"/>
   </div>
 </div>
 <legend><i class="fa fa-picture-o"></i>  {{Vue}}</legend>
 <div class="form-group">
   <label class="col-sm-3 control-label">{{Déplier le panneau des vues}}</label>
   <div class="col-sm-1">
-    <input type="checkbox" class="userAttr bootstrapSwitch" data-l1key="options" data-l2key="displayViewByDefault"/>
+    <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayViewByDefault"/>
   </div>
 </div>
 </fieldset>
@@ -319,7 +317,7 @@ if ($_SESSION['user']->getOptions('twoFactorAuthentification', 0) == 1) {
 		?>
     <label class="col-lg-1 col-md-2 col-sm-2 col-xs-2 control-label">{{Actif}}</label>
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-             <input type="checkbox" class="userAttr form-control bootstrapSwitch" data-l1key="options" data-l2key="twoFactorAuthentification" />
+             <input type="checkbox" class="userAttr form-control" data-l1key="options" data-l2key="twoFactorAuthentification" />
            </div>
            <?php }
 	?>

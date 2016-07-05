@@ -76,9 +76,9 @@ foreach ($allObject as $object) {
                </div>
            </div>
            <div class="form-group">
-            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label"></label>
+            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Visible}}</label>
             <div class="col-sm-1">
-                <input class="objectAttr bootstrapSwitch" type="checkbox" data-label-text="{{Visible}}" data-l1key="isVisible" checked/>
+                <input class="objectAttr" type="checkbox" data-l1key="isVisible" checked/>
             </div>
         </div>
         <div class="form-group">

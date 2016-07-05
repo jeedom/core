@@ -333,7 +333,7 @@ $('#bt_selectCondition').on('click', function (event) {
     });
 });
 
-$('#cb_conditionStart').on('change switchChange.bootstrapSwitch', function () {
+$('#cb_conditionStart').on('change', function () {
     if ($(this).value() == 1) {
         $('.condition').show();
     } else {
