@@ -169,7 +169,13 @@ Dans l'ordre :
 Il existe des déclencheurs spécifiques (autre que ceux fournis par les commandes) :
 
 * *\#start#*  : déclenché au (re)démarrage de Jeedom,
-* *\#user_connect#*  : déclenché lors de la connexion d'un utilisateur.
+* *\#begin_backup#*  : événement envoyé au début du backup.
+* *\#end_backup#*  : événement envoyé à la fin du backup.
+* *\#begin_update#*  : événement envoyé au début de la mise à jour.
+* *\#end_update#*  : événement envoyé à la fin de la mise à jour.
+* *\#begin_restore#*  : événement envoyé au début du restore.
+* *\#end_restore#*  : événement envoyé à la fin du restore.
+
 
 [TIP]
 Vous avez ici aussi un bouton pour aller chercher une commande

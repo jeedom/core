@@ -65,6 +65,19 @@ try {
 	if ($update) {
 
 		/*         * ************************MISE A JOUR********************************** */
+
+		try {
+			echo __("Envoi de l\'événement de début de mise à jour...", __FILE__);
+			jeedom::event('#begin_update#', true);
+			echo __("OK\n", __FILE__);
+		} catch (Exception $e) {
+			if (init('mode') != 'force') {
+				throw $e;
+			} else {
+				echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+			}
+		}
+
 		try {
 			if (init('level', -1) > -1 && init('mode') != 'force') {
 				echo __("Vérification des mises à jour...", __FILE__);
@@ -421,6 +434,19 @@ try {
 } catch (Exception $e) {
 
 }
+
+try {
+	echo __("Envoi de l\'événement de fin de mise à jour...", __FILE__);
+	jeedom::event('#end_update#');
+	echo __("OK\n", __FILE__);
+} catch (Exception $e) {
+	if (init('mode') != 'force') {
+		throw $e;
+	} else {
+		echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+	}
+}
+
 echo "[END UPDATE SUCCESS]\n";
 
 function incrementVersion($_version) {

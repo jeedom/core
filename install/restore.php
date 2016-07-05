@@ -37,6 +37,15 @@ if (isset($argv)) {
 try {
 	require_once dirname(__FILE__) . '/../core/php/core.inc.php';
 	echo "***************Lancement de la restauration de Jeedom***************\n";
+
+	try {
+		echo __("Envoi de l\'événement de début de restauration...", __FILE__);
+		jeedom::event('#begin_restore#', true);
+		echo __("OK\n", __FILE__);
+	} catch (Exception $e) {
+		echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+	}
+
 	global $CONFIG;
 	global $BACKUP_FILE;
 	if (isset($BACKUP_FILE)) {
@@ -179,6 +188,15 @@ try {
 	rrmdir($tmp);
 	config::save('hardware_name', '');
 	jeedom::start();
+
+	try {
+		echo __("Envoi de l\'événement de fin de restauration...", __FILE__);
+		jeedom::event('#end_restore#');
+		echo __("OK\n", __FILE__);
+	} catch (Exception $e) {
+		echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+	}
+
 	echo "***************Fin de la restauration de Jeedom***************\n";
 	echo "[END RESTORE SUCCESS]\n";
 } catch (Exception $e) {

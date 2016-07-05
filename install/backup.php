@@ -37,6 +37,15 @@ if (isset($argv)) {
 try {
 	require_once dirname(__FILE__) . '/../core/php/core.inc.php';
 	echo __("***************Lancement de la sauvegarde de Jeedom le ", __FILE__) . date('Y-m-d H:i:s') . "***************\n";
+
+	try {
+		echo __("Envoi de l\'événement de début de backup...", __FILE__);
+		jeedom::event('#begin_backup#', true);
+		echo __("OK\n", __FILE__);
+	} catch (Exception $e) {
+		echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+	}
+
 	global $CONFIG;
 	$tmp = dirname(__FILE__) . '/../tmp/jeedom_backup';
 	if (!file_exists($tmp)) {
@@ -212,6 +221,15 @@ try {
 	rrmdir($tmp);
 	echo __("OK", __FILE__) . "\n";
 	echo __("Nom du backup : ", __FILE__) . $backup_dir . '/' . $bakcup_name . "\n";
+
+	try {
+		echo __("Envoi de l\'événement de fin de backup...", __FILE__);
+		jeedom::event('#end_backup#');
+		echo __("OK\n", __FILE__);
+	} catch (Exception $e) {
+		echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+	}
+
 	echo __("***************Fin de la sauvegarde de Jeedom***************\n", __FILE__);
 	echo "[END BACKUP SUCCESS]\n";
 } catch (Exception $e) {
