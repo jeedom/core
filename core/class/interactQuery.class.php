@@ -333,7 +333,7 @@ class interactQuery {
 			$result = scenarioExpression::setTags(str_replace(array_keys($replace), $replace, $reply));
 			return $result;
 		}
-
+		$replace['#valeur#'] = '';
 		$colors = config::byKey('convertColor');
 		if (is_array($this->getActions('cmd'))) {
 			foreach ($this->getActions('cmd') as $action) {
@@ -368,7 +368,7 @@ class interactQuery {
 					$options['tags'] = $tags_replace;
 					$return = scenarioExpression::createAndExec('action', $action['cmd'], $options);
 					if (trim($return) !== '' && trim($return) !== null) {
-						$replace['#valeur#'] = $return;
+						$replace['#valeur#'] .= ' ' . $return;
 					}
 
 				} catch (Exception $e) {
@@ -378,7 +378,7 @@ class interactQuery {
 				}
 			}
 		}
-
+		$replace['#valeur#'] = trim($replace['#valeur#']);
 		$replace['#profile#'] = isset($_parameters['profile']) ? $_parameters['profile'] : '';
 		if ($interactDef->getOptions('convertBinary') != '') {
 			$convertBinary = explode('|', $interactDef->getOptions('convertBinary'));
@@ -392,7 +392,7 @@ class interactQuery {
 				unset($replace[$key]);
 			}
 		}
-		if (!isset($replace['#valeur#'])) {
+		if ($replace['#valeur#'] == '') {
 			$replace['#valeur#'] = __('aucune valeur', __FILE__);
 		}
 		$replace['"'] = '';
