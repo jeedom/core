@@ -1354,15 +1354,18 @@ class scenario {
 
 	public function getCache($_key = '', $_default = '') {
 		if ($this->_cache == null) {
-			$cache = cache::byKey('eqLogicCacheAttr' . $this->getId());
+			$cache = cache::byKey('scenarioCacheAttr' . $this->getId());
 			$this->_cache = $cache->getValue();
 		}
 		return utils::getJsonAttr($this->_cache, $_key, $_default);
 	}
 
 	public function setCache($_key, $_value) {
-		$this->_cache = utils::setJsonAttr($this->getCache(), $_key, $_value);
-		cache::set('eqLogicCacheAttr' . $this->getId(), $this->_cache);
+		if ($this->_cache == null) {
+			$this->getCache();
+		}
+		$this->_cache = utils::setJsonAttr($this->_cache, $_key, $_value);
+		cache::set('scenarioCacheAttr' . $this->getId(), $this->_cache);
 	}
 
 }

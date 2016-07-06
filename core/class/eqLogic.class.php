@@ -1060,7 +1060,10 @@ class eqLogic {
 	}
 
 	public function setCache($_key, $_value) {
-		$this->_cache = utils::setJsonAttr($this->getCache(), $_key, $_value);
+		if ($this->_cache == null) {
+			$this->getCache();
+		}
+		$this->_cache = utils::setJsonAttr($this->_cache, $_key, $_value);
 		cache::set('eqLogicCacheAttr' . $this->getId(), $this->_cache);
 	}
 
