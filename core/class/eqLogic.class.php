@@ -38,7 +38,6 @@ class eqLogic {
 	protected $order;
 	protected $_debug = false;
 	protected $_object = null;
-	protected $_cache = null;
 	private static $_templateArray = array();
 	protected $_needRefreshWidget = false;
 
@@ -1057,16 +1056,18 @@ class eqLogic {
 	}
 
 	public function setCache($_key, $_value) {
-		$cache = cache::byKey('cmdCacheAttr' . $this->getId());
+		$cache = cache::byKey('eqLogicCacheAttr' . $this->getId());
 		cache::set('eqLogicCacheAttr' . $this->getId(), utils::setJsonAttr($cache->getValue(), $_key, $_value));
 	}
 
 	public function getStatus($_key = '', $_default = '') {
-		return $this->getCache('status_' . $_key, $_default);
+		$cache = cache::byKey('eqLogicStatusAttr' . $this->getId());
+		return utils::getJsonAttr($cache->getValue(), $_key, $_default);
 	}
 
 	public function setStatus($_key, $_value) {
-		$this->setCache('status_' . $_key, $_value);
+		$cache = cache::byKey('eqLogicStatusAttr' . $this->getId());
+		cache::set('eqLogicCacheAttr' . $this->getId(), utils::setJsonAttr($cache->getValue(), $_key, $_value));
 	}
 
 }

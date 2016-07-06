@@ -46,7 +46,6 @@ class scenario {
 	private $_changeState = false;
 	private $_realTrigger = '';
 	private $_return = true;
-	private $_cache = null;
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -1358,7 +1357,7 @@ class scenario {
 	}
 
 	public function setCache($_key, $_value) {
-		$cache = cache::byKey('cmdCacheAttr' . $this->getId());
+		$cache = cache::byKey('scenarioCacheAttr' . $this->getId());
 		cache::set('scenarioCacheAttr' . $this->getId(), utils::setJsonAttr($cache->getValue(), $_key, $_value));
 	}
 

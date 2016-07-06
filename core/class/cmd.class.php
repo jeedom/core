@@ -42,7 +42,6 @@ class cmd {
 	protected $isVisible = 1;
 	protected $_eqLogic = null;
 	protected $_needRefreshWidget;
-	protected $_cache = null;
 	private static $_templateArray = array();
 
 	/*     * ***********************Méthodes statiques*************************** */
