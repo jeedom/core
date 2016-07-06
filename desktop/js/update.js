@@ -219,12 +219,15 @@ function printUpdate() {
         },
         success: function (data) {
             $('#span_lastUpdateCheck').value(data['update::lastCheck']);
-            $('#span_lastCoreUpdate').value(data['update::lastDateCore']);
+            $('#span_lastUpdateCheck').attr('title','{{Dernière mise à jour du core :}}'+data['update::lastDateCore']);
         }
     });
 }
 
 function addUpdate(_update) {
+    if(init(_update.status) == ''){
+        _update.status = 'OK';
+    }
     var tr = '<tr data-id="' + init(_update.id) + '" data-logicalId="' + init(_update.logicalId) + '" data-type="' + init(_update.type) + '">';
     tr += '<td style="width:50px;"><span class="updateAttr label label-success" data-l1key="status" style="font-size:0.96em;"></span>';
     tr += '</td>';
