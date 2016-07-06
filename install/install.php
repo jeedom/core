@@ -425,8 +425,9 @@ try {
 	echo "[END UPDATE ERROR]\n";
 	throw $e;
 }
-echo "Launch cron dependancy plugins...";
+
 try {
+	echo "Launch cron dependancy plugins...";
 	$cron = cron::byClassAndFunction('plugin', 'checkDeamon');
 	if (is_object($cron)) {
 		$cron->start();
