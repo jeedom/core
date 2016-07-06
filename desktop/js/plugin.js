@@ -253,52 +253,54 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
         initExpertMode();
       }
     });
-     jeedom.config.load({
-      configuration: $('#div_plugin_panel').getValues('.configKey')[0],
-      plugin: $('.li_plugin.active').attr('data-plugin_id'),
-      error: function (error) {
-        alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
-      },
-      success: function (data) {
-        $('#div_plugin_panel').setValues(data, '.configKey');
-        modifyWithoutSave = false;
-        initTooltips();
-        initExpertMode();
-      }
-    });
-     jeedom.config.load({
-      configuration: $('#div_plugin_log').getValues('.configKey')[0],
-      error: function (error) {
-        alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
-      },
-      success: function (data) {
-        $('#div_plugin_log').setValues(data, '.configKey');
-        modifyWithoutSave = false;
-        initTooltips();
-        initExpertMode();
-      }
-    });
-     $('.slaveConfig').each(function(){
-      var slave_id = $(this).attr('data-slave_id');
-      jeedom.jeeNetwork.loadConfig({
-        configuration: $('#div_plugin_configuration .slaveConfig[data-slave_id='+slave_id+']').getValues('.slaveConfigKey')[0],
-        plugin: $('.li_plugin.active').attr('data-plugin_id'),
-        id: slave_id,
-        error: function (error) {
-          alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
-        },
-        success: function (data) {
-          $('#div_plugin_configuration .slaveConfig[data-slave_id='+slave_id+']').setValues(data, '.slaveConfigKey');
-          modifyWithoutSave = false;
-          initTooltips();
-          initExpertMode();
-        }
-      });
-    })
    });
    } else {
     $('#div_plugin_configuration').closest('.panel').hide();
   }
+  jeedom.config.load({
+    configuration: $('#div_plugin_panel').getValues('.configKey')[0],
+    plugin: $('.li_plugin.active').attr('data-plugin_id'),
+    error: function (error) {
+      alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (data) {
+      $('#div_plugin_panel').setValues(data, '.configKey');
+      modifyWithoutSave = false;
+      initTooltips();
+      initExpertMode();
+    }
+  });
+  jeedom.config.load({
+    configuration: $('#div_plugin_log').getValues('.configKey')[0],
+    error: function (error) {
+      alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (data) {
+      $('#div_plugin_log').setValues(data, '.configKey');
+      modifyWithoutSave = false;
+      initTooltips();
+      initExpertMode();
+    }
+  });
+  $('.slaveConfig').each(function(){
+    var slave_id = $(this).attr('data-slave_id');
+    jeedom.jeeNetwork.loadConfig({
+      configuration: $('#div_plugin_configuration .slaveConfig[data-slave_id='+slave_id+']').getValues('.slaveConfigKey')[0],
+      plugin: $('.li_plugin.active').attr('data-plugin_id'),
+      id: slave_id,
+      error: function (error) {
+        alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
+      },
+      success: function (data) {
+        $('#div_plugin_configuration .slaveConfig[data-slave_id='+slave_id+']').setValues(data, '.slaveConfigKey');
+        modifyWithoutSave = false;
+        initTooltips();
+        initExpertMode();
+      }
+    });
+  })
+
+
 } else {
   $('#div_plugin_configuration').closest('.alert').hide();
 }
