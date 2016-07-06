@@ -42,6 +42,7 @@ class cmd {
 	protected $isVisible = 1;
 	protected $_eqLogic = null;
 	protected $_needRefreshWidget;
+	protected $_cache = null;
 	private static $_templateArray = array();
 
 	/*     * ***********************Méthodes statiques*************************** */
@@ -1484,14 +1485,16 @@ class cmd {
 	}
 
 	public function getCache($_key = '', $_default = '') {
-		$cache = cache::byKey('cmdCacheAttr' . $this->getId());
-		return utils::getJsonAttr($cache->getValue(), $_key, $_default);
+		if ($this->_cache == null) {
+			$cache = cache::byKey('cmdCacheAttr' . $this->getId());
+			$this->_cache = $cache->getValue();
+		}
+		return utils::getJsonAttr($this->_cache, $_key, $_default);
 	}
 
 	public function setCache($_key, $_value) {
-		$cache = cache::byKey('cmdCacheAttr' . $this->getId());
-		cache::set('cmdCacheAttr' . $this->getId(), utils::setJsonAttr($cache->getValue(), $_key, $_value));
-
+		$this->_cache = utils::setJsonAttr($this->getCache(), $_key, $_value);
+		cache::set('cmdCacheAttr' . $this->getId(), $this->_cache);
 	}
 
 }

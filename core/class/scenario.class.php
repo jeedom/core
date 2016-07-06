@@ -46,6 +46,7 @@ class scenario {
 	private $_changeState = false;
 	private $_realTrigger = '';
 	private $_return = true;
+	private $_cache = null;
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -1349,6 +1350,19 @@ class scenario {
 
 	public function setReturn($_return) {
 		$this->_return = $_return;
+	}
+
+	public function getCache($_key = '', $_default = '') {
+		if ($this->_cache == null) {
+			$cache = cache::byKey('eqLogicCacheAttr' . $this->getId());
+			$this->_cache = $cache->getValue();
+		}
+		return utils::getJsonAttr($this->_cache, $_key, $_default);
+	}
+
+	public function setCache($_key, $_value) {
+		$this->_cache = utils::setJsonAttr($this->getCache(), $_key, $_value);
+		cache::set('eqLogicCacheAttr' . $this->getId(), $this->_cache);
 	}
 
 }
