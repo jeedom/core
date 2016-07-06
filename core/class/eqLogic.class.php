@@ -1052,19 +1052,13 @@ class eqLogic {
 	}
 
 	public function getCache($_key = '', $_default = '') {
-		if ($this->_cache == null) {
-			$cache = cache::byKey('eqLogicCacheAttr' . $this->getId());
-			$this->_cache = $cache->getValue();
-		}
-		return utils::getJsonAttr($this->_cache, $_key, $_default);
+		$cache = cache::byKey('eqLogicCacheAttr' . $this->getId());
+		return utils::getJsonAttr($cache->getValue(), $_key, $_default);
 	}
 
 	public function setCache($_key, $_value) {
-		if ($this->_cache == null) {
-			$this->getCache();
-		}
-		$this->_cache = utils::setJsonAttr($this->_cache, $_key, $_value);
-		cache::set('eqLogicCacheAttr' . $this->getId(), $this->_cache);
+		$cache = cache::byKey('cmdCacheAttr' . $this->getId());
+		cache::set('eqLogicCacheAttr' . $this->getId(), utils::setJsonAttr($cache->getValue(), $_key, $_value));
 	}
 
 	public function getStatus($_key = '', $_default = '') {
