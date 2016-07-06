@@ -730,6 +730,22 @@ class plugin {
 		return 'plugins/' . $this->getId() . '/doc/images/' . $this->getId() . '_icon.png';
 	}
 
+	public function getLogList() {
+		$return = array();
+		foreach (ls(log::getPathToLog(''), '*') as $log) {
+			if ($log == $this->getId()) {
+				$return[] = $log;
+				continue;
+			}
+			if (strpos($log, $this->getId() . '_') === 0) {
+				$return[] = $log;
+				continue;
+			}
+
+		}
+		return $return;
+	}
+
 	/*     * **********************Getteur Setteur*************************** */
 
 	public function getId() {
