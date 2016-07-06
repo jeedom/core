@@ -1486,6 +1486,17 @@ class cmd {
 		$this->eqType = $eqType;
 	}
 
+	public function getCache($_key = '', $_default = '') {
+		$cache = cache::byKey('cmdCacheAttr' . $this->getId());
+		return utils::getJsonAttr($cache->getValue(), $_key, $_default);
+	}
+
+	public function setCache($_key, $_value) {
+		$cache = cache::byKey('cmdCacheAttr' . $this->getId());
+		cache::set('cmdCacheAttr' . $this->getId(), utils::setJsonAttr($cache->getValue(), $_key, $_value));
+
+	}
+
 }
 
 ?>

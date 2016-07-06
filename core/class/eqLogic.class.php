@@ -1059,6 +1059,17 @@ class eqLogic {
 		$this->order = $order;
 	}
 
+	public function getCache($_key = '', $_default = '') {
+		$cache = cache::byKey('eqLogicCacheAttr' . $this->getId());
+		return utils::getJsonAttr($cache->getValue(), $_key, $_default);
+	}
+
+	public function setCache($_key, $_value) {
+		$cache = cache::byKey('eqLogicCacheAttr' . $this->getId());
+		cache::set('eqLogicCacheAttr' . $this->getId(), utils::setJsonAttr($cache->getValue(), $_key, $_value));
+
+	}
+
 }
 
 ?>
