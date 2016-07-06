@@ -600,11 +600,8 @@ class jeedom {
 	public static function cleanFileSytemRight() {
 		$processUser = posix_getpwuid(posix_geteuid());
 		$processGroup = posix_getgrgid(posix_getegid());
-		$user = $processUser['name'];
-		$group = $processGroup['name'];
 		$path = dirname(__FILE__) . '/../../*';
-		exec('sudo chown -R ' . $user . ':' . $group . ' ' . $path);
-		exec('sudo chmod 775 -R ' . $path);
+		exec('sudo chown -R ' . $processUser['name'] . ':' . $processGroup['name'] . ' ' . $path . ';sudo chmod 775 -R ' . $path);
 	}
 
 	public static function checkSpaceLeft() {
