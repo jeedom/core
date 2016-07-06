@@ -710,13 +710,10 @@ class cmd {
 	 */
 	public function execCmd($_options = null, $_sendNodeJsEvent = true, $_quote = false) {
 		if ($this->getType() == 'info') {
-			$value = $this->getCache('value', null);
-			if ($value !== null) {
-				$this->setCollectDate($this->getCache('collectDate', date('Y-m-d H:i:s')));
-				$this->setValueDate($this->getCache('valueDate', date('Y-m-d H:i:s')));
-				return $value;
-			}
-			return '';
+			$mc = cache::byKey('cmd' . $this->getId());
+			$this->setCollectDate($mc->getOptions('collectDate', $mc->getDatetime()));
+			$this->setValueDate($mc->getOptions('valueDate', $mc->getDatetime()));
+			return $mc->getValue();
 		}
 		$eqLogic = $this->getEqLogic();
 		if (!is_object($eqLogic) || $eqLogic->getIsEnable() != 1) {
@@ -1000,9 +997,7 @@ class cmd {
 			$message .= ' (répétition)';
 		}
 		log::add('event', 'info', $message);
-		$this->setCache('value', $value);
-		$this->setCache('collectDate', $this->getCollectDate());
-		$this->setCache('valueDate', $this->getValueDate());
+		cache::set('cmd' . $this->getId(), $value, 0, array('collectDate' => $this->getCollectDate(), 'valueDate' => $this->getValueDate()));
 		if (!$repeat) {
 			scenario::check($this);
 		}
