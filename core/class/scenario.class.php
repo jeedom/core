@@ -652,7 +652,7 @@ class scenario {
 			self::$_templateArray[$version] = getTemplate('core', $version, 'scenario');
 		}
 		$html = template_replace($replace, self::$_templateArray[$version]);
-		cache::set('scenarioHtml' . $version . $this->getId(), $html, 0);
+		cache::set('scenarioHtml' . $version . $this->getId(), $html);
 		return $html;
 	}
 

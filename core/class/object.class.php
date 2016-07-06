@@ -116,7 +116,7 @@ class object {
 				$return[] = $object_return;
 			}
 		}
-		cache::set('api::object::full', json_encode($return), 0);
+		cache::set('api::object::full', json_encode($return));
 		return $return;
 	}
 

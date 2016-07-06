@@ -584,7 +584,7 @@ class eqLogic {
 			self::$_templateArray[$version] = getTemplate('core', $version, 'eqLogic');
 		}
 		return template_replace($replace, self::$_templateArray[$version]);
-		cache::set('widgetHtml' . $_version . $this->getId(), $html, 0);
+		cache::set('widgetHtml' . $_version . $this->getId(), $html);
 		return $html;
 	}
 

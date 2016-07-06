@@ -113,7 +113,7 @@ class jeedom {
 					$usbMapping['/dev/' . $value] = '/dev/' . $value;
 				}
 			}
-			cache::set('jeedom::usbMapping', json_encode($usbMapping), 0);
+			cache::set('jeedom::usbMapping', json_encode($usbMapping));
 		} else {
 			$usbMapping = json_decode($cache->getValue(), true);
 		}
@@ -593,7 +593,6 @@ class jeedom {
 	}
 
 	public static function forceSyncHour() {
-		cache::set('jeedom::currentHour', null);
 		shell_exec('sudo service ntp stop;sudo ntpdate -s ' . config::byKey('ntp::optionalServer', 'core', '0.debian.pool.ntp.org') . ';sudo service ntp start');
 	}
 
