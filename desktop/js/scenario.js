@@ -358,7 +358,6 @@ $('body').delegate( '.bt_addScenarioElement','click', function (event) {
     } else {
       elementDiv.append(addElement({type: $("#in_addElementType").value()}));
     }
-    initCheckBox();
     setEditor();
     updateSortable();
     $('#md_addElement').modal('hide');
@@ -377,7 +376,6 @@ $('body').delegate('.bt_addAction', 'click', function (event) {
   $(this).closest('.subElement').children('.expressions').append(addExpression({type: 'action'}));
   setAutocomplete();
   updateSortable();
-  initCheckBox();
 });
 
 $('body').delegate('.bt_removeExpression', 'click', function (event) {

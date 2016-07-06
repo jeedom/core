@@ -92,5 +92,4 @@ foreach (cmd::all() as $cmd) {
 
 <script>
     initTableSorter();
-    initCheckBox();
 </script>

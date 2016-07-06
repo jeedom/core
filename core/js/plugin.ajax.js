@@ -190,7 +190,6 @@ $('body').on('click', '.li_eqLogic', function(event) {
                     addCmdToTable(data.cmd[i]);
                 }
             }
-            initTooltips();
             modifyWithoutSave = false;
             $('body').on('.cmd .cmdAttr[data-l1key=type]', 'change', function () {
                 jeedom.cmd.changeType($(this).closest('.cmd'));

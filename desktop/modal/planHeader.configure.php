@@ -75,9 +75,7 @@ sendVarToJS('id', $planHeader->getId())
 </fieldset>
 </form>
 
-
 <script>
-    initCheckBox();
     $('.planHeaderAttr[data-l1key=configuration][data-l2key=icon]').on('dblclick',function(){
         $('.planHeaderAttr[data-l1key=configuration][data-l2key=icon]').value('');
     });

@@ -34,8 +34,8 @@ sort($battery);
     <div class="col-md-3 col-sm-4" id="sd_filterList" style="z-index:999;display:none;">
         <div class="bs-sidebar">
             <ul id="ul_object" class="nav nav-list bs-sidenav">
-				<sup><i class="fa fa-question-circle tooltips pull-right" style="font-size : 1em;color:grey;" title="Les 'NON' sont prioritaires aux 'OUI'. Si vous voulez voir uniquement les piles salons (par exemple), il faut mettre oui partout dans les catégories Santé, Piles, Plugins ; et dans la catégorie Objets avoir uniquement Salon sur Oui. Ainsi vous verrez toutes les piles dans le salon et pas ailleurs et ceci quelquesoit le plugin, la santé et le type de piles. Pour voir les piles salons uniquement AAA, il faut OUI partout dans santé, OUI partout dans plugins ; dans Objets uniquement Salon sur OUI et dans Piles uniquement AAA sur oui etc...."></i></sup>
-				<li><div class="col-md-8 col-sm-9" style="cursor :default;"><legend><i class="icon divers-caduceus3"></i>  {{Santé}}</legend></div><div class="col-md-4 col-sm-3" style="margin-top:5px;"><i class="fa fa-times cursor tooltips  pull-right bt_globalsanteoff" title="Tout masquer" style="color : grey;"></i><i class="fa fa-refresh cursor tooltips pull-right bt_globalsantetoggle" title="Inverser" style="color : grey;"></i><i class="fa fa-check cursor tooltips pull-right bt_globalsanteon" title="Tout afficher" style="color : grey;"></i></li>
+				<sup><i class="fa fa-question-circle pull-right" style="font-size : 1em;color:grey;" title="Les 'NON' sont prioritaires aux 'OUI'. Si vous voulez voir uniquement les piles salons (par exemple), il faut mettre oui partout dans les catégories Santé, Piles, Plugins ; et dans la catégorie Objets avoir uniquement Salon sur Oui. Ainsi vous verrez toutes les piles dans le salon et pas ailleurs et ceci quelquesoit le plugin, la santé et le type de piles. Pour voir les piles salons uniquement AAA, il faut OUI partout dans santé, OUI partout dans plugins ; dans Objets uniquement Salon sur OUI et dans Piles uniquement AAA sur oui etc...."></i></sup>
+				<li><div class="col-md-8 col-sm-9" style="cursor :default;"><legend><i class="icon divers-caduceus3"></i>  {{Santé}}</legend></div><div class="col-md-4 col-sm-3" style="margin-top:5px;"><i class="fa fa-times cursor  pull-right bt_globalsanteoff" title="Tout masquer" style="color : grey;"></i><i class="fa fa-refresh cursor pull-right bt_globalsantetoggle" title="Inverser" style="color : grey;"></i><i class="fa fa-check cursor pull-right bt_globalsanteon" title="Tout afficher" style="color : grey;"></i></li>
 				<li><div class="col-md-8 col-sm-9" style="cursor :default;">{{Critique}}</div>
 				<div class="col-md-4 col-sm-3">
 				<input type="checkbox" data-size="mini" id="critical" class="globalsante bootstrapSwitch" checked/></div></li>
@@ -45,7 +45,7 @@ sort($battery);
 			   <li><div class="col-md-8 col-sm-9" style="cursor :default;">{{Bonne}}</div>
 			   <div class="col-md-4 col-sm-3">
 				<input type="checkbox" data-size="mini" id="good" class="globalsante bootstrapSwitch" checked/></div></li>
-				<li><div class="col-md-8 col-sm-9" style="cursor :default;"><legend><i class="icon techno-charging"></i>  {{Piles}}</legend></div><div class="col-md-4 col-sm-3" style="margin-top:15px;"><i class="fa fa-times cursor tooltips  pull-right bt_globalpileoff" title="Tout masquer" style="color : grey;"></i><i class="fa fa-refresh cursor tooltips pull-right bt_globalpiletoggle" title="Inverser" style="color : grey;"></i><i class="fa fa-check cursor tooltips pull-right bt_globalpileon" title="Tout afficher" style="color : grey;"></i></li>
+				<li><div class="col-md-8 col-sm-9" style="cursor :default;"><legend><i class="icon techno-charging"></i>  {{Piles}}</legend></div><div class="col-md-4 col-sm-3" style="margin-top:15px;"><i class="fa fa-times cursor  pull-right bt_globalpileoff" title="Tout masquer" style="color : grey;"></i><i class="fa fa-refresh cursor pull-right bt_globalpiletoggle" title="Inverser" style="color : grey;"></i><i class="fa fa-check cursor pull-right bt_globalpileon" title="Tout afficher" style="color : grey;"></i></li>
 				<li><div class="col-md-8 col-sm-9" style="cursor :default;">{{Non définies}}</div><div class="col-md-4 col-sm-3"><input type="checkbox" data-size="mini" id="none" class="globalpile bootstrapSwitch" checked/></div></li>
                 <?php
 foreach (array_unique($battery) as $battery_type) {
@@ -53,14 +53,14 @@ foreach (array_unique($battery) as $battery_type) {
 	echo '<input type="checkbox" data-size="mini" id="' . $battery_type . '" class="globalpile bootstrapSwitch" checked/></div></li>';
 }
 ?>
-				<li><div class="col-md-8 col-sm-9" style="cursor :default;"><legend><i class="fa fa-tasks"></i>  {{Plugins}}</legend></div><div class="col-md-4 col-sm-3" style="margin-top:15px;"><i class="fa fa-times cursor tooltips  pull-right bt_globalpluginoff" title="Tout masquer" style="color : grey;"></i><i class="fa fa-refresh cursor tooltips pull-right bt_globalplugintoggle" title="Inverser" style="color : grey;"></i><i class="fa fa-check cursor tooltips pull-right bt_globalpluginon" title="Tout afficher" style="color : grey;"></i></li>
+				<li><div class="col-md-8 col-sm-9" style="cursor :default;"><legend><i class="fa fa-tasks"></i>  {{Plugins}}</legend></div><div class="col-md-4 col-sm-3" style="margin-top:15px;"><i class="fa fa-times cursor  pull-right bt_globalpluginoff" title="Tout masquer" style="color : grey;"></i><i class="fa fa-refresh cursor pull-right bt_globalplugintoggle" title="Inverser" style="color : grey;"></i><i class="fa fa-check cursor pull-right bt_globalpluginon" title="Tout afficher" style="color : grey;"></i></li>
                 <?php
 foreach (array_unique($plugins) as $plugins_type) {
 	echo '<li><div class="col-md-8 col-sm-9" style="cursor :default;">' . ucfirst($plugins_type) . '</div><div class="col-md-4 col-sm-3">';
 	echo '<input type="checkbox" data-size="mini" id="' . $plugins_type . '" class="globalplugin bootstrapSwitch" checked/></div></li>';
 }
 ?>
-				<li><div class="col-md-8 col-sm-9" style="cursor :default;"><legend><i class="fa fa-picture-o" ></i>  {{Objets}}</legend></div><div class="col-md-4 col-sm-3" style="margin-top:15px;"><i class="fa fa-times cursor tooltips  pull-right bt_globalobjetoff" title="Tout masquer" style="color : grey;"></i><i class="fa fa-refresh cursor tooltips pull-right bt_globalobjettoggle" title="Inverser" style="color : grey;"></i><i class="fa fa-check cursor tooltips pull-right bt_globalobjeton" title="Tout afficher" style="color : grey;"></i></li>
+				<li><div class="col-md-8 col-sm-9" style="cursor :default;"><legend><i class="fa fa-picture-o" ></i>  {{Objets}}</legend></div><div class="col-md-4 col-sm-3" style="margin-top:15px;"><i class="fa fa-times cursor  pull-right bt_globalobjetoff" title="Tout masquer" style="color : grey;"></i><i class="fa fa-refresh cursor pull-right bt_globalobjettoggle" title="Inverser" style="color : grey;"></i><i class="fa fa-check cursor pull-right bt_globalobjeton" title="Tout afficher" style="color : grey;"></i></li>
                 <?php
 foreach (array_unique($objects) as $objets_type) {
 	echo '<li><div class="col-md-8 col-sm-9" style="cursor :default;">' . $objets_type . '</div><div class="col-md-4 col-sm-3">';
@@ -96,11 +96,11 @@ foreach ($list as $eqLogic) {
 	echo '<center><span style="font-size:2.2em;font-weight: bold;cursor:default;">' . $eqLogic->getConfiguration('batteryStatus', -2) . '</span><span>%</span></center>';
 	echo '<center style="cursor:default;">{{Le }}' . $eqLogic->getConfiguration('batteryStatusDatetime', __('inconnue', __FILE__)) . '</center>';
 	if ($eqLogic->getConfiguration('battery_type', '') != '') {
-		echo '<span class="pull-right tooltips" style="font-size : 0.8em;margin-bottom: 3px;margin-right: 5px;cursor:default;" title="Piles">' . $eqLogic->getConfiguration('battery_type', '') . '</span>';
+		echo '<span class="pull-right" style="font-size : 0.8em;margin-bottom: 3px;margin-right: 5px;cursor:default;" title="Piles">' . $eqLogic->getConfiguration('battery_type', '') . '</span>';
 	}
-	echo '<span class="pull-left tooltips" style="font-size : 0.8em;margin-bottom: 3px;margin-left: 5px;cursor:default;" title="Plugin">' . ucfirst($eqLogic->getEqType_name()) . '</span>';
+	echo '<span class="pull-left" style="font-size : 0.8em;margin-bottom: 3px;margin-left: 5px;cursor:default;" title="Plugin">' . ucfirst($eqLogic->getEqType_name()) . '</span>';
 	if ($eqLogic->getConfiguration('battery_danger_threshold') != '' or $eqLogic->getConfiguration('battery_warning_threshold') != '') {
-		echo '<i class="icon techno-fingerprint41 pull-right tooltips" style="position:absolute;bottom: 3px;right: 3px;cursor:default;" title="Seuil manuel défini"></i>';
+		echo '<i class="icon techno-fingerprint41 pull-right" style="position:absolute;bottom: 3px;right: 3px;cursor:default;" title="Seuil manuel défini"></i>';
 	}
 	echo '</div>';
 }

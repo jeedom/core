@@ -249,7 +249,6 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
         $('#div_plugin_configuration').setValues(data, '.configKey');
         $('#div_plugin_configuration').parent().show();
         modifyWithoutSave = false;
-        initTooltips();
         initExpertMode();
       }
     });
@@ -266,7 +265,6 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
     success: function (data) {
       $('#div_plugin_panel').setValues(data, '.configKey');
       modifyWithoutSave = false;
-      initTooltips();
       initExpertMode();
     }
   });
@@ -278,7 +276,6 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
     success: function (data) {
       $('#div_plugin_log').setValues(data, '.configKey');
       modifyWithoutSave = false;
-      initTooltips();
       initExpertMode();
     }
   });
@@ -294,7 +291,6 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
       success: function (data) {
         $('#div_plugin_configuration .slaveConfig[data-slave_id='+slave_id+']').setValues(data, '.slaveConfigKey');
         modifyWithoutSave = false;
-        initTooltips();
         initExpertMode();
       }
     });

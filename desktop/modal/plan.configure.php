@@ -367,8 +367,6 @@ foreach (planHeader::all() as $planHeader_select) {
 
 
 <script>
-    initCheckBox();
-
     $('#bt_advanceEqLogicConfiguration').off('click').on('click', function () {
         $('#md_modal2').dialog({title: "{{Configuration de l'équipement}}"});
         $('#md_modal2').load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $(this).attr('data-id')).dialog('open');

@@ -92,7 +92,6 @@ if (!isConnect()) {
 					table.push(result);
 				}
 				$('#table_scenarioSummary tbody').append(table);
-				initCheckBox();
 
 				$('.bt_summarayViewLog').off().on('click',function(){
 					var tr = $(this).closest('tr');

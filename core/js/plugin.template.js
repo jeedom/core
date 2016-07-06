@@ -111,7 +111,6 @@ $(".li_eqLogic").off('click').on('click', function () {
                     addCmdToTable(data.cmd[i]);
                 }
             }
-            initTooltips();
             modifyWithoutSave = false;
             $('body').delegate('.cmd .cmdAttr[data-l1key=type]', 'change', function () {
                 jeedom.cmd.changeType($(this).closest('.cmd'));

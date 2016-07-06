@@ -92,7 +92,6 @@ foreach (plugin::listPlugin(true) as $plugin) {
 </form>
 
 <script>
-    initCheckBox();
     $('.ticketAttr[data-l1key=options][data-l2key=page]').value(location.href);
 
     $('#bt_sendBugReport').on('click', function () {

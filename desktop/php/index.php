@@ -389,7 +389,7 @@ echo $plugin_menu;
 									<?php $displayMessage = (message::nbMessage() > 0) ? '' : 'display : none;';?>
 									<li>
 										<a href="#" id="bt_messageModal">
-											<span class="badge tooltips" id="span_nbMessage" title="{{Nombre de messages}}" style="background-color : #ec971f;<?php echo $displayMessage; ?>">
+											<span class="badge" id="span_nbMessage" title="{{Nombre de messages}}" style="background-color : #ec971f;<?php echo $displayMessage; ?>">
 												<?php echo message::nbMessage(); ?>
 											</span>
 										</a>
@@ -398,7 +398,7 @@ echo $plugin_menu;
 	if ($nbUpdate > 0) {
 		echo '<li>
 										<a href="index.php?v=d&p=update">
-											<span class="badge tooltips" title="{{Nombre de mises à jour}}" style="background-color : #c9302c;">' . $nbUpdate . '</span></a></li>';
+											<span class="badge" title="{{Nombre de mises à jour}}" style="background-color : #c9302c;">' . $nbUpdate . '</span></a></li>';
 	}
 	?>
 										<?php if (isConnect('admin') || hasRight('backupview', true) || hasRight('updateview', true) || hasRight('cronview', true) || hasRight('customview', true) || hasRight('securityview', true) || hasRight('userview', true)) {
@@ -492,15 +492,15 @@ if (isConnect('admin')) {
 													<li>
 														<?php if (isset($plugin) && is_object($plugin)) {
 		if ($plugin->getInfo('doc') != '') {
-			echo '<a class="cursor tooltips" target="_blank" href="' . $plugin->getInfo('doc') . '" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
+			echo '<a class="cursor" target="_blank" href="' . $plugin->getInfo('doc') . '" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
 		}
 	} else {
 		if (init('p') == 'scenarioAssist') {
-			echo '<a class="cursor tooltips" target="_blank" href="https://jeedom.com/doc/documentation/core/fr_FR/doc-core-scenario.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
+			echo '<a class="cursor" target="_blank" href="https://jeedom.com/doc/documentation/core/fr_FR/doc-core-scenario.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
 		} else if (init('p') == 'view_edit') {
-			echo '<a class="cursor tooltips" target="_blank" href="https://jeedom.com/doc/documentation/core/fr_FR/doc-core-view.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
+			echo '<a class="cursor" target="_blank" href="https://jeedom.com/doc/documentation/core/fr_FR/doc-core-view.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
 		} else {
-			echo '<a class="cursor tooltips" target="_blank" href="https://jeedom.com/doc/documentation/core/fr_FR/doc-core-' . secureXSS(init('p')) . '.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
+			echo '<a class="cursor" target="_blank" href="https://jeedom.com/doc/documentation/core/fr_FR/doc-core-' . secureXSS(init('p')) . '.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
 		}
 
 	}
@@ -508,7 +508,7 @@ if (isConnect('admin')) {
 													</li>
 													<?php if (hasRight('reportsend', true)) {?>
 														<li>
-															<a class="bt_reportBug cursor tooltips" title="{{Envoyer un rapport de bug}}">
+															<a class="bt_reportBug cursor" title="{{Envoyer un rapport de bug}}">
 																<i class="fa fa-exclamation-circle" ></i>
 															</a>
 														</li>

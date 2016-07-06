@@ -175,7 +175,6 @@
            }
            $('#table_user tbody').append(tr);
            modifyWithoutSave = false;
-           initCheckBox();
            $.hideLoading();
        }
    });

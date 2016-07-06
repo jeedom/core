@@ -625,10 +625,6 @@ if ($cmd->getDisplay('parameters') != '') {
 
 
 <script>
-  initTooltips();
-  initCheckBox();
-
-
   $("#md_cmdConfigureSelectMultiple").dialog({
     autoOpen: false,
     modal: true,
@@ -642,8 +638,6 @@ if ($cmd->getDisplay('parameters') != '') {
       $("body").css({overflow: 'inherit'});
     }
   });
-
-
 
   $('#table_widgetParameters').delegate('.removeWidgetParameter', 'click', function () {
     $(this).closest('tr').remove();
@@ -816,7 +810,6 @@ if ($cmd->getDisplay('parameters') != '') {
     cmd = {display : cmd.display,template : cmd.template };
     $('#md_cmdConfigureSelectMultiple').load('index.php?v=d&modal=cmd.selectMultiple&cmd_id='+cmdInfo.id, function() {
       initTableSorter();
-      initCheckBox();
       $('#bt_cmdConfigureSelectMultipleAlertToogle').off().on('click', function () {
         var state = false;
         if ($(this).attr('data-state') == 0) {

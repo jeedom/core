@@ -196,7 +196,7 @@ foreach (jeeNetwork::all() as $jeeNetwork) {
                                     </div>
                                     <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 expertModeVisible">
                                       <label>
-                                          <input type="checkbox" class="configKey tooltips Escalier" data-l1key="generateTranslation" title="{{Option pour les développeurs permettant à Jeedom de générer les phrases à traduire}}" /> {{Générer les traductions}}
+                                          <input type="checkbox" class="configKey Escalier" data-l1key="generateTranslation" title="{{Option pour les développeurs permettant à Jeedom de générer les phrases à traduire}}" /> {{Générer les traductions}}
                                       </label>
                                   </div>
                               </div>

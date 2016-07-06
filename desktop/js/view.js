@@ -77,9 +77,6 @@
                      $(this).css('color','rgb(46, 176, 75)');
                  }
              });
-
-
-                initTooltips();
             }, 10);
         }
     });

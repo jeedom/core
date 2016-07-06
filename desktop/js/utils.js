@@ -351,7 +351,6 @@ function initHelp(){
             $(this).append(' <sup><i class="fa fa-question-circle tooltips" title="'+$(this).attr('data-help')+'" style="font-size : 1em;color:grey;"></i></sup>');
         }
     });
-    initTooltips();
 }
 
 function showHelpModal(_name, _plugin) {

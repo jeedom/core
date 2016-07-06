@@ -434,7 +434,6 @@ if ($eqLogic->getDisplay('parameters') != '') {
 											</div>
 										</div>
 										<script>
-											initCheckBox();
 											$('.background-color-default').off('change').on('change',function(){
 												if($(this).value() == 1){
 													$(this).closest('td').find('.span_configureBackgroundColor').hide();

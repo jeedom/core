@@ -341,7 +341,6 @@ var paramsSpecifics = {
            eqLogic.css('transform',transform);
            eqLogic.css('zindex',zindex);
            eqLogic.trigger('change');
-           initTooltips();
            if ($.mobile) {
             $('.eqLogic[data-eqLogic_id=' + i + ']').trigger("create");
             setTileSize('.eqLogic');

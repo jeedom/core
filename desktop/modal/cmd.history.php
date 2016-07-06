@@ -46,7 +46,6 @@ if (init('step', 0) == 1) {
 ?>
        <center><div id="div_historyChart"></div></center>
        <script>
-         initCheckBox();
          $(".in_datepicker").datepicker();
          $('#ui-datepicker-div').hide();
 

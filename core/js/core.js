@@ -91,19 +91,7 @@ function getUrlVars(_key) {
 }
 
 function initTooltips() {
-    var noTooltips = noBootstrapTooltips || false;
-    if (noTooltips) {
-        return;
-    }
-    if ($.mobile) {
 
-    } else {
-        $('.tooltips').tooltip({
-            animation: true,
-            html: true,
-            placement: 'bottom'
-        });
-    }
 }
 
 function getDeviceType() {

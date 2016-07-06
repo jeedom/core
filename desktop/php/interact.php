@@ -152,7 +152,7 @@ foreach ($interactListGroup as $group) {
           <div class="form-group">
             <label class="col-sm-3 col-xs-3 control-label">{{Synonyme}}</label>
             <div class="col-sm-9 col-xs-9">
-              <input class="form-control interactAttr tooltips" type="text" data-l1key="options" data-l2key="synonymes" placeholder="" title="{{Remplace les mots par leur synonymes lors de la génération des commandes}}"/>
+              <input class="form-control interactAttr" type="text" data-l1key="options" data-l2key="synonymes" placeholder="" title="{{Remplace les mots par leur synonymes lors de la génération des commandes}}"/>
             </div>
           </div>
           <div class="form-group">
@@ -167,13 +167,13 @@ foreach ($interactListGroup as $group) {
           <div class="form-group">
             <label class="col-sm-3 col-xs-3 control-label">{{Conversion binaire}}</label>
             <div class="col-sm-9 col-xs-9">
-              <input class="form-control tooltips interactAttr" type="text" data-l1key="options" data-l2key="convertBinary" placeholder="" title="{{Convertir les commandes binaires}}"/>
+              <input class="form-control interactAttr" type="text" data-l1key="options" data-l2key="convertBinary" placeholder="" title="{{Convertir les commandes binaires}}"/>
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-3 col-xs-3 control-label">{{Utilisateurs autorisés}}</label>
             <div class="col-sm-9 col-xs-9">
-              <input class="form-control tooltips interactAttr" type="text" data-l1key="person" placeholder="" title="{{Liste des utilisateurs (login) séparés par un |}}"/>
+              <input class="form-control interactAttr" type="text" data-l1key="person" placeholder="" title="{{Liste des utilisateurs (login) séparés par un |}}"/>
             </div>
           </div>
           <div class="form-group">
@@ -185,7 +185,7 @@ foreach ($interactListGroup as $group) {
           <div class="form-group">
             <label class="col-sm-3 col-xs-3 control-label">{{Regexp d'exclusion}}</label>
             <div class="col-sm-9 col-xs-9">
-              <input class="form-control tooltips interactAttr" type="text" data-l1key="options" data-l2key="exclude_regexp" placeholder="" />
+              <input class="form-control interactAttr" type="text" data-l1key="options" data-l2key="exclude_regexp" placeholder="" />
             </div>
           </div>
         </fieldset>

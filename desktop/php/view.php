@@ -57,7 +57,7 @@ if ($_SESSION['user']->getOptions('displayViewByDefault') == 1) {
 	echo '<div class="col-lg-12 col-md-12 col-sm-12 div_displayViewContainer">';
 }
 ?>
-<i class='fa fa-picture-o cursor tooltips pull-left bt_displayView' data-display='<?php echo $_SESSION['user']->getOptions('displayViewByDefault') ?>' title="{{Afficher/Masquer les vues}}"></i>
+<i class='fa fa-picture-o cursor pull-left bt_displayView' data-display='<?php echo $_SESSION['user']->getOptions('displayViewByDefault') ?>' title="{{Afficher/Masquer les vues}}"></i>
 
 <legend style="height: 35px;color : #563d7c;">Vue <?php
 echo $view->getName();

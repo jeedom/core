@@ -62,7 +62,7 @@ foreach ($objects as $object) {
 <br/>
 <div class="row row-same-height">
 	<div class="col-xs-4 object col-xs-height" data-id="-1">
-		<legend style="cursor : default"><i class="fa fa-circle-o"></i>  {{Aucun}} <i class="fa fa-chevron-down pull-right showEqLogic tooltips cursor" title="{{Voir les équipements}}"></i></legend>
+		<legend style="cursor : default"><i class="fa fa-circle-o"></i>  {{Aucun}} <i class="fa fa-chevron-down pull-right showEqLogic cursor" title="{{Voir les équipements}}"></i></legend>
 		<ul class="eqLogicSortable">
 			<?php
 foreach ($eqLogics[-1] as $eqLogic) {
@@ -71,14 +71,14 @@ foreach ($eqLogics[-1] as $eqLogic) {
 	echo $eqLogic->getName() . ' ';
 	echo '<i style="font-size:0.9em;">(' . $eqLogic->getEqType_name() . ')</i> ';
 	if ($eqLogic->getIsEnable() != 1) {
-		echo '<i class="fa fa-times tooltips" title="{{Non actif}}"></i> ';
+		echo '<i class="fa fa-times" title="{{Non actif}}"></i> ';
 	}
 	if ($eqLogic->getIsVisible() != 1) {
-		echo '<i class="fa fa-eye-slash tooltips" title="{{Non visible}}"></i> ';
+		echo '<i class="fa fa-eye-slash" title="{{Non visible}}"></i> ';
 	}
-	echo '<i class="fa fa-chevron-right pull-right showCmd tooltips" title="{{Voir les commandes}}"></i> ';
-	echo '<i class="fa fa-cog pull-right configureEqLogic tooltips" title="{{Configuration avancée}}"></i>';
-	echo '<a href="' . $eqLogic->getLinkToConfiguration() . '" target="_blank" class="pull-right tooltips" title="{{Aller sur la configuration de l\'équipement}}"><i class="fa fa-external-link"></i></a>';
+	echo '<i class="fa fa-chevron-right pull-right showCmd" title="{{Voir les commandes}}"></i> ';
+	echo '<i class="fa fa-cog pull-right configureEqLogic" title="{{Configuration avancée}}"></i>';
+	echo '<a href="' . $eqLogic->getLinkToConfiguration() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'équipement}}"><i class="fa fa-external-link"></i></a>';
 
 	echo '<ul class="cmdSortable" style="display:none;" >';
 	foreach ($cmds[$eqLogic->getId()] as $cmd) {
@@ -101,9 +101,9 @@ foreach ($objects as $object) {
 	}
 	echo '<div class="col-xs-4 object col-xs-height" data-id="' . $object->getId() . '" style="background-color : ' . $object->getDisplay('tagColor') . ';color : ' . $object->getDisplay('tagTextColor', $defaultTextColor) . '">';
 	echo '<legend style="color : ' . $object->getDisplay('tagTextColor', $defaultTextColor) . ';cursor : default">' . $object->getDisplay('icon') . '  ' . $object->getName();
-	echo '<i class="fa fa-chevron-down pull-right showEqLogic tooltips cursor" title="{{Voir les équipements}}"></i>';
-	echo '<i style="position:relative;top : 3px;" class="fa fa-cog pull-right cursor configureObject tooltips" title="{{Configuration avancée}}"></i>';
-	echo '<a style="position:relative;top : 3px;color:' . $object->getDisplay('tagTextColor', $defaultTextColor) . '" href="index.php?v=d&p=object&id=' . $object->getId() . '" target="_blank" class="pull-right tooltips" title="{{Aller sur la configuration de l\'objet}}"><i class="fa fa-external-link"></i></a>';
+	echo '<i class="fa fa-chevron-down pull-right showEqLogic cursor" title="{{Voir les équipements}}"></i>';
+	echo '<i style="position:relative;top : 3px;" class="fa fa-cog pull-right cursor configureObject" title="{{Configuration avancée}}"></i>';
+	echo '<a style="position:relative;top : 3px;color:' . $object->getDisplay('tagTextColor', $defaultTextColor) . '" href="index.php?v=d&p=object&id=' . $object->getId() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'objet}}"><i class="fa fa-external-link"></i></a>';
 
 	echo '</legend>';
 	echo '<ul class="eqLogicSortable">';
@@ -113,18 +113,18 @@ foreach ($objects as $object) {
 		echo $eqLogic->getName() . ' ';
 		echo '<i style="font-size:0.9em;">(' . $eqLogic->getEqType_name() . ')</i> ';
 		if ($eqLogic->getIsEnable() != 1) {
-			echo '<i class="fa fa-times tooltips" title="{{Non actif}}"></i> ';
+			echo '<i class="fa fa-times" title="{{Non actif}}"></i> ';
 		}
 		if ($eqLogic->getIsVisible() != 1) {
-			echo '<i class="fa fa-eye-slash tooltips" title="{{Non visible}}"></i> ';
+			echo '<i class="fa fa-eye-slash" title="{{Non visible}}"></i> ';
 		}
-		echo '<i class="fa fa-chevron-right pull-right showCmd tooltips" title="{{Voir les commandes}}"></i> ';
-		echo '<i class="fa fa-cog pull-right configureEqLogic tooltips" title="{{Configuration avancée}}"></i>';
-		echo '<a href="' . $eqLogic->getLinkToConfiguration() . '" target="_blank" class="pull-right tooltips" title="{{Aller sur la configuration de l\'équipement}}"><i class="fa fa-external-link"></i></a>';
+		echo '<i class="fa fa-chevron-right pull-right showCmd" title="{{Voir les commandes}}"></i> ';
+		echo '<i class="fa fa-cog pull-right configureEqLogic" title="{{Configuration avancée}}"></i>';
+		echo '<a href="' . $eqLogic->getLinkToConfiguration() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'équipement}}"><i class="fa fa-external-link"></i></a>';
 		echo '<ul class="cmdSortable" style="display:none;" >';
 		foreach ($cmds[$eqLogic->getId()] as $cmd) {
 			echo '<li class="alert alert-warning cmd cursor" data-id="' . $cmd->getId() . '"  data-name="' . $cmd->getName() . '">' . $cmd->getName();
-			echo '<i class="fa fa-cog pull-right configureCmd tooltips" title="{{Configuration avancée}}"></i>';
+			echo '<i class="fa fa-cog pull-right configureCmd" title="{{Configuration avancée}}"></i>';
 			echo '</li>';
 		}
 		echo '</ul>';

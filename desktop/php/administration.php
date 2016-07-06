@@ -76,7 +76,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                             <div class="expertModeVisible">
                               <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Générer les traductions}}</label>
                               <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-                                  <input type="checkbox" class="configKey tooltips" data-l1key="generateTranslation" title="{{Option pour les développeurs permettant à Jeedom de générer les phrases à traduire}}" />
+                                  <input type="checkbox" class="configKey" data-l1key="generateTranslation" title="{{Option pour les développeurs permettant à Jeedom de générer les phrases à traduire}}" />
                               </div>
                           </div>
                       </div>
@@ -375,7 +375,7 @@ if (config::byKey('jeeNetwork::mode') == 'slave') {
 if (network::test('internal')) {
 	echo '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
 } else {
-	echo '<span class="label label-warning tooltips">{{NOK}}</span>';
+	echo '<span class="label label-warning">{{NOK}}</span>';
 }
 ?>
                </div>
@@ -408,7 +408,7 @@ if (network::test('internal')) {
 if (network::test('external')) {
 	echo '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
 } else {
-	echo '<span class="label label-warning tooltips">{{NOK}}</span>';
+	echo '<span class="label label-warning">{{NOK}}</span>';
 }
 ?>
        </div>
@@ -464,7 +464,7 @@ foreach (array('eth0', 'wlan0', 'bond0') as $value) {
 		if (config::byKey('market::allowDNS') == 1 && network::dns_run()) {
 			echo '<span class="label label-success" style="font-size : 1em;">{{Démarré : }} <a href="' . network::getNetworkAccess('external') . '" target="_blank" style="color:white;text-decoration: underline;">' . network::getNetworkAccess('external') . '</a></span>';
 		} else {
-			echo '<span class="label label-warning tooltips" title="{{Normal si vous n\'avez pas coché la case : Utiliser les DNS Jeedom}}">{{Arrêté}}</span>';
+			echo '<span class="label label-warning" title="{{Normal si vous n\'avez pas coché la case : Utiliser les DNS Jeedom}}">{{Arrêté}}</span>';
 		}
 		echo '</div>';
 		echo '</div>';
@@ -518,14 +518,14 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
 		echo '<input type="color" class="configKey form-control cursor noSet input-sm" data-l1key="eqLogic:category:' . $key . ':color" value="' . $category['color'] . '" />';
 		echo '</div>';
 		echo '<div class="col-sm-1">';
-		echo '<a class="btn btn-default btn-sm bt_resetColor tooltips" data-l1key="eqLogic:category:' . $key . ':color" title="{{Remettre par défaut}}"><i class="fa fa-times"></i></a>';
+		echo '<a class="btn btn-default btn-sm bt_resetColor" data-l1key="eqLogic:category:' . $key . ':color" title="{{Remettre par défaut}}"><i class="fa fa-times"></i></a>';
 		echo '</div>';
 		echo '<label class="col-sm-3 control-label">{{Dashboard couleur commande}}</label>';
 		echo '<div class="col-sm-2">';
 		echo '<input type="color" class="configKey form-control cursor noSet input-sm" data-l1key="eqLogic:category:' . $key . ':cmdColor" value="' . $category['cmdColor'] . '" />';
 		echo '</div>';
 		echo '<div class="col-sm-1">';
-		echo '<a class="btn btn-default btn-sm bt_resetColor tooltips" data-l1key="eqLogic:category:' . $key . ':cmdColor" title="{{Remettre par défaut}}"><i class="fa fa-times"></i></a>';
+		echo '<a class="btn btn-default btn-sm bt_resetColor" data-l1key="eqLogic:category:' . $key . ':cmdColor" title="{{Remettre par défaut}}"><i class="fa fa-times"></i></a>';
 		echo '</div>';
 		echo '</div>';
 		echo '<div class="form-group">';
@@ -534,14 +534,14 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
 		echo '<input type="color" class="configKey form-control cursor noSet input-sm" data-l1key="eqLogic:category:' . $key . ':mcolor" value="' . $category['mcolor'] . '"/>';
 		echo '</div>';
 		echo '<div class="col-sm-1">';
-		echo '<a class="btn btn-default btn-sm bt_resetColor tooltips" data-l1key="eqLogic:category:' . $key . ':mcolor" title="{{Remettre par défaut}}"><i class="fa fa-times"></i></a>';
+		echo '<a class="btn btn-default btn-sm bt_resetColor" data-l1key="eqLogic:category:' . $key . ':mcolor" title="{{Remettre par défaut}}"><i class="fa fa-times"></i></a>';
 		echo '</div>';
 		echo '<label class="col-sm-3 control-label">{{Mobile couleur commande}}</label>';
 		echo '<div class="col-sm-2">';
 		echo '<input type="color" class="configKey form-control cursor noSet input-sm" data-l1key="eqLogic:category:' . $key . ':mcmdColor" value="' . $category['mcmdColor'] . '" />';
 		echo '</div>';
 		echo '<div class="col-sm-1">';
-		echo '<a class="btn btn-default btn-sm bt_resetColor tooltips" data-l1key="eqLogic:category:' . $key . ':mcmdColor" title="{{Remettre par défaut}}"><i class="fa fa-times"></i></a>';
+		echo '<a class="btn btn-default btn-sm bt_resetColor" data-l1key="eqLogic:category:' . $key . ':mcmdColor" title="{{Remettre par défaut}}"><i class="fa fa-times"></i></a>';
 		echo '</div>';
 		echo '</div>';
 	}
@@ -629,7 +629,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
                  <div class="form-group">
                     <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{URL de push globale}}</label>
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                        <input type="text"  class="configKey form-control tooltips" data-l1key="cmdPushUrl" title="{{Mettez ici l'URL à appeler lors d'une mise à jour de la valeur des commandes. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"/>
+                        <input type="text"  class="configKey form-control" data-l1key="cmdPushUrl" title="{{Mettez ici l'URL à appeler lors d'une mise à jour de la valeur des commandes. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"/>
                     </div>
                 </div>
 

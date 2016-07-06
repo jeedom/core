@@ -330,8 +330,7 @@ jeedom.cmd.refreshValue = function(_params) {
                 cmd.attr('data-cmd_uid',uid);
             }
             cmd.show();
-            cmd.replaceWith(result[i].html); 
-            initTooltips();
+            cmd.replaceWith(result[i].html);
             if ($.mobile) {
                 $('.cmd[data-cmd_id=' + i + ']').trigger("create");
             }

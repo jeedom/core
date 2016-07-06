@@ -208,7 +208,6 @@ function printUpdate() {
                 addUpdate(data[i]);
             }
             $('#table_update').trigger('update');
-            initTooltips();
         }
     });
 
@@ -238,20 +237,20 @@ function addUpdate(_update) {
     tr += '</td>';
     tr += '<td>';
     if (_update.status == 'update') {
-        tr += '<a class="btn btn-info btn-xs update tooltips" style="margin-bottom : 5px;" title="{{Mettre à jour}}"><i class="fa fa-refresh"></i> {{Mettre à jour}}</a> ';
+        tr += '<a class="btn btn-info btn-xs update" style="margin-bottom : 5px;" title="{{Mettre à jour}}"><i class="fa fa-refresh"></i> {{Mettre à jour}}</a> ';
     }else if (_update.type != 'core') {
-        tr += '<a class="btn btn-info btn-xs update tooltips" style="margin-bottom : 5px;" title="{{Re-installer}}"><i class="fa fa-refresh"></i> {{Re-installer}}</a> ';
+        tr += '<a class="btn btn-info btn-xs update" style="margin-bottom : 5px;" title="{{Re-installer}}"><i class="fa fa-refresh"></i> {{Re-installer}}</a> ';
     }
     if (_update.type != 'core') {
         if (isset(_update.info) && isset(_update.info.changelog) && _update.info.changelog != '') {
-            tr += '<a class="btn btn-default btn-xs tooltips cursor" target="_blank" href="'+_update.info.changelog+'" style="margin-bottom : 5px;"><i class="fa fa-book"></i> {{Changelog}}</a>';
+            tr += '<a class="btn btn-default btn-xs cursor" target="_blank" href="'+_update.info.changelog+'" style="margin-bottom : 5px;"><i class="fa fa-book"></i> {{Changelog}}</a>';
         }
     }else{
        tr += '<a class="btn btn-default btn-xs" href="https://github.com/jeedom/core/releases" target="_blank" style="margin-bottom : 5px;"><i class="fa fa-book"></i> {{Changelog}}</a>'; 
    }
-   tr += '<a class="btn btn-info btn-xs pull-right checkUpdate expertModeVisible tooltips" style="margin-bottom : 5px;" ><i class="fa fa-check"></i> {{Vérifier les mises à jour}}</a>';
+   tr += '<a class="btn btn-info btn-xs pull-right checkUpdate expertModeVisible" style="margin-bottom : 5px;" ><i class="fa fa-check"></i> {{Vérifier les mises à jour}}</a>';
    if (_update.type != 'core') {
-    tr += '<a class="btn btn-danger btn-xs pull-right remove expertModeVisible tooltips" style="margin-bottom : 5px;" ><i class="fa fa-trash-o"></i> {{Supprimer}}</a>';  
+    tr += '<a class="btn btn-danger btn-xs pull-right remove expertModeVisible" style="margin-bottom : 5px;" ><i class="fa fa-trash-o"></i> {{Supprimer}}</a>';  
 }
 tr += '</td>';
 tr += '</tr>';

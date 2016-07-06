@@ -215,7 +215,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 	$hasSpecificHealthIcon = '';
 	if (file_exists(dirname(plugin::getPathById($plugin_id)) . '/../desktop/modal/health.php')) {
 		$hasSpecificHealth = 1;
-		$hasSpecificHealthIcon = '  <i data-pluginname="' . $plugin->getName() . '" data-pluginid="' . $plugin->getId() . '" class="fa fa-medkit bt_healthSpecific tooltips" style="cursor:pointer;color:grey;font-size:0.8em" title="Santé spécifique"></i>';
+		$hasSpecificHealthIcon = '  <i data-pluginname="' . $plugin->getName() . '" data-pluginid="' . $plugin->getId() . '" class="fa fa-medkit bt_healthSpecific" style="cursor:pointer;color:grey;font-size:0.8em" title="Santé spécifique"></i>';
 	}
 	if ($plugin->getHasDependency() == 1 || $plugin->getHasOwnDeamon() == 1 || method_exists($plugin->getId(), 'health') || $hasSpecificHealth == 1) {
 		echo '<legend>';
