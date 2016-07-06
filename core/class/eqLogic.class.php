@@ -986,15 +986,6 @@ class eqLogic {
 		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
 	}
 
-	public function getStatus($_key = '', $_default = '') {
-		$status = cache::byKey('core::eqLogic' . $this->getId() . '::' . $_key);
-		return $status->getValue($_default);
-	}
-
-	public function setStatus($_key, $_value) {
-		return cache::set('core::eqLogic' . $this->getId() . '::' . $_key, $_value, 0);
-	}
-
 	public function getSpecificCapatibilities($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->specificCapatibilities, $_key, $_default);
 	}
@@ -1067,7 +1058,16 @@ class eqLogic {
 	public function setCache($_key, $_value) {
 		$cache = cache::byKey('eqLogicCacheAttr' . $this->getId());
 		cache::set('eqLogicCacheAttr' . $this->getId(), utils::setJsonAttr($cache->getValue(), $_key, $_value));
+	}
 
+	public function getStatus($_key = '', $_default = '') {
+		$cache = cache::byKey('eqLogicStatusAttr' . $this->getId());
+		return utils::getJsonAttr($cache->getValue(), $_key, $_default);
+	}
+
+	public function setStatus($_key, $_value) {
+		$cache = cache::byKey('eqLogicStatusAttr' . $this->getId());
+		cache::set('eqLogicStatusAttr' . $this->getId(), utils::setJsonAttr($cache->getValue(), $_key, $_value));
 	}
 
 }

@@ -709,11 +709,11 @@ class cmd {
 	 */
 	public function execCmd($_options = null, $_sendNodeJsEvent = true, $_quote = false) {
 		if ($this->getType() == 'info') {
-			$mc = cache::byKey('cmd' . $this->getId());
-			if ($mc->getValue() !== null) {
-				$this->setCollectDate($mc->getOptions('collectDate', $mc->getDatetime()));
-				$this->setValueDate($mc->getOptions('valueDate', $mc->getDatetime()));
-				return $mc->getValue();
+			$value = $this->getCache('value', null);
+			if ($value !== null) {
+				$this->setCollectDate($this->getCache('collectDate', date('Y-m-d H:i:s')));
+				$this->setValueDate($this->getCache('valueDate', date('Y-m-d H:i:s')));
+				return $value;
 			}
 			return '';
 		}
@@ -818,11 +818,6 @@ class cmd {
 			$template = self::$_templateArray[$version . '::' . $template_name];
 		}
 		return $template;
-	}
-
-	public function preToHtml() {
-
-		return $replace;
 	}
 
 	public function toHtml($_version = 'dashboard', $options = '', $_cmdColor = null) {
@@ -1004,7 +999,9 @@ class cmd {
 			$message .= ' (répétition)';
 		}
 		log::add('event', 'info', $message);
-		cache::set('cmd' . $this->getId(), $value, 0, array('collectDate' => $this->getCollectDate(), 'valueDate' => $this->getValueDate()));
+		$this->setCache('value', $value);
+		$this->setCache('collectDate', $this->getCollectDate());
+		$this->setCache('valueDate', $this->getValueDate());
 		if (!$repeat) {
 			scenario::check($this);
 		}
