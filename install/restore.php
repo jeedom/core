@@ -39,9 +39,9 @@ try {
 	echo "***************Lancement de la restauration de Jeedom***************\n";
 
 	try {
-		echo __("Envoi de l\'événement de début de restauration...", __FILE__);
-		jeedom::event('#begin_restore#', true);
-		echo __("OK\n", __FILE__);
+		echo "Envoi de l'événement de début de restauration...";
+		jeedom::event('begin_restore', true);
+		echo "OK\n";
 	} catch (Exception $e) {
 		echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
 	}
@@ -190,9 +190,9 @@ try {
 	jeedom::start();
 
 	try {
-		echo __("Envoi de l\'événement de fin de restauration...", __FILE__);
-		jeedom::event('#end_restore#');
-		echo __("OK\n", __FILE__);
+		echo "Envoi de l'événement de fin de restauration...";
+		jeedom::event('end_restore');
+		echo "OK\n";
 	} catch (Exception $e) {
 		echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
 	}

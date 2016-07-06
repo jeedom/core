@@ -67,9 +67,9 @@ try {
 		/*         * ************************MISE A JOUR********************************** */
 
 		try {
-			echo __("Envoi de l\'événement de début de mise à jour...", __FILE__);
-			jeedom::event('#begin_update#', true);
-			echo __("OK\n", __FILE__);
+			echo "Envoi de l'événement de début de mise à jour...";
+			jeedom::event('begin_update', true);
+			echo "OK\n";
 		} catch (Exception $e) {
 			if (init('mode') != 'force') {
 				throw $e;
@@ -425,20 +425,21 @@ try {
 	echo "[END UPDATE ERROR]\n";
 	throw $e;
 }
-echo 'Launch cron dependancy plugins';
+echo "Launch cron dependancy plugins...";
 try {
 	$cron = cron::byClassAndFunction('plugin', 'checkDeamon');
 	if (is_object($cron)) {
 		$cron->start();
 	}
+	echo "OK\n";
 } catch (Exception $e) {
 
 }
 
 try {
-	echo __("Envoi de l\'événement de fin de mise à jour...", __FILE__);
-	jeedom::event('#end_update#');
-	echo __("OK\n", __FILE__);
+	echo "Send end of update event...";
+	jeedom::event('end_update');
+	echo "OK\n";
 } catch (Exception $e) {
 	if (init('mode') != 'force') {
 		throw $e;

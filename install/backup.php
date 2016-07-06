@@ -39,9 +39,9 @@ try {
 	echo __("***************Lancement de la sauvegarde de Jeedom le ", __FILE__) . date('Y-m-d H:i:s') . "***************\n";
 
 	try {
-		echo __("Envoi de l\'événement de début de backup...", __FILE__);
-		jeedom::event('#begin_backup#', true);
-		echo __("OK\n", __FILE__);
+		echo "Envoi de l'événement de début de backup...";
+		jeedom::event('begin_backup', true);
+		echo "OK\n";
 	} catch (Exception $e) {
 		echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
 	}
@@ -223,9 +223,9 @@ try {
 	echo __("Nom du backup : ", __FILE__) . $backup_dir . '/' . $bakcup_name . "\n";
 
 	try {
-		echo __("Envoi de l\'événement de fin de backup...", __FILE__);
-		jeedom::event('#end_backup#');
-		echo __("OK\n", __FILE__);
+		echo "Envoi de l\'événement de fin de backup...";
+		jeedom::event('end_backup');
+		echo "OK\n";
 	} catch (Exception $e) {
 		echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
 	}
