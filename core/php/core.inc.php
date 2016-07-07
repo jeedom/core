@@ -29,11 +29,15 @@ include_file('core', 'jeedom', 'config');
 include_file('core', 'compatibility', 'config');
 include_file('core', 'utils', 'class');
 include_file('core', 'log', 'class');
-$configs = config::byKeys(array('timezone', 'log::level'));
 try {
-	date_default_timezone_set($configs['timezone']);
+	$configs = config::byKeys(array('timezone', 'log::level'));
+	if (isset($configs['timezone'])) {
+		date_default_timezone_set($configs['timezone']);
+	} else {
+		date_default_timezone_set('Europe/Brussels');
+	}
 } catch (Exception $e) {
-	date_default_timezone_set('Europe/Brussels');
+
 }
 
 function jeedomCoreAutoload($classname) {
@@ -45,7 +49,9 @@ function jeedomCoreAutoload($classname) {
 }
 
 try {
-	log::define_error_reporting($configs['log::level']);
+	if (isset($configs['log::level'])) {
+		log::define_error_reporting($configs['log::level']);
+	}
 } catch (Exception $e) {
 
 }
