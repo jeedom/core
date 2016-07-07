@@ -119,7 +119,7 @@ class pluginTest extends \PHPUnit_Framework_TestCase {
 	public function testCmdVirtualNumeric($virtual) {
 		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
 		$cmd = $virtual->getCmd(null, 'virtual_test_2');
-		$this->assertSame(2.0, $cmd->execCmd());
+		$this->assertSame(2, $cmd->execCmd());
 	}
 
 	/**
