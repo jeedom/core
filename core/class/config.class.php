@@ -226,7 +226,11 @@ class config {
 		$values = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
 		$return = array();
 		foreach ($values as $value) {
-			$return[$value['key']] = $value['value'];
+			if (is_json($value['value'])) {
+				$return[$value['key']] = json_decode($value['value'], true);
+			} else {
+				$return[$value['key']] = $value['value'];
+			}
 		}
 		return $return;
 	}
