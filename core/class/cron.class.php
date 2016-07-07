@@ -26,9 +26,6 @@ class cron {
 	private $enable = 1;
 	private $class = '';
 	private $function;
-	private $lastRun = null;
-	private $state = 'stop';
-	private $pid = null;
 	private $schedule = '';
 	private $timeout;
 	private $deamon = 0;
@@ -220,6 +217,7 @@ class cron {
 	 * @return boolean
 	 */
 	public function save() {
+		log::add('save', 'debug', 'CRON SAVE : ' . print_r($this, true));
 		return DB::save($this, false, true);
 	}
 
@@ -240,10 +238,8 @@ class cron {
 	public function start() {
 		if (!$this->running()) {
 			$this->setState('starting');
-			$this->save();
 		} else {
 			$this->setState('run');
-			$this->save();
 		}
 	}
 
@@ -293,7 +289,6 @@ class cron {
 		if ($result && ($this->getState() == 'run' || $this->getState() == 'stoping') && !$this->running()) {
 			$this->setState('stop');
 			$this->setPID();
-			$this->save();
 		}
 		return $result;
 	}
@@ -305,7 +300,6 @@ class cron {
 	public function stop() {
 		if ($this->running()) {
 			$this->setState('stoping');
-			$this->save();
 		}
 	}
 
@@ -317,7 +311,6 @@ class cron {
 		if (!$this->running()) {
 			$this->setState('stop');
 			$this->setPID();
-			$this->save();
 		} else {
 			log::add('cron', 'info', __('Arrêt de ', __FILE__) . $this->getClass() . '::' . $this->getFunction() . '(), PID : ' . $this->getPID());
 			if ($this->getPID() > 0) {
@@ -345,13 +338,11 @@ class cron {
 				if ($this->running()) {
 					$this->setState('error');
 					$this->setPID();
-					$this->save();
 					throw new Exception($this->getClass() . '::' . $this->getFunction() . __('() : Impossible d\'arrêter la tâche', __FILE__));
 				}
 			} else {
 				$this->setState('stop');
 				$this->setPID();
-				$this->save();
 			}
 		}
 		return true;
@@ -411,6 +402,14 @@ class cron {
 		return $this->getFunction() . '()';
 	}
 
+	public function toArray() {
+		$return = utils::o2a($this, true);
+		$return['state'] = $this->getState();
+		$return['lastRun'] = $this->getLastRun();
+		$return['pid'] = $this->getPID();
+		return $return;
+	}
+
 	/*     * **********************Getteur Setteur*************************** */
 
 	public function getId() {
@@ -426,14 +425,11 @@ class cron {
 	}
 
 	public function getLastRun() {
-		if ($this->lastRun == '0000-00-00 00:00:00' || $this->lastRun == null) {
-			return date('Y-m-d H:i:s');
-		}
-		return $this->lastRun;
+		return $this->getCache('lastRun');
 	}
 
 	public function getState() {
-		return $this->state;
+		return $this->getCache('state', 'stop');
 	}
 
 	public function getEnable($_default = 0) {
@@ -444,10 +440,7 @@ class cron {
 	}
 
 	public function getPID($_default = null) {
-		if ($this->pid == '' || !is_numeric($this->pid)) {
-			return $_default;
-		}
-		return $this->pid;
+		return $this->getCache('pid', $_default);
 	}
 
 	public function setId($id) {
@@ -467,18 +460,15 @@ class cron {
 	}
 
 	public function setLastRun($lastRun) {
-		$this->lastRun = $lastRun;
+		$this->setCache('lastRun', $lastRun);
 	}
 
 	public function setState($state) {
-		$this->state = $state;
+		$this->setCache('state', $state);
 	}
 
 	public function setPID($pid = null) {
-		if (trim($pid) == '') {
-			$pid = null;
-		}
-		$this->pid = $pid;
+		$this->setCache('pid', $pid);
 	}
 
 	public function getSchedule() {
@@ -538,6 +528,16 @@ class cron {
 
 	public function setOnce($once) {
 		$this->once = $once;
+	}
+
+	public function getCache($_key = '', $_default = '') {
+		$cache = cache::byKey('cronCacheAttr' . $this->getId());
+		return utils::getJsonAttr($cache->getValue(), $_key, $_default);
+	}
+
+	public function setCache($_key, $_value) {
+		$cache = cache::byKey('cronCacheAttr' . $this->getId());
+		cache::set('cronCacheAttr' . $this->getId(), utils::setJsonAttr($cache->getValue(), $_key, $_value));
 	}
 
 }

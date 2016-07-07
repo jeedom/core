@@ -587,7 +587,6 @@ class scenario {
 		$this->setLastLaunch(date('Y-m-d H:i:s'));
 		$this->setState('in progress');
 		$this->setPID(getmypid());
-		$this->save();
 		$this->setRealTrigger($_trigger);
 		foreach ($this->getElement() as $element) {
 			$element->execute($this);
@@ -596,11 +595,6 @@ class scenario {
 		$this->setPID('');
 		$this->setLog(__('Fin correcte du scénario', __FILE__));
 		$this->persistLog();
-		$scenario = scenario::byId($this->getId());
-		if ($scenario->getIsActive() != $this->getIsActive()) {
-			$this->setIsActive($scenario->getIsActive());
-		}
-		$this->save();
 		return $this->getReturn();
 	}
 
@@ -924,7 +918,6 @@ class scenario {
 			}
 		}
 		$this->setState('stop');
-		$this->save();
 		return true;
 	}
 
@@ -1192,6 +1185,8 @@ class scenario {
 	public function setState($state) {
 		if ($this->getCache('state') != $state) {
 			$this->_changeState = true;
+			$this->emptyCacheWidget();
+			event::add('scenario::update', array('scenario_id' => $this->getId(), 'state' => $this->getState(), 'lastLaunch' => $this->getLastLaunch()));
 		}
 		$this->setCache('state', $state);
 	}

@@ -51,7 +51,6 @@ if (init('cron_id') != '') {
 		$cron->setState('run');
 		$cron->setPID(getmypid());
 		$cron->setLastRun($datetime);
-		$cron->save();
 		$option = $cron->getOption();
 		if ($cron->getClass() != '') {
 			$class = $cron->getClass();
@@ -84,7 +83,6 @@ if (init('cron_id') != '') {
 			} else {
 				$cron->setState('Not found');
 				$cron->setPID();
-				$cron->save();
 				log::add('cron', 'error', __('[Erreur] Classe ou fonction non trouvée ', __FILE__) . $cron->getName());
 				die();
 			}
@@ -118,8 +116,6 @@ if (init('cron_id') != '') {
 			} else {
 				$cron->setState('Not found');
 				$cron->setPID();
-				$cron->save();
-				$cron->setEnable(0);
 				log::add('cron', 'error', __('[Erreur] Non trouvée ', __FILE__) . $cron->getName());
 				die();
 			}
@@ -132,13 +128,11 @@ if (init('cron_id') != '') {
 			}
 			$cron->setState('stop');
 			$cron->setPID();
-			$cron->save();
 		}
 		die();
 	} catch (Exception $e) {
 		$cron->setState('error');
 		$cron->setPID('');
-		$cron->save();
 		$logicalId = config::genKey();
 		if ($e->getCode() != 0) {
 			$logicalId = $cron->getName() . '::' . $e->getCode();
@@ -155,7 +149,6 @@ if (init('cron_id') != '') {
 	} catch (Error $e) {
 		$cron->setState('error');
 		$cron->setPID('');
-		$cron->save();
 		$logicalId = config::genKey();
 		if ($e->getCode() != 0) {
 			$logicalId = $cron->getName() . '::' . $e->getCode();
@@ -213,7 +206,6 @@ if (init('cron_id') != '') {
 			if ($cron->getOnce() != 1) {
 				$cron->setState('error');
 				$cron->setPID('');
-				$cron->save();
 				echo __('[Erreur master] ', __FILE__) . $cron->getName() . ' : ' . log::exception($e);
 				log::add('cron', 'error', __('[Erreur master] ', __FILE__) . $cron->getName() . ' : ' . $e->getMessage());
 			}
@@ -221,7 +213,6 @@ if (init('cron_id') != '') {
 			if ($cron->getOnce() != 1) {
 				$cron->setState('error');
 				$cron->setPID('');
-				$cron->save();
 				echo __('[Erreur master] ', __FILE__) . $cron->getName() . ' : ' . log::exception($e);
 				log::add('cron', 'error', __('[Erreur master] ', __FILE__) . $cron->getName() . ' : ' . $e->getMessage());
 			}
