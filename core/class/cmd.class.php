@@ -712,7 +712,7 @@ class cmd {
 		if ($this->getType() == 'info') {
 			$this->setCollectDate($this->getCache('collectDate', date('Y-m-d H:i:s'), true));
 			$this->setValueDate($this->getCache('valueDate', date('Y-m-d H:i:s'), true));
-			return $this->getCache('value', date('Y-m-d H:i:s'), true);
+			return $this->getCache('value', '', true);
 		}
 		$eqLogic = $this->getEqLogic();
 		if (!is_object($eqLogic) || $eqLogic->getIsEnable() != 1) {
@@ -1481,11 +1481,15 @@ class cmd {
 	}
 
 	public function getCache($_key = '', $_default = '', $_refresh = true) {
-
+		if ($this->_cache == null || $_refresh) {
+			$this->_cache = cache::byKey('cmdCacheAttr' . $this->getId())->getValue();
+		}
+		return utils::getJsonAttr($this->_cache, $_key, $_default);
 	}
 
 	public function setCache($_key, $_value) {
-
+		$cache = cache::byKey('cmdCacheAttr' . $this->getId());
+		cache::set('cmdCacheAttr' . $this->getId(), utils::setJsonAttr($cache->getValue(), $_key, $_value));
 	}
 
 }
