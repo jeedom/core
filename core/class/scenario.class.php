@@ -26,11 +26,8 @@ class scenario {
 	private $name;
 	private $isActive = 1;
 	private $group = '';
-	private $state = 'stop';
-	private $lastLaunch = null;
 	private $mode;
 	private $schedule;
-	private $pid;
 	private $scenarioElement;
 	private $trigger;
 	private $_log;
@@ -1134,6 +1131,13 @@ class scenario {
 		}
 		$path .= '/scenario' . $this->getId() . '.log';
 		file_put_contents($path, "------------------------------------\n" . $this->getLog(), FILE_APPEND);
+	}
+
+	public function toArray() {
+		$return = utils::o2a($this, true);
+		$return['state'] = $this->getCache('state');
+		$return['lastLaunch'] = $this->getCache('lastLaunch');
+		return $return;
 	}
 
 /*     * **********************Getteur Setteur*************************** */

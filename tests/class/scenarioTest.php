@@ -32,15 +32,12 @@ class scenarioTest extends \PHPUnit_Framework_TestCase {
 			array('State', 'foo', 'foo'),
 			array('IsActive', true, true),
 			array('Group', 'foo', 'foo'),
-			array('LastLaunch', '', null),
 			array('LastLaunch', 'foo', 'foo'),
 			array('Type', 'foo', 'foo'),
 			array('Mode', 'foo', 'foo'),
 			array('Schedule', array('foo' => 'bar'), array('foo' => 'bar')),
 			array('Schedule', '{"foo":"bar"}', array('foo' => 'bar')),
 			array('Schedule', 'foo', 'foo'),
-			array('PID', '', null),
-			array('PID', 'foo', null),
 			array('PID', 1, 1),
 			array('ScenarioElement', array('foo' => 'bar'), array('foo' => 'bar')),
 			array('ScenarioElement', '{"foo":"bar"}', array('foo' => 'bar')),
@@ -107,7 +104,7 @@ class scenarioTest extends \PHPUnit_Framework_TestCase {
 		$_SESSION['user'] = new user();
 		$this->assertFalse($scenario->hasRight('foo'));
 		$_SESSION['user']->setLogin('foo');
-		$_SESSION['user']->setRights('admin');
+		$_SESSION['user']->setRights('admin', 1);
 		$_SESSION['user']->save();
 		$userId = $_SESSION['user']->getId();
 		$this->assertTrue($scenario->hasRight('foo'));
