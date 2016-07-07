@@ -73,11 +73,11 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
 						<fieldset>
 							<div class="form-group">
 								<label class="col-sm-4 control-label">{{Activer}}</label>
-								<div class="col-sm-4">
+								<div class="col-sm-1">
 									<input type="checkbox" class="eqLogicAttr" data-l1key="isEnable" checked/>
 								</div>
-								<label class="col-sm-4 control-label">{{Visible}}</label>
-								<div class="col-sm-4">
+								<label class="col-sm-2 control-label">{{Visible}}</label>
+								<div class="col-sm-1">
 									<input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked/>
 								</div>
 							</div>
