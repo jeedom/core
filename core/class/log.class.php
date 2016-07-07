@@ -70,7 +70,7 @@ class log {
 	}
 
 	public static function getLogLevel($_log) {
-		$specific_level = slef::getConfig('log::level::' . $_log);
+		$specific_level = self::getConfig('log::level::' . $_log);
 		if (is_array($specific_level)) {
 			if (isset($specific_level['default']) && $specific_level['default'] == 1) {
 				return self::getConfig('log::level');
