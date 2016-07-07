@@ -122,7 +122,7 @@ class logTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testListe($engin, $return) {
 		config::save('log::engine', $engin);
-		log::add($engin, 'debug', $message);
+		log::add($engin, 'debug', 'toto');
 		$this->assertSame($return, log::liste());
 	}
 
