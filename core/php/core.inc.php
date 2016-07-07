@@ -29,7 +29,7 @@ include_file('core', 'jeedom', 'config');
 include_file('core', 'compatibility', 'config');
 include_file('core', 'utils', 'class');
 include_file('core', 'log', 'class');
-$configs = config::byKeys('timezone', 'log::level');
+$configs = config::byKeys(array('timezone', 'log::level'));
 try {
 	date_default_timezone_set($configs['timezone']);
 } catch (Exception $e) {

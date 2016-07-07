@@ -32,16 +32,27 @@ class log {
 	/*     * *************************Attributs****************************** */
 
 	private static $logger = array();
+	private static $config = null;
 
 	/*     * ***********************Methode static*************************** */
+
+	public static function getConfig($_key, $_default = '') {
+		if (self::$config == null) {
+			self::$config = array_merge(config::getLogLevelPlugin(), config::byKeys(array('log::engine', 'log::formatter', 'log::level', 'addMessageForErrorLog', 'maxLineLog')));
+		}
+		if (isset(self::$config[$_key])) {
+			return self::$config[$_key];
+		}
+		return $_default;
+	}
 
 	public static function getLogger($_log) {
 		if (isset(self::$logger[$_log])) {
 			return self::$logger[$_log];
 		}
-		$formatter = new LineFormatter(config::byKey('log::formatter'));
+		$formatter = new LineFormatter(self::getConfig('log::formatter'));
 		self::$logger[$_log] = new Logger($_log);
-		switch (config::byKey('log::engine')) {
+		switch (self::getConfig('log::engine')) {
 			case 'SyslogHandler':
 				$handler = new SyslogHandler(self::getLogLevel($_log));
 				break;
@@ -59,10 +70,10 @@ class log {
 	}
 
 	public static function getLogLevel($_log) {
-		$specific_level = config::byKey('log::level::' . $_log);
+		$specific_level = slef::getConfig('log::level::' . $_log);
 		if (is_array($specific_level)) {
 			if (isset($specific_level['default']) && $specific_level['default'] == 1) {
-				return config::byKey('log::level');
+				return self::getConfig('log::level');
 			}
 			foreach ($specific_level as $key => $value) {
 				if (!is_numeric($key)) {
@@ -73,7 +84,7 @@ class log {
 				}
 			}
 		}
-		return config::byKey('log::level');
+		return self::getConfig('log::level');
 	}
 
 	public static function convertLogLevel($_level = 100) {
@@ -104,7 +115,7 @@ class log {
 			try {
 				$level = Logger::toMonologLevel($_type);
 				$write_message = ($level != Logger::ALERT && $logger->isHandling($level));
-				if ($level == Logger::ERROR && config::byKey('addMessageForErrorLog') == 1) {
+				if ($level == Logger::ERROR && self::getConfig('addMessageForErrorLog') == 1) {
 					@message::add($_log, $_message, '', $_logicalId, $write_message);
 				} elseif ($level > Logger::ALERT) {
 					@message::add($_log, $_message, '', $_logicalId, $write_message);
@@ -140,7 +151,7 @@ class log {
 		if (strpos($_path, '.htaccess') !== false) {
 			return;
 		}
-		$maxLineLog = config::byKey('maxLineLog');
+		$maxLineLog = self::getConfig('maxLineLog');
 		if ($maxLineLog < self::DEFAULT_MAX_LINE) {
 			$maxLineLog = self::DEFAULT_MAX_LINE;
 		}
@@ -281,7 +292,7 @@ class log {
 	}
 
 	public static function exception($e) {
-		if (config::byKey('log::level') > 100) {
+		if (self::getConfig('log::level') > 100) {
 			return $e->getMessage();
 		} else {
 			return print_r($e, true);

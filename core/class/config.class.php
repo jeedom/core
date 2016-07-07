@@ -163,10 +163,10 @@ class config {
 		}
 		$defaultConfiguration = self::getDefaultConfiguration($_plugin);
 		foreach ($_keys as $key) {
-			if (is_json($return[$key])) {
-				$return[$key] = json_decode($return[$key], true);
-			}
 			if (isset($return[$key])) {
+				if (is_json($return[$key])) {
+					$return[$key] = json_decode($return[$key], true);
+				}
 				continue;
 			}
 			if (isset($defaultConfiguration[$_plugin][$key])) {
@@ -215,6 +215,18 @@ class config {
 		$return = array();
 		foreach ($values as $value) {
 			$return[$value['plugin']] = $value['value'];
+		}
+		return $return;
+	}
+
+	public static function getLogLevelPlugin() {
+		$sql = 'SELECT `value`,`key`
+                FROM config
+                WHERE `key` LIKE \'log::level::%\'';
+		$values = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
+		$return = array();
+		foreach ($values as $value) {
+			$return[$value['key']] = $value['value'];
 		}
 		return $return;
 	}
