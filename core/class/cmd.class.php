@@ -452,11 +452,11 @@ class cmd {
 			if (isset($replace['#' . $cmd_id . '#'])) {
 				continue;
 			}
-			$mc = cache::byKey('cmdCacheAttr' . $cmd_id);
-			if ($mc->getValue(null) !== null) {
-				$collectDate = utils::getJsonAttr($mc->getValue(), 'collectDate', date('Y-m-d H:i:s'));
-				$valueDate = utils::getJsonAttr($mc->getValue(), 'valueDate', date('Y-m-d H:i:s'));
-				$cmd_value = utils::getJsonAttr($mc->getValue(), 'value', '');
+			$mc = cache::byKey('cmd' . $cmd_id);
+			if ($mc->getValue() !== null && $mc->getValue() !== '') {
+				$collectDate = $mc->getOptions('collectDate', $mc->getDatetime());
+				$valueDate = $mc->getOptions('valueDate', $mc->getDatetime());
+				$cmd_value = $mc->getValue();
 			} else {
 				$cmd = self::byId($cmd_id);
 				if (!is_object($cmd) || $cmd->getType() != 'info') {
@@ -709,9 +709,10 @@ class cmd {
 	 */
 	public function execCmd($_options = null, $_sendNodeJsEvent = true, $_quote = false) {
 		if ($this->getType() == 'info') {
-			$this->setCollectDate($this->getCache('collectDate', date('Y-m-d H:i:s')));
-			$this->setValueDate($this->getCache('valueDate', date('Y-m-d H:i:s')));
-			return $this->getCache('value', null);
+			$mc = cache::byKey('cmd' . $this->getId());
+			$this->setCollectDate($mc->getOptions('collectDate', $mc->getDatetime()));
+			$this->setValueDate($mc->getOptions('valueDate', $mc->getDatetime()));
+			return $mc->getValue();
 		}
 		$eqLogic = $this->getEqLogic();
 		if (!is_object($eqLogic) || $eqLogic->getIsEnable() != 1) {
@@ -995,9 +996,7 @@ class cmd {
 			$message .= ' (répétition)';
 		}
 		log::add('event', 'info', $message);
-		$this->setCache('value', $value);
-		$this->setCache('collectDate', $this->getCollectDate());
-		$this->setCache('valueDate', $this->getValueDate());
+		cache::set('cmd' . $this->getId(), $value, 0, array('collectDate' => $this->getCollectDate(), 'valueDate' => $this->getValueDate()));
 		if (!$repeat) {
 			scenario::check($this);
 		}
