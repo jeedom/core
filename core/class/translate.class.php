@@ -13,8 +13,19 @@ class translate {
 
 	protected static $translation;
 	protected static $language;
+	private static $config = null;
 
 	/*     * ***********************Methode static*************************** */
+
+	public static function getConfig($_key, $_default = '') {
+		if (self::$config == null) {
+			self::$config = config::byKeys(array('language', 'generateTranslation'));
+		}
+		if (isset(self::$config[$_key])) {
+			return self::$config[$_key];
+		}
+		return $_default;
+	}
 
 	public static function getTranslation() {
 		if (!isset(static::$translation) || !isset(static::$translation[self::getLanguage()])) {
@@ -34,7 +45,7 @@ class translate {
 			return '';
 		}
 		$language = self::getLanguage();
-		if ($language == 'fr_FR' && config::byKey('generateTranslation') != 1) {
+		if ($language == 'fr_FR' && self::getConfig('generateTranslation') != 1) {
 			return preg_replace("/{{(.*?)}}/s", '$1', $_content);
 		}
 		if (substr($_name, 0, 1) == '/') {
@@ -132,14 +143,7 @@ class translate {
 	}
 
 	public static function getLanguage() {
-		if (!isset(static::$language)) {
-			try {
-				static::$language = config::byKey('language', 'core', 'fr_FR');
-			} catch (Exception $e) {
-				static::$language = 'fr_FR';
-			}
-		}
-		return static::$language;
+		return self::getConfig('language', 'fr_FR');
 	}
 
 	/*     * *********************Methode d'instance************************* */
