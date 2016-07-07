@@ -737,7 +737,7 @@ class plugin {
 				$return[] = $log;
 				continue;
 			}
-			if (strpos($log, $this->getId() . '_') === 0) {
+			if (strpos($log, $this->getId()) === 0) {
 				$return[] = $log;
 				continue;
 			}
