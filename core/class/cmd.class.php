@@ -41,6 +41,7 @@ class cmd {
 	protected $value = null;
 	protected $isVisible = 1;
 	protected $_eqLogic = null;
+	protected $_cache = null;
 	protected $_needRefreshWidget;
 	private static $_templateArray = array();
 
@@ -709,9 +710,9 @@ class cmd {
 	 */
 	public function execCmd($_options = null, $_sendNodeJsEvent = true, $_quote = false) {
 		if ($this->getType() == 'info') {
-			$this->setCollectDate($this->getCache('collectDate', date('Y-m-d H:i:s')));
-			$this->setValueDate($this->getCache('valueDate', date('Y-m-d H:i:s')));
-			return $this->getCache('value', null);
+			$this->setCollectDate($this->getCache('collectDate', date('Y-m-d H:i:s')), true);
+			$this->setValueDate($this->getCache('valueDate', date('Y-m-d H:i:s')), true);
+			return $this->getCache('value', date('Y-m-d H:i:s'), true);
 		}
 		$eqLogic = $this->getEqLogic();
 		if (!is_object($eqLogic) || $eqLogic->getIsEnable() != 1) {
@@ -1479,9 +1480,11 @@ class cmd {
 		$this->eqType = $eqType;
 	}
 
-	public function getCache($_key = '', $_default = '') {
-		$cache = cache::byKey('cmdCacheAttr' . $this->getId());
-		return utils::getJsonAttr($cache->getValue(), $_key, $_default);
+	public function getCache($_key = '', $_default = '', $_refresh = true) {
+		if ($this->_cache == null || $_refresh) {
+			$this->_cache = cache::byKey('cmdCacheAttr' . $this->getId())->getValue();
+		}
+		return utils::getJsonAttr($this->_cache, $_key, $_default);
 	}
 
 	public function setCache($_key, $_value) {

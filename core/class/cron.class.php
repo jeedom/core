@@ -32,6 +32,7 @@ class cron {
 	private $deamonSleepTime;
 	private $option;
 	private $once = 0;
+	protected $_cache = null;
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -529,9 +530,11 @@ class cron {
 		$this->once = $once;
 	}
 
-	public function getCache($_key = '', $_default = '') {
-		$cache = cache::byKey('cronCacheAttr' . $this->getId());
-		return utils::getJsonAttr($cache->getValue(), $_key, $_default);
+	public function getCache($_key = '', $_default = '', $_refresh = true) {
+		if ($this->_cache == null || $_refresh) {
+			$this->_cache = cache::byKey('cronCacheAttr' . $this->getId())->getValue();
+		}
+		return utils::getJsonAttr($this->_cache, $_key, $_default);
 	}
 
 	public function setCache($_key, $_value) {
