@@ -723,6 +723,9 @@ class eqLogic {
 	}
 
 	public function batteryStatus($_pourcent, $_datetime = '') {
+		if ($this->getConfiguration('batteryStatus') == $_pourcent) {
+			return;
+		}
 		if ($_pourcent > 100) {
 			$_pourcent = 100;
 		}

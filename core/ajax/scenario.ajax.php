@@ -327,7 +327,6 @@ try {
 		utils::a2o($scenario_db, $scenario_ajax);
 		$scenario_db->setConfiguration('timeDependency', $time_dependance);
 		$scenario_db->setConfiguration('has_return', $has_return);
-		$scenario_db->save();
 		$scenario_element_list = array();
 		if (isset($scenario_ajax['elements'])) {
 			foreach ($scenario_ajax['elements'] as $element_ajax) {
