@@ -6,8 +6,8 @@
         "Erreur sur la fonction cronDaily du plugin : ": "Fehler der cronDaily Funktion des Plugin:",
         "Attention lancement de l'installation des dépendances": "Achtung, Abhängigkeiten Installation startet",
         "Lancement de : ": "Starten von :",
-        "Erreur sur la fonction deamon_start du plugin : ": "Erreur sur la fonction deamon_start du plugin :",
-        "Dépendances non installées": "Dépendances non installées"
+        "Erreur sur la fonction deamon_start du plugin : ": "Fehler des Plugins bei Funktion Deamon_start :",
+        "Dépendances non installées": "Abhängigkeiten nicht installiert"
     },
     "core/class/cmd.class.php": {
         "Evènement sur la commande ": "Ereignis auf den Befehl",
@@ -19,7 +19,7 @@
         "Titre": "Titel",
         "Message": "Nachricht",
         "Valeur": "Wert",
-        "Equipement désactivé - impossible d'exécuter la commande : [Salle de bain][Audio][Stop]": "Equipement désactivé - impossible d'exécuter la commande : [Salle de bain][Audio][Stop]"
+        "Equipement désactivé - impossible d'exécuter la commande : [Salle de bain][Audio][Stop]": "Gerät deaktiviert - nicht in der Lage, den Befehl auszuführen : [Bad] [Audio] [Stop]"
     },
     "core/class/scenario.class.php": {
         "Scénario exécuté automatiquement sur événement venant de : ": "Das automatisch auf Ereignis ausgeführte Szenario :",
@@ -138,9 +138,9 @@
         "Auteur": "Autor",
         "Licence": "Lizenz",
         "Ajouter depuis le market": "Ajouter depuis le market",
-        "Ajouter depuis une autre source": "Ajouter depuis une autre source",
+        "Ajouter depuis une autre source": "Aus einer anderen Quelle hinzufügen",
         "Ajout depuis le market": "Ajout depuis le market",
-        "Ajout depuis une autre source": "Ajout depuis une autre source",
+        "Ajout depuis une autre source": "Aus einer anderen Quelle hinzufügen",
         "Panel": "Tafel"
     },
     "desktop/modal/plugin.deamon.php": {
@@ -204,7 +204,7 @@
         "Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.": "Bitte sichern Sie vor dem Test. Dies kann sonst nicht gelingen.",
         "Supprimer": "Löschen",
         "Sauvegarder": "Speichern",
-        "Vue d'ensemble": "Vue d'ensemble",
+        "Vue d'ensemble": "Übersicht",
         "Testeur d'expression": "Ausdruck testen"
     },
     "desktop/php/scenario.php": {
@@ -293,7 +293,7 @@
         "Valider": "Prüfen",
         "Act. scénarios": "Akt. Szenarien",
         "Activer scénarios": " Szenarien aktivieren",
-        "Vue d'ensemble": "Vue d'ensemble",
+        "Vue d'ensemble": "Übersicht",
         "Autoriser plusieurs lancement en parallèle": "Autoriser plusieurs lancement en parallèle",
         "Le scénario pourra tourné plusieurs fois en même temps": "Le scénario pourra tourné plusieurs fois en même temps",
         "Exécuter": "ausführen"
@@ -351,8 +351,8 @@
         "Envoi de la sauvegarde dans le cloud...": "Senden Sie die Sicherung in die Cloud ...",
         "Nom du backup : ": "Backup-Name :",
         "***************Fin de la sauvegarde de Jeedom***************\n": "***************Ende der Jeedom Sicherungskopie***************",
-        "Nettoyage du dossier temporaire...": "Nettoyage du dossier temporaire...",
-        "Envoi de la sauvegarde dans le cloud": "Envoi de la sauvegarde dans le cloud"
+        "Nettoyage du dossier temporaire...": "Reinigung des temporären Ordners...",
+        "Envoi de la sauvegarde dans le cloud": "Senden Sie die Sicherung in die Cloud"
     },
     "desktop/php/dashboard.php": {
         "Liste objets": "Objekt Liste",
@@ -937,7 +937,7 @@
         "Variation": "Wertänderung",
         "Escalier": "Treppe",
         "Configuration": "Konfiguration",
-        "Aucun groupement": "Aucun groupement",
+        "Aucun groupement": "Keine Gruppe",
         "Sommes par jour": "Sommes par jour",
         "Moyenne par jour": "Moyenne par jour",
         "Minimum par jour": "Minimum par jour",
@@ -954,7 +954,7 @@
     "desktop/js/history.js": {
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de ": "Bitte geben sie das Datum der Chronik an(J-M-T H:M:S), welche gelöscht werden soll",
         "Historique supprimé avec succès": "Chronik erfolgreich gelöscht",
-        "Configuration de l'historique des commandes": "Configuration de l'historique des commandes"
+        "Configuration de l'historique des commandes": "Die Konfigurations-Chronik der Befehle"
     },
     "desktop/php/view.php": {
         "Ajouter une vue": "Eine Ansicht hinzufügen",
@@ -1668,7 +1668,7 @@
         "Variation": "Wertänderung",
         "Escalier": "Treppe",
         "Historique": "Chronik",
-        "Aucun groupement": "Aucun groupement",
+        "Aucun groupement": "Keine Gruppe",
         "Sommes par jour": "Sommes par jour",
         "Moyenne par jour": "Moyenne par jour",
         "Minimum par jour": "Minimum par jour",
