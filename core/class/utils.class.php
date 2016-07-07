@@ -24,7 +24,7 @@ class utils {
 
 	/*     * ***********************Methode static*************************** */
 
-	public static function o2a($_object) {
+	public static function o2a($_object, $_noToArray = false) {
 		if (is_array($_object)) {
 			$return = array();
 			foreach ($_object as $object) {
@@ -35,6 +35,9 @@ class utils {
 		$array = array();
 		if (!is_object($_object)) {
 			return $array;
+		}
+		if (!$_noToArray && method_exists($_object, 'toArray')) {
+			return $_object->toArray();
 		}
 		$reflections = array();
 		$uuid = spl_object_hash($_object);

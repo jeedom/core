@@ -1147,10 +1147,11 @@ class scenario {
 	}
 
 	public function getState() {
-		if (!$this->_changeState && $this->state == 'in progress' && !$this->running()) {
+		$state = $this->getCache('state');
+		if (!$this->_changeState && $state == 'in progress' && !$this->running()) {
 			return 'error';
 		}
-		return $this->state;
+		return $state;
 	}
 
 	public function getIsActive() {
@@ -1161,11 +1162,8 @@ class scenario {
 		return $this->group;
 	}
 
-	public function getLastLaunch($_default = NULL) {
-		if ($this->lastLaunch == '') {
-			return $_default;
-		}
-		return $this->lastLaunch;
+	public function getLastLaunch() {
+		return $this->getCache('lastLaunch');
 	}
 
 	public function setId($id) {
@@ -1188,14 +1186,14 @@ class scenario {
 	}
 
 	public function setState($state) {
-		if ($this->state != $state) {
+		if ($this->getCache('state') != $state) {
 			$this->_changeState = true;
 		}
-		$this->state = $state;
+		$this->setCache('state', $state);
 	}
 
 	public function setLastLaunch($lastLaunch) {
-		$this->lastLaunch = $lastLaunch;
+		$this->setCache('lastLaunch', $lastLaunch);
 	}
 
 	public function getType() {
@@ -1228,15 +1226,12 @@ class scenario {
 		$this->schedule = $schedule;
 	}
 
-	public function getPID($_default = NULL) {
-		if ($this->pid == '' || !is_numeric($this->pid)) {
-			return $_default;
-		}
-		return $this->pid;
+	public function getPID() {
+		return $this->getCache('pid');
 	}
 
 	public function setPID($pid) {
-		$this->pid = $pid;
+		$this->setCache('pid', $pid);
 	}
 
 	public function getScenarioElement() {

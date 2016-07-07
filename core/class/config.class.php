@@ -175,6 +175,18 @@ class config {
 		return $key;
 	}
 
+	public static function getPluginEnable() {
+		$sql = 'SELECT `value`,`plugin`
+                FROM config
+                WHERE `key`=\'active\'';
+		$values = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
+		$return = array();
+		foreach ($values as $value) {
+			$return[$value['plugin']] = $value['value'];
+		}
+		return $return;
+	}
+
 	/*     * *********************Methode d'instance************************* */
 
 	/*     * **********************Getteur Setteur*************************** */

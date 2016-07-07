@@ -43,6 +43,7 @@ class plugin {
 	private $info = array();
 	private $include = array();
 	private static $_cache = array();
+	private static $_enable = null;
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -369,7 +370,13 @@ class plugin {
 	/*     * *********************Méthodes d'instance************************* */
 
 	public function isActive() {
-		return config::byKey('active', $this->id);
+		if (self::$_enable == null) {
+			self::$_enable = config::getPluginEnable();
+		}
+		if (isset(self::$_enable[$this->id])) {
+			return self::$_enable[$this->id];
+		}
+		return 0;
 	}
 
 	public function callInstallFunction($_function, $_direct = false) {
