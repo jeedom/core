@@ -20,8 +20,6 @@ class logTest extends \PHPUnit_Framework_TestCase {
 	public function getEngins() {
 		return array(
 			array('StreamHandler', 'Monolog\Handler\StreamHandler'),
-			array('SyslogHandler', 'Monolog\Handler\SyslogHandler'),
-			array('SyslogUdp', 'Monolog\Handler\SyslogUdpHandler'),
 			array('foo', 'Monolog\Handler\StreamHandler'),
 		);
 	}
