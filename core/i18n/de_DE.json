@@ -5,7 +5,7 @@
         "Dépendances en cours d'installation": "Abhängigkeiten werden zur Zeit installiert",
         "Erreur sur la fonction cronDaily du plugin : ": "Fehler der cronDaily Funktion des Plugin:",
         "Attention lancement de l'installation des dépendances": "Achtung, Abhängigkeiten Installation startet",
-        "Lancement de : ": "Lancement de :",
+        "Lancement de : ": "Starten von :",
         "Erreur sur la fonction deamon_start du plugin : ": "Erreur sur la fonction deamon_start du plugin :",
         "Dépendances non installées": "Dépendances non installées"
     },
