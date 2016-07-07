@@ -122,10 +122,6 @@ class plugin {
 			$plugin->installation = __($plugin->installation, $_id);
 		}
 
-		$update = update::byLogicalId($plugin->id);
-		if (is_object($update)) {
-			$plugin->info = $update->getInfo();
-		}
 		self::$_cache[$_id] = $plugin;
 		self::$_cache[$plugin->id] = $plugin;
 		return $plugin;
