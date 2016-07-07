@@ -1,27 +1,27 @@
-= Principe
+= Grundlagen
 
-Jeedom est composé d'un core qui se charge des fonctions de base : 
+Jeedom ist aus einem Kern, der Basisfunktionen ausführt zusammensetzt : 
 
-* scénario
-* historisation
-* affichage
-* interaction
-* mise à jour et sauvegarde
+* Szenario
+* Chronik
+* Ansicht
+* Interaktion
+* Update und Sicherung
 
-Um diesen Kern herum sind Plugins zu integrieren, die beliebig sein können:
+Um diesen Kern herum kommen Plugins hinzu, die verschieden sein können : 
  
-* protocole domotique (zwave, rfxcom, enOcean...)
-* protocole IP (knx,xPL...)
-* objet communiquant (nest, netatmo...)
-* haut niveau (alarme, thermostat...)
-* interface (widget)
-* organisation (agenda, Google agenda)
-* developpement (script)
+* Home-Automatisierungs Protokolle (Z-Wave, RFXcom, EnOcean...)
+* IP Protokolle (KNX,xPL...)
+* Kommunikationsobjekte (Nest, Netatmo ...)
+* hohes Niveau (Alarm, Thermostat)
+* Schnittstelle (Widget)
+* Organisation (Kalender, Google Kalender)
+* Entwicklung (Skript)
 
-Ces plugins peuvent être récuperés par le biais du market et permettent d'étendre les possibilités de Jeedom.
+Diese Plugins können über den Markt geladen werden und ermöglichen es, Jeedom zu erweitern.
 
-Jeedom permet à n'importe quel plugin de discuter avec un autre sur une base normalisée, cela permet par exemple d'utiliser les plugins thermostat ou alarme avec n'importe quel protocole domotique ou même un plugin IP ou objet communiquant...
+Jeedom ermöglicht es jedem Plugin, mit einem anderen auf standardisierter Basis zu komunizieren. Dies ermöglicht es beispielsweise, das Thermostat-Plugin zu verwenden oder Alarm mit beliebigem Haus-Automatisierungs-Protokoll oder sogar ein IP Plugin oder Kommunikationsobjekt ...
 
-De plus Jeedom a la particularité d'être sans abonnement et sans cloud. Cela permet de garantir le fonctionnement de votre domotique même si vous n'avez plus internet. Cela garantit aussi la sécurité de vos données (évite les risques de piratage en masse de comptes).
+Außerdem hat Jeedom die Besonderheit, ohne Abo und ohne Cloud zu sein, wodurch das Funktionieren ihrer Hause-Automatisierung garantiert wird, auch wenn sie kein Internet mehr haben. Dadurch wird auch die Sicherheit ihrer Daten garantiert (vermeidet die Risiken der massenhaften Konten Piraterie).
 
-Le projet étant ouvert et open-source cela lui garantit aussi un fort taux d'évolution grâce aux nombreux contributeurs qui y participent.
+Das Projekt ist offen und Open-Source das gewährleistet auch eine hohe Rate der Entwicklung, dank der vielen Entwickler die teilnehmen.  
