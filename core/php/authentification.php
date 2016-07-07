@@ -16,7 +16,8 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 require_once dirname(__FILE__) . '/core.inc.php';
-$session_lifetime = config::byKey('session_lifetime', 24);
+$configs = config::byKeys(array('session_lifetime', 'sso:allowRemoteUser', 'security::enable'));
+$session_lifetime = $configs['session_lifetime'];
 if (!is_numeric($session_lifetime)) {
 	$session_lifetime = 24;
 }
@@ -45,7 +46,7 @@ if (!isConnect() && isset($_COOKIE['registerDevice'])) {
 	}
 }
 
-if (!isConnect() && config::byKey('sso:allowRemoteUser') == 1) {
+if (!isConnect() && $configs['sso:allowRemoteUser'] == 1) {
 	$user = user::byLogin($_SERVER['REMOTE_USER']);
 	if (is_object($user) && $user->getEnable() == 1) {
 		connection::success($user->getLogin());
@@ -62,7 +63,7 @@ if (init('logout') == 1) {
 
 /* * *******************Securité anti piratage**************************** */
 try {
-	if (config::byKey('security::enable') == 1) {
+	if ($configs['security::enable'] == 1) {
 		$connection = connection::byIp(getClientIp());
 		if (is_object($connection) && $connection->getStatus() == 'Ban') {
 			if (!headers_sent()) {
