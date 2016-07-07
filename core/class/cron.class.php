@@ -178,16 +178,6 @@ class cron {
 		return posix_getsid($pid);
 	}
 
-	public static function ok() {
-		$sql = 'SELECT UNIX_TIMESTAMP(max(`lastRun`)) as `time`
-        FROM cron';
-		$result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-		if ((strtotime('now') - $result['time']) > 3600) {
-			return false;
-		}
-		return true;
-	}
-
 	public static function convertDateToCron($_date) {
 		return date('i', $_date) . ' ' . date('H', $_date) . ' ' . date('d', $_date) . ' ' . date('m', $_date) . ' * ' . date('Y', $_date);
 	}

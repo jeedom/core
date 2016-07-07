@@ -24,18 +24,6 @@ if ($nbNeedUpdate > 0) {
 ?>
 		</tr>
 		<tr>
-			<td style="font-weight : bold;">{{Lancement des crons}}</td>
-			<?php
-if (!cron::ok()) {
-	echo '<td class="alert alert-danger">{{NOK}}</td>';
-	echo '<td></td>';
-} else {
-	echo '<td class="alert alert-success">{{OK}}</td>';
-	echo '<td></td>';
-}
-?>
-		</tr>
-		<tr>
 			<td style="font-weight : bold;">{{Cron actif}}</td>
 			<?php
 if (config::byKey('enableCron', 'core', 1, true) == 0) {
