@@ -2,7 +2,15 @@
 if (!hasRight('administrationview', true)) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
+$repos = update::listRepo();
+$keys = array('api', 'apipro', 'jeeNetwork::mode', 'jeeNetwork::master::ip', 'dns::token', 'market::allowDNS', 'market::allowAllRepo', 'ldap::enable');
+foreach ($repos as $key => $value) {
+	$keys[] = $key . '::enable';
+}
+$configs = config::byKeys($keys);
+
+sendVarToJS('ldapEnable', $configs['ldap::enable']);
+
 ?>
 <div id="config">
     <div class="panel-group" id="accordionConfiguration">
@@ -27,7 +35,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                         <div class="form-group expertModeVisible">
                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API globale de Jeedom}}">{{Clef API}}</label>
                             <div class="col-lg-4 col-md-5 col-sm-6 col-xs-6">
-                                <textarea id="in_keyAPI" style="width:100%;" rows="1" disabled><?php echo config::byKey('api'); ?></textarea>
+                                <textarea id="in_keyAPI" style="width:100%;" rows="1" disabled><?php echo $configs['api']; ?></textarea>
                             </div>
                             <div class="col-lg-2 col-md-3 col-sm-3">
                                 <a class="btn btn-default form-control" id="bt_genKeyAPI"><i class="fa fa-refresh"></i> {{Générer}}</a>
@@ -36,7 +44,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                         <div class="form-group expertModeVisible">
                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API Pro de Jeedom}}">{{Clef API Pro}}</label>
                             <div class="col-lg-4 col-md-5 col-sm-6 col-xs-6">
-                                <textarea id="in_keyAPIPro" style="width:100%;" rows="1" disabled><?php echo config::byKey('apipro'); ?></textarea>
+                                <textarea id="in_keyAPIPro" style="width:100%;" rows="1" disabled><?php echo $configs['apipro']; ?></textarea>
                             </div>
                             <div class="col-lg-2 col-md-3 col-sm-3">
                                 <a class="btn btn-default form-control" id="bt_genKeyAPIPro"><i class="fa fa-refresh"></i> {{Générer}}</a>
@@ -203,7 +211,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                     <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Permet de passer Jeedom en mode exclave.}}">{{Mode}}</label>
                     <div class="col-sm-6">
                         <?php
-if (config::byKey('jeeNetwork::mode') == 'master') {
+if ($configs['jeeNetwork::mode'] == 'master') {
 	echo '<a class="btn btn-success changeJeeNetworkMode" data-mode="master">{{Maître}}</a> ';
 	echo '<a class="btn btn-default changeJeeNetworkMode" data-mode="slave">{{Esclave}}</a>';
 } else {
@@ -340,11 +348,11 @@ echo $CONFIG['db']['password'];
                     <div class="alert alert-warning">{{Attention : cette configuration n'est là que pour informer Jeedom de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre Jeedom}}</div>
                     <legend>{{Accès interne}}</legend>
                     <?php
-if (config::byKey('jeeNetwork::mode') == 'slave') {
+if ($configs['jeeNetwork::mode'] == 'slave') {
 	echo '<div class="form-group expertModeVisible">';
 	echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{IP Maître}}</label>';
 	echo '<div class="col-sm-6">';
-	echo '<span class="label label-info">' . config::byKey('jeeNetwork::master::ip') . '</span>';
+	echo '<span class="label label-info">' . $configs['jeeNetwork::master::ip'] . '</span>';
 	echo '</div>';
 	echo '</div>';
 }
@@ -439,16 +447,16 @@ foreach (array('eth0', 'wlan0', 'bond0') as $value) {
 ?>
   </div>
   <div class="col-sm-6">
-    <?php if (config::byKey('jeeNetwork::mode') != 'slave') {
-	foreach (update::listRepo() as $key => $value) {
+    <?php if ($configs['jeeNetwork::mode'] != 'slave') {
+	foreach ($repos as $key => $value) {
 		if (!isset($value['scope']['proxy']) || $value['scope']['proxy'] == false) {
 			continue;
 		}
-		if (config::byKey($key . '::enable') == 0) {
+		if ($configs[$key . '::enable'] == 0) {
 			continue;
 		}
 		echo '<legend>{{Proxy}} ' . $value['name'] . '</legend>';
-		if (config::byKey('dns::token') == '') {
+		if ($configs['dns::token'] == '') {
 			echo '<div class="alert alert-warning">{{Attention : cette fonctionnalité n\'est pas disponible dans le service pack community (voir votre service pack sur votre page profil sur le market)}}</div>';
 			continue;
 		}
@@ -461,7 +469,7 @@ foreach (array('eth0', 'wlan0', 'bond0') as $value) {
 		echo '<div class="form-group">';
 		echo '<label class="col-xs-4 control-label">{{Statut DNS}}</label>';
 		echo '<div class="col-xs-8">';
-		if (config::byKey('market::allowDNS') == 1 && network::dns_run()) {
+		if ($configs['market::allowDNS'] == 1 && network::dns_run()) {
 			echo '<span class="label label-success" style="font-size : 1em;">{{Démarré : }} <a href="' . network::getNetworkAccess('external') . '" target="_blank" style="color:white;text-decoration: underline;">' . network::getNetworkAccess('external') . '</a></span>';
 		} else {
 			echo '<span class="label label-warning" title="{{Normal si vous n\'avez pas coché la case : Utiliser les DNS Jeedom}}">{{Arrêté}}</span>';
@@ -487,7 +495,7 @@ foreach (array('eth0', 'wlan0', 'bond0') as $value) {
 </div>
 </div>
 
-<?php if (config::byKey('jeeNetwork::mode') == 'master') {
+<?php if ($configs['jeeNetwork::mode'] == 'master') {
 	?>
 
   <div class="panel panel-default">
@@ -975,7 +983,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
         </div>
     </div>
 </div>
-<?php if (config::byKey('jeeNetwork::mode') == 'master') {?>
+<?php if ($configs['jeeNetwork::mode'] == 'master') {?>
     <div class="panel panel-default expertModeVisible">
         <div class="panel-heading">
             <h3 class="panel-title">
@@ -1035,11 +1043,11 @@ foreach (plugin::listPlugin(true) as $plugin) {
                                     <select class="configKey form-control" data-l1key="core::repo::provider">
                                        <option value="default">{{Défaut}}</option>
                                        <?php
-foreach (update::listRepo() as $key => $value) {
+foreach ($repos as $key => $value) {
 	if (!isset($value['scope']['core']) || $value['scope']['core'] == false) {
 		continue;
 	}
-	if (config::byKey($key . '::enable') == 0) {
+	if ($configs[$key . '::enable'] == 0) {
 		continue;
 	}
 	echo '<option value="' . $key . '">' . $value['name'] . '</option>';
@@ -1071,8 +1079,8 @@ foreach (update::listRepo() as $key => $value) {
 
                     <ul class="nav nav-tabs" role="tablist">
                         <?php
-foreach (update::listRepo() as $key => $value) {
-	if ($key == 'github' && config::byKey('market::allowBeta') != 1 && config::byKey('market::allowAllRepo') != 1) {
+foreach ($repos as $key => $value) {
+	if ($key == 'github' && $configs['market::allowBeta'] != 1 && $configs['market::allowAllRepo'] != 1) {
 		continue;
 	}
 	$active = ($key == 'market') ? 'active' : '';
@@ -1082,7 +1090,7 @@ foreach (update::listRepo() as $key => $value) {
                   </ul>
                   <div class="tab-content">
                     <?php
-foreach (update::listRepo() as $key => $value) {
+foreach ($repos as $key => $value) {
 	$active = ($key == 'market') ? 'active' : '';
 	echo '<div role="tabpanel" class="tab-pane ' . $active . '" id="tab' . $key . '">';
 	echo '<br/>';

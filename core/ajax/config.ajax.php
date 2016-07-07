@@ -49,13 +49,14 @@ try {
 		}
 		if (is_json($keys)) {
 			$keys = json_decode($keys, true);
+			$configs = config::byKeys(array_keys($keys), init('plugin', 'core'));
 			$return = array();
 			foreach ($keys as $key => $value) {
-				$return[$key] = jeedom::toHumanReadable(config::byKey($key, init('plugin', 'core')));
+				$return[$key] = jeedom::toHumanReadable($configs[$key]);
 			}
 			ajax::success($return);
 		} else {
-			ajax::success(config::byKey(init('key'), init('plugin', 'core')));
+			ajax::success(config::byKey($keys, init('plugin', 'core')));
 		}
 	}
 

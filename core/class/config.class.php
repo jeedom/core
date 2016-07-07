@@ -144,6 +144,38 @@ class config {
 		return isset(self::$cache[$_plugin . '::' . $_key]) ? self::$cache[$_plugin . '::' . $_key] : '';
 	}
 
+	public static function byKeys($_keys, $_plugin = 'core') {
+		if (!is_array($_keys) || count($_keys) == 0) {
+			return array();
+		}
+		$values = array(
+			'plugin' => $_plugin,
+		);
+		$keys = '(\'' . implode('\',\'', $_keys) . '\')';
+		$sql = 'SELECT `key`,`value`
+                FROM config
+                WHERE `key` IN ' . $keys . '
+                    AND plugin=:plugin';
+		$values = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
+		$return = array();
+		foreach ($values as $value) {
+			$return[$value['key']] = $value['value'];
+		}
+		$defaultConfiguration = self::getDefaultConfiguration($_plugin);
+		foreach ($_keys as $key) {
+			if (is_json($return[$key])) {
+				$return[$key] = json_decode($return[$key], true);
+			}
+			if (isset($return[$key])) {
+				continue;
+			}
+			if (isset($defaultConfiguration[$_plugin][$key])) {
+				$return[$key] = $defaultConfiguration[$_plugin][$key];
+			}
+		}
+		return $return;
+	}
+
 	public static function searchKey($_key, $_plugin = 'core') {
 		$values = array(
 			'plugin' => $_plugin,

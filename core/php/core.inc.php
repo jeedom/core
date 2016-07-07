@@ -29,8 +29,9 @@ include_file('core', 'jeedom', 'config');
 include_file('core', 'compatibility', 'config');
 include_file('core', 'utils', 'class');
 include_file('core', 'log', 'class');
+$configs = config::byKeys('timezone', 'log::level');
 try {
-	date_default_timezone_set(config::byKey('timezone'));
+	date_default_timezone_set($configs['timezone']);
 } catch (Exception $e) {
 	date_default_timezone_set('Europe/Brussels');
 }
@@ -44,7 +45,7 @@ function jeedomCoreAutoload($classname) {
 }
 
 try {
-	log::define_error_reporting(config::byKey('log::level'));
+	log::define_error_reporting($configs['log::level']);
 } catch (Exception $e) {
 
 }
