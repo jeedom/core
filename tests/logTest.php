@@ -27,16 +27,12 @@ class logTest extends \PHPUnit_Framework_TestCase {
 	public function getLogs() {
 		return array(
 			array('StreamHandler', 'foo', false, true),
-			array('SyslogHandler', 'bar', false, true),
-			array('SyslogUdp', 'baz', false, true),
 		);
 	}
 
 	public function getReturnListe() {
 		return array(
-			//	array('StreamHandler', array()),
-			array('SyslogHandler', array()),
-			array('SyslogUdp', array()),
+			array('StreamHandler', array()),
 		);
 	}
 
@@ -47,16 +43,6 @@ class logTest extends \PHPUnit_Framework_TestCase {
 			array('StreamHandler', 'notice'),
 			array('StreamHandler', 'warning'),
 			array('StreamHandler', 'error'),
-			array('SyslogHandler', 'debug'),
-			array('SyslogHandler', 'info'),
-			array('SyslogHandler', 'notice'),
-			array('SyslogHandler', 'warning'),
-			array('SyslogHandler', 'error'),
-			array('SyslogUdp', 'debug'),
-			array('SyslogUdp', 'info'),
-			array('SyslogUdp', 'notice'),
-			array('SyslogUdp', 'warning'),
-			array('SyslogUdp', 'error'),
 		);
 	}
 
