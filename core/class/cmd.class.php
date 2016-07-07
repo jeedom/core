@@ -454,7 +454,7 @@ class cmd {
 				continue;
 			}
 			$mc = cache::byKey('cmdCacheAttr' . $cmd_id);
-			if (utils::getJsonAttr($mc->getValue(), 'value') != '') {
+			if (utils::getJsonAttr($mc->getValue(), 'value', null) !== null) {
 				$collectDate = utils::getJsonAttr($mc->getValue(), 'collectDate', date('Y-m-d H:i:s'));
 				$valueDate = utils::getJsonAttr($mc->getValue(), 'valueDate', date('Y-m-d H:i:s'));
 				$cmd_value = utils::getJsonAttr($mc->getValue(), 'value', '');
