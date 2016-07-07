@@ -273,6 +273,7 @@ $("#bt_testScenario,#bt_testScenario2").on('click', function () {
     },
     success: function () {
       $('#div_alert').showAlert({message: '{{Lancement du scénario réussi}}', level: 'success'});
+      setTimeout(function(){ printScenario($('.scenarioAttr[data-l1key=id]').value()); }, 100);
     }
   });
 });
@@ -528,7 +529,7 @@ $('body').delegate('.bt_selectCmdExpression', 'click', function (event) {
 });
 
 
-}
+  }
 });
 });
 
@@ -658,7 +659,7 @@ $('body').delegate('.bt_sortable', 'mouseenter', function () {
       }
     },
   });
-$("#div_scenarioElement").sortable("enable");
+  $("#div_scenarioElement").sortable("enable");
 });
 
 $('body').delegate('.bt_sortable', 'mouseout', function () {
