@@ -317,8 +317,8 @@
         "Rafraîchir": "Rafraîchir",
         "Log vidés avec succès": "Log vidés avec succès",
         "Aucun log n'existe pour votre scénario : ": "Aucun log n'existe pour votre scénario :",
-        "Pause": "Pause",
-        "Rechercher": "Rechercher"
+        "Pause": "Berhenti Sebentar",
+        "Rechercher": "Mencari"
     },
     "desktop/php/message.php": {
         "Vider": "Abisin",
@@ -508,13 +508,13 @@
         "Code du widget": "Code du widget",
         "Activer la personalisation du widget": "Activer la personalisation du widget",
         "Reinitialiser la personalisation": "Reinitialiser la personalisation",
-        "Code": "Code",
+        "Code": "Kode",
         "Dashboard": "Dashboard",
         "Vue dashboard": "Vue dashboard",
-        "Design": "Design",
+        "Design": "Disain",
         "Mobile": "Mobile",
         "Vue mobile": "Vue mobile",
-        "Vue": "Vue",
+        "Vue": "Pemandangan",
         "Opération faite, n\\'oubliez pas de sauvegarder": "Opération faite, n\\'oubliez pas de sauvegarder"
     },
     "core/template/scenario/scenario.default": {
@@ -532,8 +532,8 @@
         "Télécharger": "Télécharger",
         "Rafraîchir": "Rafraîchir",
         "Logs": "Logs",
-        "Rechercher": "Rechercher",
-        "Pause": "Pause"
+        "Rechercher": "Mencari",
+        "Pause": "Berhenti Sebentar"
     },
     "desktop/js/log.js": {
         "Etes-vous sur de vouloir supprimer tous les logs ?": "Etes-vous sur de vouloir supprimer tous les logs ?"
@@ -725,7 +725,7 @@
         "Mise à jour (update)": "Mise à jour (update)",
         "Connection": "Connection",
         "jeeEvent": "jeeEvent",
-        "Aucun": "Aucun",
+        "Aucun": "Tak ada",
         "Attention le niveau de log d'un plugin ne peut être supérieur au niveau de log de jeedom (ex si jeedom est au niveau warning aucun plugin ne pourra envoyer des logs de niveau notice,info ou debug)": "Attention le niveau de log d'un plugin ne peut être supérieur au niveau de log de jeedom (ex si jeedom est au niveau warning aucun plugin ne pourra envoyer des logs de niveau notice,info ou debug)",
         "Niveau de log par défaut": "Niveau de log par défaut",
         "Repositories, plugins et mise à jour": "Repositories, plugins et mise à jour",
@@ -737,7 +737,7 @@
         "Activer le Samba": "Activer le Samba",
         "Activer le Fichier": "Activer le Fichier",
         "Activer le URL": "Activer le URL",
-        "Activer": "Activer"
+        "Activer": "Mengaktifkan"
     },
     "common": {
         "Lumiere Etat (info)": "Lumiere Etat (info)",
@@ -897,8 +897,8 @@
     },
     "core/ajax/jeedom.ajax.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
-        "Vue": "Vue",
-        "Objet": "Objet"
+        "Vue": "Pemandangan",
+        "Objet": "Item"
     },
     "mobile/html/connection.html": {
         "Nom d'utilisateur": "Nama pemakai",
@@ -936,7 +936,7 @@
         "Barre": "Bar",
         "Variation": "Variation",
         "Escalier": "Escalier",
-        "Configuration": "Configuration",
+        "Configuration": "Konfigurasi",
         "Aucun groupement": "Aucun groupement",
         "Sommes par jour": "Sommes par jour",
         "Moyenne par jour": "Moyenne par jour",
@@ -1268,9 +1268,9 @@
         "ACTION": "ACTION",
         "Résumé scénario": "Résumé scénario",
         "Erreur": "Erreur",
-        "Actif": "Actif",
-        "En cours": "En cours",
-        "Arrêté": "Arrêté",
+        "Actif": "Aktif",
+        "En cours": "Sedang berlangsung",
+        "Arrêté": "Berhenti",
         "Inactif": "Inactif",
         "Rechercher d\\'un équipement": "Rechercher d\\'un équipement"
     },
@@ -1380,7 +1380,7 @@
         "Envoyer sur le market": "Envoyer sur le market",
         "Partager": "Berbagi",
         "Voir": "Liat",
-        "Documentation": "Documentation",
+        "Documentation": "Dokumentasi",
         "Re-installer": "Re-installer"
     },
     "desktop/php/jeeNetwork.php": {
@@ -1755,15 +1755,15 @@
         "Enregistrement réussi": "Enregistrement réussi",
         "Etes-vous sûr de vouloir supprimer cet équipement ?": "Etes-vous sûr de vouloir supprimer cet équipement ?",
         "Suppression réalisée avec succès": "Suppression réalisée avec succès",
-        "Commandes": "Commandes",
+        "Commandes": "Perintah",
         "Dashboard": "Dashboard",
-        "Design": "Design",
-        "Vue": "Vue",
+        "Design": "Disain",
+        "Vue": "Pemandangan",
         "Mobile": "Mobile",
         "Couleur de fond": "Couleur de fond",
-        "Defaut": "Defaut",
-        "Transparent": "Transparent",
-        "Couleur du texte": "Couleur du texte",
+        "Defaut": "Standar",
+        "Transparent": "Jelas",
+        "Couleur du texte": "Teks warna",
         "Bordures": "Bordures",
         "Arrondit des bordures (en px)": "Arrondit des bordures (en px)",
         "Configuration de la commande": "Configuration de la commande",
@@ -1825,7 +1825,7 @@
         "Erreur sur ": "Error"
     },
     "desktop/modal/icon.selector.php": {
-        "Rechercher": "Rechercher",
+        "Rechercher": "Mencari",
         "animal": "animal",
         "custom": "custom",
         "divers": "divers",
@@ -1841,7 +1841,7 @@
         "securite": "securite",
         "techno": "techno",
         "transport": "transport",
-        "Général": "Général"
+        "Général": "Umum"
     },
     "install/install.php": {
         "Vérification des mises à jour...": "Vérification des mises à jour...",
@@ -1852,29 +1852,29 @@
         "Vérification des mises à jour\n": "Vérification des mises à jour"
     },
     "desktop/modal/market.display.php": {
-        "Nom": "Nom",
+        "Nom": "Nama",
         "Installer stable": "Installer stable",
         "Installer release": "Installer release",
         "Installer beta": "Installer beta",
-        "Supprimer": "Supprimer",
+        "Supprimer": "Menghapus",
         "Description": "Description",
-        "Documentation": "Documentation",
+        "Documentation": "Dokumentasi",
         "Compatibilité plateforme": "Compatibilité plateforme",
-        "Tout voir": "Tout voir",
+        "Tout voir": "Lihat Semua",
         "Ma Note": "Ma Note",
-        "Auteur": "Auteur",
+        "Auteur": "Penulis",
         "Dernière mise à jour par": "Dernière mise à jour par",
-        "Lien": "Lien",
+        "Lien": "Link",
         "Nombre d'installation": "Nombre d'installation",
         "Nombre de téléchargements": "Nombre de téléchargements",
-        "Type": "Type",
+        "Type": "Jenis",
         "Dernière mise à jour le": "Dernière mise à jour le",
         "Commentaires": "Commentaires",
         "Changelog": "Changelog",
-        "Version": "Version",
+        "Version": "Versi",
         "Voulez vous aller sur la page de configuration de votre nouveau plugin ?": "Voulez vous aller sur la page de configuration de votre nouveau plugin ?",
         "Objet installé avec succès": "Objet installé avec succès",
-        "Gratuit": "Gratuit",
+        "Gratuit": "Gratis",
         "Attention ce plugin n'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée": "Attention ce plugin n'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée"
     },
     "desktop/php/health.php": {
@@ -1895,35 +1895,35 @@
         "Espace disque libre": "Espace disque libre",
         "Configuration réseau interne": "Configuration réseau interne",
         "Configuration réseau externe": "Configuration réseau externe",
-        "Santé ": "Santé",
+        "Santé ": "Bidang Kesehatan",
         "Dépendance": "Dépendance",
         "Configuration démon": "Configuration démon",
         "Statut démon": "Statut démon"
     },
     "desktop/js/health.js": {
         "Configuration du plugin": "Configuration du plugin",
-        "Santé": "Santé"
+        "Santé": "Bidang Kesehatan"
     },
     "desktop/php/security.php": {
-        "Configuration": "Configuration",
-        "Statut": "Statut",
+        "Configuration": "Konfigurasi",
+        "Statut": "Status",
         "IP": "IP",
-        "Utilisateur": "Utilisateur",
+        "Utilisateur": "Pengguna",
         "Localisation": "Localisation",
         "Echec de connexion": "Echec de connexion",
-        "Date": "Date",
-        "Informations": "Informations",
-        "Action": "Action",
+        "Date": "Kencan",
+        "Informations": "Informasi",
+        "Action": "Tindakan",
         "Nombre de tentatives de connexion max": "Nombre de tentatives de connexion max",
         "en (min) ": "en (min)",
         "Durée du bannissement (min)": "Durée du bannissement (min)",
         "Liste blanche d'IP": "Liste blanche d'IP",
-        "Sauvegarder": "Sauvegarder"
+        "Sauvegarder": "Menyimpan"
     },
     "desktop/js/security.js": {
         "Suppression effectuée avec succès": "Suppression effectuée avec succès",
-        "Sauvegarde effectuée avec succès": "Sauvegarde effectuée avec succès",
-        "Sauvegarde réussie": "Sauvegarde réussie",
+        "Sauvegarde effectuée avec succès": "Cadangan selesai dengan sukses",
+        "Sauvegarde réussie": "Menyimpan sukses",
         "Etes-vous sûr de vouloir supprimer cette connexion ? Si l\\'IP :": "Etes-vous sûr de vouloir supprimer cette connexion ? Si l\\'IP :",
         "était bannie, celle-ci ne le sera plus": "était bannie, celle-ci ne le sera plus",
         "Etes-vous sûr de vouloir bannir cette IP  :": "Etes-vous sûr de vouloir bannir cette IP  :"
@@ -1935,7 +1935,7 @@
         "Aucune méthode correspondante à : ": "Aucune méthode correspondante à :"
     },
     "core/template/scenario/log.default": {
-        "Message": "Message",
+        "Message": "Pesan",
         "Sélectionner la commande": "Sélectionner la commande"
     },
     "core/class/update.class.php": {
@@ -1956,12 +1956,12 @@
     "desktop/modal/repo.add.php": {
         "Source": "Source",
         "Nom de la source": "Nom de la source",
-        "Configuration": "Configuration",
+        "Configuration": "Konfigurasi",
         "Type de source": "Type de source",
-        "Enregistrer": "Enregistrer",
+        "Enregistrer": "Catatan",
         "Enregistrement réussi": "Enregistrement réussi",
         "ID logique du plugin": "ID logique du plugin",
-        "Aucun": "Aucun",
+        "Aucun": "Tak ada",
         "Envoyer un plugin": "Envoyer un plugin",
         "Plugin ajouté avec succès.": "Plugin ajouté avec succès."
     },

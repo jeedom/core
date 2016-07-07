@@ -141,7 +141,7 @@
         "Ajouter depuis une autre source": "Ajouter depuis une autre source",
         "Ajout depuis le market": "Ajout depuis le market",
         "Ajout depuis une autre source": "Ajout depuis une autre source",
-        "Panel": "Panel"
+        "Panel": "Панель"
     },
     "desktop/modal/plugin.deamon.php": {
         "Suite à l'installation du plugin ou à la mise à jour des dépendances veuillez attendre au moins 5min pour que le démon se relance automatiquement": "Suite à l'installation du plugin ou à la mise à jour des dépendances veuillez attendre au moins 5min pour que le démon se relance automatiquement",
@@ -296,7 +296,7 @@
         "Vue d'ensemble": "Vue d'ensemble",
         "Autoriser plusieurs lancement en parallèle": "Autoriser plusieurs lancement en parallèle",
         "Le scénario pourra tourné plusieurs fois en même temps": "Le scénario pourra tourné plusieurs fois en même temps",
-        "Exécuter": "Exécuter"
+        "Exécuter": "Выполнить"
     },
     "desktop/modal/cmd.human.insert.php": {
         "Objet": "Объект",
@@ -317,8 +317,8 @@
         "Rafraîchir": "Обновить",
         "Log vidés avec succès": "Log vidés avec succès",
         "Aucun log n'existe pour votre scénario : ": "Нет журнала для вашего сценария:",
-        "Pause": "Pause",
-        "Rechercher": "Rechercher"
+        "Pause": "Пауза",
+        "Rechercher": "Искать"
     },
     "desktop/php/message.php": {
         "Vider": "Пусто",
@@ -508,13 +508,13 @@
         "Code du widget": "Code du widget",
         "Activer la personalisation du widget": "Activer la personalisation du widget",
         "Reinitialiser la personalisation": "Reinitialiser la personalisation",
-        "Code": "Code",
-        "Dashboard": "Dashboard",
+        "Code": "Код",
+        "Dashboard": "Приборная панель",
         "Vue dashboard": "Vue dashboard",
-        "Design": "Design",
-        "Mobile": "Mobile",
+        "Design": "Дизайн",
+        "Mobile": "Мобильный",
         "Vue mobile": "Vue mobile",
-        "Vue": "Vue",
+        "Vue": "Вид",
         "Opération faite, n\\'oubliez pas de sauvegarder": "Opération faite, n\\'oubliez pas de sauvegarder"
     },
     "core/template/scenario/scenario.default": {
@@ -531,9 +531,9 @@
         "Vider": "Пусто",
         "Télécharger": "Скачать",
         "Rafraîchir": "Обновить",
-        "Logs": "Logs",
-        "Rechercher": "Rechercher",
-        "Pause": "Pause"
+        "Logs": "Журналы",
+        "Rechercher": "Искать",
+        "Pause": "Пауза"
     },
     "desktop/js/log.js": {
         "Etes-vous sur de vouloir supprimer tous les logs ?": "Вы уверены, что желаете удалить все журналы?"
@@ -712,7 +712,7 @@
         "Système (OS)": "Système (OS)",
         "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à Jeedom. L'équipe Jeedom se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à Jeedom. L'équipe Jeedom se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.",
         "Lancer": "Запуск",
-        "Rafraîchir": "Rafraîchir",
+        "Rafraîchir": "Обновить",
         "Forcer la synchronisation de l'heure": "Forcer la synchronisation de l'heure",
         "Accès interne": "Accès interne",
         "Accès externe": "Accès externe",
@@ -721,23 +721,23 @@
         "Redis": "Redis",
         "Ignorer les messages venant de": "Ignorer les messages venant de",
         "Format des logs": "Format des logs",
-        "Défaut": "Défaut",
+        "Défaut": "По умолчанию",
         "Mise à jour (update)": "Mise à jour (update)",
         "Connection": "Connection",
         "jeeEvent": "jeeEvent",
-        "Aucun": "Aucun",
+        "Aucun": "Нет",
         "Attention le niveau de log d'un plugin ne peut être supérieur au niveau de log de jeedom (ex si jeedom est au niveau warning aucun plugin ne pourra envoyer des logs de niveau notice,info ou debug)": "Attention le niveau de log d'un plugin ne peut être supérieur au niveau de log de jeedom (ex si jeedom est au niveau warning aucun plugin ne pourra envoyer des logs de niveau notice,info ou debug)",
         "Niveau de log par défaut": "Niveau de log par défaut",
         "Repositories, plugins et mise à jour": "Repositories, plugins et mise à jour",
         "Mise à jour de jeedom": "Mise à jour de jeedom",
-        "Market": "Market",
+        "Market": "Маркет",
         "Activer le market": "Activer le market",
         "Activer le Market": "Activer le Market",
         "Activer le Github": "Activer le Github",
         "Activer le Samba": "Activer le Samba",
         "Activer le Fichier": "Activer le Fichier",
         "Activer le URL": "Activer le URL",
-        "Activer": "Activer"
+        "Activer": "Активировать"
     },
     "common": {
         "Lumiere Etat (info)": "Lumiere Etat (info)",
@@ -897,8 +897,8 @@
     },
     "core/ajax/jeedom.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
-        "Vue": "Vue",
-        "Objet": "Objet"
+        "Vue": "Вид",
+        "Objet": "Объект"
     },
     "mobile/html/connection.html": {
         "Nom d'utilisateur": "Имя пользователя",
@@ -936,7 +936,7 @@
         "Barre": "Barre",
         "Variation": "Variation",
         "Escalier": "Escalier",
-        "Configuration": "Configuration",
+        "Configuration": "Конфигурация",
         "Aucun groupement": "Aucun groupement",
         "Sommes par jour": "Sommes par jour",
         "Moyenne par jour": "Moyenne par jour",
@@ -1268,9 +1268,9 @@
         "ACTION": "ДЕЙСТВИЕ",
         "Résumé scénario": "Résumé scénario",
         "Erreur": "Erreur",
-        "Actif": "Actif",
-        "En cours": "En cours",
-        "Arrêté": "Arrêté",
+        "Actif": "Активный",
+        "En cours": "В процессе",
+        "Arrêté": "Остановленный",
         "Inactif": "Inactif",
         "Rechercher d\\'un équipement": "Rechercher d\\'un équipement"
     },
@@ -1291,7 +1291,7 @@
         "Market Jeedom": "Маркет Jeedom",
         "Sauvegarde effectuée": "Резервное копирование произведено",
         "Ajouter un plugin": "Ajouter un plugin",
-        "Changelog": "Changelog",
+        "Changelog": "Список изменений",
         "Sauvegarde de la configuration des panels effectuée": "Sauvegarde de la configuration des panels effectuée",
         "Afficher le panel desktop": "Afficher le panel desktop",
         "Afficher le panel mobile": "Afficher le panel mobile"
@@ -1364,7 +1364,7 @@
         "Mode forcé": "Mode forcé",
         "Tout depuis cette version": "Tout depuis cette version",
         "Valider": "Применить",
-        "Source": "Source"
+        "Source": "Источник"
     },
     "desktop/js/update.js": {
         "Options": "Опции",
@@ -1380,7 +1380,7 @@
         "Envoyer sur le market": "Отправить в Маркет",
         "Partager": "Распределение",
         "Voir": "Вид",
-        "Documentation": "Documentation",
+        "Documentation": "Документация",
         "Re-installer": "Re-installer"
     },
     "desktop/php/jeeNetwork.php": {
@@ -1688,7 +1688,7 @@
     "core/ajax/update.ajax.php": {
         "[START UPDATE]\n": "[НАЧАЛО ОБНОВЛЕНИЯ]",
         "[END UPDATE SUCCESS]\n": "[ОКОНЧАНИЕ УСПЕШНОГО ОБНОВЛЕНИЯ]",
-        "Aucune methode correspondante à : ": "Aucune methode correspondante à :",
+        "Aucune methode correspondante à : ": "Нет соответствующего метода:",
         "[END UPDATE ERROR]\n": "[END UPDATE ERROR]"
     },
     "core/class/market.class.php": {
@@ -1699,7 +1699,7 @@
         "Action de pre update...": "Action de pre update...",
         "Décompression du zip...": "Décompression du zip...",
         "Installation de ": "Installation de",
-        "Erreur market::getinfo : ": "Erreur market::getinfo :"
+        "Erreur market::getinfo : ": "Ошибка Маркет::getinfo :"
     },
     "core/template/scenario/wait.default": {
         "Condition": "Condition",
@@ -1755,15 +1755,15 @@
         "Enregistrement réussi": "Регистрация прошла успешно",
         "Etes-vous sûr de vouloir supprimer cet équipement ?": "Etes-vous sûr de vouloir supprimer cet équipement ?",
         "Suppression réalisée avec succès": "Удаление успешно завершено",
-        "Commandes": "Commandes",
-        "Dashboard": "Dashboard",
-        "Design": "Design",
-        "Vue": "Vue",
-        "Mobile": "Mobile",
-        "Couleur de fond": "Couleur de fond",
-        "Defaut": "Defaut",
-        "Transparent": "Transparent",
-        "Couleur du texte": "Couleur du texte",
+        "Commandes": "Команды",
+        "Dashboard": "Приборная панель",
+        "Design": "Дизайн",
+        "Vue": "Вид",
+        "Mobile": "Мобильный",
+        "Couleur de fond": "Цвет фона",
+        "Defaut": "По умолчанию",
+        "Transparent": "Прозрачный",
+        "Couleur du texte": "Цвет текста",
         "Bordures": "Bordures",
         "Arrondit des bordures (en px)": "Arrondit des bordures (en px)",
         "Configuration de la commande": "Configuration de la commande",
@@ -1825,68 +1825,68 @@
         "Erreur sur ": "Ошибка"
     },
     "desktop/modal/icon.selector.php": {
-        "Rechercher": "Rechercher",
-        "animal": "animal",
+        "Rechercher": "Искать",
+        "animal": "животное",
         "custom": "custom",
-        "divers": "divers",
-        "fashion": "fashion",
+        "divers": "различный",
+        "fashion": "мода",
         "jeedom": "jeedom",
         "jeedom2": "jeedom2",
-        "loisir": "loisir",
-        "maison": "maison",
-        "meteo": "meteo",
-        "nature": "nature",
-        "nourriture": "nourriture",
-        "personne": "personne",
-        "securite": "securite",
-        "techno": "techno",
-        "transport": "transport",
-        "Général": "Général"
+        "loisir": "Досуг",
+        "maison": "дом",
+        "meteo": "погода",
+        "nature": "природа",
+        "nourriture": "питание",
+        "personne": "никто",
+        "securite": "безопасность",
+        "techno": "техно",
+        "transport": "транспорт",
+        "Général": "Главная"
     },
     "install/install.php": {
-        "Vérification des mises à jour...": "Vérification des mises à jour...",
-        "OK\n": "OK",
+        "Vérification des mises à jour...": "Проверка обновлений ...",
+        "OK\n": "ОК",
         "Mise à plat des droits...": "Mise à plat des droits...",
-        "***************Mise à jour des plugins***************\n": "***************Mise à jour des plugins***************",
-        "***************Mise à jour des plugins réussie***************\n": "***************Mise à jour des plugins réussie***************",
-        "Vérification des mises à jour\n": "Vérification des mises à jour"
+        "***************Mise à jour des plugins***************\n": "***************Обновление плагинов***************",
+        "***************Mise à jour des plugins réussie***************\n": "*************** Обновление плагинов завершено успешно ***************",
+        "Vérification des mises à jour\n": "Проверка обновлений"
     },
     "desktop/modal/market.display.php": {
-        "Nom": "Nom",
-        "Installer stable": "Installer stable",
+        "Nom": "Имя",
+        "Installer stable": "Стабильная инсталляция",
         "Installer release": "Installer release",
-        "Installer beta": "Installer beta",
-        "Supprimer": "Supprimer",
-        "Description": "Description",
-        "Documentation": "Documentation",
+        "Installer beta": "Бета инсталляция",
+        "Supprimer": "Удалить",
+        "Description": "Описание",
+        "Documentation": "Документация",
         "Compatibilité plateforme": "Compatibilité plateforme",
-        "Tout voir": "Tout voir",
-        "Ma Note": "Ma Note",
-        "Auteur": "Auteur",
+        "Tout voir": "Просмотреть все",
+        "Ma Note": "Мои Заметки",
+        "Auteur": "Автор",
         "Dernière mise à jour par": "Dernière mise à jour par",
-        "Lien": "Lien",
+        "Lien": "Ссылка",
         "Nombre d'installation": "Nombre d'installation",
-        "Nombre de téléchargements": "Nombre de téléchargements",
-        "Type": "Type",
+        "Nombre de téléchargements": "Количество скачиваний",
+        "Type": "Тип",
         "Dernière mise à jour le": "Dernière mise à jour le",
-        "Commentaires": "Commentaires",
-        "Changelog": "Changelog",
-        "Version": "Version",
+        "Commentaires": "Комментарии",
+        "Changelog": "Список изменений",
+        "Version": "Версия",
         "Voulez vous aller sur la page de configuration de votre nouveau plugin ?": "Voulez vous aller sur la page de configuration de votre nouveau plugin ?",
-        "Objet installé avec succès": "Objet installé avec succès",
-        "Gratuit": "Gratuit",
-        "Attention ce plugin n'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée": "Attention ce plugin n'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée"
+        "Objet installé avec succès": "Пункт успешно установлен",
+        "Gratuit": "Бесплатно",
+        "Attention ce plugin n'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée": "Внимание: Этот плагин не является официальным, в случае неприятностей с ним (прямо или косвенно) любая просьба о поддержке может быть отклонена"
     },
     "desktop/php/health.php": {
         "Santé de Jeedom": "Santé de Jeedom",
         "Résultat": "Résultat",
         "Conseil": "Conseil",
         "Système à jour": "Système à jour",
-        "OK": "OK",
+        "OK": "ОК",
         "Lancement des crons": "Lancement des crons",
         "Cron actif": "Cron actif",
         "Scénario actif": "Scénario actif",
-        "Démarré": "Démarré",
+        "Démarré": "Начало",
         "Date système": "Date système",
         "Authentification par défaut": "Authentification par défaut",
         "Droits sudo": "Droits sudo",
@@ -1895,99 +1895,99 @@
         "Espace disque libre": "Espace disque libre",
         "Configuration réseau interne": "Configuration réseau interne",
         "Configuration réseau externe": "Configuration réseau externe",
-        "Santé ": "Santé",
+        "Santé ": "Здоровье",
         "Dépendance": "Dépendance",
         "Configuration démon": "Configuration démon",
         "Statut démon": "Statut démon"
     },
     "desktop/js/health.js": {
         "Configuration du plugin": "Configuration du plugin",
-        "Santé": "Santé"
+        "Santé": "Здоровье"
     },
     "desktop/php/security.php": {
-        "Configuration": "Configuration",
-        "Statut": "Statut",
+        "Configuration": "Конфигурация",
+        "Statut": "Статус",
         "IP": "IP",
-        "Utilisateur": "Utilisateur",
-        "Localisation": "Localisation",
-        "Echec de connexion": "Echec de connexion",
-        "Date": "Date",
-        "Informations": "Informations",
-        "Action": "Action",
-        "Nombre de tentatives de connexion max": "Nombre de tentatives de connexion max",
-        "en (min) ": "en (min)",
-        "Durée du bannissement (min)": "Durée du bannissement (min)",
-        "Liste blanche d'IP": "Liste blanche d'IP",
-        "Sauvegarder": "Sauvegarder"
+        "Utilisateur": "Пользователь",
+        "Localisation": "Расположение",
+        "Echec de connexion": "Не удалось подключиться",
+        "Date": "Дата",
+        "Informations": "Информация",
+        "Action": "Действие",
+        "Nombre de tentatives de connexion max": "Максимальное количество попыток входа в систему",
+        "en (min) ": "в (мин)",
+        "Durée du bannissement (min)": "Продолжительность блокировки (мин)",
+        "Liste blanche d'IP": "Белый список IP",
+        "Sauvegarder": "Сохранить"
     },
     "desktop/js/security.js": {
-        "Suppression effectuée avec succès": "Suppression effectuée avec succès",
-        "Sauvegarde effectuée avec succès": "Sauvegarde effectuée avec succès",
-        "Sauvegarde réussie": "Sauvegarde réussie",
-        "Etes-vous sûr de vouloir supprimer cette connexion ? Si l\\'IP :": "Etes-vous sûr de vouloir supprimer cette connexion ? Si l\\'IP :",
+        "Suppression effectuée avec succès": "Успешное удаление",
+        "Sauvegarde effectuée avec succès": "Резервное копирование завершено успешно",
+        "Sauvegarde réussie": "Удачная резервная копия",
+        "Etes-vous sûr de vouloir supprimer cette connexion ? Si l\\'IP :": "Вы уверены, что хотите удалить это соединение?:",
         "était bannie, celle-ci ne le sera plus": "était bannie, celle-ci ne le sera plus",
-        "Etes-vous sûr de vouloir bannir cette IP  :": "Etes-vous sûr de vouloir bannir cette IP  :"
+        "Etes-vous sûr de vouloir bannir cette IP  :": "Вы уверены, что хотите заблокировать этот IP:"
     },
     "core/ajax/config.ajax.php": {
-        "Aucune méthode correspondante à : ": "Aucune méthode correspondante à :"
+        "Aucune méthode correspondante à : ": "Нет соответствующего метода:"
     },
     "core/ajax/event.ajax.php": {
-        "Aucune méthode correspondante à : ": "Aucune méthode correspondante à :"
+        "Aucune méthode correspondante à : ": "Нет соответствующего метода:"
     },
     "core/template/scenario/log.default": {
-        "Message": "Message",
-        "Sélectionner la commande": "Sélectionner la commande"
+        "Message": "Сообщение",
+        "Sélectionner la commande": "Выберите команду"
     },
     "core/class/update.class.php": {
-        "Début de la mise à jour de : ": "Début de la mise à jour de :",
+        "Début de la mise à jour de : ": "Начало обновления:",
         "Action de pre update...": "Action de pre update...",
-        "OK\n": "OK",
+        "OK\n": "ОК",
         "Installation de ": "Installation de",
         "Post-installation de ": "Post-installation de",
         "La version locale ne peut pas être vide": "La version locale ne peut pas être vide",
         "Le logical ID ne peut pas être vide": "Le logical ID ne peut pas être vide",
-        "Impossible d'installer le plugin. Le nom du plugin est différent de l'ID ou le plugin n'est pas correctement formé. Veuillez contacter l'auteur.": "Impossible d'installer le plugin. Le nom du plugin est différent de l'ID ou le plugin n'est pas correctement formé. Veuillez contacter l'auteur.",
+        "Impossible d'installer le plugin. Le nom du plugin est différent de l'ID ou le plugin n'est pas correctement formé. Veuillez contacter l'auteur.": "Не удается установить плагин. Имя плагина отличается от ID или плагин не должным образом подготовлен. Пожалуйста, обращатитесь к автору.",
         "téléchargement du plugin...": "téléchargement du plugin...",
         "Décompression du zip...": "Décompression du zip..."
     },
     "desktop/modal/market.list.php": {
-        "Market Jeedom": "Market Jeedom"
+        "Market Jeedom": "Маркет Jeedom"
     },
     "desktop/modal/repo.add.php": {
-        "Source": "Source",
+        "Source": "Источник",
         "Nom de la source": "Nom de la source",
-        "Configuration": "Configuration",
+        "Configuration": "Конфигурация",
         "Type de source": "Type de source",
-        "Enregistrer": "Enregistrer",
-        "Enregistrement réussi": "Enregistrement réussi",
+        "Enregistrer": "Запись",
+        "Enregistrement réussi": "Регистрация прошла успешно",
         "ID logique du plugin": "ID logique du plugin",
-        "Aucun": "Aucun",
+        "Aucun": "Нет",
         "Envoyer un plugin": "Envoyer un plugin",
         "Plugin ajouté avec succès.": "Plugin ajouté avec succès."
     },
     "core/repo/github.repo.php": {
         "Téléchargement de ": "Téléchargement de",
-        "OK\n": "OK",
+        "OK\n": "ОК",
         "Décompression du zip...": "Décompression du zip...",
         "Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets)": "Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets)",
         "Dépot github non trouvé : ": "Dépot github non trouvé :"
     },
     "core/ajax/plugin.ajax.php": {
-        "Aucune methode correspondante à : ": "Aucune methode correspondante à :"
+        "Aucune methode correspondante à : ": "Нет соответствующего метода:"
     },
     "core/repo/file.repo.php": {
-        "Décompression de l'archive...": "Décompression de l'archive...",
-        "OK\n": "OK",
-        "Installation de l'objet...": "Installation de l'objet...",
+        "Décompression de l'archive...": "Распаковка архива ...",
+        "OK\n": "ОК",
+        "Installation de l'objet...": "Установка объекта ...",
         "Impossible de trouver le fichier zip : ": "Impossible de trouver le fichier zip :"
     },
     "install/restore.php": {
         "Mise à plat des droits...": "Mise à plat des droits...",
-        "OK\n": "OK"
+        "OK\n": "ОК"
     },
     "core/repo/market.repo.php": {
         "Téléchargement de ": "Téléchargement de",
-        "OK\n": "OK",
+        "OK\n": "ОК",
         "Décompression du zip...": "Décompression du zip..."
     }
 }
