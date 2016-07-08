@@ -1145,7 +1145,7 @@ class scenario {
 
 	public function getState() {
 		$state = $this->getCache('state');
-		if (!$this->_changeState && $state == 'in progress' && !$this->running()) {
+		if ($state == 'in progress' && !$this->running()) {
 			return 'error';
 		}
 		return $state;
@@ -1184,7 +1184,6 @@ class scenario {
 
 	public function setState($state) {
 		if ($this->getCache('state') != $state) {
-			$this->_changeState = true;
 			$this->emptyCacheWidget();
 			event::add('scenario::update', array('scenario_id' => $this->getId(), 'state' => $this->getState(), 'lastLaunch' => $this->getLastLaunch()));
 		}
