@@ -152,18 +152,7 @@ class object {
 		return DB::save($this);
 	}
 
-	public function postSave() {
-		$father = $this->getFather();
-		if (is_object($father) && $father->getConfiguration('hasChild') != 1) {
-			$father->setConfiguration('hasChild', 1);
-			$father->save();
-		}
-	}
-
 	public function getChild($_visible = true) {
-		if ($this->getConfiguration('hasChild') == 0) {
-			//return array();
-		}
 		$values = array(
 			'id' => $this->id,
 		);
