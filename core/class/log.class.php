@@ -50,7 +50,7 @@ class log {
 		if (isset(self::$logger[$_log])) {
 			return self::$logger[$_log];
 		}
-		$formatter = new LineFormatter(self::getConfig('log::formatter'));
+		$formatter = new LineFormatter(str_replace('\n', "\n", self::getConfig('log::formatter')));
 		self::$logger[$_log] = new Logger($_log);
 		switch (self::getConfig('log::engine')) {
 			case 'SyslogHandler':
@@ -147,7 +147,7 @@ class log {
 		}
 	}
 
-	public static function chunkLog($_path, $_invert = false) {
+	public static function chunkLog($_path) {
 		if (strpos($_path, '.htaccess') !== false) {
 			return;
 		}
@@ -155,7 +155,7 @@ class log {
 		if ($maxLineLog < self::DEFAULT_MAX_LINE) {
 			$maxLineLog = self::DEFAULT_MAX_LINE;
 		}
-		com_shell::execute('sudo chmod 777 ' . $_path . ' ;tail -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
+		com_shell::execute('sudo chmod 777 ' . $_path . ' ;echo "$(tail -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
 		@chown($_path, 'www-data');
 		@chgrp($_path, 'www-data');
 	}

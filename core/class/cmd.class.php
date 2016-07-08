@@ -41,7 +41,6 @@ class cmd {
 	protected $value = null;
 	protected $isVisible = 1;
 	protected $_eqLogic = null;
-	protected $_cache = null;
 	protected $_needRefreshWidget;
 	private static $_templateArray = array();
 
@@ -1480,16 +1479,12 @@ class cmd {
 		$this->eqType = $eqType;
 	}
 
-	public function getCache($_key = '', $_default = '', $_refresh = true) {
-		if ($this->_cache == null || $_refresh) {
-			$this->_cache = cache::byKey('cmdCacheAttr' . $this->getId())->getValue();
-		}
-		return utils::getJsonAttr($this->_cache, $_key, $_default);
+	public function getCache($_key = '', $_default = '') {
+		return utils::getJsonAttr(cache::byKey('cmdCacheAttr' . $this->getId())->getValue(), $_key, $_default);
 	}
 
 	public function setCache($_key, $_value) {
-		$cache = cache::byKey('cmdCacheAttr' . $this->getId());
-		cache::set('cmdCacheAttr' . $this->getId(), utils::setJsonAttr($cache->getValue(), $_key, $_value));
+		cache::set('cmdCacheAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('cmdCacheAttr' . $this->getId())->getValue(), $_key, $_value));
 	}
 
 }

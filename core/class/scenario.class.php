@@ -43,7 +43,6 @@ class scenario {
 	private $_changeState = false;
 	private $_realTrigger = '';
 	private $_return = true;
-	protected $_cache = null;
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -1346,16 +1345,12 @@ class scenario {
 		$this->_return = $_return;
 	}
 
-	public function getCache($_key = '', $_default = '', $_refresh = true) {
-		if ($this->_cache == null || $_refresh) {
-			$this->_cache = cache::byKey('scenarioCacheAttr' . $this->getId())->getValue();
-		}
-		return utils::getJsonAttr($this->_cache, $_key, $_default);
+	public function getCache($_key = '', $_default = '') {
+		return utils::getJsonAttr(cache::byKey('scenarioCacheAttr' . $this->getId())->getValue(), $_key, $_default);
 	}
 
 	public function setCache($_key, $_value) {
-		$cache = cache::byKey('scenarioCacheAttr' . $this->getId());
-		cache::set('scenarioCacheAttr' . $this->getId(), utils::setJsonAttr($cache->getValue(), $_key, $_value));
+		cache::set('scenarioCacheAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('scenarioCacheAttr' . $this->getId())->getValue(), $_key, $_value));
 	}
 
 }
