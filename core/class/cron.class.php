@@ -207,7 +207,6 @@ class cron {
 	 * @return boolean
 	 */
 	public function save() {
-		log::add('save', 'debug', 'CRON SAVE : ' . print_r($this, true));
 		return DB::save($this, false, true);
 	}
 
