@@ -100,34 +100,29 @@ try {
 	if (init('action') == 'toHtml') {
 		if (init('id') == 'all' || is_json(init('id'))) {
 			if (is_json(init('id'))) {
-				$object_ajax = json_decode(init('id'), true);
-				$objects = array();
-				foreach ($object_ajax as $id) {
-					$objects[] = object::byId($id);
-				}
+				$objects = json_decode(init('id'), true);
 			} else {
-				$objects = object::buildTree(null, true);
+				$objects = array();
+				foreach (object::all() as $object) {
+					$objects[] = $object->getId();
+				}
 			}
 			$return = array();
 			$i = 0;
-			foreach ($objects as $object) {
+			foreach ($objects as $id) {
 				$html = '';
-				foreach ($object->getEqLogic(true, true) as $eqLogic) {
+				foreach (eqLogic::byObjectId($id, true, true) as $eqLogic) {
 					if (init('category', 'all') == 'all' || $eqLogic->getCategory(init('category')) == 1) {
 						$html .= $eqLogic->toHtml(init('version'));
 					}
 				}
-				$return[$i . '::' . $object->getId()] = $html;
+				$return[$i . '::' . $id] = $html;
 				$i++;
 			}
 			ajax::success($return);
 		} else {
-			$object = object::byId(init('id'));
-			if (!is_object($object)) {
-				throw new Exception(__('Objet inconnu verifié l\'id', __FILE__));
-			}
 			$html = '';
-			foreach ($object->getEqLogic(true, true) as $eqLogic) {
+			foreach (eqLogic::byObjectId(init('id'), true, true) as $eqLogic) {
 				if (init('category', 'all') == 'all' || $eqLogic->getCategory(init('category')) == 1) {
 					$html .= $eqLogic->toHtml(init('version'));
 				}
