@@ -239,6 +239,11 @@ class scenario {
 		foreach ($scenarios as $scenario_) {
 			$scenario_->launch($trigger, $message, $_forceSyncMode);
 		}
+		foreach (scenario::all() as $scenario) {
+			if ($scenario->getState() == 'in progress' && !$scenario->running()) {
+				$scenario->setState('error');
+			}
+		}
 		return true;
 	}
 
@@ -1144,11 +1149,7 @@ class scenario {
 	}
 
 	public function getState() {
-		$state = $this->getCache('state');
-		if (!$this->_changeState && $state == 'in progress' && !$this->running()) {
-			return 'error';
-		}
-		return $state;
+		return $this->getCache('state');
 	}
 
 	public function getIsActive() {
@@ -1184,7 +1185,6 @@ class scenario {
 
 	public function setState($state) {
 		if ($this->getCache('state') != $state) {
-			$this->_changeState = true;
 			$this->emptyCacheWidget();
 			event::add('scenario::update', array('scenario_id' => $this->getId(), 'state' => $this->getState(), 'lastLaunch' => $this->getLastLaunch()));
 		}
