@@ -1,9 +1,9 @@
 <?php
 include_file('core', 'authentification', 'php');
-
 global $JEEDOM_INTERNAL_CONFIG;
+$configs = config::byKeys(array('jeeNetwork::mode', 'enableCustomCss', 'language', 'jeedom::firstUse', 'rights::enable'));
 if (isConnect()) {
-	if (config::byKey('jeeNetwork::mode') == 'master') {
+	if ($configs['jeeNetwork::mode'] == 'master') {
 		$homePage = explode('::', $_SESSION['user']->getOptions('homePage', 'core::dashboard'));
 	} else {
 		$homePage = array('core', 'plugin');
@@ -167,7 +167,7 @@ include_file('3rdparty', 'jquery.cron/jquery.cron.min', 'js');
 include_file('3rdparty', 'jquery.cron/jquery.cron', 'css');
 include_file('3rdparty', 'bootstrap-switch/bootstrap-switch.min', 'js');
 include_file('3rdparty', 'bootstrap-switch/bootstrap-switch.min', 'css');
-if (config::byKey('enableCustomCss', 'core', 1) == 1) {
+if ($configs['enableCustomCss'] == 1) {
 	if (file_exists(dirname(__FILE__) . '/../custom/custom.css')) {
 		include_file('desktop', '', 'custom.css');
 	}
@@ -209,14 +209,14 @@ if (isConnect() && $_SESSION['user']->getOptions('desktop_highcharts_theme') != 
 </head>
 <body>
 	<?php
-sendVarToJS('jeedom_langage', config::byKey('language'));
+sendVarToJS('jeedom_langage', $configs['language']);
 if (!isConnect()) {
 	include_file('desktop', 'connection', 'php');
 } else {
 	sendVarToJS('userProfils', $_SESSION['user']->getOptions());
 	sendVarToJS('user_id', $_SESSION['user']->getId());
 	sendVarToJS('user_login', $_SESSION['user']->getLogin());
-	sendVarToJS('jeedom_firstUse', config::byKey('jeedom::firstUse', 'core', 1));
+	sendVarToJS('jeedom_firstUse', $configs['jeedom::firstUse']);
 	if (count($eventjs_plugin) > 0) {
 		foreach ($eventjs_plugin as $value) {
 			try {
@@ -243,7 +243,7 @@ if (!isConnect()) {
 				<nav class="navbar-collapse collapse">
 
 					<ul class="nav navbar-nav">
-						<?php if (config::byKey('jeeNetwork::mode') == 'master') {
+						<?php if ($configs['jeeNetwork::mode'] == 'master') {
 		?>
 							<li class="dropdown cursor">
 								<a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-home"></i> {{Accueil}} <b class="caret"></b></a>
@@ -334,19 +334,19 @@ if (hasRight('batteryview', true)) {
 
 
 							<?php
-if (config::byKey('jeeNetwork::mode') == 'master' && (hasRight('objectview', true) || hasRight('interactview', true) || hasRight('displayview', true) || hasRight('scenarioview', true))) {
+if ($configs['jeeNetwork::mode'] == 'master' && (hasRight('objectview', true) || hasRight('interactview', true) || hasRight('displayview', true) || hasRight('scenarioview', true))) {
 		?>
 								<li class="dropdown cursor">
 									<a data-toggle="dropdown"><i class="fa fa-wrench"></i> {{Outils}} <b class="caret"></b></a>
 									<ul class="dropdown-menu" role="menu">
 										<?php
-if (config::byKey('jeeNetwork::mode') == 'master' && hasRight('objectview', true)) {
+if ($configs['jeeNetwork::mode'] == 'master' && hasRight('objectview', true)) {
 			?>
 											<li><a href="index.php?v=d&p=object"><i class="fa fa-picture-o"></i> {{Objets}}</a></li>
 											<?php
 
 		}
-		if (config::byKey('jeeNetwork::mode') == 'master' && hasRight('interactview', true)) {
+		if ($configs['jeeNetwork::mode'] == 'master' && hasRight('interactview', true)) {
 			?>
 											<li><a href="index.php?v=d&p=interact"><i class="fa fa-comments-o"></i> {{Interactions}}</a></li>
 											<?php }
@@ -355,7 +355,7 @@ if (config::byKey('jeeNetwork::mode') == 'master' && hasRight('objectview', true
 												<li><a href="index.php?v=d&p=display"><i class="fa fa-th"></i> {{Résumé domotique}}</a></li>
 												<?php
 }
-		if (config::byKey('jeeNetwork::mode') == 'master' && hasRight('scenarioview', true)) {
+		if ($configs['jeeNetwork::mode'] == 'master' && hasRight('scenarioview', true)) {
 			echo '<li><a href = "index.php?v=d&p=scenarioAssist"><i class = "fa fa-cogs"></i> {{Scénarios}}</a></li>';
 		}
 		?>
@@ -371,7 +371,7 @@ if (config::byKey('jeeNetwork::mode') == 'master' && hasRight('objectview', true
 											<?php if (hasRight('pluginview', true)) {
 			?>
 												<li><a href="index.php?v=d&p=plugin"><i class="fa fa-tags"></i> {{Gestion des plugins}}</a></li>
-												<?php if (config::byKey('jeeNetwork::mode') == 'master') {
+												<?php if ($configs['jeeNetwork::mode'] == 'master') {
 				?>
 													<li role="separator" class="divider"></li>
 													<?php
@@ -420,7 +420,7 @@ echo $plugin_menu;
 														<li><a href="index.php?v=d&p=update"><i class="fa fa-refresh"></i> {{Centre de mise à jour}}</a></li>
 														<?php
 }
-		if (config::byKey('jeeNetwork::mode') == 'master') {
+		if ($configs['jeeNetwork::mode'] == 'master') {
 			?>
 														<li class="expertModeVisible"><a href="index.php?v=d&p=jeeNetwork"><i class="fa fa-sitemap"></i> {{Réseau Jeedom}}</a></li>
 														<?php }
@@ -428,7 +428,7 @@ echo $plugin_menu;
 															<li class="expertModeVisible"><a href="index.php?v=d&p=cron"><i class="fa fa-tasks"></i> {{Moteur de tâches}}</a></li>
 															<?php
 }
-		if (config::byKey('jeeNetwork::mode') == 'master' && hasRight('customview', true)) {
+		if ($configs['jeeNetwork::mode'] == 'master' && hasRight('customview', true)) {
 			?>
 															<li class="expertModeVisible"><a href="index.php?v=d&p=custom"><i class="fa fa-pencil-square-o"></i> {{Personnalisation avancée}}</a></li>
 															<?php
@@ -441,7 +441,7 @@ if (hasRight('userview', true)) {
 															<li><a href="index.php?v=d&p=user"><i class="fa fa-users"></i> {{Utilisateurs}}</a></li>
 															<?php
 }
-		if (config::byKey('rights::enable') != 0 && isConnect('admin')) {
+		if ($configs['rights::enable'] != 0 && isConnect('admin')) {
 			?>
 															<li><a href="index.php?v=d&p=rights"><i class="fa fa-graduation-cap"></i> {{Gestion des droits avancés}}</a></li>
 															<?php }

@@ -167,10 +167,12 @@ class config {
 				if (is_json($return[$key])) {
 					$return[$key] = json_decode($return[$key], true);
 				}
+				self::$cache[$_plugin . '::' . $key] = $return[$key];
 				continue;
 			}
 			if (isset($defaultConfiguration[$_plugin][$key])) {
 				$return[$key] = $defaultConfiguration[$_plugin][$key];
+				self::$cache[$_plugin . '::' . $key] = $return[$key];
 			}
 		}
 		return $return;
