@@ -162,7 +162,7 @@ class object {
 
 	public function getChild($_visible = true) {
 		if ($this->getConfiguration('hasChild') == 0) {
-			return array();
+			//return array();
 		}
 		$values = array(
 			'id' => $this->id,
