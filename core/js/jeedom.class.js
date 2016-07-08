@@ -163,7 +163,6 @@ jeedom.init = function () {
             } else {
                 theme = userProfils.notifyNewMessage;
             }
-            refreshMessageNumber();
             break;
         }
         notify(_options.title, _options.message, _options.theme);
