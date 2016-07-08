@@ -53,7 +53,6 @@ try {
 
 	if (isset($params['proapi'])) {
 		if (config::byKey('apipro') == '' || config::byKey('apipro') != $params['proapi']) {
-			connection::failed();
 			throw new Exception('Clé API invalide', -32001);
 		}
 		/*$ch = curl_init();
@@ -68,17 +67,14 @@ try {
 			curl_close($ch);
 			log::add('api', 'info', 'retour token : '.$data);
 			if (trim($data) != 'ok') {
-				connection::failed();
 				throw new Exception('Token non valide', -32001);
 			}
 			*/
 
 	} else {
-		connection::failed();
 		throw new Exception('Aucune clé API', -32001);
 	}
 
-	connection::success('proapi');
 	log::add('api', 'info', 'connexion valide et verifiee : ' . $jsonrpc->getMethod());
 
 	/*             * ************************config*************************** */

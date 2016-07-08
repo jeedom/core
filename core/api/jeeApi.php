@@ -29,10 +29,9 @@ if (isset($argv)) {
 if (init('type') != '') {
 	try {
 		if (!jeedom::apiAccess(init('apikey', init('api')))) {
-			connection::failed();
+			sleep(5);
 			throw new Exception('Clé API non valide (ou vide) . Demande venant de :' . getClientIp() . '. Clé API : ' . secureXSS(init('apikey') . init('api')));
 		}
-		connection::success('api');
 		$type = init('type');
 		if ($type == 'cmd') {
 			if (is_json(init('id'))) {
@@ -162,19 +161,16 @@ if (init('type') != '') {
 
 		if ($jsonrpc->getMethod() == 'user::getHash') {
 			if (!isset($params['login']) || !isset($params['password']) || $params['login'] == '' || $params['password'] == '') {
-				connection::failed();
 				sleep(5);
 				throw new Exception('Le login ou le password ne peuvent être vide', -32001);
 			}
 			$user = user::connect($params['login'], $params['password']);
 			if (!is_object($user) || $user->getEnable() != 1) {
-				connection::failed();
 				sleep(5);
 				throw new Exception('Echec de l\'authentification', -32001);
 			}
 			if (network::getUserLocation() != 'internal' && $user->getOptions('twoFactorAuthentification', 0) == 1 && $user->getOptions('twoFactorAuthentificationSecret') != '') {
 				if (!isset($params['twoFactorCode']) || trim($params['twoFactorCode']) == '' || !$user->validateTwoFactorCode($params['twoFactorCode'])) {
-					connection::failed();
 					sleep(5);
 					throw new Exception('Echec de l\'authentification', -32001);
 				}
@@ -187,16 +183,12 @@ if (init('type') != '') {
 		}
 
 		if (!isset($params['apikey']) && !isset($params['api'])) {
-			connection::failed();
 			throw new Exception(__('Aucune clef API', __FILE__), -32001);
 		}
 
 		if ((isset($params['apikey']) && !jeedom::apiAccess($params['apikey'])) || (isset($params['api']) && !jeedom::apiAccess($params['api']))) {
-			connection::failed();
 			throw new Exception(__('Clé API invalide', __FILE__), -32001);
 		}
-
-		connection::success('api');
 
 		/*             * ************************config*************************** */
 		if ($jsonrpc->getMethod() == 'config::byKey') {

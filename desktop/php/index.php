@@ -401,7 +401,7 @@ echo $plugin_menu;
 											<span class="badge" title="{{Nombre de mises à jour}}" style="background-color : #c9302c;">' . $nbUpdate . '</span></a></li>';
 	}
 	?>
-										<?php if (isConnect('admin') || hasRight('backupview', true) || hasRight('updateview', true) || hasRight('cronview', true) || hasRight('customview', true) || hasRight('securityview', true) || hasRight('userview', true)) {
+										<?php if (isConnect('admin') || hasRight('backupview', true) || hasRight('updateview', true) || hasRight('cronview', true) || hasRight('customview', true) || hasRight('userview', true)) {
 		?>
 											<li class="dropdown">
 												<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-cogs"></i><span class="caret"></span></a>
@@ -436,12 +436,7 @@ echo $plugin_menu;
 		?>
 														<li role="separator" class="divider"></li>
 														<?php
-if (config::byKey('security::enable') != 0 && hasRight('securityview', true)) {
-			?>
-															<li class="expertModeVisible"><a href="index.php?v=d&p=security"><i class="fa fa-lock"></i> {{Sécurité}}</a></li>
-															<?php
-}
-		if (hasRight('userview', true)) {
+if (hasRight('userview', true)) {
 			?>
 															<li><a href="index.php?v=d&p=user"><i class="fa fa-users"></i> {{Utilisateurs}}</a></li>
 															<?php

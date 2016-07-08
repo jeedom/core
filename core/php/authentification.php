@@ -16,7 +16,7 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 require_once dirname(__FILE__) . '/core.inc.php';
-$configs = config::byKeys(array('session_lifetime', 'sso:allowRemoteUser', 'security::enable'));
+$configs = config::byKeys(array('session_lifetime', 'sso:allowRemoteUser'));
 $session_lifetime = $configs['session_lifetime'];
 if (!is_numeric($session_lifetime)) {
 	$session_lifetime = 24;
@@ -49,7 +49,6 @@ if (!isConnect() && isset($_COOKIE['registerDevice'])) {
 if (!isConnect() && $configs['sso:allowRemoteUser'] == 1) {
 	$user = user::byLogin($_SERVER['REMOTE_USER']);
 	if (is_object($user) && $user->getEnable() == 1) {
-		connection::success($user->getLogin());
 		@session_start();
 		$_SESSION['user'] = $user;
 		@session_write_close();
@@ -61,47 +60,25 @@ if (init('logout') == 1) {
 	logout();
 }
 
-/* * *******************Securité anti piratage**************************** */
-try {
-	if ($configs['security::enable'] == 1) {
-		$connection = connection::byIp(getClientIp());
-		if (is_object($connection) && $connection->getStatus() == 'Ban') {
-			if (!headers_sent()) {
-				header("Status: 404 Not Found");
-				header('HTTP/1.0 404 Not Found');
-			}
-			$_SERVER['REDIRECT_STATUS'] = 404;
-			echo "<h1>404 Not Found</h1>";
-			echo "The page that you have requested could not be found.";
-			exit();
-		}
-	}
-} catch (Exception $e) {
-
-}
-
 /* * **************************Definition des function************************** */
 
 function login($_login, $_password, $_twoFactor = null) {
 	$user = user::connect($_login, $_password);
 	if (!is_object($user) || $user->getEnable() == 0) {
-		connection::failed();
 		sleep(5);
 		return false;
 	}
 	if ($user->getOptions('localOnly', 0) == 1 && network::getUserLocation() != 'internal') {
-		connection::failed();
 		sleep(5);
 		return false;
 	}
 	if (network::getUserLocation() != 'internal' && $user->getOptions('twoFactorAuthentification', 0) == 1 && $user->getOptions('twoFactorAuthentificationSecret') != '') {
 		if (trim($_twoFactor) == '' || $_twoFactor == null || !$user->validateTwoFactorCode($_twoFactor)) {
-			connection::failed();
 			sleep(5);
 			return false;
 		}
 	}
-	connection::success($user->getLogin());
+
 	@session_start();
 	$_SESSION['user'] = $user;
 	if (init('v') == 'd' && init('registerDevice') == 'on') {
@@ -118,16 +95,14 @@ function login($_login, $_password, $_twoFactor = null) {
 function loginByHash($_key) {
 	$user = user::byHash($_key);
 	if (!is_object($user) || $user->getEnable() == 0) {
-		connection::failed();
 		sleep(5);
 		return false;
 	}
 	if ($user->getOptions('localOnly', 0) == 1 && network::getUserLocation() != 'internal') {
-		connection::failed();
 		sleep(5);
 		return false;
 	}
-	connection::success($user->getLogin());
+
 	@session_start();
 	$_SESSION['user'] = $user;
 	@session_write_close();

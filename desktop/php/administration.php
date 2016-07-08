@@ -245,12 +245,6 @@ if ($configs['jeeNetwork::mode'] == 'master') {
                         <input type="checkbox" class="configKey" data-l1key="rights::enable" />
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="col-sm-2 col-xs-6 control-label">{{Activer la sécurité anti-piratage}}</label>
-                    <div class="col-sm-3 col-xs-6">
-                        <input type="checkbox" class="configKey" data-l1key="security::enable"/>
-                    </div>
-                </div>
             </fieldset>
         </form>
     </div>

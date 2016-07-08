@@ -33,7 +33,6 @@ try {
 		if (!isConnect() && config::byKey('sso:allowRemoteUser') == 1) {
 			$user = user::byLogin($_SERVER['REMOTE_USER']);
 			if (is_object($user) && $user->getEnable() == 1) {
-				connection::success($user->getLogin());
 				@session_start();
 				$_SESSION['user'] = $user;
 				@session_write_close();
