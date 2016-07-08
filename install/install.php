@@ -442,11 +442,7 @@ try {
 	jeedom::event('end_update');
 	echo "OK\n";
 } catch (Exception $e) {
-	if (init('mode') != 'force') {
-		throw $e;
-	} else {
-		echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
-	}
+
 }
 
 echo "[END UPDATE SUCCESS]\n";
