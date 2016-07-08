@@ -724,9 +724,6 @@ class eqLogic {
 	}
 
 	public function batteryStatus($_pourcent, $_datetime = '') {
-		if ($this->getConfiguration('batteryStatus') == $_pourcent) {
-			return;
-		}
 		if ($_pourcent > 100) {
 			$_pourcent = 100;
 		}
@@ -752,13 +749,12 @@ class eqLogic {
 				message::add($this->getEqType_name(), $message, '', $logicalId);
 			}
 		}
-		$this->setConfiguration('batteryStatus', $_pourcent);
+		$this->setCache('batteryStatus', $_pourcent);
 		if ($_datetime != '') {
-			$this->setConfiguration('batteryStatusDatetime', $_datetime);
+			$this->setCache('batteryStatusDatetime', $_datetime);
 		} else {
-			$this->setConfiguration('batteryStatusDatetime', date('Y-m-d H:i:s'));
+			$this->setCache('batteryStatusDatetime', date('Y-m-d H:i:s'));
 		}
-		$this->save();
 	}
 
 	public function refreshWidget() {
