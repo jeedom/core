@@ -72,7 +72,7 @@ if (init('category', 'all') == 'all') {
 } else {
 	echo '<a href="index.php?v=d&p=dashboard&object_id=' . init('object_id') . '&category=all" class="btn btn-default btn-sm categoryAction" style="margin-bottom: 5px;margin-right: 3px;">{{Tous}}</a>';
 }
-foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
+foreach (jeedom::getConfiguration('eqLogic:category', true) as $key => $value) {
 	if (init('category', 'all') == $key) {
 		echo '<a href="index.php?v=d&p=dashboard&object_id=' . init('object_id') . '&category=' . $key . '" class="btn btn-primary btn-sm categoryAction" data-l1key="' . $key . '" style="margin-bottom: 5px;margin-right: 3px;">{{' . $value['name'] . '}}</a>';
 	} else {
