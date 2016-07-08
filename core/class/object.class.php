@@ -33,6 +33,9 @@ class object {
 	/*     * ***********************Méthodes statiques*************************** */
 
 	public static function byId($_id) {
+		if ($_id == '') {
+			return;
+		}
 		$values = array(
 			'id' => $_id,
 		);
