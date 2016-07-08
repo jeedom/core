@@ -144,7 +144,7 @@ class config {
 		return isset(self::$cache[$_plugin . '::' . $_key]) ? self::$cache[$_plugin . '::' . $_key] : '';
 	}
 
-	public static function byKeys($_keys, $_plugin = 'core') {
+	public static function byKeys($_keys, $_plugin = 'core', $_default = '') {
 		if (!is_array($_keys) || count($_keys) == 0) {
 			return array();
 		}
@@ -167,13 +167,20 @@ class config {
 				if (is_json($return[$key])) {
 					$return[$key] = json_decode($return[$key], true);
 				}
-				self::$cache[$_plugin . '::' . $key] = $return[$key];
-				continue;
-			}
-			if (isset($defaultConfiguration[$_plugin][$key])) {
+			} else if (isset($defaultConfiguration[$_plugin][$key])) {
 				$return[$key] = $defaultConfiguration[$_plugin][$key];
-				self::$cache[$_plugin . '::' . $key] = $return[$key];
+			} else {
+				if (is_array($_default)) {
+					if (isset($_default[$key])) {
+						$return[$key] = $_default[$key];
+					} else {
+						$return[$key] = '';
+					}
+				} else {
+					$return[$key] = $_default;
+				}
 			}
+			self::$cache[$_plugin . '::' . $key] = $return[$key];
 		}
 		return $return;
 	}

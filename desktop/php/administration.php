@@ -3,7 +3,7 @@ if (!hasRight('administrationview', true)) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 $repos = update::listRepo();
-$keys = array('api', 'apipro', 'jeeNetwork::mode', 'jeeNetwork::master::ip', 'dns::token', 'market::allowDNS', 'market::allowAllRepo', 'ldap::enable');
+$keys = array('api', 'apipro', 'jeeNetwork::mode', 'jeeNetwork::master::ip', 'dns::token', 'market::allowDNS', 'market::allowBeta', 'market::allowAllRepo', 'ldap::enable');
 foreach ($repos as $key => $value) {
 	$keys[] = $key . '::enable';
 }
