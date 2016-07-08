@@ -386,11 +386,13 @@ echo $plugin_menu;
 								</ul>
 
 								<ul class="nav navbar-nav navbar-right">
-									<?php $displayMessage = (message::nbMessage() > 0) ? '' : 'display : none;';?>
+									<?php
+$nbMessage = message::nbMessage();
+	$displayMessage = ($nbMessage > 0) ? '' : 'display : none;';?>
 									<li>
 										<a href="#" id="bt_messageModal">
 											<span class="badge" id="span_nbMessage" title="{{Nombre de messages}}" style="background-color : #ec971f;<?php echo $displayMessage; ?>">
-												<?php echo message::nbMessage(); ?>
+												<?php echo $nbMessage; ?>
 											</span>
 										</a>
 									</li>
