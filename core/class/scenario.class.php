@@ -40,6 +40,7 @@ class scenario {
 	private $type;
 	private static $_templateArray;
 	private $_elements = array();
+	private $_changeState = false;
 	private $_realTrigger = '';
 	private $_return = true;
 
@@ -722,8 +723,10 @@ class scenario {
 			$this->setLastLaunch($calculateScheduleDate['prevDate']);
 		}
 		DB::save($this);
-		$this->emptyCacheWidget();
-		event::add('scenario::update', array('scenario_id' => $this->getId(), 'state' => $this->getState(), 'lastLaunch' => $this->getLastLaunch()));
+		if ($this->_changeState) {
+			$this->emptyCacheWidget();
+			event::add('scenario::update', array('scenario_id' => $this->getId(), 'state' => $this->getState(), 'lastLaunch' => $this->getLastLaunch()));
+		}
 	}
 
 	public function refresh() {
@@ -994,6 +997,7 @@ class scenario {
 		}
 		if ($_mode == 'array') {
 			$return = utils::o2a($this);
+
 			$return['trigger'] = jeedom::toHumanReadable($return['trigger']);
 			$return['elements'] = array();
 			foreach ($this->getElement() as $element) {
@@ -1001,6 +1005,9 @@ class scenario {
 			}
 			if (isset($return['id'])) {
 				unset($return['id']);
+			}
+			if (isset($return['lastLaunch'])) {
+				unset($return['lastLaunch']);
 			}
 			if (isset($return['log'])) {
 				unset($return['log']);
@@ -1011,6 +1018,9 @@ class scenario {
 			if (isset($return['object_id'])) {
 				unset($return['object_id']);
 			}
+			if (isset($return['pid'])) {
+				unset($return['pid']);
+			}
 			if (isset($return['scenarioElement'])) {
 				unset($return['scenarioElement']);
 			}
@@ -1019,6 +1029,9 @@ class scenario {
 			}
 			if (isset($return['_templateArray'])) {
 				unset($return['_templateArray']);
+			}
+			if (isset($return['_changeState'])) {
+				unset($return['_changeState']);
 			}
 			if (isset($return['_realTrigger'])) {
 				unset($return['_realTrigger']);
@@ -1160,6 +1173,9 @@ class scenario {
 	}
 
 	public function setIsActive($isActive) {
+		if ($isActive != $this->getIsActive()) {
+			$this->_changeState = true;
+		}
 		$this->isActive = $isActive;
 	}
 
