@@ -303,6 +303,14 @@ try {
 	}
 
 	try {
+		foreach (object::all() as $object) {
+			$object->save();
+		}
+	} catch (Exception $exc) {
+		echo $exc->getMessage();
+	}
+
+	try {
 		echo __("Renommage adminer en cours...", __FILE__);
 		jeedom::renameAdminerFolder();
 		echo __("OK\n", __FILE__);
