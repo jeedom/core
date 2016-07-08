@@ -15,7 +15,6 @@ if (!is_object($object)) {
 	throw new Exception('{{Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objet.<br/> Si vous ne savez pas quoi faire ou que c\'est la première fois que vous utilisez Jeedom n\'hésitez pas à consulter cette <a href="https://jeedom.com/doc/documentation/premiers-pas/fr_FR/doc-premiers-pas.html" target="_blank">page</a> et celle la si vous avez un pack : <a href="https://jeedom.com/start" target="_blank">page</a>}}');
 }
 $child_object = object::buildTree($object);
-$parentNumber = array();
 ?>
 
 <div class="row row-overflow">
@@ -34,8 +33,7 @@ if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 			<?php
 $allObject = object::buildTree(null, true);
 foreach ($allObject as $object_li) {
-	$parentNumber[$object_li->getId()] = $object_li->parentNumber();
-	$margin = 15 * $parentNumber[$object_li->getId()];
+	$margin = 15 * $object_li->getConfiguration('parentNumber');
 	if ($object_li->getId() == $object->getId()) {
 		echo '<li class="cursor li_object active" ><a href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '&category=' . init('category', 'all') . '" style="position:relative;left:' . $margin . 'px;">' . $object_li->getHumanName(true) . '</a></li>';
 	} else {

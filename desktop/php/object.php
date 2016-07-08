@@ -16,7 +16,7 @@ sendVarToJS('select_id', init('id', '-1'));
                 <?php
 $allObject = object::buildTree(null, false);
 foreach ($allObject as $object) {
-	$margin = 15 * $object->parentNumber();
+	$margin = 15 * $object->getConfiguration('parentNumber');
 	echo '<li class="cursor li_object bt_sortable" data-object_id="' . $object->getId() . '">';
 	echo '<i class="fa fa-arrows-v pull-left cursor"></i>';
 	echo '<a style="position:relative;left:' . $margin . 'px;">';

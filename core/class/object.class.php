@@ -87,9 +87,11 @@ class object {
 		} else {
 			$object_list = $_object->getChild($_visible);
 		}
-		foreach ($object_list as $object) {
-			$return[] = $object;
-			$return = array_merge($return, self::buildTree($object, $_visible));
+		if (is_array($object_list) && count($object_list) > 0) {
+			foreach ($object_list as $object) {
+				$return[] = $object;
+				$return = array_merge($return, self::buildTree($object, $_visible));
+			}
 		}
 		return $return;
 	}
@@ -125,13 +127,6 @@ class object {
 
 	/*     * *********************Méthodes d'instance************************* */
 
-	public function preSave() {
-		if (is_numeric($this->getFather_id()) && $this->getFather_id() == $this->getId()) {
-			throw new Exception(__('L\'objet ne peut pas être son propre père', __FILE__));
-		}
-		$this->checkTreeConsistency();
-	}
-
 	public function checkTreeConsistency($_fathers = array()) {
 		$father = $this->getFather();
 		if (!is_object($father)) {
@@ -145,11 +140,30 @@ class object {
 		$father->checkTreeConsistency($_fathers);
 	}
 
+	public function preSave() {
+		if (is_numeric($this->getFather_id()) && $this->getFather_id() == $this->getId()) {
+			throw new Exception(__('L\'objet ne peut pas être son propre père', __FILE__));
+		}
+		$this->checkTreeConsistency();
+		$this->setConfiguration('parentNumber', $this->parentNumber());
+	}
+
 	public function save() {
 		return DB::save($this);
 	}
 
+	public function postSave() {
+		$father = $this->getFather();
+		if (is_object($father) && $father->getConfiguration('hasChild') != 1) {
+			$father->setConfiguration('hasChild', 1);
+			$father->save();
+		}
+	}
+
 	public function getChild($_visible = true) {
+		if ($this->getConfiguration('hasChild') == 0) {
+			return array();
+		}
 		$values = array(
 			'id' => $this->id,
 		);
