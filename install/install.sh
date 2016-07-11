@@ -24,7 +24,7 @@ apt_install() {
 }
 
 mysql_sql() {
-  echo "$@" | mysql -uroot -proot
+  echo "$@" | mysql -uroot -p${MYSQL_ROOT_PASSWD}
   if [ $? -ne 0 ]; then
     echo "C${ROUGE}ould not execute $@ into mysql - abort${NORMAL}"
     exit 1
@@ -74,11 +74,11 @@ step_2_mainpackage() {
 step_3_database() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_3_database${NORMAL}"
-	echo "mysql-server mysql-server/root_password password root" | debconf-set-selections
-	echo "mysql-server mysql-server/root_password_again password root" | debconf-set-selections
+	echo "mysql-server mysql-server/root_password password ${MYSQL_ROOT_PASSWD}" | debconf-set-selections
+	echo "mysql-server mysql-server/root_password_again password ${MYSQL_ROOT_PASSWD}" | debconf-set-selections
 	apt_install mysql-client mysql-common mysql-server
 	
-	mysqladmin -u root password root
+	mysqladmin -u root password ${MYSQL_ROOT_PASSWD}
 	
 	systemctl status mysql > /dev/null 2>&1
 	if [ $? -ne 0 ]; then
@@ -185,13 +185,13 @@ step_7_jeedom_customization() {
 step_8_jeedom_configuration() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_8_jeedom_configuration${NORMAL}"
-	echo "DROP USER 'jeedom'@'%';" | mysql -uroot -proot > /dev/null 2>&1
-	mysql_sql "CREATE USER 'jeedom'@'%' IDENTIFIED BY 'jeedom';"
+	echo "DROP USER 'jeedom'@'%';" | mysql -uroot -p${MYSQL_ROOT_PASSWD} > /dev/null 2>&1
+	mysql_sql "CREATE USER 'jeedom'@'%' IDENTIFIED BY '${MYSQL_JEEDOM_PASSWD}';"
 	mysql_sql "DROP DATABASE IF EXISTS jeedom;"
 	mysql_sql "CREATE DATABASE jeedom;"
 	mysql_sql "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'%';"
 	cp ${WEBSERVER_HOME}/core/config/common.config.sample.php ${WEBSERVER_HOME}/core/config/common.config.php
-	sed -i "s/#PASSWORD#/jeedom/g" ${WEBSERVER_HOME}/core/config/common.config.php 
+	sed -i "s/#PASSWORD#/${MYSQL_JEEDOM_PASSWD}/g" ${WEBSERVER_HOME}/core/config/common.config.php 
 	sed -i "s/#DBNAME#/jeedom/g" ${WEBSERVER_HOME}/core/config/common.config.php 
 	sed -i "s/#USERNAME#/jeedom/g" ${WEBSERVER_HOME}/core/config/common.config.php 
 	sed -i "s/#PORT#/3306/g" ${WEBSERVER_HOME}/core/config/common.config.php 
@@ -212,9 +212,9 @@ step_9_jeedom_installation() {
 	echo "${VERT}step_9_jeedom_installation success${NORMAL}"
 }
 
-step_10_jeedom_crontab() {
+step_10_jeedom_post() {
 	echo "---------------------------------------------------------------------"
-	echo "${JAUNE}Start step_10_jeedom_crontab${NORMAL}"
+	echo "${JAUNE}Start step_10_jeedom_post${NORMAL}"
 	if [ $(crontab -l | grep ${WEBSERVER_HOME}/core/php/jeeCron.php | wc -l) -eq 0 ];then
 		(echo "* * * * * su --shell=/bin/bash - www-data -c '/usr/bin/php ${WEBSERVER_HOME}/core/php/jeeCron.php' >> /dev/null"; crontab -l | grep -v "jeedom" | grep -v "jeeCron") | crontab -
 		if [ $? -ne 0 ]; then
@@ -222,13 +222,7 @@ step_10_jeedom_crontab() {
 	    	exit 1
 	  	fi
   	fi
-	echo "${VERT}step_10_jeedom_crontab success${NORMAL}"
-}
-
-step_11_jeedom_sudo() {
-	echo "---------------------------------------------------------------------"
-	echo "${JAUNE}Start step_11_jeedom_sudo${NORMAL}"
-	usermod -a -G dialout,tty www-data
+  	usermod -a -G dialout,tty www-data
 	if [ $(grep "www-data ALL=(ALL) NOPASSWD: ALL" /etc/sudoers | wc -l) -eq 0 ];then
 		echo "www-data ALL=(ALL) NOPASSWD: ALL" | (EDITOR="tee -a" visudo)
 		if [ $? -ne 0 ]; then
@@ -236,10 +230,15 @@ step_11_jeedom_sudo() {
     		exit 1
   		fi
   	fi
-	echo "${VERT}step_11_jeedom_sudo success${NORMAL}"
+  	if [ $(cat /proc/meminfo | grep MemTotal | awk '{ print $2 }') -gt 600000 ]; then
+  		if [ $(cat /etc/fstab | grep /tmp | grep tmpfs | wc -l) -eq 0 ];then
+  			echo 'tmpfs        /tmp            tmpfs  defaults,size=128M                                       0 0' >>  /etc/fstab
+  		fi
+  	fi
+	echo "${VERT}step_10_jeedom_post success${NORMAL}"
 }
 
-step_12_jeedom_check() {
+step_11_jeedom_check() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_12_jeedom_check${NORMAL}"
 	php ${WEBSERVER_HOME}/sick.php
@@ -280,8 +279,10 @@ VERSION=stable
 WEBSERVER_HOME=/var/www/html
 INSTALL_ZWAVE_DEP=0
 HTML_OUTPUT=0
+MYSQL_ROOT_PASSWD=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
+MYSQL_JEEDOM_PASSWD=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
 
-while getopts ":s:v:w:z:h:" opt; do
+while getopts ":s:v:w:z:h:m:" opt; do
   case $opt in
     s) STEP="$OPTARG"
     ;;
@@ -292,6 +293,8 @@ while getopts ":s:v:w:z:h:" opt; do
     z) INSTALL_ZWAVE_DEP=1
     ;;
     h) HTML_OUTPUT=1
+    ;;
+    m) MYSQL_ROOT_PASSWD="$OPTARG"
     ;;
     \?) echo "${ROUGE}Invalid option -$OPTARG${NORMAL}" >&2
     ;;
@@ -335,10 +338,10 @@ case ${STEP} in
 	step_7_jeedom_customization
 	step_8_jeedom_configuration
 	step_9_jeedom_installation
-	step_10_jeedom_crontab
-	step_11_jeedom_sudo
-	step_12_jeedom_check
+	step_10_jeedom_post
+	step_11_jeedom_check
 	distrib_1_spe
+	echo "/!\ IMPORTANT /!\ Root MySql password is ${MYSQL_ROOT_PASSWD}"
 	;;
    1) step_1_upgrade
 	;;
@@ -358,11 +361,9 @@ case ${STEP} in
 	;;
    9) step_9_jeedom_installation
 	;;
-   10) step_10_jeedom_crontab
+   10) step_10_jeedom_post
 	;;
-   11) step_11_jeedom_sudo
-	;;
-   12) step_12_jeedom_check
+   11) step_11_jeedom_check
 	;;
    *) echo "${ROUGE}Sorry, I can not get a ${STEP} step for you!${NORMAL}"
 	;;
@@ -376,4 +377,3 @@ fi
 rm -rf ${WEBSERVER_HOME}/index.html > /dev/null 2>&1
 
 exit 0
-
