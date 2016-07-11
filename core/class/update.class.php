@@ -288,7 +288,7 @@ class update {
 				if (!file_exists($cibDir) && !mkdir($cibDir, 0775, true)) {
 					throw new Exception(__('Impossible de créer le dossier  : ' . $cibDir . '. Problème de droits ?', __FILE__));
 				}
-				log::add('update', 'alert', __('téléchargement du plugin...', __FILE__));
+				log::add('update', 'alert', __('Téléchargement du plugin...', __FILE__));
 				$info = $class::downloadObject($this);
 				if ($info['path'] !== false) {
 					$tmp = $info['path'];
@@ -328,7 +328,7 @@ class update {
 						}
 						log::add('update', 'alert', __("OK\n", __FILE__));
 					} else {
-						throw new Exception(__('Impossible de décompresser l\'archive zip : ', __FILE__) . $tmp);
+						throw new Exception(__('Impossible de décompresser l\'archive zip : ', __FILE__) . $tmp . ' => ' . ZipErrorMessage($res));
 					}
 				}
 				$this->postInstallUpdate($info);

@@ -13,7 +13,7 @@ if [ -f /var/www/html/core/config/common.config.php ]; then
 else
 	echo 'Start jeedom installation'
 	rm -rf /root/install.sh
-	wget https://raw.githubusercontent.com/jeedom/core/beta/install/install.sh -O /root/install.sh
+	wget https://raw.githubusercontent.com/jeedom/core/stable/install/install.sh -O /root/install.sh
 	chmod +x /root/install.sh
 	echo "max_execution_time = 600" > /usr/local/etc/php/php.ini
 	echo "upload_max_filesize = 1G" >> /usr/local/etc/php/php.ini
