@@ -72,6 +72,7 @@ step_2_mainpackage() {
 }
 
 step_3_database() {
+	set -x
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_3_database${NORMAL}"
 	echo "mysql-server mysql-server/root_password password ${MYSQL_ROOT_PASSWD}" | debconf-set-selections
