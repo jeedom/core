@@ -72,7 +72,6 @@ step_2_mainpackage() {
 }
 
 step_3_database() {
-	set -x
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_3_database${NORMAL}"
 	echo "mysql-server mysql-server/root_password password ${MYSQL_ROOT_PASSWD}" | debconf-set-selections
@@ -294,6 +293,8 @@ while getopts ":s:v:w:z:h:" opt; do
     z) INSTALL_ZWAVE_DEP=1
     ;;
     h) HTML_OUTPUT=1
+    ;;
+    m) MYSQL_ROOT_PASSWD="$OPTARG"
     ;;
     \?) echo "${ROUGE}Invalid option -$OPTARG${NORMAL}" >&2
     ;;
