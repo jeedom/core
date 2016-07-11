@@ -34,14 +34,14 @@ $date = array(
 
         <?php
 if (init('derive', 0) == 1) {
-	echo '{{Variation}} <span class="pull-right"><input type="checkbox" id="toto" class="cb_derive" checked /></span>';
+	echo '<span class="pull-right">{{Variation}} <input type="checkbox" id="toto" class="cb_derive" checked /></span>';
 } else {
-	echo '{{Variation}} <span class="pull-right"><input type="checkbox" id="toto" class="cb_derive" /></span>';
+	echo '<span class="pull-right">{{Variation}} <input type="checkbox" id="toto" class="cb_derive" /></span>';
 }
 if (init('step', 0) == 1) {
-	echo '{{Escalier}} <span class="pull-right"><input type="checkbox" class="cb_step" checked /></span>';
+	echo '<span class="pull-right">{{Escalier}} <input type="checkbox" class="cb_step" checked /></span>';
 } else {
-	echo '{{Escalier}} <span class="pull-right"><input type="checkbox" class="cb_step" /></span>';
+	echo '<span class="pull-right">{{Escalier}} <input type="checkbox" class="cb_step" /></span>';
 }
 ?>
        <center><div id="div_historyChart"></div></center>
