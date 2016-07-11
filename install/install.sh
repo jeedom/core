@@ -282,7 +282,7 @@ HTML_OUTPUT=0
 MYSQL_ROOT_PASSWD=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
 MYSQL_JEEDOM_PASSWD=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
 
-while getopts ":s:v:w:z:h:" opt; do
+while getopts ":s:v:w:z:h:m:" opt; do
   case $opt in
     s) STEP="$OPTARG"
     ;;
