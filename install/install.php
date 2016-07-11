@@ -47,8 +47,8 @@ try {
 		echo "[END UPDATE]\n";
 		die();
 	}
-	echo "****Installation/Mise à jour de Jeedom " . jeedom::version() . " (" . date('Y-m-d H:i:s') . ")****\n";
-	echo "Paramètres de la mise à jour : level : " . init('level', -1) . ", mode : " . init('mode') . ", version : " . init('version', 'no') . ", onlyThisVersion : " . init('onlyThisVersion', 'no') . " \n";
+	echo "****Install/update jeedom from " . jeedom::version() . " (" . date('Y-m-d H:i:s') . ")****\n";
+	echo "Configuration : level : " . init('level', -1) . ", mode : " . init('mode') . ", version : " . init('version', 'no') . ", onlyThisVersion : " . init('onlyThisVersion', 'no') . " \n";
 
 	try {
 		$curentVersion = config::byKey('version');
@@ -67,37 +67,37 @@ try {
 		/*         * ************************MISE A JOUR********************************** */
 
 		try {
-			echo "Envoi de l'événement de début de mise à jour...";
+			echo "Send begin of update event...";
 			jeedom::event('begin_update', true);
 			echo "OK\n";
 		} catch (Exception $e) {
 			if (init('mode') != 'force') {
 				throw $e;
 			} else {
-				echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+				echo '***ERROR***' . $e->getMessage();
 			}
 		}
 
 		try {
 			if (init('level', -1) > -1 && init('mode') != 'force') {
-				echo __("Vérification des mises à jour...", __FILE__);
+				echo "Check update...";
 				update::checkAllUpdate('', false);
-				echo __("OK\n", __FILE__);
+				echo "OK\n";
 			}
 		} catch (Exception $e) {
 			if (init('mode') != 'force') {
 				throw $e;
 			} else {
-				echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+				echo '***ERROR***' . $e->getMessage();
 			}
 		}
 
 		try {
-			echo __("Mise à plat des droits...", __FILE__);
+			echo "Check rights...";
 			jeedom::cleanFileSytemRight();
-			echo __("OK\n", __FILE__);
+			echo "OK\n";
 		} catch (Exception $e) {
-			echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+			echo '***ERROR***' . $e->getMessage();
 		}
 
 		if (init('level', -1) < 1) {
@@ -112,33 +112,33 @@ try {
 					if (init('mode') != 'force') {
 						throw $e;
 					} else {
-						echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+						echo '***ERROR***' . $e->getMessage();
 					}
 				}
 				$backup_ok = true;
 			}
 			if (init('mode') == 'force') {
-				echo __("/!\ Mise à jour en mode forcé /!\ \n", __FILE__);
+				echo "/!\ Force update /!\ \n";
 			}
 			jeedom::stop();
 			if (init('version') == '') {
 				try {
-					echo __('Nettoyage du dossier temporaire (tmp)...', __FILE__);
+					echo 'Clean temporary file (tmp)...';
 					exec('rm -rf /tmp/backup');
 					exec('rm -rf ' . dirname(__FILE__) . '/../install/update/*');
-					echo __("OK\n", __FILE__);
+					echo "OK\n";
 				} catch (Exception $e) {
-					echo __('***ERREUR*** ', __FILE__) . $e->getMessage() . "\n";
+					echo '***ERROR*** ' . $e->getMessage() . "\n";
 				}
 				$tmp_dir = '/tmp';
 				$tmp = $tmp_dir . '/jeedom_update.zip';
 				try {
 					if (config::byKey('core::repo::provider') == 'default') {
 						$url = 'https://github.com/jeedom/core/archive/stable.zip';
-						echo __("Adresse de téléchargement : " . $url . "\n", __FILE__);
-						echo __("Téléchargement en cours...", __FILE__);
+						echo "Download url : " . $url . "\n";
+						echo "Download in progress...";
 						if (!is_writable($tmp_dir)) {
-							throw new Exception(__('Impossible d\'écrire dans le dossier : ', __FILE__) . $tmp . __('. Exécuter la commande suivante en SSH : chmod 777 -R ', __FILE__) . $tmp_dir);
+							throw new Exception('Can not wirte : ' . $tmp . '. Please execute : chmod 777 -R ' . $tmp_dir);
 						}
 						if (file_exists($tmp)) {
 							unlink($tmp);
@@ -147,56 +147,53 @@ try {
 					} else {
 						$class = 'repo_' . config::byKey('core::repo::provider');
 						if (!class_exists($class)) {
-							throw new Exception(__('Classe repo introuvable : ', __FILE__) . $class);
+							throw new Exception('Unable to fin repo class : ' . $class);
 						}
 						if (!method_exists($class, 'downloadCore')) {
-							throw new Exception(__('Méthode repo introuvable : ', __FILE__) . $class . '::downloadCore');
+							throw new Exception('Unable to find method : ' . $class . '::downloadCore');
 						}
 						if (config::byKey(config::byKey('core::repo::provider') . '::enable') != 1) {
-							throw new Exception(__('Repo désactivé : ', __FILE__) . $class);
+							throw new Exception('Repo is disable : ' . $class);
 						}
 						$class::downloadCore($tmp);
 					}
 					if (filesize($tmp) < 100) {
-						throw new Exception(__('Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets)', __FILE__));
+						throw new Exception('Download failed please retry later');
 					}
-					echo __("OK\n", __FILE__);
-					echo __("Nettoyage des dossiers en cours...", __FILE__);
+					echo "OK\n";
+					echo "Cleaning folder...";
 					$cibDir = '/tmp/jeedom_update';
 					if (file_exists($cibDir)) {
 						rrmdir($cibDir);
 					}
-					echo __("OK\n", __FILE__);
-					echo __("Nettoyage adminer en cours...", __FILE__);
-					foreach (ls(dirname(__FILE__) . '/../', 'sqlbuddy*') as $file) {
-						@rrmdir(dirname(__FILE__) . '/../' . $file);
-					}
+					echo "OK\n";
+					echo "Cleaning adminer...";
 					foreach (ls(dirname(__FILE__) . '/../', 'adminer*') as $file) {
 						@rrmdir(dirname(__FILE__) . '/../' . $file);
 					}
-					echo __("OK\n", __FILE__);
-					echo __("Nettoyage sysinfo en cours...", __FILE__);
+					echo "OK\n";
+					echo "Cleaning sysinfo...";
 					foreach (ls(dirname(__FILE__) . '/../', 'sysinfo*') as $file) {
 						@rrmdir(dirname(__FILE__) . '/../' . $file);
 					}
-					echo __("OK\n", __FILE__);
-					echo __("Création des dossiers temporaire...", __FILE__);
+					echo "OK\n";
+					echo "Création des dossiers temporaire...";
 					if (!file_exists($cibDir) && !mkdir($cibDir, 0775, true)) {
-						throw new Exception(__('Impossible de créer le dossier  : ' . $cibDir . '. Problème de droits ?', __FILE__));
+						throw new Exception('Can not wirte into  : ' . $cibDir . '.');
 					}
-					echo __("OK\n", __FILE__);
-					echo __("Décompression en cours...", __FILE__);
+					echo "OK\n";
+					echo "Unzip in progress...";
 					$zip = new ZipArchive;
 					if ($zip->open($tmp) === TRUE) {
 						if (!$zip->extractTo($cibDir)) {
-							throw new Exception(__('Impossible d\'installer la mise à jour. Les fichiers n\'ont pas pu être décompressés', __FILE__));
+							throw new Exception('Can not unzip file');
 						}
 						$zip->close();
 					} else {
-						throw new Exception(__('Impossible de décompresser l\'archive zip : ', __FILE__) . $tmp);
+						throw new Exception('Unable to unzip file : ' . $tmp);
 					}
-					echo __("OK\n", __FILE__);
-					echo __("Copie des fichiers en cours...", __FILE__);
+					echo "OK\n";
+					echo "Copying file...";
 					$update_begin = true;
 					if (!file_exists($cibDir . '/core')) {
 						$files = ls($cibDir, '*');
@@ -205,17 +202,17 @@ try {
 						}
 					}
 					rcopy($cibDir . '/', dirname(__FILE__) . '/../', false, array(), true);
-					echo __("OK\n", __FILE__);
-					echo __("Suppression des fichiers temporaire...", __FILE__);
+					echo "OK\n";
+					echo "Remove tempora file...";
 					rrmdir($cibDir);
 					unlink($tmp);
-					echo __("OK\n", __FILE__);
+					echo "OK\n";
 					config::save('update::lastDateCore', date('Y-m-d H:i:s'));
 				} catch (Exception $e) {
 					if (init('mode') != 'force') {
 						throw $e;
 					} else {
-						echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+						echo '***ERROR***' . $e->getMessage();
 					}
 				}
 			}
@@ -224,21 +221,21 @@ try {
 				$updateSql = dirname(__FILE__) . '/update/' . init('version') . '.sql';
 				if (file_exists($updateSql)) {
 					try {
-						echo __("Désactivation des contraintes...", __FILE__);
+						echo "Disable constraint...";
 						$sql = "SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
                                 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
                                 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';";
 						DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-						echo __("OK\n", __FILE__);
+						echo "OK\n";
 					} catch (Exception $e) {
 						if (init('mode') != 'force') {
 							throw $e;
 						} else {
-							echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+							echo '***ERROR***' . $e->getMessage();
 						}
 					}
 					try {
-						echo __("Mise à jour de la base de données en version : ", __FILE__) . init('version') . "\n";
+						echo "Update database into : " . init('version') . "\n";
 						$sql = file_get_contents($updateSql);
 						DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 						echo "OK\n";
@@ -246,35 +243,35 @@ try {
 						if (init('mode') != 'force') {
 							throw $e;
 						} else {
-							echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+							echo '***ERROR***' . $e->getMessage();
 						}
 					}
 					try {
-						echo __("Réactivation des contraintes...", __FILE__);
+						echo "Enable constraint...";
 						$sql = "SET SQL_MODE=@OLD_SQL_MODE;
                                 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
                                 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;";
 						DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-						echo __("OK\n", __FILE__);
+						echo "OK\n";
 					} catch (Exception $e) {
 						if (init('mode') != 'force') {
 							throw $e;
 						} else {
-							echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+							echo '***ERROR***' . $e->getMessage();
 						}
 					}
 				}
 				$updateScript = dirname(__FILE__) . '/update/' . init('version') . '.php';
 				if (file_exists($updateScript)) {
 					try {
-						echo __("Mise à jour du système en version : ", __FILE__) . init('version') . "\n";
+						echo "Update system into : " . init('version') . "\n";
 						require_once $updateScript;
-						echo __("OK\n", __FILE__);
+						echo "OK\n";
 					} catch (Exception $e) {
 						if (init('mode') != 'force') {
 							throw $e;
 						} else {
-							echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+							echo '***ERROR***' . $e->getMessage();
 						}
 					}
 				}
@@ -287,21 +284,21 @@ try {
 					$updateSql = dirname(__FILE__) . '/update/' . $nextVersion . '.sql';
 					if (file_exists($updateSql)) {
 						try {
-							echo __("Désactivation des contraintes...", __FILE__);
+							echo "Disable constraint...";
 							$sql = "SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
                                     SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
                                     SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';";
 							DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-							echo __("OK\n", __FILE__);
+							echo "OK\n";
 						} catch (Exception $e) {
 							if (init('mode') != 'force') {
 								throw $e;
 							} else {
-								echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+								echo '***ERROR***' . $e->getMessage();
 							}
 						}
 						try {
-							echo __("Mise à jour de la base de données en version : ", __FILE__) . $nextVersion . "...";
+							echo "Update database into : " . $nextVersion . "...";
 							$sql = file_get_contents($updateSql);
 							DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 							echo "OK\n";
@@ -313,31 +310,31 @@ try {
 							}
 						}
 						try {
-							echo __("Réactivation des contraintes...", __FILE__);
+							echo "Enable constraint...";
 							$sql = "SET SQL_MODE=@OLD_SQL_MODE;
                                     SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
                                     SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;";
 							DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-							echo __("OK\n", __FILE__);
+							echo "OK\n";
 						} catch (Exception $e) {
 							if (init('mode') != 'force') {
 								throw $e;
 							} else {
-								echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+								echo '***ERROR***' . $e->getMessage();
 							}
 						}
 					}
 					$updateScript = dirname(__FILE__) . '/update/' . $nextVersion . '.php';
 					if (file_exists($updateScript)) {
 						try {
-							echo __("Mise à jour du système en version : ", __FILE__) . $nextVersion . "...";
+							echo "Update system into : " . $nextVersion . "...";
 							require_once $updateScript;
-							echo __("OK\n", __FILE__);
+							echo "OK\n";
 						} catch (Exception $e) {
 							if (init('mode') != 'force') {
 								throw $e;
 							} else {
-								echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+								echo '***ERROR***' . $e->getMessage();
 							}
 						}
 					}
@@ -346,39 +343,39 @@ try {
 				}
 			}
 			try {
-				echo __("Vérification de la consistence de Jeedom...", __FILE__);
+				echo "Check jeedom consistency...";
 				require_once dirname(__FILE__) . '/consistency.php';
-				echo __("OK\n", __FILE__);
+				echo "OK\n";
 			} catch (Exception $ex) {
-				echo __("***ERREUR*** ", __FILE__) . $ex->getMessage() . "\n";
+				echo "***ERREUR*** " . $ex->getMessage() . "\n";
 			}
 			try {
-				echo __("Vérification de la mise à jour...", __FILE__);
+				echo "Check update...";
 				update::checkAllUpdate('core', false);
 				config::save('version', jeedom::version());
-				echo __("OK\n", __FILE__);
+				echo "OK\n";
 			} catch (Exception $ex) {
-				echo __("***ERREUR*** ", __FILE__) . $ex->getMessage() . "\n";
+				echo "***ERREUR*** " . $ex->getMessage() . "\n";
 			}
-			echo __("***************Jeedom est à jour en version ", __FILE__) . jeedom::version() . "***************\n";
+			echo "***************Jeedom is up to date in " . jeedom::version() . "***************\n";
 		}
 		if (init('level', -1) > -1) {
-			echo __("***************Mise à jour des plugins***************\n", __FILE__);
+			echo "***************Update plugins***************\n";
 			update::updateAll();
-			echo __("***************Mise à jour des plugins réussie***************\n", __FILE__);
+			echo "***************Update plugin successfully***************\n";
 		}
 		try {
 			message::removeAll('update', 'newUpdate');
-			echo __("Vérification des mises à jour\n", __FILE__);
+			echo "Check update\n";
 			update::checkAllUpdate();
-			echo __("OK\n", __FILE__);
+			echo "OK\n";
 		} catch (Exception $ex) {
-			echo __("***ERREUR*** ", __FILE__) . $ex->getMessage() . "\n";
+			echo "***ERREUR*** " . $ex->getMessage() . "\n";
 		}
 		try {
 			jeedom::start();
 		} catch (Exception $ex) {
-			echo __("***ERREUR*** ", __FILE__) . $ex->getMessage() . "\n";
+			echo "***ERREUR*** " . $ex->getMessage() . "\n";
 		}
 	} else {
 
@@ -386,23 +383,15 @@ try {
 		if (version_compare(PHP_VERSION, '5.6.0', '<')) {
 			throw new Exception('Jeedom need php 5.6 or upper (current : ' . PHP_VERSION . ')');
 		}
-		if (init('mode') != 'force') {
-			echo "Jeedom va être installé. Voulez-vous continuer ? [o/N] ";
-			if (trim(fgets(STDIN)) !== 'o') {
-				echo "L'installation de Jeedom est annulée\n";
-				echo "[END UPDATE SUCCESS]\n";
-				exit(0);
-			}
-		}
-		echo "\nInstallation de Jeedom " . jeedom::version() . "\n";
+		echo "\nInstall of Jeedom " . jeedom::version() . "\n";
 		$sql = file_get_contents(dirname(__FILE__) . '/install.sql');
-		echo "Installation de la base de données...";
+		echo "Install of database...";
 		DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 		echo "OK\n";
-		echo "Post installe...\n";
+		echo "Post install...\n";
 		config::save('api', config::genKey());
 		require_once dirname(__FILE__) . '/consistency.php';
-		echo "Ajout de l'utilisateur (admin,admin)\n";
+		echo "Add user (admin,admin)\n";
 		$user = new user();
 		$user->setLogin('admin');
 		$user->setPassword(sha1('admin'));
