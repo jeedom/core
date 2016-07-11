@@ -24,7 +24,7 @@ apt_install() {
 }
 
 mysql_sql() {
-  echo "$@" | mysql -uroot -proot
+  echo "$@" | mysql -uroot -p${MYSQL_ROOT_PASSWD}
   if [ $? -ne 0 ]; then
     echo "C${ROUGE}ould not execute $@ into mysql - abort${NORMAL}"
     exit 1
@@ -74,11 +74,11 @@ step_2_mainpackage() {
 step_3_database() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_3_database${NORMAL}"
-	echo "mysql-server mysql-server/root_password password root" | debconf-set-selections
-	echo "mysql-server mysql-server/root_password_again password root" | debconf-set-selections
+	echo "mysql-server mysql-server/root_password password ${MYSQL_ROOT_PASSWD}" | debconf-set-selections
+	echo "mysql-server mysql-server/root_password_again password ${MYSQL_ROOT_PASSWD}" | debconf-set-selections
 	apt_install mysql-client mysql-common mysql-server
 	
-	mysqladmin -u root password root
+	mysqladmin -u root password ${MYSQL_ROOT_PASSWD}
 	
 	systemctl status mysql > /dev/null 2>&1
 	if [ $? -ne 0 ]; then
@@ -185,13 +185,13 @@ step_7_jeedom_customization() {
 step_8_jeedom_configuration() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_8_jeedom_configuration${NORMAL}"
-	echo "DROP USER 'jeedom'@'%';" | mysql -uroot -proot > /dev/null 2>&1
-	mysql_sql "CREATE USER 'jeedom'@'%' IDENTIFIED BY 'jeedom';"
+	echo "DROP USER 'jeedom'@'%';" | mysql -uroot -p${MYSQL_ROOT_PASSWD} > /dev/null 2>&1
+	mysql_sql "CREATE USER 'jeedom'@'%' IDENTIFIED BY '${MYSQL_JEEDOM_PASSWD}';"
 	mysql_sql "DROP DATABASE IF EXISTS jeedom;"
 	mysql_sql "CREATE DATABASE jeedom;"
 	mysql_sql "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'%';"
 	cp ${WEBSERVER_HOME}/core/config/common.config.sample.php ${WEBSERVER_HOME}/core/config/common.config.php
-	sed -i "s/#PASSWORD#/jeedom/g" ${WEBSERVER_HOME}/core/config/common.config.php 
+	sed -i "s/#PASSWORD#/${MYSQL_JEEDOM_PASSWD}/g" ${WEBSERVER_HOME}/core/config/common.config.php 
 	sed -i "s/#DBNAME#/jeedom/g" ${WEBSERVER_HOME}/core/config/common.config.php 
 	sed -i "s/#USERNAME#/jeedom/g" ${WEBSERVER_HOME}/core/config/common.config.php 
 	sed -i "s/#PORT#/3306/g" ${WEBSERVER_HOME}/core/config/common.config.php 
@@ -280,6 +280,8 @@ VERSION=stable
 WEBSERVER_HOME=/var/www/html
 INSTALL_ZWAVE_DEP=0
 HTML_OUTPUT=0
+MYSQL_ROOT_PASSWD=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
+MYSQL_JEEDOM_PASSWD=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
 
 while getopts ":s:v:w:z:h:" opt; do
   case $opt in
@@ -339,6 +341,7 @@ case ${STEP} in
 	step_11_jeedom_sudo
 	step_12_jeedom_check
 	distrib_1_spe
+	echo "/!\ IMPORTANT /!\ Root MySql password is ${MYSQL_ROOT_PASSWD}"
 	;;
    1) step_1_upgrade
 	;;
