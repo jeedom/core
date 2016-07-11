@@ -180,10 +180,6 @@ $JEEDOM_INTERNAL_CONFIG = array(
 							'maxValue' => array('visible' => true)),
 						'unite' => array('visible' => true),
 						'isHistorized' => array('visible' => true),
-						'cache' => array(
-							'lifetime' => array('visible' => true),
-							'enable' => array('visible' => true),
-						),
 						'display' => array(
 							'invertBinary' => array('visible' => false),
 							'icon' => array('visible' => false, 'parentVisible' => false),
@@ -196,10 +192,6 @@ $JEEDOM_INTERNAL_CONFIG = array(
 							'maxValue' => array('visible' => false)),
 						'unite' => array('visible' => false),
 						'isHistorized' => array('visible' => true),
-						'cache' => array(
-							'lifetime' => array('visible' => true),
-							'enable' => array('visible' => true),
-						),
 						'display' => array(
 							'invertBinary' => array('visible' => true, 'parentVisible' => true),
 							'icon' => array('visible' => false, 'parentVisible' => false),
@@ -212,10 +204,6 @@ $JEEDOM_INTERNAL_CONFIG = array(
 							'maxValue' => array('visible' => false)),
 						'unite' => array('visible' => true),
 						'isHistorized' => array('visible' => false),
-						'cache' => array(
-							'lifetime' => array('visible' => true),
-							'enable' => array('visible' => true),
-						),
 						'display' => array(
 							'invertBinary' => array('visible' => false),
 							'icon' => array('visible' => false, 'parentVisible' => false),
@@ -233,10 +221,6 @@ $JEEDOM_INTERNAL_CONFIG = array(
 							'maxValue' => array('visible' => false)),
 						'unite' => array('visible' => false),
 						'isHistorized' => array('visible' => false),
-						'cache' => array(
-							'lifetime' => array('visible' => false),
-							'enable' => array('visible' => false),
-						),
 						'display' => array(
 							'invertBinary' => array('visible' => false),
 							'icon' => array('visible' => true, 'parentVisible' => true),
@@ -249,10 +233,6 @@ $JEEDOM_INTERNAL_CONFIG = array(
 							'maxValue' => array('visible' => true)),
 						'unite' => array('visible' => false),
 						'isHistorized' => array('visible' => false),
-						'cache' => array(
-							'lifetime' => array('visible' => false),
-							'enable' => array('visible' => false),
-						),
 						'display' => array(
 							'invertBinary' => array('visible' => false),
 							'icon' => array('visible' => true, 'parentVisible' => true),
@@ -265,10 +245,6 @@ $JEEDOM_INTERNAL_CONFIG = array(
 							'maxValue' => array('visible' => false)),
 						'unite' => array('visible' => false),
 						'isHistorized' => array('visible' => false),
-						'cache' => array(
-							'lifetime' => array('visible' => false),
-							'enable' => array('visible' => false),
-						),
 						'display' => array(
 							'invertBinary' => array('visible' => false),
 							'icon' => array('visible' => true, 'parentVisible' => true),
@@ -281,10 +257,6 @@ $JEEDOM_INTERNAL_CONFIG = array(
 							'maxValue' => array('visible' => false)),
 						'unite' => array('visible' => false),
 						'isHistorized' => array('visible' => false),
-						'cache' => array(
-							'lifetime' => array('visible' => false),
-							'enable' => array('visible' => false),
-						),
 						'display' => array(
 							'invertBinary' => array('visible' => false),
 							'icon' => array('visible' => true, 'parentVisible' => true),
