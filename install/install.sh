@@ -212,9 +212,9 @@ step_9_jeedom_installation() {
 	echo "${VERT}step_9_jeedom_installation success${NORMAL}"
 }
 
-step_10_jeedom_crontab() {
+step_10_jeedom_post() {
 	echo "---------------------------------------------------------------------"
-	echo "${JAUNE}Start step_10_jeedom_crontab${NORMAL}"
+	echo "${JAUNE}Start step_10_jeedom_post${NORMAL}"
 	if [ $(crontab -l | grep ${WEBSERVER_HOME}/core/php/jeeCron.php | wc -l) -eq 0 ];then
 		(echo "* * * * * su --shell=/bin/bash - www-data -c '/usr/bin/php ${WEBSERVER_HOME}/core/php/jeeCron.php' >> /dev/null"; crontab -l | grep -v "jeedom" | grep -v "jeeCron") | crontab -
 		if [ $? -ne 0 ]; then
@@ -222,13 +222,7 @@ step_10_jeedom_crontab() {
 	    	exit 1
 	  	fi
   	fi
-	echo "${VERT}step_10_jeedom_crontab success${NORMAL}"
-}
-
-step_11_jeedom_sudo() {
-	echo "---------------------------------------------------------------------"
-	echo "${JAUNE}Start step_11_jeedom_sudo${NORMAL}"
-	usermod -a -G dialout,tty www-data
+  	usermod -a -G dialout,tty www-data
 	if [ $(grep "www-data ALL=(ALL) NOPASSWD: ALL" /etc/sudoers | wc -l) -eq 0 ];then
 		echo "www-data ALL=(ALL) NOPASSWD: ALL" | (EDITOR="tee -a" visudo)
 		if [ $? -ne 0 ]; then
@@ -236,10 +230,15 @@ step_11_jeedom_sudo() {
     		exit 1
   		fi
   	fi
-	echo "${VERT}step_11_jeedom_sudo success${NORMAL}"
+  	if [ $(cat /proc/meminfo | grep MemTotal | awk '{ print $2 }') -gt 600000 ]; then
+  		if [ $(cat /etc/fstab | grep /tmp | grep tmpfs | wc -l) -eq 0 ];then
+  			echo 'tmpfs        /tmp            tmpfs  defaults,size=128M                                       0 0' >>  /etc/fstab
+  		fi
+  	fi
+	echo "${VERT}step_10_jeedom_post success${NORMAL}"
 }
 
-step_12_jeedom_check() {
+step_11_jeedom_check() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_12_jeedom_check${NORMAL}"
 	php ${WEBSERVER_HOME}/sick.php
@@ -337,9 +336,8 @@ case ${STEP} in
 	step_7_jeedom_customization
 	step_8_jeedom_configuration
 	step_9_jeedom_installation
-	step_10_jeedom_crontab
-	step_11_jeedom_sudo
-	step_12_jeedom_check
+	step_10_jeedom_post
+	step_11_jeedom_check
 	distrib_1_spe
 	echo "/!\ IMPORTANT /!\ Root MySql password is ${MYSQL_ROOT_PASSWD}"
 	;;
@@ -361,11 +359,9 @@ case ${STEP} in
 	;;
    9) step_9_jeedom_installation
 	;;
-   10) step_10_jeedom_crontab
+   10) step_10_jeedom_post
 	;;
-   11) step_11_jeedom_sudo
-	;;
-   12) step_12_jeedom_check
+   11) step_11_jeedom_check
 	;;
    *) echo "${ROUGE}Sorry, I can not get a ${STEP} step for you!${NORMAL}"
 	;;
