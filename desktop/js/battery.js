@@ -59,7 +59,7 @@ if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1)
 });
 }
 
-$('.bootstrapSwitch').on('switchChange.bootstrapSwitch', function (event, state) {
+$('.bootstrapSwitch').on('change switchChange.bootstrapSwitch', function (event, state) {
 	if (state === false) {
 		$('.'+event.currentTarget.id).hide();
 		$('.batteryListContainer').packery({

@@ -251,8 +251,8 @@ jeedom.config.load({
     },
     success: function (data) {
         $('#config').setValues(data, '.configKey');
-        $('.configKey[data-l1key="market::allowDNS"]').trigger('switchChange.bootstrapSwitch');
-        $('.configKey[data-l1key="ldap:enable"]').trigger('switchChange.bootstrapSwitch');
+        $('.configKey[data-l1key="market::allowDNS"]').trigger('change');
+        $('.configKey[data-l1key="ldap:enable"]').trigger('change');
         modifyWithoutSave = false;
     }
 });

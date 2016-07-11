@@ -46,7 +46,7 @@ foreach ($objects as $object) {
 
 <span class="pull-right">
 	<input class="form-control pull-right" id="in_search" placeholder="{{Rechercher}}" style="width : 200px;"/>
-	{{Inactif}}  <input type="checkbox" class="pull-right" id="cb_actifDisplay" checked />
+	<label class="checkbox-inline"><input type="checkbox" id="cb_actifDisplay" checked />{{Inactif}}</label>
 </span>
 <center>
 	<span class="label label-default" style="font-size : 1em;cursor : default;">{{Nombre d'objet :}} <?php echo count($objects) ?></span>
