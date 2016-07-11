@@ -185,8 +185,8 @@ step_7_jeedom_customization() {
 step_8_jeedom_configuration() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_8_jeedom_configuration${NORMAL}"
-	echo "DROP USER 'jeedom'@'%';" | mysql -uroot -p${MYSQL_ROOT_PASSWD} > /dev/null 2>&1
-	mysql_sql "CREATE USER 'jeedom'@'%' IDENTIFIED BY '${MYSQL_JEEDOM_PASSWD}';"
+	echo "DROP USER 'jeedom'@'localhost';" | mysql -uroot -p${MYSQL_ROOT_PASSWD} > /dev/null 2>&1
+	mysql_sql "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${MYSQL_JEEDOM_PASSWD}';"
 	mysql_sql "DROP DATABASE IF EXISTS jeedom;"
 	mysql_sql "CREATE DATABASE jeedom;"
 	mysql_sql "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'%';"
