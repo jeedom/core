@@ -17,6 +17,7 @@
  */
 //error_reporting(E_ERROR);
 date_default_timezone_set('Europe/Brussels');
+require_once dirname(__FILE__) . '/../../vendor/autoload.php';
 require_once dirname(__FILE__) . '/../config/common.config.php';
 require_once dirname(__FILE__) . '/../class/DB.class.php';
 require_once dirname(__FILE__) . '/../class/config.class.php';
@@ -24,7 +25,6 @@ require_once dirname(__FILE__) . '/../class/jeedom.class.php';
 require_once dirname(__FILE__) . '/../class/plugin.class.php';
 require_once dirname(__FILE__) . '/../class/translate.class.php';
 require_once dirname(__FILE__) . '/utils.inc.php';
-require_once dirname(__FILE__) . '/../../vendor/autoload.php';
 include_file('core', 'jeedom', 'config');
 include_file('core', 'compatibility', 'config');
 include_file('core', 'utils', 'class');
