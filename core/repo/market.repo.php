@@ -165,7 +165,13 @@ class repo_market {
 		$url = config::byKey('market::address') . "/core/php/downloadBackup.php?backup=" . $_backup . '&hwkey=' . jeedom::getHardwareKey() . '&username=' . urlencode(config::byKey('market::username')) . '&password=' . self::getPassword() . '&password_type=sha1';
 		$tmp_dir = dirname(__FILE__) . '/../../tmp';
 		$tmp = $tmp_dir . '/' . $_backup;
-		file_put_contents($tmp, fopen($url, 'r'));
+		$opts = array(
+			"ssl" => array(
+				"verify_peer" => false,
+				"verify_peer_name" => false,
+			),
+		);
+		file_put_contents($tmp, fopen($url, 'r', false, stream_context_create($opts)));
 		if (!file_exists($tmp)) {
 			throw new Exception(__('Impossible de télécharger la sauvegarde : ', __FILE__) . $url . '.');
 		}
@@ -615,9 +621,16 @@ class repo_market {
 		if (!is_writable($tmp_dir)) {
 			throw new Exception(__('Impossible d\'écrire dans le répertoire : ', __FILE__) . $tmp . __('. Exécuter la commande suivante en SSH : sudo chmod 777 -R ', __FILE__) . $tmp_dir);
 		}
+
 		$url = config::byKey('market::address') . "/core/php/downloadFile.php?id=" . $this->getId() . '&version=' . $_version . '&jeedomversion=' . jeedom::version() . '&hwkey=' . jeedom::getHardwareKey() . '&username=' . urlencode(config::byKey('market::username')) . '&password=' . self::getPassword() . '&password_type=sha1';
 		log::add('update', 'alert', __('Téléchargement de ', __FILE__) . $this->getLogicalId() . '...');
-		file_put_contents($tmp, fopen($url, 'r'));
+		$opts = array(
+			"ssl" => array(
+				"verify_peer" => false,
+				"verify_peer_name" => false,
+			),
+		);
+		file_put_contents($tmp, fopen($url, 'r', false, stream_context_create($opts)));
 
 		switch ($this->getType()) {
 			case 'plugin':
