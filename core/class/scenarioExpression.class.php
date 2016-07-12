@@ -1079,8 +1079,7 @@ class scenarioExpression {
 						throw new Exception(__('Commande introuvable - Vérifiez l\'id : ', __FILE__) . $this->getOptions('cmd'));
 					}
 					$this->setLog($scenario, __('Demande ', __FILE__) . print_r($options_cmd, true));
-					$cmd->setConfiguration('storeVariable', $this->getOptions('variable'));
-					$cmd->save();
+					$cmd->setCache('storeVariable', $this->getOptions('variable'));
 					$cmd->execCmd($options_cmd);
 					$occurence = 0;
 					$value = '';
