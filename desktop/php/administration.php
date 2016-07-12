@@ -431,7 +431,7 @@ foreach (array('eth0', 'wlan0', 'bond0') as $value) {
 	$mac = network::getInterfaceMac($value);
 	if ($mac !== false) {
 		echo '<div class="form-group expertModeVisible">';
-		echo '<label class="col-xs-4 control-label">{{Addresse mac}} ' . $value . '</label>';
+		echo '<label class="col-xs-4 control-label">{{Adresse mac}} ' . $value . '</label>';
 		echo '<div class="col-xs-8">';
 		echo '<span class="label label-primary" style="font-size:1em;">' . $mac . '</span>';
 		echo '</div>';
