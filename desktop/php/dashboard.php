@@ -113,18 +113,11 @@ if ($_SESSION['user']->getOptions('displayScenarioByDefault') == 1) {
 ?>
 <legend><i class="fa fa-history"></i> {{Scénarios}}</legend>
 <?php
-if (init('object_id') == '') {
-	foreach (scenario::byObjectId(null, false, true) as $scenario) {
-		echo $scenario->toHtml('dashboard');
+foreach (scenario::all() as $scenario) {
+	if ($scenario->getIsVisible() == 0) {
+		continue;
 	}
-}
-foreach ($object->getScenario(false, true) as $scenario) {
 	echo $scenario->toHtml('dashboard');
-}
-foreach ($child_object as $child) {
-	foreach ($child->getScenario(false, true) as $scenario) {
-		echo $scenario->toHtml('dashboard');
-	}
 }
 ?>
 </div>
