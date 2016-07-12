@@ -10,17 +10,32 @@ $name = init('name', null);
 if ($name == 'false') {
 	$name = null;
 }
-$markets = repo_market::byFilter(
-	array(
-		'status' => $status,
-		'type' => $type,
-		'categorie' => $categorie,
-		'name' => $name,
-		'cost' => init('cost', null),
-		'timeState' => init('timeState', null),
-		'certification' => init('certification', null),
-	)
-);
+
+if (init('timeState', 'newest') == 'newest') {
+	$markets = repo_market::byFilter(array(
+		'status' => 'stable',
+		'type' => 'plugin',
+		'timeState' => 'popular',
+	));
+	$markets2 = repo_market::byFilter(array(
+		'status' => 'stable',
+		'type' => 'plugin',
+		'timeState' => 'newest',
+	));
+	$markets = array_merge($markets, $markets2);
+} else {
+	$markets = repo_market::byFilter(
+		array(
+			'status' => $status,
+			'type' => $type,
+			'categorie' => $categorie,
+			'name' => $name,
+			'cost' => init('cost', null),
+			'timeState' => init('timeState', 'newest'),
+			'certification' => init('certification', null),
+		)
+	);
+}
 
 function buildUrl($_key, $_value) {
 	$url = 'index.php?v=d&modal=update.display&';
@@ -231,23 +246,24 @@ if ($name != null && strpos($name, '$') !== false) {
 $categorie = '';
 $first = true;
 $nCategory = 0;
-
+if (init('timeState', 'newest') == 'newest') {
+	echo '<div class="pluginContainer">';
+}
 foreach ($markets as $market) {
-
 	$update = update::byLogicalId($market->getLogicalId());
-
 	$category = $market->getCategorie();
 	if ($category == '') {
 		$category = 'Aucune';
 	}
-
 	if ($categorie != $category) {
 		$categorie = $category;
-		if (!$first) {
-			echo '</div>';
+		if (init('timeState', 'newest') != 'newest') {
+			if (!$first) {
+				echo '</div>';
+			}
+			echo '<legend style="border-bottom: 1px solid #34495e; color : #34495e;" data-category="' . $nCategory . '">' . ucfirst($categorie) . '</legend>';
+			echo '<div class="pluginContainer" data-category="' . $nCategory . '">';
 		}
-		echo '<legend style="border-bottom: 1px solid #34495e; color : #34495e;" data-category="' . $nCategory . '">' . ucfirst($categorie) . '</legend>';
-		echo '<div class="pluginContainer" data-category="' . $nCategory . '">';
 		$first = false;
 		$nCategory++;
 	}
@@ -334,6 +350,9 @@ foreach ($markets as $market) {
 	} else {
 		echo '<span style="position : absolute;bottom : 5px;right : 12px;color:#97bd44;">Gratuit</span>';
 	}
+	echo '</div>';
+}
+if (init('timeState', 'newest') == 'newest') {
 	echo '</div>';
 }
 ?>
