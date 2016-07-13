@@ -71,7 +71,7 @@ foreach (cmd::allHistoryCmd() as $cmd) {
 				<option value="areaspline">{{Areaspline}}</option>
 				<option value="column">{{Barre}}</option>
 			</select>
-			<span class="pull-right">{{Variation}] <input type="checkbox" id="cb_derive" /></span>
+			<span class="pull-right">{{Variation}} <input type="checkbox" id="cb_derive" /></span>
 			<span class="pull-right">{{Escalier}} <input type="checkbox" id="cb_step" /></span>
 			<div id="div_graph" style="margin-top: 50px;height:calc(100% - 120px)"></div>
 		</div>
