@@ -14,8 +14,7 @@ if (count($interactQueries) == 0) {
 ?>
 
 <div style="display: none;" id="md_displayInteractQueryAlert"></div>
-<br/><br/>
-<table class="table table-bordered table-condensed tablesorter" id="table_interactQuery" style="width:100%">
+<table class="table table-bordered table-condensed" id="table_interactQuery" style="width:100%">
     <thead>
         <tr>
             <th>{{Phrase}}</th>
@@ -24,7 +23,7 @@ if (count($interactQueries) == 0) {
     <tbody>
         <?php
 foreach ($interactQueries as $interactQuery) {
-	echo '<tr data-interactQuery_id="' . $interactQuery->getId() . '">';
+	echo '<tr data-interactQuery_id="' . $interactQuery->getId() . '"">';
 	echo '<td>' . $interactQuery->getQuery() . '</td>';
 	echo '</tr>';
 }
