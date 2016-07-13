@@ -258,6 +258,7 @@ foreach (eqLogic::allType() as $type) {
     <label class="col-sm-3 control-label">{{Limiter aux categories}}</label>
     <div class="col-sm-9">
       <?php
+echo '<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="category" data-l3key="noCategory" checked="true" />{{Sans catégorie}}</label> ';
 foreach (jeedom::getConfiguration('eqLogic:category') as $id => $category) {
 	echo '<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="category" data-l3key="' . $id . '" checked="true" />' . $category['name'] . '</label> ';
 }

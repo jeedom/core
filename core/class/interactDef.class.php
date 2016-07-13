@@ -380,9 +380,15 @@ class interactDef {
 						if (is_array($category_filter)) {
 							$category_ok = false;
 							foreach ($category_filter as $category => $value) {
-								if ($value == 1 && $eqLogic->getCategory($category) == 1) {
-									$category_ok = true;
-									break;
+								if ($value == 1) {
+									if ($eqLogic->getCategory($category) == 1) {
+										$category_ok = true;
+										break;
+									}
+									if ($category == 'noCategory' && $eqLogic->getPrimaryCategory() == '') {
+										$category_ok = true;
+										break;
+									}
 								}
 							}
 						}
