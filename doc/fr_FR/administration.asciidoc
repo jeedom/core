@@ -193,6 +193,9 @@ image::../images/administration18.png[]
 [IMPORTANT]
 Il vous faudra peut etre installer le package smbclient pour que le dépot fonctionne
 
+[IMPORTANT]
+Jeedom doit être le seul à écrire dans ce dossier et il doit etre vide par defaut (c'est à dire avant la configuration et l'envoi du premier backup le dossier ne doit contenir aucun fichier ou dossier)
+
 ==== URL
 
 image::../images/administration19.png[]
