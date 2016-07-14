@@ -11,7 +11,7 @@ if ($name == 'false') {
 	$name = null;
 }
 
-if (init('timeState', 'newest') == 'newest') {
+if (init('timeState', 'newest') == 'newest' && $name == null && $categorie == null) {
 	$markets = repo_market::byFilter(array(
 		'status' => 'stable',
 		'type' => 'plugin',
