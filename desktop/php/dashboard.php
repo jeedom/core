@@ -93,6 +93,7 @@ echo '<legend style="margin-bottom : 0px;">' . $object->getDisplay('icon') . ' '
 echo '<div class="div_displayEquipement" id="div_ob' . $object->getId() . '" style="width: 100%;padding-top:3px;margin-bottom : 3px;">';
 echo '<script>getObjectHtml(' . $object->getId() . ')</script>';
 echo '</div>';
+echo '</div>';
 foreach ($child_object as $child) {
 	echo '<div data-object_id="' . $child->getId() . '" style="margin-bottom : 3px;" class="div_object">';
 	echo '<legend style="margin-bottom : 0px;">' . $child->getDisplay('icon') . ' ' . $child->getName() . '</legend>';
@@ -101,7 +102,7 @@ foreach ($child_object as $child) {
 	echo '</div>';
 	echo '</div>';
 }
-echo '</div>';
+
 ?>
 </div>
 <?php
