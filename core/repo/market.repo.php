@@ -317,6 +317,28 @@ class repo_market {
 
 	/*     * ***********************UTILS*************************** */
 
+	public static function saveTicket($_ticket) {
+		$jsonrpc = self::getJsonRpc();
+		$_ticket['user_plugin'] = '';
+		foreach (plugin::listPlugin() as $plugin) {
+			$_ticket['user_plugin'] .= $plugin->getId();
+			$update = $plugin->getUpdate();
+			if (is_object($update)) {
+				$_ticket['user_plugin'] .= '[' . $update->getConfiguration('version', 'stable') . ',' . $update->getLocalVersion() . ']';
+			}
+			$_ticket['user_plugin'] .= ',';
+		}
+		trim($_ticket['user_plugin'], ',');
+		if (isset($_ticket['options']['page'])) {
+			$_ticket['options']['page'] = substr($_ticket['options']['page'], strpos($_ticket['options']['page'], 'index.php'));
+		}
+		$_ticket['options']['jeedom_version'] = jeedom::version();
+		if (!$jsonrpc->sendRequest('ticket::save', array('ticket' => $_ticket))) {
+			throw new Exception($jsonrpc->getErrorMessage());
+		}
+		return $jsonrpc->getResult();
+	}
+
 	public static function getPassword() {
 		$password = config::byKey('market::password');
 		if (!is_sha1($password)) {

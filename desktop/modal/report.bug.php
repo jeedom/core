@@ -115,7 +115,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
                 return;
             }
             $('#bt_sendBugReport').hide();
-            $('#div_alertReportBug').showAlert({message: '{{Votre ticket a bien été ouvert. Un mail va vous être envoyé.}}', level: 'success'});
+            $('#div_alertReportBug').showAlert({message: '{{Votre ticket a bien été ouvert. Nous vous recontacterons prochainement.}}', level: 'success'});
         }
     });
     });
