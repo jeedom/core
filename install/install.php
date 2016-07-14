@@ -124,13 +124,14 @@ try {
 			if (init('version') == '') {
 				try {
 					echo 'Clean temporary file (tmp)...';
-					exec('rm -rf /tmp/backup');
+					exec('rm -rf ' . dirname(__FILE__) . '/../tmp/*.zip');
+					exec('rm -rf ' . dirname(__FILE__) . '/../tmp/backup');
 					exec('rm -rf ' . dirname(__FILE__) . '/../install/update/*');
 					echo "OK\n";
 				} catch (Exception $e) {
 					echo '***ERROR*** ' . $e->getMessage() . "\n";
 				}
-				$tmp_dir = '/tmp';
+				$tmp_dir = dirname(__FILE__) . '/../tmp';
 				$tmp = $tmp_dir . '/jeedom_update.zip';
 				try {
 					if (config::byKey('core::repo::provider') == 'default') {
@@ -162,7 +163,7 @@ try {
 					}
 					echo "OK\n";
 					echo "Cleaning folder...";
-					$cibDir = '/tmp/jeedom_update';
+					$cibDir = dirname(__FILE__) . '/../tmp/jeedom';
 					if (file_exists($cibDir)) {
 						rrmdir($cibDir);
 					}
