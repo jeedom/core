@@ -139,7 +139,7 @@ try {
 						echo "Download url : " . $url . "\n";
 						echo "Download in progress...";
 						if (!is_writable($tmp_dir)) {
-							throw new Exception('Can not wirte : ' . $tmp . '. Please execute : chmod 777 -R ' . $tmp_dir);
+							throw new Exception('Can not write : ' . $tmp . '. Please execute : chmod 777 -R ' . $tmp_dir);
 						}
 						if (file_exists($tmp)) {
 							unlink($tmp);
@@ -148,7 +148,7 @@ try {
 					} else {
 						$class = 'repo_' . config::byKey('core::repo::provider');
 						if (!class_exists($class)) {
-							throw new Exception('Unable to fin repo class : ' . $class);
+							throw new Exception('Unable to find repo class : ' . $class);
 						}
 						if (!method_exists($class, 'downloadCore')) {
 							throw new Exception('Unable to find method : ' . $class . '::downloadCore');
@@ -180,7 +180,7 @@ try {
 					echo "OK\n";
 					echo "Création des dossiers temporaire...";
 					if (!file_exists($cibDir) && !mkdir($cibDir, 0775, true)) {
-						throw new Exception('Can not wirte into  : ' . $cibDir . '.');
+						throw new Exception('Can not write into  : ' . $cibDir . '.');
 					}
 					echo "OK\n";
 					echo "Unzip in progress...";
