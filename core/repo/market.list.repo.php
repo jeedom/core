@@ -10,7 +10,7 @@ $name = init('name', null);
 if ($name == 'false') {
 	$name = null;
 }
-if ($name == null && $categorie == null && init('certification', null) == null) {
+if ($name == null && $categorie == null && init('certification', null) == null && $type == 'plugin') {
 	$default = true;
 	$markets = repo_market::byFilter(array(
 		'status' => 'stable',
@@ -34,6 +34,7 @@ if ($name == null && $categorie == null && init('certification', null) == null) 
 			'cost' => init('cost', null),
 			'timeState' => init('timeState'),
 			'certification' => init('certification', null),
+			'limit' => 50,
 		)
 	);
 }
