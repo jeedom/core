@@ -10,8 +10,8 @@ $name = init('name', null);
 if ($name == 'false') {
 	$name = null;
 }
-
-if (init('timeState', 'newest') == 'newest' && $name == null && $categorie == null) {
+if ($name == null && $categorie == null && init('certification', null) == null) {
+	$default = true;
 	$markets = repo_market::byFilter(array(
 		'status' => 'stable',
 		'type' => 'plugin',
@@ -24,6 +24,7 @@ if (init('timeState', 'newest') == 'newest' && $name == null && $categorie == nu
 	));
 	$markets = array_merge($markets, $markets2);
 } else {
+	$default = false;
 	$markets = repo_market::byFilter(
 		array(
 			'status' => $status,
@@ -31,7 +32,7 @@ if (init('timeState', 'newest') == 'newest' && $name == null && $categorie == nu
 			'categorie' => $categorie,
 			'name' => $name,
 			'cost' => init('cost', null),
-			'timeState' => init('timeState', 'newest'),
+			'timeState' => init('timeState'),
 			'certification' => init('certification', null),
 		)
 	);
@@ -246,7 +247,7 @@ if ($name != null && strpos($name, '$') !== false) {
 $categorie = '';
 $first = true;
 $nCategory = 0;
-if (init('timeState', 'newest') == 'newest') {
+if ($default) {
 	echo '<div class="pluginContainer">';
 }
 foreach ($markets as $market) {
@@ -257,7 +258,7 @@ foreach ($markets as $market) {
 	}
 	if ($categorie != $category) {
 		$categorie = $category;
-		if (init('timeState', 'newest') != 'newest') {
+		if (!$default) {
 			if (!$first) {
 				echo '</div>';
 			}
@@ -352,7 +353,7 @@ foreach ($markets as $market) {
 	}
 	echo '</div>';
 }
-if (init('timeState', 'newest') == 'newest') {
+if ($default) {
 	echo '</div>';
 }
 ?>
