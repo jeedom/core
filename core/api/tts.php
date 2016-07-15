@@ -29,11 +29,11 @@ if ($text == '') {
 	die();
 }
 $md5 = md5($text);
-$filename = '/tmp/' . $md5 . '.wav';
+$filename = '/tmp/' . $md5 . '.mp3';
 switch ($engine) {
 	case 'espeak':
 		$voice = init('voice', 'fr+f4');
-		shell_exec('sudo espeak -v' . $voice . ' "' . $text . '" -w ' . $filename . ' > /dev/null 2>&1');
+		shell_exec('sudo espeak -v' . $voice . ' "' . $text . '" --stdout | ffmpeg -i - -ar 44100 -ac 2 -ab 192k -f mp3 ' . $filename . ' > /dev/null 2>&1');
 		break;
 	default:
 		echo __('Moteur de voix inconnue : ', __FILE__) . $engine;
@@ -41,7 +41,7 @@ switch ($engine) {
 		break;
 }
 header('Content-Type: application/octet-stream');
-header('Content-Disposition: attachment; filename=' . $md5 . '.wav');
+header('Content-Disposition: attachment; filename=' . $md5 . '.mp3');
 readfile($filename);
 shell_exec('sudo rm ' . $filename . ' > /dev/null 2>&1');
 ?>
