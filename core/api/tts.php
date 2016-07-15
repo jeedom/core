@@ -22,7 +22,7 @@ if (!jeedom::apiAccess(init('apikey'))) {
 	die();
 }
 
-$engine = init('engine', 'espeak');
+$engine = init('engine', 'pico');
 $text = init('text');
 if ($text == '') {
 	echo __('Aucun text à dire', __FILE__);
@@ -35,11 +35,16 @@ switch ($engine) {
 		$voice = init('voice', 'fr+f4');
 		shell_exec('sudo espeak -v' . $voice . ' "' . $text . '" --stdout | avconv -i - -ar 44100 -ac 2 -ab 192k -f mp3 ' . $filename . ' > /dev/null 2>&1');
 		break;
+	case 'pico':
+		$lang = init('lang', 'fr-FR');
+		shell_exec('sudo pico2wave -l=' . $lang . ' -w=' . $md5 . '.wav "' . $text . '" > /dev/null 2>&1;sudo avconv -i ' . $md5 . '.wav -ar 44100 -ac 2 -ab 192k -f mp3 ' . $filename . ' > /dev/null 2>&1;sudo rm ' . $md5 . '.wav');
+		break;
 	default:
 		echo __('Moteur de voix inconnue : ', __FILE__) . $engine;
 		die();
 		break;
 }
+
 header('Content-Type: application/octet-stream');
 header('Content-Disposition: attachment; filename=' . $md5 . '.mp3');
 readfile($filename);
