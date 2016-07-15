@@ -47,6 +47,7 @@ step_2_mainpackage() {
 	apt-get -y install smbclient htop iotop vim iftop
 	apt-get -y install dos2unix
 	apt-get -y install ntpdate
+	apt-get -y install espeak
 	apt-get -y install git
 	apt-get -y install python
 	apt-get -y install python-pip
