@@ -33,7 +33,7 @@ $filename = '/tmp/' . $md5 . '.mp3';
 switch ($engine) {
 	case 'espeak':
 		$voice = init('voice', 'fr+f4');
-		shell_exec('sudo espeak -v' . $voice . ' "' . $text . '" --stdout | ffmpeg -i - -ar 44100 -ac 2 -ab 192k -f mp3 ' . $filename . ' > /dev/null 2>&1');
+		shell_exec('sudo espeak -v' . $voice . ' "' . $text . '" --stdout | avconv -i - -ar 44100 -ac 2 -ab 192k -f mp3 ' . $filename . ' > /dev/null 2>&1');
 		break;
 	default:
 		echo __('Moteur de voix inconnue : ', __FILE__) . $engine;
