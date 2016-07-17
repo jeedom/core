@@ -37,7 +37,7 @@ switch ($engine) {
 		shell_exec('sudo espeak -v' . $voice . ' "' . $text . '" --stdout | avconv -i - -ar 44100 -ac 2 -ab 192k -f mp3 ' . $filename . ' > /dev/null 2>&1');
 		break;
 	case 'pico':
-		$volume = '-af "volume=' . init('volume', '2') . 'dB"';
+		$volume = '-af "volume=' . init('volume', '4') . 'dB"';
 		$lang = init('lang', 'fr-FR');
 		shell_exec('sudo pico2wave -l=' . $lang . ' -w=' . $md5 . '.wav "' . $text . '" > /dev/null 2>&1;sudo avconv -i ' . $md5 . '.wav -ar 44100 ' . $volume . ' -ac 2 -ab 192k -f mp3 ' . $filename . ' > /dev/null 2>&1;sudo rm ' . $md5 . '.wav');
 		break;
