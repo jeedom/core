@@ -92,7 +92,11 @@ class event {
 	private static function changesSince($_datetime) {
 		$return = array('datetime' => getmicrotime(), 'result' => array());
 		$cache = cache::byKey('event');
-		$values = array_reverse(json_decode($cache->getValue('[]'), true));
+		$events = json_decode($cache->getValue('[]'), true);
+		if (!is_array($events)) {
+			$events = array();
+		}
+		$values = array_reverse($events);
 		if (count($values) > 0) {
 			foreach ($values as $value) {
 				if ($value['datetime'] <= $_datetime) {
