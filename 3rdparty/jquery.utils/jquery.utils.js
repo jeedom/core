@@ -329,7 +329,6 @@
                 $(this).text('Hide traces');
             }
         });
-        initRowOverflow();
         return this;
     };
 
