@@ -41,6 +41,9 @@ class event {
 		if (flock($fd, LOCK_EX, $waitIfLocked)) {
 			$cache = cache::byKey('event');
 			$value = json_decode($cache->getValue('[]'), true);
+			if (!is_array($value)) {
+				$value = array();
+			}
 			$value[] = array('datetime' => getmicrotime(), 'name' => $_event, 'option' => $_option);
 			cache::set('event', json_encode(array_slice($value, -self::$limit, self::$limit)));
 			flock($fd, LOCK_UN);
@@ -56,7 +59,11 @@ class event {
 		$fd = self::getFileDescriptorLock();
 		if (flock($fd, LOCK_EX, $waitIfLocked)) {
 			$cache = cache::byKey('event');
-			cache::set('event', json_encode(array_slice(array_merge(json_decode($cache->getValue('[]'), true), $value), -self::$limit, self::$limit)));
+			$value_src = json_decode($cache->getValue('[]'), true);
+			if (!is_array($value_src)) {
+				$value_src = array();
+			}
+			cache::set('event', json_encode(array_slice(array_merge($value_src, $value), -self::$limit, self::$limit)));
 			flock($fd, LOCK_UN);
 		}
 	}
