@@ -104,7 +104,8 @@ try {
 	}
 	$cron->setClass('jeedom');
 	$cron->setFunction('backup');
-	$cron->setSchedule('02 02 * * *');
+
+	$cron->setSchedule(rand(10, 59) . ' 0' . rand(2, 3) . ' * * *');
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
 	$cron->setTimeout(60);
@@ -300,6 +301,14 @@ try {
 		}
 	} catch (Exception $e) {
 
+	}
+
+	try {
+		foreach (object::all() as $object) {
+			$object->save();
+		}
+	} catch (Exception $exc) {
+		echo $exc->getMessage();
 	}
 
 	try {
