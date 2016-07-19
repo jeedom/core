@@ -389,6 +389,7 @@ class repo_market {
 				'addrComplement' => config::byKey('externalComplement'),
 				'information' => array(
 					'nbMessage' => message::nbMessage(),
+					'nbUpdate' => update::nbNeedUpdate(),
 					'jeeNetwork::mode' => config::byKey('jeeNetwork::mode'),
 					'hardware' => (method_exists('jeedom', 'getHardwareName')) ? jeedom::getHardwareName() : '',
 				),
