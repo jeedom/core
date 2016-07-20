@@ -798,7 +798,7 @@ if (init(_noRender, false) == false) {
 function addEqLogic(_id, _plan) {
     jeedom.eqLogic.toHtml({
         id: _id,
-        version: 'dashboard',
+        version: 'dplan',
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
@@ -813,7 +813,7 @@ function addEqLogic(_id, _plan) {
 function addScenario(_id, _plan) {
     jeedom.scenario.toHtml({
         id: _id,
-        version: 'dashboard',
+        version: 'dplan',
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
