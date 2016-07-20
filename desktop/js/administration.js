@@ -466,15 +466,34 @@ $('.bt_resetColor').on('click', function () {
 });
 
 $('.testRepoConnection').on('click',function(){
-jeedom.repo.test({
-    repo: $(this).attr('data-repo'),
-    error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'});
-    },
-    success: function (data) {
-        $('#div_alert').showAlert({message: '{{Test réussi}}', level: 'success'});
-    }
-});
+    var repo = $(this).attr('data-repo');
+    jeedom.config.save({
+        configuration: $('#config').getValues('.configKey')[0],
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+            jeedom.config.load({
+                configuration: $('#config').getValues('.configKey:not(.noSet)')[0],
+                error: function (error) {
+                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function (data) {
+                    $('#config').setValues(data, '.configKey');
+                    modifyWithoutSave = false;
+                    jeedom.repo.test({
+                        repo: repo,
+                        error: function (error) {
+                            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                        },
+                        success: function (data) {
+                            $('#div_alert').showAlert({message: '{{Test réussi}}', level: 'success'});
+                        }
+                    });
+                }
+            });
+        }
+    });
 });
 
 /**************************SYSTEM***********************************/
