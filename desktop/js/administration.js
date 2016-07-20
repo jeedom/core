@@ -17,12 +17,12 @@
 
  $('body').delegate('.configKey[data-l1key="market::allowDNS"]', 'change', function () {
     if($(this).value() == 1){
-     $('.configKey[data-l1key=externalProtocol]').attr('disabled',true);
-     $('.configKey[data-l1key=externalAddr]').attr('disabled',true);
-     $('.configKey[data-l1key=externalPort]').attr('disabled',true);
-     $('.configKey[data-l1key=externalAddr]').value('');
-     $('.configKey[data-l1key=externalPort]').value('');
- }else{
+       $('.configKey[data-l1key=externalProtocol]').attr('disabled',true);
+       $('.configKey[data-l1key=externalAddr]').attr('disabled',true);
+       $('.configKey[data-l1key=externalPort]').attr('disabled',true);
+       $('.configKey[data-l1key=externalAddr]').value('');
+       $('.configKey[data-l1key=externalPort]').value('');
+   }else{
     $('.configKey[data-l1key=externalProtocol]').attr('disabled',false);
     $('.configKey[data-l1key=externalAddr]').attr('disabled',false);
     $('.configKey[data-l1key=externalPort]').attr('disabled',false);
@@ -47,14 +47,14 @@
 });
 
  $('body').delegate('.configKey[data-l1key="cache::engine"]', 'change', function () {
-   $('.cacheEngine').hide();
-   $('.cacheEngine.'+$(this).value()).show();
-});
+     $('.cacheEngine').hide();
+     $('.cacheEngine.'+$(this).value()).show();
+ });
 
  $('body').delegate('.configKey[data-l1key="log::engine"]', 'change', function () {
-   $('.logEngine').hide();
-   $('.logEngine.'+$(this).value()).show();
-});
+     $('.logEngine').hide();
+     $('.logEngine.'+$(this).value()).show();
+ });
 
  $("#bt_genKeyAPI").on('click', function (event) {
     $.hideAlert();
@@ -87,47 +87,47 @@
 });
 
  $('#bt_restartDns').on('click', function () {
-     $.hideAlert();
-     jeedom.config.save({
-        configuration: $('#config').getValues('.configKey')[0],
+   $.hideAlert();
+   jeedom.config.save({
+    configuration: $('#config').getValues('.configKey')[0],
+    error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function () {
+       jeedom.network.restartDns({
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
-        success: function () {
-         jeedom.network.restartDns({
-            error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function (data) {
-               modifyWithoutSave = false;
-               loadPage('index.php?v=d&p=administration&panel=config_network');
-           }
-       });
+        success: function (data) {
+         modifyWithoutSave = false;
+         loadPage('index.php?v=d&p=administration&panel=config_network');
      }
- }); 
  });
+   }
+}); 
+});
 
 
  $('#bt_haltDns').on('click', function () {
-     $.hideAlert();
-     jeedom.config.save({
-        configuration: $('#config').getValues('.configKey')[0],
+   $.hideAlert();
+   jeedom.config.save({
+    configuration: $('#config').getValues('.configKey')[0],
+    error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function () {
+       jeedom.network.stopDns({
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
-        success: function () {
-         jeedom.network.stopDns({
-            error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function (data) {
-               modifyWithoutSave = false;
-               loadPage('index.php?v=d&p=administration&panel=config_network');
-           }
-       });
+        success: function (data) {
+         modifyWithoutSave = false;
+         loadPage('index.php?v=d&p=administration&panel=config_network');
      }
- }); 
  });
+   }
+}); 
+});
 
  $("#bt_flushMemcache").on('click', function (event) {
     $.hideAlert();
@@ -149,9 +149,9 @@
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function (data) {
-                 loadPage('index.php?v=d&p=administration');
-             }
-         });
+                   loadPage('index.php?v=d&p=administration');
+               }
+           });
         }
     });
 });
@@ -238,13 +238,13 @@
 });
 
  if (getUrlVars('panel') != false) {
-   $('a[href="#'+getUrlVars('panel')+'"]').click();
-}
+     $('a[href="#'+getUrlVars('panel')+'"]').click();
+ }
 
-printConvertColor();
+ printConvertColor();
 
-$.showLoading();
-jeedom.config.load({
+ $.showLoading();
+ jeedom.config.load({
     configuration: $('#config').getValues('.configKey:not(.noSet)')[0],
     error: function (error) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -257,11 +257,11 @@ jeedom.config.load({
     }
 });
 
-$('body').delegate('.configKey', 'change', function () {
+ $('body').delegate('.configKey', 'change', function () {
     modifyWithoutSave = true;
 });
 
-$('#bt_resetHwKey').on('click',function(){
+ $('#bt_resetHwKey').on('click',function(){
  $.ajax({// fonction permettant de faire de l'ajax
         type: "POST", // methode de transmission des données au fichier php
         url: "core/ajax/jeedom.ajax.php", // url du fichier php
@@ -282,7 +282,7 @@ $('#bt_resetHwKey').on('click',function(){
 });
 });
 
-$('#bt_resetHardwareType').on('click',function(){
+ $('#bt_resetHardwareType').on('click',function(){
     jeedom.config.save({
         configuration: {hardware_name : ''},
         error: function (error) {
@@ -294,7 +294,7 @@ $('#bt_resetHardwareType').on('click',function(){
     });
 });
 
-function genKeyAPI() {
+ function genKeyAPI() {
     $.ajax({// fonction permettant de faire de l'ajax
         type: "POST", // methode de transmission des données au fichier php
         url: "core/ajax/config.ajax.php", // url du fichier php
@@ -466,15 +466,34 @@ $('.bt_resetColor').on('click', function () {
 });
 
 $('.testRepoConnection').on('click',function(){
-jeedom.repo.test({
-    repo: $(this).attr('data-repo'),
-    error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'});
-    },
-    success: function (data) {
-        $('#div_alert').showAlert({message: '{{Test réussi}}', level: 'success'});
-    }
-});
+    var repo = $(this).attr('data-repo');
+    jeedom.config.save({
+        configuration: $('#config').getValues('.configKey')[0],
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+            jeedom.config.load({
+                configuration: $('#config').getValues('.configKey:not(.noSet)')[0],
+                error: function (error) {
+                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function (data) {
+                    $('#config').setValues(data, '.configKey');
+                    modifyWithoutSave = false;
+                    jeedom.repo.test({
+                        repo: repo,
+                        error: function (error) {
+                            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                        },
+                        success: function (data) {
+                            $('#div_alert').showAlert({message: '{{Test réussi}}', level: 'success'});
+                        }
+                    });
+                }
+            });
+        }
+    });
 });
 
 /**************************SYSTEM***********************************/
