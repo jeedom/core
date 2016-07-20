@@ -524,14 +524,14 @@ jeedom.cmd.changeSubType = function(_cmd) {
                         el = el.parent();
                     }
                     if (subtype[i].visible) {
-                     if(el.hasClass('bootstrapSwitch')){
+                     if(el.hasClass('bootstrapSwitch') || el.attr('type') == 'checkbox'){
                          el.parent().parent().show();
                          el.parent().parent().removeClass('hide');
                      }
                      el.show();
                      el.removeClass('hide');
                  } else {
-                    if(el.hasClass('bootstrapSwitch')){
+                    if(el.hasClass('bootstrapSwitch') || el.attr('type') == 'checkbox'){
                        el.parent().parent().hide();
                        el.parent().parent().addClass('hide');
                    }
@@ -556,14 +556,14 @@ jeedom.cmd.changeSubType = function(_cmd) {
 
                 if (isset(subtype[i][j].visible)) {
                     if (subtype[i][j].visible) {
-                        if(el.hasClass('bootstrapSwitch')){
+                        if(el.hasClass('bootstrapSwitch') || el.attr('type') == 'checkbox'){
                           el.parent().parent().parent().show();
                           el.parent().parent().parent().removeClass('hide');
                       }
                       el.show();
                       el.removeClass('hide');
                   } else {
-                    if(el.hasClass('bootstrapSwitch')){
+                    if(el.hasClass('bootstrapSwitch') || el.attr('type') == 'checkbox'){
                      el.parent().parent().parent().hide();
                      el.parent().parent().parent().addClass('hide');
                  }
