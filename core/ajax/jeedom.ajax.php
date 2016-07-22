@@ -77,7 +77,9 @@ try {
 		if (strpos($command, '2>&1') === false && strpos($command, '>') === false) {
 			$command .= ' 2>&1';
 		}
-		ajax::success(shell_exec($command));
+		$output = array();
+		exec($command, $output);
+		ajax::success(implode("\n", $output));
 	}
 
 	if (init('action') == 'update') {
