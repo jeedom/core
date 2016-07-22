@@ -94,6 +94,7 @@ foreach (ls('core/css/icon', '*') as $dir) {
         <div class="col-lg-1 divIconSel"><center><span class="iconSel"><i class='fa fa-headphones'></i></span><br/><span class="iconDesc">fa-headphones</span></div>
         <div class="col-lg-1 divIconSel"><center><span class="iconSel"><i class='fa fa-volume-up'></i></span><br/><span class="iconDesc">fa-volume-up</span></div>
         <div class="col-lg-1 divIconSel"><center><span class="iconSel"><i class='fa fa-volume-down'></i></span><br/><span class="iconDesc">fa-volume-down</span></div>
+        <div class="col-lg-1 divIconSel"><center><span class="iconSel"><i class='fa fa-volume-off'></i></span><br/><span class="iconDesc">fa-volume-off</span></div>
         <div class="col-lg-1 divIconSel"><center><span class="iconSel"><i class='fa fa-qrcode'></i></span><br/><span class="iconDesc">fa-qrcode</span></div>
         <div class="col-lg-1 divIconSel"><center><span class="iconSel"><i class='fa fa-barcode'></i></span><br/><span class="iconDesc">fa-barcode</span></div>
         <div class="col-lg-1 divIconSel"><center><span class="iconSel"><i class='fa fa-tag'></i></span><br/><span class="iconDesc">fa-tag</span></div>
