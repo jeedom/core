@@ -49,7 +49,7 @@ sudo chown -R www-data:www-data ${DIR}/*
 sudo chmod 775 -R ${DIR}/*
 
 echo -n "[$(date +%d-%m-%Y\ %H:%M:%S)] Check access to market..."
-sudo ping -c 2 market.jeedom.fr >> /dev/null 2>&1
+sudo ping -c 2 jeedom.com/market >> /dev/null 2>&1
 if [ $? -ne 0 ]; then
 	echo "NOK"
 else
