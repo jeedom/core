@@ -764,6 +764,12 @@ class plugin {
 	}
 
 	public function getInfo($_name = '', $_default = '') {
+		if (count($this->info) == 0) {
+			$update = update::byLogicalId($this->id);
+			if (is_object($update)) {
+				$this->info = $update->getInfo();
+			}
+		}
 		if ($_name !== '') {
 			if (isset($this->info[$_name])) {
 				return $this->info[$_name];
