@@ -63,6 +63,8 @@ try {
 		'&' => '',
 		' ' => '_',
 		'#' => '',
+		"'" => '',
+		'"' => '',
 	);
 	$jeedom_name = str_replace(array_keys($replace_name), $replace_name, config::byKey('name', 'core', 'Jeedom'));
 	$bakcup_name = str_replace(' ', '_', 'backup-' . $jeedom_name . '-' . jeedom::version() . '-' . date("Y-m-d-H\hi") . '.tar.gz');
