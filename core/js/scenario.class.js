@@ -360,6 +360,7 @@ jeedom.scenario.getSelectModal = function (_options, callback) {
         $('body').append('<div id="mod_insertScenarioValue" title="{{Sélectionner le scénario}}" ></div>');
 
         $("#mod_insertScenarioValue").dialog({
+            closeText: '',
             autoOpen: false,
             modal: true,
             height: 250,

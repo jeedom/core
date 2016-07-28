@@ -235,6 +235,7 @@ if (is_object($market)) {
 ?>
 <script>
   $("#md_marketSendChangeChange").dialog({
+    closeText: '',
     autoOpen: false,
     modal: true,
     height: 400,

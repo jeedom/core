@@ -431,6 +431,7 @@ function chooseIcon(_callback) {
         $('body').append('<div id="mod_selectIcon" title="{{Choisissez votre icône}}" ></div>');
 
         $("#mod_selectIcon").dialog({
+            closeText: '',
             autoOpen: false,
             modal: true,
             height: (jQuery(window).height() - 150),

@@ -327,6 +327,7 @@ if ($market->getLanguage('it_IT') == 1) {
 });
 
  $("#div_changelog").dialog({
+  closeText: '',
   autoOpen: false,
   modal: true,
   height: (jQuery(window).height() - 300),
@@ -346,6 +347,7 @@ if ($market->getLanguage('it_IT') == 1) {
 }
 
 $("#div_changelog").dialog({
+  closeText: '',
   autoOpen: false,
   modal: true,
   height: (jQuery(window).height() - 300),

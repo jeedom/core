@@ -659,6 +659,7 @@ if ($cmd->getDisplay('parameters') != '') {
 
 <script>
   $("#md_cmdConfigureSelectMultiple").dialog({
+    closeText: '',
     autoOpen: false,
     modal: true,
     height: (jQuery(window).height() - 150),

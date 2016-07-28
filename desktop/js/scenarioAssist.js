@@ -135,7 +135,7 @@ $('#md_addScenario').modal('hide');
 
 $("#bt_addScenario,#bt_addScenario2").on('click', function (event) {
     bootbox.dialog({
-        title: "Ajout d'un nouveau scénario",
+        title: "{{Ajout d'un nouveau scénario}}",
         message: '<div class="row">  ' +
         '<div class="col-md-12"> ' +
         '<form class="form-horizontal" onsubmit="return false;"> ' +

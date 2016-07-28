@@ -266,6 +266,7 @@ jeedom.eqLogic.getSelectModal = function (_options, callback) {
         $('body').append('<div id="mod_insertEqLogicValue" title="{{Sélectionner un équipement}}" ></div>');
 
         $("#mod_insertEqLogicValue").dialog({
+            closeText: '',
             autoOpen: false,
             modal: true,
             height: 250,

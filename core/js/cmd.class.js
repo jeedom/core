@@ -622,6 +622,7 @@ jeedom.cmd.getSelectModal = function(_options, _callback) {
     if ($("#mod_insertCmdValue").length == 0) {
         $('body').append('<div id="mod_insertCmdValue" title="{{Sélectionner la commande}}" ></div>');
         $("#mod_insertCmdValue").dialog({
+            closeText: '',
             autoOpen: false,
             modal: true,
             height: 250,

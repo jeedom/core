@@ -18,6 +18,7 @@
  printUpdate();
 
  $("#md_specifyUpdate").dialog({
+    closeText: '',
     autoOpen: false,
     modal: true,
     height: 300,

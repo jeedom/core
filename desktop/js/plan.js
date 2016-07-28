@@ -18,6 +18,7 @@
  var noReturnButtonFullScreen = false;
 
  $("#md_addViewData").dialog({
+    closeText: '',
     autoOpen: false,
     modal: true,
     height: (jQuery(window).height() - 150),
