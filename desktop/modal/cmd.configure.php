@@ -195,24 +195,24 @@ foreach ($usedBy['scenario'] as $usedByScneario) {
             <select class="cmdAttr form-control" data-l1key="display" data-l2key="generic_type">
               <option value="">{{Aucun}}</option>
               <?php
-	$groups = array();
-	foreach (jeedom::getConfiguration('cmd::generic_type') as $key => $info) {
-		if ($cmd->getType() == 'info' && $info['type'] == 'Action') {
-			continue;
-		} elseif ($cmd->getType() == 'action' && $info['type'] == 'Info') {
-			continue;
-		}  elseif (isset($info['ignore']) && $info['ignore'] == true) {
-			continue;
-		}
-		$info['key'] = $key;
-		if (!isset($groups[$info['family']])) {
-			$groups[$info['family']][0] = $info;
-		} else {
-			array_push($groups[$info['family']], $info);
-		}
+$groups = array();
+foreach (jeedom::getConfiguration('cmd::generic_type') as $key => $info) {
+	if ($cmd->getType() == 'info' && $info['type'] == 'Action') {
+		continue;
+	} elseif ($cmd->getType() == 'action' && $info['type'] == 'Info') {
+		continue;
+	} elseif (isset($info['ignore']) && $info['ignore'] == true) {
+		continue;
 	}
-	ksort($groups);
-	foreach ($groups as $group) {
+	$info['key'] = $key;
+	if (!isset($groups[$info['family']])) {
+		$groups[$info['family']][0] = $info;
+	} else {
+		array_push($groups[$info['family']], $info);
+	}
+}
+ksort($groups);
+foreach ($groups as $group) {
 	usort($group, function ($a, $b) {
 		return strcmp($a['name'], $b['name']);
 	});
@@ -223,7 +223,7 @@ foreach ($usedBy['scenario'] as $usedByScneario) {
 		echo '<option value="' . $info['key'] . '">' . $info['name'] . '</option>';
 	}
 	echo '</optgroup>';
-	}
+}
 ?>
            </select>
          </div>
