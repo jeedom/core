@@ -228,7 +228,10 @@ function addUpdate(_update) {
         _update.status = 'OK';
     }
     var tr = '<tr data-id="' + init(_update.id) + '" data-logicalId="' + init(_update.logicalId) + '" data-type="' + init(_update.type) + '">';
-    tr += '<td style="width:50px;"><span class="updateAttr label label-success" data-l1key="status" style="font-size:0.96em;"></span>';
+    var status = init(_update.status);
+    if(init(_update.configuration.version) != ''){
+    }
+    tr += '<td style="width:50px;"><span class="label label-success" style="font-size:0.96em;">'+status+'</span>';
     tr += '</td>';
     tr += '<td><span class="updateAttr" data-l1key="id" style="display:none;"></span><span class="updateAttr" data-l1key="source"></span> / <span class="updateAttr" data-l1key="type"></span> : <span class="updateAttr label label-info" data-l1key="name" style="font-size:0.96em;"></span></td>';
     tr += '<td><span class="updateAttr label label-primary" data-l1key="localVersion" style="font-size:0.96em;" title="{{Dernière version : }}'+_update.remoteVersion+'"></span></td>';
