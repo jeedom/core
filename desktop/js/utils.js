@@ -110,6 +110,7 @@ setInterval(function () {
     $("#md_reportBug").dialog({
         autoOpen: false,
         modal: true,
+        closeText: '',
         height: ((jQuery(window).height() - 100) < 700) ? jQuery(window).height() - 100 : 700,
         width: ((jQuery(window).width() - 100) < 900) ? (jQuery(window).width() - 100) : 900,
         position: {my: 'center', at: 'center bottom-10px', of: window},
@@ -127,6 +128,7 @@ setInterval(function () {
     $("#md_pageHelp").dialog({
         autoOpen: false,
         modal: true,
+        closeText: '',
         height: (jQuery(window).height() - 100),
         width: ((jQuery(window).width() - 100) < 1500) ? (jQuery(window).width() - 50) : 1500,
         position: {my: 'center', at: 'center bottom-10px', of: window},
@@ -143,6 +145,7 @@ setInterval(function () {
     $("#md_modal").dialog({
         autoOpen: false,
         modal: true,
+        closeText: '',
         height: (jQuery(window).height() - 100),
         width: ((jQuery(window).width() - 50) < 1500) ? (jQuery(window).width() - 50) : 1500,
         position: {my: 'center', at: 'center bottom-10px', of: window},
@@ -159,6 +162,7 @@ setInterval(function () {
     $("#md_modal2").dialog({
         autoOpen: false,
         modal: true,
+        closeText: '',
         height: (jQuery(window).height() - 150),
         width: ((jQuery(window).width() - 150) < 1200) ? (jQuery(window).width() - 50) : 1200,
         position: {my: 'center', at: 'center bottom-10px', of: window},
