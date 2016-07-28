@@ -227,6 +227,13 @@ foreach ($groups as $group) {
 ?>
            </select>
          </div>
+		  <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6 iconeGeneric" style="display:none;">
+		 <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Icône}}</label>
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+				<span class="cmdAttr label label-info cursor" data-l1key="display" data-l2key="icon" style="font-size : 1.5em;" ></span>
+				<a class="cmdAction btn btn-default btn-sm" data-l1key="chooseIcon"><i class="fa fa-flag"></i> {{Icône}}</a>
+			</div>
+		</div>
        </div>
 
        <?php if ($cmd->getType() == 'action') {?>
@@ -868,4 +875,28 @@ if ($cmd->getDisplay('parameters') != '') {
       });
     }).dialog('open');
   });
+ $('body').undelegate('.cmdAction[data-l1key=chooseIcon]', 'click').delegate('.cmdAction[data-l1key=chooseIcon]', 'click', function () {
+    var iconeGeneric = $(this).closest('.iconeGeneric');
+	chooseIcon(function (_icon) {
+         iconeGeneric.find('.cmdAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
+    });
+});
+
+ $('body').undelegate('.cmdAttr[data-l1key=display][data-l2key=icon]', 'click').delegate('.cmdAttr[data-l1key=display][data-l2key=icon]', 'click', function () {
+    $(this).empty();
+});
+
+ $('.cmdAttr[data-l1key=display][data-l2key=generic_type]').on('change', function () {
+	if ($(this).value() == 'GENERIC' || $(this).value() == 'GENERIC_ACTION') {
+		$('.iconeGeneric').show();
+	} else {
+		$('.iconeGeneric').hide();
+		$('.cmdAttr[data-l1key=display][data-l2key=icon]').empty();
+	}
+});
+$(document).ready(function(){
+	if ($('.cmdAttr[data-l1key=display][data-l2key=generic_type]').value() == 'GENERIC' || $('.cmdAttr[data-l1key=display][data-l2key=generic_type]').value() == 'GENERIC_ACTION') {
+		$('.iconeGeneric').show();
+	}
+});
 </script>

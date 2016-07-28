@@ -167,6 +167,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'WIND_DIRECTION' => array('name' => 'Vent (direction)', 'family' => 'Generic', 'type' => 'Info', 'ignore' => true),
 			'SHOCK' => array('name' => 'Choc', 'family' => 'Generic', 'type' => 'Info'),
 			'GENERIC' => array('name' => 'Générique', 'family' => 'Generic', 'type' => 'Info'),
+			'GENERIC_ACTION' => array('name' => 'Générique', 'family' => 'Generic', 'type' => 'Action'),
 			'DONT' => array('name' => 'Ne pas tenir compte de cette commande', 'family' => 'Generic', 'type' => 'All'),
 		),
 		'type' => array(
