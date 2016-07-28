@@ -94,6 +94,7 @@ $(".li_eqLogic").off('click').on('click', function () {
         id: $(this).attr('data-eqLogic_id'),
         status : 1,
         error: function (error) {
+            $.hideLoading();
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {
@@ -121,6 +122,7 @@ $(".li_eqLogic").off('click').on('click', function () {
             });
             initExpertMode();
             changeLeftMenuObjectOrEqLogicName = false;
+            $.hideLoading();
         }
     });
     return false;
