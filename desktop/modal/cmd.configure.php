@@ -195,9 +195,35 @@ foreach ($usedBy['scenario'] as $usedByScneario) {
             <select class="cmdAttr form-control" data-l1key="display" data-l2key="generic_type">
               <option value="">{{Aucun}}</option>
               <?php
-foreach (jeedom::getConfiguration('cmd::generic_type') as $key => $value) {
-	echo '<option value="' . $key . '">' . __($value['name'], 'common') . '</option>';
-}
+	$groups = array();
+	foreach (jeedom::getConfiguration('cmd::generic_type') as $key => $info) {
+		if ($cmd->getType() == 'info' && $info['type'] == 'Action') {
+			continue;
+		} elseif ($cmd->getType() == 'action' && $info['type'] == 'Info') {
+			continue;
+		}  elseif (isset($info['ignore']) && $info['ignore'] == true) {
+			continue;
+		}
+		$info['key'] = $key;
+		if (!isset($groups[$info['family']])) {
+			$groups[$info['family']][0] = $info;
+		} else {
+			array_push($groups[$info['family']], $info);
+		}
+	}
+	ksort($groups);
+	foreach ($groups as $group) {
+	usort($group, function ($a, $b) {
+		return strcmp($a['name'], $b['name']);
+	});
+	foreach ($group as $key => $info) {
+		if ($key == 0) {
+			echo '<optgroup label="{{' . $info['family'] . '}}">';
+		}
+		echo '<option value="' . $info['key'] . '">' . $info['name'] . '</option>';
+	}
+	echo '</optgroup>';
+	}
 ?>
            </select>
          </div>
@@ -821,13 +847,6 @@ if ($cmd->getDisplay('parameters') != '') {
           $(this).attr('data-state', 0);
           $(this).find('i').removeClass('fa-circle-o').addClass('fa-check-circle-o');
         }
-        $('#table_cmdConfigureSelectMultiple tbody tr').each(function () {
-          if ($(this).is(':visible')) {
-           $(this).find('.selectMultipleApplyCmd').bootstrapSwitch('destroy');
-           $(this).find('.selectMultipleApplyCmd').prop('checked', state);
-           $(this).find('.selectMultipleApplyCmd').bootstrapSwitch();
-         }
-       });
       });
 
       $('#bt_cmdConfigureSelectMultipleAlertApply').off().on('click', function () {
