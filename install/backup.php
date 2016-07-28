@@ -59,8 +59,17 @@ try {
 	if (!is_writable($backup_dir)) {
 		throw new Exception(__('Le dossier des sauvegardes n\'est pas accessible en écriture. Vérifiez les droits : ', __FILE__) . $backup_dir);
 	}
-
-	$bakcup_name = str_replace(' ', '_', 'backup-' . config::byKey('name', 'core', 'Jeedom') . '-' . jeedom::version() . '-' . date("Y-m-d-H\hi") . '.tar.gz');
+	$replace_name = array(
+		'&' => '',
+		' ' => '_',
+		'#' => '',
+		"'" => '',
+		'"' => '',
+		'+' => '',
+		'-' => '',
+	);
+	$jeedom_name = str_replace(array_keys($replace_name), $replace_name, config::byKey('name', 'core', 'Jeedom'));
+	$bakcup_name = str_replace(' ', '_', 'backup-' . $jeedom_name . '-' . jeedom::version() . '-' . date("Y-m-d-H\hi") . '.tar.gz');
 
 	echo __('Sauvegarde des fichiers...', __FILE__);
 	$exclude = array(
