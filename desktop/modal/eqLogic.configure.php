@@ -73,11 +73,11 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
 						<fieldset>
 							<div class="form-group">
 								<label class="col-sm-4 control-label">{{Activer}}</label>
-								<div class="col-sm-4">
+								<div class="col-sm-1">
 									<input type="checkbox" class="eqLogicAttr" data-l1key="isEnable" checked/>
 								</div>
-								<label class="col-sm-4 control-label">{{Visible}}</label>
-								<div class="col-sm-4">
+								<label class="col-sm-2 control-label">{{Visible}}</label>
+								<div class="col-sm-1">
 									<input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked/>
 								</div>
 							</div>
@@ -381,55 +381,32 @@ if ($eqLogic->getDisplay('parameters') != '') {
 												<div role="tabpanel" class="tab-pane" id="eqLogic_battery">
 													<br/>
 													<legend><i class="fa fa-info-circle"></i> {{Informations}}</legend>
-													<div class="alert alert-info" id="nobattery">
-														{{Cet équipement ne possède pas de batterie/piles ou il n'a pas encore remonté sa valeur}}
+													<div class="row">
+														<div class="col-sm-4" >
+															<form class="form-horizontal">
+																<fieldset>
+																	<div class="form-group">
+																		<label class="col-sm-4 control-label">{{Type de batterie}}</label>
+																		<div class="col-sm-4">
+																			<span class="eqLogicAttr label label-primary" data-l1key="configuration" data-l2key="battery_type" style="font-size : 1em;"></span>
+																		</div>
+																	</div>
+																</fieldset>
+															</form>
+														</div>
 													</div>
-													<div id="hasbattery">
-														<div class="row">
-															<div class="col-sm-4" >
-																<form class="form-horizontal">
-																	<fieldset>
-																		<div class="form-group">
-																			<label class="col-sm-4 control-label">{{Type de batterie}}</label>
-																			<div class="col-sm-4">
-																				<span class="eqLogicAttr label label-primary" data-l1key="configuration"data-l2key="battery_type" style="font-size : 1em;"></span>
-																			</div>
-																		</div>
-																		<div class="form-group">
-																			<label class="col-sm-4 control-label">{{Mis à jour le}}</label>
-																			<div class="col-sm-4">
-																				<span class="eqLogicAttr label label-primary" data-l1key="configuration"data-l2key="batteryStatusDatetime" style="font-size : 1em;"></span>
-																			</div>
-																		</div>
-																	</fieldset>
-																</form>
-															</div>
-															<div class="col-sm-4" >
-																<form class="form-horizontal">
-																	<fieldset>
-																		<div class="form-group">
-																			<label class="col-sm-4 control-label">{{Niveau de batterie}}</label>
-																			<div class="col-sm-4" id="batterylevel">
-																				<span class="eqLogicAttr label label-primary" data-l1key="configuration" data-l2key="batteryStatus" style="font-size : 1em;"></span>
-																			</div>
-																		</div>
-																	</fieldset>
-																</form>
-															</div>
-														</div>
-														<legend><i class="icon techno-fleches"></i> {{Seuils spécifiques}}</legend>
-														<div class="form-group">
-															<label class="col-xs-2 eqLogicAttr label label-danger" style="font-size : 1.8em">{{Danger}}</label>
-															<div class="col-xs-2">
-																<input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_danger_threshold" />
-															</input>
-														</div>
-														<label class="col-xs-2 label label-warning" style="font-size : 1.8em">{{Warning}}</label>
+													<legend><i class="icon techno-fleches"></i> {{Seuils spécifiques}}</legend>
+													<div class="form-group">
+														<label class="col-xs-2 eqLogicAttr label label-danger" style="font-size : 1.8em">{{Danger}}</label>
 														<div class="col-xs-2">
-															<input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_warning_threshold" />
-														</div>
-														<label class="col-xs-2 label label-success" style="font-size : 1.8em">{{Ok}}</label>
+															<input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_danger_threshold" />
+														</input>
 													</div>
+													<label class="col-xs-2 label label-warning" style="font-size : 1.8em">{{Warning}}</label>
+													<div class="col-xs-2">
+														<input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_warning_threshold" />
+													</div>
+													<label class="col-xs-2 label label-success" style="font-size : 1.8em">{{Ok}}</label>
 												</div>
 											</div>
 										</div>
@@ -494,27 +471,11 @@ if ($eqLogic->getDisplay('parameters') != '') {
 												}
 											});
 
-											$(document).ready(function() {
-												if(typeof $('.eqLogicAttr[data-l1key=configuration][data-l2key=batteryStatus]').value() != null) {
-													$( "#nobattery" ).show();
-													$( "#hasbattery" ).hide();
-												}else{
-													$( "#nobattery" ).hide();
-													$( "#hasbattery" ).show();
-												}
-											});
-
 											$('#div_displayEqLogicConfigure').setValues(eqLogicInfo, '.eqLogicAttr');
 											$('#table_widgetParameters').delegate('.removeWidgetParameter', 'click', function () {
 												$(this).closest('tr').remove();
 											});
-											if($('.eqLogicAttr[data-l1key=configuration][data-l2key=batteryStatus]').html() != '') {
-												$( "#nobattery" ).hide();
-												$( "#hasbattery" ).show();
-											}else{
-												$( "#nobattery" ).show();
-												$( "#hasbattery" ).hide();
-											}
+
 											$('#bt_addWidgetParameters').off().on('click', function () {
 												var tr = '<tr>';
 												tr += '<td>';
