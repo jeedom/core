@@ -230,6 +230,7 @@ function addUpdate(_update) {
     var tr = '<tr data-id="' + init(_update.id) + '" data-logicalId="' + init(_update.logicalId) + '" data-type="' + init(_update.type) + '">';
     var status = init(_update.status);
     if(init(_update.configuration.version) != ''){
+        status +=' <span style="font-size:0.8em;">'+init(_update.configuration.version)+'</span>';
     }
     tr += '<td style="width:50px;"><span class="label label-success" style="font-size:0.96em;">'+status+'</span>';
     tr += '</td>';
