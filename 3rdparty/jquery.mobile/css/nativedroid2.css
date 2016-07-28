@@ -71,7 +71,7 @@ body, input, select, textarea, button, .ui-btn,h1,h2,h3,h4,h5,h6 {
 h1 { font-size: 56px; line-height: 1.2em; font-weight: 400; }
 h2 { font-size: 34px; line-height: 1.2em; font-weight: 400; }
 h3 { font-size: 24px; line-height: 1.2em; font-weight: 400; }
-h4 { font-size: 2sp; line-height: 1.2em; font-weight: 500; }
+h4 { font-size: 20px; line-height: 1.2em; font-weight: 500; }
 h5 { font-size: 16px; line-height: 1.2em; font-weight: 400; }
 h6 { font-size: 14px; line-height: 1.2em; font-weight: 400;}
 p { font-size: 16px; line-height: 1.2em; }
@@ -81,7 +81,7 @@ p { font-size: 16px; line-height: 1.2em; }
 .nd2-display-2 { font-size: 45px; line-height: 1.2em; font-weight: 400; display: block; }
 .nd2-display-1 { font-size: 34px; line-height: 1.2em; font-weight: 400; display: block; }
 .nd2-headline { font-size: 24px; line-height: 1.2em; font-weight: 400; display: block; }
-.nd2-title { font-size: 2sp; line-height: 1.2em; font-weight: 500; display: block; }
+.nd2-title { font-size: 20px; line-height: 1.2em; font-weight: 500; display: block; }
 .nd2-subhead { font-size: 16px; line-height: 1.2em; font-weight: 400; display: block; }
 
 blockquote {
@@ -716,7 +716,7 @@ hr.inset {
 }
 
 .nd2-sidepanel-profile .profile-text strong {
-	font-size: 2p;
+	font-size: 20px;
 	line-height: 1.2em;
 	display: block;
 	font-weight: 400;

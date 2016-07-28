@@ -13,7 +13,7 @@ $js_file = array(
 	'3rdparty/highstock/themes/grid.js',
 	'3rdparty/highstock/themes/sand-signika.js',
 	'3rdparty/highstock/themes/skies.js',
-	'3rdparty/jquery/jquery.min.js',
+	'3rdparty/jquery/jquery.min.2.2.4.js',
 	'3rdparty/jquery.mobile/jquery.mobile.min.js',
 	'3rdparty/jquery.mobile/nativedroid2.js',
 	'3rdparty/wow/wow.min.js',
