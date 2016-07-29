@@ -71,7 +71,6 @@ function addCommandHistory(_cmd){
   tr += '</select>';
   tr += '</td>';
   tr += '<td>';
-  tr += '<a class="btn btn-danger btn-sm pull-right cursor bt_configureHistoryEmptyCmdHistory" data-id="'  +_cmd.id+ '"><i class="fa fa-trash-o remove"></i></a>';
   tr += '<a class="btn btn-default btn-sm pull-right cursor bt_configureHistoryExportData" data-id="'  +_cmd.id+ '"><i class="fa fa-share export"></i></a>';
   tr += '<a class="btn btn-default btn-sm pull-right cursor bt_configureHistoryAdvanceCmdConfiguration" data-id="'  +_cmd.id+ '"><i class="fa fa-cogs"></i></a>';
   tr += '</td>';
@@ -89,35 +88,6 @@ $('.bt_configureHistoryAdvanceCmdConfiguration').off('click').on('click', functi
 
 $(".bt_configureHistoryExportData").on('click', function () {
     window.open('core/php/export.php?type=cmdHistory&id=' + $(this).attr('data-id'), "_blank", null);
-});
-
-$(".bt_configureHistoryEmptyCmdHistory").on('click', function () {
-    var bt_remove = $(this);
-    $.hideAlert();
-    bootbox.prompt('{{Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\'historique de }} <span style="font-weight: bold ;">' + bt_remove.closest('.li_history').find('.history').text() + '</span> (laissez vide pour tout supprimer) ?', function (result) {
-        if (result !== null) {
-            $.ajax({
-                type: "POST",
-                url: "core/ajax/cmd.ajax.php",
-                data: {
-                    action: "emptyHistory",
-                    id: bt_remove.closest('.li_history').attr('data-cmd_id'),
-                    date: result
-                },
-                dataType: 'json',
-                error: function (request, status, error) {
-                    handleAjaxError(request, status, error,$('#md_cmdConfigureHistory'));
-                },
-                success: function (data) {
-                    if (data.state != 'ok') {
-                        $('#md_cmdConfigureHistory').showAlert({message: data.result, level: 'danger'});
-                        return;
-                    }
-                    $('#md_cmdConfigureHistory').showAlert({message: '{{Historique supprimé avec succès}}', level: 'success'});
-                }
-            });
-        }
-    });
 });
 
 $('.cmdAttr').on('change click',function(){
