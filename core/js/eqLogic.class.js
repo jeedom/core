@@ -330,10 +330,7 @@ var paramsSpecifics = {
          var transform_origin =  eqLogic.css('transform-origin');
          var transform =  eqLogic.css('transform');
          var zindex =  eqLogic.css('zindex');
-         if(eqLogic.attr('data-zoom') != undefined){
-            width = width * eqLogic.attr('data-zoom');
-            height = height * eqLogic.attr('data-zoom');
-        }
+      
         eqLogic.attr("style", html.attr("style"));
         eqLogic.css('top',top);
         eqLogic.css('left',left);

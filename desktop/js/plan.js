@@ -59,9 +59,9 @@
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function (data) {
-                 loadPage('index.php?v=d&p=plan&plan_id=' + data.id);
-             },
-         });
+                   loadPage('index.php?v=d&p=plan&plan_id=' + data.id);
+               },
+           });
         }
     });
 });
@@ -90,10 +90,10 @@
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function () {
-                 $('#div_alert').showAlert({message: 'Design supprimé', level: 'success'});
-                 loadPage('index.php?v=d&p=plan');
-             },
-         });
+                   $('#div_alert').showAlert({message: 'Design supprimé', level: 'success'});
+                   loadPage('index.php?v=d&p=plan');
+               },
+           });
         }
     });
 });
@@ -432,8 +432,8 @@ function savePlan(_refreshDisplay) {
             plan.link_type = 'eqLogic';
             plan.link_id = $(this).attr('data-eqLogic_id');
             plan.planHeader_id = planHeader_id;
-            plan.display.height = $(this).outerHeight() / $(this).attr('data-zoom');
-            plan.display.width = $(this).outerWidth() / $(this).attr('data-zoom');
+            plan.display.height = $(this).outerHeight() ;
+            plan.display.width = $(this).outerWidth() ;
             var position = $(this).position();
             plan.position.top = (((position.top)) / parent.height) * 100;
             plan.position.left = (((position.left)) / parent.width) * 100;
@@ -446,8 +446,8 @@ function savePlan(_refreshDisplay) {
             plan.link_type = 'scenario';
             plan.link_id = $(this).attr('data-scenario_id');
             plan.planHeader_id = planHeader_id;
-            plan.display.height = $(this).outerHeight() / $(this).attr('data-zoom');
-            plan.display.width = $(this).outerWidth() / $(this).attr('data-zoom');
+            plan.display.height = $(this).outerHeight() ;
+            plan.display.width = $(this).outerWidth();
             var position = $(this).position();
             plan.position.top = (((position.top)) / parent.height) * 100;
             plan.position.left = (((position.left)) / parent.width) * 100;
@@ -460,8 +460,8 @@ function savePlan(_refreshDisplay) {
             plan.link_type = 'plan';
             plan.link_id = $(this).attr('data-link_id');
             plan.planHeader_id = planHeader_id;
-            plan.display.height = $(this).outerHeight() / $(this).attr('data-zoom');
-            plan.display.width = $(this).outerWidth() / $(this).attr('data-zoom');
+            plan.display.height = $(this).outerHeight();
+            plan.display.width = $(this).outerWidth();
             var position = $(this).position();
             plan.position.top = ((position.top) / parent.height) * 100;
             plan.position.left = ((position.left) / parent.width) * 100;
@@ -474,8 +474,8 @@ function savePlan(_refreshDisplay) {
             plan.link_type = 'view';
             plan.link_id = $(this).attr('data-link_id');
             plan.planHeader_id = planHeader_id;
-            plan.display.height = $(this).outerHeight() / $(this).attr('data-zoom');
-            plan.display.width = $(this).outerWidth() / $(this).attr('data-zoom');
+            plan.display.height = $(this).outerHeight();
+            plan.display.width = $(this).outerWidth();
             var position = $(this).position();
             plan.position.top = ((position.top) / parent.height) * 100;
             plan.position.left = ((position.left) / parent.width) * 100;
@@ -488,8 +488,8 @@ function savePlan(_refreshDisplay) {
             plan.link_type = 'graph';
             plan.link_id = $(this).attr('data-graph_id');
             plan.planHeader_id = planHeader_id;
-            plan.display.height = $(this).outerHeight() / $(this).attr('data-zoom');
-            plan.display.width = $(this).outerWidth() / $(this).attr('data-zoom');
+            plan.display.height = $(this).outerHeight();
+            plan.display.width = $(this).outerWidth() ;
             plan.display.graph = json_decode($(this).find('.graphOptions').value());
             var position = $(this).position();
             plan.position.top = ((position.top) / parent.height) * 100;
@@ -503,8 +503,8 @@ function savePlan(_refreshDisplay) {
             plan.link_type = 'text';
             plan.link_id = $(this).attr('data-text_id');
             plan.planHeader_id = planHeader_id;
-            plan.display.height = $(this).outerHeight() / $(this).attr('data-zoom');
-            plan.display.width = $(this).outerWidth() / $(this).attr('data-zoom');
+            plan.display.height = $(this).outerHeight();
+            plan.display.width = $(this).outerWidth();
             var position = $(this).position();
             plan.position.top = ((position.top) / parent.height) * 100;
             plan.position.left = ((position.left) / parent.width) * 100;
@@ -564,7 +564,7 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
     html.css('z-index', 1000);
 
     if (_type == 'text' || _type == 'graph' || _type == 'plan' || _type == 'view') {
-       if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
+     if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
         if (isset(_plan.display) && isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) {
             html.css('border-radius', '0px'); 
             html.css('box-shadow', 'none'); 
@@ -573,7 +573,7 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
 }
 
 for (var key in _plan.css) {
- if (_type == 'text' || _type == 'graph' || _type == 'plan' || _type == 'view') {
+   if (_type == 'text' || _type == 'graph' || _type == 'plan' || _type == 'view') {
     if (key == 'background-color') {
         if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
             html.css(key, _plan.css[key]);
