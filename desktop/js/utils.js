@@ -19,20 +19,48 @@
  nbActiveAjaxRequest = 0;
  utid = Date.now();
 
- function loadPage(_url){
+  // Ajax Loading Screen
+  $(document).ajaxStart(function () {
+    nbActiveAjaxRequest++;
+    $.showLoading();
+});
+  $(document).ajaxStop(function () {
+    nbActiveAjaxRequest--;
+    if (nbActiveAjaxRequest <= 0) {
+        nbActiveAjaxRequest = 0;
+        $.hideLoading();
+    }
+});
+
+  toastr.options = {
+    "closeButton": true,
+    "debug": false,
+    "positionClass": "toast-top-right",
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+}
+
+function loadPage(_url){
     window.location.href = _url;
     return;
 }
 
 $(function () {
 
-   $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
+ $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
     event.preventDefault();
     event.stopPropagation();
     $(this).parent().siblings().removeClass('open');
     $(this).parent().toggleClass('open');
 });
-   if (!navigator.userAgent.match(/Android/i)
+ if (!navigator.userAgent.match(/Android/i)
     && !navigator.userAgent.match(/webOS/i)
     && !navigator.userAgent.match(/iPhone/i)
     && !navigator.userAgent.match(/iPad/i)
@@ -62,49 +90,23 @@ setInterval(function () {
     $('#horloge').text(horloge);
 }, 1000);
 
-    // Ajax Loading Screen
-    $(document).ajaxStart(function () {
-        nbActiveAjaxRequest++;
-        $.showLoading();
+
+
+$.fn.modal.Constructor.prototype.enforceFocus = function () {
+};
+
+$('body').delegate(".modal", "show", function () {
+    document.activeElement.blur();
+    $(this).find(".modal-body :input:visible:first").focus();
+});
+
+/************************Help*************************/
+
+if (isset(jeedom_langage)) {
+    bootbox.setDefaults({
+        locale: jeedom_langage.substr(0, 2),
     });
-    $(document).ajaxStop(function () {
-        nbActiveAjaxRequest--;
-        if (nbActiveAjaxRequest <= 0) {
-            nbActiveAjaxRequest = 0;
-            $.hideLoading();
-        }
-    });
-
-    toastr.options = {
-        "closeButton": true,
-        "debug": false,
-        "positionClass": "toast-top-right",
-        "onclick": null,
-        "showDuration": "300",
-        "hideDuration": "1000",
-        "timeOut": "5000",
-        "extendedTimeOut": "1000",
-        "showEasing": "swing",
-        "hideEasing": "linear",
-        "showMethod": "fadeIn",
-        "hideMethod": "fadeOut"
-    }
-
-    $.fn.modal.Constructor.prototype.enforceFocus = function () {
-    };
-
-    $('body').delegate(".modal", "show", function () {
-        document.activeElement.blur();
-        $(this).find(".modal-body :input:visible:first").focus();
-    });
-
-    /************************Help*************************/
-
-    if (isset(jeedom_langage)) {
-        bootbox.setDefaults({
-            locale: jeedom_langage.substr(0, 2),
-        });
-    }
+}
 
     //Display report bug
     $("#md_reportBug").dialog({
@@ -248,9 +250,9 @@ setInterval(function () {
     });
 
     $('#bt_showEventInRealTime').on('click',function(){
-       $('#md_modal').dialog({title: "{{Evènement en temps réel}}"});
-       $("#md_modal").load('index.php?v=d&modal=log.display&log=event').dialog('open');
-   });
+     $('#md_modal').dialog({title: "{{Evènement en temps réel}}"});
+     $("#md_modal").load('index.php?v=d&modal=log.display&log=event').dialog('open');
+ });
 
     $('#bt_gotoDashboard').on('click',function(){
         $('ul.dropdown-menu [data-toggle=dropdown]').parent().parent().parent().siblings().removeClass('open');
