@@ -68,13 +68,18 @@ $('#bt_returnToThumbnailDisplay').on('click',function(){
 });
 
 $(".li_object,.objectDisplayCard").on('click', function (event) {
+   loadObjectConfiguration($(this).attr('data-object_id'));
+    return false;
+});
+
+function loadObjectConfiguration(_id){
     $('#div_conf').show();
     $('#div_resumeObjectList').hide();
     $('.li_object').removeClass('active');
     $(this).addClass('active');
-    $('.li_object[data-object_id='+$(this).attr('data-object_id')+']').addClass('active');
+    $('.li_object[data-object_id='+_id+']').addClass('active');
     jeedom.object.byId({
-        id: $(this).attr('data-object_id'),
+        id: _id,
         cache: false,
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -89,8 +94,7 @@ $(".li_object,.objectDisplayCard").on('click', function (event) {
             modifyWithoutSave = false;
         }
     });
-    return false;
-});
+}
 
 $("#bt_addObject,#bt_addObject2").on('click', function (event) {
     bootbox.prompt("Nom de l'objet ?", function (result) {
@@ -102,7 +106,8 @@ $("#bt_addObject,#bt_addObject2").on('click', function (event) {
                 },
                 success: function (data) {
                     modifyWithoutSave = false;
-                     loadPage('index.php?v=d&p=object&id=' + data.id + '&saveSuccessFull=1');
+                    loadPage('index.php?v=d&p=object&id=' + data.id + '&saveSuccessFull=1');
+                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 }
             });
         }
@@ -127,7 +132,8 @@ $("#bt_saveObject").on('click', function (event) {
             },
             success: function (data) {
                 modifyWithoutSave = false;
-                 loadPage('index.php?v=d&p=object&id=' + data.id + '&saveSuccessFull=1');
+                loadObjectConfiguration(data.id);
+                $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
             }
         });
     } else {
