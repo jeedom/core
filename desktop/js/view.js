@@ -17,7 +17,7 @@
  if (view_id != '') {
     jeedom.view.toHtml({
         id: view_id,
-        version: 'dashboard',
+        version: 'dview',
         useCache: true,
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
