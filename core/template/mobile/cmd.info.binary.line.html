@@ -1,0 +1,11 @@
+<div class="cmd cmd-widget #history#" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" style="display: block;">
+	<center><span style="font-size : 12px;#hideCmdName#" class="cmdName">#name_display#</span> <span class="iconCmd#uid#"></span></center>
+	<script>
+        if ('#state#' == '1' || '#state#' == 1) {
+            $('.iconCmd#uid#').addClass('fa fa-check');
+        }
+        if ('#state#' == '0' || '#state#' == 0) {
+            $('.iconCmd#uid#').addClass('fa fa-times');
+        }
+    </script>
+</div>
