@@ -204,7 +204,7 @@ try {
 					}
 					rcopy($cibDir . '/', dirname(__FILE__) . '/../', false, array(), true);
 					echo "OK\n";
-					echo "Remove tempora file...";
+					echo "Remove temporary file...";
 					rrmdir($cibDir);
 					unlink($tmp);
 					echo "OK\n";
