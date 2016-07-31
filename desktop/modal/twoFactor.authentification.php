@@ -23,7 +23,7 @@ $google2fa_url = $google2fa->getQRCodeGoogleUrl(
 		<div class="panel-body">
 			{{La vérification en 2 étapes fournit une couche supplémentaire de protection pour votre compte Jeedom. Une fois la vérification en 2 étapes configurée, votre mot de passe sera nécessaire en plus d’un code de vérification unique pour vous connecter à Jeedom. Veuillez noter qu’un appareil mobile sera nécessaire pour générer des codes de vérification.}}
 			<hr/>
-			{{Veuillez installer une appli d’authentification sur votre appareil mobile. Si vous n’en avez pas encore installé une, Jeedom prend en charge les applis d’authentification suivantes : Google Authenticator (Android, iOS, BlackBerry), Authenticator (Windows Phone).}}
+			{{Veuillez installer une application d’authentification sur votre appareil mobile. Si vous n’en avez pas encore installée une, Jeedom prend en charge les applications d’authentification suivantes : Google Authenticator (Android, iOS, BlackBerry), Authenticator (Windows Phone).}}
 			<hr/>
 			<strong>{{IMPORTANT : si votre Jeedom n'est plus à l'heure vous ne pourrez pas vous connecter du tout}}</strong>
 		</div>
@@ -36,7 +36,7 @@ $google2fa_url = $google2fa->getQRCodeGoogleUrl(
 			<center>
 				{{Ouvrez et configurez l’appli d’authentification en scannant le code QR ci-dessous.}}<br/>
 				<img src="<?php echo $google2fa_url; ?>" /><br/>
-				{{Vous pouvez aussi entrée manuellement le code suivant : }}<strong><?php echo $_SESSION['user']->getOptions('twoFactorAuthentificationSecret'); ?></strong>
+				{{Vous pouvez aussi entrer manuellement le code suivant : }}<strong><?php echo $_SESSION['user']->getOptions('twoFactorAuthentificationSecret'); ?></strong>
 			</center>
 		</div>
 	</div>
@@ -46,7 +46,7 @@ $google2fa_url = $google2fa->getQRCodeGoogleUrl(
 		<div class="panel-body">
 			<form class="form-horizontal">
 				<fieldset>
-					<center>{{Veuillez entrée le code fournis pour verification et activation de la double authentification}}</center><br/>
+					<center>{{Veuillez entrer le code fourni pour vérification et activation de la double authentification}}</center><br/>
 					<div class="form-group">
 						<label class="col-xs-4 control-label">{{Code de test}}</label>
 						<div class="col-xs-3">
