@@ -542,6 +542,27 @@ try {
 			$jsonrpc->makeSuccess('ok');
 		}
 
+		/*             * ************************Backup*************************** */
+		
+		if ($jsonrpc->getMethod() == 'backup::list') {
+			$jsonrpc->makeSuccess(jeedom::listBackup());
+		}
+		
+		if ($jsonrpc->getMethod() == 'backup::launch') {
+			jeedom::backup(true);
+			$jsonrpc->makeSuccess();
+		}
+		
+		if ($jsonrpc->getMethod() == 'backup::remove') {
+			jeedom::removeBackup($params['backup']);
+			$jsonrpc->makeSuccess();
+		}
+		
+		if ($jsonrpc->getMethod() == 'backup::restore') {
+			jeedom::restore($params['backup'], true);
+			$jsonrpc->makeSuccess();
+		}
+
 		/*             * ************************Log*************************** */
 		if ($jsonrpc->getMethod() == 'log::get') {
 			$jsonrpc->makeSuccess(log::get($params['log'], $params['start'], $params['nbLine']));
