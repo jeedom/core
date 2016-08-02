@@ -30,18 +30,22 @@ foreach ($allObject as $object) {
    </div>
 
    <div class="col-lg-10 col-md-10 col-sm-9" id="div_resumeObjectList" style="border-left: solid 1px #EEE; padding-left: 25px;">
-       <legend><i class="fa fa-picture-o"></i>  {{Mes objets}}</legend>
-       <div class="objectListContainer">
-           <div class="cursor" id="bt_addObject2" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-             <center>
-                <i class="fa fa-plus-circle" style="font-size : 6em;color:#94ca02;"></i>
-            </center>
-            <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>Ajouter</center></span>
-        </div>
-        <?php
+     <legend><i class="fa fa-picture-o"></i>  {{Mes objets}}</legend>
+     <div class="objectListContainer">
+         <div class="cursor" id="bt_addObject2" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+           <br/>
+            <center style='margin-top:10px;'>
+               <i class="fa fa-plus-circle" style="font-size : 6em;color:#94ca02;margin-top:5px;"></i>
+           </center>
+           <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>Ajouter</center></span>
+       </div>
+       <?php
 foreach ($allObject as $object) {
 	echo '<div class="objectDisplayCard cursor" data-object_id="' . $object->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 	echo "<center>";
+	echo $object->getHumanSummary() . '<br/>';
+	echo "</center>";
+	echo "<center style='margin-top:10px;'>";
 	echo str_replace('></i>', ' style="font-size : 6em;color:#767676;"></i>', $object->getDisplay('icon', '<i class="fa fa-lemon-o"></i>'));
 	echo "</center>";
 	echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $object->getName() . '</center></span>';
@@ -54,7 +58,7 @@ foreach ($allObject as $object) {
 <div class="col-md-10 col-sm-9 object" style="display: none;" id="div_conf">
     <form class="form-horizontal">
         <fieldset>
-        <legend><i class="fa fa-arrow-circle-left cursor" id="bt_returnToThumbnailDisplay"></i> {{Général}}</legend>
+            <legend><i class="fa fa-arrow-circle-left cursor" id="bt_returnToThumbnailDisplay"></i> {{Général}}</legend>
             <div class="form-group">
                 <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nom de l'objet}}</label>
                 <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
@@ -122,17 +126,17 @@ foreach (jeedom::getConfiguration('object:summary') as $key => $value) {
 	echo ' </div>';
 }
 ?>
-        <ul class="nav nav-tabs" role="tablist">
-<?php
+       <ul class="nav nav-tabs" role="tablist">
+        <?php
 $active = 'active';
 foreach (jeedom::getConfiguration('object:summary') as $key => $value) {
 	echo '<li class="' . $active . '"><a href="#summarytab' . $key . '" role="tab" data-toggle="tab">' . $value['name'] . '</a></li>';
 	$active = '';
 }
 ?>
-</ul>
-<div class="tab-content">
-<?php
+   </ul>
+   <div class="tab-content">
+    <?php
 $active = ' active';
 foreach (jeedom::getConfiguration('object:summary') as $key => $value) {
 	echo '<div role="tabpanel" class="tab-pane type' . $key . $active . '" data-type="' . $key . '" id="summarytab' . $key . '">';
@@ -145,7 +149,7 @@ foreach (jeedom::getConfiguration('object:summary') as $key => $value) {
 ?>
 </div>
 
-    </fieldset>
+</fieldset>
 </form>
 <hr/>
 <form class="form-horizontal">
