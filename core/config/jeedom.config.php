@@ -18,6 +18,16 @@
 
 global $JEEDOM_INTERNAL_CONFIG;
 $JEEDOM_INTERNAL_CONFIG = array(
+	'object' => array(
+		'summary' => array(
+			'door' => array('name' => 'Porte', 'calcul' => 'sum', 'iconOff' => 'icon jeedom-porte-ferme', 'iconOn' => 'icon jeedom-porte-ouverte', 'unit' => '', 'count' => 'binary'),
+			'windows' => array('name' => 'Fenêtre', 'calcul' => 'sum', 'iconOff' => 'icon jeedom-fenetre-ferme', 'iconOn' => 'icon jeedom-fenetre-ouverte', 'unit' => '', 'count' => 'binary'),
+			'temperature' => array('name' => 'Température', 'calcul' => 'avg', 'icon' => 'icon divers-thermometer31', 'unit' => '°C'),
+			'shutter' => array('name' => 'Volet', 'calcul' => 'sum', 'iconOff' => 'icon jeedom-volet-ferme', 'iconOn' => 'icon jeedom-volet-ouvert', 'unit' => '', 'count' => 'binary'),
+			'light' => array('name' => 'Lumière', 'calcul' => 'sum', 'iconOff' => 'icon jeedom-lumiere-off', 'iconOn' => 'icon jeedom-lumiere-on', 'unit' => '', 'count' => 'binary'),
+			'motion' => array('name' => 'Mouvement', 'calcul' => 'sum', 'iconOff' => 'fa fa-check', 'iconOn' => 'icon jeedom-mouvement', 'unit' => '', 'count' => 'binary'),
+		),
+	),
 	'eqLogic' => array(
 		'category' => array(
 			'heating' => array('name' => 'Chauffage', 'color' => '#2980b9', 'mcolor' => '#2980b9', 'cmdColor' => '#3498db', 'mcmdColor' => '#3498db'),

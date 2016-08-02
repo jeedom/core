@@ -231,7 +231,64 @@ class object {
 		} else {
 			return $this->getName();
 		}
+	}
 
+	public function getSummary($_key = '') {
+		$def = jeedom::getConfiguration('object:summary');
+		if ($_key == '' || !isset($def[$_key])) {
+			return null;
+		}
+		$summaries = $this->getConfiguration('summary');
+		if (!isset($summaries[$_key])) {
+			return null;
+		}
+		$values = array();
+		foreach ($summaries[$_key] as $infos) {
+			$value = cmd::cmdToValue($infos['cmd']);
+			if (isset($infos['invert']) && $infos['invert'] == 1) {
+				$value = !$value;
+			}
+			if (isset($def[$_key]['count']) && $def[$_key]['count'] == 'binary' && $value > 1) {
+				$value = 1;
+			}
+			$values[] = $value;
+		}
+		if (count($values) == 0) {
+			return null;
+		}
+		switch ($def[$_key]['calcul']) {
+			case 'sum':
+				return array_sum($values);
+				break;
+			case 'avg':
+				return array_sum($values) / count($values);
+				break;
+		}
+		return null;
+	}
+
+	public function getHumanSummary($_version = 'desktop') {
+		$return = '';
+		foreach (jeedom::getConfiguration('object:summary') as $key => $value) {
+			if ($this->getConfiguration('summary::hide::' . $_version . '::' . $key, 0) == 1) {
+				continue;
+			}
+			$result = $this->getSummary($key);
+			if ($result !== null) {
+				$icon = '';
+				if (isset($value['icon'])) {
+					$icon = $value['icon'];
+				}
+				if (isset($value['iconOn']) && $result > 0) {
+					$icon = $value['iconOn'];
+				}
+				if (isset($value['iconOff']) && $result == 0) {
+					$icon = $value['iconOff'];
+				}
+				$return .= '<i class="' . $icon . '"></i> <span class="objectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . ' ';
+			}
+		}
+		return trim($return);
 	}
 
 	/*     * **********************Getteur Setteur*************************** */

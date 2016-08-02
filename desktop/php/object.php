@@ -102,6 +102,49 @@ foreach ($allObject as $object) {
                 <input type="color" class="objectAttr form-control" data-l1key="display" data-l2key="tagTextColor" />
             </div>
         </div>
+        <div class="form-group">
+            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Remonter le résumé dans le résumé global}}</label>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                <input type="checkbox" class="objectAttr" data-l1key="configuration" data-l2key="summary::global" />
+            </div>
+        </div>
+        <?php
+foreach (jeedom::getConfiguration('object:summary') as $key => $value) {
+	echo '<div class="form-group">';
+	echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Masquer le résumé}} ' . $value['name'] . ' {{en desktop}}</label>';
+	echo '<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">';
+	echo '<input type="checkbox" class="objectAttr" data-l1key="configuration" data-l2key="summary::hide::desktop::' . $key . '" />';
+	echo '</div>';
+	echo '<label class="col-lg-1 col-md-2 col-sm-2 col-xs-2 control-label">{{en mobile}}</label>';
+	echo '<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">';
+	echo '<input type="checkbox" class="objectAttr" data-l1key="configuration" data-l2key="summary::hide::mobile::' . $key . '" />';
+	echo '</div>';
+	echo ' </div>';
+}
+?>
+        <ul class="nav nav-tabs" role="tablist">
+<?php
+$active = 'active';
+foreach (jeedom::getConfiguration('object:summary') as $key => $value) {
+	echo '<li class="' . $active . '"><a href="#summarytab' . $key . '" role="tab" data-toggle="tab">' . $value['name'] . '</a></li>';
+	$active = '';
+}
+?>
+</ul>
+<div class="tab-content">
+<?php
+$active = ' active';
+foreach (jeedom::getConfiguration('object:summary') as $key => $value) {
+	echo '<div role="tabpanel" class="tab-pane type' . $key . $active . '" data-type="' . $key . '" id="summarytab' . $key . '">';
+	echo '<a class="btn btn-sm btn-success pull-right addSummary" data-type="' . $key . '"><i class="fa fa-plus-circle"></i> {{Ajouter une commande}}</a>';
+	echo '<br/>';
+	echo '<div class="div_summary" data-type="' . $key . '"></div>';
+	echo '</div>';
+	$active = '';
+}
+?>
+</div>
+
     </fieldset>
 </form>
 <hr/>

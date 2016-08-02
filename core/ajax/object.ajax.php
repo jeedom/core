@@ -43,7 +43,7 @@ try {
 		if (!is_object($object)) {
 			throw new Exception(__('Objet inconnu verifié l\'id : ', __FILE__) . init('id'));
 		}
-		ajax::success(utils::o2a($object));
+		ajax::success(jeedom::toHumanReadable(utils::o2a($object)));
 	}
 
 	if (init('action') == 'all') {
@@ -61,7 +61,7 @@ try {
 		if (!isset($object) || !is_object($object)) {
 			$object = new object();
 		}
-		utils::a2o($object, $object_json);
+		utils::a2o($object, jeedom::fromHumanReadable($object_json));
 		$object->save();
 		ajax::success(utils::o2a($object));
 	}

@@ -69,7 +69,7 @@ $('#bt_returnToThumbnailDisplay').on('click',function(){
 
 $(".li_object,.objectDisplayCard").on('click', function (event) {
    loadObjectConfiguration($(this).attr('data-object_id'));
-    return false;
+   return false;
 });
 
 function loadObjectConfiguration(_id){
@@ -91,6 +91,18 @@ function loadObjectConfiguration(_id){
             $('.objectAttr[data-l1key=father_id] option').show();
             $('.object').setValues(data, '.objectAttr');
             $('.objectAttr[data-l1key=father_id] option[value=' + data.id + ']').hide();
+            $('.div_summary').empty();
+            if (isset(data.configuration) && isset(data.configuration.summary)) {
+                for(var i in data.configuration.summary){
+                    var el = $('.type'+i);
+                    if(el != undefined){
+                        for(var j in data.configuration.summary[i]){
+                            addSummaryInfo(el,data.configuration.summary[i][j]);
+                        }
+                    }
+
+                }
+            }
             modifyWithoutSave = false;
         }
     });
@@ -125,8 +137,24 @@ $('.objectAttr[data-l1key=display][data-l2key=icon]').on('dblclick',function(){
 
 $("#bt_saveObject").on('click', function (event) {
     if ($('.li_object.active').attr('data-object_id') != undefined) {
+        var object = $('.object').getValues('.objectAttr')[0];
+        if (!isset(object.configuration)) {
+            object.configuration = {};
+        }
+        if (!isset(object.configuration.summary)) {
+            object.configuration.summary = {};
+        }
+        $('.object .div_summary').each(function () {
+            var type = $(this).attr('data-type');
+            object.configuration.summary[type] = [];
+            summaries = {};
+            $(this).find('.summary').each(function () {
+                var summary = $(this).getValues('.summaryAttr')[0];
+                object.configuration.summary[type].push(summary);
+            });
+        });
         jeedom.object.save({
-            object: $('.object').getValues('.objectAttr')[0],
+            object: object,
             error: function (error) {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
             },
@@ -154,7 +182,7 @@ $("#bt_removeObject").on('click', function (event) {
                     },
                     success: function () {
                         modifyWithoutSave = false;
-                         loadPage('index.php?v=d&p=object&removeSuccessFull=1');
+                        loadPage('index.php?v=d&p=object&removeSuccessFull=1');
                     }
                 });
             }
@@ -206,3 +234,47 @@ if (is_numeric(getUrlVars('id'))) {
 $('body').delegate('.objectAttr', 'change', function () {
     modifyWithoutSave = true;
 });
+
+$('.addSummary').on('click',function(){
+    var type = $(this).attr('data-type');
+    var el = $('.type'+type);
+    addSummaryInfo(el);
+});
+
+$('body').delegate(".listCmdInfo", 'click', function () {
+    var el = $(this).closest('.summary').find('.summaryAttr[data-l1key=cmd]');
+    jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function (result) {
+        el.value(result.human);
+    });
+});
+
+$('body').delegate('.bt_removeSummary', 'click', function () {
+    $(this).closest('.summary').remove();
+});
+
+
+function addSummaryInfo(_el, _summary) {
+    if (!isset(_summary)) {
+        _summary = {};
+    }
+    var div = '<div class="summary">';
+    div += '<div class="form-group">';
+    div += '<label class="col-sm-1 control-label">{{Commande}}</label>';
+    div += '<div class="col-sm-4 has-success">';
+    div += '<div class="input-group">';
+    div += '<span class="input-group-btn">';
+    div += '<a class="btn btn-default bt_removeSummary btn-sm"><i class="fa fa-minus-circle"></i></a>';
+    div += '</span>';
+    div += '<input class="summaryAttr form-control input-sm" data-l1key="cmd" />';
+    div += '<span class="input-group-btn">';
+    div += '<a class="btn btn-sm listCmdInfo btn-success"><i class="fa fa-list-alt"></i></a>';
+    div += '</span>';
+    div += '</div>';
+    div += '</div>';
+    div += '<div class="col-sm-2 has-success">';
+    div += '<label><input type="checkbox" class="summaryAttr checkbox-inline" data-l1key="invert" />{{Inverser}}</label>';
+    div += '</div>';
+    div += '</div>';
+    _el.find('.div_summary').append(div);
+    _el.find('.summary:last').setValues(_summary, '.summaryAttr');
+}
