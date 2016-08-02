@@ -564,11 +564,11 @@ try {
 		}
 		
 		if ($jsonrpc->getMethod() == 'backup::listMarket') {
-			$jsonrpc->makeSuccess(Market::listeBackup());
+			$jsonrpc->makeSuccess(repo_market::listeBackup());
 		}
 		
 		if ($jsonrpc->getMethod() == 'backup::restoreMarket') {
-			Market::retoreBackup($params['backup'], true);
+			repo_market::retoreBackup($params['backup'], true);
 			$jsonrpc->makeSuccess();
 		}
 
