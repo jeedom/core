@@ -562,6 +562,15 @@ try {
 			jeedom::restore($params['backup'], true);
 			$jsonrpc->makeSuccess();
 		}
+		
+		if ($jsonrpc->getMethod() == 'backup::listMarket') {
+			$jsonrpc->makeSuccess(Market::listeBackup());
+		}
+		
+		if ($jsonrpc->getMethod() == 'backup::restoreMarket') {
+			Market::retoreBackup($params['backup'], true);
+			$jsonrpc->makeSuccess();
+		}
 
 		/*             * ************************Log*************************** */
 		if ($jsonrpc->getMethod() == 'log::get') {
