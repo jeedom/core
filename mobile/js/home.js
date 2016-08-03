@@ -7,6 +7,7 @@ function initHome() {
         },
         success: function (objects) {
             var li = '';
+            var summaries = [];
             li += '<a href="#" class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="equipment" data-title="<i class=\'fa fa-circle-o-notch\'></i> {{Tout}}" data-option="all"><span><i class=\'fa fa-circle-o-notch\'></i> {{Tout}}</a>';
             for (var i in objects) {
                 if (objects[i].isVisible == 1) {
@@ -14,10 +15,12 @@ function initHome() {
                     if (isset(objects[i].display) && isset(objects[i].display.icon)) {
                         icon = objects[i].display.icon;
                     }
-                    li += '<a href="#" class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="equipment" data-title="' + icon.replace(/\"/g, "\'") + ' ' + objects[i].name.replace(/\"/g, "\'") + '" data-option="' + objects[i].id + '"><span>' + icon + '</span> ' + objects[i].name + '</a>';
+                    li += '<a href="#" class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="equipment" data-title="' + icon.replace(/\"/g, "\'") + ' ' + objects[i].name.replace(/\"/g, "\'") + '" data-option="' + objects[i].id + '"><span>' + icon + '</span> ' + objects[i].name + '<span style="float:right;"><span class="objectSummary'+objects[i].id+'" data-version="mobile"></span></span></a>';
+                    summaries.push({object_id : objects[i].id})
                 }
             }
             $('#bottompanel_objectList').empty().append(li);
+            jeedom.object.summaryUpdate(summaries);
         }
     });
 

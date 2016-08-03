@@ -4,6 +4,7 @@ function initEquipment(_object_id) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (objects) {
+            var summaries = [];
             var li = ' <ul data-role="listview" data-inset="false">';
             li += '<li><a href="#" class="link" data-page="equipment" data-title="<i class=\'fa fa-circle-o-notch\'></i> {{Tout}}" data-option="all"><span><i class=\'fa fa-circle-o-notch\'></i> {{Tout}}</a></li>';
             for (var i in objects) {
@@ -12,11 +13,13 @@ function initEquipment(_object_id) {
                     if (isset(objects[i].display) && isset(objects[i].display.icon)) {
                         icon = objects[i].display.icon;
                     }
-                    li += '<li><a href="#" class="link" data-page="equipment" data-title="' + icon.replace(/\"/g, "\'") + ' ' + objects[i].name + '" data-option="' + objects[i].id + '"><span>' + icon + '</span> ' + objects[i].name + '</a></li>';
+                    li += '<li><a href="#" class="link" data-page="equipment" data-title="' + icon.replace(/\"/g, "\'") + ' ' + objects[i].name + '" data-option="' + objects[i].id + '"><span>' + icon + '</span> ' + objects[i].name + '<span style="float:right;"><span class="objectSummary'+objects[i].id+'" data-version="mobile"></span></span></a></li>';
+                    summaries.push({object_id : objects[i].id})
                 }
             }
             li += '</ul>';
             panel(li);
+            jeedom.object.summaryUpdate(summaries);
         }
     });
     if (isset(_object_id)) {
