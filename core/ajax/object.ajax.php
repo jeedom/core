@@ -151,6 +151,13 @@ try {
 		if (init('ids') != '') {
 			$return = array();
 			foreach (json_decode(init('ids'), true) as $id => $value) {
+				if ($id == 'global') {
+					$return['global'] = array(
+						'html' => object::getGlobalHtmlSummary($value['version']),
+						'id' => 'global',
+					);
+					continue;
+				}
 				$object = object::byId($id);
 				if (!is_object($object)) {
 					continue;
@@ -160,6 +167,7 @@ try {
 					'id' => $object->getId(),
 				);
 			}
+
 			ajax::success($return);
 		} else {
 			$object = object::byId(init('id'));

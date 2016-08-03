@@ -386,6 +386,14 @@ echo $plugin_menu;
 								</ul>
 
 								<ul class="nav navbar-nav navbar-right">
+									<li>
+									<a href="#" style="cursor:default;">
+										<?php
+echo object::getGlobalHtmlSummary();
+	?>
+									</a>
+									</li>
+
 									<?php
 $nbMessage = message::nbMessage();
 	$displayMessage = ($nbMessage > 0) ? '' : 'display : none;';?>

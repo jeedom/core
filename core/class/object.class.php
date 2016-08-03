@@ -146,6 +146,45 @@ class object {
 		event::adds('object::summary::update', $events);
 	}
 
+	public static function getGlobalHtmlSummary($_version = 'desktop') {
+		$objects = self::all();
+		$def = jeedom::getConfiguration('object:summary');
+		$values = array();
+		$return = '<span class="objectSummaryglobal" data-version="' . $_version . '">';
+		foreach ($objects as $object) {
+			if ($object->getConfiguration('summary::global', 0) == 0) {
+				continue;
+			}
+			foreach ($def as $key => $value) {
+				if (!isset($values[$key])) {
+					$values[$key] = array();
+				}
+				$result = $object->getSummary($key, true);
+				if ($result === null || !is_array($result)) {
+					continue;
+				}
+				$values[$key] = array_merge($values[$key], $result);
+			}
+		}
+		foreach ($values as $key => $value) {
+			if (count($value) == 0) {
+				continue;
+			}
+			$result = jeedom::calculStat($def[$key]['calcul'], $value);
+			if (isset($def[$key]['icon'])) {
+				$icon = $def[$key]['icon'];
+			}
+			if (isset($def[$key]['iconOn']) && $result > 0) {
+				$icon = $def[$key]['iconOn'];
+			}
+			if (isset($def[$key]['iconOff']) && $result == 0) {
+				$icon = $def[$key]['iconOff'];
+			}
+			$return .= '<i class="' . $icon . '"></i> <span class="objectSummary' . $key . '">' . $result . '</span> ' . $def[$key]['unit'] . ' ';
+		}
+		return trim($return) . '</span>';
+	}
+
 	/*     * *********************Méthodes d'instance************************* */
 
 	public function checkTreeConsistency($_fathers = array()) {
@@ -254,7 +293,7 @@ class object {
 		}
 	}
 
-	public function getSummary($_key = '') {
+	public function getSummary($_key = '', $_raw = false) {
 		$def = jeedom::getConfiguration('object:summary');
 		if ($_key == '' || !isset($def[$_key])) {
 			return null;
@@ -276,6 +315,9 @@ class object {
 		}
 		if (count($values) == 0) {
 			return null;
+		}
+		if ($_raw) {
+			return $values;
 		}
 		return jeedom::calculStat($def[$_key]['calcul'], $values);
 	}

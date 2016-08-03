@@ -215,9 +215,9 @@ jeedom.object.setOrder = function(_params) {
 
 
 jeedom.object.summaryUpdate = function(_params) {
-
     var objects = {};
     var sends = {};
+    _params.push({object_id:'global'})
     for(var i in _params){
         var object = $('.objectSummary' + _params[i].object_id);
         if (object.html() == undefined || object.attr('data-version') == undefined) {
