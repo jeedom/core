@@ -100,8 +100,11 @@ function loadObjectConfiguration(_id){
                     var el = $('.type'+i);
                     if(el != undefined){
                         for(var j in data.configuration.summary[i]){
-                            addSummaryInfo(el,data.configuration.summary[i][j]);
+							addSummaryInfo(el,data.configuration.summary[i][j]);
                         }
+						if (data.configuration.summary[i].length != 0){
+							$('.summarytab'+i).empty().append('(' + data.configuration.summary[i].length + ')');
+						}
                     }
 
                 }

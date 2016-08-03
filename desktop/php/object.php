@@ -181,7 +181,7 @@ foreach (jeedom::getConfiguration('object:summary') as $key => $value) {
 	} else {
 		$icon = $value['iconOn'];
 	}
-	echo '<li class="' . $active . '"><a href="#summarytab' . $key . '" role="tab" data-toggle="tab"><i class="' . $icon . '">  ' . $value['name'] . '</i></a></li>';
+	echo '<li class="' . $active . '"><a href="#summarytab' . $key . '" role="tab" data-toggle="tab"><i class="' . $icon . '">  ' . $value['name'] . '</i>  <span class=" summarytab' . $key . '"</span></a></li>';
 	$active = '';
 }
 ?>
