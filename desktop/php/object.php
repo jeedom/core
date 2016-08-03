@@ -131,21 +131,41 @@ foreach ($allObject as $object) {
             <input type="checkbox" class="objectAttr" data-l1key="configuration" data-l2key="summary::global" />
           </div>
         </div>
-        <?php
+        <table class="table">
+          <thead>
+            <tr>
+              <th></th>
+              <?php
 foreach (jeedom::getConfiguration('object:summary') as $key => $value) {
-	echo '<div class="form-group">';
-	echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Masquer le résumé}} ' . $value['name'] . ' {{en desktop}}</label>';
-	echo '<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">';
-	echo '<input type="checkbox" class="objectAttr" data-l1key="configuration" data-l2key="summary::hide::desktop::' . $key . '" />';
-	echo '</div>';
-	echo '<label class="col-lg-1 col-md-2 col-sm-2 col-xs-2 control-label">{{en mobile}}</label>';
-	echo '<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">';
-	echo '<input type="checkbox" class="objectAttr" data-l1key="configuration" data-l2key="summary::hide::mobile::' . $key . '" />';
-	echo '</div>';
-	echo ' </div>';
+	echo '<th>' . $value['name'] . '</th>';
 }
 ?>
-       <ul class="nav nav-tabs" role="tablist">
+           </tr>
+         </thead>
+         <?php
+echo '<tr>';
+echo '<td>';
+echo '{{Masquer en desktop}}';
+echo '</td>';
+foreach (jeedom::getConfiguration('object:summary') as $key => $value) {
+	echo '<td>';
+	echo '<input type="checkbox" class="objectAttr" data-l1key="configuration" data-l2key="summary::hide::desktop::' . $key . '" />';
+	echo '</td>';
+}
+echo '</tr>';
+echo '<tr>';
+echo '<td>';
+echo '{{Masquer en mobile}}';
+echo '</td>';
+foreach (jeedom::getConfiguration('object:summary') as $key => $value) {
+	echo '<td>';
+	echo '<input type="checkbox" class="objectAttr" data-l1key="configuration" data-l2key="summary::hide::mobile::' . $key . '" />';
+	echo '</td>';
+}
+echo '</tr>';
+?>
+      </table>
+      <ul class="nav nav-tabs" role="tablist">
         <?php
 $active = 'active';
 foreach (jeedom::getConfiguration('object:summary') as $key => $value) {
