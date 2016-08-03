@@ -26,8 +26,9 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'shutter' => array('name' => 'Volet', 'calcul' => 'sum', 'iconOff' => 'icon jeedom-volet-ferme', 'iconOn' => 'icon jeedom-volet-ouvert', 'unit' => '', 'count' => 'binary'),
 			'light' => array('name' => 'Lumière', 'calcul' => 'sum', 'iconOff' => 'icon jeedom-lumiere-off', 'iconOn' => 'icon jeedom-lumiere-on', 'unit' => '', 'count' => 'binary'),
 			'motion' => array('name' => 'Mouvement', 'calcul' => 'sum', 'iconOff' => 'fa fa-check', 'iconOn' => 'icon jeedom-mouvement', 'unit' => '', 'count' => 'binary'),
-			'prise' => array('name' => 'Prise', 'calcul' => 'sum', 'iconOff' => 'fa fa-times', 'iconOn' => 'icon jeedom-prise', 'unit' => '', 'count' => 'binary'),
+			'outlet' => array('name' => 'Prise', 'calcul' => 'sum', 'iconOff' => 'fa fa-times', 'iconOn' => 'icon jeedom-prise', 'unit' => '', 'count' => 'binary'),
 			'humidity' => array('name' => 'Humidité', 'calcul' => 'avg', 'icon' => 'fa fa-tint', 'unit' => '%'),
+			'power' => array('name' => 'Puissance', 'calcul' => 'sum', 'icon' => 'fa fa-bolt', 'unit' => 'W'),
 		),
 	),
 	'eqLogic' => array(

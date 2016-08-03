@@ -130,13 +130,13 @@ foreach (jeedom::getConfiguration('object:summary') as $key => $value) {
         <?php
 $active = 'active';
 foreach (jeedom::getConfiguration('object:summary') as $key => $value) {
-	$icon ='';
-	if (isset($value['icon'])){
-		$icon =$value['icon'];
+	$icon = '';
+	if (isset($value['icon'])) {
+		$icon = $value['icon'];
 	} else {
-		$icon =$value['iconOn'];
+		$icon = $value['iconOn'];
 	}
-	echo '<li class="' . $active . '"><a href="#summarytab' . $key . '" role="tab" data-toggle="tab"><i class="'.$icon.'">  ' . $value['name'] . '</i></a></li>';
+	echo '<li class="' . $active . '"><a href="#summarytab' . $key . '" role="tab" data-toggle="tab"><i class="' . $icon . '">  ' . $value['name'] . '</i></a></li>';
 	$active = '';
 }
 ?>
