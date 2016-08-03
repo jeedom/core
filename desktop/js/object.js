@@ -89,9 +89,11 @@ function loadObjectConfiguration(_id){
             $('.objectAttr[data-l1key=display][data-l2key=tagColor]').value('#9b59b6');
             $('.objectAttr[data-l1key=display][data-l2key=tagTextColor]').value('#ffffff');
             $('.objectAttr[data-l1key=father_id] option').show();
+            $('#summarytab input[type=checkbox]').value(0);
             $('.object').setValues(data, '.objectAttr');
             $('.objectAttr[data-l1key=father_id] option[value=' + data.id + ']').hide();
             $('.div_summary').empty();
+
             if (isset(data.configuration) && isset(data.configuration.summary)) {
                 for(var i in data.configuration.summary){
                     var el = $('.type'+i);

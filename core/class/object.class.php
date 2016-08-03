@@ -152,10 +152,11 @@ class object {
 		$values = array();
 		$return = '<span class="objectSummaryglobal" data-version="' . $_version . '">';
 		foreach ($objects as $object) {
-			if ($object->getConfiguration('summary::global', 0) == 0) {
-				continue;
-			}
+
 			foreach ($def as $key => $value) {
+				if ($object->getConfiguration('summary::global::' . $key, 0) == 0) {
+					continue;
+				}
 				if (!isset($values[$key])) {
 					$values[$key] = array();
 				}

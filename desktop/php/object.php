@@ -118,19 +118,10 @@ foreach ($allObject as $object) {
         </div>
       </fieldset>
     </form>
-
-
-
   </div>
   <div role="tabpanel" class="tab-pane" id="summarytab">
     <form class="form-horizontal">
       <fieldset>
-        <div class="form-group">
-          <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Remonter le résumé dans le résumé global}}</label>
-          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-            <input type="checkbox" class="objectAttr" data-l1key="configuration" data-l2key="summary::global" />
-          </div>
-        </div>
         <table class="table">
           <thead>
             <tr>
@@ -143,6 +134,17 @@ foreach (jeedom::getConfiguration('object:summary') as $key => $value) {
            </tr>
          </thead>
          <?php
+echo '<tr>';
+echo '<td>';
+echo '{{Remonter dans le résumé global}}';
+echo '</td>';
+foreach (jeedom::getConfiguration('object:summary') as $key => $value) {
+	echo '<td>';
+	echo '<input type="checkbox" class="objectAttr" data-l1key="configuration" data-l2key="summary::global::' . $key . '" />';
+	echo '</td>';
+}
+echo '</tr>';
+echo '<tr>';
 echo '<tr>';
 echo '<td>';
 echo '{{Masquer en desktop}}';
