@@ -304,7 +304,7 @@ class object {
 		}
 		$values = array();
 		foreach ($summaries[$_key] as $infos) {
-			$value = cmd::cmdToValue($infos['cmd']);
+			$value = jeedom::evaluateExpression(cmd::cmdToValue($infos['cmd']));
 			if (isset($infos['invert']) && $infos['invert'] == 1) {
 				$value = !$value;
 			}
