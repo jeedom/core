@@ -167,6 +167,8 @@ class object {
 				$values[$key] = array_merge($values[$key], $result);
 			}
 		}
+		$margin = ($_version == 'desktop') ? 10 : 5;
+
 		foreach ($values as $key => $value) {
 			if (count($value) == 0) {
 				continue;
@@ -181,7 +183,8 @@ class object {
 			if (isset($def[$key]['iconOff']) && $result == 0) {
 				$icon = $def[$key]['iconOff'];
 			}
-			$return .= '<span style="margin-right:10px;"><i class="' . $icon . '"></i> <span class="objectSummary' . $key . '">' . $result . '</span> ' . $def[$key]['unit'] . '</span> ';
+
+			$return .= '<span style="margin-right:' . $margin . 'px;"><i class="' . $icon . '"></i> <span class="objectSummary' . $key . '">' . $result . '</span> ' . $def[$key]['unit'] . '</span> ';
 		}
 		return trim($return) . '</span>';
 	}
