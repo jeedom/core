@@ -154,15 +154,6 @@ foreach (jeedom::getConfiguration('object:summary') as $key => $value) {
 }
 echo '</tr>';
 echo '<tr>';
-echo '<td>';
-echo '{{Masquer en mobile}}';
-echo '</td>';
-foreach (jeedom::getConfiguration('object:summary') as $key => $value) {
-	echo '<td>';
-	echo '<input type="checkbox" class="objectAttr" data-l1key="configuration" data-l2key="summary::hide::mobile::' . $key . '" />';
-	echo '</td>';
-}
-echo '</tr>';
 ?>
       </table>
       <ul class="nav nav-tabs" role="tablist">
