@@ -59,7 +59,7 @@ jeedom.changes = function(){
      $('body').trigger('eqLogic::update',[eqLogic_update]); 
  }
  if(object_summary_update.length > 0){
-     $('body').trigger('object::summary::update',[object_summary_update]); 
+    $('body').trigger('object::summary::update',[object_summary_update]); 
  }
  setTimeout(jeedom.changes, 1);
 },

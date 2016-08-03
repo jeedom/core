@@ -142,6 +142,7 @@ function initApplication(_reinit) {
                     $("head").append(data);
                     $.include(include, function () {
                         deviceInfo = getDeviceType();
+                        jeedom.object.summaryUpdate([])
                         if(getUrlVars('p') != '' && getUrlVars('ajax') != 1){
                            switch (getUrlVars('p')) {
                             case 'view' :

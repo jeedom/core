@@ -1,5 +1,6 @@
 function initHome() {
     refreshMessageNumber();
+
     jeedom.object.all({
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -97,6 +98,5 @@ $('#bt_logout').off().on('click', function () {
     });
     });
 setTimeout(function(){$('#pagecontainer').css('padding-top','64px');; }, 100);
-
 }
 
