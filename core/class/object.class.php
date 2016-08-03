@@ -347,7 +347,7 @@ class object {
 				if (isset($value['iconOff']) && $result == 0) {
 					$icon = $value['iconOff'];
 				}
-				if ($result == 0 && $def[$key]['unit'] == ''){
+				if ($result == 0 && $value['unit'] == ''){
 					$result = '';
 				}
 				$return .= '<span style="margin-right:5px;"><i class="' . $icon . '"></i> <span class="objectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . '</span>';
