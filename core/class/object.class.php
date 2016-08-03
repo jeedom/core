@@ -170,7 +170,7 @@ class object {
 			if (count($value) == 0) {
 				continue;
 			}
-			$result = jeedom::calculStat($def[$key]['calcul'], $value);
+			$result = round(jeedom::calculStat($def[$key]['calcul'], $value), 1);
 			if (isset($def[$key]['icon'])) {
 				$icon = $def[$key]['icon'];
 			}
@@ -330,6 +330,7 @@ class object {
 			}
 			$result = $this->getSummary($key);
 			if ($result !== null) {
+				$result = round($result, 1);
 				$icon = '';
 				if (isset($value['icon'])) {
 					$icon = $value['icon'];
