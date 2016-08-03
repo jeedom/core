@@ -386,14 +386,6 @@ echo $plugin_menu;
 								</ul>
 
 								<ul class="nav navbar-nav navbar-right">
-									<li>
-									<a href="#" style="cursor:default;">
-										<?php
-echo object::getGlobalHtmlSummary();
-	?>
-									</a>
-									</li>
-
 									<?php
 $nbMessage = message::nbMessage();
 	$displayMessage = ($nbMessage > 0) ? '' : 'display : none;';?>
@@ -411,6 +403,13 @@ $nbMessage = message::nbMessage();
 											<span class="badge" title="{{Nombre de mises à jour}}" style="background-color : #c9302c;">' . $nbUpdate . '</span></a></li>';
 	}
 	?>
+										<li>
+											<a href="#" style="cursor:default;">
+												<?php
+echo object::getGlobalHtmlSummary();
+	?>
+											</a>
+										</li>
 										<?php if (isConnect('admin') || hasRight('backupview', true) || hasRight('updateview', true) || hasRight('cronview', true) || hasRight('customview', true) || hasRight('userview', true)) {
 		?>
 											<li class="dropdown">
