@@ -138,6 +138,7 @@ function initApplication(_reinit) {
                         include.push('plugins/'+plugins[i].id+'/mobile/js/event.js');
                     }
                 }
+                
                 $.get("core/php/icon.inc.php", function (data) {
                     $("head").append(data);
                     $.include(include, function () {
