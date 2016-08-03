@@ -69,6 +69,7 @@ $('#bt_returnToThumbnailDisplay').on('click',function(){
 
 $(".li_object,.objectDisplayCard").on('click', function (event) {
    loadObjectConfiguration($(this).attr('data-object_id'));
+   $('.objectname_resume').empty().append($(this).attr('data-object_icon')+'  '+$(this).attr('data-object_name'));
    return false;
 });
 

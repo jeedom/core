@@ -17,7 +17,7 @@ sendVarToJS('select_id', init('id', '-1'));
 $allObject = object::buildTree(null, false);
 foreach ($allObject as $object) {
 	$margin = 15 * $object->getConfiguration('parentNumber');
-	echo '<li class="cursor li_object bt_sortable" data-object_id="' . $object->getId() . '">';
+	echo '<li class="cursor li_object bt_sortable" data-object_id="' . $object->getId() . '" data-object_name="' . $object->getName() . '" data-object_icon=\'' . $object->getDisplay('icon', '<i class="fa fa-lemon-o"></i>') . '\'>';
 	echo '<i class="fa fa-arrows-v pull-left cursor"></i>';
 	echo '<a style="position:relative;left:' . $margin . 'px;">';
 	echo $object->getHumanName(true, true);
@@ -41,7 +41,7 @@ foreach ($allObject as $object) {
      </div>
      <?php
 foreach ($allObject as $object) {
-	echo '<div class="objectDisplayCard cursor" data-object_id="' . $object->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+	echo '<div class="objectDisplayCard cursor" data-object_id="' . $object->getId() . '" data-object_name="' . $object->getName() . '" data-object_icon=\'' . $object->getDisplay('icon', '<i class="fa fa-lemon-o"></i>') . '\' style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 	echo "<center>";
 	echo $object->getHtmlSummary() . '<br/>';
 	echo "</center>";
@@ -122,20 +122,22 @@ foreach ($allObject as $object) {
   <div role="tabpanel" class="tab-pane" id="summarytab">
     <form class="form-horizontal">
       <fieldset>
+		<legend class="objectname_resume" style="cursor:default;"></legend>
+	    <legend style="cursor:default;"><i class="fa fa-picture-o"></i>  {{Options d'affichage}}</legend>
         <table class="table">
           <thead>
             <tr>
               <th></th>
               <?php
 foreach (jeedom::getConfiguration('object:summary') as $key => $value) {
-	echo '<th>' . $value['name'] . '</th>';
+	echo '<th style="cursor:default;">' . $value['name'] . '</th>';
 }
 ?>
            </tr>
          </thead>
          <?php
 echo '<tr>';
-echo '<td>';
+echo '<td style="cursor:default;">';
 echo '{{Remonter dans le résumé global}}';
 echo '</td>';
 foreach (jeedom::getConfiguration('object:summary') as $key => $value) {
@@ -146,7 +148,7 @@ foreach (jeedom::getConfiguration('object:summary') as $key => $value) {
 echo '</tr>';
 echo '<tr>';
 echo '<tr>';
-echo '<td>';
+echo '<td style="cursor:default;">';
 echo '{{Masquer en desktop}}';
 echo '</td>';
 foreach (jeedom::getConfiguration('object:summary') as $key => $value) {
@@ -158,6 +160,7 @@ echo '</tr>';
 echo '<tr>';
 ?>
       </table>
+	  <legend style="cursor:default;"><i class="fa fa-tachometer"></i>  {{Commandes}}</legend>
       <ul class="nav nav-tabs" role="tablist">
         <?php
 $active = 'active';
