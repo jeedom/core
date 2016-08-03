@@ -888,7 +888,7 @@ if ($cmd->getDisplay('parameters') != '') {
 });
 
  $('.cmdAttr[data-l1key=display][data-l2key=generic_type]').on('change', function () {
-	if ($(this).value() == 'GENERIC' || $(this).value() == 'GENERIC_ACTION') {
+	if ($(this).value() == 'GENERIC_INFO' || $(this).value() == 'GENERIC_ACTION') {
 		$('.iconeGeneric').show();
 	} else {
 		$('.iconeGeneric').hide();
