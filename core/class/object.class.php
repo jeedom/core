@@ -180,7 +180,7 @@ class object {
 			if (isset($def[$key]['iconOff']) && $result == 0) {
 				$icon = $def[$key]['iconOff'];
 			}
-			$return .= '<i class="' . $icon . '"></i> <span class="objectSummary' . $key . '">' . $result . '</span> ' . $def[$key]['unit'] . ' ';
+			$return .= '<span style="margin-right:10px;"><i class="' . $icon . '"></i> <span class="objectSummary' . $key . '">' . $result . '</span> ' . $def[$key]['unit'] . '</span> ';
 		}
 		return trim($return) . '</span>';
 	}
@@ -340,7 +340,7 @@ class object {
 				if (isset($value['iconOff']) && $result == 0) {
 					$icon = $value['iconOff'];
 				}
-				$return .= '<i class="' . $icon . '"></i> <span class="objectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . ' ';
+				$return .= '<span style="margin-right:10px;"><i class="' . $icon . '"></i> <span class="objectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . '</span>';
 			}
 		}
 		return trim($return) . '</span>';
