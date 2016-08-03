@@ -45,9 +45,9 @@ foreach ($allObject as $object) {
 	echo "<center style='margin-top:10px;'>";
 	echo str_replace('></i>', ' style="font-size : 6em;color:#767676;"></i>', $object->getDisplay('icon', '<i class="fa fa-lemon-o"></i>'));
 	echo "</center>";
-	echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $object->getName() . '</center></span>';
+	echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $object->getName() . '</center></span><br/>';
 	echo '<center style="font-size :0.7em">';
-	echo $object->getHtmlSummary() . '<br/>';
+	echo $object->getHtmlSummary();
 	echo "</center>";
 	echo '</div>';
 }
