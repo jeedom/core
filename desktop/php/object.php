@@ -43,7 +43,7 @@ foreach ($allObject as $object) {
 foreach ($allObject as $object) {
 	echo '<div class="objectDisplayCard cursor" data-object_id="' . $object->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 	echo "<center>";
-	echo $object->getHumanSummary() . '<br/>';
+	echo $object->getHtmlSummary() . '<br/>';
 	echo "</center>";
 	echo "<center style='margin-top:10px;'>";
 	echo str_replace('></i>', ' style="font-size : 6em;color:#767676;"></i>', $object->getDisplay('icon', '<i class="fa fa-lemon-o"></i>'));

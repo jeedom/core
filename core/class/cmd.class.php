@@ -1038,6 +1038,7 @@ class cmd {
 		} else {
 			$this->addHistoryValue(null, $collectDate);
 		}
+		object::checkSummaryUpdate($this->getId());
 	}
 
 	public function checkReturnState($_value) {

@@ -16,12 +16,12 @@
  */
 
 
-jeedom.object = function() {
-};
+ jeedom.object = function() {
+ };
 
-jeedom.object.cache = Array();
+ jeedom.object.cache = Array();
 
-if (!isset(jeedom.object.cache.getEqLogic)) {
+ if (!isset(jeedom.object.cache.getEqLogic)) {
     jeedom.object.cache.getEqLogic = Array();
 }
 
@@ -209,6 +209,49 @@ jeedom.object.setOrder = function(_params) {
     paramsAJAX.data = {
         action: 'setOrder',
         objects: json_encode(_params.objects)
+    };
+    $.ajax(paramsAJAX);
+};
+
+
+jeedom.object.summaryUpdate = function(_params) {
+
+    var objects = {};
+    var sends = {};
+    for(var i in _params){
+        var object = $('.objectSummary' + _params[i].object_id);
+        if (object.html() == undefined || object.attr('data-version') == undefined) {
+            continue;
+        }
+        objects[_params[i].object_id] = {object : object, version : object.attr('data-version')};
+        sends[_params[i].object_id] = {version : object.attr('data-version')};
+    }
+    if (Object.keys(objects).length == 0){
+        return;
+    }
+    var paramsRequired = [];
+    var paramsSpecifics = {
+        global: false,
+        success: function (result) {
+            for(var i in result){
+                var html = $(result[i].html);
+                var object = objects[i].object;
+                object.replaceWith(html);
+            }
+        }
+    };
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/object.ajax.php';
+    paramsAJAX.data = {
+        action: 'getSummaryHtml',
+        ids: json_encode(sends),
     };
     $.ajax(paramsAJAX);
 };

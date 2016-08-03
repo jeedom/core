@@ -125,6 +125,27 @@ class object {
 		return $return;
 	}
 
+	public static function searchConfiguration($_search) {
+		$values = array(
+			'configuration' => '%' . $_search . '%',
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+		FROM object
+		WHERE `configuration` LIKE :configuration';
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+	}
+
+	public static function checkSummaryUpdate($_cmd_id) {
+		$objects = self::searchConfiguration('#' . $_cmd_id . '#');
+		if (count($objects) == 0) {
+			return;
+		}
+		foreach ($objects as $object) {
+			$events[] = array('object_id' => $object->getId());
+		}
+		event::adds('object::summary::update', $events);
+	}
+
 	/*     * *********************Méthodes d'instance************************* */
 
 	public function checkTreeConsistency($_fathers = array()) {
@@ -259,8 +280,8 @@ class object {
 		return jeedom::calculStat($def[$_key]['calcul'], $values);
 	}
 
-	public function getHumanSummary($_version = 'desktop') {
-		$return = '';
+	public function getHtmlSummary($_version = 'desktop') {
+		$return = '<span class="objectSummary' . $this->getId() . '" data-version="' . $_version . '">';
 		foreach (jeedom::getConfiguration('object:summary') as $key => $value) {
 			if ($this->getConfiguration('summary::hide::' . $_version . '::' . $key, 0) == 1) {
 				continue;
@@ -280,7 +301,7 @@ class object {
 				$return .= '<i class="' . $icon . '"></i> <span class="objectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . ' ';
 			}
 		}
-		return trim($return);
+		return trim($return) . '</span>';
 	}
 
 	/*     * **********************Getteur Setteur*************************** */

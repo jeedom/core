@@ -147,6 +147,32 @@ try {
 		ajax::success();
 	}
 
+	if (init('action') == 'getSummaryHtml') {
+		if (init('ids') != '') {
+			$return = array();
+			foreach (json_decode(init('ids'), true) as $id => $value) {
+				$object = object::byId($id);
+				if (!is_object($object)) {
+					continue;
+				}
+				$return[$object->getId()] = array(
+					'html' => $object->getHtmlSummary($value['version']),
+					'id' => $object->getId(),
+				);
+			}
+			ajax::success($return);
+		} else {
+			$object = object::byId(init('id'));
+			if (!is_object($object)) {
+				throw new Exception(__('Objet inconnu verifié l\'id', __FILE__));
+			}
+			$info_object = array();
+			$info_object['id'] = $object->getId();
+			$info_object['html'] = $object->getHtmlSummary(init('version'));
+			ajax::success($info_object);
+		}
+	}
+
 	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {

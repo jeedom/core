@@ -32,6 +32,7 @@ jeedom.changes = function(){
         jeedom.datetime = data.datetime;
         var cmd_update = [];
         var eqLogic_update = [];
+        var object_summary_update = [];
         for(var i in data.result){
             if(data.result[i].name == 'cmd::update'){
                 cmd_update.push(data.result[i].option);
@@ -39,6 +40,10 @@ jeedom.changes = function(){
             }
             if(data.result[i].name == 'eqLogic::update'){
                 eqLogic_update.push(data.result[i].option);
+                continue;
+            }
+            if(data.result[i].name == 'object::summary::update'){
+                object_summary_update.push(data.result[i].option);
                 continue;
             }
             if(isset(data.result[i].option)){
@@ -52,6 +57,9 @@ jeedom.changes = function(){
  }
  if(eqLogic_update.length > 0){
      $('body').trigger('eqLogic::update',[eqLogic_update]); 
+ }
+ if(object_summary_update.length > 0){
+     $('body').trigger('object::summary::update',[object_summary_update]); 
  }
  setTimeout(jeedom.changes, 1);
 },
@@ -101,6 +109,9 @@ jeedom.init = function () {
     });
     $('body').on('eqLogic::update', function (_event,_options) {
         jeedom.eqLogic.refreshValue(_options);
+    });
+     $('body').on('object::summary::update', function (_event,_options) {
+        jeedom.object.summaryUpdate(_options);
     });
     $('body').on('refresh', function (_event) {
         window.location.reload()
