@@ -256,15 +256,7 @@ class object {
 		if (count($values) == 0) {
 			return null;
 		}
-		switch ($def[$_key]['calcul']) {
-			case 'sum':
-				return array_sum($values);
-				break;
-			case 'avg':
-				return array_sum($values) / count($values);
-				break;
-		}
-		return null;
+		return jeedom::calculStat($def[$_key]['calcul'], $values);
 	}
 
 	public function getHumanSummary($_version = 'desktop') {

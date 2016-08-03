@@ -577,6 +577,18 @@ class jeedom {
 		}
 	}
 
+	public static function calculStat($_calcul, $_values) {
+		switch ($_calcul) {
+			case 'sum':
+				return array_sum($_values);
+				break;
+			case 'avg':
+				return array_sum($_values) / count($_values);
+				break;
+		}
+		return null;
+	}
+
 	/******************************SYSTEM MANAGEMENT**********************************************************/
 
 	public static function haltSystem() {
