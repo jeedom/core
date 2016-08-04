@@ -176,16 +176,7 @@ class object {
 			if (isset($def[$key]['icon'])) {
 				$icon = $def[$key]['icon'];
 			}
-			if (isset($def[$key]['iconOn']) && $result > 0) {
-				$icon = $def[$key]['iconOn'];
-			}
-			if (isset($def[$key]['iconOff']) && $result == 0) {
-				$icon = $def[$key]['iconOff'];
-			}
-			if ($result == 0 && $def[$key]['unit'] == '') {
-				$result = '';
-			}
-			if ($icon == '') {
+			if ($result == 0 && $def[$key]['unit'] == ''){
 				continue;
 			}
 			$return .= '<span style="margin-right:' . $margin . 'px;"><i class="' . $icon . '"></i> <span class="objectSummary' . $key . '">' . $result . '</span> ' . $def[$key]['unit'] . '</span> ';
@@ -343,16 +334,7 @@ class object {
 				if (isset($value['icon'])) {
 					$icon = $value['icon'];
 				}
-				if (isset($value['iconOn']) && $result > 0) {
-					$icon = $value['iconOn'];
-				}
-				if (isset($value['iconOff']) && $result == 0) {
-					$icon = $value['iconOff'];
-				}
-				if ($result == 0 && $value['unit'] == '') {
-					$result = '';
-				}
-				if ($icon == '') {
+				if ($result == 0 && $value['unit'] == ''){
 					continue;
 				}
 				$return .= '<span style="margin-right:5px;"><i class="' . $icon . '"></i> <span class="objectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . '</span>';
