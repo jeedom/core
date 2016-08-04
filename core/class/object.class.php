@@ -151,9 +151,8 @@ class object {
 		$def = jeedom::getConfiguration('object:summary');
 		$values = array();
 		$return = '<span class="objectSummaryglobal" data-version="' . $_version . '">';
-		foreach ($objects as $object) {
-
-			foreach ($def as $key => $value) {
+		foreach ($def as $key => $value) {
+			foreach ($objects as $object) {
 				if ($object->getConfiguration('summary::global::' . $key, 0) == 0) {
 					continue;
 				}
@@ -167,7 +166,7 @@ class object {
 				$values[$key] = array_merge($values[$key], $result);
 			}
 		}
-		$margin = ($_version == 'desktop') ? 10 : 5;
+		$margin = ($_version == 'desktop') ? 7 : 5;
 
 		foreach ($values as $key => $value) {
 			if (count($value) == 0) {
