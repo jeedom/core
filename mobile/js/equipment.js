@@ -13,7 +13,7 @@ function initEquipment(_object_id) {
                     if (isset(objects[i].display) && isset(objects[i].display.icon)) {
                         icon = objects[i].display.icon;
                     }
-                    li += '<li><a href="#" class="link" data-page="equipment" data-title="' + icon.replace(/\"/g, "\'") + ' ' + objects[i].name + '" data-option="' + objects[i].id + '"><span>' + icon + '</span> ' + objects[i].name + '<span style="float:right;font-size:0.8em;"><span class="objectSummary'+objects[i].id+'" data-version="mobile"></span></span></a></li>';
+                    li += '<li><a href="#" class="link" data-page="equipment" data-title="' + icon.replace(/\"/g, "\'") + ' ' + objects[i].name + '" data-option="' + objects[i].id + '"><span>' + icon + '</span> ' + objects[i].name + '<span style="float:right;font-size:0.8em;color:#787c84;"><span class="objectSummary'+objects[i].id+'" data-version="mobile"></span></span></a></li>';
                     summaries.push({object_id : objects[i].id})
                 }
             }
