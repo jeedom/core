@@ -799,6 +799,10 @@ class scenarioExpression {
 			'#trigger#' => '',
 		);
 
+		if ($_scenario != null && count($_scenario->getTags()) > 0) {
+			$replace1 = array_merge($replace1, $_scenario->getTags());
+		}
+
 		if (is_object($_scenario)) {
 			$cmd = cmd::byId(str_replace('#', '', $_scenario->getRealTrigger()));
 			if (is_object($cmd)) {
@@ -1022,11 +1026,25 @@ class scenarioExpression {
 					}
 					switch ($this->getOptions('action')) {
 						case 'start':
+							if (is_array($this->getOptions('tags'))) {
+								$actionScenario->setTags($this->getOptions('tags'));
+							}
 							$this->setLog($scenario, __('Lancement du scénario : ', __FILE__) . $actionScenario->getName());
 							if ($scenario != null) {
-								return $actionScenario->launch(__('Lancement provoqué par le scénario  : ', __FILE__) . $scenario->getHumanName());
+								return $actionScenario->launch('', __('Lancement provoqué par le scénario  : ', __FILE__) . $scenario->getHumanName());
 							} else {
-								return $actionScenario->launch(__('Lancement provoqué', __FILE__));
+								return $actionScenario->launch('', __('Lancement provoqué', __FILE__));
+							}
+							break;
+						case 'startsync':
+							if (is_array($this->getOptions('tags'))) {
+								$actionScenario->setTags($this->getOptions('tags'));
+							}
+							$this->setLog($scenario, __('Lancement du scénario : ', __FILE__) . $actionScenario->getName());
+							if ($scenario != null) {
+								return $actionScenario->launch('', __('Lancement provoqué par le scénario  : ', __FILE__) . $scenario->getHumanName(), true);
+							} else {
+								return $actionScenario->launch('', __('Lancement provoqué', __FILE__), true);
 							}
 							break;
 						case 'stop':
@@ -1046,7 +1064,7 @@ class scenarioExpression {
 					}
 					return;
 				} else if ($this->getExpression() == 'variable') {
-					$options['value'] = self::setTags($options['value']);
+					$options['value'] = self::setTags($options['value'], $scenario);
 					try {
 						$result = evaluate($options['value']);
 						if (!is_numeric($result)) {

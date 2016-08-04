@@ -43,6 +43,7 @@ class scenario {
 	private $_changeState = false;
 	private $_realTrigger = '';
 	private $_return = true;
+	private $_tags = array();
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -588,7 +589,7 @@ class scenario {
 		} else {
 			log::add('event', 'info', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclenché par : ', __FILE__) . $_trigger);
 		}
-		$this->setLog('Start : ' . $_message);
+		$this->setLog('Start : ' . $_message . '. Tags : ' . print_r($this->getTags(), true));
 		$this->setLastLaunch(date('Y-m-d H:i:s'));
 		$this->setState('in progress');
 		$this->setPID(getmypid());
@@ -1343,6 +1344,14 @@ class scenario {
 
 	public function setReturn($_return) {
 		$this->_return = $_return;
+	}
+
+	public function getTags() {
+		return $this->_tags;
+	}
+
+	public function setTags($_tags) {
+		$this->_tags = $_tags;
 	}
 
 	public function getCache($_key = '', $_default = '') {
