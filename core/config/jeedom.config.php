@@ -29,6 +29,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'outlet' => array('name' => 'Prise', 'calcul' => 'sum', 'icon' => 'icon jeedom-prise', 'unit' => '', 'count' => 'binary'),
 			'temperature' => array('name' => 'Température', 'calcul' => 'avg', 'icon' => 'icon divers-thermometer31', 'unit' => '°C'),
 			'humidity' => array('name' => 'Humidité', 'calcul' => 'avg', 'icon' => 'fa fa-tint', 'unit' => '%'),
+			'luminosity' => array('name' => 'Luminosité', 'calcul' => 'avg', 'icon' => 'icon meteo-soleil', 'unit' => 'lx'),
 			'power' => array('name' => 'Puissance', 'calcul' => 'sum', 'icon' => 'fa fa-bolt', 'unit' => 'W'),
 		),
 	),
