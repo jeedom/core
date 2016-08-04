@@ -1283,7 +1283,7 @@ class scenario {
 	}
 
 	public function setTimeout($timeout) {
-		if ($timeout == '' || is_string($timeout) || is_nan(intval($timeout)) || $timeout < 1) {
+		if ($timeout == '' || is_nan(intval($timeout)) || $timeout < 1) {
 			$timeout = '';
 		}
 		$this->timeout = $timeout;
