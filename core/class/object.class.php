@@ -182,7 +182,7 @@ class object {
 			if (isset($def[$key]['iconOff']) && $result == 0) {
 				$icon = $def[$key]['iconOff'];
 			}
-			if ($result == 0 && $def[$key]['unit'] == ''){
+			if ($result == 0 && $def[$key]['unit'] == '') {
 				$result = '';
 			}
 			if ($icon == '') {
@@ -349,7 +349,7 @@ class object {
 				if (isset($value['iconOff']) && $result == 0) {
 					$icon = $value['iconOff'];
 				}
-				if ($result == 0 && $value['unit'] == ''){
+				if ($result == 0 && $value['unit'] == '') {
 					$result = '';
 				}
 				if ($icon == '') {
