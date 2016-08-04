@@ -184,7 +184,7 @@ try {
 				$defaut = 1;
 				$advice = 'Si vous êtes en version 5.4.x on vous indiquera quand la version 5.5 sera obligatoire';
 			}
-			$health[] = array('plugin' => 'core', 'type' => 'Droits sudo', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
+			$health[] = array('plugin' => 'core', 'type' => 'Version PHP', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
 			
 			$defaut = 0;
 			$version = DB::Prepare('select version()', array(), DB::FETCH_TYPE_ROW);
