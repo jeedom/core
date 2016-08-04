@@ -100,6 +100,236 @@ try {
 			$jsonrpc->makeSuccess(jeedom::version());
 		}
 
+		/*             * ***********************Health********************************* */
+		if ($jsonrpc->getMethod() == 'health') {
+			$health = array();
+			
+			$defaut = 0;
+			$result = 'OK';
+			$advice = '';
+			$nbNeedUpdate = update::nbNeedUpdate();
+			if ($nbNeedUpdate > 0) {
+				$defaut = 1;
+				$result = $nbNeedUpdate;
+			}
+			$health[] = array('plugin' => 'core', 'type' => 'Système à jour', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
+			
+			$defaut = 0;
+			$result = 'OK';
+			$advice = '';
+			if (config::byKey('enableCron', 'core', 1, true) == 0) {
+				$defaut = 1;
+				$result = 'NOK';
+				$advice = 'Erreur cron : les crons sont désactivés. Allez dans Administration -> Moteur de tâches pour les réactiver';
+			}
+			$health[] = array('plugin' => 'core', 'type' => 'Cron actif', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
+			
+			$defaut = 0;
+			$result = 'OK';
+			$advice = '';
+			if (config::byKey('enableScenario') == 0 && count(scenario::all()) > 0) {
+				$defaut = 1;
+				$result = 'NOK';
+				$advice = 'Erreur scénario : tous les scénarios sont désactivés. Allez dans Outils -> Scénarios pour les réactiver';
+			}
+			$health[] = array('plugin' => 'core', 'type' => 'Scénario actif', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
+			
+			$defaut = 0;
+			$result = 'OK';
+			$advice = '';
+			if (!jeedom::isStarted()) {
+				$defaut = 1;
+				$result = 'NOK';
+			}
+			$health[] = array('plugin' => 'core', 'type' => 'Démarré', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
+			
+			$defaut = 0;
+			$result = 'OK';
+			$advice = '';
+			if (!jeedom::isDateOk()) {
+				$defaut = 1;
+				$result = date('Y-m-d H:i:s');
+			}
+			$health[] = array('plugin' => 'core', 'type' => 'Date système', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
+			
+			$defaut = 0;
+			$result = 'OK';
+			$advice = '';
+			if (user::hasDefaultIdentification() == 1) {
+				$defaut = 1;
+				$result = 'NOK';
+				$advice = 'Attention vous avez toujours l\'utilisateur admin/admin de configuré, cela représente une grave faille de sécurité, aller <a href=\'index.php?v=d&p=user\'>ici</a> pour modifier le mot de passe de l\'utilisateur admin';
+			}
+			$health[] = array('plugin' => 'core', 'type' => 'Authentification par défaut', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
+			
+			$defaut = 0;
+			$result = 'OK';
+			$advice = '';
+			if (!jeedom::isCapable('sudo')) {
+				$defaut = 1;
+				$result = 'NOK';
+				$advice = 'Appliquer <a href="https://www.jeedom.com/doc/documentation/installation/fr_FR/doc-installation.html#_etape_4_définition_des_droits_root_à_jeedom" targe="_blank">cette étape</a> de l\'installation';
+			}
+			$health[] = array('plugin' => 'core', 'type' => 'Droits sudo', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
+			
+			$defaut = 0;
+			$result = jeedom::version();
+			$advice = '';
+			$health[] = array('plugin' => 'core', 'type' => 'Version Jeedom', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
+			
+			$defaut = 0;
+			$result = phpversion();
+			$advice = '';
+			if (version_compare(phpversion(), '5.5', '<')) {
+				$defaut = 1;
+				$advice = 'Si vous êtes en version 5.4.x on vous indiquera quand la version 5.5 sera obligatoire';
+			}
+			$health[] = array('plugin' => 'core', 'type' => 'Droits sudo', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
+			
+			$defaut = 0;
+			$version = DB::Prepare('select version()', array(), DB::FETCH_TYPE_ROW);
+			$result = $version['version()'];
+			$advice = '';
+			$health[] = array('plugin' => 'core', 'type' => 'Version database', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
+			
+			$defaut = 0;
+			$result = jeedom::checkSpaceLeft();
+			$advice = '';
+			if ($result < 10) {
+				$defaut = 1;
+			}
+			$health[] = array('plugin' => 'core', 'type' => 'Espace disque libre', 'defaut' => $defaut, 'result' => $result . ' %', 'advice' => $advice);
+			
+			$defaut = 0;
+			$result = 'OK';
+			$advice = '';
+			if (!network::test('internal')) {
+				$defaut = 1;
+				$result = 'NOK';
+				$advice = 'Allez sur Administration -> Configuration puis configurez correctement la partie réseau';
+			}
+			$health[] = array('plugin' => 'core', 'type' => 'Configuration réseau interne', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
+			
+			$defaut = 0;
+			$result = 'OK';
+			$advice = '';
+			if (!network::test('external')) {
+				$defaut = 1;
+				$result = 'NOK';
+				$advice = 'Allez sur Administration -> Configuration puis configurez correctement la partie réseau';
+			}
+			$health[] = array('plugin' => 'core', 'type' => 'Configuration réseau externe', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
+			
+			$defaut = 0;
+			$advice = '';
+			if (cache::isPersistOk()) {
+				if (config::byKey('cache::engine') != 'FilesystemCache' && config::byKey('cache::engine') != 'PhpFileCache') {
+					$result = 'OK';
+				} else {
+					$filename = dirname(__FILE__) . '/../../cache.tar.gz';
+					$result = 'OK (' . date('Y-m-d H:i:s', filemtime($filename)) . ')';
+				}
+			} else {
+				$result = 'NOK';
+				$defaut = 1;
+				$advice = 'Votre cache n\'est pas sauvegardé en cas de redemarrage certaines information peuvent être perdues. Essayez de lancer (à partir du moteur de têche) la tâche cache::persist';
+			}
+			$health[] = array('plugin' => 'core', 'type' => 'Persistance du cache', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
+			
+			foreach (plugin::listPlugin(true) as $plugin) {
+				$plugin_id = $plugin->getId();
+				$result = 'OK';
+				$defaut = 0;
+				$advice = '';
+				$hasSpecificHealth = 0;
+				$hasSpecificHealthIcon = '';
+				try {
+					if ($plugin->getHasDependency() == 1) {
+						$dependancy_info = $plugin->dependancy_info();
+						switch ($dependancy_info['state']) {
+							case 'ok':
+								$result = 'OK';
+								$defaut = 0;
+								break;
+							case 'nok':
+								$result = 'NOK';
+								$defaut = 1;
+								break;
+							case 'in_progress':
+								$result = 'En cours';
+								$defaut = 0;
+								break;
+							default:
+								break;
+						}
+						$health[] = array('plugin' => $plugin_id, 'type' => 'dépendance', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
+					}
+				} catch (Exception $e) {
+			
+				}
+				try {
+					if ($plugin->getHasOwnDeamon() == 1) {
+						$deamon_info = $plugin->deamon_info();
+						switch ($deamon_info['launchable']) {
+							case 'ok':
+								$result = 'OK';
+								$defaut = 0;
+								break;
+							case 'nok':
+								if ($deamon_info['auto'] != 1) {
+									$result = 'Désactivé';
+									$defaut = 0;
+									$advice = $deamon_info['launchable_message'];
+								} else {
+									$result = 'NOK';
+									$defaut = 1;
+									$advice = $deamon_info['launchable_message'];
+								}
+								break;
+						}
+						$health[] = array('plugin' => $plugin_id, 'type' => 'Configuration démon', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
+
+						switch ($deamon_info['state']) {
+							case 'ok':
+								$result = 'OK';
+								$defaut = 0;
+								break;
+							case 'nok':
+								if ($deamon_info['auto'] != 1) {
+									$result = 'Désactivé';
+									$defaut = 0;
+								} else {
+									$result = 'NOK';
+									$defaut = 1;
+								}
+								break;
+						}
+						$health[] = array('plugin' => $plugin_id, 'type' => 'Statut démon', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
+					}
+				} catch (Exception $e) {
+			
+				}
+			
+				try {
+					if (method_exists($plugin->getId(), 'health')) {
+			
+						foreach ($plugin_id::health() as $result) {
+							if ($result['state']) {
+								$defaut = 0;
+							} else {
+								$defaut = 1;
+							}
+							$health[] = array('plugin' => $plugin_id, 'type' => $result['test'], 'defaut' => $defaut, 'result' => $result['result'], 'advice' => $result['advice']);
+						}
+					}
+				} catch (Exception $e) {
+			
+				}
+			}
+			
+			$jsonrpc->makeSuccess($health);
+		}
+		
 		/*             * ************************Plugin*************************** */
 		if ($jsonrpc->getMethod() == 'plugin::listPlugin') {
 			$activateOnly = (isset($params['activateOnly']) && $params['activateOnly'] == 1) ? true : false;
