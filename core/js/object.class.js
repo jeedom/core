@@ -234,9 +234,14 @@ jeedom.object.summaryUpdate = function(_params) {
         global: false,
         success: function (result) {
             for(var i in result){
-                var html = $(result[i].html);
-                var object = objects[i].object;
-                object.replaceWith(html);
+                objects[i].object.replaceWith($(result[i].html));
+                if($('.objectSummary' + i).closest('.objectSummaryHide') != []){
+                    if($(result[i].html).html() == ''){
+                        $('.objectSummary' + i).closest('.objectSummaryHide').hide();
+                    }else{
+                        $('.objectSummary' + i).closest('.objectSummaryHide').show();
+                    }
+                }
             }
         }
     };
