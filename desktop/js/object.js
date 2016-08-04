@@ -94,16 +94,16 @@ function loadObjectConfiguration(_id){
             $('.object').setValues(data, '.objectAttr');
             $('.objectAttr[data-l1key=father_id] option[value=' + data.id + ']').hide();
             $('.div_summary').empty();
-
+			$('.tabnumber').empty();
             if (isset(data.configuration) && isset(data.configuration.summary)) {
-                for(var i in data.configuration.summary){
+				for(var i in data.configuration.summary){
                     var el = $('.type'+i);
                     if(el != undefined){
                         for(var j in data.configuration.summary[i]){
 							addSummaryInfo(el,data.configuration.summary[i][j]);
                         }
 						if (data.configuration.summary[i].length != 0){
-							$('.summarytab'+i).empty().append('(' + data.configuration.summary[i].length + ')');
+							$('.summarytabnumber'+i).append('(' + data.configuration.summary[i].length + ')');
 						}
                     }
 

@@ -896,7 +896,7 @@ if ($cmd->getDisplay('parameters') != '') {
 	}
 });
 $(document).ready(function(){
-	if ($('.cmdAttr[data-l1key=display][data-l2key=generic_type]').value() == 'GENERIC' || $('.cmdAttr[data-l1key=display][data-l2key=generic_type]').value() == 'GENERIC_ACTION') {
+	if ($('.cmdAttr[data-l1key=display][data-l2key=generic_type]').value() == 'GENERIC_INFO' || $('.cmdAttr[data-l1key=display][data-l2key=generic_type]').value() == 'GENERIC_ACTION') {
 		$('.iconeGeneric').show();
 	}
 });

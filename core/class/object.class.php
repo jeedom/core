@@ -151,9 +151,8 @@ class object {
 		$def = jeedom::getConfiguration('object:summary');
 		$values = array();
 		$return = '<span class="objectSummaryglobal" data-version="' . $_version . '">';
-		foreach ($objects as $object) {
-
-			foreach ($def as $key => $value) {
+		foreach ($def as $key => $value) {
+			foreach ($objects as $object) {
 				if ($object->getConfiguration('summary::global::' . $key, 0) == 0) {
 					continue;
 				}
@@ -167,7 +166,7 @@ class object {
 				$values[$key] = array_merge($values[$key], $result);
 			}
 		}
-		$margin = ($_version == 'desktop') ? 10 : 5;
+		$margin = ($_version == 'desktop') ? 7 : 5;
 
 		foreach ($values as $key => $value) {
 			if (count($value) == 0) {
@@ -177,14 +176,8 @@ class object {
 			if (isset($def[$key]['icon'])) {
 				$icon = $def[$key]['icon'];
 			}
-			if (isset($def[$key]['iconOn']) && $result > 0) {
-				$icon = $def[$key]['iconOn'];
-			}
-			if (isset($def[$key]['iconOff']) && $result == 0) {
-				$icon = $def[$key]['iconOff'];
-			}
-			if ($result == 0 && $def[$key]['unit'] == '') {
-				$result = '';
+			if ($result == 0 && $def[$key]['unit'] == ''){
+				continue;
 			}
 			$return .= '<span style="margin-right:' . $margin . 'px;"><i class="' . $icon . '"></i> <span class="objectSummary' . $key . '">' . $result . '</span> ' . $def[$key]['unit'] . '</span> ';
 		}
@@ -341,14 +334,8 @@ class object {
 				if (isset($value['icon'])) {
 					$icon = $value['icon'];
 				}
-				if (isset($value['iconOn']) && $result > 0) {
-					$icon = $value['iconOn'];
-				}
-				if (isset($value['iconOff']) && $result == 0) {
-					$icon = $value['iconOff'];
-				}
-				if ($result == 0 && $value['unit'] == '') {
-					$result = '';
+				if ($result == 0 && $value['unit'] == ''){
+					continue;
 				}
 				$return .= '<span style="margin-right:5px;"><i class="' . $icon . '"></i> <span class="objectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . '</span>';
 			}
