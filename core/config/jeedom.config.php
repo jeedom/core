@@ -20,11 +20,12 @@ global $JEEDOM_INTERNAL_CONFIG;
 $JEEDOM_INTERNAL_CONFIG = array(
 	'object' => array(
 		'summary' => array(
+			'security' => array('name' => 'Alerte', 'calcul' => 'sum', 'iconOff' => '', 'iconOn' => 'icon jeedom-alerte', 'unit' => '', 'count' => 'binary'),
+			'motion' => array('name' => 'Mouvement', 'calcul' => 'sum', 'iconOff' => '', 'iconOn' => 'icon jeedom-mouvement', 'unit' => '', 'count' => 'binary'),
 			'door' => array('name' => 'Porte', 'calcul' => 'sum', 'iconOff' => 'icon jeedom-porte-ferme', 'iconOn' => 'icon jeedom-porte-ouverte', 'unit' => '', 'count' => 'binary'),
 			'windows' => array('name' => 'Fenêtre', 'calcul' => 'sum', 'iconOff' => 'icon jeedom-fenetre-ferme', 'iconOn' => 'icon jeedom-fenetre-ouverte', 'unit' => '', 'count' => 'binary'),
 			'shutter' => array('name' => 'Volet', 'calcul' => 'sum', 'iconOff' => 'icon jeedom-volet-ferme', 'iconOn' => 'icon jeedom-volet-ouvert', 'unit' => '', 'count' => 'binary'),
 			'light' => array('name' => 'Lumière', 'calcul' => 'sum', 'iconOff' => 'icon jeedom-lumiere-off', 'iconOn' => 'icon jeedom-lumiere-on', 'unit' => '', 'count' => 'binary'),
-			'motion' => array('name' => 'Mouvement', 'calcul' => 'sum', 'iconOff' => 'fa fa-check', 'iconOn' => 'icon jeedom-mouvement', 'unit' => '', 'count' => 'binary'),
 			'outlet' => array('name' => 'Prise', 'calcul' => 'sum', 'iconOff' => 'fa fa-times', 'iconOn' => 'icon jeedom-prise', 'unit' => '', 'count' => 'binary'),
 			'temperature' => array('name' => 'Température', 'calcul' => 'avg', 'icon' => 'icon divers-thermometer31', 'unit' => '°C'),
 			'humidity' => array('name' => 'Humidité', 'calcul' => 'avg', 'icon' => 'fa fa-tint', 'unit' => '%'),
