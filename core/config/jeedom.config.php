@@ -20,7 +20,7 @@ global $JEEDOM_INTERNAL_CONFIG;
 $JEEDOM_INTERNAL_CONFIG = array(
 	'object' => array(
 		'summary' => array(
-			'security' => array('name' => 'Alerte', 'calcul' => 'sum', 'iconOff' => '', 'iconOn' => 'icon jeedom-alerte', 'unit' => '', 'count' => 'binary'),
+			'security' => array('name' => 'Alerte', 'calcul' => 'sum', 'iconOff' => '', 'iconOn' => 'icon jeedom-alerte2', 'unit' => '', 'count' => 'binary'),
 			'motion' => array('name' => 'Mouvement', 'calcul' => 'sum', 'iconOff' => '', 'iconOn' => 'icon jeedom-mouvement', 'unit' => '', 'count' => 'binary'),
 			'door' => array('name' => 'Porte', 'calcul' => 'sum', 'iconOff' => 'icon jeedom-porte-ferme', 'iconOn' => 'icon jeedom-porte-ouverte', 'unit' => '', 'count' => 'binary'),
 			'windows' => array('name' => 'Fenêtre', 'calcul' => 'sum', 'iconOff' => 'icon jeedom-fenetre-ferme', 'iconOn' => 'icon jeedom-fenetre-ouverte', 'unit' => '', 'count' => 'binary'),
