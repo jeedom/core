@@ -272,7 +272,7 @@ try {
 	$cron->setDeamon(0);
 	$cron->save();
 
-	if (config::byKey('object:summary') == '') {
+	if (config::byKey('object:summary') == '' || !is_array(config::byKey('object:summary'))) {
 		config::save('object:summary',
 			array('security' => array('key' => 'security', 'name' => 'Alerte', 'calcul' => 'sum', 'icon' => '<i class="icon jeedom-alerte2"></i>', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
 				'motion' => array('key' => 'motion', 'name' => 'Mouvement', 'calcul' => 'sum', 'icon' => '<i class="icon jeedom-mouvement"></i>', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),

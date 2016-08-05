@@ -157,7 +157,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `config` (
   `plugin` VARCHAR(127) NOT NULL DEFAULT 'core',
   `key` VARCHAR(255) NOT NULL,
-  `value` VARCHAR(255) NULL,
+  `value` TEXT NULL,
   PRIMARY KEY (`key`, `plugin`))
 ENGINE = InnoDB;
 
