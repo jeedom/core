@@ -174,6 +174,8 @@ class object {
 					}
 					$virtual = eqLogic::byId($value['object']->getConfiguration('summary_virtual_id'));
 					if (!is_object($virtual)) {
+						$object->getConfiguration('summary_virtual_id', '');
+						$object->save();
 						continue;
 					}
 					$cmd = $virtual->getCmd('info', $value['key']);
