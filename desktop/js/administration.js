@@ -520,6 +520,29 @@ $('body').undelegate('.objectSummary .objectSummaryAction[data-l1key=remove]', '
     $(this).closest('.objectSummary').remove();
 });
 
+$('body').undelegate('.objectSummary .objectSummaryAction[data-l1key=createVirtual]', 'click').delegate('.objectSummary .objectSummaryAction[data-l1key=createVirtual]', 'click', function () {
+    var objectSummary = $(this).closest('.objectSummary');
+    $.ajax({
+        type: "POST", 
+        url: "core/ajax/object.ajax.php", 
+        data: {
+            action: "createSummaryVirtual",
+            key: objectSummary.find('.objectSummaryAttr[data-l1key=key]').value()
+        },
+        dataType: 'json',
+        error: function (request, status, error) {
+            handleAjaxError(request, status, error);
+        },
+        success: function (data) {
+            if (data.state != 'ok') {
+                $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                return;
+            }
+            $('#div_alert').showAlert({message: '{{Création des commandes virtuel réussies}}', level: 'success'});
+        }
+    });
+});
+
 $("#table_objectSummary").sortable({axis: "y", cursor: "move", items: ".objectSummary", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
 
 
@@ -588,14 +611,19 @@ function addObjectSummary(_summary) {
     tr += '<td>';
     tr += '<a class="objectSummaryAction cursor" data-l1key="remove"><i class="fa fa-minus-circle"></i></a>';
     tr += '</td>';
-    tr += '</tr>';
-    $('#table_objectSummary tbody').append(tr);
+    tr += '<td>';
+    if(isset(_summary.key) && _summary.key != ''){
+        tr += '<a class="btn btn-success btn-sm objectSummaryAction" data-l1key="createVirtual"><i class="fa fa-puzzle-piece"></i> {{Créer virtuel}}</a>';
+   }
+   tr += '</td>';
+   tr += '</tr>';
+   $('#table_objectSummary tbody').append(tr);
 
-    $('#table_objectSummary tbody tr:last').setValues(_summary, '.objectSummaryAttr');
-    if(isset(_summary.key)){
-        $('#table_objectSummary tbody tr:last .objectSummaryAttr[data-l1key=key]').attr('disabled','disabled');
-    }
-    modifyWithoutSave = true;
+   $('#table_objectSummary tbody tr:last').setValues(_summary, '.objectSummaryAttr');
+   if(isset(_summary.key) && _summary.key != ''){
+    $('#table_objectSummary tbody tr:last .objectSummaryAttr[data-l1key=key]').attr('disabled','disabled');
+}
+modifyWithoutSave = true;
 }
 
 function saveObjectSummary() {

@@ -46,6 +46,11 @@ try {
 		ajax::success(jeedom::toHumanReadable(utils::o2a($object)));
 	}
 
+	if (init('action') == 'createSummaryVirtual') {
+		object::createSummaryToVirtual(init('key'));
+		ajax::success();
+	}
+
 	if (init('action') == 'all') {
 		ajax::success(utils::o2a(object::buildTree()));
 	}

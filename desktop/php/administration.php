@@ -804,6 +804,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
                                 <th>{{Unité}}</th>
                                 <th>{{Méthode de comptage}}</th>
                                 <th>{{Affiché si valeur égale 0}}</th>
+                                <th>{{Liée à un virtuel}}</th>
                                 <th></th>
                             </tr>
                         </thead>

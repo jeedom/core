@@ -140,10 +140,42 @@ class object {
 		if (count($objects) == 0) {
 			return;
 		}
+		$toRefreshCmd = array();
 		foreach ($objects as $object) {
 			$events[] = array('object_id' => $object->getId());
+			$summaries = $object->getConfiguration('summary');
+			if (!is_array($summaries)) {
+				continue;
+			}
+			foreach ($summaries as $key => $summary) {
+
+				foreach ($summary as $cmd_info) {
+					if ($object->getConfiguration('summary_virtual_id') != '' && str_replace('#', '', $cmd_info['cmd']) == $_cmd_id) {
+						$toRefreshCmd[] = array('object' => $object, 'key' => $key);
+					}
+				}
+			}
 		}
-		event::adds('object::summary::update', $events);
+		if (count($events) > 0) {
+			event::adds('object::summary::update', $events);
+		}
+		if (count($toRefreshCmd) > 0) {
+			foreach ($toRefreshCmd as $value) {
+				try {
+					$virtual = eqLogic::byId($value['object']->getConfiguration('summary_virtual_id'));
+					if (!is_object($virtual)) {
+						continue;
+					}
+					$cmd = $virtual->getCmd('info', $value['key']);
+					if (!is_object($cmd)) {
+						continue;
+					}
+					$cmd->event($object->getSummary($value['key']));
+				} catch (Exception $e) {
+
+				}
+			}
+		}
 	}
 
 	public static function getGlobalHtmlSummary($_version = 'desktop') {
@@ -179,6 +211,79 @@ class object {
 			$return .= '<span style="margin-right:' . $margin . 'px;">' . $def[$key]['icon'] . ' <span class="objectSummary' . $key . '">' . $result . '</span> ' . $def[$key]['unit'] . '</span> ';
 		}
 		return trim($return) . '</span>';
+	}
+
+	public static function createSummaryToVirtual($_key = '') {
+		if ($_key == '') {
+			return;
+		}
+		$def = config::byKey('object:summary');
+		if (!isset($def[$_key])) {
+			return;
+		}
+		try {
+			$plugin = plugin::byId('virtual');
+			if (!is_object($plugin)) {
+				$update = update::byLogicalId('virtual');
+				if (!is_object($update)) {
+					$update = new update();
+				}
+				$update->setLogicalId('virtual');
+				$update->setSource('market');
+				$update->setConfiguration('version', 'stable');
+				$update->save();
+				$update->doUpdate();
+				$plugin = plugin::byId('virtual');
+			}
+		} catch (Exception $e) {
+			$update = update::byLogicalId('virtual');
+			if (!is_object($update)) {
+				$update = new update();
+			}
+			$update->setLogicalId('virtual');
+			$update->setSource('market');
+			$update->setConfiguration('version', 'stable');
+			$update->save();
+			$update->doUpdate();
+			$plugin = plugin::byId('virtual');
+		}
+		if (!$plugin->isActive()) {
+			$plugin->setIsEnable(1);
+		}
+		if (!is_object($plugin)) {
+			throw new Exception(__('Le plugin virtuel doit être installé', __FILE__));
+		}
+		if (!$plugin->isActive()) {
+			throw new Exception(__('Le plugin virtuel doit être actif', __FILE__));
+		}
+		foreach (object::all() as $object) {
+			$virtual = eqLogic::byLogicalId('summary' . $object->getId(), 'virtual');
+			if (!is_object($virtual)) {
+				$virtual = new virtual();
+				$virtual->setName(__('Résumé', __FILE__));
+				$virtual->setIsVisible(0);
+				$virtual->setIsEnable(1);
+			}
+			$virtual->setIsEnable(1);
+			$virtual->setLogicalId('summary' . $object->getId());
+			$virtual->setEqType_name('virtual');
+			$virtual->setObject_id($object->getId());
+			$virtual->save();
+			$object->setConfiguration('summary_virtual_id', $virtual->getId());
+			$object->save();
+			$cmd = $virtual->getCmd('info', $_key);
+			if (!is_object($cmd)) {
+				$cmd = new virtualCmd();
+				$cmd->setName($def[$_key]['name']);
+				$cmd->setIsHistorized(1);
+			}
+			$cmd->setEqLogic_id($virtual->getId());
+			$cmd->setLogicalId($_key);
+			$cmd->setType('info');
+			$cmd->setSubtype('numeric');
+			$cmd->setUnite($def[$_key]['unit']);
+			$cmd->save();
+		}
 	}
 
 	/*     * *********************Méthodes d'instance************************* */
