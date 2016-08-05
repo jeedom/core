@@ -164,6 +164,7 @@
  $("#bt_saveGeneraleConfig").on('click', function (event) {
     $.hideAlert();
     saveConvertColor();
+    saveObjectSummary();
     jeedom.config.save({
         configuration: $('#config').getValues('.configKey')[0],
         error: function (error) {
@@ -502,3 +503,130 @@ $('#bt_accessSystemAdministration').on('click',function(){
     $("#md_modal").load('index.php?v=d&modal=system.action').dialog('open');
 });
 
+/**************************Summary***********************************/
+
+$('#bt_addObjectSummary').on('click', function () {
+    addObjectSummary();
+});
+
+$('body').undelegate('.objectSummary .objectSummaryAction[data-l1key=chooseIcon]', 'click').delegate('.objectSummary .objectSummaryAction[data-l1key=chooseIcon]', 'click', function () {
+    var objectSummary = $(this).closest('.objectSummary');
+    chooseIcon(function (_icon) {
+        objectSummary.find('.objectSummaryAttr[data-l1key=icon]').empty().append(_icon);
+    });
+});
+
+$('body').undelegate('.objectSummary .objectSummaryAction[data-l1key=remove]', 'click').delegate('.objectSummary .objectSummaryAction[data-l1key=remove]', 'click', function () {
+    $(this).closest('.objectSummary').remove();
+});
+
+$("#table_objectSummary").sortable({axis: "y", cursor: "move", items: ".objectSummary", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
+
+
+printObjectSummary();
+
+function printObjectSummary() {
+    $.ajax({// fonction permettant de faire de l'ajax
+        type: "POST", // methode de transmission des données au fichier php
+        url: "core/ajax/config.ajax.php", // url du fichier php
+        data: {
+            action: "getKey",
+            key: 'object:summary'
+        },
+        dataType: 'json',
+        error: function (request, status, error) {
+            handleAjaxError(request, status, error);
+        },
+        success: function (data) { // si l'appel a bien fonctionné
+        if (data.state != 'ok') {
+            $('#div_alert').showAlert({message: data.result, level: 'danger'});
+            return;
+        }
+
+        $('#table_objectSummary tbody').empty();
+        for (var i in data.result) {
+            if(!isset(data.result[i].key)){
+                data.result[i].key = i.toLowerCase().stripAccents().replace(/\_/g, '').replace(/\-/g, '').replace(/\&/g, '').replace(/\s/g, '');
+            }
+            addObjectSummary(data.result[i]);
+        }
+        modifyWithoutSave = false;
+    }
+});
+}
+
+function addObjectSummary(_summary) {
+    var tr = '<tr class="objectSummary">';
+    tr += '<td>';
+    tr += '<input class="objectSummaryAttr form-control input-sm" data-l1key="key" />';
+    tr += '</td>';
+    tr += '<td>';
+    tr += '<input class="objectSummaryAttr form-control input-sm" data-l1key="name" />';
+    tr += '</td>';
+    tr += '<td>';
+    tr += '<select class="objectSummaryAttr form-control input-sm" data-l1key="calcul">';
+    tr += '<option value="sum">{{Somme}}</option>';
+    tr += '<option value="avg">{{Moyenne}}</option>';
+    tr += '</select>';
+    tr += '</td>';
+    tr += '<td>';
+    tr += '<a class="objectSummaryAction btn btn-default btn-sm" data-l1key="chooseIcon"><i class="fa fa-flag"></i> {{Icône}}</a>';
+    tr += '<span class="objectSummaryAttr" data-l1key="icon" style="margin-left : 10px;"></span>';
+    tr += '</td>';
+    tr += '<td>';
+    tr += '<input class="objectSummaryAttr form-control input-sm" data-l1key="unit" />';
+    tr += '</td>';
+    tr += '<td>';
+    tr += '<select class="objectSummaryAttr form-control input-sm" data-l1key="count">';
+    tr += '<option value="">{{Aucun}}</option>';
+    tr += '<option value="binary">{{Binaire}}</option>';
+    tr += '</select>';
+    tr += '</td>';
+    tr += '<td>';
+    tr += '<center><input type="checkbox" class="objectSummaryAttr" data-l1key="allowDisplayZero" /></center>';
+    tr += '</td>';
+    tr += '<td>';
+    tr += '<a class="objectSummaryAction cursor" data-l1key="remove"><i class="fa fa-minus-circle"></i></a>';
+    tr += '</td>';
+    tr += '</tr>';
+    $('#table_objectSummary tbody').append(tr);
+
+    $('#table_objectSummary tbody tr:last').setValues(_summary, '.objectSummaryAttr');
+    if(isset(_summary.key)){
+        $('#table_objectSummary tbody tr:last .objectSummaryAttr[data-l1key=key]').attr('disabled','disabled');
+    }
+    modifyWithoutSave = true;
+}
+
+function saveObjectSummary() {
+    summary = {};
+    temp = $('#table_objectSummary tbody tr').getValues('.objectSummaryAttr');
+    for(var i in temp){
+        temp[i].key = temp[i].key.toLowerCase().stripAccents().replace(/\_/g, '').replace(/\-/g, '').replace(/\&/g, '').replace(/\s/g, '')
+        if(temp[i].key == ''){
+            temp[i].key = temp[i].name.toLowerCase().stripAccents().replace(/\_/g, '').replace(/\-/g, '').replace(/\&/g, '').replace(/\s/g, '')
+        }
+        summary[temp[i].key] = temp[i]
+    }
+    value = {'object:summary' : summary};
+    $.ajax({
+        type: "POST", 
+        url: "core/ajax/config.ajax.php", 
+        data: {
+            action: 'addKey',
+            value: json_encode(value)
+        },
+        dataType: 'json',
+        error: function (request, status, error) {
+            handleAjaxError(request, status, error);
+        },
+        success: function (data) { // si l'appel a bien fonctionné
+        if (data.state != 'ok') {
+            $('#div_alert').showAlert({message: data.result, level: 'danger'});
+            return;
+        }
+        printObjectSummary();
+        modifyWithoutSave = false;
+    }
+});
+}

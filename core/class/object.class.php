@@ -148,7 +148,7 @@ class object {
 
 	public static function getGlobalHtmlSummary($_version = 'desktop') {
 		$objects = self::all();
-		$def = jeedom::getConfiguration('object:summary');
+		$def = config::byKey('object:summary');
 		$values = array();
 		$return = '<span class="objectSummaryglobal" data-version="' . $_version . '">';
 		foreach ($def as $key => $value) {
@@ -173,13 +173,10 @@ class object {
 				continue;
 			}
 			$result = round(jeedom::calculStat($def[$key]['calcul'], $value), 1);
-			if (isset($def[$key]['icon'])) {
-				$icon = $def[$key]['icon'];
-			}
 			if ($def[$key]['allowDisplayZero'] == false && $result == 0) {
 				continue;
 			}
-			$return .= '<span style="margin-right:' . $margin . 'px;"><i class="' . $icon . '"></i> <span class="objectSummary' . $key . '">' . $result . '</span> ' . $def[$key]['unit'] . '</span> ';
+			$return .= '<span style="margin-right:' . $margin . 'px;">' . $def[$key]['icon'] . ' <span class="objectSummary' . $key . '">' . $result . '</span> ' . $def[$key]['unit'] . '</span> ';
 		}
 		return trim($return) . '</span>';
 	}
@@ -293,7 +290,7 @@ class object {
 	}
 
 	public function getSummary($_key = '', $_raw = false) {
-		$def = jeedom::getConfiguration('object:summary');
+		$def = config::byKey('object:summary');
 		if ($_key == '' || !isset($def[$_key])) {
 			return null;
 		}
@@ -323,21 +320,17 @@ class object {
 
 	public function getHtmlSummary($_version = 'desktop') {
 		$return = '<span class="objectSummary' . $this->getId() . '" data-version="' . $_version . '">';
-		foreach (jeedom::getConfiguration('object:summary') as $key => $value) {
+		foreach (config::byKey('object:summary') as $key => $value) {
 			if ($this->getConfiguration('summary::hide::' . $_version . '::' . $key, 0) == 1) {
 				continue;
 			}
 			$result = $this->getSummary($key);
 			if ($result !== null) {
 				$result = round($result, 1);
-				$icon = '';
-				if (isset($value['icon'])) {
-					$icon = $value['icon'];
-				}
 				if ($value['allowDisplayZero'] == false && $result == 0) {
 					continue;
 				}
-				$return .= '<span style="margin-right:5px;"><i class="' . $icon . '"></i> <span class="objectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . '</span>';
+				$return .= '<span style="margin-right:5px;">' . $value['icon'] . ' <span class="objectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . '</span>';
 			}
 		}
 		return trim($return) . '</span>';

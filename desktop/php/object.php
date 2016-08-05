@@ -129,7 +129,7 @@ foreach ($allObject as $object) {
             <tr>
               <th></th>
               <?php
-foreach (jeedom::getConfiguration('object:summary') as $key => $value) {
+foreach (config::byKey('object:summary') as $key => $value) {
 	echo '<th style="cursor:default;">' . $value['name'] . '</th>';
 }
 ?>
@@ -140,7 +140,7 @@ echo '<tr>';
 echo '<td style="cursor:default;">';
 echo '{{Remonter dans le résumé global}}';
 echo '</td>';
-foreach (jeedom::getConfiguration('object:summary') as $key => $value) {
+foreach (config::byKey('object:summary') as $key => $value) {
 	echo '<td>';
 	echo '<input type="checkbox" class="objectAttr" data-l1key="configuration" data-l2key="summary::global::' . $key . '" />';
 	echo '</td>';
@@ -151,7 +151,7 @@ echo '<tr>';
 echo '<td style="cursor:default;">';
 echo '{{Masquer en desktop}}';
 echo '</td>';
-foreach (jeedom::getConfiguration('object:summary') as $key => $value) {
+foreach (config::byKey('object:summary') as $key => $value) {
 	echo '<td>';
 	echo '<input type="checkbox" class="objectAttr" data-l1key="configuration" data-l2key="summary::hide::desktop::' . $key . '" />';
 	echo '</td>';
@@ -162,7 +162,7 @@ echo '<tr>';
 echo '<td>';
 echo '{{Masquer en mobile}}';
 echo '</td>';
-foreach (jeedom::getConfiguration('object:summary') as $key => $value) {
+foreach (config::byKey('object:summary') as $key => $value) {
 	echo '<td>';
 	echo '<input type="checkbox" class="objectAttr" data-l1key="configuration" data-l2key="summary::hide::mobile::' . $key . '" />';
 	echo '</td>';
@@ -174,14 +174,8 @@ echo '</tr>';
       <ul class="nav nav-tabs" role="tablist">
         <?php
 $active = 'active';
-foreach (jeedom::getConfiguration('object:summary') as $key => $value) {
-	$icon = '';
-	if (isset($value['icon'])) {
-		$icon = $value['icon'];
-	} else {
-		$icon = $value['iconOn'];
-	}
-	echo '<li class="' . $active . '"><a href="#summarytab' . $key . '" role="tab" data-toggle="tab"><i class="' . $icon . '">  ' . $value['name'] . '</i>  <span class="tabnumber summarytabnumber' . $key . '"</span></a></li>';
+foreach (config::byKey('object:summary') as $key => $value) {
+	echo '<li class="' . $active . '"><a href="#summarytab' . $key . '" role="tab" data-toggle="tab">' . $value['icon'] . ' ' . $value['name'] . '</i>  <span class="tabnumber summarytabnumber' . $key . '"</span></a></li>';
 	$active = '';
 }
 ?>
@@ -189,7 +183,7 @@ foreach (jeedom::getConfiguration('object:summary') as $key => $value) {
     <div class="tab-content">
       <?php
 $active = ' active';
-foreach (jeedom::getConfiguration('object:summary') as $key => $value) {
+foreach (config::byKey('object:summary') as $key => $value) {
 	echo '<div role="tabpanel" class="tab-pane type' . $key . $active . '" data-type="' . $key . '" id="summarytab' . $key . '">';
 	echo '<a class="btn btn-sm btn-success pull-right addSummary" data-type="' . $key . '"><i class="fa fa-plus-circle"></i> {{Ajouter une commande}}</a>';
 	echo '<br/>';
