@@ -332,6 +332,13 @@ class object {
 		$cmd->save();
 
 		foreach (object::all() as $object) {
+			$summaries = $object->getConfiguration('summary');
+			if (!is_array($summaries)) {
+				continue;
+			}
+			if (!isset($summaries[$key]) || !is_array($summaries[$key]) || count($summaries[$key]) == 0) {
+				continue;
+			}
 			$virtual = eqLogic::byLogicalId('summary' . $object->getId(), 'virtual');
 			if (!is_object($virtual)) {
 				$virtual = new virtual();
