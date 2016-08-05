@@ -336,7 +336,7 @@ class object {
 			if (!is_array($summaries)) {
 				continue;
 			}
-			if (!isset($summaries[$key]) || !is_array($summaries[$key]) || count($summaries[$key]) == 0) {
+			if (!isset($summaries[$_key]) || !is_array($summaries[$_key]) || count($summaries[$_key]) == 0) {
 				continue;
 			}
 			$virtual = eqLogic::byLogicalId('summary' . $object->getId(), 'virtual');
