@@ -283,6 +283,7 @@ class object {
 				$update->setConfiguration('version', 'stable');
 				$update->save();
 				$update->doUpdate();
+				sleep(2);
 				$plugin = plugin::byId('virtual');
 			}
 		} catch (Exception $e) {
@@ -295,6 +296,7 @@ class object {
 			$update->setConfiguration('version', 'stable');
 			$update->save();
 			$update->doUpdate();
+			sleep(2);
 			$plugin = plugin::byId('virtual');
 		}
 		if (!$plugin->isActive()) {
