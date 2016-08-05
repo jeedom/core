@@ -141,6 +141,7 @@ class object {
 			return;
 		}
 		$toRefreshCmd = array();
+		$global = array();
 		foreach ($objects as $object) {
 			$events[] = array('object_id' => $object->getId());
 			$summaries = $object->getConfiguration('summary');
@@ -148,20 +149,29 @@ class object {
 				continue;
 			}
 			foreach ($summaries as $key => $summary) {
-
 				foreach ($summary as $cmd_info) {
-					if ($object->getConfiguration('summary_virtual_id') != '' && str_replace('#', '', $cmd_info['cmd']) == $_cmd_id) {
-						$toRefreshCmd[] = array('object' => $object, 'key' => $key);
+					preg_match_all("/#([0-9]*)#/", $cmd_info['cmd'], $matches);
+					foreach ($matches[1] as $cmd_id) {
+						if ($cmd_id == $_cmd_id) {
+							$toRefreshCmd[] = array('key' => $key, 'object' => $object);
+							if ($object->getConfiguration('summary::global::' . $key, 0) == 1) {
+								$global[$key] = 1;
+							}
+						}
 					}
 				}
 			}
 		}
+
 		if (count($events) > 0) {
 			event::adds('object::summary::update', $events);
 		}
 		if (count($toRefreshCmd) > 0) {
 			foreach ($toRefreshCmd as $value) {
 				try {
+					if ($object->getConfiguration('summary_virtual_id') == '') {
+						continue;
+					}
 					$virtual = eqLogic::byId($value['object']->getConfiguration('summary_virtual_id'));
 					if (!is_object($virtual)) {
 						continue;
@@ -176,6 +186,46 @@ class object {
 				}
 			}
 		}
+		if (count($global) > 0) {
+			foreach ($global as $key => $value) {
+				try {
+					$virtual = eqLogic::byLogicalId('summaryglobal', 'virtual');
+					if (!is_object($virtual)) {
+						continue;
+					}
+					$cmd = $virtual->getCmd('info', $key);
+					if (!is_object($cmd)) {
+						continue;
+					}
+					$cmd->event(object::getGlobalSummary($key));
+				} catch (Exception $e) {
+
+				}
+			}
+		}
+	}
+
+	public static function getGlobalSummary($_key) {
+		if ($_key == '') {
+			return null;
+		}
+		$def = config::byKey('object:summary');
+		$objects = self::all();
+		$value = array();
+		foreach ($objects as $object) {
+			if ($object->getConfiguration('summary::global::' . $_key, 0) == 0) {
+				continue;
+			}
+			$result = $object->getSummary($_key, true);
+			if ($result === null || !is_array($result)) {
+				continue;
+			}
+			$value = array_merge($value, $result);
+		}
+		if (count($value) == 0) {
+			return null;
+		}
+		return round(jeedom::calculStat($def[$_key]['calcul'], $value), 1);
 	}
 
 	public static function getGlobalHtmlSummary($_version = 'desktop') {
@@ -256,6 +306,31 @@ class object {
 		if (!$plugin->isActive()) {
 			throw new Exception(__('Le plugin virtuel doit être actif', __FILE__));
 		}
+
+		$virtual = eqLogic::byLogicalId('summaryglobal', 'virtual');
+		if (!is_object($virtual)) {
+			$virtual = new virtual();
+			$virtual->setName(__('Résumé Global', __FILE__));
+			$virtual->setIsVisible(0);
+			$virtual->setIsEnable(1);
+		}
+		$virtual->setIsEnable(1);
+		$virtual->setLogicalId('summaryglobal');
+		$virtual->setEqType_name('virtual');
+		$virtual->save();
+		$cmd = $virtual->getCmd('info', $_key);
+		if (!is_object($cmd)) {
+			$cmd = new virtualCmd();
+			$cmd->setName($def[$_key]['name']);
+			$cmd->setIsHistorized(1);
+		}
+		$cmd->setEqLogic_id($virtual->getId());
+		$cmd->setLogicalId($_key);
+		$cmd->setType('info');
+		$cmd->setSubtype('numeric');
+		$cmd->setUnite($def[$_key]['unit']);
+		$cmd->save();
+
 		foreach (object::all() as $object) {
 			$virtual = eqLogic::byLogicalId('summary' . $object->getId(), 'virtual');
 			if (!is_object($virtual)) {
