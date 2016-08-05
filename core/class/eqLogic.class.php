@@ -444,10 +444,6 @@ class eqLogic {
 		if ($this->getDisplay('showOn' . $version, 1) == 0) {
 			return '';
 		}
-		$mc = cache::byKey('widgetHtml' . $_version . $this->getId());
-		if ($mc->getValue() != '') {
-			return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
-		}
 
 		$replace = array(
 			'#id#' => $this->getId(),
@@ -552,7 +548,11 @@ class eqLogic {
 				}
 			}
 		}
-		$opacity = $this->getDisplay('background-opacity' . $version, config::byKey('widget::background-opacity'));
+		$default_opacity = config::byKey('widget::background-opacity');
+		if (isset($_SESSION) && isset($_SESSION['user']) && is_object($_SESSION['user']) && $_SESSION['user']->getOptions('widget::background-opacity') != 0) {
+			$default_opacity = $_SESSION['user']->getOptions('widget::background-opacity');
+		}
+		$opacity = $this->getDisplay('background-opacity' . $version, $default_opacity);
 		if ($replace['#background-color#'] != 'transparent' && $opacity != '' && $opacity < 1) {
 			list($r, $g, $b) = sscanf($replace['#background-color#'], "#%02x%02x%02x");
 			$replace['#background-color#'] = 'rgba(' . $r . ',' . $g . ',' . $b . ',' . $opacity . ')';

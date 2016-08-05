@@ -35,7 +35,7 @@ foreach (plugin::listPlugin() as $pluginList) {
     </div>
     <div id="config_themes" class="panel-collapse collapse in">
       <div class="panel-body">
-      <div class="pull-right img-responsive" id="div_imgThemeDesktop" style="height: 450px;"></div>
+        <div class="pull-right img-responsive" id="div_imgThemeDesktop" style="height: 450px;"></div>
         <form class="form-horizontal">
           <fieldset>
             <div class="form-group">
@@ -50,96 +50,91 @@ foreach (ls(dirname(__FILE__) . '/../../core/themes') as $dir) {
 	}
 }
 ?>
-                </select>
-              </div>
+              </select>
             </div>
-            <div class="form-group">
-              <label class="col-sm-3 control-label">{{Mobile couleur}}</label>
-              <div class="col-sm-2">
-                <select class="userAttr form-control" data-l1key="options" data-l2key="mobile_theme_color">
-                  <?php
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">{{Mobile couleur}}</label>
+            <div class="col-sm-2">
+              <select class="userAttr form-control" data-l1key="options" data-l2key="mobile_theme_color">
+                <?php
 foreach (ls(dirname(__FILE__) . '/../../core/themes') as $dir) {
 	if (is_dir(dirname(__FILE__) . '/../../core/themes/' . $dir . '/mobile')) {
 		echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</option>';
 	}
 }
 ?>
-                </select>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3 control-label">{{Graphique Desktop}}</label>
-              <div class="col-sm-2">
-                <select class="userAttr form-control" data-l1key="options" data-l2key="desktop_highcharts_theme">
-                  <option value="">Défaut</option>
-                  <option value="dark-blue">Dark-blue</option>
-                  <option value="dark-green">Dark-green</option>
-                  <option value="dark-unica">Dark-unica</option>
-                  <option value="gray">Gray</option>
-                  <option value="grid-light">Grid-light</option>
-                  <option value="grid">Grid</option>
-                  <option value="sand-signika">Sand-signika</option>
-                  <option value="skies">Skies</option>
-                </select>
-              </div>
-            </div>
-             <div class="form-group">
-              <label class="col-sm-3 control-label">{{Graphique mobile}}</label>
-              <div class="col-sm-2">
-                <select class="userAttr form-control" data-l1key="options" data-l2key="mobile_highcharts_theme">
-                  <option value="">Défaut</option>
-                  <option value="dark-blue">Dark-blue</option>
-                  <option value="dark-green">Dark-green</option>
-                  <option value="dark-unica">Dark-unica</option>
-                  <option value="gray">Gray</option>
-                  <option value="grid-light">Grid-light</option>
-                  <option value="grid">Grid</option>
-                  <option value="sand-signika">Sand-signika</option>
-                  <option value="skies">Skies</option>
-                </select>
-              </div>
-            </div>
-          </fieldset>
-        </form>
-      </div>
-    </div>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">{{Graphique Desktop}}</label>
+          <div class="col-sm-2">
+            <select class="userAttr form-control" data-l1key="options" data-l2key="desktop_highcharts_theme">
+              <option value="">Défaut</option>
+              <option value="dark-blue">Dark-blue</option>
+              <option value="dark-green">Dark-green</option>
+              <option value="dark-unica">Dark-unica</option>
+              <option value="gray">Gray</option>
+              <option value="grid-light">Grid-light</option>
+              <option value="grid">Grid</option>
+              <option value="sand-signika">Sand-signika</option>
+              <option value="skies">Skies</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">{{Graphique mobile}}</label>
+          <div class="col-sm-2">
+            <select class="userAttr form-control" data-l1key="options" data-l2key="mobile_highcharts_theme">
+              <option value="">Défaut</option>
+              <option value="dark-blue">Dark-blue</option>
+              <option value="dark-green">Dark-green</option>
+              <option value="dark-unica">Dark-unica</option>
+              <option value="gray">Gray</option>
+              <option value="grid-light">Grid-light</option>
+              <option value="grid">Grid</option>
+              <option value="sand-signika">Sand-signika</option>
+              <option value="skies">Skies</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">{{Opacité par des widgets}}</label>
+          <div class="col-sm-2">
+          <input type="numeric" class="userAttr form-control" data-l1key="options" data-l2key="widget::background-opacity"/>
+          </div>
+        </div>
+      </fieldset>
+    </form>
   </div>
+</div>
+</div>
 
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_interface">
-          <i class="fa fa-laptop"></i>  {{Interface}}
-        </a>
-      </h3>
-    </div>
-    <div id="config_interface" class="panel-collapse collapse">
-      <div class="panel-body">
-        <form class="form-horizontal">
-          <fieldset>
-            <legend><i class="fa fa-home"></i>  {{Général}}</legend>
-            <div class="form-group">
-              <label class="col-sm-3 control-label">{{Afficher les menus}}</label>
-              <div class="col-sm-1">
-                <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="doNotAutoHideMenu"/>
-              </div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_interface">
+        <i class="fa fa-laptop"></i>  {{Interface}}
+      </a>
+    </h3>
+  </div>
+  <div id="config_interface" class="panel-collapse collapse">
+    <div class="panel-body">
+      <form class="form-horizontal">
+        <fieldset>
+          <legend><i class="fa fa-home"></i>  {{Général}}</legend>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">{{Afficher les menus}}</label>
+            <div class="col-sm-1">
+              <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="doNotAutoHideMenu"/>
             </div>
-            <legend><i class="fa fa-file-o"></i>  {{Page par défaut}}</legend>
-            <div class="form-group">
-              <label class="col-sm-3 control-label">{{Desktop}}</label>
-              <div class="col-sm-2">
-                <select class="userAttr form-control" data-l1key="options" data-l2key="homePage">
-                  <?php
-foreach ($homePage as $key => $value) {
-	echo "<option value='$key'>$value</option>";
-}
-?>
-               </select>
-             </div>
-             <label class="col-sm-1 control-label">{{Mobile}}</label>
-             <div class="col-sm-2">
-              <select class="userAttr form-control" data-l1key="options" data-l2key="homePageMobile">
-                <option value="home">{{Accueil}}</option>
+          </div>
+          <legend><i class="fa fa-file-o"></i>  {{Page par défaut}}</legend>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">{{Desktop}}</label>
+            <div class="col-sm-2">
+              <select class="userAttr form-control" data-l1key="options" data-l2key="homePage">
                 <?php
 foreach ($homePage as $key => $value) {
 	echo "<option value='$key'>$value</option>";
@@ -147,23 +142,23 @@ foreach ($homePage as $key => $value) {
 ?>
              </select>
            </div>
-         </div>
-         <legend><i class="fa fa-columns"></i>  {{Objet par défaut sur le dashboard}}</legend>
-         <div class="form-group">
-          <label class="col-sm-3 control-label">{{Desktop}}</label>
-          <div class="col-sm-2">
-            <select class="userAttr form-control" data-l1key="options" data-l2key="defaultDashboardObject">
+           <label class="col-sm-1 control-label">{{Mobile}}</label>
+           <div class="col-sm-2">
+            <select class="userAttr form-control" data-l1key="options" data-l2key="homePageMobile">
+              <option value="home">{{Accueil}}</option>
               <?php
-foreach (object::all() as $object) {
-	echo "<option value='" . $object->getId() . "'>" . $object->getName() . "</option>";
+foreach ($homePage as $key => $value) {
+	echo "<option value='$key'>$value</option>";
 }
 ?>
            </select>
          </div>
-         <label class="col-sm-1 control-label">{{Mobile}}</label>
-         <div class="col-sm-2">
-          <select class="userAttr form-control" data-l1key="options" data-l2key="defaultMobileObject">
-            <option value='all'>{{Tout}}</option>
+       </div>
+       <legend><i class="fa fa-columns"></i>  {{Objet par défaut sur le dashboard}}</legend>
+       <div class="form-group">
+        <label class="col-sm-3 control-label">{{Desktop}}</label>
+        <div class="col-sm-2">
+          <select class="userAttr form-control" data-l1key="options" data-l2key="defaultDashboardObject">
             <?php
 foreach (object::all() as $object) {
 	echo "<option value='" . $object->getId() . "'>" . $object->getName() . "</option>";
@@ -171,22 +166,23 @@ foreach (object::all() as $object) {
 ?>
          </select>
        </div>
-     </div>
-     <legend><i class="fa fa-eye"></i>  {{Vue par défaut}}</legend>
-     <div class="form-group">
-      <label class="col-sm-3 control-label">{{Desktop}}</label>
-      <div class="col-sm-2">
-        <select class="userAttr form-control" data-l1key="options" data-l2key="defaultDesktopView">
+       <label class="col-sm-1 control-label">{{Mobile}}</label>
+       <div class="col-sm-2">
+        <select class="userAttr form-control" data-l1key="options" data-l2key="defaultMobileObject">
+          <option value='all'>{{Tout}}</option>
           <?php
-foreach (view::all() as $view) {
-	echo "<option value='" . $view->getId() . "'>" . $view->getName() . "</option>";
+foreach (object::all() as $object) {
+	echo "<option value='" . $object->getId() . "'>" . $object->getName() . "</option>";
 }
 ?>
        </select>
      </div>
-     <label class="col-sm-1 control-label">{{Mobile}}</label>
-     <div class="col-sm-2">
-      <select class="userAttr form-control" data-l1key="options" data-l2key="defaultMobileView">
+   </div>
+   <legend><i class="fa fa-eye"></i>  {{Vue par défaut}}</legend>
+   <div class="form-group">
+    <label class="col-sm-3 control-label">{{Desktop}}</label>
+    <div class="col-sm-2">
+      <select class="userAttr form-control" data-l1key="options" data-l2key="defaultDesktopView">
         <?php
 foreach (view::all() as $view) {
 	echo "<option value='" . $view->getId() . "'>" . $view->getName() . "</option>";
@@ -194,9 +190,19 @@ foreach (view::all() as $view) {
 ?>
      </select>
    </div>
+   <label class="col-sm-1 control-label">{{Mobile}}</label>
+   <div class="col-sm-2">
+    <select class="userAttr form-control" data-l1key="options" data-l2key="defaultMobileView">
+      <?php
+foreach (view::all() as $view) {
+	echo "<option value='" . $view->getId() . "'>" . $view->getName() . "</option>";
+}
+?>
+   </select>
  </div>
- <legend><i class="fa fa-paint-brush"></i>  {{Design par défaut}}</legend>
- <div class="form-group">
+</div>
+<legend><i class="fa fa-paint-brush"></i>  {{Design par défaut}}</legend>
+<div class="form-group">
   <label class="col-sm-3 control-label">{{Desktop}}</label>
   <div class="col-sm-2">
     <select class="userAttr form-control" data-l1key="options" data-l2key="defaultDashboardPlan">
@@ -315,7 +321,7 @@ foreach ($notifyTheme as $key => $value) {
            <?php
 if ($_SESSION['user']->getOptions('twoFactorAuthentification', 0) == 1) {
 		?>
-    <label class="col-lg-1 col-md-2 col-sm-2 col-xs-2 control-label">{{Actif}}</label>
+            <label class="col-lg-1 col-md-2 col-sm-2 col-xs-2 control-label">{{Actif}}</label>
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
              <input type="checkbox" class="userAttr form-control" data-l1key="options" data-l2key="twoFactorAuthentification" />
            </div>

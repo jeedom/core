@@ -176,7 +176,7 @@ class object {
 			if (isset($def[$key]['icon'])) {
 				$icon = $def[$key]['icon'];
 			}
-			if ($def[$key]['allowDisplayZero'] == false && $result == 0){
+			if ($def[$key]['allowDisplayZero'] == false && $result == 0) {
 				continue;
 			}
 			$return .= '<span style="margin-right:' . $margin . 'px;"><i class="' . $icon . '"></i> <span class="objectSummary' . $key . '">' . $result . '</span> ' . $def[$key]['unit'] . '</span> ';
@@ -334,7 +334,7 @@ class object {
 				if (isset($value['icon'])) {
 					$icon = $value['icon'];
 				}
-				if ($value['allowDisplayZero'] == false && $result == 0){
+				if ($value['allowDisplayZero'] == false && $result == 0) {
 					continue;
 				}
 				$return .= '<span style="margin-right:5px;"><i class="' . $icon . '"></i> <span class="objectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . '</span>';
