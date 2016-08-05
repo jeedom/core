@@ -20,17 +20,17 @@ global $JEEDOM_INTERNAL_CONFIG;
 $JEEDOM_INTERNAL_CONFIG = array(
 	'object' => array(
 		'summary' => array(
-			'security' => array('name' => 'Alerte', 'calcul' => 'sum', 'icon' => 'icon jeedom-alerte2', 'unit' => '', 'count' => 'binary'),
-			'motion' => array('name' => 'Mouvement', 'calcul' => 'sum', 'icon' => 'icon jeedom-mouvement', 'unit' => '', 'count' => 'binary'),
-			'door' => array('name' => 'Porte', 'calcul' => 'sum', 'icon' => 'icon jeedom-porte-ouverte', 'unit' => '', 'count' => 'binary'),
-			'windows' => array('name' => 'Fenêtre', 'calcul' => 'sum', 'icon' => 'icon jeedom-fenetre-ouverte', 'unit' => '', 'count' => 'binary'),
-			'shutter' => array('name' => 'Volet', 'calcul' => 'sum', 'icon' => 'icon jeedom-volet-ouvert', 'unit' => '', 'count' => 'binary'),
-			'light' => array('name' => 'Lumière', 'calcul' => 'sum', 'icon' => 'icon jeedom-lumiere-on', 'unit' => '', 'count' => 'binary'),
-			'outlet' => array('name' => 'Prise', 'calcul' => 'sum', 'icon' => 'icon jeedom-prise', 'unit' => '', 'count' => 'binary'),
-			'temperature' => array('name' => 'Température', 'calcul' => 'avg', 'icon' => 'icon divers-thermometer31', 'unit' => '°C'),
-			'humidity' => array('name' => 'Humidité', 'calcul' => 'avg', 'icon' => 'fa fa-tint', 'unit' => '%'),
-			'luminosity' => array('name' => 'Luminosité', 'calcul' => 'avg', 'icon' => 'icon meteo-soleil', 'unit' => 'lx'),
-			'power' => array('name' => 'Puissance', 'calcul' => 'sum', 'icon' => 'fa fa-bolt', 'unit' => 'W'),
+			'security' => array('name' => 'Alerte', 'calcul' => 'sum', 'icon' => 'icon jeedom-alerte2', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
+			'motion' => array('name' => 'Mouvement', 'calcul' => 'sum', 'icon' => 'icon jeedom-mouvement', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
+			'door' => array('name' => 'Porte', 'calcul' => 'sum', 'icon' => 'icon jeedom-porte-ouverte', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
+			'windows' => array('name' => 'Fenêtre', 'calcul' => 'sum', 'icon' => 'icon jeedom-fenetre-ouverte', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
+			'shutter' => array('name' => 'Volet', 'calcul' => 'sum', 'icon' => 'icon jeedom-volet-ouvert', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
+			'light' => array('name' => 'Lumière', 'calcul' => 'sum', 'icon' => 'icon jeedom-lumiere-on', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
+			'outlet' => array('name' => 'Prise', 'calcul' => 'sum', 'icon' => 'icon jeedom-prise', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
+			'temperature' => array('name' => 'Température', 'calcul' => 'avg', 'icon' => 'icon divers-thermometer31', 'unit' => '°C', 'allowDisplayZero' => true),
+			'humidity' => array('name' => 'Humidité', 'calcul' => 'avg', 'icon' => 'fa fa-tint', 'unit' => '%', 'allowDisplayZero' => true),
+			'luminosity' => array('name' => 'Luminosité', 'calcul' => 'avg', 'icon' => 'icon meteo-soleil', 'unit' => 'lx', 'allowDisplayZero' => true),
+			'power' => array('name' => 'Puissance', 'calcul' => 'sum', 'icon' => 'fa fa-bolt', 'unit' => 'W', 'allowDisplayZero' => false),
 		),
 	),
 	'eqLogic' => array(

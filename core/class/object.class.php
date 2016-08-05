@@ -166,7 +166,7 @@ class object {
 				$values[$key] = array_merge($values[$key], $result);
 			}
 		}
-		$margin = ($_version == 'desktop') ? 7 : 5;
+		$margin = ($_version == 'desktop') ? 3 : 1;
 
 		foreach ($values as $key => $value) {
 			if (count($value) == 0) {
@@ -176,7 +176,7 @@ class object {
 			if (isset($def[$key]['icon'])) {
 				$icon = $def[$key]['icon'];
 			}
-			if ($result == 0 && $def[$key]['unit'] == '') {
+			if ($def[$key]['allowDisplayZero'] == false && $result == 0){
 				continue;
 			}
 			$return .= '<span style="margin-right:' . $margin . 'px;"><i class="' . $icon . '"></i> <span class="objectSummary' . $key . '">' . $result . '</span> ' . $def[$key]['unit'] . '</span> ';
@@ -334,7 +334,7 @@ class object {
 				if (isset($value['icon'])) {
 					$icon = $value['icon'];
 				}
-				if ($result == 0 && $value['unit'] == '') {
+				if ($value['allowDisplayZero'] == false && $result == 0){
 					continue;
 				}
 				$return .= '<span style="margin-right:5px;"><i class="' . $icon . '"></i> <span class="objectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . '</span>';
