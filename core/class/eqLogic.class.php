@@ -587,11 +587,10 @@ class eqLogic {
 			self::$_templateArray[$version] = getTemplate('core', $version, 'eqLogic');
 		}
 		return template_replace($replace, self::$_templateArray[$version]);
-		cache::set('widgetHtml' . $_version . $this->getId(), $html);
-		return $html;
 	}
 
 	public function emptyCacheWidget() {
+		return;
 		$mc = cache::byKey('widgetHtmldashboard' . $this->getId());
 		$mc->remove();
 		$mc = cache::byKey('widgetHtmlmobile' . $this->getId());
