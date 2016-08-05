@@ -52,7 +52,7 @@ function initEquipment(_object_id) {
                            }
                        }
                        div += '</legend>';
-                       div += '<center><span class="objectSummary'+id+'" data-version="mobile"></span><center>';
+                       div += '<div class="nd2-card objectSummaryHide" style="max-width:100% !important;"><div class="card-title has-supporting-text" style="padding:4px;font-size:0.6em;"><center><span class="objectSummary'+id+'" data-version="mobile"></span></center></div></div>';
                        div += '<div class="objectHtml">';
                        div += html[i]
                        div += '</div>';
@@ -73,7 +73,7 @@ function initEquipment(_object_id) {
             }
         });  
                }else{
-                 $('#div_displayEquipement').empty().html('<center><span class="objectSummary'+_object_id+'" data-version="mobile"></span></center><div class="objectHtml">'+html+'</div>').trigger('create');
+                 $('#div_displayEquipement').empty().html('<div class="nd2-card objectSummaryHide" style="max-width:100% !important;"><div class="card-title has-supporting-text" style="padding:4px;font-size:0.6em;"><center><span class="objectSummary'+_object_id+'" data-version="mobile"></span></center></div></div><div class="objectHtml">'+html+'</div>').trigger('create');
                  jeedom.object.summaryUpdate([{object_id:_object_id}]);
                  setTileSize('.eqLogic');
                  setTimeout(function () {
