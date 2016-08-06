@@ -225,11 +225,15 @@ function printUpdate() {
 }
 
 function addUpdate(_update) {
+	var labelClass = 'label-success';
     if(init(_update.status) == ''){
-        _update.status = 'OK';
+        _update.status = 'ok';
     }
+	if (_update.status == 'update'){
+		labelClass = 'label-warning';	
+	}
     var tr = '<tr data-id="' + init(_update.id) + '" data-logicalId="' + init(_update.logicalId) + '" data-type="' + init(_update.type) + '">';
-    tr += '<td style="width:50px;"><span class="updateAttr label label-success" data-l1key="status" style="font-size:0.96em;"></span>';
+    tr += '<td style="width:50px;"><span class="updateAttr label ' + labelClass +'" data-l1key="status" style="font-size:0.96em;text-transform: uppercase;"></span>';
     tr += '</td>';
     tr += '<td><span class="updateAttr" data-l1key="id" style="display:none;"></span><span class="updateAttr" data-l1key="source"></span> / <span class="updateAttr" data-l1key="type"></span> : <span class="updateAttr label label-info" data-l1key="name" style="font-size:0.96em;"></span></td>';
     tr += '<td><span class="updateAttr label label-primary" data-l1key="localVersion" style="font-size:0.96em;" title="{{Dernière version : }}'+_update.remoteVersion+'"></span></td>';
@@ -255,6 +259,7 @@ function addUpdate(_update) {
 }
 tr += '</td>';
 tr += '</tr>';
+
 if(_update.type == 'core' || _update.type == 'plugin'){
     $('#table_update').append(tr);
     $('#table_update tbody tr:last').setValues(_update, '.updateAttr');
