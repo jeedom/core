@@ -609,7 +609,7 @@ function addObjectSummary(_summary) {
     tr += '<center><input type="checkbox" class="objectSummaryAttr" data-l1key="allowDisplayZero" /></center>';
     tr += '</td>';
     tr += '<td>';
-    if(isset(_summary.key) && _summary.key != ''){
+    if(isset(_summary) && isset(_summary.key) && _summary.key != ''){
         tr += '<a class="btn btn-success btn-sm objectSummaryAction" data-l1key="createVirtual"><i class="fa fa-puzzle-piece"></i> {{Créer virtuel}}</a>';
    }
    tr += '</td>';
@@ -618,9 +618,10 @@ function addObjectSummary(_summary) {
    tr += '</td>';
    tr += '</tr>';
    $('#table_objectSummary tbody').append(tr);
-
-   $('#table_objectSummary tbody tr:last').setValues(_summary, '.objectSummaryAttr');
-   if(isset(_summary.key) && _summary.key != ''){
+   if (isset(_summary)){
+	$('#table_objectSummary tbody tr:last').setValues(_summary, '.objectSummaryAttr');
+   }
+   if(isset(_summary) && isset(_summary.key) && _summary.key != ''){
     $('#table_objectSummary tbody tr:last .objectSummaryAttr[data-l1key=key]').attr('disabled','disabled');
 }
 modifyWithoutSave = true;
