@@ -609,12 +609,12 @@ function addObjectSummary(_summary) {
     tr += '<center><input type="checkbox" class="objectSummaryAttr" data-l1key="allowDisplayZero" /></center>';
     tr += '</td>';
     tr += '<td>';
-    tr += '<a class="objectSummaryAction cursor" data-l1key="remove"><i class="fa fa-minus-circle"></i></a>';
-    tr += '</td>';
-    tr += '<td>';
     if(isset(_summary.key) && _summary.key != ''){
         tr += '<a class="btn btn-success btn-sm objectSummaryAction" data-l1key="createVirtual"><i class="fa fa-puzzle-piece"></i> {{Créer virtuel}}</a>';
    }
+   tr += '</td>';
+   tr += '<td>';
+   tr += '<a class="objectSummaryAction cursor" data-l1key="remove"><i class="fa fa-minus-circle"></i></a>';
    tr += '</td>';
    tr += '</tr>';
    $('#table_objectSummary tbody').append(tr);
