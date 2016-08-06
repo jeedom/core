@@ -233,18 +233,18 @@ function addUpdate(_update) {
 		labelClass = 'label-warning';	
 	}
     var tr = '<tr data-id="' + init(_update.id) + '" data-logicalId="' + init(_update.logicalId) + '" data-type="' + init(_update.type) + '">';
-    tr += '<td style="width:50px;cursor:default;"><span class="updateAttr label ' + labelClass +'" data-l1key="status" style="font-size:0.96em;text-transform: uppercase;"></span>';
+    tr += '<td style="width:40px;cursor:default;"><span class="updateAttr label ' + labelClass +'" data-l1key="status" style="font-size:0.8em;text-transform: uppercase;"></span>';
     tr += '</td>';
-    tr += '<td style="cursor:default;"><span class="updateAttr" data-l1key="id" style="display:none;"></span><span class="updateAttr" data-l1key="source"></span> / <span class="updateAttr" data-l1key="type"></span> : <span class="updateAttr label label-info" data-l1key="name" style="font-size:0.96em;"></span></td>';
-    tr += '<td><span class="updateAttr label label-primary" data-l1key="localVersion" style="font-size:0.96em;cursor:default;" title="{{Dernière version : }}'+_update.remoteVersion+'"></span></td>';
-    tr += '<td style="width:175px;cursor:default;">';
-    tr += '<input type="checkbox" class="updateAttr" data-l1key="configuration" data-l2key="doNotUpdate">{{Ne pas mettre à jour}}';
+    tr += '<td style="cursor:default;"><span class="updateAttr" data-l1key="id" style="display:none;"></span><span class="updateAttr" data-l1key="source"></span> / <span class="updateAttr" data-l1key="type"></span> : <span class="updateAttr label label-info" data-l1key="name" style="font-size:0.8em;"></span></td>';
+    tr += '<td style="width:135px;"><span class="updateAttr label label-primary" data-l1key="localVersion" style="font-size:0.8em;cursor:default;" title="{{Dernière version : }}'+_update.remoteVersion+'"></span></td>';
+    tr += '<td style="width:150px;cursor:default;">';
+    tr += '<input type="checkbox" class="updateAttr" data-l1key="configuration" data-l2key="doNotUpdate"><span style="font-size:0.9em;">{{Ne pas mettre à jour}}</span>';
     tr += '</td>';
     tr += '<td>';
     if (_update.status == 'update') {
         tr += '<a class="btn btn-info btn-xs update" style="margin-bottom : 5px;" title="{{Mettre à jour}}"><i class="fa fa-refresh"></i> {{Mettre à jour}}</a> ';
     }else if (_update.type != 'core') {
-        tr += '<a class="btn btn-info btn-xs update" style="margin-bottom : 5px;" title="{{Re-installer}}"><i class="fa fa-refresh"></i> {{Re-installer}}</a> ';
+        tr += '<a class="btn btn-info btn-xs update" style="margin-bottom : 5px;" title="{{Re-installer}}"><i class="fa fa-refresh"></i> {{Reinstaller}}</a> ';
     }
     if (_update.type != 'core') {
         if (isset(_update.info) && isset(_update.info.changelog) && _update.info.changelog != '') {
@@ -253,7 +253,7 @@ function addUpdate(_update) {
     }else{
        tr += '<a class="btn btn-default btn-xs" href="https://github.com/jeedom/core/releases" target="_blank" style="margin-bottom : 5px;"><i class="fa fa-book"></i> {{Changelog}}</a>'; 
    }
-   tr += '<a class="btn btn-info btn-xs pull-right checkUpdate expertModeVisible" style="margin-bottom : 5px;" ><i class="fa fa-check"></i> {{Vérifier les mises à jour}}</a>';
+   tr += '<a class="btn btn-info btn-xs pull-right checkUpdate expertModeVisible" style="margin-bottom : 5px;" ><i class="fa fa-check"></i> {{Vérifier}}</a>';
    if (_update.type != 'core') {
     tr += '<a class="btn btn-danger btn-xs pull-right remove expertModeVisible" style="margin-bottom : 5px;" ><i class="fa fa-trash-o"></i> {{Supprimer}}</a>';  
 }
