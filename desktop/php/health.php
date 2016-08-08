@@ -207,8 +207,6 @@ foreach (plugin::listPlugin(true) as $plugin) {
 	$html = '';
 	$asNok = 0;
 	$asPending = 0;
-	$nokList = array();
-	$pendingList = array();
 	if (file_exists(dirname(plugin::getPathById($plugin_id)) . '/../desktop/modal/health.php')) {
 		$hasSpecificHealth = 1;
 		$hasSpecificHealthIcon = '  <i data-pluginname="' . $plugin->getName() . '" data-pluginid="' . $plugin->getId() . '" class="fa fa-medkit bt_healthSpecific" style="cursor:pointer;color:grey;font-size:0.8em" title="Santé spécifique"></i>';
@@ -427,19 +425,11 @@ foreach (plugin::listPlugin(true) as $plugin) {
 			$title = '<i class="' . $plugin->getIcon() . '"></i> ';
 		}
 		if ($asNok != 0){
-			$totalNok += $asNok;
-			$error ='(';
-			foreach($nokList as $nok){
-				$error .= $nok;
-				if ($nok != $nokList[count($nokList)-1]){
-					$error .= ';';
-				}
-			}
-			$error .=')';
+			$totalNok += 1;
 			$errorMessage = '   <span class="label label-danger pull-right" style="cursor:default">' . $asNok .' erreurs </span>';
 		}
 		if ($asPending != 0){
-			$totalPending += $asPending;
+			$totalPending += 1;
 			$pendingMessage = '   <span class="label label-warning pull-right" style="cursor:default">' . $asPending .' en cours </span>';
 		}
 		if ($asPending == 0 && $asNok == 0){
