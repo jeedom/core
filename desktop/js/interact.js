@@ -170,7 +170,8 @@ $("#bt_saveInteract").on('click', function () {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
     success: function (data) {
-     loadPage('index.php?v=d&p=interact&id=' + data.id + '&saveSuccessFull=1');
+     $('.li_interact[data-interact_id=' + data.id + ']').click();
+     $('#div_alert').showAlert({message: '{{Sauvegarde réussie avec succès}}', level: 'success'});
    }
  });
 });
@@ -274,7 +275,7 @@ function displayInteract(_id){
       $('.interactAttr[data-l1key=filtres][data-l2key=unite]').value(1);
       $('.interactAttr[data-l1key=filtres][data-l2key=object]').value(1);
       $('.interactAttr[data-l1key=filtres][data-l2key=plugin]').value(1);
-       $('.interactAttr[data-l1key=filtres][data-l2key=category]').value(1);
+      $('.interactAttr[data-l1key=filtres][data-l2key=category]').value(1);
       if(isset(data.filtres) && isset(data.filtres.type) && $.isPlainObject(data.filtres.type)){
         for(var i in data.filtres.type){
          $('.interactAttr[data-l1key=filtres][data-l2key=type][data-l3key='+i+']').value(data.filtres.type[i]);
