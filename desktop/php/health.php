@@ -436,16 +436,19 @@ foreach (plugin::listPlugin(true) as $plugin) {
 				}
 			}
 			$error .=')';
-			$errorMessage = '   <span class="label label-danger" style="cursor:default">' . $asNok .' erreurs </span>';
+			$errorMessage = '   <span class="label label-danger pull-right" style="cursor:default">' . $asNok .' erreurs </span>';
 		}
 		if ($asPending != 0){
 			$totalPending += $asPending;
-			$pendingMessage = '   <span class="label label-warning" style="cursor:default">' . $asPending .' en cours </span>';
+			$pendingMessage = '   <span class="label label-warning pull-right" style="cursor:default">' . $asPending .' en cours </span>';
+		}
+		if ($asPending == 0 && $asNok == 0){
+			$errorMessage = '   <span class="label label-success pull-right" style="cursor:default">{{OK}}</span>';
 		}
 			
 		$title .= '<a class="bt_configurationPlugin cursor" data-pluginid="' . $plugin->getId() . '">{{Santé }} ' . $plugin->getName() . '</a>' . $hasSpecificHealthIcon . $errorMessage . $pendingMessage;
-		$globalhtml .= $title .'<a class="accordion-toggle pull-right" data-toggle="collapse" data-parent="#accordionHealth" href="#config_'.$plugin->getId().'" style="text-decoration:none;"><i class="fa fa-arrows-v"></i>
-                    </a>
+		$globalhtml .= '<a class="accordion-toggle pull-right" data-toggle="collapse" data-parent="#accordionHealth" href="#config_'.$plugin->getId().'" style="text-decoration:none;"><i class="fa fa-arrows-v"></i>
+                    </a>'.$title .'
                 </h3>
             </div>';
 			$globalhtml .= '<div id="config_'.$plugin->getId().'" class="panel-collapse collapse">';
