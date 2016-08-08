@@ -1114,10 +1114,10 @@ class cmd {
 			return;
 		}
 		$replace = array(
-			'#value#' => $_value,
-			'#cmd_name#' => $this->getName(),
+			'#value#' => urlencode($_value),
+			'#cmd_name#' => urlencode($this->getName()),
 			'#cmd_id#' => $this->getId(),
-			'#humanname#' => $this->getHumanName(),
+			'#humanname#' => urlencode($this->getHumanName()),
 		);
 		$url = str_replace(array_keys($replace), $replace, $url);
 		log::add('event', 'info', __('Appels de l\'URL de push pour la commande ', __FILE__) . $this->getHumanName() . ' : ' . $url);
