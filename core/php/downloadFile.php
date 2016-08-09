@@ -33,8 +33,14 @@ if (strpos($pathfile, '*') === false) {
 	if (!file_exists($pathfile)) {
 		throw new Exception(__('Fichier non trouvé : ', __FILE__) . $pathfile);
 	}
-} else {
+} else if (is_dir(str_replace('*','',$pathfile))) {
+	log::add('camera','error','toto');
 	system('cd ' . dirname($pathfile) . ';tar cfz ' . '/tmp/archive.tar.gz * > /dev/null 2>&1');
+	$pathfile = '/tmp/archive.tar.gz';
+} else {
+	log::add('camera','error','tata');
+	$pattern = array_pop(explode('/', $pathfile));
+	system('cd ' . dirname($pathfile) . ';tar cfz ' . '/tmp/archive.tar.gz ' . $pattern .'> /dev/null 2>&1');
 	$pathfile = '/tmp/archive.tar.gz';
 }
 $path_parts = pathinfo($pathfile);
