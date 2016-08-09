@@ -406,6 +406,7 @@ foreach (object::all() as $object) {
                         <option value="ask">{{Faire une demande}}</option>
                         <option value="jeedom_poweroff">{{Arrêter Jeedom}}</option>
                         <option value="scenario_return">{{Retourner un texte/une données}}</option>
+                        <option value="icon">{{Icône}}</option>
                     </select>
                 </center>
                 <br/>
@@ -459,6 +460,10 @@ foreach (object::all() as $object) {
 
         <div class="alert alert-info sel_otherActionDescription scenario_return" style="display:none;">
             {{Retour un texte ou une valeur pour une intéraction par exemple}}
+        </div>
+
+          <div class="alert alert-info sel_otherActionDescription icon" style="display:none;">
+            {{Permet d'affecter une icone au scénario}}
         </div>
     </div>
     <div class="modal-footer">
