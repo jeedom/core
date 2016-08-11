@@ -43,7 +43,7 @@ step_1_upgrade() {
 step_2_mainpackage() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_2_mainpackage${NORMAL}"
-	apt_install ntp ca-certificates unzip curl sudo cron
+	apt_install ntp ca-certificates unzip curl sudo cron apt-transport-https
 	apt-get -y install smbclient htop iotop vim iftop
 	apt-get -y install dos2unix
 	apt-get -y install ntpdate
@@ -282,7 +282,7 @@ HTML_OUTPUT=0
 MYSQL_ROOT_PASSWD=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
 MYSQL_JEEDOM_PASSWD=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
 
-while getopts ":s:v:w:z:h:m:" opt; do
+while getopts ":s:v:w:zhm:" opt; do
   case $opt in
     s) STEP="$OPTARG"
     ;;
