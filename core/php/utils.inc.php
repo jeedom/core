@@ -942,3 +942,38 @@ function ZipErrorMessage($code) {
 			return 'An unknown error has occurred(' . intval($code) . ')';
 	}
 }
+
+function arg2array($_string) {
+	$return = array();
+	foreach (explode(' ', $_string) as $arg) {
+		$argList = explode('=', $arg);
+		if (isset($argList[0]) && isset($argList[1])) {
+			$return[$argList[0]] = $argList[1];
+		}
+	}
+	return $return;
+}
+
+function strToHex($string) {
+	$hex = '';
+	for ($i = 0; $i < strlen($string); $i++) {
+		$ord = ord($string[$i]);
+		$hexCode = dechex($ord);
+		$hex .= substr('0' . $hexCode, -2);
+	}
+	return strToUpper($hex);
+}
+
+function hex2rgb($hex) {
+	$hex = str_replace("#", "", $hex);
+	if (strlen($hex) == 3) {
+		$r = hexdec(substr($hex, 0, 1) . substr($hex, 0, 1));
+		$g = hexdec(substr($hex, 1, 1) . substr($hex, 1, 1));
+		$b = hexdec(substr($hex, 2, 1) . substr($hex, 2, 1));
+	} else {
+		$r = hexdec(substr($hex, 0, 2));
+		$g = hexdec(substr($hex, 2, 2));
+		$b = hexdec(substr($hex, 4, 2));
+	}
+	return array($r, $g, $b);
+}
