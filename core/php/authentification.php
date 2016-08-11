@@ -16,7 +16,13 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 require_once dirname(__FILE__) . '/core.inc.php';
-$configs = config::byKeys(array('session_lifetime', 'sso:allowRemoteUser'));
+try {
+	$configs = config::byKeys(array('session_lifetime', 'sso:allowRemoteUser'));
+} catch (Exception $e) {
+	echo $e->getMessage();
+	die();
+}
+
 $session_lifetime = $configs['session_lifetime'];
 if (!is_numeric($session_lifetime)) {
 	$session_lifetime = 24;
