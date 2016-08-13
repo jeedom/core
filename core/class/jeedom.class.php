@@ -133,6 +133,37 @@ class jeedom {
 		return $usbMapping;
 	}
 
+	public static function getBluetoothMapping($_name = '') {
+		$cache = cache::byKey('jeedom::bluetoothMapping');
+		if (!is_json($cache->getValue()) || $_name == '') {
+			$bluetoothMapping = array();
+			foreach (explode("\n", shell_exec('hcitool dev')) as $line) {
+				if (strpos($line, 'hci') === false || trim($line) == '') {
+					continue;
+				}
+				$infos = explode("\t", $line);
+				$bluetoothMapping[$infos[2]] = $infos[1];
+			}
+			cache::set('jeedom::bluetoothMapping', json_encode($bluetoothMapping));
+		} else {
+			$bluetoothMapping = json_decode($cache->getValue(), true);
+		}
+		if ($_name != '') {
+			if (isset($bluetoothMapping[$_name])) {
+				return $bluetoothMapping[$_name];
+			}
+			$bluetoothMapping = self::getBluetoothMapping('', true);
+			if (isset($bluetoothMapping[$_name])) {
+				return $bluetoothMapping[$_name];
+			}
+			if (file_exists($_name)) {
+				return $_name;
+			}
+			return '';
+		}
+		return $bluetoothMapping;
+	}
+
 	/********************************************BACKUP*****************************************************************/
 
 	public static function backup($_background = false) {
@@ -407,6 +438,16 @@ class jeedom {
 				log::add('starting', 'error', __('Erreur sur le nettoyage du cache des péripheriques USB : ', __FILE__) . log::exception($e));
 			} catch (Error $e) {
 				log::add('starting', 'error', __('Erreur sur le nettoyage du cache des péripheriques USB : ', __FILE__) . log::exception($e));
+			}
+
+			try {
+				log::add('starting', 'debug', __('Nettoyage du cache des péripheriques Bluetooth', __FILE__));
+				$cache = cache::byKey('jeedom::bluetoothMapping');
+				$cache->remove();
+			} catch (Exception $e) {
+				log::add('starting', 'error', __('Erreur sur le nettoyage du cache des péripheriques Bluetooth : ', __FILE__) . log::exception($e));
+			} catch (Error $e) {
+				log::add('starting', 'error', __('Erreur sur le nettoyage du cache des péripheriques Bluetooth : ', __FILE__) . log::exception($e));
 			}
 
 			try {
