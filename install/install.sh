@@ -44,7 +44,10 @@ step_2_mainpackage() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_2_mainpackage${NORMAL}"
 	apt_install ntp ca-certificates unzip curl sudo cron
+	apt-get -y install locate tar telnet wget logrotate fail2ban
 	apt-get -y install software-properties-common
+	apt-get -y install libexpat1 ssl-cert
+	apt-get -y install apt-transport-https
 	add-apt-repository non-free
 	apt-get update
 	apt-get -y install libav-tools
@@ -274,7 +277,13 @@ addon_1_openzwave(){
 
 distrib_1_spe(){
 	if [ -f /etc/armbian.txt ]; then
-		wget https://raw.githubusercontent.com/jeedom/core/beta/install/OS_specific/armbian/post-install.sh
+		wget https://raw.githubusercontent.com/jeedom/core/${version}/install/OS_specific/armbian/post-install.sh
+		chmod +x post-install.sh
+		./post-install.sh
+		rm post-install.sh
+	fi
+	if [ -f /usr/bin/raspi-config ]; then
+		wget https://raw.githubusercontent.com/jeedom/core/${version}/install/OS_specific/rpi/post-install.sh
 		chmod +x post-install.sh
 		./post-install.sh
 		rm post-install.sh
