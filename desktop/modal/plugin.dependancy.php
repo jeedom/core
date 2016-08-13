@@ -100,7 +100,11 @@ $refresh[$jeeNetwork->getId()] = 1;
 							<a class="btn btn-warning btn-sm launchInstallPluginDependancy" data-slave_id="<?php echo $jeeNetwork->getId(); ?>" style="position:relative;top:-5px;"><i class="fa fa-bicycle"></i> {{Relancer}}</a>
 						</td>
 						<td class="td_lastLaunchDependancy" data-slave_id="<?php echo $jeeNetwork->getId(); ?>">
-							<?php echo $dependancy_info['last_launch'] ?>
+							<?php
+if (isset($dependancy_info['last_launch'])) {
+				echo $dependancy_info['last_launch'];
+			}
+			?>
 						</td>
 					</tr>
 					<?php
