@@ -197,10 +197,7 @@ function displayWidgetSubtype($_name) {
 		</div>
 		<div class="form-group">
 			<select class="form-control" id="sel_categorie" data-href='<?php echo buildUrl('categorie', ''); ?>'>
-				<?php if (init('type', 'plugin') == 'zwave') {?>
-				<option value="">Toutes les marques</option>
-				<?php } else {?>
-				<option value="">Toutes les categories</option>
+				<option value="">Top et nouveautés</option>
 				<?php
 }
 
