@@ -31,7 +31,6 @@ class plugin {
 	private $require;
 	private $category;
 	private $filepath;
-	private $icon;
 	private $index;
 	private $display;
 	private $mobile;
@@ -70,7 +69,6 @@ class plugin {
 		$plugin->id = (string) $plugin_xml->id;
 		$plugin->name = (string) $plugin_xml->name;
 		$plugin->description = (string) $plugin_xml->description;
-		$plugin->icon = (string) $plugin_xml->icon;
 		$plugin->licence = (string) $plugin_xml->licence;
 		$plugin->author = (string) $plugin_xml->author;
 		$plugin->require = (string) $plugin_xml->require;
@@ -730,7 +728,10 @@ class plugin {
 	}
 
 	public function getPathImgIcon() {
-		return 'plugins/' . $this->getId() . '/doc/images/' . $this->getId() . '_icon.png';
+		if (file_exists(dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/doc/images/' . $this->getId() . '_icon.png')) {
+			return 'plugins/' . $this->getId() . '/doc/images/' . $this->getId() . '_icon.png';
+		}
+		return 'core/img/no-image-plugin.png';
 	}
 
 	public function getLogList() {
@@ -801,10 +802,6 @@ class plugin {
 
 	public function getInstallation() {
 		return nl2br($this->installation);
-	}
-
-	public function getIcon() {
-		return $this->icon;
 	}
 
 	public function getIndex() {

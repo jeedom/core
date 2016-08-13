@@ -29,11 +29,7 @@ foreach ($plugins_list as $category_name => $category) {
 	foreach ($category as $plugin) {
 		$opacity = ($plugin->isActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
 		echo '<li class="cursor li_plugin" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="' . $opacity . '"><a>';
-		if (file_exists(dirname(__FILE__) . '/../../' . $plugin->getPathImgIcon())) {
-			echo '<img class="img-responsive" style="width : 20px;display:inline-block;" src="' . $plugin->getPathImgIcon() . '" /> ';
-		} else {
-			echo '<i class="' . $plugin->getIcon() . '"></i> ';
-		}
+		echo '<img class="img-responsive" style="width : 20px;display:inline-block;" src="' . $plugin->getPathImgIcon() . '" /> ';
 		echo $plugin->getName();
 		echo '</a></li>';
 	}
@@ -65,14 +61,8 @@ foreach (plugin::listPlugin() as $plugin) {
 	$opacity = ($plugin->isActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
 	echo '<div class="pluginDisplayCard cursor" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
 	echo "<center>";
-	if (file_exists(dirname(__FILE__) . '/../../' . $plugin->getPathImgIcon())) {
-		echo '<img class="img-responsive" style="width : 120px;" src="' . $plugin->getPathImgIcon() . '" />';
-		echo "</center>";
-	} else {
-		echo '<i class="' . $plugin->getIcon() . '" style="font-size : 6em;margin-top:20px;"></i>';
-		echo "</center>";
-		echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $plugin->getName() . '</center></span>';
-	}
+	echo '<img class="img-responsive" style="width : 120px;" src="' . $plugin->getPathImgIcon() . '" />';
+	echo "</center>";
 	echo '</div>';
 }
 ?>

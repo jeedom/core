@@ -196,10 +196,10 @@ if (config::byKey('jeeNetwork::mode') == 'master') {
 ?>
 
 <?php
-$count =0;
-$globalhtml ='';
+$count = 0;
+$globalhtml = '';
 $totalNok = 0;
-$totalPending =0;
+$totalPending = 0;
 foreach (plugin::listPlugin(true) as $plugin) {
 	$plugin_id = $plugin->getId();
 	$hasSpecificHealth = 0;
@@ -212,10 +212,10 @@ foreach (plugin::listPlugin(true) as $plugin) {
 		$hasSpecificHealthIcon = '  <i data-pluginname="' . $plugin->getName() . '" data-pluginid="' . $plugin->getId() . '" class="fa fa-medkit bt_healthSpecific" style="cursor:pointer;color:grey;font-size:0.8em" title="Santé spécifique"></i>';
 	}
 	if ($plugin->getHasDependency() == 1 || $plugin->getHasOwnDeamon() == 1 || method_exists($plugin->getId(), 'health') || $hasSpecificHealth == 1) {
-		if ($count==0) {
+		if ($count == 0) {
 			$globalhtml .= '<div class="panel-group" id="accordionHealth">';
 		}
-		$count +=1;
+		$count += 1;
 		$globalhtml .= '<div class="panel panel-default">';
 		$globalhtml .= ' <div class="panel-heading">
                 <h3 class="panel-title">';
@@ -417,39 +417,35 @@ foreach (plugin::listPlugin(true) as $plugin) {
 		$html .= '</table>';
 	}
 	if ($html != '') {
-		$errorMessage ='';
-		$pendingMessage ='';
-		if (file_exists(dirname(__FILE__) . '/../../' . $plugin->getPathImgIcon())) {
-			$title = '<img class="img-responsive" style="width : 20px;display:inline-block;" src="' . $plugin->getPathImgIcon() . '" /> ';
-		} else {
-			$title = '<i class="' . $plugin->getIcon() . '"></i> ';
-		}
-		if ($asNok != 0){
+		$errorMessage = '';
+		$pendingMessage = '';
+		$title = '<img class="img-responsive" style="width : 20px;display:inline-block;" src="' . $plugin->getPathImgIcon() . '" /> ';
+		if ($asNok != 0) {
 			$totalNok += 1;
-			$errorMessage = '   <span class="label label-danger pull-right" style="cursor:default">' . $asNok .' erreurs </span>';
+			$errorMessage = '   <span class="label label-danger pull-right" style="cursor:default">' . $asNok . ' erreurs </span>';
 		}
-		if ($asPending != 0){
+		if ($asPending != 0) {
 			$totalPending += 1;
-			$pendingMessage = '   <span class="label label-warning pull-right" style="cursor:default">' . $asPending .' en cours </span>';
+			$pendingMessage = '   <span class="label label-warning pull-right" style="cursor:default">' . $asPending . ' en cours </span>';
 		}
-		if ($asPending == 0 && $asNok == 0){
+		if ($asPending == 0 && $asNok == 0) {
 			$errorMessage = '   <span class="label label-success pull-right" style="cursor:default">{{OK}}</span>';
 		}
-			
+
 		$title .= '<a class="bt_configurationPlugin cursor" data-pluginid="' . $plugin->getId() . '">{{Santé }} ' . $plugin->getName() . '</a>' . $hasSpecificHealthIcon . $errorMessage . $pendingMessage;
-		$globalhtml .= '<a class="accordion-toggle pull-right" data-toggle="collapse" data-parent="#accordionHealth" href="#config_'.$plugin->getId().'" style="text-decoration:none;"><i class="fa fa-arrows-v"></i>
-                    </a>'.$title .'
+		$globalhtml .= '<a class="accordion-toggle pull-right" data-toggle="collapse" data-parent="#accordionHealth" href="#config_' . $plugin->getId() . '" style="text-decoration:none;"><i class="fa fa-arrows-v"></i>
+                    </a>' . $title . '
                 </h3>
             </div>';
-			$globalhtml .= '<div id="config_'.$plugin->getId().'" class="panel-collapse collapse">';
-			$globalhtml .= '<div class="panel-body">';
+		$globalhtml .= '<div id="config_' . $plugin->getId() . '" class="panel-collapse collapse">';
+		$globalhtml .= '<div class="panel-body">';
 		$globalhtml .= $html;
-		$globalhtml .= '</div>';	
-		$globalhtml .= '</div>';		
-		$globalhtml .= '</div>';	
+		$globalhtml .= '</div>';
+		$globalhtml .= '</div>';
+		$globalhtml .= '</div>';
 	}
 }
-if ($globalhtml != ''){
+if ($globalhtml != '') {
 	echo '<tr>
 			<td style="font-weight : bold;cursor:default">{{Plugins}}</td>';
 	if ($totalNok == 0 && $totalPending == 0) {
@@ -460,13 +456,13 @@ if ($globalhtml != ''){
 		echo '<td style="cursor:default">Vous pouvez voir les détails des plugins sur la partie basse de cette page</td>';
 	} else if ($totalNok != 0) {
 		$pending = '';
-		if ($totalPending != 0){
+		if ($totalPending != 0) {
 			$pending = ' {{et}} ' . $totalPending . ' {{En cours}}';
 		}
-		echo '<td class="alert alert-danger" style="cursor:default">' . $totalNok . ' {{NOK}}' . $pending .'</td>';
+		echo '<td class="alert alert-danger" style="cursor:default">' . $totalNok . ' {{NOK}}' . $pending . '</td>';
 		echo '<td style="cursor:default">Vous pouvez voir les détails des plugins sur la partie basse de cette page</td>';
 	}
-	echo	'</tr>';
+	echo '</tr>';
 	echo '</tbody></table>';
 	echo $globalhtml;
 	echo '</div>';
