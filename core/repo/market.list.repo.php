@@ -199,8 +199,6 @@ function displayWidgetSubtype($_name) {
 			<select class="form-control" id="sel_categorie" data-href='<?php echo buildUrl('categorie', ''); ?>'>
 				<option value="">Top et nouveautés</option>
 				<?php
-}
-
 foreach (repo_market::distinctCategorie($type) as $id => $category) {
 	if (trim($category) != '' && is_numeric($id)) {
 		echo '<option value="' . $category . '"';
