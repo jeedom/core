@@ -45,6 +45,7 @@ class translate {
 			return '';
 		}
 		$language = self::getLanguage();
+
 		if ($language == 'fr_FR' && self::getConfig('generateTranslation') != 1) {
 			return preg_replace("/{{(.*?)}}/s", '$1', $_content);
 		}
@@ -84,7 +85,7 @@ class translate {
 				}
 			}
 			if ($_backslash && isset($replace["{{" . $text . "}}"])) {
-				$replace["{{" . $text . "}}"] = str_replace("'", "\'", str_replace("\'", "'", $replace));
+				$replace["{{" . $text . "}}"] = str_replace("'", "\'", str_replace("\'", "'", $replace["{{" . $text . "}}"]));
 			}
 			if (!isset($replace["{{" . $text . "}}"]) || is_array($replace["{{" . $text . "}}"])) {
 				$replace["{{" . $text . "}}"] = $text;
