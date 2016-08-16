@@ -73,7 +73,7 @@ class translate {
 				}
 			}
 			if ($_backslash && isset($replace["{{" . $text . "}}"])) {
-				$replace["{{" . $text . "}}"] = str_replace("'", "\'", str_replace("\'", "'", $replace));
+				$replace["{{" . $text . "}}"] = str_replace("'", "\'", str_replace("\'", "'", $replace["{{" . $text . "}}"]));
 			}
 			if (!isset($replace["{{" . $text . "}}"]) || is_array($replace["{{" . $text . "}}"])) {
 				$replace["{{" . $text . "}}"] = $text;
