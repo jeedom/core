@@ -47,7 +47,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'organization' => array('name' => 'Organisation', 'icon' => 'fa-calendar'),
 			'weather' => array('name' => 'Météo', 'icon' => 'fa-sun-o'),
 			'communication' => array('name' => 'Communication', 'icon' => 'fa-comment-o'),
-			'machinecommunication' => array('name' => 'Objets communicants', 'icon' => 'fa-language'),
+			'devicecommunication' => array('name' => 'Objets communicants', 'icon' => 'fa-language'),
 			'multimedia' => array('name' => 'Multimédia', 'icon' => 'fa-sliders'),
 			'wellness' => array('name' => 'Bien-être', 'icon' => 'fa-user'),
 			'jeedomBox' => array('name' => 'Jeedom Box', 'icon' => 'fa-dropbox'),
