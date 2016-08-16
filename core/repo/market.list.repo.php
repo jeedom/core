@@ -10,7 +10,7 @@ $name = init('name', null);
 if ($name == 'false') {
 	$name = null;
 }
-if ($name == null && $categorie == null && init('certification', null) == null && $type == 'plugin') {
+if ($name == null && $categorie == null && init('certification', null) == null && init('cost', null) == null && $type == 'plugin') {
 	$default = true;
 	$markets = repo_market::byFilter(array(
 		'status' => 'stable',
@@ -174,13 +174,6 @@ function displayWidgetSubtype($_name) {
 		</div>
 		<?php }
 ?>
-		<div class="form-group">
-			<div class="btn-group" >
-				<a class="btn btn-default bt_pluginFilter <?php echo (init('timeState') == 'newest') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('timeState', 'newest'); ?>">Nouveau</a>
-				<a class="btn btn-default bt_pluginFilter <?php echo (init('timeState') == 'popular') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('timeState', 'popular'); ?>">Populaire</a>
-				<a class="btn btn-default bt_pluginFilter" data-href="<?php echo buildUrl('timeState', ''); ?>"><i class="fa fa-times"></i></a>
-			</div>
-		</div>
 		<div class="form-group">
 			<div class="btn-group" >
 				<a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Officiel') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Officiel'); ?>">Officiel</a>
