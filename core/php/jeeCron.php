@@ -47,6 +47,7 @@ if (init('cron_id') != '') {
 		echo 'Cron non trouvé';
 		die();
 	}
+
 	try {
 		$cron->setState('run');
 		$cron->setPID(getmypid());
@@ -87,6 +88,7 @@ if (init('cron_id') != '') {
 				die();
 			}
 		} else {
+
 			$function = $cron->getFunction();
 			if (function_exists($function)) {
 				if ($cron->getDeamon() == 0) {
