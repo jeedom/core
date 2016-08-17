@@ -444,7 +444,14 @@ class eqLogic {
 		if ($this->getDisplay('showOn' . $version, 1) == 0) {
 			return '';
 		}
-
+		$user_id = '';
+		if (isset($_SESSION) && isset($_SESSION['user']) && is_object($_SESSION['user'])) {
+			$user_id = $_SESSION['user']->getId();
+		}
+		$mc = cache::byKey('widgetHtml' . $this->getId() . $_version . $user_id);
+		if ($mc->getValue() != '') {
+			return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
+		}
 		$replace = array(
 			'#id#' => $this->getId(),
 			'#name#' => $this->getName(),
@@ -586,25 +593,29 @@ class eqLogic {
 		if (!isset(self::$_templateArray[$version])) {
 			self::$_templateArray[$version] = getTemplate('core', $version, 'eqLogic');
 		}
-		return template_replace($replace, self::$_templateArray[$version]);
+		$html = template_replace($replace, self::$_templateArray[$version]);
+		$this->postHtml($_version, $html);
+		return $html;
+	}
+
+	public function postHtml($_version, $_html) {
+		$user_id = '';
+		if (isset($_SESSION) && isset($_SESSION['user']) && is_object($_SESSION['user'])) {
+			$user_id = $_SESSION['user']->getId();
+		}
+		cache::set('widgetHtml' . $this->getId() . $_version . $user_id, $_html);
 	}
 
 	public function emptyCacheWidget() {
-		return;
-		$mc = cache::byKey('widgetHtmldashboard' . $this->getId());
-		$mc->remove();
-		$mc = cache::byKey('widgetHtmlmobile' . $this->getId());
-		$mc->remove();
-		$mc = cache::byKey('widgetHtmlmview' . $this->getId());
-		$mc->remove();
-		$mc = cache::byKey('widgetHtmldview' . $this->getId());
-		$mc->remove();
-		$mc = cache::byKey('widgetHtmldplan' . $this->getId());
-		$mc->remove();
-		$mc = cache::byKey('widgetHtmlview' . $this->getId());
-		$mc->remove();
-		$mc = cache::byKey('widgetHtmlplan' . $this->getId());
-		$mc->remove();
+		$users = user::all();
+		foreach (array('dashboard', 'mobile', 'mview', 'dview', 'dplan', 'view', 'plan') as $version) {
+			$mc = cache::byKey('widgetHtml' . $this->getId() . $version);
+			$mc->remove();
+			foreach ($users as $user) {
+				$mc = cache::byKey('widgetHtml' . $this->getId() . $version . $user->getId());
+				$mc->remove();
+			}
+		}
 	}
 
 	public function getShowOnChild() {
