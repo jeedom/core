@@ -92,6 +92,7 @@ class pluginTest extends \PHPUnit_Framework_TestCase {
 	public function testCmdVirtualBinary($virtual) {
 		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
 		$cmd = $virtual->getCmd(null, 'virtual_test_1');
+		$cmd->event(1);
 		$this->assertSame(1, $cmd->execCmd());
 		$cmd->event(0);
 		$this->assertSame(0, $cmd->execCmd());
