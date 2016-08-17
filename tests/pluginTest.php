@@ -73,6 +73,22 @@ class pluginTest extends \PHPUnit_Framework_TestCase {
 	/**
 	 * @depends testCreateEqVirtual
 	 */
+	public function testCreateCmdVirtualBinary($virtual) {
+		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
+		$cmd = new virtualCmd();
+		$cmd->setName('test_calcul_binary');
+		$cmd->setType('info');
+		$cmd->setSubtype('binary');
+		$cmd->setLogicalId('virtual_test_1');
+		$cmd->setEqLogic_id($virtual->getId());
+		$cmd->setConfiguration('calcul', 1);
+		$cmd->save();
+		$this->assertTrue((is_numeric($cmd->getId()) && $cmd->getId() != ''));
+	}
+
+	/**
+	 * @depends testCreateEqVirtual
+	 */
 	public function testCreateCmdVirtualNumeric($virtual) {
 		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
 		$cmd = new virtualCmd();
