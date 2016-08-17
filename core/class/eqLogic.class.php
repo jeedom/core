@@ -587,7 +587,7 @@ class eqLogic {
 		return $html;
 	}
 	
-	public function postHtml($_version, $_html) {
+	public function postToHtml($_version, $_html) {
 		
 	}
 
