@@ -81,7 +81,7 @@ class pluginTest extends \PHPUnit_Framework_TestCase {
 		$cmd->setSubtype('binary');
 		$cmd->setLogicalId('virtual_test_1');
 		$cmd->setEqLogic_id($virtual->getId());
-		$cmd->setConfiguration('calcul', '1');
+		$cmd->setConfiguration('calcul', 1);
 		$cmd->save();
 		$this->assertTrue((is_numeric($cmd->getId()) && $cmd->getId() != ''));
 	}
@@ -90,7 +90,6 @@ class pluginTest extends \PHPUnit_Framework_TestCase {
  * @depends testCreateEqVirtual
  */
 	public function testCmdVirtualBinary($virtual) {
-		return;
 		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
 		$cmd = $virtual->getCmd(null, 'virtual_test_1');
 		$this->assertSame(1, $cmd->execCmd());
