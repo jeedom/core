@@ -594,11 +594,11 @@ class eqLogic {
 			self::$_templateArray[$version] = getTemplate('core', $version, 'eqLogic');
 		}
 		$html = template_replace($replace, self::$_templateArray[$version]);
-		$this->postHtml($_version, $html);
+		$this->postToHtml($_version, $html);
 		return $html;
 	}
 
-	public function postHtml($_version, $_html) {
+	public function postToHtml($_version, $_html) {
 		$user_id = '';
 		if (isset($_SESSION) && isset($_SESSION['user']) && is_object($_SESSION['user'])) {
 			$user_id = $_SESSION['user']->getId();
