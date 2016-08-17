@@ -598,7 +598,7 @@ class scenario {
 			$element->execute($this);
 		}
 		$this->setState('stop');
-		$this->setPID('');
+		$this->setPID();
 		$this->setLog(__('Fin correcte du scénario', __FILE__));
 		$this->persistLog();
 		return $this->getReturn();
@@ -716,6 +716,11 @@ class scenario {
 		if ($this->getConfiguration('has_return', 0) == 1) {
 			$this->setConfiguration('syncmode', 1);
 		}
+	}
+
+	public function postInsert() {
+		$this->setState('stop');
+		$this->setPID();
 	}
 
 	public function save() {
@@ -1230,7 +1235,7 @@ class scenario {
 		return $this->getCache('pid');
 	}
 
-	public function setPID($pid) {
+	public function setPID($pid = '') {
 		$this->setCache('pid', $pid);
 	}
 
