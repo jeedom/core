@@ -593,9 +593,7 @@ class eqLogic {
 		if (!isset(self::$_templateArray[$version])) {
 			self::$_templateArray[$version] = getTemplate('core', $version, 'eqLogic');
 		}
-		$html = template_replace($replace, self::$_templateArray[$version]);
-		$this->postToHtml($_version, $html);
-		return $html;
+		return $this->postToHtml($_version, template_replace($replace, self::$_templateArray[$version]));
 	}
 
 	public function postToHtml($_version, $_html) {
@@ -604,6 +602,7 @@ class eqLogic {
 			$user_id = $_SESSION['user']->getId();
 		}
 		cache::set('widgetHtml' . $this->getId() . $_version . $user_id, $_html);
+		return $_html;
 	}
 
 	public function emptyCacheWidget() {
