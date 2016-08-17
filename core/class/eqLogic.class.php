@@ -588,7 +588,7 @@ class eqLogic {
 	}
 	
 	public function postToHtml($_version, $_html) {
-		
+		return $_html;
 	}
 
 	public function emptyCacheWidget() {
