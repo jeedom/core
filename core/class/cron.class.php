@@ -202,6 +202,11 @@ class cron {
 		}
 	}
 
+	public function postInsert() {
+		$this->setState('stop');
+		$this->setPID();
+	}
+
 	/**
 	 * Save cron object
 	 * @return boolean
@@ -218,6 +223,7 @@ class cron {
 		if ($halt_before && $this->running()) {
 			$this->halt();
 		}
+		cache::byKey('cronCacheAttr' . $this->getId())->remove();
 		return DB::remove($this);
 	}
 
