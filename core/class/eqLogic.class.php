@@ -586,6 +586,10 @@ class eqLogic {
 		cache::set('widgetHtml' . $_version . $this->getId(), $html);
 		return $html;
 	}
+	
+	public function postHtml($_version, $_html) {
+		
+	}
 
 	public function emptyCacheWidget() {
 		$mc = cache::byKey('widgetHtmldashboard' . $this->getId());
