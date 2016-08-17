@@ -704,6 +704,54 @@ class cmd {
 		return false;
 	}
 
+	public function preExecCmd($_values = array()) {
+		if (!is_array($this->getConfiguration('jeedomPreExecCmd'))) {
+			return;
+		}
+		foreach ($this->getConfiguration('jeedomPreExecCmd') as $action) {
+			try {
+				$options = array();
+				if (isset($action['options'])) {
+					$options = $action['options'];
+				}
+				foreach ($_values as $key => $value) {
+					foreach ($options as &$option) {
+						if (!is_array($option)) {
+							$option = str_replace('#' . $key . '#', $value, $option);
+						}
+					}
+				}
+				scenarioExpression::createAndExec('action', $action['cmd'], $options);
+			} catch (Exception $e) {
+				log::add('cmd', 'error', __('Erreur lors de l\'éxecution de ', __FILE__) . $action['cmd'] . __('. Sur preExec de la commande', __FILE__) . $this->getHumanName() . __('. Détails : ', __FILE__) . $e->getMessage());
+			}
+		}
+	}
+
+	public function postExecCmd($_values = array()) {
+		if (!is_array($this->getConfiguration('jeedomPostExecCmd'))) {
+			return;
+		}
+		foreach ($this->getConfiguration('jeedomPostExecCmd') as $action) {
+			try {
+				$options = array();
+				if (isset($action['options'])) {
+					$options = $action['options'];
+				}
+				foreach ($_values as $key => $value) {
+					foreach ($options as &$option) {
+						if (!is_array($option)) {
+							$option = str_replace('#' . $key . '#', $value, $option);
+						}
+					}
+				}
+				scenarioExpression::createAndExec('action', $action['cmd'], $options);
+			} catch (Exception $e) {
+				log::add('cmd', 'error', __('Erreur lors de l\'éxecution de ', __FILE__) . $action['cmd'] . __('. Sur preExec de la commande', __FILE__) . $this->getHumanName() . __('. Détails : ', __FILE__) . $e->getMessage());
+			}
+		}
+	}
+
 	/**
 	 *
 	 * @param type $_options
@@ -740,7 +788,9 @@ class cmd {
 			} else {
 				log::add('event', 'info', __('Exécution de la commande ', __FILE__) . $this->getHumanName());
 			}
+			$this->preExecCmd($options);
 			$value = $this->formatValue($this->execute($options), $_quote);
+			$this->postExecCmd($options);
 		} catch (Exception $e) {
 			//Si impossible de contacter l'équipement
 			$type = $eqLogic->getEqType_name();
