@@ -223,7 +223,6 @@ class cron {
 		if ($halt_before && $this->running()) {
 			$this->halt();
 		}
-		cache::byKey('cronCacheAttr' . $this->getId())->remove();
 		return DB::remove($this);
 	}
 
