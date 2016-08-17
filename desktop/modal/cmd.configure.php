@@ -293,7 +293,7 @@ foreach ($groups as $group) {
 ?>
   <?php if ($cmd->getType() == 'action') {
 	?>
-    <legend><i class="fa fa-sign-out"></i> {{Action avant éxecution de la commande}}</legend>
+    <legend><i class="fa fa-sign-out"></i> {{Action avant exécution de la commande}}</legend>
     <div class="form-group">
       <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action}}</label>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -309,7 +309,7 @@ foreach ($groups as $group) {
       });
     </script>
 
-    <legend><i class="fa fa-sign-out"></i> {{Action après éxecution de la commande}}</legend>
+    <legend><i class="fa fa-sign-out"></i> {{Action après exécution de la commande}}</legend>
     <div class="form-group">
       <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action}}</label>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -675,7 +675,7 @@ if ($cmd->getDisplay('parameters') != '') {
     tr += '</tr>';
     $('#table_widgetParameters tbody').append(tr);
   });
-console.log(cmdInfo);
+
   $('#div_displayCmdConfigure').setValues(cmdInfo, '.cmdAttr');
   if(isset(cmdInfo.configuration.actionCheckCmd) && $.isArray(cmdInfo.configuration.actionCheckCmd) && cmdInfo.configuration.actionCheckCmd.length != null){
     for(var i in cmdInfo.configuration.actionCheckCmd){
