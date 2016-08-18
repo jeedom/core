@@ -10,7 +10,7 @@ $name = init('name', null);
 if ($name == 'false') {
 	$name = null;
 }
-if ($name == null && $categorie == null && init('certification', null) == null && $type == 'plugin') {
+if ($name == null && $categorie == null && init('certification', null) == null && init('cost', null) == null && $type == 'plugin') {
 	$default = true;
 	$markets = repo_market::byFilter(array(
 		'status' => 'stable',
@@ -176,13 +176,6 @@ function displayWidgetSubtype($_name) {
 ?>
 		<div class="form-group">
 			<div class="btn-group" >
-				<a class="btn btn-default bt_pluginFilter <?php echo (init('timeState') == 'newest') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('timeState', 'newest'); ?>">Nouveau</a>
-				<a class="btn btn-default bt_pluginFilter <?php echo (init('timeState') == 'popular') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('timeState', 'popular'); ?>">Populaire</a>
-				<a class="btn btn-default bt_pluginFilter" data-href="<?php echo buildUrl('timeState', ''); ?>"><i class="fa fa-times"></i></a>
-			</div>
-		</div>
-		<div class="form-group">
-			<div class="btn-group" >
 				<a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Officiel') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Officiel'); ?>">Officiel</a>
 				<a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Conseillé') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Conseillé'); ?>">Conseillé</a>
 				<a class="btn btn-default bt_pluginFilter" data-href="<?php echo buildUrl('certification', ''); ?>"><i class="fa fa-times"></i></a>
@@ -197,13 +190,8 @@ function displayWidgetSubtype($_name) {
 		</div>
 		<div class="form-group">
 			<select class="form-control" id="sel_categorie" data-href='<?php echo buildUrl('categorie', ''); ?>'>
-				<?php if (init('type', 'plugin') == 'zwave') {?>
-				<option value="">Toutes les marques</option>
-				<?php } else {?>
-				<option value="">Toutes les categories</option>
+				<option value="">Top et nouveautés</option>
 				<?php
-}
-
 foreach (repo_market::distinctCategorie($type) as $id => $category) {
 	if (trim($category) != '' && is_numeric($id)) {
 		echo '<option value="' . $category . '"';
