@@ -669,6 +669,9 @@ class plugin {
 		if ($deamonAutoState) {
 			config::save('deamonAutoMode', 1, $this->getId());
 		}
+		if ($_state == 1) {
+			config::save('log::level::' . $this->getId(), '{"100":"0","200":"0","300":"0","400":"0","1000":"0","default":"1"}');
+		}
 		return true;
 	}
 
