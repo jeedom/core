@@ -37,7 +37,7 @@ jeedom.cmd.execute = function(_params) {
             if (data.state != 'ok') {
                 if(data.code == -32005){
                     if ($.mobile) {
-                       var result = prompt("Veuillez indiquer le code ?", "")
+                       var result = prompt("{{Veuillez indiquer le code ?}}", "")
                        if(result != null){
                            _params.codeAccess = result;
                            jeedom.cmd.execute(_params);
@@ -58,7 +58,7 @@ jeedom.cmd.execute = function(_params) {
                         return data;
                     }
                 }else{
-                   bootbox.prompt("Veuillez indiquer le code ?", function (result) {
+                   bootbox.prompt("{{Veuillez indiquer le code ?}}", function (result) {
                     if(result != null){
                        _params.codeAccess = result;
                        jeedom.cmd.execute(_params);
@@ -83,7 +83,7 @@ jeedom.cmd.execute = function(_params) {
                }
            }else if(data.code == -32006){
                if ($.mobile) {
-                   var result = confirm("Etes vous sur de vouloir faire cette action ?")
+                   var result = confirm("{{Etes vous sur de vouloir faire cette action ?}}")
                    if(result){
                     _params.confirmAction = 1;
                     jeedom.cmd.execute(_params);
@@ -104,7 +104,7 @@ jeedom.cmd.execute = function(_params) {
                     return data;
                 }
             }else{
-                bootbox.confirm("Etes vous sur de vouloir faire cette action ?", function (result) {
+                bootbox.confirm("{{Etes vous sur de vouloir faire cette action ?}}", function (result) {
                     if(result){
                        _params.confirmAction = 1;
                        jeedom.cmd.execute(_params);
