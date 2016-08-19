@@ -245,11 +245,38 @@ if (!isConnect()) {
 										<li class="dropdown-submenu">
 											<a data-toggle="dropdown" id="bt_gotoDashboard" href="index.php?v=d&p=dashboard"><i class="fa fa-dashboard"></i> {{Dashboard}}</a>
 											<ul class="dropdown-menu">
-												<?php
-foreach (object::buildTree(null, true) as $object_li) {
-				echo '<li><a href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '">' . $object_li->getHumanName(true) . '</a></li>';
-			}
-			?>
+											<?php
+											$initIndex = 0;
+											foreach (object::buildTree(null, true) as $object_li) {
+												while ( $object_li->parentNumber() < $initIndex ) {
+													echo '</ul>';
+													echo '</li>';
+													$initIndex --;
+												}
+												echo '<li';
+												$asChild = count($object_li->getChild()) == 0 ? false : true;
+												if ( $asChild ) {
+													echo ' class="dropdown-submenu"';
+												}
+												echo '><a';
+												if ( $asChild ) {
+													echo ' data-toggle="dropdown"';
+												}
+												echo ' href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '">' . $object_li->getHumanName(true) . '</a>';
+												if ( $asChild ) {
+													echo '<ul class="dropdown-menu">';
+												}
+												if ( ! $asChild ) {
+													echo '</li>';
+												}
+												$initIndex = $object_li->parentNumber();
+											}
+											while ( $initIndex > 0 ) {
+												echo '</ul>';
+												echo '</li>';
+												$initIndex --;
+											}
+											?>
 											</ul>
 										</li>
 										<?php
