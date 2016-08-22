@@ -815,7 +815,7 @@ function isConnect($_right = '') {
 	if (session_status() == PHP_SESSION_DISABLED || !isset($_SESSION) || !isset($_SESSION['user'])) {
 		return false;
 	}
-	if (is_object($_SESSION['user']) && $_SESSION['user']->is_Connected()) {
+	if (isset($_SESSION['user']) && is_object($_SESSION['user']) && $_SESSION['user']->is_Connected()) {
 		if ($_right != '') {
 			return ($_SESSION['user']->getRights($_right) == 1) ? true : false;
 		}
