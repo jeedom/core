@@ -114,9 +114,49 @@ class listener {
 	/*     * *********************Méthodes d'instance************************* */
 
 	public function run($_event, $_value) {
-		$cmd = dirname(__FILE__) . '/../php/jeeListener.php';
-		$cmd .= ' listener_id=' . $this->getId() . ' event_id=' . $_event . ' value=' . $_value;
-		system::php($cmd . ' >> /dev/null 2>&1 &');
+		$option = array();
+		if (count($this->getOption()) > 0) {
+			$option = $this->getOption();
+		}
+		if (isset($option['background']) && $option['background'] == false) {
+			$this->execute($_event, $_value);
+		} else {
+			$cmd = dirname(__FILE__) . '/../php/jeeListener.php';
+			$cmd .= ' listener_id=' . $this->getId() . ' event_id=' . $_event . ' value=' . $_value;
+			system::php($cmd . ' >> /dev/null 2>&1 &');
+		}
+	}
+
+	public function execute($_event, $_value) {
+		try {
+			$option = array();
+			if (count($this->getOption()) > 0) {
+				$option = $this->getOption();
+			}
+			$option['event_id'] = $_event;
+			$option['value'] = $_value;
+			if ($this->getClass() != '') {
+				$class = $this->getClass();
+				$function = $this->getFunction();
+				if (class_exists($class) && method_exists($class, $function)) {
+					$class::$function($option);
+				} else {
+					log::add('listener', 'debug', __('[Erreur] Classe ou fonction non trouvée ', __FILE__) . $this->getName());
+					$this->remove();
+					return;
+				}
+			} else {
+				$function = $this->getFunction();
+				if (function_exists($function)) {
+					$function($option);
+				} else {
+					log::add('listener', 'error', __('[Erreur] Non trouvée ', __FILE__) . $this->getName());
+					return;
+				}
+			}
+		} catch (Exception $e) {
+			log::add(init('plugin_id', 'plugin'), 'error', $e->getMessage());
+		}
 	}
 
 	public function preSave() {

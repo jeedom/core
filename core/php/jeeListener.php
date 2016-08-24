@@ -17,68 +17,44 @@
  */
 
 if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SERVER['argc'])) {
-    header("Status: 404 Not Found");
-    header('HTTP/1.0 404 Not Found');
-    $_SERVER['REDIRECT_STATUS'] = 404;
-    echo "<h1>404 Not Found</h1>";
-    echo "The page that you have requested could not be found.";
-    exit();
+	header("Status: 404 Not Found");
+	header('HTTP/1.0 404 Not Found');
+	$_SERVER['REDIRECT_STATUS'] = 404;
+	echo "<h1>404 Not Found</h1>";
+	echo "The page that you have requested could not be found.";
+	exit();
 }
 
 require_once dirname(__FILE__) . "/core.inc.php";
 
 if (isset($argv)) {
-    foreach ($argv as $arg) {
-        $argList = explode('=', $arg);
-        if (isset($argList[0]) && isset($argList[1])) {
-            $_GET[$argList[0]] = $argList[1];
-        }
-    }
+	foreach ($argv as $arg) {
+		$argList = explode('=', $arg);
+		if (isset($argList[0]) && isset($argList[1])) {
+			$_GET[$argList[0]] = $argList[1];
+		}
+	}
 }
 set_time_limit(config::byKey('maxExecTimeScript', 60));
 if (init('listener_id') == '') {
-    foreach (cmd::byValue(init('event_id'), 'info') as $cmd) {
-        $cmd->event($cmd->execute(),2);
-    }
+	foreach (cmd::byValue(init('event_id'), 'info') as $cmd) {
+		$cmd->event($cmd->execute(), 2);
+	}
 } else {
-    try {
-        $listener_id = init('listener_id');
-        if ($listener_id == '') {
-            throw new Exception(__('Le listener ID ne peut être vide', __FILE__));
-        }
-        $listener = listener::byId($listener_id);
-        if (!is_object($listener)) {
-            throw new Exception(__('Listener non trouvé : ', __FILE__) . $listener_id);
-        }
-        $option = array();
-        if (count($listener->getOption()) > 0) {
-            $option = $listener->getOption();
-        }
-        $option['event_id'] = init('event_id');
-        $option['value'] = init('value');
-        if ($listener->getClass() != '') {
-            $class = $listener->getClass();
-            $function = $listener->getFunction();
-            if (class_exists($class) && method_exists($class, $function)) {
-                $class::$function($option);
-            } else {
-                log::add('listener', 'debug', __('[Erreur] Classe ou fonction non trouvée ', __FILE__) . $listener->getName());
-                $listener->remove();
-                die();
-            }
-        } else {
-            $function = $listener->getFunction();
-            if (function_exists($function)) {
-                $function($option);
-            } else {
-                log::add('listener', 'error', __('[Erreur] Non trouvée ', __FILE__) . $listener->getName());
-                die();
-            }
-        }
-    } catch (Exception $e) {
-        log::add(init('plugin_id', 'plugin'), 'error', $e->getMessage());
-        die($e->getMessage());
-    }
+	try {
+		$listener_id = init('listener_id');
+		if ($listener_id == '') {
+			throw new Exception(__('Le listener ID ne peut être vide', __FILE__));
+		}
+		$listener = listener::byId($listener_id);
+		if (!is_object($listener)) {
+			throw new Exception(__('Listener non trouvé : ', __FILE__) . $listener_id);
+		}
+	} catch (Exception $e) {
+		log::add(init('plugin_id', 'plugin'), 'error', $e->getMessage());
+		die($e->getMessage());
+	}
+	$listener->execute(init('event_id'), init('value'));
 }
 ?>
 
