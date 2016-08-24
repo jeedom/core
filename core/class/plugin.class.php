@@ -232,6 +232,17 @@ class plugin {
 			$rootPluginPath = dirname(__FILE__) . '/../../plugins';
 			foreach (ls($rootPluginPath, '*') as $dirPlugin) {
 				if (is_dir($rootPluginPath . '/' . $dirPlugin)) {
+					$pathInfoPlugin = $rootPluginPath . '/' . $dirPlugin . '/plugin_info/info.json';
+					if (file_exists($pathInfoPlugin)) {
+						try {
+							$listPlugin[] = plugin::byId($pathInfoPlugin, $_translate);
+							continue;
+						} catch (Exception $e) {
+							log::add('plugin', 'error', $e->getMessage(), 'pluginNotFound::' . $pathInfoPlugin);
+						} catch (Error $e) {
+							log::add('plugin', 'error', $e->getMessage(), 'pluginNotFound::' . $pathInfoPlugin);
+						}
+					}
 					$pathInfoPlugin = $rootPluginPath . '/' . $dirPlugin . '/plugin_info/info.xml';
 					if (file_exists($pathInfoPlugin)) {
 						try {
@@ -242,16 +253,7 @@ class plugin {
 							log::add('plugin', 'error', $e->getMessage(), 'pluginNotFound::' . $pathInfoPlugin);
 						}
 					}
-					$pathInfoPlugin = $rootPluginPath . '/' . $dirPlugin . '/plugin_info/info.json';
-					if (file_exists($pathInfoPlugin)) {
-						try {
-							$listPlugin[] = plugin::byId($pathInfoPlugin, $_translate);
-						} catch (Exception $e) {
-							log::add('plugin', 'error', $e->getMessage(), 'pluginNotFound::' . $pathInfoPlugin);
-						} catch (Error $e) {
-							log::add('plugin', 'error', $e->getMessage(), 'pluginNotFound::' . $pathInfoPlugin);
-						}
-					}
+
 				}
 			}
 		}
