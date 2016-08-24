@@ -434,12 +434,32 @@ if (init('type') != '') {
 						if (!is_object($cmd)) {
 							throw new Exception('Cmd introuvable : ' . secureXSS($id), -32702);
 						}
+						$eqLogic = $cmd->getEqLogic();
+						if ($cmd->getType() == 'action' && !$eqLogic->hasRight('x')) {
+							throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
+						}
+						if ($cmd->getType() == 'action' && $cmd->getConfiguration('actionCodeAccess') != '' && sha1($param['codeAccess']) != $cmd->getConfiguration('actionCodeAccess')) {
+							throw new Exception(__('Cette action nécessite un code d\'accès', __FILE__), -32005);
+						}
+						if ($cmd->getType() == 'action' && $cmd->getConfiguration('actionConfirm') == 1 && $param['confirmAction'] != 1) {
+							throw new Exception(__('Cette action nécessite une confirmation', __FILE__), -32006);
+						}
 						$return[$id] = array('value' => $cmd->execCmd($params['options']), 'collectDate' => $cmd->getCollectDate());
 					}
 				} else {
 					$cmd = cmd::byId($params['id']);
 					if (!is_object($cmd)) {
 						throw new Exception('Cmd introuvable : ' . secureXSS($params['id']), -32702);
+					}
+					$eqLogic = $cmd->getEqLogic();
+					if ($cmd->getType() == 'action' && !$eqLogic->hasRight('x')) {
+						throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
+					}
+					if ($cmd->getType() == 'action' && $cmd->getConfiguration('actionCodeAccess') != '' && sha1($param['codeAccess']) != $cmd->getConfiguration('actionCodeAccess')) {
+						throw new Exception(__('Cette action nécessite un code d\'accès', __FILE__), -32005);
+					}
+					if ($cmd->getType() == 'action' && $cmd->getConfiguration('actionConfirm') == 1 && $param['confirmAction'] != 1) {
+						throw new Exception(__('Cette action nécessite une confirmation', __FILE__), -32006);
 					}
 					$return = array('value' => $cmd->execCmd($params['options']), 'collectDate' => $cmd->getCollectDate());
 				}
