@@ -7,13 +7,13 @@ if (!isConnect()) {
   <div class="col-lg-2">
     <h3>{{Auteur(s)}}</h3>
     <lu>
-      <li><a class="cursor" href="http://jeedom.com/" style="color:blue;" target="_blank">Loïc Gevrey</a></li>
+      <li><a class="cursor" href="http://jeedom.com/" style="color:blue;" target="_blank">Loïc</a></li>
     </lu>
   </div>
   <div class="col-lg-2">
     <h3>{{Développeur(s)}}</h3>
     <lu>
-      <li><a class="cursor" href="http://jeedom.com/" style="color:blue;" target="_blank">Loïc Gevrey</a></li>
+      <li><a class="cursor" href="http://jeedom.com/" style="color:blue;" target="_blank">Loïc</a></li>
       <li>Thomas Martinez</li>
       <li><a class="cursor" href="http://arnaud.quette.fr" style="color:blue;" target="_blank">Arnaud Quette</a></li>
     </lu>
@@ -33,7 +33,7 @@ if (!isConnect()) {
   <div class="col-lg-2">
     <h3>{{Designer}}</h3>
     <lu>
-      <li><a class="cursor" href="http://jeedom.com/" style="color:blue;" target="_blank">Loïc Gevrey</a></li>
+      <li><a class="cursor" href="http://jeedom.com/" style="color:blue;" target="_blank">Loïc</a></li>
       <li>Marie Corbière</li>
       <li><a class="cursor" href="http://ma-maison-domotique.blogspot.com/" style="color:blue;" target="_blank">Mathieu (alias Algeroth)</a></li>
     </lu>
@@ -41,7 +41,7 @@ if (!isConnect()) {
   <div class="col-lg-2">
     <h3>{{Beta-testeur(s)}}</h3>
     <lu>
-      <li><a class="cursor" href="http://jeedom.com/" style="color:blue;" target="_blank">Loïc Gevrey</a></li>
+      <li><a class="cursor" href="http://jeedom.com/" style="color:blue;" target="_blank">Loïc</a></li>
       <li>Marie Corbière</li>
       <li><a class="cursor" href="http://ma-maison-domotique.blogspot.com/" style="color:blue;" target="_blank">Mathieu (alias Algeroth)</a></li>
       <li>Gerandhal</li>
@@ -61,13 +61,13 @@ if (!isConnect()) {
       <li><a class="cursor" href="http://fontawesome.io/" style="color:blue;" target="_blank">font-awesome</a></li>
       <li><a class="cursor" href="http://www.highcharts.com/" style="color:blue;" target="_blank">hightstock</a></li>
       <li><a class="cursor" href="http://jquery.com/" style="color:blue;" target="_blank">jquery</a></li>
-      <li>jquery.alert - Loïc Gevrey</li>
+      <li>jquery.alert - Loïc</li>
     </lu>
   </div>
   <div class="col-lg-4">
     <lu>
       <li><a class="cursor" href="http://www.abeautifulsite.net/blog/2008/03/jquery-file-tree/" style="color:blue;" target="_blank">jquery.fileTree</a></li>
-      <li>jquery.loading - Loïc Gevrey</li>
+      <li>jquery.loading - Loïc</li>
       <li><a class="cursor" href="http://jquerymobile.com/" style="color:blue;" target="_blank">jquery.mobile</a></li>
       <li><a class="cursor" href="https://github.com/tactivos/jquery-sew" style="color:blue;" target="_blank">jquery.sew</a></li>
     </lu>
@@ -77,7 +77,7 @@ if (!isConnect()) {
       <li><a class="cursor" href="http://tablesorter.com/docs/" style="color:blue;" target="_blank">jquery.tablesorter</a></li>
       <li><a class="cursor" href="http://www.jstree.com/" style="color:blue;" target="_blank">jquery.tree</a></li>
       <li><a class="cursor" href="http://jqueryui.com/" style="color:blue;" target="_blank">jquery.ui</a></li>
-      <li>jquery.value - Loïc Gevrey</li>
+      <li>jquery.value - Loïc</li>
       <li><a class="cursor" href="http://phpjs.org/" style="color:blue;" target="_blank">php.js</a></li>
       <li><a class="cursor" href="https://github.com/PHPMailer/PHPMailer" style="color:blue;" target="_blank">PHPMailer</a></li>
     </lu>

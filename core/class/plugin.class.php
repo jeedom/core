@@ -233,17 +233,9 @@ class plugin {
 			foreach (ls($rootPluginPath, '*') as $dirPlugin) {
 				if (is_dir($rootPluginPath . '/' . $dirPlugin)) {
 					$pathInfoPlugin = $rootPluginPath . '/' . $dirPlugin . '/plugin_info/info.json';
-					if (file_exists($pathInfoPlugin)) {
-						try {
-							$listPlugin[] = plugin::byId($pathInfoPlugin, $_translate);
-							continue;
-						} catch (Exception $e) {
-							log::add('plugin', 'error', $e->getMessage(), 'pluginNotFound::' . $pathInfoPlugin);
-						} catch (Error $e) {
-							log::add('plugin', 'error', $e->getMessage(), 'pluginNotFound::' . $pathInfoPlugin);
-						}
+					if (!file_exists($pathInfoPlugin)) {
+						$pathInfoPlugin = $rootPluginPath . '/' . $dirPlugin . '/plugin_info/info.xml';
 					}
-					$pathInfoPlugin = $rootPluginPath . '/' . $dirPlugin . '/plugin_info/info.xml';
 					if (file_exists($pathInfoPlugin)) {
 						try {
 							$listPlugin[] = plugin::byId($pathInfoPlugin, $_translate);
@@ -253,7 +245,6 @@ class plugin {
 							log::add('plugin', 'error', $e->getMessage(), 'pluginNotFound::' . $pathInfoPlugin);
 						}
 					}
-
 				}
 			}
 		}
