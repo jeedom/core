@@ -50,7 +50,7 @@ class plugin {
 		if (is_string($_id) && isset(self::$_cache[$_id])) {
 			return self::$_cache[$_id];
 		}
-		if (!file_exists($_id) || strpos($_id, '.xml') === false) {
+		if (!file_exists($_id) || (strpos($_id, '.xml') === false && strpos($_id, '.json') === false)) {
 			$_id = self::getPathById($_id);
 			if (isset(self::$_cache[$_id])) {
 				return self::$_cache[$_id];
@@ -59,61 +59,125 @@ class plugin {
 				throw new Exception('Plugin introuvable : ' . $_id);
 			}
 		}
-		libxml_use_internal_errors(true);
 		$_id = str_replace('//', '/', $_id);
-		$plugin_xml = @simplexml_load_file($_id);
-		if (!is_object($plugin_xml)) {
-			throw new Exception('Plugin introuvable (xml invalide) : ' . $_id . '. Description : ' . print_r(libxml_get_errors(), true));
+		if (file_exists(str_replace('.xml', '.json', $_id))) {
+			$_id = str_replace('.xml', '.json', $_id);
 		}
-		$plugin = new plugin();
-		$plugin->id = (string) $plugin_xml->id;
-		$plugin->name = (string) $plugin_xml->name;
-		$plugin->description = (string) $plugin_xml->description;
-		$plugin->licence = (string) $plugin_xml->licence;
-		$plugin->author = (string) $plugin_xml->author;
-		$plugin->require = (string) $plugin_xml->require;
-		$plugin->installation = (string) $plugin_xml->installation;
-		$plugin->category = (string) $plugin_xml->category;
-		$plugin->allowRemote = 0;
-		if (isset($plugin_xml->allowRemote)) {
-			$plugin->allowRemote = $plugin_xml->allowRemote;
-		}
-		$plugin->hasDependency = 0;
-		if (isset($plugin_xml->hasDependency)) {
-			$plugin->hasDependency = $plugin_xml->hasDependency;
-		}
-		$plugin->hasOwnDeamon = 0;
-		if (isset($plugin_xml->hasOwnDeamon)) {
-			$plugin->hasOwnDeamon = $plugin_xml->hasOwnDeamon;
-		}
-		if (isset($plugin_xml->maxDependancyInstallTime)) {
-			$plugin->maxDependancyInstallTime = $plugin_xml->maxDependancyInstallTime;
-		} else {
-			$plugin->maxDependancyInstallTime = 10;
-		}
+		if (strpos($_id, '.json') !== false) {
+			$data = json_decode(file_get_contents($_id), true);
+			if (!is_array($data)) {
+				throw new Exception('Plugin introuvable (json invalide) : ' . $_id);
+			}
+			$plugin = new plugin();
+			$plugin->id = $data['id'];
+			$plugin->name = $data['name'];
+			$plugin->description = $data['description'];
+			$plugin->licence = $data['licence'];
+			$plugin->author = $data['author'];
+			$plugin->require = $data['require'];
 
-		$plugin->eventjs = 0;
-		if (isset($plugin_xml->eventjs)) {
-			$plugin->eventjs = 1;
-		}
-		$plugin->filepath = $_id;
-		$plugin->index = (isset($plugin_xml->index)) ? (string) $plugin_xml->index : $plugin_xml->id;
-		$plugin->display = (isset($plugin_xml->display)) ? (string) $plugin_xml->display : '';
+			$plugin->installation = '';
+			if (isset($data['installation'])) {
+				$plugin->installation = $data['installation'];
+			}
+			$plugin->category = $data['category'];
+			$plugin->allowRemote = 0;
 
-		$plugin->mobile = '';
-		if (file_exists(dirname(__FILE__) . '/../../plugins/' . $plugin_xml->id . '/mobile/html')) {
-			$plugin->mobile = (isset($plugin_xml->mobile)) ? (string) $plugin_xml->mobile : $plugin_xml->id;
-		}
-		if (isset($plugin_xml->include)) {
-			$plugin->include = array(
-				'file' => (string) $plugin_xml->include,
-				'type' => (string) $plugin_xml->include['type'],
-			);
+			if (isset($data['allowRemote'])) {
+				$plugin->allowRemote = $data['allowRemote'];
+			}
+			$plugin->hasDependency = 0;
+			if (isset($data['hasDependency'])) {
+				$plugin->hasDependency = $data['hasDependency'];
+			}
+			$plugin->hasOwnDeamon = 0;
+			if (isset($data['hasOwnDeamon'])) {
+				$plugin->hasOwnDeamon = $data['hasOwnDeamon'];
+			}
+			if (isset($data['maxDependancyInstallTime'])) {
+				$plugin->maxDependancyInstallTime = $data['maxDependancyInstallTime'];
+			} else {
+				$plugin->maxDependancyInstallTime = 10;
+			}
+			$plugin->eventjs = 0;
+			if (isset($data['eventjs'])) {
+				$plugin->eventjs = 1;
+			}
+			$plugin->filepath = $_id;
+			$plugin->index = (isset($data['index'])) ? (string) $data['index'] : $data['id'];
+			$plugin->display = (isset($data['display'])) ? (string) $data['display'] : '';
+
+			$plugin->mobile = '';
+			if (file_exists(dirname(__FILE__) . '/../../plugins/' . $data['id'] . '/mobile/html')) {
+				$plugin->mobile = (isset($data['mobile'])) ? $data['mobile'] : $data['id'];
+			}
+			if (isset($data['include'])) {
+				$plugin->include = array(
+					'file' => $data['include']['file'],
+					'type' => $data['include']['type'],
+				);
+			} else {
+				$plugin->include = array(
+					'file' => $data['id'],
+					'type' => 'class',
+				);
+			}
 		} else {
-			$plugin->include = array(
-				'file' => $plugin_xml->id,
-				'type' => 'class',
-			);
+			libxml_use_internal_errors(true);
+			$plugin_xml = @simplexml_load_file($_id);
+			if (!is_object($plugin_xml)) {
+				throw new Exception('Plugin introuvable (xml invalide) : ' . $_id . '. Description : ' . print_r(libxml_get_errors(), true));
+			}
+			$plugin = new plugin();
+			$plugin->id = (string) $plugin_xml->id;
+			$plugin->name = (string) $plugin_xml->name;
+			$plugin->description = (string) $plugin_xml->description;
+			$plugin->licence = (string) $plugin_xml->licence;
+			$plugin->author = (string) $plugin_xml->author;
+			$plugin->require = (string) $plugin_xml->require;
+			$plugin->installation = (string) $plugin_xml->installation;
+			$plugin->category = (string) $plugin_xml->category;
+			$plugin->allowRemote = 0;
+			if (isset($plugin_xml->allowRemote)) {
+				$plugin->allowRemote = $plugin_xml->allowRemote;
+			}
+			$plugin->hasDependency = 0;
+			if (isset($plugin_xml->hasDependency)) {
+				$plugin->hasDependency = $plugin_xml->hasDependency;
+			}
+			$plugin->hasOwnDeamon = 0;
+			if (isset($plugin_xml->hasOwnDeamon)) {
+				$plugin->hasOwnDeamon = $plugin_xml->hasOwnDeamon;
+			}
+			if (isset($plugin_xml->maxDependancyInstallTime)) {
+				$plugin->maxDependancyInstallTime = $plugin_xml->maxDependancyInstallTime;
+			} else {
+				$plugin->maxDependancyInstallTime = 10;
+			}
+
+			$plugin->eventjs = 0;
+			if (isset($plugin_xml->eventjs)) {
+				$plugin->eventjs = 1;
+			}
+			$plugin->filepath = $_id;
+			$plugin->index = (isset($plugin_xml->index)) ? (string) $plugin_xml->index : $plugin_xml->id;
+			$plugin->display = (isset($plugin_xml->display)) ? (string) $plugin_xml->display : '';
+
+			$plugin->mobile = '';
+			if (file_exists(dirname(__FILE__) . '/../../plugins/' . $plugin_xml->id . '/mobile/html')) {
+				$plugin->mobile = (isset($plugin_xml->mobile)) ? (string) $plugin_xml->mobile : $plugin_xml->id;
+			}
+			if (isset($plugin_xml->include)) {
+				$plugin->include = array(
+					'file' => (string) $plugin_xml->include,
+					'type' => (string) $plugin_xml->include['type'],
+				);
+			} else {
+				$plugin->include = array(
+					'file' => $plugin_xml->id,
+					'type' => 'class',
+				);
+			}
 		}
 
 		if ($_translate) {
@@ -127,6 +191,9 @@ class plugin {
 	}
 
 	public static function getPathById($_id) {
+		if (file_exists(dirname(__FILE__) . '/../../plugins/' . $_id . '/plugin_info/info.json')) {
+			return dirname(__FILE__) . '/../../plugins/' . $_id . '/plugin_info/info.json';
+		}
 		return dirname(__FILE__) . '/../../plugins/' . $_id . '/plugin_info/info.xml';
 	}
 
@@ -166,6 +233,16 @@ class plugin {
 			foreach (ls($rootPluginPath, '*') as $dirPlugin) {
 				if (is_dir($rootPluginPath . '/' . $dirPlugin)) {
 					$pathInfoPlugin = $rootPluginPath . '/' . $dirPlugin . '/plugin_info/info.xml';
+					if (file_exists($pathInfoPlugin)) {
+						try {
+							$listPlugin[] = plugin::byId($pathInfoPlugin, $_translate);
+						} catch (Exception $e) {
+							log::add('plugin', 'error', $e->getMessage(), 'pluginNotFound::' . $pathInfoPlugin);
+						} catch (Error $e) {
+							log::add('plugin', 'error', $e->getMessage(), 'pluginNotFound::' . $pathInfoPlugin);
+						}
+					}
+					$pathInfoPlugin = $rootPluginPath . '/' . $dirPlugin . '/plugin_info/info.json';
 					if (file_exists($pathInfoPlugin)) {
 						try {
 							$listPlugin[] = plugin::byId($pathInfoPlugin, $_translate);
