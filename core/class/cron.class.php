@@ -86,7 +86,13 @@ class cron {
 		}
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
-
+        /**
+         * 
+         * @param type $_class
+         * @param type $_function
+         * @param type $_option
+         * @return type
+         */
 	public static function searchClassAndFunction($_class, $_function, $_option = '') {
 		$value = array(
 			'class' => $_class,
@@ -102,7 +108,7 @@ class cron {
 		}
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-
+        
 	public static function clean() {
 		$crons = self::all();
 		foreach ($crons as $cron) {
@@ -438,18 +444,22 @@ class cron {
 
 	public function setId($id) {
 		$this->id = $id;
+                return $this;
 	}
 
 	public function setEnable($enable) {
 		$this->enable = $enable;
+                return $this;
 	}
 
 	public function setClass($class) {
 		$this->class = $class;
+                return $this;
 	}
 
 	public function setFunction($function) {
 		$this->function = $function;
+                return $this;
 	}
 
 	public function setLastRun($lastRun) {
@@ -470,6 +480,7 @@ class cron {
 
 	public function setSchedule($schedule) {
 		$this->schedule = $schedule;
+                return $this;
 	}
 
 	public function getDeamon() {
@@ -478,6 +489,7 @@ class cron {
 
 	public function setDeamon($deamons) {
 		$this->deamon = $deamons;
+                return $this;
 	}
 
 	public function getTimeout() {
@@ -490,6 +502,7 @@ class cron {
 
 	public function setTimeout($timeout) {
 		$this->timeout = $timeout;
+                return $this;
 	}
 
 	public function getDeamonSleepTime() {
@@ -502,6 +515,7 @@ class cron {
 
 	public function setDeamonSleepTime($deamonSleepTime) {
 		$this->deamonSleepTime = $deamonSleepTime;
+                return $this;
 	}
 
 	public function getOption() {
@@ -517,10 +531,12 @@ class cron {
 
 	public function setOption($option) {
 		$this->option = json_encode($option, JSON_UNESCAPED_UNICODE);
+                return $this;
 	}
 
 	public function setOnce($once) {
 		$this->once = $once;
+                return $this;
 	}
 
 	public function getCache($_key = '', $_default = '') {
