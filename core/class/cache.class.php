@@ -194,6 +194,7 @@ class cache {
 
 	public function setKey($key) {
 		$this->key = $key;
+		return $this;
 	}
 
 	public function getValue($_default = '') {
@@ -202,6 +203,7 @@ class cache {
 
 	public function setValue($value) {
 		$this->value = $value;
+		return $this;
 	}
 
 	public function getLifetime() {
@@ -210,6 +212,7 @@ class cache {
 
 	public function setLifetime($lifetime) {
 		$this->lifetime = $lifetime;
+		return $this;
 	}
 
 	public function getDatetime() {
@@ -218,6 +221,7 @@ class cache {
 
 	public function setDatetime($datetime) {
 		$this->datetime = $datetime;
+		return $this;
 	}
 
 	public function getOptions($_key = '', $_default = '') {
