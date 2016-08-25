@@ -117,6 +117,37 @@ if (version_compare(phpversion(), '5.5', '>=')) {
 ?>
 		</tr>
 		<tr>
+			<td style="font-weight : bold;cursor:default">{{Version OS}}</td>
+			<?php
+$uname = shell_exec('uname -a');
+$version = '';
+$version_ok = true;
+if (strpos(strtolower($uname), 'debian') === false) {
+	$version_ok = false;
+}
+if (strpos(strtolower($uname), 'ubuntu') !== false) {
+	$version_ok = false;
+}
+if (!file_exists('/etc/debian_version')) {
+	$version_ok = false;
+} else {
+	$version = trim(strtolower(file_get_contents('/etc/debian_version')));
+	if (version_compare($version, '8', '<')) {
+		if (strpos($version, 'jessie') === false && strpos($version, 'stretch')) {
+			$version_ok = false;
+		}
+	}
+}
+if ($version_ok) {
+	echo '<td class="alert alert-success" style="cursor:default">' . $uname . ' [' . $version . ']</td>';
+	echo '<td></td>';
+} else {
+	echo '<td class="alert alert-danger" style="cursor:default">' . $uname . '</td>';
+	echo '<td style="cursor:default">{{Vous n\'êtes pas sur un OS officiellement supporté par l\'équipe Jeedom (toute demande de support pourra donc être refusée). Les OS officiellement supporté sont Debian Jessie et Debian Strech (voir <a href="https://www.jeedom.com/doc/documentation/compatibility/fr_FR/doc-compatibility.html#_logiciel" target="_blank">ici</a>)}}</td>';
+}
+?>
+		</tr>
+		<tr>
 			<td style="font-weight : bold;cursor:default">{{Version database}}</td>
 			<?php
 $version = DB::Prepare('select version()', array(), DB::FETCH_TYPE_ROW);

@@ -333,6 +333,7 @@ class repo_market {
 			$_ticket['options']['page'] = substr($_ticket['options']['page'], strpos($_ticket['options']['page'], 'index.php'));
 		}
 		$_ticket['options']['jeedom_version'] = jeedom::version();
+		$_ticket['options']['uname'] = shell_exec('uname -a');
 		if (!$jsonrpc->sendRequest('ticket::save', array('ticket' => $_ticket))) {
 			throw new Exception($jsonrpc->getErrorMessage());
 		}
