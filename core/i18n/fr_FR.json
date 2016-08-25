@@ -716,7 +716,7 @@
         "Forcer la synchronisation de l'heure": "Forcer la synchronisation de l'heure",
         "Accès interne": "Accès interne",
         "Accès externe": "Accès externe",
-        "Système de fichier (\/tmp\/jeedom-cache)": "Système de fichier (\/tmp\/jeedom-cache)",
+        "Système de fichier (\/tmp\/jeedom-cache)": "Système de fichiers (\/tmp\/jeedom-cache)",
         "Memcached": "Memcached",
         "Redis": "Redis",
         "Ignorer les messages venant de": "Ignorer les messages venant de",
