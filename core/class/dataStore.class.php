@@ -114,6 +114,7 @@ class dataStore {
 
     public function setId($id) {
         $this->id = $id;
+        return $this;
     }
 
     public function getType() {
@@ -122,6 +123,7 @@ class dataStore {
 
     public function setType($type) {
         $this->type = $type;
+        return $this;
     }
 
     public function getLink_id() {
@@ -130,6 +132,7 @@ class dataStore {
 
     public function setLink_id($link_id) {
         $this->link_id = $link_id;
+        return $this;
     }
 
     public function getKey() {
@@ -138,6 +141,7 @@ class dataStore {
 
     public function setKey($key) {
         $this->key = $key;
+        return $this;
     }
 
     public function getValue($_default = '') {
