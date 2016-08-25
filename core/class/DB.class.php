@@ -222,11 +222,7 @@ class DB {
 	 * @param $_object Objet sur lequel appliquer les filtres
 	 * @return Objet ou liste d'objets correspondant à la requête
 	 */
-	public static function getWithFilter($_filters, $_object) {
-		// check filters
-		if (!is_array($_filters)) {
-			throw new Exception('Filter sent isn\'t an array.');
-		}
+	public static function getWithFilter(array $_filters, $_object) {
 		// operators have to remain in this order. If you put '<' before '<=', algorithm won't make the difference & will think a '<=' is a '<'
 		$operators = array('!=', '<=', '>=', '<', '>', 'NOT LIKE', 'LIKE', '=');
 		$fields = self::getFields($_object);
