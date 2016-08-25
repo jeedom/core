@@ -432,7 +432,7 @@ class eqLogic {
 
 	public function preToHtml($_version = 'dashboard', $_default = array()) {
 		if ($_version == '') {
-			throw new Exception(__('La version demandée ne peut pas être vide (mobile, dashboard ou scénario)', __FILE__));
+			throw new \Exception(__('La version demandée ne peut pas être vide (mobile, dashboard ou scénario)', __FILE__));
 		}
 		if (!$this->hasRight('r')) {
 			return '';
@@ -572,7 +572,7 @@ class eqLogic {
 		if (!is_array($replace)) {
 			return $replace;
 		}
-		$version = jeedom::versionAlias($_version);
+		$version = \jeedom::versionAlias($_version);
 		$cmd_html = '';
 		$br_before = 0;
 		foreach ($this->getCmd(null, null, true) as $cmd) {
@@ -841,7 +841,7 @@ class eqLogic {
 	}
 
 	public function widgetPossibility($_key = '', $_default = true) {
-		$class = new ReflectionClass($this->getEqType_name());
+		$class = new \ReflectionClass($this->getEqType_name());
 		$method_toHtml = $class->getMethod('toHtml');
 		$return = array();
 		if ($method_toHtml->class == 'eqLogic') {
@@ -906,6 +906,7 @@ class eqLogic {
 
 	public function setObject($_object) {
 		$this->_object = $_object;
+                return $this;
 	}
 
 	public function getEqType_name() {
@@ -965,35 +966,43 @@ class eqLogic {
 
 	public function setId($id) {
 		$this->id = $id;
+                return $this;
 	}
 
 	public function setName($name) {
 		$name = str_replace(array('&', '#', ']', '[', '%', "'", "\\", "/"), '', $name);
 		$this->name = $name;
+                return $this;
 	}
 
 	public function setLogicalId($logicalId) {
 		$this->logicalId = $logicalId;
+                return $this;
 	}
 
 	public function setObject_id($object_id = null) {
 		$this->object_id = (!is_numeric($object_id)) ? null : $object_id;
+                return $this;
 	}
 
 	public function setEqType_name($eqType_name) {
 		$this->eqType_name = $eqType_name;
+                return $this;
 	}
 
 	public function setEqReal_id($eqReal_id) {
 		$this->eqReal_id = $eqReal_id;
+                return $this;
 	}
 
 	public function setIsVisible($isVisible) {
 		$this->isVisible = $isVisible;
+                return $this;
 	}
 
 	public function setIsEnable($_isEnable) {
 		$this->isEnable = $_isEnable;
+                return $this;
 	}
 
 	public function getConfiguration($_key = '', $_default = '') {
@@ -1002,6 +1011,7 @@ class eqLogic {
 
 	public function setConfiguration($_key, $_value) {
 		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
+                return $this;
 	}
 
 	public function getSpecificCapatibilities($_key = '', $_default = '') {
@@ -1010,6 +1020,7 @@ class eqLogic {
 
 	public function setSpecificCapatibilities($_key, $_value) {
 		$this->specificCapatibilities = utils::setJsonAttr($this->specificCapatibilities, $_key, $_value);
+                return $this;
 	}
 
 	public function getDisplay($_key = '', $_default = '') {
@@ -1044,6 +1055,7 @@ class eqLogic {
 
 	public function setCategory($_key, $_value) {
 		$this->category = utils::setJsonAttr($this->category, $_key, $_value);
+                return $this;
 	}
 
 	public function getDebug() {
@@ -1066,6 +1078,7 @@ class eqLogic {
 
 	public function setOrder($order) {
 		$this->order = $order;
+                return $this;
 	}
 
 	public function getCache($_key = '', $_default = '') {
