@@ -6,7 +6,10 @@
         "symfony/expression-language": "~2.6",
         "league/oauth2-client": "^1.0",
         "doctrine/cache": "^1.4.0",
-        "monolog/monolog": "^1.17"
+        "monolog/monolog": "^1.17",
+        "knplabs/github-api": "^1.7",
+        "pragmarx/google2fa": "^1.0",
+        "touki/ftp": "^1.2"
     },
     "license": "GPL",
     "authors": [

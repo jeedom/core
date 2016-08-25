@@ -1,6 +1,6 @@
 # Google2FA
 
-[![Latest Stable Version](https://img.shields.io/packagist/v/pragmarx/google2fa.svg?style=flat-square)](https://packagist.org/packages/pragmarx/google2fa) [![License](https://img.shields.io/badge/license-BSD_3_Clause-brightgreen.svg?style=flat-square)](LICENSE) [![Downloads](https://img.shields.io/packagist/dt/pragmarx/google2fa.svg?style=flat-square)](https://packagist.org/packages/pragmarx/google2fa)
+[![Latest Stable Version](https://img.shields.io/packagist/v/pragmarx/google2fa.svg?style=flat-square)](https://packagist.org/packages/pragmarx/google2fa) [![License](https://img.shields.io/badge/license-BSD_3_Clause-brightgreen.svg?style=flat-square)](LICENSE) [![Downloads](https://img.shields.io/packagist/dt/pragmarx/google2fa.svg?style=flat-square)](https://packagist.org/packages/pragmarx/google2fa) [![Travis](https://img.shields.io/travis/antonioribeiro/google2fa.svg?style=flat-square)](https://travis-ci.org/antonioribeiro/google2fa)
 
 ### Google Two-Factor Authentication for PHP Package
 
@@ -10,7 +10,7 @@ This package is agnostic, but also supports the Laravel Framework.
 
 ## Requirements
 
-- PHP 5.3.7+
+- PHP 5.4+
 
 ## Compatibility
 
@@ -23,58 +23,53 @@ You don't need Laravel to use it, but it's compatible with
 
 Use Composer to install it:
 
-```
-composer require pragmarx/google2fa
-```
+    composer require pragmarx/google2fa
+
+If you prefer inline QRCodes instead of a Google generated url, you'll need to install [BaconQrCode](https://github.com/Bacon/BaconQrCode):
+  
+    composer require "bacon/bacon-qr-code":"~1.0"
 
 ## Installing on Laravel
 
 Add the Service Provider and Facade alias to your `app/config/app.php` (Laravel 4.x) or `config/app.php` (Laravel 5.x):
 
-    'PragmaRX\Google2FA\Vendor\Laravel\ServiceProvider',
+    PragmaRX\Google2FA\Vendor\Laravel\ServiceProvider::class,
 
-    'Google2FA' => 'PragmaRX\Google2FA\Vendor\Laravel\Facade',
+    'Google2FA' => PragmaRX\Google2FA\Vendor\Laravel\Facade::class,
 
 ## Using It
 
 #### Instantiate it directly
 
-```
-use PragmaRX\Google2FA\Google2FA;
-
-$google2fa = new Google2FA();
-
-return $google2fa->generateSecretKey();
-```
+    use PragmaRX\Google2FA\Google2FA;
+    
+    $google2fa = new Google2FA();
+    
+    return $google2fa->generateSecretKey();
 
 #### In Laravel you can use the IoC Container and the contract
 
-```
-$google2fa = app()->make('PragmaRX\Google2FA\Contracts\Google2FA');
+    $google2fa = app()->make('PragmaRX\Google2FA\Contracts\Google2FA');
+    
+    return $google2fa->generateSecretKey();
 
-return $google2fa->generateSecretKey();
-```
 
 #### Or Method Injection, in Laravel 5
 
-```
-use PragmaRX\Google2FA\Contracts\Google2FA;
+    use PragmaRX\Google2FA\Contracts\Google2FA;
+    
+    class WelcomeController extends Controller 
+    {
+        public function generateKey(Google2FA $google2fa)
+        {
+            return $google2fa->generateSecretKey();
+        }
+    }
 
-class WelcomeController extends Controller {
-
-	public function generateKey(Google2FA $google2fa)
-	{
-		return $google2fa->generateSecretKey();
-	}
-
-}
-```
 
 #### Or the Facade
 
-```
-return Google2FA::generateSecretKey();
-```
+    return Google2FA::generateSecretKey();
 
 ## How To Generate And Use Two Factor Authentication
 
@@ -124,7 +119,23 @@ Although the probability of collision of a 16 bytes (128 bits) random string is 
 
     $secretKey = $google2fa->generateSecretKey(16, $userId);
 
-## Demo
+#### Generating Inline QRCodes
+
+First you have to install the BaconQrCode package, as stated above, then you just have to generate the inline string using:
+ 
+    $inlineUrl = Google2FA::getQRCodeInline(
+        $companyName,
+        $companyEmail,
+        $secretKey
+    );
+
+And use it in your blade template this way:
+
+    <img src="{{ $inlineUrl }}">
+
+## Demos
+
+Here's a demo app showing how to use Google2FA: [google2fa-example](https://github.com/antonioribeiro/google2fa-example).
 
 You can scan the QR code on [this page](https://antoniocarlosribeiro.com/technology/google2fa) with a Google Authenticator app and view the code changing (almost) in real time.
 
@@ -139,6 +150,8 @@ To use the two factor authentication, your user will have to install a Google Au
 * [Google Authenticator for Android](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2")
 * [Google Authenticator for Blackberry](https://m.google.com/authenticator")
 * [Google Authenticator (port) on Windows app store](http://apps.microsoft.com/windows/en-us/app/google-authenticator/7ea6de74-dddb-47df-92cb-40afac4d38bb")
+* [Microsoft Authenticator for Windows Phone](https://www.microsoft.com/en-us/store/apps/authenticator/9wzdncrfj3rj)
+* [1Password for iOS, Android, OSX, Windows](https://1password.com)
 
 ## Tests
 

@@ -1,13 +1,19 @@
-### Version 1.4.1 - 2016-03-18
+### Version 2.0.2 - 2016-04-03
+
+Added a consistency check (discovered by Taylor Hornby in his 
+[PHP encryption library](https://github.com/defuse/php-encryption)). It
+wasn't likely causing any trouble for us.
+
+### Version 2.0.1 - 2016-03-18
 
 Update comment in random.php
 
-### Version 1.4.0 - 2016-03-18
+### Version 2.0.0 - 2016-03-18
 
-Restored OpenSSL in the version 1 branch in preparation to remove
-OpenSSL in version 2.
+Due to downstream errors, the OpenSSL removal now belongs in version 
+2.0.0.
 
-### Version 1.3.1/1.2.3 - 2016-03-18
+### Version 1.3.1 - 2016-03-18
 
 * Add more possible values to `open_baseir` check.
 

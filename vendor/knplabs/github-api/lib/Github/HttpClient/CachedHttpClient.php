@@ -22,7 +22,7 @@ class CachedHttpClient extends HttpClient
     /**
      * Contains the lastResponse fetched from cache.
      *
-     * @var Guzzle\Http\Message\Response
+     * @var \Guzzle\Http\Message\Response
      */
     private $lastCachedResponse;
 
@@ -68,7 +68,9 @@ class CachedHttpClient extends HttpClient
             return $cacheResponse;
         }
 
-        $this->getCache()->set($this->id, $response);
+        if (in_array($httpMethod, array('GET', 'HEAD'), true)) {
+            $this->getCache()->set($this->id, $response);
+        }
 
         return $response;
     }
@@ -108,7 +110,7 @@ class CachedHttpClient extends HttpClient
     }
 
     /**
-     * @return Guzzle\Http\Message\Response
+     * @return \Guzzle\Http\Message\Response
      */
     public function getLastResponse($force = false)
     {
