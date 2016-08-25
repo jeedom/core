@@ -18,12 +18,11 @@ else
 	echo "max_execution_time = 600" > /usr/local/etc/php/php.ini
 	echo "upload_max_filesize = 1G" >> /usr/local/etc/php/php.ini
 	echo "post_max_size = 1G" >> /usr/local/etc/php/php.ini
-	/root/install.sh -h 1 -s 0 > /var/www/html/index.html
 	/root/install.sh -h 1 -s 1 >> /var/www/html/index.html
+	/root/install.sh -h 1 -s 2 >> /var/www/html/index.html
 	/root/install.sh -h 1 -s 6 >> /var/www/html/index.html
 	/root/install.sh -h 1 -s 7 >> /var/www/html/index.html
 	/root/install.sh -h 1 -s 10 >> /var/www/html/index.html
-	/root/install.sh -h 1 -s 11 >> /var/www/html/index.html
 	rm -rf /var/www/html/index.html
 	
 fi
