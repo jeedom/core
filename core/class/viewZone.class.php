@@ -92,6 +92,7 @@ class viewZone {
 
 	public function setId($id) {
 		$this->id = $id;
+                return $this;
 	}
 
 	public function getView_id() {
@@ -100,6 +101,7 @@ class viewZone {
 
 	public function setView_id($view_id) {
 		$this->view_id = $view_id;
+                return $this;
 	}
 
 	public function getType() {
@@ -108,6 +110,7 @@ class viewZone {
 
 	public function setType($type) {
 		$this->type = $type;
+                return $this;
 	}
 
 	public function getName() {
@@ -116,6 +119,7 @@ class viewZone {
 
 	public function setName($name) {
 		$this->name = $name;
+                return $this;
 	}
 
 	public function getPosition() {
@@ -124,6 +128,7 @@ class viewZone {
 
 	public function setPosition($position) {
 		$this->position = $position;
+                return $this;
 	}
 
 	public function getConfiguration($_key = '', $_default = '') {
@@ -148,6 +153,7 @@ class viewZone {
 			$options[$_key] = $_value;
 			$this->configuration = json_encode($options);
 		}
+                return $this;
 	}
 
 }
