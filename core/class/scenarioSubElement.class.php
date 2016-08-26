@@ -132,6 +132,7 @@ class scenarioSubElement {
 
     public function setId($id) {
         $this->id = $id;
+        return $this;
     }
 
     public function getName() {
@@ -140,6 +141,7 @@ class scenarioSubElement {
 
     public function setName($name) {
         $this->name = $name;
+        return $this;
     }
 
     public function getType() {
@@ -148,6 +150,7 @@ class scenarioSubElement {
 
     public function setType($type) {
         $this->type = $type;
+        return $this;
     }
 
     public function getScenarioElement_id() {
@@ -160,6 +163,7 @@ class scenarioSubElement {
 
     public function setScenarioElement_id($scenarioElement_id) {
         $this->scenarioElement_id = $scenarioElement_id;
+        return $this;
     }
 
     public function getOptions($_key = '', $_default = '') {
@@ -168,6 +172,7 @@ class scenarioSubElement {
 
     public function setOptions($_key, $_value) {
         $this->options = utils::setJsonAttr($this->options, $_key, $_value);
+        return $this;
     }
 
     public function getOrder() {
@@ -176,6 +181,7 @@ class scenarioSubElement {
 
     public function setOrder($order) {
         $this->order = $order;
+        return $this;
     }
 
     public function getSubtype() {
@@ -184,6 +190,7 @@ class scenarioSubElement {
 
     public function setSubtype($subtype) {
         $this->subtype = $subtype;
+        return $this;
     }
 
 }
