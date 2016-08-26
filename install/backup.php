@@ -40,9 +40,9 @@ try {
 
 	try {
 		echo "Envoi de l'événement de début de backup...";
-		jeedom::event('begin_backup', true);
+		\jeedom::event('begin_backup', true);
 		echo "OK\n";
-	} catch (Exception $e) {
+	} catch (\Exception $e) {
 		echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
 	}
 
@@ -57,7 +57,7 @@ try {
 		mkdir($backup_dir, 0770, true);
 	}
 	if (!is_writable($backup_dir)) {
-		throw new Exception(__('Le dossier des sauvegardes n\'est pas accessible en écriture. Vérifiez les droits : ', __FILE__) . $backup_dir);
+		throw new \Exception(__('Le dossier des sauvegardes n\'est pas accessible en écriture. Vérifiez les droits : ', __FILE__) . $backup_dir);
 	}
 	$replace_name = array(
 		'&' => '',
@@ -68,8 +68,8 @@ try {
 		'+' => '',
 		'-' => '',
 	);
-	$jeedom_name = str_replace(array_keys($replace_name), $replace_name, config::byKey('name', 'core', 'Jeedom'));
-	$bakcup_name = str_replace(' ', '_', 'backup-' . $jeedom_name . '-' . jeedom::version() . '-' . date("Y-m-d-H\hi") . '.tar.gz');
+	$jeedom_name = str_replace(array_keys($replace_name), $replace_name, \config::byKey('name', 'core', 'Jeedom'));
+	$bakcup_name = str_replace(' ', '_', 'backup-' . $jeedom_name . '-' . \jeedom::version() . '-' . date("Y-m-d-H\hi") . '.tar.gz');
 
 	echo __('Sauvegarde des fichiers...', __FILE__);
 	$exclude = array(
@@ -79,11 +79,11 @@ try {
 		realpath(dirname(__FILE__) . '/../core/nodeJS/node_modules'),
 		realpath(dirname(__FILE__) . '/../doc'),
 		realpath(dirname(__FILE__) . '/../core/img'),
-		str_replace('/', '', jeedom::getCurrentSysInfoFolder()),
-		str_replace('/', '', jeedom::getCurrentAdminerFolder()),
+		str_replace('/', '', \jeedom::getCurrentSysInfoFolder()),
+		str_replace('/', '', \jeedom::getCurrentAdminerFolder()),
 	);
-	if (strpos('/', config::byKey('backup::path')) === false) {
-		$exclude[] = config::byKey('backup::path');
+	if (strpos('/', \config::byKey('backup::path')) === false) {
+		$exclude[] = \config::byKey('backup::path');
 	}
 	foreach (plugin::listPlugin() as $plugin) {
 		if (!$plugin->isActive()) {
@@ -113,7 +113,7 @@ try {
 
 	global $NO_PLUGIN_BAKCUP;
 	if (!isset($NO_PLUGIN_BAKCUP) || $NO_PLUGIN_BAKCUP == false) {
-		foreach (plugin::listPlugin(true) as $plugin) {
+		foreach (\plugin::listPlugin(true) as $plugin) {
 			$plugin_id = $plugin->getId();
 			if (method_exists($plugin_id, 'backup')) {
 				echo __('Sauvegarde spécifique pour le plugin ' . $plugin_id . '...', __FILE__);
@@ -132,7 +132,7 @@ try {
 	echo __('Sauvegarde de la base de données...', __FILE__);
 	$rc = system("mysqldump --host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password=" . $CONFIG['db']['password'] . " " . $CONFIG['db']['dbname'] . "  > " . $tmp . "/DB_backup.sql");
 	if ($rc != 0) {
-		throw new Exception('Echec lors de la sauvegarde de la BDD, verifier que mysqldump est bien présent. Code retour : ' . $rc);
+		throw new \Exception(__('Echec lors de la sauvegarde de la BDD, verifiez que mysqldump est bien présent. Code retour : ' . $rc), __FILE__);
 	}
 	echo __("OK", __FILE__) . "\n";
 
@@ -141,15 +141,15 @@ try {
 	echo __("OK", __FILE__) . "\n";
 
 	if (!file_exists($backup_dir . '/' . $bakcup_name)) {
-		throw new Exception(__('Echec lors de la compression de la sauvegarde. Sauvegarde introuvable : ', __FILE__) . $backup_dir . '/' . $bakcup_name);
+		throw new \Exception(__('Echec lors de la compression de la sauvegarde. Sauvegarde introuvable : ', __FILE__) . $backup_dir . '/' . $bakcup_name);
 	}
 
 	echo __('Nettoyage des anciennes sauvegardes...', __FILE__);
-	shell_exec('find ' . $backup_dir . ' -mtime +' . config::byKey('backup::keepDays') . ' -delete');
+	shell_exec('find ' . $backup_dir . ' -mtime +' . \config::byKey('backup::keepDays') . ' -delete');
 	echo __("OK", __FILE__) . "\n";
 
-	echo __('Limite de la taille totale des sauvegardes à ', __FILE__) . config::byKey('backup::maxSize') . ' Mo...';
-	$max_size = config::byKey('backup::maxSize') * 1024 * 1024;
+	echo __('Limite de la taille totale des sauvegardes à ', __FILE__) . \config::byKey('backup::maxSize') . ' Mo...';
+	$max_size = \config::byKey('backup::maxSize') * 1024 * 1024;
 	$i = 0;
 	while (getDirectorySize($backup_dir) > $max_size) {
 		$older = array('file' => null, 'datetime' => null);
@@ -208,8 +208,8 @@ try {
 			echo __('Envoi de la sauvegarde dans le cloud', __FILE__) . ' ' . $value['name'];
 			try {
 				$class::sendBackup($backup_dir . '/' . $bakcup_name);
-			} catch (Exception $e) {
-				log::add('backup', 'error', $e->getMessage());
+			} catch (\Exception $e) {
+				\log::add('backup', 'error', $e->getMessage());
 				echo '/!\ ' . br2nl($e->getMessage()) . ' /!\\';
 			}
 			echo __("OK", __FILE__) . "\n";
@@ -219,8 +219,8 @@ try {
 	if (config::byKey('jeeNetwork::mode') == 'slave') {
 		echo __('Envoi de la sauvegarde sur le maître...', __FILE__);
 		try {
-			jeeNetwork::sendBackup($backup_dir . '/' . $bakcup_name);
-		} catch (Exception $e) {
+			\jeeNetwork::sendBackup($backup_dir . '/' . $bakcup_name);
+		} catch (\Exception $e) {
 			log::add('backup', 'error', $e->getMessage());
 			echo '/!\ ' . br2nl($e->getMessage()) . ' /!\\';
 		}
@@ -232,16 +232,16 @@ try {
 	echo __("Nom du backup : ", __FILE__) . $backup_dir . '/' . $bakcup_name . "\n";
 
 	try {
-		echo "Envoi de l\'événement de fin de backup...";
-		jeedom::event('end_backup');
+		echo __("Envoi de l\'événement de fin de backup...", __FILE__);
+		\jeedom::event('end_backup');
 		echo "OK\n";
-	} catch (Exception $e) {
+	} catch (\Exception $e) {
 		echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
 	}
 
 	echo __("***************Fin de la sauvegarde de Jeedom***************\n", __FILE__);
 	echo "[END BACKUP SUCCESS]\n";
-} catch (Exception $e) {
+} catch (\Exception $e) {
 	echo __('Erreur durant la sauvegarde : ', __FILE__) . br2nl($e->getMessage());
 	echo __('Détails : ', __FILE__) . print_r($e->getTrace(), true);
 	echo "[END BACKUP ERROR]\n";
