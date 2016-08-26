@@ -493,6 +493,13 @@ class eqLogic {
 			$replace['#border-radius#'] = $this->getDisplay('border-radius' . $version, '4') . 'px';
 		}
 		$refresh_cmd = $this->getCmd('action', 'refresh');
+		if (!is_object($refresh_cmd)) {
+			foreach ($this->getCmd('action') as $cmd) {
+				if ($cmd->getConfiguration('isRefreshCmd') == 1) {
+					$refresh_cmd = $cmd;
+				}
+			}
+		}
 		if (is_object($refresh_cmd) && $refresh_cmd->getIsVisible() == 1 && $refresh_cmd->getDisplay('showOn' . $version, 1) == 1) {
 			$replace['#refresh_id#'] = $refresh_cmd->getId();
 		}
@@ -906,7 +913,7 @@ class eqLogic {
 
 	public function setObject($_object) {
 		$this->_object = $_object;
-                return $this;
+		return $this;
 	}
 
 	public function getEqType_name() {
@@ -966,43 +973,43 @@ class eqLogic {
 
 	public function setId($id) {
 		$this->id = $id;
-                return $this;
+		return $this;
 	}
 
 	public function setName($name) {
 		$name = str_replace(array('&', '#', ']', '[', '%', "'", "\\", "/"), '', $name);
 		$this->name = $name;
-                return $this;
+		return $this;
 	}
 
 	public function setLogicalId($logicalId) {
 		$this->logicalId = $logicalId;
-                return $this;
+		return $this;
 	}
 
 	public function setObject_id($object_id = null) {
 		$this->object_id = (!is_numeric($object_id)) ? null : $object_id;
-                return $this;
+		return $this;
 	}
 
 	public function setEqType_name($eqType_name) {
 		$this->eqType_name = $eqType_name;
-                return $this;
+		return $this;
 	}
 
 	public function setEqReal_id($eqReal_id) {
 		$this->eqReal_id = $eqReal_id;
-                return $this;
+		return $this;
 	}
 
 	public function setIsVisible($isVisible) {
 		$this->isVisible = $isVisible;
-                return $this;
+		return $this;
 	}
 
 	public function setIsEnable($_isEnable) {
 		$this->isEnable = $_isEnable;
-                return $this;
+		return $this;
 	}
 
 	public function getConfiguration($_key = '', $_default = '') {
@@ -1011,7 +1018,7 @@ class eqLogic {
 
 	public function setConfiguration($_key, $_value) {
 		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
-                return $this;
+		return $this;
 	}
 
 	public function getSpecificCapatibilities($_key = '', $_default = '') {
@@ -1020,7 +1027,7 @@ class eqLogic {
 
 	public function setSpecificCapatibilities($_key, $_value) {
 		$this->specificCapatibilities = utils::setJsonAttr($this->specificCapatibilities, $_key, $_value);
-                return $this;
+		return $this;
 	}
 
 	public function getDisplay($_key = '', $_default = '') {
@@ -1055,7 +1062,7 @@ class eqLogic {
 
 	public function setCategory($_key, $_value) {
 		$this->category = utils::setJsonAttr($this->category, $_key, $_value);
-                return $this;
+		return $this;
 	}
 
 	public function getDebug() {
@@ -1078,7 +1085,7 @@ class eqLogic {
 
 	public function setOrder($order) {
 		$this->order = $order;
-                return $this;
+		return $this;
 	}
 
 	public function getCache($_key = '', $_default = '') {
