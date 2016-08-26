@@ -25,9 +25,9 @@ if (!isConnect()) {
                 </script>
                 <pre>
 <div id='div_helpCronGenerate'></div>
-<p>Resultat : <span id='span_helpCronGenerate'></span></p>
+<p>{{Resultat :}} <span id='span_helpCronGenerate'></span></p>
                 </pre>
-                <center><span style='font-weight: bold;'>N'oubliez pas de copier/coller le resultat</span></center>
+                <center><span style='font-weight: bold;'>{{N'oubliez pas de copier/coller le resultat}}</span></center>
             </div>
         </div>
     </div>
