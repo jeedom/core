@@ -76,14 +76,14 @@ class evaluate {
 		//ERREUR SI UN OPERATEUR EST SITUE EN FIN DE CHAINE
 		if (isset($lstParam[sizeof($lstParam) - 1]["operateur"])) {
 			if ($lstParam[sizeof($lstParam) - 1]["operateur"]) {
-				throw new Exception(__("ERREUR opérateur inattendu en fin d'expression", __FILE__));
+				throw new \Exception(__("ERREUR opérateur inattendu en fin d'expression", __FILE__));
 			}
 		}
 		//PARCOUR DES PARAMETRES
 		for ($i = 0; $i < sizeof($lstParam); $i++) {
 			//OPERATEUR SPECIAL
 			if (isset($lstParam[$i]["operateur"]) && $lstParam[$i]["operateur"] == "|") {
-				throw new Exception(__("ERREUR opérateur '|' Inconnu", __FILE__));
+				throw new \Exception(__("ERREUR opérateur '|' Inconnu", __FILE__));
 			}
 			//CAS DES ( et des {
 			if (substr($lstParam[$i]["valeur"], 0, 1) == "(" && substr($lstParam[$i]["valeur"], -1, 1) == ")") {
@@ -154,7 +154,7 @@ class evaluate {
 
 	private function Eval_Faire_Operation($valeur1, $valeur2, $operateur) {
 		if ($operateur != "&" && $operateur != "!" && (!is_numeric($valeur1) || !is_numeric($valeur2))) {
-			throw new Exception(__('ERREUR attention l\'opérateur ', __FILE__) . $operateur . __(' nécessite deux opérandes numériques.', __FILE__));
+			throw new \Exception(__('ERREUR attention l\'opérateur ', __FILE__) . $operateur . __(' nécessite deux opérandes numériques.', __FILE__));
 		}
 		$valeur1 = trim($valeur1);
 		$valeur2 = trim($valeur2);
@@ -338,7 +338,7 @@ class evaluate {
 				if (array_search($lettre, $tabSignes) !== false) {
 					if ($paramNom != "") {
 						if (!isset($lstP[$lastNum]["operateur"]) && $lastNum != -1) {
-							throw new Exception(__("ERREUR deux paramètres sans signe de séparation : ", __FILE__) . $param);
+							throw new \Exception(__("ERREUR deux paramètres sans signe de séparation : ", __FILE__) . $param);
 						}
 						$num = sizeof($lstP);
 						$lstP[$num] = array();
@@ -352,7 +352,7 @@ class evaluate {
 
 							if (array_search($ope, $tabSignes) === false) {
 								if ($lettre != '-') {
-									throw new Exception(__("ERREUR deux opérations à la suite", __FILE__));
+									throw new \Exception(__("ERREUR deux opérations à la suite", __FILE__));
 								} else {
 									$paramNom = '-' . $paramNom;
 								}
@@ -362,7 +362,7 @@ class evaluate {
 						} else {
 							if ($lastNum == -1) {
 								if ($lettre != '-') {
-									throw new Exception(__("ERREUR l'expression attend un paramètre avant symbole : " . $lettre, __FILE__));
+									throw new \Exception(__("ERREUR l'expression attend un paramètre avant symbole : " . $lettre, __FILE__));
 								} else {
 									$paramNom = '-' . $paramNom;
 								}
@@ -374,7 +374,7 @@ class evaluate {
 				} else {
 					if ($lastLettre != " " && array_search($lastLettre, $tabSignes) === false) {
 						if (!isset($lstP[$lastNum]["operateur"]) && $lastNum != -1) {
-							throw new Exception(__("ERREUR deux paramètres sans signe de séparation", __FILE__));
+							throw new\ Exception(__("ERREUR deux paramètres sans signe de séparation", __FILE__));
 						}
 						$num = sizeof($lstP);
 						$lstP[$num] = array();
@@ -399,9 +399,9 @@ class evaluate {
 		//ERREUR SI UN CARACTERE OUVRANT " ' ( ou { n'a pas été fermé
 		if ($nbCaractOuvrant > 0) {
 			if (isset($caracOuvrant[sizeof($caracOuvrant)])) {
-				throw new Exception(__("ERREUR dans l'espression, caractère fermant attendu : ", __FILE__) . $caracOuvrant[sizeof($caracOuvrant)]);
+				throw new \Exception(__("ERREUR dans l'espression, caractère fermant attendu : ", __FILE__) . $caracOuvrant[sizeof($caracOuvrant)]);
 			} else {
-				throw new Exception(__("ERREUR dans l'espression, caractère fermant attendu : ", __FILE__));
+				throw new \Exception(__("ERREUR dans l'espression, caractère fermant attendu : ", __FILE__));
 			}
 		}
 		return $lstP;
