@@ -85,10 +85,10 @@ try {
 
 	if (!$foundAdmin) {
 		echo "No admin user found, create it...";
-		$user = new user();
-		$user->setLogin('admin');
-		$user->setPassword(sha1('admin'));
-		$user->setRights('admin', 1);
+		$user = (new \user())
+		    ->setLogin('admin')
+		    ->setPassword(sha1('admin'))
+		    ->setRights('admin', 1);
 		$user->save();
 		echo "OK (admin/admin)\n";
 	}
