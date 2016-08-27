@@ -476,7 +476,7 @@ if ($eqLogic->getDisplay('parameters') != '') {
 											$('#table_widgetParameters').delegate('.removeWidgetParameter', 'click', function () {
 												$(this).closest('tr').remove();
 											});
-											$('#bt_eqLogicConfigureRawObject').on('click',function(){
+											$('#bt_eqLogicConfigureRawObject').off('click').on('click',function(){
 												$('#md_modal2').dialog({title: "{{Informations brutes}}"});
 												$("#md_modal2").load('index.php?v=d&modal=object.display&class=eqLogic&id='+eqLogicInfo.id).dialog('open');
 											})
