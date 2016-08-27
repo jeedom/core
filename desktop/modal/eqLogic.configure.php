@@ -13,6 +13,7 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
 
 <a class="btn btn-danger pull-right btn-sm" id="bt_eqLogicConfigureRemove"><i class="fa fa-times"></i> {{Supprimer}}</a>
 <a class="btn btn-success pull-right btn-sm" id="bt_eqLogicConfigureSave"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
+<a class="btn btn-default pull-right btn-sm" id="bt_eqLogicConfigureRawObject"><i class="fa fa-info"></i> {{Informations brutes}}</a>
 
 <ul class="nav nav-tabs" role="tablist">
 	<li role="presentation" class="active"><a href="#eqLogic_information" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-info-circle"></i> {{Informations}}</a></li>
@@ -475,6 +476,10 @@ if ($eqLogic->getDisplay('parameters') != '') {
 											$('#table_widgetParameters').delegate('.removeWidgetParameter', 'click', function () {
 												$(this).closest('tr').remove();
 											});
+											$('#bt_eqLogicConfigureRawObject').on('click',function(){
+												$('#md_modal2').dialog({title: "{{Informations brutes}}"});
+												$("#md_modal2").load('index.php?v=d&modal=object.display&class=eqLogic&id='+eqLogicInfo.id).dialog('open');
+											})
 
 											$('#bt_addWidgetParameters').off().on('click', function () {
 												var tr = '<tr>';

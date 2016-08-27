@@ -21,6 +21,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 
   <a class="btn btn-success btn-sm pull-right" id="bt_cmdConfigureSave"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
   <a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureSaveOn"><i class="fa fa-plus-circle"></i> {{Appliquer à}}</a>
+  <a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureRawObject"><i class="fa fa-info"></i> {{Informations brutes}}</a>
 
   <div role="tabpanel">
 
@@ -293,92 +294,92 @@ foreach ($groups as $group) {
 ?>
   <?php if ($cmd->getType() == 'action') {
 	?>
-    <legend><i class="fa fa-sign-out"></i> {{Action avant exécution de la commande}}</legend>
+   <legend><i class="fa fa-sign-out"></i> {{Action avant exécution de la commande}}</legend>
+   <div class="form-group">
+    <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action}}</label>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+      <a class="btn btn-success" id="bt_addActionPreExecCmd"><i class="fa fa-plus-circle"></i> {{Ajouter}}</a>
+    </div>
+  </div>
+  <div id="div_actionPreExecCmd"></div>
+
+  <script type="text/javascript">
+    $("#div_actionPreExecCmd").sortable({axis: "y", cursor: "move", items: ".actionPreExecCmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
+    $('#bt_addActionPreExecCmd').off('click').on('click',function(){
+      addActionCmd({}, 'actionPreExecCmd','{{Action}}');
+    });
+  </script>
+
+  <legend><i class="fa fa-sign-out"></i> {{Action après exécution de la commande}}</legend>
+  <div class="form-group">
+    <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action}}</label>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+      <a class="btn btn-success" id="bt_addActionPostExecCmd"><i class="fa fa-plus-circle"></i> {{Ajouter}}</a>
+    </div>
+  </div>
+  <div id="div_actionPostExecCmd"></div>
+
+  <script type="text/javascript">
+    $("#div_actionPostExecCmd").sortable({axis: "y", cursor: "move", items: ".actionPostExecCmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
+    $('#bt_addActionPostExecCmd').off('click').on('click',function(){
+      addActionCmd({}, 'actionPostExecCmd','{{Action}}');
+    });
+  </script>
+
+  <?php }?>
+
+  <?php if ($cmd->getType() == 'info' && ($cmd->getSubType() == 'numeric' || $cmd->getSubType() == 'binary')) {?>
+    <legend><i class="fa fa-bar-chart-o"></i> {{Historique}}</legend>
     <div class="form-group">
-      <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action}}</label>
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-        <a class="btn btn-success" id="bt_addActionPreExecCmd"><i class="fa fa-plus-circle"></i> {{Ajouter}}</a>
+      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Historiser}}</label>
+      <div class="col-xs-1">
+        <input type="checkbox" class="cmdAttr" data-l1key="isHistorized" />
       </div>
     </div>
-    <div id="div_actionPreExecCmd"></div>
-
-    <script type="text/javascript">
-      $("#div_actionPreExecCmd").sortable({axis: "y", cursor: "move", items: ".actionPreExecCmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
-      $('#bt_addActionPreExecCmd').off('click').on('click',function(){
-        addActionCmd({}, 'actionPreExecCmd','{{Action}}');
-      });
-    </script>
-
-    <legend><i class="fa fa-sign-out"></i> {{Action après exécution de la commande}}</legend>
     <div class="form-group">
-      <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action}}</label>
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-        <a class="btn btn-success" id="bt_addActionPostExecCmd"><i class="fa fa-plus-circle"></i> {{Ajouter}}</a>
+      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Mode de lissage}}</label>
+      <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+        <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historizeMode">
+          <option value="avg">{{Moyenne}}</option>
+          <option value="min">{{Minimum}}</option>
+          <option value="max">{{Maximum}}</option>
+          <option value="none">{{Aucun}}</option>
+        </select>
       </div>
     </div>
-    <div id="div_actionPostExecCmd"></div>
 
-    <script type="text/javascript">
-      $("#div_actionPostExecCmd").sortable({axis: "y", cursor: "move", items: ".actionPostExecCmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
-      $('#bt_addActionPostExecCmd').off('click').on('click',function(){
-        addActionCmd({}, 'actionPostExecCmd','{{Action}}');
-      });
-    </script>
-
-    <?php }?>
-
-    <?php if ($cmd->getType() == 'info' && ($cmd->getSubType() == 'numeric' || $cmd->getSubType() == 'binary')) {?>
-      <legend><i class="fa fa-bar-chart-o"></i> {{Historique}}</legend>
-      <div class="form-group">
-        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Historiser}}</label>
-        <div class="col-xs-1">
-          <input type="checkbox" class="cmdAttr" data-l1key="isHistorized" />
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Mode de lissage}}</label>
-        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-          <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historizeMode">
-            <option value="avg">{{Moyenne}}</option>
-            <option value="min">{{Minimum}}</option>
-            <option value="max">{{Maximum}}</option>
-            <option value="none">{{Aucun}}</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Purger l'historique si plus vieux de }}</label>
-        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-         <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historyPurge">
-           <option value="">{{Jamais}}</option>
-           <option value="-1 day">{{1 jour}}</option>
-           <option value="-7 days">{{7 jours}}</option>
-           <option value="-1 month">{{1 mois}}</option>
-           <option value="-6 month">{{6 mois}}</option>
-         </select>
-       </div>
+    <div class="form-group">
+      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Purger l'historique si plus vieux de }}</label>
+      <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+       <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historyPurge">
+         <option value="">{{Jamais}}</option>
+         <option value="-1 day">{{1 jour}}</option>
+         <option value="-7 days">{{7 jours}}</option>
+         <option value="-1 month">{{1 mois}}</option>
+         <option value="-6 month">{{6 mois}}</option>
+       </select>
      </div>
-     <?php }
+   </div>
+   <?php }
 ?>
-     <?php if ($cmd->getType() == 'info') {?>
-       <legend><i class="fa fa-plus"></i> {{Autres}}</legend>
-       <div class="form-group">
-        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Ignorer évènement si la valeur ne change pas}}</label>
-        <div class="col-xs-1">
-          <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="doNotRepeatEvent" />
-        </div>
+   <?php if ($cmd->getType() == 'info') {?>
+     <legend><i class="fa fa-plus"></i> {{Autres}}</legend>
+     <div class="form-group">
+      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Ignorer évènement si la valeur ne change pas}}</label>
+      <div class="col-xs-1">
+        <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="doNotRepeatEvent" />
       </div>
-      <div class="form-group">
-        <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Push URL}}</label>
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-          <input class="cmdAttr form-control tooltips" data-l1key="configuration" data-l2key="jeedomPushUrl" title="{{Mettez ici l'URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"/>
-        </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Push URL}}</label>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <input class="cmdAttr form-control tooltips" data-l1key="configuration" data-l2key="jeedomPushUrl" title="{{Mettez ici l'URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"/>
       </div>
-      <?php }
+    </div>
+    <?php }
 ?>
-    </fieldset>
-  </form>
+  </fieldset>
+</form>
 </div>
 <?php if ($cmd->widgetPossibility('custom::htmlCode')) {
 	?>
@@ -677,6 +678,10 @@ if ($cmd->getDisplay('parameters') != '') {
   });
 
   $('#div_displayCmdConfigure').setValues(cmdInfo, '.cmdAttr');
+  $('#bt_cmdConfigureRawObject').on('click',function(){
+    $('#md_modal2').dialog({title: "{{Informations brutes}}"});
+    $("#md_modal2").load('index.php?v=d&modal=object.display&class=eqLogic&id='+eqLogicInfo.id).dialog('open');
+  })
   if(isset(cmdInfo.configuration.actionCheckCmd) && $.isArray(cmdInfo.configuration.actionCheckCmd) && cmdInfo.configuration.actionCheckCmd.length != null){
     for(var i in cmdInfo.configuration.actionCheckCmd){
       addActionCmd(cmdInfo.configuration.actionCheckCmd[i], 'actionCheckCmd','{{Action}}');
