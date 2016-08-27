@@ -583,7 +583,7 @@ class eqLogic {
 		$cmd_html = '';
 		$br_before = 0;
 		foreach ($this->getCmd(null, null, true) as $cmd) {
-			if ($cmd->getLogicalId() == 'refresh') {
+			if (isset($replace['#refresh_id#']) && $cmd->getId() == $replace['#refresh_id#']) {
 				continue;
 			}
 			if ($br_before == 0 && $cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
