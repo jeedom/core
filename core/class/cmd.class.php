@@ -1076,11 +1076,11 @@ class cmd {
 			if ($foundInfo) {
 				listener::backgroundCalculDependencyCmd($this->getId());
 			}
-			listener::check($this->getId(), $value);
 			$this->checkReturnState($value);
 			$this->checkCmdAlert($value);
 			$this->pushUrl($value);
 		}
+		listener::check($this->getId(), $value);
 		event::adds('cmd::update', $events);
 		if (strpos($value, 'error') === false) {
 			$eqLogic->setStatus('lastCommunication', $collectDate);
@@ -1393,7 +1393,7 @@ class cmd {
 
 	public function setEqLogic($_eqLogic) {
 		$this->_eqLogic = $_eqLogic;
-                return $this;
+		return $this;
 	}
 
 	public function getEventOnly() {
@@ -1402,23 +1402,23 @@ class cmd {
 
 	public function setId($id = '') {
 		$this->id = $id;
-                return $this;
+		return $this;
 	}
 
 	public function setName($name) {
 		$name = str_replace(array('&', '#', ']', '[', '%', "'"), '', $name);
 		$this->name = $name;
-                return $this;
+		return $this;
 	}
 
 	public function setType($type) {
 		$this->type = $type;
-                return $this;
+		return $this;
 	}
 
 	public function setSubType($subType) {
 		$this->subType = $subType;
-                return $this;
+		return $this;
 	}
 
 	public function setEqLogic_id($eqLogic_id) {
@@ -1427,12 +1427,12 @@ class cmd {
 
 	public function setIsHistorized($isHistorized) {
 		$this->isHistorized = $isHistorized;
-                return $this;
+		return $this;
 	}
 
 	public function setUnite($unite) {
 		$this->unite = $unite;
-                return $this;
+		return $this;
 	}
 
 	public function setEventOnly($eventOnly) {
@@ -1486,7 +1486,7 @@ class cmd {
 
 	public function setCollectDate($_collectDate) {
 		$this->_collectDate = $_collectDate;
-                return $this;
+		return $this;
 	}
 
 	public function getValueDate() {
@@ -1495,7 +1495,7 @@ class cmd {
 
 	public function setValueDate($_valueDate) {
 		$this->_valueDate = $_valueDate;
-                return $this;
+		return $this;
 	}
 
 	public function getValue() {
@@ -1504,16 +1504,16 @@ class cmd {
 
 	public function setValue($value) {
 		$this->value = $value;
-                return $this;
+		return $this;
 	}
 
 	public function getIsVisible() {
-		return $this->isVisible;                            
+		return $this->isVisible;
 	}
 
 	public function setIsVisible($isVisible) {
 		$this->isVisible = $isVisible;
-                return $this;
+		return $this;
 	}
 
 	public function getOrder() {
@@ -1534,7 +1534,7 @@ class cmd {
 
 	public function setLogicalId($logicalId) {
 		$this->logicalId = $logicalId;
-                return $this;
+		return $this;
 	}
 
 	public function getEqType() {
@@ -1543,7 +1543,7 @@ class cmd {
 
 	public function setEqType($eqType) {
 		$this->eqType = $eqType;
-                return $this;
+		return $this;
 	}
 
 	public function getCache($_key = '', $_default = '') {
