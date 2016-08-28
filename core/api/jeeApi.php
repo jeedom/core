@@ -208,6 +208,11 @@ if (init('type') != '') {
 				$jsonrpc->makeSuccess(jeedom::version());
 			}
 
+			/*             * ***********************isOk********************************* */
+			if ($jsonrpc->getMethod() == 'jeedom::isOk') {
+				$jsonrpc->makeSuccess(jeedom::isOK());
+			}
+
 			/*             * ***********************Datetime********************************* */
 			if ($jsonrpc->getMethod() == 'datetime') {
 				$jsonrpc->makeSuccess(getmicrotime());

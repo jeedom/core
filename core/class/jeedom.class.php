@@ -58,6 +58,25 @@ class jeedom {
 		return false;
 	}
 
+	public static function isOk() {
+		if (!jeedom::isStarted()) {
+			return false;
+		}
+		if (!jeedom::isDateOk()) {
+			return false;
+		}
+		if (config::byKey('enableScenario') == 0 && count(scenario::all()) > 0) {
+			return false;
+		}
+		if (!jeedom::isCapable('sudo')) {
+			return false;
+		}
+		if (config::byKey('enableCron', 'core', 1, true) == 0) {
+			return false;
+		}
+		return true;
+	}
+
 	/*************************************************USB********************************************************/
 
 	public static function getUsbMapping($_name = '', $_getGPIO = false) {
