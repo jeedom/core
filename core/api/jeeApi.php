@@ -213,6 +213,21 @@ if (init('type') != '') {
 				$jsonrpc->makeSuccess(jeedom::isOK());
 			}
 
+			if ($jsonrpc->getMethod() == 'jeedom::halt') {
+				jeedom::haltSystem();
+				$jsonrpc->makeSuccess('ok');
+			}
+
+			if ($jsonrpc->getMethod() == 'jeedom::reboot') {
+				jeedom::rebootSystem();
+				$jsonrpc->makeSuccess('ok');
+			}
+
+			if ($jsonrpc->getMethod() == 'jeedom::update') {
+				jeedom::update('', 0);
+				$jsonrpc->makeSuccess('ok');
+			}
+
 			/*             * ***********************Datetime********************************* */
 			if ($jsonrpc->getMethod() == 'datetime') {
 				$jsonrpc->makeSuccess(getmicrotime());
