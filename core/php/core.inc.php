@@ -29,6 +29,10 @@ include_file('core', 'jeedom', 'config');
 include_file('core', 'compatibility', 'config');
 include_file('core', 'utils', 'class');
 include_file('core', 'log', 'class');
+
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+
 try {
 	$configs = config::byKeys(array('timezone', 'log::level'));
 	if (isset($configs['timezone'])) {
@@ -36,15 +40,17 @@ try {
 	} else {
 		date_default_timezone_set('Europe/Brussels');
 	}
-} catch (Exception $e) {
-
+} catch (\Exception $e) {
+    $log = (new Logger('Jeedom'))->pushHandler(new StreamHandler('../log/JeedomError.log'), Logger::INFO);
+    $log->addError(__METHOD__ . ' --> ' . $e->getMessage());
 }
 
 function jeedomCoreAutoload($classname) {
 	try {
 		include_file('core', $classname, 'class');
-	} catch (Exception $e) {
-
+	} catch (\Exception $e) {
+            $log = (new Logger('Jeedom'))->pushHandler(new StreamHandler('../log/JeedomError.log'), Logger::INFO);
+            $log->addError(__METHOD__ . ' --> ' . $e->getMessage());
 	}
 }
 
@@ -52,20 +58,23 @@ try {
 	if (isset($configs['log::level'])) {
 		log::define_error_reporting($configs['log::level']);
 	}
-} catch (Exception $e) {
-
+} catch (\Exception $e) {
+    $log = (new Logger('Jeedom'))->pushHandler(new StreamHandler('../log/JeedomError.log'), Logger::INFO);
+    $log->addError(__METHOD__ . ' --> ' . $e->getMessage());
 }
 
 function jeedomOtherAutoload($classname) {
 	try {
 		include_file('core', substr($classname, 4), 'com');
-	} catch (Exception $e) {
-
+	} catch (\Exception $e) {
+            $log = (new Logger('Jeedom'))->pushHandler(new StreamHandler('../log/JeedomError.log'), Logger::INFO);
+            $log->addError(__METHOD__. ' --> ' . $e->getMessage());
 	}
 	try {
 		include_file('core', substr($classname, 5), 'repo');
-	} catch (Exception $e) {
-
+	} catch (\Exception $e) {
+            $log = (new Logger('Jeedom'))->pushHandler(new StreamHandler('../log/JeedomError.log'), Logger::INFO);
+            $log->addError(__METHOD__ . ' --> ' . $e->getMessage());
 	}
 }
 
@@ -73,7 +82,7 @@ function jeedomPluginAutoload($classname) {
 	$plugin = null;
 	try {
 		$plugin = plugin::byId($classname);
-	} catch (Exception $e) {
+	} catch (\Exception $e) {
 		if (!is_object($plugin)) {
 			if (strpos($classname, 'Real') !== false) {
 				$plugin = plugin::byId(substr($classname, 0, -4));
@@ -82,7 +91,7 @@ function jeedomPluginAutoload($classname) {
 				$classname = str_replace('Cmd', '', $classname);
 				try {
 					$plugin = plugin::byId($classname);
-				} catch (Exception $e) {
+				} catch (\Exception $e) {
 					if (strpos($classname, '_') !== false && strpos($classname, 'com_') === false) {
 						$plugin = plugin::byId(substr($classname, 0, strpos($classname, '_')));
 					}
@@ -100,13 +109,12 @@ function jeedomPluginAutoload($classname) {
 				include_file('core', $include['file'], $include['type'], $plugin->getId());
 			}
 		}
-	} catch (Exception $e) {
-
+	} catch (\Exception $e) {
+            $log = (new Logger('Jeedom'))->pushHandler(new StreamHandler('../log/JeedomError.log'), Logger::INFO);
+            $log->addError(__METHOD__ . ' --> ' . $e->getMessage());
 	}
 }
 
 spl_autoload_register('jeedomCoreAutoload', true, true);
 spl_autoload_register('jeedomPluginAutoload', true, true);
 spl_autoload_register('jeedomOtherAutoload', true, true);
-
-?>
