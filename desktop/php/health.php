@@ -125,12 +125,10 @@ $version_ok = true;
 if (strpos(strtolower($uname), 'debian') === false) {
 	$version_ok = false;
 }
-if (strpos(strtolower($uname), 'ubuntu') !== false) {
-	$version_ok = false;
-}
 if (!file_exists('/etc/debian_version')) {
 	$version_ok = false;
 } else {
+	$version_ok = true;
 	$version = trim(strtolower(file_get_contents('/etc/debian_version')));
 	if (version_compare($version, '8', '<')) {
 		if (strpos($version, 'jessie') === false && strpos($version, 'stretch')) {
@@ -138,11 +136,8 @@ if (!file_exists('/etc/debian_version')) {
 		}
 	}
 }
-if (strpos(strtolower($uname), 'raspberrypi') !== false && strpos(strtolower($uname), '4.4') != false) {
-	$version_ok = true;
-}
-if (strpos(strtolower($uname), 'imx6-sr') !== false && strpos(strtolower($uname), 'armv7l') != false) {
-	$version_ok = true;
+if (strpos(strtolower($uname), 'ubuntu') !== false) {
+	$version_ok = false;
 }
 if ($version_ok) {
 	echo '<td class="alert alert-success" style="cursor:default">' . $uname . ' [' . $version . ']</td>';
