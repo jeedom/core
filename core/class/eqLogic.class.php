@@ -936,9 +936,9 @@ class eqLogic {
 
 	public function getCmd($_type = null, $_logicalId = null, $_visible = null, $_multiple = false) {
 		if ($_logicalId != null) {
-			/*if (isset($this->_cmds[$_logicalId . '.' . $_multiple . '.' . $_type])) {
+			if (isset($this->_cmds[$_logicalId . '.' . $_multiple . '.' . $_type])) {
 				return $this->_cmds[$_logicalId . '.' . $_multiple . '.' . $_type];
-			}*/
+			}
 			$cmds = cmd::byEqLogicIdAndLogicalId($this->id, $_logicalId, $_multiple, $_type);
 		} else {
 			$cmds = cmd::byEqLogicId($this->id, $_type, $_visible, $this);
@@ -950,9 +950,9 @@ class eqLogic {
 		} elseif (is_object($cmds)) {
 			$cmds->setEqLogic($this);
 		}
-		/*if ($_logicalId != null) {
+		if ($_logicalId != null) {
 			$this->_cmds[$_logicalId . '.' . $_multiple . '.' . $_type] = $cmds;
-		}*/
+		}
 		return $cmds;
 	}
 
