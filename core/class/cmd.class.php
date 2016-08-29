@@ -1073,6 +1073,9 @@ class cmd {
 					}
 				}
 			}
+			if ($foundInfo) {
+				listener::backgroundCalculDependencyCmd($this->getId());
+			}
 			$this->checkReturnState($value);
 			$this->checkCmdAlert($value);
 			$this->pushUrl($value);

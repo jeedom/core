@@ -35,20 +35,26 @@ if (isset($argv)) {
 		}
 	}
 }
-set_time_limit(config::byKey('maxExecTimeScript', 300));
-try {
-	$listener_id = init('listener_id');
-	if ($listener_id == '') {
-		throw new Exception(__('Le listener ID ne peut être vide', __FILE__));
+set_time_limit(config::byKey('maxExecTimeScript', 60));
+if (init('listener_id') == '') {
+	foreach (cmd::byValue(init('event_id'), 'info') as $cmd) {
+		$cmd->event($cmd->execute(), 2);
 	}
-	$listener = listener::byId($listener_id);
-	if (!is_object($listener)) {
-		throw new Exception(__('Listener non trouvé : ', __FILE__) . $listener_id);
+} else {
+	try {
+		$listener_id = init('listener_id');
+		if ($listener_id == '') {
+			throw new Exception(__('Le listener ID ne peut être vide', __FILE__));
+		}
+		$listener = listener::byId($listener_id);
+		if (!is_object($listener)) {
+			throw new Exception(__('Listener non trouvé : ', __FILE__) . $listener_id);
+		}
+	} catch (Exception $e) {
+		log::add(init('plugin_id', 'plugin'), 'error', $e->getMessage());
+		die($e->getMessage());
 	}
-} catch (Exception $e) {
-	log::add(init('plugin_id', 'plugin'), 'error', $e->getMessage());
-	die($e->getMessage());
+	$listener->execute(init('event_id'), init('value'));
 }
-$listener->execute(init('event_id'), init('value'));
 ?>
 
