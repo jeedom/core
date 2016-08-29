@@ -1278,6 +1278,7 @@ class scenarioExpression {
 
 	public function setId($id) {
 		$this->id = $id;
+		return $this;
 	}
 
 	public function getType() {
@@ -1286,6 +1287,7 @@ class scenarioExpression {
 
 	public function setType($type) {
 		$this->type = $type;
+		return $this;
 	}
 
 	public function getScenarioSubElement_id() {
@@ -1298,6 +1300,7 @@ class scenarioExpression {
 
 	public function setScenarioSubElement_id($scenarioSubElement_id) {
 		$this->scenarioSubElement_id = $scenarioSubElement_id;
+		return $this;
 	}
 
 	public function getSubtype() {
@@ -1306,6 +1309,7 @@ class scenarioExpression {
 
 	public function setSubtype($subtype) {
 		$this->subtype = $subtype;
+		return $this;
 	}
 
 	public function getExpression() {
@@ -1314,6 +1318,7 @@ class scenarioExpression {
 
 	public function setExpression($expression) {
 		$this->expression = jeedom::fromHumanReadable($expression);
+		return $this;
 	}
 
 	public function getOptions($_key = '', $_default = '') {
@@ -1322,6 +1327,7 @@ class scenarioExpression {
 
 	public function setOptions($_key, $_value) {
 		$this->options = utils::setJsonAttr($this->options, $_key, jeedom::fromHumanReadable($_value));
+		return $this;
 	}
 
 	public function getOrder() {
@@ -1330,6 +1336,7 @@ class scenarioExpression {
 
 	public function setOrder($order) {
 		$this->order = $order;
+		return $this;
 	}
 
 	public function setLog(&$_scenario, $log) {
