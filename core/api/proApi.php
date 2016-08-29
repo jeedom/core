@@ -232,7 +232,7 @@ try {
 			} else {
 				$result = 'NOK';
 				$defaut = 1;
-				$advice = 'Votre cache n\'est pas sauvegardé en cas de redemarrage certaines information peuvent être perdues. Essayez de lancer (à partir du moteur de têche) la tâche cache::persist';
+				$advice = 'Votre cache n\'est pas sauvegardé en cas de redemarrage certaines information peuvent être perdues. Essayez de lancer (à partir du moteur de tâche) la tâche cache::persist';
 			}
 			$health[] = array('plugin' => 'core', 'type' => 'Persistance du cache', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
 			
