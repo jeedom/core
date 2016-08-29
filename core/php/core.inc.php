@@ -30,9 +30,6 @@ include_file('core', 'compatibility', 'config');
 include_file('core', 'utils', 'class');
 include_file('core', 'log', 'class');
 
-use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
-
 try {
 	$configs = config::byKeys(array('timezone', 'log::level'));
 	if (isset($configs['timezone'])) {
@@ -41,16 +38,14 @@ try {
 		date_default_timezone_set('Europe/Brussels');
 	}
 } catch (\Exception $e) {
-    $log = (new Logger('Jeedom'))->pushHandler(new StreamHandler('../log/JeedomError.log'), Logger::INFO);
-    $log->addError(__METHOD__ . ' --> ' . $e->getMessage());
+
 }
 
 function jeedomCoreAutoload($classname) {
 	try {
 		include_file('core', $classname, 'class');
 	} catch (\Exception $e) {
-            $log = (new Logger('Jeedom'))->pushHandler(new StreamHandler('../log/JeedomError.log'), Logger::INFO);
-            $log->addError(__METHOD__ . ' --> ' . $e->getMessage());
+
 	}
 }
 
@@ -59,22 +54,19 @@ try {
 		log::define_error_reporting($configs['log::level']);
 	}
 } catch (\Exception $e) {
-    $log = (new Logger('Jeedom'))->pushHandler(new StreamHandler('../log/JeedomError.log'), Logger::INFO);
-    $log->addError(__METHOD__ . ' --> ' . $e->getMessage());
+
 }
 
 function jeedomOtherAutoload($classname) {
 	try {
 		include_file('core', substr($classname, 4), 'com');
 	} catch (\Exception $e) {
-            $log = (new Logger('Jeedom'))->pushHandler(new StreamHandler('../log/JeedomError.log'), Logger::INFO);
-            $log->addError(__METHOD__. ' --> ' . $e->getMessage());
+
 	}
 	try {
 		include_file('core', substr($classname, 5), 'repo');
 	} catch (\Exception $e) {
-            $log = (new Logger('Jeedom'))->pushHandler(new StreamHandler('../log/JeedomError.log'), Logger::INFO);
-            $log->addError(__METHOD__ . ' --> ' . $e->getMessage());
+
 	}
 }
 
@@ -110,8 +102,7 @@ function jeedomPluginAutoload($classname) {
 			}
 		}
 	} catch (\Exception $e) {
-            $log = (new Logger('Jeedom'))->pushHandler(new StreamHandler('../log/JeedomError.log'), Logger::INFO);
-            $log->addError(__METHOD__ . ' --> ' . $e->getMessage());
+
 	}
 }
 
