@@ -138,7 +138,7 @@ if (!file_exists('/etc/debian_version')) {
 		}
 	}
 }
-if (strpos(strtolower($uname), 'raspberrypi') !== false && strpos(strtolower($uname), '4.4.9') != false) {
+if (strpos(strtolower($uname), 'raspberrypi') !== false && strpos(strtolower($uname), '4.4') != false) {
 	$version_ok = true;
 }
 if (strpos(strtolower($uname), 'imx6-sr') !== false && strpos(strtolower($uname), 'armv7l') != false) {
