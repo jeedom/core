@@ -141,6 +141,9 @@ if (!file_exists('/etc/debian_version')) {
 if (strpos(strtolower($uname), 'raspberrypi') !== false && strpos(strtolower($uname), '4.4.9') != false) {
 	$version_ok = true;
 }
+if (strpos(strtolower($uname), 'imx6-sr') !== false && strpos(strtolower($uname), 'armv7l') != false) {
+	$version_ok = true;
+}
 if ($version_ok) {
 	echo '<td class="alert alert-success" style="cursor:default">' . $uname . ' [' . $version . ']</td>';
 	echo '<td></td>';
