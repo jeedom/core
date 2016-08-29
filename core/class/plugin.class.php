@@ -39,6 +39,7 @@ class plugin {
 	private $eventjs;
 	private $hasDependency;
 	private $hasOwnDeamon;
+	private $urlIssue;
 	private $include = array();
 	private static $_cache = array();
 
@@ -73,6 +74,11 @@ class plugin {
 		$plugin->require = (string) $plugin_xml->require;
 		$plugin->installation = (string) $plugin_xml->installation;
 		$plugin->category = (string) $plugin_xml->category;
+		if ( isset($plugin_xml->urlIssue)) {
+			$plugin->urlIssue = (string) $plugin_xml->urlIssue;
+		} else {
+			$plugin->urlIssue = "market";
+		}
 		$plugin->allowRemote = 0;
 		if (isset($plugin_xml->allowRemote)) {
 			$plugin->allowRemote = $plugin_xml->allowRemote;
@@ -706,6 +712,10 @@ class plugin {
 
 	public function getDisplay() {
 		return $this->display;
+	}
+
+	public function getUrlIssue() {
+		return $this->urlIssue;
 	}
 
 	public function setDisplay($display) {
