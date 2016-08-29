@@ -44,7 +44,7 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
                 <option data-pagehelp="core/<?php echo config::byKey('language', 'core', 'fr_FR'); ?>/doc-core-scenario.html">{{Scénario}}</option>
                 <?php
 foreach (plugin::listPlugin(true) as $plugin) {
-	echo '<option value="plugin::' . $plugin->getId() . '" data-pagehelp="plugins/' . $plugin->getId() . '/' . config::byKey('language', 'core', 'fr_FR') . '/' . $plugin->getId() . '.html">Plugin ' . $plugin->getName() . '</option>';
+	echo '<option value="plugin::' . $plugin->getId() . '" data-pagehelp="plugins/' . $plugin->getId() . '/' . config::byKey('language', 'core', 'fr_FR') . '/' . $plugin->getId() . '.html" data-pageissue="' . $plugin->getUrlIssue() . '.html">Plugin ' . $plugin->getName() . '</option>';
 }
 ?>
            </select>
@@ -61,6 +61,18 @@ foreach (plugin::listPlugin(true) as $plugin) {
         <label class="col-sm-2 control-label">{{Rechercher}}</label>
         <div class="col-sm-2">
             <a class="btn btn-default" id="bt_searchOnFaq"><i class="fa fa-search"></i> {{Chercher}}</a>
+        </div>
+    </div>
+</div>
+</div>
+
+<div id="div_reportModalSendIssueAction" class="panel panel-primary" style="display:none;">
+ <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-pencil"></i> {{Etape 4 : Demande de support}}</h3></div>
+ <div class="panel-body">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">{{Creer un ticket}}</label>
+        <div class="col-sm-2">
+            <a class="btn btn-default" id="bt_sendIssue" target="new_issue"><i class="fa fa-pencil"></i> {{Accès au portail des tickets de ce plugin}}</a>
         </div>
     </div>
 </div>
@@ -92,7 +104,6 @@ foreach (plugin::listPlugin(true) as $plugin) {
 </form>
 
 <script>
-    initCheckBox();
     $('.ticketAttr[data-l1key=options][data-l2key=page]').value(location.href);
 
     $('#bt_sendBugReport').on('click', function () {
@@ -100,9 +111,10 @@ foreach (plugin::listPlugin(true) as $plugin) {
         ticket.messages = $('#form_reportBug').getValues('.messageAttr');
         $.ajax({// fonction permettant de faire de l'ajax
             type: "POST", // méthode de transmission des données au fichier php
-            url: "core/ajax/market.ajax.php", // url du fichier php
+            url: "core/ajax/repo.ajax.php", // url du fichier php
             data: {
                 action: "sendReportBug",
+                repo : 'market',
                 ticket: json_encode(ticket),
             },
             dataType: 'json',
@@ -115,14 +127,19 @@ foreach (plugin::listPlugin(true) as $plugin) {
                 return;
             }
             $('#bt_sendBugReport').hide();
-            $('#div_alertReportBug').showAlert({message: '{{Votre ticket a bien été ouvert. Un mail va vous être envoyé.}}', level: 'success'});
+            $('#div_alertReportBug').showAlert({message: '{{Votre ticket a bien été ouvert. Nous vous recontacterons prochainement.}}', level: 'success'});
         }
     });
     });
 
     $('#bt_searchOnFaq').on('click',function(){
-        $('#div_reportModalSendAction').show();
-        window.open('https://jeedom.com/doc/documentation/'+$('.ticketAttr[data-l1key=category] option:selected').attr('data-pagehelp'), '_blank');
+    	if ( $('.ticketAttr[data-l1key=category] option:selected').attr('data-pageissue') == 'market' ) {
+	        $('#div_reportModalSendAction').show();
+	        window.open('https://jeedom.com/doc/documentation/'+$('.ticketAttr[data-l1key=category] option:selected').attr('data-pagehelp'), '_blank');
+    	} else {
+	        $('#div_reportModalSendIssueAction').show();
+	        $('#bt_sendIssue').href() = $('.ticketAttr[data-l1key=category] option:selected').attr('data-pageissue');
+    	}
     });
 
     $('.ticketAttr[data-l1key=type],.ticketAttr[data-l1key=category]').on('change',function(){
