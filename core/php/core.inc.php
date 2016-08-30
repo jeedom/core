@@ -37,14 +37,14 @@ try {
 	} else {
 		date_default_timezone_set('Europe/Brussels');
 	}
-} catch (\Exception $e) {
+} catch (Exception $e) {
 
 }
 
 function jeedomCoreAutoload($classname) {
 	try {
 		include_file('core', $classname, 'class');
-	} catch (\Exception $e) {
+	} catch (Exception $e) {
 
 	}
 }
@@ -53,19 +53,19 @@ try {
 	if (isset($configs['log::level'])) {
 		log::define_error_reporting($configs['log::level']);
 	}
-} catch (\Exception $e) {
+} catch (Exception $e) {
 
 }
 
 function jeedomOtherAutoload($classname) {
 	try {
 		include_file('core', substr($classname, 4), 'com');
-	} catch (\Exception $e) {
+	} catch (Exception $e) {
 
 	}
 	try {
 		include_file('core', substr($classname, 5), 'repo');
-	} catch (\Exception $e) {
+	} catch (Exception $e) {
 
 	}
 }
@@ -74,7 +74,7 @@ function jeedomPluginAutoload($classname) {
 	$plugin = null;
 	try {
 		$plugin = plugin::byId($classname);
-	} catch (\Exception $e) {
+	} catch (Exception $e) {
 		if (!is_object($plugin)) {
 			if (strpos($classname, 'Real') !== false) {
 				$plugin = plugin::byId(substr($classname, 0, -4));
@@ -83,7 +83,7 @@ function jeedomPluginAutoload($classname) {
 				$classname = str_replace('Cmd', '', $classname);
 				try {
 					$plugin = plugin::byId($classname);
-				} catch (\Exception $e) {
+				} catch (Exception $e) {
 					if (strpos($classname, '_') !== false && strpos($classname, 'com_') === false) {
 						$plugin = plugin::byId(substr($classname, 0, strpos($classname, '_')));
 					}
@@ -101,7 +101,7 @@ function jeedomPluginAutoload($classname) {
 				include_file('core', $include['file'], $include['type'], $plugin->getId());
 			}
 		}
-	} catch (\Exception $e) {
+	} catch (Exception $e) {
 
 	}
 }

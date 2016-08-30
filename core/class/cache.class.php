@@ -46,18 +46,18 @@ class cache {
 		return $cache->save();
 	}
 
-		public static function getCache() {
+	public static function getCache() {
 		if (self::$cache !== null) {
 			return self::$cache;
 		}
 		$engine = \config::byKey('cache::engine');
 		if ($engine == 'MemcachedCache' && !class_exists('memcached')) {
 			$engine = 'FilesystemCache';
-			\config::save('cache::engine', 'FilesystemCache');
+			config::save('cache::engine', 'FilesystemCache');
 		}
 		if ($engine == 'RedisCache' && !class_exists('redis')) {
 			$engine = 'FilesystemCache';
-			\config::save('cache::engine', 'FilesystemCache');
+			config::save('cache::engine', 'FilesystemCache');
 		}
 		switch ($engine) {
 			case 'FilesystemCache':
@@ -67,12 +67,12 @@ class cache {
 				self::$cache = new \Doctrine\Common\Cache\PhpFileCache("/tmp/jeedom-cache-php");
 				break;
 			case 'MemcachedCache':
-				$memcached = (new \Memcached())->addServer(config::byKey('cache::memcacheaddr'), config::byKey('cache::memcacheport'));
+				$memcached = (new Memcached())->addServer(config::byKey('cache::memcacheaddr'), config::byKey('cache::memcacheport'));
 				self::$cache = new \Doctrine\Common\Cache\MemcachedCache();
 				self::$cache->setMemcached($memcached);
 				break;
 			case 'RedisCache':
-				$redis = (new \Redis())->connect(config::byKey('cache::redisaddr'), config::byKey('cache::redisport'));
+				$redis = (new Redis())->connect(config::byKey('cache::redisaddr'), config::byKey('cache::redisport'));
 				self::$cache = new \Doctrine\Common\Cache\RedisCache();
 				self::$cache->setRedis($redis);
 				break;

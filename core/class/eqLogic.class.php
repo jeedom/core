@@ -432,7 +432,7 @@ class eqLogic {
 
 	public function preToHtml($_version = 'dashboard', $_default = array()) {
 		if ($_version == '') {
-			throw new \Exception(__('La version demandée ne peut pas être vide (mobile, dashboard ou scénario)', __FILE__));
+			throw new Exception(__('La version demandée ne peut pas être vide (mobile, dashboard ou scénario)', __FILE__));
 		}
 		if (!$this->hasRight('r')) {
 			return '';
@@ -579,7 +579,7 @@ class eqLogic {
 		if (!is_array($replace)) {
 			return $replace;
 		}
-		$version = \jeedom::versionAlias($_version);
+		$version = jeedom::versionAlias($_version);
 		$cmd_html = '';
 		$br_before = 0;
 		foreach ($this->getCmd(null, null, true) as $cmd) {
@@ -848,7 +848,7 @@ class eqLogic {
 	}
 
 	public function widgetPossibility($_key = '', $_default = true) {
-		$class = new \ReflectionClass($this->getEqType_name());
+		$class = new ReflectionClass($this->getEqType_name());
 		$method_toHtml = $class->getMethod('toHtml');
 		$return = array();
 		if ($method_toHtml->class == 'eqLogic') {

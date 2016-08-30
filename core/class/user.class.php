@@ -72,14 +72,14 @@ class user {
 						$user = self::byLogin($_login);
 						if (is_object($user)) {
 							$user->setPassword($sMdp)
-                                                             ->setOptions('lastConnection', date('Y-m-d H:i:s'));
+								->setOptions('lastConnection', date('Y-m-d H:i:s'));
 							$user->save();
 							return $user;
 						}
-						$user = (new \user)
-                                                        ->setLogin($_login)
-                                                        ->setPassword($sMdp)
-                                                        ->setOptions('lastConnection', date('Y-m-d H:i:s'));
+						$user = (new user)
+							->setLogin($_login)
+							->setPassword($sMdp)
+							->setOptions('lastConnection', date('Y-m-d H:i:s'));
 						$user->save();
 						log::add("connection", "info", __('Utilisateur créé depuis le LDAP : ', __FILE__) . $_login);
 						jeedom::event('user_connect');
@@ -231,7 +231,7 @@ class user {
 	}
 
 	public function validateTwoFactorCode($_code) {
-		$google2fa = new \Google2FA();
+		$google2fa = new Google2FA();
 		return $google2fa->verifyKey($this->getOptions('twoFactorAuthentificationSecret'), $_code);
 	}
 
@@ -251,17 +251,17 @@ class user {
 
 	public function setId($id) {
 		$this->id = $id;
-                return $this;
+		return $this;
 	}
 
 	public function setLogin($login) {
 		$this->login = $login;
-                return $this;
+		return $this;
 	}
 
 	public function setPassword($password) {
 		$this->password = (!is_sha1($password)) ? sha1($password) : $password;
-                return $this;
+		return $this;
 	}
 
 	public function getOptions($_key = '', $_default = '') {
@@ -270,7 +270,7 @@ class user {
 
 	public function setOptions($_key, $_value) {
 		$this->options = utils::setJsonAttr($this->options, $_key, $_value);
-                return $this;
+		return $this;
 	}
 
 	public function getRights($_key = '', $_default = '') {
@@ -279,7 +279,7 @@ class user {
 
 	public function setRights($_key, $_value) {
 		$this->rights = utils::setJsonAttr($this->rights, $_key, $_value);
-                return $this;
+		return $this;
 	}
 
 	public function getEnable() {
@@ -288,7 +288,7 @@ class user {
 
 	public function setEnable($enable) {
 		$this->enable = $enable;
-                return $this;
+		return $this;
 	}
 
 	public function getHash() {
@@ -305,7 +305,7 @@ class user {
 
 	public function setHash($hash) {
 		$this->hash = $hash;
-                return $this;
+		return $this;
 	}
 
 }
