@@ -323,7 +323,7 @@ if ($_SESSION['user']->getOptions('twoFactorAuthentification', 0) == 1) {
 		?>
             <label class="col-lg-1 col-md-2 col-sm-2 col-xs-2 control-label">{{Actif}}</label>
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-             <input type="checkbox" class="userAttr form-control" data-l1key="options" data-l2key="twoFactorAuthentification" />
+             <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="twoFactorAuthentification" />
            </div>
            <?php }
 	?>
