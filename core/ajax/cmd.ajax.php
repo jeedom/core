@@ -98,6 +98,10 @@ try {
 		ajax::success(utils::o2a($cmd));
 	}
 
+	if (init('action') == 'copyHistoryToCmd') {
+		ajax::success(history::copyHistoryToCmd(init('source_id'), init('target_id')));
+	}
+
 	if (init('action') == 'byHumanName') {
 		$cmd_id = cmd::humanReadableToCmd(init('humanName'));
 		$cmd = cmd::byId(str_replace('#', '', $cmd_id));

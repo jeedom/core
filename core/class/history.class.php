@@ -29,6 +29,43 @@ class history {
 
 	/*     * ***********************Methode static*************************** */
 
+	public static function copyHistoryToCmd($_source_id, $_target_id) {
+		$source_cmd = cmd::byId(str_replace('#', '', $_source_id));
+		if (!is_object($source_cmd)) {
+			throw new Exception(__('La commande source n\'existe pas :', __FILE__) . ' ' . $_source_id);
+		}
+		if ($source_cmd->getIsHistorized() != 1) {
+			throw new Exception(__('La commande source n\'est pas historiser', __FILE__));
+		}
+		if ($source_cmd->getType() != 'info') {
+			throw new Exception(__('La commande source n\'est pas de type info', __FILE__));
+		}
+		$target_cmd = cmd::byId(str_replace('#', '', $_target_id));
+		if (!is_object($target_cmd)) {
+			throw new Exception(__('La commande cible n\'existe pas :', __FILE__) . ' ' . $_target_id);
+		}
+		if ($target_cmd->getType() != 'info') {
+			throw new Exception(__('La commande cible n\'est pas de type info', __FILE__));
+		}
+		if ($target_cmd->getSubType() != $source_cmd->getSubType()) {
+			throw new Exception(__('Le sous type de la commande cible n\'est pas le même que celui de la commande source', __FILE__));
+		}
+		if ($target_cmd->getIsHistorized() != 1) {
+			$target_cmd->setIsHistorized(1);
+			$target_cmd->save();
+		}
+		$values = array(
+			'source_id' => $source_cmd->getId(),
+		);
+		$sql = 'INSERT INTO `history` (`cmd_id`,`datetime`,`value`)
+				SELECT ' . $target_cmd->getId() . ',`datetime`,`value` FROM `history` WHERE cmd_id=:source_id';
+		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+
+		$sql = 'INSERT INTO `historyArch` (`cmd_id`,`datetime`,`value`)
+				SELECT ' . $target_cmd->getId() . ',`datetime`,`value` FROM `historyArch` WHERE cmd_id=:source_id';
+		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+	}
+
 	public static function byCmdIdDatetime($_cmd_id, $_datetime) {
 		$values = array(
 			'cmd_id' => $_cmd_id,

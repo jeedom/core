@@ -49,6 +49,26 @@
     $.ajax(paramsAJAX);
 }
 
+ jeedom.history.copyHistoryToCmd = function (_params) {
+    var paramsRequired = ['source_id', 'target_id'];
+    var paramsSpecifics = {};
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/cmd.ajax.php';
+    paramsAJAX.data = {
+        action: 'copyHistoryToCmd',
+        source_id: _params.source_id,
+        target_id: _params.target_id
+    };
+    $.ajax(paramsAJAX);
+}
+
 jeedom.history.drawChart = function (_params) {
     $.showLoading();
     if ($.type(_params.dateRange) == 'object') {

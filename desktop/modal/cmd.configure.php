@@ -328,57 +328,67 @@ foreach ($groups as $group) {
 
   <?php }?>
 
-  <?php if ($cmd->getType() == 'info' && ($cmd->getSubType() == 'numeric' || $cmd->getSubType() == 'binary')) {?>
-    <legend><i class="fa fa-bar-chart-o"></i> {{Historique}}</legend>
-    <div class="form-group">
-      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Historiser}}</label>
-      <div class="col-xs-1">
-        <input type="checkbox" class="cmdAttr" data-l1key="isHistorized" />
-      </div>
+  <?php if ($cmd->getType() == 'info' && ($cmd->getSubType() == 'numeric' || $cmd->getSubType() == 'binary')) {
+	?>
+   <legend><i class="fa fa-bar-chart-o"></i> {{Historique}}</legend>
+   <div class="form-group">
+    <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Historiser}}</label>
+    <div class="col-xs-1">
+      <input type="checkbox" class="cmdAttr" data-l1key="isHistorized" />
     </div>
-    <div class="form-group">
-      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Mode de lissage}}</label>
-      <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-        <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historizeMode">
-          <option value="avg">{{Moyenne}}</option>
-          <option value="min">{{Minimum}}</option>
-          <option value="max">{{Maximum}}</option>
-          <option value="none">{{Aucun}}</option>
-        </select>
-      </div>
+  </div>
+  <div class="form-group">
+    <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Mode de lissage}}</label>
+    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+      <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historizeMode">
+        <option value="avg">{{Moyenne}}</option>
+        <option value="min">{{Minimum}}</option>
+        <option value="max">{{Maximum}}</option>
+        <option value="none">{{Aucun}}</option>
+      </select>
     </div>
+  </div>
 
-    <div class="form-group">
-      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Purger l'historique si plus vieux de }}</label>
-      <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-       <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historyPurge">
-         <option value="">{{Jamais}}</option>
-         <option value="-1 day">{{1 jour}}</option>
-         <option value="-7 days">{{7 jours}}</option>
-         <option value="-1 month">{{1 mois}}</option>
-         <option value="-6 month">{{6 mois}}</option>
-       </select>
-     </div>
+  <div class="form-group">
+    <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Purger l'historique si plus vieux de }}</label>
+    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+     <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historyPurge">
+       <option value="">{{Jamais}}</option>
+       <option value="-1 day">{{1 jour}}</option>
+       <option value="-7 days">{{7 jours}}</option>
+       <option value="-1 month">{{1 mois}}</option>
+       <option value="-6 month">{{6 mois}}</option>
+     </select>
    </div>
-   <?php }
-?>
-   <?php if ($cmd->getType() == 'info') {?>
-     <legend><i class="fa fa-plus"></i> {{Autres}}</legend>
-     <div class="form-group">
-      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Ignorer évènement si la valeur ne change pas}}</label>
-      <div class="col-xs-1">
-        <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="doNotRepeatEvent" />
-      </div>
+ </div>
+ <?php if ($cmd->getIsHistorized() == 1) {?>
+  <div class="form-group">
+    <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Copie des données historisé}}</label>
+    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+      <a class="btn btn-warning" id="bt_cmdConfigureCopyHistory"><i class="fa fa-clone"></i> {{Copier l'historique de cette commande sur une autre commande}}</a>
     </div>
-    <div class="form-group">
-      <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Push URL}}</label>
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-        <input class="cmdAttr form-control tooltips" data-l1key="configuration" data-l2key="jeedomPushUrl" title="{{Mettez ici l'URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"/>
-      </div>
-    </div>
-    <?php }
+  </div>
+  <?php }
+	?>
+  <?php }
 ?>
-  </fieldset>
+  <?php if ($cmd->getType() == 'info') {?>
+   <legend><i class="fa fa-plus"></i> {{Autres}}</legend>
+   <div class="form-group">
+    <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Ignorer évènement si la valeur ne change pas}}</label>
+    <div class="col-xs-1">
+      <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="doNotRepeatEvent" />
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Push URL}}</label>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+      <input class="cmdAttr form-control tooltips" data-l1key="configuration" data-l2key="jeedomPushUrl" title="{{Mettez ici l'URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"/>
+    </div>
+  </div>
+  <?php }
+?>
+</fieldset>
 </form>
 </div>
 <?php if ($cmd->widgetPossibility('custom::htmlCode')) {
@@ -681,7 +691,29 @@ if ($cmd->getDisplay('parameters') != '') {
   $('#bt_cmdConfigureRawObject').off('click').on('click',function(){
     $('#md_modal2').dialog({title: "{{Informations brutes}}"});
     $("#md_modal2").load('index.php?v=d&modal=object.display&class=cmd&id='+cmdInfo.id).dialog('open');
-  })
+  });
+
+  $('#bt_cmdConfigureCopyHistory').off('click').on('click',function(){
+    jeedom.cmd.getSelectModal({cmd: {type: 'info', subType: cmdInfo.subType}}, function (result) {
+      var target_id = result.cmd.id
+      bootbox.confirm('{{Etes-vous sûr de vouloir copié l\'historique de votre commande vers une autre ? Il est conseillé de vider l\'historique de la commande cible}}', function (result) {
+        if (result) {
+          jeedom.history.copyHistoryToCmd({
+            source_id : cmdInfo.id,
+            target_id : target_id,
+            error: function (error) {
+             $('#md_displayCmdConfigure').showAlert({message: error.message, level: 'danger'});
+           },
+           success: function (data) {
+             $('#md_displayCmdConfigure').showAlert({message: '{{Historique copié avec succès}}', level: 'success'});
+           }
+         });
+        }
+      });
+    });
+  });
+
+
   if(isset(cmdInfo.configuration.actionCheckCmd) && $.isArray(cmdInfo.configuration.actionCheckCmd) && cmdInfo.configuration.actionCheckCmd.length != null){
     for(var i in cmdInfo.configuration.actionCheckCmd){
       addActionCmd(cmdInfo.configuration.actionCheckCmd[i], 'actionCheckCmd','{{Action}}');
