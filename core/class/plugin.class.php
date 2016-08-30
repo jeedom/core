@@ -71,38 +71,17 @@ class plugin {
 			$plugin = new plugin();
 			$plugin->id = $data['id'];
 			$plugin->name = $data['name'];
-			$plugin->description = $data['description'];
-			$plugin->licence = $data['licence'];
-			$plugin->author = $data['author'];
+			$plugin->description = (isset($data['description'])) ? $data['description'] : '';
+			$plugin->licence = (isset($data['licence'])) ? $data['licence'] : '';
+			$plugin->author = (isset($data['author'])) ? $data['author'] : '';
+			$plugin->installation = (isset($data['installation'])) ? $data['installation'] : '';
+			$plugin->allowRemote = (isset($data['allowRemote'])) ? $data['allowRemote'] : 0;
+			$plugin->hasDependency = (isset($data['hasDependency'])) ? $data['hasDependency'] : 0;
+			$plugin->hasOwnDeamon = (isset($data['hasOwnDeamon'])) ? $data['hasOwnDeamon'] : 0;
+			$plugin->maxDependancyInstallTime = (isset($data['maxDependancyInstallTime'])) ? $data['maxDependancyInstallTime'] : 30;
+			$plugin->eventjs = (isset($data['eventjs'])) ? $data['eventjs'] : 0;
 			$plugin->require = $data['require'];
-
-			$plugin->installation = '';
-			if (isset($data['installation'])) {
-				$plugin->installation = $data['installation'];
-			}
 			$plugin->category = $data['category'];
-			$plugin->allowRemote = 0;
-
-			if (isset($data['allowRemote'])) {
-				$plugin->allowRemote = $data['allowRemote'];
-			}
-			$plugin->hasDependency = 0;
-			if (isset($data['hasDependency'])) {
-				$plugin->hasDependency = $data['hasDependency'];
-			}
-			$plugin->hasOwnDeamon = 0;
-			if (isset($data['hasOwnDeamon'])) {
-				$plugin->hasOwnDeamon = $data['hasOwnDeamon'];
-			}
-			if (isset($data['maxDependancyInstallTime'])) {
-				$plugin->maxDependancyInstallTime = $data['maxDependancyInstallTime'];
-			} else {
-				$plugin->maxDependancyInstallTime = 10;
-			}
-			$plugin->eventjs = 0;
-			if (isset($data['eventjs'])) {
-				$plugin->eventjs = 1;
-			}
 			$plugin->filepath = $_id;
 			$plugin->index = (isset($data['index'])) ? (string) $data['index'] : $data['id'];
 			$plugin->display = (isset($data['display'])) ? (string) $data['display'] : '';
