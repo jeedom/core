@@ -232,7 +232,7 @@ try {
 	echo __("Nom du backup : ", __FILE__) . $backup_dir . '/' . $bakcup_name . "\n";
 
 	try {
-		echo "Envoi de l\'événement de fin de backup...";
+		echo 'Envoi de l\'événement de fin de backup...';
 		jeedom::event('end_backup');
 		echo "OK\n";
 	} catch (Exception $e) {
