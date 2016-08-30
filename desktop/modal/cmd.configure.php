@@ -696,7 +696,8 @@ if ($cmd->getDisplay('parameters') != '') {
   $('#bt_cmdConfigureCopyHistory').off('click').on('click',function(){
     jeedom.cmd.getSelectModal({cmd: {type: 'info', subType: cmdInfo.subType}}, function (result) {
       var target_id = result.cmd.id
-      bootbox.confirm('{{Etes-vous sûr de vouloir copié l\'historique de votre commande vers une autre ? Il est conseillé de vider l\'historique de la commande cible}}', function (result) {
+      var name = result.human
+      bootbox.confirm('{{Etes-vous sûr de vouloir copié l\'historique de}} <strong>'+cmdInfo.name+'</strong> {{vers}} <strong>'+name+'</strong> ? {{Il est conseillé de vider l\'historique de la commande}} : <strong>'+name+'</strong> {{ avant la copie}}', function (result) {
         if (result) {
           jeedom.history.copyHistoryToCmd({
             source_id : cmdInfo.id,
