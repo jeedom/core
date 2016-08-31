@@ -102,6 +102,10 @@ try {
 		ajax::success(history::copyHistoryToCmd(init('source_id'), init('target_id')));
 	}
 
+	if (init('action') == 'replaceCmd') {
+		ajax::success(jeedom::replaceTag(array('#' . str_replace('#', '', init('source_id')) . '#' => '#' . str_replace('#', '', init('target_id')) . '#')));
+	}
+
 	if (init('action') == 'byHumanName') {
 		$cmd_id = cmd::humanReadableToCmd(init('humanName'));
 		$cmd = cmd::byId(str_replace('#', '', $cmd_id));

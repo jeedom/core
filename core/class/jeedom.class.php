@@ -585,6 +585,26 @@ class jeedom {
 		}
 	}
 
+	/*************************************************************************************/
+
+	public static function replaceTag(array $_replaces) {
+		$datas = array();
+		foreach ($_replaces as $key => $value) {
+			$datas = array_merge($datas, cmd::searchConfiguration($key));
+			$datas = array_merge($datas, eqLogic::searchConfiguration($key));
+			$datas = array_merge($datas, scenario::byUsedCommand($key));
+			$datas = array_merge($datas, scenarioExpression::searchExpression($key, $key, false));
+			$datas = array_merge($datas, scenarioExpression::searchExpression('variable(' . str_replace('#', '', $key) . ')'));
+			$datas = array_merge($datas, scenarioExpression::searchExpression('variable', str_replace('#', '', $key), true));
+		}
+		if (count($datas) > 0) {
+			foreach ($datas as $data) {
+				utils::a2o($data, json_decode(str_replace(array_keys($_replaces), $_replaces, json_encode(utils::o2a($data))), true));
+				$data->save();
+			}
+		}
+	}
+
 	/***************************************THREAD MANGEMENT**********************************************/
 
 	public static function checkOngoingThread($_cmd) {

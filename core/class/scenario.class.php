@@ -471,6 +471,7 @@ class scenario {
 	}
 
 	public static function byUsedCommand($_cmd_id, $_variable = false) {
+		$_cmd_id = str_replace('#', '', $_cmd_id);
 		$scenarios = null;
 		if ($_variable) {
 			$return = array();
