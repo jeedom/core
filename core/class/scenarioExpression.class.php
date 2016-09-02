@@ -689,6 +689,16 @@ class scenarioExpression {
 		return 0;
 	}
 
+	public static function triggerValue(&$_scenario = null) {
+		if ($_scenario != null) {
+			$cmd = cmd::byId(str_replace('#', '', $_scenario->getRealTrigger()));
+			if (is_object($cmd)) {
+				return $cmd->execCmd();
+			}
+		}
+		return false;
+	}
+
 	public static function round($_value, $_decimal = 0) {
 		$_value = self::setTags($_value);
 		try {
@@ -850,6 +860,8 @@ class scenarioExpression {
 								$arguments[0] = '';
 							}
 							$replace2[$replace_string] = self::trigger($arguments[0], $_scenario);
+						}else if ($function == 'triggerValue') {
+							$replace2[$replace_string] = self::triggerValue($_scenario);
 						} else {
 							$replace2[$replace_string] = call_user_func_array(__CLASS__ . "::" . $function, $arguments);
 
