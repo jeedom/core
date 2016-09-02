@@ -785,6 +785,9 @@ if ($cmd->getDisplay('parameters') != '') {
 
   $('#bt_cmdConfigureReplaceIdByMe').off('click').on('click',function(){
     var target_id = prompt("{{Id de commande à remplacer ?}}");
+    if(target_id == null){
+      return;
+    }
     bootbox.confirm('{{Etes-vous sûr de vouloir remplacer}} <strong>'+target_id+'</strong> {{par}} <strong>'+cmdInfo.name+'</strong> ?', function (result) {
       if (result) {
         jeedom.cmd.replaceCmd({
