@@ -1,34 +1,34 @@
-= Objet
+= Objekte
 
-Le sous-menu Objets, permet de définir l'arborescence de sa domotique. Elle se fait en créant ce qui s'appelle des objets. Accessible à partir de là : 
+Das Untermenü Objekte, ermöglicht, die Baumstruktur seiner Haustechnik zu definieren. Es wird gemacht, indem das geschaffene Objekte aufgerufen wird. Zugänglich von hier : 
 
 image::../images/object1.JPG[]
 
-Pour laisser libre choix à la personnalisation, vous pouvez nommer ces objets comme vous le voulez. Mais dans la plupart des cas on y définira les différentes parties de sa maison, comme le nom des pièces (c'est d'ailleurs la configuration recommandée).
+Um freie Wahl für die Personalisierung zu haben, können Sie diese Objekte benennen, wie Sie wollen. Aber meistens wird man dort die verschiedenen Bereiche seines Hauses definieren, wie der Name der  Räume (es ist im Übrigen die empfohlene Konfiguration).
 
-En arrivant sur la page vous obtenez (ici avec déjà quelques objets) : 
+Auf der Seite angekommen, bekommt man folgende Seite (Hier bereits mit einigen Objekten) : 
 
 image::../images/object2.JPG[]
 
 [TIP]
-Comme à beaucoup d'endroits sur Jeedom, placer la souris tout à gauche permet de faire apparaître un menu d'accès rapide (vous pouvez, à partir de votre profil, le laisser toujours visible).
+Wie an vielen Orten auf Jeedom, wenn man die Maus ganz nach links bewegt ermöglicht es, ein Schnellzugangsmenü sichtbar zu machen (Sie können es in ihrem Profil immer sichtbar machen).
 
-Une fois votre objet ajouté ou après un clic sur un objet existant, vous obtenez : 
+Sobald Ihr Objekt hinzugefügt wurde, oder nach einem Klick auf ein vorhandenes Objekt, bekommen Sie folgendes : 
 
 image::../images/object3.JPG[]
 
 
-A partir de la vous avez différentes options : 
+Hier haben Sie verschiedene Optionen : 
 
-* *Nom de l'objet* : le nom de votre objet
-* *Père* : l'objet père de l'objet courant, cela permet de définir une hiérarchie type le salon est le fils de l'appartement. Un objet ne peut avoir qu'un seul père mais il peut avoir autant de fils qu'il le veut.
-* *Visible* : permet de définir si cet objet est visible sur le dashboard ou non
-* *Icône* : vous permet de choisir une icône pour votre objet
-* *Couleur du tag* : permet de choisir la couleur de l'objet (cette couleur est par exemple utilisée sur la page de résumé domotique)
-* *Couleur du texte du tag* : permet de choisir la couleur du texte de l'objet (cette couleur est par exemple utilisée sur la page de résumé domotique)
+* *Objektname* : der Name des Objekts
+* *Vater* : das übergeordnete Objekt des aktuellen Objekts, es ermöglicht eine Hierarchie zu definieren, z.B. das Wohnzimmer,  ist der Sohn der Wohnung. Ein Objekt kann nur einen Vater haben, aber er kann so viele Söhne haben wie er will.
+* *Sichtbar* : ermöglicht, festzulegen ob das Objekt auf dem Armaturenbrett sichtbar ist oder nicht
+* *Symbol* : Damit können Sie ein Symbol für das Objekt festlegen
+* *Tag Farbe* : Hier können Sie die Farbe des Objekts wählen (diese Farbe wird zum Beispiel in der Home-Automation-Übersichtsseite verwendet)
+* *Tag Farbe* : Hier können Sie die Textfarbe des Objekts wählen (diese Textfarbe wird zum Beispiel in der Home-Automation-Übersichtsseite verwendet)
 
-Si vous mettez votre souris tout à gauche vous pourrez faire apparaître le menu suivant : 
+Wenn Sie Ihre Maus ganz nach links bewegen, können Sie das folgende Menü erscheinen lassen : 
 
 image::../images/object4.JPG[]
 
-Grâce à celui-ci vous pourrez modifier l'ordre de vos objets en maintenant le clic appuyé sur la double flèche au début de la ligne et en glissant l'objet vers la position voulue.
+Mit ihm können Sie die Reihenfolge Ihrer Objekte ändern, klicken und halten Sie am Anfang der Zeile den Doppelpfeil und ziehen das Objekt an die gewünschte Position.

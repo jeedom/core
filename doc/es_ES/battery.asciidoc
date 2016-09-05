@@ -1,0 +1,16 @@
+= Baterias/Pilas
+
+La página de baterías le permite ver el estado de todos sus equipos de un vistazo. Es accesible desde el menú  análisis -> baterías: 
+
+image::../images/battery.PNG[]
+
+Una vez que llegue: 
+
+image::../images/battery2.PNG[]
+
+En esta página se puede ver lista de los módulos con su nivel restante de la batería (el color del recuadro depende de este nivel), el tipo y número de baterías que necesita el módulo, el tipo de módulo, así como la fecha donde se actualizó la información de nivel de batería.
+
+[TIP]
+Los umbrales de alerta/ADVERTENCIA sobre los niveles de batería son configurables globalmente en la configuración de Jeedom (Administración -> "Configuración del dispositivo"), o por dispositivo en la configuración avanzada del mismo.
+
+Poniendo el puntero del ratón a la izquierda tienes acceso a un menú de filtro avanzado para buscar específicamente un tipo de módulo, una alerta...

@@ -18,7 +18,7 @@ Une fois votre objet ajouté ou après un clic sur un objet existant, vous obten
 image::../images/object3.JPG[]
 
 
-A partir de la vous avez différentes options : 
+A partir de là vous avez différentes options : 
 
 * *Nom de l'objet* : le nom de votre objet
 * *Père* : l'objet père de l'objet courant, cela permet de définir une hiérarchie type le salon est le fils de l'appartement. Un objet ne peut avoir qu'un seul père mais il peut avoir autant de fils qu'il le veut.

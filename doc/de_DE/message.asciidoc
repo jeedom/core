@@ -1,18 +1,18 @@
-= Centre des messages
+= Nachrichtenzentrale
 
-Le centre des messages regroupes tous les messages important que vous devez regarder
+Die Nachrichtenzentrale beinhaltet alle wichtigen Nachrichten, die Sie sich ansehen sollten.
 
-Il est accessible que quand il y a des messages, en cliquant sur le nombre de messages : 
+Es ist nur verfügbar, wenn Nachrichten vorhanden sind, einfach auf die Anzahl der Nachrichten klicken : 
 
 image::../images/message1.png[]
 
-Voici celui-ci : 
+Hier ist ein Beispiel : 
 
 image::../images/message.png[]
 
-Il est assez simple, il vous montre la date et l'heure du message, le plugin qui l'a émit et le message en question, vous pouvez en appuyant sur la bouton au tout debut de la ligne d'un message supprimer le message en question (il reviendra si le problème est toujours d'actualité)
+Es ist ziemlich einfach. Es zeigt Ihnen das Datum und die Uhrzeit der Nachricht, das Plugin, das es ausgegeben hat und die betreffende Nachricht. Sie können die betreffende Nachricht löschen, indem Sie die Schaltfläche am Anfang der Nachrichtenzeile drücken. (die Nachricht wird zurückkehren, wenn das Problem immer noch relevant ist).
 
-En haut on retrouve un selecteur pour filtrer les message que sur un plugin particulier et tout a droite un bouton pour vider tous les messages
+Oben finden wir eine Auswahlliste zum Filtern von Nachrichten von ein bestimmtem Plugin und rechts eine Schaltfläche, um alle Nachrichten zu löschen.
 
 [TIP]
-Lorsque vous avez une erreur dans le centre des message essayez d'abord de supprimer le message puis voir si l'erreur revient avant de contacter le support. Il arrive (comme sur la capture ici) que ca soit juste du à un soucis de connexion réseaux
+Wenn Sie einen Fehler in der Nachrichtenzentrale haben, versuchen Sie zunächst die Nachricht zu entfernen und sehen dann ob der Fehler zurückkommt, bevor Sie den Support kontaktieren. Manchmal (wie in dem Screenshot hier) ist es nur durch ein Problem mit der Netzwerkverbindung.

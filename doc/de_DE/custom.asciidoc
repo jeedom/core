@@ -1,16 +1,16 @@
-= Personnalisation avancée
+= Erweiterte Anpassung
 
-Réservée aux experts, cette page permet d'ajouter des script CSS ou JS en plus dans Jeedom, qui sont executés sur chaque page.
+Diese Seite ist für die Experten Reserviert, es erlaubt einen in Jeedom CSS-Scripte oder JS hinzuzufügen, das auf jeder Seite ausgeführt wird.
 
-Accessible par Général -> Administration -> Personnalisation avancée : 
+Erreichbar unter Einstellungen -> Erweiterte Anpassung 
 
 image::../images/custom.png[]
 
-Une fois dessus, vous obtenez : 
+Sobald sie darauf sind, sehen sie : 
 
 image::../images/custom2.png[]
 
-Vous pouvez donc, à partir de cette page, ajouter des scripts JS et CSS executés partout dans Jeedom, en distinguant la version desktop de la version mobile
+Sie können auf dieser Seite JS und CSS Skripte hinzufügen die im ganzen Jeedom ausgeführt werden, jeweils für die Desktop-Version und die Mobile-Version.
 
 [IMPORTANT]
-Toute erreur dans un des ces scripts peut rendre votre Jeedom totalement indisponible et il faudra se connecter en SSH et supprimer les fichiers de customisation pour pouvoir le récupérer.
+Jeder Fehler in einem dieser Skripte kann Jeedom völlig unerreichbar machen und mann muß sich via SSH verbinden um die geänderten Dateien zu löschen und zurückbekommen zu können
