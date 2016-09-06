@@ -545,33 +545,6 @@ if (init('type') != '') {
 				throw new Exception('La paramètre "state" ne peut être vide et doit avoir pour valeur [run,stop,enable;disable]');
 			}
 
-			/*             * ************************JeeNetwork*************************** */
-
-			if ($jsonrpc->getMethod() == 'jeeNetwork::halt') {
-				jeedom::haltSystem();
-				$jsonrpc->makeSuccess('ok');
-			}
-
-			if ($jsonrpc->getMethod() == 'jeeNetwork::reboot') {
-				jeedom::rebootSystem();
-				$jsonrpc->makeSuccess('ok');
-			}
-
-			if ($jsonrpc->getMethod() == 'jeeNetwork::update') {
-				jeedom::update('', 0);
-				$jsonrpc->makeSuccess('ok');
-			}
-
-			if ($jsonrpc->getMethod() == 'jeeNetwork::checkUpdate') {
-				update::checkAllUpdate();
-				$jsonrpc->makeSuccess('ok');
-			}
-
-			if ($jsonrpc->getMethod() == 'jeeNetwork::backup') {
-				jeedom::backup(true);
-				$jsonrpc->makeSuccess('ok');
-			}
-
 			/*             * ************************Log*************************** */
 			if ($jsonrpc->getMethod() == 'log::get') {
 				$jsonrpc->makeSuccess(log::get($params['log'], $params['start'], $params['nbLine']));
