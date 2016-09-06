@@ -391,7 +391,6 @@ class repo_market {
 				'information' => array(
 					'nbMessage' => message::nbMessage(),
 					'nbUpdate' => update::nbNeedUpdate(),
-					'jeeNetwork::mode' => config::byKey('jeeNetwork::mode'),
 					'hardware' => (method_exists('jeedom', 'getHardwareName')) ? jeedom::getHardwareName() : '',
 				),
 				'localIp' => $internalIp,

@@ -634,9 +634,6 @@ class plugin {
 		}
 		$alreadyActive = config::byKey('active', $this->getId(), 0);
 		if ($_state == 1) {
-			if (config::byKey('jeeNetwork::mode') != 'master' && $this->getAllowRemote() != 1) {
-				throw new Exception(__('Vous ne pouvez pas activer ce plugin sur un Jeedom configuré en esclave', __FILE__));
-			}
 			config::save('active', $_state, $this->getId());
 		}
 		$deamonAutoState = config::byKey('deamonAutoMode', $this->getId(), 1);

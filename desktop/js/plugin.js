@@ -279,24 +279,6 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
       initExpertMode();
     }
   });
-  $('.slaveConfig').each(function(){
-    var slave_id = $(this).attr('data-slave_id');
-    jeedom.jeeNetwork.loadConfig({
-      configuration: $('#div_plugin_configuration .slaveConfig[data-slave_id='+slave_id+']').getValues('.slaveConfigKey')[0],
-      plugin: $('.li_plugin.active').attr('data-plugin_id'),
-      id: slave_id,
-      error: function (error) {
-        alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
-      },
-      success: function (data) {
-        $('#div_plugin_configuration .slaveConfig[data-slave_id='+slave_id+']').setValues(data, '.slaveConfigKey');
-        modifyWithoutSave = false;
-        initExpertMode();
-      }
-    });
-  })
-
-
 } else {
   $('#div_plugin_configuration').closest('.alert').hide();
 }
@@ -406,21 +388,6 @@ $('#bt_savePluginLogConfig').off('click').on('click',function(){
     modifyWithoutSave = false;
   }
 });
-
- $('#div_plugin_log .slaveConfig').each(function(){
-  var slave_id = $(this).attr('data-slave_id');
-  jeedom.jeeNetwork.saveConfig({
-    configuration: $('#div_plugin_log .slaveConfig[data-slave_id='+slave_id+']').getValues('.slaveConfigKey')[0],
-    id: slave_id,
-    error: function (error) {
-      alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
-    },
-    success: function () {
-      alert_div_plugin_configuration.showAlert({message: '{{Sauvegarde effectuée}}', level: 'success'});
-      modifyWithoutSave = false;
-    }
-  });
-});
 })
 
 $('#div_plugin_log').on('click','.bt_plugin_conf_view_log',function(){
@@ -464,42 +431,6 @@ function savePluginConfig(_param) {
         });
       }
     }
-  });
-
-  $('#div_plugin_configuration .slaveConfig').each(function(){
-    var slave_id = $(this).attr('data-slave_id');
-    jeedom.jeeNetwork.saveConfig({
-      configuration: $('#div_plugin_configuration .slaveConfig[data-slave_id='+slave_id+']').getValues('.slaveConfigKey')[0],
-      plugin: $('.li_plugin.active').attr('data-plugin_id'),
-      id: slave_id,
-      error: function (error) {
-        alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
-      },
-      success: function () {
-        alert_div_plugin_configuration.showAlert({message: '{{Sauvegarde effectuée}}', level: 'success'});
-        modifyWithoutSave = false;
-        var postSave = $('.li_plugin.active').attr('data-plugin_id')+'_postSaveSlaveConfiguration';
-        if (typeof window[postSave] == 'function'){
-          window[postSave](slave_id);
-        }
-        if (isset(_param) && typeof _param.success == 'function'){
-          _param.success(slave_id);
-        }
-        if(!isset(_param) || !isset(_param.relaunchDeamon) || _param.relaunchDeamon){
-         jeedom.plugin.deamonStart({
-          id : $('.li_plugin.active').attr('data-plugin_id'),
-          slave_id: slave_id,
-          forceRestart: 1,
-          error: function (error) {
-            alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
-          },
-          success: function (data) {
-            $("#div_plugin_deamon").load('index.php?v=d&modal=plugin.deamon&plugin_id='+$('.li_plugin.active').attr('data-plugin_id'));
-          }
-        });
-       }
-     }
-   });
   });
 }
 

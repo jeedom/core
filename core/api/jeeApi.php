@@ -546,46 +546,6 @@ if (init('type') != '') {
 			}
 
 			/*             * ************************JeeNetwork*************************** */
-			if ($jsonrpc->getMethod() == 'jeeNetwork::handshake') {
-				if (config::byKey('jeeNetwork::mode') != 'slave') {
-					throw new Exception('Impossible d\'ajouter une box jeedom non esclave à un réseau Jeedom');
-				}
-				$return = array(
-					'mode' => config::byKey('jeeNetwork::mode'),
-					'nbUpdate' => update::nbNeedUpdate(),
-					'version' => jeedom::version(),
-					'nbMessage' => message::nbMessage(),
-					'jeedom::url' => config::byKey('jeedom::url'),
-				);
-				if (!filter_var(network::getNetworkAccess('external', 'ip'), FILTER_VALIDATE_IP) && network::getNetworkAccess('external', 'ip') != '') {
-					$return['jeedom::url'] = network::getNetworkAccess('internal');
-				}
-				foreach (plugin::listPlugin(true) as $plugin) {
-					if ($plugin->getAllowRemote() == 1) {
-						$return['plugin'][] = $plugin->getId();
-					}
-				}
-				$address = (isset($params['address']) && $params['address'] != '') ? $params['address'] : getClientIp();
-				config::save('jeeNetwork::master::ip', $address);
-				config::save('jeeNetwork::master::apikey', $params['apikey_master']);
-				config::save('jeeNetwork::slave::id', $params['slave_id']);
-				if (config::byKey('internalAddr') == '') {
-					config::save('internalAddr', $params['slave_ip']);
-				}
-				jeeNetwork::testMaster();
-				$jsonrpc->makeSuccess($return);
-			}
-
-			if ($jsonrpc->getMethod() == 'jeeNetwork::reload') {
-				foreach (plugin::listPlugin(true) as $plugin) {
-					try {
-						$plugin->launch('slaveReload');
-					} catch (Exception $ex) {
-
-					}
-				}
-				$jsonrpc->makeSuccess('ok');
-			}
 
 			if ($jsonrpc->getMethod() == 'jeeNetwork::halt') {
 				jeedom::haltSystem();
@@ -604,74 +564,6 @@ if (init('type') != '') {
 
 			if ($jsonrpc->getMethod() == 'jeeNetwork::checkUpdate') {
 				update::checkAllUpdate();
-				$jsonrpc->makeSuccess('ok');
-			}
-
-			if ($jsonrpc->getMethod() == 'jeeNetwork::receivedBackup') {
-				if (config::byKey('jeeNetwork::mode') == 'slave') {
-					throw new Exception(__('Seul un maître peut recevoir une sauvegarde', __FILE__));
-				}
-				$jeeNetwork = jeeNetwork::byId($params['slave_id']);
-				if (!is_object($jeeNetwork)) {
-					throw new Exception(__('Aucun esclave correspondant à l\'id : ', __FILE__) . secureXSS($params['slave_id']));
-				}
-				if (substr(config::byKey('backup::path'), 0, 1) != '/') {
-					$backup_dir = dirname(__FILE__) . '/../../' . config::byKey('backup::path');
-				} else {
-					$backup_dir = config::byKey('backup::path');
-				}
-				$uploaddir = $backup_dir . '/slave/';
-				if (!file_exists($uploaddir)) {
-					mkdir($uploaddir);
-				}
-				if (!file_exists($uploaddir)) {
-					throw new Exception('Répertoire de téléversement non trouvé : ' . secureXSS($uploaddir));
-				}
-				$_file = $_FILES['file'];
-				$extension = strtolower(strrchr($_file['name'], '.'));
-				if (!in_array($extension, array('.tar.gz', '.gz', '.tar'))) {
-					throw new Exception('Extension du fichier non valide (autorisé .tar.gz, .tar et .gz) : ' . secureXSS($extension));
-				}
-				if (filesize($_file['tmp_name']) > 100000000) {
-					throw new Exception('La taille du fichier est trop importante (maximum 100Mo)');
-				}
-				$uploadfile = $uploaddir . $jeeNetwork->getId() . '-' . $jeeNetwork->getName() . '-' . $jeeNetwork->getConfiguration('version') . '-' . date('Y-m-d_H\hi') . '.tar' . $extension;
-				if (!move_uploaded_file($_file['tmp_name'], $uploadfile)) {
-					throw new Exception('Impossible de téléverser le fichier');
-				}
-				system('find ' . $uploaddir . $jeeNetwork->getId() . '*' . ' -mtime +' . config::byKey('backup::keepDays') . ' -print | xargs -r rm');
-				$jsonrpc->makeSuccess('ok');
-			}
-
-			if ($jsonrpc->getMethod() == 'jeeNetwork::restoreBackup') {
-				if (config::byKey('jeeNetwork::mode') != 'slave') {
-					throw new Exception(__('Seul un esclave peut restaurer une sauvegarde', __FILE__));
-				}
-				if (substr(config::byKey('backup::path'), 0, 1) != '/') {
-					$uploaddir = dirname(__FILE__) . '/../../' . config::byKey('backup::path');
-				} else {
-					$uploaddir = config::byKey('backup::path');
-				}
-				if (!file_exists($uploaddir)) {
-					mkdir($uploaddir);
-				}
-				if (!file_exists($uploaddir)) {
-					throw new Exception('Repertoire de téléversement non trouvé : ' . secureXSS($uploaddir));
-				}
-				$_file = $_FILES['file'];
-				$extension = strtolower(strrchr($_file['name'], '.'));
-				if (!in_array($extension, array('.tar.gz', '.gz', '.tar'))) {
-					throw new Exception('Extension du fichier non valide (autorisé .tar.gz, .tar et .gz) : ' . secureXSS($extension));
-				}
-				if (filesize($_file['tmp_name']) > 100000000) {
-					throw new Exception('La taille du fichier est trop importante (maximum 100Mo)');
-				}
-				$bakcup_name = 'backup-' . jeedom::version() . '-' . date("d-m-Y-H\hi") . '.tar.gz';
-				$uploadfile = $uploaddir . '/' . $bakcup_name;
-				if (!move_uploaded_file($_file['tmp_name'], $uploadfile)) {
-					throw new Exception('Impossible de téléverser le fichier');
-				}
-				jeedom::restore($uploadfile, true);
 				$jsonrpc->makeSuccess('ok');
 			}
 

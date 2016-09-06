@@ -35,7 +35,6 @@ include_file('core', 'backup', 'class.js');
 include_file('core', 'interact', 'class.js');
 include_file('core', 'update', 'class.js');
 include_file('core', 'plan', 'class.js');
-include_file('core', 'jeeNetwork', 'class.js');
 include_file('core', 'rights', 'class.js');
 include_file('core', 'log', 'class.js');
 include_file('core', 'repo', 'class.js');

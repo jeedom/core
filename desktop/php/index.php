@@ -1,13 +1,10 @@
 <?php
 include_file('core', 'authentification', 'php');
 global $JEEDOM_INTERNAL_CONFIG;
-$configs = config::byKeys(array('jeeNetwork::mode', 'enableCustomCss', 'language', 'jeedom::firstUse', 'rights::enable'));
+$configs = config::byKeys(array('enableCustomCss', 'language', 'jeedom::firstUse', 'rights::enable'));
 if (isConnect()) {
-	if ($configs['jeeNetwork::mode'] == 'master') {
-		$homePage = explode('::', $_SESSION['user']->getOptions('homePage', 'core::dashboard'));
-	} else {
-		$homePage = array('core', 'plugin');
-	}
+	$homePage = explode('::', $_SESSION['user']->getOptions('homePage', 'core::dashboard'));
+
 	if (count($homePage) == 2) {
 		if ($homePage[0] == 'core') {
 			$homeLink = 'index.php?v=d&p=' . $homePage[1];
@@ -235,59 +232,55 @@ if (!isConnect()) {
 				<nav class="navbar-collapse collapse">
 
 					<ul class="nav navbar-nav">
-						<?php if ($configs['jeeNetwork::mode'] == 'master') {
-		?>
 							<li class="dropdown cursor">
 								<a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-home"></i> {{Accueil}} <b class="caret"></b></a>
 								<ul class="dropdown-menu">
 									<?php if (hasRight('dashboardview')) {
-			?>
+		?>
 										<li class="dropdown-submenu">
 											<a data-toggle="dropdown" id="bt_gotoDashboard" href="index.php?v=d&p=dashboard"><i class="fa fa-dashboard"></i> {{Dashboard}}</a>
 											<ul class="dropdown-menu">
 												<?php
 foreach (object::buildTree(null, true) as $object_li) {
-				echo '<li><a href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '">' . $object_li->getHumanName(true) . '</a></li>';
-			}
-			?>
+			echo '<li><a href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '">' . $object_li->getHumanName(true) . '</a></li>';
+		}
+		?>
 											</ul>
 										</li>
 										<?php
 }
-		if (hasRight('viewview')) {
-			?>
+	if (hasRight('viewview')) {
+		?>
 										<li class="dropdown-submenu">
 											<a data-toggle="dropdown" id="bt_gotoView"><i class="fa fa-picture-o"></i> {{Vue}}</a>
 											<ul class="dropdown-menu">
 												<?php
 foreach (view::all() as $view_menu) {
-				echo '<li><a href="index.php?v=d&p=view&view_id=' . $view_menu->getId() . '">' . trim($view_menu->getDisplay('icon')) . ' ' . $view_menu->getName() . '</a></li>';
-			}
-			?>
+			echo '<li><a href="index.php?v=d&p=view&view_id=' . $view_menu->getId() . '">' . trim($view_menu->getDisplay('icon')) . ' ' . $view_menu->getName() . '</a></li>';
+		}
+		?>
 											</ul>
 										</li>
 										<?php
 }
-		if (hasRight('planview')) {
-			?>
+	if (hasRight('planview')) {
+		?>
 										<li class="dropdown-submenu">
 											<a data-toggle="dropdown" id="bt_gotoPlan"><i class="fa fa-paint-brush"></i> {{Design}}</a>
 											<ul class="dropdown-menu">
 												<?php
 foreach (planHeader::all() as $plan_menu) {
-				echo '<li><a href="index.php?v=d&p=plan&plan_id=' . $plan_menu->getId() . '">' . trim($plan_menu->getConfiguration('icon') . ' ' . $plan_menu->getName()) . '</a></li>';
-			}
-			?>
+			echo '<li><a href="index.php?v=d&p=plan&plan_id=' . $plan_menu->getId() . '">' . trim($plan_menu->getConfiguration('icon') . ' ' . $plan_menu->getName()) . '</a></li>';
+		}
+		?>
 											</ul>
 										</li>
 										<?php
 }
-		echo $panel_menu;
-		?>
+	echo $panel_menu;
+	?>
 								</ul>
 							</li>
-							<?php }
-	?>
 							<li class="dropdown cursor">
 								<a data-toggle="dropdown"><i class="fa fa-stethoscope"></i> {{Analyse}} <b class="caret"></b></a>
 								<ul class="dropdown-menu" role="menu">
@@ -326,19 +319,19 @@ if (hasRight('batteryview', true)) {
 
 
 							<?php
-if ($configs['jeeNetwork::mode'] == 'master' && (hasRight('objectview', true) || hasRight('interactview', true) || hasRight('displayview', true) || hasRight('scenarioview', true))) {
+if (hasRight('objectview', true) || hasRight('interactview', true) || hasRight('displayview', true) || hasRight('scenarioview', true)) {
 		?>
 								<li class="dropdown cursor">
 									<a data-toggle="dropdown"><i class="fa fa-wrench"></i> {{Outils}} <b class="caret"></b></a>
 									<ul class="dropdown-menu" role="menu">
 										<?php
-if ($configs['jeeNetwork::mode'] == 'master' && hasRight('objectview', true)) {
+if (hasRight('objectview', true)) {
 			?>
 											<li><a href="index.php?v=d&p=object"><i class="fa fa-picture-o"></i> {{Objets}}</a></li>
 											<?php
 
 		}
-		if ($configs['jeeNetwork::mode'] == 'master' && hasRight('interactview', true)) {
+		if (hasRight('interactview', true)) {
 			?>
 											<li><a href="index.php?v=d&p=interact"><i class="fa fa-comments-o"></i> {{Interactions}}</a></li>
 											<?php }
@@ -347,7 +340,7 @@ if ($configs['jeeNetwork::mode'] == 'master' && hasRight('objectview', true)) {
 												<li><a href="index.php?v=d&p=display"><i class="fa fa-th"></i> {{Résumé domotique}}</a></li>
 												<?php
 }
-		if ($configs['jeeNetwork::mode'] == 'master' && hasRight('scenarioview', true)) {
+		if (hasRight('scenarioview', true)) {
 			echo '<li><a href = "index.php?v=d&p=scenarioAssist"><i class = "fa fa-cogs"></i> {{Scénarios}}</a></li>';
 		}
 		?>
@@ -363,12 +356,10 @@ if ($configs['jeeNetwork::mode'] == 'master' && hasRight('objectview', true)) {
 											<?php if (hasRight('pluginview', true)) {
 			?>
 												<li><a href="index.php?v=d&p=plugin"><i class="fa fa-tags"></i> {{Gestion des plugins}}</a></li>
-												<?php if ($configs['jeeNetwork::mode'] == 'master') {
-				?>
 													<li role="separator" class="divider"></li>
 													<?php
 echo $plugin_menu;
-			}
+
 			?>
 											</ul>
 										</li>
@@ -421,15 +412,11 @@ echo object::getGlobalHtmlSummary();
 														<li><a href="index.php?v=d&p=update"><i class="fa fa-refresh"></i> {{Centre de mise à jour}}</a></li>
 														<?php
 }
-		if ($configs['jeeNetwork::mode'] == 'master') {
-			?>
-														<li class="expertModeVisible"><a href="index.php?v=d&p=jeeNetwork"><i class="fa fa-sitemap"></i> {{Réseau Jeedom}}</a></li>
-														<?php }
 		if (hasRight('cronview', true)) {?>
 															<li class="expertModeVisible"><a href="index.php?v=d&p=cron"><i class="fa fa-tasks"></i> {{Moteur de tâches}}</a></li>
 															<?php
 }
-		if ($configs['jeeNetwork::mode'] == 'master' && hasRight('customview', true)) {
+		if (hasRight('customview', true)) {
 			?>
 															<li class="expertModeVisible"><a href="index.php?v=d&p=custom"><i class="fa fa-pencil-square-o"></i> {{Personnalisation avancée}}</a></li>
 															<?php

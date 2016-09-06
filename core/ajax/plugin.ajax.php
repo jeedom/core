@@ -94,34 +94,10 @@ try {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 		$plugin = plugin::byId(init('id'));
-		if (is_json(init('slave_id', 0)) && is_array(json_decode(init('slave_id', 0), true))) {
-			$return = array();
-			foreach (json_decode(init('slave_id', 0), true) as $key => $value) {
-				if ($key == 0) {
-					$plugin = plugin::byId(init('id'));
-					if (is_object($plugin)) {
-						$return[$key] = $plugin->dependancy_info();
-					}
-				} else {
-					$jeeNetwork = jeeNetwork::byId([$key]);
-					if (is_object($jeeNetwork)) {
-						$return[$key] = $jeeNetwork->sendRawRequest('plugin::dependancyInfo', array('plugin_id' => $plugin_id));
-					}
-				}
-			}
-		} else {
-			$return = array('state' => 'nok', 'log' => 'nok');
-			if (init('slave_id', 0) == 0) {
-				$plugin = plugin::byId(init('id'));
-				if (is_object($plugin)) {
-					$return = $plugin->dependancy_info();
-				}
-			} else {
-				$jeeNetwork = jeeNetwork::byId(init('slave_id'));
-				if (is_object($jeeNetwork)) {
-					$return = $jeeNetwork->sendRawRequest('plugin::dependancyInfo', array('plugin_id' => init('id')));
-				}
-			}
+		$return = array('state' => 'nok', 'log' => 'nok');
+		$plugin = plugin::byId(init('id'));
+		if (is_object($plugin)) {
+			$return = $plugin->dependancy_info();
 		}
 		ajax::success($return);
 	}
@@ -130,19 +106,11 @@ try {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
-		if (init('slave_id', 0) == 0) {
-			$plugin = plugin::byId(init('id'));
-			if (!is_object($plugin)) {
-				ajax::success();
-			}
-			ajax::success($plugin->dependancy_install());
-		} else {
-			$jeeNetwork = jeeNetwork::byId(init('slave_id'));
-			if (is_object($jeeNetwork)) {
-				ajax::success($jeeNetwork->sendRawRequest('plugin::dependancyInstall', array('plugin_id' => init('id'))));
-			}
+		$plugin = plugin::byId(init('id'));
+		if (!is_object($plugin)) {
+			ajax::success();
 		}
-		ajax::success();
+		ajax::success($plugin->dependancy_install());
 	}
 
 	if (init('action') == 'getDeamonInfo') {
@@ -150,34 +118,10 @@ try {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 		$plugin_id = init('id');
-		if (is_json(init('slave_id', 0)) && is_array(json_decode(init('slave_id', 0), true))) {
-			$return = array();
-			foreach (json_decode(init('slave_id', 0), true) as $key => $value) {
-				if ($key == 0) {
-					$plugin = plugin::byId(init('id'));
-					if (is_object($plugin)) {
-						$return[$key] = $plugin->deamon_info();
-					}
-				} else {
-					$jeeNetwork = jeeNetwork::byId([$key]);
-					if (is_object($jeeNetwork)) {
-						$return[$key] = $jeeNetwork->sendRawRequest('plugin::deamonInfo', array('plugin_id' => $plugin_id));
-					}
-				}
-			}
-		} else {
-			$return = array('launchable_message' => '', 'launchable' => 'nok', 'state' => 'nok', 'log' => 'nok', 'auto' => 0);
-			if (init('slave_id', 0) == 0) {
-				$plugin = plugin::byId(init('id'));
-				if (is_object($plugin)) {
-					$return = $plugin->deamon_info();
-				}
-			} else {
-				$jeeNetwork = jeeNetwork::byId(init('slave_id'));
-				if (is_object($jeeNetwork)) {
-					$return = $jeeNetwork->sendRawRequest('plugin::deamonInfo', array('plugin_id' => $plugin_id));
-				}
-			}
+		$return = array('launchable_message' => '', 'launchable' => 'nok', 'state' => 'nok', 'log' => 'nok', 'auto' => 0);
+		$plugin = plugin::byId(init('id'));
+		if (is_object($plugin)) {
+			$return = $plugin->deamon_info();
 		}
 		ajax::success($return);
 	}
@@ -187,60 +131,33 @@ try {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 		$plugin_id = init('id');
-		if (init('slave_id', 0) == 0) {
-			$plugin = plugin::byId(init('id'));
-			if (!is_object($plugin)) {
-				ajax::success();
-			}
-			ajax::success($plugin->deamon_start(init('forceRestart', 0)));
-		} else {
-			$jeeNetwork = jeeNetwork::byId(init('slave_id'));
-			if (!is_object($jeeNetwork)) {
-				ajax::success();
-			}
-			ajax::success($jeeNetwork->sendRawRequest('plugin::deamonStart', array('plugin_id' => $plugin_id, 'debug' => init('debug', 0), 'forceRestart' => init('forceRestart', 0))));
+		$plugin = plugin::byId(init('id'));
+		if (!is_object($plugin)) {
+			ajax::success();
 		}
-		ajax::success();
+		ajax::success($plugin->deamon_start(init('forceRestart', 0)));
 	}
 
 	if (init('action') == 'deamonStop') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
-		if (init('slave_id', 0) == 0) {
-			$plugin = plugin::byId(init('id'));
-			if (!is_object($plugin)) {
-				ajax::success();
-			}
-			ajax::success($plugin->deamon_stop());
-		} else {
-			$jeeNetwork = jeeNetwork::byId(init('slave_id'));
-			if (!is_object($jeeNetwork)) {
-				ajax::success();
-			}
-			ajax::success($jeeNetwork->sendRawRequest('plugin::deamonStop', array('plugin_id' => init('id'))));
+		$plugin = plugin::byId(init('id'));
+		if (!is_object($plugin)) {
+			ajax::success();
 		}
-		ajax::success();
+		ajax::success($plugin->deamon_stop());
 	}
 
 	if (init('action') == 'deamonChangeAutoMode') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
-		if (init('slave_id', 0) == 0) {
-			$plugin = plugin::byId(init('id'));
-			if (!is_object($plugin)) {
-				ajax::success();
-			}
-			ajax::success($plugin->deamon_changeAutoMode(init('mode')));
-		} else {
-			$jeeNetwork = jeeNetwork::byId(init('slave_id'));
-			if (!is_object($jeeNetwork)) {
-				ajax::success();
-			}
-			ajax::success($jeeNetwork->sendRawRequest('plugin::deamonChangeAutoMode', array('plugin_id' => init('id'), 'mode' => init('mode'))));
+		$plugin = plugin::byId(init('id'));
+		if (!is_object($plugin)) {
+			ajax::success();
 		}
-		ajax::success();
+		ajax::success($plugin->deamon_changeAutoMode(init('mode')));
 	}
 
 	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));

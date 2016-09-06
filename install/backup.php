@@ -215,17 +215,6 @@ try {
 			echo __("OK", __FILE__) . "\n";
 		}
 	}
-
-	if (config::byKey('jeeNetwork::mode') == 'slave') {
-		echo __('Envoi de la sauvegarde sur le maître...', __FILE__);
-		try {
-			jeeNetwork::sendBackup($backup_dir . '/' . $bakcup_name);
-		} catch (Exception $e) {
-			log::add('backup', 'error', $e->getMessage());
-			echo '/!\ ' . br2nl($e->getMessage()) . ' /!\\';
-		}
-		echo __("OK", __FILE__) . "\n";
-	}
 	echo __('Nettoyage du dossier temporaire...', __FILE__);
 	rrmdir($tmp);
 	echo __("OK", __FILE__) . "\n";

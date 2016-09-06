@@ -67,9 +67,6 @@ try {
 		$values = json_decode(init('value'), true);
 		foreach ($values as $key => $value) {
 			config::save($key, jeedom::fromHumanReadable($value), init('plugin', 'core'));
-			if ($key == 'internalAddr') {
-				jeeNetwork::pull();
-			}
 			if ($key == 'market::allowDNS') {
 				if ($value == 1) {
 					if (!network::dns_run()) {

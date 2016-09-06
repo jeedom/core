@@ -212,22 +212,6 @@ if (cache::isPersistOk()) {
 ?>
 		</tr>
 <?php
-if (config::byKey('jeeNetwork::mode') == 'master') {
-	foreach (jeeNetwork::all() as $jeeNetwork) {
-		echo '<tr>';
-		echo '<td style="font-weight : bold;cursor:default">{{Version esclave}} ' . $jeeNetwork->getName() . '</td>';
-		if (trim($jeeNetwork->getConfiguration('version')) == trim(jeedom::version())) {
-			echo '<td class="alert alert-success" style="cursor:default">' . $jeeNetwork->getConfiguration('version') . ' </td>';
-		} else {
-			echo '<td class="alert alert-danger" style="cursor:default">' . $jeeNetwork->getConfiguration('version') . ' </td>';
-		}
-		echo '<td></td>';
-		echo '</tr>';
-	}
-}
-?>
-
-<?php
 $count = 0;
 $globalhtml = '';
 $totalNok = 0;
@@ -286,35 +270,6 @@ foreach (plugin::listPlugin(true) as $plugin) {
 			$html .= '<td>';
 			$html .= '</td>';
 			$html .= '</tr>';
-			if (config::byKey('jeeNetwork::mode') == 'master') {
-				foreach (jeeNetwork::byPlugin($plugin_id) as $jeeNetwork) {
-					$dependancyInfo = $jeeNetwork->sendRawRequest('plugin::dependancyInfo', array('plugin_id' => $plugin_id));
-					$html .= '<tr>';
-					$html .= '<td style="font-weight : bold;cursor:default">';
-					$html .= '{{Dépendance}} ' . $jeeNetwork->getName();
-					$html .= '</td>';
-					switch ($dependancy_info['state']) {
-						case 'ok':
-							$html .= '<td class="alert alert-success" style="cursor:default">{{OK}}</td>';
-							break;
-						case 'nok':
-							$html .= '<td class="alert alert-danger" style="cursor:default" >{{NOK}}</td>';
-							$asNok += 1;
-							break;
-						case 'in_progress':
-							$html .= '<td class="alert alert-info" style="cursor:default">{{En cours}}</td>';
-							$asPending += 1;
-							break;
-						default:
-							$html .= '<td class="alert alert-danger" style="cursor:default">{{NOK}}</td>';
-							$asNok += 1;
-							break;
-					}
-					$html .= '<td>';
-					$html .= '</td>';
-					$html .= '</tr>';
-				}
-			}
 		}
 	} catch (Exception $e) {
 
@@ -368,52 +323,6 @@ foreach (plugin::listPlugin(true) as $plugin) {
 			$html .= '<td>';
 			$html .= '</td>';
 			$html .= '</tr>';
-			if (config::byKey('jeeNetwork::mode') == 'master') {
-				foreach (jeeNetwork::byPlugin($plugin_id) as $jeeNetwork) {
-					$deamon_info = $jeeNetwork->sendRawRequest('plugin::deamonInfo', array('plugin_id' => $plugin_id));
-					$html .= '<tr>';
-					$html .= '<td style="font-weight : bold;cursor:default">';
-					$html .= '{{Configuration démon}} ' . $jeeNetwork->getName();
-					$html .= '</td>';
-					switch ($deamon_info['launchable']) {
-						case 'ok':
-							$html .= '<td class="alert alert-success" style="cursor:default">{{OK}}</td>';
-							break;
-						case 'nok':
-							if ($deamon_info['auto'] != 1) {
-								$html .= '<td class="alert alert-success" style="cursor:default">{{Désactivé}}</td>';
-							} else {
-								$html .= '<td class="alert alert-danger" title="' . $deamon_info['launchable_message'] . '" style="cursor:default">{{NOK}}</td>';
-								$asNok += 1;
-							}
-							break;
-					}
-					$html .= '<td>';
-					$html .= '</td>';
-					$html .= '</tr>';
-					$html .= '<tr>';
-					$html .= '<td style="font-weight : bold;cursor:default">';
-					$html .= '{{Statut démon}} ' . $jeeNetwork->getName();
-					$html .= '</td>';
-					switch ($deamon_info['state']) {
-						case 'ok':
-							$html .= '<td class="alert alert-success" style="cursor:default">';
-							$html .= '{{OK}}</td>';
-							break;
-						case 'nok':
-							if ($deamon_info['auto'] != 1) {
-								$html .= '<td class="alert alert-success" style="cursor:default">{{Désactivé}}</td>';
-							} else {
-								$html .= '<td class="alert alert-danger" style="cursor:default">{{NOK}}</td>';
-								$asNok += 1;
-							}
-							break;
-					}
-					$html .= '<td>';
-					$html .= '</td>';
-					$html .= '</tr>';
-				}
-			}
 		}
 	} catch (Exception $e) {
 

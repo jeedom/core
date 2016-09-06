@@ -537,23 +537,6 @@ CREATE TABLE IF NOT EXISTS `plan` (
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `jeeNetwork`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `jeeNetwork` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `ip` VARCHAR(127) NULL,
-  `apikey` VARCHAR(255) NULL,
-  `plugin` TEXT NULL,
-  `configuration` TEXT NULL,
-  `name` VARCHAR(127) NULL,
-  `status` VARCHAR(127) NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `ip_UNIQUE` (`ip` ASC))
-ENGINE = InnoDB;
-
-
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

@@ -37,8 +37,7 @@
  	paramsAJAX.url = 'core/ajax/log.ajax.php';
  	paramsAJAX.data = {
  		action: 'get',
- 		log: _params.log,
- 		jeeNetwork_id: _params.slaveId || ''
+ 		log: _params.log
  	};
  	$.ajax(paramsAJAX);
  }
@@ -59,8 +58,7 @@
  	paramsAJAX.url = 'core/ajax/log.ajax.php';
  	paramsAJAX.data = {
  		action: 'remove',
- 		log: _params.log,
- 		jeeNetwork_id: _params.slaveId || ''
+ 		log: _params.log
  	};
  	$.ajax(paramsAJAX);
  }
@@ -81,8 +79,7 @@
  	paramsAJAX.url = 'core/ajax/log.ajax.php';
  	paramsAJAX.data = {
  		action: 'clear',
- 		log: _params.log,
- 		jeeNetwork_id: _params.slaveId || ''
+ 		log: _params.log
  	};
  	$.ajax(paramsAJAX);
  }

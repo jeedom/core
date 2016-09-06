@@ -406,9 +406,6 @@ class jeedom {
 		}
 		try {
 			eqLogic::checkAlive();
-			if (config::byKey('jeeNetwork::mode') != 'slave') {
-				jeeNetwork::pull();
-			}
 		} catch (Exception $e) {
 
 		} catch (Error $e) {
