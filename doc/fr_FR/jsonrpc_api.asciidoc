@@ -226,10 +226,10 @@ Paramètres:
 
 == API JSON System
 
-=== jeeNetwork::halt
+=== jeedom::halt
 Permet d'arrêter Jeedom
 
-=== jeeNetwork::reboot
+=== jeedom::reboot
 Permet de redémarrer Jeedom
 
 
