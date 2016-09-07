@@ -34,7 +34,6 @@ class plugin {
 	private $index;
 	private $display;
 	private $mobile;
-	private $allowRemote;
 	private $eventjs;
 	private $hasDependency;
 	private $maxDependancyInstallTime;
@@ -75,13 +74,12 @@ class plugin {
 			$plugin->licence = (isset($data['licence'])) ? $data['licence'] : '';
 			$plugin->author = (isset($data['author'])) ? $data['author'] : '';
 			$plugin->installation = (isset($data['installation'])) ? $data['installation'] : '';
-			$plugin->allowRemote = (isset($data['allowRemote'])) ? $data['allowRemote'] : 0;
 			$plugin->hasDependency = (isset($data['hasDependency'])) ? $data['hasDependency'] : 0;
 			$plugin->hasOwnDeamon = (isset($data['hasOwnDeamon'])) ? $data['hasOwnDeamon'] : 0;
 			$plugin->maxDependancyInstallTime = (isset($data['maxDependancyInstallTime'])) ? $data['maxDependancyInstallTime'] : 30;
 			$plugin->eventjs = (isset($data['eventjs'])) ? $data['eventjs'] : 0;
-			$plugin->require = $data['require'];
-			$plugin->category = $data['category'];
+			$plugin->require = (isset($data['require'])) ? $data['require'] : '';
+			$plugin->category = (isset($data['category'])) ? $data['category'] : '';
 			$plugin->filepath = $_id;
 			$plugin->index = (isset($data['index'])) ? (string) $data['index'] : $data['id'];
 			$plugin->display = (isset($data['display'])) ? (string) $data['display'] : '';
@@ -116,10 +114,6 @@ class plugin {
 			$plugin->require = (string) $plugin_xml->require;
 			$plugin->installation = (string) $plugin_xml->installation;
 			$plugin->category = (string) $plugin_xml->category;
-			$plugin->allowRemote = 0;
-			if (isset($plugin_xml->allowRemote)) {
-				$plugin->allowRemote = $plugin_xml->allowRemote;
-			}
 			$plugin->hasDependency = 0;
 			if (isset($plugin_xml->hasDependency)) {
 				$plugin->hasDependency = $plugin_xml->hasDependency;
@@ -875,14 +869,6 @@ class plugin {
 
 	public function setMobile($mobile) {
 		$this->mobile = $mobile;
-	}
-
-	public function getAllowRemote() {
-		return $this->allowRemote;
-	}
-
-	public function setAllowRemote($allowRemote) {
-		$this->allowRemote = $allowRemote;
 	}
 
 	public function getEventjs() {
