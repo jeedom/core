@@ -9,7 +9,6 @@ if (!class_exists($plugin_id)) {
 }
 $plugin = plugin::byId($plugin_id);
 $dependancy_info = $plugin->dependancy_info();
-$refresh = array();
 ?>
 <table class="table table-bordered">
 	<thead>
@@ -25,7 +24,6 @@ $refresh = array();
 			<td>{{Local}}</td>
 			<td class="dependancyState">
 				<?php
-$refresh[0] = 1;
 switch ($dependancy_info['state']) {
 	case 'ok':
 		echo '<span class="label label-success" style="font-size:1em;">{{OK}}</span>';
@@ -58,9 +56,6 @@ switch ($dependancy_info['state']) {
 		</tr>
 	</tbody>
 </table>
-<?php
-sendVarToJs('refresh_dependancy_info', $refresh);
-?>
 <script>
 	function refreshDependancyInfo(){
 		var nok = false;
@@ -79,7 +74,6 @@ sendVarToJs('refresh_dependancy_info', $refresh);
 					case 'in_progress':
 					nok = true;
 					$("#div_plugin_dependancy").closest('.panel').removeClass('panel-success panel-danger').addClass('panel-info');
-					refresh_dependancy_info[i] = 1;
 					var html = '<span class="label label-primary" style="font-size:1em;"><i class="fa fa-spinner fa-spin"></i> {{Installation en cours}}';
 					if(isset(data.progression) && data.progression !== ''){
 						html += ' - '+data.progression+' %';
