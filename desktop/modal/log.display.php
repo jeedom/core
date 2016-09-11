@@ -19,11 +19,6 @@ if (!isConnect('admin')) {
 	throw new Exception('401 Unauthorized');
 }
 sendVarToJS('log_display_name', init('log', 'event'));
-if (init('slave_id', '') == -1) {
-	sendVarToJS('log_slave_id', '');
-} else {
-	sendVarToJS('log_slave_id', init('slave_id', ''));
-}
 ?>
 <a class="btn btn-danger pull-right" id="bt_logdisplayremoveLog"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>
 <a class="btn btn-warning pull-right" id="bt_logdisplayclearLog"><i class="fa fa-times"></i> {{Vider}}</a>
@@ -36,7 +31,6 @@ if (init('slave_id', '') == -1) {
 <script>
 	jeedom.log.autoupdate({
 		log : log_display_name,
-		slaveId : log_slave_id,
 		display : $('#pre_eventlog'),
 		search : $('#in_eventLogSearch'),
 		control : $('#bt_eventLogStopStart'),
@@ -45,22 +39,15 @@ if (init('slave_id', '') == -1) {
 	$("#bt_logdisplayclearLog").on('click', function(event) {
 		jeedom.log.clear({
 			log : log_display_name,
-			slaveId : log_slave_id,
 		});
 	});
 
 	$("#bt_logdisplayremoveLog").on('click', function(event) {
 		jeedom.log.remove({
 			log : log_display_name,
-			slaveId : log_slave_id,
 		});
 	});
-	if(log_slave_id == ''){
-		$('#bt_logdisplaydownloadLog').click(function() {
-			window.open('core/php/downloadFile.php?pathfile=log/' + log_display_name, "_blank", null);
-		});
-	}else{
-		$('#bt_logdisplaydownloadLog').hide();
-	}
-
+	$('#bt_logdisplaydownloadLog').click(function() {
+		window.open('core/php/downloadFile.php?pathfile=log/' + log_display_name, "_blank", null);
+	});
 </script>
