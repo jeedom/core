@@ -85,19 +85,6 @@ try {
 	if (strpos('/', config::byKey('backup::path')) === false) {
 		$exclude[] = config::byKey('backup::path');
 	}
-	foreach (plugin::listPlugin() as $plugin) {
-		if (!$plugin->isActive()) {
-			$exclude[] = realpath(dirname(__FILE__) . '/../plugins/' . $plugin->getId());
-		} else {
-			$exclude[] = realpath(dirname(__FILE__) . '/../plugins/' . $plugin->getId() . '/doc/fr_FR');
-			$exclude[] = realpath(dirname(__FILE__) . '/../plugins/' . $plugin->getId() . '/doc/us_US');
-			foreach (ls(dirname(__FILE__) . '/../plugins/' . $plugin->getId() . '/doc/images', '*') as $file) {
-				if (strpos($file, 'icon') === false) {
-					$exclude[] = realpath(dirname(__FILE__) . '/../plugins/' . $plugin->getId() . '/doc/images/' . $file);
-				}
-			}
-		}
-	}
 	rcopy(dirname(__FILE__) . '/..', $tmp, true, $exclude, true);
 	echo __("OK", __FILE__) . "\n";
 
