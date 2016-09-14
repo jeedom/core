@@ -32,19 +32,19 @@ foreach (object::all() as $object) {
     }
 
     mod_insertEqLogic.options = {};
-    mod_insertEqLogic.options.cmd = {};
+    mod_insertEqLogic.options.eqLogic = {};
 
 
     $("#table_mod_insertEqLogicValue_valueEqLogicToMessage").delegate("td.mod_insertEqLogicValue_object select", 'change', function() {
-        mod_insertEqLogic.changeObjectCmd($('#table_mod_insertEqLogicValue_valueEqLogicToMessage td.mod_insertEqLogicValue_object select'), mod_insertEqLogic.options);
+        mod_insertEqLogic.changeObjectEqLogic($('#table_mod_insertEqLogicValue_valueEqLogicToMessage td.mod_insertEqLogicValue_object select'), mod_insertEqLogic.options);
     });
 
     mod_insertEqLogic.setOptions = function(_options) {
         mod_insertEqLogic.options = _options;
-        if (!isset(mod_insertEqLogic.options.cmd)) {
-            mod_insertEqLogic.options.cmd = {};
+        if (!isset(mod_insertEqLogic.options.eqLogic)) {
+            mod_insertEqLogic.options.eqLogic = {};
         }
-        mod_insertEqLogic.changeObjectCmd($('#table_mod_insertEqLogicValue_valueEqLogicToMessage td.mod_insertEqLogicValue_object select'), mod_insertEqLogic.options);
+        mod_insertEqLogic.changeObjectEqLogic($('#table_mod_insertEqLogicValue_valueEqLogicToMessage td.mod_insertEqLogicValue_object select'), mod_insertEqLogic.options);
     }
 
     mod_insertEqLogic.getValue = function() {
@@ -60,7 +60,7 @@ foreach (object::all() as $object) {
         return $('.mod_insertEqLogicValue_eqLogic select').value();
     }
 
-    mod_insertEqLogic.changeObjectCmd = function(_select) {
+    mod_insertEqLogic.changeObjectEqLogic = function(_select) {
         jeedom.object.getEqLogic({
             id: _select.value(),
             orderByName : true,
@@ -79,5 +79,5 @@ foreach (object::all() as $object) {
         });
     }
 
-    mod_insertEqLogic.changeObjectCmd($('#table_mod_insertEqLogicValue_valueEqLogicToMessage td.mod_insertEqLogicValue_object select'), mod_insertEqLogic.options);
+    mod_insertEqLogic.changeObjectEqLogic($('#table_mod_insertEqLogicValue_valueEqLogicToMessage td.mod_insertEqLogicValue_object select'), mod_insertEqLogic.options);
 </script>

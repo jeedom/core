@@ -626,6 +626,14 @@ $('body').delegate('.bt_selectTrigger', 'click', function (event) {
   });
 });
 
+$('body').delegate('.bt_selectDataStoreTrigger', 'click', function (event) {
+  var el = $(this);
+  jeedom.dataStore.getSelectModal({cmd: {type: 'info'}}, function (result) {
+    el.closest('.trigger').find('.scenarioAttr[data-l1key=trigger]').value(result.human);
+  });
+});
+
+
 $('body').delegate('.bt_sortable', 'mouseenter', function () {
   var expressions = $(this).closest('.expressions');
   $("#div_scenarioElement").sortable({
@@ -895,7 +903,8 @@ function addTrigger(_trigger) {
   div += '<div class="input-group">';
   div += '<input class="scenarioAttr input-sm form-control" data-l1key="trigger" value="' + _trigger + '" >';
   div += '<span class="input-group-btn">';
-  div += '<a class="btn btn-default btn-sm cursor bt_selectTrigger"><i class="fa fa-list-alt"></i></a>';
+  div += '<a class="btn btn-default btn-sm cursor bt_selectTrigger" title="{{Choisir une commande}}"><i class="fa fa-list-alt"></i></a>';
+  div += '<a class="btn btn-default btn-sm cursor bt_selectDataStoreTrigger" title="{{Choisir une variable}}"><i class="fa fa-calculator"></i></a>';
   div += '<a class="btn btn-default btn-sm cursor bt_removeTrigger"><i class="fa fa-minus-circle"></i></a>';
   div += '</span>';
   div += '</div>';
