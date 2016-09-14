@@ -890,7 +890,7 @@ function saveScenario() {
 
 function addTrigger(_trigger) {
   var div = '<div class="form-group trigger">';
-  div += '<label class="col-xs-3 control-label">{{Evènement}}</label>';
+  div += '<label class="col-xs-3 control-label">{{Evénement}}</label>';
   div += '<div class="col-xs-9">';
   div += '<div class="input-group">';
   div += '<input class="scenarioAttr input-sm form-control" data-l1key="trigger" value="' + _trigger + '" >';

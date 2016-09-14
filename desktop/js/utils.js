@@ -252,7 +252,7 @@ if (isset(jeedom_langage)) {
     });
 
     $('#bt_showEventInRealTime').on('click',function(){
-       $('#md_modal').dialog({title: "{{Evènement en temps réel}}"});
+       $('#md_modal').dialog({title: "{{Evénement en temps réel}}"});
        $("#md_modal").load('index.php?v=d&modal=log.display&log=event').dialog('open');
    });
 
