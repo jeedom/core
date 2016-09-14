@@ -99,12 +99,19 @@ foreach (ls(dirname(__FILE__) . '/../../core/themes') as $dir) {
             </select>
           </div>
         </div>
-        <div class="form-group">
-          <label class="col-sm-3 control-label">{{Opacité par des widgets}}</label>
-          <div class="col-sm-2">
-          <input type="numeric" class="userAttr form-control" data-l1key="options" data-l2key="widget::background-opacity"/>
-          </div>
-        </div>
+        <?php
+foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
+	echo '<div class="form-group">';
+	echo '<label class="col-sm-3 control-label">{{Opacité par des widgets}} ' . $value['name'] . '</label>';
+	echo '<div class="col-sm-2">';
+	echo '<input type="number" min="0" max="1" class="userAttr form-control" data-l1key="options" data-l2key="widget::background-opacity::' . $key . '"/>';
+	echo '</div>';
+	echo '</div>';
+
+}
+?>
+
+
       </fieldset>
     </form>
   </div>
