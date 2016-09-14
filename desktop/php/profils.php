@@ -110,8 +110,6 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 
 }
 ?>
-
-
       </fieldset>
     </form>
   </div>
