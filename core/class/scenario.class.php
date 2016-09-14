@@ -590,7 +590,11 @@ class scenario {
 		} else {
 			log::add('event', 'info', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclenché par : ', __FILE__) . $_trigger);
 		}
-		$this->setLog('Start : ' . $_message . '. Tags : ' . print_r($this->getTags(), true));
+		if (count($this->getTags()) == 0) {
+			$this->setLog('Start : ' . $_message . '.');
+		} else {
+			$this->setLog('Start : ' . $_message . '. Tags : ' . print_r($this->getTags(), true));
+		}
 		$this->setLastLaunch(date('Y-m-d H:i:s'));
 		$this->setState('in progress');
 		$this->setPID(getmypid());
