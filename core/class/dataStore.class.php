@@ -104,6 +104,15 @@ class dataStore {
 
 	public function postSave() {
 		scenario::check('variable(' . $this->getKey() . ')');
+		$value_cmd = cmd::byValue('variable(' . $this->getKey() . ')', null, true);
+		if (is_array($value_cmd)) {
+			foreach ($value_cmd as $cmd) {
+				if ($cmd->getType() != 'action') {
+					$cmd->event($cmd->execute());
+
+				}
+			}
+		}
 	}
 
 	public function remove() {
