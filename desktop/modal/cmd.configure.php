@@ -24,8 +24,6 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
   <a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureRawObject"><i class="fa fa-info"></i> {{Informations brutes}}</a>
 
   <div role="tabpanel">
-
-    <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
       <li role="presentation" class="active"><a href="#cmd_information" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-info-circle"></i> {{Informations}}</a></li>
       <li role="presentation"><a href="#cmd_configuration" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-wrench"></i> {{Configuration avancée}}</a></li>
@@ -119,56 +117,62 @@ echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fa 
                       <input type="checkbox" class="cmdAttr" data-l1key="isVisible" />
                     </div>
                   </div>
-
-                </fieldset>
-              </form>
-            </div>
+                  <div class="iconeGeneric">
+                   <label class="col-xs-4 control-label">{{Icône}}</label>
+                   <div class="col-xs-4">
+                    <span class="cmdAttr label label-info cursor" data-l1key="display" data-l2key="icon" style="font-size : 1.5em;" ></span>
+                    <a class="btn btn-default btn-sm" id="bt_cmdConfigureChooseIcon"><i class="fa fa-flag"></i> {{Icône}}</a>
+                  </div>
+                </div>
+              </fieldset>
+            </form>
           </div>
+        </div>
 
-          <legend><i class="fa fa-search"></i> {{Utilisé par}}
-            <a class="btn btn-xs btn-warning pull-right" id="bt_cmdConfigureReplaceMeBy"><i class="fa fa-download" aria-hidden="true"></i> {{Remplacer cette commande par la commande}}</a>
-            <a class="btn btn-xs btn-warning pull-right" id="bt_cmdConfigureReplaceByMe"><i class="fa fa-upload" aria-hidden="true"></i> {{Cette commande remplace la commande}}</a>
-            <a class="btn btn-xs btn-warning pull-right" id="bt_cmdConfigureReplaceIdByMe"><i class="fa fa-upload" aria-hidden="true"></i> {{Cette commande remplace l'id}}</a>
-          </legend>
-          <form class="form-horizontal">
-            <fieldset id="fd_cmdUsedBy">
-             <?php
+        <legend><i class="fa fa-search"></i> {{Utilisé par}}
+          <a class="btn btn-xs btn-warning pull-right" id="bt_cmdConfigureReplaceMeBy"><i class="fa fa-download" aria-hidden="true"></i> {{Remplacer cette commande par la commande}}</a>
+          <a class="btn btn-xs btn-warning pull-right" id="bt_cmdConfigureReplaceByMe"><i class="fa fa-upload" aria-hidden="true"></i> {{Cette commande remplace la commande}}</a>
+          <a class="btn btn-xs btn-warning pull-right" id="bt_cmdConfigureReplaceIdByMe"><i class="fa fa-upload" aria-hidden="true"></i> {{Cette commande remplace l'id}}</a>
+        </legend>
+        <form class="form-horizontal">
+          <fieldset id="fd_cmdUsedBy">
+           <?php
 $usedBy = $cmd->getUsedBy();
 ?>
-             <div class="form-group">
-              <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Equipement}}</label>
-              <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
-                <?php
-foreach ($usedBy['eqLogic'] as $usedByEqLogic) {
-	echo '<span class="label label-primary cursor"><a href="' . $usedByEqLogic->getLinkToConfiguration() . '" style="color : white;">' . $usedByEqLogic->getHumanName() . '</a></span><br/>';
-}
-?>
-             </div>
-           </div>
            <div class="form-group">
-            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commandes}}</label>
+            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Equipement}}</label>
             <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
               <?php
-foreach ($usedBy['cmd'] as $usedByCmd) {
-	echo '<span class="label label-primary cursor"><a href="' . $usedByCmd->getEqLogic()->getLinkToConfiguration() . '" style="color : white;">' . $usedByCmd->getHumanName() . '</a></span><br/>';
+foreach ($usedBy['eqLogic'] as $usedByEqLogic) {
+	echo '<span class="label label-primary cursor"><a href="' . $usedByEqLogic->getLinkToConfiguration() . '" style="color : white;">' . $usedByEqLogic->getHumanName() . '</a></span><br/>';
 }
 ?>
            </div>
          </div>
          <div class="form-group">
-          <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Scénario}}</label>
+          <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commandes}}</label>
           <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
             <?php
-foreach ($usedBy['scenario'] as $usedByScneario) {
-	echo '<span class="label label-primary cursor"><a href="' . $usedByScneario->getLinkToConfiguration() . '" style="color : white;">' . $usedByScneario->getHumanName() . '</a></span><br/>';
+foreach ($usedBy['cmd'] as $usedByCmd) {
+	echo '<span class="label label-primary cursor"><a href="' . $usedByCmd->getEqLogic()->getLinkToConfiguration() . '" style="color : white;">' . $usedByCmd->getHumanName() . '</a></span><br/>';
 }
 ?>
          </div>
        </div>
-     </fieldset>
-   </form>
- </div>
- <div role="tabpanel" class="tab-pane" id="cmd_configuration">
+       <div class="form-group">
+        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Scénario}}</label>
+        <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
+          <?php
+foreach ($usedBy['scenario'] as $usedByScneario) {
+	echo '<span class="label label-primary cursor"><a href="' . $usedByScneario->getLinkToConfiguration() . '" style="color : white;">' . $usedByScneario->getHumanName() . '</a></span><br/>';
+}
+?>
+       </div>
+     </div>
+   </fieldset>
+ </form>
+</div>
+<div role="tabpanel" class="tab-pane" id="cmd_configuration">
   <br/>
   <form class="form-horizontal">
     <fieldset>
@@ -232,140 +236,133 @@ foreach ($groups as $group) {
 ?>
        </select>
      </div>
-     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6 iconeGeneric" style="display:none;">
-       <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Icône}}</label>
-       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-        <span class="cmdAttr label label-info cursor" data-l1key="display" data-l2key="icon" style="font-size : 1.5em;" ></span>
-        <a class="cmdAction btn btn-default btn-sm" data-l1key="chooseIcon"><i class="fa fa-flag"></i> {{Icône}}</a>
+   </div>
+
+   <?php if ($cmd->getType() == 'action') {?>
+     <legend><i class="fa fa-exclamation-triangle"></i> {{Restriction de l'action}}</legend>
+     <div class="form-group">
+      <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Confirmer l'action}}</label>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="actionConfirm" />
       </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Code d'accès}}</label>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <input type="password" class="cmdAttr form-control" data-l1key="configuration" data-l2key="actionCodeAccess" autocomplete="off" />
+      </div>
+    </div>
+    <?php }
+?>
+    <?php if ($cmd->getType() == 'info') {
+	?>
+     <legend><i class="fa fa-sign-out"></i> {{Action sur la valeur}}</legend>
+     <div class="form-group">
+      <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action sur valeur, si}}</label>
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+        <select class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdOperator" >
+         <option value="==">{{égal}}</option>
+         <option value=">">{{supérieur}}</option>
+         <option value="<">{{inférieur}}</option>
+         <option value="!=">{{différent}}</option>
+       </select>
+     </div>
+     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+      <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdTest" />
+    </div>
+    <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2 control-label">{{plus de (min)}}</label>
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+      <input type="number" class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdTime" />
     </div>
   </div>
 
-  <?php if ($cmd->getType() == 'action') {?>
-   <legend><i class="fa fa-exclamation-triangle"></i> {{Restriction de l'action}}</legend>
-   <div class="form-group">
-    <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Confirmer l'action}}</label>
+  <div class="form-group">
+    <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action}}</label>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-      <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="actionConfirm" />
+      <a class="btn btn-success" id="bt_addActionCheckCmd"><i class="fa fa-plus-circle"></i> {{Ajouter}}</a>
+    </div>
+  </div>
+  <div id="div_actionCheckCmd"></div>
+
+  <script type="text/javascript">
+    $("#div_actionCheckCmd").sortable({axis: "y", cursor: "move", items: ".actionCheckCmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
+
+    $('#bt_addActionCheckCmd').off('click').on('click',function(){
+      addActionCmd({}, 'actionCheckCmd','{{Action}}');
+    });
+  </script>
+  <?php }
+?>
+  <?php if ($cmd->getType() == 'action') {
+	?>
+   <legend><i class="fa fa-sign-out"></i> {{Action avant exécution de la commande}}</legend>
+   <div class="form-group">
+    <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action}}</label>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+      <a class="btn btn-success" id="bt_addActionPreExecCmd"><i class="fa fa-plus-circle"></i> {{Ajouter}}</a>
+    </div>
+  </div>
+  <div id="div_actionPreExecCmd"></div>
+
+  <script type="text/javascript">
+    $("#div_actionPreExecCmd").sortable({axis: "y", cursor: "move", items: ".actionPreExecCmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
+    $('#bt_addActionPreExecCmd').off('click').on('click',function(){
+      addActionCmd({}, 'actionPreExecCmd','{{Action}}');
+    });
+  </script>
+
+  <legend><i class="fa fa-sign-out"></i> {{Action après exécution de la commande}}</legend>
+  <div class="form-group">
+    <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action}}</label>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+      <a class="btn btn-success" id="bt_addActionPostExecCmd"><i class="fa fa-plus-circle"></i> {{Ajouter}}</a>
+    </div>
+  </div>
+  <div id="div_actionPostExecCmd"></div>
+
+  <script type="text/javascript">
+    $("#div_actionPostExecCmd").sortable({axis: "y", cursor: "move", items: ".actionPostExecCmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
+    $('#bt_addActionPostExecCmd').off('click').on('click',function(){
+      addActionCmd({}, 'actionPostExecCmd','{{Action}}');
+    });
+  </script>
+
+  <?php }?>
+
+  <?php if ($cmd->getType() == 'info' && ($cmd->getSubType() == 'numeric' || $cmd->getSubType() == 'binary')) {
+	?>
+   <legend><i class="fa fa-bar-chart-o"></i> {{Historique}}</legend>
+   <div class="form-group">
+    <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Historiser}}</label>
+    <div class="col-xs-1">
+      <input type="checkbox" class="cmdAttr" data-l1key="isHistorized" />
     </div>
   </div>
   <div class="form-group">
-    <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Code d'accès}}</label>
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-      <input type="password" class="cmdAttr form-control" data-l1key="configuration" data-l2key="actionCodeAccess" autocomplete="off" />
+    <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Mode de lissage}}</label>
+    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+      <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historizeMode">
+        <option value="avg">{{Moyenne}}</option>
+        <option value="min">{{Minimum}}</option>
+        <option value="max">{{Maximum}}</option>
+        <option value="none">{{Aucun}}</option>
+      </select>
     </div>
   </div>
-  <?php }
-?>
-  <?php if ($cmd->getType() == 'info') {
-	?>
-   <legend><i class="fa fa-sign-out"></i> {{Action sur la valeur}}</legend>
-   <div class="form-group">
-    <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action sur valeur, si}}</label>
-    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-      <select class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdOperator" >
-       <option value="==">{{égal}}</option>
-       <option value=">">{{supérieur}}</option>
-       <option value="<">{{inférieur}}</option>
-       <option value="!=">{{différent}}</option>
+
+  <div class="form-group">
+    <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Purger l'historique si plus vieux de }}</label>
+    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+     <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historyPurge">
+       <option value="">{{Jamais}}</option>
+       <option value="-1 day">{{1 jour}}</option>
+       <option value="-7 days">{{7 jours}}</option>
+       <option value="-1 month">{{1 mois}}</option>
+       <option value="-6 month">{{6 mois}}</option>
      </select>
    </div>
-   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-    <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdTest" />
-  </div>
-  <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2 control-label">{{plus de (min)}}</label>
-  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-    <input type="number" class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdTime" />
-  </div>
-</div>
-
-<div class="form-group">
-  <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action}}</label>
-  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-    <a class="btn btn-success" id="bt_addActionCheckCmd"><i class="fa fa-plus-circle"></i> {{Ajouter}}</a>
-  </div>
-</div>
-<div id="div_actionCheckCmd"></div>
-
-<script type="text/javascript">
-  $("#div_actionCheckCmd").sortable({axis: "y", cursor: "move", items: ".actionCheckCmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
-
-  $('#bt_addActionCheckCmd').off('click').on('click',function(){
-    addActionCmd({}, 'actionCheckCmd','{{Action}}');
-  });
-</script>
-<?php }
-?>
-<?php if ($cmd->getType() == 'action') {
-	?>
- <legend><i class="fa fa-sign-out"></i> {{Action avant exécution de la commande}}</legend>
- <div class="form-group">
-  <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action}}</label>
-  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-    <a class="btn btn-success" id="bt_addActionPreExecCmd"><i class="fa fa-plus-circle"></i> {{Ajouter}}</a>
-  </div>
-</div>
-<div id="div_actionPreExecCmd"></div>
-
-<script type="text/javascript">
-  $("#div_actionPreExecCmd").sortable({axis: "y", cursor: "move", items: ".actionPreExecCmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
-  $('#bt_addActionPreExecCmd').off('click').on('click',function(){
-    addActionCmd({}, 'actionPreExecCmd','{{Action}}');
-  });
-</script>
-
-<legend><i class="fa fa-sign-out"></i> {{Action après exécution de la commande}}</legend>
-<div class="form-group">
-  <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action}}</label>
-  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-    <a class="btn btn-success" id="bt_addActionPostExecCmd"><i class="fa fa-plus-circle"></i> {{Ajouter}}</a>
-  </div>
-</div>
-<div id="div_actionPostExecCmd"></div>
-
-<script type="text/javascript">
-  $("#div_actionPostExecCmd").sortable({axis: "y", cursor: "move", items: ".actionPostExecCmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
-  $('#bt_addActionPostExecCmd').off('click').on('click',function(){
-    addActionCmd({}, 'actionPostExecCmd','{{Action}}');
-  });
-</script>
-
-<?php }?>
-
-<?php if ($cmd->getType() == 'info' && ($cmd->getSubType() == 'numeric' || $cmd->getSubType() == 'binary')) {
-	?>
- <legend><i class="fa fa-bar-chart-o"></i> {{Historique}}</legend>
- <div class="form-group">
-  <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Historiser}}</label>
-  <div class="col-xs-1">
-    <input type="checkbox" class="cmdAttr" data-l1key="isHistorized" />
-  </div>
-</div>
-<div class="form-group">
-  <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Mode de lissage}}</label>
-  <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-    <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historizeMode">
-      <option value="avg">{{Moyenne}}</option>
-      <option value="min">{{Minimum}}</option>
-      <option value="max">{{Maximum}}</option>
-      <option value="none">{{Aucun}}</option>
-    </select>
-  </div>
-</div>
-
-<div class="form-group">
-  <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Purger l'historique si plus vieux de }}</label>
-  <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-   <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historyPurge">
-     <option value="">{{Jamais}}</option>
-     <option value="-1 day">{{1 jour}}</option>
-     <option value="-7 days">{{7 jours}}</option>
-     <option value="-1 month">{{1 mois}}</option>
-     <option value="-6 month">{{6 mois}}</option>
-   </select>
  </div>
-</div>
-<?php if ($cmd->getIsHistorized() == 1) {?>
+ <?php if ($cmd->getIsHistorized() == 1) {?>
   <div class="form-group">
     <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Copie des données historisé}}</label>
     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
@@ -573,6 +570,22 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 			echo '<td>';
 			if ($cmd->widgetPossibility('custom::displayName::' . $key)) {
 				echo '<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="showNameOn' . $key . '" checked />';
+			}
+			echo '</td>';
+		}
+		?>
+    </tr>
+    <?php }
+	?>
+    <?php if ($cmd->widgetPossibility('custom::displayIconAndName')) {
+		?>
+      <tr>
+        <td>{{Afficher le nom ET l'icône}}</td>
+        <?php
+foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
+			echo '<td>';
+			if ($cmd->widgetPossibility('custom::displayIconAndName::' . $key)) {
+				echo '<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="showIconAndName' . $key . '" />';
 			}
 			echo '</td>';
 		}
@@ -1057,7 +1070,7 @@ if ($cmd->getDisplay('parameters') != '') {
       });
     }).dialog('open');
   });
-  $('body').undelegate('.cmdAction[data-l1key=chooseIcon]', 'click').delegate('.cmdAction[data-l1key=chooseIcon]', 'click', function () {
+  $('#bt_cmdConfigureChooseIcon').on('click', function () {
     var iconeGeneric = $(this).closest('.iconeGeneric');
     chooseIcon(function (_icon) {
      iconeGeneric.find('.cmdAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
@@ -1067,18 +1080,4 @@ if ($cmd->getDisplay('parameters') != '') {
   $('body').undelegate('.cmdAttr[data-l1key=display][data-l2key=icon]', 'click').delegate('.cmdAttr[data-l1key=display][data-l2key=icon]', 'click', function () {
     $(this).empty();
   });
-
-  $('.cmdAttr[data-l1key=display][data-l2key=generic_type]').on('change', function () {
-   if ($(this).value() == 'GENERIC_INFO' || $(this).value() == 'GENERIC_ACTION') {
-    $('.iconeGeneric').show();
-  } else {
-    $('.iconeGeneric').hide();
-    $('.cmdAttr[data-l1key=display][data-l2key=icon]').empty();
-  }
-});
-  $(document).ready(function(){
-   if ($('.cmdAttr[data-l1key=display][data-l2key=generic_type]').value() == 'GENERIC_INFO' || $('.cmdAttr[data-l1key=display][data-l2key=generic_type]').value() == 'GENERIC_ACTION') {
-    $('.iconeGeneric').show();
-  }
-});
 </script>

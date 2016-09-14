@@ -892,6 +892,9 @@ class cmd {
 		if ($this->getDisplay('showNameOn' . $version2, 1) == 0) {
 			$replace['#hideCmdName#'] = 'display:none;';
 		}
+		if ($this->getDisplay('showIconAndName' . $version2, 0) == 1) {
+			$replace['#name_display#'] = $this->getDisplay('icon') . ' ' . $this->getName();
+		}
 		$template = $this->getWidgetTemplateCode($_version);
 
 		if ($_cmdColor == null && $version != 'scenario') {

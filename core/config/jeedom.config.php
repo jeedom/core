@@ -185,7 +185,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 						'isHistorized' => array('visible' => true),
 						'display' => array(
 							'invertBinary' => array('visible' => false),
-							'icon' => array('visible' => false, 'parentVisible' => false),
+							'icon' => array('visible' => true, 'parentVisible' => true),
 						),
 					),
 					'binary' => array(
@@ -197,7 +197,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 						'isHistorized' => array('visible' => true),
 						'display' => array(
 							'invertBinary' => array('visible' => true, 'parentVisible' => true),
-							'icon' => array('visible' => false, 'parentVisible' => false),
+							'icon' => array('visible' => true, 'parentVisible' => true),
 						),
 					),
 					'string' => array(
@@ -209,7 +209,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 						'isHistorized' => array('visible' => false),
 						'display' => array(
 							'invertBinary' => array('visible' => false),
-							'icon' => array('visible' => false, 'parentVisible' => false),
+							'icon' => array('visible' => true, 'parentVisible' => true),
 						),
 					),
 				),

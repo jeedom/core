@@ -107,7 +107,6 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 	echo '<input type="number" min="0" max="1" class="userAttr form-control" data-l1key="options" data-l2key="widget::background-opacity::' . $key . '"/>';
 	echo '</div>';
 	echo '</div>';
-
 }
 ?>
       </fieldset>
