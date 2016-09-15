@@ -540,18 +540,22 @@ class update {
 
 	public function setId($id) {
 		$this->id = $id;
+		return $this;
 	}
 
 	public function setName($name) {
 		$this->name = $name;
+		return $this;
 	}
 
 	public function setStatus($status) {
 		$this->status = $status;
+		return $this;
 	}
 
 	public function setConfiguration($_key, $_value) {
 		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
+		return $this;
 	}
 
 	public function getType() {
@@ -560,6 +564,7 @@ class update {
 
 	public function setType($type) {
 		$this->type = $type;
+		return $this;
 	}
 
 	public function getLocalVersion() {
@@ -572,10 +577,12 @@ class update {
 
 	public function setLocalVersion($localVersion) {
 		$this->localVersion = $localVersion;
+		return $this;
 	}
 
 	public function setRemoteVersion($remoteVersion) {
 		$this->remoteVersion = $remoteVersion;
+		return $this;
 	}
 
 	public function getLogicalId() {
@@ -584,6 +591,7 @@ class update {
 
 	public function setLogicalId($logicalId) {
 		$this->logicalId = $logicalId;
+		return $this;
 	}
 
 	public function getSource() {
@@ -592,8 +600,7 @@ class update {
 
 	public function setSource($source) {
 		$this->source = $source;
+		return $this;
 	}
 
 }
-
-?>
