@@ -861,6 +861,7 @@ class plugin {
 
 	public function setDisplay($display) {
 		$this->display = $display;
+		return $this;
 	}
 
 	public function getMobile() {
@@ -869,6 +870,7 @@ class plugin {
 
 	public function setMobile($mobile) {
 		$this->mobile = $mobile;
+		return $this;
 	}
 
 	public function getEventjs() {
@@ -877,6 +879,7 @@ class plugin {
 
 	public function setEventjs($eventjs) {
 		$this->eventjs = $eventjs;
+		return $this;
 	}
 
 	public function getHasDependency() {
@@ -885,6 +888,7 @@ class plugin {
 
 	public function setHasDependency($hasDependency) {
 		$this->hasDependency = $hasDependency;
+		return $this;
 	}
 
 	public function getHasOwnDeamon() {
@@ -893,6 +897,7 @@ class plugin {
 
 	public function setHasOwnDeamony($hasOwnDeamon) {
 		$this->hasOwnDeamon = $hasOwnDeamon;
+		return $this;
 	}
 
 	public function getMaxDependancyInstallTime() {
@@ -901,8 +906,7 @@ class plugin {
 
 	public function setMaxDependancyInstallTime($maxDependancyInstallTime) {
 		$this->maxDependancyInstallTime = $maxDependancyInstallTime;
+		return $this;
 	}
 
 }
-
-?>
