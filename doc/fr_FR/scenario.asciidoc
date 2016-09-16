@@ -310,6 +310,8 @@ Une boîte à outils de fonctions génériques peut également servir à effectu
     ** Ex : randomColor(40,60) : pour avoir une couleur aléatoire proche du vert
 * **trigger**(commande) : permet de connaitre le déclencheur du scénario ou de savoir si c'est bien la commande passée en paramètre qui a déclenché le scénario
     ** Ex : trigger(\#[Salle de bain][Hydrometrie][Humidité]#) : 1 si c'est bien \#[Salle de bain][Hydrometrie][Humidité]# qui a déclenché le scénario sinon 0
+* **triggerValue**(commande) : permet de connaitre la valeur du déclencheur du scénario
+    ** Ex : triggerValue(\#[Salle de bain][Hydrometrie][Humidité]#) : 80 si l'hydrométrie de \#[Salle de bain][Hydrometrie][Humidité]# est de 80 %
 * **round**(valeur,[decimal]) : permet un arrondi au dessus, [decimal] nombre de décimales après la virgule
     ** Ex : round(\#[Salle de bain][Hydrometrie][Humidité]# / 10) : renverra 9 si le pourcentage d'humidité et 85
 * **odd**(valeur) : permet de savoir si un nombre est impair ou non. Renvoi 1 si impair 0 sinon
