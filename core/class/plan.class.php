@@ -139,26 +139,32 @@ class plan {
 
     public function setId($id) {
         $this->id = $id;
+        return $this;
     }
 
     public function setLink_type($link_type) {
         $this->link_type = $link_type;
+        return $this;
     }
 
     public function setLink_id($link_id) {
         $this->link_id = $link_id;
+        return $this;
     }
 
     public function setPosition($_key, $_value) {
         $this->position = utils::setJsonAttr($this->position, $_key, $_value);
+        return $this;
     }
 
     public function setDisplay($_key, $_value) {
         $this->display = utils::setJsonAttr($this->display, $_key, $_value);
+        return $this;
     }
 
     public function setCss($_key, $_value) {
         $this->css = utils::setJsonAttr($this->css, $_key, $_value);
+        return $this;
     }
 
     public function getPlanHeader_id() {
@@ -167,8 +173,7 @@ class plan {
 
     public function setPlanHeader_id($planHeader_id) {
         $this->planHeader_id = $planHeader_id;
+        return $this;
     }
 
 }
-
-?>
