@@ -62,6 +62,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 	),
 	'cmd' => array(
 		'generic_type' => array(
+			'LIGHT_TOGGLE' => array('name' => 'Lumière Toggle', 'family' => 'Lumière', 'type' => 'Action'),
 			'LIGHT_STATE' => array('name' => 'Lumière Etat', 'family' => 'Lumière', 'type' => 'Info'),
 			'LIGHT_ON' => array('name' => 'Lumière Bouton On', 'family' => 'Lumière', 'type' => 'Action'),
 			'LIGHT_OFF' => array('name' => 'Lumière Bouton Off', 'family' => 'Lumière', 'type' => 'Action'),
