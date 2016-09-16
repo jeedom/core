@@ -219,7 +219,7 @@ try {
 			$return = array();
 			foreach ($scenarios as $scenario) {
 				if ($scenario->getIsVisible() == 1) {
-					$return[$scenario->getId()] = $scenario->toHtml(init('version'));
+					$return[] = $scenario->toHtml(init('version'));
 				}
 			}
 			ajax::success($return);
