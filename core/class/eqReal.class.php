@@ -45,18 +45,18 @@ class eqReal {
         $sql = 'SELECT plugin,isEnable
                 FROM eqLogic
                 WHERE eqReal_id=:id';
-        $result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+        $result = \DB::Prepare($sql, $values, \DB::FETCH_TYPE_ROW);
         $eqTyme_name = $result['plugin'];
         if ($result['isEnable'] == 0) {
             try {
                 $plugin = null;
                 if ($eqTyme_name != '') {
-                    $plugin = plugin::byId($eqTyme_name);
+                    $plugin = \plugin::byId($eqTyme_name);
                 }
                 if (!is_object($plugin) || $plugin->isActive() == 0) {
                     return __CLASS__;
                 }
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 return __CLASS__;
             }
         }
@@ -75,11 +75,11 @@ class eqReal {
         $values = array(
             'id' => $_id
         );
-        $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+        $sql = 'SELECT ' . \DB::buildField(__CLASS__) . '
                 FROM eqReal
                 WHERE id=:id';
         $class = self::getClass($_id);
-        return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, $class);
+        return \DB::Prepare($sql, $values, \DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, $class);
     }
 
     public static function byLogicalId($_logicalId, $_cat) {
@@ -91,7 +91,7 @@ class eqReal {
                 FROM eqReal
                 WHERE logicalId=:logicalId
                     AND cat=:cat';
-        $results = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
+        $results = \DB::Prepare($sql, $values, \DB::FETCH_TYPE_ALL);
         $return = array();
         foreach ($results as $result) {
             $return[] = self::byId($result['id']);
@@ -105,15 +105,15 @@ class eqReal {
         foreach ($this->getEqLogic() as $eqLogic) {
             $eqLogic->remove();
         }
-        dataStore::removeByTypeLinkId('eqReal', $this->getId());
-        return DB::remove($this);
+        \dataStore::removeByTypeLinkId('eqReal', $this->getId());
+        return \DB::remove($this);
     }
 
     public function save() {
         if ($this->getName() == '') {
-            throw new Exception(__('Le nom de l\'équipement réel ne peut pas être vide', __FILE__));
+            throw new \Exception(__('Le nom de l\'équipement réel ne peut pas être vide', __FILE__));
         }
-        return DB::save($this);
+        return \DB::save($this);
     }
 
     /*     * **********************Getteur Setteur*************************** */
@@ -144,22 +144,27 @@ class eqReal {
 
     public function setId($id) {
         $this->id = $id;
+        return $this;
     }
 
     public function setLogicalId($logicalId) {
         $this->logicalId = $logicalId;
+        return $this;
     }
 
     public function setName($name) {
         $this->name = $name;
+        return $this;
     }
 
     public function setType($type) {
         $this->type = $type;
+        return $this;
     }
 
     public function setCat($cat) {
         $this->cat = $cat;
+        return $this;
     }
 
     public function getConfiguration($_key = '', $_default = '') {
