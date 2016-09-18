@@ -108,18 +108,22 @@ class rights {
 
 	function setId($id) {
 		$this->id = $id;
+		return $this;
 	}
 
 	function setUser_id($user_id) {
 		$this->user_id = $user_id;
+		return $this;
 	}
 
 	function setEntity($entity) {
 		$this->entity = $entity;
+		return $this;
 	}
 
 	function setRight($right) {
 		$this->right = $right;
+		return $this;
 	}
 
 	public function getOptions($_key = '', $_default = '') {
@@ -128,8 +132,7 @@ class rights {
 
 	public function setOptions($_key, $_value) {
 		$this->options = utils::setJsonAttr($this->options, $_key, $_value);
+		return $this;
 	}
 
 }
-?>
-
