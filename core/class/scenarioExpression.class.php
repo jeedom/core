@@ -860,7 +860,7 @@ class scenarioExpression {
 								$arguments[0] = '';
 							}
 							$replace2[$replace_string] = self::trigger($arguments[0], $_scenario);
-						}else if ($function == 'triggerValue') {
+						} else if ($function == 'triggerValue') {
 							$replace2[$replace_string] = self::triggerValue($_scenario);
 						} else {
 							$replace2[$replace_string] = call_user_func_array(__CLASS__ . "::" . $function, $arguments);
@@ -994,6 +994,14 @@ class scenarioExpression {
 				} else if ($this->getExpression() == 'message') {
 					message::add('scenario', $options['message']);
 					$this->setLog($scenario, __('Ajout du message suivant dans le centre de message : ', __FILE__) . $options['message']);
+					return;
+				} else if ($this->getExpression() == 'alert') {
+					event::add('jeedom::alert', $options);
+					$this->setLog($scenario, __('Ajout de l\'alerte : ', __FILE__) . $options['message']);
+					return;
+				} else if ($this->getExpression() == 'popup') {
+					event::add('jeedom::alertPopup', $options['message']);
+					$this->setLog($scenario, __('Affichage du popup : ', __FILE__) . $options['message']);
 					return;
 				} else if ($this->getExpression() == 'equipement') {
 					$eqLogic = eqLogic::byId(str_replace(array('#eqLogic', '#'), '', $this->getOptions('eqLogic')));
