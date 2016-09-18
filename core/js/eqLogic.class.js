@@ -329,7 +329,7 @@ var paramsSpecifics = {
            var position =  eqLogic.css('position');
            var transform_origin =  eqLogic.css('transform-origin');
            var transform =  eqLogic.css('transform');
-           var zindex =  eqLogic.css('zindex');
+           var zindex =  eqLogic.css('z-index');
            
            eqLogic.attr("style", html.attr("style"));
            eqLogic.css('top',top);
@@ -341,7 +341,7 @@ var paramsSpecifics = {
            eqLogic.css('position',position);
            eqLogic.css('transform-origin',transform_origin);
            eqLogic.css('transform',transform);
-           eqLogic.css('zindex',zindex);
+           eqLogic.css('z-index',zindex);
            eqLogic.trigger('change');
            if ($.mobile) {
             $('.eqLogic[data-eqLogic_id=' + i + ']').trigger("create");
