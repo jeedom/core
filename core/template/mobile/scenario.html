@@ -1,8 +1,8 @@
 <div class="scenario nd2-card" data-scenario_id="#id#" data-version="#version#" style="min-height: 190px;margin : 0px;">
-   <center>
+ <center>
     <div class="card-title has-supporting-text">
         <h3 class="card-primary-title">#shortname#</h3>
-         <h5 class="card-subtitle">#treename#</h5>
+        <h5 class="card-subtitle">#treename#</h5>
     </div>
     <div class="card-supporting-text has-title">
         <span class="state" style="font-size: 2em;">#icon#</span>
@@ -16,11 +16,16 @@
 </center>
 <script>
     $('.scenario[data-scenario_id=#id#] .changeScenarioState').on('click', function() {
+        $('.scenario[data-scenario_id=#id#] .state').empty().append('<i class="fa fa-spinner fa-spin"></i>');
         jeedom.scenario.changeState({
             id: $(this).closest('.scenario').attr('data-scenario_id'),
             state: $(this).attr('data-state'),
             error: function(error) {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                $('.scenario[data-scenario_id=#id#] .state').empty().append('<i class="fa fa-times"></i>');
+                setTimeout(function() {
+                   $('.scenario[data-scenario_id=#id#] .state').empty();
+               }, 3000);
             },
         });
     });
