@@ -1,15 +1,25 @@
 <div class="cmd" data-type="info" data-subtype="binary" data-cmd_id="#id#" data-cmd_uid="#uid#">
 	<center>
 		<div style="font-size : 12px;#hideCmdName#">#name_display#</div>
-		<span style="font-size: 3em;margin-top: 5px;" class="iconCmd#uid#"></span><br/>
-		<span class="timeCmd#uid#" style="background-color:#cmdColor# !important;padding : 3px;border-radius: 4px;"></span>
+		<span style="font-size: 3em;margin-top: 5px;" class="iconCmd#uid# iconCmd"></span><br/>
+		<span class="timeCmd#uid# timeCmd" style="background-color:#cmdColor# !important;padding : 3px;border-radius: 4px;"></span>
 	</center>
 	<script>
 		jeedom.cmd.displayDuration('#valueDate#', $('.timeCmd#uid#'));
-		if ('#state#' == '1' || '#state#' == 1) {
+		if ('#state#' == '1') {
 			$('.iconCmd#uid#').append('<i class="icon jeedom-fenetre-ferme"></i>');
 		} else {
 			$('.iconCmd#uid#').append('<i class="icon jeedom-fenetre-ouverte"></i>');
+		}
+		if (isset(jeedom.cmd.update)) {
+			jeedom.cmd.update['#id#'] = function(_options){
+				jeedom.cmd.displayDuration(_options.valueDate,  $('.cmd[data-cmd_id=#id#] .timeCmd'));
+				if (_options.value == '1') {
+					$('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-fenetre-ferme"></i>');
+				}else {
+					$('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-fenetre-ouverte"></i>');
+				}
+			}
 		}
 	</script>
 </div>

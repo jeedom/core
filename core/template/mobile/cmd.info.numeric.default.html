@@ -1,3 +1,10 @@
 <div class="cmd" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#">
-       #name_display# <strong>#state#</strong> #unite#
+#name_display# <strong class="state">#state#</strong> #unite#
+	<script>
+		if (isset(jeedom.cmd.update)) {
+			jeedom.cmd.update['#id#'] = function(_options){
+				$('.cmd[data-cmd_id=#id#] .state').empty().append(_option.value);
+			}
+		}
+	</script>
 </div>

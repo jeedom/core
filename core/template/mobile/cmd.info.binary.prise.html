@@ -1,13 +1,22 @@
 <div class="cmd" data-type="info" data-subtype="binary" data-cmd_id="#id#" data-cmd_uid="#uid#">
 	<center>
 		<div style="font-size : 12px;#hideCmdName#">#name_display#</div>
-		<span style="font-size: 3em;margin-top: 5px;" class="iconCmd#uid#"></span>
+		<span style="font-size: 3em;margin-top: 5px;" class="iconCmd#uid# iconCmd"></span>
 	</center>
 	<script>
-    if ('#state#' == '1' || '#state#' == 1) {
-        $('#iconCmd#uid#').append('<i class="icon jeedom-prise"></i>');
-    }
-    if ('#state#' == '0' || '#state#' == 0) {
-        $('#iconCmd#uid#').append('<i class="fa fa-times"></i>');
-    }
-</script>
+        if ('#state#' == '1') {
+            $('#iconCmd#uid#').append('<i class="icon jeedom-prise"></i>');
+        }else  {
+            $('#iconCmd#uid#').append('<i class="fa fa-times"></i>');
+        }
+        if (isset(jeedom.cmd.update)) {
+            jeedom.cmd.update['#id#'] = function(_options){
+                if (_options.value == '1') {
+                    $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-prise"></i>');
+                }else {
+                    $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="fa fa-times"></i>');
+                }
+            }
+        }
+    </script>
+</div>
