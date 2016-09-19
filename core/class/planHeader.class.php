@@ -121,10 +121,12 @@ class planHeader {
 
     public function setId($id) {
         $this->id = $id;
+        return $this;
     }
 
     public function setName($name) {
         $this->name = $name;
+        return $this;
     }
 
     public function getImage($_key = '', $_default = '') {
@@ -133,6 +135,7 @@ class planHeader {
 
     public function setImage($_key, $_value) {
         $this->image = utils::setJsonAttr($this->image, $_key, $_value);
+        return $this;
     }
 
     public function getConfiguration($_key = '', $_default = '') {
@@ -141,8 +144,7 @@ class planHeader {
 
     public function setConfiguration($_key, $_value) {
         $this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
+        return $this;
     }
 
 }
-
-?>
