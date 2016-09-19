@@ -465,6 +465,7 @@ class scenarioElement {
 
 	public function setId($id) {
 		$this->id = $id;
+		return $this;
 	}
 
 	public function getName() {
@@ -473,6 +474,7 @@ class scenarioElement {
 
 	public function setName($name) {
 		$this->name = $name;
+		return $this;
 	}
 
 	public function getType() {
@@ -481,6 +483,7 @@ class scenarioElement {
 
 	public function setType($type) {
 		$this->type = $type;
+		return $this;
 	}
 
 	public function getOptions($_key = '', $_default = '') {
@@ -489,6 +492,7 @@ class scenarioElement {
 
 	public function setOptions($_key, $_value) {
 		$this->options = utils::setJsonAttr($this->options, $_key, $_value);
+		return $this;
 	}
 
 	public function getOrder() {
@@ -497,8 +501,7 @@ class scenarioElement {
 
 	public function setOrder($order) {
 		$this->order = $order;
+		return $this;
 	}
 
 }
-
-?>
