@@ -1177,10 +1177,12 @@ class scenario {
 
 	public function setId($id) {
 		$this->id = $id;
+		return $this;
 	}
 
 	public function setName($name) {
 		$this->name = $name;
+		return $this;
 	}
 
 	public function setIsActive($isActive) {
@@ -1188,10 +1190,12 @@ class scenario {
 			$this->_changeState = true;
 		}
 		$this->isActive = $isActive;
+		return $this;
 	}
 
 	public function setGroup($group) {
 		$this->group = $group;
+		return $this;
 	}
 
 	public function setState($state) {
@@ -1212,6 +1216,7 @@ class scenario {
 
 	public function setType($type) {
 		$this->type = $type;
+		return $this;
 	}
 
 	public function getMode() {
@@ -1220,6 +1225,7 @@ class scenario {
 
 	public function setMode($mode) {
 		$this->mode = $mode;
+		return $this;
 	}
 
 	public function getSchedule() {
@@ -1234,6 +1240,7 @@ class scenario {
 			$schedule = json_encode($schedule, JSON_UNESCAPED_UNICODE);
 		}
 		$this->schedule = $schedule;
+		return $this;
 	}
 
 	public function getPID() {
@@ -1256,6 +1263,7 @@ class scenario {
 			$scenarioElement = json_encode($scenarioElement, JSON_UNESCAPED_UNICODE);
 		}
 		$this->scenarioElement = $scenarioElement;
+		return $this;
 	}
 
 	public function getTrigger() {
@@ -1270,6 +1278,7 @@ class scenario {
 			$trigger = json_encode($trigger, JSON_UNESCAPED_UNICODE);
 		}
 		$this->trigger = cmd::humanReadableToCmd($trigger);
+		return $this;
 	}
 
 	public function getLog() {
@@ -1292,6 +1301,7 @@ class scenario {
 			$timeout = '';
 		}
 		$this->timeout = $timeout;
+		return $this;
 	}
 
 	public function getObject_id($_default = null) {
@@ -1310,10 +1320,12 @@ class scenario {
 
 	public function setObject_id($object_id = null) {
 		$this->object_id = (!is_numeric($object_id)) ? null : $object_id;
+		return $this;
 	}
 
 	public function setIsVisible($isVisible) {
 		$this->isVisible = $isVisible;
+		return $this;
 	}
 
 	public function getDisplay($_key = '', $_default = '') {
@@ -1322,6 +1334,7 @@ class scenario {
 
 	public function setDisplay($_key, $_value) {
 		$this->display = utils::setJsonAttr($this->display, $_key, $_value);
+		return $this;
 	}
 
 	public function getDescription() {
@@ -1330,6 +1343,7 @@ class scenario {
 
 	public function setDescription($description) {
 		$this->description = $description;
+		return $this;
 	}
 
 	public function getConfiguration($_key = '', $_default = '') {
@@ -1338,6 +1352,7 @@ class scenario {
 
 	public function setConfiguration($_key, $_value) {
 		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
+		return $this;
 	}
 
 	public function getRealTrigger() {
@@ -1346,6 +1361,7 @@ class scenario {
 
 	public function setRealTrigger($_realTrigger) {
 		$this->_realTrigger = $_realTrigger;
+		return $this;
 	}
 
 	public function getReturn() {
@@ -1354,6 +1370,7 @@ class scenario {
 
 	public function setReturn($_return) {
 		$this->_return = $_return;
+		return $this;
 	}
 
 	public function getTags() {
@@ -1362,6 +1379,7 @@ class scenario {
 
 	public function setTags($_tags) {
 		$this->_tags = $_tags;
+		return $this;
 	}
 
 	public function getCache($_key = '', $_default = '') {
@@ -1373,5 +1391,3 @@ class scenario {
 	}
 
 }
-
-?>
