@@ -1,3 +1,11 @@
 <div class="tooltips cmd cmd-widget" data-type="info" data-subtype="string" data-cmd_id="#id#" data-cmd_uid="#uid#" title="Valeur du #valueDate#, collectée le #collectDate#" style="display: block;">
-	<center><span style="font-size : 12px;#hideCmdName#" class="cmdName">#name_display#</span> <strong>#state#</strong></center>
+	<center><span style="font-size : 12px;#hideCmdName#" class="cmdName">#name_display#</span> <strong class="state">#state#</strong></center>
+	<script>
+		if (isset(jeedom.cmd.update)) {
+			jeedom.cmd.update['#id#'] = function(_options){
+				$('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate)
+				$('.cmd[data-cmd_id=#id#] .state').empty().append(_options.value);
+			}
+		}
+	</script>
 </div>

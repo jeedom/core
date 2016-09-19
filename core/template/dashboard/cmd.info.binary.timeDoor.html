@@ -1,8 +1,8 @@
 <div style="width:90px;min-height:62px;" class="cmd #history# tooltips cmd-widget" data-type="info" data-subtype="binary" data-cmd_id="#id#" data-cmd_uid="#uid#" title="Valeur du #valueDate#, collectée le #collectDate#">
     <center>
         <div style="font-weight: bold;font-size : 12px;#hideCmdName#">#name_display#</div>
-        <span style="font-size: 3.5em;font-weight: bold;margin-top: 5px;" class="iconCmd#uid#"></span><br/>
-        <span class="timeCmd#uid# label label-default" style="background-color:#cmdColor# !important;"></span>
+        <span style="font-size: 3.5em;font-weight: bold;margin-top: 5px;" class="iconCmd#uid# iconCmd"></span><br/>
+        <span class="timeCmd#uid# timeCmd label label-default" style="background-color:#cmdColor# !important;"></span>
     </center>
     <script>
         jeedom.cmd.displayDuration('#valueDate#', $('.timeCmd#uid#'));
@@ -11,5 +11,16 @@
         }else {
             $('.iconCmd#uid#').append('<i class="icon jeedom-porte-ouverte"></i>');
         }
-    </script>
+        if (isset(jeedom.cmd.update)) {
+            jeedom.cmd.update['#id#'] = function(_options){
+             jeedom.cmd.displayDuration(_options.valueDate,  $('.cmd[data-cmd_id=#id#] .timeCmd'));
+             $('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate)
+             if (_options.value == '1') {
+                 $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-porte-ferme"></i>');
+             }else {
+                $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-porte-ouverte"></i>');
+            }
+        }
+    }
+</script>
 </div>

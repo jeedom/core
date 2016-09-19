@@ -318,7 +318,7 @@ jeedom.cmd.refreshValue = function(_params) {
         }
         if (!isset(_params[i].global) || !_params[i].global) {
             if (isset(jeedom.cmd.update) && isset(jeedom.cmd.update[_params[i].cmd_id])) {
-                jeedom.cmd.update[_params[i].cmd_id](_params[i].value);
+                jeedom.cmd.update[_params[i].cmd_id](_params[i]);
                 continue;
             }
         }
@@ -790,20 +790,24 @@ jeedom.cmd.setOrder = function(_params) {
 jeedom.cmd.displayDuration = function(_date,_el){
     var timeInMillis = Date.parse(_date);
     _el.attr('data-time',timeInMillis);
-    if(_el.attr('data-time') < (Date.now()+ clientServerDiffDatetime)){
+    if(_el.attr('data-interval') != undefined){
+       clearInterval(_el.attr('data-interval'));
+   }
+   if(_el.attr('data-time') < (Date.now()+ clientServerDiffDatetime)){
      var d = ((Date.now() + clientServerDiffDatetime) - _el.attr('data-time')) / 1000;
      var h = Math.floor(d / 3600);
      var m = Math.floor(d % 3600 / 60);
      _el.empty().append(((h > 0 ? h + " h " : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min" : "0 min")));
-     setInterval(function(){ 
+     var myinterval = setInterval(function(){ 
         var d = ((Date.now() + clientServerDiffDatetime) - _el.attr('data-time')) / 1000;
         var h = Math.floor(d / 3600);
         var m = Math.floor(d % 3600 / 60);
         _el.empty().append(((h > 0 ? h + " h " : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min" : "0 min")));
     }, 60000);
+     _el.attr('data-interval',myinterval);
  }else{
      _el.empty().append("0 min");
-     setInterval(function(){ 
+     var myinterval = setInterval(function(){ 
          if(_el.attr('data-time') < (Date.now()+ clientServerDiffDatetime)){
             var d = ((Date.now() + clientServerDiffDatetime) - _el.attr('data-time')) / 1000;
             var h = Math.floor(d / 3600);
@@ -813,5 +817,6 @@ jeedom.cmd.displayDuration = function(_date,_el){
          _el.empty().append("0 min");
      }
  }, 60000);
+     el.attr('data-interval',myinterval);
  }
 };

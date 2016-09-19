@@ -10,8 +10,9 @@
             $('.iconCmd#uid#').append('<i class="icon jeedom-lock-ouvert"></i>');
         }
         if (isset(jeedom.cmd.update)) {
-            jeedom.cmd.update['#id#'] = function(_value){
-                if (_value == '1') {
+            jeedom.cmd.update['#id#'] = function(_options){
+                $('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate)
+                if (_options.value == '1') {
                  $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-lock-ferme"></i>');
              }else {
                 $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-lock-ouvert"></i>');

@@ -1059,7 +1059,7 @@ class cmd {
 			scenario::check($this);
 		}
 		$eqLogic->emptyCacheWidget();
-		$events = array(array('cmd_id' => $this->getId(), 'value' => $value));
+		$events = array(array('cmd_id' => $this->getId(), 'value' => $value, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate()));
 		$foundInfo = false;
 		if (!$repeat) {
 			$value_cmd = self::byValue($this->getId(), null, true);

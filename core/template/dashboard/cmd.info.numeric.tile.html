@@ -1,11 +1,23 @@
 <div style="min-width:90px;min-height:100px;margin-right: 5px;margin-left: 5px;padding:0px !important;" class="cmd #history# container-fluid tooltips cmd cmd-widget" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" title="Valeur du #valueDate#, collectée le #collectDate#">
-    <center>
-        <div style="font-weight: bold;font-size : 12px;#hideCmdName#">#name_display#</div>
-        <span style="font-weight: bold;" class="pull-right">#unite#</span>
-        <span style="font-size: 2em;font-weight: bold;" class="pull-right">#state#</span><br/>
-        
-        <div style="#displayHistory# font-size: 0.8em;" class="col-xs-12 center-block">
-            <span title='Min' class='tooltips'>#minHistoryValue#</span>|<span title='Moyenne' class='tooltips'>#averageHistoryValue#</span>|<span title='Max' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
-        </div>
-    </center>
+	<center>
+		<div style="font-weight: bold;font-size : 12px;#hideCmdName#">#name_display#</div>
+		<span style="font-weight: bold;" class="pull-right">#unite#</span>
+		<span style="font-size: 2em;font-weight: bold;" class="pull-right state">#state#</span><br/>
+
+		<div style="#displayHistory# font-size: 0.8em;" class="col-xs-12 center-block">
+			<span title='Min' class='tooltips'>#minHistoryValue#</span>|<span title='Moyenne' class='tooltips'>#averageHistoryValue#</span>|<span title='Max' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
+		</div>
+	</center>
+
+	<script>
+		if('#displayHistory#' == 'display : none;'){
+			if (isset(jeedom.cmd.update)) {
+				jeedom.cmd.update['#id#'] = function(_options){
+					$('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate)
+					$('.cmd[data-cmd_id=#id#] .state').empty().append(_options.value);
+				}
+			}
+		}
+	</script>
 </div>
+
