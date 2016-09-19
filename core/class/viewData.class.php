@@ -101,6 +101,7 @@ class viewData {
 
 	public function setId($id) {
 		$this->id = $id;
+		return $this;
 	}
 
 	public function getOrder() {
@@ -109,6 +110,7 @@ class viewData {
 
 	public function setOrder($order) {
 		$this->order = $order;
+		return $this;
 	}
 
 	public function getviewZone_id() {
@@ -117,6 +119,7 @@ class viewData {
 
 	public function setviewZone_id($viewZone_id) {
 		$this->viewZone_id = $viewZone_id;
+		return $this;
 	}
 
 	public function getType() {
@@ -125,6 +128,7 @@ class viewData {
 
 	public function setType($type) {
 		$this->type = $type;
+		return $this;
 	}
 
 	public function getLink_id() {
@@ -133,6 +137,7 @@ class viewData {
 
 	public function setLink_id($link_id) {
 		$this->link_id = $link_id;
+		return $this;
 	}
 
 	public function getLinkObject() {
@@ -168,5 +173,3 @@ class viewData {
 	}
 
 }
-
-?>
