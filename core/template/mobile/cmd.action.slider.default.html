@@ -8,13 +8,19 @@
 		$("body").delegate(".cmd[data-cmd_uid=#uid#] .slider",'slidestop', function (event, ui) {
 			jeedom.cmd.execute({id: '#id#', value: {slider: $(".cmd[data-cmd_uid=#uid#] .slider input").value()}});
 		});
+
+		if (isset(jeedom.cmd.update)) {
+			jeedom.cmd.update['#id#'] = function(_options){
+				$(".cmd[data-cmd_id=#id#] .slider input").value(_options.display_value);
+			}
+		}
 	</script>
 	<style>
-        .cmd[data-cmd_uid="#uid#"] .ui-slider-handle{
-            background-color:#cmdColor# !important;
-        }
-        .cmd[data-cmd_uid="#uid#"] .ui-slider-bg{
-            background-color:#cmdColor# !important;
-        }
-    </style>
+		.cmd[data-cmd_uid="#uid#"] .ui-slider-handle{
+			background-color:#cmdColor# !important;
+		}
+		.cmd[data-cmd_uid="#uid#"] .ui-slider-bg{
+			background-color:#cmdColor# !important;
+		}
+	</style>
 </div>

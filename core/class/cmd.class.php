@@ -1076,7 +1076,7 @@ class cmd {
 			if (is_array($value_cmd)) {
 				foreach ($value_cmd as $cmd) {
 					if ($cmd->getType() == 'action') {
-						$events[] = array('cmd_id' => $cmd->getId());
+						$events[] = array('cmd_id' => $cmd->getId(), 'value' => $value, 'display_value' => $display_value);
 					} else {
 						if ($_loop > 1) {
 							$cValue = $cmd->execute();

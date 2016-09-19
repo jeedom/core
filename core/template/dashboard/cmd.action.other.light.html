@@ -1,28 +1,43 @@
 <div style="width:90px;min-height:80px;" class="cmd tooltips cmd-widget cursor" data-type="action" data-subtype="other" data-cmd_id="#id#" data-cmd_uid="#uid#">
     <center>
         <div style="font-weight: bold;font-size : 12px;#hideCmdName#">#valueName#</div>
-        <span style="font-size: 3em;font-weight: bold;margin-top: 5px;" class="action iconCmd#uid#"></span>
+        <span style="font-size: 3em;font-weight: bold;margin-top: 5px;" class="action iconCmd#uid# iconCmd"></span>
     </center>
     <script>
-        $('.iconCmd#uid#').empty();
+        $('.cmd[data-cmd_uid=#uid#] .action').off().on('click', function () {
+            jeedom.cmd.execute({id: '#id#'});
+        });
         if ('#state#' == '1' || '#state#' == 1 || '#state#' == '99' || '#state#' == 99 || '#state#' == 'on') {
             if (jeedom.cmd.normalizeName('#name#') == 'on') {
                 $('.cmd[data-cmd_uid=#uid#]').hide();
             }else{
-                $('.iconCmd#uid#').append('<i class="icon jeedom-lumiere-on"></i>');
-                $('.cmd[data-cmd_uid=#uid#] .action').off().on('click', function () {
-                    jeedom.cmd.execute({id: '#id#'});
-                });
+                $('.iconCmd#uid#').empty().append('<i class="icon jeedom-lumiere-on"></i>');
             }
         } else {
             if (jeedom.cmd.normalizeName('#name#') == 'off') {
                 $('.cmd[data-cmd_uid=#uid#]').hide();
             }else{
-               $('.iconCmd#uid#').append('<i class="icon jeedom-lumiere-off"></i>');
-               $('.cmd[data-cmd_uid=#uid#] .action').off().on('click', function () {
-                jeedom.cmd.execute({id: '#id#'});
-            });
-           }
-       }
-   </script>
+             $('.iconCmd#uid#').empty().append('<i class="icon jeedom-lumiere-off"></i>');
+         }
+     }
+     if (isset(jeedom.cmd.update)) {
+        jeedom.cmd.update['#id#'] = function(_options){
+            if (_options.display_value == '1' || _options.display_value == 1 || _options.display_value == '99' || _options.display_value == 99 || _options.display_value == 'on') {
+                if (jeedom.cmd.normalizeName('#name#') == 'on') {
+                    $('.cmd[data-cmd_id=#id#]').hide();
+                }else{
+                    $('.cmd[data-cmd_id=#id#]').show();
+                    $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-lumiere-on"></i>');
+                }
+            } else {
+                if (jeedom.cmd.normalizeName('#name#') == 'off') {
+                    $('.cmd[data-cmd_id=#id#]').hide();
+                }else{
+                    $('.cmd[data-cmd_id=#id#]').show();
+                    $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-lumiere-off"></i>');
+                }
+            }
+        }
+    }
+</script>
 </div>
