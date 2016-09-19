@@ -4,18 +4,29 @@
         <span style="font-size: 3.5em;" class="iconCmd#uid#"></span>
     </center>
     <script>
-        $('.iconCmd#uid#').empty();
         if ('#state#' == '3') {
-            $('.iconCmd#uid#').append('<i class="icon jeedom-pilote-eco"></i>');
+            $('.iconCmd#uid#').empty().append('<i class="icon jeedom-pilote-eco"></i>');
+        }else if ('#state#' == '2') {
+            $('.iconCmd#uid#').empty().append('<i class="icon jeedom-pilote-off"></i>');
+        }else if ('#state#' == '1') {
+            $('.iconCmd#uid#').empty().append('<i class="icon jeedom-pilote-hg"></i>');
+        }else if ('#state#' == '0') {
+            $('.iconCmd#uid#').empty().append('<i class="icon jeedom-pilote-conf"></i>');
         }
-        if ('#state#' == '2') {
-            $('.iconCmd#uid#').append('<i class="icon jeedom-pilote-off"></i>');
+
+        if (isset(jeedom.cmd.update)) {
+          jeedom.cmd.update['#id#'] = function(_options){
+            $('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate)
+            if (_options.value == '3') {
+                $('.iconCmd#uid#').empty().append('<i class="icon jeedom-pilote-eco"></i>');
+            }else if (_options.value == '2') {
+                $('.iconCmd#uid#').empty().append('<i class="icon jeedom-pilote-off"></i>');
+            }else if (_options.value == '1') {
+                $('.iconCmd#uid#').empty().append('<i class="icon jeedom-pilote-hg"></i>');
+            }else if (_options.value == '0') {
+                $('.iconCmd#uid#').empty().append('<i class="icon jeedom-pilote-conf"></i>');
+            }
         }
-        if ('#state#' == '1') {
-            $('.iconCmd#uid#').append('<i class="icon jeedom-pilote-hg"></i>');
-        }
-        if ('#state#' == '0') {
-            $('.iconCmd#uid#').append('<i class="icon jeedom-pilote-conf"></i>');
-        }
-    </script>
+    }
+</script>
 </div>
