@@ -21,6 +21,9 @@
 if (!isset(jeedom.cmd.cache.byHumanName)) {
     jeedom.cmd.cache.byHumanName = Array();
 }
+if (!isset(jeedom.cmd.update)) {
+    jeedom.cmd.update = Array();
+}
 jeedom.cmd.execute = function(_params) {
     var notify = _params.notify || true;
     if (notify) {
@@ -312,6 +315,12 @@ jeedom.cmd.refreshValue = function(_params) {
         var cmd = $('.cmd[data-cmd_id=' + _params[i].cmd_id + ']');
         if (cmd.html() == undefined || cmd.closest('.eqLogic').attr('data-version') == undefined || cmd.hasClass('noRefresh')) {
             continue;
+        }
+        if (!isset(_params[i].global) || !_params[i].global) {
+            if (isset(jeedom.cmd.update) && isset(jeedom.cmd.update[_params[i].cmd_id])) {
+                jeedom.cmd.update[_params[i].cmd_id](_params[i].value);
+                continue;
+            }
         }
         cmds[_params[i].cmd_id] = {cmd : cmd, version : cmd.closest('.eqLogic').attr('data-version')};
         sends[_params[i].cmd_id] = {version : cmd.closest('.eqLogic').attr('data-version')};
