@@ -553,19 +553,23 @@ class object {
 
 	public function setId($id) {
 		$this->id = $id;
+		return $this;
 	}
 
 	public function setName($name) {
 		$name = str_replace(array('&', '#', ']', '[', '%'), '', $name);
 		$this->name = $name;
+		return $this;
 	}
 
 	public function setFather_id($father_id = null) {
 		$this->father_id = ($father_id == '') ? null : $father_id;
+		return $this;
 	}
 
 	public function setIsVisible($isVisible) {
 		$this->isVisible = $isVisible;
+		return $this;
 	}
 
 	public function getPosition($_default = null) {
@@ -577,6 +581,7 @@ class object {
 
 	public function setPosition($position) {
 		$this->position = $position;
+		return $this;
 	}
 
 	public function getConfiguration($_key = '', $_default = '') {
@@ -585,6 +590,7 @@ class object {
 
 	public function setConfiguration($_key, $_value) {
 		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
+		return $this;
 	}
 
 	public function getDisplay($_key = '', $_default = '') {
@@ -593,8 +599,7 @@ class object {
 
 	public function setDisplay($_key, $_value) {
 		$this->display = utils::setJsonAttr($this->display, $_key, $_value);
+		return $this;
 	}
 
 }
-
-?>
