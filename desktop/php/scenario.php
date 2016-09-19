@@ -421,7 +421,7 @@ foreach (object::all() as $object) {
                 </div>
 
                 <div class="alert alert-info sel_otherActionDescription variable" style="display:none;">
-                    {{Création/modification d’une ou de la valeur d’une variable}}
+                    {{Création/modification d’une variable ou de la valeur d’une variable}}
                 </div>
 
                 <div class="alert alert-info sel_otherActionDescription scenario" style="display:none;">
@@ -461,7 +461,7 @@ foreach (object::all() as $object) {
         </div>
 
         <div class="alert alert-info sel_otherActionDescription scenario_return" style="display:none;">
-            {{Retour un texte ou une valeur pour une intéraction par exemple}}
+            {{Retourne un texte ou une valeur pour une interaction par exemple}}
         </div>
 
         <div class="alert alert-info sel_otherActionDescription icon" style="display:none;">
@@ -469,11 +469,11 @@ foreach (object::all() as $object) {
         </div>
 
         <div class="alert alert-info sel_otherActionDescription alert2" style="display:none;">
-            {{Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page jeedom d'ouvert. Vous pouvez en plus choisir 4 niveau d'alertes}}
+            {{Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page jeedom d'ouverte. Vous pouvez en plus choisir 4 niveau d'alertes}}
         </div>
 
         <div class="alert alert-info sel_otherActionDescription popup" style="display:none;">
-            {{Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page jeedom d'ouvert.}}
+            {{Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page jeedom d'ouverte.}}
         </div>
     </div>
     <div class="modal-footer">
