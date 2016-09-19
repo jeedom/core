@@ -187,22 +187,27 @@ class message {
 
 	public function setId($id) {
 		$this->id = $id;
+		return $this;
 	}
 
 	public function setDate($date) {
 		$this->date = $date;
+		return $this;
 	}
 
 	public function setPlugin($plugin) {
 		$this->plugin = $plugin;
+		return $this;
 	}
 
 	public function setMessage($message) {
 		$this->message = $message;
+		return $this;
 	}
 
 	public function setAction($action) {
 		$this->action = $action;
+		return $this;
 	}
 
 	public function getLogicalId() {
@@ -211,8 +216,7 @@ class message {
 
 	public function setLogicalId($logicalId) {
 		$this->logicalId = $logicalId;
+		return $this;
 	}
 
 }
-
-?>
