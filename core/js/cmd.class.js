@@ -817,6 +817,6 @@ jeedom.cmd.displayDuration = function(_date,_el){
          _el.empty().append("0 min");
      }
  }, 60000);
-     el.attr('data-interval',myinterval);
+    _el.attr('data-interval',myinterval);
  }
 };
