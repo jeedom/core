@@ -330,8 +330,12 @@ $('#in_addElementType').on('change',function(){
 
 
 $('#sel_otherAction').on('change',function(){
+  var value = $(this).value();
+  if(value == 'alert'){
+    value = 'alert2';
+  }
   $('.sel_otherActionDescription').hide();
-  $('.sel_otherActionDescription.'+$(this).value()).show();
+  $('.sel_otherActionDescription.'+value).show();
 });
 
 

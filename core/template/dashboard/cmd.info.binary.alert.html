@@ -9,5 +9,14 @@
         }else {
             $('.iconCmd#uid#').append('<i class="icon jeedom-alerte2"></i>');
         }
+        if (isset(jeedom.cmd.update)) {
+            jeedom.cmd.update['#id#'] = function(_value){
+                if (_value == '1') {
+                    $('.iconCmd#uid#').empty().append('<i class="fa fa-check"></i>');
+                }else {
+                    $('.iconCmd#uid#').empty().append('<i class="icon jeedom-alerte2"></i>');
+                }
+            }
+        }   
     </script>
 </div>
