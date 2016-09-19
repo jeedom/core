@@ -469,11 +469,11 @@ foreach (object::all() as $object) {
         </div>
 
         <div class="alert alert-info sel_otherActionDescription alert" style="display:none;">
-            {{Permet d'afficher un petit message d'alerte sur toute les navigateurs qui ont une page jeedom d'ouvert. Vous pouvez en plus choisir 4 niveau d'alertes}}
+            {{Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page jeedom d'ouvert. Vous pouvez en plus choisir 4 niveau d'alertes}}
         </div>
 
         <div class="alert alert-info sel_otherActionDescription popup" style="display:none;">
-            {{Permet d'afficher un popup qui doit absolument être validé sur toute les navigateurs qui ont une page jeedom d'ouvert.}}
+            {{Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page jeedom d'ouvert.}}
         </div>
     </div>
     <div class="modal-footer">
