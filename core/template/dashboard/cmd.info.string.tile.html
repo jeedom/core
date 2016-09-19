@@ -8,7 +8,7 @@
 		if (isset(jeedom.cmd.update)) {
 			jeedom.cmd.update['#id#'] = function(_options){
 				$('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate)
-				$('.cmd[data-cmd_id=#id#] .state').empty().append(_options.value);
+				$('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value);
 			}
 		}
 	</script>

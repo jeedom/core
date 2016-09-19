@@ -1059,7 +1059,17 @@ class cmd {
 			scenario::check($this);
 		}
 		$eqLogic->emptyCacheWidget();
-		$events = array(array('cmd_id' => $this->getId(), 'value' => $value, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate()));
+		$display_value = $value;
+		if ($this->getSubType() == 'binary' && $this->getDisplay('invertBinary') == 1) {
+			$display_value = ($value == 1) ? 0 : 1;
+		}
+		if ($this->getSubType() == 'numeric' && trim($value) === '') {
+			$display_value = 0;
+		}
+		if (method_exists($this, 'formatValueWidget')) {
+			$display_value = $this->formatValueWidget($value);
+		}
+		$events = array(array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate()));
 		$foundInfo = false;
 		if (!$repeat) {
 			$value_cmd = self::byValue($this->getId(), null, true);

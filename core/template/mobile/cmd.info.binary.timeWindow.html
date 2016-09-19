@@ -14,7 +14,7 @@
 		if (isset(jeedom.cmd.update)) {
 			jeedom.cmd.update['#id#'] = function(_options){
 				jeedom.cmd.displayDuration(_options.valueDate,  $('.cmd[data-cmd_id=#id#] .timeCmd'));
-				if (_options.value == '1') {
+				if (_options.display_value == '1') {
 					$('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-fenetre-ferme"></i>');
 				}else {
 					$('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-fenetre-ouverte"></i>');

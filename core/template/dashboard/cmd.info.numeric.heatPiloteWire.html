@@ -17,13 +17,13 @@
         if (isset(jeedom.cmd.update)) {
           jeedom.cmd.update['#id#'] = function(_options){
             $('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate)
-            if (_options.value == '3') {
+            if (_options.display_value == '3') {
                 $('.iconCmd#uid#').empty().append('<i class="icon jeedom-pilote-eco"></i>');
-            }else if (_options.value == '2') {
+            }else if (_options.display_value == '2') {
                 $('.iconCmd#uid#').empty().append('<i class="icon jeedom-pilote-off"></i>');
-            }else if (_options.value == '1') {
+            }else if (_options.display_value == '1') {
                 $('.iconCmd#uid#').empty().append('<i class="icon jeedom-pilote-hg"></i>');
-            }else if (_options.value == '0') {
+            }else if (_options.display_value == '0') {
                 $('.iconCmd#uid#').empty().append('<i class="icon jeedom-pilote-conf"></i>');
             }
         }
