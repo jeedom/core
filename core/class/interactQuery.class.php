@@ -411,6 +411,7 @@ class interactQuery {
 
 	public function setInteractDef_id($interactDef_id) {
 		$this->interactDef_id = $interactDef_id;
+		return $this;
 	}
 
 	public function getId() {
@@ -419,6 +420,7 @@ class interactQuery {
 
 	public function setId($id) {
 		$this->id = $id;
+		return $this;
 	}
 
 	public function getQuery() {
@@ -427,6 +429,7 @@ class interactQuery {
 
 	public function setQuery($query) {
 		$this->query = $query;
+		return $this;
 	}
 
 	public function getActions($_key = '', $_default = '') {
@@ -435,8 +438,7 @@ class interactQuery {
 
 	public function setActions($_key, $_value) {
 		$this->actions = utils::setJsonAttr($this->actions, $_key, $_value);
+		return $this;
 	}
 
 }
-
-?>
