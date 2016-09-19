@@ -173,8 +173,7 @@ class dataStore {
 		} else {
 			$this->value = $value;
 		}
+		return $this;
 	}
 
 }
-
-?>
