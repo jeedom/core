@@ -1042,7 +1042,7 @@ class cmd {
 		}
 		$_loop++;
 		$collectDate = ($this->getCollectDate() != '') ? $this->getCollectDate() : date('Y-m-d H:i:s');
-		$repeat = ($this->getSubtype() != 'binary' && $this->execCmd() == $value);
+		$repeat = ($this->execCmd() == $value);
 		$valueDate = ($repeat) ? $this->getValueDate() : $collectDate;
 		$repeat = ($repeat && $this->getConfiguration('doNotRepeatEvent', 0) == 1);
 		$this->setCollectDate($collectDate);
