@@ -144,22 +144,27 @@ class eqReal {
 
     public function setId($id) {
         $this->id = $id;
+        return $this;
     }
 
     public function setLogicalId($logicalId) {
         $this->logicalId = $logicalId;
+        return $this;
     }
 
     public function setName($name) {
         $this->name = $name;
+        return $this;
     }
 
     public function setType($type) {
         $this->type = $type;
+        return $this;
     }
 
     public function setCat($cat) {
         $this->cat = $cat;
+        return $this;
     }
 
     public function getConfiguration($_key = '', $_default = '') {
@@ -168,8 +173,7 @@ class eqReal {
 
     public function setConfiguration($_key, $_value) {
         $this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
+        return $this;
     }
 
 }
-
-?>
