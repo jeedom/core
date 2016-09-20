@@ -782,10 +782,12 @@ where prev_value <> value' . $_condition . '';
 
 	public function setTableName($_tableName) {
 		$this->_tableName = $_tableName;
+		return $this;
 	}
 
 	public function setCmd_id($cmd_id) {
 		$this->cmd_id = $cmd_id;
+		return $this;
 	}
 
 	public function setValue($value) {
@@ -798,12 +800,12 @@ where prev_value <> value' . $_condition . '';
 		} else {
 			$this->value = str_replace(',', '.', $value);
 		}
+		return $this;
 	}
 
 	public function setDatetime($datetime) {
 		$this->datetime = $datetime;
+		return $this;
 	}
 
 }
-
-?>
