@@ -3,7 +3,7 @@
 	<script>
 		if (isset(jeedom.cmd.update)) {
 			jeedom.cmd.update['#id#'] = function(_options){
-				$('.cmd[data-cmd_id=#id#] .state').empty().append(_option.display_value +' #unite#');
+				$('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
 			}
 		}
 	</script>
