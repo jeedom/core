@@ -13,17 +13,10 @@
             $(".cmd[data-cmd_id=#id#] .slider").off('slideStop').on('slideStop', function (ev) {
                 jeedom.cmd.execute({id: '#id#', value: {slider: ev.value}});
             });
-            if (parseInt(_options.display_value) > 0) {
-               $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-lumiere-on"></i>');
-               $('.cmd[data-cmd_id=#id#] .iconCmd').attr('data-state', 'on');
-           }else {
-            $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-lumiere-off"></i>');
-            $('.cmd[data-cmd_id=#id#] .iconCmd').attr('data-state', 'off');
         }
-    }
-    jeedom.cmd.update['#id#']({display_value:'#state#'});
-    $(".cmd[data-cmd_uid=#uid#] .slider").off('slideStop').on('slideStop', function (ev) {
-        jeedom.cmd.execute({id: '#id#', value: {slider: ev.value}});
-    });
-</script>
+        jeedom.cmd.update['#id#']({display_value:'#state#'});
+        $(".cmd[data-cmd_uid=#uid#] .slider").off('slideStop').on('slideStop', function (ev) {
+            jeedom.cmd.execute({id: '#id#', value: {slider: ev.value}});
+        });
+    </script>
 </span>

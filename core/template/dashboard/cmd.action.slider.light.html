@@ -15,9 +15,9 @@
             jeedom.cmd.execute({id: '#id#', value: {slider: ev.value}});
         });
         if (parseInt(_options.display_value) > 0) {
-           $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-lumiere-on"></i>');
-           $('.cmd[data-cmd_id=#id#] .iconCmd').attr('data-state', 'on');
-       }else {
+         $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-lumiere-on"></i>');
+         $('.cmd[data-cmd_id=#id#] .iconCmd').attr('data-state', 'on');
+     }else {
         $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-lumiere-off"></i>');
         $('.cmd[data-cmd_id=#id#] .iconCmd').attr('data-state', 'off');
     }
