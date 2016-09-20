@@ -511,6 +511,7 @@ class interactDef {
 
 	public function setId($id) {
 		$this->id = $id;
+		return $this;
 	}
 
 	public function getQuery() {
@@ -519,6 +520,7 @@ class interactDef {
 
 	public function setQuery($query) {
 		$this->query = $query;
+		return $this;
 	}
 
 	public function getReply() {
@@ -527,6 +529,7 @@ class interactDef {
 
 	public function setReply($reply) {
 		$this->reply = $reply;
+		return $this;
 	}
 
 	public function getPerson() {
@@ -535,6 +538,7 @@ class interactDef {
 
 	public function setPerson($person) {
 		$this->person = $person;
+		return $this;
 	}
 
 	public function getOptions($_key = '', $_default = '') {
@@ -543,6 +547,7 @@ class interactDef {
 
 	public function setOptions($_key, $_value) {
 		$this->options = utils::setJsonAttr($this->options, $_key, $_value);
+		return $this;
 	}
 
 	public function getFiltres($_key = '', $_default = '') {
@@ -551,6 +556,7 @@ class interactDef {
 
 	public function setFiltres($_key, $_value) {
 		$this->filtres = utils::setJsonAttr($this->filtres, $_key, $_value);
+		return $this;
 	}
 
 	public function getPosition() {
@@ -559,6 +565,7 @@ class interactDef {
 
 	public function setPosition($position) {
 		$this->position = $position;
+		return $this;
 	}
 
 	public function getEnable() {
@@ -567,6 +574,7 @@ class interactDef {
 
 	public function setEnable($enable) {
 		$this->enable = $enable;
+		return $this;
 	}
 
 	public function getName() {
@@ -575,6 +583,7 @@ class interactDef {
 
 	public function setName($name) {
 		$this->name = $name;
+		return $this;
 	}
 
 	public function getGroup() {
@@ -583,6 +592,7 @@ class interactDef {
 
 	public function setGroup($group) {
 		$this->group = $group;
+		return $this;
 	}
 
 	public function getActions($_key = '', $_default = '') {
@@ -591,8 +601,7 @@ class interactDef {
 
 	public function setActions($_key, $_value) {
 		$this->actions = utils::setJsonAttr($this->actions, $_key, $_value);
+		return $this;
 	}
 
 }
-
-?>
