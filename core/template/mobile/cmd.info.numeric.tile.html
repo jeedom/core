@@ -4,10 +4,8 @@
 		<span style="font-size: 2em;" class="state">#state#</span>#unite#
 	</center>
 	<script>
-		if (isset(jeedom.cmd.update)) {
-			jeedom.cmd.update['#id#'] = function(_options){
-				$('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value);
-			}
+		jeedom.cmd.update['#id#'] = function(_options){
+			$('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value);
 		}
 	</script>
 </div>

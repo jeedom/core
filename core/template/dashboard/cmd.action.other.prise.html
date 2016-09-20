@@ -4,23 +4,6 @@
         <span style="font-size: 3em;font-weight: bold;margin-top: 5px;" class="action iconCmd#uid#"></span>
     </center>
     <script>
-        $('.cmd[data-cmd_uid=#uid#] .action').off().on('click', function () {
-            jeedom.cmd.execute({id: '#id#'});
-        }); 
-        if ('#state#' == '1' || '#state#' == 1 || '#state#' == '99' || '#state#' == 99 || '#state#' == 'on') {
-            if (jeedom.cmd.normalizeName('#name#') == 'on') {
-                $('.cmd[data-cmd_uid=#uid#]').hide();
-            }else{
-             $('.iconCmd#uid#').append('<i class="icon jeedom-prise"></i>');
-         }
-     } else {
-        if (jeedom.cmd.normalizeName('#name#') == 'off') {
-            $('.cmd[data-cmd_uid=#uid#]').hide();
-        }else{
-            $('.iconCmd#uid#').append('<i class="fa fa-times"></i>');
-        }
-    }
-    if (isset(jeedom.cmd.update)) {
         jeedom.cmd.update['#id#'] = function(_options){
             if (_options.display_value == '1' || _options.display_value == 1 || _options.display_value == '99' || _options.display_value == 99 || _options.display_value == 'on') {
                 if (jeedom.cmd.normalizeName('#name#') == 'on') {
@@ -38,6 +21,9 @@
                 }
             }
         }
-    }
-</script>
+        jeedom.cmd.update['#id#']({display_value:'#state#'});
+        $('.cmd[data-cmd_uid=#uid#] .action').off().on('click', function () {
+            jeedom.cmd.execute({id: '#id#'});
+        }); 
+    </script>
 </div>

@@ -8,22 +8,19 @@
 
   </center>
   <script>
-    $('.cmd[data-cmd_uid=#uid#] .bt_plus').on('click', function () {
-      $('.cmd[data-cmd_uid=#uid#] .value').val((parseFloat($('.cmd[data-cmd_uid=#uid#] .value').val()) + 0.5)+'#unite#');
-      $('.cmd[data-cmd_uid=#uid#] .value').trigger('change');
-    });
-    $('.cmd[data-cmd_uid=#uid#] .bt_minus').on('click', function () {
-      $('.cmd[data-cmd_uid=#uid#] .value').val((parseFloat($('.cmd[data-cmd_uid=#uid#] .value').val()) - 0.5)+'#unite#');
-      $('.cmd[data-cmd_uid=#uid#] .value').trigger('change');
-    });
-    $('.cmd[data-cmd_uid=#uid#] .value').on('change', function () {
-      jeedom.cmd.execute({id: '#id#', value: {slider: $('.cmd[data-cmd_uid=#uid#] .value').val().replace("#unite#", "")}});
-    });
-
-    if (isset(jeedom.cmd.update)) {
-      jeedom.cmd.update['#id#'] = function(_options){
-        $('.cmd[data-cmd_id=#id#] .value').val(_options.display_value +' #unite#');
-      }
-    }
-  </script>
+   jeedom.cmd.update['#id#'] = function(_options){
+    $('.cmd[data-cmd_id=#id#] .value').val(_options.display_value +' #unite#');
+  }
+  $('.cmd[data-cmd_uid=#uid#] .bt_plus').on('click', function () {
+    $('.cmd[data-cmd_uid=#uid#] .value').val((parseFloat($('.cmd[data-cmd_uid=#uid#] .value').val()) + 0.5)+'#unite#');
+    $('.cmd[data-cmd_uid=#uid#] .value').trigger('change');
+  });
+  $('.cmd[data-cmd_uid=#uid#] .bt_minus').on('click', function () {
+    $('.cmd[data-cmd_uid=#uid#] .value').val((parseFloat($('.cmd[data-cmd_uid=#uid#] .value').val()) - 0.5)+'#unite#');
+    $('.cmd[data-cmd_uid=#uid#] .value').trigger('change');
+  });
+  $('.cmd[data-cmd_uid=#uid#] .value').on('change', function () {
+    jeedom.cmd.execute({id: '#id#', value: {slider: $('.cmd[data-cmd_uid=#uid#] .value').val().replace("#unite#", "")}});
+  });
+</script>
 </div>

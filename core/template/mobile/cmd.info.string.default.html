@@ -1,10 +1,8 @@
 <div class="cmd" data-type="info" data-subtype="string" data-cmd_id="#id#" data-cmd_uid="#uid#">
-    <span style="font-size : 12px;#hideCmdName#">#name_display#</span> <strong class="state">#state#</strong>
-    <script>
-		if (isset(jeedom.cmd.update)) {
-			jeedom.cmd.update['#id#'] = function(_options){
-				$('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value);
-			}
+	<span style="font-size : 12px;#hideCmdName#">#name_display#</span> <strong class="state">#state#</strong>
+	<script>
+		jeedom.cmd.update['#id#'] = function(_options){
+			$('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value);
 		}
 	</script>
 </div>

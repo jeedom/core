@@ -7,15 +7,6 @@
         </div>
     </center>
     <script>
-        if ('#state#' > '1' || '#state#' > 0) {
-            $('#iconCmd#uid#').append('<i class="icon jeedom-lumiere-on"></i>');
-            $('#iconCmd#uid#').attr('data-state', 'on');
-        }
-        if ('#state#' == '0' || '#state#' == 0) {
-            $('#iconCmd#uid#').append('<i class="icon jeedom-lumiere-off"></i>');
-            $('#iconCmd#uid#').attr('data-state', 'off');
-        }
-
         $('#iconCmd#uid#').on('click', function() {
             if ($(this).attr('data-state') == 'on') {
                 var value = ('#minValue#' == '') ? 0 : parseInt('#minValue#');
@@ -25,32 +16,28 @@
                 jeedom.cmd.execute({id: '#id#', value: {slider: value}});
             }
         });
-
         $("body").undelegate(".cmd[data-cmd_uid=#uid#] .slider");
         $("body").delegate(".cmd[data-cmd_uid=#uid#] .slider",'slidestop', function (event, ui) {
             jeedom.cmd.execute({id: '#id#', value: {slider: $(".cmd[data-cmd_uid=#uid#] .slider input").value()}});
         });
-
-
-         if (isset(jeedom.cmd.update)) {
-          jeedom.cmd.update['#id#'] = function(_options){
+        jeedom.cmd.update['#id#'] = function(_options){
             $(".cmd[data-cmd_id=#id#] .slider input").value(_options.display_value);
             if (parseInt(_options.display_value) > 0) {
-               $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-lumiere-on"></i>');
-               $('.cmd[data-cmd_id=#id#] .iconCmd').attr('data-state', 'on');
-           }else {
+             $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-lumiere-on"></i>');
+             $('.cmd[data-cmd_id=#id#] .iconCmd').attr('data-state', 'on');
+         }else {
             $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-lumiere-off"></i>');
             $('.cmd[data-cmd_id=#id#] .iconCmd').attr('data-state', 'off');
         }
     }
-}
-    </script>
-    <style>
-        .cmd[data-cmd_uid="#uid#"] .ui-slider-handle{
-            background-color:#f1c40f !important;
-        }
-        .cmd[data-cmd_uid="#uid#"] .ui-slider-bg{
-            background-color:#f1c40f !important;
-        }
-    </style>
+    jeedom.cmd.update['#id#']({display_value:'#state#'});
+</script>
+<style>
+    .cmd[data-cmd_uid="#uid#"] .ui-slider-handle{
+        background-color:#f1c40f !important;
+    }
+    .cmd[data-cmd_uid="#uid#"] .ui-slider-bg{
+        background-color:#f1c40f !important;
+    }
+</style>
 </div>

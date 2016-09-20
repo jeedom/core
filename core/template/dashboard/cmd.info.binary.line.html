@@ -1,20 +1,14 @@
-<div class="tooltips cmd cmd-widget #history#" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" title="Valeur du #valueDate#, collectée le #collectDate#" style="display: block;">
+<div class="tooltips cmd cmd-widget #history#" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" style="display: block;">
 	<center><span style="font-size : 12px;#hideCmdName#" class="cmdName">#name_display#</span> <span class="iconCmd#uid# iconCmd"></span></center>
 	<script>
-        if ('#state#' == '1') {
-            $('.iconCmd#uid#').append('<i class="fa fa-check"></i>');
-        }else{
-            $('.iconCmd#uid#').append('<i class="fa fa-times"></i>');
-        }
-        if (isset(jeedom.cmd.update)) {
-            jeedom.cmd.update['#id#'] = function(_options){
-                $('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate)
-                if (_options.display_value == '1') {
-                   $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="fa fa-check"></i>');
-               }else {
-                $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="fa fa-times"></i>');
-            }
+        jeedom.cmd.update['#id#'] = function(_options){
+            $('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate)
+            if (_options.display_value == '1') {
+             $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="fa fa-check"></i>');
+         }else {
+            $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="fa fa-times"></i>');
         }
     }
+    jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#'});
 </script>
 </div>

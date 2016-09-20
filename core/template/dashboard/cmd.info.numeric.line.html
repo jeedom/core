@@ -1,12 +1,11 @@
-<div class="tooltips cmd cmd-widget #history#" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" title="Valeur du #valueDate#, collectée le #collectDate#" style="display: block;">
+<div class="tooltips cmd cmd-widget #history#" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" style="display: block;">
 	<center><span style="font-size : 12px;#hideCmdName#" class="cmdName">#name_display#</span> <strong class="state">#state#</strong>#unite#</center>
 	<script>
-		if (isset(jeedom.cmd.update)) {
-			jeedom.cmd.update['#id#'] = function(_options){
-				$('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate)
-				$('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value);
-			}
-		}	
+		jeedom.cmd.update['#id#'] = function(_options){
+			$('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate)
+			$('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value);
+		}
+		jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#'});
 	</script>
 </div>
 

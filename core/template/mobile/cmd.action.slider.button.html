@@ -16,17 +16,14 @@
         $('.cmd[data-cmd_uid=#uid#] .value').on('change', function() {
             jeedom.cmd.execute({id: '#id#', value: {slider: $('.cmd[data-cmd_uid=#uid#] .value').val()}});
         });
-
-        if (isset(jeedom.cmd.update)) {
-          jeedom.cmd.update['#id#'] = function(_options){
+        jeedom.cmd.update['#id#'] = function(_options){
             $('.cmd[data-cmd_id=#id#] .value').val(_options.display_value +' #unite#');
         }
-    }
-</script>
-<style>
-    .controlgroup-textinput{
-        padding-top:.15em;
-        padding-bottom:.12em;
-    }
-</style>
+    </script>
+    <style>
+        .controlgroup-textinput{
+            padding-top:.15em;
+            padding-bottom:.12em;
+        }
+    </style>
 </div>

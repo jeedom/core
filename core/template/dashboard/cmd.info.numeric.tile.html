@@ -1,4 +1,4 @@
-<div style="min-width:90px;min-height:100px;margin-right: 5px;margin-left: 5px;padding:0px !important;" class="cmd #history# container-fluid tooltips cmd cmd-widget" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" title="Valeur du #valueDate#, collectée le #collectDate#">
+<div style="min-width:90px;min-height:100px;margin-right: 5px;margin-left: 5px;padding:0px !important;" class="cmd #history# container-fluid tooltips cmd cmd-widget" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#">
 	<center>
 		<div style="font-weight: bold;font-size : 12px;#hideCmdName#">#name_display#</div>
 		<span style="font-weight: bold;" class="pull-right">#unite#</span>
@@ -10,14 +10,11 @@
 	</center>
 
 	<script>
-		if('#displayHistory#' == 'display : none;'){
-			if (isset(jeedom.cmd.update)) {
-				jeedom.cmd.update['#id#'] = function(_options){
-					$('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate)
-					$('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value);
-				}
-			}
+		jeedom.cmd.update['#id#'] = function(_options){
+			$('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate)
+			$('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value);
 		}
+		jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#'});
 	</script>
 </div>
 

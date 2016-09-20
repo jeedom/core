@@ -4,19 +4,13 @@
 		<span style="font-size: 3em;margin-top: 5px;" class="iconCmd#uid# iconCmd"></span>
 	</center>
 	<script>
-		if ('#state#' == '1') {
-			$('.iconCmd#uid#').append('<i class="icon jeedom-volet-ferme"></i>');
-		} else {
-			$('.iconCmd#uid#').append('<i class="icon jeedom-volet-ouvert"></i>');
-		}
-		if (isset(jeedom.cmd.update)) {
-			jeedom.cmd.update['#id#'] = function(_options){
-				if (_options.display_value == '1') {
-					$('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-volet-ferme"></i>');
-				}else {
-					$('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-volet-ouvert"></i>');
-				}
+		jeedom.cmd.update['#id#'] = function(_options){
+			if (_options.display_value == '1') {
+				$('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-volet-ferme"></i>');
+			}else {
+				$('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-volet-ouvert"></i>');
 			}
 		}
+		jeedom.cmd.update['#id#']({display_value:'#state#'});
 	</script>
 </div>

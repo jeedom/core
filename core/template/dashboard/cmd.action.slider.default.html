@@ -3,19 +3,8 @@
     <div class="slider" style="margin : 5px 10px 8px 10px;width: 80px;" value="#state#"></div>
 
     <script>
-        $(".cmd[data-cmd_uid=#uid#] .slider").bootstrapSlider({
-            min: ('#minValue#' == '') ? 0 : parseInt('#minValue#'),
-            max: ('#maxValue#' == '') ? 100 : parseInt('#maxValue#'),
-            value: ('#state#' == '') ? 0 : parseInt('#state#')
-        });
         $(".cmd[data-cmd_uid=#uid#] .slider.slider-horizontal").css('z-index',1);
-        $(".cmd[data-cmd_uid=#uid#] .slider").off('slideStop').on('slideStop', function (ev) {
-            jeedom.cmd.execute({id: '#id#', value: {slider: ev.value}});
-        });
-
-
-        if (isset(jeedom.cmd.update)) {
-          jeedom.cmd.update['#id#'] = function(_options){
+        jeedom.cmd.update['#id#'] = function(_options){
             $(".cmd[data-cmd_id=#id#] .slider").bootstrapSlider({
                 min: ('#minValue#' == '') ? 0 : parseInt('#minValue#'),
                 max: ('#maxValue#' == '') ? 100 : parseInt('#maxValue#'),
@@ -25,13 +14,16 @@
                 jeedom.cmd.execute({id: '#id#', value: {slider: ev.value}});
             });
             if (parseInt(_options.display_value) > 0) {
-             $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-lumiere-on"></i>');
-             $('.cmd[data-cmd_id=#id#] .iconCmd').attr('data-state', 'on');
-         }else {
+               $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-lumiere-on"></i>');
+               $('.cmd[data-cmd_id=#id#] .iconCmd').attr('data-state', 'on');
+           }else {
             $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-lumiere-off"></i>');
             $('.cmd[data-cmd_id=#id#] .iconCmd').attr('data-state', 'off');
         }
     }
-}
+    jeedom.cmd.update['#id#']({display_value:'#state#'});
+    $(".cmd[data-cmd_uid=#uid#] .slider").off('slideStop').on('slideStop', function (ev) {
+        jeedom.cmd.execute({id: '#id#', value: {slider: ev.value}});
+    });
 </script>
 </span>
