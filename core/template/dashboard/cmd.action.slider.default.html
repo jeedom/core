@@ -1,7 +1,6 @@
 <span class="cmd  cmd-widget" data-type="action" data-subtype="slider" data-cmd_id="#id#" data-cmd_uid="#uid#">
     <div class="cmdName" style="font-weight: bold;font-size : 12px;#hideCmdName#">#name_display#</div>
     <div class="slider" style="margin : 5px 10px 8px 10px;width: 80px;" value="#state#"></div>
-
     <script>
         $(".cmd[data-cmd_uid=#uid#] .slider.slider-horizontal").css('z-index',1);
         jeedom.cmd.update['#id#'] = function(_options){
