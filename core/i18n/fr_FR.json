@@ -162,7 +162,7 @@
         "Log du démon": "Log du démon"
     },
     "core\/com\/http.com.php": {
-        "Echec de la requête http : ": "Echec de la requête http : "
+        "Echec de la requête http : ": "Echec de la requête HTTP : "
     },
     "desktop\/php\/scenarioAssist.php": {
         "Interface simple": "Interface simple",
@@ -275,8 +275,8 @@
         "Retourner": "Retourner",
         "Aller au design": "Aller au design",
         "Ajouter un log": "Ajouter un log",
-        "Creer un message": "Creer un message",
-        "Activer\/Desactiver Masquer\/Afficher un équipement": "Activer\/Desactiver Masquer\/Afficher un équipement",
+        "Creer un message": "Créer un message",
+        "Activer\/Desactiver Masquer\/Afficher un équipement": "Activer\/Désactiver Masquer\/Afficher un équipement",
         "Faire une demande": "Faire une demande",
         "Pause de x seconde(s)": "Pause de x seconde(s)",
         "Attend jusqu’à ce que la condition soit valide (maximum 2h)": "Attend jusqu’à ce que la condition soit valide (maximum 2h)",
@@ -294,8 +294,8 @@
         "Act. scénarios": "Act. scénarios",
         "Activer scénarios": "Activer scénarios",
         "Vue d'ensemble": "Vue d'ensemble",
-        "Autoriser plusieurs lancement en parallèle": "Autoriser plusieurs lancement en parallèle",
-        "Le scénario pourra tourné plusieurs fois en même temps": "Le scénario pourra tourné plusieurs fois en même temps",
+        "Autoriser plusieurs lancement en parallèle": "Autoriser plusieurs lancements en parallèle",
+        "Le scénario pourra tourné plusieurs fois en même temps": "Le scénario pourra tourner plusieurs fois en même temps",
         "Exécuter": "Exécuter"
     },
     "desktop\/modal\/cmd.human.insert.php": {
@@ -394,9 +394,9 @@
         "Afficher": "Afficher",
         "Masquer": "Masquer",
         "Inactif": "Inactif",
-        "Nombre d'objet :": "Nombre d'objet :",
-        "Nombre d'équipement :": "Nombre d'équipement :",
-        "Nombre de commande :": "Nombre de commande :",
+        "Nombre d'objet :": "Nombre d'objets :",
+        "Nombre d'équipement :": "Nombre d'équipements :",
+        "Nombre de commande :": "Nombre de commandes :",
         "Supprimer": "Supprimer",
         "Visible": "Visible",
         "Invisible": "Invisible",
@@ -441,7 +441,7 @@
         "Equipement": "Equipement",
         "Commandes": "Commandes",
         "Scénario": "Scénario",
-        "Calcul et arrondit": "Calcul et arrondit",
+        "Calcul et arrondit": "Calcul et arrondi",
         "Formule de calcul (#value# pour la valeur)": "Formule de calcul (#value# pour la valeur)",
         "Arrondi (chiffre après la virgule)": "Arrondi (chiffre après la virgule)",
         "Type générique": "Type générique",
@@ -763,13 +763,13 @@
         "Sérrure Bouton Ouvrir": "Sérrure Bouton Ouvrir",
         "Sérrure Bouton Fermer": "Sérrure Bouton Fermer",
         "Thermostat Etat (info)": "Thermostat Etat (info)",
-        "Thermostat Temerature ambiante (info)": "Thermostat Temerature ambiante (info)",
+        "Thermostat Temerature ambiante (info)": "Thermostat Température ambiante (info)",
         "Thermostat consigne (action)": "Thermostat consigne (action)",
         "Thermostat consigne (info)": "Thermostat consigne (info)",
         "Thermostat Mode (action)": "Thermostat Mode (action)",
         "Thermostat Mode (info)": "Thermostat Mode (info)",
-        "Thermostat Verouillage (action)": "Thermostat Verouillage (action)",
-        "Thermostat Verouillage (info)": "Thermostat Verouillage (info)",
+        "Thermostat Verouillage (action)": "Thermostat Verrouillage (action)",
+        "Thermostat Verouillage (info)": "Thermostat Verrouillage (info)",
         "Information Puissance Electrique": "Information Puissance Electrique",
         "Information Consommation Electrique": "Information Consommation Electrique",
         "Information Température": "Information Température",
@@ -790,7 +790,7 @@
         "Information Pluie (accumulation)": "Information Pluie (accumulation)",
         "Information Vent (vitesse)": "Information Vent (vitesse)",
         "Information Vent (direction)": "Information Vent (direction)",
-        "Information Generique": "Information Generique",
+        "Information Generique": "Information Générique",
         "ne pas tenir compte de cette commande": "ne pas tenir compte de cette commande",
         "Lumiere Bouton ON (action)": "Lumiere Bouton ON (action)",
         "Lumiere Bouton OFF (action)": "Lumiere Bouton OFF (action)",
@@ -834,7 +834,7 @@
         "Pluie (accumulation) (info)": "Pluie (accumulation) (info)",
         "Vent (vitesse) (info)": "Vent (vitesse) (info)",
         "Vent (direction) (info)": "Vent (direction) (info)",
-        "Generique (info)": "Generique (info)",
+        "Generique (info)": "Générique (info)",
         "Lumière Etat (info)": "Lumière Etat (info)",
         "Lumière Bouton On (action)": "Lumière Bouton On (action)",
         "Lumière Bouton Off (action)": "Lumière Bouton Off (action)",
@@ -1765,7 +1765,7 @@
         "Transparent": "Transparent",
         "Couleur du texte": "Couleur du texte",
         "Bordures": "Bordures",
-        "Arrondit des bordures (en px)": "Arrondit des bordures (en px)",
+        "Arrondit des bordures (en px)": "Arrondi des bordures (en px)",
         "Configuration de la commande": "Configuration de la commande",
         "Autre options": "Autre options"
     },
@@ -1970,7 +1970,7 @@
         "OK\n": "OK\n",
         "Décompression du zip...": "Décompression du zip...",
         "Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets)": "Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets)",
-        "Dépot github non trouvé : ": "Dépot github non trouvé : "
+        "Dépot github non trouvé : ": "Dépôt github non trouvé : "
     },
     "core\/ajax\/plugin.ajax.php": {
         "Aucune methode correspondante à : ": "Aucune methode correspondante à : "
