@@ -24,7 +24,6 @@ CREATE TABLE IF NOT EXISTS `object` (
   `position` INT NULL,
   `configuration` TEXT NULL,
   `display` TEXT NULL,
-  `image` MEDIUMTEXT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `name_UNIQUE` (`name` ASC),
   INDEX `fk_object_object1_idx1` (`father_id` ASC),
