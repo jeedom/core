@@ -105,8 +105,7 @@ class jsonrpc {
 
 	public function setApplicationName($applicationName) {
 		$this->applicationName = $applicationName;
+		return $this;
 	}
 
 }
-
-?>
