@@ -16,13 +16,16 @@
  */
 
 
-jeedom.scenario = function () {
-};
+ jeedom.scenario = function () {
+ };
 
-jeedom.scenario.cache = Array();
+ jeedom.scenario.cache = Array();
 
-if (!isset(jeedom.scenario.cache.html)) {
+ if (!isset(jeedom.scenario.cache.html)) {
     jeedom.scenario.cache.html = Array();
+}
+if (!isset(jeedom.scenario.update)) {
+    jeedom.scenario.update = Array();
 }
 
 jeedom.scenario.all = function (_params) {
@@ -223,35 +226,43 @@ jeedom.scenario.applyTemplate = function (_params) {
 }
 
 jeedom.scenario.refreshValue = function (_params) {
-    if ($('.scenario[data-scenario_id=' + _params.id + ']').html() != undefined) {
-        var version = $('.scenario[data-scenario_id=' + _params.id + ']').attr('data-version');
-        var paramsRequired = ['id'];
-        var paramsSpecifics = {
-            global: false,
-            success: function (result) {
-                $('.scenario[data-scenario_id=' + params.id + ']').empty().html($(result).children());
-                if ($.mobile) {
-                    $('.scenario[data-scenario_id=' + params.id + ']').trigger("create");
-                    setTileSize('.scenario');
-                }
-            }
-        };
-        try {
-            jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
-        } catch (e) {
-            (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    if ($('.scenario[data-scenario_id=' + _params.scenario_id + ']').html() == undefined) {
+        return;
+    }
+    if (!isset(_params.global) || !_params.global) {
+        if (isset(jeedom.scenario.update) && isset(jeedom.scenario.update[_params.scenario_id])) {
+            jeedom.scenario.update[_params.scenario_id](_params);
             return;
         }
-        var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-        var paramsAJAX = jeedom.private.getParamsAJAX(params);
-        paramsAJAX.url = 'core/ajax/scenario.ajax.php';
-        paramsAJAX.data = {
-            action: 'toHtml',
-            id: _params.id,
-            version: _params.version || version
-        };
-        $.ajax(paramsAJAX);
     }
+    var version = $('.scenario[data-scenario_id=' + _params.scenario_id + ']').attr('data-version');
+    var paramsRequired = ['id'];
+    var paramsSpecifics = {
+        global: false,
+        success: function (result) {
+            $('.scenario[data-scenario_id=' + params.scenario_id + ']').empty().html($(result).children());
+            if ($.mobile) {
+                $('.scenario[data-scenario_id=' + params.scenario_id + ']').trigger("create");
+                setTileSize('.scenario');
+            }
+        }
+    };
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/scenario.ajax.php';
+    paramsAJAX.data = {
+        action: 'toHtml',
+        id: _params.scenario_id,
+        version: _params.version || version
+    };
+    $.ajax(paramsAJAX);
+    
 };
 
 

@@ -105,7 +105,7 @@ jeedom.init = function () {
     });
 
     $('body').on('scenario::update', function (_event,_options) {
-        jeedom.scenario.refreshValue({id: _options.scenario_id });
+        jeedom.scenario.refreshValue(_options);
     });
     $('body').on('eqLogic::update', function (_event,_options) {
         jeedom.eqLogic.refreshValue(_options);

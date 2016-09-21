@@ -352,35 +352,35 @@ class scenario {
 		if ($_object_name == __('Aucun', __FILE__)) {
 			if ($_group_name == __('Aucun', __FILE__)) {
 				$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
-			FROM scenario s
-			WHERE s.name=:scenario_name
-			AND (`group` IS NULL OR `group`=""  OR `group`="Aucun" OR `group`="None")
-			AND s.object_id IS NULL';
+				FROM scenario s
+				WHERE s.name=:scenario_name
+				AND (`group` IS NULL OR `group`=""  OR `group`="Aucun" OR `group`="None")
+				AND s.object_id IS NULL';
 			} else {
 				$values['group_name'] = $_group_name;
 				$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
-			FROM scenario s
-			WHERE s.name=:scenario_name
-			AND s.object_id IS NULL
-			AND `group`=:group_name';
+				FROM scenario s
+				WHERE s.name=:scenario_name
+				AND s.object_id IS NULL
+				AND `group`=:group_name';
 			}
 		} else {
 			$values['object_name'] = $_object_name;
 			if ($_group_name == __('Aucun', __FILE__)) {
 				$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
-			FROM scenario s
-			INNER JOIN object ob ON s.object_id=ob.id
-			WHERE s.name=:scenario_name
-			AND ob.name=:object_name
-			AND (`group` IS NULL OR `group`=""  OR `group`="Aucun" OR `group`="None")';
+				FROM scenario s
+				INNER JOIN object ob ON s.object_id=ob.id
+				WHERE s.name=:scenario_name
+				AND ob.name=:object_name
+				AND (`group` IS NULL OR `group`=""  OR `group`="Aucun" OR `group`="None")';
 			} else {
 				$values['group_name'] = $_group_name;
 				$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
-			FROM scenario s
-			INNER JOIN object ob ON s.object_id=ob.id
-			WHERE s.name=:scenario_name
-			AND ob.name=:object_name
-			AND `group`=:group_name';
+				FROM scenario s
+				INNER JOIN object ob ON s.object_id=ob.id
+				WHERE s.name=:scenario_name
+				AND ob.name=:object_name
+				AND `group`=:group_name';
 			}
 		}
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
@@ -512,7 +512,7 @@ class scenario {
 		return ls($path, '*.json', false, array('files', 'quiet'));
 	}
 
-/*     * *************************MARKET**************************************** */
+	/*     * *************************MARKET**************************************** */
 
 	public static function shareOnMarket(&$market) {
 		$moduleFile = dirname(__FILE__) . '/../config/scenario/' . $market->getLogicalId() . '.json';
@@ -553,7 +553,7 @@ class scenario {
 		return array();
 	}
 
-/*     * *********************Méthodes d'instance************************* */
+	/*     * *********************Méthodes d'instance************************* */
 
 	public function launch($_trigger = '', $_message = '', $_forceSyncMode = false) {
 		if (config::byKey('enableScenario') != 1 || $this->getIsActive() != 1) {
@@ -736,7 +736,7 @@ class scenario {
 		DB::save($this);
 		if ($this->_changeState) {
 			$this->emptyCacheWidget();
-			event::add('scenario::update', array('scenario_id' => $this->getId(), 'state' => $this->getState(), 'lastLaunch' => $this->getLastLaunch()));
+			event::add('scenario::update', array('scenario_id' => $this->getId(), 'isActive' => $this->getIsActive(), 'state' => $this->getState(), 'lastLaunch' => $this->getLastLaunch()));
 		}
 	}
 
@@ -1149,7 +1149,7 @@ class scenario {
 		return $return;
 	}
 
-/*     * **********************Getteur Setteur*************************** */
+	/*     * **********************Getteur Setteur*************************** */
 
 	public function getId() {
 		return $this->id;
