@@ -143,16 +143,17 @@ class object {
 		$toRefreshCmd = array();
 		$global = array();
 		foreach ($objects as $object) {
-			$events[] = array('object_id' => $object->getId());
 			$summaries = $object->getConfiguration('summary');
 			if (!is_array($summaries)) {
 				continue;
 			}
+			$event = array('object_id' => $object->getId(), 'keys' => array());
 			foreach ($summaries as $key => $summary) {
 				foreach ($summary as $cmd_info) {
 					preg_match_all("/#([0-9]*)#/", $cmd_info['cmd'], $matches);
 					foreach ($matches[1] as $cmd_id) {
 						if ($cmd_id == $_cmd_id) {
+							$event['keys'][$key] = array('value' => $object->getSummary($key));
 							$toRefreshCmd[] = array('key' => $key, 'object' => $object);
 							if ($object->getConfiguration('summary::global::' . $key, 0) == 1) {
 								$global[$key] = 1;
@@ -161,10 +162,7 @@ class object {
 					}
 				}
 			}
-		}
-
-		if (count($events) > 0) {
-			event::adds('object::summary::update', $events);
+			$events[] = $event;
 		}
 		if (count($toRefreshCmd) > 0) {
 			foreach ($toRefreshCmd as $value) {
@@ -189,8 +187,11 @@ class object {
 			}
 		}
 		if (count($global) > 0) {
+			$event = array('object_id' => 'global', 'keys' => array());
 			foreach ($global as $key => $value) {
 				try {
+					$result = object::getGlobalSummary($key);
+					$event['keys'][$key] = array('value' => $result);
 					$virtual = eqLogic::byLogicalId('summaryglobal', 'virtual');
 					if (!is_object($virtual)) {
 						continue;
@@ -199,11 +200,15 @@ class object {
 					if (!is_object($cmd)) {
 						continue;
 					}
-					$cmd->event(object::getGlobalSummary($key));
+					$cmd->event($result);
 				} catch (Exception $e) {
 
 				}
 			}
+			$events[] = $event;
+		}
+		if (count($events) > 0) {
+			event::adds('object::summary::update', $events);
 		}
 	}
 
@@ -256,11 +261,12 @@ class object {
 			if (count($value) == 0) {
 				continue;
 			}
+			$style = '';
 			$result = round(jeedom::calculStat($def[$key]['calcul'], $value), 1);
 			if ($def[$key]['allowDisplayZero'] == false && $result == 0) {
-				continue;
+				$style = 'display:none;';
 			}
-			$return .= '<span style="margin-right:' . $margin . 'px;">' . $def[$key]['icon'] . ' <span class="objectSummary' . $key . '">' . $result . '</span> ' . $def[$key]['unit'] . '</span> ';
+			$return .= '<span class="objectSummaryParent" style="margin-right:' . $margin . 'px;' . $style . '" data-displayZeroValue="' . $def[$key]['allowDisplayZero'] . '">' . $def[$key]['icon'] . ' <span class="objectSummary' . $key . '">' . $result . '</span> ' . $def[$key]['unit'] . '</span> ';
 		}
 		return trim($return) . '</span>';
 	}
@@ -518,10 +524,11 @@ class object {
 			$result = $this->getSummary($key);
 			if ($result !== null) {
 				$result = round($result, 1);
+				$style = '';
 				if ($value['allowDisplayZero'] == false && $result == 0) {
-					continue;
+					$style = 'display:none;';
 				}
-				$return .= '<span style="margin-right:5px;">' . $value['icon'] . ' <span class="objectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . '</span>';
+				$return .= '<span style="margin-right:5px;' . $style . '" class="objectSummaryParent" data-displayZeroValue="' . $value['allowDisplayZero'] . '">' . $value['icon'] . ' <span class="objectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . '</span>';
 			}
 		}
 		return trim($return) . '</span>';

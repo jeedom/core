@@ -143,9 +143,9 @@ function initApplication(_reinit) {
                     $("head").append(data);
                     $.include(include, function () {
                         deviceInfo = getDeviceType();
-                        jeedom.object.summaryUpdate([])
+                        jeedom.object.summaryUpdate([{object_id:'global'}])
                         if(getUrlVars('p') != '' && getUrlVars('ajax') != 1){
-                           switch (getUrlVars('p')) {
+                         switch (getUrlVars('p')) {
                             case 'view' :
                             page('view', 'Vue',getUrlVars('view_id'));
                             break;
@@ -184,12 +184,12 @@ function initApplication(_reinit) {
 function page(_page, _title, _option, _plugin,_dialog) {
     $.showLoading();
     try {
-     $('#bottompanel').panel('close');
-     $('.ui-popup').popup('close');
- } catch (e) {
+       $('#bottompanel').panel('close');
+       $('.ui-popup').popup('close');
+   } catch (e) {
 
- }
- if (isset(_title) && (!isset(_dialog) || !_dialog)) {
+   }
+   if (isset(_title) && (!isset(_dialog) || !_dialog)) {
     $('#pageTitle').empty().append(_title);
 }
 if (_page == 'connection') {
@@ -215,9 +215,9 @@ jeedom.user.isConnect({
         }
         if(isset(_dialog) && _dialog){
             $('#popupDialog .content').load(page, function () {
-             CURRENT_PAGE = _page;
-             var functionName = '';
-             if (init(_plugin) != '') {
+               CURRENT_PAGE = _page;
+               var functionName = '';
+               if (init(_plugin) != '') {
                 functionName = 'init' + _plugin.charAt(0).toUpperCase() + _plugin.substring(1).toLowerCase() + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
             } else {
                 functionName = 'init' + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
@@ -243,10 +243,10 @@ jeedom.user.isConnect({
         });
         }else{
             $('#page').hide().load(page, function () {
-             CURRENT_PAGE = _page;
-             $('#page').trigger('create');
-             var functionName = '';
-             if (init(_plugin) != '') {
+               CURRENT_PAGE = _page;
+               $('#page').trigger('create');
+               var functionName = '';
+               if (init(_plugin) != '') {
                 functionName = 'init' + _plugin.charAt(0).toUpperCase() + _plugin.substring(1).toLowerCase() + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
             } else {
                 functionName = 'init' + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
