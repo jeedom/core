@@ -101,7 +101,6 @@ include_file('core', 'core', 'css');
 include_file('3rdparty', 'jquery.toastr/jquery.toastr.min', 'css');
 include_file('3rdparty', 'jquery.ui/jquery-ui-bootstrap/jquery-ui', 'css');
 include_file('3rdparty', 'jquery.utils/jquery.utils', 'css');
-include_file('3rdparty', 'bootstrap.slider/css/slider', 'css');
 include_file('3rdparty', 'jquery/jquery.min', 'js');
 ?>
 	<script>
@@ -128,7 +127,6 @@ include_file('3rdparty', 'highstock/modules/exporting', 'js');
 include_file('desktop', 'utils', 'js');
 include_file('3rdparty', 'jquery.toastr/jquery.toastr.min', 'js');
 include_file('3rdparty', 'jquery.at.caret/jquery.at.caret.min', 'js');
-include_file('3rdparty', 'bootstrap.slider/js/bootstrap-slider', 'js');
 include_file('3rdparty', 'jwerty/jwerty', 'js');
 include_file('3rdparty', 'jquery.packery/jquery.packery', 'js');
 include_file('3rdparty', 'jquery.lazyload/jquery.lazyload', 'js');
