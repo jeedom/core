@@ -21,20 +21,20 @@ if (!isConnect()) {
   <div class="col-lg-2">
     <h3>{{Traducteur(s)}}</h3>
     <lu>
-      <li>Marie Corbière (US)</li>
+      <li>Marie (US)</li>
     </lu>
   </div>
   <div class="col-lg-2">
     <h3>{{Correcteur(s)}}</h3>
     <lu>
-      <li>Marie Corbière</li>
+      <li>Marie</li>
     </lu>
   </div>
   <div class="col-lg-2">
     <h3>{{Designer}}</h3>
     <lu>
       <li><a class="cursor" href="http://jeedom.com/" style="color:blue;" target="_blank">Loïc</a></li>
-      <li>Marie Corbière</li>
+      <li>Marie</li>
       <li><a class="cursor" href="http://ma-maison-domotique.blogspot.com/" style="color:blue;" target="_blank">Mathieu (alias Algeroth)</a></li>
     </lu>
   </div>
@@ -42,7 +42,7 @@ if (!isConnect()) {
     <h3>{{Beta-testeur(s)}}</h3>
     <lu>
       <li><a class="cursor" href="http://jeedom.com/" style="color:blue;" target="_blank">Loïc</a></li>
-      <li>Marie Corbière</li>
+      <li>Marie</li>
       <li><a class="cursor" href="http://ma-maison-domotique.blogspot.com/" style="color:blue;" target="_blank">Mathieu (alias Algeroth)</a></li>
       <li>Gerandhal</li>
       <li>Stouille</li>
