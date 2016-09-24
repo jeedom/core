@@ -169,7 +169,7 @@ step_7_jeedom_customization() {
 
 	rm /etc/apache2/conf-available/other-vhosts-access-log.conf > /dev/null 2>&1
 	rm /etc/apache2/conf-enabled/other-vhosts-access-log.conf > /dev/null 2>&1
-	for file in ` find / -name php.ini -type f`;do
+	for file in $(find / -name php.ini -type f); do
 		echo "Update php file ${file}"
 		sed -i 's/max_execution_time = 30/max_execution_time = 300/g' ${file} > /dev/null 2>&1
 	    sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 1G/g' ${file} > /dev/null 2>&1
