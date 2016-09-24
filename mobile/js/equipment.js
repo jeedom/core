@@ -91,9 +91,9 @@ function initEquipment(_object_id) {
         deviceInfo = getDeviceType();
         setTileSize('.eqLogic');
         if(_object_id == 'all'){
-            $('.div_displayEquipement').packery({gutter : 4});
+            $('.div_displayEquipement > .objectHtml').packery({gutter : 4});
         }else{
-           $('#div_displayEquipement').packery({gutter : 4}); 
+           $('#div_displayEquipement > .objectHtml').packery({gutter : 4}); 
        }
    });
 }
