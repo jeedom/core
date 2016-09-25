@@ -278,14 +278,16 @@ step_11_jeedom_check() {
 }
 
 distrib_1_spe(){
+	if [ -f post-install.sh ]; then
+		rm post-install.sh
+	fi
 	if [ -f /etc/armbian.txt ]; then
 		wget https://raw.githubusercontent.com/jeedom/core/${version}/install/OS_specific/armbian/post-install.sh
-		chmod +x post-install.sh
-		./post-install.sh
-		rm post-install.sh
 	fi
 	if [ -f /usr/bin/raspi-config ]; then
 		wget https://raw.githubusercontent.com/jeedom/core/${version}/install/OS_specific/rpi/post-install.sh
+	fi
+	if [ -f post-install.sh ]; then
 		chmod +x post-install.sh
 		./post-install.sh
 		rm post-install.sh
