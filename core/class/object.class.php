@@ -153,7 +153,7 @@ class object {
 					preg_match_all("/#([0-9]*)#/", $cmd_info['cmd'], $matches);
 					foreach ($matches[1] as $cmd_id) {
 						if ($cmd_id == $_cmd_id) {
-							$event['keys'][$key] = array('value' => $object->getSummary($key));
+							$event['keys'][$key] = array('value' => round($object->getSummary($key), 1));
 							$toRefreshCmd[] = array('key' => $key, 'object' => $object);
 							if ($object->getConfiguration('summary::global::' . $key, 0) == 1) {
 								$global[$key] = 1;
@@ -191,7 +191,7 @@ class object {
 			foreach ($global as $key => $value) {
 				try {
 					$result = object::getGlobalSummary($key);
-					$event['keys'][$key] = array('value' => $result);
+					$event['keys'][$key] = array('value' => round($result, 1));
 					$virtual = eqLogic::byLogicalId('summaryglobal', 'virtual');
 					if (!is_object($virtual)) {
 						continue;
