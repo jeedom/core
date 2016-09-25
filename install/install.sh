@@ -170,6 +170,34 @@ step_7_jeedom_customization() {
 	rm /etc/apache2/conf-available/other-vhosts-access-log.conf > /dev/null 2>&1
 	rm /etc/apache2/conf-enabled/other-vhosts-access-log.conf > /dev/null 2>&1
 
+	for file in $(find / -iname php.ini -type f); do
+		echo "Update php file ${file}"
+		sed -i 's/max_execution_time = 30/max_execution_time = 300/g' ${file} > /dev/null 2>&1
+	    sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 1G/g' ${file} > /dev/null 2>&1
+	    sed -i 's/post_max_size = 8M/post_max_size = 1G/g' ${file} > /dev/null 2>&1
+	    sed -i 's/expose_php = On/expose_php = Off/g' ${file} > /dev/null 2>&1
+	    sed -i 's/;opcache.enable=0/opcache.enable=1/g' ${file} > /dev/null 2>&1
+	    sed -i 's/opcache.enable=0/opcache.enable=1/g' ${file} > /dev/null 2>&1
+	    sed -i 's/;opcache.enable_cli=0/opcache.enable_cli=1/g' ${file} > /dev/null 2>&1
+	    sed -i 's/opcache.enable_cli=0/opcache.enable_cli=1/g' ${file} > /dev/null 2>&1
+	done
+
+	for folder in php5 php7; do
+		for subfolder in apache2 cli; do
+	    	if [ -f /etc/${folder}/${subfolder}/php.ini ]; then
+	    		echo "Update php file /etc/${folder}/${subfolder}/php.ini"
+				sed -i 's/max_execution_time = 30/max_execution_time = 300/g' /etc/${folder}/${subfolder}/php.ini > /dev/null 2>&1
+			    sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 1G/g' /etc/${folder}/${subfolder}/php.ini > /dev/null 2>&1
+			    sed -i 's/post_max_size = 8M/post_max_size = 1G/g' /etc/${folder}/${subfolder}/php.ini > /dev/null 2>&1
+			    sed -i 's/expose_php = On/expose_php = Off/g' /etc/${folder}/${subfolder}/php.ini > /dev/null 2>&1
+			    sed -i 's/;opcache.enable=0/opcache.enable=1/g' /etc/${folder}/${subfolder}/php.ini > /dev/null 2>&1
+			    sed -i 's/opcache.enable=0/opcache.enable=1/g' /etc/${folder}/${subfolder}/php.ini > /dev/null 2>&1
+			    sed -i 's/;opcache.enable_cli=0/opcache.enable_cli=1/g' /etc/${folder}/${subfolder}/php.ini > /dev/null 2>&1
+			    sed -i 's/opcache.enable_cli=0/opcache.enable_cli=1/g' /etc/${folder}/${subfolder}/php.ini > /dev/null 2>&1
+	    	fi
+		done 
+	done
+
 	a2dismod status
 	systemctl restart apache2 > /dev/null 2>&1
 	if [ $? -ne 0 ]; then
@@ -238,34 +266,7 @@ step_10_jeedom_post() {
 	echo "${VERT}step_10_jeedom_post success${NORMAL}"
 }
 
-
-step_11_jeedom_php_config() {
-	echo "---------------------------------------------------------------------"
-	echo "${JAUNE}Start step_11_jeedom_php_config${NORMAL}"
-	for file in $(find / -iname php.ini -type f); do
-		echo "Update php file ${file}"
-		sed -i 's/max_execution_time = 30/max_execution_time = 300/g' ${file} > /dev/null 2>&1
-	    sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 1G/g' ${file} > /dev/null 2>&1
-	    sed -i 's/post_max_size = 8M/post_max_size = 1G/g' ${file} > /dev/null 2>&1
-	    sed -i 's/expose_php = On/expose_php = Off/g' ${file} > /dev/null 2>&1
-	    sed -i 's/;opcache.enable=0/opcache.enable=1/g' ${file} > /dev/null 2>&1
-	    sed -i 's/opcache.enable=0/opcache.enable=1/g' ${file} > /dev/null 2>&1
-	    sed -i 's/;opcache.enable_cli=0/opcache.enable_cli=1/g' ${file} > /dev/null 2>&1
-	    sed -i 's/opcache.enable_cli=0/opcache.enable_cli=1/g' ${file} > /dev/null 2>&1
-	done
-
-	systemctl restart apache2 > /dev/null 2>&1
-	if [ $? -ne 0 ]; then
-		service apache2 restart
-		if [ $? -ne 0 ]; then
-    		echo "${ROUGE}Could not restart apache - abort${NORMAL}"
-    		exit 1
-  		fi
-  	fi
-  	echo "${VERT}step_11_jeedom_php_config success${NORMAL}"
-}
-
-step_12_jeedom_check() {
+step_11_jeedom_check() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_12_jeedom_check${NORMAL}"
 	php ${WEBSERVER_HOME}/sick.php
@@ -356,8 +357,7 @@ case ${STEP} in
 	step_8_jeedom_configuration
 	step_9_jeedom_installation
 	step_10_jeedom_post
-	step_11_jeedom_php_config
-	step_12_jeedom_check
+	step_11_jeedom_check
 	distrib_1_spe
 	echo "/!\ IMPORTANT /!\ Root MySql password is ${MYSQL_ROOT_PASSWD}"
 	;;
@@ -381,9 +381,7 @@ case ${STEP} in
 	;;
    10) step_10_jeedom_post
 	;;
-   11) step_11_jeedom_php_config
-	;;
-   12) step_12_jeedom_check
+   11) step_11_jeedom_check
 	;;
    *) echo "${ROUGE}Sorry, I can not get a ${STEP} step for you!${NORMAL}"
 	;;
