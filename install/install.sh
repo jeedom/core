@@ -207,6 +207,43 @@ step_7_jeedom_customization() {
     		exit 1
   		fi
   	fi
+
+  	systemctl stop mysql > /dev/null 2>&1
+	if [ $? -ne 0 ]; then
+		service mysql stop
+		if [ $? -ne 0 ]; then
+    		echo "${ROUGE}Could not stop mysql - abort${NORMAL}"
+    		exit 1
+  		fi
+  	fi
+
+    rm /var/lib/mysql/ib_logfile*
+
+    if [ -d /etc/mysql/conf.d ]; then
+    	touch /etc/mysql/conf.d/jeedom_my.cnf
+    	echo "[mysqld]" >> /etc/mysql/conf.d/jeedom_my.cnf
+    	echo "key_buffer_size = 16M" >> /etc/mysql/conf.d/jeedom_my.cnf
+		echo "thread_cache_size = 16" >> /etc/mysql/conf.d/jeedom_my.cnf
+		echo "tmp_table_size = 48M" >> /etc/mysql/conf.d/jeedom_my.cnf
+		echo "max_heap_table_size = 48M" >> /etc/mysql/conf.d/jeedom_my.cnf
+		echo "query_cache_type =1" >> /etc/mysql/conf.d/jeedom_my.cnf
+		echo "query_cache_size = 16M" >> /etc/mysql/conf.d/jeedom_my.cnf
+		echo "query_cache_limit = 2M" >> /etc/mysql/conf.d/jeedom_my.cnf
+		echo "query_cache_min_res_unit=3K" >> /etc/mysql/conf.d/jeedom_my.cnf
+		echo "innodb_flush_method = O_DIRECT" >> /etc/mysql/conf.d/jeedom_my.cnf
+		echo "innodb_flush_log_at_trx_commit = 2" >> /etc/mysql/conf.d/jeedom_my.cnf
+		echo "innodb_log_file_size = 32M" >> /etc/mysql/conf.d/jeedom_my.cnf
+    fi
+
+  	systemctl start mysql > /dev/null 2>&1
+	if [ $? -ne 0 ]; then
+		service mysql start
+		if [ $? -ne 0 ]; then
+    		echo "${ROUGE}Could not start mysql - abort${NORMAL}"
+    		exit 1
+  		fi
+  	fi
+
 	echo "${VERT}step_7_jeedom_customization success${NORMAL}"
 }
 
