@@ -169,6 +169,17 @@ step_7_jeedom_customization() {
 
 	rm /etc/apache2/conf-available/other-vhosts-access-log.conf > /dev/null 2>&1
 	rm /etc/apache2/conf-enabled/other-vhosts-access-log.conf > /dev/null 2>&1
+
+	a2dismod status
+	systemctl restart apache2 > /dev/null 2>&1
+	if [ $? -ne 0 ]; then
+		service apache2 restart
+		if [ $? -ne 0 ]; then
+    		echo "${ROUGE}Could not restart apache - abort${NORMAL}"
+    		exit 1
+  		fi
+  	fi
+
 	for file in $(find / -iname php.ini -type f); do
 		echo "Update php file ${file}"
 		sed -i 's/max_execution_time = 30/max_execution_time = 300/g' ${file} > /dev/null 2>&1
@@ -180,7 +191,7 @@ step_7_jeedom_customization() {
 	    sed -i 's/;opcache.enable_cli=0/opcache.enable_cli=1/g' ${file} > /dev/null 2>&1
 	    sed -i 's/opcache.enable_cli=0/opcache.enable_cli=1/g' ${file} > /dev/null 2>&1
 	done
-	a2dismod status
+
 	systemctl restart apache2 > /dev/null 2>&1
 	if [ $? -ne 0 ]; then
 		service apache2 restart
@@ -393,4 +404,3 @@ fi
 rm -rf ${WEBSERVER_HOME}/index.html > /dev/null 2>&1
 
 exit 0
-
