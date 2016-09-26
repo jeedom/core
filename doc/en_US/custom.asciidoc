@@ -1,4 +1,4 @@
-= Personnalisation avancée
+= Advanced customization
 
 Réservé aux experts, cette page permet d'ajouter des script CSS ou JS en plus dans Jeedom, qui sont exécuté sur chaque page
 
@@ -6,7 +6,7 @@ Accessible par Administration -> Personnalisation avancée :
 
 image::../images/custom.png[]
 
-Une fois dessus vous obtenez : 
+Once on it you will get : 
 
 image::../images/custom2.png[]
 

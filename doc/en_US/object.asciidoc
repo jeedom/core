@@ -1,6 +1,6 @@
-= Objet
+= Object
 
-Le sous-menu Objets, permet de définir l'arborescence de sa domotique. Elle se fait en créant ce qui s'appelle des objets. Accessible à partir de là : 
+The Items submenu sets the tree of its home automation. It is done by creating what is called objects. Accessible from there : 
 
 image::../images/object1.JPG[]
 
@@ -18,7 +18,7 @@ Une fois votre objet ajouté ou après un clic sur un objet existant, vous obten
 image::../images/object3.JPG[]
 
 
-A partir de la vous avez différentes options : 
+From here you have different options : 
 
 * *Nom de l'objet* : le nom de votre objet
 * *Père* : l'objet père de l'objet courant, cela permet de définir une hiérarchie type le salon est le fils de l'appartement. Un objet ne peut avoir qu'un seul père mais il peut avoir autant de fils qu'il le veut.

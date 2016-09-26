@@ -1,8 +1,8 @@
-= Profils
+= Profiles
 
 La page profils vous permet de configurer certains comportements de Jeedom spécifiques à votre utilisateur : page d'accueil, thèmes de la version desktop, de la version mobile, des graphiques... Elle permet aussi de changer votre mot de passe et de passer en mode expert permettant une configuration plus poussée de Jeedom.
 
-== Menu profils
+== Profiles menu
 
 Vous retourver en haut à droite sur chaque page de Jeedom le menu profils : 
 
@@ -19,7 +19,7 @@ A partir de ce menu vous avez accès à la page profils, à l'activation ou non 
 [IMPORTANT]
 En DIY les actions de redémarrage et d'arrêt ne marche que si vous avez bien fait les actions visudo, voir link:https://jeedom.com/doc/documentation/installation/fr_FR/doc-installation.html#_etape_4_définition_des_droits_root_à_jeedom[ici]
 
-== Page profils
+== Profil pages
 
 La page profils ressemble à ca : 
 
@@ -44,9 +44,9 @@ image::../images/profils5.png[]
 
 Vous permet de définir certains comportements de l'interface :
 
-* *Général*
+* *General*
 ** *Ne pas masquer les menus automatiquement* : indique à Jeedom de ne pas masquer le panneau de gauche, lorsqu'il existe, pour rappel ce panneau est disponible sur la plupart des pages des plugins, ainsi que la page des scénarios, des interactions, des objets....
-* *Page par défaut*
+* *Page by default*
 ** *Desktop* : page par défaut à afficher lors de la connexion en desktop
 ** *Mobile* : page par défaut à afficher lors de la connexion en mobile
 * *Objet par défaut sur le dashboard* : objet à afficher par défaut lors de l'arrivée sur le dashboard
@@ -56,7 +56,7 @@ Vous permet de définir certains comportements de l'interface :
 * *Dashboard*
 ** *Déplier le panneau des scénarios* : permet de rendre visible par défaut le menu des scénarios (à droite) sur le dashboard
 ** *Déplier le panneau des objets* : permet de rendre visible par défaut le menu des objets (à gauche) sur le dashboard
-* *Vue*
+* *View*
 ** *Déplier le panneau des vues* : permet de rendre visible par défaut le menu des vues (à gauche) sur les vues
 
 === Notifications

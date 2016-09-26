@@ -1,11 +1,11 @@
 = FAQ
 
-Does Jeedom need a subscription?::
+Does Jeedom requires a subscription?::
 No, Jeedom does not require a subscription to use. Only an online backup service is optional surcharge.
 
 '''
 Does Jeedom require external servers to operate?::
-No, Jeedom does not need any cloud infrastructure. Everything run locally and you do not need our servers for your installation to work. Only services such as Market or online backup require the use of our servers.
+Non, Jeedom n'utilise pas d'infrastructure type "Cloud". Tout se fait en local et vous n'avez pas besoin de nos serveurs pour que votre installation fonctionne. Seuls les services comme le Market, la sauvegarde online ou le DNS Jeedom nécessitent l'utilisation de nos serveurs.
 
 '''
 Can the order of the controls of a device be changed?::
@@ -16,7 +16,7 @@ Can the style of the widgets be edited? ::
 Yes it is possible either via the widget plugin, or using the page Main -> Command setup -> Advanced display
 
 '''
-Can the same device be present many times on the same design ?::
+Peut-on mettre plusieurs fois le même équipement sur un design ?::
 No this is not possible, but you can duplicate it using the virtual Plugin.
 
 '''
@@ -26,10 +26,6 @@ On a historical chart, just click on the point in question to edit it. If you le
 '''
 How to avoid to log in each time?::
 At login just check the box "Register this computer".
-
-'''
-I'm asked to update Jeedom even though no update seems to be available, even after check for update.::
-This is normal, during the development phase of the futur beta, version numbers are not necessarily incremented after each update.
 
 '''
 How long takes a backup?::
@@ -46,48 +42,15 @@ When you first connect to Jeedom (and beyond if you don't change it) the user na
 At the first connection, it is strongly recommended to change these identifiers for better security.
 
 '''
-How to use an external database?::
-Just edit the file /usr/share/nginx/www/jeedom/core/config/common.config.php.
-In this file is the configuration of the database :
-
-[source,php]
-    $CONFIG = array(
-        //MySQL parameters
-        'db' => array(
-            'host' => 'localhost',
-            'port' => 3306,
-            'dbname' => 'jeedom',
-            'username' => 'jeedom',
-            'password' => '************',
-        )
-    );
-
-Simply change the settings according to the IDs of the Jeedom database on the MySQL server.
-Perform these modifications:
-
-[source,bash]
-sudo php /usr/share/nginx/www/jeedom/install/install.php
-
-Voila! 
-
-'''
-Where to buy the Mini+?::
+Where to buy the Mini +?::
 Jeedom Mini is marketed at our partner http://www.domadoo.fr/.
-
-'''
-What is the release date of Jeedom Center?::
-The Jeedom Center is expected later this year.
-
-'''
-What Is the price of the Jeedom Center?::
-There is no price announced yet.
 
 '''
 Impossible to access Jeedom from to the outside after purchasing a box::
 By default Jeedom is running at the root of Nginx on a box. You do not have to add /jeedom/ in the access address. The exact address will be: your_public_ip:your_port/
 
 '''
-Can Jeedom be accessed over HTTPS?::
+Peut-on mettre Jeedom en https ?::
 Yes, 3 possibilities:
 * You have a pack power or more, simply use the Jeedom DNS.
 * You already have a DNS name and you know how to produce a certificate, in this case it is a standard certificate installation.
@@ -100,11 +63,11 @@ sudo su -
 You can then force HTTPS in the Jeedom configuration.
 
 '''
-I get the message: "You have too many Jeedom systems declared, please reduce the number and ask for a reset of your installation key". What should I do?::
+J'ai le message : "Vous avez un trop grand nombre de systèmes Jeedom déclarés, veuillez en réduire le nombre et demander une réinitialisation de vos clefs d'installation", que faire ?::
 Go on the Market, log in with your account then go to your profiles page and ask for a reset of the installation keys.
 
 '''
-What "event only" and "lifetime cache" means?::
+What is "event only " and "lifetime cache" ? ::
 * Event only: tells Jeedom to never request the value (it is the device / module that provides it). So when receiving a value, it is set as infinite lifetime (until reception of the next one).
 * Lifetime cache: how long a value is valid, if you put 60 seconds for example, when the value get older than 60 sec AND jeedom needs the value (dashboard, scenario ...) then it will ask for the device / module to get an updated value.
 
@@ -119,7 +82,7 @@ chmod -R 775 /usr/share/nginx/www/jeedom
 chown -R www-data:www-data /usr/share/nginx/www/jeedom
 
 '''
-Where are the backups of Jeedom?::
+Where are the Jeedom backups ? ::
 They are in the folder /usr/share/nginx/www/jeedom/backup
 
 '''
@@ -131,3 +94,11 @@ sudo su -
 php /usr/share/nginx/www/jeedom/install/install.php
 chmod -R 775 /usr/share/nginx/www/jeedom
 chown -R www-data:www-data /usr/share/nginx/www/jeedom
+
+'''
+Is the Webapp compatible with Symbian ?::
+The webapp requires a smartphone that supports HTML5 and CSS3 . Therefore is unfortunately not compatible Symbian.
+
+'''
+On what platforms Jeedom works ?::
+Pour que Jeedom fonctionne il faut une plateforme linux avec les droits root ou un système type docker. Il ne fonctionne donc pas sur une plateforme android pure.

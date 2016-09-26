@@ -1,245 +1,269 @@
 = API JSON RPC
 
-Voici une documentation (qui évoluera) sur les méthodes de l'API. Tout d'abord voici les spécifications (JSON RPC 2.0) : http://www.jsonrpc.org/specification
+Aquí esta la documentación sobre los métodos de la API. En primer lugar están las especificaciones (JSON RPC 2.0):
 
-L'accès à l'API se fait par l'url : #URL_JEEDOM#/core/api/jeeApi.php
+A la API se accede a través de la url: #URL_JEEDOM#/core/api/jeeApi.php
+
+== Misceláneos
+
+=== ping
+
+Devuelve pong , permite probar la comunicación con Jeedom
+
+=== versión
+
+Devuelve la versión de Jeedom
+
+=== datetime
+
+Devuelve la fecha y hora de jeedom en microsegundos
+
+== API JSON Event
+
+=== event::changes 
+
+Devuelve la lista de cambios desde la fecha y hora en el parámetro (debe estar en microsegundos). También en la respuesta de la fecha y hora actual de Jeedom (para ser reutilizado para la petición siguiente)
+
+Parámetros:
+
+- int datetime
 
 == API JSON Plugin
 
 === plugin::listPlugin
-Retourne la liste de tous les plugins
+Devuelve una lista de todos los plugins
 
-Paramètres :
+Parámetros:
 
-- int activateOnly = 0 (ne retourne que la liste des plugins activés)
-- int orderByCaterogy = 0 (retourne la liste des plugins triés par catégorie)
+-int activateOnly = 0 (devuelve sólo la lista de plugins activos)
+-int orderByCaterogy = 0 (devuelve la lista de plugins ordenados por categoría)
 
 
 == API JSON Objet
 
 === object::all
-Retourne la liste de tous les objets
+Devuelve una lista de todos los objetos
 
 === object::full
-Retourne la liste de tous les objets, avec pour chaque objet tous ses équipements et pour chaque équipement toutes ses commandes ainsi que les états de celle-ci (pour les commandes de type info)
+Devuelve una lista de todos los objetos, para cada objeto de cada equipo y sus servicios, todos sus comandos, así como los Estados (para comandos de tipo información)
 
 === object::byId
-Retourne l'objet spécifié
+Devuelve el objeto especificado
 
-Paramètres:
+Parámetros:
 
 - int id
 
 === object::fullById
-Retourne un objet, ses équipements et pour chaque équipement toutes ses commandes ainsi que les états de celle-ci (pour les commandes de type info)
+Devuelve un objeto, sus dispositivos y cada dispositivo con todos sus comandos, así como los Estados (para comandos de tipo información)
 
 == API JSON EqLogic
 === eqLogic::all
-Retourne la liste de tous les équipements
+Devuelve una lista de todos los dispositivos
 
 === eqLogic::fullById
-Retourne un équipement et ses commandes ainsi que les états de celle-ci (pour les commandes de type info)
+Devuelve un dispositivo y sus comandos, así como los estados (para comandos de tipo información)
 
 === eqLogic::byId
-Retourne l'équipement spécifié
+Devuelve el dispositivo especificado
 
-Paramètres:
+Parámetros:
 
 - int id
 
 === eqLogic::byType
 
-Retourne tous les équipements appartenant au type (plugin) spécifié
+Devuelve todas las instalaciones pertenecientes al tipo especificado (plugin)
 
-Paramètres:
+Parámetros:
 
 - string type
 
 === eqLogic::byObjectId
-Retourne tous les équipements appartenant à l'objet spécifié
+Devuelve todas las instalaciones pertenecientes a la especificada
 
-Paramètres:
+Parámetros:
 - int object_id
 
 === eqLogic::byTypeAndId
-Renvoi un tableau d'équipement en fonction des paramètres. Le retour sera de la forme array('eqType1' =>array( 'id'=>...,'cmds' => array(....)),'eqType2' =>array( 'id'=>...,'cmds' => array(....))....,id1 => array( 'id'=>...,'cmds' => array(....)),id2 => array( 'id'=>...,'cmds' => array(....))..)
+Devuelve un array de equipos dependiendo de la configuración. El resultado será de la forma array('eqType1' =>array( 'id'=>...,'cmds' => array(....)),'eqType2' =>array( 'id'=>...,'cmds' => array(....))....,id1 => array( 'id'=>...,'cmds' => array(....)),id2 => array( 'id'=>...,'cmds' => array(....))..)
 
-Paramètres:
+Parámetros:
 
-- string[] eqType = tableau des types d'équipement voulu
-- int[] id = tableau des ID d'équipements personnalisé voulu
+-string eqType [] = array de los tipos de dispositivos necesarios
+-int [] id = matriz ID de dispositivos deseados personalizados
 
 === eqLogic::save
-Retourne l'équipement enregistré/créé
+Devuelve el dispositivo guardado/creado
 
-Paramètres:
+Parámetros:
 
-- int id (vide si c'est une création)
-- string eqType_name (type de l'équipement script, virtuel...)
-- string $name
-- string $logicalId = <nowiki>''</nowiki>
+-int id (vacío si es una creación)
+-string eqType_name (tipo guión de dispositivo,  virtual...)
+- string $name
+- string $logicalId = <nowiki>''</nowiki>
 - int $object_id = null
 - int $eqReal_id = null;
 - int $isVisible = 0;
 - int $isEnable = 0;
-- array $configuration;
-- array $specificCapatibilities;
+- array $configuration;
+- array $specificCapatibilities;
 - int $timeout;
-- array $category;
+- array $category;
 
 == API JSON Cmd
 
 === cmd::all
-Retourne la liste de toutes les commandes
+Devuelve la lista de todos los comandos
 
 === cmd::byId
-Retourne la commande spécifiée
+Devuelve el comando especificado
 
-Paramètres:
+Parámetros:
 
 - int id
 
 === cmd::byEqLogicId
-Retourne toutes les commandes appartenant à l'équipement spécifié
+Devuelve todos los comandos que pertenecen al dispositivo especificado
 
-Paramètres:
+Parámetros:
 
 - int eqLogic_id
 
 === cmd::execCmd
-Exécute la commande spécifiée
+Ejecuta el comando especificado
 
-Paramètres:
+Parámetros:
 
 - int id
-- [options] Liste des options de la commandes (dépend du type et du sous-type de la commande)
+-[options] lista de opciones  del comando (dependiendo el tipo y el subtipo del comando)
 
 === cmd::getStatistique
-Retourne les statistiques sur la commande (ne marche que sur les commandes de type info et historisée)
+Devuelve las estadísticas sobre el comando (no funciona en los comapdo tipo información e historico)
 
-Paramètres:
+Parámetros:
 
 - int id
-- string startTime : date de début de calcul des statistiques
-- string endTime : date de fin de calcul des statistiques
+-string startTime: fecha de inicio para el cálculo de las estadística
+- string endTime : fecha de fin del calculo de las estadisticas
 
 === cmd::getTendance
-Retourne la tendance sur la commande (ne marche que sur les commandes de type info et historisée)
+Devuelve la tendencia sobre el comando (no funciona con los comandos  tipo información e historicos)
 
-Paramètres:
+Parámetros:
 
 - int id
-- string startTime : date de début de calcul de la tendance
-- string endTime : date de fin de calcul de la tendance
+- string startTime : fecha de inicio de cálculo de la tendencia
+- string endTime : fecha final del cálculo de la tendencia
 
 === cmd::getHistory
-Retourne l'historique de la commande (ne marche que sur les commandes de type info et historisée)
+Devuelve el historico del comando (no funciona con comandos tipo información e historicos)
 
-Paramètres:
+Parámetros:
 
 - int id
-- string startTime : date de début de l'historique
-- string endTime : date de fin de l'historique
+- string startTime : fecha de inicio del historico
+- string endTime : date de fin del historico
 
 
 == API JSON Scenario
 
 === scenario::all
-Retourne la liste de tous les scénarios
+Devuelve una lista de todos los escenarios
 
 === scenario::byId
-Retourne le scénario spécifié
+Devuelve el escenario especificado
 
-Paramètres:
+Parámetros:
 
 - int id
 
 === scenario::changeState
-Change l'état du scénario spécifié.
+Cambia el estado del escenario especificado.
 
-Paramètres:
+Parámetros:
 
 - int id
-- string state : [run,stop,enable,disable]
+- string state : [run,stop,enable,disable]
 
 == API JSON datastore (variable)
 
 === datastore::byTypeLinkIdKey
-Recupere la valeur d'une variable stocké dans le datastore
+Recupera el valor de una variable que se almacena en el almacén de datos
 
-Paramètres:
+Parámetros:
 
-- string type : type de la valeur stockée (pour les scénarios c'est scenario)
-- id linkId : -1 pour le global (valeur pour les scénarios par defaut, ou l'id du scénario)
-- string key : nom de la valeur
+- string type : tipo de valor almacenado (para los escenarios es scenario)
+- id link: -1 para el total (valor para escenarios por defecto, o le id del escenario)
+- string key : nombre de valor
 
 === datastore::save
-Enregistre la valeur d'une variable dans le datastore
+Guarda el valor de una variable en el almacén de datos
 
-Paramètres:
+Parámetros:
 
-- string type : type de la valeur stockée (pour les scénarios c'est scenario)
-- id linkId : -1 pour le global (valeur pour les scénarios par defaut, ou l'id du scénario)
-- string key : nom de la valeur
-- mixte value : valeur à enregistrer
+- string type : tipo de valor almacenado (para los escenarios es scenario)
+- id link: -1 para el total (valor para escenarios por defecto, o le id del escenario)
+- string key : nombre de valor
+- mixte value : valor a guardar
 
 == API JSON Message
 
 === message::all
-Retourne la liste de tous les messages
+Devuelve una lista de todos los mensajes
 
 === message::removeAll
-Supprime tous les messages
+Elimina todos los mensajes
 
 == API JSON Interaction
 
 === interact::tryToReply
-Essaye de faire correspondre une demande avec une interaction, exécute l'action et répond en conséquence
+Trata de coincidir con una aplicación con interacción, realiza la acción y responde en consecuencia
 
-Paramètres:
+Parámetros:
 
-- query (phrase de la demande)
+- query  (frase de petición)
 
 == API JSON System
 
-=== jeeNetwork::halt
-Permet d'arreter Jeedom
+=== jeedom::halt
+Permite detener Jeedom
 
-=== jeeNetwork::reboot
-Permet de redemarrer Jeedom
+=== jeedom::reboot
+Permite reiniciar Jeedom
 
 
 == API JSON plugin
 
 === plugin::install
-Installation/Mise à jour d'un plugin donné
+Instalación/actualización de un plugin determinado
 
-Paramètres:
+Parámetros:
 
-- string plugin_id : nom du plugin (nom logique)
+- string plugin_id : nombre del plugin (nombre lógico)
 
 === plugin::remove
-Suppression d'un plugin donné
+Eliminación de un plugin determinado
 
-Paramètres:
+Parámetros:
 
-- string plugin_id : nom du plugin (nom logique)
+- string plugin_id : nombre del plugin (nombre lógico)
 
 == API JSON update
 
 === update::all
-Retour la liste de tous les composants installé, leur versions et les informations associées
+Devuelve una lista de todos los componentes instalados, sus versiones e información asociada
 
 === update::checkUpdate
-Permet de mettre de faire vérifier les mises à jour
+Permite comprobar las actualizaciones
 
 === update::update
-Permet de mettre à jour Jeedom et tous les plugins
+Permite actualizar Jeedom y todos los plugins
 
-== API JSON Exemples
-Voici un exemple d'utilisation de l'API. Pour l'exemple si dessous j'utilise https://github.com/jeedom/core/blob/stable/core/class/jsonrpcClient.class.php[cette class php] qui permet de simplifier l'utilisation de l'api.
+== API JSON Ejemplos
+Aquí  un ejemplo del uso de la API. Para el ejemplo de abajo use https://github.com/jeedom/core/blob/stable/core/class/jsonrpcClient.class.php [esta clase php] que permite simplificar el uso de la api.
 
-Récupération de la liste des objets :
+Recuperar la lista de objetos:
 
 
 [source,php]
@@ -250,7 +274,7 @@ if($jsonrpc->sendRequest('object::all', array())){
     echo $jsonrpc->getError();
 }
  
-Exécution d'une commande (avec comme option un titre et un message)
+Ejecutar un comando (con una opción de un título y mensaje)
 
 
 [source,php]
@@ -261,4 +285,4 @@ if($jsonrpc->sendRequest('cmd::execCmd', array('id' => #cmd_id#, 'options' => ar
     echo $jsonrpc->getError();
 }
  
-L'API est bien sur utilisable avec d'autre langage (simplement un post sur une page) 
+La API es también utilizable en otro idioma (solo un post en una página) 

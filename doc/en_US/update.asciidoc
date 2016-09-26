@@ -1,6 +1,6 @@
-= Mise à jour
+= Updates
 
-== Centre de mise à jour
+== Update center
 
 Le centre de mise à jour centralise l'ensemble des fonctions de Jeedom, et permet de mettre à jour toutes les fonctionnalités de Jeedom, incluant le logiciel de base, les plugins, les widgets, etc...
 
@@ -8,7 +8,7 @@ Il est accessible par le menu Administration -> Centre de mise à jour :
 
 image::../images/update.JPG[]
 
-Une fois dessus vous obtenez : 
+Once on it you will get : 
 
 image::../images/update2.png[]
 
@@ -17,7 +17,7 @@ Il présente sous forme de tableau l'ensemble des éléments installés dans Jee
 En mode Expert, on affiche tous les élements, si non, on affiche uniquement les éléments à mettre à jour.
 
 
-Il y a au total jusqu'à 5 boutons qui peuvent être disponibles par élément :
+There are in total 5 buttons that can be available by member :
 
 * *Voir* : permet de consulter la page du market correspondant à l'élément selectionné
 * *Partager* : permet lorsque vous avez créé un élément de le partager sur le market
@@ -25,12 +25,12 @@ Il y a au total jusqu'à 5 boutons qui peuvent être disponibles par élément :
 * *Mettre à jour* : permet de mettre à jour l'élément
 
 [TIP]
-A noter que "Core" Jeedom signifie la mise à jour du logiciel de base Jeedom.
+Note that "Core" means Jeedom update Jeedom core software.
 
 
 En haut du tableau se trouvent les boutons de commande. Jeedom se connecte périodiquement avec le market pour voir si des mises à jour sont disponibles (la date de dernière vérificaiton est indiquée tout en haut du tableau à gauche). Si vous voulez réaliser une vérification manuelle, vous pouvez appuyer sur le bouton "Vérifier les mises à jour".
 
-Le bouton "Mettre à jour" permet de mettre à jour l'ensemble de Jeedom.
+The "Update" button to update all Jeedom.
 
 image::../images/update3.png[]
 
@@ -40,7 +40,7 @@ Sur la branche beta le numéro de version n'est pas toujours mise à jour après
 [IMPORTANT]
 Avant une mise à jour, Jeedom va par défaut faire une sauvegarde. En cas de souci lors de l'application d'une mise à jour, Jeedom va automatiquement restaurer la sauvegarde faite juste avant. Ce principe n'est bien sûr valable que pour les mises à jour de Jeedom et non des plugins.
 
-En cliquant sur la flêche à côté du bouton "Mettre à jour" on a un certain nombre d'options de mise à jour.
+By clicking on the arrow next to the "Update" button were a number of update options.
 
 image::../images/update5.png[]
 
@@ -55,7 +55,7 @@ image::../images/update6.png[]
 
 Ici vous choisissez d'abord la mise à jour à réappliquer, si c'est en mode forcé ou non (vivement conseillé dans ce cas là) et s'il faut aussi appliquer les mises à jour suivantes (vivement conseillé aussi).
 
-Enfin à droite de la page, la partie "Informations" permet de suivre l'état de la mise à jour.
+Finally to the right of the page, the "Information" can track the status of the update.
 Ces informations sont à communiquer à l'équipe en cas de problème.
 
 image::../images/update4.png[]
@@ -66,7 +66,7 @@ Il est possible dans Administration -> Configuration puis dans la partie "Market
 
 image::../images/administration10.png[]
 
-Ici on retrouve : 
+Here we have : 
 
 * *Adresse* : adresse du market, à ne surtout jamais changer à moins que cela soit sur demande de l'équipe de support
 * *Nom d'utilisateur* : nom d'utilisateur du market
@@ -91,7 +91,7 @@ Il est possible de faire une mise à jour de Jeedom directement en SSH, voici co
 sudo php /usr/share/nginx/www/jeedom/install/install.php
 ----
 
-Voilà les paramètres possibles :
+Here are the possible settings :
 
 * *mode* : force, pour lancer une mise à jour en mode forcé (ne tiens pas compte des erreurs)
 * *version* : numéro de version, pour réapliquer les changements depuis cette version

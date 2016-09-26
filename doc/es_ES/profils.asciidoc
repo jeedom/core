@@ -1,4 +1,4 @@
-= Profils
+= Perfiles
 
 La page profils vous permet de configurer certains comportements de Jeedom spécifiques à votre utilisateur : page d'accueil, thèmes de la version desktop, de la version mobile, des graphiques... Elle permet aussi de changer votre mot de passe et de passer en mode expert permettant une configuration plus poussée de Jeedom.
 
@@ -16,7 +16,7 @@ image::../images/profils2.png[]
 
 A partir de ce menu vous avez accès à la page profils, à l'activation ou non du mode expert, au redémarrage de Jeedom, à l'arrêt de Jeedom, au passage en version mobile et un bouton pour se déconnecter.
 
-[IMPORTANT]
+[IMPORTANTE]
 En DIY les actions de redémarrage et d'arrêt ne marche que si vous avez bien fait les actions visudo, voir link:https://jeedom.com/doc/documentation/installation/fr_FR/doc-installation.html#_etape_4_définition_des_droits_root_à_jeedom[ici]
 
 == Page profils
@@ -27,7 +27,7 @@ image::../images/profils3.png[]
 
 Vous retrouvez ici différents panneaux qui vous permettront de configurer Jeedom, tous ces réglages sont uniquement liés à votre utilisateur, il vous sont donc propres
 
-=== Thèmes
+=== Temas
 
 image::../images/profils4.png[]
 
