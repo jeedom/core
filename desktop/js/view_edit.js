@@ -67,20 +67,20 @@
                 for (var j in viewZone.viewData) {
                     var viewData = viewZone.viewData[j];
                     if (init(viewZone.type, 'widget') == 'graph') {
-                     $('#div_viewZones .viewZone:last .div_viewData').append(addGraphService(viewData));
-                 }else{
-                     $('#div_viewZones .viewZone:last .div_viewData tbody').append(addWidgetService(viewData));
-                 }
-             }
-         }
-         modifyWithoutSave = false;
-     }
- });
+                       $('#div_viewZones .viewZone:last .div_viewData').append(addGraphService(viewData));
+                   }else{
+                       $('#div_viewZones .viewZone:last .div_viewData tbody').append(addWidgetService(viewData));
+                   }
+               }
+           }
+           modifyWithoutSave = false;
+       }
+   });
     return false;
 });
 
  $('#bt_viewResult').on('click', function() {
-   loadPage('index.php?v=d&p=view&view_id=' + $(".li_view.active").attr('data-view_id'));
+  saveView(true);
 });
 
  $("#bt_addView").on('click', function(event) {
@@ -105,31 +105,37 @@
 });
 
  $('#bt_saveView').on('click', function(event) {
-    $.hideAlert();
-    var view = $('#div_view').getValues('.viewAttr')[0];
-    view.zones = [];
-    $('.viewZone').each(function() {
-        viewZoneInfo = {};
-        var viewZoneInfo = $(this).getValues('.viewZoneAttr');
-        viewZoneInfo = viewZoneInfo[0];
-        viewZoneInfo.viewData = $(this).find('tr.viewData').getValues('.viewDataAttr');
-        view.zones.push(viewZoneInfo);
-    });
-    jeedom.view.save({
-        id: $(".li_view.active").attr('data-view_id'),
-        view: view,
-        error: function(error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function() {
-            $('#div_alert').showAlert({message: '{{Modification enregistrée}}', level: 'success'});
-            modifyWithoutSave = false;
-        }
-    });
-    return;
-});
+     saveView();
+ });
 
- $("#bt_removeView").on('click', function(event) {
+ function saveView(_viewResult){
+   $.hideAlert();
+   var view = $('#div_view').getValues('.viewAttr')[0];
+   view.zones = [];
+   $('.viewZone').each(function() {
+    viewZoneInfo = {};
+    var viewZoneInfo = $(this).getValues('.viewZoneAttr');
+    viewZoneInfo = viewZoneInfo[0];
+    viewZoneInfo.viewData = $(this).find('tr.viewData').getValues('.viewDataAttr');
+    view.zones.push(viewZoneInfo);
+});
+   jeedom.view.save({
+    id: $(".li_view.active").attr('data-view_id'),
+    view: view,
+    error: function(error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function() {
+        $('#div_alert').showAlert({message: '{{Modification enregistrée}}', level: 'success'});
+        modifyWithoutSave = false;
+        if(isset(_viewResult) && _viewResult){
+           window.location.href = 'index.php?v=d&p=view&view_id=' + $(".li_view.active").attr('data-view_id');
+       }
+   }
+});
+}
+
+$("#bt_removeView").on('click', function(event) {
     $.hideAlert();
     bootbox.confirm('{{Etes-vous sûr de vouloir supprimer la vue}} <span style="font-weight: bold ;">' + $(".li_view.active a").text() + '</span> ?', function(result) {
         if (result) {
@@ -147,7 +153,7 @@
     });
 });
 
- if (is_numeric(getUrlVars('view_id'))) {
+if (is_numeric(getUrlVars('view_id'))) {
     if ($('#ul_view .li_view[data-view_id=' + getUrlVars('view_id') + ']').length != 0) {
         $('#ul_view .li_view[data-view_id=' + getUrlVars('view_id') + ']').click();
     } else {
@@ -234,9 +240,9 @@ function editView(_view) {
         if ($('.li_view[data-view_id=' + data.result.id + ']').length != 0) {
             $('.li_view.active a').text($('#in_addViewName').value());
         } else {
-         loadPage('index.php?v=d&p=view_edit&view_id=' + data.result.id);
-     }
- }
+           loadPage('index.php?v=d&p=view_edit&view_id=' + data.result.id);
+       }
+   }
 });
 }
 
@@ -251,17 +257,17 @@ function addEditviewZone(_viewZone) {
         div += '<a class="btn btn-danger btn-xs pull-right bt_removeviewZone"><i class="fa fa-trash-o"></i> Supprimer</a>';
         div += ' <a class="btn btn-warning btn-xs pull-right bt_editviewZone"><i class="fa fa-pencil"></i> Editer</a>';
         if (init(_viewZone.type, 'widget') == 'graph') {
-           div += '<a class="btn btn-primary btn-xs pull-right bt_addViewGraph"><i class="fa fa-plus-circle"></i> Ajouter courbe</a>';
-       }else{
-           div += '<a class="btn btn-primary btn-xs pull-right bt_addViewWidget"><i class="fa fa-plus-circle"></i> Ajouter Widget</a>';
-       }
-       div += '<select class="pull-right viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="zoneCol" style="width : 200px;">';
-       div += '<option value="12">{{Largeur de 1/1}}</option>';
-       div += '<option value="6">{{Largeur de 1/2}}</option>';
-       div += '<option value="4">{{Largeur de 1/3}}</option>';
-       div += '<option value="3">{{Largeur de 1/4}}</option>';
-       div += '</select>';
-       if (init(_viewZone.type, 'widget') == 'graph') {
+         div += '<a class="btn btn-primary btn-xs pull-right bt_addViewGraph"><i class="fa fa-plus-circle"></i> Ajouter courbe</a>';
+     }else{
+         div += '<a class="btn btn-primary btn-xs pull-right bt_addViewWidget"><i class="fa fa-plus-circle"></i> Ajouter Widget</a>';
+     }
+     div += '<select class="pull-right viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="zoneCol" style="width : 200px;">';
+     div += '<option value="12">{{Largeur de 1/1}}</option>';
+     div += '<option value="6">{{Largeur de 1/2}}</option>';
+     div += '<option value="4">{{Largeur de 1/3}}</option>';
+     div += '<option value="3">{{Largeur de 1/4}}</option>';
+     div += '</select>';
+     if (init(_viewZone.type, 'widget') == 'graph') {
         div += '<select class="pull-right viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="dateRange" style="width : 200px;">';
         div += '<option value="30 min">{{30 min}}</option>';
         div += '<option value="1 hour">{{1 heure}}</option>';
@@ -275,14 +281,14 @@ function addEditviewZone(_viewZone) {
     div += '</legend>';
     div += '<input style="display : none;" class="viewZoneAttr" data-l1key="type">';
     if (init(_viewZone.type, 'widget') == 'graph') {
-     div += '<table class="table table-condensed div_viewData">';
-     div += '<thead>';
-     div += '<tr><th></th><th>{{Nom}}</th><th>{{Couleur}}</th><th>{{Type}}</th><th>{{Groupement}}</th><th>{{Echelle}}</th><th>{{Escalier}}</th><th>{{Empiler}}</th><th>{{Variation}}</th></tr>';
-     div += '</thead>';
-     div += '<tbody>';
-     div += '</tbody>';
-     div += '</table>';
- }else{
+       div += '<table class="table table-condensed div_viewData">';
+       div += '<thead>';
+       div += '<tr><th></th><th>{{Nom}}</th><th>{{Couleur}}</th><th>{{Type}}</th><th>{{Groupement}}</th><th>{{Echelle}}</th><th>{{Escalier}}</th><th>{{Empiler}}</th><th>{{Variation}}</th></tr>';
+       div += '</thead>';
+       div += '<tbody>';
+       div += '</tbody>';
+       div += '</table>';
+   }else{
     div += '<table class="table table-condensed div_viewData">';
     div += '<thead>';
     div += '<tr><th></th><th>{{Nom}}</th></tr>';
@@ -303,11 +309,11 @@ $("#div_viewZones .viewZone:last .div_viewData tbody").sortable({axis: "y", curs
 $('#div_viewZones').delegate('.bt_addViewGraph','click',function(){
     var el = $(this);
     jeedom.cmd.getSelectModal({cmd : {isHistorized : 1}}, function (result) {
-     el.closest('.viewZone').find('.div_viewData tbody').append( addGraphService({name : result.human,link_id : result.cmd.id,type : 'cmd'}));
-     el.closest('.viewZone .div_viewData tbody input[type=checkbox]').off('click').on('click',function(){
+       el.closest('.viewZone').find('.div_viewData tbody').append( addGraphService({name : result.human,link_id : result.cmd.id,type : 'cmd'}));
+       el.closest('.viewZone .div_viewData tbody input[type=checkbox]').off('click').on('click',function(){
         alert('je passe');
     })
- });
+   });
 });
 
 $('#div_viewZones').delegate('.viewDataAttr[data-l1key=configuration][data-l2key=graphColor]','change',function(){
@@ -400,8 +406,8 @@ function addGraphService(_viewData){
 $('#div_viewZones').delegate('.bt_addViewWidget','click',function(){
     var el = $(this);
     jeedom.eqLogic.getSelectModal({}, function (result) {
-     el.closest('.viewZone').find('.div_viewData tbody').append( addWidgetService({name : result.human.replace('#','').replace('#',''),link_id : result.id,type : 'eqLogic'}));
- });
+       el.closest('.viewZone').find('.div_viewData tbody').append( addWidgetService({name : result.human.replace('#','').replace('#',''),link_id : result.id,type : 'eqLogic'}));
+   });
 });
 
 
