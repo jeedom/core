@@ -22,7 +22,7 @@
             }
         }
         jeedom.cmd.update['#id#']({display_value:'#state#'});
-        $('.cmd[data-cmd_uid=#uid#] .action').off().on('click', function () {
+        $('.cmd[data-cmd_uid=#uid#] .iconCmd').off().on('click', function () {
             jeedom.cmd.execute({id: '#id#'});
         }); 
     </script>
