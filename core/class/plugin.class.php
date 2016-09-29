@@ -39,6 +39,7 @@ class plugin {
 	private $hasDependency;
 	private $maxDependancyInstallTime;
 	private $hasOwnDeamon;
+	private $issue = '';
 	private $info = array();
 	private $include = array();
 	private static $_cache = array();
@@ -85,6 +86,7 @@ class plugin {
 			$plugin->filepath = $_id;
 			$plugin->index = (isset($data['index'])) ? (string) $data['index'] : $data['id'];
 			$plugin->display = (isset($data['display'])) ? (string) $data['display'] : '';
+			$plugin->issue = (isset($data['issue'])) ? (string) $data['issue'] : '';
 
 			$plugin->mobile = '';
 			if (file_exists(dirname(__FILE__) . '/../../plugins/' . $data['id'] . '/mobile/html')) {
@@ -921,6 +923,15 @@ class plugin {
 
 	public function setMaxDependancyInstallTime($maxDependancyInstallTime) {
 		$this->maxDependancyInstallTime = $maxDependancyInstallTime;
+	}
+	
+	public function getIssue() {
+		return $this->issue;
+	}
+
+	public function setIssue($issue) {
+		$this->issue = $issue;
+		return $this;
 	}
 
 }
