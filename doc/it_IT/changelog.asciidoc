@@ -1,0 +1,187 @@
+= 2.5
+
+* Suppression du mode esclave
+* Possibilité de déclencher un scénario sur un changement d'une variable
+* Les mise à jour de variable déclenchent maintenant la mise à jour des commandes virtuel (il faut la dernière version du plugin)
+* Possibilité d'avoir une icone sur les commandes de type info
+* Possibilité sur les commandes d'afficher le nom et l'icone
+* Ajout d'une action "alert" sur les scénarios
+* Ajout d'une action "popup" sur les scénarios
+* Les widgets des commandes peuvent maintenant avoir une méthode d'update ce qui évite un appels AJAX à Jeedom
+* Les widgets des scénarios sont maintenant mise à jour sans appels ajax pour avoir le widget
+* Le résumé global et des pièces et maintenant mises à jour sans appels ajax
+* Changement des bootstraps slider en slider (corriger le bug du double événement des sliders)
+* Sauvegarde automatique des vues lors du clique sur le bouton "voir le résultat"
+* Possibilité d'avoir les doc en local
+* Les developpeur tierce peuvent ajouter leur propre systeme de gestion de tickets
+
+= 2.4
+
+* Optimisation général
+** Regroupement de requêtes SQL
+** Suppression de requêtes inutiles
+** Passage en cache du pid, état et dernier lancement des scénarios
+** Passage en cache du pid, état et dernier lancement des crons
+** Dans 99% des cas plus de requêtes d'écriture sur la base en fonctionnement nominal (donc hors configuration de jeedom, modifications, installation, mise à jour...)
+* Suppression du fail2ban (car facilement passable en envoyant une fausse adresse ip), cela permet d’accélérer jeedom
+* Ajout dans les interactions d'une option sans catégorie pour que l'on puisse générer des interactions sur des équipements sans catégorie
+* Ajout dans les scénario d'un bouton de choix d'équipement sur les commandes de type slider
+* Mise à jour de bootstrap en 2.3.7
+* Ajout de la notion de résumé domotique (permet de connaitre d'un seul coup le nombre de lumière à on, les porte ouvert, les volets, les fenêtres, la puissance, les détections de mouvement...). Tout cela se configure sur la page de gestion des objets
+* Ajout de pre et post commande sur une commande. Permet de déclencher tout le temps une action avant ou après une autre action. Peux aussi permettre de synchroniser des équipements pour par exemple que 2 lumières s'allument toujours ensemble avec la même intensité.
+* Optimisation des listenner
+* Ajout de modal pour afficher les informations brutes (attribut de l'objet en base) d'un équipement ou d'une commande
+* Possibilité de copier l'historique d'une commande sur une autre commande
+* Possibilité de remplacer une commande par une autre dans tout jeedom (même si la commande à remplacer n'existe plus)
+
+= 2.3
+
+* Correction des filtres sur le market
+* Correction des checkbox sur la page d'édition des vues (sur une zone graphique)
+* Correction des checkbox historiser, visible et inverser dans le tableau des commandes
+* Correction d'un soucis sur la traduction des javascripts
+* Ajout d'une catégorie de plugin  : objet communiquant
+* Ajout de GENERIC_TYPE
+* Suppression des filtres nouveau et top sur le parcours des plugins du market
+* Renommage de la catégorie par defaut sur le parcours des plugins du market en "Top et nouveauté"
+* Correction des filtres gratuit et payant sur le parcours des plugins du market
+* Correction d'un bug qui pouvait amener à une duplication des courbes sur la page d'historique
+* Correction d'un bug sur la valeur de timeout des scénarios
+* correction d'un bug sur l'affichage des widgets dans les vues qui prenait la version dashboard
+* Correction d'un bug sur les designs qui pouvait utiliser la configuration des widgets du dashboard au lieu des designs
+* Correction de bugs de la sauvegarde/restauration si le nom du jeedom contient des caractères spéciaux
+* Optimisation de l'organisation de la liste des generic type
+* Amélioration de l'affichage de la configuration avancée des équipements
+* Correction de l'interface d'accès au backup depuis 
+* Sauvegarde de la configuration lors du test du market
+* Préparation à la suppression des bootstrapswtich dans les plugins
+* Correction d'un bug sur le type de widget demandé pour les designs (dashboard au lieu de dplan)
+* correction de bug sur le gestionnaire d’événements
+* passage en aléatoire du backup la nuit (entre 2h10 et 3h59) pour éviter les soucis de surcharge du market
+* Correction du market de widget
+* Correction d'un bug sur l'accès au market (timeout)
+* Correction d'un bug sur l'ouverture des tickets
+* Correction d'un bug de page blanche lors de la mise à jour si le /tmp est trop petit (attention la correction prend effet à l'update n+1)
+* Ajout d'un tag #jeedom_name# dans les scénarios (donne le nom du jeedom)
+* Correction de bugs
+* Déplacement de tous les fichiers temporaire dans /tmp
+* Amélioration de l'envoi des plugins (dos2unix automatique sur les fichiers *.sh)
+* Refonte de la page de log
+* Ajout d'un thème darksobre pour mobile
+* Possibilité pour les developpeurs d'ajouter des options de configuration des widget sur les widgets spécifique (type  sonos, koubachi et autre)
+* Optimisation des logs (merci @kwizer15)
+* Possibilité de choisir le format des logs
+* Optimisation diverse du code (merci @kwizer15)
+* Passage en module de la connexion avec le market (permettra d'avoir un jeedom sans aucun lien au market)
+* Ajout d'un "repo" (module de connexion type la connexion avec le market) fichier (permet d'envoi un zip contenant le plugin)
+* Ajout d'un "repo" github (permet d'utiliser github comme source de plugin, avec systeme de gestion de mise à jour)
+* Ajout d'un "repo" URL (permet d'utiliser URL comme source de plugin)
+* Ajout d'un "repo" Samba (utilisable pour pousser des backups sur un serveur samba et récupérer des plugins)
+* Ajout d'un "repo" FTP (utilisable pour pousser des backups sur un serveur FTP et récupérer des plugins)
+* Ajout pour certain "repo" de la possibilité de recuperer le core de jeedom
+* Ajout de tests automatique du code (merci @kwizer15)
+* Possibilité d'afficher/masquer les panels des plugins sur mobile et ou desktop (attention maintenant par défaut les panels sont masqués)
+* Possibilité de désactiver les mises à jour d'un plugin (ainsi que la vérification)
+* Possibilité de forcé la verification des mises à jour d'un plugin
+* Légère refonte du centre de mise à jour
+* Possibilité de désactiver la vérification automatique des mises à jour
+* Correction d'un bug qui remettait toute les données à 0 suite à un redémarrage
+* Possibilité de configurer le niveau de log d'un plugin directement sur la page de configuration de celui-ci
+* Possibilité de consulter les logs d'un plugin directement sur la page de configuration de celui-ci
+* Suppression du démarrage en debug des démons, maintenant le niveau de logs du démon est le même que celui du plugin
+* Nettoyage de lib tierce
+* Suppression de responsive voice (fonction dit dans les scénarios qui marchait de moins en moins bien)
+* Correction de plusieurs faille de sécurité
+* Ajout d'un mode synchrone sur les scénarios (anciennement mode rapide)
+* Possibilité de rentrer manuellement la position des widgets en % sur les design
+* Refonte de la page de configuration des plugins
+* Possibilité de configurer la transparence des widgets
+* Ajout de l'action jeedom_poweroff dans les scénarios pour arrêter jeedom
+* Retour de l'action scenario_return pour faire un retour à une intéraction (ou autre) à partir d'un scénario
+* Passage en long polling pour la mise à jour de l'interface en temps réel
+* Correction d'un bug lors de refresh multiple de widget
+* Optimisation de la mise à jour des widgets commandes et équipements
+* Ajout d'un tag #begin_backup#, #end_backup#, #begin_update#, #end_update#, #begin_restore#, #end_restore# dans les scénarios
+
+= 2.2
+
+* Correction de bugs
+* Simplification de l’accès aux configurations des plugins à partir de la page santé
+* Ajout d’une icône indiquant si le démon est démarré en debug ou non
+* Ajout d’une page de configuration globale des historiques (accessible à partir de la page historique)
+* Correction de bugs pour docker
+* Possibilité d’autoriser un utilisateur à se connecter uniquement à partir d’un poste sur le réseau local
+* Refonte de la configuration des widgets (attention il faudra sûrement reprendre la configuration de certains widgets)
+* Renforcement de la gestion des erreurs sur les widgets
+* Possibilité de réordonner les vues
+* Refonte de la gestion des thèmes
+
+= 2.1
+
+* Refonte du système de cache de Jeedom (utilisation de doctrine cache). Cela permet par exemple de connecter Jeedom à un serveur redis ou memcached. Par défaut Jeedom utilise un système de fichiers (et non plus la BDD MySQL ce qui permet de la décharger un peu), celui-ci se trouve dans /tmp il est donc conseillé si vous avez plus de 512 Mo de RAM de monter le /tmp en tmpfs (en RAM pour plus de rapidité et une diminution de l’usure de la carte SD, je recommande une taille de 64mo). Attention lors du redémarrage de Jeedom le cache est vidé il faut donc attendre pour avoir la remontée de toutes les infos
+* Refonte du système de log (utilisation de monolog) qui permet une intégration à des systèmes de logs (type syslog(d))
+* Optimisation du chargement du dashboard
+* Correction de nombreux warning
+* Possibilité lors d’un appel api à un scénario de passer des tags dans l’url
+* Support d’apache
+* Optimisation pour docker avec support officiel de docker
+* Optimisation pour les synology
+* Support + optimisation pour php7
+* Refonte des menus Jeedom
+* Suppression de toute la partie gestion réseau : wifi, ip fixe… (reviendra sûrement sous forme de plugin). ATTENTION ce n’est pas le mode maître/esclave de jeedom qui est supprimé
+* Suppression de l’indication de batterie sur les widgets
+* Ajout d’une page qui résume le statut de tous les équipements sur batterie
+* Refonte du DNS Jeedom, utilisation d’openvpn (et donc du plugin openvpn)
+* Mise à jour de toutes les libs
+* Interaction : ajout d’un système d’analyse syntaxique (permet de supprimer les interactions avec de grosses erreurs de syntaxe type « le chambre »)
+* Suppression de la mise à jour de l’interface par nodejs (passage en pulling toutes les secondes sur la liste des événements)
+* Possibilité pour les applications tierces de demander par l’api les événements
+* Refonte du système « d’action sur valeur » avec possibilité de faire plusieurs actions et aussi l’ajout de toutes les actions possibles dans les scénarios (attention il faudra peut-être toutes les reconfigurer suite à la mise à jour)
+* Possibilité de désactiver un bloc dans un scénario
+* Ajout pour les développeurs d’un système d’aide tooltips. Il faut sur un label mettre la classe « help » et mettre un attribut data-help avec le message d’aide souhaité. Cela permet à Jeedom d’ajouter automatiquement à la fin de votre label une icône « ? » et au survol d’afficher le texte d’aide
+* Changement du processus de mise à jour du core, on ne demande plus l’archive au Market mais directement à Github maintenant
+* Ajout d’un système centralisé d’installation des dépendances sur les plugins
+* Refonte de la page de gestion des plugins
+* Ajout des adresses mac des différentes interfaces
+* Ajout de la connexion en double authentification
+* Suppression de la connexion par hash (pour des raisons de sécurité)
+* Ajout d’un système d’administration OS
+* Ajout de widgets standards Jeedom
+* Ajout d’un système en beta pour trouver l’IP de Jeedom sur le réseau (il faut connecter Jeedom sur le réseau, puis aller sur le market et cliquer sur « Mes Jeedoms » dans votre profil)
+* Ajout sur la page des scénarios d’un testeur d’expression
+* Revue du système de partage de scénario
+
+= 2.0
+
+* Refonte du système de cache de Jeedom (utilisation de doctrine cache). Cela permet par exemple de connecter Jeedom à un serveur redis ou memcached. Par défaut Jeedom utilise un système de fichiers (et non plus la BDD MySQL ce qui permet de la décharger un peu), celui-ci se trouve dans /tmp il est donc conseillé si vous avez plus de 512 Mo de RAM de monter le /tmp en tmpfs (en RAM pour plus de rapidité et une diminution de l’usure de la carte SD, je recommande une taille de 64mo). Attention lors du redémarrage de Jeedom le cache est vidé il faut donc attendre pour avoir la remontée de toutes les infos
+* Refonte du système de log (utilisation de monolog) qui permet une intégration à des systèmes de logs (type syslog(d))
+* Optimisation du chargement du dashboard
+* Correction de nombreux warning
+* Possibilité lors d’un appel api à un scénario de passer des tags dans l’url
+* Support d’apache
+* Optimisation pour docker avec support officiel de docker
+* Optimisation pour les synology
+* Support + optimisation pour php7
+* Refonte des menus Jeedom
+* Suppression de toute la partie gestion réseau : wifi, ip fixe… (reviendra sûrement sous forme de plugin). ATTENTION ce n’est pas le mode maître/esclave de jeedom qui est supprimé
+* Suppression de l’indication de batterie sur les widgets
+* Ajout d’une page qui résume le statut de tous les équipements sur batterie
+* Refonte du DNS Jeedom, utilisation d’openvpn (et donc du plugin openvpn)
+* Mise à jour de toutes les libs
+* Interaction : ajout d’un système d’analyse syntaxique (permet de supprimer les interactions avec de grosses erreurs de syntaxe type « le chambre »)
+* Suppression de la mise à jour de l’interface par nodejs (passage en pulling toutes les secondes sur la liste des événements)
+* Possibilité pour les applications tierces de demander par l’api les événements
+* Refonte du système « d’action sur valeur » avec possibilité de faire plusieurs actions et aussi l’ajout de toutes les actions possibles dans les scénarios (attention il faudra peut-être toutes les reconfigurer suite à la mise à jour)
+* Possibilité de désactiver un bloc dans un scénario
+* Ajout pour les développeurs d’un système d’aide tooltips. Il faut sur un label mettre la classe « help » et mettre un attribut data-help avec le message d’aide souhaité. Cela permet à Jeedom d’ajouter automatiquement à la fin de votre label une icône « ? » et au survol d’afficher le texte d’aide
+* Changement du processus de mise à jour du core, on ne demande plus l’archive au Market mais directement à Github maintenant
+* Ajout d’un système centralisé d’installation des dépendances sur les plugins
+* Refonte de la page de gestion des plugins
+* Ajout des adresses mac des différentes interfaces
+* Ajout de la connexion en double authentification
+* Suppression de la connexion par hash (pour des raisons de sécurité)
+* Ajout d’un système d’administration OS
+* Ajout de widgets standards Jeedom
+* Ajout d’un système en beta pour trouver l’IP de Jeedom sur le réseau (il faut connecter Jeedom sur le réseau, puis aller sur le market et cliquer sur « Mes Jeedoms » dans votre profil)
+* Ajout sur la page des scénarios d’un testeur d’expression
+* Revue du système de partage de scénario
