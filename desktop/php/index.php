@@ -492,21 +492,30 @@ if (isConnect('admin')) {
 		}
 	} else {
 		if (init('p') == 'scenarioAssist') {
-			echo '<a class="cursor" target="_blank" href="https://jeedom.com/doc/documentation/core/fr_FR/doc-core-scenario.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
+			echo '<a class="cursor" target="_blank" href="doc/' . config::byKey('language', 'core', 'fr_FR') . '/scenario.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
 		} else if (init('p') == 'view_edit') {
-			echo '<a class="cursor" target="_blank" href="https://jeedom.com/doc/documentation/core/fr_FR/doc-core-view.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
+			echo '<a class="cursor" target="_blank" href="doc/' . config::byKey('language', 'core', 'fr_FR') . '/view.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
 		} else {
-			echo '<a class="cursor" target="_blank" href="https://jeedom.com/doc/documentation/core/fr_FR/doc-core-' . secureXSS(init('p')) . '.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
+			echo '<a class="cursor" target="_blank" href="doc/' . config::byKey('language', 'core', 'fr_FR') . '/' . secureXSS(init('p')) . '.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
 		}
-
 	}
 	?>
 													</li>
 													<?php if (hasRight('reportsend', true)) {?>
 														<li>
+															<?php if (isset($plugin) && is_object($plugin) && $plugin->getIssue() != '') {
+			?>
+														<a target="_blank" href="<?php echo $plugin->getIssue() ?>" title="{{Envoyer un rapport de bug}}">
+															<i class="fa fa-exclamation-circle" ></i>
+														</a>
+														<?php } else {?>
 															<a class="bt_reportBug cursor" title="{{Envoyer un rapport de bug}}">
 																<i class="fa fa-exclamation-circle" ></i>
 															</a>
+															<?php }?>
+														</li>
+														<?php }
+	?>
 														</li>
 														<?php }
 	?>
