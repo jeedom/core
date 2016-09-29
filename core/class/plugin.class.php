@@ -817,6 +817,9 @@ class plugin {
 	}
 
 	public function getInfo($_name = '', $_default = '') {
+		if ($_name == 'doc' && file_exists(dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/doc/' . config::byKey('language', 'core', 'fr_FR') . '/index.html')) {
+			return 'plugins/' . $this->getId() . '/doc/' . config::byKey('language', 'core', 'fr_FR') . '/index.html';
+		}
 		if (count($this->info) == 0) {
 			$update = update::byLogicalId($this->id);
 			if (is_object($update)) {
