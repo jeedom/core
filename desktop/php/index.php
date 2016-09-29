@@ -230,221 +230,221 @@ if (!isConnect()) {
 				<nav class="navbar-collapse collapse">
 
 					<ul class="nav navbar-nav">
-							<li class="dropdown cursor">
-								<a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-home"></i> {{Accueil}} <b class="caret"></b></a>
-								<ul class="dropdown-menu">
-									<?php if (hasRight('dashboardview')) {
+						<li class="dropdown cursor">
+							<a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-home"></i> {{Accueil}} <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<?php if (hasRight('dashboardview')) {
 		?>
-										<li class="dropdown-submenu">
-											<a data-toggle="dropdown" id="bt_gotoDashboard" href="index.php?v=d&p=dashboard"><i class="fa fa-dashboard"></i> {{Dashboard}}</a>
-											<ul class="dropdown-menu">
-												<?php
+									<li class="dropdown-submenu">
+										<a data-toggle="dropdown" id="bt_gotoDashboard" href="index.php?v=d&p=dashboard"><i class="fa fa-dashboard"></i> {{Dashboard}}</a>
+										<ul class="dropdown-menu">
+											<?php
 foreach (object::buildTree(null, true) as $object_li) {
 			echo '<li><a href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '">' . $object_li->getHumanName(true) . '</a></li>';
-		}
-		?>
-											</ul>
-										</li>
-										<?php
-}
-	if (hasRight('viewview')) {
-		?>
-										<li class="dropdown-submenu">
-											<a data-toggle="dropdown" id="bt_gotoView"><i class="fa fa-picture-o"></i> {{Vue}}</a>
-											<ul class="dropdown-menu">
-												<?php
-foreach (view::all() as $view_menu) {
-			echo '<li><a href="index.php?v=d&p=view&view_id=' . $view_menu->getId() . '">' . trim($view_menu->getDisplay('icon')) . ' ' . $view_menu->getName() . '</a></li>';
-		}
-		?>
-											</ul>
-										</li>
-										<?php
-}
-	if (hasRight('planview')) {
-		?>
-										<li class="dropdown-submenu">
-											<a data-toggle="dropdown" id="bt_gotoPlan"><i class="fa fa-paint-brush"></i> {{Design}}</a>
-											<ul class="dropdown-menu">
-												<?php
-foreach (planHeader::all() as $plan_menu) {
-			echo '<li><a href="index.php?v=d&p=plan&plan_id=' . $plan_menu->getId() . '">' . trim($plan_menu->getConfiguration('icon') . ' ' . $plan_menu->getName()) . '</a></li>';
-		}
-		?>
-											</ul>
-										</li>
-										<?php
-}
-	echo $panel_menu;
-	?>
-								</ul>
-							</li>
-							<li class="dropdown cursor">
-								<a data-toggle="dropdown"><i class="fa fa-stethoscope"></i> {{Analyse}} <b class="caret"></b></a>
-								<ul class="dropdown-menu" role="menu">
-									<li><a href="index.php?v=d&p=history"><i class="fa fa-bar-chart-o"></i> {{Historique}}</a></li>
-									<li class="divider"></li>
-									<li class="expertModeVisible"><a href="#" id="bt_showEventInRealTime"><i class="fa fa-tachometer"></i> {{Temps réel}}</a></li>
-									<?php
-if (hasRight('logview', true)) {
-		?>
-										<li class="expertModeVisible"><a href="index.php?v=d&p=log"><i class="fa fa-file-o"></i> {{Logs}}</a></li>
-										<?php
-}
-	?>
-									<?php
-if (hasRight('batteryview', true)) {
-		?>
-										<li><a href="index.php?v=d&p=battery"><i class="fa fa-battery-full"></i> {{Batteries}}</a></li>
-										<?php
-}
-	?>
-									<li class="divider"></li>
-
-									<?php if (hasRight('sysinfo', true)) {
-		?>
-										<li class="expertModeVisible"><a href="index.php?v=d&p=sysinfo"><i class="fa fa-info-circle"></i> {{Informations système}}</a></li>
-										<?php
-}if (hasRight('sysinfo', true)) {
-		?>
-										<li><a href="index.php?v=d&p=health"><i class="fa fa-medkit"></i> {{Santé}}</a></li>
-										<?php
-}
-	?>
-
-								</ul>
-							</li>
-
-
-							<?php
-if (hasRight('objectview', true) || hasRight('interactview', true) || hasRight('displayview', true) || hasRight('scenarioview', true)) {
-		?>
-								<li class="dropdown cursor">
-									<a data-toggle="dropdown"><i class="fa fa-wrench"></i> {{Outils}} <b class="caret"></b></a>
-									<ul class="dropdown-menu" role="menu">
-										<?php
-if (hasRight('objectview', true)) {
-			?>
-											<li><a href="index.php?v=d&p=object"><i class="fa fa-picture-o"></i> {{Objets}}</a></li>
-											<?php
-
-		}
-		if (hasRight('interactview', true)) {
-			?>
-											<li><a href="index.php?v=d&p=interact"><i class="fa fa-comments-o"></i> {{Interactions}}</a></li>
-											<?php }
-		if (hasRight('displayview', true)) {
-			?>
-												<li><a href="index.php?v=d&p=display"><i class="fa fa-th"></i> {{Résumé domotique}}</a></li>
-												<?php
-}
-		if (hasRight('scenarioview', true)) {
-			echo '<li><a href = "index.php?v=d&p=scenarioAssist"><i class = "fa fa-cogs"></i> {{Scénarios}}</a></li>';
 		}
 		?>
 										</ul>
 									</li>
 									<?php
 }
+	if (hasRight('viewview')) {
+		?>
+									<li class="dropdown-submenu">
+										<a data-toggle="dropdown" id="bt_gotoView"><i class="fa fa-picture-o"></i> {{Vue}}</a>
+										<ul class="dropdown-menu">
+											<?php
+foreach (view::all() as $view_menu) {
+			echo '<li><a href="index.php?v=d&p=view&view_id=' . $view_menu->getId() . '">' . trim($view_menu->getDisplay('icon')) . ' ' . $view_menu->getName() . '</a></li>';
+		}
+		?>
+										</ul>
+									</li>
+									<?php
+}
+	if (hasRight('planview')) {
+		?>
+									<li class="dropdown-submenu">
+										<a data-toggle="dropdown" id="bt_gotoPlan"><i class="fa fa-paint-brush"></i> {{Design}}</a>
+										<ul class="dropdown-menu">
+											<?php
+foreach (planHeader::all() as $plan_menu) {
+			echo '<li><a href="index.php?v=d&p=plan&plan_id=' . $plan_menu->getId() . '">' . trim($plan_menu->getConfiguration('icon') . ' ' . $plan_menu->getName()) . '</a></li>';
+		}
+		?>
+										</ul>
+									</li>
+									<?php
+}
+	echo $panel_menu;
+	?>
+							</ul>
+						</li>
+						<li class="dropdown cursor">
+							<a data-toggle="dropdown"><i class="fa fa-stethoscope"></i> {{Analyse}} <b class="caret"></b></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="index.php?v=d&p=history"><i class="fa fa-bar-chart-o"></i> {{Historique}}</a></li>
+								<li class="divider"></li>
+								<li class="expertModeVisible"><a href="#" id="bt_showEventInRealTime"><i class="fa fa-tachometer"></i> {{Temps réel}}</a></li>
+								<?php
+if (hasRight('logview', true)) {
+		?>
+									<li class="expertModeVisible"><a href="index.php?v=d&p=log"><i class="fa fa-file-o"></i> {{Logs}}</a></li>
+									<?php
+}
+	?>
+								<?php
+if (hasRight('batteryview', true)) {
+		?>
+									<li><a href="index.php?v=d&p=battery"><i class="fa fa-battery-full"></i> {{Batteries}}</a></li>
+									<?php
+}
+	?>
+								<li class="divider"></li>
+
+								<?php if (hasRight('sysinfo', true)) {
+		?>
+									<li class="expertModeVisible"><a href="index.php?v=d&p=sysinfo"><i class="fa fa-info-circle"></i> {{Informations système}}</a></li>
+									<?php
+}if (hasRight('sysinfo', true)) {
+		?>
+									<li><a href="index.php?v=d&p=health"><i class="fa fa-medkit"></i> {{Santé}}</a></li>
+									<?php
+}
+	?>
+
+							</ul>
+						</li>
+
+
+						<?php
+if (hasRight('objectview', true) || hasRight('interactview', true) || hasRight('displayview', true) || hasRight('scenarioview', true)) {
+		?>
+							<li class="dropdown cursor">
+								<a data-toggle="dropdown"><i class="fa fa-wrench"></i> {{Outils}} <b class="caret"></b></a>
+								<ul class="dropdown-menu" role="menu">
+									<?php
+if (hasRight('objectview', true)) {
+			?>
+										<li><a href="index.php?v=d&p=object"><i class="fa fa-picture-o"></i> {{Objets}}</a></li>
+										<?php
+
+		}
+		if (hasRight('interactview', true)) {
+			?>
+										<li><a href="index.php?v=d&p=interact"><i class="fa fa-comments-o"></i> {{Interactions}}</a></li>
+										<?php }
+		if (hasRight('displayview', true)) {
+			?>
+											<li><a href="index.php?v=d&p=display"><i class="fa fa-th"></i> {{Résumé domotique}}</a></li>
+											<?php
+}
+		if (hasRight('scenarioview', true)) {
+			echo '<li><a href = "index.php?v=d&p=scenarioAssist"><i class = "fa fa-cogs"></i> {{Scénarios}}</a></li>';
+		}
+		?>
+									</ul>
+								</li>
+								<?php
+}
 	if (isConnect('admin')) {
 		?>
-									<li class="dropdown cursor">
-										<a data-toggle="dropdown"><i class="fa fa-tasks"></i> {{Plugins}} <b class="caret"></b></a>
-										<ul class="dropdown-menu" role="menu">
-											<?php if (hasRight('pluginview', true)) {
+								<li class="dropdown cursor">
+									<a data-toggle="dropdown"><i class="fa fa-tasks"></i> {{Plugins}} <b class="caret"></b></a>
+									<ul class="dropdown-menu" role="menu">
+										<?php if (hasRight('pluginview', true)) {
 			?>
-												<li><a href="index.php?v=d&p=plugin"><i class="fa fa-tags"></i> {{Gestion des plugins}}</a></li>
-													<li role="separator" class="divider"></li>
-													<?php
+											<li><a href="index.php?v=d&p=plugin"><i class="fa fa-tags"></i> {{Gestion des plugins}}</a></li>
+											<li role="separator" class="divider"></li>
+											<?php
 echo $plugin_menu;
 
 			?>
-											</ul>
-										</li>
-										<?php }
+										</ul>
+									</li>
+									<?php }
 	}
 	?>
-								</ul>
+							</ul>
 
-								<ul class="nav navbar-nav navbar-right">
-									<?php
+							<ul class="nav navbar-nav navbar-right">
+								<?php
 $nbMessage = message::nbMessage();
 	$displayMessage = ($nbMessage > 0) ? '' : 'display : none;';?>
-									<li>
-										<a href="#" id="bt_messageModal">
-											<span class="badge" id="span_nbMessage" title="{{Nombre de messages}}" style="background-color : #ec971f;<?php echo $displayMessage; ?>">
-												<?php echo $nbMessage; ?>
-											</span>
-										</a>
-									</li>
-									<?php $nbUpdate = update::nbNeedUpdate();
+								<li>
+									<a href="#" id="bt_messageModal">
+										<span class="badge" id="span_nbMessage" title="{{Nombre de messages}}" style="background-color : #ec971f;<?php echo $displayMessage; ?>">
+											<?php echo $nbMessage; ?>
+										</span>
+									</a>
+								</li>
+								<?php $nbUpdate = update::nbNeedUpdate();
 	if ($nbUpdate > 0) {
 		echo '<li>
-										<a href="index.php?v=d&p=update">
-											<span class="badge" title="{{Nombre de mises à jour}}" style="background-color : #c9302c;">' . $nbUpdate . '</span></a></li>';
+									<a href="index.php?v=d&p=update">
+										<span class="badge" title="{{Nombre de mises à jour}}" style="background-color : #c9302c;">' . $nbUpdate . '</span></a></li>';
 	}
 	?>
-										<li>
-											<a href="#" style="cursor:default;">
-												<?php
+									<li>
+										<a href="#" style="cursor:default;">
+											<?php
 echo object::getGlobalHtmlSummary();
 	?>
-											</a>
-										</li>
-										<?php if (isConnect('admin') || hasRight('backupview', true) || hasRight('updateview', true) || hasRight('cronview', true) || hasRight('customview', true) || hasRight('userview', true)) {
+										</a>
+									</li>
+									<?php if (isConnect('admin') || hasRight('backupview', true) || hasRight('updateview', true) || hasRight('cronview', true) || hasRight('customview', true) || hasRight('userview', true)) {
 		?>
-											<li class="dropdown">
-												<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-cogs"></i><span class="caret"></span></a>
-												<ul class="dropdown-menu">
-													<?php if (hasRight('administrationview', true)) {?>
-														<li><a href="index.php?v=d&p=administration" tabindex="0"><i class="fa fa-wrench"></i> {{Configuration}}</a></li>
-														<?php
+										<li class="dropdown">
+											<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-cogs"></i><span class="caret"></span></a>
+											<ul class="dropdown-menu">
+												<?php if (hasRight('administrationview', true)) {?>
+													<li><a href="index.php?v=d&p=administration" tabindex="0"><i class="fa fa-wrench"></i> {{Configuration}}</a></li>
+													<?php
 }
 		if (hasRight('backupview', true)) {
 			?>
-														<li><a href="index.php?v=d&p=backup"><i class="fa fa-floppy-o"></i> {{Sauvegardes}}</a></li>
-														<?php
+													<li><a href="index.php?v=d&p=backup"><i class="fa fa-floppy-o"></i> {{Sauvegardes}}</a></li>
+													<?php
 }
 		if (hasRight('updateview', true)) {
 			?>
-														<li><a href="index.php?v=d&p=update"><i class="fa fa-refresh"></i> {{Centre de mise à jour}}</a></li>
-														<?php
+													<li><a href="index.php?v=d&p=update"><i class="fa fa-refresh"></i> {{Centre de mise à jour}}</a></li>
+													<?php
 }
 		if (hasRight('cronview', true)) {?>
-															<li class="expertModeVisible"><a href="index.php?v=d&p=cron"><i class="fa fa-tasks"></i> {{Moteur de tâches}}</a></li>
-															<?php
+													<li class="expertModeVisible"><a href="index.php?v=d&p=cron"><i class="fa fa-tasks"></i> {{Moteur de tâches}}</a></li>
+													<?php
 }
 		if (hasRight('customview', true)) {
 			?>
-															<li class="expertModeVisible"><a href="index.php?v=d&p=custom"><i class="fa fa-pencil-square-o"></i> {{Personnalisation avancée}}</a></li>
-															<?php
+													<li class="expertModeVisible"><a href="index.php?v=d&p=custom"><i class="fa fa-pencil-square-o"></i> {{Personnalisation avancée}}</a></li>
+													<?php
 }
 		?>
-														<li role="separator" class="divider"></li>
-														<?php
+												<li role="separator" class="divider"></li>
+												<?php
 if (hasRight('userview', true)) {
 			?>
-															<li><a href="index.php?v=d&p=user"><i class="fa fa-users"></i> {{Utilisateurs}}</a></li>
-															<?php
+													<li><a href="index.php?v=d&p=user"><i class="fa fa-users"></i> {{Utilisateurs}}</a></li>
+													<?php
 }
 		if ($configs['rights::enable'] != 0 && isConnect('admin')) {
 			?>
-															<li><a href="index.php?v=d&p=rights"><i class="fa fa-graduation-cap"></i> {{Gestion des droits avancés}}</a></li>
-															<?php }
-		?>
-														</ul>
-													</li>
+													<li><a href="index.php?v=d&p=rights"><i class="fa fa-graduation-cap"></i> {{Gestion des droits avancés}}</a></li>
 													<?php }
+		?>
+												</ul>
+											</li>
+											<?php }
 	?>
-													<li class="dropdown">
-														<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-															<i class="fa fa-user"></i>
-															<span class="caret"></span>
-														</a>
-														<ul class="dropdown-menu">
-															<li><a href="index.php?v=d&p=profils"><i class="fa fa-briefcase"></i> {{Profil}} <?php echo $_SESSION['user']->getLogin(); ?></a></li>
+											<li class="dropdown">
+												<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+													<i class="fa fa-user"></i>
+													<span class="caret"></span>
+												</a>
+												<ul class="dropdown-menu">
+													<li><a href="index.php?v=d&p=profils"><i class="fa fa-briefcase"></i> {{Profil}} <?php echo $_SESSION['user']->getLogin(); ?></a></li>
 
-															<?php
+													<?php
 if (isConnect('admin')) {
 		if ($_SESSION['user']->getOptions('expertMode') == 1) {
 			echo '<li class="cursor"><a id="bt_expertMode" state="1"><i class="fa fa-check-square-o"></i> {{Mode expert}}</a></li>';
@@ -454,24 +454,24 @@ if (isConnect('admin')) {
 		?>
 
 
-																<li class="divider"></li>
-																<li><a href="index.php?v=m"><i class="fa fa-mobile"></i> {{Version mobile}}</a></li>
-																<li class="divider"></li>
-																<li><a href="#" id="bt_jeedomAbout"><i class="fa fa-info-circle"></i> {{Version}} v<?php echo jeedom::version(); ?></a></li>
+														<li class="divider"></li>
+														<li><a href="index.php?v=m"><i class="fa fa-mobile"></i> {{Version mobile}}</a></li>
+														<li class="divider"></li>
+														<li><a href="#" id="bt_jeedomAbout"><i class="fa fa-info-circle"></i> {{Version}} v<?php echo jeedom::version(); ?></a></li>
 
-																<?php	if (jeedom::isCapable('sudo')) {
+														<?php	if (jeedom::isCapable('sudo')) {
 			echo '<li class="divider expertModeVisible"></li>';
 			echo '<li class="cursor expertModeVisible"><a id="bt_rebootSystem" state="0"><i class="fa fa-repeat"></i> {{Redémarrer}}</a></li>';
 			echo '<li class="cursor expertModeVisible"><a id="bt_haltSystem" state="0"><i class="fa fa-power-off"></i> {{Eteindre}}</a></li>';
 		}
 	}
 	?>
-															<li class="divider"></li>
-															<li><a href="index.php?v=d&logout=1"><i class="fa fa-sign-out"></i> {{Se déconnecter}}</a></li>
-														</ul>
-													</li>
-													<li>
-														<?php if (isset($plugin) && is_object($plugin)) {
+													<li class="divider"></li>
+													<li><a href="index.php?v=d&logout=1"><i class="fa fa-sign-out"></i> {{Se déconnecter}}</a></li>
+												</ul>
+											</li>
+											<li>
+												<?php if (isset($plugin) && is_object($plugin)) {
 		if ($plugin->getInfo('doc') != '') {
 			echo '<a class="cursor" target="_blank" href="' . $plugin->getInfo('doc') . '" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
 		}
@@ -486,12 +486,20 @@ if (isConnect('admin')) {
 
 	}
 	?>
-													</li>
-													<?php if (hasRight('reportsend', true)) {?>
-														<li>
+											</li>
+											<?php if (hasRight('reportsend', true)) {
+		?>
+												<li>
+													<?php if (isset($plugin) && is_object($plugin) && $plugin->getIssue() != '') {
+			?>
+														<a target="_blank" href="<?php echo $plugin->getIssue() ?>" title="{{Envoyer un rapport de bug}}">
+															<i class="fa fa-exclamation-circle" ></i>
+														</a>
+														<?php } else {?>
 															<a class="bt_reportBug cursor" title="{{Envoyer un rapport de bug}}">
 																<i class="fa fa-exclamation-circle" ></i>
 															</a>
+															<?php }?>
 														</li>
 														<?php }
 	?>
