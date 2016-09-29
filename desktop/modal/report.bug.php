@@ -21,7 +21,6 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
         {{- que la réponse n'est pas déjà dans la <a href='https://jeedom.com/faq'>faq</a>}}<br/><br/>
         {{N'oubliez pas que poser la question sur le forum vous fournira généralement une réponse plus rapide que par ticket.}}
     </div>
-
 </div>
 
 <div class="panel panel-primary">
@@ -44,7 +43,7 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
                 <option data-pagehelp="core/<?php echo config::byKey('language', 'core', 'fr_FR'); ?>/doc-core-scenario.html">{{Scénario}}</option>
                 <?php
 foreach (plugin::listPlugin(true) as $plugin) {
-	echo '<option value="plugin::' . $plugin->getId() . '" data-pagehelp="plugins/' . $plugin->getId() . '/' . config::byKey('language', 'core', 'fr_FR') . '/' . $plugin->getId() . '.html">Plugin ' . $plugin->getName() . '</option>';
+	echo '<option data-issue="' . $plugin->getIssue() . '" value="plugin::' . $plugin->getId() . '" data-pagehelp="' . $plugin->getInfo('doc') . '">Plugin ' . $plugin->getName() . '</option>';
 }
 ?>
            </select>
@@ -55,8 +54,8 @@ foreach (plugin::listPlugin(true) as $plugin) {
 </div>
 
 <div id="div_reportModalSearchAction" class="panel panel-primary" style="display:none;">
- <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-search"></i> {{Etape 3 : Chercher dans la documentation}}</h3></div>
- <div class="panel-body">
+   <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-search"></i> {{Etape 3 : Chercher dans la documentation}}</h3></div>
+   <div class="panel-body">
     <div class="form-group">
         <label class="col-sm-2 control-label">{{Rechercher}}</label>
         <div class="col-sm-2">
@@ -69,7 +68,6 @@ foreach (plugin::listPlugin(true) as $plugin) {
 <div class="panel panel-primary" id="div_reportModalSendAction" style="display:none;">
     <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-pencil"></i> {{Etape 4 : Demande de support}}</h3></div>
     <div class="panel-body">
-
        <div class="form-group">
         <label class="col-sm-2 control-label">{{Titre}}</label>
         <div class="col-sm-7">
@@ -88,6 +86,18 @@ foreach (plugin::listPlugin(true) as $plugin) {
         <a class="btn btn-success pull-right" id="bt_sendBugReport" style="color:white;"><i class="fa fa-check-circle"></i> {{Envoyer}}</a>
     </div>
 </div>
+</div>
+
+<div class="panel panel-primary" id="div_reportModalPrivateIssue" style="display:none;">
+    <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-pencil"></i> {{Etape 4 : Demande de support}}</h3></div>
+    <div class="panel-body">
+        <div class="form-group">
+            <label class="col-sm-5 control-label">{{Ce plugin utilise un gestionnaire de demande de support}}</label>
+            <div class="col-sm-2">
+             <a class="btn btn-success" id="bt_reportBugIssueUrl" href="#" target="_blank" style="color:white;"><i class="fa fa-check-circle"></i> {{Accéder}}</a>
+         </div>
+     </div>
+ </div>
 </div>
 </form>
 
@@ -121,8 +131,14 @@ foreach (plugin::listPlugin(true) as $plugin) {
     });
 
     $('#bt_searchOnFaq').on('click',function(){
-        $('#div_reportModalSendAction').show();
-        window.open('https://jeedom.com/doc/documentation/'+$('.ticketAttr[data-l1key=category] option:selected').attr('data-pagehelp'), '_blank');
+        var issue = $('.ticketAttr[data-l1key=category] option:selected').attr('data-issue');
+        if(issue != ''){
+            $('#bt_reportBugIssueUrl').attr('href',issue);
+            $('#div_reportModalPrivateIssue').show();
+        }else{
+            $('#div_reportModalSendAction').show();
+        }
+        window.open($('.ticketAttr[data-l1key=category] option:selected').attr('data-pagehelp'), '_blank');
     });
 
     $('.ticketAttr[data-l1key=type],.ticketAttr[data-l1key=category]').on('change',function(){
