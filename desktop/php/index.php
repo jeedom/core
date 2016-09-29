@@ -483,7 +483,6 @@ if (isConnect('admin')) {
 		} else {
 			echo '<a class="cursor" target="_blank" href="doc/' . config::byKey('language', 'core', 'fr_FR') . '/' . secureXSS(init('p')) . '.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
 		}
-
 	}
 	?>
 											</li>
