@@ -266,6 +266,16 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $id => $category) {
    </div>
  </div>
  <div class="form-group">
+    <label class="col-sm-3 control-label">{{Limiter aux visibles}}</label>
+    <div class="col-sm-9">
+	<?php
+foreach (array('object'=>'Objets','eqlogic'=>'Equipements','cmd'=>'Commandes') as $id => $name) {
+	echo '<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="visible" data-l3key="' . $id . '" />' . $name . '</label> ';
+}
+?>
+ </div>
+ </div>
+ <div class="form-group">
   <label class="col-sm-3 control-label">{{Limiter à l'équipement}}</label>
   <div class="col-sm-6">
     <select class='interactAttr form-control' data-l1key='filtres' data-l2key='eqLogic_id' >

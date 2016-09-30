@@ -358,6 +358,7 @@ class interactDef {
 		$subtype_filter = $this->getFiltres('subtype');
 		$unite_filter = $this->getFiltres('unite');
 		$plugin_filter = $this->getFiltres('plugin');
+		$visible_filter = $this->getFiltres('visible');
 		$category_filter = $this->getFiltres('category');
 		$eqLogic_category_filter = $this->getFiltres('eqLogic_category');
 		foreach ($inputs as $input) {
@@ -368,11 +369,17 @@ class interactDef {
 					if (isset($object_filter[$object->getId()]) && $object_filter[$object->getId()] == 0) {
 						continue;
 					}
+					if (isset($visible_filter['object']) && $visible_filter['object'] == 1 && $object->getIsVisible() != 1) {
+						continue;
+					}
 					foreach ($object->getEqLogic() as $eqLogic) {
 						if ($this->getFiltres('eqLogic_id', 'all') != 'all' && $eqLogic->getId() != $this->getFiltres('eqLogic_id')) {
 							continue;
 						}
 						if (isset($plugin_filter[$eqLogic->getEqType_name()]) && $plugin_filter[$eqLogic->getEqType_name()] == 0) {
+							continue;
+						}
+						if (isset($visible_filter['eqLogic']) && $visible_filter['eqLogic'] == 1 && $eqLogic->getIsVisible() != 1) {
 							continue;
 						}
 						$eq_caterogy = $eqLogic->getCategory();
@@ -396,6 +403,9 @@ class interactDef {
 							continue;
 						}
 						foreach ($eqLogic->getCmd() as $cmd) {
+							if (isset($visible_filter['cmd']) && $visible_filter['cmd'] == 1 && $cmd->getIsVisible() != 1) {
+								continue;
+							}
 							if (isset($subtype_filter[$cmd->getSubType()]) && $subtype_filter[$cmd->getSubType()] == 0) {
 								continue;
 							}
