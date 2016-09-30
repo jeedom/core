@@ -39,6 +39,8 @@ class plugin {
 	private $maxDependancyInstallTime;
 	private $hasOwnDeamon;
 	private $issue = '';
+	private $changelog = '';
+	private $documentation = '';
 	private $info = array();
 	private $include = array();
 	private static $_cache = array();
@@ -85,6 +87,8 @@ class plugin {
 			$plugin->index = (isset($data['index'])) ? (string) $data['index'] : $data['id'];
 			$plugin->display = (isset($data['display'])) ? (string) $data['display'] : '';
 			$plugin->issue = (isset($data['issue'])) ? (string) $data['issue'] : '';
+			$plugin->changelog = (isset($data['changelog'])) ? (string) $data['changelog'] : '';
+			$plugin->documentation = (isset($data['documentation'])) ? (string) $data['documentation'] : '';
 
 			$plugin->mobile = '';
 			if (file_exists(dirname(__FILE__) . '/../../plugins/' . $data['id'] . '/mobile/html')) {
@@ -813,9 +817,6 @@ class plugin {
 	}
 
 	public function getInfo($_name = '', $_default = '') {
-		if ($_name == 'doc' && file_exists(dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/doc/' . config::byKey('language', 'core', 'fr_FR') . '/index.html')) {
-			return 'plugins/' . $this->getId() . '/doc/' . config::byKey('language', 'core', 'fr_FR') . '/index.html';
-		}
 		if (count($this->info) == 0) {
 			$update = update::byLogicalId($this->id);
 			if (is_object($update)) {
@@ -923,6 +924,36 @@ class plugin {
 
 	public function setIssue($issue) {
 		$this->issue = $issue;
+		return $this;
+	}
+
+	public function getChangelog() {
+		if ($this->changelog == '') {
+			if (file_exists(dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/doc/' . config::byKey('language', 'core', 'fr_FR') . '/index.html')) {
+				return 'plugins/' . $this->getId() . '/doc/' . config::byKey('language', 'core', 'fr_FR') . '/index.html#changelog';
+			}
+			return $this->getInfo('changelog');
+		}
+		return $this->changelog;
+	}
+
+	public function setChangelog($changelog) {
+		$this->changelog = $changelog;
+		return $this;
+	}
+
+	public function getDocumentation() {
+		if ($this->documentation == '') {
+			if (file_exists(dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/doc/' . config::byKey('language', 'core', 'fr_FR') . '/index.html')) {
+				return 'plugins/' . $this->getId() . '/doc/' . config::byKey('language', 'core', 'fr_FR') . '/index.html';
+			}
+			return $this->getInfo('doc');
+		}
+		return $this->documentation;
+	}
+
+	public function setDocumentation($documentation) {
+		$this->documentation = $documentation;
 		return $this;
 	}
 

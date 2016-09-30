@@ -43,7 +43,7 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
                 <option data-pagehelp="core/<?php echo config::byKey('language', 'core', 'fr_FR'); ?>/doc-core-scenario.html">{{Scénario}}</option>
                 <?php
 foreach (plugin::listPlugin(true) as $plugin) {
-	echo '<option data-issue="' . $plugin->getIssue() . '" value="plugin::' . $plugin->getId() . '" data-pagehelp="' . $plugin->getInfo('doc') . '">Plugin ' . $plugin->getName() . '</option>';
+	echo '<option data-issue="' . $plugin->getIssue() . '" value="plugin::' . $plugin->getId() . '" data-pagehelp="' . $plugin->getDocumentation() . '">Plugin ' . $plugin->getName() . '</option>';
 }
 ?>
            </select>

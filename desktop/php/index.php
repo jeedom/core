@@ -472,8 +472,8 @@ if (isConnect('admin')) {
 											</li>
 											<li>
 												<?php if (isset($plugin) && is_object($plugin)) {
-		if ($plugin->getInfo('doc') != '') {
-			echo '<a class="cursor" target="_blank" href="' . $plugin->getInfo('doc') . '" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
+		if ($plugin->getDocumentation() != '') {
+			echo '<a class="cursor" target="_blank" href="' . $plugin->getDocumentation() . '" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
 		}
 	} else {
 		if (init('p') == 'scenarioAssist') {

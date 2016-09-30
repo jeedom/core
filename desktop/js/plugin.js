@@ -131,11 +131,11 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
       }
       $('#span_plugin_delete').empty().append('<a class="btn btn-danger btn-xs removePlugin" data-market_logicalId="' + data.id + '"><i class="fa fa-trash"></i> {{Supprimer}}</a> ');
       $('#span_plugin_doc').empty();
-      if(isset(data.info.doc) && data.info.doc != ''){
-        $('#span_plugin_doc').append('<a class="btn btn-primary btn-xs" target="_blank" href="'+data.info.doc+'"><i class="fa fa-book"></i> {{Documentation}}</a> ');
+      if(isset(data.documentation) && data.documentation != ''){
+        $('#span_plugin_doc').append('<a class="btn btn-primary btn-xs" target="_blank" href="'+data.documentation+'"><i class="fa fa-book"></i> {{Documentation}}</a> ');
       }
-      if(isset(data.info.changelog) && data.info.changelog != ''){
-        $('#span_plugin_doc').append('<a class="btn btn-primary btn-xs" target="_blank" href="'+data.info.changelog+'"><i class="fa fa-book"></i> {{Changelog}}</a> ');
+      if(isset(data.changelog) && data.changelog != ''){
+        $('#span_plugin_doc').append('<a class="btn btn-primary btn-xs" target="_blank" href="'+data.changelog+'"><i class="fa fa-book"></i> {{Changelog}}</a> ');
       }
       if(isset(data.info.display) && data.info.display != ''){
         $('#span_plugin_doc').append('<a class="btn btn-primary btn-xs" target="_blank" href="'+data.info.display+'"><i class="fa fa-book"></i> {{Détails}}</a> ');
