@@ -929,9 +929,6 @@ class plugin {
 
 	public function getChangelog() {
 		if ($this->changelog == '') {
-			if (file_exists(dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/doc/' . config::byKey('language', 'core', 'fr_FR') . '/index.html')) {
-				return 'plugins/' . $this->getId() . '/doc/' . config::byKey('language', 'core', 'fr_FR') . '/index.html#changelog';
-			}
 			return $this->getInfo('changelog');
 		}
 		return $this->changelog;
