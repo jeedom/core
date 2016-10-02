@@ -1084,9 +1084,6 @@ foreach ($repos as $key => $value) {
 									<ul class="nav nav-tabs" role="tablist">
 										<?php
 foreach ($repos as $key => $value) {
-	if ($key == 'github' && $configs['market::allowBeta'] != 1 && $configs['market::allowAllRepo'] != 1) {
-		continue;
-	}
 	$active = ($key == 'market') ? 'active' : '';
 	echo '<li role="presentation" class="' . $active . '"><a href="#tab' . $key . '" aria-controls="tab' . $key . '" role="tab" data-toggle="tab">' . $value['name'] . '</a></li>';
 }
