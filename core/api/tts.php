@@ -21,7 +21,7 @@ if (!jeedom::apiAccess(init('apikey'))) {
 	echo 'Clef API non valide, vous n\'etes pas autorisé à effectuer cette action';
 	die();
 }
-
+log::add('tts', 'debug', 'Call tts api : ' . print_r($_GET, true));
 $engine = init('engine', 'pico');
 $text = init('text');
 if ($text == '') {
