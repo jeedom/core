@@ -1,4 +1,6 @@
-= 2.5
+== Changelog
+
+== 2.5
 
 * Suppression du mode esclave
 * Possibilité de déclencher un scénario sur un changement d'une variable
@@ -15,7 +17,7 @@
 * Possibilité d'avoir les doc en local
 * Les developpeur tierce peuvent ajouter leur propre systeme de gestion de tickets
 
-= 2.4
+== 2.4
 
 * Optimisation général
 ** Regroupement de requêtes SQL
@@ -34,7 +36,7 @@
 * Possibilité de copier l'historique d'une commande sur une autre commande
 * Possibilité de remplacer une commande par une autre dans tout jeedom (même si la commande à remplacer n'existe plus)
 
-= 2.3
+== 2.3
 
 * Correction des filtres sur le market
 * Correction des checkbox sur la page d'édition des vues (sur une zone graphique)
@@ -103,7 +105,7 @@
 * Optimisation de la mise à jour des widgets commandes et équipements
 * Ajout d'un tag #begin_backup#, #end_backup#, #begin_update#, #end_update#, #begin_restore#, #end_restore# dans les scénarios
 
-= 2.2
+== 2.2
 
 * Correction de bugs
 * Simplification de l’accès aux configurations des plugins à partir de la page santé
@@ -116,7 +118,7 @@
 * Possibilité de réordonner les vues
 * Refonte de la gestion des thèmes
 
-= 2.1
+== 2.1
 
 * Refonte du système de cache de Jeedom (utilisation de doctrine cache). Cela permet par exemple de connecter Jeedom à un serveur redis ou memcached. Par défaut Jeedom utilise un système de fichiers (et non plus la BDD MySQL ce qui permet de la décharger un peu), celui-ci se trouve dans /tmp il est donc conseillé si vous avez plus de 512 Mo de RAM de monter le /tmp en tmpfs (en RAM pour plus de rapidité et une diminution de l’usure de la carte SD, je recommande une taille de 64mo). Attention lors du redémarrage de Jeedom le cache est vidé il faut donc attendre pour avoir la remontée de toutes les infos
 * Refonte du système de log (utilisation de monolog) qui permet une intégration à des systèmes de logs (type syslog(d))
@@ -151,7 +153,7 @@
 * Ajout sur la page des scénarios d’un testeur d’expression
 * Revue du système de partage de scénario
 
-= 2.0
+== 2.0
 
 * Refonte du système de cache de Jeedom (utilisation de doctrine cache). Cela permet par exemple de connecter Jeedom à un serveur redis ou memcached. Par défaut Jeedom utilise un système de fichiers (et non plus la BDD MySQL ce qui permet de la décharger un peu), celui-ci se trouve dans /tmp il est donc conseillé si vous avez plus de 512 Mo de RAM de monter le /tmp en tmpfs (en RAM pour plus de rapidité et une diminution de l’usure de la carte SD, je recommande une taille de 64mo). Attention lors du redémarrage de Jeedom le cache est vidé il faut donc attendre pour avoir la remontée de toutes les infos
 * Refonte du système de log (utilisation de monolog) qui permet une intégration à des systèmes de logs (type syslog(d))
