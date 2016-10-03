@@ -17,6 +17,7 @@
 * Possibilité d'avoir les doc en local
 * Les developpeur tierce peuvent ajouter leur propre systeme de gestion de tickets
 * Refonte de la configuration des droits utilisateur (tout est sur la page de gestion des utilisateurs)
+* Mise à jour des libs : jquery (en 3.0) , jquery mobile, hightstock et table sorter
 
 == 2.4
 
