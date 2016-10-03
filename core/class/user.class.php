@@ -25,6 +25,7 @@ class user {
 
 	private $id;
 	private $login;
+	private $profils = 'admin';
 	private $password;
 	private $options;
 	private $rights;
@@ -293,9 +294,9 @@ class user {
 
 	public function getHash() {
 		if ($this->hash == '' && $this->id != '') {
-			$hash = config::genKey(255);
+			$hash = config::genKey();
 			while (is_object(self::byHash($hash))) {
-				$hash = config::genKey(255);
+				$hash = config::genKey();
 			}
 			$this->setHash($hash);
 			$this->save();
@@ -305,6 +306,15 @@ class user {
 
 	public function setHash($hash) {
 		$this->hash = $hash;
+		return $this;
+	}
+
+	public function getProfils() {
+		return $this->profils;
+	}
+
+	public function setProfils($profils) {
+		$this->profils = $profils;
 		return $this;
 	}
 

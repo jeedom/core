@@ -450,14 +450,14 @@ class eqLogic {
 		}
 		$mc = cache::byKey('widgetHtml' . $this->getId() . $_version . $user_id);
 		if ($mc->getValue() != '') {
-			//	return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
+			return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
 		}
 		$replace = array(
 			'#id#' => $this->getId(),
 			'#name#' => $this->getName(),
 			'#name_display#' => $this->getName(),
 			'#hideEqLogicName#' => '',
-			'#eqLink#' => ($this->hasRight('w')) ? $this->getLinkToConfiguration() : '#',
+			'#eqLink#' => $this->getLinkToConfiguration(),
 			'#category#' => $this->getPrimaryCategory(),
 			'#color#' => '#ffffff',
 			'#border#' => 'none',
@@ -782,7 +782,16 @@ class eqLogic {
 	}
 
 	public function hasRight($_right) {
-		return true;
+		if (!isConnect()) {
+			return false;
+		}
+		if (isConnect('admin') || isConnect('user')) {
+			return true;
+		}
+		if (strpos($_SESSION['user']->getRights('eqLogic' . $this->getId()), $_right) !== false) {
+			return true;
+		}
+		return false;
 	}
 
 	public function export($_withCmd = true) {

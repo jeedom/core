@@ -141,6 +141,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `login` VARCHAR(45) NULL,
+  `profils` VARCHAR(45) NOT NULL DEFAULT 'admin',
   `password` VARCHAR(255) NULL,
   `options` TEXT NULL,
   `hash` VARCHAR(255) NULL,
@@ -159,29 +160,6 @@ CREATE TABLE IF NOT EXISTS `config` (
   `value` TEXT NULL,
   PRIMARY KEY (`key`, `plugin`))
 ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `rights`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `rights` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `entity` VARCHAR(127) NULL DEFAULT NULL,
-  `user_id` INT(11) NOT NULL,
-  `right` INT(11) NULL DEFAULT NULL,
-  `options` TEXT NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_rights_user1_idx` (`user_id` ASC),
-  UNIQUE INDEX `entityUser` (`entity` ASC, `user_id` ASC),
-  CONSTRAINT `fk_rights_user1`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `user` (`id`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_general_ci;
-
 
 -- -----------------------------------------------------
 -- Table `scenario`

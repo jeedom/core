@@ -1109,7 +1109,16 @@ class scenario {
 	}
 
 	public function hasRight($_right) {
-		return true;
+		if (!isConnect()) {
+			return false;
+		}
+		if (isConnect('admin') || isConnect('user')) {
+			return true;
+		}
+		if (strpos($_SESSION['user']->getRights('scenario' . $this->getId()), $_right) !== false) {
+			return true;
+		}
+		return false;
 	}
 
 	public function persistLog() {
