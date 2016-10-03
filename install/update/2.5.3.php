@@ -1,7 +1,11 @@
 <?php
-$sql = "ALTER TABLE `user`
+try {
+	$sql = "ALTER TABLE `user`
 	ADD `profils` varchar(37) COLLATE 'utf8_general_ci' NOT NULL DEFAULT 'admin' AFTER `login`;";
-DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+	DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+} catch (Exception $e) {
+	echo $e->getMessage();
+}
 try {
 	foreach (user::all() as $user) {
 		$rights = rights::byUserId($user->getId());
