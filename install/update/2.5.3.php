@@ -11,18 +11,18 @@ try {
 		foreach ($rights as $right) {
 			if (strpos($right->getEntity(), 'eqLogic') !== false) {
 				if (strpos($right->getEntity(), 'view') !== false) {
-					$user->setRight('eqLogic' . str_replace(array('eqLogic', 'view'), array('', ''), $right->getEntity()), 'r');
+					$user->setRights('eqLogic' . str_replace(array('eqLogic', 'view'), array('', ''), $right->getEntity()), 'r');
 				}
 				if (strpos($right->getEntity(), 'action') !== false) {
-					$user->setRight('eqLogic' . str_replace(array('eqLogic', 'action'), array('', ''), $right->getEntity()), 'rx');
+					$user->setRights('eqLogic' . str_replace(array('eqLogic', 'action'), array('', ''), $right->getEntity()), 'rx');
 				}
 			}
 			if (strpos($right->getEntity(), 'scenario') !== false) {
 				if (strpos($right->getEntity(), 'view') !== false) {
-					$user->setRight('scenario' . str_replace(array('scenario', 'view'), array('', ''), $right->getEntity()), 'r');
+					$user->setRights('scenario' . str_replace(array('scenario', 'view'), array('', ''), $right->getEntity()), 'r');
 				}
 				if (strpos($right->getEntity(), 'action') !== false) {
-					$user->setRight('scenario' . str_replace(array('scenario', 'action'), array('', ''), $right->getEntity()), 'rx');
+					$user->setRights('scenario' . str_replace(array('scenario', 'action'), array('', ''), $right->getEntity()), 'rx');
 				}
 			}
 		}

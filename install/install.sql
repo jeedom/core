@@ -446,27 +446,6 @@ CREATE TABLE IF NOT EXISTS `update` (
   INDEX `status` (`status` ASC))
 ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `connection`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `connection` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `ip` VARCHAR(127) NULL,
-  `failure` INT NULL,
-  `localisation` VARCHAR(511) NULL,
-  `datetime` DATETIME NULL,
-  `username` VARCHAR(127) NULL,
-  `status` VARCHAR(127) NULL,
-  `options` VARCHAR(2048) NULL,
-  `informations` VARCHAR(2048) NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `ip_UNIQUE` (`ip` ASC),
-  INDEX `datetime` (`datetime` ASC),
-  INDEX `status_datetime` (`status` ASC, `datetime` ASC))
-ENGINE = MEMORY;
-
-
 -- -----------------------------------------------------
 -- Table `listener`
 -- -----------------------------------------------------
