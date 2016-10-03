@@ -4,7 +4,7 @@ $sql = "ALTER TABLE `user`
 DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 try {
 	foreach (user::all() as $user) {
-		$rights = right::byUserId($user->getId());
+		$rights = rights::byUserId($user->getId());
 		if (count($rights) == 0) {
 			continue;
 		}
