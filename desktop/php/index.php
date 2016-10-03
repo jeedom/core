@@ -314,7 +314,6 @@ echo $plugin_menu;
 }
 	?>
 					</ul>
-
 					<ul class="nav navbar-nav navbar-right">
 						<?php
 $nbMessage = message::nbMessage();
