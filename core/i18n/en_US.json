@@ -726,7 +726,7 @@
         "Connection": "Log In",
         "jeeEvent": "jeeEvent",
         "Aucun": "None",
-        "Attention le niveau de log d'un plugin ne peut être supérieur au niveau de log de jeedom (ex si jeedom est au niveau warning aucun plugin ne pourra envoyer des logs de niveau notice,info ou debug)": "Attention le niveau de log d'un plugin ne peut être supérieur au niveau de log de jeedom (ex si jeedom est au niveau warning aucun plugin ne pourra envoyer des logs de niveau notice,info ou debug)",
+        "Attention le niveau de log d'un plugin ne peut être supérieur au niveau de log de jeedom (ex si jeedom est au niveau warning aucun plugin ne pourra envoyer des logs de niveau notice,info ou debug)": "Warning: plugin's logs level can not be higher than Jeedom's logs level (e.g. if Jeedom uses warning level, any plugin can send logs at notice, info or debug level)",
         "Niveau de log par défaut": "Default log level",
         "Repositories, plugins et mise à jour": "Repositoy, plugins and update",
         "Mise à jour de jeedom": "Updating Jeedom",

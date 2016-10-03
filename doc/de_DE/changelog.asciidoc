@@ -16,6 +16,7 @@
 * Sauvegarde automatique des vues lors du clique sur le bouton "voir le résultat"
 * Possibilité d'avoir les doc en local
 * Les developpeur tierce peuvent ajouter leur propre systeme de gestion de tickets
+* Refonte de la configuration des droits utilisateur (tout est sur la page de gestion des utilisateurs)
 
 == 2.4
 
