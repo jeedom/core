@@ -1,4 +1,4 @@
-/*! Widget: Pager - updated 5/1/2016 (v2.26.0) */
+/*! Widget: Pager - updated 9/23/2016 (v2.27.7) */
 /* Requires tablesorter v2.8+ and jQuery 1.7+
  * by Rob Garrison
  */
@@ -190,6 +190,7 @@
 			// skipped rows
 			p.regexRows = new RegExp( '(' + ( wo.filter_filteredRow || 'filtered' ) + '|' +
 				c.selectorRemove.slice( 1 ) + '|' + c.cssChildRow + ')' );
+			p.regexFiltered = new RegExp( wo.filter_filteredRow || 'filtered' );
 
 			// clear initialized flag
 			p.initialized = false;
@@ -416,7 +417,7 @@
 				wo = c.widgetOptions,
 				p = c.pager,
 				hasFilters = c.$table.hasClass( 'hasFilters' );
-			if ( hasFilters && !wo.pager_ajaxUrl ) {
+			if ( hasFilters && !p.ajax ) {
 				if ( $.isEmptyObject( c.cache ) ) {
 					// delayInit: true so nothing is in the cache
 					p.filteredRows = p.totalRows = c.$tbodies.eq( 0 )
@@ -463,30 +464,36 @@
 				p.startRow = t ? sz * p.page + 1 : ( p.filteredRows === 0 ? 0 : sz * p.page + 1 );
 				p.endRow = Math.min( p.filteredRows, p.totalRows, sz * ( p.page + 1 ) );
 				$out = p.$container.find( wo.pager_selectors.pageDisplay );
-				// form the output string (can now get a new output string from the server)
-				s = ( p.ajaxData && p.ajaxData.output ? p.ajaxData.output || wo.pager_output : wo.pager_output )
-					// {page} = one-based index; {page+#} = zero based index +/- value
-					.replace( /\{page([\-+]\d+)?\}/gi, function( m, n ) {
-						return p.totalPages ? p.page + ( n ? parseInt( n, 10 ) : 1 ) : 0;
-					})
-					// {totalPages}, {extra}, {extra:0} (array) or {extra : key} (object)
-					.replace( /\{\w+(\s*:\s*\w+)?\}/gi, function( m ) {
-						var len, indx,
-							str = m.replace( /[{}\s]/g, '' ),
-							extra = str.split( ':' ),
-							data = p.ajaxData,
-							// return zero for default page/row numbers
-							deflt = /(rows?|pages?)$/i.test( str ) ? 0 : '';
-						if ( /(startRow|page)/.test( extra[ 0 ] ) && extra[ 1 ] === 'input' ) {
-							len = ( '' + ( extra[ 0 ] === 'page' ? p.totalPages : p.totalRows ) ).length;
-							indx = extra[ 0 ] === 'page' ? p.page + 1 : p.startRow;
-							return '<input type="text" class="ts-' + extra[ 0 ] +
-								'" style="max-width:' + len + 'em" value="' + indx + '"/>';
-						}
-						return extra.length > 1 && data && data[ extra[ 0 ] ] ?
-							data[ extra[ 0 ] ][ extra[ 1 ] ] :
-							p[ str ] || ( data ? data[ str ] : deflt ) || deflt;
-					});
+
+				// Output param can be callback for custom rendering or string
+				if ( typeof wo.pager_output === 'function' ) {
+					s = wo.pager_output( table, p );
+				} else {
+					// form the output string (can now get a new output string from the server)
+					s = ( p.ajaxData && p.ajaxData.output ? p.ajaxData.output || wo.pager_output : wo.pager_output )
+						// {page} = one-based index; {page+#} = zero based index +/- value
+						.replace( /\{page([\-+]\d+)?\}/gi, function( m, n ) {
+							return p.totalPages ? p.page + ( n ? parseInt( n, 10 ) : 1 ) : 0;
+						})
+						// {totalPages}, {extra}, {extra:0} (array) or {extra : key} (object)
+						.replace( /\{\w+(\s*:\s*\w+)?\}/gi, function( m ) {
+							var len, indx,
+								str = m.replace( /[{}\s]/g, '' ),
+								extra = str.split( ':' ),
+								data = p.ajaxData,
+								// return zero for default page/row numbers
+								deflt = /(rows?|pages?)$/i.test( str ) ? 0 : '';
+							if ( /(startRow|page)/.test( extra[ 0 ] ) && extra[ 1 ] === 'input' ) {
+								len = ( '' + ( extra[ 0 ] === 'page' ? p.totalPages : p.totalRows ) ).length;
+								indx = extra[ 0 ] === 'page' ? p.page + 1 : p.startRow;
+								return '<input type="text" class="ts-' + extra[ 0 ] +
+									'" style="max-width:' + len + 'em" value="' + indx + '"/>';
+							}
+							return extra.length > 1 && data && data[ extra[ 0 ] ] ?
+								data[ extra[ 0 ] ][ extra[ 1 ] ] :
+								p[ str ] || ( data ? data[ str ] : deflt ) || deflt;
+						});
+				}
 				if ( p.$goto.length ) {
 					t = '';
 					options = tsp.buildPageSelect( c, p );
@@ -637,7 +644,6 @@
 					sz = p.size === 'all' ? p.totalRows : p.size,
 					start = ( p.page * sz ),
 					end =  start + sz,
-					filtr = wo && wo.filter_filteredRow || 'filtered',
 					last = 0, // for cache indexing
 					size = 0; // size counter
 				p.cacheIndex = [];
@@ -648,7 +654,7 @@
 					last = 0; // for cache indexing
 					size = 0; // size counter
 					for ( rowIndex = 0; rowIndex < len; rowIndex++ ) {
-						if ( !$rows[ rowIndex ].className.match( filtr ) ) {
+						if ( !p.regexFiltered.test( $rows[ rowIndex ].className ) ) {
 							if ( size === start && $rows[ rowIndex ].className.match( c.cssChildRow ) ) {
 								// hide child rows @ start of pager (if already visible)
 								$rows[ rowIndex ].style.display = 'none';
@@ -949,7 +955,7 @@
 				count = f ? 0 : s;
 				added = 0;
 				while ( added < e && index < rows.length ) {
-					if ( !f || !/filtered/.test( rows[ index ][ 0 ].className ) ) {
+					if ( !f || !p.regexFiltered.test( rows[ index ][ 0 ].className ) ) {
 						count++;
 						if ( count > s && added <= e ) {
 							added++;
@@ -1085,7 +1091,7 @@
 					p.filteredRows = typeof tmp.filtered !== 'undefined' ? tmp.filtered :
 						( c.debug ? console.error('Pager: no initial filtered page set!') || 0 : 0 );
 					tsp.updatePageDisplay( c, false );
-				} else {
+				} else if (p.initialized) {
 					tsp.getAjax( c );
 				}
 			} else if ( !p.ajax ) {
@@ -1115,7 +1121,7 @@
 		parsePageSize: function( c, size, mode ) {
 			var p = c.pager,
 				s = parseInt( size, 10 ) || p.size || c.widgetOptions.pager_size || 10;
-			return /all/i.test( size ) || s === p.totalRows ?
+			return p.initialized && (/all/i.test( size ) || s === p.totalRows) ?
 				// "get" to set `p.size` or "set" to set `p.$size.val()`
 				'all' : ( mode === 'get' ? s : p.size );
 		},
@@ -1199,7 +1205,7 @@
 		},
 
 		enablePager: function( c, triggered ) {
-			var info, size,
+			var info, size, $el,
 				table = c.table,
 				p = c.pager;
 			p.isDisabled = false;
@@ -1210,9 +1216,14 @@
 			p.totalPages = p.size === 'all' ? 1 : Math.ceil( tsp.getTotalPages( c, p ) / p.size );
 			c.$table.removeClass( 'pagerDisabled' );
 			// if table id exists, include page display with aria info
-			if ( table.id ) {
-				info = table.id + '_pager_info';
-				p.$container.find( c.widgetOptions.pager_selectors.pageDisplay ).attr( 'id', info );
+			if ( table.id && !c.$table.attr( 'aria-describedby' ) ) {
+				$el = p.$container.find( c.widgetOptions.pager_selectors.pageDisplay );
+				info = $el.attr( 'id' );
+				if ( !info ) {
+					// only add pageDisplay id if it doesn't exist - see #1288
+					info = table.id + '_pager_info';
+					$el.attr( 'id', info );
+				}
 				c.$table.attr( 'aria-describedby', info );
 			}
 			tsp.changeHeight( c );

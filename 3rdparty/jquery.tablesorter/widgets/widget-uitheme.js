@@ -1,4 +1,4 @@
-/*! Widget: uitheme - updated 3/26/2015 (v2.21.3) */
+/*! Widget: uitheme - updated 7/31/2016 (v2.27.0) */
 ;(function ($) {
 	'use strict';
 	var ts = $.tablesorter || {};
@@ -37,9 +37,9 @@
 			hover        : 'ui-state-hover',  // hover class
 			// icon class names
 			icons        : 'ui-icon', // icon class added to the <i> in the header
-			iconSortNone : 'ui-icon-carat-2-n-s', // class name added to icon when column is not sorted
-			iconSortAsc  : 'ui-icon-carat-1-n', // class name added to icon when column has ascending sort
-			iconSortDesc : 'ui-icon-carat-1-s', // class name added to icon when column has descending sort
+			iconSortNone : 'ui-icon-carat-2-n-s ui-icon-caret-2-n-s', // class name added to icon when column is not sorted
+			iconSortAsc  : 'ui-icon-carat-1-n ui-icon-caret-1-n', // class name added to icon when column has ascending sort
+			iconSortDesc : 'ui-icon-carat-1-s ui-icon-caret-1-s', // class name added to icon when column has descending sort
 			filterRow    : '',
 			footerRow    : '',
 			footerCells  : '',
@@ -56,7 +56,7 @@
 		id: 'uitheme',
 		priority: 10,
 		format: function(table, c, wo) {
-			var i, hdr, icon, time, $header, $icon, $tfoot, $h, oldtheme, oldremove, oldIconRmv, hasOldTheme,
+			var i, tmp, hdr, icon, time, $header, $icon, $tfoot, $h, oldtheme, oldremove, oldIconRmv, hasOldTheme,
 				themesAll = ts.themes,
 				$table = c.$table.add( $( c.namespace + '_extra_table' ) ),
 				$headers = c.$headers.add( $( c.namespace + '_extra_headers' ) ),
@@ -123,10 +123,20 @@
 						.removeClass(hasOldTheme ? [ oldtheme.icons, oldIconRmv ].join(' ') : '')
 						.addClass(themes.icons || '');
 				}
-				if ($table.hasClass('hasFilters')) {
-					$table.children('thead').children('.' + ts.css.filterRow)
-						.removeClass(hasOldTheme ? oldtheme.filterRow || '' : '')
-						.addClass(themes.filterRow || '');
+				// filter widget initializes after uitheme
+				if (c.widgets.indexOf('filter') > -1) {
+					tmp = function() {
+						$table.children('thead').children('.' + ts.css.filterRow)
+							.removeClass(hasOldTheme ? oldtheme.filterRow || '' : '')
+							.addClass(themes.filterRow || '');
+					};
+					if (wo.filter_initialized) {
+						tmp();
+					} else {
+						$table.one('filterInit', function() {
+							tmp();
+						});
+					}
 				}
 			}
 			for (i = 0; i < c.columns; i++) {

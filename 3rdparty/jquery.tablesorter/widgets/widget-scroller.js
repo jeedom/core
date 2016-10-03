@@ -1,4 +1,4 @@
-/*! Widget: scroller - updated 4/29/2016 (v2.25.9) *//*
+/*! Widget: scroller - updated 7/31/2016 (v2.27.0) *//*
 	Copyright (C) 2011 T. Connell & Associates, Inc.
 
 	Dual-licensed under the MIT and GPL licenses
@@ -77,7 +77,9 @@
 			scroller_barWidth : null
 		},
 		format : function( table, c, wo ) {
-			if ( !c.isScrolling ) {
+			if ( c.isScrolling ) {
+				ts.scroller.resize( c, wo );
+			} else {
 				// initialize here instead of in widget init to give the
 				// filter widget time to finish building the filter row
 				ts.scroller.setup( c, wo );
@@ -370,6 +372,8 @@
 				$tableWrap = $table.parent(),
 				$hdr = wo.scroller_$header,
 				$foot = wo.scroller_$footer,
+				$win = $(window),
+				position = [ $win.scrollLeft(), $win.scrollTop() ],
 				id = c.namespace.slice( 1 ) + 'tsscroller',
 				// Hide other scrollers so we can resize
 				$div = $( 'div.' + tscss.scrollerWrap + '[id!="' + id + '"]' )
@@ -459,6 +463,8 @@
 				.find( '.' + tscss.scrollerFixed )
 				.find( '.' + tscss.scrollerTable )
 				.scrollTop( wo.scroller_saved[1] );
+			$win.scrollLeft( position[0] );
+			$win.scrollTop( position[1] );
 
 			// update resizable widget handles
 			setTimeout( function() {
@@ -787,10 +793,11 @@
 
 			$fixedColumn.removeClass( tscss.scrollerHideElement );
 			for ( index = 0; index < fixedColumns; index++ ) {
+				temp = ':nth-child(' + ( index + 1 ) + ')';
 				$wrapper
 					.children( 'div' )
 					.children( 'table' )
-					.find( 'th:nth-child(' + ( index + 1 ) + '), td:nth-child(' + ( index + 1 ) + ')' )
+					.find( 'th' + temp + ', td' + temp + ', col' + temp )
 					.addClass( tscss.scrollerHideColumn );
 			}
 

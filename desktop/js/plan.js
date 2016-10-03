@@ -432,8 +432,8 @@ function savePlan(_refreshDisplay) {
             plan.link_type = 'eqLogic';
             plan.link_id = $(this).attr('data-eqLogic_id');
             plan.planHeader_id = planHeader_id;
-            plan.display.height = $(this).outerHeight() ;
-            plan.display.width = $(this).outerWidth() ;
+            plan.display.height = $(this).outerHeight() / $(this).attr('data-zoom');
+            plan.display.width = $(this).outerWidth() / $(this).attr('data-zoom');
             var position = $(this).position();
             plan.position.top = (((position.top)) / parent.height) * 100;
             plan.position.left = (((position.left)) / parent.width) * 100;
@@ -446,8 +446,8 @@ function savePlan(_refreshDisplay) {
             plan.link_type = 'scenario';
             plan.link_id = $(this).attr('data-scenario_id');
             plan.planHeader_id = planHeader_id;
-            plan.display.height = $(this).outerHeight() ;
-            plan.display.width = $(this).outerWidth();
+            plan.display.height = $(this).outerHeight() / $(this).attr('data-zoom');
+            plan.display.width = $(this).outerWidth() / $(this).attr('data-zoom');
             var position = $(this).position();
             plan.position.top = (((position.top)) / parent.height) * 100;
             plan.position.left = (((position.left)) / parent.width) * 100;
@@ -460,8 +460,8 @@ function savePlan(_refreshDisplay) {
             plan.link_type = 'plan';
             plan.link_id = $(this).attr('data-link_id');
             plan.planHeader_id = planHeader_id;
-            plan.display.height = $(this).outerHeight();
-            plan.display.width = $(this).outerWidth();
+            plan.display.height = $(this).outerHeight() / $(this).attr('data-zoom');
+            plan.display.width = $(this).outerWidth() / $(this).attr('data-zoom');
             var position = $(this).position();
             plan.position.top = ((position.top) / parent.height) * 100;
             plan.position.left = ((position.left) / parent.width) * 100;
@@ -474,8 +474,8 @@ function savePlan(_refreshDisplay) {
             plan.link_type = 'view';
             plan.link_id = $(this).attr('data-link_id');
             plan.planHeader_id = planHeader_id;
-            plan.display.height = $(this).outerHeight();
-            plan.display.width = $(this).outerWidth();
+            plan.display.height = $(this).outerHeight() / $(this).attr('data-zoom');
+            plan.display.width = $(this).outerWidth() / $(this).attr('data-zoom');
             var position = $(this).position();
             plan.position.top = ((position.top) / parent.height) * 100;
             plan.position.left = ((position.left) / parent.width) * 100;
@@ -488,8 +488,8 @@ function savePlan(_refreshDisplay) {
             plan.link_type = 'graph';
             plan.link_id = $(this).attr('data-graph_id');
             plan.planHeader_id = planHeader_id;
-            plan.display.height = $(this).outerHeight();
-            plan.display.width = $(this).outerWidth() ;
+            plan.display.height = $(this).outerHeight() / $(this).attr('data-zoom');
+            plan.display.width = $(this).outerWidth() / $(this).attr('data-zoom');
             plan.display.graph = json_decode($(this).find('.graphOptions').value());
             var position = $(this).position();
             plan.position.top = ((position.top) / parent.height) * 100;
@@ -503,8 +503,8 @@ function savePlan(_refreshDisplay) {
             plan.link_type = 'text';
             plan.link_id = $(this).attr('data-text_id');
             plan.planHeader_id = planHeader_id;
-            plan.display.height = $(this).outerHeight();
-            plan.display.width = $(this).outerWidth();
+            plan.display.height = $(this).outerHeight() / $(this).attr('data-zoom');
+            plan.display.width = $(this).outerWidth() / $(this).attr('data-zoom');
             var position = $(this).position();
             plan.position.top = ((position.top) / parent.height) * 100;
             plan.position.left = ((position.left) / parent.width) * 100;
