@@ -1,5 +1,5 @@
 <?php
-if (!hasRight('viewedit')) {
+if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 ?>

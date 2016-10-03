@@ -1,5 +1,5 @@
 <?php
-if (!hasRight('interactview', true)) {
+if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 $interacts = array();
@@ -269,7 +269,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $id => $category) {
     <label class="col-sm-3 control-label">{{Limiter aux visibles}}</label>
     <div class="col-sm-9">
 	<?php
-foreach (array('object'=>'Objets','eqlogic'=>'Equipements','cmd'=>'Commandes') as $id => $name) {
+foreach (array('object' => 'Objets', 'eqlogic' => 'Equipements', 'cmd' => 'Commandes') as $id => $name) {
 	echo '<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="visible" data-l3key="' . $id . '" />' . $name . '</label> ';
 }
 ?>

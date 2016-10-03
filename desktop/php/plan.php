@@ -1,5 +1,5 @@
 <?php
-if (!hasRight('planview')) {
+if (!isConnect()) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 $planHeader = null;

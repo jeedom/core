@@ -1,5 +1,5 @@
 <?php
-if (!hasRight('cronview', true)) {
+if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 

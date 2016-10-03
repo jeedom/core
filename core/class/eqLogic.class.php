@@ -782,29 +782,7 @@ class eqLogic {
 	}
 
 	public function hasRight($_right) {
-		if (config::byKey('rights::enable') != 1) {
-			return true;
-		}
-		if (!isConnect()) {
-			return false;
-		}
-		$_user = $_SESSION['user'];
-		if (!is_object($_user)) {
-			return false;
-		}
-		if (isConnect('admin')) {
-			return true;
-		}
-		$rights = null;
-		if ($_right == 'x') {
-			$rights = rights::byuserIdAndEntity($_user->getId(), 'eqLogic' . $this->getId() . 'action');
-		} elseif ($_right == 'r') {
-			$rights = rights::byuserIdAndEntity($_user->getId(), 'eqLogic' . $this->getId() . 'view');
-		}
-		if (!is_object($rights)) {
-			return true;
-		}
-		return $rights->getRight();
+		return true;
 	}
 
 	public function export($_withCmd = true) {

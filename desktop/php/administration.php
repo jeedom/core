@@ -1,5 +1,5 @@
 <?php
-if (!hasRight('administrationview', true)) {
+if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 $repos = update::listRepo();
@@ -205,30 +205,6 @@ sendVarToJS('ldapEnable', $configs['ldap::enable']);
 								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Indique à Jeedom de ne pas prendre en compte l'heure du système}}">{{Ignorer la vérification de l'heure}}</label>
 								<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 									<input type="checkbox" class="configKey" data-l1key="ignoreHourCheck" />
-								</div>
-							</div>
-						</fieldset>
-					</form>
-				</div>
-			</div>
-		</div>
-
-		<div class="panel panel-default expertModeVisible">
-			<div class="panel-heading">
-				<h3 class="panel-title">
-					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_component">
-						<i class="fa fa-home"></i>  {{Composants Jeedom}}
-					</a>
-				</h3>
-			</div>
-			<div id="config_component" class="panel-collapse collapse">
-				<div class="panel-body">
-					<form class="form-horizontal">
-						<fieldset>
-							<div class="form-group expertModeVisible">
-								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer la gestion des droits avancés}}</label>
-								<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-									<input type="checkbox" class="configKey" data-l1key="rights::enable" />
 								</div>
 							</div>
 						</fieldset>

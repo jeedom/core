@@ -1109,25 +1109,7 @@ class scenario {
 	}
 
 	public function hasRight($_right) {
-		if (config::byKey('rights::enable') != 1) {
-			return true;
-		}
-		if (session_status() != PHP_SESSION_NONE || !isset($_SESSION) || !isset($_SESSION['user'])) {
-			return true;
-		}
-		$_user = $_SESSION['user'];
-		if (!is_object($_user) || !isConnect()) {
-			return false;
-		}
-		if (isConnect('admin')) {
-			return true;
-		}
-		$assocRights = array('x' => 'action', 'w' => 'edit', 'r' => 'view');
-		$rights = null;
-		if (array_key_exists($_right, $assocRights)) {
-			$rights = rights::byuserIdAndEntity($_user->getId(), 'scenario' . $this->getId() . $assocRights[$_right]);
-		}
-		return (!is_object($rights)) ? true : $rights->getRight();
+		return true;
 	}
 
 	public function persistLog() {

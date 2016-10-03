@@ -1,5 +1,5 @@
 <?php
-if (!hasRight('objectview', true)) {
+if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 sendVarToJS('select_id', init('id', '-1'));
