@@ -13,9 +13,8 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
- var noBootstrapTooltips = true;
  var deviceInfo = getDeviceType();
- var noReturnButtonFullScreen = false;
+ var editMode = false;
 
  $("#md_addViewData").dialog({
     closeText: '',
@@ -26,15 +25,151 @@
 });
 
  $('body').delegate('.eqLogic-widget .history', 'click', function () {
-    if ($('#bt_editPlan').attr('data-mode') != "1") {
+    if (!editMode) {
         $('#md_modal').dialog({title: "Historique"});
         $("#md_modal").load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
     }
 });
+ planHeaderContextMenu = {};
+ for(var i in planHeader){
+    planHeaderContextMenu[planHeader[i].id] = {
+        name:planHeader[i].name,
+        callback: function(key, opt){
+            planHeader_id = key;
+            displayPlan();
+        }
+    }
+}
 
- /*****************************PLAN HEADER***********************************/
- $('#bt_addPlanHeader').off('click').on('click', function () {
-    bootbox.prompt("Nom du design ?", function (result) {
+$.contextMenu({
+    selector: '#div_pageContainer',
+    zIndex: 9999,
+    items: {
+        fold1: {
+            name: "{{Designs}}", 
+            icon : 'fa-picture-o',
+            items: planHeaderContextMenu
+        },
+        edit: {
+            name: "{{Edition}}",
+            icon : 'fa-pencil',
+            callback: function(key, opt){
+             if (!editMode) {
+                initDraggable(1);
+                $('.editMode').show();
+                editMode = true;
+                $('.div_displayObject:visible:last').css('background-color', '#bdc3c7');
+                this.data('editMode', editMode);
+            } else {
+                initDraggable(0);
+                $('.editMode').hide();
+                editMode = false;
+                $('.div_displayObject:visible:last').css('background-color', 'transparent');
+                this.data('editMode', editMode);
+            }
+            return false;
+        }
+    },
+    fullscreen: {
+        name: "{{Pleine écran}}",
+        icon : 'fa-desktop',
+        callback: function(key, opt){
+            if(this.data('fullscreen') == undefined){
+                this.data('fullscreen',1)
+            }
+            fullScreen(this.data('fullscreen'));
+            this.data('fullscreen',!this.data('fullscreen'));
+        }
+    },
+    sep1 : "---------",
+    addGraph: {
+        name: "{{Ajouter Graphique}}",
+        icon : 'fa-line-chart',
+        disabled:function(key, opt) { 
+            return !this.data('editMode'); 
+        },
+        callback: function(key, opt){
+            addGraph({});
+            savePlan();
+        }
+    },
+    addText: {
+        name: "{{Ajouter texte/html}}",
+        icon : 'fa-align-center',
+        disabled:function(key, opt) { 
+            return !this.data('editMode'); 
+        },
+        callback: function(key, opt){
+         addText({display: {text: 'Texte à insérer ici'}});
+         savePlan();
+     }
+ },
+ addScenario: {
+    name: "{{Ajouter scénario}}",
+    icon : 'fa-plus-circle',
+    disabled:function(key, opt) { 
+        return !this.data('editMode'); 
+    },
+    callback: function(key, opt){
+     jeedom.scenario.getSelectModal({}, function (data) {
+        addScenario(data.id);
+    });
+ }
+},
+addLink: {
+    name: "{{Ajouter lien}}",
+    icon : 'fa-link',
+    disabled:function(key, opt) { 
+        return !this.data('editMode'); 
+    },
+    callback: function(key, opt){
+      $('#md_selectLink').modal('show');
+  }
+},
+addEqLogic: {
+    name: "{{Ajouter équipement}}",
+    icon : 'fa-plus-circle',
+    disabled:function(key, opt) { 
+        return !this.data('editMode'); 
+    },
+    callback: function(key, opt){
+      jeedom.eqLogic.getSelectModal({}, function (data) {
+        addEqLogic(data.id);
+    });
+  }
+},
+sep2 : "---------",
+removePlan: {
+    name: "{{Supprimer le design}}",
+    icon : 'fa-trash',
+    disabled:function(key, opt) { 
+        return !this.data('editMode'); 
+    },
+    callback: function(key, opt){
+      bootbox.confirm('{{Etes vous sûr de vouloir supprimer ce design ?}}', function (result) {
+        if (result) {
+            jeedom.plan.removeHeader({
+                id:planHeader_id,
+                error: function (error) {
+                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function () {
+                 $('#div_alert').showAlert({message: 'Design supprimé', level: 'success'});
+                 loadPage('index.php?v=d&p=plan');
+             },
+         });
+        }
+    });
+  }
+},
+addPlan: {
+    name: "{{Creer un design}}",
+    icon : 'fa-plus-circle',
+    disabled:function(key, opt) { 
+        return !this.data('editMode'); 
+    },
+    callback: function(key, opt){
+     bootbox.prompt("Nom du design ?", function (result) {
         if (result !== null) {
             jeedom.plan.saveHeader({
                 planHeader: {name: result},
@@ -47,145 +182,124 @@
             });
         }
     });
-});
-
- $('#bt_duplicatePlanHeader').off('click').on('click', function () {
-    bootbox.prompt("{{Nom la copie du design ?}}", function (result) {
+ }
+},
+duplicatePlan: {
+    name: "{{Dupliquer le design}}",
+    icon : 'fa-files-o',
+    disabled:function(key, opt) { 
+        return !this.data('editMode'); 
+    },
+    callback: function(key, opt){
+       bootbox.prompt("{{Nom la copie du design ?}}", function (result) {
         if (result !== null) {
             jeedom.plan.copyHeader({
                 name: result,
-                id: $('#sel_planHeader').value(),
+                id: planHeader_id,
                 error: function (error) {
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function (data) {
-                   loadPage('index.php?v=d&p=plan&plan_id=' + data.id);
-               },
-           });
+                 loadPage('index.php?v=d&p=plan&plan_id=' + data.id);
+             },
+         });
         }
     });
+   }
+},
+configurePlan: {
+    name: "{{Configurer le design}}",
+    icon : 'fa-cogs',
+    disabled:function(key, opt) { 
+        return !this.data('editMode'); 
+    },
+    callback: function(key, opt){
+       $('#md_modal').dialog({title: "{{Configuration du design}}"});
+       $('#md_modal').load('index.php?v=d&modal=planHeader.configure&planHeader_id=' + planHeader_id).dialog('open');
+   }
+},
+sep3 : "---------",
+save: {
+    name: "{{Sauvegarder}}",
+    icon : 'fa-floppy-o',
+    disabled:function(key, opt) { 
+        return !this.data('editMode'); 
+    },
+    callback: function(key, opt){
+     savePlan();
+
+ }
+},
+}
 });
 
- $('#sel_planHeader').off('change').on('change', function () {
-    if($('#bt_editPlan').attr('data-mode') == 1){
-        $('#bt_editPlan').click();
-    }
+/*****************************PLAN HEADER***********************************/
+
+
+$('#sel_planHeader').off('change').on('change', function () {
     planHeader_id = $(this).value();
     displayPlan();
 });
 
- $('body').delegate('.plan-link-widget', 'click', function () {
-    if ($('#bt_editPlan').attr('data-mode') != "1") {
+$('body').delegate('.plan-link-widget', 'click', function () {
+    if (!editMode) {
         planHeader_id = $(this).attr('data-link_id');
         $('#sel_planHeader').value(planHeader_id);
     }
 });
 
- $('#bt_removePlanHeader').on('click',function(){
-    bootbox.confirm('{{Etes vous sûr de vouloir supprimer ce design ?}}', function (result) {
-        if (result) {
-            jeedom.plan.removeHeader({
-                id:planHeader_id,
-                error: function (error) {
-                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                },
-                success: function () {
-                   $('#div_alert').showAlert({message: 'Design supprimé', level: 'success'});
-                   loadPage('index.php?v=d&p=plan');
-               },
-           });
-        }
-    });
-});
+/*****************************PLAN***********************************/
+displayPlan();
 
- /*****************************PLAN***********************************/
- $('#bt_addEqLogic').off('click').on('click', function () {
-    jeedom.eqLogic.getSelectModal({}, function (data) {
-        addEqLogic(data.id);
-    });
-});
-
- $('#bt_addScenario').off('click').on('click', function () {
-    jeedom.scenario.getSelectModal({}, function (data) {
-        addScenario(data.id);
-    });
-});
-
- $('#bt_addLink').off('click').on('click', function () {
-    $('#md_selectLink').modal('show');
-});
-
- $('#bt_addGraph').off('click').on('click', function () {
-    addGraph({});
-    savePlan();
-});
-
- $('#bt_addTexte').off('click').on('click', function () {
-    addText({display: {text: 'Texte à insérer ici'}});
-    savePlan();
-});
-
- displayPlan();
-
- jwerty.key('ctrl+s', function (e) {
+jwerty.key('ctrl+s', function (e) {
     e.preventDefault();
     savePlan();
 });
 
- $('#bt_savePlan').off('click').on('click', function () {
-    savePlan();
-});
 
- $('#bt_configurePlanHeader').on('click', function () {
-    if ($('#bt_editPlan').attr('data-mode') == "1") {
-        $('#md_modal').dialog({title: "{{Configuration du design}}"});
-        $('#md_modal').load('index.php?v=d&modal=planHeader.configure&planHeader_id=' + planHeader_id).dialog('open');
-    }
-});
-
- $('.div_displayObject:last').delegate('.eqLogic-widget', 'dblclick', function () {
-    if ($('#bt_editPlan').attr('data-mode') == "1") {
+$('.div_displayObject:last').delegate('.eqLogic-widget', 'dblclick', function () {
+    if (editMode) {
         $('#md_modal').dialog({title: "{{Configuration du widget}}"});
         $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=eqLogic&link_id=' + $(this).attr('data-eqLogic_id') + '&planHeader_id=' + planHeader_id).dialog('open');
     }
 });
 
- $('.div_displayObject:last').delegate('.scenario-widget', 'dblclick', function () {
-    if ($('#bt_editPlan').attr('data-mode') == "1") {
+$('.div_displayObject:last').delegate('.scenario-widget', 'dblclick', function () {
+    if (editMode) {
         $('#md_modal').dialog({title: "{{Configuration du scénario}}"});
         $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=scenario&link_id=' + $(this).attr('data-scenario_id') + '&planHeader_id=' + planHeader_id).dialog('open');
     }
 });
 
- $('.div_displayObject:last').delegate('.plan-link-widget', 'dblclick', function () {
-    if ($('#bt_editPlan').attr('data-mode') == "1") {
+$('.div_displayObject:last').delegate('.plan-link-widget', 'dblclick', function () {
+    if (editMode) {
         $('#md_modal').dialog({title: "{{Configuration du lien}}"});
         $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=plan&link_id=' + $(this).attr('data-link_id') + '&planHeader_id=' + planHeader_id).dialog('open');
     }
 });
 
- $('.div_displayObject:visible:last').delegate('.text-widget', 'dblclick', function () {
-    if ($('#bt_editPlan').attr('data-mode') == "1") {
+$('.div_displayObject:visible:last').delegate('.text-widget', 'dblclick', function () {
+    if (editMode) {
         $('#md_modal').dialog({title: "{{Configuration du texte}}"});
         $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=text&link_id=' + $(this).attr('data-text_id') + '&planHeader_id=' + planHeader_id).dialog('open');
     }
 });
 
- $('.div_displayObject:last').delegate('.view-link-widget', 'dblclick', function () {
-    if ($('#bt_editPlan').attr('data-mode') == "1") {
+$('.div_displayObject:last').delegate('.view-link-widget', 'dblclick', function () {
+    if (editMode) {
         $('#md_modal').dialog({title: "{{Configuration du lien}}"});
         $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=view&link_id=' + $(this).attr('data-link_id') + '&planHeader_id=' + planHeader_id).dialog('open');
     }
 });
 
- $('.div_displayObject:last').delegate('.graph-widget', 'dblclick', function () {
-    if ($('#bt_editPlan').attr('data-mode') == "1") {
+$('.div_displayObject:last').delegate('.graph-widget', 'dblclick', function () {
+    if (editMode) {
         $('#md_modal').dialog({title: "{{Configuration du graph}}"});
         $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=graph&link_id=' + $(this).attr('data-graph_id') + '&planHeader_id=' + planHeader_id).dialog('open');
     }
 });
 
- $('.planHeaderAttr').off('change').on('change', function () {
+$('.planHeaderAttr').off('change').on('change', function () {
     var planHeader = $('#div_planHeader').getValues('.planHeaderAttr')[0];
     planHeader.id = planHeader_id;
     jeedom.plan.saveHeader({
@@ -200,7 +314,7 @@
     });
 });
 
- function setColorSelect(_select) {
+function setColorSelect(_select) {
     _select.css('background-color', _select.find('option:selected').val());
 }
 
@@ -209,7 +323,7 @@ $('.graphDataOption[data-l1key=configuration][data-l2key=graphColor]').off('chan
 });
 
 $('.div_displayObject:last').delegate('.configureGraph', 'click', function () {
-    if ($('#bt_editPlan').attr('data-mode') == "1") {
+    if (editMode) {
         var el = $(this).closest('.graph-widget');
         $("#md_addViewData").load('index.php?v=d&modal=cmd.graph.select', function () {
             $('#table_addViewData tbody tr .enable').prop('checked', false);
@@ -246,60 +360,28 @@ $('.div_displayObject:last').delegate('.configureGraph', 'click', function () {
     }
 });
 
-$('#bt_editPlan').off('click').on('click', function () {
-    if ($(this).attr('data-mode') == '0') {
-        initDraggable(1);
-        $('.editMode').show();
-        $(this).html('<i class="fa fa-pencil"></i> {{Quitter le mode édition}}');
-        $(this).attr('data-mode', '1');
-        $('.div_displayObject:visible:last').css('background-color', '#bdc3c7');
-        $('#bt_switchFullScreen').hide();
-    } else {
-        initDraggable(0);
-        $('.editMode').hide();
-        $(this).html('<i class="fa fa-pencil"></i> {{Mode édition}}');
-        $(this).attr('data-mode', '0');
-        $('.div_displayObject:visible:last').css('background-color', 'transparent');
-        $('#bt_switchFullScreen').show();
-    }
-});
-
-$('#bt_switchFullScreen').off('click').on('click', function () {
-    if ($('#bt_editPlan').attr('data-mode') == '0') {
-        fullScreen('desktop');
-    }
-});
-
 $('.view-link-widget').off('click').on('click', function () {
-    if ($('#bt_editPlan').attr('data-mode') == '0') {
+    if (!editMode) {
         $(this).find('a').click();
     }
 });
 
-function fullScreen(_version) {
-    $('header').hide();
-    $(function () {
+function fullScreen(_mode) {
+    if(_mode){
+        $('header').hide();
         $('footer').hide();
-    });
-    $('#div_planHeader').hide();
-    $('#div_mainContainer').css('margin-top', '-60px');
-    $('#div_mainContainer').css('margin-left', '-15px');
-    $('#wrap').css('margin-bottom', '0px');
-    if (!noReturnButtonFullScreen) {
-        $('#div_mainContainer').append('<a class="btn btn-default" style="position : fixed; top : 10px; right : 10px;z-index:9999;" id="bt_returnFullScreen"><i class="fa fa-level-up fa-rotate-270"></i></a>');
-        $('#bt_returnFullScreen').on('click', function () {
-            if (_version == 'phone' || _version == 'tablet') {
-                window.location.href = "index.php?v=m&page=home";
-            } else {
-                $('header').show();
-                $('footer').show();
-                $('#div_planHeader').show();
-                $('#div_mainContainer').css('margin-top', '0px');
-                $('#div_mainContainer').css('margin-left', '0px');
-                $('#wrap').css('margin-bottom', '15px');
-                $('#bt_returnFullScreen').remove();
-            }
-        });
+        $('#div_planHeader').hide();
+        $('#div_mainContainer').css('margin-top', '-60px');
+        $('#div_mainContainer').css('margin-left', '-15px');
+        $('#wrap').css('margin-bottom', '0px');
+    }else{
+        $('header').show();
+        $('footer').show();
+        $('#div_planHeader').show();
+        $('#div_mainContainer').css('margin-top', '0px');
+        $('#div_mainContainer').css('margin-left', '0px');
+        $('#wrap').css('margin-bottom', '15px');
+        $('#bt_returnFullScreen').remove();
     }
 }
 
@@ -363,26 +445,15 @@ function displayPlan(_offsetX, _offsetY) {
                 $('.div_displayObject:visible:last img').css('width', ($('.div_displayObject:visible:last img').attr('data-sixe_x') * proportion) + 'px');
             }
             if (deviceInfo.type == 'tablet' || deviceInfo.type == 'phone') {
-                fullScreen(deviceInfo.type);
+                fullScreen(true);
                 if (data.configuration != null && init(data.configuration.desktopSizeX) != '' && init(data.configuration.desktopSizeY) != '' && isNaN(data.configuration.desktopSizeX) && isNaN(data.configuration.desktopSizeY)) {
 
                 } else {
                     $('meta[name="viewport"]').prop('content', 'width=' + $('.div_displayObject:visible:last').width() + ',height=' + $('.div_displayObject:visible:last').height());
                 }
             }
-            if (isset(data.configuration) && isset(data.configuration.noReturnFullScreen) && data.configuration.noReturnFullScreen == 1) {
-                noReturnButtonFullScreen = true;
-            } else {
-                noReturnButtonFullScreen = false;
-            }
             if (getUrlVars('fullscreen') == 1) {
-                fullScreen(deviceInfo.type);
-            }
-
-            if (isset(data.configuration) && isset(data.configuration.readOnly) && data.configuration.readOnly == 1) {
-                $('#bt_editPlan').hide();
-            }else{
-                $('#bt_editPlan').show();
+                fullScreen(true);
             }
 
             $('.div_displayObject:visible:last').find('eqLogic-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget').remove();
@@ -406,7 +477,7 @@ function displayPlan(_offsetX, _offsetY) {
                         }catch(err) {
                             console.log(err);
                         }
-                        initDraggable($('#bt_editPlan').attr('data-mode'));
+                        initDraggable(editMode);
                         if (!isNaN(_offsetX) && _offsetX != 0 && !isNaN(_offsetY) && _offsetY != 0) {
                             $('body').scrollTop(_offsetX);
                             $('body').scrollLeft(_offsetY);
@@ -419,7 +490,7 @@ function displayPlan(_offsetX, _offsetY) {
 }
 
 function savePlan(_refreshDisplay) {
-    if ($('#bt_editPlan').attr('data-mode') == "1") {
+    if (editMode) {
         var parent = {
             height: $('.div_displayObject:visible:last').height(),
             width: $('.div_displayObject:visible:last').width(),
@@ -564,7 +635,7 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
     html.css('z-index', 1000);
 
     if (_type == 'text' || _type == 'graph' || _type == 'plan' || _type == 'view') {
-     if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
+       if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
         if (isset(_plan.display) && isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) {
             html.css('border-radius', '0px'); 
             html.css('box-shadow', 'none'); 
@@ -573,7 +644,7 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
 }
 
 for (var key in _plan.css) {
-   if (_type == 'text' || _type == 'graph' || _type == 'plan' || _type == 'view') {
+ if (_type == 'text' || _type == 'graph' || _type == 'plan' || _type == 'view') {
     if (key == 'background-color') {
         if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
             html.css(key, _plan.css[key]);
@@ -633,7 +704,7 @@ if (_type == 'scenario' && isset(_plan.display) && (isset(_plan.display.hideCmd)
     html.find('.changeScenarioState').remove();
 }
 if (init(_noRender, false) == false) {
-    initDraggable($('#bt_editPlan').attr('data-mode'));
+    initDraggable(editMode);
 } else {
     return html;
 }
@@ -684,7 +755,7 @@ function addGraph(_plan) {
         background_color = '';
     }
     var html = '<div class="graph-widget" data-graph_id="' + _plan.link_id + '" style="'+background_color+'border : solid 1px black;min-height:50px;min-width:50px;">';
-    if ($('#bt_editPlan').attr('data-mode') == "1") {
+    if (editMode) {
         html += '<i class="fa fa-cogs cursor pull-right editMode configureGraph" style="margin-right : 5px;margin-top : 5px;"></i>';
     } else {
         html += '<i class="fa fa-cogs cursor pull-right editMode configureGraph" style="margin-right : 5px;margin-top : 5px;display:none;"></i>';
