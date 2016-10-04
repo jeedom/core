@@ -227,7 +227,6 @@ save: {
     },
     callback: function(key, opt){
      savePlan();
-
  }
 },
 }
@@ -256,48 +255,90 @@ jwerty.key('ctrl+s', function (e) {
     savePlan();
 });
 
-
-$('.div_displayObject:last').delegate('.eqLogic-widget', 'dblclick', function () {
-    if (editMode) {
-        $('#md_modal').dialog({title: "{{Configuration du widget}}"});
-        $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=eqLogic&link_id=' + $(this).attr('data-eqLogic_id') + '&planHeader_id=' + planHeader_id).dialog('open');
+$.contextMenu({
+    selector: '.eqLogic-widget',
+    items: {
+        parameter: {
+            name: '{{Paramètres}}',
+            icon:'fa-cogs',
+            callback: function(key, opt){
+                $('#md_modal').dialog({title: "{{Configuration du widget}}"});
+                $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=eqLogic&link_id=' + $(this).attr('data-eqLogic_id') + '&planHeader_id=' + planHeader_id).dialog('open');
+            }
+        }
     }
 });
 
-$('.div_displayObject:last').delegate('.scenario-widget', 'dblclick', function () {
-    if (editMode) {
-        $('#md_modal').dialog({title: "{{Configuration du scénario}}"});
-        $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=scenario&link_id=' + $(this).attr('data-scenario_id') + '&planHeader_id=' + planHeader_id).dialog('open');
+$.contextMenu({
+    selector: '.eqLogic-widget',
+    items: {
+        parameter: {
+            name: '{{Paramètres}}',
+            icon:'fa-cogs',
+            callback: function(key, opt){
+                $('#md_modal').dialog({title: "{{Configuration du scénario}}"});
+                $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=scenario&link_id=' + $(this).attr('data-scenario_id') + '&planHeader_id=' + planHeader_id).dialog('open');
+            }
+        }
     }
 });
 
-$('.div_displayObject:last').delegate('.plan-link-widget', 'dblclick', function () {
-    if (editMode) {
-        $('#md_modal').dialog({title: "{{Configuration du lien}}"});
-        $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=plan&link_id=' + $(this).attr('data-link_id') + '&planHeader_id=' + planHeader_id).dialog('open');
+$.contextMenu({
+    selector: '.plan-link-widget',
+    items: {
+        parameter: {
+            name: '{{Paramètres}}',
+            icon:'fa-cogs',
+            callback: function(key, opt){
+             $('#md_modal').dialog({title: "{{Configuration du lien}}"});
+             $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=plan&link_id=' + $(this).attr('data-link_id') + '&planHeader_id=' + planHeader_id).dialog('open');
+         }
+     }
+ }
+});
+
+$.contextMenu({
+    selector: '.text-widget',
+    items: {
+        parameter: {
+            name: '{{Paramètres}}',
+            icon:'fa-cogs',
+            callback: function(key, opt){
+             $('#md_modal').dialog({title: "{{Configuration du texte}}"});
+             $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=text&link_id=' + $(this).attr('data-text_id') + '&planHeader_id=' + planHeader_id).dialog('open');
+         }
+     }
+ }
+});
+
+$.contextMenu({
+    selector: '.view-link-widget',
+    items: {
+        parameter: {
+            name: '{{Paramètres}}',
+            icon:'fa-cogs',
+            callback: function(key, opt){
+              $('#md_modal').dialog({title: "{{Configuration du lien}}"});
+              $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=view&link_id=' + $(this).attr('data-link_id') + '&planHeader_id=' + planHeader_id).dialog('open');
+          }
+      }
+  }
+});
+
+$.contextMenu({
+    selector: '.graph-widget',
+    items: {
+        parameter: {
+            name: '{{Paramètres}}',
+            icon:'fa-cogs',
+            callback: function(key, opt){
+                $('#md_modal').dialog({title: "{{Configuration du graph}}"});
+                $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=graph&link_id=' + $(this).attr('data-graph_id') + '&planHeader_id=' + planHeader_id).dialog('open');
+            }
+        }
     }
 });
 
-$('.div_displayObject:visible:last').delegate('.text-widget', 'dblclick', function () {
-    if (editMode) {
-        $('#md_modal').dialog({title: "{{Configuration du texte}}"});
-        $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=text&link_id=' + $(this).attr('data-text_id') + '&planHeader_id=' + planHeader_id).dialog('open');
-    }
-});
-
-$('.div_displayObject:last').delegate('.view-link-widget', 'dblclick', function () {
-    if (editMode) {
-        $('#md_modal').dialog({title: "{{Configuration du lien}}"});
-        $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=view&link_id=' + $(this).attr('data-link_id') + '&planHeader_id=' + planHeader_id).dialog('open');
-    }
-});
-
-$('.div_displayObject:last').delegate('.graph-widget', 'dblclick', function () {
-    if (editMode) {
-        $('#md_modal').dialog({title: "{{Configuration du graph}}"});
-        $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=graph&link_id=' + $(this).attr('data-graph_id') + '&planHeader_id=' + planHeader_id).dialog('open');
-    }
-});
 
 $('.planHeaderAttr').off('change').on('change', function () {
     var planHeader = $('#div_planHeader').getValues('.planHeaderAttr')[0];
