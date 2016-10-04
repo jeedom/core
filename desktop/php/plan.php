@@ -4,7 +4,7 @@ if (!isConnect()) {
 }
 $planHeader = null;
 $planHeaders = planHeader::all();
-
+$planHeadersSendToJS = array();
 if (init('plan_id') == '') {
 	foreach ($planHeaders as $planHeader_select) {
 		if ($planHeader_select->getId() == $_SESSION['user']->getOptions('defaultDashboardPlan')) {
@@ -23,7 +23,10 @@ if (init('plan_id') == '') {
 if (!is_object($planHeader) && count($planHeaders) > 0) {
 	$planHeader = $planHeaders[0];
 }
-sendVarToJS('planHeader', utils::o2a($planHeaders));
+foreach ($planHeaders as $planHeader_select) {
+	$planHeadersSendToJS[] = array('id' => $planHeader_select->getId(), 'name' => $planHeader_select->getName());
+}
+sendVarToJS('planHeader', $planHeadersSendToJS);
 if (is_object($planHeader)) {
 	sendVarToJS('planHeader_id', $planHeader->getId());
 } else {
