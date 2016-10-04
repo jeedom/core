@@ -16,10 +16,6 @@ sendVarToJS('id', $plan->getId());
         <legend>Général
             <a class='btn btn-success btn-xs pull-right cursor' style="color: white;" id='bt_saveConfigurePlan'><i class="fa fa-check"></i> {{Sauvegarder}}</a>
             <a class='btn btn-danger btn-xs pull-right cursor' style="color: white;" id='bt_removeConfigurePlan'><i class="fa fa-times"></i> {{Supprimer}}</a>
-            <?php if ($plan->getLink_type() == 'eqLogic') {?>
-            <a class='btn btn-default btn-xs pull-right cursor' id='bt_advanceEqLogicConfiguration' data-id='<?php echo $link->getId(); ?>'><i class="fa fa-cogs"></i> {{Configuration avancée de l'équipement}}</a>
-            <?php }
-?>
         </legend>
         <input type="text"  class="planAttr form-control" data-l1key="id" style="display: none;"/>
         <input type="text"  class="planAttr form-control" data-l1key="link_type" style="display: none;"/>
@@ -367,11 +363,6 @@ foreach (planHeader::all() as $planHeader_select) {
 
 
 <script>
-    $('#bt_advanceEqLogicConfiguration').off('click').on('click', function () {
-        $('#md_modal2').dialog({title: "{{Configuration de l'équipement}}"});
-        $('#md_modal2').load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $(this).attr('data-id')).dialog('open');
-    });
-
     $('.bt_advanceCmdConfiguration').off('click').on('click', function () {
         $('#md_modal2').dialog({title: "{{Configuration de la commande}}"});
         $('#md_modal2').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open');
