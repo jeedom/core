@@ -16,24 +16,20 @@ sendVarToJS('id', $plan->getId());
         <legend>Général
             <a class='btn btn-success btn-xs pull-right cursor' style="color: white;" id='bt_saveConfigurePlan'><i class="fa fa-check"></i> {{Sauvegarder}}</a>
         </legend>
+         <?php if ($plan->getLink_type() == 'eqLogic' || $plan->getLink_type() == 'cmd' || $plan->getLink_type() == 'scenario') {
+	?>
         <input type="text"  class="planAttr form-control" data-l1key="id" style="display: none;"/>
         <input type="text"  class="planAttr form-control" data-l1key="link_type" style="display: none;"/>
         <?php if ($plan->getLink_type() == 'eqLogic' || $plan->getLink_type() == 'scenario') {
-	?>
-           <div class="form-group">
+		?>
+         <div class="form-group">
             <label class="col-lg-4 control-label">{{Taille du widget}}</label>
             <div class="col-lg-2">
-                <?php
-if ($plan->getLink_type() == 'eqLogic') {
-		echo '<input type="text" class="planAttr form-control" data-l1key="css" data-l2key="zoom" value="0.65"/>';
-	}
-	if ($plan->getLink_type() == 'scenario') {
-		echo '<input type="text" class="planAttr form-control" data-l1key="css" data-l2key="zoom" value="1"/>';
-	}
-	?>
-          </div>
-      </div>
-      <div class="form-group">
+               <input type="text" class="planAttr form-control" data-l1key="css" data-l2key="zoom"/>
+           </div>
+       </div>
+       <?php }?>
+       <div class="form-group">
         <label class="col-lg-4 control-label">{{Profondeur}}</label>
         <div class="col-lg-2">
             <select class="form-control planAttr" data-l1key="css" data-l2key="z-index" >
@@ -167,10 +163,10 @@ foreach (view::all() as $views) {
 			echo '<option value="' . $views->getId() . '">' . $views->getName() . '</option>';
 		}
 		?>
-         </select>
-     </div>
- </div>
- <?php
+           </select>
+       </div>
+   </div>
+   <?php
 }
 	if ($plan->getLink_type() == 'plan') {
 		?>
@@ -355,8 +351,7 @@ foreach (planHeader::all() as $planHeader_select) {
         </select>
     </div>
 </div>
-<?php }
-?>
+<?php }?>
 </fieldset>
 </form>
 

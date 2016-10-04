@@ -307,6 +307,45 @@ $.contextMenu({
 });
 
 $.contextMenu({
+    selector: '.div_displayObject > .cmd-widget',
+    items: {
+        parameter: {
+            name: '{{Paramètres d\'affichage}}',
+            icon:'fa-cogs',
+            callback: function(key, opt){
+                $('#md_modal').dialog({title: "{{Configuration du widget}}"});
+                $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=cmd&link_id=' + $(this).attr('data-cmd_id') + '&planHeader_id=' + planHeader_id).dialog('open');
+            }
+        },
+        configuration: {
+            name: '{{Configuration avancée}}',
+            icon:'fa-cog',
+            callback: function(key, opt){
+                $('#md_modal').dialog({title: "{{Configuration de la commande}}"});
+                $('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-cmd_id')).dialog('open');
+            }
+        },
+        remove: {
+            name: '{{Supprimer}}',
+            icon:'fa-trash',
+            callback: function(key, opt){
+                jeedom.plan.remove({
+                 link_id:  $(this).attr('data-cmd_id'),
+                 link_type : 'cmd',
+                 planHeader_id : planHeader_id,
+                 error: function (error) {
+                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function () {
+                    displayPlan();
+                },
+            });
+            }
+        }
+    }
+});
+
+$.contextMenu({
     selector: '.scenario-widget',
     items: {
         parameter: {
