@@ -273,6 +273,23 @@ $.contextMenu({
                 $('#md_modal').dialog({title: "{{Configuration de l\'équipement'}}"});
                 $('#md_modal').load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $(this).attr('data-eqLogic_id')).dialog('open');
             }
+        },
+        remove: {
+            name: '{{Supprimer}}',
+            icon:'fa-trash',
+            callback: function(key, opt){
+                jeedom.plan.remove({
+                 link_id:  $(this).attr('data-eqLogic_id'),
+                 link_type : 'eqLogic',
+                 planHeader_id : planHeader_id,
+                 error: function (error) {
+                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function () {
+                    displayPlan();
+                },
+            });
+            }
         }
     }
 });
@@ -286,6 +303,23 @@ $.contextMenu({
             callback: function(key, opt){
                 $('#md_modal').dialog({title: "{{Configuration du scénario}}"});
                 $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=scenario&link_id=' + $(this).attr('data-scenario_id') + '&planHeader_id=' + planHeader_id).dialog('open');
+            }
+        },
+        remove: {
+            name: '{{Supprimer}}',
+            icon:'fa-trash',
+            callback: function(key, opt){
+                jeedom.plan.remove({
+                 link_id:  $(this).attr('data-scenario_id'),
+                 link_type : 'scenario',
+                 planHeader_id : planHeader_id,
+                 error: function (error) {
+                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function () {
+                    displayPlan();
+                },
+            });
             }
         }
     }
@@ -301,7 +335,24 @@ $.contextMenu({
                $('#md_modal').dialog({title: "{{Configuration du lien}}"});
                $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=plan&link_id=' + $(this).attr('data-link_id') + '&planHeader_id=' + planHeader_id).dialog('open');
            }
-       }
+       },
+        remove: {
+            name: '{{Supprimer}}',
+            icon:'fa-trash',
+            callback: function(key, opt){
+                jeedom.plan.remove({
+                 link_id:  $(this).attr('data-link_id'),
+                 link_type : 'plan',
+                 planHeader_id : planHeader_id,
+                 error: function (error) {
+                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function () {
+                    displayPlan();
+                },
+            });
+            }
+        }
    }
 });
 
@@ -315,7 +366,24 @@ $.contextMenu({
                $('#md_modal').dialog({title: "{{Configuration du texte}}"});
                $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=text&link_id=' + $(this).attr('data-text_id') + '&planHeader_id=' + planHeader_id).dialog('open');
            }
-       }
+       },
+        remove: {
+            name: '{{Supprimer}}',
+            icon:'fa-trash',
+            callback: function(key, opt){
+                jeedom.plan.remove({
+                 link_id:  $(this).attr('data-text_id'),
+                 link_type : 'text',
+                 planHeader_id : planHeader_id,
+                 error: function (error) {
+                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function () {
+                    displayPlan();
+                },
+            });
+            }
+        }
    }
 });
 
@@ -329,7 +397,24 @@ $.contextMenu({
               $('#md_modal').dialog({title: "{{Configuration du lien}}"});
               $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=view&link_id=' + $(this).attr('data-link_id') + '&planHeader_id=' + planHeader_id).dialog('open');
           }
-      }
+      },
+        remove: {
+            name: '{{Supprimer}}',
+            icon:'fa-trash',
+            callback: function(key, opt){
+                jeedom.plan.remove({
+                 link_id:  $(this).attr('data-link_id'),
+                 link_type : 'view',
+                 planHeader_id : planHeader_id,
+                 error: function (error) {
+                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function () {
+                    displayPlan();
+                },
+            });
+            }
+        }
   }
 });
 
@@ -342,6 +427,23 @@ $.contextMenu({
             callback: function(key, opt){
                 $('#md_modal').dialog({title: "{{Configuration du graph}}"});
                 $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=graph&link_id=' + $(this).attr('data-graph_id') + '&planHeader_id=' + planHeader_id).dialog('open');
+            }
+        },
+        remove: {
+            name: '{{Supprimer}}',
+            icon:'fa-trash',
+            callback: function(key, opt){
+                jeedom.plan.remove({
+                 link_id:  $(this).attr('data-graph_id'),
+                 link_type : 'graph',
+                 planHeader_id : planHeader_id,
+                 error: function (error) {
+                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function () {
+                    displayPlan();
+                },
+            });
             }
         }
     }

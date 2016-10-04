@@ -123,7 +123,7 @@ try {
 		if (is_object($plan)) {
 			ajax::success(utils::o2a($plan));
 		}
-		throw new Exception(__('Aucun plan correspondant'));
+		throw new Exception(__('Aucun plan correspondant', __FILE__));
 	}
 
 	if (init('action') == 'remove') {
@@ -131,11 +131,11 @@ try {
 		if (is_object($plan)) {
 			ajax::success($plan->remove());
 		}
-		$plan = plan::byLinkTypeLinkIdPlanHedaerId(init('link_type'), init('link_id'), init('object_id'));
+		$plan = plan::byLinkTypeLinkIdPlanHedaerId(init('link_type'), init('link_id'), init('planHeader_id'));
 		if (is_object($plan)) {
 			ajax::success($plan->remove());
 		}
-		throw new Exception(__('Aucun plan correspondant'));
+		throw new Exception(__('Aucun plan correspondant', __FILE__));
 	}
 
 	if (init('action') == 'removePlanHeader') {

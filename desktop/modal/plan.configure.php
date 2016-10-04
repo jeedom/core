@@ -15,13 +15,12 @@ sendVarToJS('id', $plan->getId());
     <fieldset id="fd_planConfigure">
         <legend>Général
             <a class='btn btn-success btn-xs pull-right cursor' style="color: white;" id='bt_saveConfigurePlan'><i class="fa fa-check"></i> {{Sauvegarder}}</a>
-            <a class='btn btn-danger btn-xs pull-right cursor' style="color: white;" id='bt_removeConfigurePlan'><i class="fa fa-times"></i> {{Supprimer}}</a>
         </legend>
         <input type="text"  class="planAttr form-control" data-l1key="id" style="display: none;"/>
         <input type="text"  class="planAttr form-control" data-l1key="link_type" style="display: none;"/>
         <?php if ($plan->getLink_type() == 'eqLogic' || $plan->getLink_type() == 'scenario') {
 	?>
-         <div class="form-group">
+           <div class="form-group">
             <label class="col-lg-4 control-label">{{Taille du widget}}</label>
             <div class="col-lg-2">
                 <?php
@@ -168,10 +167,10 @@ foreach (view::all() as $views) {
 			echo '<option value="' . $views->getId() . '">' . $views->getName() . '</option>';
 		}
 		?>
-           </select>
-       </div>
-   </div>
-   <?php
+         </select>
+     </div>
+ </div>
+ <?php
 }
 	if ($plan->getLink_type() == 'plan') {
 		?>
@@ -399,14 +398,6 @@ foreach (planHeader::all() as $planHeader_select) {
         save();
     });
 
-    $('#bt_removeConfigurePlan').on('click', function () {
-        bootbox.confirm('Etes-vous sûr de vouloir supprimer cet object du design ?', function (result) {
-            if (result) {
-                remove();
-            }
-        });
-    });
-
     if (isset(id) && id != '') {
         load(id);
     }
@@ -470,29 +461,4 @@ foreach (planHeader::all() as $planHeader_select) {
             },
         });
     }
-
-    function remove() {
-        $.ajax({// fonction permettant de faire de l'ajax
-            type: "POST", // methode de transmission des données au fichier php
-            url: "core/ajax/plan.ajax.php", // url du fichier php
-            data: {
-                action: "remove",
-                id: $(".planAttr[data-l1key=id]").value()
-            },
-            dataType: 'json',
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_alertPlanConfigure'));
-            },
-            success: function (data) { // si l'appel a bien fonctionné
-            if (data.state != 'ok') {
-                $('#div_alertPlanConfigure').showAlert({message: data.result, level: 'danger'});
-                return;
-            }
-            $('#div_alertPlanConfigure').showAlert({message: 'Design supprimé', level: 'success'});
-            displayPlan();
-            $('#fd_planConfigure').closest("div.ui-dialog-content").dialog("close");
-        }
-    });
-    }
-
 </script>

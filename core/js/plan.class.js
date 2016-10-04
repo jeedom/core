@@ -19,10 +19,10 @@
  jeedom.plan = function () {
  };
 
-jeedom.plan.cache = Array();
+ jeedom.plan.cache = Array();
 
  jeedom.plan.remove = function (_params) {
-    var paramsRequired = ['id'];
+    var paramsRequired = [];
     var paramsSpecifics = {};
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
@@ -35,10 +35,14 @@ jeedom.plan.cache = Array();
     paramsAJAX.url = 'core/ajax/plan.ajax.php';
     paramsAJAX.data = {
         action: 'remove',
-        id: _params.id
+        id: _params.id || '',
+        link_type: _params.link_type || '',
+        link_id: _params.link_id || '',
+        planHeader_id: _params.planHeader_id || ''
     };
     $.ajax(paramsAJAX);
 };
+
 
 jeedom.plan.save = function (_params) {
     var paramsRequired = ['plans'];
