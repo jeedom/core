@@ -33,6 +33,7 @@ if (is_object($planHeader)) {
 	sendVarToJS('planHeader_id', -1);
 }
 ?>
+<div class="container-fluid div_grid" style="display:none;position: absolute;padding:0;width:100%;height:100%;user-select: none;-khtml-user-select: none;-o-user-select: none;-moz-user-select: -moz-none;-webkit-user-select: none;"></div>
 <div class="container-fluid div_displayObject" style="position: relative;padding:0;user-select: none;-khtml-user-select: none;-o-user-select: none;-moz-user-select: -moz-none;-webkit-user-select: none;"></div>
 <?php if (init('noControl') == '') {
 	?>

@@ -64,13 +64,13 @@ $.contextMenu({
                 initDraggable(1);
                 $('.editMode').show();
                 editMode = true;
-                $('.div_displayObject:visible:last').css('background-color', '#bdc3c7');
+                $('.div_grid').show();
                 this.data('editMode', editMode);
             } else {
                 initDraggable(0);
                 $('.editMode').hide();
                 editMode = false;
-                $('.div_displayObject:visible:last').css('background-color', 'transparent');
+                $('.div_grid').hide();
                 this.data('editMode', editMode);
             }
             return false;
