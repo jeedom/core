@@ -548,9 +548,9 @@ function fullScreen(_mode) {
 }
 
 function initDraggable(_state) {
-    $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.cmd-widget,.scenario-widget,.text-widget').draggable();
+    $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget').draggable();
 
-    $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.cmd-widget,.scenario-widget,.text-widget').resizable();
+    $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.scenario-widget,.text-widget').resizable();
 
     $('.div_displayObject:visible:last a').each(function () {
         if ($(this).attr('href') != '#') {
@@ -559,8 +559,8 @@ function initDraggable(_state) {
         }
     });
     if (_state != 1 && _state != '1') {
-        $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.cmd-widget,.scenario-widget,.text-widget').draggable("destroy");
-        $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.cmd-widget,.scenario-widget,.text-widget').resizable("destroy");
+        $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget').draggable("destroy");
+        $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.scenario-widget,.text-widget').resizable("destroy");
         $('.div_displayObject:visible:last a').each(function () {
             $(this).attr('href', $(this).attr('data-href'));
         });
