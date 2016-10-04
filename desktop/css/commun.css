@@ -317,7 +317,7 @@ input[type=checkbox] {
 }
 
 .div_grid {
-  z-index : 1001;
+  z-index : 999;
   background-size: 15px 15px;
   background-image:
   -webkit-repeating-linear-gradient(90deg, rgba(0, 191, 255, .5), rgba(0, 191, 255, .5) 1px, transparent 1px, transparent 20px),

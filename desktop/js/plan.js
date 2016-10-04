@@ -15,6 +15,7 @@
  */
  var deviceInfo = getDeviceType();
  var editMode = false;
+ var editOption = {snap : false,grid : false,gridSize:false}
 
  $("#md_addViewData").dialog({
     closeText: '',
@@ -50,6 +51,16 @@
 $.contextMenu({
     selector: '#div_pageContainer',
     zIndex: 9999,
+    events: {
+        show: function(opt) {
+            var $this = this;
+            $.contextMenu.setInputValues(opt, $this.data());
+        }, 
+        hide: function(opt) {
+            var $this = this;
+            $.contextMenu.getInputValues(opt, $this.data());
+        }
+    },
     items: {
         fold1: {
             name: "{{Designs}}", 
@@ -60,69 +71,59 @@ $.contextMenu({
             name: "{{Edition}}",
             icon : 'fa-pencil',
             callback: function(key, opt){
-               if (!editMode) {
-                initDraggable(1);
-                $('.editMode').show();
-                editMode = true;
-                $('.div_grid').show();
+                editMode = !editMode;
                 this.data('editMode', editMode);
-            } else {
-                initDraggable(0);
-                $('.editMode').hide();
-                editMode = false;
-                $('.div_grid').hide();
-                this.data('editMode', editMode);
+                initEditMode(editMode);
+                return false;
             }
-            return false;
-        }
-    },
-    fullscreen: {
-        name: "{{Plein écran}}",
-        icon : 'fa-desktop',
-        callback: function(key, opt){
-            if(this.data('fullscreen') == undefined){
-                this.data('fullscreen',1)
+        },
+        fullscreen: {
+            name: "{{Plein écran}}",
+            icon : 'fa-desktop',
+            callback: function(key, opt){
+                if(this.data('fullscreen') == undefined){
+                    this.data('fullscreen',1)
+                }
+                fullScreen(this.data('fullscreen'));
+                this.data('fullscreen',!this.data('fullscreen'));
             }
-            fullScreen(this.data('fullscreen'));
-            this.data('fullscreen',!this.data('fullscreen'));
-        }
-    },
-    sep1 : "---------",
-    addGraph: {
-        name: "{{Ajouter Graphique}}",
-        icon : 'fa-line-chart',
+        },
+        sep1 : "---------",
+        addGraph: {
+            name: "{{Ajouter Graphique}}",
+            icon : 'fa-line-chart',
+            disabled:function(key, opt) { 
+                return !this.data('editMode'); 
+            },
+            callback: function(key, opt){
+                addGraph({});
+                savePlan();
+            }
+        },
+        addText: {
+            name: "{{Ajouter texte/html}}",
+            icon : 'fa-align-center',
+            disabled:function(key, opt) { 
+                return !this.data('editMode'); 
+            },
+            callback: function(key, opt){
+             addText({display: {text: 'Texte à insérer ici'}});
+             savePlan();
+         }
+     },
+     addScenario: {
+        name: "{{Ajouter scénario}}",
+        icon : 'fa-plus-circle',
         disabled:function(key, opt) { 
             return !this.data('editMode'); 
         },
         callback: function(key, opt){
-            addGraph({});
-            savePlan();
-        }
-    },
-    addText: {
-        name: "{{Ajouter texte/html}}",
-        icon : 'fa-align-center',
-        disabled:function(key, opt) { 
-            return !this.data('editMode'); 
-        },
-        callback: function(key, opt){
-           addText({display: {text: 'Texte à insérer ici'}});
-           savePlan();
-       }
-   },
-   addScenario: {
-    name: "{{Ajouter scénario}}",
-    icon : 'fa-plus-circle',
-    disabled:function(key, opt) { 
-        return !this.data('editMode'); 
-    },
-    callback: function(key, opt){
-       jeedom.scenario.getSelectModal({}, function (data) {
-        addScenario(data.id);
-    });
-   }
-},
-addLink: {
+         jeedom.scenario.getSelectModal({}, function (data) {
+            addScenario(data.id);
+        });
+     }
+ },
+ addLink: {
     name: "{{Ajouter lien}}",
     icon : 'fa-link',
     disabled:function(key, opt) { 
@@ -157,6 +158,88 @@ addCommand: {
   }
 },
 sep2 : "---------",
+fold2: {
+    name: "{{Grille}}", 
+    icon : 'fa-th',
+    disabled:function(key, opt) { 
+        return !this.data('editMode'); 
+    },
+    items: {
+        grid_none: {
+            name: "Aucune", 
+            type: 'radio', 
+            radio: 'radio', 
+            value: '0',
+            selected: true,
+            events: {
+                click : function(e) {
+                    editOption.gridSize = false;
+                    initEditMode(1);
+                }
+            }
+        },
+        grid_10x10: {
+            name: "10x10", 
+            type: 'radio', 
+            radio: 'radio', 
+            value: '10', 
+            events: {
+                click : function(e) {
+                    editOption.gridSize = [10,10];
+                    initEditMode(1);
+                }
+            }
+        },
+        grid_15x15: {
+            name: "15x15", 
+            type: 'radio', 
+            radio: 'radio', 
+            value: '15',
+            events: {
+                click : function(e) {
+                    editOption.gridSize = [15,15];
+                    initEditMode(1);
+                }
+            }
+        },
+        grid_20x20: {
+            name: "20x20", 
+            type: 'radio', 
+            radio: 'radio', 
+            value: '20',
+            events: {
+                click : function(e) {
+                    editOption.gridSize = [20,20];
+                    initEditMode(1);
+                }
+            }
+        },
+        snap: {
+            name: "{{Aimanter les élements}}", 
+            type: 'checkbox', 
+            radio: 'radio', 
+            selected:  editOption.snap,
+            events: {
+                click : function(e) {
+                 editOption.snap = $(this).value();
+                 initEditMode(1);
+             }
+         }
+     },
+     snapGrid: {
+        name: "{{Aimanter à la grille}}", 
+        type: 'checkbox', 
+        radio: 'radio',
+        selected:  editOption.grid,
+        events: {
+            click : function(e) {
+                editOption.grid = $(this).value();
+                initEditMode(1);
+            }
+        }
+    },
+}
+},
 removePlan: {
     name: "{{Supprimer le design}}",
     icon : 'fa-trash',
@@ -172,10 +255,10 @@ removePlan: {
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function () {
-                   $('#div_alert').showAlert({message: 'Design supprimé', level: 'success'});
-                   loadPage('index.php?v=d&p=plan');
-               },
-           });
+                 $('#div_alert').showAlert({message: 'Design supprimé', level: 'success'});
+                 loadPage('index.php?v=d&p=plan');
+             },
+         });
         }
     });
   }
@@ -187,7 +270,7 @@ addPlan: {
         return !this.data('editMode'); 
     },
     callback: function(key, opt){
-       bootbox.prompt("Nom du design ?", function (result) {
+     bootbox.prompt("Nom du design ?", function (result) {
         if (result !== null) {
             jeedom.plan.saveHeader({
                 planHeader: {name: result},
@@ -200,7 +283,7 @@ addPlan: {
             });
         }
     });
-   }
+ }
 },
 duplicatePlan: {
     name: "{{Dupliquer le design}}",
@@ -209,7 +292,7 @@ duplicatePlan: {
         return !this.data('editMode'); 
     },
     callback: function(key, opt){
-     bootbox.prompt("{{Nom la copie du design ?}}", function (result) {
+       bootbox.prompt("{{Nom la copie du design ?}}", function (result) {
         if (result !== null) {
             jeedom.plan.copyHeader({
                 name: result,
@@ -218,12 +301,12 @@ duplicatePlan: {
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function (data) {
-                   loadPage('index.php?v=d&p=plan&plan_id=' + data.id);
-               },
-           });
+                 loadPage('index.php?v=d&p=plan&plan_id=' + data.id);
+             },
+         });
         }
     });
- }
+   }
 },
 configurePlan: {
     name: "{{Configurer le design}}",
@@ -232,17 +315,17 @@ configurePlan: {
         return !this.data('editMode'); 
     },
     callback: function(key, opt){
-     $('#md_modal').dialog({title: "{{Configuration du design}}"});
-     $('#md_modal').load('index.php?v=d&modal=planHeader.configure&planHeader_id=' + planHeader_id).dialog('open');
- }
+       $('#md_modal').dialog({title: "{{Configuration du design}}"});
+       $('#md_modal').load('index.php?v=d&modal=planHeader.configure&planHeader_id=' + planHeader_id).dialog('open');
+   }
 },
 sep3 : "---------",
 save: {
     name: "{{Sauvegarder}}",
     icon : 'fa-floppy-o',
     callback: function(key, opt){
-       savePlan();
-   }
+     savePlan();
+ }
 },
 }
 });
@@ -266,6 +349,7 @@ jwerty.key('ctrl+s', function (e) {
 
 $.contextMenu({
     selector: '.eqLogic-widget',
+    disabled : true,
     items: {
         parameter: {
             name: '{{Paramètres d\'affichage}}',
@@ -288,10 +372,10 @@ $.contextMenu({
             icon:'fa-trash',
             callback: function(key, opt){
                 jeedom.plan.remove({
-                 link_id:  $(this).attr('data-eqLogic_id'),
-                 link_type : 'eqLogic',
-                 planHeader_id : planHeader_id,
-                 error: function (error) {
+                   link_id:  $(this).attr('data-eqLogic_id'),
+                   link_type : 'eqLogic',
+                   planHeader_id : planHeader_id,
+                   error: function (error) {
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function () {
@@ -327,10 +411,10 @@ $.contextMenu({
             icon:'fa-trash',
             callback: function(key, opt){
                 jeedom.plan.remove({
-                 link_id:  $(this).attr('data-cmd_id'),
-                 link_type : 'cmd',
-                 planHeader_id : planHeader_id,
-                 error: function (error) {
+                   link_id:  $(this).attr('data-cmd_id'),
+                   link_type : 'cmd',
+                   planHeader_id : planHeader_id,
+                   error: function (error) {
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function () {
@@ -358,10 +442,10 @@ $.contextMenu({
             icon:'fa-trash',
             callback: function(key, opt){
                 jeedom.plan.remove({
-                 link_id:  $(this).attr('data-scenario_id'),
-                 link_type : 'scenario',
-                 planHeader_id : planHeader_id,
-                 error: function (error) {
+                   link_id:  $(this).attr('data-scenario_id'),
+                   link_type : 'scenario',
+                   planHeader_id : planHeader_id,
+                   error: function (error) {
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function () {
@@ -380,19 +464,19 @@ $.contextMenu({
             name: '{{Paramètres d\'affichage}}',
             icon:'fa-cogs',
             callback: function(key, opt){
-               $('#md_modal').dialog({title: "{{Configuration du lien}}"});
-               $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=plan&link_id=' + $(this).attr('data-link_id') + '&planHeader_id=' + planHeader_id).dialog('open');
-           }
-       },
-       remove: {
+             $('#md_modal').dialog({title: "{{Configuration du lien}}"});
+             $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=plan&link_id=' + $(this).attr('data-link_id') + '&planHeader_id=' + planHeader_id).dialog('open');
+         }
+     },
+     remove: {
         name: '{{Supprimer}}',
         icon:'fa-trash',
         callback: function(key, opt){
             jeedom.plan.remove({
-             link_id:  $(this).attr('data-link_id'),
-             link_type : 'plan',
-             planHeader_id : planHeader_id,
-             error: function (error) {
+               link_id:  $(this).attr('data-link_id'),
+               link_type : 'plan',
+               planHeader_id : planHeader_id,
+               error: function (error) {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
             },
             success: function () {
@@ -411,19 +495,19 @@ $.contextMenu({
             name: '{{Paramètres d\'affichage}}',
             icon:'fa-cogs',
             callback: function(key, opt){
-               $('#md_modal').dialog({title: "{{Configuration du texte}}"});
-               $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=text&link_id=' + $(this).attr('data-text_id') + '&planHeader_id=' + planHeader_id).dialog('open');
-           }
-       },
-       remove: {
+             $('#md_modal').dialog({title: "{{Configuration du texte}}"});
+             $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=text&link_id=' + $(this).attr('data-text_id') + '&planHeader_id=' + planHeader_id).dialog('open');
+         }
+     },
+     remove: {
         name: '{{Supprimer}}',
         icon:'fa-trash',
         callback: function(key, opt){
             jeedom.plan.remove({
-             link_id:  $(this).attr('data-text_id'),
-             link_type : 'text',
-             planHeader_id : planHeader_id,
-             error: function (error) {
+               link_id:  $(this).attr('data-text_id'),
+               link_type : 'text',
+               planHeader_id : planHeader_id,
+               error: function (error) {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
             },
             success: function () {
@@ -451,10 +535,10 @@ $.contextMenu({
         icon:'fa-trash',
         callback: function(key, opt){
             jeedom.plan.remove({
-             link_id:  $(this).attr('data-link_id'),
-             link_type : 'view',
-             planHeader_id : planHeader_id,
-             error: function (error) {
+               link_id:  $(this).attr('data-link_id'),
+               link_type : 'view',
+               planHeader_id : planHeader_id,
+               error: function (error) {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
             },
             success: function () {
@@ -482,10 +566,10 @@ $.contextMenu({
             icon:'fa-trash',
             callback: function(key, opt){
                 jeedom.plan.remove({
-                 link_id:  $(this).attr('data-graph_id'),
-                 link_type : 'graph',
-                 planHeader_id : planHeader_id,
-                 error: function (error) {
+                   link_id:  $(this).attr('data-graph_id'),
+                   link_type : 'graph',
+                   planHeader_id : planHeader_id,
+                   error: function (error) {
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function () {
@@ -496,7 +580,6 @@ $.contextMenu({
         }
     }
 });
-
 
 $('.planHeaderAttr').off('change').on('change', function () {
     var planHeader = $('#div_planHeader').getValues('.planHeaderAttr')[0];
@@ -584,26 +667,36 @@ function fullScreen(_mode) {
     }
 }
 
-function initDraggable(_state) {
+function initEditMode(_state) {
     $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget').draggable({
-        containment: "parent"
+        snap : (editOption.snap == 1),
+        grid : (editOption.grid == 1) ? editOption.gridSize : false
     });
 
-    $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.scenario-widget,.text-widget').resizable();
+    if(editOption.gridSize){
+       $('.div_grid').show();
+       $('.div_grid').css('background-size',editOption.gridSize[0]+'px '+editOption.gridSize[1]+'px');
+   }else{
+    $('.div_grid').hide();
+}
 
-    $('.div_displayObject a').each(function () {
-        if ($(this).attr('href') != '#') {
-            $(this).attr('data-href', $(this).attr('href'));
-            $(this).removeAttr('href');
-        }
-    });
-    if (_state != 1 && _state != '1') {
-        $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget').draggable("destroy");
-        $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.scenario-widget,.text-widget').resizable("destroy");
-        $('.div_displayObject a').each(function () {
-            $(this).attr('href', $(this).attr('data-href'));
-        });
+$('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.scenario-widget,.text-widget').resizable();
+$('.div_displayObject a').each(function () {
+    if ($(this).attr('href') != '#') {
+        $(this).attr('data-href', $(this).attr('href'));
+        $(this).removeAttr('href');
     }
+});
+$('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget').contextMenu(true);
+if (_state != 1 && _state != '1') {
+    $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget').draggable("destroy");
+    $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.scenario-widget,.text-widget').resizable("destroy");
+    $('.div_displayObject a').each(function () {
+        $(this).attr('href', $(this).attr('data-href'));
+    });
+    $('.div_grid').hide();
+    $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget').contextMenu(false);
+}
 }
 
 function displayPlan(_offsetX, _offsetY) {
@@ -680,7 +773,7 @@ function displayPlan(_offsetX, _offsetY) {
                         }catch(err) {
                             console.log(err);
                         }
-                        initDraggable(editMode);
+                        initEditMode(editMode);
                         if (!isNaN(_offsetX) && _offsetX != 0 && !isNaN(_offsetY) && _offsetY != 0) {
                             $('body').scrollTop(_offsetX);
                             $('body').scrollLeft(_offsetY);
@@ -855,7 +948,7 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
     html.css('z-index', 1000);
 
     if (_type == 'text' || _type == 'graph' || _type == 'plan' || _type == 'view') {
-     if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
+       if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
         if (isset(_plan.display) && isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) {
             html.css('border-radius', '0px'); 
             html.css('box-shadow', 'none'); 
@@ -864,7 +957,7 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
 }
 
 for (var key in _plan.css) {
-   if (_type == 'text' || _type == 'graph' || _type == 'plan' || _type == 'view') {
+ if (_type == 'text' || _type == 'graph' || _type == 'plan' || _type == 'view') {
     if (key == 'background-color') {
         if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
             html.css(key, _plan.css[key]);
@@ -924,7 +1017,7 @@ if (_type == 'scenario' && isset(_plan.display) && (isset(_plan.display.hideCmd)
     html.find('.changeScenarioState').remove();
 }
 if (init(_noRender, false) == false) {
-    initDraggable(editMode);
+    initEditMode(editMode);
 } else {
     return html;
 }
