@@ -77,7 +77,7 @@ $.contextMenu({
         }
     },
     fullscreen: {
-        name: "{{Pleine écran}}",
+        name: "{{Plein écran}}",
         icon : 'fa-desktop',
         callback: function(key, opt){
             if(this.data('fullscreen') == undefined){
@@ -255,7 +255,7 @@ save: {
 $('body').delegate('.plan-link-widget', 'click', function () {
     if (!editMode) {
         planHeader_id = $(this).attr('data-link_id');
-        $('#sel_planHeader').value(planHeader_id);
+        displayPlan();
     }
 });
 
@@ -499,6 +499,7 @@ $.contextMenu({
         }
     }
 });
+
 
 $('.planHeaderAttr').off('change').on('change', function () {
     var planHeader = $('#div_planHeader').getValues('.planHeaderAttr')[0];
