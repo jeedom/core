@@ -9,7 +9,7 @@ $starttime = getmicrotime();
 		<i class="fa fa-dashboard pull-right cursor" id="bt_benchmarkJeedom"></i>
 </legend>
 <table class="table table-condensed table-bordered">
-	<thead><tr><th style="width : 250px;cursor:default"></th><th style="width : 200px;cursor:default">{{Résultat}}</th><th style="cursor:default">{{Conseil}}</th></tr></thead>
+	<thead><tr><th style="width : 250px;cursor:default"></th><th style="width : 350px;cursor:default">{{Résultat}}</th><th style="cursor:default">{{Conseil}}</th></tr></thead>
 	<tbody>
 		<tr>
 			<td style="font-weight : bold;cursor:default">{{Système à jour}}</td>
@@ -221,8 +221,20 @@ foreach (plugin::listPlugin(true) as $plugin) {
 	$hasSpecificHealth = 0;
 	$hasSpecificHealthIcon = '';
 	$html = '';
+	$daemonInfo = '';
+	$port ='';
 	$asNok = 0;
 	$asPending = 0;
+	if ($plugin->getHasOwnDeamon() == 1){
+		if ($plugin->deamon_info()['auto']==1){
+			$daemonInfo = ' <i class="fa fa-university" style="cursor:default;color:grey;font-size:0.8em" title="Démon en mode automatique"></i>';
+		} else {
+			$daemonInfo = ' <i class="fa fa-university" style="cursor:default;color:#ff4c4c;font-size:0.8em" title="Démon en mode manuel"></i>';
+		}
+	}
+	if (config::byKey('port', $plugin->getId()) != ''){
+		$port = ' <i class="icon techno-fleches" style="cursor:default;color:grey;font-size:0.8em" title="Port configuré"></i><span style="cursor:default;color:grey;font-size:0.8em title="Port configuré"> '. ucfirst(config::byKey('port', $plugin->getId())) . '</span>';
+	}
 	if (file_exists(dirname(plugin::getPathById($plugin_id)) . '/../desktop/modal/health.php')) {
 		$hasSpecificHealth = 1;
 		$hasSpecificHealthIcon = '  <i data-pluginname="' . $plugin->getName() . '" data-pluginid="' . $plugin->getId() . '" class="fa fa-medkit bt_healthSpecific" style="cursor:pointer;color:grey;font-size:0.8em" title="Santé spécifique"></i>';
@@ -373,7 +385,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 			$errorMessage = '   <span class="label label-success pull-right" style="cursor:default">{{OK}}</span>';
 		}
 
-		$title .= '<a class="bt_configurationPlugin cursor" data-pluginid="' . $plugin->getId() . '">{{Santé }} ' . $plugin->getName() . '</a>' . $hasSpecificHealthIcon . $errorMessage . $pendingMessage;
+		$title .= '<a class="bt_configurationPlugin cursor" data-pluginid="' . $plugin->getId() . '">{{Santé }} ' . $plugin->getName() . '</a>' . $hasSpecificHealthIcon .$daemonInfo.$port. $errorMessage . $pendingMessage;
 		$globalhtml .= '<a class="accordion-toggle pull-right" data-toggle="collapse" data-parent="#accordionHealth" href="#config_' . $plugin->getId() . '" style="text-decoration:none;"><i class="fa fa-arrows-v"></i>
                     </a>' . $title . '
                 </h3>
