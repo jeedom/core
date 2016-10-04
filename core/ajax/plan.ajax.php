@@ -29,7 +29,7 @@ try {
 	if (init('action') == 'save') {
 		$plans = json_decode(init('plans'), true);
 		foreach ($plans as $plan_ajax) {
-			@$plan = plan::byId($plan_ajax['id']);
+			$plan = plan::byId($plan_ajax['id']);
 			if (!is_object($plan)) {
 				$plan = plan::byLinkTypeLinkIdPlanHedaerId($plan_ajax['link_type'], $plan_ajax['link_id'], $plan_ajax['planHeader_id']);
 				if (!is_object($plan)) {
@@ -45,7 +45,7 @@ try {
 	if (init('action') == 'planHeader') {
 		$return = array();
 		foreach (plan::byPlanHeaderId(init('planHeader_id')) as $plan) {
-			if ($plan->getLink_type() == 'eqLogic' || $plan->getLink_type() == 'scenario') {
+			if ($plan->getLink_type() == 'eqLogic' || $plan->getLink_type() == 'cmd' || $plan->getLink_type() == 'scenario') {
 				$link = $plan->getLink();
 				if (!is_object($link)) {
 					continue;

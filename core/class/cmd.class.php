@@ -887,6 +887,7 @@ class cmd {
 			'#maxValue#' => $this->getConfiguration('maxValue', 100),
 			'#logicalId#' => $this->getLogicalId(),
 			'#uid#' => 'cmd' . $this->getId() . eqLogic::UIDDELIMITER . mt_rand() . eqLogic::UIDDELIMITER,
+			'#version#' => $_version,
 			'#hideCmdName#' => '',
 		);
 		if ($this->getDisplay('showNameOn' . $version2, 1) == 0) {
