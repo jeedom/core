@@ -192,6 +192,7 @@ function getObjectHtml(_object_id){
                             eqLogics.push(eqLogic);
                         }
                     });
+                    $('.div_displayEquipement').packery();
                     jeedom.eqLogic.setOrder({
                         eqLogics: eqLogics,
                         error: function (error) {
