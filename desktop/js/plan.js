@@ -749,7 +749,11 @@ $('.div_displayObject a').each(function () {
         $(this).removeAttr('href');
     }
 });
-$('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget').contextMenu(true);
+try{
+    $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget').contextMenu(true);
+}catch (e) {
+
+}
 if (_state != 1 && _state != '1') {
     $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget').draggable("destroy");
     $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.scenario-widget,.text-widget').resizable("destroy");
@@ -757,7 +761,11 @@ if (_state != 1 && _state != '1') {
         $(this).attr('href', $(this).attr('data-href'));
     });
     $('.div_grid').hide();
-    $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget').contextMenu(false);
+    try{
+        $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget').contextMenu(false);
+    }catch (e) {
+
+    }
 }
 }
 
