@@ -16,27 +16,6 @@
  var deviceInfo = getDeviceType();
  var editOption = {state : false, snap : false,grid : false,gridSize:false}
 
- $("#md_addViewData").dialog({
-    closeText: '',
-    autoOpen: false,
-    modal: true,
-    height: (jQuery(window).height() - 150),
-    width: (jQuery(window).width() - 450)
-});
-
- $('body').delegate('.eqLogic-widget .history', 'click', function () {
-    if (!editOption.state) {
-        $('#md_modal').dialog({title: "Historique"});
-        $("#md_modal").load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
-    }
-});
- $('body').delegate('.div_displayObject > .cmd-widget .history', 'click', function () {
-    if (!editOption.state) {
-        $('#md_modal').dialog({title: "Historique"});
-        $("#md_modal").load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
-    }
-});
-
  planHeaderContextMenu = {};
  for(var i in planHeader){
     planHeaderContextMenu[planHeader[i].id] = {
@@ -47,93 +26,93 @@
         }
     }
 }
-
-$.contextMenu({
-    selector: '#div_pageContainer',
-    zIndex: 9999,
-    events: {
-        show: function(opt) {
-            var $this = this;
-            $.contextMenu.setInputValues(opt, $this.data());
-        }, 
-        hide: function(opt) {
-            var $this = this;
-            $.contextMenu.getInputValues(opt, $this.data());
-        }
-    },
-    items: {
-        fold1: {
-            name: "{{Designs}}", 
-            icon : 'fa-picture-o',
-            items: planHeaderContextMenu
-        },
-        edit: {
-            name: "{{Edition}}",
-            icon : 'fa-pencil',
-            callback: function(key, opt){
-                editOption.state = !editOption.state;
-                this.data('editOption.state', editOption.state);
-                initEditOption(editOption.state);
-                return false;
+if(deviceInfo.type == 'desktop'){
+    $.contextMenu({
+        selector: '#div_pageContainer',
+        zIndex: 9999,
+        events: {
+            show: function(opt) {
+                var $this = this;
+                $.contextMenu.setInputValues(opt, $this.data());
+            }, 
+            hide: function(opt) {
+                var $this = this;
+                $.contextMenu.getInputValues(opt, $this.data());
             }
         },
-        fullscreen: {
-            name: "{{Plein écran}}",
-            icon : 'fa-desktop',
-            callback: function(key, opt){
-                if(this.data('fullscreen') == undefined){
-                    this.data('fullscreen',1)
+        items: {
+            fold1: {
+                name: "{{Designs}}", 
+                icon : 'fa-picture-o',
+                items: planHeaderContextMenu
+            },
+            edit: {
+                name: "{{Edition}}",
+                icon : 'fa-pencil',
+                callback: function(key, opt){
+                    editOption.state = !editOption.state;
+                    this.data('editOption.state', editOption.state);
+                    initEditOption(editOption.state);
+                    return false;
                 }
-                fullScreen(this.data('fullscreen'));
-                this.data('fullscreen',!this.data('fullscreen'));
-            }
-        },
-        sep1 : "---------",
-        addGraph: {
-            name: "{{Ajouter Graphique}}",
-            icon : 'fa-line-chart',
+            },
+            fullscreen: {
+                name: "{{Plein écran}}",
+                icon : 'fa-desktop',
+                callback: function(key, opt){
+                    if(this.data('fullscreen') == undefined){
+                        this.data('fullscreen',1)
+                    }
+                    fullScreen(this.data('fullscreen'));
+                    this.data('fullscreen',!this.data('fullscreen'));
+                }
+            },
+            sep1 : "---------",
+            addGraph: {
+                name: "{{Ajouter Graphique}}",
+                icon : 'fa-line-chart',
+                disabled:function(key, opt) { 
+                    return !this.data('editOption.state'); 
+                },
+                callback: function(key, opt){
+                    addGraph({});
+                    savePlan();
+                }
+            },
+            addText: {
+                name: "{{Ajouter texte/html}}",
+                icon : 'fa-align-center',
+                disabled:function(key, opt) { 
+                    return !this.data('editOption.state'); 
+                },
+                callback: function(key, opt){
+                   addText({display: {text: 'Texte à insérer ici'}});
+                   savePlan();
+               }
+           },
+           addScenario: {
+            name: "{{Ajouter scénario}}",
+            icon : 'fa-plus-circle',
             disabled:function(key, opt) { 
                 return !this.data('editOption.state'); 
             },
             callback: function(key, opt){
-                addGraph({});
-                savePlan();
-            }
-        },
-        addText: {
-            name: "{{Ajouter texte/html}}",
-            icon : 'fa-align-center',
-            disabled:function(key, opt) { 
-                return !this.data('editOption.state'); 
-            },
-            callback: function(key, opt){
-               addText({display: {text: 'Texte à insérer ici'}});
-               savePlan();
+               jeedom.scenario.getSelectModal({}, function (data) {
+                addScenario(data.id);
+            });
            }
        },
-       addScenario: {
-        name: "{{Ajouter scénario}}",
-        icon : 'fa-plus-circle',
+       addLink: {
+        name: "{{Ajouter lien}}",
+        icon : 'fa-link',
         disabled:function(key, opt) { 
             return !this.data('editOption.state'); 
         },
         callback: function(key, opt){
-           jeedom.scenario.getSelectModal({}, function (data) {
-            addScenario(data.id);
-        });
-       }
-   },
-   addLink: {
-    name: "{{Ajouter lien}}",
-    icon : 'fa-link',
-    disabled:function(key, opt) { 
-        return !this.data('editOption.state'); 
-    },
-    callback: function(key, opt){
-      $('#md_selectLink').modal('show');
-  }
-},
-addEqLogic: {
+          $('#md_selectLink').modal('show');
+      }
+  },
+  addEqLogic: {
     name: "{{Ajouter équipement}}",
     icon : 'fa-plus-circle',
     disabled:function(key, opt) { 
@@ -319,22 +298,6 @@ save: {
 }
 });
 
-/*****************************PLAN HEADER***********************************/
-
-$('body').delegate('.plan-link-widget', 'click', function () {
-    if (!editOption.state) {
-        planHeader_id = $(this).attr('data-link_id');
-        displayPlan();
-    }
-});
-
-/*****************************PLAN***********************************/
-
-jwerty.key('ctrl+s', function (e) {
-    e.preventDefault();
-    savePlan();
-});
-
 $.contextMenu({
     selector: '.eqLogic-widget,.div_displayObject > .cmd-widget',
     zIndex: 9999,
@@ -427,7 +390,7 @@ items: {
    }
 }
 });
-
+}
 /**************************************init*********************************************/
 displayPlan();
 
@@ -435,6 +398,65 @@ $('#bt_createNewDesign').on('click',function(){
     createNewDesign();
 });
 
+$('body').delegate('.plan-link-widget', 'click', function () {
+    if (!editOption.state) {
+        planHeader_id = $(this).attr('data-link_id');
+        displayPlan();
+    }
+});
+
+jwerty.key('ctrl+s', function (e) {
+    e.preventDefault();
+    savePlan();
+});
+
+$('.view-link-widget').off('click').on('click', function () {
+    if (!editOption.state) {
+        $(this).find('a').click();
+    }
+});
+
+$('.div_displayObject').delegate('.graph-widget', 'resize', function () {
+    if (isset(jeedom.history.chart['graph' + $(this).attr('data-graph_id')])) {
+        jeedom.history.chart['graph' + $(this).attr('data-graph_id')].chart.reflow();
+    }
+});
+
+$('#md_selectLink .linkType').on('change', function () {
+    $('#md_selectLink .linkOption').hide();
+    $('#md_selectLink .link' + $(this).value()).show();
+});
+
+$('#md_selectLink .validate').on('click', function () {
+    var link = {};
+    link.type = $('#md_selectLink .linkType').value();
+    link.id = $('#md_selectLink .link' + link.type + ' .linkId').value();
+    link.name = $('#md_selectLink .link' + link.type + ' .linkId option:selected').text();
+    $('#md_selectLink').modal('hide');
+    addLink(link);
+});
+
+$("#md_addViewData").dialog({
+    closeText: '',
+    autoOpen: false,
+    modal: true,
+    height: (jQuery(window).height() - 150),
+    width: (jQuery(window).width() - 450)
+});
+
+$('body').delegate('.eqLogic-widget .history', 'click', function () {
+    if (!editOption.state) {
+        $('#md_modal').dialog({title: "Historique"});
+        $("#md_modal").load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
+    }
+});
+
+$('body').delegate('.div_displayObject > .cmd-widget .history', 'click', function () {
+    if (!editOption.state) {
+        $('#md_modal').dialog({title: "Historique"});
+        $("#md_modal").load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
+    }
+});
 /***********************************************************************************/
 
 function createNewDesign(){
@@ -498,12 +520,6 @@ $('.div_displayObject:last').delegate('.configureGraph', 'click', function () {
     }
 });
 
-$('.view-link-widget').off('click').on('click', function () {
-    if (!editOption.state) {
-        $(this).find('a').click();
-    }
-});
-
 function fullScreen(_mode) {
     if(_mode){
         $('header').hide();
@@ -519,7 +535,6 @@ function fullScreen(_mode) {
         $('#div_mainContainer').css('margin-top', '0px');
         $('#div_mainContainer').css('margin-left', '0px');
         $('#wrap').css('margin-bottom', '15px');
-        $('#bt_returnFullScreen').remove();
     }
 }
 
@@ -572,7 +587,9 @@ function displayPlan() {
     if(planHeader_id == -1){
         return;
     }
-    history.replaceState(null, "Jeedom", "index.php?v=d&p=plan&plan_id=" + planHeader_id);
+    if (getUrlVars('fullscreen') == 1) {
+        fullScreen(true);
+    }
     jeedom.plan.getHeader({
         id: planHeader_id,
         error: function (error) {
@@ -599,36 +616,41 @@ function displayPlan() {
             }
             $('.div_grid').width($('.div_displayObject').width());
             $('.div_grid').height($('.div_displayObject').height());
-            if (getUrlVars('fullscreen') == 1) {
-                fullScreen(true);
+            if(deviceInfo.type != 'desktop'){
+                $('meta[name="viewport"]').prop('content', 'width=' + $('.div_displayObject').width() + ',height=' + $('.div_displayObject').height()+',initial-scale=1.0');
+             fullScreen(true);
+             $(window).on("navigate", function (event, data) {
+              var direction = data.state.direction;
+              if (direction == 'back') {
+                window.location.href = 'index.php?v=m';
             }
-            $('.div_displayObject').find('.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget').remove();
-            if (planHeader_id != -1) {
-                jeedom.plan.byPlanHeader({
-                    id: planHeader_id,
-                    error: function (error) {
-                        $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                    },
-                    success: function (plans) {
-                        var objects = [];
-                        for (var i in plans) {
-                            if (plans[i].plan.link_type == 'graph') {
-                                addGraph(plans[i].plan);
-                            } else {
-                                objects.push(displayObject(plans[i].plan.link_type, plans[i].plan.link_id, plans[i].html, plans[i].plan, true));
-                            }
-                        }
-                        try {
-                            $('.div_displayObject').append(objects);
-                        }catch(e) {
-
-                        }
-                        initEditOption(editOption.state);
+        });
+         }
+         $('.div_displayObject').find('.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget').remove();
+         jeedom.plan.byPlanHeader({
+            id: planHeader_id,
+            error: function (error) {
+                $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            },
+            success: function (plans) {
+                var objects = [];
+                for (var i in plans) {
+                    if (plans[i].plan.link_type == 'graph') {
+                        addGraph(plans[i].plan);
+                    } else {
+                        objects.push(displayObject(plans[i].plan.link_type, plans[i].plan.link_id, plans[i].html, plans[i].plan, true));
                     }
-                });
+                }
+                try {
+                    $('.div_displayObject').append(objects);
+                }catch(e) {
+
+                }
+                initEditOption(editOption.state);
             }
-        },
-    });
+        });
+     },
+ });
 }
 
 function getObjectInfo(_object){
@@ -657,10 +679,6 @@ function getObjectInfo(_object){
 
 function savePlan(_refreshDisplay) {
     if (editOption.state) {
-        var parent = {
-            height: $('.div_displayObject').height(),
-            width: $('.div_displayObject').width(),
-        };
         var plans = [];
         $('.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget').each(function () {
             var info = getObjectInfo($(this));
@@ -673,8 +691,8 @@ function savePlan(_refreshDisplay) {
             plan.display.height = $(this).outerHeight() / $(this).attr('data-zoom');
             plan.display.width = $(this).outerWidth() / $(this).attr('data-zoom');
             var position = $(this).position();
-            plan.position.top = (((position.top)) / parent.height) * 100;
-            plan.position.left = (((position.left)) / parent.width) * 100;
+            plan.position.top = (((position.top)) / $('.div_displayObject').height()) * 100;
+            plan.position.left = (((position.left)) / $('.div_displayObject').width()) * 100;
             plans.push(plan);
         });
         jeedom.plan.save({
@@ -866,26 +884,6 @@ function addGraph(_plan) {
         }
     }
 }
-
-$('.div_displayObject').delegate('.graph-widget', 'resize', function () {
-    if (isset(jeedom.history.chart['graph' + $(this).attr('data-graph_id')])) {
-        jeedom.history.chart['graph' + $(this).attr('data-graph_id')].chart.reflow();
-    }
-});
-/**********************************LINK************************************/
-$('#md_selectLink .linkType').on('change', function () {
-    $('#md_selectLink .linkOption').hide();
-    $('#md_selectLink .link' + $(this).value()).show();
-});
-
-$('#md_selectLink .validate').on('click', function () {
-    var link = {};
-    link.type = $('#md_selectLink .linkType').value();
-    link.id = $('#md_selectLink .link' + link.type + ' .linkId').value();
-    link.name = $('#md_selectLink .link' + link.type + ' .linkId option:selected').text();
-    $('#md_selectLink').modal('hide');
-    addLink(link);
-});
 
 function addLink(_link, _plan) {
     _plan = init(_plan, {});
