@@ -20,7 +20,7 @@ sendVarToJS('id', $plan->getId());
 	?>
         <input type="text"  class="planAttr form-control" data-l1key="id" style="display: none;"/>
         <input type="text"  class="planAttr form-control" data-l1key="link_type" style="display: none;"/>
-        <?php if ($plan->getLink_type() == 'eqLogic' || $plan->getLink_type() == 'scenario') {
+        <?php if ($plan->getLink_type() == 'eqLogic' || $plan->getLink_type() == 'cmd' || $plan->getLink_type() == 'scenario') {
 		?>
          <div class="form-group">
             <label class="col-lg-4 control-label">{{Taille du widget}}</label>

@@ -50,9 +50,9 @@ if (is_object($planHeader)) {
     repeating-linear-gradient(90deg, rgba(0, 191, 255, .5), rgba(0, 191, 255, .5) 1px, transparent 1px, transparent 20px),
     repeating-linear-gradient(0deg, rgba(0, 191, 255, .5), rgba(0, 191, 255, .5) 1px, transparent 1px, transparent 20px);
   }
-   .contextMenu_select {
-      background:rgba(255,255,255,0.5) !important;
-   }
+  .contextMenu_select {
+    background:rgba(255,255,255,0.5) !important;
+  }
 </style>
 <div class="container-fluid div_grid" style="display:none;position: absolute;padding:0;width:100%;height:100%;user-select: none;-khtml-user-select: none;-o-user-select: none;-moz-user-select: -moz-none;-webkit-user-select: none;"></div>
 <div class="container-fluid div_displayObject" style="position: relative;padding:0;user-select: none;-khtml-user-select: none;-o-user-select: none;-moz-user-select: -moz-none;-webkit-user-select: none;"></div>
@@ -94,9 +94,9 @@ foreach (view::all() as $views) {
           <button type="button" class="btn btn-default" data-dismiss="modal">{{Annuler}}</button>
           <button type="button" class="btn btn-primary validate">{{Valider}}</button>
         </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
+      </div>
+    </div>
+  </div>
 
   <div id="md_addViewData" title="Ajouter widget/graph"></div>
   <?php }
