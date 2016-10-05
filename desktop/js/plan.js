@@ -49,7 +49,7 @@
 }
 
 if (planHeader_id == -1){
-    $('#div_pageContainer').height('100%');
+    $('#div_pageContainer').height('700px');
 }
 
 $.contextMenu({
