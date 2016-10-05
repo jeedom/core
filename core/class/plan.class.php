@@ -103,6 +103,16 @@ class plan {
 		DB::remove($this);
 	}
 
+	public function copy() {
+		$planCopy = clone $this;
+		$planCopy->setId('');
+		$planCopy->setLink_id('');
+		$planCopy->setPosition('top', '');
+		$planCopy->setPosition('left', '');
+		$planCopy->save();
+		return $planCopy;
+	}
+
 	public function getLink() {
 		if ($this->getLink_type() == 'eqLogic') {
 			$eqLogic = eqLogic::byId($this->getLink_id());

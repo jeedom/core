@@ -106,7 +106,7 @@ jeedom.plan.getObjectPlan = function (_params) {
     $.ajax(paramsAJAX);
 };
 
-jeedom.plan.getNewPlan = function (_params) {
+jeedom.plan.create = function (_params) {
     var paramsRequired = ['plan'];
     var paramsSpecifics = {};
     try {
@@ -119,8 +119,30 @@ jeedom.plan.getNewPlan = function (_params) {
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/plan.ajax.php';
     paramsAJAX.data = {
-        action: 'getNewPlan',
+        action: 'create',
         plan: json_encode(_params.plan)
+    };
+    $.ajax(paramsAJAX);
+};
+
+jeedom.plan.copy = function (_params) {
+    var paramsRequired = [];
+    var paramsSpecifics = {};
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/plan.ajax.php';
+    paramsAJAX.data = {
+        action: 'copy',
+        id: _params.id || '',
+        link_type: _params.link_type || '',
+        link_id: _params.link_id || '',
+        planHeader_id: _params.planHeader_id || ''
     };
     $.ajax(paramsAJAX);
 };

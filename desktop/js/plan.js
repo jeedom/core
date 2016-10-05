@@ -87,7 +87,6 @@ if(deviceInfo.type == 'desktop'){
                 },
                 callback: function(key, opt){
                    addObject({link_type : 'text',link_id:Math.round(Math.random() * 99999999) + 9999,display: {text: 'Texte à insérer ici'}});
-                   savePlan();
                }
            },
            addScenario: {
@@ -299,7 +298,7 @@ save: {
 });
 
 $.contextMenu({
-    selector: '.eqLogic-widget,.div_displayObject > .cmd-widget',
+    selector: '.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.text-widget,.view-link-widget,.graph-widget',
     zIndex: 9999,
     events: {
      show : function(options){
@@ -322,6 +321,10 @@ items: {
     configuration: {
         name: '{{Configuration avancée}}',
         icon:'fa-cog',
+        disabled: function(key, opt){ 
+            var info = getObjectInfo($(this));    
+            return !(info.type == 'eqLogic' || info.type == 'cmd');
+        },
         callback: function(key, opt){
             $('#md_modal').dialog({title: "{{Configuration de l\'équipement}}"});
             var info = getObjectInfo($(this));
@@ -345,51 +348,34 @@ items: {
             },
         });
        }
+   },
+   duplicate: {
+    name: '{{Dupliquer}}',
+    icon:'fa-files-o',
+    disabled: function(key, opt){ 
+        var info = getObjectInfo($(this));    
+        return !(info.type == 'text' || info.type == 'graph');
+    },
+    callback: function(key, opt){
+        var info = getObjectInfo($(this));
+       jeedom.plan.copy({
+        link_type: info.type,
+        link_id : info.id,
+        planHeader_id : planHeader_id,
+        version: 'dplan',
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+            displayObject(data.plan.link_type, data.plan.link_id, data.html, data.plan);
+        }
+    });
+
    }
+},
 }
 });
 
-$.contextMenu({
-    selector: '.scenario-widget,.plan-link-widget,.text-widget,.view-link-widget,.graph-widget',
-    zIndex: 9999,
-    events: {
-     show : function(options){
-        $(this).addClass('contextMenu_select');
-    },
-    hide : function(options){
-     $(this).removeClass('contextMenu_select');
- }
-},
-items: {
-    parameter: {
-        name: '{{Paramètres d\'affichage}}',
-        icon:'fa-cogs',
-        callback: function(key, opt){
-            var info = getObjectInfo($(this));
-            $('#md_modal').dialog({title: "{{Configuration du widget}}"});
-            $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type='+info.type+'&link_id=' + info.id + '&planHeader_id=' + planHeader_id).dialog('open');
-        }
-    },
-    remove: {
-        name: '{{Supprimer}}',
-        icon:'fa-trash',
-        callback: function(key, opt){
-           var info = getObjectInfo($(this));
-           jeedom.plan.remove({
-             link_id:  info.id,
-             link_type : info.type,
-             planHeader_id : planHeader_id,
-             error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function () {
-                displayPlan();
-            },
-        });
-       }
-   }
-}
-});
 }
 /**************************************init*********************************************/
 displayPlan();
@@ -795,7 +781,7 @@ initEditOption(editOption.state);
 
 function addObject(_plan){
     _plan.planHeader_id = planHeader_id;
-    jeedom.plan.getNewPlan({
+    jeedom.plan.create({
         plan: _plan,
         version: 'dplan',
         error: function (error) {

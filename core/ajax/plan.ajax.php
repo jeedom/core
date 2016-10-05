@@ -45,7 +45,7 @@ try {
 	if (init('action') == 'planHeader') {
 		$return = array();
 		foreach (plan::byPlanHeaderId(init('planHeader_id')) as $plan) {
-			$result = $plan->getHtml();
+			$result = $plan->getHtml(init('version'));
 			if (is_array($result)) {
 				$return[] = $result;
 			}
@@ -53,35 +53,44 @@ try {
 		ajax::success($return);
 	}
 
-	if (init('action') == 'getNewPlan') {
+	if (init('action') == 'create') {
 		$plan = new plan();
 		utils::a2o($plan, json_decode(init('plan'), true));
 		$plan->save();
-		ajax::success($plan->getHtml());
+		ajax::success($plan->getHtml(init('version')));
+	}
+
+	if (init('action') == 'copy') {
+		$plan = plan::byId(init('id'));
+		if (!is_object($plan)) {
+			$plan = plan::byLinkTypeLinkIdPlanHedaerId(init('link_type'), init('link_id'), init('planHeader_id'));
+		}
+		if (!is_object($plan)) {
+			throw new Exception(__('Aucun plan correspondant', __FILE__));
+		}
+		ajax::success($plan->copy()->getHtml(init('version')));
 	}
 
 	if (init('action') == 'get') {
 		$plan = plan::byId(init('id'));
-		if (is_object($plan)) {
-			ajax::success(utils::o2a($plan));
+		if (!is_object($plan)) {
+			$plan = plan::byLinkTypeLinkIdPlanHedaerId(init('link_type'), init('link_id'), init('planHeader_id'));
 		}
-		$plan = plan::byLinkTypeLinkIdObjectId(init('link_type'), init('link_id'), init('object_id'));
-		if (is_object($plan)) {
-			ajax::success(utils::o2a($plan));
+		if (!is_object($plan)) {
+			throw new Exception(__('Aucun plan correspondant', __FILE__));
 		}
-		throw new Exception(__('Aucun plan correspondant', __FILE__));
+		ajax::success(utils::o2a($plan));
 	}
 
 	if (init('action') == 'remove') {
 		$plan = plan::byId(init('id'));
-		if (is_object($plan)) {
-			ajax::success($plan->remove());
+		if (!is_object($plan)) {
+			$plan = plan::byLinkTypeLinkIdPlanHedaerId(init('link_type'), init('link_id'), init('planHeader_id'));
 		}
-		$plan = plan::byLinkTypeLinkIdPlanHedaerId(init('link_type'), init('link_id'), init('planHeader_id'));
-		if (is_object($plan)) {
-			ajax::success($plan->remove());
+		if (!is_object($plan)) {
+			throw new Exception(__('Aucun plan correspondant', __FILE__));
 		}
-		throw new Exception(__('Aucun plan correspondant', __FILE__));
+		ajax::success($plan->remove());
 	}
 
 	if (init('action') == 'removePlanHeader') {
