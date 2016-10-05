@@ -644,6 +644,7 @@ $('body').delegate('.bt_sortable', 'mouseenter', function () {
     axis: "y",
     cursor: "move",
     items: ".sortable",
+	   opacity: 0.5,
     //placeholder: "ui-state-highlight",
     forcePlaceholderSize: true,
     forceHelperSize: true,
