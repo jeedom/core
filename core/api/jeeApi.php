@@ -228,6 +228,11 @@ if (init('type') != '') {
 				$jsonrpc->makeSuccess('ok');
 			}
 
+			if ($jsonrpc->getMethod() == 'jeedom::backup') {
+				jeedom::backup(true);
+				$jsonrpc->makeSuccess('ok');
+			}
+
 			/*             * ***********************Datetime********************************* */
 			if ($jsonrpc->getMethod() == 'datetime') {
 				$jsonrpc->makeSuccess(getmicrotime());
