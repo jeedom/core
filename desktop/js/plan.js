@@ -31,7 +31,7 @@
         $("#md_modal").load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
     }
 });
- $('body').delegate('.cmd-widget .history', 'click', function () {
+ $('body').delegate('.div_displayObject > .cmd-widget .history', 'click', function () {
     if (!editMode) {
         $('#md_modal').dialog({title: "Historique"});
         $("#md_modal").load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
@@ -752,7 +752,7 @@ function displayPlan(_offsetX, _offsetY) {
                 fullScreen(true);
             }
 
-            $('.div_displayObject').find('eqLogic-widget,.cmd-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget').remove();
+            $('.div_displayObject').find('eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget').remove();
             if (planHeader_id != -1) {
                 jeedom.plan.byPlanHeader({
                     id: planHeader_id,
@@ -806,7 +806,7 @@ function savePlan(_refreshDisplay) {
             plan.position.left = (((position.left)) / parent.width) * 100;
             plans.push(plan);
         });
-        $('.cmd-widget').each(function () {
+        $('.div_displayObject > .cmd-widget').each(function () {
             var plan = {};
             plan.position = {};
             plan.display = {};
@@ -925,7 +925,7 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
         $('.div_displayObject .plan-link-widget[data-link_id=' + _id + ']').remove();
     }
     if (_type == 'cmd') {
-        $('.div_displayObject .cmd-widget[data-cmd_id=' + _id + ']').remove();
+        $('.div_displayObject > .cmd-widget[data-cmd_id=' + _id + ']').remove();
     }
     if (_type == 'graph') {
         for (var i in jeedom.history.chart) {
