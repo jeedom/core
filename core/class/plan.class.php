@@ -114,6 +114,74 @@ class plan {
 		return null;
 	}
 
+	public function getHtml($_version = 'dplan') {
+		if ($this->getLink_type() == 'eqLogic' || $this->getLink_type() == 'cmd' || $this->getLink_type() == 'scenario') {
+			$link = $this->getLink();
+			if (!is_object($link)) {
+				return;
+			}
+			return array(
+				'plan' => utils::o2a($this),
+				'html' => $link->toHtml($_version),
+			);
+		} else if ($this->getLink_type() == 'plan') {
+			$this_link = planHeader::byId($this->getLink_id());
+			if (!is_object($this_link)) {
+				return;
+			}
+			$link = 'index.php?v=d&p=plan&plan_id=' . $this_link->getId();
+			$html = '<span class="cursor plan-link-widget label label-success" data-link_id="' . $this_link->getId() . '" data-offsetX="' . $this->getDisplay('offsetX') . '" data-offsetY="' . $this->getDisplay('offsetY') . '">';
+			$html .= '<a style="color:' . $this->getCss('color', 'white') . ';text-decoration:none;font-size : 1.5em;">';
+			if ($this->getDisplay('name') != '' || $this->getDisplay('icon') != '') {
+				$html .= $this->getDisplay('icon') . ' ' . $this->getDisplay('name');
+			} else {
+				$html .= $this_link->getName();
+			}
+			$html .= '</a>';
+			$html .= '</span>';
+			return array(
+				'plan' => utils::o2a($this),
+				'html' => $html,
+			);
+		} else if ($this->getLink_type() == 'view') {
+			$view = view::byId($this->getLink_id());
+			if (!is_object($view)) {
+				return;
+			}
+			$link = 'index.php?p=view&view_id=' . $view->getId();
+			$html = '<span href="' . $link . '" class=" cursor view-link-widget label label-primary" data-link_id="' . $view->getId() . '" >';
+			$html .= '<a href="' . $link . '" style="color:' . $this->getCss('color', 'white') . ';text-decoration:none;font-size : 1.5em;">';
+			if ($this->getDisplay('name') != '' || $this->getDisplay('icon') != '') {
+				$html .= $this->getDisplay('icon') . ' ' . $this->getDisplay('name');
+			} else {
+				$html .= $view->getName();
+			}
+			$html .= '</a>';
+			$html .= '</span>';
+			return array(
+				'plan' => utils::o2a($this),
+				'html' => $html,
+			);
+		} else if ($this->getLink_type() == 'graph') {
+			$return[] = array(
+				'plan' => utils::o2a($this),
+				'html' => '',
+			);
+		} else if ($this->getLink_type() == 'text') {
+			$html = '<div class="text-widget" data-text_id="' . $this->getLink_id() . '" style="color:' . $this->getCss('color', 'black') . ';">';
+			if ($this->getDisplay('name') != '' || $this->getDisplay('icon') != '') {
+				$html .= $this->getDisplay('icon') . ' ' . $this->getDisplay('text');
+			} else {
+				$html .= $this->getDisplay('text', 'Texte à insérer ici');
+			}
+			$html .= '</div>';
+			return array(
+				'plan' => utils::o2a($this),
+				'html' => $html,
+			);
+		}
+	}
+
 	/*     * **********************Getteur Setteur*************************** */
 
 	public function getId() {

@@ -45,70 +45,9 @@ try {
 	if (init('action') == 'planHeader') {
 		$return = array();
 		foreach (plan::byPlanHeaderId(init('planHeader_id')) as $plan) {
-			if ($plan->getLink_type() == 'eqLogic' || $plan->getLink_type() == 'cmd' || $plan->getLink_type() == 'scenario') {
-				$link = $plan->getLink();
-				if (!is_object($link)) {
-					continue;
-				}
-				$return[] = array(
-					'plan' => utils::o2a($plan),
-					'html' => $link->toHtml(init('version', 'dplan')),
-				);
-			} else if ($plan->getLink_type() == 'plan') {
-				$plan_link = planHeader::byId($plan->getLink_id());
-				if (!is_object($plan_link)) {
-					continue;
-				}
-				$link = 'index.php?v=d&p=plan&plan_id=' . $plan_link->getId();
-				$html = '<span class="cursor plan-link-widget label label-success" data-link_id="' . $plan_link->getId() . '" data-offsetX="' . $plan->getDisplay('offsetX') . '" data-offsetY="' . $plan->getDisplay('offsetY') . '">';
-				$html .= '<a style="color:' . $plan->getCss('color', 'white') . ';text-decoration:none;font-size : 1.5em;">';
-				if ($plan->getDisplay('name') != '' || $plan->getDisplay('icon') != '') {
-					$html .= $plan->getDisplay('icon') . ' ' . $plan->getDisplay('name');
-				} else {
-					$html .= $plan_link->getName();
-				}
-				$html .= '</a>';
-				$html .= '</span>';
-				$return[] = array(
-					'plan' => utils::o2a($plan),
-					'html' => $html,
-				);
-			} else if ($plan->getLink_type() == 'view') {
-				$view = view::byId($plan->getLink_id());
-				if (!is_object($view)) {
-					continue;
-				}
-				$link = 'index.php?p=view&view_id=' . $view->getId();
-				$html = '<span href="' . $link . '" class=" cursor view-link-widget label label-primary" data-link_id="' . $view->getId() . '" >';
-				$html .= '<a href="' . $link . '" style="color:' . $plan->getCss('color', 'white') . ';text-decoration:none;font-size : 1.5em;">';
-				if ($plan->getDisplay('name') != '' || $plan->getDisplay('icon') != '') {
-					$html .= $plan->getDisplay('icon') . ' ' . $plan->getDisplay('name');
-				} else {
-					$html .= $view->getName();
-				}
-				$html .= '</a>';
-				$html .= '</span>';
-				$return[] = array(
-					'plan' => utils::o2a($plan),
-					'html' => $html,
-				);
-			} else if ($plan->getLink_type() == 'graph') {
-				$return[] = array(
-					'plan' => utils::o2a($plan),
-					'html' => '',
-				);
-			} else if ($plan->getLink_type() == 'text') {
-				$html = '<div class="text-widget" data-text_id="' . $plan->getLink_id() . '" style="color:' . $plan->getCss('color', 'black') . ';">';
-				if ($plan->getDisplay('name') != '' || $plan->getDisplay('icon') != '') {
-					$html .= $plan->getDisplay('icon') . ' ' . $plan->getDisplay('text');
-				} else {
-					$html .= $plan->getDisplay('text', 'Texte à insérer ici');
-				}
-				$html .= '</div>';
-				$return[] = array(
-					'plan' => utils::o2a($plan),
-					'html' => $html,
-				);
+			$result = $plan->getHtml();
+			if (is_array($result)) {
+				$return[] = $result;
 			}
 		}
 		ajax::success($return);
