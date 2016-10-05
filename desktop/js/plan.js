@@ -325,6 +325,7 @@ save: {
     icon : 'fa-floppy-o',
     callback: function(key, opt){
      savePlan();
+     return false;
  }
 },
 }
@@ -732,7 +733,8 @@ function fullScreen(_mode) {
 function initEditMode(_state) {
     $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget').draggable({
         snap : (editOption.snap == 1),
-        grid : (editOption.grid == 1) ? editOption.gridSize : false
+        grid : (editOption.grid == 1) ? editOption.gridSize : false,
+        containment: 'parent'
     });
 
     if(editOption.gridSize){
@@ -785,6 +787,7 @@ function displayPlan(_offsetX, _offsetY) {
         },
         success: function (data) {
             $('.div_displayObject').empty();
+            $('.div_displayObject').append('<div class="container-fluid div_grid" style="display:none;position: absolute;padding:0;width:100%;height:100%;user-select: none;-khtml-user-select: none;-o-user-select: none;-moz-user-select: -moz-none;-webkit-user-select: none;"></div>');
             $('.div_displayObject').height('auto');
             $('.div_displayObject').width('auto');
             if (isset(data.image)) {
@@ -822,7 +825,7 @@ function displayPlan(_offsetX, _offsetY) {
                 fullScreen(true);
             }
 
-            $('.div_displayObject').find('eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget').remove();
+            $('.div_displayObject').find('.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget').remove();
             if (planHeader_id != -1) {
                 jeedom.plan.byPlanHeader({
                     id: planHeader_id,
