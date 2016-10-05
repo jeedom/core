@@ -16,42 +16,42 @@ sendVarToJS('id', $plan->getId());
         <legend>Général
             <a class='btn btn-success btn-xs pull-right cursor' style="color: white;" id='bt_saveConfigurePlan'><i class="fa fa-check"></i> {{Sauvegarder}}</a>
         </legend>
-         <?php if ($plan->getLink_type() == 'eqLogic' || $plan->getLink_type() == 'cmd' || $plan->getLink_type() == 'scenario') {
-	?>
         <input type="text"  class="planAttr form-control" data-l1key="id" style="display: none;"/>
-        <input type="text"  class="planAttr form-control" data-l1key="link_type" style="display: none;"/>
         <?php if ($plan->getLink_type() == 'eqLogic' || $plan->getLink_type() == 'cmd' || $plan->getLink_type() == 'scenario') {
+	?>
+           <input type="text"  class="planAttr form-control" data-l1key="link_type" style="display: none;"/>
+           <?php if ($plan->getLink_type() == 'eqLogic' || $plan->getLink_type() == 'cmd' || $plan->getLink_type() == 'scenario') {
 		?>
+              <div class="form-group">
+                <label class="col-lg-4 control-label">{{Taille du widget}}</label>
+                <div class="col-lg-2">
+                 <input type="text" class="planAttr form-control" data-l1key="css" data-l2key="zoom"/>
+             </div>
+         </div>
+         <?php }?>
          <div class="form-group">
-            <label class="col-lg-4 control-label">{{Taille du widget}}</label>
+            <label class="col-lg-4 control-label">{{Profondeur}}</label>
             <div class="col-lg-2">
-               <input type="text" class="planAttr form-control" data-l1key="css" data-l2key="zoom"/>
-           </div>
-       </div>
-       <?php }?>
-       <div class="form-group">
-        <label class="col-lg-4 control-label">{{Profondeur}}</label>
-        <div class="col-lg-2">
-            <select class="form-control planAttr" data-l1key="css" data-l2key="z-index" >
-                <option value="99">Niveau -1</option>
-                <option value="1000" selected>Niveau 1</option>
-                <option value="1001">Niveau 2</option>
-                <option value="1002">Niveau 3</option>
-            </select>
+                <select class="form-control planAttr" data-l1key="css" data-l2key="z-index" >
+                    <option value="99">{{Niveau -1}}</option>
+                    <option value="1000" selected>{{Niveau 1}}</option>
+                    <option value="1001">{{Niveau 2}}</option>
+                    <option value="1002">{{Niveau 3}}</option>
+                </select>
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label class="col-lg-4 control-label">{{Position X (%)}}</label>
-        <div class="col-lg-2">
-            <input type="text" class="planAttr form-control" data-l1key="position" data-l2key="top" />
+        <div class="form-group">
+            <label class="col-lg-4 control-label">{{Position X (%)}}</label>
+            <div class="col-lg-2">
+                <input type="text" class="planAttr form-control" data-l1key="position" data-l2key="top" />
+            </div>
+            <label class="col-lg-2 control-label">{{Position Y (%)}}</label>
+            <div class="col-lg-2">
+                <input type="text" class="planAttr form-control" data-l1key="position" data-l2key="left" />
+            </div>
         </div>
-        <label class="col-lg-2 control-label">{{Position Y (%)}}</label>
-        <div class="col-lg-2">
-            <input type="text" class="planAttr form-control" data-l1key="position" data-l2key="left" />
-        </div>
-    </div>
-    <legend>Spécifique</legend>
-    <?php
+        <legend>Spécifique</legend>
+        <?php
 if ($plan->getLink_type() == 'eqLogic' && is_object($link)) {
 		echo '<table class="table table-condensed">';
 		echo '<thead>';
@@ -83,8 +83,8 @@ if ($plan->getLink_type() == 'eqLogic' && is_object($link)) {
 		echo '</div>';
 	}
 	?>
-<?php } else if ($plan->getLink_type() == 'graph') {?>
-<div class="form-group">
+  <?php } else if ($plan->getLink_type() == 'graph') {?>
+  <div class="form-group">
     <label class="col-lg-4 control-label">{{Période}}</label>
     <div class="col-lg-2">
         <select class="planAttr form-control" data-l1key="display" data-l2key="dateRange">
@@ -163,10 +163,10 @@ foreach (view::all() as $views) {
 			echo '<option value="' . $views->getId() . '">' . $views->getName() . '</option>';
 		}
 		?>
-           </select>
-       </div>
-   </div>
-   <?php
+         </select>
+     </div>
+ </div>
+ <?php
 }
 	if ($plan->getLink_type() == 'plan') {
 		?>
@@ -363,7 +363,7 @@ foreach (planHeader::all() as $planHeader_select) {
     });
 
     $('#fd_planConfigure').on('change','.planAttr[data-l1key=css][data-l2key=background-color]', function() {
-     if($(this).value() != '#000000'){
+       if($(this).value() != '#000000'){
         $('.planAttr[data-l1key=display][data-l2key=background-defaut]').value(0);
     }
 });
@@ -428,8 +428,6 @@ foreach (planHeader::all() as $planHeader_select) {
         }
     });
     }
-
-
     function save() {
         var plans = $('#fd_planConfigure').getValues('.planAttr');
         if (plans[0].link_type == 'text') {
