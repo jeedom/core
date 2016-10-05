@@ -48,6 +48,10 @@
     }
 }
 
+if (planHeader_id == -1){
+    $('#div_pageContainer').height('100%');
+}
+
 $.contextMenu({
     selector: '#div_pageContainer',
     zIndex: 9999,

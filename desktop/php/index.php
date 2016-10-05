@@ -432,7 +432,7 @@ if (isConnect('admin')) {
 						<main class="container-fluid" id="div_mainContainer">
 							<div style="display: none;width : 100%" id="div_alert"></div>
 
-							<div id="div_pageContainer" style="min-height: 100px;">
+							<div id="div_pageContainer">
 								<?php
 try {
 		if (!jeedom::isStarted()) {
