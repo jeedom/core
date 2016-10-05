@@ -10,8 +10,7 @@ if (!is_object($planHeader)) {
 sendVarToJS('id', $planHeader->getId())
 ?>
 <div id="div_alertPlanHeaderConfigure"></div>
-<a class='btn btn-success btn-xs pull-right cursor' style="color: white;" id='bt_saveConfigurePlanHeader'><i class="fa fa-check"></i> Sauvegarder</a>
-<a class='btn btn-danger  btn-xs pull-right cursor' style="color: white;" id='bt_removeConfigurePlanHeader'><i class="fa fa-times"></i> Supprimer</a>
+<a class='btn btn-success btn-xs pull-right cursor' style="color: white;" id='bt_saveConfigurePlanHeader'><i class="fa fa-check"></i> {{Sauvegarder}}</a>
 <form class="form-horizontal">
     <fieldset id="fd_planHeaderConfigure">
         <legend><i class="fa fa-cog"></i> {{Général}}</legend>
@@ -32,23 +31,11 @@ sendVarToJS('id', $planHeader->getId())
             </div>
         </div>
         <div class="form-group">
-            <label class="col-lg-4 control-label">{{Disponible sur téléphone}}</label>
-            <div class="col-lg-8">
-                <input type="checkbox" class="planHeaderAttr" data-l1key="configuration" data-l2key="enableOnMobile"/>
-            </div>
-        </div>
-        <div class="form-group">
             <label class="col-lg-4 control-label">{{Image}}</label>
             <div class="col-lg-8">
               <span class="btn btn-default btn-file">
                 <i class="fa fa-cloud-upload"></i> {{Envoyer}}<input  id="bt_uploadImage" type="file" name="file" style="display: inline-block;">
             </span>
-        </div>
-    </div>
-    <div class="form-group expertModeVisible">
-        <label class="col-lg-4 control-label">{{Masquer la flèche de retour lors de la mise en plein écran}}</label>
-        <div class="col-lg-4">
-            <input type="checkbox" class="planHeaderAttr" data-l1key='configuration' data-l2key="noReturnFullScreen" />
         </div>
     </div>
     <legend><i class="icon techno-fleches"></i> {{Tailles}}</legend>
@@ -58,18 +45,6 @@ sendVarToJS('id', $planHeader->getId())
             <input class="form-control input-sm planHeaderAttr" data-l1key='configuration' data-l2key="desktopSizeX" style="width: 80px;display: inline-block;"/>
             x
             <input class="form-control input-sm planHeaderAttr" data-l1key='configuration' data-l2key='desktopSizeY' style="width: 80px;display: inline-block;"/>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-lg-4 control-label">{{Proportion tablette (ex : 0.7)}}</label>
-        <div class="col-lg-1">
-            <input class="form-control input-sm planHeaderAttr" data-l1key='configuration' data-l2key="tabletteProportion" value="1"/>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-lg-4 control-label">{{Proportion téléphone (ex 0.5)}}</label>
-        <div class="col-lg-1">
-            <input class="form-control input-sm planHeaderAttr" data-l1key='configuration' data-l2key="mobileProportion" value="1"/>
         </div>
     </div>
 </fieldset>
@@ -111,38 +86,15 @@ sendVarToJS('id', $planHeader->getId())
     });
   });
 
-    $('#bt_removeConfigurePlanHeader').on('click', function () {
-        bootbox.confirm('Etes-vous sûr de vouloir supprimer cet object du design ?', function (result) {
-            if (result) {
-             jeedom.plan.removeHeader({
-                id: $(".planHeaderAttr[data-l1key=id]").value(),
-                error: function (error) {
-                    $('#div_alertPlanHeaderConfigure').showAlert({message: error.message, level: 'danger'});
-                },
-                success: function () {
-                 $('#div_alertPlanHeaderConfigure').showAlert({message: 'Design supprimé', level: 'success'});
-                 loadPage('index.php?v=d&p=plan');
-             },
-         });
-         }
-     });
-    });
-
     if (isset(id) && id != '') {
-       jeedom.plan.getHeader({
+     jeedom.plan.getHeader({
         id: id,
         error: function (error) {
             $('#div_alertPlanHeaderConfigure').showAlert({message: error.message, level: 'danger'});
         },
         success: function (planHeader) {
-         $('#fd_planHeaderConfigure').setValues(planHeader, '.planHeaderAttr');
-         $('.planHeaderAttr[data-l1key=configuration][data-l2key=preconfigureDevice]').off().on('change', function () {
-            $('.planHeaderAttr[data-l1key=configuration][data-l2key=sizeX]').value($(this).find('option:selected').attr('data-width'));
-            $('.planHeaderAttr[data-l1key=configuration][data-l2key=sizeY]').value($(this).find('option:selected').attr('data-height'));
-            $('.planHeaderAttr[data-l1key=configuration][data-l2key=maxSizeAllow]').value(1);
-            $('.planHeaderAttr[data-l1key=configuration][data-l2key=minSizeAllow]').value(1);
-        });
-     },
- });
-   }
+           $('#fd_planHeaderConfigure').setValues(planHeader, '.planHeaderAttr');
+       }
+   });
+ }
 </script>

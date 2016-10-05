@@ -325,12 +325,6 @@ foreach (planHeader::all() as $planHeader_select) {
         <input class="planAttr form-control" data-l1key="css" data-l2key="font-size" />
     </div>
 </div>
-<div class="form-group expertModeVisible">
-    <label class="col-lg-4 control-label">{{Ignorer la taille predefinie}}</label>
-    <div class="col-lg-4">
-        <input type="checkbox" class="planHeaderAttr" data-l1key='configuration' data-l2key="noPredefineSize" />
-    </div>
-</div>
 <div class="form-group">
     <label class="col-lg-4 control-label">{{Profondeur}}</label>
     <div class="col-lg-2">

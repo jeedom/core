@@ -14,8 +14,7 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
  var deviceInfo = getDeviceType();
- var editMode = false;
- var editOption = {snap : false,grid : false,gridSize:false}
+ var editOption = {state : false, snap : false,grid : false,gridSize:false}
 
  $("#md_addViewData").dialog({
     closeText: '',
@@ -26,17 +25,18 @@
 });
 
  $('body').delegate('.eqLogic-widget .history', 'click', function () {
-    if (!editMode) {
+    if (!editOption.state) {
         $('#md_modal').dialog({title: "Historique"});
         $("#md_modal").load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
     }
 });
  $('body').delegate('.div_displayObject > .cmd-widget .history', 'click', function () {
-    if (!editMode) {
+    if (!editOption.state) {
         $('#md_modal').dialog({title: "Historique"});
         $("#md_modal").load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
     }
 });
+
  planHeaderContextMenu = {};
  for(var i in planHeader){
     planHeaderContextMenu[planHeader[i].id] = {
@@ -46,10 +46,6 @@
             displayPlan();
         }
     }
-}
-
-if (planHeader_id == -1){
-    $('#div_pageContainer').height($('body').height());
 }
 
 $.contextMenu({
@@ -75,9 +71,9 @@ $.contextMenu({
             name: "{{Edition}}",
             icon : 'fa-pencil',
             callback: function(key, opt){
-                editMode = !editMode;
-                this.data('editMode', editMode);
-                initEditMode(editMode);
+                editOption.state = !editOption.state;
+                this.data('editOption.state', editOption.state);
+                initEditOption(editOption.state);
                 return false;
             }
         },
@@ -97,7 +93,7 @@ $.contextMenu({
             name: "{{Ajouter Graphique}}",
             icon : 'fa-line-chart',
             disabled:function(key, opt) { 
-                return !this.data('editMode'); 
+                return !this.data('editOption.state'); 
             },
             callback: function(key, opt){
                 addGraph({});
@@ -108,30 +104,30 @@ $.contextMenu({
             name: "{{Ajouter texte/html}}",
             icon : 'fa-align-center',
             disabled:function(key, opt) { 
-                return !this.data('editMode'); 
+                return !this.data('editOption.state'); 
             },
             callback: function(key, opt){
-               addText({display: {text: 'Texte à insérer ici'}});
-               savePlan();
-           }
-       },
-       addScenario: {
+             addText({display: {text: 'Texte à insérer ici'}});
+             savePlan();
+         }
+     },
+     addScenario: {
         name: "{{Ajouter scénario}}",
         icon : 'fa-plus-circle',
         disabled:function(key, opt) { 
-            return !this.data('editMode'); 
+            return !this.data('editOption.state'); 
         },
         callback: function(key, opt){
-           jeedom.scenario.getSelectModal({}, function (data) {
+         jeedom.scenario.getSelectModal({}, function (data) {
             addScenario(data.id);
         });
-       }
-   },
-   addLink: {
+     }
+ },
+ addLink: {
     name: "{{Ajouter lien}}",
     icon : 'fa-link',
     disabled:function(key, opt) { 
-        return !this.data('editMode'); 
+        return !this.data('editOption.state'); 
     },
     callback: function(key, opt){
       $('#md_selectLink').modal('show');
@@ -141,7 +137,7 @@ addEqLogic: {
     name: "{{Ajouter équipement}}",
     icon : 'fa-plus-circle',
     disabled:function(key, opt) { 
-        return !this.data('editMode'); 
+        return !this.data('editOption.state'); 
     },
     callback: function(key, opt){
       jeedom.eqLogic.getSelectModal({}, function (data) {
@@ -153,7 +149,7 @@ addCommand: {
     name: "{{Ajouter commande}}",
     icon : 'fa-plus-circle',
     disabled:function(key, opt) { 
-        return !this.data('editMode'); 
+        return !this.data('editOption.state'); 
     },
     callback: function(key, opt){
       jeedom.cmd.getSelectModal({}, function (data) {
@@ -166,7 +162,7 @@ fold2: {
     name: "{{Grille}}", 
     icon : 'fa-th',
     disabled:function(key, opt) { 
-        return !this.data('editMode'); 
+        return !this.data('editOption.state'); 
     },
     items: {
         grid_none: {
@@ -178,7 +174,7 @@ fold2: {
             events: {
                 click : function(e) {
                     editOption.gridSize = false;
-                    initEditMode(1);
+                    initEditOption(1);
                 }
             }
         },
@@ -190,7 +186,7 @@ fold2: {
             events: {
                 click : function(e) {
                     editOption.gridSize = [10,10];
-                    initEditMode(1);
+                    initEditOption(1);
                 }
             }
         },
@@ -202,7 +198,7 @@ fold2: {
             events: {
                 click : function(e) {
                     editOption.gridSize = [15,15];
-                    initEditMode(1);
+                    initEditOption(1);
                 }
             }
         },
@@ -214,7 +210,7 @@ fold2: {
             events: {
                 click : function(e) {
                     editOption.gridSize = [20,20];
-                    initEditMode(1);
+                    initEditOption(1);
                 }
             }
         },
@@ -225,12 +221,12 @@ fold2: {
             selected:  editOption.snap,
             events: {
                 click : function(e) {
-                   editOption.snap = $(this).value();
-                   initEditMode(1);
-               }
-           }
-       },
-       snapGrid: {
+                 editOption.snap = $(this).value();
+                 initEditOption(1);
+             }
+         }
+     },
+     snapGrid: {
         name: "{{Aimanter à la grille}}", 
         type: 'checkbox', 
         radio: 'radio',
@@ -238,7 +234,7 @@ fold2: {
         events: {
             click : function(e) {
                 editOption.grid = $(this).value();
-                initEditMode(1);
+                initEditOption(1);
             }
         }
     },
@@ -248,7 +244,7 @@ removePlan: {
     name: "{{Supprimer le design}}",
     icon : 'fa-trash',
     disabled:function(key, opt) { 
-        return !this.data('editMode'); 
+        return !this.data('editOption.state'); 
     },
     callback: function(key, opt){
       bootbox.confirm('{{Etes vous sûr de vouloir supprimer ce design ?}}', function (result) {
@@ -259,10 +255,10 @@ removePlan: {
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function () {
-                   $('#div_alert').showAlert({message: 'Design supprimé', level: 'success'});
-                   loadPage('index.php?v=d&p=plan');
-               },
-           });
+                 $('#div_alert').showAlert({message: 'Design supprimé', level: 'success'});
+                 loadPage('index.php?v=d&p=plan');
+             },
+         });
         }
     });
   }
@@ -271,10 +267,10 @@ addPlan: {
     name: "{{Creer un design}}",
     icon : 'fa-plus-circle',
     disabled:function(key, opt) { 
-        return !this.data('editMode'); 
+        return !this.data('editOption.state'); 
     },
     callback: function(key, opt){
-       bootbox.prompt("Nom du design ?", function (result) {
+     bootbox.prompt("Nom du design ?", function (result) {
         if (result !== null) {
             jeedom.plan.saveHeader({
                 planHeader: {name: result},
@@ -287,16 +283,16 @@ addPlan: {
             });
         }
     });
-   }
+ }
 },
 duplicatePlan: {
     name: "{{Dupliquer le design}}",
     icon : 'fa-files-o',
     disabled:function(key, opt) { 
-        return !this.data('editMode'); 
+        return !this.data('editOption.state'); 
     },
     callback: function(key, opt){
-     bootbox.prompt("{{Nom la copie du design ?}}", function (result) {
+       bootbox.prompt("{{Nom la copie du design ?}}", function (result) {
         if (result !== null) {
             jeedom.plan.copyHeader({
                 name: result,
@@ -305,32 +301,32 @@ duplicatePlan: {
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function (data) {
-                   loadPage('index.php?v=d&p=plan&plan_id=' + data.id);
-               },
-           });
+                 loadPage('index.php?v=d&p=plan&plan_id=' + data.id);
+             },
+         });
         }
     });
- }
+   }
 },
 configurePlan: {
     name: "{{Configurer le design}}",
     icon : 'fa-cogs',
     disabled:function(key, opt) { 
-        return !this.data('editMode'); 
+        return !this.data('editOption.state'); 
     },
     callback: function(key, opt){
-     $('#md_modal').dialog({title: "{{Configuration du design}}"});
-     $('#md_modal').load('index.php?v=d&modal=planHeader.configure&planHeader_id=' + planHeader_id).dialog('open');
- }
+       $('#md_modal').dialog({title: "{{Configuration du design}}"});
+       $('#md_modal').load('index.php?v=d&modal=planHeader.configure&planHeader_id=' + planHeader_id).dialog('open');
+   }
 },
 sep3 : "---------",
 save: {
     name: "{{Sauvegarder}}",
     icon : 'fa-floppy-o',
     callback: function(key, opt){
-       savePlan();
-       return false;
-   }
+     savePlan();
+     return false;
+ }
 },
 }
 });
@@ -338,14 +334,13 @@ save: {
 /*****************************PLAN HEADER***********************************/
 
 $('body').delegate('.plan-link-widget', 'click', function () {
-    if (!editMode) {
+    if (!editOption.state) {
         planHeader_id = $(this).attr('data-link_id');
         displayPlan();
     }
 });
 
 /*****************************PLAN***********************************/
-displayPlan();
 
 jwerty.key('ctrl+s', function (e) {
     e.preventDefault();
@@ -356,12 +351,12 @@ $.contextMenu({
     selector: '.eqLogic-widget,.div_displayObject > .cmd-widget',
     zIndex: 9999,
     events: {
-     show : function(options){
+       show : function(options){
         $(this).addClass('contextMenu_select');
     },
     hide : function(options){
-     $(this).removeClass('contextMenu_select');
- }
+       $(this).removeClass('contextMenu_select');
+   }
 },
 items: {
     parameter: {
@@ -386,34 +381,33 @@ items: {
         name: '{{Supprimer}}',
         icon:'fa-trash',
         callback: function(key, opt){
-           var info = getObjectInfo($(this));
-           jeedom.plan.remove({
-             link_id:  info.id,
-             link_type : info.type,
-             planHeader_id : planHeader_id,
-             error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function () {
-                displayPlan();
-            },
-        });
-       }
-   }
+         var info = getObjectInfo($(this));
+         jeedom.plan.remove({
+           link_id:  info.id,
+           link_type : info.type,
+           planHeader_id : planHeader_id,
+           error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+            displayPlan();
+        },
+    });
+     }
+ }
 }
 });
-
 
 $.contextMenu({
     selector: '.scenario-widget,.plan-link-widget,.text-widget,.view-link-widget,.graph-widget',
     zIndex: 9999,
     events: {
-     show : function(options){
+       show : function(options){
         $(this).addClass('contextMenu_select');
     },
     hide : function(options){
-     $(this).removeClass('contextMenu_select');
- }
+       $(this).removeClass('contextMenu_select');
+   }
 },
 items: {
     parameter: {
@@ -429,38 +423,32 @@ items: {
         name: '{{Supprimer}}',
         icon:'fa-trash',
         callback: function(key, opt){
-           var info = getObjectInfo($(this));
-           jeedom.plan.remove({
-             link_id:  info.id,
-             link_type : info.type,
-             planHeader_id : planHeader_id,
-             error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function () {
-                displayPlan();
-            },
-        });
-       }
-   }
+         var info = getObjectInfo($(this));
+         jeedom.plan.remove({
+           link_id:  info.id,
+           link_type : info.type,
+           planHeader_id : planHeader_id,
+           error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+            displayPlan();
+        },
+    });
+     }
+ }
 }
 });
 
+/**************************************init*********************************************/
 
-$('.planHeaderAttr').off('change').on('change', function () {
-    var planHeader = $('#div_planHeader').getValues('.planHeaderAttr')[0];
-    planHeader.id = planHeader_id;
-    jeedom.plan.saveHeader({
-        planHeader: planHeader,
-        global: false,
-        error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function (data) {
+displayPlan();
 
-        }
-    });
-});
+if (planHeader_id == -1){
+    $('#div_pageContainer').height($('body').height());
+}
+
+/***********************************************************************************/
 
 function setColorSelect(_select) {
     _select.css('background-color', _select.find('option:selected').val());
@@ -471,7 +459,7 @@ $('.graphDataOption[data-l1key=configuration][data-l2key=graphColor]').off('chan
 });
 
 $('.div_displayObject:last').delegate('.configureGraph', 'click', function () {
-    if (editMode) {
+    if (editOption.state) {
         var el = $(this).closest('.graph-widget');
         $("#md_addViewData").load('index.php?v=d&modal=cmd.graph.select', function () {
             $('#table_addViewData tbody tr .enable').prop('checked', false);
@@ -482,7 +470,6 @@ $('.div_displayObject:last').delegate('.configureGraph', 'click', function () {
                 tr.setValues(options[i], '.graphDataOption');
                 setColorSelect(tr.find('.graphDataOption[data-l1key=configuration][data-l2key=graphColor]'));
             }
-
             $("#md_addViewData").dialog('option', 'buttons', {
                 "Annuler": function () {
                     $(this).dialog("close");
@@ -509,7 +496,7 @@ $('.div_displayObject:last').delegate('.configureGraph', 'click', function () {
 });
 
 $('.view-link-widget').off('click').on('click', function () {
-    if (!editMode) {
+    if (!editOption.state) {
         $(this).find('a').click();
     }
 });
@@ -533,17 +520,33 @@ function fullScreen(_mode) {
     }
 }
 
-function initEditMode(_state) {
-    $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget').draggable({
-        snap : (editOption.snap == 1),
-        grid : (editOption.grid == 1) ? editOption.gridSize : false,
-        containment: 'parent'
-    });
+function initEditOption(_state) {
+    if (_state != 1 && _state != '1') {
+       try{
+        $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget').draggable("destroy");
+        $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.scenario-widget,.text-widget').resizable("destroy");
+        $('.div_displayObject a').each(function () {
+            $(this).attr('href', $(this).attr('data-href'));
+        });
+    }catch (e) {
 
-    if(editOption.gridSize){
-     $('.div_grid').show();
-     $('.div_grid').css('background-size',editOption.gridSize[0]+'px '+editOption.gridSize[1]+'px');
- }else{
+    }
+    $('.div_grid').hide();
+    try{
+        $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget').contextMenu(false);
+    }catch (e) {
+
+    }
+}else{
+   $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget').draggable({
+    snap : (editOption.snap == 1),
+    grid : (editOption.grid == 1) ? editOption.gridSize : false,
+    containment: 'parent'
+});
+   if(editOption.gridSize){
+       $('.div_grid').show();
+       $('.div_grid').css('background-size',editOption.gridSize[0]+'px '+editOption.gridSize[1]+'px');
+   }else{
     $('.div_grid').hide();
 }
 
@@ -559,30 +562,14 @@ try{
 }catch (e) {
 
 }
-if (_state != 1 && _state != '1') {
-    $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget').draggable("destroy");
-    $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.scenario-widget,.text-widget').resizable("destroy");
-    $('.div_displayObject a').each(function () {
-        $(this).attr('href', $(this).attr('data-href'));
-    });
-    $('.div_grid').hide();
-    try{
-        $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget').contextMenu(false);
-    }catch (e) {
-
-    }
 }
 }
 
-function displayPlan(_offsetX, _offsetY) {
-    var url = "index.php?v=d&p=plan&plan_id=" + planHeader_id;
-    if (getUrlVars('fullscreen') == 1) {
-        url += '&fullscreen=1';
-    }
+function displayPlan() {
     if(planHeader_id == -1){
         return;
     }
-    history.replaceState(null, "Jeedom", url);
+    history.replaceState(null, "Jeedom", "index.php?v=d&p=plan&plan_id=" + planHeader_id);
     jeedom.plan.getHeader({
         id: planHeader_id,
         error: function (error) {
@@ -596,38 +583,22 @@ function displayPlan(_offsetX, _offsetY) {
             if (isset(data.image)) {
                 $('.div_displayObject').append(data.image);
             }
-            var proportion = 1;
-            if (deviceInfo.type == 'tablet' && isset(data.configuration) && isset(data.configuration.tabletteProportion) && data.configuration.tabletteProportion != 1) {
-                proportion = data.configuration.tabletteProportion;
-            }
-            if (deviceInfo.type == 'phone' && isset(data.configuration) && isset(data.configuration.mobileProportion) && data.configuration.mobileProportion != 1) {
-                proportion = data.configuration.mobileProportion;
-            }
             if (data.configuration != null && init(data.configuration.desktopSizeX) != '' && init(data.configuration.desktopSizeY) != '') {
-                $('.div_displayObject').height(data.configuration.desktopSizeY * proportion);
-                $('.div_displayObject').width(data.configuration.desktopSizeX * proportion);
-                $('.div_displayObject img').height(data.configuration.desktopSizeY * proportion);
-                $('.div_displayObject img').width(data.configuration.desktopSizeX * proportion);
+                $('.div_displayObject').height(data.configuration.desktopSizeY);
+                $('.div_displayObject').width(data.configuration.desktopSizeX);
+                $('.div_displayObject img').height(data.configuration.desktopSizeY);
+                $('.div_displayObject img').width(data.configuration.desktopSizeX);
             } else {
-                $('.div_displayObject').width($('.div_displayObject img').attr('data-sixe_x') * proportion);
-                $('.div_displayObject').height($('.div_displayObject img').attr('data-sixe_y') * proportion);
-                $('.div_displayObject img').css('height', ($('.div_displayObject img').attr('data-sixe_y') * proportion) + 'px');
-                $('.div_displayObject img').css('width', ($('.div_displayObject img').attr('data-sixe_x') * proportion) + 'px');
+                $('.div_displayObject').width($('.div_displayObject img').attr('data-sixe_x'));
+                $('.div_displayObject').height($('.div_displayObject img').attr('data-sixe_y'));
+                $('.div_displayObject img').css('height', ($('.div_displayObject img').attr('data-sixe_y')) + 'px');
+                $('.div_displayObject img').css('width', ($('.div_displayObject img').attr('data-sixe_x')) + 'px');
             }
             $('.div_grid').width($('.div_displayObject').width());
             $('.div_grid').height($('.div_displayObject').height());
-            if (deviceInfo.type == 'tablet' || deviceInfo.type == 'phone') {
-                fullScreen(true);
-                if (data.configuration != null && init(data.configuration.desktopSizeX) != '' && init(data.configuration.desktopSizeY) != '' && isNaN(data.configuration.desktopSizeX) && isNaN(data.configuration.desktopSizeY)) {
-
-                } else {
-                    $('meta[name="viewport"]').prop('content', 'width=' + $('.div_displayObject').width() + ',height=' + $('.div_displayObject').height());
-                }
-            }
             if (getUrlVars('fullscreen') == 1) {
                 fullScreen(true);
             }
-
             $('.div_displayObject').find('.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget').remove();
             if (planHeader_id != -1) {
                 jeedom.plan.byPlanHeader({
@@ -646,15 +617,11 @@ function displayPlan(_offsetX, _offsetY) {
                         }
                         try {
                             $('.div_displayObject').append(objects);
-                        }catch(err) {
-                            console.log(err);
+                        }catch(e) {
+
                         }
-                        initEditMode(editMode);
-                        if (!isNaN(_offsetX) && _offsetX != 0 && !isNaN(_offsetY) && _offsetY != 0) {
-                            $('body').scrollTop(_offsetX);
-                            $('body').scrollLeft(_offsetY);
-                        }
-                    },
+                        initEditOption(editOption.state);
+                    }
                 });
             }
         },
@@ -666,27 +633,27 @@ function getObjectInfo(_object){
         return {type : 'eqLogic',id : _object.attr('data-eqLogic_id')};
     }
     if(_object.hasClass('cmd-widget')){
-       return {type :  'cmd',id : _object.attr('data-cmd_id')};
-   }
-   if(_object.hasClass('scenario-widget')){
-       return {type :  'scenario',id : _object.attr('data-scenario_id')};
-   }
-   if(_object.hasClass('plan-link-widget')){
-       return {type :  'plan',id : _object.attr('data-link_id')};
-   }
-   if(_object.hasClass('view-link-widget')){
-       return {type :  'view',id : _object.attr('data-link_id')};
-   }
-   if(_object.hasClass('graph-widget')){
-       return {type :  'graph',id : _object.attr('data-graph_id')};
-   }
-   if(_object.hasClass('text-widget')){
-       return {type :  'text',id : _object.attr('data-text_id')};
-   }
+     return {type :  'cmd',id : _object.attr('data-cmd_id')};
+ }
+ if(_object.hasClass('scenario-widget')){
+     return {type :  'scenario',id : _object.attr('data-scenario_id')};
+ }
+ if(_object.hasClass('plan-link-widget')){
+     return {type :  'plan',id : _object.attr('data-link_id')};
+ }
+ if(_object.hasClass('view-link-widget')){
+     return {type :  'view',id : _object.attr('data-link_id')};
+ }
+ if(_object.hasClass('graph-widget')){
+     return {type :  'graph',id : _object.attr('data-graph_id')};
+ }
+ if(_object.hasClass('text-widget')){
+     return {type :  'text',id : _object.attr('data-text_id')};
+ }
 }
 
 function savePlan(_refreshDisplay) {
-    if (editMode) {
+    if (editOption.state) {
         var parent = {
             height: $('.div_displayObject').height(),
             width: $('.div_displayObject').width(),
@@ -756,38 +723,35 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
         width: $('.div_displayObject').width(),
     };
     var html = $(_html);
-    if (init(_noRender, false) == false) {
-        $('.div_displayObject').append(html);
-    }
+
     html.addClass('jeedomAlreadyPosition');
     html.css('z-index', 1000);
 
     if (_type == 'text' || _type == 'graph' || _type == 'plan' || _type == 'view') {
-     if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
+       if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
         if (isset(_plan.display) && isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) {
             html.css('border-radius', '0px'); 
             html.css('box-shadow', 'none'); 
         }
     }
 }
-
 for (var key in _plan.css) {
-   if (_type == 'text' || _type == 'graph' || _type == 'plan' || _type == 'view') {
-    if (key == 'background-color') {
-        if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
+    if (_plan.css[key] != '' && key != 'zoom' && key != 'color' && key != 'rotate' && key != 'background-color') {
+        html.css(key, _plan.css[key]);
+        continue;
+    }
+    if (_type == 'text' || _type == 'graph' || _type == 'plan' || _type == 'view') {
+        if (key == 'background-color' && (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1)) {
+            html.css(key, _plan.css[key]);
+            continue;
+        }
+        if (key == 'color' && (!isset(_plan.display) || !isset(_plan.display['color-defaut']) || _plan.display['color-defaut'] != 1)) {
+            html.find('.btn.btn-default').css("cssText", key + ': ' + _plan.css[key] + ' !important;border-color : ' + _plan.css[key] + ' !important');
+            html.find('tspan').css('fill', _plan.css[key]);
+            html.find('span').css(key, _plan.css[key]);
             html.css(key, _plan.css[key]);
         }
     }
-    if (key == 'color' && (!isset(_plan.display) || !isset(_plan.display['color-defaut']) || _plan.display['color-defaut'] != 1)) {
-        html.find('.btn.btn-default').css("cssText", key + ': ' + _plan.css[key] + ' !important;border-color : ' + _plan.css[key] + ' !important');
-        html.find('tspan').css('fill', _plan.css[key]);
-        html.find('span').css(key, _plan.css[key]);
-        html.css(key, _plan.css[key]);
-    }
-}
-if (_plan.css[key] != '' && key != 'zoom' && key != 'color' && key != 'rotate' && key != 'background-color') {
-    html.css(key, _plan.css[key]);
-}
 }
 
 if (_type == 'text' || _type == 'graph' || _type == 'plan' || _type == 'view') {
@@ -801,16 +765,9 @@ if (_type == 'text' || _type == 'graph' || _type == 'plan' || _type == 'view') {
     }
 }
 
-
 html.css('position', 'absolute');
-var position = {
-    top: init(_plan.position.top, '10') * parent.height / 100,
-    left: init(_plan.position.left, '10') * parent.width / 100,
-};
-
-html.css('top', position.top);
-html.css('left', position.left);
-
+html.css('top',  init(_plan.position.top, '10') * parent.height / 100);
+html.css('left', init(_plan.position.left, '10') * parent.width / 100);
 html.css('transform-origin', '0 0');
 html.css('transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')');
 html.css('-webkit-transform-origin', '0 0');
@@ -820,22 +777,20 @@ html.css('-moz-transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')');
 html.attr('data-zoom',init(_plan.css.zoom, defaultZoom));
 
 html.addClass('noResize');
-if (!isset(_plan.display) || !isset(_plan.display.noPredefineSize) || _plan.display.noPredefineSize == 0) {
-    if (isset(_plan.display) && isset(_plan.display.width)) {
-        html.css('width', init(_plan.display.width, 50));
-    }
-    if (isset(_plan.display) && isset(_plan.display.height)) {
-        html.css('height', init(_plan.display.height, 50));
-    }
+if (isset(_plan.display) && isset(_plan.display.width)) {
+    html.css('width', init(_plan.display.width, 50));
+}
+if (isset(_plan.display) && isset(_plan.display.height)) {
+    html.css('height', init(_plan.display.height, 50));
 }
 if (_type == 'scenario' && isset(_plan.display) && (isset(_plan.display.hideCmd) && _plan.display.hideCmd == 1)) {
     html.find('.changeScenarioState').remove();
 }
-if (init(_noRender, false) == false) {
-    initEditMode(editMode);
-} else {
-    return html;
+if (init(_noRender, false)) {
+ return html;
 }
+$('.div_displayObject').append(html);
+initEditOption(editOption.state);
 }
 
 /***************************EqLogic**************************************/
@@ -897,10 +852,10 @@ function addGraph(_plan) {
         background_color = '';
     }
     var html = '<div class="graph-widget" data-graph_id="' + _plan.link_id + '" style="'+background_color+'border : solid 1px black;min-height:50px;min-width:50px;">';
-    if (editMode) {
-        html += '<i class="fa fa-cogs cursor pull-right editMode configureGraph" style="margin-right : 5px;margin-top : 5px;"></i>';
+    if (editOption.state) {
+        html += '<i class="fa fa-cogs cursor pull-right editOption.state configureGraph" style="margin-right : 5px;margin-top : 5px;"></i>';
     } else {
-        html += '<i class="fa fa-cogs cursor pull-right editMode configureGraph" style="margin-right : 5px;margin-top : 5px;display:none;"></i>';
+        html += '<i class="fa fa-cogs cursor pull-right editOption.state configureGraph" style="margin-right : 5px;margin-top : 5px;display:none;"></i>';
     }
     html += '<span class="graphOptions" style="display:none;">' + json_encode(init(_plan.display.graph, '[]')) + '</span>';
     html += '<div class="graph" id="graph' + _plan.link_id + '" style="width : 100%;height : 100%;"></div>';
@@ -925,7 +880,6 @@ function addGraph(_plan) {
         }
     }
 }
-
 
 $('.div_displayObject').delegate('.graph-widget', 'resize', function () {
     if (isset(jeedom.history.chart['graph' + $(this).attr('data-graph_id')])) {
