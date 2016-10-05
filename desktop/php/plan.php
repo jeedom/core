@@ -5,6 +5,10 @@ if (!isConnect()) {
 $planHeader = null;
 $planHeaders = planHeader::all();
 $planHeadersSendToJS = array();
+foreach ($planHeaders as $planHeader_select) {
+	$planHeadersSendToJS[] = array('id' => $planHeader_select->getId(), 'name' => $planHeader_select->getName());
+}
+sendVarToJS('planHeader', $planHeadersSendToJS);
 if (init('plan_id') == '') {
 	foreach ($planHeaders as $planHeader_select) {
 		if ($planHeader_select->getId() == $_SESSION['user']->getOptions('defaultDashboardPlan')) {
@@ -23,15 +27,14 @@ if (init('plan_id') == '') {
 if (!is_object($planHeader) && count($planHeaders) > 0) {
 	$planHeader = $planHeaders[0];
 }
-foreach ($planHeaders as $planHeader_select) {
-	$planHeadersSendToJS[] = array('id' => $planHeader_select->getId(), 'name' => $planHeader_select->getName());
-}
-sendVarToJS('planHeader', $planHeadersSendToJS);
-if (is_object($planHeader)) {
-	sendVarToJS('planHeader_id', $planHeader->getId());
-} else {
+
+if (!is_object($planHeader)) {
+	echo '<div class="alert alert-danger">{{Aucun design n\'existe, cliquez <a id="bt_createNewDesign" class="cursor">ici</a> pour en créer une}}</div>';
 	sendVarToJS('planHeader_id', -1);
+} else {
+	sendVarToJS('planHeader_id', $planHeader->getId());
 }
+
 ?>
 <style>
   .div_grid {
