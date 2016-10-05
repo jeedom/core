@@ -53,6 +53,13 @@ try {
 		ajax::success($return);
 	}
 
+	if (init('action') == 'getNewPlan') {
+		$plan = new plan();
+		utils::a2o($plan, json_decode(init('plan'), true));
+		$plan->save();
+		ajax::success($plan->getHtml());
+	}
+
 	if (init('action') == 'get') {
 		$plan = plan::byId(init('id'));
 		if (is_object($plan)) {
