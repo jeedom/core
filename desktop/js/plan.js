@@ -617,7 +617,7 @@ function displayPlan() {
             $('.div_grid').width($('.div_displayObject').width());
             $('.div_grid').height($('.div_displayObject').height());
             if(deviceInfo.type != 'desktop'){
-                $('meta[name="viewport"]').prop('content', 'width=' + $('.div_displayObject').width() + ',height=' + $('.div_displayObject').height()+',initial-scale=1.0');
+                $('meta[name="viewport"]').prop('content', 'width=' + $('.div_displayObject').width() + ',height=' + $('.div_displayObject').height());
              fullScreen(true);
              $(window).on("navigate", function (event, data) {
               var direction = data.state.direction;
