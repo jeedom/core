@@ -90,6 +90,9 @@ class plan {
 		if ($this->getCss('zoom') != '' && (!is_numeric($this->getCss('zoom')) || $this->getCss('zoom')) < 0.1) {
 			$this->setCss('zoom', 1);
 		}
+		if ($this->getLink_id() == '') {
+			$this->setLink_id(rand(0, 99999999) + 9999);
+		}
 	}
 
 	public function save() {
