@@ -111,23 +111,23 @@ $.contextMenu({
                 return !this.data('editMode'); 
             },
             callback: function(key, opt){
-             addText({display: {text: 'Texte à insérer ici'}});
-             savePlan();
-         }
-     },
-     addScenario: {
+               addText({display: {text: 'Texte à insérer ici'}});
+               savePlan();
+           }
+       },
+       addScenario: {
         name: "{{Ajouter scénario}}",
         icon : 'fa-plus-circle',
         disabled:function(key, opt) { 
             return !this.data('editMode'); 
         },
         callback: function(key, opt){
-         jeedom.scenario.getSelectModal({}, function (data) {
+           jeedom.scenario.getSelectModal({}, function (data) {
             addScenario(data.id);
         });
-     }
- },
- addLink: {
+       }
+   },
+   addLink: {
     name: "{{Ajouter lien}}",
     icon : 'fa-link',
     disabled:function(key, opt) { 
@@ -225,12 +225,12 @@ fold2: {
             selected:  editOption.snap,
             events: {
                 click : function(e) {
-                 editOption.snap = $(this).value();
-                 initEditMode(1);
-             }
-         }
-     },
-     snapGrid: {
+                   editOption.snap = $(this).value();
+                   initEditMode(1);
+               }
+           }
+       },
+       snapGrid: {
         name: "{{Aimanter à la grille}}", 
         type: 'checkbox', 
         radio: 'radio',
@@ -259,10 +259,10 @@ removePlan: {
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function () {
-                 $('#div_alert').showAlert({message: 'Design supprimé', level: 'success'});
-                 loadPage('index.php?v=d&p=plan');
-             },
-         });
+                   $('#div_alert').showAlert({message: 'Design supprimé', level: 'success'});
+                   loadPage('index.php?v=d&p=plan');
+               },
+           });
         }
     });
   }
@@ -274,7 +274,7 @@ addPlan: {
         return !this.data('editMode'); 
     },
     callback: function(key, opt){
-     bootbox.prompt("Nom du design ?", function (result) {
+       bootbox.prompt("Nom du design ?", function (result) {
         if (result !== null) {
             jeedom.plan.saveHeader({
                 planHeader: {name: result},
@@ -287,7 +287,7 @@ addPlan: {
             });
         }
     });
- }
+   }
 },
 duplicatePlan: {
     name: "{{Dupliquer le design}}",
@@ -296,7 +296,7 @@ duplicatePlan: {
         return !this.data('editMode'); 
     },
     callback: function(key, opt){
-       bootbox.prompt("{{Nom la copie du design ?}}", function (result) {
+     bootbox.prompt("{{Nom la copie du design ?}}", function (result) {
         if (result !== null) {
             jeedom.plan.copyHeader({
                 name: result,
@@ -305,12 +305,12 @@ duplicatePlan: {
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function (data) {
-                 loadPage('index.php?v=d&p=plan&plan_id=' + data.id);
-             },
-         });
+                   loadPage('index.php?v=d&p=plan&plan_id=' + data.id);
+               },
+           });
         }
     });
-   }
+ }
 },
 configurePlan: {
     name: "{{Configurer le design}}",
@@ -319,18 +319,18 @@ configurePlan: {
         return !this.data('editMode'); 
     },
     callback: function(key, opt){
-       $('#md_modal').dialog({title: "{{Configuration du design}}"});
-       $('#md_modal').load('index.php?v=d&modal=planHeader.configure&planHeader_id=' + planHeader_id).dialog('open');
-   }
+     $('#md_modal').dialog({title: "{{Configuration du design}}"});
+     $('#md_modal').load('index.php?v=d&modal=planHeader.configure&planHeader_id=' + planHeader_id).dialog('open');
+ }
 },
 sep3 : "---------",
 save: {
     name: "{{Sauvegarder}}",
     icon : 'fa-floppy-o',
     callback: function(key, opt){
-     savePlan();
-     return false;
- }
+       savePlan();
+       return false;
+   }
 },
 }
 });
@@ -353,300 +353,99 @@ jwerty.key('ctrl+s', function (e) {
 });
 
 $.contextMenu({
-    selector: '.eqLogic-widget',
+    selector: '.eqLogic-widget,.div_displayObject > .cmd-widget',
     zIndex: 9999,
     events: {
-       show : function(options){
+     show : function(options){
         $(this).addClass('contextMenu_select');
     },
     hide : function(options){
-       $(this).removeClass('contextMenu_select');
-   }
+     $(this).removeClass('contextMenu_select');
+ }
 },
 items: {
     parameter: {
         name: '{{Paramètres d\'affichage}}',
         icon:'fa-cogs',
         callback: function(key, opt){
+            var info = getObjectInfo($(this));
             $('#md_modal').dialog({title: "{{Configuration du widget}}"});
-            $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=eqLogic&link_id=' + $(this).attr('data-eqLogic_id') + '&planHeader_id=' + planHeader_id).dialog('open');
+            $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type='+info.type+'&link_id=' + info.id + '&planHeader_id=' + planHeader_id).dialog('open');
         }
     },
     configuration: {
         name: '{{Configuration avancée}}',
         icon:'fa-cog',
         callback: function(key, opt){
-            $('#md_modal').dialog({title: "{{Configuration de l\'équipement'}}"});
-            $('#md_modal').load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $(this).attr('data-eqLogic_id')).dialog('open');
+            $('#md_modal').dialog({title: "{{Configuration de l\'équipement}}"});
+            var info = getObjectInfo($(this));
+            $('#md_modal').load('index.php?v=d&modal='+info.type+'.configure&'+info.type+'_id=' + info.id).dialog('open');
         }
     },
     remove: {
         name: '{{Supprimer}}',
         icon:'fa-trash',
         callback: function(key, opt){
-            jeedom.plan.remove({
-               link_id:  $(this).attr('data-eqLogic_id'),
-               link_type : 'eqLogic',
-               planHeader_id : planHeader_id,
-               error: function (error) {
+           var info = getObjectInfo($(this));
+           jeedom.plan.remove({
+             link_id:  info.id,
+             link_type : info.type,
+             planHeader_id : planHeader_id,
+             error: function (error) {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
             },
             success: function () {
                 displayPlan();
             },
         });
-        }
-    }
+       }
+   }
 }
 });
 
+
 $.contextMenu({
-    selector: '.div_displayObject > .cmd-widget',
+    selector: '.scenario-widget,.plan-link-widget,.text-widget,.view-link-widget,.graph-widget',
     zIndex: 9999,
     events: {
-       show : function(options){
+     show : function(options){
         $(this).addClass('contextMenu_select');
     },
     hide : function(options){
-       $(this).removeClass('contextMenu_select');
-   }
+     $(this).removeClass('contextMenu_select');
+ }
 },
 items: {
     parameter: {
         name: '{{Paramètres d\'affichage}}',
         icon:'fa-cogs',
         callback: function(key, opt){
+            var info = getObjectInfo($(this));
             $('#md_modal').dialog({title: "{{Configuration du widget}}"});
-            $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=cmd&link_id=' + $(this).attr('data-cmd_id') + '&planHeader_id=' + planHeader_id).dialog('open');
-        }
-    },
-    configuration: {
-        name: '{{Configuration avancée}}',
-        icon:'fa-cog',
-        callback: function(key, opt){
-            $('#md_modal').dialog({title: "{{Configuration de la commande}}"});
-            $('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-cmd_id')).dialog('open');
+            $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type='+info.type+'&link_id=' + info.id + '&planHeader_id=' + planHeader_id).dialog('open');
         }
     },
     remove: {
         name: '{{Supprimer}}',
         icon:'fa-trash',
         callback: function(key, opt){
-            jeedom.plan.remove({
-               link_id:  $(this).attr('data-cmd_id'),
-               link_type : 'cmd',
-               planHeader_id : planHeader_id,
-               error: function (error) {
+           var info = getObjectInfo($(this));
+           jeedom.plan.remove({
+             link_id:  info.id,
+             link_type : info.type,
+             planHeader_id : planHeader_id,
+             error: function (error) {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
             },
             success: function () {
                 displayPlan();
             },
         });
-        }
-    }
+       }
+   }
 }
 });
 
-$.contextMenu({
-    selector: '.scenario-widget',
-    zIndex: 9999,
-    events: {
-       show : function(options){
-        $(this).addClass('contextMenu_select');
-    },
-    hide : function(options){
-       $(this).removeClass('contextMenu_select');
-   }
-},
-items: {
-    parameter: {
-        name: '{{Paramètres d\'affichage}}',
-        icon:'fa-cogs',
-        callback: function(key, opt){
-            $('#md_modal').dialog({title: "{{Configuration du scénario}}"});
-            $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=scenario&link_id=' + $(this).attr('data-scenario_id') + '&planHeader_id=' + planHeader_id).dialog('open');
-        }
-    },
-    remove: {
-        name: '{{Supprimer}}',
-        icon:'fa-trash',
-        callback: function(key, opt){
-            jeedom.plan.remove({
-               link_id:  $(this).attr('data-scenario_id'),
-               link_type : 'scenario',
-               planHeader_id : planHeader_id,
-               error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function () {
-                displayPlan();
-            },
-        });
-        }
-    }
-}
-});
-
-$.contextMenu({
-    selector: '.plan-link-widget',
-    zIndex: 9999,
-    events: {
-       show : function(options){
-        $(this).addClass('contextMenu_select');
-    },
-    hide : function(options){
-       $(this).removeClass('contextMenu_select');
-   }
-},
-items: {
-    parameter: {
-        name: '{{Paramètres d\'affichage}}',
-        icon:'fa-cogs',
-        callback: function(key, opt){
-         $('#md_modal').dialog({title: "{{Configuration du lien}}"});
-         $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=plan&link_id=' + $(this).attr('data-link_id') + '&planHeader_id=' + planHeader_id).dialog('open');
-     }
- },
- remove: {
-    name: '{{Supprimer}}',
-    icon:'fa-trash',
-    callback: function(key, opt){
-        jeedom.plan.remove({
-           link_id:  $(this).attr('data-link_id'),
-           link_type : 'plan',
-           planHeader_id : planHeader_id,
-           error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function () {
-            displayPlan();
-        },
-    });
-    }
-}
-}
-});
-
-$.contextMenu({
-    selector: '.text-widget',
-    zIndex: 9999,
-    events: {
-       show : function(options){
-        $(this).addClass('contextMenu_select');
-    },
-    hide : function(options){
-       $(this).removeClass('contextMenu_select');
-   }
-},
-items: {
-    parameter: {
-        name: '{{Paramètres d\'affichage}}',
-        icon:'fa-cogs',
-        callback: function(key, opt){
-         $('#md_modal').dialog({title: "{{Configuration du texte}}"});
-         $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=text&link_id=' + $(this).attr('data-text_id') + '&planHeader_id=' + planHeader_id).dialog('open');
-     }
- },
- remove: {
-    name: '{{Supprimer}}',
-    icon:'fa-trash',
-    callback: function(key, opt){
-        jeedom.plan.remove({
-           link_id:  $(this).attr('data-text_id'),
-           link_type : 'text',
-           planHeader_id : planHeader_id,
-           error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function () {
-            displayPlan();
-        },
-    });
-    }
-}
-}
-});
-
-$.contextMenu({
-    selector: '.view-link-widget',
-    zIndex: 9999,
-    events: {
-       show : function(options){
-        $(this).addClass('contextMenu_select');
-    },
-    hide : function(options){
-       $(this).removeClass('contextMenu_select');
-   }
-},
-items: {
-    parameter: {
-        name: '{{Paramètres d\'affichage}}',
-        icon:'fa-cogs',
-        callback: function(key, opt){
-          $('#md_modal').dialog({title: "{{Configuration du lien}}"});
-          $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=view&link_id=' + $(this).attr('data-link_id') + '&planHeader_id=' + planHeader_id).dialog('open');
-      }
-  },
-  remove: {
-    name: '{{Supprimer}}',
-    icon:'fa-trash',
-    callback: function(key, opt){
-        jeedom.plan.remove({
-           link_id:  $(this).attr('data-link_id'),
-           link_type : 'view',
-           planHeader_id : planHeader_id,
-           error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function () {
-            displayPlan();
-        },
-    });
-    }
-}
-}
-});
-
-$.contextMenu({
-    selector: '.graph-widget',
-    zIndex: 9999,
-    events: {
-       show : function(options){
-        $(this).addClass('contextMenu_select');
-    },
-    hide : function(options){
-       $(this).removeClass('contextMenu_select');
-   }
-},
-items: {
-    parameter: {
-        name: '{{Paramètres d\'affichage}}',
-        icon:'fa-cogs',
-        callback: function(key, opt){
-            $('#md_modal').dialog({title: "{{Configuration du graph}}"});
-            $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=graph&link_id=' + $(this).attr('data-graph_id') + '&planHeader_id=' + planHeader_id).dialog('open');
-        }
-    },
-    remove: {
-        name: '{{Supprimer}}',
-        icon:'fa-trash',
-        callback: function(key, opt){
-            jeedom.plan.remove({
-               link_id:  $(this).attr('data-graph_id'),
-               link_type : 'graph',
-               planHeader_id : planHeader_id,
-               error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function () {
-                displayPlan();
-            },
-        });
-        }
-    }
-}
-});
 
 $('.planHeaderAttr').off('change').on('change', function () {
     var planHeader = $('#div_planHeader').getValues('.planHeaderAttr')[0];
@@ -742,9 +541,9 @@ function initEditMode(_state) {
     });
 
     if(editOption.gridSize){
-       $('.div_grid').show();
-       $('.div_grid').css('background-size',editOption.gridSize[0]+'px '+editOption.gridSize[1]+'px');
-   }else{
+     $('.div_grid').show();
+     $('.div_grid').css('background-size',editOption.gridSize[0]+'px '+editOption.gridSize[1]+'px');
+ }else{
     $('.div_grid').hide();
 }
 
@@ -862,6 +661,30 @@ function displayPlan(_offsetX, _offsetY) {
     });
 }
 
+function getObjectInfo(_object){
+    if(_object.hasClass('eqLogic-widget')){
+        return {type : 'eqLogic',id : _object.attr('data-eqLogic_id')};
+    }
+    if(_object.hasClass('cmd-widget')){
+       return {type :  'cmd',id : _object.attr('data-cmd_id')};
+   }
+   if(_object.hasClass('scenario-widget')){
+       return {type :  'scenario',id : _object.attr('data-scenario_id')};
+   }
+   if(_object.hasClass('plan-link-widget')){
+       return {type :  'plan',id : _object.attr('data-link_id')};
+   }
+   if(_object.hasClass('view-link-widget')){
+       return {type :  'view',id : _object.attr('data-link_id')};
+   }
+   if(_object.hasClass('graph-widget')){
+       return {type :  'graph',id : _object.attr('data-graph_id')};
+   }
+   if(_object.hasClass('text-widget')){
+       return {type :  'text',id : _object.attr('data-text_id')};
+   }
+}
+
 function savePlan(_refreshDisplay) {
     if (editMode) {
         var parent = {
@@ -869,12 +692,13 @@ function savePlan(_refreshDisplay) {
             width: $('.div_displayObject').width(),
         };
         var plans = [];
-        $('.eqLogic-widget').each(function () {
+        $('.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget').each(function () {
+            var info = getObjectInfo($(this));
             var plan = {};
             plan.position = {};
             plan.display = {};
-            plan.link_type = 'eqLogic';
-            plan.link_id = $(this).attr('data-eqLogic_id');
+            plan.link_type = info.type;
+            plan.link_id = info.id;
             plan.planHeader_id = planHeader_id;
             plan.display.height = $(this).outerHeight() / $(this).attr('data-zoom');
             plan.display.width = $(this).outerWidth() / $(this).attr('data-zoom');
@@ -883,92 +707,6 @@ function savePlan(_refreshDisplay) {
             plan.position.left = (((position.left)) / parent.width) * 100;
             plans.push(plan);
         });
-        $('.div_displayObject > .cmd-widget').each(function () {
-            var plan = {};
-            plan.position = {};
-            plan.display = {};
-            plan.link_type = 'cmd';
-            plan.link_id = $(this).attr('data-cmd_id');
-            plan.planHeader_id = planHeader_id;
-            plan.display.height = $(this).outerHeight() / $(this).attr('data-zoom');
-            plan.display.width = $(this).outerWidth() / $(this).attr('data-zoom');
-            var position = $(this).position();
-            plan.position.top = (((position.top)) / parent.height) * 100;
-            plan.position.left = (((position.left)) / parent.width) * 100;
-            plans.push(plan);
-        });
-        $('.scenario-widget').each(function () {
-            var plan = {};
-            plan.position = {};
-            plan.display = {};
-            plan.link_type = 'scenario';
-            plan.link_id = $(this).attr('data-scenario_id');
-            plan.planHeader_id = planHeader_id;
-            plan.display.height = $(this).outerHeight() / $(this).attr('data-zoom');
-            plan.display.width = $(this).outerWidth() / $(this).attr('data-zoom');
-            var position = $(this).position();
-            plan.position.top = (((position.top)) / parent.height) * 100;
-            plan.position.left = (((position.left)) / parent.width) * 100;
-            plans.push(plan);
-        });
-        $('.plan-link-widget').each(function () {
-            var plan = {};
-            plan.position = {};
-            plan.display = {};
-            plan.link_type = 'plan';
-            plan.link_id = $(this).attr('data-link_id');
-            plan.planHeader_id = planHeader_id;
-            plan.display.height = $(this).outerHeight() / $(this).attr('data-zoom');
-            plan.display.width = $(this).outerWidth() / $(this).attr('data-zoom');
-            var position = $(this).position();
-            plan.position.top = ((position.top) / parent.height) * 100;
-            plan.position.left = ((position.left) / parent.width) * 100;
-            plans.push(plan);
-        });
-        $('.view-link-widget').each(function () {
-            var plan = {};
-            plan.position = {};
-            plan.display = {};
-            plan.link_type = 'view';
-            plan.link_id = $(this).attr('data-link_id');
-            plan.planHeader_id = planHeader_id;
-            plan.display.height = $(this).outerHeight() / $(this).attr('data-zoom');
-            plan.display.width = $(this).outerWidth() / $(this).attr('data-zoom');
-            var position = $(this).position();
-            plan.position.top = ((position.top) / parent.height) * 100;
-            plan.position.left = ((position.left) / parent.width) * 100;
-            plans.push(plan);
-        });
-        $('.graph-widget').each(function () {
-            var plan = {};
-            plan.position = {};
-            plan.display = {};
-            plan.link_type = 'graph';
-            plan.link_id = $(this).attr('data-graph_id');
-            plan.planHeader_id = planHeader_id;
-            plan.display.height = $(this).outerHeight() / $(this).attr('data-zoom');
-            plan.display.width = $(this).outerWidth() / $(this).attr('data-zoom');
-            plan.display.graph = json_decode($(this).find('.graphOptions').value());
-            var position = $(this).position();
-            plan.position.top = ((position.top) / parent.height) * 100;
-            plan.position.left = ((position.left) / parent.width) * 100;
-            plans.push(plan);
-        });
-        $('.text-widget').each(function () {
-            var plan = {};
-            plan.position = {};
-            plan.display = {};
-            plan.link_type = 'text';
-            plan.link_id = $(this).attr('data-text_id');
-            plan.planHeader_id = planHeader_id;
-            plan.display.height = $(this).outerHeight() / $(this).attr('data-zoom');
-            plan.display.width = $(this).outerWidth() / $(this).attr('data-zoom');
-            var position = $(this).position();
-            plan.position.top = ((position.top) / parent.height) * 100;
-            plan.position.left = ((position.left) / parent.width) * 100;
-            plans.push(plan);
-        });
-
         jeedom.plan.save({
             plans: plans,
             error: function (error) {
@@ -1025,7 +763,7 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
     html.css('z-index', 1000);
 
     if (_type == 'text' || _type == 'graph' || _type == 'plan' || _type == 'view') {
-       if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
+     if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
         if (isset(_plan.display) && isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) {
             html.css('border-radius', '0px'); 
             html.css('box-shadow', 'none'); 
@@ -1034,7 +772,7 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
 }
 
 for (var key in _plan.css) {
- if (_type == 'text' || _type == 'graph' || _type == 'plan' || _type == 'view') {
+   if (_type == 'text' || _type == 'graph' || _type == 'plan' || _type == 'view') {
     if (key == 'background-color') {
         if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
             html.css(key, _plan.css[key]);
