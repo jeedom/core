@@ -349,7 +349,7 @@ jwerty.key('ctrl+s', function (e) {
 
 $.contextMenu({
     selector: '.eqLogic-widget',
-    disabled : true,
+    zIndex: 9999,
     items: {
         parameter: {
             name: '{{Paramètres d\'affichage}}',
@@ -389,6 +389,7 @@ $.contextMenu({
 
 $.contextMenu({
     selector: '.div_displayObject > .cmd-widget',
+    zIndex: 9999,
     items: {
         parameter: {
             name: '{{Paramètres d\'affichage}}',
@@ -428,6 +429,7 @@ $.contextMenu({
 
 $.contextMenu({
     selector: '.scenario-widget',
+    zIndex: 9999,
     items: {
         parameter: {
             name: '{{Paramètres d\'affichage}}',
@@ -459,6 +461,7 @@ $.contextMenu({
 
 $.contextMenu({
     selector: '.plan-link-widget',
+    zIndex: 9999,
     items: {
         parameter: {
             name: '{{Paramètres d\'affichage}}',
@@ -490,6 +493,7 @@ $.contextMenu({
 
 $.contextMenu({
     selector: '.text-widget',
+    zIndex: 9999,
     items: {
         parameter: {
             name: '{{Paramètres d\'affichage}}',
@@ -521,6 +525,7 @@ $.contextMenu({
 
 $.contextMenu({
     selector: '.view-link-widget',
+    zIndex: 9999,
     items: {
         parameter: {
             name: '{{Paramètres d\'affichage}}',
@@ -552,6 +557,7 @@ $.contextMenu({
 
 $.contextMenu({
     selector: '.graph-widget',
+    zIndex: 9999,
     items: {
         parameter: {
             name: '{{Paramètres d\'affichage}}',
