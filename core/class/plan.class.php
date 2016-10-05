@@ -176,7 +176,7 @@ class plan {
 				'html' => $html,
 			);
 		} else if ($this->getLink_type() == 'graph') {
-			$return[] = array(
+			return array(
 				'plan' => utils::o2a($this),
 				'html' => '',
 			);

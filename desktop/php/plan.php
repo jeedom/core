@@ -95,5 +95,4 @@ foreach (view::all() as $views) {
     </div>
   </div>
 </div>
-<div id="md_addViewData" title="Ajouter widget/graph"></div>
 <?php include_file('desktop', 'plan', 'js');?>
