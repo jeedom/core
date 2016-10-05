@@ -595,6 +595,7 @@ class jeedom {
 		foreach ($_replaces as $key => $value) {
 			$datas = array_merge($datas, cmd::searchConfiguration($key));
 			$datas = array_merge($datas, eqLogic::searchConfiguration($key));
+			$datas = array_merge($datas, object::searchConfiguration($key));
 			$datas = array_merge($datas, scenario::byUsedCommand($key));
 			$datas = array_merge($datas, scenarioExpression::searchExpression($key, $key, false));
 			$datas = array_merge($datas, scenarioExpression::searchExpression('variable(' . str_replace('#', '', $key) . ')'));
