@@ -29,10 +29,8 @@ try {
 	if (init('action') == 'save') {
 		$plans = json_decode(init('plans'), true);
 		foreach ($plans as $plan_ajax) {
-			if (!isset($plan_ajax['id'])) {
-				$plan = plan::byId($plan_ajax['id']);
-			}
-			if (!isset($plan_ajax['id']) || !is_object($plan)) {
+			@$plan = plan::byId($plan_ajax['id']);
+			if (!is_object($plan)) {
 				$plan = plan::byLinkTypeLinkIdPlanHedaerId($plan_ajax['link_type'], $plan_ajax['link_id'], $plan_ajax['planHeader_id']);
 				if (!is_object($plan)) {
 					$plan = new plan();
