@@ -163,7 +163,6 @@ class plan {
 	}
 
 	public function getHtml($_version = 'dplan') {
-
 		if ($this->getLink_type() == 'eqLogic' || $this->getLink_type() == 'cmd' || $this->getLink_type() == 'scenario') {
 			$link = $this->getLink();
 			if (!is_object($link)) {
@@ -174,18 +173,10 @@ class plan {
 				'html' => $link->toHtml($_version),
 			);
 		} else if ($this->getLink_type() == 'plan') {
-			$this_link = planHeader::byId($this->getLink_id());
-			if (!is_object($this_link)) {
-				return;
-			}
-			$link = 'index.php?v=d&p=plan&plan_id=' . $this_link->getId();
-			$html = '<span class="cursor plan-link-widget" data-link_id="' . $this_link->getId() . '" data-offsetX="' . $this->getDisplay('offsetX') . '" data-offsetY="' . $this->getDisplay('offsetY') . '">';
+			$link = 'index.php?v=d&p=plan&plan_id=' . $this->getLink_id();
+			$html = '<span class="cursor plan-link-widget" data-link_id="' . $this->getLink_id() . '" data-offsetX="' . $this->getDisplay('offsetX') . '" data-offsetY="' . $this->getDisplay('offsetY') . '">';
 			$html .= '<a style="color:' . $this->getCss('color', 'white') . ';text-decoration:none;font-size : 1.5em;">';
-			if ($this->getDisplay('name') != '' || $this->getDisplay('icon') != '') {
-				$html .= $this->getDisplay('icon') . ' ' . $this->getDisplay('name');
-			} else {
-				$html .= $this_link->getName();
-			}
+			$html .= $this->getDisplay('icon') . ' ' . $this->getDisplay('name');
 			$html .= '</a>';
 			$html .= '</span>';
 			return array(
@@ -193,18 +184,10 @@ class plan {
 				'html' => $html,
 			);
 		} else if ($this->getLink_type() == 'view') {
-			$view = view::byId($this->getLink_id());
-			if (!is_object($view)) {
-				return;
-			}
-			$link = 'index.php?p=view&view_id=' . $view->getId();
-			$html = '<span href="' . $link . '" class=" cursor view-link-widget" data-link_id="' . $view->getId() . '" >';
+			$link = 'index.php?p=view&view_id=' . $this->getLink_id();
+			$html = '<span href="' . $link . '" class=" cursor view-link-widget" data-link_id="' . $this->getLink_id() . '" >';
 			$html .= '<a href="' . $link . '" style="color:' . $this->getCss('color', 'white') . ';text-decoration:none;font-size : 1.5em;">';
-			if ($this->getDisplay('name') != '' || $this->getDisplay('icon') != '') {
-				$html .= $this->getDisplay('icon') . ' ' . $this->getDisplay('name');
-			} else {
-				$html .= $view->getName();
-			}
+			$html .= $this->getDisplay('icon') . ' ' . $this->getDisplay('name');
 			$html .= '</a>';
 			$html .= '</span>';
 			return array(

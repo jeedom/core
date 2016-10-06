@@ -431,6 +431,9 @@ foreach (planHeader::all() as $planHeader_select) {
             plans[0].display.text = editor[id].getValue();
         }
     }
+    if(!isset(plans[0].configuration)){
+        plans[0].configuration = {};
+    }
     plans[0].configuration.action_on = $('#div_planConfigureActionon .on').getValues('.expressionAttr');
     plans[0].configuration.action_off = $('#div_planConfigureActionoff .off').getValues('.expressionAttr');
     plans[0].configuration.action_other = $('#div_planConfigureActionother .other').getValues('.expressionAttr');

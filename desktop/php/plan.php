@@ -59,43 +59,4 @@ if (!is_object($planHeader)) {
   }
 </style>
 <div class="container-fluid div_displayObject" style="position: relative;padding:0;user-select: none;-khtml-user-select: none;-o-user-select: none;-moz-user-select: -moz-none;-webkit-user-select: none;"></div>
-<div class="modal fade" id="md_selectLink">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title">{{Sélectionnez un lien}}</h4>
-      </div>
-      <div class="modal-body">
-        <select class="form-control linkType">
-          <option value="plan">Design</option>
-          <option value="view">Vue</option>
-        </select>
-        <br/>
-        <div class="linkplan linkOption">
-          <select class="form-control linkId">
-            <?php
-foreach ($planHeaders as $planHeader_select) {
-	echo '<option value="' . $planHeader_select->getId() . '">' . $planHeader_select->getName() . '</option>';
-}
-?>
-          </select>
-        </div>
-        <div class="linkview linkOption" style="display: none;">
-          <select class="form-control linkId">
-            <?php
-foreach (view::all() as $views) {
-	echo '<option value="' . $views->getId() . '">' . $views->getName() . '</option>';
-}
-?>
-          </select>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">{{Annuler}}</button>
-        <button type="button" class="btn btn-primary validate">{{Valider}}</button>
-      </div>
-    </div>
-  </div>
-</div>
 <?php include_file('desktop', 'plan', 'js');?>

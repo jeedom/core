@@ -85,44 +85,54 @@ if(deviceInfo.type == 'desktop'){
                     return !this.data('editOption.state'); 
                 },
                 callback: function(key, opt){
-                   addObject({link_type : 'text',link_id:Math.round(Math.random() * 99999999) + 9999,display: {text: 'Texte à insérer ici'}});
-               }
-           },
-           addScenario: {
+                 addObject({link_type : 'text',link_id:Math.round(Math.random() * 99999999) + 9999,display: {text: 'Texte à insérer ici'}});
+             }
+         },
+         addScenario: {
             name: "{{Ajouter scénario}}",
             icon : 'fa-plus-circle',
             disabled:function(key, opt) { 
                 return !this.data('editOption.state'); 
             },
             callback: function(key, opt){
-               jeedom.scenario.getSelectModal({}, function (data) {
+             jeedom.scenario.getSelectModal({}, function (data) {
                 addObject({link_type : 'scenario',link_id : data.id});
             });
-           }
-       },
-       addLink: {
-        name: "{{Ajouter lien}}",
+         }
+     },
+     addViewLink: {
+        name: "{{Ajouter lien vers une vue}}",
         icon : 'fa-link',
         disabled:function(key, opt) { 
             return !this.data('editOption.state'); 
         },
         callback: function(key, opt){
-          $('#md_selectLink').modal('show');
+            addObject({link_type :'view',link_id : -1,display : {name : 'A configurer'}});
+        }
+    },
+    addPlanLink: {
+        name: "{{Ajouter lien vers un design}}",
+        icon : 'fa-link',
+        disabled:function(key, opt) { 
+            return !this.data('editOption.state'); 
+        },
+        callback: function(key, opt){
+            addObject({link_type :'plan',link_id : -1,display : {name : 'A configurer'}});
+        }
+    },
+    addEqLogic: {
+        name: "{{Ajouter équipement}}",
+        icon : 'fa-plus-circle',
+        disabled:function(key, opt) { 
+            return !this.data('editOption.state'); 
+        },
+        callback: function(key, opt){
+          jeedom.eqLogic.getSelectModal({}, function (data) {
+            addObject({link_type : 'eqLogic',link_id : data.id});
+        });
       }
   },
-  addEqLogic: {
-    name: "{{Ajouter équipement}}",
-    icon : 'fa-plus-circle',
-    disabled:function(key, opt) { 
-        return !this.data('editOption.state'); 
-    },
-    callback: function(key, opt){
-      jeedom.eqLogic.getSelectModal({}, function (data) {
-        addObject({link_type : 'eqLogic',link_id : data.id});
-    });
-  }
-},
-addCommand: {
+  addCommand: {
     name: "{{Ajouter commande}}",
     icon : 'fa-plus-circle',
     disabled:function(key, opt) { 
@@ -218,12 +228,12 @@ fold2: {
             selected:  editOption.snap,
             events: {
                 click : function(e) {
-                   editOption.snap = $(this).value();
-                   initEditOption(1);
-               }
-           }
-       },
-       snapGrid: {
+                 editOption.snap = $(this).value();
+                 initEditOption(1);
+             }
+         }
+     },
+     snapGrid: {
         name: "{{Aimanter à la grille}}", 
         type: 'checkbox', 
         radio: 'radio',
@@ -252,10 +262,10 @@ removePlan: {
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function () {
-                   $('#div_alert').showAlert({message: 'Design supprimé', level: 'success'});
-                   loadPage('index.php?v=d&p=plan');
-               },
-           });
+                 $('#div_alert').showAlert({message: 'Design supprimé', level: 'success'});
+                 loadPage('index.php?v=d&p=plan');
+             },
+         });
         }
     });
   }
@@ -277,7 +287,7 @@ duplicatePlan: {
         return !this.data('editOption.state'); 
     },
     callback: function(key, opt){
-     bootbox.prompt("{{Nom la copie du design ?}}", function (result) {
+       bootbox.prompt("{{Nom la copie du design ?}}", function (result) {
         if (result !== null) {
             jeedom.plan.copyHeader({
                 name: result,
@@ -286,12 +296,12 @@ duplicatePlan: {
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function (data) {
-                   loadPage('index.php?v=d&p=plan&plan_id=' + data.id);
-               },
-           });
+                 loadPage('index.php?v=d&p=plan&plan_id=' + data.id);
+             },
+         });
         }
     });
- }
+   }
 },
 configurePlan: {
     name: "{{Configurer le design}}",
@@ -300,18 +310,18 @@ configurePlan: {
         return !this.data('editOption.state'); 
     },
     callback: function(key, opt){
-     $('#md_modal').dialog({title: "{{Configuration du design}}"});
-     $('#md_modal').load('index.php?v=d&modal=planHeader.configure&planHeader_id=' + planHeader_id).dialog('open');
- }
+       $('#md_modal').dialog({title: "{{Configuration du design}}"});
+       $('#md_modal').load('index.php?v=d&modal=planHeader.configure&planHeader_id=' + planHeader_id).dialog('open');
+   }
 },
 sep3 : "---------",
 save: {
     name: "{{Sauvegarder}}",
     icon : 'fa-floppy-o',
     callback: function(key, opt){
-       savePlan();
-       return false;
-   }
+     savePlan();
+     return false;
+ }
 },
 }
 });
@@ -320,12 +330,12 @@ $.contextMenu({
     selector: '.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.text-widget,.view-link-widget,.graph-widget,.image-widget,.macro-widget',
     zIndex: 9999,
     events: {
-     show : function(options){
+       show : function(options){
         $(this).addClass('contextMenu_select');
     },
     hide : function(options){
-     $(this).removeClass('contextMenu_select');
- }
+       $(this).removeClass('contextMenu_select');
+   }
 },
 items: {
     parameter: {
@@ -381,24 +391,24 @@ items: {
                     $('#md_modal').dialog('open');
                 });
             }else{
-               $('#md_modal').load('index.php?v=d&modal='+info.type+'.configure&'+info.type+'_id=' + info.id).dialog('open'); 
-           }
-       }
-   },
-   remove: {
+             $('#md_modal').load('index.php?v=d&modal='+info.type+'.configure&'+info.type+'_id=' + info.id).dialog('open'); 
+         }
+     }
+ },
+ remove: {
     name: '{{Supprimer}}',
     icon:'fa-trash',
     callback: function(key, opt){
-       jeedom.plan.remove({
-         id:  $(this).attr('data-plan_id'),
-         error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function () {
-            displayPlan();
-        },
-    });
-   }
+     jeedom.plan.remove({
+       id:  $(this).attr('data-plan_id'),
+       error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function () {
+        displayPlan();
+    },
+});
+ }
 },
 duplicate: {
     name: '{{Dupliquer}}',
@@ -442,16 +452,16 @@ $('body').delegate('.plan-link-widget', 'click', function () {
 
 $('body').delegate('.macro-widget', 'click', function () {
     if (!editOption.state) {
-       jeedom.plan.execMacro({
+     jeedom.plan.execMacro({
         id: $(this).attr('data-plan_id'),
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-         
+
         },
     });
-   }
+ }
 });
 
 jwerty.key('ctrl+s', function (e) {
@@ -469,16 +479,6 @@ $('.div_displayObject').delegate('.graph-widget', 'resize', function () {
     if (isset(jeedom.history.chart['graph' + $(this).attr('data-graph_id')])) {
         jeedom.history.chart['graph' + $(this).attr('data-graph_id')].chart.reflow();
     }
-});
-
-$('#md_selectLink .linkType').on('change', function () {
-    $('#md_selectLink .linkOption').hide();
-    $('#md_selectLink .link' + $(this).value()).show();
-});
-
-$('#md_selectLink .validate').on('click', function () {
-    $('#md_selectLink').modal('hide');
-    addObject({link_type : $('#md_selectLink .linkType').value(),link_id : $('#md_selectLink .link' + $('#md_selectLink .linkType').value() + ' .linkId').value(),display : {name : $('#md_selectLink .link' + $('#md_selectLink .linkType').value() + ' .linkId option:selected').text()}});
 });
 
 $('body').delegate('.eqLogic-widget .history', 'click', function () {
@@ -536,7 +536,7 @@ function fullScreen(_mode) {
 
 function initEditOption(_state) {
     if (_state != 1 && _state != '1') {
-     try{
+       try{
         $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.macro-widget').draggable("destroy");
         $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.macro-widget').removeClass('widget-shadow-edit');
         $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.scenario-widget,.text-widget,.image-widget,.macro-widget').resizable("destroy");
@@ -553,15 +553,15 @@ function initEditOption(_state) {
 
     }
 }else{
- $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.macro-widget').draggable({
+   $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.macro-widget').draggable({
     snap : (editOption.snap == 1),
     grid : (editOption.grid == 1) ? editOption.gridSize : false,
     containment: 'parent'
 });
- $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.macro-widget').addClass('widget-shadow-edit');
- if(editOption.gridSize){
-     $('.div_grid').show().css('background-size',editOption.gridSize[0]+'px '+editOption.gridSize[1]+'px');
- }else{
+   $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.macro-widget').addClass('widget-shadow-edit');
+   if(editOption.gridSize){
+       $('.div_grid').show().css('background-size',editOption.gridSize[0]+'px '+editOption.gridSize[1]+'px');
+   }else{
     $('.div_grid').hide();
 }
 $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.scenario-widget,.text-widget,.image-widget,.macro-widget').resizable();
@@ -657,29 +657,29 @@ function getObjectInfo(_object){
         return {type : 'eqLogic',id : _object.attr('data-eqLogic_id')};
     }
     if(_object.hasClass('cmd-widget')){
-       return {type :  'cmd',id : _object.attr('data-cmd_id')};
-   }
-   if(_object.hasClass('scenario-widget')){
-       return {type :  'scenario',id : _object.attr('data-scenario_id')};
-   }
-   if(_object.hasClass('plan-link-widget')){
-       return {type :  'plan',id : _object.attr('data-link_id')};
-   }
-   if(_object.hasClass('view-link-widget')){
-       return {type :  'view',id : _object.attr('data-link_id')};
-   }
-   if(_object.hasClass('graph-widget')){
-       return {type :  'graph',id : _object.attr('data-graph_id')};
-   }
-   if(_object.hasClass('text-widget')){
-       return {type : 'text',id : _object.attr('data-text_id')};
-   }
-   if(_object.hasClass('image-widget')){
-       return {type : 'image',id : _object.attr('data-image_id')};
-   }
-   if(_object.hasClass('macro-widget')){
-       return {type : 'macro',id : _object.attr('data-macro_id')};
-   }
+     return {type :  'cmd',id : _object.attr('data-cmd_id')};
+ }
+ if(_object.hasClass('scenario-widget')){
+     return {type :  'scenario',id : _object.attr('data-scenario_id')};
+ }
+ if(_object.hasClass('plan-link-widget')){
+     return {type :  'plan',id : _object.attr('data-link_id')};
+ }
+ if(_object.hasClass('view-link-widget')){
+     return {type :  'view',id : _object.attr('data-link_id')};
+ }
+ if(_object.hasClass('graph-widget')){
+     return {type :  'graph',id : _object.attr('data-graph_id')};
+ }
+ if(_object.hasClass('text-widget')){
+     return {type : 'text',id : _object.attr('data-text_id')};
+ }
+ if(_object.hasClass('image-widget')){
+     return {type : 'image',id : _object.attr('data-image_id')};
+ }
+ if(_object.hasClass('macro-widget')){
+     return {type : 'macro',id : _object.attr('data-macro_id')};
+ }
 }
 
 function savePlan(_refreshDisplay) {
@@ -696,13 +696,13 @@ function savePlan(_refreshDisplay) {
         plan.display.height = $(this).outerHeight() / $(this).attr('data-zoom');
         plan.display.width = $(this).outerWidth() / $(this).attr('data-zoom');
         if(info.type == 'graph'){
-           plan.display.graph = json_decode($(this).find('.graphOptions').value());
-       }
-       var position = $(this).position();
-       plan.position.top = (((position.top)) / $('.div_displayObject').height()) * 100;
-       plan.position.left = (((position.left)) / $('.div_displayObject').width()) * 100;
-       plans.push(plan);
-   });
+         plan.display.graph = json_decode($(this).find('.graphOptions').value());
+     }
+     var position = $(this).position();
+     plan.position.top = (((position.top)) / $('.div_displayObject').height()) * 100;
+     plan.position.left = (((position.left)) / $('.div_displayObject').width()) * 100;
+     plans.push(plan);
+ });
     jeedom.plan.save({
         plans: plans,
         error: function (error) {
@@ -758,17 +758,17 @@ function displayObject(_plan,_html, _noRender) {
             html.css(key, _plan.css[key]);
         }else if (_plan.link_type == 'text' || _plan.link_type == 'graph' || _plan.link_type == 'plan' || _plan.link_type == 'view') {
             if (key == 'background-color' && (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1)) {
-               if (isset(_plan.display) && isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) {
-                   html.css('background-color', 'transparent');
-                   html.css('border-radius', '0px'); 
-                   html.css('box-shadow', 'none'); 
-               }else{
-                  html.css(key, _plan.css[key]);
-              }
-          }else if (key == 'color' && (!isset(_plan.display) || !isset(_plan.display['color-defaut']) || _plan.display['color-defaut'] != 1)) {
-            html.css(key, _plan.css[key]);
-        }
+             if (isset(_plan.display) && isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) {
+                 html.css('background-color', 'transparent');
+                 html.css('border-radius', '0px'); 
+                 html.css('box-shadow', 'none'); 
+             }else{
+              html.css(key, _plan.css[key]);
+          }
+      }else if (key == 'color' && (!isset(_plan.display) || !isset(_plan.display['color-defaut']) || _plan.display['color-defaut'] != 1)) {
+        html.css(key, _plan.css[key]);
     }
+}
 }
 if(_plan.link_type == 'graph'){
     $('.div_displayObject').append(html);
@@ -794,7 +794,7 @@ if(_plan.link_type == 'graph'){
     return;
 }
 if (init(_noRender, false)) {
-   return html;
+ return html;
 }
 $('.div_displayObject').append(html);
 initEditOption(editOption.state);
