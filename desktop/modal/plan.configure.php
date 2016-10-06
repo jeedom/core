@@ -24,7 +24,7 @@ sendVarToJS('id', $plan->getId());
                <input type="text" class="planAttr form-control" data-l1key="css" data-l2key="zoom"/>
            </div>
        </div>
-       <div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan link_image link_macro">
+       <div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan link_image link_zone">
         <label class="col-lg-4 control-label">{{Profondeur}}</label>
         <div class="col-lg-2">
             <select class="form-control planAttr" data-l1key="css" data-l2key="z-index" >
@@ -35,7 +35,7 @@ sendVarToJS('id', $plan->getId());
             </select>
         </div>
     </div>
-    <div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan link_image link_macro">
+    <div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan link_image link_zone">
         <label class="col-lg-4 control-label">{{Position X (%)}}</label>
         <div class="col-lg-2">
             <input type="text" class="planAttr form-control" data-l1key="position" data-l2key="top" />
@@ -220,11 +220,11 @@ foreach (planHeader::all() as $planHeader_select) {
         <textarea class="planAttr form-control" data-l1key="display" data-l2key="text" rows="10">Texte à insérer ici</textarea>
     </div>
 </div>
-<div class="link_type link_macro">
+<div class="link_type link_zone">
     <div class="form-group">
         <label class="col-lg-4 control-label">{{Type de zone}}</label>
         <div class="col-lg-2">
-            <select class="planAttr form-control" data-l1key="configuration" data-l2key="macro_mode">
+            <select class="planAttr form-control" data-l1key="configuration" data-l2key="zone_mode">
                 <option value="simple">{{Macro simple}}</option>
                 <option value="binary">{{Macro binaire}}</option>
                 <option value="widget">{{Widget au survol}}</option>
@@ -233,12 +233,12 @@ foreach (planHeader::all() as $planHeader_select) {
     </div>
 
 
-    <div class="macro_mode macro_simple">
+    <div class="zone_mode zone_simple">
       <legend>{{Action}}<a class="btn btn-success pull-right btn-xs bt_planConfigurationAction" data-type="other"><i class="fa fa-plus"></i></a></legend>
       <div id="div_planConfigureActionother"></div>
   </div>
 
-  <div class="macro_mode macro_widget" style="display:none;">
+  <div class="zone_mode zone_widget" style="display:none;">
       <div class="form-group">
         <label class="col-lg-4 control-label">{{Equipement}}</label>
         <div class="col-lg-3">
@@ -250,7 +250,7 @@ foreach (planHeader::all() as $planHeader_select) {
    </div>
 </div>
 
-<div class="macro_mode macro_binary" style="display: none;">
+<div class="zone_mode zone_binary" style="display: none;">
     <div class="form-group">
         <label class="col-lg-4 control-label">{{Information binaire}}</label>
         <div class="col-lg-3">
@@ -270,9 +270,9 @@ foreach (planHeader::all() as $planHeader_select) {
 </fieldset>
 </form>
 <script>
-    $('.planAttr[data-l1key=configuration][data-l2key=macro_mode]').on('change',function(){
-        $('.macro_mode').hide();
-        $('.macro_mode.macro_'+$(this).value()).show();
+    $('.planAttr[data-l1key=configuration][data-l2key=zone_mode]').on('change',function(){
+        $('.zone_mode').hide();
+        $('.zone_mode.zone_'+$(this).value()).show();
     });
 
     $('.planAttr[data-l1key=configuration][data-l2key=display_mode]').on('change',function(){

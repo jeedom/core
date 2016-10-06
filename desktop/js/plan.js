@@ -145,7 +145,7 @@ if(deviceInfo.type == 'desktop'){
   }
 },
 addImage: {
-    name: "{{Ajouter une image}}",
+    name: "{{Ajouter une image/caméra}}",
     icon : 'fa-plus-circle',
     disabled:function(key, opt) { 
         return !this.data('editOption.state'); 
@@ -154,14 +154,14 @@ addImage: {
         addObject({link_type : 'image',link_id : Math.round(Math.random() * 99999999) + 9999});
     }
 },
-addMacroZone: {
-    name: "{{Ajouter une zone macro}}",
+addZone: {
+    name: "{{Ajouter une zone}}",
     icon : 'fa-plus-circle',
     disabled:function(key, opt) { 
         return !this.data('editOption.state'); 
     },
     callback: function(key, opt){
-        addObject({link_type : 'macro',link_id : Math.round(Math.random() * 99999999) + 9999});
+        addObject({link_type : 'zone',link_id : Math.round(Math.random() * 99999999) + 9999});
     }
 },
 sep2 : "---------",
@@ -329,7 +329,7 @@ save: {
 });
 
 $.contextMenu({
-    selector: '.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.text-widget,.view-link-widget,.graph-widget,.image-widget,.macro-widget',
+    selector: '.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.text-widget,.view-link-widget,.graph-widget,.image-widget,.zone-widget',
     zIndex: 9999,
     events: {
      show : function(options){
@@ -454,11 +454,11 @@ $('body').delegate('.plan-link-widget', 'click', function () {
     }
 });
 
-$('body').delegate('.macro-widget:not(.displayWidget)', 'click', function () {
+$('body').delegate('.zone-widget:not(.displayWidget)', 'click', function () {
     var el = $(this);
     if (!editOption.state) {
         el.append('<center class="loading"><i class="fa fa-spinner fa-spin fa-4x"></i></center>');
-        jeedom.plan.execMacro({
+        jeedom.plan.execute({
             id: el.attr('data-plan_id'),
             error: function (error) {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -474,7 +474,7 @@ $('body').delegate('.macro-widget:not(.displayWidget)', 'click', function () {
     }
 });
 
-$('body').delegate('.macro-widget.displayWidget', 'click mouseenter', function () {
+$('body').delegate('.zone-widget.displayWidget', 'click mouseenter', function () {
     if (!editOption.state) {
        var el = $(this);
        jeedom.eqLogic.toHtml({
@@ -495,8 +495,8 @@ $('body').delegate('.macro-widget.displayWidget', 'click mouseenter', function (
 
 $(document).click(function(event) {
     if (!editOption.state) {
-        if ( !$(event.target).hasClass('.macro-widget.displayWidget') && $(event.target).closest('.macro-widget.displayWidget').html() == undefined) {
-           $('.macro-widget.displayWidget').empty();
+        if ( !$(event.target).hasClass('.zone-widget.displayWidget') && $(event.target).closest('.zone-widget.displayWidget').html() == undefined) {
+           $('.zone-widget.displayWidget').empty();
        }
    }
 });
@@ -574,9 +574,9 @@ function fullScreen(_mode) {
 function initEditOption(_state) {
     if (_state != 1 && _state != '1') {
      try{
-        $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.macro-widget').draggable("destroy");
-        $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.macro-widget').removeClass('widget-shadow-edit');
-        $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.scenario-widget,.text-widget,.image-widget,.macro-widget').resizable("destroy");
+        $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget').draggable("destroy");
+        $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget').removeClass('widget-shadow-edit');
+        $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget').resizable("destroy");
         $('.div_displayObject a').each(function () {
             $(this).attr('href', $(this).attr('data-href'));
         });
@@ -585,23 +585,23 @@ function initEditOption(_state) {
     }
     $('.div_grid').hide();
     try{
-        $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.macro-widget').contextMenu(false);
+        $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget').contextMenu(false);
     }catch (e) {
 
     }
 }else{
- $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.macro-widget').draggable({
+ $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget').draggable({
     snap : (editOption.snap == 1),
     grid : (editOption.grid == 1) ? editOption.gridSize : false,
     containment: 'parent'
 });
- $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.macro-widget').addClass('widget-shadow-edit');
+ $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget').addClass('widget-shadow-edit');
  if(editOption.gridSize){
      $('.div_grid').show().css('background-size',editOption.gridSize[0]+'px '+editOption.gridSize[1]+'px');
  }else{
     $('.div_grid').hide();
 }
-$('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.scenario-widget,.text-widget,.image-widget,.macro-widget').resizable({
+$('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget').resizable({
     containment: "parent"
 });
 $('.div_displayObject a').each(function () {
@@ -610,7 +610,7 @@ $('.div_displayObject a').each(function () {
     }
 });
 try{
-    $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.macro-widget').contextMenu(true);
+    $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget').contextMenu(true);
 }catch (e) {
 
 }
@@ -668,7 +668,7 @@ function displayPlan() {
                 }
             });
             }
-            $('.div_displayObject').find('.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget,.image-widget,.macro-widget').remove();
+            $('.div_displayObject').find('.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget,.image-widget,.zone-widget').remove();
             jeedom.plan.byPlanHeader({
                 id: planHeader_id,
                 error: function (error) {
@@ -716,14 +716,14 @@ function getObjectInfo(_object){
    if(_object.hasClass('image-widget')){
        return {type : 'image',id : _object.attr('data-image_id')};
    }
-   if(_object.hasClass('macro-widget')){
-       return {type : 'macro',id : _object.attr('data-macro_id')};
+   if(_object.hasClass('zone-widget')){
+       return {type : 'zone',id : _object.attr('data-zone_id')};
    }
 }
 
 function savePlan(_refreshDisplay,_async) {
     var plans = [];
-    $('.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget,.image-widget,.macro-widget').each(function () {
+    $('.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget,.image-widget,.zone-widget').each(function () {
         var info = getObjectInfo($(this));
         var plan = {};
         plan.position = {};

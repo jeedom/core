@@ -129,12 +129,12 @@ class plan {
 	}
 
 	public function execute() {
-		if ($this->getLink_type() != 'macro') {
+		if ($this->getLink_type() != 'zone') {
 			return;
 		}
-		if ($this->getConfiguration('macro_mode', 'simple') == 'simple') {
+		if ($this->getConfiguration('zone_mode', 'simple') == 'simple') {
 			$this->doAction('other');
-		} else if ($this->getConfiguration('macro_mode', 'simple') == 'binary') {
+		} else if ($this->getConfiguration('zone_mode', 'simple') == 'binary') {
 			$result = jeedom::evaluateExpression($this->getConfiguration('binary_info', 0));
 			if ($result) {
 				$this->doAction('off');
@@ -234,11 +234,11 @@ class plan {
 				'plan' => utils::o2a($this),
 				'html' => $html,
 			);
-		} else if ($this->getLink_type() == 'macro') {
-			if ($this->getConfiguration('macro_mode', 'simple') == 'widget') {
-				$html = '<div class="macro-widget cursor displayWidget" data-eqLogic_id="' . str_replace(array('#', 'eqLogic'), array('', ''), $this->getConfiguration('eqLogic')) . '" data-macro_id="' . $this->getLink_id() . '" style="min-width:20px;min-height:20px;"></div>';
+		} else if ($this->getLink_type() == 'zone') {
+			if ($this->getConfiguration('zone_mode', 'simple') == 'widget') {
+				$html = '<div class="zone-widget cursor displayWidget" data-eqLogic_id="' . str_replace(array('#', 'eqLogic'), array('', ''), $this->getConfiguration('eqLogic')) . '" data-zone_id="' . $this->getLink_id() . '" style="min-width:20px;min-height:20px;"></div>';
 			} else {
-				$html = '<div class="macro-widget cursor" data-macro_id="' . $this->getLink_id() . '" style="min-width:20px;min-height:20px;"></div>';
+				$html = '<div class="zone-widget cursor" data-zone_id="' . $this->getLink_id() . '" style="min-width:20px;min-height:20px;"></div>';
 			}
 			return array(
 				'plan' => utils::o2a($this),
