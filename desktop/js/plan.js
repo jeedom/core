@@ -449,15 +449,13 @@ $('#md_selectLink .validate').on('click', function () {
 
 $('body').delegate('.eqLogic-widget .history', 'click', function () {
     if (!editOption.state) {
-        $('#md_modal').dialog({title: "Historique"});
-        $("#md_modal").load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
+        $('#md_modal').dialog({title: "Historique"}).load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
     }
 });
 
 $('body').delegate('.div_displayObject > .cmd-widget .history', 'click', function () {
     if (!editOption.state) {
-        $('#md_modal').dialog({title: "Historique"});
-        $("#md_modal").load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
+        $('#md_modal').dialog({title: "Historique"}).load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
     }
 });
 /***********************************************************************************/
@@ -526,8 +524,7 @@ function initEditOption(_state) {
     containment: 'parent'
 });
    if(editOption.gridSize){
-       $('.div_grid').show();
-       $('.div_grid').css('background-size',editOption.gridSize[0]+'px '+editOption.gridSize[1]+'px');
+       $('.div_grid').show().css('background-size',editOption.gridSize[0]+'px '+editOption.gridSize[1]+'px');
    }else{
     $('.div_grid').hide();
 }
@@ -535,8 +532,7 @@ function initEditOption(_state) {
 $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.scenario-widget,.text-widget').resizable();
 $('.div_displayObject a').each(function () {
     if ($(this).attr('href') != '#') {
-        $(this).attr('data-href', $(this).attr('href'));
-        $(this).removeAttr('href');
+        $(this).attr('data-href', $(this).attr('href')).removeAttr('href');
     }
 });
 try{
@@ -545,6 +541,20 @@ try{
 
 }
 }
+}
+
+function addObject(_plan){
+    _plan.planHeader_id = planHeader_id;
+    jeedom.plan.create({
+        plan: _plan,
+        version: 'dplan',
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+            displayObject(data.plan,data.html);
+        }
+    });
 }
 
 function displayPlan() {
@@ -562,24 +572,18 @@ function displayPlan() {
         success: function (data) {
             $('.div_displayObject').empty();
             $('.div_displayObject').append('<div class="container-fluid div_grid" style="display:none;position: absolute;padding:0;width:100%;height:100%;user-select: none;-khtml-user-select: none;-o-user-select: none;-moz-user-select: -moz-none;-webkit-user-select: none;"></div>');
-            $('.div_displayObject').height('auto');
-            $('.div_displayObject').width('auto');
+            $('.div_displayObject').height('auto').width('auto');
             if (isset(data.image)) {
                 $('.div_displayObject').append(data.image);
             }
             if (data.configuration != null && init(data.configuration.desktopSizeX) != '' && init(data.configuration.desktopSizeY) != '') {
-                $('.div_displayObject').height(data.configuration.desktopSizeY);
-                $('.div_displayObject').width(data.configuration.desktopSizeX);
-                $('.div_displayObject img').height(data.configuration.desktopSizeY);
-                $('.div_displayObject img').width(data.configuration.desktopSizeX);
+                $('.div_displayObject').height(data.configuration.desktopSizeY).width(data.configuration.desktopSizeX);
+                $('.div_displayObject img').height(data.configuration.desktopSizeY).width(data.configuration.desktopSizeX);
             } else {
-                $('.div_displayObject').width($('.div_displayObject img').attr('data-sixe_x'));
-                $('.div_displayObject').height($('.div_displayObject img').attr('data-sixe_y'));
-                $('.div_displayObject img').css('height', ($('.div_displayObject img').attr('data-sixe_y')) + 'px');
-                $('.div_displayObject img').css('width', ($('.div_displayObject img').attr('data-sixe_x')) + 'px');
+                $('.div_displayObject').width($('.div_displayObject img').attr('data-sixe_x')).height($('.div_displayObject img').attr('data-sixe_y'));
+                $('.div_displayObject img').css('height', ($('.div_displayObject img').attr('data-sixe_y')) + 'px').css('width', ($('.div_displayObject img').attr('data-sixe_x')) + 'px');
             }
-            $('.div_grid').width($('.div_displayObject').width());
-            $('.div_grid').height($('.div_displayObject').height());
+            $('.div_grid').width($('.div_displayObject').width()).height($('.div_displayObject').height());
             if(deviceInfo.type != 'desktop'){
                 $('meta[name="viewport"]').prop('content', 'width=' + $('.div_displayObject').width() + ',height=' + $('.div_displayObject').height());
                 fullScreen(true);
@@ -677,8 +681,7 @@ function displayObject(_plan,_html, _noRender) {
     _plan = init(_plan, {});
     _plan.position = init(_plan.position, {});
     _plan.css = init(_plan.css, {});
-    var defaultZoom = 1;
-    if (_plan.link_type == 'eqLogic' || _plan.link_type == 'scenario') {
+    if (_plan.link_type == 'eqLogic' || _plan.link_type == 'scenario' || _plan.link_type == 'text') {
         $('.div_displayObject .'+_plan.link_type+'-widget[data-'+_plan.link_type+'_id=' + _plan.link_id + ']').remove();
     }else if (_plan.link_type == 'view' || _plan.link_type == 'plan') {
         $('.div_displayObject .'+_plan.link_type+'-link-widget[data-link_id=' + _plan.link_id + ']').remove();
@@ -689,13 +692,32 @@ function displayObject(_plan,_html, _noRender) {
             delete jeedom.history.chart[i];
         }
         $('.div_displayObject .graph-widget[data-graph_id=' + _plan.link_id + ']').remove();
-    }else if (_plan.link_type == 'text') {
-        $('.div_displayObject .text-widget[data-text_id=' + _plan.link_id + ']').remove();
     }
     var html = $(_html);
     html.attr('data-plan_id',_plan.id);
     html.addClass('jeedomAlreadyPosition');
     html.css('z-index', 1000);
+    html.css('position', 'absolute');
+    html.css('top',  init(_plan.position.top, '10') * $('.div_displayObject').height() / 100);
+    html.css('left', init(_plan.position.left, '10') * $('.div_displayObject').width() / 100);
+    html.css('transform-origin', '0 0');
+    html.css('transform', 'scale(' + init(_plan.css.zoom, 1) + ')');
+    html.css('-webkit-transform-origin', '0 0');
+    html.css('-webkit-transform', 'scale(' + init(_plan.css.zoom, 1) + ')');
+    html.css('-moz-transform-origin', '0 0');
+    html.css('-moz-transform', 'scale(' + init(_plan.css.zoom, 1) + ')');
+    html.attr('data-zoom',init(_plan.css.zoom, 1));
+    html.addClass('noResize');
+    if (isset(_plan.display) && isset(_plan.display.width)) {
+        html.css('width', init(_plan.display.width, 50));
+    }
+    if (isset(_plan.display) && isset(_plan.display.height)) {
+        html.css('height', init(_plan.display.height, 50));
+    }
+    if (_plan.link_type == 'scenario' && isset(_plan.display) && (isset(_plan.display.hideCmd) && _plan.display.hideCmd == 1)) {
+        html.find('.changeScenarioState').remove();
+    }
+
     if (_plan.link_type == 'text' || _plan.link_type == 'graph' || _plan.link_type == 'plan' || _plan.link_type == 'view') {
        if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
         if (isset(_plan.display) && isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) {
@@ -732,26 +754,7 @@ if (_plan.link_type == 'text' || _plan.link_type == 'graph' || _plan.link_type =
         }
     }
 }
-html.css('position', 'absolute');
-html.css('top',  init(_plan.position.top, '10') * $('.div_displayObject').height() / 100);
-html.css('left', init(_plan.position.left, '10') * $('.div_displayObject').width() / 100);
-html.css('transform-origin', '0 0');
-html.css('transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')');
-html.css('-webkit-transform-origin', '0 0');
-html.css('-webkit-transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')');
-html.css('-moz-transform-origin', '0 0');
-html.css('-moz-transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')');
-html.attr('data-zoom',init(_plan.css.zoom, defaultZoom));
-html.addClass('noResize');
-if (isset(_plan.display) && isset(_plan.display.width)) {
-    html.css('width', init(_plan.display.width, 50));
-}
-if (isset(_plan.display) && isset(_plan.display.height)) {
-    html.css('height', init(_plan.display.height, 50));
-}
-if (_plan.link_type == 'scenario' && isset(_plan.display) && (isset(_plan.display.hideCmd) && _plan.display.hideCmd == 1)) {
-    html.find('.changeScenarioState').remove();
-}
+
 if(_plan.link_type == 'graph'){
     $('.div_displayObject').append(html);
     if(isset(_plan.display) && isset(_plan.display.graph)){
@@ -780,18 +783,4 @@ if (init(_noRender, false)) {
 }
 $('.div_displayObject').append(html);
 initEditOption(editOption.state);
-}
-
-function addObject(_plan){
-    _plan.planHeader_id = planHeader_id;
-    jeedom.plan.create({
-        plan: _plan,
-        version: 'dplan',
-        error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function (data) {
-            displayObject(data.plan,data.html);
-        }
-    });
 }

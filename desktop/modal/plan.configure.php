@@ -13,7 +13,7 @@ sendVarToJS('id', $plan->getId());
 
 <form class="form-horizontal">
     <fieldset id="fd_planConfigure">
-    <legend>{{Général}}
+        <legend>{{Général}}
             <a class='btn btn-success btn-xs pull-right cursor' style="color: white;" id='bt_saveConfigurePlan'><i class="fa fa-check"></i> {{Sauvegarder}}</a>
         </legend>
         <input type="text"  class="planAttr form-control" data-l1key="id" style="display: none;"/>
@@ -21,10 +21,10 @@ sendVarToJS('id', $plan->getId());
         <div class="form-group link_type link_eqLogic link_cmd link_scenario">
             <label class="col-lg-4 control-label">{{Taille du widget}}</label>
             <div class="col-lg-2">
-             <input type="text" class="planAttr form-control" data-l1key="css" data-l2key="zoom"/>
-         </div>
-     </div>
-     <div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan">
+               <input type="text" class="planAttr form-control" data-l1key="css" data-l2key="zoom"/>
+           </div>
+       </div>
+       <div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan">
         <label class="col-lg-4 control-label">{{Profondeur}}</label>
         <div class="col-lg-2">
             <select class="form-control planAttr" data-l1key="css" data-l2key="z-index" >
@@ -203,7 +203,7 @@ foreach (planHeader::all() as $planHeader_select) {
     });
 
     $('#fd_planConfigure').on('change','.planAttr[data-l1key=css][data-l2key=background-color]', function() {
-       if($(this).value() != '#000000'){
+     if($(this).value() != '#000000'){
         $('.planAttr[data-l1key=display][data-l2key=background-defaut]').value(0);
     }
 });
@@ -228,7 +228,7 @@ foreach (planHeader::all() as $planHeader_select) {
     });
 
     if (isset(id) && id != '') {
-     $.ajax({
+       $.ajax({
         type: "POST",
         url: "core/ajax/plan.ajax.php",
         data: {
@@ -262,9 +262,9 @@ foreach (planHeader::all() as $planHeader_select) {
             }
         }
     });
- }
+   }
 
- function save() {
+   function save() {
     var plans = $('#fd_planConfigure').getValues('.planAttr');
     if (plans[0].link_type == 'text') {
         var id = $('.planAttr[data-l1key=display][data-l2key=text]').attr('id');
