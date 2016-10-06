@@ -18,6 +18,16 @@
 * Les developpeur tierce peuvent ajouter leur propre systeme de gestion de tickets
 * Refonte de la configuration des droits utilisateur (tout est sur la page de gestion des utilisateurs)
 * Mise à jour des libs : jquery (en 3.0) , jquery mobile, hightstock et table sorter
+* Grosse amélioration des designs : 
+** Toute les actions sont maintenant accessibles à partir d'un clic droit
+** Possibilité d'ajouter une commande seul
+** Possibilité d'ajouter une image ou un flux video
+** Possibilité d'ajouter une zone macro (transparente) qui peut executer une action lors d'un clic (couplé à un flux video cela permet par exemple d'allumer en lumiere en cliquant dessus)
+** Optimisation général du code
+** Possibilité de faire apparaitre une grille et de choisir sa taille (10x10,15x15 ou 30x30)
+** Possibilité d'activer une aimantation des widgets sur la grille
+** Possibilité d'activer une aimantation des widgets entre eux
+** Certain type de widget peuvent maintenant être dupliqué
 
 == 2.4
 
