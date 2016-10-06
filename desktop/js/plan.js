@@ -342,6 +342,7 @@ items: {
         name: '{{Paramètres d\'affichage}}',
         icon:'fa-cogs',
         callback: function(key, opt){
+            savePlan(false,false);
             var info = getObjectInfo($(this));
             $('#md_modal').dialog({title: "{{Configuration du widget}}"});
             $('#md_modal').load('index.php?v=d&modal=plan.configure&id='+$(this).attr('data-plan_id')).dialog('open');
@@ -682,7 +683,7 @@ function getObjectInfo(_object){
  }
 }
 
-function savePlan(_refreshDisplay) {
+function savePlan(_refreshDisplay,_async) {
     var plans = [];
     $('.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget,.image-widget,.macro-widget').each(function () {
         var info = getObjectInfo($(this));
@@ -705,6 +706,7 @@ function savePlan(_refreshDisplay) {
  });
     jeedom.plan.save({
         plans: plans,
+        async : _async || true,
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
