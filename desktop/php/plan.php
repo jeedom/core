@@ -54,6 +54,9 @@ if (!is_object($planHeader)) {
   .contextMenu_select {
     background:rgba(255,255,255,0.5) !important;
   }
+  .widget-shadow-edit{
+    box-shadow: 0 0 2em red;
+  }
 </style>
 <div class="container-fluid div_displayObject" style="position: relative;padding:0;user-select: none;-khtml-user-select: none;-o-user-select: none;-moz-user-select: -moz-none;-webkit-user-select: none;"></div>
 <div class="modal fade" id="md_selectLink">
