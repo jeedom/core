@@ -485,7 +485,7 @@ $('body').delegate('.macro-widget.displayWidget', 'click mouseenter', function (
             el.empty().append(data.html);
             if(deviceInfo.type == 'desktop'){
                 el.off('mouseleave').on('mouseleave',function(){
-                   // el.empty()
+                    el.empty()
                 });
             }
         }
