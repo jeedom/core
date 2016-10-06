@@ -14,7 +14,8 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
  var deviceInfo = getDeviceType();
- var editOption = {state : false, snap : false,grid : false,gridSize:false}
+ var editOption = {state : false, snap : false,grid : false,gridSize:false};
+ var clickedOpen = false;
 
  planHeaderContextMenu = {};
  for(var i in planHeader){
@@ -464,10 +465,12 @@ $('body').on( 'click','.zone-widget:not(.zoneEqLogic)', function () {
                 el.empty().append('<center class="loading"><i class="fa fa-times fa-4x"></i></center>');
                 setTimeout(function() {
                    el.empty();
+				   clickedOpen = false;
                }, 3000);
             },
             success: function () {
                el.empty();
+			   clickedOpen = false;
            },
        });
     }
@@ -493,7 +496,8 @@ $('body').on('mouseenter','.zone-widget.zoneEqLogic.zoneEqLogicOnFly',  function
 });
 
 $('body').on('click','.zone-widget.zoneEqLogic.zoneEqLogicOnClic', function () {
-    if (!editOption.state) {
+    if (!editOption.state && !clickedOpen) {
+	 clickedOpen = true;
      var el = $(this);
      jeedom.eqLogic.toHtml({
         id : el.attr('data-eqLogic_id'),
@@ -503,7 +507,8 @@ $('body').on('click','.zone-widget.zoneEqLogic.zoneEqLogicOnClic', function () {
             el.empty().append(data.html);
             if(deviceInfo.type == 'desktop' && el.hasClass('zoneEqLogicOnFly')){
                 el.off('mouseleave').on('mouseleave',function(){
-                    el.empty()
+                    el.empty();
+					clickedOpen = false;
                 });
             }
         }
@@ -513,10 +518,11 @@ $('body').on('click','.zone-widget.zoneEqLogic.zoneEqLogicOnClic', function () {
 
 $(document).click(function(event) {
     if (!editOption.state) {
-        if ( !$(event.target).hasClass('.zone-widget.zoneEqLogic') && $(event.target).closest('.zone-widget.zoneEqLogic').html() == undefined) {
+        if ( (!$(event.target).hasClass('.zone-widget.zoneEqLogic') && $(event.target).closest('.zone-widget.zoneEqLogic').html() == undefined) && (!$(event.target).hasClass('.zone-widget.zoneEqLogicOnFly') && $(event.target).closest('.zone-widget.zoneEqLogicOnFly').html() == undefined)) {
          $('.zone-widget.zoneEqLogic').each(function(){
-            if($(this).hasClass('zoneEqLogicOnClic')){
+            if($(this).hasClass('zoneEqLogicOnClic') || $(this).hasClass('zoneEqLogicOnFly')){
                 $(this).empty();
+				clickedOpen = false;
             }
         });
      }
