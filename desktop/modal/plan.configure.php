@@ -24,7 +24,7 @@ sendVarToJS('id', $plan->getId());
                <input type="text" class="planAttr form-control" data-l1key="css" data-l2key="zoom"/>
            </div>
        </div>
-       <div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan">
+       <div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan link_image">
         <label class="col-lg-4 control-label">{{Profondeur}}</label>
         <div class="col-lg-2">
             <select class="form-control planAttr" data-l1key="css" data-l2key="z-index" >
@@ -35,7 +35,7 @@ sendVarToJS('id', $plan->getId());
             </select>
         </div>
     </div>
-    <div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan">
+    <div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan link_image">
         <label class="col-lg-4 control-label">{{Position X (%)}}</label>
         <div class="col-lg-2">
             <input type="text" class="planAttr form-control" data-l1key="position" data-l2key="top" />
@@ -46,7 +46,14 @@ sendVarToJS('id', $plan->getId());
         </div>
     </div>
     <legend>{{Spécifique}}</legend>
-    <div class="form-group link_type link_graph">
+    <div class="form-group link_type link_image">
+        <label class="col-lg-4 control-label">{{Image}}</label>
+        <div class="col-lg-8">
+          <span class="btn btn-default btn-file">
+              <i class="fa fa-cloud-upload"></i> {{Envoyer}}<input  id="bt_uploadImagePlan" type="file" name="file" style="display: inline-block;">
+          </span>
+      </div>
+      <div class="form-group link_type link_graph">
         <label class="col-lg-4 control-label">{{Période}}</label>
         <div class="col-lg-2">
             <select class="planAttr form-control" data-l1key="display" data-l2key="dateRange">
@@ -196,38 +203,50 @@ foreach (planHeader::all() as $planHeader_select) {
 </fieldset>
 </form>
 <script>
-    $('#fd_planConfigure').on('change','.planAttr[data-l1key=display][data-l2key=background-transparent]', function() {
-        if($(this).value() == 1){
-            $('.planAttr[data-l1key=display][data-l2key=background-defaut]').value(0);
+   $('#bt_uploadImagePlan').fileupload({
+    replaceFileInput: false,
+    url: 'core/ajax/plan.ajax.php?action=uploadImagePlan&id=' + id+'&jeedom_token='+JEEDOM_AJAX_TOKEN,
+    dataType: 'json',
+    done: function (e, data) {
+        if (data.result.state != 'ok') {
+            $('#div_alertPlanConfigure').showAlert({message: data.result.result, level: 'danger'});
+            return;
         }
-    });
+    }
+});
 
-    $('#fd_planConfigure').on('change','.planAttr[data-l1key=css][data-l2key=background-color]', function() {
+   $('#fd_planConfigure').on('change','.planAttr[data-l1key=display][data-l2key=background-transparent]', function() {
+    if($(this).value() == 1){
+        $('.planAttr[data-l1key=display][data-l2key=background-defaut]').value(0);
+    }
+});
+
+   $('#fd_planConfigure').on('change','.planAttr[data-l1key=css][data-l2key=background-color]', function() {
      if($(this).value() != '#000000'){
         $('.planAttr[data-l1key=display][data-l2key=background-defaut]').value(0);
     }
 });
 
-    $('#fd_planConfigure').on('change','.planAttr[data-l1key=display][data-l2key=background-defaut]', function() {
-        if($(this).value() == 1){
-            $('.planAttr[data-l1key=display][data-l2key=background-transparent]').value(0);
-            $('.planAttr[data-l1key=css][data-l2key=background-color]').value('#000000');
-        }
+   $('#fd_planConfigure').on('change','.planAttr[data-l1key=display][data-l2key=background-defaut]', function() {
+    if($(this).value() == 1){
+        $('.planAttr[data-l1key=display][data-l2key=background-transparent]').value(0);
+        $('.planAttr[data-l1key=css][data-l2key=background-color]').value('#000000');
+    }
+});
+
+   editor = [];
+
+   $('#bt_chooseIcon').on('click', function () {
+    chooseIcon(function (_icon) {
+        $('.planAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
     });
+});
 
-    editor = [];
+   $('#bt_saveConfigurePlan').on('click', function () {
+    save();
+});
 
-    $('#bt_chooseIcon').on('click', function () {
-        chooseIcon(function (_icon) {
-            $('.planAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
-        });
-    });
-
-    $('#bt_saveConfigurePlan').on('click', function () {
-        save();
-    });
-
-    if (isset(id) && id != '') {
+   if (isset(id) && id != '') {
        $.ajax({
         type: "POST",
         url: "core/ajax/plan.ajax.php",

@@ -200,6 +200,12 @@ class plan {
 				'plan' => utils::o2a($this),
 				'html' => $html,
 			);
+		} else if ($this->getLink_type() == 'image') {
+			$html = '<div class="image-widget" data-image_id="' . $this->getLink_id() . '"><img style="width:100%;height:100%" src="' . $this->getDisplay('path', 'core/img/no_image.gif') . '"/></div>';
+			return array(
+				'plan' => utils::o2a($this),
+				'html' => $html,
+			);
 		}
 	}
 

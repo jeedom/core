@@ -134,6 +134,16 @@ addCommand: {
     });
   }
 },
+addImage: {
+    name: "{{Ajouter une image}}",
+    icon : 'fa-plus-circle',
+    disabled:function(key, opt) { 
+        return !this.data('editOption.state'); 
+    },
+    callback: function(key, opt){
+        addObject({link_type : 'image',link_id : Math.round(Math.random() * 99999999) + 9999});
+    }
+},
 sep2 : "---------",
 fold2: {
     name: "{{Grille}}", 
@@ -297,7 +307,7 @@ save: {
 });
 
 $.contextMenu({
-    selector: '.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.text-widget,.view-link-widget,.graph-widget',
+    selector: '.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.text-widget,.view-link-widget,.graph-widget,.image-widget',
     zIndex: 9999,
     events: {
        show : function(options){
@@ -503,9 +513,9 @@ function fullScreen(_mode) {
 function initEditOption(_state) {
     if (_state != 1 && _state != '1') {
        try{
-        $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget').draggable("destroy");
-        $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget').removeClass('widget-shadow-edit');
-        $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.scenario-widget,.text-widget').resizable("destroy");
+        $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget').draggable("destroy");
+        $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget').removeClass('widget-shadow-edit');
+        $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.scenario-widget,.text-widget,.image-widget').resizable("destroy");
         $('.div_displayObject a').each(function () {
             $(this).attr('href', $(this).attr('data-href'));
         });
@@ -514,30 +524,30 @@ function initEditOption(_state) {
     }
     $('.div_grid').hide();
     try{
-        $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget').contextMenu(false);
+        $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget').contextMenu(false);
     }catch (e) {
 
     }
 }else{
-   $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget').draggable({
+   $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget').draggable({
     snap : (editOption.snap == 1),
     grid : (editOption.grid == 1) ? editOption.gridSize : false,
     containment: 'parent'
 });
-    $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget').addClass('widget-shadow-edit');
+   $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget').addClass('widget-shadow-edit');
    if(editOption.gridSize){
        $('.div_grid').show().css('background-size',editOption.gridSize[0]+'px '+editOption.gridSize[1]+'px');
    }else{
     $('.div_grid').hide();
 }
-$('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.scenario-widget,.text-widget').resizable();
+$('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.scenario-widget,.text-widget,.image-widget').resizable();
 $('.div_displayObject a').each(function () {
     if ($(this).attr('href') != '#') {
         $(this).attr('data-href', $(this).attr('href')).removeAttr('href');
     }
 });
 try{
-    $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget').contextMenu(true);
+    $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget').contextMenu(true);
 }catch (e) {
 
 }
@@ -595,7 +605,7 @@ function displayPlan() {
                 }
             });
             }
-            $('.div_displayObject').find('.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget').remove();
+            $('.div_displayObject').find('.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget,.image-widget').remove();
             jeedom.plan.byPlanHeader({
                 id: planHeader_id,
                 error: function (error) {
@@ -640,11 +650,14 @@ function getObjectInfo(_object){
  if(_object.hasClass('text-widget')){
      return {type : 'text',id : _object.attr('data-text_id')};
  }
+ if(_object.hasClass('image-widget')){
+     return {type : 'image',id : _object.attr('data-image_id')};
+ }
 }
 
 function savePlan(_refreshDisplay) {
     var plans = [];
-    $('.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget').each(function () {
+    $('.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget,.image-widget').each(function () {
         var info = getObjectInfo($(this));
         var plan = {};
         plan.position = {};
@@ -680,7 +693,7 @@ function displayObject(_plan,_html, _noRender) {
     _plan = init(_plan, {});
     _plan.position = init(_plan.position, {});
     _plan.css = init(_plan.css, {});
-    if (_plan.link_type == 'eqLogic' || _plan.link_type == 'scenario' || _plan.link_type == 'text') {
+    if (_plan.link_type == 'eqLogic' || _plan.link_type == 'scenario' || _plan.link_type == 'text' || _plan.link_type == 'image') {
         $('.div_displayObject .'+_plan.link_type+'-widget[data-'+_plan.link_type+'_id=' + _plan.link_id + ']').remove();
     }else if (_plan.link_type == 'view' || _plan.link_type == 'plan') {
         $('.div_displayObject .'+_plan.link_type+'-link-widget[data-link_id=' + _plan.link_id + ']').remove();

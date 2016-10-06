@@ -160,6 +160,38 @@ try {
 		ajax::success();
 	}
 
+	if (init('action') == 'uploadImagePlan') {
+		$plan = plan::byId(init('id'));
+		if (!is_object($plan)) {
+			throw new Exception(__('Objet inconnu verifié l\'id', __FILE__));
+		}
+		if (!isset($_FILES['file'])) {
+			throw new Exception(__('Aucun fichier trouvé. Vérifié parametre PHP (post size limit)', __FILE__));
+		}
+		$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
+		if (!in_array($extension, array('.jpg', '.png'))) {
+			throw new Exception('Extension du fichier non valide (autorisé .jpg .png) : ' . $extension);
+		}
+		if (filesize($_FILES['file']['tmp_name']) > 5000000) {
+			throw new Exception(__('Le fichier est trop gros (maximum 5mo)', __FILE__));
+		}
+		$uploaddir = dirname(__FILE__) . '/../img/plan_' . $plan->getId();
+		if (!file_exists($uploaddir)) {
+			mkdir($uploaddir, 0777);
+		}
+		shell_exec('rm -rf ' . $uploaddir . '/*');
+		$name = sha1(base64_encode(file_get_contents($_FILES['file']['tmp_name']))) . $extension;
+		$img_size = getimagesize($_FILES['file']['tmp_name']);
+		if (!move_uploaded_file($_FILES['file']['tmp_name'], $uploaddir . '/' . $name)) {
+			throw new Exception(__('Impossible de déplacer le fichier temporaire dans : ', __FILE__) . $uploaddir . '/' . $name);
+		}
+		$plan->setDisplay('width', $img_size[0]);
+		$plan->setDisplay('height', $img_size[1]);
+		$plan->setDisplay('path', 'core/img/plan_' . $plan->getId() . '/' . $name);
+		$plan->save();
+		ajax::success();
+	}
+
 	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
