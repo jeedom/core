@@ -289,6 +289,7 @@ duplicatePlan: {
     callback: function(key, opt){
        bootbox.prompt("{{Nom la copie du design ?}}", function (result) {
         if (result !== null) {
+            savePlan(false,false);
             jeedom.plan.copyHeader({
                 name: result,
                 id: planHeader_id,
@@ -310,9 +311,10 @@ configurePlan: {
         return !this.data('editOption.state'); 
     },
     callback: function(key, opt){
-       $('#md_modal').dialog({title: "{{Configuration du design}}"});
-       $('#md_modal').load('index.php?v=d&modal=planHeader.configure&planHeader_id=' + planHeader_id).dialog('open');
-   }
+        savePlan(false,false);
+        $('#md_modal').dialog({title: "{{Configuration du design}}"});
+        $('#md_modal').load('index.php?v=d&modal=planHeader.configure&planHeader_id=' + planHeader_id).dialog('open');
+    }
 },
 sep3 : "---------",
 save: {
@@ -400,16 +402,17 @@ items: {
     name: '{{Supprimer}}',
     icon:'fa-trash',
     callback: function(key, opt){
-     jeedom.plan.remove({
-       id:  $(this).attr('data-plan_id'),
-       error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'});
-    },
-    success: function () {
-        displayPlan();
-    },
-});
- }
+        savePlan(false,false);
+        jeedom.plan.remove({
+           id:  $(this).attr('data-plan_id'),
+           error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+            displayPlan();
+        },
+    });
+    }
 },
 duplicate: {
     name: '{{Dupliquer}}',
