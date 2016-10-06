@@ -2,7 +2,7 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-$plan = plan::byLinkTypeLinkIdPlanHedaerId(init('link_type'), init('link_id'), init('planHeader_id'));
+$plan = plan::byId(init('id'));
 if (!is_object($plan)) {
 	throw new Exception('Impossible de trouver le design');
 }

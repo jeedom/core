@@ -31,10 +31,7 @@ try {
 		foreach ($plans as $plan_ajax) {
 			@$plan = plan::byId($plan_ajax['id']);
 			if (!is_object($plan)) {
-				$plan = plan::byLinkTypeLinkIdPlanHedaerId($plan_ajax['link_type'], $plan_ajax['link_id'], $plan_ajax['planHeader_id']);
-				if (!is_object($plan)) {
-					$plan = new plan();
-				}
+				$plan = new plan();
 			}
 			utils::a2o($plan, $plan_ajax);
 			$plan->save();
@@ -63,9 +60,6 @@ try {
 	if (init('action') == 'copy') {
 		$plan = plan::byId(init('id'));
 		if (!is_object($plan)) {
-			$plan = plan::byLinkTypeLinkIdPlanHedaerId(init('link_type'), init('link_id'), init('planHeader_id'));
-		}
-		if (!is_object($plan)) {
 			throw new Exception(__('Aucun plan correspondant', __FILE__));
 		}
 		ajax::success($plan->copy()->getHtml(init('version')));
@@ -74,9 +68,6 @@ try {
 	if (init('action') == 'get') {
 		$plan = plan::byId(init('id'));
 		if (!is_object($plan)) {
-			$plan = plan::byLinkTypeLinkIdPlanHedaerId(init('link_type'), init('link_id'), init('planHeader_id'));
-		}
-		if (!is_object($plan)) {
 			throw new Exception(__('Aucun plan correspondant', __FILE__));
 		}
 		ajax::success(utils::o2a($plan));
@@ -84,9 +75,6 @@ try {
 
 	if (init('action') == 'remove') {
 		$plan = plan::byId(init('id'));
-		if (!is_object($plan)) {
-			$plan = plan::byLinkTypeLinkIdPlanHedaerId(init('link_type'), init('link_id'), init('planHeader_id'));
-		}
 		if (!is_object($plan)) {
 			throw new Exception(__('Aucun plan correspondant', __FILE__));
 		}

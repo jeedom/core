@@ -314,7 +314,7 @@ items: {
         callback: function(key, opt){
             var info = getObjectInfo($(this));
             $('#md_modal').dialog({title: "{{Configuration du widget}}"});
-            $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type='+info.type+'&link_id=' + info.id + '&planHeader_id=' + planHeader_id).dialog('open');
+            $('#md_modal').load('index.php?v=d&modal=plan.configure&id='+$(this).attr('data-plan_id')).dialog('open');
         }
     },
     configuration: {
@@ -369,11 +369,8 @@ items: {
     name: '{{Supprimer}}',
     icon:'fa-trash',
     callback: function(key, opt){
-     var info = getObjectInfo($(this));
      jeedom.plan.remove({
-       link_id:  info.id,
-       link_type : info.type,
-       planHeader_id : planHeader_id,
+       id:  $(this).attr('data-plan_id'),
        error: function (error) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
@@ -393,9 +390,7 @@ duplicate: {
     callback: function(key, opt){
         var info = getObjectInfo($(this));
         jeedom.plan.copy({
-            link_type: info.type,
-            link_id : info.id,
-            planHeader_id : planHeader_id,
+            id: $(this).attr('data-plan_id'),
             version: 'dplan',
             error: function (error) {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -452,14 +447,6 @@ $('#md_selectLink .validate').on('click', function () {
     addObject({link_type : $('#md_selectLink .linkType').value(),link_id : $('#md_selectLink .link' + $('#md_selectLink .linkType').value() + ' .linkId').value(),display : {name : $('#md_selectLink .link' + $('#md_selectLink .linkType').value() + ' .linkId option:selected').text()}});
 });
 
-$("#md_addViewData").dialog({
-    closeText: '',
-    autoOpen: false,
-    modal: true,
-    height: (jQuery(window).height() - 150),
-    width: (jQuery(window).width() - 450)
-});
-
 $('body').delegate('.eqLogic-widget .history', 'click', function () {
     if (!editOption.state) {
         $('#md_modal').dialog({title: "Historique"});
@@ -504,15 +491,13 @@ function fullScreen(_mode) {
         $('header').hide();
         $('footer').hide();
         $('#div_planHeader').hide();
-        $('#div_mainContainer').css('margin-top', '-60px');
-        $('#div_mainContainer').css('margin-left', '-15px');
+        $('#div_mainContainer').css('margin-top', '-60px').css('margin-left', '-15px');
         $('#wrap').css('margin-bottom', '0px');
     }else{
         $('header').show();
         $('footer').show();
         $('#div_planHeader').show();
-        $('#div_mainContainer').css('margin-top', '0px');
-        $('#div_mainContainer').css('margin-left', '0px');
+        $('#div_mainContainer').css('margin-top', '0px').css('margin-left', '0px');
         $('#wrap').css('margin-bottom', '15px');
     }
 }
@@ -660,6 +645,7 @@ function savePlan(_refreshDisplay) {
             var plan = {};
             plan.position = {};
             plan.display = {};
+            plan.id = $(this).attr('data-plan_id');
             plan.link_type = info.type;
             plan.link_id = info.id;
             plan.planHeader_id = planHeader_id;
@@ -736,7 +722,6 @@ for (var key in _plan.css) {
         }
     }
 }
-
 if (_plan.link_type == 'text' || _plan.link_type == 'graph' || _plan.link_type == 'plan' || _plan.link_type == 'view') {
     if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
         if (isset(_plan.display) && isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) {
@@ -747,7 +732,6 @@ if (_plan.link_type == 'text' || _plan.link_type == 'graph' || _plan.link_type =
         }
     }
 }
-
 html.css('position', 'absolute');
 html.css('top',  init(_plan.position.top, '10') * $('.div_displayObject').height() / 100);
 html.css('left', init(_plan.position.left, '10') * $('.div_displayObject').width() / 100);
