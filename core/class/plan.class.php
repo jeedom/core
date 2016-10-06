@@ -38,8 +38,8 @@ class plan {
 			'id' => $_id,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM plan
-                WHERE id=:id';
+		FROM plan
+		WHERE id=:id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -48,8 +48,8 @@ class plan {
 			'planHeader_id' => $_planHeader_id,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM plan
-                WHERE planHeader_id=:planHeader_id';
+		FROM plan
+		WHERE planHeader_id=:planHeader_id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -59,9 +59,9 @@ class plan {
 			'link_id' => $_link_id,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM plan
-                WHERE link_type=:link_type
-                    AND link_id=:link_id';
+		FROM plan
+		WHERE link_type=:link_type
+		AND link_id=:link_id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -72,16 +72,16 @@ class plan {
 			'planHeader_id' => $_planHeader_id,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM plan
-                WHERE link_type=:link_type
-                    AND link_id=:link_id
-                    AND planHeader_id=:planHeader_id';
+		FROM plan
+		WHERE link_type=:link_type
+		AND link_id=:link_id
+		AND planHeader_id=:planHeader_id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
 	public static function all() {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM plan';
+		FROM plan';
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -235,7 +235,11 @@ class plan {
 				'html' => $html,
 			);
 		} else if ($this->getLink_type() == 'macro') {
-			$html = '<div class="macro-widget cursor" data-macro_id="' . $this->getLink_id() . '" style="min-width:20px;min-height:20px;"></div>';
+			if ($this->getConfiguration('macro_mode', 'simple') == 'widget') {
+				$html = '<div class="macro-widget cursor displayWidget" data-eqLogic_id="' . str_replace(array('#', 'eqLogic'), array('', ''), $this->getConfiguration('eqLogic')) . '" data-macro_id="' . $this->getLink_id() . '" style="min-width:20px;min-height:20px;"></div>';
+			} else {
+				$html = '<div class="macro-widget cursor" data-macro_id="' . $this->getLink_id() . '" style="min-width:20px;min-height:20px;"></div>';
+			}
 			return array(
 				'plan' => utils::o2a($this),
 				'html' => $html,
