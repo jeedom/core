@@ -574,7 +574,9 @@ function initEditOption(_state) {
  }else{
     $('.div_grid').hide();
 }
-$('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.scenario-widget,.text-widget,.image-widget,.macro-widget').resizable();
+$('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.scenario-widget,.text-widget,.image-widget,.macro-widget').resizable({
+    containment: "parent"
+});
 $('.div_displayObject a').each(function () {
     if ($(this).attr('href') != '#') {
         $(this).attr('data-href', $(this).attr('href')).removeAttr('href');
