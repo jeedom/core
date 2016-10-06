@@ -45,6 +45,16 @@ sendVarToJS('id', $plan->getId());
             <input type="text" class="planAttr form-control" data-l1key="position" data-l2key="left" />
         </div>
     </div>
+     <div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan link_image link_zone">
+        <label class="col-lg-4 control-label">{{Hauteur (px)}}</label>
+        <div class="col-lg-2">
+            <input type="text" class="planAttr form-control" data-l1key="display" data-l2key="height" />
+        </div>
+        <label class="col-lg-2 control-label">{{Largeur (px)}}</label>
+        <div class="col-lg-2">
+            <input type="text" class="planAttr form-control" data-l1key="display" data-l2key="width" />
+        </div>
+    </div>
     <legend>{{Spécifique}}</legend>
     <div class="form-group link_type link_image">
         <label class="col-lg-4 control-label">{{Afficher}}</label>
