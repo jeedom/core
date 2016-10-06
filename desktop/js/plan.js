@@ -795,6 +795,9 @@ function displayObject(_plan,_html, _noRender) {
     }
     for (var key in _plan.css) {
         if (_plan.css[key] != '' && key != 'zoom' && key != 'color' && key != 'rotate' && key != 'background-color') {
+            if(key == 'z-index' && _plan.css[key] < 1000){
+                continue;
+            }
             html.css(key, _plan.css[key]);
         }else if (_plan.link_type == 'text' || _plan.link_type == 'graph' || _plan.link_type == 'plan' || _plan.link_type == 'view') {
             if (key == 'background-color' && (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1)) {
