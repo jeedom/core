@@ -53,7 +53,6 @@ if(deviceInfo.type == 'desktop'){
                     editOption.state = !editOption.state;
                     this.data('editOption.state', editOption.state);
                     initEditOption(editOption.state);
-                    return false;
                 }
             },
             fullscreen: {
