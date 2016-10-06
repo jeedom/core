@@ -28,7 +28,7 @@ sendVarToJS('id', $plan->getId());
         <label class="col-lg-4 control-label">{{Profondeur}}</label>
         <div class="col-lg-2">
             <select class="form-control planAttr" data-l1key="css" data-l2key="z-index" >
-                <option value="99">{{Niveau -1}}</option>
+                <option value="999">{{Niveau -1}}</option>
                 <option value="1000" selected>{{Niveau 1}}</option>
                 <option value="1001">{{Niveau 2}}</option>
                 <option value="1002">{{Niveau 3}}</option>

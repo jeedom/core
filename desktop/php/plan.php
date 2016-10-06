@@ -36,7 +36,7 @@ if (!is_object($planHeader)) {
 ?>
 <style>
   .div_grid {
-    z-index : 999;
+    z-index : 998;
     background-size: 15px 15px;
     background-image:
     -webkit-repeating-linear-gradient(90deg, rgba(0, 191, 255, .5), rgba(0, 191, 255, .5) 1px, transparent 1px, transparent 20px),

@@ -795,7 +795,7 @@ function displayObject(_plan,_html, _noRender) {
     }
     for (var key in _plan.css) {
         if (_plan.css[key] != '' && key != 'zoom' && key != 'color' && key != 'rotate' && key != 'background-color') {
-            if(key == 'z-index' && _plan.css[key] < 1000){
+            if(key == 'z-index' && _plan.css[key] < 999){
                 continue;
             }
             html.css(key, _plan.css[key]);
