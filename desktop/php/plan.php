@@ -52,7 +52,7 @@ if (!is_object($planHeader)) {
     repeating-linear-gradient(0deg, rgba(0, 191, 255, .5), rgba(0, 191, 255, .5) 1px, transparent 1px, transparent 20px);
   }
   .contextMenu_select {
-    box-shadow: 0 0 2em #454449 !important;
+    box-shadow: 0 0 2em red !important;
   }
   .widget-shadow-edit{
     box-shadow: 0 0 2em #96C927;
