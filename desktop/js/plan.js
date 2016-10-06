@@ -485,7 +485,7 @@ $('body').delegate('.macro-widget.displayWidget', 'click mouseenter', function (
             el.empty().append(data.html);
             if(deviceInfo.type == 'desktop'){
                 el.off('mouseleave').on('mouseleave',function(){
-                    el.empty()
+                   // el.empty()
                 });
             }
         }
@@ -495,7 +495,7 @@ $('body').delegate('.macro-widget.displayWidget', 'click mouseenter', function (
 
 $(document).click(function(event) {
     if (!editOption.state) {
-        if ( !$(event.target).hasClass('.macro-widget.displayWidget')) {
+        if ( !$(event.target).hasClass('.macro-widget.displayWidget') && $(event.target).closest('.macro-widget.displayWidget').html() == undefined) {
            $('.macro-widget.displayWidget').empty();
        }
    }
