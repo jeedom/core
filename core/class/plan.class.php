@@ -176,9 +176,17 @@ class plan {
 				'html' => $html,
 			);
 		} else if ($this->getLink_type() == 'graph') {
+			$background_color = 'background-color : white;';
+			if ($this->getDisplay('transparentBackground', false)) {
+				$background_color = '';
+			}
+			$html = '<div class="graph-widget" data-graph_id="' . $this->getLink_id() . '" style="' . $background_color . 'border : solid 1px black;min-height:50px;min-width:50px;">';
+			$html .= '<span class="graphOptions" style="display:none;">' . json_encode($this->getDisplay('graph', array())) . '</span>';
+			$html .= '<div class="graph" id="graph' . $this->getLink_id() . '" style="width : 100%;height : 100%;"></div>';
+			$html .= '</div>';
 			return array(
 				'plan' => utils::o2a($this),
-				'html' => '',
+				'html' => $html,
 			);
 		} else if ($this->getLink_type() == 'text') {
 			$html = '<div class="text-widget" data-text_id="' . $this->getLink_id() . '" style="color:' . $this->getCss('color', 'black') . ';">';
