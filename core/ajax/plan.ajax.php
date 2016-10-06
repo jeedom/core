@@ -133,6 +133,18 @@ try {
 		ajax::success(utils::o2a($planHeader->copy(init('name'))));
 	}
 
+	if (init('action') == 'removeImageHeader') {
+		$planHeader = planHeader::byId(init('id'));
+		if (!is_object($planHeader)) {
+			throw new Exception(__('Plan header inconnu verifié l\'id : ', __FILE__) . init('id'));
+		}
+		$planHeader->setImage('data', '');
+		$planHeader->setImage('sha1', '');
+		$planHeader->save();
+		@rrmdir(dirname(__FILE__) . '/../../core/img/plan');
+		ajax::success();
+	}
+
 	if (init('action') == 'uploadImage') {
 		$planHeader = planHeader::byId(init('id'));
 		if (!is_object($planHeader)) {

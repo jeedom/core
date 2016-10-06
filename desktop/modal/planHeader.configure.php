@@ -36,6 +36,7 @@ sendVarToJS('id', $planHeader->getId())
               <span class="btn btn-default btn-file">
                 <i class="fa fa-cloud-upload"></i> {{Envoyer}}<input  id="bt_uploadImage" type="file" name="file" style="display: inline-block;">
             </span>
+            <a class="btn btn-danger" id="bt_removeBackgroundImage"><i class="fa fa-trash"></i> {{Supprimer l'image}}</a>
         </div>
     </div>
     <legend><i class="icon techno-fleches"></i> {{Tailles}}</legend>
@@ -73,6 +74,18 @@ sendVarToJS('id', $planHeader->getId())
         }
     });
 
+    $('#bt_removeBackgroundImage').on('click', function () {
+      jeedom.plan.removeImageHeader({
+        planHeader_id: planHeader_id,
+        error: function (error) {
+            $('#div_alertPlanHeaderConfigure').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+            $('#div_alertPlanHeaderConfigure').showAlert({message: '{{Image supprimée}}', level: 'success'});
+        },
+    });
+  });
+
     $('#bt_saveConfigurePlanHeader').on('click', function () {
       jeedom.plan.saveHeader({
         planHeader: $('#fd_planHeaderConfigure').getValues('.planHeaderAttr')[0],
@@ -80,21 +93,21 @@ sendVarToJS('id', $planHeader->getId())
             $('#div_alertPlanHeaderConfigure').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-            $('#div_alertPlanHeaderConfigure').showAlert({message: 'Design sauvegardé', level: 'success'});
-            loadPage('index.php?v=d&p=plan');
+            $('#div_alertPlanHeaderConfigure').showAlert({message: '{{Design sauvegardé}}', level: 'success'});
+            loadPage('index.php?v=d&p=plan&plan_id='+planHeader_id);
         },
     });
   });
 
     if (isset(id) && id != '') {
-     jeedom.plan.getHeader({
+       jeedom.plan.getHeader({
         id: id,
         error: function (error) {
             $('#div_alertPlanHeaderConfigure').showAlert({message: error.message, level: 'danger'});
         },
         success: function (planHeader) {
-           $('#fd_planHeaderConfigure').setValues(planHeader, '.planHeaderAttr');
-       }
-   });
- }
+         $('#fd_planHeaderConfigure').setValues(planHeader, '.planHeaderAttr');
+     }
+ });
+   }
 </script>
