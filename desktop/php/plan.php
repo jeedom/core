@@ -52,10 +52,10 @@ if (!is_object($planHeader)) {
     repeating-linear-gradient(0deg, rgba(0, 191, 255, .5), rgba(0, 191, 255, .5) 1px, transparent 1px, transparent 20px);
   }
   .contextMenu_select {
-    box-shadow: 0 0 2em gold !important;
+    box-shadow: 0 0 2em #454449 !important;
   }
   .widget-shadow-edit{
-    box-shadow: 0 0 2em red;
+    box-shadow: 0 0 2em #96C927;
   }
 </style>
 <div class="container-fluid div_displayObject" style="position: relative;padding:0;user-select: none;-khtml-user-select: none;-o-user-select: none;-moz-user-select: -moz-none;-webkit-user-select: none;"></div>
