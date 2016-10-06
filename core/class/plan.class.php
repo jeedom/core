@@ -87,6 +87,10 @@ class plan {
 
 	/*     * *********************Methode d'instance************************* */
 
+	public function preInsert() {
+		$this->setCss('z-index', 1000);
+	}
+
 	public function preSave() {
 		if ($this->getCss('zoom') != '' && (!is_numeric($this->getCss('zoom')) || $this->getCss('zoom')) < 0.1) {
 			$this->setCss('zoom', 1);
@@ -236,7 +240,13 @@ class plan {
 			);
 		} else if ($this->getLink_type() == 'zone') {
 			if ($this->getConfiguration('zone_mode', 'simple') == 'widget') {
-				$html = '<div class="zone-widget cursor displayWidget" data-eqLogic_id="' . str_replace(array('#', 'eqLogic'), array('', ''), $this->getConfiguration('eqLogic')) . '" data-zone_id="' . $this->getLink_id() . '" style="min-width:20px;min-height:20px;"></div>';
+				if ($this->getConfiguration('showOnFly') == 1) {
+					$class .= 'zoneEqLogicOnFly ';
+				}
+				if ($this->getConfiguration('showOnClic') == 1) {
+					$class .= 'zoneEqLogicOnClic ';
+				}
+				$html = '<div class="zone-widget cursor zoneEqLogic ' . $class . '" data-eqLogic_id="' . str_replace(array('#', 'eqLogic'), array('', ''), $this->getConfiguration('eqLogic')) . '" data-zone_id="' . $this->getLink_id() . '" style="min-width:20px;min-height:20px;"></div>';
 			} else {
 				$html = '<div class="zone-widget cursor" data-zone_id="' . $this->getLink_id() . '" style="min-width:20px;min-height:20px;"></div>';
 			}

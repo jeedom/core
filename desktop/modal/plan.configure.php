@@ -21,10 +21,10 @@ sendVarToJS('id', $plan->getId());
         <div class="form-group link_type link_eqLogic link_cmd link_scenario">
             <label class="col-lg-4 control-label">{{Taille du widget}}</label>
             <div class="col-lg-2">
-               <input type="text" class="planAttr form-control" data-l1key="css" data-l2key="zoom"/>
-           </div>
-       </div>
-       <div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan link_image link_zone">
+             <input type="text" class="planAttr form-control" data-l1key="css" data-l2key="zoom"/>
+         </div>
+     </div>
+     <div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan link_image link_zone">
         <label class="col-lg-4 control-label">{{Profondeur}}</label>
         <div class="col-lg-2">
             <select class="form-control planAttr" data-l1key="css" data-l2key="z-index" >
@@ -45,7 +45,7 @@ sendVarToJS('id', $plan->getId());
             <input type="text" class="planAttr form-control" data-l1key="position" data-l2key="left" />
         </div>
     </div>
-     <div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan link_image link_zone">
+    <div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan link_image link_zone">
         <label class="col-lg-4 control-label">{{Hauteur (px)}}</label>
         <div class="col-lg-2">
             <input type="text" class="planAttr form-control" data-l1key="display" data-l2key="height" />
@@ -76,11 +76,11 @@ sendVarToJS('id', $plan->getId());
 <div class="form-group link_type link_image display_mode display_mode_camera" style="display:none;">
     <label class="col-lg-4 control-label">{{Caméra}}</label>
     <div class="col-lg-3">
-       <input type="text" class="planAttr form-control" data-l1key="configuration" data-l2key="camera"/>
-   </div>
-   <div class="col-lg-3">
-       <a class="btn btn-default" id="bt_planConfigureSelectCamera"><i class="fa fa-list-alt"></i></a>
-   </div>
+     <input type="text" class="planAttr form-control" data-l1key="configuration" data-l2key="camera"/>
+ </div>
+ <div class="col-lg-3">
+     <a class="btn btn-default" id="bt_planConfigureSelectCamera"><i class="fa fa-list-alt"></i></a>
+ </div>
 </div>
 
 <div class="form-group link_type link_graph">
@@ -252,29 +252,41 @@ foreach (planHeader::all() as $planHeader_select) {
       <div class="form-group">
         <label class="col-lg-4 control-label">{{Equipement}}</label>
         <div class="col-lg-3">
-           <input type="text" class="planAttr form-control" data-l1key="configuration" data-l2key="eqLogic"/>
-       </div>
-       <div class="col-lg-3">
-           <a class="btn btn-default" id="bt_planConfigureAddEqLogic"><i class="fa fa-list-alt"></i></a>
-       </div>
-   </div>
+         <input type="text" class="planAttr form-control" data-l1key="configuration" data-l2key="eqLogic"/>
+     </div>
+     <div class="col-lg-3">
+         <a class="btn btn-default" id="bt_planConfigureAddEqLogic"><i class="fa fa-list-alt"></i></a>
+     </div>
+ </div>
+ <div class="form-group">
+    <label class="col-lg-4 control-label">{{Afficher au survole}}</label>
+    <div class="col-lg-2">
+        <input type="checkbox" checked class="planAttr" data-l1key="configuration" data-l2key="showOnFly" >
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-lg-4 control-label">{{Afficher sur un clic}}</label>
+    <div class="col-lg-2">
+        <input type="checkbox" checked class="planAttr" data-l1key="configuration" data-l2key="showOnClic" >
+    </div>
+</div>
 </div>
 
 <div class="zone_mode zone_binary" style="display: none;">
     <div class="form-group">
         <label class="col-lg-4 control-label">{{Information binaire}}</label>
         <div class="col-lg-3">
-           <input type="text" class="planAttr form-control" data-l1key="configuration" data-l2key="binary_info"/>
-       </div>
-       <div class="col-lg-3">
-           <a class="btn btn-default" id="bt_planConfigureSelectBinary"><i class="fa fa-list-alt"></i></a>
-       </div>
-   </div>
-   <legend>{{Action on}}<a class="btn btn-success pull-right btn-xs bt_planConfigurationAction" data-type="on"><i class="fa fa-plus"></i></a></legend>
-   <div id="div_planConfigureActionon"></div>
+         <input type="text" class="planAttr form-control" data-l1key="configuration" data-l2key="binary_info"/>
+     </div>
+     <div class="col-lg-3">
+         <a class="btn btn-default" id="bt_planConfigureSelectBinary"><i class="fa fa-list-alt"></i></a>
+     </div>
+ </div>
+ <legend>{{Action on}}<a class="btn btn-success pull-right btn-xs bt_planConfigurationAction" data-type="on"><i class="fa fa-plus"></i></a></legend>
+ <div id="div_planConfigureActionon"></div>
 
-   <legend>{{Action off}}<a class="btn btn-success pull-right btn-xs bt_planConfigurationAction" data-type="off"><i class="fa fa-plus"></i></a></legend>
-   <div id="div_planConfigureActionoff"></div>
+ <legend>{{Action off}}<a class="btn btn-success pull-right btn-xs bt_planConfigurationAction" data-type="off"><i class="fa fa-plus"></i></a></legend>
+ <div id="div_planConfigureActionoff"></div>
 </div>
 </div>
 </fieldset>
@@ -378,7 +390,7 @@ foreach (planHeader::all() as $planHeader_select) {
     });
 
     $('#fd_planConfigure').on('change','.planAttr[data-l1key=css][data-l2key=background-color]', function() {
-     if($(this).value() != '#000000'){
+       if($(this).value() != '#000000'){
         $('.planAttr[data-l1key=display][data-l2key=background-defaut]').value(0);
     }
 });
@@ -403,7 +415,7 @@ foreach (planHeader::all() as $planHeader_select) {
     });
 
     if (isset(id) && id != '') {
-       $.ajax({
+     $.ajax({
         type: "POST",
         url: "core/ajax/plan.ajax.php",
         data: {
@@ -452,9 +464,9 @@ foreach (planHeader::all() as $planHeader_select) {
             }
         }
     });
-   }
+ }
 
-   function save() {
+ function save() {
     var plans = $('#fd_planConfigure').getValues('.planAttr');
     if (plans[0].link_type == 'text') {
         var id = $('.planAttr[data-l1key=display][data-l2key=text]').attr('id');
