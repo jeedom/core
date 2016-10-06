@@ -21,11 +21,11 @@ foreach (object::all() as $object) {
 }
 
 ?>
-                </select>
-            </td>
-            <td class="mod_insertEqLogicValue_eqLogic"></td>
-        </tr>
-    </tbody>
+               </select>
+           </td>
+           <td class="mod_insertEqLogicValue_eqLogic"></td>
+       </tr>
+   </tbody>
 </table>
 <script>
     function mod_insertEqLogic() {
@@ -71,12 +71,14 @@ foreach (object::all() as $object) {
                 _select.closest('tr').find('.mod_insertEqLogicValue_eqLogic').empty();
                 var selectEqLogic = '<select class="form-control">';
                 for (var i in eqLogics) {
+                  if (init(mod_insertEqLogic.options.eqLogic.eqType_name, 'all') == 'all' || eqLogics[i].eqType_name == mod_insertEqLogic.options.eqLogic.eqType_name){
                     selectEqLogic += '<option value="' + eqLogics[i].id + '">' + eqLogics[i].name + '</option>';
                 }
-                selectEqLogic += '</select>';
-                _select.closest('tr').find('.mod_insertEqLogicValue_eqLogic').append(selectEqLogic);
             }
-        });
+            selectEqLogic += '</select>';
+            _select.closest('tr').find('.mod_insertEqLogicValue_eqLogic').append(selectEqLogic);
+        }
+    });
     }
 
     mod_insertEqLogic.changeObjectEqLogic($('#table_mod_insertEqLogicValue_valueEqLogicToMessage td.mod_insertEqLogicValue_object select'), mod_insertEqLogic.options);

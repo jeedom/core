@@ -483,6 +483,7 @@ CREATE TABLE IF NOT EXISTS `plan` (
   `position` TEXT NULL,
   `display` TEXT NULL,
   `css` TEXT NULL,
+  `configuration` TEXT NULL,
   PRIMARY KEY (`id`),
   INDEX `unique` (`link_type` ASC, `link_id` ASC),
   INDEX `fk_plan_planHeader1_idx` (`planHeader_id` ASC),

@@ -29,6 +29,7 @@ class plan {
 	private $position;
 	private $display;
 	private $css;
+	private $configuration;
 
 	/*     * ***********************Methode static*************************** */
 
@@ -127,7 +128,42 @@ class plan {
 		return null;
 	}
 
+	public function execute() {
+		if ($this->getLink_type() != 'macro') {
+			return;
+		}
+		if ($this->getConfiguration('macro_mode', 'simple') == 'simple') {
+			$this->doAction('other');
+		} else if ($this->getConfiguration('macro_mode', 'simple') == 'binary') {
+			$result = jeedom::evaluateExpression($this->getConfiguration('binary_info', 0));
+			if ($result) {
+				$this->doAction('off');
+			} else {
+				$this->doAction('on');
+			}
+		}
+	}
+
+	public function doAction($_action) {
+		foreach ($this->getConfiguration('action_' . $_action) as $action) {
+			try {
+				$cmd = cmd::byId(str_replace('#', '', $action['cmd']));
+				if (is_object($cmd) && $this->getId() == $cmd->getEqLogic_id()) {
+					continue;
+				}
+				$options = array();
+				if (isset($action['options'])) {
+					$options = $action['options'];
+				}
+				scenarioExpression::createAndExec('action', $action['cmd'], $options);
+			} catch (Exception $e) {
+				log::add('design', 'error', __('Erreur lors de l\'éxecution de ', __FILE__) . $action['cmd'] . __('. Détails : ', __FILE__) . $e->getMessage());
+			}
+		}
+	}
+
 	public function getHtml($_version = 'dplan') {
+
 		if ($this->getLink_type() == 'eqLogic' || $this->getLink_type() == 'cmd' || $this->getLink_type() == 'scenario') {
 			$link = $this->getLink();
 			if (!is_object($link)) {
@@ -201,7 +237,22 @@ class plan {
 				'html' => $html,
 			);
 		} else if ($this->getLink_type() == 'image') {
-			$html = '<div class="image-widget" data-image_id="' . $this->getLink_id() . '"><img style="width:100%;height:100%" src="' . $this->getDisplay('path', 'core/img/no_image.gif') . '"/></div>';
+			$html = '<div class="image-widget" data-image_id="' . $this->getLink_id() . '" style="min-width:10px;min-height:10px;">';
+			if ($this->getConfiguration('display_mode', 'image') == 'image') {
+				$html .= '<img style="width:100%;height:100%" src="' . $this->getDisplay('path', 'core/img/no_image.gif') . '"/>';
+			} else {
+				$camera = eqLogic::byId(str_replace(array('#', 'eqLogic'), array('', ''), $this->getConfiguration('camera')));
+				if (is_object($camera)) {
+					$html .= $camera->toHtml($_version, true);
+				}
+			}
+			$html .= '</div>';
+			return array(
+				'plan' => utils::o2a($this),
+				'html' => $html,
+			);
+		} else if ($this->getLink_type() == 'macro') {
+			$html = '<div class="macro-widget cursor" data-macro_id="' . $this->getLink_id() . '" style="min-width:20px;min-height:20px;"></div>';
 			return array(
 				'plan' => utils::o2a($this),
 				'html' => $html,
@@ -271,6 +322,15 @@ class plan {
 
 	public function setPlanHeader_id($planHeader_id) {
 		$this->planHeader_id = $planHeader_id;
+		return $this;
+	}
+
+	public function getConfiguration($_key = '', $_default = '') {
+		return utils::getJsonAttr($this->configuration, $_key, $_default);
+	}
+
+	public function setConfiguration($_key, $_value) {
+		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
 		return $this;
 	}
 

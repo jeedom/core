@@ -33,10 +33,18 @@ try {
 			if (!is_object($plan)) {
 				$plan = new plan();
 			}
-			utils::a2o($plan, $plan_ajax);
+			utils::a2o($plan, jeedom::fromHumanReadable($plan_ajax));
 			$plan->save();
 		}
 		ajax::success();
+	}
+
+	if (init('action') == 'execMacro') {
+		$plan = plan::byId(init('id'));
+		if (!is_object($plan)) {
+			throw new Exception(__('Aucun plan correspondant', __FILE__));
+		}
+		ajax::success($plan->execute());
 	}
 
 	if (init('action') == 'planHeader') {
@@ -62,7 +70,7 @@ try {
 		if (!is_object($plan)) {
 			throw new Exception(__('Aucun plan correspondant', __FILE__));
 		}
-		ajax::success($plan->copy()->getHtml(init('version')));
+		ajax::success($plan->copy()->getHtml(init('version', 'dplan')));
 	}
 
 	if (init('action') == 'get') {
@@ -70,7 +78,7 @@ try {
 		if (!is_object($plan)) {
 			throw new Exception(__('Aucun plan correspondant', __FILE__));
 		}
-		ajax::success(utils::o2a($plan));
+		ajax::success(jeedom::toHumanReadable(utils::o2a($plan)));
 	}
 
 	if (init('action') == 'remove') {

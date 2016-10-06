@@ -43,6 +43,25 @@
     $.ajax(paramsAJAX);
 };
 
+ jeedom.plan.execMacro = function (_params) {
+    var paramsRequired = ['id'];
+    var paramsSpecifics = {global: false};
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/plan.ajax.php';
+    paramsAJAX.data = {
+        action: 'execMacro',
+        id: _params.id
+    };
+    $.ajax(paramsAJAX);
+};
+
 
 jeedom.plan.save = function (_params) {
     var paramsRequired = ['plans'];
@@ -120,7 +139,8 @@ jeedom.plan.create = function (_params) {
     paramsAJAX.url = 'core/ajax/plan.ajax.php';
     paramsAJAX.data = {
         action: 'create',
-        plan: json_encode(_params.plan)
+        plan: json_encode(_params.plan),
+        version: _params.version
     };
     $.ajax(paramsAJAX);
 };
