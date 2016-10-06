@@ -39,7 +39,7 @@ try {
 		ajax::success();
 	}
 
-	if (init('action') == 'execMacro') {
+	if (init('action') == 'execute') {
 		$plan = plan::byId(init('id'));
 		if (!is_object($plan)) {
 			throw new Exception(__('Aucun plan correspondant', __FILE__));

@@ -43,7 +43,7 @@
     $.ajax(paramsAJAX);
 };
 
- jeedom.plan.execMacro = function (_params) {
+ jeedom.plan.execute = function (_params) {
     var paramsRequired = ['id'];
     var paramsSpecifics = {global: false};
     try {
@@ -56,7 +56,7 @@
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/plan.ajax.php';
     paramsAJAX.data = {
-        action: 'execMacro',
+        action: 'execute',
         id: _params.id
     };
     $.ajax(paramsAJAX);
