@@ -31,15 +31,20 @@ try {
 		foreach ($plans as $plan_ajax) {
 			@$plan = plan::byId($plan_ajax['id']);
 			if (!is_object($plan)) {
-				$plan = plan::byLinkTypeLinkIdPlanHedaerId($plan_ajax['link_type'], $plan_ajax['link_id'], $plan_ajax['planHeader_id']);
-				if (!is_object($plan)) {
-					$plan = new plan();
-				}
+				$plan = new plan();
 			}
-			utils::a2o($plan, $plan_ajax);
+			utils::a2o($plan, jeedom::fromHumanReadable($plan_ajax));
 			$plan->save();
 		}
 		ajax::success();
+	}
+
+	if (init('action') == 'execute') {
+		$plan = plan::byId(init('id'));
+		if (!is_object($plan)) {
+			throw new Exception(__('Aucun plan correspondant', __FILE__));
+		}
+		ajax::success($plan->execute());
 	}
 
 	if (init('action') == 'planHeader') {
@@ -63,30 +68,21 @@ try {
 	if (init('action') == 'copy') {
 		$plan = plan::byId(init('id'));
 		if (!is_object($plan)) {
-			$plan = plan::byLinkTypeLinkIdPlanHedaerId(init('link_type'), init('link_id'), init('planHeader_id'));
-		}
-		if (!is_object($plan)) {
 			throw new Exception(__('Aucun plan correspondant', __FILE__));
 		}
-		ajax::success($plan->copy()->getHtml(init('version')));
+		ajax::success($plan->copy()->getHtml(init('version', 'dplan')));
 	}
 
 	if (init('action') == 'get') {
 		$plan = plan::byId(init('id'));
 		if (!is_object($plan)) {
-			$plan = plan::byLinkTypeLinkIdPlanHedaerId(init('link_type'), init('link_id'), init('planHeader_id'));
-		}
-		if (!is_object($plan)) {
 			throw new Exception(__('Aucun plan correspondant', __FILE__));
 		}
-		ajax::success(utils::o2a($plan));
+		ajax::success(jeedom::toHumanReadable(utils::o2a($plan)));
 	}
 
 	if (init('action') == 'remove') {
 		$plan = plan::byId(init('id'));
-		if (!is_object($plan)) {
-			$plan = plan::byLinkTypeLinkIdPlanHedaerId(init('link_type'), init('link_id'), init('planHeader_id'));
-		}
 		if (!is_object($plan)) {
 			throw new Exception(__('Aucun plan correspondant', __FILE__));
 		}
@@ -145,6 +141,18 @@ try {
 		ajax::success(utils::o2a($planHeader->copy(init('name'))));
 	}
 
+	if (init('action') == 'removeImageHeader') {
+		$planHeader = planHeader::byId(init('id'));
+		if (!is_object($planHeader)) {
+			throw new Exception(__('Plan header inconnu verifié l\'id : ', __FILE__) . init('id'));
+		}
+		$planHeader->setImage('data', '');
+		$planHeader->setImage('sha1', '');
+		$planHeader->save();
+		@rrmdir(dirname(__FILE__) . '/../../core/img/plan');
+		ajax::success();
+	}
+
 	if (init('action') == 'uploadImage') {
 		$planHeader = planHeader::byId(init('id'));
 		if (!is_object($planHeader)) {
@@ -169,6 +177,38 @@ try {
 		$planHeader->setConfiguration('desktopSizeY', $img_size[1]);
 		$planHeader->save();
 		@rrmdir(dirname(__FILE__) . '/../../core/img/plan');
+		ajax::success();
+	}
+
+	if (init('action') == 'uploadImagePlan') {
+		$plan = plan::byId(init('id'));
+		if (!is_object($plan)) {
+			throw new Exception(__('Objet inconnu verifié l\'id', __FILE__));
+		}
+		if (!isset($_FILES['file'])) {
+			throw new Exception(__('Aucun fichier trouvé. Vérifié parametre PHP (post size limit)', __FILE__));
+		}
+		$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
+		if (!in_array($extension, array('.jpg', '.png'))) {
+			throw new Exception('Extension du fichier non valide (autorisé .jpg .png) : ' . $extension);
+		}
+		if (filesize($_FILES['file']['tmp_name']) > 5000000) {
+			throw new Exception(__('Le fichier est trop gros (maximum 5mo)', __FILE__));
+		}
+		$uploaddir = dirname(__FILE__) . '/../img/plan_' . $plan->getId();
+		if (!file_exists($uploaddir)) {
+			mkdir($uploaddir, 0777);
+		}
+		shell_exec('rm -rf ' . $uploaddir . '/*');
+		$name = sha1(base64_encode(file_get_contents($_FILES['file']['tmp_name']))) . $extension;
+		$img_size = getimagesize($_FILES['file']['tmp_name']);
+		if (!move_uploaded_file($_FILES['file']['tmp_name'], $uploaddir . '/' . $name)) {
+			throw new Exception(__('Impossible de déplacer le fichier temporaire dans : ', __FILE__) . $uploaddir . '/' . $name);
+		}
+		$plan->setDisplay('width', $img_size[0]);
+		$plan->setDisplay('height', $img_size[1]);
+		$plan->setDisplay('path', 'core/img/plan_' . $plan->getId() . '/' . $name);
+		$plan->save();
 		ajax::success();
 	}
 

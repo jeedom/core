@@ -17,16 +17,22 @@
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                     $('.scenario[data-scenario_id=#id#] .state').empty().append('<i class="fa fa-times"></i>');
                     setTimeout(function() {
-                     $('.scenario[data-scenario_id=#id#] .state').empty();
-                 }, 3000);
+                       $('.scenario[data-scenario_id=#id#] .state').empty();
+                   }, 3000);
                 }
             });
         });
         jeedom.scenario.update['#id#'] =function(_options){
             $('.scenario[data-scenario_id=#id#] .state').empty();
             $('.scenario[data-scenario_id=#id#] .changeScenarioState').hide();
+            if(!isset(_options.isActive)){
+                _options.isActive = '#isActive#';
+            }
+            if(!isset(_options.state)){
+                _options.state = '#state#';
+            }
             if (_options.isActive == '1') {
-             if (_options.state == 'in progress') {
+               if (_options.state == 'in progress') {
                 $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=stop]').show();
                 $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=deactivate]').show();
             }else if (_options.state == 'error') {

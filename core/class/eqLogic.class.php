@@ -430,7 +430,7 @@ class eqLogic {
 		return true;
 	}
 
-	public function preToHtml($_version = 'dashboard', $_default = array()) {
+	public function preToHtml($_version = 'dashboard', $_default = array(), $_noCache = false) {
 		if ($_version == '') {
 			throw new Exception(__('La version demandée ne peut pas être vide (mobile, dashboard ou scénario)', __FILE__));
 		}
@@ -448,9 +448,11 @@ class eqLogic {
 		if (isset($_SESSION) && isset($_SESSION['user']) && is_object($_SESSION['user'])) {
 			$user_id = $_SESSION['user']->getId();
 		}
-		$mc = cache::byKey('widgetHtml' . $this->getId() . $_version . $user_id);
-		if ($mc->getValue() != '') {
-			return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
+		if (!$_noCache) {
+			$mc = cache::byKey('widgetHtml' . $this->getId() . $_version . $user_id);
+			if ($mc->getValue() != '') {
+				return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
+			}
 		}
 		$replace = array(
 			'#id#' => $this->getId(),

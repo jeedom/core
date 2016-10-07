@@ -43,6 +43,25 @@
     $.ajax(paramsAJAX);
 };
 
+ jeedom.plan.execute = function (_params) {
+    var paramsRequired = ['id'];
+    var paramsSpecifics = {global: false};
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/plan.ajax.php';
+    paramsAJAX.data = {
+        action: 'execute',
+        id: _params.id
+    };
+    $.ajax(paramsAJAX);
+};
+
 
 jeedom.plan.save = function (_params) {
     var paramsRequired = ['plans'];
@@ -120,7 +139,8 @@ jeedom.plan.create = function (_params) {
     paramsAJAX.url = 'core/ajax/plan.ajax.php';
     paramsAJAX.data = {
         action: 'create',
-        plan: json_encode(_params.plan)
+        plan: json_encode(_params.plan),
+        version: _params.version
     };
     $.ajax(paramsAJAX);
 };
@@ -164,6 +184,25 @@ jeedom.plan.byPlanHeader = function (_params) {
         planHeader_id: _params.id,
         noHtml : _params.noHtml,
         version: _params.version || 'dplan'
+    };
+    $.ajax(paramsAJAX);
+};
+
+jeedom.plan.removeImageHeader = function (_params) {
+    var paramsRequired = ['planHeader_id'];
+    var paramsSpecifics = {};
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/plan.ajax.php';
+    paramsAJAX.data = {
+        action: 'removeImageHeader',
+        id: _params.planHeader_id
     };
     $.ajax(paramsAJAX);
 };

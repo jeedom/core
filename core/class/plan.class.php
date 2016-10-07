@@ -29,6 +29,7 @@ class plan {
 	private $position;
 	private $display;
 	private $css;
+	private $configuration;
 
 	/*     * ***********************Methode static*************************** */
 
@@ -37,8 +38,8 @@ class plan {
 			'id' => $_id,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM plan
-                WHERE id=:id';
+		FROM plan
+		WHERE id=:id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -47,8 +48,8 @@ class plan {
 			'planHeader_id' => $_planHeader_id,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM plan
-                WHERE planHeader_id=:planHeader_id';
+		FROM plan
+		WHERE planHeader_id=:planHeader_id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -58,9 +59,9 @@ class plan {
 			'link_id' => $_link_id,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM plan
-                WHERE link_type=:link_type
-                    AND link_id=:link_id';
+		FROM plan
+		WHERE link_type=:link_type
+		AND link_id=:link_id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -71,20 +72,24 @@ class plan {
 			'planHeader_id' => $_planHeader_id,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM plan
-                WHERE link_type=:link_type
-                    AND link_id=:link_id
-                    AND planHeader_id=:planHeader_id';
+		FROM plan
+		WHERE link_type=:link_type
+		AND link_id=:link_id
+		AND planHeader_id=:planHeader_id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
 	public static function all() {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM plan';
+		FROM plan';
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
 	/*     * *********************Methode d'instance************************* */
+
+	public function preInsert() {
+		$this->setCss('z-index', 1000);
+	}
 
 	public function preSave() {
 		if ($this->getCss('zoom') != '' && (!is_numeric($this->getCss('zoom')) || $this->getCss('zoom')) < 0.1) {
@@ -127,6 +132,40 @@ class plan {
 		return null;
 	}
 
+	public function execute() {
+		if ($this->getLink_type() != 'zone') {
+			return;
+		}
+		if ($this->getConfiguration('zone_mode', 'simple') == 'simple') {
+			$this->doAction('other');
+		} else if ($this->getConfiguration('zone_mode', 'simple') == 'binary') {
+			$result = jeedom::evaluateExpression($this->getConfiguration('binary_info', 0));
+			if ($result) {
+				$this->doAction('off');
+			} else {
+				$this->doAction('on');
+			}
+		}
+	}
+
+	public function doAction($_action) {
+		foreach ($this->getConfiguration('action_' . $_action) as $action) {
+			try {
+				$cmd = cmd::byId(str_replace('#', '', $action['cmd']));
+				if (is_object($cmd) && $this->getId() == $cmd->getEqLogic_id()) {
+					continue;
+				}
+				$options = array();
+				if (isset($action['options'])) {
+					$options = $action['options'];
+				}
+				scenarioExpression::createAndExec('action', $action['cmd'], $options);
+			} catch (Exception $e) {
+				log::add('design', 'error', __('Erreur lors de l\'éxecution de ', __FILE__) . $action['cmd'] . __('. Détails : ', __FILE__) . $e->getMessage());
+			}
+		}
+	}
+
 	public function getHtml($_version = 'dplan') {
 		if ($this->getLink_type() == 'eqLogic' || $this->getLink_type() == 'cmd' || $this->getLink_type() == 'scenario') {
 			$link = $this->getLink();
@@ -138,18 +177,10 @@ class plan {
 				'html' => $link->toHtml($_version),
 			);
 		} else if ($this->getLink_type() == 'plan') {
-			$this_link = planHeader::byId($this->getLink_id());
-			if (!is_object($this_link)) {
-				return;
-			}
-			$link = 'index.php?v=d&p=plan&plan_id=' . $this_link->getId();
-			$html = '<span class="cursor plan-link-widget label label-success" data-link_id="' . $this_link->getId() . '" data-offsetX="' . $this->getDisplay('offsetX') . '" data-offsetY="' . $this->getDisplay('offsetY') . '">';
-			$html .= '<a style="color:' . $this->getCss('color', 'white') . ';text-decoration:none;font-size : 1.5em;">';
-			if ($this->getDisplay('name') != '' || $this->getDisplay('icon') != '') {
-				$html .= $this->getDisplay('icon') . ' ' . $this->getDisplay('name');
-			} else {
-				$html .= $this_link->getName();
-			}
+			$link = 'index.php?v=d&p=plan&plan_id=' . $this->getLink_id();
+			$html = '<span class="cursor plan-link-widget" data-link_id="' . $this->getLink_id() . '" data-offsetX="' . $this->getDisplay('offsetX') . '" data-offsetY="' . $this->getDisplay('offsetY') . '">';
+			$html .= '<a style="color:' . $this->getCss('color', 'black') . ';text-decoration:none;font-size : 1.5em;">';
+			$html .= $this->getDisplay('icon') . ' ' . $this->getDisplay('name');
 			$html .= '</a>';
 			$html .= '</span>';
 			return array(
@@ -157,18 +188,10 @@ class plan {
 				'html' => $html,
 			);
 		} else if ($this->getLink_type() == 'view') {
-			$view = view::byId($this->getLink_id());
-			if (!is_object($view)) {
-				return;
-			}
-			$link = 'index.php?p=view&view_id=' . $view->getId();
-			$html = '<span href="' . $link . '" class=" cursor view-link-widget label label-primary" data-link_id="' . $view->getId() . '" >';
-			$html .= '<a href="' . $link . '" style="color:' . $this->getCss('color', 'white') . ';text-decoration:none;font-size : 1.5em;">';
-			if ($this->getDisplay('name') != '' || $this->getDisplay('icon') != '') {
-				$html .= $this->getDisplay('icon') . ' ' . $this->getDisplay('name');
-			} else {
-				$html .= $view->getName();
-			}
+			$link = 'index.php?p=view&view_id=' . $this->getLink_id();
+			$html = '<span href="' . $link . '" class=" cursor view-link-widget" data-link_id="' . $this->getLink_id() . '" >';
+			$html .= '<a href="' . $link . '" style="color:' . $this->getCss('color', 'black') . ';text-decoration:none;font-size : 1.5em;">';
+			$html .= $this->getDisplay('icon') . ' ' . $this->getDisplay('name');
 			$html .= '</a>';
 			$html .= '</span>';
 			return array(
@@ -176,9 +199,17 @@ class plan {
 				'html' => $html,
 			);
 		} else if ($this->getLink_type() == 'graph') {
+			$background_color = 'background-color : white;';
+			if ($this->getDisplay('transparentBackground', false)) {
+				$background_color = '';
+			}
+			$html = '<div class="graph-widget" data-graph_id="' . $this->getLink_id() . '" style="' . $background_color . 'border : solid 1px black;min-height:50px;min-width:50px;">';
+			$html .= '<span class="graphOptions" style="display:none;">' . json_encode($this->getDisplay('graph', array())) . '</span>';
+			$html .= '<div class="graph" id="graph' . $this->getLink_id() . '" style="width : 100%;height : 100%;"></div>';
+			$html .= '</div>';
 			return array(
 				'plan' => utils::o2a($this),
-				'html' => '',
+				'html' => $html,
 			);
 		} else if ($this->getLink_type() == 'text') {
 			$html = '<div class="text-widget" data-text_id="' . $this->getLink_id() . '" style="color:' . $this->getCss('color', 'black') . ';">';
@@ -188,6 +219,37 @@ class plan {
 				$html .= $this->getDisplay('text', 'Texte à insérer ici');
 			}
 			$html .= '</div>';
+			return array(
+				'plan' => utils::o2a($this),
+				'html' => $html,
+			);
+		} else if ($this->getLink_type() == 'image') {
+			$html = '<div class="image-widget" data-image_id="' . $this->getLink_id() . '" style="min-width:10px;min-height:10px;">';
+			if ($this->getConfiguration('display_mode', 'image') == 'image') {
+				$html .= '<img style="width:100%;height:100%" src="' . $this->getDisplay('path', 'core/img/no_image.gif') . '"/>';
+			} else {
+				$camera = eqLogic::byId(str_replace(array('#', 'eqLogic'), array('', ''), $this->getConfiguration('camera')));
+				if (is_object($camera)) {
+					$html .= $camera->toHtml($_version, true);
+				}
+			}
+			$html .= '</div>';
+			return array(
+				'plan' => utils::o2a($this),
+				'html' => $html,
+			);
+		} else if ($this->getLink_type() == 'zone') {
+			if ($this->getConfiguration('zone_mode', 'simple') == 'widget') {
+				if ($this->getConfiguration('showOnFly') == 1) {
+					$class .= 'zoneEqLogicOnFly ';
+				}
+				if ($this->getConfiguration('showOnClic') == 1) {
+					$class .= 'zoneEqLogicOnClic ';
+				}
+				$html = '<div class="zone-widget cursor zoneEqLogic ' . $class . '" data-eqLogic_id="' . str_replace(array('#', 'eqLogic'), array('', ''), $this->getConfiguration('eqLogic')) . '" data-zone_id="' . $this->getLink_id() . '" style="min-width:20px;min-height:20px;"></div>';
+			} else {
+				$html = '<div class="zone-widget cursor" data-zone_id="' . $this->getLink_id() . '" style="min-width:20px;min-height:20px;"></div>';
+			}
 			return array(
 				'plan' => utils::o2a($this),
 				'html' => $html,
@@ -257,6 +319,15 @@ class plan {
 
 	public function setPlanHeader_id($planHeader_id) {
 		$this->planHeader_id = $planHeader_id;
+		return $this;
+	}
+
+	public function getConfiguration($_key = '', $_default = '') {
+		return utils::getJsonAttr($this->configuration, $_key, $_default);
+	}
+
+	public function setConfiguration($_key, $_value) {
+		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
 		return $this;
 	}
 
