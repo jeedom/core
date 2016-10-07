@@ -100,39 +100,48 @@ if(deviceInfo.type == 'desktop'){
             });
          }
      },
-     addViewLink: {
-        name: "{{Ajouter lien vers une vue}}",
+     fold4: {
+        name: "{{Ajouter un lien}}", 
         icon : 'fa-link',
         disabled:function(key, opt) { 
             return !this.data('editOption.state'); 
         },
-        callback: function(key, opt){
-            addObject({link_type :'view',link_id : -1,display : {name : 'A configurer'}});
-        }
-    },
-    addPlanLink: {
-        name: "{{Ajouter lien vers un design}}",
-        icon : 'fa-link',
-        disabled:function(key, opt) { 
-            return !this.data('editOption.state'); 
+        items: {
+         addViewLink: {
+            name: "{{Vers une vue}}",
+            icon : 'fa-link',
+            disabled:function(key, opt) { 
+                return !this.data('editOption.state'); 
+            },
+            callback: function(key, opt){
+                addObject({link_type :'view',link_id : -(Math.round(Math.random() * 99999999) + 9999),display : {name : 'A configurer'}});
+            }
         },
-        callback: function(key, opt){
-            addObject({link_type :'plan',link_id : -1,display : {name : 'A configurer'}});
-        }
-    },
-    addEqLogic: {
-        name: "{{Ajouter équipement}}",
-        icon : 'fa-plus-circle',
-        disabled:function(key, opt) { 
-            return !this.data('editOption.state'); 
+        addPlanLink: {
+            name: "{{Vers un design}}",
+            icon : 'fa-link',
+            disabled:function(key, opt) { 
+                return !this.data('editOption.state'); 
+            },
+            callback: function(key, opt){
+                addObject({link_type :'plan',link_id : -(Math.round(Math.random() * 99999999) + 9999),display : {name : 'A configurer'}});
+            }
         },
-        callback: function(key, opt){
-          jeedom.eqLogic.getSelectModal({}, function (data) {
-            addObject({link_type : 'eqLogic',link_id : data.id});
-        });
-      }
-  },
-  addCommand: {
+    }
+},
+addEqLogic: {
+    name: "{{Ajouter équipement}}",
+    icon : 'fa-plus-circle',
+    disabled:function(key, opt) { 
+        return !this.data('editOption.state'); 
+    },
+    callback: function(key, opt){
+      jeedom.eqLogic.getSelectModal({}, function (data) {
+        addObject({link_type : 'eqLogic',link_id : data.id});
+    });
+  }
+},
+addCommand: {
     name: "{{Ajouter commande}}",
     icon : 'fa-plus-circle',
     disabled:function(key, opt) { 
@@ -465,12 +474,12 @@ $('body').on( 'click','.zone-widget:not(.zoneEqLogic)', function () {
                 el.empty().append('<center class="loading"><i class="fa fa-times fa-4x"></i></center>');
                 setTimeout(function() {
                    el.empty();
-	           clickedOpen = false;
+                   clickedOpen = false;
                }, 3000);
             },
             success: function () {
                el.empty();
-	       clickedOpen = false;
+               clickedOpen = false;
            },
        });
     }
@@ -478,9 +487,9 @@ $('body').on( 'click','.zone-widget:not(.zoneEqLogic)', function () {
 
 $('body').on('mouseenter','.zone-widget.zoneEqLogic.zoneEqLogicOnFly',  function () {
     if (!editOption.state) {
-	 clickedOpen = true;
-     var el = $(this);
-     jeedom.eqLogic.toHtml({
+      clickedOpen = true;
+      var el = $(this);
+      jeedom.eqLogic.toHtml({
         id : el.attr('data-eqLogic_id'),
         version : 'dplan',
         global:false,
@@ -489,19 +498,19 @@ $('body').on('mouseenter','.zone-widget.zoneEqLogic.zoneEqLogicOnFly',  function
             if(deviceInfo.type == 'desktop'){
                 el.off('mouseleave').on('mouseleave',function(){
                     el.empty()
-		    clickedOpen = false;
+                    clickedOpen = false;
                 });
             }
         }
     });
- }
+  }
 });
 
 $('body').on('click','.zone-widget.zoneEqLogic.zoneEqLogicOnClic', function () {
     if (!editOption.state && !clickedOpen) {
-	 clickedOpen = true;
-     var el = $(this);
-     jeedom.eqLogic.toHtml({
+      clickedOpen = true;
+      var el = $(this);
+      jeedom.eqLogic.toHtml({
         id : el.attr('data-eqLogic_id'),
         version : 'dplan',
         global:false,
@@ -510,12 +519,12 @@ $('body').on('click','.zone-widget.zoneEqLogic.zoneEqLogicOnClic', function () {
             if(deviceInfo.type == 'desktop' && el.hasClass('zoneEqLogicOnFly')){
                 el.off('mouseleave').on('mouseleave',function(){
                     el.empty();
-		    clickedOpen = false;
+                    clickedOpen = false;
                 });
             }
         }
     });
- }
+  }
 });
 
 $(document).click(function(event) {
@@ -524,7 +533,7 @@ $(document).click(function(event) {
          $('.zone-widget.zoneEqLogic').each(function(){
             if($(this).hasClass('zoneEqLogicOnClic') || $(this).hasClass('zoneEqLogicOnFly')){
                 $(this).empty();
-		clickedOpen = false;
+                clickedOpen = false;
             }
         });
      }
