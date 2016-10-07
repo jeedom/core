@@ -337,7 +337,7 @@ save: {
 });
 
 $.contextMenu({
-    selector: '.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.text-widget,.view-link-widget,.graph-widget,.image-widget,.zone-widget',
+    selector: '.div_displayObject > .eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.text-widget,.view-link-widget,.graph-widget,.image-widget,.zone-widget',
     zIndex: 9999,
     events: {
      show : function(options){
@@ -558,7 +558,7 @@ $('.div_displayObject').delegate('.graph-widget', 'resize', function () {
     }
 });
 
-$('body').delegate('.eqLogic-widget .history', 'click', function () {
+$('body').delegate('.div_displayObject > .eqLogic-widget .history', 'click', function () {
     if (!editOption.state) {
         $('#md_modal').dialog({title: "Historique"}).load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
     }
@@ -614,9 +614,9 @@ function fullScreen(_mode) {
 function initEditOption(_state) {
     if (_state != 1 && _state != '1') {
      try{
-        $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget').draggable("destroy");
-        $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget').removeClass('widget-shadow-edit');
-        $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget').resizable("destroy");
+        $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget').draggable("destroy");
+        $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget').removeClass('widget-shadow-edit');
+        $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget').resizable("destroy");
         $('.div_displayObject a').each(function () {
             $(this).attr('href', $(this).attr('data-href'));
         });
@@ -625,23 +625,23 @@ function initEditOption(_state) {
     }
     $('.div_grid').hide();
     try{
-        $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget').contextMenu(false);
+        $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget').contextMenu(false);
     }catch (e) {
 
     }
 }else{
- $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget').draggable({
+ $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget').draggable({
     snap : (editOption.snap == 1),
     grid : (editOption.grid == 1) ? editOption.gridSize : false,
     containment: 'parent'
 });
- $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget').addClass('widget-shadow-edit');
+ $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget').addClass('widget-shadow-edit');
  if(editOption.gridSize){
      $('.div_grid').show().css('background-size',editOption.gridSize[0]+'px '+editOption.gridSize[1]+'px');
  }else{
     $('.div_grid').hide();
 }
-$('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget').resizable({
+$('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget').resizable({
     containment: "parent"
 });
 $('.div_displayObject a').each(function () {
@@ -650,7 +650,7 @@ $('.div_displayObject a').each(function () {
     }
 });
 try{
-    $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget').contextMenu(true);
+    $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget').contextMenu(true);
 }catch (e) {
 
 }
@@ -763,7 +763,7 @@ function getObjectInfo(_object){
 
 function savePlan(_refreshDisplay,_async) {
     var plans = [];
-    $('.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget,.image-widget,.zone-widget').each(function () {
+    $('.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget,.image-widget,.zone-widget').each(function () {
         var info = getObjectInfo($(this));
         var plan = {};
         plan.position = {};
