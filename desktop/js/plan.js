@@ -331,7 +331,6 @@ save: {
     icon : 'fa-floppy-o',
     callback: function(key, opt){
        savePlan();
-       return false;
    }
 },
 }
