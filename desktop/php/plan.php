@@ -55,7 +55,7 @@ if (!is_object($planHeader)) {
     box-shadow: 0 0 2em red !important;
   }
   .widget-shadow-edit{
-    box-shadow: 0 0 2em #96C927;
+    box-shadow: 0 0 2em #96C927 !important;
   }
 </style>
 <div class="container-fluid div_displayObject" style="position: relative;padding:0;user-select: none;-khtml-user-select: none;-o-user-select: none;-moz-user-select: -moz-none;-webkit-user-select: none;"></div>

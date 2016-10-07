@@ -341,10 +341,10 @@ $.contextMenu({
     zIndex: 9999,
     events: {
      show : function(options){
-        $(this).addClass('contextMenu_select');
+        $(this).removeClass('widget-shadow-edit').addClass('contextMenu_select');
     },
     hide : function(options){
-     $(this).removeClass('contextMenu_select');
+     $(this).removeClass('contextMenu_select').addClass('widget-shadow-edit');
  }
 },
 items: {
