@@ -76,10 +76,12 @@ sendVarToJS('id', $plan->getId());
 <div class="form-group link_type link_image display_mode display_mode_camera" style="display:none;">
     <label class="col-lg-4 control-label">{{Caméra}}</label>
     <div class="col-lg-3">
-     <input type="text" class="planAttr form-control" data-l1key="configuration" data-l2key="camera"/>
- </div>
- <div class="col-lg-3">
-     <a class="btn btn-default" id="bt_planConfigureSelectCamera"><i class="fa fa-list-alt"></i></a>
+        <div class="input-group">
+            <input type="text" class="planAttr form-control" data-l1key="configuration" data-l2key="camera"/>
+            <span class="input-group-btn">
+             <a class="btn btn-default" id="bt_planConfigureSelectCamera"><i class="fa fa-list-alt"></i></a>
+         </span>
+     </div>
  </div>
 </div>
 
@@ -252,24 +254,25 @@ foreach (planHeader::all() as $planHeader_select) {
       <div class="form-group">
         <label class="col-lg-4 control-label">{{Equipement}}</label>
         <div class="col-lg-3">
-         <input type="text" class="planAttr form-control" data-l1key="configuration" data-l2key="eqLogic"/>
+           <div class="input-group">
+               <input type="text" class="planAttr form-control" data-l1key="configuration" data-l2key="eqLogic"/>
+               <span class="input-group-btn">
+                 <a class="btn btn-default" id="bt_planConfigureAddEqLogic"><i class="fa fa-list-alt"></i></a>
+             </div>
+         </div>
      </div>
-     <div class="col-lg-3">
-         <a class="btn btn-default" id="bt_planConfigureAddEqLogic"><i class="fa fa-list-alt"></i></a>
-     </div>
- </div>
- <div class="form-group">
-    <label class="col-lg-4 control-label">{{Afficher au survole}}</label>
-    <div class="col-lg-2">
-        <input type="checkbox" checked class="planAttr" data-l1key="configuration" data-l2key="showOnFly" >
+     <div class="form-group">
+        <label class="col-lg-4 control-label">{{Afficher au survole}}</label>
+        <div class="col-lg-2">
+            <input type="checkbox" checked class="planAttr" data-l1key="configuration" data-l2key="showOnFly" >
+        </div>
     </div>
-</div>
-<div class="form-group">
-    <label class="col-lg-4 control-label">{{Afficher sur un clic}}</label>
-    <div class="col-lg-2">
-        <input type="checkbox" checked class="planAttr" data-l1key="configuration" data-l2key="showOnClic" >
+    <div class="form-group">
+        <label class="col-lg-4 control-label">{{Afficher sur un clic}}</label>
+        <div class="col-lg-2">
+            <input type="checkbox" checked class="planAttr" data-l1key="configuration" data-l2key="showOnClic" >
+        </div>
     </div>
-</div>
 </div>
 
 <div class="zone_mode zone_binary" style="display: none;">
