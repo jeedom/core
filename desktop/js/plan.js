@@ -791,6 +791,7 @@ function savePlan(_refreshDisplay,_async) {
     jeedom.plan.save({
         plans: plans,
         async : _async || true,
+        global : false,
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },

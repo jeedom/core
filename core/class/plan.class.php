@@ -216,7 +216,7 @@ class plan {
 			if ($this->getDisplay('name') != '' || $this->getDisplay('icon') != '') {
 				$html .= $this->getDisplay('icon') . ' ' . $this->getDisplay('text');
 			} else {
-				$html .= $this->getDisplay('text', 'Texte à insérer ici');
+				$html .= $this->getDisplay('text');
 			}
 			$html .= '</div>';
 			return array(
