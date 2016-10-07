@@ -653,9 +653,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
 }
 
 if (_cmd.find('.cmdAttr[data-l1key=type]').value() == 'action') {
-   if (_cmd.find('.cmdAttr[data-l1key=subType]').value() == 'slider' || _cmd.find('.cmdAttr[data-l1key=subType]').value() == 'other' || _cmd.find('.cmdAttr[data-l1key=subType]').value() == 'color') {
-    _cmd.find('.cmdAttr[data-l1key=value]').show();
-}
+_cmd.find('.cmdAttr[data-l1key=value]').show();
 _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdId]').show();
 _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdToValue]').show();
 _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateValue]').hide();

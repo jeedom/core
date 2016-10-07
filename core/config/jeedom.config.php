@@ -184,7 +184,8 @@ $JEEDOM_INTERNAL_CONFIG = array(
 						'name' => 'Numérique',
 						'configuration' => array(
 							'minValue' => array('visible' => true),
-							'maxValue' => array('visible' => true)),
+							'maxValue' => array('visible' => true),
+							'listValue' => array('visible' => false)),
 						'unite' => array('visible' => true),
 						'isHistorized' => array('visible' => true),
 						'display' => array(
@@ -196,7 +197,8 @@ $JEEDOM_INTERNAL_CONFIG = array(
 						'name' => 'Binaire',
 						'configuration' => array(
 							'minValue' => array('visible' => false),
-							'maxValue' => array('visible' => false)),
+							'maxValue' => array('visible' => false),
+							'listValue' => array('visible' => false)),
 						'unite' => array('visible' => false),
 						'isHistorized' => array('visible' => true),
 						'display' => array(
@@ -208,7 +210,8 @@ $JEEDOM_INTERNAL_CONFIG = array(
 						'name' => 'Autre',
 						'configuration' => array(
 							'minValue' => array('visible' => false),
-							'maxValue' => array('visible' => false)),
+							'maxValue' => array('visible' => false),
+							'listValue' => array('visible' => false)),
 						'unite' => array('visible' => true),
 						'isHistorized' => array('visible' => false),
 						'display' => array(
@@ -225,7 +228,8 @@ $JEEDOM_INTERNAL_CONFIG = array(
 						'name' => 'Défaut',
 						'configuration' => array(
 							'minValue' => array('visible' => false),
-							'maxValue' => array('visible' => false)),
+							'maxValue' => array('visible' => false),
+							'listValue' => array('visible' => false)),
 						'unite' => array('visible' => false),
 						'isHistorized' => array('visible' => false),
 						'display' => array(
@@ -237,7 +241,8 @@ $JEEDOM_INTERNAL_CONFIG = array(
 						'name' => 'Curseur',
 						'configuration' => array(
 							'minValue' => array('visible' => true),
-							'maxValue' => array('visible' => true)),
+							'maxValue' => array('visible' => true),
+							'listValue' => array('visible' => false)),
 						'unite' => array('visible' => false),
 						'isHistorized' => array('visible' => false),
 						'display' => array(
@@ -249,7 +254,8 @@ $JEEDOM_INTERNAL_CONFIG = array(
 						'name' => 'Message',
 						'configuration' => array(
 							'minValue' => array('visible' => false),
-							'maxValue' => array('visible' => false)),
+							'maxValue' => array('visible' => false),
+							'listValue' => array('visible' => false)),
 						'unite' => array('visible' => false),
 						'isHistorized' => array('visible' => false),
 						'display' => array(
@@ -261,7 +267,21 @@ $JEEDOM_INTERNAL_CONFIG = array(
 						'name' => 'Couleur',
 						'configuration' => array(
 							'minValue' => array('visible' => false),
-							'maxValue' => array('visible' => false)),
+							'maxValue' => array('visible' => false),
+							'listValue' => array('visible' => false)),
+						'unite' => array('visible' => false),
+						'isHistorized' => array('visible' => false),
+						'display' => array(
+							'invertBinary' => array('visible' => false),
+							'icon' => array('visible' => true, 'parentVisible' => true),
+						),
+					),
+					'select' => array(
+						'name' => 'Liste',
+						'configuration' => array(
+							'minValue' => array('visible' => false),
+							'maxValue' => array('visible' => false),
+							'listValue' => array('visible' => true)),
 						'unite' => array('visible' => false),
 						'isHistorized' => array('visible' => false),
 						'display' => array(

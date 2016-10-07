@@ -890,6 +890,25 @@ class cmd {
 			'#version#' => $_version,
 			'#hideCmdName#' => '',
 		);
+		if ($this->getConfiguration('listValue','') != '') {
+			$listOption ='';
+			$elements = explode(';',$this->getConfiguration('listValue',''));
+			foreach ($elements as $element){
+				$coupleArray = explode('|',$element);
+				$cmdValue = $this->getCmdValue();
+				if (is_object($cmdValue) && $cmdValue->getType() == 'info') {
+					log::add('modbus','debug',$cmdValue->execCmd() . ' ' . $coupleArray[0]);
+					if ($cmdValue->execCmd() == $coupleArray[0]) {
+						$listOption .=  '<option value="' . $coupleArray[0] .'" selected>' . $coupleArray[1] .'</option>';
+					} else {
+						$listOption .=  '<option value="' . $coupleArray[0] .'">' . $coupleArray[1] .'</option>';
+					}
+				} else {
+					$listOption .=  '<option value="' . $coupleArray[0] .'">' . $coupleArray[1] .'</option>';
+				}
+			}
+			$replace['#listValue#'] = $listOption;
+		}
 		if ($this->getDisplay('showNameOn' . $version2, 1) == 0) {
 			$replace['#hideCmdName#'] = 'display:none;';
 		}
