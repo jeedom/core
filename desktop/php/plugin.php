@@ -54,7 +54,7 @@ foreach (update::listRepo() as $key => $value) {
     <center>
       <i class="fa fa-shopping-cart" style="font-size : 6em;color:#94ca02;margin-top:20px;"></i>
     </center>
-    <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>{{Ajout depuis le}} ' . $value['name'] . '</center></span>
+    <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>' . $value['name'] . '</center></span>
   </div>';
 }
 foreach (plugin::listPlugin() as $plugin) {

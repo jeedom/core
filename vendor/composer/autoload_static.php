@@ -24,6 +24,7 @@ class ComposerStaticInitc7412053f01762e82bf4bede3f471ac6
         ),
         'P' => 
         array (
+            'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
             'PragmaRX\\Google2FA\\' => 19,
         ),
@@ -68,6 +69,10 @@ class ComposerStaticInitc7412053f01762e82bf4bede3f471ac6
         'Symfony\\Component\\EventDispatcher\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/event-dispatcher',
+        ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
         'Psr\\Http\\Message\\' => 
         array (
@@ -132,13 +137,6 @@ class ComposerStaticInitc7412053f01762e82bf4bede3f471ac6
             'RandomLib' => 
             array (
                 0 => __DIR__ . '/..' . '/ircmaxell/random-lib/lib',
-            ),
-        ),
-        'P' => 
-        array (
-            'Psr\\Log\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/psr/log',
             ),
         ),
         'G' => 
