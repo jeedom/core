@@ -465,12 +465,12 @@ $('body').on( 'click','.zone-widget:not(.zoneEqLogic)', function () {
                 el.empty().append('<center class="loading"><i class="fa fa-times fa-4x"></i></center>');
                 setTimeout(function() {
                    el.empty();
-				   clickedOpen = false;
+	           clickedOpen = false;
                }, 3000);
             },
             success: function () {
                el.empty();
-			   clickedOpen = false;
+	       clickedOpen = false;
            },
        });
     }
@@ -478,6 +478,7 @@ $('body').on( 'click','.zone-widget:not(.zoneEqLogic)', function () {
 
 $('body').on('mouseenter','.zone-widget.zoneEqLogic.zoneEqLogicOnFly',  function () {
     if (!editOption.state) {
+	 clickedOpen = true;
      var el = $(this);
      jeedom.eqLogic.toHtml({
         id : el.attr('data-eqLogic_id'),
@@ -488,6 +489,7 @@ $('body').on('mouseenter','.zone-widget.zoneEqLogic.zoneEqLogicOnFly',  function
             if(deviceInfo.type == 'desktop'){
                 el.off('mouseleave').on('mouseleave',function(){
                     el.empty()
+		    clickedOpen = false;
                 });
             }
         }
@@ -508,7 +510,7 @@ $('body').on('click','.zone-widget.zoneEqLogic.zoneEqLogicOnClic', function () {
             if(deviceInfo.type == 'desktop' && el.hasClass('zoneEqLogicOnFly')){
                 el.off('mouseleave').on('mouseleave',function(){
                     el.empty();
-					clickedOpen = false;
+		    clickedOpen = false;
                 });
             }
         }
@@ -522,7 +524,7 @@ $(document).click(function(event) {
          $('.zone-widget.zoneEqLogic').each(function(){
             if($(this).hasClass('zoneEqLogicOnClic') || $(this).hasClass('zoneEqLogicOnFly')){
                 $(this).empty();
-				clickedOpen = false;
+		clickedOpen = false;
             }
         });
      }
