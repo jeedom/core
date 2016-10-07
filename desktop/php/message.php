@@ -37,7 +37,7 @@ foreach ($listMessage as $message) {
 	echo '<td><center><i class="fa fa-trash-o cursor removeMessage"></i></center></td>';
 	echo '<td class="datetime">' . $message->getDate() . '</td>';
 	echo '<td class="plugin">' . $message->getPlugin() . '</td>';
-	echo '<td class="message">' . htmlentities($message->getMessage()) . '</td>';
+	echo '<td class="message">' . html_entity_decode($message->getMessage()) . '</td>';
 	echo '<td class="message_action">' . $message->getAction() . '</td>';
 	echo '</tr>';
 }
