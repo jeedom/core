@@ -1,13 +1,10 @@
-/*@import url(//fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic);
-@import url(//fonts.googleapis.com/css?family=Roboto:400,300,500,400italic,700,900);*/
-
 html {
   height: 100%;
   /* The html and body elements cannot have any padding or margin. */
 }
 
 body {
-  font-family: 'Roboto', sans-serif !important;
+  font-family: 'noto', sans-serif !important;
   font-size: 1.42em;
   padding-top: 60px;
   height: 100%;

@@ -113,6 +113,7 @@ include_file('3rdparty', 'jquery/jquery.min', 'js');
 		})
 	</script>
 	<?php
+include_file('3rdparty', 'font-noto/font-noto', 'css');
 include_file('3rdparty', 'jquery.utils/jquery.utils', 'js');
 include_file('core', 'core', 'js');
 include_file('3rdparty', 'bootstrap/bootstrap.min', 'js');
