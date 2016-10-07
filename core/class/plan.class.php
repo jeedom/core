@@ -240,6 +240,7 @@ class plan {
 			);
 		} else if ($this->getLink_type() == 'zone') {
 			if ($this->getConfiguration('zone_mode', 'simple') == 'widget') {
+				$class = '';
 				if ($this->getConfiguration('showOnFly') == 1) {
 					$class .= 'zoneEqLogicOnFly ';
 				}
