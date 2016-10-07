@@ -427,7 +427,7 @@ duplicate: {
     icon:'fa-files-o',
     disabled: function(key, opt){ 
         var info = getObjectInfo($(this));    
-        return !(info.type == 'text' || info.type == 'graph');
+        return !(info.type == 'text' || info.type == 'graph' || info.type == 'zone');
     },
     callback: function(key, opt){
         var info = getObjectInfo($(this));
