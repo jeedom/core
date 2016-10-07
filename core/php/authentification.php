@@ -58,6 +58,10 @@ if (!isConnect() && $configs['sso:allowRemoteUser'] == 1) {
 	}
 }
 
+if (!isConnect() && init('auth') != '') {
+	loginByHash(init('auth'));
+}
+
 if (init('logout') == 1) {
 	logout();
 }
@@ -113,7 +117,6 @@ function loginByHash($_key) {
 		setcookie('jeedom_token', ajax::getToken(), time() + 365 * 24 * 3600, "/", '', false, true);
 	}
 	log::add('connection', 'info', __('Connexion de l\'utilisateur par clef : ', __FILE__) . $user->getLogin());
-	unset($_GET['auth']);
 	return true;
 }
 
