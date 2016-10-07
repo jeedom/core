@@ -270,17 +270,17 @@ class eqLogic {
 						$message = __('Attention', __FILE__) . ' ' . $eqLogic->getHumanName();
 						$message .= __(' n\'a pas envoyé de message depuis plus de ', __FILE__) . $noReponseTimeLimit . __(' min (vérifier les piles)', __FILE__);
 						message::add('core', $message, '', $logicalId);
-						foreach ($cmds as $cmd) {
-							$cmd->event('error::timeout');
-						}
+						$eqLogic->setStatus('timeout',1);
 					}
 				} else {
 					if ($eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s')) > date('Y-m-d H:i:s', strtotime('-' . $noReponseTimeLimit . ' minutes' . date('Y-m-d H:i:s')))) {
 						foreach (message::byPluginLogicalId('core', $logicalId) as $message) {
 							$message->remove();
 						}
+						$eqLogic->setStatus('timeout',0);
 					}
 				}
+				$eqLogic->save();
 			}
 		}
 	}
@@ -573,6 +573,11 @@ class eqLogic {
 			list($r, $g, $b) = sscanf($replace['#background-color#'], "#%02x%02x%02x");
 			$replace['#background-color#'] = 'rgba(' . $r . ',' . $g . ',' . $b . ',' . $opacity . ')';
 		}
+		if ($this->getAlert() != ''){
+			$replace['#background-color#'] = 'rgba(' . 255 . ',' . 0 . ',' . 0 . ',' . $opacity . ')';
+			$replace['#alert_name#'] = $this->getAlert()['name'];
+			$replace['#alert_icon#'] =  $this->getAlert()['icon'];
+		}
 		return $replace;
 	}
 
@@ -602,6 +607,9 @@ class eqLogic {
 		if (!isset(self::$_templateArray[$version])) {
 			self::$_templateArray[$version] = getTemplate('core', $version, 'eqLogic');
 		}
+		if ($this->getAlert() != ''){
+			return $this->postToHtml($_version, template_replace($replace,getTemplate('core', $version, 'alert')));
+		} 
 		return $this->postToHtml($_version, template_replace($replace, self::$_templateArray[$version]));
 	}
 
@@ -624,6 +632,18 @@ class eqLogic {
 				$mc->remove();
 			}
 		}
+	}
+	
+	public function getAlert() {
+		global $JEEDOM_INTERNAL_CONFIG;
+		$hasAlert = '';
+		foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $key => $data){
+			if ($this->getStatus($key,0) != 0){
+				$hasAlert = $data;
+				break;
+			}
+		}
+		return $hasAlert;
 	}
 
 	public function getShowOnChild() {

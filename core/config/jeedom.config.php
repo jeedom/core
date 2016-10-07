@@ -60,6 +60,9 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'travel' => array('name' => 'Déplacement', 'icon' => 'fa fa-car'),
 		),
 	),
+	'alerts' => array(
+		'timeout' => array('name' => 'Timeout', 'icon' => 'fa fa-clock-o'),
+	),
 	'cmd' => array(
 		'generic_type' => array(
 			'LIGHT_TOGGLE' => array('name' => 'Lumière Toggle', 'family' => 'Lumière', 'type' => 'Action'),
