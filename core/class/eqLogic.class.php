@@ -271,6 +271,7 @@ class eqLogic {
 						$message .= __(' n\'a pas envoyé de message depuis plus de ', __FILE__) . $noReponseTimeLimit . __(' min (vérifier les piles)', __FILE__);
 						message::add('core', $message, '', $logicalId);
 						$eqLogic->setStatus('timeout',1);
+						$eqLogic->save();
 					}
 				} else {
 					if ($eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s')) > date('Y-m-d H:i:s', strtotime('-' . $noReponseTimeLimit . ' minutes' . date('Y-m-d H:i:s')))) {
@@ -278,9 +279,9 @@ class eqLogic {
 							$message->remove();
 						}
 						$eqLogic->setStatus('timeout',0);
+						$eqLogic->save();
 					}
 				}
-				$eqLogic->save();
 			}
 		}
 	}
