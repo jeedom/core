@@ -24,7 +24,7 @@ sendVarToJS('id', $plan->getId());
              <input type="text" class="planAttr form-control" data-l1key="css" data-l2key="zoom"/>
          </div>
      </div>
-     <div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan link_image link_zone">
+     <div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan link_image link_zone link_summary">
         <label class="col-lg-4 control-label">{{Profondeur}}</label>
         <div class="col-lg-2">
             <select class="form-control planAttr" data-l1key="css" data-l2key="z-index" >
@@ -35,7 +35,7 @@ sendVarToJS('id', $plan->getId());
             </select>
         </div>
     </div>
-    <div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan link_image link_zone">
+    <div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan link_image link_zone link_summary">
         <label class="col-lg-4 control-label">{{Position X (%)}}</label>
         <div class="col-lg-2">
             <input type="text" class="planAttr form-control" data-l1key="position" data-l2key="top" />
@@ -45,7 +45,7 @@ sendVarToJS('id', $plan->getId());
             <input type="text" class="planAttr form-control" data-l1key="position" data-l2key="left" />
         </div>
     </div>
-    <div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan link_image link_zone">
+    <div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan link_image link_zone link_summary">
         <label class="col-lg-4 control-label">{{Hauteur (px)}}</label>
         <div class="col-lg-2">
             <input type="text" class="planAttr form-control" data-l1key="display" data-l2key="height" />
@@ -140,13 +140,27 @@ sendVarToJS('id', $plan->getId());
         <input class="planAttr form-control" data-l1key="display" data-l2key="name" />
     </div>
 </div>
+<div class="form-group link_type link_summary">
+    <label class="col-lg-4 control-label">{{Lien}}</label>
+    <div class="col-lg-2">
+        <select class="form-control planAttr" data-l1key="link_id">
+        <option value="-1">{{Aucun}}</option>
+        <option value="0">{{Général}}</option>
+            <?php
+foreach (object::all() as $object) {
+	echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
+}
+?>
+       </select>
+   </div>
+</div>
 <div class="form-group link_type link_view">
     <label class="col-lg-4 control-label">{{Lien}}</label>
     <div class="col-lg-2">
         <select class="form-control planAttr" data-l1key="link_id">
             <?php
-foreach (view::all() as $views) {
-	echo '<option value="' . $views->getId() . '">' . $views->getName() . '</option>';
+foreach (view::all() as $view) {
+	echo '<option value="' . $view->getId() . '">' . $view->getName() . '</option>';
 }
 ?>
        </select>
@@ -157,10 +171,8 @@ foreach (view::all() as $views) {
     <div class="col-lg-2">
         <select class="form-control planAttr" data-l1key="link_id">
             <?php
-foreach (planHeader::all() as $planHeader_select) {
-	if ($planHeader_select->getId() != $plan->getPlanHeader_id()) {
-		echo '<option value="' . $planHeader_select->getId() . '">' . $planHeader_select->getName() . '</option>';
-	}
+foreach (planHeader::all() as $plan) {
+	echo '<option value="' . $plan->getId() . '">' . $plan->getName() . '</option>';
 }
 ?>
       </select>
