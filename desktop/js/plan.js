@@ -494,7 +494,7 @@ $('body').on('mouseenter','.zone-widget.zoneEqLogic.zoneEqLogicOnFly',  function
         global:false,
         success:function(data){
             el.empty().append(data.html);
-            positionEqLogic(el.attr('data-eqLogic_id'));
+            positionEqLogic(el.attr('data-eqLogic_id'),false);
             if(deviceInfo.type == 'desktop'){
                 el.off('mouseleave').on('mouseleave',function(){
                     el.empty()
