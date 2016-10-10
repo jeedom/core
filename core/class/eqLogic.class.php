@@ -406,7 +406,11 @@ class eqLogic {
 	/*     * *********************Méthodes d'instance************************* */
 	
 	public function checkAndUpdateCmd($_logicalId, $_value) {
-		$cmd = $this->getCmd(null, $_logicalId);
+		if (is_object($_logicalId)) {
+			$cmd = $_logicalId;
+		} else {
+			$cmd = $this->getCmd(null, $_logicalId);
+		}
 		if (is_object($cmd) && $cmd->execCmd() != $cmd->formatValue($_value)) {
 			$cmd->setCollectDate('');
 			$cmd->event($_value);
