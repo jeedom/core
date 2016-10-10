@@ -99,12 +99,6 @@ sendVarToJS('id', $plan->getId());
     </div>
 </div>
 <div class="form-group link_type link_graph">
-    <label class="col-lg-4 control-label">{{Bordure (attention syntax css, ex : solid 1px black}}</label>
-    <div class="col-lg-2">
-        <input class="form-control planAttr" data-l1key="css" data-l2key="border" />
-    </div>
-</div>
-<div class="form-group link_type link_graph">
     <label class="col-lg-4 control-label">{{Afficher la légende}}</label>
     <div class="col-lg-2">
         <input type="checkbox" checked class="planAttr" data-l1key="display" data-l2key="showLegend" >
@@ -187,7 +181,7 @@ foreach (planHeader::all() as $plan) {
         <a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fa fa-flag"></i> {{Choisir une icône}}</a>
     </div>
 </div>
-<div class="form-group link_type link_plan link_view link_text">
+<div class="form-group link_type link_plan link_view link_text link_summary">
     <label class="col-lg-4 control-label">{{Couleur de fond}}</label>
     <div class="col-lg-2">
         <input type="color" class="planAttr form-control" data-l1key="css" data-l2key="background-color" />
@@ -201,7 +195,7 @@ foreach (planHeader::all() as $plan) {
         <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="background-defaut" checked />
     </div>
 </div>
-<div class="form-group link_type link_plan link_view link_text">
+<div class="form-group link_type link_plan link_view link_text link_summary">
     <label class="col-lg-4 control-label">{{Couleur du texte}}</label>
     <div class="col-lg-2">
         <input type="color" class="planAttr form-control" data-l1key="css" data-l2key="color" />
@@ -211,25 +205,25 @@ foreach (planHeader::all() as $plan) {
         <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="color-defaut" checked />
     </div>
 </div>
-<div class="form-group link_type link_plan link_view link_text">
+<div class="form-group link_type link_plan link_view link_text link_summary">
     <label class="col-lg-4 control-label">{{Arrondir les angles (ne pas oublié de mettre %, ex 50%)}}</label>
     <div class="col-lg-2">
         <input class="form-control planAttr" data-l1key="css" data-l2key="border-radius" />
     </div>
 </div>
-<div class="form-group link_type link_plan link_view link_text">
+<div class="form-group link_type link_plan link_view link_text link_graph link_summary">
     <label class="col-lg-4 control-label">{{Bordure (attention syntax css, ex : solid 1px black)}}</label>
     <div class="col-lg-2">
         <input class="form-control planAttr" data-l1key="css" data-l2key="border" />
     </div>
 </div>
-<div class="form-group link_type link_plan link_view link_text">
+<div class="form-group link_type link_plan link_view link_text link_summary">
     <label class="col-lg-4 control-label">{{Taille de la police (ex 50%, il faut bien mettre le signe %)}}</label>
     <div class="col-lg-2">
         <input class="planAttr form-control" data-l1key="css" data-l2key="font-size" />
     </div>
 </div>
-<div class="form-group link_type link_plan link_view link_text">
+<div class="form-group link_type link_plan link_view link_text link_summary">
     <label class="col-lg-4 control-label">{{Gras}}</label>
     <div class="col-lg-2">
         <select class="planAttr form-control" data-l1key="css" data-l2key="font-weight">
