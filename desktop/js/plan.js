@@ -171,7 +171,7 @@ addZone: {
         addObject({link_type : 'zone',link_id : Math.round(Math.random() * 99999999) + 9999});
     }
 },
-addZone: {
+addSummary: {
     name: "{{Ajouter un résumé}}",
     icon : 'fa-plus-circle',
     disabled:function(key, opt) { 
