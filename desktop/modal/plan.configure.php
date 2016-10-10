@@ -24,18 +24,18 @@ sendVarToJS('id', $plan->getId());
              <input type="text" class="planAttr form-control" data-l1key="css" data-l2key="zoom"/>
          </div>
      </div>
-     <div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan link_image link_zone">
+     <div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan link_image link_zone link_summary">
         <label class="col-lg-4 control-label">{{Profondeur}}</label>
         <div class="col-lg-2">
             <select class="form-control planAttr" data-l1key="css" data-l2key="z-index" >
-                <option value="999">{{Niveau -1}}</option>
+                <option value="999">{{Niveau 0}}</option>
                 <option value="1000" selected>{{Niveau 1}}</option>
                 <option value="1001">{{Niveau 2}}</option>
                 <option value="1002">{{Niveau 3}}</option>
             </select>
         </div>
     </div>
-    <div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan link_image link_zone">
+    <div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan link_image link_zone link_summary">
         <label class="col-lg-4 control-label">{{Position X (%)}}</label>
         <div class="col-lg-2">
             <input type="text" class="planAttr form-control" data-l1key="position" data-l2key="top" />
@@ -45,7 +45,7 @@ sendVarToJS('id', $plan->getId());
             <input type="text" class="planAttr form-control" data-l1key="position" data-l2key="left" />
         </div>
     </div>
-    <div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan link_image link_zone">
+    <div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan link_image link_zone link_summary">
         <label class="col-lg-4 control-label">{{Hauteur (px)}}</label>
         <div class="col-lg-2">
             <input type="text" class="planAttr form-control" data-l1key="display" data-l2key="height" />
@@ -76,10 +76,12 @@ sendVarToJS('id', $plan->getId());
 <div class="form-group link_type link_image display_mode display_mode_camera" style="display:none;">
     <label class="col-lg-4 control-label">{{Caméra}}</label>
     <div class="col-lg-3">
-     <input type="text" class="planAttr form-control" data-l1key="configuration" data-l2key="camera"/>
- </div>
- <div class="col-lg-3">
-     <a class="btn btn-default" id="bt_planConfigureSelectCamera"><i class="fa fa-list-alt"></i></a>
+        <div class="input-group">
+            <input type="text" class="planAttr form-control" data-l1key="configuration" data-l2key="camera"/>
+            <span class="input-group-btn">
+             <a class="btn btn-default" id="bt_planConfigureSelectCamera"><i class="fa fa-list-alt"></i></a>
+         </span>
+     </div>
  </div>
 </div>
 
@@ -94,12 +96,6 @@ sendVarToJS('id', $plan->getId());
             <option value="1 year">{{Années}}</option>
             <option value="all">{{Tous}}</option>
         </select>
-    </div>
-</div>
-<div class="form-group link_type link_graph">
-    <label class="col-lg-4 control-label">{{Bordure (attention syntax css, ex : solid 1px black}}</label>
-    <div class="col-lg-2">
-        <input class="form-control planAttr" data-l1key="css" data-l2key="border" />
     </div>
 </div>
 <div class="form-group link_type link_graph">
@@ -138,13 +134,27 @@ sendVarToJS('id', $plan->getId());
         <input class="planAttr form-control" data-l1key="display" data-l2key="name" />
     </div>
 </div>
+<div class="form-group link_type link_summary">
+    <label class="col-lg-4 control-label">{{Lien}}</label>
+    <div class="col-lg-2">
+        <select class="form-control planAttr" data-l1key="link_id">
+        <option value="-1">{{Aucun}}</option>
+        <option value="0">{{Général}}</option>
+            <?php
+foreach (object::all() as $object) {
+	echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
+}
+?>
+       </select>
+   </div>
+</div>
 <div class="form-group link_type link_view">
     <label class="col-lg-4 control-label">{{Lien}}</label>
     <div class="col-lg-2">
         <select class="form-control planAttr" data-l1key="link_id">
             <?php
-foreach (view::all() as $views) {
-	echo '<option value="' . $views->getId() . '">' . $views->getName() . '</option>';
+foreach (view::all() as $view) {
+	echo '<option value="' . $view->getId() . '">' . $view->getName() . '</option>';
 }
 ?>
        </select>
@@ -155,10 +165,8 @@ foreach (view::all() as $views) {
     <div class="col-lg-2">
         <select class="form-control planAttr" data-l1key="link_id">
             <?php
-foreach (planHeader::all() as $planHeader_select) {
-	if ($planHeader_select->getId() != $plan->getPlanHeader_id()) {
-		echo '<option value="' . $planHeader_select->getId() . '">' . $planHeader_select->getName() . '</option>';
-	}
+foreach (planHeader::all() as $plan) {
+	echo '<option value="' . $plan->getId() . '">' . $plan->getName() . '</option>';
 }
 ?>
       </select>
@@ -173,7 +181,7 @@ foreach (planHeader::all() as $planHeader_select) {
         <a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fa fa-flag"></i> {{Choisir une icône}}</a>
     </div>
 </div>
-<div class="form-group link_type link_plan link_view link_text">
+<div class="form-group link_type link_plan link_view link_text link_summary">
     <label class="col-lg-4 control-label">{{Couleur de fond}}</label>
     <div class="col-lg-2">
         <input type="color" class="planAttr form-control" data-l1key="css" data-l2key="background-color" />
@@ -187,7 +195,7 @@ foreach (planHeader::all() as $planHeader_select) {
         <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="background-defaut" checked />
     </div>
 </div>
-<div class="form-group link_type link_plan link_view link_text">
+<div class="form-group link_type link_plan link_view link_text link_summary">
     <label class="col-lg-4 control-label">{{Couleur du texte}}</label>
     <div class="col-lg-2">
         <input type="color" class="planAttr form-control" data-l1key="css" data-l2key="color" />
@@ -197,25 +205,25 @@ foreach (planHeader::all() as $planHeader_select) {
         <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="color-defaut" checked />
     </div>
 </div>
-<div class="form-group link_type link_plan link_view link_text">
+<div class="form-group link_type link_plan link_view link_text link_summary">
     <label class="col-lg-4 control-label">{{Arrondir les angles (ne pas oublié de mettre %, ex 50%)}}</label>
     <div class="col-lg-2">
         <input class="form-control planAttr" data-l1key="css" data-l2key="border-radius" />
     </div>
 </div>
-<div class="form-group link_type link_plan link_view link_text">
+<div class="form-group link_type link_plan link_view link_text link_graph link_summary">
     <label class="col-lg-4 control-label">{{Bordure (attention syntax css, ex : solid 1px black)}}</label>
     <div class="col-lg-2">
         <input class="form-control planAttr" data-l1key="css" data-l2key="border" />
     </div>
 </div>
-<div class="form-group link_type link_plan link_view link_text">
+<div class="form-group link_type link_plan link_view link_text link_summary">
     <label class="col-lg-4 control-label">{{Taille de la police (ex 50%, il faut bien mettre le signe %)}}</label>
     <div class="col-lg-2">
         <input class="planAttr form-control" data-l1key="css" data-l2key="font-size" />
     </div>
 </div>
-<div class="form-group link_type link_plan link_view link_text">
+<div class="form-group link_type link_plan link_view link_text link_summary">
     <label class="col-lg-4 control-label">{{Gras}}</label>
     <div class="col-lg-2">
         <select class="planAttr form-control" data-l1key="css" data-l2key="font-weight">
@@ -252,24 +260,25 @@ foreach (planHeader::all() as $planHeader_select) {
       <div class="form-group">
         <label class="col-lg-4 control-label">{{Equipement}}</label>
         <div class="col-lg-3">
-         <input type="text" class="planAttr form-control" data-l1key="configuration" data-l2key="eqLogic"/>
+           <div class="input-group">
+               <input type="text" class="planAttr form-control" data-l1key="configuration" data-l2key="eqLogic"/>
+               <span class="input-group-btn">
+                 <a class="btn btn-default" id="bt_planConfigureAddEqLogic"><i class="fa fa-list-alt"></i></a>
+             </div>
+         </div>
      </div>
-     <div class="col-lg-3">
-         <a class="btn btn-default" id="bt_planConfigureAddEqLogic"><i class="fa fa-list-alt"></i></a>
-     </div>
- </div>
- <div class="form-group">
-    <label class="col-lg-4 control-label">{{Afficher au survole}}</label>
-    <div class="col-lg-2">
-        <input type="checkbox" checked class="planAttr" data-l1key="configuration" data-l2key="showOnFly" >
+     <div class="form-group">
+        <label class="col-lg-4 control-label">{{Afficher au survole}}</label>
+        <div class="col-lg-2">
+            <input type="checkbox" checked class="planAttr" data-l1key="configuration" data-l2key="showOnFly" >
+        </div>
     </div>
-</div>
-<div class="form-group">
-    <label class="col-lg-4 control-label">{{Afficher sur un clic}}</label>
-    <div class="col-lg-2">
-        <input type="checkbox" checked class="planAttr" data-l1key="configuration" data-l2key="showOnClic" >
+    <div class="form-group">
+        <label class="col-lg-4 control-label">{{Afficher sur un clic}}</label>
+        <div class="col-lg-2">
+            <input type="checkbox" checked class="planAttr" data-l1key="configuration" data-l2key="showOnClic" >
+        </div>
     </div>
-</div>
 </div>
 
 <div class="zone_mode zone_binary" style="display: none;">

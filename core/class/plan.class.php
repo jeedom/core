@@ -128,6 +128,9 @@ class plan {
 		} else if ($this->getLink_type() == 'cmd') {
 			$cmd = cmd::byId($this->getLink_id());
 			return $cmd;
+		} else if ($this->getLink_type() == 'summary') {
+			$object = object::byId($this->getLink_id());
+			return $object;
 		}
 		return null;
 	}
@@ -251,6 +254,27 @@ class plan {
 			} else {
 				$html = '<div class="zone-widget cursor" data-zone_id="' . $this->getLink_id() . '" style="min-width:20px;min-height:20px;"></div>';
 			}
+			return array(
+				'plan' => utils::o2a($this),
+				'html' => $html,
+			);
+		} else if ($this->getLink_type() == 'summary') {
+			$html = '<div class="summary-widget" data-summary_id="' . $this->getLink_id() . '" style="min-width:10px;min-height:10px;">';
+			$summary = '';
+			if ($this->getLink_id() == 0) {
+				$summary = object::getGlobalHtmlSummary($_version);
+			} else {
+				$object = $this->getLink();
+				if (is_object($object)) {
+					$summary = $object->getHtmlSummary($_version);
+				}
+			}
+			if ($summary == '') {
+				$html .= __('Non configuré', __FILE__);
+			} else {
+				$html .= $summary;
+			}
+			$html .= '</div>';
 			return array(
 				'plan' => utils::o2a($this),
 				'html' => $html,

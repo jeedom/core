@@ -270,17 +270,16 @@ class eqLogic {
 						$message = __('Attention', __FILE__) . ' ' . $eqLogic->getHumanName();
 						$message .= __(' n\'a pas envoyé de message depuis plus de ', __FILE__) . $noReponseTimeLimit . __(' min (vérifier les piles)', __FILE__);
 						message::add('core', $message, '', $logicalId);
-						$eqLogic->setStatus('timeout',1);
+						$eqLogic->setStatus('timeout', 1);
 					}
 				} else {
 					if ($eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s')) > date('Y-m-d H:i:s', strtotime('-' . $noReponseTimeLimit . ' minutes' . date('Y-m-d H:i:s')))) {
 						foreach (message::byPluginLogicalId('core', $logicalId) as $message) {
 							$message->remove();
 						}
-						$eqLogic->setStatus('timeout',0);
+						$eqLogic->setStatus('timeout', 0);
 					}
 				}
-				$eqLogic->save();
 			}
 		}
 	}
@@ -404,6 +403,20 @@ class eqLogic {
 	}
 
 	/*     * *********************Méthodes d'instance************************* */
+
+	public function checkAndUpdateCmd($_logicalId, $_value) {
+		if (is_object($_logicalId)) {
+			$cmd = $_logicalId;
+		} else {
+			$cmd = $this->getCmd(null, $_logicalId);
+		}
+		if (is_object($cmd) && $cmd->execCmd() != $cmd->formatValue($_value)) {
+			$cmd->setCollectDate('');
+			$cmd->event($_value);
+			return true;
+		}
+		return false;
+	}
 
 	public function copy($_name) {
 		$eqLogicCopy = clone $this;
@@ -573,10 +586,10 @@ class eqLogic {
 			list($r, $g, $b) = sscanf($replace['#background-color#'], "#%02x%02x%02x");
 			$replace['#background-color#'] = 'rgba(' . $r . ',' . $g . ',' . $b . ',' . $opacity . ')';
 		}
-		if ($this->getAlert() != ''){
+		if ($this->getAlert() != '') {
 			$replace['#background-color#'] = 'rgba(' . 255 . ',' . 0 . ',' . 0 . ',' . $opacity . ')';
 			$replace['#alert_name#'] = $this->getAlert()['name'];
-			$replace['#alert_icon#'] =  $this->getAlert()['icon'];
+			$replace['#alert_icon#'] = $this->getAlert()['icon'];
 		}
 		return $replace;
 	}
@@ -607,9 +620,9 @@ class eqLogic {
 		if (!isset(self::$_templateArray[$version])) {
 			self::$_templateArray[$version] = getTemplate('core', $version, 'eqLogic');
 		}
-		if ($this->getAlert() != ''){
-			return $this->postToHtml($_version, template_replace($replace,getTemplate('core', $version, 'alert')));
-		} 
+		if ($this->getAlert() != '') {
+			return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, 'alert')));
+		}
 		return $this->postToHtml($_version, template_replace($replace, self::$_templateArray[$version]));
 	}
 
@@ -633,12 +646,15 @@ class eqLogic {
 			}
 		}
 	}
-	
+
 	public function getAlert() {
 		global $JEEDOM_INTERNAL_CONFIG;
 		$hasAlert = '';
-		foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $key => $data){
-			if ($this->getStatus($key,0) != 0){
+		if (!isset($JEEDOM_INTERNAL_CONFIG['alerts'])) {
+			return $hasAlert;
+		}
+		foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $key => $data) {
+			if ($this->getStatus($key, 0) != 0) {
 				$hasAlert = $data;
 				break;
 			}

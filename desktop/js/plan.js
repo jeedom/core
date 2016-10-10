@@ -14,7 +14,7 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
  var deviceInfo = getDeviceType();
- var editOption = {state : false, snap : false,grid : false,gridSize:false};
+ var editOption = {state : false, snap : false,grid : false,gridSize:false,highlight:true};
  var clickedOpen = false;
 
  planHeaderContextMenu = {};
@@ -33,12 +33,10 @@ if(deviceInfo.type == 'desktop'){
         zIndex: 9999,
         events: {
             show: function(opt) {
-                var $this = this;
-                $.contextMenu.setInputValues(opt, $this.data());
+                $.contextMenu.setInputValues(opt, this.data());
             }, 
             hide: function(opt) {
-                var $this = this;
-                $.contextMenu.getInputValues(opt, $this.data());
+                $.contextMenu.getInputValues(opt, this.data());
             }
         },
         items: {
@@ -173,9 +171,19 @@ addZone: {
         addObject({link_type : 'zone',link_id : Math.round(Math.random() * 99999999) + 9999});
     }
 },
+addSummary: {
+    name: "{{Ajouter un résumé}}",
+    icon : 'fa-plus-circle',
+    disabled:function(key, opt) { 
+        return !this.data('editOption.state'); 
+    },
+    callback: function(key, opt){
+        addObject({link_type : 'summary',link_id : -1});
+    }
+},
 sep2 : "---------",
 fold2: {
-    name: "{{Grille}}", 
+    name: "{{Affichage}}", 
     icon : 'fa-th',
     disabled:function(key, opt) { 
         return !this.data('editOption.state'); 
@@ -230,6 +238,7 @@ fold2: {
                 }
             }
         },
+        sep4 : "---------",
         snap: {
             name: "{{Aimanter les élements}}", 
             type: 'checkbox', 
@@ -250,6 +259,19 @@ fold2: {
         events: {
             click : function(e) {
                 editOption.grid = $(this).value();
+                initEditOption(1);
+            }
+        }
+    },
+    highlightWidget: {
+        name: "{{Masquer surbrillance des éléments}}", 
+        type: 'checkbox', 
+        radio: 'radio',
+        selected:  editOption.highlight,
+        events: {
+            click : function(e) {
+                console.log($(this).value())
+                editOption.highlight = ($(this).value() == 1) ? false : true;
                 initEditOption(1);
             }
         }
@@ -337,14 +359,18 @@ save: {
 });
 
 $.contextMenu({
-    selector: '.div_displayObject > .eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.text-widget,.view-link-widget,.graph-widget,.image-widget,.zone-widget',
+    selector: '.div_displayObject > .eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.text-widget,.view-link-widget,.graph-widget,.image-widget,.zone-widget,.summary-widget',
     zIndex: 9999,
     events: {
        show : function(options){
-        $(this).removeClass('widget-shadow-edit').addClass('contextMenu_select');
+        if(editOption.highlight){
+            $(this).removeClass('widget-shadow-edit').addClass('contextMenu_select');
+        }
     },
     hide : function(options){
-       $(this).removeClass('contextMenu_select').addClass('widget-shadow-edit');
+       if(editOption.highlight){
+           $(this).removeClass('contextMenu_select').addClass('widget-shadow-edit');
+       }
    }
 },
 items: {
@@ -494,7 +520,7 @@ $('body').on('mouseenter','.zone-widget.zoneEqLogic.zoneEqLogicOnFly',  function
         global:false,
         success:function(data){
             el.empty().append(data.html);
-            positionEqLogic(el.attr('data-eqLogic_id'));
+            positionEqLogic(el.attr('data-eqLogic_id'),false);
             if(deviceInfo.type == 'desktop'){
                 el.off('mouseleave').on('mouseleave',function(){
                     el.empty()
@@ -612,39 +638,26 @@ function fullScreen(_mode) {
 }
 
 function initEditOption(_state) {
-    if (_state != 1 && _state != '1') {
-       try{
-        $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget').draggable("destroy");
-        $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget').removeClass('widget-shadow-edit');
-        $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget').resizable("destroy");
-        $('.div_displayObject a').each(function () {
-            $(this).attr('href', $(this).attr('data-href'));
-        });
-    }catch (e) {
-
+    if (_state) {
+      $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').draggable({
+        snap : (editOption.snap == 1),
+        grid : (editOption.grid == 1) ? editOption.gridSize : false,
+        containment: 'parent',
+        stop: function( event, ui ) {
+            savePlan(false,false);
+        }
+    });
+      if(editOption.highlight){
+        $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').addClass('widget-shadow-edit');
+    }else{
+        $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').removeClass('widget-shadow-edit').removeClass('contextMenu_select');
     }
-    $('.div_grid').hide();
-    try{
-        $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget').contextMenu(false);
-    }catch (e) {
-
-    }
-}else{
-   $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget').draggable({
-    snap : (editOption.snap == 1),
-    grid : (editOption.grid == 1) ? editOption.gridSize : false,
-    containment: 'parent',
-    stop: function( event, ui ) {
-        savePlan(false,false);
-    }
-});
-   $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget').addClass('widget-shadow-edit');
-   if(editOption.gridSize){
+    if(editOption.gridSize){
        $('.div_grid').show().css('background-size',editOption.gridSize[0]+'px '+editOption.gridSize[1]+'px');
    }else{
     $('.div_grid').hide();
 }
-$('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget').resizable({
+$('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').resizable({
     containment: "parent",
     stop: function( event, ui ) {
         savePlan(false,false);
@@ -656,10 +669,27 @@ $('.div_displayObject a').each(function () {
     }
 });
 try{
-    $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget').contextMenu(true);
+    $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').contextMenu(true);
 }catch (e) {
 
 }
+}else{
+    try{
+        $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').draggable("destroy");
+        $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').removeClass('widget-shadow-edit');
+        $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').resizable("destroy");
+        $('.div_displayObject a').each(function () {
+            $(this).attr('href', $(this).attr('data-href'));
+        });
+    }catch (e) {
+
+    }
+    $('.div_grid').hide();
+    try{
+        $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').contextMenu(false);
+    }catch (e) {
+
+    }
 }
 }
 
@@ -714,7 +744,7 @@ function displayPlan() {
                 }
             });
             }
-            $('.div_displayObject').find('.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget,.image-widget,.zone-widget').remove();
+            $('.div_displayObject').find('.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').remove();
             jeedom.plan.byPlanHeader({
                 id: planHeader_id,
                 error: function (error) {
@@ -765,11 +795,14 @@ function getObjectInfo(_object){
  if(_object.hasClass('zone-widget')){
      return {type : 'zone',id : _object.attr('data-zone_id')};
  }
+ if(_object.hasClass('summary-widget')){
+     return {type : 'summary',id : _object.attr('data-summary_id')};
+ }
 }
 
 function savePlan(_refreshDisplay,_async) {
     var plans = [];
-    $('.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget,.image-widget,.zone-widget').each(function () {
+    $('.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').each(function () {
         var info = getObjectInfo($(this));
         var plan = {};
         plan.position = {};
