@@ -271,7 +271,6 @@ class eqLogic {
 						$message .= __(' n\'a pas envoyé de message depuis plus de ', __FILE__) . $noReponseTimeLimit . __(' min (vérifier les piles)', __FILE__);
 						message::add('core', $message, '', $logicalId);
 						$eqLogic->setStatus('timeout', 1);
-						$eqLogic->save();
 					}
 				} else {
 					if ($eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s')) > date('Y-m-d H:i:s', strtotime('-' . $noReponseTimeLimit . ' minutes' . date('Y-m-d H:i:s')))) {
@@ -279,7 +278,6 @@ class eqLogic {
 							$message->remove();
 						}
 						$eqLogic->setStatus('timeout', 0);
-						$eqLogic->save();
 					}
 				}
 			}
@@ -652,6 +650,9 @@ class eqLogic {
 	public function getAlert() {
 		global $JEEDOM_INTERNAL_CONFIG;
 		$hasAlert = '';
+		if (!isset($JEEDOM_INTERNAL_CONFIG['alerts'])) {
+			return $hasAlert;
+		}
 		foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $key => $data) {
 			if ($this->getStatus($key, 0) != 0) {
 				$hasAlert = $data;
