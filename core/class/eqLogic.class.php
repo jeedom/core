@@ -410,7 +410,9 @@ class eqLogic {
 		if (is_object($cmd) && $cmd->execCmd() != $cmd->formatValue($_value)) {
 			$cmd->setCollectDate('');
 			$cmd->event($_value);
+			return true;
 		}
+		return false;
 	}
 
 	public function copy($_name) {
