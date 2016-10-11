@@ -69,6 +69,9 @@ class network {
 			if ($_protocole == 'ip:port' || $_protocole == 'dns:port') {
 				return config::byKey('internalAddr') . ':' . config::byKey('internalPort', 'core', 80);
 			}
+			if ($_protocole == 'proto:ip' || $_protocole == 'proto:dns') {
+				return config::byKey('internalProtocol') . config::byKey('internalAddr');
+			}
 			if ($_protocole == 'proto:ip:port' || $_protocole == 'proto:dns:port') {
 				return config::byKey('internalProtocol') . config::byKey('internalAddr') . ':' . config::byKey('internalPort', 'core', 80);
 			}
@@ -120,6 +123,23 @@ class network {
 					}
 				}
 				return config::byKey('externalProtocol') . config::byKey('externalAddr') . ':' . config::byKey('externalPort', 'core', 80);
+			}
+			if ($_protocole == 'proto:dns' || $_protocole == 'proto:ip') {
+				if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '') {
+					$url = parse_url(config::byKey('jeedom::url'));
+					$return = '';
+					if (isset($url['scheme'])) {
+						$return = $url['scheme'] . '://';
+					}
+					if (isset($url['host'])) {
+						if (isset($url['port'])) {
+							return $return . $url['host'];
+						} else {
+							return $return . $url['host'];
+						}
+					}
+				}
+				return config::byKey('externalProtocol') . config::byKey('externalAddr');
 			}
 			if ($_protocole == 'dns:port') {
 				if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '') {
