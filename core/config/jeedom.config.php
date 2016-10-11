@@ -150,7 +150,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'WEATHER_TEMPERATURE_MAX_4' => array('name' => 'Météo Température max j+4', 'family' => 'Météo', 'type' => 'Info', 'ignore' => true),
 			'WEATHER_CONDITION_4' => array('name' => 'Météo condition j+4', 'family' => 'Météo', 'type' => 'Info', 'ignore' => true),
 			'WEATHER_CONDITION_ID_4' => array('name' => 'Météo condition (id) j+4', 'family' => 'Météo', 'type' => 'Info', 'ignore' => true),
-			'POWER' => array('name' => 'Puissance Electrique', 'family' => 'Generic', 'type' => 'Info', 'ignore' => true),
+			'POWER' => array('name' => 'Puissance Electrique', 'family' => 'Generic', 'type' => 'Info'),
 			'CONSUMPTION' => array('name' => 'Consommation Electrique', 'family' => 'Generic', 'type' => 'Info', 'ignore' => true),
 			'TEMPERATURE' => array('name' => 'Température', 'family' => 'Generic', 'type' => 'Info'),
 			'BRIGHTNESS' => array('name' => 'Luminosité', 'family' => 'Generic', 'type' => 'Info'),
