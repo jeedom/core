@@ -47,7 +47,7 @@ function getAllMessage(_plugin) {
                 tbody += '<td><center><i class="fa fa-trash-o cursor removeMessage"></i></center></td>';
                 tbody += '<td class="datetime">' + messages[i].date + '</td>';
                 tbody += '<td class="plugin">' + messages[i].plugin + '</td>';
-                tbody += '<td class="message">' + messages[i].message + '</td>';
+                tbody += '<td class="message">' + $('<textarea />').html(messages[i].message).text() + '</td>';
                 tbody += '</tr>';
             }
             $('#table_message tbody').empty().html(tbody);
