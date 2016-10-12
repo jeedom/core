@@ -147,10 +147,13 @@ foreach ($market->getImg('screenshot') as $screenshot) {
   <div class='row'>
     <div class='col-sm-6'>
       <legend>{{Description}}
-        <a class="btn btn-default btn-xs pull-right" target="_blank" href="https://jeedom.com/doc/documentation/plugins/<?php echo $market->getLogicalId() . '/fr_FR/' . $market->getLogicalId() . '.html' ?>"><i class="fa fa-book"></i> {{Documentation}}</a><br/>
+        <a class="btn btn-default btn-xs pull-right" target="_blank" href="<?php echo $market->getDoc() ?>"><i class="fa fa-book"></i> {{Documentation}}</a>
+        <a class="btn btn-default btn-xs pull-right" target="_blank" href="<?php echo $market->getChangelog() ?>"><i class="fa fa-book"></i> {{Changelog}}</a>
+        <br/>
       </legend>
       <span class="marketAttr" data-l1key="description" style="word-wrap: break-word;white-space: -moz-pre-wrap;white-space: pre-wrap;" ></span>
-      <br/><br/>
+    </div>
+    <div class='col-sm-6'>
       <legend>{{Compatibilité plateforme}}</legend>
       <?php
 if ($market->getHardwareCompatibility('DIY') == 1) {
@@ -167,13 +170,9 @@ if ($market->getHardwareCompatibility('Jeedomboard') == 1) {
 }
 ?>
    </div>
-   <div class='col-sm-6'>
-    <legend>Nouveautés <a class="btn btn-xs btn-default pull-right" id="bt_viewCompleteChangelog"><i class="fa fa-eye"></i> {{Tout voir}}</a></legend>
-    <span class="marketAttr" data-l1key="changelog" style="word-wrap: break-word;white-space: -moz-pre-wrap;white-space: pre-wrap;" ></span>
-  </div>
-</div>
-<br/>
-<div class='row'>
+ </div>
+ <br/>
+ <div class='row'>
   <div class='col-sm-6'>
     <legend>Avis</legend>
     <div class='row'>
@@ -263,10 +262,6 @@ if ($market->getLanguage('it_IT') == 1) {
 
 </div>
 
-<div id="div_comments" title="{{Commentaires}}"></div>
-
-<div id="div_changelog" title="{{Changelog}}"></div>
-
 <style>
   .slick-prev:before, .slick-next:before {
     color : #707070;
@@ -295,86 +290,25 @@ if ($market->getLanguage('it_IT') == 1) {
   });
 
   $('body').setValues(market_display_info, '.marketAttr');
-  $('#div_changelog').empty();
 
-  if($.isArray(market_display_info.changelog)){
+  $('.marketAttr[data-l1key=description]').html(linkify(market_display_info.description));
+  $('.marketAttr[data-l1key=utilization]').html(linkify(market_display_info.utilization));
 
-    var nb = 0;
-    var html = '';
-    for(var i in market_display_info.changelog.reverse()){
-      html += '<strong>'+market_display_info.changelog[i].date+'</strong><br/>';
-      html += linkify(market_display_info.changelog[i].change);
-      html += '<br/><br/>';
-      nb++;
-      if(nb > 1){
-        break;
-      }
-    }
-    $('.marketAttr[data-l1key=changelog]').html(html);
-    var html = '';
-    for(var i in market_display_info.changelog.reverse()){
-     html += '<strong>{{Version}} '+market_display_info.changelog[i].version+' - '+market_display_info.changelog[i].date+'</strong><br/>';
-     html += linkify(market_display_info.changelog[i].change);
-     html += '<br/><br/>';
-   }
-   $('#div_changelog').html(html);
- }
- $('.marketAttr[data-l1key=description]').html(linkify(market_display_info.description));
- $('.marketAttr[data-l1key=utilization]').html(linkify(market_display_info.utilization));
-
- $('#bt_paypalClick').on('click', function () {
-  $(this).hide();
-});
-
- $("#div_changelog").dialog({
-  closeText: '',
-  autoOpen: false,
-  modal: true,
-  height: (jQuery(window).height() - 300),
-  width: 600,
-  position: {my: 'center', at: 'center', of: window},
-  open: function () {
-    if ((jQuery(window).width() - 50) < 1500) {
-      $('#md_modal').dialog({width: jQuery(window).width() - 50});
-    }
-  }
-});
-
- try{
-  $("#div_changelog").dialog('destroy');
-}catch (e) {
-
-}
-
-$("#div_changelog").dialog({
-  closeText: '',
-  autoOpen: false,
-  modal: true,
-  height: (jQuery(window).height() - 300),
-  width: 600,
-  position: {my: 'center', at: 'center', of: window},
-  open: function () {
-    if ((jQuery(window).width() - 50) < 1500) {
-      $('#md_modal').dialog({width: jQuery(window).width() - 50});
-    }
-  }
-});
-
-$("#bt_viewCompleteChangelog").off().on('click',function(){
-  $('#div_changelog').dialog('open');
-});
+  $('#bt_paypalClick').on('click', function () {
+    $(this).hide();
+  });
 
 
-$('.bt_installFromMarket').on('click', function () {
-  var id = $(this).attr('data-market_id');
-  var logicalId = $(this).attr('data-market_logicalId');
-  jeedom.repo.install({
-    id: id,
-    repo : 'market',
-    version: $(this).attr('data-version'),
-    error: function (error) {
-      $('#div_alertMarketDisplay').showAlert({message: error.message, level: 'danger'});
-    },
+  $('.bt_installFromMarket').on('click', function () {
+    var id = $(this).attr('data-market_id');
+    var logicalId = $(this).attr('data-market_logicalId');
+    jeedom.repo.install({
+      id: id,
+      repo : 'market',
+      version: $(this).attr('data-version'),
+      error: function (error) {
+        $('#div_alertMarketDisplay').showAlert({message: error.message, level: 'danger'});
+      },
  success: function (data) { // si l'appel a bien fonctionné
  if(market_display_info.type == 'plugin'){
    bootbox.confirm('{{Voulez vous aller sur la page de configuration de votre nouveau plugin ?}}', function (result) {
@@ -390,32 +324,32 @@ $('#div_alertMarketDisplay').showAlert({message: '{{Objet installé avec succès
 }
 });
 
-});
+  });
 
-$('#bt_removeFromMarket').on('click', function () {
-  var id = $(this).attr('data-market_id');
-  jeedom.repo.remove({
-    id: id,
-    repo : 'market',
-    error: function (error) {
-      $('#div_alertMarketDisplay').showAlert({message: error.message, level: 'danger'});
-    },
+  $('#bt_removeFromMarket').on('click', function () {
+    var id = $(this).attr('data-market_id');
+    jeedom.repo.remove({
+      id: id,
+      repo : 'market',
+      error: function (error) {
+        $('#div_alertMarketDisplay').showAlert({message: error.message, level: 'danger'});
+      },
  success: function (data) { // si l'appel a bien fonctionné
  $.showLoading();
  window.location.reload();
 }
 });
-});
+  });
 
-$('#in_myRating').on('change', function () {
-  var id = $('.marketAttr[data-l1key=id]').value();
-  jeedom.repo.setRating({
-   id: id,
-   repo : 'market',
-   rating: $(this).val(),
-   error: function (error) {
-    $('#div_alertMarketDisplay').showAlert({message: error.message, level: 'danger'});
-  }
-});
-});
+  $('#in_myRating').on('change', function () {
+    var id = $('.marketAttr[data-l1key=id]').value();
+    jeedom.repo.setRating({
+     id: id,
+     repo : 'market',
+     rating: $(this).val(),
+     error: function (error) {
+      $('#div_alertMarketDisplay').showAlert({message: error.message, level: 'danger'});
+    }
+  });
+  });
 </script>

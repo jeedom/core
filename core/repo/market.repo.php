@@ -66,6 +66,7 @@ class repo_market {
 	private $description;
 	private $categorie;
 	private $changelog;
+	private $doc;
 	private $version;
 	private $user_id;
 	private $downloaded;
@@ -84,7 +85,6 @@ class repo_market {
 	private $certification;
 	private $language;
 	private $private;
-	private $change;
 	private $updateBy;
 	private $release;
 	private $hardwareCompatibility;
@@ -466,6 +466,7 @@ class repo_market {
 		$market->status = json_encode($_arrayMarket['status'], JSON_UNESCAPED_UNICODE);
 		$market->setAuthor($_arrayMarket['author']);
 		$market->setChangelog($_arrayMarket['changelog']);
+		$market->setDoc($_arrayMarket['doc']);
 		$market->setLogicalId($_arrayMarket['logicalId']);
 		$market->setUtilization($_arrayMarket['utilization']);
 		$market->setCertification($_arrayMarket['certification']);
@@ -482,7 +483,6 @@ class repo_market {
 		if (isset($_arrayMarket['hardwareCompatibility'])) {
 			$market->hardwareCompatibility = json_encode($_arrayMarket['hardwareCompatibility'], JSON_UNESCAPED_UNICODE);
 		}
-		$market->change = '';
 
 		$market->setRealcost($_arrayMarket['realCost']);
 		if (!isset($_arrayMarket['isAuthor'])) {
@@ -953,12 +953,12 @@ class repo_market {
 		$this->certification = $certification;
 	}
 
-	public function getChange() {
-		return $this->change;
+	public function getDoc() {
+		return $this->doc;
 	}
 
-	public function setChange($change) {
-		$this->change = $change;
+	public function setDoc($doc) {
+		$this->doc = $doc;
 	}
 
 	public function getRelease() {
