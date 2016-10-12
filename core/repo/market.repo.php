@@ -95,6 +95,7 @@ class repo_market {
 		$market_info = repo_market::getInfo(array('logicalId' => $_update->getLogicalId(), 'type' => $_update->getType()), $_update->getConfiguration('version', 'stable'));
 		$_update->setStatus($market_info['status']);
 		$_update->setConfiguration('market', $market_info['market']);
+		$_update->setConfiguration('market_id', $market_info['id']);
 		$_update->setRemoteVersion($market_info['datetime']);
 		$_update->save();
 	}
