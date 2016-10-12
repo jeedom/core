@@ -66,17 +66,16 @@ if ($market->getCertification() == 'Obsolète') {
    <br/><br/>
    <?php
 if ($market->getPurchase() == 1) {
+	if ($market->getStatus('pro') == 1) {
+		echo ' <a class="btn btn-warning bt_installFromMarket" data-version="pro" style="color : white;" data-market_logicalId="' . $market->getLogicalId() . '" data-market_id="' . $market->getId() . '" ><i class="fa fa-plus-circle"></i> {{Installer pro}}</a>';
+	}
 	if ($market->getStatus('stable') == 1) {
 		echo ' <a class="btn btn-success bt_installFromMarket" data-version="stable" style="color : white;" data-market_logicalId="' . $market->getLogicalId() . '" data-market_id="' . $market->getId() . '" ><i class="fa fa-plus-circle"></i> {{Installer stable}}</a>';
 	}
-	if (config::byKey('market::allowBeta') == 1 || $market->getIsAuthor()) {
-		if ($market->getStatus('stable') == 1) {
-			echo ' <a class="btn btn-primary bt_installFromMarket" data-version="release" style="color : white;" data-market_logicalId="' . $market->getLogicalId() . '" data-market_id="' . $market->getId() . '" ><i class="fa fa-plus-circle"></i> {{Installer release}}</a>';
-		}
-		if ($market->getStatus('beta') == 1) {
-			echo ' <a class="btn btn-warning bt_installFromMarket" data-version="beta" style="color : white;" data-market_logicalId="' . $market->getLogicalId() . '" data-market_id="' . $market->getId() . '" ><i class="fa fa-plus-circle"></i> {{Installer beta}}</a>';
-		}
+	if ($market->getStatus('beta') == 1) {
+		echo ' <a class="btn btn-warning bt_installFromMarket" data-version="beta" style="color : white;" data-market_logicalId="' . $market->getLogicalId() . '" data-market_id="' . $market->getId() . '" ><i class="fa fa-plus-circle"></i> {{Installer beta}}</a>';
 	}
+
 } else if ($market->getPrivate() == 1) {
 	echo '<div class="alert alert-info">{{Ce plugin est pour le moment privé. Vous devez attendre qu\'il devienne public ou avoir un code pour y accèder}}</div>';
 } else {
