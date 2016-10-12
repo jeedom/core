@@ -31,6 +31,7 @@
 ** Possibilité d'activer une aimantation des widgets sur la grille
 ** Possibilité d'activer une aimantation des widgets entre eux
 ** Certain type de widget peuvent maintenant être dupliqué
+* Les plugins peuvent maintenant utiliser une clef api qui leur est propre
 
 == 2.4
 
