@@ -32,14 +32,18 @@ class jeedom {
 		system::php($cmd);
 	}
 
-	public static function apiAccess($_apikey = '') {
+	public static function getApiKey($_plugin = 'core') {
+		if (config::byKey('api', $_plugin) == '') {
+			config::save('api', config::genKey(), $_plugin);
+		}
+		return config::byKey('api', $_plugin);
+	}
+
+	public static function apiAccess($_apikey = '', $_plugin = 'core') {
 		if ($_apikey == '') {
 			return false;
 		}
-		if (config::byKey('api') == '') {
-			config::save('api', config::genKey());
-		}
-		if (config::byKey('api') == $_apikey) {
+		if (self::getApiKey($_plugin) == $_apikey) {
 			@session_start();
 			$_SESSION['apimaster'] = true;
 			@session_write_close();
