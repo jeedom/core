@@ -975,7 +975,7 @@ class eqLogic {
 		} elseif (is_object($cmds)) {
 			$cmds->setEqLogic($this);
 		}
-		if ($_logicalId != null) {
+		if ($_logicalId != null && (is_object($cmds) || count($cmds) > 0)) {
 			$this->_cmds[$_logicalId . '.' . $_multiple . '.' . $_type] = $cmds;
 		}
 		return $cmds;
