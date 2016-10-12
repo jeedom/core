@@ -158,6 +158,107 @@ class interactQuery {
 		return $closest;
 	}
 
+	public static function autoInteract($_query) {
+		$query = strtolower(sanitizeAccent($_query));
+		$data = array('object' => null, 'eqLogic_name' => array(), 'eqLogic' => null, 'cmd_name' => array(), 'cmd' => null, 'parameters' => array());
+		foreach (object::all() as $object) {
+			if (self::autoInteractWordFind($query, $object->getName())) {
+				$data['object'] = $object;
+				break;
+			}
+		}
+		if (!is_object($data['object'])) {
+			return '';
+		}
+		include_file('core', 'auto.interact.fr_FR', 'config');
+		global $JEEDOM_AUTO_INTERACT;
+		foreach ($JEEDOM_AUTO_INTERACT['eqLogic'] as $key => $value) {
+			if (self::autoInteractWordFind($query, $key)) {
+				$data['eqLogic_name'] = array_merge($data['eqLogic_name'], $value);
+			}
+		}
+		if (count($data['eqLogic_name']) > 0) {
+			foreach ($data['eqLogic_name'] as $name) {
+				foreach ($data['object']->getEqLogic() as $eqLogic) {
+					if (strtolower(sanitizeAccent($eqLogic->getName())) == $name) {
+						$data['eqLogic'] = $eqLogic;
+						break (2);
+					}
+				}
+			}
+		}
+		foreach ($JEEDOM_AUTO_INTERACT['cmd'] as $key => $value) {
+			if (self::autoInteractWordFind($query, $key)) {
+				$data['cmd_name'] = array_merge($data['cmd_name'], $value);
+			}
+		}
+		if (count($data['cmd_name']) > 0) {
+			if (is_object($data['eqLogic'])) {
+				foreach ($data['cmd_name'] as $name) {
+					foreach ($data['eqLogic']->getCmd() as $cmd) {
+						if (strtolower(sanitizeAccent($cmd->getName())) == $name) {
+							$data['cmd'] = $cmd;
+							break (2);
+						}
+					}
+				}
+			} else {
+				foreach ($data['cmd_name'] as $name) {
+					foreach ($data['object']->getEqLogic() as $eqLogic) {
+						foreach ($eqLogic->getCmd() as $cmd) {
+							if (strtolower(sanitizeAccent($cmd->getName())) == $name) {
+								$data['cmd'] = $cmd;
+								break (3);
+							}
+						}
+					}
+				}
+			}
+		}
+		if (!is_object($data['cmd']) && is_object($data['eqLogic'])) {
+			foreach ($data['eqLogic']->getCmd() as $cmd) {
+				if (self::autoInteractWordFind($query, $cmd->getName())) {
+					$data['cmd'] = $cmd;
+					break;
+				}
+			}
+		}
+		if (!is_object($data['cmd'])) {
+			foreach ($data['object']->getEqLogic() as $eqLogic) {
+				foreach ($eqLogic->getCmd() as $cmd) {
+					if (self::autoInteractWordFind($query, $cmd->getName())) {
+						$data['cmd'] = $cmd;
+						break (2);
+					}
+				}
+			}
+		}
+		if (!is_object($data['cmd'])) {
+			return;
+		}
+		if ($data['cmd']->getType() == 'info') {
+			return trim($data['cmd']->execCmd() . ' ' . $data['cmd']->getUnite());
+		} else {
+			$return = __('J\'ai executé ', __FILE__) . $data['cmd']->getName();
+			$eqLogic = $data['cmd']->getEqLogic();
+			if (is_object($eqLogic)) {
+				$return .= __(' de ', __FILE__) . $data['cmd']->getEqLogic()->getName();
+				$object = $eqLogic->getObject();
+				if (is_object($object)) {
+					$return .= __(' dans ', __FILE__) . $object->getName();
+				}
+			}
+			return $return;
+		}
+		return '';
+	}
+
+	public static function autoInteractWordFind($_string, $_word) {
+		$string = strtolower(sanitizeAccent($_string));
+		$word = strtolower(sanitizeAccent($_word));
+		return preg_match('/( |^)' . preg_quote($word, '/') . '( |$)/', $_string);
+	}
+
 	public static function tryToReply($_query, $_parameters = array()) {
 		if (trim($_query) == '') {
 			return;
@@ -171,7 +272,12 @@ class interactQuery {
 		if (is_object($interactQuery)) {
 			$reply = $interactQuery->executeAndReply($_parameters);
 			log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . "\nJ'ai compris : " . $interactQuery->getQuery() . "\nJ'ai répondu : " . $reply);
-		} else if (config::byKey('interact::noResponseIfEmpty', 'core', 0) == 0 && (!isset($_parameters['emptyReply']) || $_parameters['emptyReply'] == 0)) {
+			return ucfirst($reply);
+		}
+		if ($reply == '' && config::byKey('interact::autoreply') == 1) {
+			$reply = self::autoInteract($_query);
+		}
+		if ($reply == '' && config::byKey('interact::noResponseIfEmpty', 'core', 0) == 0 && (!isset($_parameters['emptyReply']) || $_parameters['emptyReply'] == 0)) {
 			$reply = self::dontUnderstand($_parameters);
 			log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . "\nJe n'ai rien compris\nJ'ai répondu : " . $reply);
 		}
