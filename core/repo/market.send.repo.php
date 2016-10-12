@@ -227,20 +227,7 @@ if (is_object($market)) {
 }
 ?>
 <script>
-  $("#md_marketSendChangeChange").dialog({
-    closeText: '',
-    autoOpen: false,
-    modal: true,
-    height: 400,
-    width:700,
-    position: {my: 'center', at: 'center', of: window},
-    open: function () {
-      $("body").css({overflow: 'hidden'});
-    },
-    beforeClose: function (event, ui) {
-      $("body").css({overflow: 'inherit'});
-    }
-  });
+
 
 
 
@@ -305,12 +292,6 @@ if (is_object($market)) {
     });
 
     if(market.id != ''){
-     $('#md_marketSendChangeChange').dialog('open');
-     $('#bt_marketSendCancelChange').off().on('click',function(){
-      $('#md_marketSendChangeChange').dialog('close');
-    });
-     $('#bt_marketSendValideChange').off().on('click',function(){
-      market.stable = $('#cb_marketSendStable').value();
       $.ajax({
         type: "POST",
         url: "core/ajax/repo.ajax.php",
@@ -332,41 +313,38 @@ if (is_object($market)) {
             $.showLoading();
             window.location.reload();
           } else {
-           $('#md_marketSendChangeChange').dialog('close');
            $('#div_alertMarketSend').showAlert({message: '{{Votre objet a été envoyé avec succès sur le market}}', level: 'success'});
          }
 
        }
      });
-    });
+    }else{
+      $.ajax({
+        type: "POST",
+        url: "core/ajax/repo.ajax.php",
+        data: {
+          action: "save",
+          repo : 'market',
+          market: json_encode(market),
+        },
+        dataType: 'json',
+        error: function (request, status, error) {
+          handleAjaxError(request, status, error, $('#div_alertMarketSend'));
+        },
+        success: function (data) {
+          if (data.state != 'ok') {
+            $('#div_alertMarketSend').showAlert({message: data.result, level: 'danger'});
+            return;
+          }
+          if (market.id == undefined || market.id == '') {
+            $.showLoading();
+            window.location.reload();
+          } else {
+            $('#div_alertMarketSend').showAlert({message: '{{Votre objet a été envoyé avec succès sur le market}}', level: 'success'});
+          }
 
-   }else{
-    $.ajax({
-      type: "POST",
-      url: "core/ajax/repo.ajax.php",
-      data: {
-        action: "save",
-        repo : 'market',
-        market: json_encode(market),
-      },
-      dataType: 'json',
-      error: function (request, status, error) {
-        handleAjaxError(request, status, error, $('#div_alertMarketSend'));
-      },
-      success: function (data) {
-        if (data.state != 'ok') {
-          $('#div_alertMarketSend').showAlert({message: data.result, level: 'danger'});
-          return;
         }
-        if (market.id == undefined || market.id == '') {
-          $.showLoading();
-          window.location.reload();
-        } else {
-          $('#div_alertMarketSend').showAlert({message: '{{Votre objet a été envoyé avec succès sur le market}}', level: 'success'});
-        }
-
-      }
-    });
-  }
-});
+      });
+    }
+  });
 </script>

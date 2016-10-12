@@ -86,7 +86,6 @@ class repo_market {
 	private $language;
 	private $private;
 	private $updateBy;
-	private $release;
 	private $hardwareCompatibility;
 	private $nbInstall;
 
@@ -959,14 +958,6 @@ class repo_market {
 
 	public function setDoc($doc) {
 		$this->doc = $doc;
-	}
-
-	public function getRelease() {
-		return $this->release;
-	}
-
-	public function setRelease($release) {
-		$this->release = $release;
 	}
 
 	public function getUpdateBy() {
