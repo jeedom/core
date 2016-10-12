@@ -31,17 +31,27 @@ class jeedom {
 		$cmd .= ' >> ' . log::getPathToLog('sick') . ' 2>&1';
 		system::php($cmd);
 	}
+	
+	public static function getApiKey($_plugin = 'core') {
+		if (config::byKey('api', $_plugin) == '') {
+			config::save('api', config::genKey(), $_plugin);
+		}
+		return config::byKey('api', $_plugin);
+	}
 
-	public static function apiAccess($_apikey = '') {
+	public static function apiAccess($_apikey = '',$_plugin = 'core') {
 		if ($_apikey == '') {
 			return false;
 		}
-		if (config::byKey('api') == '') {
-			config::save('api', config::genKey());
-		}
-		if (config::byKey('api') == $_apikey) {
+		if (self::getApiKey($_plugin) == $_apikey) {
+			@session_start();
+			$_SESSION['apimaster'] = true;
+			@session_write_close();
 			return true;
 		}
+		@session_start();
+		$_SESSION['apimaster'] = false;
+		@session_write_close();
 		$user = user::byHash($_apikey);
 		if (is_object($user)) {
 			if ($user->getOptions('localOnly', 0) == 1 && network::getUserLocation() != 'internal') {
