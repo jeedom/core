@@ -56,23 +56,35 @@
      $('.logEngine.'+$(this).value()).show();
  });
 
- $("#bt_genKeyAPI").on('click', function (event) {
+ $(".bt_regenerate_api").on('click', function (event) {
     $.hideAlert();
-    bootbox.confirm('{{Etes-vous sûr de vouloir réinitialiser la clef API de Jeedom ? Vous devrez reconfigurer tous les équipements communiquant avec Jeedom et utilisant la clef API}}', function (result) {
+    var el = $(this);
+    bootbox.confirm('{{Etes-vous sûr de vouloir réinitialiser la clef API de '+el.attr('data-plugin')+' ?}}', function (result) {
         if (result) {
-            genKeyAPI();
-        }
-    });
+           $.ajax({
+            type: "POST", 
+            url: "core/ajax/config.ajax.php",
+            data: {
+                action: "genApiKey",
+                plugin:el.attr('data-plugin'),
+            },
+            dataType: 'json',
+            error: function (request, status, error) {
+                handleAjaxError(request, status, error);
+            },
+            success: function (data) {
+                if (data.state != 'ok') {
+                    $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                    return;
+                }
+                el.closest('.input-group').find('input').value(data.result);
+            }
+        });
+       }
+   });
 });
 
- $("#bt_genKeyAPIPro").on('click', function (event) {
-    $.hideAlert();
-    bootbox.confirm('{{Etes-vous sûr de vouloir réinitialiser la clef API PRO de Jeedom ?}}', function (result) {
-        if (result) {
-            genKeyAPIPro();
-        }
-    });
-});
+
 
  $('#bt_forceSyncHour').on('click', function () {
     $.hideAlert();
@@ -278,49 +290,7 @@
     });
 });
 
- function genKeyAPI() {
-    $.ajax({// fonction permettant de faire de l'ajax
-        type: "POST", // methode de transmission des données au fichier php
-        url: "core/ajax/config.ajax.php", // url du fichier php
-        data: {
-            action: "genKeyAPI"
-        },
-        dataType: 'json',
-        error: function (request, status, error) {
-            handleAjaxError(request, status, error);
-        },
-        success: function (data) { // si l'appel a bien fonctionné
-        if (data.state != 'ok') {
-            $('#div_alert').showAlert({message: data.result, level: 'danger'});
-            return;
-        }
-        $('#in_keyAPI').value(data.result);
-    }
-});
-}
-
-function genKeyAPIPro() {
-    $.ajax({// fonction permettant de faire de l'ajax
-        type: "POST", // methode de transmission des données au fichier php
-        url: "core/ajax/config.ajax.php", // url du fichier php
-        data: {
-            action: "genKeyAPIPro"
-        },
-        dataType: 'json',
-        error: function (request, status, error) {
-            handleAjaxError(request, status, error);
-        },
-        success: function (data) { // si l'appel a bien fonctionné
-        if (data.state != 'ok') {
-            $('#div_alert').showAlert({message: data.result, level: 'danger'});
-            return;
-        }
-        $('#in_keyAPIPro').value(data.result);
-    }
-});
-}
-
-function clearJeedomDate() {
+ function clearJeedomDate() {
     $.ajax({// fonction permettant de faire de l'ajax
         type: "POST", // methode de transmission des données au fichier php
         url: "core/ajax/jeedom.ajax.php", // url du fichier php
@@ -594,17 +564,17 @@ function addObjectSummary(_summary) {
     tr += '<td>';
     if(isset(_summary) && isset(_summary.key) && _summary.key != ''){
         tr += '<a class="btn btn-success btn-sm objectSummaryAction" data-l1key="createVirtual"><i class="fa fa-puzzle-piece"></i> {{Créer virtuel}}</a>';
-   }
-   tr += '</td>';
-   tr += '<td>';
-   tr += '<a class="objectSummaryAction cursor" data-l1key="remove"><i class="fa fa-minus-circle"></i></a>';
-   tr += '</td>';
-   tr += '</tr>';
-   $('#table_objectSummary tbody').append(tr);
-   if (isset(_summary)){
-	$('#table_objectSummary tbody tr:last').setValues(_summary, '.objectSummaryAttr');
-   }
-   if(isset(_summary) && isset(_summary.key) && _summary.key != ''){
+    }
+    tr += '</td>';
+    tr += '<td>';
+    tr += '<a class="objectSummaryAction cursor" data-l1key="remove"><i class="fa fa-minus-circle"></i></a>';
+    tr += '</td>';
+    tr += '</tr>';
+    $('#table_objectSummary tbody').append(tr);
+    if (isset(_summary)){
+     $('#table_objectSummary tbody tr:last').setValues(_summary, '.objectSummaryAttr');
+ }
+ if(isset(_summary) && isset(_summary.key) && _summary.key != ''){
     $('#table_objectSummary tbody tr:last .objectSummaryAttr[data-l1key=key]').attr('disabled','disabled');
 }
 modifyWithoutSave = true;

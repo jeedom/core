@@ -32,24 +32,6 @@ sendVarToJS('ldapEnable', $configs['ldap::enable']);
 									<input type="text" class="configKey form-control" data-l1key="name" />
 								</div>
 							</div>
-							<div class="form-group expertModeVisible">
-								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API globale de Jeedom}}">{{Clef API}}</label>
-								<div class="col-lg-4 col-md-5 col-sm-6 col-xs-6">
-									<textarea id="in_keyAPI" style="width:100%;" rows="1" disabled><?php echo $configs['api']; ?></textarea>
-								</div>
-								<div class="col-lg-2 col-md-3 col-sm-3">
-									<a class="btn btn-default form-control" id="bt_genKeyAPI"><i class="fa fa-refresh"></i> {{Générer}}</a>
-								</div>
-							</div>
-							<div class="form-group expertModeVisible">
-								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API Pro de Jeedom}}">{{Clef API Pro}}</label>
-								<div class="col-lg-4 col-md-5 col-sm-6 col-xs-6">
-									<textarea id="in_keyAPIPro" style="width:100%;" rows="1" disabled><?php echo $configs['apipro']; ?></textarea>
-								</div>
-								<div class="col-lg-2 col-md-3 col-sm-3">
-									<a class="btn btn-default form-control" id="bt_genKeyAPIPro"><i class="fa fa-refresh"></i> {{Générer}}</a>
-								</div>
-							</div>
 							<div class="form-group">
 								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Indique votre type de matériel}}">{{Système}}</label>
 								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
@@ -207,6 +189,65 @@ sendVarToJS('ldapEnable', $configs['ldap::enable']);
 									<input type="checkbox" class="configKey" data-l1key="ignoreHourCheck" />
 								</div>
 							</div>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div class="panel panel-default expertModeVisible">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_api">
+						<i class="fa fa-key"></i>  {{Clefs API}}
+					</a>
+				</h3>
+			</div>
+			<div id="config_api" class="panel-collapse collapse">
+				<div class="panel-body">
+					<form class="form-horizontal">
+						<fieldset>
+							<div class="form-group expertModeVisible">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API globale de Jeedom}}">{{Clef API}}</label>
+								<div class="col-lg-4 col-md-5 col-sm-6 col-xs-6">
+									<div class="input-group">
+									<input class="form-control" disabled value="<?php echo $configs['api']; ?>" />
+										<span class="input-group-btn">
+											<a class="btn btn-default form-control bt_regenerate_api" data-plugin="core"><i class="fa fa-refresh"></i></a>
+										</span>
+									</div>
+								</div>
+							</div>
+							<div class="form-group expertModeVisible">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API Pro de Jeedom}}">{{Clef API Pro}}</label>
+								<div class="col-lg-4 col-md-5 col-sm-6 col-xs-6">
+									<div class="input-group">
+									<input class="form-control" disabled value="<?php echo $configs['apipro']; ?>" />
+										<span class="input-group-btn">
+											<a class="btn btn-default form-control bt_regenerate_api" data-plugin="pro"><i class="fa fa-refresh"></i></a>
+										</span>
+									</div>
+								</div>
+
+							</div>
+							<?php
+foreach (plugin::listPlugin(true) as $plugin) {
+	if (config::byKey('api', $plugin->getId()) == '') {
+		continue;
+	}
+	echo '<div class="form-group expertModeVisible">';
+	echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API pour le plugin}} ' . $plugin->getName() . '">{{Clef API}} ' . $plugin->getName() . '</label>';
+	echo '<div class="col-lg-4 col-md-5 col-sm-6 col-xs-6">';
+	echo '<div class="input-group">';
+	echo '<input class="form-control" disabled value="' . config::byKey('api', $plugin->getId()) . '" />';
+	echo '<span class="input-group-btn">';
+	echo '<a class="btn btn-default form-control bt_regenerate_api" data-plugin="' . $plugin->getId() . '"><i class="fa fa-refresh"></i></a>';
+	echo '</span>';
+	echo '</div>';
+	echo '</div>';
+	echo '</div>';
+}
+?>
 						</fieldset>
 					</form>
 				</div>

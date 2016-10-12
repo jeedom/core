@@ -26,20 +26,20 @@ try {
 
 	ajax::init();
 
-	if (init('action') == 'genKeyAPI') {
+	if (init('action') == 'genApiKey') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
-		config::save('api', config::genKey());
-		ajax::success(config::byKey('api'));
-	}
-
-	if (init('action') == 'genKeyAPIPro') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		if (init('plugin') == 'core') {
+			config::save('api', config::genKey());
+			ajax::success(config::byKey('api'));
+		} else if (init('plugin') == 'pro') {
+			config::save('apipro', config::genKey());
+			ajax::success(config::byKey('apipro'));
+		} else {
+			config::save('api', config::genKey(), init('plugin'));
+			ajax::success(config::byKey('api', init('plugin')));
 		}
-		config::save('apipro', config::genKey());
-		ajax::success(config::byKey('apipro'));
 	}
 
 	if (init('action') == 'getKey') {
