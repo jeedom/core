@@ -28,11 +28,10 @@ if (isset($argv)) {
 
 if (init('type') != '') {
 	try {
+		$type = init('type');
 		if (!jeedom::apiAccess(init('apikey', init('api')))) {
-			sleep(5);
 			throw new Exception('Clé API non valide (ou vide) . Demande venant de :' . getClientIp() . '. Clé API : ' . secureXSS(init('apikey') . init('api')));
 		}
-		$type = init('type');
 		if ($type == 'cmd') {
 			if (is_json(init('id'))) {
 				$ids = json_decode(init('id'), true);
