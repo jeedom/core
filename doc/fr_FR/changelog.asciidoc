@@ -32,6 +32,7 @@
 ** Possibilité d'activer une aimantation des widgets entre eux
 ** Certain type de widget peuvent maintenant être dupliqué
 * Les plugins peuvent maintenant utiliser une clef api qui leur est propre
+* Ajout d'intéractions automatiques, Jeedom va essayer de comprendre la phrase, d'executer l'action et de répondre 
 
 == 2.4
 
