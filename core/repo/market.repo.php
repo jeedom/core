@@ -464,11 +464,11 @@ class repo_market {
 		$market->setCategorie($_arrayMarket['categorie']);
 		$market->status = json_encode($_arrayMarket['status'], JSON_UNESCAPED_UNICODE);
 		$market->setAuthor($_arrayMarket['author']);
-		$market->setChangelog($_arrayMarket['changelog']);
-		$market->setDoc($_arrayMarket['doc']);
+		@$market->setChangelog($_arrayMarket['changelog']);
+		@$market->setDoc($_arrayMarket['doc']);
 		$market->setLogicalId($_arrayMarket['logicalId']);
-		$market->setUtilization($_arrayMarket['utilization']);
-		$market->setCertification($_arrayMarket['certification']);
+		@$market->setUtilization($_arrayMarket['utilization']);
+		@$market->setCertification($_arrayMarket['certification']);
 		$market->setPurchase($_arrayMarket['purchase']);
 		$market->setCost($_arrayMarket['cost']);
 		$market->rating = ($_arrayMarket['rating']);
