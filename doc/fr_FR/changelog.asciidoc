@@ -38,6 +38,7 @@
 * Ajout de la gestion des démons en version mobile
 * Ajout de la gestion des crons en version mobile
 * Ajout de certaines informations de santé en version mobile
+* Ajout sur la page batterie des modules en alerte
 
 == 2.4
 

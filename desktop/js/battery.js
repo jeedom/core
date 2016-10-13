@@ -14,10 +14,23 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
+
  positionEqLogic();
- $('.batteryListContainer').packery({
+ $('.batteryListContainer,.alertListContainer').packery({
  	itemSelector: ".eqLogic-widget",
  	columnWidth:40,
  	rowHeight: 80,
  	gutter : 2,
+ });
+
+ $('#ul_tabBatteryAlert li').on('click',function(){
+ 	setTimeout(function(){ 
+ 		positionEqLogic();
+ 		$('.batteryListContainer,.alertListContainer').packery({
+ 			itemSelector: ".eqLogic-widget",
+ 			columnWidth:40,
+ 			rowHeight: 80,
+ 			gutter : 2,
+ 		});
+ 	}, 10);
  });

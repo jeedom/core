@@ -457,6 +457,24 @@ class eqLogic {
 		if ($this->getDisplay('showOn' . $version, 1) == 0) {
 			return '';
 		}
+		if ($this->getAlert() != '') {
+			$alert = $this->getAlert();
+			$replace = array(
+				'#id#' => $this->getId(),
+				'#name#' => $this->getName(),
+				'#name_display#' => $this->getName(),
+				'#eqLink#' => $this->getLinkToConfiguration(),
+				'#object_name#' => '',
+				'#version#' => $_version,
+				'#alert_name#' => $alert['name'],
+				'#alert_icon#' => $alert['icon'],
+			);
+			if ($this->getDisplay('showObjectNameOn' . $version, 0) == 1) {
+				$object = $this->getObject();
+				$replace['#object_name#'] = (is_object($object)) ? '(' . $object->getName() . ')' : '';
+			}
+			return template_replace($replace, getTemplate('core', $version, 'alert'));
+		}
 		$user_id = '';
 		if (isset($_SESSION) && isset($_SESSION['user']) && is_object($_SESSION['user'])) {
 			$user_id = $_SESSION['user']->getId();
@@ -586,11 +604,6 @@ class eqLogic {
 			list($r, $g, $b) = sscanf($replace['#background-color#'], "#%02x%02x%02x");
 			$replace['#background-color#'] = 'rgba(' . $r . ',' . $g . ',' . $b . ',' . $opacity . ')';
 		}
-		if ($this->getAlert() != '') {
-			$replace['#background-color#'] = 'rgba(' . 255 . ',' . 0 . ',' . 0 . ',' . $opacity . ')';
-			$replace['#alert_name#'] = $this->getAlert()['name'];
-			$replace['#alert_icon#'] = $this->getAlert()['icon'];
-		}
 		return $replace;
 	}
 
@@ -619,9 +632,6 @@ class eqLogic {
 		$replace['#cmd#'] = $cmd_html;
 		if (!isset(self::$_templateArray[$version])) {
 			self::$_templateArray[$version] = getTemplate('core', $version, 'eqLogic');
-		}
-		if ($this->getAlert() != '') {
-			return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, 'alert')));
 		}
 		return $this->postToHtml($_version, template_replace($replace, self::$_templateArray[$version]));
 	}

@@ -30,8 +30,15 @@ sort($plugins);
 sort($battery);
 ?>
 
-<div class="batteryListContainer">
-	<?php
+<ul class="nav nav-tabs" role="tablist" id="ul_tabBatteryAlert">
+	<li role="presentation" class="active"><a href="#battery" aria-controls="battery" role="tab" data-toggle="tab">{{Batterie}}</a></li>
+	<li role="presentation"><a href="#alertEqlogic" aria-controls="alertEqlogic" role="tab" data-toggle="tab">{{Module en alerte}}</a></li>
+</ul>
+
+<div class="tab-content">
+	<div role="tabpanel" class="tab-pane active" id="battery">
+		<div class="batteryListContainer">
+			<?php
 foreach ($list as $eqLogic) {
 	$color = '#2ecc71';
 	$level = 'good';
@@ -66,4 +73,17 @@ foreach ($list as $eqLogic) {
 echo '</div>';
 include_file('desktop', 'battery', 'js');
 ?>
-</div>
+		</div>
+		<div role="tabpanel" class="tab-pane" id="alertEqlogic">
+			<div class="alertListContainer">
+				<?php
+foreach (eqLogic::all() as $eqLogic) {
+	if ($eqLogic->getAlert() == '') {
+		continue;
+	}
+	echo $eqLogic->toHtml('dashboard');
+}
+?>
+			</div>
+		</div>
+	</div>
