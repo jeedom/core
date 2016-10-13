@@ -73,112 +73,110 @@ function isset() {
 }
 
 function initApplication(_reinit) {
-    $.ajax({// fonction permettant de faire de l'ajax
-        type: 'POST', // methode de transmission des données au fichier php
-        url: 'core/ajax/jeedom.ajax.php', // url du fichier php
+    $.ajax({
+        type: 'POST', 
+        url: 'core/ajax/jeedom.ajax.php', 
         data: {
             action: 'getInfoApplication'
         },
         dataType: 'json',
         error: function (request, status, error) {
-            if (confirm('Erreur de communication.Etes-vous connecté à internet? Voulez-vous ressayer ?')) {
-               // window.location.reload();
-           }
-       },
-        success: function (data) { // si l'appel a bien fonctionné
-        if (data.state != 'ok') {
-            modal(false);
-            panel(false);
-            if (data.code == -1234) {
-                page('connection', 'Connexion');
-                return;
-            } else {
-                $('#div_alert').showAlert({message: data.result, level: 'danger'});
-            }
-            return;
-        } else {
-            if (init(_reinit, false) == false) {
-                $.ajaxSetup({
-                    type: "POST",
-                    data: {
-                        jeedom_token: data.result.jeedom_token
-                    }
-                })
+            confirm('Erreur de communication.Etes-vous connecté à internet? Voulez-vous ressayer ?');
+        },
+        success: function (data) {
+            if (data.state != 'ok') {
                 modal(false);
                 panel(false);
-                /*************Initialisation environement********************/
-                serverDatetime  = data.result.serverDatetime ;
-                var clientDatetime = new Date();
-                clientServerDiffDatetime = serverDatetime*1000 - clientDatetime.getTime();
-                user_id = data.result.user_id;
-                plugins = data.result.plugins;
-                userProfils = data.result.userProfils;
-                jeedom.init();
-                var include = ['core/js/core.js'];
-
-                if (isset(userProfils) && userProfils != null) {
-                    if (isset(userProfils.mobile_theme_color) && userProfils.mobile_theme_color != '') {
-                        $('#jQMnDColor').attr('href', 'core/themes/'+userProfils.mobile_theme_color+'/mobile/' + userProfils.mobile_theme_color + '.css');
-                        include.push( 'core/themes/'+userProfils.mobile_theme_color+'/mobile/' + userProfils.mobile_theme_color + '.js');
-                    }
-                    if (isset(userProfils.mobile_highcharts_theme) && userProfils.mobile_highcharts_theme != '') {
-                        include.push('3rdparty/highstock/themes/' + userProfils.mobile_highcharts_theme + '.js');
-                    }
+                if (data.code == -1234) {
+                    page('connection', 'Connexion');
+                    return;
+                } else {
+                    $('#div_alert').showAlert({message: data.result, level: 'danger'});
                 }
-                if (isset(data.result.custom) && data.result.custom != null) {
-                    if (isset(data.result.custom.css) && data.result.custom.css) {
-                        include.push('mobile/custom/custom.css');
-                    }
-                    if (isset(data.result.custom.js) && data.result.custom.js) {
-                        include.push('mobile/custom/custom.js');
-                    }
-                }
-                for(var i in plugins){
-                    if(plugins[i].eventjs == 1){
-                        include.push('plugins/'+plugins[i].id+'/mobile/js/event.js');
-                    }
-                }
-                
-                $.get("core/php/icon.inc.php", function (data) {
-                    $("head").append(data);
-                    $.include(include, function () {
-                        deviceInfo = getDeviceType();
-                        jeedom.object.summaryUpdate([{object_id:'global'}])
-                        if(getUrlVars('p') != '' && getUrlVars('ajax') != 1){
-                         switch (getUrlVars('p')) {
-                            case 'view' :
-                            page('view', 'Vue',getUrlVars('view_id'));
-                            break;
+                return;
+            } else {
+                if (init(_reinit, false) == false) {
+                    $.ajaxSetup({
+                        type: "POST",
+                        data: {
+                            jeedom_token: data.result.jeedom_token
                         }
-                    }else{
-                        if (isset(userProfils) && userProfils != null && isset(userProfils.homePageMobile) && userProfils.homePageMobile != 'home' && getUrlVars('page') != 'home') {
-                            var res = userProfils.homePageMobile.split("::");
-                            if (res[0] == 'core') {
-                                switch (res[1]) {
-                                    case 'dashboard' :
-                                    page('equipment', userProfils.defaultMobileObjectName, userProfils.defaultMobileObject);
-                                    break;
-                                    case 'plan' :
-                                    window.location.href = 'index.php?v=d&p=plan&plan_id=' + userProfils.defaultMobilePlan;
-                                    break;
-                                    case 'view' :
-                                    page('view', userProfils.defaultMobileViewName, userProfils.defaultMobileView);
-                                    break;
+                    })
+                    modal(false);
+                    panel(false);
+                    /*************Initialisation environement********************/
+                    serverDatetime  = data.result.serverDatetime ;
+                    var clientDatetime = new Date();
+                    clientServerDiffDatetime = serverDatetime*1000 - clientDatetime.getTime();
+                    user_id = data.result.user_id;
+                    plugins = data.result.plugins;
+                    userProfils = data.result.userProfils;
+                    jeedom.init();
+                    var include = ['core/js/core.js'];
+
+                    if (isset(userProfils) && userProfils != null) {
+                        if (isset(userProfils.mobile_theme_color) && userProfils.mobile_theme_color != '') {
+                            $('#jQMnDColor').attr('href', 'core/themes/'+userProfils.mobile_theme_color+'/mobile/' + userProfils.mobile_theme_color + '.css');
+                            include.push( 'core/themes/'+userProfils.mobile_theme_color+'/mobile/' + userProfils.mobile_theme_color + '.js');
+                        }
+                        if (isset(userProfils.mobile_highcharts_theme) && userProfils.mobile_highcharts_theme != '') {
+                            include.push('3rdparty/highstock/themes/' + userProfils.mobile_highcharts_theme + '.js');
+                        }
+                    }
+                    if (isset(data.result.custom) && data.result.custom != null) {
+                        if (isset(data.result.custom.css) && data.result.custom.css) {
+                            include.push('mobile/custom/custom.css');
+                        }
+                        if (isset(data.result.custom.js) && data.result.custom.js) {
+                            include.push('mobile/custom/custom.js');
+                        }
+                    }
+                    for(var i in plugins){
+                        if(plugins[i].eventjs == 1){
+                            include.push('plugins/'+plugins[i].id+'/mobile/js/event.js');
+                        }
+                    }
+                    
+                    $.get("core/php/icon.inc.php", function (data) {
+                        $("head").append(data);
+                        $.include(include, function () {
+                            deviceInfo = getDeviceType();
+                            jeedom.object.summaryUpdate([{object_id:'global'}])
+                            if(getUrlVars('p') != '' && getUrlVars('ajax') != 1){
+                             switch (getUrlVars('p')) {
+                                case 'view' :
+                                page('view', 'Vue',getUrlVars('view_id'));
+                                break;
+                            }
+                        }else{
+                            if (isset(userProfils) && userProfils != null && isset(userProfils.homePageMobile) && userProfils.homePageMobile != 'home' && getUrlVars('page') != 'home') {
+                                var res = userProfils.homePageMobile.split("::");
+                                if (res[0] == 'core') {
+                                    switch (res[1]) {
+                                        case 'dashboard' :
+                                        page('equipment', userProfils.defaultMobileObjectName, userProfils.defaultMobileObject);
+                                        break;
+                                        case 'plan' :
+                                        window.location.href = 'index.php?v=d&p=plan&plan_id=' + userProfils.defaultMobilePlan;
+                                        break;
+                                        case 'view' :
+                                        page('view', userProfils.defaultMobileViewName, userProfils.defaultMobileView);
+                                        break;
+                                    }
+                                } else {
+                                    page(res[1], 'Plugin', '', res[0]);
                                 }
                             } else {
-                                page(res[1], 'Plugin', '', res[0]);
+                                page('home', 'Accueil');
                             }
-                        } else {
-                            page('home', 'Accueil');
                         }
-                    }
-                    $('#pagecontainer').css('padding-top','64px');
-                });
-                });
+                        $('#pagecontainer').css('padding-top','64px');
+                    });
+                    });
+                }
             }
         }
-    }
-});
+    });
 }
 
 function page(_page, _title, _option, _plugin,_dialog) {

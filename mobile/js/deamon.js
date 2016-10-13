@@ -1,0 +1,109 @@
+function initDeamon() {
+  var rightPanel = '<ul data-role="listview" class="ui-icon-alt">';
+  rightPanel += '<li><a id="bt_refreshDeamon" href="#"><i class="fa fa-refresh"></i> {{Rafraichir}}</a></li>';
+  rightPanel += '</ul>';
+  panel(rightPanel);
+  getDeamonState();
+
+  $('#bt_refreshDeamon').on('click',function(){
+    getDeamonState();
+  });
+
+  function getDeamonState(){
+    $('#table_deamon tbody').empty();
+    jeedom.plugin.all({
+      error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+      },
+      success: function (plugins) {
+        for (var i in plugins) {
+         if(plugins[i].hasOwnDeamon == 0){
+          continue;
+        }
+        jeedom.plugin.getDeamonInfo({
+          id : plugins[i].id,
+          async:false,
+          error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+          },
+          success: function (deamonInfo) {
+            var html = '<tr>';
+            html += '<td>';
+            html += deamonInfo.plugin.name;
+            html += '</td>';
+            html += '<td>';
+            html += deamonInfo.state;
+            html += '</td>';
+            html += '<td>';
+            html += deamonInfo.last_launch;
+            html += '</td>';
+            html += '<td>';
+            html += '<a class="bt_deamonAction ui-btn ui-mini ui-btn-inline ui-btn-raised clr-primary" data-action="start" data-plugin="'+deamonInfo.plugin.id+'"><i class="fa fa-play"></i></a> ';
+            if(deamonInfo.auto == 0){
+              html += '<a class="bt_deamonAction ui-btn ui-mini ui-btn-inline ui-btn-raised clr-warning" data-action="stop" data-plugin="'+deamonInfo.plugin.id+'"><i class="fa fa-stop"></i></a> ';
+              html += '<a class="bt_deamonAction ui-btn ui-mini ui-btn-inline ui-btn-raised clr-primary" data-action="enableAuto" data-plugin="'+deamonInfo.plugin.id+'"><i class="fa fa-magic"></i></a> ';
+            }else{
+              html += '<a class="bt_deamonAction ui-btn ui-mini ui-btn-inline ui-btn-raised clr-warning" data-action="disableAuto" data-plugin="'+deamonInfo.plugin.id+'"><i class="fa fa-times"></i></a> ';
+            }
+
+            
+            html += '</td>';
+            html += '</tr>';
+            $('#table_deamon tbody').append(html);
+          }
+        });
+      }
+    }
+  });
+  }
+
+  $('#table_deamon tbody').on('click','.bt_deamonAction',function(){
+    var plugin = $(this).data('plugin');
+    var action = $(this).data('action');
+    if(action == 'start'){
+      jeedom.plugin.deamonStart({
+        id : plugin,
+        forceRestart : 1,
+        error: function (error) {
+          $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+         getDeamonState();
+       }
+     })
+    }else if(action == 'stop'){
+      jeedom.plugin.deamonStop({
+        id : plugin,
+        error: function (error) {
+          $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+         getDeamonState();
+       }
+     })
+    }else if(action == 'enableAuto'){
+      jeedom.plugin.deamonChangeAutoMode({
+        id : plugin,
+        mode:1,
+        error: function (error) {
+          $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+         getDeamonState();
+       }
+     })
+    }else if(action == 'disableAuto'){
+      jeedom.plugin.deamonChangeAutoMode({
+        id : plugin,
+        mode:0,
+        error: function (error) {
+          $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+         getDeamonState();
+       }
+     })
+    }
+  });
+
+}

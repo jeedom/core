@@ -123,6 +123,7 @@ try {
 		if (is_object($plugin)) {
 			$return = $plugin->deamon_info();
 		}
+		$return['plugin'] = utils::o2a($plugin);
 		ajax::success($return);
 	}
 
