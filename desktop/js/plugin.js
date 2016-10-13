@@ -171,8 +171,6 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
         $('#div_plugin_panel').append(config_panel_html);
       }
 
-      initCheckBox();
-
       $('#div_plugin_toggleState').empty();
       if (data.checkVersion != -1) {
        var html = '<form class="form-horizontal">';

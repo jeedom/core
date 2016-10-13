@@ -294,7 +294,6 @@ $('.eqLogic .eqLogicAction[data-action=configure]').off('click').on('click', fun
 /**************************CMD*********************************************/
 $('.cmdAction[data-action=add]').off('click').on('click', function () {
     addCmdToTable();
-    initCheckBox();
     $('.cmd:last .cmdAttr[data-l1key=type]').trigger('change');
 });
 

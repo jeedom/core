@@ -855,7 +855,6 @@ function printScenario(_id) {
         $('#div_scenarioElement').append(addElement(data.elements[i]));
       }
       updateSortable();
-      initCheckBox();
       setEditor();
       setAutocomplete();
       $('#div_editScenario').show();
