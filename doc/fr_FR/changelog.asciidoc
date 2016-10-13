@@ -36,6 +36,7 @@
 * Les panels s'ouvre maintenant à gauche (ou à droite) sur la version mobile, au lieu d'en bas
 * Ajout de la gestion des démons en version mobile
 * Ajout de la gestion des crons en version mobile
+* Ajout de certaines informations de santé en version mobile
 
 == 2.4
 

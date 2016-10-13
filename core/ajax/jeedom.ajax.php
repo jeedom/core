@@ -82,6 +82,10 @@ try {
 		ajax::success(implode("\n", $output));
 	}
 
+	if (init('action') == 'health') {
+		ajax::success(jeedom::health());
+	}
+
 	if (init('action') == 'update') {
 		jeedom::update();
 		ajax::success();
