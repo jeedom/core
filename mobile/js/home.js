@@ -1,6 +1,8 @@
 function initHome() {
     refreshMessageNumber();
 
+    $('#bottompanel_otherActionList').append('<a class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" href="index.php?v=d"><i class="fa fa-desktop"></i> {{Version desktop}}</a>');
+
     jeedom.object.all({
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -65,7 +67,7 @@ function initHome() {
                 continue;
             }
             li += '<a href="#" class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="' + plugins[i].mobile + '" data-plugin="' + plugins[i].id + '" data-title="' + plugins[i].name + '">';
-            li += '<img src="plugins/'+plugins[i].id +'/doc/images/'+plugins[i].id +'_icon.png" style="width : 20px;position:relative;top:5px;" onerror=\'this.style.display = "none"\' /> ';
+            li += '<img src="plugins/'+plugins[i].id +'/plugin_info/'+plugins[i].id +'_icon.png" style="width : 20px;position:relative;top:5px;" onerror=\'this.style.display = "none"\' /> ';
             li +=  plugins[i].name;
             li +=  '</a>';
         }
