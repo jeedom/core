@@ -45,8 +45,6 @@ function initDeamon() {
             }else{
               html += '<a class="bt_deamonAction ui-btn ui-mini ui-btn-inline ui-btn-raised clr-warning" data-action="disableAuto" data-plugin="'+deamonInfo.plugin.id+'"><i class="fa fa-times"></i></a> ';
             }
-
-            
             html += '</td>';
             html += '</tr>';
             $('#table_deamon tbody').append(html);

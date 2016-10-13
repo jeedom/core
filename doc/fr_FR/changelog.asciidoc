@@ -33,6 +33,8 @@
 ** Certain type de widget peuvent maintenant être dupliqué
 * Les plugins peuvent maintenant utiliser une clef api qui leur est propre
 * Ajout d'intéractions automatiques, Jeedom va essayer de comprendre la phrase, d'executer l'action et de répondre 
+* Ajout de la gestion des démons en version mobile
+* Ajout de la gestion des crons en version mobile
 
 == 2.4
 
