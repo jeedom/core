@@ -26,6 +26,162 @@ class jeedom {
 
 	/*     * ***********************Methode static*************************** */
 
+	public static function health() {
+		$return = array();
+
+		$nbNeedUpdate = update::nbNeedUpdate();
+		$state = ($nbNeedUpdate == 0) ? true : false;
+		$return[] = array(
+			'name' => __('Système à jour', __FILE__),
+			'state' => $state,
+			'result' => ($state) ? __('OK', __FILE__) : $nbNeedUpdate,
+			'comment' => '',
+		);
+
+		$state = (config::byKey('enableCron', 'core', 1, true) != 0) ? true : false;
+		$return[] = array(
+			'name' => __('Cron actif', __FILE__),
+			'state' => $state,
+			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
+			'comment' => ($state) ? '' : __('Erreur cron : les crons sont désactivés. Allez dans Administration -> Moteur de tâches pour les réactiver', __FILE__),
+		);
+
+		$state = (config::byKey('enableScenario') == 0 && count(scenario::all()) > 0) ? false : true;
+		$return[] = array(
+			'name' => __('Scénario actif', __FILE__),
+			'state' => $state,
+			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
+			'comment' => ($state) ? '' : __('Erreur scénario : tous les scénarios sont désactivés. Allez dans Outils -> Scénarios pour les réactiver', __FILE__),
+		);
+
+		$state = jeedom::isStarted();
+		$return[] = array(
+			'name' => __('Démarré', __FILE__),
+			'state' => $state,
+			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
+			'comment' => '',
+		);
+
+		$state = jeedom::isDateOk();
+		$return[] = array(
+			'name' => __('Date système', __FILE__),
+			'state' => $state,
+			'result' => ($state) ? __('OK', __FILE__) : date('Y-m-d H:i:s'),
+			'comment' => '',
+		);
+
+		$state = !user::hasDefaultIdentification();
+		$return[] = array(
+			'name' => __('Authentification par défaut', __FILE__),
+			'state' => $state,
+			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
+			'comment' => ($state) ? '' : __('Attention vous avez toujours l\'utilisateur admin/admin de configuré, cela représente une grave faille de sécurité, aller <a href=\'index.php?v=d&p=user\'>ici</a> pour modifier le mot de passe de l\'utilisateur admin', __FILE__),
+		);
+
+		$state = jeedom::isCapable('sudo');
+		$return[] = array(
+			'name' => __('Droits sudo', __FILE__),
+			'state' => $state,
+			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
+			'comment' => ($state) ? '' : __('Appliquer <a href="https://www.jeedom.com/doc/documentation/installation/fr_FR/doc-installation.html#_etape_4_définition_des_droits_root_à_jeedom" targe="_blank">cette étape</a> de l\'installation', __FILE__),
+		);
+
+		$return[] = array(
+			'name' => __('Version Jeedom', __FILE__),
+			'state' => true,
+			'result' => jeedom::version(),
+			'comment' => '',
+		);
+
+		$state = version_compare(phpversion(), '5.5', '>=');
+		$return[] = array(
+			'name' => __('Version PHP', __FILE__),
+			'state' => $state,
+			'result' => phpversion(),
+			'comment' => ($state) ? '' : __('Si vous êtes en version 5.4.x on vous indiquera quand la version 5.5 sera obligatoire', __FILE__),
+		);
+
+		$uname = shell_exec('uname -a');
+		$version = '';
+		$state = true;
+		if (strpos(strtolower($uname), 'debian') === false) {
+			$state = false;
+		}
+		if (!file_exists('/etc/debian_version')) {
+			$state = false;
+		} else {
+			$state = true;
+			$version = trim(strtolower(file_get_contents('/etc/debian_version')));
+			if (version_compare($version, '8', '<')) {
+				if (strpos($version, 'jessie') === false && strpos($version, 'stretch')) {
+					$state = false;
+				}
+			}
+		}
+		if (strpos(strtolower($uname), 'ubuntu') !== false) {
+			$state = false;
+		}
+		$return[] = array(
+			'name' => __('Version OS', __FILE__),
+			'state' => $state,
+			'result' => ($state) ? $uname . ' [' . $version . ']' : $uname,
+			'comment' => ($state) ? '' : __('Vous n\'êtes pas sur un OS officiellement supporté par l\'équipe Jeedom (toute demande de support pourra donc être refusée). Les OS officiellement supporté sont Debian Jessie et Debian Strech (voir <a href="https://www.jeedom.com/doc/documentation/compatibility/fr_FR/doc-compatibility.html#_logiciel" target="_blank">ici</a>', __FILE__),
+		);
+
+		$version = DB::Prepare('select version()', array(), DB::FETCH_TYPE_ROW);
+		$return[] = array(
+			'name' => __('Version database', __FILE__),
+			'state' => true,
+			'result' => $version['version()'],
+			'comment' => '',
+		);
+
+		$value = jeedom::checkSpaceLeft();
+		$state = ($value > 10);
+		$return[] = array(
+			'name' => __('Espace disque libre', __FILE__),
+			'state' => $state,
+			'result' => $value . '%',
+			'comment' => '',
+		);
+
+		$state = network::test('internal');
+		$return[] = array(
+			'name' => __('Configuration réseau interne', __FILE__),
+			'state' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
+			'result' => $value . '%',
+			'comment' => ($state) ? '' : __('Allez sur Administration -> Configuration puis configurez correctement la partie réseau', __FILE__),
+		);
+
+		$state = network::test('external');
+		$return[] = array(
+			'name' => __('Configuration réseau externe', __FILE__),
+			'state' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
+			'result' => $value . '%',
+			'comment' => ($state) ? '' : __('Allez sur Administration -> Configuration puis configurez correctement la partie réseau', __FILE__),
+		);
+
+		$cache_health = array('comment' => '');
+		if (cache::isPersistOk()) {
+			if (config::byKey('cache::engine') != 'FilesystemCache' && config::byKey('cache::engine') != 'PhpFileCache') {
+				$cache_health['state'] = true;
+				$cache_health['result'] = __('OK', __FILE__);
+			} else {
+				$filename = dirname(__FILE__) . '/../../cache.tar.gz';
+				$cache_health['state'] = true;
+				$cache_health['result'] = __('OK', __FILE__) . '(' . date('Y-m-d H:i:s', filemtime($filename)) . ')';
+			}
+		} else {
+			$cache_health['state'] = false;
+			$cache_health['result'] = __('NOK', __FILE__);
+			$cache_health['comment'] = __('Votre cache n\'est pas sauvegardé en cas de redemarrage certaines information peuvent être perdues. Essayez de lancer (à partir du moteur de têche) la tâche cache::persist', __FILE__);
+			$state = network::test('external');
+		}
+		$return[] = $cache_health;
+
+		return $return;
+	}
+
 	public static function sick() {
 		$cmd = dirname(__FILE__) . '/../../sick.php';
 		$cmd .= ' >> ' . log::getPathToLog('sick') . ' 2>&1';
