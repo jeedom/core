@@ -29,52 +29,9 @@ usort($list, function ($a, $b) {
 sort($plugins);
 sort($battery);
 ?>
-<div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;background-color:#f6f6f6;" class="div_smallSideBar" id="bt_displayFilter"><i class="fa fa-arrow-circle-o-right" style="color : #b6b6b6;"></i></div>
-<div class="row row-overflow">
-	<div class="col-md-3 col-sm-4" id="sd_filterList" style="z-index:999;display:none;">
-		<div class="bs-sidebar">
-			<ul id="ul_object" class="nav nav-list bs-sidenav">
-				<sup><i class="fa fa-question-circle pull-right" style="font-size : 1em;color:grey;" title="{{Les 'NON' sont prioritaires aux 'OUI'. Si vous voulez voir uniquement les piles salons (par exemple), il faut mettre oui partout dans les catégories Santé, Piles, Plugins ; et dans la catégorie Objets avoir uniquement Salon sur Oui. Ainsi vous verrez toutes les piles dans le salon et pas ailleurs et ceci quelquesoit le plugin, la santé et le type de piles. Pour voir les piles salons uniquement AAA, il faut OUI partout dans santé, OUI partout dans plugins ; dans Objets uniquement Salon sur OUI et dans Piles uniquement AAA sur oui etc....}}"></i></sup>
-				<li><div class="col-md-8 col-sm-9" style="cursor :default;"><legend><i class="icon divers-caduceus3"></i>  {{Santé}}</legend></div><div class="col-md-4 col-sm-3" style="margin-top:5px;"><i class="fa fa-times cursor  pull-right bt_globalsanteoff" title="Tout masquer" style="color : grey;"></i><i class="fa fa-refresh cursor pull-right bt_globalsantetoggle" title="{{Inverser}}" style="color : grey;"></i><i class="fa fa-check cursor pull-right bt_globalsanteon" title="{{Tout afficher}}" style="color : grey;"></i>
-				</li>
-				<li>
-					<div class="col-md-8 col-sm-9" style="cursor :default;">{{Critique}}</div>
-					<div class="col-md-4 col-sm-3">
-						<input type="checkbox"  id="critical" class="globalsante" checked/></div></li>
-						<li><div class="col-md-8 col-sm-9" style="cursor :default;">{{Warning}}</div>
-							<div class="col-md-4 col-sm-3">
-								<input type="checkbox"  id="warning" class="globalsante" checked/></div></li>
-								<li><div class="col-md-8 col-sm-9" style="cursor :default;">{{Bonne}}</div>
-									<div class="col-md-4 col-sm-3">
-										<input type="checkbox"  id="good" class="globalsante" checked/></div></li>
-										<li><div class="col-md-8 col-sm-9" style="cursor :default;"><legend><i class="icon techno-charging"></i>  {{Piles}}</legend></div><div class="col-md-4 col-sm-3" style="margin-top:15px;"><i class="fa fa-times cursor  pull-right bt_globalpileoff" title="{{Tout masquer}}" style="color : grey;"></i><i class="fa fa-refresh cursor pull-right bt_globalpiletoggle" title="{{Inverser}}" style="color : grey;"></i><i class="fa fa-check cursor pull-right bt_globalpileon" title="{{Tout afficher}}" style="color : grey;"></i></li>
-										<li><div class="col-md-8 col-sm-9" style="cursor :default;">{{Non définies}}</div><div class="col-md-4 col-sm-3"><input type="checkbox"  id="none" class="globalpile" checked/></div></li>
-										<?php
-foreach (array_unique($battery) as $battery_type) {
-	echo '<li><div class="col-md-8 col-sm-9" style="cursor :default;">' . $battery_type . '</div><div class="col-md-4 col-sm-3">';
-	echo '<input type="checkbox"  id="' . $battery_type . '" class="globalpile" checked/></div></li>';
-}
-?>
-										<li><div class="col-md-8 col-sm-9" style="cursor :default;"><legend><i class="fa fa-tasks"></i>  {{Plugins}}</legend></div><div class="col-md-4 col-sm-3" style="margin-top:15px;"><i class="fa fa-times cursor  pull-right bt_globalpluginoff" title="{{Tout masquer}}" style="color : grey;"></i><i class="fa fa-refresh cursor pull-right bt_globalplugintoggle" title="{{Inverser" style="color : grey;"></i><i class="fa fa-check cursor pull-right bt_globalpluginon" title="{{Tout afficher}}" style="color : grey;"></i></li>
-										<?php
-foreach (array_unique($plugins) as $plugins_type) {
-	echo '<li><div class="col-md-8 col-sm-9" style="cursor :default;">' . ucfirst($plugins_type) . '</div><div class="col-md-4 col-sm-3">';
-	echo '<input type="checkbox"  id="' . $plugins_type . '" class="globalplugin" checked/></div></li>';
-}
-?>
-										<li><div class="col-md-8 col-sm-9" style="cursor :default;"><legend><i class="fa fa-picture-o" ></i>  {{Objets}}</legend></div><div class="col-md-4 col-sm-3" style="margin-top:15px;"><i class="fa fa-times cursor  pull-right bt_globalobjetoff" title="{{Tout masquer}}" style="color : grey;"></i><i class="fa fa-refresh cursor pull-right bt_globalobjettoggle" title="{{Inverser}}" style="color : grey;"></i><i class="fa fa-check cursor pull-right bt_globalobjeton" title="{{Tout afficher}}" style="color : grey;"></i></li>
-										<?php
-foreach (array_unique($objects) as $objets_type) {
-	echo '<li><div class="col-md-8 col-sm-9" style="cursor :default;">' . $objets_type . '</div><div class="col-md-4 col-sm-3">';
-	echo '<input type="checkbox"  id="' . str_replace(array(' ', '(', ')'), array('_', '', ''), $objets_type) . '" class="globalobjet" checked/></div></li>';
-}
-?>
-									</ul>
-								</div>
-							</div>
-							<div class="col-md-9 col-sm-8" id="div_resumeBatteryList" style="border-left: solid 1px #EEE; padding-left: 25px;">
-								<div class="batteryListContainer">
-									<?php
+
+<div class="batteryListContainer">
+	<?php
 foreach ($list as $eqLogic) {
 	$color = '#2ecc71';
 	$level = 'good';
@@ -107,7 +64,6 @@ foreach ($list as $eqLogic) {
 	echo '</div>';
 }
 echo '</div>';
+include_file('desktop', 'battery', 'js');
 ?>
-									<?php include_file('desktop', 'battery', 'js');?>
-								</div>
-							</div>
+</div>
