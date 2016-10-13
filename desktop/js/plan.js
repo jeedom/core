@@ -83,29 +83,29 @@ if(deviceInfo.type == 'desktop'){
                     return !this.data('editOption.state'); 
                 },
                 callback: function(key, opt){
-                 addObject({link_type : 'text',link_id:Math.round(Math.random() * 99999999) + 9999,display: {text: 'Texte à insérer ici'}});
-             }
-         },
-         addScenario: {
+                   addObject({link_type : 'text',link_id:Math.round(Math.random() * 99999999) + 9999,display: {text: 'Texte à insérer ici'}});
+               }
+           },
+           addScenario: {
             name: "{{Ajouter scénario}}",
             icon : 'fa-plus-circle',
             disabled:function(key, opt) { 
                 return !this.data('editOption.state'); 
             },
             callback: function(key, opt){
-             jeedom.scenario.getSelectModal({}, function (data) {
+               jeedom.scenario.getSelectModal({}, function (data) {
                 addObject({link_type : 'scenario',link_id : data.id});
             });
-         }
-     },
-     fold4: {
+           }
+       },
+       fold4: {
         name: "{{Ajouter un lien}}", 
         icon : 'fa-link',
         disabled:function(key, opt) { 
             return !this.data('editOption.state'); 
         },
         items: {
-         addViewLink: {
+           addViewLink: {
             name: "{{Vers une vue}}",
             icon : 'fa-link',
             disabled:function(key, opt) { 
@@ -246,12 +246,12 @@ fold2: {
             selected:  editOption.snap,
             events: {
                 click : function(e) {
-                 editOption.snap = $(this).value();
-                 initEditOption(1);
-             }
-         }
-     },
-     snapGrid: {
+                   editOption.snap = $(this).value();
+                   initEditOption(1);
+               }
+           }
+       },
+       snapGrid: {
         name: "{{Aimanter à la grille}}", 
         type: 'checkbox', 
         radio: 'radio',
@@ -293,10 +293,10 @@ removePlan: {
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function () {
-                 $('#div_alert').showAlert({message: 'Design supprimé', level: 'success'});
-                 loadPage('index.php?v=d&p=plan');
-             },
-         });
+                   $('#div_alert').showAlert({message: 'Design supprimé', level: 'success'});
+                   loadPage('index.php?v=d&p=plan');
+               },
+           });
         }
     });
   }
@@ -318,7 +318,7 @@ duplicatePlan: {
         return !this.data('editOption.state'); 
     },
     callback: function(key, opt){
-       bootbox.prompt("{{Nom la copie du design ?}}", function (result) {
+     bootbox.prompt("{{Nom la copie du design ?}}", function (result) {
         if (result !== null) {
             savePlan(false,false);
             jeedom.plan.copyHeader({
@@ -328,12 +328,12 @@ duplicatePlan: {
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function (data) {
-                 loadPage('index.php?v=d&p=plan&plan_id=' + data.id);
-             },
-         });
+                   loadPage('index.php?v=d&p=plan&plan_id=' + data.id);
+               },
+           });
         }
     });
-   }
+ }
 },
 configurePlan: {
     name: "{{Configurer le design}}",
@@ -352,8 +352,8 @@ save: {
     name: "{{Sauvegarder}}",
     icon : 'fa-floppy-o',
     callback: function(key, opt){
-     savePlan();
- }
+       savePlan();
+   }
 },
 }
 });
@@ -362,16 +362,18 @@ $.contextMenu({
     selector: '.div_displayObject > .eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.text-widget,.view-link-widget,.graph-widget,.image-widget,.zone-widget,.summary-widget',
     zIndex: 9999,
     events: {
-       show : function(options){
-        if(editOption.highlight){
-            $(this).removeClass('widget-shadow-edit').addClass('contextMenu_select');
-        }
-    },
-    hide : function(options){
+     show : function(opt){
+       $.contextMenu.setInputValues(opt, this.data());
        if(editOption.highlight){
-           $(this).removeClass('contextMenu_select').addClass('widget-shadow-edit');
-       }
-   }
+        $(this).removeClass('widget-shadow-edit').addClass('contextMenu_select');
+    }
+},
+hide : function(opt){
+   $.contextMenu.getInputValues(opt, this.data());
+   if(editOption.highlight){
+     $(this).removeClass('contextMenu_select').addClass('widget-shadow-edit');
+ }
+}
 },
 items: {
     parameter: {
@@ -428,18 +430,18 @@ items: {
                     $('#md_modal').dialog('open');
                 });
             }else{
-             $('#md_modal').load('index.php?v=d&modal='+info.type+'.configure&'+info.type+'_id=' + info.id).dialog('open'); 
-         }
-     }
- },
- remove: {
+               $('#md_modal').load('index.php?v=d&modal='+info.type+'.configure&'+info.type+'_id=' + info.id).dialog('open'); 
+           }
+       }
+   },
+   remove: {
     name: '{{Supprimer}}',
     icon:'fa-trash',
     callback: function(key, opt){
         savePlan(false,false);
         jeedom.plan.remove({
-           id:  $(this).attr('data-plan_id'),
-           error: function (error) {
+         id:  $(this).attr('data-plan_id'),
+         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
@@ -470,6 +472,20 @@ duplicate: {
 
     }
 },
+lock: {
+    name: "{{Verrouiller}}", 
+    type: 'checkbox', 
+    events: {
+        click : function(opt) {
+            console.log(opt);
+            if($(this).value() == 1){
+                opt.handleObj.data.$trigger.addClass('locked');
+            }else{
+             opt.handleObj.data.$trigger.removeClass('locked');
+         }
+     }
+ }
+},
 }
 });
 
@@ -498,15 +514,15 @@ $('body').on( 'click','.zone-widget:not(.zoneEqLogic)', function () {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 el.empty().append('<center class="loading"><i class="fa fa-times fa-4x"></i></center>');
                 setTimeout(function() {
-                   el.empty();
-                   clickedOpen = false;
-               }, 3000);
+                 el.empty();
+                 clickedOpen = false;
+             }, 3000);
             },
             success: function () {
-               el.empty();
-               clickedOpen = false;
-           },
-       });
+             el.empty();
+             clickedOpen = false;
+         },
+     });
     }
 });
 
@@ -557,14 +573,14 @@ $('body').on('click','.zone-widget.zoneEqLogic.zoneEqLogicOnClic', function () {
 $(document).click(function(event) {
     if (!editOption.state) {
         if ( (!$(event.target).hasClass('.zone-widget.zoneEqLogic') && $(event.target).closest('.zone-widget.zoneEqLogic').html() == undefined) && (!$(event.target).hasClass('.zone-widget.zoneEqLogicOnFly') && $(event.target).closest('.zone-widget.zoneEqLogicOnFly').html() == undefined)) {
-         $('.zone-widget.zoneEqLogic').each(function(){
+           $('.zone-widget.zoneEqLogic').each(function(){
             if($(this).hasClass('zoneEqLogicOnClic') || $(this).hasClass('zoneEqLogicOnFly')){
                 $(this).empty();
                 clickedOpen = false;
             }
         });
-     }
- }
+       }
+   }
 });
 
 jwerty.key('ctrl+s', function (e) {
@@ -643,6 +659,7 @@ function initEditOption(_state) {
         snap : (editOption.snap == 1),
         grid : (editOption.grid == 1) ? editOption.gridSize : false,
         containment: 'parent',
+        cancel : '.locked',
         stop: function( event, ui ) {
             savePlan(false,false);
         }
@@ -653,12 +670,13 @@ function initEditOption(_state) {
         $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').removeClass('widget-shadow-edit').removeClass('contextMenu_select');
     }
     if(editOption.gridSize){
-       $('.div_grid').show().css('background-size',editOption.gridSize[0]+'px '+editOption.gridSize[1]+'px');
-   }else{
+     $('.div_grid').show().css('background-size',editOption.gridSize[0]+'px '+editOption.gridSize[1]+'px');
+ }else{
     $('.div_grid').hide();
 }
 $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').resizable({
     containment: "parent",
+    cancel : '.locked',
     stop: function( event, ui ) {
         savePlan(false,false);
     }
@@ -772,32 +790,32 @@ function getObjectInfo(_object){
         return {type : 'eqLogic',id : _object.attr('data-eqLogic_id')};
     }
     if(_object.hasClass('cmd-widget')){
-     return {type :  'cmd',id : _object.attr('data-cmd_id')};
- }
- if(_object.hasClass('scenario-widget')){
-     return {type :  'scenario',id : _object.attr('data-scenario_id')};
- }
- if(_object.hasClass('plan-link-widget')){
-     return {type :  'plan',id : _object.attr('data-link_id')};
- }
- if(_object.hasClass('view-link-widget')){
-     return {type :  'view',id : _object.attr('data-link_id')};
- }
- if(_object.hasClass('graph-widget')){
-     return {type :  'graph',id : _object.attr('data-graph_id')};
- }
- if(_object.hasClass('text-widget')){
-     return {type : 'text',id : _object.attr('data-text_id')};
- }
- if(_object.hasClass('image-widget')){
-     return {type : 'image',id : _object.attr('data-image_id')};
- }
- if(_object.hasClass('zone-widget')){
-     return {type : 'zone',id : _object.attr('data-zone_id')};
- }
- if(_object.hasClass('summary-widget')){
-     return {type : 'summary',id : _object.attr('data-summary_id')};
- }
+       return {type :  'cmd',id : _object.attr('data-cmd_id')};
+   }
+   if(_object.hasClass('scenario-widget')){
+       return {type :  'scenario',id : _object.attr('data-scenario_id')};
+   }
+   if(_object.hasClass('plan-link-widget')){
+       return {type :  'plan',id : _object.attr('data-link_id')};
+   }
+   if(_object.hasClass('view-link-widget')){
+       return {type :  'view',id : _object.attr('data-link_id')};
+   }
+   if(_object.hasClass('graph-widget')){
+       return {type :  'graph',id : _object.attr('data-graph_id')};
+   }
+   if(_object.hasClass('text-widget')){
+       return {type : 'text',id : _object.attr('data-text_id')};
+   }
+   if(_object.hasClass('image-widget')){
+       return {type : 'image',id : _object.attr('data-image_id')};
+   }
+   if(_object.hasClass('zone-widget')){
+       return {type : 'zone',id : _object.attr('data-zone_id')};
+   }
+   if(_object.hasClass('summary-widget')){
+       return {type : 'summary',id : _object.attr('data-summary_id')};
+   }
 }
 
 function savePlan(_refreshDisplay,_async) {
@@ -814,13 +832,13 @@ function savePlan(_refreshDisplay,_async) {
         plan.display.height = $(this).outerHeight() / $(this).attr('data-zoom');
         plan.display.width = $(this).outerWidth() / $(this).attr('data-zoom');
         if(info.type == 'graph'){
-         plan.display.graph = json_decode($(this).find('.graphOptions').value());
-     }
-     var position = $(this).position();
-     plan.position.top = (((position.top)) / $('.div_displayObject').height()) * 100;
-     plan.position.left = (((position.left)) / $('.div_displayObject').width()) * 100;
-     plans.push(plan);
- });
+           plan.display.graph = json_decode($(this).find('.graphOptions').value());
+       }
+       var position = $(this).position();
+       plan.position.top = (((position.top)) / $('.div_displayObject').height()) * 100;
+       plan.position.left = (((position.left)) / $('.div_displayObject').width()) * 100;
+       plans.push(plan);
+   });
     jeedom.plan.save({
         plans: plans,
         async : _async || true,
@@ -881,17 +899,17 @@ function displayObject(_plan,_html, _noRender) {
             html.css(key, _plan.css[key]);
         }else if (_plan.link_type == 'text' || _plan.link_type == 'graph' || _plan.link_type == 'plan' || _plan.link_type == 'view') {
             if (key == 'background-color' && (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1)) {
-             if (isset(_plan.display) && isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) {
-                 html.css('background-color', 'transparent');
-                 html.css('border-radius', '0px'); 
-                 html.css('box-shadow', 'none'); 
-             }else{
-              html.css(key, _plan.css[key]);
-          }
-      }else if (key == 'color' && (!isset(_plan.display) || !isset(_plan.display['color-defaut']) || _plan.display['color-defaut'] != 1)) {
-        html.css(key, _plan.css[key]);
+               if (isset(_plan.display) && isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) {
+                   html.css('background-color', 'transparent');
+                   html.css('border-radius', '0px'); 
+                   html.css('box-shadow', 'none'); 
+               }else{
+                  html.css(key, _plan.css[key]);
+              }
+          }else if (key == 'color' && (!isset(_plan.display) || !isset(_plan.display['color-defaut']) || _plan.display['color-defaut'] != 1)) {
+            html.css(key, _plan.css[key]);
+        }
     }
-}
 }
 if(_plan.link_type == 'graph'){
     $('.div_displayObject').append(html);
@@ -917,7 +935,7 @@ if(_plan.link_type == 'graph'){
     return;
 }
 if (init(_noRender, false)) {
- return html;
+   return html;
 }
 $('.div_displayObject').append(html);
 initEditOption(editOption.state);
