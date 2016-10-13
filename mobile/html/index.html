@@ -14,19 +14,12 @@
     <link rel="shortcut icon" sizes="128x128" href="core/img/logo-jeedom-petit-nom-couleur-128x128.png">
     <link rel="apple-touch-icon" href="core/img/logo-jeedom-petit-nom-couleur-128x128.png" />
     <link rel="apple-touch-icon-precomposed" href="core/img/logo-jeedom-petit-nom-couleur-256x256.png">
-    <!-- iPhone SPLASHSCREEN-->
     <link href="core/img/logo-jeedom-grand-nom-couleur-460x320.png" media="(device-width: 320px)" rel="apple-touch-startup-image">
-    <!-- iPhone (Retina) SPLASHSCREEN-->
     <link href="core/img/logo-jeedom-grand-nom-couleur-920x640.png" media="(device-width: 320px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
-    <!-- iPad (portrait) SPLASHSCREEN-->
     <link href="core/img/logo-jeedom-grand-nom-couleur-1004x768.png" media="(device-width: 768px) and (orientation: portrait)" rel="apple-touch-startup-image">
-    <!-- iPad (landscape) SPLASHSCREEN-->
     <link href="core/img/logo-jeedom-grand-nom-couleur-1024x748.png" media="(device-width: 768px) and (orientation: landscape)" rel="apple-touch-startup-image">
-    <!-- iPad (Retina, portrait) SPLASHSCREEN-->
     <link href="core/img/logo-jeedom-grand-nom-couleur-2008x1536.png" media="(device-width: 1536px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
-    <!-- iPad (Retina, landscape) SPLASHSCREEN-->
     <link href="core/img/logo-jeedom-grand-nom-couleur-2048x1496.png" media="(device-width: 1536px)  and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
-
     <link rel="stylesheet" href="3rdparty/font-noto/font-noto.css" />
     <link rel="stylesheet" href="3rdparty/jquery.mobile/jquery.mobile.min.css" />
     <link rel="stylesheet" href="3rdparty/waves/waves.min.css"/>
@@ -35,7 +28,6 @@
     <link rel="stylesheet" href="3rdparty/jquery.mobile/css/nativedroid2.color.blue-grey.css" id="jQMnDColor" />
     <link rel="stylesheet" href="3rdparty/jquery.mobile/css/fonts.css">
     <link rel="stylesheet" href="3rdparty/roboto/roboto.css">
-
     <link rel="stylesheet" href="core/css/core.css">
     <link rel="stylesheet" href="3rdparty/jquery.utils/jquery.utils.css">
     <link rel="stylesheet" href="mobile/css/commun.css">
@@ -58,34 +50,20 @@
     <script src="core/php/getJS.php?file=core/js/message.class.js"></script>
     <script src="core/php/getJS.php?file=core/js/view.class.js"></script>
     <script src="core/php/getJS.php?file=core/js/plan.class.js"></script>
-    
     <script src="core/php/getJS.php?file=3rdparty/waves/waves.min.js" ></script>
     <script src="core/php/getJS.php?file=3rdparty/wow/wow.min.js" ></script>
     <script src="core/php/getJS.php?file=3rdparty/jquery.mobile/nativedroid2.js" ></script>
-
     <script src="core/php/getJS.php?file=mobile/js/application.js"></script>
 </head>
 <body>
-    <!-- alert -->
     <div id="div_alert"></div>
-    <!-- /alert -->
-    <!-- page -->
     <div data-role="page" id="pagecontainer" style="padding-top: 64px !important;">
-        <!-- panel -->
-        <div data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" id="bottompanel" data-animate="false" data-position='bottom' data-display="overlay"></div>
-
-        <!-- /panel -->
-        <!-- popup -->
+        <div data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" id="bottompanel" data-animate="true" data-position='right' data-display="overlay"></div>
         <div data-role="popup" id="div_popup" class="ui-corner-all"></div>
-        <!-- /popup -->
-
-        <!-- header -->
         <div data-role="header" data-position="fixed" data-tap-toggle="false">
-                  
             <h1>
-            <span id="pageTitle" style="display:inline-block;font-size:0.9em;position:relative;top:-10px;"></span>
-            <span style="display:inline-block;font-size:0.6em;position:absolute;top:35px;left:70px;"><span class="objectSummaryglobal" data-version="mobile"></span></span>
-
+                <span id="pageTitle" style="display:inline-block;font-size:0.9em;position:relative;top:-10px;"></span>
+                <span style="display:inline-block;font-size:0.6em;position:absolute;top:35px;left:70px;"><span class="objectSummaryglobal" data-version="mobile"></span></span>
             </h1>
             <a class="link" data-page="home" data-title="{{Accueil}}"><i class="fa fa-home"></i></a>
             <a href="#bottompanel" id="bt_bottompanel"><i class="fa fa-bars"></i></a>
@@ -95,22 +73,14 @@
                 <div class="break dot3" style="position : relative;top : -6px;"></div>
             </div>
         </div>
-        <!-- /header -->
-        <!-- content -->
-        
         <div role="main" class="ui-content" id="page" data-inset="false" style="padding : 2px;padding-top : 4px;"></div>
-
         <div data-role="popup" id="popupDialog" style="width : 100%">
-           <div data-role="header">
-               <h1 class='nd-title'>Dialog</h1>
-               <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
-           </div>
-           <div data-role="content" class="content"></div>
-       </div>
-       <!-- /content -->
-   </div>
-   <!-- /page -->
-
+         <div data-role="header">
+             <h1 class='nd-title'>Dialog</h1>
+             <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+         </div>
+         <div data-role="content" class="content"></div>
+     </div>
+ </div>
 </body>
-
 </html>

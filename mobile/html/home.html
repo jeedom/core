@@ -21,7 +21,7 @@
 
 </div>
 
-<div data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" id="bottompanel_objectList" data-animate="false" data-position='bottom' data-display="overlay"></div>
+<div data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" id="bottompanel_objectList" data-animate="true" data-position='left' data-display="overlay"></div>
 
 <div class="ui-grid-a">
     <div class="ui-block-a">
@@ -41,8 +41,8 @@
     </div>
 </div>
 
-<div data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" id="bottompanel_planList" data-animate="false" data-position='bottom' data-display="overlay"></div>
-<div data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" id="bottompanel_viewList" data-animate="false" data-position='bottom' data-display="overlay"></div>
+<div data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" id="bottompanel_planList" data-animate="true" data-position='left' data-display="overlay"></div>
+<div data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" id="bottompanel_viewList" data-animate="true" data-position='left' data-display="overlay"></div>
 
 <div class="ui-grid-a">
     <div class="ui-block-a">
@@ -62,13 +62,17 @@
     </div>
 </div>
 
-<div data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" id="bottompanel_pluginList" data-animate="false" data-position='bottom' data-display="overlay"></div>
+<div data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" id="bottompanel_pluginList" data-animate="true" data-position='left' data-display="overlay"></div>
+
+<div data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" id="bottompanel_otherActionList" data-animate="true" data-position='left' data-display="overlay">
+    
+</div>
 
 <div class="ui-grid-a">
     <div class="ui-block-a">
         <center>
-            <a href="index.php?v=d" class="ui-btn ui-btn-raised clr-primary waves-effect waves-button" data-role="button" style="margin: 5px;" data-ajax="false">
-                <i class="fa fa-desktop" style="font-size: 3em;"></i><br/>{{Version desktop}}
+            <a href="#bottompanel_otherActionList" class="ui-btn ui-btn-raised clr-primary waves-effect waves-button" data-role="button" style="margin: 5px;">
+                <i class="fa fa-desktop" style="font-size: 3em;"></i><br/>{{Autre actions}}
             </a>
         </center>
     </div>
