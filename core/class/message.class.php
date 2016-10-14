@@ -36,7 +36,7 @@ class message {
 		$message->setPlugin(secureXSS($_type));
 		$message->setMessage(secureXSS($_message));
 		$message->setAction(secureXSS($_action));
-		$message->setDate(date('Y-m-d H:i:m'));
+		$message->setDate(date('Y-m-d H:i:s'));
 		$message->setLogicalId(secureXSS($_logicalId));
 		$message->save($_writeMessage);
 	}
