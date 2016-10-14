@@ -161,7 +161,7 @@ class jeedom {
 			'comment' => ($state) ? '' : __('Allez sur Administration -> Configuration puis configurez correctement la partie réseau', __FILE__),
 		);
 
-		$cache_health = array('comment' => '');
+		$cache_health = array('comment' => '', 'name' => __('Persistance du cache', __FILE__));
 		if (cache::isPersistOk()) {
 			if (config::byKey('cache::engine') != 'FilesystemCache' && config::byKey('cache::engine') != 'PhpFileCache') {
 				$cache_health['state'] = true;
@@ -169,7 +169,7 @@ class jeedom {
 			} else {
 				$filename = dirname(__FILE__) . '/../../cache.tar.gz';
 				$cache_health['state'] = true;
-				$cache_health['result'] = __('OK', __FILE__) . '(' . date('Y-m-d H:i:s', filemtime($filename)) . ')';
+				$cache_health['result'] = __('OK', __FILE__) . ' (' . date('Y-m-d H:i:s', filemtime($filename)) . ')';
 			}
 		} else {
 			$cache_health['state'] = false;
