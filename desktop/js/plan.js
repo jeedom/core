@@ -535,7 +535,7 @@ $('body').on('mouseenter','.zone-widget.zoneEqLogic.zoneEqLogicOnFly',  function
         version : 'dplan',
         global:false,
         success:function(data){
-            el.empty().append(data.html);
+            el.empty().append($(data.html).css('position','absolute'));
             positionEqLogic(el.attr('data-eqLogic_id'),false);
             if(deviceInfo.type == 'desktop'){
                 el.off('mouseleave').on('mouseleave',function(){
@@ -557,7 +557,7 @@ $('body').on('click','.zone-widget.zoneEqLogic.zoneEqLogicOnClic', function () {
         version : 'dplan',
         global:false,
         success:function(data){
-            el.empty().append(data.html);
+            el.empty().append($(data.html).css('position','absolute'));
             positionEqLogic(el.attr('data-eqLogic_id'));
             if(deviceInfo.type == 'desktop' && el.hasClass('zoneEqLogicOnFly')){
                 el.off('mouseleave').on('mouseleave',function(){
