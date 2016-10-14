@@ -155,9 +155,16 @@ class log {
 		if ($maxLineLog < self::DEFAULT_MAX_LINE) {
 			$maxLineLog = self::DEFAULT_MAX_LINE;
 		}
-		com_shell::execute('sudo chmod 777 ' . $_path . ' ;echo "$(tail -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
-		@chown($_path, 'www-data');
-		@chgrp($_path, 'www-data');
+
+		$owner = posix_getpwuid(fileowner($_path));
+		$apacheUser = exec('whoami');
+
+		if (!is_writable($_path) || isset($owner['name']) && $owner['name'] !== $apacheUser) {
+			com_shell::execute('sudo chmod 644 ' . $_path);
+			com_shell::execute('sudo chown '.$apacheUser.':'.$apacheUser . ' ' . $_path);
+		}
+
+		com_shell::execute('echo "$(tail -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
 	}
 
 	public static function getPathToLog($_log = 'core') {
@@ -180,7 +187,16 @@ class log {
 	public static function clear($_log) {
 		if (self::authorizeClearLog($_log)) {
 			$path = self::getPathToLog($_log);
-			com_shell::execute('sudo chmod 777 ' . $path . ';cat /dev/null > ' . $path);
+
+			unlink($path);
+			if (file_exists($path)) {
+				com_shell::execute('sudo chmod 777 ' . $path);
+				unlink($path);
+			}
+
+			$fp = fopen($path, 'W');
+			fclose($fp);
+
 			return true;
 		}
 		return;
@@ -196,8 +212,13 @@ class log {
 		}
 		if (self::authorizeClearLog($_log)) {
 			$path = self::getPathToLog($_log);
-			com_shell::execute('sudo chmod 777 ' . $path);
+
 			unlink($path);
+			if (file_exists($path)) {
+				com_shell::execute('sudo chmod 777 ' . $path);
+				unlink($path);
+			}
+
 			return true;
 		}
 	}
@@ -206,7 +227,7 @@ class log {
 		foreach (array('', 'scenarioLog/') as $logPath) {
 			$logs = ls(self::getPathToLog($logPath), '*');
 			foreach ($logs as $log) {
-				self::remove($log, $logPath);
+				self::remove($log);
 			}
 		}
 		return true;
