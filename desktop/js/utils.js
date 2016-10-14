@@ -266,7 +266,7 @@ if (isset(jeedom_langage)) {
 
     $('#bt_gotoPlan').on('click',function(){
         $('ul.dropdown-menu [data-toggle=dropdown]').parent().parent().parent().siblings().removeClass('open');
-        loadPage('index.php?v=d&p=plan');
+        window.location.href =  'index.php?v=d&p=plan';
     });
 
     $('#bt_messageModal').on('click',function(){
@@ -274,14 +274,16 @@ if (isset(jeedom_langage)) {
         $('#md_modal').load('index.php?v=d&p=message&ajax=1').dialog('open');
     });
 
-  
+    $('body').on('click','.objectSummaryParent',function(){
+        window.location.href = 'index.php?v=d&p=dashboard&summary='+$(this).data('summary')+'&object_id='+$(this).data('object_id');
+    });
 
     initPage();
 });
 
 
 function initCheckBox(){
-    
+
 }
 
 function initPage(){
@@ -293,18 +295,12 @@ function initPage(){
 }
 
 function linkify(inputText) {
-    //URLs starting with http://, https://, or ftp://
     var replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
     var replacedText = inputText.replace(replacePattern1, '<a href="$1" target="_blank">$1</a>');
-
-    //URLs starting with www. (without // before it, or it'd re-link the ones done above)
     var replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
     var replacedText = replacedText.replace(replacePattern2, '$1<a href="http://$2" target="_blank">$2</a>');
-
-    //Change email addresses to mailto:: links
     var replacePattern3 = /(\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,6})/gim;
     var replacedText = replacedText.replace(replacePattern3, '<a href="mailto:$1">$1</a>');
-
     return replacedText
 }
 

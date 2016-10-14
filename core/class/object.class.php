@@ -266,7 +266,9 @@ class object {
 			if ($def[$key]['allowDisplayZero'] == false && $result == 0) {
 				$style = 'display:none;';
 			}
-			$return .= '<span class="objectSummaryParent" style="margin-right:' . $margin . 'px;' . $style . '" data-displayZeroValue="' . $def[$key]['allowDisplayZero'] . '">' . $def[$key]['icon'] . ' <span class="objectSummary' . $key . '">' . $result . '</span> ' . $def[$key]['unit'] . '</span> ';
+			$return .= '<span class="objectSummaryParent cursor" data-summary="' . $key . '" data-object_id="" style="margin-right:' . $margin . 'px;' . $style . '" data-displayZeroValue="' . $def[$key]['allowDisplayZero'] . '">';
+			$return .= $def[$key]['icon'] . ' <span class="objectSummary' . $key . '">' . $result . '</span> ' . $def[$key]['unit'];
+			$return .= '</span>';
 		}
 		return trim($return) . '</span>';
 	}
@@ -431,11 +433,40 @@ class object {
 	public function getEqLogic($_onlyEnable = true, $_onlyVisible = false, $_eqType_name = null, $_logicalId = null) {
 		$eqLogics = eqLogic::byObjectId($this->getId(), $_onlyEnable, $_onlyVisible, $_eqType_name, $_logicalId);
 		if (is_array($eqLogics)) {
-			foreach ($eqLogics as $eqLogic) {
+			foreach ($eqLogics as &$eqLogic) {
 				$eqLogic->setObject($this);
 			}
 		}
 		return $eqLogics;
+	}
+
+	public function getEqLogicBySummary($_summary = '', $_onlyEnable = true, $_onlyVisible = false, $_eqType_name = null, $_logicalId = null) {
+		$def = config::byKey('object:summary');
+		if ($_summary == '' || !isset($def[$_summary])) {
+			return null;
+		}
+		$summaries = $this->getConfiguration('summary');
+		if (!isset($summaries[$_summary])) {
+			return array();
+		}
+		$eqLogics = eqLogic::byObjectId($this->getId(), $_onlyEnable, $_onlyVisible, $_eqType_name, $_logicalId);
+		$eqLogics_id = array();
+		foreach ($summaries[$_summary] as $infos) {
+			$cmd = cmd::byId(str_replace('#', '', $infos['cmd']));
+			if (is_object($cmd)) {
+				$eqLogics_id[$cmd->getEqLogic_id()] = $cmd->getEqLogic_id();
+			}
+		}
+		$return = array();
+		if (is_array($eqLogics)) {
+			foreach ($eqLogics as $eqLogic) {
+				if (isset($eqLogics_id[$eqLogic->getId()])) {
+					$eqLogic->setObject($this);
+					$return[] = $eqLogic;
+				}
+			}
+		}
+		return $return;
 	}
 
 	public function getScenario($_onlyEnable = true, $_onlyVisible = false) {
@@ -528,7 +559,7 @@ class object {
 				if ($value['allowDisplayZero'] == false && $result == 0) {
 					$style = 'display:none;';
 				}
-				$return .= '<span style="margin-right:5px;' . $style . '" class="objectSummaryParent" data-displayZeroValue="' . $value['allowDisplayZero'] . '">' . $value['icon'] . ' <span class="objectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . '</span>';
+				$return .= '<span style="margin-right:5px;' . $style . '" class="objectSummaryParent cursor" data-summary="' . $key . '" data-object_id="' . $this->getId() . '" data-displayZeroValue="' . $value['allowDisplayZero'] . '">' . $value['icon'] . ' <span class="objectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . '</span>';
 			}
 		}
 		return trim($return) . '</span>';

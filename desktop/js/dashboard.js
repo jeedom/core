@@ -20,6 +20,11 @@
     category_dashabord = 'all';
 }
 
+ var summary_dashabord = getUrlVars('summary');
+ if(summary_dashabord == false){
+    summary_dashabord = '';
+}
+
 $('body').delegate('.eqLogic-widget .history', 'click', function () {
     $('#md_modal2').dialog({title: "Historique"});
     $("#md_modal2").load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
@@ -156,6 +161,7 @@ function getObjectHtml(_object_id){
     id: _object_id,
     version: 'dashboard',
     category : category_dashabord,
+    summary : summary_dashabord,
     error: function (error) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },

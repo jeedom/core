@@ -103,7 +103,7 @@ try {
 	}
 
 	if (init('action') == 'toHtml') {
-		if (init('id') == 'all' || is_json(init('id'))) {
+		if (init('id') == '' || init('id') == 'all' || is_json(init('id'))) {
 			if (is_json(init('id'))) {
 				$objects = json_decode(init('id'), true);
 			} else {
@@ -116,7 +116,13 @@ try {
 			$i = 0;
 			foreach ($objects as $id) {
 				$html = '';
-				foreach (eqLogic::byObjectId($id, true, true) as $eqLogic) {
+				if (init('summary') == '') {
+					$eqLogics = eqLogic::byObjectId($id, true, true);
+				} else {
+					$object = object::byId($id);
+					$eqLogics = $object->getEqLogicBySummary(init('summary'), true, true);
+				}
+				foreach ($eqLogics as $eqLogic) {
 					if (init('category', 'all') == 'all' || $eqLogic->getCategory(init('category')) == 1) {
 						$html .= $eqLogic->toHtml(init('version'));
 					}
@@ -127,7 +133,13 @@ try {
 			ajax::success($return);
 		} else {
 			$html = '';
-			foreach (eqLogic::byObjectId(init('id'), true, true) as $eqLogic) {
+			if (init('summary') == '') {
+				$eqLogics = eqLogic::byObjectId(init('id'), true, true);
+			} else {
+				$object = object::byId(init('id'));
+				$eqLogics = $object->getEqLogicBySummary(init('summary'), true, true);
+			}
+			foreach ($eqLogics as $eqLogic) {
 				if (init('category', 'all') == 'all' || $eqLogic->getCategory(init('category')) == 1) {
 					$html .= $eqLogic->toHtml(init('version'));
 				}
