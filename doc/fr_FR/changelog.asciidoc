@@ -12,6 +12,7 @@
 * Les widgets des commandes peuvent maintenant avoir une méthode d'update ce qui évite un appels AJAX à Jeedom
 * Les widgets des scénarios sont maintenant mise à jour sans appels ajax pour avoir le widget
 * Le résumé global et des pièces et maintenant mises à jour sans appels ajax
+* Un clic sur un element d'un résumé domotique vous amène sur une vue détaillée de celui-ci
 * Changement des bootstraps slider en slider (corriger le bug du double événement des sliders)
 * Sauvegarde automatique des vues lors du clique sur le bouton "voir le résultat"
 * Possibilité d'avoir les doc en local
