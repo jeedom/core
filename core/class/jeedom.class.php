@@ -148,16 +148,16 @@ class jeedom {
 		$state = network::test('internal');
 		$return[] = array(
 			'name' => __('Configuration réseau interne', __FILE__),
-			'state' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
-			'result' => $value . '%',
+			'state' => $state,
+			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
 			'comment' => ($state) ? '' : __('Allez sur Administration -> Configuration puis configurez correctement la partie réseau', __FILE__),
 		);
 
 		$state = network::test('external');
 		$return[] = array(
 			'name' => __('Configuration réseau externe', __FILE__),
-			'state' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
-			'result' => $value . '%',
+			'state' => $state,
+			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
 			'comment' => ($state) ? '' : __('Allez sur Administration -> Configuration puis configurez correctement la partie réseau', __FILE__),
 		);
 
