@@ -31,8 +31,8 @@ sort($battery);
 ?>
 
 <ul class="nav nav-tabs" role="tablist" id="ul_tabBatteryAlert">
-	<li role="presentation" class="active"><a href="#battery" aria-controls="battery" role="tab" data-toggle="tab">{{Batterie}}</a></li>
-	<li role="presentation"><a href="#alertEqlogic" aria-controls="alertEqlogic" role="tab" data-toggle="tab">{{Module en alerte}}</a></li>
+	<li role="presentation" class="active"><a href="#battery" aria-controls="battery" role="tab" data-toggle="tab"><i class="fa fa-battery-full"></i> {{Batterie}}</a></li>
+	<li role="presentation"><a href="#alertEqlogic" aria-controls="alertEqlogic" role="tab" data-toggle="tab"><i class="fa fa-exclamation-triangle"></i> {{Module en alerte}}</a></li>
 </ul>
 
 <div class="tab-content">
