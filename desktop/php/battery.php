@@ -78,10 +78,15 @@ include_file('desktop', 'battery', 'js');
 			<div class="alertListContainer">
 				<?php
 foreach (eqLogic::all() as $eqLogic) {
+	$hasAlert = '';
 	if ($eqLogic->getAlert() == '') {
 		continue;
 	}
+	$hasAlert = 1;
 	echo $eqLogic->toHtml('dashboard');
+}
+if ($hasAlert == ''){
+	echo '<div class="alert alert-success">{{Aucun module en Alerte pour le moment}}</div>';
 }
 ?>
 			</div>
