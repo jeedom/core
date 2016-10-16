@@ -33,6 +33,7 @@ sort($battery);
 <ul class="nav nav-tabs" role="tablist" id="ul_tabBatteryAlert">
 	<li role="presentation" class="active"><a href="#battery" aria-controls="battery" role="tab" data-toggle="tab"><i class="fa fa-battery-full"></i> {{Batterie}}</a></li>
 	<li role="presentation"><a href="#alertEqlogic" aria-controls="alertEqlogic" role="tab" data-toggle="tab"><i class="fa fa-exclamation-triangle"></i> {{Module en alerte}}</a></li>
+	<li role="presentation"><a href="#actionCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fa fa-gears"></i> {{Actions définies}}</a></li>
 </ul>
 
 <div class="tab-content">
@@ -89,6 +90,88 @@ if ($hasAlert == ''){
 	echo '<div class="alert alert-success">{{Aucun module en Alerte pour le moment}}</div>';
 }
 ?>
+			</div>
+		</div>
+		<div role="tabpanel" class="tab-pane" id="actionCmd">
+			<div class="cmdListContainer">
+			<table class="table table-condensed tablesorter" id="table_Action">
+	<thead>
+		<tr>
+			<th>{{Equipement}}</th>
+			<th>{{Commande}}</th>
+			<th>{{Type}}</th>
+			<th>{{Actions}}</th>
+		</tr>
+	</thead>
+	<tbody>
+				<?php
+foreach (eqLogic::all() as $eqLogic) {
+	foreach($eqLogic->getCmd('info') as $cmd) {
+		if (count($cmd->getConfiguration('actionCheckCmd',array()))>0){
+			echo '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '" style="text-decoration: none;">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . '</td><td>Action sur état</td>';
+			echo '<td>Si ' . $cmd->getConfiguration('jeedomCheckCmdOperator') . ' ' . $cmd->getConfiguration('jeedomCheckCmdTest') . ' plus de ' . $cmd->getConfiguration('jeedomCheckCmdTime') . ' minutes alors : ';
+			foreach ($cmd->getConfiguration('actionCheckCmd') as $actionCmd){
+				if ($actionCmd['cmd'] == 'scenario'){
+					$name =  scenario::byId($actionCmd['options']['scenario_id'])->getName();
+					$action = $actionCmd['options']['action'];
+					echo 'Scénario : ' . $name . ' <i class="fa fa-arrow-right"></i> ' . $action . '|';
+				} else if ($actionCmd['cmd'] == 'variable') {
+					$name = $actionCmd['options']['name'];
+					$value = $actionCmd['options']['value'];
+					echo 'Variable : ' . $name . ' <i class="fa fa-arrow-right"></i> ' . $value . '|';
+				} else {
+					$cmdEx =  cmd::byId(str_replace('#','',$actionCmd['cmd']));
+					$eqEx = $cmdEx->getEqLogic();
+					echo $eqEx->getHumanName(true) . ' ' . $cmdEx->getName() . '|';
+				}
+			}
+			echo '</td></tr>';
+		}
+	}
+	foreach($eqLogic->getCmd('action') as $cmd) {
+		if (count($cmd->getConfiguration('jeedomPreExecCmd',array()))>0){
+			echo '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '" style="text-decoration: none;">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . '</td><td>Pre exécution</td><td>';
+			foreach ($cmd->getConfiguration('jeedomPreExecCmd') as $actionCmd){
+				if ($actionCmd['cmd'] == 'scenario'){
+					$name =  scenario::byId($actionCmd['options']['scenario_id'])->getName();
+					$action = $actionCmd['options']['action'];
+					echo 'Scénario : ' . $name . ' <i class="fa fa-arrow-right"></i> ' . $action . '|';
+				} else if ($actionCmd['cmd'] == 'variable') {
+					$name = $actionCmd['options']['name'];
+					$value = $actionCmd['options']['value'];
+					echo 'Variable : ' . $name . ' <i class="fa fa-arrow-right"></i> ' . $value . '|';
+				} else {
+					$cmdEx =  cmd::byId(str_replace('#','',$actionCmd['cmd']));
+					$eqEx = $cmdEx->getEqLogic();
+					echo $eqEx->getHumanName(true) . ' ' . $cmdEx->getName() . '|';
+				}
+			}
+			echo '</td></tr>';
+		}
+		if (count($cmd->getConfiguration('jeedomPostExecCmd',array()))>0){
+			echo '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '" style="text-decoration: none;">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . '</td><td>Post exécution</td><td>';
+			foreach ($cmd->getConfiguration('jeedomPostExecCmd') as $actionCmd){
+				if ($actionCmd['cmd'] == 'scenario'){
+					$name =  scenario::byId($actionCmd['options']['scenario_id'])->getName();
+					$action = $actionCmd['options']['action'];
+					echo 'Scénario : ' . $name . ' <i class="fa fa-arrow-right"></i> ' . $action . '|';
+				} else if ($actionCmd['cmd'] == 'variable') {
+					$name = $actionCmd['options']['name'];
+					$value = $actionCmd['options']['value'];
+					echo 'Variable : ' . $name . ' <i class="fa fa-arrow-right"></i> ' . $value . '|';
+				} else {
+					$cmdEx =  cmd::byId(str_replace('#','',$actionCmd['cmd']));
+					$eqEx = $cmdEx->getEqLogic();
+					echo $eqEx->getHumanName(true) . ' ' . $cmdEx->getName() . '|';
+				}
+			}
+			echo '</td></tr>';
+		}
+	}
+}
+?>
+	</tbody>
+</table>
 			</div>
 		</div>
 	</div>
