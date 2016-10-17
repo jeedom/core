@@ -86,7 +86,7 @@ foreach (eqLogic::all() as $eqLogic) {
 	echo $eqLogic->toHtml('dashboard');
 }
 if ($hasAlert == '') {
-	echo '<div class="alert alert-success">{{Aucun module en Alerte pour le moment}}</div>';
+	echo '<br/><div class="alert alert-success">{{Aucun module en Alerte pour le moment}}</div>';
 }
 ?>
 			</div>
