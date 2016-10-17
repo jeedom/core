@@ -108,7 +108,7 @@ if ($hasAlert == ''){
 foreach (eqLogic::all() as $eqLogic) {
 	foreach($eqLogic->getCmd('info') as $cmd) {
 		if (count($cmd->getConfiguration('actionCheckCmd',array()))>0){
-			echo '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '" style="text-decoration: none;">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . '</td><td>Action sur état</td>';
+			echo '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '" style="text-decoration: none;">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>Action sur état</td>';
 			echo '<td>Si ' . $cmd->getConfiguration('jeedomCheckCmdOperator') . ' ' . $cmd->getConfiguration('jeedomCheckCmdTest') . ' plus de ' . $cmd->getConfiguration('jeedomCheckCmdTime') . ' minutes alors : ';
 			foreach ($cmd->getConfiguration('actionCheckCmd') as $actionCmd){
 				if ($actionCmd['cmd'] == 'scenario'){
@@ -119,7 +119,7 @@ foreach (eqLogic::all() as $eqLogic) {
 					$name = $actionCmd['options']['name'];
 					$value = $actionCmd['options']['value'];
 					echo 'Variable : ' . $name . ' <i class="fa fa-arrow-right"></i> ' . $value . '|';
-				} else {
+				} else if (is_object(cmd::byId(str_replace('#','',$actionCmd['cmd'])))) {
 					$cmdEx =  cmd::byId(str_replace('#','',$actionCmd['cmd']));
 					$eqEx = $cmdEx->getEqLogic();
 					echo $eqEx->getHumanName(true) . ' ' . $cmdEx->getName() . '|';
@@ -130,7 +130,7 @@ foreach (eqLogic::all() as $eqLogic) {
 	}
 	foreach($eqLogic->getCmd('action') as $cmd) {
 		if (count($cmd->getConfiguration('jeedomPreExecCmd',array()))>0){
-			echo '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '" style="text-decoration: none;">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . '</td><td>Pre exécution</td><td>';
+			echo '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '" style="text-decoration: none;">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>Pre exécution</td><td>';
 			foreach ($cmd->getConfiguration('jeedomPreExecCmd') as $actionCmd){
 				if ($actionCmd['cmd'] == 'scenario'){
 					$name =  scenario::byId($actionCmd['options']['scenario_id'])->getName();
@@ -140,7 +140,7 @@ foreach (eqLogic::all() as $eqLogic) {
 					$name = $actionCmd['options']['name'];
 					$value = $actionCmd['options']['value'];
 					echo 'Variable : ' . $name . ' <i class="fa fa-arrow-right"></i> ' . $value . '|';
-				} else {
+				} else if (is_object(cmd::byId(str_replace('#','',$actionCmd['cmd'])))) {
 					$cmdEx =  cmd::byId(str_replace('#','',$actionCmd['cmd']));
 					$eqEx = $cmdEx->getEqLogic();
 					echo $eqEx->getHumanName(true) . ' ' . $cmdEx->getName() . '|';
@@ -149,7 +149,7 @@ foreach (eqLogic::all() as $eqLogic) {
 			echo '</td></tr>';
 		}
 		if (count($cmd->getConfiguration('jeedomPostExecCmd',array()))>0){
-			echo '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '" style="text-decoration: none;">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . '</td><td>Post exécution</td><td>';
+			echo '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '" style="text-decoration: none;">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>Post exécution</td><td>';
 			foreach ($cmd->getConfiguration('jeedomPostExecCmd') as $actionCmd){
 				if ($actionCmd['cmd'] == 'scenario'){
 					$name =  scenario::byId($actionCmd['options']['scenario_id'])->getName();
@@ -159,7 +159,7 @@ foreach (eqLogic::all() as $eqLogic) {
 					$name = $actionCmd['options']['name'];
 					$value = $actionCmd['options']['value'];
 					echo 'Variable : ' . $name . ' <i class="fa fa-arrow-right"></i> ' . $value . '|';
-				} else {
+				} else if (is_object(cmd::byId(str_replace('#','',$actionCmd['cmd'])))) {
 					$cmdEx =  cmd::byId(str_replace('#','',$actionCmd['cmd']));
 					$eqEx = $cmdEx->getEqLogic();
 					echo $eqEx->getHumanName(true) . ' ' . $cmdEx->getName() . '|';
