@@ -34,3 +34,9 @@
  		});
  	}, 10);
  });
+
+
+ $('.cmdAction[data-action=configure]').on('click', function () {
+    $('#md_modal').dialog({title: "{{Configuration commande}}"});
+    $('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-cmd_id')).dialog('open');
+});
