@@ -193,14 +193,14 @@ foreach (plugin::listPlugin(true) as $plugin) {
 		$pendingMessage = '';
 		if ($asNok != 0) {
 			$totalNok += 1;
-			$errorMessage = '<span class="label label-danger pull-right" style="">' . $asNok . ' erreurs </span>';
+			$errorMessage = '<span class="label label-danger pull-right" style="position:relative;top:-3px;">' . $asNok . ' {{erreurs}} </span>';
 		}
 		if ($asPending != 0) {
 			$totalPending += 1;
-			$pendingMessage = '<span class="label label-warning pull-right" style="">' . $asPending . ' en cours </span>';
+			$pendingMessage = '<span class="label label-warning pull-right" style="position:relative;top:-3px;">' . $asPending . ' {{en cours}} </span>';
 		}
 		if ($asPending == 0 && $asNok == 0) {
-			$errorMessage = '<span class="label label-success pull-right" style="">{{OK}}</span>';
+			$errorMessage = '<span class="label label-success pull-right" style="position:relative;top:-3px;">{{OK}}</span>';
 		}
 		$globalhtml .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionHealth" href="#config_' . $plugin->getId() . '" style="text-decoration:none;">';
 		$globalhtml .= '<img class="img-responsive" style="width : 20px;display:inline-block;" src="' . $plugin->getPathImgIcon() . '" /> ';
