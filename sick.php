@@ -102,12 +102,6 @@ try {
 echo "\n**************************************************\n";
 echo "*                 CRON                           *";
 echo "\n**************************************************\n";
-echo "Check last cron launch...";
-if (!cron::ok()) {
-	echo "NOK\n";
-} else {
-	echo "OK\n";
-}
 echo "Check if cron is enable...";
 if (config::byKey('enableCron', 'core', 1, true) == 0) {
 	echo "NOK\n";
