@@ -120,16 +120,16 @@ foreach ($allObject as $object) {
     </form>
   </div>
   <div role="tabpanel" class="tab-pane" id="summarytab">
-  <?php
+    <?php
 if (count(config::byKey('object:summary')) == 0) {
 	echo '<div class="alert alert-danger>{{Vous n\'avez aucun résumé de créé. Allez sur la page d\'administration de Jeedom puis sur la partie "Configuration des résumés d\'objet"}}</div>';
 } else {
 
 	?>
-    <form class="form-horizontal">
+     <form class="form-horizontal">
       <fieldset>
-		<legend class="objectname_resume" style="cursor:default;"></legend>
-	    <legend style="cursor:default;"><i class="fa fa-picture-o"></i>  {{Options d'affichage}}</legend>
+        <legend class="objectname_resume" style="cursor:default;"></legend>
+        <legend style="cursor:default;"><i class="fa fa-picture-o"></i>  {{Options d'affichage}}</legend>
         <table class="table">
           <thead>
             <tr>
@@ -139,9 +139,9 @@ foreach (config::byKey('object:summary') as $key => $value) {
 		echo '<th style="cursor:default;">' . $value['name'] . '</th>';
 	}
 	?>
-           </tr>
-         </thead>
-         <?php
+            </tr>
+          </thead>
+          <?php
 echo '<tr>';
 	echo '<td style="cursor:default;">';
 	echo '{{Remonter dans le résumé global}}';
@@ -175,19 +175,19 @@ echo '<tr>';
 	}
 	echo '</tr>';
 	?>
-      </table>
-	  <legend style="cursor:default;"><i class="fa fa-tachometer"></i>  {{Commandes}}</legend>
-      <ul class="nav nav-tabs" role="tablist">
-        <?php
+        </table>
+        <legend style="cursor:default;"><i class="fa fa-tachometer"></i>  {{Commandes}}</legend>
+        <ul class="nav nav-tabs" role="tablist">
+          <?php
 $active = 'active';
 	foreach (config::byKey('object:summary') as $key => $value) {
 		echo '<li class="' . $active . '"><a href="#summarytab' . $key . '" role="tab" data-toggle="tab">' . $value['icon'] . ' ' . $value['name'] . '</i>  <span class="tabnumber summarytabnumber' . $key . '"</span></a></li>';
 		$active = '';
 	}
 	?>
-    </ul>
-    <div class="tab-content">
-      <?php
+        </ul>
+        <div class="tab-content">
+          <?php
 $active = ' active';
 	foreach (config::byKey('object:summary') as $key => $value) {
 		echo '<div role="tabpanel" class="tab-pane type' . $key . $active . '" data-type="' . $key . '" id="summarytab' . $key . '">';
@@ -198,16 +198,14 @@ $active = ' active';
 		$active = '';
 	}
 	?>
-   </div>
- </fieldset>
-</form>
-<?php
+        </div>
+      </fieldset>
+    </form>
+    <?php
 }
 ?>
 </div>
 </div>
-
-
 </div>
 </div>
 
