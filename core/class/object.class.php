@@ -61,7 +61,7 @@ class object {
 		if ($_onlyVisible) {
 			$sql .= ' WhERE isVisible = 1';
 		}
-		$sql .= ' ORDER BY name,father_id,position';
+		$sql .= ' ORDER BY position,name,father_id';
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
