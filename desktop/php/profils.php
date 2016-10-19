@@ -3,13 +3,6 @@ if (!isConnect()) {
 	throw new Exception('{{Error 401 Unauthorized');
 }
 
-$notifyTheme = array(
-	'info' => '{{Bleu}}',
-	'error' => '{{Rouge}}',
-	'success' => '{{Vert}}',
-	'warning' => '{{Jaune}}',
-);
-
 $homePage = array(
 	'core::dashboard' => '{{Dashboard}}',
 	'core::view' => '{{Vue}}',
@@ -258,48 +251,6 @@ foreach (planHeader::all() as $plan) {
 </fieldset>
 </form>
 </div>
-</div>
-</div>
-
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">
-      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_notification">
-        <i class="fa fa-download"></i>  {{Notifications}}
-      </a>
-    </h3>
-  </div>
-  <div id="config_notification" class="panel-collapse collapse">
-    <div class="panel-body">
-      <form class="form-horizontal">
-        <fieldset>
-          <div class="form-group">
-            <label class="col-sm-3 control-label">{{Notifier des évènements}}</label>
-            <div class="col-sm-3">
-              <select class="userAttr form-control" data-l1key="options" data-l2key="notifyEvent">
-                <?php
-foreach ($notifyTheme as $key => $value) {
-	echo "<option value='$key'>$value</option>";
-}
-?>
-             </select>
-           </div>
-         </div>
-         <div class="form-group">
-          <label class="col-sm-3 control-label">{{Notifier nouveau message}}</label>
-          <div class="col-sm-3">
-            <select class="userAttr form-control" data-l1key="options" data-l2key="notifyNewMessage">
-              <?php
-foreach ($notifyTheme as $key => $value) {
-	echo "<option value='$key'>$value</option>";
-}
-?>
-           </select>
-         </div>
-       </div>
-     </fieldset>
-   </form>
- </div>
 </div>
 </div>
 
