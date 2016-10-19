@@ -77,8 +77,8 @@ echo '</div>';
 		<div role="tabpanel" class="tab-pane" id="alertEqlogic">
 			<div class="alertListContainer">
 				<?php
+$hasAlert = '';
 foreach (eqLogic::all() as $eqLogic) {
-	$hasAlert = '';
 	if ($eqLogic->getAlert() == '') {
 		continue;
 	}
