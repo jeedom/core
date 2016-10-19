@@ -568,6 +568,12 @@ function printObjectSummary() {
 
         $('#table_objectSummary tbody').empty();
         for (var i in data.result) {
+		 if(isset(data.result[i].key) && data.result[i].key == ''){
+                continue;
+            }
+            if(!isset(data.result[i].name)){
+                continue;
+            }
             if(!isset(data.result[i].key)){
                 data.result[i].key = i.toLowerCase().stripAccents().replace(/\_/g, '').replace(/\-/g, '').replace(/\&/g, '').replace(/\s/g, '');
             }
