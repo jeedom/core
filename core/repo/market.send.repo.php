@@ -207,30 +207,12 @@ if (init('type') == 'plugin') {
   </div>
 </div>
 </form>
-
-<div title="Qu'avez-vous changé ?" id="md_marketSendChangeChange">
-  <form class="form-horizontal" role="form">
-    <div class="form-group">
-      <label class="col-sm-3 control-label">{Stable}}</label>
-      <div class="col-sm-1">
-       <input type="checkbox" id="cb_marketSendStable" />
-     </div>
-   </div>
-   <a class="btn btn-success pull-right" id="bt_marketSendValideChange"><i class="fa fa-check"></i> {{Valider}}</a>
-   <a class="btn btn-default pull-right" id="bt_marketSendCancelChange"><i class="fa fa-times"></i> {{Annuler}}</a>
- </form>
-</div>
-
 <?php
 if (is_object($market)) {
 	sendVarToJS('market_display_info', utils::o2a($market));
 }
 ?>
 <script>
-
-
-
-
   $('.marketAttr[data-l1key=type]').on('change', function () {
     $('.category').hide().removeClass('marketAttr');
     $('.category.' + $('.marketAttr[data-l1key=type] option:selected').attr('data-category')).show().addClass('marketAttr');
