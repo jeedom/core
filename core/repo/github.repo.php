@@ -83,7 +83,16 @@ class repo_github {
 		return $client;
 	}
 
-	public static function checkUpdate($_update) {
+	public static function checkUpdate(&$_update) {
+		if (is_array($_update)) {
+			if (count($_update) < 1) {
+				return;
+			}
+			foreach ($_update as $update) {
+				self::checkUpdate($update);
+			}
+			return;
+		}
 		$client = self::getGithubClient();
 		try {
 			$branch = $client->api('repo')->branches($_update->getConfiguration('user'), $_update->getConfiguration('repository'), $_update->getConfiguration('version', 'master'));
