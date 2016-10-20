@@ -215,7 +215,7 @@ if (!isConnect()) {
 		}
 	}
 	?>
-		<header class="navbar navbar-fixed-top navbar-default">
+		<header class="navbar navbar-fixed-top navbar-default" style="margin-bottom: 0px !important;">
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<a class="navbar-brand" href="<?php echo $homeLink; ?>">
@@ -430,7 +430,6 @@ if (isConnect('admin')) {
 						</header>
 						<main class="container-fluid" id="div_mainContainer">
 							<div style="display: none;width : 100%" id="div_alert"></div>
-
 							<div id="div_pageContainer">
 								<?php
 try {
