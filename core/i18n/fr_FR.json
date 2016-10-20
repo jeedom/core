@@ -536,7 +536,7 @@
         "Pause": "Pause"
     },
     "desktop\/js\/log.js": {
-        "Etes-vous sur de vouloir supprimer tous les logs ?": "Etes-vous sur de vouloir supprimer tous les logs ?"
+        "Etes-vous sur de vouloir supprimer tous les logs ?": "Etes-vous sûr de vouloir supprimer tous les logs ?"
     },
     "desktop\/modal\/plugin.dependancy.php": {
         "Nom": "Nom",
@@ -1369,10 +1369,10 @@
     "desktop\/js\/update.js": {
         "Options": "Options",
         "Changelog": "Changelog",
-        "Etes-vous sur de vouloir faire les mises à jour ?": "Êtes-vous sur de vouloir faire les mises à jour ?",
-        "Etes vous sur de vouloir changer l\\'état de l\\'objet ?": "Êtes-vous sur de vouloir changer l\\'état de l\\'objet ?",
-        "Etes vous sur de vouloir mettre à jour cet objet ?": "Êtes-vous sur de vouloir mettre à jour cet objet ?",
-        "Etes vous sur de vouloir supprimer cet objet ?": "Êtes-vous sur de vouloir supprimer cet objet ?",
+        "Etes-vous sur de vouloir faire les mises à jour ?": "Êtes-vous sûr de vouloir faire les mises à jour ?",
+        "Etes vous sur de vouloir changer l\\'état de l\\'objet ?": "Êtes-vous sûr de vouloir changer l\\'état de l\\'objet ?",
+        "Etes vous sur de vouloir mettre à jour cet objet ?": "Êtes-vous sûr de vouloir mettre à jour cet objet ?",
+        "Etes vous sur de vouloir supprimer cet objet ?": "Êtes-vous sûr de vouloir supprimer cet objet ?",
         "L\\'opération est réussie": "L\\'opération est réussie",
         "L\\'opération a échoué": "L\\'opération a échoué",
         "Mettre à jour": "Mettre à jour",
