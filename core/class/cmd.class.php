@@ -1078,8 +1078,8 @@ class cmd {
 		if ($repeat) {
 			return;
 		}
-		$this->setValueDate($valueDate);
 		$valueDate = ($repeat) ? $this->getValueDate() : $collectDate;
+		$this->setValueDate($valueDate);
 		$_loop++;
 		$this->setCache('value', $value);
 		$this->setCache('valueDate', $this->getValueDate());

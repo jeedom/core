@@ -91,7 +91,16 @@ class repo_market {
 
 	/*     * ***********************Méthodes statiques*************************** */
 
-	public static function checkUpdate($_update) {
+	public static function checkUpdate(&$_update) {
+		if (is_array($_update)) {
+			if (count($_update) < 1) {
+				return;
+			}
+			foreach ($_update as $update) {
+				self::checkUpdate($update);
+			}
+			return;
+		}
 		$market_info = repo_market::getInfo(array('logicalId' => $_update->getLogicalId(), 'type' => $_update->getType()), $_update->getConfiguration('version', 'stable'));
 		$_update->setStatus($market_info['status']);
 		$_update->setConfiguration('market', $market_info['market']);
