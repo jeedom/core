@@ -96,8 +96,21 @@ class repo_market {
 			if (count($_update) < 1) {
 				return;
 			}
+			$markets = array();
+			$marketObject = array();
 			foreach ($_update as $update) {
-				self::checkUpdate($update);
+				$markets[] = array('logicalId' => $update->getLogicalId(), 'type' => $update->getType(), $update->getConfiguration('version', 'stable'));
+				$marketObject[$update->getLogicalId()] = $update;
+			}
+			$markets_infos = repo_market::getInfo($markets);
+			foreach ($markets_infos as $logicalId => $market_info) {
+				$update = $marketObject[$logicalId];
+				if (is_object($update)) {
+					$update->setStatus($market_info['status']);
+					$update->setConfiguration('market', $market_info['market']);
+					$update->setRemoteVersion($market_info['datetime']);
+					$update->save();
+				}
 			}
 			return;
 		}
