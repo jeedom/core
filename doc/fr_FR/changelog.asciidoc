@@ -41,6 +41,11 @@
 * Ajout sur la page batterie des modules en alerte
 * Les objets sans widget sont automatiquement masqué sur le dashboard
 
+= 2.4.5
+
+* Correction de bugs
+* Optimisation de la vérification des mises à jour
+
 == 2.4
 
 * Optimisation général
