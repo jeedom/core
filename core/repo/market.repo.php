@@ -96,13 +96,14 @@ class repo_market {
 			if (count($_update) < 1) {
 				return;
 			}
-			$markets = array();
+			$markets = array('logicalId' => array(), 'version' => array());
 			$marketObject = array();
 			foreach ($_update as $update) {
-				$markets[] = array('logicalId' => $update->getLogicalId(), 'type' => $update->getType(), $update->getConfiguration('version', 'stable'));
-				$marketObject[$update->getLogicalId()] = $update;
+				$markets['logicalId'][] = array('logicalId' => $update->getLogicalId(), 'type' => $update->getType());
+				$markets['version'][] = $update->getConfiguration('version', 'stable');
+				$marketObject[$update->getType() . $update->getLogicalId()] = $update;
 			}
-			$markets_infos = repo_market::getInfo($markets);
+			$markets_infos = repo_market::getInfo($markets['logicalId'], $markets['version']);
 			foreach ($markets_infos as $logicalId => $market_info) {
 				$update = $marketObject[$logicalId];
 				if (is_object($update)) {
