@@ -187,23 +187,23 @@ foreach ($usedBy['scenario'] as $usedByScneario) {
         </div>
       </div>
       <?php if ($cmd->getSubType() == 'numeric') {?>
-        <div class="form-group">
-          <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Arrondi (chiffre après la virgule)}}</label>
-          <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-            <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="historizeRound" />
-          </div>
+      <div class="form-group">
+        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Arrondi (chiffre après la virgule)}}</label>
+        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+          <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="historizeRound" />
         </div>
-        <?php }
+      </div>
+      <?php }
 	?>
-        <?php }
+      <?php }
 ?>
-        <legend><i class="fa fa-building"></i> {{Type générique}}</legend>
-        <div class="form-group">
-          <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Valeur}}</label>
-          <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-            <select class="cmdAttr form-control" data-l1key="display" data-l2key="generic_type">
-              <option value="">{{Aucun}}</option>
-              <?php
+      <legend><i class="fa fa-building"></i> {{Type générique}}</legend>
+      <div class="form-group">
+        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Valeur}}</label>
+        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+          <select class="cmdAttr form-control" data-l1key="display" data-l2key="generic_type">
+            <option value="">{{Aucun}}</option>
+            <?php
 $groups = array();
 foreach (jeedom::getConfiguration('cmd::generic_type') as $key => $info) {
 	if ($cmd->getType() == 'info' && $info['type'] == 'Action') {
@@ -234,160 +234,165 @@ foreach ($groups as $group) {
 	echo '</optgroup>';
 }
 ?>
-       </select>
-     </div>
-   </div>
-
-   <?php if ($cmd->getType() == 'action') {?>
-     <legend><i class="fa fa-exclamation-triangle"></i> {{Restriction de l'action}}</legend>
-     <div class="form-group">
-      <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Confirmer l'action}}</label>
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-        <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="actionConfirm" />
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Code d'accès}}</label>
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-        <input type="password" class="cmdAttr form-control" data-l1key="configuration" data-l2key="actionCodeAccess" autocomplete="off" />
-      </div>
-    </div>
-    <?php }
-?>
-    <?php if ($cmd->getType() == 'info') {
-	?>
-     <legend><i class="fa fa-sign-out"></i> {{Action sur la valeur}}</legend>
-     <div class="form-group">
-      <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action sur valeur, si}}</label>
-      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-        <select class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdOperator" >
-         <option value="==">{{égal}}</option>
-         <option value=">">{{supérieur}}</option>
-         <option value="<">{{inférieur}}</option>
-         <option value="!=">{{différent}}</option>
-       </select>
-     </div>
-     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-      <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdTest" />
-    </div>
-    <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2 control-label">{{plus de (min)}}</label>
-    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-      <input type="number" class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdTime" />
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action}}</label>
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-      <a class="btn btn-success" id="bt_addActionCheckCmd"><i class="fa fa-plus-circle"></i> {{Ajouter}}</a>
-    </div>
-  </div>
-  <div id="div_actionCheckCmd"></div>
-
-  <script type="text/javascript">
-    $("#div_actionCheckCmd").sortable({axis: "y", cursor: "move", items: ".actionCheckCmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
-
-    $('#bt_addActionCheckCmd').off('click').on('click',function(){
-      addActionCmd({}, 'actionCheckCmd','{{Action}}');
-    });
-  </script>
-  <?php }
-?>
-  <?php if ($cmd->getType() == 'action') {
-	?>
-   <legend><i class="fa fa-sign-out"></i> {{Action avant exécution de la commande}}</legend>
-   <div class="form-group">
-    <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action}}</label>
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-      <a class="btn btn-success" id="bt_addActionPreExecCmd"><i class="fa fa-plus-circle"></i> {{Ajouter}}</a>
-    </div>
-  </div>
-  <div id="div_actionPreExecCmd"></div>
-
-  <script type="text/javascript">
-    $("#div_actionPreExecCmd").sortable({axis: "y", cursor: "move", items: ".actionPreExecCmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
-    $('#bt_addActionPreExecCmd').off('click').on('click',function(){
-      addActionCmd({}, 'actionPreExecCmd','{{Action}}');
-    });
-  </script>
-
-  <legend><i class="fa fa-sign-out"></i> {{Action après exécution de la commande}}</legend>
-  <div class="form-group">
-    <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action}}</label>
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-      <a class="btn btn-success" id="bt_addActionPostExecCmd"><i class="fa fa-plus-circle"></i> {{Ajouter}}</a>
-    </div>
-  </div>
-  <div id="div_actionPostExecCmd"></div>
-
-  <script type="text/javascript">
-    $("#div_actionPostExecCmd").sortable({axis: "y", cursor: "move", items: ".actionPostExecCmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
-    $('#bt_addActionPostExecCmd').off('click').on('click',function(){
-      addActionCmd({}, 'actionPostExecCmd','{{Action}}');
-    });
-  </script>
-
-  <?php }?>
-
-  <?php if ($cmd->getType() == 'info' && ($cmd->getSubType() == 'numeric' || $cmd->getSubType() == 'binary')) {
-	?>
-   <legend><i class="fa fa-bar-chart-o"></i> {{Historique}}</legend>
-   <div class="form-group">
-    <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Historiser}}</label>
-    <div class="col-xs-1">
-      <input type="checkbox" class="cmdAttr" data-l1key="isHistorized" />
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Mode de lissage}}</label>
-    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-      <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historizeMode">
-        <option value="avg">{{Moyenne}}</option>
-        <option value="min">{{Minimum}}</option>
-        <option value="max">{{Maximum}}</option>
-        <option value="none">{{Aucun}}</option>
-      </select>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Purger l'historique si plus vieux de }}</label>
-    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-     <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historyPurge">
-       <option value="">{{Jamais}}</option>
-       <option value="-1 day">{{1 jour}}</option>
-       <option value="-7 days">{{7 jours}}</option>
-       <option value="-1 month">{{1 mois}}</option>
-       <option value="-6 month">{{6 mois}}</option>
      </select>
    </div>
  </div>
- <?php if ($cmd->getIsHistorized() == 1) {?>
-  <div class="form-group">
-    <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Copie des données historisé}}</label>
-    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-      <a class="btn btn-warning" id="bt_cmdConfigureCopyHistory"><i class="fa fa-clone"></i> {{Copier l'historique de cette commande sur une autre commande}}</a>
-    </div>
+
+ <?php if ($cmd->getType() == 'action') {?>
+ <legend><i class="fa fa-exclamation-triangle"></i> {{Restriction de l'action}}</legend>
+ <div class="form-group">
+  <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Confirmer l'action}}</label>
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="actionConfirm" />
   </div>
-  <?php }
-	?>
-  <?php }
+</div>
+<div class="form-group">
+  <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Code d'accès}}</label>
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <input type="password" class="cmdAttr form-control" data-l1key="configuration" data-l2key="actionCodeAccess" autocomplete="off" />
+  </div>
+</div>
+<?php }
 ?>
-  <?php if ($cmd->getType() == 'info') {?>
-   <legend><i class="fa fa-plus"></i> {{Autres}}</legend>
-   <div class="form-group">
-    <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Ignorer évènement si la valeur ne change pas}}</label>
-    <div class="col-xs-1">
-      <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="doNotRepeatEvent" />
-    </div>
+<?php if ($cmd->getType() == 'info') {
+	?>
+ <legend><i class="fa fa-sign-out"></i> {{Action sur la valeur}}</legend>
+ <div class="form-group">
+  <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action sur valeur, si}}</label>
+  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+    <select class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdOperator" >
+     <option value="==">{{égal}}</option>
+     <option value=">">{{supérieur}}</option>
+     <option value="<">{{inférieur}}</option>
+     <option value="!=">{{différent}}</option>
+   </select>
+ </div>
+ <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+  <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdTest" />
+</div>
+<label class="col-lg-2 col-md-2 col-sm-2 col-xs-2 control-label">{{plus de (min)}}</label>
+<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+  <input type="number" class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdTime" />
+</div>
+</div>
+
+<div class="form-group">
+  <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action}}</label>
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <a class="btn btn-success" id="bt_addActionCheckCmd"><i class="fa fa-plus-circle"></i> {{Ajouter}}</a>
   </div>
-  <div class="form-group">
-    <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Push URL}}</label>
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-      <input class="cmdAttr form-control tooltips" data-l1key="configuration" data-l2key="jeedomPushUrl" title="{{Mettez ici l'URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"/>
-    </div>
+</div>
+<div id="div_actionCheckCmd"></div>
+
+<script type="text/javascript">
+  $("#div_actionCheckCmd").sortable({axis: "y", cursor: "move", items: ".actionCheckCmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
+
+  $('#bt_addActionCheckCmd').off('click').on('click',function(){
+    addActionCmd({}, 'actionCheckCmd','{{Action}}');
+  });
+</script>
+<?php }
+?>
+<?php if ($cmd->getType() == 'action') {
+	?>
+ <legend><i class="fa fa-sign-out"></i> {{Action avant exécution de la commande}}</legend>
+ <div class="form-group">
+  <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action}}</label>
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <a class="btn btn-success" id="bt_addActionPreExecCmd"><i class="fa fa-plus-circle"></i> {{Ajouter}}</a>
   </div>
-  <?php }
+</div>
+<div id="div_actionPreExecCmd"></div>
+
+<script type="text/javascript">
+  $("#div_actionPreExecCmd").sortable({axis: "y", cursor: "move", items: ".actionPreExecCmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
+  $('#bt_addActionPreExecCmd').off('click').on('click',function(){
+    addActionCmd({}, 'actionPreExecCmd','{{Action}}');
+  });
+</script>
+
+<legend><i class="fa fa-sign-out"></i> {{Action après exécution de la commande}}</legend>
+<div class="form-group">
+  <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action}}</label>
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <a class="btn btn-success" id="bt_addActionPostExecCmd"><i class="fa fa-plus-circle"></i> {{Ajouter}}</a>
+  </div>
+</div>
+<div id="div_actionPostExecCmd"></div>
+
+<script type="text/javascript">
+  $("#div_actionPostExecCmd").sortable({axis: "y", cursor: "move", items: ".actionPostExecCmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
+  $('#bt_addActionPostExecCmd').off('click').on('click',function(){
+    addActionCmd({}, 'actionPostExecCmd','{{Action}}');
+  });
+</script>
+
+<?php }?>
+
+<?php if ($cmd->getType() == 'info' && ($cmd->getSubType() == 'numeric' || $cmd->getSubType() == 'binary')) {
+	?>
+ <legend><i class="fa fa-bar-chart-o"></i> {{Historique}}</legend>
+ <div class="form-group">
+  <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Historiser}}</label>
+  <div class="col-xs-1">
+    <input type="checkbox" class="cmdAttr" data-l1key="isHistorized" />
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Mode de lissage}}</label>
+  <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+    <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historizeMode">
+      <option value="avg">{{Moyenne}}</option>
+      <option value="min">{{Minimum}}</option>
+      <option value="max">{{Maximum}}</option>
+      <option value="none">{{Aucun}}</option>
+    </select>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Purger l'historique si plus vieux de }}</label>
+  <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+   <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historyPurge">
+     <option value="">{{Jamais}}</option>
+     <option value="-1 day">{{1 jour}}</option>
+     <option value="-7 days">{{7 jours}}</option>
+     <option value="-1 month">{{1 mois}}</option>
+     <option value="-6 month">{{6 mois}}</option>
+   </select>
+ </div>
+</div>
+<?php if ($cmd->getIsHistorized() == 1) {?>
+<div class="form-group">
+  <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Copie des données historisé}}</label>
+  <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+    <a class="btn btn-warning" id="bt_cmdConfigureCopyHistory"><i class="fa fa-clone"></i> {{Copier l'historique de cette commande sur une autre commande}}</a>
+  </div>
+</div>
+<?php }
+	?>
+<?php }
+?>
+<?php if ($cmd->getType() == 'info') {?>
+<legend><i class="fa fa-plus"></i> {{Autres}}</legend>
+
+<div class="form-group">
+  <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Gestion de la répétition des valeurs}}</label>
+  <div class="col-xs-3">
+    <select class="cmdAttr form-control" data-l1key="configuration" data-l2key="repeatEventManagement" >
+      <option value="auto">{{Automatique}}</option>
+      <option value="always">{{Toujours répéter}}</option>
+      <option value="never">{{Jamais répéter}}</option>
+    </select>
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Push URL}}</label>
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <input class="cmdAttr form-control tooltips" data-l1key="configuration" data-l2key="jeedomPushUrl" title="{{Mettez ici l'URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"/>
+  </div>
+</div>
+<?php }
 ?>
 </fieldset>
 </form>

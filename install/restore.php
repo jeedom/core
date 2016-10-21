@@ -187,6 +187,8 @@ try {
 	}
 	rrmdir($tmp);
 	config::save('hardware_name', '');
+	$cache = cache::byKey('jeedom::isCapable::sudo');
+	$cache->remove();
 	jeedom::start();
 
 	try {

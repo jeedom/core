@@ -152,30 +152,6 @@ jeedom.init = function () {
         refreshMessageNumber();
     });
     $('body').on('notify', function (_event,_options) {
-        var theme = '';
-        switch (init(_options.category)) {
-            case 'event' :
-            if (init(userProfils.notifyEvent) == 'none') {
-                return;
-            } else {
-                theme = userProfils.notifyEvent;
-            }
-            break;
-            case 'scenario' :
-            if (init(userProfils.notifyLaunchScenario) == 'none') {
-                return;
-            } else {
-                theme = userProfils.notifyLaunchScenario;
-            }
-            break;
-            case 'message' :
-            if (init(userProfils.notifyNewMessage) == 'none') {
-                return;
-            } else {
-                theme = userProfils.notifyNewMessage;
-            }
-            break;
-        }
         notify(_options.title, _options.message, _options.theme);
     });
 

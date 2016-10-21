@@ -596,8 +596,8 @@ class eqLogic {
 			}
 		}
 		$default_opacity = config::byKey('widget::background-opacity');
-		if (isset($_SESSION) && isset($_SESSION['user']) && is_object($_SESSION['user']) && $_SESSION['user']->getOptions('widget::background-opacity' . $version) != 0) {
-			$default_opacity = $_SESSION['user']->getOptions('widget::background-opacity' . $version);
+		if (isset($_SESSION) && isset($_SESSION['user']) && is_object($_SESSION['user']) && $_SESSION['user']->getOptions('widget::background-opacity::' . $version, null) !== null) {
+			$default_opacity = $_SESSION['user']->getOptions('widget::background-opacity::' . $version);
 		}
 		$opacity = $this->getDisplay('background-opacity' . $version, $default_opacity);
 		if ($replace['#background-color#'] != 'transparent' && $opacity != '' && $opacity < 1) {

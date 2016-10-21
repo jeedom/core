@@ -67,12 +67,14 @@ class cache {
 				self::$cache = new \Doctrine\Common\Cache\PhpFileCache("/tmp/jeedom-cache-php");
 				break;
 			case 'MemcachedCache':
-				$memcached = (new Memcached())->addServer(config::byKey('cache::memcacheaddr'), config::byKey('cache::memcacheport'));
+				$memcached = new Memcached();
+				$memcached->addServer(config::byKey('cache::memcacheaddr'), config::byKey('cache::memcacheport'));
 				self::$cache = new \Doctrine\Common\Cache\MemcachedCache();
 				self::$cache->setMemcached($memcached);
 				break;
 			case 'RedisCache':
-				$redis = (new Redis())->connect(config::byKey('cache::redisaddr'), config::byKey('cache::redisport'));
+				$redis = new Redis();
+				$redis->connect(config::byKey('cache::redisaddr'), config::byKey('cache::redisport'));
 				self::$cache = new \Doctrine\Common\Cache\RedisCache();
 				self::$cache->setRedis($redis);
 				break;

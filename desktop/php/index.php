@@ -215,7 +215,7 @@ if (!isConnect()) {
 		}
 	}
 	?>
-		<header class="navbar navbar-fixed-top navbar-default">
+		<header class="navbar navbar-fixed-top navbar-default" style="margin-bottom: 0px !important;">
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<a class="navbar-brand" href="<?php echo $homeLink; ?>">
@@ -280,7 +280,7 @@ echo $panel_menu;
 if (isConnect('admin')) {
 		?>
 									<li class="expertModeVisible"><a href="index.php?v=d&p=log"><i class="fa fa-file-o"></i> {{Logs}}</a></li>
-									<li><a href="index.php?v=d&p=battery"><i class="fa fa-battery-full"></i> {{Batteries et alertes}}</a></li>
+									<li><a href="index.php?v=d&p=battery"><i class="fa fa-battery-full"></i> {{Equipements}}</a></li>
 									<li class="divider"></li>
 									<li class="expertModeVisible"><a href="index.php?v=d&p=sysinfo"><i class="fa fa-info-circle"></i> {{Informations système}}</a></li>
 									<li><a href="index.php?v=d&p=health"><i class="fa fa-medkit"></i> {{Santé}}</a></li>
@@ -430,7 +430,6 @@ if (isConnect('admin')) {
 						</header>
 						<main class="container-fluid" id="div_mainContainer">
 							<div style="display: none;width : 100%" id="div_alert"></div>
-
 							<div id="div_pageContainer">
 								<?php
 try {

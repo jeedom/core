@@ -32,16 +32,16 @@ foreach ($allObject as $object) {
  <div class="col-lg-10 col-md-10 col-sm-9" id="div_resumeObjectList" style="border-left: solid 1px #EEE; padding-left: 25px;">
    <legend><i class="fa fa-picture-o"></i>  {{Mes objets}}</legend>
    <div class="objectListContainer">
-     <div class="cursor" id="bt_addObject2" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+     <div class="cursor" id="bt_addObject2" style="background-color : #ffffff; height : 160px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
        <br/>
-       <center style='margin-top:10px;'>
+       <center style='margin-top:-14px;'>
          <i class="fa fa-plus-circle" style="font-size : 6em;color:#94ca02;margin-top:5px;"></i>
        </center>
        <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>Ajouter</center></span>
      </div>
      <?php
 foreach ($allObject as $object) {
-	echo '<div class="objectDisplayCard cursor" data-object_id="' . $object->getId() . '" data-object_name="' . $object->getName() . '" data-object_icon=\'' . $object->getDisplay('icon', '<i class="fa fa-lemon-o"></i>') . '\' style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+	echo '<div class="objectDisplayCard cursor" data-object_id="' . $object->getId() . '" data-object_name="' . $object->getName() . '" data-object_icon=\'' . $object->getDisplay('icon', '<i class="fa fa-lemon-o"></i>') . '\' style="background-color : #ffffff; height : 160px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 	echo "<center style='margin-top:10px;'>";
 	echo str_replace('></i>', ' style="font-size : 6em;color:#767676;"></i>', $object->getDisplay('icon', '<i class="fa fa-lemon-o"></i>'));
 	echo "</center>";
@@ -120,85 +120,92 @@ foreach ($allObject as $object) {
     </form>
   </div>
   <div role="tabpanel" class="tab-pane" id="summarytab">
-    <form class="form-horizontal">
+    <?php
+if (count(config::byKey('object:summary')) == 0) {
+	echo '<div class="alert alert-danger>{{Vous n\'avez aucun résumé de créé. Allez sur la page d\'administration de Jeedom puis sur la partie "Configuration des résumés d\'objet"}}</div>';
+} else {
+
+	?>
+     <form class="form-horizontal">
       <fieldset>
-		<legend class="objectname_resume" style="cursor:default;"></legend>
-	    <legend style="cursor:default;"><i class="fa fa-picture-o"></i>  {{Options d'affichage}}</legend>
+        <legend class="objectname_resume" style="cursor:default;"></legend>
+        <legend style="cursor:default;"><i class="fa fa-picture-o"></i>  {{Options d'affichage}}</legend>
         <table class="table">
           <thead>
             <tr>
               <th></th>
               <?php
 foreach (config::byKey('object:summary') as $key => $value) {
-	echo '<th style="cursor:default;">' . $value['name'] . '</th>';
-}
-?>
-           </tr>
-         </thead>
-         <?php
+		echo '<th style="cursor:default;">' . $value['name'] . '</th>';
+	}
+	?>
+            </tr>
+          </thead>
+          <?php
 echo '<tr>';
-echo '<td style="cursor:default;">';
-echo '{{Remonter dans le résumé global}}';
-echo '</td>';
-foreach (config::byKey('object:summary') as $key => $value) {
-	echo '<td>';
-	echo '<input type="checkbox" class="objectAttr" data-l1key="configuration" data-l2key="summary::global::' . $key . '" />';
+	echo '<td style="cursor:default;">';
+	echo '{{Remonter dans le résumé global}}';
 	echo '</td>';
-}
-echo '</tr>';
-echo '<tr>';
-echo '<tr>';
-echo '<td style="cursor:default;">';
-echo '{{Masquer en desktop}}';
-echo '</td>';
-foreach (config::byKey('object:summary') as $key => $value) {
-	echo '<td>';
-	echo '<input type="checkbox" class="objectAttr" data-l1key="configuration" data-l2key="summary::hide::desktop::' . $key . '" />';
+	foreach (config::byKey('object:summary') as $key => $value) {
+		echo '<td>';
+		echo '<input type="checkbox" class="objectAttr" data-l1key="configuration" data-l2key="summary::global::' . $key . '" />';
+		echo '</td>';
+	}
+	echo '</tr>';
+	echo '<tr>';
+	echo '<tr>';
+	echo '<td style="cursor:default;">';
+	echo '{{Masquer en desktop}}';
 	echo '</td>';
-}
-echo '</tr>';
-echo '<tr>';
-echo '<tr>';
-echo '<td>';
-echo '{{Masquer en mobile}}';
-echo '</td>';
-foreach (config::byKey('object:summary') as $key => $value) {
+	foreach (config::byKey('object:summary') as $key => $value) {
+		echo '<td>';
+		echo '<input type="checkbox" class="objectAttr" data-l1key="configuration" data-l2key="summary::hide::desktop::' . $key . '" />';
+		echo '</td>';
+	}
+	echo '</tr>';
+	echo '<tr>';
+	echo '<tr>';
 	echo '<td>';
-	echo '<input type="checkbox" class="objectAttr" data-l1key="configuration" data-l2key="summary::hide::mobile::' . $key . '" />';
+	echo '{{Masquer en mobile}}';
 	echo '</td>';
-}
-echo '</tr>';
-?>
-      </table>
-	  <legend style="cursor:default;"><i class="fa fa-tachometer"></i>  {{Commandes}}</legend>
-      <ul class="nav nav-tabs" role="tablist">
-        <?php
+	foreach (config::byKey('object:summary') as $key => $value) {
+		echo '<td>';
+		echo '<input type="checkbox" class="objectAttr" data-l1key="configuration" data-l2key="summary::hide::mobile::' . $key . '" />';
+		echo '</td>';
+	}
+	echo '</tr>';
+	?>
+        </table>
+        <legend style="cursor:default;"><i class="fa fa-tachometer"></i>  {{Commandes}}</legend>
+        <ul class="nav nav-tabs" role="tablist">
+          <?php
 $active = 'active';
-foreach (config::byKey('object:summary') as $key => $value) {
-	echo '<li class="' . $active . '"><a href="#summarytab' . $key . '" role="tab" data-toggle="tab">' . $value['icon'] . ' ' . $value['name'] . '</i>  <span class="tabnumber summarytabnumber' . $key . '"</span></a></li>';
-	$active = '';
-}
-?>
-    </ul>
-    <div class="tab-content">
-      <?php
+	foreach (config::byKey('object:summary') as $key => $value) {
+		echo '<li class="' . $active . '"><a href="#summarytab' . $key . '" role="tab" data-toggle="tab">' . $value['icon'] . ' ' . $value['name'] . '</i>  <span class="tabnumber summarytabnumber' . $key . '"</span></a></li>';
+		$active = '';
+	}
+	?>
+        </ul>
+        <div class="tab-content">
+          <?php
 $active = ' active';
-foreach (config::byKey('object:summary') as $key => $value) {
-	echo '<div role="tabpanel" class="tab-pane type' . $key . $active . '" data-type="' . $key . '" id="summarytab' . $key . '">';
-	echo '<a class="btn btn-sm btn-success pull-right addSummary" data-type="' . $key . '"><i class="fa fa-plus-circle"></i> {{Ajouter une commande}}</a>';
-	echo '<br/>';
-	echo '<div class="div_summary" data-type="' . $key . '"></div>';
-	echo '</div>';
-	$active = '';
+	foreach (config::byKey('object:summary') as $key => $value) {
+		echo '<div role="tabpanel" class="tab-pane type' . $key . $active . '" data-type="' . $key . '" id="summarytab' . $key . '">';
+		echo '<a class="btn btn-sm btn-success pull-right addSummary" data-type="' . $key . '"><i class="fa fa-plus-circle"></i> {{Ajouter une commande}}</a>';
+		echo '<br/>';
+		echo '<div class="div_summary" data-type="' . $key . '"></div>';
+		echo '</div>';
+		$active = '';
+	}
+	?>
+        </div>
+      </fieldset>
+    </form>
+    <?php
 }
 ?>
-   </div>
- </fieldset>
-</form>
 </div>
 </div>
-
-
 </div>
 </div>
 

@@ -1,6 +1,6 @@
 == Changelog
 
-== 2.5
+== 3.0
 
 * Suppression du mode esclave
 * Possibilité de déclencher un scénario sur un changement d'une variable
@@ -12,6 +12,7 @@
 * Les widgets des commandes peuvent maintenant avoir une méthode d'update ce qui évite un appels AJAX à Jeedom
 * Les widgets des scénarios sont maintenant mise à jour sans appels ajax pour avoir le widget
 * Le résumé global et des pièces et maintenant mises à jour sans appels ajax
+* Un clic sur un element d'un résumé domotique vous amène sur une vue détaillée de celui-ci
 * Changement des bootstraps slider en slider (corriger le bug du double événement des sliders)
 * Sauvegarde automatique des vues lors du clique sur le bouton "voir le résultat"
 * Possibilité d'avoir les doc en local
@@ -31,8 +32,19 @@
 ** Possibilité d'activer une aimantation des widgets sur la grille
 ** Possibilité d'activer une aimantation des widgets entre eux
 ** Certain type de widget peuvent maintenant être dupliqué
+** Possibilité de verouiller un élément
 * Les plugins peuvent maintenant utiliser une clef api qui leur est propre
-* Ajout d'intéractions automatiques, Jeedom va essayer de comprendre la phrase, d'executer l'action et de répondre 
+* Ajout d'intéractions automatiques, Jeedom va essayer de comprendre la phrase, d'executer l'action et de répondre
+* Ajout de la gestion des démons en version mobile
+* Ajout de la gestion des crons en version mobile
+* Ajout de certaines informations de santé en version mobile
+* Ajout sur la page batterie des modules en alerte
+* Les objets sans widget sont automatiquement masqué sur le dashboard
+
+= 2.4.5
+
+* Correction de bugs
+* Optimisation de la vérification des mises à jour
 
 == 2.4
 

@@ -161,7 +161,7 @@ image::../images/administration17.png[]
 * *Nom d'utilisateur* : votre nom d'utilisateur sur le market
 * *Password* : your market password
 
-==== Fichier
+==== URL
 
 Dépot servant à activer l'envoi de plugin par des fichiers
 

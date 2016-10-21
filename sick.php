@@ -86,9 +86,9 @@ try {
 	if (!$foundAdmin) {
 		echo "No admin user found, create it...";
 		$user = (new \user())
-		    ->setLogin('admin')
-		    ->setPassword(sha1('admin'))
-		    ->setRights('admin', 1);
+			->setLogin('admin')
+			->setPassword(sha1('admin'))
+			->setRights('admin', 1);
 		$user->save();
 		echo "OK (admin/admin)\n";
 	}
@@ -102,12 +102,6 @@ try {
 echo "\n**************************************************\n";
 echo "*                 CRON                           *";
 echo "\n**************************************************\n";
-echo "Check last cron launch...";
-if (!cron::ok()) {
-	echo "NOK\n";
-} else {
-	echo "OK\n";
-}
 echo "Check if cron is enable...";
 if (config::byKey('enableCron', 'core', 1, true) == 0) {
 	echo "NOK\n";

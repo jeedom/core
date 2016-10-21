@@ -258,9 +258,9 @@
 });
 
  $('#bt_resetHwKey').on('click',function(){
- $.ajax({// fonction permettant de faire de l'ajax
-        type: "POST", // methode de transmission des données au fichier php
-        url: "core/ajax/jeedom.ajax.php", // url du fichier php
+     $.ajax({
+        type: "POST", 
+        url: "core/ajax/jeedom.ajax.php", 
         data: {
             action: "resetHwKey"
         },
@@ -268,15 +268,15 @@
         error: function (request, status, error) {
             handleAjaxError(request, status, error);
         },
-        success: function (data) { // si l'appel a bien fonctionné
-        if (data.state != 'ok') {
-            $('#div_alert').showAlert({message: data.result, level: 'danger'});
-            return;
+        success: function (data) { 
+            if (data.state != 'ok') {
+                $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                return;
+            }
+            loadPage('index.php?v=d&p=administration');
         }
-        loadPage('index.php?v=d&p=administration');
-    }
-});
-});
+    });
+ });
 
  $('#bt_resetHardwareType').on('click',function(){
     jeedom.config.save({
@@ -291,9 +291,9 @@
 });
 
  function clearJeedomDate() {
-    $.ajax({// fonction permettant de faire de l'ajax
-        type: "POST", // methode de transmission des données au fichier php
-        url: "core/ajax/jeedom.ajax.php", // url du fichier php
+    $.ajax({
+        type: "POST", 
+        url: "core/ajax/jeedom.ajax.php", 
         data: {
             action: "clearDate"
         },
@@ -301,21 +301,21 @@
         error: function (request, status, error) {
             handleAjaxError(request, status, error);
         },
-        success: function (data) { // si l'appel a bien fonctionné
-        if (data.state != 'ok') {
-            $('#div_alert').showAlert({message: data.result, level: 'danger'});
-            return;
+        success: function (data) { 
+            if (data.state != 'ok') {
+                $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                return;
+            }
+            $('#in_jeedomLastDate').value('');
         }
-        $('#in_jeedomLastDate').value('');
-    }
-});
+    });
 }
 
 
 function flushMemcache() {
-    $.ajax({// fonction permettant de faire de l'ajax
-        type: "POST", // methode de transmission des données au fichier php
-        url: "core/ajax/jeedom.ajax.php", // url du fichier php
+    $.ajax({
+        type: "POST", 
+        url: "core/ajax/jeedom.ajax.php", 
         data: {
             action: "flushcache"
         },
@@ -323,22 +323,22 @@ function flushMemcache() {
         error: function (request, status, error) {
             handleAjaxError(request, status, error);
         },
-        success: function (data) { // si l'appel a bien fonctionné
-        if (data.state != 'ok') {
-            $('#div_alert').showAlert({message: data.result, level: 'danger'});
-            return;
+        success: function (data) { 
+            if (data.state != 'ok') {
+                $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                return;
+            }
+            $('#div_alert').showAlert({message: '{{Cache vidé}}', level: 'success'});
         }
-        $('#div_alert').showAlert({message: '{{Cache vidé}}', level: 'success'});
-    }
-});
+    });
 }
 
 
 /********************Convertion************************/
 function printConvertColor() {
-    $.ajax({// fonction permettant de faire de l'ajax
-        type: "POST", // methode de transmission des données au fichier php
-        url: "core/ajax/config.ajax.php", // url du fichier php
+    $.ajax({
+        type: "POST", 
+        url: "core/ajax/config.ajax.php", 
         data: {
             action: "getKey",
             key: 'convertColor'
@@ -347,19 +347,19 @@ function printConvertColor() {
         error: function (request, status, error) {
             handleAjaxError(request, status, error);
         },
-        success: function (data) { // si l'appel a bien fonctionné
-        if (data.state != 'ok') {
-            $('#div_alert').showAlert({message: data.result, level: 'danger'});
-            return;
-        }
+        success: function (data) { 
+            if (data.state != 'ok') {
+                $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                return;
+            }
 
-        $('#table_convertColor tbody').empty();
-        for (var color in data.result) {
-            addConvertColor(color, data.result[color]);
+            $('#table_convertColor tbody').empty();
+            for (var color in data.result) {
+                addConvertColor(color, data.result[color]);
+            }
+            modifyWithoutSave = false;
         }
-        modifyWithoutSave = false;
-    }
-});
+    });
 }
 
 function addConvertColor(_color, _html) {
@@ -382,9 +382,9 @@ function saveConvertColor() {
         colors[$(this).find('.color').value()] = $(this).find('.html').value();
     });
     value.convertColor = colors;
-    $.ajax({// fonction permettant de faire de l'ajax
-        type: "POST", // methode de transmission des données au fichier php
-        url: "core/ajax/config.ajax.php", // url du fichier php
+    $.ajax({
+        type: "POST", 
+        url: "core/ajax/config.ajax.php", 
         data: {
             action: 'addKey',
             value: json_encode(value)
@@ -393,14 +393,14 @@ function saveConvertColor() {
         error: function (request, status, error) {
             handleAjaxError(request, status, error);
         },
-        success: function (data) { // si l'appel a bien fonctionné
-        if (data.state != 'ok') {
-            $('#div_alert').showAlert({message: data.result, level: 'danger'});
-            return;
+        success: function (data) { 
+            if (data.state != 'ok') {
+                $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                return;
+            }
+            modifyWithoutSave = false;
         }
-        modifyWithoutSave = false;
-    }
-});
+    });
 }
 
 /*CMD color*/
@@ -502,9 +502,9 @@ $("#table_objectSummary").sortable({axis: "y", cursor: "move", items: ".objectSu
 printObjectSummary();
 
 function printObjectSummary() {
-    $.ajax({// fonction permettant de faire de l'ajax
-        type: "POST", // methode de transmission des données au fichier php
-        url: "core/ajax/config.ajax.php", // url du fichier php
+    $.ajax({
+        type: "POST", 
+        url: "core/ajax/config.ajax.php", 
         data: {
             action: "getKey",
             key: 'object:summary'
@@ -513,14 +513,19 @@ function printObjectSummary() {
         error: function (request, status, error) {
             handleAjaxError(request, status, error);
         },
-        success: function (data) { // si l'appel a bien fonctionné
-        if (data.state != 'ok') {
-            $('#div_alert').showAlert({message: data.result, level: 'danger'});
-            return;
-        }
-
-        $('#table_objectSummary tbody').empty();
-        for (var i in data.result) {
+        success: function (data) { 
+            if (data.state != 'ok') {
+                $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                return;
+            }
+            $('#table_objectSummary tbody').empty();
+            for (var i in data.result) {
+             if(isset(data.result[i].key) && data.result[i].key == ''){
+                continue;
+            }
+            if(!isset(data.result[i].name)){
+                continue;
+            }
             if(!isset(data.result[i].key)){
                 data.result[i].key = i.toLowerCase().stripAccents().replace(/\_/g, '').replace(/\-/g, '').replace(/\&/g, '').replace(/\s/g, '');
             }
@@ -602,13 +607,13 @@ function saveObjectSummary() {
         error: function (request, status, error) {
             handleAjaxError(request, status, error);
         },
-        success: function (data) { // si l'appel a bien fonctionné
-        if (data.state != 'ok') {
-            $('#div_alert').showAlert({message: data.result, level: 'danger'});
-            return;
+        success: function (data) { 
+            if (data.state != 'ok') {
+                $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                return;
+            }
+            printObjectSummary();
+            modifyWithoutSave = false;
         }
-        printObjectSummary();
-        modifyWithoutSave = false;
-    }
-});
+    });
 }

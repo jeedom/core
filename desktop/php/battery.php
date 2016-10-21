@@ -31,8 +31,9 @@ sort($battery);
 ?>
 
 <ul class="nav nav-tabs" role="tablist" id="ul_tabBatteryAlert">
-	<li role="presentation" class="active"><a href="#battery" aria-controls="battery" role="tab" data-toggle="tab">{{Batterie}}</a></li>
-	<li role="presentation"><a href="#alertEqlogic" aria-controls="alertEqlogic" role="tab" data-toggle="tab">{{Module en alerte}}</a></li>
+	<li role="presentation" class="active"><a href="#battery" aria-controls="battery" role="tab" data-toggle="tab"><i class="fa fa-battery-full"></i> {{Batterie}}</a></li>
+	<li role="presentation"><a href="#alertEqlogic" aria-controls="alertEqlogic" role="tab" data-toggle="tab"><i class="fa fa-exclamation-triangle"></i> {{Module en alerte}}</a></li>
+	<li role="presentation"><a href="#actionCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fa fa-gears"></i> {{Actions définies}}</a></li>
 </ul>
 
 <div class="tab-content">
@@ -71,19 +72,90 @@ foreach ($list as $eqLogic) {
 	echo '</div>';
 }
 echo '</div>';
-include_file('desktop', 'battery', 'js');
 ?>
 		</div>
 		<div role="tabpanel" class="tab-pane" id="alertEqlogic">
 			<div class="alertListContainer">
 				<?php
+$hasAlert = '';
 foreach (eqLogic::all() as $eqLogic) {
 	if ($eqLogic->getAlert() == '') {
 		continue;
 	}
+	$hasAlert = 1;
 	echo $eqLogic->toHtml('dashboard');
+}
+if ($hasAlert == '') {
+	echo '<br/><div class="alert alert-success">{{Aucun module en Alerte pour le moment}}</div>';
 }
 ?>
 			</div>
 		</div>
+		<div role="tabpanel" class="tab-pane" id="actionCmd">
+			<div class="cmdListContainer">
+				<table class="table table-condensed tablesorter" id="table_Action">
+					<thead>
+						<tr>
+							<th>{{Equipement}}</th>
+							<th>{{Commande}}</th>
+							<th>{{Type}}</th>
+							<th>{{Actions}}</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php
+foreach (eqLogic::all() as $eqLogic) {
+	foreach ($eqLogic->getCmd('info') as $cmd) {
+		if (count($cmd->getConfiguration('actionCheckCmd', array())) > 0) {
+			echo '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '" style="text-decoration: none;">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Action sur état}}</td>';
+			echo '<td>Si ' . $cmd->getConfiguration('jeedomCheckCmdOperator') . ' ' . $cmd->getConfiguration('jeedomCheckCmdTest') . ' {{plus de}} ' . $cmd->getConfiguration('jeedomCheckCmdTime') . ' {{minutes alors}} : ';
+			$actions = '';
+			foreach ($cmd->getConfiguration('actionCheckCmd') as $actionCmd) {
+				$actions .= scenarioExpression::humanAction($actionCmd) . '|';
+			}
+			echo trim($actions, '|');
+			echo '</td>';
+			echo '<td>';
+			echo '<a class="btn btn-default btn-xs cmdAction expertModeVisible pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fa fa-cogs"></i></a>';
+			echo '</td>';
+			echo '</tr>';
+		}
+	}
+	foreach ($eqLogic->getCmd('action') as $cmd) {
+		if (count($cmd->getConfiguration('jeedomPreExecCmd', array())) > 0) {
+			echo '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '" style="text-decoration: none;">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Pre exécution}}</td><td>';
+			$actions = '';
+			foreach ($cmd->getConfiguration('jeedomPreExecCmd') as $actionCmd) {
+				$actions .= scenarioExpression::humanAction($actionCmd) . '|';
+			}
+			echo trim($actions, '|');
+			echo '</td>';
+			echo '<td>';
+			echo '<a class="btn btn-default btn-xs cmdAction expertModeVisible pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fa fa-cogs"></i></a>';
+			echo '</td>';
+			echo '</tr>';
+		}
+		if (count($cmd->getConfiguration('jeedomPostExecCmd', array())) > 0) {
+			echo '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '" style="text-decoration: none;">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Post exécution}}</td><td>';
+			$actions = '';
+			foreach ($cmd->getConfiguration('jeedomPostExecCmd') as $actionCmd) {
+				$actions .= scenarioExpression::humanAction($actionCmd) . '|';
+			}
+			echo trim($actions, '|');
+			echo '</td>';
+			echo '<td>';
+			echo '<a class="btn btn-default btn-xs cmdAction expertModeVisible pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fa fa-cogs"></i></a>';
+			echo '</td>';
+			echo '</tr>';
+		}
+	}
+}
+?>
+					</tbody>
+				</table>
+			</div>
+		</div>
 	</div>
+
+<?php include_file('desktop', 'battery', 'js');?>

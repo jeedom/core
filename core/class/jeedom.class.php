@@ -932,7 +932,15 @@ class jeedom {
 	public static function isCapable($_function) {
 		global $JEEDOM_COMPATIBILIY_CONFIG;
 		if ($_function == 'sudo') {
-			return (shell_exec('sudo -l > /dev/null 2>&1; echo $?') == 0) ? true : false;
+			$cache = cache::byKey('jeedom::isCapable::sudo');
+			if ($cache->getValue(0) == 1) {
+				return true;
+			}
+			$result = (shell_exec('sudo -l > /dev/null 2>&1; echo $?') == 0) ? true : false;
+			if ($result) {
+				cache::set('jeedom::isCapable::sudo', 1);
+			}
+			return $result;
 		}
 		$hardware = self::getHardwareName();
 		if (!isset($JEEDOM_COMPATIBILIY_CONFIG[$hardware])) {

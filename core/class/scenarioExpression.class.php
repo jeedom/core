@@ -132,6 +132,24 @@ class scenarioExpression {
 		return $return;
 	}
 
+	public static function humanAction($_action) {
+		$return = '';
+		if ($_action['cmd'] == 'scenario') {
+			$name = scenario::byId($_action['options']['scenario_id'])->getName();
+			$action = $_action['options']['action'];
+			$return .= __('Scénario : ', __FILE__) . $name . ' <i class="fa fa-arrow-right"></i> ' . $action;
+		} else if ($_action['cmd'] == 'variable') {
+			$name = $_action['options']['name'];
+			$value = $_action['options']['value'];
+			$return .= __('Variable : ', __FILE__) . $name . ' <i class="fa fa-arrow-right"></i> ' . $value;
+		} else if (is_object(cmd::byId(str_replace('#', '', $_action['cmd'])))) {
+			$cmdEx = cmd::byId(str_replace('#', '', $_action['cmd']));
+			$eqEx = $cmdEx->getEqLogic();
+			$return .= $eqEx->getHumanName(true) . ' ' . $cmdEx->getName();
+		}
+		return trim($return);
+	}
+
 	/*     * ********************Fonctions utilisées dans le calcul des conditions********************************* */
 
 	public static function rand($_min, $_max) {

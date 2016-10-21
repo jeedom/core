@@ -40,6 +40,7 @@ class update {
 			self::findNewUpdateObject();
 		}
 		$updates = self::all($_filter);
+		$updates_sources = array();
 		if (is_array($updates)) {
 			foreach (self::all($_filter) as $update) {
 				if ($update->getType() == 'core') {
@@ -56,7 +57,10 @@ class update {
 					$update->checkUpdate();
 				} else {
 					if ($update->getStatus() != 'hold') {
-						$update->checkUpdate();
+						if (!isset($updates_sources[$update->getSource()])) {
+							$updates_sources[$update->getSource()] = array();
+						}
+						$updates_sources[$update->getSource()][] = $update;
 					}
 				}
 			}
@@ -69,6 +73,12 @@ class update {
 			$update->setLocalVersion(jeedom::version());
 			$update->save();
 			$update->checkUpdate();
+		}
+		foreach ($updates_sources as $source => $updates) {
+			$class = 'repo_' . $source;
+			if (class_exists($class) && method_exists($class, 'checkUpdate') && config::byKey($source . '::enable') == 1) {
+				return $class::checkUpdate($updates);
+			}
 		}
 		config::save('update::lastCheck', date('Y-m-d H:i:s'));
 	}
