@@ -1062,18 +1062,18 @@ class cmd {
 		}
 		$collectDate = ($this->getCollectDate() != '') ? $this->getCollectDate() : date('Y-m-d H:i:s');
 		$repeat = ($this->execCmd() == $value);
-		if ($repeat && $this->getConfiguration('doNotRepeatEvent', 0) == 1) {
+		if ($repeat && $this->getConfiguration('repeatEventManagement', 'auto') == 'never') {
 			return;
 		}
-		if ($repeat && $this->getConfiguration('forceRepeatEvent', 0) == 1) {
+		if ($repeat && ($this->getConfiguration('repeatEventManagement', 'auto') == 'always' || $this->getSubtype() == 'binary')) {
 			$repeat = false;
 		}
-		$this->setCollectDate($collectDate);
 		$message = __('Evènement sur la commande ', __FILE__) . $this->getHumanName() . __(' valeur : ', __FILE__) . $value;
 		if ($repeat) {
 			$message .= ' (répétition)';
 		}
 		log::add('event', 'info', $message);
+		$this->setCollectDate($collectDate);
 		$this->setCache('collectDate', $this->getCollectDate());
 		if ($repeat) {
 			return;
@@ -1128,7 +1128,6 @@ class cmd {
 		} else {
 			$this->addHistoryValue(null, $collectDate);
 		}
-
 	}
 
 	public function checkReturnState($_value) {
