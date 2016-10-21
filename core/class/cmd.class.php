@@ -1123,7 +1123,6 @@ class cmd {
 		object::checkSummaryUpdate($this->getId());
 		listener::check($this->getId(), $value);
 		if (strpos($value, 'error') === false) {
-
 			$this->addHistoryValue($value, $collectDate);
 		} else {
 			$this->addHistoryValue(null, $collectDate);
