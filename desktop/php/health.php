@@ -47,9 +47,9 @@ foreach (plugin::listPlugin(true) as $plugin) {
 	$asPending = 0;
 	if ($plugin->getHasOwnDeamon() == 1) {
 		if ($plugin->deamon_info()['auto'] == 1) {
-			$daemonInfo = ' <i class="fa fa-university" style="cursor:default;color:grey;font-size:0.8em" title="Démon en mode automatique"></i>';
+			$daemonInfo = ' <i class="fa fa-university" style="cursor:default;color:grey;font-size:0.8em" title="{{Démon en mode automatique}}"></i>';
 		} else {
-			$daemonInfo = ' <i class="fa fa-university" style="cursor:default;color:#ff4c4c;font-size:0.8em" title="Démon en mode manuel"></i>';
+			$daemonInfo = ' <i class="fa fa-university" style="cursor:default;color:#ff4c4c;font-size:0.8em" title="{{Démon en mode manuel}}"></i>';
 		}
 	}
 	if (config::byKey('port', $plugin->getId()) != '') {
