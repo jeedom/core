@@ -1075,6 +1075,7 @@ class cmd {
 		log::add('event', 'info', $message);
 		$this->setCollectDate($collectDate);
 		$this->setCache('collectDate', $this->getCollectDate());
+		$eqLogic->setStatus('lastCommunication', $collectDate);
 		if ($repeat) {
 			return;
 		}
@@ -1121,9 +1122,8 @@ class cmd {
 		event::adds('cmd::update', $events);
 		object::checkSummaryUpdate($this->getId());
 		listener::check($this->getId(), $value);
-
 		if (strpos($value, 'error') === false) {
-			$eqLogic->setStatus('lastCommunication', $collectDate);
+
 			$this->addHistoryValue($value, $collectDate);
 		} else {
 			$this->addHistoryValue(null, $collectDate);
