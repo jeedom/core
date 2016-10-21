@@ -642,7 +642,7 @@ function fullScreen(_mode) {
     if(_mode){
         $('header').hide();
         $('footer').hide();
-        $('#div_mainContainer').css('margin-top', '-60px');
+        $('#div_mainContainer').css('margin-top', '-50px');
         $('#wrap').css('margin-bottom', '0px');
     }else{
         $('header').show();
