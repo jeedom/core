@@ -1075,29 +1075,27 @@ class cmd {
 		log::add('event', 'info', $message);
 		$this->setCollectDate($collectDate);
 		$this->setCache('collectDate', $this->getCollectDate());
-		$eqLogic->setStatus('lastCommunication', $collectDate);
-		$eqLogic->setStatus('timeout', 0);
-		if ($repeat) {
-			return;
+		$events = array();
+		if (!$repeat) {
+			$valueDate = ($repeat) ? $this->getValueDate() : $collectDate;
+			$this->setValueDate($valueDate);
+			$_loop++;
+			$this->setCache('value', $value);
+			$this->setCache('valueDate', $this->getValueDate());
+			scenario::check($this);
+			$eqLogic->emptyCacheWidget();
+			$display_value = $value;
+			if ($this->getSubType() == 'binary' && $this->getDisplay('invertBinary') == 1) {
+				$display_value = ($value == 1) ? 0 : 1;
+			}
+			if ($this->getSubType() == 'numeric' && trim($value) === '') {
+				$display_value = 0;
+			}
+			if (method_exists($this, 'formatValueWidget')) {
+				$display_value = $this->formatValueWidget($value);
+			}
+			$events = array(array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate()));
 		}
-		$valueDate = ($repeat) ? $this->getValueDate() : $collectDate;
-		$this->setValueDate($valueDate);
-		$_loop++;
-		$this->setCache('value', $value);
-		$this->setCache('valueDate', $this->getValueDate());
-		scenario::check($this);
-		$eqLogic->emptyCacheWidget();
-		$display_value = $value;
-		if ($this->getSubType() == 'binary' && $this->getDisplay('invertBinary') == 1) {
-			$display_value = ($value == 1) ? 0 : 1;
-		}
-		if ($this->getSubType() == 'numeric' && trim($value) === '') {
-			$display_value = 0;
-		}
-		if (method_exists($this, 'formatValueWidget')) {
-			$display_value = $this->formatValueWidget($value);
-		}
-		$events = array(array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate()));
 		$foundInfo = false;
 		$value_cmd = self::byValue($this->getId(), null, true);
 		if (is_array($value_cmd)) {
@@ -1117,14 +1115,18 @@ class cmd {
 		if ($foundInfo) {
 			listener::backgroundCalculDependencyCmd($this->getId());
 		}
-		$this->checkReturnState($value);
-		$this->checkCmdAlert($value);
-		$this->pushUrl($value);
+		if (!$repeat) {
+			$this->checkReturnState($value);
+			$this->checkCmdAlert($value);
+			$this->pushUrl($value);
+			object::checkSummaryUpdate($this->getId());
+		}
 		event::adds('cmd::update', $events);
-		object::checkSummaryUpdate($this->getId());
 		listener::check($this->getId(), $value);
 		if (strpos($value, 'error') === false) {
 			$this->addHistoryValue($value, $collectDate);
+			$eqLogic->setStatus('lastCommunication', $collectDate);
+			$eqLogic->setStatus('timeout', 0);
 		} else {
 			$this->addHistoryValue(null, $collectDate);
 		}
