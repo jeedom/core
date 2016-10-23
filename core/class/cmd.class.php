@@ -1076,6 +1076,7 @@ class cmd {
 		$this->setCollectDate($collectDate);
 		$this->setCache('collectDate', $this->getCollectDate());
 		$eqLogic->setStatus('lastCommunication', $collectDate);
+		$eqLogic->setStatus('timeout', 0);
 		if ($repeat) {
 			return;
 		}
