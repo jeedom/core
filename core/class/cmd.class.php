@@ -1040,7 +1040,9 @@ class cmd {
 		$collectDate = ($this->getCollectDate() != '') ? $this->getCollectDate() : date('Y-m-d H:i:s');
 		$repeat = ($this->getSubtype() != 'binary' && $this->execCmd() == $value);
 		$valueDate = ($repeat) ? $this->getValueDate() : $collectDate;
-		$repeat = ($repeat && $this->getConfiguration('doNotRepeatEvent', 0) == 1);
+		if ($repeat && $this->getConfiguration('doNotRepeatEvent', 0) == 1) {
+			return;
+		}
 		$this->setCollectDate($collectDate);
 		$this->setValueDate($valueDate);
 		$message = __('Evènement sur la commande ', __FILE__) . $this->getHumanName() . __(' valeur : ', __FILE__) . $value;

@@ -65,7 +65,16 @@ class repo_samba {
 
 	/*     * ***********************Méthodes statiques*************************** */
 
-	public static function checkUpdate($_update) {
+	public static function checkUpdate(&$_update) {
+		if (is_array($_update)) {
+			if (count($_update) < 1) {
+				return;
+			}
+			foreach ($_update as $update) {
+				self::checkUpdate($update);
+			}
+			return;
+		}
 		$file = self::ls(config::byKey('samba::plugin::folder') . '/' . $_update->getConfiguration('path'), 'plugin');
 		if (count($file) != 1) {
 			return;

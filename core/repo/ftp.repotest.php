@@ -114,7 +114,16 @@ class repo_ftp {
 		return $connection;
 	}
 
-	public static function checkUpdate($_update) {
+	public static function checkUpdate(&$_update) {
+		if (is_array($_update)) {
+			if (count($_update) < 1) {
+				return;
+			}
+			foreach ($_update as $update) {
+				self::checkUpdate($update);
+			}
+			return;
+		}
 		$connexion = self::getFtpConnection('plugin');
 		$factory = new FTPFactory;
 		$ftp = $factory->build($connection);

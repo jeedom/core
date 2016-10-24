@@ -92,7 +92,30 @@ class repo_market {
 
 	/*     * ***********************Méthodes statiques*************************** */
 
-	public static function checkUpdate($_update) {
+	public static function checkUpdate(&$_update) {
+		if (is_array($_update)) {
+			if (count($_update) < 1) {
+				return;
+			}
+			$markets = array('logicalId' => array(), 'version' => array());
+			$marketObject = array();
+			foreach ($_update as $update) {
+				$markets['logicalId'][] = array('logicalId' => $update->getLogicalId(), 'type' => $update->getType());
+				$markets['version'][] = $update->getConfiguration('version', 'stable');
+				$marketObject[$update->getType() . $update->getLogicalId()] = $update;
+			}
+			$markets_infos = repo_market::getInfo($markets['logicalId'], $markets['version']);
+			foreach ($markets_infos as $logicalId => $market_info) {
+				$update = $marketObject[$logicalId];
+				if (is_object($update)) {
+					$update->setStatus($market_info['status']);
+					$update->setConfiguration('market', $market_info['market']);
+					$update->setRemoteVersion($market_info['datetime']);
+					$update->save();
+				}
+			}
+			return;
+		}
 		$market_info = repo_market::getInfo(array('logicalId' => $_update->getLogicalId(), 'type' => $_update->getType()), $_update->getConfiguration('version', 'stable'));
 		$_update->setStatus($market_info['status']);
 		$_update->setConfiguration('market', $market_info['market']);
