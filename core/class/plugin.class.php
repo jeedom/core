@@ -782,8 +782,17 @@ class plugin {
 	}
 
 	public function getPathImgIcon() {
+		if (file_exists(dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/plugin_info/' . $this->getId() . '_icon.png')) {
+			return 'plugins/' . $this->getId() . '/plugin_info/' . $this->getId() . '_icon.png';
+		}
 		if (file_exists(dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/doc/images/' . $this->getId() . '_icon.png')) {
 			return 'plugins/' . $this->getId() . '/doc/images/' . $this->getId() . '_icon.png';
+		}
+		if (file_exists(dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/plugin_info/' . strtolower($this->getId()) . '_icon.png')) {
+			return 'plugins/' . $this->getId() . '/plugin_info/' . strtolower($this->getId()) . '_icon.png';
+		}
+		if (file_exists(dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/doc/images/' . strtolower($this->getId()) . '_icon.png')) {
+			return 'plugins/' . $this->getId() . '/doc/images/' . strtolower($this->getId()) . '_icon.png';
 		}
 		return 'core/img/no-image-plugin.png';
 	}
