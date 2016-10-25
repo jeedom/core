@@ -1076,6 +1076,7 @@ class cmd {
 		log::add('event', 'info', $message);
 		$this->setCollectDate($collectDate);
 		$this->setCache('collectDate', $this->getCollectDate());
+
 		$display_value = $value;
 		if (method_exists($this, 'formatValueWidget')) {
 			$display_value = $this->formatValueWidget($value);
@@ -1100,7 +1101,9 @@ class cmd {
 		if (is_array($value_cmd)) {
 			foreach ($value_cmd as $cmd) {
 				if ($cmd->getType() == 'action') {
-					$events[] = array('cmd_id' => $cmd->getId(), 'value' => $value, 'display_value' => $display_value);
+					if (!$repeat) {
+						$events[] = array('cmd_id' => $cmd->getId(), 'value' => $value, 'display_value' => $display_value);
+					}
 				} else {
 					if ($_loop > 1) {
 						$cmd->event($cmd->execute(), $_loop);
