@@ -548,6 +548,7 @@ function addObjectSummary(_summary) {
     tr += '<select class="objectSummaryAttr form-control input-sm" data-l1key="calcul">';
     tr += '<option value="sum">{{Somme}}</option>';
     tr += '<option value="avg">{{Moyenne}}</option>';
+    tr += '<option value="text">{{Texte}}</option>';
     tr += '</select>';
     tr += '</td>';
     tr += '<td>';

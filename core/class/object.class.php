@@ -232,6 +232,9 @@ class object {
 		if (count($value) == 0) {
 			return null;
 		}
+		if ($def[$_key]['calcul'] == 'text') {
+			return $value[0];
+		}
 		return round(jeedom::calculStat($def[$_key]['calcul'], $value), 1);
 	}
 
@@ -262,9 +265,13 @@ class object {
 				continue;
 			}
 			$style = '';
-			$result = round(jeedom::calculStat($def[$key]['calcul'], $value), 1);
-			if ($def[$key]['allowDisplayZero'] == false && $result == 0) {
-				$style = 'display:none;';
+			if ($def[$key]['calcul'] == 'text') {
+				$result = $value[0];
+			} else {
+				$result = round(jeedom::calculStat($def[$key]['calcul'], $value), 1);
+				if ($def[$key]['allowDisplayZero'] == false && $result == 0) {
+					$style = 'display:none;';
+				}
 			}
 			$return .= '<span class="objectSummaryParent cursor" data-summary="' . $key . '" data-object_id="" style="margin-right:' . $margin . 'px;' . $style . '" data-displayZeroValue="' . $def[$key]['allowDisplayZero'] . '">';
 			$return .= $def[$key]['icon'] . ' <span class="objectSummary' . $key . '">' . $result . '</span> ' . $def[$key]['unit'];
@@ -339,7 +346,11 @@ class object {
 		$cmd->setEqLogic_id($virtual->getId());
 		$cmd->setLogicalId($_key);
 		$cmd->setType('info');
-		$cmd->setSubtype('numeric');
+		if ($def[$_key]['calcul'] == 'text') {
+			$cmd->setSubtype('string');
+		} else {
+			$cmd->setSubtype('numeric');
+		}
 		$cmd->setUnite($def[$_key]['unit']);
 		$cmd->save();
 
@@ -374,7 +385,11 @@ class object {
 			$cmd->setEqLogic_id($virtual->getId());
 			$cmd->setLogicalId($_key);
 			$cmd->setType('info');
-			$cmd->setSubtype('numeric');
+			if ($def[$_key]['calcul'] == 'text') {
+				$cmd->setSubtype('string');
+			} else {
+				$cmd->setSubtype('numeric');
+			}
 			$cmd->setUnite($def[$_key]['unit']);
 			$cmd->save();
 		}
@@ -543,6 +558,9 @@ class object {
 		if ($_raw) {
 			return $values;
 		}
+		if ($def[$_key]['calcul'] == 'text') {
+			return $values[0];
+		}
 		return jeedom::calculStat($def[$_key]['calcul'], $values);
 	}
 
@@ -553,11 +571,14 @@ class object {
 				continue;
 			}
 			$result = $this->getSummary($key);
+
 			if ($result !== null) {
-				$result = round($result, 1);
 				$style = '';
-				if ($value['allowDisplayZero'] == false && $result == 0) {
-					$style = 'display:none;';
+				if ($value['calcul'] != 'text') {
+					$result = round($result, 1);
+					if ($value['allowDisplayZero'] == false && $result == 0) {
+						$style = 'display:none;';
+					}
 				}
 				$return .= '<span style="margin-right:5px;' . $style . '" class="objectSummaryParent cursor" data-summary="' . $key . '" data-object_id="' . $this->getId() . '" data-displayZeroValue="' . $value['allowDisplayZero'] . '">' . $value['icon'] . ' <span class="objectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . '</span>';
 			}
