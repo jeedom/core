@@ -1114,16 +1114,16 @@ class cmd {
 		if ($foundInfo) {
 			listener::backgroundCalculDependencyCmd($this->getId());
 		}
+		if (count($events) > 0) {
+			event::adds('cmd::update', $events);
+		}
+		listener::check($this->getId(), $value);
 		if (!$repeat) {
 			$this->checkReturnState($value);
 			$this->checkCmdAlert($value);
 			$this->pushUrl($value);
 			object::checkSummaryUpdate($this->getId());
 		}
-		if (count($events) > 0) {
-			event::adds('cmd::update', $events);
-		}
-		listener::check($this->getId(), $value);
 		if (strpos($value, 'error') === false) {
 			$this->addHistoryValue($value, $collectDate);
 			$eqLogic->setStatus('lastCommunication', $collectDate);
