@@ -1077,15 +1077,6 @@ class cmd {
 		$this->setCollectDate($collectDate);
 		$this->setCache('collectDate', $this->getCollectDate());
 
-		$display_value = $value;
-		if (method_exists($this, 'formatValueWidget')) {
-			$display_value = $this->formatValueWidget($value);
-		} else if ($this->getSubType() == 'binary' && $this->getDisplay('invertBinary') == 1) {
-			$display_value = ($value == 1) ? 0 : 1;
-		} else if ($this->getSubType() == 'numeric' && trim($value) === '') {
-			$display_value = 0;
-		}
-
 		$events = array();
 		if (!$repeat) {
 			$valueDate = ($repeat) ? $this->getValueDate() : $collectDate;
@@ -1093,6 +1084,14 @@ class cmd {
 			$this->setCache('value', $value);
 			$this->setCache('valueDate', $this->getValueDate());
 			scenario::check($this);
+			$display_value = $value;
+			if (method_exists($this, 'formatValueWidget')) {
+				$display_value = $this->formatValueWidget($value);
+			} else if ($this->getSubType() == 'binary' && $this->getDisplay('invertBinary') == 1) {
+				$display_value = ($value == 1) ? 0 : 1;
+			} else if ($this->getSubType() == 'numeric' && trim($value) === '') {
+				$display_value = 0;
+			}
 			$eqLogic->emptyCacheWidget();
 			$events = array(array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate()));
 		}
@@ -1102,7 +1101,7 @@ class cmd {
 			foreach ($value_cmd as $cmd) {
 				if ($cmd->getType() == 'action') {
 					if (!$repeat) {
-						$events[] = array('cmd_id' => $cmd->getId(), 'value' => $value, 'display_value' => $display_value);
+						$events[] = array('cmd_id' => $cmd->getId(), 'value' => $value, 'display_value' => $display_value, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate());
 					}
 				} else {
 					if ($_loop > 1) {
