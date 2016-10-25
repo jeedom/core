@@ -1119,15 +1119,15 @@ class cmd {
 		}
 		listener::check($this->getId(), $value);
 		if (!$repeat) {
-			$this->checkReturnState($value);
-			$this->checkCmdAlert($value);
-			$this->pushUrl($value);
 			object::checkSummaryUpdate($this->getId());
 		}
 		if (strpos($value, 'error') === false) {
 			$this->addHistoryValue($value, $collectDate);
 			$eqLogic->setStatus('lastCommunication', $collectDate);
 			$eqLogic->setStatus('timeout', 0);
+			$this->checkReturnState($value);
+			$this->checkCmdAlert($value);
+			$this->pushUrl($value);
 		} else {
 			$this->addHistoryValue(null, $collectDate);
 		}
