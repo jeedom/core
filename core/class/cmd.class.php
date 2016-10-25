@@ -1042,7 +1042,7 @@ class cmd {
 		if ($repeat && $this->getConfiguration('doNotRepeatEvent', 0) == 1) {
 			return;
 		}
-		if($repeat && $this->getSubtype() == 'binary){
+		if($repeat && $this->getSubtype() == 'binary'){
 			$repeat = false;	
 		}
 		$valueDate = ($repeat) ? $this->getValueDate() : $collectDate;
