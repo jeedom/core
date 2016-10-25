@@ -1051,6 +1051,7 @@ class cmd {
 		if ($_loop > 4 || $this->getType() != 'info') {
 			return;
 		}
+		$_loop++;
 		$value = $this->formatValue($_value);
 		if ($this->getSubType() == 'numeric' && ($value > $this->getConfiguration('maxValue', $value) || $value < $this->getConfiguration('minValue', $value)) && strpos($value, 'error') === false) {
 			log::add('cmd', 'info', __('La commande n\'est pas dans la plage de valeur autorisée : ', __FILE__) . $this->getHumanName() . ' => ' . $value);
@@ -1079,7 +1080,6 @@ class cmd {
 		if (!$repeat) {
 			$valueDate = ($repeat) ? $this->getValueDate() : $collectDate;
 			$this->setValueDate($valueDate);
-			$_loop++;
 			$this->setCache('value', $value);
 			$this->setCache('valueDate', $this->getValueDate());
 			scenario::check($this);
