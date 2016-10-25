@@ -538,9 +538,19 @@ class jeedom {
 		}
 		self::isDateOk();
 		if (config::byKey('update::autocheck', 'core', 1) == 1) {
+			$isDue = true;
 			try {
-				$c = new Cron\CronExpression(config::byKey('update::check'), new Cron\FieldFactory);
-				if ($c->isDue()) {
+				if (config::byKey('update::check') != '') {
+					$c = new Cron\CronExpression(config::byKey('update::check'), new Cron\FieldFactory);
+					$isDue = $c->isDue();
+				}
+			} catch (Exception $e) {
+
+			} catch (Error $e) {
+
+			}
+			try {
+				if ($isDue) {
 					if (config::byKey('update::lastCheck') == '' || (strtotime('now') - strtotime(config::byKey('update::lastCheck'))) > 3600) {
 						update::checkAllUpdate();
 						$updates = update::byStatus('update');
