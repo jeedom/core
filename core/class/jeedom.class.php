@@ -537,12 +537,11 @@ class jeedom {
 			event::add('refresh');
 		}
 		self::isDateOk();
-		if (config::byKey('update::autocheck') == 1) {
+		if (config::byKey('update::autocheck', 'core', 1) == 1) {
 			try {
 				$c = new Cron\CronExpression(config::byKey('update::check'), new Cron\FieldFactory);
 				if ($c->isDue()) {
-					$lastCheck = strtotime(config::byKey('update::lastCheck'));
-					if ((strtotime('now') - $lastCheck) > 3600) {
+					if (config::byKey('update::lastCheck') == '' || (strtotime('now') - strtotime(config::byKey('update::lastCheck'))) > 3600) {
 						update::checkAllUpdate();
 						$updates = update::byStatus('update');
 						if (count($updates) > 0) {
