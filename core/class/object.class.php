@@ -258,7 +258,7 @@ class object {
 				$values[$key] = array_merge($values[$key], $result);
 			}
 		}
-		$margin = ($_version == 'desktop') ? 3 : 1;
+		$margin = ($_version == 'desktop') ? 4 : 2;
 
 		foreach ($values as $key => $value) {
 			if (count($value) == 0) {
