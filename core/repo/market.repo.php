@@ -170,7 +170,7 @@ class repo_market {
 		$file = array(
 			'file' => '@' . realpath($_path),
 		);
-		if (!$market->sendRequest('backup::upload', array(), 3600, $file)) {
+		if (!$market->sendRequest('backup::upload', array(), 7200, $file)) {
 			throw new Exception($market->getError());
 		}
 	}
