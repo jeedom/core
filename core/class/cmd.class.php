@@ -1104,7 +1104,7 @@ class cmd {
 					$events[] = array('cmd_id' => $cmd->getId(), 'value' => $value, 'display_value' => $display_value);
 				} else {
 					if ($_loop > 1) {
-						$events = array_merge($events, $cmd->event($cmd->execute(), $_loop));
+						$cmd->event($cmd->execute(), $_loop);
 					} else {
 						$foundInfo = true;
 					}
@@ -1120,7 +1120,7 @@ class cmd {
 			$this->pushUrl($value);
 			object::checkSummaryUpdate($this->getId());
 		}
-		if (count($events) > 0 && $_loop <= 2) {
+		if (count($events) > 0) {
 			event::adds('cmd::update', $events);
 		}
 		listener::check($this->getId(), $value);
@@ -1130,9 +1130,6 @@ class cmd {
 			$eqLogic->setStatus('timeout', 0);
 		} else {
 			$this->addHistoryValue(null, $collectDate);
-		}
-		if ($_loop > 2) {
-			return $events;
 		}
 	}
 
