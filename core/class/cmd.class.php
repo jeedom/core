@@ -1062,12 +1062,14 @@ class cmd {
 		$eqLogic->emptyCacheWidget();
 		$events = array(array('cmd_id' => $this->getId(), 'value' => $value));
 		$foundInfo = false;
-		if (!$repeat) {
+		
 			$value_cmd = self::byValue($this->getId(), null, true);
 			if (is_array($value_cmd)) {
 				foreach ($value_cmd as $cmd) {
 					if ($cmd->getType() == 'action') {
+						if (!$repeat) {
 						$events[] = array('cmd_id' => $cmd->getId());
+						}
 					} else {
 						if ($_loop > 1) {
 							$cValue = $cmd->execute();
@@ -1084,7 +1086,7 @@ class cmd {
 			$this->checkReturnState($value);
 			$this->checkCmdAlert($value);
 			$this->pushUrl($value);
-		}
+		
 		listener::check($this->getId(), $value);
 		event::adds('cmd::update', $events);
 		if (strpos($value, 'error') === false) {
