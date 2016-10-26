@@ -4,7 +4,7 @@ if (!isConnect('admin')) {
 }
 $starttime = getmicrotime();
 ?>
-</style>
+<br/>
 <legend style=""><i class="icon divers-caduceus3" style=""></i> {{Santé de Jeedom}}
 	<i class="fa fa-dashboard pull-right cursor" id="bt_benchmarkJeedom"></i>
 </legend>

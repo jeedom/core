@@ -43,7 +43,7 @@ foreach ($objects as $object) {
 		padding: 5px;
 	}
 </style>
-
+<br/>
 <span class="pull-right">
 	<input class="form-control pull-right" id="in_search" placeholder="{{Rechercher}}" style="width : 200px;"/>
 	<label class="checkbox-inline"><input type="checkbox" id="cb_actifDisplay" checked />{{Inactif}}</label>

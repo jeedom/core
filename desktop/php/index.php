@@ -424,8 +424,7 @@ if (isConnect('admin')) {
 											</a>
 										</li>
 									</ul>
-
-								</nav><!--/.nav-collapse -->
+								</nav>
 							</div>
 						</header>
 						<main class="container-fluid" id="div_mainContainer">
