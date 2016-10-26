@@ -42,6 +42,10 @@
 * Ajout sur la page batterie des modules en alerte
 * Les objets sans widget sont automatiquement masqué sur le dashboard
 
+= 2.4.6
+
+* Amélioration de la gestion de la répétition des valeurs des commandes
+
 = 2.4.5
 
 * Correction de bugs
