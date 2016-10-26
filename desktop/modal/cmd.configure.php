@@ -375,7 +375,6 @@ foreach ($groups as $group) {
 ?>
 <?php if ($cmd->getType() == 'info') {?>
 <legend><i class="fa fa-plus"></i> {{Autres}}</legend>
-
 <div class="form-group">
   <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Gestion de la répétition des valeurs}}</label>
   <div class="col-xs-3">
