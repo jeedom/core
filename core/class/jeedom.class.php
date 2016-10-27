@@ -174,7 +174,7 @@ class jeedom {
 		} else {
 			$cache_health['state'] = false;
 			$cache_health['result'] = __('NOK', __FILE__);
-			$cache_health['comment'] = __('Votre cache n\'est pas sauvegardé en cas de redemarrage certaines information peuvent être perdues. Essayez de lancer (à partir du moteur de têche) la tâche cache::persist', __FILE__);
+			$cache_health['comment'] = __('Votre cache n\'est pas sauvegardé en cas de redemarrage certaines information peuvent être perdues. Essayez de lancer (à partir du moteur de tâche) la tâche cache::persist', __FILE__);
 			$state = network::test('external');
 		}
 		$return[] = $cache_health;
