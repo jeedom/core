@@ -899,6 +899,12 @@ class eqLogic {
 		}
 		return $return;
 	}
+	
+	public function toArray() {
+		$return = utils::o2a($this, true);
+		$return['status'] = $this->getStatus();
+		return $return;
+	}
 
 /*     * **********************Getteur Setteur*************************** */
 
