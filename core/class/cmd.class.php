@@ -1062,7 +1062,17 @@ class cmd {
 		}
 		$collectDate = ($this->getCollectDate() != '') ? $this->getCollectDate() : date('Y-m-d H:i:s');
 		$repeat = ($this->execCmd() == $value);
+
 		if ($repeat && $this->getConfiguration('repeatEventManagement', 'auto') == 'never') {
+			$this->setCollectDate($collectDate);
+			$this->setCache('collectDate', $this->getCollectDate());
+			if (strpos($value, 'error') === false) {
+				$this->addHistoryValue($value, $collectDate);
+				$eqLogic->setStatus('lastCommunication', $collectDate);
+				$eqLogic->setStatus('timeout', 0);
+			} else {
+				$this->addHistoryValue(null, $collectDate);
+			}
 			return;
 		}
 		$_loop++;
@@ -1123,9 +1133,9 @@ class cmd {
 			object::checkSummaryUpdate($this->getId());
 		}
 		if (strpos($value, 'error') === false) {
-			$this->addHistoryValue($value, $collectDate);
 			$eqLogic->setStatus('lastCommunication', $collectDate);
 			$eqLogic->setStatus('timeout', 0);
+			$this->addHistoryValue($value, $collectDate);
 			$this->checkReturnState($value);
 			$this->checkCmdAlert($value);
 			$this->pushUrl($value);
