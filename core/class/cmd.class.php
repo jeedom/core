@@ -1036,66 +1036,88 @@ class cmd {
 		if (!is_object($eqLogic) || $eqLogic->getIsEnable() == 0) {
 			return;
 		}
-		$_loop++;
 		$collectDate = ($this->getCollectDate() != '') ? $this->getCollectDate() : date('Y-m-d H:i:s');
 		$repeat = ($this->execCmd() == $value);
-		if ($repeat && $this->getConfiguration('doNotRepeatEvent', 0) == 1) {
+
+		if ($repeat && $this->getConfiguration('repeatEventManagement', 'auto') == 'never') {
+			$this->setCollectDate($collectDate);
+			$this->setCache('collectDate', $this->getCollectDate());
+			if (strpos($value, 'error') === false) {
+				$this->addHistoryValue($value, $collectDate);
+				$eqLogic->setStatus('lastCommunication', $collectDate);
+				$eqLogic->setStatus('timeout', 0);
+			} else {
+				$this->addHistoryValue(null, $collectDate);
+			}
 			return;
 		}
-		if($repeat && $this->getSubtype() == 'binary'){
-			$repeat = false;	
+		$_loop++;
+		if ($repeat && ($this->getConfiguration('repeatEventManagement', 'auto') == 'always' || $this->getSubtype() == 'binary')) {
+			$repeat = false;
 		}
-		$valueDate = ($repeat) ? $this->getValueDate() : $collectDate;
-		$this->setCollectDate($collectDate);
-		$this->setValueDate($valueDate);
 		$message = __('Evènement sur la commande ', __FILE__) . $this->getHumanName() . __(' valeur : ', __FILE__) . $value;
 		if ($repeat) {
 			$message .= ' (répétition)';
 		}
 		log::add('event', 'info', $message);
-		$this->setCache('value', $value);
+		$this->setCollectDate($collectDate);
 		$this->setCache('collectDate', $this->getCollectDate());
-		$this->setCache('valueDate', $this->getValueDate());
+
+		$events = array();
 		if (!$repeat) {
+			$valueDate = ($repeat) ? $this->getValueDate() : $collectDate;
+			$this->setValueDate($valueDate);
+			$this->setCache('value', $value);
+			$this->setCache('valueDate', $this->getValueDate());
 			scenario::check($this);
+			$display_value = $value;
+			if (method_exists($this, 'formatValueWidget')) {
+				$display_value = $this->formatValueWidget($value);
+			} else if ($this->getSubType() == 'binary' && $this->getDisplay('invertBinary') == 1) {
+				$display_value = ($value == 1) ? 0 : 1;
+			} else if ($this->getSubType() == 'numeric' && trim($value) === '') {
+				$display_value = 0;
+			}
+			$eqLogic->emptyCacheWidget();
+			$events = array(array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate()));
 		}
-		$eqLogic->emptyCacheWidget();
-		$events = array(array('cmd_id' => $this->getId(), 'value' => $value));
 		$foundInfo = false;
-		
-			$value_cmd = self::byValue($this->getId(), null, true);
-			if (is_array($value_cmd)) {
-				foreach ($value_cmd as $cmd) {
-					if ($cmd->getType() == 'action') {
-						if (!$repeat) {
-						$events[] = array('cmd_id' => $cmd->getId());
-						}
+		$value_cmd = self::byValue($this->getId(), null, true);
+		if (is_array($value_cmd)) {
+			foreach ($value_cmd as $cmd) {
+				if ($cmd->getType() == 'action') {
+					if (!$repeat) {
+						$events[] = array('cmd_id' => $cmd->getId(), 'value' => $value, 'display_value' => $display_value, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate());
+					}
+				} else {
+					if ($_loop > 1) {
+						$cmd->event($cmd->execute(), $_loop);
 					} else {
-						if ($_loop > 1) {
-							$cValue = $cmd->execute();
-							$cmd->event($cValue, $_loop);
-						} else {
-							$foundInfo = true;
-						}
+						$foundInfo = true;
 					}
 				}
 			}
-			if ($foundInfo) {
-				listener::backgroundCalculDependencyCmd($this->getId());
-			}
+		}
+		if ($foundInfo) {
+			listener::backgroundCalculDependencyCmd($this->getId());
+		}
+		if (count($events) > 0) {
+			event::adds('cmd::update', $events);
+		}
+		listener::check($this->getId(), $value);
+		if (!$repeat) {
+			object::checkSummaryUpdate($this->getId());
+		}
+		if (strpos($value, 'error') === false) {
+			$eqLogic->setStatus('lastCommunication', $collectDate);
+			$eqLogic->setStatus('timeout', 0);
+			$this->addHistoryValue($value, $collectDate);
 			$this->checkReturnState($value);
 			$this->checkCmdAlert($value);
 			$this->pushUrl($value);
-		
-		listener::check($this->getId(), $value);
-		event::adds('cmd::update', $events);
-		if (strpos($value, 'error') === false) {
-			$eqLogic->setStatus('lastCommunication', $collectDate);
-			$this->addHistoryValue($value, $collectDate);
 		} else {
 			$this->addHistoryValue(null, $collectDate);
 		}
-		object::checkSummaryUpdate($this->getId());
 	}
 
 	public function checkReturnState($_value) {
