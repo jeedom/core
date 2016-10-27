@@ -265,15 +265,18 @@ class object {
 				continue;
 			}
 			$style = '';
+			$allowDisplayZero = $def[$key]['allowDisplayZero'];
 			if ($def[$key]['calcul'] == 'text') {
 				$result = $value[0];
+				$allowDisplayZero = 1;
 			} else {
 				$result = round(jeedom::calculStat($def[$key]['calcul'], $value), 1);
-				if ($def[$key]['allowDisplayZero'] == false && $result == 0) {
-					$style = 'display:none;';
-				}
+
 			}
-			$return .= '<span class="objectSummaryParent cursor" data-summary="' . $key . '" data-object_id="" style="margin-right:' . $margin . 'px;' . $style . '" data-displayZeroValue="' . $def[$key]['allowDisplayZero'] . '">';
+			if ($allowDisplayZero == 0 && $result == 0) {
+				$style = 'display:none;';
+			}
+			$return .= '<span class="objectSummaryParent cursor" data-summary="' . $key . '" data-object_id="" style="margin-right:' . $margin . 'px;' . $style . '" data-displayZeroValue="' . $allowDisplayZero . '">';
 			$return .= $def[$key]['icon'] . ' <span class="objectSummary' . $key . '">' . $result . '</span> ' . $def[$key]['unit'];
 			$return .= '</span>';
 		}
@@ -571,16 +574,18 @@ class object {
 				continue;
 			}
 			$result = $this->getSummary($key);
-
 			if ($result !== null) {
 				$style = '';
+				$allowDisplayZero = $value['allowDisplayZero'];
 				if ($value['calcul'] != 'text') {
 					$result = round($result, 1);
-					if ($value['allowDisplayZero'] == false && $result == 0) {
-						$style = 'display:none;';
-					}
+				} else {
+					$allowDisplayZero = 1;
 				}
-				$return .= '<span style="margin-right:5px;' . $style . '" class="objectSummaryParent cursor" data-summary="' . $key . '" data-object_id="' . $this->getId() . '" data-displayZeroValue="' . $value['allowDisplayZero'] . '">' . $value['icon'] . ' <span class="objectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . '</span>';
+				if ($allowDisplayZero == 0 && $result == 0) {
+					$style = 'display:none;';
+				}
+				$return .= '<span style="margin-right:5px;' . $style . '" class="objectSummaryParent cursor" data-summary="' . $key . '" data-object_id="' . $this->getId() . '" data-displayZeroValue="' . $allowDisplayZero . '">' . $value['icon'] . ' <span class="objectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . '</span>';
 			}
 		}
 		return trim($return) . '</span>';
