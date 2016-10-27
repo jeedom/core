@@ -1172,6 +1172,9 @@ class scenario {
 	}
 
 	public function setName($name) {
+		if ($name != $this->getName()) {
+			$this->_changeState = true;
+		}
 		$this->name = $name;
 		return $this;
 	}
@@ -1185,6 +1188,9 @@ class scenario {
 	}
 
 	public function setGroup($group) {
+		if ($group != $this->getGroup()) {
+			$this->_changeState = true;
+		}
 		$this->group = $group;
 		return $this;
 	}
@@ -1310,6 +1316,9 @@ class scenario {
 	}
 
 	public function setObject_id($object_id = null) {
+		if ($object_id != $this->getObject_id()) {
+			$this->_changeState = true;
+		}
 		$this->object_id = (!is_numeric($object_id)) ? null : $object_id;
 		return $this;
 	}
