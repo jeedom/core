@@ -379,11 +379,15 @@ foreach ($groups as $group) {
   <?php if ($cmd->getType() == 'info') {?>
    <legend><i class="fa fa-plus"></i> {{Autres}}</legend>
    <div class="form-group">
-    <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Ignorer évènement si la valeur ne change pas}}</label>
-    <div class="col-xs-1">
-      <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="doNotRepeatEvent" />
-    </div>
+  <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Gestion de la répétition des valeurs}}</label>
+  <div class="col-xs-3">
+    <select class="cmdAttr form-control" data-l1key="configuration" data-l2key="repeatEventManagement" >
+      <option value="auto">{{Automatique}}</option>
+      <option value="always">{{Toujours répéter}}</option>
+      <option value="never">{{Jamais répéter}}</option>
+    </select>
   </div>
+</div>
   <div class="form-group">
     <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Push URL}}</label>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
