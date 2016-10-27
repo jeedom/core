@@ -77,7 +77,7 @@ class update {
 		foreach ($updates_sources as $source => $updates) {
 			$class = 'repo_' . $source;
 			if (class_exists($class) && method_exists($class, 'checkUpdate') && config::byKey($source . '::enable') == 1) {
-				return $class::checkUpdate($updates);
+				$class::checkUpdate($updates);
 			}
 		}
 		config::save('update::lastCheck', date('Y-m-d H:i:s'));
