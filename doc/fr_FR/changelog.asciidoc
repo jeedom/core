@@ -1,3 +1,7 @@
+= 2.4.6
+
+* Amélioration de la gestion de la répétition des valeurs des commandes
+
 = 2.4.5
 
 * Correction de bugs
