@@ -238,7 +238,7 @@ function addUpdate(_update) {
   tr += '</td>';
   tr += '<td style="cursor:default;"><span class="updateAttr" data-l1key="id" style="display:none;"></span><span class="updateAttr" data-l1key="source"></span> / <span class="updateAttr" data-l1key="type"></span> : <span class="updateAttr label label-info" data-l1key="name" style="font-size:0.8em;"></span></td>';
   tr += '<td style="width:135px;"><span class="updateAttr label label-primary" data-l1key="localVersion" style="font-size:0.8em;cursor:default;" title="{{Dernière version : }}'+_update.remoteVersion+'"></span></td>';
-  tr += '<td style="width:150px;cursor:default;">';
+  tr += '<td style="width:180px;cursor:default;">';
   tr += '<input type="checkbox" class="updateAttr" data-l1key="configuration" data-l2key="doNotUpdate"><span style="font-size:0.9em;">{{Ne pas mettre à jour}}</span>';
   tr += '</td>';
   tr += '<td>';
