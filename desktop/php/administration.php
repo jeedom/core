@@ -221,6 +221,7 @@ if ($configs['jeeNetwork::mode'] == 'master') {
 ?>
                    </div>
                </div>
+				<div class="alert alert-danger">{{Attention le mode esclave va être remplacer en Jeedom 3.0 par le plugin jeelink (disponible actuellement sur le market). Il est donc fortement déconseillé de s'en servir.}}</div>
            </fieldset>
        </form>
    </div>
