@@ -153,7 +153,7 @@ class object {
 					preg_match_all("/#([0-9]*)#/", $cmd_info['cmd'], $matches);
 					foreach ($matches[1] as $cmd_id) {
 						if ($cmd_id == $_cmd_id) {
-							$event['keys'][$key] = array('value' => round($object->getSummary($key), 1));
+							$event['keys'][$key] = array('value' => $object->getSummary($key));
 							$toRefreshCmd[] = array('key' => $key, 'object' => $object);
 							if ($object->getConfiguration('summary::global::' . $key, 0) == 1) {
 								$global[$key] = 1;
@@ -191,7 +191,7 @@ class object {
 			foreach ($global as $key => $value) {
 				try {
 					$result = object::getGlobalSummary($key);
-					$event['keys'][$key] = array('value' => round($result, 1));
+					$event['keys'][$key] = array('value' => $result);
 					$virtual = eqLogic::byLogicalId('summaryglobal', 'virtual');
 					if (!is_object($virtual)) {
 						continue;
@@ -564,7 +564,7 @@ class object {
 		if ($def[$_key]['calcul'] == 'text') {
 			return $values[0];
 		}
-		return jeedom::calculStat($def[$_key]['calcul'], $values);
+		return round(jeedom::calculStat($def[$_key]['calcul'], $values), 1);
 	}
 
 	public function getHtmlSummary($_version = 'desktop') {
@@ -577,9 +577,7 @@ class object {
 			if ($result !== null) {
 				$style = '';
 				$allowDisplayZero = $value['allowDisplayZero'];
-				if ($value['calcul'] != 'text') {
-					$result = round($result, 1);
-				} else {
+				if ($value['calcul'] == 'text') {
 					$allowDisplayZero = 1;
 				}
 				if ($allowDisplayZero == 0 && $result == 0) {
