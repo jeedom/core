@@ -233,7 +233,7 @@ class object {
 			return null;
 		}
 		if ($def[$_key]['calcul'] == 'text') {
-			return $value[0];
+			return trim(implode(',', $value), ',');
 		}
 		return round(jeedom::calculStat($def[$_key]['calcul'], $value), 1);
 	}
@@ -267,7 +267,7 @@ class object {
 			$style = '';
 			$allowDisplayZero = $def[$key]['allowDisplayZero'];
 			if ($def[$key]['calcul'] == 'text') {
-				$result = $value[0];
+				$result = trim(implode(',', $value), ',');
 				$allowDisplayZero = 1;
 			} else {
 				$result = round(jeedom::calculStat($def[$key]['calcul'], $value), 1);
@@ -562,7 +562,7 @@ class object {
 			return $values;
 		}
 		if ($def[$_key]['calcul'] == 'text') {
-			return $values[0];
+			return trim(implode(',', $values), ',');
 		}
 		return round(jeedom::calculStat($def[$_key]['calcul'], $values), 1);
 	}
