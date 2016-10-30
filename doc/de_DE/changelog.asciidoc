@@ -1,4 +1,4 @@
-== Changelog
+== Änderungsprotokoll
 
 == 3.0
 
@@ -13,7 +13,7 @@
 * Les widgets des scénarios sont maintenant mise à jour sans appels ajax pour avoir le widget
 * Le résumé global et des pièces et maintenant mises à jour sans appels ajax
 * Un clic sur un element d'un résumé domotique vous amène sur une vue détaillée de celui-ci
-* Vous pouvez maintenant mettre dans les résumés des commandes de type texte (seule la premiere est prise en compte)
+* Vous pouvez maintenant mettre dans les résumés des commandes de type texte
 * Changement des bootstraps slider en slider (corriger le bug du double événement des sliders)
 * Sauvegarde automatique des vues lors du clique sur le bouton "voir le résultat"
 * Possibilité d'avoir les doc en local
@@ -44,12 +44,12 @@
 
 = 2.4.6
 
-* Amélioration de la gestion de la répétition des valeurs des commandes
+* Verbesserte Verwaltung, der wiederholten Abfrage von den Werte der Befehle
 
 = 2.4.5
 
-* Correction de bugs
-* Optimisation de la vérification des mises à jour
+* Fehlerkorrekturen
+* Optimierung der Überprüfung von updates
 
 == 2.4
 
@@ -99,7 +99,7 @@
 * Correction d'un bug sur l'ouverture des tickets
 * Correction d'un bug de page blanche lors de la mise à jour si le /tmp est trop petit (attention la correction prend effet à l'update n+1)
 * Ajout d'un tag #jeedom_name# dans les scénarios (donne le nom du jeedom)
-* Correction de bugs
+* Fehlerkorrekturen
 * Déplacement de tous les fichiers temporaire dans /tmp
 * Amélioration de l'envoi des plugins (dos2unix automatique sur les fichiers *.sh)
 * Refonte de la page de log
@@ -141,7 +141,7 @@
 
 == 2.2
 
-* Correction de bugs
+* Fehlerkorrekturen
 * Simplification de l’accès aux configurations des plugins à partir de la page santé
 * Ajout d’une icône indiquant si le démon est démarré en debug ou non
 * Ajout d’une page de configuration globale des historiques (accessible à partir de la page historique)
