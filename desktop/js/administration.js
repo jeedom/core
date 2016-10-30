@@ -59,7 +59,7 @@
  $(".bt_regenerate_api").on('click', function (event) {
     $.hideAlert();
     var el = $(this);
-    bootbox.confirm('{{Etes-vous sûr de vouloir réinitialiser la clef API de '+el.attr('data-plugin')+' ?}}', function (result) {
+    bootbox.confirm('{{Etes-vous sûr de vouloir réinitialiser la clef API de }}'+el.attr('data-plugin')+' ?', function (result) {
         if (result) {
            $.ajax({
             type: "POST", 
@@ -77,7 +77,7 @@
                     $('#div_alert').showAlert({message: data.result, level: 'danger'});
                     return;
                 }
-                el.closest('.input-group').find('input').value(data.result);
+                el.closest('.input-group').find('.span_apikey').value(data.result);
             }
         });
        }

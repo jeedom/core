@@ -211,7 +211,7 @@ sendVarToJS('ldapEnable', $configs['ldap::enable']);
 								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API globale de Jeedom}}">{{Clef API}}</label>
 								<div class="col-lg-4 col-md-5 col-sm-6 col-xs-6">
 									<div class="input-group">
-									<input class="form-control" disabled value="<?php echo $configs['api']; ?>" />
+									<span class="span_apikey"><?php echo $configs['api']; ?></span>
 										<span class="input-group-btn">
 											<a class="btn btn-default form-control bt_regenerate_api" data-plugin="core"><i class="fa fa-refresh"></i></a>
 										</span>
@@ -222,7 +222,7 @@ sendVarToJS('ldapEnable', $configs['ldap::enable']);
 								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API Pro de Jeedom}}">{{Clef API Pro}}</label>
 								<div class="col-lg-4 col-md-5 col-sm-6 col-xs-6">
 									<div class="input-group">
-									<input class="form-control" disabled value="<?php echo $configs['apipro']; ?>" />
+									<span class="span_apikey"><?php echo $configs['apipro']; ?></span>
 										<span class="input-group-btn">
 											<a class="btn btn-default form-control bt_regenerate_api" data-plugin="pro"><i class="fa fa-refresh"></i></a>
 										</span>
@@ -239,7 +239,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 	echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API pour le plugin}} ' . $plugin->getName() . '">{{Clef API}} ' . $plugin->getName() . '</label>';
 	echo '<div class="col-lg-4 col-md-5 col-sm-6 col-xs-6">';
 	echo '<div class="input-group">';
-	echo '<input class="form-control" disabled value="' . config::byKey('api', $plugin->getId()) . '" />';
+	echo '<span class="span_apikey">' . config::byKey('api', $plugin->getId()) . '</span>';
 	echo '<span class="input-group-btn">';
 	echo '<a class="btn btn-default form-control bt_regenerate_api" data-plugin="' . $plugin->getId() . '"><i class="fa fa-refresh"></i></a>';
 	echo '</span>';
