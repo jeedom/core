@@ -523,8 +523,8 @@ ORDER BY  datetime DESC';
 		}
 		$values = array(
 			'cmd_id' => $_cmd_id,
+			'value' => $_value,
 		);
-		$values['value'] = $_value;
 
 		$sql = 'select max(`datetime`) as lastCmdDuration
 		from (
