@@ -410,7 +410,7 @@ class eqLogic {
 		} else {
 			$cmd = $this->getCmd(null, $_logicalId);
 		}
-		if (is_object($cmd) && $cmd->execCmd() != $cmd->formatValue($_value)) {
+		if (is_object($cmd) && $cmd->execCmd() !== $cmd->formatValue($_value)) {
 			$cmd->setCollectDate('');
 			$cmd->event($_value);
 			return true;
