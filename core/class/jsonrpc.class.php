@@ -24,7 +24,7 @@ class jsonrpc {
 	private $jsonrpc;
 	private $method;
 	private $params;
-	private $id;
+	private $id = 99999;
 	private $startTime;
 	private $applicationName;
 
