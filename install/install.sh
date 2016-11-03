@@ -307,6 +307,7 @@ step_11_jeedom_check() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_12_jeedom_check${NORMAL}"
 	php ${WEBSERVER_HOME}/sick.php
+	chmod 777 -R /tmp/jeedom-cache
 	if [ $? -ne 0 ]; then
     	echo "${ROUGE}Could not install make jeedom sudo - abort${NORMAL}"
     	exit 1
