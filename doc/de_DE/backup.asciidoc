@@ -36,7 +36,7 @@ Auf der linken Seite haben wir :
 Lors d'une réinstallation de Jeedom et en ayant pris l'abonnement de sauvegarde cloud, vous avez juste sur votre nouveau Jeedom à renseigner votre compte market puis à venir ici pour lancer la restauration.
 
 [TIP]
-Il est possible, en cas de soucis, de faire un backup en ligne de commandes : `sudo php /usr/share/nginx/www/jeedom/install/backup.php`
+Es ist möglich, im Falle von Schwierigkeiten, unter der Komandozeile zu sichern : sudo php /usr/share/nginx/www/jeedom/install/backup.php`
 
 [TIP]
 Il est possible aussi de restaurer un backup en ligne de commandes (par défaut Jeedom restaure le backup le plus récent présent dans le répertoire de backup) : `sudo php /usr/share/nginx/www/jeedom/install/restore.php`

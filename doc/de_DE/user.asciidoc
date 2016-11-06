@@ -10,7 +10,7 @@ Sobald sie darauf sind, sehen sie :
 
 image::../images/user2.png[]
 
-En haut vous avez un bouton pour ajouter un compte temporaire (pour par exemple fournir un accès au support). Une fois que vous cliquez dessus, vous allez avoir une url à envoyer à la personne devant l'utiliser. Ce compte a une durée de vie de 24h.
+Oben, haben Sie eine Schaltfläche zum hinzufügen eines temporären Kontos (z. B. um Zugang zu unterstützen). Sobald Sie darauf klicken, erhalten Sie eine URL, die Sie an die Person senden, die es benutzen will. Dieses Konto hat eine Lebensdauer von 24 Stunden.
 Sie haben auch eine Schaltfläche zum Hinzufügen eines Benutzers. Wenn Sie darauf klicken, bittet Jeedom Sie das Kennwort und den Anmeldenamen des Benutzers einzugeben :
 
 image::../images/user3.png[]
@@ -23,7 +23,7 @@ Darunter haben Sie eine Tabelle :
 * *Rechte* : die Möglichkeit das der Benutzer in den Administrator-Modus wechseln kann oder nicht (Ermöglicht den Zugriff auf alles, Jeedom Konfiguration, Erstellung von Szenarien, Plugin Management, Konfiguration der Geräte, Design, Ansichten ...)
 * *API-Schlüssel* : der persönlichen Benutzer API-Schlüssel
 * *Date de dernière connexion* : date de dernière connexion de l'utilisateur. Attention, ici c'est la date de connexion réelle; ainsi si vous enregistrez votre ordinateur, la date de connexion n'est pas mise à jour à chaque fois que vous y retournez.
-* *Accès direct* : donne une url pour se connecter directement à Jeedom avec le compte en question
+ * *Direkter Zugang* : zeigt eine URL an, um sich direkt mit dem betreffenden Jeedom Konto zu verbinden
 
 [TIP]
 Im Falle einer Änderung, vergessen Sie nicht auf "Speichern" zu klicken.

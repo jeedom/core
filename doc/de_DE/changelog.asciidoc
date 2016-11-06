@@ -2,15 +2,15 @@
 
 == 3.0
 
-* Suppression du mode esclave
-* Possibilité de déclencher un scénario sur un changement d'une variable
+* Slave-Modus löschen
+* Möglichkeit, ein Szenario zu starten bei einer Variablenänderung
 * Les mise à jour de variable déclenchent maintenant la mise à jour des commandes virtuel (il faut la dernière version du plugin)
-* Possibilité d'avoir une icone sur les commandes de type info
-* Possibilité sur les commandes d'afficher le nom et l'icone
-* Ajout d'une action "alert" sur les scénarios
-* Ajout d'une action "popup" sur les scénarios
-* Les widgets des commandes peuvent maintenant avoir une méthode d'update ce qui évite un appels AJAX à Jeedom
-* Les widgets des scénarios sont maintenant mise à jour sans appels ajax pour avoir le widget
+* Möglichkeit, ein Symbol für Befehle des Info-Typs zu verwenden  
+* Möglichkeit, den Namen und das Symbol der Befehle anzuzeigen
+* Aktion "Alarm" zu den Szenarien hinzugefügt
+* Aktion "Aufklappfenster" zu den Szenarien hinzugefügt
+* Die Widgets der Befehle können jetzt eine Update Methode haben, was AJAX-Aufrufe an Jeedom vermeidet
+* Szenarien Widgets werden jetzt aktualisiert, ohne Ajax-Aufrufe auf das Widget zu haben
 * Le résumé global et des pièces et maintenant mises à jour sans appels ajax
 * Un clic sur un element d'un résumé domotique vous amène sur une vue détaillée de celui-ci
 * Vous pouvez maintenant mettre dans les résumés des commandes de type texte
