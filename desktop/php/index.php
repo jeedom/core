@@ -229,7 +229,6 @@ if (!isConnect()) {
 					</button>
 				</div>
 				<nav class="navbar-collapse collapse">
-
 					<ul class="nav navbar-nav">
 						<li class="dropdown cursor">
 							<a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-home"></i> <span class="hidden-xs hidden-sm hidden-md">{{Accueil}}</span> <b class="caret"></b></a>
