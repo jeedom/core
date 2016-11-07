@@ -226,7 +226,7 @@ if (isset(jeedom_langage)) {
     });
 
 
-    if (typeof jeedom_firstUse != undefined && isset(jeedom_firstUse) && jeedom_firstUse == 1 && getUrlVars('noFirstUse') != 1) {
+    if (typeof jeedom_firstUse != 'undefined' && isset(jeedom_firstUse) && jeedom_firstUse == 1 && getUrlVars('noFirstUse') != 1) {
         $('#md_modal').dialog({title: "{{Bienvenue dans Jeedom}}"});
         $("#md_modal").load('index.php?v=d&modal=first.use').dialog('open');
     }
