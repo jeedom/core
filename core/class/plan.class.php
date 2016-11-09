@@ -79,6 +79,19 @@ class plan {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
+	public static function removeByLinkTypeLinkIdPlanHedaerId($_link_type, $_link_id, $_planHeader_id) {
+		$values = array(
+			'link_type' => $_link_type,
+			'link_id' => $_link_id,
+			'planHeader_id' => $_planHeader_id,
+		);
+		$sql = 'DELETE FROM plan
+		WHERE link_type=:link_type
+		AND link_id=:link_id
+		AND planHeader_id=:planHeader_id';
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
+	}
+
 	public static function all() {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM plan';
@@ -89,6 +102,9 @@ class plan {
 
 	public function preInsert() {
 		$this->setCss('z-index', 1000);
+		if (in_array($this->getLink_type(), array('eqLogic', 'cmd', 'scenario'))) {
+			self::removeByLinkTypeLinkIdPlanHedaerId($this->getLink_type(), $this->getLink_id(), $this->getPlanHeader_id());
+		}
 	}
 
 	public function preSave() {
@@ -170,7 +186,7 @@ class plan {
 	}
 
 	public function getHtml($_version = 'dplan') {
-		if ($this->getLink_type() == 'eqLogic' || $this->getLink_type() == 'cmd' || $this->getLink_type() == 'scenario') {
+		if (in_array($this->getLink_type(), array('eqLogic', 'cmd', 'scenario'))) {
 			$link = $this->getLink();
 			if (!is_object($link)) {
 				return;
