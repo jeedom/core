@@ -21,6 +21,9 @@
 if (!isset(jeedom.cmd.cache.byHumanName)) {
     jeedom.cmd.cache.byHumanName = Array();
 }
+if (!isset(jeedom.cmd.update)) {
+    jeedom.cmd.update = Array();
+}
 jeedom.cmd.execute = function(_params) {
     var notify = _params.notify || true;
     if (notify) {
