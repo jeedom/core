@@ -87,12 +87,10 @@ class utils {
 										foreach ($arrayValue as $arrayArraykey => $arrayArrayvalue) {
 											$_object->$method($arrayKey, $arrayArraykey, $arrayArrayvalue);
 										}
-									} else {
-										$_object->$method($arrayKey, $arrayValue);
+										continue;
 									}
-								} else {
-									$_object->$method($arrayKey, $arrayValue);
 								}
+								$_object->$method($arrayKey, $arrayValue);
 							}
 						} else {
 							$_object->$method(json_encode($value, JSON_UNESCAPED_UNICODE));
