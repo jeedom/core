@@ -97,7 +97,7 @@ class DB {
 		}
 
 		$errorInfo = $stmt->errorInfo();
-		if (null != $errorInfo[1]) {
+		if ($errorInfo[0] != 0000) {
 			throw new Exception('[MySQL] Error code : ' . $errorInfo[0] . ' (' . $errorInfo[1] . '). ' . $errorInfo[2]);
 		}
 		return $res;
@@ -157,13 +157,13 @@ class DB {
 			$res = self::Prepare($sql, $parameters, DB::FETCH_TYPE_ROW);
 			$reflection = self::getReflectionClass($object);
 			if ($reflection->hasProperty('id')) {
-                            try {
-                                self::setField($object, 'id', self::getLastInsertId());
-                            } catch (Exception $exc) {
-                                trigger_error($exc->getMessage(), E_USER_NOTICE);
-                            } catch (InvalidArgumentException $ex){
-                                  trigger_error($ex->getMessage(), E_USER_NOTICE);
-                            }
+				try {
+					self::setField($object, 'id', self::getLastInsertId());
+				} catch (Exception $exc) {
+					trigger_error($exc->getMessage(), E_USER_NOTICE);
+				} catch (InvalidArgumentException $ex) {
+					trigger_error($ex->getMessage(), E_USER_NOTICE);
+				}
 			}
 			if (!$_direct && method_exists($object, 'postInsert')) {
 				$object->postInsert();
