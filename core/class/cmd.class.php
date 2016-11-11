@@ -1062,8 +1062,8 @@ class cmd {
 		}
 		$repeat = ($this->execCmd() == $value);
 		$this->setCollectDate(($_datetime !== null) ? $_datetime : date('Y-m-d H:i:s'));
+		$this->setCache('collectDate', $this->getCollectDate());
 		if ($repeat && $this->getConfiguration('repeatEventManagement', 'auto') == 'never') {
-			$this->setCache('collectDate', $this->getCollectDate());
 			if (strpos($value, 'error') === false) {
 				$this->addHistoryValue($value, $collectDate);
 				$eqLogic->setStatus('lastCommunication', $this->getCollectDate());
@@ -1084,7 +1084,6 @@ class cmd {
 			$message .= ' (répétition)';
 		}
 		log::add('event', 'info', $message);
-		$this->setCache('collectDate', $this->getCollectDate());
 
 		$events = array();
 		if (!$repeat) {
