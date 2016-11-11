@@ -81,6 +81,7 @@ class utils {
 					}
 					if (is_array($value)) {
 						if ($function->getNumberOfRequiredParameters() == 2) {
+							$values = array();
 							foreach ($value as $arrayKey => $arrayValue) {
 								if (is_array($arrayValue)) {
 									if ($function->getNumberOfRequiredParameters() == 3) {
@@ -90,7 +91,10 @@ class utils {
 										continue;
 									}
 								}
-								$_object->$method($arrayKey, $arrayValue);
+								$values[$arrayKey] = $arrayValue;
+							}
+							if (count($values) > 0) {
+								$_object->$method($values);
 							}
 						} else {
 							$_object->$method(json_encode($value, JSON_UNESCAPED_UNICODE));
