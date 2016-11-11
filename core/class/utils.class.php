@@ -123,7 +123,6 @@ class utils {
 		}
 
 		$enableList = array();
-		//ajout/modif
 		foreach ($_ajaxList as $ajaxObject) {
 			$object = $_class::byId($ajaxObject['id']);
 			if (!is_object($object)) {
@@ -133,7 +132,6 @@ class utils {
 			$object->save();
 			$enableList[$object->getId()] = true;
 		}
-		//suppression des entrées non modifiées.
 		foreach ($_dbList as $dbObject) {
 			if (!isset($enableList[$dbObject->getId()])) {
 				$dbObject->remove();
@@ -141,8 +139,8 @@ class utils {
 		}
 	}
 
-	public static function setJsonAttr($_attr, $_key, $_value) {
-		if ($_value === null) {
+	public static function setJsonAttr($_attr, $_key, $_value = null) {
+		if ($_value === null && !is_array($_key)) {
 			if ($_attr != '' && is_json($_attr)) {
 				$attr = json_decode($_attr, true);
 				unset($attr[$_key]);
@@ -153,7 +151,11 @@ class utils {
 				$_attr = json_encode(array($_key => $_value), JSON_UNESCAPED_UNICODE);
 			} else {
 				$attr = json_decode($_attr, true);
-				$attr[$_key] = $_value;
+				if (is_array($_key)) {
+					$attr = array_merge($attr, $_key);
+				} else {
+					$attr[$_key] = $_value;
+				}
 				$_attr = json_encode($attr, JSON_UNESCAPED_UNICODE);
 			}
 		}
