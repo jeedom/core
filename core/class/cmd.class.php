@@ -1064,14 +1064,10 @@ class cmd {
 		$this->setCollectDate(($_datetime !== null) ? $_datetime : date('Y-m-d H:i:s'));
 		$this->setCache('collectDate', $this->getCollectDate());
 		if ($repeat && $this->getConfiguration('repeatEventManagement', 'auto') == 'never') {
-			if (strpos($value, 'error') === false) {
-				$this->addHistoryValue($value, $collectDate);
-				$eqLogic->setStatus('lastCommunication', $this->getCollectDate());
-				if ($eqLogic->getStatus('timeout') != 0) {
-					$eqLogic->setStatus('timeout', 0);
-				}
-			} else {
-				$this->addHistoryValue(null, $this->getCollectDate());
+			$this->addHistoryValue($value, $collectDate);
+			$eqLogic->setStatus('lastCommunication', $this->getCollectDate());
+			if ($eqLogic->getStatus('timeout') != 0) {
+				$eqLogic->setStatus('timeout', 0);
 			}
 			return;
 		}
@@ -1130,18 +1126,14 @@ class cmd {
 		if (!$repeat) {
 			object::checkSummaryUpdate($this->getId());
 		}
-		if (strpos($value, 'error') === false) {
-			$eqLogic->setStatus('lastCommunication', $this->getCollectDate());
-			if ($eqLogic->getStatus('timeout') != 0) {
-				$eqLogic->setStatus('timeout', 0);
-			}
-			$this->addHistoryValue($value, $this->getCollectDate());
-			$this->checkReturnState($value);
-			$this->checkCmdAlert($value);
-			$this->pushUrl($value);
-		} else {
-			$this->addHistoryValue(null, $this->getCollectDate());
+		$eqLogic->setStatus('lastCommunication', $this->getCollectDate());
+		if ($eqLogic->getStatus('timeout') != 0) {
+			$eqLogic->setStatus('timeout', 0);
 		}
+		$this->addHistoryValue($value, $this->getCollectDate());
+		$this->checkReturnState($value);
+		$this->checkCmdAlert($value);
+		$this->pushUrl($value);
 	}
 
 	public function checkReturnState($_value) {
