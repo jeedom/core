@@ -1047,8 +1047,12 @@ class cmd {
 		}
 	}
 
-	public function event($_value, $_loop = 1) {
+	public function event($_value, $_datetime = null, $_loop = 1) {
 		if ($_loop > 4 || $this->getType() != 'info') {
+			return;
+		}
+		$eqLogic = $this->getEqLogic();
+		if (!is_object($eqLogic) || $eqLogic->getIsEnable() == 0) {
 			return;
 		}
 		$value = $this->formatValue($_value);
@@ -1056,22 +1060,18 @@ class cmd {
 			log::add('cmd', 'info', __('La commande n\'est pas dans la plage de valeur autorisée : ', __FILE__) . $this->getHumanName() . ' => ' . $value);
 			return;
 		}
-		$eqLogic = $this->getEqLogic();
-		if (!is_object($eqLogic) || $eqLogic->getIsEnable() == 0) {
-			return;
-		}
-		$collectDate = ($this->getCollectDate() != '') ? $this->getCollectDate() : date('Y-m-d H:i:s');
 		$repeat = ($this->execCmd() == $value);
-
+		$this->setCollectDate(($_datetime !== null) ? $_datetime : date('Y-m-d H:i:s'));
 		if ($repeat && $this->getConfiguration('repeatEventManagement', 'auto') == 'never') {
-			$this->setCollectDate($collectDate);
 			$this->setCache('collectDate', $this->getCollectDate());
 			if (strpos($value, 'error') === false) {
 				$this->addHistoryValue($value, $collectDate);
-				$eqLogic->setStatus('lastCommunication', $collectDate);
-				$eqLogic->setStatus('timeout', 0);
+				$eqLogic->setStatus('lastCommunication', $this->getCollectDate());
+				if ($eqLogic->getStatus('timeout') != 0) {
+					$eqLogic->setStatus('timeout', 0);
+				}
 			} else {
-				$this->addHistoryValue(null, $collectDate);
+				$this->addHistoryValue(null, $this->getCollectDate());
 			}
 			return;
 		}
@@ -1084,12 +1084,11 @@ class cmd {
 			$message .= ' (répétition)';
 		}
 		log::add('event', 'info', $message);
-		$this->setCollectDate($collectDate);
 		$this->setCache('collectDate', $this->getCollectDate());
 
 		$events = array();
 		if (!$repeat) {
-			$valueDate = ($repeat) ? $this->getValueDate() : $collectDate;
+			$valueDate = ($repeat) ? $this->getValueDate() : $this->getCollectDate();
 			$this->setValueDate($valueDate);
 			$this->setCache('value', $value);
 			$this->setCache('valueDate', $this->getValueDate());
@@ -1115,7 +1114,7 @@ class cmd {
 					}
 				} else {
 					if ($_loop > 1) {
-						$cmd->event($cmd->execute(), $_loop);
+						$cmd->event($cmd->execute(), null, $_loop);
 					} else {
 						$foundInfo = true;
 					}
@@ -1133,14 +1132,16 @@ class cmd {
 			object::checkSummaryUpdate($this->getId());
 		}
 		if (strpos($value, 'error') === false) {
-			$eqLogic->setStatus('lastCommunication', $collectDate);
-			$eqLogic->setStatus('timeout', 0);
-			$this->addHistoryValue($value, $collectDate);
+			$eqLogic->setStatus('lastCommunication', $this->getCollectDate());
+			if ($eqLogic->getStatus('timeout') != 0) {
+				$eqLogic->setStatus('timeout', 0);
+			}
+			$this->addHistoryValue($value, $this->getCollectDate());
 			$this->checkReturnState($value);
 			$this->checkCmdAlert($value);
 			$this->pushUrl($value);
 		} else {
-			$this->addHistoryValue(null, $collectDate);
+			$this->addHistoryValue(null, $this->getCollectDate());
 		}
 	}
 

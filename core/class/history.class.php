@@ -106,13 +106,7 @@ class history {
 		if (config::byKey('historyArchivePackage') >= config::byKey('historyArchiveTime')) {
 			config::save('historyArchivePackage', config::byKey('historyArchiveTime') - 1);
 		}
-
-		if (config::byKey('historyArchiveTime') < 1) {
-			$archiveDatetime = date('Y-m-d H:i:s', strtotime('- 1 hours'));
-		} else {
-			$archiveDatetime = date('Y-m-d H:i:s', strtotime('- ' . config::byKey('historyArchiveTime', 'core', 1) . ' hours'));
-		}
-
+		$archiveDatetime = (config::byKey('historyArchiveTime') < 1) ? date('Y-m-d H:i:s', strtotime('- 1 hours')) : date('Y-m-d H:i:s', strtotime('- ' . config::byKey('historyArchiveTime', 'core', 1) . ' hours'));
 		if (config::byKey('historyArchivePackage') < 1) {
 			$archivePackage = '00:' . config::byKey('historyArchivePackage') * 60 . ':00';
 		} else {
@@ -121,7 +115,6 @@ class history {
 				$archivePackage = '0' . $archivePackage;
 			}
 		}
-
 		$values = array(
 			'archiveDatetime' => $archiveDatetime,
 		);
@@ -131,104 +124,105 @@ class history {
 		$list_sensors = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
 		foreach ($list_sensors as $sensors) {
 			$cmd = cmd::byId($sensors['cmd_id']);
-			if (is_object($cmd) && $cmd->getType() == 'info' && $cmd->getIsHistorized() == 1) {
-				if ($cmd->getConfiguration('historyPurge', '') != '') {
-					$purgeTime = date('Y-m-d H:i:s', strtotime($cmd->getConfiguration('historyPurge', '')));
-					$values = array(
-						'cmd_id' => $cmd->getId(),
-						'datetime' => $purgeTime,
-					);
-					$sql = 'DELETE FROM historyArch WHERE cmd_id=:cmd_id AND `datetime` < :datetime';
-					DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-				}
-				if ($cmd->getSubType() == 'binary' || $cmd->getConfiguration('historizeMode', 'avg') == 'none') {
-					$values = array(
-						'cmd_id' => $cmd->getId(),
-					);
-					$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+			if (!is_object($cmd) || $cmd->getType() != 'info' || $cmd->getIsHistorized() != 1) {
+				continue;
+			}
+			if ($cmd->getConfiguration('historyPurge', '') != '') {
+				$purgeTime = date('Y-m-d H:i:s', strtotime($cmd->getConfiguration('historyPurge', '')));
+				$values = array(
+					'cmd_id' => $cmd->getId(),
+					'datetime' => $purgeTime,
+				);
+				$sql = 'DELETE FROM historyArch WHERE cmd_id=:cmd_id AND `datetime` < :datetime';
+				DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+			}
+			if ($cmd->getSubType() == 'binary' || $cmd->getConfiguration('historizeMode', 'avg') == 'none') {
+				$values = array(
+					'cmd_id' => $cmd->getId(),
+				);
+				$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 					FROM history
 					WHERE cmd_id=:cmd_id ORDER BY `datetime` ASC';
-					$history = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
-					for ($i = 1; $i < count($history); $i++) {
-						if ($history[$i]->getValue() != $history[$i - 1]->getValue()) {
-							$history[$i]->setTableName('historyArch');
-							$history[$i]->save();
-							$history[$i]->setTableName('history');
-						}
-						$history[$i]->remove();
+				$history = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+				for ($i = 1; $i < count($history); $i++) {
+					if ($history[$i]->getValue() != $history[$i - 1]->getValue()) {
+						$history[$i]->setTableName('historyArch');
+						$history[$i]->save();
+						$history[$i]->setTableName('history');
 					}
-					$history[0]->setTableName('historyArch');
-					$history[0]->save();
-					$history[0]->setTableName('history');
-					$history[0]->remove();
-					$values = array(
-						'cmd_id' => $cmd->getId(),
-					);
-					$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+					$history[$i]->remove();
+				}
+				$history[0]->setTableName('historyArch');
+				$history[0]->save();
+				$history[0]->setTableName('history');
+				$history[0]->remove();
+				$values = array(
+					'cmd_id' => $cmd->getId(),
+				);
+				$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 					FROM historyArch
 					WHERE cmd_id=:cmd_id ORDER BY datetime ASC';
-					$history = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
-					for ($i = 1; $i < count($history); $i++) {
-						if ($history[$i]->getValue() == $history[$i - 1]->getValue()) {
-							$history[$i]->setTableName('historyArch');
-							$history[$i]->remove();
-						}
+				$history = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+				for ($i = 1; $i < count($history); $i++) {
+					if ($history[$i]->getValue() == $history[$i - 1]->getValue()) {
+						$history[$i]->setTableName('historyArch');
+						$history[$i]->remove();
 					}
-				} else {
-					$values = array(
-						'cmd_id' => $sensors['cmd_id'],
-						'archiveDatetime' => $archiveDatetime,
-					);
-					$sql = 'SELECT MIN(`datetime`) as oldest
+				}
+				continue;
+			}
+			$values = array(
+				'cmd_id' => $sensors['cmd_id'],
+				'archiveDatetime' => $archiveDatetime,
+			);
+			$sql = 'SELECT MIN(`datetime`) as oldest
 					FROM history
 					WHERE `datetime`<:archiveDatetime
 					AND cmd_id=:cmd_id';
-					$oldest = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+			$oldest = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 
-					$mode = $cmd->getConfiguration('historizeMode', 'avg');
+			$mode = $cmd->getConfiguration('historizeMode', 'avg');
 
-					while ($oldest['oldest'] != null) {
-						$values = array(
-							'cmd_id' => $sensors['cmd_id'],
-							'oldest' => $oldest['oldest'],
-							'archivePackage' => $archivePackage,
-						);
+			while ($oldest['oldest'] != null) {
+				$values = array(
+					'cmd_id' => $sensors['cmd_id'],
+					'oldest' => $oldest['oldest'],
+					'archivePackage' => $archivePackage,
+				);
 
-						$sql = 'SELECT ' . $mode . '(value) as value,
+				$sql = 'SELECT ' . $mode . '(value) as value,
 						FROM_UNIXTIME(AVG(UNIX_TIMESTAMP(`datetime`))) as datetime
 						FROM history
 						WHERE TIMEDIFF(`datetime`,:oldest)<:archivePackage
 						AND cmd_id=:cmd_id';
-						$avg = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+				$avg = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 
-						$history = new self();
-						$history->setCmd_id($sensors['cmd_id']);
-						$history->setValue($avg['value']);
-						$history->setDatetime($avg['datetime']);
-						$history->setTableName('historyArch');
-						$history->save();
+				$history = new self();
+				$history->setCmd_id($sensors['cmd_id']);
+				$history->setValue($avg['value']);
+				$history->setDatetime($avg['datetime']);
+				$history->setTableName('historyArch');
+				$history->save();
 
-						$values = array(
-							'cmd_id' => $sensors['cmd_id'],
-							'oldest' => $oldest['oldest'],
-							'archivePackage' => $archivePackage,
-						);
-						$sql = 'DELETE FROM history
+				$values = array(
+					'cmd_id' => $sensors['cmd_id'],
+					'oldest' => $oldest['oldest'],
+					'archivePackage' => $archivePackage,
+				);
+				$sql = 'DELETE FROM history
 						WHERE TIMEDIFF(`datetime`,:oldest)<:archivePackage
 						AND cmd_id=:cmd_id';
-						DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+				DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 
-						$values = array(
-							'cmd_id' => $sensors['cmd_id'],
-							'archiveDatetime' => $archiveDatetime,
-						);
-						$sql = 'SELECT MIN(`datetime`) as oldest
+				$values = array(
+					'cmd_id' => $sensors['cmd_id'],
+					'archiveDatetime' => $archiveDatetime,
+				);
+				$sql = 'SELECT MIN(`datetime`) as oldest
 						FROM history
 						WHERE `datetime`<:archiveDatetime
 						AND cmd_id=:cmd_id';
-						$oldest = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-					}
-				}
+				$oldest = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 			}
 		}
 	}
@@ -563,32 +557,32 @@ ORDER BY  datetime DESC';
 			'cmd_id' => $_cmd_id,
 		);
 		$sql = 'SELECT count(*) as changes
-	FROM (SELECT t1.*,
-		(SELECT value
-			FROM (
-				SELECT *
-				FROM history
-				WHERE cmd_id=:cmd_id ' . $_dateTime . '
-				UNION ALL
-				SELECT *
-				FROM historyArch
-				WHERE cmd_id=:cmd_id ' . $_dateTime . '
-				) as t2
-WHERE t2.datetime < t1.datetime
-ORDER BY datetime desc LIMIT 1
-) as prev_value
-FROM (
-	SELECT *
-	FROM history
-	WHERE cmd_id=:cmd_id' . $_dateTime . '
-	UNION ALL
-	SELECT *
-	FROM historyArch
-	WHERE cmd_id=:cmd_id' . $_dateTime . '
-	) as t1
-WHERE cmd_id=:cmd_id' . $_dateTime . '
-) as t1
-where prev_value <> value' . $_condition . '';
+				FROM (SELECT t1.*,
+				(SELECT value
+					FROM (
+						SELECT *
+						FROM history
+						WHERE cmd_id=:cmd_id ' . $_dateTime . '
+						UNION ALL
+						SELECT *
+						FROM historyArch
+						WHERE cmd_id=:cmd_id ' . $_dateTime . '
+						) as t2
+						WHERE t2.datetime < t1.datetime
+						ORDER BY datetime desc LIMIT 1
+						) as prev_value
+						FROM (
+							SELECT *
+							FROM history
+							WHERE cmd_id=:cmd_id' . $_dateTime . '
+							UNION ALL
+							SELECT *
+							FROM historyArch
+							WHERE cmd_id=:cmd_id' . $_dateTime . '
+							) as t1
+						WHERE cmd_id=:cmd_id' . $_dateTime . '
+						) as t1
+						where prev_value <> value' . $_condition . '';
 		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 		return $result['changes'];
 	}
