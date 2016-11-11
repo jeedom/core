@@ -97,7 +97,7 @@ class DB {
 		}
 
 		$errorInfo = $stmt->errorInfo();
-		if ($errorInfo[0] != 0000) {
+		if (null != $errorInfo[1]) {
 			throw new Exception('[MySQL] Error code : ' . $errorInfo[0] . ' (' . $errorInfo[1] . '). ' . $errorInfo[2]);
 		}
 		return $res;
