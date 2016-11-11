@@ -1063,12 +1063,9 @@ class cmd {
 		$repeat = ($this->execCmd() == $value);
 		$this->setCollectDate(($_datetime !== null) ? $_datetime : date('Y-m-d H:i:s'));
 		$this->setCache('collectDate', $this->getCollectDate());
+		$eqLogic->setStatus(array('lastCommunication' => $this->getCollectDate(), 'timeout' => 0));
 		if ($repeat && $this->getConfiguration('repeatEventManagement', 'auto') == 'never') {
 			$this->addHistoryValue($value, $collectDate);
-			$eqLogic->setStatus('lastCommunication', $this->getCollectDate());
-			if ($eqLogic->getStatus('timeout') != 0) {
-				$eqLogic->setStatus('timeout', 0);
-			}
 			return;
 		}
 		$_loop++;
@@ -1085,8 +1082,7 @@ class cmd {
 		if (!$repeat) {
 			$valueDate = ($repeat) ? $this->getValueDate() : $this->getCollectDate();
 			$this->setValueDate($valueDate);
-			$this->setCache('value', $value);
-			$this->setCache('valueDate', $this->getValueDate());
+			$this->setCache(array('value' => $value, 'valueDate' => $this->getValueDate()));
 			scenario::check($this);
 			$display_value = $value;
 			if (method_exists($this, 'formatValueWidget')) {
@@ -1125,10 +1121,6 @@ class cmd {
 		listener::check($this->getId(), $value);
 		if (!$repeat) {
 			object::checkSummaryUpdate($this->getId());
-		}
-		$eqLogic->setStatus('lastCommunication', $this->getCollectDate());
-		if ($eqLogic->getStatus('timeout') != 0) {
-			$eqLogic->setStatus('timeout', 0);
 		}
 		$this->addHistoryValue($value, $this->getCollectDate());
 		$this->checkReturnState($value);
