@@ -170,7 +170,7 @@ class scenarioSubElement {
 		return utils::getJsonAttr($this->options, $_key, $_default);
 	}
 
-	public function setOptions($_key, $_value = null) {
+	public function setOptions($_key, $_value) {
 		$this->options = utils::setJsonAttr($this->options, $_key, $_value);
 		return $this;
 	}

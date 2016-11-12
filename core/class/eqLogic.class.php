@@ -815,12 +815,7 @@ class eqLogic {
 				message::add($this->getEqType_name(), $message, '', $logicalId);
 			}
 		}
-		$this->setCache('batteryStatus', $_pourcent);
-		if ($_datetime != '') {
-			$this->setCache('batteryStatusDatetime', $_datetime);
-		} else {
-			$this->setCache('batteryStatusDatetime', date('Y-m-d H:i:s'));
-		}
+		$this->setCache(array('batteryStatus' => $_pourcent, 'batteryStatusDatetime' => ($_datetime != '') ? $_datetime : date('Y-m-d H:i:s')));
 	}
 
 	public function refreshWidget() {
@@ -1056,7 +1051,7 @@ class eqLogic {
 		return utils::getJsonAttr($this->configuration, $_key, $_default);
 	}
 
-	public function setConfiguration($_key, $_value = null) {
+	public function setConfiguration($_key, $_value) {
 		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
 		return $this;
 	}
@@ -1065,7 +1060,7 @@ class eqLogic {
 		return utils::getJsonAttr($this->specificCapatibilities, $_key, $_default);
 	}
 
-	public function setSpecificCapatibilities($_key, $_value = null) {
+	public function setSpecificCapatibilities($_key, $_value) {
 		$this->specificCapatibilities = utils::setJsonAttr($this->specificCapatibilities, $_key, $_value);
 		return $this;
 	}
@@ -1074,7 +1069,7 @@ class eqLogic {
 		return utils::getJsonAttr($this->display, $_key, $_default);
 	}
 
-	public function setDisplay($_key, $_value = null) {
+	public function setDisplay($_key, $_value) {
 		$this->display = utils::setJsonAttr($this->display, $_key, $_value);
 		$this->_needRefreshWidget = true;
 	}
@@ -1100,7 +1095,7 @@ class eqLogic {
 		return utils::getJsonAttr($this->category, $_key, $_default);
 	}
 
-	public function setCategory($_key, $_value = null) {
+	public function setCategory($_key, $_value) {
 		$this->category = utils::setJsonAttr($this->category, $_key, $_value);
 		return $this;
 	}

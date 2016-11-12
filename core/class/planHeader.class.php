@@ -133,7 +133,7 @@ class planHeader {
 		return utils::getJsonAttr($this->image, $_key, $_default);
 	}
 
-	public function setImage($_key, $_value = null) {
+	public function setImage($_key, $_value) {
 		$this->image = utils::setJsonAttr($this->image, $_key, $_value);
 		return $this;
 	}
@@ -142,7 +142,7 @@ class planHeader {
 		return utils::getJsonAttr($this->configuration, $_key, $_default);
 	}
 
-	public function setConfiguration($_key, $_value = null) {
+	public function setConfiguration($_key, $_value) {
 		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
 		return $this;
 	}

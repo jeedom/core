@@ -92,7 +92,7 @@ class viewZone {
 
 	public function setId($id) {
 		$this->id = $id;
-                return $this;
+		return $this;
 	}
 
 	public function getView_id() {
@@ -101,7 +101,7 @@ class viewZone {
 
 	public function setView_id($view_id) {
 		$this->view_id = $view_id;
-                return $this;
+		return $this;
 	}
 
 	public function getType() {
@@ -110,7 +110,7 @@ class viewZone {
 
 	public function setType($type) {
 		$this->type = $type;
-                return $this;
+		return $this;
 	}
 
 	public function getName() {
@@ -119,7 +119,7 @@ class viewZone {
 
 	public function setName($name) {
 		$this->name = $name;
-                return $this;
+		return $this;
 	}
 
 	public function getPosition() {
@@ -128,32 +128,16 @@ class viewZone {
 
 	public function setPosition($position) {
 		$this->position = $position;
-                return $this;
+		return $this;
 	}
 
 	public function getConfiguration($_key = '', $_default = '') {
-		if ($this->configuration == '') {
-			return $_default;
-		}
-		if (@json_decode($this->configuration, true)) {
-			if ($_key == '') {
-				return json_decode($this->configuration, true);
-			}
-			$options = json_decode($this->configuration, true);
-			return (isset($options[$_key])) ? $options[$_key] : $_default;
-		}
-		return $_default;
+		return utils::getJsonAttr($this->configuration, $_key, $_default);
 	}
 
 	public function setConfiguration($_key, $_value) {
-		if ($this->configuration == '' || !@json_decode($this->configuration, true)) {
-			$this->configuration = json_encode(array($_key => $_value));
-		} else {
-			$options = json_decode($this->configuration, true);
-			$options[$_key] = $_value;
-			$this->configuration = json_encode($options);
-		}
-                return $this;
+		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
+		return $this;
 	}
 
 }

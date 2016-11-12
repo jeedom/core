@@ -1480,7 +1480,7 @@ class cmd {
 		return utils::getJsonAttr($this->html, $_key, $_default);
 	}
 
-	public function setHtml($_key, $_value = null) {
+	public function setHtml($_key, $_value) {
 		if (in_array($_key, array('dashboard', 'mobile', 'dview', 'mview', 'dplan')) && $this->getWidgetTemplateCode($_key, true) == $_value) {
 			$_value = '';
 		}
@@ -1492,7 +1492,7 @@ class cmd {
 		return utils::getJsonAttr($this->template, $_key, $_default);
 	}
 
-	public function setTemplate($_key, $_value = null) {
+	public function setTemplate($_key, $_value) {
 		$this->template = utils::setJsonAttr($this->template, $_key, $_value);
 		$this->_needRefreshWidget = true;
 	}
@@ -1501,7 +1501,7 @@ class cmd {
 		return utils::getJsonAttr($this->configuration, $_key, $_default);
 	}
 
-	public function setConfiguration($_key, $_value = null) {
+	public function setConfiguration($_key, $_value) {
 		if ($_key == 'actionCodeAccess' && !is_sha1($_value) && $_value != '') {
 			$_value = sha1($_value);
 		}
@@ -1512,7 +1512,7 @@ class cmd {
 		return utils::getJsonAttr($this->display, $_key, $_default);
 	}
 
-	public function setDisplay($_key, $_value = null) {
+	public function setDisplay($_key, $_value) {
 		$this->display = utils::setJsonAttr($this->display, $_key, $_value);
 		$this->_needRefreshWidget = true;
 	}

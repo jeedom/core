@@ -555,7 +555,7 @@ class interactDef {
 		return utils::getJsonAttr($this->options, $_key, $_default);
 	}
 
-	public function setOptions($_key, $_value = null) {
+	public function setOptions($_key, $_value) {
 		$this->options = utils::setJsonAttr($this->options, $_key, $_value);
 		return $this;
 	}
@@ -564,7 +564,7 @@ class interactDef {
 		return utils::getJsonAttr($this->filtres, $_key, $_default);
 	}
 
-	public function setFiltres($_key, $_value = null) {
+	public function setFiltres($_key, $_value) {
 		$this->filtres = utils::setJsonAttr($this->filtres, $_key, $_value);
 		return $this;
 	}
@@ -609,7 +609,7 @@ class interactDef {
 		return utils::getJsonAttr($this->actions, $_key, $_default);
 	}
 
-	public function setActions($_key, $_value = null) {
+	public function setActions($_key, $_value) {
 		$this->actions = utils::setJsonAttr($this->actions, $_key, $_value);
 		return $this;
 	}
