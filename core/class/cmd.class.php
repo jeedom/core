@@ -1080,8 +1080,7 @@ class cmd {
 
 		$events = array();
 		if (!$repeat) {
-			$valueDate = ($repeat) ? $this->getValueDate() : $this->getCollectDate();
-			$this->setValueDate($valueDate);
+			$this->setValueDate(($repeat) ? $this->getValueDate() : $this->getCollectDate());
 			$this->setCache(array('value' => $value, 'valueDate' => $this->getValueDate()));
 			scenario::check($this);
 			$display_value = $value;
