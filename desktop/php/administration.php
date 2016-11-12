@@ -12,6 +12,7 @@ $configs = config::byKeys($keys);
 sendVarToJS('ldapEnable', $configs['ldap::enable']);
 
 ?>
+<br/>
 <div id="config">
 	<div class="panel-group" id="accordionConfiguration">
 		<div class="panel panel-default">
