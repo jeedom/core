@@ -1063,6 +1063,7 @@ class cmd {
 		$repeat = ($this->execCmd() == $value);
 		$this->setCollectDate(($_datetime !== null) ? $_datetime : date('Y-m-d H:i:s'));
 		$this->setCache('collectDate', $this->getCollectDate());
+		$this->setValueDate(($repeat) ? $this->getValueDate() : $this->getCollectDate());
 		$eqLogic->setStatus(array('lastCommunication' => $this->getCollectDate(), 'timeout' => 0));
 		if ($repeat && $this->getConfiguration('repeatEventManagement', 'auto') == 'never') {
 			$this->addHistoryValue($value, $collectDate);
@@ -1080,7 +1081,6 @@ class cmd {
 
 		$events = array();
 		if (!$repeat) {
-			$this->setValueDate(($repeat) ? $this->getValueDate() : $this->getCollectDate());
 			$this->setCache(array('value' => $value, 'valueDate' => $this->getValueDate()));
 			scenario::check($this);
 			$display_value = $value;
