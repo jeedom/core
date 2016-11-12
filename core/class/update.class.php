@@ -563,7 +563,7 @@ class update {
 		return $this;
 	}
 
-	public function setConfiguration($_key, $_value) {
+	public function setConfiguration($_key, $_value = null) {
 		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
 		return $this;
 	}

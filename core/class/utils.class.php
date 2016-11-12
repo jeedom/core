@@ -91,10 +91,7 @@ class utils {
 										continue;
 									}
 								}
-								$values[$arrayKey] = $arrayValue;
-							}
-							if (count($values) > 0) {
-								$_object->$method($values);
+								$_object->$method($arrayKey, $arrayValue);
 							}
 						} else {
 							$_object->$method(json_encode($value, JSON_UNESCAPED_UNICODE));

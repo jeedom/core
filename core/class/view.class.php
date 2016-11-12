@@ -123,7 +123,7 @@ class view {
 
 	public function setId($id) {
 		$this->id = $id;
-                return $this;
+		return $this;
 	}
 
 	public function getName() {
@@ -132,7 +132,7 @@ class view {
 
 	public function setName($name) {
 		$this->name = $name;
-                return $this;
+		return $this;
 	}
 
 	public function getOrder($_default = null) {
@@ -144,16 +144,16 @@ class view {
 
 	public function setOrder($order) {
 		$this->order = $order;
-                return $this;
+		return $this;
 	}
 
 	public function getDisplay($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->display, $_key, $_default);
 	}
 
-	public function setDisplay($_key, $_value) {
+	public function setDisplay($_key, $_value = null) {
 		$this->display = utils::setJsonAttr($this->display, $_key, $_value);
-                return $this;
+		return $this;
 	}
 
 }

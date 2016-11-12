@@ -1332,7 +1332,7 @@ class scenario {
 		return utils::getJsonAttr($this->display, $_key, $_default);
 	}
 
-	public function setDisplay($_key, $_value) {
+	public function setDisplay($_key, $_value = null) {
 		$this->display = utils::setJsonAttr($this->display, $_key, $_value);
 		return $this;
 	}
@@ -1350,7 +1350,7 @@ class scenario {
 		return utils::getJsonAttr($this->configuration, $_key, $_default);
 	}
 
-	public function setConfiguration($_key, $_value) {
+	public function setConfiguration($_key, $_value = null) {
 		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
 		return $this;
 	}
@@ -1386,7 +1386,7 @@ class scenario {
 		return utils::getJsonAttr(cache::byKey('scenarioCacheAttr' . $this->getId())->getValue(), $_key, $_default);
 	}
 
-	public function setCache($_key, $_value) {
+	public function setCache($_key, $_value = null) {
 		cache::set('scenarioCacheAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('scenarioCacheAttr' . $this->getId())->getValue(), $_key, $_value));
 	}
 

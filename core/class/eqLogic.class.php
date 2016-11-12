@@ -1056,7 +1056,7 @@ class eqLogic {
 		return utils::getJsonAttr($this->configuration, $_key, $_default);
 	}
 
-	public function setConfiguration($_key, $_value) {
+	public function setConfiguration($_key, $_value = null) {
 		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
 		return $this;
 	}
@@ -1065,7 +1065,7 @@ class eqLogic {
 		return utils::getJsonAttr($this->specificCapatibilities, $_key, $_default);
 	}
 
-	public function setSpecificCapatibilities($_key, $_value) {
+	public function setSpecificCapatibilities($_key, $_value = null) {
 		$this->specificCapatibilities = utils::setJsonAttr($this->specificCapatibilities, $_key, $_value);
 		return $this;
 	}
@@ -1074,7 +1074,7 @@ class eqLogic {
 		return utils::getJsonAttr($this->display, $_key, $_default);
 	}
 
-	public function setDisplay($_key, $_value) {
+	public function setDisplay($_key, $_value = null) {
 		$this->display = utils::setJsonAttr($this->display, $_key, $_value);
 		$this->_needRefreshWidget = true;
 	}
@@ -1100,7 +1100,7 @@ class eqLogic {
 		return utils::getJsonAttr($this->category, $_key, $_default);
 	}
 
-	public function setCategory($_key, $_value) {
+	public function setCategory($_key, $_value = null) {
 		$this->category = utils::setJsonAttr($this->category, $_key, $_value);
 		return $this;
 	}
@@ -1132,7 +1132,7 @@ class eqLogic {
 		return utils::getJsonAttr(cache::byKey('eqLogicCacheAttr' . $this->getId())->getValue(), $_key, $_default);
 	}
 
-	public function setCache($_key, $_value) {
+	public function setCache($_key, $_value = null) {
 		cache::set('eqLogicCacheAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('eqLogicCacheAttr' . $this->getId())->getValue(), $_key, $_value));
 	}
 
@@ -1140,7 +1140,7 @@ class eqLogic {
 		return utils::getJsonAttr(cache::byKey('eqLogicStatusAttr' . $this->getId())->getValue(), $_key, $_default);
 	}
 
-	public function setStatus($_key, $_value) {
+	public function setStatus($_key, $_value = null) {
 		cache::set('eqLogicStatusAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('eqLogicStatusAttr' . $this->getId())->getValue(), $_key, $_value));
 	}
 

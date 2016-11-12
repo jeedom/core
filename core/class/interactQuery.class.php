@@ -542,7 +542,7 @@ class interactQuery {
 		return utils::getJsonAttr($this->actions, $_key, $_default);
 	}
 
-	public function setActions($_key, $_value) {
+	public function setActions($_key, $_value = null) {
 		$this->actions = utils::setJsonAttr($this->actions, $_key, $_value);
 		return $this;
 	}

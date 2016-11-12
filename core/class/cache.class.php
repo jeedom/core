@@ -228,7 +228,7 @@ class cache {
 		return utils::getJsonAttr($this->options, $_key, $_default);
 	}
 
-	public function setOptions($_key, $_value) {
+	public function setOptions($_key, $_value = null) {
 		$this->options = utils::setJsonAttr($this->options, $_key, $_value);
 	}
 

@@ -269,7 +269,7 @@ class user {
 		return utils::getJsonAttr($this->options, $_key, $_default);
 	}
 
-	public function setOptions($_key, $_value) {
+	public function setOptions($_key, $_value = null) {
 		$this->options = utils::setJsonAttr($this->options, $_key, $_value);
 		return $this;
 	}
@@ -278,7 +278,7 @@ class user {
 		return utils::getJsonAttr($this->rights, $_key, $_default);
 	}
 
-	public function setRights($_key, $_value) {
+	public function setRights($_key, $_value = null) {
 		$this->rights = utils::setJsonAttr($this->rights, $_key, $_value);
 		return $this;
 	}
