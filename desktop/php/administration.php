@@ -1154,7 +1154,7 @@ foreach ($repos as $key => $value) {
 		echo '</div>';
 	}
 	if (isset($value['scope']['test']) && $value['scope']['test']) {
-		echo '<div class="form-group expertModeVisible">';
+		echo '<div class="form-group">';
 		echo '<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Tester}}</label>';
 		echo '<div class="col-sm-4">';
 		echo '<a class="btn btn-default testRepoConnection" data-repo="' . $key . '"><i class="fa fa-check"></i> {{Tester}}</a>';
@@ -1170,7 +1170,6 @@ foreach ($repos as $key => $value) {
 							</div>
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</div>
