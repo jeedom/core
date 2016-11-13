@@ -22,11 +22,11 @@
         if (typeof timerHandle !== 'undefined') {
          clearTimeout(timerHandle);
          timerHandle = setTimeout(function() {
-          jeedom.cmd.execute({id:'#id#', value: {slider: $('.cmd[data-cmd_uid=#uid#] .value').val().replace("#unite#", "").replace("", "")}});
+          jeedom.cmd.execute({id:'#id#', value: {slider: $('.cmd[data-cmd_uid=#uid#] .value').val().replace("#unite#", "").replace(" ", "")}});
         }, 1000)
        } else {
         timerHandle = setTimeout(function() {
-          jeedom.cmd.execute({id:'#id#', value: {slider: $('.cmd[data-cmd_uid=#uid#] .value').val().replace("#unite#", "").replace("", "")}});
+          jeedom.cmd.execute({id:'#id#', value: {slider: $('.cmd[data-cmd_uid=#uid#] .value').val().replace("#unite#", "").replace(" ", "")}});
         }, 1000)
       }    
     });
