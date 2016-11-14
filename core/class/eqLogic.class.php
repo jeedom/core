@@ -815,7 +815,7 @@ class eqLogic {
 				message::add($this->getEqType_name(), $message, '', $logicalId);
 			}
 		}
-		$this->setCache(array('batteryStatus' => $_pourcent, 'batteryStatusDatetime' => ($_datetime != '') ? $_datetime : date('Y-m-d H:i:s')));
+		$this->setStatus(array('battery' => $_pourcent, 'batteryDatetime' => ($_datetime != '') ? $_datetime : date('Y-m-d H:i:s')));
 	}
 
 	public function refreshWidget() {

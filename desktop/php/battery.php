@@ -9,7 +9,7 @@ $objects = array();
 foreach (object::all() as $object) {
 	foreach ($object->getEqLogic() as $eqLogic) {
 		$battery_type = str_replace(array('(', ')'), array('', ''), $eqLogic->getConfiguration('battery_type', ''));
-		if ($eqLogic->getCache('batteryStatus', -2) != -2) {
+		if ($eqLogic->getStatus('battery', -2) != -2) {
 			array_push($list, $eqLogic);
 			array_push($plugins, $eqLogic->getEqType_name());
 			array_push($objects, $eqLogic->getobject()->getName());
@@ -24,7 +24,7 @@ foreach (object::all() as $object) {
 	}
 }
 usort($list, function ($a, $b) {
-	return ($a->getCache('batteryStatus') < $b->getCache('batteryStatus')) ? -1 : (($a->getCache('batteryStatus') > $b->getCache('batteryStatus')) ? 1 : 0);
+	return ($a->getStatus('battery') < $b->getStatus('battery')) ? -1 : (($a->getStatus('battery') > $b->getStatus('battery')) ? 1 : 0);
 });
 sort($plugins);
 sort($battery);
@@ -49,10 +49,10 @@ foreach ($list as $eqLogic) {
 	}
 	$plugins = $eqLogic->getEqType_name();
 	$objets = str_replace(array(' ', '(', ')'), array('_', '', ''), $eqLogic->getobject()->getName());
-	if ($eqLogic->getCache('batteryStatus') <= $eqLogic->getConfiguration('battery_danger_threshold', config::byKey('battery::danger'))) {
+	if ($eqLogic->getStatus('battery') <= $eqLogic->getConfiguration('battery_danger_threshold', config::byKey('battery::danger'))) {
 		$color = '#e74c3c';
 		$level = 'critical';
-	} else if ($eqLogic->getCache('batteryStatus') <= $eqLogic->getConfiguration('battery_warning_threshold', config::byKey('battery::warning'))) {
+	} else if ($eqLogic->getStatus('battery') <= $eqLogic->getConfiguration('battery_warning_threshold', config::byKey('battery::warning'))) {
 		$color = '#f1c40f';
 		$level = 'warning';
 	}
@@ -60,8 +60,8 @@ foreach ($list as $eqLogic) {
 	$idAttr = $level . '__' . $battery . '__' . $plugins . '__' . $objets;
 	echo '<div class="eqLogic eqLogic-widget ' . $classAttr . '" style="min-width:80px;background-color:' . $color . '" id="' . $idAttr . '">';
 	echo '<center class="widget-name"><a href="' . $eqLogic->getLinkToConfiguration() . '" style="font-size : 1.5em;">' . $eqLogic->getName() . '</a><br/><span style="font-size: 0.95em;position:relative;top:-5px;cursor:default;">' . $eqLogic->getobject()->getName() . '</span></center>';
-	echo '<center><span style="font-size:2.2em;font-weight: bold;cursor:default;">' . $eqLogic->getCache('batteryStatus', -2) . '</span><span>%</span></center>';
-	echo '<center style="cursor:default;">{{Le }}' . $eqLogic->getCache('batteryStatusDatetime', __('inconnue', __FILE__)) . '</center>';
+	echo '<center><span style="font-size:2.2em;font-weight: bold;cursor:default;">' . $eqLogic->getStatus('battery', -2) . '</span><span>%</span></center>';
+	echo '<center style="cursor:default;">{{Le }}' . $eqLogic->getStatus('batteryDatetime', __('inconnue', __FILE__)) . '</center>';
 	if ($eqLogic->getConfiguration('battery_type', '') != '') {
 		echo '<span class="pull-right" style="font-size : 0.8em;margin-bottom: 3px;margin-right: 5px;cursor:default;" title="Piles">' . $eqLogic->getConfiguration('battery_type', '') . '</span>';
 	}
