@@ -94,8 +94,8 @@ if (shell_exec('sudo crontab -l | grep jeeCron.php | wc -l') == 0) {
 	echo '<center style="font-size:1.2em;">Please add crontab line for jeedom : </center>';
 	echo '<pre>';
 	echo "sudo su -\n";
-	echo 'croncmd="su --shell=/bin/bash - ' . get_current_user() . ' -c \'/usr/bin/php ' . realpath(dirname(__FILE__) . '/../') . '/core/php/jeeCron.php\' >> /dev/null 2>&1"' . "\n";
-	echo 'cronjob="* * * * * $croncmd"' . "\n";
+	echo 'croncmd="su --shell=/bin/bash - ' . get_current_user() . ' -c \'/usr/bin/php ' . realpath(dirname(__FILE__) . '/../') . '/core/php/jeeCron.php\' >> /dev/null 2>&1&quot;' . "\n";
+	echo 'cronjob="* * * * * $croncmd&quot;' . "\n";
 	echo '( crontab -l | grep -v "$croncmd" ; echo "$cronjob" ) | crontab -' . "\n";
 	echo '</pre>';
 	echo '</div>';
