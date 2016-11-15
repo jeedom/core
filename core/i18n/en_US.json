@@ -9,7 +9,7 @@
         "Valeur": "Value",
         "Erreur execution de la commande ": "Error running the command",
         "Aucun": "None",
-        "La commande n'est pas dans la plage de valeur autorisée : ": "La commande n'est pas dans la plage de valeur autorisée :"
+        "La commande n'est pas dans la plage de valeur autorisée : ": "The command is not in the allowed value range"
     },
     "core/class/scenario.class.php": {
         "Scénario exécuté automatiquement sur événement venant de : ": "Scenario executed automatically on event from :",
@@ -17,7 +17,7 @@
         "Exécution du scénario ": "Running the scenario",
         " déclenché par : ": "triggered by :",
         "Fin correcte du scénario": "Correct end of the scenario",
-        "Lancement du scénario en mode synchrone": "Lancement du scénario en mode synchrone",
+        "Lancement du scénario en mode synchrone": "Synchronous scenario start",
         "Scénario exécuté sur événement : #": "Scenario executed on event : #",
         "Aucun": "None"
     },
@@ -27,22 +27,22 @@
     "core/class/plugin.class.php": {
         "Inconnue": "Unknown",
         "Gestion automatique désactivée": "Automatic management disabled",
-        "Erreur sur la fonction cron du plugin : ": "Erreur sur la fonction cron du plugin :",
-        "Erreur sur la fonction cronHourly du plugin : ": "Erreur sur la fonction cronHourly du plugin :",
+        "Erreur sur la fonction cron du plugin : ": "Error on the plugin's cron function",
+        "Erreur sur la fonction cronHourly du plugin : ": "Error on the plugin's cronHourly function",
         "Lancement de : ": "Launch of :",
-        "Erreur sur la fonction cron30 du plugin : ": "Erreur sur la fonction cron30 du plugin :",
+        "Erreur sur la fonction cron30 du plugin : ": "Error on the plugin's cron30 function",
         "Erreur sur la fonction cronDaily du plugin : ": "Error on the cronDaily function of the plugin",
-        "Attention, installation des dépendances lancée": "Attention, installation des dépendances lancée",
+        "Attention, installation des dépendances lancée": "Caution, depedencies installation started",
         "Dépendances non installées": "Dependencies not installed",
-        "Vous devez attendre au moins 60s entre 2 lancements d'installation de dépendances": "Vous devez attendre au moins 60s entre 2 lancements d'installation de dépendances",
+        "Vous devez attendre au moins 60s entre 2 lancements d'installation de dépendances": "You must wait at least for 60s between 2 dependency installations",
         "Dépendances en cours d'installation": "Currently being installed dependencies",
-        "Les dépendances sont déja en cours d'installation": "Les dépendances sont déja en cours d'installation",
-        "Vous devez attendre au moins 45s entre 2 lancements du démon": "Vous devez attendre au moins 45s entre 2 lancements du démon",
+        "Les dépendances sont déja en cours d'installation": "Dependencies are installing",
+        "Vous devez attendre au moins 45s entre 2 lancements du démon": "You must wait at least for 45s between 2 daemon starts",
         "Erreur sur la fonction deamon_start du plugin : ": "Error on deamon_start function of the plugin"
     },
     "core/php/jeeListener.php": {
         "[Erreur] Classe ou fonction non trouvée ": "[Error] Class or function not found",
-        "Listener non trouvé : ": "Listener non trouvé :"
+        "Listener non trouvé : ": "Listener not found"
     },
     "core/class/message.class.php": {
         "Message de ": "Message from"
@@ -64,7 +64,7 @@
         " seconde(s)": "second(s)",
         "Lancement du scénario : ": "Running scenario :",
         "Lancement provoqué": "Triggered run",
-        "Arret du scénario": "Arret du scénario",
+        "Arret du scénario": "Stop the scenario",
         "Ajout de l'alerte : ": "Ajout de l'alerte :",
         "Affichage du popup : ": "Affichage du popup :"
     },
@@ -285,7 +285,7 @@
         "- que la réponse n'est pas déjà dans la <a href='https://jeedom.com/doc'>documentation</a>": "that the response is not already in the <a href='https://jeedom.com/doc'>documentation</a>",
         "- que la réponse n'est pas déjà dans la <a href='https://jeedom.com/faq'>faq</a>": "- that the response is not already in the <a href='https://jeedom.com/faq'>faq</a>",
         "N'oubliez pas que poser la question sur le forum vous fournira généralement une réponse plus rapide que par ticket.": "Don't forget that submitting a question on the forum will generally provide a quicker response than submitting a ticket.",
-        "Etape 2 : Catégorie et type de la demande": "Etape 2 : Catégorie et type de la demande",
+        "Etape 2 : Catégorie et type de la demande": "Step 2 : Request category and type",
         "Type": "Type",
         "Aucun": "None",
         "Question": "Question",
@@ -513,13 +513,13 @@
     "mobile/js/home.js": {
         "Tout": "All",
         "Version desktop": "Desktop version",
-        "Démons": "Démons",
+        "Démons": "Daemons",
         "Crons": "Crons",
         "Santé": "Health"
     },
     "core/js/cmd.class.js": {
         "Veuillez indiquer le code ?": "Veuillez indiquer le code ?",
-        "Etes vous sur de vouloir faire cette action ?": "Etes vous sur de vouloir faire cette action ?",
+        "Etes vous sur de vouloir faire cette action ?": "Are you sure that you want to complete this action ?",
         "Résultat de la commande : ": "Result of the command :",
         "Action exécutée avec succès": "Action successful",
         "[Jeedom] Message de test": "[Jeedom] Test message",
@@ -1843,7 +1843,7 @@
     "mobile/js/health.js": {
         "Rafraichir": "Refresh",
         "Version desktop": "Desktop version",
-        "Démons": "Démons",
+        "Démons": "Daemons",
         "Crons": "Crons"
     },
     "desktop/modal/scenario.template.php": {
