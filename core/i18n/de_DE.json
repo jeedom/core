@@ -9,7 +9,7 @@
         "Valeur": "Wert",
         "Erreur execution de la commande ": "Befehlsausführungsfehler",
         "Aucun": "Ohne",
-        "La commande n'est pas dans la plage de valeur autorisée : ": "La commande n'est pas dans la plage de valeur autorisée :"
+        "La commande n'est pas dans la plage de valeur autorisée : ": "Der Befehl ist nicht im Bereich der zugelassenen Werte :"
     },
     "core/class/scenario.class.php": {
         "Scénario exécuté automatiquement sur événement venant de : ": "Das automatisch auf Ereignis ausgeführte Szenario :",
@@ -17,7 +17,7 @@
         "Exécution du scénario ": "Szenario Ausführung",
         " déclenché par : ": "ausgelöst durch:",
         "Fin correcte du scénario": "Richtiges Ende des Szenarios",
-        "Lancement du scénario en mode synchrone": "Lancement du scénario en mode synchrone",
+        "Lancement du scénario en mode synchrone": "Starten des Szenarios im synchronen Modus",
         "Scénario exécuté sur événement : #": "Szenario durch Ereignis ausgeführt : #",
         "Aucun": "Ohne"
     },
@@ -27,22 +27,22 @@
     "core/class/plugin.class.php": {
         "Inconnue": "Unbekannt",
         "Gestion automatique désactivée": "Automatische Verwaltung deaktiviert",
-        "Erreur sur la fonction cron du plugin : ": "Erreur sur la fonction cron du plugin :",
-        "Erreur sur la fonction cronHourly du plugin : ": "Erreur sur la fonction cronHourly du plugin :",
+        "Erreur sur la fonction cron du plugin : ": "Fehler in der Cron Funktion des Plugins : ",
+        "Erreur sur la fonction cronHourly du plugin : ": "Fehler in der CronHourly Funktion des Plugins : ",
         "Lancement de : ": "Starten von :",
         "Erreur sur la fonction cron30 du plugin : ": "Fehler auf der Funktion cron30 des plugin:",
         "Erreur sur la fonction cronDaily du plugin : ": "Fehler der cronDaily Funktion des Plugin:",
-        "Attention, installation des dépendances lancée": "Attention, installation des dépendances lancée",
+        "Attention, installation des dépendances lancée": "Achtung, Installation der Abhängigkeiten gestartet  ",
         "Dépendances non installées": "Abhängigkeiten nicht installiert",
-        "Vous devez attendre au moins 60s entre 2 lancements d'installation de dépendances": "Vous devez attendre au moins 60s entre 2 lancements d'installation de dépendances",
+        "Vous devez attendre au moins 60s entre 2 lancements d'installation de dépendances": "Sie müssen mindestens 60 Sekunden zwischen 2 gestarteten Installation von Abhängigkeiten warten.",
         "Dépendances en cours d'installation": "Abhängigkeiten werden zur Zeit installiert",
-        "Les dépendances sont déja en cours d'installation": "Les dépendances sont déja en cours d'installation",
-        "Vous devez attendre au moins 45s entre 2 lancements du démon": "Vous devez attendre au moins 45s entre 2 lancements du démon",
+        "Les dépendances sont déja en cours d'installation": "Die Abhängigkeiten werden bereits installiert",
+        "Vous devez attendre au moins 45s entre 2 lancements du démon": "Sie müssen mindestens 45 Sekunden zwischen 2 Starts des Dämons warten.",
         "Erreur sur la fonction deamon_start du plugin : ": "Fehler des Plugins bei Funktion Deamon_start :"
     },
     "core/php/jeeListener.php": {
         "[Erreur] Classe ou fonction non trouvée ": "[Fehler] Klasse oder Funktion nicht gefunden",
-        "Listener non trouvé : ": "Listener non trouvé :"
+        "Listener non trouvé : ": "Listener nicht gefunden :"
     },
     "core/class/message.class.php": {
         "Message de ": "Nachricht"
@@ -64,9 +64,9 @@
         " seconde(s)": "sekunde(n)",
         "Lancement du scénario : ": "Starten des Szenarios:",
         "Lancement provoqué": "Start erzwingen",
-        "Arret du scénario": "Arret du scénario",
-        "Ajout de l'alerte : ": "Ajout de l'alerte :",
-        "Affichage du popup : ": "Affichage du popup :"
+        "Arret du scénario": "Stoppen des Szenarios",
+        "Ajout de l'alerte : ": "Alarm hinzufügen :",
+        "Affichage du popup : ": "PopUp anzeigen :"
     },
     "core/class/scenarioElement.class.php": {
         "Non exécution des actions pour cause de répétition": "Nicht ausführen der Aktion wegen der Wiederholung "
@@ -101,7 +101,7 @@
         "Gestion des plugins": "Plugin Verwaltung",
         "Protocole domotique": "Automatisierungsprotokoll",
         "Communication": "Kommunikation",
-        "Objets communicants": "Objets communicants",
+        "Objets communicants": "Kommunizierende Objekte",
         "Energie": "Energie",
         "Monitoring": "Monitoring",
         "Multimédia": "Multimedia",
@@ -278,14 +278,14 @@
         "Scénarios": "Szenarien"
     },
     "desktop/modal/report.bug.php": {
-        "Etape 1 : Information sur les tickets": "Etape 1 : Information sur les tickets",
+        "Etape 1 : Information sur les tickets": "Schritt 1: Tickets Informationen",
         "Merci de vérifier avant toute ouverture de ticket :": "Wir danken Ihnen, vor dem Öffnen einer Tickets zu überprüfen:",
         "- que la question n'a pas déjà été posée sur le <a href='https://jeedom.com/forum'>forum</a>": "- dass die Frage nicht schon auf dem <a href='https://jeedom.com/forum'>Forum gestellt worden ist ",
         "- que la catégorie est bien sélectionnée pour que votre ticket soit traité dans les plus courts délais": "- dass die Kategorie richtig gewählt wird, somit kann ihre Ticket in kürzester Zeit verarbeitet werden",
         "- que la réponse n'est pas déjà dans la <a href='https://jeedom.com/doc'>documentation</a>": "- dass sich die Antwort nicht schon in der <a href='https://jeedom.com/doc'>Dokumentation</a> befindet",
         "- que la réponse n'est pas déjà dans la <a href='https://jeedom.com/faq'>faq</a>": "- dass sich die Antwort nicht schon in der <a href='https://jeedom.com/faq'>FAQ</a> befindet",
         "N'oubliez pas que poser la question sur le forum vous fournira généralement une réponse plus rapide que par ticket.": "Denken Sie daran, dass eine Frage auf dem Forum in der Regel schneller beantworttet wird als ein Ticket.",
-        "Etape 2 : Catégorie et type de la demande": "Etape 2 : Catégorie et type de la demande",
+        "Etape 2 : Catégorie et type de la demande": "Schritt 2 : Kategorie und Art der Nachfrage",
         "Type": "Typ",
         "Aucun": "Ohne",
         "Question": "Frage",
@@ -321,8 +321,8 @@
         "Clef API globale de Jeedom": "allgemeiner Jeedom API-Schlüssel ",
         "Clef API": "API Schlüssel ",
         "Générer": "Generieren",
-        "Clef API Pro de Jeedom": "Clef API Pro de Jeedom",
-        "Clef API Pro": "Clef API Pro",
+        "Clef API Pro de Jeedom": "API-Schlüssel Jeedom Pro",
+        "Clef API Pro": "API-Schlüssel Pro",
         "Indique votre type de matériel": "Geräteart angeben ",
         "Système": "Systeme",
         "Rafraîchir": "Aktualisieren",
@@ -367,7 +367,7 @@
         "Accès externe": "Externer Zugriff",
         "Gestion avancée": "Erweiterte Verwaltung",
         "Désactiver la gestion du réseau par Jeedom": "Deaktivieren der Jeedom Netzwerkverwaltung ",
-        "Adresse mac": "Adresse mac",
+        "Adresse mac": "MAC Adresse",
         "Proxy": "Proxy",
         "Utiliser les DNS Jeedom": "Die Jeedom DNS benutzen",
         "Statut DNS": "DNS Status",
@@ -478,7 +478,7 @@
         "Ajout depuis une autre source": "Aus einer anderen Quelle hinzufügen",
         "Rechercher": "Suchen",
         "Mes plugins": "Meine Plugins",
-        "Ajout depuis le": "Ajout depuis le",
+        "Ajout depuis le": "Seit hinzugefügt",
         "Etat": "Zustand",
         "Version": "Version",
         "Version Jeedom": "Jeedom Version",
@@ -513,13 +513,13 @@
     "mobile/js/home.js": {
         "Tout": "Alles",
         "Version desktop": "Desktop Version",
-        "Démons": "Démons",
+        "Démons": "Daemon",
         "Crons": "Crons",
         "Santé": "Gesundheit"
     },
     "core/js/cmd.class.js": {
-        "Veuillez indiquer le code ?": "Veuillez indiquer le code ?",
-        "Etes vous sur de vouloir faire cette action ?": "Etes vous sur de vouloir faire cette action ?",
+        "Veuillez indiquer le code ?": "Bitte geben Sie den Code ein ?",
+        "Etes vous sur de vouloir faire cette action ?": "Sind Sie sicher, dass Sie diese Aktion ausführen möchten ?",
         "Résultat de la commande : ": "Ergebnis des Befehls:",
         "Action exécutée avec succès": "Aktion erfolgreich beendet",
         "[Jeedom] Message de test": "[Jeedom]  Test Nachricht",
@@ -563,7 +563,7 @@
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Sie befinden sich im Bearbeitungsmodus Sie können Widgets verschieben, skalieren und die Reihenfolge der Befehle in den Widgets ändern"
     },
     "desktop/js/plugin.js": {
-        "Envoyer sur le": "Envoyer sur le",
+        "Envoyer sur le": "Senden Sie an",
         "Supprimer": "Löschen",
         "Documentation": "Dokumentation",
         "Changelog": "Änderungsprotokoll",
@@ -678,7 +678,7 @@
         "Defaut": "Standard",
         "Transparent": "transparent",
         "Opacité": "Undurchsichtigkeit",
-        "Entre 0 et 1": "Entre 0 et 1",
+        "Entre 0 et 1": "Zwischen 0 und 1",
         "Couleur du texte": "Textfarbe",
         "Bordures": "Ränder",
         "Arrondit des bordures (en px)": "Abgerundete Ränder (in px)",
@@ -758,8 +758,8 @@
         "Ou en cliquant ": "Oder durch Klicken auf",
         "ici": "hier",
         "Votre objet a été envoyé avec succès sur le market": "Ihr Objekt ist erfolgreich auf den Markt geschickt worden ",
-        "Alarme diverse": "Alarme diverse",
-        "Audio/Vidéo": "Audio/Vidéo",
+        "Alarme diverse": "Verschiedene Alarme",
+        "Audio/Vidéo": "Audio/Video",
         "Automatisme": "Automatismus",
         "Autre": "Andere",
         "Energie": "Energie",
@@ -849,11 +849,11 @@
         "Test réussi": "Test réussi",
         "Administration système": "Systemverwaltung",
         "Création des commandes virtuel réussies": "Création des commandes virtuel réussies",
-        "Somme": "Somme",
+        "Somme": "Summe",
         "Moyenne": "Durchschnitt",
         "Icône": "Symbol",
         "Aucun": "Ohne",
-        "Binaire": "Binaire",
+        "Binaire": "Binär",
         "Créer virtuel": "Créer virtuel",
         "Etes-vous sûr de vouloir réinitialiser la clef API de '+el.attr('data-plugin')+' ?": "Etes-vous sûr de vouloir réinitialiser la clef API de '+el.attr('data-plugin')+' ?",
         "Texte": "Text",
@@ -891,7 +891,7 @@
         "Largeur de 1/3": "Breite 1/3",
         "Largeur de 1/4": "Breite 1/4",
         "30 min": "30 min",
-        "1 heure": "1 heure",
+        "1 heure": "1 Stunde",
         "Jour": "Tag",
         "Semaine": "Woche",
         "Mois": "Monat",
@@ -900,7 +900,7 @@
         "Nom": "Name",
         "Couleur": "Farbe",
         "Type": "Typ",
-        "Groupement": "Groupement",
+        "Groupement": "Gruppieren",
         "Echelle": "Maßstab",
         "Escalier": "Treppe",
         "Empiler": "Stapel",
@@ -961,12 +961,12 @@
         "Droits sudo": "sudo Rechte",
         "Version Jeedom": "Jeedom Version",
         "Version PHP": "PHP Version",
-        "Version OS": "Version OS",
-        "Version database": "Version database",
+        "Version OS": "OS Version",
+        "Version database": "Datenbank Version",
         "Espace disque libre": "Freier Festplattenspeicher",
         "Configuration réseau interne": "interne Netzwerkkonfiguration",
         "Configuration réseau externe": "externe Netzwerkkonfiguration",
-        "Persistance du cache": "Persistance du cache",
+        "Persistance du cache": " Caches Persistenz",
         "Plugins": "Plugins",
         "Santé ": "Gesundheit",
         "Dépendance": "Abhängigkeit",
@@ -1131,7 +1131,7 @@
         "Nettoyage du cache des péripheriques USB": "Nettoyage du cache des péripheriques USB",
         "Nettoyage du cache des péripheriques Bluetooth": "Nettoyage du cache des péripheriques Bluetooth",
         "Démarrage des processus internet de jeedom": "Démarrage des processus internet de jeedom",
-        "Ecriture du fichier /tmp/jeedom_start": "Ecriture du fichier /tmp/jeedom_start",
+        "Ecriture du fichier /tmp/jeedom_start": "Schreiben der Datei ",
         "Envoi de l'evenement de démarrage": "Envoi de l'evenement de démarrage",
         "Démarrage des plugins": "Démarrage des plugins",
         "Test de connexion au market": "Test de connexion au market",
@@ -1146,12 +1146,12 @@
         "Droits sudo": "sudo Rechte",
         "Version Jeedom": "Jeedom Version",
         "Version PHP": "PHP Version",
-        "Version OS": "Version OS",
-        "Version database": "Version database",
+        "Version OS": "OS Version",
+        "Version database": "Datenbank Version",
         "Espace disque libre": "Freier Festplattenspeicher",
         "Configuration réseau interne": "interne Netzwerkkonfiguration",
         "Configuration réseau externe": "externe Netzwerkkonfiguration",
-        "Persistance du cache": "Persistance du cache",
+        "Persistance du cache": " Caches Persistenz",
         "De nouvelles mises à jour sont disponibles : ": "Neue Updates stehen zur Verfügung :"
     },
     "desktop/js/health.js": {
@@ -1192,7 +1192,7 @@
         "Etes-vous sûr de vouloir supprimer tous ces équipement ?": "Sind Sie sicher, dass Sie alle Geräte löschen möchten ?"
     },
     "/var/www/html/desktop/modal/object.display.php": {
-        "L'objet n'existe pas : ": "L'objet n'existe pas :"
+        "L'objet n'existe pas : ": "Das Objekt ist nicht vorhanden :"
     },
     "desktop/modal/cmd.human.insert.php": {
         "Objet": "Objekt",
@@ -1262,7 +1262,7 @@
     },
     "desktop/js/scenarioAssist.js": {
         "Sauvegarde effectuée avec succès": "Speichern erfolgreich abgeschlossen",
-        "Ajout d'un nouveau scénario": "Ajout d'un nouveau scénario",
+        "Ajout d'un nouveau scénario": "neues Szenario hinzugügen",
         "Nom": "Name",
         "Nom de votre scénario": "Name des Szenarios",
         "Type": "Typ",
@@ -1379,7 +1379,7 @@
     },
     "desktop/js/scenario.js": {
         "Sauvegarde effectuée avec succès": "Speichern erfolgreich abgeschlossen",
-        "Ajout d'un nouveau scénario": "Ajout d'un nouveau scénario",
+        "Ajout d'un nouveau scénario": "neues Szenario hinzugügen",
         "Nom": "Name",
         "Nom de votre scénario": "Name des Szenarios",
         "Type": "Typ",
@@ -1843,7 +1843,7 @@
     "mobile/js/health.js": {
         "Rafraichir": "Aktualisieren",
         "Version desktop": "Desktop Version",
-        "Démons": "Démons",
+        "Démons": "Daemon",
         "Crons": "Crons"
     },
     "desktop/modal/scenario.template.php": {

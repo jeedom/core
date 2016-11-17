@@ -176,7 +176,7 @@ Es gibt bestimmte Auslöser (außer jene, die durch die Befehle geliefert wurden
 * *\#begin_restore#*  : Ereignis, das zu Beginn der Wiederherstellung gesendet wird.
 * *\#end_restore#*  :  Ereignis, das am Ende der Wiederherstellung gesendet wird.
 
-Vous pouvez aussi déclencher un scénario sur mise à jour d'une variable en mettant : #variable(nom_variable)#
+Vous pouvez aussi déclencher un scénario sur mise à jour d'une variable en mettant : #variable(nom_variable)# ou en utilisant l'api http décrite ici : https://github.com/jeedom/core/blob/beta/doc/fr_FR/api_http.asciidoc#pilotage-des-scénarios
 
 [TIP]
 Hier haben Sie auch eine Schaltfläche, um einen Befehl zu suchen
