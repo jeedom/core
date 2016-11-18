@@ -728,6 +728,9 @@ ORDER BY  datetime DESC';
 							$this->setValue(max($result['value'], $this->getValue()));
 							break;
 					}
+					if ($result['value'] === $this->getValue()) {
+						return;
+					}
 				}
 			} else {
 				$this->setDatetime(date('Y-m-d H:00:00', strtotime($this->getDatetime())));
