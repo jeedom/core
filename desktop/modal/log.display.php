@@ -19,6 +19,7 @@ if (!isConnect('admin')) {
 	throw new Exception('401 Unauthorized');
 }
 sendVarToJS('log_display_name', init('log', 'event'));
+sendVarToJS('log_default_search', init('search', ''));
 ?>
 <a class="btn btn-danger pull-right" id="bt_logdisplayremoveLog"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>
 <a class="btn btn-warning pull-right" id="bt_logdisplayclearLog"><i class="fa fa-times"></i> {{Vider}}</a>
@@ -27,10 +28,10 @@ sendVarToJS('log_display_name', init('log', 'event'));
 <input class="form-control pull-right" id="in_eventLogSearch" style="width : 300px;" placeholder="{{Rechercher}}" />
 <br/><br/><br/>
 <pre id='pre_eventlog' style='overflow: auto; height: calc(100% - 65px);with:90%;'></pre>
-
 <script>
 	jeedom.log.autoupdate({
 		log : log_display_name,
+		default_search : log_default_search,
 		display : $('#pre_eventlog'),
 		search : $('#in_eventLogSearch'),
 		control : $('#bt_eventLogStopStart'),

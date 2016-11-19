@@ -13,16 +13,15 @@ foreach (array('dashboard', 'mobile', 'dview', 'mview', 'dplan') as $value) {
 	}
 }
 sendVarToJS('cmdInfo', $cmdInfo);
+sendVarToJS('cmdInfoSearchString', str_replace('#', '', $cmd->getHumanName()));
 $cmd_widgetDashboard = cmd::availableWidget('dashboard');
 $cmd_widgetMobile = cmd::availableWidget('mobile');
 ?>
   <div style="display: none;" id="md_displayCmdConfigure"></div>
-
-
   <a class="btn btn-success btn-sm pull-right" id="bt_cmdConfigureSave"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
   <a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureSaveOn"><i class="fa fa-plus-circle"></i> {{Appliquer à}}</a>
   <a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureRawObject"><i class="fa fa-info"></i> {{Informations brutes}}</a>
-
+  <a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureLogRealTime"><i class="fa fa-file"></i> {{Log}}</a>
   <div role="tabpanel">
     <ul class="nav nav-tabs" role="tablist">
       <li role="presentation" class="active"><a href="#cmd_information" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-info-circle"></i> {{Informations}}</a></li>
@@ -1083,5 +1082,10 @@ if ($cmd->getDisplay('parameters') != '') {
 
   $('body').undelegate('.cmdAttr[data-l1key=display][data-l2key=icon]', 'click').delegate('.cmdAttr[data-l1key=display][data-l2key=icon]', 'click', function () {
     $(this).empty();
+  });
+
+  $('#bt_cmdConfigureLogRealTime').off('click').on('click', function () {
+    $('#md_modal2').dialog({title: "{{Logs}}"});
+    $('#md_modal2').load('index.php?v=d&modal=log.display&log=event&search=' + cmdInfoSearchString).dialog('open');
   });
 </script>

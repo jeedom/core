@@ -8,12 +8,14 @@ if (!is_object($eqLogic)) {
 }
 
 sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
+sendVarToJS('eqLogicInfoSearchString', str_replace('#', '', $eqLogic->getHumanName()));
 ?>
 <div style="display: none;" id="md_displayEqLogicConfigure"></div>
 
 <a class="btn btn-danger pull-right btn-sm" id="bt_eqLogicConfigureRemove"><i class="fa fa-times"></i> {{Supprimer}}</a>
 <a class="btn btn-success pull-right btn-sm" id="bt_eqLogicConfigureSave"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
 <a class="btn btn-default pull-right btn-sm" id="bt_eqLogicConfigureRawObject"><i class="fa fa-info"></i> {{Informations brutes}}</a>
+<a class="btn btn-default pull-right btn-sm" id="bt_eqLogicConfigureLogRealTime"><i class="fa fa-file"></i> {{Log}}</a>
 
 <ul class="nav nav-tabs" role="tablist">
 	<li role="presentation" class="active"><a href="#eqLogic_information" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-info-circle"></i> {{Informations}}</a></li>
@@ -541,6 +543,12 @@ if ($eqLogic->getDisplay('parameters') != '') {
 												$('#md_modal2').dialog({title: "{{Configuration de la commande}}"});
 												$('#md_modal2').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open');
 											});
+
+											$('#bt_eqLogicConfigureLogRealTime').off('click').on('click', function () {
+												$('#md_modal2').dialog({title: "{{Logs}}"});
+												$('#md_modal2').load('index.php?v=d&modal=log.display&log=event&search=' + eqLogicInfoSearchString).dialog('open');
+											});
+
 
 
 										</script>
