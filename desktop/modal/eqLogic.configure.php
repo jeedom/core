@@ -8,7 +8,7 @@ if (!is_object($eqLogic)) {
 }
 
 sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
-sendVarToJS('eqLogicInfoSearchString', str_replace('#', '', $eqLogic->getHumanName()));
+sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->getHumanName())));
 ?>
 <div style="display: none;" id="md_displayEqLogicConfigure"></div>
 

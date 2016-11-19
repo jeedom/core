@@ -13,7 +13,7 @@ foreach (array('dashboard', 'mobile', 'dview', 'mview', 'dplan') as $value) {
 	}
 }
 sendVarToJS('cmdInfo', $cmdInfo);
-sendVarToJS('cmdInfoSearchString', str_replace('#', '', $cmd->getHumanName()));
+sendVarToJS('cmdInfoSearchString', urlencode(str_replace('#', '', $cmd->getHumanName())));
 $cmd_widgetDashboard = cmd::availableWidget('dashboard');
 $cmd_widgetMobile = cmd::availableWidget('mobile');
 ?>
