@@ -41,6 +41,8 @@
 * Ajout de certaines informations de santé en version mobile
 * Ajout sur la page batterie des modules en alerte
 * Les objets sans widget sont automatiquement masqué sur le dashboard
+* Ajout d'un bouton dans la configuration avancée d'un équipement/d'une commande pour voir les évenements de celui-ci/celle-ci
+* Les déclencheurs de scénario peuvent maintenant etre des conditions
 
 = 2.4.6
 
