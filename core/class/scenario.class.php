@@ -148,8 +148,7 @@ class scenario {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM scenario
 		WHERE `mode` != "provoke"
-		AND isActive=1
-		AND state!="in progress"';
+		AND isActive=1';
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -208,24 +207,33 @@ class scenario {
 	public static function check($_event = null, $_forceSyncMode = false) {
 		$message = '';
 		if ($_event != null) {
+			$scenarios = array();
 			if (is_object($_event)) {
-				$scenarios = self::byTrigger($_event->getId());
+				$scenarios1 = self::byTrigger($_event->getId());
 				$trigger = '#' . $_event->getId() . '#';
 				$message = __('Scénario exécuté automatiquement sur événement venant de : ', __FILE__) . $_event->getHumanName();
+
 			} else {
-				$scenarios = self::byTrigger($_event);
+				$scenarios1 = self::byTrigger($_event);
 				$trigger = $_event;
 				$message = __('Scénario exécuté sur événement : #', __FILE__) . $_event . '#';
 			}
+			if (is_array($scenarios1) && count($scenarios1) > 0) {
+				foreach ($scenarios1 as $scenario) {
+					if ($scenario->testTrigger($trigger)) {
+						$scenarios[] = $scenario;
+					}
+				}
+			}
 		} else {
 			$message = __('Scénario exécuté automatiquement sur programmation', __FILE__);
-			$scenarios = scenario::all();
+			$scenarios = scenario::schedule();
 			$trigger = '#schedule#';
 			if (!jeedom::isDateOk()) {
 				return;
 			}
 			foreach ($scenarios as $key => &$scenario) {
-				if ($scenario->getIsActive() == 1 && $scenario->getState() != 'in progress' && ($scenario->getMode() == 'schedule' || $scenario->getMode() == 'all')) {
+				if ($scenario->getState() != 'in progress') {
 					if (!$scenario->isDue()) {
 						unset($scenarios[$key]);
 					}
@@ -307,12 +315,8 @@ class scenario {
 			}
 			if ($scenario->getMode() == 'provoke' || $scenario->getMode() == 'all') {
 				$trigger_list = '';
-				if (is_array($scenario->getTrigger())) {
-					foreach ($scenario->getTrigger() as $trigger) {
-						$trigger_list .= cmd::cmdToHumanReadable($trigger);
-					}
-				} else {
-					$trigger_list = cmd::cmdToHumanReadable($scenario->getTrigger());
+				foreach ($scenario->getTrigger() as $trigger) {
+					$trigger_list .= cmd::cmdToHumanReadable($trigger);
 				}
 				preg_match_all("/#([0-9]*)#/", $trigger_list, $matches);
 				foreach ($matches[1] as $cmd_id) {
@@ -554,6 +558,18 @@ class scenario {
 	}
 
 	/*     * *********************Méthodes d'instance************************* */
+
+	public function testTrigger($_event) {
+		foreach ($this->getTrigger() as $trigger) {
+			$trigger = str_replace(array('#variable(', ')#'), array('variable(', ')'), $trigger);
+			if ($trigger == $_event) {
+				return true;
+			} else if (strpos($trigger, $_event) !== false && jeedom::evaluateExpression($trigger)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	public function launch($_trigger = '', $_message = '', $_forceSyncMode = false) {
 		if (config::byKey('enableScenario') != 1 || $this->getIsActive() != 1) {
@@ -985,15 +1001,8 @@ class scenario {
 				}
 			}
 			if ($this->getMode() == 'provoke' || $this->getMode() == 'all') {
-				$triggers = $this->getTrigger();
-				if (is_array($triggers)) {
-					foreach ($triggers as $trigger) {
-						$return .= '    - Evènement : ' . jeedom::toHumanReadable($trigger) . "\n";
-					}
-				} else {
-					if ($triggers != '') {
-						$return .= '    - Evènement : ' . jeedom::toHumanReadable($triggers) . "\n";
-					}
+				foreach ($this->getTrigger() as $trigger) {
+					$return .= '    - Evènement : ' . jeedom::toHumanReadable($trigger) . "\n";
 				}
 			}
 			$return .= "\n";
@@ -1267,7 +1276,7 @@ class scenario {
 		if (is_json($this->trigger)) {
 			return json_decode($this->trigger, true);
 		}
-		return $this->trigger;
+		return array($this->trigger);
 	}
 
 	public function setTrigger($trigger) {
