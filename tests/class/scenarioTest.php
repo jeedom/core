@@ -44,7 +44,7 @@ class scenarioTest extends \PHPUnit_Framework_TestCase {
 			array('ScenarioElement', 'foo', 'foo'),
 			array('Trigger', array('foo' => 'bar'), array('foo' => 'bar')),
 			array('Trigger', '{"foo":"bar"}', array('foo' => 'bar')),
-			array('Trigger', 'foo', 'foo'),
+			array('Trigger', 'foo', array('foo')),
 			array('Timeout', '', null),
 			array('Timeout', 'foo', null),
 			array('Timeout', 0.9, null),
