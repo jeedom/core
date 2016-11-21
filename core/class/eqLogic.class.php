@@ -410,7 +410,7 @@ class eqLogic {
 		} else {
 			$cmd = $this->getCmd(null, $_logicalId);
 		}
-		if (is_object($cmd) && ($cmd->execCmd() != $cmd->formatValue($_value))) {
+		if (is_object($cmd) && ($cmd->getConfiguration('repeatEventManagement', 'auto') == 'always' || $cmd->execCmd() != $cmd->formatValue($_value))) {
 			$cmd->event($_value);
 			return true;
 		}
