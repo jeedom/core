@@ -153,7 +153,7 @@ Das Depot ist ein Internet-Speicherplatz (und Service), um Backups zu speichern,
 
 ==== Markt
 
-Dépot servant à reliéer Jeedom au market, il est vivement conseillé d'utiliser ce dépot. Attention toute demande de support pourra être refusée si vous utilisé un autre de dépot que celui-ci.
+Aufbewahrungsort, der dazu dient, Jeedom mit dem Markt zu verbinden, es wird sehr geraten, diesen Ort zu benutzen. Achtung, es kann jede Supportanfrage abgelehnt werden, wenn Sie einen anderen Aufbewahrungsort wie diesen benutzt.
 
 image::../images/administration17.png[]
 
@@ -173,10 +173,10 @@ Depot, die dazu dient, Jeedom mit Github zu verbinden
 
 image::../images/administration16.png[]
 
-* *Token* : Token pour l'accès au dépot privé
-* *Utilisateur ou organisation du dépot pour le core Jeedom*
-* *Nom du dépôt pour le core Jeedom*
-* *Branche pour le core Jeedom*
+* *Token* : Token für den Zugriff auf den privaten Aufbewahrungsort
+* *Benutzer oder Organisation des Aufbewahrungsorts für den Jeedom Kern* 
+* *Name vom Aufbewahrungsort für den den Jeedom Kern*
+* *Zweig für den Jeedom Kern*
 
 ==== Samba
 

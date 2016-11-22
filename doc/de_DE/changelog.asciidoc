@@ -16,7 +16,7 @@
 * Vous pouvez maintenant mettre dans les résumés des commandes de type texte
 * Changement des bootstraps slider en slider (corriger le bug du double événement des sliders)
 * Sauvegarde automatique des vues lors du clique sur le bouton "voir le résultat"
-* Possibilité d'avoir les doc en local
+* Möglichkeit, die doc Lokal zu haben
 * Les developpeur tierce peuvent ajouter leur propre systeme de gestion de tickets
 * Refonte de la configuration des droits utilisateur (tout est sur la page de gestion des utilisateurs)
 * Mise à jour des libs : jquery (en 3.0) , jquery mobile, hightstock et table sorter
@@ -39,7 +39,7 @@
 * Ajout de la gestion des démons en version mobile
 * Ajout de la gestion des crons en version mobile
 * Ajout de certaines informations de santé en version mobile
-* Ajout sur la page batterie des modules en alerte
+* Auf der Batterie-Seite der Module einen Alarm hinzugefügt
 * Les objets sans widget sont automatiquement masqué sur le dashboard
 * Ajout d'un bouton dans la configuration avancée d'un équipement/d'une commande pour voir les évenements de celui-ci/celle-ci
 * Les déclencheurs de scénario peuvent maintenant etre des conditions
@@ -55,9 +55,9 @@
 
 == 2.4
 
-* Optimisation général
-** Regroupement de requêtes SQL
-** Suppression de requêtes inutiles
+* Allgemeine Optimierung
+ ** Gruppierung von SQL-Abfragen
+** Entfernung von unnötigen Abfragen
 ** Passage en cache du pid, état et dernier lancement des scénarios
 ** Passage en cache du pid, état et dernier lancement des crons
 ** Dans 99% des cas plus de requêtes d'écriture sur la base en fonctionnement nominal (donc hors configuration de jeedom, modifications, installation, mise à jour...)
@@ -183,8 +183,8 @@
 * Ajout des adresses mac des différentes interfaces
 * Ajout de la connexion en double authentification
 * Suppression de la connexion par hash (pour des raisons de sécurité)
-* Ajout d’un système d’administration OS
-* Ajout de widgets standards Jeedom
+* ein OS-Verwaltungssystem hinzugefügt
+* Jeedom Standard-Widgets hinzugefügt
 * Ajout d’un système en beta pour trouver l’IP de Jeedom sur le réseau (il faut connecter Jeedom sur le réseau, puis aller sur le market et cliquer sur « Mes Jeedoms » dans votre profil)
 * Ajout sur la page des scénarios d’un testeur d’expression
 * Revue du système de partage de scénario
@@ -218,8 +218,8 @@
 * Ajout des adresses mac des différentes interfaces
 * Ajout de la connexion en double authentification
 * Suppression de la connexion par hash (pour des raisons de sécurité)
-* Ajout d’un système d’administration OS
-* Ajout de widgets standards Jeedom
+* ein OS-Verwaltungssystem hinzugefügt
+* Jeedom Standard-Widgets hinzugefügt
 * Ajout d’un système en beta pour trouver l’IP de Jeedom sur le réseau (il faut connecter Jeedom sur le réseau, puis aller sur le market et cliquer sur « Mes Jeedoms » dans votre profil)
 * Ajout sur la page des scénarios d’un testeur d’expression
 * Revue du système de partage de scénario
