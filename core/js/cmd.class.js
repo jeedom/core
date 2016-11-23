@@ -793,6 +793,12 @@ jeedom.cmd.normalizeName = function(_tagname) {
     if (name.indexOf("activer") != -1) {
         return 'on';
     }
+    if (name.indexOf("ouvrir") != -1) {
+        return 'ouvrir';
+    }
+    if (name.indexOf("fermer") != -1) {
+        return 'fermer';
+    }
     return _tagname;
 }
 
