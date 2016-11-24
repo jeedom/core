@@ -736,4 +736,3 @@ if (init('type') != '') {
 		$jsonrpc->makeError($errorCode, $message);
 	}
 }
-?>
