@@ -101,7 +101,7 @@
         "Gestion des plugins": "Plugins management",
         "Protocole domotique": "Automation protocol",
         "Communication": "Communication",
-        "Objets communicants": "Objets communicants",
+        "Objets communicants": "Connected devices",
         "Energie": "Energy",
         "Monitoring": "Monitoring",
         "Multimédia": "Multimedia",
@@ -177,7 +177,7 @@
         "Mode": "Mode",
         "Météo": "Weather",
         "Prise": "Plug",
-        "Serrure": "Serrure",
+        "Serrure": "Lock",
         "Sirène": "Sirène",
         "Thermostat": "Thermostat",
         "Volet": "Shutter",
@@ -294,16 +294,16 @@
         "Aucune": "None",
         "Général": "Main",
         "Scénario": "Scenario",
-        "Etape 3 : Chercher dans la documentation": "Etape 3 : Chercher dans la documentation",
+        "Etape 3 : Chercher dans la documentation": "Step 3 : search in documentation",
         "Rechercher": "Search",
         "Chercher": "Search",
-        "Etape 4 : Demande de support": "Etape 4 : Demande de support",
+        "Etape 4 : Demande de support": "Step 4 : Support request",
         "Titre": "Title",
         "Message": "Message",
         "Envoyer": "Send",
-        "Votre ticket a bien été ouvert. Nous vous recontacterons prochainement.": "Votre ticket a bien été ouvert. Nous vous recontacterons prochainement.",
-        "Etape 3 : Demande de support": "Etape 3 : Demande de support",
-        "Accéder": "Accéder",
+        "Votre ticket a bien été ouvert. Nous vous recontacterons prochainement.": "Your ticket has been submitted. You will be contacted asap.",
+        "Etape 3 : Demande de support": "Step 3 : Support request",
+        "Accéder": "Access",
         "Ce plugin utilise un gestionnaire de demande de support": "Ce plugin utilise un gestionnaire de demande de support"
     },
     "desktop/modal/eqLogic.human.insert.php": {
@@ -518,7 +518,7 @@
         "Santé": "Health"
     },
     "core/js/cmd.class.js": {
-        "Veuillez indiquer le code ?": "Veuillez indiquer le code ?",
+        "Veuillez indiquer le code ?": "Please, enter the code",
         "Etes vous sur de vouloir faire cette action ?": "Are you sure that you want to complete this action ?",
         "Résultat de la commande : ": "Result of the command :",
         "Action exécutée avec succès": "Action successful",
@@ -557,13 +557,13 @@
         "Oui": "Yes",
         "Non": "No",
         "Choisissez votre icône": "Choose your icon",
-        "Evénement en temps réel": "Evénement en temps réel"
+        "Evénement en temps réel": "Realtime event"
     },
     "desktop/js/dashboard.js": {
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "You are in edit mode. You can move and resize widgets, and reorder the commands within them."
     },
     "desktop/js/plugin.js": {
-        "Envoyer sur le": "Envoyer sur le",
+        "Envoyer sur le": "Send to",
         "Supprimer": "Delete",
         "Documentation": "Documentation",
         "Changelog": "Changelog",
@@ -720,7 +720,7 @@
         "Statut": "Statut"
     },
     "core/repo/market.repo.php": {
-        "Erreur repo_market::getinfo : ": "Erreur repo_market::getinfo :",
+        "Erreur repo_market::getinfo : ": "Error repo_market::getinfo :",
         "Téléchargement de ": "Download of"
     },
     "core/repo/market.send.repo.php": {
@@ -787,17 +787,17 @@
         "Forum": "Forum"
     },
     "core/class/ajax.class.php": {
-        "Token d'accès invalide": "Token d'accès invalide"
+        "Token d'accès invalide": "Access token is not valid"
     },
     "core/ajax/eqLogic.ajax.php": {
         "Type incorrect (classe équipement inexistante) : ": "Type incorrect (classe équipement inexistante) :",
-        "Un équipement portant ce nom (": "Un équipement portant ce nom (",
-        ") existe déjà pour cet objet": ") existe déjà pour cet objet"
+        "Un équipement portant ce nom (": "An equipment with the name (",
+        ") existe déjà pour cet objet": ") aready exists for this object"
     },
     "desktop/php/update.php": {
         "Dernière vérification : ": "Last check :",
         "Sauvegarder": "Save",
-        "Vérifier les mises à jour": "Vérifier les mises à jour",
+        "Vérifier les mises à jour": "Check updates",
         "Mettre à jour": "Update",
         "Tout forcer": "Force all",
         "Plugins seulement": "Plugins only",
@@ -805,7 +805,7 @@
         "Jeedom seulement": "Jeedom only",
         "Jeedom seulement forcé": "Forced Jeedom only",
         "Réappliquer une mise à jour": "Reapply an update",
-        "Core et plugins": "Core et plugins",
+        "Core et plugins": "Core and plugins",
         "Autre": "Other",
         "Nom": "Name",
         "Version": "Version",
@@ -825,9 +825,9 @@
         "Etes vous sur de vouloir supprimer cet objet ?": "Do you really want to delete this object?",
         "L\\'opération est réussie": "The operation was successful",
         "L\\'opération a échoué": "The operation failed",
-        "Dernière mise à jour du core : ": "Dernière mise à jour du core :",
-        "Dernière version : ": "Dernière version :",
-        "Ne pas mettre à jour": "Ne pas mettre à jour",
+        "Dernière mise à jour du core : ": "Last core update :",
+        "Dernière version : ": "Last version",
+        "Ne pas mettre à jour": "Do not update",
         "Mettre à jour": "Update",
         "Re-installer": "Re-install",
         "Reinstaller": "Reinstaller",
@@ -846,7 +846,7 @@
         "Connexion échouée :": "Connection failed:",
         "Connexion réussie": "Connection successful",
         "Cache vidé": "Cache cleared",
-        "Test réussi": "Test réussi",
+        "Test réussi": "Test passed",
         "Administration système": "System Administration",
         "Création des commandes virtuel réussies": "Création des commandes virtuel réussies",
         "Somme": "Somme",
