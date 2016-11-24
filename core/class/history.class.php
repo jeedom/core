@@ -674,7 +674,7 @@ ORDER BY  datetime DESC';
 	/*     * *********************Methode d'instance************************* */
 
 	public function save($_cmd = null, $_direct = false) {
-		if ($_cmd == null) {
+		if ($_cmd === null) {
 			$cmd = $this->getCmd();
 			if (!is_object($cmd)) {
 				self::emptyHistory($this->getCmd_id());
@@ -683,7 +683,7 @@ ORDER BY  datetime DESC';
 		} else {
 			$cmd = $_cmd;
 		}
-		if ($this->getDatetime() == '') {
+		if ($this->getDatetime() === null) {
 			$this->setDatetime(date('Y-m-d H:i:s'));
 		}
 		if ($cmd->getConfiguration('historizeRound') !== '' && is_numeric($cmd->getConfiguration('historizeRound')) && $cmd->getConfiguration('historizeRound') >= 0 && $this->getValue() !== null) {
@@ -741,7 +741,7 @@ ORDER BY  datetime DESC';
 			'datetime' => $this->getDatetime(),
 			'value' => $this->getValue(),
 		);
-		if ($values['value'] === '') {
+		if ($values['value'] === null) {
 			$values['value'] = null;
 		}
 		$sql = 'REPLACE INTO ' . $this->getTableName() . '
