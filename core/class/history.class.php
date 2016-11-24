@@ -183,7 +183,7 @@ class history {
 
 			$mode = $cmd->getConfiguration('historizeMode', 'avg');
 
-			while ($oldest['oldest'] != null) {
+			while ($oldest['oldest'] !== null) {
 				$values = array(
 					'cmd_id' => $sensors['cmd_id'],
 					'oldest' => $oldest['oldest'],
