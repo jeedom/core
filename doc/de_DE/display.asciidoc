@@ -130,7 +130,7 @@ L'onglet information contient les informations générales sur la commande :
 
 En-dessous, vous retrouvez la liste des différents équipements, commandes, scénarios ou interactions qui utilisent cette commande. Un clic dessus permet d'aller directement sur leur configuration respective
 
-=== Configuration avancée
+=== Erweiterte Konfiguration
 
 image::../images/display13.png[]
 
