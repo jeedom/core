@@ -51,4 +51,3 @@ header('Content-Type: application/octet-stream');
 header('Content-Disposition: attachment; filename=' . $md5 . '.mp3');
 readfile($filename);
 shell_exec('sudo rm ' . $filename . ' > /dev/null 2>&1');
-?>
