@@ -636,6 +636,9 @@ class scenario {
 		$scenarioCopy->setScenarioElement($scenario_element_list);
 		$scenarioCopy->setLog('');
 		$scenarioCopy->save();
+		if (file_exists(dirname(__FILE__) . '/../../log/scenarioLog/scenario' . $scenarioCopy->getId() . '.log')) {
+			unlink(dirname(__FILE__) . '/../../log/scenarioLog/scenario' . $scenarioCopy->getId() . '.log');
+		}
 		return $scenarioCopy;
 	}
 
@@ -767,6 +770,9 @@ class scenario {
 			$element->remove();
 		}
 		$this->emptyCacheWidget();
+		if (file_exists(dirname(__FILE__) . '/../../log/scenarioLog/scenario' . $this->getId() . '.log')) {
+			unlink(dirname(__FILE__) . '/../../log/scenarioLog/scenario' . $this->getId() . '.log');
+		}
 		return DB::remove($this);
 	}
 
