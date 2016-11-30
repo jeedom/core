@@ -131,6 +131,7 @@ class com_shell {
 
 	public function setBackground($background) {
 		$this->background = $background;
+		return $this;
 	}
 
 	public function getBackground() {
