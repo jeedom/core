@@ -55,7 +55,7 @@ if (!isConnect()) {
 						case 'on' :
 						tr += '<span class="label label-info" style="font-size : 1em;">{{Actif}}</span>';
 						break;
-						case 'in_progress' :
+						case 'in progress' :
 						tr += '<span class="label label-success" style="font-size : 1em;">{{En cours}}</span>';
 						break;
 						case 'stop' :
