@@ -1,6 +1,6 @@
 = Resumen de domótica
 
-Esta página permite tener un resumen de la domótica de su casa y  también muestra la organización de dispositivos y ordenes, posibilita la configuración avanzada de los dispositivos y ordenes, así como la posibilidad de mostrar la configuración de pantalla. Se desglosa en dos pestañas "Mi domótica" y "Configuración de pantalla".
+Cette page permet d'avoir un résumé sur sa domotique et donne aussi accès à des fonctions d'organisation des équipements et des commandes, à la configuration avancée des équipements et des commandes ainsi qu'à des possibilités de configuration d'affichage. Elle se décompose en un onglet "Ma domotique" et un un onglet "Configuration de l'affichage".
 
 Esta página es accesible a través de herramientas -> Resumen domótico: 
 
@@ -12,7 +12,7 @@ image::../images/display2.png[]
 
 Aquí se encuentra un resumen del número de objetos existentes, el número de dispositivos y el número de ordenes. A la derecha hay un botón para ocultar todos los dispositivos inactivos y un campo de búsqueda, por ejemplo buscar un dispositivo, orden o todos los dispositivos de un determinado tipo (plugin,por ejemplo escriba rfxcom para obtener todos los dispositivos rfxcom)
 
-A continuación encontrará un marco por objeto, en cada marco, una lista de dispositivos (en azul) conteniendo los objetos. En la línea de los nombres de los objetos hasta 3 botones, en orden: 
+En dessous on retrouve un cadre par objet. Dans chaque cadre se trouve la liste des équipements (en bleu) contenus dans l'objet. Vous avez sur la ligne du nom de l'objet jusqu'à 3 boutons, dans l'ordre : 
 
 * El primero se utiliza para abrir la configuración de la página de objeto en una nueva pestaña
 * el segundo ofrece un resumen sobre el objeto
@@ -35,7 +35,7 @@ image::../images/display3.png[]
 image::../images/display4.png[]
 
 * El nombre del dispositivo
-* el tipo de dispositivo (ID del plugin al que pertenece)
+* le type de l'équipement (identifiant du plugin auquel il appartient)
 * una equis (X) significa que el equipo está inactivo (Si no, significa que el equipo está activo)
 * un ojo tachado significa que el equipo es invisible (Si no, significa que el equipo está activo)
 * enlace externo: permite abrir en una nueva pestaña la página de configuración del dispositivo
@@ -50,7 +50,7 @@ Si se despliega la lista de ordenes se obtiene:
 
 image::../images/display5.png[]
 
-Cada bloque amarillo corresponde a un comando de su dispositivo (uno nuevo en la pequeña flecha del dispositivo permite ocultarlos). Si hace doble clic en el comando o clic en la rueda dentada pequeña, aparecerá la ventana de configuración
+Chaque bloc jaune correspond à une commande de votre équipement (un nouveau clic sur la petite flèche de l'équipement permet de les masquer). Si vous faites un double clic sur la commande ou que vous cliquez sur la petite roue crantée cela fera apparaitre la fenêtre de configuration
 
 ==  Configuración avanzada  del dispositivo
 
@@ -75,7 +75,7 @@ La ficha de información contiene la información general del dispositivo:
 * *Activar*: Permite activar o desactivar el dispositivo (recuerde guardar)
 ** Visible *: permite hacer visible o invisible el dispositivo (recuerde guardar)
 ** Tipo *: Identificador del plugin al que pertenece
-* * Intentos fallidos* : número de intentos consecutivos de comunicación fallidos del dispositivo
+* *Tentative échouée* : nombre de tentatives de communications consécutives avec l'équipement qui ont échoué
 * * Última actualización* : fecha de la última comunicación con el equipo
 
 === Pantalla avanzada
@@ -98,7 +98,7 @@ image::../images/display11.png[]
 [TIP]
 No olvide guardar los cambios después de hacer modificaciones
 
-=== Batería
+=== Batteries
 
 image::../images/display16.png[]
 
@@ -123,10 +123,10 @@ La pestaña de información contiene información general acerca de la orden:
 * *Subtipo * : según el tipo de orden (binario, digital...)
 * *URL directa * : proporciona una dirección URL (haga clic derecho, copiar la dirección del enlace) dependiendo del tipo de orden desencadenara una acción o recuperara el valor (si se trata de una orden de tipo información)
 * *Unidad* : la unidad de de medición de la orden º, kw.. etc
-* * Orden de actualización*: da el identificador de otro comando que si este cambia, fuerza la actualización de la orden mostrada
-** Cache *: duración del valor de la orden en memoria (una vez que este período expire Jeedom solicita su valor). Atención si usted tiene un evento entonces este parámetro se omite porque la duración es ilimitada. Si usted no tiene ningún valor y no tiene eventos, entonces el tiempo de expiración se establece por la configuración de Jeedom (por defecto 300 seg)
+* *Commande déclenchant une mise à jour* : donne l'identifiant d'une autre commande qui, si cette autre commande change, va forcer la mise à jour de la commande visualisée
+* *Cache* : durée de vie de la valeur de la commande en mémoire (une fois ce délai passé Jeedom redemandera sa valeur). Attention si vous êtes en événement alors ce paramètre est ignoré car la durée de vie est infinie. Si vous n'avez aucune valeur et que vous n'êtes pas en événement alors la durée de vie est celle définie dans la configuration de Jeedom (par defaut 300s)
 * *Solo por evento* : indica a Jeedom que no solicite el valor del comando (es el  dispositivo o el pluging quien lo transmiten)
-* *Visible* : establece si el control es visible o no
+* *Visible* : définit si la commande est visible ou non
 
 A continuación encontrará la lista de los diferentes dispositivos, controles, escenas o interacciones que utilizan esta orden. Haga clic arriba para ir directamente a su respectiva configuración
 
@@ -134,15 +134,15 @@ A continuación encontrará la lista de los diferentes dispositivos, controles, 
 
 image::../images/display13.png[]
 
-Más opciones aquí (puede variar en función del tipo y subtipo del comando). 
+Pas mal d'options ici (elles peuvent varier en fonction du type et du sous-type de la commande). 
 
 Para una orden de tipo información:
 
 * *Cálculo y redondeo*
 ** Fórmula de calculo (\#value# valor)* : aquí, puedes hacer una operación sobre el valor de la orden antes de ser procesada por Jeedom, ejemplo: \#valeur# - 0.2 a restar 0,2 (offset sobre un sensor de temperatura)
 ** Redondeo (dígitos después de la coma) *: permite redondear el valor dela orden, ejemplo: poner 2 decimales para transformar 16.643345 en 16.64
-* *Tipo genérico* : esto le permite configurar el tipo genérico de orden (jeedom intenta encontrar por usted automáticamente). Esta información es utilizada por la aplicación móvil.
-** Acción según valor* : esto le permite hacer una especie de mini escena, por ejemplo, puede decir que si este valor es mayor de 50 por 3 minutos realice tal acción. Esto permitiría por ejemplo apagar una luz X minutos después de que se produzca la acción.
+* *Type générique* : cette partie permet de configurer le type générique de la commande (Jeedom essaie de le trouver par lui-même en mode auto). Cette information est utilisée par l'application mobile.
+* *Action sur la valeur* : cette partie permet de faire des sortes de mini scénarios, vous pouvez par exemple dire que si la valeur vaut plus de 50 pendant 3 minutes alors il faut faire telle action. Cela permet par exemple d'éteindre une lumiere X minutes après que celle-ci se soit allumée
 * *Historial* : vaya a link:https://jeedom.com/doc/documentation/core/sp_SP/doc-core-history.html#_configuration_spécifique_par_commande[aquí]
 * *Otros*
 ** *No repetir si no cambia el valor* : Si el comando obtiene 2 veces el mismo valor indica a Jeedom que el segundo no se tenga en cuenta(evita que se repita una escena si el valor no cambia)
@@ -167,9 +167,9 @@ Puedes:
 * * Visible*: oculta o no la orden en el escritorio o móvil
 * *Mostrar nombre* : permite ocultar el nombre del dispositivo a mostrar según el tipo de vista (Dashboard, diseño, vistas o móvil)
 * *Mostrar estadísticas* :  permite ocultar las estadísticas según el contexto (Dashboard, diseño, vistas o móvil). PRECAUCIÓN debe activar las estadísticas en la configuración de Jeedom, configurar esta opción tienen un impacto en el rendimiento
-* *Volver a la línea forzada antes del widget* : permite añadir un salto a la línea antes o después del widget (Forzando por ejemplo la vista de comandos en diferentes columnas en lugar de líneas por defecto)
+* *Retour à la ligne forcé avant le widget* : permet d'ajouter un retour à la ligne avant ou après le widget (pour forcer par exemple un affichage en colonne des différentes commandes de l'équipement au lieu de lignes par defaut)
 
-A continuación encontraremos los parámetros de visualización opcional que tiene el widget. Estos paremetros dependen del widget en cuestión, Por lo tanto, mire sus especificaciones en el Market para conocerlas
+En-dessous, on retrouve des paramètres optionnels d'affichage que l'on peut passer au widget. Ces paramètres dependent du widget en question, il faut donc regarder sa fiche sur le Market pour les connaitre.
 
 [TIP]
 No olvide guardar los cambios después de hacer modificaciones

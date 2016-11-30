@@ -1,6 +1,6 @@
 = Dashboard
 
-Una de las páginas principales de Jeedom, muestra un informe de la domótica. Jeedom genera este informe automáticamente (a diferencia de las vistas y el diseño).
+Une des pages principales de Jeedom affiche un compte-rendu de toute votre domotique. Ce compte-rendu (contrairement aux vues et design) est auto-généré par Jeedom.
 
 Se puede acceder haciendo clic en Inicio -> Dashboard
 

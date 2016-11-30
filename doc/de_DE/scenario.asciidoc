@@ -4,7 +4,7 @@ Das ist der wichtigste Teil einer Haus-Automatisierung: Die Szenarien. Das ist e
 
 == Die Szenario Seite
 
-Der Zugriff darauf ist einfach, gehen Sie auf Werkzeuge -> Szenario : 
+Pour y accéder rien de plus simple, il suffit d'aller sur Outils -> Scénarios : 
 
 image::../images/scenario1.JPG[]
 
@@ -26,7 +26,7 @@ Wie an vielen Orten auf Jeedom, wenn man die Maus ganz nach links bewegt ermögl
 
 Es gibt 2 Szenario Modi : 
 
-* *Einfach* : es ermöglicht auf sehr einfache Art Szenarien zu erstellen "WENN das DANN mache das" 
+* *Simple* : permet de faire des scénarios très simples type SI ça ALORS fait ça
 * *Fortschrittlich* : Sie können alles tun, aber es erfordert mehr wissen
 
 [WICHTIG]
@@ -47,9 +47,9 @@ Hier finden Sie :
 
 * *Name* : Der Name des Szenarios
 * *Beschreibung* : Sie können eine Beschreibung hinzufügen, was das Szenario macht und zum Beispiel Überwachung  
-* *Aktiv* : festlegen, ob das Szenario aktiv ist 
-* *Läuft im Vordergrund* : Das Szenario wird direkt ausgeführt und nicht in einem separaten Ausführungs-Thread. Bitte beachten Sie diese Option kann gefährlich sein, weil es jede andere Aktion des Szenarios anhält.  SIE SOLLTEN NIEMALS ein Szenario aktivieren was durch einen Zeitplan ausgelöst wird.
-* *Letzter Start* : Datum der letzten Szenario Ausführung
+* *Actif* : définit si le scénario est actif ou non
+* *Exécuter en avant plan* : permet de lancer le scénario directement et non dans un fil d'exécution séparé. Attention cette option peut être dangereuse car elle met en pause toutes les autres actions du scénario. IL NE FAUT JAMAIS l'activer sur un scénario déclenché par une programmation horaire
+* *Dernier lancement* : la date de dernière exécution du scénario
 * *Zustand* : der aktuelle Zustand des Szenarios (laufend, angehalten...)  
 
 Oben rechts finden wir :
@@ -61,7 +61,7 @@ Oben rechts finden wir :
 Unten links auf der Seite haben Sie die Ausführungsbedingung des Szenarios : 
 
 * *Szenario* : um anzuzeigen, ob das Skript programmiert (an einer bestimmten Uhrzeit und Datum) oder wenn sie  verursacht wird (Wie die Erfassung der Bewegung)
-* *Auszuführen* : im Programmier Modus können sie sagen, ob es einmal oder wiederholt ausgeführt werden soll
+* *A exécuter* : en mode programmé permet de dire s'il doit être exécuté une fois ou de manière répétée
 * *Datiert* : wenn es nur einmal ausgeführt wird, dann müssen sie das Datum und die Uhrzeit eingeben
 * *Häufigkeit* : im Mehrmals Modus können Sie die Wiederholungsfrequenz wählen
 
@@ -71,7 +71,7 @@ image::../images/scenario10.JPG[]
 
 image::../images/scenario11.JPG[]
 
-* *optionale Bedingung* : einen Test ermöglichen oder nicht, bevor das Szenario ausgeführt wird.
+* *Condition optionnelle* : permet d'activer ou non un test avant l'exécution du scénario.
 
 image::../images/scenario12.JPG[]
 
@@ -108,8 +108,8 @@ Oben finden wir den allgemeinen Teil wieder :
 * *Zeitüberschreitung Sekunden (0 = unbegrenzt)* : Die maximal  erlaubte Ausführungszeit
 * *Auslöser* : Dann kommt der Auslöse-Teil, das kann entweder ein oder mehrere Ereignisse und/oder eine Programmierung sein (eine bestimmte Zeit, Frequenz,...). Dieser Teil schreibt sich mittels einer crontab Standardsyntax, erreichbar über die Schaltfläche, ein Assistent ist durch anklicken verfügbar?
 * *Action* : En haut à droite on retrouve quelques actions utiles comme le lancement forcé du scénario (pour test),la suppression du scénario, la sauvegarde, la génération d'un template (voir le chapitre dédié), l'export, l’arrêt forcé d’un scénario (si en cours), log des dernières exécutions (très pratique pour vérifier le déroulement exact du scénario), la duplication.
-* *Läuft im Vordergrund* : Das Szenario wird direkt ausgeführt und nicht in einem separaten Ausführungs-Thread. Bitte beachten Sie diese Option kann gefährlich sein, weil es jede andere Aktion des Szenarios anhält.  SIE SOLLTEN NIEMALS ein Szenario aktivieren was durch einen Zeitplan ausgelöst wird oder ein Szenario, das Aktionen von Typ sleep enthält
-* *Enchainer les commandes sans attendre* : permet d'enchaîner les suites d'actions sans attendre le retour et donc la vérification de la bonne exécution (attention actuellement seuls les plugins openzwave et script sont compatibles)
+* *Execution en avant plan* : permet de lancer le scénario directement et non dans un fil d'exécution séparé. Attention cette option peut être dangereuse car elle met en pause toute les autres actions du scénario. IL NE FAUT JAMAIS l'activer sur un scénario déclenché par une programmation horaire ou un scénario contenant des actions de type sleep
+* *Enchaîner les commandes sans attendre* : permet d'enchaîner les suites d'actions sans attendre le retour et donc la vérification de la bonne exécution (attention actuellement seuls les plugins openzwave et script sont compatibles)
 * *Pas de log* : indique au scénario de ne pas écrire dans les logs (permet de le rendre un peu plus rapide)
 * *Zustand* : aktueller Zustand des Szenarios
 
@@ -118,7 +118,7 @@ Im unteren Teil kommt das Szenario selbst mit einer Schaltfläche zum hinzufüge
 image::../images/scenario4.JPG[]
 
 * *wenn/dann/sonst* : Grundstein für das erreichen einer Bedingung
-* *Action* : bloc permet de lancer une action sans simple sans aucune condition ou autre avant
+* *Action* : bloc permet de lancer une action simple sans aucune condition ou autre avant
 * Schleifen : ermöglicht Schleifen auf 1 definierte Nummer (oder einen Wert eines Sensors oder Zufallszahl)
 * *Dans* : permet de lancer une action dans X minute(s) (0 est une valeur possible). La particularité c'est que les actions sont lancées en arrière plan, elles ne bloquent donc pas la suite du scénario. C'est donc un bloc non bloquant.
 * *A* : erlaubt, Jeedom zu sagen, die Aktionen des Blocks A zu einer bestimmten Stunde zu starten (in der Form hhmm). Dieser Block ist nicht blockierend
@@ -126,12 +126,12 @@ image::../images/scenario4.JPG[]
 * *Kommentar* : ermöglicht, Kommentare zu seinem Szenario hinzufügen
 
 [TIP]
-Devant chaque bloc (en dessous de la double flèche verticale qui permet de déplacer les blocs) vous avez un petit coche pour désactiver completement le bloc sans pour autant supprimer celui-ci (permet de faire des tests pour le réactiver plus tard par exemple)
+Devant chaque bloc (en dessous de la double flèche verticale qui permet de déplacer les blocs) vous avez un petit coche pour désactiver complètement le bloc sans pour autant supprimer celui-ci (permet de faire des tests pour le réactiver plus tard par exemple)
 
 [NOTE]
 Sur les blocs de type Si/Alors/Sinon vous avez devant des flèches circulaires, elles permettent d'activer ou non la répétition des actions si l'évaluation de la condition donne le même résultat que la précedente évaluation
 
-Pour les conditions, Jeedom essaye de faire en sorte qu’on puisse les écrire le plus possible en langage naturel tout en restant souple. On a donc un bouton permettant de sélectionner un équipement puis on écrit la condition. Il existe une liste de tag permettant d’avoir accès à des variables issues du scénario ou d’un autre, à l’heure, à la date, à un nombre aléatoire….
+Pour les conditions, Jeedom essaye de faire en sorte qu’on puisse les écrire le plus possible en langage naturel tout en restant souple. On a donc un bouton permettant de sélectionner un équipement puis on écrit la condition. Il existe une liste de tags permettant d’avoir accès à des variables issues du scénario ou d’un autre, à l’heure, à la date, à un nombre aléatoire….
 
 image::../images/scenario5.JPG[]
 
@@ -143,14 +143,14 @@ Sobald der Befehl ausgewählt wurde, fragt Jeedom, was Sie testen möchten:
 
 image::../images/scenario7.JPG[]
 
-Abhängig vom Typ, haben Sie verschiedene Möglichkeiten, Sie können danach andere Tests erstellen und sie mit „oder“ oder ein „und“ verknüpfen. Mit diesem Assistenten können Sie Ihre Bedingung bauen.
+En fonction du type vous aurez différentes possibilités, vous pouvez ensuite mettre d'autres tests et les lier avec un "ou" ou un "et". Ainsi avec cet assistant vous pouvez construire votre condition.
 
 [TIP]
 Si vous cliquez sur "Ne rien mettre" Jeedom va juste écrire la commande dans le champ condition en vous laissant la main pour la suite.
 
 Le deuxième bouton quant à lui permet d'aller chercher un scénario pour, par exemple, tester si celui-ci est en cours (voir partie "Condition ou valeur d’une commande d’action")
 
-Pour les actions, on peut exécuter soit une action d’une commande (les options de celle-ci apparaitront sur sa droite), soit une commande d’affectation de variable ou de pause(très pratique pour simuler la présence surtout couplé à la génération d’une durée aléatoire) ou même d’action sur un autre scénario (start, stop, activer, désactiver).
+Pour les actions, on peut exécuter soit une action d’une commande (les options de celle-ci apparaitront sur sa droite), soit une commande d’affectation de variable ou de pause(très pratique pour simuler la présence surtout couplée à la génération d’une durée aléatoire) ou même d’action sur un autre scénario (start, stop, activer, désactiver).
 
 Hier finden Sie die folgenden Optionen : 
 
@@ -228,7 +228,7 @@ Sie haben auch die folgenden Tags und vieles mehr, wenn Ihr Szenario durch eine 
 * *\#profil#* : Profil des Benutzers, der das Skript ausgelöst hat (kann leer sein).
 
 [WICHTIG]
-Wenn ein Szenario durch einer Interaktion ausgelöst wird, wird dieser gezwungenermaßen im schnellen Modus ausgeführt. 
+Lorsqu'un scénario est déclenché par une interaction, celui-ci est forcément exécuté en mode rapide.
     
 Mehrere Funktionen sind für die Geräte verfügbar :
 
@@ -308,7 +308,7 @@ Une boîte à outils de fonctions génériques peut également servir à effectu
 * **rand**(1,10) : pour un nombre aléatoire de 1 à 10
 * **randomColor**(min,max) : donne une couleur aléatoire compris entre 2 bornes ( 0 => rouge, 50 => vert, 100 => bleu)
     ** Ex : randomColor(40,60) : pour avoir une couleur aléatoire proche du vert
-* **trigger**(commande) : permet de connaitre le déclencheur du scénario ou de savoir si c'est bien la commande passée en paramètre qui a déclenché le scénario
+* **trigger**(commande) : permet de connaître le déclencheur du scénario ou de savoir si c'est bien la commande passée en paramètre qui a déclenché le scénario
     ** Ex : trigger(\#[Salle de bain][Hydrometrie][Humidité]#) : 1 si c'est bien \#[Salle de bain][Hydrometrie][Humidité]# qui a déclenché le scénario sinon 0
 * **triggerValue**(commande) : permet de connaitre la valeur du déclencheur du scénario
     ** Ex : triggerValue(\#[Salle de bain][Hydrometrie][Humidité]#) : 80 si l'hydrométrie de \#[Salle de bain][Hydrometrie][Humidité]# est de 80 %
@@ -329,20 +329,20 @@ Une boîte à outils de fonctions génériques peut également servir à effectu
 En plus des commandes domotiques vous avez accès aux actions suivantes : 
 
 * *sleep* : pause de x seconde(s)
-* *wait* : attend jusqu'a ce que la condition soit valide (maximum 2h), le timeout est en seconde                   
-* *variable* : création/modification d'une ou de la valeur d'une variable
+* *wait* : attend jusqu'à ce que la condition soit valide (maximum 2h), le timeout est en seconde(s)                   
+* *variable* : création/modification d'une variable ou de la valeur d'une variable
 * *scenario* : permet le contrôle des scénarios
 * *stop* : arrête le scénario
 * *icon* : permet de changer l'icône de représentation du scénario
 * *gotodesign* : change le design affiché sur tous les navigateurs par le design demandé
 * *log* : permet de rajouter un message dans les logs
 * *message* : permet d'ajouter un message dans le centre de message
-* *equipement* : permet de modifier les propriétés visible/invisible actif/inactif d'un équipement
+* *equipement* : permet de modifier les propriétés d'un équipement visible/invisible actif/inactif
 * *jeedom_poweroff* : demande à Jeedom de s'éteindre
-* *scenario_return* : Retour un texte ou une valeur pour une intéraction par exemple
-* *alert* : permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte
-* *popup* : permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page jeedom d'ouvert.
-* *ask* : permet d'indiquer à jeedom qu'il faut poser une question à l'utilisateur. La réponse est stockée dans une variable, il suffit ensuite de tester sa valeur. Pour le moment seul les plugins sms et slack sont compatibles. Attention l'action ask est bloquante, tant qu'il n'y a pas de réponse ou que le timeout n'est pas atteint le scénario attend. Voila un exemple d'utilisation : 
+* *scenario_return* : Retourne un texte ou une valeur pour une intéraction par exemple
+* *alert* : permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page jeedom ouverte. Vous pouvez en plus choisir 4 niveaux d'alerte
+* *popup* : permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page jeedom ouverte.
+* *ask* : permet d'indiquer à jeedom qu'il faut poser une question à l'utilisateur. La réponse est stockée dans une variable, il suffit ensuite de tester sa valeur. Pour le moment seuls les plugins sms et slack sont compatibles. Attention l'action ask est bloquante, tant qu'il n'y a pas de réponse ou que le timeout n'est pas atteint le scénario attend. Voila un exemple d'utilisation : 
 
 Bild:... / Bilder/scenario20. JPG]
              
@@ -412,17 +412,17 @@ Szenario::
     ** Schreibt eine Nachricht in das Protokoll des Szenarios
 
 * *$scenario\->persistLog()*;
-    ** Force l'écriture du log (sinon il est ecrit seulement à la fin du scénario). Attention ceci peut un peu ralentir le scénario
+    ** Force l'écriture du log (sinon il est écrit seulement à la fin du scénario). Attention ceci peut un peu ralentir le scénario
 
 == Die Variablen
 
-Vous pouvez en cliquant sur le bouton variable voir toutes les variables exitantes sur votre système, changer leur valeur, les supprimer, en ajouter et voir dans quel scénario elles sont utilisées : 
+Vous pouvez en cliquant sur le bouton variable voir toutes les variables existantes sur votre système, changer leur valeur, les supprimer, en ajouter et voir dans quel scénario elles sont utilisées : 
 
 image::../images/scenario14.JPG[]
 
 == Szenario Vorlagen
 
-Fonctionalité permettant de transformer un scénario en template pour par exemple l'appliquer sur un autre Jeedom ou le partager sur le market. C'est aussi à partir de là que vous pouvez récupérer un scénario du market
+Fonctionalité permettant de transformer un scénario en template pour par exemple l'appliquer sur un autre Jeedom ou le partager sur le Market. C'est aussi à partir de là que vous pouvez récupérer un scénario du Market
 
 image::../images/scenario15.JPG[]
 
@@ -432,18 +432,18 @@ image::../images/scenario16.JPG[]
 
 Hier haben sie folgende Möglichkeiten : 
 
-* Eine Vorlage an Jeedom zu senden (zuerst als JSON-Datei abgepeichert)
-* Eine Liste der verfügbaren Szenarien auf dem Markt einsehen 
+* D'envoyer un template à Jeedom (fichier JSON préalablement récupéré)
+* De consulter la liste des scénarios disponibles sur le Market
 Eine Vorlage von dem laufenden Szenario zu erschaffen (vergessen nicht, einen Namen zu vergeben)
 *  Sie sehen die zur Zeit vorhandenen Vorlagen auf Ihrem Jeedom 
 
-Nach einem Klick auf eine Vorlage erhalten Sie : 
+Par un clic sur un template vous obtenez : 
 
 image::../images/scenario17.JPG[]
 
 Oben können sie : 
 
-* *Partager* : partager le template sur le market
+* *Partager* : partager le template sur le Market
 * *Löschen* : Vorlage löschen 
 * *Herunterladen* : erlaubt, die Vorlage in Form einer JSON-Datei abzuspeichern, um es als Beispiel auf ein anderes Jeedom zu schicken
 
@@ -464,4 +464,4 @@ Sie erhalten :
 
 image::../images/scenario19.JPG[]
 
-En haut vous pouvez rafraichir le log, le télécharger ou le supprimer. La taille des logs n'est pas limitée en exécution mais en nombre de lignes (en fonction de la valeur mise dans la configuration de Jeedom)
+En haut vous pouvez rafraîchir le log, le télécharger ou le supprimer. La taille des logs n'est pas limitée en exécution mais en nombre de lignes (en fonction de la valeur mise dans la configuration de Jeedom)

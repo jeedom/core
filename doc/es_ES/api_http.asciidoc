@@ -14,7 +14,7 @@ La primera consulta se utiliza sólo para activar una escena
 
 Aquí le damos la URL = http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=\#APIKEY#&type=scenario&id=\#ID#&action=\#ACCIÓN#
 
-#IP_JEEDOM # corresponde a la url de Jeedom. Es la dirección de internet que utilizas para acceder a Jeedom desde fuera (a menos que estés conectado a tu red local).
+\#IP_JEEDOM# correspond à votre url d’accès à Jeedom. Il s’agit (sauf si vous êtes connecté à votre réseau local) de l’adresse internet que vous utilisez pour accéder à Jeedom depuis l’extérieur.
 
 #API_KEY # corresponde a tu API key, es único para su instalación. Para saber cual es, debe activar el modo experto. Ir a Menú superior, luego 'Administración' y en 'Configuración General', verá una línea con la clave API.
 
@@ -36,4 +36,4 @@ Aquí le damos la URL = http://\#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=\#
 
 \#ID# es el id que desea manejar o recibir información.
 
-La forma más sencilla de obtener esta dirección URL es ir la página de resumen de domótica,  buscar el comando y a continuación, abrir configuración avanzada y ahí podrás ver una dirección URL que contiene todo la cadena de ejecución en función del tipo y subtipo del comando. Ver link:https://jeedom.com/doc/documentation/core/fr_FR/doc-core-display.html#_informations_2[ici]
+Le plus simple pour avoir cette URL est d'aller sur la page Résumé domotique, de chercher la commande puis d'ouvrir sa configuration avancée et là vous allez voir une URL qui contient déjà tout ce qu'il faut en fonction du type et du sous-type de la commande. Voir link:https://jeedom.com/doc/documentation/core/fr_FR/doc-core-display.html#_informations_2[ici]

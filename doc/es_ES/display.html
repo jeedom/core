@@ -420,7 +420,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_información">1.1. Información</a></li>
 <li><a href="#_pantalla_avanzada">1.2. Pantalla avanzada</a></li>
-<li><a href="#_batería">1.3. Batería</a></li>
+<li><a href="#_batteries">1.3. Batteries</a></li>
 </ul>
 </li>
 <li><a href="#_configuración_avanzada_de_una_orden">2. Configuración avanzada de una orden</a>
@@ -437,7 +437,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Esta página permite tener un resumen de la domótica de su casa y  también muestra la organización de dispositivos y ordenes, posibilita la configuración avanzada de los dispositivos y ordenes, así como la posibilidad de mostrar la configuración de pantalla. Se desglosa en dos pestañas "Mi domótica" y "Configuración de pantalla".</p>
+<p>Cette page permet d&#8217;avoir un résumé sur sa domotique et donne aussi accès à des fonctions d&#8217;organisation des équipements et des commandes, à la configuration avancée des équipements et des commandes ainsi qu&#8217;à des possibilités de configuration d&#8217;affichage. Elle se décompose en un onglet "Ma domotique" et un un onglet "Configuration de l&#8217;affichage".</p>
 </div>
 <div class="paragraph">
 <p>Esta página es accesible a través de herramientas &#8594; Resumen domótico:</p>
@@ -459,7 +459,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Aquí se encuentra un resumen del número de objetos existentes, el número de dispositivos y el número de ordenes. A la derecha hay un botón para ocultar todos los dispositivos inactivos y un campo de búsqueda, por ejemplo buscar un dispositivo, orden o todos los dispositivos de un determinado tipo (plugin,por ejemplo escriba rfxcom para obtener todos los dispositivos rfxcom)</p>
 </div>
 <div class="paragraph">
-<p>A continuación encontrará un marco por objeto, en cada marco, una lista de dispositivos (en azul) conteniendo los objetos. En la línea de los nombres de los objetos hasta 3 botones, en orden:</p>
+<p>En dessous on retrouve un cadre par objet. Dans chaque cadre se trouve la liste des équipements (en bleu) contenus dans l&#8217;objet. Vous avez sur la ligne du nom de l&#8217;objet jusqu&#8217;à 3 boutons, dans l&#8217;ordre :</p>
 </div>
 <div class="ulist">
 <ul>
@@ -527,7 +527,7 @@ Es a partir de este comando como calcula el orden de visualización en el Dashbo
 <p>El nombre del dispositivo</p>
 </li>
 <li>
-<p>el tipo de dispositivo (ID del plugin al que pertenece)</p>
+<p>le type de l&#8217;équipement (identifiant du plugin auquel il appartient)</p>
 </li>
 <li>
 <p>una equis (X) significa que el equipo está inactivo (Si no, significa que el equipo está activo)</p>
@@ -571,7 +571,7 @@ Doble clic en el dispositivo también permite abrir la ventana de configuración
 </div>
 </div>
 <div class="paragraph">
-<p>Cada bloque amarillo corresponde a un comando de su dispositivo (uno nuevo en la pequeña flecha del dispositivo permite ocultarlos). Si hace doble clic en el comando o clic en la rueda dentada pequeña, aparecerá la ventana de configuración</p>
+<p>Chaque bloc jaune correspond à une commande de votre équipement (un nouveau clic sur la petite flèche de l&#8217;équipement permet de les masquer). Si vous faites un double clic sur la commande ou que vous cliquez sur la petite roue crantée cela fera apparaitre la fenêtre de configuration</p>
 </div>
 </div>
 </div>
@@ -637,7 +637,7 @@ Es posible acceder directamente (si es compatible con el plugin)  a esta ventana
 </div>
 </li>
 <li>
-<p>* Intentos fallidos* : número de intentos consecutivos de comunicación fallidos del dispositivo</p>
+<p><strong>Tentative échouée</strong> : nombre de tentatives de communications consécutives avec l&#8217;équipement qui ont échoué</p>
 </li>
 <li>
 <p>* Última actualización* : fecha de la última comunicación con el equipo</p>
@@ -700,7 +700,7 @@ No olvide guardar los cambios después de hacer modificaciones
 </div>
 </div>
 <div class="sect2">
-<h3 id="_batería">1.3. Batería</h3>
+<h3 id="_batteries">1.3. Batteries</h3>
 <div class="imageblock">
 <div class="content">
 <img src="../images/display16.png" alt="display16">
@@ -755,20 +755,16 @@ No olvide guardar los cambios después de hacer modificaciones
 <p><strong>Unidad</strong> : la unidad de de medición de la orden º, kw.. etc</p>
 </li>
 <li>
-<p>* Orden de actualización*: da el identificador de otro comando que si este cambia, fuerza la actualización de la orden mostrada</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Cache *: duración del valor de la orden en memoria (una vez que este período expire Jeedom solicita su valor). Atención si usted tiene un evento entonces este parámetro se omite porque la duración es ilimitada. Si usted no tiene ningún valor y no tiene eventos, entonces el tiempo de expiración se establece por la configuración de Jeedom (por defecto 300 seg)</p>
+<p><strong>Commande déclenchant une mise à jour</strong> : donne l&#8217;identifiant d&#8217;une autre commande qui, si cette autre commande change, va forcer la mise à jour de la commande visualisée</p>
 </li>
-</ul>
-</div>
+<li>
+<p><strong>Cache</strong> : durée de vie de la valeur de la commande en mémoire (une fois ce délai passé Jeedom redemandera sa valeur). Attention si vous êtes en événement alors ce paramètre est ignoré car la durée de vie est infinie. Si vous n&#8217;avez aucune valeur et que vous n&#8217;êtes pas en événement alors la durée de vie est celle définie dans la configuration de Jeedom (par defaut 300s)</p>
 </li>
 <li>
 <p><strong>Solo por evento</strong> : indica a Jeedom que no solicite el valor del comando (es el  dispositivo o el pluging quien lo transmiten)</p>
 </li>
 <li>
-<p><strong>Visible</strong> : establece si el control es visible o no</p>
+<p><strong>Visible</strong> : définit si la commande est visible ou non</p>
 </li>
 </ul>
 </div>
@@ -784,7 +780,7 @@ No olvide guardar los cambios después de hacer modificaciones
 </div>
 </div>
 <div class="paragraph">
-<p>Más opciones aquí (puede variar en función del tipo y subtipo del comando).</p>
+<p>Pas mal d&#8217;options ici (elles peuvent varier en fonction du type et du sous-type de la commande).</p>
 </div>
 <div class="paragraph">
 <p>Para una orden de tipo información:</p>
@@ -805,14 +801,10 @@ No olvide guardar los cambios después de hacer modificaciones
 </div>
 </li>
 <li>
-<p><strong>Tipo genérico</strong> : esto le permite configurar el tipo genérico de orden (jeedom intenta encontrar por usted automáticamente). Esta información es utilizada por la aplicación móvil.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Acción según valor* : esto le permite hacer una especie de mini escena, por ejemplo, puede decir que si este valor es mayor de 50 por 3 minutos realice tal acción. Esto permitiría por ejemplo apagar una luz X minutos después de que se produzca la acción.</p>
+<p><strong>Type générique</strong> : cette partie permet de configurer le type générique de la commande (Jeedom essaie de le trouver par lui-même en mode auto). Cette information est utilisée par l&#8217;application mobile.</p>
 </li>
-</ul>
-</div>
+<li>
+<p><strong>Action sur la valeur</strong> : cette partie permet de faire des sortes de mini scénarios, vous pouvez par exemple dire que si la valeur vaut plus de 50 pendant 3 minutes alors il faut faire telle action. Cela permet par exemple d&#8217;éteindre une lumiere X minutes après que celle-ci se soit allumée</p>
 </li>
 <li>
 <p><strong>Historial</strong> : vaya a <a href="https://jeedom.com/doc/documentation/core/sp_SP/doc-core-history.html#_configuration_spécifique_par_commande">aquí</a></p>
@@ -879,12 +871,12 @@ No olvide guardar los cambios después de hacer modificaciones
 <p><strong>Mostrar estadísticas</strong> :  permite ocultar las estadísticas según el contexto (Dashboard, diseño, vistas o móvil). PRECAUCIÓN debe activar las estadísticas en la configuración de Jeedom, configurar esta opción tienen un impacto en el rendimiento</p>
 </li>
 <li>
-<p><strong>Volver a la línea forzada antes del widget</strong> : permite añadir un salto a la línea antes o después del widget (Forzando por ejemplo la vista de comandos en diferentes columnas en lugar de líneas por defecto)</p>
+<p><strong>Retour à la ligne forcé avant le widget</strong> : permet d&#8217;ajouter un retour à la ligne avant ou après le widget (pour forcer par exemple un affichage en colonne des différentes commandes de l&#8217;équipement au lieu de lignes par defaut)</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>A continuación encontraremos los parámetros de visualización opcional que tiene el widget. Estos paremetros dependen del widget en cuestión, Por lo tanto, mire sus especificaciones en el Market para conocerlas</p>
+<p>En-dessous, on retrouve des paramètres optionnels d&#8217;affichage que l&#8217;on peut passer au widget. Ces paramètres dependent du widget en question, il faut donc regarder sa fiche sur le Market pour les connaitre.</p>
 </div>
 <div class="admonitionblock tip">
 <table>

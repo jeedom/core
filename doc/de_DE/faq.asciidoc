@@ -64,14 +64,14 @@ Sie können in der Jeedom Konfiguration https erzwingen.
 
 '''
 Ich erhalte die Meldung : "Vous avez un trop grand nombre de système jeedom déclaré, veuillez en réduire le nombre et demander une réinitialisation de vos clefs d'installation", was ist zu tun ?::
-Gehen sie auf den Markt, melden sie sich auf Ihr Konto an und gehen sie zu ihrem Profil und fragen nach dem Rücksetzen des Installationsschlüssels.
+Rendez vous sur le Market, connectez-vous avec votre compte puis allez sur votre page profil et demandez une réinitilisation des clefs d'installation.
 
 '''
 Was ist "nur Ereignis" und "Cache Lebensdauer" ?::
 * nur Ereignis : weist Jeedom an, niemals nach dem Wert zu fragen(c'est l'équipement qui la remonte). Also beim Empfang eines Werts, hat dieser eine unendliche Lebensdauer (bis zum nächsten Empfang). 
 * Lebensdauer Cache: Dauer der Gültigkeit eines Wertes, wenn Sie zum Beispiel 60 Sekunden setzen, wenn der Wert Datera als 60 Sekunden und die Jeedom Bedürfnisse (Armaturenbrett, Szenario...) dann ist es gehen wird, das Modul, um einen Wert aktualisiert Abfragen.
 
-Achtung, diese 2 Optionen sind für erfahrene Benutzer die diese Funktionen verstehen vorbehalten, ein Konfigurationsfehler in diesem Teil kann das System instabil oder funktionsunfähig machen. Zum Beispiel sollte in Zwave, RFXCOM und enocean, das Feld Ereignis IMMER angekreutzt werden,
+Attention, ces 2 options sont réservées aux utilisateurs avancés qui comprennent parfaitement leur fonction, une erreur de configuration dans cette partie peut rendre une installation instable voire inopérante. Par exemple, en zwave, rfxcom et enocean, la case événement seulement devrait TOUJOURS être cochée.
 
 '''
 Wie sind die Rechte zu überarbeiten ?::
@@ -87,7 +87,7 @@ Sie sind im Verzeichnis /usr/share/nginx/www/jeedom/backup
 
 '''
 Wie kann mann Jeedom mit SSH auf den neuesten Stand bringen ?::
-In SSH eingeben : 
+En SSH faîtes : 
 
 [source,bash]
 sudo su -

@@ -64,14 +64,14 @@ Entonces puede forzar https en la configuración de Jeedom.
 
 '''
 Me sale el mensaje: "tienes un gran número de sistemas Jeedom registrados, por favor, reduzca el número y solicite un reinicio de las llaves de la instalación", ¿qué hacer?:
-Conectese al Market con su cuenta de usuario, vaya a su perfil y solicite un reajuste de su clave de instalación.
+Rendez vous sur le Market, connectez-vous avec votre compte puis allez sur votre page profil et demandez une réinitilisation des clefs d'installation.
 
 '''
 ¿Qué es "sólo en el evento" y "lifetime cache"?:
 * Evento único: Indica a Jeedom que nunca actualice el valor (es el dispositivo quien lo actualiza). Así que cuando se envíe un valor, este tendrá una duración ilimitada (hasta la recepción del siguiente evento).
 * Lifetime cache : duración de la validez de un valor, si pones 60 segundos por ejemplo, el valor se actualizará cada 60 segundos según las necesidades indicadas en jeedom (dashboard, escena...) pasado ese tiempo se consultará nuevamente el módulo para obtener un valor actualizado.
 
-Atención, estas 2 opciones están reservadas para los usuarios avanzados que entienden la función, un error de configuración en esta parte, puede hacer la instalación disfuncional o inestable. Por ejemplo, en zwave, rfxcom y enocean, un caso de evento único SIEMPRE de comprobarse
+Attention, ces 2 options sont réservées aux utilisateurs avancés qui comprennent parfaitement leur fonction, une erreur de configuration dans cette partie peut rendre une installation instable voire inopérante. Par exemple, en zwave, rfxcom et enocean, la case événement seulement devrait TOUJOURS être cochée.
 
 '''
 ¿Como revisar los permisos?::
@@ -87,7 +87,7 @@ Están en la carpeta /usr/share/nginx/www/jeedom/backup
 
 '''
 ¿Cómo actualizar Jeedom por SSH?:
-Desde ssh ejecutar : 
+En SSH faîtes : 
 
 [source,bash]
 sudo su -

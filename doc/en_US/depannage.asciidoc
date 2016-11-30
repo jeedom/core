@@ -31,7 +31,7 @@ sudo chown www-data:www-data core/config/common.config.php
 ''''
 
 I have some {{...}} everywhere::
-La cause la plus fréquente est l'utilisation d'un plugin en version beta, et pas Jeedom, ou l'inverse
+La cause la plus fréquente est l'utilisation d'un plugin en version beta, et Jeedom en stable, ou l'inverse
 
 ''''
 
@@ -52,20 +52,20 @@ souvent cela vient d'une commande qui ne se termine pas
 
 ''''
 
-Mon scénario est lent à se declencher::
+Mon scénario est lent à se déclencher::
 Si dans le scénario il n'y a pas de pause il est conseillé de cocher la case "éxécuter le plus rapidement possible" (disponible en mode expert)
 
 ''''
 
 Je n'ai aucune erreur dans le log nginx.error malgrè des erreurs 500::
 In ssh :
-Editez le fichier /etc/php5/fpm/pool.d/www.conf et décommanter la ligne ";catch_worket_process=yes" (supression du ;) 
+Editez le fichier /etc/php5/fpm/pool.d/www.conf et décommantez la ligne ";catch_worket_process=yes" (supression du ;) 
 et redémarrez php "sudo service php5-fpm restart"
 
 ''''
 
 J'ai des instabilités ou des erreurs 504::
-Vérifiez si votre systeme de fichier n'est pas corrompu, en ssh la commande est : "sudo dmesg | grep error"
+Vérifiez si votre système de fichiers n'est pas corrompu, en ssh la commande est : "sudo dmesg | grep error"
 
 ''''
 
@@ -83,12 +83,12 @@ Vérifiez que vous avez bien mis les /jeedom si vous utilisez ceux-ci juste apr�
 
 I made the following mistake : SQLSTATE[HY000] [2002] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock'::
 Cela est dû à MySQL qui s'est arrêté, ce n'est pas normal, les cas courants sont : 
-* souci de place sur le système de fichier (peut être vérifié en faisant la commande "df -h", en ssh)
-* problème de corruption de fichier, arrive souvent suite à un arrêt non propre de jeedom (coupure de courant)
+* souci de place sur le système de fichiers (peut être vérifié en faisant la commande "df -h", en ssh)
+* problème de corruption de fichier(s), arrive souvent suite à un arrêt non propre de Jeedom (coupure de courant)
 
 Malheureusement, il n'y a pas beaucoup de solution si c'est le deuxième cas, 
 le mieux étant de récupérer un backup (disponible dans /usr/share/nginx/www/jeedom/backup par défaut), 
-de réinstaller jeedom et de restaurer le backup.
+de réinstaller Jeedom et de restaurer le backup.
 Vous pouvez aussi en ssh regarder pourquoi mysql ne veut pas démarrer : 
 [source,bash]
 sudo su -
@@ -99,14 +99,14 @@ Or check the log : /var/log/mysql/error.log
 
 ''''
 
-The buttons start/stop are not working::
+Les boutons Eteindre/Redémarrer ne fonctionnent pas::
 Sur une installation DIY c'est normal, il faut faire en ssh la commande visudo et à la fin du fichier 
 You must add : www-data ALL=(ALL) NOPASSWD: ALL.
 
 ''''
 
 J'ai souvent des "502 bad gateway"::
-Il faut aller (en mode expert) dans la configuration de jeedom, puis Système OS et cliquer sur lancer. La vous cliquez sur "PHP log", si vous avez le message "server reached pm.max_clidren", c'est qu'il manque des processus php fpm, il faut donc en autoriser plus. Pour cela faire : 
+Il faut aller (en mode expert) dans la configuration de Jeedom, puis Système OS et cliquer sur Lancer. Là vous cliquez sur "PHP log", si vous avez le message "server reached pm.max_clidren", c'est qu'il manque des processus php fpm, il faut donc en autoriser plus. Pour cela faire : 
 
 [source,bash]
 sudo su -
@@ -120,5 +120,5 @@ Ensuite il suffit de redémarrer php5-fpm
 [source,bash]
 sudo service php5-fpm restart
 
-Je ne vois pas certains plugins du market ::
-Ce genre de cas arrive si votre jeedom n'est pas compatible avec le plugin, en général une mise à jour de jeedom corrige le souci
+Je ne vois pas certains plugins du Market ::
+Ce genre de cas arrive si votre Jeedom n'est pas compatible avec le plugin, en général une mise à jour de jeedom corrige le souci

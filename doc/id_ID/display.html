@@ -420,7 +420,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_informations">1.1. Informations</a></li>
 <li><a href="#_affichage_avancé">1.2. Affichage avancé</a></li>
-<li><a href="#_batterie">1.3. Batterie</a></li>
+<li><a href="#_batteries">1.3. Batteries</a></li>
 </ul>
 </li>
 <li><a href="#_configuration_avancée_d_une_commande">2. Configuration avancée d&#8217;une commande</a>
@@ -437,7 +437,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Cette page permet d&#8217;avoir un résumé sur sa domotique et donne aussi accès à des fonctions d&#8217;organisation des équipements et des commandes, à de la configuration avancée des équipements et des commandes ainsi qu&#8217;à des possibilités de configuration d&#8217;affichage. Elle se décompose en un onglet "Ma domotique" et un un onglet "Configuration de l&#8217;affichage".</p>
+<p>Cette page permet d&#8217;avoir un résumé sur sa domotique et donne aussi accès à des fonctions d&#8217;organisation des équipements et des commandes, à la configuration avancée des équipements et des commandes ainsi qu&#8217;à des possibilités de configuration d&#8217;affichage. Elle se décompose en un onglet "Ma domotique" et un un onglet "Configuration de l&#8217;affichage".</p>
 </div>
 <div class="paragraph">
 <p>Cette page est accessible par Outils &#8594; Résumé domotique :</p>
@@ -459,7 +459,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>On retrouve tout en haut un résumé du nombre d&#8217;objets existants, du nombre d&#8217;équipements et du nombre de commandes. Sur la droite se trouve un bouton pour masquer tous les équipements inactifs et un champ de recherche pour par exemple chercher un équipement, une commande ou tous les équipements d&#8217;un certain type (plugin, par exemple il suffit de taper rfxcom pour avoir tous les équipements rfxcom)</p>
 </div>
 <div class="paragraph">
-<p>En dessous on retrouve un cadre par objet, dans chaque cadre se trouve la liste des équipements (en bleu) contenus dans l&#8217;objet. Vous avez sur la ligne du nom de l&#8217;objet jusqu&#8217;à 3 boutons, dans l&#8217;ordre :</p>
+<p>En dessous on retrouve un cadre par objet. Dans chaque cadre se trouve la liste des équipements (en bleu) contenus dans l&#8217;objet. Vous avez sur la ligne du nom de l&#8217;objet jusqu&#8217;à 3 boutons, dans l&#8217;ordre :</p>
 </div>
 <div class="ulist">
 <ul>
@@ -527,7 +527,7 @@ C&#8217;est à partir de cet ordre là qu&#8217;est calculé l&#8217;ordre d&#82
 <p>le nom de l&#8217;équipement</p>
 </li>
 <li>
-<p>le type de l&#8217;équipement (identifiant du plugin auxquel il appartient)</p>
+<p>le type de l&#8217;équipement (identifiant du plugin auquel il appartient)</p>
 </li>
 <li>
 <p>une croix signifie que l&#8217;équipement est inactif (si elle n&#8217;y est pas alors l&#8217;équipement est actif)</p>
@@ -571,7 +571,7 @@ Un double clic sur l&#8217;équipement permet aussi d&#8217;ouvrir la fenêtre d
 </div>
 </div>
 <div class="paragraph">
-<p>Chaque bloc jaune correspond à une commande de votre équipement (un nouveau sur la petite flèche de l&#8217;équipement permet de les masquer). Si vous faites un double clic sur la commande ou que vous cliquez sur la petite roue crantée cela fera apparaitre la fenêtre de configuration</p>
+<p>Chaque bloc jaune correspond à une commande de votre équipement (un nouveau clic sur la petite flèche de l&#8217;équipement permet de les masquer). Si vous faites un double clic sur la commande ou que vous cliquez sur la petite roue crantée cela fera apparaitre la fenêtre de configuration</p>
 </div>
 </div>
 </div>
@@ -633,7 +633,7 @@ Il est possible d&#8217;accéder (si le plugin le supporte) directement à cette
 <p><strong>Type</strong> : identifiant du plugin auquel il appartient</p>
 </li>
 <li>
-<p><strong>Tentative échoué</strong> : nombre de tentatives de communications consécutives avec l&#8217;équipement qui ont échoué</p>
+<p><strong>Tentative échouée</strong> : nombre de tentatives de communications consécutives avec l&#8217;équipement qui ont échoué</p>
 </li>
 <li>
 <p><strong>Dernière mise à jour</strong> : date de dernière communication avec l&#8217;équipement</p>
@@ -692,7 +692,7 @@ N&#8217;oubliez pas de sauvegarder après toute modification
 </div>
 </div>
 <div class="sect2">
-<h3 id="_batterie">1.3. Batterie</h3>
+<h3 id="_batteries">1.3. Batteries</h3>
 <div class="imageblock">
 <div class="content">
 <img src="../images/display16.png" alt="display16">
@@ -747,16 +747,16 @@ N&#8217;oubliez pas de sauvegarder après toute modification
 <p><strong>Unité</strong> : unité de la commande</p>
 </li>
 <li>
-<p><strong>Commande déclenchant une mise à jour</strong> : donne l&#8217;identifiant d&#8217;une autre commande qui si cette aute commande change, va forcer la mise à jour de la commande visualisée</p>
+<p><strong>Commande déclenchant une mise à jour</strong> : donne l&#8217;identifiant d&#8217;une autre commande qui, si cette autre commande change, va forcer la mise à jour de la commande visualisée</p>
 </li>
 <li>
-<p><strong>Cache</strong> : durée de vie de la valeur de la commande en mémoire (une fois ce délai fini Jeedom redemandera sa valeur). Attention si vous êtes en événement alors ce paramètre est ignoré car la durée de vie est infinie. Si vous n&#8217;avez aucune valeur et que vous n&#8217;êtes pas en événement alors la durée de vie est celle définie dans la configuration de Jeedom (par defaut 300s)</p>
+<p><strong>Cache</strong> : durée de vie de la valeur de la commande en mémoire (une fois ce délai passé Jeedom redemandera sa valeur). Attention si vous êtes en événement alors ce paramètre est ignoré car la durée de vie est infinie. Si vous n&#8217;avez aucune valeur et que vous n&#8217;êtes pas en événement alors la durée de vie est celle définie dans la configuration de Jeedom (par defaut 300s)</p>
 </li>
 <li>
 <p><strong>Evènement seulement</strong> : indique à Jeedom qu&#8217;il ne peut pas demander la valeur de la commande (c&#8217;est l&#8217;équipement ou le plugin qui le lui transmet)</p>
 </li>
 <li>
-<p><strong>Visible</strong> : defini si la commande est visible ou non</p>
+<p><strong>Visible</strong> : définit si la commande est visible ou non</p>
 </li>
 </ul>
 </div>
@@ -772,7 +772,7 @@ N&#8217;oubliez pas de sauvegarder après toute modification
 </div>
 </div>
 <div class="paragraph">
-<p>Pas mal d&#8217;option ici (elles peuvent varier en fonction du type et du sous-type de la commande).</p>
+<p>Pas mal d&#8217;options ici (elles peuvent varier en fonction du type et du sous-type de la commande).</p>
 </div>
 <div class="paragraph">
 <p>Pour une commande de type info :</p>
@@ -793,10 +793,10 @@ N&#8217;oubliez pas de sauvegarder après toute modification
 </div>
 </li>
 <li>
-<p><strong>Type générique</strong> : cette partie permet de configurer le type générique de la commande (jeedom essaie de le trouver par lui-même en mode auto). Cette information est utilisée par l&#8217;application mobile.</p>
+<p><strong>Type générique</strong> : cette partie permet de configurer le type générique de la commande (Jeedom essaie de le trouver par lui-même en mode auto). Cette information est utilisée par l&#8217;application mobile.</p>
 </li>
 <li>
-<p><strong>Action sur la valeur</strong> : cette partie permet de faire des sortes de mini scénarii, vous pouvez par exemple dire que si la valeur vaut plus de 50 pendant 3 minutes alors il faut faire telle action. Cela permet par exemple d&#8217;éteindre une lumiere X minutes après que celle-ci se soit allumée</p>
+<p><strong>Action sur la valeur</strong> : cette partie permet de faire des sortes de mini scénarios, vous pouvez par exemple dire que si la valeur vaut plus de 50 pendant 3 minutes alors il faut faire telle action. Cela permet par exemple d&#8217;éteindre une lumiere X minutes après que celle-ci se soit allumée</p>
 </li>
 <li>
 <p><strong>Historique</strong> : voir <a href="https://jeedom.com/doc/documentation/core/fr_FR/doc-core-history.html#_configuration_spécifique_par_commande">ici</a></p>
@@ -863,12 +863,12 @@ N&#8217;oubliez pas de sauvegarder après toute modification
 <p><strong>Afficher les statistiques</strong> : permet de ne pas afficher les statistiques en fonction du contexte (dashboard et design, vue ou mobile). Attention, il faut avoir activé les statistiques dans la configuration de Jeedom pour que cette option ait un impact</p>
 </li>
 <li>
-<p><strong>Retour à la ligne forcé avant le widget</strong> : permet d&#8217;ajouter un retour à la ligne avant ou après le widget (pour forcer par exemple un affichage en colonne des differentes commandes l&#8217;équipement au lieu de ligne par defaut)</p>
+<p><strong>Retour à la ligne forcé avant le widget</strong> : permet d&#8217;ajouter un retour à la ligne avant ou après le widget (pour forcer par exemple un affichage en colonne des différentes commandes de l&#8217;équipement au lieu de lignes par defaut)</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>En-dessous, on retrouve des paramètres optionnels d&#8217;affichage que l&#8217;on peut passer au widget. Ces paramètres dependent du widget en question, il faut donc regarder sa fiche sur le market pour les connaitre.</p>
+<p>En-dessous, on retrouve des paramètres optionnels d&#8217;affichage que l&#8217;on peut passer au widget. Ces paramètres dependent du widget en question, il faut donc regarder sa fiche sur le Market pour les connaitre.</p>
 </div>
 <div class="admonitionblock tip">
 <table>

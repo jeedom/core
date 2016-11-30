@@ -1,6 +1,6 @@
 = Armaturenbrett
 
-Das ist die Hauptseite von Jeedom, es zeigt eine Übersicht über die ganze Heimautomation.
+Une des pages principales de Jeedom affiche un compte-rendu de toute votre domotique. Ce compte-rendu (contrairement aux vues et design) est auto-généré par Jeedom.
 
 Es kann zugegriffen werden, indem Sie auf Mein Haus -> Armaturenbrett klicken 
 

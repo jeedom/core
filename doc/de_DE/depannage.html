@@ -472,7 +472,7 @@ sudo chown www-data:www-data core/config/common.config.php</code></pre>
 <dl>
 <dt class="hdlist1">Ich habe überall {{&#8230;&#8203;}} </dt>
 <dd>
-<p>Die häufigste Ursache ist die Verwendung eines Plugins im Beta-Version und nicht Jeedom, oder umgekehrt</p>
+<p>La cause la plus fréquente est l&#8217;utilisation d&#8217;un plugin en version beta, et Jeedom en stable, ou l&#8217;inverse</p>
 </dd>
 </dl>
 </div>
@@ -508,7 +508,7 @@ oft kommt das von einem Befehl, der nicht endet.</p>
 <hr>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Mein Szenario ist zu langsam, um zu schalten</dt>
+<dt class="hdlist1">Mon scénario est lent à se déclencher</dt>
 <dd>
 <p>Wenn es im Szenario keine Pause gibt, wird geraten das Kontrollkästchen "so schnell wie möglich auszuführen" anzukreuzen (verfügbar im Experten-Modus)</p>
 </dd>
@@ -520,7 +520,7 @@ oft kommt das von einem Befehl, der nicht endet.</p>
 <dt class="hdlist1">Ich habe keine Fehler in dem nginx.error Protokoll dennoch den Fehler 500</dt>
 <dd>
 <p>In SSH :
-Bearbeiten Sie die Datei /etc/php5/fpm/pool.d/www.conf ändern sie den Text ";catch_worket_process=yes" (löschen des ;)
+Editez le fichier /etc/php5/fpm/pool.d/www.conf et décommantez la ligne ";catch_worket_process=yes" (supression du ;)
 und php neustarten "sudo service php5-fpm restart"</p>
 </dd>
 </dl>
@@ -530,7 +530,7 @@ und php neustarten "sudo service php5-fpm restart"</p>
 <dl>
 <dt class="hdlist1">Ich habe Instabilitäten oder Fehler 504</dt>
 <dd>
-<p>Überprüfen Sie, ob das Dateisystem nicht beschädigt ist, in SSH ist das der Befehl : "sudo dmesg | grep error"</p>
+<p>Vérifiez si votre système de fichiers n&#8217;est pas corrompu, en ssh la commande est : "sudo dmesg | grep error"</p>
 </dd>
 </dl>
 </div>
@@ -563,8 +563,10 @@ das Objekt selbst des ersten Objekts in der Baumstruktur auf der linken Seite au
 <div class="ulist">
 <ul>
 <li>
-<p>Probleme wegen Speicherplatz auf dem Dateisystem (kann mit dem Befehl "df -h" in SSH überprüft werden).
-Datei Beschädigungs Probleme, sind oft nach einem unsauberen Herunterfahren von Jeedom (Stromausfall).</p>
+<p>souci de place sur le système de fichiers (peut être vérifié en faisant la commande "df -h", en ssh)</p>
+</li>
+<li>
+<p>problème de corruption de fichier(s), arrive souvent suite à un arrêt non propre de Jeedom (coupure de courant)</p>
 </li>
 </ul>
 </div>
@@ -574,7 +576,7 @@ Datei Beschädigungs Probleme, sind oft nach einem unsauberen Herunterfahren von
 <div class="paragraph">
 <p>Leider gibt es nicht viel Auswahl, wenn dies der zweite Fall ist,
 am besten ist es ein Backup  abzurufen  (standardmäßig in  /usr/share/nginx/www/jeedom/backup verfügbar),
-Jeedom neu installieren und die Sicherung wiederherstellen.
+de réinstaller Jeedom et de restaurer le backup.
 Sie könne auch mit SSH sehen warum mysql nicht startet.</p>
 </div>
 <div class="listingblock">
@@ -590,7 +592,7 @@ mysqld --verbose</code></pre>
 <hr>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Die Stop/Neustart Schaltflächen funktionieren nicht</dt>
+<dt class="hdlist1">Les boutons Eteindre/Redémarrer ne fonctionnent pas</dt>
 <dd>
 <p>Auf einer DIY Installation ist das normal, man muss daher unter SSH den Befehl visudo eingeben und am Ende der Datei
 müssen sie hinzufügen : www-data ALL=(ALL) NOPASSWD: ALL.</p>
@@ -602,7 +604,7 @@ müssen sie hinzufügen : www-data ALL=(ALL) NOPASSWD: ALL.</p>
 <dl>
 <dt class="hdlist1">Ich habe oft "502 bad gateway"</dt>
 <dd>
-<p>Sie müssen (Experten Modus) in die Jeedom Konfiguration gehen, System-OS und klicken sie dann auf Start. Klicken sie auf "PHP log", wenn sie die Nachricht "server reached pm.max_clidren" bekommen, liegt es an nicht genug php-fpm-Prozesse, es müssen mehr autorisiert werden. Dafür muß man folgendes machen :</p>
+<p>Il faut aller (en mode expert) dans la configuration de Jeedom, puis Système OS et cliquer sur Lancer. Là vous cliquez sur "PHP log", si vous avez le message "server reached pm.max_clidren", c&#8217;est qu&#8217;il manque des processus php fpm, il faut donc en autoriser plus. Pour cela faire :</p>
 </dd>
 </dl>
 </div>
@@ -626,9 +628,9 @@ vim www.conf</code></pre>
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Einiges Plugins des Marktes sehe ich nicht</dt>
+<dt class="hdlist1">Je ne vois pas certains plugins du Market </dt>
 <dd>
-<p>Diese Art von Ereignissen kommen vor, wenn Ihr Jeedom mit dem Plugin nicht kompatibel ist, im Allgemeinen verbessert eine Jeedom Aktualisierung diese Probleme.</p>
+<p>Ce genre de cas arrive si votre Jeedom n&#8217;est pas compatible avec le plugin, en général une mise à jour de jeedom corrige le souci</p>
 </dd>
 </dl>
 </div>

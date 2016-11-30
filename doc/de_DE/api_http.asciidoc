@@ -14,7 +14,7 @@ Die erste Abfrage wird nur verwendet, um ein Szenario zu steuern.
 
 Hier ist die URL = http://\#IP_JEEDOM#/core/api/jeeApi.php?apikey=\#APIKEY#&type=scenario&id=\#ID#&action=\#ACTION#
 
-\#IP_JEEDOM# Entspricht Ihrer URL um auf Jeedom zu zugreifen. Das ist Internet-Adresse, die Sie den Zugriff aus dem externen Jeedom verwenden (es sei denn, Sie sind mit Ihrem lokalen Netzwerk verbunden).
+\#IP_JEEDOM# correspond à votre url d’accès à Jeedom. Il s’agit (sauf si vous êtes connecté à votre réseau local) de l’adresse internet que vous utilisez pour accéder à Jeedom depuis l’extérieur.
 
 \#API_KEY# Entspricht Ihrem spezifischen API-Schlüssel, für Ihre Installation. Um ihn zu finden, muß man in das Menü "Administration" -> "Konfiguration" und dann "Hauptkonfiguration" gehen, im Expertenmodus sehen sie dann den API Schlüssel.
 
@@ -36,4 +36,4 @@ Hier ist die URL = http://\#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=\#APIKE
 
 \#ID# ist die ID von dem, was Sie kontrollieren oder Informationen erhalten möchten.
 
-Der einfachste Weg, um diese URL zu erhalten, ist auf die Seite Übersicht Haus-Automatisierung zu gehen, suchen Sie nach dem Befehl und dann öffnen sie seine erweiterte Konfiguration  und sie erhalten eine URL zu sehen, die bereits alles, was Sie enthält je müssen sich auf die Art und Unter -Typ Ordnung. Siehe link:https://jeedom.com/doc/documentation/core/fr_FR/doc-core-display.html#_informations_2[hier]
+Le plus simple pour avoir cette URL est d'aller sur la page Résumé domotique, de chercher la commande puis d'ouvrir sa configuration avancée et là vous allez voir une URL qui contient déjà tout ce qu'il faut en fonction du type et du sous-type de la commande. Voir link:https://jeedom.com/doc/documentation/core/fr_FR/doc-core-display.html#_informations_2[ici]
