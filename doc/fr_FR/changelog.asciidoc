@@ -4,45 +4,45 @@
 
 * Suppression du mode esclave
 * Possibilité de déclencher un scénario sur un changement d'une variable
-* Les mise à jour de variable déclenchent maintenant la mise à jour des commandes virtuel (il faut la dernière version du plugin)
+* Les mises à jour de variable déclenchent maintenant la mise à jour des commandes d'un équipement virtuel (il faut la dernière version du plugin)
 * Possibilité d'avoir une icone sur les commandes de type info
 * Possibilité sur les commandes d'afficher le nom et l'icone
 * Ajout d'une action "alert" sur les scénarios
 * Ajout d'une action "popup" sur les scénarios
 * Les widgets des commandes peuvent maintenant avoir une méthode d'update ce qui évite un appels AJAX à Jeedom
-* Les widgets des scénarios sont maintenant mise à jour sans appels ajax pour avoir le widget
-* Le résumé global et des pièces et maintenant mises à jour sans appels ajax
-* Un clic sur un element d'un résumé domotique vous amène sur une vue détaillée de celui-ci
+* Les widgets des scénarios sont maintenant mis à jour sans appels ajax pour avoir le widget
+* Le résumé global et des pièces sont maintenant mis à jour sans appels ajax
+* Un clic sur un élément d'un résumé domotique vous amène sur une vue détaillée de celui-ci
 * Vous pouvez maintenant mettre dans les résumés des commandes de type texte
-* Changement des bootstraps slider en slider (corriger le bug du double événement des sliders)
-* Sauvegarde automatique des vues lors du clique sur le bouton "voir le résultat"
-* Possibilité d'avoir les doc en local
-* Les developpeur tierce peuvent ajouter leur propre systeme de gestion de tickets
-* Refonte de la configuration des droits utilisateur (tout est sur la page de gestion des utilisateurs)
+* Changement des bootstraps slider en slider (correction du bug du double événement des sliders)
+* Sauvegarde automatique des vues lors du clic sur le bouton "voir le résultat"
+* Possibilité d'avoir les docs en local
+* Les développeurs tiers peuvent ajouter leur propre système de gestion de tickets
+* Refonte de la configuration des droits utilisateurs (tout est sur la page de gestion des utilisateurs)
 * Mise à jour des libs : jquery (en 3.0) , jquery mobile, hightstock et table sorter
 * Grosse amélioration des designs : 
 ** Toute les actions sont maintenant accessibles à partir d'un clic droit
-** Possibilité d'ajouter une commande seul
-** Possibilité d'ajouter une image ou un flux video
+** Possibilité d'ajouter une commande seule
+** Possibilité d'ajouter une image ou un flux vidéo
 ** Possibilité d'ajouter des zones (emplacement cliquable) : 
-*** Zone de type macro : lance une série d'action lors d'un clic dessus
-*** Zone de type binaire : lance une série d'action lors d'un clic dessus en fonction de l'état d'une commande
-*** Zone de type widget : affiche un widget au clique ou au survole de la zone
+*** Zone de type macro : lance une série d'actions lors d'un clic dessus
+*** Zone de type binaire : lance une série d'actions lors d'un clic dessus en fonction de l'état d'une commande
+*** Zone de type widget : affiche un widget au clic ou au survol de la zone
 ** Optimisation général du code
-** Possibilité de faire apparaitre une grille et de choisir sa taille (10x10,15x15 ou 30x30)
+** Possibilité de faire apparaître une grille et de choisir sa taille (10x10,15x15 ou 30x30)
 ** Possibilité d'activer une aimantation des widgets sur la grille
 ** Possibilité d'activer une aimantation des widgets entre eux
-** Certain type de widget peuvent maintenant être dupliqué
+** Certain type de widget peuvent maintenant être dupliqués
 ** Possibilité de verouiller un élément
 * Les plugins peuvent maintenant utiliser une clef api qui leur est propre
-* Ajout d'intéractions automatiques, Jeedom va essayer de comprendre la phrase, d'executer l'action et de répondre
+* Ajout d'interactions automatiques, Jeedom va essayer de comprendre la phrase, d'exécuter l'action et de répondre
 * Ajout de la gestion des démons en version mobile
 * Ajout de la gestion des crons en version mobile
 * Ajout de certaines informations de santé en version mobile
 * Ajout sur la page batterie des modules en alerte
-* Les objets sans widget sont automatiquement masqué sur le dashboard
-* Ajout d'un bouton dans la configuration avancée d'un équipement/d'une commande pour voir les évenements de celui-ci/celle-ci
-* Les déclencheurs de scénario peuvent maintenant etre des conditions
+* Les objets sans widget sont automatiquement masqués sur le dashboard
+* Ajout d'un bouton dans la configuration avancée d'un équipement/d'une commande pour voir les événements de celui-ci/celle-ci
+* Les déclencheurs d'un scénario peuvent maintenant être des conditions
 
 = 2.4.6
 
@@ -55,22 +55,22 @@
 
 == 2.4
 
-* Optimisation général
+* Optimisation générale
 ** Regroupement de requêtes SQL
 ** Suppression de requêtes inutiles
 ** Passage en cache du pid, état et dernier lancement des scénarios
 ** Passage en cache du pid, état et dernier lancement des crons
-** Dans 99% des cas plus de requêtes d'écriture sur la base en fonctionnement nominal (donc hors configuration de jeedom, modifications, installation, mise à jour...)
-* Suppression du fail2ban (car facilement passable en envoyant une fausse adresse ip), cela permet d’accélérer jeedom
+** Dans 99% des cas plus de requête d'écriture sur la base en fonctionnement nominal (donc hors configuration de Jeedom, modifications, installation, mise à jour...)
+* Suppression du fail2ban (car facilement contournable en envoyant une fausse adresse ip), cela permet d’accélérer Jeedom
 * Ajout dans les interactions d'une option sans catégorie pour que l'on puisse générer des interactions sur des équipements sans catégorie
-* Ajout dans les scénario d'un bouton de choix d'équipement sur les commandes de type slider
+* Ajout dans les scénarios d'un bouton de choix d'équipement sur les commandes de type slider
 * Mise à jour de bootstrap en 2.3.7
-* Ajout de la notion de résumé domotique (permet de connaitre d'un seul coup le nombre de lumière à on, les porte ouvert, les volets, les fenêtres, la puissance, les détections de mouvement...). Tout cela se configure sur la page de gestion des objets
-* Ajout de pre et post commande sur une commande. Permet de déclencher tout le temps une action avant ou après une autre action. Peux aussi permettre de synchroniser des équipements pour par exemple que 2 lumières s'allument toujours ensemble avec la même intensité.
+* Ajout de la notion de résumé domotique (permet de connaitre d'un seul coup le nombre de lumières à ON, les porte ouvertes, les volets, les fenêtres, la puissance, les détections de mouvement...). Tout cela se configure sur la page de gestion des objets
+* Ajout de pre et post commande sur une commande. Permet de déclencher tout le temps une action avant ou après une autre action. Peut aussi permettre de synchroniser des équipements pour, par exemple, que 2 lumières s'allument toujours ensemble avec la même intensité.
 * Optimisation des listenner
 * Ajout de modal pour afficher les informations brutes (attribut de l'objet en base) d'un équipement ou d'une commande
 * Possibilité de copier l'historique d'une commande sur une autre commande
-* Possibilité de remplacer une commande par une autre dans tout jeedom (même si la commande à remplacer n'existe plus)
+* Possibilité de remplacer une commande par une autre dans tout Jeedom (même si la commande à remplacer n'existe plus)
 
 == 2.3
 
