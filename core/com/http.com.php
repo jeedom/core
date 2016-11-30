@@ -130,10 +130,12 @@ class com_http {
 
 	public function setPing($ping) {
 		$this->ping = $ping;
+		return $this;
 	}
 
 	public function setNoSslCheck($noSslCHeck) {
 		$this->noSslCheck = $noSslCHeck;
+		return $this;
 	}
 
 	public function getLogError() {
@@ -142,6 +144,7 @@ class com_http {
 
 	public function setLogError($logError) {
 		$this->logError = $logError;
+		return $this;
 	}
 
 	public function getSleepTime() {
@@ -150,6 +153,7 @@ class com_http {
 
 	public function setSleepTime($sleepTime) {
 		$this->sleepTime = $sleepTime * 1000000;
+		return $this;
 	}
 
 	public function getPost() {
@@ -158,6 +162,7 @@ class com_http {
 
 	public function setPost($post) {
 		$this->post = $post;
+		return $this;
 	}
 
 	public function getHeader() {
@@ -166,6 +171,7 @@ class com_http {
 
 	public function setHeader($header) {
 		$this->header = $header;
+		return $this;
 	}
 
 	public function getCookiesession() {
@@ -174,6 +180,7 @@ class com_http {
 
 	public function setCookiesession($cookiesession) {
 		$this->cookiesession = $cookiesession;
+		return $this;
 	}
 
 	public function getAllowEmptyReponse() {
@@ -182,6 +189,7 @@ class com_http {
 
 	public function setAllowEmptyReponse($allowEmptyReponse) {
 		$this->allowEmptyReponse = $allowEmptyReponse;
+		return $this;
 	}
 
 	public function getNoReportError() {
@@ -190,6 +198,7 @@ class com_http {
 
 	public function setNoReportError($noReportError) {
 		$this->noReportError = $noReportError;
+		return $this;
 	}
 
 	public function getUrl() {
@@ -198,6 +207,7 @@ class com_http {
 
 	public function setUrl($url) {
 		$this->url = $url;
+		return $this;
 	}
 
 	function getCURLOPT_HTTPAUTH() {
@@ -206,6 +216,7 @@ class com_http {
 
 	function setCURLOPT_HTTPAUTH($CURLOPT_HTTPAUTH) {
 		$this->CURLOPT_HTTPAUTH = $CURLOPT_HTTPAUTH;
+		return $this;
 	}
 
 	function getPut() {
@@ -214,6 +225,7 @@ class com_http {
 
 	function setPut($put) {
 		$this->put = $put;
+		return $this;
 	}
 
 	function getUserAgent() {
@@ -222,8 +234,8 @@ class com_http {
 
 	function setUserAgent($userAgent) {
 		$this->userAgent = $userAgent;
+		return $this;
 	}
 
 }
 
-?>
