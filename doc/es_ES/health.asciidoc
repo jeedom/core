@@ -10,7 +10,7 @@ Una vez dentro esto es lo que verá:
 
 image::../images/health2.png[]
 
-Aquí verás una tabla que da una descripción de lo que Jeedom ha comprobado y su estado en la columna 2, finalmente la última columna aconseja sobre la posible resolución si la verificación no fue OK
+Vous retrouvez ici un tableau qui donne une description de ce que Jeedom vérifie et du statut de celle-ci dans la 2ème colonne, enfin la dernière colonne peut vous donner des conseils de résolution si la vérification n'est pas OK
 
 A continuación encontrará la misma tabla pero para el plugin (si el plugin es compatible). Haga clic en el nombre del plugin, le lleva directamente a su página de configuración
 

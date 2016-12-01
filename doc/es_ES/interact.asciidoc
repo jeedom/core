@@ -5,12 +5,12 @@
 
 = Interacciones - principio
 
-La interacción en el sistema de Jeedom permite llevar a cabo acciones de comando de texto o voz.
+Le système d'interaction dans Jeedom permet de réaliser des actions à partir de commandes textes ou vocales.
 
 Tipo de comandos:
 
 * acción: ejecutar un comando ejemplos: activar o desactivar una lámpara, alarma, calefacción, etc....
-* Info: consulta a Jeedom con un comando para saber por ejemplo, la temperatura de la habitación, el estado de un dispositivo.
+* Info : interroger Jeedom avec une commande info pour connaître, par exemple la température du salon, l'état d'un appareil.
 
 Estos comandos pueden obtenerse por:
 
@@ -26,11 +26,11 @@ Con un único mecanismo en otro sistema, por tanto, puede controlar cualquier Je
 
 === Página inicial de interacciones
 
-Para acceder a la página interacción vaya a Herramientas -> interacciones: 
+Pour accéder à la page d'interaction il faut aller sur Outils -> Interactions: 
 
 image::../images/interact001.png[]
 
-Lista de interacciones y acciones de carácter general:
+Liste des interactions et action générale :
 
 image::../images/interact002.png[]
 
@@ -39,11 +39,11 @@ Al igual que en muchos lugares en Jeedom, situar el ratón en la zona la izquier
 
 * En el la parte superior de la página, hay 3 botones:
 ** 1 * el botón "Añadir" que permite crear una nueva interacción.
-** 2 * el botón "Actualizar" que recreará todas las interacciones (puede llevar mucho tiempo > 5 min).
-** 3 * el botón "Probar" que abre un cuadro de diálogo para escribir una frase y hacer un test.
+** *2* Le bouton "Régénérer" qui va recréer toutes les interactions (peut être très long > 5mn).
+** *3* Le bouton "Tester" qui permet d'ouvrir un boîte de dialogue pour écrire et tester une phrase.
 
 [TIP]
-Si tienes una interacción que genera una sentencia para las luces por ejemplo, que agregue un nuevo módulo de control de luz, necesitas regenerar todas las interacciones en la interacción en cuestión y salvarla para crear la frase de este nuevo módulo.
+Si vous avez une interaction qui génère les phrases pour les lumières par exemple, et que vous ajoutez un nouveau module de commande de lumière, il vous faudra soit régénérer toutes les interactions, soit aller dans l'interaction en question et la sauvegarder de nouveau pour créer les phrases de ce nouveau module.
 
 
 === Crear-editar una interacción
@@ -56,7 +56,7 @@ También se define un comando a ejecutar si por ejemplo la interacción no está
 
 === Interfaz de configuración
 
-Desde esta página se puede configurar todas las interacciones orales (a través del módulo de SARAH, o tasker (+ autovoice), véase https://jeedom.fr/doc/documentation/howto/fr_FR/doc-howto-android.autovoice.html [aquí]) o por escrito (por sms o el plugin de Slack por ejemplo...) se puede encontrar en el market de Jeedom.
+Cette page permet de configurer toutes les interactions orales (via le module SARAH, ou tasker (+ autovoice), voir https://jeedom.fr/doc/documentation/howto/fr_FR/doc-howto-android.autovoice.html[ici]) ou écrites ( les SMS ou le plugin Slack par exemple…) que l’on peut trouver sur le Market Jeedom.
 
 Una vez creada la interacción, haga clic en una interacción existente para modificarla, se abrirá la página de configuración de la interacción:
 
@@ -105,9 +105,9 @@ En los 2 ejemplos anteriores, la frase modelo, es idéntica, pero las acciones r
 Para agregar un escenario, crear una nueva acción, escribir "scenario" sin acento, presiona tab en el teclado para que aparezca el selector de escenario.
 
 
-=== Interacción múltiples de comandos
+==== Interaction multiple commandes
 
-Aquí vemos la importancia y el poder de las interacciones, con una frase modelo, podremos generar frases para un grupo de comandos.
+Nous allons ici voir tout l'intérêt et toute la puissance des interactions, avec une phrase modèle nous allons pouvoir générer des phrases pour tout un groupe de commandes.
 
 para mejorar lo que ha hecho anteriormente, eliminar las acciones que hayas agregado y en su lugar en "Aplicación", usaremos las etiquetas * \#commande#* y * \#equipement#*, Jeedom reemplazará estas etiquetas por el nombre de órden y el nombre del dispositivo (se puede ver la importancia de tener nombres de comandos/dispositivos coherentes).
 
@@ -127,16 +127,16 @@ En los sinónimos es donde vas a indicar el nombre del comando y el sinónimo(s)
 
 image::../images/interact008.png[]
 
-Aquí puedes ver una pequeña sintaxis para sinónimos, un nombre de comando, puede tener varios sinónimos, aquí "en" como un sinónimo de "luz" y "luces", por lo que la sintaxis sería "#nom del comando #" * #= #* "#synonyme # 1" * #, #* "#synonyme # 2" (puedes poner tantos sinónimos que desees), luego añadir sinónimos para otro nombre de comando, agregar una barra vertical después del último sinónimo "#| #" suite que puede dar otra vez el nombre del comando quién tendrá sinónimos como en la la primera parte.
+On peut voir ici une syntaxe un peu nouvelle pour les synonymes, un nom de commande peut avoir plusieurs synonymes, ici "on" a comme synonyme "allume" et "allumer", la syntaxe c'est donc "#nom de la commande#" *#=#* "#synonyme 1#"*#,#* "#synonyme 2#" (on peut mettre autant de synonyme que l'on veut), puis pour ajouter des synonymes pour un autre nom de commande il suffit d'ajouter après le dernier synonyme une barre verticale "#|#" à la suite duquel vous pouvez à nouveau nommer la commande qui va avoir des synonymes comme pour la première partie.
 
 Bueno, esto esta mejor pero todavía faltan para el comando "en" "entrar" en el "el" y otro "la" o "el" o "una" ect...
 Podría cambiar el nombre del dispositivo a agregar, sería una solución, de lo contrario puede utilizar cambios en la aplicación, se trata de una serie de posibles palabras a una ubicación en la frase de la lista, Jeedom por lo tanto generará frases con sus variaciones.
 
 image::../images/interact009.png[]
 
-Como se puede ver en la lista de la izquierda, ahora hay unas frases un poco más correctas, para nuestro ejemplo "en" la 'entrada', por lo tanto es "iluminar" introducción, "Ilumina una entrada", "Activar una entrada", "Iluminar la entrada" ect... están valoradas todas las variantes posibles con lo que se añadió entre '[]' para cada sinónimo, que rápidamente genera un montón de frases (168 aquí).
+Comme vous pouvez le voir dans la liste à gauche, on a maintenant des phrases un peu plus correctes avec des phrases qui ne sont pas justes, pour notre exemple "on" "entrée", on trouve donc "Allume entrée", "Allume un entrée", "Allume une entrée", "Allume l'entrée" etc... On a donc toutes les variantes possibles avec ce que l'on a ajouté entre les "[ ]" et ceci pour chaque synonyme, ce qui génère rapidement beaucoup de phrases (ici 168).
 
-Para ajustar incluso un poco más  y no hacer cosas improbables tales como "encender el televisor," puede permitir a Jeedom eliminar las solicitudes sintácticamente incorrectas, por lo tanto eliminará lo que está demasiado alejado de la actual sintaxis de una frase.
+Afin d'affiner et de ne pas avoir des choses improbables telles que "allume l'télé", on peut autoriser Jeedom à supprimer les demandes syntaxiquement incorrectes. Il va donc supprimer ce qui est trop éloigné de la syntaxe réelle d'une phrase.
 En nuestro caso pasamos de 168 oraciones a 130 oraciones.
 
 image::../images/interact010.png[]
@@ -185,7 +185,7 @@ Uno puede imaginar que una alarma puede habilitarse o deshabilitarse por un niñ
 
 ====== Exclusión Regexp 
 [IMPORTANTE]
-Función reservada a conocedores del tema que sepan usar Google.
+Fonction réservée aux connaisseurs ou téméraires qui savent utiliser Google.
 
 Puesto que Jeedom V2.00 tiene la capacidad de crear exclusiones tipo [Regexp] https://fr.wikipedia.org/wiki/Expression_rationnelle , si una frase generada coincide con este Regexp se eliminarán.
 La intención es eliminar los falsos positivos, es decir una frase de Jeedom que permite algo que no coincide con lo que queremos o que puedan interferir con la interacción de otro que tenga una frase similar.
@@ -194,14 +194,14 @@ Hay 2 lugares para aplicar una Regexp:
 
 * en la misma interacción en el campo "Exclusión Regexp".
 
-* En el menú "configuración"->"configuración de las interacciones"-> campo general de exclusión "Regexp" para las interacciones.
+* Dans le menu "Configuration"->"Configuration des interactions"->champ "Regexp général d'exclusion pour les interactions".
 
-El campo genera de exclusión "Regex" para las interacciones, esta regla se aplicará a todas las interacciones que se creen o sean actualizadas más tarde, si deseas aplicar a todas las interacciones existentes debes regenerar las interacciones.
+Pour le champ "Regex général d'exclusion pour les interactions", cette règle sera appliquée à toutes les interactions, qui seront créées ou sauvegarder de nouveau par la suite, si on veut l’appliquer à toutes les interactions existantes il faut régénérer les interactions.
 Generalmente se utiliza para eliminar frases mal formadas en interacciones más generadas.
 
-En el campo de la exclusión "Regexp" en cada página de configuración de la interacción, puedes añadirr una Regexp específica que actuará únicamente en la supuesta interacción, borrará específicamente para dicha interacción, esto también puede eliminar una interacción para un comando específico, para los que no queremos ofrecer esta posibilidad en el contexto de un comando de generación múltiple.
+Pour le champ "Regexp d'exclusion" dans la page de config de chaque interaction, on peut mettre une Regexp spécifique qui va agir uniquement sur ladite interaction, elle vous permet donc de supprimer plus précisément  pour une interaction, cela peut aussi permettre d'effacer une interaction pour une commande spécifique pour laquelle on ne veut pas offrir cette possibilité dans le cadre d'une génération multiple commandes.
 
-La siguiente captura de pantalla, muestra la interacción sin la expresión Regexp, en la lista de la izquierda, filtré frases para demostrarle las frases que se eliminarán, en realidad hay 76 sentencias generadas con la configuración de la interacción.
+La capture d'écran qui suit montre l'interaction sans le Regexp. Dans la liste de gauche, je filtre les phrases pour ne vous montrer que les phrases qui vont être supprimées. En réalité il y a 76 phrases générées avec la configuration de l'interaction.
 
 image::../images/interact014.png[]
 
@@ -217,11 +217,11 @@ Una expresión regular se compone como sigue:
 
 * El "*" mientras tanto, indica que puede ser 0 o varias veces el carácter anterior que le precede, aquí un punto, así que en buen francés cualquier elemento.
 
-* Julie, que es la palabra de búsqueda (palabra u otro patrón de expresión), otra vez una barra de punto seguido.
+* Puis Julie, qui est le mot à rechercher (mot ou autre schéma d'expression), suivi à nouveau d'un point puis barre oblique.
 
 Si traducimos esta expresión en una frase, sería "busca la palabra Julie que sea precedida por  nada y seguida por nada".
 
-Es una versión muy simple de las expresiones regulares, pero es muy complicado de entender, me tomó un momento para explicar el funcionamiento, por ejemplo, un poco más complejo, un regexp para comprobar una URL: 
+C'est une version extrêmement simple des expressions régulièrse mais déjà très compliquée à comprendre, il m’a fallu un moment pour en saisir le fonctionnement. Comme exemple un peu plus complexe, une regexp pour vérifier une adresse url : 
 
 /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]\*)*\/?$/ 
 
@@ -229,13 +229,13 @@ Una vez que las escribas, usted entenderálas expresiones regulares.
 
 image::../images/interact015.png[]
 
-Para resolver el problema de mayúsculas y minúsculas, puedes agregar a nuestra expresión una opción que hará insensible, o en otras palabras, que considere una letra minúscula igual a una letra mayúscula, para esto simplemente agregar una "i" al final de nuestra expresión.
+Pour résoudre le problème de majuscule et minuscule, on peut ajouter à notre expression une option qui va la rendre insensible à la casse, ou autrement dit, qui considère une lettre minuscule égale à une majuscule; pour ce faire on doit simplement ajouter à la fin de notre expression un "i".
 
 image::../images/interact016.png[]
 
 Añadiendo la opción "i" hay más que 55 frases generadas, en la lista de la izquierda con el filtro de julie para buscar las frases  que contienen esta palabra, y hay más.
 
-Como este es un tema muy complejo no entraré en más en detalles, hay suficiente información en la red, y no te olvides de que Google es también tu amigo, este amigo, fue él quien me enseñó a entender las Regexp y su código, por lo tanto si me ayudó a mí, también podrá ayudarte poniendo un poquito de empeño.
+Comme c'est un sujet extrêmement complexe, je ne vais pas aller plus en détail ici, il y a suffisamment de tutos sur le net pour vous aider, et n'oubliez pas Google est votre ami aussi car oui, c'est mon ami, c'est lui qui m’a appris à comprendre les Regexp et même à coder. Donc s'il m'a aidé, il peut aussi vous aider si vous y mettez de la bonne volonté.
 
 Enlace útil : 
 
@@ -269,13 +269,13 @@ En este ejemplo vemos una frase simple que devolverá una respuesta con 3 temper
 
 image::../images/interact017.png[]
 
-En este ejemplo precisamente el objetivo es que un equipo específico permita tener una respuesta personalizada, por lo que podríamos imaginar cambiar la respuesta del ejemplo de "allí no hay nadie en la casa de #julie # |oui hay alguien en la casa de #julie #"
+Cette exemple cible précisément un équipement spécifique ce qui permet d'avoir une réponse personnalisée. On pourrait donc imaginer remplacer la réponse de l'exemple par "non il n’y a personne dans la chambre de #julie#|oui il y a quelqu’un dans la chambre de #julie#"
 
 ==== Evolución 
 
 * La pregunta entonces es "\#commande# [dans la |dans le] \#objet#"
 * La respuesta será "no hay nadie allí en la sala" o "Si hay alguien en la habitación"
-* No hay ningún comando que responda en la parte de acción, ya que es una interacción de comando múltiple
+* Il n'y a pas de commande qui réponde à ça dans la partie Action vu que c'est une interaction Multiple commandes
 * Añadir una expresión regular que podremos limpiar los comandos que desea que no contengan las frases acerca de los comandos 'Presencia'.
 
 image::../images/interact018.png[]
@@ -284,10 +284,10 @@ Sin la expresión aquí se obtiene 11 sentencias, sin embargo mi interacción es
 Para hacerlo más flexible puedes agregar sinónimos, pero en este caso no te olvides de cambiar la expresión.
 
 
-=== Conocer la humedad/temperatura/luminosidad
+=== Connaître la température/humidité/luminosité
 
 ==== Versión básica
-Podría escribir la frase pura como por ejemplo "Cuál es la temperatura de la habitación", pero debe haber una para cada sensor de temperatura, luz y humedad, con el sistema de generación de sentencias de Jeedom,  con una sola interacción poder generar las frases para estos 3 tipos de sensores de medición.
+On pourrait écrire la phrase en dur comme par exemple "quelle est la température du salon", mais il faudrait en faire une pour chaque capteur de température, luminosité et humidité. Avec le système de génération de phrase Jeedom, on peut donc avec une seule interaction générer les phrases pour tous les capteurs de ces 3 types de mesure.
 
 Aquí un ejemplo genérico que se utiliza para obtener la temperatura, humedad, luminosidad de las diferentes partes (objeto en el aspecto de Jeedom).
 
@@ -301,7 +301,7 @@ image::../images/interact019.png[]
 ==== Evolución 
 Por lo tanto puedes agregar sinónimos en nombre de comando para obtener algo más natural, añadir una regexp para filtrar comandos que no  tenga nada que ver con nuestra interacción.
 
-Acerca del Sinónimo, digamos que  permite a Jeedom que un comando llamado "X" puede también ser llamado "Y" y en nuestra frase si hay "encendido y", Jeedom sabe que esto es enceder x, este método es muy conveniente cambiar el nombre de comandos de control cuando se muestran en la pantalla escritos en una forma vocal no natural  o en una frase escrita como "ON" un botón escrito con esto es totalmente lógico, pero no en el contexto de una frase.
+Ajout de synonyme, permet de dire à Jeedom qu'une commande s'appellant "X" peut aussi s'appeler "Y" et donc dans notre phrase si on a "allume y", Jeedom sait que c'est allumer x. Cette méthode est très pratique pour renommer des noms de commande qui quand elles sont affichées à l'écran sont écrites d'une façon qui n'est pas naturelle vocalement ou dans une phrase écrite comme les "ON", un bouton écrit comme cela est totalement logique mais pas dans le contexte d'une phrase.
 
 También puede Agregar un filtro de Regexp para quitar unos cuantos comandos. Usando el simple ejemplo que vemos "batería" o "latencia", frases que no tienen nada que ver con la interacción de la temperatura, humedad y luminosidad.
 
@@ -328,19 +328,19 @@ image::../images/interact022.png[]
 Como se ve, aquí en la solicitud de etiquetado * \#consigna#* (puedes poner lo que quieras) que esté incluido en el control de la unidad para aplicar el valor deseado.
 Para hacer esto tienes 3 partes:
 * Uso: en la cual creamos una etiqueta que representa el valor que se enviará a la interacción.
-* Respuesta: reutiliza la etiqueta para la respuesta para estar seguro de lo que ha comprendido Jeedom.
-* Acción: ponemos una acción sobre la lampara que queremos pilotar y en la etiqueta #consigna# el valor que pasamos.
+* Réponse : on réutilise le tag pour la réponse afin d'être sûr que Jeedom a correctement compris la demande.
+* Action : on met une action sur la lampe que l'on veut piloter et dans la valeur on lui passe notre tag #consigne#.
 
 [NOTA]
-Puedes utilizar cualquier etiqueta ,excepto aquellas ya utilizados por Jeedom, puedes accionar varios  comandos por ejemplo. Tenga en cuenta también que todas las etiquetas se pasan a los escenarios que inicia la interacción (sin embargo, debe ser el escenario en "Ejecución plan de avance").
+On peut utiliser n'importe quel tag excepté ceux déjà utilisés par Jeedom, il peut y en avoir plusieurs pour piloter par exemple plusieurs commandes. A noter aussi que tous les tags sont passés aux scénarios lancés par l'interaction (il faut toutefois que le scénario soit en "Exécuter en avant plan").
 
 ==== Evolución 
-Puedes manejar todos los comandos tipo cursor con una interacción única, con el siguiente ejemplo, por lo tanto podremos controlar varios receptores con una sola interacción y por lo tanto generar un conjunto de sentencias para el controlador.
+On peut vouloir piloter toutes les commandes de type curseur avec une seule interaction. Avec l'exemple qui suit on va donc pouvoir commander plusieurs variateurs avec une seule interaction et donc générer un ensemble de phrases pour les contrôler.
 
 image::../images/interact033.png[]
 
-En esta interacción, no hay ningún comando en la parte de acción, Jeedom generará a partir de las etiquetas de la lista de frases, puedes ver las etiquetas * \#slider#*, es imperativo utilizar esta etiqueta para instrucciones en una orden de interacción múltiple, puede que no sea la última palabra en la frase.
-También podemos ver en el ejemplo que se puede utilizar en la respuesta de una etiqueta que no parte de la orden, la mayoría de las etiquetas disponibles en los escenarios están disponibles también en las interacciones y por lo tanto pueden ser utilizadas en una respuesta.
+Dans cette interaction, on n'a pas de commande dans la partie action, on laisse Jeedom générer à partir des tags la liste de phrases, on peut voir le tag *\#slider#*. Il est impératif d'utiliser ce tag pour les consignes dans une interaction multiple commandes, il peut ne pas être le dernier mot de la phrase.
+On peut aussi voir dans l'exemple que l'on peut utiliser dans la réponse un tag qui ne fait pas partie de la demande, la majorité des tags disponibles dans les scénarios sont disponibles aussi dans les interactions et donc peuvent être utilisés dans une réponse.
 
 El resultado de la interacción : 
 
@@ -356,11 +356,11 @@ Aquí la interacción:
 
 image::../images/interact023.png[]
 
-Así que no es nada complicado, sin embargo debes configurar los colores en Jeedom para que funcione, vaya al menú -> Configuración (arriba a la derecha) y luego en al apartado "Configuración de las interacciones": 
+Jusque là rien de bien compliqué, il faut en revanche avoir configuré les couleurs dans Jeedom pour que cela fonctionne; rendez-vous dans le menu -> Configuration (en haut à droite) puis dans la partie "Configuration des interactions" : 
 
 image::../images/interact024.png[]
 
-Como se ve en la captura, no hay ningún color configurado, así que agregue colores con el "+" a la derecha, el nombre del color, este es el nombre que pasará a la interacción, y luego en el lado derecho (columna "Código HTML"), haciendo clic en el color negro se puede elegir un nuevo color.
+Comme on peut le voir sur la capture, il n'y a pas de couleur configurée, il faut donc ajouter des couleurs avec le "+" à droite. Le nom de la couleur, c'est le nom que vous allez passer à l'interaction, puis dans la partie de droite (colonne "Code HTML"), en cliquant sur la couleur noire on peut choisir une nouvelle couleur.
 
 image::../images/interact025.png[]
 
@@ -394,7 +394,7 @@ image::../images/interact24.JPG[]
 
 == Probar una Interacción 
 
-El botón de  prueba (en la parte superior izquierda) te permite introducir una frase para probar su funcionamiento y ejecutarlo: 
+Le bouton Tester (en haut a gauche) vous permet de saisir une phrase pour tester son bon fonctionnement et l'exécuter : 
 
 image::../images/interact11.JPG[]
 
@@ -420,7 +420,7 @@ Aquí tienes 3 parámetros :
 La sensibilidad oscila entre 1 (correspondencia exacta) a 99 (lo que es aceptable para mi),. 
 
 * * No contesto si no se incluye la interacción *: por defecto Jeedom respondió: "No entendí" si no se entiende la interacción, es posible deshabilitar esta función para que Jeedom no responda nada, ponga el botón en sí para desactivar la respuesta.
-* *Regex de exclusión general para las interacciones *: permite definir una regexp que si corresponde a una interacción eliminará automáticamente esta frase de la generación (reservado para expertos) para más información véase las explicaciones del capítulo * "Exclusión Regexp"*
+* *Regex général d'exclusion pour les interactions* : permet de définir une regexp qui, si elle correspond à une interaction, supprimera automatiquement cette phrase de la génération (réservé aux experts). Pour plus d'infos voir les explications dans le chapitre *"Regexp d'exclusion"*
 
 Puedes encontrar la parte de ajustes de color, que se describe en detalle en el capítulo * "Controlar el color de una tira LED"*
 
@@ -428,7 +428,7 @@ Puedes encontrar la parte de ajustes de color, que se describe en detalle en el 
 No te olvides de guardar, en la parte inferior de la página.
 
 [TIP]
-Si habilitas los registros a nivel depuración, obtendrás un registro   interactivo con un nivel de sensibilidad mayor para la comparación de frases, esto permite afinar más fácilmente.
+Si vous activez les logs au niveau debug vous avez un log interact qui vous donne la niveau de sensibilité pour chaque comparaison de phrases, cela peut permettre de régler celui-ci plus facilement.
 
 == Resumen
 

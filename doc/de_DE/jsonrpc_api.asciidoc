@@ -16,13 +16,13 @@ Gibt die Jeedom Version zurück
 
 === datetime
 
-Retourne le datetime de jeedom en microseconde
+Retourne le datetime de Jeedom en microsecondes
 
 == JSON API Event
 
 === event::changes 
 
-Retourne la liste des changements depuis le datetime passée en paramètre (doit être en microseconde). Vous aurez aussi dans la réponse le datetime courant de Jeedom (à réutiliser pour l'interrogation suivante)
+Retourne la liste des changements depuis le datetime passé en paramètre (doit être en microsecondes). Vous aurez aussi dans la réponse le datetime courant de Jeedom (à réutiliser pour l'interrogation suivante)
 
 Parameter :
 
@@ -45,7 +45,7 @@ Parameter :
 Gibt die Liste aller Objekte zurück 
 
 === object::full
-Liefert eine Liste aller Objekte, mit allen Geräten für jedes Objekt und alle Befehle von jedem Gerät, sowie die Zustände von diesem (für Befehle des Info Typs)
+Retourne la liste de tous les objets, avec pour chaque objet tous ses équipements et pour chaque équipement toutes ses commandes ainsi que les états de celles-ci (pour les commandes de type info)
 
 === object::byId
 Liefert das angegebene Objekt zurück
@@ -55,14 +55,14 @@ Parameter :
 - int id
 
 === object::fullById
-Gibt ein Objekt zurück, seine Geräte und für jedes Gerät alle seine Befehle und die Zustände
+Retourne un objet, ses équipements et pour chaque équipement toutes ses commandes ainsi que les états de cellse-ci (pour les commandes de type info)
 
 == JSON API EqLogic
 === eqLogic::all
 Gibt die Liste aller Geräte zurück
 
 === eqLogic::fullById
-Gibt ein Gerät sowie dessen Befehle und die Zustände zurück (für Befehle des Info Typs)
+Retourne un équipement et ses commandes ainsi que les états de celles-ci (pour les commandes de type info)
 
 === eqLogic::byId
 Liefert das angegebene Gerät zurück
@@ -139,7 +139,7 @@ Parameter :
 - [options] Liste der Optionen für die Befehle (hängt vom Typ und von der Unterklasse des Befehles ab)
 
 === cmd::getStatistique
-Gibt Statistiken über den Befehl zurück (funktioniert nur Befehle vom Info Typ und historisiert)
+Retourne les statistiques sur la commande (ne marche que sur les commandes de type info et historisées)
 
 Parameter :
 
@@ -194,7 +194,7 @@ Ruft den Wert einer Variablen ab, der im Datenspeicher gespeichert ist
 Parameter :
 
 - string type : Typ des gespeicherten Wertes (für die Szenarien ist es Szenario)
-- id linkId : allgemein -1 (Wert für Szenarien standardmäßig oder die ID des Szenarios)
+- id linkId : -1 pour le global (valeur pour les scénarios par défaut, ou l'id du scénario)
 - string key : Name des Wertes
 
 === datastore::save
@@ -203,7 +203,7 @@ Speichert den Wert einer Variablen in den Datenspeicher
 Parameter :
 
 - string type : Typ des gespeicherten Wertes (für die Szenarien ist es Szenario)
-- id linkId : allgemein -1 (Wert für Szenarien standardmäßig oder die ID des Szenarios)
+- id linkId : -1 pour le global (valeur pour les scénarios par défaut, ou l'id du scénario)
 - string key : Name des Wertes
 - mixte value : zu registrierender Wert
 
@@ -218,7 +218,7 @@ Alle Nachrichten löschen
 == JSON API Interaktion
 
 === interact::tryToReply
-Essaye de faire correspondre une demande avec une interaction, exécute l'action et répond en conséquence
+Essaie de faire correspondre une demande avec une interaction, exécute l'action et répond en conséquence
 
 Parameter :
 
@@ -255,13 +255,13 @@ Parameter :
 Gibt eine Liste aller installierten Komponenten, deren Versionen und die zugehörigen Informationen zurück
 
 === update::checkUpdate
-Ermöglich, auf Updates zu überprüfen
+Permet de vérifier les mises à jour
 
 === update::update
 Erlaubt, Jeedom und aller Plugins zu aktualisieren
 
 == JSON API Beispiele
-Hier ist ein Beispiel für die Verwendung der API. Für das nachfolgende Beispiel verwende ich https://github.com/jeedom/core/blob/stable/core/class/jsonrpcClient.class.php[diese php Klasse], sie ermöglicht es, die Nutzung der API zu vereinfachen.  
+Voici un exemple d'utilisation de l'API. Pour l'exemple ci-dessous j'utilise https://github.com/jeedom/core/blob/stable/core/class/jsonrpcClient.class.php[cette class php] qui permet de simplifier l'utilisation de l'api.
 
 Die Liste der Objekte abrufen :
 
@@ -285,4 +285,4 @@ if($jsonrpc->sendRequest('cmd::execCmd', array('id' => #cmd_id#, 'options' => ar
     echo $jsonrpc->getError();
 }
  
-Die API ist natürlich verwendbar mit anderen Sprache (nur post auf einer Seite) 
+L'API est bien sur utilisable avec d'autres langages (simplement un post sur une page) 

@@ -10,7 +10,7 @@ Einmal darauf sehen sie hier folgendes :
 
 image::../images/health2.png[]
 
-Sie finden hier eine Tabelle, die eine Beschreibung von dem was Jeedom geprüft hat anzeigt, in der zweiten Spalte ist der Status und  schließlich in der letzte Spalte wird ihnen Tipps zur Fehlerbehebung, wenn die Prüfung nicht OK ist, angeboten.
+Vous retrouvez ici un tableau qui donne une description de ce que Jeedom vérifie et du statut de celle-ci dans la 2ème colonne, enfin la dernière colonne peut vous donner des conseils de résolution si la vérification n'est pas OK
 
 Nachfolgend finden sie die gleiche Tabelle, aber für Plugins (wenn das Plugin kompatibel ist). Mit einem Klick auf den Plugin-Namen gelangen sie auf dessen Konfigurations-Seite.
 

@@ -539,7 +539,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_datetime">1.3. datetime</h3>
 <div class="paragraph">
-<p>Devuelve la fecha y hora de jeedom en microsegundos</p>
+<p>Retourne le datetime de Jeedom en microsecondes</p>
 </div>
 </div>
 </div>
@@ -550,7 +550,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_event_changes">2.1. event::changes</h3>
 <div class="paragraph">
-<p>Devuelve la lista de cambios desde la fecha y hora en el parámetro (debe estar en microsegundos). También en la respuesta de la fecha y hora actual de Jeedom (para ser reutilizado para la petición siguiente)</p>
+<p>Retourne la liste des changements depuis le datetime passé en paramètre (doit être en microsecondes). Vous aurez aussi dans la réponse le datetime courant de Jeedom (à réutiliser pour l&#8217;interrogation suivante)</p>
 </div>
 <div class="paragraph">
 <p>Parámetros:</p>
@@ -595,7 +595,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_object_full">4.2. object::full</h3>
 <div class="paragraph">
-<p>Devuelve una lista de todos los objetos, para cada objeto de cada equipo y sus servicios, todos sus comandos, así como los Estados (para comandos de tipo información)</p>
+<p>Retourne la liste de tous les objets, avec pour chaque objet tous ses équipements et pour chaque équipement toutes ses commandes ainsi que les états de celles-ci (pour les commandes de type info)</p>
 </div>
 </div>
 <div class="sect2">
@@ -617,7 +617,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_object_fullbyid">4.4. object::fullById</h3>
 <div class="paragraph">
-<p>Devuelve un objeto, sus dispositivos y cada dispositivo con todos sus comandos, así como los Estados (para comandos de tipo información)</p>
+<p>Retourne un objet, ses équipements et pour chaque équipement toutes ses commandes ainsi que les états de cellse-ci (pour les commandes de type info)</p>
 </div>
 </div>
 </div>
@@ -634,7 +634,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_eqlogic_fullbyid">5.2. eqLogic::fullById</h3>
 <div class="paragraph">
-<p>Devuelve un dispositivo y sus comandos, así como los estados (para comandos de tipo información)</p>
+<p>Retourne un équipement et ses commandes ainsi que les états de celles-ci (pour les commandes de type info)</p>
 </div>
 </div>
 <div class="sect2">
@@ -778,7 +778,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_cmd_getstatistique">6.5. cmd::getStatistique</h3>
 <div class="paragraph">
-<p>Devuelve las estadísticas sobre el comando (no funciona en los comapdo tipo información e historico)</p>
+<p>Retourne les statistiques sur la commande (ne marche que sur les commandes de type info et historisées)</p>
 </div>
 <div class="paragraph">
 <p>Parámetros:</p>
@@ -904,7 +904,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>string type : tipo de valor almacenado (para los escenarios es scenario)</p>
 </li>
 <li>
-<p>id link: -1 para el total (valor para escenarios por defecto, o le id del escenario)</p>
+<p>id linkId : -1 pour le global (valeur pour les scénarios par défaut, ou l&#8217;id du scénario)</p>
 </li>
 <li>
 <p>string key : nombre de valor</p>
@@ -926,7 +926,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>string type : tipo de valor almacenado (para los escenarios es scenario)</p>
 </li>
 <li>
-<p>id link: -1 para el total (valor para escenarios por defecto, o le id del escenario)</p>
+<p>id linkId : -1 pour le global (valeur pour les scénarios par défaut, ou l&#8217;id du scénario)</p>
 </li>
 <li>
 <p>string key : nombre de valor</p>
@@ -962,7 +962,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_interact_trytoreply">10.1. interact::tryToReply</h3>
 <div class="paragraph">
-<p>Trata de coincidir con una aplicación con interacción, realiza la acción y responde en consecuencia</p>
+<p>Essaie de faire correspondre une demande avec une interaction, exécute l&#8217;action et répond en conséquence</p>
 </div>
 <div class="paragraph">
 <p>Parámetros:</p>
@@ -1043,7 +1043,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_update_checkupdate">13.2. update::checkUpdate</h3>
 <div class="paragraph">
-<p>Permite comprobar las actualizaciones</p>
+<p>Permet de vérifier les mises à jour</p>
 </div>
 </div>
 <div class="sect2">
@@ -1058,7 +1058,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_api_json_ejemplos">14. API JSON Ejemplos</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Aquí  un ejemplo del uso de la API. Para el ejemplo de abajo use <a href="https://github.com/jeedom/core/blob/stable/core/class/jsonrpcClient.class.php" class="bare">https://github.com/jeedom/core/blob/stable/core/class/jsonrpcClient.class.php</a> [esta clase php] que permite simplificar el uso de la api.</p>
+<p>Voici un exemple d&#8217;utilisation de l&#8217;API. Pour l&#8217;exemple ci-dessous j&#8217;utilise <a href="https://github.com/jeedom/core/blob/stable/core/class/jsonrpcClient.class.php">cette class php</a> qui permet de simplifier l&#8217;utilisation de l&#8217;api.</p>
 </div>
 <div class="paragraph">
 <p>Recuperar la lista de objetos:</p>
@@ -1087,7 +1087,7 @@ if($jsonrpc-&gt;sendRequest('cmd::execCmd', array('id' =&gt; #cmd_id#, 'options'
 </div>
 </div>
 <div class="paragraph">
-<p>La API es también utilizable en otro idioma (solo un post en una página) </p>
+<p>L&#8217;API est bien sur utilisable avec d&#8217;autres langages (simplement un post sur une page) </p>
 </div>
 </div>
 </div>
