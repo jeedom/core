@@ -1,27 +1,27 @@
 = Profil
 
-Auf der Profilseite können sie ein bestimmtes Verhalten von Jeedom konfigurieren, speziell für den Benutzer : Haupt Seite, Themen der Desktop Version, der Mobilen Version, der Grafiken… Sie erlaubt auch, ihr Passwort zu ändern und in den Experten Modus überzugehen, was eine erweiterte Anpassung von Jeedom erlaubt.
+La page profils vous permet de configurer certains comportements de Jeedom spécifiques à l'utilisateur : page d'accueil, thèmes de la version desktop, de la version mobile, des graphiques... Elle permet aussi de changer votre mot de passe et de passer en mode expert permettant une configuration plus poussée de Jeedom.
 
 == Das Menü Profil 
 
-Oben rechts, gehen sie auf der Jeedom Seite auf das Menü Profil : 
+Vous retrouvez en haut à droite sur chaque page de Jeedom le menu Profil : 
 
 image::../images/profils1.png[]
 
-Vous retrouvez à coté de ce menu profil, une information sur le nombre de messages dans le centre de messages (ces messages sont importants sinon Jeedom ne vous les remonterait pas), l'heure Jeedom (attention c'est bien l'heure de Jeedom et non de votre PC), le menu profils, une icône indiquant la connexion (ici filaire, mais il est possible si vous êtes en wifi d'avoir celle-ci), l'icône pour l'accès à l'aide de la page en cours et l'icône pour faire une demande de support.
+Vous retrouvez à coté de ce menu Profil, une information sur le nombre de messages dans le centre de messages (ces messages sont importants sinon Jeedom ne vous les remonterait pas), l'heure Jeedom (attention c'est bien l'heure de Jeedom et non de votre PC), le menu Profil, une icône indiquant la connexion (ici filaire, mais il est possible si vous êtes en wifi d'avoir celle-ci), l'icône pour l'accès à l'aide de la page en cours et l'icône pour faire une demande de support.
 
-Wenn sie auf das Menü Profil klicken, erhalten sie : 
+Si vous cliquez sur le menu Profil vous obtenez : 
 
 image::../images/profils2.png[]
 
-Aus diesem Menü haben  sie Zugriff auf die Profilseite, Experten Modus aktivieren oder deaktivieren, Jeedom Neustarten, Jeedom Ausschalten, den Wechsel in die mobile Version und die Schaltfläche Abmelden.
+A partir de ce menu vous avez accès à la page Profil, à l'activation ou non du mode expert, au redémarrage de Jeedom, à l'arrêt de Jeedom, au passage en version mobile et un bouton pour se déconnecter.
 
 [IMPORTANT]
-Das Ausführen von Neustart und Ausschalten geht in DIY nur, wenn sie den Befehl visudo richtig durchgeführt haben, siehe  link:https://jeedom.com/doc/documentation/installation/fr_FR/doc-installation.html#_etape_4_définition_des_droits_root_à_jeedom[hier]
+En DIY les actions de redémarrage et d'arrêt ne fonctionnent que si vous avez bien réalisé les actions visudo, voir link:https://jeedom.com/doc/documentation/installation/fr_FR/doc-installation.html#_etape_4_définition_des_droits_root_à_jeedom[ici]
 
-== Die Profil Seite
+== Page Profil
 
-Die Profilseite sieht wie folgt aus : 
+La page Profil ressemble à ca : 
 
 image::../images/profils3.png[]
 
@@ -34,9 +34,9 @@ image::../images/profils4.png[]
 Auf dem Themen-Feld können sie die Schnittstellenparameter einstellen : 
 
 * *Desktop* : Themen zum verwenden im Desktop-Modus, Achtung nur das Standard-Theme wird offiziell von Jeedom unterstützt
-* *Mobil* : ermöglicht ein wenig das Mobile Thema zu konfigurieren (hier wird alles unterstützt), entweder hell oder dunkel, sowie die vorherrschende Farbe von diesem
-* *Diagramme Desktop* : ermöglicht das Standard-Theme für die Diagramme(Chronik) im Desktop-Modus zu definieren
-* *Diagramme Mobil* : ermöglicht das Standard-Theme für die Diagramme(Chronik) im Mobil-Modus zu definieren
+* *Mobile* : permet de légèrement configurer le thème mobile (ici tout est supporté), soit clair soit sombre, ainsi que la couleur dominante de celui-ci
+* *Graphique Desktop* : permet de définir le thème par défaut des graphiques en mode desktop
+* *Graphique Mobile* : permet de définir le thème par défaut des graphiques en mode mobile
 
 === Schnittstelle
 
@@ -69,4 +69,4 @@ Hier können Sie die Farbe der Meldungen einstellen, die in der Schnittstelle an
 
 image::../images/profils7.png[]
 
-C'est ici que vous pouvez changer votre mot de passe ainsi que la clef de sécurité pour les appareils (ordinateur,téléphone...) enregistrés. Un changement de cette clef obligera tous les péripheriques se connectant automatiquement avec votre compte à se réauthentifier
+C'est ici que vous pouvez changer votre mot de passe ainsi que la clef de sécurité pour les appareils enregistrés (ordinateur,téléphone...). Un changement de cette clef obligera tous les péripheriques se connectant automatiquement avec votre compte à se réauthentifier

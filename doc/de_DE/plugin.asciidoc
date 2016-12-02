@@ -1,10 +1,10 @@
-= Plugin
+= Plugins
 
 Das Untermenü Plugins, ermöglicht seine Plugins zu Verwalten : sie hochladen, sie auf den neuesten Stand bringen und sie zu aktivieren.
 
 == Plugin Verwaltung
 
-Sie können auf die Plugin-Seite über das Menü  Plugin->Plugin Verwaltung zugreifen. 
+Vous pouvez accèder à la page plugins à partir de Plugins -> Gestion des plugins : 
 
 image::../images/plugin1.png[]
 
@@ -15,7 +15,7 @@ image::../images/plugin2.png[]
 [TIP]
 Wie an vielen Orten auf Jeedom, wenn man die Maus ganz nach links bewegt ermöglicht es, ein Schnellzugangsmenü sichtbar zu machen(Sie können es in ihrem Profil immer sichtbar machen).
 
-Auf dieser Seite finden Sie alle Plugins die auf Ihrem Jeedom sind wieder. Diejenigen in rot, sind die, die nicht aktiviert sind. Wenn auf ein Plugin geklickt wird, gelangt mann auf dessen Konfiguration Seite :   
+Sur cette page vous retrouvez tous les plugins présents sur votre Jeedom; en rouge ceux qui sont désactivés. En cliquant sur un plugin vous accèdez à sa configuration : 
 
 image::../images/plugin3.png[]
 
@@ -26,17 +26,17 @@ Nach dem Herunterladen eines Plugin ist dieses nicht aktiviert, sodas sie es ans
 
 Unten finden Sie 4 Schaltflächen : 
 
-* *Im Markt sehen* : erlaubt, das Datenblatt des Plugin zu sehen 
-* *Auf den Markt senden* : ermöglicht, das Plugin auf den Markt zu senden (nur verfügbar, wenn Sie der Autor sind)
+* *Voir sur le Market* : permet de voir la fiche du plugin 
+* *Envoyer sur le Market* : permet d'envoyer le plugin sur le Market (uniquement disponible si vous en êtes l'auteur)
 * *Löschen* : Das Plugin wird von Jeedom entfernt. Achtung, dies entfernt auch dauerhaft die Geräte des Plugin
 * *Dokumentation* : Ermöglicht den direkten Zugriff auf die Dokumentationsseite vom Plugin
 
 [TIP]
-Einige Plugin haben einen Konfiguration-Teil, es ist in diesem Fall notwendig in der Dokumentation des Plugins die Frage zu finden, wie es zu konfigurieren ist.
+Certains plugins ont une partie configuration, il faut dans ce cas se référer à la doc du plugin en question pour savoir comment le configurer
 
 == Die Installation eines Plugins
 
-Zum Installieren eines neuen klicken Sie einfach auf die Schaltfläche "Zum Markt gehen" :
+Pour en installer un nouveau il suffit de cliquer sur le bouton "Accéder au Market" :
 
 image::../images/plugin4.png[]
 
@@ -44,20 +44,20 @@ Nach einer kurzen Ladezeit sehen sie :
 
 image::../images/plugin5.png[]
 
-Im oberen Teil auf dem Markt haben Sie Filter: 
+Tout en haut comme sur le Market vous avez des filtres : 
 
 * *Kostenlos/Gebührenpflichtig* : Sie können den Filtern auf kostenlose oder gebührenpflichtig einstellen, das kleine Kreuz erlaubt den Filter zurückzusetzen.
 * *Neue/Populäre* : Die neuesten Plugins oder die meisten Downloads anzeigen, das kleine Kreuz erlaubt den Filter zurückzusetzen.
 * *Installiert/Nicht installiert* : Es ermöglicht ihnen, nur installierte oder nicht installierte Plugins anzuzeigen, das kleine Kreuz erlaubt den Filter zurückzusetzen
 * *Kategorie* : erlaubt, nur einige Plugin Kategorien anzuzeigen
 * *Suchen* : um ein Plugin zu suchen (Namen oder eine Beschreibung davon)
-* *Benutzername* :  Zeigt den Benutzernamen, mit dem man auf dem Markt verbunden ist sowie den Status der Verbindung (hier Ok)
+* *Nom d'utilisateur* : affiche le nom d'utilisateur utilisé pour la connexion au Market ainsi que le statut de la connexion (ici ok)
 
 Sobald das gewünschte Plugin gefunden wurde klicken Sie einfach auf das Plugin, um es zu öffnen :
 
 image::../images/plugin6.png[]
 
-Ein andere Karteikarte gibt Ihnen die volle Information über das Plug-In : 
+Cette fiche vous donne beaucoup d'informations sur le plugin, entre autre : 
 
 Wenn es offizielle/registriert oder veraltete ist (Sie müssen wirklich alte Plugin Installationen vermeiden)
 * 3 Schaltflächen : 
@@ -79,7 +79,7 @@ Vous pouvez aussi ajouter un plugin à Jeedom à partir d'un fichier ou depuis u
 
 == La partie démon des plugins
 
-Certains plugins ont des démons, vous trouverez ici le statut des démons par jeedom (maitre ou esclave)
+Certains plugins ont des démons, vous trouverez ici le statut des démons par jeedom (maître ou esclave)
 
 image::../images/plugin7.png[]
 
@@ -95,9 +95,9 @@ Vous avez ici :
 * *Gestion automatique* : autorise Jeedom à démarrer et à relancer le démon en cas de soucis. Elle est à désactiver quand vous êtes en déporté et que par exemple sur le maître vous n'avez pas besoin que le démon tourne
 * *Dernier lancement* : date de démarrage du démon
 
-== La partie dépendance
+== La partie Dépendances
 
-Certains plugins ont des dépendances, vous trouverez ici le statut des dépendances par jeedom (maitre ou esclave)
+Certains plugins ont des dépendances, vous trouverez ici le statut des dépendances par jeedom (maître ou esclave)
 
 image::../images/plugin8.png[]
 
@@ -105,4 +105,4 @@ image::../images/plugin8.png[]
 * *Statut* : indique si les dépendances sont bien installées
 * *Installation* : lance l'installation des dépendances
 * *Log* : permet de voir la log d'installation des dépendances
-* *Dernière installation* : donne la date ou les dépendances ont été lancées pour la derniere fois
+* *Dernière installation* : donne la date à laquelle les dépendances ont été lancées pour la derniere fois

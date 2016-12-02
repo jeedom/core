@@ -19,23 +19,23 @@ En mode Expert, on affiche tous les élements, si non, on affiche uniquement les
 
 Il y a au total jusqu'à 5 boutons qui peuvent être disponibles par élément :
 
-* *Voir* : permet de consulter la page du market correspondant à l'élément selectionné
-* *Partager* : permet lorsque vous avez créé un élément de le partager sur le market
+* *Voir* : permet de consulter la page du Market correspondant à l'élément sélectionné
+* *Partager* : permet lorsque vous avez créé un élément de le partager sur le Market
 * *Supprimer* : permet de désinstaller un élément
 * *Mettre à jour* : permet de mettre à jour l'élément
 
 [TIP]
-A noter que "Core" Jeedom signifie la mise à jour du logiciel de base Jeedom.
+A noter que "core:jeedom" signifie la mise à jour du logiciel de base Jeedom.
 
 
-En haut du tableau se trouvent les boutons de commande. Jeedom se connecte périodiquement avec le market pour voir si des mises à jour sont disponibles (la date de dernière vérificaiton est indiquée tout en haut du tableau à gauche). Si vous voulez réaliser une vérification manuelle, vous pouvez appuyer sur le bouton "Vérifier les mises à jour".
+En haut du tableau se trouvent les boutons de commande. Jeedom se connecte périodiquement avec le Market pour voir si des mises à jour sont disponibles (la date de dernière vérification est indiquée tout en haut du tableau à gauche). Si vous voulez réaliser une vérification manuelle, vous pouvez appuyer sur le bouton "Vérifier les mises à jour".
 
 Le bouton "Mettre à jour" permet de mettre à jour l'ensemble de Jeedom.
 
 image::../images/update3.png[]
 
 [TIP]
-Sur la branche beta le numéro de version n'est pas toujours mise à jour après chaque modification, il faut donc cliquer sur "Mettre à jour" régulièrement pour être sur d'avoir la dernière version. Ce n'est le cas bien sûr que sur la branche beta.
+Sur la branche beta le numéro de version n'est pas toujours mis à jour après chaque modification, il faut donc cliquer sur "Mettre à jour" régulièrement pour être sur d'avoir la dernière version. Ce n'est le cas bien sûr que sur la branche beta.
 
 [IMPORTANTE]
 Avant une mise à jour, Jeedom va par défaut faire une sauvegarde. En cas de souci lors de l'application d'une mise à jour, Jeedom va automatiquement restaurer la sauvegarde faite juste avant. Ce principe n'est bien sûr valable que pour les mises à jour de Jeedom et non des plugins.
@@ -68,9 +68,9 @@ image::../images/administration10.png[]
 
 Ici on retrouve : 
 
-* *Adresse* : adresse du market, à ne surtout jamais changer à moins que cela soit sur demande de l'équipe de support
-* *Nom d'utilisateur* : nom d'utilisateur du market
-* *Mot de passe* : mot de passe du market
+* *Adresse* : adresse du Market, à ne surtout jamais changer à moins que cela soit sur demande de l'équipe de support
+* *Nom d'utilisateur* : nom d'utilisateur du Market
+* *Mot de passe* : mot de passe du Market
 * *Installer automatiquement les widgets manquants* : indique à Jeedom d'installer automatiquement les widgets dont il a besoin (attention à bien avoir installé le plugin Widget)
 * *Voir les modules en beta (à vos risques et périls)* : Permet de voir les plugins, widgets... qui sont en beta et de les installer
 * *Faire une sauvegarde avant la mise à jour* : indique à Jeedom de faire une sauvegarde avant chaque mise à jour (vivement recommandé)
@@ -81,7 +81,7 @@ Ici on retrouve :
 Il faut éviter de mélanger les plugins beta avec un Jeedom stable et vise versa. De nombreuses erreurs sont remontées à l'équipe de support car cette règle n'est pas respectée.
 
 [IMPORTANTE]
-Il n'est pas possible de choisir l'heure de la vérification des mises à jour ou le moment de la mise à jour en automatique, cela pour permettre une répartition des demandes sur le market. A noter toutefois que ces deux actions ont forcément lieu entre 6h00 et 7h59.
+Il n'est pas possible de choisir l'heure de la vérification des mises à jour ou le moment de la mise à jour en automatique, cela pour permettre une répartition des demandes sur le Market. A noter toutefois que ces deux actions ont forcément lieu entre 6h00 et 7h59.
 
 == Mise à jour en ligne de commande
 

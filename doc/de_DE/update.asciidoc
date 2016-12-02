@@ -19,23 +19,23 @@ Im Experten-Modus werden alle Elemente angezeigt, ansonsten zeigt es nur Element
 
 Es gibt insgesamt bis zu 5 Knöpfe, die von Element verfügbar sein können:
 
-* *sehen* :  Ermöglicht, auf der entsprechenden Seite des Marktes das Element einzusehen
-* *Teilen* : Ermöglicht, wenn Sie ein Element geschaffen haben, es auf dem Market zu teilen.
+* *Voir* : permet de consulter la page du Market correspondant à l'élément sélectionné
+* *Partager* : permet lorsque vous avez créé un élément de le partager sur le Market
 * *Löschen* : Ermöglicht Elemente zu löschen.
 * *Update* : Ermöglicht Elemente zu aktualisieren.
 
 [TIP]
-Beachten Sie, dass "Core" Jeedom Basissoftware bedeutet .
+A noter que "core:jeedom" signifie la mise à jour du logiciel de base Jeedom.
 
 
-In oberem Teil der Tabelle befinden sich die Schaltflächen. Jeedom verbindet sich regelmäßig mit dem Markt um zu sehen, ob Updates verfügbar sind (das Datum der letzten Prüfung wird am oberen Rand auf der linken Seite der Tabelle angezeigt). Wenn Sie eine manuelle Überprüfung durchführen möchten, klicken Sie die Taste "Elemente auf Update überprüfen" an.
+En haut du tableau se trouvent les boutons de commande. Jeedom se connecte périodiquement avec le Market pour voir si des mises à jour sont disponibles (la date de dernière vérification est indiquée tout en haut du tableau à gauche). Si vous voulez réaliser une vérification manuelle, vous pouvez appuyer sur le bouton "Vérifier les mises à jour".
 
 Die Schaltfläche "Update", um alles von Jeedom zu aktualisieren.
 
 image::../images/update3.png[]
 
 [TIP]
-Auf dem Beta-Zweig ist die Versionsnummer noch nicht nach jeder Änderung aktualisiert, sie müssen also regelmäßig auf "Update" klicken um sicher zu sein, die neueste Version zu haben. Das ist natürlich nur der Fall auf dem Beta-Zweig.
+Sur la branche beta le numéro de version n'est pas toujours mis à jour après chaque modification, il faut donc cliquer sur "Mettre à jour" régulièrement pour être sur d'avoir la dernière version. Ce n'est le cas bien sûr que sur la branche beta.
 
 [IMPORTANT]
 Vor der Aktualisierung wird Jeedom standardmäßig eine Sicherungskopie erstellen. Bei Problemen beim Anwenden eines Updates wird Jeedom automatisch die zuvor erstellte Sicherung wiederherstellen. Dieses Prinzip gilt natürlich nur für Jeedom Updates, nicht für Plugins.  
@@ -68,9 +68,9 @@ image::../images/administration10.png[]
 
 Hier haben wir : 
 
-* *Adresse* : Adresse des Marktes, sie darf nicht geändert werden, außer das Support-Team fordert sie auf, es zu tun.
-* *Benutzername* : Markt Benutzername
-* *Passwort* : Markt Passwort
+* *Adresse* : adresse du Market, à ne surtout jamais changer à moins que cela soit sur demande de l'équipe de support
+* *Nom d'utilisateur* : nom d'utilisateur du Market
+* *Mot de passe* : mot de passe du Market
 * *Installer automatiquement les widgets manquants* : indique à Jeedom d'installer automatiquement les widgets dont il a besoin (attention à bien avoir installé le plugin Widget)
 * *Voir les modules en beta (à vos risques et périls)* : Permet de voir les plugins, widgets... qui sont en beta et de les installer
 * *Eine Sicherung vor der Aktualisierung machen* : Sagt Jeedom, eine Sicherung vor jeder Aktualisierung zu machen (sehr empfohlen)
@@ -81,7 +81,7 @@ Hier haben wir :
 Vermeiden sie die Beta-Plugins mit einem stabilem Jeedom und umgekehrt zu mischen. Viele Fehler werden dem Support-Team gemeldet, weil diese Regel nicht eingehalten wird.
 
 [IMPORTANT]
-Il n'est pas possible de choisir l'heure de la vérification des mises à jour ou le moment de la mise à jour en automatique, cela pour permettre une répartition des demandes sur le market. A noter toutefois que ces deux actions ont forcément lieu entre 6h00 et 7h59.
+Il n'est pas possible de choisir l'heure de la vérification des mises à jour ou le moment de la mise à jour en automatique, cela pour permettre une répartition des demandes sur le Market. A noter toutefois que ces deux actions ont forcément lieu entre 6h00 et 7h59.
 
 == Update in der Kommandozeile
 

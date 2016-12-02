@@ -8,7 +8,7 @@ Jeedom ist aus einem Kern, der Basisfunktionen ausführt zusammensetzt :
 * Interaktion
 * Update und Sicherung
 
-Um diesen Kern herum kommen Plugins hinzu, die verschieden sein können : 
+Autour de ce core viennent se greffer des plugins qui peuvent être de toutes sortes :
  
 * Home-Automatisierungs Protokolle (Z-Wave, RFXcom, EnOcean...)
 * IP Protokolle (KNX,xPL...)
@@ -18,7 +18,7 @@ Um diesen Kern herum kommen Plugins hinzu, die verschieden sein können :
 * Organisation (Kalender, Google Kalender)
 * Entwicklung (Skript)
 
-Diese Plugins können über den Markt geladen werden und ermöglichen es, Jeedom zu erweitern.
+Ces plugins peuvent être récupérés par le biais du Market et permettent d'étendre les possibilités de Jeedom.
 
 Jeedom ermöglicht es jedem Plugin, mit einem anderen auf standardisierter Basis zu komunizieren. Dies ermöglicht es beispielsweise, das Thermostat-Plugin zu verwenden oder Alarm mit beliebigem Haus-Automatisierungs-Protokoll oder sogar ein IP Plugin oder Kommunikationsobjekt ...
 

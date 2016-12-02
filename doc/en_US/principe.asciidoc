@@ -8,7 +8,7 @@ Jeedom is composed of a core which is on charge of basic functions :
 * interaction
 * update and saving
 
-Around this core are grafted plugins that can be of any kind :
+Autour de ce core viennent se greffer des plugins qui peuvent être de toutes sortes :
  
 * protocole domotique (zwave, rfxcom, enOcean...)
 * protocole IP (knx,xPL...)
@@ -18,7 +18,7 @@ Around this core are grafted plugins that can be of any kind :
 * organisation (agenda, Google agenda)
 * développement (script)
 
-Ces plugins peuvent être récuperés par le biais du market et permettent d'étendre les possibilités de Jeedom.
+Ces plugins peuvent être récupérés par le biais du Market et permettent d'étendre les possibilités de Jeedom.
 
 Jeedom permet à n'importe quel plugin de discuter avec un autre sur une base normalisée, cela permet par exemple d'utiliser les plugins thermostat ou alarme avec n'importe quel protocole domotique ou même un plugin IP ou objet communiquant...
 

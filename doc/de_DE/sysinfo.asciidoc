@@ -1,6 +1,6 @@
 = System Information
 
-Auf der System-Info-Seite können sie eine allgemeine Zusammenfassung von ihrem System sehen (Hardware + OS).
+La page Informations système vous permet d'avoir un résumé général sur votre système (hardware + OS)
 
 Sie ist über das Menü Analyse -> System Information erreichbar : 
 

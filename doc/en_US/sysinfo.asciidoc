@@ -1,6 +1,6 @@
 = System informations
 
-La page systeme information vous permet d'avoir un résumé général sur votre système (hardware + OS)
+La page Informations système vous permet d'avoir un résumé général sur votre système (hardware + OS)
 
 Il est accessible à partir du menu Analyse -> Informations système : 
 

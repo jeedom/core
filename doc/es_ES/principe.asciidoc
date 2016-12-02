@@ -8,7 +8,7 @@ Jeedom consiste en un núcleo que se encarga de las funciones básicas:
 * interacción
 * actualización y copia de seguridad
 
-Autour de ce core viennent se greffer des plugins qui peuvent être de toute sorte :
+Autour de ce core viennent se greffer des plugins qui peuvent être de toutes sortes :
  
 * protocole domotique (zwave, rfxcom, enOcean...)
 * protocolo IP (knx, xPL...)
@@ -18,7 +18,7 @@ Autour de ce core viennent se greffer des plugins qui peuvent être de toute sor
 * organisation (agenda, Google agenda)
 * développement (script)
 
-Ces plugins peuvent être récuperés par le biais du market et permettent d'étendre les possibilités de Jeedom.
+Ces plugins peuvent être récupérés par le biais du Market et permettent d'étendre les possibilités de Jeedom.
 
 Jeedom permet à n'importe quel plugin de discuter avec un autre sur une base normalisée, cela permet par exemple d'utiliser les plugins thermostat ou alarme avec n'importe quel protocole domotique ou même un plugin IP ou objet communiquant...
 

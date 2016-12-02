@@ -2,7 +2,7 @@
 
 In der Ansicht können einfache persönliche Ansichten erstellt werden, sie sind nicht so fortgeschritten wie die im Design, aber es erlaubt in wenigen Minuten eine eigene Anzeige zu haben.
 
-Die Ansichten sind über das Menü  Mein Haus -> Ansicht erreichbar : 
+Les vues sont accessibles à partir du menu Accueil -> Vue : 
 
 image::../images/view.png[]
 
@@ -46,7 +46,7 @@ Auf der linken Seite befindet sich die Liste der Ansichten sowie eine Schaltflä
 
 Im Zentrum haben Sie eine Schaltfläche, zum umbenennen einer Ansicht, eine Schaltfläche Bereich hinzufügen, eine Schaltfläche zum Speichern (vergessen Sie nicht zu speichern, bevor Sie auf "Ergebnis sehen" klicken) und eine Schaltfläche zum löschen der Ansicht.
 
-Sobald die Taste "Bereich hinzufügen" geklickt wurde, bittet Sie Jeedom einen Namen und den Typ einzugeben : 
+Après avoir cliqué sur le bouton d'ajout de zone, Jeedom vous demande son nom et le type : 
 
 image::../images/view5.png[]
 
@@ -65,7 +65,7 @@ Der Bereich vom Widget-Typ ermöglicht es Widgets hinzuzufügen, der hat auf der
 Sie können ein Widget direkt löschen, indem sie auf den Mülleimer vor diesem klicken.
 
 [TIP]
-Sie können durch Ziehen/Ablegen die Reihenfolge der Widgets im Bereich ändern.
+Il est possible de modifier l'ordre des widgets dans la zone en les glissant/déposant.
 
 Wurde die Schaltfläche zum hinzufügen von einem Widget einmal angeklickt, erscheint folgendes Fenster : 
 

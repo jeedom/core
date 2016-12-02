@@ -1,6 +1,6 @@
 = Objeto
 
-El submenú objeto, define el árbol de la domótica. Se realiza mediante la creación de lo que se denominan objetos. Accesible desde aquí: 
+Le sous-menu Objets, permet de définir l'arborescence de sa domotique. Elle se fait en créant des objets. Accessible à partir de là : 
 
 image::../images/object1.JPG[]
 
@@ -21,7 +21,7 @@ image::../images/object3.JPG[]
 A partir de ahí tienes varias opciones: 
 
 * *Nombre del objeto* : el nombre del objeto
-* *Padre* : el objeto padre del objeto actual, esto permite definir una jerarquía de tipo, el salón es el hijo del apartamento. Un objeto puede tener sólo un padre pero puede tener tantos hijos como  quiera.
+* *Père* : l'objet père de l'objet courant, cela permet de définir une hiérarchie type, le salon est le fils de l'appartement. Un objet ne peut avoir qu'un seul père mais il peut avoir autant de fils qu'il le veut.
 * *Visible* : permite definir si este objeto es visible en el dashboard o no
 * *Icono* : permite elegir un icono para el objeto
 * *Color de la etiqueta *: permite elegir el color del objeto (por ejemplo, este color se utiliza en la página Resumen domótica)

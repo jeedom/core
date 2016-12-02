@@ -2,7 +2,7 @@
 
 Documento un poco especial, porque trata solamente tu página de Perfil del Market.
 
-Disponible para tu nombre de usuario y perfiles del market (similar a Jeedom): 
+Disponible en allant sur votre nom d'utilisateur puis profil à partir du market (un peu comme sur Jeedom) : 
 
 image::../images/market.png[]
 
@@ -18,14 +18,14 @@ Aquí puedes ajustar las diferentes configuraciones de su perfil:
 ** *Acceso* : su inicio de sesión en el market, no se puede cambiar
 ** Nombre *: tu nombre (esta información es útil sólo para hacer más amigables los correos)
 ** *Apellidos* : tus Apellidos (esta información es útil sólo para hacer más amigables los correos)
-** Apodo* : tu nickname (sólo para desarrolladores)
+** *Pseudo* : Votre pseudo (uniquement pour les développeurs)
 ** *Email* : Tu correo electrónico
-** * Correo electrónico publico*: no utilizado por en el momento, pero puede ser un correo electrónico de contacto para los desarrolladores, si algún día decidimos activar dicho servicio
+** *Email public* : Non utilisé pour le moment mais ça pourrait être un email de contact pour les développeurs si un jour on met en place ce genre de service
 ** Idioma* : tu idioma
-** Cuenta Paypal*: tu email de cuenta de paypal (utilizado solamente para el pago a los desarrolladores)
+** *Compte paypal* : Votre mail de compte Paypal (uniquement utilisé pour payer les developpeurs)
 ** Contraseña y confirmar contraseña *: le permite cambiar su contraseña
 * *CGU*
-** Usuario *: condiciones generales de uso (Precaución, lea atentamente)
+** *Utilisateur* : conditions générales d'utilisation (attention à bien les lire car elles vous engage)
 ** *Desarrollo *: condiciones generales de uso para desarrolladores
 * *Tickets*
 ** Número de tickets *: número de tickets para el mes en curso, así como su límite 
@@ -44,11 +44,11 @@ Aquí usted puede :
 ** *Jeedom* : el nivel de service pack
 ** Ingrese un número de service pack *: ingrese su número de service pack (ubicado en el correo enviado por Jeedom en el pedido)
 * *Clave de instalación*
-** Número de claves de instalación *: muestra el número de instalaciónes Jeedom actualmente asociado con su cuenta y el límite
-** Clave de instalación *: aquí puede pedir un reset de Jeedom relacionada con su cuenta. Atención, superada las 2 operaciones en el mes, realize una verificación manual, la operación por tanto, puede llevar más tiempo.
+** *Nombre de clefs d'installation* : affiche le nombre d'installations Jeedom actuellement liées à votre compte ainsi que la limite autorisée
+** *Clef d'installation* : vous pouvez demander ici une réinitialisation des clefs Jeedom liées à votre compte. Attention, dépassé les 2 demandes dans le mois, une vérification manuelle a lieu, la demande peut donc prendre plus de temps.
 [TIP]
-Es posible que en el market usted pida la reiniliciación de las llaves de la instalación, esto es normal, sólo tienes que seguir el procedimiento
-** Mis Jeedoms *: aquí aparecen sus Jeedoms
+Il est possible que le market vous demande parfois de remettre à zéro vos clefs d'installation, c'est normal, il suffit de suivre ce qu'il vous demande
+* *Mes Jeedoms* : c'est ici que sont listés tous vos Jeedom
 ** Nombre *: el nombre que desea dar a su Jeedom (es el  nombre que dará a la copia de seguridad si tienes la suscripción de copia de seguridad de la nube)
 ** Protocolo *: protocolo utilizado para conectarse a su Jeedom (se configura desde Jeedom)
 ** IP o dirección dns *: IP o la dirección de este Jeedom, se configura en Jeedom, si pones cualquier cosa va a ser la última IP conocida
@@ -74,10 +74,10 @@ En esta ficha puedes ver las copias de seguridad presentes en el market y descar
 
 image::../images/market4.png[]
 
-Aquí encontrará todas las compras y usted puede solicitar el reenvio de la factura al correo electrónico o el recibo
+Ici vous retrouvez tous vos achats et vous pouvez demander le renvoi du mail de facture ou de reçu
 
 [IMPORTANTE]
-Si usted compra un plugin oficial recibirá una factura en cambio para un plugin de terceros es un recibo, la factura se puede solicitar al desarrollador
+Si vous achetez un plugin officiel vous recevez une facture. En revanche pour un plugin tiers c'est un reçu, pour la facture il faut la demander au développeur
 
 También puede en esta ficha ingresar un código de promoción (un código de un plugin por ejemplo que el desarrollador es capaz de enviar) y hacer una donación.
 

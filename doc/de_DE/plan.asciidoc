@@ -7,13 +7,13 @@ Er ist erreichbar über :
 image::../images/plan1.png[]
 
 [TIP]
-Wie man auf dem Screenshot sehen kann, ist es möglich, über  das Untermenü direkt auf alle Designs zu gehen.
+Comme vous pouvez le voir sur la capture il est possible d'aller directement sur un design grâce au sous-menu
 
 Hier ist ein Beispiel für ein Design :
 
 image::../images/plan2.png[]
 
-Auf dieser Seite sieht man in oberem Teil (in folgender Reihenfolge) : 
+Sur cette page on retrouve, en haut (et dans l'ordre) : 
 
 * ein Menü, um das Design zu wechseln
 * eine Schaltfläche, um ein neues Design zu erstellen
@@ -33,7 +33,7 @@ Nun müssen sie auf die Schaltfläche Bearbeitungsmodus klicken, um das Design z
 
 image::../images/plan5.png[]
 
-Wie Sie sehen können gibt es jetzt ein paar Schaltflächen mehr, sowie einen Rahmen des Designs (was man natürlich ändern kann).
+Comme on peut le voir il y a un peu plus de boutons maintenant, ainsi que le cadre du design (que l'on peut changer bien sûr).
 
 Oben links gibt es 2 Schaltflächen, zum bearbeiten der Eigenschaften und zum kopieren, des aktuellen Entwurfs.
 
@@ -82,16 +82,16 @@ Hier haben wir :
 
 * *Allgemein*
 ** *Größe des Widgets* : ermöglicht ein Widget Größenverhältnis, zum Beispiel wird hier die Größe mit nur 65%  definieren
-** *Hintergrundfarbe* : Hier können sie die Hintergrundfarbe oder die Transparenz ändern, vergessen sie nicht  "Standard" auf nein zu stellen
-** *Symbol und Text Farbe* : Hier können Sie die Symbol und Text Farbe ändern (Achtung, Standard auf nein stellen)
+** *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
+** *Couleur des icônes et textes* : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
 ** *Runde Ecken (vergessen Sie nicht das % einzugeben, bsp. 50%)* : wird verwendet, um die Ecken abzurunden, vergessen sie nicht das % Zeichen einzugeben
-** *Rand (Achtung css syntax, bsp.: solid 1px black)* : um einen Rand hinzuzufügen, Achtung es ist die HTML Syntax zu verwenden
+** *Bordure (attention syntaxe css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
 ** *Tiefe* : erlaubt das Niveau der Tiefe zu wählen, zum Beispiel um ein Widget mit einem andern zu überdecken
 ** *Gerätename anzeigen* : zum verstecken des Widget Namen, bezieht sich nur auf das Design 
 * *Speziele* : erlaubt, einige Befehle des Widget auf dem Design zu verstecken
 
 [IMPORTANT]
-Je nach den Plugins können gewisse Optionen nicht funktionieren.
+En fonction des plugins certaines options peuvent ne pas fonctionner
 
 [TIP]
 Sie können rechts unten die Größe der Widgets ändern 
@@ -110,8 +110,8 @@ image::../images/plan13.png[]
 
 * *Name* : Sie können Text oder HTML/JavaScript eingeben
 * *Symbol* : Sie können ein Symbol anstelle von Text einsetzen
-* *Hintergrundfarbe* : Hier können sie die Hintergrundfarbe oder die Transparenz ändern, vergessen sie nicht  "Standard" auf nein zu stellen
-* *Text Farbe* : Hier können Sie die Symbol und Text Farbe ändern (Achtung, Standard auf nein stellen)
+* *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
+* *Couleur du textes* : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
 * *Runde Ecken (vergessen Sie nicht das % einzugeben, bsp. 50%)* : wird verwendet, um die Ecken abzurunden, vergessen sie nicht das % Zeichen einzugeben
 * *Rand (Achtung css syntax, bsp.: solid 1px black)* : um einen Rand hinzuzufügen, Achtung es ist die HTML Syntax zu verwenden
 * *Schriftgröße (z.B. 50%, das % -Zeichen muß eingegeben werden)* : ermöglicht die Schriftgröße zu ändern
@@ -140,10 +140,10 @@ image::../images/plan17.png[]
 
 * *Allgemein*
 ** *Größe des Widgets* : ermöglicht ein Widget Größenverhältnis, zum Beispiel wird hier die Größe mit nur 65%  definieren
-** *Hintergrundfarbe* : Hier können sie die Hintergrundfarbe oder die Transparenz ändern, vergessen sie nicht  "Standard" auf nein zu stellen
-** *Symbol und Text Farbe* : Hier können Sie die Symbol und Text Farbe ändern (Achtung, Standard auf nein stellen)
+** *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
+** *Couleur des icônes et textes* : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
 ** *Runde Ecken (vergessen Sie nicht das % einzugeben, bsp. 50%)* : wird verwendet, um die Ecken abzurunden, vergessen sie nicht das % Zeichen einzugeben
-** *Rand (Achtung css syntax, bsp.: solid 1px black)* : um einen Rand hinzuzufügen, Achtung es ist die HTML Syntax zu verwenden
+** *Bordure (attention syntaxe css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
 ** *Tiefe* : erlaubt das Niveau der Tiefe zu wählen, zum Beispiel um ein Widget mit einem andern zu überdecken
 * *Speziele* : ermöglicht, den Aktions Befehl im Szenario zu verstecken
 
@@ -158,11 +158,11 @@ Erlaubt, einen Link zu einer Ansicht oder einem anderen Design hinzuzufügen :
 
 image::../images/plan19.png[]
 
-Dieser erscheint dann auf dem Design : 
+Celui-ci apparaît ensuite sur le design : 
 
 image::../images/plan20.png[]
 
-Ein Doppelklick darauf, dann gelangen sie auf die erweiterte Konfiguration : 
+Un double clic dessus vous amène sur la configuration avancée : 
 
 image::../images/plan21.png[]
 
@@ -172,8 +172,8 @@ Hier haben wir :
 * *Link* :  Ziel Verknüpfung 
 * *Position* : ermöglicht, die Lage des Links auf dem Ziel sehr genau einzustellen (um zum Beispiel direkt auf die Küche zu kommen) 
 * *Symbol* : Sie können ein Symbol anstelle von Text einsetzen
-* *Hintergrundfarbe* : Hier können sie die Hintergrundfarbe oder die Transparenz ändern, vergessen sie nicht  "Standard" auf nein zu stellen
-* *Text Farbe* : Hier können Sie die Symbol und Text Farbe ändern (Achtung, Standard auf nein stellen)
+* *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
+* *Couleur du textes* : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
 * *Runde Ecken (vergessen Sie nicht das % einzugeben, bsp. 50%)* : wird verwendet, um die Ecken abzurunden, vergessen sie nicht das % Zeichen einzugeben
 * *Rand (Achtung css syntax, bsp.: solid 1px black)* : um einen Rand hinzuzufügen, Achtung es ist die HTML Syntax zu verwenden
 * *Tiefe* : erlaubt das Niveau der Tiefe zu wählen
@@ -192,14 +192,14 @@ Einmal oben geklickt erhalten Sie :
 
 image::../images/plan23.png[]
 
-Ein Doppelklick darauf, dann gelangen sie zur Diagramm Konfiguration :
+Un double clic dessus vous amène à la configuration de l'élement graph
 
 image::../images/plan24.png[]
 
 Hier haben wir : 
 
 * *Periode* : Hier können Sie die Anzeigeperiode wählen
-* *Rand (Achtung css syntax, bsp.: solid 1px black)* : um einen Rand hinzuzufügen, Achtung es ist die HTML Syntax zu verwenden
+* *Bordure (attention syntaxe css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
 * *Tiefe* : erlaubt das Niveau der Tiefe zu wählen
 * *Beschriftung anzeigen* : ermöglicht, das Anzeigen der Beschriftung
 * *Navigator* : ermöglicht, das Anzeigen oder Ausblenden eines Navigators (etwas unterhalb des Diagramms) 
@@ -207,7 +207,7 @@ Hier haben wir :
 * *Bildlaufleiste anzeigen* : zum anzeigen oder ausblenden der Bildlaufleiste
 * *Transparenter Hintergrund* : macht den Hintergrund transparent  
 
-Zur Auswahl der Daten, die angezeigt werden sollen, dazu muss auf das Zahnräder Symbol geklickt werden : 
+Pour choisir les données à afficher il faut cliquer sur les 3 roues crantées : 
 
 image::../images/plan25.png[]
 

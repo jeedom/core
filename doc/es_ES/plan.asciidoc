@@ -7,13 +7,13 @@ Es accesible por
 image::../images/plan1.png[]
 
 [TIP]
-Como se puede ver en la foto, es posible ir directamente a un diseño a través del submenú
+Comme vous pouvez le voir sur la capture il est possible d'aller directement sur un design grâce au sous-menu
 
 Aquí un ejemplo de diseño:
 
 image::../images/plan2.png[]
 
-En este  se encuentra en la parte superior (y en orden): 
+Sur cette page on retrouve, en haut (et dans l'ordre) : 
 
 * menú para cambiar el diseño
 * un menú para crear un nuevo diseño
@@ -33,7 +33,7 @@ Por lo tanto, haga clic en el botón Editar para cambiar el modo de edición:
 
 image::../images/plan5.png[]
 
-Como se puede ver, hay más botones ahora, así como el marco del diseño (que puede cambiar de tamaño).
+Comme on peut le voir il y a un peu plus de boutons maintenant, ainsi que le cadre du design (que l'on peut changer bien sûr).
 
 En la parte superior izquierda hay 2 botones, editar las propiedades del diseño actual y duplicarlo.
 
@@ -82,16 +82,16 @@ Aquí tenemos :
 
 * *General*
 ** El tamaño de widget *: permite definir una relación de tamaño del widget, por ejemplo aquí será sólo el 65% de su tamaño
-** *Color de fondo *: le permite cambiar el color de fondo o hacerlo transparente, por "Defecto" es no
-** *Color de iconos y textos *: permite cambiar el color de los iconos y textos (atención, por defecto es no)
+** *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
+** *Couleur des icônes et textes* : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
 * **  Redondear las esquinas (no olvide añadir %, ej. 50%) *: utilizado para redondear las esquinas del widget, no olvides de poner el %
-** Reborde(ADVERTENCIA sintaxis css, ex: solid 1px black)* : permite añadir un borde, atención la sintaxis es HTML
+** *Bordure (attention syntaxe css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
 ** Profundidad *: permite elegir el nivel de profundidad, por ejemplo para superponer un widget con otro
 ** No mostrar el nombre del equipo *: oculta el nombre del widget, se aplica solamente al diseño
 * *Específica *: esconde algunos comandos del widget, sólo en el diseño
 
 [IMPORTANTE]
-En función al plugin, algunas opciones pueden no funcionar
+En fonction des plugins certaines options peuvent ne pas fonctionner
 
 [TIP]
 En la parte inferior derecha, usted puede cambiar el tamaño de los widgets
@@ -110,8 +110,8 @@ image::../images/plan13.png[]
 
 * *Nom* : permet de rentrer le texte ou le code html/javascript
 * *Icone* : permet de mettre une icône à la place du texte
-* *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Defaut" sur NON
-* *Couleur du textes* : permet de changer la couleur des icônes et des textes (attention à bien passer défaut sur Non)
+* *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
+* *Couleur du textes* : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
 * *Arrondir les angles (ne pas oublier de mettre %, ex 50%)* : permet d'arrondir les angles, ne pas oublier de mettre le %
 * *Bordure (attention syntax css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
 * *Taille de la police (ex 50%, il faut bien mettre le signe %)* : permet de modifier la taille de la police
@@ -140,10 +140,10 @@ image::../images/plan17.png[]
 
 * *General*
 ** El tamaño de widget *: permite definir una relación de tamaño del widget, por ejemplo aquí será sólo el 65% de su tamaño
-** *Color de fondo *: le permite cambiar el color de fondo o hacerlo transparente, por "Defecto" es no
-** *Color de iconos y textos *: permite cambiar el color de los iconos y textos (atención, por defecto es no)
+** *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
+** *Couleur des icônes et textes* : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
 * **  Redondear las esquinas (no olvide añadir %, ej. 50%) *: utilizado para redondear las esquinas del widget, no olvides de poner el %
-** Reborde(ADVERTENCIA sintaxis css, ex: solid 1px black)* : permite añadir un borde, atención la sintaxis es HTML
+** *Bordure (attention syntaxe css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
 ** Profundidad *: permite elegir el nivel de profundidad, por ejemplo para superponer un widget con otro
 * *Spécifique* : permet de masquer les commandes d'action sur le scénario
 
@@ -158,11 +158,11 @@ Permet d'ajouter un lien vers une vue ou un autre design :
 
 image::../images/plan19.png[]
 
-Celui-ci apparait ensuite sur le design : 
+Celui-ci apparaît ensuite sur le design : 
 
 image::../images/plan20.png[]
 
-Un double clic dessus vous amene sur la configuration avancée : 
+Un double clic dessus vous amène sur la configuration avancée : 
 
 image::../images/plan21.png[]
 
@@ -172,8 +172,8 @@ Encontrará aquí:
 * *Lien* : destination du lien
 * *Position* : permet de régler finement la position du lien sur la destination (pour par exemple arriver directement sur la cuisine)
 * *Icone* : permet de mettre une icône à la place du texte
-* *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Defaut" sur NON
-* *Couleur du textes* : permet de changer la couleur des icônes et des textes (attention à bien passer defaut sur Non)
+* *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
+* *Couleur du textes* : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
 * *Arrondir les angles (ne pas oublier de mettre %, ex 50%)* : permet d'arrondir les angles, ne pas oublier de mettre le %
 * *Bordure (attention syntax css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
 * *Profondeur* : permet de choisir le niveau de la profondeur
@@ -192,14 +192,14 @@ Une fois cliqué dessus vous obtenez :
 
 image::../images/plan23.png[]
 
-Un double clic dessus vous amene à la configuration de l'élement graph
+Un double clic dessus vous amène à la configuration de l'élement graph
 
 image::../images/plan24.png[]
 
 Ici on retrouve : 
 
 * *Période* : permet de choisir la période d'affichage
-* *Bordure (attention syntax css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
+* *Bordure (attention syntaxe css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
 * *Profondeur* : permet de choisir le niveau de la profondeur
 * *Afficher la légende* : permet d'afficher ou non la légende
 * *Afficher le navigateur* : permet d'afficher ou non le navigateur (deuxième graph plus léger en dessous du premier)
@@ -207,7 +207,7 @@ Ici on retrouve :
 * *Afficher la barre de défilement* : affiche ou non la barre de défilement
 * *Fond transparent* : rend le fond transparent
 
-Pour choisir les données à afficher il faut cliquecliquer sur les 3 roues crantées : 
+Pour choisir les données à afficher il faut cliquer sur les 3 roues crantées : 
 
 image::../images/plan25.png[]
 
