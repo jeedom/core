@@ -212,7 +212,7 @@ sendVarToJS('ldapEnable', $configs['ldap::enable']);
 								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API globale de Jeedom}}">{{Clef API}}</label>
 								<div class="col-lg-4 col-md-5 col-sm-6 col-xs-6">
 									<div class="input-group">
-									<span class="span_apikey"><?php echo $configs['api']; ?></span>
+										<span class="span_apikey"><?php echo $configs['api']; ?></span>
 										<span class="input-group-btn">
 											<a class="btn btn-default form-control bt_regenerate_api" data-plugin="core"><i class="fa fa-refresh"></i></a>
 										</span>
@@ -223,7 +223,7 @@ sendVarToJS('ldapEnable', $configs['ldap::enable']);
 								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API Pro de Jeedom}}">{{Clef API Pro}}</label>
 								<div class="col-lg-4 col-md-5 col-sm-6 col-xs-6">
 									<div class="input-group">
-									<span class="span_apikey"><?php echo $configs['apipro']; ?></span>
+										<span class="span_apikey"><?php echo $configs['apipro']; ?></span>
 										<span class="input-group-btn">
 											<a class="btn btn-default form-control bt_regenerate_api" data-plugin="pro"><i class="fa fa-refresh"></i></a>
 										</span>
@@ -376,8 +376,10 @@ if (network::test('internal')) {
 ?>
 								</div>
 							</div>
-
-
+						</fieldset>
+					</form>
+					<form class="form-horizontal">
+						<fieldset>
 							<legend>{{Accès externe}}</legend>
 							<div class="form-group">
 								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Protocole}}</label>
@@ -840,6 +842,10 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
 									</div>
 								</div>
 							</div>
+						</fieldset>
+					</form>
+					<form class="form-horizontal">
+						<fieldset>
 							<legend>{{Log}}</legend>
 							<div class="form-group">
 								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Moteur de log}}</label>

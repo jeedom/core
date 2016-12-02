@@ -102,9 +102,9 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 	echo '</div>';
 }
 ?>
-      </fieldset>
-    </form>
-  </div>
+     </fieldset>
+   </form>
+ </div>
 </div>
 </div>
 
@@ -127,6 +127,10 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
               <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="doNotAutoHideMenu"/>
             </div>
           </div>
+        </fieldset>
+      </form>
+      <form class="form-horizontal">
+        <fieldset>
           <legend><i class="fa fa-file-o"></i>  {{Page par défaut}}</legend>
           <div class="form-group">
             <label class="col-sm-3 control-label">{{Desktop}}</label>
@@ -151,22 +155,15 @@ foreach ($homePage as $key => $value) {
            </select>
          </div>
        </div>
-       <legend><i class="fa fa-columns"></i>  {{Objet par défaut sur le dashboard}}</legend>
-       <div class="form-group">
-        <label class="col-sm-3 control-label">{{Desktop}}</label>
-        <div class="col-sm-2">
-          <select class="userAttr form-control" data-l1key="options" data-l2key="defaultDashboardObject">
-            <?php
-foreach (object::all() as $object) {
-	echo "<option value='" . $object->getId() . "'>" . $object->getName() . "</option>";
-}
-?>
-         </select>
-       </div>
-       <label class="col-sm-1 control-label">{{Mobile}}</label>
-       <div class="col-sm-2">
-        <select class="userAttr form-control" data-l1key="options" data-l2key="defaultMobileObject">
-          <option value='all'>{{Tout}}</option>
+     </fieldset>
+   </form>
+   <form class="form-horizontal">
+    <fieldset>
+     <legend><i class="fa fa-columns"></i>  {{Objet par défaut sur le dashboard}}</legend>
+     <div class="form-group">
+      <label class="col-sm-3 control-label">{{Desktop}}</label>
+      <div class="col-sm-2">
+        <select class="userAttr form-control" data-l1key="options" data-l2key="defaultDashboardObject">
           <?php
 foreach (object::all() as $object) {
 	echo "<option value='" . $object->getId() . "'>" . $object->getName() . "</option>";
@@ -174,7 +171,22 @@ foreach (object::all() as $object) {
 ?>
        </select>
      </div>
+     <label class="col-sm-1 control-label">{{Mobile}}</label>
+     <div class="col-sm-2">
+      <select class="userAttr form-control" data-l1key="options" data-l2key="defaultMobileObject">
+        <option value='all'>{{Tout}}</option>
+        <?php
+foreach (object::all() as $object) {
+	echo "<option value='" . $object->getId() . "'>" . $object->getName() . "</option>";
+}
+?>
+     </select>
    </div>
+ </div>
+</fieldset>
+</form>
+<form class="form-horizontal">
+  <fieldset>
    <legend><i class="fa fa-eye"></i>  {{Vue par défaut}}</legend>
    <div class="form-group">
     <label class="col-sm-3 control-label">{{Desktop}}</label>
@@ -198,57 +210,68 @@ foreach (view::all() as $view) {
    </select>
  </div>
 </div>
-<legend><i class="fa fa-paint-brush"></i>  {{Design par défaut}}</legend>
-<div class="form-group">
-  <label class="col-sm-3 control-label">{{Desktop}}</label>
-  <div class="col-sm-2">
-    <select class="userAttr form-control" data-l1key="options" data-l2key="defaultDashboardPlan">
-      <?php
+</fieldset>
+</form>
+<form class="form-horizontal">
+  <fieldset>
+    <legend><i class="fa fa-paint-brush"></i>  {{Design par défaut}}</legend>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">{{Desktop}}</label>
+      <div class="col-sm-2">
+        <select class="userAttr form-control" data-l1key="options" data-l2key="defaultDashboardPlan">
+          <?php
 foreach (planHeader::all() as $plan) {
 	echo "<option value='" . $plan->getId() . "'>" . $plan->getName() . "</option>";
 }
 ?>
-   </select>
+       </select>
+     </div>
+     <label class="col-sm-1 control-label">{{Mobile}}</label>
+     <div class="col-sm-2">
+      <select class="userAttr form-control" data-l1key="options" data-l2key="defaultMobilePlan">
+        <?php
+foreach (planHeader::all() as $plan) {
+	echo "<option value='" . $plan->getId() . "'>" . $plan->getName() . "</option>";
+}
+?>
+     </select>
+   </div>
  </div>
- <label class="col-sm-1 control-label">{{Mobile}}</label>
- <div class="col-sm-2">
-  <select class="userAttr form-control" data-l1key="options" data-l2key="defaultMobilePlan">
-    <?php
-foreach (planHeader::all() as $plan) {
-	echo "<option value='" . $plan->getId() . "'>" . $plan->getName() . "</option>";
-}
-?>
- </select>
-</div>
-</div>
-<div class="form-group">
+ <div class="form-group">
   <label class="col-sm-3 control-label">{{Plein écran}}</label>
   <div class="col-sm-1">
     <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="defaultPlanFullScreen" />
   </div>
 </div>
-
-<legend><i class="fa fa-tachometer"></i>  {{Dashboard}}</legend>
-<div class="form-group">
-  <label class="col-sm-3 control-label">{{Déplier le panneau des scénarios}}</label>
-  <div class="col-sm-1">
-    <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayScenarioByDefault"/>
-  </div>
-</div>
-<div class="form-group">
-  <label class="col-sm-3 control-label">{{Déplier le panneau des objets}}</label>
-  <div class="col-sm-1">
-    <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayObjetByDefault"/>
-  </div>
-</div>
-<legend><i class="fa fa-picture-o"></i>  {{Vue}}</legend>
-<div class="form-group">
-  <label class="col-sm-3 control-label">{{Déplier le panneau des vues}}</label>
-  <div class="col-sm-1">
-    <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayViewByDefault"/>
-  </div>
-</div>
 </fieldset>
+</form>
+<form class="form-horizontal">
+  <fieldset>
+    <legend><i class="fa fa-tachometer"></i>  {{Dashboard}}</legend>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">{{Déplier le panneau des scénarios}}</label>
+      <div class="col-sm-1">
+        <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayScenarioByDefault"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">{{Déplier le panneau des objets}}</label>
+      <div class="col-sm-1">
+        <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayObjetByDefault"/>
+      </div>
+    </div>
+  </fieldset>
+</form>
+<form class="form-horizontal">
+  <fieldset>
+    <legend><i class="fa fa-picture-o"></i>  {{Vue}}</legend>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">{{Déplier le panneau des vues}}</label>
+      <div class="col-sm-1">
+        <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayViewByDefault"/>
+      </div>
+    </div>
+  </fieldset>
 </form>
 </div>
 </div>
