@@ -39,16 +39,20 @@ sendVarToJS('id', $planHeader->getId())
             <a class="btn btn-danger" id="bt_removeBackgroundImage"><i class="fa fa-trash"></i> {{Supprimer l'image}}</a>
         </div>
     </div>
-    <legend><i class="icon techno-fleches"></i> {{Tailles}}</legend>
-    <div class="form-group">
-        <label class="col-lg-4 control-label">{{Taille (LxH)}}</label>
-        <div class="col-lg-4">
-            <input class="form-control input-sm planHeaderAttr" data-l1key='configuration' data-l2key="desktopSizeX" style="width: 80px;display: inline-block;"/>
-            x
-            <input class="form-control input-sm planHeaderAttr" data-l1key='configuration' data-l2key='desktopSizeY' style="width: 80px;display: inline-block;"/>
-        </div>
-    </div>
 </fieldset>
+</form>
+<form class="form-horizontal">
+    <fieldset>
+        <legend><i class="icon techno-fleches"></i> {{Tailles}}</legend>
+        <div class="form-group">
+            <label class="col-lg-4 control-label">{{Taille (LxH)}}</label>
+            <div class="col-lg-4">
+                <input class="form-control input-sm planHeaderAttr" data-l1key='configuration' data-l2key="desktopSizeX" style="width: 80px;display: inline-block;"/>
+                x
+                <input class="form-control input-sm planHeaderAttr" data-l1key='configuration' data-l2key='desktopSizeY' style="width: 80px;display: inline-block;"/>
+            </div>
+        </div>
+    </fieldset>
 </form>
 
 <script>
@@ -100,14 +104,14 @@ sendVarToJS('id', $planHeader->getId())
   });
 
     if (isset(id) && id != '') {
-       jeedom.plan.getHeader({
+     jeedom.plan.getHeader({
         id: id,
         error: function (error) {
             $('#div_alertPlanHeaderConfigure').showAlert({message: error.message, level: 'danger'});
         },
         success: function (planHeader) {
-         $('#fd_planHeaderConfigure').setValues(planHeader, '.planHeaderAttr');
-     }
- });
-   }
+           $('#fd_planHeaderConfigure').setValues(planHeader, '.planHeaderAttr');
+       }
+   });
+ }
 </script>

@@ -60,6 +60,7 @@ foreach ($allObject as $object) {
    <a class="btn btn-danger pull-right" id="bt_removeObject"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
 
    <ul class="nav nav-tabs" role="tablist">
+     <li role="presentation"><a href="#" aria-controls="home" role="tab" data-toggle="tab" id="bt_returnToThumbnailDisplay"><i class="fa fa-arrow-circle-left"></i></a></li>
     <li role="presentation" class="active"><a href="#objecttab" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-tachometer"></i> {{Objet}}</a></li>
     <li role="presentation"><a href="#summarytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-list-alt"></i> {{Résumé}}</a></li>
   </ul>
@@ -68,7 +69,7 @@ foreach ($allObject as $object) {
     <div role="tabpanel" class="tab-pane active" id="objecttab">
       <form class="form-horizontal">
         <fieldset>
-          <legend><i class="fa fa-arrow-circle-left cursor" id="bt_returnToThumbnailDisplay"></i> {{Général}}</legend>
+          <legend>{{Général}}</legend>
           <div class="form-group">
             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nom de l'objet}}</label>
             <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
@@ -129,7 +130,6 @@ if (count(config::byKey('object:summary')) == 0) {
      <form class="form-horizontal">
       <fieldset>
         <legend class="objectname_resume" style="cursor:default;"></legend>
-        <legend style="cursor:default;"><i class="fa fa-picture-o"></i>  {{Options d'affichage}}</legend>
         <table class="table">
           <thead>
             <tr>
@@ -176,6 +176,10 @@ echo '<tr>';
 	echo '</tr>';
 	?>
         </table>
+      </fieldset>
+    </form>
+    <form class="form-horizontal">
+      <fieldset>
         <legend style="cursor:default;"><i class="fa fa-tachometer"></i>  {{Commandes}}</legend>
         <ul class="nav nav-tabs" role="tablist">
           <?php

@@ -196,6 +196,10 @@ foreach ($usedBy['scenario'] as $usedByScneario) {
 	?>
       <?php }
 ?>
+</fieldset>
+</form>
+ <form class="form-horizontal">
+                <fieldset>
       <legend><i class="fa fa-building"></i> {{Type générique}}</legend>
       <div class="form-group">
         <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Valeur}}</label>
@@ -236,8 +240,12 @@ foreach ($groups as $group) {
      </select>
    </div>
  </div>
-
+</fieldset>
+</form>
  <?php if ($cmd->getType() == 'action') {?>
+
+  <form class="form-horizontal">
+                <fieldset>
  <legend><i class="fa fa-exclamation-triangle"></i> {{Restriction de l'action}}</legend>
  <div class="form-group">
   <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Confirmer l'action}}</label>
@@ -251,10 +259,14 @@ foreach ($groups as $group) {
     <input type="password" class="cmdAttr form-control" data-l1key="configuration" data-l2key="actionCodeAccess" autocomplete="off" />
   </div>
 </div>
+</fieldset>
+</form>
 <?php }
 ?>
 <?php if ($cmd->getType() == 'info') {
 	?>
+   <form class="form-horizontal">
+                <fieldset>
  <legend><i class="fa fa-sign-out"></i> {{Action sur la valeur}}</legend>
  <div class="form-group">
   <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action sur valeur, si}}</label>
@@ -290,10 +302,14 @@ foreach ($groups as $group) {
     addActionCmd({}, 'actionCheckCmd','{{Action}}');
   });
 </script>
+</fieldset>
+</form>
 <?php }
 ?>
 <?php if ($cmd->getType() == 'action') {
 	?>
+   <form class="form-horizontal">
+                <fieldset>
  <legend><i class="fa fa-sign-out"></i> {{Action avant exécution de la commande}}</legend>
  <div class="form-group">
   <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action}}</label>
@@ -325,11 +341,14 @@ foreach ($groups as $group) {
     addActionCmd({}, 'actionPostExecCmd','{{Action}}');
   });
 </script>
-
+</fieldset>
+</form>
 <?php }?>
 
 <?php if ($cmd->getType() == 'info' && ($cmd->getSubType() == 'numeric' || $cmd->getSubType() == 'binary')) {
 	?>
+   <form class="form-horizontal">
+                <fieldset>
  <legend><i class="fa fa-bar-chart-o"></i> {{Historique}}</legend>
  <div class="form-group">
   <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Historiser}}</label>
@@ -370,9 +389,13 @@ foreach ($groups as $group) {
 </div>
 <?php }
 	?>
+  </fieldset>
+  </form>
 <?php }
 ?>
 <?php if ($cmd->getType() == 'info') {?>
+ <form class="form-horizontal">
+                <fieldset>
 <legend><i class="fa fa-plus"></i> {{Autres}}</legend>
 <div class="form-group">
   <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Gestion de la répétition des valeurs}}</label>
@@ -390,10 +413,10 @@ foreach ($groups as $group) {
     <input class="cmdAttr form-control tooltips" data-l1key="configuration" data-l2key="jeedomPushUrl" title="{{Mettez ici l'URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"/>
   </div>
 </div>
-<?php }
-?>
 </fieldset>
 </form>
+<?php }
+?>
 </div>
 <?php if ($cmd->widgetPossibility('custom::htmlCode')) {
 	?>

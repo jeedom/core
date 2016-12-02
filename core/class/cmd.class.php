@@ -575,10 +575,12 @@ class cmd {
 	/*     * *********************Méthodes d'instance************************* */
 
 	public function formatValue($_value, $_quote = false) {
+		if (is_array($_value)) {
+			return '';
+		}
 		if (trim($_value) == '' && $_value !== false && $_value !== 0) {
 			return '';
 		}
-
 		$_value = trim(trim($_value), '"');
 		if (@strpos(strtolower($_value), 'error::') !== false) {
 			return $_value;

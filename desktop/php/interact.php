@@ -89,7 +89,6 @@ foreach ($interactListGroup as $group) {
 
 <legend><i class="fa fa-comments-o"></i>  {{Mes interactions}}</legend>
 <?php
-echo '<legend>Aucun</legend>';
 echo '<div class="interactListContainer">';
 foreach ($interacts[-1] as $interact) {
 	echo '<div class="interactDisplayCard cursor" data-interact_id="' . $interact->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
@@ -103,7 +102,6 @@ echo '</div>';
 
 foreach ($interactListGroup as $group) {
 	if ($group['group'] != '') {
-		echo '<legend>' . $group['group'] . '</legend>';
 		echo '<div class="interactListContainer">';
 		foreach ($interacts[$group['group']] as $interact) {
 			echo '<div class="interactDisplayCard cursor" data-interact_id="' . $interact->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
