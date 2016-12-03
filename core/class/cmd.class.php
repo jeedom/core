@@ -707,7 +707,7 @@ class cmd {
 	}
 
 	public function preExecCmd($_values = array()) {
-		if (!is_array($this->getConfiguration('jeedomPreExecCmd'))) {
+		if (!is_array($this->getConfiguration('jeedomPreExecCmd')) || count($this->getConfiguration('jeedomPreExecCmd')) == 0) {
 			return;
 		}
 		foreach ($this->getConfiguration('jeedomPreExecCmd') as $action) {
@@ -716,10 +716,12 @@ class cmd {
 				if (isset($action['options'])) {
 					$options = $action['options'];
 				}
-				foreach ($_values as $key => $value) {
-					foreach ($options as &$option) {
-						if (!is_array($option)) {
-							$option = str_replace('#' . $key . '#', $value, $option);
+				if (is_array($_values) && count($_values) > 0) {
+					foreach ($_values as $key => $value) {
+						foreach ($options as &$option) {
+							if (!is_array($option)) {
+								$option = str_replace('#' . $key . '#', $value, $option);
+							}
 						}
 					}
 				}
