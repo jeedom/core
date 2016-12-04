@@ -1,9 +1,9 @@
 <div class="cmd" data-type="action" data-subtype="slider" data-cmd_id="#id#" data-cmd_uid="#uid#">
     <div style="font-weight: bold;font-size : 12px;#hideCmdName#">#name_display#</div>
     <div data-role="controlgroup" data-type="horizontal">
-    <input type="text" class="value" data-mini="true" value="#state# #unite#" data-wrapper-class="controlgroup-textinput ui-btn" disabled style="height: 10px;width: 50px;color:black"/>
-        <a class="action ui-btn ui-mini ui-btn-inline ui-btn-raised bt_plus" style="background-color:#cmdColor# !important;margin:0px;height:20px;padding-top:15px;"><i class="fa fa-plus"></i></a>
+        <input type="text" class="value" data-mini="true" value="#state# #unite#" data-wrapper-class="controlgroup-textinput ui-btn" disabled style="height: 10px;width: 50px;color:black"/>
         <a class="action ui-btn ui-mini ui-btn-inline ui-btn-raised bt_minus" style="background-color:#cmdColor# !important;margin:0px;height:20px;padding-top:15px;"><i class="fa fa-minus"></i></a>
+        <a class="action ui-btn ui-mini ui-btn-inline ui-btn-raised bt_plus" style="background-color:#cmdColor# !important;margin:0px;height:20px;padding-top:15px;"><i class="fa fa-plus"></i></a>
     </div>
     <script>
         $('.cmd[data-cmd_uid=#uid#] .bt_plus').on('click', function() {
@@ -16,11 +16,11 @@
         });
         $('.cmd[data-cmd_uid=#uid#] .value').on('change', function () {
             if (typeof timerHandle !== 'undefined') {
-               clearTimeout(timerHandle);
-               timerHandle = setTimeout(function() {
+             clearTimeout(timerHandle);
+             timerHandle = setTimeout(function() {
                 jeedom.cmd.execute({id:'#id#', value: {slider: $('.cmd[data-cmd_uid=#uid#] .value').val().replace("#unite#", "")}});
             }, 1000)
-           } else {
+         } else {
             timerHandle = setTimeout(function() {
                 jeedom.cmd.execute({id:'#id#', value: {slider: $('.cmd[data-cmd_uid=#uid#] .value').val().replace("#unite#", "")}});
             }, 1000)
