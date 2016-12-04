@@ -19,7 +19,7 @@
 * Possibilité d'avoir les docs en local
 * Les développeurs tiers peuvent ajouter leur propre système de gestion de tickets
 * Refonte de la configuration des droits utilisateurs (tout est sur la page de gestion des utilisateurs)
-* Mise à jour des libs : jquery (en 3.0) , jquery mobile, hightstock et table sorter
+* Mise à jour des libs : jquery (en 3.0) , jquery mobile, hightstock et table sorter, font-awesome
 * Grosse amélioration des designs : 
 ** Toute les actions sont maintenant accessibles à partir d'un clic droit
 ** Possibilité d'ajouter une commande seule
@@ -43,6 +43,17 @@
 * Les objets sans widget sont automatiquement masqués sur le dashboard
 * Ajout d'un bouton dans la configuration avancée d'un équipement/d'une commande pour voir les événements de celui-ci/celle-ci
 * Les déclencheurs d'un scénario peuvent maintenant être des conditions
+* Un double clique sur la ligne d'une commande (sur la page de configuration) ouvre maintenant la configuration avancée de celle-ci
+* Possibilité d'interdire certaine valeur pour une commande (dans la configuration avancée de celle-ci)
+* Ajout des champs de configuration sur le retour d'état automatique (ex revenir à 0 au bout de 4min) dans la configuration avancée d'une commande
+* Ajout d'une fonction valueDate dans les scénarios (voir documentation des scénarios)
+* Possibilité dans les scénarios de modifier la valeur d'une commande avec l'action "event"
+* Ajout d'un champs commentaire sur la configuration avancé d'un équipement
+
+= 2.4.7
+
+* Correction de bug sur la date de derniere remonté d'evenement pour certain plugin (alarme)
+* Correction de bug d'affichage avec chrome 55
 
 = 2.4.6
 

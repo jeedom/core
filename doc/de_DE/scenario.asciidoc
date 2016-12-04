@@ -268,6 +268,8 @@ Mehrere Funktionen sind für die Geräte verfügbar :
     ** Bsp. : lastScenarioExecution(\#[Badezimmer][Licht][Auto]#) : giebt zurück 300, das Szenario wurde in diesem Fall zum letzten Mal vor 5min gestartet
 * **collectDate**(cmd,[format]) : renvoie la date de la dernière donnée pour la commande donnée en paramètre, le 2ème paramètre optionel permet de spécifier le format de retour (détails http://php.net/manual/fr/function.date.php[ici]). Un retour de -1 signifie que la commande est introuvable, et -2 que la commande n'est pas de type info
     ** Bsp. : collectDate(\#[Badezimmer][Hydrometrie][Luftfeuchtigkeit]#) : Rückgabe 2015-01-01 17:45:12
+* **valueDate**(cmd,[format]) : renvoie la date de la dernière donnée pour la commande donnée en paramètre, le 2ème paramètre optionel permet de spécifier le format de retour (détails http://php.net/manual/fr/function.date.php[ici]). Un retour de -1 signifie que la commande est introuvable, et -2 que la commande n'est pas de type info
+    ** Ex : valueDate(\#[Salle de bain][Hydrometrie][Humidité]#) : renverra 2015-01-01 17:50:12
  **eqEnable**(equipement) : renvoie l'état de l'équipement (actif ou non)
     * Ex : eqEnable(\#[Aucun][Basilique]#) : renvoie -2 si l'équipement est introuvable, 1 si l'équipement est actif et 0 s'il est inactif
 
@@ -340,6 +342,7 @@ En plus des commandes domotiques vous avez accès aux actions suivantes :
 * *equipement* : permet de modifier les propriétés d'un équipement visible/invisible actif/inactif
 * *jeedom_poweroff* : demande à Jeedom de s'éteindre
 * *scenario_return* : Retourne un texte ou une valeur pour une intéraction par exemple
+* *event* : Permet de modifier la valeur d'une commande
 * *alert* : permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page jeedom ouverte. Vous pouvez en plus choisir 4 niveaux d'alerte
 * *popup* : permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page jeedom ouverte.
 * *ask* : permet d'indiquer à jeedom qu'il faut poser une question à l'utilisateur. La réponse est stockée dans une variable, il suffit ensuite de tester sa valeur. Pour le moment seuls les plugins sms et slack sont compatibles. Attention l'action ask est bloquante, tant qu'il n'y a pas de réponse ou que le timeout n'est pas atteint le scénario attend. Voila un exemple d'utilisation : 

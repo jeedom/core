@@ -1219,7 +1219,17 @@ Le seuil permet de definir la sensibilité, attention le calcul du seuil utilise
 <div class="ulist">
 <ul>
 <li>
-<p>Ex : collectDate(#[Salle de bain][Hydrometrie][Humidité]#) : renverra 2015-01-01 17:45:12
+<p>Ex : collectDate(#[Salle de bain][Hydrometrie][Humidité]#) : renverra 2015-01-01 17:45:12</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>valueDate</strong>(cmd,[format]) : renvoie la date de la dernière donnée pour la commande donnée en paramètre, le 2ème paramètre optionel permet de spécifier le format de retour (détails <a href="http://php.net/manual/fr/function.date.php">ici</a>). Un retour de -1 signifie que la commande est introuvable, et -2 que la commande n&#8217;est pas de type info</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Ex : valueDate(#[Salle de bain][Hydrometrie][Humidité]#) : renverra 2015-01-01 17:50:12
 <strong>eqEnable</strong>(equipement) : renvoie l&#8217;état de l&#8217;équipement (actif ou non)</p>
 </li>
 </ul>
@@ -1483,6 +1493,9 @@ Le seuil permet de definir la sensibilité, attention le calcul du seuil utilise
 </li>
 <li>
 <p><strong>scenario_return</strong> : Retourne un texte ou une valeur pour une intéraction par exemple</p>
+</li>
+<li>
+<p><strong>event</strong> : Permet de modifier la valeur d&#8217;une commande</p>
 </li>
 <li>
 <p><strong>alert</strong> : permet d&#8217;afficher un petit message d&#8217;alerte sur tous les navigateurs qui ont une page jeedom ouverte. Vous pouvez en plus choisir 4 niveaux d&#8217;alerte</p>

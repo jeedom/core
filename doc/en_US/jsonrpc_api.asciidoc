@@ -107,7 +107,6 @@ Settings:
 - int $isVisible = 0;
 - int $isEnable = 0;
 - array $configuration;
-- array $specificCapatibilities;
 - int $timeout;
 - array $category;
 
