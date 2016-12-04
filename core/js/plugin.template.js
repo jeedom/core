@@ -329,6 +329,11 @@ $('body').undelegate('.cmd .cmdAction[data-action=test]', 'click').delegate('.cm
 
 });
 
+$('body').undelegate('.cmd', 'dblclick').delegate('.cmd', 'dblclick', function () {
+   $('#md_modal').dialog({title: "{{Configuration commande}}"});
+   $('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.cmd').attr('data-cmd_id')).dialog('open');
+});
+
 $('body').undelegate('.cmd .cmdAction[data-action=configure]', 'click').delegate('.cmd .cmdAction[data-action=configure]', 'click', function () {
     $('#md_modal').dialog({title: "{{Configuration commande}}"});
     $('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.cmd').attr('data-cmd_id')).dialog('open');
