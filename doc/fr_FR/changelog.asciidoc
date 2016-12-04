@@ -46,6 +46,7 @@
 * Un double clique sur la ligne d'une commande (sur la page de configuration) ouvre maintenant la configuration avancée de celle-ci
 * Possibilité d'interdire certaine valeur pour une commande (dans la configuration avancée de celle-ci)
 * Ajout des champs de configuration sur le retour d'état automatique (ex revenir à 0 au bout de 4min) dans la configuration avancée d'une commande
+* Ajout d'une fonction valueDate dans les scénarios (voir documentation des scénarios)
 
 = 2.4.7
 

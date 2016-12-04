@@ -49,6 +49,7 @@
  {val: 'median(commande1,commande2)'},
  {val: 'time(value)'},
  {val: 'collectDate(cmd)'},
+ {val: 'valueDate(cmd)'},
  {val: 'eqEnable(equipement)'}
  ];
  autoCompleteAction = ['sleep', 'variable', 'scenario', 'stop', 'wait','gotodesign','log','message','equipement','ask','jeedom_poweroff','scenario_return','alert','popup','icon'];

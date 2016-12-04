@@ -669,6 +669,15 @@ class scenarioExpression {
 		return date($_format, strtotime($cmd->getCollectDate()));
 	}
 
+	public static function valueDate($_cmd_id, $_format = 'Y-m-d H:i:s') {
+		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
+		if (!is_object($cmd)) {
+			return '';
+		}
+		$cmd->execCmd();
+		return date($_format, strtotime($cmd->getValueDate()));
+	}
+
 	public static function randomColor($_rangeLower, $_rangeHighter) {
 		$value = rand($_rangeLower, $_rangeHighter);
 		$color_range = 85;
