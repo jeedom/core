@@ -25,6 +25,7 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 		<?php }
 ?>
 		<li role="presentation"><a href="#eqLogic_battery" aria-controls="messages" role="tab" data-toggle="tab"><i class="icon techno-charging"></i> {{Batterie}}</a></li>
+		<li role="presentation"><a href="#eqLogic_comment" aria-controls="messages" role="tab" data-toggle="tab" id="bt_EqLogicConfigurationTabComment"><i class="fa fa-commenting-o"></i> {{Commentaire}}</a></li>
 	</ul>
 
 	<div class="tab-content" id="div_displayEqLogicConfigure">
@@ -412,6 +413,10 @@ if ($eqLogic->getDisplay('parameters') != '') {
 													<label class="col-xs-2 label label-success" style="font-size : 1.8em">{{Ok}}</label>
 												</div>
 											</div>
+											<div role="tabpanel" class="tab-pane" id="eqLogic_comment">
+												<br/>
+												<textarea data-l1key="comment" class="form-control eqLogicAttr autogrow" ></textarea>
+											</div>
 										</div>
 										<script>
 											$('.background-color-default').off('change').on('change',function(){
@@ -421,7 +426,6 @@ if ($eqLogic->getDisplay('parameters') != '') {
 													$(this).closest('td').find('.span_configureBackgroundColor').show();
 												}
 											});
-
 											$('.background-color-transparent').off('change').on('change',function(){
 												var td = $(this).closest('td');
 												if($(this).value() == 1){
@@ -430,7 +434,6 @@ if ($eqLogic->getDisplay('parameters') != '') {
 													td.find('.background-color').show();
 												}
 											});
-
 											$('.color-default').off('change').on('change',function(){
 												var td = $(this).closest('td')
 												if($(this).value() == 1){
@@ -439,7 +442,6 @@ if ($eqLogic->getDisplay('parameters') != '') {
 													td.find('.color').show();
 												}
 											});
-
 											$('.border-default').off('change').on('change',function(){
 												var td = $(this).closest('td')
 												if($(this).value() == 1){
@@ -448,7 +450,6 @@ if ($eqLogic->getDisplay('parameters') != '') {
 													td.find('.border').show();
 												}
 											});
-
 											$('.border-radius-default').off('change').on('change',function(){
 												var td = $(this).closest('td')
 												if($(this).value() == 1){
@@ -457,7 +458,6 @@ if ($eqLogic->getDisplay('parameters') != '') {
 													td.find('.border-radius').show();
 												}
 											});
-
 											$('.advanceWidgetParameterDefault').off('change').on('change',function(){
 												if($(this).value() == 1){
 													$(this).closest('td').find('.advanceWidgetParameter').hide();
@@ -465,7 +465,6 @@ if ($eqLogic->getDisplay('parameters') != '') {
 													$(this).closest('td').find('.advanceWidgetParameter').show();
 												}
 											});
-
 											$('.advanceWidgetParameterColorTransparent').off('change').on('change',function(){
 												if($(this).value() == 1){
 													$(this).closest('td').find('.advanceWidgetParameterColor').hide();
@@ -473,16 +472,17 @@ if ($eqLogic->getDisplay('parameters') != '') {
 													$(this).closest('td').find('.advanceWidgetParameterColor').show();
 												}
 											});
-
 											$('#div_displayEqLogicConfigure').setValues(eqLogicInfo, '.eqLogicAttr');
-											$('#table_widgetParameters').delegate('.removeWidgetParameter', 'click', function () {
+											$('#table_widgetParameters').on( 'click', '.removeWidgetParameter',function () {
 												$(this).closest('tr').remove();
+											});
+											$('#bt_EqLogicConfigurationTabComment').on('click', function () {
+												setTimeout(function(){ $('.eqLogicAttr[data-l1key=comment]').trigger('change'); }, 10);
 											});
 											$('#bt_eqLogicConfigureRawObject').off('click').on('click',function(){
 												$('#md_modal2').dialog({title: "{{Informations brutes}}"});
 												$("#md_modal2").load('index.php?v=d&modal=object.display&class=eqLogic&id='+eqLogicInfo.id).dialog('open');
 											})
-
 											$('#bt_addWidgetParameters').off().on('click', function () {
 												var tr = '<tr>';
 												tr += '<td>';

@@ -31,11 +31,11 @@ class eqLogic {
 	protected $isVisible = 0;
 	protected $isEnable = 0;
 	protected $configuration;
-	protected $specificCapatibilities;
 	protected $timeout = 0;
 	protected $category;
 	protected $display;
 	protected $order;
+	protected $comment;
 	protected $_debug = false;
 	protected $_object = null;
 	private static $_templateArray = array();
@@ -1027,8 +1027,8 @@ class eqLogic {
 		return $this;
 	}
 
-	public function setIsVisible($isVisible) {
-		$this->isVisible = $isVisible;
+	public function setIsVisible($_isVisible) {
+		$this->isVisible = $_isVisible;
 		return $this;
 	}
 
@@ -1043,15 +1043,6 @@ class eqLogic {
 
 	public function setConfiguration($_key, $_value) {
 		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
-		return $this;
-	}
-
-	public function getSpecificCapatibilities($_key = '', $_default = '') {
-		return utils::getJsonAttr($this->specificCapatibilities, $_key, $_default);
-	}
-
-	public function setSpecificCapatibilities($_key, $_value) {
-		$this->specificCapatibilities = utils::setJsonAttr($this->specificCapatibilities, $_key, $_value);
 		return $this;
 	}
 
@@ -1071,11 +1062,12 @@ class eqLogic {
 		return $this->timeout;
 	}
 
-	public function setTimeout($timeout) {
-		if ($timeout == '' || is_string($timeout) || is_nan(intval($timeout)) || $timeout < 1) {
-			$timeout == null;
+	public function setTimeout($_timeout) {
+		if ($_timeout == '' || is_string($_timeout) || is_nan(intval($_timeout)) || $_timeout < 1) {
+			$_timeout == null;
 		}
-		$this->timeout = $timeout;
+		$this->timeout = $_timeout;
+		return $this;
 	}
 
 	public function getCategory($_key = '', $_default = '') {
@@ -1087,6 +1079,15 @@ class eqLogic {
 
 	public function setCategory($_key, $_value) {
 		$this->category = utils::setJsonAttr($this->category, $_key, $_value);
+		return $this;
+	}
+
+	public function getComment() {
+		return $this->comment;
+	}
+
+	public function setComment($_comment) {
+		$this->comment = $_comment;
 		return $this;
 	}
 

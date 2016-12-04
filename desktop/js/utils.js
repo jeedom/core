@@ -281,6 +281,11 @@ if (isset(jeedom_langage)) {
     initPage();
 });
 
+function initTextArea(){
+    $('body').on('change keyup keydown paste cut', 'textarea.autogrow', function () {
+        $(this).height(0).height(this.scrollHeight);
+    });
+}
 
 function initCheckBox(){
 
@@ -292,6 +297,7 @@ function initPage(){
     $.initTableFilter();
     initRowOverflow();
     initHelp();
+    initTextArea();
 }
 
 function linkify(inputText) {
