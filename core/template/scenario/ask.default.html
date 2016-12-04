@@ -24,9 +24,9 @@
 </div>
 
 <script>
-	$('.listEquipementInfo[data-uid=#uid#]').on('click', function() {
+	$('.listEquipementInfo[data-uid=#uid#]').off('click').on('click', function() {
 		jeedom.cmd.getSelectModal({cmd: {type: 'action',subtype : "message"}}, function(result) {
-			$('.expressionAttr[data-l1key=options][data-l2key=cmd][data-uid=#uid#][data-cmd_id=#id#]').value(result.human);
+			$('.expressionAttr[data-l1key=options][data-l2key=cmd][data-uid=#uid#]').value(result.human);
 		});
 	});
 </script>

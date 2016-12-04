@@ -20,10 +20,9 @@
     if ('#level#' != '' && $('.expressionAttr[data-option_id=#id#][data-uid=#uid#][data-l1key=options][data-l2key=level] option[value=#level#]').html() != undefined) {
         $('.expressionAttr[data-option_id=#id#][data-uid=#uid#][data-l1key=options][data-l2key=level]').value('#level#');
     }
-    $('.listEquipementInfo[data-uid=#uid#]').on('click', function() {
-        var el = $(this);
+    $('.listEquipementInfo[data-uid=#uid#]').off('click').on('click', function() {
         jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function(result) {
-            el.parent().parent().find('.expressionAttr[data-l1key=options][data-l2key=message]').atCaret('insert', result.human);
+            $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=message]').atCaret('insert', result.human);
         });
     });
 </script>

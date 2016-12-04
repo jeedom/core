@@ -7,9 +7,9 @@
 </div>
 
 <script>
-	$('.listEquipementInfo[data-uid=#uid#]').on('click', function() {
+	$('.listEquipementInfo[data-uid=#uid#]').off('click').on('click', function() {
 		jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function(result) {
-			$('.expressionAttr[data-l1key=options][data-l2key=slider][data-uid=#uid#][data-cmd_id=#id#]').atCaret('insert', result.human);
+			$('.expressionAttr[data-l1key=options][data-l2key=slider][data-uid=#uid#]').atCaret('insert', result.human);
 		});
 	});
 </script>

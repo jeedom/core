@@ -14,24 +14,24 @@
 
 <script>
 	if('#title_disable#' == '1'){
-		$('.expressionAttr[data-l1key=options][data-l2key=title][data-uid=#uid#][data-cmd_id=#id#]').parent().hide();
+		$('.expressionAttr[data-l1key=options][data-l2key=title][data-uid=#uid#]').parent().hide();
 	}
 	if('#message_disable#' == '1'){
-		$('.expressionAttr[data-l1key=options][data-l2key=message][data-uid=#uid#][data-cmd_id=#id#]').parent().hide();
+		$('.expressionAttr[data-l1key=options][data-l2key=message][data-uid=#uid#]').parent().hide();
 	}
 	$('.listEquipementInfo[data-uid=#uid#]').on('click', function() {
 		if('#message_cmd_subtype#' != ''){
 			jeedom.cmd.getSelectModal({cmd: {type: '#message_cmd_type#','subType' : '#message_cmd_subtype#'}}, function(result) {
-				$('.expressionAttr[data-l1key=options][data-l2key=message][data-uid=#uid#][data-cmd_id=#id#]').atCaret('insert', result.human);
+				$('.expressionAttr[data-l1key=options][data-l2key=message][data-uid=#uid#]').atCaret('insert', result.human);
 			});
 		}else{
 			jeedom.cmd.getSelectModal({cmd: {type: '#message_cmd_type#'}}, function(result) {
-				$('.expressionAttr[data-l1key=options][data-l2key=message][data-uid=#uid#][data-cmd_id=#id#]').atCaret('insert', result.human);
+				$('.expressionAttr[data-l1key=options][data-l2key=message][data-uid=#uid#]').atCaret('insert', result.human);
 			});
 		}
 	});
 	if('#title_possibility_list#' != ''){
-		$('.expressionAttr[data-l1key=options][data-l2key=title][data-uid=#uid#][data-cmd_id=#id#]').autocomplete({
+		$('.expressionAttr[data-l1key=options][data-l2key=title][data-uid=#uid#]').autocomplete({
 			source: json_decode('#title_possibility_list#'),
 			close: function (event, ui) {
 				$(this).trigger('focusout');

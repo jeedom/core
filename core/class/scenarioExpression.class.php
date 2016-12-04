@@ -947,6 +947,9 @@ class scenarioExpression {
 			}
 			if (is_array($options) && $this->getExpression() != 'wait') {
 				foreach ($options as $key => $value) {
+					if ($this->getExpression() == 'event' && $key == 'cmd') {
+						continue;
+					}
 					if (is_string($value)) {
 						$options[$key] = str_replace('"', '', self::setTags($value, $scenario));
 					}
@@ -1017,6 +1020,13 @@ class scenarioExpression {
 					if ($scenario != null) {
 						$scenario->setLog('Log : ' . $options['message']);
 					}
+					return;
+				} else if ($this->getExpression() == 'event') {
+					$cmd = cmd::byId(trim(str_replace('#', '', $options['cmd'])));
+					if (!is_object($cmd)) {
+						throw new Exception(__('Commande introuvable : ', __FILE__) . $options['cmd']);
+					}
+					$cmd->event($options['value']);
 					return;
 				} else if ($this->getExpression() == 'message') {
 					message::add('scenario', $options['message']);
