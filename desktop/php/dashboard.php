@@ -64,7 +64,7 @@ if ($_SESSION['user']->getOptions('displayScenarioByDefault') == 1) {
 <i class="fa fa-pencil pull-right cursor" id="bt_editDashboardWidgetOrder" data-mode="0" style="margin-right : 10px;"></i>
 <?php }
 ?>
-<center>
+<div style="text-align : center;">
 	<?php
 if (init('category', 'all') == 'all') {
 	echo '<a href="index.php?v=d&p=dashboard&object_id=' . init('object_id') . '&category=all&summary=' . init('summary') . '" class="btn btn-primary btn-sm categoryAction" style="margin-bottom: 5px;margin-right: 3px;">{{Tous}}</a>';
@@ -84,7 +84,7 @@ if (init('category', 'all') == 'other') {
 	echo '<a href="index.php?v=d&p=dashboard&object_id=' . init('object_id') . '&category=other&summary=' . init('summary') . '" class="btn btn-default btn-sm categoryAction" style="margin-bottom: 5px;margin-right: 3px;">{{Autre}}</a>';
 }
 ?>
-</center>
+</div>
 <?php include_file('desktop', 'dashboard', 'js');?>
 <?php
 echo '<div data-object_id="' . $object->getId() . '" class="div_object">';
