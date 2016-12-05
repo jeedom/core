@@ -59,9 +59,9 @@ foreach ($list as $eqLogic) {
 	$classAttr = $level . ' ' . $battery . ' ' . $plugins . ' ' . $objets;
 	$idAttr = $level . '__' . $battery . '__' . $plugins . '__' . $objets;
 	echo '<div class="eqLogic eqLogic-widget ' . $classAttr . '" style="min-width:80px;background-color:' . $color . '" id="' . $idAttr . '">';
-	echo '<center class="widget-name"><a href="' . $eqLogic->getLinkToConfiguration() . '" style="font-size : 1.5em;">' . $eqLogic->getName() . '</a><br/><span style="font-size: 0.95em;position:relative;top:-5px;cursor:default;">' . $eqLogic->getobject()->getName() . '</span></center>';
-	echo '<center><span style="font-size:2.2em;font-weight: bold;cursor:default;">' . $eqLogic->getStatus('battery', -2) . '</span><span>%</span></center>';
-	echo '<center style="cursor:default;">{{Le }}' . $eqLogic->getStatus('batteryDatetime', __('inconnue', __FILE__)) . '</center>';
+	echo '<div class="widget-name" style="text-align : center;"><a href="' . $eqLogic->getLinkToConfiguration() . '" style="font-size : 1.5em;">' . $eqLogic->getName() . '</a><br/><span style="font-size: 0.95em;position:relative;top:-5px;cursor:default;">' . $eqLogic->getobject()->getName() . '</span></div>';
+	echo '<div style="text-align : center;"><span style="font-size:2.2em;font-weight: bold;cursor:default;">' . $eqLogic->getStatus('battery', -2) . '</span><span>%</span></div>';
+	echo '<div style="text-align : center; cursor:default;">{{Le }}' . $eqLogic->getStatus('batteryDatetime', __('inconnue', __FILE__)) . '</div>';
 	if ($eqLogic->getConfiguration('battery_type', '') != '') {
 		echo '<span class="pull-right" style="font-size : 0.8em;margin-bottom: 3px;margin-right: 5px;cursor:default;" title="Piles">' . $eqLogic->getConfiguration('battery_type', '') . '</span>';
 	}
