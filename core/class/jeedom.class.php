@@ -879,8 +879,13 @@ class jeedom {
 	public static function getCurrentAdminerFolder() {
 		$dir = dirname(__FILE__) . '/../../';
 		$ls = ls($dir, 'adminer*');
-		if (count($ls) != 1) {
+		if (count($ls) == 0) {
 			return '';
+		}
+		if (count($ls) > 1) {
+			for ($i = 1; $i < count($ls); $i++) {
+				shell_exec('sudo rm -rf ' . dirname(__FILE__) . '/../../' . $ls[$i]);
+			}
 		}
 		return $ls[0];
 	}
@@ -897,8 +902,13 @@ class jeedom {
 	public static function getCurrentSysInfoFolder() {
 		$dir = dirname(__FILE__) . '/../../';
 		$ls = ls($dir, 'sysinfo*');
-		if (count($ls) != 1) {
+		if (count($ls) == 0) {
 			return '';
+		}
+		if (count($ls) > 1) {
+			for ($i = 1; $i < count($ls); $i++) {
+				shell_exec('sudo rm -rf ' . dirname(__FILE__) . '/../../' . $ls[$i]);
+			}
 		}
 		return $ls[0];
 	}
