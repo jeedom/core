@@ -67,23 +67,20 @@ foreach ($interactListGroup as $group) {
  <div id="interactThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
    <div class="interactListContainer">
      <legend><i class="fa fa-cog"></i>  {{Gestion}}</legend>
-     <div class="cursor" id="bt_addInteract2" style="background-color : #ffffff; height : 120px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 140px;margin-left : 10px;" >
-       <center>
+     <div class="cursor" id="bt_addInteract2" style="text-align : center; background-color : #ffffff; height : 120px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 140px;margin-left : 10px;" >
         <i class="fa fa-plus-circle" style="font-size : 6em;color:#94ca02;"></i>
-      </center>
-      <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>{{Ajouter}}</center></span>
+      <br>
+      <span style="text-align : center; font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02">{{Ajouter}}</span>
     </div>
-    <div class="cursor" id="bt_regenerateInteract2" style="background-color : #ffffff; height : 120px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 140px;margin-left : 10px;" >
-     <center>
+    <div class="cursor" id="bt_regenerateInteract2" style="text-align : center; background-color : #ffffff; height : 120px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 140px;margin-left : 10px;" >
        <i class="fa fa-refresh" style="font-size : 6em;color:#f0ad4e;"></i>
-     </center>
-     <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#f0ad4e"><center>{{Regénérer}}</center></span>
+     <br>
+     <span style="text-align : center; font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#f0ad4e">{{Regénérer}}</span>
    </div>
-   <div class="cursor" id="bt_testInteract2" style="background-color : #ffffff; height : 120px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 140px;margin-left : 10px;" >
-     <center>
+   <div class="cursor" id="bt_testInteract2" style="text-align : center; background-color : #ffffff; height : 120px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 140px;margin-left : 10px;" >
       <i class="fa fa-comment-o" style="font-size : 6em;color:#337ab7;"></i>
-    </center>
-    <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Tester}}</center></span>
+    <br>
+    <span style="text-align : center; font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7">{{Tester}}</span>
   </div>
 </div>
 
@@ -91,11 +88,10 @@ foreach ($interactListGroup as $group) {
 <?php
 echo '<div class="interactListContainer">';
 foreach ($interacts[-1] as $interact) {
-	echo '<div class="interactDisplayCard cursor" data-interact_id="' . $interact->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
-	echo "<center>";
+	echo '<div class="interactDisplayCard cursor" data-interact_id="' . $interact->getId() . '" style="text-align : center; background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 	echo '<img src="core/img/interaction.png" height="90" width="85" />';
-	echo "</center>";
-	echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $interact->getHumanName() . '</center></span>';
+	echo "<br>";
+	echo '<span style="text-align : center; font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $interact->getHumanName() . '</span>';
 	echo '</div>';
 }
 echo '</div>';
@@ -104,11 +100,10 @@ foreach ($interactListGroup as $group) {
 	if ($group['group'] != '') {
 		echo '<div class="interactListContainer">';
 		foreach ($interacts[$group['group']] as $interact) {
-			echo '<div class="interactDisplayCard cursor" data-interact_id="' . $interact->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
-			echo "<center>";
+			echo '<div class="interactDisplayCard cursor" data-interact_id="' . $interact->getId() . '" style="text-align : center; background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 			echo '<img src="core/img/interaction.png" height="90" width="85" />';
-			echo "</center>";
-			echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $interact->getHumanName() . '</center></span>';
+			echo "<br>";
+			echo '<span style="text-align : center; font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $interact->getHumanName() . '</span>';
 			echo '</div>';
 		}
 		echo '</div>';
