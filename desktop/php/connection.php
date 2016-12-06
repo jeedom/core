@@ -1,20 +1,23 @@
 <div id="wrap">
     <div class="container">
-        <center>
-          <div style="display: none;width : 100%" id="div_alert"></div>
-          <img src="core/img/logo-jeedom-grand-nom-couleur-460x320.png" class="img-responsive" />
-          <div style="width:300px">
-              <input class="form-control" type="text" id="in_login_username" placeholder="{{Nom d'utilisateur}}"/><br/>
-              <input class="form-control" type="password" id="in_login_password" placeholder="{{Mot de passe}}" style="margin-top:10px;" />
-              <div id="div_twoFactorCode" style="display:none;">
-                <input class="form-control" type="text" id="in_twoFactorCode" placeholder="{{Code à 2 facteurs}}" style="margin-top:10px;"/>
+        <div style="display: none;width : 100%" id="div_alert"></div>
+        <img style="display:block; margin-left:auto; margin-right:auto;" src="core/img/logo-jeedom-grand-nom-couleur-460x320.png" class="img-responsive" />
+	    <div style="text-align:center; display : block; margin-left:auto; margin-right:auto; width:300px">
+            <div class="form-group">
+		        <input  class="form-control" type="text" id="in_login_username" placeholder="{{Nom d'utilisateur}}">
             </div>
-            <input type="checkbox" id="cb_storeConnection" style="margin-top:10px;" /> {{Enregistrer cet ordinateur}}<br/>
-            <button class="btn-lg btn-primary btn-block" id="bt_login_validate" style="margin-top: 10px;"><i class="fa fa-sign-in"></i> {{Connexion}}</button>
+            <div class="form-group">
+		        <input  class="form-control" type="password" id="in_login_password" placeholder="{{Mot de passe}}">
+            </div>
+	        <div class = "form-group" id="div_twoFactorCode" style="display:none;">
+	            <input class="form-control" type="text" id="in_twoFactorCode" placeholder="{{Code à 2 facteurs}}">
+            </div>
+            <div class="checkbox">
+		        <label><input type="checkbox" id="cb_storeConnection">{{Enregistrer cet ordinateur}}</label>
+            </div>
+		    <button class="btn-lg btn-primary btn-block" id="bt_login_validate"><i class="fa fa-sign-in"></i> {{Connexion}}</button>
         </div>
-    </center>
-</div>
-<br/>
+    </div>
 </div>
 <script>
     $('#in_login_username').on('focusout change keypress',function(){
