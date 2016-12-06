@@ -50,19 +50,16 @@ foreach (update::listRepo() as $key => $value) {
 	if (!isset($value['scope']['hasStore']) || !$value['scope']['hasStore']) {
 		continue;
 	}
-	echo '<div class="cursor displayStore" data-repo="' . $key . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-    <center>
+	echo '<div class="cursor displayStore" data-repo="' . $key . '" style="text-align : center; background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
       <i class="fa fa-shopping-cart" style="font-size : 6em;color:#94ca02;margin-top:20px;"></i>
-    </center>
-    <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>' . $value['name'] . '</center></span>
+    <br>
+    <span style="text-align : center; font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02">' . $value['name'] . '</span>
   </div>';
 }
 foreach (plugin::listPlugin() as $plugin) {
 	$opacity = ($plugin->isActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-	echo '<div class="pluginDisplayCard cursor" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
-	echo "<center>";
+	echo '<div class="pluginDisplayCard cursor" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="text-align : center; background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
 	echo '<img class="img-responsive" style="width : 120px;" src="' . $plugin->getPathImgIcon() . '" />';
-	echo "</center>";
 	echo '</div>';
 }
 ?>
