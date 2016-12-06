@@ -40,10 +40,8 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                 </div>
                 <div class="modal-body">
                     <div style="display: none;" id="div_newUserAlert"></div>
-                    <center>
                         <input class="form-control" type="text"  id="in_newUserLogin" placeholder="{{Login}}"/><br/><br/>
                         <input class="form-control" type="password"  id="in_newUserMdp" placeholder="{{Mot de passe}}"/>
-                    </center>
                 </div>
                 <div class="modal-footer">
                     <a class="btn btn-default" data-dismiss="modal">{{Annuler}}</a>
