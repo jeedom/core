@@ -21,6 +21,7 @@ function isConnect($_right = '') {
 	return false;
 }
 if (!isConnect()) {
+	header("HTTP/1.0 404 Not Found");
 	die();
 }
 /**

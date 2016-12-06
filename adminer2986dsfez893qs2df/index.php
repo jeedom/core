@@ -21,6 +21,7 @@ function isConnect($_right = '') {
 	return false;
 }
 if (!isConnect()) {
+	header("HTTP/1.0 404 Not Found");
 	die();
 }
 /** Adminer - Compact database management
@@ -32,9 +33,10 @@ if (!isConnect()) {
  * @version 4.2.4
  */error_reporting(6135);
 $oc = !preg_match('~^(unsafe_raw)?$~', ini_get("filter.default"));if ($oc || ini_get("filter.default_flags")) {
-	foreach (array('_GET', '_POST', '_COOKIE', '_SERVER') as $X) {$yg = filter_input_array(constant("INPUT$X"), FILTER_UNSAFE_RAW);if ($yg) {
-		$$X = $yg;
-	}
+	foreach (array('_GET', '_POST', '_COOKIE', '_SERVER') as $X) {
+		$yg = filter_input_array(constant("INPUT$X"), FILTER_UNSAFE_RAW);if ($yg) {
+			$$X = $yg;
+		}
 	}}if (function_exists("mb_internal_encoding")) {
 	mb_internal_encoding("8bit");
 }
@@ -54,7 +56,8 @@ if (isset($_GET["file"])) {
 		header("Content-Type: text/javascript; charset=utf-8");
 		echo
 		lzw_decompress("v0œF£©ÌĞ==˜ÎFS	ĞÊ_6MÆ³˜èèr:™E‡CI´Êo:C„”Xc‚\ræØ„J(:=ŸE†¦a28¡xğ¸?Ä'ƒi°SANN‘ùğxs…NBáÌVl0›ŒçS	œËUl(D|Ò„çÊP¦À>šE†ã©¶yHchäÂ-3Eb“å ¸b½ßpEÁpÿ9.Š˜Ì~\n?Kb±iw|È`Ç÷d.¼x8EN¦ã!”Í2™‡3©ˆá\r‡ÑYÌèy6GFmY8o7\n\r³0¤÷\0DbcÓ!¾Q7Ğ¨d8‹Áì~‘¬N)ùEĞ³`ôNsßğ`ÆS)ĞOé—·ç/º<xÆ9o»ÔåµÁì3n«®2»!r¼:;ã+Â9ˆCÈ¨®‰Ã\n<ñ`Èó¯bè\\š?`†4\r#`È<¯BeãB#¤N Üã\r.D`¬«jê4ÿpéar°øã¢º÷>ò8Ó\$Éc ¾1Écœ ¡c êİê{n7ÀÃ¡ƒAğNÊRLi\r1À¾ø!£(æjÂ´®+Âê62ÀXÊ8+Êâàä.\rÍÎôƒÎ!x¼åƒhù'ãâˆ6Sğ\0RïÔôñOÒ\n¼…1(W0…ãœÇ7qœë:NÃE:68n+äÕ´5_(®s \rã”ê‰/m6PÔ@ÃEQàÄ9\n¨V-‹Áó\"¦.:åJÏ8weÎq½|Ø‡³XĞ]µİY XÁeåzWâü 7âûZ1íhQfÙãu£jÑ4Z{p\\AUËJ<õ†káÁ@¼ÉÃà@„}&„ˆL7U°wuYhÔ2¸È@ûu  Pà7ËA†hèÌò°Ş3Ã›êçXEÍ…Zˆ]­lá@MplvÂ)æ ÁÁHW‘‘Ôy>Y-øYŸè/«›ªÁî hC [*‹ûFã­#~†!Ğ`ô\r#0PïCË—f ·¶¡îÃ\\î›¶‡É^Ã%B<\\½fˆŞ±ÅáĞİã&/¦O‚ğL\\jF¨jZ£1«\\:Æ´>N¹¯XaFÃAÀ³²ğÃØÍf…h{\"s\n×64‡ÜøÒ…¼?Ä8Ü^p\"ë°ñÈ¸\\Úe(¸PƒNµìq[g¸Árÿ&Â}PhÊà¡ÀWÙí*Şír_sËP‡hà¼àĞ\nÛËÃomõ¿¥Ãê—Ó#§¡.Á\0@épdW ²\$Òº°QÛ½Tl0† ¾ÃHdHë)š‡ÛÙÀ)PÓÜØHgàıUş„ªBèe\r†t:‡Õ\0)\"Åtô,´œ’ÛÇ[(DøO\nR8!†Æ¬ÖšğÜlAüV…¨4 hà£Sq<à@}ÃëÊgK±]®àè]â=90°'€åâøwA<‚ƒĞÑaÁ~€òWšæƒD|A´††2ÓXÙU2àéyÅŠŠ=¡p)«\0P	˜s€µn…3îr„f\0¢F…·ºvÒÌG®ÁI@é%¤”Ÿ+Àö_I`¶ÌôÅ\r.ƒ N²ºËKI…[”Ê–SJò©¾aUf›Szûƒ«M§ô„%¬·\"Q|9€¨Bc§aÁq\0©8Ÿ#Ò<a„³:z1Ufª·>îZ¹l‰‰¹ÓÀe5#U@iUGÂ‚™©n¨%Ò°s¦„Ë;gxL´pPš?BçŒÊQ\\—b„ÿé¾’Q„=7:¸¯İ¡Qº\r:ƒtì¥:y(Å ×\nÛd)¹ĞÒ\nÁX; ‹ìêCaA¬\ráİñŸP¨GHù!¡ ¢@È9\n\nAl~H úªV\nsªÉÕ«Æ¯ÕbBr£ªö„’­²ßû3ƒ\rP¿%¢Ñ„\r}b/‰Î‘\$“5§PëCä\"wÌB_çÉUÕgAtë¤ô…å¤…é^QÄåUÉÄÖj™Áí Bvhì¡„4‡)¹ã+ª)<–j^<Lóà4U* õBg ëĞæè*nÊ–è-ÿÜõÓ	9O\$´‰Ø·zyM™3„\\9Üè˜.oŠ¶šÌë¸E(iåàœÄÓ7	tßšé-&¢\nj!\rÀyœyàD1gğÒö]«ÜyRÔ7\"ğæ§·ƒˆ~ÀíàÜ)TZ0E9MåYZtXe!İf†@ç{È¬yl	8‡;¦ƒR{„ë8‡Ä®ÁeØ+ULñ'‚F²1ıøæ8PE5-	Ğ_!Ô7…ó [2‰JËÁ;‡HR²éÇ¹€8pç—²İ‡@™£0,Õ®psK0\r¿4”¢\$sJ¾Ã4ÉDZ©ÕI¢™'\$cL”R–MpY&ü½Íiçz3GÍzÒšJ%ÁÌPÜ-„[É/xç³T¾{p¶§z‹CÖvµ¥Ó:ƒV'\\–’KJa¨ÃMƒ&º°£Ó¾\"à²eo^Q+h^âĞiTğ1ªORäl«,5[İ˜\$¹·)¬ôNô\n«[Ğb÷ƒà|;‘éîp»74ÍÜ”Â¢¨ĞIŠCË\\ŞX°ç\n%øhØIäç4Ïg‹P:< ôõk¦1Q™+\\ÚÈ^å’ ™VèøCàòôWàÃ`83B-9F@ànÃT>»ŞÀÇ‰-–¿öÊ&âÜ`9q¦…Çßä‘“PÜy6Üå\r.yñ&£ñ´ÎaÌ‰ÍÃE8Ÿ0 êÀõkAÁ×VÛT7ñpïÆxØ)Ş¡~¤M½ûÎß!áEt§ĞùP\\èÄÏ—m~c½Bğ\\\nímŠv{µÎù9`G[·¾~xsLî\\±Iõ®ïâXwy\nà¨çu¯áÁ™S£c»¬€1?A¼*‡ùÍ{œã½ÿ´óÍ¿á|9Ş¾/–òş¯Eúï4æÊ/¿Wÿ[È³>–á]ÄrÊı¯v¹~B£ PB`T¡H>0¤BÒ)ğ >¸N!4\"‡À¦xW-ÅX)„0BhA0à½J2P@>ÈAA)„SÎôn¼ìnìO˜Q¢¬ÇÎÊb®rõÔÒ¦âöàøïhèí@È‹’î®(–ğ\nì†FìÂ˜ñÏ–øÆ™…(ìÎ³¤ÛP\0÷NÂõo}¯‚l«<ønŞø®ˆâîlëoq\0/Q\0of*Ê‘NÑ½P\r/îpA°Y\0p\\ãï~³ĞbĞLh °!Îã	ĞPöîd÷.¿ïy\no\0áÌËĞ¶öPptùP¡ovĞ‚kn¸\0z+æ›l6÷°©¬Êø0’äğ¹P½oF€NìÏFô¯OpıàN`ÜĞÖ\rogğá0}PÍ\n¬–@°”ö15\r±9\$M\r \\©\nggìÀÂ Ø\$Q	\r‘“Dd‰ÆÊ8\$¶ªkşDâjÖ¢Ô†ö&€ÓÀÊ ¶àbÑ¬˜ê°¿‰›	ñ=\n0ÊÕÀúºÀPØ ~Ø¬6eö½¬2%Íx\"pß@XŠ±~«æ’?¬Ñ†Zelf\0ÒZ), ,^Ê`ß\0è8&´ì¨Ù©‘Ñr€© ©ÃkFJÂÂP>VÆœÔp¨²8%2>ÂBmÎóØ@ä’G(²ä¨s\$ dÕÌœv†\"Èp°wÇÆ6§æ}(VÌKË ‚K¬L Â¾¤éÄWñöqú\r‘şÃÌ¤Ê€QòL%’PÔdJ¨¦HÀNxK:\n ¤	 †%fn‹ã³%ÒŒ¿DÌMü À[#¢T\r©ÀrÂ.¦LLè&W/>h6@êE ÈãLP‚vÆC’ß6O:Yh^mn6£n¼j>7`z`Ní\\Ùj\rgô\rÈi2I\$\"@¾[`Â¢hMı3q3d’ş\0ÖµÈúys\$`ÖDÀæ\$\0äQOf1ƒ&‚\"~0€¸`ø£\"@ZG¼)	Y:S¨ê†D.S%Íˆ’ Ğ3¾à d¹ÀmÓU5‹æ¬ó<£SÒSZ3â%r “ÎãÆ{óe3Cu6³o73î—³ÀdÀL\"àc7ÄLN ÜY Ê÷k‘>²‚Ç.æpäì2øQôĞ÷“¼åÓ3ÀVØ°WBğDtCq#C@½I”P÷DT_D´:ÔQ<”UF²=’1ô@\$‚‰6Â<cÆrÅf%Ô¬,|“27#w7ÌTq´6sşl-1cPÕmğqªÊ\n@ÊàŠ5\0P!`\\\r@Ş\"CÆ-\0RRˆtFH8µ|NíÆ-€Ædòg€‡Ò\rÀ¾)FÆ*h—`ö €CK4Ã1‹ÊkMKCRf@w4BßJÁ2\"äŒ´Ó\r1Q4É2,\"ô¤'¼êx§Œy—R‚%RÄ“SÓ5K”¦IFz	#XP‡>¨âf­É-WX\ršÜê¤pU´ÕDÔt&7@¶ÂÑô?’©ÀÑ ªµ£}O1½2†‡2Õ#UK*¤)ôê¸‹Œ0o<> ]Hš„Æ¿rè›LGNª›ê˜W%–™M^’Õ9X:ÕÉ¥N”òÕêÔséE¥­@xy’(HêÆ™Md×5<52B– ğ–k!>\r^J`‹IS N¡¥4'Æš*œ*`ø>€—`|¢0,™DJ£Fxbèµí4lTØ•û[¨§[é•\\‡¦¨Ô –\\{­Ò6\\Ş–’ öß(#mJÔ£,ı`©I³ûJ‚Õ­ÊÜèlß ûj…jÖŸ?Ö£kG»k¬T9ÀÛ]3ohuJ©ê¢®ÑW•\rkÕÏ)\0İ3Õ€@xè¹,³-Ê	5B”¡¶˜=ÂÔà£#–gf¢¡&Üß·Z`ä#ÄoíæXf È\r ìJhô˜“À´5rqnzõ§­sÁ,6’oÓtD´y‡äÂb´àhş—Ctn˜9n‘ í`§X&¨\r'tpL7²Î—¤&—¨¼l¬Z-Í¬w£{r—¤@iUzM¿{rx×—mÒSBÀ\r@Â H*BD.7¹(Â‘3XCV Ç<WÔÑƒİ|d‡q*@”ş@ŞÀÊ+xø÷Ì¼`á€Ï^™Ì˜ß¬__•ND­X\0Q_D]}tõYÅúp¦f€wÔÚ\"â3øz¦nÂ«MYñùZR\0÷¬Q¤?¸{†M3†•£*×1 ,¨\"Øg*U¡*²¯ˆÌ«zÒŒW5NV2O-|€¾ÉÓñ,×]‚B×dí\rŠñ/OâtÎøÃï‚Ì0‹xÆ†ğ½Ğ®OCë8Ş-0Ò\r”ÿ0à·õ„@]¤XÌŠĞÎğ\\\0¾0NÈï£Ñƒ4ëi¨;ƒØAtê¼8X—x¤\r†…Š“‘ìÁ‡øİŠ×Ê7¬<ö@SlÈ'LÒø9W ÊÎ¸òÏ¬ÖËì¢ÍÄ±•ùRçÌğÌ\r¾Ï ÂÏò|ÜXĞÖa÷ø7y€Ù\rwe¸Œù„Y!ƒ˜Eƒù’´šÂcRIdBOkË28[‡mÌJŒ+L ÈÅÙ¸OXpføÓ9ÑDÏ›·¦ßªw“@Ë“—Y—…¢Õ÷\\yäAcÙ£ƒXgš™%šôó’Â1“ï“j	œX†9Ccİ‡àR¡¹‡”QFÇpdÒ= C˜÷ıš\n\r¥Õ‘ÔóšdjÙ«’xE¡Â2FX§¢x_¢ØÅ£Ú5£™—}q¨Åí¿¤M%¦ZM™:\nÏzWšX7¥åí¦:ĞZi¢npY;ù>Ê˜í£ÙÉ†:6Ú;£ZÎX0ƒ“Ì¢#ùıcàMyU…i2,q¹FËšÈb­J @ÓgGè|4ógÈÒmzWõäÊ	¬)™Èr|àX`Sc‚Õ§ÀË™„óc—¥‡û!²B²—±”»/}{4JÂ\0ÒÃn»Kuz @ÌmÚÑ®€ß­yÍÒyÖ\"º)u¹ÊÂÙã¶Yç˜s·c¶yë‘¶š‡··y¼—¹7Á|·±|—Å{Ï˜*)°Ê4Y`Ïµ[v¹‡¤­‡û^NX•†¸‰†ò‡W”©û·‚7†;¾_‚‹*x™ˆ¹Ú\rùß¼ß‰xm+¾mû¨Ú™	´»¹‹\$\n¾l˜);™²„|Ù ßÚ™¡:œNÚ :„‚Š_È8N³¸Uœ5;¨p+U–L‡ò\\‡9í¦Ùñ“›¡»ıO:I’šû zQºœ¡ƒ¡TëšÜ)ªXG¡æ»ÅJ{w8“¾ûÅ‰¸UÆù\$ôàÃøü›PxTY¾pjh·¾J×Ã€›˜JÙ{‹Âğ@îÇ‚³ øğZ‡ÌÙs•¹hË˜ç–XÌ\0Û–lÓ–ÌàÌÈÎ¸Îçìó‚Y}˜Ÿ®ü^Ğ@u2ÀSÚ#U‰ˆ;Ãˆ|¼¼•¥¼™P\\ŸÊ#ùÊ|ª<®İ\\³À›JÛ‚,öœÀ•\\ÅÌšEÌú…‚]WÍlÁÎ,£ÍìÉ–<åÎŒÛ>YnÎ),Î™rÎüûÔ¼å—âº]Èı	ª\$õĞç½Íq„DJí=•Ù÷•XI-ğÅ€äÅÌa‡llÃµ]\\“w(iÜCÄ×ƒtƒ‘<i-u[uVDÖ“¸QÂ¸€xb€kæLI­.kú›@ŞÀ„ÜN‹“[ñ¼l<o=-]1`è”¼ªdš ÜMÌ7‡@Û%C=]ú›êÀ/|-àÜˆ¾ÉŞáqÃã•âíùâ*¾C¾òO~ÊQâòså`·ç(âòãDÉßÉ²¿à[ãşæ>Éká¾R™uéŞ\\+>)3íûPÊßP§Óí6ÓËM%º¡¾pÔŒœÅAĞ3qmu2ÖfzƒÛ¯ì4s‹	´í`Û‘ì°-kÊS%6\"IT5½‹~Òì\"™íÂUt_	TuvàÖ½ä¶Yw¤†­0I7¤’L‡\$ú¿1Mí?íe@3Ûq{,çÀÏó\"&Vi·àÔIŸ?¾µmõˆ™¯UWR¾´\"uiT‹‘uƒq­Ÿj\"•GÃËõßò(™ï-½‚Byîê5øcİõ?Œàwñ®°ëTúî’`ei¾½Jtb‰gğU‹3ËëÉå@öá~ê+¾Íï\0MïGè7`ùïÍ\0¢_Ô-ùñ?\rîVÿµ?øFOÔ6á`\no†ÏšInª¼*pà™öeÙí\"T{[Ğ“p^÷ä\nlh@l0[/ö„poóJKÖX“ñ€ü<ª=€9{Ç¾6ç–<eßAxãÀùÇ‚¼Éá4x[ÍLò“~>!åOQxš{ZVFÔ`½éÈ~Iß–“øL)Q[ëTûôM›àşT²*BC¤~	æâ‚ä\nƒò¡gÃˆÅ…p9zKÉ–ówzO9di^›'‰+¹ßïDz4ägHAº¯Lyô¡\nr€<IêjKQó¸Snô==\r.Âo7Â½Êé%a;‰kÏãmX¿›Zi%P¨iÏ\r­€¾ıµ/©…L`pR0¤&õ—I (Øá\\.£*m„*(ÚÖõ—\$ä†ÆÀ÷\nw×ŠĞ¥…8a“\n&´Â‘ÍUmª MÖ¨P+\"Ly„ó?¡M\n€2’	L\nbS ¥NäùÇr¶!w¥jw`¼Â\$îôƒráè…Êaáv±^Ãq­F‰Ü6•Ó¨i*™Ÿæ„ì_xõØ\n‰fğIê:B&ù6@É“KED¡úú·QD(V`.1\0Q\$íøF­¹H®’Tş€zĞ†‹Ì\rªjkzM€ĞÀ®Y™À(61€”x‘+®%dj¸Æo\nÂ¦¬\rg°ï\"ÉŒ´ˆ—?Œ1- 3hÏXÖÁ)åyjÃ5r¢N±#Q¾¼Š¸w{_ş¡øG)ÂÎÙ1i‹Ì íç¤<Z‹ºpX³¡Ö\$â?¥=%.´€Ò®&¾­%\\±8w­!¤µa4œ<JB[ĞÄº¦u4‡%êŠ×47‹Ä%gÑä&¸€Z(@	€E¢{@’Ğ#¥–2Šh@Œ#ñŸø™ÑŸ¥£@\$8\n\0UŒìjãA(×2ÀO€Š8Ú€5‘¸Œ¨@†ğ&'´\n€D\$i#À#Ÿt\n PTs#]P*	àDÌuc› PÀO|pc—øËP	Ş¼i#Ô}ˆæ:<ñí\0\0¥ÀˆÅ¥lo#}ÏFÜR‰Tp@„À'	`Q¬ycTp(ÆŠ@€eh\0‹˜Õ8\nrx› cş<`Nˆã:)DY\n*Dı‘2{dZ)A‹Ú4±²¤€cZLğ2ÈÊ<ñò\\Œ\$r#ˆşÆö7ñÁ¥°!û€´ü€Nª{O¼@\$<	Ñ¢ğVƒZÒÆ52.Aù#D0 \0´ÀI¸û\"P'H	²_)¼x@Š€*úàAOh£hI)I²L1¦’ìƒäµ%áJI‚B‘ş’g¤i\"p÷§K2}’ä–Å(CËÉÍ=²t”xCøĞ&FÄ	r“ÒoÙÉ@@'”ñ€%	 ÛHŞT±áˆ	ãÔ˜:=¾)\0.ñ°]Îâ5 .ğæõ(pÈÀL!à8­\0ˆ¹	éR\0L‹YaÔbkÔ°ˆ6Ä)Y·éˆî •Ô®£	h³zZ¦õ±’IgÎVO3oœ­Lgà3ËY2ãÛ‰ÜDoPË`3Ì¸ec-‰r7í‡2Ô—Dº‚Şç‘B¼‰Z•¼¼%å/I{MÃ\0pĞÀÌ.`äÊİo*•Ô¯%T€ı\0 &–iR\n™+Éo€ì©–\rÀ^2q”Ë©\0\\¨I@‚	KÀ#peC*!>€/á%|È…Ì’ÁŞüô\$è)çÀ§1P30(\r¢+\nZÆz„))\0*®\0kà€ÙÅ2¼–Ï…(–E86å¶s—tºf&”™Š¡´“+;”Ø76&ãK–_(›9fÓ,@-ÃÉ4l\$Û‚e7\0ù±:l“LİæM7.\0ˆ³|›ğo–JÛ©ÀÎZ³u•ÌºŠ'Èy{ÅH,#\0vU@9!¼¥	Ñ'†¨&„òGôøß@_-Ù¿³ºt;Üê¡:©µ€²u¡<—ˆL†iÙÎš_ê€Ø£@U6°Îù#ä_€L'~ùæ/Öm`\\Të']=Iäât°Ç¸Âà)ÔÏqùsÉ9Âa<RPÂº|tút&5°äs©lî@¾	ŞKÆwS®èlÍ:9úN®wSø|·göÉØOùAĞŸ<ë‰BÈ€\0/àz@´	ÍÏÁ•Òå†=?=iŞO‘kÓŸ=\0E@iâĞ\$B× hO\0Á>DÖP´ó‹UäçÑ†j¥HìÂ9F¬BcCi‰é­BwM§tÓx€PÀÙM‚?p“®=—äì8ÜÔı‘Ïlg~¨˜tÁa©€%]b\$àØ\rˆr„èÄa,6ÅtŒàW)\0U¨›F˜	|æì“¢ˆvh¦Qú*¥Oƒl.C\$À\\ ĞÖRRÌ<lcù™&Cj3Ñı%ôZM¨öÀz9GpY’â¹£\0i\$Dµ‡d‡ñzt[')[)Q¤ØêŞkÁpi0·#cÃ¾‹ôNE¨ô(ºC2L	Æ@9hÑEJ5Ò,šh{&Jzö0n€vª©>[€j“£Û[œ]ƒK•ıRîJë>.;ù¨íF=RÚŒ<råÓM¡=—Ô’¤ÜhØ^Y\\RmnËĞğ Nn*g‘¦ôÒÅB¬·5^QÒ‰@O¢°x¨¡HIÊT ´â9½)(‘œ&µ‡}A)PÊ\\/êô…_Õ!ÌH şÚ‘¥¤ù\0éBá­\$z4ÓTYu‚J’v\0êƒ”¨…%@æ32\0Sôm€--Gi@¸úQÅ%Ñj©Yİ+FuzlS—”ÜW3ØÅ·OrŠU\$EÔè;¹M©¢\\€Ô±Äu/£õjeQªš¦§,#J¡ªXPÔ<UH•TVVé#Uê™ÔUbˆOU´DZ‘â¢µ£Í8êÕUJuS «À‘g)XDZK‚•¢Bî\n¼@2Š©ìx@d&ü ½eÜ«Ià@ÊFwì¬8“©\$Ù'IºV‚V†U\$²ETÎ_ğ*ˆd¸/áFCÓYdp§vGƒ‰3‰ ‹Ñš‹L^(ù`áj”÷2S¸ºcÛW¨ÜJQYiÖHB”£ckœRè\nş²U\$jê\n„ZAi€î»¢U*wKDRxW‰LÂò­ˆ€+fÚŒ@ã¨A4¢àGz…R\n²5‚b¬\\_²Ÿ ­ô‡¡á0¼C@¤\$X\0+Å]¤ÑÂè\"?‡n¦€+QIj\n»x\r€ôB`S¸âM‚ÈÑûŠ\r o°@‚À6XÀ\"{±\0µãb ¯)–ÁM¨cMğW ä¶D_áÎ±Ğv@{cĞ:¤®%[%‰C²ş1¼Ù;AÆˆÌTn› \0º a²páóe~ÙU5 s©V†İe|M9‡€9 hË@æ¦\0êÙ~É@.³	l€· Jv]©ºD§f€7¨FÌá±³ËùŒ,/+:¾‹íÚXIi­\0U¢â@Nµá´\r Ê¢,².½i¶‡ª³m_ûFŒàÖõäÀYiUÔÓJ¯!©gûLj‹ãÑú¬D“iKAà6²õª-U«KfÖ_N€\0ö-3©ìÀã3+¥dãiûD	\"ö¯µM¥ml‹L…XÜãã¯¸Œ>‹&|UÕÑõ`Ïh¾ù2¦ÑĞn6İ…·ÉI+ØnÃ©-nDÃ×`„µ†®°É”°@ã¬B!;X™smÈ¯·†pC`‘p5Á°¬¡O‰%Z/Õè5”³é#CK`‚XˆªÂcb°Q#«§Qa»–…ƒ¸q…èpÚİ÷)™®G+~Û–ß÷\"ğlM_^zò©šæ!ÌÉàE«”Ğ¥’®šÀ‡ïa úØp86ì„åˆn+oì’Jâ¶ö¥¾,¹¡ó‡¢ºw\n¢]ÍƒpëŠÛRÁõ'§eÖJÕqµ'Ü¨%£'€nlO‹h@>NBÈŠX5,ˆ‡‹¢ÊrGr¹ Z l\r(ªË‘jIù†±lŸ¬%b‡;s+±× ¤Wg7¨)’*e…¸1µ•ŞÑ3“L e@(»p\0 ĞÃèds®AñÖD\0Ã\\bD§\nuê/&1¬ŞXR×¥Eæ¥‚5¡Tœ\r§}7õ§”ªîÔş”AÙ¬áÉkâ\\–øöÍµ´ŸÇqà2Ü€öZ-wo´“tßZùƒ‹¯]ó-yq2j+Õ†¾Õ­Ã«¬€n¾XA«Û\0†\0º¾+S•+ïY6_BúV7z®nZ@Ì†²Ô·Æ´]´-UMJc*¢ü¸´®í¢s\"ß+\0·ï¯x´B3^«öà0\r÷ÜÀÎïÁcğÖ\\jÆÆ*¬P-\\Q8ˆÊ·…l•cË%XşÉVB‡}‘,€ş;(‰`*Qú	\$áïÛrßÂ{ÁKøìCúÖ%¬\r¥ˆx	ŞøQû…,¶Ø¾¥×/‰vàä\" pÁã¶ğ~ Óáã ÅJ5eãü®Eš-^âX;c²\\©¶×¬m‹´7£?˜6C*åº®†,7®HfÄ/Â9eÌ0[@ñ¤!bê®íÅşUĞ‘=›Äi.Jocñj;ø—B³\0¼ƒï]Õ”ÑúvÙGÃÜ8àO\\\0ÀÇŠüO©›\$•.&	p‘\\‹H1bØpø’:F\"8Å¶…ş‰ŠøVx©ÅıµR®–xä=À3Æf1Š+|Ò»\0ÂBÀ¼kbÌPÇLÑ’£ô\$zÌáàÎc	¢ÇĞi,Pcb,pÃn(¥Æ,¸ì`'/»~êÙkÖµ‚Îp€q-›ÁÈ±¹VÀÜÜ†Ü\rÙ	\0á‘‹dSˆÓÈÚÍ+º\"Šéˆ­1\0(Ä-’Ì1~útcªşfı¸àBÛ‘b}Ø ’Ã0<1\r°¨¨L’€»\$¸ˆ2d\"1&ì™Æ€BÃ³N…Ô\ràB\rrƒ«\"?vädäZá±.\".\0?wä¼9€oÃà\rÄ0¥Ñœ!¢ÍdR€‚ë¤¶\0‘ÃÇHëÜra%ĞŠØ+\0yrƒH¾sÏ’4W#œ,\$èô \0„*xBó\nPÌòü|„ 8@/ \0ø2U’°ábíİè¢ÂÎÎªxÀ!¨d§°óúNÿ3SÔ?£ÑP»…€(òg\n8·‡ppŸˆü€S9õ@‘'  Ç\0úyµÿ\0¦y46¡H<‚öÌ×ô\n`S’ˆ…¼ÈûCY¹’„”³jp:\0N(ÓŒáX4ŒkÌÈÓgßDy‹<–n4™£ØrS<ÒÏıˆó¯?¥\nÀÇBãúf('™Ì~dgÓ™SËÏ?<³ÓVg(1™éãæƒ2ù£­—²)ÕôŸf`éZ€¼a“>t{ÀœÉŸô’>ñø\0ŠìPû`O¼\\sŒ<õ?4äwŞ~³ÜÇf@z™ÿÍ~hBW Ìø³á´ŠxhA¡¡ÜO'=úPÖŒ×²Üö±ë=óúc[ysèÌûgâ|¹‹Ïæ³%™Mè,Q³ÆÒ8'X hlUs®…§Ù¢ú é4ËÃqDıÂx*8g§NLšBÈ–¨;§}%eû@YìŸv ho!\$æ›NcCXì³@Ğ;YH'Á°@^ à·Rf^x„\0^osÜ_fª—“;¨Ópj]²:’Ô¤ïõ.mLêl\rš®V¨\0ó@Ü€¶Ê\"ÓÕÄ1%Œ!_êô@-]8f¤ç -Õş±äa]Y¯WšÏˆh`(‘¬äJë@…ÁÖ\rˆ—õ€Y	kB(€xÖÂ:5˜B\\QkO[:Õ0˜Â¼¡­uk›X¥\\×P\0ë[öx¹ÀÅ®`ŠRIGÕĞk5°ğª§YzÍ×PÒ™¬=†l=áõÖe€\0ç•2=k` Å[K¼‡Bê½Ìû8¶C±Í}k«c{#ÖØ¢„ølŸdfF.Ìµü-›AºÿÙ6º†K­’•¤ĞÖ×Pàv„'¢lHiAİÚ8C¶“®	G„`GbyÙ¾·Í- 0•Ä¬;[*_ˆ¡ãmlH{(;Uo¶ÕÑ*Ä]Š,Ä‹åŒÖÆÈşôXË“¡80Cµ°K	­!N¼õÔ(I`¨³	V¾Dv½§íšwá·rpc,ğåŒÃÓ\0ää 9~s»Xnã¦‡¢Ÿr[ec·4dçpÅi	\\…Èe2âãl±ÄaZCk»gl÷bB„™¶7x%¿êè½í€Å»Ùk`ì\nÁ(@Åº«®„5åİ˜¥Ï­cÌ‡#t›–Ü–éãE½}Å„sñ–Lvö÷E¹ï\nQQÛ”Şæú76}õ‹Or»çj§b¯%@7‹˜àÛµßh³wÍ¹÷n£kÙ`Víq·±Íòï³~›™ß~ø„4{Œßşå÷ë¾óË;òßï8p2mP+ dÖaX8&,=Òn›}ü!/øK&\rŠÿt´H™Ó)/øYÜ”†6@å¯=}ğŠğEU§lKÃü\\kÓb[×â1Gø®­M­)™J¨xXÚEïTä¾	/¸\"-‘ë…<4ßxDˆ¥ÅíĞpÄ(¼3ŞÊŸ·ß´'È+Û\$\r†¶<rí×n`H\\t\"ş¶70=ä·Y×Wéhsğ­\rÏw¼~°!ù0@6l‹\\† •§/şBò7’¼‰–ßÏ>Fÿ‘Ü‰\\¶¼RÙ¾-Çn‡€şÜ§\n¸?F~†œaŞ×+xÉÁıëñ¨\rœl,fúCß+­îw•i¢GøÛËî.X!¼_à71ymÌ~ñ„œDå¦È7åÊé	÷š¼ÆåîûÅGÍ¾gówƒàb/89¯ËxÑ@!R–9¸eÍJq˜Y¼hß'3¹ÏÍÄ¬*÷ñXw‹Ë®^—ÛË	¾7ŸÎî5óÀûåÖ`ö:î#È+Û­0˜·œS¯ˆ@0óo7:&~r(Z·‘G1zĞşˆ€·¢pİÎñdNŒï“£›`ç¿/Fz@8Ñt0ŠZÌ_ ‰ªÎ0³™{Úè¿Lén•‡×‡oEËÃÑâ=rû¡‚Gj]õ H•¥›²Ò·…»ŞAf+ªÈèVº•º­mœ7ıåßB‹ÛÓî*q‚ş}cãwØ³=Û„g¥»wE¢-H·°€»·¦½&Rh4—ªMêZÕ_L½©]WV'ÁÕ¦§Íñ\"uŒ@-ÜaMÃsº@9êL:ÈÕ’]ù#‚İaëoybİ\n\0[Øêrğp*}Qí‚bwßÛÓ¦?†ºâÿ;Vc¾Ê°›»	«.Ûsç´¢XíÖ°ûy·R=§&d”ã·rûO«çõ2Åj!Ïux¥ÜÎÔ§R{NÖ&øµÑ»®5ö„}£ßvyÛ°1o8Z#ş{ÛNärû½İÑï‡Q:BÕHzW{òïW{:ìrŞ÷ó¶}D\$§j7)àP€÷ëÁĞİCvV¬X—¾ıdí¨D7óá®€·¼,Ôh»÷á_ø]·^í—qÏƒÜŸxO»]­ïŠö¬?p{Æ\"ˆğOŠ8Qáµ?xw}ùJâ?9kâŞüx½5buÛ&÷øÏo›ÅÆ^ñ†õ¼Ÿ¬>õw“g]çíh¼#ä?+÷‹ mï(³¼¹àÿ/ngŒ	é5â5<ù;‡ñüòÈ…¼Ë³½œxÍ%‡³‘;ì(³ŞVóŸ–;Çço-ìóË½ëòÿ.eänkpËÂÀ_ËFäXõ9ÓWjQ¥ÓàCBØ§åv3R=°ì†¦;aÙ][yËÈ»4Ş/¢|óÃ##v	@_Ç­}UçM>ùßÌş1§»\rC£MúqƒCŞÄÆädÄ˜U#[ÓÉ¦Ÿm\n\\Ä\r6ô'Ï>‰ôÃiI;€R\0X€ç<rW0[ÀE°dHSèH\n^×\\”¥3ÂTû´ÀF÷xB™îÀ\$	Òi÷´-‚­'ûÛİÕ÷Xf¼}\0#É¤	1êo·BÆ€*;Û1±(\0ø~@)ü§Òh>³ª{³â~Ûøw·ÉH/vL\n9È?doÒÑğ°,‹x)#>˜#b`',úgTğ¤È~¯tˆ	€YĞ}Ùï°/]-'Òü\0¾(ØÈ şñ@Ï¡î/Ÿëä…>¶Š~ğolH‹âÜöÿ·½À/qû–DƒTúéö~¾¡o|ÓìaÉş°°#|F8ÍûdœÏ¥ò/±|“ì¿u÷¿€Vîâ©hø\n>Û÷ÿ°{´	Şõ÷ˆıçï_{şGâ IaùE½÷&{VNñod¡õÃFÆBÀXûï×½ÙñÀ(I¦N@Yû¿Çÿøÿ·ıÇğ9»üÉ¿\n-èû{çã@RıoÛ½Ù&‘o^3Y¹÷ï»>ğ¯†|”òŸø—îş-ñóö¶ùä~åı/»ò?*ù`\nÏú?—Sæ!VùŸîÏ©óœüïîÿ>ÎèÕ¸}ïãşOâŸ•ü¿Å>îıRMïûºƒõãø?b@\nOÚ?şà0¯s\0ˆ¢IèÏ€’ú+èà'¾’úX¯¦À,úƒò`'¾¦óê¯Ô?€úÓñ¯å\0‚Kà¯¸¬úCéO…À2út©>¨LO¬¾¢Lïv3ŠàúÒ\0ŠÎ[ï£PÎ›ïlë¬H\nhä²Îlr\$/Àı\0+½Øı\0	»£¨	©\r@ ?Kå)<#PøÓîïs\0ø ” ÂÎ?Kæ@Ì@\0ÃæÏê€±ø\0²%,p)?#£îïÄ\$ø\niL€¦¤°3è[Ìå3˜’“îğ?²¬ @Ï´O¼\0ªıö°A|P\0™ôD?²N@\$Á,£İ/ŞÀÿ€\$B?0ıÃø\0‚\$¯²\0Vú’LhÍ…¼ˆ	èé€ùŒ£é½Ê>¤#6ı+ù€>öR:p¾>«7#÷…½\\Ğ³lÎ“ãAoãüÉ<3lø	pe#7ÚA@)À±ğü¯Ü@ÒÔ#ıAV?hıãøƒ	0*ĞZ\0“°*Ğ\\AuƒüĞ_>kÃöĞb?>«ïÀ\"…½cæ©#6>ÒBÃö’Òü \"\0>Ü\0psÁÒ?ÛDPvA\\#şà(>Ò÷3EPŒ¿>ûÓ:­Â<\n´OÅ\0ˆüd\"ï@A\0ô°Aêûğ‘Áò”ğ”Â5ìŞÁÿ	“ø #¿‡	´ cş©	“ş€+´@ÃùhØ€ø÷¤€\$\0ø‹:M3nø’3cêŞ`ûèØÂ„ÑT+I8¿Bò3@*ÀÆĞø	@'Â”\\pM¤8Olòüøû¯†‚­»İM€Ÿcî#üÂíÄğ7B÷h`,	àâ6oŒÂ\\\\.S>¤›DÌÙCù˜ÿ0ŠË´ĞÆ£S\$2ÃòB‚ù«ù@&AŠ>ºLğkù¬4ÎAóÜ­3˜÷Ô°Ğ@½;öÍ>pùĞüÉ¤‡\r¨\n°3|Î\0\nO‹Aø:6ƒô\0¥d7à«@8ıœ%`#Ã‰ˆ[ĞÀ=ÚDåÀĞ\n°ıÌÜ3u’LãóC™¢9ÏBCÔ:`£‘\$!hÚ\$Ó“;ĞêB”20uÁ[¬8°ñC×	Ä<ôÃäúóç¯ŸÃëdPŠÃß|=q€2pí€V>˜û°áÃ÷	|*1\0Âç\rĞE\0©dAov´PÎt'?d,P­D*ü@	/Ÿ#6øÔCP‹BO\n¬©8Ä',5ÃÑüE€ ½ËLq\r?m¤Eq\nÂzşC@+¤är60åCê?3ß/¡Ì“ˆ\nPÜÙlHğ•D—ü¯Í¤5\nóü°°ÂÆãói)D°„1(ú£Dƒï£7ƒæÏu>Üà\nà\$Aæüj4Í\0˜?ê4Áª?”ÑLK	Aæ¢>Ï½?Œü‹û€ÀqDI@³£\$;ğ†D®8	 &¾?;°c€—ÄJØ£bÑPû¯ĞÅş\0	ğBÅ#3í`Â‚øˆ)ªÁ»ÌOĞ3CMZ50âEO6èÔC¯ì\0ÂÀŒ\\\$èÍÔûp[Ğ9BãíÁª#cj<‘1Ä1B;còÅDBhÔ?Ëô@`*€ƒ¬.qbÄĞøX	o?;\0KÜp¤3¥8	ĞRCÌú6/®¤—ˆ\$>lÍ¤pIÀª,!€*\0®+ÜÀ>=÷]±wÅã\nT^pgÅºú#ó\0?\$J@Ä	\0*CÈ*É7Æh\nñj?“ê:pArø”]Y€’ùÔL‹ËDbÑŒàúïBÑ4d@(Dä”ÌcÀEçÛâ@>\$Òà	4¾Ø‘şÑ†©</¶Ğ?\n€/Äº>¬gp>šŒü± ¤I6i8¾;³êÃèÆ‰cİ1¢AZ6€!Æ}<j±¤D¢¤jÉ(F’?dÀÂÅ'óêït\0†üTeÂØø´1– ú ü£şAv?lnos3˜’„50†#Æ>¼ÈòÂœ_¯«Ûd°©¿³¬UĞºÁZPú©4D|;Ğr£‘ÃCğñ€ˆø[9£ê¤¥ú5IÇ5²I‘É\0ûEOÜB\0{9q C‡|\"pUÇZÎPû` €²øı´GcœQCëGPúJO‹ñÂ6(ÚBïóÇz>Ú7ğÏFøöÈ0IÂ:¼vOŠÇ‘¢BÏuEäµ·,\\0Ç¸r8îÂÈûqgA6>ÀıÑ74D÷0qÇG¥ûêÍ>-SE@# ÑÈÎGÒ÷¤.à*\0i\n\\-`*\0q\n\\eñ½ÁÿØ±\"Â—Œ)qu¤ıÃï³nùô@`>DÔ8	\0/Ä@ş„_±Ú€¤üw#îÇlƒÒG‚>Ô„²¾-+ß6¿Wl%°6½·l0®\$5´sÔÅ&Œ\r *\0e!èrÇÿœ€qIÂ” \"ÀæÑ> È˜3EILÅ\"‹â‰94G\$/ñ¦\0—´‚©\0¯ Ñ-2>/„ƒìå€˜üèÓGg\nà/¿LŒq®BP€\"#7ôzñáHMÔ…O‹ÈO\0Ì &£¶2L‘ƒÁT^P@Zúd¨À=”]Q—=çÌKCïEã\0ŒQO¢Æ\\øôs0¤¤>ƒèq—Czù¬†±—G„>¤†²¿ü	ÌÄ@?Œ0Â?ü\\oÂ¿³–èø4Md1‰9€‰\0¼ÍGò?m\rDÆÑü(Ô´LdòÃ\\KJ8\rE’Ğù-24U 0VAÛ”…R=ÈEäe£ş¤5!Ì2m³qğüÏÓAEÛô²V\$ÆüÏ•ÉâŒØÅI9Óü‘	C&ù\\GÀ)D «ü§½òü4çIç#pú«#ÆøŒ—ññCˆù\\x£ø¿C(\$òƒHÍ:NI(J\0Î‹ß\"w\0¿,)PØÇ¬‹íÏ‹4<şÔ!ò=ŞúœGošÄó‹âP‡¿6üìN±QDë\r[;‹A|KÒ'AAäP\0¥C:šÊ„Ì‰Ñ4Åã*To‘†£ÕD˜F^ÈûÉ‘\$)Ï¢»¬\n«É’àÍ)’(Sà‰\0ò’È(ı\$:ä­@à‚²Y8’‹JĞà#ÅĞ‚ë+œ¯\nQ5ß+`a+ ¸iş`6xğ‘¤ª†è: ÚŒà.ĞT‚:‰şa˜\0øŸcv(ƒ^X¨€Â¼H˜O.\"JÊğO\rÎË>ex-¾¨J¸€èKPïû¤rÔ‚-`2²€ÜË_à7€Å-!\"JØô¶òİJêH.²ÚËo-ø.²İ\$ª<¸BOĞ€`> ©dáµ\nêH\"òØ†o+›“§s‚Øè 3ƒ‘+¢± ©6¿/¡ƒa.Ğ\r²ğ†nd»²ïË¨é’?ˆô£z1\0¥àğ‚?‰¨ 7€ˆâà<À?âãø\$Ó\n`+Aw*MQ¼Ã<Pıo¿°?,)#P>”àÂ€šøÌ„\0¦?jŒŞÄ“ÄVqÀ?“£ñ³\$¡	9¯õÆ-üÄ2ŒÌIÄĞîD9Ì³Lg1h[ÌÛÏ1ŒÄsC1sŞ©9Lz?à	 LWdÈovLŠş#ğĞ9`Í¨0æ€Ş‰É¦W·–ˆh>\0>¦¢Å/)Dáü²·Lº¢¡ÀÌÀ\$ÍaÀ†¨9*ƒ<:C+àJËìKPJ¸\"—L\\Ã*bÌò 1ÔÀä6ë4ja+\0î%Qf ;KœE¬¹ÀÔš`è> >7¦tÒHw€¾MPn3I:fàD <LÄÊRÈ'¾.\$ğíBO\\²\nû	Ğø5ã86ÄÌ¹D1‰<\r¼³\$Z…œğ’ƒ„ï4Š%rÌƒ¬²×àúÌş\$€ƒË¶§»éo™^Ú\\°È\0øf[z“e…í6|Ö“gŒ&ñ8+M=6È5ˆ³\0Ò1Idì{™^fqdè¶ˆs7(|©tM.]HSó[€ø¬Ô ÕÍ;7yC„—šÎ¸mÎÌŞI|A‚Ê:`c †Êß8\rÒ…iÔÉƒ¤ßÓ@¬‚P`È~\rlËa=M3ã€áf‰<ëÀRå\0Ï!ûÀ@’ØeØ«ríÍdO‘t ¬‰T°³-æXY9A“˜:38áOÊŞadĞ¥ö’gL³fxË=4K\n&€ôu0KòÍ¨Ç,ô³o7¤€ëÄ†Ó,à½Î3Ë:h|’ÎKbá)AN¬úÄ`ì€Ñ:ØÎŒ€×;´ €Í»*sI&”á«Rsµ>\rX\r!\0\nÀàBsVM63˜KâO×:Ä®ƒƒc5„× úÎæ‰X!AœQ9z%`º{:èHòºDëE€îcv!‚Î,Èôá“:Xƒ)¬(üº%˜Ë2a&Œ«,ğl3Ó8j1è|’Í‡É=CRrÍË<â\$ó\"KB3äöÁ'9…:|÷)`Oj+îÀ9	}-õSÒ>2¬ëUU5ÜôBUNàóô÷²ÑNÄäìS¾NÄüì«ÈO²äû3±KNìĞˆ†¨ ×@:/ç7£ÄQ†¨ç!Ô@.’(&v9ÔédÓøŒ^ş“‡’Ø¬!ï¦[.pGc K#?¸füĞpÃe“Oæçd®€2\0k6)„,\rÿ65GmOFV™dåiÈx,ÿa=O@s³şc6…`Â¤Ø\rJ\0å;‰³H†(ù*rÅ-Œ¾.íMÛ[ BÎ !(àóM¸LP«bUèÛpJÔ:î1úŞE“»¦º!:¢,ô:‚YB‚ò*KRŞ¤¾rÍ0Ø¬Lî“a6Å;6+2Æí)èUB`JsV0È:Ô0_B14/ÎúíAOáœNeúÈ)A~\rÚÈ öÃÌ –NPów“,È´C„î3œæ®¹ÌŞ°T3öq9}SQ\$ÄãA‚P“DĞ;!:À!îæ¸YŒĞsÄÎû6Ø“ÑÑRÔŒFt›#C¨Ï€øQ\\`rXr…<í'ò×72Ø¼´O-„w9Ó¤ùËb8à5€Å3{¡\0Ä7ø\ra\"ƒ\nh[j·ŸåFÛa)”Ñ+€2Ï<%’´M¢ê|®m¸|\nÀ54pˆş	&bUQ¨8\0EÑ¥4AAN,ËàìËFØ•To(ÉG`šO•GA›³êËGlı`:†=è\0<\0Ğëê”ƒ²ŒTÌNÏ¬=.û´ 6Î–(ûSBÄ°ô\0,Jğ?”.º(é†%“…,Ê?B.<2ğhMÎƒI`éÎŒá4ô¶*éË¯G°ëì'ÙI¸ÛíÊÑ9š¾ôRX—E%,O\r,Êˆs³Ï*•(”}<Ú—@c©öRœj]Dş`UR÷Î³,˜.²÷·d£¥rø¦’	\\·N•ÒÆl¸ÀØRÏ-ó“´µËšÜëkô·Q•K„½”¹,ƒIå.ÒíÒêšT·@1\0ÉK 4¼Òı/]04¾K›K\nC¨&•F,¶ô³SF0“ÔµS.-´ÉÊéKÅ2ÔÀRÏLe'ÀìÓ7L…0”ÏËoKõ3TËS.å4T‘:XÌ¾4‰Î9/:WRò9.Í62ôËËJ6ÀS	.ğc´¡Sv^ 0®»ËèO|L±MD%3î 4z3Id\n»ö•áú#tPq5h{!7Z‘Û»2 „ÆthÊ !îK€Ñ7Yİó1S³<»áh‹µ©½Ç-<ÎÍpÆø€jéÍÖà<4øÓ¹O˜%@‰OKBø°ôS¶!10Ô‡SÚÒëôõ‚YF…?UR4ÏÁ›ÓÜÇ!•õŒ~ÂXl´=¨ÇH|¶5QHıC&¸\"1M'µ8¯5a`Å?¢SPlõ`0—\\İmËÈTM,8'1eQaA&	\nÇTRèI¡ÑGÌ¿´ıÍZxôâ6yQÃ´ôñ¼aÀJÀ‹¼üûkU&ÿOXHá‚ÔphQEN†â=Cµ\"ˆLÉ›( ÚçQe@\0;ĞñQ®ÓPÔÅD\"€/—ú\rBà¼–tãµTì\r<eĞÔeS}Om¾—EP­P\rüÓ«P5B•4U\rR==õBSÏR}Hã“Tè#µE\0Îô¥U‚=QE‚J<ıSğ` Û‚¼1x\0ãU:óéOá/‚¼€+µN J`P!t8Õ\rT¥µ7 SõR58\nc>ÇÆºÈâ!ÊõŒ1{Ã€úÓ¼uE€ÚM4{Ö”4TŞíGa;|ğñà5\"SÎÕıNkSä8»DÄÔ?JcU0Õ¯RtB¸{ğ5qSåB„Ï,±\0ÆpĞàÔj†!‡\0006K¼1å ÂƒX@¦D¨V­å_ .Ô(¥_`-Öğ`ÆD¼àua .‹•X\rFÃÕöğõRõ…ĞFD½•‚S÷RxhÁª<mXjïb­ÖWù_G\nVšÄ©èS¸ï\00074Ù\0ÒLRÁ\$QíX›pˆÄÓğù ×ê\$°Nó¡Ö&83&a+²€|l³Õ‰ÏÉQsÀA£…CXšú]Î_X]‚\0á+8+UzƒsRPÎ¨Q\0Ü\08Õ™PóOİMU¶ÔH6!ªVX¤5†˜X…a¤ÇV/kÓVF”ı`‰TŸZ\0D5FÑOS½nákÖóTMSÕ¾U\rTMZÒºBğÍìoÓîÜEgÿWGµfµÅ„-YÁ(µ}V7T0BÀ©œ4Úğ’Âòƒ[9‘5ÖX´åm¯ÿXhét>×LU`4\nÍŒTÑõ††o9­vÓ×FÊUm®Ö\"ıu†DÕ€	\rw+Ö˜\r`©V(ıVÏãPËÆÓjô]Kâœ4°ìoT.\$mDÄµ¶	S’à‚­e@3ÿ×­;@7mŒ:Èë¥¥“´dğÈ!õâ¥Zğ£ôá»Q[œåõÑ5P•µ7;Sôº/BÖ!McÃG¹ÉT»Wõå(V–ÖÔòä¯•<7ó[lÓt…‡^Êô×ø\ri0ÁPÕĞÍa£|VX‰•áÌƒa[x9Hˆõ]¿õ¬^&m¹‚¼ƒÒ¤ù\0ÙXlã¤«Ìú•‚•Ş€»T‹ĞáOXl0£öØ(ô,Ï`€ØoaÈÕu€×ø3½‡U#Îô'0+Ó½8ñ]HT!XX\ryW@è¡\$ÛMQb¹‘-ä)ÓX	oõ†‚\n|Å`-qÎ-bÙ¶U‘VcŠÇÒÖ ‘3N=5vAg\rıŒÀ8<IGPBÔ9O^8.	Xk®ö;+\"Cµü×Z/åÂUUo[i`Ö\$×ïd].âÙ(s¼Ñå“ÔèÕ`-•Öâ½€óqªûe‘-ÂN¿=#[ÖMÙPè…ÅÑO^(B †”6ÍÏ_u–¶2:0mx ­Yg^5”-‘YG8”´AØİc¯VVßÉdô6Í\">\ra­è™^íÈĞ®0õ\"ä±¿R¤¬–,·3Dä¯Åøß¡2iGÈ5§Í?:\rT!ƒwg„óM[7;[v{ÖªCs\rU9d×`ØÈyh\0h@ØÈ~ŸqT4Ì×_QVÍvÃø•F5ÔPƒs*ÄMc]Ió9Ú1T0m†V)S•ÓXÖ[üâÍ*Œ¨c“dA+Œ1hóbõ:×IhõM@İs>P¬ÛÍŞ9ûvuTË>¥‚Ö½`	O5ÙccÛÍöjÏ?QëTmq\$¼¹—=(VÏ6F\rTr¶®~¥šÃ\0Ø|m•CÚ)[Õ‚N¨ÖÆ,dĞ+;µQm™-Å‡ğê\$µo²B-sšÚÇRˆ­ÕàN›:’È/8‰>øb.°Û40>‡ÆÚñ,‹.tÚºJ¶\rÛ\rk®•6Û	WMmØ3[Ñx5œËêqÕÉÑìLb´6Í;`•Lm‹ÿ4•Iµ6^d!5`7¤:aOÕh4õµÀĞ-3üÒHÈUm˜€¶Ú’³^_ÀÔNTê±²[PHğÙØa=UH\rE µ\rjM¶•”SåPsN6ºMXQ 5Œæ	Ã\r’Û­YKqsş[¾s-\0Öé®ï]¼aN³d5?ó+—Cf¼ÍÀRe^ø+@Ø[ÓP€5­ËĞGa‹öôÒµoM@w\0QyoKõUÛøe}¼Õ[¶_oK’@Ûán»wxVıpEºäùPuo5öR“ñ8c·.¥	Uo5Áw\0ò\n(%ÓNp¤ëVÖ®ˆJàˆ AqtÏ×Zæ#Õˆ³òÜk6””ÜiEÜØV‹R{qü×fØ{3l@äPqH‹r!VS]úÈ6¥Ú'q«Ğ@>R=E\0ùêSñ+UjõÊ”øYÓ[ÅºuUÕ¸Õ»rÌÜÇp»6Öõs]h'tË	mJ ¬8ñQUUuD’­m2z›Ğ„àˆB¡K”ßÜİv'P¿l]AAfËchÈ\"RåV«p´ÓXÌü;UË5öÜÆåÒcƒÖ°zPTuUQYëõíZ¯5åU¹…ıJen5ÀÜnŞÕovÅs=Hu½ÙÅZõoa‚itİoUÀÚ»uuH5nİ=jSĞÀUPZMNÄàˆÿQmobF·A>´]i\\¨G\rTŸvÏÖ‚Ôâ\"•Ä2Ø×v4Î³=]¶2åz\n=:¢\rh*s¯×fÅÓw_ÔäÊUt8Å[İ„8]Ÿ+=•ĞëGÕ×7z=n…Û—Jİòßuè8|«Å4u]ô	caÈİzà×€YwíÊt]ÜªÔÕáÅä^€ˆÎrÌŞ)w­]Œ%‚i,˜¦õí¤e}w—0<Õ3ÕäµnÛLr½å.³İiy-Ş7(K&‡\r_;f‰[­Ìˆ\\\rXÃ+Hï…çÔøa=Ü³bŞnôc€	,c’!£Õ8\$m“VõvRæJ]g -†W¹OsˆôƒR( êŞ5]WHVC\\5@Dİ!s%Î’²^×sdñ%NĞŞ9úÈ7·Öƒ{U™¡+ÜÙI-îÕ¼€ïP\0\"FĞˆS5…ÒFŞÏ[Òâµz¶Åsk(7ÄEz•Ÿ÷ÇÖ1-å@İxñÌ¹Ú>M³g‡ïWM£âjÔ»n\nÈ ƒ^«tLµ·ÓUc}AÃVRÜúõ™@;ÕX-<sÔ<×t…¹C8^!P}Ì3q´d·\\Î¶LÄ3uÀÖúÛû\\-\rSlX{sàLÅNlÙåïL™ßŸnà‹¶&ZÅpút6_[\r±¢°¬ƒVÅV÷è„C~ÈIªE…?W%üUöÜ«u…[ÓATAW\rü÷•¦\rdáwøßÅV½Ûkİù¶şÏh,8£ÅŠÏ”Üí×D×ÈØ»¦Ë­|añ¸6-_1O×Ã`j…ıo?7>\nÀXsôY‘nã^cÑÙ{jÈ7®ÚÄÚÊ:ÈÜ]E\"JVJe~×.ÙQHgT3r…cÆÙVßBceø“3e^Õ€…9®8¤\nò ™Zğ(ää‡ª½	;tæzôãÕ#	üq#à\0V.\nÂS/DkÈ");} else {
-		header("Content-Type: image/gif");switch ($_GET["file"]) {case "plus.gif":echo "GIF89a\0\0\0001îîî\0\0€™™™\0\0\0!ù\0\0\0,\0\0\0\0\0\0!„©ËíMñÌ*)¾oú¯) q•¡eˆµî#ÄòLË\0;";
+		header("Content-Type: image/gif");switch ($_GET["file"]) {
+			case "plus.gif":echo "GIF89a\0\0\0001îîî\0\0€™™™\0\0\0!ù\0\0\0,\0\0\0\0\0\0!„©ËíMñÌ*)¾oú¯) q•¡eˆµî#ÄòLË\0;";
 				break;case "cross.gif":echo "GIF89a\0\0\0001îîî\0\0€™™™\0\0\0!ù\0\0\0,\0\0\0\0\0\0#„©Ëí#\naÖFo~yÃ._wa”á1ç±JîGÂL×6]\0\0;";
 				break;case "up.gif":echo "GIF89a\0\0\0001îîî\0\0€™™™\0\0\0!ù\0\0\0,\0\0\0\0\0\0 „©ËíMQN\nï}ôa8ŠyšaÅ¶®\0Çò\0;";
 				break;case "down.gif":echo "GIF89a\0\0\0001îîî\0\0€™™™\0\0\0!ù\0\0\0,\0\0\0\0\0\0 „©ËíMñÌ*)¾[Wş\\¢ÇL&ÙœÆ¶•\0Çò\0;";
@@ -74,12 +77,14 @@ number($X) {
 	return
 	preg_replace('~[^0-9]+~', '', $X);}function
 remove_slashes($Me, $oc = false) {
-	if (get_magic_quotes_gpc()) {while (list($z, $X) = each($Me)) {foreach ($X as $Zc => $W) {
-		unset($Me[$z][$Zc]);if (is_array($W)) {$Me[$z][stripslashes($Zc)] = $W;
-			$Me[] = &$Me[$z][stripslashes($Zc)];} else {
-			$Me[$z][stripslashes($Zc)] = ($oc ? $W : stripslashes($W));
-		}
-	}}}}function
+	if (get_magic_quotes_gpc()) {
+		while (list($z, $X) = each($Me)) {foreach ($X as $Zc => $W) {
+			unset($Me[$z][$Zc]);if (is_array($W)) {
+				$Me[$z][stripslashes($Zc)] = $W;
+				$Me[] = &$Me[$z][stripslashes($Zc)];} else {
+				$Me[$z][stripslashes($Zc)] = ($oc ? $W : stripslashes($W));
+			}
+		}}}}function
 bracket_escape($Jc, $_a = false) {
 	static $mg = array(':' => ':1', ']' => ':2', '[' => ':3');return
 	strtr($Jc, ($_a ? array_flip($mg) : $mg));}function
@@ -94,7 +99,8 @@ nl_br($Gf) {
 checkbox($F, $Y, $Na, $dd = "", $Xd = "", $Ra = "") {$K = "<input type='checkbox' name='$F' value='" . h($Y) . "'" . ($Na ? " checked" : "") . ($Xd ? ' onclick="' . h($Xd) . '"' : '') . ">";return ($dd != "" || $Ra ? "<label" . ($Ra ? " class='$Ra'" : "") . ">$K" . h($dd) . "</label>" : $K);}function
 optionlist($be, $qf = null, $Eg = false) {
 	$K = "";foreach ($be as $Zc => $W) {
-		$ce = array($Zc => $W);if (is_array($W)) {$K .= '<optgroup label="' . h($Zc) . '">';
+		$ce = array($Zc => $W);if (is_array($W)) {
+			$K .= '<optgroup label="' . h($Zc) . '">';
 			$ce = $W;}
 		foreach ($ce as $z => $X) {
 			$K .= '<option' . ($Eg || is_string($z) ? ' value="' . h($z) . '"' : '') . (($Eg || is_string($z) ? (string) $z : $X) === $qf ? ' selected' : '') . '>' . h($X);
@@ -184,12 +190,13 @@ get_rows($I, $f = null, $k = "<p class='error'>") {
 	return $K;}function
 unique_array($L, $w) {
 	foreach ($w as $v) {
-		if (preg_match("~PRIMARY|UNIQUE~", $v["type"])) {$K = array();foreach ($v["columns"] as $z) {if (!isset($L[$z])) {
-			continue
-				2;
-		}
+		if (preg_match("~PRIMARY|UNIQUE~", $v["type"])) {
+			$K = array();foreach ($v["columns"] as $z) {if (!isset($L[$z])) {
+				continue
+					2;
+			}
 
-			$K[$z] = $L[$z];}
+				$K[$z] = $L[$z];}
 			return $K;}}}function
 escape_key($z) {
 	if (preg_match('(^([\w(]+)(' . str_replace("_", ".*", preg_quote(idf_escape("_"))) . ')([ \w)]+)$)', $z, $C)) {
@@ -250,7 +257,8 @@ auth_url($Jg, $O, $V, $i = null) {
 	preg_match('~([^?]*)\\??(.*)~', remove_from_uri(implode("|", array_keys($Eb)) . "|username|" . ($i !== null ? "db|" : "") . session_name()), $C);return "$C[1]?" . (sid() ? SID . "&" : "") . ($Jg != "server" || $O != "" ? urlencode($Jg) . "=" . urlencode($O) . "&" : "") . "username=" . urlencode($V) . ($i != "" ? "&db=" . urlencode($i) : "") . ($C[2] ? "&$C[2]" : "");}function
 is_ajax() {return ($_SERVER["HTTP_X_REQUESTED_WITH"] == "XMLHttpRequest");}function
 redirect($B, $D = null) {
-	if ($D !== null) {restart_session();
+	if ($D !== null) {
+		restart_session();
 		$_SESSION["messages"][preg_replace('~^[^?]*~', '', ($B !== null ? $B : $_SERVER["REQUEST_URI"]))][] = $D;}if ($B !== null) {
 		if ($B == "") {
 			$B = ".";
@@ -258,7 +266,8 @@ redirect($B, $D = null) {
 
 		header("Location: $B");exit;}}function
 query_redirect($I, $B, $D, $Ue = true, $cc = true, $ic = false, $bg = "") {
-	global $e, $k, $b;if ($cc) {$Cf = microtime(true);
+	global $e, $k, $b;if ($cc) {
+		$Cf = microtime(true);
 		$ic = !$e->query($I);
 		$bg = format_time($Cf);}
 	$Bf = "";if ($I) {
@@ -346,13 +355,14 @@ friendly_url($X) {
 	return
 	preg_replace('~[^a-z0-9_]~i', '-', $X);}function
 hidden_fields($Me, $Kc = array()) {
-	while (list($z, $X) = each($Me)) {if (!in_array($z, $Kc)) {if (is_array($X)) {foreach ($X as $Zc => $W) {
-		$Me[$z . "[$Zc]"] = $W;
-	}
-	} else {
-		echo '<input type="hidden" name="' . h($z) . '" value="' . h($X) . '">';
-	}
-	}}}function
+	while (list($z, $X) = each($Me)) {
+		if (!in_array($z, $Kc)) {if (is_array($X)) {foreach ($X as $Zc => $W) {
+			$Me[$z . "[$Zc]"] = $W;
+		}
+		} else {
+			echo '<input type="hidden" name="' . h($z) . '" value="' . h($X) . '">';
+		}
+		}}}function
 hidden_fields_get() {echo (sid() ? '<input type="hidden" name="' . session_name() . '" value="' . h(session_id()) . '">' : ''), (SERVER !== null ? '<input type="hidden" name="' . DRIVER . '" value="' . h(SERVER) . '">' : ""), '<input type="hidden" name="username" value="' . h($_GET["username"]) . '">';}function
 table_status1($Q, $jc = false) {$K = table_status($Q, $jc);return ($K ? $K : array("Name" => $Q));}function
 column_foreign_keys($Q) {
@@ -403,7 +413,8 @@ input($l, $Y, $q) {
 		$Pc = $b->editInput($_GET["edit"], $l, $wa, $Y);if ($Pc != "") {
 			echo $Pc;
 		} elseif ($l["type"] == "set") {
-			preg_match_all("~'((?:[^']|'')*)'~", $l["length"], $rd);foreach ($rd[1] as $t => $X) {$X = stripcslashes(str_replace("''", "'", $X));
+			preg_match_all("~'((?:[^']|'')*)'~", $l["length"], $rd);foreach ($rd[1] as $t => $X) {
+				$X = stripcslashes(str_replace("''", "'", $X));
 				$Na = (is_int($Y) ? ($Y >> $t) & 1 : in_array($X, explode(",", $Y), true));
 				echo " <label><input type='checkbox' name='fields[$F][$t]' value='" . (1 << $t) . "'" . ($Na ? ' checked' : '') . "$Wd>" . h($b->editVal($X, $l)) . '</label>';}} elseif (preg_match('~blob|bytea|raw|file~', $l["type"]) && ini_bool("file_uploads")) {
 			echo "<input type='file' name='fields-$F'$Wd>";
@@ -464,7 +475,8 @@ process_input($l) {
 fields_from_edit() {
 	global $j;
 	$K = array();foreach ((array) $_POST["field_keys"] as $z => $X) {
-		if ($X != "") {$X = bracket_escape($X);
+		if ($X != "") {
+			$X = bracket_escape($X);
 			$_POST["function"][$X] = $_POST["field_funs"][$z];
 			$_POST["fields"][$X] = $_POST["field_vals"][$z];}}
 	foreach ((array) $_POST["fields"] as $z => $X) {
@@ -476,9 +488,10 @@ search_tables() {
 	$_GET["where"][0]["op"] = "LIKE %%";
 	$_GET["where"][0]["val"] = $_POST["query"];
 	$uc = false;foreach (table_status('', true) as $Q => $R) {
-		$F = $b->tableName($R);if (isset($R["Engine"]) && $F != "" && (!$_POST["tables"] || in_array($Q, $_POST["tables"]))) {$J = $e->query("SELECT" . limit("1 FROM " . table($Q), " WHERE " . implode(" AND ", $b->selectSearchProcess(fields($Q), array())), 1));if (!$J || $J->fetch_row()) {if (!$uc) {echo "<ul>\n";
-			$uc = true;}
-			echo "<li>" . ($J ? "<a href='" . h(ME . "select=" . urlencode($Q) . "&where[0][op]=" . urlencode($_GET["where"][0]["op"]) . "&where[0][val]=" . urlencode($_GET["where"][0]["val"])) . "'>$F</a>\n" : "$F: <span class='error'>" . error() . "</span>\n");}}}
+		$F = $b->tableName($R);if (isset($R["Engine"]) && $F != "" && (!$_POST["tables"] || in_array($Q, $_POST["tables"]))) {
+			$J = $e->query("SELECT" . limit("1 FROM " . table($Q), " WHERE " . implode(" AND ", $b->selectSearchProcess(fields($Q), array())), 1));if (!$J || $J->fetch_row()) {if (!$uc) {echo "<ul>\n";
+				$uc = true;}
+				echo "<li>" . ($J ? "<a href='" . h(ME . "select=" . urlencode($Q) . "&where[0][op]=" . urlencode($_GET["where"][0]["op"]) . "&where[0][val]=" . urlencode($_GET["where"][0]["val"])) . "'>$F</a>\n" : "$F: <span class='error'>" . error() . "</span>\n");}}}
 	echo ($uc ? "</ul>" : "<p class='message'>" . 'No tables.') . "\n";}function
 dump_headers($Ic, $Ed = false) {
 	global $b;
@@ -500,16 +513,17 @@ dump_csv($L) {
 	implode(($_POST["format"] == "csv" ? "," : ($_POST["format"] == "tsv" ? "\t" : ";")), $L) . "\r\n";}function
 apply_sql_function($q, $c) {return ($q ? ($q == "unixepoch" ? "DATETIME($c, '$q')" : ($q == "count distinct" ? "COUNT(DISTINCT " : strtoupper("$q(")) . "$c)") : $c);}function
 get_temp_dir() {
-	$K = ini_get("upload_tmp_dir");if (!$K) {if (function_exists('sys_get_temp_dir')) {
-		$K = sys_get_temp_dir();
-	} else {
-		$nc = @tempnam("", "");if (!$nc) {
-			return
-				false;
-		}
+	$K = ini_get("upload_tmp_dir");if (!$K) {
+		if (function_exists('sys_get_temp_dir')) {
+			$K = sys_get_temp_dir();
+		} else {
+			$nc = @tempnam("", "");if (!$nc) {
+				return
+					false;
+			}
 
-		$K = dirname($nc);
-		unlink($nc);}}
+			$K = dirname($nc);
+			unlink($nc);}}
 	return $K;}function
 password_file($g) {
 	$nc = get_temp_dir() . "/adminer.key";
@@ -527,9 +541,10 @@ rand_string() {
 	return
 	md5(uniqid(mt_rand(), true));}function
 select_value($X, $A, $l, $ag) {
-	global $b, $ba;if (is_array($X)) {$K = "";foreach ($X as $Zc => $W) {
-		$K .= "<tr>" . ($X != array_values($X) ? "<th>" . h($Zc) : "") . "<td>" . select_value($W, $A, $l, $ag);
-	}
+	global $b, $ba;if (is_array($X)) {
+		$K = "";foreach ($X as $Zc => $W) {
+			$K .= "<tr>" . ($X != array_values($X) ? "<th>" . h($Zc) : "") . "<td>" . select_value($W, $A, $l, $ag);
+		}
 		return "<table cellspacing='0'>$K</table>";}if (!$A) {
 		$A = $b->selectLink($X, $l);
 	}
@@ -684,7 +699,8 @@ remove_slashes(array(&$_GET, &$_POST, &$_COOKIE), $oc);if (get_magic_quotes_runt
 @set_time_limit(0);@ini_set("zend.ze1_compatibility_mode", false);@ini_set("precision", 20);function
 get_lang() {return 'en';}function
 lang($ng, $Md = null) {
-	if (is_array($ng)) {$Be = ($Md == 1 ? 0 : 1);
+	if (is_array($ng)) {
+		$Be = ($Md == 1 ? 0 : 1);
 		$ng = $ng[$Be];}
 	$ng = str_replace("%d", "%s", $ng);
 	$Md = format_number($Md);return
@@ -709,10 +725,11 @@ lang($ng, $Md = null) {
 					false;}$this->store_result($J);return $J;}function
 		multi_query($I) {return $this->_result = $this->query($I);}function
 		store_result($J = null) {
-			if (!$J) {$J = $this->_result;if (!$J) {
-				return
-					false;
-			}
+			if (!$J) {
+				$J = $this->_result;if (!$J) {
+					return
+						false;
+				}
 			}if ($J->columnCount()) {$J->num_rows = $J->rowCount();return $J;}$this->affected_rows = $J->rowCount();return
 				true;}function
 		next_result() {
@@ -816,10 +833,11 @@ Min_SQL {
 				}
 				return (bool) $this->_link;}function
 			set_charset($La) {
-				if (function_exists('mysql_set_charset')) {if (mysql_set_charset($La, $this->_link)) {
-					return
-						true;
-				}
+				if (function_exists('mysql_set_charset')) {
+					if (mysql_set_charset($La, $this->_link)) {
+						return
+							true;
+					}
 
 					mysql_set_charset('utf8', $this->_link);}return $this->query("SET NAMES $La");}function
 			quote($Gf) {return "'" . mysql_real_escape_string($Gf, $this->_link) . "'";}function
@@ -893,10 +911,11 @@ Min_SQL {
 			$Kf = "\nON DUPLICATE KEY UPDATE " . implode(", ", $Hg);
 			$Hg = array();
 			$ld = 0;foreach ($M as $P) {
-				$Y = "(" . implode(", ", $P) . ")";if ($Hg && (strlen($Fe) + $ld + strlen($Y) + strlen($Kf) > 1e6)) {if (!queries($Fe . implode(",\n", $Hg) . $Kf)) {
-					return
-						false;
-				}
+				$Y = "(" . implode(", ", $P) . ")";if ($Hg && (strlen($Fe) + $ld + strlen($Y) + strlen($Kf) > 1e6)) {
+					if (!queries($Fe . implode(",\n", $Hg) . $Kf)) {
+						return
+							false;
+					}
 
 					$Hg = array();
 					$ld = 0;}$Hg[] = $Y;
@@ -940,9 +959,10 @@ Min_SQL {
 		}
 		return $K;}function
 	engines() {
-		$K = array();foreach (get_rows("SHOW ENGINES") as $L) {if (preg_match("~YES|DEFAULT~", $L["Support"])) {
-			$K[] = $L["Engine"];
-		}
+		$K = array();foreach (get_rows("SHOW ENGINES") as $L) {
+			if (preg_match("~YES|DEFAULT~", $L["Support"])) {
+				$K[] = $L["Engine"];
+			}
 		}
 		return $K;}function
 	logged_user() {global $e;return $e->result("SELECT USER()");}function
@@ -974,11 +994,13 @@ Min_SQL {
 		global $e;return
 		preg_match('~InnoDB|IBMDB2I~i', $R["Engine"]) || (preg_match('~NDB~i', $R["Engine"]) && version_compare($e->server_info, '5.6') >= 0);}function
 	fields($Q) {
-		$K = array();foreach (get_rows("SHOW FULL COLUMNS FROM " . table($Q)) as $L) {preg_match('~^([^( ]+)(?:\\((.+)\\))?( unsigned)?( zerofill)?$~', $L["Type"], $C);
+		$K = array();foreach (get_rows("SHOW FULL COLUMNS FROM " . table($Q)) as $L) {
+			preg_match('~^([^( ]+)(?:\\((.+)\\))?( unsigned)?( zerofill)?$~', $L["Type"], $C);
 			$K[$L["Field"]] = array("field" => $L["Field"], "full_type" => $L["Type"], "type" => $C[1], "length" => $C[2], "unsigned" => ltrim($C[3] . $C[4]), "default" => ($L["Default"] != "" || preg_match("~char|set~", $C[1]) ? $L["Default"] : null), "null" => ($L["Null"] == "YES"), "auto_increment" => ($L["Extra"] == "auto_increment"), "on_update" => (preg_match('~^on update (.+)~i', $L["Extra"], $C) ? $C[1] : ""), "collation" => $L["Collation"], "privileges" => array_flip(preg_split('~, *~', $L["Privileges"])), "comment" => $L["Comment"], "primary" => ($L["Key"] == "PRI"));}
 		return $K;}function
 	indexes($Q, $f = null) {
-		$K = array();foreach (get_rows("SHOW INDEX FROM " . table($Q), $f) as $L) {$K[$L["Key_name"]]["type"] = ($L["Key_name"] == "PRIMARY" ? "PRIMARY" : ($L["Index_type"] == "FULLTEXT" ? "FULLTEXT" : ($L["Non_unique"] ? "INDEX" : "UNIQUE")));
+		$K = array();foreach (get_rows("SHOW INDEX FROM " . table($Q), $f) as $L) {
+			$K[$L["Key_name"]]["type"] = ($L["Key_name"] == "PRIMARY" ? "PRIMARY" : ($L["Index_type"] == "FULLTEXT" ? "FULLTEXT" : ($L["Non_unique"] ? "INDEX" : "UNIQUE")));
 			$K[$L["Key_name"]]["columns"][] = $L["Column_name"];
 			$K[$L["Key_name"]]["lengths"][] = $L["Sub_part"];
 			$K[$L["Key_name"]]["descs"][] = null;}
@@ -996,11 +1018,12 @@ Min_SQL {
 		global $e;return
 		array("select" => preg_replace('~^(?:[^`]|`[^`]*`)*\\s+AS\\s+~isU', '', $e->result("SHOW CREATE VIEW " . table($F), 1)));}function
 	collations() {
-		$K = array();foreach (get_rows("SHOW COLLATION") as $L) {if ($L["Default"]) {
-			$K[$L["Charset"]][-1] = $L["Collation"];
-		} else {
-			$K[$L["Charset"]][] = $L["Collation"];
-		}
+		$K = array();foreach (get_rows("SHOW COLLATION") as $L) {
+			if ($L["Default"]) {
+				$K[$L["Charset"]][-1] = $L["Collation"];
+			} else {
+				$K[$L["Charset"]][] = $L["Collation"];
+			}
 		}
 		ksort($K);foreach ($K as $z => $X) {
 			asort($K[$z]);
@@ -1018,9 +1041,10 @@ Min_SQL {
 		restart_session();
 		set_session("dbs", null);return $K;}function
 	rename_database($F, $Wa) {
-		$K = false;if (create_database($F, $Wa)) {$bf = array();foreach (tables_list() as $Q => $U) {
-			$bf[] = table($Q) . " TO " . idf_escape($F) . "." . table($Q);
-		}
+		$K = false;if (create_database($F, $Wa)) {
+			$bf = array();foreach (tables_list() as $Q => $U) {
+				$bf[] = table($Q) . " TO " . idf_escape($F) . "." . table($Q);
+			}
 
 			$K = (!$bf || queries("RENAME TABLE " . implode(", ", $bf)));if ($K) {
 				queries("DROP DATABASE " . idf_escape(DB));
@@ -1030,11 +1054,12 @@ Min_SQL {
 			set_session("dbs", null);}
 		return $K;}function
 	auto_increment() {
-		$za = " PRIMARY KEY";if ($_GET["create"] != "" && $_POST["auto_increment_col"]) {foreach (indexes($_GET["create"]) as $v) {if (in_array($_POST["fields"][$_POST["auto_increment_col"]]["orig"], $v["columns"], true)) {$za = "";
-			break;}if ($v["type"] == "PRIMARY") {
-			$za = " UNIQUE";
-		}
-		}}
+		$za = " PRIMARY KEY";if ($_GET["create"] != "" && $_POST["auto_increment_col"]) {
+			foreach (indexes($_GET["create"]) as $v) {if (in_array($_POST["fields"][$_POST["auto_increment_col"]]["orig"], $v["columns"], true)) {$za = "";
+				break;}if ($v["type"] == "PRIMARY") {
+				$za = " UNIQUE";
+			}
+			}}
 		return " AUTO_INCREMENT$za";}function
 	alter_table($Q, $F, $m, $rc, $bb, $Tb, $Wa, $ya, $te) {
 		$sa = array();foreach ($m as $l) {
@@ -1302,7 +1327,8 @@ username.form['auth[driver]'].onchange();
 	selectOrderPrint($de, $d, $w) {
 		print_fieldset("sort", 'Sort', $de);
 		$t = 0;foreach ((array) $_GET["order"] as $z => $X) {
-			if ($X != "") {echo "<div>" . select_input(" name='order[$t]' onchange='selectFieldChange(this.form);'", $d, $X), checkbox("desc[$t]", 1, isset($_GET["desc"][$z]), 'descending') . "</div>\n";
+			if ($X != "") {
+				echo "<div>" . select_input(" name='order[$t]' onchange='selectFieldChange(this.form);'", $d, $X), checkbox("desc[$t]", 1, isset($_GET["desc"][$z]), 'descending') . "</div>\n";
 				$t++;}}echo "<div>" . select_input(" name='order[$t]' onchange='selectAddRow(this);'", $d), checkbox("desc[$t]", 1, false, 'descending') . "</div>\n", "</div></fieldset>\n";}function
 	selectLimitPrint($_) {
 		echo "<fieldset><legend>" . 'Limit' . "</legend><div>";
@@ -1326,9 +1352,10 @@ username.form['auth[driver]'].onchange();
 		global $xc, $_c;
 		$N = array();
 		$s = array();foreach ((array) $_GET["columns"] as $z => $X) {
-			if ($X["fun"] == "count" || ($X["col"] != "" && (!$X["fun"] || in_array($X["fun"], $xc) || in_array($X["fun"], $_c)))) {$N[$z] = apply_sql_function($X["fun"], ($X["col"] != "" ? idf_escape($X["col"]) : "*"));if (!in_array($X["fun"], $_c)) {
-				$s[] = $N[$z];
-			}
+			if ($X["fun"] == "count" || ($X["col"] != "" && (!$X["fun"] || in_array($X["fun"], $xc) || in_array($X["fun"], $_c)))) {
+				$N[$z] = apply_sql_function($X["fun"], ($X["col"] != "" ? idf_escape($X["col"]) : "*"));if (!in_array($X["fun"], $_c)) {
+					$s[] = $N[$z];
+				}
 			}}return
 		array($N, $s);}function
 	selectSearchProcess($m, $w) {
@@ -1338,26 +1365,29 @@ username.form['auth[driver]'].onchange();
 				$K[] = "MATCH (" . implode(", ", array_map('idf_escape', $v["columns"])) . ") AGAINST (" . q($_GET["fulltext"][$t]) . (isset($_GET["boolean"][$t]) ? " IN BOOLEAN MODE" : "") . ")";
 			}
 		}foreach ((array) $_GET["where"] as $X) {
-			if ("$X[col]$X[val]" != "" && in_array($X["op"], $this->operators)) {$db = " $X[op]";if (preg_match('~IN$~', $X["op"])) {$Lc = process_length($X["val"]);
-				$db .= " " . ($Lc != "" ? $Lc : "(NULL)");} elseif ($X["op"] == "SQL") {
-				$db = " $X[val]";
-			} elseif ($X["op"] == "LIKE %%") {
-				$db = " LIKE " . $this->processInput($m[$X["col"]], "%$X[val]%");
-			} elseif ($X["op"] == "ILIKE %%") {
-				$db = " ILIKE " . $this->processInput($m[$X["col"]], "%$X[val]%");
-			} elseif (!preg_match('~NULL$~', $X["op"])) {
-				$db .= " " . $this->processInput($m[$X["col"]], $X["val"]);
-			}
+			if ("$X[col]$X[val]" != "" && in_array($X["op"], $this->operators)) {
+				$db = " $X[op]";if (preg_match('~IN$~', $X["op"])) {$Lc = process_length($X["val"]);
+					$db .= " " . ($Lc != "" ? $Lc : "(NULL)");} elseif ($X["op"] == "SQL") {
+					$db = " $X[val]";
+				} elseif ($X["op"] == "LIKE %%") {
+					$db = " LIKE " . $this->processInput($m[$X["col"]], "%$X[val]%");
+				} elseif ($X["op"] == "ILIKE %%") {
+					$db = " ILIKE " . $this->processInput($m[$X["col"]], "%$X[val]%");
+				} elseif (!preg_match('~NULL$~', $X["op"])) {
+					$db .= " " . $this->processInput($m[$X["col"]], $X["val"]);
+				}
 				if ($X["col"] != "") {
 					$K[] = idf_escape($X["col"]) . $db;
 				} else {
 					$Ya = array();foreach ($m as $F => $l) {
-						$Xc = preg_match('~char|text|enum|set~', $l["type"]);if ((is_numeric($X["val"]) || !preg_match('~(^|[^o])int|float|double|decimal|bit~', $l["type"])) && (!preg_match("~[\x80-\xFF]~", $X["val"]) || $Xc)) {$F = idf_escape($F);
+						$Xc = preg_match('~char|text|enum|set~', $l["type"]);if ((is_numeric($X["val"]) || !preg_match('~(^|[^o])int|float|double|decimal|bit~', $l["type"])) && (!preg_match("~[\x80-\xFF]~", $X["val"]) || $Xc)) {
+							$F = idf_escape($F);
 							$Ya[] = ($y == "sql" && $Xc && !preg_match("~^utf8_~", $l["collation"]) ? "CONVERT($F USING " . charset($e) . ")" : $F);}}$K[] = ($Ya ? "(" . implode("$db OR ", $Ya) . "$db)" : "0");}}}return $K;}function
 	selectOrderProcess($m, $w) {
-		$K = array();foreach ((array) $_GET["order"] as $z => $X) {if ($X != "") {
-			$K[] = (preg_match('~^((COUNT\\(DISTINCT |[A-Z0-9_]+\\()(`(?:[^`]|``)+`|"(?:[^"]|"")+")\\)|COUNT\\(\\*\\))$~', $X) ? $X : idf_escape($X)) . (isset($_GET["desc"][$z]) ? " DESC" : "");
-		}
+		$K = array();foreach ((array) $_GET["order"] as $z => $X) {
+			if ($X != "") {
+				$K[] = (preg_match('~^((COUNT\\(DISTINCT |[A-Z0-9_]+\\()(`(?:[^`]|``)+`|"(?:[^"]|"")+")\\)|COUNT\\(\\*\\))$~', $X) ? $X : idf_escape($X)) . (isset($_GET["desc"][$z]) ? " DESC" : "");
+			}
 		}return $K;}function
 	selectLimitProcess() {return (isset($_GET["limit"]) ? $_GET["limit"] : "50");}function
 	selectLengthProcess() {return (isset($_GET["text_length"]) ? $_GET["text_length"] : "100");}function
@@ -1377,13 +1407,14 @@ username.form['auth[driver]'].onchange();
 	editFunctions($l) {
 		global $Lb;
 		$K = ($l["null"] ? "NULL/" : "");foreach ($Lb as $z => $xc) {
-			if (!$z || (!isset($_GET["call"]) && (isset($_GET["select"]) || where($_GET)))) {foreach ($xc as $ye => $X) {
-				if (!$ye || preg_match("~$ye~", $l["type"])) {
-					$K .= "/$X";
+			if (!$z || (!isset($_GET["call"]) && (isset($_GET["select"]) || where($_GET)))) {
+				foreach ($xc as $ye => $X) {
+					if (!$ye || preg_match("~$ye~", $l["type"])) {
+						$K .= "/$X";
+					}
+				}if ($z && !preg_match('~set|blob|bytea|raw|file~', $l["type"])) {
+					$K .= "/SQL";
 				}
-			}if ($z && !preg_match('~set|blob|bytea|raw|file~', $l["type"])) {
-				$K .= "/SQL";
-			}
 			}}if ($l["auto_increment"] && !isset($_GET["select"]) && !where($_GET)) {
 			$K = 'Auto Increment';
 		}
@@ -1425,13 +1456,15 @@ username.form['auth[driver]'].onchange();
 		array('sql' => 'SQL', 'csv' => 'CSV,', 'csv;' => 'CSV;', 'tsv' => 'TSV');}function
 	dumpDatabase($i) {}function
 	dumpTable($Q, $If, $Yc = 0) {
-		if ($_POST["format"] != "sql") {echo "\xef\xbb\xbf";if ($If) {
-			dump_csv(array_keys(fields($Q)));
-		}
-		} else {
-			if ($Yc == 2) {$m = array();foreach (fields($Q) as $F => $l) {
-				$m[] = idf_escape($F) . " $l[full_type]";
+		if ($_POST["format"] != "sql") {
+			echo "\xef\xbb\xbf";if ($If) {
+				dump_csv(array_keys(fields($Q)));
 			}
+		} else {
+			if ($Yc == 2) {
+				$m = array();foreach (fields($Q) as $F => $l) {
+					$m[] = idf_escape($F) . " $l[full_type]";
+				}
 
 				$g = "CREATE TABLE " . table($Q) . " (" . implode(", ", $m) . ")";} else {
 				$g = create_sql($Q, $_POST["auto_increment"]);
@@ -1449,10 +1482,11 @@ username.form['auth[driver]'].onchange();
 	dumpData($Q, $If, $I) {
 		global $e, $y;
 		$td = ($y == "sqlite" ? 0 : 1048576);if ($If) {
-			if ($_POST["format"] == "sql") {if ($If == "TRUNCATE+INSERT") {
-				echo
-				truncate_sql($Q) . ";\n";
-			}
+			if ($_POST["format"] == "sql") {
+				if ($If == "TRUNCATE+INSERT") {
+					echo
+					truncate_sql($Q) . ";\n";
+				}
 
 				$m = fields($Q);}$J = $e->query($I, 1);if ($J) {
 				$Qc = "";
@@ -1460,12 +1494,14 @@ username.form['auth[driver]'].onchange();
 				$ad = array();
 				$Kf = "";
 				$lc = ($Q != '' ? 'fetch_assoc' : 'fetch_row');while ($L = $J->$lc()) {
-					if (!$ad) {$Hg = array();foreach ($L as $X) {
-						$l = $J->fetch_field();
-						$ad[] = $l->name;
-						$z = idf_escape($l->name);
-						$Hg[] = "$z = VALUES($z)";}$Kf = ($If == "INSERT+UPDATE" ? "\nON DUPLICATE KEY UPDATE " . implode(", ", $Hg) : "") . ";\n";}if ($_POST["format"] != "sql") {
-						if ($If == "table") {dump_csv($ad);
+					if (!$ad) {
+						$Hg = array();foreach ($L as $X) {
+							$l = $J->fetch_field();
+							$ad[] = $l->name;
+							$z = idf_escape($l->name);
+							$Hg[] = "$z = VALUES($z)";}$Kf = ($If == "INSERT+UPDATE" ? "\nON DUPLICATE KEY UPDATE " . implode(", ", $Hg) : "") . ";\n";}if ($_POST["format"] != "sql") {
+						if ($If == "table") {
+							dump_csv($ad);
 							$If = "INSERT";}dump_csv($L);} else {
 						if (!$Qc) {
 							$Qc = "INSERT INTO " . table($Q) . " (" . implode(", ", array_map('idf_escape', $ad)) . ") VALUES";
@@ -1505,20 +1541,24 @@ username.form['auth[driver]'].onchange();
 <a href="https://www.adminer.org/#download" target="_blank" id="version">', (version_compare($ga, $_COOKIE["adminer_version"]) < 0 ? h($_COOKIE["adminer_version"]) : ""), '</a>
 </h1>
 ';if ($Dd == "auth") {
-			$pc = true;foreach ((array) $_SESSION["pwds"] as $Jg => $vf) {foreach ($vf as $O => $Fg) {
-				foreach ($Fg as $V => $we) {
-					if ($we !== null) {if ($pc) {echo "<p id='logins' onmouseover='menuOver(this, event);' onmouseout='menuOut(this);'>\n";
-						$pc = false;}$tb = $_SESSION["db"][$Jg][$O][$V];foreach (($tb ? array_keys($tb) : array("")) as $i) {
-						echo "<a href='" . h(auth_url($Jg, $O, $V, $i)) . "'>($Eb[$Jg]) " . h($V . ($O != "" ? "@$O" : "") . ($i != "" ? " - $i" : "")) . "</a><br>\n";
-					}
-					}}}}} else {
-			if ($_GET["ns"] !== "" && !$Dd && DB != "") {$e->select_db(DB);
+			$pc = true;foreach ((array) $_SESSION["pwds"] as $Jg => $vf) {
+				foreach ($vf as $O => $Fg) {
+					foreach ($Fg as $V => $we) {
+						if ($we !== null) {
+							if ($pc) {echo "<p id='logins' onmouseover='menuOver(this, event);' onmouseout='menuOut(this);'>\n";
+								$pc = false;}$tb = $_SESSION["db"][$Jg][$O][$V];foreach (($tb ? array_keys($tb) : array("")) as $i) {
+								echo "<a href='" . h(auth_url($Jg, $O, $V, $i)) . "'>($Eb[$Jg]) " . h($V . ($O != "" ? "@$O" : "") . ($i != "" ? " - $i" : "")) . "</a><br>\n";
+							}
+						}}}}} else {
+			if ($_GET["ns"] !== "" && !$Dd && DB != "") {
+				$e->select_db(DB);
 				$S = table_status('', true);}if (support("sql")) {
 				echo '<script type="text/javascript" src="', h(preg_replace("~\\?.*~", "", ME)) . "?file=jush.js&amp;version=4.2.4&amp;driver=mysql", '"></script>
 <script type="text/javascript">
-';if ($S) {$od = array();foreach ($S as $Q => $U) {
-					$od[] = preg_quote($Q, '/');
-				}
+';if ($S) {
+					$od = array();foreach ($S as $Q => $U) {
+						$od[] = preg_quote($Q, '/');
+					}
 
 					echo "var jushLinks = { $y: [ '" . js_escape(ME) . (support("table") ? "table=" : "select=") . "\$&', /\\b(" . implode("|", $od) . ")\\b/g ] };\n";foreach (array("bac", "bra", "sqlite_quo", "mssql_bra") as $X) {
 						echo "jushLinks.$X = jushLinks.$y;\n";
@@ -1706,7 +1746,8 @@ decrypt_string($Ff, $z) {
 	$Rg = $W[0];
 	$H = floor(6 + 52 / ($E + 1));
 	$Lf = int32($H * 0x9E3779B9);while ($Lf) {
-		$Kb = $Lf >> 2 & 3;for ($ne = $E; $ne > 0; $ne--) {$Sg = $W[$ne - 1];
+		$Kb = $Lf >> 2 & 3;for ($ne = $E; $ne > 0; $ne--) {
+			$Sg = $W[$ne - 1];
 			$Fd = xxtea_mx($Sg, $Rg, $Lf, $z[$ne & 3 ^ $Kb]);
 			$Rg = int32($W[$ne] - $Fd);
 			$W[$ne] = $Rg;}
@@ -1723,7 +1764,8 @@ $Dc = $_SESSION["token"];if (!$Dc) {
 
 $T = get_token();
 $ze = array();if ($_COOKIE["adminer_permanent"]) {
-	foreach (explode(" ", $_COOKIE["adminer_permanent"]) as $X) {list($z) = explode(":", $X);
+	foreach (explode(" ", $_COOKIE["adminer_permanent"]) as $X) {
+		list($z) = explode(":", $X);
 		$ze[$z] = $X;}}
 function
 add_invalid_login() {
@@ -1774,7 +1816,8 @@ add_invalid_login() {
 		redirect(auth_url($Jg, $O, $V, $i));
 	}
 } elseif ($_POST["logout"]) {
-	if ($Dc && !verify_token()) {page_header('Logout', 'Invalid CSRF token. Send the form again.');
+	if ($Dc && !verify_token()) {
+		page_header('Logout', 'Invalid CSRF token. Send the form again.');
 		page_footer("db");exit;} else {
 		foreach (array("pwds", "db", "dbs", "queries") as $z) {
 			set_session($z, null);
@@ -1822,7 +1865,8 @@ auth_error($k) {
 	hidden_fields($_POST, array("auth"));
 	echo "</div>\n", "</form>\n";
 	page_footer("auth");exit;}if (isset($_GET["username"])) {
-	if (!class_exists("Min_DB")) {unset($_SESSION["pwds"][DRIVER]);
+	if (!class_exists("Min_DB")) {
+		unset($_SESSION["pwds"][DRIVER]);
 		unset_permanent();
 		page_header('No extension', sprintf('None of the supported PHP extensions (%s) are available.', implode(", ", $Ee)), false);
 		page_footer("auth");exit;}
@@ -1836,10 +1880,12 @@ if ($xa && $_POST["token"]) {
 }
 
 $k = '';if ($_POST) {
-	if (!verify_token()) {$Nc = "max_input_vars";
+	if (!verify_token()) {
+		$Nc = "max_input_vars";
 		$xd = ini_get($Nc);if (extension_loaded("suhosin")) {
-			foreach (array("suhosin.request.max_vars", "suhosin.post.max_vars") as $z) {$X = ini_get($z);if ($X && (!$xd || $X < $xd)) {$Nc = $z;
-				$xd = $X;}}}
+			foreach (array("suhosin.request.max_vars", "suhosin.post.max_vars") as $z) {
+				$X = ini_get($z);if ($X && (!$xd || $X < $xd)) {$Nc = $z;
+					$xd = $X;}}}
 		$k = (!$_POST["token"] && $xd ? sprintf('Maximum number of allowed fields exceeded. Please increase %s.', "'$Nc'") : 'Invalid CSRF token. Send the form again.' . ' ' . 'If you did not send this request from Adminer then close this page.');}} elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$k = sprintf('Too big POST data. Reduce the data or increase the %s configuration directive.', "'post_max_size'");if (isset($_GET["sql"])) {
 		$k .= ' ' . 'You can upload a big SQL file via FTP and import it from server.';
@@ -1857,24 +1903,26 @@ select($J, $f = null, $ge = array(), $_ = 0) {
 	$tg = array();
 	$K = array();
 	odd('');for ($t = 0; (!$_ || $t < $_) && ($L = $J->fetch_row()); $t++) {
-		if (!$t) {echo "<table cellspacing='0' class='nowrap'>\n", "<thead><tr>";for ($x = 0; $x < count($L); $x++) {$l = $J->fetch_field();
-			$F = $l->name;
-			$fe = $l->orgtable;
-			$ee = $l->orgname;
-			$K[$l->table] = $fe;if ($ge && $y == "sql") {
-				$od[$x] = ($F == "table" ? "table=" : ($F == "possible_keys" ? "indexes=" : null));
-			} elseif ($fe != "") {
-				if (!isset($w[$fe])) {$w[$fe] = array();foreach (indexes($fe, $f) as $v) {if ($v["type"] == "PRIMARY") {$w[$fe] = array_flip($v["columns"]);
-					break;}}
-					$d[$fe] = $w[$fe];}if (isset($d[$fe][$ee])) {
-					unset($d[$fe][$ee]);
-					$w[$fe][$ee] = $x;
-					$od[$x] = $fe;}}if ($l->charsetnr == 63) {
-				$Fa[$x] = true;
-			}
+		if (!$t) {
+			echo "<table cellspacing='0' class='nowrap'>\n", "<thead><tr>";for ($x = 0; $x < count($L); $x++) {$l = $J->fetch_field();
+				$F = $l->name;
+				$fe = $l->orgtable;
+				$ee = $l->orgname;
+				$K[$l->table] = $fe;if ($ge && $y == "sql") {
+					$od[$x] = ($F == "table" ? "table=" : ($F == "possible_keys" ? "indexes=" : null));
+				} elseif ($fe != "") {
+					if (!isset($w[$fe])) {
+						$w[$fe] = array();foreach (indexes($fe, $f) as $v) {if ($v["type"] == "PRIMARY") {$w[$fe] = array_flip($v["columns"]);
+							break;}}
+						$d[$fe] = $w[$fe];}if (isset($d[$fe][$ee])) {
+						unset($d[$fe][$ee]);
+						$w[$fe][$ee] = $x;
+						$od[$x] = $fe;}}if ($l->charsetnr == 63) {
+					$Fa[$x] = true;
+				}
 
-			$tg[$x] = $l->type;
-			echo "<th" . ($fe != "" || $l->name != $ee ? " title='" . h(($fe != "" ? "$fe." : "") . $ee) . "'" : "") . ">" . h($F) . ($ge ? doc_link(array('sql' => "explain-output.html#explain_" . strtolower($F))) : "");}
+				$tg[$x] = $l->type;
+				echo "<th" . ($fe != "" || $l->name != $ee ? " title='" . h(($fe != "" ? "$fe." : "") . $ee) . "'" : "") . ">" . h($F) . ($ge ? doc_link(array('sql' => "explain-output.html#explain_" . strtolower($F))) : "");}
 			echo "</thead>\n";}
 		echo "<tr" . odd() . ">";foreach ($L as $z => $X) {
 			if ($X === null) {
@@ -1888,7 +1936,8 @@ select($J, $f = null, $ge = array(), $_ = 0) {
 					$X = "<code>$X</code>";
 				}
 			}if (isset($od[$z]) && !$d[$od[$z]]) {
-				if ($ge && $y == "sql") {$Q = $L[array_search("table=", $od)];
+				if ($ge && $y == "sql") {
+					$Q = $L[array_search("table=", $od)];
 					$A = $od[$z] . urlencode($ge[$Q] != "" ? $ge[$Q] : $Q);} else {
 					$A = "edit=" . urlencode($od[$z]);foreach ($w[$od[$z]] as $Ua => $x) {
 						$A .= "&where" . urlencode("[" . bracket_escape($Ua) . "]") . "=" . urlencode($L[$x]);
@@ -1898,9 +1947,10 @@ select($J, $f = null, $ge = array(), $_ = 0) {
 			echo "<td>$X";}}
 	echo ($t ? "</table>" : "<p class='message'>" . 'No rows.') . "\n";return $K;}function
 referencable_primary($rf) {
-	$K = array();foreach (table_status('', true) as $Pf => $Q) {if ($Pf != $rf && fk_support($Q)) {foreach (fields($Pf) as $l) {if ($l["primary"]) {if ($K[$Pf]) {unset($K[$Pf]);
-		break;}
-		$K[$Pf] = $l;}}}}
+	$K = array();foreach (table_status('', true) as $Pf => $Q) {
+		if ($Pf != $rf && fk_support($Q)) {foreach (fields($Pf) as $l) {if ($l["primary"]) {if ($K[$Pf]) {unset($K[$Pf]);
+			break;}
+			$K[$Pf] = $l;}}}}
 	return $K;}function
 textarea($F, $Y, $M = 10, $Ya = 80) {
 	global $y;
@@ -1936,9 +1986,10 @@ process_field($l, $rg) {
 	$vb = $l["default"];return
 	array(idf_escape(trim($l["field"])), process_type($rg), ($l["null"] ? " NULL" : " NOT NULL"), (isset($vb) ? " DEFAULT " . ((preg_match('~time~', $l["type"]) && preg_match('~^CURRENT_TIMESTAMP$~i', $vb)) || ($y == "sqlite" && preg_match('~^CURRENT_(TIME|TIMESTAMP|DATE)$~i', $vb)) || ($l["type"] == "bit" && preg_match("~^([0-9]+|b'[0-1]+')\$~", $vb)) || ($y == "pgsql" && preg_match("~^[a-z]+\\(('[^']*')+\\)\$~", $vb)) ? $vb : q($vb)) : ""), (preg_match('~timestamp|datetime~', $l["type"]) && $l["on_update"] ? " ON UPDATE $l[on_update]" : ""), (support("comment") && $l["comment"] != "" ? " COMMENT " . q($l["comment"]) : ""), ($l["auto_increment"] ? auto_increment() : null));}function
 type_class($U) {
-	foreach (array('char' => 'text', 'date' => 'time|year', 'binary' => 'blob', 'enum' => 'set') as $z => $X) {if (preg_match("~$z|$X~", $U)) {
-		return " class='$z'";
-	}
+	foreach (array('char' => 'text', 'date' => 'time|year', 'binary' => 'blob', 'enum' => 'set') as $z => $X) {
+		if (preg_match("~$z|$X~", $U)) {
+			return " class='$z'";
+		}
 	}}function
 edit_fields($m, $Xa, $U = "TABLE", $o = array(), $cb = false) {
 	global $e, $Oc;
@@ -1972,7 +2023,8 @@ process_fields(&$m) {
 	ksort($m);
 	$Od = 0;if ($_POST["up"]) {
 		$fd = 0;foreach ($m as $z => $l) {
-			if (key($_POST["up"]) == $z) {unset($m[$z]);
+			if (key($_POST["up"]) == $z) {
+				unset($m[$z]);
 				array_splice($m, $fd, 0, array($l));
 				break;}if (isset($l["field"])) {
 				$fd = $Od;
@@ -1980,7 +2032,8 @@ process_fields(&$m) {
 
 			$Od++;}} elseif ($_POST["down"]) {
 		$uc = false;foreach ($m as $z => $l) {
-			if (isset($l["field"]) && $uc) {unset($m[key($_POST["down"])]);
+			if (isset($l["field"]) && $uc) {
+				unset($m[key($_POST["down"])]);
 				array_splice($m, $Od, 0, array($uc));
 				break;}if (key($_POST["down"]) == $z) {
 				$uc = $l;
@@ -2065,10 +2118,12 @@ db_size($i) {
 	return
 	format_number($K);}function
 set_utf8mb4($g) {
-	global $e;static $P = false;if (!$P && preg_match('~\butf8mb4~i', $g)) {$P = true;
+	global $e;static $P = false;if (!$P && preg_match('~\butf8mb4~i', $g)) {
+		$P = true;
 		echo "SET NAMES " . charset($e) . ";\n\n";}}function
 connect_error() {
-	global $b, $e, $T, $k, $Eb;if (DB != "") {header("HTTP/1.1 404 Not Found");
+	global $b, $e, $T, $k, $Eb;if (DB != "") {
+		header("HTTP/1.1 404 Not Found");
 		page_header('Database' . ": " . h(DB), 'Invalid database.', true);} else {
 		if ($_POST["db"] && !$k) {
 			queries_redirect(substr(ME, 0, -1), 'Databases have been dropped.', drop_databases($_POST["db"]));
@@ -2098,7 +2153,8 @@ if (isset($_GET["import"])) {
 	$_GET["sql"] = $_GET["import"];
 }
 if (!(DB != "" ? $e->select_db(DB) : isset($_GET["sql"]) || isset($_GET["dump"]) || isset($_GET["database"]) || isset($_GET["processlist"]) || isset($_GET["privileges"]) || isset($_GET["user"]) || isset($_GET["variables"]) || $_GET["script"] == "connect" || $_GET["script"] == "kill")) {
-	if (DB != "" || $_GET["refresh"]) {restart_session();
+	if (DB != "" || $_GET["refresh"]) {
+		restart_session();
 		set_session("dbs", null);}
 	connect_error();exit;}
 $Vd = "RESTRICT|NO ACTION|CASCADE|SET NULL|SET DEFAULT";class
@@ -2144,7 +2200,8 @@ if (isset($_GET["download"])) {
 	if ($m) {
 		echo "<table cellspacing='0'>\n", "<thead><tr><th>" . 'Column' . "<td>" . 'Type' . (support("comment") ? "<td>" . 'Comment' : "") . "</thead>\n";foreach ($m as $l) {echo "<tr" . odd() . "><th>" . h($l["field"]), "<td><span title='" . h($l["collation"]) . "'>" . h($l["full_type"]) . "</span>", ($l["null"] ? " <i>NULL</i>" : ""), ($l["auto_increment"] ? " <i>" . 'Auto Increment' . "</i>" : ""), (isset($l["default"]) ? " <span title='" . 'Default value' . "'>[<b>" . h($l["default"]) . "</b>]</span>" : ""), (support("comment") ? "<td>" . nbsp($l["comment"]) : ""), "\n";}
 		echo "</table>\n";}if (!is_view($R)) {
-		if (support("indexes")) {echo "<h3 id='indexes'>" . 'Indexes' . "</h3>\n";
+		if (support("indexes")) {
+			echo "<h3 id='indexes'>" . 'Indexes' . "</h3>\n";
 			$w = indexes($a);if ($w) {
 				echo "<table cellspacing='0'>\n";foreach ($w as $F => $v) {
 					ksort($v["columns"]);
@@ -2190,11 +2247,12 @@ if (isset($_GET["download"])) {
 			$l["pos"] = $Be;
 			$nf[$Q]["fields"][$F] = $l;}
 		$nf[$Q]["pos"] = ($Qf[$Q] ? $Qf[$Q] : array($kg, 0));foreach ($b->foreignKeys($Q) as $X) {
-			if (!$X["db"]) {$hd = $Ca;if ($Qf[$Q][1] || $Qf[$X["table"]][1]) {
-				$hd = min(floatval($Qf[$Q][1]), floatval($Qf[$X["table"]][1])) - 1;
-			} else {
-				$Ca -= .1;
-			}
+			if (!$X["db"]) {
+				$hd = $Ca;if ($Qf[$Q][1] || $Qf[$X["table"]][1]) {
+					$hd = min(floatval($Qf[$Q][1]), floatval($Qf[$X["table"]][1])) - 1;
+				} else {
+					$Ca -= .1;
+				}
 				while ($jd[(string) $hd]) {
 					$hd -= .0001;
 				}
@@ -2213,7 +2271,8 @@ document.onmouseup = function (ev) {
 };
 </script>
 ';foreach ($nf as $F => $Q) {
-		echo "<div class='table' style='top: " . $Q["pos"][0] . "em; left: " . $Q["pos"][1] . "em;' onmousedown='schemaMousedown(this, event);'>", '<a href="' . h(ME) . 'table=' . urlencode($F) . '"><b>' . h($F) . "</b></a>";foreach ($Q["fields"] as $l) {$X = '<span' . type_class($l["type"]) . ' title="' . h($l["full_type"] . ($l["null"] ? " NULL" : '')) . '">' . h($l["field"]) . '</span>';
+		echo "<div class='table' style='top: " . $Q["pos"][0] . "em; left: " . $Q["pos"][1] . "em;' onmousedown='schemaMousedown(this, event);'>", '<a href="' . h(ME) . 'table=' . urlencode($F) . '"><b>' . h($F) . "</b></a>";foreach ($Q["fields"] as $l) {
+			$X = '<span' . type_class($l["type"]) . ' title="' . h($l["full_type"] . ($l["null"] ? " NULL" : '')) . '">' . h($l["field"]) . '</span>';
 			echo "<br>" . ($l["primary"] ? "<i>$X</i>" : $X);}
 		foreach ((array) $Q["references"] as $Wf => $Ze) {
 			foreach ($Ze as $hd => $Ve) {
@@ -2231,26 +2290,29 @@ document.onmouseup = function (ev) {
 			}}
 		echo "\n</div>\n";}
 	foreach ($nf as $F => $Q) {
-		foreach ((array) $Q["references"] as $Wf => $Ze) {foreach ($Ze as $hd => $Ve) {
-			$Cd = $kg;
-			$vd = -10;foreach ($Ve[0] as $z => $_f) {
-				$Ce = $Q["pos"][0] + $Q["fields"][$_f]["pos"];
-				$De = $nf[$Wf]["pos"][0] + $nf[$Wf]["fields"][$Ve[1][$z]]["pos"];
-				$Cd = min($Cd, $Ce, $De);
-				$vd = max($vd, $Ce, $De);}
-			echo "<div class='references' id='refl$hd' style='left: $hd" . "em; top: $Cd" . "em; padding: .5em 0;'><div style='border-right: 1px solid Gray; margin-top: 1px; height: " . ($vd - $Cd) . "em;'></div></div>\n";}}}
+		foreach ((array) $Q["references"] as $Wf => $Ze) {
+			foreach ($Ze as $hd => $Ve) {
+				$Cd = $kg;
+				$vd = -10;foreach ($Ve[0] as $z => $_f) {
+					$Ce = $Q["pos"][0] + $Q["fields"][$_f]["pos"];
+					$De = $nf[$Wf]["pos"][0] + $nf[$Wf]["fields"][$Ve[1][$z]]["pos"];
+					$Cd = min($Cd, $Ce, $De);
+					$vd = max($vd, $Ce, $De);}
+				echo "<div class='references' id='refl$hd' style='left: $hd" . "em; top: $Cd" . "em; padding: .5em 0;'><div style='border-right: 1px solid Gray; margin-top: 1px; height: " . ($vd - $Cd) . "em;'></div></div>\n";}}}
 	echo '</div>
 <p class="links"><a href="', h(ME . "schema=" . urlencode($ea)), '" id="schema-link">Permanent link</a>
 ';} elseif (isset($_GET["dump"])) {
-	$a = $_GET["dump"];if ($_POST && !$k) {$jb = "";foreach (array("output", "format", "db_style", "routines", "events", "table_style", "auto_increment", "triggers", "data_style") as $z) {
-		$jb .= "&$z=" . urlencode($_POST[$z]);
-	}
+	$a = $_GET["dump"];if ($_POST && !$k) {
+		$jb = "";foreach (array("output", "format", "db_style", "routines", "events", "table_style", "auto_increment", "triggers", "data_style") as $z) {
+			$jb .= "&$z=" . urlencode($_POST[$z]);
+		}
 
 		cookie("adminer_export", substr($jb, 1));
 		$S = array_flip((array) $_POST["tables"]) + array_flip((array) $_POST["data"]);
 		$gc = dump_headers((count($S) == 1 ? key($S) : DB), (DB == "" || count($S) > 1));
 		$Wc = preg_match('~sql~', $_POST["format"]);if ($Wc) {
-			echo "-- Adminer $ga " . $Eb[DRIVER] . " dump\n\n";if ($y == "sql") {echo "SET NAMES utf8;
+			echo "-- Adminer $ga " . $Eb[DRIVER] . " dump\n\n";if ($y == "sql") {
+				echo "SET NAMES utf8;
 SET time_zone = '+00:00';
 " . ($_POST["data_style"] ? "SET foreign_key_checks = 0;
 SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
@@ -2264,52 +2326,57 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 			}
 		}
 		foreach ((array) $h as $i) {
-			$b->dumpDatabase($i);if ($e->select_db($i)) {if ($Wc && preg_match('~CREATE~', $If) && ($g = $e->result("SHOW CREATE DATABASE " . idf_escape($i), 1))) {set_utf8mb4($g);if ($If == "DROP+CREATE") {
-				echo "DROP DATABASE IF EXISTS " . idf_escape($i) . ";\n";
-			}
-
-				echo "$g;\n";}if ($Wc) {
-				if ($If) {
-					echo
-					use_sql($i) . ";\n\n";
+			$b->dumpDatabase($i);if ($e->select_db($i)) {
+				if ($Wc && preg_match('~CREATE~', $If) && ($g = $e->result("SHOW CREATE DATABASE " . idf_escape($i), 1))) {set_utf8mb4($g);if ($If == "DROP+CREATE") {
+					echo "DROP DATABASE IF EXISTS " . idf_escape($i) . ";\n";
 				}
 
-				$le = "";if ($_POST["routines"]) {
-					foreach (array("FUNCTION", "PROCEDURE") as $if) {foreach (get_rows("SHOW $if STATUS WHERE Db = " . q($i), null, "-- ") as $L) {$g = remove_definer($e->result("SHOW CREATE $if " . idf_escape($L["Name"]), 2));
-						set_utf8mb4($g);
-						$le .= ($If != 'DROP+CREATE' ? "DROP $if IF EXISTS " . idf_escape($L["Name"]) . ";;\n" : "") . "$g;;\n\n";}}}if ($_POST["events"]) {
-					foreach (get_rows("SHOW EVENTS", null, "-- ") as $L) {$g = remove_definer($e->result("SHOW CREATE EVENT " . idf_escape($L["Name"]), 3));
-						set_utf8mb4($g);
-						$le .= ($If != 'DROP+CREATE' ? "DROP EVENT IF EXISTS " . idf_escape($L["Name"]) . ";;\n" : "") . "$g;;\n\n";}}if ($le) {
-					echo "DELIMITER ;;\n\n$le" . "DELIMITER ;\n\n";
-				}
-			}if ($_POST["table_style"] || $_POST["data_style"]) {
-				$Lg = array();foreach (table_status('', true) as $F => $R) {$Q = (DB == "" || in_array($F, (array) $_POST["tables"]));
-					$ob = (DB == "" || in_array($F, (array) $_POST["data"]));if ($Q || $ob) {
-						if ($gc == "tar") {$ig = new
-								TmpFile;
-							ob_start(array($ig, 'write'), 1e5);}
-						$b->dumpTable($F, ($Q ? $_POST["table_style"] : ""), (is_view($R) ? 2 : 0));if (is_view($R)) {
-							$Lg[] = $F;
-						} elseif ($ob) {
-							$m = fields($F);
-							$b->dumpData($F, $_POST["data_style"], "SELECT *" . convert_fields($m, $m) . " FROM " . table($F));}if ($Wc && $_POST["triggers"] && $Q && ($qg = trigger_sql($F, $_POST["table_style"]))) {
-							echo "\nDELIMITER ;;\n$qg\nDELIMITER ;\n";
-						}
-						if ($gc == "tar") {
-							ob_end_flush();
-							tar_file((DB != "" ? "" : "$i/") . "$F.csv", $ig);} elseif ($Wc) {
-							echo "\n";
-						}
-					}}
-				foreach ($Lg as $Kg) {
-					$b->dumpTable($Kg, $_POST["table_style"], 1);
-				}
-				if ($gc == "tar") {
-					echo
-					pack("x512");
-				}
-			}}}if ($Wc) {
+					echo "$g;\n";}if ($Wc) {
+					if ($If) {
+						echo
+						use_sql($i) . ";\n\n";
+					}
+
+					$le = "";if ($_POST["routines"]) {
+						foreach (array("FUNCTION", "PROCEDURE") as $if) {
+							foreach (get_rows("SHOW $if STATUS WHERE Db = " . q($i), null, "-- ") as $L) {$g = remove_definer($e->result("SHOW CREATE $if " . idf_escape($L["Name"]), 2));
+								set_utf8mb4($g);
+								$le .= ($If != 'DROP+CREATE' ? "DROP $if IF EXISTS " . idf_escape($L["Name"]) . ";;\n" : "") . "$g;;\n\n";}}}if ($_POST["events"]) {
+						foreach (get_rows("SHOW EVENTS", null, "-- ") as $L) {
+							$g = remove_definer($e->result("SHOW CREATE EVENT " . idf_escape($L["Name"]), 3));
+							set_utf8mb4($g);
+							$le .= ($If != 'DROP+CREATE' ? "DROP EVENT IF EXISTS " . idf_escape($L["Name"]) . ";;\n" : "") . "$g;;\n\n";}}if ($le) {
+						echo "DELIMITER ;;\n\n$le" . "DELIMITER ;\n\n";
+					}
+				}if ($_POST["table_style"] || $_POST["data_style"]) {
+					$Lg = array();foreach (table_status('', true) as $F => $R) {
+						$Q = (DB == "" || in_array($F, (array) $_POST["tables"]));
+						$ob = (DB == "" || in_array($F, (array) $_POST["data"]));if ($Q || $ob) {
+							if ($gc == "tar") {
+								$ig = new
+									TmpFile;
+								ob_start(array($ig, 'write'), 1e5);}
+							$b->dumpTable($F, ($Q ? $_POST["table_style"] : ""), (is_view($R) ? 2 : 0));if (is_view($R)) {
+								$Lg[] = $F;
+							} elseif ($ob) {
+								$m = fields($F);
+								$b->dumpData($F, $_POST["data_style"], "SELECT *" . convert_fields($m, $m) . " FROM " . table($F));}if ($Wc && $_POST["triggers"] && $Q && ($qg = trigger_sql($F, $_POST["table_style"]))) {
+								echo "\nDELIMITER ;;\n$qg\nDELIMITER ;\n";
+							}
+							if ($gc == "tar") {
+								ob_end_flush();
+								tar_file((DB != "" ? "" : "$i/") . "$F.csv", $ig);} elseif ($Wc) {
+								echo "\n";
+							}
+						}}
+					foreach ($Lg as $Kg) {
+						$b->dumpTable($Kg, $_POST["table_style"], 1);
+					}
+					if ($gc == "tar") {
+						echo
+						pack("x512");
+					}
+				}}}if ($Wc) {
 			echo "-- " . $e->result("SELECT NOW()") . "\n";
 		}
 		exit;}
@@ -2359,7 +2426,8 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 		echo "<thead><tr><th style='text-align: left;'><label class='block'><input type='checkbox' id='check-databases'" . ($a == "" ? " checked" : "") . " onclick='formCheck(this, /^databases\\[/);'>" . 'Database' . "</label></thead>\n";
 		$h = $b->databases();if ($h) {
 			foreach ($h as $i) {
-				if (!information_schema($i)) {$Fe = preg_replace('~_.*~', '', $i);
+				if (!information_schema($i)) {
+					$Fe = preg_replace('~_.*~', '', $i);
 					echo "<tr><td>" . checkbox("databases[]", $i, $a == "" || $a == "$Fe%", $i, "formUncheck('check-databases');", "block") . "\n";
 					$Ge[$Fe]++;}}} else {
 			echo "<tr><td><textarea name='databases' rows='10' cols='20'></textarea>";
@@ -2369,7 +2437,8 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 </form>
 ';
 	$pc = true;foreach ($Ge as $z => $X) {
-		if ($z != "" && $X > 1) {echo ($pc ? "<p>" : " ") . "<a href='" . h(ME) . "dump=" . urlencode("$z%") . "'>" . h($z) . "</a>";
+		if ($z != "" && $X > 1) {
+			echo ($pc ? "<p>" : " ") . "<a href='" . h(ME) . "dump=" . urlencode("$z%") . "'>" . h($z) . "</a>";
 			$pc = false;}}} elseif (isset($_GET["privileges"])) {
 	page_header('Privileges');
 	$J = $e->query("SELECT User, Host FROM mysql." . (DB == "" ? "user" : "db WHERE " . q(DB) . " LIKE Db") . " ORDER BY Host, User");
@@ -2387,7 +2456,8 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 	}
 
 	echo "</table>\n", "</form>\n", '<p class="links"><a href="' . h(ME) . 'user=">' . 'Create user' . "</a>";} elseif (isset($_GET["sql"])) {
-	if (!$k && $_POST["export"]) {dump_headers("sql");
+	if (!$k && $_POST["export"]) {
+		dump_headers("sql");
 		$b->dumpTable("", "");
 		$b->dumpData("", "table", $_POST["query"]);exit;}
 	restart_session();
@@ -2408,7 +2478,8 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 				@ini_set("memory_limit", max(ini_bytes("memory_limit"), 2 * strlen($I) + memory_get_usage() + 8e6));
 			}
 			if ($I != "" && strlen($I) < 1e6) {
-				$H = $I . (preg_match("~;[ \t\r\n]*\$~", $I) ? "" : ";");if (!$Ec || reset(end($Ec)) != $H) {restart_session();
+				$H = $I . (preg_match("~;[ \t\r\n]*\$~", $I) ? "" : ";");if (!$Ec || reset(end($Ec)) != $H) {
+					restart_session();
 					$Ec[] = array($H, time());
 					set_session("queries", $Fc);
 					stop_session();}}
@@ -2426,7 +2497,8 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 			$lg = microtime(true);
 			parse_str($_COOKIE["adminer_export"], $la);
 			$Jb = $b->dumpFormat();unset($Jb["sql"]);while ($I != "") {
-				if (!$Od && preg_match("~^$Af*DELIMITER\\s+(\\S+)~i", $I, $C)) {$wb = $C[1];
+				if (!$Od && preg_match("~^$Af*DELIMITER\\s+(\\S+)~i", $I, $C)) {
+					$wb = $C[1];
 					$I = substr($I, strlen($C[0]));} else {
 					preg_match('(' . preg_quote($wb) . "\\s*|$qe)", $I, $C, PREG_OFFSET_CAPTURE, $Od);list($uc, $Be) = $C[0];if (!$uc && $p && !feof($p)) {
 						$I .= fread($p, 1e5);
@@ -2436,13 +2508,14 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 						}
 
 						$Od = $Be + strlen($uc);if ($uc && rtrim($uc) != $wb) {
-							while (preg_match('(' . ($uc == '/*' ? '\\*/' : ($uc == '[' ? ']' : (preg_match('~^-- |^#~', $uc) ? "\n" : preg_quote($uc) . "|\\\\."))) . '|$)s', $I, $C, PREG_OFFSET_CAPTURE, $Od)) {$lf = $C[0][0];if (!$lf && $p && !feof($p)) {
-								$I .= fread($p, 1e5);
-							} else {
-								$Od = $C[0][1] + strlen($lf);if ($lf[0] != "\\") {
-									break;
-								}
-							}}} else {
+							while (preg_match('(' . ($uc == '/*' ? '\\*/' : ($uc == '[' ? ']' : (preg_match('~^-- |^#~', $uc) ? "\n" : preg_quote($uc) . "|\\\\."))) . '|$)s', $I, $C, PREG_OFFSET_CAPTURE, $Od)) {
+								$lf = $C[0][0];if (!$lf && $p && !feof($p)) {
+									$I .= fread($p, 1e5);
+								} else {
+									$Od = $C[0][1] + strlen($lf);if ($lf[0] != "\\") {
+										break;
+									}
+								}}} else {
 							$Sb = false;
 							$H = substr($I, 0, $Be);
 							$ab++;
@@ -2452,7 +2525,8 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 									break;
 								}
 							} else {
-								if (!$_POST["only_errors"]) {echo $Ie;
+								if (!$_POST["only_errors"]) {
+									echo $Ie;
 									ob_flush();
 									flush();}
 								$Cf = microtime(true);if ($e->multi_query($H) && is_object($f) && preg_match("~^$Af*USE\\b~isU", $H)) {
@@ -2482,7 +2556,8 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 											}
 
 											echo "</form>\n";}} else {
-										if (preg_match("~^$Af*(CREATE|DROP|ALTER)$Af+(DATABASE|SCHEMA)\\b~isU", $H)) {restart_session();
+										if (preg_match("~^$Af*(CREATE|DROP|ALTER)$Af+(DATABASE|SCHEMA)\\b~isU", $H)) {
+											restart_session();
 											set_session("dbs", null);
 											stop_session();}if (!$_POST["only_errors"]) {
 											echo "<p class='message' title='" . h($e->info) . "'>" . lang(array('Query executed OK, %d row affected.', 'Query executed OK, %d rows affected.'), $e->affected_rows) . "$bg\n";
@@ -2516,7 +2591,8 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 		echo ($_POST ? "" : "<script type='text/javascript'>focus(document.getElementsByTagName('textarea')[0]);</script>\n"), "<p>$cc\n", 'Limit rows' . ": <input type='number' name='limit' class='size' value='" . h($_POST ? $_POST["limit"] : $_GET["limit"]) . "'>\n";} else {echo "<fieldset><legend>" . 'File upload' . "</legend><div>", (ini_bool("file_uploads") ? "SQL (&lt; " . ini_get("upload_max_filesize") . "B): <input type='file' name='sql_file[]' multiple>\n$cc" : 'File uploads are disabled.'), "</div></fieldset>\n", "<fieldset><legend>" . 'From server' . "</legend><div>", sprintf('Webserver file %s', "<code>adminer.sql" . (extension_loaded("zlib") ? "[.gz]" : "") . "</code>"), ' <input type="submit" name="webfile" value="' . 'Run file' . '">', "</div></fieldset>\n", "<p>";}
 	echo
 	checkbox("error_stops", 1, ($_POST ? $_POST["error_stops"] : isset($_GET["import"])), 'Stop on error') . "\n", checkbox("only_errors", 1, ($_POST ? $_POST["only_errors"] : isset($_GET["import"])), 'Show only errors') . "\n", "<input type='hidden' name='token' value='$T'>\n";if (!isset($_GET["import"]) && $Ec) {
-		print_fieldset("history", 'History', $_GET["history"] != "");for ($X = end($Ec); $X; $X = prev($Ec)) {$z = key($Ec);list($H, $bg, $Nb) = $X;
+		print_fieldset("history", 'History', $_GET["history"] != "");for ($X = end($Ec); $X; $X = prev($Ec)) {
+			$z = key($Ec);list($H, $bg, $Nb) = $X;
 			echo '<a href="' . h(ME . "sql=&history=$z") . '">' . 'Edit' . "</a>" . " <span class='time' title='" . @date('Y-m-d', $bg) . "'>" . @date("H:i:s", $bg) . "</span>" . " <code class='jush-$y'>" . shorten_utf8(ltrim(str_replace("\n", " ", str_replace("\r", "", preg_replace('~^(#|-- ).*~m', '', $H)))), 80, "</code>") . ($Nb ? " <span class='time'>($Nb)</span>" : "") . "<br>\n";}
 		echo "<input type='submit' name='clear' value='" . 'Clear' . "'>\n", "<a href='" . h(ME . "sql=&history=all") . "'>" . 'Edit all' . "</a>\n", "</div></fieldset>\n";}
 	echo '</form>
@@ -2559,9 +2635,10 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 		$L = (array) $_POST["fields"];
 	} elseif ($Z) {
 		$N = array();foreach ($m as $F => $l) {
-			if (isset($l["privileges"]["select"])) {$ua = convert_field($l);if ($_POST["clone"] && $l["auto_increment"]) {
-				$ua = "''";
-			}
+			if (isset($l["privileges"]["select"])) {
+				$ua = convert_field($l);if ($_POST["clone"] && $l["auto_increment"]) {
+					$ua = "''";
+				}
 				if ($y == "sql" && preg_match("~enum|set~", $l["type"])) {
 					$ua = "1*" . idf_escape($F);
 				}
@@ -2579,7 +2656,8 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 				$L = null;
 			}
 		}}if (!support("table") && !$m) {
-		if (!$Z) {$J = $j->select($a, array("*"), $Z, array("*"));
+		if (!$Z) {
+			$J = $j->select($a, array("*"), $Z, array("*"));
 			$L = ($J ? $J->fetch_assoc() : false);if (!$L) {
 				$L = array($j->primary => "");
 			}
@@ -2649,8 +2727,9 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 					}
 				}}
 			$te = "";if ($re[$L["partition_by"]]) {
-				$ue = array();if ($L["partition_by"] == 'RANGE' || $L["partition_by"] == 'LIST') {foreach (array_filter($L["partition_names"]) as $z => $X) {$Y = $L["partition_values"][$z];
-					$ue[] = "\n  PARTITION " . idf_escape($X) . " VALUES " . ($L["partition_by"] == 'RANGE' ? "LESS THAN" : "IN") . ($Y != "" ? " ($Y)" : " MAXVALUE");}}
+				$ue = array();if ($L["partition_by"] == 'RANGE' || $L["partition_by"] == 'LIST') {
+					foreach (array_filter($L["partition_names"]) as $z => $X) {$Y = $L["partition_values"][$z];
+						$ue[] = "\n  PARTITION " . idf_escape($X) . " VALUES " . ($L["partition_by"] == 'RANGE' ? "LESS THAN" : "IN") . ($Y != "" ? " ($Y)" : " MAXVALUE");}}
 				$te .= "\nPARTITION BY $L[partition_by]($L[partition])" . ($ue ? " (" . implode(",", $ue) . "\n)" : ($L["partitions"] ? " PARTITIONS " . (+$L["partitions"]) : ""));} elseif (support("partitioning") && preg_match("~partitioned~", $R["Create_options"])) {
 				$te .= "\nREMOVE PARTITIONING";
 			}
@@ -2661,7 +2740,8 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 			$F = trim($L["name"]);
 			queries_redirect(ME . (support("table") ? "table=" : "select=") . urlencode($F), $D, alter_table($a, $F, ($y == "sqlite" && ($Dg || $rc) ? $ra : $m), $rc, ($L["Comment"] != $R["Comment"] ? $L["Comment"] : null), ($L["Engine"] && $L["Engine"] != $R["Engine"] ? $L["Engine"] : ""), ($L["Collation"] && $L["Collation"] != $R["Collation"] ? $L["Collation"] : ""), ($L["Auto_increment"] != "" ? number($L["Auto_increment"]) : ""), $te));}}
 	page_header(($a != "" ? 'Alter table' : 'Create table'), $k, array("table" => $a), h($a));if (!$_POST) {
-		$L = array("Engine" => $_COOKIE["adminer_engine"], "fields" => array(array("field" => "", "type" => (isset($tg["int"]) ? "int" : (isset($tg["integer"]) ? "integer" : "")))), "partition_names" => array(""));if ($a != "") {$L = $R;
+		$L = array("Engine" => $_COOKIE["adminer_engine"], "fields" => array(array("field" => "", "type" => (isset($tg["int"]) ? "int" : (isset($tg["integer"]) ? "integer" : "")))), "partition_names" => array(""));if ($a != "") {
+			$L = $R;
 			$L["name"] = $a;
 			$L["fields"] = array();if (!$_GET["auto_increment"]) {
 				$L["Auto_increment"] = "";
@@ -2677,12 +2757,14 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 				$L["partition_values"] = array_values($ue);}}}
 	$Xa = collations();
 	$Ub = engines();foreach ($Ub as $Tb) {
-		if (!strcasecmp($Tb, $L["Engine"])) {$L["Engine"] = $Tb;
+		if (!strcasecmp($Tb, $L["Engine"])) {
+			$L["Engine"] = $Tb;
 			break;}}
 	echo '
 <form action="" method="post" id="form">
 <p>
-';if (support("columns") || $a == "") {echo 'Table name: <input name="name" maxlength="64" value="', h($L["name"]), '" autocapitalize="off">
+';if (support("columns") || $a == "") {
+		echo 'Table name: <input name="name" maxlength="64" value="', h($L["name"]), '" autocapitalize="off">
 ';if ($a == "" && !$_POST) { ?><script type='text/javascript'>focus(document.getElementById('form')['name']);</script><?php }
 		echo ($Ub ? "<select name='Engine' onchange='helpClose();'" . on_help("getTarget(event).value", 1) . ">" . optionlist(array("" => "(" . 'engine' . ")") + $Ub, $L["Engine"]) . "</select>" : ""), ' ', ($Xa && !preg_match("~sqlite|mssql~", $y) ? html_select("Collation", array("" => "(" . 'collation' . ")") + $Xa, $L["Collation"]) : ""), ' <input type="submit" value="Save">
 ';}
@@ -2691,8 +2773,9 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 		echo '<table cellspacing="0" id="edit-fields" class="nowrap">
 ';
 		$cb = ($_POST ? $_POST["comments"] : $L["Comment"] != "");if (!$_POST && !$cb) {
-			foreach ($L["fields"] as $l) {if ($l["comment"] != "") {$cb = true;
-				break;}}}
+			foreach ($L["fields"] as $l) {
+				if ($l["comment"] != "") {$cb = true;
+					break;}}}
 		edit_fields($L["fields"], $Xa, "TABLE", $o, $cb);
 		echo '</table>
 <p>
@@ -2726,23 +2809,26 @@ Partitions: <input type="number" name="partitions" class="size', ($se || !$L["pa
 	$w = indexes($a);
 	$He = array();if ($y == "mongo") {$He = $w["_id_"];unset($Mc[0]);unset($w["_id_"]);}
 	$L = $_POST;if ($_POST && !$k && !$_POST["add"] && !$_POST["drop_col"]) {
-		$sa = array();foreach ($L["indexes"] as $v) {$F = $v["name"];if (in_array($v["type"], $Mc)) {$d = array();
-			$md = array();
-			$yb = array();
-			$P = array();
-			ksort($v["columns"]);foreach ($v["columns"] as $z => $c) {
-				if ($c != "") {$ld = $v["lengths"][$z];
-					$xb = $v["descs"][$z];
-					$P[] = idf_escape($c) . ($ld ? "(" . (+$ld) . ")" : "") . ($xb ? " DESC" : "");
-					$d[] = $c;
-					$md[] = ($ld ? $ld : null);
-					$yb[] = $xb;}}if ($d) {
-				$dc = $w[$F];if ($dc) {ksort($dc["columns"]);
-					ksort($dc["lengths"]);
-					ksort($dc["descs"]);if ($v["type"] == $dc["type"] && array_values($dc["columns"]) === $d && (!$dc["lengths"] || array_values($dc["lengths"]) === $md) && array_values($dc["descs"]) === $yb) {
-						unset($w[$F]);
-						continue;}}
-				$sa[] = array($v["type"], $F, $P);}}}
+		$sa = array();foreach ($L["indexes"] as $v) {
+			$F = $v["name"];if (in_array($v["type"], $Mc)) {$d = array();
+				$md = array();
+				$yb = array();
+				$P = array();
+				ksort($v["columns"]);foreach ($v["columns"] as $z => $c) {
+					if ($c != "") {
+						$ld = $v["lengths"][$z];
+						$xb = $v["descs"][$z];
+						$P[] = idf_escape($c) . ($ld ? "(" . (+$ld) . ")" : "") . ($xb ? " DESC" : "");
+						$d[] = $c;
+						$md[] = ($ld ? $ld : null);
+						$yb[] = $xb;}}if ($d) {
+					$dc = $w[$F];if ($dc) {
+						ksort($dc["columns"]);
+						ksort($dc["lengths"]);
+						ksort($dc["descs"]);if ($v["type"] == $dc["type"] && array_values($dc["columns"]) === $d && (!$dc["lengths"] || array_values($dc["lengths"]) === $md) && array_values($dc["descs"]) === $yb) {
+							unset($w[$F]);
+							continue;}}
+					$sa[] = array($v["type"], $F, $P);}}}
 		foreach ($w as $F => $dc) {
 			$sa[] = array($dc["type"], $F, "DROP");
 		}
@@ -2753,9 +2839,10 @@ Partitions: <input type="number" name="partitions" class="size', ($se || !$L["pa
 		queries_redirect(ME . "table=" . urlencode($a), 'Indexes have been altered.', alter_indexes($a, $sa));}
 	page_header('Indexes', $k, array("table" => $a), h($a));
 	$m = array_keys(fields($a));if ($_POST["add"]) {
-		foreach ($L["indexes"] as $z => $v) {if ($v["columns"][count($v["columns"])] != "") {
-			$L["indexes"][$z]["columns"][] = "";
-		}
+		foreach ($L["indexes"] as $z => $v) {
+			if ($v["columns"][count($v["columns"])] != "") {
+				$L["indexes"][$z]["columns"][] = "";
+			}
 		}
 		$v = end($L["indexes"]);if ($v["type"] || array_filter($v["columns"], 'strlen')) {
 			$L["indexes"][] = array("columns" => array(1 => ""));
@@ -2777,11 +2864,13 @@ Partitions: <input type="number" name="partitions" class="size', ($se || !$L["pa
 </thead>
 <?php
 if ($He) {
-		echo "<tr><td>PRIMARY<td>";foreach ($He["columns"] as $z => $c) {echo
+		echo "<tr><td>PRIMARY<td>";foreach ($He["columns"] as $z => $c) {
+			echo
 			select_input(" disabled", $m, $c), "<label><input disabled type='checkbox'>" . 'descending' . "</label> ";}
 		echo "<td><td>\n";}
 	$x = 1;foreach ($L["indexes"] as $v) {
-		if (!$_POST["drop_col"] || $x != key($_POST["drop_col"])) {echo "<tr><td>" . html_select("indexes[$x][type]", array(-1 => "") + $Mc, $v["type"], ($x == count($L["indexes"]) ? "indexesAddRow(this);" : 1)), "<td>";
+		if (!$_POST["drop_col"] || $x != key($_POST["drop_col"])) {
+			echo "<tr><td>" . html_select("indexes[$x][type]", array(-1 => "") + $Mc, $v["type"], ($x == count($L["indexes"]) ? "indexesAddRow(this);" : 1)), "<td>";
 			ksort($v["columns"]);
 			$t = 1;foreach ($v["columns"] as $z => $c) {
 				echo "<span>" . select_input(" name='indexes[$x][columns][$t]' onchange=\"" . ($t == count($v["columns"]) ? "indexesAddColumn" : "indexesChangeColumn") . "(this, '" . h(js_escape($y == "sql" ? "" : $_GET["indexes"] . "_")) . "');\"", ($m ? array_combine($m, $m) : $m), $c), ($y == "sql" || $y == "mssql" ? "<input type='number' name='indexes[$x][lengths][$t]' class='size' value='" . h($v["lengths"][$z]) . "'>" : ""), ($y != "sql" ? checkbox("indexes[$x][descs][$t]", 1, $v["descs"][$z], 'descending') : ""), " </span>";
@@ -2794,26 +2883,29 @@ if ($He) {
 <input type="hidden" name="token" value="', $T, '">
 </form>
 ';} elseif (isset($_GET["database"])) {
-	$L = $_POST;if ($_POST && !$k && !isset($_POST["add_x"])) {$F = trim($L["name"]);if ($_POST["drop"]) {$_GET["db"] = "";
-		queries_redirect(remove_from_uri("db|database"), 'Database has been dropped.', drop_databases(array(DB)));} elseif (DB !== $F) {
-		if (DB != "") {$_GET["db"] = $F;
-			queries_redirect(preg_replace('~\bdb=[^&]*&~', '', ME) . "db=" . urlencode($F), 'Database has been renamed.', rename_database($F, $L["collation"]));} else {
-			$h = explode("\n", str_replace("\r", "", $F));
-			$Jf = true;
-			$fd = "";foreach ($h as $i) {
-				if (count($h) == 1 || $i != "") {if (!create_database($i, $L["collation"])) {
-					$Jf = false;
-				}
+	$L = $_POST;if ($_POST && !$k && !isset($_POST["add_x"])) {
+		$F = trim($L["name"]);if ($_POST["drop"]) {$_GET["db"] = "";
+			queries_redirect(remove_from_uri("db|database"), 'Database has been dropped.', drop_databases(array(DB)));} elseif (DB !== $F) {
+			if (DB != "") {
+				$_GET["db"] = $F;
+				queries_redirect(preg_replace('~\bdb=[^&]*&~', '', ME) . "db=" . urlencode($F), 'Database has been renamed.', rename_database($F, $L["collation"]));} else {
+				$h = explode("\n", str_replace("\r", "", $F));
+				$Jf = true;
+				$fd = "";foreach ($h as $i) {
+					if (count($h) == 1 || $i != "") {
+						if (!create_database($i, $L["collation"])) {
+							$Jf = false;
+						}
 
-					$fd = $i;}}
-			restart_session();
-			set_session("dbs", null);
-			queries_redirect(ME . "db=" . urlencode($fd), 'Database has been created.', $Jf);}} else {
-		if (!$L["collation"]) {
-			redirect(substr(ME, 0, -1));
-		}
+						$fd = $i;}}
+				restart_session();
+				set_session("dbs", null);
+				queries_redirect(ME . "db=" . urlencode($fd), 'Database has been created.', $Jf);}} else {
+			if (!$L["collation"]) {
+				redirect(substr(ME, 0, -1));
+			}
 
-		query_redirect("ALTER DATABASE " . idf_escape($F) . (preg_match('~^[a-z0-9_]+$~i', $L["collation"]) ? " COLLATE $L[collation]" : ""), substr(ME, 0, -1), 'Database has been altered.');}}
+			query_redirect("ALTER DATABASE " . idf_escape($F) . (preg_match('~^[a-z0-9_]+$~i', $L["collation"]) ? " COLLATE $L[collation]" : ""), substr(ME, 0, -1), 'Database has been altered.');}}
 	page_header(DB != "" ? 'Alter database' : 'Create database', $k, array(), h(DB));
 	$Xa = collations();
 	$F = DB;if ($_POST) {
@@ -2821,8 +2913,9 @@ if ($He) {
 	} elseif (DB != "") {
 		$L["collation"] = db_collation(DB, $Xa);
 	} elseif ($y == "sql") {
-		foreach (get_vals("SHOW GRANTS") as $r) {if (preg_match('~ ON (`(([^\\\\`]|``|\\\\.)*)%`\\.\\*)?~', $r, $C) && $C[1]) {$F = stripcslashes(idf_unescape("`$C[2]`"));
-			break;}}}
+		foreach (get_vals("SHOW GRANTS") as $r) {
+			if (preg_match('~ ON (`(([^\\\\`]|``|\\\\.)*)%`\\.\\*)?~', $r, $C) && $C[1]) {$F = stripcslashes(idf_unescape("`$C[2]`"));
+				break;}}}
 	echo '
 <form action="" method="post">
 <p>
@@ -2851,13 +2944,14 @@ if (DB != "") {
 			$Lc[] = $t;
 		}
 	}if (!$k && $_POST) {
-		$Ja = array();foreach ($if["fields"] as $z => $l) {if (in_array($z, $Lc)) {$X = process_input($l);if ($X === false) {
-			$X = "''";
-		}
-			if (isset($le[$z])) {
-				$e->query("SET @" . idf_escape($l["field"]) . " = $X");
+		$Ja = array();foreach ($if["fields"] as $z => $l) {
+			if (in_array($z, $Lc)) {$X = process_input($l);if ($X === false) {
+				$X = "''";
 			}
-		}
+				if (isset($le[$z])) {
+					$e->query("SET @" . idf_escape($l["field"]) . " = $X");
+				}
+			}
 			$Ja[] = (isset($le[$z]) ? "@" . idf_escape($l["field"]) : $X);}
 		$I = (isset($_GET["callf"]) ? "SELECT" : "CALL") . " " . idf_escape($da) . "(" . implode(", ", $Ja) . ")";
 		echo "<p><code class='jush-$y'>" . h($I) . "</code> <a href='" . h(ME) . "sql=" . urlencode($I) . "'>" . 'Edit' . "</a>\n";if (!$e->multi_query($I)) {
@@ -2964,7 +3058,8 @@ ON DELETE: ', html_select("on_delete", array(-1 => "") + explode("|", $Vd), $L["
 		$D = 'View has been altered.';if ($_GET["materialized"]) {
 			$U = "MATERIALIZED VIEW";
 		} else {
-			$U = "VIEW";if ($y == "pgsql") {$Df = table_status($F);
+			$U = "VIEW";if ($y == "pgsql") {
+				$Df = table_status($F);
 				$U = ($Df ? strtoupper($Df["Engine"]) : $U);}}if (!$_POST["drop"] && $a == $F && $y != "sqlite" && $U != "MATERIALIZED VIEW") {
 			query_redirect(($y == "mssql" ? "ALTER" : "CREATE OR REPLACE") . " VIEW " . table($F) . $ua, $B, $D);
 		} else {
@@ -3049,7 +3144,8 @@ ON DELETE: ', html_select("on_delete", array(-1 => "") + explode("|", $Vd), $L["
 	$F = $_GET["name"];
 	$pg = trigger_options();
 	$L = (array) trigger($F) + array("Trigger" => $a . "_bi");if ($_POST) {
-		if (!$k && in_array($_POST["Timing"], $pg["Timing"]) && in_array($_POST["Event"], $pg["Event"]) && in_array($_POST["Type"], $pg["Type"])) {$Ud = " ON " . table($a);
+		if (!$k && in_array($_POST["Timing"], $pg["Timing"]) && in_array($_POST["Event"], $pg["Event"]) && in_array($_POST["Type"], $pg["Type"])) {
+			$Ud = " ON " . table($a);
 			$Fb = "DROP TRIGGER " . idf_escape($F) . ($y == "pgsql" ? $Ud : "");
 			$B = ME . "table=" . urlencode($a);if ($_POST["drop"]) {
 				query_redirect($Fb, $B, 'Trigger has been dropped.');
@@ -3099,16 +3195,17 @@ ON DELETE: ', html_select("on_delete", array(-1 => "") + explode("|", $Vd), $L["
 	}
 	$yc = array();
 	$Sd = "";if (isset($_GET["host"]) && ($J = $e->query("SHOW GRANTS FOR " . q($fa) . "@" . q($_GET["host"])))) {
-		while ($L = $J->fetch_row()) {if (preg_match('~GRANT (.*) ON (.*) TO ~', $L[0], $C) && preg_match_all('~ *([^(,]*[^ ,(])( *\\([^)]+\\))?~', $C[1], $rd, PREG_SET_ORDER)) {foreach ($rd as $X) {
-			if ($X[1] != "USAGE") {
-				$yc["$C[2]$X[2]"][$X[1]] = true;
+		while ($L = $J->fetch_row()) {
+			if (preg_match('~GRANT (.*) ON (.*) TO ~', $L[0], $C) && preg_match_all('~ *([^(,]*[^ ,(])( *\\([^)]+\\))?~', $C[1], $rd, PREG_SET_ORDER)) {foreach ($rd as $X) {
+				if ($X[1] != "USAGE") {
+					$yc["$C[2]$X[2]"][$X[1]] = true;
+				}
+				if (preg_match('~ WITH GRANT OPTION~', $L[0])) {
+					$yc["$C[2]$X[2]"]["GRANT OPTION"] = true;
+				}
+			}}if (preg_match("~ IDENTIFIED BY PASSWORD '([^']+)~", $L[0], $C)) {
+				$Sd = $C[1];
 			}
-			if (preg_match('~ WITH GRANT OPTION~', $L[0])) {
-				$yc["$C[2]$X[2]"]["GRANT OPTION"] = true;
-			}
-		}}if (preg_match("~ IDENTIFIED BY PASSWORD '([^']+)~", $L[0], $C)) {
-			$Sd = $C[1];
-		}
 		}}if ($_POST && !$k) {
 		$Td = (isset($_GET["host"]) ? q($fa) . "@" . q($_GET["host"]) : "''");if ($_POST["drop"]) {
 			query_redirect("DROP USER $Td", ME . "privileges=", 'User has been dropped.');
@@ -3118,7 +3215,8 @@ ON DELETE: ', html_select("on_delete", array(-1 => "") + explode("|", $Vd), $L["
 				$ve = $e->result("SELECT PASSWORD(" . q($ve) . ")");
 				$k = !$ve;}
 			$lb = false;if (!$k) {
-				if ($Td != $Jd) {$lb = queries(($e->server_info < 5 ? "GRANT USAGE ON *.* TO" : "CREATE USER") . " $Jd IDENTIFIED BY PASSWORD " . q($ve));
+				if ($Td != $Jd) {
+					$lb = queries(($e->server_info < 5 ? "GRANT USAGE ON *.* TO" : "CREATE USER") . " $Jd IDENTIFIED BY PASSWORD " . q($ve));
 					$k = !$lb;} elseif ($ve != $Sd) {
 					queries("SET PASSWORD FOR $Jd = " . q($ve));
 				}
@@ -3172,7 +3270,8 @@ ON DELETE: ', html_select("on_delete", array(-1 => "") + explode("|", $Vd), $L["
 		echo '<th>' . ($Nd != "*.*" ? "<input name='objects[$t]' value='" . h($Nd) . "' size='10' autocapitalize='off'>" : "<input type='hidden' name='objects[$t]' value='*.*' size='10'>*.*");
 		$t++;}
 	echo "</thead>\n";foreach (array("" => "", "Server Admin" => 'Server', "Databases" => 'Database', "Tables" => 'Table', "Columns" => 'Column', "Procedures" => 'Routine') as $hb => $xb) {
-		foreach ((array) $Le[$hb] as $Ke => $bb) {echo "<tr" . odd() . "><td" . ($xb ? ">$xb<td" : " colspan='2'") . ' lang="en" title="' . h($bb) . '">' . h($Ke);
+		foreach ((array) $Le[$hb] as $Ke => $bb) {
+			echo "<tr" . odd() . "><td" . ($xb ? ">$xb<td" : " colspan='2'") . ' lang="en" title="' . h($bb) . '">' . h($Ke);
 			$t = 0;foreach ($yc as $Nd => $r) {
 				$F = "'grants[$t][" . h(strtoupper($Ke)) . "]'";
 				$Y = $r[strtoupper($Ke)];if ($hb == "Server Admin" && $Nd != (isset($yc["*.*"]) ? "*.*" : ".*")) {
@@ -3190,10 +3289,11 @@ ON DELETE: ', html_select("on_delete", array(-1 => "") + explode("|", $Vd), $L["
 	echo '<input type="hidden" name="token" value="', $T, '">
 </form>
 ';} elseif (isset($_GET["processlist"])) {
-	if (support("kill") && $_POST && !$k) {$cd = 0;foreach ((array) $_POST["kill"] as $X) {if (queries("KILL " . number($X))) {
-		$cd++;
-	}
-	}
+	if (support("kill") && $_POST && !$k) {
+		$cd = 0;foreach ((array) $_POST["kill"] as $X) {if (queries("KILL " . number($X))) {
+			$cd++;
+		}
+		}
 		queries_redirect(ME . "processlist=", lang(array('%d process has been killed.', '%d processes have been killed.'), $cd), $cd || !$_POST["kill"]);}
 	page_header('Process list', $k);
 	echo '
@@ -3201,9 +3301,10 @@ ON DELETE: ', html_select("on_delete", array(-1 => "") + explode("|", $Vd), $L["
 <table cellspacing="0" onclick="tableClick(event);" ondblclick="tableClick(event, true);" class="nowrap checkable">
 ';
 	$t = -1;foreach (process_list() as $t => $L) {
-		if (!$t) {echo "<thead><tr lang='en'>" . (support("kill") ? "<th>&nbsp;" : "");foreach ($L as $z => $X) {
-			echo "<th>$z" . doc_link(array('sql' => "show-processlist.html#processlist_" . strtolower($z), 'pgsql' => "monitoring-stats.html#PG-STAT-ACTIVITY-VIEW", 'oracle' => "../b14237/dynviews_2088.htm"));
-		}
+		if (!$t) {
+			echo "<thead><tr lang='en'>" . (support("kill") ? "<th>&nbsp;" : "");foreach ($L as $z => $X) {
+				echo "<th>$z" . doc_link(array('sql' => "show-processlist.html#processlist_" . strtolower($z), 'pgsql' => "monitoring-stats.html#PG-STAT-ACTIVITY-VIEW", 'oracle' => "../b14237/dynviews_2088.htm"));
+			}
 
 			echo "</thead>\n";}
 		echo "<tr" . odd() . ">" . (support("kill") ? "<td>" . checkbox("kill[]", $L["Id"], 0) : "");foreach ($L as $z => $X) {
@@ -3230,9 +3331,10 @@ ON DELETE: ', html_select("on_delete", array(-1 => "") + explode("|", $Vd), $L["
 	$gf = array();
 	$d = array();
 	$ag = null;foreach ($m as $z => $l) {
-		$F = $b->fieldName($l);if (isset($l["privileges"]["select"]) && $F != "") {$d[$z] = html_entity_decode(strip_tags($F), ENT_QUOTES);if (is_shortable($l)) {
-			$ag = $b->selectLengthProcess();
-		}
+		$F = $b->fieldName($l);if (isset($l["privileges"]["select"]) && $F != "") {
+			$d[$z] = html_entity_decode(strip_tags($F), ENT_QUOTES);if (is_shortable($l)) {
+				$ag = $b->selectLengthProcess();
+			}
 		}
 		$gf += $l["privileges"];}
 	list($N, $s) = $b->selectColumnsProcess($d, $w);
@@ -3242,7 +3344,8 @@ ON DELETE: ', html_select("on_delete", array(-1 => "") + explode("|", $Vd), $L["
 	$_ = $b->selectLimitProcess();
 	$wc = ($N ? implode(", ", $N) : "*" . ($Pd ? ", $Pd" : "")) . convert_fields($d, $m, $N) . "\nFROM " . table($a);
 	$zc = ($s && $Vc ? "\nGROUP BY " . implode(", ", $s) : "") . ($de ? "\nORDER BY " . implode(", ", $de) : "");if ($_GET["val"] && is_ajax()) {
-		header("Content-Type: text/plain; charset=utf-8");foreach ($_GET["val"] as $xg => $L) {$ua = convert_field($m[key($L)]);
+		header("Content-Type: text/plain; charset=utf-8");foreach ($_GET["val"] as $xg => $L) {
+			$ua = convert_field($m[key($L)]);
 			$N = array($ua ? $ua : idf_escape(key($L)));
 			$Z[] = where_check($xg, $m);
 			$K = $j->select($a, $N, $Z, $N);if ($K) {
@@ -3251,14 +3354,16 @@ ON DELETE: ', html_select("on_delete", array(-1 => "") + explode("|", $Vd), $L["
 			}
 		}
 		exit;}if ($_POST && !$k) {
-		$Pg = $Z;if (!$_POST["all"] && is_array($_POST["check"])) {$Oa = array();foreach ($_POST["check"] as $Ma) {
-			$Oa[] = where_check($Ma, $m);
-		}
+		$Pg = $Z;if (!$_POST["all"] && is_array($_POST["check"])) {
+			$Oa = array();foreach ($_POST["check"] as $Ma) {
+				$Oa[] = where_check($Ma, $m);
+			}
 
 			$Pg[] = "((" . implode(") OR (", $Oa) . "))";}
 		$Pg = ($Pg ? "\nWHERE " . implode(" AND ", $Pg) : "");
 		$He = $zg = null;foreach ($w as $v) {
-			if ($v["type"] == "PRIMARY") {$He = array_flip($v["columns"]);
+			if ($v["type"] == "PRIMARY") {
+				$He = array_flip($v["columns"]);
 				$zg = ($N ? $He : array());
 				break;}}
 		foreach ((array) $zg as $z => $X) {
@@ -3277,7 +3382,8 @@ ON DELETE: ', html_select("on_delete", array(-1 => "") + explode("|", $Vd), $L["
 
 				$I = implode(" UNION ALL ", $vg);}
 			$b->dumpData($a, "table", $I);exit;}if (!$b->selectEmailProcess($Z, $o)) {
-			if ($_POST["save"] || $_POST["delete"]) {$J = true;
+			if ($_POST["save"] || $_POST["delete"]) {
+				$J = true;
 				$na = 0;
 				$P = array();if (!$_POST["delete"]) {
 					foreach ($d as $F => $X) {
@@ -3291,7 +3397,8 @@ ON DELETE: ', html_select("on_delete", array(-1 => "") + explode("|", $Vd), $L["
 					if ($_POST["all"] || ($zg === array() && is_array($_POST["check"])) || $Vc) {
 						$J = ($_POST["delete"] ? $j->delete($a, $Pg) : ($_POST["clone"] ? queries("INSERT $I$Pg") : $j->update($a, $P, $Pg)));
 						$na = $e->affected_rows;} else {
-						foreach ((array) $_POST["check"] as $X) {$Og = "\nWHERE " . ($Z ? implode(" AND ", $Z) . " AND " : "") . where_check($X, $m);
+						foreach ((array) $_POST["check"] as $X) {
+							$Og = "\nWHERE " . ($Z ? implode(" AND ", $Z) . " AND " : "") . where_check($X, $m);
 							$J = ($_POST["delete"] ? $j->delete($a, $Og, 1) : ($_POST["clone"] ? queries("INSERT" . limit1($I, $Og)) : $j->update($a, $P, $Og)));if (!$J) {
 								break;
 							}
@@ -3331,7 +3438,8 @@ ON DELETE: ', html_select("on_delete", array(-1 => "") + explode("|", $Vd), $L["
 				$j->begin();
 				$sf = ($_POST["separator"] == "csv" ? "," : ($_POST["separator"] == "tsv" ? "\t" : ";"));
 				$M = array();foreach ($rd[0] as $z => $X) {
-					preg_match_all("~((?>\"[^\"]*\")+|[^$sf]*)$sf~", $X . $sf, $sd);if (!$z && !array_diff($sd[1], $Ya)) {$Ya = $sd[1];
+					preg_match_all("~((?>\"[^\"]*\")+|[^$sf]*)$sf~", $X . $sf, $sd);if (!$z && !array_diff($sd[1], $Ya)) {
+						$Ya = $sd[1];
 						$na--;} else {
 						$P = array();foreach ($sd[1] as $t => $Ua) {
 							$P[idf_escape($Ya[$t])] = ($Ua == "" && $m[$Ya[$t]]["null"] ? "NULL" : q(str_replace('""', '"', preg_replace('~^"|"$~', '', $Ua))));
@@ -3351,9 +3459,10 @@ ON DELETE: ', html_select("on_delete", array(-1 => "") + explode("|", $Vd), $L["
 	}
 
 	$P = null;if (isset($gf["insert"]) || !support("table")) {
-		$P = "";foreach ((array) $_GET["where"] as $X) {if (count($o[$X["col"]]) == 1 && ($X["op"] == "=" || (!$X["op"] && !preg_match('~[_%]~', $X["val"])))) {
-			$P .= "&set" . urlencode("[" . bracket_escape($X["col"]) . "]") . "=" . urlencode($X["val"]);
-		}
+		$P = "";foreach ((array) $_GET["where"] as $X) {
+			if (count($o[$X["col"]]) == 1 && ($X["op"] == "=" || (!$X["op"] && !preg_match('~[_%]~', $X["val"])))) {
+				$P .= "&set" . urlencode("[" . bracket_escape($X["col"]) . "]") . "=" . urlencode($X["val"]);
+			}
 		}}
 	$b->selectLinks($R, $P);if (!$d && support("table")) {
 		echo "<p class='error'>" . 'Unable to select the table' . ($m ? "." : ": " . error()) . "\n";
@@ -3407,7 +3516,8 @@ ON DELETE: ', html_select("on_delete", array(-1 => "") + explode("|", $Vd), $L["
 				$xc = array();
 				reset($N);
 				$Te = 1;foreach ($M[0] as $z => $X) {
-					if ($z != $Pd) {$X = $_GET["columns"][key($N)];
+					if ($z != $Pd) {
+						$X = $_GET["columns"][key($N)];
 						$l = $m[$N ? ($X ? $X["col"] : current($N)) : $z];
 						$F = ($l ? $b->fieldName($l, $Te) : ($X["fun"] ? "*" : $z));if ($F != "") {
 							$Te++;
@@ -3438,32 +3548,36 @@ ON DELETE: ', html_select("on_delete", array(-1 => "") + explode("|", $Vd), $L["
 
 					ob_end_clean();}
 				foreach ($b->rowDescriptions($M, $o) as $E => $L) {
-					$wg = unique_array($M[$E], $w);if (!$wg) {$wg = array();foreach ($M[$E] as $z => $X) {if (!preg_match('~^(COUNT\\((\\*|(DISTINCT )?`(?:[^`]|``)+`)\\)|(AVG|GROUP_CONCAT|MAX|MIN|SUM)\\(`(?:[^`]|``)+`\\))$~', $z)) {
-						$wg[$z] = $X;
-					}
-					}}
+					$wg = unique_array($M[$E], $w);if (!$wg) {
+						$wg = array();foreach ($M[$E] as $z => $X) {if (!preg_match('~^(COUNT\\((\\*|(DISTINCT )?`(?:[^`]|``)+`)\\)|(AVG|GROUP_CONCAT|MAX|MIN|SUM)\\(`(?:[^`]|``)+`\\))$~', $z)) {
+							$wg[$z] = $X;
+						}
+						}}
 					$xg = "";foreach ($wg as $z => $X) {
-						if (($y == "sql" || $y == "pgsql") && strlen($X) > 64) {$z = (strpos($z, '(') ? $z : idf_escape($z));
+						if (($y == "sql" || $y == "pgsql") && strlen($X) > 64) {
+							$z = (strpos($z, '(') ? $z : idf_escape($z));
 							$z = "MD5(" . ($y == 'sql' && preg_match("~^utf8_~", $m[$z]["collation"]) ? $z : "CONVERT($z USING " . charset($e) . ")") . ")";
 							$X = md5($X);}
 						$xg .= "&" . ($X !== null ? urlencode("where[" . bracket_escape($z) . "]") . "=" . urlencode($X) : "null%5B%5D=" . urlencode($z));}
 					echo "<tr" . odd() . ">" . (!$s && $N ? "" : "<td>" . checkbox("check[]", substr($xg, 1), in_array(substr($xg, 1), (array) $_POST["check"]), "", "this.form['all'].checked = false; formUncheck('all-page');") . ($Vc || information_schema(DB) ? "" : " <a href='" . h(ME . "edit=" . urlencode($a) . $xg) . "'>" . 'edit' . "</a>"));foreach ($L as $z => $X) {
-						if (isset($Gd[$z])) {$l = $m[$z];if ($X != "" && (!isset($Rb[$z]) || $Rb[$z] != "")) {
-							$Rb[$z] = (is_mail($X) ? $Gd[$z] : "");
-						}
+						if (isset($Gd[$z])) {
+							$l = $m[$z];if ($X != "" && (!isset($Rb[$z]) || $Rb[$z] != "")) {
+								$Rb[$z] = (is_mail($X) ? $Gd[$z] : "");
+							}
 
 							$A = "";if (preg_match('~blob|bytea|raw|file~', $l["type"]) && $X != "") {
 								$A = ME . 'download=' . urlencode($a) . '&field=' . urlencode($z) . $xg;
 							}
 							if (!$A && $X !== null) {
-								foreach ((array) $o[$z] as $n) {if (count($o[$z]) == 1 || end($n["source"]) == $z) {$A = "";foreach ($n["source"] as $t => $_f) {
-									$A .= where_link($t, $n["target"][$t], $M[$E][$_f]);
-								}
-
-									$A = ($n["db"] != "" ? preg_replace('~([?&]db=)[^&]+~', '\\1' . urlencode($n["db"]), ME) : ME) . 'select=' . urlencode($n["table"]) . $A;if (count($n["source"]) == 1) {
-										break;
+								foreach ((array) $o[$z] as $n) {
+									if (count($o[$z]) == 1 || end($n["source"]) == $z) {$A = "";foreach ($n["source"] as $t => $_f) {
+										$A .= where_link($t, $n["target"][$t], $M[$E][$_f]);
 									}
-								}}}if ($z == "COUNT(*)") {
+
+										$A = ($n["db"] != "" ? preg_replace('~([?&]db=)[^&]+~', '\\1' . urlencode($n["db"]), ME) : ME) . 'select=' . urlencode($n["table"]) . $A;if (count($n["source"]) == 1) {
+											break;
+										}
+									}}}if ($z == "COUNT(*)") {
 								$A = ME . "select=" . urlencode($a);
 								$t = 0;foreach ((array) $_GET["where"] as $W) {
 									if (!array_key_exists($W["col"], $wg)) {
@@ -3492,15 +3606,16 @@ ON DELETE: ', html_select("on_delete", array(-1 => "") + explode("|", $Vd), $L["
 				}
 
 				echo "</table>\n";}if (($M || $G) && !is_ajax()) {
-				$bc = true;if ($_GET["page"] != "last") {if (!+$_) {
-					$vc = count($M);
-				} elseif ($y != "sql" || !$Vc) {
-					$vc = ($Vc ? false : found_rows($R, $Z));if ($vc < max(1e4, 2 * ($G + 1) * $_)) {
-						$vc = reset(slow_query(count_rows($a, $Z, $Vc, $s)));
-					} else {
-						$bc = false;
-					}
-				}}if (+$_ && ($vc === false || $vc > $_ || $G)) {
+				$bc = true;if ($_GET["page"] != "last") {
+					if (!+$_) {
+						$vc = count($M);
+					} elseif ($y != "sql" || !$Vc) {
+						$vc = ($Vc ? false : found_rows($R, $Z));if ($vc < max(1e4, 2 * ($G + 1) * $_)) {
+							$vc = reset(slow_query(count_rows($a, $Z, $Vc, $s)));
+						} else {
+							$bc = false;
+						}
+					}}if (+$_ && ($vc === false || $vc > $_ || $G)) {
 					echo "<p class='pages'>";
 					$ud = ($vc === false ? $G + (count($M) >= $_ ? 2 : 1) : floor(($vc - 1) / $_));if ($y != "simpledb") {
 						echo '<a href="' . h(remove_from_uri("page")) . "\" onclick=\"pageClick(this.href, +prompt('" . 'Page' . "', '" . ($G + 1) . "'), event); return false;\">" . 'Page' . "</a>:", pagination(0, $G) . ($G > 5 ? " ..." : "");for ($t = max(1, $G - 4); $t < min($ud, $G + 5); $t++) {
@@ -3522,7 +3637,8 @@ ON DELETE: ', html_select("on_delete", array(-1 => "") + explode("|", $Vd), $L["
 </div></fieldset>
 ';}
 				$tc = $b->dumpFormat();foreach ((array) $_GET["columns"] as $c) {
-					if ($c["fun"]) {unset($tc['sql']);
+					if ($c["fun"]) {
+						unset($tc['sql']);
 						break;}}if ($tc) {
 					print_fieldset("export", 'Export' . " <span id='selected2'></span>");
 					$me = $b->dumpOutput();
@@ -3540,18 +3656,20 @@ ON DELETE: ', html_select("on_delete", array(-1 => "") + explode("|", $Vd), $L["
 	} else {
 		echo "<table cellspacing='0'>\n";foreach ($Ig as $z => $X) {echo "<tr>", "<th><code class='jush-" . $y . ($Df ? "status" : "set") . "'>" . h($z) . "</code>", "<td>" . nbsp($X);}
 		echo "</table>\n";}} elseif (isset($_GET["script"])) {
-	header("Content-Type: text/javascript; charset=utf-8");if ($_GET["script"] == "db") {$Mf = array("Data_length" => 0, "Index_length" => 0, "Data_free" => 0);foreach (table_status() as $F => $R) {json_row("Comment-$F", nbsp($R["Comment"]));if (!is_view($R)) {foreach (array("Engine", "Collation") as $z) {
-		json_row("$z-$F", nbsp($R[$z]));
-	}
-		foreach ($Mf + array("Auto_increment" => 0, "Rows" => 0) as $z => $X) {
-			if ($R[$z] != "") {$X = format_number($R[$z]);
-				json_row("$z-$F", ($z == "Rows" && $X && $R["Engine"] == ($Bf == "pgsql" ? "table" : "InnoDB") ? "~ $X" : $X));if (isset($Mf[$z])) {
-					$Mf[$z] += ($R["Engine"] != "InnoDB" || $z != "Data_free" ? $R[$z] : 0);
+	header("Content-Type: text/javascript; charset=utf-8");if ($_GET["script"] == "db") {
+		$Mf = array("Data_length" => 0, "Index_length" => 0, "Data_free" => 0);foreach (table_status() as $F => $R) {json_row("Comment-$F", nbsp($R["Comment"]));if (!is_view($R)) {foreach (array("Engine", "Collation") as $z) {
+			json_row("$z-$F", nbsp($R[$z]));
+		}
+			foreach ($Mf + array("Auto_increment" => 0, "Rows" => 0) as $z => $X) {
+				if ($R[$z] != "") {
+					$X = format_number($R[$z]);
+					json_row("$z-$F", ($z == "Rows" && $X && $R["Engine"] == ($Bf == "pgsql" ? "table" : "InnoDB") ? "~ $X" : $X));if (isset($Mf[$z])) {
+						$Mf[$z] += ($R["Engine"] != "InnoDB" || $z != "Data_free" ? $R[$z] : 0);
+					}
+				} elseif (array_key_exists($z, $R)) {
+					json_row("$z-$F");
 				}
-			} elseif (array_key_exists($z, $R)) {
-				json_row("$z-$F");
-			}
-		}}}
+			}}}
 		foreach ($Mf as $z => $X) {
 			json_row("sum-$z", format_number($X));
 		}
@@ -3559,11 +3677,13 @@ ON DELETE: ', html_select("on_delete", array(-1 => "") + explode("|", $Vd), $L["
 		json_row("");} elseif ($_GET["script"] == "kill") {
 		$e->query("KILL " . number($_POST["kill"]));
 	} else {
-		foreach (count_tables($b->databases()) as $i => $X) {json_row("tables-$i", $X);
+		foreach (count_tables($b->databases()) as $i => $X) {
+			json_row("tables-$i", $X);
 			json_row("size-$i", db_size($i));}
 		json_row("");}
 	exit;} else {
-	$Uf = array_merge((array) $_POST["tables"], (array) $_POST["views"]);if ($Uf && !$k && !$_POST["search"]) {$J = true;
+	$Uf = array_merge((array) $_POST["tables"], (array) $_POST["views"]);if ($Uf && !$k && !$_POST["search"]) {
+		$J = true;
 		$D = "";if ($y == "sql" && count($_POST["tables"]) > 1 && ($_POST["drop"] || $_POST["truncate"] || $_POST["copy"])) {
 			queries("SET foreign_key_checks = 0");
 		}
@@ -3595,13 +3715,15 @@ ON DELETE: ', html_select("on_delete", array(-1 => "") + explode("|", $Vd), $L["
 		}
 		queries_redirect(substr(ME, 0, -1), $D, $J);}
 	page_header(($_GET["ns"] == "" ? 'Database' . ": " . h(DB) : 'Schema' . ": " . h($_GET["ns"])), $k, true);if ($b->homepage()) {
-		if ($_GET["ns"] !== "") {echo "<h3 id='tables-views'>" . 'Tables and views' . "</h3>\n";
+		if ($_GET["ns"] !== "") {
+			echo "<h3 id='tables-views'>" . 'Tables and views' . "</h3>\n";
 			$Tf = tables_list();if (!$Tf) {
 				echo "<p class='message'>" . 'No tables.' . "\n";
 			} else {
-				echo "<form action='' method='post'>\n";if (support("table")) {echo "<fieldset><legend>" . 'Search data in tables' . " <span id='selected2'></span></legend><div>", "<input type='search' name='query' value='" . h($_POST["query"]) . "'> <input type='submit' name='search' value='" . 'Search' . "'>\n", "</div></fieldset>\n";if ($_POST["search"] && $_POST["query"] != "") {
-					search_tables();
-				}
+				echo "<form action='' method='post'>\n";if (support("table")) {
+					echo "<fieldset><legend>" . 'Search data in tables' . " <span id='selected2'></span></legend><div>", "<input type='search' name='query' value='" . h($_POST["query"]) . "'> <input type='submit' name='search' value='" . 'Search' . "'>\n", "</div></fieldset>\n";if ($_POST["search"] && $_POST["query"] != "") {
+						search_tables();
+					}
 				}
 				echo "<table cellspacing='0' class='nowrap checkable' onclick='tableClick(event);' ondblclick='tableClick(event, true);'>\n", '<thead><tr class="wrap"><td><input id="check-all" type="checkbox" onclick="formCheck(this, /^(tables|views)\[/);">';
 				$Cb = doc_link(array('sql' => 'show-table-status.html'));
@@ -3609,7 +3731,8 @@ ON DELETE: ', html_select("on_delete", array(-1 => "") + explode("|", $Vd), $L["
 				$S = 0;foreach ($Tf as $F => $U) {
 					$Kg = ($U !== null && !preg_match('~table~i', $U));
 					echo '<tr' . odd() . '><td>' . checkbox(($Kg ? "views[]" : "tables[]"), $F, in_array($F, $Uf, true), "", "formUncheck('check-all');"), '<th>' . (support("table") || support("indexes") ? '<a href="' . h(ME) . 'table=' . urlencode($F) . '" title="' . 'Show structure' . '">' . h($F) . '</a>' : h($F));if ($Kg) {echo '<td colspan="6"><a href="' . h(ME) . "view=" . urlencode($F) . '" title="' . 'Alter view' . '">' . (preg_match('~materialized~i', $U) ? 'Materialized View' : 'View') . '</a>', '<td align="right"><a href="' . h(ME) . "select=" . urlencode($F) . '" title="' . 'Select data' . '">?</a>';} else {
-						foreach (array("Engine" => array(), "Collation" => array(), "Data_length" => array("create", 'Alter table'), "Index_length" => array("indexes", 'Alter indexes'), "Data_free" => array("edit", 'New item'), "Auto_increment" => array("auto_increment=1&create", 'Alter table'), "Rows" => array("select", 'Select data')) as $z => $A) {$u = " id='$z-" . h($F) . "'";
+						foreach (array("Engine" => array(), "Collation" => array(), "Data_length" => array("create", 'Alter table'), "Index_length" => array("indexes", 'Alter indexes'), "Data_free" => array("edit", 'New item'), "Auto_increment" => array("auto_increment=1&create", 'Alter table'), "Rows" => array("select", 'Select data')) as $z => $A) {
+							$u = " id='$z-" . h($F) . "'";
 							echo ($A ? "<td align='right'>" . (support("table") || $z == "Rows" || (support("indexes") && $z != "Data_length") ? "<a href='" . h(ME . "$A[0]=") . urlencode($F) . "'$u title='$A[1]'>?</a>" : "<span$u>?</span>") : "<td id='$z-" . h($F) . "'>&nbsp;");}
 						$S++;}
 					echo (support("comment") ? "<td id='Comment-" . h($F) . "'>&nbsp;" : "");}
