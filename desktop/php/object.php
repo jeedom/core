@@ -32,23 +32,21 @@ foreach ($allObject as $object) {
  <div class="col-lg-10 col-md-10 col-sm-9" id="div_resumeObjectList" style="border-left: solid 1px #EEE; padding-left: 25px;">
    <legend><i class="fa fa-picture-o"></i>  {{Mes objets}}</legend>
    <div class="objectListContainer">
-     <div class="cursor" id="bt_addObject2" style="background-color : #ffffff; height : 160px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-       <br/>
-       <center style='margin-top:-14px;'>
-         <i class="fa fa-plus-circle" style="font-size : 6em;color:#94ca02;margin-top:5px;"></i>
-       </center>
-       <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>Ajouter</center></span>
+     <div class="cursor" id="bt_addObject2" style="text-align: center; background-color : #ffffff; height : 160px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+       <i class="fa fa-plus-circle" style="font-size : 6em;color:#94ca02;margin-top:5px;"></i>
+       <br>
+       <span style="text-align: center; font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02">Ajouter</span>
      </div>
      <?php
 foreach ($allObject as $object) {
-	echo '<div class="objectDisplayCard cursor" data-object_id="' . $object->getId() . '" data-object_name="' . $object->getName() . '" data-object_icon=\'' . $object->getDisplay('icon', '<i class="fa fa-lemon-o"></i>') . '\' style="background-color : #ffffff; height : 160px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
-	echo "<center style='margin-top:10px;'>";
+	echo '<div class="objectDisplayCard cursor" data-object_id="' . $object->getId() . '" data-object_name="' . $object->getName() . '" data-object_icon=\'' . $object->getDisplay('icon', '<i class="fa fa-lemon-o"></i>') . '\' style="text-align: center; background-color : #ffffff; height : 160px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 	echo str_replace('></i>', ' style="font-size : 6em;color:#767676;"></i>', $object->getDisplay('icon', '<i class="fa fa-lemon-o"></i>'));
-	echo "</center>";
-	echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $object->getName() . '</center></span><br/>';
-	echo '<center style="font-size :0.7em">';
+	echo '<br>';
+	echo '<span style="text-align: center;font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $object->getName() . '</span>';
+	echo '<br>';
+	echo '<div style="text-align: center; font-size : 0.7em; position : relative; top : 15px;">';
 	echo $object->getHtmlSummary();
-	echo "</center>";
+	echo '<div>';
 	echo '</div>';
 }
 ?>
