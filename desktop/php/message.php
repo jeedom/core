@@ -34,7 +34,7 @@ foreach (message::listPlugin() as $plugin) {
         <?php
 foreach ($listMessage as $message) {
 	echo '<tr data-message_id="' . $message->getId() . '">';
-	echo '<td style = "text-align : center;" ><i class="fa fa-trash-o cursor removeMessage"></i></td>';
+	echo '<td><center><i class="fa fa-trash-o cursor removeMessage"></i></center></td>';
 	echo '<td class="datetime">' . $message->getDate() . '</td>';
 	echo '<td class="plugin">' . $message->getPlugin() . '</td>';
 	echo '<td class="message">' . html_entity_decode($message->getMessage()) . '</td>';
