@@ -1561,9 +1561,11 @@ class cmd {
 
 	public function getOrder() {
 		if ($this->order == '') {
-			return 0;
+		    $return = 0;
+		} else {
+		    $return = $this->order;
 		}
-		return $this->order;
+		return $return;
 	}
 
 	public function setOrder($order) {
@@ -1599,4 +1601,3 @@ class cmd {
 
 }
 
-?>
