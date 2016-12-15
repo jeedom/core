@@ -24,7 +24,7 @@ else
 	/root/install.sh -h 1 -s 7 >> /var/www/html/index.html
 	/root/install.sh -h 1 -s 10 >> /var/www/html/index.html
 	rm -rf /var/www/html/index.html
-	
+	chmod 777 -R /tmp
 fi
 
 echo 'All init complete'
