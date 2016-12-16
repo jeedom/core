@@ -64,12 +64,15 @@ RUN docker-php-ext-install pcntl
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
 RUN docker-php-ext-install gd
 RUN docker-php-ext-install calendar
+RUN pecl install redis
+RUN docker-php-ext-enable redis
 
 RUN rm /usr/bin/php
 RUN ln -s /usr/local/bin/php /usr/bin/php
 RUN echo "max_execution_time = 600" > /usr/local/etc/php/php.ini
 RUN echo "upload_max_filesize = 1G" >> /usr/local/etc/php/php.ini
 RUN echo "post_max_size = 1G" >> /usr/local/etc/php/php.ini
+
 
 ####################################################################SYSTEM#######################################################################################
 
