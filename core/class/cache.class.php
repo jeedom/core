@@ -50,7 +50,7 @@ class cache {
 		if (self::$cache !== null) {
 			return self::$cache;
 		}
-		$engine = \config::byKey('cache::engine');
+		$engine = config::byKey('cache::engine');
 		if ($engine == 'MemcachedCache' && !class_exists('memcached')) {
 			$engine = 'FilesystemCache';
 			config::save('cache::engine', 'FilesystemCache');
