@@ -84,6 +84,13 @@ RUN rm /root/.bashrc
 ADD install/bashrc /root/.bashrc
 ADD install/OS_specific/Docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
+ADD install/install.sh /root/install_docker.sh
+RUN /root/install_docker.sh -s 1;exit 0
+RUN /root/install_docker.sh -s 2;exit 0
+RUN /root/install_docker.sh -s 7;exit 0
+RUN /root/install_docker.sh -s 10;exit 0
+RUN (echo "* * * * * su --shell=/bin/bash - www-data -c '/usr/local/bin/php  /var/www/html/core/php/jeeCron.php' >> /dev/null"; crontab -l | grep -v "jeedom" | grep -v "jeeCron") | crontab -
+
 ADD install/OS_specific/Docker/init.sh /root/init.sh
 RUN chmod +x /root/init.sh
 CMD ["/root/init.sh"]

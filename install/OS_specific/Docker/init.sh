@@ -10,32 +10,17 @@ fi
 
 if [ -f /var/www/html/core/config/common.config.php ]; then
 	echo 'Jeedom is already install'
-	echo 'Start jeedom installation'
-	rm -rf /root/install.sh
-	wget https://raw.githubusercontent.com/jeedom/core/stable/install/install.sh -O /root/install.sh
-	chmod +x /root/install.sh
-	/root/install.sh -s 1
-	/root/install.sh -s 2
-	/root/install.sh -s 7
-	/root/install.sh -s 10
-	(echo "* * * * * su --shell=/bin/bash - www-data -c '/usr/local/bin/php  /var/www/html/core/php/jeeCron.php' >> /dev/null"; crontab -l | grep -v "jeedom" | grep -v "jeeCron") | crontab -
-	chmod 777 -R /tmp
 else
 	echo 'Start jeedom installation'
 	rm -rf /root/install.sh
 	wget https://raw.githubusercontent.com/jeedom/core/stable/install/install.sh -O /root/install.sh
 	chmod +x /root/install.sh
-	/root/install.sh -s 1
-	/root/install.sh -s 2
 	/root/install.sh -s 6
-	/root/install.sh -s 7
-	/root/install.sh -s 10
-	(echo "* * * * * su --shell=/bin/bash - www-data -c '/usr/local/bin/php  /var/www/html/core/php/jeeCron.php' >> /dev/null"; crontab -l | grep -v "jeedom" | grep -v "jeeCron") | crontab -
-	chmod 777 -R /tmp
 fi
 
 echo 'All init complete'
 chmod 777 /dev/tty*
+chmod 777 -R /tmp
 chmod 755 -R /var/www/html
 chown -R www-data:www-data /var/www/html
 
