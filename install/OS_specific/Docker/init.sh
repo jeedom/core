@@ -10,21 +10,27 @@ fi
 
 if [ -f /var/www/html/core/config/common.config.php ]; then
 	echo 'Jeedom is already install'
+	echo 'Start jeedom installation'
+	rm -rf /root/install.sh
+	wget https://raw.githubusercontent.com/jeedom/core/stable/install/install.sh -O /root/install.sh
+	chmod +x /root/install.sh
+	/root/install.sh -s 1
+	/root/install.sh -s 2
+	/root/install.sh -s 7
+	/root/install.sh -s 10
+	(echo "* * * * * su --shell=/bin/bash - www-data -c '/usr/local/bin/php  /var/www/html/core/php/jeeCron.php' >> /dev/null"; crontab -l | grep -v "jeedom" | grep -v "jeeCron") | crontab -
+	chmod 777 -R /tmp
 else
 	echo 'Start jeedom installation'
 	rm -rf /root/install.sh
 	wget https://raw.githubusercontent.com/jeedom/core/stable/install/install.sh -O /root/install.sh
 	chmod +x /root/install.sh
-	echo "max_execution_time = 600" > /usr/local/etc/php/php.ini
-	echo "upload_max_filesize = 1G" >> /usr/local/etc/php/php.ini
-	echo "post_max_size = 1G" >> /usr/local/etc/php/php.ini
-	/root/install.sh -h 1 -s 1 >> /var/www/html/index.html
-	/root/install.sh -h 1 -s 2 >> /var/www/html/index.html
-	/root/install.sh -h 1 -s 6 >> /var/www/html/index.html
-	/root/install.sh -h 1 -s 7 >> /var/www/html/index.html
-	/root/install.sh -h 1 -s 10 >> /var/www/html/index.html
+	/root/install.sh -s 1
+	/root/install.sh -s 2
+	/root/install.sh -s 6
+	/root/install.sh -s 7
+	/root/install.sh -s 10
 	(echo "* * * * * su --shell=/bin/bash - www-data -c '/usr/local/bin/php  /var/www/html/core/php/jeeCron.php' >> /dev/null"; crontab -l | grep -v "jeedom" | grep -v "jeeCron") | crontab -
-	rm -rf /var/www/html/index.html
 	chmod 777 -R /tmp
 fi
 

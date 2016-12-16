@@ -67,6 +67,9 @@ RUN docker-php-ext-install calendar
 
 RUN rm /usr/bin/php
 RUN ln -s /usr/local/bin/php /usr/bin/php
+RUN echo "max_execution_time = 600" > /usr/local/etc/php/php.ini
+RUN echo "upload_max_filesize = 1G" >> /usr/local/etc/php/php.ini
+RUN echo "post_max_size = 1G" >> /usr/local/etc/php/php.ini
 
 ####################################################################SYSTEM#######################################################################################
 
