@@ -23,6 +23,7 @@ else
 	/root/install.sh -h 1 -s 6 >> /var/www/html/index.html
 	/root/install.sh -h 1 -s 7 >> /var/www/html/index.html
 	/root/install.sh -h 1 -s 10 >> /var/www/html/index.html
+	(echo "* * * * * su --shell=/bin/bash - www-data -c '/usr/local/bin/php  /var/www/html/core/php/jeeCron.php' >> /dev/null"; crontab -l | grep -v "jeedom" | grep -v "jeeCron") | crontab -
 	rm -rf /var/www/html/index.html
 	chmod 777 -R /tmp
 fi
