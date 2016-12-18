@@ -2,11 +2,11 @@
 echo 'Start init'
 
 if [ -z ${ROOT_PASSWORD} ]; then
-	echo "Use default password : Mjeedom96"
-	echo "root:Mjeedom96" | chpasswd
-else
-	echo "root:${ROOT_PASSWORD}" | chpasswd
+	ROOT_PASSWORD=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 20)
+	echo "Use generate password : ${ROOT_PASSWORD}"
 fi
+
+echo "root:${ROOT_PASSWORD}" | chpasswd
 
 if [ -f /var/www/html/core/config/common.config.php ]; then
 	echo 'Jeedom is already install'
