@@ -24,10 +24,4 @@ chmod 777 -R /tmp
 chmod 755 -R /var/www/html
 chown -R www-data:www-data /var/www/html
 
-echo 'Launch cron'
-service cron start
-
-echo 'Launch apache2'
-service apache2 start
-
 /usr/bin/supervisord
