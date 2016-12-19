@@ -236,10 +236,10 @@ class history {
 		$values = array(
 			'cmd_id' => $_cmd_id,
 		);
-		if ($_startTime != null) {
+		if ($_startTime !== null) {
 			$values['startTime'] = $_startTime;
 		}
-		if ($_endTime != null) {
+		if ($_endTime !== null) {
 			$values['endTime'] = $_endTime;
 		}
 
@@ -249,7 +249,7 @@ class history {
 			FROM history
 			WHERE cmd_id=:cmd_id ';
 
-		if ($_startTime != null) {
+		if ($_startTime !== null) {
 			$sql .= ' AND datetime>=:startTime';
 		}
 		if ($_endTime != null) {
@@ -259,10 +259,10 @@ class history {
 			SELECT ' . DB::buildField(__CLASS__) . '
 			FROM historyArch
 			WHERE cmd_id=:cmd_id';
-		if ($_startTime != null) {
+		if ($_startTime !== null) {
 			$sql .= ' AND `datetime`>=:startTime';
 		}
-		if ($_endTime != null) {
+		if ($_endTime !== null) {
 			$sql .= ' AND `datetime`<=:endTime';
 		}
 		$sql .= ' ) as dt
@@ -274,10 +274,10 @@ ORDER BY `datetime` ASC';
 		$values = array(
 			'cmd_id' => $_cmd_id,
 		);
-		if ($_startTime != null) {
+		if ($_startTime !== null) {
 			$values['startTime'] = $_startTime;
 		}
-		if ($_endTime != null) {
+		if ($_endTime !== null) {
 			$values['endTime'] = $_endTime;
 		}
 		switch ($_period) {
@@ -325,10 +325,10 @@ ORDER BY `datetime` ASC';
 		' . $select . '
 		FROM history
 		WHERE cmd_id=:cmd_id ';
-		if ($_startTime != null) {
+		if ($_startTime !== null) {
 			$sql .= ' AND datetime>=:startTime';
 		}
-		if ($_endTime != null) {
+		if ($_endTime !== null) {
 			$sql .= ' AND datetime<=:endTime';
 		}
 		$sql .= $groupBy;
@@ -336,10 +336,10 @@ ORDER BY `datetime` ASC';
 		' . $select . '
 		FROM historyArch
 		WHERE cmd_id=:cmd_id';
-		if ($_startTime != null) {
+		if ($_startTime !== null) {
 			$sql .= ' AND `datetime`>=:startTime';
 		}
-		if ($_endTime != null) {
+		if ($_endTime !== null) {
 			$sql .= ' AND `datetime`<=:endTime';
 		}
 		$sql .= $groupBy;
@@ -439,7 +439,7 @@ ORDER BY `datetime` ASC';
 		$values = array(
 			'cmd_id' => $_cmd_id,
 		);
-		if ($_value == null) {
+		if ($_value === null) {
 			$values['value'] = $cmd->execCmd();
 		} else {
 			$values['value'] = $_value;
@@ -489,7 +489,9 @@ LIMIT 1';
 ORDER BY  datetime DESC';
 		$histories = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
 
-		if ($_value == null) {$_value = $histories[0]['value'];}
+		if ($_value === null) {
+			$_value = $histories[0]['value'];
+		}
 		$duration = 0;
 		$stateChange = 0;
 		$lastDuration = 0;
@@ -497,9 +499,15 @@ ORDER BY  datetime DESC';
 		$lastDuration = strtotime($histories[0]['datetime']);
 
 		foreach ($histories as $history) {
-			if (round($lastValue, $_decimal) == $_value) {$duration = $duration + ($lastDuration - strtotime($history['datetime']));}
-			if ($lastValue != $history['value']) {$stateChange++;}
-			if ($stateChange > 1) {break;}
+			if (round($lastValue, $_decimal) == $_value) {
+				$duration = $duration + ($lastDuration - strtotime($history['datetime']));
+			}
+			if ($lastValue != $history['value']) {
+				$stateChange++;
+			}
+			if ($stateChange > 1) {
+				break;
+			}
 			$lastDuration = strtotime($history['datetime']);
 			$lastValue = $history['value'];
 		}
@@ -543,10 +551,19 @@ ORDER BY  datetime DESC';
 			throw new Exception(__('Commande introuvable : ', __FILE__) . $_cmd_id);
 		}
 
-		if ($_startTime == null) {$_dateTime = '';} else { $_dateTime = ' AND `datetime`>="' . $_startTime . '"';}
-		if ($_endTime == null) {$_dateTime .= ' AND `datetime`<="' . date('Y-m-d H:i:s') . '"';} else { $_dateTime .= ' AND `datetime`<="' . $_endTime . '"';}
+		if ($_startTime === null) {
+			$_dateTime = '';
+		} else { 
+			$_dateTime = ' AND `datetime`>="' . $_startTime . '"';
+		}
+		
+		if ($_endTime === null) {
+			$_dateTime .= ' AND `datetime`<="' . date('Y-m-d H:i:s') . '"';
+		} else {
+			$_dateTime .= ' AND `datetime`<="' . $_endTime . '"';
+		}
 
-		if ($_value == null and !is_numeric($_value)) {
+		if ($_value === null and !is_numeric($_value)) {
 			$_condition = '';
 		} else {
 			$_value = str_replace(',', '.', $_value);
@@ -674,7 +691,7 @@ ORDER BY  datetime DESC';
 	/*     * *********************Methode d'instance************************* */
 
 	public function save($_cmd = null, $_direct = false) {
-		if ($_cmd == null) {
+		if ($_cmd === null) {
 			$cmd = $this->getCmd();
 			if (!is_object($cmd)) {
 				self::emptyHistory($this->getCmd_id());
