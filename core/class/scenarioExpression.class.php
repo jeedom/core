@@ -66,7 +66,7 @@ class scenarioExpression {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM ' . __CLASS__ . '
         WHERE expression LIKE :expression';
-		if ($_options != null) {
+		if ($_options !== null) {
 			$values['options'] = '%' . $_options . '%';
 			if ($_and) {
 				$sql .= ' AND options LIKE :options';
