@@ -546,7 +546,7 @@ ORDER BY  datetime DESC';
 		if ($_startTime == null) {$_dateTime = '';} else { $_dateTime = ' AND `datetime`>="' . $_startTime . '"';}
 		if ($_endTime == null) {$_dateTime .= ' AND `datetime`<="' . date('Y-m-d H:i:s') . '"';} else { $_dateTime .= ' AND `datetime`<="' . $_endTime . '"';}
 
-		if ($_value == null and !is_numeric($_value)) {
+		if ($_value == null && !is_numeric($_value)) {
 			$_condition = '';
 		} else {
 			$_value = str_replace(',', '.', $_value);
