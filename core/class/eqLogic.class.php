@@ -95,7 +95,7 @@ class eqLogic {
 		$values = array();
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM eqLogic';
-		if ($_object_id == null) {
+		if ($_object_id === null) {
 			$sql .= ' WHERE object_id IS NULL';
 		} else {
 			$values['object_id'] = $_object_id;
@@ -107,11 +107,11 @@ class eqLogic {
 		if ($_onlyVisible) {
 			$sql .= ' AND isVisible = 1';
 		}
-		if ($_eqType_name != null) {
+		if ($_eqType_name !== null) {
 			$values['eqType_name'] = $_eqType_name;
 			$sql .= ' AND eqType_name=:eqType_name';
 		}
-		if ($_logicalId != null) {
+		if ($_logicalId !== null) {
 			$values['logicalId'] = $_logicalId;
 			$sql .= ' AND logicalId=:logicalId';
 		}
@@ -187,7 +187,7 @@ class eqLogic {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM eqLogic
         WHERE configuration LIKE :configuration';
-		if ($_type != null) {
+		if ($_type !== null) {
 			$values['eqType_name'] = $_type;
 			$sql .= ' AND eqType_name=:eqType_name ';
 		}
@@ -231,7 +231,7 @@ class eqLogic {
         FROM eqLogic el
         INNER JOIN cmd c ON c.eqLogic_id=el.id
         WHERE ';
-		if ($_object_id == null) {
+		if ($_object_id === null) {
 			$sql .= ' object_id IS NULL ';
 		} elseif ($_object_id != '') {
 			$values['object_id'] = $_object_id;
@@ -569,7 +569,7 @@ class eqLogic {
 				if (is_array($parameter['allow_displayType']) && !in_array($version, $parameter['allow_displayType'])) {
 					continue;
 				}
-				if ($parameter['allow_displayType'] == false) {
+				if ($parameter['allow_displayType'] === false) {
 					continue;
 				}
 				$default = '';
@@ -930,7 +930,7 @@ class eqLogic {
 	}
 
 	public function getObject() {
-		if ($this->_object == null) {
+		if ($this->_object === null) {
 			$this->setObject(object::byId($this->object_id));
 		}
 		return $this->_object;
@@ -960,7 +960,7 @@ class eqLogic {
 	}
 
 	public function getCmd($_type = null, $_logicalId = null, $_visible = null, $_multiple = false) {
-		if ($_logicalId != null) {
+		if ($_logicalId !== null) {
 			if (isset($this->_cmds[$_logicalId . '.' . $_multiple . '.' . $_type])) {
 				return $this->_cmds[$_logicalId . '.' . $_multiple . '.' . $_type];
 			}
@@ -975,7 +975,7 @@ class eqLogic {
 		} elseif (is_object($cmds)) {
 			$cmds->setEqLogic($this);
 		}
-		if ($_logicalId != null && is_object($cmds)) {
+		if ($_logicalId !== null && is_object($cmds)) {
 			$this->_cmds[$_logicalId . '.' . $_multiple . '.' . $_type] = $cmds;
 		}
 		return $cmds;
@@ -1064,7 +1064,7 @@ class eqLogic {
 
 	public function setTimeout($_timeout) {
 		if ($_timeout == '' || is_string($_timeout) || is_nan(intval($_timeout)) || $_timeout < 1) {
-			$_timeout == null;
+			$_timeout = null;
 		}
 		$this->timeout = $_timeout;
 		return $this;
@@ -1132,4 +1132,4 @@ class eqLogic {
 
 }
 
-?>
+
