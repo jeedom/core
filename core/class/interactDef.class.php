@@ -71,7 +71,7 @@ class interactDef {
 		$values = array();
 		$sql = 'SELECT DISTINCT(`group`)
         FROM interactDef';
-		if ($_group != null) {
+		if ($_group !== null) {
 			$values['group'] = '%' . $_group . '%';
 			$sql .= ' WHERE `group` LIKE :group';
 		}
