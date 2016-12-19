@@ -47,7 +47,7 @@ class interactQuery {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM interactQuery
         WHERE query=:query';
-		if ($_interactDef_id != null) {
+		if ($_interactDef_id !== null) {
 			$values['interactDef_id'] = $_interactDef_id;
 			$sql .= ' AND interactDef_id=:interactDef_id';
 		}
@@ -448,7 +448,7 @@ class interactQuery {
 					if (isset($action['options'])) {
 						$options = $action['options'];
 					}
-					if ($tags != null) {
+					if ($tags !== null) {
 						foreach ($options as &$option) {
 							$option = str_replace(array_keys($tags_replace), $tags_replace, $option);
 						}
