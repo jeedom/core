@@ -212,14 +212,12 @@ class user {
 
 	public static function isBan() {
 		$ip = getClientIp();
-
 		if ($ip == '') {
 			return false;
 		}
-
 		$whiteIps = explode(';', config::byKey('security::whiteips'));
-		if (count($whiteIps) > 0) {
-			foreach ($whiteips as $whiteip) {
+		if (config::byKey('security::whiteips') != '' && count($whiteIps) > 0) {
+			foreach ($whiteIps as $whiteip) {
 				if (netMatch($whiteip, $ip)) {
 					return false;
 				}
@@ -240,7 +238,7 @@ class user {
 			}
 		}
 		$values = $values_tmp;
-		if ($_SESSION['failed_count'] >= config::byKey('security::maxFailedLogin') && (strtotime('now') - config::byKey('security::timeLoginFailed')) < $_SESSION['failed_datetime']) {
+		if (isset($_SESSION['failed_count']) && $_SESSION['failed_count'] >= config::byKey('security::maxFailedLogin') && (strtotime('now') - config::byKey('security::timeLoginFailed')) < $_SESSION['failed_datetime']) {
 			$values_tmp = array();
 			foreach ($values as $value) {
 				if ($value['ip'] == $ip) {
