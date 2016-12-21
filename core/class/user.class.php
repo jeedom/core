@@ -203,6 +203,77 @@ class user {
 		return $result['nb'];
 	}
 
+	public static function failedLogin() {
+		@session_start();
+		$_SESSION['failed_count'] = (isset($_SESSION['failed_count'])) ? $_SESSION['failed_count'] + 1 : 1;
+		$_SESSION['failed_datetime'] = strtotime('now');
+		@session_write_close();
+	}
+
+	public static function isBan() {
+		$ip = getClientIp();
+
+		if ($ip == '') {
+			return false;
+		}
+
+		$whiteIps = explode(';', config::byKey('security::whiteips'));
+		if (count($whiteIps) > 0) {
+			foreach ($whiteips as $whiteip) {
+				if (netMatch($whiteip, $ip)) {
+					return false;
+				}
+			}
+		}
+		$cache = cache::byKey('security::banip');
+		$values = json_decode($cache->getValue('[]'), true);
+		if (!is_array($values)) {
+			$values = array();
+		}
+		$values_tmp = array();
+		if (count($values) > 0) {
+			foreach ($values as $value) {
+				if (config::byKey('security::bantime') >= 0 && $value['datetime'] + config::byKey('security::bantime') < strtotime('now')) {
+					continue;
+				}
+				$values_tmp[] = $value;
+			}
+		}
+		$values = $values_tmp;
+		if ($_SESSION['failed_count'] >= config::byKey('security::maxFailedLogin') && (strtotime('now') - config::byKey('security::timeLoginFailed')) < $_SESSION['failed_datetime']) {
+			$values_tmp = array();
+			foreach ($values as $value) {
+				if ($value['ip'] == $ip) {
+					continue;
+				}
+				$values_tmp[] = $value;
+			}
+			$values = $values_tmp;
+			$values[] = array('datetime' => strtotime('now'), 'ip' => getClientIp());
+			@session_start();
+			$_SESSION['failed_count'] = 0;
+			$_SESSION['failed_datetime'] = -1;
+			@session_write_close();
+		}
+		cache::set('security::banip', json_encode($values));
+		if (!is_array($values)) {
+			$values = array();
+		}
+		if (count($values) == 0) {
+			return false;
+		}
+		foreach ($values as $value) {
+			if ($value['ip'] != $ip) {
+				continue;
+			}
+			if (config::byKey('security::bantime') >= 0 && $value['datetime'] + config::byKey('security::bantime') < strtotime('now')) {
+				continue;
+			}
+			return true;
+		}
+		return false;
+	}
+
 	/*     * *********************Méthodes d'instance************************* */
 
 	public function presave() {

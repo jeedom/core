@@ -8,9 +8,8 @@ foreach ($repos as $key => $value) {
 	$keys[] = $key . '::enable';
 }
 $configs = config::byKeys($keys);
-
 sendVarToJS('ldapEnable', $configs['ldap::enable']);
-
+user::isBan();
 ?>
 <br/>
 <div id="config">
@@ -274,6 +273,79 @@ foreach (plugin::listPlugin(true) as $plugin) {
 									<a class="btn btn-danger" id="bt_accessSystemAdministration"><i class="fa fa-exclamation-triangle"></i> {{Lancer}}</a>
 								</div>
 							</div>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div class="panel panel-default expertModeVisible">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_security">
+						<i class="fa fa-shield"></i>  {{Securité}}
+					</a>
+				</h3>
+			</div>
+			<div id="config_security" class="panel-collapse collapse">
+				<div class="panel-body">
+					<form class="form-horizontal">
+						<fieldset>
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nombre d'échec toléré}}</label>
+								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+									<input type="text"  class="configKey form-control" data-l1key="security::maxFailedLogin" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Temps maximum entre les échecs (s)}}</label>
+								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+									<input type="text"  class="configKey form-control" data-l1key="security::timeLoginFailed" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Durée du bannissement (s), -1 pour infini}}</label>
+								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+									<input type="text"  class="configKey form-control" data-l1key="security::bantime" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{IP "blanche"}}</label>
+								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+									<input type="text"  class="configKey form-control" data-l1key="security::whiteips" />
+								</div>
+							</div>
+
+							<table class="table table-condensed">
+								<thead>
+									<tr>
+										<th>{{IP}}</th><th>{{Date}}</th><th>{{Date de fin}}</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php
+$cache = cache::byKey('security::banip');
+$values = json_decode($cache->getValue('[]'), true);
+if (!is_array($values)) {
+	$values = array();
+}
+if (count($values) != 0) {
+	foreach ($values as $value) {
+		echo '<tr>';
+		echo '<td>' . $value['ip'] . '</td>';
+		echo '<td>' . date('Y-m-d H:i:s', $value['datetime']) . '</td>';
+		if (config::byKey('security::bantime') < 0) {
+			echo '<td>{{Jamais}}</td>';
+		} else {
+			echo '<td>' . date('Y-m-d H:i:s', $value['datetime'] + config::byKey('security::bantime')) . '</td>';
+		}
+		echo '</tr>';
+	}
+}
+?>
+								</tbody>
+							</table>
+
 						</fieldset>
 					</form>
 				</div>

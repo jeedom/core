@@ -17,6 +17,14 @@
  */
 
 require_once dirname(__FILE__) . "/../php/core.inc.php";
+if (user::isBan()) {
+	header("Status: 404 Not Found");
+	header('HTTP/1.0 404 Not Found');
+	$_SERVER['REDIRECT_STATUS'] = 404;
+	echo "<h1>404 Not Found</h1>";
+	echo "The page that you have requested could not be found.";
+	die();
+}
 if (isset($argv)) {
 	foreach ($argv as $arg) {
 		$argList = explode('=', $arg);
@@ -30,6 +38,7 @@ if (init('type') != '') {
 	try {
 		$type = init('type');
 		if (!jeedom::apiAccess(init('apikey', init('api')))) {
+			user::failedLogin();
 			throw new Exception('Clé API non valide (ou vide) . Demande venant de :' . getClientIp() . '. Clé API : ' . secureXSS(init('apikey') . init('api')));
 		}
 		if ($type == 'cmd') {
@@ -142,6 +151,7 @@ if (init('type') != '') {
 		$jsonrpc = new jsonrpc($request);
 
 		if ($jsonrpc->getJsonrpc() != '2.0') {
+			user::failedLogin();
 			throw new Exception('Requête invalide. Version Jsonrpc invalide : ' . $jsonrpc->getJsonrpc(), -32001);
 		}
 
@@ -160,16 +170,21 @@ if (init('type') != '') {
 
 		if ($jsonrpc->getMethod() == 'user::getHash') {
 			if (!isset($params['login']) || !isset($params['password']) || $params['login'] == '' || $params['password'] == '') {
+				user::failedLogin();
 				sleep(5);
 				throw new Exception('Le login ou le password ne peuvent être vide', -32001);
 			}
 			$user = user::connect($params['login'], $params['password']);
 			if (!is_object($user) || $user->getEnable() != 1) {
+				@session_start();
+				$_SESSION['failed'] = (isset($_SESSION['failed'])) ? $_SESSION['failed'] + 1 : 1;
+				@session_write_close();
 				sleep(5);
 				throw new Exception('Echec de l\'authentification', -32001);
 			}
 			if (network::getUserLocation() != 'internal' && $user->getOptions('twoFactorAuthentification', 0) == 1 && $user->getOptions('twoFactorAuthentificationSecret') != '') {
 				if (!isset($params['twoFactorCode']) || trim($params['twoFactorCode']) == '' || !$user->validateTwoFactorCode($params['twoFactorCode'])) {
+					user::failedLogin();
 					sleep(5);
 					throw new Exception('Echec de l\'authentification', -32001);
 				}
