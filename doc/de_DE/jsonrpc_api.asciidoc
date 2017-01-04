@@ -1,4 +1,4 @@
-= API JSON RPC
+= JSON RPC API 
 
 Das ist eine Dokumentation (die sich entwickeln wird) für die Arbeitsweise der APIs. Zuallererst hier sind die Spezifizierungen  (JSON RPC 2.0) : http://www.jsonrpc.org/specification
 
