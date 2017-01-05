@@ -22,6 +22,9 @@ foreach (cmd::allHistoryCmd() as $cmd) {
 	if (!$eqLogic->hasRight('r')) {
 		continue;
 	}
+	if ($cmd->getSubType() != 'binary' && $cmd->getSubType() != 'numeric') {
+		continue;
+	}
 	if ($object_id != $eqLogic->getObject_id()) {
 		if ($object_id != -1) {
 			echo '</div>';
