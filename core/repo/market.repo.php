@@ -175,6 +175,50 @@ class repo_market {
 		}
 	}
 
+	public static function uploadChunk($path, $chunkStart, $chunkEnd, $id, $fileSize){
+	    $market = self::getJsonRpc();
+	    $file = fopen($path,"r");
+	    fseek($file, $chunkStart-$fileSize, SEEK_END);
+	    $chunkSize = (($diff = $chunkEnd-$chunkStart) < 10240) ? 10240 : $diff;
+	    $chunk = fread($file, $chunkSize);
+	    $tmp = tmpfile();
+	    $path = stream_get_meta_data($tmp);
+	    fwrite($tmp, $chunk);
+	    $rangeHeader = array('chunkStart'=>$chunkStart, 'chunkEnd'=>$chunkEnd, 'chunkSize'=>$chunkSize, 'fileSize'=>$fileSize);
+	    if (!$market->sendRequest('backup::put', array('id'=>$id,'rangeHeader'=>$rangeHeader), 7300, array('file'=>'@' . $path['uri']))) {
+			fclose($tmp);
+			throw new Exception($market->getError());
+		}
+		$status = $market->getResult();
+		fclose($tmp);
+		return $status;
+	}
+
+	public static function sendBackupCloud($_path,  $_chunksize=1024000) {
+		$market = self::getJsonRpc();
+		if (!$market->sendRequest('backup::create', array('filename'=>pathinfo($_path, PATHINFO_BASENAME),'filesize'=>filesize($_path),'chunksize'=>$_chunksize,'checksum'=> md5_file($_path)))) {
+			throw new Exception($market->getError());
+		}
+		$backup = $market->getResult();
+		if (isset($backup["completed_at"]) && $backup["completed_at"]) {
+	        log::add('backupCloud','info','le backup est déjà sur le cloud');
+	        return false;
+	    }
+		$fileSize = filesize($_path);
+	    while (True) {
+	        try {
+	            $backup = repo_market::uploadChunk($_path, $backup["chunk_start"], $backup["chunk_end"], $backup["id"], $fileSize);
+	        } catch (Exception $e) {
+	            echo $e->getMessage()."\n";
+	            break;
+	        }
+	        if ($backup["completed_at"] && $backup["completed_at"] != ""){
+	            log::add('backupCloud','info','le backup a fini l upload');
+	            break;
+	        }
+	    }
+	}
+
 	public static function listeBackup() {
 		$market = self::getJsonRpc();
 		if (!$market->sendRequest('backup::liste', array())) {

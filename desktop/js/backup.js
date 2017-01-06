@@ -116,6 +116,24 @@
     }
 });
 
+ $(".bt_uploadCloudBackup").on('click', function (event) {
+    var el = $(this);
+    bootbox.confirm('{{Etes-vous sûr de vouloir envoyer une sauvegarde de Jeedom sur le cloud ? Une fois lancée cette opération ne peut être annulée}}', function (result) {
+        if (result) {
+            el.find('.fa-refresh').show();
+            jeedom.backup.uploadCloud({
+            	backup: $('#sel_restoreBackup').value(),
+            	error: function (error) {
+                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function () {
+                    getJeedomLog(1, 'backupCloud');
+                }
+            });
+        }
+    });
+});
+
  $(".bt_restoreRepoBackup").on('click', function (event) {
     var el = $(this);
     bootbox.confirm('{{Etes-vous sûr de vouloir restaurer Jeedom avec la sauvegarde Cloud}} <b>' + $('#sel_restoreCloudBackup option:selected').text() + '</b> ? {{Une fois lancée cette opération ne peut être annulée}}', function (result) {
