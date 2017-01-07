@@ -1132,7 +1132,7 @@ class cmd {
 		$this->addHistoryValue($value, $this->getCollectDate());
 		$this->checkReturnState($value);
 		$this->checkCmdAlert($value);
-		$this->checkAlertLevel($_value);
+		$this->checkAlertLevel($value);
 		$this->pushUrl($value);
 	}
 
