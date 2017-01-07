@@ -973,7 +973,7 @@
         "Configuration démon": "Daemon Konfiguration",
         "Statut démon": "Daemon Status",
         "Désactivé": "Deaktiviert",
-        "Aucune santé spécifique": "Aucune santé spécifique",
+        "Aucune santé spécifique": "Keine spezifische Gesundheit",
         "Vous n'êtes pas sur un OS officiellement supporté par l'équipe Jeedom (toute demande de support pourra donc être refusée). Les OS officiellement supporté sont Debian Jessie et Debian Strech (voir <a href=\"https://www.jeedom.com/doc/documentation/compatibility/fr_FR/doc-compatibility.html#_logiciel\" target=\"_blank\">ici</a>)": "Vous n'êtes pas sur un OS officiellement supporté par l'équipe Jeedom (toute demande de support pourra donc être refusée). Les OS officiellement supporté sont Debian Jessie et Debian Strech (voir <a href=\"https://www.jeedom.com/doc/documentation/compatibility/fr_FR/doc-compatibility.html#_logiciel\" target=\"_blank\">ici</a>)",
         "NOK": "NOK",
         "Démon en mode manuel": "Démon en mode manuel",
@@ -1246,7 +1246,7 @@
         "Envoyer les sauvegardes dans le cloud": "Sicherheitskopie  im Cloud Senden",
         "Sauvegarder": "Speichern",
         "Informations": "Information",
-        "Envoi des sauvegardes": "Envoi des sauvegardes"
+        "Envoi des sauvegardes": "Sicherungskopie senden"
     },
     "desktop/js/backup.js": {
         "Sauvegarde réussie": "Speichern erfolgreich",
