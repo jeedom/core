@@ -204,12 +204,17 @@ class repo_market {
 	        log::add('backupCloud','info','le backup est déjà sur le cloud');
 	        return false;
 	    }
+	    if (isset($backup["retry"]) && $backup["retry"] > 5) {
+	        log::add('backupCloud','info','Upload impossible, nombre d\'essais : 5');
+	        return false;
+	    }
 		$fileSize = filesize($_path);
 	    while (True) {
 	        try {
 	            $backup = repo_market::uploadChunk($_path, $backup["chunk_start"], $backup["chunk_end"], $backup["id"], $fileSize);
 	        } catch (Exception $e) {
 	            echo $e->getMessage()."\n";
+	            repo_market::sendBackupCloud($_path);
 	            break;
 	        }
 	        if ($backup["completed_at"] && $backup["completed_at"] != ""){
