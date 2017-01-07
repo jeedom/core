@@ -209,7 +209,7 @@ class repo_market {
 	        return false;
 	    }
 		$fileSize = filesize($_path);
-	    while (True) {
+	    while (!$backup["completed_at"]) {
 	        try {
 	            $backup = repo_market::uploadChunk($_path, $backup["chunk_start"], $backup["chunk_end"], $backup["id"], $fileSize);
 	        } catch (Exception $e) {
@@ -217,11 +217,12 @@ class repo_market {
 	            repo_market::sendBackupCloud($_path);
 	            break;
 	        }
-	        if ($backup["completed_at"] && $backup["completed_at"] != ""){
-	            log::add('backupCloud','info','le backup a fini l upload');
-	            break;
-	        }
+	        
 	    }
+	    if ($backup["completed_at"] != ""){
+            log::add('backupCloud','info','le backup a fini l upload');
+			return true;
+        }
 	}
 
 	public static function listeBackup() {
