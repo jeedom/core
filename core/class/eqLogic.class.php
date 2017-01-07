@@ -456,24 +456,7 @@ class eqLogic {
 		if ($this->getDisplay('showOn' . $version, 1) == 0) {
 			return '';
 		}
-		if ($this->getAlert() != '') {
-			$alert = $this->getAlert();
-			$replace = array(
-				'#id#' => $this->getId(),
-				'#name#' => $this->getName(),
-				'#name_display#' => $this->getName(),
-				'#eqLink#' => $this->getLinkToConfiguration(),
-				'#object_name#' => '',
-				'#version#' => $_version,
-				'#alert_name#' => $alert['name'],
-				'#alert_icon#' => $alert['icon'],
-			);
-			if ($this->getDisplay('showObjectNameOn' . $version, 0) == 1) {
-				$object = $this->getObject();
-				$replace['#object_name#'] = (is_object($object)) ? '(' . $object->getName() . ')' : '';
-			}
-			return template_replace($replace, getTemplate('core', $version, 'alert'));
-		}
+
 		$user_id = '';
 		if (isset($_SESSION) && isset($_SESSION['user']) && is_object($_SESSION['user'])) {
 			$user_id = $_SESSION['user']->getId();
@@ -503,6 +486,8 @@ class eqLogic {
 			'#uid#' => 'eqLogic' . $this->getId() . self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER,
 			'#refresh_id#' => '',
 			'#version#' => $_version,
+			'#alert_name#' => '',
+			'#alert_icon#' => '',
 		);
 
 		if ($this->getDisplay('background-color-default' . $version, 1) == 1) {
@@ -514,7 +499,12 @@ class eqLogic {
 		} else {
 			$replace['#background-color#'] = ($this->getDisplay('background-color-transparent' . $version, 0) == 1) ? 'transparent' : $this->getDisplay('background-color' . $version, $this->getBackgroundColor($version));
 		}
-
+		if ($this->getAlert() != '') {
+			$alert = $this->getAlert();
+			$replace['#alert_name#'] = $alert['name'];
+			$replace['#alert_icon#'] = $alert['icon'];
+			$replace['#background-color#'] = $alert['color'];
+		}
 		if ($this->getDisplay('color-default' . $version, 1) != 1) {
 			$replace['#color#'] = $this->getDisplay('color' . $version, '#ffffff');
 		}
