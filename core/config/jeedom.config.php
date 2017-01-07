@@ -61,7 +61,9 @@ $JEEDOM_INTERNAL_CONFIG = array(
 		),
 	),
 	'alerts' => array(
-		'timeout' => array('name' => 'Timeout', 'icon' => 'fa fa-clock-o'),
+		'timeout' => array('name' => 'Timeout', 'icon' => 'fa fa-clock-o', 'level' => 1, 'check' => false),
+		'warning' => array('name' => 'Warning', 'icon' => 'fa fa-bell', 'level' => 2, 'check' => true),
+		'danger' => array('name' => 'Danger', 'icon' => 'fa fa-exclamation', 'level' => 3, 'check' => true),
 	),
 	'cmd' => array(
 		'generic_type' => array(

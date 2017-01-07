@@ -12,6 +12,7 @@ foreach (array('dashboard', 'mobile', 'dview', 'mview', 'dplan') as $value) {
 		$cmdInfo['html'][$value] = $cmd->getWidgetTemplateCode($value);
 	}
 }
+global $JEEDOM_INTERNAL_CONFIG;
 sendVarToJS('cmdInfo', $cmdInfo);
 sendVarToJS('cmdInfoSearchString', urlencode(str_replace('#', '', $cmd->getHumanName())));
 $cmd_widgetDashboard = cmd::availableWidget('dashboard');
@@ -26,6 +27,10 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
     <ul class="nav nav-tabs" role="tablist">
       <li role="presentation" class="active"><a href="#cmd_information" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-info-circle"></i> {{Informations}}</a></li>
       <li role="presentation"><a href="#cmd_configuration" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-wrench"></i> {{Configuration avancée}}</a></li>
+      <?php if ($cmd->getType() == 'info') {?>
+      <li role="presentation"><a href="#cmd_alert" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-exclamation-triangle"></i> {{Configuration des alertes}}</a></li>
+      <?php }
+?>
       <?php if ($cmd->widgetPossibility('custom')) {
 	?>
        <li role="presentation"><a href="#cmd_display" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-desktop"></i> {{Affichage avancé}}</a></li>
@@ -400,11 +405,11 @@ foreach ($groups as $group) {
   <fieldset>
     <legend><i class="fa fa-thermometer-three-quarters"></i> {{Gestion des valeurs}}</legend>
     <div class="form-group">
-    <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Valeurs interdites (séparé par ";")}}</label>
-    <div class="col-xs-3">
-    <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="denyValues" />
-   </div>
- </div>
+      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Valeurs interdites (séparé par ";")}}</label>
+      <div class="col-xs-3">
+        <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="denyValues" />
+      </div>
+    </div>
     <div class="form-group">
       <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Valeur retour d'état}}</label>
       <div class="col-xs-3">
@@ -414,9 +419,9 @@ foreach ($groups as $group) {
    <div class="form-group">
     <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Durée avant retour d'état (min)}}</label>
     <div class="col-xs-3">
-    <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="returnStateTime" />
-   </div>
- </div>
+      <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="returnStateTime" />
+    </div>
+  </div>
 </fieldset>
 </form>
 <form class="form-horizontal">
@@ -530,6 +535,31 @@ foreach ($groups as $group) {
 </div>
 
 </div>
+</div>
+<?php }
+?>
+<?php if ($cmd->getType() == 'info') {
+	?>
+<div role="tabpanel" class="tab-pane active" id="cmd_alert">
+  <br/>
+  <?php
+foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
+		if (!$value['check']) {
+			continue;
+		}
+		echo '<form class="form-horizontal">';
+		echo '<fieldset>';
+		echo '<legend><i class="' . $value['name'] . '"></i> {{Niveau}} ' . $value['name'] . '</legend>';
+		echo '<div class="form-group">';
+		echo '<label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{En warning si (#value# pour la valeur)}}</label>';
+		echo '<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
+		echo '<input class="cmdAttr form-control" data-l1key="alert" data-l2key="' . $level . 'if" />';
+		echo '</div>';
+		echo '</div>';
+		echo '</fieldset>';
+		echo '</form>';
+	}
+	?>
 </div>
 <?php }
 ?>

@@ -7,6 +7,7 @@ $keys = array('api', 'apipro', 'dns::token', 'market::allowDNS', 'market::allowB
 foreach ($repos as $key => $value) {
 	$keys[] = $key . '::enable';
 }
+global $JEEDOM_INTERNAL_CONFIG;
 $configs = config::byKeys($keys);
 sendVarToJS('ldapEnable', $configs['ldap::enable']);
 user::isBan();
@@ -22,7 +23,7 @@ user::isBan();
 					</a>
 				</h3>
 			</div>
-			<div id="config_generale" class="panel-collapse collapse in">
+			<div id="config_generale" class="panel-collapse collapse">
 				<div class="panel-body">
 					<form class="form-horizontal">
 						<fieldset>
@@ -888,7 +889,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
 			<div class="panel-heading">
 				<h3 class="panel-title">
 					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_logMessage">
-						<i class="fa fa-pencil-square-o"></i> {{Configuration des logs & messages}}
+						<i class="fa fa-pencil-square-o"></i> {{Configuration des logs, messages & alertes}}
 					</a>
 				</h3>
 			</div>
@@ -914,6 +915,35 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
 									</div>
 								</div>
 							</div>
+						</fieldset>
+					</form>
+					<form class="form-horizontal">
+						<fieldset>
+							<legend>{{Alertes}}</legend>
+<?php
+foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
+	if (!$value['check']) {
+		continue;
+	}
+	echo '<div class="form-group">';
+	echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Ajouter un message à chaque}} ' . $value['name'] . '</label>';
+	echo '<div class="col-sm-1">';
+	echo '<input type="checkbox" class="configKey" data-l1key="alert::addMessageOn' . ucfirst($level) . '"/>';
+	echo '</div>';
+	echo '</div>';
+	echo '<div class="form-group">';
+	echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commande sur}} ' . $value['name'] . '</label>';
+	echo '<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">';
+	echo '<div class="input-group">';
+	echo '<input type="text"  class="configKey form-control" data-l1key="alert::' . $level . 'Cmd" />';
+	echo '<span class="input-group-btn">';
+	echo '<a class="btn btn-default cursor bt_selectAlertCmd" title="Rechercher une commande" data-type="' . $level . '"><i class="fa fa-list-alt"></i></a>';
+	echo '</span>';
+	echo '</div>';
+	echo '</div>';
+	echo '</div>';
+}
+?>
 						</fieldset>
 					</form>
 					<form class="form-horizontal">

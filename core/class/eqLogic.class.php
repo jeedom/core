@@ -671,6 +671,22 @@ class eqLogic {
 		return $hasAlert;
 	}
 
+	public function getMaxCmdAlert() {
+		$return = 'none';
+		$max = 0;
+		global $JEEDOM_INTERNAL_CONFIG;
+		foreach ($this->getCmd('info') as $cmd) {
+			$cmdLevel = $cmd->getCache('alertLevel');
+			if (!isset($JEEDOM_INTERNAL_CONFIG['alerts'][$cmdLevel])) {
+				continue;
+			}
+			if ($JEEDOM_INTERNAL_CONFIG['alerts'][$cmdLevel]['level'] > $max) {
+				$return = $cmdLevel;
+			}
+		}
+		return $return;
+	}
+
 	public function getShowOnChild() {
 		return false;
 	}

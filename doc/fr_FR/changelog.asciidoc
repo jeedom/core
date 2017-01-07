@@ -49,6 +49,7 @@
 * Ajout d'une fonction valueDate dans les scénarios (voir documentation des scénarios)
 * Possibilité dans les scénarios de modifier la valeur d'une commande avec l'action "event"
 * Ajout d'un champs commentaire sur la configuration avancé d'un équipement
+* Ajout d'un système d'alerte sur les commandes avec 2 niveaux : alerte et danger. La configuration se trouve dans la configuration avancée des commandes (de type info seulement bien sur). Vous pouvez voir les modules en alerte sur la page Analyse -> Equipement. Vous pouvez configurer les actions sur alerte sur la page de configuration générale de Jeedom
 
 = 2.4.7
 

@@ -133,8 +133,7 @@ class message {
 		$sql = 'SELECT count(*)
 				FROM message
 				WHERE plugin=:plugin
-					AND (logicalId=:logicalId
-						OR message=:message)';
+					AND (logicalId=:logicalId)';
 		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 		if ($result['count(*)'] != 0) {
 			return;

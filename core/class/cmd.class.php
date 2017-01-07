@@ -36,10 +36,11 @@ class cmd {
 	protected $template;
 	protected $display;
 	protected $html;
-	protected $_collectDate = '';
-	protected $_valueDate = '';
 	protected $value = null;
 	protected $isVisible = 1;
+	protected $alert;
+	protected $_collectDate = '';
+	protected $_valueDate = '';
 	protected $_eqLogic = null;
 	protected $_needRefreshWidget;
 	private static $_templateArray = array();
@@ -1131,6 +1132,7 @@ class cmd {
 		$this->addHistoryValue($value, $this->getCollectDate());
 		$this->checkReturnState($value);
 		$this->checkCmdAlert($value);
+		$this->checkAlertLevel($_value);
 		$this->pushUrl($value);
 	}
 
@@ -1194,6 +1196,56 @@ class cmd {
 				scenarioExpression::createAndExec('action', $action['cmd'], $options);
 			} catch (Exception $e) {
 				log::add('cmd', 'error', __('Erreur lors de l\'éxecution de ', __FILE__) . $action['cmd'] . __('. Détails : ', __FILE__) . $e->getMessage());
+			}
+		}
+	}
+
+	public function checkAlertLevel($_value) {
+		if ($this->getAlert('warningif') == '' && $this->getAlert('dangerif') == '') {
+			return;
+		}
+		global $JEEDOM_INTERNAL_CONFIG;
+		$levels = array('warning' => 1, 'danger' => 2);
+		$previousLevel = $this->getCache('alertLevel');
+		$currentLevel = 'none';
+		foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
+			if (!$value['check']) {
+				continue;
+			}
+			if ($this->getAlert($level . 'if') != '') {
+				$check = jeedom::evaluateExpression(str_replace('#value#', $_value, $this->getAlert($level . 'if')));
+				if ($check == 1 || $check || $check == '1') {
+					$currentLevel = $level;
+				}
+			}
+		}
+		$this->setCache('alertLevel', $currentLevel);
+		if ($currentLevel != 'none' && $currentLevel != $previousLevel) {
+			$message = __('Alert sur la commande ', __FILE__) . $this->getHumanName() . __(' niveau ', __FILE__) . $currentLevel . __(' valeur : ', __FILE__) . $_value;
+			log::add('event', 'info', $message);
+			$eqLogic = $this->getEqLogic();
+			if (config::ByKey('alert::addMessageOn' . ucfirst($currentLevel)) == 1) {
+				message::add($eqLogic->getEqType_name(), $message);
+			}
+			$cmds = explode(('&&'), config::byKey('alert::' . $currentLevel . 'Cmd'));
+			if (count($cmds) > 0 && trim(config::byKey('alert::' . $currentLevel . 'Cmd')) != '') {
+				foreach ($cmds as $id) {
+					$cmd = cmd::byId(str_replace('#', '', $id));
+					if (is_object($cmd)) {
+						$cmd->execCmd(array(
+							'title' => __('[' . config::byKey('name', 'core', 'JEEDOM') . '] Message de ', __FILE__) . $this->getHumanName(),
+							'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $message,
+						));
+					}
+				}
+			}
+		}
+		if ($currentLevel != $previousLevel) {
+			$eqLogic = $this->getEqLogic();
+			$maxAlert = $eqLogic->getMaxCmdAlert();
+			$eqLogic->setStatus(array('warning' => 0, 'danger' => 0));
+			if ($maxAlert != 'none' && isset($JEEDOM_INTERNAL_CONFIG['alerts'][$maxAlert])) {
+				$eqLogic->setStatus($maxAlert, 1);
 			}
 		}
 	}
@@ -1521,6 +1573,14 @@ class cmd {
 	public function setDisplay($_key, $_value) {
 		$this->display = utils::setJsonAttr($this->display, $_key, $_value);
 		$this->_needRefreshWidget = true;
+	}
+
+	public function getAlert($_key = '', $_default = '') {
+		return utils::getJsonAttr($this->alert, $_key, $_default);
+	}
+
+	public function setAlert($_key, $_value) {
+		$this->alert = utils::setJsonAttr($this->alert, $_key, $_value);
 	}
 
 	public function getCollectDate() {
