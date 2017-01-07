@@ -551,7 +551,7 @@ foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
 		echo '<fieldset>';
 		echo '<legend><i class="' . $value['name'] . '"></i> {{Niveau}} ' . $value['name'] . '</legend>';
 		echo '<div class="form-group">';
-		echo '<label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{En warning si (#value# pour la valeur)}}</label>';
+		echo '<label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{En}} ' . $value['name'] . ' {{si (#value# pour la valeur)}}</label>';
 		echo '<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
 		echo '<input class="cmdAttr form-control" data-l1key="alert" data-l2key="' . $level . 'if" />';
 		echo '</div>';
