@@ -1208,6 +1208,7 @@ class cmd {
 		$levels = array('warning' => 1, 'danger' => 2);
 		$previousLevel = $this->getCache('alertLevel');
 		$currentLevel = 'none';
+		$test = '';
 		foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
 			if (!$value['check']) {
 				continue;
@@ -1216,12 +1217,13 @@ class cmd {
 				$check = jeedom::evaluateExpression(str_replace('#value#', $_value, $this->getAlert($level . 'if')));
 				if ($check == 1 || $check || $check == '1') {
 					$currentLevel = $level;
+					$test = str_replace('#value#', $_value, $this->getAlert($level . 'if'));
 				}
 			}
 		}
 		$this->setCache('alertLevel', $currentLevel);
 		if ($currentLevel != 'none' && $currentLevel != $previousLevel) {
-			$message = __('Alert sur la commande ', __FILE__) . $this->getHumanName() . __(' niveau ', __FILE__) . $currentLevel . __(' valeur : ', __FILE__) . $_value;
+			$message = __('Alert sur la commande ', __FILE__) . $this->getHumanName() . __(' niveau ', __FILE__) . $currentLevel . __(' valeur : ', __FILE__) . $_value . '[' . $test . ']';
 			log::add('event', 'info', $message);
 			$eqLogic = $this->getEqLogic();
 			if (config::ByKey('alert::addMessageOn' . ucfirst($currentLevel)) == 1) {
