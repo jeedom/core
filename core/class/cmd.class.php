@@ -1100,7 +1100,8 @@ class cmd {
 				$display_value = 0;
 			}
 			$eqLogic->emptyCacheWidget();
-			$events = array(array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate()));
+			$level = $this->checkAlertLevel($value);
+			$events = array(array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate(), 'alertLevel' => $level));
 		}
 		$foundInfo = false;
 		$value_cmd = self::byValue($this->getId(), null, true);
@@ -1132,7 +1133,9 @@ class cmd {
 		$this->addHistoryValue($value, $this->getCollectDate());
 		$this->checkReturnState($value);
 		$this->checkCmdAlert($value);
-		$this->checkAlertLevel($value);
+		if ($level != $this->getCache('alertLevel')) {
+			$this->actionAlertLevel($level, $value);
+		}
 		$this->pushUrl($value);
 	}
 
@@ -1202,13 +1205,11 @@ class cmd {
 
 	public function checkAlertLevel($_value) {
 		if ($this->getAlert('warningif') == '' && $this->getAlert('dangerif') == '') {
-			return;
+			return 'none';
 		}
 		global $JEEDOM_INTERNAL_CONFIG;
 		$levels = array('warning' => 1, 'danger' => 2);
-		$previousLevel = $this->getCache('alertLevel');
 		$currentLevel = 'none';
-		$test = '';
 		foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
 			if (!$value['check']) {
 				continue;
@@ -1217,20 +1218,24 @@ class cmd {
 				$check = jeedom::evaluateExpression(str_replace('#value#', $_value, $this->getAlert($level . 'if')));
 				if ($check == 1 || $check || $check == '1') {
 					$currentLevel = $level;
-					$test = str_replace('#value#', $_value, $this->getAlert($level . 'if'));
 				}
 			}
 		}
-		$this->setCache('alertLevel', $currentLevel);
-		if ($currentLevel != 'none' && $currentLevel != $previousLevel) {
-			$message = __('Alert sur la commande ', __FILE__) . $this->getHumanName() . __(' niveau ', __FILE__) . $currentLevel . __(' valeur : ', __FILE__) . $_value . '[' . $test . ']';
+		return $currentLevel;
+	}
+
+	public function actionAlertLevel($_level, $_value) {
+		global $JEEDOM_INTERNAL_CONFIG;
+		$this->setCache('alertLevel', $_level);
+		if ($_level != 'none') {
+			$message = __('Alert sur la commande ', __FILE__) . $this->getHumanName() . __(' niveau ', __FILE__) . $_level . __(' valeur : ', __FILE__) . $_value;
 			log::add('event', 'info', $message);
 			$eqLogic = $this->getEqLogic();
-			if (config::ByKey('alert::addMessageOn' . ucfirst($currentLevel)) == 1) {
+			if (config::ByKey('alert::addMessageOn' . ucfirst($_level)) == 1) {
 				message::add($eqLogic->getEqType_name(), $message);
 			}
-			$cmds = explode(('&&'), config::byKey('alert::' . $currentLevel . 'Cmd'));
-			if (count($cmds) > 0 && trim(config::byKey('alert::' . $currentLevel . 'Cmd')) != '') {
+			$cmds = explode(('&&'), config::byKey('alert::' . $_level . 'Cmd'));
+			if (count($cmds) > 0 && trim(config::byKey('alert::' . $_level . 'Cmd')) != '') {
 				foreach ($cmds as $id) {
 					$cmd = cmd::byId(str_replace('#', '', $id));
 					if (is_object($cmd)) {
@@ -1242,17 +1247,15 @@ class cmd {
 				}
 			}
 		}
-		if ($currentLevel != $previousLevel) {
-			$eqLogic = $this->getEqLogic();
-			$maxAlert = $eqLogic->getMaxCmdAlert();
-			$prevAlert = $eqLogic->getAlert();
-			$eqLogic->setStatus(array('warning' => 0, 'danger' => 0));
-			if ($maxAlert != 'none' && isset($JEEDOM_INTERNAL_CONFIG['alerts'][$maxAlert])) {
-				$eqLogic->setStatus($maxAlert, 1);
-			}
-			if ($prevAlert != $eqLogic->getAlert()) {
-				$eqLogic->refreshWidget();
-			}
+		$eqLogic = $this->getEqLogic();
+		$maxAlert = $eqLogic->getMaxCmdAlert();
+		$prevAlert = $eqLogic->getAlert();
+		$eqLogic->setStatus(array('warning' => 0, 'danger' => 0));
+		if ($maxAlert != 'none' && isset($JEEDOM_INTERNAL_CONFIG['alerts'][$maxAlert])) {
+			$eqLogic->setStatus($maxAlert, 1);
+		}
+		if ($prevAlert != $eqLogic->getAlert()) {
+			$eqLogic->refreshWidget();
 		}
 	}
 
