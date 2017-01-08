@@ -76,6 +76,7 @@ foreach (view::all() as $view) {
                             <select class="form-control" id="sel_addEditviewZoneType">
                                 <option value="widget">{{Widget}}</option>
                                 <option value="graph">{{Graphique}}</option>
+                                <option value="table">{{Tableau}}</option>
                             </select>
                         </div>
                     </div>

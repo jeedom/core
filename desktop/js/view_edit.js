@@ -68,6 +68,8 @@
                     var viewData = viewZone.viewData[j];
                     if (init(viewZone.type, 'widget') == 'graph') {
                        $('#div_viewZones .viewZone:last .div_viewData').append(addGraphService(viewData));
+                   }else if(init(viewZone.type, 'widget') == 'table'){
+                        $('#div_viewZones .viewZone:last .viewData').setValues(viewData, '.viewDataAttr');
                    }else{
                        $('#div_viewZones .viewZone:last .div_viewData tbody').append(addWidgetService(viewData));
                    }
@@ -116,7 +118,7 @@
     viewZoneInfo = {};
     var viewZoneInfo = $(this).getValues('.viewZoneAttr');
     viewZoneInfo = viewZoneInfo[0];
-    viewZoneInfo.viewData = $(this).find('tr.viewData').getValues('.viewDataAttr');
+    viewZoneInfo.viewData = $(this).find('.viewData').getValues('.viewDataAttr');
     view.zones.push(viewZoneInfo);
 });
    jeedom.view.save({
@@ -258,37 +260,67 @@ function addEditviewZone(_viewZone) {
         div += ' <a class="btn btn-warning btn-xs pull-right bt_editviewZone"><i class="fa fa-pencil"></i> Editer</a>';
         if (init(_viewZone.type, 'widget') == 'graph') {
          div += '<a class="btn btn-primary btn-xs pull-right bt_addViewGraph"><i class="fa fa-plus-circle"></i> Ajouter courbe</a>';
-     }else{
-         div += '<a class="btn btn-primary btn-xs pull-right bt_addViewWidget"><i class="fa fa-plus-circle"></i> Ajouter Widget</a>';
-     }
-     div += '<select class="pull-right viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="zoneCol" style="width : 200px;">';
-     div += '<option value="12">{{Largeur de 1/1}}</option>';
-     div += '<option value="6">{{Largeur de 1/2}}</option>';
-     div += '<option value="4">{{Largeur de 1/3}}</option>';
-     div += '<option value="3">{{Largeur de 1/4}}</option>';
-     div += '</select>';
-     if (init(_viewZone.type, 'widget') == 'graph') {
-        div += '<select class="pull-right viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="dateRange" style="width : 200px;">';
-        div += '<option value="30 min">{{30 min}}</option>';
-        div += '<option value="1 hour">{{1 heure}}</option>';
-        div += '<option value="1 day">{{Jour}}</option>';
-        div += '<option value="7 days">{{Semaine}}</option>';
-        div += '<option value="1 month">{{Mois}}</option>';
-        div += '<option value="1 year">{{Année}}</option>';
-        div += '<option value="all">{{Tous}}</option>';
-        div += '</select>';
+     }else  if (init(_viewZone.type, 'widget') == 'table') {
+        div += '<a class="btn btn-primary btn-xs pull-right bt_addViewTable" data-type="line"><i class="fa fa-plus-circle"></i> Ajouter ligne</a>';
+        div += '<a class="btn btn-primary btn-xs pull-right bt_addViewTable" data-type="col"><i class="fa fa-plus-circle"></i> Ajouter colonne</a>';
+    }else{
+     div += '<a class="btn btn-primary btn-xs pull-right bt_addViewWidget"><i class="fa fa-plus-circle"></i> Ajouter Widget</a>';
+ }
+ div += '<select class="pull-right viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="zoneCol" style="width : 200px;">';
+ div += '<option value="12">{{Largeur de 1/1}}</option>';
+ div += '<option value="6">{{Largeur de 1/2}}</option>';
+ div += '<option value="4">{{Largeur de 1/3}}</option>';
+ div += '<option value="3">{{Largeur de 1/4}}</option>';
+ div += '</select>';
+ if (init(_viewZone.type, 'widget') == 'graph') {
+    div += '<select class="pull-right viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="dateRange" style="width : 200px;">';
+    div += '<option value="30 min">{{30 min}}</option>';
+    div += '<option value="1 hour">{{1 heure}}</option>';
+    div += '<option value="1 day">{{Jour}}</option>';
+    div += '<option value="7 days">{{Semaine}}</option>';
+    div += '<option value="1 month">{{Mois}}</option>';
+    div += '<option value="1 year">{{Année}}</option>';
+    div += '<option value="all">{{Tous}}</option>';
+    div += '</select>';
+}
+div += '</legend>';
+div += '<input style="display : none;" class="viewZoneAttr" data-l1key="type">';
+if (init(_viewZone.type, 'widget') == 'graph') {
+    div += '<table class="table table-condensed div_viewData">';
+    div += '<thead>';
+    div += '<tr><th></th><th>{{Nom}}</th><th>{{Couleur}}</th><th>{{Type}}</th><th>{{Groupement}}</th><th>{{Echelle}}</th><th>{{Escalier}}</th><th>{{Empiler}}</th><th>{{Variation}}</th></tr>';
+    div += '</thead>';
+    div += '<tbody>';
+    div += '</tbody>';
+    div += '</table>';
+}else if (init(_viewZone.type, 'widget') == 'table') {
+  if (init(_viewZone.configuration.nbcol) == '') {
+    _viewZone.configuration.nbcol = 2;
+}
+if (init(_viewZone.configuration.nbline) == '') {
+    _viewZone.configuration.nbline = 2;
+}
+div += '<input style="display : none;" class="viewZoneAttr" data-l1key="configuration" data-l2key="nbcol" >';
+div += '<input style="display : none;" class="viewZoneAttr" data-l1key="configuration" data-l2key="nbline">';
+div += '<table class="table table-condensed div_viewData viewData" data-nbcol="'+_viewZone.configuration.nbcol+'" data-nbline="'+_viewZone.configuration.nbline+'">';
+div += '<thead>';
+div += '<tr>';
+div += '<input class="form-control viewDataAttr" data-l1key="link_id" value="-1" style="display:none;"/>';
+for(i=0;i<_viewZone.configuration.nbcol;i++){
+    div += '<td><input class="form-control viewDataAttr" data-l1key="configuration" data-l2key="-1" data-l3key="'+i+'" /></td>';
+}
+div += '</thead>';
+div += '<tbody>';
+for(j=0;j<_viewZone.configuration.nbline;j++){
+    div += '<tr>';
+    for(i=0;i<_viewZone.configuration.nbcol;i++){
+        div += '<td><input class="form-control viewDataAttr" data-l1key="configuration" data-l2key="'+j+'" data-l3key="'+i+'" /></td>';
     }
-    div += '</legend>';
-    div += '<input style="display : none;" class="viewZoneAttr" data-l1key="type">';
-    if (init(_viewZone.type, 'widget') == 'graph') {
-       div += '<table class="table table-condensed div_viewData">';
-       div += '<thead>';
-       div += '<tr><th></th><th>{{Nom}}</th><th>{{Couleur}}</th><th>{{Type}}</th><th>{{Groupement}}</th><th>{{Echelle}}</th><th>{{Escalier}}</th><th>{{Empiler}}</th><th>{{Variation}}</th></tr>';
-       div += '</thead>';
-       div += '<tbody>';
-       div += '</tbody>';
-       div += '</table>';
-   }else{
+    div += '</tr>';
+}
+div += '</tbody>';
+div += '</table>';
+}else{
     div += '<table class="table table-condensed div_viewData">';
     div += '<thead>';
     div += '<tr><th></th><th>{{Nom}}</th></tr>';
@@ -306,13 +338,32 @@ $("#div_viewZones .viewZone:last .div_viewData tbody").sortable({axis: "y", curs
 }
 }
 
+$('#div_viewZones').on('click','.bt_addViewTable',function(){
+    var view_zone = $(this).closest('.viewZone');
+    var nbcol = view_zone.find('.viewZoneAttr[data-l1key=configuration][data-l2key=nbcol]');
+    var nbline = view_zone.find('.viewZoneAttr[data-l1key=configuration][data-l2key=nbline]');
+    var table = $(this).closest('.viewZone').find('table.div_viewData');
+    if($(this).attr('data-type') == 'line'){
+        var line = '<tr>';
+        for(i=0;i<nbcol.value();i++){
+         line += '<td><input class="form-control viewDataAttr" data-l1key="configuration" data-l2key="'+(parseInt(nbline.value())+1)+'" data-l3key="'+i+'" /></td>';
+     }
+     line += '</tr>';
+     table.append(line);
+     nbline.value(parseInt(nbline.value())+1);
+ }else if($(this).attr('data-type') == 'col'){
+    table.find('tr').each(function(){
+        $(this).append('<td><input class="form-control viewDataAttr" data-l1key="configuration" data-l2key="'+$(this).find('input:last').attr('data-l2key')+'" data-l3key="'+(parseInt($(this).find('input:last').attr('data-l3key'))+1)+'" /></td>')
+    });
+    nbcol.value(parseInt(nbcol.value())+1);
+    table.attr('data-nbcol',parseInt(table.attr('data-nbcol'))+1);
+}
+});
+
 $('#div_viewZones').delegate('.bt_addViewGraph','click',function(){
     var el = $(this);
     jeedom.cmd.getSelectModal({cmd : {isHistorized : 1}}, function (result) {
        el.closest('.viewZone').find('.div_viewData tbody').append( addGraphService({name : result.human,link_id : result.cmd.id,type : 'cmd'}));
-       el.closest('.viewZone .div_viewData tbody input[type=checkbox]').off('click').on('click',function(){
-        alert('je passe');
-    })
    });
 });
 
