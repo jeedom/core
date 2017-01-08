@@ -237,8 +237,7 @@ $('.li_object').on('click',function(){
     if($('.div_object[data-object_id='+object_id+']').html() != undefined){
         $('.li_object').removeClass('active');
         $(this).addClass('active');
-        var top = $('#div_displayObject').scrollTop()+ $('.div_object[data-object_id='+object_id+']').offset().top - 60
-        console.log(object_id+'=> '+top);
+        var top = $('#div_displayObject').scrollTop()+ $('.div_object[data-object_id='+object_id+']').offset().top - 60;
         $('#div_displayObject').animate({ scrollTop: top}, 500);
     }else{
         window.location.href = $(this).find('a').attr('data-href');
