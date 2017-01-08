@@ -71,7 +71,7 @@ Was ist "nur Ereignis" und "Cache Lebensdauer" ?::
 * nur Ereignis : weist Jeedom an, niemals nach dem Wert zu fragen(c'est l'équipement qui la remonte). Also beim Empfang eines Werts, hat dieser eine unendliche Lebensdauer (bis zum nächsten Empfang). 
 * Lebensdauer Cache: Dauer der Gültigkeit eines Wertes, wenn Sie zum Beispiel 60 Sekunden setzen, wenn der Wert Datera als 60 Sekunden und die Jeedom Bedürfnisse (Armaturenbrett, Szenario...) dann ist es gehen wird, das Modul, um einen Wert aktualisiert Abfragen.
 
-Attention, ces 2 options sont réservées aux utilisateurs avancés qui comprennent parfaitement leur fonction, une erreur de configuration dans cette partie peut rendre une installation instable voire inopérante. Par exemple, en zwave, rfxcom et enocean, la case événement seulement devrait TOUJOURS être cochée.
+Achtung, diese 2 Optionen sind für erfahrene Benutzer die diese Funktionen verstehen vorbehalten, ein Konfigurationsfehler in diesem Teil kann das System instabil oder funktionsunfähig machen. Zum Beispiel sollte in Zwave, RFXCOM und enocean, das Feld Ereignis IMMER angekreutzt werden,
 
 '''
 Wie sind die Rechte zu überarbeiten ?::

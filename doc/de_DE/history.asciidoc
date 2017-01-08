@@ -56,7 +56,7 @@ Hier haben wir :
 * *Seuil de calcul de tendance haut* : idem mais à la tendance haute.
 * *Période d'affichage des graphiques par defaut* : pour des questions de performance lors de l'affichage à la volée (en cliquant sur le widget ou par la page historique) Jeedom n'affiche qu'une période restreinte de l'historique (cela permet un affichage plus rapide) ; il est ici possible de régler cette valeur.
 
-== Configuration spécifique par commande
+==  Spezifische Befehle Konfigurieren
 
 Pour accèder à ces réglages, il faut aller dans la configuration avancée des commandes, en passant par Outils -> Résumé domotique : 
 
@@ -67,7 +67,7 @@ Puis en dépliant la liste des commandes d'un équipement (petite flèche à dro
 image::../images/history9.JPG[]
 
 [TIP]
-Vous pouvez aussi utiliser le champ de recherche à droite en tapant le nom de la commande que vous voulez.
+Sie können auch das Suchfeld rechts benutzen, um den Namen des Befehls einzugeben, den Sie wollen.
 
 Vous pouvez également y accèder par la page de l'équipement en question et en cliquant sur la petite roue à droite sur la ligne de la commande (si le plugin a intégré cette option) : 
 

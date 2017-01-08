@@ -106,7 +106,7 @@ müssen sie hinzufügen : www-data ALL=(ALL) NOPASSWD: ALL.
 ''''
 
 Ich habe oft "502 bad gateway"::
-Il faut aller (en mode expert) dans la configuration de Jeedom, puis Système OS et cliquer sur Lancer. Là vous cliquez sur "PHP log", si vous avez le message "server reached pm.max_clidren", c'est qu'il manque des processus php fpm, il faut donc en autoriser plus. Pour cela faire : 
+Sie müssen (Experten Modus) in die Jeedom Konfiguration gehen, System-OS und klicken sie dann auf Start. Klicken sie auf "PHP log", wenn sie die Nachricht "server reached pm.max_clidren" bekommen, liegt es an nicht genug php-fpm-Prozesse, es müssen mehr autorisiert werden. Dafür muß man folgendes machen : 
 
 [source,bash]
 sudo su -

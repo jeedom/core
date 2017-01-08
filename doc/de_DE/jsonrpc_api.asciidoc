@@ -45,7 +45,7 @@ Parameter :
 Gibt die Liste aller Objekte zurück 
 
 === object::full
-Retourne la liste de tous les objets, avec pour chaque objet tous ses équipements et pour chaque équipement toutes ses commandes ainsi que les états de celles-ci (pour les commandes de type info)
+Liefert eine Liste aller Objekte, mit allen Geräten für jedes Objekt und alle Befehle von jedem Gerät, sowie die Zustände von diesem (für Befehle des Info Typs)
 
 === object::byId
 Liefert das angegebene Objekt zurück
@@ -55,14 +55,14 @@ Parameter :
 - int id
 
 === object::fullById
-Retourne un objet, ses équipements et pour chaque équipement toutes ses commandes ainsi que les états de cellse-ci (pour les commandes de type info)
+Gibt ein Objekt zurück, seine Geräte und für jedes Gerät alle seine Befehle und die Zustände
 
 == JSON API EqLogic
 === eqLogic::all
 Gibt die Liste aller Geräte zurück
 
 === eqLogic::fullById
-Retourne un équipement et ses commandes ainsi que les états de celles-ci (pour les commandes de type info)
+Gibt ein Gerät sowie dessen Befehle und die Zustände zurück (für Befehle des Info Typs)
 
 === eqLogic::byId
 Liefert das angegebene Gerät zurück
@@ -138,7 +138,7 @@ Parameter :
 - [options] Liste der Optionen für die Befehle (hängt vom Typ und von der Unterklasse des Befehles ab)
 
 === cmd::getStatistique
-Retourne les statistiques sur la commande (ne marche que sur les commandes de type info et historisées)
+Gibt Statistiken über den Befehl zurück (funktioniert nur Befehle vom Info Typ und historisiert)
 
 Parameter :
 

@@ -162,7 +162,7 @@ Celui-ci apparaît ensuite sur le design :
 
 image::../images/plan20.png[]
 
-Un double clic dessus vous amène sur la configuration avancée : 
+Ein Doppelklick darauf, dann gelangen sie auf die erweiterte Konfiguration : 
 
 image::../images/plan21.png[]
 
@@ -192,7 +192,7 @@ Einmal oben geklickt erhalten Sie :
 
 image::../images/plan23.png[]
 
-Un double clic dessus vous amène à la configuration de l'élement graph
+Ein Doppelklick darauf, dann gelangen sie zur Diagramm Konfiguration
 
 image::../images/plan24.png[]
 

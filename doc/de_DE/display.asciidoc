@@ -68,7 +68,7 @@ image::../images/display9.png[]
 L'onglet information contient les informations générales de l'équipement : 
 
 * *ID* : identifiant unique dans la base de données
-* *Nom* : nom de l'équipement
+* *Name* : Gerätename
 * *ID logique* : identifiant logique de l'équipement (peut être vide)
 * *ID de l'objet* : identifiant unique de l'objet père (peut être vide)
 * *Date de création* : date de création de l'équipement
@@ -118,7 +118,7 @@ L'onglet information contient les informations générales sur la commande :
 
 * *ID* : identifiant unique dans la base de données
 * *Logical ID* : identifiant logique de la commande (peut être vide)
-* *Nom* : nom de la commande
+* *Name* : Name des Befehls
 * *Type* : type de la commande (action ou info)
 * *Sous-type* : sous type de la commande (binaire, numérique...)
 * *URL directe* : fournit une URL (clic droit copier l'addresse du lien) pour, en fonction du type de la commande, déclencher l'action ou récupérer sa valeur (si c'est une commande de type info)

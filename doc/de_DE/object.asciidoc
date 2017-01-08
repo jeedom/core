@@ -21,7 +21,7 @@ image::../images/object3.JPG[]
 Hier haben Sie verschiedene Optionen : 
 
 * *Objektname* : der Name des Objekts
-* *Père* : l'objet père de l'objet courant, cela permet de définir une hiérarchie type, le salon est le fils de l'appartement. Un objet ne peut avoir qu'un seul père mais il peut avoir autant de fils qu'il le veut.
+* *Vater* : das übergeordnete Objekt des aktuellen Objekts, es ermöglicht eine Hierarchie zu definieren, z.B. das Wohnzimmer,  ist der Sohn der Wohnung. Ein Objekt kann nur einen Vater haben, aber er kann so viele Söhne haben wie er will.
 * *Sichtbar* : ermöglicht, festzulegen ob das Objekt auf dem Armaturenbrett sichtbar ist oder nicht
 * *Symbol* : Damit können Sie ein Symbol für das Objekt festlegen
 * *Tag Farbe* : Hier können Sie die Farbe des Objekts wählen (diese Farbe wird zum Beispiel in der Home-Automation-Übersichtsseite verwendet)
