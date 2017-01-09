@@ -69,15 +69,15 @@
                     if (init(viewZone.type, 'widget') == 'graph') {
                        $('#div_viewZones .viewZone:last .div_viewData').append(addGraphService(viewData));
                    }else if(init(viewZone.type, 'widget') == 'table'){
-                        $('#div_viewZones .viewZone:last .viewData').setValues(viewData, '.viewDataAttr');
-                   }else{
-                       $('#div_viewZones .viewZone:last .div_viewData tbody').append(addWidgetService(viewData));
-                   }
+                    $('#div_viewZones .viewZone:last .viewData').setValues(viewData, '.viewDataAttr');
+                }else{
+                   $('#div_viewZones .viewZone:last .div_viewData tbody').append(addWidgetService(viewData));
                }
            }
-           modifyWithoutSave = false;
        }
-   });
+       modifyWithoutSave = false;
+   }
+});
     return false;
 });
 
@@ -306,13 +306,15 @@ div += '<table class="table table-condensed div_viewData viewData" data-nbcol="'
 div += '<thead>';
 div += '<tr>';
 div += '<input class="form-control viewDataAttr" data-l1key="link_id" value="-1" style="display:none;"/>';
+div += '<td></td>';
 for(i=0;i<_viewZone.configuration.nbcol;i++){
-    div += '<td><input class="form-control viewDataAttr" data-l1key="configuration" data-l2key="-1" data-l3key="'+i+'" /></td>';
+    div += '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="col" data-col="'+i+'"><i class="fa fa-trash-o"> {{Supprimer}}</a></td>';
 }
 div += '</thead>';
 div += '<tbody>';
 for(j=0;j<_viewZone.configuration.nbline;j++){
     div += '<tr>';
+    div += '<td><a class="btn btn-danger bt_removeAddViewTable" data-line="'+j+'" data-type="line"><i class="fa fa-trash-o"> {{Supprimer}}</a></td>';
     for(i=0;i<_viewZone.configuration.nbcol;i++){
         div += '<td><input class="form-control viewDataAttr" data-l1key="configuration" data-l2key="'+j+'" data-l3key="'+i+'" /></td>';
     }
@@ -345,6 +347,7 @@ $('#div_viewZones').on('click','.bt_addViewTable',function(){
     var table = $(this).closest('.viewZone').find('table.div_viewData');
     if($(this).attr('data-type') == 'line'){
         var line = '<tr>';
+        line += '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="line" data-line="'+(parseInt(nbline.value())+1)+'"><i class="fa fa-trash-o"> {{Supprimer}}</a></td>';
         for(i=0;i<nbcol.value();i++){
          line += '<td><input class="form-control viewDataAttr" data-l1key="configuration" data-l2key="'+(parseInt(nbline.value())+1)+'" data-l3key="'+i+'" /></td>';
      }
@@ -352,13 +355,44 @@ $('#div_viewZones').on('click','.bt_addViewTable',function(){
      table.append(line);
      nbline.value(parseInt(nbline.value())+1);
  }else if($(this).attr('data-type') == 'col'){
-    table.find('tr').each(function(){
-        $(this).append('<td><input class="form-control viewDataAttr" data-l1key="configuration" data-l2key="'+$(this).find('input:last').attr('data-l2key')+'" data-l3key="'+(parseInt($(this).find('input:last').attr('data-l3key'))+1)+'" /></td>')
-    });
+
+    table.find('thead tr').append('<td><a class="btn btn-danger bt_removeAddViewTable" data-type="col" data-col="'+(parseInt(nbcol.value())+1)+'"><i class="fa fa-trash-o"> {{Supprimer}}</a></td>');
+    table.find('tbody tr').each(function(){
+     $(this).append('<td><input class="form-control viewDataAttr" data-l1key="configuration" data-l2key="'+$(this).find('input:last').attr('data-l2key')+'" data-l3key="'+(parseInt(nbcol.value())+1)+'" /></td>')
+ });
     nbcol.value(parseInt(nbcol.value())+1);
     table.attr('data-nbcol',parseInt(table.attr('data-nbcol'))+1);
 }
 });
+
+$('#div_viewZones').on('click','.bt_removeAddViewTable',function(){
+   var view_zone = $(this).closest('.viewZone');
+   var nbcol = view_zone.find('.viewZoneAttr[data-l1key=configuration][data-l2key=nbcol]');
+   var nbline = view_zone.find('.viewZoneAttr[data-l1key=configuration][data-l2key=nbline]');
+   var table = $(this).closest('.viewZone').find('table.div_viewData');
+   if($(this).attr('data-type') == 'line'){
+     var line = $(this).attr('data-line');
+     $(this).closest('tr').remove();
+     table.find('tbody tr').each(function(){
+        if(parseInt($(this).find('.viewDataAttr:first').attr('data-l2key')) > line){
+            $(this).find('.viewDataAttr').attr('data-l2key',parseInt($(this).find('.viewDataAttr:first').attr('data-l2key')) - 1);
+        }
+        nbline.value(parseInt(nbline.value())-1);
+    });
+ }else if($(this).attr('data-type') == 'col'){
+    var col = $(this).attr('data-col');
+    table.find('tbody tr .viewDataAttr').each(function(){
+        if(parseInt($(this).attr('data-l3key')) == col){
+            $(this).closest('td').remove();
+        }else if(parseInt($(this).attr('data-l3key')) > col){
+            $(this).attr('data-l3key',parseInt($(this).attr('data-l3key')) - 1);
+        }
+    });
+    $(this).closest('td').remove();
+    nbcol.value(parseInt(nbcol.value())-1);
+}
+});
+
 
 $('#div_viewZones').delegate('.bt_addViewGraph','click',function(){
     var el = $(this);
@@ -451,8 +485,6 @@ function addGraphService(_viewData){
     result.find('.viewDataAttr[data-l1key=configuration][data-l2key=graphColor]').css('background-color',init(_viewData.configuration.graphColor,'#4572A7'));
     return result;
 }
-
-
 
 $('#div_viewZones').delegate('.bt_addViewWidget','click',function(){
     var el = $(this);
