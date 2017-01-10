@@ -120,7 +120,7 @@ class view {
 					for ($i = 0; $i < $viewZone->getConfiguration('nbline', 2); $i++) {
 						$viewZone_info['html'] .= '<tr>';
 						for ($j = 0; $j < $viewZone->getConfiguration('nbcol', 2); $j++) {
-							$viewZone_info['html'] .= '<td>';
+							$viewZone_info['html'] .= '<td><center>';
 							if (isset($viewData['configuration'][$i][$j])) {
 								$replace = array();
 								preg_match_all("/#([0-9]*)#/", $viewData['configuration'][$i][$j], $matches);
@@ -129,28 +129,11 @@ class view {
 									if (!is_object($cmd) || $cmd->getType() != 'info') {
 										continue;
 									}
-									$intReplace = array();
-									$valueCmd = $cmd->execCmd(null, true, $_quote);
-									$replace['#' . $cmd_id . '#'] = '<span class="cmd_table" data-cmd_id="#id#"><span class="state"></span> ' . $cmd->getUnite() . '</span>';
-									$replace['#' . $cmd_id . '#'] .= '<script>';
-									$replace['#' . $cmd_id . '#'] .= "jeedom.cmd.update['table_#id#'] = function(_options){
-																	  	$('.cmd_table[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate)
-																	  	$('.cmd_table[data-cmd_id=#id#] .state').empty().append(_options.display_value);
-																	  	$('.cmd_table[data-cmd_id=#id#]').removeClass('label label-warning label-danger')
-																	  	if(_options.alertLevel == 'warning'){
-																	  		$('.cmd_table[data-cmd_id=#id#]').addClass('label label-warning');
-																	  	}else if(_options.alertLevel == 'danger'){
-																			$('.cmd_table[data-cmd_id=#id#]').addClass('label label-danger');
-																	  	}
-																  	  }
-																	jeedom.cmd.update['table_#id#']({display_value:'" . $valueCmd . "',valueDate:'" . $cmd->getValueDate() . "',collectDate:'" . $cmd->getCollectDate() . "',alertLevel:'" . $cmd->getCache('alertLevel', 'none') . "'});";
-									$replace['#' . $cmd_id . '#'] .= '</script>';
-									$intReplace['#id#'] = $cmd->getId();
-									$replace['#' . $cmd_id . '#'] = str_replace(array_keys($intReplace), $intReplace, $replace['#' . $cmd_id . '#']);
+									$replace['#' . $cmd_id . '#'] = $cmd->toHtml($_version);
 								}
 								$viewZone_info['html'] .= str_replace(array_keys($replace), $replace, $viewData['configuration'][$i][$j]);
 							}
-							$viewZone_info['html'] .= '</td>';
+							$viewZone_info['html'] .= '</center></td>';
 						}
 						$viewZone_info['html'] .= '</tr>';
 					}

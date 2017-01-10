@@ -84,7 +84,7 @@
 
 
 
-$('body').delegate('.eqLogic-widget .history', 'click', function () {
+$('body').delegate('.cmd-widget.history', 'click', function () {
     $('#md_modal2').dialog({title: "Historique"});
     $("#md_modal2").load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
 });
