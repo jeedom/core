@@ -129,17 +129,24 @@ class view {
 									if (!is_object($cmd) || $cmd->getType() != 'info') {
 										continue;
 									}
+									$intReplace = array();
 									$valueCmd = $cmd->execCmd(null, true, $_quote);
-									$replace['#' . $cmd_id . '#'] = '<span class="cmd_table" data-cmd_id="#id#"></span>';
-									$replace['#' . $cmd_id . '#'] .= ' ' . $cmd->getUnite();
+									$replace['#' . $cmd_id . '#'] = '<span class="cmd_table" data-cmd_id="#id#"><span class="state"></span> ' . $cmd->getUnite() . '</span>';
 									$replace['#' . $cmd_id . '#'] .= '<script>';
 									$replace['#' . $cmd_id . '#'] .= "jeedom.cmd.update['table_#id#'] = function(_options){
 																	  	$('.cmd_table[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate)
-																	  	$('.cmd_table[data-cmd_id=#id#]').empty().append(_options.display_value);
+																	  	$('.cmd_table[data-cmd_id=#id#] .state').empty().append(_options.display_value);
+																	  	$('.cmd_table[data-cmd_id=#id#]').removeClass('label label-warning label-danger')
+																	  	if(_options.alertLevel == 'warning'){
+																	  		$('.cmd_table[data-cmd_id=#id#]').addClass('label label-warning');
+																	  	}else if(_options.alertLevel == 'danger'){
+																			$('.cmd_table[data-cmd_id=#id#]').addClass('label label-danger');
+																	  	}
 																  	  }
-																	jeedom.cmd.update['table_#id#']({display_value:'" . $valueCmd . "',valueDate:'" . $cmd->getValueDate() . "',collectDate:'" . $cmd->getCollectDate() . "'});";
+																	jeedom.cmd.update['table_#id#']({display_value:'" . $valueCmd . "',valueDate:'" . $cmd->getValueDate() . "',collectDate:'" . $cmd->getCollectDate() . "',alertLevel:'" . $cmd->getCache('alertLevel', 'none') . "'});";
 									$replace['#' . $cmd_id . '#'] .= '</script>';
-									$replace['#' . $cmd_id . '#'] = str_replace('#id#', $cmd->getId(), $replace['#' . $cmd_id . '#']);
+									$intReplace['#id#'] = $cmd->getId();
+									$replace['#' . $cmd_id . '#'] = str_replace(array_keys($intReplace), $intReplace, $replace['#' . $cmd_id . '#']);
 								}
 								$viewZone_info['html'] .= str_replace(array_keys($replace), $replace, $viewData['configuration'][$i][$j]);
 							}
