@@ -954,6 +954,7 @@ class cmd {
 			}
 			$replace['#collectDate#'] = $this->getCollectDate();
 			$replace['#valueDate#'] = $this->getValueDate();
+			$replace['#alertLevel#'] = $this->getCache('alertLevel', 'none');
 			if ($this->getIsHistorized() == 1) {
 				$replace['#history#'] = 'history cursor';
 				if (config::byKey('displayStatsWidget') == 1 && strpos($template, '#displayHistory#') !== false) {
