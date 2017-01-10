@@ -313,6 +313,9 @@ jeedom.cmd.refreshValue = function(_params) {
     var sends = {};
     for(var i in _params){
         var cmd = $('.cmd[data-cmd_id=' + _params[i].cmd_id + ']');
+        if (isset(jeedom.cmd.update) && isset(jeedom.cmd.update['table_'+_params[i].cmd_id])) {
+            jeedom.cmd.update['table_'+_params[i].cmd_id](_params[i]);
+        }
         if (cmd.html() == undefined || (cmd.closest('.eqLogic').attr('data-version') == undefined && cmd.attr('data-version') == undefined) || cmd.hasClass('noRefresh')) {
             continue;
         }

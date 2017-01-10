@@ -129,10 +129,15 @@ class view {
 									if (!is_object($cmd) || $cmd->getType() != 'info') {
 										continue;
 									}
-									$cmd_value = $cmd->execCmd(null, true, $_quote);
-									$collectDate = $cmd->getCollectDate();
-									$valueDate = $cmd->getValueDate();
-									$replace['#' . $cmd_id . '#'] = $cmd_value . ' ' . $cmd->getUnite();
+									$valueCmd = $cmd->execCmd(null, true, $_quote);
+									$replace['#' . $cmd_id . '#'] = '<span title="Valeur du ' . $cmd->getValueDate() . ' collectée le ' . $cmd->getCollectDate() . '" class="tableCmd_' . $cmd->getId() . '">';
+									$replace['#' . $cmd_id . '#'] .= $valueCmd;
+									$replace['#' . $cmd_id . '#'] .= '</span> ' . $cmd->getUnite();
+									$replace['#' . $cmd_id . '#'] .= '<script>';
+									$replace['#' . $cmd_id . '#'] .= 'jeedom.cmd.update[\'table_' . $cmd->getId() . '\'] = function(_options){';
+									$replace['#' . $cmd_id . '#'] .= '$(\'.tableCmd_' . $cmd->getId() . '\').text(_options.display_value)';
+									$replace['#' . $cmd_id . '#'] .= '}';
+									$replace['#' . $cmd_id . '#'] .= '</script>';
 								}
 								$viewZone_info['html'] .= str_replace(array_keys($replace), $replace, $viewData['configuration'][$i][$j]);
 							}
