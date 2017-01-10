@@ -116,11 +116,27 @@
      view.zones = [];
      $('.viewZone').each(function() {
         viewZoneInfo = {};
-        var viewZoneInfo = $(this).getValues('.viewZoneAttr');
-        viewZoneInfo = viewZoneInfo[0];
-        viewZoneInfo.viewData = $(this).find('.viewData').getValues('.viewDataAttr');
-        view.zones.push(viewZoneInfo);
-    });
+        var viewZoneInfo = $(this).getValues('.viewZoneAttr')[0];
+        if(viewZoneInfo.type == 'table'){
+            viewZoneInfo.viewData = [{'configuration' : {}}];
+            var line = 0;
+            var col = 0;
+            $(this).find('table tbody tr').each(function(){
+                viewZoneInfo.viewData[0]['configuration'][line] = {};
+                col = 0;
+                $(this).find('td input').each(function(){
+                    viewZoneInfo.viewData[0]['configuration'][line][col] = $(this).value();
+                    col++;
+                });
+                line++;
+            });
+            viewZoneInfo.configuration.nbcol = col;
+            viewZoneInfo.configuration.nbline = line;
+        }else{
+           viewZoneInfo.viewData = $(this).find('.viewData').getValues('.viewDataAttr');
+       }
+       view.zones.push(viewZoneInfo);
+   });
      jeedom.view.save({
         id: $(".li_view.active").attr('data-view_id'),
         view: view,
@@ -300,21 +316,18 @@ if (init(_viewZone.type, 'widget') == 'graph') {
 if (init(_viewZone.configuration.nbline) == '') {
     _viewZone.configuration.nbline = 2;
 }
-div += '<input style="display : none;" class="viewZoneAttr" data-l1key="configuration" data-l2key="nbcol" >';
-div += '<input style="display : none;" class="viewZoneAttr" data-l1key="configuration" data-l2key="nbline">';
-div += '<table class="table table-condensed div_viewData viewData" data-nbcol="'+_viewZone.configuration.nbcol+'" data-nbline="'+_viewZone.configuration.nbline+'">';
+div += '<table class="table table-condensed div_viewData">';
 div += '<thead>';
 div += '<tr>';
-div += '<input class="form-control viewDataAttr" data-l1key="link_id" value="-1" style="display:none;"/>';
 div += '<td></td>';
 for(i=0;i<_viewZone.configuration.nbcol;i++){
-    div += '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="col" data-col="'+i+'"><i class="fa fa-trash-o"></a></td>';
+    div += '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="col"><i class="fa fa-trash-o"></a></td>';
 }
 div += '</thead>';
 div += '<tbody>';
 for(j=0;j<_viewZone.configuration.nbline;j++){
-    div += '<tr>';
-    div += '<td><a class="btn btn-danger bt_removeAddViewTable" data-line="'+j+'" data-type="line"><i class="fa fa-trash-o"></a></td>';
+    div += '<tr class="viewData">';
+    div += '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="line"><i class="fa fa-trash-o"></a></td>';
     for(i=0;i<_viewZone.configuration.nbcol;i++){
         div += '<td><input class="form-control viewDataAttr" data-l1key="configuration" data-l2key="'+j+'" data-l3key="'+i+'" style="width:calc(100% - 50px);display: inline-block;" /> <a class="btn btn-default bt_listEquipementInfo" style="margin-top:-3px;"><i class="fa fa-list-alt"></i></a></td>';
     }
@@ -341,54 +354,28 @@ $("#div_viewZones .viewZone:last .div_viewData tbody").sortable({axis: "y", curs
 }
 
 $('#div_viewZones').on('click','.bt_addViewTable',function(){
-    var view_zone = $(this).closest('.viewZone');
-    var nbcol = view_zone.find('.viewZoneAttr[data-l1key=configuration][data-l2key=nbcol]');
-    var nbline = view_zone.find('.viewZoneAttr[data-l1key=configuration][data-l2key=nbline]');
     var table = $(this).closest('.viewZone').find('table.div_viewData');
     if($(this).attr('data-type') == 'line'){
         var line = '<tr>';
-        line += '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="line" data-line="'+(parseInt(nbline.value())+1)+'"><i class="fa fa-trash-o"></a></td>';
-        for(i=0;i<nbcol.value();i++){
-           line += '<td><input class="form-control viewDataAttr" data-l1key="configuration" data-l2key="'+(parseInt(nbline.value())+1)+'" data-l3key="'+i+'" style="width:calc(100% - 50px);display: inline-block;" /> <a class="btn btn-default bt_listEquipementInfo" style="margin-top:-3px;"><i class="fa fa-list-alt"></i></a></td>';
+        line += '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="line"><i class="fa fa-trash-o"></a></td>';
+        for(i=0;i<table.find('tbody tr:first td').length - 1;i++){
+           line += '<td><input class="form-control viewDataAttr" data-l1key="configuration" style="width:calc(100% - 50px);display: inline-block;" /> <a class="btn btn-default bt_listEquipementInfo" style="margin-top:-3px;"><i class="fa fa-list-alt"></i></a></td>';
        }
        line += '</tr>';
-       table.append(line);
-       nbline.value(parseInt(nbline.value())+1);
+       table.find('tbody').append(line);
    }else if($(this).attr('data-type') == 'col'){
-    table.find('thead tr').append('<td><a class="btn btn-danger bt_removeAddViewTable" data-type="col" data-col="'+(parseInt(nbcol.value())+1)+'"><i class="fa fa-trash-o"></a></td>');
+    table.find('thead tr').append('<td><a class="btn btn-danger bt_removeAddViewTable" data-type="col"><i class="fa fa-trash-o"></a></td>');
     table.find('tbody tr').each(function(){
-       $(this).append('<td><input class="form-control viewDataAttr" data-l1key="configuration" data-l2key="'+$(this).find('input:last').attr('data-l2key')+'" data-l3key="'+(parseInt(nbcol.value())+1)+'" style="width:calc(100% - 50px);display: inline-block;" /> <a class="btn btn-default bt_listEquipementInfo" style="margin-top:-3px;"><i class="fa fa-list-alt"></i></a></td>')
+       $(this).append('<td><input class="form-control viewDataAttr" data-l1key="configuration" style="width:calc(100% - 50px);display: inline-block;" /> <a class="btn btn-default bt_listEquipementInfo" style="margin-top:-3px;"><i class="fa fa-list-alt"></i></a></td>')
    });
-    nbcol.value(parseInt(nbcol.value())+1);
-    table.attr('data-nbcol',parseInt(table.attr('data-nbcol'))+1);
 }
 });
 
 $('#div_viewZones').on('click','.bt_removeAddViewTable',function(){
- var view_zone = $(this).closest('.viewZone');
- var nbcol = view_zone.find('.viewZoneAttr[data-l1key=configuration][data-l2key=nbcol]');
- var nbline = view_zone.find('.viewZoneAttr[data-l1key=configuration][data-l2key=nbline]');
- var table = $(this).closest('.viewZone').find('table.div_viewData');
  if($(this).attr('data-type') == 'line'){
-   var line = $(this).attr('data-line');
    $(this).closest('tr').remove();
-   table.find('tbody tr').each(function(){
-    if(parseInt($(this).find('.viewDataAttr:first').attr('data-l2key')) > line){
-        $(this).find('.viewDataAttr').attr('data-l2key',parseInt($(this).find('.viewDataAttr:first').attr('data-l2key')) - 1);
-    }
-    nbline.value(parseInt(nbline.value())-1);
-});
 }else if($(this).attr('data-type') == 'col'){
-    var col = $(this).attr('data-col');
-    table.find('tbody tr .viewDataAttr').each(function(){
-        if(parseInt($(this).attr('data-l3key')) == col){
-            $(this).closest('td').remove();
-        }else if(parseInt($(this).attr('data-l3key')) > col){
-            $(this).attr('data-l3key',parseInt($(this).attr('data-l3key')) - 1);
-        }
-    });
-    $(this).closest('td').remove();
-    nbcol.value(parseInt(nbcol.value())-1);
+   $(this).closest('table').find('td:nth-child(' + ($(this).closest('td').index() + 1) + ')').remove();
 }
 });
 
