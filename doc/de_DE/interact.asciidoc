@@ -5,12 +5,12 @@
 
 = Interaktionen - Grundlagen
 
-Le système d'interaction dans Jeedom permet de réaliser des actions à partir de commandes textes ou vocales.
+Das Interaktionssystem in Jeedom ermöglicht Aktionen von Text- oder Sprachbefehl.
 
 Befehls Typen :
 
 * aktion : Einen Befehl ausführen zum Beispiel : Ein- oder Ausschalten einer Lampe, Wecker, Heizung, etc ...
-* Info : interroger Jeedom avec une commande info pour connaître, par exemple la température du salon, l'état d'un appareil.
+* Info : Jeedom mit einem Info Befehl abfragen um zum Beispiel, die Temperatur des Raumes, den Zustand des Geräts zu kennen.
 
 Diese Befehle können sie erhalten über :  
 
@@ -26,11 +26,11 @@ Avec un seul mécanisme sur d'autres systèmes, on peut donc contrôler tout Jee
 
 === Interaktions Startseite
 
-Pour accéder à la page d'interaction il faut aller sur Outils -> Interactions: 
+Zum Zugiff auf die Interaktions Seite, müssen sie auf Werkzeuge -> Interaktion gehen : 
 
 image::../images/interact001.png[]
 
-Liste des interactions et action générale :
+Liste der Interaktionen und allgemeine Maßnahmen :
 
 image::../images/interact002.png[]
 
@@ -40,7 +40,7 @@ Wie an vielen Orten auf Jeedom, wenn man die Maus ganz nach links bewegt ermögl
 * Oben auf der Seite, gibt es 3 Schaltflächen :
 ** *1* Die Schaltfläche "Hinzufügen", ist zum erstellen neuer Interaktionen.
 ** *2* Le bouton "Régénérer" qui va recréer toutes les interactions (peut être très long > 5mn).
-** *3* Le bouton "Tester" qui permet d'ouvrir un boîte de dialogue pour écrire et tester une phrase.
+** *3* Die Schaltfläche "Test", öffnet ein Dialogfeld um einen Satz zu schreiben und zu testen.
 
 [TIP]
 Si vous avez une interaction qui génère les phrases pour les lumières par exemple, et que vous ajoutez un nouveau module de commande de lumière, il vous faudra soit régénérer toutes les interactions, soit aller dans l'interaction en question et la sauvegarder de nouveau pour créer les phrases de ce nouveau module.
@@ -184,7 +184,7 @@ Beispiel : personne1|personne2
 On peut imaginer qu'une alarme peut être activée ou désactivée par un enfant ou un voisin qui viendrait arroser les plantes en votre absence...
 
 ====== Regexp d'exclusion
-[WICHTIG]
+[IMPORTANT]
 Fonction réservée aux connaisseurs ou téméraires qui savent utiliser Google.
 
 Depuis Jeedom V2.00 on a la possibilité de créer des https://fr.wikipedia.org/wiki/Expression_rationnelle[Regexp] d'exclusion, si une phrase générée correspond à cette Regexp elle sera supprimée.
@@ -237,7 +237,7 @@ Avec l'ajout de l'option "i" on constate qu'il ne reste plus que 55 phrases gén
 
 Comme c'est un sujet extrêmement complexe, je ne vais pas aller plus en détail ici, il y a suffisamment de tutos sur le net pour vous aider, et n'oubliez pas Google est votre ami aussi car oui, c'est mon ami, c'est lui qui m’a appris à comprendre les Regexp et même à coder. Donc s'il m'a aidé, il peut aussi vous aider si vous y mettez de la bonne volonté.
 
-Lien utile : 
+Nützliche Links : 
 
 * http://google.fr
 
@@ -248,7 +248,7 @@ Lien utile :
 * https://openclassrooms.com/courses/concevez-votre-site-web-avec-php-et-mysql/les-expressions-regulieres-partie-1-2
 
 
-== Exemples
+== Beispiele
 
 === Réponse composé de plusieurs informations
 
@@ -271,7 +271,7 @@ image::../images/interact017.png[]
 
 Cette exemple cible précisément un équipement spécifique ce qui permet d'avoir une réponse personnalisée. On pourrait donc imaginer remplacer la réponse de l'exemple par "non il n’y a personne dans la chambre de #julie#|oui il y a quelqu’un dans la chambre de #julie#"
 
-==== Evolution 
+==== Entwicklung 
 
 * La question est donc "\#commande# [dans la |dans le] \#objet#"
 * La réponse sera "non il n’y a personne dans la pièce" ou "oui il y a quelqu’un dans la pièce"
@@ -298,7 +298,7 @@ image::../images/interact019.png[]
 * Cette exemple génère donc une phrase pour toutes les commandes de type info numérique qui ont une unité, on peut donc décocher des unités dans le filtre de droite limité au type qui nous intéresse.
 
 
-==== Evolution 
+==== Entwicklung 
 On peut donc ajouter des synonymes au nom de commande pour avoir quelque chose de plus naturel, ajouter un regexp pour filtrer les commandes qui n'ont rien à voir avec notre interaction.
 
 Ajout de synonyme, permet de dire à Jeedom qu'une commande s'appellant "X" peut aussi s'appeler "Y" et donc dans notre phrase si on a "allume y", Jeedom sait que c'est allumer x. Cette méthode est très pratique pour renommer des noms de commande qui quand elles sont affichées à l'écran sont écrites d'une façon qui n'est pas naturelle vocalement ou dans une phrase écrite comme les "ON", un bouton écrit comme cela est totalement logique mais pas dans le contexte d'une phrase.
@@ -334,7 +334,7 @@ Pour ce faire, on a 3 parties :
 [NOTE]
 On peut utiliser n'importe quel tag excepté ceux déjà utilisés par Jeedom, il peut y en avoir plusieurs pour piloter par exemple plusieurs commandes. A noter aussi que tous les tags sont passés aux scénarios lancés par l'interaction (il faut toutefois que le scénario soit en "Exécuter en avant plan").
 
-==== Evolution 
+==== Entwicklung 
 On peut vouloir piloter toutes les commandes de type curseur avec une seule interaction. Avec l'exemple qui suit on va donc pouvoir commander plusieurs variateurs avec une seule interaction et donc générer un ensemble de phrases pour les contrôler.
 
 image::../images/interact033.png[]
@@ -424,7 +424,7 @@ La sensibilité va de 1 (correspond exactement) à 99 (je louche donc c'est ok p
 
 Puis vous retrouvez la partie paramétrage des couleurs qui est décrite en détail dans le chapitre *"Piloter la couleur d’un bandeau de LED"*
 
-[WICHTIG]
+[IMPORTANT]
 Ne pas oublier de sauver en bas de page.
 
 [TIP]

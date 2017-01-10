@@ -434,25 +434,25 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </li>
-<li><a href="#_exemples">2. Exemples</a>
+<li><a href="#_beispiele">2. Beispiele</a>
 <ul class="sectlevel2">
 <li><a href="#_réponse_composé_de_plusieurs_informations">2.1. Réponse composé de plusieurs informations</a></li>
 <li><a href="#_y_a_t_il_quelqu_un_dans_la_chambre">2.2. Y a-t-il quelqu&#8217;un dans la chambre ?</a>
 <ul class="sectlevel3">
 <li><a href="#_version_basique">2.2.1. Version basique</a></li>
-<li><a href="#_evolution">2.2.2. Evolution</a></li>
+<li><a href="#_entwicklung">2.2.2. Entwicklung</a></li>
 </ul>
 </li>
 <li><a href="#_connaître_la_température_humidité_luminosité">2.3. Connaître la température/humidité/luminosité</a>
 <ul class="sectlevel3">
 <li><a href="#_version_basique_2">2.3.1. Version basique</a></li>
-<li><a href="#_evolution_2">2.3.2. Evolution</a></li>
+<li><a href="#_entwicklung_2">2.3.2. Entwicklung</a></li>
 </ul>
 </li>
 <li><a href="#_piloter_un_dimmer_ou_un_thermostat_slider">2.4. Piloter un dimmer ou un thermostat (slider)</a>
 <ul class="sectlevel3">
 <li><a href="#_version_basique_3">2.4.1. Version basique</a></li>
-<li><a href="#_evolution_3">2.4.2. Evolution</a></li>
+<li><a href="#_entwicklung_3">2.4.2. Entwicklung</a></li>
 </ul>
 </li>
 <li><a href="#_piloter_la_couleur_d_un_bandeau_de_led">2.5. Piloter la couleur d&#8217;un bandeau de LED</a></li>
@@ -474,7 +474,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Le système d&#8217;interaction dans Jeedom permet de réaliser des actions à partir de commandes textes ou vocales.</p>
+<p>Das Interaktionssystem in Jeedom ermöglicht Aktionen von Text- oder Sprachbefehl.</p>
 </div>
 <div class="paragraph">
 <p>Befehls Typen :</p>
@@ -485,7 +485,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>aktion : Einen Befehl ausführen zum Beispiel : Ein- oder Ausschalten einer Lampe, Wecker, Heizung, etc &#8230;&#8203;</p>
 </li>
 <li>
-<p>Info : interroger Jeedom avec une commande info pour connaître, par exemple la température du salon, l&#8217;état d&#8217;un appareil.</p>
+<p>Info : Jeedom mit einem Info Befehl abfragen um zum Beispiel, die Temperatur des Raumes, den Zustand des Geräts zu kennen.</p>
 </li>
 </ul>
 </div>
@@ -519,7 +519,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_interaktions_startseite">1.1. Interaktions Startseite</h3>
 <div class="paragraph">
-<p>Pour accéder à la page d&#8217;interaction il faut aller sur Outils &#8594; Interactions:</p>
+<p>Zum Zugiff auf die Interaktions Seite, müssen sie auf Werkzeuge &#8594; Interaktion gehen :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -527,7 +527,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>Liste des interactions et action générale :</p>
+<p>Liste der Interaktionen und allgemeine Maßnahmen :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -559,7 +559,7 @@ Wie an vielen Orten auf Jeedom, wenn man die Maus ganz nach links bewegt ermögl
 <p><strong>2</strong> Le bouton "Régénérer" qui va recréer toutes les interactions (peut être très long &gt; 5mn).</p>
 </li>
 <li>
-<p><strong>3</strong> Le bouton "Tester" qui permet d&#8217;ouvrir un boîte de dialogue pour écrire et tester une phrase.</p>
+<p><strong>3</strong> Die Schaltfläche "Test", öffnet ein Dialogfeld um einen Satz zu schreiben und zu testen.</p>
 </li>
 </ul>
 </div>
@@ -859,8 +859,17 @@ Les tags ne fonctionnent pas dans les conversions binaires.
 </div>
 <div class="sect5">
 <h6 id="_regexp_d_exclusion">Regexp d&#8217;exclusion</h6>
-<div class="paragraph">
-<p>Fonction réservée aux connaisseurs ou téméraires qui savent utiliser Google.</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Fonction réservée aux connaisseurs ou téméraires qui savent utiliser Google.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Depuis Jeedom V2.00 on a la possibilité de créer des <a href="https://fr.wikipedia.org/wiki/Expression_rationnelle">Regexp</a> d&#8217;exclusion, si une phrase générée correspond à cette Regexp elle sera supprimée.
@@ -949,7 +958,7 @@ Comme on peut le voir dans la capture suivante, il ne reste plus que 71 phrases,
 <p>Comme c&#8217;est un sujet extrêmement complexe, je ne vais pas aller plus en détail ici, il y a suffisamment de tutos sur le net pour vous aider, et n&#8217;oubliez pas Google est votre ami aussi car oui, c&#8217;est mon ami, c&#8217;est lui qui m’a appris à comprendre les Regexp et même à coder. Donc s&#8217;il m&#8217;a aidé, il peut aussi vous aider si vous y mettez de la bonne volonté.</p>
 </div>
 <div class="paragraph">
-<p>Lien utile :</p>
+<p>Nützliche Links :</p>
 </div>
 <div class="ulist">
 <ul>
@@ -974,7 +983,7 @@ Comme on peut le voir dans la capture suivante, il ne reste plus que 71 phrases,
 </div>
 </div>
 <div class="sect1">
-<h2 id="_exemples">2. Exemples</h2>
+<h2 id="_beispiele">2. Beispiele</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_réponse_composé_de_plusieurs_informations">2.1. Réponse composé de plusieurs informations</h3>
@@ -1017,7 +1026,7 @@ Comme on peut le voir dans la capture suivante, il ne reste plus que 71 phrases,
 </div>
 </div>
 <div class="sect3">
-<h4 id="_evolution">2.2.2. Evolution</h4>
+<h4 id="_entwicklung">2.2.2. Entwicklung</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1075,7 +1084,7 @@ Pour rendre encore plus flexible on peut ajouter des synonymes, mais dans ce cas
 </div>
 </div>
 <div class="sect3">
-<h4 id="_evolution_2">2.3.2. Evolution</h4>
+<h4 id="_entwicklung_2">2.3.2. Entwicklung</h4>
 <div class="paragraph">
 <p>On peut donc ajouter des synonymes au nom de commande pour avoir quelque chose de plus naturel, ajouter un regexp pour filtrer les commandes qui n&#8217;ont rien à voir avec notre interaction.</p>
 </div>
@@ -1146,7 +1155,7 @@ On peut utiliser n&#8217;importe quel tag excepté ceux déjà utilisés par Jee
 </div>
 </div>
 <div class="sect3">
-<h4 id="_evolution_3">2.4.2. Evolution</h4>
+<h4 id="_entwicklung_3">2.4.2. Entwicklung</h4>
 <div class="paragraph">
 <p>On peut vouloir piloter toutes les commandes de type curseur avec une seule interaction. Avec l&#8217;exemple qui suit on va donc pouvoir commander plusieurs variateurs avec une seule interaction et donc générer un ensemble de phrases pour les contrôler.</p>
 </div>
@@ -1330,8 +1339,17 @@ Vous remarquerez dans la réponse le tag #value# celui-ci contient dans le cas d
 <div class="paragraph">
 <p>Puis vous retrouvez la partie paramétrage des couleurs qui est décrite en détail dans le chapitre <strong>"Piloter la couleur d’un bandeau de LED"</strong></p>
 </div>
-<div class="paragraph">
-<p>Ne pas oublier de sauver en bas de page.</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Ne pas oublier de sauver en bas de page.
+</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock tip">
 <table>
