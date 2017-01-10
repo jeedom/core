@@ -130,14 +130,16 @@ class view {
 										continue;
 									}
 									$valueCmd = $cmd->execCmd(null, true, $_quote);
-									$replace['#' . $cmd_id . '#'] = '<span title="Valeur du ' . $cmd->getValueDate() . ' collectée le ' . $cmd->getCollectDate() . '" class="tableCmd_' . $cmd->getId() . '">';
-									$replace['#' . $cmd_id . '#'] .= $valueCmd;
-									$replace['#' . $cmd_id . '#'] .= '</span> ' . $cmd->getUnite();
+									$replace['#' . $cmd_id . '#'] = '<span class="cmd_table" data-cmd_id="#id#"></span>';
+									$replace['#' . $cmd_id . '#'] .= ' ' . $cmd->getUnite();
 									$replace['#' . $cmd_id . '#'] .= '<script>';
-									$replace['#' . $cmd_id . '#'] .= 'jeedom.cmd.update[\'table_' . $cmd->getId() . '\'] = function(_options){';
-									$replace['#' . $cmd_id . '#'] .= '$(\'.tableCmd_' . $cmd->getId() . '\').text(_options.display_value)';
-									$replace['#' . $cmd_id . '#'] .= '}';
+									$replace['#' . $cmd_id . '#'] .= "jeedom.cmd.update['table_#id#'] = function(_options){
+																	  	$('.cmd_table[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate)
+																	  	$('.cmd_table[data-cmd_id=#id#]').empty().append(_options.display_value);
+																  	  }
+																	jeedom.cmd.update['table_#id#']({display_value:'" . $valueCmd . "',valueDate:'" . $cmd->getValueDate() . "',collectDate:'" . $cmd->getCollectDate() . "'});";
 									$replace['#' . $cmd_id . '#'] .= '</script>';
+									$replace['#' . $cmd_id . '#'] = str_replace('#id#', $cmd->getId(), $replace['#' . $cmd_id . '#']);
 								}
 								$viewZone_info['html'] .= str_replace(array_keys($replace), $replace, $viewData['configuration'][$i][$j]);
 							}
