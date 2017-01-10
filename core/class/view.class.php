@@ -75,6 +75,7 @@ class view {
 		$return['viewZone'] = array();
 		foreach ($this->getViewZone() as $viewZone) {
 			$viewZone_info = utils::o2a($viewZone);
+
 			$viewZone_info['viewData'] = array();
 			foreach ($viewZone->getViewData() as $viewData) {
 				$viewData_info = utils::o2a($viewData);
@@ -109,10 +110,42 @@ class view {
 						break;
 				}
 				$viewZone_info['viewData'][] = $viewData_info;
+				if ($viewZone->getType() == 'table') {
+					$viewZone_info['html'] = '<table class="table table-condensed">';
+					$viewDatas = $viewZone->getViewData();
+					if (count($viewZone_info['viewData']) != 1) {
+						continue;
+					}
+					$viewData = $viewZone_info['viewData'][0];
+					for ($i = 0; $i < $viewZone->getConfiguration('nbline', 2); $i++) {
+						$viewZone_info['html'] .= '<tr>';
+						for ($j = 0; $j < $viewZone->getConfiguration('nbcol', 2); $j++) {
+							$viewZone_info['html'] .= '<td>';
+							if (isset($viewData['configuration'][$i][$j])) {
+								$replace = array();
+								preg_match_all("/#([0-9]*)#/", $viewData['configuration'][$i][$j], $matches);
+								foreach ($matches[1] as $cmd_id) {
+									$cmd = cmd::byId($cmd_id);
+									if (!is_object($cmd) || $cmd->getType() != 'info') {
+										continue;
+									}
+									$cmd_value = $cmd->execCmd(null, true, $_quote);
+									$collectDate = $cmd->getCollectDate();
+									$valueDate = $cmd->getValueDate();
+									$replace['#' . $cmd_id . '#'] = $cmd_value . ' ' . $cmd->getUnite();
+								}
+								$viewZone_info['html'] .= str_replace(array_keys($replace), $replace, $viewData['configuration'][$i][$j]);
+							}
+							$viewZone_info['html'] .= '</td>';
+						}
+						$viewZone_info['html'] .= '</tr>';
+					}
+					$viewZone_info['html'] .= '</table>';
+				}
 			}
 			$return['viewZone'][] = $viewZone_info;
 		}
-		return $return;
+		return jeedom::toHumanReadable($return);
 	}
 
 	/*     * **********************Getteur Setteur*************************** */

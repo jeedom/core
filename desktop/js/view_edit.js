@@ -67,16 +67,16 @@
                 for (var j in viewZone.viewData) {
                     var viewData = viewZone.viewData[j];
                     if (init(viewZone.type, 'widget') == 'graph') {
-                       $('#div_viewZones .viewZone:last .div_viewData').append(addGraphService(viewData));
-                   }else if(init(viewZone.type, 'widget') == 'table'){
+                     $('#div_viewZones .viewZone:last .div_viewData').append(addGraphService(viewData));
+                 }else if(init(viewZone.type, 'widget') == 'table'){
                     $('#div_viewZones .viewZone:last .viewData').setValues(viewData, '.viewDataAttr');
                 }else{
-                   $('#div_viewZones .viewZone:last .div_viewData tbody').append(addWidgetService(viewData));
-               }
-           }
-       }
-       modifyWithoutSave = false;
-   }
+                 $('#div_viewZones .viewZone:last .div_viewData tbody').append(addWidgetService(viewData));
+             }
+         }
+     }
+     modifyWithoutSave = false;
+ }
 });
     return false;
 });
@@ -107,37 +107,37 @@
 });
 
  $('#bt_saveView').on('click', function(event) {
-     saveView();
- });
+   saveView();
+});
 
  function saveView(_viewResult){
-   $.hideAlert();
-   var view = $('#div_view').getValues('.viewAttr')[0];
-   view.zones = [];
-   $('.viewZone').each(function() {
-    viewZoneInfo = {};
-    var viewZoneInfo = $(this).getValues('.viewZoneAttr');
-    viewZoneInfo = viewZoneInfo[0];
-    viewZoneInfo.viewData = $(this).find('.viewData').getValues('.viewDataAttr');
-    view.zones.push(viewZoneInfo);
-});
-   jeedom.view.save({
-    id: $(".li_view.active").attr('data-view_id'),
-    view: view,
-    error: function(error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'});
-    },
-    success: function() {
-        $('#div_alert').showAlert({message: '{{Modification enregistrée}}', level: 'success'});
-        modifyWithoutSave = false;
-        if(isset(_viewResult) && _viewResult){
-           window.location.href = 'index.php?v=d&p=view&view_id=' + $(".li_view.active").attr('data-view_id');
-       }
-   }
-});
-}
+     $.hideAlert();
+     var view = $('#div_view').getValues('.viewAttr')[0];
+     view.zones = [];
+     $('.viewZone').each(function() {
+        viewZoneInfo = {};
+        var viewZoneInfo = $(this).getValues('.viewZoneAttr');
+        viewZoneInfo = viewZoneInfo[0];
+        viewZoneInfo.viewData = $(this).find('.viewData').getValues('.viewDataAttr');
+        view.zones.push(viewZoneInfo);
+    });
+     jeedom.view.save({
+        id: $(".li_view.active").attr('data-view_id'),
+        view: view,
+        error: function(error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function() {
+            $('#div_alert').showAlert({message: '{{Modification enregistrée}}', level: 'success'});
+            modifyWithoutSave = false;
+            if(isset(_viewResult) && _viewResult){
+             window.location.href = 'index.php?v=d&p=view&view_id=' + $(".li_view.active").attr('data-view_id');
+         }
+     }
+ });
+ }
 
-$("#bt_removeView").on('click', function(event) {
+ $("#bt_removeView").on('click', function(event) {
     $.hideAlert();
     bootbox.confirm('{{Etes-vous sûr de vouloir supprimer la vue}} <span style="font-weight: bold ;">' + $(".li_view.active a").text() + '</span> ?', function(result) {
         if (result) {
@@ -155,7 +155,7 @@ $("#bt_removeView").on('click', function(event) {
     });
 });
 
-if (is_numeric(getUrlVars('view_id'))) {
+ if (is_numeric(getUrlVars('view_id'))) {
     if ($('#ul_view .li_view[data-view_id=' + getUrlVars('view_id') + ']').length != 0) {
         $('#ul_view .li_view[data-view_id=' + getUrlVars('view_id') + ']').click();
     } else {
@@ -242,9 +242,9 @@ function editView(_view) {
         if ($('.li_view[data-view_id=' + data.result.id + ']').length != 0) {
             $('.li_view.active a').text($('#in_addViewName').value());
         } else {
-           loadPage('index.php?v=d&p=view_edit&view_id=' + data.result.id);
-       }
-   }
+         loadPage('index.php?v=d&p=view_edit&view_id=' + data.result.id);
+     }
+ }
 });
 }
 
@@ -259,20 +259,20 @@ function addEditviewZone(_viewZone) {
         div += '<a class="btn btn-danger btn-xs pull-right bt_removeviewZone"><i class="fa fa-trash-o"></i> Supprimer</a>';
         div += ' <a class="btn btn-warning btn-xs pull-right bt_editviewZone"><i class="fa fa-pencil"></i> Editer</a>';
         if (init(_viewZone.type, 'widget') == 'graph') {
-         div += '<a class="btn btn-primary btn-xs pull-right bt_addViewGraph"><i class="fa fa-plus-circle"></i> Ajouter courbe</a>';
-     }else  if (init(_viewZone.type, 'widget') == 'table') {
+           div += '<a class="btn btn-primary btn-xs pull-right bt_addViewGraph"><i class="fa fa-plus-circle"></i> Ajouter courbe</a>';
+       }else  if (init(_viewZone.type, 'widget') == 'table') {
         div += '<a class="btn btn-primary btn-xs pull-right bt_addViewTable" data-type="line"><i class="fa fa-plus-circle"></i> Ajouter ligne</a>';
         div += '<a class="btn btn-primary btn-xs pull-right bt_addViewTable" data-type="col"><i class="fa fa-plus-circle"></i> Ajouter colonne</a>';
     }else{
-     div += '<a class="btn btn-primary btn-xs pull-right bt_addViewWidget"><i class="fa fa-plus-circle"></i> Ajouter Widget</a>';
- }
- div += '<select class="pull-right viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="zoneCol" style="width : 200px;">';
- div += '<option value="12">{{Largeur de 1/1}}</option>';
- div += '<option value="6">{{Largeur de 1/2}}</option>';
- div += '<option value="4">{{Largeur de 1/3}}</option>';
- div += '<option value="3">{{Largeur de 1/4}}</option>';
- div += '</select>';
- if (init(_viewZone.type, 'widget') == 'graph') {
+       div += '<a class="btn btn-primary btn-xs pull-right bt_addViewWidget"><i class="fa fa-plus-circle"></i> Ajouter Widget</a>';
+   }
+   div += '<select class="pull-right viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="zoneCol" style="width : 200px;">';
+   div += '<option value="12">{{Largeur de 1/1}}</option>';
+   div += '<option value="6">{{Largeur de 1/2}}</option>';
+   div += '<option value="4">{{Largeur de 1/3}}</option>';
+   div += '<option value="3">{{Largeur de 1/4}}</option>';
+   div += '</select>';
+   if (init(_viewZone.type, 'widget') == 'graph') {
     div += '<select class="pull-right viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="dateRange" style="width : 200px;">';
     div += '<option value="30 min">{{30 min}}</option>';
     div += '<option value="1 hour">{{1 heure}}</option>';
@@ -349,36 +349,36 @@ $('#div_viewZones').on('click','.bt_addViewTable',function(){
         var line = '<tr>';
         line += '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="line" data-line="'+(parseInt(nbline.value())+1)+'"><i class="fa fa-trash-o"></a></td>';
         for(i=0;i<nbcol.value();i++){
-         line += '<td><input class="form-control viewDataAttr" data-l1key="configuration" data-l2key="'+(parseInt(nbline.value())+1)+'" data-l3key="'+i+'" style="width:calc(100% - 50px);display: inline-block;" /> <a class="btn btn-default bt_listEquipementInfo" style="margin-top:-3px;"><i class="fa fa-list-alt"></i></a></td>';
-     }
-     line += '</tr>';
-     table.append(line);
-     nbline.value(parseInt(nbline.value())+1);
- }else if($(this).attr('data-type') == 'col'){
+           line += '<td><input class="form-control viewDataAttr" data-l1key="configuration" data-l2key="'+(parseInt(nbline.value())+1)+'" data-l3key="'+i+'" style="width:calc(100% - 50px);display: inline-block;" /> <a class="btn btn-default bt_listEquipementInfo" style="margin-top:-3px;"><i class="fa fa-list-alt"></i></a></td>';
+       }
+       line += '</tr>';
+       table.append(line);
+       nbline.value(parseInt(nbline.value())+1);
+   }else if($(this).attr('data-type') == 'col'){
     table.find('thead tr').append('<td><a class="btn btn-danger bt_removeAddViewTable" data-type="col" data-col="'+(parseInt(nbcol.value())+1)+'"><i class="fa fa-trash-o"></a></td>');
     table.find('tbody tr').each(function(){
-     $(this).append('<td><input class="form-control viewDataAttr" data-l1key="configuration" data-l2key="'+$(this).find('input:last').attr('data-l2key')+'" data-l3key="'+(parseInt(nbcol.value())+1)+'" style="width:calc(100% - 50px);display: inline-block;" /> <a class="btn btn-default bt_listEquipementInfo" style="margin-top:-3px;"><i class="fa fa-list-alt"></i></a></td>')
- });
+       $(this).append('<td><input class="form-control viewDataAttr" data-l1key="configuration" data-l2key="'+$(this).find('input:last').attr('data-l2key')+'" data-l3key="'+(parseInt(nbcol.value())+1)+'" style="width:calc(100% - 50px);display: inline-block;" /> <a class="btn btn-default bt_listEquipementInfo" style="margin-top:-3px;"><i class="fa fa-list-alt"></i></a></td>')
+   });
     nbcol.value(parseInt(nbcol.value())+1);
     table.attr('data-nbcol',parseInt(table.attr('data-nbcol'))+1);
 }
 });
 
 $('#div_viewZones').on('click','.bt_removeAddViewTable',function(){
-   var view_zone = $(this).closest('.viewZone');
-   var nbcol = view_zone.find('.viewZoneAttr[data-l1key=configuration][data-l2key=nbcol]');
-   var nbline = view_zone.find('.viewZoneAttr[data-l1key=configuration][data-l2key=nbline]');
-   var table = $(this).closest('.viewZone').find('table.div_viewData');
-   if($(this).attr('data-type') == 'line'){
-     var line = $(this).attr('data-line');
-     $(this).closest('tr').remove();
-     table.find('tbody tr').each(function(){
-        if(parseInt($(this).find('.viewDataAttr:first').attr('data-l2key')) > line){
-            $(this).find('.viewDataAttr').attr('data-l2key',parseInt($(this).find('.viewDataAttr:first').attr('data-l2key')) - 1);
-        }
-        nbline.value(parseInt(nbline.value())-1);
-    });
- }else if($(this).attr('data-type') == 'col'){
+ var view_zone = $(this).closest('.viewZone');
+ var nbcol = view_zone.find('.viewZoneAttr[data-l1key=configuration][data-l2key=nbcol]');
+ var nbline = view_zone.find('.viewZoneAttr[data-l1key=configuration][data-l2key=nbline]');
+ var table = $(this).closest('.viewZone').find('table.div_viewData');
+ if($(this).attr('data-type') == 'line'){
+   var line = $(this).attr('data-line');
+   $(this).closest('tr').remove();
+   table.find('tbody tr').each(function(){
+    if(parseInt($(this).find('.viewDataAttr:first').attr('data-l2key')) > line){
+        $(this).find('.viewDataAttr').attr('data-l2key',parseInt($(this).find('.viewDataAttr:first').attr('data-l2key')) - 1);
+    }
+    nbline.value(parseInt(nbline.value())-1);
+});
+}else if($(this).attr('data-type') == 'col'){
     var col = $(this).attr('data-col');
     table.find('tbody tr .viewDataAttr').each(function(){
         if(parseInt($(this).attr('data-l3key')) == col){
@@ -393,16 +393,17 @@ $('#div_viewZones').on('click','.bt_removeAddViewTable',function(){
 });
 
 $('#div_viewZones').on('click','.bt_listEquipementInfo',function(){
-   jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function(result) {
-    $('td').find('input.viewDataAttr[data-l1key=configuration]').atCaret('insert', result.human);
-});
+    var el = $(this);
+    jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function(result) {
+        el.closest('td').find('input.viewDataAttr[data-l1key=configuration]').atCaret('insert', result.human);
+    });
 });
 
 $('#div_viewZones').delegate('.bt_addViewGraph','click',function(){
     var el = $(this);
     jeedom.cmd.getSelectModal({cmd : {isHistorized : 1}}, function (result) {
-       el.closest('.viewZone').find('.div_viewData tbody').append( addGraphService({name : result.human,link_id : result.cmd.id,type : 'cmd'}));
-   });
+     el.closest('.viewZone').find('.div_viewData tbody').append( addGraphService({name : result.human,link_id : result.cmd.id,type : 'cmd'}));
+ });
 });
 
 $('#div_viewZones').delegate('.viewDataAttr[data-l1key=configuration][data-l2key=graphColor]','change',function(){
@@ -493,8 +494,8 @@ function addGraphService(_viewData){
 $('#div_viewZones').delegate('.bt_addViewWidget','click',function(){
     var el = $(this);
     jeedom.eqLogic.getSelectModal({}, function (result) {
-       el.closest('.viewZone').find('.div_viewData tbody').append( addWidgetService({name : result.human.replace('#','').replace('#',''),link_id : result.id,type : 'eqLogic'}));
-   });
+     el.closest('.viewZone').find('.div_viewData tbody').append( addWidgetService({name : result.human.replace('#','').replace('#',''),link_id : result.id,type : 'eqLogic'}));
+ });
 });
 
 

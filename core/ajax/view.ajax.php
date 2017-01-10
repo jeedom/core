@@ -95,7 +95,7 @@ try {
 						$viewData = new viewData();
 						$viewData->setviewZone_id($viewZone->getId());
 						$viewData->setOrder($order);
-						utils::a2o($viewData, $viewData_info);
+						utils::a2o($viewData, jeedom::fromHumanReadable($viewData_info));
 						$viewData->save();
 						$order++;
 					}

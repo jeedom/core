@@ -100,9 +100,7 @@ jeedom.view.handleViewAjax = function (_params) {
                 result[viewData.type].push(viewData.id);
             }
             result.html += '</div>';
-        }
-        /*         * *****************viewZone graph***************** */
-        if (viewZone.type == 'graph') {
+        }else if (viewZone.type == 'graph') {
             result.html += '<div id="' + div_id + '" class="chartContainer">';
             result.html += '<script>';
             for (var j in viewZone.viewData) {
@@ -112,10 +110,12 @@ jeedom.view.handleViewAjax = function (_params) {
             }
             result.html += '</script>';
             result.html += '</div>';
-        }
-        result.html += '</div>';
-    }
-    return result;
+        }else if (viewZone.type == 'table') {
+         result.html += viewZone.html;; 
+     }
+     result.html += '</div>';
+ }
+ return result;
 }
 
 
