@@ -126,7 +126,7 @@ class view {
 								preg_match_all("/#([0-9]*)#/", $viewData['configuration'][$i][$j], $matches);
 								foreach ($matches[1] as $cmd_id) {
 									$cmd = cmd::byId($cmd_id);
-									if (!is_object($cmd) || $cmd->getType() != 'info') {
+									if (!is_object($cmd)) {
 										continue;
 									}
 									$replace['#' . $cmd_id . '#'] = $cmd->toHtml($_version);
