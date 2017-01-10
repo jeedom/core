@@ -308,15 +308,15 @@ div += '<tr>';
 div += '<input class="form-control viewDataAttr" data-l1key="link_id" value="-1" style="display:none;"/>';
 div += '<td></td>';
 for(i=0;i<_viewZone.configuration.nbcol;i++){
-    div += '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="col" data-col="'+i+'"><i class="fa fa-trash-o"> {{Supprimer}}</a></td>';
+    div += '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="col" data-col="'+i+'"><i class="fa fa-trash-o"></a></td>';
 }
 div += '</thead>';
 div += '<tbody>';
 for(j=0;j<_viewZone.configuration.nbline;j++){
     div += '<tr>';
-    div += '<td><a class="btn btn-danger bt_removeAddViewTable" data-line="'+j+'" data-type="line"><i class="fa fa-trash-o"> {{Supprimer}}</a></td>';
+    div += '<td><a class="btn btn-danger bt_removeAddViewTable" data-line="'+j+'" data-type="line"><i class="fa fa-trash-o"></a></td>';
     for(i=0;i<_viewZone.configuration.nbcol;i++){
-        div += '<td><input class="form-control viewDataAttr" data-l1key="configuration" data-l2key="'+j+'" data-l3key="'+i+'" /></td>';
+        div += '<td><input class="form-control viewDataAttr" data-l1key="configuration" data-l2key="'+j+'" data-l3key="'+i+'" style="width:calc(100% - 50px);display: inline-block;" /> <a class="btn btn-default bt_listEquipementInfo" style="margin-top:-3px;"><i class="fa fa-list-alt"></i></a></td>';
     }
     div += '</tr>';
 }
@@ -347,18 +347,17 @@ $('#div_viewZones').on('click','.bt_addViewTable',function(){
     var table = $(this).closest('.viewZone').find('table.div_viewData');
     if($(this).attr('data-type') == 'line'){
         var line = '<tr>';
-        line += '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="line" data-line="'+(parseInt(nbline.value())+1)+'"><i class="fa fa-trash-o"> {{Supprimer}}</a></td>';
+        line += '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="line" data-line="'+(parseInt(nbline.value())+1)+'"><i class="fa fa-trash-o"></a></td>';
         for(i=0;i<nbcol.value();i++){
-         line += '<td><input class="form-control viewDataAttr" data-l1key="configuration" data-l2key="'+(parseInt(nbline.value())+1)+'" data-l3key="'+i+'" /></td>';
+         line += '<td><input class="form-control viewDataAttr" data-l1key="configuration" data-l2key="'+(parseInt(nbline.value())+1)+'" data-l3key="'+i+'" style="width:calc(100% - 50px);display: inline-block;" /> <a class="btn btn-default bt_listEquipementInfo" style="margin-top:-3px;"><i class="fa fa-list-alt"></i></a></td>';
      }
      line += '</tr>';
      table.append(line);
      nbline.value(parseInt(nbline.value())+1);
  }else if($(this).attr('data-type') == 'col'){
-
-    table.find('thead tr').append('<td><a class="btn btn-danger bt_removeAddViewTable" data-type="col" data-col="'+(parseInt(nbcol.value())+1)+'"><i class="fa fa-trash-o"> {{Supprimer}}</a></td>');
+    table.find('thead tr').append('<td><a class="btn btn-danger bt_removeAddViewTable" data-type="col" data-col="'+(parseInt(nbcol.value())+1)+'"><i class="fa fa-trash-o"></a></td>');
     table.find('tbody tr').each(function(){
-     $(this).append('<td><input class="form-control viewDataAttr" data-l1key="configuration" data-l2key="'+$(this).find('input:last').attr('data-l2key')+'" data-l3key="'+(parseInt(nbcol.value())+1)+'" /></td>')
+     $(this).append('<td><input class="form-control viewDataAttr" data-l1key="configuration" data-l2key="'+$(this).find('input:last').attr('data-l2key')+'" data-l3key="'+(parseInt(nbcol.value())+1)+'" style="width:calc(100% - 50px);display: inline-block;" /> <a class="btn btn-default bt_listEquipementInfo" style="margin-top:-3px;"><i class="fa fa-list-alt"></i></a></td>')
  });
     nbcol.value(parseInt(nbcol.value())+1);
     table.attr('data-nbcol',parseInt(table.attr('data-nbcol'))+1);
@@ -393,6 +392,11 @@ $('#div_viewZones').on('click','.bt_removeAddViewTable',function(){
 }
 });
 
+$('#div_viewZones').on('click','.bt_listEquipementInfo',function(){
+   jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function(result) {
+    $('td').find('input.viewDataAttr[data-l1key=configuration]').atCaret('insert', result.human);
+});
+});
 
 $('#div_viewZones').delegate('.bt_addViewGraph','click',function(){
     var el = $(this);
