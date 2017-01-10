@@ -1133,7 +1133,7 @@ class cmd {
 		$this->addHistoryValue($value, $this->getCollectDate());
 		$this->checkReturnState($value);
 		$this->checkCmdAlert($value);
-		if ($level != $this->getCache('alertLevel')) {
+		if (isset($level) && $level != $this->getCache('alertLevel')) {
 			$this->actionAlertLevel($level, $value);
 		}
 		$this->pushUrl($value);
