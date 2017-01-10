@@ -59,6 +59,7 @@ jeedom.view.toHtml = function (_params) {
     var paramsSpecifics = {
         pre_success: function (data) {
             result = jeedom.view.handleViewAjax({view: data.result});
+            result.raw = data.result;
             data.result = result;
             return data;
         }
@@ -89,7 +90,7 @@ jeedom.view.handleViewAjax = function (_params) {
         }else{
             result.html += '<div class="col-xs-'+init(viewZone.configuration.zoneCol,12)+'">';
         }
-        result.html += '<legend style="color : #716b7a">' + viewZone.name + '</legend>';
+        result.html += '<legend class="div_viewZone" style="color : #716b7a" data-zone_id="' + viewZone.id + '">' + viewZone.name + '</legend>';
         var div_id = 'div_viewZone' + viewZone.id + Date.now();
         /*         * *****************viewZone widget***************** */
         if (viewZone.type == 'widget') {

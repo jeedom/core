@@ -59,8 +59,11 @@ if ($_SESSION['user']->getOptions('displayViewByDefault') == 1) {
 ?>
 <i class='fa fa-picture-o cursor pull-left bt_displayView' data-display='<?php echo $_SESSION['user']->getOptions('displayViewByDefault') ?>' title="{{Afficher/Masquer les vues}}"></i>
 
-<legend style="height: 35px;color : #563d7c;">Vue <?php
+<legend style="height: 35px;color : #563d7c;">{{Vue}} <?php
 echo $view->getName();
+?>
+ <span id="span_viewSummary" style="font-size: 0.6em;"></span>
+<?php
 if (init('noControl') == '') {
 	if (isConnect('admin')) {
 		?> <a href="index.php?v=d&p=view_edit&view_id=<?php echo $view->getId(); ?>" class="btn btn-warning btn-xs pull-right"><i class="fa fa-pencil"></i> {{Edition complète}}</a><?php }
