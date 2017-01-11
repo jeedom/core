@@ -68,7 +68,7 @@ image::../images/administration10.png[]
 
 Hier haben wir : 
 
-* *Adresse* : adresse du Market, à ne surtout jamais changer à moins que cela soit sur demande de l'équipe de support
+* *Adresse* : Adresse des Marktes, sie darf nicht geändert werden, außer das Support-Team fordert sie auf, es zu tun.
 * *Benutzername* : Markt Benutzername
 * *Mot de passe* : mot de passe du Market
 * *Installer automatiquement les widgets manquants* : indique à Jeedom d'installer automatiquement les widgets dont il a besoin (attention à bien avoir installé le plugin Widget)

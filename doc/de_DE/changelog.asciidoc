@@ -10,13 +10,13 @@
 * Aktion "Alarm" zu den Szenarien hinzugefügt
 * Aktion "Aufklappfenster" zu den Szenarien hinzugefügt
 * Die Widgets der Befehle können jetzt eine Update Methode haben, was AJAX-Aufrufe an Jeedom vermeidet
-* Les widgets des scénarios sont maintenant mis à jour sans appels ajax pour avoir le widget
+* Szenarien Widgets werden jetzt aktualisiert, ohne Ajax-Aufrufe auf das Widget zu haben
 * Le résumé global et des pièces sont maintenant mis à jour sans appels ajax
 * Un clic sur un élément d'un résumé domotique vous amène sur une vue détaillée de celui-ci
 * Vous pouvez maintenant mettre dans les résumés des commandes de type texte
 * Changement des bootstraps slider en slider (correction du bug du double événement des sliders)
 * Sauvegarde automatique des vues lors du clic sur le bouton "voir le résultat"
-* Possibilité d'avoir les docs en local
+* Möglichkeit, die Doc Lokal zu haben
 * Les développeurs tiers peuvent ajouter leur propre système de gestion de tickets
 * Refonte de la configuration des droits utilisateurs (tout est sur la page de gestion des utilisateurs)
 * Mise à jour des libs : jquery (en 3.0) , jquery mobile, hightstock et table sorter, font-awesome
@@ -76,7 +76,7 @@
 * Suppression du fail2ban (car facilement contournable en envoyant une fausse adresse ip), cela permet d’accélérer Jeedom
 * Ajout dans les interactions d'une option sans catégorie pour que l'on puisse générer des interactions sur des équipements sans catégorie
 * Ajout dans les scénarios d'un bouton de choix d'équipement sur les commandes de type slider
-* Mise à jour de bootstrap en 2.3.7
+* Bootstrap-Update in 2.3.7
 * Ajout de la notion de résumé domotique (permet de connaitre d'un seul coup le nombre de lumières à ON, les porte ouvertes, les volets, les fenêtres, la puissance, les détections de mouvement...). Tout cela se configure sur la page de gestion des objets
 * Ajout de pre et post commande sur une commande. Permet de déclencher tout le temps une action avant ou après une autre action. Peut aussi permettre de synchroniser des équipements pour, par exemple, que 2 lumières s'allument toujours ensemble avec la même intensité.
 * Optimisation des listenner
