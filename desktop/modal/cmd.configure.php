@@ -21,19 +21,19 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
   <div style="display: none;" id="md_displayCmdConfigure"></div>
   <a class="btn btn-success btn-sm pull-right" id="bt_cmdConfigureSave"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
   <a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureSaveOn"><i class="fa fa-plus-circle"></i> {{Appliquer à}}</a>
-  <a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureRawObject"><i class="fa fa-info"></i> {{Informations brutes}}</a>
+  <a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureRawObject"><i class="fa fa-info"></i> {{Informations}}</a>
   <a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureLogRealTime"><i class="fa fa-file"></i> {{Log}}</a>
   <div role="tabpanel">
     <ul class="nav nav-tabs" role="tablist">
       <li role="presentation" class="active"><a href="#cmd_information" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-info-circle"></i> {{Informations}}</a></li>
-      <li role="presentation"><a href="#cmd_configuration" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-wrench"></i> {{Configuration avancée}}</a></li>
+      <li role="presentation"><a href="#cmd_configuration" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-wrench"></i> {{Configuration}}</a></li>
       <?php if ($cmd->getType() == 'info') {?>
-      <li role="presentation"><a href="#cmd_alert" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-exclamation-triangle"></i> {{Configuration des alertes}}</a></li>
+      <li role="presentation"><a href="#cmd_alert" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-exclamation-triangle"></i> {{Alertes}}</a></li>
       <?php }
 ?>
       <?php if ($cmd->widgetPossibility('custom')) {
 	?>
-       <li role="presentation"><a href="#cmd_display" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-desktop"></i> {{Affichage avancé}}</a></li>
+       <li role="presentation"><a href="#cmd_display" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-desktop"></i> {{Affichage}}</a></li>
        <?php }
 ?>
        <?php if ($cmd->widgetPossibility('custom::htmlCode')) {
@@ -709,7 +709,7 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 <br/><br/>
 <?php if ($cmd->widgetPossibility('custom::optionalParameters')) {
 		?>
-  <legend><i class="fa fa-pencil-square-o"></i> {{Paramètres optionnels widget}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fa fa-plus-circle"></i> Ajouter</a></legend>
+  <legend><i class="fa fa-pencil-square-o"></i> {{Paramètres optionnels widget}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParametersCmd"><i class="fa fa-plus-circle"></i> Ajouter</a></legend>
   <table class="table table-bordered table-condensed" id="table_widgetParameters">
     <thead class="table table-bordered">
       <tr>
@@ -770,7 +770,7 @@ if ($cmd->getDisplay('parameters') != '') {
     $(this).closest('tr').remove();
   });
 
-  $('#bt_addWidgetParameters').off().on('click', function () {
+  $('#bt_addWidgetParametersCmd').off().on('click', function () {
     var tr = '<tr>';
     tr += '<td>';
     tr += '<input class="form-control key" />';
@@ -787,7 +787,7 @@ if ($cmd->getDisplay('parameters') != '') {
 
   $('#div_displayCmdConfigure').setValues(cmdInfo, '.cmdAttr');
   $('#bt_cmdConfigureRawObject').off('click').on('click',function(){
-    $('#md_modal2').dialog({title: "{{Informations brutes}}"});
+    $('#md_modal2').dialog({title: "{{Informations}}"});
     $("#md_modal2").load('index.php?v=d&modal=object.display&class=cmd&id='+cmdInfo.id).dialog('open');
   });
 

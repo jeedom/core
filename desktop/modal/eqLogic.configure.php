@@ -14,14 +14,14 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 
 <a class="btn btn-danger pull-right btn-sm" id="bt_eqLogicConfigureRemove"><i class="fa fa-times"></i> {{Supprimer}}</a>
 <a class="btn btn-success pull-right btn-sm" id="bt_eqLogicConfigureSave"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
-<a class="btn btn-default pull-right btn-sm" id="bt_eqLogicConfigureRawObject"><i class="fa fa-info"></i> {{Informations brutes}}</a>
+<a class="btn btn-default pull-right btn-sm" id="bt_eqLogicConfigureRawObject"><i class="fa fa-info"></i> {{Informations}}</a>
 <a class="btn btn-default pull-right btn-sm" id="bt_eqLogicConfigureLogRealTime"><i class="fa fa-file"></i> {{Log}}</a>
 
 <ul class="nav nav-tabs" role="tablist">
 	<li role="presentation" class="active"><a href="#eqLogic_information" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-info-circle"></i> {{Informations}}</a></li>
 	<?php if ($eqLogic->widgetPossibility('custom')) {
 	?>
-		<li role="presentation"><a href="#eqLogic_display" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-desktop"></i> {{Affichage avancé}}</a></li>
+		<li role="presentation"><a href="#eqLogic_display" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-desktop"></i> {{Affichage}}</a></li>
 		<?php }
 ?>
 		<li role="presentation"><a href="#eqLogic_battery" aria-controls="messages" role="tab" data-toggle="tab"><i class="icon techno-charging"></i> {{Batterie}}</a></li>
