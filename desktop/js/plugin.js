@@ -348,7 +348,7 @@ $("#bt_savePluginConfig").on('click', function (event) {
 });
 
 $('.displayStore').on('click', function () {
-  $('#md_modal').dialog({title: "{{Store}}"});
+  $('#md_modal').dialog({title: "{{Market}}"});
   $('#md_modal').load('index.php?v=d&modal=update.list&type=plugin&repo='+$(this).attr('data-repo')).dialog('open');
 });
 
