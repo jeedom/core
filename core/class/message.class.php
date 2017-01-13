@@ -146,7 +146,6 @@ class message {
 					AND logicalId=:logicalId';
 			$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 		}
-
 		if ($result['count(*)'] != 0) {
 			return;
 		}
