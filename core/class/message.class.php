@@ -124,17 +124,29 @@ class message {
 		}
 		if ($this->getLogicalId() == '') {
 			$this->setLogicalId($this->getPlugin() . '::' . config::genKey());
-		}
-		$values = array(
-			'message' => $this->getMessage(),
-			'logicalId' => $this->getLogicalId(),
-			'plugin' => $this->getPlugin(),
-		);
-		$sql = 'SELECT count(*)
+			$values = array(
+				'message' => $this->getMessage(),
+				'logicalId' => $this->getLogicalId(),
+				'plugin' => $this->getPlugin(),
+			);
+			$sql = 'SELECT count(*)
 				FROM message
 				WHERE plugin=:plugin
-					AND (logicalId=:logicalId)';
-		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+					AND message=:message';
+			$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+		} else {
+			$values = array(
+				'message' => $this->getMessage(),
+				'logicalId' => $this->getLogicalId(),
+				'plugin' => $this->getPlugin(),
+			);
+			$sql = 'SELECT count(*)
+				FROM message
+				WHERE plugin=:plugin
+					AND logicalId=:logicalId';
+			$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+		}
+
 		if ($result['count(*)'] != 0) {
 			return;
 		}
