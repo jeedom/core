@@ -126,7 +126,6 @@ class message {
 			$this->setLogicalId($this->getPlugin() . '::' . config::genKey());
 			$values = array(
 				'message' => $this->getMessage(),
-				'logicalId' => $this->getLogicalId(),
 				'plugin' => $this->getPlugin(),
 			);
 			$sql = 'SELECT count(*)
@@ -136,7 +135,6 @@ class message {
 			$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 		} else {
 			$values = array(
-				'message' => $this->getMessage(),
 				'logicalId' => $this->getLogicalId(),
 				'plugin' => $this->getPlugin(),
 			);
