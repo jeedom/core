@@ -32,6 +32,9 @@ if ($_SESSION['user']->getOptions('displayViewByDefault') == 1) {
 }
 ?>
 	<div class="bs-sidebar">
+		<ul id="ul_viewSummary" class="nav nav-list bs-sidenav" style="font-size:0.9em;"></ul>
+	</div>
+	<div class="bs-sidebar">
 		<ul id="ul_view" class="nav nav-list bs-sidenav">
 			<?php if (isConnect('admin')) {?>
 			<a class="btn btn-default" style="width : 100%;margin-top : 5px;margin-bottom: 5px;" href="index.php?v=d&p=view_edit"><i class="fa fa-plus-circle"></i> {{Ajouter une vue}}</a>
@@ -62,14 +65,13 @@ if ($_SESSION['user']->getOptions('displayViewByDefault') == 1) {
 <legend style="height: 35px;color : #563d7c;">{{Vue}} <?php
 echo $view->getName();
 ?>
- <span id="span_viewSummary" style="font-size: 0.6em;"></span>
-<?php
+	<?php
 if (init('noControl') == '') {
 	if (isConnect('admin')) {
 		?> <a href="index.php?v=d&p=view_edit&view_id=<?php echo $view->getId(); ?>" class="btn btn-warning btn-xs pull-right"><i class="fa fa-pencil"></i> {{Edition complète}}</a><?php }
 	?>
 
-	<i class="fa fa-pencil pull-right cursor" id="bt_editViewWidgetOrder" data-mode="0"></i>
+			<i class="fa fa-pencil pull-right cursor" id="bt_editViewWidgetOrder" data-mode="0"></i>
 			<?php }
 ?>
 		</legend>

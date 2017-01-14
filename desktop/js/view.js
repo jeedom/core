@@ -31,9 +31,9 @@
            try {
             var summary = '';
             for(var i in html.raw.viewZone){
-                summary += '<a class="cursor bt_gotoViewZone" data-zone_id="'+html.raw.viewZone[i].id+'">'+html.raw.viewZone[i].name+'</a> ';
+                summary += '<li style="padding:0px 0px"><a style="padding:2px 20px" class="cursor bt_gotoViewZone" data-zone_id="'+html.raw.viewZone[i].id+'">'+html.raw.viewZone[i].name+'</a></li>';
             }
-            $('#span_viewSummary').empty().append(summary);
+            $('#ul_viewSummary').empty().append(summary);
         }catch(err) {
             console.log(err);
         }
