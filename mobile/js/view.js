@@ -58,4 +58,5 @@ function displayView(html) {
     }
     setTileSize('.eqLogic');
     $('.eqLogicZone').packery({gutter : 4});
+    $('#div_displayView .ui-table-columntoggle-btn').remove();
 }
