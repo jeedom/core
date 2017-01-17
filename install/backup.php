@@ -194,7 +194,11 @@ try {
 			$class = 'repo_' . $key;
 			echo __('Envoi de la sauvegarde dans le cloud', __FILE__) . ' ' . $value['name'];
 			try {
-				$class::sendBackup($backup_dir . '/' . $bakcup_name);
+				if($class == 'repo_market'){
+					repo_market::sendBackupCloud($backup_dir . '/' . $bakcup_name);
+				}else{
+					$class::sendBackup($backup_dir . '/' . $bakcup_name);
+				}
 			} catch (Exception $e) {
 				log::add('backup', 'error', $e->getMessage());
 				echo '/!\ ' . br2nl($e->getMessage()) . ' /!\\';
