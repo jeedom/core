@@ -17,7 +17,7 @@
         "Exécution du scénario ": "Ejecución de escena",
         " déclenché par : ": "originado por:",
         "Fin correcte du scénario": "Escena finalizada correctamente",
-        "Lancement du scénario en mode synchrone": "Lancement du scénario en mode synchrone",
+        "Lancement du scénario en mode synchrone": "Lanzamiento de comando en modo síncrono",
         "Scénario exécuté sur événement : #": "Escena ejecutada sobre evento: #",
         "Aucun": "Ningún"
     },
