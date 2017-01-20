@@ -710,7 +710,7 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 <?php if ($cmd->widgetPossibility('custom::optionalParameters')) {
 		?>
   <legend><i class="fa fa-pencil-square-o"></i> {{Paramètres optionnels widget}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParametersCmd"><i class="fa fa-plus-circle"></i> Ajouter</a></legend>
-  <table class="table table-bordered table-condensed" id="table_widgetParameters">
+  <table class="table table-bordered table-condensed" id="table_widgetParametersCmd">
     <thead class="table table-bordered">
       <tr>
         <th>Nom</th>
@@ -766,7 +766,7 @@ if ($cmd->getDisplay('parameters') != '') {
     }
   });
 
-  $('#table_widgetParameters').delegate('.removeWidgetParameter', 'click', function () {
+  $('#table_widgetParametersCmd').delegate('.removeWidgetParameter', 'click', function () {
     $(this).closest('tr').remove();
   });
 
@@ -782,7 +782,7 @@ if ($cmd->getDisplay('parameters') != '') {
     tr += '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fa fa-times"></i> Supprimer</a>';
     tr += '</td>';
     tr += '</tr>';
-    $('#table_widgetParameters tbody').append(tr);
+    $('#table_widgetParametersCmd tbody').append(tr);
   });
 
   $('#div_displayCmdConfigure').setValues(cmdInfo, '.cmdAttr');
@@ -1011,7 +1011,7 @@ if ($cmd->getDisplay('parameters') != '') {
     if (!isset(cmd.display.parameters)) {
       cmd.display.parameters = {};
     }
-    $('#table_widgetParameters tbody tr').each(function () {
+    $('#table_widgetParametersCmd tbody tr').each(function () {
       cmd.display.parameters[$(this).find('.key').value()] = $(this).find('.value').value();
     });
     var checkCmdParameter = $('#div_jeedomCheckCmdCmdOption').getValues('.expressionAttr')[0];
@@ -1113,7 +1113,7 @@ if ($cmd->getDisplay('parameters') != '') {
     if (!isset(cmd.display.parameters)) {
       cmd.display.parameters = {};
     }
-    $('#table_widgetParameters tbody tr').each(function () {
+    $('#table_widgetParametersCmd tbody tr').each(function () {
       cmd.display.parameters[$(this).find('.key').value()] = $(this).find('.value').value();
     });
     cmd = {display : cmd.display,template : cmd.template };
