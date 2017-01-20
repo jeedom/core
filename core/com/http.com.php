@@ -117,6 +117,7 @@ class com_http {
 				curl_close($ch);
 			}
 		}
+		$ch = null;
 		return $response;
 	}
 
@@ -238,4 +239,3 @@ class com_http {
 	}
 
 }
-
