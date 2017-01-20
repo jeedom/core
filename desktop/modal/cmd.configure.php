@@ -556,6 +556,12 @@ foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
 		echo '<input class="cmdAttr form-control" data-l1key="alert" data-l2key="' . $level . 'if" />';
 		echo '</div>';
 		echo '</div>';
+		echo '<div class="form-group">';
+		echo '<label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Pendant plus de (en min, laisser vide pour immediat)}}</label>';
+		echo '<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">';
+		echo '<input type="number" class="cmdAttr form-control" data-l1key="alert" data-l2key="' . $level . 'during" />';
+		echo '</div>';
+		echo '</div>';
 		echo '</fieldset>';
 		echo '</form>';
 	}

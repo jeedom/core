@@ -1204,8 +1204,8 @@ class cmd {
 		}
 	}
 
-	public function checkAlertLevel($_value) {
-		if ($this->getAlert('warningif') == '' && $this->getAlert('dangerif') == '') {
+	public function checkAlertLevel($_value, $_allowDuring = true) {
+		if ($this->getType() != 'info' || ($this->getAlert('warningif') == '' && $this->getAlert('dangerif') == '')) {
 			return 'none';
 		}
 		global $JEEDOM_INTERNAL_CONFIG;
@@ -1222,10 +1222,51 @@ class cmd {
 				}
 			}
 		}
+		if ($_allowDuring) {
+			if ($this->getAlert($currentLevel . 'during') != '' && $this->getAlert($currentLevel . 'during') > 0) {
+				$cron = cron::byClassAndFunction('cmd', 'duringAlertLevel', array('cmd_id' => intval($this->getId())));
+				if (!is_object($cron)) {
+					$cron = new cron();
+				}
+				$cron->setClass('cmd');
+				$cron->setFunction('duringAlertLevel');
+				$cron->setOnce(1);
+				$cron->setOption(array('cmd_id' => intval($this->getId())));
+				$next = strtotime('+ ' . $this->getAlert($currentLevel . 'during', 1) . ' minutes ' . date('Y-m-d H:i:s'));
+				$cron->setSchedule(cron::convertDateToCron($next));
+				$cron->setLastRun(date('Y-m-d H:i:s'));
+				$cron->save();
+			}
+			if ($currentLevel == 'none') {
+				$cron = cron::byClassAndFunction('cmd', 'duringAlertLevel', array('cmd_id' => intval($this->getId())));
+				if (is_object($cron)) {
+					$cron->remove(false);
+				}
+			}
+			return 'none';
+		}
 		return $currentLevel;
 	}
 
+	public static function duringAlertLevel($_options) {
+		$cmd = cmd::byId($_options['cmd_id']);
+		if (!is_object($cmd)) {
+			return;
+		}
+		if ($cmd->getType() != 'info') {
+			return;
+		}
+		$value = $cmd->execCmd();
+		$level = $cmd->checkAlertLevel($value, false);
+		if ($level != 'none') {
+			$cmd->actionAlertLevel($level, $value);
+		}
+	}
+
 	public function actionAlertLevel($_level, $_value) {
+		if ($this->getType() != 'info') {
+			return;
+		}
 		global $JEEDOM_INTERNAL_CONFIG;
 		$this->setCache('alertLevel', $_level);
 		if ($_level != 'none') {
