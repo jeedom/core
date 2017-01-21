@@ -1,13 +1,9 @@
-<span class="cmd  cmd-widget" data-type="action" data-subtype="select" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#">
-    <div class="cmdName" style="font-weight: bold;font-size : 12px;#hideCmdName#">#name_display#</div>
-     <center>
-		<select class="selectCmd" style="width:100%;color:#cmdColor#;background-color:#background-color#;border-radius: 5px;">
-		#listValue#
-	</select>
-    </center>
-	<script>
-		$(".cmd[data-cmd_uid=#uid#] .selectCmd").on('change', function () {
-            jeedom.cmd.execute({id: '#id#', value: {select: $(this).value()}});
-        });
-    </script>
-</span>
+<div class="cmd cmd-widget" data-type="action" data-subtype="select" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" style="width: 146px;height: 34px;">
+    <span class="cmdName" style="font-weight: bold;font-size : 12px;#hideCmdName#">#name_display#</span><br/>
+    <select class="selectCmd" style="color:#cmdColor#;background-color:#background-color#;border-radius: 5px;width: 146px;">#listValue#</select>
+    <script>
+      $(".cmd[data-cmd_uid=#uid#] .selectCmd").on('change', function () {
+        jeedom.cmd.execute({id: '#id#', value: {select: $(this).value()}});
+    });
+</script>
+</div>

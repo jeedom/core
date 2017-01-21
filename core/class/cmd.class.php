@@ -902,7 +902,6 @@ class cmd {
 				$coupleArray = explode('|', $element);
 				$cmdValue = $this->getCmdValue();
 				if (is_object($cmdValue) && $cmdValue->getType() == 'info') {
-					log::add('modbus', 'debug', $cmdValue->execCmd() . ' ' . $coupleArray[0]);
 					if ($cmdValue->execCmd() == $coupleArray[0]) {
 						$listOption .= '<option value="' . $coupleArray[0] . '" selected>' . $coupleArray[1] . '</option>';
 					} else {
