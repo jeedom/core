@@ -410,7 +410,7 @@ class eqLogic {
 		} else {
 			$cmd = $this->getCmd(null, $_logicalId);
 		}
-		if ($_updateTime != null) {
+		if (is_object($cmd) && $_updateTime != null) {
 			$cmd->execCmd();
 			if (strtotime($cmd->getCollectDate()) < strtotime($_updateTime)) {
 				$cmd->event($_value, $_updateTime);
