@@ -408,7 +408,7 @@ class eqLogic {
 		if (is_object($_logicalId)) {
 			$cmd = $_logicalId;
 		} else {
-			$cmd = $this->getCmd(null, $_logicalId);
+			$cmd = $this->getCmd('info', $_logicalId);
 		}
 		if (!is_object($cmd)) {
 			return false;
