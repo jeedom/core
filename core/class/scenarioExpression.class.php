@@ -66,7 +66,7 @@ class scenarioExpression {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM ' . __CLASS__ . '
         WHERE expression LIKE :expression';
-		if ($_options != null) {
+		if ($_options !== null) {
 			$values['options'] = '%' . $_options . '%';
 			if ($_and) {
 				$sql .= ' AND options LIKE :options';
@@ -705,7 +705,7 @@ class scenarioExpression {
 	}
 
 	public static function trigger($_name = '', &$_scenario = null) {
-		if ($_scenario != null) {
+		if ($_scenario !== null) {
 			if (trim($_name) == '') {
 				return $_scenario->getRealTrigger();
 			}
@@ -717,7 +717,7 @@ class scenarioExpression {
 	}
 
 	public static function triggerValue(&$_scenario = null) {
-		if ($_scenario != null) {
+		if ($_scenario !== null) {
 			$cmd = cmd::byId(str_replace('#', '', $_scenario->getRealTrigger()));
 			if (is_object($cmd)) {
 				return $cmd->execCmd();
@@ -836,7 +836,7 @@ class scenarioExpression {
 			'#trigger#' => '',
 		);
 
-		if ($_scenario != null && count($_scenario->getTags()) > 0) {
+		if ($_scenario !== null && count($_scenario->getTags()) > 0) {
 			$replace1 = array_merge($replace1, $_scenario->getTags());
 		}
 
@@ -957,7 +957,7 @@ class scenarioExpression {
 			}
 			if ($this->getType() == 'action') {
 				if ($this->getExpression() == 'icon') {
-					if ($scenario != null) {
+					if ($scenario !== null) {
 						$options = $this->getOptions();
 						$this->setLog($scenario, __('Changement de l\'icone du scénario : ', __FILE__) . $options['icon']);
 						$scenario->setDisplay('icon', $options['icon']);
@@ -1004,7 +1004,7 @@ class scenarioExpression {
 					$this->setLog($scenario, __('Aucune durée trouvée pour l\'action sleep ou la durée n\'est pas valide : ', __FILE__) . $options['duration']);
 					return;
 				} else if ($this->getExpression() == 'stop') {
-					if ($scenario != null) {
+					if ($scenario !== null) {
 						$scenario2 = scenario::byId($scenario->getId());
 						if ($scenario->getIsActive() != $scenario2->getIsActive()) {
 							$scenario->setIsActive($scenario2->getIsActive());
@@ -1017,7 +1017,7 @@ class scenarioExpression {
 					}
 					die();
 				} else if ($this->getExpression() == 'log') {
-					if ($scenario != null) {
+					if ($scenario !== null) {
 						$scenario->setLog('Log : ' . $options['message']);
 					}
 					return;
@@ -1073,7 +1073,7 @@ class scenarioExpression {
 					event::add('jeedom::gotoplan', $options['plan_id']);
 					return;
 				} else if ($this->getExpression() == 'scenario') {
-					if ($scenario != null && $this->getOptions('scenario_id') == $scenario->getId()) {
+					if ($scenario !== null && $this->getOptions('scenario_id') == $scenario->getId()) {
 						$actionScenario = &$scenario;
 					} else {
 						$actionScenario = scenario::byId($this->getOptions('scenario_id'));
@@ -1087,7 +1087,7 @@ class scenarioExpression {
 								$actionScenario->setTags($this->getOptions('tags'));
 							}
 							$this->setLog($scenario, __('Lancement du scénario : ', __FILE__) . $actionScenario->getName());
-							if ($scenario != null) {
+							if ($scenario !== null) {
 								return $actionScenario->launch('', __('Lancement provoqué par le scénario  : ', __FILE__) . $scenario->getHumanName());
 							} else {
 								return $actionScenario->launch('', __('Lancement provoqué', __FILE__));
@@ -1098,7 +1098,7 @@ class scenarioExpression {
 								$actionScenario->setTags($this->getOptions('tags'));
 							}
 							$this->setLog($scenario, __('Lancement du scénario : ', __FILE__) . $actionScenario->getName());
-							if ($scenario != null) {
+							if ($scenario !== null) {
 								return $actionScenario->launch('', __('Lancement provoqué par le scénario  : ', __FILE__) . $scenario->getHumanName(), true);
 							} else {
 								return $actionScenario->launch('', __('Lancement provoqué', __FILE__), true);
@@ -1397,11 +1397,11 @@ class scenarioExpression {
 	}
 
 	public function setLog(&$_scenario, $log) {
-		if ($_scenario != null && is_object($_scenario)) {
+		if ($_scenario !== null && is_object($_scenario)) {
 			$_scenario->setLog($log);
 		}
 	}
 
 }
 
-?>
+ 
