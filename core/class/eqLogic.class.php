@@ -415,7 +415,7 @@ class eqLogic {
 		}
 		if ($_updateTime != null) {
 			$cmd->execCmd();
-			if (strtotime($cmd->getCollectDate()) < strtotime($_updateTime)) {
+			if (strtotime($cmd->getCollectDate()) < strtotime($_updateTime) || $cmd->execCmd() != $cmd->formatValue($_value)) {
 				$cmd->event($_value, $_updateTime);
 				return true;
 			}
