@@ -423,7 +423,6 @@ class eqLogic {
 			$cmd->event($_value);
 			return true;
 		}
-
 		return false;
 	}
 
