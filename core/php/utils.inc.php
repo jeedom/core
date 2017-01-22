@@ -940,3 +940,23 @@ function hex2rgb($hex) {
 	}
 	return array($r, $g, $b);
 }
+
+function getDominantColor($_pathimg) {
+	$rTotal = 0;
+	$gTotal = 0;
+	$bTotal = 0;
+	$i = imagecreatefromjpeg($_pathimg);
+	for ($x = 0; $x < imagesx($i); $x++) {
+		for ($y = 0; $y < imagesy($i); $y++) {
+			$rgb = imagecolorat($i, $x, $y);
+			$r = ($rgb >> 16) & 0xFF;
+			$g = ($rgb >> 8) & 0xFF;
+			$b = $rgb & 0xFF;
+			$rTotal += $r;
+			$gTotal += $g;
+			$bTotal += $b;
+			$total++;
+		}
+	}
+	return '#' . sprintf('%02x', round($rTotal / $total)) . sprintf('%02x', round($gTotal / $total)) . sprintf('%02x', round($bTotal / $total));
+}

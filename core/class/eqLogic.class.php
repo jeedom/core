@@ -404,16 +404,25 @@ class eqLogic {
 
 	/*     * *********************Méthodes d'instance************************* */
 
-	public function checkAndUpdateCmd($_logicalId, $_value) {
+	public function checkAndUpdateCmd($_logicalId, $_value, $_updateTimestamp = null) {
 		if (is_object($_logicalId)) {
 			$cmd = $_logicalId;
 		} else {
 			$cmd = $this->getCmd(null, $_logicalId);
 		}
-		if (is_object($cmd) && ($cmd->getConfiguration('repeatEventManagement', 'auto') == 'always' || $cmd->execCmd() != $cmd->formatValue($_value))) {
+		if ($_updateTimestamp != null) {
+			if ($cmd->getCollectDate() == '') {
+				$cmd->execCmd();
+			}
+			if (strtotime($cmd->getCollectDate()) < $_updateTimestamp) {
+				$cmd->event($_value);
+				return true;
+			}
+		} else if (is_object($cmd) && ($cmd->getConfiguration('repeatEventManagement', 'auto') == 'always' || $cmd->execCmd() != $cmd->formatValue($_value))) {
 			$cmd->event($_value);
 			return true;
 		}
+
 		return false;
 	}
 
