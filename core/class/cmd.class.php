@@ -1166,15 +1166,20 @@ class cmd {
 				$this->executeAlertCmdAction();
 				return;
 			}
+			$next = strtotime('+ ' . ($this->getConfiguration('jeedomCheckCmdTime') + 1) . ' minutes ' . date('Y-m-d H:i:s'));
 			$cron = cron::byClassAndFunction('cmd', 'cmdAlert', array('cmd_id' => intval($this->getId())));
 			if (!is_object($cron)) {
 				$cron = new cron();
+			} else {
+				$nextRun = $cron->getNextRunDate();
+				if ($nextRun !== false && $next > strtotime($nextRun) && strtotime($nextRun) > strtotime('now')) {
+					return;
+				}
 			}
 			$cron->setClass('cmd');
 			$cron->setFunction('cmdAlert');
 			$cron->setOnce(1);
 			$cron->setOption(array('cmd_id' => intval($this->getId())));
-			$next = strtotime('+ ' . ($this->getConfiguration('jeedomCheckCmdTime') + 1) . ' minutes ' . date('Y-m-d H:i:s'));
 			$cron->setSchedule(cron::convertDateToCron($next));
 			$cron->setLastRun(date('Y-m-d H:i:s'));
 			$cron->save();
