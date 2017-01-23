@@ -413,13 +413,16 @@ class eqLogic {
 		if (!is_object($cmd)) {
 			return false;
 		}
+		if ($cmd->execCmd() != $cmd->formatValue($_value)) {
+			$cmd->event($_value, $_updateTime);
+			return true;
+		}
 		if ($_updateTime != null) {
-			$cmd->execCmd();
-			if (strtotime($cmd->getCollectDate()) < strtotime($_updateTime) || $cmd->execCmd() != $cmd->formatValue($_value)) {
+			if (strtotime($cmd->getCollectDate()) < strtotime($_updateTime)) {
 				$cmd->event($_value, $_updateTime);
 				return true;
 			}
-		} else if ($cmd->getConfiguration('repeatEventManagement', 'auto') == 'always' || $cmd->execCmd() != $cmd->formatValue($_value)) {
+		} else if ($cmd->getConfiguration('repeatEventManagement', 'auto') == 'always') {
 			$cmd->event($_value);
 			return true;
 		}
