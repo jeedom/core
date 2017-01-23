@@ -390,6 +390,18 @@ class cron {
 		return false;
 	}
 
+	public function getNextRunDate() {
+		try {
+			$c = new Cron\CronExpression($this->getSchedule(), new Cron\FieldFactory);
+			return $c->getNextRunDate();
+		} catch (Exception $e) {
+
+		} catch (Error $e) {
+
+		}
+		return false;
+	}
+
 	/**
 	 * Get human name of cron
 	 * @return string

@@ -1224,14 +1224,19 @@ class cmd {
 		if ($_allowDuring) {
 			if ($this->getAlert($currentLevel . 'during') != '' && $this->getAlert($currentLevel . 'during') > 0) {
 				$cron = cron::byClassAndFunction('cmd', 'duringAlertLevel', array('cmd_id' => intval($this->getId())));
+				$next = strtotime('+ ' . $this->getAlert($currentLevel . 'during', 1) . ' minutes ' . date('Y-m-d H:i:s'));
 				if (!is_object($cron)) {
 					$cron = new cron();
+				} else {
+					$nextRun = $cron->getNextRunDate();
+					if ($nextRun !== false && $next > strtotime($nextRun) && strtotime($nextRun) > strtotime('now')) {
+						return 'none';
+					}
 				}
 				$cron->setClass('cmd');
 				$cron->setFunction('duringAlertLevel');
 				$cron->setOnce(1);
 				$cron->setOption(array('cmd_id' => intval($this->getId())));
-				$next = strtotime('+ ' . $this->getAlert($currentLevel . 'during', 1) . ' minutes ' . date('Y-m-d H:i:s'));
 				$cron->setSchedule(cron::convertDateToCron($next));
 				$cron->setLastRun(date('Y-m-d H:i:s'));
 				$cron->save();
