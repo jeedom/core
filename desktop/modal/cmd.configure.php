@@ -540,7 +540,7 @@ foreach ($groups as $group) {
 ?>
 <?php if ($cmd->getType() == 'info') {
 	?>
-<div role="tabpanel" class="tab-pane active" id="cmd_alert">
+<div role="tabpanel" class="tab-pane" id="cmd_alert">
   <br/>
   <?php
 foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
