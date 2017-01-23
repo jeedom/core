@@ -63,6 +63,9 @@ class scenarioSubElement {
 	/*     * *********************Methode d'instance************************* */
 
 	public function execute(&$_scenario) {
+		if ($scenario != null && !$scenario->getDo()) {
+			return;
+		}
 		if ($this->getSubtype() == 'action') {
 			$_scenario->setLog(__('Exécution du sous-élément de type [action] : ', __FILE__) . $this->getType());
 			$return = true;

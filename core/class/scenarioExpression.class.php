@@ -928,6 +928,9 @@ class scenarioExpression {
 /*     * *********************Methode d'instance************************* */
 
 	public function execute(&$scenario = null) {
+		if ($scenario != null && !$scenario->getDo()) {
+			return;
+		}
 		if ($this->getOptions('enable', 1) == 0) {
 			return;
 		}
@@ -1005,15 +1008,9 @@ class scenarioExpression {
 					return;
 				} else if ($this->getExpression() == 'stop') {
 					if ($scenario != null) {
-						$scenario2 = scenario::byId($scenario->getId());
-						if ($scenario->getIsActive() != $scenario2->getIsActive()) {
-							$scenario->setIsActive($scenario2->getIsActive());
-						}
-						$this->setLog($scenario, __('Arret du scénario', __FILE__));
-						$scenario->setState('stop');
-						$scenario->setPID('');
-						$scenario->persistLog();
-						$scenario->save();
+						$this->setLog($scenario, __('Action stop', __FILE__));
+						$scenario->setDo(false);
+						return;
 					}
 					die();
 				} else if ($this->getExpression() == 'log') {

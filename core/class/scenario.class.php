@@ -44,6 +44,7 @@ class scenario {
 	private $_realTrigger = '';
 	private $_return = true;
 	private $_tags = array();
+	private $_do = true;
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -616,6 +617,9 @@ class scenario {
 		$this->setPID(getmypid());
 		$this->setRealTrigger($_trigger);
 		foreach ($this->getElement() as $element) {
+			if (!$this->getDo()) {
+				break;
+			}
 			$element->execute($this);
 		}
 		$this->setState('stop');
@@ -1394,6 +1398,15 @@ class scenario {
 
 	public function setTags($_tags) {
 		$this->_tags = $_tags;
+		return $this;
+	}
+
+	public function getDo() {
+		return $this->_do;
+	}
+
+	public function setDo($_do) {
+		$this->_do = $_do;
 		return $this;
 	}
 
