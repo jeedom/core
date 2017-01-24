@@ -104,13 +104,13 @@ if (shell_exec('sudo crontab -l | grep jeeCron.php | wc -l') == 0) {
 }
 
 foreach ($needpackages as $needpackage) {
-	if (shell_exec(distrib::getCmdCheck() . $needpackage . ' | wc -l') == 0) {
+	if (shell_exec(system::getCmdCheck() . $needpackage . ' | wc -l') == 0) {
 		$error = true;
 		echo '<div class="alert alert-warning" style="margin:15px;">';
 		echo '<center style="font-size:1.2em;">Jeedom need ' . $needpackage . ' package, please do in ssh : </center>';
 		echo '<pre>';
 		echo "sudo su -\n";
-		echo distrib::getCmdInstall() . $needpackage;
+		echo system::getCmdInstall() . $needpackage;
 		echo '</pre>';
 		echo '</div>';
 	}
@@ -126,7 +126,7 @@ foreach ($needphpextensions as $needphpextension) {
 	echo '<center style="font-size:1.2em;">Jeedom need ' . $needphpextension . ' php extension, please do in ssh : </center>';
 	echo '<pre>';
 	echo "sudo su -\n";
-	echo distrib::getCmdInstall() . ' php5-' . $needphpextension . "\n";
+	echo system::getCmdInstall() . ' php5-' . $needphpextension . "\n";
 	echo 'systemctl reload php5-fpm <strong>or</strong> systemctl reload apache2';
 	echo '</pre>';
 	echo '</div>';
@@ -241,7 +241,7 @@ if ($config) {
 		</form>
 		<?php } else {
 	shell_exec('sudo chmod 775 -R ' . dirname(__FILE__) . '/../*');
-	shell_exec('sudo chown ' . distrib::getWWWUid() . ':' . distrib::getWWWGid() . ' -R ' . dirname(__FILE__) . '/../*');
+	shell_exec('sudo chown ' . system::getWWWUid() . ':' . system::getWWWGid() . ' -R ' . dirname(__FILE__) . '/../*');
 	if (!is_writable(dirname(__FILE__) . '/../core/config')) {
 		echo '<div class="alert alert-danger" style="margin:15px;">';
 		echo '<center style="font-size:1.2em;">Folder ' . dirname(__FILE__) . '/../core/config' . ' must be writable</center>';
