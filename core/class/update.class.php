@@ -405,8 +405,8 @@ class update {
 	public function preInstallUpdate() {
 		if (!file_exists(dirname(__FILE__) . '/../../plugins')) {
 			mkdir(dirname(__FILE__) . '/../../plugins');
-			@chown(dirname(__FILE__) . '/../../plugins', $distrib->getWWWUid());
-			@chgrp(dirname(__FILE__) . '/../../plugins', $distrib->getWWWGid());
+			@chown(dirname(__FILE__) . '/../../plugins', distrib::getWWWUid());
+			@chgrp(dirname(__FILE__) . '/../../plugins', distrib::getWWWGid());
 			@chmod(dirname(__FILE__) . '/../../plugins', 0775);
 		}
 		log::add('update', 'alert', __('Début de la mise à jour de : ', __FILE__) . $this->getLogicalId() . "\n");
