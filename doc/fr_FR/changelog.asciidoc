@@ -5,13 +5,13 @@
 * Suppression du mode esclave
 * Possibilité de déclencher un scénario sur un changement d'une variable
 * Les mises à jour de variable déclenchent maintenant la mise à jour des commandes d'un équipement virtuel (il faut la dernière version du plugin)
-* Possibilité d'avoir une icone sur les commandes de type info
-* Possibilité sur les commandes d'afficher le nom et l'icone
+* Possibilité d'avoir une icône sur les commandes de type info
+* Possibilité sur les commandes d'afficher le nom et l'icône
 * Ajout d'une action "alert" sur les scénarios
 * Ajout d'une action "popup" sur les scénarios
-* Les widgets des commandes peuvent maintenant avoir une méthode d'update ce qui évite un appels AJAX à Jeedom
-* Les widgets des scénarios sont maintenant mis à jour sans appels ajax pour avoir le widget
-* Le résumé global et des pièces sont maintenant mis à jour sans appels ajax
+* Les widgets des commandes peuvent maintenant avoir une méthode d'update ce qui évite un appel AJAX à Jeedom
+* Les widgets des scénarios sont maintenant mis à jour sans appel ajax pour avoir le widget
+* Le résumé global et des pièces sont maintenant mis à jour sans appel ajax
 * Un clic sur un élément d'un résumé domotique vous amène sur une vue détaillée de celui-ci
 * Vous pouvez maintenant mettre dans les résumés des commandes de type texte
 * Changement des bootstraps slider en slider (correction du bug du double événement des sliders)
@@ -21,20 +21,20 @@
 * Refonte de la configuration des droits utilisateurs (tout est sur la page de gestion des utilisateurs)
 * Mise à jour des libs : jquery (en 3.0) , jquery mobile, hightstock et table sorter, font-awesome
 * Grosse amélioration des designs : 
-** Toute les actions sont maintenant accessibles à partir d'un clic droit
+** Toutes les actions sont maintenant accessibles à partir d'un clic droit
 ** Possibilité d'ajouter une commande seule
 ** Possibilité d'ajouter une image ou un flux vidéo
 ** Possibilité d'ajouter des zones (emplacement cliquable) : 
 *** Zone de type macro : lance une série d'actions lors d'un clic dessus
 *** Zone de type binaire : lance une série d'actions lors d'un clic dessus en fonction de l'état d'une commande
 *** Zone de type widget : affiche un widget au clic ou au survol de la zone
-** Optimisation général du code
+** Optimisation générale du code
 ** Possibilité de faire apparaître une grille et de choisir sa taille (10x10,15x15 ou 30x30)
 ** Possibilité d'activer une aimantation des widgets sur la grille
 ** Possibilité d'activer une aimantation des widgets entre eux
-** Certain type de widget peuvent maintenant être dupliqués
+** Certains types de widgets peuvent maintenant être dupliqués
 ** Possibilité de verouiller un élément
-* Les plugins peuvent maintenant utiliser une clef api qui leur est propre
+* Les plugins peuvent maintenant utiliser une clef API qui leur est propre
 * Ajout d'interactions automatiques, Jeedom va essayer de comprendre la phrase, d'exécuter l'action et de répondre
 * Ajout de la gestion des démons en version mobile
 * Ajout de la gestion des crons en version mobile
@@ -43,18 +43,18 @@
 * Les objets sans widget sont automatiquement masqués sur le dashboard
 * Ajout d'un bouton dans la configuration avancée d'un équipement/d'une commande pour voir les événements de celui-ci/celle-ci
 * Les déclencheurs d'un scénario peuvent maintenant être des conditions
-* Un double clique sur la ligne d'une commande (sur la page de configuration) ouvre maintenant la configuration avancée de celle-ci
-* Possibilité d'interdire certaine valeur pour une commande (dans la configuration avancée de celle-ci)
+* Un double-clic sur la ligne d'une commande (sur la page de configuration) ouvre maintenant la configuration avancée de celle-ci
+* Possibilité d'interdire certaines valeurs pour une commande (dans la configuration avancée de celle-ci)
 * Ajout des champs de configuration sur le retour d'état automatique (ex revenir à 0 au bout de 4min) dans la configuration avancée d'une commande
 * Ajout d'une fonction valueDate dans les scénarios (voir documentation des scénarios)
 * Possibilité dans les scénarios de modifier la valeur d'une commande avec l'action "event"
-* Ajout d'un champs commentaire sur la configuration avancé d'un équipement
+* Ajout d'un champs commentaire sur la configuration avancée d'un équipement
 * Ajout d'un système d'alerte sur les commandes avec 2 niveaux : alerte et danger. La configuration se trouve dans la configuration avancée des commandes (de type info seulement bien sur). Vous pouvez voir les modules en alerte sur la page Analyse -> Equipement. Vous pouvez configurer les actions sur alerte sur la page de configuration générale de Jeedom
-* Ajout d'une zone "tableau" sur les vues qui permet d'afficher une ou plusieurs colonne par case. Les cases supportent aussi du code html
+* Ajout d'une zone "tableau" sur les vues qui permet d'afficher une ou plusieurs colonne par case. Les cases supportent aussi du code HTML
 
 = 2.4.7
 
-* Correction de bug sur la date de derniere remonté d'evenement pour certain plugin (alarme)
+* Correction de bug sur la date de dernière remonté d'événement pour certains plugins (alarme)
 * Correction de bug d'affichage avec chrome 55
 
 = 2.4.6
@@ -74,7 +74,7 @@
 ** Passage en cache du pid, état et dernier lancement des scénarios
 ** Passage en cache du pid, état et dernier lancement des crons
 ** Dans 99% des cas plus de requête d'écriture sur la base en fonctionnement nominal (donc hors configuration de Jeedom, modifications, installation, mise à jour...)
-* Suppression du fail2ban (car facilement contournable en envoyant une fausse adresse ip), cela permet d’accélérer Jeedom
+* Suppression du fail2ban (car facilement contournable en envoyant une fausse adresse IP), cela permet d’accélérer Jeedom
 * Ajout dans les interactions d'une option sans catégorie pour que l'on puisse générer des interactions sur des équipements sans catégorie
 * Ajout dans les scénarios d'un bouton de choix d'équipement sur les commandes de type slider
 * Mise à jour de bootstrap en 2.3.7
