@@ -38,9 +38,9 @@ class system {
 			if (self::$_distrib == '') {
 				self::$_distrib = trim(shell_exec('sudo  grep -e "^ID" /etc/os-release | cut -d \'=\' -f 2'));
 			}
-		}
-		if (self::$_distrib == '' || !isset(self::$_command[self::$_distrib])) {
-			self::$_distrib = 'debian';
+			if (self::$_distrib == '' || !isset(self::$_command[self::$_distrib])) {
+				self::$_distrib = 'debian';
+			}
 		}
 		return self::$_distrib;
 	}
