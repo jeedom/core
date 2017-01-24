@@ -117,7 +117,7 @@ class cache {
 				return;
 		}
 		try {
-			com_shell::execute('sudo rm -rf ' . dirname(__FILE__) . '/../../cache.tar.gz;cd ' . $cache_dir . ';sudo tar cfz ' . dirname(__FILE__) . '/../../cache.tar.gz * 2>&1 > /dev/null;sudo chmod 775 ' . dirname(__FILE__) . '/../../cache.tar.gz;sudo chown ' . system::getWWWUid() . ':' . system::getWWWGid() . ' ' . dirname(__FILE__) . '/../../cache.tar.gz;sudo chmod 777 -R ' . $cache_dir);
+			com_shell::execute('sudo rm -rf ' . dirname(__FILE__) . '/../../cache.tar.gz;cd ' . $cache_dir . ';sudo tar cfz ' . dirname(__FILE__) . '/../../cache.tar.gz * 2>&1 > /dev/null;sudo chmod 775 ' . dirname(__FILE__) . '/../../cache.tar.gz;sudo chown ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . dirname(__FILE__) . '/../../cache.tar.gz;sudo chmod 777 -R ' . $cache_dir);
 		} catch (Exception $e) {
 			log::add('cache', 'debug', $e->getMessage());
 		}

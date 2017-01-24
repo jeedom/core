@@ -298,8 +298,8 @@ try {
 
 	if (!file_exists(dirname(__FILE__) . '/../plugins')) {
 		mkdir(dirname(__FILE__) . '/../plugins');
-		@chown(dirname(__FILE__) . '/../plugins', system::getWWWUid());
-		@chgrp(dirname(__FILE__) . '/../plugins', system::getWWWGid());
+		@chown(dirname(__FILE__) . '/../plugins', system::get('www-uid'));
+		@chgrp(dirname(__FILE__) . '/../plugins', system::get('www-gid'));
 		@chmod(dirname(__FILE__) . '/../plugins', 0775);
 	}
 	config::save('hardware_name', '');

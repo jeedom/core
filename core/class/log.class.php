@@ -156,8 +156,8 @@ class log {
 			$maxLineLog = self::DEFAULT_MAX_LINE;
 		}
 		com_shell::execute('sudo chmod 777 ' . $_path . ' ;echo "$(tail -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
-		@chown($_path, system::getWWWUid());
-		@chgrp($_path, system::getWWWGid());
+		@chown($_path, system::get('www-uid'));
+		@chgrp($_path, system::get('www-gid'));
 	}
 
 	public static function getPathToLog($_log = 'core') {

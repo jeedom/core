@@ -23,11 +23,11 @@ class system {
 
 	private static $_distrib = null;
 	private static $_command = array(
-		'suse' => array('cmd_check' => ' rpm -qa | grep ', 'cmd_install' => ' zypper in --non-interactive ', 'www-uid' => 'wwwrun', 'www-gid' => 'www'),
-		'sles' => array('cmd_check' => ' rpm -qa | grep ', 'cmd_install' => ' zypper in --non-interactive ', 'www-uid' => 'wwwrun', 'www-gid' => 'www'),
-		'redhat' => array('cmd_check' => ' rpm -qa | grep ', 'cmd_install' => ' yum install ', 'www-uid' => 'www-data', 'www-gid' => 'www-data'),
-		'fedora' => array('cmd_check' => ' rpm -qa | grep ', 'cmd_install' => ' dnf install ', 'www-uid' => 'www-data', 'www-gid' => 'www-data'),
-		'debian' => array('cmd_check' => ' dpkg --get-selections | grep -v deinstall | grep ', 'cmd_install' => ' apt-get install -y ', 'www-uid' => 'www-data', 'www-gid' => 'www-data'),
+		'suse' => array('cmd_check' => ' rpm -qa | grep ', 'cmd_install' => ' zypper in --non-interactive ', 'www-uid' => 'wwwrun', 'www-gid' => 'www', 'type' => 'zypper'),
+		'sles' => array('cmd_check' => ' rpm -qa | grep ', 'cmd_install' => ' zypper in --non-interactive ', 'www-uid' => 'wwwrun', 'www-gid' => 'www', 'type' => 'zypper'),
+		'redhat' => array('cmd_check' => ' rpm -qa | grep ', 'cmd_install' => ' yum install ', 'www-uid' => 'www-data', 'www-gid' => 'www-data', 'type' => 'yum'),
+		'fedora' => array('cmd_check' => ' rpm -qa | grep ', 'cmd_install' => ' dnf install ', 'www-uid' => 'www-data', 'www-gid' => 'www-data', 'type' => 'dnf'),
+		'debian' => array('cmd_check' => ' dpkg --get-selections | grep -v deinstall | grep ', 'cmd_install' => ' apt-get install -y ', 'www-uid' => 'www-data', 'www-gid' => 'www-data', 'type' => 'apt'),
 	);
 
 	/*     * ***********************Methode static*************************** */
@@ -45,23 +45,15 @@ class system {
 		return self::$_distrib;
 	}
 
-	public static function getCmdCheck() {
-		return self::$_command[self::getDistrib()]['cmd_check'];
+	public static function get($_key = '') {
+		if (!isset(self::$_command[self::getDistrib()][$_key])) {
+			return '';
+		}
+		return self::$_command[self::getDistrib()][$_key];
 	}
 
-	public static function getCmdInstall() {
-		return self::$_command[self::getDistrib()]['cmd_install'];
-		return $this->pm_cmd_install;
-	}
-
-	public static function getWWWUid() {
-		return self::$_command[self::getDistrib()]['www-uid'];
-		return $this->pm_www_user;
-	}
-
-	public static function getWWWGid() {
-		return self::$_command[self::getDistrib()]['www-gid'];
-		return $this->pm_www_group;
+	public static function getCmdSudo() {
+		return 'sudo ';
 	}
 
 	public static function fuserk($_port, $_protocol = 'tcp') {
