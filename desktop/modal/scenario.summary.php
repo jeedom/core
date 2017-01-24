@@ -10,6 +10,7 @@ if (!isConnect()) {
 <table class="table table-bordered table-condensed" id="table_scenarioSummary">
 	<thead>
 		<tr>
+			<th>{{ID}}</th>
 			<th>{{Scénario}}</th>
 			<th>{{Statut}}</th>
 			<th>{{Dernier lancement}}</th>
@@ -44,7 +45,9 @@ if (!isConnect()) {
 				for(var i in data){
 					var tr = '<tr class="scenario" data-id="' + init(data[i].id) + '">';
 					tr += '<td>';
-					tr += '<span class="scenarioAttr" data-l1key="id" style="display:none;"></span>';
+					tr += '<span class="scenarioAttr" data-l1key="id"></span>';
+					tr += '</td>';
+					tr += '<td>';
 					tr += '<span class="scenarioAttr cursor bt_summaryGotoScenario" data-l1key="humanName"></span>';
 					tr += '</td>';
 					tr += '<td>';
