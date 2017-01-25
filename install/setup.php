@@ -79,14 +79,12 @@ if (version_compare(PHP_VERSION, '5.6.0', '<')) {
 	echo '<center style="font-size:1.2em;">Jeedom need php 5.6 or upper (current : ' . PHP_VERSION . ')</center>';
 	echo '</div>';
 }
-if (shell_exec('sudo crontab -l | grep jeeCron.php | wc -l') == 0) {
+if (!file_exists('/etc/cron.d/jeedom')) {
 	echo '<div class="alert alert-warning" style="margin:15px;">';
 	echo '<center style="font-size:1.2em;">Please add crontab line for jeedom (if jeedom has no sudo right this error is normal): </center>';
 	echo '<pre>';
 	echo "sudo su -\n";
-	echo 'croncmd="su --shell=/bin/bash - ' . get_current_user() . ' -c \'/usr/bin/php ' . realpath(dirname(__FILE__) . '/../') . '/core/php/jeeCron.php\' >> /dev/null 2>&1&quot;' . "\n";
-	echo 'cronjob="* * * * * $croncmd&quot;' . "\n";
-	echo '( crontab -l | grep -v "$croncmd" ; echo "$cronjob" ) | crontab -' . "\n";
+	echo 'echo "* * * * * ' . get_current_user() . ' /usr/bin/php /var/www/html/core/php/jeeCron.php >> /dev/null" > /etc/cron.d/jeedom';
 	echo '</pre>';
 	echo '</div>';
 }

@@ -39,7 +39,11 @@ fi
 
 echo -n "[$(date +%d-%m-%Y\ %H:%M:%S)] Check cron jeedom..."
 if [ $(crontab -l | grep jeeCron | wc -l) -lt 1 ]; then
-	echo 'NOK'
+	if [ ! -f /etc/cron.d/jeedom ]; then
+		echo 'NOK'
+	else
+		echo "OK"
+	fi
 else
 	echo "OK"
 fi

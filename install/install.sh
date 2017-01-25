@@ -280,13 +280,13 @@ step_9_jeedom_installation() {
 step_10_jeedom_post() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_10_jeedom_post${NORMAL}"
-	if [ $(crontab -l | grep ${WEBSERVER_HOME}/core/php/jeeCron.php | wc -l) -eq 0 ];then
-		(echo "* * * * * su --shell=/bin/bash - www-data -c '/usr/bin/php ${WEBSERVER_HOME}/core/php/jeeCron.php' >> /dev/null"; crontab -l | grep -v "jeedom" | grep -v "jeeCron") | crontab -
+	if [ ! -f /etc/cron.d/jeedom ]; then
+		echo "* * * * * www-data /usr/bin/php /var/www/html/core/php/jeeCron.php >> /dev/null" > /etc/cron.d/jeedom
 		if [ $? -ne 0 ]; then
 	    	echo "${ROUGE}Could not install jeedom cron - abort${NORMAL}"
 	    	exit 1
 	  	fi
-  	fi
+	fi
   	usermod -a -G dialout,tty www-data
 	if [ $(grep "www-data ALL=(ALL) NOPASSWD: ALL" /etc/sudoers | wc -l) -eq 0 ];then
 		echo "www-data ALL=(ALL) NOPASSWD: ALL" | (EDITOR="tee -a" visudo)
