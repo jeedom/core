@@ -53,7 +53,7 @@ if (file_exists(dirname(__FILE__) . '/../core/config/common.config.php')) {
 	echo "The page that you have requested could not be found.";
 	exit();
 }
-$needpackages = array('unzip', 'curl', 'sudo', 'ntp');
+$needpackages = array('unzip', 'curl', 'ntp');
 $needphpextensions = array('curl', 'json', 'mysql', 'gd');
 $loadExtensions = get_loaded_extensions();
 ?>
@@ -79,21 +79,9 @@ if (version_compare(PHP_VERSION, '5.6.0', '<')) {
 	echo '<center style="font-size:1.2em;">Jeedom need php 5.6 or upper (current : ' . PHP_VERSION . ')</center>';
 	echo '</div>';
 }
-if (shell_exec('sudo -l > /dev/null 2>&1; echo $?') != 0) {
-	$error = true;
-
-	echo '<div class="alert alert-warning" style="margin:15px;">';
-	echo '<center style="font-size:1.2em;">Jeedom has not sudo right please do in ssh : </center>';
-	echo '<pre>';
-	echo "sudo su -\n";
-	echo 'echo "' . get_current_user() . ' ALL=(ALL) NOPASSWD: ALL" | (EDITOR="tee -a" visudo)';
-	echo '</pre>';
-	echo '</div>';
-}
 if (shell_exec('sudo crontab -l | grep jeeCron.php | wc -l') == 0) {
-	$error = true;
 	echo '<div class="alert alert-warning" style="margin:15px;">';
-	echo '<center style="font-size:1.2em;">Please add crontab line for jeedom : </center>';
+	echo '<center style="font-size:1.2em;">Please add crontab line for jeedom (if jeedom has no sudo right this error is normal): </center>';
 	echo '<pre>';
 	echo "sudo su -\n";
 	echo 'croncmd="su --shell=/bin/bash - ' . get_current_user() . ' -c \'/usr/bin/php ' . realpath(dirname(__FILE__) . '/../') . '/core/php/jeeCron.php\' >> /dev/null 2>&1&quot;' . "\n";
@@ -259,8 +247,7 @@ if ($config) {
 	);
 	$config = str_replace(array_keys($replace), $replace, file_get_contents(dirname(__FILE__) . '/../core/config/common.config.sample.php'));
 	file_put_contents(dirname(__FILE__) . '/../core/config/common.config.php', $config);
-	shell_exec('sudo echo "" ' . dirname(__FILE__) . '/../log/jeedom_installation 2>&1');
-	shell_exec('sudo php ' . dirname(__FILE__) . '/install.php mode=force > ' . dirname(__FILE__) . '/../log/jeedom_installation 2>&1 &');
+	shell_exec('php ' . dirname(__FILE__) . '/install.php mode=force > ' . dirname(__FILE__) . '/../log/jeedom_installation 2>&1 &');
 	echo '<div id="div_alertMessage" class="alert alert-warning" style="margin:15px;">';
 	echo '<center style="font-size:1.2em;"><i class="fa fa-spinner fa-spin"></i> The installation jeedom is ongoing.</center>';
 	echo '</div>';
