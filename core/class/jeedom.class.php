@@ -78,7 +78,7 @@ class jeedom {
 			'comment' => ($state) ? '' : __('Attention vous avez toujours l\'utilisateur admin/admin de configuré, cela représente une grave faille de sécurité, aller <a href=\'index.php?v=d&p=user\'>ici</a> pour modifier le mot de passe de l\'utilisateur admin', __FILE__),
 		);
 
-		$state = jeedom::isCapable('sudo');
+		$state = jeedom::isCapable('sudo', true);
 		$return[] = array(
 			'name' => __('Droits sudo', __FILE__),
 			'state' => $state,
@@ -956,17 +956,17 @@ class jeedom {
 		return config::byKey('hardware_name');
 	}
 
-	public static function isCapable($_function) {
+	public static function isCapable($_function, $_forceRefresh = false) {
 		global $JEEDOM_COMPATIBILIY_CONFIG;
 		if ($_function == 'sudo') {
-			$cache = cache::byKey('jeedom::isCapable::sudo');
-			if ($cache->getValue(0) == 1) {
-				return true;
+			if (!$_forceRefresh) {
+				$cache = cache::byKey('jeedom::isCapable::sudo');
+				if ($cache->getValue(0) == 1) {
+					return true;
+				}
 			}
 			$result = (shell_exec('sudo -l > /dev/null 2>&1; echo $?') == 0) ? true : false;
-			if ($result) {
-				cache::set('jeedom::isCapable::sudo', 1);
-			}
+			cache::set('jeedom::isCapable::sudo', $result);
 			return $result;
 		}
 		$hardware = self::getHardwareName();
