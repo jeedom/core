@@ -101,25 +101,17 @@ class jeedom {
 			'comment' => ($state) ? '' : __('Si vous êtes en version 5.4.x on vous indiquera quand la version 5.5 sera obligatoire', __FILE__),
 		);
 
-		$uname = shell_exec('uname -a');
-		$version = '';
 		$state = true;
-		if (strpos(strtolower($uname), 'debian') === false) {
-			$state = false;
-		}
-		if (!file_exists('/etc/debian_version')) {
+		$version = '';
+		if (system::getDistrib() != 'debian') {
 			$state = false;
 		} else {
-			$state = true;
 			$version = trim(strtolower(file_get_contents('/etc/debian_version')));
 			if (version_compare($version, '8', '<')) {
 				if (strpos($version, 'jessie') === false && strpos($version, 'stretch')) {
 					$state = false;
 				}
 			}
-		}
-		if (strpos(strtolower($uname), 'ubuntu') !== false) {
-			$state = false;
 		}
 		$return[] = array(
 			'name' => __('Version OS', __FILE__),
