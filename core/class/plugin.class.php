@@ -523,11 +523,21 @@ class plugin {
 				throw new Exception(__('Les dépendances d\'un autre plugin sont déjà en cours, veuillez attendre qu\'elles soient finies : ', __FILE__) . $plugin->getId());
 			}
 		}
-		message::add($plugin_id, __('Attention, installation des dépendances lancée', __FILE__));
-		$this->deamon_stop();
 		config::save('lastDependancyInstallTime', date('Y-m-d H:i:s'), $plugin_id);
-		$plugin_id::dependancy_install();
-		sleep(1);
+		$cmd = $plugin_id::dependancy_install();
+		if (is_array($cmd) && count($cmd) == 2) {
+			$script = str_replace('#stype#', system::get('type'), $cmd['script']);
+			if (file_exists($script)) {
+				if (jeedom::isCapable('sudo')) {
+					$this->deamon_stop();
+					message::add($plugin_id, __('Attention, installation des dépendances lancée', __FILE__));
+					exec('sudo ' . $script . ' >> ' . $cmd['log'] . ' 2>&1 &');
+					sleep(1);
+				} else {
+					log::add('plugin', 'alert', __('Veuillez executer le script : ', __FILE__) . realpath($script));
+				}
+			}
+		}
 		$cache = cache::byKey('dependancy' . $this->getID());
 		$cache->remove();
 		return;

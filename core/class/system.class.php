@@ -34,9 +34,9 @@ class system {
 
 	public static function getDistrib() {
 		if (self::$_distrib == null) {
-			self::$_distrib = trim(shell_exec('sudo grep CPE_NAME /etc/os-release | cut -d \'"\' -f 2 | cut -d : -f 3 '));
+			self::$_distrib = trim(shell_exec('grep CPE_NAME /etc/os-release | cut -d \'"\' -f 2 | cut -d : -f 3 '));
 			if (self::$_distrib == '') {
-				self::$_distrib = trim(shell_exec('sudo  grep -e "^ID" /etc/os-release | cut -d \'=\' -f 2'));
+				self::$_distrib = trim(shell_exec('grep -e "^ID" /etc/os-release | cut -d \'=\' -f 2'));
 			}
 			if (self::$_distrib == '' || !isset(self::$_command[self::$_distrib])) {
 				self::$_distrib = 'debian';

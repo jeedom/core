@@ -114,11 +114,10 @@ class log {
 			$logger->$action($_message);
 			try {
 				$level = Logger::toMonologLevel($_type);
-				$write_message = ($level != Logger::ALERT && $logger->isHandling($level));
 				if ($level == Logger::ERROR && self::getConfig('addMessageForErrorLog') == 1) {
-					@message::add($_log, $_message, '', $_logicalId, $write_message);
-				} elseif ($level > Logger::ALERT) {
-					@message::add($_log, $_message, '', $_logicalId, $write_message);
+					@message::add($_log, $_message, '', $_logicalId);
+				} elseif ($level >= Logger::ALERT) {
+					@message::add($_log, $_message, '', $_logicalId);
 				}
 			} catch (Exception $e) {
 
