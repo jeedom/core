@@ -51,6 +51,7 @@
 * Ajout d'un champs commentaire sur la configuration avancé d'un équipement
 * Ajout d'un système d'alerte sur les commandes avec 2 niveaux : alerte et danger. La configuration se trouve dans la configuration avancée des commandes (de type info seulement bien sur). Vous pouvez voir les modules en alerte sur la page Analyse -> Equipement. Vous pouvez configurer les actions sur alerte sur la page de configuration générale de Jeedom
 * Ajout d'une zone "tableau" sur les vues qui permet d'afficher une ou plusieurs colonne par case. Les cases supportent aussi du code html
+* Jeedom peux maintenant tourner sans les droits root (experimental). Attention car sans les droits root vous devrez manuellement lancer les scripts pour les dépendances des plugins
 
 = 2.4.7
 

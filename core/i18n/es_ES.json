@@ -17,7 +17,7 @@
         "Exécution du scénario ": "Ejecución de escena",
         " déclenché par : ": "originado por:",
         "Fin correcte du scénario": "Escena finalizada correctamente",
-        "Lancement du scénario en mode synchrone": "Lanzamiento de escenario en modo síncrono",
+        "Lancement du scénario en mode synchrone": "Lancement du scénario en mode synchrone",
         "Scénario exécuté sur événement : #": "Escena ejecutada sobre evento: #",
         "Aucun": "Ningún"
     },
@@ -27,22 +27,22 @@
     "core/class/plugin.class.php": {
         "Inconnue": "Desconocido",
         "Gestion automatique désactivée": "Gestión automática desactivada",
-        "Erreur sur la fonction cron du plugin : ": "Error en la función cron del plugin :",
-        "Erreur sur la fonction cronHourly du plugin : ": "Error en la función cronHourly del plugin :",
+        "Erreur sur la fonction cron du plugin : ": "Erreur sur la fonction cron du plugin :",
+        "Erreur sur la fonction cronHourly du plugin : ": "Erreur sur la fonction cronHourly du plugin :",
         "Lancement de : ": "Ejecutando:",
         "Erreur sur la fonction cron30 du plugin : ": "Error en la función cron30 del plugin :",
         "Erreur sur la fonction cronDaily du plugin : ": "Error en la función cronDaily del plugin:",
-        "Attention, installation des dépendances lancée": "Atención, instalación de dependencias lanzada",
+        "Attention, installation des dépendances lancée": "Attention, installation des dépendances lancée",
         "Dépendances non installées": "Dependencias no instaladas",
-        "Vous devez attendre au moins 60s entre 2 lancements d'installation de dépendances": "Deben transcurrir al menos 60 segundos, entre dos lanzamientos de instalación de dependencias",
+        "Vous devez attendre au moins 60s entre 2 lancements d'installation de dépendances": "Vous devez attendre au moins 60s entre 2 lancements d'installation de dépendances",
         "Dépendances en cours d'installation": "Instalación de dependencias en curso",
-        "Les dépendances sont déja en cours d'installation": "Instalación de dependencias, actualmente en ejecución",
-        "Vous devez attendre au moins 45s entre 2 lancements du démon": "Deben transcurrir al menos 45 segundos, entre dos lanzamientos de Daemon",
+        "Les dépendances sont déja en cours d'installation": "Les dépendances sont déja en cours d'installation",
+        "Vous devez attendre au moins 45s entre 2 lancements du démon": "Vous devez attendre au moins 45s entre 2 lancements du démon",
         "Erreur sur la fonction deamon_start du plugin : ": "Error en la función daemon_start del plugin :"
     },
     "core/php/jeeListener.php": {
         "[Erreur] Classe ou fonction non trouvée ": "[Error] Clase o función no encontrada",
-        "Listener non trouvé : ": "Listener no encontrado :"
+        "Listener non trouvé : ": "Listener non trouvé :"
     },
     "core/class/message.class.php": {
         "Message de ": "Mensaje de"
@@ -64,9 +64,9 @@
         " seconde(s)": "segundo(s)",
         "Lancement du scénario : ": "Ejecución de escena:",
         "Lancement provoqué": "Ejecución forzada",
-        "Arret du scénario": "Detener escenario",
-        "Ajout de l'alerte : ": "Crear alerta :",
-        "Affichage du popup : ": "Pantalla emergente :"
+        "Arret du scénario": "Arret du scénario",
+        "Ajout de l'alerte : ": "Ajout de l'alerte :",
+        "Affichage du popup : ": "Affichage du popup :"
     },
     "core/class/scenarioElement.class.php": {
         "Non exécution des actions pour cause de répétition": "No aplicar las medidas por causa de la repetición"
@@ -101,7 +101,7 @@
         "Gestion des plugins": "Gestión de plugins",
         "Protocole domotique": "Protocolo domótico",
         "Communication": "Comunicación",
-        "Objets communicants": "Comunicación de objetos",
+        "Objets communicants": "Objets communicants",
         "Energie": "Energía",
         "Monitoring": "Monitorización",
         "Multimédia": "Multimedia",
@@ -131,7 +131,7 @@
         "Générale": "General",
         "Détaillée": "Detallado",
         "Ouverture d'un ticket": "Abrir un ticket",
-        "Jeedom est en cours de démarrage veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé": "Jeedom se está iniciando, por favor espere. La página se recargará automáticamente una vez finalice el proceso",
+        "Jeedom est en cours de démarrage veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé": "Jeedom est en cours de démarrage veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé",
         "Nombre de mises à jour": "Número de cambios",
         "Equipements": "Dispositivos"
     },
@@ -177,8 +177,8 @@
         "Mode": "Modo",
         "Météo": "El tiempo",
         "Prise": "Enchufe",
-        "Serrure": "Bloquear",
-        "Sirène": "Sirena",
+        "Serrure": "Serrure",
+        "Sirène": "Sirène",
         "Thermostat": "Termostato",
         "Volet": "Persiana",
         "Icône": "Icono",
@@ -204,7 +204,7 @@
         "1 mois": "1 mes",
         "6 mois": "6 meses",
         "Autres": "Otros",
-        "Ignorer évènement si la valeur ne change pas": "Ignorar evento, si el valor no es modificado",
+        "Ignorer évènement si la valeur ne change pas": "Ignorer évènement si la valeur ne change pas",
         "Push URL": "Push URL",
         "Mettez ici l'URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)": "Ponga aquí la URL a llamar en una actualización de los valores de las órdenes. Puede utilizar las siguientes etiquetas : #value# (valor de la orden), #cmd_id# (id de la orden) y #cmd_name# (nombre de la orden)",
         "Activer la personalisation du widget": "Activar la personalización del widget",

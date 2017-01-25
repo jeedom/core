@@ -131,7 +131,7 @@
         "Générale": "Allgemein",
         "Détaillée": "Detailliert",
         "Ouverture d'un ticket": "Öffnen Sie ein Ticket",
-        "Jeedom est en cours de démarrage veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé": "Jeedom est en cours de démarrage veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé",
+        "Jeedom est en cours de démarrage veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé": "Jeedom wird gestartet, bitte warten Sie. Die Seite wird automatisch nach Abschluss der Inbetriebnahme neu geladen.",
         "Nombre de mises à jour": "Anzahl der Updates",
         "Equipements": "Geräte"
     },
@@ -164,7 +164,7 @@
         "Equipement": "Gerät",
         "Commandes": "Befehle",
         "Scénario": "Szenario",
-        "Calcul et arrondit": "Berechnung und Runden",
+        "Calcul et arrondit": "Berechnung und Rundung",
         "Formule de calcul (#value# pour la valeur)": "Berechnungsformel (#value# den Wert)",
         "Arrondi (chiffre après la virgule)": "Abgerundet (Zahl nach dem Komma)",
         "Type générique": "Typ Gattung",
@@ -231,7 +231,7 @@
         "Code d'accès": "Zugangscode",
         "Action avant exécution de la commande": "Action avant exécution de la commande",
         "Action après exécution de la commande": "Action après exécution de la commande",
-        "Informations brutes": "Informations brutes",
+        "Informations brutes": "Rohinformationen",
         "Copie des données historisé": "Copie des données historisé",
         "Copier l'historique de cette commande sur une autre commande": "Copier l'historique de cette commande sur une autre commande",
         "Etes-vous sûr de vouloir copié l\\'historique de votre commande vers une autre ? Il est conseillé de vider l\\'historique de la commande cible": "Etes-vous sûr de vouloir copié l\\'historique de votre commande vers une autre ? Il est conseillé de vider l\\'historique de la commande cible",
@@ -693,7 +693,7 @@
         "Etes-vous sûr de vouloir supprimer cet équipement ?": "Sind Sie sicher, dass Sie dieses Gerät löschen möchten?",
         "Suppression réalisée avec succès": "Löschen erfolgreich abgeschlossen",
         "Configuration de la commande": "Befehl Konfiguration",
-        "Informations brutes": "Informations brutes"
+        "Informations brutes": "Rohinformationen"
     },
     "desktop/php/cron.php": {
         "Processus cron Jeedom :": "Jeedom Cron Prozess : ",
@@ -1032,7 +1032,7 @@
     "desktop/modal/twoFactor.authentification.php": {
         "Etape 1 : Installation sur le téléphone": "Schritt 1: Installation auf dem Handy",
         "La vérification en 2 étapes fournit une couche supplémentaire de protection pour votre compte Jeedom. Une fois la vérification en 2 étapes configurée, votre mot de passe sera nécessaire en plus d’un code de vérification unique pour vous connecter à Jeedom. Veuillez noter qu’un appareil mobile sera nécessaire pour générer des codes de vérification.": "2-stufige Prüfung bildet eine zusätzliche Schutzschicht für Ihr Jeedom-Konto. Sobald in 2 Schritten einrichten zu überprüfen, werden Ihr Passwort erforderlich, zusätzlich einen einzigartigen Bestätigungscode zum Herstellen einer Verbindung mit Jeedom. Bitte beachten Sie, dass ein mobiles Gerät benötigt wird, um ein Überprüfungs-Code zu generieren.",
-        "Veuillez installer une application d’authentification sur votre appareil mobile. Si vous n’en avez pas encore installée une, Jeedom prend en charge les applications d’authentification suivantes : Google Authenticator (Android, iOS, BlackBerry), Authenticator (Windows Phone).": "Veuillez installer une application d’authentification sur votre appareil mobile. Si vous n’en avez pas encore installée une, Jeedom prend en charge les applications d’authentification suivantes : Google Authenticator (Android, iOS, BlackBerry), Authenticator (Windows Phone).",
+        "Veuillez installer une application d’authentification sur votre appareil mobile. Si vous n’en avez pas encore installée une, Jeedom prend en charge les applications d’authentification suivantes : Google Authenticator (Android, iOS, BlackBerry), Authenticator (Windows Phone).": "Bitte installieren sie eine Authentifizierungs App auf Ihrem mobilen Gerät. Wenn man noch keine installiert hat, die folgenden Authentifizierung-Apps unterstützt Jeedom : Google Authenticator (Android, iOS, BlackBerry), Authenticator (Windows Phone). ",
         "IMPORTANT : si votre Jeedom n'est plus à l'heure vous ne pourrez pas vous connecter du tout": "IMPORTANT : si votre Jeedom n'est plus à l'heure vous ne pourrez pas vous connecter du tout",
         "Etape 2 : Configuration": "Schritt 2 : Konfiguration",
         "Ouvrez et configurez l’appli d’authentification en scannant le code QR ci-dessous.": "Öffnen und konfigurieren Sie die Authentifizierung App durch Scannen des QR-Code unten.",
@@ -1642,14 +1642,14 @@
     },
     "core/ajax/update.ajax.php": {
         "[START UPDATE]": "[START UPDATE]",
-        "Launch cron dependancy plugins": "Launch cron dependancy plugins",
+        "Launch cron dependancy plugins": "Cron Plugin Abhängigkeiten starten ",
         "[END UPDATE SUCCESS]": "[UPDATE ENDE ERFOLGREICH]"
     },
     "core/class/update.class.php": {
         "Début de la mise à jour de : ": "Starten der Aktualisierung :",
         "Action de pre update...": "Aktion vor dem Update",
         "OK\n": "OK",
-        "Téléchargement du plugin...": "Téléchargement du plugin...",
+        "Téléchargement du plugin...": "Plugins herunterladen ...",
         "Décompression du zip...": "Dekomprimieren von Zip...",
         "Post-installation de ": "Nach-Installation von"
     },
