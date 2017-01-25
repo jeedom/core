@@ -531,11 +531,13 @@ class plugin {
 				if (jeedom::isCapable('sudo')) {
 					$this->deamon_stop();
 					message::add($plugin_id, __('Attention, installation des dépendances lancée', __FILE__));
-					exec('sudo ' . $script . ' >> ' . $cmd['log'] . ' 2>&1 &');
+					exec('sudo /bin/bash ' . $script . ' >> ' . $cmd['log'] . ' 2>&1 &');
 					sleep(1);
 				} else {
-					log::add('plugin', 'alert', __('Veuillez executer le script : ', __FILE__) . realpath($script));
+					log::add($plugin_id, 'alert', __('Veuillez executer le script : ', __FILE__) . realpath($script));
 				}
+			} else {
+				log::add($plugin_id, 'alert', __('Aucun script ne correspond à votre type de linux : ', __FILE__) . $cmd['script']);
 			}
 		}
 		$cache = cache::byKey('dependancy' . $this->getID());
