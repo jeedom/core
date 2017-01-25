@@ -645,7 +645,7 @@ class jeedom {
 				log::add('starting', 'debug', __('Ecriture du fichier /tmp/jeedom_start', __FILE__));
 				if (!touch('/tmp/jeedom_start')) {
 					log::add('starting', 'debug', __('Impossible d\'écrire /tmp/jeedom_start, tentative en shell', __FILE__));
-					com_shell::execute('sudo touch /tmp/jeedom_start;sudo chmod 777 /tmp/jeedom_start');
+					com_shell::execute(system::getCmdSudo() . 'touch /tmp/jeedom_start;sudo chmod 777 /tmp/jeedom_start');
 				}
 			} catch (Exception $e) {
 				log::add('starting', 'error', __('Impossible d\'écrire /tmp/jeedom_start : ', __FILE__) . log::exception($e));
@@ -847,24 +847,32 @@ class jeedom {
 	public static function haltSystem() {
 		plugin::stop();
 		cache::persist();
-		exec('sudo shutdown -h now');
+		if (jeedom::isCapable('sudo')) {
+			exec(system::getCmdSudo() . 'shutdown -h now');
+		} else {
+			throw new Exception(__('Vous pouvez arreter le système', __FILE__));
+		}
 	}
 
 	public static function rebootSystem() {
 		plugin::stop();
 		cache::persist();
-		exec('sudo reboot');
+		if (jeedom::isCapable('sudo')) {
+			exec(system::getCmdSudo() . 'reboot');
+		} else {
+			throw new Exception(__('Vous pouvez lancer le reboot du système', __FILE__));
+		}
 	}
 
 	public static function forceSyncHour() {
-		shell_exec('sudo service ntp stop;sudo ntpdate -s ' . config::byKey('ntp::optionalServer', 'core', '0.debian.pool.ntp.org') . ';sudo service ntp start');
+		shell_exec(system::getCmdSudo() . 'service ntp stop;' . system::getCmdSudo() . 'ntpdate -s ' . config::byKey('ntp::optionalServer', 'core', '0.debian.pool.ntp.org') . ';' . system::getCmdSudo() . 'service ntp start');
 	}
 
 	public static function cleanFileSytemRight() {
 		$processUser = posix_getpwuid(posix_geteuid());
 		$processGroup = posix_getgrgid(posix_getegid());
 		$path = dirname(__FILE__) . '/../../*';
-		exec('sudo chown -R ' . $processUser['name'] . ':' . $processGroup['name'] . ' ' . $path . ';sudo chmod 775 -R ' . $path);
+		exec(system::getCmdSudo() . 'chown -R ' . $processUser['name'] . ':' . $processGroup['name'] . ' ' . $path . ';' . system::getCmdSudo() . 'chmod 775 -R ' . $path);
 	}
 
 	public static function checkSpaceLeft() {
@@ -884,7 +892,7 @@ class jeedom {
 		}
 		if (count($ls) > 1) {
 			for ($i = 1; $i < count($ls); $i++) {
-				shell_exec('sudo rm -rf ' . dirname(__FILE__) . '/../../' . $ls[$i]);
+				shell_exec(system::getCmdSudo() . 'rm -rf ' . dirname(__FILE__) . '/../../' . $ls[$i]);
 			}
 		}
 		return $ls[0];
@@ -907,7 +915,7 @@ class jeedom {
 		}
 		if (count($ls) > 1) {
 			for ($i = 1; $i < count($ls); $i++) {
-				shell_exec('sudo rm -rf ' . dirname(__FILE__) . '/../../' . $ls[$i]);
+				shell_exec(system::getCmdSudo() . 'rm -rf ' . dirname(__FILE__) . '/../../' . $ls[$i]);
 			}
 		}
 		return $ls[0];

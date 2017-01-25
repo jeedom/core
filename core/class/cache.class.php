@@ -97,7 +97,6 @@ class cache {
 
 	public static function flush() {
 		self::getCache()->deleteAll();
-		shell_exec('sudo rm -rf /tmp/jeedom-cache 2>&1 > /dev/null');
 		shell_exec('rm -rf /tmp/jeedom-cache 2>&1 > /dev/null');
 	}
 
@@ -117,7 +116,7 @@ class cache {
 				return;
 		}
 		try {
-			com_shell::execute('sudo rm -rf ' . dirname(__FILE__) . '/../../cache.tar.gz;cd ' . $cache_dir . ';sudo tar cfz ' . dirname(__FILE__) . '/../../cache.tar.gz * 2>&1 > /dev/null;sudo chmod 775 ' . dirname(__FILE__) . '/../../cache.tar.gz;sudo chown ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . dirname(__FILE__) . '/../../cache.tar.gz;sudo chmod 777 -R ' . $cache_dir);
+			com_shell::execute('rm -rf ' . dirname(__FILE__) . '/../../cache.tar.gz;cd ' . $cache_dir . ';tar cfz ' . dirname(__FILE__) . '/../../cache.tar.gz * 2>&1 > /dev/null;chmod 775 ' . dirname(__FILE__) . '/../../cache.tar.gz;chown ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . dirname(__FILE__) . '/../../cache.tar.gz;chmod 777 -R ' . $cache_dir . ' 2>&1 /dev/null');
 		} catch (Exception $e) {
 			log::add('cache', 'debug', $e->getMessage());
 		}
@@ -150,16 +149,16 @@ class cache {
 				return;
 		}
 		if (!file_exists(dirname(__FILE__) . '/../../cache.tar.gz')) {
-			$cmd = 'sudo mkdir ' . $cache_dir . ';';
-			$cmd .= 'sudo chmod -R 777 ' . $cache_dir . ';';
+			$cmd = 'mkdir ' . $cache_dir . ';';
+			$cmd .= 'chmod -R 777 ' . $cache_dir . ';';
 			com_shell::execute($cmd);
 			return;
 		}
-		$cmd = 'sudo rm -rf ' . $cache_dir . ';';
-		$cmd .= 'sudo mkdir ' . $cache_dir . ';';
+		$cmd = 'rm -rf ' . $cache_dir . ';';
+		$cmd .= 'mkdir ' . $cache_dir . ';';
 		$cmd .= 'cd ' . $cache_dir . ';';
-		$cmd .= 'sudo tar xfz ' . dirname(__FILE__) . '/../../cache.tar.gz;';
-		$cmd .= 'sudo chmod -R 777 ' . $cache_dir . ';';
+		$cmd .= 'tar xfz ' . dirname(__FILE__) . '/../../cache.tar.gz;';
+		$cmd .= 'chmod -R 777 ' . $cache_dir . ' 2>&1 /dev/null;';
 		com_shell::execute($cmd);
 	}
 

@@ -401,7 +401,7 @@ class plugin {
 				}
 			} else if ($dependancy_info['state'] == 'in_progress' && $dependancy_info['duration'] > $plugin->getMaxDependancyInstallTime()) {
 				if (isset($return['progress_file']) && file_exists($return['progress_file'])) {
-					shell_exec('sudo rm ' . $return['progress_file']);
+					shell_exec('rm ' . $return['progress_file']);
 				}
 				config::save('deamonAutoMode', 0, $plugin->getId());
 				log::add($plugin->getId(), 'error', __('Attention l\'installation des dépendances ont dépassées le temps maximum autorisé : ', __FILE__) . $plugin->getMaxDependancyInstallTime() . 'min');
@@ -531,13 +531,13 @@ class plugin {
 				if (jeedom::isCapable('sudo')) {
 					$this->deamon_stop();
 					message::add($plugin_id, __('Attention, installation des dépendances lancée', __FILE__));
-					exec('sudo /bin/bash ' . $script . ' >> ' . $cmd['log'] . ' 2>&1 &');
+					exec(system::getCmdSudo() . '/bin/bash ' . $script . ' >> ' . $cmd['log'] . ' 2>&1 &');
 					sleep(1);
 				} else {
 					log::add($plugin_id, 'alert', __('Veuillez executer le script : ', __FILE__) . realpath($script));
 				}
 			} else {
-				log::add($plugin_id, 'alert', __('Aucun script ne correspond à votre type de linux : ', __FILE__) . $cmd['script']);
+				log::add($plugin_id, 'alert', __('Aucun script ne correspond à votre type de linux : ', __FILE__) . $cmd['script'] . __(' avec #stype# : ', __FILE__) . system::get('type'));
 			}
 		}
 		$cache = cache::byKey('dependancy' . $this->getID());

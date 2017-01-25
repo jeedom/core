@@ -34,12 +34,12 @@ $filename = '/tmp/' . $md5 . '.mp3';
 switch ($engine) {
 	case 'espeak':
 		$voice = init('voice', 'fr+f4');
-		shell_exec('sudo espeak -v' . $voice . ' "' . $text . '" --stdout | avconv -i - -ar 44100 -ac 2 -ab 192k -f mp3 ' . $filename . ' > /dev/null 2>&1');
+		shell_exec('espeak -v' . $voice . ' "' . $text . '" --stdout | avconv -i - -ar 44100 -ac 2 -ab 192k -f mp3 ' . $filename . ' > /dev/null 2>&1');
 		break;
 	case 'pico':
 		$volume = '-af "volume=' . init('volume', '6') . 'dB"';
 		$lang = init('lang', 'fr-FR');
-		shell_exec('sudo pico2wave -l=' . $lang . ' -w=' . $md5 . '.wav "' . $text . '" > /dev/null 2>&1;sudo avconv -i ' . $md5 . '.wav -ar 44100 ' . $volume . ' -ac 2 -ab 192k -f mp3 ' . $filename . ' > /dev/null 2>&1;sudo rm ' . $md5 . '.wav');
+		shell_exec('pico2wave -l=' . $lang . ' -w=' . $md5 . '.wav "' . $text . '" > /dev/null 2>&1;avconv -i ' . $md5 . '.wav -ar 44100 ' . $volume . ' -ac 2 -ab 192k -f mp3 ' . $filename . ' > /dev/null 2>&1;rm ' . $md5 . '.wav');
 		break;
 	default:
 		echo __('Moteur de voix inconnue : ', __FILE__) . $engine;
@@ -50,4 +50,4 @@ switch ($engine) {
 header('Content-Type: application/octet-stream');
 header('Content-Disposition: attachment; filename=' . $md5 . '.mp3');
 readfile($filename);
-shell_exec('sudo rm ' . $filename . ' > /dev/null 2>&1');
+shell_exec('rm ' . $filename . ' > /dev/null 2>&1');

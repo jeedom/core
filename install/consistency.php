@@ -289,10 +289,10 @@ try {
 	$cron->setDeamon(0);
 	$cron->save();
 
-	if (!file_exists('/usr/local/share/ca-certificates/root_market.crt') && file_exists('/usr/local/share/ca-certificates')) {
+	if (!file_exists('/usr/local/share/ca-certificates/root_market.crt') && file_exists('/usr/local/share/ca-certificates') && jeedom::isCapable('sudo')) {
 		echo 'Ajout du certificat du market...';
-		shell_exec('sudo cp ' . dirname(__FILE__) . '/../script/root_market.crt /usr/local/share/ca-certificates 2>&1 > /dev/null');
-		shell_exec('sudo update-ca-certificates 2>&1 > /dev/null');
+		shell_exec(system::getCmdSudo() . 'cp ' . dirname(__FILE__) . '/../script/root_market.crt /usr/local/share/ca-certificates 2>&1 > /dev/null');
+		shell_exec(system::getCmdSudo() . 'update-ca-certificates 2>&1 > /dev/null');
 		echo "OK\n";
 	}
 
@@ -307,10 +307,10 @@ try {
 		config::save('api', config::genKey());
 	}
 	if (file_exists(dirname(__FILE__) . '/../../core/nodeJS')) {
-		shell_exec('sudo rm -rf ' . dirname(__FILE__) . '/../../core/nodeJS');
+		shell_exec(system::getCmdSudo() . 'rm -rf ' . dirname(__FILE__) . '/../../core/nodeJS');
 	}
 	if (file_exists(dirname(__FILE__) . '/../../script/ngrok')) {
-		shell_exec('sudo rm -Rf ' . dirname(__FILE__) . '/../../script/ngrok');
+		shell_exec(system::getCmdSudo() . 'rm -Rf ' . dirname(__FILE__) . '/../../script/ngrok');
 	}
 	try {
 		foreach (eqLogic::all() as $eqLogic) {

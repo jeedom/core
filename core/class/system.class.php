@@ -53,14 +53,17 @@ class system {
 	}
 
 	public static function getCmdSudo() {
+		if (!jeedom::isCapable('sudo')) {
+			return '';
+		}
 		return 'sudo ';
 	}
 
 	public static function fuserk($_port, $_protocol = 'tcp') {
 		if (file_exists($_port)) {
-			exec('fuser -k ' . $_port . ' > /dev/null 2>&1;sudo fuser -k ' . $_port . ' > /dev/null 2>&1');
+			exec(system::getCmdSudo() . 'fuser -k ' . $_port . ' > /dev/null 2>&1');
 		} else {
-			exec('fuser -k ' . $_port . '/' . $_protocol . ' > /dev/null 2>&1;sudo fuser -k ' . $_port . '/' . $_protocol . ' > /dev/null 2>&1');
+			exec(system::getCmdSudo() . 'fuser -k ' . $_port . '/' . $_protocol . ' > /dev/null 2>&1');
 		}
 	}
 
@@ -120,20 +123,16 @@ class system {
 					return true;
 				}
 				usleep(100);
-				$cmd = 'kill -9 ' . $_find;
-				$cmd .= '; sudo kill -9 ' . $_find;
-				exec($cmd);
+				exec(system::getCmdSudo() . 'kill -9 ' . $_find);
 			} else {
 				$kill = posix_kill($_find, 15);
 			}
 			return;
 		}
 		if ($_kill9) {
-			$cmd = "(ps ax || ps w) | grep -ie '" . $_find . "' | grep -v grep | awk '{print $1}' | xargs kill -9 > /dev/null 2>&1";
-			$cmd .= "; (ps ax || ps w) | grep -ie '" . $_find . "' | grep -v grep | awk '{print $1}' | xargs sudo kill -9 > /dev/null 2>&1";
+			$cmd = "(ps ax || ps w) | grep -ie '" . $_find . "' | grep -v grep | awk '{print $1}' | xargs " . system::getCmdSudo() . "kill -9 > /dev/null 2>&1";
 		} else {
-			$cmd = "(ps ax || ps w) | grep -ie '" . $_find . "' | grep -v grep | awk '{print $1}' | xargs kill > /dev/null 2>&1";
-			$cmd .= "; (ps ax || ps w) | grep -ie '" . $_find . "' | grep -v grep | awk '{print $1}' | xargs sudo kill > /dev/null 2>&1";
+			$cmd = "(ps ax || ps w) | grep -ie '" . $_find . "' | grep -v grep | awk '{print $1}' | xargs " . system::getCmdSudo() . "kill > /dev/null 2>&1";
 		}
 		exec($cmd);
 	}

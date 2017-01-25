@@ -154,7 +154,7 @@ class repo_ftp {
 			unlink($tmp);
 		}
 		if (!is_writable($tmp_dir)) {
-			exec('sudo chmod 777 -R ' . $tmp);
+			exec(system::getCmdSudo() . 'chmod 777 -R ' . $tmp);
 		}
 		if (!is_writable($tmp_dir)) {
 			throw new Exception(__('Impossible d\'écrire dans le répertoire : ', __FILE__) . $tmp . __('. Exécuter la commande suivante en SSH : sudo chmod 777 -R ', __FILE__) . $tmp_dir);
@@ -221,7 +221,7 @@ class repo_ftp {
 		}
 		$ftp->download($backup_dir . '/' . $_backu, $file);
 		$connection->close();
-		com_shell::execute('sudo chmod 777 -R ' . $backup_dir . '/*');
+		com_shell::execute(system::getCmdSudo() . 'chmod 777 -R ' . $backup_dir . '/*');
 		jeedom::restore('backup/' . $_backup, true);
 
 	}
@@ -241,7 +241,7 @@ class repo_ftp {
 	public static function versionCore() {
 		try {
 			if (file_exists('/tmp/jeedom_version')) {
-				com_shell::execute('sudo rm /tmp/jeedom_version');
+				com_shell::execute('rm /tmp/jeedom_version');
 			}
 			$connexion = self::getFtpConnection('plugin');
 			$factory = new FTPFactory;
@@ -256,7 +256,7 @@ class repo_ftp {
 				return null;
 			}
 			$version = trim(file_get_contents('/tmp/jeedom_version'));
-			com_shell::execute('sudo rm /tmp/jeedom_version');
+			com_shell::execute('rm /tmp/jeedom_version');
 			return $version;
 		} catch (Exception $e) {
 

@@ -64,7 +64,7 @@ class repo_url {
 			unlink($tmp);
 		}
 		if (!is_writable($tmp_dir)) {
-			exec('sudo chmod 777 -R ' . $tmp);
+			exec(system::getCmdSudo() . 'chmod 777 -R ' . $tmp);
 		}
 		if (!is_writable($tmp_dir)) {
 			throw new Exception(__('Impossible d\'écrire dans le répertoire : ', __FILE__) . $tmp . __('. Exécuter la commande suivante en SSH : sudo chmod 777 -R ', __FILE__) . $tmp_dir);
@@ -96,14 +96,14 @@ class repo_url {
 		}
 		try {
 			if (file_exists('/tmp/jeedom_version')) {
-				com_shell::execute('sudo rm /tmp/jeedom_version');
+				com_shell::execute(system::getCmdSudo() . 'rm /tmp/jeedom_version');
 			}
 			exec('wget --no-check-certificate --progress=dot --dot=mega ' . config::byKey('url::core::version') . ' -O /tmp/jeedom_version');
 			if (!file_exists('/tmp/jeedom_version')) {
 				return null;
 			}
 			$version = trim(file_get_contents('/tmp/jeedom_version'));
-			com_shell::execute('sudo rm /tmp/jeedom_version');
+			com_shell::execute(system::getCmdSudo() . 'rm /tmp/jeedom_version');
 			return $version;
 		} catch (Exception $e) {
 
