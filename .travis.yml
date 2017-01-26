@@ -12,9 +12,6 @@ install:
   - sudo mkdir -p /tmp/jeedom-cache
   - sudo chmod 777 -R /tmp/jeedom-cache
   - sudo apt-get update
-  - sudo apt-get install php-pear
-  - sudo pear channel-discover pear.phpdoc.org
-  - sudo pear install phpdoc/phpDocumentor
   - sudo chmod +x install/install.sh
   - sudo install/install.sh -w /home/travis/build/jeedom/core -s 2 -m root
   - sudo install/install.sh -w /home/travis/build/jeedom/core -s 3 -m root
@@ -24,5 +21,9 @@ install:
   - sudo php install/install.php mode=force
   - sudo chmod 777 -R /home/travis/build/jeedom
   - sudo chown www-data:www-data -R /home/travis/build/jeedom
+after_script:
+  - sudo apt-get install php-pear
+  - sudo pear channel-discover pear.phpdoc.org
+  - sudo pear install phpdoc/phpDocumentor
 notifications:
   slack: jeedom:uVLJjs0ANyRFWpFcUok4QFLr
