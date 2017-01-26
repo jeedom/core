@@ -436,7 +436,7 @@ class network {
 
 	public static function getRoute() {
 		$return = array();
-		$results = trim(shell_exec('route -n 2>&1'));
+		$results = trim(shell_exec(system::getCmdSudo() . 'route -n 2>&1'));
 		if (strpos($results, 'command not found') !== false) {
 			throw new Exception('Command route not found');
 		}
