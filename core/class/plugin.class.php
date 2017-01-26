@@ -534,10 +534,10 @@ class plugin {
 					exec(system::getCmdSudo() . '/bin/bash ' . $script . ' >> ' . $cmd['log'] . ' 2>&1 &');
 					sleep(1);
 				} else {
-					log::add($plugin_id, 'alert', __('Veuillez executer le script : ', __FILE__) . realpath($script));
+					log::add($plugin_id, 'error', __('Veuillez executer le script : ', __FILE__) . realpath($script));
 				}
 			} else {
-				log::add($plugin_id, 'alert', __('Aucun script ne correspond à votre type de linux : ', __FILE__) . $cmd['script'] . __(' avec #stype# : ', __FILE__) . system::get('type'));
+				log::add($plugin_id, 'error', __('Aucun script ne correspond à votre type de linux : ', __FILE__) . $cmd['script'] . __(' avec #stype# : ', __FILE__) . system::get('type'));
 			}
 		}
 		$cache = cache::byKey('dependancy' . $this->getID());
