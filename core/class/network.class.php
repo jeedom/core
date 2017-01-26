@@ -524,7 +524,7 @@ class network {
 					if (strpos($iface, 'br0') !== false) {
 						continue;
 					}
-					log::add('network', 'error', __('La passerelle distante de l\'interface ', __FILE__) . $iface . __(' est injoignable, je la redémarre pour essayer de corriger.', __FILE__));
+					log::add('network', 'error', __('La passerelle distante de l\'interface ', __FILE__) . $iface . '(' . $gw['gateway'] . ')' . __(' est injoignable, je la redémarre pour essayer de corriger.', __FILE__));
 					exec('sudo ifdown ' . $iface);
 					sleep(5);
 					exec('sudo ifup --force ' . $iface);
