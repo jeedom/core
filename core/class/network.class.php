@@ -396,7 +396,7 @@ class network {
 /*     * *********************Network management************************* */
 
 	public static function getInterfaceIp($_interface) {
-		$results = trim(shell_exec('ip addr show ' . $_interface . ' 2>&1 | grep inet | head -1 2>&1'));
+		$results = trim(shell_exec(system::getCmdSudo() . 'ip addr show ' . $_interface . ' 2>&1 | grep inet | head -1 2>&1'));
 		$results = explode(' ', $results);
 		if (!isset($results[1])) {
 			return false;
@@ -411,7 +411,7 @@ class network {
 
 	public static function getInterfaceMac($_interface) {
 		$valid_mac = "([0-9A-F]{2}[:-]){5}([0-9A-F]{2})";
-		$results = trim(shell_exec('ip addr show ' . $_interface . ' 2>&1 | grep ether | head -1 2>&1'));
+		$results = trim(shell_exec(system::getCmdSudo() . 'ip addr show ' . $_interface . ' 2>&1 | grep ether | head -1 2>&1'));
 		$results = explode(' ', $results);
 		if (!isset($results[1])) {
 			return false;
@@ -424,7 +424,7 @@ class network {
 	}
 
 	public static function getInterfaces() {
-		$result = explode("\n", shell_exec("ip -o link show | awk -F': ' '{print $2}'"));
+		$result = explode("\n", shell_exec(system::getCmdSudo() . "ip -o link show | awk -F': ' '{print $2}'"));
 		foreach ($result as $value) {
 			if (trim($value) == '') {
 				continue;
@@ -488,13 +488,13 @@ class network {
 				continue;
 			}
 			if ($route['gateway'] == -1) {
-				$return[$route['iface']]['ping'] = (shell_exec('ip link show ' . $route['iface'] . ' 2>&1 | grep "state UP" | wc -l') == 1) ? 'nok' : 'ok';
+				$return[$route['iface']]['ping'] = (shell_exec(system::getCmdSudo() . 'ip link show ' . $route['iface'] . ' 2>&1 | grep "state UP" | wc -l') == 1) ? 'nok' : 'ok';
 				continue;
 			}
-			exec('ping -n -c 1 -t 255 ' . $route['gateway'] . ' 2>&1 > /dev/null', $output, $return_val);
+			exec(system::getCmdSudo() . 'ping -n -c 1 -t 255 ' . $route['gateway'] . ' 2>&1 > /dev/null', $output, $return_val);
 			$return[$route['iface']]['ping'] = ($return_val == 0) ? 'ok' : 'nok';
 			if ($return[$route['iface']]['ping'] == 'nok') {
-				exec('ping -n -c 1 -t 255 ' . $route['gateway'] . ' 2>&1 > /dev/null', $output, $return_val);
+				exec(system::getCmdSudo() . 'ping -n -c 1 -t 255 ' . $route['gateway'] . ' 2>&1 > /dev/null', $output, $return_val);
 				$return[$route['iface']]['ping'] = ($return_val == 0) ? 'ok' : 'nok';
 			}
 
