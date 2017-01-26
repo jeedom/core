@@ -525,9 +525,9 @@ class network {
 						continue;
 					}
 					log::add('network', 'error', __('La passerelle distante de l\'interface ', __FILE__) . $iface . '(' . $gw['gateway'] . ')' . __(' est injoignable, je la redémarre pour essayer de corriger.', __FILE__));
-					exec('sudo ifdown ' . $iface);
+					exec(system::getCmdSudo() . 'ifdown ' . $iface);
 					sleep(5);
-					exec('sudo ifup --force ' . $iface);
+					exec(system::getCmdSudo() . 'ifup --force ' . $iface);
 				}
 			}
 		} catch (Exception $e) {
