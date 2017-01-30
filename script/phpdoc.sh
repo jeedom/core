@@ -12,7 +12,7 @@ if [ "$TRAVIS_REPO_SLUG" == "jeedom/core" ] && [ "$TRAVIS_PULL_REQUEST" == "fals
   git config --global user.name "travis-ci"
   mkdir -p /usr/jeedom
   cd /usr/jeedom
-  git clone --branch=gh-pages https://github.com/jeedom/documentation.git
+  git clone --branch=gh-pages https://${GH_TOKEN}@github.com/jeedom/documentation.git
   if [ ! -f /usr/jeedom/documentation/phpdoc ]; then
     mkdir -p /usr/jeedom/documentation/phpdoc
   fi
