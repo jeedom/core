@@ -945,6 +945,7 @@ function getDominantColor($_pathimg) {
 	$rTotal = 0;
 	$gTotal = 0;
 	$bTotal = 0;
+	$total = 0;
 	$i = imagecreatefromjpeg($_pathimg);
 	for ($x = 0; $x < imagesx($i); $x++) {
 		for ($y = 0; $y < imagesy($i); $y++) {
