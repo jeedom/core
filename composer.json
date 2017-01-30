@@ -11,9 +11,6 @@
         "pragmarx/google2fa": "^1.0",
         "touki/ftp": "^1.2"
     },
-    "require-dev": {
-        "phpdocumentor/phpdocumentor":"2.*"
-    },
     "license": "GPL",
     "authors": [
         {
