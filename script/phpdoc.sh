@@ -5,7 +5,7 @@
 #echo "TRAVIS_PHP_VERSION: $TRAVIS_PHP_VERSION"
 #echo "TRAVIS_PULL_REQUEST: $TRAVIS_PULL_REQUEST"
 
-if [ "$TRAVIS_REPO_SLUG" == "core" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_PHP_VERSION" == "5.6" ] && [ "$TRAVIS_BRANCH" == "beta" ]; then
+if [ "$TRAVIS_REPO_SLUG" == "jeedom/core" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_PHP_VERSION" == "5.6" ] && [ "$TRAVIS_BRANCH" == "beta" ]; then
   echo -e "Publishing PHPDoc...\n"
   git config --global user.email "travis@travis-ci.org"
   git config --global user.name "travis-ci"
