@@ -7,17 +7,18 @@
 
 if [ "$TRAVIS_REPO_SLUG" == "jeedom/core" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_PHP_VERSION" == "5.6" ] && [ "$TRAVIS_BRANCH" == "beta" ]; then
   echo -e "Publishing PHPDoc...\n"
+  cp -R build/docs $HOME/docs-latest
   git config --global user.email "travis@travis-ci.org"
   git config --global user.name "travis-ci"
-  mkdir /usr/jeedom
+  mkdir -p /usr/jeedom
   cd /usr/jeedom
-  git clone --quiet --branch=gh-pages https://github.com/jeedom/documentation.git
+  git clone --branch=gh-pages https://github.com/jeedom/documentation.git
   if [ ! -f /usr/jeedom/documenation/phpdoc ]; then
-    mkdir /usr/jeedom/documenation/phpdoc
+    mkdir -p /usr/jeedom/documenation/phpdoc
   fi
   cd /usr/jeedom/documenation/phpdoc
   rm -rf /usr/jeedom/documenation/phpdoc/*
-  phpdoc -d /var/www/html/core/class -t /usr/jeedom/documenation/phpdoc/
+  cp -Rf $HOME/docs-latest/* /usr/jeedom/documenation/phpdoc/
   cd /usr/jeedom/documenation/phpdoc
   git add -f .
   git commit -m "PHPDocumentor (Travis Build : $TRAVIS_BUILD_NUMBER  - Branch : $TRAVIS_BRANCH)"
