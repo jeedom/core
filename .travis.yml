@@ -25,5 +25,7 @@ after_script:
   - sudo apt-get install php-pear
   - sudo pear channel-discover pear.phpdoc.org
   - sudo pear install phpdoc/phpDocumentor
+  - sudo chmod +x script/phpdoc.sh
+  - sudo script/phpdoc.sh
 notifications:
   slack: jeedom:uVLJjs0ANyRFWpFcUok4QFLr

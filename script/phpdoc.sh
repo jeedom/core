@@ -11,7 +11,7 @@ if [ "$TRAVIS_REPO_SLUG" == "core" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] &&
   git config --global user.name "travis-ci"
   mkdir /usr/jeedom
   cd /usr/jeedom
-  git clone https://github.com/jeedom/documentation.git
+  git clone --quiet --branch=gh-pages https://github.com/jeedom/documentation.git
   if [ -f /usr/jeedom/documenation/phpdoc ]; then
     mkdir phpdoc
   fi
@@ -21,7 +21,7 @@ if [ "$TRAVIS_REPO_SLUG" == "core" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] &&
   cd /usr/jeedom/documenation/phpdoc
   git add -f .
   git commit -m "PHPDocumentor (Travis Build : $TRAVIS_BUILD_NUMBER  - Branch : $TRAVIS_BRANCH)"
-  git push > /dev/null
+  git push -fq origin gh-pages
   echo -e "Published PHPDoc.\n"
 else
   echo "No doc to generate : "
