@@ -12,8 +12,8 @@ if [ "$TRAVIS_REPO_SLUG" == "jeedom/core" ] && [ "$TRAVIS_PULL_REQUEST" == "fals
   mkdir /usr/jeedom
   cd /usr/jeedom
   git clone --quiet --branch=gh-pages https://github.com/jeedom/documentation.git
-  if [ -f /usr/jeedom/documenation/phpdoc ]; then
-    mkdir phpdoc
+  if [ ! -f /usr/jeedom/documenation/phpdoc ]; then
+    mkdir /usr/jeedom/documenation/phpdoc
   fi
   cd /usr/jeedom/documenation/phpdoc
   rm -rf /usr/jeedom/documenation/phpdoc/*

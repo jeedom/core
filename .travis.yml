@@ -27,5 +27,6 @@ after_script:
   - sudo pear install phpdoc/phpDocumentor
   - sudo chmod +x script/phpdoc.sh
   - sudo script/phpdoc.sh
+  - which phpdoc
 notifications:
   slack: jeedom:uVLJjs0ANyRFWpFcUok4QFLr
