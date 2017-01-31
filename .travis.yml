@@ -24,6 +24,7 @@ install:
 before_script:
   - composer selfupdate --quiet
   - composer require "phpdocumentor/phpdocumentor:2.*" > /dev/null
+  - composer require "twig/twig:1.27" > /dev/null
   - mkdir -p build/docs 
 script:
   - vendor/bin/phpdoc.php -d ./core/class -t ./build/docs --template="checkstyle" > /dev/null
