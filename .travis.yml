@@ -23,8 +23,7 @@ install:
   - sudo chown www-data:www-data -R /home/travis/build/jeedom
 before_script:
   - composer selfupdate --quiet
-  - composer require "phpdocumentor/phpdocumentor:2.*"
-  - composer require "twig/twig:1.26.1"
+  - composer require "phpdocumentor/phpdocumentor:2.8.1"
   - mkdir -p build/docs 
 script:
   - vendor/bin/phpdoc.php -d ./core/class -t ./build/docs --template="checkstyle"
