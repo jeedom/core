@@ -23,7 +23,7 @@ install:
   - sudo chown www-data:www-data -R /home/travis/build/jeedom
 before_script:
   - composer selfupdate --quiet
-  - composer require "phpdocumentor/phpdocumentor:2.8.4"
+  - composer require "phpdocumentor/phpdocumentor:2.*"
   - mkdir -p build/docs 
 script:
   - vendor/bin/phpdoc.php --quiet -d ./core/class -t ./build/docs
