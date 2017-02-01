@@ -289,13 +289,6 @@ try {
 	$cron->setDeamon(0);
 	$cron->save();
 
-	if (!file_exists('/usr/local/share/ca-certificates/root_market.crt') && file_exists('/usr/local/share/ca-certificates') && jeedom::isCapable('sudo')) {
-		echo 'Ajout du certificat du market...';
-		shell_exec(system::getCmdSudo() . 'cp ' . dirname(__FILE__) . '/../script/root_market.crt /usr/local/share/ca-certificates 2>&1 > /dev/null');
-		shell_exec(system::getCmdSudo() . 'update-ca-certificates 2>&1 > /dev/null');
-		echo "OK\n";
-	}
-
 	if (!file_exists(dirname(__FILE__) . '/../plugins')) {
 		mkdir(dirname(__FILE__) . '/../plugins');
 		@chown(dirname(__FILE__) . '/../plugins', system::get('www-uid'));
