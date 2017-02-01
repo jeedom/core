@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__FILE__) . '/../../core/class/system.class.php';
+require_once dirname(__FILE__) . '/../core/class/system.class.php';
 
 function init($_name, $_default = '') {
 	if (isset($_GET[$_name])) {
