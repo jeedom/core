@@ -1278,8 +1278,8 @@ class cmd {
 		$this->setCache('alertLevel', $_level);
 		if ($_level != 'none') {
 			$message = __('Alert sur la commande ', __FILE__) . $this->getHumanName() . __(' niveau ', __FILE__) . $_level . __(' valeur : ', __FILE__) . $_value;
-			if ($this->getAlert($currentLevel . 'during') != '' && $this->getAlert($currentLevel . 'during') > 0) {
-				$message .= ' ' . __('pendant plus de ', __FILE__) . $this->getAlert($currentLevel . 'during') . __(' minute(s)', __FILE__);
+			if ($this->getAlert($_level . 'during') != '' && $this->getAlert($_level . 'during') > 0) {
+				$message .= ' ' . __('pendant plus de ', __FILE__) . $this->getAlert($_level . 'during') . __(' minute(s)', __FILE__);
 			}
 			log::add('event', 'info', $message);
 			$eqLogic = $this->getEqLogic();
