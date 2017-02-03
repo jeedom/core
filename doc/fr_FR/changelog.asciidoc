@@ -54,6 +54,7 @@
 * Jeedom peux maintenant tourner sans les droits root (experimental). Attention car sans les droits root vous devrez manuellement lancer les scripts pour les dépendances des plugins
 * Optimisation du calcul des expressions (calcul des tags uniquement si présent dans l'expression)
 * Ajout dans l'API de fonction pour avoir accès au résumé (global et d'objet)
+* Possibilité de restreindre l'accès de chaque clef api en fonction de l'IP
 
 = 2.4.7
 
