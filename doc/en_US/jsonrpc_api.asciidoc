@@ -57,6 +57,23 @@ Settings:
 === object::fullById
 Retourne un objet, ses équipements et pour chaque équipement toutes ses commandes ainsi que les états de cellse-ci (pour les commandes de type info)
 
+== API JSON Summary
+
+=== summary::global
+Retour le résumé global pour la clef passée en paramètre
+
+Settings:
+
+- string key : (optionnel), clef du résumé voulu, si vide alors Jeedom vous renvoi le résumé pour toute les clefs
+
+=== summary::byId
+Retourne le résumé pour l'objet id
+
+Settings:
+
+- int id : id de l'objet
+- string key : (optionnel), clef du résumé voulu, si vide alors Jeedom vous renvoi le résumé pour toute les clefs
+
 == API JSON EqLogic
 === eqLogic::all
 Retourne la liste de tous les équipements
@@ -83,6 +100,7 @@ Settings:
 Retourne tous les équipements appartenant à l'objet spécifié
 
 Settings:
+
 - int object_id
 
 === eqLogic::byTypeAndId
