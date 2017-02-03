@@ -319,6 +319,26 @@ if (init('type') != '') {
 				$jsonrpc->makeSuccess($return);
 			}
 
+			/*             * ************************Summary*************************** */
+
+			if ($jsonrpc->getMethod() == 'summary::getGlobalSummary') {
+				$jsonrpc->makeSuccess(object::getGlobalSummary($params['key']));
+			}
+
+			if ($jsonrpc->getMethod() == 'summary::byId') {
+				$object = object::byId($params['id']);
+				if (!is_object($object)) {
+					throw new Exception('Objet introuvable : ' . secureXSS($params['id']), -32601);
+				}
+				if (!isset($params['key'])) {
+					$params['key'] = '';
+				}
+				if (!isset($params['raw'])) {
+					$params['raw'] = false;
+				}
+				$jsonrpc->makeSuccess($object->getSummary($params['key'], $params['raw']));
+			}
+
 			/*             * ************************datastore*************************** */
 
 			if ($jsonrpc->getMethod() == 'datastore::byTypeLinkIdKey') {
