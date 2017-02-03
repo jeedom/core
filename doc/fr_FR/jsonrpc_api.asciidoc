@@ -59,7 +59,7 @@ Retourne un objet, ses équipements et pour chaque équipement toutes ses comman
 
 == API JSON Summary
 
-=== summary::getGlobalSummary
+=== summary::global
 Retour le résumé global pour la clef passée en paramètre
 
 Paramètres:

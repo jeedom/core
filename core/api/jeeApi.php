@@ -321,7 +321,7 @@ if (init('type') != '') {
 
 			/*             * ************************Summary*************************** */
 
-			if ($jsonrpc->getMethod() == 'summary::getGlobalSummary') {
+			if ($jsonrpc->getMethod() == 'summary::global') {
 				$jsonrpc->makeSuccess(object::getGlobalSummary($params['key']));
 			}
 
