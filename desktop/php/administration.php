@@ -218,6 +218,10 @@ user::isBan();
 										</span>
 									</div>
 								</div>
+
+							</div>
+
+							<div class="form-group expertModeVisible">
 								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Accès API HTTP}}</label>
 								<div class="col-lg-1 col-md-2 col-sm-4 col-xs-6">
 									<select class="form-control configKey" data-l1key="api::core::http::mode">
@@ -236,7 +240,17 @@ user::isBan();
 										<option value="disable">{{Désactivé}}</option>
 									</select>
 								</div>
+								<label class="col-lg-2 col-md-2 col-sm-3 col-xs-6 control-label">{{Accès API TTS}}</label>
+								<div class="col-lg-1 col-md-2 col-sm-4 col-xs-6">
+									<select class="form-control configKey" data-l1key="api::core::tts::mode">
+										<option value="enable">{{Activé}}</option>
+										<option value="whiteip">{{IP blanche}}</option>
+										<option value="localhost">{{Localhost}}</option>
+										<option value="disable">{{Désactivé}}</option>
+									</select>
+								</div>
 							</div>
+
 							<div class="form-group expertModeVisible">
 								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API Pro de Jeedom}}">{{Clef API Pro}}</label>
 								<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
@@ -953,7 +967,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
 					<form class="form-horizontal">
 						<fieldset>
 							<legend>{{Alertes}}</legend>
-<?php
+							<?php
 foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
 	if (!$value['check']) {
 		continue;

@@ -18,10 +18,6 @@
 
 require_once dirname(__FILE__) . "/../php/core.inc.php";
 
-if (!jeedom::apiModeResult(config::byKey('api::core::pro::mode', 'core', 'enable'))) {
-	die();
-}
-
 if (isset($argv)) {
 	foreach ($argv as $arg) {
 		$argList = explode('=', $arg);
@@ -29,11 +25,6 @@ if (isset($argv)) {
 			$_REQUEST[$argList[0]] = $argList[1];
 		}
 	}
-}
-if (trim(config::byKey('apipro')) == '') {
-	echo 'Vous n\'avez aucune clé API PRO configurée, veuillez d\'abord en générer une (Page Général -> Administration -> Configuration';
-	log::add('jeeEvent', 'error', 'Vous n\'avez aucune clé API PRO configurée, veuillez d\'abord en générer une (Page Général -> Administration -> Configuration');
-	die();
 }
 
 try {
@@ -46,8 +37,8 @@ try {
 
 	$jsonrpc = new jsonrpc($request);
 
-	if (!mySqlIsHere()) {
-		throw new Exception('Mysql non lancé', -32001);
+	if (!jeedom::apiModeResult(config::byKey('api::core::pro::mode', 'core', 'enable'))) {
+		throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__), -32001);
 	}
 
 	if ($jsonrpc->getJsonrpc() != '2.0') {
@@ -56,28 +47,12 @@ try {
 
 	$params = $jsonrpc->getParams();
 
-	if (isset($params['proapi'])) {
-		if (config::byKey('apipro') == '' || config::byKey('apipro') != $params['proapi']) {
-			throw new Exception('Clé API invalide', -32001);
-		}
-		/*$ch = curl_init();
-			curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-			curl_setopt($ch, CURLOPT_URL, 'http://pro.dev.jeedom.fr/core/api/api.php?type=token&token='.$params['token']);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-			curl_setopt($ch, CURLOPT_HEADER, false);
-			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-			$data = curl_exec($ch);
-			curl_close($ch);
-			log::add('api', 'info', 'retour token : '.$data);
-			if (trim($data) != 'ok') {
-				throw new Exception('Token non valide', -32001);
-			}
-			*/
+	if (!isset($params['proapi'])) {
+		throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__), -32001);
+	}
 
-	} else {
-		throw new Exception('Aucune clé API', -32001);
+	if (isset($params['proapi']) && !jeedom::apiAccess($params['proapi'], 'proapi')) {
+		throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__), -32001);
 	}
 
 	log::add('api', 'info', 'connexion valide et verifiee : ' . $jsonrpc->getMethod());

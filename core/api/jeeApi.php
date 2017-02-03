@@ -35,14 +35,11 @@ if (isset($argv)) {
 }
 
 if (init('type') != '') {
-	if (!jeedom::apiModeResult(config::byKey('api::core::http::mode', 'core', 'enable'))) {
-		die();
-	}
 	try {
 		$type = init('type');
-		if (!jeedom::apiAccess(init('apikey', init('api')))) {
+		if (!jeedom::apiAccess(init('apikey', init('api'))) || !jeedom::apiModeResult(config::byKey('api::core::http::mode', 'core', 'enable'))) {
 			user::failedLogin();
-			throw new Exception('Clé API non valide (ou vide) . Demande venant de :' . getClientIp() . '. Clé API : ' . secureXSS(init('apikey') . init('api')));
+			throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__));
 		}
 		if ($type == 'cmd') {
 			if (is_json(init('id'))) {
@@ -143,9 +140,6 @@ if (init('type') != '') {
 	}
 	die();
 } else {
-	if (!jeedom::apiModeResult(config::byKey('api::core::jsonrpc::mode', 'core', 'enable'))) {
-		die();
-	}
 	try {
 		$IP = getClientIp();
 		$request = init('request');
@@ -155,6 +149,10 @@ if (init('type') != '') {
 		log::add('api', 'info', $request . ' - IP :' . $IP);
 
 		$jsonrpc = new jsonrpc($request);
+
+		if (!jeedom::apiModeResult(config::byKey('api::core::jsonrpc::mode', 'core', 'enable'))) {
+			throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__), -32001);
+		}
 
 		if ($jsonrpc->getJsonrpc() != '2.0') {
 			user::failedLogin();
@@ -203,11 +201,11 @@ if (init('type') != '') {
 		}
 
 		if (!isset($params['apikey']) && !isset($params['api'])) {
-			throw new Exception(__('Aucune clef API', __FILE__), -32001);
+			throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__), -32001);
 		}
 
 		if ((isset($params['apikey']) && !jeedom::apiAccess($params['apikey'])) || (isset($params['api']) && !jeedom::apiAccess($params['api']))) {
-			throw new Exception(__('Clé API invalide', __FILE__), -32001);
+			throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__), -32001);
 		}
 
 		/*             * ************************config*************************** */

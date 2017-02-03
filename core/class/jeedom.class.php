@@ -28,7 +28,6 @@ class jeedom {
 
 	public static function health() {
 		$return = array();
-
 		$nbNeedUpdate = update::nbNeedUpdate();
 		$state = ($nbNeedUpdate == 0) ? true : false;
 		$return[] = array(
@@ -182,6 +181,12 @@ class jeedom {
 	}
 
 	public static function getApiKey($_plugin = 'core') {
+		if ($_plugin == 'proapi') {
+			if (config::byKey('proapi') == '') {
+				config::save('proapi', config::genKey());
+			}
+			return config::byKey('proapi');
+		}
 		if (config::byKey('api', $_plugin) == '') {
 			config::save('api', config::genKey(), $_plugin);
 		}
@@ -217,15 +222,17 @@ class jeedom {
 	}
 
 	public static function apiAccess($_apikey = '', $_plugin = 'core') {
-		if ($_apikey == '') {
+		if (trim($_apikey) == '') {
+			sleep(5);
 			return false;
 		}
-		if ($_plugin != 'core') {
-			if (!self::apiModeResult(config::byKey('api::' . $_plugin . '::mode', 'core', 'enable'))) {
-				return false;
-			}
+		if ($_plugin != 'core' && $_plugin != 'proapi' && !self::apiModeResult(config::byKey('api::' . $_plugin . '::mode', 'core', 'enable'))) {
+			sleep(5);
+			return false;
 		}
-		if (self::getApiKey($_plugin) == $_apikey) {
+		$apikey = self::getApiKey($_plugin);
+
+		if (trim($apikey) != '' && $apikey == $_apikey) {
 			@session_start();
 			$_SESSION['apimaster'] = true;
 			@session_write_close();
@@ -236,7 +243,7 @@ class jeedom {
 		@session_write_close();
 		$user = user::byHash($_apikey);
 		if (is_object($user)) {
-			if ($user->getOptions('localOnly', 0) == 1 && network::getUserLocation() != 'internal') {
+			if ($user->getOptions('localOnly', 0) == 1 && !self::apiModeResult('whiteip')) {
 				sleep(5);
 				return false;
 			}

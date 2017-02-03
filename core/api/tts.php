@@ -16,9 +16,12 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 require_once dirname(__FILE__) . "/../php/core.inc.php";
-
+if (!jeedom::apiModeResult(config::byKey('api::core::tts::mode', 'core', 'enable'))) {
+	echo __('Vous n\'etes pas autorisé à effectuer cette action', __FILE__);
+	die();
+}
 if (!jeedom::apiAccess(init('apikey'))) {
-	echo 'Clef API non valide, vous n\'etes pas autorisé à effectuer cette action';
+	echo __('Vous n\'etes pas autorisé à effectuer cette action', __FILE__);
 	die();
 }
 log::add('tts', 'debug', 'Call tts api : ' . print_r($_GET, true));
