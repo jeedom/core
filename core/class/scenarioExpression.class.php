@@ -811,31 +811,79 @@ class scenarioExpression {
 		}
 	}
 
+	public static function getRequestTags($_expression) {
+		$return = array();
+		preg_match_all("/#([a-zA-Z]*)#/", $_expression, $matches);
+		if (count($matches) == 0) {
+			return $return;
+		}
+		$matches = array_unique($matches[0]);
+		foreach ($matches as $tag) {
+			switch ($tag) {
+				case '#seconde#':
+					$return['#seconde#'] = (int) date('s');
+					break;
+				case '#heure#':
+					$return['#heure#'] = (int) date('G');
+					break;
+				case '#minute#':
+					$return['#minute#'] = (int) date('i');
+					break;
+				case '#jour#':
+					$return['#jour#'] = (int) date('d');
+					break;
+				case '#mois#':
+					$return['#mois#'] = (int) date('m');
+					break;
+				case '#annee#':
+					$return['#annee#'] = (int) date('Y');
+					break;
+				case '#time#':
+					$return['#time#'] = date('Gi');
+					break;
+				case '#timestamp#':
+					$return['#timestamp#'] = time();
+					break;
+				case '#seconde#':
+					$return['#seconde#'] = (int) date('s');
+					break;
+				case '#date#':
+					$return['#date#'] = date('md');
+					break;
+				case '#semaine#':
+					$return['#semaine#'] = date('W');
+					break;
+				case '#sjour#':
+					$return['#sjour#'] = '"' . date_fr(date('l')) . '"';
+					break;
+				case '#smois#':
+					$return['#smois#'] = '"' . date_fr(date('F')) . '"';
+					break;
+				case '#njour#':
+					$return['#njour#'] = (int) date('w');
+					break;
+				case '#jeedom_name#':
+					$return['#jeedom_name#'] = '"' . config::byKey('name') . '"';
+					break;
+				case '#hostname#':
+					$return['#hostname#'] = '"' . gethostname() . '"';
+					break;
+				case '#IP#':
+					$return['#IP#'] = '"' . network::getNetworkAccess('internal', 'ip', '', false) . '"';
+					break;
+				case '#trigger#':
+					$return['#trigger#'] = '';
+					break;
+			}
+		}
+		return $return;
+	}
+
 	public static function setTags($_expression, &$_scenario = null, $_quote = false, $_nbCall = 0) {
 		if ($_nbCall > 10) {
 			return $_expression;
 		}
-		$replace1 = array(
-			'#seconde#' => (int) date('s'),
-			'#heure#' => (int) date('G'),
-			'#minute#' => (int) date('i'),
-			'#jour#' => (int) date('d'),
-			'#mois#' => (int) date('m'),
-			'#annee#' => (int) date('Y'),
-			'#time#' => date('Gi'),
-			'#timestamp#' => time(),
-			'#seconde#' => (int) date('s'),
-			'#date#' => date('md'),
-			'#semaine#' => date('W'),
-			'#sjour#' => '"' . date_fr(date('l')) . '"',
-			'#smois#' => '"' . date_fr(date('F')) . '"',
-			'#njour#' => (int) date('w'),
-			'#hostname#' => '"' . gethostname() . '"',
-			'#jeedom_name#' => '"' . config::byKey('name') . '"',
-			'#IP#' => '"' . network::getNetworkAccess('internal', 'ip') . '"',
-			'#trigger#' => '',
-		);
-
+		$replace1 = self::getRequestTags($_expression);
 		if ($_scenario != null && count($_scenario->getTags()) > 0) {
 			$replace1 = array_merge($replace1, $_scenario->getTags());
 		}
