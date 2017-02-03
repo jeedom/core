@@ -210,7 +210,7 @@ user::isBan();
 						<fieldset>
 							<div class="form-group expertModeVisible">
 								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API globale de Jeedom}}">{{Clef API}}</label>
-								<div class="col-lg-4 col-md-5 col-sm-6 col-xs-6">
+								<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
 									<div class="input-group">
 										<span class="span_apikey"><?php echo $configs['api']; ?></span>
 										<span class="input-group-btn">
@@ -218,10 +218,28 @@ user::isBan();
 										</span>
 									</div>
 								</div>
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Accès API HTTP}}</label>
+								<div class="col-lg-1 col-md-2 col-sm-4 col-xs-6">
+									<select class="form-control configKey" data-l1key="api::core::http::mode">
+										<option value="enable">{{Activé}}</option>
+										<option value="whiteip">{{IP blanche}}</option>
+										<option value="localhost">{{Localhost}}</option>
+										<option value="disable">{{Désactivé}}</option>
+									</select>
+								</div>
+								<label class="col-lg-2 col-md-2 col-sm-3 col-xs-6 control-label">{{Accès API JSONRPC}}</label>
+								<div class="col-lg-1 col-md-2 col-sm-4 col-xs-6">
+									<select class="form-control configKey" data-l1key="api::core::jsonrpc::mode">
+										<option value="enable">{{Activé}}</option>
+										<option value="whiteip">{{IP blanche}}</option>
+										<option value="localhost">{{Localhost}}</option>
+										<option value="disable">{{Désactivé}}</option>
+									</select>
+								</div>
 							</div>
 							<div class="form-group expertModeVisible">
 								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API Pro de Jeedom}}">{{Clef API Pro}}</label>
-								<div class="col-lg-4 col-md-5 col-sm-6 col-xs-6">
+								<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
 									<div class="input-group">
 										<span class="span_apikey"><?php echo $configs['apipro']; ?></span>
 										<span class="input-group-btn">
@@ -229,7 +247,13 @@ user::isBan();
 										</span>
 									</div>
 								</div>
-
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Accès API}}</label>
+								<div class="col-lg-1 col-md-2 col-sm-4 col-xs-6">
+									<select class="form-control configKey" data-l1key="api::core::pro::mode">
+										<option value="enable">{{Activé}}</option>
+										<option value="disable">{{Désactivé}}</option>
+									</select>
+								</div>
 							</div>
 							<?php
 foreach (plugin::listPlugin(true) as $plugin) {
@@ -238,13 +262,22 @@ foreach (plugin::listPlugin(true) as $plugin) {
 	}
 	echo '<div class="form-group expertModeVisible">';
 	echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API pour le plugin}} ' . $plugin->getName() . '">{{Clef API}} ' . $plugin->getName() . '</label>';
-	echo '<div class="col-lg-4 col-md-5 col-sm-6 col-xs-6">';
+	echo '<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">';
 	echo '<div class="input-group">';
 	echo '<span class="span_apikey">' . config::byKey('api', $plugin->getId()) . '</span>';
 	echo '<span class="input-group-btn">';
 	echo '<a class="btn btn-default form-control bt_regenerate_api" data-plugin="' . $plugin->getId() . '"><i class="fa fa-refresh"></i></a>';
 	echo '</span>';
 	echo '</div>';
+	echo '</div>';
+	echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Accès API}}</label>';
+	echo '<div class="col-lg-1 col-md-2 col-sm-4 col-xs-6">';
+	echo '<select class="form-control configKey" data-l1key="api::' . $plugin->getId() . '::mode">';
+	echo '<option value="enable">{{Activé}}</option>';
+	echo '<option value="whiteip">{{IP blanche}}</option>';
+	echo '<option value="localhost">{{Localhost}}</option>';
+	echo '<option value="disable">{{Désactivé}}</option>';
+	echo '</select>';
 	echo '</div>';
 	echo '</div>';
 }

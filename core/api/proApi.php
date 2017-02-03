@@ -17,6 +17,11 @@
  */
 
 require_once dirname(__FILE__) . "/../php/core.inc.php";
+
+if (!jeedom::apiModeResult(config::byKey('api::core::pro::mode', 'core', 'enable'))) {
+	die();
+}
+
 if (isset($argv)) {
 	foreach ($argv as $arg) {
 		$argList = explode('=', $arg);
@@ -103,7 +108,7 @@ try {
 		/*             * ***********************Health********************************* */
 		if ($jsonrpc->getMethod() == 'health') {
 			$health = array();
-			
+
 			$defaut = 0;
 			$result = 'OK';
 			$advice = '';
@@ -113,7 +118,7 @@ try {
 				$result = $nbNeedUpdate;
 			}
 			$health[] = array('plugin' => 'core', 'type' => 'Système à jour', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
-			
+
 			$defaut = 0;
 			$result = 'OK';
 			$advice = '';
@@ -123,7 +128,7 @@ try {
 				$advice = 'Erreur cron : les crons sont désactivés. Allez dans Administration -> Moteur de tâches pour les réactiver';
 			}
 			$health[] = array('plugin' => 'core', 'type' => 'Cron actif', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
-			
+
 			$defaut = 0;
 			$result = 'OK';
 			$advice = '';
@@ -133,7 +138,7 @@ try {
 				$advice = 'Erreur scénario : tous les scénarios sont désactivés. Allez dans Outils -> Scénarios pour les réactiver';
 			}
 			$health[] = array('plugin' => 'core', 'type' => 'Scénario actif', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
-			
+
 			$defaut = 0;
 			$result = 'OK';
 			$advice = '';
@@ -142,7 +147,7 @@ try {
 				$result = 'NOK';
 			}
 			$health[] = array('plugin' => 'core', 'type' => 'Démarré', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
-			
+
 			$defaut = 0;
 			$result = 'OK';
 			$advice = '';
@@ -151,7 +156,7 @@ try {
 				$result = date('Y-m-d H:i:s');
 			}
 			$health[] = array('plugin' => 'core', 'type' => 'Date système', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
-			
+
 			$defaut = 0;
 			$result = 'OK';
 			$advice = '';
@@ -161,7 +166,7 @@ try {
 				$advice = 'Attention vous avez toujours l\'utilisateur admin/admin de configuré, cela représente une grave faille de sécurité, aller <a href=\'index.php?v=d&p=user\'>ici</a> pour modifier le mot de passe de l\'utilisateur admin';
 			}
 			$health[] = array('plugin' => 'core', 'type' => 'Authentification par défaut', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
-			
+
 			$defaut = 0;
 			$result = 'OK';
 			$advice = '';
@@ -171,12 +176,12 @@ try {
 				$advice = 'Appliquer <a href="https://www.jeedom.com/doc/documentation/installation/fr_FR/doc-installation.html#_etape_4_définition_des_droits_root_à_jeedom" targe="_blank">cette étape</a> de l\'installation';
 			}
 			$health[] = array('plugin' => 'core', 'type' => 'Droits sudo', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
-			
+
 			$defaut = 0;
 			$result = jeedom::version();
 			$advice = '';
 			$health[] = array('plugin' => 'core', 'type' => 'Version Jeedom', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
-			
+
 			$defaut = 0;
 			$result = phpversion();
 			$advice = '';
@@ -185,13 +190,13 @@ try {
 				$advice = 'Si vous êtes en version 5.4.x on vous indiquera quand la version 5.5 sera obligatoire';
 			}
 			$health[] = array('plugin' => 'core', 'type' => 'Version PHP', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
-			
+
 			$defaut = 0;
 			$version = DB::Prepare('select version()', array(), DB::FETCH_TYPE_ROW);
 			$result = $version['version()'];
 			$advice = '';
 			$health[] = array('plugin' => 'core', 'type' => 'Version database', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
-			
+
 			$defaut = 0;
 			$result = jeedom::checkSpaceLeft();
 			$advice = '';
@@ -199,7 +204,7 @@ try {
 				$defaut = 1;
 			}
 			$health[] = array('plugin' => 'core', 'type' => 'Espace disque libre', 'defaut' => $defaut, 'result' => $result . ' %', 'advice' => $advice);
-			
+
 			$defaut = 0;
 			$result = 'OK';
 			$advice = '';
@@ -209,7 +214,7 @@ try {
 				$advice = 'Allez sur Administration -> Configuration puis configurez correctement la partie réseau';
 			}
 			$health[] = array('plugin' => 'core', 'type' => 'Configuration réseau interne', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
-			
+
 			$defaut = 0;
 			$result = 'OK';
 			$advice = '';
@@ -219,7 +224,7 @@ try {
 				$advice = 'Allez sur Administration -> Configuration puis configurez correctement la partie réseau';
 			}
 			$health[] = array('plugin' => 'core', 'type' => 'Configuration réseau externe', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
-			
+
 			$defaut = 0;
 			$advice = '';
 			if (cache::isPersistOk()) {
@@ -235,7 +240,7 @@ try {
 				$advice = 'Votre cache n\'est pas sauvegardé. En cas de redémarrage, certaines informations peuvent être perdues. Essayez de lancer (à partir du moteur de tâches) la tâche cache::persist.';
 			}
 			$health[] = array('plugin' => 'core', 'type' => 'Persistance du cache', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
-			
+
 			foreach (plugin::listPlugin(true) as $plugin) {
 				$plugin_id = $plugin->getId();
 				$result = 'OK';
@@ -265,7 +270,7 @@ try {
 						$health[] = array('plugin' => $plugin_id, 'type' => 'dépendance', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
 					}
 				} catch (Exception $e) {
-			
+
 				}
 				try {
 					if ($plugin->getHasOwnDeamon() == 1) {
@@ -307,12 +312,12 @@ try {
 						$health[] = array('plugin' => $plugin_id, 'type' => 'Statut démon', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
 					}
 				} catch (Exception $e) {
-			
+
 				}
-			
+
 				try {
 					if (method_exists($plugin->getId(), 'health')) {
-			
+
 						foreach ($plugin_id::health() as $result) {
 							if ($result['state']) {
 								$defaut = 0;
@@ -323,13 +328,13 @@ try {
 						}
 					}
 				} catch (Exception $e) {
-			
+
 				}
 			}
-			
+
 			$jsonrpc->makeSuccess($health);
 		}
-		
+
 		/*             * ************************Plugin*************************** */
 		if ($jsonrpc->getMethod() == 'plugin::listPlugin') {
 			$activateOnly = (isset($params['activateOnly']) && $params['activateOnly'] == 1) ? true : false;
@@ -773,30 +778,30 @@ try {
 		}
 
 		/*             * ************************Backup*************************** */
-		
+
 		if ($jsonrpc->getMethod() == 'backup::list') {
 			$jsonrpc->makeSuccess(jeedom::listBackup());
 		}
-		
+
 		if ($jsonrpc->getMethod() == 'backup::launch') {
 			jeedom::backup(true);
 			$jsonrpc->makeSuccess();
 		}
-		
+
 		if ($jsonrpc->getMethod() == 'backup::remove') {
 			jeedom::removeBackup($params['backup']);
 			$jsonrpc->makeSuccess();
 		}
-		
+
 		if ($jsonrpc->getMethod() == 'backup::restore') {
 			jeedom::restore($params['backup'], true);
 			$jsonrpc->makeSuccess();
 		}
-		
+
 		if ($jsonrpc->getMethod() == 'backup::listMarket') {
 			$jsonrpc->makeSuccess(repo_market::listeBackup());
 		}
-		
+
 		if ($jsonrpc->getMethod() == 'backup::restoreMarket') {
 			repo_market::retoreBackup($params['backup'], true);
 			$jsonrpc->makeSuccess();

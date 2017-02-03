@@ -35,6 +35,9 @@ if (isset($argv)) {
 }
 
 if (init('type') != '') {
+	if (!jeedom::apiModeResult(config::byKey('api::core::http::mode', 'core', 'enable'))) {
+		die();
+	}
 	try {
 		$type = init('type');
 		if (!jeedom::apiAccess(init('apikey', init('api')))) {
@@ -140,6 +143,9 @@ if (init('type') != '') {
 	}
 	die();
 } else {
+	if (!jeedom::apiModeResult(config::byKey('api::core::jsonrpc::mode', 'core', 'enable'))) {
+		die();
+	}
 	try {
 		$IP = getClientIp();
 		$request = init('request');

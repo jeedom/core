@@ -188,9 +188,42 @@ class jeedom {
 		return config::byKey('api', $_plugin);
 	}
 
+	public static function apiModeResult($_mode = 'enable') {
+		switch ($_mode) {
+			case 'disable':
+				return false;
+			case 'whiteip':
+				$ip = getClientIp();
+				$find = false;
+				$whiteIps = explode(';', config::byKey('security::whiteips'));
+				if (config::byKey('security::whiteips') != '' && count($whiteIps) > 0) {
+					foreach ($whiteIps as $whiteip) {
+						if (netMatch($whiteip, $ip)) {
+							$find = true;
+						}
+					}
+					if (!$find) {
+						return false;
+					}
+				}
+				break;
+			case 'localhost':
+				if (getClientIp() != '127.0.0.1') {
+					return false;
+				}
+				break;
+		}
+		return true;
+	}
+
 	public static function apiAccess($_apikey = '', $_plugin = 'core') {
 		if ($_apikey == '') {
 			return false;
+		}
+		if ($_plugin != 'core') {
+			if (!self::apiModeResult(config::byKey('api::' . $_plugin . '::mode', 'core', 'enable'))) {
+				return false;
+			}
 		}
 		if (self::getApiKey($_plugin) == $_apikey) {
 			@session_start();
