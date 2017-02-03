@@ -322,7 +322,15 @@ if (init('type') != '') {
 			/*             * ************************Summary*************************** */
 
 			if ($jsonrpc->getMethod() == 'summary::global') {
-				$jsonrpc->makeSuccess(object::getGlobalSummary($params['key']));
+				if (isset($params['key'])) {
+					$jsonrpc->makeSuccess(object::getGlobalSummary($params['key']));
+				}
+				$return = array();
+				$def = config::byKey('object:summary');
+				foreach ($def as $key => $value) {
+					$return[$key] = object::getGlobalSummary($key);
+				}
+				$jsonrpc->makeSuccess($return);
 			}
 
 			if ($jsonrpc->getMethod() == 'summary::byId') {

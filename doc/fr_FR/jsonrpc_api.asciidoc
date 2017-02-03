@@ -64,7 +64,7 @@ Retour le résumé global pour la clef passée en paramètre
 
 Paramètres:
 
-- string key
+- string key : (optionnel), clef du résumé voulu, si vide alors Jeedom vous renvoi le résumé pour toute les clefs
 
 === summary::byId
 Retourne le résumé pour l'objet id
