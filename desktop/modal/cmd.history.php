@@ -25,6 +25,10 @@ $date = array(
             <option value="average::month">{{Moyenne par mois}}</option>
             <option value="low::month">{{Minimum par mois}}</option>
             <option value="high::month">{{Maximum par mois}}</option>
+            <option value="sum::year">{{Sommes par année}}</option>
+            <option value="average::year">{{Moyenne par année}}</option>
+            <option value="low::year">{{Minimum par année}}</option>
+            <option value="high::year">{{Maximum par année}}</option>
         </select>
         <select class="pull-right sel_chartType form-control" data-cmd_id="#id#" style="width: 200px;display: inline-block;">
             <option value="line"> {{Ligne}} </option>
@@ -46,12 +50,12 @@ if (init('step', 0) == 1) {
 ?>
        <center><div id="div_historyChart"></div></center>
        <script>
-         $(".in_datepicker").datepicker();
-         $('#ui-datepicker-div').hide();
+           $(".in_datepicker").datepicker();
+           $('#ui-datepicker-div').hide();
 
-         $('#div_historyChart').css('position', 'relative').css('width', '100%');
-         delete jeedom.history.chart['div_historyChart'];
-         jeedom.history.drawChart({
+           $('#div_historyChart').css('position', 'relative').css('width', '100%');
+           delete jeedom.history.chart['div_historyChart'];
+           jeedom.history.drawChart({
             cmd_id: "<?php echo init('id'); ?>",
             el: 'div_historyChart',
             dateRange : 'all',
@@ -102,8 +106,8 @@ if (init('step', 0) == 1) {
                             $('#div_alert').showAlert({message: error.message, level: 'danger'});
                         },
                         success: function () {
-                           var modal = false;
-                           if($('#md_modal').is(':visible')){
+                         var modal = false;
+                         if($('#md_modal').is(':visible')){
                             modal = $('#md_modal');
                         }else if($('#md_modal2').is(':visible')){
                             modal = $('#md_modal2');

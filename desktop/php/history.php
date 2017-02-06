@@ -72,6 +72,10 @@ foreach (cmd::allHistoryCmd() as $cmd) {
 				<option value="average::month">{{Moyenne par mois}}</option>
 				<option value="low::month">{{Minimum par mois}}</option>
 				<option value="high::month">{{Maximum par mois}}</option>
+				<option value="sum::year">{{Sommes par année}}</option>
+				<option value="average::year">{{Moyenne par année}}</option>
+				<option value="low::year">{{Minimum par année}}</option>
+				<option value="high::year">{{Maximum par année}}</option>
 			</select>
 			<select class="form-control pull-right" id="sel_chartType" style="width: 200px;">
 				<option value="line">{{Ligne}}</option>
