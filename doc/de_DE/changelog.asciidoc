@@ -55,6 +55,7 @@
 * Optimisation du calcul des expressions (calcul des tags uniquement si présent dans l'expression)
 * Ajout dans l'API de fonction pour avoir accès au résumé (global et d'objet)
 * Possibilité de restreindre l'accès de chaque clef api en fonction de l'IP
+* Possibilité sur l'historique de faire des regroupements par année
 
 = 2.4.7
 
