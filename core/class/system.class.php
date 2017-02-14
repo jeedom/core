@@ -31,7 +31,21 @@ class system {
 
 	/*     * ***********************Methode static*************************** */
 
+	public static function loadCommand() {
+		if (file_exists(dirname(__FILE__) . '/../../config/system_cmd.json')) {
+			$content = file_get_contents(dirname(__FILE__) . '/../../config/system_cmd.json');
+			if (is_json($content)) {
+				self::$_command['custom'] = json_decode($content, true);
+			}
+		}
+		return self::$_command;
+	}
+
 	public static function getDistrib() {
+		self::loadCommand();
+		if (isset(self::$_command['custom'])) {
+			return 'custom';
+		}
 		if (self::$_distrib == null) {
 			self::$_distrib = trim(shell_exec('grep CPE_NAME /etc/os-release | cut -d \'"\' -f 2 | cut -d : -f 3 '));
 			if (self::$_distrib == '') {

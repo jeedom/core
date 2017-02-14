@@ -208,18 +208,6 @@ user::isBan();
 				<div class="panel-body">
 					<form class="form-horizontal">
 						<fieldset>
-							<div class="form-group expertModeVisible">
-								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API globale de Jeedom}}">{{Clef API}}</label>
-								<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-									<div class="input-group">
-										<span class="span_apikey"><?php echo $configs['api']; ?></span>
-										<span class="input-group-btn">
-											<a class="btn btn-default form-control bt_regenerate_api" data-plugin="core"><i class="fa fa-refresh"></i></a>
-										</span>
-									</div>
-								</div>
-
-							</div>
 
 							<div class="form-group expertModeVisible">
 								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Accès API HTTP}}</label>
@@ -248,6 +236,18 @@ user::isBan();
 										<option value="localhost">{{Localhost}}</option>
 										<option value="disable">{{Désactivé}}</option>
 									</select>
+								</div>
+							</div>
+
+							<div class="form-group expertModeVisible">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API globale de Jeedom}}">{{Clef API}}</label>
+								<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+									<div class="input-group">
+										<span class="span_apikey"><?php echo $configs['api']; ?></span>
+										<span class="input-group-btn">
+											<a class="btn btn-default form-control bt_regenerate_api" data-plugin="core"><i class="fa fa-refresh"></i></a>
+										</span>
+									</div>
 								</div>
 							</div>
 
@@ -470,14 +470,14 @@ echo $CONFIG['db']['password'];
 								<div class="col-lg-8 col-md-9 col-sm-8 col-xs-6">
 									<div class="input-group">
 										<select class="configKey form-control" data-l1key="internalProtocol">
-											<option value="">Aucun</option>
+											<option value="">{{Aucun}}</option>
 											<option value="http://">HTTP</option>
 											<option value="https://">HTTPS</option>
 										</select>
 										<span class="input-group-addon">://</span>
 										<input type="text" class="configKey form-control" data-l1key="internalAddr" />
 										<span class="input-group-addon">:</span>
-										<input type="number"class="configKey form-control" data-l1key="internalPort" />
+										<input type="number" class="configKey form-control" data-l1key="internalPort" />
 										<span class="input-group-addon">/</span>
 										<input type="text" class="configKey form-control" data-l1key="internalComplement" />
 									</div>
@@ -506,14 +506,14 @@ if (network::test('internal')) {
 								<div class="col-lg-8 col-md-9 col-sm-8 col-xs-6">
 									<div class="input-group">
 										<select class="configKey form-control" data-l1key="externalProtocol">
-											<option value="">Aucun</option>
+											<option value="">{{Aucun}}</option>
 											<option value="http://">HTTP</option>
 											<option value="https://">HTTPS</option>
 										</select>
 										<span class="input-group-addon">://</span>
 										<input type="text" class="configKey form-control" data-l1key="externalAddr" />
 										<span class="input-group-addon">:</span>
-										<input type="number"class="configKey form-control" data-l1key="externalPort" />
+										<input type="number" class="configKey form-control" data-l1key="externalPort" />
 										<span class="input-group-addon">/</span>
 										<input type="text" class="configKey form-control" data-l1key="externalComplement" />
 									</div>
