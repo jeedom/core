@@ -47,6 +47,10 @@ class ComposerStaticInitc7412053f01762e82bf4bede3f471ac6
         array (
             'Doctrine\\Common\\Cache\\' => 22,
         ),
+        'C' => 
+        array (
+            'Cron\\' => 5,
+        ),
         'B' => 
         array (
             'Base32\\' => 7,
@@ -110,6 +114,10 @@ class ComposerStaticInitc7412053f01762e82bf4bede3f471ac6
         array (
             0 => __DIR__ . '/..' . '/doctrine/cache/lib/Doctrine/Common/Cache',
         ),
+        'Cron\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron',
+        ),
         'Base32\\' => 
         array (
             0 => __DIR__ . '/..' . '/christian-riesen/base32/src',
@@ -148,13 +156,6 @@ class ComposerStaticInitc7412053f01762e82bf4bede3f471ac6
             'Guzzle' => 
             array (
                 0 => __DIR__ . '/..' . '/guzzle/guzzle/src',
-            ),
-        ),
-        'C' => 
-        array (
-            'Cron' => 
-            array (
-                0 => __DIR__ . '/..' . '/mtdowling/cron-expression/src',
             ),
         ),
     );
