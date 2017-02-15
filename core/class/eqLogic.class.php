@@ -426,6 +426,7 @@ class eqLogic {
 			$cmd->event($_value);
 			return true;
 		}
+		$cmd->setCache('collectDate', date('Y-m-d H:i:s'));
 		return false;
 	}
 
