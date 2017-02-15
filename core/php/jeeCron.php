@@ -84,6 +84,7 @@ if (init('cron_id') != '') {
 			} else {
 				$cron->setState('Not found');
 				$cron->setPID();
+				$cron->setCache('runtime', strtotime('now') - $datetimeStart);
 				log::add('cron', 'error', __('[Erreur] Classe ou fonction non trouvée ', __FILE__) . $cron->getName());
 				die();
 			}
@@ -118,6 +119,7 @@ if (init('cron_id') != '') {
 			} else {
 				$cron->setState('Not found');
 				$cron->setPID();
+				$cron->setCache('runtime', strtotime('now') - $datetimeStart);
 				log::add('cron', 'error', __('[Erreur] Non trouvée ', __FILE__) . $cron->getName());
 				die();
 			}
@@ -130,11 +132,13 @@ if (init('cron_id') != '') {
 			}
 			$cron->setState('stop');
 			$cron->setPID();
+			$cron->setCache('runtime', strtotime('now') - $datetimeStart);
 		}
 		die();
 	} catch (Exception $e) {
 		$cron->setState('error');
 		$cron->setPID('');
+		$cron->setCache('runtime', strtotime('now') - $datetimeStart);
 		$logicalId = config::genKey();
 		if ($e->getCode() != 0) {
 			$logicalId = $cron->getName() . '::' . $e->getCode();
@@ -151,6 +155,7 @@ if (init('cron_id') != '') {
 	} catch (Error $e) {
 		$cron->setState('error');
 		$cron->setPID('');
+		$cron->setCache('runtime', strtotime('now') - $datetimeStart);
 		$logicalId = config::genKey();
 		if ($e->getCode() != 0) {
 			$logicalId = $cron->getName() . '::' . $e->getCode();

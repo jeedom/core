@@ -418,6 +418,7 @@ class cron {
 		$return['state'] = $this->getState();
 		$return['lastRun'] = $this->getLastRun();
 		$return['pid'] = $this->getPID();
+		$return['runtime'] = $this->getCache('runtime');
 		return $return;
 	}
 

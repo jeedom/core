@@ -103,24 +103,24 @@
     $.showLoading();
     jeedom.cron.all({
         success: function (data) {
-         $.showLoading();
-         $('#table_cron tbody').empty();
-         var tr = [];
-         for (var i in data.crons) {
-           tr.push(addCron(data.crons[i]));
-       }
-       $('#table_cron tbody').append(tr);
-       $('#span_jeecronMasterRuns').html(data.nbMasterCronRun);
-       $('#span_jeecronRuns').html(data.nbCronRun);
-       $('#span_nbProcess').html(data.nbProcess);
-       $('#span_loadAvg1').html(data.loadAvg[0]);
-       $('#span_loadAvg5').html(data.loadAvg[1]);
-       $('#span_loadAvg15').html(data.loadAvg[2]);
-       $("#table_cron").trigger("update");
-       modifyWithoutSave = false;
-       $.hideLoading();
-   }
-});
+           $.showLoading();
+           $('#table_cron tbody').empty();
+           var tr = [];
+           for (var i in data.crons) {
+             tr.push(addCron(data.crons[i]));
+         }
+         $('#table_cron tbody').append(tr);
+         $('#span_jeecronMasterRuns').html(data.nbMasterCronRun);
+         $('#span_jeecronRuns').html(data.nbCronRun);
+         $('#span_nbProcess').html(data.nbProcess);
+         $('#span_loadAvg1').html(data.loadAvg[0]);
+         $('#span_loadAvg5').html(data.loadAvg[1]);
+         $('#span_loadAvg15').html(data.loadAvg[2]);
+         $("#table_cron").trigger("update");
+         modifyWithoutSave = false;
+         $.hideLoading();
+     }
+ });
 }
 
 function addCron(_cron) {
@@ -167,27 +167,33 @@ function addCron(_cron) {
     tr += '<td class="lastRun">';
     tr += init(_cron.lastRun);
     tr += '</td>';
-    tr += '<td class="state">';
-    var label = 'label label-info';
-    if (init(_cron.state) == 'run') {
-        label = 'label label-success';
-    }
-    if (init(_cron.state) == 'stop') {
-        label = 'label label-danger';
-    }
-    if (init(_cron.state) == 'starting') {
-        label = 'label label-warning';
-    }
-    if (init(_cron.state) == 'stoping') {
-        label = 'label label-warning';
-    }
-    tr += '<span class="' + label + '">' + init(_cron.state) + '</span>';
-    tr += '</td>';
-    tr += '<td class="action">';
-    tr += '<i class="fa fa-minus-circle remove pull-right cursor"></i>';
-    tr += '</td>';
-    tr += '</tr>';
-    var result = $(tr);
-    result.setValues(_cron, '.cronAttr');
-    return result;
+    tr += '<td class="runtime">';
+    if(init(_cron.runtime) != ''){
+       tr += init(_cron.runtime)+'s';
+   }
+   
+   tr += '</td>';
+   tr += '<td class="state">';
+   var label = 'label label-info';
+   if (init(_cron.state) == 'run') {
+    label = 'label label-success';
+}
+if (init(_cron.state) == 'stop') {
+    label = 'label label-danger';
+}
+if (init(_cron.state) == 'starting') {
+    label = 'label label-warning';
+}
+if (init(_cron.state) == 'stoping') {
+    label = 'label label-warning';
+}
+tr += '<span class="' + label + '">' + init(_cron.state) + '</span>';
+tr += '</td>';
+tr += '<td class="action">';
+tr += '<i class="fa fa-minus-circle remove pull-right cursor"></i>';
+tr += '</td>';
+tr += '</tr>';
+var result = $(tr);
+result.setValues(_cron, '.cronAttr');
+return result;
 }
