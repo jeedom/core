@@ -280,6 +280,13 @@ step_9_jeedom_installation() {
 step_10_jeedom_post() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_10_jeedom_post${NORMAL}"
+	if [ $(crontab -l | grep jeedom | wc -l) -eq 0 ];then
+		(echo crontab -l | grep -v "jeedom") | crontab -
+		if [ $? -ne 0 ]; then
+	    	echo "${ROUGE}Could not install jeedom cron - abort${NORMAL}"
+	    	exit 1
+	  	fi
+  	fi
 	if [ ! -f /etc/cron.d/jeedom ]; then
 		echo "* * * * * www-data /usr/bin/php ${WEBSERVER_HOME}/core/php/jeeCron.php >> /dev/null" > /etc/cron.d/jeedom
 		if [ $? -ne 0 ]; then
