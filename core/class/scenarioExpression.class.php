@@ -299,9 +299,8 @@ class scenarioExpression {
 		$result = false;
 		$occurence = 0;
 		$limit = (is_numeric($_timeout)) ? $_timeout : 7200;
-		while ($result === false) {
-			$expression = self::setTags($_condition);
-			$result = evaluate($expression);
+		while ($result == false) {
+			$result = evaluate(self::setTags($_condition));
 			if ($occurence > $limit) {
 				return 0;
 			}
@@ -1022,9 +1021,8 @@ class scenarioExpression {
 					$result = false;
 					$occurence = 0;
 					$limit = (isset($options['timeout']) && is_numeric($options['timeout'])) ? $options['timeout'] : 7200;
-					while ($result !== true) {
-						$expression = self::setTags($options['condition'], $scenario);
-						$result = evaluate($expression);
+					while ($result == false) {
+						$result = evaluate(self::setTags($options['condition'], $scenario));
 						if ($occurence > $limit) {
 							$this->setLog($scenario, __('[Wait] Condition valide par dépassement de temps', __FILE__));
 							return;
