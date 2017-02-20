@@ -299,7 +299,7 @@ class scenarioExpression {
 		$result = false;
 		$occurence = 0;
 		$limit = (is_numeric($_timeout)) ? $_timeout : 7200;
-		while ($result == false) {
+		while ($result !== true)
 			$result = evaluate(self::setTags($_condition));
 			if ($occurence > $limit) {
 				return 0;
@@ -1021,16 +1021,17 @@ class scenarioExpression {
 					$result = false;
 					$occurence = 0;
 					$limit = (isset($options['timeout']) && is_numeric($options['timeout'])) ? $options['timeout'] : 7200;
-					while ($result == false) {
-						$result = evaluate(self::setTags($options['condition'], $scenario));
+					while ($result !== true) {
+						$expression = self::setTags($options['condition'], $scenario);
+						$result = evaluate($expression);
 						if ($occurence > $limit) {
-							$this->setLog($scenario, __('[Wait] Condition valide par dépassement de temps', __FILE__));
+							$this->setLog($scenario, __('[Wait] Condition valide par dépassement de temps : ', __FILE__) . $expression . ' => ' . $result);
 							return;
 						}
 						$occurence++;
 						sleep(1);
 					}
-					$this->setLog($scenario, __('[Wait] Condition valide : ', __FILE__) . $expression);
+					$this->setLog($scenario, __('[Wait] Condition valide : ', __FILE__) . $expression . ' => ' . $result);
 					return;
 				} else if ($this->getExpression() == 'sleep') {
 					if (isset($options['duration'])) {
