@@ -56,6 +56,8 @@
 * Ajout dans l'API de fonction pour avoir accès au résumé (global et d'objet)
 * Possibilité de restreindre l'accès de chaque clef api en fonction de l'IP
 * Possibilité sur l'historique de faire des regroupements par année
+* Le timeout sur la commande wait peut maintenant être un calcul
+* Correction d'un bug si il y a des " dans les parametres d'une action
 
 = 2.4.7
 
