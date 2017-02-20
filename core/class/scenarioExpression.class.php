@@ -105,7 +105,6 @@ class scenarioExpression {
 						$replace['#' . $key . '#'] = str_replace('"', "'", $value);
 					}
 				}
-
 				if (!isset($replace['#id#'])) {
 					$replace['#id#'] = rand();
 				}
@@ -298,9 +297,11 @@ class scenarioExpression {
 	public static function wait($_condition, $_timeout = 7200) {
 		$result = false;
 		$occurence = 0;
-		$limit = (is_numeric($_timeout)) ? $_timeout : 7200;
+		$limit = 7200;
+		$timeout = jeedom::evaluateExpression($_timeout);
+		$limit = (is_numeric($timeout)) ? $timeout : 7200;
 		while ($result !== true) {
-			$result = evaluate(self::setTags($_condition));
+			$result = jeedom::evaluateExpression($_condition);
 			if ($occurence > $limit) {
 				return 0;
 			}
@@ -1020,7 +1021,11 @@ class scenarioExpression {
 					}
 					$result = false;
 					$occurence = 0;
-					$limit = (isset($options['timeout']) && is_numeric($options['timeout'])) ? $options['timeout'] : 7200;
+					$limit = 7200;
+					if (isset($options['timeout'])) {
+						$timeout = jeedom::evaluateExpression($options['timeout']);
+						$limit = (is_numeric($timeout)) ? $timeout : 7200;
+					}
 					while ($result !== true) {
 						$expression = self::setTags($options['condition'], $scenario);
 						$result = evaluate($expression);
