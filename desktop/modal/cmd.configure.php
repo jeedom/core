@@ -167,8 +167,8 @@ foreach ($usedBy['cmd'] as $usedByCmd) {
         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Scénario}}</label>
         <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
           <?php
-foreach ($usedBy['scenario'] as $usedByScneario) {
-	echo '<span class="label label-primary cursor"><a href="' . $usedByScneario->getLinkToConfiguration() . '" style="color : white;">' . $usedByScneario->getHumanName() . '</a></span><br/>';
+foreach ($usedBy['scenario'] as $usedByScenario) {
+	echo '<span class="label label-primary cursor"><a href="' . $usedByScenario->getLinkToConfiguration() . '" style="color : white;">' . $usedByScenario->getHumanName() . '</a></span><br/>';
 }
 ?>
        </div>
