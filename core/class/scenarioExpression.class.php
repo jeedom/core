@@ -299,7 +299,7 @@ class scenarioExpression {
 		$result = false;
 		$occurence = 0;
 		$limit = (is_numeric($_timeout)) ? $_timeout : 7200;
-		while ($result !== true)
+		while ($result !== true) {
 			$result = evaluate(self::setTags($_condition));
 			if ($occurence > $limit) {
 				return 0;
