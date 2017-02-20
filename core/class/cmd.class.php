@@ -874,7 +874,7 @@ class cmd {
 		return $template;
 	}
 
-	public function toHtml($_version = 'dashboard', $options = '', $_cmdColor = null) {
+	public function toHtml($_version = 'dashboard', $_options = '', $_cmdColor = null) {
 		$version2 = jeedom::versionAlias($_version, false);
 		if ($this->getDisplay('showOn' . $version2, 1) == 0) {
 			return '';
@@ -1014,8 +1014,8 @@ class cmd {
 			if (trim($html) == '') {
 				return $html;
 			}
-			if ($options != '') {
-				$options = jeedom::toHumanReadable($options);
+			if ($_options != '') {
+				$options = jeedom::toHumanReadable($_options);
 				if (is_json($options)) {
 					$options = json_decode($options, true);
 				}
