@@ -20,8 +20,8 @@ A la izquierda:
 ** Copia de seguridad *: permite iniciar una copia de seguridad inmediatamente (útil si usted quiere hacer un cambio crítico, esto le permitirá volver atrás). También tiene un botón para iniciar una copia de seguridad sin enviar el archivo a la nube (requiere un suscripción, ver más abajo). El envío del archivo puede llevar tiempo, por lo tanto esto puede acelerar el proceso un poco.
 ** Ubicación de copias de seguridad *: lugar donde Jeedom pone las copias de seguridad, se recomienda no cambiar. Si usted está en la ruta de acceso relativa, así que su origen es el lugar donde Jeedom está instalado (/ usr/share/nginx/www/jeedom).
 ** Número de día (s) de respaoldo de copias de seguridad *: número de días de respaldo a mantener. Una vez finalizado este período se eliminan copias de seguridad anteriores. PRECAUCIÓN No coloque un número de días demasiado alto, de lo contrario usted puede llenar el sistema de archivos.
-** *Taille totale maximale des backups (Mo)* : Permet de limiter la taille totale des sauvegardes. Si cette valeur est dépassée alors Jeedom va supprimer les sauvegardes les plus vieilles jusqu'à retomber en-dessous de la taille maximale.
-** *Envoyer les sauvegardes dans le cloud* : indique à Jeedom d'envoyer les sauvegardes au Market, attention il faut avoir pris l'abonnement.
+** Tamaño máximo total de copias de seguridad (MB) *: permite limitar el tamaño total de las copias de seguridad. Si se supera este valor Jeedom eliminará los anteriores. Asegúrese de estar por debajo del tamaño máximo de copias de seguridad.
+** Enviar backups en la nube *: Indica a Jeedom que envie los Backups al Market, debe haber abonado la suscripción.
 ** Copia de seguridad local *.
 **  *Copias de seguridad Disponibles*: lista de copias de seguridad disponibles
 ** Restaurar desde copia de seguridad *: lanza la restauración seleccionando una copia de seguridad anterior
@@ -33,7 +33,7 @@ A la izquierda:
 ** *Restaurar desde copia de seguridad *: inicia la restauración de una copia de seguridad de en la nube
 
 [TIP]
-Lors d'une réinstallation de Jeedom et en ayant pris l'abonnement de sauvegarde cloud, vous avez juste sur votre nouveau Jeedom à renseigner votre compte Market puis à venir ici pour lancer la restauration.
+Durante una reinstalación de Jeedom y habiendo abonado la suscripción de copia de seguridad en la nube, usted tiene derecho en su nuevo Jeedom introducir su cuenta del Market y luego venir aquí para iniciar la restauración.
 
 [TIP]
 Es posible, en caso de problemas, realizar una copia de seguridad en línea de comandos: 'sudo php usr/share/nginx/www/jeedom/install/backup.php'
@@ -49,7 +49,7 @@ A nivel de los protocolos, sólo Z-Wave (OpenZwave) es un poco diferente porque 
 
 == Copia de seguridad en la nube
 
-La sauvegarde dans le cloud permet à Jeedom d'envoyer vos sauvegardes directement sur le Market. Cela vous permet de les restaurer facilement et d'être sûr de ne pas les perdre. Le Market conserve les 14 dernières sauvegardes. Pour vous abonner il suffit d'aller sur votre page profil sur le Market :
+El backup en la nube permite a Jeedom enviar copias de seguridad directamente al Market. Esto le permite restaurar fácilmente y asegurarse de no perderlos. El Market mantiene las últimas 14 copias de seguridad. Para suscribirse ir a tu perfil en la página de Market:
 
 image::../images/backup3.png[]
 
@@ -64,8 +64,8 @@ Puedes poner un nombre más adecuado a tus de copia de seguridad en la pestaña 
 
 == Frecuencia de los backups
 
-Jeedom effectue une sauvegarde tous les jours.Vous pouvez modifier cette heure à partir du "Moteur de tâches" (la tâche est nommée 'Jeedom backup') mais ce n'est pas recommandé car cette heure est calculée par rapport à la charge et l'heure de la sauvegarde du Market.
+Jeedom realiza una copia de seguridad cada día a las 2:00 de la mañana. Puede modificarse (esta es la copia de seguridad Jeedom) pero no es recomendable porque este horario se calcula en relación con la carga de trabajo y el tiempo de la copia de seguridad del Market.
 
 == Caso de un esclavo
 
-Le cas d'un esclave est un peu particulier, car il va après chaque sauvegarde envoyer celle-ci sur son maître (et sur le Market si vous avez un abonnement au service de sauvegarde cloud). Vous pouvez donc à partir du maître récupérer une sauvegarde de l'esclave pour l'installer sur un autre esclave par exemple.
+El caso de un esclavo es algo especial, porque él enviará cada backup al maestro (y en el Market si tienes una suscripción para el servicio de cloud backup). Usted puede por lo tanto desde el maestro recuperar una copia de seguridad del esclavo que se instale en otro esclavo por ejemplo.

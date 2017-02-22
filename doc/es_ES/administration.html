@@ -421,7 +421,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_configuración_de_red">3. Configuración de red</a></li>
 <li><a href="#_configuración_de_colores">4. Configuración de colores</a></li>
 <li><a href="#_configuración_de_comandos">5. Configuración de comandos</a></li>
-<li><a href="#_configuration_des_interactions">6. Configuration des interactions</a></li>
+<li><a href="#_configuración_de_interacciones">6. Configuración de interacciones</a></li>
 <li><a href="#_configuración_de_logs_y_mensajes">7. Configuración de logs y mensajes</a></li>
 <li><a href="#_configuración_ldap">8. Configuración LDAP</a></li>
 <li><a href="#_configuración_de_dispositivos">9. Configuración de dispositivos</a></li>
@@ -483,7 +483,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><strong>Sistema</strong>: modelo de hardware</p>
 </li>
 <li>
-<p><strong>Clef d&#8217;installation</strong> : clef hardware de votre Jeedom sur le market. Si votre Jeedom n&#8217;apparaît pas dans la liste de vos Jeedom sur le market il est conseillé de cliquer sur ce bouton</p>
+<p><strong>Clave de instalación</strong> : clave de hardware de su Jeedom en el market. Si tu Jeedom no aparece en la lista de tus Jeedom en el market, es recomendable hacer clic en este botón</p>
 </li>
 <li>
 <p><strong>Idioma</strong> : Idioma de su Jeedom</p>
@@ -501,7 +501,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><strong>Ignorar la verificación de tiempo</strong>: Jeedom no verificará si el tiempo es coherente. Es útil por ejemplo si Jeedom no va a estar conectado a internet ni dispone de batería RTC.</p>
 </li>
 <li>
-<p><strong>Mode</strong> : Mode de votre Jeedom maître ou esclave, attention lors du passage en esclave : tous vos équipements, scénarios, designs&#8230;&#8203; seront supprimés.</p>
+<p><strong>Modo</strong>: Modo de Jeedom, maestro o esclavo. Atención, al pasar a esclavo, todos los dispositivos, escenas, diseños&#8230;&#8203; serán eliminados</p>
 </li>
 </ul>
 </div>
@@ -519,7 +519,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Droits avancés</strong> : permet de désactiver la gestion des droits avancés (si vous ne vous en servez pas cela peut rendre Jeedom plus réactif)</p>
+<p>* * Permisos avanzados: desactiva la gestión de permisos avanzado (su uso incorrecto puede hacer Jeedom mas vulnerable)</p>
 </li>
 <li>
 <p>* Seguridad*: Habilitar o no la seguridad contra la piratería (Acceso mediante fuerza bruta).</p>
@@ -539,7 +539,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Accès à l&#8217;interface d&#8217;administration</strong> : permet d&#8217;accèder à une interface d&#8217;administration de la base, les informations à renseigner sont en dessous</p>
+<p><strong>Acceso al interface de administración</strong>: Permite acceder al interface de administración de la base de datos. La información a completar está más abajo</p>
 </li>
 <li>
 <p><strong>Máquina (hostname)</strong>: Ubicación de la base de datos</p>
@@ -548,7 +548,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><strong>Usuario</strong>: Nombre de usuario utilizado por Jeedom</p>
 </li>
 <li>
-<p><strong>Mot de passe</strong> : mot de passe d&#8217;accès à la base utilisée par Jeedom</p>
+<p><strong>Contraseña</strong>: Contraseña de accesso a la base de datos utilizada por Jeedom</p>
 </li>
 </ul>
 </div>
@@ -597,7 +597,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><strong>Protocolo</strong>: Protocolo a utilizar para el acceso desde el exterior</p>
 </li>
 <li>
-<p><strong>Adresse URL ou IP</strong> : adresse ou IP externe si fixe</p>
+<p><strong>Dirección URL o IP</strong>: Dirección o IP externa si es fija</p>
 </li>
 <li>
 <p><strong>Complemento (por ejemplo: /jeedom)</strong>: ruta adicional de la URL (escriba /jeedom). Para saber si debe definir este valor, vea si necesita añadir /jeedom después de la IP.</p>
@@ -616,7 +616,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Désactiver la gestion du réseau par Jeedom</strong> : indique à Jeedom de ne pas monitorer le réseau (à activer si Jeedom n&#8217;est connecté à aucun réseau)</p>
+<p><strong>Desactivar la gestión de redes en Jeedom</strong>: Jeedom no supervisará la red (deberá ser activado si Jeedom no está conectado a ninguna red)</p>
 </li>
 </ul>
 </div>
@@ -629,7 +629,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><strong>Usar DNS Jeedom</strong>: Activars DNS Jeedom (se requiere disponer de un service pack)</p>
 </li>
 <li>
-<p><strong>Statut DNS</strong> : statut du DNS HTTP</p>
+<p>Estado DNS* : estado de http DNS</p>
 </li>
 <li>
 <p><strong>Gestión</strong>: Permite detener y reiniciar el servicio DNS</p>
@@ -652,7 +652,7 @@ Si accede a través de HTTPS, el puerto por defecto es el 443 y si lo hace a tra
 </table>
 </div>
 <div class="paragraph">
-<p>Cette partie est juste là pour expliquer à Jeedom son environnement : une modification du port ou de l&#8217;IP ici ne changera pas le port ou l&#8217;IP de Jeedom. Pour cela il faut se connecter en SSH et éditer le fichier /etc/network/interfaces pour l&#8217;IP et les fichiers etc/nginx/sites-available/default et etc/nginx/sites-available/default_ssl (pour le HTTPS). En cas de mauvaise manipulation de votre Jeedom, l&#8217;équipe Jeedom ne pourra être tenue pour responsable et pourra refuser toute demande de support.</p>
+<p>Esta parte es para mostrar el entorno Jeedom: un cambio en el puerto o IP, no va a cambiar el puerto y la IP de Jeedom. Para ello debe conectarse por SSH y editar el archivo/etc/network/interfaces para la IP y los archivos etc/nginx/sitios-disponible/default y etc/nginx/sitios-disponible/default_ssl (para HTTPS). En caso de manipulación inadecuada de su configuración, el equipo de Jeedom no será responsable y podrá denegar cualquier solicitud de soporte.</p>
 </div>
 <div class="paragraph">
 <p>Puede ver <a href="http://blog.domadoo.fr/2014/10/15/acceder-depuis-lexterieur-jeedom-en-https">aquí</a> un tutorial para instalar un certificado auto firmado</p>
@@ -669,7 +669,7 @@ Si accede a través de HTTPS, el puerto por defecto es el 443 y si lo hace a tra
 <p>El ajuste de color de los widgets se realiza en función de la categoría a la que pertenece el widget que se define en la configuración de cada módulo (ver plugin de Z-Wave, RFXCOM&#8230;&#8203; etc). Las categorías incluyen calefacción, luces, automatización etc &#8230;&#8203;</p>
 </div>
 <div class="paragraph">
-<p>Pour chaque catégorie, on pourra choisir une couleur différente entre la version desktop et la version mobile. Il y a également 2 types de couleurs, les couleurs de fond des widgets et les couleurs des commandes lorsque le widget est de type graduel, par exemple les lumières, les volets, les températures.</p>
+<p>Para cada categoría se puede elegir un color diferente para la versión de escritorio y la versión móvil. También hay 2 tipos de colores, los colores de fondo de los widgets y colores de comandos color cuando el widget es de tipo gradual, por ejemplo, las luces, persianas, temperaturas.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -685,7 +685,7 @@ Si accede a través de HTTPS, el puerto por defecto es el 443 y si lo hace a tra
 </div>
 </div>
 <div class="paragraph">
-<p>Vous pouvez aussi configurer ici la transparence des widgets de manière globale (qui sera la valeur par défaut, il est possible ensuite de modifier cette valeur widget par widget)</p>
+<p>También puede ajustar la transparencia de los widgets en una forma global (que será el valor por defecto, es posible cambiar este valor widget por widget)</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -729,7 +729,7 @@ No olvide guardar los cambios después de hacer modificaciones
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configuration_des_interactions">6. Configuration des interactions</h2>
+<h2 id="_configuración_de_interacciones">6. Configuración de interacciones</h2>
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
@@ -833,7 +833,7 @@ No olvide guardar los cambios después de hacer modificaciones
 <p>Hacer una copia de seguridad antes de la actualización</p>
 </li>
 <li>
-<p>Vérifier automatiquement s&#8217;il y a des mises à jour</p>
+<p>Comprueba automáticamente si hay actualizaciones</p>
 </li>
 </ul>
 </div>
@@ -843,12 +843,12 @@ No olvide guardar los cambios después de hacer modificaciones
 <h2 id="_depósitos">11. Depósitos</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Les dépots sont des espaces de stockage (et de service) pour pouvoir mettre des backups, récupérer des plugins, récupérer le core de jeedom&#8230;&#8203;.</p>
+<p>Los depósitos son espacios de almacenamiento (y servicio) para poder poner copias de seguridad, obtener plugins, recuperar la base de jeedom&#8230;&#8203;</p>
 </div>
 <div class="sect3">
 <h4 id="_market">11.1. Market</h4>
 <div class="paragraph">
-<p>Dépôt servant à relier Jeedom au market, il est vivement conseillé d&#8217;utiliser ce dépôt. Attention toute demande de support pourra être refusée si vous utilisé un autre dépôt que celui-ci.</p>
+<p>Servidor de repositiorios conectados al market de Jeedom, es recomendable utilizar este repositorio. Atención cualquier solicitud de soporte podrá ser denegada si usted utiliza otro repositorio diferente a este.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -858,13 +858,13 @@ No olvide guardar los cambios después de hacer modificaciones
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Adresse</strong> : adresse du Market</p>
+<p><strong>Dirección</strong>: Dirección del market</p>
 </li>
 <li>
-<p><strong>Nom d&#8217;utilisateur</strong> : votre nom d&#8217;utilisateur sur le Market</p>
+<p><strong>Nombre de usuario</strong>: Su nombre de usuario para el market</p>
 </li>
 <li>
-<p><strong>Mot de passe</strong> : votre mot de passe du Market</p>
+<p><strong>Contraseña</strong>: Su contraseña para el market</p>
 </li>
 </ul>
 </div>
@@ -872,7 +872,7 @@ No olvide guardar los cambios después de hacer modificaciones
 <div class="sect3">
 <h4 id="_archivo">11.2. Archivo</h4>
 <div class="paragraph">
-<p>Dépôt servant à activer l&#8217;envoi de plugins par des fichiers</p>
+<p>Depósito para activar el  envio de ficheros de plugin</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -883,7 +883,7 @@ No olvide guardar los cambios después de hacer modificaciones
 <div class="sect3">
 <h4 id="_github">11.3. Github</h4>
 <div class="paragraph">
-<p>Dépôt servant à relier Jeedom à Github</p>
+<p>Depósito utilizado para conectar Jeedom a Github</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -893,10 +893,10 @@ No olvide guardar los cambios después de hacer modificaciones
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Token</strong> : Token pour l&#8217;accès au dépôt privé</p>
+<p><strong>Token</strong> : Token para el acceso al depositivo privada</p>
 </li>
 <li>
-<p><strong>Utilisateur ou organisation du dépôt pour le core Jeedom</strong></p>
+<p>*Usuario u organización del repositorio para el core de Jeedom *.</p>
 </li>
 <li>
 <p>*Nombre del repositorio para el core de Jeedom *.</p>
@@ -910,7 +910,7 @@ No olvide guardar los cambios después de hacer modificaciones
 <div class="sect3">
 <h4 id="_samba">11.4. Samba</h4>
 <div class="paragraph">
-<p>Dépôt permettant d&#8217;envoyer automatiquement un backup de Jeedom sur un partage Samba (ex NAS Synology)</p>
+<p>Repositorio para enviar un backup automático de jeedom en un recurso compartido de samba (ej. NAS Synology)</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -923,13 +923,13 @@ No olvide guardar los cambios después de hacer modificaciones
 <p><strong>[Backup] IP</strong> : IP del servidor Samba</p>
 </li>
 <li>
-<p><strong>[Backup] Utilisateur</strong> : Nom d&#8217;utilisateur pour la connexion (les connexions anonymes ne sont pas possibles)</p>
+<p>*[Usuario backup] *: Nombre de usuario para la conexión (conexiones anónimas no son posibles)</p>
 </li>
 <li>
 <p><strong>[Contraseña backup]</strong> : contraseña del usuario</p>
 </li>
 <li>
-<p><strong>[Backup] Partage</strong> : Chemin du partage (attention à bien s&#8217;arrêter au niveau du partage)</p>
+<p><strong>[Backup] recurso</strong> : La ruta del recurso compartido (Asegúrese de indicar la ruta compartida correcta)</p>
 </li>
 <li>
 <p>*[Ruta Backup] *: Ruta para compartirr (para ser relativa),  debe existir</p>
@@ -937,10 +937,10 @@ No olvide guardar los cambios después de hacer modificaciones
 </ul>
 </div>
 <div class="paragraph">
-<p>Il vous faudra peut-être installer le package smbclient pour que le dépôt fonctionne</p>
+<p>Tal vez necesite instalar el paquete smbclient para que repositorio funcione</p>
 </div>
 <div class="paragraph">
-<p>Jeedom doit être le seul à écrire dans ce dossier et il doit être vide par défaut (c&#8217;est à dire avant la configuration et l&#8217;envoi du premier backup le dossier ne doit contenir aucun fichier ou dossier)</p>
+<p>Jeedom debe poder escribir en esta carpeta, y debe estar vacía por defecto (es decir, que antes de hacer la configuración y enviar el primer Backup, la carpeta no puede contener ningún archivo o carpeta)</p>
 </div>
 </div>
 <div class="sect3">
