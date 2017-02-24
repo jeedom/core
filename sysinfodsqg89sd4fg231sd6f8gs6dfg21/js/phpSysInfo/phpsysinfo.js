@@ -71,7 +71,7 @@ function readCookie(name) {
     var nameEQ = "", ca = [], c = '', i = 0;
     nameEQ = name + "=";
     ca = document.cookie.split(';');
-    for (i = 0; i < ca.length; i += 1) {
+    for (i = 0; i < ca.length; i++) {
         c = ca[i];
         while (c.charAt(0) === ' ') {
             c = c.substring(1, c.length);
@@ -218,7 +218,7 @@ function genlang(id, generate, plugin) {
     }
     if (generate) {
         html += "<span id=\"lang_" + idString + "-" + langcounter.toString() + "\">";
-        langcounter += 1;
+        langcounter++;
     }
     else {
         html += "<span id=\"lang_" + idString + "\">";
@@ -687,7 +687,7 @@ function fillCpu(xml, tree, rootposition, collapsed) {
     var cpucount = 0, html = "";
     $("Hardware CPU CpuCore", xml).each(function getCpuCore(cpuCoreId) {
         var model = "", speed = 0, bus = 0, cache = 0, bogo = 0, temp = 0, load = 0, speedmax = 0, speedmin = 0, cpucoreposition = 0, virt = "";
-        cpucount += 1;
+        cpucount++;
         model = $(this).attr("Model");
         speed = parseInt($(this).attr("CpuSpeed"), 10);
         speedmax = parseInt($(this).attr("CpuSpeedMax"), 10);
@@ -754,7 +754,7 @@ function fillCpu(xml, tree, rootposition, collapsed) {
 function countCpu(xml) {
     var cpucount = 0;
     $("Hardware CPU CpuCore", xml).each(function getCpuCore(cpuCoreId) {
-        cpucount += 1;
+        cpucount++;
     });
     return cpucount;
 }
@@ -770,7 +770,7 @@ function fillHWDevice(xml, type, tree, rootposition) {
     var devicecount = 0, html = "";
     $("Hardware " + type + " Device", xml).each(function getPciDevice(deviceId) {
         var name = "", count = 0;
-        devicecount += 1;
+        devicecount++;
         name = $(this).attr("Name");
         count = parseInt($(this).attr("Count"), 10);
         if (!isNaN(count) && count > 1) {
@@ -789,7 +789,7 @@ function fillHWDevice(xml, type, tree, rootposition) {
 function countHWDevice(xml, type) {
     var devicecount = 0;
     $("Hardware " + type + " Device", xml).each(function getPciDevice(deviceId) {
-        devicecount += 1;
+        devicecount++;
     });
     return devicecount;
 }
@@ -819,46 +819,14 @@ function refreshHardware(xml) {
         html += fillCpu(xml, tree, tree.push(0), closed);
     }
 
-    if (countHWDevice(xml, 'PCI')) {
-        html += "    <tr><td colspan=\"2\"><span class=\"treespanbold\">" + genlang(17, false) + "</span></td></tr>\n";
-        index = tree.push(0);
-        closed.push(index);
-        html += fillHWDevice(xml, 'PCI', tree, index);
-    }
-
-    if (countHWDevice(xml, 'IDE')) {
-        html += "    <tr><td colspan=\"2\"><span class=\"treespanbold\">" + genlang(18, false) + "</span></td></tr>\n";
-        index = tree.push(0);
-        closed.push(index);
-        html += fillHWDevice(xml, 'IDE', tree, index);
-    }
-
-    if (countHWDevice(xml, 'SCSI')) {
-        html += "    <tr><td colspan=\"2\"><span class=\"treespanbold\">" + genlang(19, false) + "</span></td></tr>\n";
-        index = tree.push(0);
-        closed.push(index);
-        html += fillHWDevice(xml, 'SCSI', tree, index);
-    }
-
-    if (countHWDevice(xml, 'USB')) {
-        html += "    <tr><td colspan=\"2\"><span class=\"treespanbold\">" + genlang(20, false) + "</span></td></tr>\n";
-        index = tree.push(0);
-        closed.push(index);
-        html += fillHWDevice(xml, 'USB', tree, index);
-    }
-
-    if (countHWDevice(xml, 'TB')) {
-        html += "    <tr><td colspan=\"2\"><span class=\"treespanbold\">" + genlang(117, false) + "</span></td></tr>\n";
-        index = tree.push(0);
-        closed.push(index);
-        html += fillHWDevice(xml, 'TB', tree, index);
-    }
-
-    if (countHWDevice(xml, 'I2C')) {
-        html += "    <tr><td colspan=\"2\"><span class=\"treespanbold\">" + genlang(118, false) + "</span></td></tr>\n";
-        index = tree.push(0);
-        closed.push(index);
-        html += fillHWDevice(xml, 'I2C', tree, index);
+    var typelist = {PCI:17,IDE:18,SCSI:19,USB:20,TB:117,I2C:118};
+    for (var dev_type in typelist) {
+        if (countHWDevice(xml, dev_type)) {
+            html += "    <tr><td colspan=\"2\"><span class=\"treespanbold\">" + genlang(typelist[dev_type], false) + "</span></td></tr>\n";
+            index = tree.push(0);
+            closed.push(index);
+            html += fillHWDevice(xml, dev_type, tree, index);
+        }
     }
 
     html += "   </tbody>\n";
@@ -1081,7 +1049,7 @@ function refreshFilesystems(xml) {
         var mpoint = "", mpid = 0, type = "", name = "", free = 0, used = 0, size = 0, percent = 0, options = "", inodes = 0, inodes_text = "", options_text = "";
         mpid = parseInt($(this).attr("MountPointID"), 10);
         type = $(this).attr("FSType");
-        name = $(this).attr("Name");
+        name = $(this).attr("Name").replace(/;/g, ";<wbr>"); /* split long name */
         free = parseInt($(this).attr("Free"), 10);
         used = parseInt($(this).attr("Used"), 10);
         size = parseInt($(this).attr("Total"), 10);
@@ -1134,8 +1102,8 @@ function refreshTemp(xml) {
     $("MBInfo Temperature Item", xml).each(function getTemperatures(id) {
         var label = "", value = "", limit = 0, _limit = "", event = "";
         label = $(this).attr("Label");
-        value = $(this).attr("Value").replace(/\+/g, "");
-        limit = ($(this).attr("Max") !== undefined) ? parseFloat($(this).attr("Max").replace(/\+/g, "")) : 'NaN';
+        value = $(this).attr("Value");
+        limit = parseFloat($(this).attr("Max"));
         if (isFinite(limit))
             _limit = formatTemp(limit, xml);
         event = $(this).attr("Event");
@@ -1227,8 +1195,8 @@ function refreshPower(xml) {
     $("MBInfo Power Item", xml).each(function getPowers(id) {
         var label = "", value = "", limit = 0, _limit = "", event = "";
         label = $(this).attr("Label");
-        value = $(this).attr("Value").replace(/\+/g, "");
-        limit = ($(this).attr("Max") !== undefined) ? parseFloat($(this).attr("Max").replace(/\+/g, "")) : 'NaN';
+        value = $(this).attr("Value");
+        limit = parseFloat($(this).attr("Max"));
         if (isFinite(limit))
             _limit = round(limit, 2) + "&nbsp;" + genlang(103, true);
         event = $(this).attr("Event");
@@ -1255,16 +1223,21 @@ function refreshCurrent(xml) {
     var values = false;
     $("#currentTable tbody").empty();
     $("MBInfo Current Item", xml).each(function getCurrents(id) {
-        var label = "", value = "", limit = 0, _limit = "", event = "";
+        var label = "", value = "", min = 0, max = 0, _min = "", _max = "", event = "";
         label = $(this).attr("Label");
-        value = $(this).attr("Value").replace(/\+/g, "");
-        limit = ($(this).attr("Max") !== undefined) ? parseFloat($(this).attr("Max").replace(/\+/g, "")) : 'NaN';
-        if (isFinite(limit))
-            _limit = round(limit, 2) + "&nbsp;" + genlang(106, true);
+        value = $(this).attr("Value");
+
+        max = parseFloat($(this).attr("Max"));
+        if (isFinite(max))
+            _max = round(max, 2) + "&nbsp;" + genlang(106, true);
+        min = parseFloat($(this).attr("Min"));
+        if (isFinite(min))
+            _min = round(min, 2) + "&nbsp;" + genlang(106, true);
+
         event = $(this).attr("Event");
         if (event !== undefined)
             label += " <img style=\"vertical-align: middle; width:16px;\" src=\"./gfx/attention.gif\" alt=\"!\" title=\""+event+"\"/>";
-        $("#currentTable tbody").append("<tr><td>" + label + "</td><td class=\"right\">" + round(value, 2) + "&nbsp;" + genlang(106, true) + "</td><td class=\"right\">" + _limit + "</td></tr>");
+        $("#currentTable tbody").append("<tr><td>" + label + "</td><td class=\"right\">" + round(value, 2) + "&nbsp;" + genlang(106, true) + "</td><td class=\"right\">" + _min + "</td><td class=\"right\">" + _max + "</td></tr>");
         values = true;
     });
     if (values) {
@@ -1308,8 +1281,12 @@ function refreshUps(xml) {
         battery_voltage = $(this).attr("BatteryVoltage");
         battery_charge_percent = parseInt($(this).attr("BatteryChargePercent"), 10);
         time_left_minutes = $(this).attr("TimeLeftMinutes");
-
-        html += "<tr><td colspan=\"2\"><span class=\"treespanbold\">" + name + " (" + mode + ")</span></td></tr>\n";
+        
+        if (mode !== undefined) {
+            html += "<tr><td colspan=\"2\"><span class=\"treespanbold\">" + name + " (" + mode + ")</span></td></tr>\n";
+        } else {
+            html += "<tr><td colspan=\"2\"><span class=\"treespanbold\">" + name + "</span></td></tr>\n";
+        }
         index = tree.push(0);
         if (model !== undefined) {
             html += "<tr><td style=\"width:160px\"><span class=\"treespan\">" + genlang(70, true) + "</span></td><td>" + model + "</td></tr>\n";
@@ -1423,7 +1400,7 @@ function reload() {
             refreshCurrent(xml);
             refreshUps(xml);
 
-            for (var i = 0; i < plugin_liste.length; i += 1) {
+            for (var i = 0; i < plugin_liste.length; i++) {
                 try {
                     //dynamic call
                     window[plugin_liste[i].toLowerCase() + '_request']();
@@ -1464,7 +1441,7 @@ $(document).ready(function buildpage() {
     if ($("#language option").length < 2) {
         current_language = $("#language").val().toString();
         changeLanguage();
-        for (i = 0; i < plugin_liste.length; i += 1) {
+        for (i = 0; i < plugin_liste.length; i++) {
             changeLanguage(plugin_liste[i]);
         }
     } else {
@@ -1476,7 +1453,7 @@ $(document).ready(function buildpage() {
             current_language = $("#language").val().toString();
         }
         changeLanguage();
-        for (i = 0; i < plugin_liste.length; i += 1) {
+        for (i = 0; i < plugin_liste.length; i++) {
             changeLanguage(plugin_liste[i]);
         }
         $('#language').show();
@@ -1486,7 +1463,7 @@ $(document).ready(function buildpage() {
             current_language = $("#language").val().toString();
             createCookie('psi_language', current_language, 365);
             changeLanguage();
-            for (i = 0; i < plugin_liste.length; i += 1) {
+            for (i = 0; i < plugin_liste.length; i++) {
                 changeLanguage(plugin_liste[i]);
             }
             return false;

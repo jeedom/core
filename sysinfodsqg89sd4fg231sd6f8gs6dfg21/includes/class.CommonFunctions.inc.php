@@ -65,11 +65,12 @@ class CommonFunctions
             return;
         }
         $arrPath = array();
-        if ((PSI_OS == 'WINNT') && empty($path_parts['extension'])) {
-            $strProgram .= '.exe';
-            $path_parts = pathinfo($strProgram);
-        }
+
         if (empty($path_parts['dirname']) || ($path_parts['dirname'] == '.')) {
+            if ((PSI_OS == 'WINNT') && empty($path_parts['extension'])) {
+                $strProgram .= '.exe';
+                $path_parts = pathinfo($strProgram);
+            }
             if (PSI_OS == 'WINNT') {
                 $arrPath = preg_split('/;/', getenv("Path"), -1, PREG_SPLIT_NO_EMPTY);
             } else {
@@ -82,7 +83,7 @@ class CommonFunctions
                     $arrPath = array_merge(array(PSI_ADD_PATHS), $arrPath); // In this order so $addpaths is before $arrPath when looking for a program
                 }
             }
-        } else {
+        } else { //directory defined
             array_push($arrPath, $path_parts['dirname']);
             $strProgram = $path_parts['basename'];
         }
@@ -110,60 +111,22 @@ class CommonFunctions
             $exceptPath = '/system/bin';
         }
 
-        // If open_basedir defined, fill the $open_basedir array with authorized paths,. (Not tested when no open_basedir restriction)
-        if ((bool) ini_get('open_basedir')) {
-            if (PSI_OS == 'WINNT') {
-                $open_basedir = preg_split('/;/', ini_get('open_basedir'), -1, PREG_SPLIT_NO_EMPTY);
-            } else {
-                $open_basedir = preg_split('/:/', ini_get('open_basedir'), -1, PREG_SPLIT_NO_EMPTY);
-            }
-        }
         foreach ($arrPath as $strPath) {
-            // Path with trailing slash
+            // Path with and without trailing slash
             if (PSI_OS == 'WINNT') {
-                $strPathS = rtrim($strPath, "\\")."\\";
+                $strPath = rtrim($strPath, "\\");
+                $strPathS = $strPath."\\";
             } else {
-                $strPathS = rtrim($strPath, "/")."/";
-            }
-            // To avoid "open_basedir restriction in effect" error when testing paths if restriction is enabled
-            if (isset($open_basedir)) {
-                $inBaseDir = false;
-                if (PSI_OS == 'WINNT') {
-                    foreach ($open_basedir as $openbasedir) {
-                        if (substr($openbasedir, -1)=="\\") {
-                            $str_Path = $strPathS;
-                        } else {
-                            $str_Path = $strPath;
-                        }
-                        if (stripos($str_Path, $openbasedir) === 0) {
-                            $inBaseDir = true;
-                            break;
-                        }
-                    }
-                } else {
-                    foreach ($open_basedir as $openbasedir) {
-                        if (substr($openbasedir, -1)=="/") {
-                            $str_Path = $strPathS;
-                        } else {
-                            $str_Path = $strPath;
-                        }
-                        if (strpos($str_Path, $openbasedir) === 0) {
-                            $inBaseDir = true;
-                            break;
-                        }
-                    }
-                }
-                if ($inBaseDir == false) {
-                    continue;
-                }
+                $strPath = rtrim($strPath, "/");
+                $strPathS = $strPath."/";
             }
             if (($strPath !== $exceptPath) && !is_dir($strPath)) {
                 continue;
             }
             if (PSI_OS == 'WINNT') {
-                $strProgrammpath = rtrim($strPath, "\\")."\\".$strProgram;
+                $strProgrammpath = $strPathS.$strProgram;
             } else {
-                $strProgrammpath = rtrim($strPath, "/")."/".$strProgram;
+                $strProgrammpath = $strPathS.$strProgram;
             }
             if (is_executable($strProgrammpath)) {
                 return $strProgrammpath;
@@ -208,11 +171,40 @@ class CommonFunctions
         $error = PSI_Error::singleton();
         if (!$strProgram) {
             if ($booErrorRep) {
-                $error->addError('find_program('.$strProgramname.')', 'program not found on the machine');
+                $error->addError('find_program("'.$strProgramname.'")', 'program not found on the machine');
             }
 
             return false;
+        } else {
+            if (preg_match('/\s/', $strProgram)) {
+                $strProgram = '"'.$strProgram.'"';
+            }
         }
+
+        if ((PSI_OS !== 'WINNT') && defined('PSI_SUDO_COMMANDS') && is_string(PSI_SUDO_COMMANDS)) {
+            if (preg_match(ARRAY_EXP, PSI_SUDO_COMMANDS)) {
+                $sudocommands = eval(PSI_SUDO_COMMANDS);
+            } else {
+                $sudocommands = array(PSI_SUDO_COMMANDS);
+            }
+            if (in_array($strProgramname, $sudocommands)) {
+                $sudoProgram = self::_findProgram("sudo");
+                if (!$sudoProgram) {
+                    if ($booErrorRep) {
+                        $error->addError('find_program("sudo")', 'program not found on the machine');
+                    }
+
+                    return false;
+                } else {
+                    if (preg_match('/\s/', $sudoProgram)) {
+                        $strProgram = '"'.$sudoProgram.'" '.$strProgram;
+                    } else {
+                        $strProgram = $sudoProgram.' '.$strProgram;
+                    }
+                }
+            }
+        }
+
         // see if we've gotten a |, if we have we need to do path checking on the cmd
         if ($strArgs) {
             $arrArgs = preg_split('/ /', $strArgs, -1, PREG_SPLIT_NO_EMPTY);
@@ -223,16 +215,17 @@ class CommonFunctions
                     $strArgs = preg_replace("/\| ".$strCmd.'/', '| "'.$strNewcmd.'"', $strArgs);
                 }
             }
+            $strArgs = ' '.$strArgs;
         }
         $descriptorspec = array(0=>array("pipe", "r"), 1=>array("pipe", "w"), 2=>array("pipe", "w"));
         if (defined("PSI_MODE_POPEN") && PSI_MODE_POPEN === true) {
             if (PSI_OS == 'WINNT') {
-                $process = $pipes[1] = popen('"'.$strProgram.'" '.$strArgs." 2>nul", "r");
+                $process = $pipes[1] = popen($strProgram.$strArgs." 2>nul", "r");
             } else {
-                $process = $pipes[1] = popen('"'.$strProgram.'" '.$strArgs." 2>/dev/null", "r");
+                $process = $pipes[1] = popen($strProgram.$strArgs." 2>/dev/null", "r");
             }
         } else {
-            $process = proc_open('"'.$strProgram.'" '.$strArgs, $descriptorspec, $pipes);
+            $process = proc_open($strProgram.$strArgs, $descriptorspec, $pipes);
         }
         if (is_resource($process)) {
             self::_timeoutfgets($pipes, $strBuffer, $strError);
@@ -256,7 +249,7 @@ class CommonFunctions
         $strError = trim($strError);
         $strBuffer = trim($strBuffer);
         if (defined('PSI_LOG') && is_string(PSI_LOG) && (strlen(PSI_LOG)>0) && (substr(PSI_LOG, 0, 1)!="-") && (substr(PSI_LOG, 0, 1)!="+")) {
-            error_log("---".gmdate('r T')."--- Executing: ".trim($strProgramname.' '.$strArgs)."\n".$strBuffer."\n", 3, PSI_LOG);
+            error_log("---".gmdate('r T')."--- Executing: ".trim($strProgramname.$strArgs)."\n".$strBuffer."\n", 3, PSI_LOG);
         }
         if (! empty($strError)) {
             if ($booErrorRep) {

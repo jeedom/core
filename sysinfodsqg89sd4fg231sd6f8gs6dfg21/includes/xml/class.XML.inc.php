@@ -502,6 +502,9 @@ class XML
                     $item = $current->addChild('Item');
                     $item->addAttribute('Label', $dev->getName());
                     $item->addAttribute('Value', $dev->getValue());
+                    if ($dev->getMin() !== null) {
+                        $item->addAttribute('Min', $dev->getMin());
+                    }
                     if ($dev->getMax() !== null) {
                         $item->addAttribute('Max', $dev->getMax());
                     }
@@ -534,7 +537,9 @@ class XML
                     if ($ups->getModel() !== "") {
                         $item->addAttribute('Model', $ups->getModel());
                     }
-                    $item->addAttribute('Mode', $ups->getMode());
+                    if ($ups->getMode() !== "") {
+                        $item->addAttribute('Mode', $ups->getMode());
+                    }
                     if ($ups->getStartTime() !== "") {
                         $item->addAttribute('StartTime', $ups->getStartTime());
                     }

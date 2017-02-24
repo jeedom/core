@@ -37,29 +37,14 @@ class BAT extends PSI_Plugin
             if (PSI_OS == 'WINNT') {
                 $_cim = null; //root\CIMv2
                 $_wmi = null; //root\WMI
-                // don't set this params for local connection, it will not work
-                $strHostname = '';
-                $strUser = '';
-                $strPassword = '';
                 try {
                     // initialize the wmi object
                     $objLocatorCIM = new COM('WbemScripting.SWbemLocator');
-                    if ($strHostname == "") {
-                        $_cim = $objLocatorCIM->ConnectServer();
-
-                    } else {
-                        $_cim = $objLocatorCIM->ConnectServer($strHostname, 'root\CIMv2', $strHostname.'\\'.$strUser, $strPassword);
-                    }
+                    $_cim = $objLocatorCIM->ConnectServer('', 'root\CIMv2');
 
                     // initialize the wmi object
                     $objLocatorWMI = new COM('WbemScripting.SWbemLocator');
-                    if ($strHostname == "") {
-                        $_wmi = $objLocatorWMI->ConnectServer($strHostname, 'root\WMI');
-
-                    } else {
-                        $_wmi = $objLocatorWMI->ConnectServer($strHostname, 'root\WMI', $strHostname.'\\'.$strUser, $strPassword);
-                    }
-
+                    $_wmi = $objLocatorWMI->ConnectServer('', 'root\WMI');
                 } catch (Exception $e) {
                     $this->global_error->addError("WMI connect error", "PhpSysInfo can not connect to the WMI interface for security reasons.\nCheck an authentication mechanism for the directory where phpSysInfo is installed.");
                 }
@@ -292,10 +277,18 @@ class BAT extends PSI_Plugin
                 }
             } elseif (preg_match('/^POWER_SUPPLY_ENERGY_FULL=(.*)$/', $roworig, $data)) {
                 $bat['full_capacity'] = ($data[1]/1000);
-                if (!isset($bat['capacity_unit'])) {
-                    $bat['capacity_unit'] = "mWh";
-                } elseif ($bat['capacity_unit'] != "mWh") {
-                    $bat['capacity_unit'] = "???";
+                if ($data[1]>=1000000000) { // µWh or nWh detection
+                    if (!isset($bat['capacity_unit'])) {
+                        $bat['capacity_unit'] = "µWh";
+                    } elseif ($bat['capacity_unit'] != "µWh") {
+                        $bat['capacity_unit'] = "???";
+                    }
+                } else {
+                    if (!isset($bat['capacity_unit'])) {
+                        $bat['capacity_unit'] = "mWh";
+                    } elseif ($bat['capacity_unit'] != "mWh") {
+                        $bat['capacity_unit'] = "???";
+                    }
                 }
             } elseif (preg_match('/^POWER_SUPPLY_CHARGE_FULL=(.*)$/', $roworig, $data)) {
                 $bat['full_capacity'] = ($data[1]/1000);
@@ -318,10 +311,18 @@ class BAT extends PSI_Plugin
             /* auxiary */
             } elseif (preg_match('/^POWER_SUPPLY_ENERGY_FULL_DESIGN=(.*)$/', $roworig, $data)) {
                 $bat['design_capacity'] = ($data[1]/1000);
-                if (!isset($bat['capacity_unit'])) {
-                    $bat['capacity_unit'] = "mWh";
-                } elseif ($bat['capacity_unit'] != "mWh") {
-                    $bat['capacity_unit'] = "???";
+                if ($data[1]>=1000000000) { // µWh or nWh detection
+                    if (!isset($bat['capacity_unit'])) {
+                        $bat['capacity_unit'] = "µWh";
+                    } elseif ($bat['capacity_unit'] != "µWh") {
+                        $bat['capacity_unit'] = "???";
+                    }
+                } else {
+                    if (!isset($bat['capacity_unit'])) {
+                        $bat['capacity_unit'] = "mWh";
+                    } elseif ($bat['capacity_unit'] != "mWh") {
+                        $bat['capacity_unit'] = "???";
+                    }
                 }
             } elseif (preg_match('/^POWER_SUPPLY_CHARGE_FULL_DESIGN=(.*)$/', $roworig, $data)) {
                 $bat['design_capacity'] = ($data[1]/1000);
@@ -451,10 +452,18 @@ class BAT extends PSI_Plugin
                 }
             } elseif (preg_match('/^POWER_SUPPLY_ENERGY_FULL=(.*)$/', $roworig, $data)) {
                 $bat['full_capacity'] = ($data[1]/1000);
-                if (!isset($bat['capacity_unit'])) {
-                    $bat['capacity_unit'] = "mWh";
-                } elseif ($bat['capacity_unit'] != "mWh") {
-                    $bat['capacity_unit'] = "???";
+                if ($data[1]>=1000000000) { // µWh or nWh detection
+                    if (!isset($bat['capacity_unit'])) {
+                        $bat['capacity_unit'] = "µWh";
+                    } elseif ($bat['capacity_unit'] != "µWh") {
+                        $bat['capacity_unit'] = "???";
+                    }
+                } else {
+                    if (!isset($bat['capacity_unit'])) {
+                        $bat['capacity_unit'] = "mWh";
+                    } elseif ($bat['capacity_unit'] != "mWh") {
+                        $bat['capacity_unit'] = "???";
+                    }
                 }
             } elseif (preg_match('/^POWER_SUPPLY_CHARGE_FULL=(.*)$/', $roworig, $data)) {
                 $bat['full_capacity'] = ($data[1]/1000);
