@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v5.0.0 (2016-09-29)
+ * @license Highcharts JS v5.0.7 (2017-01-17)
  * Highcharts Drilldown module
  * 
  * Author: Torstein Honsi
@@ -75,7 +75,12 @@
          */
         each(['fill', 'stroke'], function(prop) {
             H.Fx.prototype[prop + 'Setter'] = function() {
-                this.elem.attr(prop, tweenColors(color(this.start), color(this.end), this.pos));
+                this.elem.attr(
+                    prop,
+                    tweenColors(color(this.start), color(this.end), this.pos),
+                    null,
+                    true
+                );
             };
         });
 
@@ -194,6 +199,7 @@
                 levelSeries: levelSeries,
                 shapeArgs: point.shapeArgs,
                 bBox: point.graphic ? point.graphic.getBBox() : {}, // no graphic in line series with markers disabled
+                color: point.isNull ? new H.Color(color).setOpacity(0).get() : color,
                 lowerSeriesOptions: ddOptions,
                 pointOptions: oldSeries.options.data[pointIndex],
                 pointIndex: pointIndex,
@@ -397,15 +403,25 @@
                 var newSeries = this,
                     level = newSeries.drilldownLevel;
 
+                // First hide all items before animating in again
                 each(this.points, function(point) {
+                    var dataLabel = point.dataLabel;
+
                     if (point.graphic) { // #3407
                         point.graphic.hide();
                     }
-                    if (point.dataLabel) {
-                        point.dataLabel.hide();
-                    }
-                    if (point.connector) {
-                        point.connector.hide();
+
+                    if (dataLabel) {
+                        // The data label is initially hidden, make sure it is not faded
+                        // in (#6127)
+                        dataLabel.hidden = dataLabel.attr('visibility') === 'hidden';
+
+                        if (!dataLabel.hidden) {
+                            dataLabel.hide();
+                            if (point.connector) {
+                                point.connector.hide();
+                            }
+                        }
                     }
                 });
 
@@ -415,16 +431,21 @@
                     if (newSeries.points) { // May be destroyed in the meantime, #3389
                         each(newSeries.points, function(point, i) {
                             // Fade in other points			  
-                            var verb = i === (level && level.pointIndex) ? 'show' : 'fadeIn',
-                                inherit = verb === 'show' ? true : undefined;
+                            var verb =
+                                i === (level && level.pointIndex) ? 'show' : 'fadeIn',
+                                inherit = verb === 'show' ? true : undefined,
+                                dataLabel = point.dataLabel;
+
+
                             if (point.graphic) { // #3407
                                 point.graphic[verb](inherit);
                             }
-                            if (point.dataLabel) {
-                                point.dataLabel[verb](inherit);
-                            }
-                            if (point.connector) {
-                                point.connector[verb](inherit);
+
+                            if (dataLabel && !dataLabel.hidden) { // #6127
+                                dataLabel[verb](inherit);
+                                if (point.connector) {
+                                    point.connector[verb](inherit);
+                                }
                             }
                         });
                     }
@@ -642,7 +663,7 @@
                     points = series.points;
 
                 for (i = 0; i < xData.length; i++) {
-                    if (xData[i] === x && series.options.data[i].drilldown) {
+                    if (xData[i] === x && series.options.data[i] && series.options.data[i].drilldown) {
                         ret.push(points ? points[i] : true);
                         break;
                     }
@@ -717,7 +738,7 @@
                 // Add the click event to the point 
                 H.addEvent(point, 'click', function(e) {
                     if (series.xAxis && series.chart.options.drilldown.allowPointDrilldown === false) {
-                        series.xAxis.drilldownCategory(x, e);
+                        series.xAxis.drilldownCategory(point.x, e); // #5822, x changed
                     } else {
                         point.doDrilldown(undefined, undefined, e);
                     }

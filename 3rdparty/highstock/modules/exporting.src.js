@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v5.0.0 (2016-09-29)
+ * @license Highcharts JS v5.0.7 (2017-01-17)
  * Exporting module
  *
  * (c) 2010-2016 Torstein Honsi
@@ -39,7 +39,6 @@
             pick = H.pick,
             each = H.each,
             extend = H.extend,
-            splat = H.splat,
             isTouchDevice = H.isTouchDevice,
             win = H.win,
             SVGRenderer = H.SVGRenderer;
@@ -207,10 +206,25 @@
         extend(Chart.prototype, {
 
             /**
-             * A collection of regex fixes on the produces SVG to account for expando properties,
+             * A collection of fixes on the produced SVG to account for expando properties,
              * browser bugs, VML problems and other. Returns a cleaned SVG.
              */
-            sanitizeSVG: function(svg) {
+            sanitizeSVG: function(svg, options) {
+                // Move HTML into a foreignObject
+                if (options && options.exporting && options.exporting.allowHTML) {
+                    var html = svg.match(/<\/svg>(.*?$)/);
+                    if (html) {
+                        html = '<foreignObject x="0" y="0" ' +
+                            'width="' + options.chart.width + '" ' +
+                            'height="' + options.chart.height + '">' +
+                            '<body xmlns="http://www.w3.org/1999/xhtml">' +
+                            html[1] +
+                            '</body>' +
+                            '</foreignObject>';
+                        svg = svg.replace('</svg>', html + '</svg>');
+                    }
+                }
+
                 svg = svg
                     .replace(/zIndex="[^"]+"/g, '')
                     .replace(/isShadow="[^"]+"/g, '')
@@ -263,9 +277,13 @@
             },
 
             /**
-             * Return an SVG representation of the chart
+             * Return an SVG representation of the chart.
              *
-             * @param additionalOptions {Object} Additional chart options for the generated SVG representation
+             * @param additionalOptions {Object} Additional chart options for the
+             *    generated SVG representation. For collections like `xAxis`, `yAxis` or
+             *    `series`, the additional options is either merged in to the orininal
+             *    item of the same `id`, or to the first item if a commin id is not
+             *    found.
              */
             getSVG: function(additionalOptions) {
                 var chart = this,
@@ -277,9 +295,7 @@
                     sourceHeight,
                     cssWidth,
                     cssHeight,
-                    html,
-                    options = merge(chart.options, additionalOptions), // copy the options and add extra options
-                    allowHTML = options.exporting.allowHTML;
+                    options = merge(chart.options, additionalOptions); // copy the options and add extra options
 
 
                 // IE compatibility hack for generating SVG content that it doesn't really understand
@@ -336,59 +352,49 @@
                     }
                 });
 
-                // Axis options must be merged in one by one, since it may be an array or an object (#2022, #3900)
-                if (additionalOptions) {
-                    each(['xAxis', 'yAxis'], function(axisType) {
-                        each(splat(additionalOptions[axisType]), function(axisOptions, i) {
-                            options[axisType][i] = merge(options[axisType][i], axisOptions);
-                        });
-                    });
-                }
+                // Assign an internal key to ensure a one-to-one mapping (#5924)
+                each(chart.axes, function(axis) {
+                    axis.userOptions.internalKey = H.uniqueKey();
+                });
 
                 // generate the chart copy
                 chartCopy = new H.Chart(options, chart.callback);
 
-                // reflect axis extremes in the export
-                each(['xAxis', 'yAxis'], function(axisType) {
-                    each(chart[axisType], function(axis, i) {
-                        var axisCopy = chartCopy[axisType][i],
-                            extremes = axis.getExtremes(),
-                            userMin = extremes.userMin,
-                            userMax = extremes.userMax;
-
-                        if (axisCopy && (userMin !== undefined || userMax !== undefined)) {
-                            axisCopy.setExtremes(userMin, userMax, true, false);
+                // Axis options and series options  (#2022, #3900, #5982)
+                if (additionalOptions) {
+                    each(['xAxis', 'yAxis', 'series'], function(coll) {
+                        var collOptions = {};
+                        if (additionalOptions[coll]) {
+                            collOptions[coll] = additionalOptions[coll];
+                            chartCopy.update(collOptions);
                         }
                     });
+                }
+
+                // Reflect axis extremes in the export (#5924)
+                each(chart.axes, function(axis) {
+                    var axisCopy = H.find(chartCopy.axes, function(copy) {
+                            return copy.options.internalKey ===
+                                axis.userOptions.internalKey;
+                        }),
+                        extremes = axis.getExtremes(),
+                        userMin = extremes.userMin,
+                        userMax = extremes.userMax;
+
+                    if (axisCopy && (userMin !== undefined || userMax !== undefined)) {
+                        axisCopy.setExtremes(userMin, userMax, true, false);
+                    }
                 });
 
-                // get the SVG from the container's innerHTML
+                // Get the SVG from the container's innerHTML
                 svg = chartCopy.getChartHTML();
+
+                svg = chart.sanitizeSVG(svg, options);
 
                 // free up memory
                 options = null;
                 chartCopy.destroy();
                 discardElement(sandbox);
-
-                // Move HTML into a foreignObject
-                if (allowHTML) {
-                    html = svg.match(/<\/svg>(.*?$)/);
-                    if (html) {
-                        html = '<foreignObject x="0" y="0" width="200" height="200">' +
-                            '<body xmlns="http://www.w3.org/1999/xhtml">' +
-                            html[1] +
-                            '</body>' +
-                            '</foreignObject>';
-                        svg = svg.replace('</svg>', html + '</svg>');
-                    }
-                }
-
-                // sanitize
-                svg = this.sanitizeSVG(svg);
-
-                // IE9 beta bugs with innerHTML. Test again with final IE9.
-                svg = svg.replace(/(url\(#highcharts-[0-9]+)&quot;/g, '$1')
-                    .replace(/&quot;/g, '\'');
 
                 return svg;
             },
@@ -526,13 +532,8 @@
                     menuPadding = Math.max(width, height), // for mouse leave detection
                     innerMenu,
                     hide,
-                    hideTimer,
                     menuStyle,
-                    docMouseUpHandler = function(e) {
-                        if (!chart.pointer.inClass(e.target, className)) {
-                            hide();
-                        }
-                    };
+                    removeMouseUp;
 
                 // create the menu only the first time
                 if (!menu) {
@@ -572,18 +573,21 @@
 
                     // Hide the menu some time after mouse leave (#1357)
                     addEvent(menu, 'mouseleave', function() {
-                        hideTimer = setTimeout(hide, 500);
+                        menu.hideTimer = setTimeout(hide, 500);
                     });
                     addEvent(menu, 'mouseenter', function() {
-                        clearTimeout(hideTimer);
+                        clearTimeout(menu.hideTimer);
                     });
 
 
-                    // Hide it on clicking or touching outside the menu (#2258, #2335, #2407)
-                    addEvent(doc, 'mouseup', docMouseUpHandler);
-                    addEvent(chart, 'destroy', function() {
-                        removeEvent(doc, 'mouseup', docMouseUpHandler);
+                    // Hide it on clicking or touching outside the menu (#2258, #2335,
+                    // #2407)
+                    removeMouseUp = addEvent(doc, 'mouseup', function(e) {
+                        if (!chart.pointer.inClass(e.target, className)) {
+                            hide();
+                        }
                     });
+                    addEvent(chart, 'destroy', removeMouseUp);
 
 
                     // create the items
@@ -794,6 +798,7 @@
                     each(exportDivElements, function(elem, i) {
 
                         // Remove the event handler
+                        clearTimeout(elem.hideTimer); // #5427
                         removeEvent(elem, 'mouseleave');
 
                         // Remove inline events
