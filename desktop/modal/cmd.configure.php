@@ -87,94 +87,121 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                     </div>
                   </div>
 
+                  <?php if ($cmd->getType() == 'info') {?>
                   <div class="form-group">
-                    <label class="col-xs-4 control-label">{{URL directe}}</label>
-                    <div class="col-xs-8">
-                      <?php
-echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fa fa-external-link"></i> URL</a>';
-?>
+                    <label class="col-xs-4 control-label">{{Valeur}}</label>
+                    <div class="col-xs-4">
+                      <span class="label label-primary" style="font-size : 1em;"><?php echo $cmd->getCache('value') ?></span>
                     </div>
                   </div>
+
+                  <div class="form-group">
+                    <label class="col-xs-4 control-label">{{Date collecte}}</label>
+                    <div class="col-xs-4">
+                      <span class="label label-primary" style="font-size : 1em;"><?php echo $cmd->getCache('collectDate') ?></span>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-xs-4 control-label">{{Date valeur}}</label>
+                    <div class="col-xs-4">
+                      <span class="label label-primary" style="font-size : 1em;"><?php echo $cmd->getCache('valueDate') ?></span>
+                    </div>
+                  </div>
+                  <?php }?>
+
+
                 </fieldset>
               </form>
             </div>
             <div class="col-sm-6" >
               <form class="form-horizontal">
                 <fieldset>
-                  <div class="form-group">
-                    <label class="col-xs-4 control-label">{{Unité}}</label>
-                    <div class="col-xs-4">
-                      <span class="cmdAttr label label-primary" data-l1key="unite" style="font-size : 1em;"></span>
-                    </div>
-                  </div>
 
-                  <div class="form-group">
-                    <label class="col-xs-4 control-label">{{Commande déclenchant une mise à jour}}</label>
-                    <div class="col-xs-4">
-                      <span class="cmdAttr label label-primary" data-l1key="value" style="font-size : 1em;"></span>
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label class="col-xs-4 control-label">{{Visible}}</label>
-                    <div class="col-xs-4">
-                      <input type="checkbox" class="cmdAttr" data-l1key="isVisible" />
-                    </div>
-                  </div>
-                  <div class="iconeGeneric">
-                   <label class="col-xs-4 control-label">{{Icône}}</label>
-                   <div class="col-xs-4">
-                    <span class="cmdAttr label label-info cursor" data-l1key="display" data-l2key="icon" style="font-size : 1.5em;" ></span>
-                    <a class="btn btn-default btn-sm" id="bt_cmdConfigureChooseIcon"><i class="fa fa-flag"></i> {{Icône}}</a>
+                 <div class="form-group">
+                  <label class="col-xs-4 control-label">{{URL directe}}</label>
+                  <div class="col-xs-8">
+                    <?php
+echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fa fa-external-link"></i> URL</a>';
+?>
                   </div>
                 </div>
-              </fieldset>
-            </form>
-          </div>
-        </div>
 
-        <legend><i class="fa fa-search"></i> {{Utilisé par}}
-          <a class="btn btn-xs btn-warning pull-right" id="bt_cmdConfigureReplaceMeBy"><i class="fa fa-download" aria-hidden="true"></i> {{Remplacer cette commande par la commande}}</a>
-          <a class="btn btn-xs btn-warning pull-right" id="bt_cmdConfigureReplaceByMe"><i class="fa fa-upload" aria-hidden="true"></i> {{Cette commande remplace la commande}}</a>
-          <a class="btn btn-xs btn-warning pull-right" id="bt_cmdConfigureReplaceIdByMe"><i class="fa fa-upload" aria-hidden="true"></i> {{Cette commande remplace l'id}}</a>
-        </legend>
-        <form class="form-horizontal">
-          <fieldset id="fd_cmdUsedBy">
-           <?php
+
+                <div class="form-group">
+                  <label class="col-xs-4 control-label">{{Unité}}</label>
+                  <div class="col-xs-4">
+                    <span class="cmdAttr label label-primary" data-l1key="unite" style="font-size : 1em;"></span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-xs-4 control-label">{{Commande déclenchant une mise à jour}}</label>
+                  <div class="col-xs-4">
+                    <span class="cmdAttr label label-primary" data-l1key="value" style="font-size : 1em;"></span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-xs-4 control-label">{{Visible}}</label>
+                  <div class="col-xs-4">
+                    <input type="checkbox" class="cmdAttr" data-l1key="isVisible" />
+                  </div>
+                </div>
+                <div class="iconeGeneric">
+                 <label class="col-xs-4 control-label">{{Icône}}</label>
+                 <div class="col-xs-4">
+                  <span class="cmdAttr label label-info cursor" data-l1key="display" data-l2key="icon" style="font-size : 1.5em;" ></span>
+                  <a class="btn btn-default btn-sm" id="bt_cmdConfigureChooseIcon"><i class="fa fa-flag"></i> {{Icône}}</a>
+                </div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+
+      <legend><i class="fa fa-search"></i> {{Utilisé par}}
+        <a class="btn btn-xs btn-warning pull-right" id="bt_cmdConfigureReplaceMeBy"><i class="fa fa-download" aria-hidden="true"></i> {{Remplacer cette commande par la commande}}</a>
+        <a class="btn btn-xs btn-warning pull-right" id="bt_cmdConfigureReplaceByMe"><i class="fa fa-upload" aria-hidden="true"></i> {{Cette commande remplace la commande}}</a>
+        <a class="btn btn-xs btn-warning pull-right" id="bt_cmdConfigureReplaceIdByMe"><i class="fa fa-upload" aria-hidden="true"></i> {{Cette commande remplace l'id}}</a>
+      </legend>
+      <form class="form-horizontal">
+        <fieldset id="fd_cmdUsedBy">
+         <?php
 $usedBy = $cmd->getUsedBy();
 ?>
-           <div class="form-group">
-            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Equipement}}</label>
-            <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
-              <?php
-foreach ($usedBy['eqLogic'] as $usedByEqLogic) {
-	echo '<span class="label label-primary cursor"><a href="' . $usedByEqLogic->getLinkToConfiguration() . '" style="color : white;">' . $usedByEqLogic->getHumanName() . '</a></span><br/>';
-}
-?>
-           </div>
-         </div>
          <div class="form-group">
-          <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commandes}}</label>
+          <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Equipement}}</label>
           <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
             <?php
-foreach ($usedBy['cmd'] as $usedByCmd) {
-	echo '<span class="label label-primary cursor"><a href="' . $usedByCmd->getEqLogic()->getLinkToConfiguration() . '" style="color : white;">' . $usedByCmd->getHumanName() . '</a></span><br/>';
+foreach ($usedBy['eqLogic'] as $usedByEqLogic) {
+	echo '<span class="label label-primary cursor"><a href="' . $usedByEqLogic->getLinkToConfiguration() . '" style="color : white;">' . $usedByEqLogic->getHumanName() . '</a></span><br/>';
 }
 ?>
          </div>
        </div>
        <div class="form-group">
-        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Scénario}}</label>
+        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commandes}}</label>
         <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
           <?php
-foreach ($usedBy['scenario'] as $usedByScneario) {
-	echo '<span class="label label-primary cursor"><a href="' . $usedByScneario->getLinkToConfiguration() . '" style="color : white;">' . $usedByScneario->getHumanName() . '</a></span><br/>';
+foreach ($usedBy['cmd'] as $usedByCmd) {
+	echo '<span class="label label-primary cursor"><a href="' . $usedByCmd->getEqLogic()->getLinkToConfiguration() . '" style="color : white;">' . $usedByCmd->getHumanName() . '</a></span><br/>';
 }
 ?>
        </div>
      </div>
-   </fieldset>
- </form>
+     <div class="form-group">
+      <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Scénario}}</label>
+      <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
+        <?php
+foreach ($usedBy['scenario'] as $usedByScneario) {
+	echo '<span class="label label-primary cursor"><a href="' . $usedByScneario->getLinkToConfiguration() . '" style="color : white;">' . $usedByScneario->getHumanName() . '</a></span><br/>';
+}
+?>
+     </div>
+   </div>
+ </fieldset>
+</form>
 </div>
 <div role="tabpanel" class="tab-pane" id="cmd_configuration">
   <br/>
@@ -540,9 +567,9 @@ foreach ($groups as $group) {
 ?>
 <?php if ($cmd->getType() == 'info') {
 	?>
-<div role="tabpanel" class="tab-pane" id="cmd_alert">
-  <br/>
-  <?php
+  <div role="tabpanel" class="tab-pane" id="cmd_alert">
+    <br/>
+    <?php
 foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
 		if (!$value['check']) {
 			continue;
@@ -566,13 +593,13 @@ foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
 		echo '</form>';
 	}
 	?>
-</div>
-<?php }
+ </div>
+ <?php }
 ?>
 
-<?php if ($cmd->widgetPossibility('custom')) {
+ <?php if ($cmd->widgetPossibility('custom')) {
 	?>
-  <div role="tabpanel" class="tab-pane" id="cmd_display">
+   <div role="tabpanel" class="tab-pane" id="cmd_display">
     <br/>
     <legend><i class="fa fa-tint"></i> {{Widget}}</legend>
     <table class="table table-bordered table-condensed">
