@@ -186,7 +186,6 @@ class cache {
 				$result[] = $matches[2][0];
 			}
 		}
-
 		$cleanCache = array(
 			'cmdCacheAttr' => 'cmd',
 			'cmd' => 'cmd',
@@ -196,7 +195,6 @@ class cache {
 			'cronCacheAttr' => 'cron',
 			'cron' => 'cron',
 		);
-
 		foreach ($result as $key) {
 			$matches = null;
 			if (strpos($key, '::lastCommunication') !== false) {
