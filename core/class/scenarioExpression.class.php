@@ -1027,7 +1027,7 @@ class scenarioExpression {
 						$limit = (is_numeric($timeout)) ? $timeout : 7200;
 					}
 					while ($result !== true) {
-						$expression = self::setTags($options['condition'], $scenario);
+						$expression = self::setTags($options['condition'], $scenario, true);
 						$result = evaluate($expression);
 						if ($occurence > $limit) {
 							$this->setLog($scenario, __('[Wait] Condition valide par dépassement de temps : ', __FILE__) . $expression . ' => ' . $result);
