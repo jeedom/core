@@ -58,6 +58,7 @@ Botón derecho del ratón en un elemento de un resumen domótico te lleva a una 
 * Possibilité sur l'historique de faire des regroupements par année
 * Le timeout sur la commande wait peut maintenant être un calcul
 * Correction d'un bug si il y a des " dans les parametres d'une action
+* Passage au sha512 pour le hash des mots de passe (le sha1 étant compromis)
 
 = 2.4.7
 
