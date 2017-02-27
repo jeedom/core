@@ -53,6 +53,20 @@ class cache {
 		}
 	}
 
+	public static function stats() {
+		$return = self::getCache()->getStats();
+		$return['count'] = __('Inconnu', __FILE__);
+		if (config::byKey('cache::engine') == 'FilesystemCache') {
+			$return['count'] = 0;
+			foreach (ls('/tmp/jeedom-cache') as $folder) {
+				foreach (ls('/tmp/jeedom-cache/' . $folder) as $file) {
+					$return['count']++;
+				}
+			}
+		}
+		return $return;
+	}
+
 	public static function getCache() {
 		if (self::$cache !== null) {
 			return self::$cache;

@@ -146,7 +146,7 @@
     cleanCache();
 });
 
-  $("#bt_flushCache").on('click', function (event) {
+ $("#bt_flushCache").on('click', function (event) {
     $.hideAlert();
     flushCache();
 });
@@ -325,45 +325,38 @@ function clearJeedomDate() {
 
 
 function flushCache() {
-    $.ajax({
-        type: "POST", 
-        url: "core/ajax/jeedom.ajax.php", 
-        data: {
-            action: "flushcache"
-        },
-        dataType: 'json',
-        error: function (request, status, error) {
-            handleAjaxError(request, status, error);
-        },
-        success: function (data) { 
-            if (data.state != 'ok') {
-                $('#div_alert').showAlert({message: data.result, level: 'danger'});
-                return;
-            }
-            $('#div_alert').showAlert({message: '{{Cache vidé}}', level: 'success'});
-        }
-    });
+  jeedom.cache.flush({
+    error: function (error) {
+     $('#div_alert').showAlert({message: data.result, level: 'danger'});
+ },
+ success: function (data) {
+    updateCacheStats();
+    $('#div_alert').showAlert({message: '{{Cache vidé}}', level: 'success'});
+}
+});
 }
 
 function cleanCache() {
-    $.ajax({
-        type: "POST", 
-        url: "core/ajax/jeedom.ajax.php", 
-        data: {
-            action: "cleancache"
-        },
-        dataType: 'json',
-        error: function (request, status, error) {
-            handleAjaxError(request, status, error);
-        },
-        success: function (data) { 
-            if (data.state != 'ok') {
-                $('#div_alert').showAlert({message: data.result, level: 'danger'});
-                return;
-            }
-            $('#div_alert').showAlert({message: '{{Cache nettoyé}}', level: 'success'});
-        }
-    });
+    jeedom.cache.clean({
+    error: function (error) {
+     $('#div_alert').showAlert({message: data.result, level: 'danger'});
+ },
+ success: function (data) {
+    updateCacheStats();
+    $('#div_alert').showAlert({message: '{{Cache nettoyé}}', level: 'success'});
+}
+});
+}
+
+function updateCacheStats(){
+ jeedom.cache.stats({
+    error: function (error) {
+     $('#div_alert').showAlert({message: data.result, level: 'danger'});
+ },
+ success: function (data) {
+    $('#span_cacheObject').html(data.count);
+}
+});
 }
 
 

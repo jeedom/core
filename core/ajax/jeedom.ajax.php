@@ -120,16 +120,6 @@ try {
 		ajax::success(jeedom::getConfiguration(init('key'), init('default')));
 	}
 
-	if (init('action') == 'flushcache') {
-		cache::flush();
-		ajax::success();
-	}
-
-	if (init('action') == 'cleancache') {
-		cache::clean();
-		ajax::success();
-	}
-
 	if (init('action') == 'resetHwKey') {
 		config::save('jeedom::installKey', '');
 		ajax::success();

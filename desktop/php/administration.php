@@ -767,6 +767,19 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
 							<div class="alert alert-info">
 								{{Attention toute modification du moteur de cache nécessite un redémarrage de Jeedom}}
 							</div>
+
+							<?php
+$stats = cache::stats();
+?>
+<div class="form-group">
+									<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Statistiques}}</label>
+									<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+										<?php
+echo '<span class="label label-primary" style="font-size:1em;"><span id="span_cacheObject">' . $stats['count'] . '</span> ' . __('objets', __FILE__) . '</span>';
+?>
+									</div>
+								</div>
+
 							<div class="form-group">
 								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Moteur de cache}}</label>
 								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
