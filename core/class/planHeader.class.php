@@ -92,8 +92,8 @@ class planHeader {
 		if (!file_exists($dir)) {
 			mkdir($dir);
 		}
-		if ($this->getImage('sha1') == '') {
-			$this->setImage('sha1', sha1($this->getImage('data')));
+		if ($this->getImage('sha512') == '') {
+			$this->setImage('sha512', sha512($this->getImage('data')));
 			$this->save();
 		}
 		$filename = $this->getImage('sha1') . '.' . $this->getImage('type');

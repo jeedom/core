@@ -509,7 +509,7 @@ if (init('type') != '') {
 						if ($cmd->getType() == 'action' && !$eqLogic->hasRight('x')) {
 							throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
 						}
-						if ($cmd->getType() == 'action' && $cmd->getConfiguration('actionCodeAccess') != '' && sha1($params['codeAccess']) != $cmd->getConfiguration('actionCodeAccess')) {
+						if (!$cmd->checkAccessCode($params['codeAccess'])) {
 							throw new Exception(__('Cette action nécessite un code d\'accès', __FILE__), -32005);
 						}
 						if ($cmd->getType() == 'action' && $cmd->getConfiguration('actionConfirm') == 1 && $params['confirmAction'] != 1) {
@@ -526,7 +526,7 @@ if (init('type') != '') {
 					if ($cmd->getType() == 'action' && !$eqLogic->hasRight('x')) {
 						throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
 					}
-					if ($cmd->getType() == 'action' && $cmd->getConfiguration('actionCodeAccess') != '' && sha1($params['codeAccess']) != $cmd->getConfiguration('actionCodeAccess')) {
+					if (!$cmd->checkAccessCode($params['codeAccess'])) {
 						throw new Exception(__('Cette action nécessite un code d\'accès', __FILE__), -32005);
 					}
 					if ($cmd->getType() == 'action' && $cmd->getConfiguration('actionConfirm') == 1 && $params['confirmAction'] != 1) {

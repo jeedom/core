@@ -172,7 +172,7 @@ try {
 		$planHeader->setImage('type', str_replace('.', '', $extension));
 		$planHeader->setImage('size', $img_size);
 		$planHeader->setImage('data', base64_encode(file_get_contents($_FILES['file']['tmp_name'])));
-		$planHeader->setImage('sha1', sha1($planHeader->getImage('data')));
+		$planHeader->setImage('sha512', sha512($planHeader->getImage('data')));
 		$planHeader->setConfiguration('desktopSizeX', $img_size[0]);
 		$planHeader->setConfiguration('desktopSizeY', $img_size[1]);
 		$planHeader->save();
@@ -200,7 +200,7 @@ try {
 			mkdir($uploaddir, 0777);
 		}
 		shell_exec('rm -rf ' . $uploaddir . '/*');
-		$name = sha1(base64_encode(file_get_contents($_FILES['file']['tmp_name']))) . $extension;
+		$name = sha512(base64_encode(file_get_contents($_FILES['file']['tmp_name']))) . $extension;
 		$img_size = getimagesize($_FILES['file']['tmp_name']);
 		if (!move_uploaded_file($_FILES['file']['tmp_name'], $uploaddir . '/' . $name)) {
 			throw new Exception(__('Impossible de déplacer le fichier temporaire dans : ', __FILE__) . $uploaddir . '/' . $name);

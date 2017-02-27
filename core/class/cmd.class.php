@@ -1498,6 +1498,21 @@ class cmd {
 		return network::getNetworkAccess('external') . $url;
 	}
 
+	public function checkAccessCode($_code) {
+		if ($cmd->getType() != 'action' || trim($cmd->getConfiguration('actionCodeAccess')) == '') {
+			return true;
+		}
+		if (sha1($_code) == $cmd->getConfiguration('actionCodeAccess')) {
+			$cmd->setConfiguration('actionCodeAccess', sha512($_code));
+			$cmd->save();
+			return true;
+		}
+		if (sha512($_code) == $cmd->getConfiguration('actionCodeAccess')) {
+			return true;
+		}
+		return false;
+	}
+
 	public function exportApi() {
 		$value = ($this->getType() !== 'action') ? $this->execCmd(null, 2) : $this->getConfiguration('lastCmdValue', null);
 		$return = utils::o2a($this);
@@ -1621,8 +1636,10 @@ class cmd {
 	}
 
 	public function setConfiguration($_key, $_value) {
-		if ($_key == 'actionCodeAccess' && !is_sha1($_value) && $_value != '') {
-			$_value = sha1($_value);
+		if ($_key == 'actionCodeAccess' && $_value != '') {
+			if (!is_sha1($_value) && !is_sha512($_value)) {
+				$_value = sha512($_value);
+			}
 		}
 		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
 	}
