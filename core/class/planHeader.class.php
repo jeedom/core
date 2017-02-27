@@ -96,7 +96,7 @@ class planHeader {
 			$this->setImage('sha512', sha512($this->getImage('data')));
 			$this->save();
 		}
-		$filename = $this->getImage('sha1') . '.' . $this->getImage('type');
+		$filename = $this->getImage('sha512') . '.' . $this->getImage('type');
 		$filepath = $dir . '/' . $filename;
 		if (!file_exists($filepath)) {
 			file_put_contents($filepath, base64_decode($this->getImage('data')));
