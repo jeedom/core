@@ -125,6 +125,11 @@ try {
 		ajax::success();
 	}
 
+	if (init('action') == 'cleancache') {
+		cache::clean();
+		ajax::success();
+	}
+
 	if (init('action') == 'resetHwKey') {
 		config::save('jeedom::installKey', '');
 		ajax::success();

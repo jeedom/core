@@ -141,9 +141,14 @@
  }); 
  });
 
- $("#bt_flushMemcache").on('click', function (event) {
+ $("#bt_cleanCache").on('click', function (event) {
     $.hideAlert();
-    flushMemcache();
+    cleanCache();
+});
+
+  $("#bt_flushCache").on('click', function (event) {
+    $.hideAlert();
+    flushCache();
 });
 
  $("#bt_clearJeedomLastDate").on('click', function (event) {
@@ -319,7 +324,7 @@ function clearJeedomDate() {
 }
 
 
-function flushMemcache() {
+function flushCache() {
     $.ajax({
         type: "POST", 
         url: "core/ajax/jeedom.ajax.php", 
@@ -336,6 +341,27 @@ function flushMemcache() {
                 return;
             }
             $('#div_alert').showAlert({message: '{{Cache vidé}}', level: 'success'});
+        }
+    });
+}
+
+function cleanCache() {
+    $.ajax({
+        type: "POST", 
+        url: "core/ajax/jeedom.ajax.php", 
+        data: {
+            action: "cleancache"
+        },
+        dataType: 'json',
+        error: function (request, status, error) {
+            handleAjaxError(request, status, error);
+        },
+        success: function (data) { 
+            if (data.state != 'ok') {
+                $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                return;
+            }
+            $('#div_alert').showAlert({message: '{{Cache nettoyé}}', level: 'success'});
         }
     });
 }

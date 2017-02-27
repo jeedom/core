@@ -812,9 +812,15 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
 								</div>
 							</div>
 							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nettoyer le cache}}</label>
+								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+									<a class="btn btn-warning" id="bt_cleanCache"><i class="fa fa-magic"></i> {{Nettoyer}}</a>
+								</div>
+							</div>
+							<div class="form-group">
 								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Vider toutes les données en cache}}</label>
 								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-									<a class="btn btn-warning" id="bt_flushMemcache"><i class="fa fa-trash"></i> {{Vider}}</a>
+									<a class="btn btn-danger" id="bt_flushCache"><i class="fa fa-trash"></i> {{Vider}}</a>
 								</div>
 							</div>
 							<div class="form-group">
