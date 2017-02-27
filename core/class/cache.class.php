@@ -46,6 +46,13 @@ class cache {
 		return $cache->save();
 	}
 
+	public static function delete($_key) {
+		$cache = cache::byKey($_key);
+		if (is_object($cache)) {
+			$cache->remove();
+		}
+	}
+
 	public static function getCache() {
 		if (self::$cache !== null) {
 			return self::$cache;

@@ -701,6 +701,12 @@ class eqLogic {
 		viewData::removeByTypeLinkId('eqLogic', $this->getId());
 		dataStore::removeByTypeLinkId('eqLogic', $this->getId());
 		$this->emptyCacheWidget();
+		cache::delete('eqLogicCacheAttr' . $this->getId());
+		cache::delete('eqLogicStatusAttr' . $this->getId());
+		cache::delete('widgetHtml' . $this->getId());
+		cache::delete('widgetHtml' . $this->getId() . 'dashboard1');
+		cache::delete('widgetHtml' . $this->getId() . 'dashboard2');
+		cache::delete('widgetHtml' . $this->getId() . 'dplan1');
 		return DB::remove($this);
 	}
 

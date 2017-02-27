@@ -700,6 +700,8 @@ class cmd {
 		dataStore::removeByTypeLinkId('cmd', $this->getId());
 		$this->getEqLogic()->emptyCacheWidget();
 		$this->emptyHistory();
+		cache::delete('cmdCacheAttr' . $this->getId());
+		cache::delete('cmd' . $this->getId());
 		return DB::remove($this);
 	}
 

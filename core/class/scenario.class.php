@@ -777,6 +777,7 @@ class scenario {
 		if (file_exists(dirname(__FILE__) . '/../../log/scenarioLog/scenario' . $this->getId() . '.log')) {
 			unlink(dirname(__FILE__) . '/../../log/scenarioLog/scenario' . $this->getId() . '.log');
 		}
+		cache::delete('scenarioCacheAttr' . $this->getId());
 		return DB::remove($this);
 	}
 
