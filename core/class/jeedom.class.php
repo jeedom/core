@@ -966,7 +966,7 @@ class jeedom {
 	public static function getHardwareKey() {
 		$return = config::byKey('jeedom::installKey');
 		if ($return == '') {
-			$return = sha1(microtime() . config::genKey());
+			$return = sha512(microtime() . config::genKey());
 			config::save('jeedom::installKey', $return);
 		}
 		return $return;

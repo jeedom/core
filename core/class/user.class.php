@@ -47,11 +47,11 @@ class user {
 	/**
 	 * Retourne un object utilisateur (si les information de connection sont valide)
 	 * @param string $_login nom d'utilisateur
-	 * @param string $_mdp motsz de passe en sha1
+	 * @param string $_mdp motsz de passe en sha512
 	 * @return user object user
 	 */
 	public static function connect($_login, $_mdp) {
-		$sMdp = (!is_sha1($_mdp)) ? sha1($_mdp) : $_mdp;
+		$sMdp = (!is_sha512($_mdp)) ? sha512($_mdp) : $_mdp;
 		if (config::byKey('ldap:enable') == '1' && !$_hash) {
 			log::add("connection", "debug", __('Authentification par LDAP', __FILE__));
 			$ad = self::connectToLDAP();
@@ -108,6 +108,12 @@ class user {
 			}
 		}
 		$user = user::byLoginAndPassword($_login, $sMdp);
+		if (!is_object($user)) {
+			$user = user::byLoginAndPassword($_login, sha1($_mdp));
+			if (is_object($user)) {
+				$user->setPassword($sMdp);
+			}
+		}
 		if (is_object($user)) {
 			$user->setOptions('lastConnection', date('Y-m-d H:i:s'));
 			$user->save();
@@ -194,10 +200,13 @@ class user {
 	}
 
 	public static function hasDefaultIdentification() {
+		$values = array(
+			'password' => sha512('admin'),
+		);
 		$sql = 'SELECT count(id) as nb
         FROM user
         WHERE login="admin"
-        AND password=SHA1("admin")
+        AND password=:password
         AND `enable` = 1';
 		$result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 		return $result['nb'];
@@ -330,7 +339,7 @@ class user {
 	}
 
 	public function setPassword($password) {
-		$this->password = (!is_sha1($password)) ? sha1($password) : $password;
+		$this->password = (!is_sha512($password)) ? sha512($password) : $password;
 		return $this;
 	}
 

@@ -202,6 +202,13 @@ function is_sha1($_string = '') {
 	return preg_match('/^[0-9a-f]{40}$/i', $_string);
 }
 
+function is_sha512($_string = '') {
+	if ($_string == '') {
+		return false;
+	}
+	return preg_match('/^[0-9a-f]{128}$/i', $_string);
+}
+
 function cleanPath($path) {
 	$out = array();
 	foreach (explode('/', $path) as $i => $fold) {
@@ -960,4 +967,8 @@ function getDominantColor($_pathimg) {
 		}
 	}
 	return '#' . sprintf('%02x', round($rTotal / $total)) . sprintf('%02x', round($gTotal / $total)) . sprintf('%02x', round($bTotal / $total));
+}
+
+function sha512($_string) {
+	return hash('sha512', $_string);
 }

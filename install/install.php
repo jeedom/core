@@ -395,7 +395,7 @@ try {
 		echo "Add user (admin,admin)\n";
 		$user = new user();
 		$user->setLogin('admin');
-		$user->setPassword(sha1('admin'));
+		$user->setPassword(sha512('admin'));
 		$user->setRights('admin', 1);
 		$user->save();
 		config::save('log::level', 400);
