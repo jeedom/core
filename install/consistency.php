@@ -289,10 +289,12 @@ try {
 	$cron->setDeamon(0);
 	$cron->save();
 
-	try {
-		cache::clean();
-	} catch (Exception $e) {
+	if (method_exists('cache', 'clean')) {
+		try {
+			cache::clean();
+		} catch (Exception $e) {
 
+		}
 	}
 
 	if (!file_exists(dirname(__FILE__) . '/../plugins')) {
