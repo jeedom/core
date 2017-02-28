@@ -19,13 +19,13 @@ Im Experten-Modus werden alle Elemente angezeigt, ansonsten zeigt es nur Element
 
 Es gibt insgesamt bis zu 5 Knöpfe, die von Element verfügbar sein können:
 
-* *Voir* : permet de consulter la page du Market correspondant à l'élément sélectionné
-* *Partager* : permet lorsque vous avez créé un élément de le partager sur le Market
+* *sehen* :  Ermöglicht, auf der entsprechenden Seite des Marktes das Element einzusehen
+* *Teilen* : Ermöglicht, wenn Sie ein Element geschaffen haben, es auf dem Market zu teilen.
 * *Löschen* : Ermöglicht Elemente zu löschen.
 * *Update* : Ermöglicht Elemente zu aktualisieren.
 
 [TIP]
-A noter que "core:jeedom" signifie la mise à jour du logiciel de base Jeedom.
+Beachten Sie, dass "core:jeedom" das Update der Basissoftware bedeutet.
 
 
 En haut du tableau se trouvent les boutons de commande. Jeedom se connecte périodiquement avec le Market pour voir si des mises à jour sont disponibles (la date de dernière vérification est indiquée tout en haut du tableau à gauche). Si vous voulez réaliser une vérification manuelle, vous pouvez appuyer sur le bouton "Vérifier les mises à jour".

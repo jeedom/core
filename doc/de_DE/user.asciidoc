@@ -10,7 +10,7 @@ Sobald sie darauf sind, sehen sie :
 
 image::../images/user2.png[]
 
-En haut vous avez un bouton pour ajouter un compte temporaire (pour par exemple fournir un accès au support). Une fois que vous cliquez dessus, vous allez avoir une URL à envoyer à la personne devant l'utiliser. Ce compte a une durée de vie de 24h.
+Oben, haben Sie eine Schaltfläche zum hinzufügen eines temporären Kontos (z. B. um Zugang zu unterstützen). Sobald Sie darauf klicken, erhalten Sie eine URL, die Sie an die Person senden, die es benutzen will. Dieses Konto hat eine Lebensdauer von 24 Stunden.
 Sie haben auch eine Schaltfläche zum Hinzufügen eines Benutzers. Wenn Sie darauf klicken, bittet Jeedom Sie das Kennwort und den Anmeldenamen des Benutzers einzugeben :
 
 image::../images/user3.png[]
@@ -20,10 +20,10 @@ Darunter haben Sie eine Tabelle :
 * *Benutzername* : der Anmeldename des Benutzers
 * *Aktion* : Dort besteht die Möglichkeit, das Kennwort des Benutzers zu ändern oder sein Konto zu löschen
 * *Aktiv* : die Möglichkeit, das Konto zu deaktivieren
-* *Droits* : la possibilité de passer ou non l'utilisateur en mode administrateur (permet d'avoir accès à tout ce qui est configuration de Jeedom, création des scénarios, gestion des plugins, configuration des équipements, des designs, des vues...)
-* *Clef API* : clef API personnelle de l'utilisateur
-* *Date de dernière connexion* : date de dernière connexion de l'utilisateur. Attention, ici c'est la date de connexion réelle; ainsi si vous enregistrez votre ordinateur, la date de connexion n'est pas mise à jour à chaque fois que vous y retournez.
-* *Accès direct* : donne une URL pour se connecter directement à Jeedom avec le compte en question
+* *Rechte* : die Möglichkeit das der Benutzer in den Administrator-Modus wechseln kann oder nicht (Ermöglicht den Zugriff auf alles, Jeedom Konfiguration, Erstellung von Szenarien, Plugin Management, Konfiguration der Geräte, Design, Ansichten ...)
+* *API-Schlüssel* : der persönlichen Benutzer API-Schlüssel
+* *Datum der letzten Verbindung* : Datum der letzten Anmeldung des Benutzers. Achtung hier ist die eigentliche Verbindungszeit ; also, wenn Sie Ihren Computer registrieren, wird die Verbindung Datum jedes Mal aktualisiert wenn Sie zurückkommen.
+ * *Direkter Zugang* : zeigt eine URL an, um sich direkt mit dem betreffenden Jeedom Konto zu verbinden
 
 [TIP]
 Im Falle einer Änderung, vergessen Sie nicht auf "Speichern" zu klicken.
