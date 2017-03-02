@@ -862,7 +862,6 @@ class eqLogic {
 		$cmd_order = 0;
 		$link_cmds = array();
 		$link_actions = array();
-
 		$ids = array();
 		$arrayToRemove = [];
 		if (isset($_configuration['commands'])) {
