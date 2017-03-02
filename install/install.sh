@@ -123,7 +123,7 @@ step_5_php() {
 	echo "${JAUNE}Start step_5_php${NORMAL}"
 	apt-get -y install php7.0 php7.0-curl php7.0-gd php7.0-imap php7.0-json php7.0-mcrypt php7.0-mysql php7.0-xml php7.0-opcache php7.0-soap php7.0-xmlrpc libapache2-mod-php7.0 php7.0-common php7.0-dev php7.0-zip php7.0-ssh2 php7.0-calendar php7-0-redis
 	if [ $? -ne 0 ]; then
-		apt_install libapache2-mod-php5 php5 php5-common php5-curl php5-dev php5-gd php5-json php5-memcached php5-mysql php5-cli php5-ssh2 php5-redis
+		apt_install libapache2-mod-php5 php5 php5-common php5-curl php5-dev php5-gd php5-json php5-memcached php5-mysqlnd php5-cli php5-ssh2 php5-redis
 	fi
 	echo "${VERT}step_5_php success${NORMAL}"
 }
