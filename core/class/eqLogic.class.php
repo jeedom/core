@@ -848,7 +848,7 @@ class eqLogic {
 	}
 
 	public function import($_configuration) {
-		$cmdClass= $this->getEqType_name() . 'Cmd'
+		$cmdClass = $this->getEqType_name() . 'Cmd';
 		if (isset($_configuration['configuration'])) {
 			foreach ($_configuration['configuration'] as $key => $value) {
 				$this->setConfiguration($key, $value);
