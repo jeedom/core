@@ -394,7 +394,7 @@ class cron {
 	public function getNextRunDate() {
 		try {
 			$c = new Cron\CronExpression($this->getSchedule(), new Cron\FieldFactory);
-			return $c->getNextRunDate();
+			return $c->getNextRunDate()->format('Y-m-d H:i:s');
 		} catch (Exception $e) {
 
 		} catch (Error $e) {
