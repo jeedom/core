@@ -847,6 +847,108 @@ class eqLogic {
 		return false;
 	}
 
+	public function import($_configuration) {
+		$cmdClass= $this->getEqType_name() . 'Cmd'
+		if (isset($_configuration['configuration'])) {
+			foreach ($_configuration['configuration'] as $key => $value) {
+				$this->setConfiguration($key, $value);
+			}
+		}
+		if (isset($_configuration['category'])) {
+			foreach ($_configuration['category'] as $key => $value) {
+				$this->setCategory($key, $value);
+			}
+		}
+		$cmd_order = 0;
+		$link_cmds = array();
+		$link_actions = array();
+
+		$ids = array();
+		$arrayToRemove = [];
+		if (isset($_configuration['commands'])) {
+			foreach ($this->getCmd() as $eqLogic_cmd) {
+				$exists = 0;
+				foreach ($_configuration['commands'] as $command) {
+					if ($command['logicalId'] == $eqLogic_cmd->getLogicalId()) {
+						$exists++;
+					}
+				}
+				if ($exists < 1) {
+					$arrayToRemove[] = $eqLogic_cmd;
+				}
+			}
+			foreach ($arrayToRemove as $cmdToRemove) {
+				try {
+					$cmdToRemove->remove();
+				} catch (Exception $e) {
+
+				}
+			}
+			foreach ($_configuration['commands'] as $command) {
+				$cmd = null;
+				foreach ($this->getCmd() as $liste_cmd) {
+					if ((isset($command['logicalId']) && $liste_cmd->getLogicalId() == $command['logicalId'])
+						|| (isset($command['name']) && $liste_cmd->getName() == $command['name'])) {
+						$cmd = $liste_cmd;
+						break;
+					}
+				}
+				try {
+					if ($cmd == null || !is_object($cmd)) {
+						$cmd = new $cmdClass();
+						$cmd->setOrder($cmd_order);
+						$cmd->setEqLogic_id($this->getId());
+					} else {
+						$command['name'] = $cmd->getName();
+						if (isset($command['display'])) {
+							unset($command['display']);
+						}
+					}
+					utils::a2o($cmd, $command);
+					$cmd->setConfiguration('logicalId', $cmd->getLogicalId());
+					$cmd->save();
+					if (isset($command['value'])) {
+						$link_cmds[$cmd->getId()] = $command['value'];
+					}
+					if (isset($command['configuration']) && isset($command['configuration']['updateCmdId'])) {
+						$link_actions[$cmd->getId()] = $command['configuration']['updateCmdId'];
+					}
+					$cmd_order++;
+				} catch (Exception $exc) {
+
+				}
+				$cmd->event('');
+			}
+		}
+		if (count($link_cmds) > 0) {
+			foreach ($this->getCmd() as $eqLogic_cmd) {
+				foreach ($link_cmds as $cmd_id => $link_cmd) {
+					if ($link_cmd == $eqLogic_cmd->getName()) {
+						$cmd = cmd::byId($cmd_id);
+						if (is_object($cmd)) {
+							$cmd->setValue($eqLogic_cmd->getId());
+							$cmd->save();
+						}
+					}
+				}
+			}
+		}
+		if (count($link_actions) > 0) {
+			foreach ($this->getCmd() as $eqLogic_cmd) {
+				foreach ($link_actions as $cmd_id => $link_action) {
+					if ($link_action == $eqLogic_cmd->getName()) {
+						$cmd = cmd::byId($cmd_id);
+						if (is_object($cmd)) {
+							$cmd->setConfiguration('updateCmdId', $eqLogic_cmd->getId());
+							$cmd->save();
+						}
+					}
+				}
+			}
+		}
+		$this->save();
+	}
+
 	public function export($_withCmd = true) {
 		$eqLogic = clone $this;
 		$eqLogic->setId('');
