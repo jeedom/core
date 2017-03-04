@@ -175,7 +175,11 @@ $usedBy = $cmd->getUsedBy();
           <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
             <?php
 foreach ($usedBy['eqLogic'] as $usedByEqLogic) {
-	echo '<span class="label label-primary cursor"><a href="' . $usedByEqLogic->getLinkToConfiguration() . '" style="color : white;">' . $usedByEqLogic->getHumanName() . '</a></span><br/>';
+	if ($usedByEqLogic->getIsEnable() != 1) {
+		echo '<span class="label label-default cursor"><a href="' . $usedByEqLogic->getLinkToConfiguration() . '" style="color : white;">' . $usedByEqLogic->getHumanName() . '</a></span><br/>';
+	} else {
+		echo '<span class="label label-primary cursor"><a href="' . $usedByEqLogic->getLinkToConfiguration() . '" style="color : white;">' . $usedByEqLogic->getHumanName() . '</a></span><br/>';
+	}
 }
 ?>
          </div>
