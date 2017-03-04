@@ -139,7 +139,7 @@ Pas mal d'options ici (elles peuvent varier en fonction du type et du sous-type 
 Para una orden de tipo información:
 
 * *Cálculo y redondeo*
-** Fórmula de calculo (\#value# valor)* : aquí, puedes hacer una operación sobre el valor de la orden antes de ser procesada por Jeedom, ejemplo: \#valeur# - 0.2 a restar 0,2 (offset sobre un sensor de temperatura)
+** *Formule de calcul (\#value# pour la valeur)* : vous pouvez ici faire une opération sur la valeur de la commande avant le traitement par Jeedom, exemple : \#value# - 0.2 pour retrancher 0.2 (offset sur un capteur de température)
 ** Redondeo (dígitos después de la coma) *: permite redondear el valor dela orden, ejemplo: poner 2 decimales para transformar 16.643345 en 16.64
 * *Type générique* : cette partie permet de configurer le type générique de la commande (Jeedom essaie de le trouver par lui-même en mode auto). Cette information est utilisée par l'application mobile.
 * *Action sur la valeur* : cette partie permet de faire des sortes de mini scénarios, vous pouvez par exemple dire que si la valeur vaut plus de 50 pendant 3 minutes alors il faut faire telle action. Cela permet par exemple d'éteindre une lumiere X minutes après que celle-ci se soit allumée
