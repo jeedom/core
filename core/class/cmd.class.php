@@ -1340,6 +1340,33 @@ class cmd {
 		}
 	}
 
+	public function generateAskResponseLink($_response, $_plugin = 'core', $_network = 'external') {
+		$token = config::genKey();
+		$this->setCache('ask::token', $token);
+		$return = network::getNetworkAccess($_network) . '/core/api/jeeApi.php?';
+		$return .= 'type=ask';
+		$return .= '&plugin=' . $_plugin;
+		$return .= '&apikey=' . jeedom::getApiKey($_plugin);
+		$return .= '&token=' . $token;
+		$return .= '&response=' . urlencode($_response);
+		$return .= '&cmd_id=' . $this->getId();
+		return $return;
+	}
+
+	public function askResponse($_response) {
+		if ($this->getCache('storeVariable', 'none') == 'none') {
+			throw new Exception(__('Demande invalide', __FILE__));
+		}
+		$dataStore = new dataStore();
+		$dataStore->setType('scenario');
+		$dataStore->setKey($this->getCache('storeVariable', 'none'));
+		$dataStore->setValue($_response);
+		$dataStore->setLink_id(-1);
+		$dataStore->save();
+		$this->setCache('storeVariable', 'none');
+		$this->setCache('ask::token', '');
+	}
+
 	public function emptyHistory($_date = '') {
 		return history::emptyHistory($this->getId(), $_date);
 	}

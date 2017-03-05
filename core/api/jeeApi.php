@@ -37,11 +37,20 @@ if (isset($argv)) {
 if (init('type') != '') {
 	try {
 		$type = init('type');
-		if (!jeedom::apiAccess(init('apikey', init('api'))) || !jeedom::apiModeResult(config::byKey('api::core::http::mode', 'core', 'enable'))) {
+		if (!jeedom::apiAccess(init('apikey', init('api')), init('plugin', 'core')) || !jeedom::apiModeResult(config::byKey('api::core::http::mode', 'core', 'enable'))) {
 			user::failedLogin();
 			throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__));
 		}
-		if ($type == 'cmd') {
+		if ($type == 'ask') {
+			$cmd = cmd::byId(init('cmd_id'));
+			if (!is_object($cmd)) {
+				throw new Exception(__('Commande inconnue : ', __FILE__) . init('cmd_id'));
+			}
+			if ($cmd->getCache('ask::token', config::genKey()) != init('token')) {
+				throw new Exception(__('Token invalide', __FILE__));
+			}
+			$cmd->askResponse(init('response'));
+		} else if ($type == 'cmd') {
 			if (is_json(init('id'))) {
 				$ids = json_decode(init('id'), true);
 				$result = array();
