@@ -898,7 +898,7 @@ class cmd {
 			'#hideCmdName#' => '',
 		);
 		if ($this->getConfiguration('listValue', '') != '') {
-			$listOption = '';
+			$listOption = '<option value="">Aucun</option>';
 			$elements = explode(';', $this->getConfiguration('listValue', ''));
 			foreach ($elements as $element) {
 				$coupleArray = explode('|', $element);
