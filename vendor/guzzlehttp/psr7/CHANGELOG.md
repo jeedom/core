@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 1.4.1 - 2017-02-27
+
+* Reverted BC break by reintroducing behavior to automagically fix a URI with a
+  relative path and an authority by adding a leading slash to the path. It's only
+  deprecated now.
+* Added triggering of silenced deprecation warnings.
+
 ## 1.4.0 - 2017-02-21
 
 * Fix `Stream::read` when length parameter <= 0.
