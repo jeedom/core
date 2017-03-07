@@ -137,6 +137,12 @@ class interactQuery {
 				$shortest = $lev;
 			}
 		}
+		$weigh = array(1 => config::byKey('interact::weigh1'), 2 => config::byKey('interact::weigh2'), 3 => config::byKey('interact::weigh3'), 4 => config::byKey('interact::weigh4'));
+		foreach (str_word_count($_query, 1) as $word) {
+			if (isset($weigh[strlen($word)])) {
+				$shortest += $weigh[strlen($word)];
+			}
+		}
 		if (str_word_count($_query) == 1 && config::byKey('interact::confidence1') > 0 && $shortest > config::byKey('interact::confidence1')) {
 			log::add('interact', 'debug', __('Correspondance trop éloigné : ', __FILE__) . $shortest);
 			return null;

@@ -727,11 +727,11 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
 								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Période d'affichage des graphiques par défaut}}</label>
 								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 									<select  class="configKey form-control" data-l1key="history::defautShowPeriod" >
-										<option value="-6 month">6 mois</option>
-										<option value="-3 month">3 mois</option>
-										<option value="-1 month">1 mois</option>
-										<option value="-1 week">1 semaine</option>
-										<option value="-1 day">1 jour</option>
+										<option value="-6 month">{{6 mois}}</option>
+										<option value="-3 month">{{3 mois}}</option>
+										<option value="-1 month">{{1 mois}}</option>
+										<option value="-1 week">{{1 semaine}}</option>
+										<option value="-1 day">{{1 jour}}</option>
 									</select>
 								</div>
 							</div>
@@ -867,14 +867,29 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Sensibilité}}</label>
 								<div class="col-lg-6 col-md-8 col-sm-8 col-xs-6">
 									<div class="input-group">
-										<span class="input-group-addon">1 mot</span>
+										<span class="input-group-addon">{{1 mot}}</span>
 										<input type="text" class="configKey form-control" data-l1key="interact::confidence1"/>
-										<span class="input-group-addon">2 mots</span>
+										<span class="input-group-addon">{{2 mots}}</span>
 										<input type="text" class="configKey form-control" data-l1key="interact::confidence2"/>
-										<span class="input-group-addon">3 mots</span>
+										<span class="input-group-addon">{{3 mots}}</span>
 										<input type="text" class="configKey form-control" data-l1key="interact::confidence3"/>
-										<span class="input-group-addon">> 3 mots</span>
+										<span class="input-group-addon">> {{3 mots}}</span>
 										<input type="text" class="configKey form-control" data-l1key="interact::confidence"/>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Réduire le poid de}}</label>
+								<div class="col-lg-6 col-md-8 col-sm-8 col-xs-6">
+									<div class="input-group">
+										<span class="input-group-addon">{{1 mot}}</span>
+										<input type="text" class="configKey form-control" data-l1key="interact::weigh1"/>
+										<span class="input-group-addon">{{2 mots}}</span>
+										<input type="text" class="configKey form-control" data-l1key="interact::weigh2"/>
+										<span class="input-group-addon">{{3 mots}}</span>
+										<input type="text" class="configKey form-control" data-l1key="interact::weigh3"/>
+										<span class="input-group-addon">{{4 mots}}</span>
+										<input type="text" class="configKey form-control" data-l1key="interact::weigh4"/>
 									</div>
 								</div>
 							</div>
