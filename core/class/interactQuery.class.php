@@ -358,7 +358,6 @@ class interactQuery {
 				$humanName = str_replace($current['eqLogic']->getName(), $data['eqLogic']->getName(), $humanName);
 			}
 		}
-		return $humanName;
 		return self::autoInteract(str_replace(array('][', '[', ']'), array(' ', '', ''), $humanName));
 	}
 
