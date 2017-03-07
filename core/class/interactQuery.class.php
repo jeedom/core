@@ -164,7 +164,10 @@ class interactQuery {
 		return $closest;
 	}
 
-	public static function autoInteract($_query) {
+	public static function autoInteract($_query, $_parameters = array()) {
+		if (!isset($_parameters['identifier'])) {
+			$_parameters['identifier'] = '';
+		}
 		$query = strtolower(sanitizeAccent($_query));
 		$data = array('object' => null, 'eqLogic_name' => array(), 'eqLogic' => null, 'cmd_name' => array(), 'cmd' => null, 'parameters' => array());
 		foreach (object::all() as $object) {
@@ -254,7 +257,7 @@ class interactQuery {
 		if (!is_object($data['cmd'])) {
 			return;
 		}
-		cache::set('interact::lastCmd', $data['cmd']->getId(), 300);
+		cache::set('interact::lastCmd::' . $_parameters['identifier'], $data['cmd']->getId(), 300);
 		if ($data['cmd']->getType() == 'info') {
 			return trim($data['cmd']->execCmd() . ' ' . $data['cmd']->getUnite());
 		} else {
@@ -283,6 +286,15 @@ class interactQuery {
 		if (trim($_query) == '') {
 			return;
 		}
+		$_parameters['identifier'] = '';
+		if (isset($_parameters['plugin'])) {
+			$_parameters['identifier'] = $_parameters['plugin'];
+		} else {
+			$_parameters['identifier'] = 'unknown';
+		}
+		if (isset($_parameters['profile'])) {
+			$_parameters['identifier'] .= '::' . $_parameters['profile'];
+		}
 		$_parameters['dictation'] = $_query;
 		if (isset($_parameters['profile'])) {
 			$_parameters['profile'] = strtolower($_parameters['profile']);
@@ -293,16 +305,16 @@ class interactQuery {
 			$reply = $interactQuery->executeAndReply($_parameters);
 			$cmds = $interactQuery->getActions('cmd');
 			if (isset($cmds[0]) && isset($cmds[0]['cmd'])) {
-				cache::set('interact::lastCmd', str_replace('#', '', $cmds[0]['cmd']), 300);
+				cache::set('interact::lastCmd::' . $_parameters['identifier'], str_replace('#', '', $cmds[0]['cmd']), 300);
 			}
 			log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . "\nJ'ai compris : " . $interactQuery->getQuery() . "\nJ'ai répondu : " . $reply);
 			return ucfirst($reply);
 		}
 		if ($reply == '' && config::byKey('interact::autoreply') == 1) {
-			$reply = self::autoInteract($_query);
+			$reply = self::autoInteract($_query, $_parameters);
 		}
 		if ($reply == '' && config::byKey('interact::contextual') == 1) {
-			$reply = self::contextualReply($_query);
+			$reply = self::contextualReply($_query, $_parameters);
 		}
 		if ($reply == '' && config::byKey('interact::noResponseIfEmpty', 'core', 0) == 0 && (!isset($_parameters['emptyReply']) || $_parameters['emptyReply'] == 0)) {
 			$reply = self::dontUnderstand($_parameters);
@@ -311,8 +323,11 @@ class interactQuery {
 		return ucfirst($reply);
 	}
 
-	public static function contextualReply($_query) {
-		$last = cache::byKey('interact::lastCmd');
+	public static function contextualReply($_query, $_parameters = array()) {
+		if (!isset($_parameters['identifier'])) {
+			$_parameters['identifier'] = '';
+		}
+		$last = cache::byKey('interact::lastCmd::' . $_parameters['identifier']);
 		if ($last->getValue() == '') {
 			return '';
 		}
@@ -365,7 +380,7 @@ class interactQuery {
 				$humanName = str_replace($current['eqLogic']->getName(), $data['eqLogic']->getName(), $humanName);
 			}
 		}
-		return self::autoInteract(str_replace(array('][', '[', ']'), array(' ', '', ''), $humanName));
+		return self::autoInteract(str_replace(array('][', '[', ']'), array(' ', '', ''), $humanName), $_parameters);
 	}
 
 	public static function brainReply($_query, $_parameters) {
