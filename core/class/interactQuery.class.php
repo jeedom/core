@@ -138,23 +138,23 @@ class interactQuery {
 			}
 		}
 		if (str_word_count($_query) == 1 && config::byKey('interact::confidence1') > 0 && $shortest > config::byKey('interact::confidence1')) {
-			log::add('interact', 'debug', 'Correspondance trop éloigné : ' . $shortest);
+			log::add('interact', 'debug', __('Correspondance trop éloigné : ', __FILE__) . $shortest);
 			return null;
 		} else if (str_word_count($_query) == 2 && config::byKey('interact::confidence2') > 0 && $shortest > config::byKey('interact::confidence2')) {
-			log::add('interact', 'debug', 'Correspondance trop éloigné : ' . $shortest);
+			log::add('interact', 'debug', __('Correspondance trop éloigné : ', __FILE__) . $shortest);
 			return null;
 		} else if (str_word_count($_query) == 3 && config::byKey('interact::confidence3') > 0 && $shortest > config::byKey('interact::confidence3')) {
-			log::add('interact', 'debug', 'Correspondance trop éloigné : ' . $shortest);
+			log::add('interact', 'debug', __('Correspondance trop éloigné : ', __FILE__) . $shortest);
 			return null;
 		} else if (str_word_count($_query) > 3 && config::byKey('interact::confidence') > 0 && $shortest > config::byKey('interact::confidence')) {
-			log::add('interact', 'debug', 'Correspondance trop éloigné : ' . $shortest);
+			log::add('interact', 'debug', __('Correspondance trop éloigné : ', __FILE__) . $shortest);
 			return null;
 		}
 		if (!is_object($closest)) {
-			log::add('interact', 'debug', 'Aucune phrase trouvée');
+			log::add('interact', 'debug', __('Aucune phrase trouvée', __FILE__));
 			return null;
 		}
-		log::add('interact', 'debug', 'J\'ai une correspondance  : ' . $closest->getQuery());
+		log::add('interact', 'debug', __('J\'ai une correspondance  : ', __FILE__) . $closest->getQuery() . __(' avec ', __FILE__) . $shortest);
 		return $closest;
 	}
 
