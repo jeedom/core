@@ -236,6 +236,7 @@ class interactQuery {
 		if (!is_object($data['cmd'])) {
 			return;
 		}
+		cache::set('interact::lastCmd', $data['cmd']->getId());
 		if ($data['cmd']->getType() == 'info') {
 			return trim($data['cmd']->execCmd() . ' ' . $data['cmd']->getUnite());
 		} else {
@@ -271,17 +272,56 @@ class interactQuery {
 		$interactQuery = interactQuery::recognize($_query);
 		if (is_object($interactQuery)) {
 			$reply = $interactQuery->executeAndReply($_parameters);
+			$cmds = $interactQuery->getActions('cmd');
+			if (isset($cmds[0]) && isset($cmds[0]['cmd'])) {
+				cache::set('interact::lastCmd', str_replace('#', '', $cmds[0]['cmd']));
+			}
 			log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . "\nJ'ai compris : " . $interactQuery->getQuery() . "\nJ'ai répondu : " . $reply);
 			return ucfirst($reply);
 		}
 		if ($reply == '' && config::byKey('interact::autoreply') == 1) {
 			$reply = self::autoInteract($_query);
 		}
+		if ($reply == '') {
+			$reply = self::contextualReply($_query);
+		}
 		if ($reply == '' && config::byKey('interact::noResponseIfEmpty', 'core', 0) == 0 && (!isset($_parameters['emptyReply']) || $_parameters['emptyReply'] == 0)) {
 			$reply = self::dontUnderstand($_parameters);
 			log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . "\nJe n'ai rien compris\nJ'ai répondu : " . $reply);
 		}
 		return ucfirst($reply);
+	}
+
+	public static function contextualReply($_query) {
+		$last = cache::byKey('interact::lastCmd');
+		if ($last->getValue() == '') {
+			return '';
+		}
+		$lastCmd = $last->getValue();
+		$current = array();
+		cache::set('interact::lastCmd', '');
+		$current['cmd'] = cmd::byId($lastCmd);
+		if (!is_object($current['cmd'])) {
+			return '';
+		}
+		$current['eqLogic'] = $current['cmd']->getEqLogic();
+		if (!is_object($current['eqLogic'])) {
+			return '';
+		}
+		$current['object'] = $current['eqLogic']->getObject();
+		$humanName = $current['cmd']->getHumanName();
+		$data = array();
+		$query = strtolower(sanitizeAccent($_query));
+		foreach (object::all() as $object) {
+			if (self::autoInteractWordFind($query, $object->getName())) {
+				$data['object'] = $object;
+				break;
+			}
+		}
+		if (is_object($data['object']) && is_object($current['object'])) {
+			$humanName = str_replace($current['object']->getName(), $data['object']->getName(), $humanName);
+		}
+		return self::autoInteract(str_replace(array('#', '][', '[', ']'), array('', ' ', '', ''), $humanName));
 	}
 
 	public static function brainReply($_query, $_parameters) {
