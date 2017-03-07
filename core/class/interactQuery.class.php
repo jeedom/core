@@ -170,6 +170,7 @@ class interactQuery {
 		if (!is_object($data['object'])) {
 			return '';
 		}
+		$query = str_replace(strtolower($data['object']->getName()), '', $query);
 		include_file('core', 'auto.interact.fr_FR', 'config');
 		global $JEEDOM_AUTO_INTERACT;
 		foreach ($JEEDOM_AUTO_INTERACT['eqLogic'] as $key => $value) {
@@ -186,6 +187,17 @@ class interactQuery {
 					}
 				}
 			}
+		}
+		if (!is_object($data['eqLogic'])) {
+			foreach ($data['object']->getEqLogic() as $eqLogic) {
+				if (self::autoInteractWordFind($query, $eqLogic->getName())) {
+					$data['eqLogic'] = $eqLogic;
+					break;
+				}
+			}
+		}
+		if (is_object($data['eqLogic'])) {
+			$query = str_replace(strtolower($data['eqLogic']->getName()), '', $query);
 		}
 		foreach ($JEEDOM_AUTO_INTERACT['cmd'] as $key => $value) {
 			if (self::autoInteractWordFind($query, $key)) {
@@ -310,6 +322,7 @@ class interactQuery {
 		$current['object'] = $current['eqLogic']->getObject();
 		$humanName = $current['cmd']->getHumanName();
 		$data = array();
+		$findReplace = false;
 		$query = strtolower(sanitizeAccent($_query));
 		foreach (object::all() as $object) {
 			if (self::autoInteractWordFind($query, $object->getName())) {
@@ -318,9 +331,35 @@ class interactQuery {
 			}
 		}
 		if (is_object($data['object']) && is_object($current['object'])) {
+			$findReplace = true;
 			$humanName = str_replace($current['object']->getName(), $data['object']->getName(), $humanName);
 		}
-		return self::autoInteract(str_replace(array('#', '][', '[', ']'), array('', ' ', '', ''), $humanName));
+		if (!$findReplace) {
+			foreach (cmd::all() as $cmd) {
+				if (self::autoInteractWordFind($query, $cmd->getName())) {
+					$data['cmd'] = $cmd;
+					break;
+				}
+			}
+			if (is_object($data['cmd']) && is_object($current['cmd'])) {
+				$findReplace = true;
+				$humanName = str_replace($current['cmd']->getName(), $data['cmd']->getName(), $humanName);
+			}
+		}
+		if (!$findReplace) {
+			foreach (eqLogic::all() as $eqLogic) {
+				if (self::autoInteractWordFind($query, $eqLogic->getName())) {
+					$data['eqLogic'] = $eqLogic;
+					break;
+				}
+			}
+			if (is_object($data['eqLogic']) && is_object($current['eqLogic'])) {
+				$findReplace = true;
+				$humanName = str_replace($current['eqLogic']->getName(), $data['eqLogic']->getName(), $humanName);
+			}
+		}
+		return $humanName;
+		return self::autoInteract(str_replace(array('][', '[', ']'), array(' ', '', ''), $humanName));
 	}
 
 	public static function brainReply($_query, $_parameters) {
