@@ -236,7 +236,7 @@ class interactQuery {
 		if (!is_object($data['cmd'])) {
 			return;
 		}
-		cache::set('interact::lastCmd', $data['cmd']->getId());
+		cache::set('interact::lastCmd', $data['cmd']->getId(), 300);
 		if ($data['cmd']->getType() == 'info') {
 			return trim($data['cmd']->execCmd() . ' ' . $data['cmd']->getUnite());
 		} else {
@@ -274,7 +274,7 @@ class interactQuery {
 			$reply = $interactQuery->executeAndReply($_parameters);
 			$cmds = $interactQuery->getActions('cmd');
 			if (isset($cmds[0]) && isset($cmds[0]['cmd'])) {
-				cache::set('interact::lastCmd', str_replace('#', '', $cmds[0]['cmd']));
+				cache::set('interact::lastCmd', str_replace('#', '', $cmds[0]['cmd']), 300);
 			}
 			log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . "\nJ'ai compris : " . $interactQuery->getQuery() . "\nJ'ai répondu : " . $reply);
 			return ucfirst($reply);
@@ -282,7 +282,7 @@ class interactQuery {
 		if ($reply == '' && config::byKey('interact::autoreply') == 1) {
 			$reply = self::autoInteract($_query);
 		}
-		if ($reply == '') {
+		if ($reply == '' && config::byKey('interact::contextual') == 1) {
 			$reply = self::contextualReply($_query);
 		}
 		if ($reply == '' && config::byKey('interact::noResponseIfEmpty', 'core', 0) == 0 && (!isset($_parameters['emptyReply']) || $_parameters['emptyReply'] == 0)) {
@@ -299,7 +299,6 @@ class interactQuery {
 		}
 		$lastCmd = $last->getValue();
 		$current = array();
-		cache::set('interact::lastCmd', '');
 		$current['cmd'] = cmd::byId($lastCmd);
 		if (!is_object($current['cmd'])) {
 			return '';
