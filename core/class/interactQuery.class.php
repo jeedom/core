@@ -258,6 +258,7 @@ class interactQuery {
 		if ($data['cmd']->getType() == 'info') {
 			return trim($data['cmd']->execCmd() . ' ' . $data['cmd']->getUnite());
 		} else {
+			$data['cmd']->execCmd();
 			$return = __('J\'ai executé ', __FILE__) . $data['cmd']->getName();
 			$eqLogic = $data['cmd']->getEqLogic();
 			if (is_object($eqLogic)) {
