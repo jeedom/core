@@ -36,8 +36,8 @@ class interactQuery {
 			'id' => $_id,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM interactQuery
-        WHERE id=:id';
+		FROM interactQuery
+		WHERE id=:id';
 
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
@@ -47,8 +47,8 @@ class interactQuery {
 			'query' => $_query,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM interactQuery
-        WHERE query=:query';
+		FROM interactQuery
+		WHERE query=:query';
 		if ($_interactDef_id != null) {
 			$values['interactDef_id'] = $_interactDef_id;
 			$sql .= ' AND interactDef_id=:interactDef_id';
@@ -61,16 +61,16 @@ class interactQuery {
 			'interactDef_id' => $_interactDef_id,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-    FROM interactQuery
-    WHERE interactDef_id=:interactDef_id
-    ORDER BY `query`';
+		FROM interactQuery
+		WHERE interactDef_id=:interactDef_id
+		ORDER BY `query`';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
 	public static function all() {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-    FROM interactQuery
-    ORDER BY id';
+		FROM interactQuery
+		ORDER BY id';
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -79,7 +79,7 @@ class interactQuery {
 			'interactDef_id' => $_interactDef_id,
 		);
 		$sql = 'DELETE FROM interactQuery
-    WHERE interactDef_id=:interactDef_id';
+		WHERE interactDef_id=:interactDef_id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -92,8 +92,8 @@ class interactQuery {
 			'query' => $_query,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-    FROM interactQuery
-    WHERE LOWER(query)=LOWER(:query)';
+		FROM interactQuery
+		WHERE LOWER(query)=LOWER(:query)';
 		$query = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 		if (is_object($query)) {
 			log::add('interact', 'debug', 'Je prend : ' . $query->getQuery());
@@ -101,14 +101,14 @@ class interactQuery {
 		}
 
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . ', MATCH query AGAINST (:query IN NATURAL LANGUAGE MODE) as score
-    FROM interactQuery
-    GROUP BY id
-    HAVING score > 1';
+		FROM interactQuery
+		GROUP BY id
+		HAVING score > 1';
 		$queries = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 		if (count($queries) == 0) {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM interactQuery
-        WHERE query=:query';
+			FROM interactQuery
+			WHERE query=:query';
 			$queries = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 			if (is_object($queries)) {
 				return $queries;
@@ -166,13 +166,44 @@ class interactQuery {
 		return $closest;
 	}
 
+	public static function getQuerySynonym($_query, $_for) {
+		$return = array();
+		$base_synonyms = explode(';', config::byKey('interact::autoreply::' . $_for . '::synonym'));
+		if (count($base_synonyms) == 0) {
+			return $return;
+		}
+		foreach ($base_synonyms as $synonyms) {
+			if (trim($synonyms) == '') {
+				continue;
+			}
+			$synonyms = explode('|', $synonyms);
+			foreach ($synonyms as $synonym) {
+				if (self::autoInteractWordFind($_query, $synonym)) {
+					$return = array_merge($return, $synonyms);
+				}
+			}
+		}
+		return $return;
+	}
+
 	public static function autoInteract($_query, $_parameters = array()) {
 		if (!isset($_parameters['identifier'])) {
 			$_parameters['identifier'] = '';
 		}
 		$query = strtolower(sanitizeAccent($_query));
-		$data = array('object' => null, 'eqLogic_name' => array(), 'eqLogic' => null, 'cmd_name' => array(), 'cmd' => null, 'parameters' => array());
+		$data = array('object_name' => array(), 'object' => null, 'eqLogic_name' => array(), 'eqLogic' => null, 'cmd_name' => array(), 'cmd' => null, 'parameters' => array());
+
+		$data['object_name'] = self::getQuerySynonym($query, 'object');
+
 		foreach (object::all() as $object) {
+			if (count($data['object_name']) > 0) {
+				foreach ($data['object_name'] as $name) {
+					if ($nam == $object->getName()) {
+						$data['object'] = $object;
+						break;
+					}
+				}
+			}
 			if (self::autoInteractWordFind($query, $object->getName())) {
 				$data['object'] = $object;
 				break;
@@ -182,11 +213,8 @@ class interactQuery {
 			return '';
 		}
 		$query = str_replace(strtolower($data['object']->getName()), '', $query);
-		foreach (jeedom::getConfiguration('interact::' . config::byKey('language') . '::eqLogic', array()) as $key => $value) {
-			if (self::autoInteractWordFind($query, $key)) {
-				$data['eqLogic_name'] = array_merge($data['eqLogic_name'], $value);
-			}
-		}
+
+		$data['eqLogic_name'] = self::getQuerySynonym($query, 'eqLogic');
 		if (count($data['eqLogic_name']) > 0) {
 			foreach ($data['eqLogic_name'] as $name) {
 				foreach ($data['object']->getEqLogic() as $eqLogic) {
@@ -208,11 +236,8 @@ class interactQuery {
 		if (is_object($data['eqLogic'])) {
 			$query = str_replace(strtolower($data['eqLogic']->getName()), '', $query);
 		}
-		foreach (jeedom::getConfiguration('interact::' . config::byKey('language') . '::cmd', array()) as $key => $value) {
-			if (self::autoInteractWordFind($query, $key)) {
-				$data['cmd_name'] = array_merge($data['cmd_name'], $value);
-			}
-		}
+
+		$data['cmd_name'] = self::getQuerySynonym($query, 'cmd');
 		if (count($data['cmd_name']) > 0) {
 			if (is_object($data['eqLogic'])) {
 				foreach ($data['cmd_name'] as $name) {
@@ -301,10 +326,11 @@ class interactQuery {
 		}
 		$reply = '';
 		$words = str_word_count($_query, 1);
-		if (config::byKey('interact::contextual') == 1 && isset($words[0]) && in_array($words[0], jeedom::getConfiguration('interact::' . config::byKey('language') . '::contextual_start', array()))) {
+		$startContextual = explode(';', config::byKey('interact::contextual::startpriority'));
+		if (is_array($startContextual) && count($startContextual) > 0 && config::byKey('interact::contextual::enable') == 1 && isset($words[0]) && in_array($words[0], $startContextual)) {
 			$reply = self::contextualReply($_query, $_parameters);
 		}
-		if ($reply == '') {
+		if ($reply == '' && false) {
 			$interactQuery = interactQuery::recognize($_query);
 			if (is_object($interactQuery)) {
 				$reply = $interactQuery->executeAndReply($_parameters);
@@ -316,10 +342,10 @@ class interactQuery {
 				return ucfirst($reply);
 			}
 		}
-		if ($reply == '' && config::byKey('interact::autoreply') == 1) {
+		if ($reply == '' && config::byKey('interact::autoreply::enable') == 1) {
 			$reply = self::autoInteract($_query, $_parameters);
 		}
-		if ($reply == '' && config::byKey('interact::contextual') == 1) {
+		if ($reply == '' && config::byKey('interact::contextual::enable') == 1) {
 			$reply = self::contextualReply($_query, $_parameters);
 		}
 		if ($reply == '' && config::byKey('interact::noResponseIfEmpty', 'core', 0) == 0 && (!isset($_parameters['emptyReply']) || $_parameters['emptyReply'] == 0)) {
@@ -451,7 +477,7 @@ class interactQuery {
 		$interactQuery->executeAndReply($_params);
 	}
 
-/*     * *********************Méthodes d'instance************************* */
+	/*     * *********************Méthodes d'instance************************* */
 
 	public function save() {
 		if ($this->getQuery() == '') {
@@ -616,7 +642,7 @@ class interactQuery {
 		return interactDef::byId($this->interactDef_id);
 	}
 
-/*     * **********************Getteur Setteur*************************** */
+	/*     * **********************Getteur Setteur*************************** */
 
 	public function getInteractDef_id() {
 		return $this->interactDef_id;

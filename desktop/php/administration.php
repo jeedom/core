@@ -771,14 +771,14 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
 							<?php
 $stats = cache::stats();
 ?>
-<div class="form-group">
-									<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Statistiques}}</label>
-									<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-										<?php
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Statistiques}}</label>
+								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+									<?php
 echo '<span class="label label-primary" style="font-size:1em;"><span id="span_cacheObject">' . $stats['count'] . '</span> ' . __('objets', __FILE__) . '</span>';
 ?>
-									</div>
 								</div>
+							</div>
 
 							<div class="form-group">
 								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Moteur de cache}}</label>
@@ -860,6 +860,7 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 				<div class="panel-body">
 					<form class="form-horizontal">
 						<fieldset>
+							<legend>{{Général}}</legend>
 							<div class="alert alert-info">
 								{{Plus la sensibilité est basse (proche de 1) plus la corrrespondance doit être exacte}}
 							</div>
@@ -905,18 +906,45 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 									<textarea type="text" class="configKey form-control" data-l1key="interact::regexpExcludGlobal"></textarea>
 								</div>
 							</div>
+							<legend>{{Interaction automatique}}</legend>
 							<div class="form-group">
-								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer les intéractions automatique}}</label>
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer}}</label>
 								<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
-									<input type="checkbox" class="configKey" data-l1key="interact::autoreply" />
+									<input type="checkbox" class="configKey" data-l1key="interact::autoreply::enable" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer les réponses contextuelles}}</label>
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonyme pour les objets}}</label>
 								<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
-									<input type="checkbox" class="configKey" data-l1key="interact::contextual" />
+									<input class="configKey form-control" data-l1key="interact::autoreply::object::synonym" />
 								</div>
 							</div>
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonyme pour les équipements}}</label>
+								<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
+									<input class="configKey form-control" data-l1key="interact::autoreply::eqLogic::synonym" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonyme pour les commandes}}</label>
+								<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
+									<input class="configKey form-control" data-l1key="interact::autoreply::cmd::synonym" />
+								</div>
+							</div>
+							<legend>{{Réponse contextuelle}}</legend>
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer}}</label>
+								<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
+									<input type="checkbox" class="configKey" data-l1key="interact::contextual::enable" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Réponse contextuelle prioritaire si la phrase commence par}}</label>
+								<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
+									<input class="configKey form-control" data-l1key="interact::contextual::startpriority" />
+								</div>
+							</div>
+							<legend>{{Couleurs}}</legend>
 							<i class="fa fa-plus-circle pull-right cursor" id="bt_addColorConvert" style="font-size: 1.8em;"></i>
 							<table class="table table-condensed table-bordered" id="table_convertColor" >
 								<thead>
