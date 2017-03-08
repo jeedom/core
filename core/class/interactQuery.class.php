@@ -320,9 +320,6 @@ class interactQuery {
 				return array('reply' => ucfirst($reply));
 			}
 		}
-		if ($reply == '' && config::byKey('interact::autoreply::enable') == 1) {
-			$reply = self::autoInteract($_query, $_parameters);
-		}
 		if ($reply == '') {
 			foreach (plugin::listPlugin(true) as $plugin) {
 				if (method_exists($plugin->getId(), 'interact')) {
@@ -333,6 +330,9 @@ class interactQuery {
 					}
 				}
 			}
+		}
+		if ($reply == '' && config::byKey('interact::autoreply::enable') == 1) {
+			$reply = self::autoInteract($_query, $_parameters);
 		}
 		if ($reply == '' && config::byKey('interact::contextual::enable') == 1) {
 			$reply = self::contextualReply($_query, $_parameters);
