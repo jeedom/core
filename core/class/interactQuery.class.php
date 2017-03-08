@@ -330,6 +330,12 @@ class interactQuery {
 			$reply = self::dontUnderstand($_parameters);
 			log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . "\nJe n'ai rien compris\nJ'ai répondu : " . $reply);
 		}
+		foreach (plugin::listPlugin(true) as $plugin) {
+			if (method_exists($plugin->getId(), 'interact')) {
+				$plugin_id = $plugin->getId();
+				$reply = $plugin_id::interact($_query, $_parameters);
+			}
+		}
 		return ucfirst($reply);
 	}
 
