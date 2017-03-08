@@ -369,7 +369,7 @@ class interactQuery {
 			}
 		}
 
-		if (is_object($data['object']) && is_object($current['object'])) {
+		if (isset($data['object']) && is_object($current['object'])) {
 			$humanName = str_replace($current['object']->getName(), $data['object']->getName(), $humanName);
 			$query = str_replace(strtolower($data['object']->getName()), '', $query);
 		}
@@ -385,7 +385,7 @@ class interactQuery {
 				break;
 			}
 		}
-		if (is_object($data['cmd']) && is_object($current['cmd'])) {
+		if (isset($data['cmd']) && is_object($current['cmd'])) {
 			$humanName = str_replace($current['cmd']->getName(), $data['cmd']->getName(), $humanName);
 			$query = str_replace(strtolower($data['cmd']->getName()), '', $query);
 		}
@@ -401,7 +401,7 @@ class interactQuery {
 				break;
 			}
 		}
-		if (is_object($data['eqLogic']) && is_object($current['eqLogic'])) {
+		if (isset($data['eqLogic']) && is_object($current['eqLogic'])) {
 			$humanName = str_replace($current['eqLogic']->getName(), $data['eqLogic']->getName(), $humanName);
 			$query = str_replace(strtolower($data['eqLogic']->getName()), '', $query);
 		}
