@@ -308,6 +308,16 @@ class interactQuery {
 		if (is_array($startContextual) && count($startContextual) > 0 && config::byKey('interact::contextual::enable') == 1 && isset($words[0]) && in_array($words[0], $startContextual)) {
 			$reply = self::contextualReply($_query, $_parameters);
 		}
+		foreach (plugin::listPlugin(true) as $plugin) {
+			if (method_exists($plugin->getId(), 'interact')) {
+				$plugin_id = $plugin->getId();
+				$reply = $plugin_id::interact($_query, $_parameters);
+				if ($reply != null || is_array($reply)) {
+					$reply['reply'] = '[' . $plugin_id . '] ' . $reply['reply'];
+					return $reply;
+				}
+			}
+		}
 		if ($reply == '') {
 			$interactQuery = interactQuery::recognize($_query);
 			if (is_object($interactQuery)) {
@@ -318,18 +328,6 @@ class interactQuery {
 				}
 				log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . "\nJ'ai compris : " . $interactQuery->getQuery() . "\nJ'ai répondu : " . $reply);
 				return array('reply' => ucfirst($reply));
-			}
-		}
-		if ($reply == '') {
-			foreach (plugin::listPlugin(true) as $plugin) {
-				if (method_exists($plugin->getId(), 'interact')) {
-					$plugin_id = $plugin->getId();
-					$reply = $plugin_id::interact($_query, $_parameters);
-					if ($reply != null || is_array($reply)) {
-						$reply['reply'] = '[' . $plugin_id . '] ' . $reply['reply'];
-						return $reply;
-					}
-				}
 			}
 		}
 		if ($reply == '' && config::byKey('interact::autoreply::enable') == 1) {
