@@ -38,6 +38,19 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'mobile' => array('name' => 'Mobile'),
 		),
 	),
+	'interact' => array(
+		'fr_FR' => array(
+			'eqLogic' => array(
+				'lumiere' => array('lumiere', 'lampe'),
+				'lampe' => array('lampe', 'lumiere'),
+			),
+			'cmd' => array(
+				'allume' => array('allume', 'on'),
+				'on' => array('on', 'allume'),
+			),
+			'contextual_start' => array('et'),
+		),
+	),
 	'plugin' => array(
 		'category' => array(
 			'security' => array('name' => 'Sécurité', 'icon' => 'fa-lock'),

@@ -27,6 +27,8 @@ class interactQuery {
 	private $query;
 	private $actions;
 
+	private static $_globalConfiguration;
+
 	/*     * ***********************Méthodes statiques*************************** */
 
 	public static function byId($_id) {
@@ -180,9 +182,7 @@ class interactQuery {
 			return '';
 		}
 		$query = str_replace(strtolower($data['object']->getName()), '', $query);
-		include_file('core', 'auto.interact.fr_FR', 'config');
-		global $JEEDOM_AUTO_INTERACT;
-		foreach ($JEEDOM_AUTO_INTERACT['eqLogic'] as $key => $value) {
+		foreach (jeedom::getConfiguration('interact::' . config::byKey('language') . '::eqLogic', array()) as $key => $value) {
 			if (self::autoInteractWordFind($query, $key)) {
 				$data['eqLogic_name'] = array_merge($data['eqLogic_name'], $value);
 			}
@@ -208,7 +208,7 @@ class interactQuery {
 		if (is_object($data['eqLogic'])) {
 			$query = str_replace(strtolower($data['eqLogic']->getName()), '', $query);
 		}
-		foreach ($JEEDOM_AUTO_INTERACT['cmd'] as $key => $value) {
+		foreach (jeedom::getConfiguration('interact::' . config::byKey('language') . '::cmd', array()) as $key => $value) {
 			if (self::autoInteractWordFind($query, $key)) {
 				$data['cmd_name'] = array_merge($data['cmd_name'], $value);
 			}
@@ -300,15 +300,21 @@ class interactQuery {
 			$_parameters['profile'] = strtolower($_parameters['profile']);
 		}
 		$reply = '';
-		$interactQuery = interactQuery::recognize($_query);
-		if (is_object($interactQuery)) {
-			$reply = $interactQuery->executeAndReply($_parameters);
-			$cmds = $interactQuery->getActions('cmd');
-			if (isset($cmds[0]) && isset($cmds[0]['cmd'])) {
-				cache::set('interact::lastCmd::' . $_parameters['identifier'], str_replace('#', '', $cmds[0]['cmd']), 300);
+		$words = str_word_count($_query, 1);
+		if (config::byKey('interact::contextual') == 1 && isset($words[0]) && in_array($words[0], jeedom::getConfiguration('interact::' . config::byKey('language') . '::contextual_start', array()))) {
+			$reply = self::contextualReply($_query, $_parameters);
+		}
+		if ($reply == '') {
+			$interactQuery = interactQuery::recognize($_query);
+			if (is_object($interactQuery)) {
+				$reply = $interactQuery->executeAndReply($_parameters);
+				$cmds = $interactQuery->getActions('cmd');
+				if (isset($cmds[0]) && isset($cmds[0]['cmd'])) {
+					cache::set('interact::lastCmd::' . $_parameters['identifier'], str_replace('#', '', $cmds[0]['cmd']), 300);
+				}
+				log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . "\nJ'ai compris : " . $interactQuery->getQuery() . "\nJ'ai répondu : " . $reply);
+				return ucfirst($reply);
 			}
-			log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . "\nJ'ai compris : " . $interactQuery->getQuery() . "\nJ'ai répondu : " . $reply);
-			return ucfirst($reply);
 		}
 		if ($reply == '' && config::byKey('interact::autoreply') == 1) {
 			$reply = self::autoInteract($_query, $_parameters);
