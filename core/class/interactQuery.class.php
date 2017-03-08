@@ -476,6 +476,9 @@ class interactQuery {
 		$reply = $interactDef->selectReply();
 		$replace = array();
 		$tags_replace = array('#query#' => $this->getQuery());
+		foreach ($_parameters as $key => $value) {
+			$tags_replace['#' . $key . '#'] = $value;
+		}
 		$tags = null;
 		if (isset($_parameters['dictation'])) {
 			$tags = interactDef::getTagFromQuery($this->getQuery(), $_parameters['dictation']);
