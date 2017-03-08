@@ -326,6 +326,7 @@ class interactQuery {
 					$plugin_id = $plugin->getId();
 					$reply = $plugin_id::interact($_query, $_parameters);
 					if ($reply != null || is_array($reply)) {
+						$reply['reply'] = '[' . $plugin_id . '] ' . $reply['reply'];
 						return $reply;
 					}
 				}
