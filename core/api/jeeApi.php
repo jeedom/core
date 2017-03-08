@@ -82,7 +82,8 @@ if (init('type') != '') {
 			if (init('profile') != '') {
 				$param['profile'] = init('profile');
 			}
-			echo interactQuery::tryToReply($query, $param);
+			$reply = interactQuery::tryToReply($query, $param);
+			echo $reply['reply'];
 		} else if ($type == 'scenario') {
 			log::add('api', 'debug', 'Demande api pour les scénarios');
 			$scenario = scenario::byId(init('id'));
