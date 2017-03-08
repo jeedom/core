@@ -287,7 +287,7 @@ class interactQuery {
 
 	public static function tryToReply($_query, $_parameters = array()) {
 		if (trim($_query) == '') {
-			return;
+			return array('reply' => '');
 		}
 		$_parameters['identifier'] = '';
 		if (isset($_parameters['plugin'])) {
@@ -317,11 +317,22 @@ class interactQuery {
 					cache::set('interact::lastCmd::' . $_parameters['identifier'], str_replace('#', '', $cmds[0]['cmd']), 300);
 				}
 				log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . "\nJ'ai compris : " . $interactQuery->getQuery() . "\nJ'ai répondu : " . $reply);
-				return ucfirst($reply);
+				return array('reply' => ucfirst($reply));
 			}
 		}
 		if ($reply == '' && config::byKey('interact::autoreply::enable') == 1) {
 			$reply = self::autoInteract($_query, $_parameters);
+		}
+		if ($reply == '') {
+			foreach (plugin::listPlugin(true) as $plugin) {
+				if (method_exists($plugin->getId(), 'interact')) {
+					$plugin_id = $plugin->getId();
+					$reply = $plugin_id::interact($_query, $_parameters);
+					if ($reply != null || is_array($reply)) {
+						return $reply;
+					}
+				}
+			}
 		}
 		if ($reply == '' && config::byKey('interact::contextual::enable') == 1) {
 			$reply = self::contextualReply($_query, $_parameters);
@@ -330,13 +341,7 @@ class interactQuery {
 			$reply = self::dontUnderstand($_parameters);
 			log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . "\nJe n'ai rien compris\nJ'ai répondu : " . $reply);
 		}
-		foreach (plugin::listPlugin(true) as $plugin) {
-			if (method_exists($plugin->getId(), 'interact')) {
-				$plugin_id = $plugin->getId();
-				$reply = $plugin_id::interact($_query, $_parameters);
-			}
-		}
-		return ucfirst($reply);
+		return array('reply' => ucfirst($reply));
 	}
 
 	public static function contextualReply($_query, $_parameters = array()) {
