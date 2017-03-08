@@ -906,11 +906,23 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 									<textarea type="text" class="configKey form-control" data-l1key="interact::regexpExcludGlobal"></textarea>
 								</div>
 							</div>
-							<legend>{{Interaction automatique}}</legend>
+							<legend>{{Interaction automatique & contextuelle}}</legend>
 							<div class="form-group">
-								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer}}</label>
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer les interactions automatique}}</label>
 								<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
 									<input type="checkbox" class="configKey" data-l1key="interact::autoreply::enable" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer les réponses contextuelle}}</label>
+								<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
+									<input type="checkbox" class="configKey" data-l1key="interact::contextual::enable" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Réponse contextuelle prioritaire si la phrase commence par}}</label>
+								<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
+									<input class="configKey form-control" data-l1key="interact::contextual::startpriority" />
 								</div>
 							</div>
 							<div class="form-group">
@@ -931,19 +943,7 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 									<input class="configKey form-control" data-l1key="interact::autoreply::cmd::synonym" />
 								</div>
 							</div>
-							<legend>{{Réponse contextuelle}}</legend>
-							<div class="form-group">
-								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer}}</label>
-								<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
-									<input type="checkbox" class="configKey" data-l1key="interact::contextual::enable" />
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Réponse contextuelle prioritaire si la phrase commence par}}</label>
-								<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
-									<input class="configKey form-control" data-l1key="interact::contextual::startpriority" />
-								</div>
-							</div>
+
 							<legend>{{Couleurs}}</legend>
 							<i class="fa fa-plus-circle pull-right cursor" id="bt_addColorConvert" style="font-size: 1.8em;"></i>
 							<table class="table table-condensed table-bordered" id="table_convertColor" >

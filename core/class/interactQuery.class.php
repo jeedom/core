@@ -196,13 +196,9 @@ class interactQuery {
 		$data['object_name'] = self::getQuerySynonym($query, 'object');
 
 		foreach (object::all() as $object) {
-			if (count($data['object_name']) > 0) {
-				foreach ($data['object_name'] as $name) {
-					if ($nam == $object->getName()) {
-						$data['object'] = $object;
-						break;
-					}
-				}
+			if (count($data['object_name']) > 0 && in_array(strtolower($object->getName()), $data['object_name'])) {
+				$data['object'] = $object;
+				break;
 			}
 			if (self::autoInteractWordFind($query, $object->getName())) {
 				$data['object'] = $object;
@@ -215,70 +211,52 @@ class interactQuery {
 		$query = str_replace(strtolower($data['object']->getName()), '', $query);
 
 		$data['eqLogic_name'] = self::getQuerySynonym($query, 'eqLogic');
-		if (count($data['eqLogic_name']) > 0) {
-			foreach ($data['eqLogic_name'] as $name) {
-				foreach ($data['object']->getEqLogic() as $eqLogic) {
-					if (strtolower(sanitizeAccent($eqLogic->getName())) == $name) {
-						$data['eqLogic'] = $eqLogic;
-						break (2);
-					}
-				}
+
+		foreach ($data['object']->getEqLogic() as $eqLogic) {
+			if (count($data['eqLogic_name']) > 0 && in_array(strtolower($eqLogic->getName()), $data['eqLogic_name'])) {
+				$data['eqLogic'] = $eqLogic;
+				break;
+			}
+			if (self::autoInteractWordFind($query, $eqLogic->getName())) {
+				$data['eqLogic'] = $eqLogic;
+				break;
 			}
 		}
-		if (!is_object($data['eqLogic'])) {
-			foreach ($data['object']->getEqLogic() as $eqLogic) {
-				if (self::autoInteractWordFind($query, $eqLogic->getName())) {
-					$data['eqLogic'] = $eqLogic;
-					break;
-				}
-			}
-		}
+
 		if (is_object($data['eqLogic'])) {
 			$query = str_replace(strtolower($data['eqLogic']->getName()), '', $query);
 		}
 
 		$data['cmd_name'] = self::getQuerySynonym($query, 'cmd');
-		if (count($data['cmd_name']) > 0) {
-			if (is_object($data['eqLogic'])) {
-				foreach ($data['cmd_name'] as $name) {
-					foreach ($data['eqLogic']->getCmd() as $cmd) {
-						if (strtolower(sanitizeAccent($cmd->getName())) == $name) {
-							$data['cmd'] = $cmd;
-							break (2);
-						}
-					}
-				}
-			} else {
-				foreach ($data['cmd_name'] as $name) {
-					foreach ($data['object']->getEqLogic() as $eqLogic) {
-						foreach ($eqLogic->getCmd() as $cmd) {
-							if (strtolower(sanitizeAccent($cmd->getName())) == $name) {
-								$data['cmd'] = $cmd;
-								break (3);
-							}
-						}
-					}
-				}
-			}
-		}
-		if (!is_object($data['cmd']) && is_object($data['eqLogic'])) {
+
+		if (is_object($data['eqLogic'])) {
 			foreach ($data['eqLogic']->getCmd() as $cmd) {
+				if (count($data['cmd_name']) > 0 && in_array(strtolower($cmd->getName()), $data['cmd_name'])) {
+					$data['cmd'] = $cmd;
+					break;
+				}
 				if (self::autoInteractWordFind($query, $cmd->getName())) {
 					$data['cmd'] = $cmd;
 					break;
 				}
 			}
-		}
-		if (!is_object($data['cmd'])) {
-			foreach ($data['object']->getEqLogic() as $eqLogic) {
-				foreach ($eqLogic->getCmd() as $cmd) {
-					if (self::autoInteractWordFind($query, $cmd->getName())) {
-						$data['cmd'] = $cmd;
-						break (2);
+		} else {
+			foreach ($data['cmd_name'] as $name) {
+				foreach ($data['object']->getEqLogic() as $eqLogic) {
+					foreach ($eqLogic->getCmd() as $cmd) {
+						if (count($data['cmd_name']) > 0 && in_array(strtolower($cmd->getName()), $data['cmd_name'])) {
+							$data['cmd'] = $cmd;
+							break (3);
+						}
+						if (self::autoInteractWordFind($query, $cmd->getName())) {
+							$data['cmd'] = $cmd;
+							break (3);
+						}
 					}
 				}
 			}
 		}
+
 		if (!is_object($data['cmd'])) {
 			return;
 		}
@@ -330,7 +308,7 @@ class interactQuery {
 		if (is_array($startContextual) && count($startContextual) > 0 && config::byKey('interact::contextual::enable') == 1 && isset($words[0]) && in_array($words[0], $startContextual)) {
 			$reply = self::contextualReply($_query, $_parameters);
 		}
-		if ($reply == '' && false) {
+		if ($reply == '') {
 			$interactQuery = interactQuery::recognize($_query);
 			if (is_object($interactQuery)) {
 				$reply = $interactQuery->executeAndReply($_parameters);
@@ -378,18 +356,30 @@ class interactQuery {
 		$data = array();
 		$findReplace = false;
 		$query = strtolower(sanitizeAccent($_query));
+
+		$data['object_name'] = self::getQuerySynonym($query, 'object');
 		foreach (object::all() as $object) {
+			if (count($data['object_name']) > 0 && in_array(strtolower($object->getName()), $data['object_name'])) {
+				$data['object'] = $object;
+				break;
+			}
 			if (self::autoInteractWordFind($query, $object->getName())) {
 				$data['object'] = $object;
 				break;
 			}
 		}
+
 		if (is_object($data['object']) && is_object($current['object'])) {
 			$humanName = str_replace($current['object']->getName(), $data['object']->getName(), $humanName);
 			$query = str_replace(strtolower($data['object']->getName()), '', $query);
 		}
 
+		$data['cmd_name'] = self::getQuerySynonym($query, 'cmd');
 		foreach (cmd::all() as $cmd) {
+			if (count($data['cmd_name']) > 0 && in_array(strtolower($cmd->getName()), $data['cmd_name'])) {
+				$data['cmd'] = $cmd;
+				break;
+			}
 			if (self::autoInteractWordFind($query, $cmd->getName())) {
 				$data['cmd'] = $cmd;
 				break;
@@ -400,7 +390,12 @@ class interactQuery {
 			$query = str_replace(strtolower($data['cmd']->getName()), '', $query);
 		}
 
+		$data['eqLogic_name'] = self::getQuerySynonym($query, 'eqLogic');
 		foreach (eqLogic::all() as $eqLogic) {
+			if (count($data['eqLogic_name']) > 0 && in_array(strtolower($eqLogic->getName()), $data['eqLogic_name'])) {
+				$data['eqLogic'] = $eqLogic;
+				break;
+			}
 			if (self::autoInteractWordFind($query, $eqLogic->getName())) {
 				$data['eqLogic'] = $eqLogic;
 				break;
@@ -410,7 +405,6 @@ class interactQuery {
 			$humanName = str_replace($current['eqLogic']->getName(), $data['eqLogic']->getName(), $humanName);
 			$query = str_replace(strtolower($data['eqLogic']->getName()), '', $query);
 		}
-
 		return self::autoInteract(str_replace(array('][', '[', ']'), array(' ', '', ''), $humanName), $_parameters);
 	}
 
