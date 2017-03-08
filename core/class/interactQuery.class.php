@@ -353,33 +353,32 @@ class interactQuery {
 			}
 		}
 		if (is_object($data['object']) && is_object($current['object'])) {
-			$findReplace = true;
 			$humanName = str_replace($current['object']->getName(), $data['object']->getName(), $humanName);
+			$query = str_replace(strtolower($data['object']->getName()), '', $query);
 		}
-		if (!$findReplace) {
-			foreach (cmd::all() as $cmd) {
-				if (self::autoInteractWordFind($query, $cmd->getName())) {
-					$data['cmd'] = $cmd;
-					break;
-				}
-			}
-			if (is_object($data['cmd']) && is_object($current['cmd'])) {
-				$findReplace = true;
-				$humanName = str_replace($current['cmd']->getName(), $data['cmd']->getName(), $humanName);
+
+		foreach (cmd::all() as $cmd) {
+			if (self::autoInteractWordFind($query, $cmd->getName())) {
+				$data['cmd'] = $cmd;
+				break;
 			}
 		}
-		if (!$findReplace) {
-			foreach (eqLogic::all() as $eqLogic) {
-				if (self::autoInteractWordFind($query, $eqLogic->getName())) {
-					$data['eqLogic'] = $eqLogic;
-					break;
-				}
-			}
-			if (is_object($data['eqLogic']) && is_object($current['eqLogic'])) {
-				$findReplace = true;
-				$humanName = str_replace($current['eqLogic']->getName(), $data['eqLogic']->getName(), $humanName);
+		if (is_object($data['cmd']) && is_object($current['cmd'])) {
+			$humanName = str_replace($current['cmd']->getName(), $data['cmd']->getName(), $humanName);
+			$query = str_replace(strtolower($data['cmd']->getName()), '', $query);
+		}
+
+		foreach (eqLogic::all() as $eqLogic) {
+			if (self::autoInteractWordFind($query, $eqLogic->getName())) {
+				$data['eqLogic'] = $eqLogic;
+				break;
 			}
 		}
+		if (is_object($data['eqLogic']) && is_object($current['eqLogic'])) {
+			$humanName = str_replace($current['eqLogic']->getName(), $data['eqLogic']->getName(), $humanName);
+			$query = str_replace(strtolower($data['eqLogic']->getName()), '', $query);
+		}
+
 		return self::autoInteract(str_replace(array('][', '[', ']'), array(' ', '', ''), $humanName), $_parameters);
 	}
 
