@@ -231,7 +231,7 @@ class interactQuery {
 		if (!isset($_parameters['identifier'])) {
 			$_parameters['identifier'] = '';
 		}
-		$data = self::findInQuery('object', strtolower(sanitizeAccent($_query)));
+		$data = self::findInQuery('object', $_query);
 		$data = array_merge($data, self::findInQuery('eqLogic', $data['query'], $data['object']));
 		$data = array_merge($data, self::findInQuery('cmd', $data['query'], $data['eqLogic']));
 		if (!is_object($data['cmd'])) {
@@ -340,19 +340,15 @@ class interactQuery {
 		}
 		$current['object'] = $current['eqLogic']->getObject();
 		$humanName = $current['cmd']->getHumanName();
-
-		$data = self::findInQuery('object', strtolower(sanitizeAccent($_query)));
+		$data = self::findInQuery('object', $_query);
 		$data = array_merge($data, self::findInQuery('eqLogic', $data['query'], $data['object']));
 		$data = array_merge($data, self::findInQuery('cmd', $data['query'], $data['eqLogic']));
-
 		if (isset($data['object']) && is_object($current['object'])) {
 			$humanName = str_replace($current['object']->getName(), $data['object']->getName(), $humanName);
 		}
-
 		if (isset($data['cmd']) && is_object($current['cmd'])) {
 			$humanName = str_replace($current['cmd']->getName(), $data['cmd']->getName(), $humanName);
 		}
-
 		if (isset($data['eqLogic']) && is_object($current['eqLogic'])) {
 			$humanName = str_replace($current['eqLogic']->getName(), $data['eqLogic']->getName(), $humanName);
 		}
