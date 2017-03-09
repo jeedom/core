@@ -186,7 +186,7 @@ class interactQuery {
 		return $return;
 	}
 
-	public static function findInQuery($_type, $_query, $_father = null) {
+	public static function findInQuery($_type, $_query, $_data = null) {
 		$return = array();
 		$return['query'] = strtolower(sanitizeAccent($_query));
 		$return[$_type] = null;
@@ -194,16 +194,23 @@ class interactQuery {
 		if ($_type == 'object') {
 			$objects = object::all();
 		} elseif ($_type == 'eqLogic') {
-			if ($_father == null) {
-				$objects = eqLogic::all();
+			if ($_data != null && is_object($_data['object'])) {
+				$objects = $_data['object']->getEqLogic();
 			} else {
-				$objects = $_father->getEqLogic();
+				$objects = eqLogic::all();
 			}
 		} elseif ($_type == 'cmd') {
-			if ($_father == null) {
-				$objects = cmd::all();
+			if ($_data != null && is_object($_data['eqLogic'])) {
+				$objects = $_data['eqLogic']->getCmd();
+			} elseif ($_data != null && is_object($_data['object'])) {
+				$objects = array();
+				foreach ($_data['object']->getEqLogic() as $eqLogic) {
+					foreach ($eqLogic->getCmd() as $cmd) {
+						$objects[] = $cmd;
+					}
+				}
 			} else {
-				$objects = $_father->getCmd();
+				$objects = cmd::all();
 			}
 		}
 		foreach ($objects as $object) {
@@ -216,12 +223,14 @@ class interactQuery {
 				break;
 			}
 		}
-		if (is_object($return[$_type])) {
-			$return['query'] = str_replace(strtolower(sanitizeAccent($return[$_type]->getName())), '', $return['query']);
-		}
-		if (count($synonyms) > 0) {
-			foreach ($synonyms as $value) {
-				$return['query'] = str_replace(strtolower(sanitizeAccent($value)), '', $return['query']);
+		if ($_type != 'eqLogic') {
+			if (is_object($return[$_type])) {
+				$return['query'] = str_replace(strtolower(sanitizeAccent($return[$_type]->getName())), '', $return['query']);
+			}
+			if (count($synonyms) > 0) {
+				foreach ($synonyms as $value) {
+					$return['query'] = str_replace(strtolower(sanitizeAccent($value)), '', $return['query']);
+				}
 			}
 		}
 		return $return;
@@ -232,14 +241,14 @@ class interactQuery {
 			$_parameters['identifier'] = '';
 		}
 		$data = self::findInQuery('object', $_query);
-		$data = array_merge($data, self::findInQuery('eqLogic', $data['query'], $data['object']));
-		$data = array_merge($data, self::findInQuery('cmd', $data['query'], $data['eqLogic']));
+		$data = array_merge($data, self::findInQuery('eqLogic', $data['query'], $data));
+		$data = array_merge($data, self::findInQuery('cmd', $data['query'], $data));
 		if (!is_object($data['cmd'])) {
 			return;
 		}
-		cache::set('interact::lastCmd::' . $_parameters['identifier'], $data['cmd']->getId(), 300);
+		self::addLastInteract($data['cmd']->getId(), $_parameters['identifier']);
 		if ($data['cmd']->getType() == 'info') {
-			return trim($data['cmd']->execCmd() . ' ' . $data['cmd']->getUnite());
+			return trim($data['cmd']->getHumanName() . ' ' . $data['cmd']->execCmd() . ' ' . $data['cmd']->getUnite());
 		} else {
 			$data['cmd']->execCmd();
 			$return = __('J\'ai executé ', __FILE__) . $data['cmd']->getName();
@@ -282,29 +291,29 @@ class interactQuery {
 		$reply = '';
 		$words = str_word_count($_query, 1);
 		$startContextual = explode(';', config::byKey('interact::contextual::startpriority'));
-		if (is_array($startContextual) && count($startContextual) > 0 && config::byKey('interact::contextual::enable') == 1 && isset($words[0]) && in_array($words[0], $startContextual)) {
+		if (is_array($startContextual) && count($startContextual) > 0 && config::byKey('interact::contextual::enable') == 1 && isset($words[0]) && in_array(strtolower($words[0]), $startContextual)) {
 			$reply = self::contextualReply($_query, $_parameters);
 		}
-		foreach (plugin::listPlugin(true) as $plugin) {
-			if (config::byKey('functionality::interact::enable', $plugin->getId(), 1) == 0) {
-				continue;
-			}
-			if (method_exists($plugin->getId(), 'interact')) {
-				$plugin_id = $plugin->getId();
-				$reply = $plugin_id::interact($_query, $_parameters);
-				if ($reply != null || is_array($reply)) {
-					$reply['reply'] = '[' . $plugin_id . '] ' . $reply['reply'];
-					return $reply;
+		if ($reply == '') {
+			foreach (plugin::listPlugin(true) as $plugin) {
+				if (config::byKey('functionality::interact::enable', $plugin->getId(), 1) == 0) {
+					continue;
+				}
+				if (method_exists($plugin->getId(), 'interact')) {
+					$plugin_id = $plugin->getId();
+					$reply = $plugin_id::interact($_query, $_parameters);
+					if ($reply != null || is_array($reply)) {
+						$reply['reply'] = '[' . $plugin_id . '] ' . $reply['reply'];
+						return $reply;
+					}
 				}
 			}
-		}
-		if ($reply == '' && false) {
 			$interactQuery = interactQuery::recognize($_query);
 			if (is_object($interactQuery)) {
 				$reply = $interactQuery->executeAndReply($_parameters);
 				$cmds = $interactQuery->getActions('cmd');
 				if (isset($cmds[0]) && isset($cmds[0]['cmd'])) {
-					cache::set('interact::lastCmd::' . $_parameters['identifier'], str_replace('#', '', $cmds[0]['cmd']), 300);
+					self::addLastInteract(str_replace('#', '', $cmds[0]['cmd']), $_parameters['identifier']);
 				}
 				log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . "\nJ'ai compris : " . $interactQuery->getQuery() . "\nJ'ai répondu : " . $reply);
 				return array('reply' => ucfirst($reply));
@@ -323,29 +332,42 @@ class interactQuery {
 		return array('reply' => ucfirst($reply));
 	}
 
-	public static function contextualReply($_query, $_parameters = array()) {
+	public static function addLastInteract($_lastCmd, $_identifier = 'unknown') {
+		$last = cache::byKey('interact::lastCmd::' . $_identifier);
+		if ($last->getValue() == '') {
+			cache::set('interact::lastCmd2::' . $_identifier, $last->getValue(), 300);
+		}
+		cache::set('interact::lastCmd::' . $_identifier, str_replace('#', '', $_lastCmd), 300);
+	}
+
+	public static function contextualReply($_query, $_parameters = array(), $_lastCmd = null) {
+		$return = '';
 		if (!isset($_parameters['identifier'])) {
 			$_parameters['identifier'] = '';
 		}
-		$last = cache::byKey('interact::lastCmd::' . $_parameters['identifier']);
-		if ($last->getValue() == '') {
-			return '';
+		if ($_lastCmd == null) {
+			$last = cache::byKey('interact::lastCmd::' . $_parameters['identifier']);
+			if ($last->getValue() == '') {
+				return $return;
+			}
+			$lastCmd = $last->getValue();
+		} else {
+			$lastCmd = $_lastCmd;
 		}
-		$lastCmd = $last->getValue();
 		$current = array();
 		$current['cmd'] = cmd::byId($lastCmd);
 		if (!is_object($current['cmd'])) {
-			return '';
+			return $return;
 		}
 		$current['eqLogic'] = $current['cmd']->getEqLogic();
 		if (!is_object($current['eqLogic'])) {
-			return '';
+			return $return;
 		}
 		$current['object'] = $current['eqLogic']->getObject();
 		$humanName = $current['cmd']->getHumanName();
 		$data = self::findInQuery('object', $_query);
-		$data = array_merge($data, self::findInQuery('eqLogic', $data['query'], $data['object']));
-		$data = array_merge($data, self::findInQuery('cmd', $data['query'], $data['eqLogic']));
+		$data = array_merge($data, self::findInQuery('eqLogic', $data['query'], $data));
+		$data = array_merge($data, self::findInQuery('cmd', $data['query'], $data));
 		if (isset($data['object']) && is_object($current['object'])) {
 			$humanName = str_replace($current['object']->getName(), $data['object']->getName(), $humanName);
 		}
@@ -355,7 +377,14 @@ class interactQuery {
 		if (isset($data['eqLogic']) && is_object($current['eqLogic'])) {
 			$humanName = str_replace($current['eqLogic']->getName(), $data['eqLogic']->getName(), $humanName);
 		}
-		return self::autoInteract(str_replace(array('][', '[', ']'), array(' ', '', ''), $humanName), $_parameters);
+		$return = self::autoInteract(str_replace(array('][', '[', ']'), array(' ', '', ''), $humanName), $_parameters);
+		if ($return == '' && $_lastCmd == null) {
+			$last = cache::byKey('interact::lastCmd2::' . $_parameters['identifier']);
+			if ($last->getValue() != '') {
+				$return = self::contextualReply($_query, $_parameters, $last->getValue());
+			}
+		}
+		return $return;
 	}
 
 	public static function brainReply($_query, $_parameters) {
