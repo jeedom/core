@@ -61,8 +61,11 @@
 * Passage au sha512 pour le hash des mots de passe (le sha1 étant compromis)
 * Correction d'un bug dans la gestion du cache qui le faisait grossir indefiniment
 * Correction de l'accès au doc des plugins tierce si ceux-ci n'ont pas de doc en local
-* Les interactions peuvent prendre en compte la notion de contexte (en fonction de la demande précedente)
+* Les interactions peuvent prendre en compte la notion de contexte (en fonction de la demande précedente et celle d'avant)
 * Possibilité de ponderer les mots en fonction de leur taille pour l'analyse de la compréhension
+* Les plugins peuvent maintenant ajouter des interactions
+* Les intéractions peuvent maintenant renvoyer des fichiers en plus de la réponse
+* Possibilité de voir sur la page de configuration des plugins les fonctionalités de celui-ci (interact, cron...) et de la desactiver unitairement
 
 = 2.4.7
 
