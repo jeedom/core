@@ -286,6 +286,9 @@ class interactQuery {
 			$reply = self::contextualReply($_query, $_parameters);
 		}
 		foreach (plugin::listPlugin(true) as $plugin) {
+			if (config::byKey('functionality::interact::enable', $plugin->getId(), 1) == 0) {
+				continue;
+			}
 			if (method_exists($plugin->getId(), 'interact')) {
 				$plugin_id = $plugin->getId();
 				$reply = $plugin_id::interact($_query, $_parameters);

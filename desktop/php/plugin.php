@@ -35,8 +35,8 @@ foreach ($plugins_list as $category_name => $category) {
 	}
 }
 ?>
-   </ul>
- </div>
+    </ul>
+  </div>
 </div>
 
 <div class="col-md-9 col-sm-8" id="div_resumePluginList" style="border-left: solid 1px #EEE; padding-left: 25px;">
@@ -168,17 +168,35 @@ foreach (plugin::listPlugin() as $plugin) {
   </div>
 </div>
 
-<div class="panel panel-primary" id="div_configPanel">
-  <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-picture-o"></i> {{Panel}}
-    <a class="btn btn-success btn-xs pull-right" id="bt_savePluginPanelConfig"><i class="fa fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
-  </h3></div>
-  <div class="panel-body">
-    <form class="form-horizontal">
-      <fieldset>
-       <div id="div_plugin_panel"></div>
-     </fieldset>
-   </form>
+<div class="row">
+<div class="col-md-6 col-sm-12">
+  <div class="panel panel-primary" id="div_functionalityPanel">
+    <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-picture-o"></i> {{Fonctionalités}}
+      <a class="btn btn-success btn-xs pull-right" id="bt_savePluginFunctionalityConfig"><i class="fa fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
+    </h3></div>
+    <div class="panel-body">
+      <form class="form-horizontal">
+        <fieldset>
+         <div id="div_plugin_functionality"></div>
+       </fieldset>
+     </form>
+   </div>
  </div>
+</div>
+ <div class="col-md-6 col-sm-12">
+  <div class="panel panel-primary" id="div_configPanel">
+    <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-picture-o"></i> {{Panel}}
+      <a class="btn btn-success btn-xs pull-right" id="bt_savePluginPanelConfig"><i class="fa fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
+    </h3></div>
+    <div class="panel-body">
+      <form class="form-horizontal">
+        <fieldset>
+         <div id="div_plugin_panel"></div>
+       </fieldset>
+     </form>
+   </div>
+ </div>
+</div>
 </div>
 
 </div>

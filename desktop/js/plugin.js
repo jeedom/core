@@ -152,7 +152,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
       if(isset(data.display) && data.display != ''){
         $('#div_configPanel').show();
         var config_panel_html = '<div class="form-group">';
-        config_panel_html += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Afficher le panel desktop}}</label>';
+        config_panel_html += '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6 control-label">{{Afficher le panel desktop}}</label>';
         config_panel_html += '<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">';
         config_panel_html += '<input type="checkbox" class="configKey tooltips" data-l1key="displayDesktopPanel" />';
         config_panel_html += '</div>';
@@ -163,7 +163,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
       if(isset(data.mobile) && data.mobile != ''){
         $('#div_configPanel').show();
         var config_panel_html = '<div class="form-group">';
-        config_panel_html += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Afficher le panel mobile}}</label>';
+        config_panel_html += '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6 control-label">{{Afficher le panel mobile}}</label>';
         config_panel_html += '<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">';
         config_panel_html += '<input type="checkbox" class="configKey tooltips" data-l1key="displayMobilePanel" />';
         config_panel_html += '</div>';
@@ -171,8 +171,38 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
         $('#div_plugin_panel').append(config_panel_html);
       }
 
-      $('#div_plugin_toggleState').empty();
-      if (data.checkVersion != -1) {
+      $('#div_plugin_functionality').empty();
+      count = 0;
+      var config_panel_html = '<div class="row">';
+      config_panel_html += '<div class="col-sm-6">';
+      for(var i in data.functionality){
+        config_panel_html += '<div class="form-group">';
+        config_panel_html += '<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6 control-label">'+i+'</label>';
+        config_panel_html += '<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">';
+        if(data.functionality[i]){
+          config_panel_html += '<span class="label label-success">{{Oui}}</span>';
+          config_panel_html += '</div>';
+          config_panel_html += '<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Activer}}</label>';
+          config_panel_html += '<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">';
+          config_panel_html += '<input type="checkbox" class="configKey tooltips" data-l1key="functionality::'+i+'::enable" checked/>';
+          config_panel_html += '</div>';
+        }else{
+          config_panel_html += '<span class="label label-danger">{{Non}}</span>';
+          config_panel_html += '</div>';
+        }
+        config_panel_html += '</div>';
+        count++;
+        if(count == 4){
+         config_panel_html += '</div>';
+         config_panel_html += '<div class="col-sm-6">';
+       }
+     }
+     config_panel_html += '</div>';
+     config_panel_html += '</div>';
+     $('#div_plugin_functionality').append(config_panel_html);
+
+     $('#div_plugin_toggleState').empty();
+     if (data.checkVersion != -1) {
        var html = '<form class="form-horizontal">';
        html += '<div class="form-group">';
        html += '<label class="col-sm-2 control-label">{{Statut}}</label>';
@@ -262,6 +292,18 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
     },
     success: function (data) {
       $('#div_plugin_panel').setValues(data, '.configKey');
+      modifyWithoutSave = false;
+      initExpertMode();
+    }
+  });
+  jeedom.config.load({
+    configuration: $('#div_plugin_functionality').getValues('.configKey')[0],
+    plugin: $('.li_plugin.active').attr('data-plugin_id'),
+    error: function (error) {
+      alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (data) {
+      $('#div_plugin_functionality').setValues(data, '.configKey');
       modifyWithoutSave = false;
       initExpertMode();
     }
@@ -370,6 +412,20 @@ $('#bt_savePluginPanelConfig').off('click').on('click',function(){
   },
   success: function () {
     alert_div_plugin_configuration.showAlert({message: '{{Sauvegarde de la configuration des panels effectuée}}', level: 'success'});
+    modifyWithoutSave = false;
+  }
+});
+})
+
+$('#bt_savePluginFunctionalityConfig').off('click').on('click',function(){
+ jeedom.config.save({
+  configuration: $('#div_plugin_functionality').getValues('.configKey')[0],
+  plugin: $('.li_plugin.active').attr('data-plugin_id'),
+  error: function (error) {
+    alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
+  },
+  success: function () {
+    alert_div_plugin_configuration.showAlert({message: '{{Sauvegarde des fonctionalités effectuée}}', level: 'success'});
     modifyWithoutSave = false;
   }
 });

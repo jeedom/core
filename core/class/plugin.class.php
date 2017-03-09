@@ -43,6 +43,7 @@ class plugin {
 	private $documentation = '';
 	private $info = array();
 	private $include = array();
+	private $functionality = array();
 	private static $_cache = array();
 	private static $_enable = null;
 
@@ -164,6 +165,14 @@ class plugin {
 			$plugin->installation = __($plugin->installation, $_id);
 		}
 
+		$plugin->functionality['interact'] = method_exists($plugin->getId(), 'interact');
+		$plugin->functionality['cron'] = method_exists($plugin->getId(), 'cron');
+		$plugin->functionality['cron5'] = method_exists($plugin->getId(), 'cron5');
+		$plugin->functionality['cron15'] = method_exists($plugin->getId(), 'cron15');
+		$plugin->functionality['cron30'] = method_exists($plugin->getId(), 'cron30');
+		$plugin->functionality['cronHourly'] = method_exists($plugin->getId(), 'cronHourly');
+		$plugin->functionality['cronDaily'] = method_exists($plugin->getId(), 'cronDaily');
+
 		self::$_cache[$_id] = $plugin;
 		self::$_cache[$plugin->id] = $plugin;
 		return $plugin;
@@ -268,6 +277,9 @@ class plugin {
 	public static function cron() {
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'cron')) {
+				if (config::byKey('functionality::cron::enable', $plugin->getId(), 1) == 0) {
+					continue;
+				}
 				$plugin_id = $plugin->getId();
 				try {
 					$plugin_id::cron();
@@ -283,6 +295,9 @@ class plugin {
 	public static function cron5() {
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'cron5')) {
+				if (config::byKey('functionality::cron5::enable', $plugin->getId(), 1) == 0) {
+					continue;
+				}
 				$plugin_id = $plugin->getId();
 				try {
 					$plugin_id::cron5();
@@ -298,6 +313,9 @@ class plugin {
 	public static function cron15() {
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'cron15')) {
+				if (config::byKey('functionality::cron15::enable', $plugin->getId(), 1) == 0) {
+					continue;
+				}
 				$plugin_id = $plugin->getId();
 				try {
 					$plugin_id::cron15();
@@ -313,6 +331,9 @@ class plugin {
 	public static function cron30() {
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'cron30')) {
+				if (config::byKey('functionality::cron30::enable', $plugin->getId(), 1) == 0) {
+					continue;
+				}
 				$plugin_id = $plugin->getId();
 				try {
 					$plugin_id::cron30();
@@ -328,6 +349,9 @@ class plugin {
 	public static function cronDaily() {
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'cronDaily')) {
+				if (config::byKey('functionality::cronDaily::enable', $plugin->getId(), 1) == 0) {
+					continue;
+				}
 				$plugin_id = $plugin->getId();
 				try {
 					$plugin_id::cronDaily();
@@ -343,6 +367,9 @@ class plugin {
 	public static function cronHourly() {
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'cronHourly')) {
+				if (config::byKey('functionality::cronHourly::enable', $plugin->getId(), 1) == 0) {
+					continue;
+				}
 				$plugin_id = $plugin->getId();
 				try {
 					$plugin_id::cronHourly();
