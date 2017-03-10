@@ -266,13 +266,17 @@ class interactQuery {
 			if (!isset($data['summary'])) {
 				return '';
 			}
-			$value = $data['object']->getSummary($data['summary']['key']);
+			$value = '';
+			if (is_object($data['object'])) {
+				$value = $data['object']->getSummary($data['summary']['key']);
+			}
 			if (trim($value) === '') {
 				$value = object::getGlobalSummary($data['summary']['key']);
 			}
 			if (trim($value) === '') {
 				return '';
 			}
+			self::addLastInteract($_query, $_parameters['identifier']);
 			return $data['summary']['name'] . ' ' . $value . ' ' . $data['summary']['unit'];
 		}
 		self::addLastInteract($data['cmd']->getId(), $_parameters['identifier']);
@@ -385,26 +389,30 @@ class interactQuery {
 		}
 		$current = array();
 		$current['cmd'] = cmd::byId($lastCmd);
-		if (!is_object($current['cmd'])) {
-			return $return;
+		if (is_object($current['cmd'])) {
+			$current['eqLogic'] = $current['cmd']->getEqLogic();
+			if (!is_object($current['eqLogic'])) {
+				return $return;
+			}
+			$current['object'] = $current['eqLogic']->getObject();
+			$humanName = $current['cmd']->getHumanName();
+		} else {
+			$humanName = strtolower(sanitizeAccent($lastCmd));
+			$current = self::findInQuery('object', $humanName);
+			$current = array_merge($current, self::findInQuery('summary', $current['query'], $current));
 		}
-		$current['eqLogic'] = $current['cmd']->getEqLogic();
-		if (!is_object($current['eqLogic'])) {
-			return $return;
-		}
-		$current['object'] = $current['eqLogic']->getObject();
-		$humanName = $current['cmd']->getHumanName();
+
 		$data = self::findInQuery('object', $_query);
 		$data = array_merge($data, self::findInQuery('eqLogic', $data['query'], $data));
 		$data = array_merge($data, self::findInQuery('cmd', $data['query'], $data));
 		if (isset($data['object']) && is_object($current['object'])) {
-			$humanName = str_replace($current['object']->getName(), $data['object']->getName(), $humanName);
+			$humanName = self::replaceForContextual($current['object']->getName(), $data['object']->getName(), $humanName);
 		}
 		if (isset($data['cmd']) && is_object($current['cmd'])) {
-			$humanName = str_replace($current['cmd']->getName(), $data['cmd']->getName(), $humanName);
+			$humanName = self::replaceForContextual($current['cmd']->getName(), $data['cmd']->getName(), $humanName);
 		}
 		if (isset($data['eqLogic']) && is_object($current['eqLogic'])) {
-			$humanName = str_replace($current['eqLogic']->getName(), $data['eqLogic']->getName(), $humanName);
+			$humanName = self::replaceForContextual($current['eqLogic']->getName(), $data['eqLogic']->getName(), $humanName);
 		}
 		$return = self::autoInteract(str_replace(array('][', '[', ']'), array(' ', '', ''), $humanName), $_parameters);
 		if ($return == '' && $_lastCmd == null) {
@@ -414,6 +422,11 @@ class interactQuery {
 			}
 		}
 		return $return;
+	}
+
+	public function replaceForContextual($_replace, $_by, $_in) {
+		$_in = str_replace($_replace, $_by, $_in);
+		return str_replace(strtolower(sanitizeAccent($_replace)), strtolower(sanitizeAccent($_by)), $_in);
 	}
 
 	public static function brainReply($_query, $_parameters) {
