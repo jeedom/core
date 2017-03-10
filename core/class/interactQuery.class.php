@@ -190,7 +190,7 @@ class interactQuery {
 		$return = array();
 		$return['query'] = strtolower(sanitizeAccent($_query));
 		$return[$_type] = null;
-		$synonyms = self::getQuerySynonym($return['query'], 'object');
+		$synonyms = self::getQuerySynonym($return['query'], $_type);
 		if ($_type == 'object') {
 			$objects = object::all();
 		} elseif ($_type == 'eqLogic') {
@@ -212,6 +212,24 @@ class interactQuery {
 			} else {
 				$objects = cmd::all();
 			}
+		} else if ($_type == 'summary') {
+			foreach (config::byKey('object:summary') as $key => $value) {
+				if (count($synonyms) > 0 && in_array(strtolower($value['name']), $synonyms)) {
+					$return[$_type] = $value;
+					break;
+				}
+				if (self::autoInteractWordFind($return['query'], $value['name'])) {
+					$return[$_type] = $value;
+					$return['query'] = str_replace(strtolower(sanitizeAccent($value['name'])), '', $return['query']);
+					break;
+				}
+			}
+			if (count($synonyms) > 0) {
+				foreach ($synonyms as $value) {
+					$return['query'] = str_replace(strtolower(sanitizeAccent($value)), '', $return['query']);
+				}
+			}
+			return $return;
 		}
 		foreach ($objects as $object) {
 			if (count($synonyms) > 0 && in_array(strtolower($object->getName()), $synonyms)) {
@@ -244,7 +262,18 @@ class interactQuery {
 		$data = array_merge($data, self::findInQuery('eqLogic', $data['query'], $data));
 		$data = array_merge($data, self::findInQuery('cmd', $data['query'], $data));
 		if (!is_object($data['cmd'])) {
-			return;
+			$data = array_merge($data, self::findInQuery('summary', $data['query'], $data));
+			if (!isset($data['summary'])) {
+				return '';
+			}
+			$value = $data['object']->getSummary($data['summary']['key']);
+			if (trim($value) === '') {
+				$value = object::getGlobalSummary($data['summary']['key']);
+			}
+			if (trim($value) === '') {
+				return '';
+			}
+			return $data['summary']['name'] . ' ' . $value . ' ' . $data['summary']['unit'];
 		}
 		self::addLastInteract($data['cmd']->getId(), $_parameters['identifier']);
 		if ($data['cmd']->getType() == 'info') {
