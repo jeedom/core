@@ -66,6 +66,8 @@
 * Les plugins peuvent maintenant ajouter des interactions
 * Les intéractions peuvent maintenant renvoyer des fichiers en plus de la réponse
 * Possibilité de voir sur la page de configuration des plugins les fonctionalités de celui-ci (interact, cron...) et de la desactiver unitairement
+* Les intéractions automatique peuvent renvoyer les valeurs des résumés
+* Possible de définir des synomymes pour les objets,équipement,commande et résumé qui seront utilisés dans les réponses contextuelle et résumé
 
 = 2.4.7
 
