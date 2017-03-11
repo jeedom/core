@@ -55,17 +55,7 @@ if (init('type') != '') {
 			}
 			$cmd->askResponse(init('response'));
 		}
-		if ($type != init('plugin', 'core') && init('plugin', 'core') != 'core') {
-			throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__));
-		}
-		if (class_exists($type)) {
-			if (method_exists($type, 'event')) {
-				log::add('api', 'info', 'Appels de ' . secureXSS($type) . '::event()');
-				$type::event();
-			} else {
-				throw new Exception('Aucune méthode correspondante : ' . secureXSS($type) . '::event()');
-			}
-		}
+
 		if ($type == 'cmd') {
 			if (is_json(init('id'))) {
 				$ids = json_decode(init('id'), true);
@@ -75,6 +65,9 @@ if (init('type') != '') {
 					if (!is_object($cmd)) {
 						throw new Exception(__('Aucune commande correspondant à l\'id : ', __FILE__) . secureXSS($id));
 					}
+					if (init('plugin', 'core') != 'core' && init('plugin', 'core') != $cmd->getEqType()) {
+						throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__));
+					}
 					$result[$id] = $cmd->execCmd($_REQUEST);
 				}
 				echo json_encode($result);
@@ -83,8 +76,22 @@ if (init('type') != '') {
 				if (!is_object($cmd)) {
 					throw new Exception('Aucune commande correspondant à l\'id : ' . secureXSS(init('id')));
 				}
+				if (init('plugin', 'core') != 'core' && init('plugin', 'core') != $cmd->getEqType()) {
+					throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__));
+				}
 				log::add('api', 'debug', 'Exécution de : ' . $cmd->getHumanName());
 				echo $cmd->execCmd($_REQUEST);
+			}
+		}
+		if ($type != init('plugin', 'core') && init('plugin', 'core') != 'core') {
+			throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__));
+		}
+		if (class_exists($type)) {
+			if (method_exists($type, 'event')) {
+				log::add('api', 'info', 'Appels de ' . secureXSS($type) . '::event()');
+				$type::event();
+			} else {
+				throw new Exception('Aucune méthode correspondante : ' . secureXSS($type) . '::event()');
 			}
 		}
 		if ($type == 'interact') {
