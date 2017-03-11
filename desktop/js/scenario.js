@@ -774,7 +774,6 @@ function setAutocomplete() {
 function printScenario(_id) {
   $.showLoading();
   jeedom.scenario.update[_id] =function(_options){
-    console.log(_options);
     if(_options.scenario_id =! $('body').getValues('.scenarioAttr')[0]['id']){
       return;
     }
