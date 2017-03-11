@@ -47,10 +47,26 @@ if (init('type') != '') {
 				throw new Exception(__('Commande inconnue : ', __FILE__) . init('cmd_id'));
 			}
 			if ($cmd->getCache('ask::token', config::genKey()) != init('token')) {
-				throw new Exception(__('Token invalide', __FILE__));
+				throw new Exception(__('Token invalide', __FILE__) . $cmd->getCache('ask::token') . ' != ' . init('token'));
+			}
+			if (init('count', 0) != 0 && init('count', 0) > $cmd->getCache('ask::count', 0)) {
+				$cmd->setCache('ask::count', $cmd->getCache('ask::count', 0) + 1);
+				die();
 			}
 			$cmd->askResponse(init('response'));
-		} else if ($type == 'cmd') {
+		}
+		if ($type != init('plugin', 'core') && init('plugin', 'core') != 'core') {
+			throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__));
+		}
+		if (class_exists($type)) {
+			if (method_exists($type, 'event')) {
+				log::add('api', 'info', 'Appels de ' . secureXSS($type) . '::event()');
+				$type::event();
+			} else {
+				throw new Exception('Aucune méthode correspondante : ' . secureXSS($type) . '::event()');
+			}
+		}
+		if ($type == 'cmd') {
 			if (is_json(init('id'))) {
 				$ids = json_decode(init('id'), true);
 				$result = array();
@@ -70,7 +86,8 @@ if (init('type') != '') {
 				log::add('api', 'debug', 'Exécution de : ' . $cmd->getHumanName());
 				echo $cmd->execCmd($_REQUEST);
 			}
-		} else if ($type == 'interact') {
+		}
+		if ($type == 'interact') {
 			$query = init('query');
 			if (init('utf8', 0) == 1) {
 				$query = utf8_encode($query);
@@ -84,7 +101,8 @@ if (init('type') != '') {
 			}
 			$reply = interactQuery::tryToReply($query, $param);
 			echo $reply['reply'];
-		} else if ($type == 'scenario') {
+		}
+		if ($type == 'scenario') {
 			log::add('api', 'debug', 'Demande api pour les scénarios');
 			$scenario = scenario::byId(init('id'));
 			if (!is_object($scenario)) {
@@ -117,32 +135,26 @@ if (init('type') != '') {
 					throw new Exception('Action non trouvée ou invalide [start,stop,deactivate,activate]');
 			}
 			echo 'ok';
-		} else if ($type == 'message') {
+		}
+		if ($type == 'message') {
 			log::add('api', 'debug', 'Demande API pour ajouter un message');
 			message::add(init('category'), init('message'));
-		} else if ($type == 'object') {
+		}
+		if ($type == 'object') {
 			log::add('api', 'debug', 'Demande API pour les objets');
 			echo json_encode(utils::o2a(object::all()));
-		} else if ($type == 'eqLogic') {
+		}
+		if ($type == 'eqLogic') {
 			log::add('api', 'debug', 'Demande API pour les équipements');
 			echo json_encode(utils::o2a(eqLogic::byObjectId(init('object_id'))));
-		} else if ($type == 'command') {
+		}
+		if ($type == 'command') {
 			log::add('api', 'debug', 'Demande API pour les commandes');
 			echo json_encode(utils::o2a(cmd::byEqLogicId(init('eqLogic_id'))));
-		} else if ($type == 'fulData') {
+		}
+		if ($type == 'fulData') {
 			log::add('api', 'debug', 'Demande API pour les commandes');
 			echo json_encode(object::fullData());
-		} else {
-			if (class_exists($type)) {
-				if (method_exists($type, 'event')) {
-					log::add('api', 'info', 'Appels de ' . secureXSS($type) . '::event()');
-					$type::event();
-				} else {
-					throw new Exception('Aucune méthode correspondante : ' . secureXSS($type) . '::event()');
-				}
-			} else {
-				throw new Exception('Aucun plugin correspondant : ' . secureXSS($type));
-			}
 		}
 	} catch (Exception $e) {
 		echo $e->getMessage();

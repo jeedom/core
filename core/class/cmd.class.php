@@ -1341,8 +1341,8 @@ class cmd {
 	}
 
 	public function generateAskResponseLink($_response, $_plugin = 'core', $_network = 'external') {
-		$token = config::genKey();
-		$this->setCache('ask::token', $token);
+		$token = $this->getCache('ask::token', config::genKey());
+		$this->setCache(array('ask::count' => 0, 'ask::token' => $token));
 		$return = network::getNetworkAccess($_network) . '/core/api/jeeApi.php?';
 		$return .= 'type=ask';
 		$return .= '&plugin=' . $_plugin;
@@ -1363,8 +1363,7 @@ class cmd {
 		$dataStore->setValue($_response);
 		$dataStore->setLink_id(-1);
 		$dataStore->save();
-		$this->setCache('storeVariable', 'none');
-		$this->setCache('ask::token', '');
+		$this->setCache(array('storeVariable' => 'none', 'ask::count' => 0, 'ask::token' => null));
 	}
 
 	public function emptyHistory($_date = '') {
