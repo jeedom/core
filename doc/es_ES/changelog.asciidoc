@@ -68,6 +68,7 @@ Botón derecho del ratón en un elemento de un resumen domótico te lleva a una 
 * Possibilité de voir sur la page de configuration des plugins les fonctionalités de celui-ci (interact, cron...) et de la desactiver unitairement
 * Les intéractions automatique peuvent renvoyer les valeurs des résumés
 * Possible de définir des synomymes pour les objets,équipement,commande et résumé qui seront utilisés dans les réponses contextuelle et résumé
+* Le status des scénarios sur la page d'édition est maintenant mise à jour dynamiquement
 
 = 2.4.7
 
