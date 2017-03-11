@@ -774,6 +774,7 @@ function setAutocomplete() {
 function printScenario(_id) {
   $.showLoading();
   jeedom.scenario.update[_id] =function(_options){
+    console.log(_options);
     if(_options.scenario_id =! $('body').getValues('.scenarioAttr')[0]['id']){
       return;
     }
@@ -826,27 +827,7 @@ function printScenario(_id) {
     for (var i in data.schedules) {
       $('#div_schedules').schedule.display(data.schedules[i]);
     }
-    $('#bt_stopScenario').hide();
-    switch (data.state) {
-      case 'error' :
-      $('#span_ongoing').text('{{Erreur}}');
-      $('#span_ongoing').removeClass('label-info label-danger label-success').addClass('label-warning');
-      break;
-      case 'on' :
-      $('#span_ongoing').text('{{Actif}}');
-      $('#span_ongoing').removeClass('label-info label-danger label-warning').addClass('label-success');
-      break;
-      case 'in progress' :
-      $('#span_ongoing').text('{{En cours}}');
-      $('#span_ongoing').addClass('label-success');
-      $('#span_ongoing').removeClass('label-success label-danger label-warning').addClass('label-info');
-      $('#bt_stopScenario').show();
-      break;
-      case 'stop' :
-      $('#span_ongoing').text('{{Arrêté}}');
-      $('#span_ongoing').removeClass('label-info label-success label-warning').addClass('label-danger');
-      break;
-    }
+    jeedom.scenario.update[_id](data);
     if (data.isActive != 1) {
       $('#in_ongoing').text('{{Inactif}}');
       $('#in_ongoing').removeClass('label-danger');
@@ -911,19 +892,8 @@ function saveScenario() {
     },
     success: function (data) {
       modifyWithoutSave = false;
-      if ($('#ul_scenario .li_scenario[data-scenario_id=' + data.id + ']').length != 0) {
-        $('#ul_scenario .li_scenario[data-scenario_id=' + data.id + ']').click();
-      } else {
-        var vars = getUrlVars();
-        var url = 'index.php?';
-        for (var i in vars) {
-          if (i != 'id' && i != 'saveSuccessFull' && i != 'removeSuccessFull') {
-            url += i + '=' + vars[i].replace('#', '') + '&';
-          }
-        }
-        url += 'id=' + data.id + '&saveSuccessFull=1';
-        loadPage(url);
-      }
+      $('#div_alert').showAlert({message: '{{Sauvegarde du scénario réussi}}', level: 'success'});
+      printScenario(scenario.id);
     }
   });
 }
