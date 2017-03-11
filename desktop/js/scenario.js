@@ -274,7 +274,6 @@ $("#bt_testScenario,#bt_testScenario2").on('click', function () {
     },
     success: function () {
       $('#div_alert').showAlert({message: '{{Lancement du scénario réussi}}', level: 'success'});
-      setTimeout(function(){ printScenario($('.scenarioAttr[data-l1key=id]').value()); }, 100);
     }
   });
 });
@@ -304,7 +303,7 @@ $("#bt_stopScenario").on('click', function () {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
     success: function () {
-      printScenario($('.scenarioAttr[data-l1key=id]').value());
+      $('#div_alert').showAlert({message: '{{Arrêt du scénario réussi}}', level: 'success'});
     }
   });
 });
@@ -645,7 +644,7 @@ $('body').delegate('.bt_sortable', 'mouseenter', function () {
     axis: "y",
     cursor: "move",
     items: ".sortable",
-	   opacity: 0.5,
+    opacity: 0.5,
     //placeholder: "ui-state-highlight",
     forcePlaceholderSize: true,
     forceHelperSize: true,
@@ -774,98 +773,126 @@ function setAutocomplete() {
 
 function printScenario(_id) {
   $.showLoading();
-  jeedom.scenario.get({
-    id: _id,
-    error: function (error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'});
-    },
-    success: function (data) {
-      if (data.type == 'simple') {
-        $('#bt_switchToExpertMode').attr('href', 'index.php?v=d&p=scenarioAssist&id=' + _id)
-      }
-      pColor = 0;
-      $('.scenarioAttr').value('');
-      $('.scenarioAttr[data-l1key=object_id] option:first').attr('selected',true);
-      $('.scenarioAttr[data-l1key=object_id]').val('');
-      $('body').setValues(data, '.scenarioAttr');
-      data.lastLaunch = (data.lastLaunch == null) ? '{{Jamais}}' : data.lastLaunch;
-      $('#span_lastLaunch').text(data.lastLaunch);
-
-      $('#div_scenarioElement').empty();
-      $('#div_scenarioElement').append('<a class="btn btn-default bt_addScenarioElement tootlips" title="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)}}"><i class="fa fa-plus-circle"></i> {{Ajouter bloc}}</a><br/><br/>');
-      $('.provokeMode').empty();
-      $('.scheduleMode').empty();
-      $('.scenarioAttr[data-l1key=mode]').trigger('change');
-      for (var i in data.schedules) {
-        $('#div_schedules').schedule.display(data.schedules[i]);
-      }
-      $('#bt_stopScenario').hide();
-      switch (data.state) {
-        case 'error' :
-        $('#span_ongoing').text('{{Erreur}}');
-        $('#span_ongoing').removeClass('label-info label-danger label-success').addClass('label-warning');
-        break;
-        case 'on' :
-        $('#span_ongoing').text('{{Actif}}');
-        $('#span_ongoing').removeClass('label-info label-danger label-warning').addClass('label-success');
-        break;
-        case 'in progress' :
-        $('#span_ongoing').text('{{En cours}}');
-        $('#span_ongoing').addClass('label-success');
-        $('#span_ongoing').removeClass('label-success label-danger label-warning').addClass('label-info');
-        $('#bt_stopScenario').show();
-        break;
-        case 'stop' :
-        $('#span_ongoing').text('{{Arrêté}}');
-        $('#span_ongoing').removeClass('label-info label-success label-warning').addClass('label-danger');
-        break;
-      }
-      if (data.isActive != 1) {
-        $('#in_ongoing').text('{{Inactif}}');
-        $('#in_ongoing').removeClass('label-danger');
-        $('#in_ongoing').removeClass('label-success');
-      }
-      if ($.isArray(data.trigger)) {
-        for (var i in data.trigger) {
-          if (data.trigger[i] != '' && data.trigger[i] != null) {
-            addTrigger(data.trigger[i]);
-          }
-        }
-      } else {
-        if (data.trigger != '' && data.trigger != null) {
-          addTrigger(data.trigger);
-        }
-      }
-      if ($.isArray(data.schedule)) {
-        for (var i in data.schedule) {
-          if (data.schedule[i] != '' && data.schedule[i] != null) {
-            addSchedule(data.schedule[i]);
-          }
-        }
-      } else {
-        if (data.schedule != '' && data.schedule != null) {
-          addSchedule(data.schedule);
-        }
-      }
-
-      if(data.elements.length == 0){
-        $('#div_scenarioElement').append('<center><span style=\'color:#767676;font-size:1.2em;font-weight: bold;\'>Pour constituer votre scénario veuillez ajouter des blocs</span></center>')
-      }
-
-      for (var i in data.elements) {
-        $('#div_scenarioElement').append(addElement(data.elements[i]));
-      }
-      updateSortable();
-      setEditor();
-      setAutocomplete();
-      $('#div_editScenario').show();
-      $.hideLoading();
-      modifyWithoutSave = false;
-      setTimeout(function () {
-        modifyWithoutSave = false;
-      }, 1000);
+  jeedom.scenario.update[_id] =function(_options){
+    if(_options.scenario_id =! $('body').getValues('.scenarioAttr')[0]['id']){
+      return;
     }
-  });
+    switch(_options.state){
+     case 'error' :
+     $('#bt_stopScenario').hide();
+     $('#span_ongoing').text('{{Erreur}}');
+     $('#span_ongoing').removeClass('label-info label-danger label-success').addClass('label-warning');
+     break;
+     case 'on' :
+     $('#bt_stopScenario').show();
+     $('#span_ongoing').text('{{Actif}}');
+     $('#span_ongoing').removeClass('label-info label-danger label-warning').addClass('label-success');
+     break;
+     case 'in progress' :
+     $('#bt_stopScenario').show();
+     $('#span_ongoing').text('{{En cours}}');
+     $('#span_ongoing').addClass('label-success');
+     $('#span_ongoing').removeClass('label-success label-danger label-warning').addClass('label-info');
+     break;
+     case 'stop' :
+     $('#bt_stopScenario').hide();
+     $('#span_ongoing').text('{{Arrêté}}');
+     $('#span_ongoing').removeClass('label-info label-success label-warning').addClass('label-danger');
+     break;
+   }
+ }
+ jeedom.scenario.get({
+  id: _id,
+  error: function (error) {
+    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+  },
+  success: function (data) {
+    if (data.type == 'simple') {
+      $('#bt_switchToExpertMode').attr('href', 'index.php?v=d&p=scenarioAssist&id=' + _id)
+    }
+    pColor = 0;
+    $('.scenarioAttr').value('');
+    $('.scenarioAttr[data-l1key=object_id] option:first').attr('selected',true);
+    $('.scenarioAttr[data-l1key=object_id]').val('');
+    $('body').setValues(data, '.scenarioAttr');
+    data.lastLaunch = (data.lastLaunch == null) ? '{{Jamais}}' : data.lastLaunch;
+    $('#span_lastLaunch').text(data.lastLaunch);
+
+    $('#div_scenarioElement').empty();
+    $('#div_scenarioElement').append('<a class="btn btn-default bt_addScenarioElement tootlips" title="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)}}"><i class="fa fa-plus-circle"></i> {{Ajouter bloc}}</a><br/><br/>');
+    $('.provokeMode').empty();
+    $('.scheduleMode').empty();
+    $('.scenarioAttr[data-l1key=mode]').trigger('change');
+    for (var i in data.schedules) {
+      $('#div_schedules').schedule.display(data.schedules[i]);
+    }
+    $('#bt_stopScenario').hide();
+    switch (data.state) {
+      case 'error' :
+      $('#span_ongoing').text('{{Erreur}}');
+      $('#span_ongoing').removeClass('label-info label-danger label-success').addClass('label-warning');
+      break;
+      case 'on' :
+      $('#span_ongoing').text('{{Actif}}');
+      $('#span_ongoing').removeClass('label-info label-danger label-warning').addClass('label-success');
+      break;
+      case 'in progress' :
+      $('#span_ongoing').text('{{En cours}}');
+      $('#span_ongoing').addClass('label-success');
+      $('#span_ongoing').removeClass('label-success label-danger label-warning').addClass('label-info');
+      $('#bt_stopScenario').show();
+      break;
+      case 'stop' :
+      $('#span_ongoing').text('{{Arrêté}}');
+      $('#span_ongoing').removeClass('label-info label-success label-warning').addClass('label-danger');
+      break;
+    }
+    if (data.isActive != 1) {
+      $('#in_ongoing').text('{{Inactif}}');
+      $('#in_ongoing').removeClass('label-danger');
+      $('#in_ongoing').removeClass('label-success');
+    }
+    if ($.isArray(data.trigger)) {
+      for (var i in data.trigger) {
+        if (data.trigger[i] != '' && data.trigger[i] != null) {
+          addTrigger(data.trigger[i]);
+        }
+      }
+    } else {
+      if (data.trigger != '' && data.trigger != null) {
+        addTrigger(data.trigger);
+      }
+    }
+    if ($.isArray(data.schedule)) {
+      for (var i in data.schedule) {
+        if (data.schedule[i] != '' && data.schedule[i] != null) {
+          addSchedule(data.schedule[i]);
+        }
+      }
+    } else {
+      if (data.schedule != '' && data.schedule != null) {
+        addSchedule(data.schedule);
+      }
+    }
+
+    if(data.elements.length == 0){
+      $('#div_scenarioElement').append('<center><span style=\'color:#767676;font-size:1.2em;font-weight: bold;\'>Pour constituer votre scénario veuillez ajouter des blocs</span></center>')
+    }
+
+    for (var i in data.elements) {
+      $('#div_scenarioElement').append(addElement(data.elements[i]));
+    }
+    updateSortable();
+    setEditor();
+    setAutocomplete();
+    $('#div_editScenario').show();
+    $.hideLoading();
+    modifyWithoutSave = false;
+    setTimeout(function () {
+      modifyWithoutSave = false;
+    }, 1000);
+  }
+});
 }
 
 function saveScenario() {

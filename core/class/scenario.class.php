@@ -1218,7 +1218,7 @@ class scenario {
 	public function setState($state) {
 		if ($this->getCache('state') != $state) {
 			$this->emptyCacheWidget();
-			event::add('scenario::update', array('scenario_id' => $this->getId(), 'state' => $this->getState(), 'lastLaunch' => $this->getLastLaunch()));
+			event::add('scenario::update', array('scenario_id' => $this->getId(), 'state' => $state, 'lastLaunch' => $this->getLastLaunch()));
 		}
 		$this->setCache('state', $state);
 	}

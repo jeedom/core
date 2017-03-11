@@ -226,14 +226,14 @@ jeedom.scenario.applyTemplate = function (_params) {
 }
 
 jeedom.scenario.refreshValue = function (_params) {
-    if ($('.scenario[data-scenario_id=' + _params.scenario_id + ']').html() == undefined) {
-        return;
-    }
     if (!isset(_params.global) || !_params.global) {
         if (isset(jeedom.scenario.update) && isset(jeedom.scenario.update[_params.scenario_id])) {
             jeedom.scenario.update[_params.scenario_id](_params);
             return;
         }
+    }
+    if ($('.scenario[data-scenario_id=' + _params.scenario_id + ']').html() == undefined) {
+        return;
     }
     var version = $('.scenario[data-scenario_id=' + _params.scenario_id + ']').attr('data-version');
     var paramsRequired = ['id'];
