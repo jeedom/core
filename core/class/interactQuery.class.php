@@ -373,7 +373,7 @@ class interactQuery {
 								}
 								if (is_string($value)) {
 									if ($reply[$key] != $value) {
-										$reply[$key] .= '.' . $value;
+										$reply[$key] .= "\n" . $value;
 									}
 								}
 								if (is_array($value)) {
