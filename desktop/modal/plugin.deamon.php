@@ -82,7 +82,11 @@ switch ($deamon_info['launchable']) {
 ?>
 					</td>
 					<td class="td_lastLaunchDeamon">
-						<?php echo $deamon_info['last_launch']; ?>
+						<?php
+if (isset($deamon_info['last_launch'])) {
+	echo $deamon_info['last_launch'];
+}
+?>
 					</td>
 				</tr>
 			</tbody>
