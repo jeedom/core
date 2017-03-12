@@ -215,7 +215,7 @@ if (!isConnect()) {
 		}
 	}
 	?>
-		<header class="navbar navbar-fixed-top navbar-default" style="margin-bottom: 0px !important;">
+		<header class="navbar navbar-fixed-top navbar-default reportModeHidden" style="margin-bottom: 0px !important;">
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<a class="navbar-brand" href="<?php echo $homeLink; ?>">
