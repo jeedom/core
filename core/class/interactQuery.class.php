@@ -381,7 +381,7 @@ class interactQuery {
 								}
 							}
 						} else {
-							$reply['reply'] .= '.' . $tmp;
+							$reply['reply'] .= "\n" . $tmp;
 						}
 					}
 					return $reply;
