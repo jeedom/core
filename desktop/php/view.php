@@ -25,7 +25,7 @@ sendVarToJS('view_id', $view->getId());
 
 <div class="row row-overflow">
 	<?php
-if ($_SESSION['user']->getOptions('displayViewByDefault') == 1) {
+if ($_SESSION['user']->getOptions('displayViewByDefault') == 1 && init('report') != 1) {
 	echo '<div class="col-lg-2 col-md-3 col-sm-4 div_displayViewList">';
 } else {
 	echo '<div class="col-lg-2 col-md-3 col-sm-4 div_displayViewList" style="display:none;">';
@@ -54,13 +54,13 @@ foreach (view::all() as $view_info) {
 	</div>
 </div>
 <?php
-if ($_SESSION['user']->getOptions('displayViewByDefault') == 1) {
+if ($_SESSION['user']->getOptions('displayViewByDefault') == 1 && init('report') != 1) {
 	echo '<div class="col-lg-10 col-md-9 col-sm-8 div_displayViewContainer">';
 } else {
 	echo '<div class="col-lg-12 col-md-12 col-sm-12 div_displayViewContainer">';
 }
 ?>
-<i class='fa fa-picture-o cursor pull-left bt_displayView' data-display='<?php echo $_SESSION['user']->getOptions('displayViewByDefault') ?>' title="{{Afficher/Masquer les vues}}"></i>
+<i class='fa fa-picture-o cursor pull-left bt_displayView reportModeHidden' data-display='<?php echo $_SESSION['user']->getOptions('displayViewByDefault') ?>' title="{{Afficher/Masquer les vues}}"></i>
 
 <legend style="height: 35px;color : #563d7c;">{{Vue}} <?php
 echo $view->getName();
@@ -68,10 +68,10 @@ echo $view->getName();
 	<?php
 if (init('noControl') == '') {
 	if (isConnect('admin')) {
-		?> <a href="index.php?v=d&p=view_edit&view_id=<?php echo $view->getId(); ?>" class="btn btn-warning btn-xs pull-right"><i class="fa fa-pencil"></i> {{Edition complète}}</a><?php }
+		?> <a href="index.php?v=d&p=view_edit&view_id=<?php echo $view->getId(); ?>" class="btn btn-warning btn-xs pull-right reportModeHidden"><i class="fa fa-pencil"></i> {{Edition complète}}</a><?php }
 	?>
 
-			<i class="fa fa-pencil pull-right cursor" id="bt_editViewWidgetOrder" data-mode="0"></i>
+			<i class="fa fa-pencil pull-right cursor reportModeHidden" id="bt_editViewWidgetOrder" data-mode="0"></i>
 			<?php }
 ?>
 		</legend>

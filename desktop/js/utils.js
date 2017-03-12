@@ -294,6 +294,7 @@ function initCheckBox(){
 function initPage(){
     initTableSorter();
     initExpertMode();
+    initReportMode();
     $.initTableFilter();
     initRowOverflow();
     initHelp();
@@ -328,6 +329,16 @@ function initExpertMode() {
         $('.expertModeDisable').attr('disabled', true);
         $('.expertModeVisible').hide();
         $('.expertModeHidden').show();
+    }
+}
+
+function initReportMode() {
+    if (getUrlVars('report') == 1) {
+        $('.reportModeVisible').show();
+        $('.reportModeHidden').hide();
+    } else {
+        $('.reportModeVisible').hide();
+        $('.reportModeHidden').show();
     }
 }
 

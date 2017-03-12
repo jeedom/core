@@ -44,6 +44,7 @@
             console.log(err);
         }
         setTimeout(function () {
+            initReportMode();
             positionEqLogic();
             $('.eqLogicZone').disableSelection();
             $( "input").click(function() { $(this).focus(); });

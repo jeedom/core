@@ -126,6 +126,7 @@ class scenarioExpression {
 			'#action#' => '',
 			'#scenario_id#' => '',
 			'#plan_id#' => '',
+			'#view_id#' => '',
 		);
 		$return['html'] = translate::exec(template_replace($replace, $return['html']), 'core/template/scenario/' . $_expression . '.default');
 		return $return;
@@ -1242,6 +1243,30 @@ class scenarioExpression {
 						$scenario->setReturn($scenario->getReturn() . ' ' . $options['message']);
 					}
 					return;
+				} else if ($this->getExpression() == 'report') {
+					$cmd_parameters = array('files' => null);
+					$this->setLog($scenario, __('Génération d\'un rapport de type ', __FILE__) . $options['type']);
+					switch ($options['type']) {
+						case 'view':
+							$view = view::byId($options['view_id']);
+							if (!is_object($view)) {
+								throw new Exception(__('Vue introuvable - Vérifiez l\'id : ', __FILE__) . $options['view_id']);
+							}
+							$this->setLog($scenario, __('Génération du rapport ', __FILE__) . $view->getName());
+							$cmd_parameters['files'] = array($view->report($options['export_type']));
+							$cmd_parameters['title'] = __('[' . config::byKey('name') . '] Rapport ', __FILE__) . $view->getName() . __(' du ', __FILE__) . date('Y-m-d H:i:s');
+							$cmd_parameters['message'] = __('Veuillez trouver ci-joint le rapport ', __FILE__) . $view->getName() . __(' généré le ', __FILE__) . date('Y-m-d H:i:s');
+							break;
+					}
+					if ($cmd_parameters['files'] == null) {
+						throw new Exception(__('Erreur : Aucun rapport généré', __FILE__));
+					}
+					$cmd = cmd::byId(str_replace('#', '', $this->getOptions('cmd')));
+					if (!is_object($cmd)) {
+						throw new Exception(__('Commande introuvable veuillez vérifiez l\'id : ', __FILE__) . $this->getOptions('cmd'));
+					}
+					$this->setLog($scenario, __('Envoi du rapport généré sur ', __FILE__) . $cmd->getHumanName());
+					$cmd->execCmd($cmd_parameters);
 				} else {
 					$cmd = cmd::byId(str_replace('#', '', $this->getExpression()));
 					if (is_object($cmd)) {

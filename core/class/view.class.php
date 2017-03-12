@@ -48,6 +48,26 @@ class view {
 
 	/*     * *********************Méthodes d'instance************************* */
 
+	public function report($_format = 'pdf', $_parameters = array()) {
+		if (!isset($_parameters['user'])) {
+			$users = user::searchByRight('admin');
+			if (count($users) == 0) {
+				throw new Exception(__('Aucun utilisateur admin trouvé pour la génération du rapport', __FILE__));
+			}
+			$user = $users[0];
+		} else {
+			$user = user::byId($_parameters['user']);
+		}
+		$out = dirname(__FILE__) . '/../../tmp/report_' . $this->getId() . '_' . date('Y_m_d_H_i_s') . '.' . $_format;
+		$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=view';
+		$url .= '&view_id=' . $this->getId();
+		$url .= '&report=1';
+		$url .= '&auth=' . $user->getHash();
+		$cmd = 'xvfb-run --server-args="-screen 0, 1280x1200x24" cutycapt --delay=' . config::byKey('report::delay') . ' --url="' . $url . '" --out="' . $out . '"';
+		com_shell::execute($cmd);
+		return $out;
+	}
+
 	public function presave() {
 		if ($this->getName() == '') {
 			throw new Exception('Le nom de la vue ne peut pas être vide');

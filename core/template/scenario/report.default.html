@@ -1,0 +1,46 @@
+<input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="type" data-cmd_id="#id#" data-uid="#uid#" value="view" style="display:none" />
+<div class="input-group input-group-sm" style="width: 100%">
+    <span class="input-group-addon" id="basic-addon1" style="width: 100px">{{Vue}}</span>
+    <select class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="view_id" data-cmd_id="#id#" data-uid="#uid#"></select>
+    <span class="input-group-addon" id="basic-addon1" style="width: 100px">{{Exporter en}}</span>
+    <select class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="export_type" data-cmd_id="#id#" data-uid="#uid#">
+        <option value="pdf">{{PDF}}</option>
+        <option value="png">{{PNG}}</option>
+        <option value="jpeg">{{JPEG}}</option>
+        <option value="svg">{{SVG}}</option>
+    </select>
+</div>
+<div class="input-group input-group-sm" style="width: 100%; padding-top: 1px">
+    <span class="input-group-addon" id="basic-addon1" style="width: 100px">{{Commandes}}</span>
+    <input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="cmd" placeholder="Commandes" value="#cmd#" data-cmd_id="#id#" data-uid="#uid#"/>
+    <span class="input-group-btn">
+        <button class="btn btn-default listEquipementInfo" type="button" title="{{Sélectionner la commande}}" data-uid="#uid#" data-cmd_id="#id#"><i class="fa fa-list-alt"></i></button>
+    </span>
+</div>
+<script>
+    jeedom.view.all({
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (views) {
+            var options = '';
+            for (var i in views) {
+                options += '<option value="' + views[i].id + '">' + views[i].name + '</option>';
+            }
+            $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=view_id]').append(options);
+            if ('#view_id#' != '' && $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=view_id] option[value=#view_id#]').html() != undefined) {
+                $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=view_id]').value('#view_id#');
+            }
+        }
+    });
+    if ('#export_type#' != '' && $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=export_type] option[value=#export_type#]').html() != undefined) {
+        $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=export_type]').value('#export_type#');
+    }
+
+    
+    $('.listEquipementInfo[data-uid=#uid#]').off('click').on('click', function() {
+        jeedom.cmd.getSelectModal({cmd: {type: 'action',subtype : 'message'}}, function(result) {
+            $('.expressionAttr[data-l1key=options][data-l2key=cmd][data-uid=#uid#]').value(result.human);
+        });
+    });
+</script>
