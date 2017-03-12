@@ -757,8 +757,8 @@ class scenario {
 			$this->setLastLaunch($calculateScheduleDate['prevDate']);
 		}
 		DB::save($this);
+		$this->emptyCacheWidget();
 		if ($this->_changeState) {
-			$this->emptyCacheWidget();
 			event::add('scenario::update', array('scenario_id' => $this->getId(), 'isActive' => $this->getIsActive(), 'state' => $this->getState(), 'lastLaunch' => $this->getLastLaunch()));
 		}
 	}
