@@ -63,7 +63,7 @@ class view {
 		$url .= '&view_id=' . $this->getId();
 		$url .= '&report=1';
 		$url .= '&auth=' . $user->getHash();
-		$cmd = 'xvfb-run --server-args="-screen 0, 1280x1200x24" cutycapt --delay=' . config::byKey('report::delay') . ' --url="' . $url . '" --out="' . $out . '"';
+		$cmd = 'xvfb-run --server-args="-screen 0, 1280x1200x24" cutycapt --print-backgrounds=on --delay=' . config::byKey('report::delay') . ' --url="' . $url . '" --out="' . $out . '"';
 		com_shell::execute($cmd);
 		return $out;
 	}
