@@ -304,6 +304,24 @@ class interactQuery {
 		return preg_match('/( |^)' . preg_quote($word, '/') . '( |$)/', $string);
 	}
 
+	public function pluginReply($_query, $_parameters = array()) {
+		foreach (plugin::listPlugin(true) as $plugin) {
+			if (config::byKey('functionality::interact::enable', $plugin->getId(), 1) == 0) {
+				continue;
+			}
+			if (method_exists($plugin->getId(), 'interact')) {
+				$plugin_id = $plugin->getId();
+				$reply = $plugin_id::interact($_query, $_parameters);
+				if ($reply != null || is_array($reply)) {
+					$reply['reply'] = '[' . $plugin_id . '] ' . $reply['reply'];
+					self::addLastInteract($_query, $_parameters['identifier']);
+					return $reply;
+				}
+			}
+		}
+		return null;
+	}
+
 	public static function tryToReply($_query, $_parameters = array()) {
 		if (trim($_query) == '') {
 			return array('reply' => '');
@@ -328,18 +346,9 @@ class interactQuery {
 			$reply = self::contextualReply($_query, $_parameters);
 		}
 		if ($reply == '') {
-			foreach (plugin::listPlugin(true) as $plugin) {
-				if (config::byKey('functionality::interact::enable', $plugin->getId(), 1) == 0) {
-					continue;
-				}
-				if (method_exists($plugin->getId(), 'interact')) {
-					$plugin_id = $plugin->getId();
-					$reply = $plugin_id::interact($_query, $_parameters);
-					if ($reply != null || is_array($reply)) {
-						$reply['reply'] = '[' . $plugin_id . '] ' . $reply['reply'];
-						return $reply;
-					}
-				}
+			$reply = self::pluginReply($_query, $_parameters);
+			if ($reply !== null) {
+				return $reply;
 			}
 			$interactQuery = interactQuery::recognize($_query);
 			if (is_object($interactQuery)) {
@@ -361,6 +370,9 @@ class interactQuery {
 		if ($reply == '' && config::byKey('interact::noResponseIfEmpty', 'core', 0) == 0 && (!isset($_parameters['emptyReply']) || $_parameters['emptyReply'] == 0)) {
 			$reply = self::dontUnderstand($_parameters);
 			log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . "\nJe n'ai rien compris\nJ'ai répondu : " . $reply);
+		}
+		if (is_array($reply)) {
+			return $reply;
 		}
 		return array('reply' => ucfirst($reply));
 	}
@@ -413,6 +425,10 @@ class interactQuery {
 		}
 		if (isset($data['eqLogic']) && is_object($current['eqLogic'])) {
 			$humanName = self::replaceForContextual($current['eqLogic']->getName(), $data['eqLogic']->getName(), $humanName);
+		}
+		$reply = self::pluginReply($humanName, $_parameters);
+		if ($reply !== null) {
+			return $reply;
 		}
 		$return = self::autoInteract(str_replace(array('][', '[', ']'), array(' ', '', ''), $humanName), $_parameters);
 		if ($return == '' && $_lastCmd == null) {

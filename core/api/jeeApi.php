@@ -71,6 +71,7 @@ if (init('type') != '') {
 					$result[$id] = $cmd->execCmd($_REQUEST);
 				}
 				echo json_encode($result);
+				die();
 			} else {
 				$cmd = cmd::byId(init('id'));
 				if (!is_object($cmd)) {
@@ -81,6 +82,7 @@ if (init('type') != '') {
 				}
 				log::add('api', 'debug', 'Exécution de : ' . $cmd->getHumanName());
 				echo $cmd->execCmd($_REQUEST);
+				die();
 			}
 		}
 		if ($type != init('plugin', 'core') && init('plugin', 'core') != 'core') {
@@ -90,6 +92,7 @@ if (init('type') != '') {
 			if (method_exists($type, 'event')) {
 				log::add('api', 'info', 'Appels de ' . secureXSS($type) . '::event()');
 				$type::event();
+				die();
 			} else {
 				throw new Exception('Aucune méthode correspondante : ' . secureXSS($type) . '::event()');
 			}
@@ -108,6 +111,7 @@ if (init('type') != '') {
 			}
 			$reply = interactQuery::tryToReply($query, $param);
 			echo $reply['reply'];
+			die();
 		}
 		if ($type == 'scenario') {
 			log::add('api', 'debug', 'Demande api pour les scénarios');
@@ -142,26 +146,32 @@ if (init('type') != '') {
 					throw new Exception('Action non trouvée ou invalide [start,stop,deactivate,activate]');
 			}
 			echo 'ok';
+			die();
 		}
 		if ($type == 'message') {
 			log::add('api', 'debug', 'Demande API pour ajouter un message');
 			message::add(init('category'), init('message'));
+			die();
 		}
 		if ($type == 'object') {
 			log::add('api', 'debug', 'Demande API pour les objets');
 			echo json_encode(utils::o2a(object::all()));
+			die();
 		}
 		if ($type == 'eqLogic') {
 			log::add('api', 'debug', 'Demande API pour les équipements');
 			echo json_encode(utils::o2a(eqLogic::byObjectId(init('object_id'))));
+			die();
 		}
 		if ($type == 'command') {
 			log::add('api', 'debug', 'Demande API pour les commandes');
 			echo json_encode(utils::o2a(cmd::byEqLogicId(init('eqLogic_id'))));
+			die();
 		}
 		if ($type == 'fulData') {
 			log::add('api', 'debug', 'Demande API pour les commandes');
 			echo json_encode(object::fullData());
+			die();
 		}
 	} catch (Exception $e) {
 		echo $e->getMessage();
