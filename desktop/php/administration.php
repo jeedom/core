@@ -925,7 +925,7 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 									<input class="configKey form-control" data-l1key="interact::contextual::startpriority" />
 								</div>
 							</div>
-								<div class="form-group">
+							<div class="form-group">
 								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Découper une interaction en 2 si elle contient}}</label>
 								<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
 									<input class="configKey form-control" data-l1key="interact::contextual::splitword" />
@@ -971,6 +971,30 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 								<tbody>
 								</tbody>
 							</table>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div class="panel panel-default expertModeVisible">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_report">
+						<i class="fa fa-newspaper-o"></i> {{Configuration des rapports}}
+					</a>
+				</h3>
+			</div>
+			<div id="configuration_report" class="panel-collapse collapse">
+				<div class="panel-body">
+					<form class="form-horizontal">
+						<fieldset>
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Delai d'attente après génération de la page (en ms)}}</label>
+								<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+									<input class="configKey form-control" data-l1key="report::delay" />
+								</div>
+							</div>
 						</fieldset>
 					</form>
 				</div>
