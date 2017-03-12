@@ -306,20 +306,25 @@ class interactQuery {
 	}
 
 	public function pluginReply($_query, $_parameters = array()) {
-		foreach (plugin::listPlugin(true) as $plugin) {
-			if (config::byKey('functionality::interact::enable', $plugin->getId(), 1) == 0) {
-				continue;
-			}
-			if (method_exists($plugin->getId(), 'interact')) {
-				$plugin_id = $plugin->getId();
-				$reply = $plugin_id::interact($_query, $_parameters);
-				if ($reply != null || is_array($reply)) {
-					$reply['reply'] = '[' . $plugin_id . '] ' . $reply['reply'];
-					self::addLastInteract($_query, $_parameters['identifier']);
-					return $reply;
+		try {
+			foreach (plugin::listPlugin(true) as $plugin) {
+				if (config::byKey('functionality::interact::enable', $plugin->getId(), 1) == 0) {
+					continue;
+				}
+				if (method_exists($plugin->getId(), 'interact')) {
+					$plugin_id = $plugin->getId();
+					$reply = $plugin_id::interact($_query, $_parameters);
+					if ($reply != null || is_array($reply)) {
+						$reply['reply'] = '[' . $plugin_id . '] ' . $reply['reply'];
+						self::addLastInteract($_query, $_parameters['identifier']);
+						return $reply;
+					}
 				}
 			}
+		} catch (Exception $e) {
+			return array('reply' => __('Erreur : ', __FILE__) . $e->getMessage());
 		}
+
 		return null;
 	}
 
