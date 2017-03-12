@@ -345,6 +345,43 @@ class interactQuery {
 		if (is_array($startContextual) && count($startContextual) > 0 && config::byKey('interact::contextual::enable') == 1 && isset($words[0]) && in_array(strtolower($words[0]), $startContextual)) {
 			$reply = self::contextualReply($_query, $_parameters);
 		}
+		if (config::byKey('interact::contextual::splitword') != '') {
+			$splitWords = explode(';', config::byKey('interact::contextual::startpriority'));
+			$queries = array();
+			foreach ($splitWords as $split) {
+				if (in_array($split, $words)) {
+					$queries = array_merge($queries, explode(' ' . $split . ' ', $_query));
+				}
+			}
+			if (count($queries) > 1) {
+				$reply = self::tryToReply($queries[0], $_parameters);
+				if ($reply != '') {
+					array_shift($queries);
+					foreach ($queries as $query) {
+						$tmp = self::contextualReply($query, $_parameters);
+						if (is_array($tmp)) {
+							foreach ($tmp as $key => $value) {
+								if (!isset($reply[$key])) {
+									$reply[$key] = $value;
+									continue;
+								}
+								if (is_string($value)) {
+									if ($reply[$key] != $value) {
+										$reply[$key] .= '.' . $value;
+									}
+								}
+								if (is_array($value)) {
+									$reply[$key] = array_merge($reply[$key], $value);
+								}
+							}
+						} else {
+							$reply['reply'] .= '.' . $tmp;
+						}
+					}
+					return $reply;
+				}
+			}
+		}
 		if ($reply == '') {
 			$reply = self::pluginReply($_query, $_parameters);
 			if ($reply !== null) {

@@ -925,6 +925,12 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 									<input class="configKey form-control" data-l1key="interact::contextual::startpriority" />
 								</div>
 							</div>
+								<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Découper une interaction en 2 si elle contient}}</label>
+								<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
+									<input class="configKey form-control" data-l1key="interact::contextual::splitword" />
+								</div>
+							</div>
 							<div class="form-group">
 								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonyme pour les objets}}</label>
 								<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
