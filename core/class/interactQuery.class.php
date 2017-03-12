@@ -284,16 +284,17 @@ class interactQuery {
 			return trim($data['cmd']->getHumanName() . ' ' . $data['cmd']->execCmd() . ' ' . $data['cmd']->getUnite());
 		} else {
 			$data['cmd']->execCmd();
-			$return = __('J\'ai executé ', __FILE__) . $data['cmd']->getName();
+			$return = __('C\'est fait', __FILE__) . ' (';
 			$eqLogic = $data['cmd']->getEqLogic();
 			if (is_object($eqLogic)) {
-				$return .= __(' de ', __FILE__) . $data['cmd']->getEqLogic()->getName();
 				$object = $eqLogic->getObject();
 				if (is_object($object)) {
-					$return .= __(' dans ', __FILE__) . $object->getName();
+					$return .= $object->getName();
 				}
+				$return .= ' ' . $data['cmd']->getEqLogic()->getName();
 			}
-			return $return;
+			$return .= ' ' . $data['cmd']->getName();
+			return $return . ')';
 		}
 		return '';
 	}
@@ -346,7 +347,7 @@ class interactQuery {
 			$reply = self::contextualReply($_query, $_parameters);
 		}
 		if (config::byKey('interact::contextual::splitword') != '') {
-			$splitWords = explode(';', config::byKey('interact::contextual::startpriority'));
+			$splitWords = explode(';', config::byKey('interact::contextual::splitword'));
 			$queries = array();
 			foreach ($splitWords as $split) {
 				if (in_array($split, $words)) {
@@ -552,7 +553,7 @@ class interactQuery {
 			throw new Exception(__('La commande vocale ne peut pas être vide', __FILE__));
 		}
 		if ($this->getInteractDef_id() == '') {
-			throw new Exception(__('SarahDef_id ne peut pas être vide', __FILE__));
+			throw new Exception(__('InteractDef_id ne peut pas être vide', __FILE__));
 		}
 		return DB::save($this);
 	}
