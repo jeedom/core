@@ -68,7 +68,9 @@ Botón derecho del ratón en un elemento de un resumen domótico te lleva a una 
 * Possibilité de voir sur la page de configuration des plugins les fonctionalités de celui-ci (interact, cron...) et de la desactiver unitairement
 * Les intéractions automatique peuvent renvoyer les valeurs des résumés
 * Possible de définir des synomymes pour les objets,équipement,commande et résumé qui seront utilisés dans les réponses contextuelle et résumé
+* Jeedom sait gerer plusieurs interaction liée (contextuellement) en une. Elles doivent être séparées par un mot clef (par defaut et). Exemple : "Combien fait-il dans la chambre et dans le salon ?" ou "Allume la lumière de la cuisine et de la chambre."
 * Le status des scénarios sur la page d'édition est maintenant mise à jour dynamiquement
+* Possibilité d'exporter une vue en PDF,PNG,SVG ou JPEG avec la commande "report" dans un scénario
 
 = 2.4.7
 
