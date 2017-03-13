@@ -273,6 +273,13 @@ echo $panel_menu;
 							<a data-toggle="dropdown"><i class="fa fa-stethoscope"></i> <span class="hidden-xs hidden-sm hidden-md">{{Analyse}}</span> <b class="caret"></b></a>
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="index.php?v=d&p=history"><i class="fa fa-bar-chart-o"></i> {{Historique}}</a></li>
+<?php
+if (isConnect('admin')) {
+		?>
+								<li><a href="index.php?v=d&p=report"><i class="fa fa-newspaper-o"></i> {{Rapport}}</a></li>
+																	<?php
+}
+	?>
 								<li class="divider"></li>
 								<li class="expertModeVisible"><a href="#" id="bt_showEventInRealTime"><i class="fa fa-tachometer"></i> {{Temps réel}}</a></li>
 								<?php

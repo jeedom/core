@@ -40,4 +40,5 @@ include_file('core', 'repo', 'class.js');
 include_file('core', 'network', 'class.js');
 include_file('core', 'dataStore', 'class.js');
 include_file('core', 'cache', 'class.js');
+include_file('core', 'report', 'class.js');
 ?>
