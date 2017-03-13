@@ -2,6 +2,7 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
+$report_path = dirname(__FILE__) . '/../../data/report/';
 ?>
 <div class="row row-overflow">
 	<div class="col-lg-2 col-md-3 col-sm-3" style="margin-top : 4px;">
@@ -19,7 +20,8 @@ if (!isConnect('admin')) {
 				<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
 				<?php
 foreach (view::all() as $view) {
-	echo '<li class="cursor li_reportType" data-type="view" data-id="' . $view->getId() . '"><a>' . $view->getName() . '</a></li>';
+	$number = count(ls($report_path . '/view/' . $view->getId(), '*'));
+	echo '<li class="cursor li_reportType" data-type="view" data-id="' . $view->getId() . '"><a>' . $view->getName() . ' (<span class="number">' . $number . '</span>)</a></li>';
 }
 ?>
 			</ul>
@@ -31,7 +33,8 @@ foreach (view::all() as $view) {
 				<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
 				<?php
 foreach (planHeader::all() as $plan) {
-	echo '<li class="cursor li_reportType" data-type="plan" data-id="' . $plan->getId() . '"><a>' . $plan->getName() . '</a></li>';
+	$number = count(ls($report_path . '/plan/' . $plan->getId(), '*'));
+	echo '<li class="cursor li_reportType" data-type="plan" data-id="' . $plan->getId() . '"><a>' . $plan->getName() . ' (<span class="number">' . $number . '</span>)</a></li>';
 }
 ?>
 			</ul>

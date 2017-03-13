@@ -48,7 +48,7 @@
 
 
  $('#ul_report').on('click','.li_report',function(){
- 	$('.li_reportType').removeClass('active');
+ 	$('.li_report').removeClass('active');
  	$(this).addClass('active');
  	getReport($(this).attr('data-type'),$(this).attr('data-id'),$(this).attr('data-report'))
  });
@@ -90,6 +90,7 @@
  		success: function (data) {
  			$('#div_reportForm').hide();
  			$('.li_report[data-report="'+report+'"]').remove();
+ 			$('.li_reportType.active .number').text($('.li_reportType.active .number').text() - 1);
  		}
  	});
  });
@@ -105,6 +106,7 @@
  		success: function (data) {
  			$('#div_reportForm').hide();
  			$('.li_report').remove();
+ 			$('.li_reportType.active .number').text('0');
  		}
  	});
  });
