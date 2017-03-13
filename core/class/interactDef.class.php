@@ -283,6 +283,7 @@ class interactDef {
 				'le buanderie',
 				'du buanderie',
 				'la bureau',
+				'(dans|quelqu\'un) entr(é|e)e',
 			);
 			if (preg_match('/( |^)' . implode('( |$)|( |^)', $disallow) . '( |$)/i', $_query)) {
 				return false;
