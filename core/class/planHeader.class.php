@@ -69,6 +69,7 @@ class planHeader {
 		$cmd = 'xvfb-run --server-args="-screen 0, 1280x1200x24" cutycapt --url="' . $url . '" --out="' . $out . '"';
 		$cmd .= ' --delay=' . config::byKey('report::delay');
 		$cmd .= ' --print-backgrounds=on';
+		log::add('report', 'debug', $cmd);
 		com_shell::execute($cmd);
 		return $out;
 	}

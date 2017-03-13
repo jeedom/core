@@ -1149,7 +1149,7 @@ foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
 							</div>
 							<?php
 
-$other_log = array('scenario', 'plugin', 'market', 'api', 'connection', 'interact', 'tts');
+$other_log = array('scenario', 'plugin', 'market', 'api', 'connection', 'interact', 'tts', 'report');
 foreach ($other_log as $name) {
 	echo '<form class="form-horizontal">';
 	echo '<div class="form-group">';
