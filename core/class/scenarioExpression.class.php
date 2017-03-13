@@ -123,11 +123,13 @@ class scenarioExpression {
 		}
 		$replace = array(
 			'#uid#' => 'exp' . mt_rand(),
-			'#action#' => '',
-			'#scenario_id#' => '',
-			'#plan_id#' => '',
-			'#view_id#' => '',
 		);
+		preg_match_all("/#(.*?)#/", $return['html'], $matches);
+		foreach ($matches[0] as $value) {
+			if (!isset($replace[$value])) {
+				$replace[$value] = '';
+			}
+		}
 		$return['html'] = translate::exec(template_replace($replace, $return['html']), 'core/template/scenario/' . $_expression . '.default');
 		return $return;
 	}
