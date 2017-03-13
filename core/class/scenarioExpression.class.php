@@ -1255,6 +1255,16 @@ class scenarioExpression {
 							$cmd_parameters['title'] = __('[' . config::byKey('name') . '] Rapport ', __FILE__) . $view->getName() . __(' du ', __FILE__) . date('Y-m-d H:i:s');
 							$cmd_parameters['message'] = __('Veuillez trouver ci-joint le rapport ', __FILE__) . $view->getName() . __(' généré le ', __FILE__) . date('Y-m-d H:i:s');
 							break;
+						case 'plan':
+							$plan = planHeader::byId($options['plan_id']);
+							if (!is_object($plan)) {
+								throw new Exception(__('Design introuvable - Vérifiez l\'id : ', __FILE__) . $options['plan_id']);
+							}
+							$this->setLog($scenario, __('Génération du rapport ', __FILE__) . $plan->getName());
+							$cmd_parameters['files'] = array($plan->report($options['export_type']));
+							$cmd_parameters['title'] = __('[' . config::byKey('name') . '] Rapport ', __FILE__) . $plan->getName() . __(' du ', __FILE__) . date('Y-m-d H:i:s');
+							$cmd_parameters['message'] = __('Veuillez trouver ci-joint le rapport ', __FILE__) . $plan->getName() . __(' généré le ', __FILE__) . date('Y-m-d H:i:s');
+							break;
 					}
 					if ($cmd_parameters['files'] == null) {
 						throw new Exception(__('Erreur : Aucun rapport généré', __FILE__));

@@ -47,6 +47,32 @@ class planHeader {
 
 	/*     * *********************Méthodes d'instance************************* */
 
+	public function report($_format = 'pdf', $_parameters = array()) {
+		if (!isset($_parameters['user'])) {
+			$users = user::searchByRight('admin');
+			if (count($users) == 0) {
+				throw new Exception(__('Aucun utilisateur admin trouvé pour la génération du rapport', __FILE__));
+			}
+			$user = $users[0];
+		} else {
+			$user = user::byId($_parameters['user']);
+		}
+		$out = dirname(__FILE__) . '/../../data/report/plan/' . $this->getId() . '/';
+		if (!file_exists($out)) {
+			mkdir($out, 0775, true);
+		}
+		$out .= date('Y_m_d_H_i_s') . '.' . $_format;
+		$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=plan';
+		$url .= '&plan_id=' . $this->getId();
+		$url .= '&report=1';
+		$url .= '&auth=' . $user->getHash();
+		$cmd = 'xvfb-run --server-args="-screen 0, 1280x1200x24" cutycapt --url="' . $url . '" --out="' . $out . '"';
+		$cmd .= ' --delay=' . config::byKey('report::delay');
+		$cmd .= ' --print-backgrounds=on';
+		com_shell::execute($cmd);
+		return $out;
+	}
+
 	public function copy($_name) {
 		$planHeaderCopy = clone $this;
 		$planHeaderCopy->setName($_name);
