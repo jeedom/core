@@ -72,6 +72,7 @@
 * Le status des scénarios sur la page d'édition est maintenant mise à jour dynamiquement
 * Possibilité d'exporter une vue en PDF,PNG,SVG ou JPEG avec la commande "report" dans un scénario
 * Possibilité d'exporter un design en PDF,PNG,SVG ou JPEG avec la commande "report" dans un scénario
+* Ajout d'une page de gestion de rapport (pour les retelecharger ou les supprimer)
 
 = 2.4.7
 
