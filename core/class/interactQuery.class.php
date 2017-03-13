@@ -691,10 +691,12 @@ class interactQuery {
 				}
 			}
 		}
+		$reply = jeedom::evaluateExpression($reply);
 		$replace['#valeur#'] = trim($replace['#valeur#']);
 		$replace['#profile#'] = isset($_parameters['profile']) ? $_parameters['profile'] : '';
 		if ($interactDef->getOptions('convertBinary') != '') {
 			$convertBinary = explode('|', $interactDef->getOptions('convertBinary'));
+
 			if (is_array($convertBinary) && count($convertBinary) == 2) {
 				$replace['1'] = $convertBinary[1];
 				$replace['0'] = $convertBinary[0];
@@ -709,7 +711,7 @@ class interactQuery {
 			$replace['#valeur#'] = __('aucune valeur', __FILE__);
 		}
 		$replace['"'] = '';
-		return str_replace(array_keys($replace), $replace, scenarioExpression::setTags($reply));
+		return str_replace(array_keys($replace), $replace, $reply);
 	}
 
 	public function getInteractDef() {
