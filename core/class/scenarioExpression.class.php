@@ -124,7 +124,7 @@ class scenarioExpression {
 		$replace = array(
 			'#uid#' => 'exp' . mt_rand(),
 		);
-		preg_match_all("/#(.*?)#/", $return['html'], $matches);
+		preg_match_all("/#[a-zA-Z]*#/", $return['html'], $matches);
 		foreach ($matches[0] as $value) {
 			if (!isset($replace[$value])) {
 				$replace[$value] = '';
