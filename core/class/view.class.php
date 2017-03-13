@@ -58,7 +58,11 @@ class view {
 		} else {
 			$user = user::byId($_parameters['user']);
 		}
-		$out = dirname(__FILE__) . '/../../tmp/report_' . $this->getId() . '_' . date('Y_m_d_H_i_s') . '.' . $_format;
+		$out = dirname(__FILE__) . '/../../data/report/view/' . $this->getId() . '/';
+		if (!file_exists($out)) {
+			mkdir($out, 0775, true);
+		}
+		$out .= date('Y_m_d_H_i_s') . '.' . $_format;
 		$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=view';
 		$url .= '&view_id=' . $this->getId();
 		$url .= '&report=1';

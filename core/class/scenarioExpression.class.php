@@ -732,7 +732,6 @@ class scenarioExpression {
 		try {
 			$result = evaluate($_value);
 			if (is_string($result)) {
-				//Alors la valeur n'est pas un calcul
 				$result = $_value;
 			}
 		} catch (Exception $e) {
@@ -779,7 +778,6 @@ class scenarioExpression {
 		try {
 			$result = evaluate($_value);
 			if (is_string($result)) {
-				//Alors la valeur n'est pas un calcul
 				$result = $_value;
 			}
 		} catch (Exception $e) {
@@ -1261,12 +1259,14 @@ class scenarioExpression {
 					if ($cmd_parameters['files'] == null) {
 						throw new Exception(__('Erreur : Aucun rapport généré', __FILE__));
 					}
-					$cmd = cmd::byId(str_replace('#', '', $this->getOptions('cmd')));
-					if (!is_object($cmd)) {
-						throw new Exception(__('Commande introuvable veuillez vérifiez l\'id : ', __FILE__) . $this->getOptions('cmd'));
+					if ($this->getOptions('cmd') != '') {
+						$cmd = cmd::byId(str_replace('#', '', $this->getOptions('cmd')));
+						if (!is_object($cmd)) {
+							throw new Exception(__('Commande introuvable veuillez vérifiez l\'id : ', __FILE__) . $this->getOptions('cmd'));
+						}
+						$this->setLog($scenario, __('Envoi du rapport généré sur ', __FILE__) . $cmd->getHumanName());
+						$cmd->execCmd($cmd_parameters);
 					}
-					$this->setLog($scenario, __('Envoi du rapport généré sur ', __FILE__) . $cmd->getHumanName());
-					$cmd->execCmd($cmd_parameters);
 				} else {
 					$cmd = cmd::byId(str_replace('#', '', $this->getExpression()));
 					if (is_object($cmd)) {
