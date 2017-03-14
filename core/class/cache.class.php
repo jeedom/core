@@ -53,16 +53,36 @@ class cache {
 		}
 	}
 
-	public static function stats() {
+	public static function stats($_details = false) {
 		$return = self::getCache()->getStats();
 		$return['count'] = __('Inconnu', __FILE__);
 		if (config::byKey('cache::engine') == 'FilesystemCache') {
 			$return['count'] = 0;
 			foreach (ls('/tmp/jeedom-cache') as $folder) {
 				foreach (ls('/tmp/jeedom-cache/' . $folder) as $file) {
+					if (strpos($file, 'swap') !== false) {
+						continue;
+					}
 					$return['count']++;
 				}
 			}
+		}
+		if ($_details) {
+			$re = '/s:\d*:(.*?);s:\d*:"(.*?)";s/';
+			$result = array();
+			foreach (ls('/tmp/jeedom-cache') as $folder) {
+				foreach (ls('/tmp/jeedom-cache/' . $folder) as $file) {
+					$path = '/tmp/jeedom-cache/' . $folder . '/' . $file;
+					$str = (string) str_replace("\n", '', file_get_contents($path));
+					preg_match_all($re, $str, $matches);
+					if (!isset($matches[2]) || !isset($matches[2][0]) || trim($matches[2][0]) == '') {
+
+						continue;
+					}
+					$result[] = $matches[2][0];
+				}
+			}
+			$return['details'] = $result;
 		}
 		return $return;
 	}
@@ -192,6 +212,10 @@ class cache {
 		foreach (ls('/tmp/jeedom-cache') as $folder) {
 			foreach (ls('/tmp/jeedom-cache/' . $folder) as $file) {
 				$path = '/tmp/jeedom-cache/' . $folder . '/' . $file;
+				if (strpos($file, 'swap') !== false) {
+					unlink($path);
+					continue;
+				}
 				$str = (string) str_replace("\n", '', file_get_contents($path));
 				preg_match_all($re, $str, $matches);
 				if (!isset($matches[2]) || !isset($matches[2][0]) || trim($matches[2][0]) == '') {
