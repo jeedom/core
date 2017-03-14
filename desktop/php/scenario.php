@@ -401,6 +401,7 @@ foreach (object::all() as $object) {
                         <option value="icon">{{Icône}}</option>
                         <option value="alert">{{Alerte}}</option>
                         <option value="popup">{{Pop-up}}</option>
+                        <option value="report">{{Rapport}}</option>
                     </select>
                 </center>
                 <br/>
@@ -466,6 +467,10 @@ foreach (object::all() as $object) {
 
         <div class="alert alert-info sel_otherActionDescription popup" style="display:none;">
             {{Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page jeedom d'ouvert.}}
+        </div>
+
+         <div class="alert alert-info sel_otherActionDescription report" style="display:none;">
+            {{Permet d'envoyer par une commande message un rapport d'une vue, d'un design ou d'un panel en PNG/PDF/JPEG/SVG.}}
         </div>
     </div>
     <div class="modal-footer">
