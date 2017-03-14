@@ -105,6 +105,7 @@ class event {
 				$return['result'][] = $value;
 			}
 		}
+		$return['result'] = array_reverse($return['result']);
 		return $return;
 	}
 
