@@ -11,35 +11,36 @@ sendVarToJS('id', $planHeader->getId())
 ?>
 <div id="div_alertPlanHeaderConfigure"></div>
 <a class='btn btn-success btn-xs pull-right cursor' style="color: white;" id='bt_saveConfigurePlanHeader'><i class="fa fa-check"></i> {{Sauvegarder}}</a>
-<form class="form-horizontal">
-    <fieldset id="fd_planHeaderConfigure">
-        <legend><i class="fa fa-cog"></i> {{Général}}</legend>
-        <input type="text"  class="planHeaderAttr form-control" data-l1key="id" style="display: none;"/>
-        <div class="form-group">
-            <label class="col-lg-4 control-label">{{Nom}}</label>
-            <div class="col-lg-2">
-                <input class="planHeaderAttr form-control" data-l1key="name" />
+<div id="div_planHeaderConfigure">
+    <form class="form-horizontal">
+        <fieldset>
+            <legend><i class="fa fa-cog"></i> {{Général}}</legend>
+            <input type="text"  class="planHeaderAttr form-control" data-l1key="id" style="display: none;"/>
+            <div class="form-group">
+                <label class="col-lg-4 control-label">{{Nom}}</label>
+                <div class="col-lg-2">
+                    <input class="planHeaderAttr form-control" data-l1key="name" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-4 control-label">{{Icône}}</label>
+                <div class="col-lg-2">
+                    <div class="planHeaderAttr" data-l1key="configuration" data-l2key="icon" ></div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4">
+                    <a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fa fa-flag"></i> {{Choisir}}</a>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-4 control-label">{{Image}}</label>
+                <div class="col-lg-8">
+                  <span class="btn btn-default btn-file">
+                    <i class="fa fa-cloud-upload"></i> {{Envoyer}}<input  id="bt_uploadImage" type="file" name="file" style="display: inline-block;">
+                </span>
+                <a class="btn btn-danger" id="bt_removeBackgroundImage"><i class="fa fa-trash"></i> {{Supprimer l'image}}</a>
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-lg-4 control-label">{{Icône}}</label>
-            <div class="col-lg-2">
-                <div class="planHeaderAttr" data-l1key="configuration" data-l2key="icon" ></div>
-            </div>
-            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4">
-                <a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fa fa-flag"></i> {{Choisir}}</a>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-lg-4 control-label">{{Image}}</label>
-            <div class="col-lg-8">
-              <span class="btn btn-default btn-file">
-                <i class="fa fa-cloud-upload"></i> {{Envoyer}}<input  id="bt_uploadImage" type="file" name="file" style="display: inline-block;">
-            </span>
-            <a class="btn btn-danger" id="bt_removeBackgroundImage"><i class="fa fa-trash"></i> {{Supprimer l'image}}</a>
-        </div>
-    </div>
-</fieldset>
+    </fieldset>
 </form>
 <form class="form-horizontal">
     <fieldset>
@@ -54,6 +55,7 @@ sendVarToJS('id', $planHeader->getId())
         </div>
     </fieldset>
 </form>
+</div>
 
 <script>
     $('.planHeaderAttr[data-l1key=configuration][data-l2key=icon]').on('dblclick',function(){
@@ -92,7 +94,7 @@ sendVarToJS('id', $planHeader->getId())
 
     $('#bt_saveConfigurePlanHeader').on('click', function () {
       jeedom.plan.saveHeader({
-        planHeader: $('#fd_planHeaderConfigure').getValues('.planHeaderAttr')[0],
+        planHeader: $('#div_planHeaderConfigure').getValues('.planHeaderAttr')[0],
         error: function (error) {
             $('#div_alertPlanHeaderConfigure').showAlert({message: error.message, level: 'danger'});
         },
@@ -104,14 +106,14 @@ sendVarToJS('id', $planHeader->getId())
   });
 
     if (isset(id) && id != '') {
-     jeedom.plan.getHeader({
+       jeedom.plan.getHeader({
         id: id,
         error: function (error) {
             $('#div_alertPlanHeaderConfigure').showAlert({message: error.message, level: 'danger'});
         },
         success: function (planHeader) {
-           $('#fd_planHeaderConfigure').setValues(planHeader, '.planHeaderAttr');
-       }
-   });
- }
+         $('#div_planHeaderConfigure').setValues(planHeader, '.planHeaderAttr');
+     }
+ });
+   }
 </script>
