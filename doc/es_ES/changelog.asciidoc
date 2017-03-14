@@ -72,6 +72,7 @@ Botón derecho del ratón en un elemento de un resumen domótico te lleva a una 
 * Le status des scénarios sur la page d'édition est maintenant mise à jour dynamiquement
 * Possibilité d'exporter une vue en PDF,PNG,SVG ou JPEG avec la commande "report" dans un scénario
 * Possibilité d'exporter un design en PDF,PNG,SVG ou JPEG avec la commande "report" dans un scénario
+* Possibilité d'exporter un panel d'un plugin en PDF,PNG,SVG ou JPEG avec la commande "report" dans un scénario
 * Ajout d'une page de gestion de rapport (pour les retelecharger ou les supprimer)
 * Correction de bug sur la date de derniere remonté d'evenement pour certain plugin (alarme)
 * Correction de bug d'affichage avec chrome 55
