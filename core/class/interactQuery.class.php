@@ -696,7 +696,6 @@ class interactQuery {
 		$replace['#profile#'] = isset($_parameters['profile']) ? $_parameters['profile'] : '';
 		if ($interactDef->getOptions('convertBinary') != '') {
 			$convertBinary = explode('|', $interactDef->getOptions('convertBinary'));
-
 			if (is_array($convertBinary) && count($convertBinary) == 2) {
 				$replace['1'] = $convertBinary[1];
 				$replace['0'] = $convertBinary[0];
