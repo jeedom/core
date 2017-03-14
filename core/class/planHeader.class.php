@@ -92,9 +92,6 @@ class planHeader {
 		if (trim($this->getName()) == '') {
 			throw new Exception(__('Le nom du plan ne peut pas être vide'));
 		}
-	}
-
-	public function preInsert() {
 		if ($this->getConfiguration('desktopSizeX') == '') {
 			$this->setConfiguration('desktopSizeX', 500);
 		}
