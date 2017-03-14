@@ -456,7 +456,7 @@ class plugin {
 		} else {
 			$user = user::byId($_parameters['user']);
 		}
-		$out = dirname(__FILE__) . '/../../data/report/panel/' . $this->getId() . '/';
+		$out = dirname(__FILE__) . '/../../data/report/plugin/' . $this->getId() . '/';
 		if (!file_exists($out)) {
 			mkdir($out, 0775, true);
 		}
