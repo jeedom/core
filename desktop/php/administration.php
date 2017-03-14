@@ -1153,7 +1153,7 @@ $other_log = array('scenario', 'plugin', 'market', 'api', 'connection', 'interac
 foreach ($other_log as $name) {
 	echo '<form class="form-horizontal">';
 	echo '<div class="form-group">';
-	echo '<label class="col-sm-2 control-label">{{Niveau de log pour}} ' . ucfirst($name) . '</label>';
+	echo '<label class="col-sm-2 control-label">' . ucfirst($name) . '</label>';
 	echo '<div class="col-sm-6">';
 	echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="1000" /> {{Aucun}}</label>';
 	echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="default" /> {{Défaut}}</label>';
@@ -1167,7 +1167,7 @@ foreach ($other_log as $name) {
 foreach (plugin::listPlugin(true) as $plugin) {
 	echo '<form class="form-horizontal">';
 	echo '<div class="form-group">';
-	echo '<label class="col-sm-2 control-label">{{Niveau de log pour}} ' . $plugin->getName() . '</label>';
+	echo '<label class="col-sm-2 control-label">' . $plugin->getName() . '</label>';
 	echo '<div class="col-sm-6">';
 	echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="1000" /> {{Aucun}}</label>';
 	echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="default" /> {{Défaut}}</label>';

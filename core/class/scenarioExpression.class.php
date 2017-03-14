@@ -1266,6 +1266,15 @@ class scenarioExpression {
 							$cmd_parameters['files'] = array($plan->report($options['export_type']));
 							$cmd_parameters['title'] = __('[' . config::byKey('name') . '] Rapport ', __FILE__) . $plan->getName() . __(' du ', __FILE__) . date('Y-m-d H:i:s');
 							$cmd_parameters['message'] = __('Veuillez trouver ci-joint le rapport ', __FILE__) . $plan->getName() . __(' généré le ', __FILE__) . date('Y-m-d H:i:s');
+						case 'plugin':
+							$plugin = plugin::byId($options['plugin_id']);
+							if (!is_object($plugin)) {
+								throw new Exception(__('Panel introuvable - Vérifiez l\'id : ', __FILE__) . $options['plugin_id']);
+							}
+							$this->setLog($scenario, __('Génération du rapport ', __FILE__) . $plugin->getName());
+							$cmd_parameters['files'] = array($plugin->report($options['export_type']));
+							$cmd_parameters['title'] = __('[' . config::byKey('name') . '] Rapport ', __FILE__) . $plugin->getName() . __(' du ', __FILE__) . date('Y-m-d H:i:s');
+							$cmd_parameters['message'] = __('Veuillez trouver ci-joint le rapport ', __FILE__) . $plugin->getName() . __(' généré le ', __FILE__) . date('Y-m-d H:i:s');
 							break;
 					}
 					if ($cmd_parameters['files'] == null) {

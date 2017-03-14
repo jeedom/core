@@ -3,12 +3,16 @@
    <select class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="type" data-cmd_id="#id#" data-uid="#uid#">
        <option value="view">{{Vue}}</option>
        <option value="plan">{{Design}}</option>
+       <option value="plugin">{{Plugin}}</option>
    </select>
    <span class="input-group-addon type view" data-cmd_id="#id#" data-uid="#uid#" style="width:100px;">{{Vue}}</span>
    <select class="expressionAttr form-control input-sm type view" data-l1key="options" data-l2key="view_id" data-cmd_id="#id#" data-uid="#uid#"></select>
 
    <span class="input-group-addon type plan" data-cmd_id="#id#" data-uid="#uid#" style="width:100px;display:none;">{{Design}}</span>
    <select class="expressionAttr form-control input-sm type plan" data-l1key="options" data-l2key="plan_id" data-cmd_id="#id#" data-uid="#uid#" style="display:none;"></select>
+
+    <span class="input-group-addon type plugin" data-cmd_id="#id#" data-uid="#uid#" style="width:100px;display:none;">{{Panel}}</span>
+   <select class="expressionAttr form-control input-sm type plugin" data-l1key="options" data-l2key="plugin_id" data-cmd_id="#id#" data-uid="#uid#" style="display:none;"></select>
 </div>
 <div class="input-group input-group-sm" style="width: 100%; padding-top: 1px">
  <span class="input-group-addon" id="basic-addon1" style="width:100px;">{{Exporter en}}</span>
@@ -60,6 +64,27 @@
             }
         }
     });
+
+      jeedom.plugin.all({
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (plugins) {
+            var options = '';
+            for (var i in plugins) {
+                if(plugins[i].display == ''){
+                    continue;
+                }
+                options += '<option value="' + plugins[i].id + '">' + plugins[i].name + '</option>';
+            }
+            $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=plugin_id]').append(options);
+            if ('#plugin_id#' != '' && $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=plugin_id] option[value=#plugin_id#]').html() != undefined) {
+                $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=plugin_id]').value('#plugin_id#');
+            }
+        }
+    });
+
+
     if ('#export_type#' != '' && $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=export_type] option[value=#export_type#]').html() != undefined) {
         $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=export_type]').value('#export_type#');
     }
