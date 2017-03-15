@@ -40,7 +40,7 @@ class com_http {
 
 	/*     * ********************Fonctions statiques********************* */
 
-	function __construct($_url = '', $_username = '', $_password = '') {
+	public function __construct($_url = '', $_username = '', $_password = '') {
 		$this->url = $_url;
 		$this->username = $_username;
 		$this->password = $_password;
@@ -48,7 +48,7 @@ class com_http {
 
 	/*     * ************* Fonctions ************************************ */
 
-	function exec($_timeout = 2, $_maxRetry = 3) {
+	public function exec($_timeout = 2, $_maxRetry = 3) {
 		$nbRetry = 0;
 		while ($nbRetry < $_maxRetry) {
 			$ch = curl_init();
@@ -211,29 +211,29 @@ class com_http {
 		return $this;
 	}
 
-	function getCURLOPT_HTTPAUTH() {
+	public function getCURLOPT_HTTPAUTH() {
 		return $this->CURLOPT_HTTPAUTH;
 	}
 
-	function setCURLOPT_HTTPAUTH($CURLOPT_HTTPAUTH) {
+	public function setCURLOPT_HTTPAUTH($CURLOPT_HTTPAUTH) {
 		$this->CURLOPT_HTTPAUTH = $CURLOPT_HTTPAUTH;
 		return $this;
 	}
 
-	function getPut() {
+	public function getPut() {
 		return $this->put;
 	}
 
-	function setPut($put) {
+	public function setPut($put) {
 		$this->put = $put;
 		return $this;
 	}
 
-	function getUserAgent() {
+	public function getUserAgent() {
 		return $this->userAgent;
 	}
 
-	function setUserAgent($userAgent) {
+	public function setUserAgent($userAgent) {
 		$this->userAgent = $userAgent;
 		return $this;
 	}
