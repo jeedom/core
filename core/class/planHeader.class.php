@@ -57,21 +57,11 @@ class planHeader {
 		} else {
 			$user = user::byId($_parameters['user']);
 		}
-		$out = dirname(__FILE__) . '/../../data/report/plan/' . $this->getId() . '/';
-		if (!file_exists($out)) {
-			mkdir($out, 0775, true);
-		}
-		$out .= date('Y_m_d_H_i_s') . '.' . $_format;
 		$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=plan';
 		$url .= '&plan_id=' . $this->getId();
 		$url .= '&report=1';
 		$url .= '&auth=' . $user->getHash();
-		$cmd = 'xvfb-run --server-args="-screen 0, 1280x1200x24" cutycapt --url="' . $url . '" --out="' . $out . '"';
-		$cmd .= ' --delay=' . config::byKey('report::delay');
-		$cmd .= ' --print-backgrounds=on';
-		log::add('report', 'debug', $cmd);
-		com_shell::execute($cmd);
-		return $out;
+		return report::generate($url, 'plan', $this->getId(), $_format);
 	}
 
 	public function copy($_name) {

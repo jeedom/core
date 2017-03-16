@@ -995,6 +995,12 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 									<input class="configKey form-control" data-l1key="report::delay" />
 								</div>
 							</div>
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nettoyer les rapport plus viex de (jours)}}</label>
+								<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+									<input class="configKey form-control" data-l1key="report::maxdays" />
+								</div>
+							</div>
 						</fieldset>
 					</form>
 				</div>

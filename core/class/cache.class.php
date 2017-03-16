@@ -76,7 +76,6 @@ class cache {
 					$str = (string) str_replace("\n", '', file_get_contents($path));
 					preg_match_all($re, $str, $matches);
 					if (!isset($matches[2]) || !isset($matches[2][0]) || trim($matches[2][0]) == '') {
-
 						continue;
 					}
 					$result[] = $matches[2][0];

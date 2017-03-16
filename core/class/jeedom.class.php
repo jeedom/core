@@ -767,6 +767,7 @@ class jeedom {
 			scenario::consystencyCheck();
 			log::chunk();
 			cron::clean();
+			report::clean();
 			DB::optimize();
 		} catch (Exception $e) {
 			log::add('jeedom', 'error', $e->getMessage());
