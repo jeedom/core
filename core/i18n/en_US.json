@@ -66,7 +66,7 @@
         "Lancement provoqué": "Triggered run",
         "Arret du scénario": "Stop the scenario",
         "Ajout de l'alerte : ": "Ajout de l'alerte :",
-        "Affichage du popup : ": "Affichage du popup :"
+        "Affichage du popup : ": "Display popup:"
     },
     "core/class/scenarioElement.class.php": {
         "Non exécution des actions pour cause de répétition": "Actions not executed because of redundancy"
@@ -238,15 +238,15 @@
         "Historique copié avec succès": "Historique copié avec succès",
         "Etes-vous sûr de vouloir copié l\\'historique de votre commande vers": "Etes-vous sûr de vouloir copié l\\'historique de votre commande vers",
         "Il est conseillé de vider l\\'historique de la commande": "Il est conseillé de vider l\\'historique de la commande",
-        " avant la copie": "avant la copie",
+        " avant la copie": "before copy",
         "Etes-vous sûr de vouloir copié l\\'historique de": "Etes-vous sûr de vouloir copié l\\'historique de",
-        "vers": "vers",
+        "vers": "to",
         "Etes-vous sûr de vouloir copier l\\'historique de": "Etes-vous sûr de vouloir copier l\\'historique de",
         "Remplacer cette commande par la commande": "Remplacer cette commande par la commande",
         "Cette commande remplace la commande": "Cette commande remplace la commande",
         "Cette commande remplace l'id": "Cette commande remplace l'id",
         "Etes-vous sûr de vouloir remplacer": "Etes-vous sûr de vouloir remplacer",
-        "par": "par",
+        "par": "by",
         "Remplacement réalisé avec succès": "Remplacement réalisé avec succès",
         "Id de commande à remplacer ?": "Id de commande à remplacer ?",
         "Etes-vous sûr de vouloir remplacer l\\'id": "Etes-vous sûr de vouloir remplacer l\\'id",
@@ -368,7 +368,7 @@
         "Gestion avancée": "Advanced management",
         "Désactiver la gestion du réseau par Jeedom": "Disable the Jeedom network manager",
         "Adresse mac": "Adresse mac",
-        "Proxy": "Proxy",
+        "Proxy": "proxy",
         "Utiliser les DNS Jeedom": "Use Jeedom DNS",
         "Statut DNS": "DNS status",
         "Normal si vous n'avez pas coché la case : Utiliser les DNS Jeedom": "Normal if you have not checked the box: Use the DNS Jeedom",
@@ -466,7 +466,7 @@
         "Tester": "Test",
         "Sauvegarder": "Save",
         "Memcached": "Memcached",
-        "Clefs API": "Clefs API",
+        "Clefs API": "Api Keys",
         "Clef API pour le plugin": "Clef API pour le plugin",
         "Activer les intéractions automatique": "Activer les intéractions automatique",
         "Version du core": "Version du core",
@@ -830,7 +830,7 @@
         "Ne pas mettre à jour": "Do not update",
         "Mettre à jour": "Update",
         "Re-installer": "Re-install",
-        "Reinstaller": "Reinstaller",
+        "Reinstaller": "Reinstall",
         "Changelog": "Changelog",
         "Vérifier": "Check",
         "Supprimer": "Delete",
@@ -849,7 +849,7 @@
         "Test réussi": "Test passed",
         "Administration système": "System Administration",
         "Création des commandes virtuel réussies": "Création des commandes virtuel réussies",
-        "Somme": "Somme",
+        "Somme": "Sum",
         "Moyenne": "Average",
         "Icône": "Icon",
         "Aucun": "None",
@@ -979,7 +979,7 @@
         "Démon en mode manuel": "Démon en mode manuel",
         "Port configuré": "Port configuré",
         "Démon en mode automatique": "Démon en mode automatique",
-        "erreurs": "erreurs"
+        "erreurs": "error"
     },
     "desktop/php/profils.php": {
         "Profil": "Profile",
@@ -1071,7 +1071,7 @@
         "Barre": "Bar",
         "Variation": "Variation",
         "Escalier": "Steps",
-        "Sommes par heure": "Sommes par heure",
+        "Sommes par heure": "Sum by hour",
         "Moyenne par heure": "Moyenne par heure",
         "Minimum par heure": "Minimum par heure",
         "Maximum par heure": "Maximum par heure"
@@ -1349,7 +1349,7 @@
         "Creer un message": "Create a message",
         "Activer/Desactiver Masquer/Afficher un équipement": "Activate/Deactivate Hide/Show a device",
         "Faire une demande": "Open a request",
-        "Arrêter Jeedom": "Arrêter Jeedom",
+        "Arrêter Jeedom": "Sptop Jeedom",
         "Retourner un texte/une données": "Retourner un texte/une données",
         "Icône": "Icon",
         "Pause de x seconde(s)": "Break for x second(s)",
@@ -1638,7 +1638,7 @@
         "Désolé je n'ai pas compris la demande": "Sorry I do not understand the question",
         "Désolé je ne comprends pas la demande": "Sorry I don't understand the question",
         "Je ne comprends pas": "I don't understand",
-        "aucune valeur": "aucune valeur"
+        "aucune valeur": "no value"
     },
     "core/ajax/update.ajax.php": {
         "[START UPDATE]": "[START UPDATE]",
@@ -1727,7 +1727,7 @@
         "Ajouter Graphique": "Ajouter Graphique",
         "Ajouter texte/html": "Ajouter texte/html",
         "Ajouter scénario": "Add scenario",
-        "Ajouter un lien": "Ajouter un lien",
+        "Ajouter un lien": "Add link",
         "Vers une vue": "Vers une vue",
         "Vers un design": "Vers un design",
         "Ajouter équipement": "Ajouter équipement",
@@ -1748,7 +1748,7 @@
         "Configuration avancée": "Advanced configuration",
         "Supprimer": "Delete",
         "Dupliquer": "Duplicate",
-        "Verrouiller": "Verrouiller",
+        "Verrouiller": "Lock",
         "Nom du design ?": "Nom du design ?"
     },
     "desktop/modal/plan.configure.php": {
@@ -1826,13 +1826,13 @@
     "mobile/html/deamon.html": {
         "Nom": "Name",
         "Status": "Status",
-        "Date lancement": "Date lancement",
+        "Date lancement": "Date start",
         "Action": "Action"
     },
     "mobile/html/cron.html": {
         "Nom": "Name",
         "Status": "Status",
-        "Date lancement": "Date lancement",
+        "Date lancement": "Date start",
         "Action": "Action"
     },
     "mobile/html/health.html": {
