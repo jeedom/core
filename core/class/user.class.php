@@ -208,7 +208,7 @@ class user {
         WHERE login="admin"
         AND password=:password
         AND `enable` = 1';
-		$result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 		return $result['nb'];
 	}
 
