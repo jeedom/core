@@ -200,9 +200,7 @@ class user {
 	}
 
 	public static function hasDefaultIdentification() {
-		$values = array(
-			'password' => sha512('admin'),
-		);
+		 
 		$sql = 'SELECT count(id) as nb
         FROM user
         WHERE login="admin"
