@@ -81,7 +81,6 @@ class utils {
 					}
 					if (is_array($value)) {
 						if ($function->getNumberOfRequiredParameters() == 2) {
-							$values = array();
 							foreach ($value as $arrayKey => $arrayValue) {
 								if (is_array($arrayValue)) {
 									if ($function->getNumberOfRequiredParameters() == 3) {
