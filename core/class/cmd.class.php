@@ -1215,7 +1215,7 @@ class cmd {
 			return 'none';
 		}
 		global $JEEDOM_INTERNAL_CONFIG;
-		$levels = array('warning' => 1, 'danger' => 2);
+		
 		$currentLevel = 'none';
 		foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
 			if (!$value['check']) {
