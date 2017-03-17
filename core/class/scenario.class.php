@@ -581,9 +581,9 @@ class scenario {
 			return $this->execute($_trigger, $_message);
 		} else {
 			$cmd = dirname(__FILE__) . '/../../core/php/jeeScenario.php ';
-			$cmd .= ' scenario_id=' . $this->getId();
-			$cmd .= ' trigger=' . escapeshellarg($_trigger);
-			$cmd .= ' message=' . escapeshellarg(sanitizeAccent($_message));
+			$cmd .= ' "scenario_id=' . $this->getId() . '"';
+			$cmd .= ' "trigger=' . escapeshellarg($_trigger) . '"';
+			$cmd .= ' "message=' . escapeshellarg(sanitizeAccent($_message)) . '"';
 			$cmd .= ' >> ' . log::getPathToLog('scenario_execution') . ' 2>&1 &';
 			system::php($cmd);
 		}

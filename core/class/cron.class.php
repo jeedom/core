@@ -250,7 +250,7 @@ class cron {
 	 */
 	public function run($_noErrorReport = false) {
 		$cmd = dirname(__FILE__) . '/../php/jeeCron.php';
-		$cmd .= ' cron_id=' . $this->getId();
+		$cmd .= ' "cron_id=' . $this->getId() . '"';
 		if (!$this->running()) {
 			system::php($cmd . ' >> ' . log::getPathToLog('cron_execution') . ' 2>&1 &');
 		} else {

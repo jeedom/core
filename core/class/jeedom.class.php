@@ -420,7 +420,7 @@ class jeedom {
 	public static function restore($_backup = '', $_background = false) {
 		if ($_background) {
 			log::clear('restore');
-			$cmd = dirname(__FILE__) . '/../../install/restore.php backup=' . $_backup;
+			$cmd = dirname(__FILE__) . '/../../install/restore.php "backup=' . $_backup . '"';
 			$cmd .= ' >> ' . log::getPathToLog('restore') . ' 2>&1 &';
 			system::php($cmd);
 		} else {
@@ -434,7 +434,7 @@ class jeedom {
 
 	public static function update($_mode = '', $_level = -1, $_version = '', $__onlyThisVersion = '') {
 		log::clear('update');
-		$cmd = dirname(__FILE__) . '/../../install/install.php mode=' . $_mode . ' level=' . $_level . ' version=' . $_version . ' onlyThisVersion=' . $__onlyThisVersion;
+		$cmd = dirname(__FILE__) . '/../../install/install.php "mode=' . $_mode . '" "level=' . $_level . '" "version=' . $_version . '" "onlyThisVersion=' . $__onlyThisVersion . '"';
 		$cmd .= ' >> ' . log::getPathToLog('update') . ' 2>&1 &';
 		system::php($cmd);
 	}

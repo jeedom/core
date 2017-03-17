@@ -112,7 +112,7 @@ try {
 	echo "Décompression de la sauvegarde...";
 	$return_var = 0;
 	$output = array();
-	exec('cd ' . $tmp . '; tar xfz ' . $backup . ' ', $output, $return_var);
+	exec('cd ' . $tmp . '; tar xfz "' . $backup . '" ', $output, $return_var);
 	if ($return_var != 0) {
 		throw new Exception('Impossible de décompresser l\'archive');
 	}
@@ -171,7 +171,7 @@ try {
 
 	if (!file_exists($jeedom_dir . '/install')) {
 		mkdir($jeedom_dir . '/install');
-		exec('cd ' . $jeedom_dir . '/install;wget https://raw.githubusercontent.com/jeedom/core/master/install/backup.php;wget https://raw.githubusercontent.com/jeedom/core/master/install/install.php;wget https://raw.githubusercontent.com/jeedom/core/master/install/restore.php');
+		exec('cd "' . $jeedom_dir . '/install";wget https://raw.githubusercontent.com/jeedom/core/master/install/backup.php;wget https://raw.githubusercontent.com/jeedom/core/master/install/install.php;wget https://raw.githubusercontent.com/jeedom/core/master/install/restore.php');
 	}
 
 	foreach (plugin::listPlugin(true) as $plugin) {
