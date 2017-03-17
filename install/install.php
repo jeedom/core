@@ -42,7 +42,7 @@ $update_begin = false;
 try {
 	require_once dirname(__FILE__) . '/../core/php/core.inc.php';
 	if (count(system::ps('install/install.php', 'sudo')) > 1) {
-		echo "Une mise a jour/installation est deja en cours. Vous devez attendre qu'elle soit finie avant d'en relancer une\n";
+		echo "An update / installation is already in progress. You must wait until it is finished before restarting it.\n";
 		print_r(system::ps('install/install.php', 'sudo'));
 		echo "[END UPDATE]\n";
 		die();
@@ -56,7 +56,7 @@ try {
 			$update = true;
 		}
 	} catch (Exception $e) {
-
+		echo "***ERREUR*** " . $ex->getMessage() . "\n";
 	}
 	if (init('version') != '') {
 		$update = true;
@@ -178,7 +178,7 @@ try {
 						@rrmdir(dirname(__FILE__) . '/../' . $file);
 					}
 					echo "OK\n";
-					echo "Création des dossiers temporaire...";
+					echo "Creating Temporary Folders...";
 					if (!file_exists($cibDir) && !mkdir($cibDir, 0775, true)) {
 						throw new Exception('Can not write into  : ' . $cibDir . '.');
 					}
@@ -424,7 +424,7 @@ try {
 	}
 	echo "OK\n";
 } catch (Exception $e) {
-
+	echo "***ERREUR*** " . $ex->getMessage() . "\n";
 }
 
 try {
@@ -432,7 +432,7 @@ try {
 	jeedom::event('end_update');
 	echo "OK\n";
 } catch (Exception $e) {
-
+	echo "***ERREUR*** " . $ex->getMessage() . "\n";
 }
 
 echo "[END UPDATE SUCCESS]\n";
