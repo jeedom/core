@@ -124,7 +124,7 @@ try {
 	echo __("OK", __FILE__) . "\n";
 
 	echo __('Création de l\'archive...', __FILE__);
-	system('cd ' . $tmp . '; tar cfz ' . $backup_dir . '/' . $bakcup_name . ' * > /dev/null 2>&1');
+	system('cd ' . $tmp . '; tar cfz "' . $backup_dir . '/' . $bakcup_name . '" * > /dev/null 2>&1');
 	echo __("OK", __FILE__) . "\n";
 
 	if (!file_exists($backup_dir . '/' . $bakcup_name)) {
@@ -132,7 +132,7 @@ try {
 	}
 
 	echo __('Nettoyage des anciennes sauvegardes...', __FILE__);
-	shell_exec('find ' . $backup_dir . ' -mtime +' . config::byKey('backup::keepDays') . ' -delete');
+	shell_exec('find "' . $backup_dir . '" -mtime +' . config::byKey('backup::keepDays') . ' -delete');
 	echo __("OK", __FILE__) . "\n";
 
 	echo __('Limite de la taille totale des sauvegardes à ', __FILE__) . config::byKey('backup::maxSize') . ' Mo...';
@@ -194,9 +194,9 @@ try {
 			$class = 'repo_' . $key;
 			echo __('Envoi de la sauvegarde dans le cloud', __FILE__) . ' ' . $value['name'];
 			try {
-				if($class == 'repo_market'){
+				if ($class == 'repo_market') {
 					repo_market::sendBackupCloud($backup_dir . '/' . $bakcup_name);
-				}else{
+				} else {
 					$class::sendBackup($backup_dir . '/' . $bakcup_name);
 				}
 			} catch (Exception $e) {
