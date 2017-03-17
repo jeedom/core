@@ -1266,6 +1266,7 @@ class scenarioExpression {
 							$cmd_parameters['files'] = array($plan->report($options['export_type']));
 							$cmd_parameters['title'] = __('[' . config::byKey('name') . '] Rapport ', __FILE__) . $plan->getName() . __(' du ', __FILE__) . date('Y-m-d H:i:s');
 							$cmd_parameters['message'] = __('Veuillez trouver ci-joint le rapport ', __FILE__) . $plan->getName() . __(' généré le ', __FILE__) . date('Y-m-d H:i:s');
+							break;
 						case 'plugin':
 							$plugin = plugin::byId($options['plugin_id']);
 							if (!is_object($plugin)) {
