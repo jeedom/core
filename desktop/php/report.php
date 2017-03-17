@@ -106,7 +106,12 @@ foreach (plugin::listPlugin(true) as $plugin) {
 						<input class="form-control reportAttr" type="text" data-l1key="extension" disabled />
 					</div>
 				</div>
+				<div class="form-group">
+					<label class="col-sm-2 col-xs-2 control-label">{{Aperçu}}</label>
+					<div class="col-sm-10 col-xs-10" id="div_imgreport">
 
+					</div>
+				</div>
 			</fieldset>
 		</form>
 

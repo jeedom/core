@@ -65,6 +65,16 @@
  		success: function (data) {
  			$('#div_reportForm').show();
  			$('#div_reportForm').setValues(data, '.reportAttr');
+ 			$('#div_imgreport').empty();
+ 			var type = $('#div_reportForm .reportAttr[data-l1key=type]').value();
+ 			var id = $('#div_reportForm .reportAttr[data-l1key=id]').value();
+ 			var filename = $('#div_reportForm .reportAttr[data-l1key=filename]').value();
+ 			var extension = $('#div_reportForm .reportAttr[data-l1key=extension]').value();
+ 			if(extension != 'pdf'){
+ 				$('#div_imgreport').append('<img class="img-responsive" src="core/php/downloadFile.php?pathfile=data/report/' + type+'/'+id+'/'+filename+'.'+extension+'" />');
+ 			}else{
+ 				$('#div_imgreport').append('{{Aucun aperçu possible en pdf}}');
+ 			}
  		}
  	});
  }
