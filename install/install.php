@@ -26,7 +26,7 @@ if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SE
 }
 set_time_limit(1800);
 echo "[START UPDATE]\n";
-
+$starttime = strtotime('now');
 if (isset($argv)) {
 	foreach ($argv as $arg) {
 		$argList = explode('=', $arg);
@@ -434,7 +434,7 @@ try {
 } catch (Exception $e) {
 
 }
-
+echo "Install/update duration : " . (strtotime('now') - $starttime) . "s\n";
 echo "[END UPDATE SUCCESS]\n";
 
 function incrementVersion($_version) {

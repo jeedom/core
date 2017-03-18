@@ -25,6 +25,7 @@ if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SE
 	exit();
 }
 echo "[START BACKUP]\n";
+$starttime = strtotime('now');
 if (isset($argv)) {
 	foreach ($argv as $arg) {
 		$argList = explode('=', $arg);
@@ -203,7 +204,7 @@ try {
 	} catch (Exception $e) {
 		echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
 	}
-
+	echo "Durée de la sauvegarde : " . (strtotime('now') - $starttime) . "s\n";
 	echo __("***************Fin de la sauvegarde de Jeedom***************\n", __FILE__);
 	echo "[END BACKUP SUCCESS]\n";
 } catch (Exception $e) {

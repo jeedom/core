@@ -25,6 +25,7 @@ if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SE
 	exit();
 }
 echo "[START RESTORE]\n";
+$starttime = strtotime('now');
 if (isset($argv)) {
 	foreach ($argv as $arg) {
 		$argList = explode('=', $arg);
@@ -172,6 +173,7 @@ try {
 	} catch (Exception $e) {
 		echo $e->getMessage();
 	}
+
 	try {
 		echo "Envoi de l'événement de fin de restauration...";
 		jeedom::event('end_restore');
@@ -179,7 +181,7 @@ try {
 	} catch (Exception $e) {
 		echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
 	}
-
+	echo "Durée de la restoration : " . (strtotime('now') - $starttime) . . "s\n";
 	echo "***************Fin de la restauration de Jeedom***************\n";
 	echo "[END RESTORE SUCCESS]\n";
 } catch (Exception $e) {
