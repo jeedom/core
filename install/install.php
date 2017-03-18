@@ -160,9 +160,21 @@ try {
 						throw new Exception('Download failed please retry later');
 					}
 					echo "OK\n";
+					echo "Cleaning folder...";
 					$cibDir = dirname(__FILE__) . '/../tmp/jeedom';
-					echo "Cleaning adminer, sysinfo and other...";
-					shell_exec('rm -rf ' . dirname(__FILE__) . '/../adminer*;rm -rf ' . dirname(__FILE__) . '/../sysinfo*;rm -rf ' . $cibDir . '/*');
+					if (file_exists($cibDir)) {
+						rrmdir($cibDir);
+					}
+					echo "OK\n";
+					echo "Cleaning adminer...";
+					foreach (ls(dirname(__FILE__) . '/../', 'adminer*') as $file) {
+						@rrmdir(dirname(__FILE__) . '/../' . $file);
+					}
+					echo "OK\n";
+					echo "Cleaning sysinfo...";
+					foreach (ls(dirname(__FILE__) . '/../', 'sysinfo*') as $file) {
+						@rrmdir(dirname(__FILE__) . '/../' . $file);
+					}
 					echo "OK\n";
 					echo "Create temporary folder...";
 					if (!file_exists($cibDir) && !mkdir($cibDir, 0775, true)) {
@@ -170,7 +182,15 @@ try {
 					}
 					echo "OK\n";
 					echo "Unzip in progress...";
-					shell_exec('unzip -o ' . $tmp . ' -d ' . $cibDir);
+					$zip = new ZipArchive;
+					if ($zip->open($tmp) === TRUE) {
+						if (!$zip->extractTo($cibDir)) {
+							throw new Exception('Can not unzip file');
+						}
+						$zip->close();
+					} else {
+						throw new Exception('Unable to unzip file : ' . $tmp);
+					}
 					echo "OK\n";
 					echo "Moving file...";
 					$update_begin = true;
