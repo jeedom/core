@@ -181,7 +181,10 @@ try {
 							$cibDir = $cibDir . '/' . $files[0];
 						}
 					}
-					shell_exec('mv -f ' . $cibDir . '/* ' . dirname(__FILE__) . '/../;rm -rf ' . $cibDir);
+					rmove($cibDir . '/', dirname(__FILE__) . '/../', false, array(), true);
+					echo "OK\n";
+					echo "Remove temporary file...";
+					rrmdir($cibDir);
 					echo "OK\n";
 					config::save('update::lastDateCore', date('Y-m-d H:i:s'));
 				} catch (Exception $e) {
