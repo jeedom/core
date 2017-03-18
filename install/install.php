@@ -162,14 +162,8 @@ try {
 						throw new Exception('Download failed please retry later');
 					}
 					echo "OK\n";
-					echo "Cleaning folder...";
-					$cibDir = dirname(__FILE__) . '/../tmp/jeedom';
-					if (file_exists($cibDir)) {
-						rrmdir($cibDir);
-					}
-					echo "OK\n";
-					echo "Cleaning adminer and sysinfo...";
-					shell_exec('rm -rf ' . dirname(__FILE__) . '/../adminer*;rm -rf ' . dirname(__FILE__) . '/../sysinfo*');
+					echo "Cleaning adminer, sysinfo and other...";
+					shell_exec('rm -rf ' . dirname(__FILE__) . '/../adminer*;rm -rf ' . dirname(__FILE__) . '/../sysinfo*;rm -rf ' . $cibDir . '/*');
 					echo "OK\n";
 					echo "Create temporary folder...";
 					if (!file_exists($cibDir) && !mkdir($cibDir, 0775, true)) {
