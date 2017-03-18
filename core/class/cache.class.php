@@ -156,6 +156,11 @@ class cache {
 				return;
 		}
 		try {
+			self::clean();
+		} catch (Exception $e) {
+
+		}
+		try {
 			unlink(dirname(__FILE__) . '/../../cache.zip');
 			create_zip($cache_dir, dirname(__FILE__) . '/../../cache.zip');
 		} catch (Exception $e) {
