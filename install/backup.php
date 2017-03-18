@@ -68,7 +68,7 @@ try {
 	$bakcup_name = str_replace(' ', '_', 'backup-' . $jeedom_name . '-' . jeedom::version() . '-' . date("Y-m-d-H\hi") . '.tar.gz');
 
 	global $NO_PLUGIN_BAKCUP;
-	if (!isset($NO_PLUGIN_BAKCUP) || $NO_PLUGIN_BAKCUP == false) {
+	if (!isset($NO_PLUGIN_BAKCUP) || $NO_PLUGIN_BAKCUP === false) {
 		foreach (plugin::listPlugin(true) as $plugin) {
 			$plugin_id = $plugin->getId();
 			if (method_exists($plugin_id, 'backup')) {
@@ -131,7 +131,7 @@ try {
 		foreach (ls($backup_dir, '*') as $file) {
 			if (is_dir($backup_dir . '/' . $file)) {
 				foreach (ls($backup_dir . '/' . $file, '*') as $file2) {
-					if ($older['datetime'] == null) {
+					if ($older['datetime'] === null) {
 						$older['file'] = $backup_dir . '/' . $file . '/' . $file2;
 						$older['datetime'] = filemtime($backup_dir . '/' . $file . '/' . $file2);
 					}
@@ -144,7 +144,7 @@ try {
 			if (!is_file($backup_dir . '/' . $file)) {
 				continue;
 			}
-			if ($older['datetime'] == null) {
+			if ($older['datetime'] === null) {
 				$older['file'] = $backup_dir . '/' . $file;
 				$older['datetime'] = filemtime($backup_dir . '/' . $file);
 			}
@@ -153,7 +153,7 @@ try {
 				$older['datetime'] = filemtime($backup_dir . '/' . $file);
 			}
 		}
-		if ($older['file'] == null) {
+		if ($older['file'] === null) {
 			echo __('Erreur aucun fichier à supprimer alors que le dossier fait : ' . getDirectorySize($backup_dir), __FILE__);
 		}
 		echo __("\n - Suppression de : ", __FILE__) . $older['file'] . "\n";
@@ -168,9 +168,9 @@ try {
 	}
 	echo __("OK", __FILE__) . "\n";
 	global $NO_CLOUD_BAKCUP;
-	if ((!isset($NO_CLOUD_BAKCUP) || $NO_CLOUD_BAKCUP == false)) {
+	if ((!isset($NO_CLOUD_BAKCUP) || $NO_CLOUD_BAKCUP === false)) {
 		foreach (update::listRepo() as $key => $value) {
-			if ($value['scope']['backup'] == false) {
+			if ($value['scope']['backup'] === false) {
 				continue;
 			}
 			if (config::byKey($key . '::enable') == 0) {
@@ -212,4 +212,4 @@ try {
 	echo "[END BACKUP ERROR]\n";
 	throw $e;
 }
-?>
+
