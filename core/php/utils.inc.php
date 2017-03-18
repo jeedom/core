@@ -585,40 +585,35 @@ function convertDayEnToFr($_day) {
 	return $_day;
 }
 
-function create_zip($source_arr, $destination) {
+function create_zip($source_arr, $destination, $_excludes = array()) {
 	if (is_string($source_arr)) {
 		$source_arr = array($source_arr);
 	}
-	// convert it to array
-
 	if (!extension_loaded('zip')) {
 		throw new Exception('Extension php ZIP non chargée');
 	}
-
 	$zip = new ZipArchive();
 	if (!$zip->open($destination, ZIPARCHIVE::CREATE)) {
 		throw new Exception('Impossible de creer l\'archive ZIP dans le dossier de destination : ' . $destination);
 	}
-
 	foreach ($source_arr as $source) {
 		if (!file_exists($source)) {
 			continue;
 		}
-
 		$source = str_replace('\\', '/', realpath($source));
-
 		if (is_dir($source) === true) {
 			$files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($source), RecursiveIteratorIterator::SELF_FIRST);
-
 			foreach ($files as $file) {
 				if (strpos($file, $source) === false) {
 					continue;
 				}
-				if ($file == $source . '/..') {
+				if ($file == $source . '/.' || $file == $source . '/..' || in_array(basename($file), $_excludes) || in_array(realpath($file), $_excludes)) {
 					continue;
 				}
-				if ($file == $source . '/.') {
-					continue;
+				foreach ($_excludes as $exclude) {
+					if (strpos($file, trim('/' . $exclude . '/', '/')) !== false) {
+						continue (2);
+					}
 				}
 				$file = str_replace('\\', '/', realpath($file));
 				if (is_dir($file) === true) {
@@ -631,7 +626,6 @@ function create_zip($source_arr, $destination) {
 			$zip->addFromString(basename($source), file_get_contents($source));
 		}
 	}
-
 	return $zip->close();
 }
 
