@@ -37,14 +37,14 @@ if (isset($argv)) {
 
 try {
 	require_once dirname(__FILE__) . '/../core/php/core.inc.php';
-	echo __("***************Lancement de la sauvegarde de Jeedom le ", __FILE__) . date('Y-m-d H:i:s') . "***************\n";
+	echo "***************Start of Jeeodm backup at " . date('Y-m-d H:i:s') . "***************\n";
 
 	try {
-		echo "Envoi de l'événement de début de backup...";
+		echo "Send begin backup event...";
 		jeedom::event('begin_backup', true);
 		echo "OK\n";
 	} catch (Exception $e) {
-		echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+		echo '***ERREUR*** ' . $e->getMessage();
 	}
 
 	global $CONFIG;
@@ -54,7 +54,7 @@ try {
 		mkdir($backup_dir, 0770, true);
 	}
 	if (!is_writable($backup_dir)) {
-		throw new Exception(__('Le dossier des sauvegardes n\'est pas accessible en écriture. Vérifiez les droits : ', __FILE__) . $backup_dir);
+		throw new Exception('Can not acces backup folder, please check right : ' . $backup_dir);
 	}
 	$replace_name = array(
 		'&' => '',
@@ -73,32 +73,33 @@ try {
 		foreach (plugin::listPlugin(true) as $plugin) {
 			$plugin_id = $plugin->getId();
 			if (method_exists($plugin_id, 'backup')) {
-				echo __('Sauvegarde spécifique pour le plugin ' . $plugin_id . '...', __FILE__);
+				echo 'Backup plugin ' . $plugin_id . '...';
 				$plugin_id::backup();
-				echo __("OK", __FILE__) . "\n";
+				echo "OK" . "\n";
 			}
 		}
 	}
 
-	echo __("Vérification de la base de données : \n", __FILE__);
+	echo "Check database...";
 	system("mysqlcheck --host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'] . ' --auto-repair --silent');
+	echo "OK" . "\n";
 
-	echo __('Sauvegarde de la base de données...', __FILE__);
+	echo 'Backup database...';
 	$rc = system("mysqldump --host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'] . "  > " . $jeedom_dir . "/DB_backup.sql");
 	if ($rc != 0) {
-		throw new Exception('Echec lors de la sauvegarde de la BDD, verifier que mysqldump est bien présent. Code retour : ' . $rc);
+		throw new Exception('Failed to save the BDD, verify that mysqldump is present. Return Code : ' . $rc);
 	}
-	echo __("OK", __FILE__) . "\n";
+	echo "OK" . "\n";
 
-	echo __("Persistance du cache : \n", __FILE__);
+	echo "Persist cache : \n";
 	try {
 		cache::persist();
-		echo __("OK", __FILE__) . "\n";
+		echo "OK" . "\n";
 	} catch (Exception $e) {
 		echo $e->getMessage();
 	}
 
-	echo __('Création de l\'archive...', __FILE__);
+	echo 'Create archive...';
 
 	$excludes = array(
 		'tmp',
@@ -114,17 +115,17 @@ try {
 		$exclude .= ' --exclude="' . $folder . '"';
 	}
 	system('cd ' . $jeedom_dir . '; tar cfz "' . $backup_dir . '/' . $bakcup_name . '" * ' . $exclude . ' > /dev/null 2>&1');
-	echo __("OK", __FILE__) . "\n";
+	echo "OK" . "\n";
 
 	if (!file_exists($backup_dir . '/' . $bakcup_name)) {
-		throw new Exception(__('Echec lors de la compression de la sauvegarde. Sauvegarde introuvable : ', __FILE__) . $backup_dir . '/' . $bakcup_name);
+		throw new Exception('Backup failed.Can not find : ' . $backup_dir . '/' . $bakcup_name);
 	}
 
-	echo __('Nettoyage des anciennes sauvegardes...', __FILE__);
+	echo 'Clean old backup...';
 	shell_exec('find "' . $backup_dir . '" -mtime +' . config::byKey('backup::keepDays') . ' -delete');
-	echo __("OK", __FILE__) . "\n";
+	echo "OK" . "\n";
 
-	echo __('Limite de la taille totale des sauvegardes à ', __FILE__) . config::byKey('backup::maxSize') . ' Mo...';
+	echo 'Limit the total size of backups to ' . config::byKey('backup::maxSize') . " Mo...\n";
 	$max_size = config::byKey('backup::maxSize') * 1024 * 1024;
 	$i = 0;
 	while (getDirectorySize($backup_dir) > $max_size) {
@@ -155,19 +156,19 @@ try {
 			}
 		}
 		if ($older['file'] == null) {
-			echo __('Erreur aucun fichier à supprimer alors que le dossier fait : ' . getDirectorySize($backup_dir), __FILE__);
+			echo 'Error no files to delete when the folder does : ' . getDirectorySize($backup_dir) . "\n";
 		}
-		echo __("\n - Suppression de : ", __FILE__) . $older['file'] . "\n";
+		echo "Remove : " . $older['file'] . "\n";
 		if (!unlink($older['file'])) {
 			$i = 50;
 		}
 		$i++;
 		if ($i > 50) {
-			echo __("Plus de 50 sauvegardes supprimées. Je m'arrête.\n", __FILE__);
+			echo "More than 50 backups deleted. I stop.\n";
 			break;
 		}
 	}
-	echo __("OK", __FILE__) . "\n";
+	echo "OK" . "\n";
 	global $NO_CLOUD_BAKCUP;
 	if ((!isset($NO_CLOUD_BAKCUP) || $NO_CLOUD_BAKCUP == false)) {
 		foreach (update::listRepo() as $key => $value) {
@@ -181,7 +182,7 @@ try {
 				continue;
 			}
 			$class = 'repo_' . $key;
-			echo __('Envoi de la sauvegarde dans le cloud', __FILE__) . ' ' . $value['name'];
+			echo 'Send backup ' . $value['name'] . '...';
 			try {
 				if ($class == 'repo_market') {
 					repo_market::sendBackupCloud($backup_dir . '/' . $bakcup_name);
@@ -192,24 +193,24 @@ try {
 				log::add('backup', 'error', $e->getMessage());
 				echo '/!\ ' . br2nl($e->getMessage()) . ' /!\\';
 			}
-			echo __("OK", __FILE__) . "\n";
+			echo "OK" . "\n";
 		}
 	}
-	echo __("Nom du backup : ", __FILE__) . $backup_dir . '/' . $bakcup_name . "\n";
+	echo "Name of backup : " . $backup_dir . '/' . $bakcup_name . "\n";
 
 	try {
-		echo 'Envoi de l\'événement de fin de backup...';
+		echo 'Send end backup event...';
 		jeedom::event('end_backup');
 		echo "OK\n";
 	} catch (Exception $e) {
-		echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+		echo '***ERREUR*** ' . $e->getMessage();
 	}
-	echo "Durée de la sauvegarde : " . (strtotime('now') - $starttime) . "s\n";
-	echo __("***************Fin de la sauvegarde de Jeedom***************\n", __FILE__);
+	echo "Backup duration : " . (strtotime('now') - $starttime) . "s\n";
+	echo "***************Fin de la sauvegarde de Jeedom***************\n";
 	echo "[END BACKUP SUCCESS]\n";
 } catch (Exception $e) {
-	echo __('Erreur durant la sauvegarde : ', __FILE__) . br2nl($e->getMessage());
-	echo __('Détails : ', __FILE__) . print_r($e->getTrace(), true);
+	echo 'Error during backup : ' . br2nl($e->getMessage());
+	echo 'Details : ' . print_r($e->getTrace(), true);
 	echo "[END BACKUP ERROR]\n";
 	throw $e;
 }

@@ -178,7 +178,7 @@ try {
 						@rrmdir(dirname(__FILE__) . '/../' . $file);
 					}
 					echo "OK\n";
-					echo "Création des dossiers temporaire...";
+					echo "Create temporary folder...";
 					if (!file_exists($cibDir) && !mkdir($cibDir, 0775, true)) {
 						throw new Exception('Can not write into  : ' . $cibDir . '.');
 					}
