@@ -202,7 +202,8 @@ try {
 							$cibDir = $cibDir . '/' . $files[0];
 						}
 					}
-					rmove($cibDir . '/', dirname(__FILE__) . '/../', false, array(), true);
+					shell_exec('mv -f ' . $cibDir . '/* ' . dirname(__FILE__) . '/../');
+					//rmove($cibDir . '/', dirname(__FILE__) . '/../', false, array(), true);
 					echo "OK\n";
 					echo "Remove temporary file...";
 					rrmdir($cibDir);
