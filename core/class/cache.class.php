@@ -156,23 +156,18 @@ class cache {
 				return;
 		}
 		try {
-			self::clean();
-		} catch (Exception $e) {
-
-		}
-		try {
-			unlink(dirname(__FILE__) . '/../../cache.zip');
-			create_zip($cache_dir, dirname(__FILE__) . '/../../cache.zip');
+			com_shell::execute('rm -rf ' . dirname(__FILE__) . '/../../cache.tar.gz;cd ' . $cache_dir . ';tar cfz ' . dirname(__FILE__) . '/../../cache.tar.gz * 2>&1 > /dev/null;chmod 775 ' . dirname(__FILE__) . '/../../cache.tar.gz;chown ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . dirname(__FILE__) . '/../../cache.tar.gz;chmod 777 -R ' . $cache_dir . ' 2>&1 > /dev/null');
 		} catch (Exception $e) {
 			log::add('cache', 'debug', $e->getMessage());
 		}
+
 	}
 
 	public static function isPersistOk() {
 		if (config::byKey('cache::engine') != 'FilesystemCache' && config::byKey('cache::engine') != 'PhpFileCache') {
 			return true;
 		}
-		$filename = dirname(__FILE__) . '/../../cache.zip';
+		$filename = dirname(__FILE__) . '/../../cache.tar.gz';
 		if (!file_exists($filename)) {
 			return false;
 		}
@@ -193,16 +188,18 @@ class cache {
 			default:
 				return;
 		}
-		if (!file_exists(dirname(__FILE__) . '/../../cache.zip')) {
-			mkdir($cache_dir, 0777);
+		if (!file_exists(dirname(__FILE__) . '/../../cache.tar.gz')) {
+			$cmd = 'mkdir ' . $cache_dir . ';';
+			$cmd .= 'chmod -R 777 ' . $cache_dir . ';';
+			com_shell::execute($cmd);
 			return;
 		}
-		rrmdir($cache_dir);
-		$zip = new ZipArchive;
-		if ($zip->open(dirname(__FILE__) . '/../../cache.zip') === TRUE) {
-			$zip->extractTo($cache_dir);
-			$zip->close();
-		}
+		$cmd = 'rm -rf ' . $cache_dir . ';';
+		$cmd .= 'mkdir ' . $cache_dir . ';';
+		$cmd .= 'cd ' . $cache_dir . ';';
+		$cmd .= 'tar xfz ' . dirname(__FILE__) . '/../../cache.tar.gz;';
+		$cmd .= 'chmod -R 777 ' . $cache_dir . ' 2>&1 /dev/null;';
+		com_shell::execute($cmd);
 	}
 
 	public static function clean() {
