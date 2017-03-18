@@ -330,7 +330,8 @@ class update {
 								$cibDir = $cibDir . '/' . $files[0];
 							}
 						}
-						system('mv -f ' . $cibDir . '/* ' . dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId());
+						rmove($cibDir . '/', dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId(), false, array(), true);
+						rrmdir($cibDir);
 						$cibDir = '/tmp/jeedom_' . $this->getLogicalId();
 						if (file_exists($cibDir)) {
 							rrmdir($cibDir);

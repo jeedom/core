@@ -200,11 +200,9 @@ try {
 						$files = ls($cibDir, '*');
 						if (count($files) == 1 && file_exists($cibDir . '/' . $files[0] . 'core')) {
 							$cibDir = $cibDir . '/' . $files[0];
-						} else {
-							throw new Exception("Can not find dir core, is it Jeedom file ?");
 						}
 					}
-					system('mv -f ' . $cibDir . '/* ' . dirname(__FILE__) . '/../');
+					rmove($cibDir . '/', dirname(__FILE__) . '/../', false, array(), true);
 					echo "OK\n";
 					echo "Remove temporary file...";
 					rrmdir($cibDir);

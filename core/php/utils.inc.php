@@ -381,6 +381,39 @@ function rcopy($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = 
 	return true;
 }
 
+function rmove($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = false) {
+	if (!file_exists($src)) {
+		return true;
+	}
+	if ($_emptyDest) {
+		rrmdir($dst);
+	}
+	if (is_dir($src)) {
+		if (!file_exists($dst)) {
+			@mkdir($dst);
+		}
+		$files = scandir($src);
+		foreach ($files as $file) {
+			if ($file != "." && $file != ".." && !in_array($file, $_exclude) && !in_array(realpath($src . '/' . $file), $_exclude)) {
+				if (!rmove($src . '/' . $file, $dst . '/' . $file, $_emptyDest, $_exclude, $_noError) && !$_noError) {
+					return false;
+				}
+			}
+		}
+	} else {
+		if (!in_array(basename($src), $_exclude) && !in_array(realpath($src), $_exclude)) {
+			if (!$_noError) {
+				return rename($src, $dst);
+			} else {
+				@rename($src, $dst);
+				return true;
+			}
+
+		}
+	}
+	return true;
+}
+
 // removes files and non-empty directories
 function rrmdir($dir) {
 	if (is_dir($dir)) {
