@@ -159,7 +159,7 @@ class jeedom {
 				$cache_health['state'] = true;
 				$cache_health['result'] = __('OK', __FILE__);
 			} else {
-				$filename = dirname(__FILE__) . '/../../cache.zip';
+				$filename = dirname(__FILE__) . '/../../cache.tar.gz';
 				$cache_health['state'] = true;
 				$cache_health['result'] = __('OK', __FILE__) . ' (' . date('Y-m-d H:i:s', filemtime($filename)) . ')';
 			}
@@ -402,7 +402,6 @@ class jeedom {
 			$backup_dir = config::byKey('backup::path');
 		}
 		$backups = ls($backup_dir, '*.tar.gz', false, array('files', 'quiet', 'datetime_asc'));
-		$backups = array_merge($backups, ls($backup_dir, '*.zip', false, array('files', 'quiet', 'datetime_asc')));
 		$return = array();
 		foreach ($backups as $backup) {
 			$return[$backup_dir . '/' . $backup] = $backup;

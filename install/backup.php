@@ -66,7 +66,7 @@ try {
 		'-' => '',
 	);
 	$jeedom_name = str_replace(array_keys($replace_name), $replace_name, config::byKey('name', 'core', 'Jeedom'));
-	$bakcup_name = str_replace(' ', '_', 'backup-' . $jeedom_name . '-' . jeedom::version() . '-' . date("Y-m-d-H\hi") . '.zip');
+	$bakcup_name = str_replace(' ', '_', 'backup-' . $jeedom_name . '-' . jeedom::version() . '-' . date("Y-m-d-H\hi") . '.tar.gz');
 
 	global $NO_PLUGIN_BAKCUP;
 	if (!isset($NO_PLUGIN_BAKCUP) || $NO_PLUGIN_BAKCUP == false) {
@@ -109,8 +109,14 @@ try {
 		'core/config/common.config.php',
 		config::byKey('backup::path'),
 	);
-	create_zip($jeedom_dir, $backup_dir . '/' . $bakcup_name, $excludes);
+
+	$exclude = '';
+	foreach ($excludes as $folder) {
+		$exclude .= ' --exclude="' . $folder . '"';
+	}
+	system('cd ' . $jeedom_dir . '; tar cfz "' . $backup_dir . '/' . $bakcup_name . '" * ' . $exclude . ' > /dev/null 2>&1');
 	echo "OK" . "\n";
+
 	if (!file_exists($backup_dir . '/' . $bakcup_name)) {
 		throw new Exception('Backup failed.Can not find : ' . $backup_dir . '/' . $bakcup_name);
 	}
