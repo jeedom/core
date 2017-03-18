@@ -124,7 +124,7 @@ try {
 			if (init('version') == '') {
 				try {
 					echo 'Clean temporary file (tmp)...';
-					shell_exec('rm -rf ' . dirname(__FILE__) . '/../tmp/*.zip;rm -rf ' . dirname(__FILE__) . '/../tmp/backup;rm -rf ' . dirname(__FILE__) . '/../install/update/*')
+					shell_exec('rm -rf ' . dirname(__FILE__) . '/../tmp/*.zip;rm -rf ' . dirname(__FILE__) . '/../tmp/backup;rm -rf ' . dirname(__FILE__) . '/../install/update/*');
 					echo "OK\n";
 				} catch (Exception $e) {
 					echo '***ERROR*** ' . $e->getMessage() . "\n";
