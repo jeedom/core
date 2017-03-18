@@ -102,27 +102,19 @@ try {
 	@copy(dirname(__FILE__) . '/../core/config/common.config.php', '/tmp/common.config.php');
 	echo "OK\n";
 
-	echo "Nettoyage des anciens fichiers...";
-	$tmp = dirname(__FILE__) . '/../tmp/jeedom_restore';
-	rrmdir($tmp);
-	echo "OK\n";
-	if (!file_exists($tmp)) {
-		mkdir($tmp, 0770, true);
-	}
-	echo "Décompression de la sauvegarde...";
-	$return_var = 0;
-	$output = array();
-	exec('cd ' . $tmp . '; tar xfz "' . $backup . '" ', $output, $return_var);
-	if ($return_var != 0) {
-		throw new Exception('Impossible de décompresser l\'archive');
+	try {
+		jeedom::stop();
+	} catch (Exception $e) {
+		$e->getMessage();
 	}
 
-	@unlink($tmp . '/core/config/apache_jeedom_dynamic_rules');
+	echo "Décompression de la sauvegarde...";
+	$rc = 0;
+	system('cd ' . $jeedom_dir . '; tar xfz "' . $backup . '" ');
 	echo "OK\n";
-	if (!file_exists($tmp . "/DB_backup.sql")) {
+	if (!file_exists($jeedom_dir . "/DB_backup.sql")) {
 		throw new Exception('Impossible de trouver le fichier de sauvegarde de la base de données dans l\'archive : DB_backup.sql');
 	}
-	jeedom::stop();
 	echo "Suppression de toutes les tables";
 	$tables = DB::Prepare("SHOW TABLES", array(), DB::FETCH_TYPE_ALL);
 	echo "Désactivation des contraintes...";
@@ -137,7 +129,7 @@ try {
 	}
 
 	echo "Restauration de la base de donnees...";
-	shell_exec("mysql --host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password=" . $CONFIG['db']['password'] . " " . $CONFIG['db']['dbname'] . "  < " . $tmp . "/DB_backup.sql");
+	shell_exec("mysql --host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password=" . $CONFIG['db']['password'] . " " . $CONFIG['db']['dbname'] . "  < " . $jeedom_dir . "/DB_backup.sql");
 	echo "OK\n";
 
 	echo "Réactivation des contraintes...";
@@ -147,13 +139,6 @@ try {
 
 	}
 	echo "OK\n";
-
-	echo "Restauration des fichiers...";
-	if (!rcopy($tmp, dirname(__FILE__) . '/..', false, array('common.config.php'), true)) {
-		echo "NOK\n";
-	} else {
-		echo "OK\n";
-	}
 
 	if (!file_exists(dirname(__FILE__) . '/../core/config/common.config.php')) {
 		echo "Fichier de connexion a la base absent, restauration...";
@@ -169,28 +154,24 @@ try {
 	}
 	echo "OK\n";
 
-	if (!file_exists($jeedom_dir . '/install')) {
-		mkdir($jeedom_dir . '/install');
-		exec('cd "' . $jeedom_dir . '/install";wget https://raw.githubusercontent.com/jeedom/core/master/install/backup.php;wget https://raw.githubusercontent.com/jeedom/core/master/install/install.php;wget https://raw.githubusercontent.com/jeedom/core/master/install/restore.php');
-	}
-
 	foreach (plugin::listPlugin(true) as $plugin) {
 		$plugin_id = $plugin->getId();
 		$dependancy_info = $plugin->dependancy_info(true);
 		if (method_exists($plugin_id, 'restore')) {
 			echo 'Restauration specifique du plugin ' . $plugin_id . '...';
-			if (file_exists($tmp . '/plugin_backup/' . $plugin_id)) {
-				$plugin_id::restore($tmp . '/plugin_backup/' . $plugin_id);
-			}
+			$plugin_id::restore();
 			echo "OK\n";
 		}
 	}
-	rrmdir($tmp);
 	config::save('hardware_name', '');
 	$cache = cache::byKey('jeedom::isCapable::sudo');
 	$cache->remove();
-	jeedom::start();
 
+	try {
+		jeedom::start();
+	} catch (Exception $e) {
+		echo $e->getMessage();
+	}
 	try {
 		echo "Envoi de l'événement de fin de restauration...";
 		jeedom::event('end_restore');
