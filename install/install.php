@@ -204,7 +204,7 @@ try {
 							throw new Exception("Can not find dir core, is it Jeedom file ?");
 						}
 					}
-					system('mv ' . $cibDir . '/* ' . dirname(__FILE__) . '/../');
+					system('mv -f ' . $cibDir . '/* ' . dirname(__FILE__) . '/../');
 					echo "OK\n";
 					echo "Remove temporary file...";
 					rrmdir($cibDir);
