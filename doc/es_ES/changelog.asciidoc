@@ -76,6 +76,9 @@ Botón derecho del ratón en un elemento de un resumen domótico te lleva a una 
 * Ajout d'une page de gestion de rapport (pour les retélécharger ou les supprimer)
 * Correction d'un bug sur la date de dernière remontée d'événement pour certains plugins (alarme)
 * Correction d'un bug d'affichage avec chrome 55
+* Optimisation du backup (sur un rpi2 le temps est divisé par 2)
+* Optimisation de la restoration
+* Optimisation du processus de mise à jour
 
 = 2.4.6
 
