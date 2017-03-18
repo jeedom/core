@@ -104,6 +104,7 @@ try {
 		'backup',
 		'.git',
 		'.log',
+		'core/config/common.config.php',
 		config::byKey('backup::path'),
 	);
 
