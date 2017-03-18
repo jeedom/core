@@ -162,6 +162,7 @@ try {
 						throw new Exception('Download failed please retry later');
 					}
 					echo "OK\n";
+					$cibDir = dirname(__FILE__) . '/../tmp/jeedom';
 					echo "Cleaning adminer, sysinfo and other...";
 					shell_exec('rm -rf ' . dirname(__FILE__) . '/../adminer*;rm -rf ' . dirname(__FILE__) . '/../sysinfo*;rm -rf ' . $cibDir . '/*');
 					echo "OK\n";
