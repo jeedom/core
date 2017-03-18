@@ -44,7 +44,7 @@ try {
 		jeedom::event('begin_restore', true);
 		echo "OK\n";
 	} catch (Exception $e) {
-		echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+		echo '***ERREUR*** ' . $e->getMessage();
 	}
 
 	global $CONFIG;
@@ -88,11 +88,11 @@ try {
 	}
 
 	try {
-		echo __("Check rights...", __FILE__);
+		echo "Check rights...";
 		jeedom::cleanFileSytemRight();
-		echo __("OK\n", __FILE__);
+		echo "OK\n";
 	} catch (Exception $e) {
-		echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+		echo '***ERREUR*** ' . $e->getMessage();
 	}
 
 	$jeedom_dir = realpath(dirname(__FILE__) . '/../');
@@ -179,7 +179,7 @@ try {
 		jeedom::event('end_restore');
 		echo "OK\n";
 	} catch (Exception $e) {
-		echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+		echo '***ERREUR*** ' . $e->getMessage();
 	}
 	echo "Restoration duration : " . (strtotime('now') - $starttime) . . "s\n";
 	echo "***************Fin de la restauration de Jeedom***************\n";
