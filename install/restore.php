@@ -181,7 +181,7 @@ try {
 	} catch (Exception $e) {
 		echo '***ERREUR*** ' . $e->getMessage();
 	}
-	echo "Restoration duration : " . (strtotime('now') - $starttime) . . "s\n";
+	echo "Restoration duration : " . (strtotime('now') - $starttime) . "s\n";
 	echo "***************Fin de la restauration de Jeedom***************\n";
 	echo "[END RESTORE SUCCESS]\n";
 } catch (Exception $e) {
