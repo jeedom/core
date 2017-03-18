@@ -137,8 +137,8 @@ try {
 			throw new Exception(__('Aucun fichier trouvé. Vérifié parametre PHP (post size limit)', __FILE__));
 		}
 		$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
-		if (!in_array($extension, array('.gz'))) {
-			throw new Exception('Extension du fichier non valide (autorisé .tar.gz) : ' . $extension);
+		if (!in_array($extension, array('.gz', '.zip'))) {
+			throw new Exception('Extension du fichier non valide (autorisé .tar.gz et .zip) : ' . $extension);
 		}
 		if (filesize($_FILES['file']['tmp_name']) > 300000000) {
 			throw new Exception(__('Le fichier est trop gros (maximum 300mo)', __FILE__));

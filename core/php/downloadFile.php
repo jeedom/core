@@ -36,19 +36,18 @@ try {
 			throw new Exception(__('Fichier non trouvé : ', __FILE__) . $pathfile);
 		}
 	} else if (is_dir(str_replace('*', '', $pathfile))) {
-		system('cd ' . dirname($pathfile) . ';tar cfz ' . '/tmp/archive.tar.gz * > /dev/null 2>&1');
-		$pathfile = '/tmp/archive.tar.gz';
+		$pathfile = '/tmp/archive.zip';
+		create_zip(dirname($pathfile), $pathfile);
 	} else {
-		$pattern = array_pop(explode('/', $pathfile));
-		system('cd ' . dirname($pathfile) . ';tar cfz ' . '/tmp/archive.tar.gz ' . $pattern . '> /dev/null 2>&1');
-		$pathfile = '/tmp/archive.tar.gz';
+		$pathfile = '/tmp/archive.zip';
+		create_zip(ls(dirname($pathfile), $pattern), $pathfile);
 	}
 	$path_parts = pathinfo($pathfile);
 	header('Content-Type: application/octet-stream');
 	header('Content-Disposition: attachment; filename=' . $path_parts['basename']);
 	readfile($pathfile);
-	if (file_exists('/tmp/archive.tar.gz')) {
-		unlink('/tmp/archive.tar.gz');
+	if (file_exists('/tmp/archive.zip')) {
+		unlink('/tmp/archive.zip');
 	}
 	exit;
 } catch (Exception $e) {

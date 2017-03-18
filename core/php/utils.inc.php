@@ -610,9 +610,11 @@ function create_zip($source_arr, $destination, $_excludes = array()) {
 				if ($file == $source . '/.' || $file == $source . '/..' || in_array(basename($file), $_excludes) || in_array(realpath($file), $_excludes)) {
 					continue;
 				}
-				foreach ($_excludes as $exclude) {
-					if (strpos($file, trim('/' . $exclude . '/', '/')) !== false) {
-						continue (2);
+				if (count($_excludes) > 0) {
+					foreach ($_excludes as $exclude) {
+						if (strpos($file, trim('/' . $exclude . '/', '/')) !== false) {
+							continue (2);
+						}
 					}
 				}
 				$file = str_replace('\\', '/', realpath($file));

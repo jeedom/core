@@ -37,7 +37,7 @@ if (isset($argv)) {
 
 try {
 	require_once dirname(__FILE__) . '/../core/php/core.inc.php';
-	echo "***************Start of Jeedom restoration ". date('Y-m-d H:i:s') . "***************\n";
+	echo "***************Start of Jeedom restoration " . date('Y-m-d H:i:s') . "***************\n";
 
 	try {
 		echo "Send begin restoration event...";
@@ -64,7 +64,7 @@ try {
 		$backup = null;
 		$mtime = null;
 		foreach (scandir($backup_dir) as $file) {
-			if ($file != "." && $file != ".." && $file != ".htaccess" && strpos($file, '.tar.gz') !== false) {
+			if ($file != "." && $file != ".." && $file != ".htaccess" && (strpos($file, '.tar.gz') !== false || strpos($file, '.zip') !== false)) {
 				$s = stat($backup_dir . '/' . $file);
 				if ($backup == null || $mtime == null) {
 					$backup = $backup_dir . '/' . $file;
@@ -110,8 +110,19 @@ try {
 	}
 
 	echo "Decompression of backup...";
-	$rc = 0;
-	system('cd ' . $jeedom_dir . '; tar xfz "' . $backup . '" ');
+	if (strpos($backup, 'tar.gz')) {
+		system('cd ' . $jeedom_dir . '; tar xfz "' . $backup . '" ');
+	} else {
+		$zip = new ZipArchive;
+		if ($zip->open($backup) === TRUE) {
+			if (!$zip->extractTo($jeedom_dir)) {
+				throw new Exception('Can not unzip file');
+			}
+			$zip->close();
+		} else {
+			throw new Exception('Unable to unzip file : ' . $tmp);
+		}
+	}
 	echo "OK\n";
 	if (!file_exists($jeedom_dir . "/DB_backup.sql")) {
 		throw new Exception('Cannot find backup database file : DB_backup.sql');
