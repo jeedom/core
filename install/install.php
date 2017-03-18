@@ -194,15 +194,17 @@ try {
 						throw new Exception('Unable to unzip file : ' . $tmp);
 					}
 					echo "OK\n";
-					echo "Copying file...";
+					echo "Moving file...";
 					$update_begin = true;
 					if (!file_exists($cibDir . '/core')) {
 						$files = ls($cibDir, '*');
 						if (count($files) == 1 && file_exists($cibDir . '/' . $files[0] . 'core')) {
 							$cibDir = $cibDir . '/' . $files[0];
+						} else {
+							throw new Exception("Can not find dir core, is it Jeedom file ?");
 						}
 					}
-					rcopy($cibDir . '/', dirname(__FILE__) . '/../', false, array(), true);
+					system('mv ' . $cibDir . '/* ' . dirname(__FILE__) . '/../');
 					echo "OK\n";
 					echo "Remove temporary file...";
 					rrmdir($cibDir);
