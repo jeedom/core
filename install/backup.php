@@ -47,12 +47,8 @@ try {
 	}
 
 	global $CONFIG;
-	$tmp = dirname(__FILE__) . '/../tmp/jeedom_backup';
-	if (!file_exists($tmp)) {
-		mkdir($tmp, 0770, true);
-	}
+	$jeedom_dir = realpath(dirname(__FILE__) . '/..');
 	$backup_dir = calculPath(config::byKey('backup::path'));
-
 	if (!file_exists($backup_dir)) {
 		mkdir($backup_dir, 0770, true);
 	}
@@ -71,43 +67,13 @@ try {
 	$jeedom_name = str_replace(array_keys($replace_name), $replace_name, config::byKey('name', 'core', 'Jeedom'));
 	$bakcup_name = str_replace(' ', '_', 'backup-' . $jeedom_name . '-' . jeedom::version() . '-' . date("Y-m-d-H\hi") . '.tar.gz');
 
-	echo __('Sauvegarde des fichiers...', __FILE__);
-	$exclude = array(
-		'tmp',
-		'backup',
-		'.git',
-		realpath(dirname(__FILE__) . '/../core/nodeJS/node_modules'),
-		realpath(dirname(__FILE__) . '/../doc'),
-		realpath(dirname(__FILE__) . '/../core/img'),
-		str_replace('/', '', jeedom::getCurrentSysInfoFolder()),
-		str_replace('/', '', jeedom::getCurrentAdminerFolder()),
-	);
-	if (strpos('/', config::byKey('backup::path')) === false) {
-		$exclude[] = config::byKey('backup::path');
-	}
-	rcopy(dirname(__FILE__) . '/..', $tmp, true, $exclude, true);
-	echo __("OK", __FILE__) . "\n";
-
-	echo __('Suppression du fichier d\'identification de la base de données...', __FILE__);
-	if (file_exists($tmp . '/core/config/common.config.php')) {
-		unlink($tmp . '/core/config/common.config.php');
-	}
-	echo __("OK", __FILE__) . "\n";
-
-	if (!file_exists($tmp . '/plugin_backup')) {
-		mkdir($tmp . '/plugin_backup', 0770, true);
-	}
-
 	global $NO_PLUGIN_BAKCUP;
 	if (!isset($NO_PLUGIN_BAKCUP) || $NO_PLUGIN_BAKCUP == false) {
 		foreach (plugin::listPlugin(true) as $plugin) {
 			$plugin_id = $plugin->getId();
 			if (method_exists($plugin_id, 'backup')) {
 				echo __('Sauvegarde spécifique pour le plugin ' . $plugin_id . '...', __FILE__);
-				if (!file_exists($tmp . '/plugin_backup/' . $plugin_id)) {
-					mkdir($tmp . '/plugin_backup/' . $plugin_id, 0770, true);
-				}
-				$plugin_id::backup($tmp . '/plugin_backup/' . $plugin_id);
+				$plugin_id::backup();
 				echo __("OK", __FILE__) . "\n";
 			}
 		}
@@ -117,14 +83,35 @@ try {
 	system("mysqlcheck --host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'] . ' --auto-repair --silent');
 
 	echo __('Sauvegarde de la base de données...', __FILE__);
-	$rc = system("mysqldump --host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'] . "  > " . $tmp . "/DB_backup.sql");
+	$rc = system("mysqldump --host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'] . "  > " . $jeedom_dir . "/DB_backup.sql");
 	if ($rc != 0) {
 		throw new Exception('Echec lors de la sauvegarde de la BDD, verifier que mysqldump est bien présent. Code retour : ' . $rc);
 	}
 	echo __("OK", __FILE__) . "\n";
 
+	echo __("Persistance du cache : \n", __FILE__);
+	try {
+		cache::persist();
+		echo __("OK", __FILE__) . "\n";
+	} catch (Exception $e) {
+		echo $e->getMessage();
+	}
+
 	echo __('Création de l\'archive...', __FILE__);
-	system('cd ' . $tmp . '; tar cfz "' . $backup_dir . '/' . $bakcup_name . '" * > /dev/null 2>&1');
+
+	$excludes = array(
+		'tmp',
+		'backup',
+		'.git',
+		'.log',
+		config::byKey('backup::path'),
+	);
+
+	$exclude = '';
+	foreach ($excludes as $folder) {
+		$exclude .= ' --exclude="' . $folder . '"';
+	}
+	system('cd ' . $jeedom_dir . '; tar cfz "' . $backup_dir . '/' . $bakcup_name . '" * ' . $exclude . ' > /dev/null 2>&1');
 	echo __("OK", __FILE__) . "\n";
 
 	if (!file_exists($backup_dir . '/' . $bakcup_name)) {
@@ -206,9 +193,6 @@ try {
 			echo __("OK", __FILE__) . "\n";
 		}
 	}
-	echo __('Nettoyage du dossier temporaire...', __FILE__);
-	rrmdir($tmp);
-	echo __("OK", __FILE__) . "\n";
 	echo __("Nom du backup : ", __FILE__) . $backup_dir . '/' . $bakcup_name . "\n";
 
 	try {
