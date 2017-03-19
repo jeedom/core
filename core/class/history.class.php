@@ -144,7 +144,10 @@ class history {
 					FROM history
 					WHERE cmd_id=:cmd_id ORDER BY `datetime` ASC';
 				$history = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
-				for ($i = 1; $i < count($history); $i++) {
+				
+				$countHistory = count($history);
+				
+				for ($i = 1; $i < $countHistory; $i++) {
 					if ($history[$i]->getValue() != $history[$i - 1]->getValue()) {
 						$history[$i]->setTableName('historyArch');
 						$history[$i]->save();
