@@ -66,7 +66,7 @@ try {
 		foreach (scandir($backup_dir) as $file) {
 			if ($file != "." && $file != ".." && $file != ".htaccess" && strpos($file, '.tar.gz') !== false) {
 				$s = stat($backup_dir . '/' . $file);
-				if ($backup == null || $mtime == null) {
+				if ($backup === null || $mtime === null) {
 					$backup = $backup_dir . '/' . $file;
 					$mtime = $s['mtime'];
 				}
@@ -191,4 +191,4 @@ try {
 	jeedom::start();
 	throw $e;
 }
-?>
+ 
