@@ -534,7 +534,7 @@ class scenarioExpression {
 			}
 			$lastValue = round($history->getValue(), $_decimal);
 		}
-		if ($lastValue == $_value AND $lastDuration <= strtotime($_endDate)) {
+		if ($lastValue == $_value && $lastDuration <= strtotime($_endDate)) {
 			$duration = $duration + (strtotime($_endDate) - $lastDuration);
 		}
 		return floor($duration / 60);
