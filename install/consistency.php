@@ -289,14 +289,6 @@ try {
 	$cron->setDeamon(0);
 	$cron->save();
 
-	if (method_exists('cache', 'clean')) {
-		try {
-			cache::clean();
-		} catch (Exception $e) {
-
-		}
-	}
-
 	if (!file_exists(dirname(__FILE__) . '/../plugins')) {
 		mkdir(dirname(__FILE__) . '/../plugins');
 		@chown(dirname(__FILE__) . '/../plugins', system::get('www-uid'));
@@ -311,7 +303,7 @@ try {
 		shell_exec(system::getCmdSudo() . 'rm -rf ' . dirname(__FILE__) . '/../../core/nodeJS');
 	}
 	if (file_exists(dirname(__FILE__) . '/../../script/ngrok')) {
-		shell_exec(system::getCmdSudo() . 'rm -Rf ' . dirname(__FILE__) . '/../../script/ngrok');
+		shell_exec(system::getCmdSudo() . 'rm -rf ' . dirname(__FILE__) . '/../../script/ngrok');
 	}
 	try {
 		foreach (eqLogic::all() as $eqLogic) {
@@ -326,14 +318,14 @@ try {
 			$object->save();
 		}
 	} catch (Exception $exc) {
-		echo $exc->getMessage();
+
 	}
 
 	try {
-		echo __("Renommage adminer en cours...", __FILE__);
+		echo __("Rename adminer folder...", __FILE__);
 		jeedom::renameAdminerFolder();
 		echo __("OK\n", __FILE__);
-		echo __("Renommage sysinfo en cours...", __FILE__);
+		echo __("Rename sysinfo folder...", __FILE__);
 		jeedom::renameSysInfoFolder();
 		echo __("OK\n", __FILE__);
 	} catch (Exception $e) {

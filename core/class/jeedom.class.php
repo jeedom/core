@@ -938,7 +938,7 @@ class jeedom {
 	public static function renameAdminerFolder() {
 		$folder = self::getCurrentAdminerFolder();
 		if ($folder != '') {
-			rename(dirname(__FILE__) . '/../../' . $folder, dirname(__FILE__) . '/../../adminer' . config::genKey());
+			rename(dirname(__FILE__) . '/../../' . $folder, dirname(__FILE__) . '/../../adminer' . config::genKey(64));
 		}
 	}
 
@@ -961,7 +961,7 @@ class jeedom {
 	public static function renameSysInfoFolder() {
 		$folder = self::getCurrentSysInfoFolder();
 		if ($folder != '') {
-			rename(dirname(__FILE__) . '/../../' . $folder, dirname(__FILE__) . '/../../sysinfo' . config::genKey());
+			rename(dirname(__FILE__) . '/../../' . $folder, dirname(__FILE__) . '/../../sysinfo' . config::genKey(64));
 		}
 	}
 
