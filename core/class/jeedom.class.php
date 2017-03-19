@@ -496,7 +496,7 @@ class jeedom {
 	/**********************START AND DATE MANAGEMENT*************************************************************/
 
 	public static function stop() {
-		echo "Desactivation de toutes les tâches";
+		echo "Disable all task";
 		config::save('enableCron', 0);
 		foreach (cron::all() as $cron) {
 			if ($cron->running()) {
@@ -518,7 +518,7 @@ class jeedom {
 		/*         * **********Arret des crons********************* */
 
 		if (cron::jeeCronRun()) {
-			echo "Arret du cron master ";
+			echo "Stop cron master...";
 			$pid = cron::getPidFile();
 			system::kill($pid);
 			echo " OK\n";
@@ -526,7 +526,7 @@ class jeedom {
 
 		/*         * *********Arrêt des scénarios**************** */
 
-		echo "Désactivation de tous les scénarios";
+		echo "Disable all scenario";
 		config::save('enableScenario', 0);
 		foreach (scenario::all() as $scenario) {
 			try {
@@ -546,24 +546,24 @@ class jeedom {
 	public static function start() {
 		try {
 			/*             * *********Réactivation des scénarios**************** */
-			echo "Réactivation des scénarios : ";
+			echo "Enable scenario : ";
 			config::save('enableScenario', 1);
 			echo "OK\n";
 			/*             * *********Réactivation des tâches**************** */
-			echo "Réactivation des tâches : ";
+			echo "Enable task : ";
 			config::save('enableCron', 1);
 			echo "OK\n";
 		} catch (Exception $e) {
 			if (!isset($_GET['mode']) || $_GET['mode'] != 'force') {
 				throw $e;
 			} else {
-				echo '***ERREUR*** ' . $e->getMessage();
+				echo '***ERROR*** ' . $e->getMessage();
 			}
 		} catch (Error $e) {
 			if (!isset($_GET['mode']) || $_GET['mode'] != 'force') {
 				throw $e;
 			} else {
-				echo '***ERREUR*** ' . $e->getMessage();
+				echo '***ERROR*** ' . $e->getMessage();
 			}
 		}
 	}
