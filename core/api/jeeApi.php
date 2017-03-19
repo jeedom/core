@@ -88,14 +88,10 @@ if (init('type') != '') {
 		if ($type != init('plugin', 'core') && init('plugin', 'core') != 'core') {
 			throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__));
 		}
-		if (class_exists($type)) {
-			if (method_exists($type, 'event')) {
-				log::add('api', 'info', 'Appels de ' . secureXSS($type) . '::event()');
-				$type::event();
-				die();
-			} else {
-				throw new Exception('Aucune méthode correspondante : ' . secureXSS($type) . '::event()');
-			}
+		if (class_exists($type) && method_exists($type, 'event')) {
+			log::add('api', 'info', 'Appels de ' . secureXSS($type) . '::event()');
+			$type::event();
+			die();
 		}
 		if ($type == 'interact') {
 			$query = init('query');
