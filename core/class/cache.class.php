@@ -36,10 +36,10 @@ class cache {
 		if ($_lifetime < 0) {
 			$_lifetime = 0;
 		}
-		$cache = new self();
-		$cache->setKey($_key);
-		$cache->setValue($_value);
-		$cache->setLifetime($_lifetime);
+		$cache = (new self())
+			->setKey($_key)
+			->setValue($_value)
+			->setLifetime($_lifetime);
 		if ($_options != null) {
 			$cache->options = json_encode($_options, JSON_UNESCAPED_UNICODE);
 		}
@@ -405,8 +405,7 @@ class cache {
 
 	public function setOptions($_key, $_value = null) {
 		$this->options = utils::setJsonAttr($this->options, $_key, $_value);
+		return $this;
 	}
 
 }
-
-?>
