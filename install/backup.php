@@ -118,7 +118,7 @@ try {
 	echo "OK" . "\n";
 
 	if (!file_exists($backup_dir . '/' . $bakcup_name)) {
-		throw new Exception('Backup failed.Cannot find : ' . $backup_dir . '/' . $bakcup_name);
+		throw new Exception('Backup failed.Cannot find : ' . $backup_dir . '/' . $backup_name);
 	}
 
 	echo 'Clean old backup...';
