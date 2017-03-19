@@ -405,6 +405,7 @@ case ${STEP} in
 	step_11_jeedom_check
 	distrib_1_spe
 	echo "/!\ IMPORTANT /!\ Root MySql password is ${MYSQL_ROOT_PASSWD}"
+	echo "Installation completed, a system reboot should be performed"
 	;;
    1) step_1_upgrade
 	;;
