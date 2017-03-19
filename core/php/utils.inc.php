@@ -281,7 +281,7 @@ function ls($folder = "", $pattern = "*", $recursivly = false, $options = array(
 			}
 		}
 	}
-	if ($recursivly or $get_folders) {
+	if ($recursivly || $get_folders) {
 		$folders = glob("*", GLOB_ONLYDIR + GLOB_MARK);
 	}
 
@@ -293,7 +293,7 @@ function ls($folder = "", $pattern = "*", $recursivly = false, $options = array(
 
 	//Get just the files by removing the folders from the list of all files.
 	$all = array_values(array_diff($both, $folders));
-	if ($recursivly or $get_folders) {
+	if ($recursivly || $get_folders) {
 		foreach ($folders as $this_folder) {
 			if ($get_folders) {
 				//If a pattern is specified, make sure even the folders match that pattern.
@@ -715,7 +715,7 @@ function netMatch($network, $ip) {
 		$from = trim(ip2long(substr($network, 0, $d)));
 		$to = trim(ip2long(substr($network, $d + 1)));
 		$ip = ip2long($ip);
-		return ($ip >= $from and $ip <= $to);
+		return ($ip >= $from && $ip <= $to);
 	}
 	return false;
 }
