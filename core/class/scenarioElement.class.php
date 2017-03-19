@@ -237,7 +237,7 @@ class scenarioElement {
 			if (!is_numeric($next) || $next < 0) {
 				$_scenario->setLog(__('Erreur dans bloc (type A) : ', __FILE__) . $this->getId() . __(', heure programmée invalide : ', __FILE__) . $next);
 			}
-			if ($next < (date('Gi') + 1)) {
+			if ($next < date('Gi', strtotime('+1 minute' . date('G:i')))) {
 				if (strlen($next) == 3) {
 					$next = date('Y-m-d', strtotime('+1 day' . date('Y-m-d'))) . ' 0' . substr($next, 0, 1) . ':' . substr($next, 1, 3);
 				} else {
