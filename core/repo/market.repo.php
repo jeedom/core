@@ -860,6 +860,7 @@ class repo_market {
 
 	public function setDatetime($_key, $_value) {
 		$this->datetime = utils::setJsonAttr($this->datetime, $_key, $_value);
+		return $this;
 	}
 
 	public function getDescription() {
@@ -884,34 +885,42 @@ class repo_market {
 
 	public function setId($id) {
 		$this->id = $id;
+		return $this;
 	}
 
 	public function setName($name) {
 		$this->name = $name;
+		return $this;
 	}
 
 	public function setType($type) {
 		$this->type = $type;
+		return $this;
 	}
 
 	public function setDescription($description) {
 		$this->description = $description;
+		return $this;
 	}
 
 	public function setCategorie($categorie) {
 		$this->categorie = $categorie;
+		return $this;
 	}
 
 	public function setVersion($version) {
 		$this->version = $version;
+		return $this;
 	}
 
 	public function setUser_id($user_id) {
 		$this->user_id = $user_id;
+		return $this;
 	}
 
 	public function setDownloaded($downloaded) {
 		$this->downloaded = $downloaded;
+		return $this;
 	}
 
 	public function getStatus($_key = '', $_default = '') {
@@ -920,6 +929,7 @@ class repo_market {
 
 	public function setStatus($_key, $_value) {
 		$this->status = utils::setJsonAttr($this->status, $_key, $_value);
+		return $this;
 	}
 
 	public function getLink($_key = '', $_default = '') {
@@ -928,6 +938,7 @@ class repo_market {
 
 	public function setLink($_key, $_value) {
 		$this->link = utils::setJsonAttr($this->link, $_key, $_value);
+		return $this;
 	}
 
 	public function getLanguage($_key = '', $_default = '') {
@@ -936,6 +947,7 @@ class repo_market {
 
 	public function setLanguage($_key, $_value) {
 		$this->language = utils::setJsonAttr($this->language, $_key, $_value);
+		return $this;
 	}
 
 	public function getImg($_key = '', $_default = '') {
@@ -948,6 +960,7 @@ class repo_market {
 
 	public function setAuthor($author) {
 		$this->author = $author;
+		return $this;
 	}
 
 	public function getChangelog() {
@@ -956,6 +969,7 @@ class repo_market {
 
 	public function setChangelog($changelog) {
 		$this->changelog = $changelog;
+		return $this;
 	}
 
 	public function getLogicalId() {
@@ -964,6 +978,7 @@ class repo_market {
 
 	public function setLogicalId($logicalId) {
 		$this->logicalId = $logicalId;
+		return $this;
 	}
 
 	public function getPrivate() {
@@ -972,6 +987,7 @@ class repo_market {
 
 	public function setPrivate($private) {
 		$this->private = $private;
+		return $this;
 	}
 
 	public function getIsAuthor() {
@@ -980,6 +996,7 @@ class repo_market {
 
 	public function setIsAuthor($isAuthor) {
 		$this->isAuthor = $isAuthor;
+		return $this;
 	}
 
 	public function getUtilization() {
@@ -988,6 +1005,7 @@ class repo_market {
 
 	public function setUtilization($utilization) {
 		$this->utilization = $utilization;
+		return $this;
 	}
 
 	public function getPurchase() {
@@ -996,6 +1014,7 @@ class repo_market {
 
 	public function setPurchase($purchase) {
 		$this->purchase = $purchase;
+		return $this;
 	}
 
 	public function getCost() {
@@ -1004,6 +1023,7 @@ class repo_market {
 
 	public function setCost($cost) {
 		$this->cost = $cost;
+		return $this;
 	}
 
 	public function getRealcost() {
@@ -1012,6 +1032,7 @@ class repo_market {
 
 	public function setRealcost($realcost) {
 		$this->realcost = $realcost;
+		return $this;
 	}
 
 	public function getBuyer() {
@@ -1020,6 +1041,7 @@ class repo_market {
 
 	public function setBuyer($buyer) {
 		$this->buyer = $buyer;
+		return $this;
 	}
 
 	public function getCertification() {
@@ -1028,6 +1050,7 @@ class repo_market {
 
 	public function setCertification($certification) {
 		$this->certification = $certification;
+		return $this;
 	}
 
 	public function getDoc() {
@@ -1036,6 +1059,7 @@ class repo_market {
 
 	public function setDoc($doc) {
 		$this->doc = $doc;
+		return $this;
 	}
 
 	public function getUpdateBy() {
@@ -1044,6 +1068,7 @@ class repo_market {
 
 	public function setUpdateBy($updateBy) {
 		$this->updateBy = $updateBy;
+		return $this;
 	}
 
 	public function getNbInstall() {
@@ -1052,6 +1077,7 @@ class repo_market {
 
 	public function setNbInstall($nbInstall) {
 		$this->nbInstall = $nbInstall;
+		return $this;
 	}
 
 	public function getHardwareCompatibility($_key = '', $_default = '') {
@@ -1060,6 +1086,7 @@ class repo_market {
 
 	public function setHardwareCompatibility($_key, $_value) {
 		$this->hardwareCompatibility = utils::setJsonAttr($this->hardwareCompatibility, $_key, $_value);
+		return $this;
 	}
 
 }
