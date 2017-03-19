@@ -484,13 +484,13 @@ Wenn sie nicht im Experten-Modus sind, sind möglicherweise einige Parameter nic
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Namen von Ihrem Jeedom</strong> : kann in den Szenarien wieder verwendet werden oder zum identifizieren eines Backups</p>
+<p><strong>Nom de votre Jeedom</strong> : peut être réutilisé dans les scénarios ou permettre d&#8217;identifier un backup</p>
 </li>
 <li>
 <p><strong>API Schlüssel</strong> : Ihr API-Schlüssel, wird verwendet für jede Anfrage zur Jeedom-API</p>
 </li>
 <li>
-<p><strong>Clef API Pro</strong> : utilisé pour communiquer avec le systeme de gestion de parc</p>
+<p><strong>Clef API Pro</strong> : utilisée pour communiquer avec le système de gestion de parc</p>
 </li>
 <li>
 <p><strong>Systeme</strong> : Zeigt den Hardwaretyp an</p>
@@ -511,7 +511,7 @@ Wenn sie nicht im Experten-Modus sind, sind möglicherweise einige Parameter nic
 <p><strong>Zeitserver optional</strong> : fügt einen optionalen Zeitserver hinzu (für Experten reserviert)</p>
 </li>
 <li>
-<p><strong>Die Überprüfung der Zeit ignorieren</strong> : Weist Jeedom an, nicht zu überprüfen, ob die Zeit übereinstimmt. Nützlich zum Beispiel, wenn Sie Jeedom nicht an das Internet angeschlossen haben und es keine RTC-Batterie hat.</p>
+<p><strong>Ignorer la vérification de l&#8217;heure</strong> : indique à Jeedom de ne pas vérifier si l&#8217;heure est cohérente. Utile par exemple si vous ne connectez pas Jeedom à Internet et qu&#8217;il n&#8217;a pas de pile RTC</p>
 </li>
 <li>
 <p><strong>Mode</strong> : Mode de votre Jeedom maître ou esclave, attention lors du passage en esclave : tous vos équipements, scénarios, designs&#8230;&#8203; seront supprimés.</p>
@@ -578,7 +578,7 @@ Wenn sie nicht im Experten-Modus sind, sind möglicherweise einige Parameter nic
 </div>
 </div>
 <div class="paragraph">
-<p>Das ist ein sehr wichtiger Teil in Jeedom, man muss ihn unbedingt richtig konfigurieren, andernfalls können viele Plugins nicht richtig funktionieren.</p>
+<p>Partie très importante dans Jeedom, il faut absolument la configurer correctement sinon beaucoup de plugins risquent d&#8217;être non fonctionnels.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -599,13 +599,13 @@ Wenn sie nicht im Experten-Modus sind, sind möglicherweise einige Parameter nic
 <p><strong>Port</strong> : Der Port, im allgemeinen 80. Achtung, den Port hier zu ändern, ändert tatsächlich nicht den Jeedom Port, der wird derselbe bleiben</p>
 </li>
 <li>
-<p><strong>Status</strong> : Zeigt an, ob die interne Netzwerkkonfiguration korrekt ist</p>
+<p><strong>Statut</strong> : indique si la configuration réseau interne est correcte</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Externer Zugriff</strong> : Daten, um Jeedom von einem Externen Gerät zu verbinden. Nur ausfüllen wenn sie kein Jeedom DNS verwenden.</p>
+<p><strong>Accès externe</strong> : information pour joindre Jeedom de l&#8217;extérieur. À ne remplir que si vous n&#8217;utilisez pas le DNS Jeedom</p>
 <div class="ulist">
 <ul>
 <li>
@@ -616,12 +616,6 @@ Wenn sie nicht im Experten-Modus sind, sind möglicherweise einige Parameter nic
 </li>
 <li>
 <p><strong>Complément (exemple : /jeedom)</strong> :  le fragment d&#8217;URL complémentaire (type /jeedom). Pour savoir si vous avez besoin de définir une valeur ici, regardez si quand vous vous connectez à Jeedom vous devez renseigner /jeedom après l&#8217;IP</p>
-</li>
-<li>
-<p><strong>Port</strong> : Der Port, im allgemeinen 80. Achtung, den Port hier zu ändern, ändert tatsächlich nicht den Jeedom Port, der wird derselbe bleiben</p>
-</li>
-<li>
-<p><strong>Status</strong> : Zeigt an, ob die externe Netzwerkkonfiguration korrekt ist</p>
 </li>
 </ul>
 </div>
@@ -685,7 +679,7 @@ Cette partie est juste là pour expliquer à Jeedom son environnement : une modi
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Sie können <a href="http://blog.domadoo.fr/2014/10/15/acceder-depuis-lexterieur-jeedom-en-https">hier</a> eine Tutoriel sehen, wie ein selbst signiertes HTTPS Zertifikat eingerichtet wird
+Vous pouvez voir <a href="http://blog.domadoo.fr/2014/10/15/acceder-depuis-lexterieur-jeedom-en-https">ici</a> un tutoriel pour mettre en place un certificat HTTPS auto-signé.
 </td>
 </tr>
 </table>
@@ -697,7 +691,7 @@ Sie können <a href="http://blog.domadoo.fr/2014/10/15/acceder-depuis-lexterieur
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Wenn Sie die DNS-Jeedom betreiben können, betrachten Sie die Konfiguration der Firewall und Kindersicherung Filter von der Box (Livebox sollte z. B. die Firewall in der Mittelstellung sein)
+Si vous n&#8217;arrivez pas à faire fonctionner le DNS Jeedom, regardez la configuration du pare-feu et filtre parental de votre box (sur livebox il faut par exemple le pare-feu en moyen).
 </td>
 </tr>
 </table>
@@ -708,7 +702,7 @@ Wenn Sie die DNS-Jeedom betreiben können, betrachten Sie die Konfiguration der 
 <h2 id="_farbeinstellungen">5. Farbeinstellungen</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Die farbliche Kennzeichnung der Widgets erfolgt entsprechend der Kategorie des Widgets, die in der Konfiguration der einzelnen Module definiert ist (siehe Plugin Z-Wave, RFXCOM&#8230;&#8203; etc.). Die Kategorien umfassen Heizung, Licht, Automation etc&#8230;&#8203;.</p>
+<p>La colorisation des widgets est effectuée en fonction de la catégorie d&#8217;appartenance du widget qui est définie dans la configuration de chaque module (voir plugin Z-Wave, RFXCOM&#8230;&#8203; etc). Parmi les catégories on retrouve le chauffage, les lumières, les automatismes etc&#8230;&#8203;</p>
 </div>
 <div class="paragraph">
 <p>Pour chaque catégorie, on pourra choisir une couleur différente entre la version desktop et la version mobile. Il y a également 2 types de couleurs, les couleurs de fond des widgets et les couleurs des commandes lorsque le widget est de type graduel, par exemple les lumières, les volets, les températures.</p>
@@ -727,7 +721,7 @@ Wenn Sie die DNS-Jeedom betreiben können, betrachten Sie die Konfiguration der 
 </div>
 </div>
 <div class="paragraph">
-<p>Vous pouvez aussi configurer ici la transparence des widgets de manière globale (qui sera la valeur par défaut, il est possible ensuite de modifier cette valeur widget par widget)</p>
+<p>Vous pouvez aussi configurer ici la transparence des widgets de manière globale (qui sera la valeur par défaut, il est possible ensuite de modifier cette valeur widget par widget).</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -736,7 +730,7 @@ Wenn Sie die DNS-Jeedom betreiben können, betrachten Sie die Konfiguration der 
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Vergessen Sie nicht, nach jeder Veränderung zu speichern.
+N&#8217;oubliez pas de sauvegarder après toute modification.
 </td>
 </tr>
 </table>
@@ -878,12 +872,12 @@ Vergessen Sie nicht, nach jeder Veränderung zu speichern.
 <div class="sect2">
 <h3 id="_das_depot">11.1. Das Depot</h3>
 <div class="paragraph">
-<p>Les dépots sont des espaces de stockage (et de service) pour pouvoir mettre des backups, récupérer des plugins, récupérer le core de jeedom&#8230;&#8203;.</p>
+<p>Les dépôts sont des espaces de stockage (et de service) pour pouvoir mettre des backups, récupérer des plugins, récupérer le core de jeedom&#8230;&#8203;.</p>
 </div>
 <div class="sect3">
 <h4 id="_markt">11.1.1. Markt</h4>
 <div class="paragraph">
-<p>Dépôt servant à relier Jeedom au market, il est vivement conseillé d&#8217;utiliser ce dépôt. Attention toute demande de support pourra être refusée si vous utilisé un autre dépôt que celui-ci.</p>
+<p>Dépôt servant à relier Jeedom au market, il est vivement conseillé d&#8217;utiliser ce dépôt. Attention toute demande de support pourra être refusée si vous utilisez un autre dépôt que celui-ci.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -907,7 +901,7 @@ Vergessen Sie nicht, nach jeder Veränderung zu speichern.
 <div class="sect3">
 <h4 id="_dateien">11.1.2. Dateien</h4>
 <div class="paragraph">
-<p>Dépôt servant à activer l&#8217;envoi de plugins par des fichiers</p>
+<p>Dépôt servant à activer l&#8217;envoi de plugins par des fichiers.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -918,7 +912,7 @@ Vergessen Sie nicht, nach jeder Veränderung zu speichern.
 <div class="sect3">
 <h4 id="_github">11.1.3. Github</h4>
 <div class="paragraph">
-<p>Dépôt servant à relier Jeedom à Github</p>
+<p>Dépôt servant à relier Jeedom à Github.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -928,7 +922,7 @@ Vergessen Sie nicht, nach jeder Veränderung zu speichern.
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Token</strong> : Token pour l&#8217;accès au dépôt privé</p>
+<p><strong>Token</strong> : token pour l&#8217;accès au dépôt privé</p>
 </li>
 <li>
 <p><strong>Utilisateur ou organisation du dépôt pour le core Jeedom</strong></p>
@@ -945,7 +939,7 @@ Vergessen Sie nicht, nach jeder Veränderung zu speichern.
 <div class="sect3">
 <h4 id="_samba">11.1.4. Samba</h4>
 <div class="paragraph">
-<p>Dépôt permettant d&#8217;envoyer automatiquement un backup de Jeedom sur un partage Samba (ex NAS Synology)</p>
+<p>Dépôt permettant d&#8217;envoyer automatiquement un backup de Jeedom sur un partage Samba (ex NAS Synology).</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -958,16 +952,16 @@ Vergessen Sie nicht, nach jeder Veränderung zu speichern.
 <p><strong>[Backup] IP</strong> : IP des Samba Servers</p>
 </li>
 <li>
-<p><strong>[Backup] Utilisateur</strong> : Nom d&#8217;utilisateur pour la connexion (les connexions anonymes ne sont pas possibles)</p>
+<p><strong>[Backup] Utilisateur</strong> : nom d&#8217;utilisateur pour la connexion (les connexions anonymes ne sont pas possibles)</p>
 </li>
 <li>
-<p><strong>[Backup] Passwort</strong> : Benutzerpasswort</p>
+<p><strong>[Backup] Mot de passe</strong> : mot de passe de l&#8217;utilisateur</p>
 </li>
 <li>
-<p><strong>[Backup] Partage</strong> : Chemin du partage (attention à bien s&#8217;arrêter au niveau du partage)</p>
+<p><strong>[Backup] Partage</strong> : chemin du partage (attention à bien s&#8217;arrêter au niveau du partage)</p>
 </li>
 <li>
-<p><strong>[Backup] Chemin</strong> : Chemin dans le partage (à mettre en relatif), celui-ci doit exister</p>
+<p><strong>[Backup] Chemin</strong> : chemin dans le partage (à mettre en relatif), celui-ci doit exister</p>
 </li>
 </ul>
 </div>
@@ -978,7 +972,7 @@ Vergessen Sie nicht, nach jeder Veränderung zu speichern.
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Il vous faudra peut-être installer le package smbclient pour que le dépôt fonctionne
+Il vous faudra peut-être installer le package smbclient pour que le dépôt fonctionne.
 </td>
 </tr>
 </table>
@@ -990,7 +984,7 @@ Il vous faudra peut-être installer le package smbclient pour que le dépôt fon
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Jeedom doit être le seul à écrire dans ce dossier et il doit être vide par défaut (c&#8217;est à dire avant la configuration et l&#8217;envoi du premier backup le dossier ne doit contenir aucun fichier ou dossier)
+Jeedom doit être le seul à écrire dans ce dossier et il doit être vide par défaut (c&#8217;est à dire avant la configuration et l&#8217;envoi du premier backup, le dossier ne doit contenir aucun fichier ou dossier).
 </td>
 </tr>
 </table>

@@ -15,16 +15,16 @@ image::../images/administration1.png[]
 
 In this tag we have general informations on Jeedom : 
 
-* *Nom de votre Jeedom* : peut etre réutilisé dans les scénarios ou permettre d'identifier un backup
+* *Nom de votre Jeedom* : peut être réutilisé dans les scénarios ou permettre d'identifier un backup
 * *API key* : your API key, to be used at each Jeedom API call
-* *Clef API Pro* : utilisé pour communiquer avec le systeme de gestion de parc
+* *Clef API Pro* : utilisée pour communiquer avec le système de gestion de parc
 * *System* : hardware type
 * *Clef d'installation* : clef hardware de votre Jeedom sur le market. Si votre Jeedom n'apparaît pas dans la liste de vos Jeedom sur le market il est conseillé de cliquer sur ce bouton
 * *Language* : Language of your Jeedom
 * *Session lifespan (hours)* : PHP sessions life time, it is advisable not to change it
 * *Date and time* : your time zone
 * *Serveur de temps optionnel* : permet d'ajouter un serveur de temps optionnel (à réserver aux experts)
-* *Ignorer la vérification de l'heure* : indique à Jeedom de ne pas vérifier si l'heure est cohérente. Utile par exemple si vous ne connectez pas Jeedom à internet et qu'il n'a pas de pile RTC
+* *Ignorer la vérification de l'heure* : indique à Jeedom de ne pas vérifier si l'heure est cohérente. Utile par exemple si vous ne connectez pas Jeedom à Internet et qu'il n'a pas de pile RTC
 * *Mode* : Mode de votre Jeedom maître ou esclave, attention lors du passage en esclave : tous vos équipements, scénarios, designs... seront supprimés.
 
 == Components Jeedom
@@ -49,20 +49,18 @@ image::../images/administration2.png[]
 
 image::../images/administration3.png[]
 
-Partie très importante dans Jeedom, il faut absolument la configurer correctement sinon beaucoup de plugins risquent d'être non fonctionnels
+Partie très importante dans Jeedom, il faut absolument la configurer correctement sinon beaucoup de plugins risquent d'être non fonctionnels.
 
 * *Internal access* : configuration to get access to Jeedom from a device on the same local area network
 ** *Protocol* : protocol to use, most often HTTP
 ** *URL or IP address* : Server name in the URL or local IP address of the Jeedom server.
 ** *Complément (exemple : /jeedom)* : le fragment d'URL complémentaire (type /jeedom). Pour savoir si vous avez besoin de définir une valeur ici, regardez si quand vous vous connectez à Jeedom vous devez renseigner /jeedom après l'IP
 ** *Port* : le port, en général 80. Attention changer le port ici ne change pas le port réel de Jeedom qui restera le même
-** *Status* : Indicates whether the internal network configuration is correct
-* *Accès externe* : information pour joindre Jeedom de l'extérieur. A ne remplir que si vous n'utilisez pas le DNS Jeedom
+** *Statut* : indique si la configuration réseau interne est correcte
+* *Accès externe* : information pour joindre Jeedom de l'extérieur. À ne remplir que si vous n'utilisez pas le DNS Jeedom
 ** *Protocol* : protocol to use from external access
 ** *Adresse URL ou IP* : adresse ou IP externe si fixe
 ** *Complément (exemple : /jeedom)* :  le fragment d'URL complémentaire (type /jeedom). Pour savoir si vous avez besoin de définir une valeur ici, regardez si quand vous vous connectez à Jeedom vous devez renseigner /jeedom après l'IP
-** *Port* : le port, en général 80. Attention changer le port ici ne change pas le port réel de Jeedom qui restera le même
-** *Status* : Indicates whether the external network configuration is correct
 * *Gestion avancée* : peut ne pas apparaitre en fonction de la compatibilité avec votre matériel
 ** *Désactiver la gestion du réseau par Jeedom* : indique à Jeedom de ne pas monitorer le réseau (à activer si Jeedom n'est connecté à aucun réseau)
 * *Proxy market* : permet un accès distant à votre Jeedom sans avoir besoin d'un DNS, d'une IP fixe ou d'ouvrir les ports de votre box
@@ -77,14 +75,14 @@ Si vous êtes en HTTPS le port est le 443 (par défaut) et en HTTP le port est p
 Cette partie est juste là pour expliquer à Jeedom son environnement : une modification du port ou de l'IP ici ne changera pas le port ou l'IP de Jeedom. Pour cela il faut se connecter en SSH et éditer le fichier /etc/network/interfaces pour l'IP et les fichiers etc/nginx/sites-available/default et etc/nginx/sites-available/default_ssl (pour le HTTPS). En cas de mauvaise manipulation de votre Jeedom, l'équipe Jeedom ne pourra être tenue pour responsable et pourra refuser toute demande de support.
 
 [NOTE]
-Vous pouvez voir link:http://blog.domadoo.fr/2014/10/15/acceder-depuis-lexterieur-jeedom-en-https[ici] un tutoriel pour mettre en place un certificat HTTPS auto-signé
+Vous pouvez voir link:http://blog.domadoo.fr/2014/10/15/acceder-depuis-lexterieur-jeedom-en-https[ici] un tutoriel pour mettre en place un certificat HTTPS auto-signé.
 
 [IMPORTANT]
-Si vous n'arrivez pas à faire fonctionner le DNS Jeedom, regardez la configuration du pare-feu et filtre parental de votre box (sur livebox il faut par exemple le pare-feu en moyen)
+Si vous n'arrivez pas à faire fonctionner le DNS Jeedom, regardez la configuration du pare-feu et filtre parental de votre box (sur livebox il faut par exemple le pare-feu en moyen).
 
 == Colour Settings
 
-La colorisation des widgets est effectuée en fonction de la catégorie d'appartenance du widget qui est définie dans la configuration de chaque module (voir plugin Z-Wave, RFXCOM...etc). Parmi les catégories on retrouve le chauffage, les lumières, les automatismes etc...
+La colorisation des widgets est effectuée en fonction de la catégorie d'appartenance du widget qui est définie dans la configuration de chaque module (voir plugin Z-Wave, RFXCOM... etc). Parmi les catégories on retrouve le chauffage, les lumières, les automatismes etc...
 
 Pour chaque catégorie, on pourra choisir une couleur différente entre la version desktop et la version mobile. Il y a également 2 types de couleurs, les couleurs de fond des widgets et les couleurs des commandes lorsque le widget est de type graduel, par exemple les lumières, les volets, les températures.
 
@@ -94,10 +92,10 @@ En cliquant sur la couleur une fenêtre s'ouvre, permettant de choisir sa couleu
 
 image::../images/display7.png[]
 
-Vous pouvez aussi configurer ici la transparence des widgets de manière globale (qui sera la valeur par défaut, il est possible ensuite de modifier cette valeur widget par widget)
+Vous pouvez aussi configurer ici la transparence des widgets de manière globale (qui sera la valeur par défaut, il est possible ensuite de modifier cette valeur widget par widget).
 
 [TIP]
-Don't forget to save after any changes
+N'oubliez pas de sauvegarder après toute modification.
 
 == Configuration commands
 
@@ -149,11 +147,11 @@ image::../images/administration10.png[]
 
 === Les dépots
 
-Les dépots sont des espaces de stockage (et de service) pour pouvoir mettre des backups, récupérer des plugins, récupérer le core de jeedom....
+Les dépôts sont des espaces de stockage (et de service) pour pouvoir mettre des backups, récupérer des plugins, récupérer le core de jeedom....
 
 ==== Market
 
-Dépôt servant à relier Jeedom au market, il est vivement conseillé d'utiliser ce dépôt. Attention toute demande de support pourra être refusée si vous utilisé un autre dépôt que celui-ci.
+Dépôt servant à relier Jeedom au market, il est vivement conseillé d'utiliser ce dépôt. Attention toute demande de support pourra être refusée si vous utilisez un autre dépôt que celui-ci.
 
 image::../images/administration17.png[]
 
@@ -163,38 +161,38 @@ image::../images/administration17.png[]
 
 ==== URL
 
-Dépôt servant à activer l'envoi de plugins par des fichiers
+Dépôt servant à activer l'envoi de plugins par des fichiers.
 
 image::../images/administration15.png[]
 
 ==== Github
 
-Dépôt servant à relier Jeedom à Github
+Dépôt servant à relier Jeedom à Github.
 
 image::../images/administration16.png[]
 
-* *Token* : Token pour l'accès au dépôt privé
+* *Token* : token pour l'accès au dépôt privé
 * *Utilisateur ou organisation du dépôt pour le core Jeedom*
 * *Nom du dépôt pour le core Jeedom*
 * *Branche pour le core Jeedom*
 
 ==== Samba
 
-Dépôt permettant d'envoyer automatiquement un backup de Jeedom sur un partage Samba (ex NAS Synology)
+Dépôt permettant d'envoyer automatiquement un backup de Jeedom sur un partage Samba (ex NAS Synology).
 
 image::../images/administration18.png[]
 
 * *[Backup] IP* : IP du serveur Samba
-* *[Backup] Utilisateur* : Nom d'utilisateur pour la connexion (les connexions anonymes ne sont pas possibles)
-* *[Backup] Mot de passe* : Mot de passe de l'utilisateur
-* *[Backup] Partage* : Chemin du partage (attention à bien s'arrêter au niveau du partage)
-* *[Backup] Chemin* : Chemin dans le partage (à mettre en relatif), celui-ci doit exister
+* *[Backup] Utilisateur* : nom d'utilisateur pour la connexion (les connexions anonymes ne sont pas possibles)
+* *[Backup] Mot de passe* : mot de passe de l'utilisateur
+* *[Backup] Partage* : chemin du partage (attention à bien s'arrêter au niveau du partage)
+* *[Backup] Chemin* : chemin dans le partage (à mettre en relatif), celui-ci doit exister
 
 [IMPORTANT]
-Il vous faudra peut-être installer le package smbclient pour que le dépôt fonctionne
+Il vous faudra peut-être installer le package smbclient pour que le dépôt fonctionne.
 
 [IMPORTANT]
-Jeedom doit être le seul à écrire dans ce dossier et il doit être vide par défaut (c'est à dire avant la configuration et l'envoi du premier backup le dossier ne doit contenir aucun fichier ou dossier)
+Jeedom doit être le seul à écrire dans ce dossier et il doit être vide par défaut (c'est à dire avant la configuration et l'envoi du premier backup, le dossier ne doit contenir aucun fichier ou dossier).
 
 ==== URL
 
