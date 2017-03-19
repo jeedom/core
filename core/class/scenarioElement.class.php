@@ -263,7 +263,7 @@ class scenarioElement {
 			$cron->setClass('scenario');
 			$cron->setFunction('doIn');
 			$cron->setOption(array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => 0));
-			$cron->setLastRun(date('Y-m-d H:i:s'));
+			$cron->setLastRun(date('Y-m-d H:i:s', strtotime('now')));
 			$cron->setOnce(1);
 			$cron->setSchedule(cron::convertDateToCron($next));
 			$cron->save();
