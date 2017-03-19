@@ -37,7 +37,7 @@ if (isset($argv)) {
 
 try {
 	require_once dirname(__FILE__) . '/../core/php/core.inc.php';
-	echo "***************Start of Jeeodm backup at " . date('Y-m-d H:i:s') . "***************\n";
+	echo "***************Start of Jeedom backup at " . date('Y-m-d H:i:s') . "***************\n";
 
 	try {
 		echo "Send begin backup event...";
@@ -54,7 +54,7 @@ try {
 		mkdir($backup_dir, 0770, true);
 	}
 	if (!is_writable($backup_dir)) {
-		throw new Exception('Can not acces backup folder, please check right : ' . $backup_dir);
+		throw new Exception('Cannot acces backup folder, please check right : ' . $backup_dir);
 	}
 	$replace_name = array(
 		'&' => '',
@@ -118,7 +118,7 @@ try {
 	echo "OK" . "\n";
 
 	if (!file_exists($backup_dir . '/' . $bakcup_name)) {
-		throw new Exception('Backup failed.Can not find : ' . $backup_dir . '/' . $bakcup_name);
+		throw new Exception('Backup failed.Cannot find : ' . $backup_dir . '/' . $backup_name);
 	}
 
 	echo 'Clean old backup...';
