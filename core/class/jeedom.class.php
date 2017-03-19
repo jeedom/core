@@ -769,6 +769,9 @@ class jeedom {
 			cron::clean();
 			report::clean();
 			DB::optimize();
+			cache::clean();
+			jeedom::renameAdminerFolder();
+			jeedom::renameSysInfoFolder();
 		} catch (Exception $e) {
 			log::add('jeedom', 'error', $e->getMessage());
 		} catch (Error $e) {
