@@ -130,7 +130,7 @@ try {
 					echo '***ERROR*** ' . $e->getMessage() . "\n";
 				}
 				$tmp_dir = jeedom::getTmpFolder('install');
-				$tmp = $tmp_dir . '/jeedom_update.zip';
+				$tmp = $tmp_dir . 'jeedom_update.zip';
 				try {
 					if (config::byKey('core::repo::provider') == 'default') {
 						$url = 'https://github.com/jeedom/core/archive/' . config::byKey('core::branch') . '.zip';
