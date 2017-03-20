@@ -161,7 +161,7 @@ try {
 					}
 					echo "OK\n";
 					echo "Cleaning folder...";
-					$cibDir = jeedom::getTmpFolder('install');
+					$cibDir = jeedom::getTmpFolder('install/unzip');
 					if (file_exists($cibDir)) {
 						rrmdir($cibDir);
 					}
