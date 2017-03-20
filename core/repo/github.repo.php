@@ -124,7 +124,7 @@ class repo_github {
 		} catch (Exception $e) {
 			throw new Exception(__('Dépot github non trouvé : ', __FILE__) . $_update->getConfiguration('user') . '/' . $_update->getConfiguration('repository') . '/' . $_update->getConfiguration('version', 'master'));
 		}
-		$tmp_dir = jeedom::getTmpFolder('github') .;
+		$tmp_dir = jeedom::getTmpFolder('github');
 		$tmp = $tmp_dir . '/' . $_update->getLogicalId() . '.zip';
 		if (file_exists($tmp)) {
 			unlink($tmp);
