@@ -301,8 +301,8 @@ step_10_jeedom_post() {
   		fi
   	fi
   	if [ $(cat /proc/meminfo | grep MemTotal | awk '{ print $2 }') -gt 600000 ]; then
-  		if [ $(cat /etc/fstab | grep /tmp | grep tmpfs | wc -l) -eq 0 ];then
-  			echo 'tmpfs        /tmp            tmpfs  defaults,size=128M                                       0 0' >>  /etc/fstab
+  		if [ $(cat /etc/fstab | grep /tmp/jeedom | grep tmpfs | wc -l) -eq 0 ];then
+  			echo 'tmpfs        /tmp/jeedom            tmpfs  defaults,size=128M                                       0 0' >>  /etc/fstab
   		fi
   	fi
 	echo "${VERT}step_10_jeedom_post success${NORMAL}"
