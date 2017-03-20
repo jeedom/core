@@ -928,7 +928,8 @@ class jeedom {
 			return '';
 		}
 		if (count($ls) > 1) {
-			for ($i = 1; $i < count($ls); $i++) {
+			$countLs = count($ls);
+			for ($i = 1; $i < $countLs; $i++) {
 				shell_exec(system::getCmdSudo() . 'rm -rf ' . dirname(__FILE__) . '/../../' . $ls[$i]);
 			}
 		}
@@ -951,7 +952,8 @@ class jeedom {
 			return '';
 		}
 		if (count($ls) > 1) {
-			for ($i = 1; $i < count($ls); $i++) {
+			$countLs = count($ls);
+			for ($i = 1; $i < $countLs; $i++) {
 				shell_exec(system::getCmdSudo() . 'rm -rf ' . dirname(__FILE__) . '/../../' . $ls[$i]);
 			}
 		}
