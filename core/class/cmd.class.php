@@ -403,7 +403,8 @@ class cmd {
 		$replace = array();
 		preg_match_all("/#\[(.*?)\]\[(.*?)\]\[(.*?)\]#/", $_input, $matches);
 		if (count($matches) == 4) {
-			for ($i = 0; $i < count($matches[0]); $i++) {
+			$countMatches = count($matches[0]);
+			for ($i = 0; $i <  $countMatches; $i++) {
 				if (isset($replace[$matches[0][$i]])) {
 					continue;
 				}
