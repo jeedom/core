@@ -128,7 +128,8 @@ class interactDef {
 			}
 			preg_match_all("/" . $regexp . "$/", strtolower($_query), $matches, PREG_SET_ORDER);
 			if (isset($matches[0])) {
-				for ($i = 0; $i < count($tags[1]); $i++) {
+				$countTags = count($tags[1]);
+				for ($i = 0; $i < $countTags; $i++) {
 					if (isset($matches[0][$i + 1])) {
 						$options[$tags[1][$i]] = $matches[0][$i + 1];
 					}
