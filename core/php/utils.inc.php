@@ -669,7 +669,6 @@ function sizeFormat($size) {
 
 function netMatch($network, $ip) {
 	$network = trim($network);
-	$orig_network = $network;
 	$ip = trim($ip);
 	if ($ip == $network) {
 		return TRUE;
