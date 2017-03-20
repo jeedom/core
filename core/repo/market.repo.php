@@ -240,7 +240,7 @@ class repo_market {
 
 	public static function retoreBackup($_backup) {
 		$url = config::byKey('market::address') . "/core/php/downloadBackup.php?backup=" . $_backup . '&hwkey=' . jeedom::getHardwareKey() . '&username=' . urlencode(config::byKey('market::username')) . '&password=' . self::getPassword() . '&password_type=sha1';
-		$tmp_dir = jeedom::getTmpFolder('market') .;
+		$tmp_dir = jeedom::getTmpFolder('market');
 		$tmp = $tmp_dir . '/' . $_backup;
 		$opts = array(
 			"ssl" => array(
@@ -710,7 +710,7 @@ class repo_market {
 	}
 
 	public function install($_version = 'stable') {
-		$tmp_dir = jeedom::getTmpFolder('market') .;
+		$tmp_dir = jeedom::getTmpFolder('market');
 		$tmp = $tmp_dir . '/' . $this->getLogicalId() . '.zip';
 		if (file_exists($tmp)) {
 			unlink($tmp);
@@ -779,7 +779,7 @@ class repo_market {
 		switch ($this->getType()) {
 			case 'plugin':
 				$plugin_id = $this->getLogicalId();
-				$cibDir = jeedom::getTmpFolder('market') . '/'. $plugin_id;
+				$cibDir = jeedom::getTmpFolder('market') . '/' . $plugin_id;
 				if (file_exists($cibDir)) {
 					rrmdir($cibDir);
 				}
@@ -797,7 +797,7 @@ class repo_market {
 				if (file_exists($cibDir . '/data')) {
 					rrmdir($cibDir . '/data');
 				}
-				$tmp = jeedom::getTmpFolder('market') .'/' . $plugin_id . '.zip';
+				$tmp = jeedom::getTmpFolder('market') . '/' . $plugin_id . '.zip';
 				if (file_exists($tmp)) {
 					if (!unlink($tmp)) {
 						throw new Exception(__('Impossible de supprimer : ', __FILE__) . $tmp . __('. Vérifiez les droits', __FILE__));
