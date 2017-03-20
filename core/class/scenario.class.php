@@ -92,7 +92,7 @@ class scenario {
 			$sql .= ' ORDER BY s.group, s.name';
 			$result2 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 			return array_merge($result1, $result2);
-		} else if ($_group === null) {
+		} elseif ($_group === null) {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
 			FROM scenario s
 			INNER JOIN object ob ON s.object_id=ob.id
@@ -462,7 +462,8 @@ class scenario {
 
 		preg_match_all("/#\[(.*?)\]\[(.*?)\]\[(.*?)\]#/", $text, $matches);
 		if (count($matches) == 4) {
-			for ($i = 0; $i < count($matches[0]); $i++) {
+			$countMatches = count($matches[0]); 
+			for ($i = 0; $i < $countMatches; $i++) {
 				if (isset($matches[1][$i]) && isset($matches[2][$i]) && isset($matches[3][$i])) {
 					$scenario = self::byObjectNameGroupNameScenarioName($matches[1][$i], $matches[2][$i], $matches[3][$i]);
 					if (is_object($scenario)) {
