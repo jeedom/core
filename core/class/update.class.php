@@ -89,7 +89,7 @@ class update {
 			if (substr_count($file, '.') != 2) {
 				continue;
 			}
-			
+
 			$class = 'repo_' . str_replace('.repo.php', '', $file);
 			$return[str_replace('.repo.php', '', $file)] = array(
 				'name' => $class::$_name,
@@ -290,7 +290,7 @@ class update {
 			$class = 'repo_' . $this->getSource();
 			if (class_exists($class) && method_exists($class, 'downloadObject') && config::byKey($this->getSource() . '::enable') == 1) {
 				$this->preInstallUpdate();
-				$cibDir = '/tmp/jeedom_' . $this->getLogicalId();
+				$cibDir = jeedom::getTmpFolder('market') . '/' . $this->getLogicalId();
 				if (file_exists($cibDir)) {
 					rrmdir($cibDir);
 				}
@@ -332,7 +332,7 @@ class update {
 						}
 						rmove($cibDir . '/', dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId(), false, array(), true);
 						rrmdir($cibDir);
-						$cibDir = '/tmp/jeedom_' . $this->getLogicalId();
+						$cibDir = jeedom::getTmpFolder('market') . '/' . $this->getLogicalId();
 						if (file_exists($cibDir)) {
 							rrmdir($cibDir);
 						}

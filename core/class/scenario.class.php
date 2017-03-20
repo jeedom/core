@@ -524,7 +524,7 @@ class scenario {
 		if (!file_exists($moduleFile)) {
 			throw new Exception('Impossible de trouver le fichier de configuration ' . $moduleFile);
 		}
-		$tmp = '/tmp/' . $market->getLogicalId() . '.zip';
+		$tmp = jeedom::getTmpFolder('market') . '/' . $market->getLogicalId() . '.zip';
 		if (file_exists($tmp)) {
 			if (!unlink($tmp)) {
 				throw new Exception(__('Impossible de supprimer : ', __FILE__) . $tmp . __('. Vérifiez les droits', __FILE__));

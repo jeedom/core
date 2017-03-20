@@ -58,7 +58,7 @@ class repo_url {
 	}
 
 	public static function downloadObject($_update) {
-		$tmp_dir = '/tmp';
+		$tmp_dir = jeedom::getTmpFolder('url');
 		$tmp = $tmp_dir . '/' . $_update->getLogicalId() . '.zip';
 		if (file_exists($tmp)) {
 			unlink($tmp);
@@ -95,15 +95,15 @@ class repo_url {
 			return null;
 		}
 		try {
-			if (file_exists('/tmp/jeedom_version')) {
+			if (file_exists(jeedom::getTmpFolder('url') . '/version')) {
 				com_shell::execute(system::getCmdSudo() . 'rm /tmp/jeedom_version');
 			}
 			exec('wget --no-check-certificate --progress=dot --dot=mega ' . config::byKey('url::core::version') . ' -O /tmp/jeedom_version');
-			if (!file_exists('/tmp/jeedom_version')) {
+			if (!file_exists(jeedom::getTmpFolder('url') . '/version')) {
 				return null;
 			}
-			$version = trim(file_get_contents('/tmp/jeedom_version'));
-			com_shell::execute(system::getCmdSudo() . 'rm /tmp/jeedom_version');
+			$version = trim(file_get_contents(jeedom::getTmpFolder('url') . '/version'));
+			com_shell::execute(system::getCmdSudo() . 'rm ' . jeedom::getTmpFolder('url') . '/version');
 			return $version;
 		} catch (Exception $e) {
 

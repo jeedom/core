@@ -148,7 +148,7 @@ class repo_ftp {
 	}
 
 	public static function downloadObject($_update) {
-		$tmp_dir = '/tmp';
+		$tmp_dir = jeedom::getTmpFolder('ftp');
 		$tmp = $tmp_dir . '/' . $_update->getLogicalId() . '.zip';
 		if (file_exists($tmp)) {
 			unlink($tmp);
@@ -240,8 +240,8 @@ class repo_ftp {
 
 	public static function versionCore() {
 		try {
-			if (file_exists('/tmp/jeedom_version')) {
-				com_shell::execute('rm /tmp/jeedom_version');
+			if (file_exists(jeedom::getTmpFolder('ftp') . '/version')) {
+				com_shell::execute(jeedom::getTmpFolder('ftp') . '/version');
 			}
 			$connexion = self::getFtpConnection('plugin');
 			$factory = new FTPFactory;
@@ -250,13 +250,13 @@ class repo_ftp {
 			if (null === $file) {
 				return null;
 			}
-			$ftp->download('/tmp/jeedom_version', $file);
+			$ftp->download(jeedom::getTmpFolder('ftp') . '/version', $file);
 			$connection->close();
-			if (!file_exists('/tmp/jeedom_version')) {
+			if (!file_exists(jeedom::getTmpFolder('ftp') . '/version')) {
 				return null;
 			}
-			$version = trim(file_get_contents('/tmp/jeedom_version'));
-			com_shell::execute('rm /tmp/jeedom_version');
+			$version = trim(file_get_contents(jeedom::getTmpFolder('ftp') . '/version'));
+			com_shell::execute('rm ' . jeedom::getTmpFolder('ftp') . '/version');
 			return $version;
 		} catch (Exception $e) {
 

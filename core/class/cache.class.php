@@ -32,6 +32,14 @@ class cache {
 
 	/*     * ***********************Methode static*************************** */
 
+	public static function getFolder() {
+		$return = jeedom::getTmpFolder('cache');
+		if (!file_exists($return)) {
+			mkdir($return, 0777);
+		}
+		return $return;
+	}
+
 	public static function set($_key, $_value, $_lifetime = 0, $_options = null) {
 		if ($_lifetime < 0) {
 			$_lifetime = 0;
@@ -58,8 +66,8 @@ class cache {
 		$return['count'] = __('Inconnu', __FILE__);
 		if (config::byKey('cache::engine') == 'FilesystemCache') {
 			$return['count'] = 0;
-			foreach (ls('/tmp/jeedom-cache') as $folder) {
-				foreach (ls('/tmp/jeedom-cache/' . $folder) as $file) {
+			foreach (ls(self::getFolder()) as $folder) {
+				foreach (ls(self::getFolder() . '/' . $folder) as $file) {
 					if (strpos($file, 'swap') !== false) {
 						continue;
 					}
@@ -70,9 +78,9 @@ class cache {
 		if ($_details) {
 			$re = '/s:\d*:(.*?);s:\d*:"(.*?)";s/';
 			$result = array();
-			foreach (ls('/tmp/jeedom-cache') as $folder) {
-				foreach (ls('/tmp/jeedom-cache/' . $folder) as $file) {
-					$path = '/tmp/jeedom-cache/' . $folder . '/' . $file;
+			foreach (ls(self::getFolder()) as $folder) {
+				foreach (ls(self::getFolder() . '/' . $folder) as $file) {
+					$path = self::getFolder() . '/' . $folder . '/' . $file;
 					$str = (string) str_replace("\n", '', file_get_contents($path));
 					preg_match_all($re, $str, $matches);
 					if (!isset($matches[2]) || !isset($matches[2][0]) || trim($matches[2][0]) == '') {
@@ -101,10 +109,10 @@ class cache {
 		}
 		switch ($engine) {
 			case 'FilesystemCache':
-				self::$cache = new \Doctrine\Common\Cache\FilesystemCache("/tmp/jeedom-cache");
+				self::$cache = new \Doctrine\Common\Cache\FilesystemCache(self::getFolder());
 				break;
 			case 'PhpFileCache':
-				self::$cache = new \Doctrine\Common\Cache\PhpFileCache("/tmp/jeedom-cache-php");
+				self::$cache = new \Doctrine\Common\Cache\FilesystemCache(self::getFolder());
 				break;
 			case 'MemcachedCache':
 				$memcached = new Memcached();
@@ -119,7 +127,7 @@ class cache {
 				self::$cache->setRedis($redis);
 				break;
 			default:
-				$cache = new \Doctrine\Common\Cache\FilesystemCache("/tmp/jeedom-cache");
+				$cache = new \Doctrine\Common\Cache\FilesystemCache(self::getFolder());
 				break;
 		}
 		return self::$cache;
@@ -137,7 +145,7 @@ class cache {
 
 	public static function flush() {
 		self::getCache()->deleteAll();
-		shell_exec('rm -rf /tmp/jeedom-cache 2>&1 > /dev/null');
+		shell_exec('rm -rf ' . self::getFolder() . ' 2>&1 > /dev/null');
 	}
 
 	public static function search() {
@@ -147,10 +155,10 @@ class cache {
 	public static function persist() {
 		switch (config::byKey('cache::engine')) {
 			case 'FilesystemCache':
-				$cache_dir = '/tmp/jeedom-cache';
+				$cache_dir = self::getFolder();
 				break;
 			case 'PhpFileCache':
-				$cache_dir = '/tmp/jeedom-cache-php';
+				$cache_dir = self::getFolder();
 				break;
 			default:
 				return;
@@ -180,10 +188,10 @@ class cache {
 	public static function restore() {
 		switch (config::byKey('cache::engine')) {
 			case 'FilesystemCache':
-				$cache_dir = '/tmp/jeedom-cache';
+				$cache_dir = self::getFolder();
 				break;
 			case 'PhpFileCache':
-				$cache_dir = '/tmp/jeedom-cache-php';
+				$cache_dir = self::getFolder();
 				break;
 			default:
 				return;
@@ -208,9 +216,9 @@ class cache {
 		}
 		$re = '/s:\d*:(.*?);s:\d*:"(.*?)";s/';
 		$result = array();
-		foreach (ls('/tmp/jeedom-cache') as $folder) {
-			foreach (ls('/tmp/jeedom-cache/' . $folder) as $file) {
-				$path = '/tmp/jeedom-cache/' . $folder . '/' . $file;
+		foreach (ls(self::getFolder()) as $folder) {
+			foreach (ls(self::getFolder() . '/' . $folder) as $file) {
+				$path = self::getFolder() . '/' . $folder . '/' . $file;
 				if (strpos($file, 'swap') !== false) {
 					unlink($path);
 					continue;

@@ -569,7 +569,7 @@ class jeedom {
 	}
 
 	public static function isStarted() {
-		return file_exists('/tmp/jeedom_start');
+		return file_exists(jeedom::getTmpFolder() . '/started');
 	}
 
 	public static function isDateOk() {
@@ -675,19 +675,19 @@ class jeedom {
 			}
 
 			try {
-				log::add('starting', 'debug', __('Ecriture du fichier /tmp/jeedom_start', __FILE__));
+				log::add('starting', 'debug', __('Ecriture du fichier ', __FILE__) . jeedom::getTmpFolder() . '/started');
 				if (!touch('/tmp/jeedom_start')) {
-					log::add('starting', 'debug', __('Impossible d\'écrire /tmp/jeedom_start, tentative en shell', __FILE__));
-					com_shell::execute(system::getCmdSudo() . 'touch /tmp/jeedom_start;sudo chmod 777 /tmp/jeedom_start');
+					log::add('starting', 'debug', __('Impossible d\'écrire ' . jeedom::getTmpFolder() . '/started, tentative en shell', __FILE__));
+					com_shell::execute(system::getCmdSudo() . 'touch ' . jeedom::getTmpFolder() . '/started;sudo chmod 777 /tmp/jeedom_start');
 				}
 			} catch (Exception $e) {
-				log::add('starting', 'error', __('Impossible d\'écrire /tmp/jeedom_start : ', __FILE__) . log::exception($e));
+				log::add('starting', 'error', __('Impossible d\'écrire ' . jeedom::getTmpFolder() . '/started : ', __FILE__) . log::exception($e));
 			} catch (Error $e) {
-				log::add('starting', 'error', __('Impossible d\'écrire /tmp/jeedom_start : ', __FILE__) . log::exception($e));
+				log::add('starting', 'error', __('Impossible d\'écrire ' . jeedom::getTmpFolder() . '/started : ', __FILE__) . log::exception($e));
 			}
 
-			if (!file_exists('/tmp/jeedom_start')) {
-				log::add('starting', 'critical', __('Impossible d\'écrire /tmp/jeedom_start pour une raison inconnue. Jeedom ne peut démarrer', __FILE__));
+			if (!file_exists(jeedom::getTmpFolder() . '/started')) {
+				log::add('starting', 'critical', __('Impossible d\'écrire ' . jeedom::getTmpFolder() . '/started pour une raison inconnue. Jeedom ne peut démarrer', __FILE__));
 				return;
 			}
 
@@ -914,9 +914,18 @@ class jeedom {
 
 	public static function checkSpaceLeft() {
 		$path = dirname(__FILE__) . '/../../';
-		$free = disk_free_space($path);
-		$total = disk_total_space($path);
-		return round($free / $total * 100);
+		return round(disk_free_space($path) / disk_total_space($path) * 100);
+	}
+
+	public static function getTmpFolder($_plugin = null) {
+		$return = '/' . trim(config::byKey('folder::tmp'), '/') . '/';
+		if ($_plugin !== null) {
+			$return .= $_plugin . '/';
+		}
+		if (!file_exists($return)) {
+			mkdir($return, 0777, true);
+		}
+		return $return;
 	}
 
 /*     * ****************************SQL BUDDY*************************** */

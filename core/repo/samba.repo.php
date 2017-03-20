@@ -96,7 +96,7 @@ class repo_samba {
 	}
 
 	public static function downloadObject($_update) {
-		$tmp_dir = '/tmp';
+		$tmp_dir = jeedom::getTmpFolder('samba');
 		$tmp = $tmp_dir . '/' . $_update->getLogicalId() . '.zip';
 		if (file_exists($tmp)) {
 			unlink($tmp);
@@ -205,17 +205,17 @@ class repo_samba {
 
 	public static function versionCore() {
 		try {
-			if (file_exists('/tmp/jeedom_version')) {
+			if (file_exists(jeedom::getTmpFolder('samba') . '/version')) {
 				com_shell::execute(system::getCmdSudo() . 'rm /tmp/jeedom_version');
 			}
 			$cmd = 'cd /tmp;';
 			$cmd .= self::makeSambaCommand('get ' . config::byKey('samba::core::path') . '/jeedom_version', 'plugin');
 			com_shell::execute($cmd);
-			if (!file_exists('/tmp/jeedom_version')) {
+			if (!file_exists(jeedom::getTmpFolder('samba') . '/version')) {
 				return null;
 			}
-			$version = trim(file_get_contents('/tmp/jeedom_version'));
-			com_shell::execute(system::getCmdSudo() . 'rm /tmp/jeedom_version');
+			$version = trim(file_get_contents(jeedom::getTmpFolder('samba') . '/version'));
+			com_shell::execute(system::getCmdSudo() . 'rm ' . jeedom::getTmpFolder('samba') . '/version');
 			return $version;
 		} catch (Exception $e) {
 

@@ -784,7 +784,7 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Moteur de cache}}</label>
 								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 									<select type="text"  class="configKey form-control" data-l1key="cache::engine" >
-										<option value="FilesystemCache">{{Système de fichier (/tmp/jeedom-cache)}}</option>
+										<option value="FilesystemCache">{{Système de fichier (<?php echo cache::getFolder()(); ?>)}}</option>
 										<?php if (class_exists('memcached')) {?>
 										<option value="MemcachedCache">{{Memcached}}</option>
 										<?php }

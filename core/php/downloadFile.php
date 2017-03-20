@@ -36,19 +36,19 @@ try {
 			throw new Exception(__('Fichier non trouvé : ', __FILE__) . $pathfile);
 		}
 	} else if (is_dir(str_replace('*', '', $pathfile))) {
-		system('cd ' . dirname($pathfile) . ';tar cfz ' . '/tmp/archive.tar.gz * > /dev/null 2>&1');
-		$pathfile = '/tmp/archive.tar.gz';
+		system('cd ' . dirname($pathfile) . ';tar cfz ' . jeedom::getTmpFolder('downloads') . '/archive.tar.gz * > /dev/null 2>&1');
+		$pathfile = jeedom::getTmpFolder('downloads') . '/archive.tar.gz';
 	} else {
 		$pattern = array_pop(explode('/', $pathfile));
-		system('cd ' . dirname($pathfile) . ';tar cfz ' . '/tmp/archive.tar.gz ' . $pattern . '> /dev/null 2>&1');
-		$pathfile = '/tmp/archive.tar.gz';
+		system('cd ' . dirname($pathfile) . ';tar cfz ' . jeedom::getTmpFolder('downloads') . '/archive.tar.gz ' . $pattern . '> /dev/null 2>&1');
+		$pathfile = jeedom::getTmpFolder('downloads') . '/archive.tar.gz';
 	}
 	$path_parts = pathinfo($pathfile);
 	header('Content-Type: application/octet-stream');
 	header('Content-Disposition: attachment; filename=' . $path_parts['basename']);
 	readfile($pathfile);
-	if (file_exists('/tmp/archive.tar.gz')) {
-		unlink('/tmp/archive.tar.gz');
+	if (file_exists(jeedom::getTmpFolder('downloads') . '/archive.tar.gz')) {
+		unlink(jeedom::getTmpFolder('downloads') . '/archive.tar.gz');
 	}
 	exit;
 } catch (Exception $e) {
