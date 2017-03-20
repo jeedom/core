@@ -66,7 +66,7 @@ class view {
 	}
 
 	public function presave() {
-		if ($this->getName() == '') {
+		if (trim($this->getName()) == '') {
 			throw new Exception('Le nom de la vue ne peut pas être vide');
 		}
 	}
