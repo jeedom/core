@@ -79,6 +79,7 @@ Botón derecho del ratón en un elemento de un resumen domótico te lleva a una 
 * Optimisation du backup (sur un rpi2 le temps est divisé par 2)
 * Optimisation de la restoration
 * Optimisation du processus de mise à jour
+* Uniformisation du tmp jeedom, maintenant tout est dans /tmp/jeedom
 
 = 2.4.6
 
