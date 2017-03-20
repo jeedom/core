@@ -124,12 +124,12 @@ try {
 			if (init('version') == '') {
 				try {
 					echo 'Clean temporary file (tmp)...';
-					shell_exec('rm -rf ' . dirname(__FILE__) . '/../tmp/*.zip;rm -rf ' . dirname(__FILE__) . '/../tmp/backup;rm -rf ' . dirname(__FILE__) . '/../install/update/*');
+					shell_exec('rm -rf ' . dirname(__FILE__) . '/../install/update/*');
 					echo "OK\n";
 				} catch (Exception $e) {
 					echo '***ERROR*** ' . $e->getMessage() . "\n";
 				}
-				$tmp_dir = dirname(__FILE__) . '/../tmp';
+				$tmp_dir = jeedom::getTmpFolder('install');
 				$tmp = $tmp_dir . '/jeedom_update.zip';
 				try {
 					if (config::byKey('core::repo::provider') == 'default') {
@@ -161,7 +161,7 @@ try {
 					}
 					echo "OK\n";
 					echo "Cleaning folder...";
-					$cibDir = dirname(__FILE__) . '/../tmp/jeedom';
+					$cibDir = jeedom::getTmpFolder('install');
 					if (file_exists($cibDir)) {
 						rrmdir($cibDir);
 					}
@@ -177,7 +177,7 @@ try {
 					}
 					echo "OK\n";
 					echo "Create temporary folder...";
-					if (!file_exists($cibDir) && !mkdir($cibDir, 0775, true)) {
+					if (!file_exists($cibDir) && !mkdir($cibDir, 0777, true)) {
 						throw new Exception('Can not write into  : ' . $cibDir . '.');
 					}
 					echo "OK\n";
