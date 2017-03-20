@@ -952,7 +952,8 @@ function arg2array($_string) {
 
 function strToHex($string) {
 	$hex = '';
-	for ($i = 0; $i < strlen($string); $i++) {
+	$calculateStrLen = strlen($string);
+	for ($i = 0; $i < $calculateStrLen; $i++) {
 		$ord = ord($string[$i]);
 		$hexCode = dechex($ord);
 		$hex .= substr('0' . $hexCode, -2);
@@ -980,8 +981,10 @@ function getDominantColor($_pathimg) {
 	$bTotal = 0;
 	$total = 0;
 	$i = imagecreatefromjpeg($_pathimg);
-	for ($x = 0; $x < imagesx($i); $x++) {
-		for ($y = 0; $y < imagesy($i); $y++) {
+	$imagesX = imagesx($i);
+	for ($x = 0; $x < $imagesX; $x++) {
+		$imagesY = imagesy($i);
+		for ($y = 0; $y < $imagesY; $y++) {
 			$rgb = imagecolorat($i, $x, $y);
 			$r = ($rgb >> 16) & 0xFF;
 			$g = ($rgb >> 8) & 0xFF;
