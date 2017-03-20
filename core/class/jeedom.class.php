@@ -53,7 +53,7 @@ class jeedom {
 			'comment' => ($state) ? '' : __('Erreur scénario : tous les scénarios sont désactivés. Allez dans Outils -> Scénarios pour les réactiver', __FILE__),
 		);
 
-		$state = jeedom::isStarted();
+		$state = self::isStarted();
 		$return[] = array(
 			'name' => __('Démarré', __FILE__),
 			'state' => $state,
@@ -61,7 +61,7 @@ class jeedom {
 			'comment' => '',
 		);
 
-		$state = jeedom::isDateOk();
+		$state = self::isDateOk();
 		$return[] = array(
 			'name' => __('Date système', __FILE__),
 			'state' => $state,
@@ -77,7 +77,7 @@ class jeedom {
 			'comment' => ($state) ? '' : __('Attention vous avez toujours l\'utilisateur admin/admin de configuré, cela représente une grave faille de sécurité, aller <a href=\'index.php?v=d&p=user\'>ici</a> pour modifier le mot de passe de l\'utilisateur admin', __FILE__),
 		);
 
-		$state = jeedom::isCapable('sudo', true);
+		$state = self::isCapable('sudo', true);
 		$return[] = array(
 			'name' => __('Droits sudo', __FILE__),
 			'state' => $state,
@@ -88,7 +88,7 @@ class jeedom {
 		$return[] = array(
 			'name' => __('Version Jeedom', __FILE__),
 			'state' => true,
-			'result' => jeedom::version(),
+			'result' => self::version(),
 			'comment' => '',
 		);
 
@@ -128,7 +128,7 @@ class jeedom {
 			'comment' => '',
 		);
 
-		$value = jeedom::checkSpaceLeft();
+		$value = self::checkSpaceLeft();
 		$state = ($value > 10);
 		$return[] = array(
 			'name' => __('Espace disque libre', __FILE__),
@@ -258,16 +258,16 @@ class jeedom {
 	}
 
 	public static function isOk() {
-		if (!jeedom::isStarted()) {
+		if (!self::isStarted()) {
 			return false;
 		}
-		if (!jeedom::isDateOk()) {
+		if (!self::isDateOk()) {
 			return false;
 		}
 		if (config::byKey('enableScenario') == 0 && count(scenario::all()) > 0) {
 			return false;
 		}
-		if (!jeedom::isCapable('sudo')) {
+		if (!self::isCapable('sudo')) {
 			return false;
 		}
 		if (config::byKey('enableCron', 'core', 1, true) == 0) {
@@ -279,7 +279,7 @@ class jeedom {
 	/*************************************************USB********************************************************/
 
 	public static function getUsbMapping($_name = '', $_getGPIO = false) {
-		$cache = cache::byKey('jeedom::usbMapping');
+		$cache = cache::byKey('self::usbMapping');
 		if (!is_json($cache->getValue()) || $_name == '') {
 			$usbMapping = array();
 			foreach (ls('/dev/', 'ttyUSB*') as $usb) {
@@ -331,7 +331,7 @@ class jeedom {
 					$usbMapping['/dev/' . $value] = '/dev/' . $value;
 				}
 			}
-			cache::set('jeedom::usbMapping', json_encode($usbMapping));
+			cache::set('self::usbMapping', json_encode($usbMapping));
 		} else {
 			$usbMapping = json_decode($cache->getValue(), true);
 		}
@@ -352,7 +352,7 @@ class jeedom {
 	}
 
 	public static function getBluetoothMapping($_name = '') {
-		$cache = cache::byKey('jeedom::bluetoothMapping');
+		$cache = cache::byKey('self::bluetoothMapping');
 		if (!is_json($cache->getValue()) || $_name == '') {
 			$bluetoothMapping = array();
 			foreach (explode("\n", shell_exec('hcitool dev')) as $line) {
@@ -362,7 +362,7 @@ class jeedom {
 				$infos = explode("\t", $line);
 				$bluetoothMapping[$infos[2]] = $infos[1];
 			}
-			cache::set('jeedom::bluetoothMapping', json_encode($bluetoothMapping));
+			cache::set('self::bluetoothMapping', json_encode($bluetoothMapping));
 		} else {
 			$bluetoothMapping = json_decode($cache->getValue(), true);
 		}
@@ -569,7 +569,7 @@ class jeedom {
 	}
 
 	public static function isStarted() {
-		return file_exists(jeedom::getTmpFolder() . '/started');
+		return file_exists(self::getTmpFolder() . '/started');
 	}
 
 	public static function isDateOk() {
@@ -579,7 +579,7 @@ class jeedom {
 		$maxdate = strtotime('2019-01-01 00:00:00');
 		$mindate = strtotime('2016-01-01 00:00:00');
 		if (strtotime('now') < $mindate || strtotime('now') > $maxdate) {
-			jeedom::forceSyncHour();
+			self::forceSyncHour();
 			sleep(3);
 			if (strtotime('now') < $mindate || strtotime('now') > $maxdate) {
 				log::add('core', 'error', __('La date du système est incorrect (avant 2016-01-01 ou après 2019-01-01) : ', __FILE__) . date('Y-m-d H:i:s'), 'dateCheckFailed');
@@ -647,7 +647,7 @@ class jeedom {
 
 			try {
 				log::add('starting', 'debug', __('Nettoyage du cache des péripheriques USB', __FILE__));
-				$cache = cache::byKey('jeedom::usbMapping');
+				$cache = cache::byKey('self::usbMapping');
 				$cache->remove();
 			} catch (Exception $e) {
 				log::add('starting', 'error', __('Erreur sur le nettoyage du cache des péripheriques USB : ', __FILE__) . log::exception($e));
@@ -657,7 +657,7 @@ class jeedom {
 
 			try {
 				log::add('starting', 'debug', __('Nettoyage du cache des péripheriques Bluetooth', __FILE__));
-				$cache = cache::byKey('jeedom::bluetoothMapping');
+				$cache = cache::byKey('self::bluetoothMapping');
 				$cache->remove();
 			} catch (Exception $e) {
 				log::add('starting', 'error', __('Erreur sur le nettoyage du cache des péripheriques Bluetooth : ', __FILE__) . log::exception($e));
@@ -667,7 +667,7 @@ class jeedom {
 
 			try {
 				log::add('starting', 'debug', __('Démarrage des processus internet de jeedom', __FILE__));
-				jeedom::start();
+				self::start();
 			} catch (Exception $e) {
 				log::add('starting', 'error', __('Erreur sur le démarrage interne de jeedom : ', __FILE__) . log::exception($e));
 			} catch (Error $e) {
@@ -675,19 +675,19 @@ class jeedom {
 			}
 
 			try {
-				log::add('starting', 'debug', __('Ecriture du fichier ', __FILE__) . jeedom::getTmpFolder() . '/started');
+				log::add('starting', 'debug', __('Ecriture du fichier ', __FILE__) . self::getTmpFolder() . '/started');
 				if (!touch('/tmp/jeedom_start')) {
-					log::add('starting', 'debug', __('Impossible d\'écrire ' . jeedom::getTmpFolder() . '/started, tentative en shell', __FILE__));
-					com_shell::execute(system::getCmdSudo() . 'touch ' . jeedom::getTmpFolder() . '/started;sudo chmod 777 /tmp/jeedom_start');
+					log::add('starting', 'debug', __('Impossible d\'écrire ' . self::getTmpFolder() . '/started, tentative en shell', __FILE__));
+					com_shell::execute(system::getCmdSudo() . 'touch ' . self::getTmpFolder() . '/started;sudo chmod 777 /tmp/jeedom_start');
 				}
 			} catch (Exception $e) {
-				log::add('starting', 'error', __('Impossible d\'écrire ' . jeedom::getTmpFolder() . '/started : ', __FILE__) . log::exception($e));
+				log::add('starting', 'error', __('Impossible d\'écrire ' . self::getTmpFolder() . '/started : ', __FILE__) . log::exception($e));
 			} catch (Error $e) {
-				log::add('starting', 'error', __('Impossible d\'écrire ' . jeedom::getTmpFolder() . '/started : ', __FILE__) . log::exception($e));
+				log::add('starting', 'error', __('Impossible d\'écrire ' . self::getTmpFolder() . '/started : ', __FILE__) . log::exception($e));
 			}
 
-			if (!file_exists(jeedom::getTmpFolder() . '/started')) {
-				log::add('starting', 'critical', __('Impossible d\'écrire ' . jeedom::getTmpFolder() . '/started pour une raison inconnue. Jeedom ne peut démarrer', __FILE__));
+			if (!file_exists(self::getTmpFolder() . '/started')) {
+				log::add('starting', 'critical', __('Impossible d\'écrire ' . self::getTmpFolder() . '/started pour une raison inconnue. Jeedom ne peut démarrer', __FILE__));
 				return;
 			}
 
@@ -770,8 +770,8 @@ class jeedom {
 			report::clean();
 			DB::optimize();
 			cache::clean();
-			jeedom::renameAdminerFolder();
-			jeedom::renameSysInfoFolder();
+			self::renameAdminerFolder();
+			self::renameSysInfoFolder();
 		} catch (Exception $e) {
 			log::add('jeedom', 'error', $e->getMessage());
 		} catch (Error $e) {
@@ -884,7 +884,7 @@ class jeedom {
 	public static function haltSystem() {
 		plugin::stop();
 		cache::persist();
-		if (jeedom::isCapable('sudo')) {
+		if (self::isCapable('sudo')) {
 			exec(system::getCmdSudo() . 'shutdown -h now');
 		} else {
 			throw new Exception(__('Vous pouvez arreter le système', __FILE__));
@@ -894,7 +894,7 @@ class jeedom {
 	public static function rebootSystem() {
 		plugin::stop();
 		cache::persist();
-		if (jeedom::isCapable('sudo')) {
+		if (self::isCapable('sudo')) {
 			exec(system::getCmdSudo() . 'reboot');
 		} else {
 			throw new Exception(__('Vous pouvez lancer le reboot du système', __FILE__));
@@ -979,10 +979,10 @@ class jeedom {
 /*     * ******************hardware management*************************** */
 
 	public static function getHardwareKey() {
-		$return = config::byKey('jeedom::installKey');
+		$return = config::byKey('self::installKey');
 		if ($return == '') {
 			$return = sha512(microtime() . config::genKey());
-			config::save('jeedom::installKey', $return);
+			config::save('self::installKey', $return);
 		}
 		return $return;
 	}
@@ -1008,13 +1008,13 @@ class jeedom {
 		global $JEEDOM_COMPATIBILIY_CONFIG;
 		if ($_function == 'sudo') {
 			if (!$_forceRefresh) {
-				$cache = cache::byKey('jeedom::isCapable::sudo');
+				$cache = cache::byKey('self::isCapable::sudo');
 				if ($cache->getValue(0) == 1) {
 					return true;
 				}
 			}
 			$result = (shell_exec('sudo -l > /dev/null 2>&1; echo $?') == 0) ? true : false;
-			cache::set('jeedom::isCapable::sudo', $result);
+			cache::set('self::isCapable::sudo', $result);
 			return $result;
 		}
 		$hardware = self::getHardwareName();
