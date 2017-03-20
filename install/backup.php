@@ -66,10 +66,10 @@ try {
 		'-' => '',
 	);
 	$jeedom_name = str_replace(array_keys($replace_name), $replace_name, config::byKey('name', 'core', 'Jeedom'));
-	$bakcup_name = str_replace(' ', '_', 'backup-' . $jeedom_name . '-' . jeedom::version() . '-' . date("Y-m-d-H\hi") . '.tar.gz');
+	$backup_name = str_replace(' ', '_', 'backup-' . $jeedom_name . '-' . jeedom::version() . '-' . date("Y-m-d-H\hi") . '.tar.gz');
 
-	global $NO_PLUGIN_BAKCUP;
-	if (!isset($NO_PLUGIN_BAKCUP) || $NO_PLUGIN_BAKCUP == false) {
+	global $NO_PLUGIN_BACKUP;
+	if (!isset($NO_PLUGIN_BACKUP) || $NO_PLUGIN_BACKUP == false) {
 		foreach (plugin::listPlugin(true) as $plugin) {
 			$plugin_id = $plugin->getId();
 			if (method_exists($plugin_id, 'backup')) {
@@ -114,10 +114,10 @@ try {
 	foreach ($excludes as $folder) {
 		$exclude .= ' --exclude="' . $folder . '"';
 	}
-	system('cd ' . $jeedom_dir . '; tar cfz "' . $backup_dir . '/' . $bakcup_name . '" * ' . $exclude . ' > /dev/null 2>&1');
+	system('cd ' . $jeedom_dir . '; tar cfz "' . $backup_dir . '/' . $backup_name . '" * ' . $exclude . ' > /dev/null 2>&1');
 	echo "OK" . "\n";
 
-	if (!file_exists($backup_dir . '/' . $bakcup_name)) {
+	if (!file_exists($backup_dir . '/' . $backup_name)) {
 		throw new Exception('Backup failed.Cannot find : ' . $backup_dir . '/' . $backup_name);
 	}
 
@@ -169,8 +169,8 @@ try {
 		}
 	}
 	echo "OK" . "\n";
-	global $NO_CLOUD_BAKCUP;
-	if ((!isset($NO_CLOUD_BAKCUP) || $NO_CLOUD_BAKCUP == false)) {
+	global $NO_CLOUD_BACKUP;
+	if ((!isset($NO_CLOUD_BACKUP) || $NO_CLOUD_BACKUP == false)) {
 		foreach (update::listRepo() as $key => $value) {
 			if ($value['scope']['backup'] == false) {
 				continue;
@@ -185,9 +185,9 @@ try {
 			echo 'Send backup ' . $value['name'] . '...';
 			try {
 				if ($class == 'repo_market') {
-					repo_market::sendBackupCloud($backup_dir . '/' . $bakcup_name);
+					repo_market::sendBackupCloud($backup_dir . '/' . $backup_name);
 				} else {
-					$class::sendBackup($backup_dir . '/' . $bakcup_name);
+					$class::sendBackup($backup_dir . '/' . $backup_name);
 				}
 			} catch (Exception $e) {
 				log::add('backup', 'error', $e->getMessage());
@@ -196,7 +196,7 @@ try {
 			echo "OK" . "\n";
 		}
 	}
-	echo "Name of backup : " . $backup_dir . '/' . $bakcup_name . "\n";
+	echo "Name of backup : " . $backup_dir . '/' . $backup_name . "\n";
 
 	try {
 		echo 'Send end backup event...';

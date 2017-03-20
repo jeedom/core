@@ -103,10 +103,10 @@ try {
 		if (init('level', -1) < 1) {
 			if (config::byKey('update::backupBefore') == 1 && init('mode') != 'force') {
 				try {
-					global $NO_PLUGIN_BAKCUP;
-					$NO_PLUGIN_BAKCUP = true;
-					global $NO_CLOUD_BAKCUP;
-					$NO_CLOUD_BAKCUP = true;
+					global $NO_PLUGIN_BACKUP;
+					$NO_PLUGIN_BACKUP = true;
+					global $NO_CLOUD_BACKUP;
+					$NO_CLOUD_BACKUP = true;
 					jeedom::backup();
 				} catch (Exception $e) {
 					if (init('mode') != 'force') {

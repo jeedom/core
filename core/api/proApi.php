@@ -738,8 +738,8 @@ try {
 			if (filesize($_file['tmp_name']) > 50000000) {
 				throw new Exception('La taille du fichier est trop importante (maximum 50Mo)');
 			}
-			$bakcup_name = 'backup-' . jeedom::version() . '-' . date("d-m-Y-H\hi") . '.tar.gz';
-			$uploadfile = $uploaddir . '/' . $bakcup_name;
+			$backup_name = 'backup-' . jeedom::version() . '-' . date("d-m-Y-H\hi") . '.tar.gz';
+			$uploadfile = $uploaddir . '/' . $backup_name;
 			if (!move_uploaded_file($_file['tmp_name'], $uploadfile)) {
 				throw new Exception('Impossible de téléverser le fichier');
 			}
