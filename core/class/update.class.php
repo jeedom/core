@@ -89,7 +89,7 @@ class update {
 			if (substr_count($file, '.') != 2) {
 				continue;
 			}
-			$id = str_replace('.repo.php', '', $file);
+			
 			$class = 'repo_' . str_replace('.repo.php', '', $file);
 			$return[str_replace('.repo.php', '', $file)] = array(
 				'name' => $class::$_name,
