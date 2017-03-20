@@ -918,9 +918,9 @@ class jeedom {
 	}
 
 	public static function getTmpFolder($_plugin = null) {
-		$return = '/' . trim(config::byKey('folder::tmp'), '/') . '/';
+		$return = '/' . trim(config::byKey('folder::tmp'), '/');
 		if ($_plugin !== null) {
-			$return .= $_plugin . '/';
+			$return .= $_plugin;
 		}
 		if (!file_exists($return)) {
 			mkdir($return, 0777, true);
