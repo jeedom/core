@@ -676,9 +676,9 @@ class jeedom {
 
 			try {
 				log::add('starting', 'debug', __('Ecriture du fichier ', __FILE__) . self::getTmpFolder() . '/started');
-				if (!touch('/tmp/jeedom_start')) {
+				if (!touch(self::getTmpFolder() . '/started')) {
 					log::add('starting', 'debug', __('Impossible d\'écrire ' . self::getTmpFolder() . '/started, tentative en shell', __FILE__));
-					com_shell::execute(system::getCmdSudo() . 'touch ' . self::getTmpFolder() . '/started;sudo chmod 777 /tmp/jeedom_start');
+					com_shell::execute(system::getCmdSudo() . 'touch ' . self::getTmpFolder() . '/started;sudo chmod 777 ' . self::getTmpFolder() . '/started');
 				}
 			} catch (Exception $e) {
 				log::add('starting', 'error', __('Impossible d\'écrire ' . self::getTmpFolder() . '/started : ', __FILE__) . log::exception($e));
