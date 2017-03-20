@@ -287,7 +287,8 @@ class repo_market {
 			}
 
 			$returns = array();
-			for ($i = 0; $i < count($_logicalId); $i++) {
+			$countLogicalId = count($_logicalId);
+			for ($i = 0; $i < $countLogicalId; $i++) {
 				if (is_array($_logicalId[$i])) {
 					$logicalId = $_logicalId[$i]['type'] . $_logicalId[$i]['logicalId'];
 				} else {
