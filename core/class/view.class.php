@@ -134,9 +134,11 @@ class view {
 						continue;
 					}
 					$viewData = $viewZone_info['viewData'][0];
-					for ($i = 0; $i < $viewZone->getConfiguration('nbline', 2); $i++) {
+					$configurationViewZoneLine = $viewZone->getConfiguration('nbline', 2);
+					for ($i = 0; $i < $configurationViewZoneLine; $i++) {
 						$viewZone_info['html'] .= '<tr>';
-						for ($j = 0; $j < $viewZone->getConfiguration('nbcol', 2); $j++) {
+						$configurationViewZoneColumn = $viewZone->getConfiguration('nbcol', 2);
+						for ($j = 0; $j < $configurationViewZoneColumn; $j++) {
 							$viewZone_info['html'] .= '<td><center>';
 							if (isset($viewData['configuration'][$i][$j])) {
 								$replace = array();
