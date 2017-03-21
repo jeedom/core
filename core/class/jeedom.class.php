@@ -1077,11 +1077,11 @@ class jeedom {
 		$starttime = getmicrotime();
 		for ($i = 0; $i < $param['database_update']; $i++) {
 			$sql = 'UPDATE config
-                	SET `value`="' . $i . '"
+                	SET `value`=:value
                 	WHERE `key`="jeedom_benchmark"
                 		AND plugin="core"';
 			try {
-				DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+				DB::Prepare($sql, array('value' => $i,), DB::FETCH_TYPE_ROW);
 			} catch (Exception $e) {
 
 			}
@@ -1116,4 +1116,4 @@ class jeedom {
 
 }
 
-?>
+
