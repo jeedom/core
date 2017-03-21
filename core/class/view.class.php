@@ -129,7 +129,7 @@ class view {
 				$viewZone_info['viewData'][] = $viewData_info;
 				if ($viewZone->getType() == 'table') {
 					$viewZone_info['html'] = '<table class="table table-condensed ui-responsive table-stroke" data-role="table" data-mode="columntoggle">';
-					$viewDatas = $viewZone->getViewData();
+ 
 					if (count($viewZone_info['viewData']) != 1) {
 						continue;
 					}
@@ -205,4 +205,3 @@ class view {
 
 }
 
-?>
