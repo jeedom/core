@@ -448,11 +448,12 @@ class network {
 			$destination = null;
 			$gw = null;
 			$iface = $info[count($info) - 1];
-			for ($i = 0; $i < count($info); $i++) {
+			$countInfo = count($info);
+			for ($i = 0; $i < $countInfo; $i++) {
 				if ($info[$i] != '' && filter_var($info[$i], FILTER_VALIDATE_IP)) {
 					if ($destination == null) {
 						$destination = $info[$i];
-					} else if ($gw == null) {
+					} elseif ($gw == null) {
 						$gw = $info[$i];
 					}
 				}
@@ -538,4 +539,4 @@ class network {
 	}
 }
 
-?>
+
