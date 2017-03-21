@@ -328,17 +328,6 @@ $('#in_addElementType').on('change',function(){
   $('.addElementTypeDescription.'+$(this).value()).show();
 });
 
-
-$('#sel_otherAction').on('change',function(){
-  var value = $(this).value();
-  if(value == 'alert'){
-    value = 'alert2';
-  }
-  $('.sel_otherActionDescription').hide();
-  $('.sel_otherActionDescription.'+value).show();
-});
-
-
 /*******************Element***********************/
 
 $('body').delegate('.helpSelectCron','click',function(){
@@ -531,8 +520,6 @@ $('body').delegate('.bt_selectCmdExpression', 'click', function (event) {
     },
   }
 });
-
-
   }
 });
 });
@@ -540,16 +527,12 @@ $('body').delegate('.bt_selectCmdExpression', 'click', function (event) {
 
 $('body').delegate('.bt_selectOtherActionExpression', 'click', function (event) {
   var expression = $(this).closest('.expression');
-  $('#md_selectOtherAction').modal('show');
-  $("#bt_selectOtherActionSave").off().on('click', function (event) {
-    expression.find('.expressionAttr[data-l1key=expression]').value($('#sel_otherAction').value());
-    jeedom.cmd.displayActionOption(expression.find('.expressionAttr[data-l1key=expression]').value(), '', function (html) {
-      expression.find('.expressionOptions').html(html);
-    });
-    $('#md_selectOtherAction').modal('hide');
+  jeedom.getSelectActionModal({}, function (result) {
+   expression.find('.expressionAttr[data-l1key=expression]').value(result.human);
+   jeedom.cmd.displayActionOption(expression.find('.expressionAttr[data-l1key=expression]').value(), '', function (html) {
+    expression.find('.expressionOptions').html(html);
   });
-
-
+ });
 });
 
 

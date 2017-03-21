@@ -354,3 +354,42 @@ jeedom.getCronSelectModal = function(_options,_callback) {
     });
     $('#mod_insertCronValue').dialog('open');
 };
+
+jeedom.getSelectActionModal = function(_options, _callback){
+   if (!isset(_options)) {
+    _options = {};
+}
+if ($("#mod_insertActionValue").length == 0) {
+    $('body').append('<div id="mod_insertActionValue" title="{{Sélectionner la commande}}" ></div>');
+    $("#mod_insertActionValue").dialog({
+        closeText: '',
+        autoOpen: false,
+        modal: true,
+        height: 250,
+        width: 800
+    });
+    jQuery.ajaxSetup({
+        async: false
+    });
+    $('#mod_insertActionValue').load('index.php?v=d&modal=action.insert');
+    jQuery.ajaxSetup({
+        async: true
+    });
+}
+mod_insertAction.setOptions(_options);
+    $("#mod_insertActionValue").dialog('option', 'buttons', {
+        "Annuler": function() {
+            $(this).dialog("close");
+        },
+        "Valider": function() {
+            var retour = {};
+            retour.action = {};
+            retour.human = mod_insertAction.getValue();
+            if ($.trim(retour) != '' && 'function' == typeof(_callback)) {
+                _callback(retour);
+            }
+            $(this).dialog('close');
+        }
+    });
+    $('#mod_insertActionValue').dialog('open');
+}
