@@ -254,6 +254,17 @@ $("body").undelegate(".listCmd", 'click').delegate(".listCmd", 'click', function
   });
 });
 
+$("body").undelegate(".listAction", 'click').delegate(".listAction", 'click', function () {
+  var type = $(this).attr('data-type');
+  var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]');
+  jeedom.getSelectActionModal({}, function (result) {
+    el.value(result.human);
+    jeedom.cmd.displayActionOption(el.value(), '', function (html) {
+      el.closest('.' + type).find('.actionOptions').html(html);
+    });
+  });
+});
+
 $("body").undelegate('.bt_removeAction', 'click').delegate('.bt_removeAction', 'click', function () {
   var type = $(this).attr('data-type');
   $(this).closest('.' + type).remove();
@@ -332,6 +343,7 @@ function addAction(_action, _type, _name) {
   div += '</span>';
   div += '<input class="expressionAttr form-control input-sm cmdAction" data-l1key="cmd" data-type="' + _type + '" />';
   div += '<span class="input-group-btn">';
+  div += '<a class="btn btn-default btn-sm listAction"" data-type="' + _type + '" title="{{Sélectionner un mot-clé}}"><i class="fa fa-tasks"></i></a>';
   div += '<a class="btn btn-default btn-sm listCmd" data-type="' + _type + '"><i class="fa fa-list-alt"></i></a>';
   div += '</span>';
   div += '</div>';

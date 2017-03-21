@@ -527,7 +527,7 @@ $('body').delegate('.bt_selectCmdExpression', 'click', function (event) {
 
 $('body').delegate('.bt_selectOtherActionExpression', 'click', function (event) {
   var expression = $(this).closest('.expression');
-  jeedom.getSelectActionModal({}, function (result) {
+  jeedom.getSelectActionModal({scenario : true}, function (result) {
    expression.find('.expressionAttr[data-l1key=expression]').value(result.human);
    jeedom.cmd.displayActionOption(expression.find('.expressionAttr[data-l1key=expression]').value(), '', function (html) {
     expression.find('.expressionOptions').html(html);
