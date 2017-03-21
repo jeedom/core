@@ -89,42 +89,29 @@ class scenarioExpression {
 	}
 
 	public static function getExpressionOptions($_expression, $_options) {
-		$replace = array();
+		$replace = array(
+			'#uid#' => 'exp' . mt_rand(),
+		);
 		$return = array('html' => '');
 		$cmd = cmd::byId(str_replace('#', '', cmd::humanReadableToCmd($_expression)));
 		if (is_object($cmd)) {
 			$return['html'] = trim($cmd->toHtml('scenario', $_options));
-		} else {
-			try {
-				$return['html'] = getTemplate('core', 'scenario', $_expression . '.default');
-				if (is_json($_options)) {
-					$_options = json_decode($_options, true);
-				}
-				if (is_array($_options) && count($_options) > 0) {
-					foreach ($_options as $key => $value) {
-						$replace['#' . $key . '#'] = str_replace('"', "'", $value);
-					}
-				}
-				if (!isset($replace['#id#'])) {
-					$replace['#id#'] = rand();
-				}
-				$tags = array('#title#', '#message#', '#slider#', '#color#', '#duration#');
-				foreach ($tags as $tag) {
-					if (!isset($replace[$tag])) {
-						$replace[$tag] = '';
-					}
-				}
-				$return['html'] = template_replace(cmd::cmdToHumanReadable($replace), $return['html']);
-			} catch (Exception $e) {
-
-			} catch (Error $e) {
-
+			return $return;
+		}
+		$return['template'] = getTemplate('core', 'scenario', $_expression . '.default');
+		if (is_json($_options)) {
+			$_options = json_decode($_options, true);
+		}
+		if (is_array($_options) && count($_options) > 0) {
+			foreach ($_options as $key => $value) {
+				$replace['#' . $key . '#'] = str_replace('"', "'", $value);
 			}
 		}
-		$replace = array(
-			'#uid#' => 'exp' . mt_rand(),
-		);
-		preg_match_all("/#[a-zA-Z_]*#/", $return['html'], $matches);
+		if (!isset($replace['#id#'])) {
+			$replace['#id#'] = rand();
+		}
+		$return['html'] = template_replace(cmd::cmdToHumanReadable($replace), $return['template']);
+		preg_match_all("/#[a-zA-Z_]*#/", $return['template'], $matches);
 		foreach ($matches[0] as $value) {
 			if (!isset($replace[$value])) {
 				$replace[$value] = '';
