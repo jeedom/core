@@ -23,6 +23,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
   <a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureSaveOn"><i class="fa fa-plus-circle"></i> {{Appliquer à}}</a>
   <a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureRawObject"><i class="fa fa-info"></i> {{Informations}}</a>
   <a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureLogRealTime"><i class="fa fa-file"></i> {{Log}}</a>
+  <a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureGraph"><i class="fa fa-object-group"></i> {{Liens}}</a>
   <div role="tabpanel">
     <ul class="nav nav-tabs" role="tablist">
       <li role="presentation" class="active"><a href="#cmd_information" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-info-circle"></i> {{Informations}}</a></li>
@@ -182,9 +183,9 @@ foreach ($usedBy['eqLogic'] as $usedByEqLogic) {
 	}
 }
 ?>
-         </div>
-       </div>
-       <div class="form-group">
+        </div>
+      </div>
+      <div class="form-group">
         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commandes}}</label>
         <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
           <?php
@@ -206,9 +207,9 @@ foreach ($usedBy['scenario'] as $usedByScenario) {
 	}
 }
 ?>
-     </div>
-   </div>
- </fieldset>
+    </div>
+  </div>
+</fieldset>
 </form>
 </div>
 <div role="tabpanel" class="tab-pane" id="cmd_configuration">
@@ -830,6 +831,10 @@ if ($cmd->getDisplay('parameters') != '') {
   $('#bt_cmdConfigureRawObject').off('click').on('click',function(){
     $('#md_modal2').dialog({title: "{{Informations}}"});
     $("#md_modal2").load('index.php?v=d&modal=object.display&class=cmd&id='+cmdInfo.id).dialog('open');
+  });
+  $('#bt_cmdConfigureGraph').on('click', function () {
+    $('#md_modal2').dialog({title: "{{Graphique des liens}}"});
+    $("#md_modal2").load('index.php?v=d&modal=graph.link&filter_type=cmd&filter_id='+cmdInfo.id).dialog('open');
   });
 
   $('#bt_cmdConfigureCopyHistory').off('click').on('click',function(){
