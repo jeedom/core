@@ -49,7 +49,7 @@ class cmd {
 
 	private static function cast($_inputs, $_eqLogic = null) {
 		if (is_object($_inputs) && class_exists($_inputs->getEqType() . 'Cmd')) {
-			if ($_eqLogic != null) {
+			if ($_eqLogic !== null) {
 				$_inputs->_eqLogic = $_eqLogic;
 			}
 			return cast($_inputs, $_inputs->getEqType() . 'Cmd');
@@ -57,7 +57,7 @@ class cmd {
 		if (is_array($_inputs)) {
 			$return = array();
 			foreach ($_inputs as $input) {
-				if ($_eqLogic != null) {
+				if ($_eqLogic !== null) {
 					$input->_eqLogic = $_eqLogic;
 				}
 				$return[] = self::cast($input);
@@ -119,11 +119,11 @@ class cmd {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM cmd
 		WHERE eqLogic_id=:eqLogic_id';
-		if ($_type != null) {
+		if ($_type !== null) {
 			$values['type'] = $_type;
 			$sql .= ' AND `type`=:type';
 		}
-		if ($_visible != null) {
+		if ($_visible !== null) {
 			$sql .= ' AND `isVisible`=1';
 		}
 		$sql .= ' ORDER BY `order`,`name`';
@@ -137,7 +137,7 @@ class cmd {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM cmd
 		WHERE logicalId=:logicalId';
-		if ($_type != null) {
+		if ($_type !== null) {
 			$values['type'] = $_type;
 			$sql .= ' AND `type`=:type';
 		}
@@ -152,7 +152,7 @@ class cmd {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM cmd
 		WHERE configuration LIKE :configuration';
-		if ($_eqType != null) {
+		if ($_eqType !== null) {
 			$values['eqType'] = $_eqType;
 			$sql .= ' AND eqType=:eqType ';
 		}
@@ -168,7 +168,7 @@ class cmd {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM cmd
 		WHERE eqLogic_id=:eqLogic_id';
-		if ($_type != null) {
+		if ($_type !== null) {
 			$values['type'] = $_type;
 			$sql .= ' AND type=:type ';
 		}
@@ -183,15 +183,15 @@ class cmd {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM cmd
 		WHERE template LIKE :template';
-		if ($_eqType != null) {
+		if ($_eqType !== null) {
 			$values['eqType'] = $_eqType;
 			$sql .= ' AND eqType=:eqType ';
 		}
-		if ($_type != null) {
+		if ($_type !== null) {
 			$values['type'] = $_type;
 			$sql .= ' AND type=:type ';
 		}
-		if ($_subtype != null) {
+		if ($_subtype !== null) {
 			$values['subType'] = $_subtype;
 			$sql .= ' AND subType=:subType ';
 		}
@@ -209,7 +209,7 @@ class cmd {
 		WHERE eqLogic_id=:eqLogic_id
 		AND logicalId=:logicalId';
 
-		if ($_type != null) {
+		if ($_type !== null) {
 			$values['type'] = $_type;
 			$sql .= ' AND type=:type';
 		}
@@ -232,7 +232,7 @@ class cmd {
 			WHERE ( value=:value OR value LIKE :search)
 			AND el.isEnable=1
 			AND c.id!=:value';
-			if ($_type != null) {
+			if ($_type !== null) {
 				$values['type'] = $_type;
 				$sql .= ' AND c.type=:type ';
 			}
@@ -241,7 +241,7 @@ class cmd {
 			FROM cmd
 			WHERE ( value=:value OR value LIKE :search)
 			AND id!=:value';
-			if ($_type != null) {
+			if ($_type !== null) {
 				$values['type'] = $_type;
 				$sql .= ' AND type=:type ';
 			}
@@ -924,7 +924,7 @@ class cmd {
 		}
 		$template = $this->getWidgetTemplateCode($_version);
 
-		if ($_cmdColor == null && $version != 'scenario') {
+		if ($_cmdColor === null && $version != 'scenario') {
 			$eqLogic = $this->getEqLogic();
 			$vcolor = ($version == 'mobile') ? 'mcmdColor' : 'cmdColor';
 			if ($eqLogic->getPrimaryCategory() == '') {
@@ -1002,7 +1002,7 @@ class cmd {
 					$replace['#state#'] = 0;
 				}
 			} else {
-				$replace['#state#'] = ($this->getLastValue() != null) ? $this->getLastValue() : '';
+				$replace['#state#'] = ($this->getLastValue() !== null) ? $this->getLastValue() : '';
 				$replace['#valueName#'] = $this->getName();
 				$replace['#unite#'] = $this->getUnite();
 			}
@@ -1585,7 +1585,7 @@ class cmd {
 	}
 
 	public function getEqLogic() {
-		if ($this->_eqLogic == null) {
+		if ($this->_eqLogic === null) {
 			$this->setEqLogic(eqLogic::byId($this->eqLogic_id));
 		}
 		return $this->_eqLogic;
@@ -1766,4 +1766,4 @@ class cmd {
 
 }
 
-?>
+ 
