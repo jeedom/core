@@ -256,7 +256,7 @@ class history {
 		if ($_startTime !== null) {
 			$sql .= ' AND datetime>=:startTime';
 		}
-		if ($_endTime != null) {
+		if ($_endTime !== null) {
 			$sql .= ' AND datetime<=:endTime';
 		}
 		$sql .= ' UNION ALL
@@ -648,7 +648,7 @@ ORDER BY  datetime DESC';
 								$cmd_histories[$histories_cmd[$i]->getDatetime()] = array();
 							}
 							if (!isset($cmd_histories[$histories_cmd[$i]->getDatetime()]['#' . $cmd_id . '#'])) {
-								if ($prevDatetime != null) {
+								if ($prevDatetime !== null) {
 									$datetime = strtotime($histories_cmd[$i]->getDatetime());
 									while (($now - strtotime($prevDatetime) > $archiveTime) && strtotime($prevDatetime) < $datetime) {
 										$prevDatetime = date('Y-m-d H:00:00', strtotime($prevDatetime) + $packetTime);
@@ -710,7 +710,7 @@ ORDER BY  datetime DESC';
 		if ($cmd->getConfiguration('historizeRound') !== '' && is_numeric($cmd->getConfiguration('historizeRound')) && $cmd->getConfiguration('historizeRound') >= 0 && $this->getValue() !== null) {
 			$this->setValue(round($this->getValue(), $cmd->getConfiguration('historizeRound')));
 		}
-		if ($cmd->getSubType() != 'binary' && $cmd->getConfiguration('historizeMode', 'avg') != 'none' && $this->getValue() !== null && $_direct == false) {
+		if ($cmd->getSubType() != 'binary' && $cmd->getConfiguration('historizeMode', 'avg') != 'none' && $this->getValue() !== null && $_direct === false) {
 			if ($this->getTableName() == 'history') {
 				$time = strtotime($this->getDatetime());
 				$time -= $time % 300;
