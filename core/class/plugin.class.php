@@ -574,7 +574,8 @@ class plugin {
 		$cmd = $plugin_id::dependancy_install();
 		if (is_array($cmd) && count($cmd) == 2) {
 			$script = str_replace('#stype#', system::get('type'), $cmd['script']);
-			if (file_exists($script)) {
+			$script_array = explode(' ', $script);
+			if (file_exists($script_array[0])) {
 				if (jeedom::isCapable('sudo')) {
 					$this->deamon_stop();
 					message::add($plugin_id, __('Attention, installation des dépendances lancée', __FILE__));
