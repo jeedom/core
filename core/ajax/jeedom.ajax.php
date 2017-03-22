@@ -222,6 +222,22 @@ try {
 						continue;
 					}
 					$return['scenario'] = array_merge($return['scenario'], $scenarios);
+					foreach ($info_cmd['usedBy']['eqLogic'] as $eqLogic_tmp) {
+						if ($eqLogic_tmp['object_id'] == $object->getId()) {
+							if (!isset($info_object['eqLogic'][$eqLogic_tmp['id']])) {
+								$info_object['eqLogic'][$eqLogic_tmp['id']] = $eqLogic_tmp;
+							}
+						} else {
+							$object_tmp = object::byId($eqLogic_tmp['object_id']);
+							if (!isset($return['object'][$object_tmp->getId()])) {
+								$return['object'][$object->getId()] = utils::o2a($object_tmp);
+								$return['object'][$object->getId()] = array();
+							}
+							if (!isset($return['object'][$object_tmp->getId()]['eqLogic'][$eqLogic_tmp['id']])) {
+								$return['object'][$object_tmp->getId()]['eqLogic'][$eqLogic_tmp['id']] = $eqLogic_tmp;
+							}
+						}
+					}
 					$info_eqLogic['cmd'][$cmd->getId()] = $info_cmd;
 				}
 				if (count($info_eqLogic['cmd']) == 0) {

@@ -26,12 +26,16 @@ if (!isConnect('admin')) {
 		width: 100%
 	}
 </style>
+<div id="div_alertGraphLink"></div>
 <div id="div_graphLinkRenderer" style="height:100%;width: 100%;"></div>
 <script>
 	var graph = Viva.Graph.graph();
 	jeedom.getGraphData({
 		filter_type : '<?php echo init('filter_type', '') ?>',
 		filter_id : '<?php echo init('filter_id', '') ?>',
+		error: function(error) {
+            $('#div_alertGraphLink').showAlert({message: error.message, level: 'danger'});
+        },
 		success : function(data){
 			for(var i in data.scenario){
 				var scenario = data.scenario[i];
