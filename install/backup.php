@@ -69,7 +69,7 @@ try {
 	$backup_name = str_replace(' ', '_', 'backup-' . $jeedom_name . '-' . jeedom::version() . '-' . date("Y-m-d-H\hi") . '.tar.gz');
 
 	global $NO_PLUGIN_BACKUP;
-	if (!isset($NO_PLUGIN_BACKUP) || $NO_PLUGIN_BACKUP == false) {
+	if (!isset($NO_PLUGIN_BACKUP) || $NO_PLUGIN_BACKUP === false) {
 		foreach (plugin::listPlugin(true) as $plugin) {
 			$plugin_id = $plugin->getId();
 			if (method_exists($plugin_id, 'backup')) {
@@ -133,7 +133,7 @@ try {
 		foreach (ls($backup_dir, '*') as $file) {
 			if (is_dir($backup_dir . '/' . $file)) {
 				foreach (ls($backup_dir . '/' . $file, '*') as $file2) {
-					if ($older['datetime'] == null) {
+					if ($older['datetime'] === null) {
 						$older['file'] = $backup_dir . '/' . $file . '/' . $file2;
 						$older['datetime'] = filemtime($backup_dir . '/' . $file . '/' . $file2);
 					}
@@ -146,7 +146,7 @@ try {
 			if (!is_file($backup_dir . '/' . $file)) {
 				continue;
 			}
-			if ($older['datetime'] == null) {
+			if ($older['datetime'] === null) {
 				$older['file'] = $backup_dir . '/' . $file;
 				$older['datetime'] = filemtime($backup_dir . '/' . $file);
 			}
@@ -155,7 +155,7 @@ try {
 				$older['datetime'] = filemtime($backup_dir . '/' . $file);
 			}
 		}
-		if ($older['file'] == null) {
+		if ($older['file'] === null) {
 			echo 'Error no files to delete when the folder does : ' . getDirectorySize($backup_dir) . "\n";
 		}
 		echo "Remove : " . $older['file'] . "\n";
@@ -170,9 +170,9 @@ try {
 	}
 	echo "OK" . "\n";
 	global $NO_CLOUD_BACKUP;
-	if ((!isset($NO_CLOUD_BACKUP) || $NO_CLOUD_BACKUP == false)) {
+	if ((!isset($NO_CLOUD_BACKUP) || $NO_CLOUD_BACKUP === false)) {
 		foreach (update::listRepo() as $key => $value) {
-			if ($value['scope']['backup'] == false) {
+			if ($value['scope']['backup'] === false) {
 				continue;
 			}
 			if (config::byKey($key . '::enable') == 0) {
@@ -214,4 +214,4 @@ try {
 	echo "[END BACKUP ERROR]\n";
 	throw $e;
 }
-?>
+
