@@ -559,7 +559,7 @@ foreach (array('eth0', 'wlan0', 'bond0') as $value) {
 								<div class="col-sm-6">
 									<?php
 foreach ($repos as $key => $value) {
-	if (!isset($value['scope']['proxy']) || $value['scope']['proxy'] == false) {
+	if (!isset($value['scope']['proxy']) || $value['scope']['proxy'] === false) {
 		continue;
 	}
 	if ($configs[$key . '::enable'] == 0) {
@@ -1327,7 +1327,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 												<option value="default">{{Défaut}}</option>
 												<?php
 foreach ($repos as $key => $value) {
-	if (!isset($value['scope']['core']) || $value['scope']['core'] == false) {
+	if (!isset($value['scope']['core']) || $value['scope']['core'] === false) {
 		continue;
 	}
 	if ($configs[$key . '::enable'] == 0) {
@@ -1390,7 +1390,7 @@ foreach ($repos as $key => $value) {
 	echo '<input type="checkbox" class="configKey enableRepository" data-repo="' . $key . '" data-l1key="' . $key . '::enable"/>';
 	echo '</div>';
 	echo '</div>';
-	if ($value['scope']['hasConfiguration'] == false) {
+	if ($value['scope']['hasConfiguration'] === false) {
 		echo '</div>';
 		continue;
 	}
