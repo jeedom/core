@@ -59,7 +59,7 @@ class history {
 		);
 		$sql = 'REPLACE INTO `history` (`cmd_id`,`datetime`,`value`)
 				SELECT ' . $target_cmd->getId() . ',`datetime`,`value` FROM `history` WHERE cmd_id=:source_id';
-		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+		DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 
 		$sql = 'REPLACE INTO `historyArch` (`cmd_id`,`datetime`,`value`)
 				SELECT ' . $target_cmd->getId() . ',`datetime`,`value` FROM `historyArch` WHERE cmd_id=:source_id';
