@@ -28,7 +28,7 @@ class event {
 	/*     * ***********************Methode static*************************** */
 
 	public static function getFileDescriptorLock() {
-		if (self::$_fd == null) {
+		if (self::$_fd === null) {
 			self::$_fd = fopen(jeedom::getTmpFolder() . '/event_cache_lock', 'w');
 			chmod(jeedom::getTmpFolder() . '/event_cache_lock', 0777);
 		}
@@ -70,7 +70,7 @@ class event {
 
 	public static function changes($_datetime, $_longPolling = null) {
 		$return = self::changesSince($_datetime);
-		if ($_longPolling == null || count($return['result']) > 0) {
+		if ($_longPolling === null || count($return['result']) > 0) {
 			return $return;
 		}
 		$waitTime = config::byKey('event::waitPollingTime');
