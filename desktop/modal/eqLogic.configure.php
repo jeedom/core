@@ -16,6 +16,7 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 <a class="btn btn-success pull-right btn-sm" id="bt_eqLogicConfigureSave"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
 <a class="btn btn-default pull-right btn-sm" id="bt_eqLogicConfigureRawObject"><i class="fa fa-info"></i> {{Informations}}</a>
 <a class="btn btn-default pull-right btn-sm" id="bt_eqLogicConfigureLogRealTime"><i class="fa fa-file"></i> {{Log}}</a>
+<a class="btn btn-default pull-right btn-sm" id="bt_eqLogicConfigureGraph"><i class="fa fa-object-group"></i> {{Liens}}</a>
 
 <ul class="nav nav-tabs" role="tablist">
 	<li role="presentation" class="active"><a href="#eqLogic_information" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-info-circle"></i> {{Informations}}</a></li>
@@ -473,6 +474,12 @@ if ($eqLogic->getDisplay('parameters') != '') {
 												}
 											});
 											$('#div_displayEqLogicConfigure').setValues(eqLogicInfo, '.eqLogicAttr');
+
+											$('#bt_eqLogicConfigureGraph').on('click', function () {
+												$('#md_modal2').dialog({title: "{{Graphique des liens}}"});
+												$("#md_modal2").load('index.php?v=d&modal=graph.link&filter_type=eqLogic&filter_id='+eqLogicInfo.id).dialog('open');
+											});
+
 											$('#table_widgetParameters').on( 'click', '.removeWidgetParameter',function () {
 												$(this).closest('tr').remove();
 											});

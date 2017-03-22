@@ -60,8 +60,6 @@ $('#bt_graphObject').on('click', function () {
   $("#md_modal").load('index.php?v=d&modal=graph.link&filter_type=object&filter_id='+$('.objectAttr[data-l1key=id]').value()).dialog('open');
 });
 
-
-
 setTimeout(function(){
   $('.objectListContainer').packery();
 },100);

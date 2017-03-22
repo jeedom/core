@@ -195,46 +195,41 @@ try {
 		} else {
 			$objects = array(object::byId(init('filter_id')));
 		}
-		$findScenario = array();
 		foreach ($objects as $object) {
 			$info_object = utils::o2a($object);
 			$info_object['eqLogic'] = array();
-			$findScenario['object'] = (init('filter_type') != 'scenario') ? true : false;
 			foreach ($object->getEqLogic() as $eqLogic) {
 				if (init('filter_type') == 'eqLogic' && init('filter_id') != $eqLogic->getId()) {
 					continue;
 				}
 				$info_eqLogic = utils::o2a($eqLogic);
 				$info_eqLogic['cmd'] = array();
-				$findScenario['eqLogic'] = (init('filter_type') != 'scenario') ? true : false;
 				foreach ($eqLogic->getCmd() as $cmd) {
 					if (init('filter_type') == 'cmd' && init('filter_id') != $cmd->getId()) {
 						continue;
 					}
 					$info_cmd = utils::o2a($cmd);
 					$info_cmd['usedBy'] = $cmd->getUsedBy(true);
-					$findScenario['cmd'] = (init('filter_type') != 'scenario') ? true : false;
+					$findScenario = (init('filter_type') != 'scenario') ? true : false;
 					$scenarios = array();
 					foreach ($info_cmd['usedBy']['scenario'] as $scenario) {
 						if (init('filter_type') == 'scenario' && init('filter_id') == $scenario['id']) {
-							$findScenario['object'] = true;
-							$findScenario['eqLogic'] = true;
-							$findScenario['cmd'] = true;
+							$findScenario = true;
 						}
 						$scenarios[$scenario['id']] = $scenario;
 					}
-					if (!$findScenario['cmd']) {
+					if (!$findScenario) {
 						continue;
 					}
 					$return['scenario'] = array_merge($return['scenario'], $scenarios);
 					$info_eqLogic['cmd'][$cmd->getId()] = $info_cmd;
 				}
-				if (!$findScenario['eqLogic']) {
+				if (count($info_eqLogic['cmd']) == 0) {
 					continue;
 				}
 				$info_object['eqLogic'][$eqLogic->getId()] = $info_eqLogic;
 			}
-			if (!$findScenario['object']) {
+			if (count($info_object['eqLogic']) == 0) {
 				continue;
 			}
 			$return['object'][$object->getId()] = $info_object;
