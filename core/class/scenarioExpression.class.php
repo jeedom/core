@@ -66,7 +66,7 @@ class scenarioExpression {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM ' . __CLASS__ . '
         WHERE expression LIKE :expression';
-		if ($_options != null) {
+		if ($_options !== null) {
 			$values['options'] = '%' . $_options . '%';
 			if ($_and) {
 				$sql .= ' AND options LIKE :options';
@@ -707,7 +707,7 @@ class scenarioExpression {
 	}
 
 	public static function triggerValue(&$_scenario = null) {
-		if ($_scenario != null) {
+		if ($_scenario !== null) {
 			$cmd = cmd::byId(str_replace('#', '', $_scenario->getRealTrigger()));
 			if (is_object($cmd)) {
 				return $cmd->execCmd();
@@ -872,7 +872,7 @@ class scenarioExpression {
 			return $_expression;
 		}
 		$replace1 = self::getRequestTags($_expression);
-		if ($_scenario != null && count($_scenario->getTags()) > 0) {
+		if ($_scenario !== null && count($_scenario->getTags()) > 0) {
 			$replace1 = array_merge($replace1, $_scenario->getTags());
 		}
 
@@ -923,7 +923,7 @@ class scenarioExpression {
 								$arguments[0] = '';
 							}
 							$replace2[$replace_string] = self::trigger($arguments[0], $_scenario);
-						} else if ($function == 'triggerValue') {
+						} elseif ($function == 'triggerValue') {
 							$replace2[$replace_string] = self::triggerValue($_scenario);
 						} else {
 							$replace2[$replace_string] = call_user_func_array(__CLASS__ . "::" . $function, $arguments);
@@ -964,7 +964,7 @@ class scenarioExpression {
 /*     * *********************Methode d'instance************************* */
 
 	public function execute(&$scenario = null) {
-		if ($scenario != null && !$scenario->getDo()) {
+		if ($scenario !== null && !$scenario->getDo()) {
 			return;
 		}
 		if ($this->getOptions('enable', 1) == 0) {
@@ -996,7 +996,7 @@ class scenarioExpression {
 			}
 			if ($this->getType() == 'action') {
 				if ($this->getExpression() == 'icon') {
-					if ($scenario != null) {
+					if ($scenario !== null) {
 						$options = $this->getOptions();
 						$this->setLog($scenario, __('Changement de l\'icone du scénario : ', __FILE__) . $options['icon']);
 						$scenario->setDisplay('icon', $options['icon']);
@@ -1222,7 +1222,7 @@ class scenarioExpression {
 					$scenario->persistLog();
 					jeedom::haltSystem();
 					return;
-				} else if ($this->getExpression() == 'scenario_return') {
+				} elseif ($this->getExpression() == 'scenario_return') {
 					$this->setLog($scenario, __('Demande de retour d\'information : ', __FILE__) . $options['message']);
 					if ($scenario->getReturn() === true) {
 						$scenario->setReturn($options['message']);
@@ -1487,4 +1487,3 @@ class scenarioExpression {
 
 }
 
-?>
