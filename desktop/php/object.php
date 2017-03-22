@@ -58,6 +58,7 @@ foreach ($allObject as $object) {
  <div class="col-md-10 col-sm-9 object" style="display: none;" id="div_conf">
    <a class="btn btn-success pull-right" id="bt_saveObject"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
    <a class="btn btn-danger pull-right" id="bt_removeObject"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
+   <a class="btn btn-default pull-right" id="bt_graphObject"><i class="fa fa-object-group"></i> {{Liens}}</a>
 
    <ul class="nav nav-tabs" role="tablist">
      <li role="presentation"><a href="#" aria-controls="home" role="tab" data-toggle="tab" id="bt_returnToThumbnailDisplay"><i class="fa fa-arrow-circle-left"></i></a></li>

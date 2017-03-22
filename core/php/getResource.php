@@ -47,7 +47,11 @@ if (file_exists($file)) {
 		exit;
 	}
 	if ($pathinfo['extension'] == 'js') {
-		echo translate::exec(file_get_contents($file), init('file'), true);
+		if (strpos($file, '3rdparty') !== false) {
+			echo file_get_contents($file);
+		} else {
+			echo translate::exec(file_get_contents($file), init('file'), true);
+		}
 	} else if ($pathinfo['extension'] == 'css') {
 		echo file_get_contents($file);
 	}

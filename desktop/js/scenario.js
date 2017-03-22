@@ -663,27 +663,25 @@ $('body').delegate('.bt_sortable', 'mouseout', function () {
 
 });
 
-/***********************LOG*****************************/
+$('#bt_graphScenario').on('click', function () {
+  $('#md_modal').dialog({title: "{{Résumé scénario}}"});
+  $("#md_modal").load('index.php?v=d&modal=graph.link&filter_type=scenario&filter_id='+$('.scenarioAttr[data-l1key=id]').value()).dialog('open');
+});
 
 $('#bt_logScenario').on('click', function () {
   $('#md_modal').dialog({title: "{{Log d'exécution du scénario}}"});
   $("#md_modal").load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + $('.scenarioAttr[data-l1key=id]').value()).dialog('open');
 });
 
-/***********************EXPORT*****************************/
-
 $('#bt_exportScenario').on('click', function () {
   $('#md_modal').dialog({title: "{{Export du scénario}}"});
   $("#md_modal").load('index.php?v=d&modal=scenario.export&scenario_id=' + $('.scenarioAttr[data-l1key=id]').value()).dialog('open');
 });
 
-/***********************Template*****************************/
-
 $('#bt_templateScenario').on('click', function () {
   $('#md_modal').dialog({title: "{{Template de scénario}}"});
   $("#md_modal").load('index.php?v=d&modal=scenario.template&scenario_id=' + $('.scenarioAttr[data-l1key=id]').value()).dialog('open');
 });
-
 
 /**************** Initialisation **********************/
 

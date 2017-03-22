@@ -404,7 +404,7 @@ class cmd {
 		preg_match_all("/#\[(.*?)\]\[(.*?)\]\[(.*?)\]#/", $_input, $matches);
 		if (count($matches) == 4) {
 			$countMatches = count($matches[0]);
-			for ($i = 0; $i <  $countMatches; $i++) {
+			for ($i = 0; $i < $countMatches; $i++) {
 				if (isset($replace[$matches[0][$i]])) {
 					continue;
 				}
@@ -1216,7 +1216,7 @@ class cmd {
 			return 'none';
 		}
 		global $JEEDOM_INTERNAL_CONFIG;
-		
+
 		$currentLevel = 'none';
 		foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
 			if (!$value['check']) {
@@ -1381,11 +1381,16 @@ class cmd {
 		}
 	}
 
-	public function getUsedBy() {
+	public function getUsedBy($_array = false) {
 		$return = array();
 		$return['cmd'] = self::searchConfiguration('#' . $this->getId() . '#');
 		$return['eqLogic'] = eqLogic::searchConfiguration('#' . $this->getId() . '#');
 		$return['scenario'] = scenario::byUsedCommand($this->getId());
+		if ($_array) {
+			foreach ($return as &$value) {
+				$value = utils::o2a($value);
+			}
+		}
 		return $return;
 	}
 
