@@ -418,7 +418,7 @@ class eqLogic {
 			$cmd->event($_value, $_updateTime);
 			return true;
 		}
-		if ($_updateTime != null) {
+		if ($_updateTime !== null) {
 			if (strtotime($cmd->getCollectDate()) < strtotime($_updateTime)) {
 				$cmd->event($_value, $_updateTime);
 				return true;
@@ -893,7 +893,7 @@ class eqLogic {
 					}
 				}
 				try {
-					if ($cmd == null || !is_object($cmd)) {
+					if ($cmd === null || !is_object($cmd)) {
 						$cmd = new $cmdClass();
 						$cmd->setOrder($cmd_order);
 						$cmd->setEqLogic_id($this->getId());
