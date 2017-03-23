@@ -1563,10 +1563,9 @@ class cmd {
 		$_data['node']['cmd' . $this->getId()] = array(
 			'id' => 'cmd' . $this->getId(),
 			'name' => $this->getName(),
-			'shape' => 'rect',
-			'width' => 10,
-			'height' => 10,
-			'color' => 'black',
+			'icon' => ($this->getType() == 'info') ? findCodeIcon('fa-eye') : findCodeIcon('fa-cog'),
+			'fontsize' => '1.5em',
+			'posy' => 20,
 		);
 		$usedBy = $this->getUsedBy();
 		if (count($usedBy['scenario']) > 0) {

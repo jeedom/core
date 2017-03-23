@@ -65,20 +65,26 @@ if (!isConnect('admin')) {
 				return;
 			}
 			var ui = Viva.Graph.svg('g');
-			svgText = Viva.Graph.svg('text').attr('y', '0px').text(node.data.name);
+			ui.append(Viva.Graph.svg('text').attr('y', '0px').text(node.data.name));
 
 			if(typeof node.data.image != 'undefined'){
 				img = Viva.Graph.svg('image')
-				.attr('width', 24)
-				.attr('height', 24)
+				.attr('width', node.data.width)
+				.attr('height', node.data.height)
 				.link(node.data.image);
+			}else if(typeof node.data.icon != 'undefined'){
+				img = Viva.Graph.svg('text')
+				  .attr("x",0)
+				  .attr("y",node.data.posy)
+				  .attr("font-family","FontAwesome")
+				  .attr("font-size",node.data.fontsize)
+				  .text(String.fromCodePoint(parseInt(node.data.icon, 16)));
 			}else{
 				img = Viva.Graph.svg(node.data.shape)
 				.attr("width", node.data.width)
 				.attr("height", node.data.height)
 				.attr("fill", node.data.color);
 			}
-			ui.append(svgText);
 			ui.append(img);
 			$(ui).hover(function () {
 				highlightRelatedNodes(node.id, true);

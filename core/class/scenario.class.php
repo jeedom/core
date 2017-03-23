@@ -1169,8 +1169,8 @@ class scenario {
 			'id' => 'scenario' . $this->getId(),
 			'name' => $this->getName(),
 			'shape' => 'rect',
-			'width' => 10,
-			'height' => 10,
+			'width' => 40,
+			'height' => 40,
 			'color' => 'green',
 			'image' => 'core/img/scenario.png',
 		);

@@ -1001,3 +1001,11 @@ function getDominantColor($_pathimg) {
 function sha512($_string) {
 	return hash('sha512', $_string);
 }
+
+function findCodeIcon($_icon) {
+	$icon = trim(str_replace(array('fa ', '></i>', '<i', 'class="', '"'), '', trim($_icon)));
+	$re = '/.' . $icon . ':.*\n.*content:.*"(.*?)";/m';
+	$css = file_get_contents(dirname(__FILE__) . '/../../3rdparty/font-awesome/css/font-awesome.css');
+	preg_match($re, $css, $matches);
+	return (isset($matches[1])) ? trim($matches[1], '\\') : '';
+}

@@ -1048,8 +1048,8 @@ class eqLogic {
 			'id' => 'eqLogic' . $this->getId(),
 			'name' => $this->getName(),
 			'shape' => 'rect',
-			'width' => 10,
-			'height' => 10,
+			'width' => 60,
+			'height' => 60,
 			'color' => 'blue',
 			'image' => $this->getImage(),
 		);

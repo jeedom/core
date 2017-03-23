@@ -597,10 +597,9 @@ class object {
 		$_data['node']['object' . $this->getId()] = array(
 			'id' => 'object' . $this->getId(),
 			'name' => $this->getName(),
-			'shape' => 'rect',
-			'width' => 10,
-			'height' => 10,
-			'color' => 'red',
+			'icon' => findCodeIcon($this->getDisplay('icon')),
+			'fontsize' => '4em',
+			'posy' => 45,
 		);
 		foreach ($this->getEqLogic() as $eqLogic) {
 			$eqLogic->getLinkData($_data, $_level, $_drill);
