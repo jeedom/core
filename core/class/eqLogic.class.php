@@ -1033,7 +1033,7 @@ class eqLogic {
 		return $return;
 	}
 
-	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = 4) {
+	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = 3) {
 		$_level++;
 		if ($_level > $_drill) {
 			return $_data;
