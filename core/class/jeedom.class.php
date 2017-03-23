@@ -997,7 +997,7 @@ class jeedom {
 			$result = 'Docker';
 		} else if (file_exists('/usr/bin/raspi-config')) {
 			$result = 'RPI/RPI2';
-		} else if (strpos($uname, 'cubox') !== false) {
+		} else if (strpos($uname, 'cubox') !== false || strpos($uname,'imx6') !== false || file_exists('/media/boot/multiboot/meson64_odroidc2.dtb.linux')) {
 			$result = 'Jeedomboard';
 		}
 		config::save('hardware_name', $result);
