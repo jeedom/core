@@ -614,9 +614,19 @@ class object {
 		if (count($use['cmd']) > 0) {
 			foreach ($use['cmd'] as $cmd) {
 				$cmd->getLinkData($_data, $_level, $_drill);
-				$_data['link']['scenario' . $cmd->getId() . '-cmd' . $cmd->getId()] = array(
-					'from' => 'scenario' . $this->getId(),
+				$_data['link']['object' . $this->getId() . '-cmd' . $cmd->getId()] = array(
+					'from' => 'object' . $this->getId(),
 					'to' => 'cmd' . $cmd->getId(),
+					'lengthfactor' => 0.6,
+				);
+			}
+		}
+		if (count($use['scenario']) > 0) {
+			foreach ($use['scenario'] as $scenario) {
+				$scenario->getLinkData($_data, $_level, $_drill);
+				$_data['link']['scenario' . $scenario->getId() . '-object' . $this->getId()] = array(
+					'from' => 'scenario' . $this->getId(),
+					'to' => 'object' . $scenario->getId(),
 					'lengthfactor' => 0.6,
 				);
 			}

@@ -1058,9 +1058,19 @@ class eqLogic {
 		if (count($use['cmd']) > 0) {
 			foreach ($use['cmd'] as $cmd) {
 				$cmd->getLinkData($_data, $_level, $_drill);
-				$_data['link']['scenario' . $cmd->getId() . '-cmd' . $cmd->getId()] = array(
-					'from' => 'scenario' . $this->getId(),
+				$_data['link']['eqLogic' . $this->getId() . '-cmd' . $cmd->getId()] = array(
+					'from' => 'eqLogic' . $this->getId(),
 					'to' => 'cmd' . $cmd->getId(),
+					'lengthfactor' => 0.6,
+				);
+			}
+		}
+		if (count($use['scenario']) > 0) {
+			foreach ($use['scenario'] as $scenario) {
+				$scenario->getLinkData($_data, $_level, $_drill);
+				$_data['link']['scenario' . $scenario->getId() . '-eqLogic' . $this->getId()] = array(
+					'from' => 'scenario' . $scenario->getId(),
+					'to' => 'eqLogic' . $this->getId(),
 					'lengthfactor' => 0.6,
 				);
 			}

@@ -880,7 +880,7 @@ class jeedom {
 	}
 
 	public static function getTypeUse($_string = '') {
-		$return = array('cmd' => array());
+		$return = array('cmd' => array(), 'scenario' => array());
 		preg_match_all("/#([0-9]*)#/", $_string, $matches);
 		foreach ($matches[1] as $cmd_id) {
 			if (isset($return['cmd'][$cmd_id])) {
@@ -891,6 +891,17 @@ class jeedom {
 				continue;
 			}
 			$return['cmd'][$cmd_id] = $cmd;
+		}
+		preg_match_all('/"scenario_id":"([0-9]*)"/', $_string, $matches);
+		foreach ($matches[1] as $scenario_id) {
+			if (isset($return['scenario'][$scenario_id])) {
+				continue;
+			}
+			$scenario = scenario::byId($scenario_id);
+			if (!is_object($scenario)) {
+				continue;
+			}
+			$return['scenario'][$scenario_id] = $scenario;
 		}
 		return $return;
 	}
@@ -1013,7 +1024,7 @@ class jeedom {
 			$result = 'Docker';
 		} else if (file_exists('/usr/bin/raspi-config')) {
 			$result = 'RPI/RPI2';
-		} else if (strpos($uname, 'cubox') !== false || strpos($uname,'imx6') !== false || file_exists('/media/boot/multiboot/meson64_odroidc2.dtb.linux')) {
+		} else if (strpos($uname, 'cubox') !== false || strpos($uname, 'imx6') !== false || file_exists('/media/boot/multiboot/meson64_odroidc2.dtb.linux')) {
 			$result = 'Jeedomboard';
 		}
 		config::save('hardware_name', $result);

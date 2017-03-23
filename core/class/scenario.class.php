@@ -1174,13 +1174,25 @@ class scenario {
 			'color' => 'green',
 		);
 		$use = $this->getUse();
-		foreach ($use['cmd'] as $cmd) {
-			$cmd->getLinkData($_data, $_level, $_drill);
-			$_data['link']['scenario' . $cmd->getId() . '-cmd' . $cmd->getId()] = array(
-				'from' => 'scenario' . $this->getId(),
-				'to' => 'cmd' . $cmd->getId(),
-				'lengthfactor' => 0.6,
-			);
+		if (count($use['cmd'])) {
+			foreach ($use['cmd'] as $cmd) {
+				$cmd->getLinkData($_data, $_level, $_drill);
+				$_data['link']['scenario' . $this->getId() . '-cmd' . $cmd->getId()] = array(
+					'from' => 'scenario' . $this->getId(),
+					'to' => 'cmd' . $cmd->getId(),
+					'lengthfactor' => 0.6,
+				);
+			}
+		}
+		if (count($use['scenario'])) {
+			foreach ($use['scenario'] as $scenario) {
+				$scenario->getLinkData($_data, $_level, $_drill);
+				$_data['link']['scenario' . $this->getId() . '-scenario' . $scenario->getId()] = array(
+					'from' => 'scenario' . $this->getId(),
+					'to' => 'scenario' . $scenario->getId(),
+					'lengthfactor' => 0.6,
+				);
+			}
 		}
 		return $_data;
 	}
