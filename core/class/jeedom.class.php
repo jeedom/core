@@ -879,6 +879,22 @@ class jeedom {
 		return null;
 	}
 
+	public static function getTypeUse($_string = '') {
+		$return = array('cmd' => array());
+		preg_match_all("/#([0-9]*)#/", $_string, $matches);
+		foreach ($matches[1] as $cmd_id) {
+			if (isset($return['cmd'][$cmd_id])) {
+				continue;
+			}
+			$cmd = cmd::byId($cmd_id);
+			if (!is_object($cmd)) {
+				continue;
+			}
+			$return['cmd'][$cmd_id] = $cmd;
+		}
+		return $return;
+	}
+
 	/******************************SYSTEM MANAGEMENT**********************************************************/
 
 	public static function haltSystem() {
@@ -1081,7 +1097,7 @@ class jeedom {
                 	WHERE `key`="jeedom_benchmark"
                 		AND plugin="core"';
 			try {
-				DB::Prepare($sql, array('value' => $i,), DB::FETCH_TYPE_ROW);
+				DB::Prepare($sql, array('value' => $i), DB::FETCH_TYPE_ROW);
 			} catch (Exception $e) {
 
 			}
@@ -1115,5 +1131,3 @@ class jeedom {
 	}
 
 }
-
-

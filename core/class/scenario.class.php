@@ -1186,16 +1186,8 @@ class scenario {
 	}
 
 	public function getUse() {
-		$return = array('cmd' => array());
 		$json = jeedom::fromHumanReadable(json_encode($this->export('array')));
-		preg_match_all("/#([0-9]*)#/", $json, $matches);
-		foreach ($matches[1] as $cmd_id) {
-			if (isset($return['cmd'][$cmd_id])) {
-				continue;
-			}
-			$return['cmd'][$cmd_id] = cmd::byId($cmd_id);
-		}
-		return $return;
+		return jeedom::getTypeUse($json);
 	}
 
 	/*     * **********************Getteur Setteur*************************** */

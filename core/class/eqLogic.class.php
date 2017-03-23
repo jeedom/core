@@ -1054,16 +1054,34 @@ class eqLogic {
 				'lengthfactor' => 0.6,
 			);
 		}
+		$use = $this->getUse();
+		if (count($use['cmd']) > 0) {
+			foreach ($use['cmd'] as $cmd) {
+				$cmd->getLinkData($_data, $_level, $_drill);
+				$_data['link']['scenario' . $cmd->getId() . '-cmd' . $cmd->getId()] = array(
+					'from' => 'scenario' . $this->getId(),
+					'to' => 'cmd' . $cmd->getId(),
+					'lengthfactor' => 0.6,
+				);
+			}
+		}
 		if (!isset($_data['object' . $this->getObject_id()])) {
 			$object = $this->getObject();
-			$object->getLinkData($_data, $_level, $_drill);
-			$_data['link']['object' . $object->getId() . '-eqLogic' . $this->getId()] = array(
-				'from' => 'object' . $object->getId(),
-				'to' => 'eqLogic' . $this->getId(),
-				'lengthfactor' => 0.6,
-			);
+			if (is_object($object)) {
+				$object->getLinkData($_data, $_level, $_drill);
+				$_data['link']['object' . $object->getId() . '-eqLogic' . $this->getId()] = array(
+					'from' => 'object' . $object->getId(),
+					'to' => 'eqLogic' . $this->getId(),
+					'lengthfactor' => 0.6,
+				);
+			}
 		}
 		return $_data;
+	}
+
+	public function getUse() {
+		$json = jeedom::fromHumanReadable(json_encode(utils::o2a($this)));
+		return jeedom::getTypeUse($json);
 	}
 
 /*     * **********************Getteur Setteur*************************** */

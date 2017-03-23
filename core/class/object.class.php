@@ -610,7 +610,23 @@ class object {
 				'lengthfactor' => 0.6,
 			);
 		}
+		$use = $this->getUse();
+		if (count($use['cmd']) > 0) {
+			foreach ($use['cmd'] as $cmd) {
+				$cmd->getLinkData($_data, $_level, $_drill);
+				$_data['link']['scenario' . $cmd->getId() . '-cmd' . $cmd->getId()] = array(
+					'from' => 'scenario' . $this->getId(),
+					'to' => 'cmd' . $cmd->getId(),
+					'lengthfactor' => 0.6,
+				);
+			}
+		}
 		return $_data;
+	}
+
+	public function getUse() {
+		$json = jeedom::fromHumanReadable(json_encode(utils::o2a($this)));
+		return jeedom::getTypeUse($json);
 	}
 
 	/*     * **********************Getteur Setteur*************************** */
