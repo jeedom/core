@@ -638,7 +638,7 @@ class object {
 		$childs = $this->getChild();
 		if (count($childs) > 0) {
 			foreach ($childs as $child) {
-				$child->getLinkData($_data, $_level, $_drill);
+				$child->getLinkData($_data, $_level + 1, $_drill);
 				$_data['link']['object' . $this->getId() . '-object' . $child->getId()] = array(
 					'from' => 'object' . $child->getId(),
 					'to' => 'object' . $this->getId(),
