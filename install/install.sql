@@ -310,7 +310,7 @@ CREATE TABLE IF NOT EXISTS `viewData` (
   `order` INT NULL,
   `viewZone_id` INT NOT NULL,
   `type` VARCHAR(127) NULL,
-  `link_id` INT NOT NULL,
+  `link_id` INT NULL,
   `configuration` TEXT NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_data_zone1_idx` (`viewZone_id` ASC),
