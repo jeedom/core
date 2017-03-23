@@ -1172,6 +1172,7 @@ class scenario {
 			'width' => 10,
 			'height' => 10,
 			'color' => 'green',
+			'image' => 'core/img/scenario.png',
 		);
 		$use = $this->getUse();
 		if (count($use['cmd'])) {

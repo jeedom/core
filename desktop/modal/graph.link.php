@@ -34,8 +34,8 @@ if (!isConnect('admin')) {
 		filter_type : '<?php echo init('filter_type', '') ?>',
 		filter_id : '<?php echo init('filter_id', '') ?>',
 		error: function(error) {
-            $('#div_alertGraphLink').showAlert({message: error.message, level: 'danger'});
-        },
+			$('#div_alertGraphLink').showAlert({message: error.message, level: 'danger'});
+		},
 		success : function(data){
 			for(var i in data.node){
 				graph.addNode(i, data.node[i]);
@@ -66,10 +66,18 @@ if (!isConnect('admin')) {
 			}
 			var ui = Viva.Graph.svg('g');
 			svgText = Viva.Graph.svg('text').attr('y', '0px').text(node.data.name);
-			img = Viva.Graph.svg(node.data.shape)
-			.attr("width", node.data.width)
-			.attr("height", node.data.height)
-			.attr("fill", node.data.color);
+
+			if(typeof node.data.image != 'undefined'){
+				img = Viva.Graph.svg('image')
+				.attr('width', 24)
+				.attr('height', 24)
+				.link(node.data.image);
+			}else{
+				img = Viva.Graph.svg(node.data.shape)
+				.attr("width", node.data.width)
+				.attr("height", node.data.height)
+				.attr("fill", node.data.color);
+			}
 			ui.append(svgText);
 			ui.append(img);
 			$(ui).hover(function () {
