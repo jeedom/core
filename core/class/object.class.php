@@ -650,7 +650,7 @@ class object {
 		$scenarios = $this->getScenario();
 		if (count($scenarios) > 0) {
 			foreach ($scenarios as $scenario) {
-				$scenario->getLinkData($_data, $_level, $_drill);
+				$scenario->getLinkData($_data, $_level + 1, $_drill);
 				$_data['link']['scenario' . $scenario->getId() . '-object' . $this->getId()] = array(
 					'from' => 'scenario' . $scenario->getId(),
 					'to' => 'object' . $this->getId(),
