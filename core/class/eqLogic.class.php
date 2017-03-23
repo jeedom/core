@@ -1053,6 +1053,7 @@ class eqLogic {
 			'width' => 60,
 			'height' => 60,
 			'image' => $this->getImage(),
+			'title' => $this->getHumanName(),
 		);
 
 		foreach ($this->getCmd() as $cmd) {

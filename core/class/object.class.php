@@ -603,6 +603,7 @@ class object {
 			'fontsize' => '4em',
 			'texty' => -35,
 			'textx' => 0,
+			'title' => $this->getHumanName(),
 		);
 		foreach ($this->getEqLogic() as $eqLogic) {
 			$eqLogic->getLinkData($_data, $_level, $_drill);
@@ -628,8 +629,8 @@ class object {
 			foreach ($use['scenario'] as $scenario) {
 				$scenario->getLinkData($_data, $_level, $_drill);
 				$_data['link']['scenario' . $scenario->getId() . '-object' . $this->getId()] = array(
-					'from' => 'scenario' . $this->getId(),
-					'to' => 'object' . $scenario->getId(),
+					'from' => 'scenario' . $scenario->getId(),
+					'to' => 'object' . $this->getId(),
 					'lengthfactor' => 0.6,
 					'dashvalue' => '5,3',
 				);
@@ -643,6 +644,18 @@ class object {
 					'from' => 'object' . $child->getId(),
 					'to' => 'object' . $this->getId(),
 					'lengthfactor' => 0.6,
+				);
+			}
+		}
+		$scenarios = $this->getScenario();
+		if (count($scenarios) > 0) {
+			foreach ($scenarios as $scenario) {
+				$scenario->getLinkData($_data, $_level, $_drill);
+				$_data['link']['scenario' . $scenario->getId() . '-object' . $this->getId()] = array(
+					'from' => 'scenario' . $scenario->getId(),
+					'to' => 'object' . $this->getId(),
+					'lengthfactor' => 0.6,
+					'dashvalue' => '5,3',
 				);
 			}
 		}

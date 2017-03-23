@@ -1569,6 +1569,7 @@ class cmd {
 			'fontsize' => '1.5em',
 			'texty' => -14,
 			'textx' => 0,
+			'title' => $this->getHumanName(),
 		);
 		$usedBy = $this->getUsedBy();
 		if (count($usedBy['scenario']) > 0) {

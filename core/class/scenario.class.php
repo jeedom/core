@@ -1176,6 +1176,7 @@ class scenario {
 			'height' => 40,
 			'color' => 'green',
 			'image' => 'core/img/scenario.png',
+			'title' => $this->getHumanName(),
 		);
 		$use = $this->getUse();
 		if (count($use['cmd'])) {
@@ -1199,6 +1200,16 @@ class scenario {
 					'dashvalue' => '5,3',
 				);
 			}
+		}
+		$object = $this->getObject();
+		if (is_object($object)) {
+			$object->getLinkData($_data, $_level + 1, $_drill);
+			$_data['link']['scenario' . $this->getId() . '-object' . $object->getId()] = array(
+				'from' => 'scenario' . $this->getId(),
+				'to' => 'object' . $object->getId(),
+				'lengthfactor' => 0.6,
+				'dashvalue' => '5,3',
+			);
 		}
 		return $_data;
 	}
