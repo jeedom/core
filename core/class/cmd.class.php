@@ -1567,7 +1567,8 @@ class cmd {
 			'icon' => $icon['icon'],
 			'fontfamily' => $icon['fontfamily'],
 			'fontsize' => '1.5em',
-			'posy' => 20,
+			'texty' => -14,
+			'textx' => 0,
 		);
 		$usedBy = $this->getUsedBy();
 		if (count($usedBy['scenario']) > 0) {

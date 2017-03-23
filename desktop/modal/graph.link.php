@@ -65,20 +65,29 @@ if (!isConnect('admin')) {
 				return;
 			}
 			var ui = Viva.Graph.svg('g');
-			ui.append(Viva.Graph.svg('text').attr('y', '0px').text(node.data.name));
-
+			text = Viva.Graph.svg('text')
+			.attr('y', -15).text(node.data.name)
+			.attr('alignment-baseline','central')
+			.attr('text-anchor','middle')
+			.attr('font-weight','bold')
 			if(typeof node.data.image != 'undefined'  && $.trim(node.data.image)){
 				img = Viva.Graph.svg('image')
 				.attr('width', node.data.width)
 				.attr('height', node.data.height)
+				.attr('y', -node.data.height/2)
+				.attr('x', -node.data.width/2)
 				.link(node.data.image);
+				text.attr('y', -node.data.height/2 -7)
 			}else if(typeof node.data.icon != 'undefined' && $.trim(node.data.icon)){
 				img = Viva.Graph.svg('text')
-				  .attr("x",0)
-				  .attr("y",node.data.posy)
-				  .attr("font-family",node.data.fontfamily)
-				  .attr("font-size",node.data.fontsize)
-				  .text(String.fromCodePoint(parseInt(node.data.icon, 16)));
+				.attr("font-family",node.data.fontfamily)
+				.attr("font-size",node.data.fontsize)
+				.attr('alignment-baseline','central')
+				.attr('text-anchor','middle')
+				.text(String.fromCodePoint(parseInt(node.data.icon, 16)));
+
+				text.attr("y",node.data.texty);
+				text.attr("x",node.data.textx);
 			}else if(typeof node.data.shape != 'undefined' && $.trim(node.data.shape)){
 				img = Viva.Graph.svg(node.data.shape)
 				.attr("width", node.data.width)
@@ -90,6 +99,7 @@ if (!isConnect('admin')) {
 				.attr("height", 24)
 				.attr("fill", 'black');
 			}
+			ui.append(text);
 			ui.append(img);
 			$(ui).hover(function () {
 				highlightRelatedNodes(node.id, true);
@@ -98,10 +108,7 @@ if (!isConnect('admin')) {
 			});
 			return ui;
 		}).placeNode(function (nodeUI, pos) {
-			nodeUI.attr('transform',
-				'translate(' +
-				(pos.x - 24 / 3) + ',' + (pos.y - 24 / 2.5) +
-				')');
+			nodeUI.attr('transform','translate(' + (pos.x) + ',' + (pos.y) +')');
 		});
 
 		var layout = Viva.Graph.Layout.forceDirected(graph, {
@@ -134,6 +141,6 @@ if (!isConnect('admin')) {
 		setTimeout(function () {
 			renderer.pause();
 			renderer.reset();
-		}, 2000);
+		}, 3000);
 	}
 </script>

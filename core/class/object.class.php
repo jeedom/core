@@ -601,7 +601,8 @@ class object {
 			'icon' => $icon['icon'],
 			'fontfamily' => $icon['fontfamily'],
 			'fontsize' => '4em',
-			'posy' => 50,
+			'texty' => -35,
+			'textx' => 0,
 		);
 		foreach ($this->getEqLogic() as $eqLogic) {
 			$eqLogic->getLinkData($_data, $_level, $_drill);
