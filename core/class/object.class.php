@@ -632,6 +632,17 @@ class object {
 				);
 			}
 		}
+		$childs = $this->getChild();
+		if (count($childs) > 0) {
+			foreach ($childs as $child) {
+				$child->getLinkData($_data, $_level, $_drill);
+				$_data['link']['object' . $this->getId() . '-object' . $child->getId()] = array(
+					'from' => 'object' . $child->getId(),
+					'to' => 'object' . $this->getId(),
+					'lengthfactor' => 0.6,
+				);
+			}
+		}
 		return $_data;
 	}
 
