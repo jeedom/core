@@ -80,6 +80,7 @@ Botón derecho del ratón en un elemento de un resumen domótico te lleva a una 
 * Optimisation de la restoration
 * Optimisation du processus de mise à jour
 * Uniformisation du tmp jeedom, maintenant tout est dans /tmp/jeedom
+* Possibilité d'avoir un graph des differentes liaison d'un scénario, équipement, objet ou commande 
 
 = 2.4.6
 
