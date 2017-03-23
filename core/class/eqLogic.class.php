@@ -1039,6 +1039,9 @@ class eqLogic {
 	}
 
 	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = 3) {
+		if ($this->getIsEnable() != 0) {
+			return $_data;
+		}
 		$_level++;
 		if ($_level > $_drill) {
 			return $_data;
