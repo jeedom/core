@@ -594,12 +594,14 @@ class object {
 		if ($_level > $_drill) {
 			return $_data;
 		}
+		$icon = findCodeIcon($this->getDisplay('icon'));
 		$_data['node']['object' . $this->getId()] = array(
 			'id' => 'object' . $this->getId(),
 			'name' => $this->getName(),
-			'icon' => findCodeIcon($this->getDisplay('icon')),
+			'icon' => $icon['icon'],
+			'fontfamily' => $icon['fontfamily'],
 			'fontsize' => '4em',
-			'posy' => 45,
+			'posy' => 50,
 		);
 		foreach ($this->getEqLogic() as $eqLogic) {
 			$eqLogic->getLinkData($_data, $_level, $_drill);

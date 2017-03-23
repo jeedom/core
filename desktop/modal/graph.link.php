@@ -76,7 +76,7 @@ if (!isConnect('admin')) {
 				img = Viva.Graph.svg('text')
 				  .attr("x",0)
 				  .attr("y",node.data.posy)
-				  .attr("font-family","FontAwesome")
+				  .attr("font-family",node.data.fontfamily)
 				  .attr("font-size",node.data.fontsize)
 				  .text(String.fromCodePoint(parseInt(node.data.icon, 16)));
 			}else if(typeof node.data.shape != 'undefined' && $.trim(node.data.shape)){

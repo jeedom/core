@@ -1560,10 +1560,12 @@ class cmd {
 		if ($_level > $_drill) {
 			return $_data;
 		}
+		$icon = ($this->getType() == 'info') ? findCodeIcon('fa-eye') : findCodeIcon('fa-cog');
 		$_data['node']['cmd' . $this->getId()] = array(
 			'id' => 'cmd' . $this->getId(),
 			'name' => $this->getName(),
-			'icon' => ($this->getType() == 'info') ? findCodeIcon('fa-eye') : findCodeIcon('fa-cog'),
+			'icon' => $icon['icon'],
+			'fontfamily' => $icon['fontfamily'],
 			'fontsize' => '1.5em',
 			'posy' => 20,
 		);

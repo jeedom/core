@@ -1003,14 +1003,23 @@ function sha512($_string) {
 }
 
 function findCodeIcon($_icon) {
-	$icon = trim(str_replace(array('fa ', '></i>', '<i', 'class="', '"'), '', trim($_icon)));
+	$icon = trim(str_replace(array('fa ', 'icon ', '></i>', '<i', 'class="', '"'), '', trim($_icon)));
 	$re = '/.' . $icon . ':.*\n.*content:.*"(.*?)";/m';
+
 	$css = file_get_contents(dirname(__FILE__) . '/../../3rdparty/font-awesome/css/font-awesome.css');
-	foreach (ls(dirname(__FILE__) . '../css/icon', '*') as $dir) {
-		if (is_dir(dirname(__FILE__) . '../css/icon/' . $dir) && file_exists(dirname(__FILE__) . '../css/icon/' . $dir . '/style.css')) {
-			$css .= file_get_contents(dirname(__FILE__) . '../css/icon/' . $dir . '/style.css');
+	preg_match($re, $css, $matches);
+	if (isset($matches[1])) {
+		return array('icon' => trim($matches[1], '\\'), 'fontfamily' => 'FontAwesome');
+	}
+
+	foreach (ls(dirname(__FILE__) . '/../css/icon', '*') as $dir) {
+		if (is_dir(dirname(__FILE__) . '/../css/icon/' . $dir) && file_exists(dirname(__FILE__) . '/../css/icon/' . $dir . '/style.css')) {
+			$css = file_get_contents(dirname(__FILE__) . '/../css/icon/' . $dir . '/style.css');
+			preg_match($re, $css, $matches);
+			if (isset($matches[1])) {
+				return array('icon' => trim($matches[1], '\\'), 'fontfamily' => trim($dir, '/'));
+			}
 		}
 	}
-	preg_match($re, $css, $matches);
-	return (isset($matches[1])) ? trim($matches[1], '\\') : '';
+	return array('icon' => '', 'fontfamily' => '');
 }
