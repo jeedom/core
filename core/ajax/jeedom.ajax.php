@@ -185,72 +185,14 @@ try {
 	}
 
 	if (init('action') == 'getGraphData') {
-		$return['object'] = array();
-		$return['scenario'] = array();
-		if (init('filter_type') == 'scenario') {
-			$return['scenario'][init('filter_id')] = utils::o2a(scenario::byId(init('filter_id')));
+		$return = array('node' => array(), 'link' => array());
+		$object = null;
+		$type = init('filter_type');
+		$object = $type::byId(init('filter_id'));
+		if (!is_object($object)) {
+			throw new Exception(__('Type :', __FILE__) . init('filter_type') . __(' avec id : ', __FILE__) . init('filter_id') . __(' inconnu', __FILE__));
 		}
-		if (init('filter_type') != 'object') {
-			$objects = object::all();
-		} else {
-			$objects = array(object::byId(init('filter_id')));
-		}
-		foreach ($objects as $object) {
-			$info_object = utils::o2a($object);
-			$info_object['eqLogic'] = array();
-			foreach ($object->getEqLogic() as $eqLogic) {
-				if (init('filter_type') == 'eqLogic' && init('filter_id') != $eqLogic->getId()) {
-					continue;
-				}
-				$info_eqLogic = utils::o2a($eqLogic);
-				$info_eqLogic['cmd'] = array();
-				foreach ($eqLogic->getCmd() as $cmd) {
-					if (init('filter_type') == 'cmd' && init('filter_id') != $cmd->getId()) {
-						continue;
-					}
-					$info_cmd = utils::o2a($cmd);
-					$info_cmd['usedBy'] = $cmd->getUsedBy(true);
-					$findScenario = (init('filter_type') != 'scenario') ? true : false;
-					$scenarios = array();
-					foreach ($info_cmd['usedBy']['scenario'] as $scenario) {
-						if (init('filter_type') == 'scenario' && init('filter_id') == $scenario['id']) {
-							$findScenario = true;
-						}
-						$scenarios[$scenario['id']] = $scenario;
-					}
-					if (!$findScenario) {
-						continue;
-					}
-					$return['scenario'] = array_merge($return['scenario'], $scenarios);
-					foreach ($info_cmd['usedBy']['eqLogic'] as $eqLogic_tmp) {
-						if ($eqLogic_tmp['object_id'] == $object->getId()) {
-							if (!isset($info_object['eqLogic'][$eqLogic_tmp['id']])) {
-								$info_object['eqLogic'][$eqLogic_tmp['id']] = $eqLogic_tmp;
-							}
-						} else {
-							$object_tmp = object::byId($eqLogic_tmp['object_id']);
-							if (!isset($return['object'][$object_tmp->getId()])) {
-								$return['object'][$object->getId()] = utils::o2a($object_tmp);
-								$return['object'][$object->getId()] = array();
-							}
-							if (!isset($return['object'][$object_tmp->getId()]['eqLogic'][$eqLogic_tmp['id']])) {
-								$return['object'][$object_tmp->getId()]['eqLogic'][$eqLogic_tmp['id']] = $eqLogic_tmp;
-							}
-						}
-					}
-					$info_eqLogic['cmd'][$cmd->getId()] = $info_cmd;
-				}
-				if (count($info_eqLogic['cmd']) == 0) {
-					continue;
-				}
-				$info_object['eqLogic'][$eqLogic->getId()] = $info_eqLogic;
-			}
-			if (count($info_object['eqLogic']) == 0) {
-				continue;
-			}
-			$return['object'][$object->getId()] = $info_object;
-		}
-		ajax::success($return);
+		ajax::success($object->getLinkData());
 	}
 
 	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));

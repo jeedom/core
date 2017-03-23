@@ -1555,6 +1555,53 @@ class cmd {
 		return $return;
 	}
 
+	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = 3) {
+		$_level++;
+		if ($_level > $_drill) {
+			return $_data;
+		}
+		$_data['node']['cmd' . $this->getId()] = array(
+			'id' => 'cmd' . $this->getId(),
+			'name' => $this->getName(),
+			'shape' => 'rect',
+			'width' => 10,
+			'height' => 10,
+			'color' => 'black',
+		);
+		$usedBy = $this->getUsedBy();
+		if (count($usedBy['scenario']) > 0) {
+			foreach ($usedBy['scenario'] as $scenario) {
+				$scenario->getLinkData($_data, $_level, $_drill);
+				$_data['link']['scenario' . $scenario->getId() . '-cmd' . $this->getId()] = array(
+					'from' => 'scenario' . $scenario->getId(),
+					'to' => 'cmd' . $this->getId(),
+					'lengthfactor' => 0.6,
+				);
+			}
+		}
+		if (count($usedBy['eqLogic']) > 0) {
+			foreach ($usedBy['eqLogic'] as $eqLogic) {
+				$eqLogic->getLinkData($_data, $_level, $_drill);
+				$_data['link']['eqLogic' . $eqLogic->getId() . '-cmd' . $this->getId()] = array(
+					'from' => 'eqLogic' . $eqLogic->getId(),
+					'to' => 'cmd' . $this->getId(),
+					'lengthfactor' => 0.6,
+				);
+			}
+		}
+		if (count($usedBy['cmd']) > 0) {
+			foreach ($usedBy['cmd'] as $cmd) {
+				$cmd->getLinkData($_data, $_level, $_drill);
+				$_data['link']['cmd' . $cmd->getId() . '-cmd' . $this->getId()] = array(
+					'from' => 'cmd' . $cmd->getId(),
+					'to' => 'cmd' . $this->getId(),
+					'lengthfactor' => 0.6,
+				);
+			}
+		}
+		return $_data;
+	}
+
 	/*     * **********************Getteur Setteur*************************** */
 
 	public function getId() {
@@ -1770,5 +1817,3 @@ class cmd {
 	}
 
 }
-
- 

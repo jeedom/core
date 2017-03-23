@@ -37,73 +37,11 @@ if (!isConnect('admin')) {
             $('#div_alertGraphLink').showAlert({message: error.message, level: 'danger'});
         },
 		success : function(data){
-			for(var i in data.scenario){
-				var scenario = data.scenario[i];
-				graph.addNode('scenario'+scenario.id, {
-					name : scenario.name,
-					color : 'green',
-					shape : 'rect',
-					width : 10,
-					height : 10
-				});
+			for(var i in data.node){
+				graph.addNode(i, data.node[i]);
 			}
-
-
-			for(var i in data.object){
-				var object = data.object[i];
-				graph.addNode('object'+object.id, {
-					name : object.name,
-					type : 'object',
-					color : 'red',
-					shape : 'rect',
-					width : 10,
-					height : 10
-				});
-				for(var j in object.eqLogic){
-					var eqLogic = object.eqLogic[j];
-					graph.addNode('eqLogic'+eqLogic.id, {
-						name : eqLogic.name,
-						type : 'eqLogic',
-						color : 'blue',
-						shape : 'rect',
-						width : 10,
-						height : 10
-					});
-					for(var l in eqLogic.cmd){
-						var cmd = eqLogic.cmd[l];
-						graph.addNode('cmd'+cmd.id, {
-							name : cmd.name,
-							type : 'cmd',
-							color : 'black',
-							shape : 'rect',
-							width : 10,
-							height : 10
-						});
-					}
-				}
-			}
-			for(var i in data.object){
-				var object = data.object[i];
-				for(var j in object.eqLogic){
-					var eqLogic = object.eqLogic[j];
-					graph.addLink('object'+object.id, 'eqLogic'+eqLogic.id,{lengthfactor: 1});
-					for(var l in eqLogic.cmd){
-						var cmd = eqLogic.cmd[l];
-						graph.addLink('eqLogic'+eqLogic.id, 'cmd'+cmd.id,{lengthfactor: 1});
-						for(m in cmd.usedBy.eqLogic){
-							var uEqLogic = cmd.usedBy.eqLogic[m];
-							graph.addLink('eqLogic'+uEqLogic.id, 'cmd'+cmd.id,{lengthfactor: 1});
-						}
-						for(m in cmd.usedBy.cmd){
-							var uCmd = cmd.usedBy.cmd[m];
-							graph.addLink('cmd'+uCmd.id, 'cmd'+cmd.id,{lengthfactor: 1});
-						}
-						for(m in cmd.usedBy.scenario){
-							var uScenario = cmd.usedBy.scenario[m];
-							graph.addLink('scenario'+uScenario.id, 'cmd'+cmd.id,{lengthfactor: 1});
-						}
-					}
-				}
+			for(var i in data.link){
+				graph.addLink(data.link[i].from, data.link[i].to,data.link[i]);
 			}
 			render();
 		}

@@ -1033,6 +1033,30 @@ class eqLogic {
 		return $return;
 	}
 
+	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = 4) {
+		$_level++;
+		if ($_level > $_drill) {
+			return $_data;
+		}
+		$_data['node']['eqLogic' . $this->getId()] = array(
+			'id' => 'eqLogic' . $this->getId(),
+			'name' => $this->getName(),
+			'shape' => 'rect',
+			'width' => 10,
+			'height' => 10,
+			'color' => 'blue',
+		);
+		foreach ($this->getCmd() as $cmd) {
+			$cmd->getLinkData($_data, $_level, $_drill);
+			$_data['link']['eqLogic' . $this->getId() . '-cmd' . $cmd->getId()] = array(
+				'from' => 'eqLogic' . $this->getId(),
+				'to' => 'cmd' . $cmd->getId(),
+				'lengthfactor' => 0.6,
+			);
+		}
+		return $_data;
+	}
+
 /*     * **********************Getteur Setteur*************************** */
 
 	public function getId() {
@@ -1253,5 +1277,3 @@ class eqLogic {
 	}
 
 }
-
-

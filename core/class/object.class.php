@@ -589,6 +589,30 @@ class object {
 		return trim($return) . '</span>';
 	}
 
+	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = 4) {
+		$_level++;
+		if ($_level > $_drill) {
+			return $_data;
+		}
+		$_data['node']['object' . $this->getId()] = array(
+			'id' => 'object' . $this->getId(),
+			'name' => $this->getName(),
+			'shape' => 'rect',
+			'width' => 10,
+			'height' => 10,
+			'color' => 'red',
+		);
+		foreach ($this->getEqLogic() as $eqLogic) {
+			$eqLogic->getLinkData($_data, $_level, $_drill);
+			$_data['link']['object' . $this->getId() . '-eqLogic' . $eqLogic->getId()] = array(
+				'from' => 'object' . $this->getId(),
+				'to' => 'eqLogic' . $eqLogic->getId(),
+				'lengthfactor' => 0.6,
+			);
+		}
+		return $_data;
+	}
+
 	/*     * **********************Getteur Setteur*************************** */
 
 	public function getId() {

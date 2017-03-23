@@ -462,7 +462,7 @@ class scenario {
 
 		preg_match_all("/#\[(.*?)\]\[(.*?)\]\[(.*?)\]#/", $text, $matches);
 		if (count($matches) == 4) {
-			$countMatches = count($matches[0]); 
+			$countMatches = count($matches[0]);
 			for ($i = 0; $i < $countMatches; $i++) {
 				if (isset($matches[1][$i]) && isset($matches[2][$i]) && isset($matches[3][$i])) {
 					$scenario = self::byObjectNameGroupNameScenarioName($matches[1][$i], $matches[2][$i], $matches[3][$i]);
@@ -1029,7 +1029,6 @@ class scenario {
 		}
 		if ($_mode == 'array') {
 			$return = utils::o2a($this);
-
 			$return['trigger'] = jeedom::toHumanReadable($return['trigger']);
 			$return['elements'] = array();
 			foreach ($this->getElement() as $element) {
@@ -1158,6 +1157,44 @@ class scenario {
 		$return = utils::o2a($this, true);
 		$return['state'] = $this->getCache('state');
 		$return['lastLaunch'] = $this->getCache('lastLaunch');
+		return $return;
+	}
+
+	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = 3) {
+		$_level++;
+		if ($_level > $_drill) {
+			return $_data;
+		}
+		$_data['node']['scenario' . $this->getId()] = array(
+			'id' => 'scenario' . $this->getId(),
+			'name' => $this->getName(),
+			'shape' => 'rect',
+			'width' => 10,
+			'height' => 10,
+			'color' => 'green',
+		);
+		$use = $this->getUse();
+		foreach ($use['cmd'] as $cmd) {
+			$cmd->getLinkData($_data, $_level, $_drill);
+			$_data['link']['scenario' . $cmd->getId() . '-cmd' . $cmd->getId()] = array(
+				'from' => 'scenario' . $this->getId(),
+				'to' => 'cmd' . $cmd->getId(),
+				'lengthfactor' => 0.6,
+			);
+		}
+		return $_data;
+	}
+
+	public function getUse() {
+		$return = array('cmd' => array());
+		$json = jeedom::fromHumanReadable(json_encode($this->export('array')));
+		preg_match_all("/#([0-9]*)#/", $json, $matches);
+		foreach ($matches[1] as $cmd_id) {
+			if (isset($return['cmd'][$cmd_id])) {
+				continue;
+			}
+			$return['cmd'][$cmd_id] = cmd::byId($cmd_id);
+		}
 		return $return;
 	}
 
