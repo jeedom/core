@@ -1599,6 +1599,15 @@ class cmd {
 				);
 			}
 		}
+		if (!isset($_data['eqLogic' . $this->getEqLogic_id()])) {
+			$eqLogic = $this->getEqLogic();
+			$eqLogic->getLinkData($_data, $_level, $_drill);
+			$_data['link']['eqLogic' . $eqLogic->getId() . '-cmd' . $this->getId()] = array(
+				'from' => 'eqLogic' . $eqLogic->getId(),
+				'to' => 'cmd' . $this->getId(),
+				'lengthfactor' => 0.6,
+			);
+		}
 		return $_data;
 	}
 

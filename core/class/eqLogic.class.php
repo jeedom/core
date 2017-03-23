@@ -1054,6 +1054,15 @@ class eqLogic {
 				'lengthfactor' => 0.6,
 			);
 		}
+		if (!isset($_data['object' . $this->getObject_id()])) {
+			$object = $this->getObject();
+			$object->getLinkData($_data, $_level, $_drill);
+			$_data['link']['object' . $object->getId() . '-eqLogic' . $this->getId()] = array(
+				'from' => 'object' . $object->getId(),
+				'to' => 'eqLogic' . $this->getId(),
+				'lengthfactor' => 0.6,
+			);
+		}
 		return $_data;
 	}
 
