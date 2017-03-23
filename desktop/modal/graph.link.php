@@ -67,23 +67,28 @@ if (!isConnect('admin')) {
 			var ui = Viva.Graph.svg('g');
 			ui.append(Viva.Graph.svg('text').attr('y', '0px').text(node.data.name));
 
-			if(typeof node.data.image != 'undefined'){
+			if(typeof node.data.image != 'undefined'  && $.trim(node.data.image)){
 				img = Viva.Graph.svg('image')
 				.attr('width', node.data.width)
 				.attr('height', node.data.height)
 				.link(node.data.image);
-			}else if(typeof node.data.icon != 'undefined'){
+			}else if(typeof node.data.icon != 'undefined' && $.trim(node.data.icon)){
 				img = Viva.Graph.svg('text')
 				  .attr("x",0)
 				  .attr("y",node.data.posy)
 				  .attr("font-family","FontAwesome")
 				  .attr("font-size",node.data.fontsize)
 				  .text(String.fromCodePoint(parseInt(node.data.icon, 16)));
-			}else{
+			}else if(typeof node.data.shape != 'undefined' && $.trim(node.data.shape)){
 				img = Viva.Graph.svg(node.data.shape)
 				.attr("width", node.data.width)
 				.attr("height", node.data.height)
 				.attr("fill", node.data.color);
+			}else{
+				img = Viva.Graph.svg('rect')
+				.attr("width", 24)
+				.attr("height", 24)
+				.attr("fill", 'black');
 			}
 			ui.append(img);
 			$(ui).hover(function () {

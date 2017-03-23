@@ -1047,10 +1047,8 @@ class eqLogic {
 		$_data['node']['eqLogic' . $this->getId()] = array(
 			'id' => 'eqLogic' . $this->getId(),
 			'name' => $this->getName(),
-			'shape' => 'rect',
 			'width' => 60,
 			'height' => 60,
-			'color' => 'blue',
 			'image' => $this->getImage(),
 		);
 
