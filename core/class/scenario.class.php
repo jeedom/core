@@ -1161,6 +1161,9 @@ class scenario {
 	}
 
 	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = 3) {
+		if ($this->getIsActive() == 0 && $_level == 0) {
+			return $_data;
+		}
 		$_level++;
 		if ($_level > $_drill) {
 			return $_data;
