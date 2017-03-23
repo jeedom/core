@@ -1033,6 +1033,11 @@ class eqLogic {
 		return $return;
 	}
 
+	public function getImage() {
+		$plugin = plugin::byId($this->getEqType_name());
+		return $plugin->getPathImgIcon();
+	}
+
 	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = 3) {
 		$_level++;
 		if ($_level > $_drill) {
@@ -1046,7 +1051,7 @@ class eqLogic {
 			'width' => 10,
 			'height' => 10,
 			'color' => 'blue',
-			'image' => $plugin->getPathImgIcon(),
+			'image' => $this->getImage(),
 		);
 
 		foreach ($this->getCmd() as $cmd) {
