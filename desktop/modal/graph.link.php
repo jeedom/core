@@ -115,11 +115,13 @@ if (!isConnect('admin')) {
 			}
 		});
 		graphics.link(function (link) {
-			dashvalue = '5, 0';
-			if (link.data.isdash == 1) {
-				dashvalue = '5, 2';
+			if(typeof link.data.dashvalue == 'undefined'){
+				link.data.dashvalue = '0,0';
 			}
-			return Viva.Graph.svg('line').attr('stroke', '#B7B7B7').attr('stroke-dasharray', dashvalue).attr('stroke-width', '0.4px');
+			return Viva.Graph.svg('line')
+			.attr('stroke', '#B7B7B7')
+			.attr('stroke-dasharray', link.data.dashvalue)
+			.attr('stroke-width', '2px')
 		});
 		var renderer = Viva.Graph.View.renderer(graph, {
 			layout: layout,

@@ -619,6 +619,7 @@ class object {
 					'from' => 'object' . $this->getId(),
 					'to' => 'cmd' . $cmd->getId(),
 					'lengthfactor' => 0.6,
+					'dashvalue' => '5,3',
 				);
 			}
 		}
@@ -629,6 +630,7 @@ class object {
 					'from' => 'scenario' . $this->getId(),
 					'to' => 'object' . $scenario->getId(),
 					'lengthfactor' => 0.6,
+					'dashvalue' => '5,3',
 				);
 			}
 		}

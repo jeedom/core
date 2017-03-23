@@ -1071,6 +1071,7 @@ class eqLogic {
 					'from' => 'eqLogic' . $this->getId(),
 					'to' => 'cmd' . $cmd->getId(),
 					'lengthfactor' => 0.6,
+					'dashvalue' => '5,3',
 				);
 			}
 		}
@@ -1081,6 +1082,7 @@ class eqLogic {
 					'from' => 'scenario' . $scenario->getId(),
 					'to' => 'eqLogic' . $this->getId(),
 					'lengthfactor' => 0.6,
+					'dashvalue' => '5,3',
 				);
 			}
 		}

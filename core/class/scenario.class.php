@@ -1185,6 +1185,7 @@ class scenario {
 					'from' => 'scenario' . $this->getId(),
 					'to' => 'cmd' . $cmd->getId(),
 					'lengthfactor' => 0.6,
+					'dashvalue' => '5,3',
 				);
 			}
 		}
@@ -1195,6 +1196,7 @@ class scenario {
 					'from' => 'scenario' . $this->getId(),
 					'to' => 'scenario' . $scenario->getId(),
 					'lengthfactor' => 0.6,
+					'dashvalue' => '5,3',
 				);
 			}
 		}

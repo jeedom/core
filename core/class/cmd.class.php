@@ -1577,6 +1577,7 @@ class cmd {
 					'from' => 'scenario' . $scenario->getId(),
 					'to' => 'cmd' . $this->getId(),
 					'lengthfactor' => 0.6,
+					'dashvalue' => '5,3',
 				);
 			}
 		}
@@ -1587,6 +1588,7 @@ class cmd {
 					'from' => 'eqLogic' . $eqLogic->getId(),
 					'to' => 'cmd' . $this->getId(),
 					'lengthfactor' => 0.6,
+					'dashvalue' => '5,3',
 				);
 			}
 		}
@@ -1597,6 +1599,7 @@ class cmd {
 					'from' => 'cmd' . $cmd->getId(),
 					'to' => 'cmd' . $this->getId(),
 					'lengthfactor' => 0.6,
+					'dashvalue' => '5,3',
 				);
 			}
 		}
