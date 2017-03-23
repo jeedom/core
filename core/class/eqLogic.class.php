@@ -1038,6 +1038,7 @@ class eqLogic {
 		if ($_level > $_drill) {
 			return $_data;
 		}
+		$plugin = plugin::byId($this->getEqType_name());
 		$_data['node']['eqLogic' . $this->getId()] = array(
 			'id' => 'eqLogic' . $this->getId(),
 			'name' => $this->getName(),
@@ -1045,7 +1046,9 @@ class eqLogic {
 			'width' => 10,
 			'height' => 10,
 			'color' => 'blue',
+			'image' => $plugin->getPathImgIcon(),
 		);
+
 		foreach ($this->getCmd() as $cmd) {
 			$cmd->getLinkData($_data, $_level, $_drill);
 			$_data['link']['eqLogic' . $this->getId() . '-cmd' . $cmd->getId()] = array(
