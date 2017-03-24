@@ -650,6 +650,18 @@ class object {
 				);
 			}
 		}
+		if (count($use['dataStore']) > 0) {
+			foreach ($use['dataStore'] as $dataStore) {
+				$dataStore->getLinkData($_data, $_level, $_drill);
+				$_data['link']['object' . $this->getId() . '-dataStore' . $dataStore->getId()] = array(
+					'from' => 'object' . $this->getId(),
+					'to' => 'dataStore' . $dataStore->getId(),
+					'lengthfactor' => 0.6,
+					'dashvalue' => '5,3',
+				);
+			}
+		}
+
 		$childs = $this->getChild();
 		if (count($childs) > 0) {
 			foreach ($childs as $child) {

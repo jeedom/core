@@ -119,6 +119,64 @@ class dataStore {
 		DB::remove($this);
 	}
 
+	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = 3) {
+		if (isset($_data['node']['dataStore' . $this->getId()])) {
+			return;
+		}
+		$_level++;
+		if ($_level > $_drill) {
+			return $_data;
+		}
+		$icon = findCodeIcon('fa-code');
+		$_data['node']['dataStore' . $this->getId()] = array(
+			'id' => 'dataStore' . $this->getId(),
+			'name' => $this->getKey(),
+			'icon' => $icon['icon'],
+			'fontfamily' => $icon['fontfamily'],
+			'fontsize' => '1.5em',
+			'texty' => -14,
+			'textx' => 0,
+			'title' => __('Variable :', __FILE__) . ' ' . $this->getKey(),
+		);
+
+		$usedBy = $this->getUsedBy();
+		if (count($usedBy['scenario']) > 0) {
+			foreach ($usedBy['scenario'] as $scenario) {
+				$scenario->getLinkData($_data, $_level, $_drill);
+				$_data['link']['scenario' . $scenario->getId() . '-dataStore' . $this->getId()] = array(
+					'from' => 'scenario' . $scenario->getId(),
+					'to' => 'dataStore' . $this->getId(),
+					'lengthfactor' => 0.6,
+					'dashvalue' => '5,3',
+				);
+			}
+		}
+		if (count($usedBy['eqLogic']) > 0) {
+			foreach ($usedBy['eqLogic'] as $eqLogic) {
+				$eqLogic->getLinkData($_data, $_level, $_drill);
+				$_data['link']['dataStore' . $this->getId() . '-eqLogic' . $eqLogic->getId()] = array(
+					'from' => 'dataStore' . $this->getId(),
+					'to' => 'eqLogic' . $eqLogic->getId(),
+					'lengthfactor' => 0.6,
+					'dashvalue' => '5,3',
+				);
+			}
+		}
+		if (count($usedBy['cmd']) > 0) {
+			foreach ($usedBy['cmd'] as $cmd) {
+				$cmd->getLinkData($_data, $_level, $_drill);
+				$_data['link']['dataStore' . $this->getId() . '-cmd' . $cmd->getId()] = array(
+					'from' => 'dataStore' . $this->getId(),
+					'to' => 'cmd' . $cmd->getId(),
+					'lengthfactor' => 0.6,
+					'dashvalue' => '5,3',
+				);
+			}
+		}
+
+		return $_data;
+	}
+
 	public function getUsedBy($_array = false) {
 		$return = array('cmd' => array(), 'eqLogic' => array(), 'scenario' => array());
 		$return['cmd'] = cmd::searchConfiguration('variable(' . $this->getKey() . ')');

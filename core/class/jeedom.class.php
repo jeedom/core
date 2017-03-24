@@ -880,7 +880,7 @@ class jeedom {
 	}
 
 	public static function getTypeUse($_string = '') {
-		$return = array('cmd' => array(), 'scenario' => array(), 'eqLogic' => array());
+		$return = array('cmd' => array(), 'scenario' => array(), 'eqLogic' => array(), 'dataStore' => array());
 		preg_match_all("/#([0-9]*)#/", $_string, $matches);
 		foreach ($matches[1] as $cmd_id) {
 			if (isset($return['cmd'][$cmd_id])) {
@@ -935,6 +935,17 @@ class jeedom {
 				continue;
 			}
 			$return['eqLogic'][$eqLogic_id] = $eqLogic;
+		}
+		preg_match_all('/variable\((.*?)\)/', $_string, $matches);
+		foreach ($matches[1] as $variable) {
+			if (isset($return['dataStore'][$variable])) {
+				continue;
+			}
+			$dataStore = dataStore::byTypeLinkIdKey('scenario', -1, trim($variable));
+			if (!is_object($dataStore)) {
+				continue;
+			}
+			$return['dataStore'][$variable] = $dataStore;
 		}
 		return $return;
 	}

@@ -1630,6 +1630,17 @@ class cmd {
 				);
 			}
 		}
+		if (count($use['dataStore']) > 0) {
+			foreach ($use['dataStore'] as $dataStore) {
+				$dataStore->getLinkData($_data, $_level, $_drill);
+				$_data['link']['dataStore' . $dataStore->getId() . '-cmd' . $this->getId()] = array(
+					'from' => 'dataStore' . $dataStore->getId(),
+					'to' => 'cmd' . $this->getId(),
+					'lengthfactor' => 0.6,
+					'dashvalue' => '5,3',
+				);
+			}
+		}
 
 		if (!isset($_data['eqLogic' . $this->getEqLogic_id()])) {
 			$eqLogic = $this->getEqLogic();

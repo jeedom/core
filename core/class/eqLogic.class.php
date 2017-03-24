@@ -1100,6 +1100,17 @@ class eqLogic {
 				);
 			}
 		}
+		if (count($use['dataStore']) > 0) {
+			foreach ($use['dataStore'] as $dataStore) {
+				$dataStore->getLinkData($_data, $_level, $_drill);
+				$_data['link']['dataStore' . $dataStore->getId() . '-eqLogic' . $this->getId()] = array(
+					'from' => 'dataStore' . $dataStore->getId(),
+					'to' => 'eqLogic' . $this->getId(),
+					'lengthfactor' => 0.6,
+					'dashvalue' => '5,3',
+				);
+			}
+		}
 
 		$usedBy = $this->getUsedBy();
 		if (count($usedBy['cmd']) > 0) {
