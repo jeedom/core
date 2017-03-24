@@ -471,13 +471,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Nom de votre Jeedom</strong> : peut être réutilisé dans les scénarios ou permettre d&#8217;identifier un backup</p>
+<p>* Nombre de Jeedom* : se puede reutlizar en los escenarios o permite identificar un backup</p>
 </li>
 <li>
 <p>* * Clave API: la clave de la API a utilizar para cualquier aplicación en la API de Jeedom</p>
-</li>
+<div class="ulist">
+<ul>
 <li>
-<p><strong>Clef API Pro</strong> : utilisée pour communiquer avec le système de gestion de parc</p>
+<p>Clave de API de Pro *: utilizado para conectar con el sistema de gestión de Parque</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p><strong>Sistema</strong>: modelo de hardware</p>
@@ -498,7 +502,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><strong>Servidor de tiempo opcional</strong> : permite añadir un servidor de tiempo opcional (reservado para expertos)</p>
 </li>
 <li>
-<p><strong>Ignorer la vérification de l&#8217;heure</strong> : indique à Jeedom de ne pas vérifier si l&#8217;heure est cohérente. Utile par exemple si vous ne connectez pas Jeedom à Internet et qu&#8217;il n&#8217;a pas de pile RTC</p>
+<p>* Ignorar la verificación horario * : indica a Jeedom que no verifique si la hora es coherente. Útil por ejemplo si no conecta Jeedom a Internet y no dispone de ninguna batería RTC</p>
 </li>
 <li>
 <p><strong>Modo</strong>: Modo de Jeedom, maestro o esclavo. Atención, al pasar a esclavo, todos los dispositivos, escenas, diseños&#8230;&#8203; serán eliminados</p>
@@ -563,7 +567,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>Partie très importante dans Jeedom, il faut absolument la configurer correctement sinon beaucoup de plugins risquent d&#8217;être non fonctionnels.</p>
+<p>Parte muy importante en Jeedom, debe ser capaz de configurarlo correctamente, de lo contrario una gran cantidad de plugins pueden no ser no funcionales.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -584,15 +588,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><strong>Puerto</strong>: El puerto, generalmente 80. Atención, cambiar el puerto aquí no cambia el puerto real de Jeedom, que seguirá siendo el mismo.</p>
 </li>
 <li>
-<p><strong>Statut</strong> : indique si la configuration réseau interne est correcte</p>
-</li>
-</ul>
-</div>
+<p><strong>Estado</strong> : indica si la configuración de la red interna es correcta</p>
 </li>
 <li>
-<p><strong>Accès externe</strong> : information pour joindre Jeedom de l&#8217;extérieur. À ne remplir que si vous n&#8217;utilisez pas le DNS Jeedom</p>
-<div class="ulist">
-<ul>
+<p>Acceso externo* : información para conectar a Jeedom desde el exterior. Rellenar sólo si no utilizas el DNS Jeedom</p>
+</li>
 <li>
 <p><strong>Protocolo</strong>: Protocolo a utilizar para el acceso desde el exterior</p>
 </li>
@@ -649,10 +649,10 @@ Si accede a través de HTTPS, el puerto por defecto es el 443 y si lo hace a tra
 <p>Esta parte es para mostrar el entorno Jeedom: un cambio en el puerto o IP, no va a cambiar el puerto y la IP de Jeedom. Para ello debe conectarse por SSH y editar el archivo/etc/network/interfaces para la IP y los archivos etc/nginx/sitios-disponible/default y etc/nginx/sitios-disponible/default_ssl (para HTTPS). En caso de manipulación inadecuada de su configuración, el equipo de Jeedom no será responsable y podrá denegar cualquier solicitud de soporte.</p>
 </div>
 <div class="paragraph">
-<p>Vous pouvez voir <a href="http://blog.domadoo.fr/2014/10/15/acceder-depuis-lexterieur-jeedom-en-https">ici</a> un tutoriel pour mettre en place un certificat HTTPS auto-signé.</p>
+<p>Puede ver el <a href="http://blog.domadoo.fr/2014/10/15/acceder-depuis-lexterieur-jeedom-en-https">aquí</a> un tutorial para instalar un certificado auto firmado</p>
 </div>
 <div class="paragraph">
-<p>Si vous n&#8217;arrivez pas à faire fonctionner le DNS Jeedom, regardez la configuration du pare-feu et filtre parental de votre box (sur livebox il faut par exemple le pare-feu en moyen).</p>
+<p>Si no le es posible hacer funcionar DNS Jeedom, revise la configuración del firewall y el filtro parental de su router</p>
 </div>
 </div>
 </div>
@@ -660,7 +660,7 @@ Si accede a través de HTTPS, el puerto por defecto es el 443 y si lo hace a tra
 <h2 id="_configuración_de_colores">4. Configuración de colores</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>La colorisation des widgets est effectuée en fonction de la catégorie d&#8217;appartenance du widget qui est définie dans la configuration de chaque module (voir plugin Z-Wave, RFXCOM&#8230;&#8203; etc). Parmi les catégories on retrouve le chauffage, les lumières, les automatismes etc&#8230;&#8203;</p>
+<p>El ajuste de color de los widgets se realiza en función de la categoría a la que pertenece el widget que se define en la configuración de cada módulo (ver plugin de Z-Wave, RFXCOM&#8230;&#8203; etc). Las categorías incluyen calefacción, luces, automatización etc &#8230;&#8203;</p>
 </div>
 <div class="paragraph">
 <p>Para cada categoría se puede elegir un color diferente para la versión de escritorio y la versión móvil. También hay 2 tipos de colores, los colores de fondo de los widgets y colores de comandos color cuando el widget es de tipo gradual, por ejemplo, las luces, persianas, temperaturas.</p>
@@ -679,7 +679,7 @@ Si accede a través de HTTPS, el puerto por defecto es el 443 y si lo hace a tra
 </div>
 </div>
 <div class="paragraph">
-<p>Vous pouvez aussi configurer ici la transparence des widgets de manière globale (qui sera la valeur par défaut, il est possible ensuite de modifier cette valeur widget par widget).</p>
+<p>También puede ajustar la transparencia de los widgets en una forma global (que será el valor por defecto, es posible cambiar este valor widget por widget)</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -688,7 +688,7 @@ Si accede a través de HTTPS, el puerto por defecto es el 443 y si lo hace a tra
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-N&#8217;oubliez pas de sauvegarder après toute modification.
+No olvide guardar los cambios después de hacer modificaciones
 </td>
 </tr>
 </table>
@@ -837,12 +837,12 @@ N&#8217;oubliez pas de sauvegarder après toute modification.
 <h2 id="_depósitos">11. Depósitos</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Les dépôts sont des espaces de stockage (et de service) pour pouvoir mettre des backups, récupérer des plugins, récupérer le core de jeedom&#8230;&#8203;.</p>
+<p>Los repositorio son espacios de almacenamiento (y servicio) para poder poner copias de seguridad, obtener plugins, recuperar la base de jeedom&#8230;&#8203;</p>
 </div>
 <div class="sect3">
 <h4 id="_market">11.1. Market</h4>
 <div class="paragraph">
-<p>Dépôt servant à relier Jeedom au market, il est vivement conseillé d&#8217;utiliser ce dépôt. Attention toute demande de support pourra être refusée si vous utilisez un autre dépôt que celui-ci.</p>
+<p>Servidor de repositiorios conectados al market de Jeedom, es recomendable utilizar este repositorio. Atención cualquier solicitud de soporte podrá ser denegada si usted utiliza otro repositorio diferente a este.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -866,7 +866,7 @@ N&#8217;oubliez pas de sauvegarder après toute modification.
 <div class="sect3">
 <h4 id="_archivo">11.2. Archivo</h4>
 <div class="paragraph">
-<p>Dépôt servant à activer l&#8217;envoi de plugins par des fichiers.</p>
+<p>Repositorio para activar el  envio de ficheros de plugin</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -877,7 +877,7 @@ N&#8217;oubliez pas de sauvegarder après toute modification.
 <div class="sect3">
 <h4 id="_github">11.3. Github</h4>
 <div class="paragraph">
-<p>Dépôt servant à relier Jeedom à Github.</p>
+<p>Repositiorio utilizado para conectar Jeedom a Github</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -887,7 +887,7 @@ N&#8217;oubliez pas de sauvegarder après toute modification.
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Token</strong> : token pour l&#8217;accès au dépôt privé</p>
+<p><strong>Token</strong> : Token para el acceso al repositorio privado</p>
 </li>
 <li>
 <p>*Usuario u organización del repositorio para el core de Jeedom *.</p>
@@ -904,7 +904,7 @@ N&#8217;oubliez pas de sauvegarder après toute modification.
 <div class="sect3">
 <h4 id="_samba">11.4. Samba</h4>
 <div class="paragraph">
-<p>Dépôt permettant d&#8217;envoyer automatiquement un backup de Jeedom sur un partage Samba (ex NAS Synology).</p>
+<p>Repositorio para enviar un backup automático de jeedom en un recurso compartido de samba (ej. NAS Synology)</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -917,24 +917,24 @@ N&#8217;oubliez pas de sauvegarder après toute modification.
 <p><strong>[Backup] IP</strong> : IP del servidor Samba</p>
 </li>
 <li>
-<p><strong>[Backup] Utilisateur</strong> : nom d&#8217;utilisateur pour la connexion (les connexions anonymes ne sont pas possibles)</p>
+<p>*[Usuario backup] *: Nombre de usuario para la conexión (conexiones anónimas no son posibles)</p>
 </li>
 <li>
-<p><strong>[Backup] Mot de passe</strong> : mot de passe de l&#8217;utilisateur</p>
+<p><strong>[Contraseña backup]</strong> : contraseña del usuario</p>
 </li>
 <li>
-<p><strong>[Backup] Partage</strong> : chemin du partage (attention à bien s&#8217;arrêter au niveau du partage)</p>
+<p><strong>[Backup] recurso</strong> : La ruta del recurso compartido (Asegúrese de indicar la ruta compartida correcta)</p>
 </li>
 <li>
-<p><strong>[Backup] Chemin</strong> : chemin dans le partage (à mettre en relatif), celui-ci doit exister</p>
+<p>*[Ruta Backup] *: Ruta para compartirr (para ser relativa),  debe existir</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Il vous faudra peut-être installer le package smbclient pour que le dépôt fonctionne.</p>
+<p>Tal vez necesite instalar el paquete smbclient para que el repositorio funcione</p>
 </div>
 <div class="paragraph">
-<p>Jeedom doit être le seul à écrire dans ce dossier et il doit être vide par défaut (c&#8217;est à dire avant la configuration et l&#8217;envoi du premier backup, le dossier ne doit contenir aucun fichier ou dossier).</p>
+<p>Jeedom debe poder escribir en esta carpeta, y debe estar vacía por defecto (es decir, que antes de hacer la configuración y enviar el primer Backup, la carpeta no puede contener ningún archivo o carpeta)</p>
 </div>
 </div>
 <div class="sect3">

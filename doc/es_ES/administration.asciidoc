@@ -15,16 +15,16 @@ image::../images/administration1.png[]
 
 En esta ficha, encontrará información general sobre Jeedom: 
 
-* *Nom de votre Jeedom* : peut être réutilisé dans les scénarios ou permettre d'identifier un backup
+* * Nombre de Jeedom* : se puede reutlizar en los escenarios o permite identificar un backup
 * * * Clave API: la clave de la API a utilizar para cualquier aplicación en la API de Jeedom
-* *Clef API Pro* : utilisée pour communiquer avec le système de gestion de parc
+** Clave de API de Pro *: utilizado para conectar con el sistema de gestión de Parque
 * *Sistema*: modelo de hardware
 * *Clave de instalación* : clave de hardware de su Jeedom en el market. Si tu Jeedom no aparece en la lista de tus Jeedom en el market, es recomendable hacer clic en este botón 
 * *Idioma* : Idioma de su Jeedom
 * *Duración de sesión (tiempo)*: Duración de la sesión en PHP; se aconseja no modificar este valor
 * *Fecha y hora*: Su zona horaria
 * *Servidor de tiempo opcional* : permite añadir un servidor de tiempo opcional (reservado para expertos) 
-* *Ignorer la vérification de l'heure* : indique à Jeedom de ne pas vérifier si l'heure est cohérente. Utile par exemple si vous ne connectez pas Jeedom à Internet et qu'il n'a pas de pile RTC
+* * Ignorar la verificación horario * : indica a Jeedom que no verifique si la hora es coherente. Útil por ejemplo si no conecta Jeedom a Internet y no dispone de ninguna batería RTC
 * *Modo*: Modo de Jeedom, maestro o esclavo. Atención, al pasar a esclavo, todos los dispositivos, escenas, diseños... serán eliminados
 
 ==Componentes de Jeedom
@@ -49,15 +49,15 @@ image::../images/administration2.png[]
 
 image::../images/administration3.png[]
 
-Partie très importante dans Jeedom, il faut absolument la configurer correctement sinon beaucoup de plugins risquent d'être non fonctionnels.
+Parte muy importante en Jeedom, debe ser capaz de configurarlo correctamente, de lo contrario una gran cantidad de plugins pueden no ser no funcionales.
 
 * *Acceso a internet*: Información para acceder a Jeedom desde un equipo de la misma red
 ** *Protocolo*: El protocolo a utilizar, normalmente HTTP
 ** *Dirección URL o IP*: IP de Jeedom para informar
 ** *Complemento (por ejemplo: /jeedom)*: ruta adicional de la URL (escriba /jeedom). Para saber si debe definir este valor, vea si necesita añadir /jeedom después de la IP.
 ** *Puerto*: El puerto, generalmente 80. Atención, cambiar el puerto aquí no cambia el puerto real de Jeedom, que seguirá siendo el mismo.
-** *Statut* : indique si la configuration réseau interne est correcte
-* *Accès externe* : information pour joindre Jeedom de l'extérieur. À ne remplir que si vous n'utilisez pas le DNS Jeedom
+** *Estado* : indica si la configuración de la red interna es correcta
+** Acceso externo* : información para conectar a Jeedom desde el exterior. Rellenar sólo si no utilizas el DNS Jeedom
 ** *Protocolo*: Protocolo a utilizar para el acceso desde el exterior
 ** *Dirección URL o IP*: Dirección o IP externa si es fija
 ** *Complemento (por ejemplo: /jeedom)*: ruta adicional de la URL (escriba /jeedom). Para saber si debe definir este valor, vea si necesita añadir /jeedom después de la IP.
@@ -75,14 +75,14 @@ Si accede a través de HTTPS, el puerto por defecto es el 443 y si lo hace a tra
 Esta parte es para mostrar el entorno Jeedom: un cambio en el puerto o IP, no va a cambiar el puerto y la IP de Jeedom. Para ello debe conectarse por SSH y editar el archivo/etc/network/interfaces para la IP y los archivos etc/nginx/sitios-disponible/default y etc/nginx/sitios-disponible/default_ssl (para HTTPS). En caso de manipulación inadecuada de su configuración, el equipo de Jeedom no será responsable y podrá denegar cualquier solicitud de soporte.
 
 [NOTA]
-Vous pouvez voir link:http://blog.domadoo.fr/2014/10/15/acceder-depuis-lexterieur-jeedom-en-https[ici] un tutoriel pour mettre en place un certificat HTTPS auto-signé.
+Puede ver el link:http://blog.domadoo.fr/2014/10/15/acceder-depuis-lexterieur-jeedom-en-https[aquí] un tutorial para instalar un certificado auto firmado
 
 [IMPORTANTE]
-Si vous n'arrivez pas à faire fonctionner le DNS Jeedom, regardez la configuration du pare-feu et filtre parental de votre box (sur livebox il faut par exemple le pare-feu en moyen).
+Si no le es posible hacer funcionar DNS Jeedom, revise la configuración del firewall y el filtro parental de su router
 
 == Configuración de colores
 
-La colorisation des widgets est effectuée en fonction de la catégorie d'appartenance du widget qui est définie dans la configuration de chaque module (voir plugin Z-Wave, RFXCOM... etc). Parmi les catégories on retrouve le chauffage, les lumières, les automatismes etc...
+El ajuste de color de los widgets se realiza en función de la categoría a la que pertenece el widget que se define en la configuración de cada módulo (ver plugin de Z-Wave, RFXCOM... etc). Las categorías incluyen calefacción, luces, automatización etc ...
 
 Para cada categoría se puede elegir un color diferente para la versión de escritorio y la versión móvil. También hay 2 tipos de colores, los colores de fondo de los widgets y colores de comandos color cuando el widget es de tipo gradual, por ejemplo, las luces, persianas, temperaturas.
 
@@ -92,10 +92,10 @@ Al hacer clic en el color, se abre una ventana que le permite seleccionar el col
 
 image::../images/display7.png[]
 
-Vous pouvez aussi configurer ici la transparence des widgets de manière globale (qui sera la valeur par défaut, il est possible ensuite de modifier cette valeur widget par widget).
+También puede ajustar la transparencia de los widgets en una forma global (que será el valor por defecto, es posible cambiar este valor widget por widget)
 
 [TIP]
-N'oubliez pas de sauvegarder après toute modification.
+No olvide guardar los cambios después de hacer modificaciones
 
 == Configuración de comandos
 
@@ -147,11 +147,11 @@ image::../images/administration10.png[]
 
 == Depósitos
 
-Les dépôts sont des espaces de stockage (et de service) pour pouvoir mettre des backups, récupérer des plugins, récupérer le core de jeedom....
+Los repositorio son espacios de almacenamiento (y servicio) para poder poner copias de seguridad, obtener plugins, recuperar la base de jeedom...
 
 ==== Market
 
-Dépôt servant à relier Jeedom au market, il est vivement conseillé d'utiliser ce dépôt. Attention toute demande de support pourra être refusée si vous utilisez un autre dépôt que celui-ci.
+Servidor de repositiorios conectados al market de Jeedom, es recomendable utilizar este repositorio. Atención cualquier solicitud de soporte podrá ser denegada si usted utiliza otro repositorio diferente a este.
 
 image::../images/administration17.png[]
 
@@ -161,38 +161,38 @@ image::../images/administration17.png[]
 
 ==== Archivo
 
-Dépôt servant à activer l'envoi de plugins par des fichiers.
+Repositorio para activar el  envio de ficheros de plugin
 
 image::../images/administration15.png[]
 
 ==== Github
 
-Dépôt servant à relier Jeedom à Github.
+Repositiorio utilizado para conectar Jeedom a Github
 
 image::../images/administration16.png[]
 
-* *Token* : token pour l'accès au dépôt privé
+* *Token* : Token para el acceso al repositorio privado
 * *Usuario u organización del repositorio para el core de Jeedom *.
 * *Nombre del repositorio para el core de Jeedom *.
 * *Branch para el core de jedoom*
 
 ==== Samba
 
-Dépôt permettant d'envoyer automatiquement un backup de Jeedom sur un partage Samba (ex NAS Synology).
+Repositorio para enviar un backup automático de jeedom en un recurso compartido de samba (ej. NAS Synology)
 
 image::../images/administration18.png[]
 
 * *[Backup] IP* : IP del servidor Samba
-* *[Backup] Utilisateur* : nom d'utilisateur pour la connexion (les connexions anonymes ne sont pas possibles)
-* *[Backup] Mot de passe* : mot de passe de l'utilisateur
-* *[Backup] Partage* : chemin du partage (attention à bien s'arrêter au niveau du partage)
-* *[Backup] Chemin* : chemin dans le partage (à mettre en relatif), celui-ci doit exister
+* *[Usuario backup] *: Nombre de usuario para la conexión (conexiones anónimas no son posibles)
+* *[Contraseña backup]* : contraseña del usuario
+* *[Backup] recurso* : La ruta del recurso compartido (Asegúrese de indicar la ruta compartida correcta)
+* *[Ruta Backup] *: Ruta para compartirr (para ser relativa),  debe existir
 
 [IMPORTANTE]
-Il vous faudra peut-être installer le package smbclient pour que le dépôt fonctionne.
+Tal vez necesite instalar el paquete smbclient para que el repositorio funcione
 
 [IMPORTANTE]
-Jeedom doit être le seul à écrire dans ce dossier et il doit être vide par défaut (c'est à dire avant la configuration et l'envoi du premier backup, le dossier ne doit contenir aucun fichier ou dossier).
+Jeedom debe poder escribir en esta carpeta, y debe estar vacía por defecto (es decir, que antes de hacer la configuración y enviar el primer Backup, la carpeta no puede contener ningún archivo o carpeta)
 
 ==== URL
 

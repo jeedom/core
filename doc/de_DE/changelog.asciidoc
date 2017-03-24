@@ -80,7 +80,8 @@
 * Optimisation de la restoration
 * Optimisation du processus de mise à jour
 * Uniformisation du tmp jeedom, maintenant tout est dans /tmp/jeedom
-* Possibilité d'avoir un graph des differentes liaison d'un scénario, équipement, objet ou commande 
+* Possibilité d'avoir un graph des differentes liaison d'un scénario, équipement, objet, commande ou variable
+* Possibilité de regler la profondeur des graphique de lien en fonction de l'objet d'origine
 
 = 2.4.6
 
