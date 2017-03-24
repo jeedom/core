@@ -1054,6 +1054,7 @@ class eqLogic {
 			'name' => $this->getName(),
 			'width' => 60,
 			'height' => 60,
+			'fontweight' => ($_level == 1) ? 'bold' : 'normal',
 			'image' => $this->getImage(),
 			'title' => $this->getHumanName(),
 		);

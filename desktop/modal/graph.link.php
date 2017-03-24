@@ -69,7 +69,7 @@ if (!isConnect('admin')) {
 			.attr('y', -15).text(node.data.name)
 			.attr('alignment-baseline','central')
 			.attr('text-anchor','middle')
-			.attr('font-weight','bold')
+			.attr('font-weight',node.data.fontweight)
 			if(typeof node.data.image != 'undefined'  && $.trim(node.data.image) != ''){
 				img = Viva.Graph.svg('image')
 				.attr('width', node.data.width)

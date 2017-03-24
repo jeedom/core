@@ -551,6 +551,7 @@ class interactDef {
 			'icon' => $icon['icon'],
 			'fontfamily' => $icon['fontfamily'],
 			'fontsize' => '1.5em',
+			'fontweight' => ($_level == 1) ? 'bold' : 'normal',
 			'texty' => -14,
 			'textx' => 0,
 			'title' => $this->getHumanName(),

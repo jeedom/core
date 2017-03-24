@@ -1559,6 +1559,7 @@ class cmd {
 			'fontsize' => '1.5em',
 			'texty' => -14,
 			'textx' => 0,
+			'fontweight' => ($_level == 1) ? 'bold' : 'normal',
 			'title' => $this->getHumanName(),
 		);
 		$usedBy = $this->getUsedBy();

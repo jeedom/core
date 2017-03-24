@@ -134,6 +134,7 @@ class dataStore {
 			'icon' => $icon['icon'],
 			'fontfamily' => $icon['fontfamily'],
 			'fontsize' => '1.5em',
+			'fontweight' => ($_level == 1) ? 'bold' : 'normal',
 			'texty' => -14,
 			'textx' => 0,
 			'title' => __('Variable :', __FILE__) . ' ' . $this->getKey(),

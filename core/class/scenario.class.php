@@ -1180,6 +1180,7 @@ class scenario {
 		$_data['node']['scenario' . $this->getId()] = array(
 			'id' => 'scenario' . $this->getId(),
 			'name' => $this->getName(),
+			'fontweight' => ($_level == 1) ? 'bold' : 'normal',
 			'shape' => 'rect',
 			'width' => 40,
 			'height' => 40,
