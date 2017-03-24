@@ -1595,6 +1595,17 @@ class cmd {
 				);
 			}
 		}
+		if (count($usedBy['interactDef']) > 0) {
+			foreach ($usedBy['interactDef'] as $interactDef) {
+				$interactDef->getLinkData($_data, $_level, $_drill);
+				$_data['link']['interactDef' . $interactDef->getId() . '-cmd' . $this->getId()] = array(
+					'from' => 'interactDef' . $interactDef->getId(),
+					'to' => 'cmd' . $this->getId(),
+					'lengthfactor' => 0.6,
+					'dashvalue' => '5,3',
+				);
+			}
+		}
 
 		$use = $this->getUse();
 		if (count($use['scenario']) > 0) {
@@ -1661,6 +1672,7 @@ class cmd {
 		$return['cmd'] = self::searchConfiguration('#' . $this->getId() . '#');
 		$return['eqLogic'] = eqLogic::searchConfiguration('#' . $this->getId() . '#');
 		$return['scenario'] = scenario::searchByUse(array(array('action' => '#' . $this->getId() . '#')));
+		$return['interactDef'] = interactDef::searchByUse('#' . $this->getId() . '#');
 		if ($_array) {
 			foreach ($return as &$value) {
 				$value = utils::o2a($value);

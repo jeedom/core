@@ -67,6 +67,16 @@ class interactQuery {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
+	public static function searchActions($_action) {
+		$values = array(
+			'actions' => '%' . $_action . '%',
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+		FROM interactQuery
+		WHERE actions LIKE :actions';
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+	}
+
 	public static function all() {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM interactQuery

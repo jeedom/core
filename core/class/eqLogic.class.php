@@ -1146,6 +1146,17 @@ class eqLogic {
 				);
 			}
 		}
+		if (count($usedBy['interactDef']) > 0) {
+			foreach ($usedBy['interactDef'] as $interactDef) {
+				$interactDef->getLinkData($_data, $_level, $_drill);
+				$_data['link']['interactDef' . $interactDef->getId() . '-eqLogic' . $this->getId()] = array(
+					'from' => 'interactDef' . $interactDef->getId(),
+					'to' => 'eqLogic' . $this->getId(),
+					'lengthfactor' => 0.6,
+					'dashvalue' => '5,3',
+				);
+			}
+		}
 
 		if (!isset($_data['object' . $this->getObject_id()])) {
 			$object = $this->getObject();
@@ -1171,6 +1182,8 @@ class eqLogic {
 		$return['cmd'] = cmd::searchConfiguration('#eqLogic' . $this->getId() . '#');
 		$return['eqLogic'] = eqLogic::searchConfiguration('#eqLogic' . $this->getId() . '#');
 		$return['eqLogic'] = array_merge($return['eqLogic'], eqLogic::searchConfiguration('"eqLogic":"' . $this->getId()));
+		$return['interactDef'] = interactDef::searchByUse('#eqLogic' . $this->getId() . '#');
+		$return['interactDef'] = array_merge($return['interactDef'], interactDef::searchByUse('"eqLogic":"' . $this->getId()));
 		$return['scenario'] = scenario::searchByUse(array(
 			array('action' => 'equipment', 'option' => $this->getId()),
 			array('action' => '#eqLogic' . $this->getId() . '#'),

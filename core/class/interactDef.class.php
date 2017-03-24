@@ -106,7 +106,6 @@ class interactDef {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM interactDef
         WHERE query LIKE :query';
-
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -161,6 +160,28 @@ class interactDef {
 			$sql = 'DELETE FROM interactQuery WHERE interactDef_id NOT IN (' . implode(',', $list_id) . ')';
 			return DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 		}
+	}
+
+	public static function searchByUse($_search) {
+		$return = array();
+		$values = array(
+			'search' => '%' . $_search . '%',
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+        FROM interactDef
+        WHERE actions LIKE :search
+        	OR reply LIKE :search';
+		$interactDefs = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+		$interactQueries = interactQuery::searchActions($_search);
+		foreach ($interactQueries as $interactQuery) {
+			$interactDefs[] = $interactQuery->getInteractDef();
+		}
+		foreach ($interactDefs as $interactDef) {
+			if (!isset($return[$interactDef->getId()])) {
+				$return[$interactDef->getId()] = $interactDef;
+			}
+		}
+		return $return;
 	}
 
 	/*     * *********************Méthodes d'instance************************* */
@@ -362,7 +383,7 @@ class interactDef {
 		$plugin_filter = $this->getFiltres('plugin');
 		$visible_filter = $this->getFiltres('visible');
 		$category_filter = $this->getFiltres('category');
-		
+
 		foreach ($inputs as $input) {
 			preg_match_all("/#(.*?)#/", $input, $matches);
 			$matches = $matches[1];
@@ -513,6 +534,28 @@ class interactDef {
 			return $this->getName();
 		}
 		return $this->getQuery();
+	}
+
+	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = 3) {
+		if (isset($_data['node']['interactDef' . $this->getId()])) {
+			return;
+		}
+		$_level++;
+		if ($_level > $_drill) {
+			return $_data;
+		}
+		$icon = findCodeIcon('fa-comments-o');
+		$_data['node']['interactDef' . $this->getId()] = array(
+			'id' => 'interactDef' . $this->getId(),
+			'name' => substr($this->getHumanName(), 0, 20),
+			'icon' => $icon['icon'],
+			'fontfamily' => $icon['fontfamily'],
+			'fontsize' => '1.5em',
+			'texty' => -14,
+			'textx' => 0,
+			'title' => $this->getHumanName(),
+		);
+
 	}
 
 /*     * **********************Getteur Setteur*************************** */
