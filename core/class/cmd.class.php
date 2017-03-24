@@ -1550,7 +1550,7 @@ class cmd {
 		if ($_level > $_drill) {
 			return $_data;
 		}
-		$icon = ($this->getType() == 'info') ? findCodeIcon('fa-eye') : findCodeIcon('fa-cog');
+		$icon = ($this->getType() == 'info') ? findCodeIcon('fa-eye') : findCodeIcon('fa-hand-paper-o');
 		$_data['node']['cmd' . $this->getId()] = array(
 			'id' => 'cmd' . $this->getId(),
 			'name' => $this->getName(),
@@ -1649,7 +1649,7 @@ class cmd {
 		$return = array('cmd' => array(), 'eqLogic' => array(), 'scenario' => array());
 		$return['cmd'] = self::searchConfiguration('#' . $this->getId() . '#');
 		$return['eqLogic'] = eqLogic::searchConfiguration('#' . $this->getId() . '#');
-		$return['scenario'] = scenario::searchByUse(array(array('action' => '#' . $this->getId() . '#', 'option' => '#' . $this->getId() . '#')));
+		$return['scenario'] = scenario::searchByUse(array(array('action' => '#' . $this->getId() . '#')));
 		if ($_array) {
 			foreach ($return as &$value) {
 				$value = utils::o2a($value);

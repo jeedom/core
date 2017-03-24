@@ -35,8 +35,8 @@ sendVarToJS('dataStore_link_id', init('link_id', -1));
             bootbox.confirm('Etes-vous sûr de vouloir supprimer la variable <span style="font-weight: bold ;">' + tr.find('.key').value() + '</span> ?', function(result) {
                 if (result) {
                     jeedom.dataStore.remove({
-                     id: tr.attr('data-dataStore_id'),
-                     error: function (error) {
+                       id: tr.attr('data-dataStore_id'),
+                       error: function (error) {
                         $('#div_dataStoreManagementAlert').showAlert({message: error.message, level: 'danger'});
                     },
                     success: function (data) {
@@ -87,15 +87,15 @@ sendVarToJS('dataStore_link_id', init('link_id', -1));
 
         function refreshDataStoreMangementTable() {
             jeedom.dataStore.all({
-               type: dataStore_type,
-               usedBy : 1,
-               error: function (error) {
+             type: dataStore_type,
+             usedBy : 1,
+             error: function (error) {
                 $('#div_dataStoreManagementAlert').showAlert({message: error.message, level: 'danger'});
             },
             success: function (data) {
-               $('#table_dataStore tbody').empty();
-               var tr = '';
-               for (var i in data) {
+             $('#table_dataStore tbody').empty();
+             var tr = '';
+             for (var i in data) {
                 tr += '<tr data-dataStore_id="' + data[i].id + '">';
                 tr += '<td>';
                 tr += '<span style="display : none;">' + data[i].key + '</span><input class="form-control input-sm key" value="' + data[i].key + '" disabled />';
@@ -106,6 +106,12 @@ sendVarToJS('dataStore_link_id', init('link_id', -1));
                 tr += '<td>';
                 for(var j in data[i].usedBy.scenario){
                     tr += '<span class="label label-primary">'+data[i].usedBy.scenario[j]+'</span> ';
+                }
+                for(var j in data[i].usedBy.eqLogic){
+                    tr += '<span class="label label-primary">'+data[i].usedBy.eqLogic[j]+'</span> ';
+                }
+                for(var j in data[i].usedBy.cmd){
+                    tr += '<span class="label label-primary">'+data[i].usedBy.cmd[j]+'</span> ';
                 }
                 tr += '</td>';
                 tr += '<td>';

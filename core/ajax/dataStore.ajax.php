@@ -58,6 +58,7 @@ try {
 			foreach ($datastores as &$datastore) {
 				$datastore['usedBy'] = array(
 					'scenario' => array(),
+					'eqLogic' => array(),
 				);
 				$scenarios = scenario::searchByUse(array(
 					array('action' => 'variable(' . $datastore['key'] . ')', 'option' => 'variable(' . $datastore['key'] . ')'),
@@ -65,6 +66,14 @@ try {
 				));
 				foreach ($scenarios as $scenario) {
 					$datastore['usedBy']['scenario'][] = $scenario->getHumanName();
+				}
+				$eqLogics = eqLogic::searchConfiguration('variable(' . $datastore['key'] . ')');
+				foreach ($eqLogics as $eqLogic) {
+					$datastore['usedBy']['eqLogic'][] = $eqLogic->getHumanName();
+				}
+				$cmds = cmd::searchConfiguration('variable(' . $datastore['key'] . ')');
+				foreach ($cmds as $cmd) {
+					$datastore['usedBy']['cmd'][] = $cmd->getHumanName();
 				}
 			}
 		}
