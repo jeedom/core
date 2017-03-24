@@ -119,7 +119,10 @@ class dataStore {
 		DB::remove($this);
 	}
 
-	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = 3) {
+	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = null) {
+		if ($_drill == null) {
+			$_drill = config::byKey('graphlink::dataStore::drill');
+		}
 		if (isset($_data['node']['dataStore' . $this->getId()])) {
 			return;
 		}
