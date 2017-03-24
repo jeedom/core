@@ -1052,7 +1052,7 @@ class jeedom {
 	public static function getHardwareKey() {
 		$return = config::byKey('jeedom::installKey');
 		if ($return == '') {
-			$return = substr(sha512(microtime() . config::genKey()), 0, 64);
+			$return = substr(sha512(microtime() . config::genKey()), 0, 63);
 			config::save('jeedom::installKey', $return);
 		}
 		return $return;
