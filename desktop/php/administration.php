@@ -1010,6 +1010,42 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 		<div class="panel panel-default expertModeVisible">
 			<div class="panel-heading">
 				<h3 class="panel-title">
+					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_graphlink">
+						<i class="fa fa-sitemap"></i> {{Configuration des graphiques de lien}}
+					</a>
+				</h3>
+			</div>
+			<div id="configuration_graphlink" class="panel-collapse collapse">
+				<div class="panel-body">
+					<form class="form-horizontal">
+						<fieldset>
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Profondeur pour les scénarios}}</label>
+								<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+									<input class="configKey form-control" data-l1key="graphlink::scenario::drill" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Profondeur pour les équipements}}</label>
+								<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+									<input class="configKey form-control" data-l1key="graphlink::eqLogic::drill" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Profondeur pour les commandes}}</label>
+								<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+									<input class="configKey form-control" data-l1key="graphlink::cmd::drill" />
+								</div>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div class="panel panel-default expertModeVisible">
+			<div class="panel-heading">
+				<h3 class="panel-title">
 					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_summary">
 						<i class="fa fa-table"></i> {{Configuration des résumés d'objet}}
 					</a>

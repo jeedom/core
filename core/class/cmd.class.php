@@ -1542,7 +1542,10 @@ class cmd {
 		return $return;
 	}
 
-	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = 3) {
+	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = null) {
+		if ($_drill == null) {
+			$_drill = config::byKey('graphlink::cmd::drill');
+		}
 		if (isset($_data['node']['cmd' . $this->getId()])) {
 			return;
 		}
