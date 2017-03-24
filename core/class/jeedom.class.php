@@ -279,7 +279,7 @@ class jeedom {
 	/*************************************************USB********************************************************/
 
 	public static function getUsbMapping($_name = '', $_getGPIO = false) {
-		$cache = cache::byKey('self::usbMapping');
+		$cache = cache::byKey('jeedom::usbMapping');
 		if (!is_json($cache->getValue()) || $_name == '') {
 			$usbMapping = array();
 			foreach (ls('/dev/', 'ttyUSB*') as $usb) {
@@ -331,7 +331,7 @@ class jeedom {
 					$usbMapping['/dev/' . $value] = '/dev/' . $value;
 				}
 			}
-			cache::set('self::usbMapping', json_encode($usbMapping));
+			cache::set('jeedom::usbMapping', json_encode($usbMapping));
 		} else {
 			$usbMapping = json_decode($cache->getValue(), true);
 		}
@@ -352,7 +352,7 @@ class jeedom {
 	}
 
 	public static function getBluetoothMapping($_name = '') {
-		$cache = cache::byKey('self::bluetoothMapping');
+		$cache = cache::byKey('jeedom::bluetoothMapping');
 		if (!is_json($cache->getValue()) || $_name == '') {
 			$bluetoothMapping = array();
 			foreach (explode("\n", shell_exec('hcitool dev')) as $line) {
@@ -362,7 +362,7 @@ class jeedom {
 				$infos = explode("\t", $line);
 				$bluetoothMapping[$infos[2]] = $infos[1];
 			}
-			cache::set('self::bluetoothMapping', json_encode($bluetoothMapping));
+			cache::set('jeedom::bluetoothMapping', json_encode($bluetoothMapping));
 		} else {
 			$bluetoothMapping = json_decode($cache->getValue(), true);
 		}
@@ -647,7 +647,7 @@ class jeedom {
 
 			try {
 				log::add('starting', 'debug', __('Nettoyage du cache des péripheriques USB', __FILE__));
-				$cache = cache::byKey('self::usbMapping');
+				$cache = cache::byKey('jeedom::usbMapping');
 				$cache->remove();
 			} catch (Exception $e) {
 				log::add('starting', 'error', __('Erreur sur le nettoyage du cache des péripheriques USB : ', __FILE__) . log::exception($e));
@@ -657,7 +657,7 @@ class jeedom {
 
 			try {
 				log::add('starting', 'debug', __('Nettoyage du cache des péripheriques Bluetooth', __FILE__));
-				$cache = cache::byKey('self::bluetoothMapping');
+				$cache = cache::byKey('jeedom::bluetoothMapping');
 				$cache->remove();
 			} catch (Exception $e) {
 				log::add('starting', 'error', __('Erreur sur le nettoyage du cache des péripheriques Bluetooth : ', __FILE__) . log::exception($e));
@@ -1050,10 +1050,10 @@ class jeedom {
 /*     * ******************hardware management*************************** */
 
 	public static function getHardwareKey() {
-		$return = config::byKey('self::installKey');
+		$return = config::byKey('jeedom::installKey');
 		if ($return == '') {
-			$return = sha512(microtime() . config::genKey());
-			config::save('self::installKey', $return);
+			$return = substr(sha512(microtime() . config::genKey()), 0, 64);
+			config::save('jeedom::installKey', $return);
 		}
 		return $return;
 	}
@@ -1079,13 +1079,13 @@ class jeedom {
 		global $JEEDOM_COMPATIBILIY_CONFIG;
 		if ($_function == 'sudo') {
 			if (!$_forceRefresh) {
-				$cache = cache::byKey('self::isCapable::sudo');
+				$cache = cache::byKey('jeedom::isCapable::sudo');
 				if ($cache->getValue(0) == 1) {
 					return true;
 				}
 			}
 			$result = (shell_exec('sudo -l > /dev/null 2>&1; echo $?') == 0) ? true : false;
-			cache::set('self::isCapable::sudo', $result);
+			cache::set('jeedom::isCapable::sudo', $result);
 			return $result;
 		}
 		$hardware = self::getHardwareName();
