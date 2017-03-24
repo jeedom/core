@@ -108,13 +108,15 @@ class plan {
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function searchByConfiguration($_search) {
+	public static function searchByConfiguration($_search, $_not = '') {
 		$value = array(
 			'search' => '%' . $_search . '%',
+			'not' => $_not,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
                 FROM plan
-                WHERE configuration LIKE :search';
+                WHERE configuration LIKE :search
+                 AND link_type !=:not';
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 

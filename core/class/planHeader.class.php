@@ -47,11 +47,9 @@ class planHeader {
 
 	public static function searchByUse($_type, $_id) {
 		$return = array();
-		$search = '#' . str_replace('cmd', '', $_type . $_id) . '#';
 		$plans = plan::byLinkTypeLinkId($_type, $_id);
-		if ($_type != 'cmd') {
-			$plans = array_merge($plans, plan::searchByConfiguration());
-		}
+		$search = '#' . str_replace('cmd', '', $_type . $_id) . '#';
+		$plans = array_merge($plans, plan::searchByConfiguration($search, 'eqLogic'));
 		foreach ($plans as $plan) {
 			$planHeader = $plan->getPlanHeader();
 			$return[$planHeader->getId()] = $planHeader;

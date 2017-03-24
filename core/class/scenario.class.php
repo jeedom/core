@@ -1332,7 +1332,7 @@ class scenario {
 			array('action' => '#scenario' . $this->getId() . '#'),
 		));
 		$return['view'] = view::searchByUse('#scenario' . $this->getId() . '#');
-		$return['plan'] = planHeader::searchByUse('#scenario' . $this->getId() . '#');
+		$return['plan'] = planHeader::searchByUse('scenario', $this->getId());
 		if ($_array) {
 			foreach ($return as &$value) {
 				$value = utils::o2a($value);
