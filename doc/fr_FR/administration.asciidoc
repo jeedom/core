@@ -188,6 +188,10 @@ image::../images/administration18.png[]
 * *[Backup] Partage* : chemin du partage (attention à bien s'arrêter au niveau du partage)
 * *[Backup] Chemin* : chemin dans le partage (à mettre en relatif), celui-ci doit exister
 
+[NOTE]
+Si le chemin d'accès à votre dossier de sauvegarde samba est : \\192.168.0.1\Sauvegardes\Domotique\Jeedom
+Alors IP = 192.168.0.1 , Partage = //192.168.0.1/Sauvegardes , Chemin = Domotique/Jeedom
+
 [IMPORTANT]
 Il vous faudra peut-être installer le package smbclient pour que le dépôt fonctionne.
 
