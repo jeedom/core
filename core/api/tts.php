@@ -33,7 +33,7 @@ if ($text == '') {
 }
 
 $md5 = md5($text);
-$filename = jeedom::getTmpFolder() . '/tts/' . $md5 . '.mp3';
+$filename = jeedom::getTmpFolder('tts') . '/' . $md5 . '.mp3';
 switch ($engine) {
 	case 'espeak':
 		$voice = init('voice', 'fr+f4');
