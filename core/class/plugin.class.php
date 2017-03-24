@@ -755,6 +755,7 @@ class plugin {
 				if ($alreadyActive == 1) {
 					$out = $this->callInstallFunction('remove');
 				}
+				rrmdir(jeedom::getTmpFolder('openvpn'));
 			}
 			if (isset($out) && trim($out) != '') {
 				log::add($this->getId(), 'info', "Installation/remove/update result : " . $out);
