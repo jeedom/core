@@ -1211,7 +1211,7 @@ class eqLogic {
 			array('action' => 'equipment', 'option' => $this->getId()),
 			array('action' => '#eqLogic' . $this->getId() . '#'),
 		));
-		$return['view'] = view::searchByUse('#eqLogic' . $this->getId() . '#');
+		$return['view'] = view::searchByUse('eqLogic', $this->getId());
 		$return['plan'] = planHeader::searchByUse('eqLogic', $this->getId());
 		if ($_array) {
 			foreach ($return as &$value) {

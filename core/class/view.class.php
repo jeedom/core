@@ -46,9 +46,11 @@ class view {
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function searchByUse($_search) {
+	public static function searchByUse($_type, $_id) {
 		$return = array();
-		$viewDatas = viewData::searchByConfiguration($_search);
+		$viewDatas = viewData::byTypeLinkId($_type, $_id);
+		$search = '#' . str_replace('cmd', '', $_type . $_id) . '#';
+		$viewDatas = array_merge($viewDatas, viewData::searchByConfiguration($search));
 		foreach ($viewDatas as $viewData) {
 			$viewZone = $viewData->getviewZone();
 			$view = $viewZone->getView();

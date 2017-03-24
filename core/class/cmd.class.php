@@ -1696,7 +1696,7 @@ class cmd {
 		$return['eqLogic'] = eqLogic::searchConfiguration('#' . $this->getId() . '#');
 		$return['scenario'] = scenario::searchByUse(array(array('action' => '#' . $this->getId() . '#')));
 		$return['interactDef'] = interactDef::searchByUse('#' . $this->getId() . '#');
-		$return['view'] = view::searchByUse('#' . $this->getId() . '#');
+		$return['view'] = view::searchByUse('cmd', $this->getId());
 		$return['plan'] = planHeader::searchByUse('cmd', $this->getId());
 		if ($_array) {
 			foreach ($return as &$value) {

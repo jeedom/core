@@ -1331,7 +1331,7 @@ class scenario {
 			array('action' => 'scenario', 'option' => $this->getId()),
 			array('action' => '#scenario' . $this->getId() . '#'),
 		));
-		$return['view'] = view::searchByUse('#scenario' . $this->getId() . '#');
+		$return['view'] = view::searchByUse('scenario', $this->getId());
 		$return['plan'] = planHeader::searchByUse('scenario', $this->getId());
 		if ($_array) {
 			foreach ($return as &$value) {
