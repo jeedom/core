@@ -589,7 +589,10 @@ class object {
 		return trim($return) . '</span>';
 	}
 
-	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = 3) {
+	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = null) {
+		if ($_drill == null) {
+			$_drill = config::byKey('graphlink::object::drill');
+		}
 		if (isset($_data['node']['object' . $this->getId()])) {
 			return;
 		}
