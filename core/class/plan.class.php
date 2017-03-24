@@ -98,6 +98,26 @@ class plan {
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
+	public static function searchByDisplay($_search) {
+		$value = array(
+			'search' => '%' . $_search . '%',
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+                FROM plan
+                WHERE display LIKE :search';
+		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+	}
+
+	public static function searchByConfiguration($_search) {
+		$value = array(
+			'search' => '%' . $_search . '%',
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+                FROM plan
+                WHERE configuration LIKE :search';
+		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+	}
+
 	/*     * *********************Methode d'instance************************* */
 
 	public function preInsert() {
@@ -296,6 +316,10 @@ class plan {
 				'html' => $html,
 			);
 		}
+	}
+
+	public function getPlanHeader() {
+		return planHeader::byId($this->getPlanHeader_id());
 	}
 
 	/*     * **********************Getteur Setteur*************************** */

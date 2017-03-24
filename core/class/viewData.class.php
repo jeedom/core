@@ -71,6 +71,16 @@ class viewData {
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
+	public static function searchByConfiguration($_search) {
+		$value = array(
+			'search' => '%' . $_search . '%',
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+                FROM viewData
+                WHERE configuration LIKE :search';
+		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+	}
+
 	public static function removeByTypeLinkId($_type, $_link_id) {
 		$viewDatas = self::byTypeLinkId($_type, $_link_id);
 		foreach ($viewDatas as $viewData) {

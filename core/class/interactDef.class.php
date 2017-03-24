@@ -556,7 +556,6 @@ class interactDef {
 			'textx' => 0,
 			'title' => $this->getHumanName(),
 		);
-
 	}
 
 /*     * **********************Getteur Setteur*************************** */

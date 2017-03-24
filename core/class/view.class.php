@@ -46,6 +46,17 @@ class view {
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
+	public static function searchByUse($_search) {
+		$return = array();
+		$viewDatas = viewData::searchByConfiguration($_search);
+		foreach ($viewDatas as $viewData) {
+			$viewZone = $viewData->getviewZone();
+			$view = $viewZone->getView();
+			$return[$view->getId()] = $view;
+		}
+		return $return;
+	}
+
 	/*     * *********************Méthodes d'instance************************* */
 
 	public function report($_format = 'pdf', $_parameters = array()) {
@@ -129,7 +140,7 @@ class view {
 				$viewZone_info['viewData'][] = $viewData_info;
 				if ($viewZone->getType() == 'table') {
 					$viewZone_info['html'] = '<table class="table table-condensed ui-responsive table-stroke" data-role="table" data-mode="columntoggle">';
- 
+
 					if (count($viewZone_info['viewData']) != 1) {
 						continue;
 					}
@@ -162,6 +173,28 @@ class view {
 			$return['viewZone'][] = $viewZone_info;
 		}
 		return jeedom::toHumanReadable($return);
+	}
+
+	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = 3) {
+		if (isset($_data['node']['view' . $this->getId()])) {
+			return;
+		}
+		$_level++;
+		if ($_level > $_drill) {
+			return $_data;
+		}
+		$icon = findCodeIcon('fa-picture-o');
+		$_data['node']['view' . $this->getId()] = array(
+			'id' => 'interactDef' . $this->getId(),
+			'name' => substr($this->getName(), 0, 20),
+			'icon' => $icon['icon'],
+			'fontfamily' => $icon['fontfamily'],
+			'fontsize' => '1.5em',
+			'fontweight' => ($_level == 1) ? 'bold' : 'normal',
+			'texty' => -14,
+			'textx' => 0,
+			'title' => __('Vue :', __FILE__) . ' ' . $this->getName(),
+		);
 	}
 
 	/*     * **********************Getteur Setteur*************************** */
@@ -206,4 +239,3 @@ class view {
 	}
 
 }
-

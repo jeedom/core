@@ -45,6 +45,20 @@ class planHeader {
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
+	public static function searchByUse($_type, $_id) {
+		$return = array();
+		$search = '#' . str_replace('cmd', '', $_type . $_id) . '#';
+		$plans = plan::byLinkTypeLinkId($_type, $_id);
+		if ($_type != 'cmd') {
+			$plans = array_merge($plans, plan::searchByConfiguration());
+		}
+		foreach ($plans as $plan) {
+			$planHeader = $plan->getPlanHeader();
+			$return[$planHeader->getId()] = $planHeader;
+		}
+		return $return;
+	}
+
 	/*     * *********************Méthodes d'instance************************* */
 
 	public function report($_format = 'pdf', $_parameters = array()) {
@@ -121,6 +135,28 @@ class planHeader {
 
 	public function getPlan() {
 		return plan::byPlanHeaderId($this->getId());
+	}
+
+	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = 3) {
+		if (isset($_data['node']['plan' . $this->getId()])) {
+			return;
+		}
+		$_level++;
+		if ($_level > $_drill) {
+			return $_data;
+		}
+		$icon = findCodeIcon('fa-paint-brush');
+		$_data['node']['plan' . $this->getId()] = array(
+			'id' => 'interactDef' . $this->getId(),
+			'name' => substr($this->getName(), 0, 20),
+			'icon' => $icon['icon'],
+			'fontfamily' => $icon['fontfamily'],
+			'fontsize' => '1.5em',
+			'fontweight' => ($_level == 1) ? 'bold' : 'normal',
+			'texty' => -14,
+			'textx' => 0,
+			'title' => __('Design :', __FILE__) . ' ' . $this->getName(),
+		);
 	}
 
 	/*     * **********************Getteur Setteur*************************** */

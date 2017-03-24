@@ -1607,6 +1607,28 @@ class cmd {
 				);
 			}
 		}
+		if (count($usedBy['plan']) > 0) {
+			foreach ($usedBy['plan'] as $plan) {
+				$plan->getLinkData($_data, $_level, $_drill);
+				$_data['link']['plan' . $plan->getId() . '-cmd' . $this->getId()] = array(
+					'from' => 'plan' . $plan->getId(),
+					'to' => 'cmd' . $this->getId(),
+					'lengthfactor' => 0.6,
+					'dashvalue' => '5,3',
+				);
+			}
+		}
+		if (count($usedBy['view']) > 0) {
+			foreach ($usedBy['view'] as $view) {
+				$view->getLinkData($_data, $_level, $_drill);
+				$_data['link']['view' . $view->getId() . '-cmd' . $this->getId()] = array(
+					'from' => 'view' . $view->getId(),
+					'to' => 'cmd' . $this->getId(),
+					'lengthfactor' => 0.6,
+					'dashvalue' => '5,3',
+				);
+			}
+		}
 
 		$use = $this->getUse();
 		if (count($use['scenario']) > 0) {
@@ -1669,11 +1691,13 @@ class cmd {
 	}
 
 	public function getUsedBy($_array = false) {
-		$return = array('cmd' => array(), 'eqLogic' => array(), 'scenario' => array());
+		$return = array('cmd' => array(), 'eqLogic' => array(), 'scenario' => array(), 'plan' => array(), 'view' => array());
 		$return['cmd'] = self::searchConfiguration('#' . $this->getId() . '#');
 		$return['eqLogic'] = eqLogic::searchConfiguration('#' . $this->getId() . '#');
 		$return['scenario'] = scenario::searchByUse(array(array('action' => '#' . $this->getId() . '#')));
 		$return['interactDef'] = interactDef::searchByUse('#' . $this->getId() . '#');
+		$return['view'] = view::searchByUse('#' . $this->getId() . '#');
+		$return['plan'] = planHeader::searchByUse('cmd', $this->getId());
 		if ($_array) {
 			foreach ($return as &$value) {
 				$value = utils::o2a($value);

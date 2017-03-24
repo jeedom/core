@@ -1279,6 +1279,28 @@ class scenario {
 				);
 			}
 		}
+		if (count($usedBy['plan']) > 0) {
+			foreach ($usedBy['plan'] as $plan) {
+				$plan->getLinkData($_data, $_level, $_drill);
+				$_data['link']['scenario' . $this->getId() . '-plan' . $plan->getId()] = array(
+					'from' => 'scenario' . $this->getId(),
+					'to' => 'plan' . $plan->getId(),
+					'lengthfactor' => 0.6,
+					'dashvalue' => '5,3',
+				);
+			}
+		}
+		if (count($usedBy['view']) > 0) {
+			foreach ($usedBy['view'] as $view) {
+				$view->getLinkData($_data, $_level, $_drill);
+				$_data['link']['scenario' . $this->getId() . '-view' . $view->getId()] = array(
+					'from' => 'scenario' . $this->getId(),
+					'to' => 'view' . $view->getId(),
+					'lengthfactor' => 0.6,
+					'dashvalue' => '5,3',
+				);
+			}
+		}
 
 		$object = $this->getObject();
 		if (is_object($object)) {
@@ -1299,7 +1321,7 @@ class scenario {
 	}
 
 	public function getUsedBy($_array = false) {
-		$return = array('cmd' => array(), 'eqLogic' => array(), 'scenario' => array());
+		$return = array('cmd' => array(), 'eqLogic' => array(), 'scenario' => array(), 'plan' => array(), 'view' => array());
 		$return['cmd'] = cmd::searchConfiguration('#scenario' . $this->getId() . '#');
 		$return['eqLogic'] = eqLogic::searchConfiguration('#scenario' . $this->getId() . '#');
 		$return['eqLogic'] = array_merge($return['eqLogic'], eqLogic::searchConfiguration('"scenario_id":"' . $this->getId()));
@@ -1309,6 +1331,8 @@ class scenario {
 			array('action' => 'scenario', 'option' => $this->getId()),
 			array('action' => '#scenario' . $this->getId() . '#'),
 		));
+		$return['view'] = view::searchByUse('#scenario' . $this->getId() . '#');
+		$return['plan'] = planHeader::searchByUse('#scenario' . $this->getId() . '#');
 		if ($_array) {
 			foreach ($return as &$value) {
 				$value = utils::o2a($value);
