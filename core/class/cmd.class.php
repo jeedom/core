@@ -1381,19 +1381,6 @@ class cmd {
 		}
 	}
 
-	public function getUsedBy($_array = false) {
-		$return = array();
-		$return['cmd'] = self::searchConfiguration('#' . $this->getId() . '#');
-		$return['eqLogic'] = eqLogic::searchConfiguration('#' . $this->getId() . '#');
-		$return['scenario'] = scenario::byUsedCommand($this->getId());
-		if ($_array) {
-			foreach ($return as &$value) {
-				$value = utils::o2a($value);
-			}
-		}
-		return $return;
-	}
-
 	public function getStatistique($_startTime, $_endTime) {
 		return history::getStatistique($this->getId(), $_startTime, $_endTime);
 	}
@@ -1608,6 +1595,42 @@ class cmd {
 				);
 			}
 		}
+
+		$use = $this->getUse();
+		if (count($use['scenario']) > 0) {
+			foreach ($use['scenario'] as $scenario) {
+				$scenario->getLinkData($_data, $_level, $_drill);
+				$_data['link']['scenario' . $scenario->getId() . '-cmd' . $this->getId()] = array(
+					'from' => 'scenario' . $scenario->getId(),
+					'to' => 'cmd' . $this->getId(),
+					'lengthfactor' => 0.6,
+					'dashvalue' => '5,3',
+				);
+			}
+		}
+		if (count($use['eqLogic']) > 0) {
+			foreach ($use['eqLogic'] as $eqLogic) {
+				$eqLogic->getLinkData($_data, $_level, $_drill);
+				$_data['link']['eqLogic' . $eqLogic->getId() . '-cmd' . $this->getId()] = array(
+					'from' => 'eqLogic' . $eqLogic->getId(),
+					'to' => 'cmd' . $this->getId(),
+					'lengthfactor' => 0.6,
+					'dashvalue' => '5,3',
+				);
+			}
+		}
+		if (count($use['cmd']) > 0) {
+			foreach ($use['cmd'] as $cmd) {
+				$cmd->getLinkData($_data, $_level, $_drill);
+				$_data['link']['cmd' . $cmd->getId() . '-cmd' . $this->getId()] = array(
+					'from' => 'cmd' . $cmd->getId(),
+					'to' => 'cmd' . $this->getId(),
+					'lengthfactor' => 0.6,
+					'dashvalue' => '5,3',
+				);
+			}
+		}
+
 		if (!isset($_data['eqLogic' . $this->getEqLogic_id()])) {
 			$eqLogic = $this->getEqLogic();
 			if (is_object($eqLogic)) {
@@ -1620,6 +1643,24 @@ class cmd {
 			}
 		}
 		return $_data;
+	}
+
+	public function getUsedBy($_array = false) {
+		$return = array('cmd' => array(), 'eqLogic' => array(), 'scenario' => array());
+		$return['cmd'] = self::searchConfiguration('#' . $this->getId() . '#');
+		$return['eqLogic'] = eqLogic::searchConfiguration('#' . $this->getId() . '#');
+		$return['scenario'] = scenario::byUsedCommand($this->getId());
+		if ($_array) {
+			foreach ($return as &$value) {
+				$value = utils::o2a($value);
+			}
+		}
+		return $return;
+	}
+
+	public function getUse() {
+		$json = jeedom::fromHumanReadable(json_encode(utils::o2a($this)));
+		return jeedom::getTypeUse($json);
 	}
 
 	/*     * **********************Getteur Setteur*************************** */

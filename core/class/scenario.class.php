@@ -1164,13 +1164,14 @@ class scenario {
 		if (isset($_data['node']['scenario' . $this->getId()])) {
 			return;
 		}
-		if ($this->getIsActive() == 0 && $_level == 0) {
+		if ($this->getIsActive() == 0 && $_level > 0) {
 			return $_data;
 		}
 		$_level++;
 		if ($_level > $_drill) {
 			return $_data;
 		}
+
 		$_data['node']['scenario' . $this->getId()] = array(
 			'id' => 'scenario' . $this->getId(),
 			'name' => $this->getName(),
@@ -1182,7 +1183,7 @@ class scenario {
 			'title' => $this->getHumanName(),
 		);
 		$use = $this->getUse();
-		if (count($use['cmd'])) {
+		if (count($use['cmd']) > 0) {
 			foreach ($use['cmd'] as $cmd) {
 				$cmd->getLinkData($_data, $_level, $_drill);
 				$_data['link']['scenario' . $this->getId() . '-cmd' . $cmd->getId()] = array(
@@ -1193,7 +1194,7 @@ class scenario {
 				);
 			}
 		}
-		if (count($use['scenario'])) {
+		if (count($use['scenario']) > 0) {
 			foreach ($use['scenario'] as $scenario) {
 				$scenario->getLinkData($_data, $_level, $_drill);
 				$_data['link']['scenario' . $this->getId() . '-scenario' . $scenario->getId()] = array(
@@ -1204,7 +1205,7 @@ class scenario {
 				);
 			}
 		}
-		if (count($use['eqLogic'])) {
+		if (count($use['eqLogic']) > 0) {
 			foreach ($use['eqLogic'] as $eqLogic) {
 				$eqLogic->getLinkData($_data, $_level, $_drill);
 				$_data['link']['scenario' . $this->getId() . '-eqLogic' . $eqLogic->getId()] = array(
@@ -1215,6 +1216,42 @@ class scenario {
 				);
 			}
 		}
+
+		$usedBy = $this->getUsedBy();
+		if (count($usedBy['cmd']) > 0) {
+			foreach ($usedBy['cmd'] as $cmd) {
+				$cmd->getLinkData($_data, $_level, $_drill);
+				$_data['link']['scenario' . $this->getId() . '-cmd' . $cmd->getId()] = array(
+					'from' => 'scenario' . $this->getId(),
+					'to' => 'cmd' . $cmd->getId(),
+					'lengthfactor' => 0.6,
+					'dashvalue' => '5,3',
+				);
+			}
+		}
+		if (count($usedBy['scenario']) > 0) {
+			foreach ($usedBy['scenario'] as $scenario) {
+				$scenario->getLinkData($_data, $_level, $_drill);
+				$_data['link']['scenario' . $this->getId() . '-scenario' . $scenario->getId()] = array(
+					'from' => 'scenario' . $this->getId(),
+					'to' => 'scenario' . $scenario->getId(),
+					'lengthfactor' => 0.6,
+					'dashvalue' => '5,3',
+				);
+			}
+		}
+		if (count($usedBy['eqLogic']) > 0) {
+			foreach ($usedBy['eqLogic'] as $eqLogic) {
+				$eqLogic->getLinkData($_data, $_level, $_drill);
+				$_data['link']['scenario' . $this->getId() . '-eqLogic' . $eqLogic->getId()] = array(
+					'from' => 'scenario' . $this->getId(),
+					'to' => 'eqLogic' . $eqLogic->getId(),
+					'lengthfactor' => 0.6,
+					'dashvalue' => '5,3',
+				);
+			}
+		}
+
 		$object = $this->getObject();
 		if (is_object($object)) {
 			$object->getLinkData($_data, $_level + 1, $_drill);
@@ -1231,6 +1268,19 @@ class scenario {
 	public function getUse() {
 		$json = jeedom::fromHumanReadable(json_encode($this->export('array')));
 		return jeedom::getTypeUse($json);
+	}
+
+	public function getUsedBy($_array = false) {
+		$return = array('cmd' => array(), 'eqLogic' => array(), 'scenario' => array());
+		$return['cmd'] = cmd::searchConfiguration('#scenario' . $this->getId() . '#');
+		$return['eqLogic'] = eqLogic::searchConfiguration('#scenario' . $this->getId() . '#');
+		$return['eqLogic'] = array_merge($return['eqLogic'], eqLogic::searchConfiguration('"scenario_id":"' . $this->getId()));
+		if ($_array) {
+			foreach ($return as &$value) {
+				$value = utils::o2a($value);
+			}
+		}
+		return $return;
 	}
 
 	/*     * **********************Getteur Setteur*************************** */

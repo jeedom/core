@@ -1042,7 +1042,7 @@ class eqLogic {
 		if (isset($_data['node']['eqLogic' . $this->getId()])) {
 			return;
 		}
-		if ($this->getIsEnable() != 0 && $_level == 0) {
+		if ($this->getIsEnable() == 0 && $_level > 0) {
 			return $_data;
 		}
 		$_level++;
@@ -1100,6 +1100,42 @@ class eqLogic {
 				);
 			}
 		}
+
+		$usedBy = $this->getUsedBy();
+		if (count($usedBy['cmd']) > 0) {
+			foreach ($usedBy['cmd'] as $cmd) {
+				$cmd->getLinkData($_data, $_level, $_drill);
+				$_data['link']['eqLogic' . $this->getId() . '-cmd' . $cmd->getId()] = array(
+					'from' => 'eqLogic' . $this->getId(),
+					'to' => 'cmd' . $cmd->getId(),
+					'lengthfactor' => 0.6,
+					'dashvalue' => '5,3',
+				);
+			}
+		}
+		if (count($usedBy['scenario']) > 0) {
+			foreach ($usedBy['scenario'] as $scenario) {
+				$scenario->getLinkData($_data, $_level, $_drill);
+				$_data['link']['scenario' . $scenario->getId() . '-eqLogic' . $this->getId()] = array(
+					'from' => 'scenario' . $scenario->getId(),
+					'to' => 'eqLogic' . $this->getId(),
+					'lengthfactor' => 0.6,
+					'dashvalue' => '5,3',
+				);
+			}
+		}
+		if (count($usedBy['eqLogic']) > 0) {
+			foreach ($usedBy['eqLogic'] as $eqLogic) {
+				$eqLogic->getLinkData($_data, $_level, $_drill);
+				$_data['link']['eqLogic' . $eqLogic->getId() . '-eqLogic' . $this->getId()] = array(
+					'from' => 'eqLogic' . $eqLogic->getId(),
+					'to' => 'eqLogic' . $this->getId(),
+					'lengthfactor' => 0.6,
+					'dashvalue' => '5,3',
+				);
+			}
+		}
+
 		if (!isset($_data['object' . $this->getObject_id()])) {
 			$object = $this->getObject();
 			if (is_object($object)) {
@@ -1117,6 +1153,19 @@ class eqLogic {
 	public function getUse() {
 		$json = jeedom::fromHumanReadable(json_encode(utils::o2a($this)));
 		return jeedom::getTypeUse($json);
+	}
+
+	public function getUsedBy($_array = false) {
+		$return = array('cmd' => array(), 'eqLogic' => array(), 'scenario' => array());
+		$return['cmd'] = cmd::searchConfiguration('#eqLogic' . $this->getId() . '#');
+		$return['eqLogic'] = eqLogic::searchConfiguration('#eqLogic' . $this->getId() . '#');
+		$return['eqLogic'] = array_merge($return['eqLogic'], eqLogic::searchConfiguration('"eqLogic":"' . $this->getId()));
+		if ($_array) {
+			foreach ($return as &$value) {
+				$value = utils::o2a($value);
+			}
+		}
+		return $return;
 	}
 
 /*     * **********************Getteur Setteur*************************** */

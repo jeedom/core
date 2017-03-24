@@ -925,6 +925,17 @@ class jeedom {
 			}
 			$return['eqLogic'][$eqLogic_id] = $eqLogic;
 		}
+		preg_match_all('/"eqLogic":"([0-9]*)"/', $_string, $matches);
+		foreach ($matches[1] as $eqLogic_id) {
+			if (isset($return['eqLogic'][$eqLogic_id])) {
+				continue;
+			}
+			$eqLogic = eqLogic::byId($eqLogic_id);
+			if (!is_object($eqLogic)) {
+				continue;
+			}
+			$return['eqLogic'][$eqLogic_id] = $eqLogic;
+		}
 		return $return;
 	}
 
