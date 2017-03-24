@@ -1039,6 +1039,9 @@ class eqLogic {
 	}
 
 	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = 3) {
+		if (isset($_data['node']['eqLogic' . $this->getId()])) {
+			return;
+		}
 		if ($this->getIsEnable() != 0 && $_level == 0) {
 			return $_data;
 		}
@@ -1046,7 +1049,6 @@ class eqLogic {
 		if ($_level > $_drill) {
 			return $_data;
 		}
-		$plugin = plugin::byId($this->getEqType_name());
 		$_data['node']['eqLogic' . $this->getId()] = array(
 			'id' => 'eqLogic' . $this->getId(),
 			'name' => $this->getName(),
@@ -1081,6 +1083,17 @@ class eqLogic {
 				$scenario->getLinkData($_data, $_level, $_drill);
 				$_data['link']['scenario' . $scenario->getId() . '-eqLogic' . $this->getId()] = array(
 					'from' => 'scenario' . $scenario->getId(),
+					'to' => 'eqLogic' . $this->getId(),
+					'lengthfactor' => 0.6,
+					'dashvalue' => '5,3',
+				);
+			}
+		}
+		if (count($use['eqLogic']) > 0) {
+			foreach ($use['eqLogic'] as $eqLogic) {
+				$eqLogic->getLinkData($_data, $_level, $_drill);
+				$_data['link']['eqLogic' . $eqLogic->getId() . '-eqLogic' . $this->getId()] = array(
+					'from' => 'eqLogic' . $eqLogic->getId(),
 					'to' => 'eqLogic' . $this->getId(),
 					'lengthfactor' => 0.6,
 					'dashvalue' => '5,3',

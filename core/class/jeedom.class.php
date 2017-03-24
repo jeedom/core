@@ -880,7 +880,7 @@ class jeedom {
 	}
 
 	public static function getTypeUse($_string = '') {
-		$return = array('cmd' => array(), 'scenario' => array());
+		$return = array('cmd' => array(), 'scenario' => array(), 'eqLogic' => array());
 		preg_match_all("/#([0-9]*)#/", $_string, $matches);
 		foreach ($matches[1] as $cmd_id) {
 			if (isset($return['cmd'][$cmd_id])) {
@@ -902,6 +902,28 @@ class jeedom {
 				continue;
 			}
 			$return['scenario'][$scenario_id] = $scenario;
+		}
+		preg_match_all("/#scenario([0-9]*)#/", $_string, $matches);
+		foreach ($matches[1] as $scenario_id) {
+			if (isset($return['scenario'][$scenario_id])) {
+				continue;
+			}
+			$scenario = scenario::byId($scenario_id);
+			if (!is_object($scenario)) {
+				continue;
+			}
+			$return['scenario'][$scenario_id] = $scenario;
+		}
+		preg_match_all("/#eqLogic([0-9]*)#/", $_string, $matches);
+		foreach ($matches[1] as $eqLogic_id) {
+			if (isset($return['eqLogic'][$eqLogic_id])) {
+				continue;
+			}
+			$eqLogic = eqLogic::byId($eqLogic_id);
+			if (!is_object($eqLogic)) {
+				continue;
+			}
+			$return['eqLogic'][$eqLogic_id] = $eqLogic;
 		}
 		return $return;
 	}

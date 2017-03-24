@@ -1556,6 +1556,9 @@ class cmd {
 	}
 
 	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = 3) {
+		if (isset($_data['node']['cmd' . $this->getId()])) {
+			return;
+		}
 		$_level++;
 		if ($_level > $_drill) {
 			return $_data;

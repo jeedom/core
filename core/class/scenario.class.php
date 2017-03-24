@@ -1161,6 +1161,9 @@ class scenario {
 	}
 
 	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = 3) {
+		if (isset($_data['node']['scenario' . $this->getId()])) {
+			return;
+		}
 		if ($this->getIsActive() == 0 && $_level == 0) {
 			return $_data;
 		}
@@ -1196,6 +1199,17 @@ class scenario {
 				$_data['link']['scenario' . $this->getId() . '-scenario' . $scenario->getId()] = array(
 					'from' => 'scenario' . $this->getId(),
 					'to' => 'scenario' . $scenario->getId(),
+					'lengthfactor' => 0.6,
+					'dashvalue' => '5,3',
+				);
+			}
+		}
+		if (count($use['eqLogic'])) {
+			foreach ($use['eqLogic'] as $eqLogic) {
+				$eqLogic->getLinkData($_data, $_level, $_drill);
+				$_data['link']['scenario' . $this->getId() . '-eqLogic' . $eqLogic->getId()] = array(
+					'from' => 'scenario' . $this->getId(),
+					'to' => 'eqLogic' . $eqLogic->getId(),
 					'lengthfactor' => 0.6,
 					'dashvalue' => '5,3',
 				);

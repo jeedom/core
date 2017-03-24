@@ -590,6 +590,9 @@ class object {
 	}
 
 	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = 3) {
+		if (isset($_data['node']['object' . $this->getId()])) {
+			return;
+		}
 		$_level++;
 		if ($_level > $_drill) {
 			return $_data;
@@ -631,6 +634,17 @@ class object {
 				$_data['link']['scenario' . $scenario->getId() . '-object' . $this->getId()] = array(
 					'from' => 'scenario' . $scenario->getId(),
 					'to' => 'object' . $this->getId(),
+					'lengthfactor' => 0.6,
+					'dashvalue' => '5,3',
+				);
+			}
+		}
+		if (count($use['eqLogic']) > 0) {
+			foreach ($use['eqLogic'] as $eqLogic) {
+				$eqLogic->getLinkData($_data, $_level, $_drill);
+				$_data['link']['object' . $this->getId() . '-eqLogic' . $eqLogic->getId()] = array(
+					'from' => 'object' . $this->getId(),
+					'to' => 'eqLogic' . $eqLogic->getId(),
 					'lengthfactor' => 0.6,
 					'dashvalue' => '5,3',
 				);
