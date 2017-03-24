@@ -66,6 +66,12 @@ sendVarToJS('dataStore_link_id', init('link_id', -1));
         });
         });
 
+        $('#table_dataStore').delegate('.bt_graphDataStore', 'click', function() {
+            var tr = $(this).closest('tr');
+            $('#md_modal2').dialog({title: "{{Graphique de lien}}"});
+            $("#md_modal2").load('index.php?v=d&modal=graph.link&filter_type=dataStore&filter_id='+tr.attr('data-dataStore_id')).dialog('open');
+        });
+
         $('#bt_dataStoreManagementAdd').on('click', function() {
             var tr = '<tr data-dataStore_id="">';
             tr += '<td>';
@@ -79,6 +85,7 @@ sendVarToJS('dataStore_link_id', init('link_id', -1));
             tr += '<td>';
             tr += '<a class="btn btn-success pull-right btn-sm bt_saveDataStore" style="color : white"><i class="fa fa-check"></i></a>';
             tr += '<a class="btn btn-danger pull-right btn-sm bt_removeDataStore" style="color : white"><i class="fa fa-trash-o"></i></a>';
+            tr += '<a class="btn btn-default pull-right btn-sm bt_graphDataStore"><i class="fa fa-object-group"></i></a>';
             tr += '</td>';
             tr += '</tr>';
             $('#table_dataStore tbody').append(tr);
@@ -117,6 +124,7 @@ sendVarToJS('dataStore_link_id', init('link_id', -1));
                 tr += '<td>';
                 tr += '<a class="btn btn-success pull-right btn-sm bt_saveDataStore" style="color : white"><i class="fa fa-check"></i></a>';
                 tr += '<a class="btn btn-danger pull-right btn-sm bt_removeDataStore" style="color : white"><i class="fa fa-trash-o"></i></a>';
+                tr += '<a class="btn btn-default pull-right btn-sm bt_graphDataStore"><i class="fa fa-object-group"></i></a>';
                 tr += '</td>';
                 tr += '</tr>';
             }

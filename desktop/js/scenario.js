@@ -664,7 +664,7 @@ $('body').delegate('.bt_sortable', 'mouseout', function () {
 });
 
 $('#bt_graphScenario').on('click', function () {
-  $('#md_modal').dialog({title: "{{Résumé scénario}}"});
+  $('#md_modal').dialog({title: "{{Graphique de lien}}"});
   $("#md_modal").load('index.php?v=d&modal=graph.link&filter_type=scenario&filter_id='+$('.scenarioAttr[data-l1key=id]').value()).dialog('open');
 });
 
