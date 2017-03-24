@@ -119,6 +119,22 @@ class dataStore {
 		DB::remove($this);
 	}
 
+	public function getUsedBy($_array = false) {
+		$return = array('cmd' => array(), 'eqLogic' => array(), 'scenario' => array());
+		$return['cmd'] = cmd::searchConfiguration('variable(' . $this->getKey() . ')');
+		$return['eqLogic'] = eqLogic::searchConfiguration('variable(' . $this->getKey() . ')');
+		$return['scenario'] = scenario::searchByUse(array(
+			array('action' => 'variable(' . $this->getKey() . ')', 'option' => 'variable(' . $this->getKey() . ')'),
+			array('action' => 'variable', 'option' => $this->getKey(), 'and' => true),
+		));
+		if ($_array) {
+			foreach ($return as &$value) {
+				$value = utils::o2a($value);
+			}
+		}
+		return $return;
+	}
+
 	/*     * **********************Getteur Setteur*************************** */
 
 	public function getId() {
