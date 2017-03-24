@@ -59,7 +59,11 @@ try {
 				$datastore['usedBy'] = array(
 					'scenario' => array(),
 				);
-				foreach (scenario::byUsedCommand($datastore['key'], true) as $scenario) {
+				$scenarios = scenario::searchByUse(array(
+					array('action' => 'variable(' . $datastore['key'] . ')', 'option' => 'variable(' . $datastore['key'] . ')'),
+					array('action' => 'variable', 'option' => $datastore['key'], 'and' => true),
+				));
+				foreach ($scenarios as $scenario) {
 					$datastore['usedBy']['scenario'][] = $scenario->getHumanName();
 				}
 			}

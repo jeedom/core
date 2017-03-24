@@ -1649,7 +1649,7 @@ class cmd {
 		$return = array('cmd' => array(), 'eqLogic' => array(), 'scenario' => array());
 		$return['cmd'] = self::searchConfiguration('#' . $this->getId() . '#');
 		$return['eqLogic'] = eqLogic::searchConfiguration('#' . $this->getId() . '#');
-		$return['scenario'] = scenario::byUsedCommand($this->getId());
+		$return['scenario'] = scenario::searchByUse(array(array('action' => '#' . $this->getId() . '#', 'option' => '#' . $this->getId() . '#')));
 		if ($_array) {
 			foreach ($return as &$value) {
 				$value = utils::o2a($value);

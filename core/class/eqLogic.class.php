@@ -1160,6 +1160,10 @@ class eqLogic {
 		$return['cmd'] = cmd::searchConfiguration('#eqLogic' . $this->getId() . '#');
 		$return['eqLogic'] = eqLogic::searchConfiguration('#eqLogic' . $this->getId() . '#');
 		$return['eqLogic'] = array_merge($return['eqLogic'], eqLogic::searchConfiguration('"eqLogic":"' . $this->getId()));
+		$return['scenario'] = scenario::searchByUse(array(
+			array('action' => 'equipment', 'option' => $this->getId()),
+			array('action' => '#eqLogic' . $this->getId() . '#'),
+		));
 		if ($_array) {
 			foreach ($return as &$value) {
 				$value = utils::o2a($value);

@@ -476,22 +476,27 @@ class scenario {
 		return $text;
 	}
 
-	public static function byUsedCommand($_cmd_id, $_variable = false) {
-		$_cmd_id = str_replace('#', '', $_cmd_id);
-		$scenarios = null;
-		if ($_variable) {
-			$return = array();
-			$expressions = array_merge(scenarioExpression::searchExpression('variable(' . $_cmd_id . ')'), scenarioExpression::searchExpression('variable', $_cmd_id, true));
-		} else {
-			$return = self::byTrigger($_cmd_id);
-			$expressions = scenarioExpression::searchExpression('#' . $_cmd_id . '#', '#' . $_cmd_id . '#', false);
+	public static function searchByUse($searchs) {
+		$return = array();
+		$expressions = array();
+		$scenarios = array();
+		foreach ($searchs as $search) {
+			$_cmd_id = str_replace('#', '', $search['action']);
+			$return = array_merge($return, self::byTrigger($_cmd_id));
+			if (!isset($search['and'])) {
+				$search['and'] = false;
+			}
+			if (!isset($search['option'])) {
+				$search['option'] = $search['action'];
+			}
+			$expressions = array_merge($expressions, scenarioExpression::searchExpression($search['action'], $search['option'], $search['and']));
 		}
-		if (is_array($expressions)) {
+		if (is_array($expressions) && count($expressions) > 0) {
 			foreach ($expressions as $expression) {
 				$scenarios[] = $expression->getSubElement()->getElement()->getScenario();
 			}
 		}
-		if (is_array($scenarios)) {
+		if (is_array($scenarios) && count($scenarios) > 0) {
 			foreach ($scenarios as $scenario) {
 				if (is_object($scenario)) {
 					$find = false;
@@ -1275,6 +1280,10 @@ class scenario {
 		$return['cmd'] = cmd::searchConfiguration('#scenario' . $this->getId() . '#');
 		$return['eqLogic'] = eqLogic::searchConfiguration('#scenario' . $this->getId() . '#');
 		$return['eqLogic'] = array_merge($return['eqLogic'], eqLogic::searchConfiguration('"scenario_id":"' . $this->getId()));
+		$return['scenario'] = scenario::searchByUse(array(
+			array('action' => 'scenario', 'option' => $this->getId()),
+			array('action' => '#scenario' . $this->getId() . '#'),
+		));
 		if ($_array) {
 			foreach ($return as &$value) {
 				$value = utils::o2a($value);
