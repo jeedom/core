@@ -1275,7 +1275,7 @@ class scenario {
 					'from' => 'scenario' . $this->getId(),
 					'to' => 'interactDef' . $interactDef->getId(),
 					'lengthfactor' => 0.6,
-					'dashvalue' => '5,3',
+					'dashvalue' => '2,6',
 				);
 			}
 		}
@@ -1286,7 +1286,7 @@ class scenario {
 					'from' => 'scenario' . $this->getId(),
 					'to' => 'plan' . $plan->getId(),
 					'lengthfactor' => 0.6,
-					'dashvalue' => '5,3',
+					'dashvalue' => '2,6',
 				);
 			}
 		}
@@ -1297,7 +1297,7 @@ class scenario {
 					'from' => 'scenario' . $this->getId(),
 					'to' => 'view' . $view->getId(),
 					'lengthfactor' => 0.6,
-					'dashvalue' => '5,3',
+					'dashvalue' => '2,6',
 				);
 			}
 		}

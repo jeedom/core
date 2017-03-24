@@ -1154,7 +1154,7 @@ class eqLogic {
 					'from' => 'interactDef' . $interactDef->getId(),
 					'to' => 'eqLogic' . $this->getId(),
 					'lengthfactor' => 0.6,
-					'dashvalue' => '5,3',
+					'dashvalue' => '2,6',
 				);
 			}
 		}
@@ -1165,7 +1165,7 @@ class eqLogic {
 					'from' => 'plan' . $plan->getId(),
 					'to' => 'eqLogic' . $this->getId(),
 					'lengthfactor' => 0.6,
-					'dashvalue' => '5,3',
+					'dashvalue' => '2,6',
 				);
 			}
 		}
@@ -1176,7 +1176,7 @@ class eqLogic {
 					'from' => 'view' . $view->getId(),
 					'to' => 'eqLogic' . $this->getId(),
 					'lengthfactor' => 0.6,
-					'dashvalue' => '5,3',
+					'dashvalue' => '2,6',
 				);
 			}
 		}

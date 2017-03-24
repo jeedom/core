@@ -1603,7 +1603,7 @@ class cmd {
 					'from' => 'interactDef' . $interactDef->getId(),
 					'to' => 'cmd' . $this->getId(),
 					'lengthfactor' => 0.6,
-					'dashvalue' => '5,3',
+					'dashvalue' => '2,5',
 				);
 			}
 		}
@@ -1614,7 +1614,7 @@ class cmd {
 					'from' => 'plan' . $plan->getId(),
 					'to' => 'cmd' . $this->getId(),
 					'lengthfactor' => 0.6,
-					'dashvalue' => '5,3',
+					'dashvalue' => '2,6',
 				);
 			}
 		}
@@ -1625,7 +1625,7 @@ class cmd {
 					'from' => 'view' . $view->getId(),
 					'to' => 'cmd' . $this->getId(),
 					'lengthfactor' => 0.6,
-					'dashvalue' => '5,3',
+					'dashvalue' => '2,6',
 				);
 			}
 		}
@@ -1638,7 +1638,7 @@ class cmd {
 					'from' => 'scenario' . $scenario->getId(),
 					'to' => 'cmd' . $this->getId(),
 					'lengthfactor' => 0.6,
-					'dashvalue' => '5,3',
+					'dashvalue' => '2,6',
 				);
 			}
 		}
