@@ -606,6 +606,7 @@ class object {
 			'name' => $this->getName(),
 			'icon' => $icon['icon'],
 			'fontfamily' => $icon['fontfamily'],
+			'fontweight' => ($_level == 1) ? 'bold' : 'normal',
 			'fontsize' => '4em',
 			'texty' => -35,
 			'textx' => 0,
