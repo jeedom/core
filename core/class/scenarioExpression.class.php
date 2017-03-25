@@ -1038,7 +1038,7 @@ class scenarioExpression {
 						if (is_numeric($options['duration']) && $options['duration'] > 0) {
 							$this->setLog($scenario, __('Pause de ', __FILE__) . $options['duration'] . __(' seconde(s)', __FILE__));
 							if ($options['duration'] < 1) {
-								return usleep($options['duration'] * 1000);
+								return usleep($options['duration'] * 1000000);
 							} else {
 								return sleep($options['duration']);
 							}
