@@ -1220,7 +1220,7 @@ class scenario {
 		$return['interactDef'] = interactDef::searchByUse('#scenario' . $this->getId() . '#');
 		$return['interactDef'] = array_merge($return['interactDef'], interactDef::searchByUse('"scenario_id":"' . $this->getId()));
 		$return['scenario'] = scenario::searchByUse(array(
-			array('action' => 'scenario', 'option' => $this->getId()),
+			array('action' => 'scenario', 'option' => $this->getId(), 'and' => true),
 			array('action' => '#scenario' . $this->getId() . '#'),
 		));
 		$return['view'] = view::searchByUse('scenario', $this->getId());

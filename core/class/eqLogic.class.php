@@ -1093,7 +1093,7 @@ class eqLogic {
 		$return['interactDef'] = interactDef::searchByUse('#eqLogic' . $this->getId() . '#');
 		$return['interactDef'] = array_merge($return['interactDef'], interactDef::searchByUse('"eqLogic":"' . $this->getId()));
 		$return['scenario'] = scenario::searchByUse(array(
-			array('action' => 'equipment', 'option' => $this->getId()),
+			array('action' => 'equipment', 'option' => $this->getId(), 'and' => true),
 			array('action' => '#eqLogic' . $this->getId() . '#'),
 		));
 		$return['view'] = view::searchByUse('eqLogic', $this->getId());
