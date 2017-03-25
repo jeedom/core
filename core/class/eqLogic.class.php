@@ -1075,7 +1075,7 @@ class eqLogic {
 		addGraphLink($this, 'eqLogic', $usedBy['plan'], 'plan', $_data, $_level, $_drill, array('dashvalue' => '2,6', 'lengthfactor' => 0.6));
 		addGraphLink($this, 'eqLogic', $usedBy['view'], 'view', $_data, $_level, $_drill, array('dashvalue' => '2,6', 'lengthfactor' => 0.6));
 		if (!isset($_data['object' . $this->getObject_id()])) {
-			addGraphLink($this, 'eqLogic', $this->getObject(), 'object', $_data, $_level, $_drill);
+			addGraphLink($this, 'eqLogic', $this->getObject(), 'object', $_data, $_level, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
 		}
 		return $_data;
 	}
