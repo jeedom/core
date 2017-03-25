@@ -206,7 +206,7 @@ class cache {
 		$cmd .= 'mkdir ' . $cache_dir . ';';
 		$cmd .= 'cd ' . $cache_dir . ';';
 		$cmd .= 'tar xfz ' . dirname(__FILE__) . '/../../cache.tar.gz;';
-		$cmd .= 'chmod -R 777 ' . $cache_dir . ' 2>&1 /dev/null;';
+		$cmd .= 'chmod -R 777 ' . $cache_dir . ' 2>&1 > /dev/null;';
 		com_shell::execute($cmd);
 	}
 
