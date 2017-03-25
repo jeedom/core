@@ -1023,3 +1023,30 @@ function findCodeIcon($_icon) {
 	}
 	return array('icon' => '', 'fontfamily' => '');
 }
+
+function addGraphLink($_from, $_from_type, $_to, $_to_type, &$_data, $_level, $_drill, $_display = array('dashvalue' => '5,3', 'lengthfactor' => 0.6)) {
+	if (is_array($_to) && count($_to) == 0) {
+		return;
+	}
+	if (!is_array($_to)) {
+		if (!is_object($_to)) {
+			return;
+		}
+		$_to = array($_to);
+	}
+	foreach ($_to as $to) {
+		$to->getLinkData($_data, $_level, $_drill);
+		if (isset($_data['link'][$_to_type . $to->getId() . '-' . $_from_type . $_from->getId()])) {
+			continue;
+		}
+		if (isset($_data['link'][$_from_type . $_from->getId() . '-' . $_to_type . $to->getId()])) {
+			continue;
+		}
+		$_data['link'][$_to_type . $to->getId() . '-' . $_from_type . $_from->getId()] = array(
+			'from' => $_to_type . $to->getId(),
+			'to' => $_from_type . $_from->getId(),
+		);
+		$_data['link'][$_to_type . $to->getId() . '-' . $_from_type . $_from->getId()] = array_merge($_data['link'][$_to_type . $to->getId() . '-' . $_from_type . $_from->getId()], $_display);
+	}
+	return $_data;
+}

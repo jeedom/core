@@ -1566,130 +1566,18 @@ class cmd {
 			'title' => $this->getHumanName(),
 		);
 		$usedBy = $this->getUsedBy();
-		if (count($usedBy['scenario']) > 0) {
-			foreach ($usedBy['scenario'] as $scenario) {
-				$scenario->getLinkData($_data, $_level, $_drill);
-				$_data['link']['scenario' . $scenario->getId() . '-cmd' . $this->getId()] = array(
-					'from' => 'scenario' . $scenario->getId(),
-					'to' => 'cmd' . $this->getId(),
-					'lengthfactor' => 0.6,
-					'dashvalue' => '5,3',
-				);
-			}
-		}
-		if (count($usedBy['eqLogic']) > 0) {
-			foreach ($usedBy['eqLogic'] as $eqLogic) {
-				$eqLogic->getLinkData($_data, $_level, $_drill);
-				$_data['link']['eqLogic' . $eqLogic->getId() . '-cmd' . $this->getId()] = array(
-					'from' => 'eqLogic' . $eqLogic->getId(),
-					'to' => 'cmd' . $this->getId(),
-					'lengthfactor' => 0.6,
-					'dashvalue' => '5,3',
-				);
-			}
-		}
-		if (count($usedBy['cmd']) > 0) {
-			foreach ($usedBy['cmd'] as $cmd) {
-				$cmd->getLinkData($_data, $_level, $_drill);
-				$_data['link']['cmd' . $cmd->getId() . '-cmd' . $this->getId()] = array(
-					'from' => 'cmd' . $cmd->getId(),
-					'to' => 'cmd' . $this->getId(),
-					'lengthfactor' => 0.6,
-					'dashvalue' => '5,3',
-				);
-			}
-		}
-		if (count($usedBy['interactDef']) > 0) {
-			foreach ($usedBy['interactDef'] as $interactDef) {
-				$interactDef->getLinkData($_data, $_level, $_drill);
-				$_data['link']['interactDef' . $interactDef->getId() . '-cmd' . $this->getId()] = array(
-					'from' => 'interactDef' . $interactDef->getId(),
-					'to' => 'cmd' . $this->getId(),
-					'lengthfactor' => 0.6,
-					'dashvalue' => '2,5',
-				);
-			}
-		}
-		if (count($usedBy['plan']) > 0) {
-			foreach ($usedBy['plan'] as $plan) {
-				$plan->getLinkData($_data, $_level, $_drill);
-				$_data['link']['plan' . $plan->getId() . '-cmd' . $this->getId()] = array(
-					'from' => 'plan' . $plan->getId(),
-					'to' => 'cmd' . $this->getId(),
-					'lengthfactor' => 0.6,
-					'dashvalue' => '2,6',
-				);
-			}
-		}
-		if (count($usedBy['view']) > 0) {
-			foreach ($usedBy['view'] as $view) {
-				$view->getLinkData($_data, $_level, $_drill);
-				$_data['link']['view' . $view->getId() . '-cmd' . $this->getId()] = array(
-					'from' => 'view' . $view->getId(),
-					'to' => 'cmd' . $this->getId(),
-					'lengthfactor' => 0.6,
-					'dashvalue' => '2,6',
-				);
-			}
-		}
-
 		$use = $this->getUse();
-		if (count($use['scenario']) > 0) {
-			foreach ($use['scenario'] as $scenario) {
-				$scenario->getLinkData($_data, $_level, $_drill);
-				$_data['link']['scenario' . $scenario->getId() . '-cmd' . $this->getId()] = array(
-					'from' => 'scenario' . $scenario->getId(),
-					'to' => 'cmd' . $this->getId(),
-					'lengthfactor' => 0.6,
-					'dashvalue' => '2,6',
-				);
-			}
-		}
-		if (count($use['eqLogic']) > 0) {
-			foreach ($use['eqLogic'] as $eqLogic) {
-				$eqLogic->getLinkData($_data, $_level, $_drill);
-				$_data['link']['eqLogic' . $eqLogic->getId() . '-cmd' . $this->getId()] = array(
-					'from' => 'eqLogic' . $eqLogic->getId(),
-					'to' => 'cmd' . $this->getId(),
-					'lengthfactor' => 0.6,
-					'dashvalue' => '5,3',
-				);
-			}
-		}
-		if (count($use['cmd']) > 0) {
-			foreach ($use['cmd'] as $cmd) {
-				$cmd->getLinkData($_data, $_level, $_drill);
-				$_data['link']['cmd' . $cmd->getId() . '-cmd' . $this->getId()] = array(
-					'from' => 'cmd' . $cmd->getId(),
-					'to' => 'cmd' . $this->getId(),
-					'lengthfactor' => 0.6,
-					'dashvalue' => '5,3',
-				);
-			}
-		}
-		if (count($use['dataStore']) > 0) {
-			foreach ($use['dataStore'] as $dataStore) {
-				$dataStore->getLinkData($_data, $_level, $_drill);
-				$_data['link']['dataStore' . $dataStore->getId() . '-cmd' . $this->getId()] = array(
-					'from' => 'dataStore' . $dataStore->getId(),
-					'to' => 'cmd' . $this->getId(),
-					'lengthfactor' => 0.6,
-					'dashvalue' => '5,3',
-				);
-			}
-		}
-
-		if (!isset($_data['eqLogic' . $this->getEqLogic_id()])) {
-			$eqLogic = $this->getEqLogic();
-			if (is_object($eqLogic)) {
-				$eqLogic->getLinkData($_data, $_level, $_drill);
-				$_data['link']['eqLogic' . $eqLogic->getId() . '-cmd' . $this->getId()] = array(
-					'from' => 'eqLogic' . $eqLogic->getId(),
-					'to' => 'cmd' . $this->getId(),
-					'lengthfactor' => 0.6,
-				);
-			}
-		}
+		addGraphLink($this, 'cmd', $usedBy['scenario'], 'scenario', $_data, $_level, $_drill);
+		addGraphLink($this, 'cmd', $usedBy['eqLogic'], 'eqLogic', $_data, $_level, $_drill);
+		addGraphLink($this, 'cmd', $usedBy['cmd'], 'cmd', $_data, $_level, $_drill);
+		addGraphLink($this, 'cmd', $usedBy['interactDef'], 'interactDef', $_data, $_level, $_drill, array('dashvalue' => '2,6', 'lengthfactor' => 0.6));
+		addGraphLink($this, 'cmd', $usedBy['plan'], 'plan', $_data, $_level, $_drill, array('dashvalue' => '2,6', 'lengthfactor' => 0.6));
+		addGraphLink($this, 'cmd', $usedBy['view'], 'view', $_data, $_level, $_drill, array('dashvalue' => '2,6', 'lengthfactor' => 0.6));
+		addGraphLink($this, 'cmd', $use['scenario'], 'scenario', $_data, $_level, $_drill);
+		addGraphLink($this, 'cmd', $use['eqLogic'], 'eqLogic', $_data, $_level, $_drill);
+		addGraphLink($this, 'cmd', $use['cmd'], 'cmd', $_data, $_level, $_drill);
+		addGraphLink($this, 'cmd', $use['dataStore'], 'dataStore', $_data, $_level, $_drill);
+		addGraphLink($this, 'cmd', $this->getEqLogic(), 'eqLogic', $_data, $_level, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
 		return $_data;
 	}
 

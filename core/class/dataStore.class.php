@@ -142,42 +142,10 @@ class dataStore {
 			'textx' => 0,
 			'title' => __('Variable :', __FILE__) . ' ' . $this->getKey(),
 		);
-
 		$usedBy = $this->getUsedBy();
-		if (count($usedBy['scenario']) > 0) {
-			foreach ($usedBy['scenario'] as $scenario) {
-				$scenario->getLinkData($_data, $_level, $_drill);
-				$_data['link']['scenario' . $scenario->getId() . '-dataStore' . $this->getId()] = array(
-					'from' => 'scenario' . $scenario->getId(),
-					'to' => 'dataStore' . $this->getId(),
-					'lengthfactor' => 0.6,
-					'dashvalue' => '5,3',
-				);
-			}
-		}
-		if (count($usedBy['eqLogic']) > 0) {
-			foreach ($usedBy['eqLogic'] as $eqLogic) {
-				$eqLogic->getLinkData($_data, $_level, $_drill);
-				$_data['link']['dataStore' . $this->getId() . '-eqLogic' . $eqLogic->getId()] = array(
-					'from' => 'dataStore' . $this->getId(),
-					'to' => 'eqLogic' . $eqLogic->getId(),
-					'lengthfactor' => 0.6,
-					'dashvalue' => '5,3',
-				);
-			}
-		}
-		if (count($usedBy['cmd']) > 0) {
-			foreach ($usedBy['cmd'] as $cmd) {
-				$cmd->getLinkData($_data, $_level, $_drill);
-				$_data['link']['dataStore' . $this->getId() . '-cmd' . $cmd->getId()] = array(
-					'from' => 'dataStore' . $this->getId(),
-					'to' => 'cmd' . $cmd->getId(),
-					'lengthfactor' => 0.6,
-					'dashvalue' => '5,3',
-				);
-			}
-		}
-
+		addGraphLink($this, 'dataStore', $usedBy['scenario'], 'scenario', $_data, $_level, $_drill);
+		addGraphLink($this, 'dataStore', $usedBy['cmd'], 'cmd', $_data, $_level, $_drill);
+		addGraphLink($this, 'dataStore', $usedBy['eqLogic'], 'eqLogic', $_data, $_level, $_drill);
 		return $_data;
 	}
 

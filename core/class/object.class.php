@@ -611,83 +611,14 @@ class object {
 			'textx' => 0,
 			'title' => $this->getHumanName(),
 		);
-		foreach ($this->getEqLogic() as $eqLogic) {
-			$eqLogic->getLinkData($_data, $_level, $_drill);
-			$_data['link']['object' . $this->getId() . '-eqLogic' . $eqLogic->getId()] = array(
-				'from' => 'object' . $this->getId(),
-				'to' => 'eqLogic' . $eqLogic->getId(),
-				'lengthfactor' => 0.6,
-			);
-		}
 		$use = $this->getUse();
-		if (count($use['cmd']) > 0) {
-			foreach ($use['cmd'] as $cmd) {
-				$cmd->getLinkData($_data, $_level, $_drill);
-				$_data['link']['object' . $this->getId() . '-cmd' . $cmd->getId()] = array(
-					'from' => 'object' . $this->getId(),
-					'to' => 'cmd' . $cmd->getId(),
-					'lengthfactor' => 0.6,
-					'dashvalue' => '5,3',
-				);
-			}
-		}
-		if (count($use['scenario']) > 0) {
-			foreach ($use['scenario'] as $scenario) {
-				$scenario->getLinkData($_data, $_level, $_drill);
-				$_data['link']['scenario' . $scenario->getId() . '-object' . $this->getId()] = array(
-					'from' => 'scenario' . $scenario->getId(),
-					'to' => 'object' . $this->getId(),
-					'lengthfactor' => 0.6,
-					'dashvalue' => '5,3',
-				);
-			}
-		}
-		if (count($use['eqLogic']) > 0) {
-			foreach ($use['eqLogic'] as $eqLogic) {
-				$eqLogic->getLinkData($_data, $_level, $_drill);
-				$_data['link']['object' . $this->getId() . '-eqLogic' . $eqLogic->getId()] = array(
-					'from' => 'object' . $this->getId(),
-					'to' => 'eqLogic' . $eqLogic->getId(),
-					'lengthfactor' => 0.6,
-					'dashvalue' => '5,3',
-				);
-			}
-		}
-		if (count($use['dataStore']) > 0) {
-			foreach ($use['dataStore'] as $dataStore) {
-				$dataStore->getLinkData($_data, $_level, $_drill);
-				$_data['link']['object' . $this->getId() . '-dataStore' . $dataStore->getId()] = array(
-					'from' => 'object' . $this->getId(),
-					'to' => 'dataStore' . $dataStore->getId(),
-					'lengthfactor' => 0.6,
-					'dashvalue' => '5,3',
-				);
-			}
-		}
-
-		$childs = $this->getChild();
-		if (count($childs) > 0) {
-			foreach ($childs as $child) {
-				$child->getLinkData($_data, $_level + 1, $_drill);
-				$_data['link']['object' . $this->getId() . '-object' . $child->getId()] = array(
-					'from' => 'object' . $child->getId(),
-					'to' => 'object' . $this->getId(),
-					'lengthfactor' => 0.6,
-				);
-			}
-		}
-		$scenarios = $this->getScenario();
-		if (count($scenarios) > 0) {
-			foreach ($scenarios as $scenario) {
-				$scenario->getLinkData($_data, $_level + 1, $_drill);
-				$_data['link']['scenario' . $scenario->getId() . '-object' . $this->getId()] = array(
-					'from' => 'scenario' . $scenario->getId(),
-					'to' => 'object' . $this->getId(),
-					'lengthfactor' => 0.6,
-					'dashvalue' => '5,3',
-				);
-			}
-		}
+		addGraphLink($this, 'object', $this->getEqLogic(), 'eqLogic', $_data, $_level, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
+		addGraphLink($this, 'object', $use['cmd'], 'cmd', $_data, $_level, $_drill);
+		addGraphLink($this, 'object', $use['scenario'], 'scenario', $_data, $_level, $_drill);
+		addGraphLink($this, 'object', $use['eqLogic'], 'eqLogic', $_data, $_level, $_drill);
+		addGraphLink($this, 'object', $use['dataStore'], 'dataStore', $_data, $_level, $_drill);
+		addGraphLink($this, 'object', $this->getChild(), 'object', $_data, $_level, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
+		addGraphLink($this, 'object', $this->getScenario(), 'scenario', $_data, $_level, $_drill);
 		return $_data;
 	}
 
