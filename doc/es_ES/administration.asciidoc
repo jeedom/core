@@ -188,6 +188,10 @@ image::../images/administration18.png[]
 * *[Backup] recurso* : La ruta del recurso compartido (Asegúrese de indicar la ruta compartida correcta)
 * *[Ruta Backup] *: Ruta para compartirr (para ser relativa),  debe existir
 
+[NOTA]
+Si le chemin d'accès à votre dossier de sauvegarde samba est : \\192.168.0.1\Sauvegardes\Domotique\Jeedom
+Alors IP = 192.168.0.1 , Partage = //192.168.0.1/Sauvegardes , Chemin = Domotique/Jeedom
+
 [IMPORTANTE]
 Tal vez necesite instalar el paquete smbclient para que el repositorio funcione
 
