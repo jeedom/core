@@ -618,7 +618,7 @@ class object {
 		addGraphLink($this, 'object', $use['eqLogic'], 'eqLogic', $_data, $_level, $_drill);
 		addGraphLink($this, 'object', $use['dataStore'], 'dataStore', $_data, $_level, $_drill);
 		addGraphLink($this, 'object', $this->getChild(), 'object', $_data, $_level, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
-		addGraphLink($this, 'object', $this->getScenario(), 'scenario', $_data, $_level, $_drill);
+		addGraphLink($this, 'object', $this->getScenario(), 'scenario', $_data, $_level, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
 		return $_data;
 	}
 
