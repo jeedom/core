@@ -947,6 +947,28 @@ class jeedom {
 			}
 			$return['dataStore'][$variable] = $dataStore;
 		}
+		preg_match_all('/"view_id":"([0-9]*)"/', $_string, $matches);
+		foreach ($matches[1] as $view_id) {
+			if (isset($return['view'][$view_id])) {
+				continue;
+			}
+			$view = view::byId($view_id);
+			if (!is_object($view)) {
+				continue;
+			}
+			$return['view'][$view_id] = $view;
+		}
+		preg_match_all('/"plan_id":"([0-9]*)"/', $_string, $matches);
+		foreach ($matches[1] as $plan_id) {
+			if (isset($return['plan'][$plan_id])) {
+				continue;
+			}
+			$plan = planHeader::byId($plan_id);
+			if (!is_object($plan)) {
+				continue;
+			}
+			$return['plan'][$plan_id] = $plan;
+		}
 		return $return;
 	}
 

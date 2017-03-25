@@ -40,6 +40,7 @@
         },
         success: function (views) {
             var options = '';
+            options += '<option value="">Aucune</option>';
             for (var i in views) {
                 options += '<option value="' + views[i].id + '">' + views[i].name + '</option>';
             }
@@ -55,6 +56,7 @@
         },
         success: function (plans) {
             var options = '';
+            options += '<option value="">Aucun</option>';
             for (var i in plans) {
                 options += '<option value="' + plans[i].id + '">' + plans[i].name + '</option>';
             }
@@ -71,6 +73,7 @@
         },
         success: function (plugins) {
             var options = '';
+            options += '<option value="">Aucun</option>';
             for (var i in plugins) {
                 if(plugins[i].display == ''){
                     continue;

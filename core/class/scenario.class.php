@@ -1198,6 +1198,8 @@ class scenario {
 		addGraphLink($this, 'scenario', $use['scenario'], 'scenario', $_data, $_level, $_drill);
 		addGraphLink($this, 'scenario', $use['eqLogic'], 'eqLogic', $_data, $_level, $_drill);
 		addGraphLink($this, 'scenario', $use['dataStore'], 'dataStore', $_data, $_level, $_drill);
+		addGraphLink($this, 'scenario', $use['view'], 'view', $_data, $_level, $_drill);
+		addGraphLink($this, 'scenario', $use['plan'], 'plan', $_data, $_level, $_drill);
 		addGraphLink($this, 'scenario', $usedBy['cmd'], 'cmd', $_data, $_level, $_drill);
 		addGraphLink($this, 'scenario', $usedBy['scenario'], 'scenario', $_data, $_level, $_drill);
 		addGraphLink($this, 'scenario', $usedBy['eqLogic'], 'eqLogic', $_data, $_level, $_drill);
