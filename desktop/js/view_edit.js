@@ -88,17 +88,35 @@
  $("#bt_addView").on('click', function(event) {
     bootbox.prompt("{{Nom de la vue ?}}", function(result) {
         if (result !== null) {
-            editView({id: '', name: result});
-        }
-    });
+         jeedom.view.save({
+            id: '',
+            view: {name:result},
+            error: function(error) {
+                $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            },
+            success: function(data) {
+               loadPage('index.php?v=d&p=view_edit&view_id=' + data.id);
+           }
+       });
+     }
+ });
 });
 
  $("#bt_editView").on('click', function(event) {
     bootbox.prompt("Nom de la vue ?", function(result) {
         if (result !== null) {
-            editView({id: $('.li_view.active').attr('data-view_id'), name: result});
-        }
-    });
+         jeedom.view.save({
+            id: $('.li_view.active').attr('data-view_id'),
+            view: {name:result},
+            error: function(error) {
+                $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            },
+            success: function(data) {
+                $('.li_view.active a').text(result);
+            }
+        });
+     }
+ });
 });
 
  jwerty.key('ctrl+s', function (e) {
@@ -237,33 +255,6 @@ $('body').delegate('.viewDataAttr', 'change', function() {
     modifyWithoutSave = true;
 });
 
-function editView(_view) {
-    $.ajax({
-        type: "POST", 
-        url: "core/ajax/view.ajax.php",
-        data: {
-            action: "edit",
-            name: _view.name,
-            id: _view.id,
-        },
-        dataType: 'json',
-        error: function(request, status, error) {
-            handleAjaxError(request, status, error, $('#div_addViewAlert'));
-        },
-        success: function(data) { 
-            if (data.state != 'ok') {
-                $('#div_addViewAlert').showAlert({message: data.result, level: 'danger'});
-                return;
-            }
-            if ($('.li_view[data-view_id=' + data.result.id + ']').length != 0) {
-                $('.li_view.active a').text($('#in_addViewName').value());
-            } else {
-               loadPage('index.php?v=d&p=view_edit&view_id=' + data.result.id);
-           }
-       }
-   });
-}
-
 function addEditviewZone(_viewZone) {
     if (!isset(_viewZone.configuration)) {
         _viewZone.configuration = {};
@@ -363,7 +354,7 @@ $('#div_viewZones').on('click','.bt_addViewTable',function(){
      }
      line += '</tr>';
      table.find('tbody').append(line);
-     
+
  }else if($(this).attr('data-type') == 'col'){
     table.find('thead tr').append('<td><a class="btn btn-danger bt_removeAddViewTable" data-type="col"><i class="fa fa-trash-o"></a></td>');
     table.find('tbody tr').each(function(){

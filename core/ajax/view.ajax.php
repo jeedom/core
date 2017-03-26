@@ -26,16 +26,6 @@ try {
 
 	ajax::init();
 
-	if (init('action') == 'edit') {
-		$view = view::byId(init('id'));
-		if (!is_object($view)) {
-			$view = new view();
-		}
-		$view->setName(init('name'));
-		$view->save();
-		ajax::success(array('id' => $view->getId()));
-	}
-
 	if (init('action') == 'remove') {
 		$view = view::byId(init('id'));
 		if (!is_object($view)) {
@@ -77,13 +67,13 @@ try {
 	if (init('action') == 'save') {
 		$view = view::byId(init('view_id'));
 		if (!is_object($view)) {
-			throw new Exception(__('Vue non trouvé. Vérifier l\'id', __FILE__));
+			$view = new view();
 		}
-		$view->removeviewZone();
 		$view_ajax = json_decode(init('view'), true);
 		utils::a2o($view, $view_ajax);
 		$view->save();
 		if (count($view_ajax['zones']) > 0) {
+			$view->removeviewZone();
 			foreach ($view_ajax['zones'] as $viewZone_info) {
 				$viewZone = new viewZone();
 				$viewZone->setView_id($view->getId());
@@ -102,7 +92,7 @@ try {
 				}
 			}
 		}
-		ajax::success();
+		ajax::success(utils::o2a($view));
 	}
 
 	if (init('action') == 'getEqLogicviewZone') {
