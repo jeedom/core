@@ -92,7 +92,7 @@ class planHeader {
 
 	public function preSave() {
 		if (trim($this->getName()) == '') {
-			throw new Exception(__('Le nom du plan ne peut pas être vide'));
+			throw new Exception(__('Le nom du plan ne peut pas être vide', __FILE__));
 		}
 		if ($this->getConfiguration('desktopSizeX') == '') {
 			$this->setConfiguration('desktopSizeX', 500);
