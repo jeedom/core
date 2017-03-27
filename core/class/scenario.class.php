@@ -1193,7 +1193,7 @@ class scenario {
 		);
 		$use = $this->getUse();
 		$usedBy = $this->getUsedBy();
-		addGraphLink($this, 'scenario', $this->getObject(), 'object', $_data, $_level, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
+		addGraphLink($this, 'scenario', $this->getObject(), 'object', $_data, $_level + 1, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
 		addGraphLink($this, 'scenario', $use['cmd'], 'cmd', $_data, $_level, $_drill);
 		addGraphLink($this, 'scenario', $use['scenario'], 'scenario', $_data, $_level, $_drill);
 		addGraphLink($this, 'scenario', $use['eqLogic'], 'eqLogic', $_data, $_level, $_drill);
