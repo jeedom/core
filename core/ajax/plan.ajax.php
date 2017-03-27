@@ -124,7 +124,10 @@ try {
 
 	if (init('action') == 'savePlanHeader') {
 		$planHeader_ajax = json_decode(init('planHeader'), true);
-		$planHeader = planHeader::byId($planHeader_ajax['id']);
+		$planHeader = null;
+		if (isset($planHeader_ajax['id'])) {
+			$planHeader = planHeader::byId($planHeader_ajax['id']);
+		}
 		if (!is_object($planHeader)) {
 			$planHeader = new planHeader();
 		}
