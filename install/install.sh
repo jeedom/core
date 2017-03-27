@@ -270,6 +270,9 @@ step_8_jeedom_configuration() {
 step_9_jeedom_installation() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_9_jeedom_installation${NORMAL}"
+	mkdir -p /tmp/jeedom
+	chmod 777 -R /tmp/jeedom
+	chown www-data:www-data -R /tmp/jeedom
 	php ${WEBSERVER_HOME}/install/install.php mode=force
 	if [ $? -ne 0 ]; then
     	echo "${ROUGE}Could not install jeedom - abort${NORMAL}"
@@ -312,8 +315,8 @@ step_11_jeedom_check() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_12_jeedom_check${NORMAL}"
 	php ${WEBSERVER_HOME}/sick.php
-	mkdir -p /tmp/jeedom/cache
-	chmod 777 -R /tmp/jeedom/cache
+	chmod 777 -R /tmp/jeedom
+	chown www-data:www-data -R /tmp/jeedom
 	echo "${VERT}step_12_jeedom_check success${NORMAL}"
 }
 
