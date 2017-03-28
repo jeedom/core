@@ -382,10 +382,10 @@
         "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à Jeedom. L'équipe Jeedom se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "Achtung : Diese Vorgänge sind riskant, sie können den Zugriff auf das System und Jeedom verlieren. Das Jeedom-Team behält sich das Recht vor, jeden Antrag auf Unterstützung bei unsachgemäßer Handhabung zu verweigern.",
         "Accès à l'interface d'administration": "Zugriff auf die Administrationsoberfläche",
         "Lancer": "Start",
-        "Securité": "Securité",
+        "Securité": "Sicherheit",
         "Nombre d'échec toléré": "Nombre d'échec toléré",
-        "Temps maximum entre les échecs (s)": "Temps maximum entre les échecs (s)",
-        "Durée du bannissement (s), -1 pour infini": "Durée du bannissement (s), -1 pour infini",
+        "Temps maximum entre les échecs (s)": "Maximale Zeit zwischen den Ausfällen",
+        "Durée du bannissement (s), -1 pour infini": "Dauer der Verbannung (s), -1 für unendlich",
         "IP \"blanche\"": "IP \"blanche\"",
         "IP": "IP",
         "Date": "Datum",
@@ -830,8 +830,8 @@
         "Le scénario pourra tourné plusieurs fois en même temps": "Das Drehbuch kann mehrere male gleichzeitig verwendet werden",
         "Pas de log": "Kein Protokoll",
         "Le scénario n'écrit plus de log": "Das Szenario schreibt nicht mehr Protokoll",
-        "Mode synchrone": "Mode synchrone",
-        "Le scénario est mode synchrone, attention peux rendre le système instable": "Le scénario est mode synchrone, attention peux rendre le système instable",
+        "Mode synchrone": "Synchron-Modus",
+        "Le scénario est mode synchrone, attention peux rendre le système instable": "Das Szenario ist im synchronen Modus, Achtung, das System kann instabil werden",
         "Etat": "Zustand",
         "Exécuter": "ausführen",
         "Dupliquer le scénario": "Szenario duplizieren",
@@ -856,13 +856,13 @@
         "Activer/Desactiver Masquer/Afficher un équipement": "Aktivieren/Deaktivieren Verbergen/Anzeigen eines Gerätes",
         "Faire une demande": " einen Antrag stellen ",
         "Arrêter Jeedom": "Jeedom beenden",
-        "Retourner un texte/une données": "Retourner un texte/une données",
+        "Retourner un texte/une données": " einen Text/eine Datei zurücksenden",
         "Icône": "Symbol",
         "Alerte": "Alarm",
         "Pop-up": "Pop-up",
         "Pause de x seconde(s)": "Pause in x Sekunde(n)",
         "Attend jusqu’à ce que la condition soit valide (maximum 2h)": "Wartet, bis die Bedingung gültig ist (Maximum 2h)",
-        "Création/modification d’une variable ou de la valeur d’une variable": "Création/modification d’une variable ou de la valeur d’une variable",
+        "Création/modification d’une variable ou de la valeur d’une variable": "Erstellung/Änderung einer Variable oder den Wertes einer Variablen",
         "Permet le contrôle des scénarios": "Erlaubt die Kontrolle der Szenarien",
         "Arrête le scénario": "Stoppt das Szenario",
         "Permet de faire dire un texte à Jeedom (ne marche que si un onglet jeedom est ouvert dans le navigateur)": "Ermöglicht Jeedom einen Text sagen zu lassen (funktioniert nur wenn eine Registerkarte 'Jeedom' im Browser geöffnet wird)",
@@ -924,10 +924,10 @@
         "Permet d\\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)": "Erlaubt, wesentliche funktionelle Elemente hinzuzufügen, um Ihre Szenarien zu erstellen (z.B.: WENN/DANN….)",
         "Ajouter bloc": "Block hinzufügen",
         "Inactif": "inaktiv",
-        "Sauvegarde du scénario réussi": "Sauvegarde du scénario réussi",
+        "Sauvegarde du scénario réussi": "Speichern des Szenarios erfolgreich",
         "Evénement": "Ereignis",
         "Choisir une commande": "Befehl auswählen",
-        "Choisir une variable": "Choisir une variable",
+        "Choisir une variable": "Variablen auswählen",
         "Programmation": "Programmierung",
         "Rechercher une commande": "Befehl suchen",
         "Rechercher un scenario": "Szenario suchen",
@@ -1001,7 +1001,7 @@
         "Type": "Typ",
         "Widget": "Widget",
         "Graphique": "Grafik",
-        "Tableau": "Tableau",
+        "Tableau": "Armaturenbrett",
         "Annuler": "Abbrechen"
     },
     "desktop/js/view_edit.js": {
@@ -1081,9 +1081,9 @@
         "Ajouter une zone": "Bereich hinzufügen",
         "Ajouter un résumé": "Ajouter un résumé",
         "Affichage": "Anzeigen",
-        "Aimanter les élements": "Aimanter les élements",
-        "Aimanter à la grille": "Aimanter à la grille",
-        "Masquer surbrillance des éléments": "Masquer surbrillance des éléments",
+        "Aimanter les élements": "Ausrichten der Elemente",
+        "Aimanter à la grille": "Am Gitter ausrichten",
+        "Masquer surbrillance des éléments": "Ausblenden von hervorgehobenen Elementen",
         "Supprimer le design": "Design löschen",
         "Etes vous sûr de vouloir supprimer ce design ?": "Sind Sie sicher, daß Sie dieses Design löschen wollen ?",
         "Creer un design": "Ein Design erstellen",
@@ -1092,7 +1092,7 @@
         "Configurer le design": "Design konfigurieren",
         "Configuration du design": "Design-Konfiguration",
         "Sauvegarder": "Speichern",
-        "Paramètres d\\'affichage": "Paramètres d\\'affichage",
+        "Paramètres d\\'affichage": "Anzeige Parameter",
         "Configuration du widget": "Widget Konfiguration",
         "Configuration avancée": "Erweiterte Konfiguration",
         "Supprimer": "Löschen",
@@ -1149,7 +1149,7 @@
         "Tailles": "Größen",
         "Taille (LxH)": "Größe (LxH)",
         "Image supprimée": "Bild gelöscht",
-        "Design sauvegardé": "Design sauvegardé"
+        "Design sauvegardé": "Design gespeichert"
     },
     "desktop/modal/cmd.history.php": {
         "Attention une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher": "Warnung!  Ein zu großer Datumsbereich benötigt eine sehr lange Zeit zum berechnen oder kann auch nicht angezeigt werden.",
@@ -1216,8 +1216,8 @@
         "Etes vous sûr de vouloir supprimer ce plugin ?": "Sind Sie sicher, daß Sie dieses Plugin löschen wollen ?",
         "Market": "Markt",
         "Sauvegarde de la configuration des panels effectuée": "Sicherung der Panel Konfiguration erfolgreich",
-        "Sauvegarde des fonctionalités effectuée": "Sauvegarde des fonctionalités effectuée",
-        "Sauvegarde de la configuration des logs effectuée": "Sauvegarde de la configuration des logs effectuée",
+        "Sauvegarde des fonctionalités effectuée": "Backup der Funktionalität durchgeführt ",
+        "Sauvegarde de la configuration des logs effectuée": "Sicherung Protokoll Konfiguration ",
         "Log du plugin": "Plugin Protokoll",
         "Sauvegarde effectuée": "Sicherungskopie hergestellt",
         "Ajouter un plugin": "Plugin hinzufügen"
@@ -1226,7 +1226,7 @@
         "Market Jeedom": "Jeedom Markt"
     },
     "desktop/js/report.js": {
-        "Aucun aperçu possible en pdf": "Aucun aperçu possible en pdf"
+        "Aucun aperçu possible en pdf": "Keine Übersicht mit pdf möglich"
     },
     "core/js/plugin.template.js": {
         "Configuration du plugin": "Plugin-Konfiguration",
@@ -1259,7 +1259,7 @@
         "Envoi des sauvegardes": "Sicherungskopie senden",
         "Sauvegarder": "Speichern",
         "Informations": "Information",
-        "Envoyer la sauvegarde locale sélectionnée": "Envoyer la sauvegarde locale sélectionnée"
+        "Envoyer la sauvegarde locale sélectionnée": "Ausgewählte lokale Backup senden"
     },
     "desktop/js/backup.js": {
         "Sauvegarde réussie": "Speichern erfolgreich",
@@ -1272,7 +1272,7 @@
         "Etes-vous sûr de vouloir restaurer Jeedom avec la sauvegarde Cloud": "Sind Sie sicher, dass Sie Jeedom mit Cloud-Backup wiederherstellen wollen",
         "L\\'opération est réussie": "Der Vorgang ist erfolgreich abgeschlossen",
         "L\\'opération a échoué": "Der Vorgang ist fehlgeschlagen",
-        "Etes-vous sûr de vouloir envoyer une sauvegarde de Jeedom sur le cloud ? Une fois lancée cette opération ne peut être annulée": "Etes-vous sûr de vouloir envoyer une sauvegarde de Jeedom sur le cloud ? Une fois lancée cette opération ne peut être annulée"
+        "Etes-vous sûr de vouloir envoyer une sauvegarde de Jeedom sur le cloud ? Une fois lancée cette opération ne peut être annulée": "Sind Sie sicher, dass Sie ein Jeedom Backup in die Cloud senden möchten? Nach dem Start kann dieser Vorgang nicht mehr abgebrochen werden."
     },
     "desktop/php/user.php": {
         "Liste des utilisateurs :": "Benutzerliste :",
@@ -1298,17 +1298,17 @@
         "Etês vous sur de vouloir changer la clef API de l\\'utilisateur ?": "Sind Sie sicher, dass Sie den API-Schlüssel des Benutzers ändern wollen ?",
         "Modification effectuée": "Änderung  ausgeführt",
         "Actif": "Aktiv",
-        "Local seulement": "Local seulement",
+        "Local seulement": "nur lokal",
         "Administrateur": "Administrator",
         "Utilisateur": "Benutzer",
         "Utilisateur limité": "Eingeschränkter Benutzer",
         "OK": "OK",
         "NOK": "NOK",
         "Renouveler la clef API": "API-Schlüssel erneuern",
-        "Regenérer clef API": "Regenérer clef API",
+        "Regenérer clef API": "API-Schlüssel regenerieren",
         "Supprimer": "Löschen",
         "Changer le mot de passe": "Kennwort ändern",
-        "Gerer les droits": "Gerer les droits"
+        "Gerer les droits": "Rechte verwalten"
     },
     "desktop/modal/log.display.php": {
         "Supprimer": "Löschen",
@@ -1324,11 +1324,11 @@
         "Plugins": "Plugins",
         "OK": "OK",
         "Santé ": "Gesundheit",
-        "Démon en mode automatique": "Démon en mode automatique",
+        "Démon en mode automatique": "Dämon im Automatik-Modus",
         "Dépendance": "Abhängigkeit",
         "Configuration démon": "Daemon Konfiguration",
         "Statut démon": "Daemon Status",
-        "Port configuré": "Port configuré",
+        "Port configuré": "Port konfiguriert",
         "Aucune santé spécifique": "Keine spezifische Gesundheit",
         "NOK": "NOK",
         "erreurs": "Fehler"
@@ -1336,7 +1336,7 @@
     "desktop/js/health.js": {
         "Configuration du plugin": "Plugin-Konfiguration",
         "Santé": "Gesundheit",
-        "Jeedom benchmark": "Jeedom benchmark"
+        "Jeedom benchmark": "Jeedom Benchmark"
     },
     "desktop/php/cron.php": {
         "Processus cron Jeedom :": "Jeedom Cron Prozess : ",
@@ -1360,7 +1360,7 @@
         "Programmation": "Programmierung",
         "Timeout (min)": "Zeitüberschreitung (min)",
         "Dernier lancement": "Letzter Start",
-        "Derniere durée": "Derniere durée",
+        "Derniere durée": "Letzte Dauer",
         "Statut": "Status"
     },
     "desktop/js/cron.js": {
@@ -1433,14 +1433,14 @@
         "Activer/Desactiver Masquer/Afficher un équipement": "Aktivieren/Deaktivieren Verbergen/Anzeigen eines Gerätes",
         "Faire une demande": " einen Antrag stellen ",
         "Arrêter Jeedom": "Jeedom beenden",
-        "Retourner un texte/une données": "Retourner un texte/une données",
+        "Retourner un texte/une données": " einen Text/eine Datei zurücksenden",
         "Icône": "Symbol",
         "Alerte": "Alarm",
         "Pop-up": "Pop-up",
         "Rapport": "Bericht",
         "Pause de x seconde(s)": "Pause in x Sekunde(n)",
         "Attend jusqu’à ce que la condition soit valide (maximum 2h)": "Wartet, bis die Bedingung gültig ist (Maximum 2h)",
-        "Création/modification d’une variable ou de la valeur d’une variable": "Création/modification d’une variable ou de la valeur d’une variable",
+        "Création/modification d’une variable ou de la valeur d’une variable": "Erstellung/Änderung einer Variable oder den Wertes einer Variablen",
         "Permet le contrôle des scénarios": "Erlaubt die Kontrolle der Szenarien",
         "Arrête le scénario": "Stoppt das Szenario",
         "Permet de faire dire un texte à Jeedom (ne marche que si un onglet jeedom est ouvert dans le navigateur)": "Ermöglicht Jeedom einen Text sagen zu lassen (funktioniert nur wenn eine Registerkarte 'Jeedom' im Browser geöffnet wird)",
@@ -1489,7 +1489,7 @@
         "Attention une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher": "Warnung!  Ein zu großer Datumsbereich benötigt eine sehr lange Zeit zum berechnen oder kann auch nicht angezeigt werden.",
         "Ok": "OK",
         "Aucun groupement": "Keine Gruppe",
-        "Sommes par heure": "Sommes par heure",
+        "Sommes par heure": "Mengen pro Stunde",
         "Moyenne par heure": "Durchschnitt pro Stunde",
         "Minimum par heure": "Minimum pro Stunde",
         "Maximum par heure": "Maximum pro Stunde",
@@ -1769,7 +1769,7 @@
         "Téléchargement de ": "Herunterladen von"
     },
     "core/class/network.class.php": {
-        "Le plugin openvpn doit être actif": "Le plugin openvpn doit être actif"
+        "Le plugin openvpn doit être actif": "Das OpenVPN-Plugin muss aktiv sein"
     },
     "core/repo/market.display.repo.php": {
         "Nom": "Name",

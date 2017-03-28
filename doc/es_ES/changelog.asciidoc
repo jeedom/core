@@ -82,6 +82,7 @@ Botón derecho del ratón en un elemento de un resumen domótico te lleva a una 
 * Uniformisation du tmp jeedom, maintenant tout est dans /tmp/jeedom
 * Possibilité d'avoir un graph des differentes liaison d'un scénario, équipement, objet, commande ou variable
 * Possibilité de regler la profondeur des graphique de lien en fonction de l'objet d'origine
+* Possibilité d'avoir les logs des scénarios en temps réel (ralenti l'execution des scénarios)
 
 = 2.4.6
 
