@@ -880,7 +880,7 @@ class jeedom {
 	}
 
 	public static function getTypeUse($_string = '') {
-		$return = array('cmd' => array(), 'scenario' => array(), 'eqLogic' => array(), 'dataStore' => array());
+		$return = array('cmd' => array(), 'scenario' => array(), 'eqLogic' => array(), 'dataStore' => array(), 'plan' => array(), 'view' => array());
 		preg_match_all("/#([0-9]*)#/", $_string, $matches);
 		foreach ($matches[1] as $cmd_id) {
 			if (isset($return['cmd'][$cmd_id])) {
