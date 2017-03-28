@@ -750,6 +750,9 @@ class scenario {
 		if ($this->getConfiguration('has_return', 0) == 1) {
 			$this->setConfiguration('syncmode', 1);
 		}
+		if ($this->getConfiguration('logmode') == '') {
+			$this->setConfiguration('logmode', 'default');
+		}
 	}
 
 	public function postInsert() {
@@ -1146,16 +1149,20 @@ class scenario {
 		return false;
 	}
 
-	public function persistLog() {
-		if ($this->getConfiguration('noLog', 0) == 1) {
+	public function persistLog($_partial = false) {
+		if ($this->getConfiguration('logmode', 'default') == 'none') {
 			return;
 		}
-		$path = getRootPath() . '/log/scenarioLog';
+		$path = dirname(__FILE__) . '/../../log/scenarioLog';
 		if (!file_exists($path)) {
 			mkdir($path);
 		}
 		$path .= '/scenario' . $this->getId() . '.log';
-		file_put_contents($path, "------------------------------------\n" . $this->getLog(), FILE_APPEND);
+		if ($_partial) {
+			file_put_contents($path, $this->getLog(), FILE_APPEND);
+		} else {
+			file_put_contents($path, "------------------------------------\n" . $this->getLog(), FILE_APPEND);
+		}
 	}
 
 	public function toArray() {
@@ -1379,6 +1386,10 @@ class scenario {
 
 	public function setLog($log) {
 		$this->_log .= '[' . date('Y-m-d H:i:s') . '][SCENARIO] ' . $log . "\n";
+		if ($this->getConfiguration('logmode', 'default') == 'realtime') {
+			$this->persistLog(true);
+			$this->_log = '';
+		}
 	}
 
 	public function getTimeout($_default = null) {
