@@ -544,6 +544,9 @@ if (init('type') != '') {
 						if ($cmd->getType() == 'action' && !$eqLogic->hasRight('x')) {
 							throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
 						}
+						if (!isset($params['codeAccess'])) {
+							$params['codeAccess'] = '';
+						}
 						if (!$cmd->checkAccessCode($params['codeAccess'])) {
 							throw new Exception(__('Cette action nécessite un code d\'accès', __FILE__), -32005);
 						}
@@ -560,6 +563,9 @@ if (init('type') != '') {
 					$eqLogic = $cmd->getEqLogic();
 					if ($cmd->getType() == 'action' && !$eqLogic->hasRight('x')) {
 						throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
+					}
+					if (!isset($params['codeAccess'])) {
+						$params['codeAccess'] = '';
 					}
 					if (!$cmd->checkAccessCode($params['codeAccess'])) {
 						throw new Exception(__('Cette action nécessite un code d\'accès', __FILE__), -32005);
