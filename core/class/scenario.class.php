@@ -586,6 +586,9 @@ class scenario {
 			$this->setLog(__('Lancement du scénario en mode synchrone', __FILE__));
 			return $this->execute($_trigger, $_message);
 		} else {
+			if (count($this->getTags()) != '') {
+				$this->setCache('tags', $this->getTags());
+			}
 			$cmd = dirname(__FILE__) . '/../../core/php/jeeScenario.php ';
 			$cmd .= ' scenario_id=' . $this->getId();
 			$cmd .= ' trigger=' . escapeshellarg($_trigger);
@@ -597,6 +600,10 @@ class scenario {
 	}
 
 	public function execute($_trigger = '', $_message = '') {
+		if ($this->getCache('tags') != '') {
+			$this->setTags($this->getCache('tags'));
+			$this->setCache('tags', '');
+		}
 		if ($this->getIsActive() != 1) {
 			$this->setLog(__('Impossible d\'exécuter le scénario : ', __FILE__) . $this->getHumanName() . __(' sur : ', __FILE__) . $_message . __(' car il est désactivé', __FILE__));
 			$this->persistLog();

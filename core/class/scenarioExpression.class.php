@@ -1120,25 +1120,41 @@ class scenarioExpression {
 					}
 					switch ($this->getOptions('action')) {
 						case 'start':
+							if ($this->getOptions('tags') != '' && !is_array($this->getOptions('tags'))) {
+								$tags = array();
+								$args = arg2array($this->getOptions('tags'));
+								foreach ($args as $key => $value) {
+									$tags['#' . $key . '#'] = $value;
+								}
+								$actionScenario->setTags($tags);
+							}
 							if (is_array($this->getOptions('tags'))) {
 								$actionScenario->setTags($this->getOptions('tags'));
 							}
 							$this->setLog($scenario, __('Lancement du scénario : ', __FILE__) . $actionScenario->getName());
 							if ($scenario != null) {
-								return $actionScenario->launch('', __('Lancement provoqué par le scénario  : ', __FILE__) . $scenario->getHumanName());
+								return $actionScenario->launch('scenario', __('Lancement provoqué par le scénario  : ', __FILE__) . $scenario->getHumanName());
 							} else {
-								return $actionScenario->launch('', __('Lancement provoqué', __FILE__));
+								return $actionScenario->launch('other', __('Lancement provoqué', __FILE__));
 							}
 							break;
 						case 'startsync':
+							if ($this->getOptions('tags') != '' && !is_array($this->getOptions('tags'))) {
+								$tags = array();
+								$args = arg2array($this->getOptions('tags'));
+								foreach ($args as $key => $value) {
+									$tags['#' . $key . '#'] = $value;
+								}
+								$actionScenario->setTags($tags);
+							}
 							if (is_array($this->getOptions('tags'))) {
 								$actionScenario->setTags($this->getOptions('tags'));
 							}
 							$this->setLog($scenario, __('Lancement du scénario : ', __FILE__) . $actionScenario->getName());
 							if ($scenario != null) {
-								return $actionScenario->launch('', __('Lancement provoqué par le scénario  : ', __FILE__) . $scenario->getHumanName(), true);
+								return $actionScenario->launch('scenario', __('Lancement provoqué par le scénario  : ', __FILE__) . $scenario->getHumanName(), true);
 							} else {
-								return $actionScenario->launch('', __('Lancement provoqué', __FILE__), true);
+								return $actionScenario->launch('other', __('Lancement provoqué', __FILE__), true);
 							}
 							break;
 						case 'stop':

@@ -341,11 +341,7 @@ function ls($folder = "", $pattern = "*", $recursivly = false, $options = array(
 }
 
 function removeCR($_string) {
-	$_string = str_replace("\n", '', $_string);
-	$_string = str_replace("\r\n", '', $_string);
-	$_string = str_replace("\r", '', $_string);
-	$_string = str_replace("\n\r", '', $_string);
-	return trim($_string);
+	return trim(str_replace(array("\n", "\r\n", "\r", "\n\r"), '', $_string));
 }
 
 function rcopy($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = false) {
