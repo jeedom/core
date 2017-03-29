@@ -83,6 +83,7 @@
 * Possibilité d'avoir un graph des differentes liaison d'un scénario, équipement, objet, commande ou variable
 * Possibilité de regler la profondeur des graphique de lien en fonction de l'objet d'origine
 * Possibilité d'avoir les logs des scénarios en temps réel (ralenti l'execution des scénarios)
+* Possibilité de passer des tags lors du lancement d'un scénario
 
 = 2.4.6
 
