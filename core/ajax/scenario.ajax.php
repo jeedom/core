@@ -339,6 +339,17 @@ try {
 	}
 
 	if (init('action') == 'actionToHtml') {
+		if (init('params') != '' && is_json(init('params'))) {
+			$return = array();
+			$params = json_decode(init('params'), true);
+			foreach ($params as $param) {
+				$return[] = array(
+					'html' => scenarioExpression::getExpressionOptions($param['expression'], $param['options']),
+					'id' => $param['id'],
+				);
+			}
+			ajax::success($return);
+		}
 		ajax::success(scenarioExpression::getExpressionOptions(init('expression'), init('option')));
 	}
 

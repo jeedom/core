@@ -40,11 +40,11 @@ jeedom.cmd.execute = function(_params) {
             if (data.state != 'ok') {
                 if(data.code == -32005){
                     if ($.mobile) {
-                     var result = prompt("{{Veuillez indiquer le code ?}}", "")
-                     if(result != null){
-                         _params.codeAccess = result;
-                         jeedom.cmd.execute(_params);
-                     }else{
+                       var result = prompt("{{Veuillez indiquer le code ?}}", "")
+                       if(result != null){
+                           _params.codeAccess = result;
+                           jeedom.cmd.execute(_params);
+                       }else{
                         jeedom.cmd.refreshValue({id:_params.id});
                         if ('function' != typeof(_params.error)) {
                             $('#div_alert').showAlert({
@@ -61,11 +61,11 @@ jeedom.cmd.execute = function(_params) {
                         return data;
                     }
                 }else{
-                 bootbox.prompt("{{Veuillez indiquer le code ?}}", function (result) {
+                   bootbox.prompt("{{Veuillez indiquer le code ?}}", function (result) {
                     if(result != null){
-                     _params.codeAccess = result;
-                     jeedom.cmd.execute(_params);
-                 }else{
+                       _params.codeAccess = result;
+                       jeedom.cmd.execute(_params);
+                   }else{
                     jeedom.cmd.refreshValue({id:_params.id});
                     if ('function' != typeof(_params.error)) {
                         $('#div_alert').showAlert({
@@ -83,11 +83,11 @@ jeedom.cmd.execute = function(_params) {
                 }
 
             });
-             }
-         }else if(data.code == -32006){
-             if ($.mobile) {
-                 var result = confirm("{{Etes vous sur de vouloir faire cette action ?}}")
-                 if(result){
+               }
+           }else if(data.code == -32006){
+               if ($.mobile) {
+                   var result = confirm("{{Etes vous sur de vouloir faire cette action ?}}")
+                   if(result){
                     _params.confirmAction = 1;
                     jeedom.cmd.execute(_params);
                 }else{
@@ -109,9 +109,9 @@ jeedom.cmd.execute = function(_params) {
             }else{
                 bootbox.confirm("{{Etes vous sur de vouloir faire cette action ?}}", function (result) {
                     if(result){
-                     _params.confirmAction = 1;
-                     jeedom.cmd.execute(_params);
-                 }else{
+                       _params.confirmAction = 1;
+                       jeedom.cmd.execute(_params);
+                   }else{
                     jeedom.cmd.refreshValue({id:_params.id});
                     if ('function' != typeof(_params.error)) {
                         $('#div_alert').showAlert({
@@ -335,7 +335,7 @@ jeedom.cmd.refreshValue = function(_params) {
     var paramsSpecifics = {
         global: false,
         success: function(result) {
-           for(var i in result){
+         for(var i in result){
             var cmd = cmds[i].cmd;
             var html = $(result[i].html);
             var uid = html.attr('data-cmd_uid');
@@ -576,30 +576,71 @@ jeedom.cmd.changeSubType = function(_cmd) {
                         el = el.parent();
                     }
                     if (subtype[i].visible) {
-                     if(el.hasClass('bootstrapSwitch')){
-                         el.parent().parent().show();
-                         el.parent().parent().removeClass('hide');
+                       if(el.hasClass('bootstrapSwitch')){
+                           el.parent().parent().show();
+                           el.parent().parent().removeClass('hide');
+                       }
+                       if( el.attr('type') == 'checkbox'){
+                         el.parent().show();
+                         el.parent().removeClass('hide');
                      }
-                     if( el.attr('type') == 'checkbox'){
-                       el.parent().show();
-                       el.parent().removeClass('hide');
+                     el.show();
+                     el.removeClass('hide');
+                 } else {
+                    if(el.hasClass('bootstrapSwitch')){
+                     el.parent().parent().hide();
+                     el.parent().parent().addClass('hide');
+                 }
+                 if( el.attr('type') == 'checkbox'){
+                     el.parent().hide();
+                     el.parent().addClass('hide');
+                 }
+                 el.hide();
+                 el.addClass('hide');
+             }
+             if (isset(subtype[i].parentVisible)) {
+                if (subtype[i].parentVisible) {
+                    el.parent().show();
+                    el.parent().removeClass('hide');
+                } else {
+                    el.parent().hide();
+                    el.parent().addClass('hide');
+                }
+            }
+        } else {
+            for (var j in subtype[i]) {
+                var el = _cmd.find('.cmdAttr[data-l1key=' + i + '][data-l2key=' + j + ']');
+                if (el.attr('type') == 'checkbox' && el.parent().is('span')) {
+                    el = el.parent();
+                }
+
+                if (isset(subtype[i][j].visible)) {
+                    if (subtype[i][j].visible) {
+                        if(el.hasClass('bootstrapSwitch')){
+                          el.parent().parent().parent().show();
+                          el.parent().parent().parent().removeClass('hide');
+                      }
+                      if( el.attr('type') == 'checkbox'){
+                         el.parent().show();
+                         el.parent().removeClass('hide');
+                     }
+                     el.show();
+                     el.removeClass('hide');
+                 } else {
+                    if(el.hasClass('bootstrapSwitch')){
+                       el.parent().parent().parent().hide();
+                       el.parent().parent().parent().addClass('hide');
                    }
-                   el.show();
-                   el.removeClass('hide');
-               } else {
-                if(el.hasClass('bootstrapSwitch')){
-                   el.parent().parent().hide();
-                   el.parent().parent().addClass('hide');
-               }
-               if( el.attr('type') == 'checkbox'){
-                   el.parent().hide();
-                   el.parent().addClass('hide');
-               }
-               el.hide();
-               el.addClass('hide');
-           }
-           if (isset(subtype[i].parentVisible)) {
-            if (subtype[i].parentVisible) {
+                   if( el.attr('type') == 'checkbox'){
+                     el.parent().hide();
+                     el.parent().addClass('hide');
+                 }
+                 el.hide();
+                 el.addClass('hide');
+             }
+         }
+         if (isset(subtype[i][j].parentVisible)) {
+            if (subtype[i][j].parentVisible) {
                 el.parent().show();
                 el.parent().removeClass('hide');
             } else {
@@ -607,48 +648,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
                 el.parent().addClass('hide');
             }
         }
-    } else {
-        for (var j in subtype[i]) {
-            var el = _cmd.find('.cmdAttr[data-l1key=' + i + '][data-l2key=' + j + ']');
-            if (el.attr('type') == 'checkbox' && el.parent().is('span')) {
-                el = el.parent();
-            }
-
-            if (isset(subtype[i][j].visible)) {
-                if (subtype[i][j].visible) {
-                    if(el.hasClass('bootstrapSwitch')){
-                      el.parent().parent().parent().show();
-                      el.parent().parent().parent().removeClass('hide');
-                  }
-                  if( el.attr('type') == 'checkbox'){
-                   el.parent().show();
-                   el.parent().removeClass('hide');
-               }
-               el.show();
-               el.removeClass('hide');
-           } else {
-            if(el.hasClass('bootstrapSwitch')){
-             el.parent().parent().parent().hide();
-             el.parent().parent().parent().addClass('hide');
-         }
-         if( el.attr('type') == 'checkbox'){
-           el.parent().hide();
-           el.parent().addClass('hide');
-       }
-       el.hide();
-       el.addClass('hide');
-   }
-}
-if (isset(subtype[i][j].parentVisible)) {
-    if (subtype[i][j].parentVisible) {
-        el.parent().show();
-        el.parent().removeClass('hide');
-    } else {
-        el.parent().hide();
-        el.parent().addClass('hide');
     }
-}
-}
 }
 }
 
@@ -659,11 +659,11 @@ if (_cmd.find('.cmdAttr[data-l1key=type]').value() == 'action') {
     _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateValue]').hide();
     _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateTime]').hide();
 }else{
- _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateValue]').show();
- _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateTime]').show();
- _cmd.find('.cmdAttr[data-l1key=value]').hide();
- _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdId]').hide();
- _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdToValue]').hide();
+   _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateValue]').show();
+   _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateTime]').show();
+   _cmd.find('.cmdAttr[data-l1key=value]').hide();
+   _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdId]').hide();
+   _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdToValue]').hide();
 }
 modifyWithoutSave = false;
 if ('function' == typeof(initExpertMode)) {
@@ -725,9 +725,9 @@ jeedom.cmd.getSelectModal = function(_options, _callback) {
 
 jeedom.cmd.displayActionOption = function(_expression, _options, _callback) {
     var html = '';
-    $.ajax({ // fonction permettant de faire de l'ajax
-        type: "POST", // méthode de transmission des données au fichier php
-        url: "core/ajax/scenario.ajax.php", // url du fichier php
+    $.ajax({ 
+        type: "POST", 
+        url: "core/ajax/scenario.ajax.php", 
         data: {
             action: 'actionToHtml',
             version: 'scenario',
@@ -740,24 +740,43 @@ jeedom.cmd.displayActionOption = function(_expression, _options, _callback) {
         error: function(request, status, error) {
             handleAjaxError(request, status, error);
         },
-        success: function(data) { // si l'appel a bien fonctionné
-        if (data.state != 'ok') {
-            $('#div_alert').showAlert({
-                message: data.result,
-                level: 'danger'
-            });
-            return;
+        success: function(data) { 
+            if (data.state != 'ok') {
+                $('#div_alert').showAlert({
+                    message: data.result,
+                    level: 'danger'
+                });
+                return;
+            }
+            if (data.result.html != '') {
+                html += data.result.html;
+            }
+            if ('function' == typeof(_callback)) {
+                _callback(html);
+                return;
+            }
         }
-        if (data.result.html != '') {
-            html += data.result.html;
-        }
-        if ('function' == typeof(_callback)) {
-            _callback(html);
-            return;
-        }
-    }
-});
+    });
     return html;
+};
+
+jeedom.cmd.displayActionsOption = function(_params) {
+ var paramsRequired = ['params'];
+ var paramsSpecifics = {};
+ try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+} catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+}
+var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+var paramsAJAX = jeedom.private.getParamsAJAX(params);
+paramsAJAX.url = 'core/ajax/scenario.ajax.php';
+paramsAJAX.data = {
+    action: 'actionToHtml',
+    params: json_encode(_params.params)
+};
+$.ajax(paramsAJAX);
 };
 
 jeedom.cmd.normalizeName = function(_tagname) {
@@ -827,32 +846,32 @@ jeedom.cmd.displayDuration = function(_date,_el){
     var timeInMillis = Date.parse(_date);
     _el.attr('data-time',timeInMillis);
     if(_el.attr('data-interval') != undefined){
-       clearInterval(_el.attr('data-interval'));
-   }
-   if(_el.attr('data-time') < (Date.now()+ clientServerDiffDatetime)){
-     var d = ((Date.now() + clientServerDiffDatetime) - _el.attr('data-time')) / 1000;
-     var h = Math.floor(d / 3600);
-     var m = Math.floor(d % 3600 / 60);
-     _el.empty().append(((h > 0 ? h + " h " : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min" : "0 min")));
-     var myinterval = setInterval(function(){ 
+     clearInterval(_el.attr('data-interval'));
+ }
+ if(_el.attr('data-time') < (Date.now()+ clientServerDiffDatetime)){
+   var d = ((Date.now() + clientServerDiffDatetime) - _el.attr('data-time')) / 1000;
+   var h = Math.floor(d / 3600);
+   var m = Math.floor(d % 3600 / 60);
+   _el.empty().append(((h > 0 ? h + " h " : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min" : "0 min")));
+   var myinterval = setInterval(function(){ 
+    var d = ((Date.now() + clientServerDiffDatetime) - _el.attr('data-time')) / 1000;
+    var h = Math.floor(d / 3600);
+    var m = Math.floor(d % 3600 / 60);
+    _el.empty().append(((h > 0 ? h + " h " : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min" : "0 min")));
+}, 60000);
+   _el.attr('data-interval',myinterval);
+}else{
+   _el.empty().append("0 min");
+   var myinterval = setInterval(function(){ 
+       if(_el.attr('data-time') < (Date.now()+ clientServerDiffDatetime)){
         var d = ((Date.now() + clientServerDiffDatetime) - _el.attr('data-time')) / 1000;
         var h = Math.floor(d / 3600);
         var m = Math.floor(d % 3600 / 60);
         _el.empty().append(((h > 0 ? h + " h " : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min" : "0 min")));
-    }, 60000);
-     _el.attr('data-interval',myinterval);
- }else{
-     _el.empty().append("0 min");
-     var myinterval = setInterval(function(){ 
-         if(_el.attr('data-time') < (Date.now()+ clientServerDiffDatetime)){
-            var d = ((Date.now() + clientServerDiffDatetime) - _el.attr('data-time')) / 1000;
-            var h = Math.floor(d / 3600);
-            var m = Math.floor(d % 3600 / 60);
-            _el.empty().append(((h > 0 ? h + " h " : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min" : "0 min")));
-        }else{
-         _el.empty().append("0 min");
-     }
- }, 60000);
-     _el.attr('data-interval',myinterval);
- }
+    }else{
+       _el.empty().append("0 min");
+   }
+}, 60000);
+   _el.attr('data-interval',myinterval);
+}
 };
