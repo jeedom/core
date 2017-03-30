@@ -271,6 +271,7 @@ $("body").undelegate('.bt_removeAction', 'click').delegate('.bt_removeAction', '
 });
 
 function displayInteract(_id){
+
   $('#div_conf').show();
   $('#interactThumbnailDisplay').hide();
   $('.li_interact').removeClass('active');
@@ -278,31 +279,32 @@ function displayInteract(_id){
   jeedom.interact.get({
     id: _id,
     success: function (data) {
-      $('#div_action').empty();
-      $('.interactAttr').value('');
-      $('.interact').setValues(data, '.interactAttr');
-      $('.interactAttr[data-l1key=filtres][data-l2key=type]').value(1);
-      $('.interactAttr[data-l1key=filtres][data-l2key=subtype]').value(1);
-      $('.interactAttr[data-l1key=filtres][data-l2key=unite]').value(1);
-      $('.interactAttr[data-l1key=filtres][data-l2key=object]').value(1);
-      $('.interactAttr[data-l1key=filtres][data-l2key=plugin]').value(1);
-      $('.interactAttr[data-l1key=filtres][data-l2key=category]').value(1);
-      if(isset(data.filtres) && isset(data.filtres.type) && $.isPlainObject(data.filtres.type)){
-        for(var i in data.filtres.type){
-         $('.interactAttr[data-l1key=filtres][data-l2key=type][data-l3key='+i+']').value(data.filtres.type[i]);
-       }
-     }
-     if(isset(data.filtres) && isset(data.filtres.subtype) && $.isPlainObject(data.filtres.subtype)){
-      for(var i in data.filtres.subtype){
-       $('.interactAttr[data-l1key=filtres][data-l2key=subtype][data-l3key='+i+']').value(data.filtres.subtype[i]);
+     actionOptions = []
+     $('#div_action').empty();
+     $('.interactAttr').value('');
+     $('.interact').setValues(data, '.interactAttr');
+     $('.interactAttr[data-l1key=filtres][data-l2key=type]').value(1);
+     $('.interactAttr[data-l1key=filtres][data-l2key=subtype]').value(1);
+     $('.interactAttr[data-l1key=filtres][data-l2key=unite]').value(1);
+     $('.interactAttr[data-l1key=filtres][data-l2key=object]').value(1);
+     $('.interactAttr[data-l1key=filtres][data-l2key=plugin]').value(1);
+     $('.interactAttr[data-l1key=filtres][data-l2key=category]').value(1);
+     if(isset(data.filtres) && isset(data.filtres.type) && $.isPlainObject(data.filtres.type)){
+      for(var i in data.filtres.type){
+       $('.interactAttr[data-l1key=filtres][data-l2key=type][data-l3key='+i+']').value(data.filtres.type[i]);
      }
    }
-   if(isset(data.filtres) && isset(data.filtres.unite) && $.isPlainObject(data.filtres.unite)){
-    for(var i in data.filtres.unite){
-     $('.interactAttr[data-l1key=filtres][data-l2key=unite][data-l3key="'+i+'"]').value(data.filtres.unite[i]);
+   if(isset(data.filtres) && isset(data.filtres.subtype) && $.isPlainObject(data.filtres.subtype)){
+    for(var i in data.filtres.subtype){
+     $('.interactAttr[data-l1key=filtres][data-l2key=subtype][data-l3key='+i+']').value(data.filtres.subtype[i]);
    }
  }
- if(isset(data.filtres) && isset(data.filtres.object) && $.isPlainObject(data.filtres.object)){
+ if(isset(data.filtres) && isset(data.filtres.unite) && $.isPlainObject(data.filtres.unite)){
+  for(var i in data.filtres.unite){
+   $('.interactAttr[data-l1key=filtres][data-l2key=unite][data-l3key="'+i+'"]').value(data.filtres.unite[i]);
+ }
+}
+if(isset(data.filtres) && isset(data.filtres.object) && $.isPlainObject(data.filtres.object)){
   for(var i in data.filtres.object){
    $('.interactAttr[data-l1key=filtres][data-l2key=object][data-l3key='+i+']').value(data.filtres.object[i]);
  }
@@ -322,6 +324,20 @@ if(isset(data.actions.cmd) && $.isArray(data.actions.cmd) && data.actions.cmd.le
     addAction(data.actions.cmd[i], 'action','{{Action}}');
   }
 }
+jeedom.cmd.displayActionsOption({
+  params : actionOptions,
+  async : false,
+  error: function (error) {
+    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+  },
+  success : function(data){
+    for(var i in data){
+      if(data[i].html != ''){
+        $('#'+data[i].id).append(data[i].html.html);
+      }
+    }
+  }
+});
 }
 });
 }
@@ -348,10 +364,16 @@ function addAction(_action, _type, _name) {
   div += '</span>';
   div += '</div>';
   div += '</div>';
-  div += '<div class="col-sm-7 actionOptions">';
+  var actionOption_id = uniqId();
+  div += '<div class="col-sm-7 actionOptions" id="'+actionOption_id+'">';
   div += jeedom.cmd.displayActionOption(init(_action.cmd, ''), _action.options);
   div += '</div>';
   $('#div_' + _type).append(div);
   $('#div_' + _type + ' .' + _type + ':last').setValues(_action, '.expressionAttr');
+  actionOptions.push({
+    expression : init(_action.cmd, ''),
+    options : _action.options,
+    id : actionOption_id
+  });
 }
 
