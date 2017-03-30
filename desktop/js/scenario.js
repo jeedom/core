@@ -839,10 +839,23 @@ function printScenario(_id) {
     if(data.elements.length == 0){
       $('#div_scenarioElement').append('<center><span style=\'color:#767676;font-size:1.2em;font-weight: bold;\'>Pour constituer votre scénario veuillez ajouter des blocs</span></center>')
     }
-
+    actionOptions = []
     for (var i in data.elements) {
       $('#div_scenarioElement').append(addElement(data.elements[i]));
     }
+    jeedom.cmd.displayActionsOption({
+      params : actionOptions,
+      error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+      },
+      success : function(data){
+        for(var i in data){
+          if(data[i].html != ''){
+            $('#'+data[i].id).append(data[i].html.html);
+          }
+        }
+      }
+    });
     updateSortable();
     setEditor();
     setAutocomplete();
@@ -970,9 +983,14 @@ function addExpression(_expression) {
     retour += '<button class="btn btn-default bt_selectCmdExpression" type="button" title="{{Sélectionner la commande}}"><i class="fa fa-list-alt"></i></button>';
     retour += '</span>';
     retour += '</div></div>';
-    retour += '<div class="col-xs-7 expressionOptions" style="margin-top: 4px">';
-    retour += jeedom.cmd.displayActionOption(init(_expression.expression), init(_expression.options));
+    var actionOption_id = uniqId();
+    retour += '<div class="col-xs-7 expressionOptions" style="margin-top: 4px" id="'+actionOption_id+'">';
     retour += '</div>';
+    actionOptions.push({
+      expression : init(_expression.expression, ''),
+      options : _expression.options,
+      id : actionOption_id
+    });
     break;
     case 'code' :
     retour += '<div class="col-xs-1">';

@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
-
+ uniqId_count = 0;
  modifyWithoutSave = false;
  nbActiveAjaxRequest = 0;
  utid = Date.now();
@@ -500,3 +500,15 @@ function positionEqLogic(_id,_preResize) {
 }
 }
 
+
+function uniqId(_prefix){
+    if(typeof _prefix == 'undefined'){
+        _prefix = 'jee-uniq';
+    }
+    var result = _prefix +'-'+ uniqId_count + '-'+Math.random().toString(36).substring(8);;
+    uniqId_count++;
+    if($('#'+result).length){
+        return uniqId(_prefix);
+    }
+    return result;
+}
