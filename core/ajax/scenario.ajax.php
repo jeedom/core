@@ -343,8 +343,12 @@ try {
 			$return = array();
 			$params = json_decode(init('params'), true);
 			foreach ($params as $param) {
+				$html = scenarioExpression::getExpressionOptions($param['expression'], $param['options']);
+				if (!isset($html['html']) || $html['html'] == '') {
+					continue;
+				}
 				$return[] = array(
-					'html' => scenarioExpression::getExpressionOptions($param['expression'], $param['options']),
+					'html' => $html,
 					'id' => $param['id'],
 				);
 			}

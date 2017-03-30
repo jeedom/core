@@ -852,9 +852,7 @@ function printScenario(_id) {
       success : function(data){
        $.showLoading();
        for(var i in data){
-        if(data[i].html != ''){
-          $('#'+data[i].id).append(data[i].html.html);
-        }
+        $('#'+data[i].id).append(data[i].html.html);
       }
       $.hideLoading();
     }
