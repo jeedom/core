@@ -845,22 +845,24 @@ function printScenario(_id) {
     }
     jeedom.cmd.displayActionsOption({
       params : actionOptions,
+      async : false,
       error: function (error) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
       },
       success : function(data){
-        for(var i in data){
-          if(data[i].html != ''){
-            $('#'+data[i].id).append(data[i].html.html);
-          }
+       $.showLoading();
+       for(var i in data){
+        if(data[i].html != ''){
+          $('#'+data[i].id).append(data[i].html.html);
         }
       }
-    });
+      $.hideLoading();
+    }
+  });
     updateSortable();
     setEditor();
     setAutocomplete();
     $('#div_editScenario').show();
-    $.hideLoading();
     modifyWithoutSave = false;
     setTimeout(function () {
       modifyWithoutSave = false;

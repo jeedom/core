@@ -771,6 +771,7 @@ jeedom.cmd.displayActionsOption = function(_params) {
 }
 var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
 var paramsAJAX = jeedom.private.getParamsAJAX(params);
+paramsAJAX.async =  _params.async || true;
 paramsAJAX.url = 'core/ajax/scenario.ajax.php';
 paramsAJAX.data = {
     action: 'actionToHtml',
