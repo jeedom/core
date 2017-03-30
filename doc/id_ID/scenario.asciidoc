@@ -334,7 +334,7 @@ En plus des commandes domotiques vous avez accès aux actions suivantes :
 * *sleep* : pause de x seconde(s)
 * *wait* : attend jusqu'à ce que la condition soit valide (maximum 2h), le timeout est en seconde(s)                   
 * *variable* : création/modification d'une variable ou de la valeur d'une variable
-* *scenario* : permet le contrôle des scénarios, la partie tags 
+* *scenario* : permet le contrôle des scénarios, la partie tags permets d'envoyer des tags au scénario, ex montag=2
 * *stop* : arrête le scénario
 * *icon* : permet de changer l'icône de représentation du scénario
 * *gotodesign* : change le design affiché sur tous les navigateurs par le design demandé
