@@ -937,7 +937,7 @@ function ZipErrorMessage($code) {
 
 function arg2array($_string) {
 	$return = array();
-	$re = '/[\/-]?(([a-zA-Z0-9_#]+)(?:[=:]("|\'[^"]+\'|"|[^\s"]+))?)(?:\s+|$)/';
+	$re = '/[\/-]?(([a-zA-Z0-9_#]+)(?:[=:]("|\'[^"]|[^\']+\'|"|[^\s"]+))?)(?:\s+|$)/';
 	preg_match_all($re, $_string, $matches, PREG_SET_ORDER, 0);
 	foreach ($matches as $match) {
 		if (count($match) != 4) {
