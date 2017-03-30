@@ -1124,7 +1124,7 @@ class scenarioExpression {
 								$tags = array();
 								$args = arg2array($this->getOptions('tags'));
 								foreach ($args as $key => $value) {
-									$tags['#' . $key . '#'] = $value;
+									$tags['#' . trim(trim($key), '#') . '#'] = trim($value);
 								}
 								$actionScenario->setTags($tags);
 							}
@@ -1143,7 +1143,7 @@ class scenarioExpression {
 								$tags = array();
 								$args = arg2array($this->getOptions('tags'));
 								foreach ($args as $key => $value) {
-									$tags['#' . $key . '#'] = $value;
+									$tags['#' . trim(trim($key), '#') . '#'] = trim($value);
 								}
 								$actionScenario->setTags($tags);
 							}
