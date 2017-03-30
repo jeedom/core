@@ -937,11 +937,13 @@ function ZipErrorMessage($code) {
 
 function arg2array($_string) {
 	$return = array();
-	foreach (explode(' ', $_string) as $arg) {
-		$argList = explode('=', $arg);
-		if (isset($argList[0]) && isset($argList[1])) {
-			$return[$argList[0]] = $argList[1];
+	$re = '/[\/-]?(([a-zA-Z0-9_#]+)(?:[=:]("|\'[^"]+\'|"|[^\s"]+))?)(?:\s+|$)/';
+	preg_match_all($re, $_string, $matches, PREG_SET_ORDER, 0);
+	foreach ($matches as $match) {
+		if (count($match) != 4) {
+			continue;
 		}
+		$return[$match[2]] = $match[3];
 	}
 	return $return;
 }
