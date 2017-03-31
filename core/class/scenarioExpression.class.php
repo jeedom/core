@@ -989,6 +989,7 @@ class scenarioExpression {
 					if ($this->getExpression() == 'event' && $key == 'cmd') {
 						continue;
 					}
+
 					if (is_string($value)) {
 						$options[$key] = str_replace('"', '', self::setTags($value, $scenario));
 					}
@@ -1120,9 +1121,9 @@ class scenarioExpression {
 					}
 					switch ($this->getOptions('action')) {
 						case 'start':
-							if ($this->getOptions('tags') != '' && !is_array($this->getOptions('tags'))) {
+							if (isset($options['tags']) && !is_array($options['tags'])) {
 								$tags = array();
-								$args = arg2array($this->getOptions('tags'));
+								$args = arg2array($options['tags']);
 								foreach ($args as $key => $value) {
 									$tags['#' . trim(trim($key), '#') . '#'] = trim($value);
 								}
@@ -1131,7 +1132,7 @@ class scenarioExpression {
 							if (is_array($this->getOptions('tags'))) {
 								$actionScenario->setTags($this->getOptions('tags'));
 							}
-							$this->setLog($scenario, __('Lancement du scénario : ', __FILE__) . $actionScenario->getName());
+							$this->setLog($scenario, __('Lancement du scénario : ', __FILE__) . $actionScenario->getName() . __(' options : ', __FILE__) . print_r($actionScenario->getTags(), true));
 							if ($scenario != null) {
 								return $actionScenario->launch('scenario', __('Lancement provoqué par le scénario  : ', __FILE__) . $scenario->getHumanName());
 							} else {
@@ -1139,9 +1140,9 @@ class scenarioExpression {
 							}
 							break;
 						case 'startsync':
-							if ($this->getOptions('tags') != '' && !is_array($this->getOptions('tags'))) {
+							if (isset($options['tags']) && !is_array($options['tags'])) {
 								$tags = array();
-								$args = arg2array($this->getOptions('tags'));
+								$args = arg2array($options['tags']);
 								foreach ($args as $key => $value) {
 									$tags['#' . trim(trim($key), '#') . '#'] = trim($value);
 								}
@@ -1150,7 +1151,7 @@ class scenarioExpression {
 							if (is_array($this->getOptions('tags'))) {
 								$actionScenario->setTags($this->getOptions('tags'));
 							}
-							$this->setLog($scenario, __('Lancement du scénario : ', __FILE__) . $actionScenario->getName());
+							$this->setLog($scenario, __('Lancement du scénario : ', __FILE__) . $actionScenario->getName() . __(' options : ', __FILE__) . print_r($actionScenario->getTags(), true));
 							if ($scenario != null) {
 								return $actionScenario->launch('scenario', __('Lancement provoqué par le scénario  : ', __FILE__) . $scenario->getHumanName(), true);
 							} else {
