@@ -218,7 +218,7 @@ class scenarioElement {
 				$cron = new cron();
 				$cron->setClass('scenario');
 				$cron->setFunction('doIn');
-				$cron->setOption(array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => date('s')));
+				$cron->setOption(array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => date('s'), 'tags' => $_scenario->getTags()));
 				$cron->setLastRun(date('Y-m-d H:i:s'));
 				$cron->setOnce(1);
 				$next = strtotime('+ ' . $time . ' min');
@@ -262,7 +262,7 @@ class scenarioElement {
 			$cron = new cron();
 			$cron->setClass('scenario');
 			$cron->setFunction('doIn');
-			$cron->setOption(array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => 0));
+			$cron->setOption(array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => 0, 'tags' => $_scenario->getTags()));
 			$cron->setLastRun(date('Y-m-d H:i:s', strtotime('now')));
 			$cron->setOnce(1);
 			$cron->setSchedule(cron::convertDateToCron($next));

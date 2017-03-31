@@ -259,6 +259,9 @@ class scenario {
 
 	public static function doIn($_options) {
 		$scenario = self::byId($_options['scenario_id']);
+		if (isset($_options['tags']) && is_array($_options['tags']) && count($_options['tags']) > 0) {
+			$scenario->setTags($_options['tags']);
+		}
 		$scenarioElement = scenarioElement::byId($_options['scenarioElement_id']);
 		$scenario->setLog(__('************Lancement sous tâche**************', __FILE__));
 		if (!is_object($scenarioElement) || !is_object($scenario)) {
