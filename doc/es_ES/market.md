@@ -1,1 +1,103 @@
+Documento un poco especial, porque trata solamente tu página de Perfil del Market.
+
+Disponible en allant sur votre nom d’utilisateur puis profil à partir du market (un peu comme sur Jeedom) :
+
+![](../images/market.png)
+
+Se divide en varias partes:
+
+Mi perfil
+=========
+
+![](../images/market1.png)
+
+Aquí puedes ajustar las diferentes configuraciones de su perfil:
+
+-   **Perfil**
+
+    -   **Acceso** : su inicio de sesión en el market, no se puede cambiar
+
+    -   Nombre \*: tu nombre (esta información es útil sólo para hacer más amigables los correos)
+
+    -   **Apellidos** : tus Apellidos (esta información es útil sólo para hacer más amigables los correos)
+
+    -   **Pseudo** : Votre pseudo (uniquement pour les développeurs)
+
+    -   **Email** : Tu correo electrónico
+
+    -   **Email public** : Non utilisé pour le moment mais ça pourrait être un email de contact pour les développeurs si un jour on met en place ce genre de service
+
+    -   Idioma\* : tu idioma
+
+    -   **Compte paypal** : Votre mail de compte Paypal (uniquement utilisé pour payer les developpeurs)
+
+    -   Contraseña y confirmar contraseña \*: le permite cambiar su contraseña
+
+-   **CGU**
+
+    -   **Utilisateur** : conditions générales d’utilisation (attention à bien les lire car elles vous engage)
+
+    -   \*Desarrollo \*: condiciones generales de uso para desarrolladores
+
+-   **Tickets**
+
+    -   Número de tickets \*: número de tickets para el mes en curso, así como su límite
+
+    -   Soporte \*: botón para enviar una solicitud de soporte (accesible también por el signo de exclamación en la parte superior derecha en el Market o en su Jeedom)
+
+> **Tip**
+>
+> No se olvide de guardar
+
+Mis Jeedoms
+===========
+
+![](../images/market2.png)
+
+Aquí usted puede :
+
+-   **Nivel**
+
+    -   **Jeedom** : el nivel de service pack
+
+    -   Ingrese un número de service pack \*: ingrese su número de service pack (ubicado en el correo enviado por Jeedom en el pedido)
+
+-   **Clave de instalación**
+
+    -   **Nombre de clefs d’installation** : affiche le nombre d’installations Jeedom actuellement liées à votre compte ainsi que la limite autorisée
+
+    -   **Clef d’installation** : vous pouvez demander ici une réinitialisation des clefs Jeedom liées à votre compte. Attention, dépassé les 2 demandes dans le mois, une vérification manuelle a lieu, la demande peut donc prendre plus de temps.
+
+> **Tip**
+>
+> Il est possible que le market vous demande parfois de remettre à zéro vos clefs d’installation, c’est normal, il suffit de suivre ce qu’il vous demande \* **Mes Jeedoms** : c’est ici que sont listés tous vos Jeedom **Nombre **: el nombre que desea dar a su Jeedom (es el nombre que dará a la copia de seguridad si tienes la suscripción de copia de seguridad de la nube)** Protocolo \*: protocolo utilizado para conectarse a su Jeedom (se configura desde Jeedom) **IP o dirección dns \*: IP o la dirección de este Jeedom, se configura en Jeedom, si pones cualquier cosa va a ser la última IP conocida** Puerto \*: puerto utilizado para conectarse a Jeedom (se configura desde Jeedom) **URL \*: lista de los diferentes URL para acceder a Jeedom y el puerto para SSH. Cuidado, si no tienes activo el service pack power o superior, usted no tiene el servicio DNS Jeedom, por lo que tendrás menos valores en este campo** Acceso** : indica si la DNS de Jeedom es correcto **DNS **: le permite personalizar su Jeedom DNS** Fecha de creación**: fecha de creación de esta cuenta Jeedom en el market (esto se hace automáticamente cuando se vincula su cuenta con el market) **Última actualización **: última comunicación de Jeedom con el market** Hardware** : nombre del hardware de Jeedom \*\* Versión \*: versión Jeedom
+
+> **Tip**
+>
+> No se olvide de guardar
+
+Mis backups
+===========
+
+![](../images/market3.png)
+
+En esta ficha puedes ver las copias de seguridad presentes en el market y descargar una. A continuación tienes acceso al enlace para comprar 1,3,6 o 12 meses de suscripción de la copia de seguridad en la nube
+
+Mis Compras/promociones/donaciones
+==================================
+
+![](../images/market4.png)
+
+Ici vous retrouvez tous vos achats et vous pouvez demander le renvoi du mail de facture ou de reçu
+
+Si vous achetez un plugin officiel vous recevez une facture. En revanche pour un plugin tiers c’est un reçu, pour la facture il faut la demander au développeur
+
+También puede en esta ficha ingresar un código de promoción (un código de un plugin por ejemplo que el desarrollador es capaz de enviar) y hacer una donación.
+
+Mis desarrollos
+===============
+
+![](../images/market5.png)
+
+Si eres un desarrollador aquí encontraras la lista de todas sus ventas en un período, la lista de pagos y un resumen del número de descargas, el número de ventas…
 

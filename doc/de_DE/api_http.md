@@ -1,1 +1,40 @@
+Jeedom bietet Entwicklern und Anwendern eine umfassende API, um Jeedom von jedem angeschlossenen Objekt zu steuern.
+
+2 API sind verfügbar: Eines was für Programmierer ausgerichtet ist, in JSON RPC 2.0 und anderer via URL und der HTTP anfrage.
+
+Diese API ist einfach, mit einfachen HTTP-Anfragen über eine URL zu verwenden. Bis zum Maximum zu vereinfachen, verwendet die API nur 2 Arten von HTTP-Anfragen.
+
+Achtung, wenn sie ein DIY haben, muß man /jeedom in der URL hinter der IP hinzufügen.
+
+Szenario Steuerung
+==================
+
+Die erste Abfrage wird nur verwendet, um ein Szenario zu steuern.
+
+Hier ist die URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=scenario&id=\#ID\#&action=\#ACTION](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=scenario&id=#ID#&action=#ACTION)\#
+
+\#IP\_JEEDOM\# Entspricht Ihrer URL um auf Jeedom zu zugreifen. Das ist Internet-Adresse, die Sie den Zugriff aus dem externen Jeedom verwenden (es sei denn, Sie sind mit Ihrem lokalen Netzwerk verbunden).
+
+\#API\_KEY\# Entspricht Ihrem spezifischen API-Schlüssel, für Ihre Installation. Um ihn zu finden, muß man in das Menü "Administration" → "Konfiguration" und dann "Hauptkonfiguration" gehen, im Expertenmodus sehen sie dann den API Schlüssel.
+
+![](../images/apihttp.jpg)
+
+\#ID\# Ist die ID Ihres Szenarios. Die ID ist auf der Seite der Szenarien … (Vergessen Sie nicht, den Expertenmodus zu aktivieren)
+
+![](../images/apihttp2.png)
+
+\#ACTION\# entspricht der Aktion, die sie in dem Skript anwenden möchten. Die zur Verfügung stehenden Befehle sind : "start" ein Szenario zu starten, "stop" ein Szenario zu stoppen, "désactiver" um ein Skript zu deaktivieren, "activer" ein Szenario zu aktivieren.
+
+Steuerbefehle
+=============
+
+Die zweite Abfrage ermöglicht ganz einfach, alle anderen Module von Jeedom zu steuern (Haustechnik Module / Plugin u.s.w.).
+
+Hier ist die URL = [http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=cmd&id=\#ID](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=cmd&id=#ID)\#
+
+\#IP\_JEEDOM\# und \#API\_KEY\# werden in der gleichen Weise wie zuvor verwendet.
+
+\#ID\# ist die ID von dem, was Sie kontrollieren oder Informationen erhalten möchten.
+
+Der einfachste Weg, um diese URL zu erhalten, ist auf die Seite Übersicht Haus-Automatisierung zu gehen, suchen Sie nach dem Befehl und dann öffnen sie seine erweiterte Konfiguration und sie erhalten eine URL zu sehen, die bereits alles, was Sie enthält je müssen sich auf die Art und Unter -Typ Ordnung. Siehe [hier](https://jeedom.com/doc/documentation/core/fr_FR/doc-core-display.html#_informations_2)
 

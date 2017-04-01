@@ -1,1 +1,66 @@
+**Jeedom requiere una suscripción?.**
+
+No, Jeedom no requiere una suscripción de pago para su uso. Sólo el servicio opcional de copia de seguridad en la nube es de pago.
+
+Jeedom utiliza servidores externos para funcionar?: No, Jeedom no utiliza ningún tipo de infraestructura "Cloud". Todo se hace localmente y no necesita nuestros servidores para que la instalación funcione. Sólo los servicios como el Market, Backup en línea o DNS Jeedom requieren el uso de nuestros servidores.
+
+¿Yo puedo reordenar las ordenes de un dispositivo?: Sí es posible, simplemente arrastre y suelte los controles del objeto desde su configuración.
+
+¿Puedo editar el estilo de los widgets?  
+Sí es posible, ya sea mediante el plugin widget, o desde el menu General → Editar
+
+¿Puedo poner varias veces el mismo dispositivo en de diseño?: No esto no es posible, pero se puede duplicar a través de un plugin virtual.
+
+¿Cómo cambiar un dato erróneo del historial?: Justo en en el histórico del comando, haga clic en el elemento en cuestión. Si deja el campo en blanco, se quitará el valor.
+
+¿Cómo registrar un equipo para no tener que identificarse?  
+Simplemente inicie una sesión y chequee la casilla "Guardar este ordenador".
+
+¿Cuánto tiempo dura una copia de seguridad?  
+No hay un tiempo determinado, depende del sistema y de la cantidad de datos a respaldar, pero puede llevar más de 5 minutos, esto es lo normal.
+
+¿Existe una aplicación móvil dedicada?: Jeedom tiene una versión móvil funcional vía web para usarse en móviles y tablets. La aplicación móvil está en desarrollo actualmente, no hay fecha de lanzamiento estimada por el momento. Es muy posible que desarrolladores externos a Jeedom ofrezcan aplicaciones dedicadas.
+
+¿Cual es la credencial para conectarme por primera vez? Cuando usted inicia sesión en Jeedom por primera vez (y si aun no los hubiera cambiado), el usuario y contraseña por defecto es admin/admin. Tras la primera conexión, se recomienda cambiar estas credenciales para mayor seguridad.
+
+¿Donde comprar Mini +?: El Jeedom Mini se comercializa a través de nuestro partner <http://www.domadoo.fr/> .
+
+Es imposible acceder a Jeedom desde el exterior hacia el Centro Jeedom  
+De forma predeterminada, Jeedom está en el root de Nginx. Ya no tendrá que añadir /jeedom/ a la dirección ip de acceso. La dirección exacta será: tu\_ip\_publica:tu\_puerto.
+
+¿Puedo usar Jeedom en https?: Sí, hay 3 posibilidades : \* Si dispones de un power pack o superior, en este caso sólo tendrás que utilizar el DNS de Jeedom. \* Tener un DNS y saber configurar un certificado válido, en este caso es una instalación estándar de un certificado. \* Si No tiene DNS, creando un certificado autofirmado (un certificado autofirmado proporciona cifrado de datos pero no la validación del sitio) por lo que puede obtener un error en su navegar cuando acceda a la URL :
+
+    sudo su -
+    /usr/share/nginx/www/jeedom/install/install.sh nginx_ssl
+
+Entonces puede forzar https en la configuración de Jeedom.
+
+Me sale el mensaje: "tienes un gran número de sistemas Jeedom registrados, por favor, reduzca el número y solicite un reinicio de las llaves de la instalación", ¿qué hacer?: Rendez vous sur le Market, connectez-vous avec votre compte puis allez sur votre page profil et demandez une réinitilisation des clefs d’installation.
+
+¿Qué es "sólo en el evento" y "lifetime cache"?: \* Evento único: Indica a Jeedom que nunca actualice el valor (es el dispositivo quien lo actualiza). Así que cuando se envíe un valor, este tendrá una duración ilimitada (hasta la recepción del siguiente evento). \* Lifetime cache : duración de la validez de un valor, si pones 60 segundos por ejemplo, el valor se actualizará cada 60 segundos según las necesidades indicadas en jeedom (dashboard, escena…) pasado ese tiempo se consultará nuevamente el módulo para obtener un valor actualizado.
+
+Attention, ces 2 options sont réservées aux utilisateurs avancés qui comprennent parfaitement leur fonction, une erreur de configuration dans cette partie peut rendre une installation instable voire inopérante. Par exemple, en zwave, rfxcom et enocean, la case événement seulement devrait TOUJOURS être cochée.
+
+¿Como revisar los permisos?  
+Desde SSH ejecutar :
+
+<!-- -->
+
+    sudo su -
+    chmod -R 775 /usr/share/nginx/www/jeedom
+    chown -R www-data:www-data /usr/share/nginx/www/jeedom
+
+¿Dónde están las copias de seguridad de Jeedom?: Están en la carpeta /usr/share/nginx/www/jeedom/backup
+
+¿Cómo actualizar Jeedom por SSH?: En SSH faîtes :
+
+    sudo su -
+    php /usr/share/nginx/www/jeedom/install/install.php
+    chmod -R 775 /usr/share/nginx/www/jeedom
+    chown -R www-data:www-data /usr/share/nginx/www/jeedom
+
+¿Es la aplicación web compatible con Symbian?  
+La aplicación web requiere un smartphone compatible con HTML5 y CSS3. Por lo tanto, lamentablemente, no es compatible con Symbian.
+
+¿En qué plataformas puedo ejecutar Jeedom?: Para que Jeedom funcione requiere una plataforma linux con privilegios de root o sistema tipo Docker. No funciona sobre Android puro.
 

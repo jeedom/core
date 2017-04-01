@@ -1,1 +1,16 @@
+Auf der Batterien-Seite können Sie den Status aller Ihrer Geräte auf einen Schlag sehen. Sie ist erreichbar über das Menü Analyse → Batterien :
+
+![](../images/battery.PNG)
+
+Sobald sie darauf sind, sehen sie :
+
+![](../images/battery2.PNG)
+
+Vous pouvez voir sur cette page la liste de vos modules sur batterie, le niveau restant (la couleur de la tuile dépend de ce niveau), le type et le nombre de piles qu’il faut mettre dans le module, le type du module ainsi que la date à laquelle l’information du niveau de batterie a été mise à jour.
+
+> **Tip**
+>
+> Les seuils d’alerte/warning sur les niveaux des batteries sont configurables de manière globale dans la configuration de Jeedom (Administration → Configuration puis partie "Configuration des équipements"), ou par équipement sur la page de configuration avancée de ceux-ci.
+
+Wenn sie mit der Maus auf die äußerste linke Seite gehen haben sie Zugang zu einem erweiterten Filter-Menü, für eine genau suchen von Modultyp, Warnung ….
 

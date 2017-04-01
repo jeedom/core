@@ -1,1 +1,91 @@
+Erfordert Jeedom ein Abonnement ?  
+Jeedom erfordert kein Abonnement für seine Benutzung. Nur ein optioneller Online-Backup-Service ist nicht kostenlos.
+
+Benutzt Jeedom einen externen Server, um zu funktionieren ?  
+Nein, Jeedom verwendet keine solche "Cloud" Infrastruktur. Alles wird vor Ort durchgeführt, sodas sie unseren Server nicht brauchen, damit Ihre Installation funktioniert. Nur Dienstleistungen wie der Markt, Online-Backup oder Jeedom-DNS erfordern den Einsatz von unserem Server.
+
+Können die Befehle der Geräte neu angeordnet werden ?  
+Ja, ´sie können einfach per Drag/Drop die Befehle auf dem Objekte verschieben und neu anordnen.
+
+Können wir den Widget Stil bearbeiten ?  
+Ja, es ist möglich, entweder über das Widget-Plugin, oder mit Hilfe der Seite Allgemein → Anzeige
+
+Können wir mehrmals die gleichen Geräte auf einem Design darstellen ?  
+Das ist nicht möglich, aber Sie können diese Geräte vervielfältigen, dank des virtuellen Plugins.
+
+Wie kann man eine fehlerhafte Chronik ändern ?  
+Es genügt auf einer Kurve der entsprechenden Chronik, auf den fraglichen Punkt zu klicken. Wenn Sie das Feld leer lassen, dann wird der Wert gelöscht.
+
+Wie kann man einen Computer registrieren damit mann sich nicht anzumelden muß ?  
+Nur beim Verbinden das Kontrollkästchen "Speichern auf Computer" anklicken.
+
+Wie lange dauert eine Sicherung ?  
+Es gibt keine Standard-Länge, es hängt von dem System ab, aber es kann mehr als 5 Minuten in Anspruch nehmen, das ist normal.
+
+Gibt es eine spezielle Mobile Anwendung ?  
+Jeedom hat eine mobile Version für den Einsatz auf Handy und Tablet. Das Team ist aber dabei eine mobile Anwendung zu entwickeln, derzeit wurde noch kein Release-Datum angekündigt. Es ist durchaus möglich, dass Drittentwickler eine Anwendung für Jeedom anbietet.
+
+Was sind die Anmeldeinformationen, um mich das erste Mal einzuloggen ?  
+Wenn sie sich das erste mal mit Jeedom Verbinden (und sogar danach, wenn Sie die Loggindaten nicht geändert haben) ist der Benutzernamen und das Standardkennwort admin/admin. Bei der ersten Verbindung, wird dringend gebeten, diese Loggindaten für zusätzliche Sicherheit zu ändern.
+
+Wo kann man die Mini+ kaufen ?  
+Die Jeedom-Mini wird von unseren Partner <http://www.domadoo.fr/> vertrieben .
+
+Seit dem Kauf ist es nicht möglich von aussen auf Jeedom zuzugreifen.  
+Standardmäßig ist auf der Box Jeedom die Wurzel von Nginx. Sie dürfen nicht nach /jeedom/ die Zugriffsadresse hinzufügen. Die genaue Adresse ist : Ihre\_öffentliche\_IP:Ihr\_Port/
+
+Kann Jeedom https ?  
+Ja, es giebt 3 Möglichkeiten :
+
+-   Sie haben ein PowerPack oder mehr, in diesem Fall verwenden sie nur die Jeedom-DNS.
+
+-   Entweder sie haben eine DNS und sie wissen wie ein gültiges Zertifikat zu erstellen ist, in diesem Fall ist es eine standardisierte Zertifikat Installation.
+
+-   Sie haben entweder keine DNS, und nachdem ein selbstsigniertes Zertifikat (für Rückruf ein selbstsigniertes Zertifikat-Verschlüsselung der Daten aber nicht die Validierung der Website bietet) Sie behindern, in diesem Fall um zu tun, was folgt, wenn es nicht funktioniert, wenn man Https in der URL :
+
+<!-- -->
+
+    sudo su -
+    /usr/share/nginx/www/jeedom/install/install.sh nginx_ssl
+
+Sie können in der Jeedom Konfiguration https erzwingen.
+
+Ich erhalte die Meldung : "Vous avez un trop grand nombre de système jeedom déclaré, veuillez en réduire le nombre et demander une réinitialisation de vos clefs d’installation", was ist zu tun ?  
+Rendez vous sur le Market, connectez-vous avec votre compte puis allez sur votre page profil et demandez une réinitilisation des clefs d’installation.
+
+Was ist "nur Ereignis" und "Cache Lebensdauer" ?  
+-   nur Ereignis : weist Jeedom an, niemals nach dem Wert zu fragen(c’est l'équipement qui la remonte). Also beim Empfang eines Werts, hat dieser eine unendliche Lebensdauer (bis zum nächsten Empfang).
+
+-   Lebensdauer Cache: Dauer der Gültigkeit eines Wertes, wenn Sie zum Beispiel 60 Sekunden setzen, wenn der Wert Datera als 60 Sekunden und die Jeedom Bedürfnisse (Armaturenbrett, Szenario…) dann ist es gehen wird, das Modul, um einen Wert aktualisiert Abfragen.
+
+Achtung, diese 2 Optionen sind für erfahrene Benutzer die diese Funktionen verstehen vorbehalten, ein Konfigurationsfehler in diesem Teil kann das System instabil oder funktionsunfähig machen. Zum Beispiel sollte in Zwave, RFXCOM und enocean, das Feld Ereignis IMMER angekreutzt werden,
+
+Wie sind die Rechte zu überarbeiten ?  
+In SSH eingeben :
+
+<!-- -->
+
+    sudo su -
+    chmod -R 775 /usr/share/nginx/www/jeedom
+    chown -R www-data:www-data /usr/share/nginx/www/jeedom
+
+Wo sind die Sicherungen auf Jeedom ?  
+Sie sind im Verzeichnis /usr/share/nginx/www/jeedom/backup
+
+Wie kann mann Jeedom mit SSH auf den neuesten Stand bringen ?  
+En SSH faîtes :
+
+<!-- -->
+
+    sudo su -
+    php /usr/share/nginx/www/jeedom/install/install.php
+    chmod -R 775 /usr/share/nginx/www/jeedom
+    chown -R www-data:www-data /usr/share/nginx/www/jeedom
+
+Ist die Webapp kompatible Symbian ?  
+Die Webapp erfordert ein Smartphone, das HTML5 und CSS3 unterstützt. Sie ist daher leider nicht mit Symbian kompatibel.
+
+Auf welchen Plattformen kann Jeedom arbeiten ?  
+Damit Jeedom funktioniert, ist eine Linux Plattform mit root Rechten notwendig oder ein typisches Docker System.
+
 

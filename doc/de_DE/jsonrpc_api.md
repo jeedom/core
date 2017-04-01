@@ -1,1 +1,415 @@
+Das ist eine Dokumentation (die sich entwickeln wird) für die Arbeitsweise der APIs. Zuallererst hier sind die Spezifizierungen (JSON RPC 2.0) : <http://www.jsonrpc.org/specification>
+
+Der Zugriff auf das API ist über die URL : URL\_JEEDOM/core/api/jeeApi.php möglich
+
+Divers
+======
+
+ping
+----
+
+Retourne pong, permet de tester la communication avec Jeedom
+
+Version
+-------
+
+Gibt die Jeedom Version zurück
+
+datetime
+--------
+
+Retourne le datetime de Jeedom en microsecondes
+
+JSON API Event
+==============
+
+event::changes
+--------------
+
+Retourne la liste des changements depuis le datetime passé en paramètre (doit être en microsecondes). Vous aurez aussi dans la réponse le datetime courant de Jeedom (à réutiliser pour l’interrogation suivante)
+
+Parameter :
+
+-   int datetime
+
+JSON API Plugin
+===============
+
+plugin::listPlugin
+------------------
+
+Gibt die Liste aller Plugins zurück
+
+Parameter :
+
+-   int activateOnly = 0 (liefert nur die Liste der aktivierten Plugins)
+
+-   int orderByCaterogy = 0 (liefert die Liste der Plugins nach Kategorie geordnet)
+
+JSON API Objet
+==============
+
+object::all
+-----------
+
+Gibt die Liste aller Objekte zurück
+
+object::full
+------------
+
+Liefert eine Liste aller Objekte, mit allen Geräten für jedes Objekt und alle Befehle von jedem Gerät, sowie die Zustände von diesem (für Befehle des Info Typs)
+
+object::byId
+------------
+
+Liefert das angegebene Objekt zurück
+
+Parameter :
+
+-   int id
+
+object::fullById
+----------------
+
+Gibt ein Objekt zurück, seine Geräte und für jedes Gerät alle seine Befehle und die Zustände
+
+API JSON Summary
+================
+
+summary::global
+---------------
+
+Retour le résumé global pour la clef passée en paramètre
+
+Parameter :
+
+-   string key : (optionnel), clef du résumé voulu, si vide alors Jeedom vous renvoi le résumé pour toute les clefs
+
+summary::byId
+-------------
+
+Retourne le résumé pour l’objet id
+
+Parameter :
+
+-   int id : id de l’objet
+
+-   string key : (optionnel), clef du résumé voulu, si vide alors Jeedom vous renvoi le résumé pour toute les clefs
+
+JSON API EqLogic
+================
+
+eqLogic::all
+------------
+
+Gibt die Liste aller Geräte zurück
+
+eqLogic::fullById
+-----------------
+
+Gibt ein Gerät sowie dessen Befehle und die Zustände zurück (für Befehle des Info Typs)
+
+eqLogic::byId
+-------------
+
+Liefert das angegebene Gerät zurück
+
+Parameter :
+
+-   int id
+
+eqLogic::byType
+---------------
+
+Gibt alle zum genau angegebenen Typ (plugin) gehörenden Geräte zurück
+
+Parameter :
+
+-   string type
+
+eqLogic::byObjectId
+-------------------
+
+Gibt alle zum genau angegebenen Gerät gehörenden Objekte zurück
+
+Parameter :
+
+-   int object\_id
+
+eqLogic::byTypeAndId
+--------------------
+
+Weiterleiten einer Anordnung von Gerät gemäß den Parametern. Die Rücksendung wird folgende Form haben array(*eqType1* ⇒array( *id*⇒…,*cmds* ⇒ array(….)),*eqType2* ⇒array( *id*⇒…,*cmds* ⇒ array(….))….,id1 ⇒ array( *id*⇒…,*cmds* ⇒ array(….)),id2 ⇒ array( *id*⇒…,*cmds* ⇒ array(….))..)
+
+Parameter :
+
+-   string[] eqType = Tabelle der gewünschten Gerätetypen
+
+-   int[] id = individuelle erwünschte Geräte-ID Tabelle
+
+eqLogic::save
+-------------
+
+Retourne l'équipement enregistré/créé
+
+Parameter :
+
+-   int id (vide si c’est une création)
+
+-   string eqType\_name (type de l'équipement script, virtuel…)
+
+-   string \$name
+
+-   string \$logicalId = \<nowiki\>''\</nowiki\>
+
+-   int \$object\_id = null
+
+-   int \$eqReal\_id = null;
+
+-   int \$isVisible = 0;
+
+-   int \$isEnable = 0;
+
+-   array \$configuration;
+
+-   int \$timeout;
+
+-   array \$category;
+
+JSON API Cmd
+============
+
+cmd::all
+--------
+
+Gibt die Liste aller Befehle zurück
+
+cmd::byId
+---------
+
+Liefert den angegebenen Befehl zurück
+
+Parameter :
+
+-   int id
+
+cmd::byEqLogicId
+----------------
+
+Gibt alle zum angegebenen Gerät gehörenden Befehle zurück
+
+Parameter :
+
+-   int eqLogic\_id
+
+cmd::execCmd
+------------
+
+Führt den angegebenen Befehl aus
+
+Parameter :
+
+-   int id
+
+-   [options] Liste der Optionen für die Befehle (hängt vom Typ und von der Unterklasse des Befehles ab)
+
+cmd::getStatistique
+-------------------
+
+Gibt Statistiken über den Befehl zurück (funktioniert nur Befehle vom Info Typ und historisiert)
+
+Parameter :
+
+-   int id
+
+-   string startTime : Der Anfangszeitpunkt für die Berechnung der Statistik
+
+-   string endTime : Der Endzeitpunkt für die Berechnung der Statistik
+
+cmd::getTendance
+----------------
+
+Gibt die Tendenz über den Befehl zurück (funktioniert nur mit Befehle vom Typ Info und Chronik)
+
+Parameter :
+
+-   int id
+
+-   string startTime : Der Anfangszeitpunkt für die Berechnung der Tendenz
+
+-   string endTime : Der Endzeitpunkt für die Berechnung der Tendenz
+
+cmd::getHistory
+---------------
+
+Gibt die Chronik des Befehles zurück (funktioniert nur mit Befehle vom Typ Info und Chronik)
+
+Parameter :
+
+-   int id
+
+-   string startTime : Der Anfangszeitpunkt für die Berechnung der Chronik
+
+-   string endTime : Der Endzeitpunkt der Chronik
+
+JSON API Szenario
+=================
+
+scenario::all
+-------------
+
+Gibt eine Liste aller Szenarien zurück
+
+scenario::byId
+--------------
+
+Gibt das genau angegebene Szenario zurück
+
+Parameter :
+
+-   int id
+
+scenario::changeState
+---------------------
+
+Ändert den Zustand des angegebenen Szenarios.
+
+Parameter :
+
+-   int id
+
+-   string state : [run,stop,enable,disable]
+
+JSON API datastore (variable)
+=============================
+
+datastore::byTypeLinkIdKey
+--------------------------
+
+Ruft den Wert einer Variablen ab, der im Datenspeicher gespeichert ist
+
+Parameter :
+
+-   string type : Typ des gespeicherten Wertes (für die Szenarien ist es Szenario)
+
+-   id linkId : -1 pour le global (valeur pour les scénarios par défaut, ou l’id du scénario)
+
+-   string key : Name des Wertes
+
+datastore::save
+---------------
+
+Speichert den Wert einer Variablen in den Datenspeicher
+
+Parameter :
+
+-   string type : Typ des gespeicherten Wertes (für die Szenarien ist es Szenario)
+
+-   id linkId : -1 pour le global (valeur pour les scénarios par défaut, ou l’id du scénario)
+
+-   string key : Name des Wertes
+
+-   mixte value : zu registrierender Wert
+
+JSON API Nachrichten
+====================
+
+message::all
+------------
+
+Gibt eine Liste aller Nachrichten zurück
+
+message::removeAll
+------------------
+
+Alle Nachrichten löschen
+
+JSON API Interaktion
+====================
+
+interact::tryToReply
+--------------------
+
+Essaie de faire correspondre une demande avec une interaction, exécute l’action et répond en conséquence
+
+Parameter :
+
+-   query (phrase de la demande)
+
+JSON API System
+===============
+
+jeedom::halt
+------------
+
+Ermöglicht Jeedom zu stoppen
+
+jeedom::reboot
+--------------
+
+Ermöglicht Jeedom neu zu starten
+
+JSON API Plugin
+===============
+
+plugin::install
+---------------
+
+Installation/Update eines speziellen Plugin
+
+Parameter :
+
+-   string plugin\_id : nom du plugin (logischer Namen)
+
+plugin::remove
+--------------
+
+Löschen eines speziellen Plugin
+
+Parameter :
+
+-   string plugin\_id : nom du plugin (logischer Namen)
+
+JSON API Update
+===============
+
+update::all
+-----------
+
+Gibt eine Liste aller installierten Komponenten, deren Versionen und die zugehörigen Informationen zurück
+
+update::checkUpdate
+-------------------
+
+Permet de vérifier les mises à jour
+
+update::update
+--------------
+
+Erlaubt, Jeedom und aller Plugins zu aktualisieren
+
+JSON API Beispiele
+==================
+
+Voici un exemple d’utilisation de l’API. Pour l’exemple ci-dessous j’utilise [cette class php](https://github.com/jeedom/core/blob/stable/core/class/jsonrpcClient.class.php) qui permet de simplifier l’utilisation de l’api.
+
+Die Liste der Objekte abrufen :
+
+    $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
+    if($jsonrpc->sendRequest('object::all', array())){
+        print_r($jsonrpc->getResult());
+    }else{
+        echo $jsonrpc->getError();
+    }
+
+Einen Befehl ausführen (mit der Option von Titel und Nachricht)
+
+    $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
+    if($jsonrpc->sendRequest('cmd::execCmd', array('id' => #cmd_id#, 'options' => array('title' => 'Coucou', 'message' => 'Ca marche')))){
+        echo 'OK';
+    }else{
+        echo $jsonrpc->getError();
+    }
+
+L’API est bien sur utilisable avec d’autres langages (simplement un post sur une page) 
 
