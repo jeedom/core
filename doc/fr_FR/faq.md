@@ -1,76 +1,47 @@
 Jeedom nécessite-t-il un abonnement ?  
-Non, Jeedom ne nécessite pas d’abonnement pour son utilisation. Seul un
-service de sauvegarde en ligne optionnel est payant.
+Non, Jeedom ne nécessite pas d’abonnement pour son utilisation. Seul un service de sauvegarde en ligne optionnel est payant.
 
 Jeedom utilise-t-il des serveurs extérieurs pour fonctionner ?  
-Non, Jeedom n’utilise pas d’infrastructure type "Cloud". Tout se fait en
-local et vous n’avez pas besoin de nos serveurs pour que votre
-installation fonctionne. Seuls les services comme le Market, la
-sauvegarde online ou le DNS Jeedom nécessitent l’utilisation de nos
-serveurs.
+Non, Jeedom n’utilise pas d’infrastructure type "Cloud". Tout se fait en local et vous n’avez pas besoin de nos serveurs pour que votre installation fonctionne. Seuls les services comme le Market, la sauvegarde online ou le DNS Jeedom nécessitent l’utilisation de nos serveurs.
 
 Peut-on réordonner les commandes d’un équipement ?  
-Oui c’est possible, il suffit de glisser/déposer les commandes de votre
-objet sur sa configuration.
+Oui c’est possible, il suffit de glisser/déposer les commandes de votre objet sur sa configuration.
 
 Peut-on éditer le style des widgets ?  
-Oui c’est possible, soit en passant par le plugin widget, ou en
-utilisant la page Général → Affichage
+Oui c’est possible, soit en passant par le plugin widget, ou en utilisant la page Général → Affichage
 
 Peut-on mettre plusieurs fois le même équipement sur un design ?  
-Non ce n’est pas possible, mais vous pouvez dupliquer celui-ci grâce au
-plugin virtuel.
+Non ce n’est pas possible, mais vous pouvez dupliquer celui-ci grâce au plugin virtuel.
 
 Comment changer une donnée erronée de l’historique ?  
-Il suffit sur une courbe historique de la commande, de cliquer sur le
-point en question. Si vous laissez le champs vierge, alors la valeur est
-supprimée.
+Il suffit sur une courbe historique de la commande, de cliquer sur le point en question. Si vous laissez le champs vierge, alors la valeur est supprimée.
 
 Comment enregistrer un ordinateur pour ne plus avoir à s’identifier ?  
-Il suffit lors de la connexion de cocher la case "Enregistrer cet
-ordinateur".
+Il suffit lors de la connexion de cocher la case "Enregistrer cet ordinateur".
 
 Combien de temps dure un backup ?  
-Il n’y a pas de durée standard, cela dépend du système et du volume de
-données à sauvegarder, mais il peut prendre plus de 5 minutes, c’est
-normal.
+Il n’y a pas de durée standard, cela dépend du système et du volume de données à sauvegarder, mais il peut prendre plus de 5 minutes, c’est normal.
 
 Y a-t-il une application mobile dédiée ?  
-Jeedom possède une version mobile adaptée à l’utilisation sur mobile et
-tablette. Une application mobile est en cours de développement par
-l'équipe actuellement, aucune date de sortie n’est annoncée pour
-l’instant. Il est tout à fait possible que des développeurs tiers
-proposent des applications dédiées pour Jeedom.
+Jeedom possède une version mobile adaptée à l’utilisation sur mobile et tablette. Une application mobile est en cours de développement par l'équipe actuellement, aucune date de sortie n’est annoncée pour l’instant. Il est tout à fait possible que des développeurs tiers proposent des applications dédiées pour Jeedom.
 
 Quels sont les identifiants pour me connecter la première fois ?  
-Lors de votre première connexion à Jeedom (et même après si vous ne les
-avez pas modifiés), le nom d’utilisateur et le mot de passe par défaut
-sont admin/admin. A la première connexion, il vous est fortement
-recommandé de modifier ces identifiants pour plus de sécurité.
+Lors de votre première connexion à Jeedom (et même après si vous ne les avez pas modifiés), le nom d’utilisateur et le mot de passe par défaut sont admin/admin. A la première connexion, il vous est fortement recommandé de modifier ces identifiants pour plus de sécurité.
 
 Où acheter la Mini+ ?  
-La Jeedom Mini est commercialisée chez notre partenaire
-<http://www.domadoo.fr/> .
+La Jeedom Mini est commercialisée chez notre partenaire <http://www.domadoo.fr/> .
 
 Impossible d’accéder à Jeedom de l’extérieur depuis l’achat d’une box  
-Par défaut, Jeedom est à la racine de Nginx sur les box. Vous n’avez
-plus à rajouter /jeedom/ dans l’adresse d’accès. L’adresse exacte sera
-donc : votre\_ip\_public:votre\_port/
+Par défaut, Jeedom est à la racine de Nginx sur les box. Vous n’avez plus à rajouter /jeedom/ dans l’adresse d’accès. L’adresse exacte sera donc : votre\_ip\_public:votre\_port/
 
 Peut-on mettre Jeedom en https ?  
 Oui, 3 possibilités :
 
--   Vous avez un pack power ou plus, dans ce cas il vous suffit
-    d’utiliser le DNS Jeedom.
+-   Vous avez un pack power ou plus, dans ce cas il vous suffit d’utiliser le DNS Jeedom.
 
--   Soit avez un DNS et vous savez mettre en place un certificat valide,
-    dans ce cas c’est une installation standard d’un certificat.
+-   Soit avez un DNS et vous savez mettre en place un certificat valide, dans ce cas c’est une installation standard d’un certificat.
 
--   Soit vous n’avez pas de DNS, et avoir un certificat auto-signé (pour
-    rappel un certificat auto-signé assure le cryptage des données mais
-    pas la validation du site) ne vous gêne pas, dans ce cas il faut
-    faire ce qui suit, si ça ne marche pas quand vous mettez https
-    devant l’URL :
+-   Soit vous n’avez pas de DNS, et avoir un certificat auto-signé (pour rappel un certificat auto-signé assure le cryptage des données mais pas la validation du site) ne vous gêne pas, dans ce cas il faut faire ce qui suit, si ça ne marche pas quand vous mettez https devant l’URL :
 
 <!-- -->
 
@@ -80,26 +51,14 @@ Oui, 3 possibilités :
 Vous pouvez ensuite forcer le https dans la configuration Jeedom.
 
 J’ai le message : "Vous avez un trop grand nombre de systèmes Jeedom déclarés, veuillez en réduire le nombre et demander une réinitialisation de vos clefs d’installation", que faire ?  
-Rendez vous sur le Market, connectez-vous avec votre compte puis allez
-sur votre page profil et demandez une réinitilisation des clefs
-d’installation.
+Rendez vous sur le Market, connectez-vous avec votre compte puis allez sur votre page profil et demandez une réinitilisation des clefs d’installation.
 
 Qu’est-ce "événement seulement" et "lifetime cache" ?  
--   Événement seulement : indique à Jeedom de ne jamais demander la
-    valeur (c’est l'équipement qui la remonte). Donc lors de la
-    réception d’une valeur, celle-ci à une durée de vie infinie (jusqu’à
-    la réception de la suivante).
+-   Événement seulement : indique à Jeedom de ne jamais demander la valeur (c’est l'équipement qui la remonte). Donc lors de la réception d’une valeur, celle-ci à une durée de vie infinie (jusqu’à la réception de la suivante).
 
--   Lifetime cache : Durée de validité d’une valeur, si vous mettez 60
-    secondes par exemple, quand la valeur datera de plus de 60 secondes
-    ET que jeedom en a besoin (dashboard, scénario…) alors il ira
-    interroger le module pour avoir une valeur à jour.
+-   Lifetime cache : Durée de validité d’une valeur, si vous mettez 60 secondes par exemple, quand la valeur datera de plus de 60 secondes ET que jeedom en a besoin (dashboard, scénario…) alors il ira interroger le module pour avoir une valeur à jour.
 
-Attention, ces 2 options sont réservées aux utilisateurs avancés qui
-comprennent parfaitement leur fonction, une erreur de configuration dans
-cette partie peut rendre une installation instable voire inopérante. Par
-exemple, en zwave, rfxcom et enocean, la case événement seulement
-devrait TOUJOURS être cochée.
+Attention, ces 2 options sont réservées aux utilisateurs avancés qui comprennent parfaitement leur fonction, une erreur de configuration dans cette partie peut rendre une installation instable voire inopérante. Par exemple, en zwave, rfxcom et enocean, la case événement seulement devrait TOUJOURS être cochée.
 
 Comment remettre à plat les droits ?  
 En SSH faites :
@@ -124,12 +83,9 @@ En SSH faîtes :
     chown -R www-data:www-data /usr/share/nginx/www/jeedom
 
 La Webapp est-elle compatible Symbian ?  
-La webapp nécessite un smartphone supportant le HTML5 et le CSS3. Elle
-n’est donc malheureusement pas compatible Symbian.
+La webapp nécessite un smartphone supportant le HTML5 et le CSS3. Elle n’est donc malheureusement pas compatible Symbian.
 
 Sur quelles plateformes Jeedom peut-il fonctionner ?  
-Pour que Jeedom fonctionne il faut une plateforme linux avec les droits
-root ou un système type docker. Il ne fonctionne donc pas sur une
-plateforme android pure.
+Pour que Jeedom fonctionne il faut une plateforme linux avec les droits root ou un système type docker. Il ne fonctionne donc pas sur une plateforme android pure.
 
 

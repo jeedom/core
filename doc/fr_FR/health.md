@@ -1,6 +1,4 @@
-La page de santé de Jeedom vous permet d’avoir un aperçu rapide de
-l'état de santé de votre Jeedom. Il indique aussi (si les plugins
-l’utilisent), l'état de santé par plugin
+La page de santé de Jeedom vous permet d’avoir un aperçu rapide de l'état de santé de votre Jeedom. Il indique aussi (si les plugins l’utilisent), l'état de santé par plugin
 
 Il est accessible par Analyse → Santé
 
@@ -10,14 +8,9 @@ Une fois dessus, voilà ce que vous avez :
 
 ![](../images/health2.png)
 
-Vous retrouvez ici un tableau qui donne une description de ce que Jeedom
-vérifie et du statut de celle-ci dans la 2ème colonne, enfin la dernière
-colonne peut vous donner des conseils de résolution si la vérification
-n’est pas OK
+Vous retrouvez ici un tableau qui donne une description de ce que Jeedom vérifie et du statut de celle-ci dans la 2ème colonne, enfin la dernière colonne peut vous donner des conseils de résolution si la vérification n’est pas OK
 
-En dessous vous retrouvez les mêmes tableaux mais par plugin (si le
-plugin est compatible). Un clic sur le nom du plugin vous amène
-directement sur sa page de configuration
+En dessous vous retrouvez les mêmes tableaux mais par plugin (si le plugin est compatible). Un clic sur le nom du plugin vous amène directement sur sa page de configuration
 
 Aide à la résolution
 ====================
@@ -25,19 +18,14 @@ Aide à la résolution
 Version PHP
 -----------
 
-Pour l’instant la version 5.5 de php n’est pas obligatoire. Vous pouvez
-donc tout laisser comme ça pour le moment. Le jour où la version 5.5
-devient obligatoire vous serez prévenu
+Pour l’instant la version 5.5 de php n’est pas obligatoire. Vous pouvez donc tout laisser comme ça pour le moment. Le jour où la version 5.5 devient obligatoire vous serez prévenu
 
 Configuration nginx
 -------------------
 
-Ma configuration nginx est NOK, cela peut être normal si vous avez
-modifié le fichier /etc/nginx/sites-available/defaut, sinon en SSH
-faites :
+Ma configuration nginx est NOK, cela peut être normal si vous avez modifié le fichier /etc/nginx/sites-available/defaut, sinon en SSH faites :
 
--   Si vous êtes sur une mini/mini+ ou que vous ne voulez pas de /jeedom
-    :
+-   Si vous êtes sur une mini/mini+ ou que vous ne voulez pas de /jeedom :
 
 <!-- -->
 

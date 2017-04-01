@@ -1,6 +1,4 @@
-Cette page permet de configurer l’affichage de toute votre domotique de
-manière très fine. Celle-ci demande du temps mais sa seule limite est
-votre imagination.
+Cette page permet de configurer l’affichage de toute votre domotique de manière très fine. Celle-ci demande du temps mais sa seule limite est votre imagination.
 
 Elle est accessible par
 
@@ -8,8 +6,7 @@ Elle est accessible par
 
 > **Tip**
 >
-> Comme vous pouvez le voir sur la capture il est possible d’aller
-> directement sur un design grâce au sous-menu
+> Comme vous pouvez le voir sur la capture il est possible d’aller directement sur un design grâce au sous-menu
 
 Voici un exemple de design :
 
@@ -27,8 +24,7 @@ Sur cette page on retrouve, en haut (et dans l’ordre) :
 
 -   un pour passer en mode plein écran
 
-Il vous suffit donc pour en créer un de cliquer sur le bouton d’ajout,
-une fenêtre va vous demander le nom de celui-ci :
+Il vous suffit donc pour en créer un de cliquer sur le bouton d’ajout, une fenêtre va vous demander le nom de celui-ci :
 
 ![](../images/plan3.png)
 
@@ -40,11 +36,9 @@ Il faut donc cliquer le bouton d'édition pour passer en mode édition :
 
 ![](../images/plan5.png)
 
-Comme on peut le voir il y a un peu plus de boutons maintenant, ainsi
-que le cadre du design (que l’on peut changer bien sûr).
+Comme on peut le voir il y a un peu plus de boutons maintenant, ainsi que le cadre du design (que l’on peut changer bien sûr).
 
-En haut à gauche on retrouve 2 boutons, celui pour éditer les propriétés
-du design en cours et celui pour le dupliquer.
+En haut à gauche on retrouve 2 boutons, celui pour éditer les propriétés du design en cours et celui pour le dupliquer.
 
 > **Tip**
 >
@@ -61,36 +55,26 @@ On retrouve ici :
 
     -   **Nom** : Le nom de votre design
 
-    -   **Icône** : Une icône pour celui-ci (apparait dans le menu de
-        choix de design)
+    -   **Icône** : Une icône pour celui-ci (apparait dans le menu de choix de design)
 
-    -   **Disponible sur téléphone** : Rend ce design visible dans la
-        liste des designs en version mobile
+    -   **Disponible sur téléphone** : Rend ce design visible dans la liste des designs en version mobile
 
     -   **Image** : permet d’ajouter une image de fond au design
 
-    -   **Ne pas afficher la flèche de retour lors de la mise en plein
-        écran** : en mode plein écran cette option masque le bouton de
-        retour au mode fenêtré (idéal pour une tablette murale)
+    -   **Ne pas afficher la flèche de retour lors de la mise en plein écran** : en mode plein écran cette option masque le bouton de retour au mode fenêtré (idéal pour une tablette murale)
 
 -   **Tailles**
 
-    -   **Taille (LxH)** : Permet de fixer la taille de votre design
-        (cadre gris en mode édition)
+    -   **Taille (LxH)** : Permet de fixer la taille de votre design (cadre gris en mode édition)
 
-    -   **Proportion tablette (ex : 0.7)** : permet de changer la
-        proportion du design sur tablette (pour le reduire par exemple
-        tout en maitrisant encore la taille)
+    -   **Proportion tablette (ex : 0.7)** : permet de changer la proportion du design sur tablette (pour le reduire par exemple tout en maitrisant encore la taille)
 
-    -   **Proportion téléphone (ex 0.5)** : permet de changer la
-        proportion du design sur téléphone (pour le reduire par exemple
-        tout en maitrisant encore la taille)
+    -   **Proportion téléphone (ex 0.5)** : permet de changer la proportion du design sur téléphone (pour le reduire par exemple tout en maitrisant encore la taille)
 
 Ajout d’un widget
 =================
 
-Ensuite il faut ajouter des widgets à votre design, pour cela il faut
-cliquer sur le bouton d’ajout de widget :
+Ensuite il faut ajouter des widgets à votre design, pour cela il faut cliquer sur le bouton d’ajout de widget :
 
 ![](../images/plan7.png)
 
@@ -106,8 +90,7 @@ Vous voyez apparaître votre widget :
 >
 > Vous pouvez le déplacer en cliquant/glissant le widget
 
-Vous avez accès a la configuration avancée de l’affichage du widget en
-double cliquant sur celui-ci :
+Vous avez accès a la configuration avancée de l’affichage du widget en double cliquant sur celui-ci :
 
 ![](../images/plan10.png)
 
@@ -115,31 +98,21 @@ Ici on a :
 
 -   **Général**
 
-    -   **Taille du widget** : permet de definir un ratio de taille de
-        widget, par exemple ici il ne fera que 65% de sa taille
+    -   **Taille du widget** : permet de definir un ratio de taille de widget, par exemple ici il ne fera que 65% de sa taille
 
-    -   **Couleur de fond** : permet de changer la couleur de fond ou de
-        le mettre transparent, ne pas oublier de passer "Défaut" sur NON
+    -   **Couleur de fond** : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
 
-    -   **Couleur des icônes et textes** : permet de changer la couleur
-        des icônes et des textes (attention à bien passer Défaut sur
-        Non)
+    -   **Couleur des icônes et textes** : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
 
-    -   **Arrondir les angles (ne pas oublier de mettre %, ex 50%)** :
-        permet d’arrondir les angles du widget, ne pas oublier de mettre
-        le %
+    -   **Arrondir les angles (ne pas oublier de mettre %, ex 50%)** : permet d’arrondir les angles du widget, ne pas oublier de mettre le %
 
-    -   **Bordure (attention syntaxe css, ex : solid 1px black)** :
-        permet d’ajouter une bordure, attention la syntaxe est HTML
+    -   **Bordure (attention syntaxe css, ex : solid 1px black)** : permet d’ajouter une bordure, attention la syntaxe est HTML
 
-    -   **Profondeur** : permet de choisir le niveau de la profondeur,
-        pour par exemple passer un widget par dessus un autre
+    -   **Profondeur** : permet de choisir le niveau de la profondeur, pour par exemple passer un widget par dessus un autre
 
-    -   **Ne pas afficher le nom de l'équipement** : masque le nom du
-        widget, s’applique uniquement sur le design
+    -   **Ne pas afficher le nom de l'équipement** : masque le nom du widget, s’applique uniquement sur le design
 
--   **Spécifique** : permet de masquer certaines commandes du widget
-    uniquement sur le design
+-   **Spécifique** : permet de masquer certaines commandes du widget uniquement sur le design
 
 > **Important**
 >
@@ -154,8 +127,7 @@ Ajout texte/html
 
 ![](../images/plan11.png)
 
-Permet d’ajouter un texte ou du code html/javascript, une fois cliqué
-dessus vous obtenez :
+Permet d’ajouter un texte ou du code html/javascript, une fois cliqué dessus vous obtenez :
 
 ![](../images/plan12.png)
 
@@ -167,23 +139,17 @@ Un double clic dessus vous ammène à la fenêtre de configuration :
 
 -   **Icone** : permet de mettre une icône à la place du texte
 
--   **Couleur de fond** : permet de changer la couleur de fond ou de le
-    mettre transparent, ne pas oublier de passer "Défaut" sur NON
+-   **Couleur de fond** : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
 
--   **Couleur du textes** : permet de changer la couleur des icônes et
-    des textes (attention à bien passer Défaut sur Non)
+-   **Couleur du textes** : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
 
--   **Arrondir les angles (ne pas oublier de mettre %, ex 50%)** :
-    permet d’arrondir les angles, ne pas oublier de mettre le %
+-   **Arrondir les angles (ne pas oublier de mettre %, ex 50%)** : permet d’arrondir les angles, ne pas oublier de mettre le %
 
--   **Bordure (attention syntax css, ex : solid 1px black)** : permet
-    d’ajouter une bordure, attention la syntaxe est HTML
+-   **Bordure (attention syntax css, ex : solid 1px black)** : permet d’ajouter une bordure, attention la syntaxe est HTML
 
--   **Taille de la police (ex 50%, il faut bien mettre le signe %)** :
-    permet de modifier la taille de la police
+-   **Taille de la police (ex 50%, il faut bien mettre le signe %)** : permet de modifier la taille de la police
 
--   **Ne pas prendre en compte la taille prédéfinie** : permet d’ignorer
-    la taille prédéfinie du widget
+-   **Ne pas prendre en compte la taille prédéfinie** : permet d’ignorer la taille prédéfinie du widget
 
 -   **Profondeur** : permet de choisir le niveau de la profondeur
 
@@ -206,35 +172,25 @@ Une fois choisi celui-ci apparait sur le design :
 
 ![](../images/plan16.png)
 
-Un double clic dessus vous amènera à la configuration de cet élément
-scénario :
+Un double clic dessus vous amènera à la configuration de cet élément scénario :
 
 ![](../images/plan17.png)
 
 -   **Général**
 
-    -   **Taille du widget** : permet de definir un ratio de taille de
-        widget, par exemple ici il ne fera que 65% de sa taille
+    -   **Taille du widget** : permet de definir un ratio de taille de widget, par exemple ici il ne fera que 65% de sa taille
 
-    -   **Couleur de fond** : permet de changer la couleur de fond ou de
-        le mettre transparent, ne pas oublier de passer "Défaut" sur NON
+    -   **Couleur de fond** : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
 
-    -   **Couleur des icônes et textes** : permet de changer la couleur
-        des icônes et des textes (attention à bien passer Défaut sur
-        Non)
+    -   **Couleur des icônes et textes** : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
 
-    -   **Arrondir les angles (ne pas oublier de mettre %, ex 50%)** :
-        permet d’arrondir les angles du widget, ne pas oublier de mettre
-        le %
+    -   **Arrondir les angles (ne pas oublier de mettre %, ex 50%)** : permet d’arrondir les angles du widget, ne pas oublier de mettre le %
 
-    -   **Bordure (attention syntaxe css, ex : solid 1px black)** :
-        permet d’ajouter une bordure, attention la syntaxe est HTML
+    -   **Bordure (attention syntaxe css, ex : solid 1px black)** : permet d’ajouter une bordure, attention la syntaxe est HTML
 
-    -   **Profondeur** : permet de choisir le niveau de la profondeur,
-        pour par exemple passer un widget par dessus un autre
+    -   **Profondeur** : permet de choisir le niveau de la profondeur, pour par exemple passer un widget par dessus un autre
 
--   **Spécifique** : permet de masquer les commandes d’action sur le
-    scénario
+-   **Spécifique** : permet de masquer les commandes d’action sur le scénario
 
 > **Tip**
 >
@@ -263,30 +219,23 @@ On retrouve ici :
 
 -   **Lien** : destination du lien
 
--   **Position** : permet de régler finement la position du lien sur la
-    destination (pour par exemple arriver directement sur la cuisine)
+-   **Position** : permet de régler finement la position du lien sur la destination (pour par exemple arriver directement sur la cuisine)
 
 -   **Icone** : permet de mettre une icône à la place du texte
 
--   **Couleur de fond** : permet de changer la couleur de fond ou de le
-    mettre transparent, ne pas oublier de passer "Défaut" sur NON
+-   **Couleur de fond** : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
 
--   **Couleur du textes** : permet de changer la couleur des icônes et
-    des textes (attention à bien passer Défaut sur Non)
+-   **Couleur du textes** : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
 
--   **Arrondir les angles (ne pas oublier de mettre %, ex 50%)** :
-    permet d’arrondir les angles, ne pas oublier de mettre le %
+-   **Arrondir les angles (ne pas oublier de mettre %, ex 50%)** : permet d’arrondir les angles, ne pas oublier de mettre le %
 
--   **Bordure (attention syntax css, ex : solid 1px black)** : permet
-    d’ajouter une bordure, attention la syntaxe est HTML
+-   **Bordure (attention syntax css, ex : solid 1px black)** : permet d’ajouter une bordure, attention la syntaxe est HTML
 
 -   **Profondeur** : permet de choisir le niveau de la profondeur
 
--   **Taille de la police (ex 50%, il faut bien mettre le signe %)** :
-    permet de modifier la taille de la police
+-   **Taille de la police (ex 50%, il faut bien mettre le signe %)** : permet de modifier la taille de la police
 
--   **Ne pas prendre en compte la taille prédéfinie** : permet d’ignorer
-    la taille prédéfinie du widget
+-   **Ne pas prendre en compte la taille prédéfinie** : permet d’ignorer la taille prédéfinie du widget
 
 -   **Gras** : met le texte en gras
 
@@ -311,26 +260,21 @@ Ici on retrouve :
 
 -   **Période** : permet de choisir la période d’affichage
 
--   **Bordure (attention syntaxe css, ex : solid 1px black)** : permet
-    d’ajouter une bordure, attention la syntaxe est HTML
+-   **Bordure (attention syntaxe css, ex : solid 1px black)** : permet d’ajouter une bordure, attention la syntaxe est HTML
 
 -   **Profondeur** : permet de choisir le niveau de la profondeur
 
 -   **Afficher la légende** : permet d’afficher ou non la légende
 
--   **Afficher le navigateur** : permet d’afficher ou non le navigateur
-    (deuxième graph plus léger en dessous du premier)
+-   **Afficher le navigateur** : permet d’afficher ou non le navigateur (deuxième graph plus léger en dessous du premier)
 
--   **Afficher le sélecteur de période** : affiche ou non le sélecteur
-    de période en haut à gauche
+-   **Afficher le sélecteur de période** : affiche ou non le sélecteur de période en haut à gauche
 
--   **Afficher la barre de défilement** : affiche ou non la barre de
-    défilement
+-   **Afficher la barre de défilement** : affiche ou non la barre de défilement
 
 -   **Fond transparent** : rend le fond transparent
 
-Pour choisir les données à afficher il faut cliquer sur les 3 roues
-crantées :
+Pour choisir les données à afficher il faut cliquer sur les 3 roues crantées :
 
 ![](../images/plan25.png)
 
@@ -338,25 +282,19 @@ Vous obtenez (ça peut être un peu long à charger) :
 
 ![](../images/plan26.png)
 
--   **Activer** : le premier bouton permet d’activer ou non l’affichage
-    de la donnée sur le graphique
+-   **Activer** : le premier bouton permet d’activer ou non l’affichage de la donnée sur le graphique
 
 -   **Couleur** : la couleur de la courbe
 
 -   **Type** : le type de graph (aire, ligne ou colonne)
 
--   **Escalier** : permet d’afficher la courbe sous la forme d’un
-    escalier au d’un affichage continue
+-   **Escalier** : permet d’afficher la courbe sous la forme d’un escalier au d’un affichage continue
 
--   **Empiler** : permet d’empiler les valeurs des courbes (voir en
-    dessous pour le résultat)
+-   **Empiler** : permet d’empiler les valeurs des courbes (voir en dessous pour le résultat)
 
--   **Variation** : affiche la différence de valeur par rapport au point
-    précédent
+-   **Variation** : affiche la différence de valeur par rapport au point précédent
 
--   **Echelle** : vu que vous pouvez mettre plusieurs courbes (données)
-    sur le même graphe il est possible de distinguer les échelles
-    (droite ou gauche)
+-   **Echelle** : vu que vous pouvez mettre plusieurs courbes (données) sur le même graphe il est possible de distinguer les échelles (droite ou gauche)
 
 > **Tip**
 >
