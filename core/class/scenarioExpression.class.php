@@ -104,7 +104,7 @@ class scenarioExpression {
 		}
 		if (is_array($_options) && count($_options) > 0) {
 			foreach ($_options as $key => $value) {
-				$replace['#' . $key . '#'] = $value;
+				$replace['#' . $key . '#'] = str_replace('"', '&quot;', $value);
 			}
 		}
 		if (!isset($replace['#id#'])) {
