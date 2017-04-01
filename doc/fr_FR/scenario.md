@@ -578,23 +578,23 @@ Code
 > Attention les tags ne sont pas disponibles dans un bloc de type code.
 
 Commandes (capteurs et actionneurs)  
--   **cmd::byString(\$string)**;
+-   **cmd::byString($string)**;
 
     -   Retourne l’objet commande correspondant
 
-    -   \$string ⇒ lien vers la commande voulue : \#[objet][equipement][commande]\# (ex : \#[Appartement][Alarme][Actif]\#)
+    -   $string ⇒ lien vers la commande voulue : \#[objet][equipement][commande]\# (ex : \#[Appartement][Alarme][Actif]\#)
 
--   **cmd::byId(\$id)**;
+-   **cmd::byId($id)**;
 
     -   Retourne l’objet commande correspondant
 
-    -   \$id ⇒ Id de la commande voulue (voir Général ⇒ Affichage)
+    -   $id ⇒ Id de la commande voulue (voir Général ⇒ Affichage)
 
--   **\$cmd→execCmd(\$options = null)**;
+-   **$cmd→execCmd($options = null)**;
 
     -   Exécute la commande et retourne le résultat
 
-    -   \$options ⇒ Options pour l’exécution de la commande (peut être spécifique au plugin), option de base :
+    -   $options ⇒ Options pour l’exécution de la commande (peut être spécifique au plugin), option de base :
 
         -   Sous-type de la commande :
 
@@ -614,57 +614,57 @@ Log
     -   message ⇒ message à écrire dans les logs
 
 Scénario  
--   **\$scenario-\>getName()**;
+-   **$scenario-\>getName()**;
 
     -   Retourne le nom du scénario courant
 
--   **\$scenario-\>getGroup()**;
+-   **$scenario-\>getGroup()**;
 
     -   Retourne le groupe du scénario
 
--   **\$scenario-\>getIsActive()**;
+-   **$scenario-\>getIsActive()**;
 
     -   Retourne l'état du scénario
 
--   **\$scenario-\>setIsActive(\$active)**;
+-   **$scenario-\>setIsActive($active)**;
 
     -   Permet d’activer ou non le scénario
 
-    -   \$active ⇒ 1 actif , 0 non actif
+    -   $active ⇒ 1 actif , 0 non actif
 
--   **\$scenario-\>setOnGoing(\$onGoing)**;
+-   **$scenario-\>setOnGoing($onGoing)**;
 
     -   Permet de dire si le scénario est en cours ou non
 
-    -   \$onGoing ⇒ 1 en cours , 0 arrêté
+    -   $onGoing ⇒ 1 en cours , 0 arrêté
 
--   **\$scenario-\>save()**;
+-   **$scenario-\>save()**;
 
     -   Sauvegarde les modifications
 
--   **\$scenario-\>setData(\$key, \$value)**;
+-   **$scenario-\>setData($key, $value)**;
 
     -   Sauvegarde une donnée (variable)
 
-    -   \$key ⇒ clef de la valeur (int ou string)
+    -   $key ⇒ clef de la valeur (int ou string)
 
-    -   \$value ⇒ valeur à stocker (int, string, array ou object)
+    -   $value ⇒ valeur à stocker (int, string, array ou object)
 
--   **\$scenario-\>getData(\$key)**;
+-   **$scenario-\>getData($key)**;
 
     -   Récupère une donnée (variable)
 
-    -   \$key ⇒ clef de la valeur (int ou string)
+    -   $key ⇒ clef de la valeur (int ou string)
 
--   **\$scenario-\>removeData(\$key)**;
+-   **$scenario-\>removeData($key)**;
 
     -   Supprime une donnée
 
--   **\$scenario-\>setLog(\$message)**;
+-   **$scenario-\>setLog($message)**;
 
     -   Ecris message dans le log du scénario
 
--   **\$scenario-\>persistLog()**;
+-   **$scenario-\>persistLog()**;
 
     -   Force l'écriture du log (sinon il est écrit seulement à la fin du scénario). Attention ceci peut un peu ralentir le scénario
 
