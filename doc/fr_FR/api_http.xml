@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+
+<article lang="en">
+<articleinfo>
+    <title>API HTTP</title>
+</articleinfo>
+<simpara>Jeedom met à disposition des développeurs et des utilisateurs une API complète afin de pouvoir piloter Jeedom depuis n&#8217;importe quel objet connecté.</simpara>
+<simpara>Deux API sont disponibles : une orientée développeur qui se pilote en JSON RPC 2.0, et une autre via URL et requête HTTP.</simpara>
+<simpara>Cette API s&#8217;utilise très facilement par de simples requêtes HTTP via URL. Pour simplifier au maximum, l&#8217;API utilise seulement 2 types de requête HTTP.</simpara>
+<simpara>Attention si vous êtes en DIY il faut ajouter un /jeedom après l&#8217;ip les URLs.</simpara>
+<section id="_pilotage_des_scénarios">
+<title>Pilotage des scénarios</title>
+<simpara>La première requête est utilisée uniquement pour piloter un scénario.</simpara>
+<simpara>Voici l&#8217;URL = <ulink url="http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&amp;type=scenario&amp;id=#ID#&amp;action=#ACTION">http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&amp;type=scenario&amp;id=#ID#&amp;action=#ACTION</ulink>#</simpara>
+<simpara>#IP_JEEDOM# correspond à votre url d’accès à Jeedom. Il s’agit (sauf si vous êtes connecté à votre réseau local) de l’adresse internet que vous utilisez pour accéder à Jeedom depuis l’extérieur.</simpara>
+<simpara>#API_KEY# correspond à votre clé API, propre à votre installation. Pour la trouver il faut aller dans le menu « Général », puis « Administration » et « Configuration », en activant le mode Expert vous verrez alors une ligne Clef API.</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/apihttp.jpg"/>
+  </imageobject>
+  <textobject><phrase>../images/apihttp.jpg</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>#ID# correspond à l’id de votre scénario. L&#8217;ID se trouve sur la page des scénarios&#8230;(Ne pas oublier d&#8217;activer le mode Expert)</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/apihttp2.png"/>
+  </imageobject>
+  <textobject><phrase>../images/apihttp2.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>#ACTION# correspond à l&#8217;action que vous voulez appliquer au scénario. Les commandes disponibles sont : "start" pour démarrer un scénario ,"stop" pour arrêter un scénario ,"désactiver" pour désactiver un scénario ,"activer" pour activer un scénario.</simpara>
+</section>
+<section id="_pilotage_des_commandes">
+<title>Pilotage des commandes</title>
+<simpara>La seconde requête permet tout simplement de piloter tous les autres modules de Jeedom (module domotique/plugin etc).</simpara>
+<simpara>Voici l&#8217;URL = <ulink url="http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&amp;type=cmd&amp;id=#ID">http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&amp;type=cmd&amp;id=#ID</ulink>#</simpara>
+<simpara>#IP_JEEDOM# et #API_KEY# s&#8217;utilisent de la même façon que précédement.</simpara>
+<simpara>#ID# correspond à l’id de ce que vous voulez piloter ou recevoir comme informations.</simpara>
+<simpara>Le plus simple pour avoir cette URL est d&#8217;aller sur la page Résumé domotique, de chercher la commande puis d&#8217;ouvrir sa configuration avancée et là vous allez voir une URL qui contient déjà tout ce qu&#8217;il faut en fonction du type et du sous-type de la commande. Voir <ulink url="https://jeedom.com/doc/documentation/core/fr_FR/doc-core-display.html#_informations_2">ici</ulink></simpara>
+</section>
+</article>

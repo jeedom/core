@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+
+<article lang="en">
+<articleinfo>
+    <title>Centre des messages</title>
+</articleinfo>
+<simpara>Le centre des messages regroupe tous les messages importants que vous devez regarder.</simpara>
+<simpara>Il n&#8217;est accessible que lorsqu&#8217;il y a des messages en cliquant sur le nombre de messages :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/message1.png"/>
+  </imageobject>
+  <textobject><phrase>../images/message1.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Voici un exemple :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/message.png"/>
+  </imageobject>
+  <textobject><phrase>../images/message.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Il est assez simple. Il vous montre la date et l&#8217;heure du message, le plugin qui l&#8217;a émis et le message en question. Vous pouvez, en appuyant sur le bouton au tout début de la ligne d&#8217;un message, supprimer le message en question (il reviendra si le problème est toujours d&#8217;actualité).</simpara>
+<simpara>En haut, on retrouve un sélecteur pour filtrer les messages sur un plugin particulier et tout à droite un bouton pour vider tous les messages.</simpara>
+<tip><simpara>Lorsque vous avez une erreur dans le centre des messages, essayez d&#8217;abord de supprimer le message puis voir si l&#8217;erreur revient avant de contacter le support. Il arrive (comme sur la capture ici) que ce soit juste dû à un souci de connexion réseau.</simpara></tip>
+</article>

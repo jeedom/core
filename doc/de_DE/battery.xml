@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+
+<article lang="en">
+<articleinfo>
+    <title>Batterien</title>
+</articleinfo>
+<simpara>Auf der Batterien-Seite können Sie den Status aller Ihrer Geräte auf einen Schlag sehen. Sie ist erreichbar über das Menü Analyse &#8594; Batterien :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/battery.PNG"/>
+  </imageobject>
+  <textobject><phrase>../images/battery.PNG</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Sobald sie darauf sind, sehen sie :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/battery2.PNG"/>
+  </imageobject>
+  <textobject><phrase>../images/battery2.PNG</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Vous pouvez voir sur cette page la liste de vos modules sur batterie, le niveau restant (la couleur de la tuile dépend de ce niveau), le type et le nombre de piles qu&#8217;il faut mettre dans le module, le type du module ainsi que la date à laquelle l&#8217;information du niveau de batterie a été mise à jour.</simpara>
+<tip><simpara>Les seuils d&#8217;alerte/warning sur les niveaux des batteries sont configurables de manière globale dans la configuration de Jeedom (Administration &#8594; Configuration puis partie "Configuration des équipements"), ou par équipement sur la page de configuration avancée de ceux-ci.</simpara></tip>
+<simpara>Wenn sie mit der Maus auf die äußerste linke Seite gehen haben sie Zugang zu einem erweiterten Filter-Menü, für eine genau suchen von Modultyp, Warnung &#8230;.</simpara>
+</article>

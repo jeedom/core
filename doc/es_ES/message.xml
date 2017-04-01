@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+
+<article lang="en">
+<articleinfo>
+    <title>Centro de mensajes</title>
+</articleinfo>
+<simpara>El centro de mensajes reúne todos los mensajes importantes que necesita mirar.</simpara>
+<simpara>Es accesible sólo cuando hay mensajes, haciendo clic en el número de mensajes:</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/message1.png"/>
+  </imageobject>
+  <textobject><phrase>../images/message1.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Aquí un ejemplo:</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/message.png"/>
+  </imageobject>
+  <textobject><phrase>../images/message.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Es muy simple. Muestra la fecha y hora del mensaje, el plugin que lo ha emitido y el mensaje en cuestión. Se puede, pulsando el botón al principio de la línea de un mensaje, borrar el mensaje en cuestión (volverá si el problema sigue siendo relevante).</simpara>
+<simpara>En la parte superior, encontramos a un selector de filtro de mensajes en un plugin en particular y a la derecha un botón para purgar todos los mensajes.</simpara>
+<tip><simpara>Lorsque vous avez une erreur dans le centre des messages, essayez d&#8217;abord de supprimer le message puis voir si l&#8217;erreur revient avant de contacter le support. Il arrive (comme sur la capture ici) que ce soit juste dû à un souci de connexion réseau.</simpara></tip>
+</article>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+
+<article lang="en">
+<articleinfo>
+    <title>Task-Engine</title>
+</articleinfo>
+<simpara>Die Task Engine Menü ist nur im Expertenmodus zur Verfügung. Es informiert über alle Jeedom Anwendungsaufgaben die auf dem Server ausgeführt werden.</simpara>
+<simpara>Bei unsachgemäßer Handhabung auf dieser Seite kann ihnen jede Support-Anfrage verweigert werden.</simpara>
+<simpara>Um dorthin zu gelangen muss man auf Einstellungen &#8594; Task Engine gehen</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/cron.JPG"/>
+  </imageobject>
+  <textobject><phrase>../images/cron.JPG</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Sobald sie darauf sind, sehen sie :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/cron1.JPG"/>
+  </imageobject>
+  <textobject><phrase>../images/cron1.JPG</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>En haut à droite vous retrouvez un résumé des processus Jeedom. Le premier chiffre indique le nombre de tâches principales (doit toujours être égal à 0 ou 1), le second le nombre de tâches secondaires et le dernier le nombre de tâches totales sur le système (Jeedom et hors Jeedom).
+En-dessous vous avez les chiffres de la charge moyenne de votre système, il est recommandé que ce chiffre soit inférieur au nombre total de coeurs du processeur de la machine.</simpara>
+<simpara>A droite, vous avez un bouton pour désactiver ou réactiver toutes les tâches (si vous les désactivez toutes, plus rien ne sera fonctionnel sur votre Jeedom), un bouton pour rafraîchir le tableau des tâches (juste en-dessous), un bouton pour ajouter une tâche et un bouton pour enregistrer vos modifications.</simpara>
+<simpara>Enfin, en-dessous vous avez le tableau de toutes les tâches existantes (attention certaines tâches peuvent lancer des sous-tâches, il est donc vivement recommandé de ne jamais modifier d&#8217;informations sur cette page). Dans ce tableau on retrouve :</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">#</emphasis> : ID de la tâche, peut être utile pour faire le lien entre un processus qui tourne et ce qu&#8217;il fait vraiment
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Action</emphasis> : Ist eine Schaltfläche zum Starten oder Beenden der Aufgabe abhängig von seinen Status.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Aktiv</emphasis> : zeigt an ob der Task aktiv ist (kann durch Jeedom gestartet werden) oder nicht
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">PID</emphasis> : zeigt die aktuelle Prozess-ID
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Démon</emphasis> : si cette case est à "oui" alors la tâche doit toujours être en cours. A coté vous retrouvez la fréquence du démon, il est conseillé de ne jamais toucher cette valeur et surtout de ne jamais la diminuer
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Unique</emphasis> : wenn das "Ja" aktiviert ist, dann wird der Task einmalig ausgeführt und danach gelöscht
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Klasse</emphasis> : PHP Klasse aufgerufen, um den Task auszuführen (kann leer sein)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Fonction</emphasis> : fonction  PHP appelée dans la classe appelée (ou non si la classe est vide)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Auszeit</emphasis> : Maximale Betriebsdauer der Aufgabe. Wenn die Aufgabe ein Dämon ist, dann wird sie automatisch beendet und wird am Ende der Auszeit neu gestartet.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Letzter Start</emphasis> : Datum des letzten Aufgaben Starts
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Status</emphasis> : aktueller Status des Tasks (zur Erinnerung eines Dämons Aufgabe ist noch auf "run")
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Entfernen</emphasis> : Löscht die Aufgabe
+</simpara>
+</listitem>
+</itemizedlist>
+</article>

@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+
+<article lang="en">
+<articleinfo>
+    <title>Übersicht Haus-Automatisierung</title>
+</articleinfo>
+<simpara>Cette page permet d&#8217;avoir un résumé sur sa domotique et donne aussi accès à des fonctions d&#8217;organisation des équipements et des commandes, à la configuration avancée des équipements et des commandes ainsi qu'à des possibilités de configuration d&#8217;affichage. Elle se décompose en un onglet "Ma domotique" et un un onglet "Configuration de l&#8217;affichage".</simpara>
+<simpara>Diese Seite ist über Werkzeuge &#8594; Übersicht Haus-Automatisierung erreichbar :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/display.png"/>
+  </imageobject>
+  <textobject><phrase>../images/display.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Le premièr onglet permet d&#8217;organiser les différents équipements, les commandes, d&#8217;avoir accès à la configuration avancée ainsi qu'à la configuration de masse. Voila celui-ci :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/display2.png"/>
+  </imageobject>
+  <textobject><phrase>../images/display2.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>On retrouve tout en haut un résumé du nombre d&#8217;objets existants, du nombre d'équipements et du nombre de commandes. Sur la droite se trouve un bouton pour masquer tous les équipements inactifs et un champ de recherche pour par exemple chercher un équipement, une commande ou tous les équipements d&#8217;un certain type (plugin, par exemple il suffit de taper rfxcom pour avoir tous les équipements rfxcom)</simpara>
+<simpara>En dessous on retrouve un cadre par objet. Dans chaque cadre se trouve la liste des équipements (en bleu) contenus dans l&#8217;objet. Vous avez sur la ligne du nom de l&#8217;objet jusqu'à 3 boutons, dans l&#8217;ordre :</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+le premier sert à ouvrir la page de configuration de l&#8217;objet dans un nouvel onglet
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+le deuxième donne un résumé sur l&#8217;objet
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+le dernier permet de masquer la liste des équipements (en dessous en bleu)
+</simpara>
+</listitem>
+</itemizedlist>
+<tip><simpara>La couleur de fond des cadres objets dépend de la couleur mise dans la configuration de l&#8217;objet</simpara></tip>
+<simpara>A partir de là vous pouvez en cliquant/maintenant un équipement changer l&#8217;ordre dans l&#8217;objet ou même l&#8217;affecter à un autre objet.</simpara>
+<tip><simpara>C&#8217;est à partir de cet ordre là qu&#8217;est calculé l&#8217;ordre d&#8217;affichage sur le dashboard</simpara></tip>
+<simpara>Sur chaque équipement on retrouve :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/display3.png"/>
+  </imageobject>
+  <textobject><phrase>../images/display3.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<itemizedlist>
+<listitem>
+<simpara>
+une coche pour sélectionner l'équipement (vous pouvez en sélectionner plusieurs), si au moins un équipement est sélectionné vous avez des boutons d&#8217;action qui apparaissent pour supprimer, désactiver, activer, rendre visible ou invisible les équipements sélectionnés
+</simpara>
+</listitem>
+</itemizedlist>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/display4.png"/>
+  </imageobject>
+  <textobject><phrase>../images/display4.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<itemizedlist>
+<listitem>
+<simpara>
+Gerätename
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+le type de l'équipement (identifiant du plugin auquel il appartient)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+une croix signifie que l'équipement est inactif (si elle n&#8217;y est pas alors l'équipement est actif)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+un oeil barré signifie que l'équipement est invisible (s&#8217;il n&#8217;y est pas alors l'équipement est visible)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+lien externe : permet d&#8217;ouvrir dans un nouvel onglet la page de configuration de l'équipement
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+configuration avancée (petit roue crantée) : permet d&#8217;ouvrir la fenêtre de configuration avancée
+</simpara>
+</listitem>
+</itemizedlist>
+<tip><simpara>Un double clic sur l'équipement permet aussi d&#8217;ouvrir la fenêtre de configuration avancée</simpara></tip>
+<itemizedlist>
+<listitem>
+<simpara>
+liste des commandes (la flèche) : permet de déplier la liste des commandes
+</simpara>
+</listitem>
+</itemizedlist>
+<simpara>Wenn Sie die Liste der Befehle entfalten erhalten Sie :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/display5.png"/>
+  </imageobject>
+  <textobject><phrase>../images/display5.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Chaque bloc jaune correspond à une commande de votre équipement (un nouveau clic sur la petite flèche de l'équipement permet de les masquer). Si vous faites un double clic sur la commande ou que vous cliquez sur la petite roue crantée cela fera apparaitre la fenêtre de configuration</simpara>
+<section id="_erweiterte_geräte_konfiguration">
+<title>Erweiterte Geräte Konfiguration</title>
+<simpara>La fenêtre de configuration avancée d&#8217;un équipement est composée de 2 onglets : Informations et Affichages avancés.</simpara>
+<simpara>En haut vous retrouvez aussi un bouton sauvegarder et un bouton de suppression d'équipement</simpara>
+<tip><simpara>Il est possible d&#8217;accéder (si le plugin le supporte) directement à cette fenêtre à partir de la page de configuration de l'équipement en cliquant sur les 3 petites roues crantées (souvent placées tout en haut à coté du titre "Général")</simpara></tip>
+<section id="_information">
+<title>Information</title>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/display9.png"/>
+  </imageobject>
+  <textobject><phrase>../images/display9.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>L&#8217;onglet information contient les informations générales de l'équipement :</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">ID</emphasis> : identifiant unique dans la base de données
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Name</emphasis> : Gerätename
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">ID logique</emphasis> : identifiant logique de l'équipement (peut être vide)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">ID de l&#8217;objet</emphasis> : identifiant unique de l&#8217;objet père (peut être vide)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Date de création</emphasis> : date de création de l'équipement
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Activer</emphasis> : permet d&#8217;activer ou non l'équipement (n&#8217;oubliez pas de sauvegarder)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Visible</emphasis> : permet de rendre visible ou non l'équipement (n&#8217;oubliez pas de sauvegarder)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Type</emphasis> : identifiant du plugin auquel il appartient
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Tentative échouée</emphasis> : nombre de tentatives de communications consécutives avec l'équipement qui ont échoué
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Dernière mise à jour</emphasis> : date de dernière communication avec l'équipement
+</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_erweiterte_anzeige">
+<title>Erweiterte Anzeige</title>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/display10.png"/>
+  </imageobject>
+  <textobject><phrase>../images/display10.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Dans cette partie vous allez pouvoir configurer certains comportements d&#8217;affichage de la tuile sur le dashboard, les vues, le design et en mobile.</simpara>
+<simpara>Sie können :</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Visible</emphasis> : permet de masquer ou non l'équipement en desktop ou mobile
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Afficher le nom</emphasis> : permet de masquer le nom de l'équipement sur la tuile en fonction du contexte (dashboard et design, vue ou mobile)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Afficher le nom de l&#8217;objet</emphasis> : uniquement sur les vues cela permet de ne pas afficher le nom de l&#8217;objet à coté du nom de l'équipement
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Afficher le niveau de batterie</emphasis> : uniquement pour le dashboard, les designs et les vues, cette option permet de masquer le niveau de la batterie de l'équipement (s&#8217;il est sur batterie bien sûr)
+</simpara>
+</listitem>
+</itemizedlist>
+<simpara>En-dessous, on retrouve des paramètres optionnels d&#8217;affichage que l&#8217;on peut passer à l'équipement. Ces paramètres sont composés d&#8217;un nom et d&#8217;une valeur. Pour les équipements, seule la valeur "style" est pour le moment utilisée, elle permet d&#8217;insérer du code CSS sur l'équipement en question. Exemple ici pour arrondir les angles :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/display11.png"/>
+  </imageobject>
+  <textobject><phrase>../images/display11.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<tip><simpara>Vergessen Sie nicht, nach jeder Veränderung zu speichern.</simpara></tip>
+</section>
+<section id="_batteries">
+<title>Batteries</title>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/display16.png"/>
+  </imageobject>
+  <textobject><phrase>../images/display16.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Cet onglet permet d&#8217;avoir les informations sur la batterie de l'équipement : type de pile, dernière remontée de l&#8217;information, niveau restant (si bien sûr votre équipement fonctionne sur pile). Vous pourrez aussi à partir de celui-ci configurer les seuils spécifiques pour cet équipement.</simpara>
+</section>
+</section>
+<section id="_configuration_avancée_d_8217_une_commande">
+<title>Configuration avancée d&#8217;une commande</title>
+<simpara>La fenêtre de configuration avancée d&#8217;une commande est composée de 3 onglets : Informations, Configuration avancée et Affichage avancé.</simpara>
+<simpara>Elle a aussi 2 boutons, un pour sauvegarder et un pour appliquer les mêmes paramètres de configuration à une autre commande</simpara>
+<section id="_information_2">
+<title>Information</title>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/display12.png"/>
+  </imageobject>
+  <textobject><phrase>../images/display12.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>L&#8217;onglet information contient les informations générales sur la commande :</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">ID</emphasis> : identifiant unique dans la base de données
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Logical ID</emphasis> : identifiant logique de la commande (peut être vide)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Name</emphasis> : Name des Befehls
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Type</emphasis> : type de la commande (action ou info)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Sous-type</emphasis> : sous type de la commande (binaire, numérique&#8230;)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">URL directe</emphasis> : fournit une URL (clic droit copier l&#8217;addresse du lien) pour, en fonction du type de la commande, déclencher l&#8217;action ou récupérer sa valeur (si c&#8217;est une commande de type info)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Unité</emphasis> : unité de la commande
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Commande déclenchant une mise à jour</emphasis> : donne l&#8217;identifiant d&#8217;une autre commande qui, si cette autre commande change, va forcer la mise à jour de la commande visualisée
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Cache</emphasis> : durée de vie de la valeur de la commande en mémoire (une fois ce délai passé Jeedom redemandera sa valeur). Attention si vous êtes en événement alors ce paramètre est ignoré car la durée de vie est infinie. Si vous n&#8217;avez aucune valeur et que vous n'êtes pas en événement alors la durée de vie est celle définie dans la configuration de Jeedom (par defaut 300s)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Evènement seulement</emphasis> : indique à Jeedom qu&#8217;il ne peut pas demander la valeur de la commande (c&#8217;est l'équipement ou le plugin qui le lui transmet)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Visible</emphasis> : définit si la commande est visible ou non
+</simpara>
+</listitem>
+</itemizedlist>
+<simpara>En-dessous, vous retrouvez la liste des différents équipements, commandes, scénarios ou interactions qui utilisent cette commande. Un clic dessus permet d&#8217;aller directement sur leur configuration respective</simpara>
+</section>
+<section id="_erweiterte_konfiguration">
+<title>Erweiterte Konfiguration</title>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/display13.png"/>
+  </imageobject>
+  <textobject><phrase>../images/display13.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Pas mal d&#8217;options ici (elles peuvent varier en fonction du type et du sous-type de la commande).</simpara>
+<simpara>Pour une commande de type info :</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Calcul et arrondit</emphasis>
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Formule de calcul (#value# pour la valeur)</emphasis> : vous pouvez ici faire une opération sur la valeur de la commande avant le traitement par Jeedom, exemple : #value# - 0.2 pour retrancher 0.2 (offset sur un capteur de température)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Arrondi (chiffre après la virgule)</emphasis> : permet d&#8217;arrondir la valeur de la commande, exemple : mettre 2 pour tranformer 16.643345 en 16.64
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Type générique</emphasis> : cette partie permet de configurer le type générique de la commande (Jeedom essaie de le trouver par lui-même en mode auto). Cette information est utilisée par l&#8217;application mobile.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Action sur la valeur</emphasis> : cette partie permet de faire des sortes de mini scénarios, vous pouvez par exemple dire que si la valeur vaut plus de 50 pendant 3 minutes alors il faut faire telle action. Cela permet par exemple d'éteindre une lumiere X minutes après que celle-ci se soit allumée
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Historique</emphasis> : voir <ulink url="https://jeedom.com/doc/documentation/core/fr_FR/doc-core-history.html#_configuration_spécifique_par_commande">ici</ulink>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+* Sonstige*
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Ne pas répéter si la valeur ne change pas</emphasis> : Si la commande remonte 2 fois la même valeur d&#8217;affilée alors Jeedom ne prend pas en compte la 2eme remontée (évite de déclencher plusieurs fois un scénario par exemple si la valeur ne change pas)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Push URL</emphasis> : permet de rajouter une URL à appeler en cas de mise à jour de la commande. Vous pouvez utiliser les tags suivant : #value# pour la valeur de la commande, #cmd_name# pour le nom de la commande, #cmd_id# pour l&#8217;identifiant unique de la commande, #humanname# pour le nom complet de la commande (ex : #[Salle de bain][Hydrometrie][Humidité]#)
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+<simpara>Si vous êtes sur une commande type action vous avez :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/display15.png"/>
+  </imageobject>
+  <textobject><phrase>../images/display15.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Confirmer l&#8217;action</emphasis> : lors d&#8217;une action à partir de l&#8217;interface sur cette commande Jeedom demandera une confirmation
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Code d&#8217;accès</emphasis> : lors d&#8217;une action à partir de l&#8217;interface sur cette commande Jeedom demandera le code
+</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_erweiterte_anzeige_2">
+<title>Erweiterte Anzeige</title>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/display14.png"/>
+  </imageobject>
+  <textobject><phrase>../images/display14.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Dans cettre partie vous allez pouvoir configurer certains comportements d&#8217;affichage du widget sur le dashboard, les vues, le design et en mobile.</simpara>
+<simpara>Sie können :</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Widget</emphasis> : permet de choisir le widget sur dekstop ou mobile (à noter qu&#8217;il faut le plugin widget et que vous pouvez le faire aussi à partir de celui-ci)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Visible</emphasis> : permet de masquer ou non la commande en desktop ou mobile
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Afficher le nom</emphasis> : permet de masquer le nom de la commande en fonction du contexte (dashboard et design, vue ou mobile)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Afficher les statistiques</emphasis> : permet de ne pas afficher les statistiques en fonction du contexte (dashboard et design, vue ou mobile). Attention, il faut avoir activé les statistiques dans la configuration de Jeedom pour que cette option ait un impact
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Retour à la ligne forcé avant le widget</emphasis> : permet d&#8217;ajouter un retour à la ligne avant ou après le widget (pour forcer par exemple un affichage en colonne des différentes commandes de l'équipement au lieu de lignes par defaut)
+</simpara>
+</listitem>
+</itemizedlist>
+<simpara>En-dessous, on retrouve des paramètres optionnels d&#8217;affichage que l&#8217;on peut passer au widget. Ces paramètres dependent du widget en question, il faut donc regarder sa fiche sur le Market pour les connaitre.</simpara>
+<tip><simpara>Vergessen Sie nicht, nach jeder Veränderung zu speichern.</simpara></tip>
+</section>
+</section>
+</article>

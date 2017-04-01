@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+
+<article lang="en">
+<articleinfo>
+    <title>Dashboard</title>
+</articleinfo>
+<simpara>Une des pages principales de Jeedom affiche un compte-rendu de toute votre domotique. Ce compte-rendu (contrairement aux vues et design) est auto-généré par Jeedom.</simpara>
+<simpara>Se puede acceder haciendo clic en Inicio &#8594; Dashboard</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/dashboard2.JPG"/>
+  </imageobject>
+  <textobject><phrase>../images/dashboard2.JPG</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<tip><simpara>Como se puede ver en la foto, es posible ir directamente a un objeto de la domótica. Esto permite ir a la configuración de los dispositivos que le interesan directamente.</simpara></tip>
+<simpara>Este es un ejemplo de Dashboard</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/dashboard.JPG"/>
+  </imageobject>
+  <textobject><phrase>../images/dashboard.JPG</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>En la parte superior izquierda hay un pequeño icono para mostrar u ocultar el árbol de objetos:</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/dashboard1.JPG"/>
+  </imageobject>
+  <textobject><phrase>../images/dashboard1.JPG</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>En el centro puede elegir filtrar por ciertos tipos de equipos:</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/dashboard3.JPG"/>
+  </imageobject>
+  <textobject><phrase>../images/dashboard3.JPG</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>A la derecha un primer botón para el modo edición, por ejemplo, para cambiar el orden de los widgets (haga clic en el widget), también en este modo de edición puede redimensionarlos y cambiar el orden de los controles en su interior</simpara>
+<simpara>Es un botón para mostrar/ocultar escenas:</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/dashboard4.JPG"/>
+  </imageobject>
+  <textobject><phrase>../images/dashboard4.JPG</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<tip><simpara>Es posible desde tu perfil configurar Jeedom para que muestre el árbol de objetos o escenas  por defecto en el Dashboard</simpara></tip>
+</article>

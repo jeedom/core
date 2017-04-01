@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+
+<article lang="en">
+<articleinfo>
+    <title>Dashboard</title>
+</articleinfo>
+<simpara>Une des pages principales de Jeedom affiche un compte-rendu de toute votre domotique. Ce compte-rendu (contrairement aux vues et design) est auto-généré par Jeedom.</simpara>
+<simpara>Si accede facendo clic su Casa &#8594; Dashboard</simpara>
+<simpara>immagine::../images/dashboard2.JPG[]</simpara>
+<tip><simpara>Comme vous pouvez le voir sur la capture il est possible d&#8217;aller directement sur un objet de votre domotique. Cela permet de n&#8217;avoir que les équipements qui vous intéressent et donc de charger la page plus rapidement</simpara></tip>
+<simpara>Ecco un dashboard campione</simpara>
+<simpara>immagine::../images/dashboard.JPG[]</simpara>
+<simpara>Vous avez en haut à gauche une petite icône pour faire afficher/masquer l&#8217;arbre des objets :</simpara>
+<simpara>immagine::../images/dashboard1.JPG[]</simpara>
+<simpara>Au milieu vous pouvez choisir de ne filtrer que sur certains types d'équipements :</simpara>
+<simpara>immagine::../images/dashboard3.JPG[]</simpara>
+<simpara>A droite un premier bouton pour passer en mode édition, pour par exemple modifier l&#8217;ordre des widgets (à l&#8217;aide d&#8217;un cliqué déposé sur le widget), vous pouvez aussi dans ce mode édition redimensionner certains widgets et réorganiser l&#8217;ordre des commandes à l&#8217;intérieur de celui-ci</simpara>
+<simpara>Poi tasto per visualizzare / nascondere gli scenari:</simpara>
+<simpara>immagine::../images/dashboard4.JPG[]</simpara>
+<tip><simpara>Il est possible à partir de votre profil de configurer Jeedom pour que l&#8217;arbre des objets et/ou les scénarios soit visible par défaut lorsque vous arrivez sur le Dashboard</simpara></tip>
+</article>

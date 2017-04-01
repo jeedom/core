@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+
+<article lang="en">
+<articleinfo>
+    <title>Administración</title>
+</articleinfo>
+<simpara>Aquí están la mayoría de los ajustes de configuración. Muchos de ellos vienen pre configurados de manera predeterminada.</simpara>
+<simpara>Puede acceder a través de Administración &#8594; Configuración</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/administration.png"/>
+  </imageobject>
+  <textobject><phrase>../images/administration.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Algunos parámetros pueden no ser visibles si no ha seleccionado el modo experto,</simpara>
+<section id="_configuraciónn_general">
+<title>Configuraciónn general</title>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/administration1.png"/>
+  </imageobject>
+  <textobject><phrase>../images/administration1.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>En esta ficha, encontrará información general sobre Jeedom:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+* Nombre de Jeedom* : se puede reutlizar en los escenarios o permite identificar un backup
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+* * Clave API: la clave de la API a utilizar para cualquier aplicación en la API de Jeedom
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Clave de API de Pro *: utilizado para conectar con el sistema de gestión de Parque
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Sistema</emphasis>: modelo de hardware
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Clave de instalación</emphasis> : clave de hardware de su Jeedom en el market. Si tu Jeedom no aparece en la lista de tus Jeedom en el market, es recomendable hacer clic en este botón
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Idioma</emphasis> : Idioma de su Jeedom
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Duración de sesión (tiempo)</emphasis>: Duración de la sesión en PHP; se aconseja no modificar este valor
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Fecha y hora</emphasis>: Su zona horaria
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Servidor de tiempo opcional</emphasis> : permite añadir un servidor de tiempo opcional (reservado para expertos)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+* Ignorar la verificación horario * : indica a Jeedom que no verifique si la hora es coherente. Útil por ejemplo si no conecta Jeedom a Internet y no dispone de ninguna batería RTC
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Modo</emphasis>: Modo de Jeedom, maestro o esclavo. Atención, al pasar a esclavo, todos los dispositivos, escenas, diseños&#8230; serán eliminados
+</simpara>
+</listitem>
+</itemizedlist>
+<simpara>==Componentes de Jeedom</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/administration12.png"/>
+  </imageobject>
+  <textobject><phrase>../images/administration12.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Esta sección le permite activar o desactivar algunos componentes del nucleo de Jeedom</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+* * Permisos avanzados: desactiva la gestión de permisos avanzado (su uso incorrecto puede hacer Jeedom mas vulnerable)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+* Seguridad*: Habilitar o no la seguridad contra la piratería (Acceso mediante fuerza bruta).
+</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_base_de_datos">
+<title>Base de datos</title>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/administration2.png"/>
+  </imageobject>
+  <textobject><phrase>../images/administration2.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Acceso al interface de administración</emphasis>: Permite acceder al interface de administración de la base de datos. La información a completar está más abajo
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Máquina (hostname)</emphasis>: Ubicación de la base de datos
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Usuario</emphasis>: Nombre de usuario utilizado por Jeedom
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Contraseña</emphasis>: Contraseña de accesso a la base de datos utilizada por Jeedom
+</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_configuración_de_red">
+<title>Configuración de red</title>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/administration3.png"/>
+  </imageobject>
+  <textobject><phrase>../images/administration3.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Parte muy importante en Jeedom, debe ser capaz de configurarlo correctamente, de lo contrario una gran cantidad de plugins pueden no ser no funcionales.</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Acceso a internet</emphasis>: Información para acceder a Jeedom desde un equipo de la misma red
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Protocolo</emphasis>: El protocolo a utilizar, normalmente HTTP
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Dirección URL o IP</emphasis>: IP de Jeedom para informar
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Complemento (por ejemplo: /jeedom)</emphasis>: ruta adicional de la URL (escriba /jeedom). Para saber si debe definir este valor, vea si necesita añadir /jeedom después de la IP.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Puerto</emphasis>: El puerto, generalmente 80. Atención, cambiar el puerto aquí no cambia el puerto real de Jeedom, que seguirá siendo el mismo.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Estado</emphasis> : indica si la configuración de la red interna es correcta
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Acceso externo* : información para conectar a Jeedom desde el exterior. Rellenar sólo si no utilizas el DNS Jeedom
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Protocolo</emphasis>: Protocolo a utilizar para el acceso desde el exterior
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Dirección URL o IP</emphasis>: Dirección o IP externa si es fija
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Complemento (por ejemplo: /jeedom)</emphasis>: ruta adicional de la URL (escriba /jeedom). Para saber si debe definir este valor, vea si necesita añadir /jeedom después de la IP.
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+*Administracion avanzada: puede no aparecer dependiendo de la compatibilidad con el hardware
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Desactivar la gestión de redes en Jeedom</emphasis>: Jeedom no supervisará la red (deberá ser activado si Jeedom no está conectado a ninguna red)
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Proxy market</emphasis> : permite el acceso remoto a su Jeedom sin necesidad de un servidor DNS, una IP fija o puertos abiertos en su dispositivo
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Usar DNS Jeedom</emphasis>: Activars DNS Jeedom (se requiere disponer de un service pack)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Estado DNS* : estado de http DNS
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Gestión</emphasis>: Permite detener y reiniciar el servicio DNS
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+<tip><simpara>Si accede a través de HTTPS, el puerto por defecto es el 443 y si lo hace a través de HTTP, el puerto por defecto es el 80</simpara></tip>
+<simpara>Esta parte es para mostrar el entorno Jeedom: un cambio en el puerto o IP, no va a cambiar el puerto y la IP de Jeedom. Para ello debe conectarse por SSH y editar el archivo/etc/network/interfaces para la IP y los archivos etc/nginx/sitios-disponible/default y etc/nginx/sitios-disponible/default_ssl (para HTTPS). En caso de manipulación inadecuada de su configuración, el equipo de Jeedom no será responsable y podrá denegar cualquier solicitud de soporte.</simpara>
+<simpara>Puede ver el <ulink url="http://blog.domadoo.fr/2014/10/15/acceder-depuis-lexterieur-jeedom-en-https">aquí</ulink> un tutorial para instalar un certificado auto firmado</simpara>
+<simpara>Si no le es posible hacer funcionar DNS Jeedom, revise la configuración del firewall y el filtro parental de su router</simpara>
+</section>
+<section id="_configuración_de_colores">
+<title>Configuración de colores</title>
+<simpara>El ajuste de color de los widgets se realiza en función de la categoría a la que pertenece el widget que se define en la configuración de cada módulo (ver plugin de Z-Wave, RFXCOM&#8230; etc). Las categorías incluyen calefacción, luces, automatización etc &#8230;</simpara>
+<simpara>Para cada categoría se puede elegir un color diferente para la versión de escritorio y la versión móvil. También hay 2 tipos de colores, los colores de fondo de los widgets y colores de comandos color cuando el widget es de tipo gradual, por ejemplo, las luces, persianas, temperaturas.</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/display6.png"/>
+  </imageobject>
+  <textobject><phrase>../images/display6.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Al hacer clic en el color, se abre una ventana que le permite seleccionar el color.</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/display7.png"/>
+  </imageobject>
+  <textobject><phrase>../images/display7.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>También puede ajustar la transparencia de los widgets en una forma global (que será el valor por defecto, es posible cambiar este valor widget por widget)</simpara>
+<tip><simpara>No olvide guardar los cambios después de hacer modificaciones</simpara></tip>
+</section>
+<section id="_configuración_de_comandos">
+<title>Configuración de comandos</title>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/administration4.png"/>
+  </imageobject>
+  <textobject><phrase>../images/administration4.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Histórico</emphasis>: Ver <ulink url="https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-history.html#_configuration_général_de_l_historique">aquí</ulink>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Push</emphasis>
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">URL global de push</emphasis>:  le permite añadir una dirección URL para invocarla en caso de actualización de un comando. Puede utilizar la etiqueta: #valor# para el valor del comando, #cmd_name# para el nombre del comando, #cmd_id# para el identificador único del comando, #humanname# para el nombre completo del comando (por ejemplo #[Salle de bain][Hydrometrie][Humidité]#)
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_configuración_de_interacciones">
+<title>Configuración de interacciones</title>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/administration5.png"/>
+  </imageobject>
+  <textobject><phrase>../images/administration5.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Ver <ulink url="https://jeedom.fr/doc/documentation/core/es_ES/doc-core-interact.html#_configuration_2">aquí</ulink></simpara>
+</section>
+<section id="_configuración_de_logs_y_mensajes">
+<title>Configuración de logs y mensajes</title>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/administration7.png"/>
+  </imageobject>
+  <textobject><phrase>../images/administration7.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Ver <ulink url="https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-log.html#_configuration">aquí</ulink></simpara>
+</section>
+<section id="_configuración_ldap">
+<title>Configuración LDAP</title>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/administration8.png"/>
+  </imageobject>
+  <textobject><phrase>../images/administration8.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Activar autentificaación LDAP</emphasis>: Activar la autentificación a través de Active Directory (LDAP)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Anfitrión</emphasis>: Servidor de Active Directory
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Dominio</emphasis>: Dominio de Active Directory
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Base DN</emphasis>: Base DN de Active Directory
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Nombre de usuario</emphasis>: Nombre de usuario para que Jeedom se conecte a Active Directory
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Contraseña</emphasis>: Contraseña para que Jeedom se conecte a Active Directory
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Filtro (opcional)</emphasis>: Filtro de Active Directory (para la gestión de grupos por ejemplo)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Permitir REMOTE_USER</emphasis>: Activar REMOTE_USER (Utilizado en SSO por ejemplo)
+</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_configuración_de_dispositivos">
+<title>Configuración de dispositivos</title>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/administration9.png"/>
+  </imageobject>
+  <textobject><phrase>../images/administration9.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Número de fallos antes de la desactivación del dispositivo</emphasis>: Número de errores de comunicación con el dispositivo antes de su desactivación (un mensaje le avisará si esto ocurre)
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Umbrales de batería *: le permite administrar los umbrales de alertas globales sobre las baterías
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_actualización_y_ficheros">
+<title>Actualización y ficheros</title>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/administration10.png"/>
+  </imageobject>
+  <textobject><phrase>../images/administration10.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<itemizedlist>
+<listitem>
+<simpara>
+Fuente de actualización :
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Hacer una copia de seguridad antes de la actualización
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Comprueba automáticamente si hay actualizaciones
+</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_depósitos">
+<title>Depósitos</title>
+<simpara>Los repositorio son espacios de almacenamiento (y servicio) para poder poner copias de seguridad, obtener plugins, recuperar la base de jeedom&#8230;</simpara>
+<section id="_market">
+<title>Market</title>
+<simpara>Servidor de repositiorios conectados al market de Jeedom, es recomendable utilizar este repositorio. Atención cualquier solicitud de soporte podrá ser denegada si usted utiliza otro repositorio diferente a este.</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/administration17.png"/>
+  </imageobject>
+  <textobject><phrase>../images/administration17.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Dirección</emphasis>: Dirección del market
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Nombre de usuario</emphasis>: Su nombre de usuario para el market
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Contraseña</emphasis>: Su contraseña para el market
+</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_archivo">
+<title>Archivo</title>
+<simpara>Repositorio para activar el  envio de ficheros de plugin</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/administration15.png"/>
+  </imageobject>
+  <textobject><phrase>../images/administration15.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+</section>
+<section id="_github">
+<title>Github</title>
+<simpara>Repositiorio utilizado para conectar Jeedom a Github</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/administration16.png"/>
+  </imageobject>
+  <textobject><phrase>../images/administration16.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Token</emphasis> : Token para el acceso al repositorio privado
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+*Usuario u organización del repositorio para el core de Jeedom *.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+*Nombre del repositorio para el core de Jeedom *.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Branch para el core de jedoom</emphasis>
+</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_samba">
+<title>Samba</title>
+<simpara>Repositorio para enviar un backup automático de jeedom en un recurso compartido de samba (ej. NAS Synology)</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/administration18.png"/>
+  </imageobject>
+  <textobject><phrase>../images/administration18.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">[Backup] IP</emphasis> : IP del servidor Samba
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+*[Usuario backup] *: Nombre de usuario para la conexión (conexiones anónimas no son posibles)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">[Contraseña backup]</emphasis> : contraseña del usuario
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">[Backup] recurso</emphasis> : La ruta del recurso compartido (Asegúrese de indicar la ruta compartida correcta)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+*[Ruta Backup] *: Ruta para compartirr (para ser relativa),  debe existir
+</simpara>
+</listitem>
+</itemizedlist>
+<simpara>Si le chemin d&#8217;accès à votre dossier de sauvegarde samba est : \\192.168.0.1\Sauvegardes\Domotique\Jeedom
+Alors IP = 192.168.0.1 , Partage = //192.168.0.1/Sauvegardes , Chemin = Domotique/Jeedom</simpara>
+<simpara>Tal vez necesite instalar el paquete smbclient para que el repositorio funcione</simpara>
+<simpara>Jeedom debe poder escribir en esta carpeta, y debe estar vacía por defecto (es decir, que antes de hacer la configuración y enviar el primer Backup, la carpeta no puede contener ningún archivo o carpeta)</simpara>
+</section>
+<section id="_url">
+<title>URL</title>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/administration19.png"/>
+  </imageobject>
+  <textobject><phrase>../images/administration19.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">URL core Jeedom</emphasis>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">URL version core Jeedom</emphasis>
+</simpara>
+</listitem>
+</itemizedlist>
+</section>
+</section>
+</article>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+
+<article lang="en">
+<articleinfo>
+    <title>Principal</title>
+</articleinfo>
+<simpara>Jeedom is composed of a core which is on charge of basic functions :</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+scenario
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+historisation
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+display
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+interaction
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+update and saving
+</simpara>
+</listitem>
+</itemizedlist>
+<simpara>Autour de ce core viennent se greffer des plugins qui peuvent être de toutes sortes :</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+protocole domotique (zwave, rfxcom, enOcean&#8230;)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+protocole IP (knx,xPL&#8230;)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+objet communiquant (nest, netatmo&#8230;)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+high level (alarm, thermostat&#8230;)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+interface (widget)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+organisation (agenda, Google agenda)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+développement (script)
+</simpara>
+</listitem>
+</itemizedlist>
+<simpara>Ces plugins peuvent être récupérés par le biais du Market et permettent d'étendre les possibilités de Jeedom.</simpara>
+<simpara>Jeedom permet à n&#8217;importe quel plugin de discuter avec un autre sur une base normalisée, cela permet par exemple d&#8217;utiliser les plugins thermostat ou alarme avec n&#8217;importe quel protocole domotique ou même un plugin IP ou objet communiquant&#8230;</simpara>
+<simpara>De plus Jeedom a la particularité d'être sans abonnement et sans cloud. Cela permet de garantir le fonctionnement de votre domotique même si vous n&#8217;avez plus Internet. Cela garantit aussi la sécurité de vos données (évite les risques de piratage en masse de comptes).</simpara>
+<simpara>Le projet étant ouvert et open-source, cela lui garantit aussi un fort taux d'évolution grâce aux nombreux contributeurs qui y participent.</simpara>
+</article>

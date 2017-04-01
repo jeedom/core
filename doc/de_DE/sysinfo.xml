@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+
+<article lang="en">
+<articleinfo>
+    <title>System Information</title>
+</articleinfo>
+<simpara>La page Informations système vous permet d&#8217;avoir un résumé général sur votre système (hardware + OS)</simpara>
+<simpara>Sie ist über das Menü Analyse &#8594; System Information erreichbar :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/sysinfo.png"/>
+  </imageobject>
+  <textobject><phrase>../images/sysinfo.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Sobald sie darauf sind, sehen sie :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/sysinfo2.png"/>
+  </imageobject>
+  <textobject><phrase>../images/sysinfo2.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Hier wird nicht alles im Einzelnen beschrieben, diese Seite ist mehr, um beim Support zu helfen. Das, was man kennen muss :</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Ein mit 100 % voller Speicher ist unter Linux normal, er leert ihn wenn er ihn braucht.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Man kann ganz unten auf der Seite die Belegung der Speichermediums sehen
+</simpara>
+</listitem>
+</itemizedlist>
+</article>

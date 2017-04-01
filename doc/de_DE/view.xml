@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+
+<article lang="en">
+<articleinfo>
+    <title>Ansichten</title>
+</articleinfo>
+<simpara>In der Ansicht können einfache persönliche Ansichten erstellt werden, sie sind nicht so fortgeschritten wie die im Design, aber es erlaubt in wenigen Minuten eine eigene Anzeige zu haben.</simpara>
+<simpara>Die Ansichten sind über das Menü  Mein Haus &#8594; Ansicht erreichbar :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/view.png"/>
+  </imageobject>
+  <textobject><phrase>../images/view.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<tip><simpara>Wie Sie auf der Aufnahme sehen können, ist es möglich, direkt zu einer Ansicht über das Untermenü zu gehen.</simpara></tip>
+<tip><simpara>Sie können ein Profil in der Standardansicht wählen, wenn sie auf das Menü Ansichten klicken.</simpara></tip>
+<section id="_die_ansichten">
+<title>Die Ansichten</title>
+<simpara>Dies ist ein Beispiel einer Ansicht :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/view2.png"/>
+  </imageobject>
+  <textobject><phrase>../images/view2.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Wie das Bildschirmfoto von der Ansicht zeigt, kann man ebenso gut Widgets sowie grafische Darstellungen (die aus mehreren Daten zusammengestellt sein können) anzeigen lassen.</simpara>
+<simpara>Auf dieser Seite finden wir oben links eine Schaltfläche zum ein- oder ausblenden der Ansichten Liste, sowie die Schaltfläche zum hinzufügen (Jeedom wird Sie nach einen Namen fragen und Sie auf die Bearbeitungsseite schicken) :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/view3.png"/>
+  </imageobject>
+  <textobject><phrase>../images/view3.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<tip><simpara>Sie können in Ihrem Profil diese Option ändern, damit die Liste der Ansichten standardmäßig sichtbar ist.</simpara></tip>
+<simpara>Mit der Schaltfläche oben rechts können Sie die aktuelle Ansicht bearbeiten.</simpara>
+</section>
+<section id="_ansicht_hinzufügen_bearbeiten">
+<title>Ansicht hinzufügen/bearbeiten</title>
+<simpara>Hier ist die Seite zum hinzufügen/bearbeiten von Ansichten :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/view4.png"/>
+  </imageobject>
+  <textobject><phrase>../images/view4.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<variablelist>
+<varlistentry>
+<term>
+Prinzip
+</term>
+<listitem>
+<simpara>
+Das Prinzip ist ganz einfach : eine Ansicht ist aus mehreren Bereichen zusammengesetzt, (Sie können so viele einsetzen, wie Sie möchten). Jeder Bereich ist ein Diagramm- oder Widget-Typ : Entsprechend dem Typ können Sie Widgets oder Diagramme in den Bereichen einsetzen.
+</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+<tip><simpara>Es ist möglich, die Reihenfolge der Bereiche zu verschieben, indem sie Ziehen/Ablegen.</simpara></tip>
+<simpara>Auf der linken Seite befindet sich die Liste der Ansichten sowie eine Schaltfläche zum hinzufügen.</simpara>
+<simpara>Im Zentrum haben Sie eine Schaltfläche, zum umbenennen einer Ansicht, eine Schaltfläche Bereich hinzufügen, eine Schaltfläche zum Speichern (vergessen Sie nicht zu speichern, bevor Sie auf "Ergebnis sehen" klicken) und eine Schaltfläche zum löschen der Ansicht.</simpara>
+<simpara>Nachdem die Taste "Bereich hinzufügen" geklickt wurde, bittet Sie Jeedom einen Namen und den Typ einzugeben :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/view5.png"/>
+  </imageobject>
+  <textobject><phrase>../images/view5.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<section id="_bereich_widget_typ">
+<title>Bereich Widget-Typ</title>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/view6.png"/>
+  </imageobject>
+  <textobject><phrase>../images/view6.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Der Bereich vom Widget-Typ ermöglicht es Widgets hinzuzufügen, der hat auf der Rechten Seite 4 Schaltflächen :</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Breite</emphasis> : definiert die Breite des Bereiches (nur im Desktop-Modus)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Widget hinzufügen</emphasis> : zum hinzufügen von Widgets, die in dem Bereich angezeigt werden sollen
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Bearbeiten</emphasis> : erlaubt den Namen den Bereich zu ändern
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Löschen</emphasis> : um den Bereich zu löschen
+</simpara>
+</listitem>
+</itemizedlist>
+<tip><simpara>Sie können ein Widget direkt löschen, indem sie auf den Mülleimer vor diesem klicken.</simpara></tip>
+<tip><simpara>Sie können durch Ziehen/Ablegen die Reihenfolge der Widgets im Bereich ändern.</simpara></tip>
+<simpara>Wurde die Schaltfläche zum hinzufügen von einem Widget einmal angeklickt, erscheint folgendes Fenster :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/view7.png"/>
+  </imageobject>
+  <textobject><phrase>../images/view7.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>In diesem Fenster müssen Sie nur die Objekte/Geräte zum hinzufügen für den Bereich auswählen und Bestätigen.</simpara>
+</section>
+<section id="_bereich_diagramm_typ">
+<title>Bereich Diagramm-Typ</title>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/view8.png"/>
+  </imageobject>
+  <textobject><phrase>../images/view8.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Der Bereich vom Diagramm-Typ, erlaubt es Ihnen Diagramme zu Ihrer Ansicht hinzuzufügen, er besitzt die folgenden Optionen :</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Periode</emphasis> : Sie ermöglicht es, die Anzeigeperiode von Diagrammen (30 min, 1 Tag, 1 Woche, 1 Monat, 1 Jahr oder alle) zu wählen
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Breite</emphasis> : definiert die Breite des Bereiches (nur im Desktop-Modus)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Widget hinzufügen</emphasis> : zum hinzufügen von Diagrammen , die in dem Bereich angezeigt werden sollen
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Bearbeiten</emphasis> : erlaubt den Namen den Bereich zu ändern
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Löschen</emphasis> : um den Bereich zu löschen
+</simpara>
+</listitem>
+</itemizedlist>
+<tip><simpara>Sie können ein Diagramm direkt löschen, indem sie auf den Mülleimer vor diesem klicken.</simpara></tip>
+<tip><simpara>Sie können durch Ziehen/Ablegen die Reihenfolge der Diagramme im Bereich ändern.</simpara></tip>
+<simpara>Wurde die Schaltfläche zum hinzufügen von einem Diagramm einmal angeklickt, erscheint folgendes Fenster :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/view9.png"/>
+  </imageobject>
+  <textobject><phrase>../images/view9.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Einmal hinzugefügt, haben Sie Zugang zu Konfigurationsoptionen : die verschiedenen Optionen werden <ulink url="https://jeedom.com/doc/documentation/core/fr_FR/doc-core-history.html#_graphique_sur_les_vues_et_les_designs">hier</ulink> erklärt.</simpara>
+</section>
+</section>
+</article>

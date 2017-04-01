@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+
+<article lang="en">
+<articleinfo>
+    <title>Grundlagen</title>
+</articleinfo>
+<simpara>Jeedom ist aus einem Kern, der Basisfunktionen ausführt zusammensetzt :</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Szenario
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Chronik
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Ansicht
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Interaktion
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Update und Sicherung
+</simpara>
+</listitem>
+</itemizedlist>
+<simpara>Autour de ce core viennent se greffer des plugins qui peuvent être de toutes sortes :</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Home-Automatisierungs Protokolle (Z-Wave, RFXcom, EnOcean&#8230;)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+IP Protokolle (KNX,xPL&#8230;)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Kommunikationsobjekte (Nest, Netatmo &#8230;)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+hohes Niveau (Alarm, Thermostat)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Schnittstelle (Widget)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Organisation (Kalender, Google Kalender)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Entwicklung (Skript)
+</simpara>
+</listitem>
+</itemizedlist>
+<simpara>Ces plugins peuvent être récupérés par le biais du Market et permettent d'étendre les possibilités de Jeedom.</simpara>
+<simpara>Jeedom ermöglicht es jedem Plugin, mit einem anderen auf standardisierter Basis zu komunizieren. Dies ermöglicht es beispielsweise, das Thermostat-Plugin zu verwenden oder Alarm mit beliebigem Haus-Automatisierungs-Protokoll oder sogar ein IP Plugin oder Kommunikationsobjekt &#8230;</simpara>
+<simpara>Außerdem hat Jeedom die Besonderheit, ohne Abo und ohne Cloud zu sein, wodurch das Funktionieren ihrer Hause-Automatisierung garantiert wird, auch wenn sie kein Internet mehr haben. Dadurch wird auch die Sicherheit ihrer Daten garantiert (vermeidet die Risiken der massenhaften Konten Piraterie).</simpara>
+<simpara>Das Projekt ist offen und Open-Source das gewährleistet auch eine hohe Rate der Entwicklung, dank der vielen Entwickler die teilnehmen.</simpara>
+</article>

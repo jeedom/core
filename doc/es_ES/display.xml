@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+
+<article lang="en">
+<articleinfo>
+    <title>Resumen de domótica</title>
+</articleinfo>
+<simpara>Cette page permet d&#8217;avoir un résumé sur sa domotique et donne aussi accès à des fonctions d&#8217;organisation des équipements et des commandes, à la configuration avancée des équipements et des commandes ainsi qu'à des possibilités de configuration d&#8217;affichage. Elle se décompose en un onglet "Ma domotique" et un un onglet "Configuration de l&#8217;affichage".</simpara>
+<simpara>Esta página es accesible a través de herramientas &#8594; Resumen domótico:</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/display.png"/>
+  </imageobject>
+  <textobject><phrase>../images/display.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>La primera pestaña permite organizar los diferentes dispositivos, ordenes, acceso a la configuración avanzada, así como la configuración en masa. Aquí está:</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/display2.png"/>
+  </imageobject>
+  <textobject><phrase>../images/display2.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Aquí se encuentra un resumen del número de objetos existentes, el número de dispositivos y el número de ordenes. A la derecha hay un botón para ocultar todos los dispositivos inactivos y un campo de búsqueda, por ejemplo buscar un dispositivo, orden o todos los dispositivos de un determinado tipo (plugin,por ejemplo escriba rfxcom para obtener todos los dispositivos rfxcom)</simpara>
+<simpara>En dessous on retrouve un cadre par objet. Dans chaque cadre se trouve la liste des équipements (en bleu) contenus dans l&#8217;objet. Vous avez sur la ligne du nom de l&#8217;objet jusqu'à 3 boutons, dans l&#8217;ordre :</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+El primero se utiliza para abrir la configuración de la página de objeto en una nueva pestaña
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+el segundo ofrece un resumen sobre el objeto
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+el último le permite ocultar la lista dispositivoss (abajo en azul)
+</simpara>
+</listitem>
+</itemizedlist>
+<tip><simpara>El color de fondo del recuadro del objeto depende del color en la configuración del objeto</simpara></tip>
+<simpara>Pueder hacer clic/mantenimiento en un dispositivo y cambar el orden del objeto o asignar a otro objeto</simpara>
+<tip><simpara>Es a partir de este comando como calcula el orden de visualización en el Dashboard</simpara></tip>
+<simpara>En cada dispositivo encontramos :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/display3.png"/>
+  </imageobject>
+  <textobject><phrase>../images/display3.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<itemizedlist>
+<listitem>
+<simpara>
+una marca de verificación para seleccionar el dispositivo (puede seleccionar varios), si se selecciona al menos un dispositivo tienes botones de acción para eliminar, deshabilitar, habilitar, hacer visible o invisible el dispositivo seleccionado
+</simpara>
+</listitem>
+</itemizedlist>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/display4.png"/>
+  </imageobject>
+  <textobject><phrase>../images/display4.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<itemizedlist>
+<listitem>
+<simpara>
+El nombre del dispositivo
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+le type de l'équipement (identifiant du plugin auquel il appartient)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+una equis (X) significa que el equipo está inactivo (Si no, significa que el equipo está activo)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+un ojo tachado significa que el equipo es invisible (Si no, significa que el equipo está activo)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+enlace externo: permite abrir en una nueva pestaña la página de configuración del dispositivo
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Configuración avanzado (rueda dentada pequeña): permite abrir la ventana de configuración avanzada
+</simpara>
+</listitem>
+</itemizedlist>
+<tip><simpara>Doble clic en el dispositivo también permite abrir la ventana de configuración avanzada</simpara></tip>
+<itemizedlist>
+<listitem>
+<simpara>
+Lista de comandos (flecha) : permite desplegar la lista de comandos
+</simpara>
+</listitem>
+</itemizedlist>
+<simpara>Si se despliega la lista de ordenes se obtiene:</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/display5.png"/>
+  </imageobject>
+  <textobject><phrase>../images/display5.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Chaque bloc jaune correspond à une commande de votre équipement (un nouveau clic sur la petite flèche de l'équipement permet de les masquer). Si vous faites un double clic sur la commande ou que vous cliquez sur la petite roue crantée cela fera apparaitre la fenêtre de configuration</simpara>
+<section id="_configuración_avanzada_del_dispositivo">
+<title>Configuración avanzada  del dispositivo</title>
+<simpara>La ventana de configuración avanzada del dispositivo consiste en 2 pestañas: información y visualizaciones avanzadas.</simpara>
+<simpara>En la parte superior también encontrará un botón guardar y un botón borrar dispositivo</simpara>
+<tip><simpara>Es posible acceder directamente (si es compatible con el plugin)  a esta ventana de la página de configuración dispositivo, haciendo clic en la rueda dentada pequeña 3 ( se suele encontrar en la parte superior, al lado del título "General")</simpara></tip>
+<section id="_información">
+<title>Información</title>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/display9.png"/>
+  </imageobject>
+  <textobject><phrase>../images/display9.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>La ficha de información contiene la información general del dispositivo:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+* ID * : Identificador único en la base de datos
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Nombre</emphasis> : nombre del dispositivo
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">ID Lógica</emphasis> : identificador lógico del dispositivo (puede estar vacío)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">ID del objeto</emphasis> : identificador único del objeto padre (puede estar vacio)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+* Fecha de creación*: fecha de creación del dispositivo
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Activar</emphasis>: Permite activar o desactivar el dispositivo (recuerde guardar)
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Visible *: permite hacer visible o invisible el dispositivo (recuerde guardar)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Tipo *: Identificador del plugin al que pertenece
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Tentative échouée</emphasis> : nombre de tentatives de communications consécutives avec l'équipement qui ont échoué
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+* Última actualización* : fecha de la última comunicación con el equipo
+</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_pantalla_avanzada">
+<title>Pantalla avanzada</title>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/display10.png"/>
+  </imageobject>
+  <textobject><phrase>../images/display10.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>En la parte central podrás configurar ciertas opciones de visualización para el Dashborad, las vistas, el diseño y el móvil.</simpara>
+<simpara>Puedes:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Visible *: permite ocultar o mostrar el dispositivo en el escritorio o el móvil
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Mostrar nombre</emphasis> : permite ocultar el nombre del dispositivo a mostrar según el tipo de vista (Dashboard, diseño, vistas o móvil)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+*Mostrar el nombre del objeto *: solamente para modo vista, esto permite ocultar el nombre del objeto al lado del nombre del dispositivo
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+* Mostrar el nivel de batería *: sólo para el Dashboard, los diseños y las vistas, esta opción ocultará/mostrara el nivel del batería del dispositivo (si es que dispone de ella)
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+<simpara>A continuación nos encontramos con el ajuste de visualización opcional que puede tener el dispositivo. Estos parámetros constan de un nombre y un valor. Actualmente solo se utiliza el valor "estilo" , que permite insertar código CSS en el dispositivo en cuestión. Aquí un ejemplo para redondear las esquinas:</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/display11.png"/>
+  </imageobject>
+  <textobject><phrase>../images/display11.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<tip><simpara>No olvide guardar los cambios después de hacer modificaciones</simpara></tip>
+</section>
+<section id="_batteries">
+<title>Batteries</title>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/display16.png"/>
+  </imageobject>
+  <textobject><phrase>../images/display16.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Esta ficha permite obtener información sobre la batería del dispositvo: tipo de batería, fecha última información, nivel restante (si es que sus dispositivos funcionan con bateria). Tambien puede configurar los umbrales de alerta específicos para este dispositivo</simpara>
+</section>
+</section>
+<section id="_configuración_avanzada_de_una_orden">
+<title>Configuración avanzada de una orden</title>
+<simpara>La ventana de configuración avanzada de comandos se compone de 3 pestañas: información, configuración avanzada y vista avanzada.</simpara>
+<simpara>También tiene 2 botones, uno para salvar y otro para aplicar la misma configuración a otra orden</simpara>
+<section id="_información_2">
+<title>Información</title>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/display12.png"/>
+  </imageobject>
+  <textobject><phrase>../images/display12.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>La pestaña de información contiene información general acerca de la orden:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+* ID * : Identificador único en la base de datos
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">ID Lógico</emphasis> : identificación lógico del comando (puede estar vacío)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+* Nombre*: nombre de la orden
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+* Tipo* : tipo de orden (acción o información)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+*Subtipo * : según el tipo de orden (binario, digital&#8230;)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+*URL directa * : proporciona una dirección URL (haga clic derecho, copiar la dirección del enlace) dependiendo del tipo de orden desencadenara una acción o recuperara el valor (si se trata de una orden de tipo información)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Unidad</emphasis> : la unidad de de medición de la orden º, kw.. etc
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Commande déclenchant une mise à jour</emphasis> : donne l&#8217;identifiant d&#8217;une autre commande qui, si cette autre commande change, va forcer la mise à jour de la commande visualisée
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Cache</emphasis> : durée de vie de la valeur de la commande en mémoire (une fois ce délai passé Jeedom redemandera sa valeur). Attention si vous êtes en événement alors ce paramètre est ignoré car la durée de vie est infinie. Si vous n&#8217;avez aucune valeur et que vous n'êtes pas en événement alors la durée de vie est celle définie dans la configuration de Jeedom (par defaut 300s)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Solo por evento</emphasis> : indica a Jeedom que no solicite el valor del comando (es el  dispositivo o el pluging quien lo transmiten)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Visible</emphasis> : définit si la commande est visible ou non
+</simpara>
+</listitem>
+</itemizedlist>
+<simpara>A continuación encontrará la lista de los diferentes dispositivos, controles, escenas o interacciones que utilizan esta orden. Haga clic arriba para ir directamente a su respectiva configuración</simpara>
+</section>
+<section id="_configuración_avanzada">
+<title>Configuración avanzada</title>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/display13.png"/>
+  </imageobject>
+  <textobject><phrase>../images/display13.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Pas mal d&#8217;options ici (elles peuvent varier en fonction du type et du sous-type de la commande).</simpara>
+<simpara>Para una orden de tipo información:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Cálculo y redondeo</emphasis>
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Formule de calcul (#value# pour la valeur)</emphasis> : vous pouvez ici faire une opération sur la valeur de la commande avant le traitement par Jeedom, exemple : #value# - 0.2 pour retrancher 0.2 (offset sur un capteur de température)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Redondeo (dígitos después de la coma) *: permite redondear el valor dela orden, ejemplo: poner 2 decimales para transformar 16.643345 en 16.64
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Type générique</emphasis> : cette partie permet de configurer le type générique de la commande (Jeedom essaie de le trouver par lui-même en mode auto). Cette information est utilisée par l&#8217;application mobile.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Action sur la valeur</emphasis> : cette partie permet de faire des sortes de mini scénarios, vous pouvez par exemple dire que si la valeur vaut plus de 50 pendant 3 minutes alors il faut faire telle action. Cela permet par exemple d'éteindre une lumiere X minutes après que celle-ci se soit allumée
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Historial</emphasis> : vaya a <ulink url="https://jeedom.com/doc/documentation/core/sp_SP/doc-core-history.html#_configuration_spécifique_par_commande">aquí</ulink>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Otros</emphasis>
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">No repetir si no cambia el valor</emphasis> : Si el comando obtiene 2 veces el mismo valor indica a Jeedom que el segundo no se tenga en cuenta(evita que se repita una escena si el valor no cambia)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Push URL *: permite agregar una dirección URL para llamar a la orden Actualizar. Usted puede utilizar las siguientes etiquetas: #value# por el valor de la orden, #cmd_name# para el nombre de la orden, #cmd_id# para el id de la orden, #humanname# para el nombre completo de la orden ([ej:  \#[Baño] [humedad] [cantidad] #)
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+<simpara>Si se despliega la lista de comandos se obtiene:</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/display15.png"/>
+  </imageobject>
+  <textobject><phrase>../images/display15.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<itemizedlist>
+<listitem>
+<simpara>
+* Confirmar la acción *: durante una acción Jeedom requerira una confirmación vía interfaz de este comando
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Código de acceso</emphasis> : durante una acción Jeedom requerirá autentificación vía interfaz del comando.
+</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_pantalla_avanzada_2">
+<title>Pantalla avanzada</title>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/display14.png"/>
+  </imageobject>
+  <textobject><phrase>../images/display14.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>En la parte central podrás configurar ciertas opciones de visualización del widget en el Dashborad, las vistas, el diseño y el móvil.</simpara>
+<simpara>Puedes:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Widget</emphasis> : permite elegir el widget en el escritorio o el móvil (Nota, también se puede hacer dese el propio plugin widget, necesita estar instalado)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+* Visible*: oculta o no la orden en el escritorio o móvil
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Mostrar nombre</emphasis> : permite ocultar el nombre del dispositivo a mostrar según el tipo de vista (Dashboard, diseño, vistas o móvil)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Mostrar estadísticas</emphasis> :  permite ocultar las estadísticas según el contexto (Dashboard, diseño, vistas o móvil). PRECAUCIÓN debe activar las estadísticas en la configuración de Jeedom, configurar esta opción tienen un impacto en el rendimiento
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Retour à la ligne forcé avant le widget</emphasis> : permet d&#8217;ajouter un retour à la ligne avant ou après le widget (pour forcer par exemple un affichage en colonne des différentes commandes de l'équipement au lieu de lignes par defaut)
+</simpara>
+</listitem>
+</itemizedlist>
+<simpara>En-dessous, on retrouve des paramètres optionnels d&#8217;affichage que l&#8217;on peut passer au widget. Ces paramètres dependent du widget en question, il faut donc regarder sa fiche sur le Market pour les connaitre.</simpara>
+<tip><simpara>No olvide guardar los cambios después de hacer modificaciones</simpara></tip>
+</section>
+</section>
+</article>

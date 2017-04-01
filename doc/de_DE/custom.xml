@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+
+<article lang="en">
+<articleinfo>
+    <title>Erweiterte Anpassung</title>
+</articleinfo>
+<simpara>Réservé aux experts, cette page permet d&#8217;ajouter des script CSS ou JS en plus dans Jeedom, qui sont exécutés sur chaque page</simpara>
+<simpara>Erreichbar unter Einstellungen &#8594; Erweiterte Anpassung</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/custom.png"/>
+  </imageobject>
+  <textobject><phrase>../images/custom.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Sobald sie darauf sind, sehen sie :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/custom2.png"/>
+  </imageobject>
+  <textobject><phrase>../images/custom2.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Vous pouvez donc à partir de cette page ajouter des scripts JS et CSS executés partout dans Jeedom en distinguant la version desktop de la version mobile</simpara>
+<important><simpara>Jeder Fehler in einem dieser Skripte kann Jeedom völlig unerreichbar machen und mann muß sich via SSH verbinden um die geänderten Dateien zu löschen und zurückbekommen zu können</simpara></important>
+</article>

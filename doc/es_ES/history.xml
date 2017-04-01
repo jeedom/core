@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+
+<article lang="en">
+<articleinfo>
+    <title>Historial</title>
+</articleinfo>
+<simpara>Partie importante dans un logiciel : la partie historisation, véritable mémoire de celui-ci. Il est possible dans Jeedom d&#8217;historiser n&#8217;importe quelle commande de type information (binaire ou numérique). Cela vous permettra donc par exemple d&#8217;historiser une courbe de température, de consommation ou les ouvertures d&#8217;une porte&#8230;</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/history.JPG"/>
+  </imageobject>
+  <textobject><phrase>../images/history.JPG</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<section id="_principio">
+<title>Principio</title>
+<simpara>Ici est décrit le principe d&#8217;historisation de Jeedom. Il n&#8217;est nécessaire de le comprendre que si vous rencontrez des soucis d&#8217;historisation ou que vous voulez modifier les réglages de l&#8217;historisation. Les réglages par défaut conviennent dans la plupart des cas.</simpara>
+<section id="_método_de_historial">
+<title>Método de historial</title>
+<simpara>Uno de los primeros elementos es saber el tipo de comando que desea historizar es de typo evento o no:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Non évènement</emphasis> : c&#8217;est le cas le plus simple. Jeedom va collecter toutes les 5mn la valeur de la commande et historiser le résultat.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Evènement</emphasis> : Jeedom sait qu&#8217;il ne peut récupérer la valeur. Il attend donc que le plugin (et indirectement le module) la lui transmette. Ensuite, en fonction de la fréquence et de vos réglages, il se peut qu&#8217;un premier lissage intervienne. En effet, si Jeedom reçoit 2 valeurs à moins de 5mn d&#8217;intervalle, il va par défaut en faire la moyenne pour n&#8217;en stocker qu&#8217;une. Vous pouvez bien sûr changer ce réglage pour qu&#8217;au lieu de la moyenne il prenne le maximum, le minimum ou au contraire qu&#8217;il garde les deux. Nous verrons par la suite comment changer ce réglage.
+</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_archivo">
+<title>Archivo</title>
+<simpara>El archivo de datos permite a Jeedom reducir la cantidad de datos almacenados en la memoria. Esto permite que no se utilice demasiado espacio y no se ralentice el sistema. De hecho, si archivas todas las medidas, esto hará que se muestren más datos y por lo tanto, puede alargar significativamente el procesado de la gráfica. En el caso de un excesivo número de puntos, incluso puede hacer fallar la visualización del mismo.</simpara>
+<simpara>L&#8217;archivage est une tâche qui se lance dans la nuit et compacte les données récupérées dans la journée. Par défaut Jeedom récupère toutes les données plus vieilles de 2h et en fait des paquets de 1h (soit une moyenne, un minimum ou un maximum en fonction des réglages). On a donc ici 2 paramètres, un pour la taille des paquets et un autre pour savoir à partir de quand en faire (pour rappel par défaut ce sont des paquets de 1h avec des données qui ont plus de 2h d&#8217;ancienneté).</simpara>
+<tip><simpara>Si vous avez bien suivi vous devriez avoir une haute précision sur les 2 dernières heures seulement. Pourtant quand je me connecte à 17h, j&#8217;ai une précision sur les 17 dernières heures. Pourquoi ? En fait, pour éviter de consommer des ressources inutilement, la tâche qui fait l&#8217;archivage ne se déroule qu&#8217;une fois par jour, le soir.</simpara></tip>
+<simpara>Bien sûr, ce principe d&#8217;archivage ne s&#8217;applique qu&#8217;aux commandes de type numérique ; sur les commandes de type binaire, Jeedom ne conserve que les dates de changement d'état.</simpara>
+</section>
+<section id="_tendances_et_statistiques">
+<title>Tendances et statistiques</title>
+<simpara>Il est possible d&#8217;activer sur les widgets l&#8217;affichage du minimum, de la moyenne, du maximum et de la tendance (par défaut ceci est désactivé car cela a une tendance à allonger le temps d&#8217;affichage du dashboard à cause des calculs).</simpara>
+<simpara>Si vous activez cette option, par défaut, Jeedom se fonde sur les données des dernières 24h pour calculer ces statistiques. Les tendances sont par défaut calculées sur 2h. Ce paramètre est bien sûr modifiable (voir plus bas).</simpara>
+<simpara>La méthode de calcul de tendance est fondée sur le calcul des moindres carrés (voir <ulink url="https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s">ici</ulink> pour le détail).</simpara>
+</section>
+</section>
+<section id="_configuration_générale_de_l_8217_historique">
+<title>Configuration générale de l&#8217;historique</title>
+<simpara>La configuration générale de l&#8217;historique se passe sur la page Administration &#8594; Configuration.</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/administration.png"/>
+  </imageobject>
+  <textobject><phrase>../images/administration.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Nous allons voir ici les détails de la partie configuration des commandes, qui contient toute une branche concernant l&#8217;historique.</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/history3.JPG"/>
+  </imageobject>
+  <textobject><phrase>../images/history3.JPG</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>On retrouve ici :</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Afficher les statistiques sur les widgets</emphasis> : permet d&#8217;afficher ou non les statistiques sur les widgets ; il faut que le widget soit compatible, ce qui est le cas pour la plupart ; il faut aussi que la commande soit de type numérique
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Période de calcul pour min, max, moyenne (en heures)</emphasis> : période de calcul des statistiques (par défaut 24h), il n&#8217;est pas possible de mettre moins d&#8217;une heure
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Période de calcul pour la tendance (en heures)</emphasis> : période de calcul des tendances (par défaut 2h), il n&#8217;est pas possible de mettre moins d&#8217;une heure
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Délai avant archivage (en heures)</emphasis> : donne le délai avant archivage, par défaut la valeur est de 24h, c&#8217;est-à-dire que les données historisées doivent avoir plus de 24h pour être archivées (pour rappel, l&#8217;archivage va soit moyenner, soit prendre le maximum ou le minimum de la donnée sur une période qui correspond à la taille des paquets)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Archiver par paquet de (en heures)</emphasis> : ce paramètre donne justement la taille des paquets, par defaut 1h ; cela signifie que Jeedom va prendre des périodes de 1h, moyenner (par exemple, suivant le réglage de la commande) et stocker cette nouvelle valeur (en supprimant les valeurs moyennées).
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Seuil de calcul de tendance basse</emphasis> : cette valeur correspond au seuil de tendance basse (Jeedom indique que la valeur est en baisse), il doit être négatif (par défaut -0.1).
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Seuil de calcul de tendance haut</emphasis> : idem mais à la tendance haute.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Période d&#8217;affichage des graphiques par defaut</emphasis> : pour des questions de performance lors de l&#8217;affichage à la volée (en cliquant sur le widget ou par la page historique) Jeedom n&#8217;affiche qu&#8217;une période restreinte de l&#8217;historique (cela permet un affichage plus rapide) ; il est ici possible de régler cette valeur.
+</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_configuration_spécifique_par_commande">
+<title>Configuration spécifique par commande</title>
+<simpara>Pour accèder à ces réglages, il faut aller dans la configuration avancée des commandes, en passant par Outils &#8594; Résumé domotique :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/display.png"/>
+  </imageobject>
+  <textobject><phrase>../images/display.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Puis en dépliant la liste des commandes d&#8217;un équipement (petite flèche à droite) en double-cliquant sur la commande ou en cliquant sur la petite roue :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/history9.JPG"/>
+  </imageobject>
+  <textobject><phrase>../images/history9.JPG</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<tip><simpara>Vous pouvez aussi utiliser le champ de recherche à droite en tapant le nom de la commande que vous voulez.</simpara></tip>
+<simpara>Vous pouvez également y accèder par la page de l'équipement en question et en cliquant sur la petite roue à droite sur la ligne de la commande (si le plugin a intégré cette option) :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/history10.JPG"/>
+  </imageobject>
+  <textobject><phrase>../images/history10.JPG</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>A partir de là, vous devez avoir une fenêtre qui apparait, il faut cliquer sur "Configuration avancée" :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/display13.JPG"/>
+  </imageobject>
+  <textobject><phrase>../images/display13.JPG</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>A partir de là, vous avez plusieurs possibilités de réglages. En ce qui concerne l&#8217;historique, il y a :</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Historiser</emphasis> : permet de définir si vous voulez historiser ou non cette commande.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Mode de lissage</emphasis> : mode de lissage ou d&#8217;archivage permet de choisir la manière d&#8217;archiver la donnée ; par défaut c&#8217;est une moyenne ; il est aussi possible de choisir le maximum, le minimum, ou aucun ; aucun permet de dire à Jeedom qu&#8217;il ne doit pas réaliser d&#8217;archivage sur cette commande (aussi bien sur la première période des 5 mn qu&#8217;avec la tâche d&#8217;archivage). Cette option est dangereuse car Jeedom conserve tout : il va donc y avoir beaucoup plus de données conservées.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Purger l&#8217;historique si plus vieux de</emphasis> : cette option permet de dire à Jeedom de supprimer toutes les données plus vieilles qu&#8217;une certaine période. Peut être pratique pour ne pas conserver de données si ça n&#8217;est pas nécessaire et donc limiter la quantité d&#8217;informations enregistrées par Jeedom.
+</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_affichage_d_8217_un_graphique">
+<title>Affichage d&#8217;un graphique</title>
+<simpara>Il existe plusieurs moyens d&#8217;accéder à l&#8217;historique :</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+en mettant une zone graphe dans une vue (voir plus bas),
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+en cliquant sur la commande voulue dans un widget,
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+en allant dans la page historique qui permet de superposer différentes courbes et de combiner les styles (aire, courbe, barre).
+</simpara>
+</listitem>
+</itemizedlist>
+<simpara>Si vous affichez un graphique par la page historique ou en cliquant sur le widget, vous avez accès à plusieurs options d&#8217;affichage :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/history4.JPG"/>
+  </imageobject>
+  <textobject><phrase>../images/history4.JPG</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>On retrouve en haut à droite la période d&#8217;affichage (ici sur la dernière semaine car, par défaut je veux que ça soit seulement une semaine - voir 2 paragraphes au-dessus), ensuite viennent les paramètres de la courbe (ces paramètres sont gardés d&#8217;un affichage à l&#8217;autre ; vous n&#8217;avez donc qu&#8217;a les configurer une fois).</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Escalier</emphasis> : permet d&#8217;afficher la courbe sous la forme d&#8217;un escalier ou d&#8217;un affichage continu.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Variation</emphasis> : affiche la différence de valeur par rapport au point précédent.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Ligne</emphasis> : affiche le graphique sous forme de lignes.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Aire</emphasis>  : affiche le graphique sous forme d&#8217;une aire.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Colonne</emphasis>* : affiche le graphique sous forme de barres.
+</simpara>
+</listitem>
+</itemizedlist>
+<simpara>Voici quelques exemples :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/history5.JPG"/>
+  </imageobject>
+  <textobject><phrase>../images/history5.JPG</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/history6.JPG"/>
+  </imageobject>
+  <textobject><phrase>../images/history6.JPG</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/history7.JPG"/>
+  </imageobject>
+  <textobject><phrase>../images/history7.JPG</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Sur ce dernier, on remarque une plus grande précision sur les dernières données (principe de l&#8217;archivage).</simpara>
+</section>
+<section id="_graphique_sur_les_vues_et_les_designs">
+<title>Graphique sur les vues et les designs</title>
+<simpara>Vous pouvez aussi afficher les graphiques sur les vues (nous verrons ici les options de configuration et non comment faire, pour cela il faut se rendre sur la documention des vues ou des designs en fonction). Voici les options :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/history13.JPG"/>
+  </imageobject>
+  <textobject><phrase>../images/history13.JPG</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Une fois une donnée activée, vous pouvez choisir :</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Couleur</emphasis> : la couleur de la courbe.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Type</emphasis> : le type de graphique (aire, ligne ou colonne).
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Echelle</emphasis> : vu que vous pouvez mettre plusieurs courbes (données) sur le même graphique, il est possible de distinguer les échelles (droite ou gauche).
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Escalier</emphasis> : permet d&#8217;afficher la courbe sous la forme d&#8217;un escalier ou d&#8217;un affichage continu
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Empiler</emphasis> : permet d&#8217;empiler les valeurs des courbes (voir en dessous pour le résultat).
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Variation</emphasis> : affiche la différence de valeur par rapport au point précédent.
+</simpara>
+</listitem>
+</itemizedlist>
+<simpara>Voici un exemple de courbes empilées :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/history14.JPG"/>
+  </imageobject>
+  <textobject><phrase>../images/history14.JPG</phrase></textobject>
+</mediaobject>
+</informalfigure>
+</section>
+<section id="_option_sur_la_page_d_8217_historique">
+<title>Option sur la page d&#8217;historique</title>
+<simpara>La page d&#8217;historique donne accès à quelques options supplémentaires :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/history15.JPG"/>
+  </imageobject>
+  <textobject><phrase>../images/history15.JPG</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<tip><simpara>Il suffit de cliquer sur le nom de l&#8217;objet pour le déplier ; apparaissent les commandes historisées qui peuvent être graphées.</simpara></tip>
+<tip><simpara>La couleur d&#8217;arrière-plan des objets de cette liste peuvent être modifiées à partir de la configuration de l&#8217;objet.</simpara></tip>
+<simpara>Devant chaque donnée pouvant être graphée, vous retrouvez deux icônes :</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Poubelle</emphasis> : permet de supprimer les données enregistrées ; lors du clic, Jeedom demande s&#8217;il faut supprimer les données avant une certaine date ou toutes les données.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Flèche</emphasis> : permet d&#8217;avoir un export CSV des données historisées.
+</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_suppression_de_valeur_incohérente">
+<title>Suppression de valeur incohérente</title>
+<simpara>Parfois, il se peut que vous ayez des valeurs incohérentes sur les graphiques. Cela est souvent dû à un souci d&#8217;interprétation de la valeur. Il est possible de supprimer ou changer la valeur du point en question, en cliquant sur celui-ci directement sur le graphique ; de plus, vous pouvez régler le minimum et le maximum autorisés afin d'éviter des problèmes futurs.</simpara>
+</section>
+</article>
