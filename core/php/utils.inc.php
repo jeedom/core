@@ -936,14 +936,15 @@ function ZipErrorMessage($code) {
 }
 
 function arg2array($_string) {
+	$string = str_replace("\'", '#%27#', $_string);
 	$return = array();
 	$re = '/[\/-]?(([a-zA-Z0-9_#]+)(?:[=:]("|\'[^"|\']+\'|"|[^\s"]+))?)(?:\s+|$)/';
-	preg_match_all($re, $_string, $matches, PREG_SET_ORDER, 0);
+	preg_match_all($re, $string, $matches, PREG_SET_ORDER, 0);
 	foreach ($matches as $match) {
 		if (count($match) != 4) {
 			continue;
 		}
-		$return[$match[2]] = $match[3];
+		$return[$match[2]] = str_replace('#%27#', "\'", $match[3]);
 	}
 	return $return;
 }
