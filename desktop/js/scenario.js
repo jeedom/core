@@ -896,7 +896,7 @@ function addTrigger(_trigger) {
   div += '<label class="col-xs-3 control-label">{{Evénement}}</label>';
   div += '<div class="col-xs-9">';
   div += '<div class="input-group">';
-  div += '<input class="scenarioAttr input-sm form-control" data-l1key="trigger" value="' + _trigger + '" >';
+  div += '<input class="scenarioAttr input-sm form-control" data-l1key="trigger" value="' + _trigger.replace(/"/g,'&quot;') + '" >';
   div += '<span class="input-group-btn">';
   div += '<a class="btn btn-default btn-sm cursor bt_selectTrigger" title="{{Choisir une commande}}"><i class="fa fa-list-alt"></i></a>';
   div += '<a class="btn btn-default btn-sm cursor bt_selectDataStoreTrigger" title="{{Choisir une variable}}"><i class="fa fa-calculator"></i></a>';
@@ -913,7 +913,7 @@ function addSchedule(_schedule) {
   div += '<label class="col-xs-3 control-label">{{Programmation}}</label>';
   div += '<div class="col-xs-9">';
   div += '<div class="input-group">';
-  div += '<input class="scenarioAttr input-sm form-control" data-l1key="schedule" value="' + _schedule + '">';
+  div += '<input class="scenarioAttr input-sm form-control" data-l1key="schedule" value="' + _schedule.replace(/"/g,'&quot;') + '">';
   div += '<span class="input-group-btn">';
   div += '<a class="btn btn-default btn-sm cursor helpSelectCron"><i class="fa fa-question-circle"></i></a>';
   div += '<a class="btn btn-default btn-sm cursor bt_removeSchedule"><i class="fa fa-minus-circle"></i></a>';
@@ -977,7 +977,7 @@ function addExpression(_expression) {
     retour += '<span class="input-group-btn">';
     retour += '<button class="btn btn-default bt_removeExpression" type="button" title="{{Supprimer l\'action}}"><i class="fa fa-minus-circle"></i></button>';
     retour += '</span>';
-    retour += '<input class="expressionAttr form-control" data-l1key="expression" value="' + init(_expression.expression) + '" style="font-weight:bold;"/>';
+    retour += '<input class="expressionAttr form-control" data-l1key="expression" value="' + init(_expression.expression).replace(/"/g,'&quot;') + '" style="font-weight:bold;"/>';
     retour += '<span class="input-group-btn">';
     retour += '<button class="btn btn-default bt_selectOtherActionExpression" type="button" title="{{Sélectionner un mot-clé}}"><i class="fa fa-tasks"></i></button>';
     retour += '<button class="btn btn-default bt_selectCmdExpression" type="button" title="{{Sélectionner la commande}}"><i class="fa fa-list-alt"></i></button>';
@@ -1375,7 +1375,6 @@ function addElement(_element) {
     break;
   }
   div += '</div>';
-
   return div;
 }
 
