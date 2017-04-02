@@ -1,10 +1,10 @@
-= Update
+= Mise à jour
 
-== Update Center
+== Centre de mise à jour
 
-Das Aktualisierungszentrum zentralisiert die Gesamtheit der Funktionen von Jeedom und ermöglicht, alle Funktionalitäten von Jeedom auf den neuesten Stand zu bringen, die Grundsoftware, die Plugins, die Widgets, u. s. w. .
+Le centre de mise à jour centralise l'ensemble des fonctions de Jeedom, et permet de mettre à jour toutes les fonctionnalités de Jeedom, incluant le logiciel de base, les plugins, les widgets, etc...
 
-Es ist über das Menü Administration -> Update Center erreichbar : 
+Il est accessible par le menu Administration -> Centre de mise à jour : 
 
 image::../images/update.JPG[]
 
@@ -12,25 +12,25 @@ Sobald sie darauf sind, sehen sie :
 
 image::../images/update2.png[]
 
-Es zeigt alle installierte Elemente von Jeedom, in tabellarischer Form 
+Il présente sous forme de tableau l'ensemble des éléments installés dans Jeedom. 
 [TIP]
-Im Experten-Modus werden alle Elemente angezeigt, ansonsten zeigt es nur Elemente die aktualisiert werden können.
+En mode Expert, on affiche tous les élements, si non, on affiche uniquement les éléments à mettre à jour.
 
 
 Es gibt insgesamt bis zu 5 Knöpfe, die von Element verfügbar sein können:
 
-* *sehen* :  Ermöglicht, auf der entsprechenden Seite des Marktes das Element einzusehen
-* *Teilen* : Ermöglicht, wenn Sie ein Element geschaffen haben, es auf dem Market zu teilen.
-* *Löschen* : Ermöglicht Elemente zu löschen.
-* *Update* : Ermöglicht Elemente zu aktualisieren.
+* *Voir* : permet de consulter la page du Market correspondant à l'élément sélectionné
+* *Partager* : permet lorsque vous avez créé un élément de le partager sur le Market
+* *Supprimer* : permet de désinstaller un élément
+* *Mettre à jour* : permet de mettre à jour l'élément
 
 [TIP]
-Beachten Sie, dass "core:jeedom" das Update der Basissoftware bedeutet.
+A noter que "core:jeedom" signifie la mise à jour du logiciel de base Jeedom.
 
 
 En haut du tableau se trouvent les boutons de commande. Jeedom se connecte périodiquement avec le Market pour voir si des mises à jour sont disponibles (la date de dernière vérification est indiquée tout en haut du tableau à gauche). Si vous voulez réaliser une vérification manuelle, vous pouvez appuyer sur le bouton "Vérifier les mises à jour".
 
-Die Schaltfläche "Update", um alles von Jeedom zu aktualisieren.
+Le bouton "Mettre à jour" permet de mettre à jour l'ensemble de Jeedom.
 
 image::../images/update3.png[]
 
@@ -38,9 +38,9 @@ image::../images/update3.png[]
 Sur la branche beta le numéro de version n'est pas toujours mis à jour après chaque modification, il faut donc cliquer sur "Mettre à jour" régulièrement pour être sur d'avoir la dernière version. Ce n'est le cas bien sûr que sur la branche beta.
 
 [IMPORTANT]
-Vor der Aktualisierung wird Jeedom standardmäßig eine Sicherungskopie erstellen. Bei Problemen beim Anwenden eines Updates wird Jeedom automatisch die zuvor erstellte Sicherung wiederherstellen. Dieses Prinzip gilt natürlich nur für Jeedom Updates, nicht für Plugins.  
+Avant une mise à jour, Jeedom va par défaut faire une sauvegarde. En cas de souci lors de l'application d'une mise à jour, Jeedom va automatiquement restaurer la sauvegarde faite juste avant. Ce principe n'est bien sûr valable que pour les mises à jour de Jeedom et non des plugins.
 
-Durch Klicken auf den Pfeil neben der Schaltfläche "Update" gibt es eine Reihe von Optionen zum Aktualisieren.
+En cliquant sur la flêche à côté du bouton "Mettre à jour" on a un certain nombre d'options de mise à jour.
 
 image::../images/update5.png[]
 
@@ -55,35 +55,35 @@ image::../images/update6.png[]
 
 Ici vous choisissez d'abord la mise à jour à réappliquer, si c'est en mode forcé ou non (vivement conseillé dans ce cas là) et s'il faut aussi appliquer les mises à jour suivantes (vivement conseillé aussi).
 
-Schließlich auf der rechten Seite der Seite, die "Informationen", um den Status der Aktualisierung zu verfolgen.
-Diese Informationen sind, im Falle eines Problems der Mannschaft mitzuteilen. 
+Enfin à droite de la page, la partie "Informations" permet de suivre l'état de la mise à jour.
+Ces informations sont à communiquer à l'équipe en cas de problème.
 
 image::../images/update4.png[]
 
-== Update Einstellungen
+== Paramètres de mise à jour
 
-Es ist möglich im Menü Administration -> Konfiguration und dann im Teil "Markt und Updates"  bestimmte Parameter für die Updates zu konfigurieren :   
+Il est possible dans Administration -> Configuration puis dans la partie "Market et mise à jour" de configurer certains paramètres de mise à jour : 
 
 image::../images/administration10.png[]
 
 Hier haben wir : 
 
-* *Adresse* : Adresse des Marktes, sie darf nicht geändert werden, außer das Support-Team fordert sie auf, es zu tun.
-* *Benutzername* : Markt Benutzername
+* *Adresse* : adresse du Market, à ne surtout jamais changer à moins que cela soit sur demande de l'équipe de support
+* *Nom d'utilisateur* : nom d'utilisateur du Market
 * *Mot de passe* : mot de passe du Market
 * *Installer automatiquement les widgets manquants* : indique à Jeedom d'installer automatiquement les widgets dont il a besoin (attention à bien avoir installé le plugin Widget)
 * *Voir les modules en beta (à vos risques et périls)* : Permet de voir les plugins, widgets... qui sont en beta et de les installer
-* *Eine Sicherung vor der Aktualisierung machen* : Sagt Jeedom, eine Sicherung vor jeder Aktualisierung zu machen (sehr empfohlen)
+* *Faire une sauvegarde avant la mise à jour* : indique à Jeedom de faire une sauvegarde avant chaque mise à jour (vivement recommandé)
 * *Mettre à jour automatiquement* : indique à Jeedom d'installer automatiquement les mises à jour (non recommandé)
-* *Zweig* : Sagt Jeedom welche Version zu benutzen ist, die Stabile oder Entwickler Version (beta)
+* *Branche* : indique la version de Jeedom à utiliser soit en stable soit en développement (beta)
 
 [IMPORTANT]
-Vermeiden sie die Beta-Plugins mit einem stabilem Jeedom und umgekehrt zu mischen. Viele Fehler werden dem Support-Team gemeldet, weil diese Regel nicht eingehalten wird.
+Il faut éviter de mélanger les plugins beta avec un Jeedom stable et vise versa. De nombreuses erreurs sont remontées à l'équipe de support car cette règle n'est pas respectée.
 
 [IMPORTANT]
 Il n'est pas possible de choisir l'heure de la vérification des mises à jour ou le moment de la mise à jour en automatique, cela pour permettre une répartition des demandes sur le Market. A noter toutefois que ces deux actions ont forcément lieu entre 6h00 et 7h59.
 
-== Update in der Kommandozeile
+== Mise à jour en ligne de commande
 
 Es ist möglich, ein Jeedom Update direkt in SSH zu erstellen, so wird es gemacht : 
 
@@ -93,8 +93,8 @@ sudo php /usr/share/nginx/www/jeedom/install/install.php
 
 Dies sind die möglichen Einstellungen :
 
-* *mode* : erzwingen, um eine Aktualisierung im Zwangs Modus in Gang zu bringen (berücksichtige keine Fehler)
-* *version* : Versionsnummer, die Änderungen seit dieser Version erneut anwenden
+* *mode* : force, pour lancer une mise à jour en mode forcé (ne tiens pas compte des erreurs)
+* *version* : numéro de version, pour réapliquer les changements depuis cette version
 
 Zum Beispiel kann ein Zwangs Update erneut angewendet werden seit der Änderungen 1.188.0 : 
 

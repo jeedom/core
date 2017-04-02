@@ -1,6 +1,6 @@
 = Design
 
-Auf dieser Seite können sie die Anzeige der gesamten Haustechnik ganz  genau konfigurieren. Dies braucht Zeit, aber die einzige Grenze ist Ihre Vorstellungskraft.
+Cette page permet de configurer l'affichage de toute votre domotique de manière très fine. Celle-ci demande du temps mais sa seule limite est votre imagination.
 
 Er ist erreichbar über : 
 
@@ -15,13 +15,13 @@ image::../images/plan2.png[]
 
 Sur cette page on retrouve, en haut (et dans l'ordre) : 
 
-* ein Menü, um das Design zu wechseln
-* eine Schaltfläche, um ein neues Design zu erstellen
-* eine Schaltfläche zum Löschen
-* eine Schaltfläche, um das aktuelle Design zu bearbeiten
-* eine Schaltfläche, um in den Vollbildmodus zu wechseln
+* un menu pour changer de design
+* un menu pour créer un nouveau design
+* un pour le supprimer
+* un bouton pour éditer le design en cours
+* un pour passer en mode plein écran
 
-Zum Erstellen eines neuen Designs müssen sie nur auf die Schaltfläche + klicken, es erscheint ein Fenster in dem der Namen eingegeben werden muß : 
+Il vous suffit donc pour en créer un de cliquer sur le bouton d'ajout, une fenêtre va vous demander le nom de celui-ci : 
 
 image::../images/plan3.png[]
 
@@ -38,28 +38,28 @@ Comme on peut le voir il y a un peu plus de boutons maintenant, ainsi que le cad
 Oben links gibt es 2 Schaltflächen, zum bearbeiten der Eigenschaften und zum kopieren, des aktuellen Entwurfs.
 
 [TIP]
-Vergessen Sie nicht, nach jeder Veränderung zu speichern.
+N'oubliez pas de sauvegarder après chaque modification
 
-== Design Eigenschaften editieren
+== Edition des proprietés du designs
 
 image::../images/plan6.png[]
 
 Hier haben wir : 
 
-* *Allgemein*
-** *Name* : Der Name Ihres Designs
-** *Symbol* : Ein Symbol dafür (erscheint im Menü der Designwahl)
-** *Verfügbar auf Telefon* : Macht dieses Design sichtbar, in der Design Liste der mobilen Version 
-** *Bild*: erlaubt, ein Hintergrundbild zum Design hinzuzufügen
-** *Den Zurück-Pfeil in dem Vollbild-Layout anzeigen* : im Vollbildschirm Modus kann diese Option die Rückkehr Schaltfläche zum Fenstermodus anzeigen(Ideal für ein Wand Tabblet) 
-* *Größe*
-** *Größe (LxH)* : Erlaubt, die Größe Ihres Designs festzulegen (grauer Rahmen in Bearbeiten-Modus)
-** *Proportion Tablet (z.B.: 0,7)* : Erlaubt, die Proportion des Designs auf Tablet zu ändern (um es zum Beispiel zu reduzieren, indem man noch die Größe beherrscht)
-** *Proportion Telefon (z.B.: 0,5)* : Erlaubt, die Proportion des Designs auf Telefon zu ändern (um es zum Beispiel zu reduzieren, indem man noch die Größe beherrscht)
+* *Général*
+** *Nom* : Le nom de votre design
+** *Icône* : Une icône pour celui-ci (apparait dans le menu de choix de design)
+** *Disponible sur téléphone* : Rend ce design visible dans la liste des designs en version mobile
+** *Image* : permet d'ajouter une image de fond au design
+** *Ne pas afficher la flèche de retour lors de la mise en plein écran* : en mode plein écran cette option masque le bouton de retour au mode fenêtré (idéal pour une tablette murale)
+* *Tailles*
+** *Taille (LxH)* : Permet de fixer la taille de votre design (cadre gris en mode édition)
+** *Proportion tablette (ex : 0.7)* : permet de changer la proportion du design sur tablette (pour le reduire par exemple tout en maitrisant encore la taille)
+** *Proportion téléphone (ex 0.5)* : permet de changer la proportion du design sur téléphone (pour le reduire par exemple tout en maitrisant encore la taille)
 
-== Widget hinzufügen
+== Ajout d'un widget
 
-Dann müssen sie Widgets zu ihrem Design hinzufügen, dafür müssen sie auf die Schaltfläche "+ Gerät" klicken : 
+Ensuite il faut ajouter des widgets à votre design, pour cela il faut cliquer sur le bouton d'ajout de widget : 
 
 image::../images/plan7.png[]
 
@@ -72,35 +72,35 @@ Nun sehen sie ihr Widget :
 image::../images/plan9.png[]
 
 [TIP]
-Sie können das Widget durch klicken/ziehen bewegen.
+Vous pouvez le déplacer en cliquant/glissant le widget
 
-Sie gelangen zur erweiterten Konfiguration des angezeigten Widget durch doppelklicken :
+Vous avez accès a la configuration avancée de l'affichage du widget en double cliquant sur celui-ci :
 
 image::../images/plan10.png[]
 
 Hier haben wir : 
 
-* *Allgemein*
-** *Größe des Widgets* : ermöglicht ein Widget Größenverhältnis, zum Beispiel wird hier die Größe mit nur 65%  definieren
+* *Général*
+** *Taille du widget* : permet de definir un ratio de taille de widget, par exemple ici il ne fera que 65% de sa taille
 ** *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
 ** *Couleur des icônes et textes* : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
-** *Runde Ecken (vergessen Sie nicht das % einzugeben, bsp. 50%)* : wird verwendet, um die Ecken abzurunden, vergessen sie nicht das % Zeichen einzugeben
+** *Arrondir les angles (ne pas oublier de mettre %, ex 50%)* : permet d'arrondir les angles du widget, ne pas oublier de mettre le %
 ** *Bordure (attention syntaxe css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
-** *Tiefe* : erlaubt das Niveau der Tiefe zu wählen, zum Beispiel um ein Widget mit einem andern zu überdecken
-** *Gerätename anzeigen* : zum verstecken des Widget Namen, bezieht sich nur auf das Design 
-* *Speziele* : erlaubt, einige Befehle des Widget auf dem Design zu verstecken
+** *Profondeur* : permet de choisir le niveau de la profondeur, pour par exemple passer un widget par dessus un autre
+** *Ne pas afficher le nom de l'équipement* : masque le nom du widget, s'applique uniquement sur le design
+* *Spécifique* : permet de masquer certaines commandes du widget uniquement sur le design
 
 [IMPORTANT]
 En fonction des plugins certaines options peuvent ne pas fonctionner
 
 [TIP]
-Sie können rechts unten die Größe der Widgets ändern 
+Vous pouvez en bas à droite redimensionner les widgets
 
-== Text/html hinzufügen
+== Ajout texte/html
 
 image::../images/plan11.png[]
 
-Ermöglicht einen Text oder HTML/Javascript Code hinzuzufügen, einmal oben anklicken bekommen sie : 
+Permet d'ajouter un texte ou du code html/javascript, une fois cliqué dessus vous obtenez : 
 
 image::../images/plan12.png[]
 
@@ -108,21 +108,21 @@ Ein Doppelklick darauf dann gelangen sie zum Konfigurations Fenster :
 
 image::../images/plan13.png[]
 
-* *Name* : Sie können Text oder HTML/JavaScript eingeben
-* *Symbol* : Sie können ein Symbol anstelle von Text einsetzen
+* *Nom* : permet de rentrer le texte ou le code html/javascript
+* *Icone* : permet de mettre une icône à la place du texte
 * *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
 * *Couleur du textes* : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
-* *Runde Ecken (vergessen Sie nicht das % einzugeben, bsp. 50%)* : wird verwendet, um die Ecken abzurunden, vergessen sie nicht das % Zeichen einzugeben
-* *Rand (Achtung css syntax, bsp.: solid 1px black)* : um einen Rand hinzuzufügen, Achtung es ist die HTML Syntax zu verwenden
-* *Schriftgröße (z.B. 50%, das % -Zeichen muß eingegeben werden)* : ermöglicht die Schriftgröße zu ändern
-* *Die vorgegebene Größe nicht berücksichtigen* : ermöglicht die Voreinstellung der Widget Größe zu ignorieren
-* *Tiefe* : erlaubt das Niveau der Tiefe zu wählen
-* *Fett* : macht den Text fett
+* *Arrondir les angles (ne pas oublier de mettre %, ex 50%)* : permet d'arrondir les angles, ne pas oublier de mettre le %
+* *Bordure (attention syntax css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
+* *Taille de la police (ex 50%, il faut bien mettre le signe %)* : permet de modifier la taille de la police
+* *Ne pas prendre en compte la taille prédéfinie* : permet d'ignorer la taille prédéfinie du widget
+* *Profondeur* : permet de choisir le niveau de la profondeur
+* *Gras* : met le texte en gras
 
 [TIP]
-Sie können unten rechts die Größe ändern
+Vous pouvez en bas à droite le redimensionner
 
-== Ein Szenario hinzufügen
+== Ajout d'un scénario
 
 image::../images/plan14.png[]
 
@@ -138,23 +138,23 @@ Ein Doppelklick darauf dann gelangen sie auf die Konfiguration des Szenarioeleme
 
 image::../images/plan17.png[]
 
-* *Allgemein*
-** *Größe des Widgets* : ermöglicht ein Widget Größenverhältnis, zum Beispiel wird hier die Größe mit nur 65%  definieren
+* *Général*
+** *Taille du widget* : permet de definir un ratio de taille de widget, par exemple ici il ne fera que 65% de sa taille
 ** *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
 ** *Couleur des icônes et textes* : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
-** *Runde Ecken (vergessen Sie nicht das % einzugeben, bsp. 50%)* : wird verwendet, um die Ecken abzurunden, vergessen sie nicht das % Zeichen einzugeben
+** *Arrondir les angles (ne pas oublier de mettre %, ex 50%)* : permet d'arrondir les angles du widget, ne pas oublier de mettre le %
 ** *Bordure (attention syntaxe css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
-** *Tiefe* : erlaubt das Niveau der Tiefe zu wählen, zum Beispiel um ein Widget mit einem andern zu überdecken
-* *Speziele* : ermöglicht, den Aktions Befehl im Szenario zu verstecken
+** *Profondeur* : permet de choisir le niveau de la profondeur, pour par exemple passer un widget par dessus un autre
+* *Spécifique* : permet de masquer les commandes d'action sur le scénario
 
 [TIP]
-Sie können unten rechts die Größe ändern
+Vous pouvez en bas à droite le redimensionner
 
-== Einen Link hinzufügen
+== Ajout d'un lien
 
 image::../images/plan18.png[]
 
-Erlaubt, einen Link zu einer Ansicht oder einem anderen Design hinzuzufügen : 
+Permet d'ajouter un lien vers une vue ou un autre design : 
 
 image::../images/plan19.png[]
 
@@ -168,23 +168,23 @@ image::../images/plan21.png[]
 
 Hier haben wir : 
 
-* *Name* : Hier können Sie den Namen des Links ändern
-* *Link* :  Ziel Verknüpfung 
-* *Position* : ermöglicht, die Lage des Links auf dem Ziel sehr genau einzustellen (um zum Beispiel direkt auf die Küche zu kommen) 
-* *Symbol* : Sie können ein Symbol anstelle von Text einsetzen
+* *Nom* : permet de changer le nom du lien
+* *Lien* : destination du lien
+* *Position* : permet de régler finement la position du lien sur la destination (pour par exemple arriver directement sur la cuisine)
+* *Icone* : permet de mettre une icône à la place du texte
 * *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
 * *Couleur du textes* : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
-* *Runde Ecken (vergessen Sie nicht das % einzugeben, bsp. 50%)* : wird verwendet, um die Ecken abzurunden, vergessen sie nicht das % Zeichen einzugeben
-* *Rand (Achtung css syntax, bsp.: solid 1px black)* : um einen Rand hinzuzufügen, Achtung es ist die HTML Syntax zu verwenden
-* *Tiefe* : erlaubt das Niveau der Tiefe zu wählen
-* *Schriftgröße (z.B. 50%, das % -Zeichen muß eingegeben werden)* : ermöglicht die Schriftgröße zu ändern
-* *Die vorgegebene Größe nicht berücksichtigen* : ermöglicht die Voreinstellung der Widget Größe zu ignorieren
-* *Fett* : macht den Text fett
+* *Arrondir les angles (ne pas oublier de mettre %, ex 50%)* : permet d'arrondir les angles, ne pas oublier de mettre le %
+* *Bordure (attention syntax css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
+* *Profondeur* : permet de choisir le niveau de la profondeur
+* *Taille de la police (ex 50%, il faut bien mettre le signe %)* : permet de modifier la taille de la police
+* *Ne pas prendre en compte la taille prédéfinie* : permet d'ignorer la taille prédéfinie du widget
+* *Gras* : met le texte en gras
 
 [TIP]
-Sie können unten rechts die Größe ändern
+Vous pouvez en bas à droite le redimensionner
 
-== Einen Graph hinzufügen
+== Ajout d'un graph
 
 image::../images/plan22.png[]
 
@@ -198,14 +198,14 @@ image::../images/plan24.png[]
 
 Hier haben wir : 
 
-* *Periode* : Hier können Sie die Anzeigeperiode wählen
+* *Période* : permet de choisir la période d'affichage
 * *Bordure (attention syntaxe css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
-* *Tiefe* : erlaubt das Niveau der Tiefe zu wählen
-* *Beschriftung anzeigen* : ermöglicht, das Anzeigen der Beschriftung
-* *Navigator* : ermöglicht, das Anzeigen oder Ausblenden eines Navigators (etwas unterhalb des Diagramms) 
-* *Perioden Selektor anzeigen* : oben links den Perioden Selektor anzeigen oder ausblenden
-* *Bildlaufleiste anzeigen* : zum anzeigen oder ausblenden der Bildlaufleiste
-* *Transparenter Hintergrund* : macht den Hintergrund transparent  
+* *Profondeur* : permet de choisir le niveau de la profondeur
+* *Afficher la légende* : permet d'afficher ou non la légende
+* *Afficher le navigateur* : permet d'afficher ou non le navigateur (deuxième graph plus léger en dessous du premier)
+* *Afficher le sélecteur de période* : affiche ou non le sélecteur de période en haut à gauche
+* *Afficher la barre de défilement* : affiche ou non la barre de défilement
+* *Fond transparent* : rend le fond transparent
 
 Pour choisir les données à afficher il faut cliquer sur les 3 roues crantées : 
 
@@ -215,13 +215,13 @@ Sie erhalten (es brauch möglicherweise etwas lange zu laden) :
 
 image::../images/plan26.png[]
 
-* *Aktivieren* : Die erste Schaltfläche ist zum aktivieren oder deaktivieren der Anzeige, des graphischen Datenelementes 
-* *Farbe* : die Farbe der Kurve
-* *Typ* : der Typ des Diagramms (Fläche, Linie oder Säule)  
-* *Treppe*: zeigt die Kurve in Form einer Treppe, die ununterbrochene wiedergegeben wird 
-* *Stapeln* : erlaubt, die Werte der Kurven zu stapeln (siehe das Ergebnis darunter)
-* *Wertänderung* : Zeigen den Unterschied der Werte im Vergleich zu dem vorherigen Punkt an.
-* *Maßstab* : Weil sie mehrere Diagramme (Daten) in der gleichen Grafik anzeigen können, ist es mit der Einstellung möglich, den Maßstab (rechts oder links) zu unterscheiden.
+* *Activer* : le premier bouton permet d'activer ou non l'affichage de la donnée sur le graphique
+* *Couleur* : la couleur de la courbe
+* *Type* : le type de graph (aire, ligne ou colonne)
+* *Escalier* : permet d'afficher la courbe sous la forme d'un escalier au d'un affichage continue
+* *Empiler* : permet d'empiler les valeurs des courbes (voir en dessous pour le résultat)
+* *Variation* : affiche la différence de valeur par rapport au point précédent
+* *Echelle* : vu que vous pouvez mettre plusieurs courbes (données) sur le même graphe il est possible de distinguer les échelles (droite ou gauche)
 
 [TIP]
-Sie können unten rechts die Größe ändern
+Vous pouvez en bas à droite le redimensionner

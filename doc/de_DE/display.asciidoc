@@ -1,8 +1,8 @@
-= Übersicht Haus-Automatisierung
+= Résumé domotique
 
 Cette page permet d'avoir un résumé sur sa domotique et donne aussi accès à des fonctions d'organisation des équipements et des commandes, à la configuration avancée des équipements et des commandes ainsi qu'à des possibilités de configuration d'affichage. Elle se décompose en un onglet "Ma domotique" et un un onglet "Configuration de l'affichage".
 
-Diese Seite ist über Werkzeuge -> Übersicht Haus-Automatisierung erreichbar : 
+Cette page est accessible par Outils -> Résumé domotique : 
 
 image::../images/display.png[]
 
@@ -34,7 +34,7 @@ image::../images/display3.png[]
 
 image::../images/display4.png[]
 
-* Gerätename
+* le nom de l'équipement
 * le type de l'équipement (identifiant du plugin auquel il appartient)
 * une croix signifie que l'équipement est inactif (si elle n'y est pas alors l'équipement est actif)
 * un oeil barré signifie que l'équipement est invisible (s'il n'y est pas alors l'équipement est visible)
@@ -52,7 +52,7 @@ image::../images/display5.png[]
 
 Chaque bloc jaune correspond à une commande de votre équipement (un nouveau clic sur la petite flèche de l'équipement permet de les masquer). Si vous faites un double clic sur la commande ou que vous cliquez sur la petite roue crantée cela fera apparaitre la fenêtre de configuration
 
-== Erweiterte Geräte Konfiguration
+== Configuration avancée d'un équipement
 
 La fenêtre de configuration avancée d'un équipement est composée de 2 onglets : Informations et Affichages avancés. 
 
@@ -61,14 +61,14 @@ En haut vous retrouvez aussi un bouton sauvegarder et un bouton de suppression d
 [TIP]
 Il est possible d'accéder (si le plugin le supporte) directement à cette fenêtre à partir de la page de configuration de l'équipement en cliquant sur les 3 petites roues crantées (souvent placées tout en haut à coté du titre "Général")
 
-=== Information
+=== Informations
 
 image::../images/display9.png[]
 
 L'onglet information contient les informations générales de l'équipement : 
 
 * *ID* : identifiant unique dans la base de données
-* *Name* : Gerätename
+* *Nom* : nom de l'équipement
 * *ID logique* : identifiant logique de l'équipement (peut être vide)
 * *ID de l'objet* : identifiant unique de l'objet père (peut être vide)
 * *Date de création* : date de création de l'équipement
@@ -78,7 +78,7 @@ L'onglet information contient les informations générales de l'équipement :
 * *Tentative échouée* : nombre de tentatives de communications consécutives avec l'équipement qui ont échoué
 * *Dernière mise à jour* : date de dernière communication avec l'équipement
 
-=== Erweiterte Anzeige
+=== Affichage avancé
 
 image::../images/display10.png[]
 
@@ -96,7 +96,7 @@ En-dessous, on retrouve des paramètres optionnels d'affichage que l'on peut pas
 image::../images/display11.png[]
 
 [TIP]
-Vergessen Sie nicht, nach jeder Veränderung zu speichern.
+N'oubliez pas de sauvegarder après toute modification
 
 === Batteries
 
@@ -110,7 +110,7 @@ La fenêtre de configuration avancée d'une commande est composée de 3 onglets 
 
 Elle a aussi 2 boutons, un pour sauvegarder et un pour appliquer les mêmes paramètres de configuration à une autre commande
 
-=== Information
+=== Informations
 
 image::../images/display12.png[]
 
@@ -118,7 +118,7 @@ L'onglet information contient les informations générales sur la commande :
 
 * *ID* : identifiant unique dans la base de données
 * *Logical ID* : identifiant logique de la commande (peut être vide)
-* *Name* : Name des Befehls
+* *Nom* : nom de la commande
 * *Type* : type de la commande (action ou info)
 * *Sous-type* : sous type de la commande (binaire, numérique...)
 * *URL directe* : fournit une URL (clic droit copier l'addresse du lien) pour, en fonction du type de la commande, déclencher l'action ou récupérer sa valeur (si c'est une commande de type info)
@@ -130,7 +130,7 @@ L'onglet information contient les informations générales sur la commande :
 
 En-dessous, vous retrouvez la liste des différents équipements, commandes, scénarios ou interactions qui utilisent cette commande. Un clic dessus permet d'aller directement sur leur configuration respective
 
-=== Erweiterte Konfiguration
+=== Configuration avancée
 
 image::../images/display13.png[]
 
@@ -144,7 +144,7 @@ Pour une commande de type info :
 * *Type générique* : cette partie permet de configurer le type générique de la commande (Jeedom essaie de le trouver par lui-même en mode auto). Cette information est utilisée par l'application mobile.
 * *Action sur la valeur* : cette partie permet de faire des sortes de mini scénarios, vous pouvez par exemple dire que si la valeur vaut plus de 50 pendant 3 minutes alors il faut faire telle action. Cela permet par exemple d'éteindre une lumiere X minutes après que celle-ci se soit allumée
 * *Historique* : voir link:https://jeedom.com/doc/documentation/core/fr_FR/doc-core-history.html#_configuration_spécifique_par_commande[ici]
-* * Sonstige*
+* *Autres*
 ** *Ne pas répéter si la valeur ne change pas* : Si la commande remonte 2 fois la même valeur d'affilée alors Jeedom ne prend pas en compte la 2eme remontée (évite de déclencher plusieurs fois un scénario par exemple si la valeur ne change pas)
 ** *Push URL* : permet de rajouter une URL à appeler en cas de mise à jour de la commande. Vous pouvez utiliser les tags suivant : \#value# pour la valeur de la commande, \#cmd_name# pour le nom de la commande, \#cmd_id# pour l'identifiant unique de la commande, \#humanname# pour le nom complet de la commande (ex : \#[Salle de bain][Hydrometrie][Humidité]#)
 
@@ -155,7 +155,7 @@ image::../images/display15.png[]
 * *Confirmer l'action* : lors d'une action à partir de l'interface sur cette commande Jeedom demandera une confirmation
 * *Code d'accès* : lors d'une action à partir de l'interface sur cette commande Jeedom demandera le code
 
-=== Erweiterte Anzeige
+=== Affichage avancé
 
 image::../images/display14.png[]
 
@@ -172,4 +172,4 @@ Sie können :
 En-dessous, on retrouve des paramètres optionnels d'affichage que l'on peut passer au widget. Ces paramètres dependent du widget en question, il faut donc regarder sa fiche sur le Market pour les connaitre.
 
 [TIP]
-Vergessen Sie nicht, nach jeder Veränderung zu speichern.
+N'oubliez pas de sauvegarder après toute modification

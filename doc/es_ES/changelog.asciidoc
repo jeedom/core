@@ -2,52 +2,52 @@
 
 == 3.0
 
-* Supresión del modo esclavo
-* Posibilidad de activar un escenario sobre un cambio de una variable
+* Suppression du mode esclave
+* Possibilité de déclencher un scénario sur un changement d'une variable
 * Les mises à jour de variables déclenchent maintenant la mise à jour des commandes d'un équipement virtuel (il faut la dernière version du plugin)
-* Posibilidad de tener un icono en los comandos de tipo Info
-* Posibilidad sobre los comandos de mostrar el nombre y el icono
-* Adición de una acción 'alerta' sobre los escenarios
-* Adición de una acción "popup" en escenarios
-* Los widgets de comandos ahora pueden tener un método de actualización que evita las llamadas AJAX a Jeedom
-* Los widgets de los escenarios ahora se actualizan sin llamadas ajax sobre el widget
-* El resumen general y las partes ahora se actualizan sin llamadas de ajax
-Botón derecho del ratón en un elemento de un resumen domótico te lleva a una vista detallada del mismo
-* Ahora puedes poner en el Resumen los comandos de tipo texto
-* Cambio de bootstraps slider en slider (corregido el error del doble evento de los sliders)
-* Salvado automático de vistas cuando se haga clic sobre el botón "ver resultado"
-* Posibilidad de tener los documentos localmente
-* Los desarrolladores de terceros pueden añadir su propio sistema de gestión de ticket
-* Revisión de la configuración de derechos de usuario (todo está en la página de administración de usuario)
-* Actualizadas las librerias : jquery (en 3.0) , jquery mobile, hightstock y table sorter, font-awesome
-* Grandes mejoras en diseño: 
-** Todas las acciones son ahora accesibles desde un clic derecho
-** Posibilidad de añadir un solo comando
-** Posibilidad de añadir una imagen o una secuencia de vídeo
-** Posibilidad de añadir zonas (localización clickable): 
-*** Zona de tipo macro: lanza una serie de acciones cuando hagas clic en el
-*** Zona de tipo binario: lanza una serie de acciones haciendo click sobre el, en función del estado de un comando
-*** Zona de tipo widget : muestra un widget  hacido clic o pasando sobre la zona
-** Optimización general del código general
-** Posibilidad de abrir una cuadrícula y seleccione su tamaño (10 x 10, 15 x 15 o 30 x 30)
-* Posibilidad de activar una magnetización de los widgets sobre la cuadrícula
-** Posibilidad de activar una magnetización de widgets entre ellos
+* Possibilité d'avoir une icone sur les commandes de type info
+* Possibilité sur les commandes d'afficher le nom et l'icone
+* Ajout d'une action "alert" sur les scénarios
+* Ajout d'une action "popup" sur les scénarios
+* Les widgets des commandes peuvent maintenant avoir une méthode d'update ce qui évite un appels AJAX à Jeedom
+* Les widgets des scénarios sont maintenant mis à jour sans appels ajax pour avoir le widget
+* Le résumé global et des pièces sont maintenant mis à jour sans appels ajax
+* Un clic sur un élément d'un résumé domotique vous amène sur une vue détaillée de celui-ci
+* Vous pouvez maintenant mettre dans les résumés des commandes de type texte
+* Changement des bootstraps slider en slider (correction du bug du double événement des sliders)
+* Sauvegarde automatique des vues lors du clic sur le bouton "voir le résultat"
+* Possibilité d'avoir les docs en local
+* Les développeurs tiers peuvent ajouter leur propre système de gestion de tickets
+* Refonte de la configuration des droits utilisateurs (tout est sur la page de gestion des utilisateurs)
+* Mise à jour des libs : jquery (en 3.0) , jquery mobile, hightstock et table sorter, font-awesome
+* Grosse amélioration des designs : 
+** Toute les actions sont maintenant accessibles à partir d'un clic droit
+** Possibilité d'ajouter une commande seule
+** Possibilité d'ajouter une image ou un flux vidéo
+** Possibilité d'ajouter des zones (emplacement cliquable) : 
+*** Zone de type macro : lance une série d'actions lors d'un clic dessus
+*** Zone de type binaire : lance une série d'actions lors d'un clic dessus en fonction de l'état d'une commande
+*** Zone de type widget : affiche un widget au clic ou au survol de la zone
+** Optimisation général du code
+** Possibilité de faire apparaître une grille et de choisir sa taille (10x10,15x15 ou 30x30)
+** Possibilité d'activer une aimantation des widgets sur la grille
+** Possibilité d'activer une aimantation des widgets entre eux
 ** Certains types de widgets peuvent maintenant être dupliqués
-** Posibilidad de bloquear un elemento
-* Ahora los plugins pueden utilizar una clave api propia
-* Añadidas interacciones automáticas, Jeedom va a intentar entender la frase, para llevar a cabo la acción y responder
-* Añadida gestión de demonios en versión móvil
-* Añadida gestión de crons en versión móvil
-* Añadir cierta información de salud en versión móvil
-* Agregado sobre la página de batería los módulos en alerta
-* Objetos sin widget automáticamente se ocultan en el Dashboard
-* Añadido un botón en la configuración avanzada de dispositivos/comando para ver los eventos de él o ella
-* Un disparador de un escenario ahora puede tener condiciones
+** Possibilité de verouiller un élément
+* Les plugins peuvent maintenant utiliser une clef api qui leur est propre
+* Ajout d'interactions automatiques, Jeedom va essayer de comprendre la phrase, d'exécuter l'action et de répondre
+* Ajout de la gestion des démons en version mobile
+* Ajout de la gestion des crons en version mobile
+* Ajout de certaines informations de santé en version mobile
+* Ajout sur la page batterie des modules en alerte
+* Les objets sans widget sont automatiquement masqués sur le dashboard
+* Ajout d'un bouton dans la configuration avancée d'un équipement/d'une commande pour voir les événements de celui-ci/celle-ci
+* Les déclencheurs d'un scénario peuvent maintenant être des conditions
 * Un double clic sur la ligne d'une commande (sur la page de configuration) ouvre maintenant la configuration avancée de celle-ci
 * Possibilité d'interdire certaines valeurs pour une commande (dans la configuration avancée de celle-ci)
-* Añadidos campos de configuración en la parte posterior del estado automático (ej a 0 después de 4 minutos) en la configuración avanzada de un comando
-* Añadida una función valueDate en escenarios (consulte la documentación de los escenarios)
-* Posibilidad sobre escenarios de cambiar el valor de un comando con la acción "evento"
+* Ajout des champs de configuration sur le retour d'état automatique (ex revenir à 0 au bout de 4min) dans la configuration avancée d'une commande
+* Ajout d'une fonction valueDate dans les scénarios (voir documentation des scénarios)
+* Possibilité dans les scénarios de modifier la valeur d'une commande avec l'action "event"
 * Ajout d'un champs commentaire sur la configuration avancée d'un équipement
 * Ajout d'un système d'alerte sur les commandes avec 2 niveaux : alerte et danger. La configuration se trouve dans la configuration avancée des commandes (de type info seulement bien sûr). Vous pouvez voir les modules en alerte sur la page Analyse -> Equipement. Vous pouvez configurer les actions sur alerte sur la page de configuration générale de Jeedom
 * Ajout d'une zone "tableau" sur les vues qui permet d'afficher une ou plusieurs colonnes par case. Les cases supportent aussi le code html

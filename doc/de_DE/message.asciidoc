@@ -1,8 +1,8 @@
-= Nachrichtenzentrale
+= Centre des messages
 
 Die Nachrichtenzentrale beinhaltet alle wichtigen Nachrichten, die Sie sich ansehen sollten.
 
-Es ist nur verfügbar, wenn Nachrichten vorhanden sind, einfach auf die Anzahl der Nachrichten klicken : 
+Il n'est accessible que lorsqu'il y a des messages en cliquant sur le nombre de messages : 
 
 image::../images/message1.png[]
 
@@ -10,7 +10,7 @@ Hier ist ein Beispiel :
 
 image::../images/message.png[]
 
-Es ist ziemlich einfach. Es zeigt Ihnen das Datum und die Uhrzeit der Nachricht, das Plugin, das es ausgegeben hat und die betreffende Nachricht. Sie können die betreffende Nachricht löschen, indem Sie die Schaltfläche am Anfang der Nachrichtenzeile drücken. (die Nachricht wird zurückkehren, wenn das Problem immer noch relevant ist).
+Il est assez simple. Il vous montre la date et l'heure du message, le plugin qui l'a émis et le message en question. Vous pouvez, en appuyant sur le bouton au tout début de la ligne d'un message, supprimer le message en question (il reviendra si le problème est toujours d'actualité).
 
 Oben finden wir eine Auswahlliste zum Filtern von Nachrichten von ein bestimmtem Plugin und rechts eine Schaltfläche, um alle Nachrichten zu löschen.
 

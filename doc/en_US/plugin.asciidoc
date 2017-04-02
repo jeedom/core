@@ -2,7 +2,7 @@
 
 Plugins submenu allows you to manage plugins, namely : download, update, and activate them.
 
-== Managing plugins
+== Gestion des plugins
 
 Vous pouvez accèder à la page plugins à partir de Plugins -> Gestion des plugins : 
 
@@ -22,7 +22,7 @@ image::../images/plugin3.png[]
 En haut vous retrouvez l'ID et le nom du plugin, ainsi que la version installée (ici beta). En dessous vous avez le bouton d'activation/désactivation d'un plugin
 
 [IMPORTANT]
-When downloading a plugin it is not enabled, so you must activate it
+Lors du téléchargement d'un plugin celui-ci n'est pas activé, il faut donc que vous l'activiez
 
 Bellow you have 4 buttons : 
 

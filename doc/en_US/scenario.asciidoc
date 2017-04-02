@@ -2,7 +2,7 @@
 
 Here is the most important part in home automation: scenarios. Real brain of the automation is what allows you to interact with the real world in an "intelligent".
 
-== The scenario page
+== La page scénario
 
 Pour y accéder rien de plus simple, il suffit d'aller sur Outils -> Scénarios : 
 
@@ -14,7 +14,7 @@ image::../images/scenario.JPG[]
 
 En haut on retrouve une série de 3 boutons : 
 
-* *Add* : allows to add a scenario
+* *Ajouter* : permet d'ajouter un scénario
 * *Désactiver scénarios* : permet de désactiver tous les scénarios
 * *Voir les variables* : permet de voir les variables, leur valeur ainsi que l'endroit où elle sont utilisées
 
@@ -37,7 +37,7 @@ Lors de la création, Jeedom va vous demander le type de scénario à faire :
 image::../images/scenario2.JPG[]
 
 
-== Simple mode
+== Mode simple
 
 Voilà l'interface en mode simple : 
 
@@ -92,7 +92,7 @@ Ce scénario sera déclenché aussi bien lors de la détection d'une présence q
 [IMPORTANT]
 Il ne faut pas oublier de faire le même genre de scénario mais pour éteindre la lumière lorsque plus personne n'est présent
 
-== Advanced mode
+== Mode avancée
 
 Voici un exemple de scénario en mode avancé :
 
@@ -100,7 +100,7 @@ image::../images/scenario3.JPG[]
 
 En haut la partie générale où l'on retrouve :
 
-* *name*
+* *nom*
 * *groupe* : permet d'organiser les scénarios
 * *Actif* : Si le scénario est actif ou non
 * *Visible* : Si le scénario est visible ou non
@@ -156,7 +156,7 @@ Vous retrouvez ici les possibilités suivantes :
 
 image::../images/scenario8.JPG[]
 
-In order : 
+Dans l'ordre : 
 
 * un bouton pour déplacer l'action (les doubles flèches), il suffit de cliquer et maintenir le bouton puis de déplacer le bloc
 * un bouton pour supprimer l'action
@@ -183,18 +183,18 @@ Vous avez ici aussi un bouton pour aller chercher une commande
 
 === Condition ou valeur d'une commande d'action
 
-You can use any of the following symbols for the operators : 
+Vous pouvez utiliser n'importe lequel des symboles suivant pour les opérateurs : 
 
-* ==: equal,
-* > : superior,
-* >= : superior or equal,
+* == : égal,
+* > : supérieur,
+* >= : supérieur ou égal,
 * < : inférieur,
-* \<= : inferior or equal,
-* != : different,
+* \<= : inférieur ou égal,
+* != : différent,
 * matches : contient (ex : #[Salle de bain][Hydrometrie][etat]# matches "/humide/" ),
 * not ( ... matches ...) : ne contient pas (ex : not(#[Salle de bain][Hydrometrie][etat]# matches "/humide/")),
 
-You can combine any operation with the following operators :
+Vous pouvez combiner n'importe quelle opération avec les opérateurs suivants :
 
 * && / ET / et / AND / and : et,
 * || / OU / ou / OR / or : ou,
@@ -209,8 +209,8 @@ Un tag est remplacé lors de l'exécution du scénario par sa valeur
 * *\#heure#* : heure courante (ex : 17 pour 17h15),
 * *\#minute#* : minute courante (ex : 15 pour 17h15),
 * *\#jour#* : jour courant,
-* *\#month#* : current month,
-* *\#year#* : current year,
+* *\#mois#* : mois courant,
+* *\#annee#* : année courante,
 * *\#time#* : heure et minute courante (ex : 1715 pour 17h15),
 * *\#timestamp#* : retourne le nombre de secondes depuis le 1er janvier 1970,
 * *\#date#* : jour et mois courant (ex : 1215 pour le 15 décembre),
@@ -355,7 +355,7 @@ image::../images/scenario20.JPG[]
 [IMPORTANT]
 Attention les tags ne sont pas disponibles dans un bloc de type code.
 
-Commands (sensors and actuators)::
+Commandes (capteurs et actionneurs)::
 
 * *cmd::byString($string)*;
     ** Retourne l'objet commande correspondant
@@ -386,7 +386,7 @@ Scénario::
 * *$scenario\->getGroup()*;
     ** Retourne le groupe du scénario
                            
-* * $scenario\-&gt; getIsActive() *;
+* *$scenario\->getIsActive()*;
     ** Retourne l'état du scénario
                               
 * *$scenario\->setIsActive($active)*;
@@ -448,7 +448,7 @@ image::../images/scenario17.JPG[]
 On top you can : 
 
 * *Partager* : partager le template sur le Market
-* *Cancel* : cancel the template 
+* *Supprimer* : supprimer le template 
 * *Télécharger* : permet de récupérer le template sous forme de fichier JSON pour le renvoyer sur un autre Jeedom par exemple
 
 En-dessous vous avez la partie pour appliquer votre template au scénario courant.
@@ -458,7 +458,7 @@ Etant donné que d'un Jeedom à l'autre ou d'une installation à une autre les c
 
 Il vous suffit de remplir la correspondance des commandes puis de faire appliquer
 
-== The logs
+== Les logs
 
 Vous pouvez accéder aux logs d'éxecution d'un scénario en cliquant sur le bouton log de celui-ci : 
 

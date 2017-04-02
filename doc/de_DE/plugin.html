@@ -416,10 +416,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table des matières</div>
 <ul class="sectlevel1">
-<li><a href="#_plugin_verwaltung">1. Plugin Verwaltung</a></li>
-<li><a href="#_die_installation_eines_plugins">2. Die Installation eines Plugins</a></li>
-<li><a href="#_der_abschnitt_dämon_des_plugins">3. Der Abschnitt Dämon des Plugins</a></li>
-<li><a href="#_der_abschnitt_abhängigkeiten">4. Der Abschnitt Abhängigkeiten</a></li>
+<li><a href="#_gestion_des_plugins">1. Gestion des plugins</a></li>
+<li><a href="#_installation_d_un_plugin">2. Installation d&#8217;un plugin</a></li>
+<li><a href="#_la_partie_démon_des_plugins">3. La partie démon des plugins</a></li>
+<li><a href="#_la_partie_dépendances">4. La partie Dépendances</a></li>
 </ul>
 </div>
 </div>
@@ -432,10 +432,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_plugin_verwaltung">1. Plugin Verwaltung</h2>
+<h2 id="_gestion_des_plugins">1. Gestion des plugins</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Sie können auf die Plugin-Seite über das Menü  Plugin &#8594; Plugin Verwaltung zugreifen :</p>
+<p>Vous pouvez accèder à la page plugins à partir de Plugins &#8594; Gestion des plugins :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -443,7 +443,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>Wenn man darauf geklickt hat, findet man sich auf der Seite wieder, die uns eine Liste der Plugins anzeigt :</p>
+<p>Une fois que l&#8217;on clique dessus on retrouve la page qui nous présente la liste des plugins :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -457,7 +457,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Wie an vielen Orten auf Jeedom, wenn man die Maus ganz nach links bewegt ermöglicht es, ein Schnellzugangsmenü sichtbar zu machen(Sie können es in ihrem Profil immer sichtbar machen).
+Comme à beaucoup d&#8217;endroits sur Jeedom, mettre la souris tout à gauche permet de faire apparaître un menu d&#8217;accès rapide (vous pouvez à partir de votre profil le laisser toujours visible).
 </td>
 </tr>
 </table>
@@ -471,7 +471,7 @@ Wie an vielen Orten auf Jeedom, wenn man die Maus ganz nach links bewegt ermögl
 </div>
 </div>
 <div class="paragraph">
-<p>Oben sehen Sie die ID und Name des Plugins sowie die installierte Version (hier die Beta). Darunter haben Sie die Schaltfläche zum Aktiviern/Deaktivieren eines Plugins.</p>
+<p>En haut vous retrouvez l&#8217;ID et le nom du plugin, ainsi que la version installée (ici beta). En dessous vous avez le bouton d&#8217;activation/désactivation d&#8217;un plugin</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -480,7 +480,7 @@ Wie an vielen Orten auf Jeedom, wenn man die Maus ganz nach links bewegt ermögl
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Nach dem Herunterladen eines Plugin ist dieses nicht aktiviert, sodas sie es anschließend aktivieren müssen.
+Lors du téléchargement d&#8217;un plugin celui-ci n&#8217;est pas activé, il faut donc que vous l&#8217;activiez
 </td>
 </tr>
 </table>
@@ -491,16 +491,16 @@ Nach dem Herunterladen eines Plugin ist dieses nicht aktiviert, sodas sie es ans
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Im Markt sehen</strong> : erlaubt, das Datenblatt des Plugin zu sehen</p>
+<p><strong>Voir sur le Market</strong> : permet de voir la fiche du plugin</p>
 </li>
 <li>
-<p><strong>Auf den Markt senden</strong> : ermöglicht, das Plugin auf den Markt zu senden (nur verfügbar, wenn Sie der Autor sind)</p>
+<p><strong>Envoyer sur le Market</strong> : permet d&#8217;envoyer le plugin sur le Market (uniquement disponible si vous en êtes l&#8217;auteur)</p>
 </li>
 <li>
-<p><strong>Löschen</strong> : Das Plugin wird von Jeedom entfernt. Achtung, dies entfernt auch dauerhaft die Geräte des Plugin</p>
+<p><strong>Supprimer</strong> : Supprime le plugin de votre Jeedom. Attention cela supprime définitivement tous les équipements de ce plugin aussi</p>
 </li>
 <li>
-<p><strong>Dokumentation</strong> : Ermöglicht den direkten Zugriff auf die Dokumentationsseite vom Plugin</p>
+<p><strong>Documentation</strong> : Permet d&#8217;accéder directement à la page de documentation du plugin</p>
 </li>
 </ul>
 </div>
@@ -511,7 +511,7 @@ Nach dem Herunterladen eines Plugin ist dieses nicht aktiviert, sodas sie es ans
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Einige Plugin haben einen Konfiguration-Teil, es ist in diesem Fall notwendig in der Dokumentation des Plugins die Frage zu finden, wie es zu konfigurieren ist.
+Certains plugins ont une partie configuration, il faut dans ce cas se référer à la doc du plugin en question pour savoir comment le configurer
 </td>
 </tr>
 </table>
@@ -519,7 +519,7 @@ Einige Plugin haben einen Konfiguration-Teil, es ist in diesem Fall notwendig in
 </div>
 </div>
 <div class="sect1">
-<h2 id="_die_installation_eines_plugins">2. Die Installation eines Plugins</h2>
+<h2 id="_installation_d_un_plugin">2. Installation d&#8217;un plugin</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Zum Installieren eines neuen klicken Sie einfach auf die Schaltfläche "Zum Markt gehen" :</p>
@@ -543,22 +543,22 @@ Einige Plugin haben einen Konfiguration-Teil, es ist in diesem Fall notwendig in
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Kostenlos/Gebührenpflichtig</strong> : Sie können den Filtern auf kostenlose oder gebührenpflichtig einstellen, das kleine Kreuz erlaubt den Filter zurückzusetzen.</p>
+<p><strong>Gratuit/Payant</strong> : permet de ne filtrer que sur les gratuits ou les payants, la petite croix permet de réinitialiser le filtre</p>
 </li>
 <li>
-<p><strong>Neue/Populäre</strong> : Die neuesten Plugins oder die meisten Downloads anzeigen, das kleine Kreuz erlaubt den Filter zurückzusetzen.</p>
+<p><strong>Nouveau/Populaire</strong> : permet d&#8217;afficher les derniers plugins ou ceux les plus téléchargés, la petite croix permet de réinitialiser le filtre</p>
 </li>
 <li>
-<p><strong>Installiert/Nicht installiert</strong> : Es ermöglicht ihnen, nur installierte oder nicht installierte Plugins anzuzeigen, das kleine Kreuz erlaubt den Filter zurückzusetzen</p>
+<p><strong>Installé/Non installé</strong> : permet de n&#8217;afficher que les plugins installés ou non, la petite croix permet de réinitialiser le filtre</p>
 </li>
 <li>
-<p><strong>Kategorie</strong> : erlaubt, nur einige Plugin Kategorien anzuzeigen</p>
+<p><strong>Catégorie</strong> : permet de n&#8217;afficher que certaines catégories de plugins</p>
 </li>
 <li>
-<p><strong>Suchen</strong> : um ein Plugin zu suchen (Namen oder eine Beschreibung davon)</p>
+<p><strong>Rechercher</strong> : permet de rechercher un plugin (dans le nom ou la description de celui-ci)</p>
 </li>
 <li>
-<p><strong>Benutzername</strong> :  Zeigt den Benutzernamen, mit dem man auf dem Markt verbunden ist sowie den Status der Verbindung an (hier Ok)</p>
+<p><strong>Nom d&#8217;utilisateur</strong> : affiche le nom d&#8217;utilisateur utilisé pour la connexion au Market ainsi que le statut de la connexion (ici ok)</p>
 </li>
 </ul>
 </div>
@@ -571,18 +571,34 @@ Einige Plugin haben einen Konfiguration-Teil, es ist in diesem Fall notwendig in
 </div>
 </div>
 <div class="paragraph">
-<p>Diese Karteikarte gibt Ihnen die volle Information über das Plugin, unter anderen :</p>
+<p>Cette fiche vous donne beaucoup d&#8217;informations sur le plugin, entre autre :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>S&#8217;il est officiel/recommandé ou s&#8217;il est obsolète (il faut vraiment éviter d&#8217;installer des plugins obsolètes)</p>
+</li>
+<li>
+<p>3 actions :</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Installer stable</strong> : permet d&#8217;installer le plugin dans sa version stable</p>
+</li>
+<li>
+<p><strong>Installer beta</strong> : permet d&#8217;installer le plugin dans sa version beta (seulement pour les betatesteurs)</p>
+</li>
+<li>
+<p><strong>Supprimer</strong> : si le plugin est actuellement installé, ce bouton permet de le supprimer</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>Wenn es offizielle/registriert oder veraltete ist (Sie müssen wirklich alte Plugin Installationen vermeiden)
-* 3 Schaltflächen :
-<strong> <strong>Stabile Installation</strong> : installiert das Plugin in einer stabilen Version
-</strong> <strong>Beta Installation</strong> : installiert das Plugin in einer Beta Version (nur für die Betatester)
-<strong>* *Löschen</strong> : Wenn das Plugin aktuell installiert ist, wird es mit dieser Schaltfläche gelöscht.</p>
-</div>
-<div class="paragraph">
-<p>Unten finden Sie auf der linken Seite die Beschreibung des Plugins, die Kompatibilität (wenn Jeedom einen Konflikt erkennt wird es gemeldet), Bewertung zum Plugin (hier können sie eine Bewertung abgeben), Kommentar zu diesem und weitere Informationen (Autor, die Person die das letzte Update entwickelt hat, einen Link zu der Doc, die Anzahl der Downloads).
-Auf der rechten Seite finden Sie die Liste der Aktualisierungen (Die Schaltfläche "Alle anzeigen" ermöglicht es ihnen, die ganze Geschichte anzuzeigen), eine schnelle Benutzerdokumentation (es wird empfohlen, dass Sie immer noch die vollständige Dokumentation lesen) und schließlich der Typ (Plugin, Widgets&#8230;&#8203;), die Sprache und verschiedene Informationen über das Datum der letzten stabilen Version.</p>
+<p>En dessous vous retrouvez sur la gauche la description du plugin, la compatibilité (si Jeedom détecte une incompatibilité il vous le signalera), les avis sur le plugin (vous pouvez ici le noter), les commentaires sur celui-ci et des informations complémentaires (l&#8217;auteur, la personne ayant fait la dernière mise à jour, un lien vers la doc, le nombre de téléchargements).
+Sur la droite vous retrouvez la liste des dernières mises à jour (un bouton tout voir vous permet d&#8217;avoir tout l&#8217;historique), une documentation rapide d&#8217;utilisation (il est recommandé quand même de lire la documentation complète) et enfin le type (plugin, widget&#8230;&#8203;), la langue et les diverses informations sur la date de la dernière stable, la beta et si vous pouvez sans crainte revenir sur la beta.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -591,7 +607,7 @@ Auf der rechten Seite finden Sie die Liste der Aktualisierungen (Die Schaltfläc
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Es ist wirklich nicht empfehlenswert, ein Beta Plugin auf ein Beta Jeedom zu installieren, das kann zu viele Probleme im Betrieb  führen.
+Il n&#8217;est vraiment pas recommandé de mettre un plugin beta sur un Jeedom beta, beaucoup de soucis de fonctionnement peuvent en résulter.
 </td>
 </tr>
 </table>
@@ -603,7 +619,7 @@ Es ist wirklich nicht empfehlenswert, ein Beta Plugin auf ein Beta Jeedom zu ins
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Einige Plugins sind gebührenpflichtig, in diesem Fall bietet die Seite das Plugin zum kaufen an, sobald dies erledigt ist, etwa zehn Minuten (Zeit der Bestätigung der Zahlung), dann kehrt man zur Plugin-Seite zurück, um es normalerweise zu installieren.
+Certains plugins sont payants, dans ce cas la fiche du plugin vous proposera de l&#8217;acheter, une fois cela fait il faut attendre une dizaine de minutes (temps de validation du paiement), puis retourner sur la fiche du plugin pour l&#8217;installer normalement.
 </td>
 </tr>
 </table>
@@ -623,7 +639,7 @@ Vous pouvez aussi ajouter un plugin à Jeedom à partir d&#8217;un fichier ou de
 </div>
 </div>
 <div class="sect1">
-<h2 id="_der_abschnitt_dämon_des_plugins">3. Der Abschnitt Dämon des Plugins</h2>
+<h2 id="_la_partie_démon_des_plugins">3. La partie démon des plugins</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Einige Plugins haben Dämonen, hier finden Sie den Status der Jeedom Dämonen (Master oder Slave)</p>
@@ -670,7 +686,7 @@ Vous pouvez aussi ajouter un plugin à Jeedom à partir d&#8217;un fichier ou de
 </div>
 </div>
 <div class="sect1">
-<h2 id="_der_abschnitt_abhängigkeiten">4. Der Abschnitt Abhängigkeiten</h2>
+<h2 id="_la_partie_dépendances">4. La partie Dépendances</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Certains plugins ont des dépendances, vous trouverez ici le statut des dépendances par jeedom (maître ou esclave)</p>

@@ -1,8 +1,8 @@
-= Profil
+= Profils
 
 La page profils vous permet de configurer certains comportements de Jeedom spécifiques à l'utilisateur : page d'accueil, thèmes de la version desktop, de la version mobile, des graphiques... Elle permet aussi de changer votre mot de passe et de passer en mode expert permettant une configuration plus poussée de Jeedom.
 
-== Das Menü Profil 
+== Menu profils
 
 Vous retrouvez en haut à droite sur chaque page de Jeedom le menu Profil : 
 
@@ -27,45 +27,45 @@ image::../images/profils3.png[]
 
 Hier finden sie unterschiedliche Felder wieder, die es ihnen ermöglicht Jeedom zu konfigurieren, alle diese Einstellungen sind nur mit ihrem Benutzer verbunden, sie sind also nur für sie
 
-=== Themen
+=== Thèmes
 
 image::../images/profils4.png[]
 
-Auf dem Themen-Feld können sie die Schnittstellenparameter einstellen : 
+Le panneau thèmes vous permet de régler des paramètres d'interface : 
 
-* *Desktop* : Themen zum verwenden im Desktop-Modus, Achtung nur das Standard-Theme wird offiziell von Jeedom unterstützt
+* *Desktop* : thèmes à utiliser en mode desktop, attention seul le thème par défaut est officiellement supporté par Jeedom
 * *Mobile* : permet de légèrement configurer le thème mobile (ici tout est supporté), soit clair soit sombre, ainsi que la couleur dominante de celui-ci
 * *Graphique Desktop* : permet de définir le thème par défaut des graphiques en mode desktop
 * *Graphique Mobile* : permet de définir le thème par défaut des graphiques en mode mobile
 
-=== Schnittstelle
+=== Interface
 
 image::../images/profils5.png[]
 
-Sie können hier bestimmte Verhaltensweisen der Schnittstelle einstellen : 
+Vous permet de définir certains comportements de l'interface :
 
-* *Allgemein*
+* *Général*
 ** *Ne pas masquer les menus automatiquement* : indique à Jeedom de ne pas masquer le panneau de gauche, lorsqu'il existe, pour rappel ce panneau est disponible sur la plupart des pages des plugins, ainsi que la page des scénarios, des interactions, des objets....
-* *Standard Seite*
-** *Desktop* : Desktop Standardseite die angezeigt wird wenn man sich verbindet
-** *Mobil* : Mobile Standardseite die angezeigt wird wenn man sich verbindet
-* *Standardobjekt auf dem Armaturenbrett* : Objekt, das standardmäßig beim öffnen des Armaturenbretts angezeigt wird
-* *Standardansicht* : Ansicht, die standardmäßig beim öffnen des Armaturenbretts angezeigt wird
-* * Standard Design* : Design, das standardmäßig beim öffnen des Armaturenbretts angezeigt wird
-** *Vollbild* : Standardmäßig in Vollbild anzeigen, beim öffnen des Design
-* *Amaturenbrett*
-** *Das Szenarien-Panel anzeigen* : erlaubt standardmäßig, das Szenario Menü (rechts) auf dem Armaturenbrett sichtbar zu machen
-** *Das Objekt-Panel anzeigen* : erlaubt standardmäßig, das  Objekt Menü (inks) auf dem Armaturenbrett sichtbar zu machen
-* *Ansicht*
-** *Das Ansichten-Panel anzeigen* : erlaubt standardmäßig, das Ansichten Menü (links) auf der Ansichts-Seite sichtbar zu machen
+* *Page par défaut*
+** *Desktop* : page par défaut à afficher lors de la connexion en desktop
+** *Mobile* : page par défaut à afficher lors de la connexion en mobile
+* *Objet par défaut sur le dashboard* : objet à afficher par défaut lors de l'arrivée sur le dashboard
+* *Vue par défaut* : vue à afficher par défaut lors de l'arrivée sur le dashboard
+* *Design par défaut* : design à afficher par défaut lors de l'arrivée sur le dashboard
+** *Plein écran* : affichage par défaut en plein écran lors de l'arrivée sur les designs
+* *Dashboard*
+** *Déplier le panneau des scénarios* : permet de rendre visible par défaut le menu des scénarios (à droite) sur le dashboard
+** *Déplier le panneau des objets* : permet de rendre visible par défaut le menu des objets (à gauche) sur le dashboard
+* *Vue*
+** *Déplier le panneau des vues* : permet de rendre visible par défaut le menu des vues (à gauche) sur les vues
 
-=== Benachrichtigungen
+=== Notifications
 
 image::../images/profils6.png[]
 
-Hier können Sie die Farbe der Meldungen einstellen, die in der Schnittstelle angezeigt wird
+Ici vous pouvez régler la couleur des notifications qui arrivent sur l'interface
 
-=== Sicherheit
+=== Sécurité
 
 image::../images/profils7.png[]
 

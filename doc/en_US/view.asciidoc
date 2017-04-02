@@ -1,4 +1,4 @@
-= View
+= Vues
 
 Les vues permettent simplement de créer un affichage personnalisé. Ce n'est pas aussi puissant que les designs mais cela permet en quelques minutes d'avoir un affichage plus personnalisé.
 
@@ -12,7 +12,7 @@ Comme vous pouvez le voir sur la capture, il est possible d'aller directement su
 [TIP]
 Vous pouvez dans votre profil choisir la vue par défaut lors du clic sur le menu des vues.
 
-== The views
+== Les vues
 
 Here is an example of view :
 

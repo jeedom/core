@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.3.dev">
-<title>Troubleshooting</title>
+<title>Dépannage</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -412,7 +412,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Troubleshooting</h1>
+<h1>Dépannage</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table des matières</div>
 
@@ -421,7 +421,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="content">
 <div class="dlist">
 <dl>
-<dt class="hdlist1">I have a blank page</dt>
+<dt class="hdlist1">J&#8217;ai une page blanche</dt>
 <dd>
 <p>Il faut se connecter en SSH à jeedom et lancer un script d&#8217;auto-diagnostic :</p>
 </dd>
@@ -470,7 +470,7 @@ sudo chown www-data:www-data core/config/common.config.php</code></pre>
 <hr>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">I have some {{&#8230;&#8203;}} everywhere</dt>
+<dt class="hdlist1">J&#8217;ai des {{&#8230;&#8203;}} partout</dt>
 <dd>
 <p>La cause la plus fréquente est l&#8217;utilisation d&#8217;un plugin en version beta, et Jeedom en stable, ou l&#8217;inverse</p>
 </dd>
@@ -519,7 +519,7 @@ souvent cela vient d&#8217;une commande qui ne se termine pas</p>
 <dl>
 <dt class="hdlist1">Je n&#8217;ai aucune erreur dans le log nginx.error malgrè des erreurs 500</dt>
 <dd>
-<p>In ssh :
+<p>En ssh :
 Editez le fichier /etc/php5/fpm/pool.d/www.conf et décommantez la ligne ";catch_worket_process=yes" (supression du ;)
 et redémarrez php "sudo service php5-fpm restart"</p>
 </dd>
@@ -557,7 +557,7 @@ l&#8217;objet lui-même du premier objet sélectionné à gauche dans l&#8217;ar
 <hr>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">I made the following mistake : SQLSTATE[HY000] [2002] Can&#8217;t connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock'</dt>
+<dt class="hdlist1">J&#8217;ai l&#8217;erreur suivante : SQLSTATE[HY000] [2002] Can&#8217;t connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock'</dt>
 <dd>
 <p>Cela est dû à MySQL qui s&#8217;est arrêté, ce n&#8217;est pas normal, les cas courants sont :</p>
 <div class="ulist">
@@ -595,7 +595,7 @@ mysqld --verbose</code></pre>
 <dt class="hdlist1">Les boutons Eteindre/Redémarrer ne fonctionnent pas</dt>
 <dd>
 <p>Sur une installation DIY c&#8217;est normal, il faut faire en ssh la commande visudo et à la fin du fichier
-You must add : www-data ALL=(ALL) NOPASSWD: ALL.</p>
+vous devez ajouter : www-data ALL=(ALL) NOPASSWD: ALL.</p>
 </dd>
 </dl>
 </div>

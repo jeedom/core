@@ -1,6 +1,6 @@
 = Log
 
-== Display
+== Affichage
 
 Le menu Logs permet de suivre ce qui se passe sur sa domotique. Dans la plupart des cas les logs ne serviront qu'à effectuer du debuggage et à résoudre des problèmes par l'équipe de support. Ce menu est d'ailleurs accessible uniquement en mode expert.
 
@@ -14,8 +14,8 @@ image::../images/log.JPG[]
 
 La page de Logs est assez simple, en haut à gauche une liste déroulante permettant le choix du log à regarder, en haut à droite vous avez 5 boutons :
 
-* *Refresh* : allows to refresh the actual log,
-* *Download* : allows to download an actual log,
+* *Rafraîchir* : permet de rafraîchir le log actuel,
+* *Télécharger* : permet de télécharger le log actuel,
 * *Vider* : permet de vider le log actuel,
 * *Supprimer* : permet de supprimer le log actuel, si Jeedom en a besoin il le recréera automatiquement,
 * *Supprimer tous les logs* : supprime tous les logs présents.

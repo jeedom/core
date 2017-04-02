@@ -1,6 +1,6 @@
-= Updates
+= Mise à jour
 
-== Update center
+== Centre de mise à jour
 
 Le centre de mise à jour centralise l'ensemble des fonctions de Jeedom, et permet de mettre à jour toutes les fonctionnalités de Jeedom, incluant le logiciel de base, les plugins, les widgets, etc...
 
@@ -30,7 +30,7 @@ A noter que "core:jeedom" signifie la mise à jour du logiciel de base Jeedom.
 
 En haut du tableau se trouvent les boutons de commande. Jeedom se connecte périodiquement avec le Market pour voir si des mises à jour sont disponibles (la date de dernière vérification est indiquée tout en haut du tableau à gauche). Si vous voulez réaliser une vérification manuelle, vous pouvez appuyer sur le bouton "Vérifier les mises à jour".
 
-The "Update" button to update all Jeedom.
+Le bouton "Mettre à jour" permet de mettre à jour l'ensemble de Jeedom.
 
 image::../images/update3.png[]
 
@@ -40,7 +40,7 @@ Sur la branche beta le numéro de version n'est pas toujours mis à jour après 
 [IMPORTANT]
 Avant une mise à jour, Jeedom va par défaut faire une sauvegarde. En cas de souci lors de l'application d'une mise à jour, Jeedom va automatiquement restaurer la sauvegarde faite juste avant. Ce principe n'est bien sûr valable que pour les mises à jour de Jeedom et non des plugins.
 
-By clicking on the arrow next to the "Update" button were a number of update options.
+En cliquant sur la flêche à côté du bouton "Mettre à jour" on a un certain nombre d'options de mise à jour.
 
 image::../images/update5.png[]
 
@@ -55,7 +55,7 @@ image::../images/update6.png[]
 
 Ici vous choisissez d'abord la mise à jour à réappliquer, si c'est en mode forcé ou non (vivement conseillé dans ce cas là) et s'il faut aussi appliquer les mises à jour suivantes (vivement conseillé aussi).
 
-Finally to the right of the page, the "Information" can track the status of the update.
+Enfin à droite de la page, la partie "Informations" permet de suivre l'état de la mise à jour.
 Ces informations sont à communiquer à l'équipe en cas de problème.
 
 image::../images/update4.png[]

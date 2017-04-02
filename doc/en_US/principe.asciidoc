@@ -1,19 +1,19 @@
-= Principal
+= Principe
 
-Jeedom is composed of a core which is on charge of basic functions : 
+Jeedom est composé d'un core qui se charge des fonctions de base : 
 
-* scenario
+* scénario
 * historisation
-* display
+* affichage
 * interaction
-* update and saving
+* mise à jour et sauvegarde
 
 Autour de ce core viennent se greffer des plugins qui peuvent être de toutes sortes :
  
 * protocole domotique (zwave, rfxcom, enOcean...)
 * protocole IP (knx,xPL...)
 * objet communiquant (nest, netatmo...)
-* high level (alarm, thermostat...)
+* haut niveau (alarme, thermostat...)
 * interface (widget)
 * organisation (agenda, Google agenda)
 * développement (script)

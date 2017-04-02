@@ -1,10 +1,10 @@
 = API JSON RPC
 
-Here is a documentation (which will change) on API's methods. First of all, here are the specifications (JSON RPC 2.0) : http://www.jsonrpc.org/specification
+Voici une documentation (qui évoluera) sur les méthodes de l'API. Tout d'abord voici les spécifications (JSON RPC 2.0) : http://www.jsonrpc.org/specification
 
 L'accès à l'API se fait par l'url : #URL_JEEDOM#/core/api/jeeApi.php
 
-== Various
+== Divers
 
 === ping
 
@@ -39,7 +39,7 @@ Settings :
 - int orderByCaterogy = 0 (retourne la liste des plugins triés par catégorie)
 
 
-== API JSON Object
+== API JSON Objet
 
 === object::all
 Retourne la liste de tous les objets
@@ -108,7 +108,7 @@ Renvoi un tableau d'équipement en fonction des paramètres. Le retour sera de l
 
 Settings:
 
-- string[] eqType = equipment types wanted
+- string[] eqType = tableau des types d'équipements voulus
 - int[] id = tableau des ID d'équipements personnalisés voulus
 
 === eqLogic::save
@@ -116,7 +116,7 @@ Retourne l'équipement enregistré/créé
 
 Settings:
 
-- int id (empty if it's a creation)
+- int id (vide si c'est une création)
 - string eqType_name (type de l'équipement script, virtuel...)
 - string $name
 - string $logicalId = <nowiki>''</nowiki>
@@ -212,7 +212,7 @@ Settings:
 
 - string type : type de la valeur stockée (pour les scénarios c'est scenario)
 - id linkId : -1 pour le global (valeur pour les scénarios par défaut, ou l'id du scénario)
-- string key : name of the value
+- string key : nom de la valeur
 
 === datastore::save
 Enregistre la valeur d'une variable dans le datastore
@@ -221,7 +221,7 @@ Settings:
 
 - string type : type de la valeur stockée (pour les scénarios c'est scenario)
 - id linkId : -1 pour le global (valeur pour les scénarios par défaut, ou l'id du scénario)
-- string key : name of the value
+- string key : nom de la valeur
 - mixte value : valeur à enregistrer
 
 == API JSON Message
@@ -277,7 +277,7 @@ Permet de vérifier les mises à jour
 === update::update
 Permet de mettre à jour Jeedom et tous les plugins
 
-== API JSON Examples
+== API JSON Exemples
 Voici un exemple d'utilisation de l'API. Pour l'exemple ci-dessous j'utilise https://github.com/jeedom/core/blob/stable/core/class/jsonrpcClient.class.php[cette class php] qui permet de simplifier l'utilisation de l'api.
 
 Récupération de la liste des objets :

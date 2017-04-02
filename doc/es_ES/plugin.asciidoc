@@ -2,7 +2,7 @@
 
 Le sous-menu Plugins, permet de gérer ses plugins, à savoir : les télécharger, les mettre à jour et les activer.
 
-== Gestión de plugins
+== Gestion des plugins
 
 Vous pouvez accèder à la page plugins à partir de Plugins -> Gestion des plugins : 
 
@@ -13,7 +13,7 @@ Une fois que l'on clique dessus on retrouve la page qui nous présente la liste 
 image::../images/plugin2.png[]
 
 [TIP]
-Al igual que en muchos lugares en Jeedom, situar el ratón en la zona la izquierda mostrará un menú de acceso rápido (se puede mostrar como "siempre visible" desde la configuración de su perfil).
+Comme à beaucoup d'endroits sur Jeedom, mettre la souris tout à gauche permet de faire apparaître un menu d'accès rapide (vous pouvez à partir de votre profil le laisser toujours visible).
 
 Sur cette page vous retrouvez tous les plugins présents sur votre Jeedom; en rouge ceux qui sont désactivés. En cliquant sur un plugin vous accèdez à sa configuration : 
 
@@ -21,7 +21,7 @@ image::../images/plugin3.png[]
 
 En haut vous retrouvez l'ID et le nom du plugin, ainsi que la version installée (ici beta). En dessous vous avez le bouton d'activation/désactivation d'un plugin
 
-[IMPORTANTE]
+[IMPORTANT]
 Lors du téléchargement d'un plugin celui-ci n'est pas activé, il faut donc que vous l'activiez
 
 En dessous vous retrouvez 4 boutons : 
@@ -68,10 +68,10 @@ Cette fiche vous donne beaucoup d'informations sur le plugin, entre autre :
 En dessous vous retrouvez sur la gauche la description du plugin, la compatibilité (si Jeedom détecte une incompatibilité il vous le signalera), les avis sur le plugin (vous pouvez ici le noter), les commentaires sur celui-ci et des informations complémentaires (l'auteur, la personne ayant fait la dernière mise à jour, un lien vers la doc, le nombre de téléchargements).
 Sur la droite vous retrouvez la liste des dernières mises à jour (un bouton tout voir vous permet d'avoir tout l'historique), une documentation rapide d'utilisation (il est recommandé quand même de lire la documentation complète) et enfin le type (plugin, widget...), la langue et les diverses informations sur la date de la dernière stable, la beta et si vous pouvez sans crainte revenir sur la beta.
 
-[IMPORTANTE]
+[IMPORTANT]
 Il n'est vraiment pas recommandé de mettre un plugin beta sur un Jeedom beta, beaucoup de soucis de fonctionnement peuvent en résulter.
 
-[IMPORTANTE]
+[IMPORTANT]
 Certains plugins sont payants, dans ce cas la fiche du plugin vous proposera de l'acheter, une fois cela fait il faut attendre une dizaine de minutes (temps de validation du paiement), puis retourner sur la fiche du plugin pour l'installer normalement.
 
 [TIP]

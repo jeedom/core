@@ -14,7 +14,7 @@ Type de commandes :
 
 Ces commandes peuvent être obtenues par :
 
-* SMS : send a SMS to launch the commands (action) or ask a question (info).
+* SMS : envoyer un SMS pour lancer des commandes (action) ou poser une question (info).
 * Vocal : dicter une phrase avec Siri, Google Now, SARAH, etc... Pour lancer des commandes (action) ou poser une question (info).
 * HTTP : lancer une URL HTTP contenant le texte (ex. Tasker, Slack) pour lancer des commandes (action) ou poser une question (info).
 
@@ -22,7 +22,7 @@ L'intérêt des interactions réside dans l'intégration simplifiée dans d'autr
 
 Avec un seul mécanisme sur d'autres systèmes, on peut donc contrôler tout Jeedom, ce qui permet une grande souplesse et d'éviter les bugs en cas de modification de la configuration de vos équipements comme ce serait le cas avec un accès direct via l'url de chaque commande.
 
-== First step
+== Premier pas
 
 === Page accueil des interactions
 
@@ -37,7 +37,7 @@ image::../images/interact002.png[]
 [TIP]
 Comme à beaucoup d'endroits sur Jeedom, mettre la souris tout à gauche permet de faire apparaître un menu d'accès rapide (vous pouvez à partir de votre profil le laisser toujours visible).
 
-* On top page, there are 3 buttons:
+* En haut de page, on trouve 3 boutons :
 ** *1* Le bouton "Ajouter" qui permet de créer de nouvelles interactions.
 ** *2* Le bouton "Régénérer" qui va recréer toutes les interactions (peut être très long > 5mn).
 ** *3* Le bouton "Tester" qui permet d'ouvrir un boîte de dialogue pour écrire et tester une phrase.
@@ -46,7 +46,7 @@ Comme à beaucoup d'endroits sur Jeedom, mettre la souris tout à gauche permet 
 Si vous avez une interaction qui génère les phrases pour les lumières par exemple, et que vous ajoutez un nouveau module de commande de lumière, il vous faudra soit régénérer toutes les interactions, soit aller dans l'interaction en question et la sauvegarder de nouveau pour créer les phrases de ce nouveau module.
 
 
-=== Create-Change an interaction
+=== Créer-Modifier une interaction
 
 Le principe de création est assez simple, on va définir une phrase modèle génératrice qui va permettre à Jeedom de créer une ou plusieurs centaines d’autres phrases qui seront des combinaisons possibles du modèle.
 
@@ -64,7 +64,7 @@ image::../images/interact003.png[]
 
 Ici vous trouvez 2 zones avec plusieurs éléments en leur sein : 
 
-* *General*
+* *Général*
 ** *Nom* : nom de l'interaction (peut être vide, le nom remplace le texte de la demande dans la liste des interactions).
 ** *Groupe* : groupe de l'interaction, cela permet de les organiser (peut être vide, sera donc dans le groupe "aucun").
 ** *Demande* : la phrase modèle génératrice (obligatoire).
@@ -81,11 +81,11 @@ Ici vous trouvez 2 zones avec plusieurs éléments en leur sein :
 ** *Limiter à la catégorie* : permet de limiter la génération à une ou plusieurs catégories.
 ** *Limiter à l'équipement* : permet de limiter la génération à un seul équipement/module (Jeedom crée la liste automatiquement à partir des équipements/modules que vous avez).
 * *Action* : à utiliser si vous voulez cibler une ou plusieurs commandes spécifiques ou passer des paramètres particuliers.
-* *Generated sentences*
+* *Phrases générées*
 ** *Phrases générées* : Bouton qui permet de voir les phrases générées par la phrase modèle génératrice (Vous devez sauver l'interaction pour générer ou régénérer les phrases).
 ** *Nombre de phrases générées* : nombre de phrases générées.
 
-==== Simple interaction
+==== Interaction simple
 
 La façon la plus simple de configurer une interaction c'est de lui donner un modèle générateur rigide sans variation possible, cette méthode ciblera très précisément une commande, ou un scénario.
 
@@ -150,7 +150,7 @@ Personnellement, je trouve intéressant d'avoir quelques incohérences du style 
 ===== Personnaliser les réponses
 
 Jusqu'à présent comme réponse à une interaction nous avions une simple phrase qui n'indique pas grand-chose à part que quelque chose s'est passé.
-The idea would be that Jeedom indicates us what he's done more precisely. 
+L'idée serait que Jeedom nous indique ce qu'il a fait un peu plus précisément.
 C'est là qu'intervient le champ réponse dans lequel on va pouvoir personnaliser le retour en fonction de la commande exécutée.
 
 Pour ce faire nous allons à nouveau utiliser les Tag Jeedom
@@ -162,7 +162,7 @@ On peut aussi ajouter n'importe quelle valeur d'une autre commande comme une tem
 
 image::../images/interact012.png[]
 
-===== Binary conversation
+===== Conversion binaire
 Les conversions binaires s'appliquent aux commandes de type info dont le sous-type est binaire (retourne 0 ou 1 uniquement) il faut donc activer les bons filtres comme on peut le voir sur la capture un peu plus bas (pour les catégories on peut toutes les cocher, pour l'exemple je n'ai gardé que lumière).
 
 image::../images/interact013.png[]
@@ -248,7 +248,7 @@ Useful link :
 * https://openclassrooms.com/courses/concevez-votre-site-web-avec-php-et-mysql/les-expressions-regulieres-partie-1-2
 
 
-== Examples
+== Exemples
 
 === Réponse composé de plusieurs informations
 
@@ -259,12 +259,12 @@ image::../images/interact021.png[]
 Dans cet exemple on voit une phrase simple qui va nous retourner une réponse avec 3 températures différentes, on peut donc ici mettre un peu tout ce que l'on veut afin d'avoir un ensemble d'informations en une seule fois.
 
 
-=== Is there someone in the room ?
+=== Y a-t-il quelqu'un dans la chambre ?
 
 ==== Version basique
 
-* The question is "is there someone in the room"
-* The answer is "no no one is in the room" or "yes there is someone in the room"
+* La question est donc "y’a-t-il quelqu’un dans la chambre"
+* La réponse sera "non il n’y a personne dans la chambre" ou "oui il y a quelqu’un dans la chambre"
 * La commande qui répond à ça est "\#[Chambre de julie][FGMS-001-2][Présence]#"
 
 image::../images/interact017.png[]
@@ -274,7 +274,7 @@ Cette exemple cible précisément un équipement spécifique ce qui permet d'avo
 ==== Evolution 
 
 * La question est donc "\#commande# [dans la |dans le] \#objet#"
-* The answer will be "no there is nobody in the room" ou "yes there is someone in the room"
+* La réponse sera "non il n’y a personne dans la pièce" ou "oui il y a quelqu’un dans la pièce"
 * Il n'y a pas de commande qui réponde à ça dans la partie Action vu que c'est une interaction Multiple commandes
 * En ajoutant une expression régulière on peut nettoyer les commandes que l'on ne veut pas voir pour n'avoir que les phrases sur les commandes "Présence".
 
@@ -432,18 +432,18 @@ Si vous activez les logs au niveau debug vous avez un log interact qui vous donn
 
 == Résumé
 
-Request::
+Demande::
 Vous pouvez utiliser "\#commande#" et "\#objet#" (les 2 doivent absolument être utilisés ensemble) pour générer une liste de commandes (il est possible de filtrer la génération pour réduire la liste). Il est aussi possible d'utiliser "\#equipement#" (utile si plusieurs commandes appartenant au même objet ont le même nom)
 Exemple : Quelle est la "\#commande# [du |de la |de l']\#objet#"
 Lors de la génération des commandes, vous pouvez utiliser le champ synonyme (syn1=syn2,syn3|syn4=syn5) pour remplacer le nom des objets, des équipements et/ou des commandes
 
-Response::
+Réponse::
 Vous pouvez utiliser "\#valeur#" et "\#unite#" dans le retour (ils seront remplacés par la valeur et l'unité de la commande). Vous avez aussi accès à tous les tags des scénarios et à : 
 "\#profile#" => Nom de la personne ayant lancé l'exécution (peut ne pas être disponible)
 Exemple : "\#valeur# \#unite#"
-You can use the binary conversion field to convert the binary values (0 and 1) : 
-Example : no|yes
+Vous pouvez utiliser le champ conversion binaire pour convertir les valeurs binaires (0 et 1) : 
+Exemple : non|oui
 
-Person::
-The field allows one to allow only certain people to execute the command, you can put multiple profiles separated by |.
+Personne::
+Le champ personne permet de n'autoriser que certaines personnes à exécuter la commande, vous pouvez mettre plusieurs profils en les séparant par |.
 Example: person1|person2

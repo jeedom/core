@@ -416,10 +416,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table des matières</div>
 <ul class="sectlevel1">
-<li><a href="#_misceláneos">1. Misceláneos</a>
+<li><a href="#_divers">1. Divers</a>
 <ul class="sectlevel2">
 <li><a href="#_ping">1.1. ping</a></li>
-<li><a href="#_versión">1.2. versión</a></li>
+<li><a href="#_version">1.2. version</a></li>
 <li><a href="#_datetime">1.3. datetime</a></li>
 </ul>
 </li>
@@ -512,7 +512,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_update_update">14.3. update::update</a></li>
 </ul>
 </li>
-<li><a href="#_api_json_ejemplos">15. API JSON Ejemplos</a></li>
+<li><a href="#_api_json_exemples">15. API JSON Exemples</a></li>
 </ul>
 </div>
 </div>
@@ -520,15 +520,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Aquí esta la documentación sobre los métodos de la API. En primer lugar están las especificaciones (JSON RPC 2.0):</p>
+<p>Voici une documentation (qui évoluera) sur les méthodes de l&#8217;API. Tout d&#8217;abord voici les spécifications (JSON RPC 2.0) : <a href="http://www.jsonrpc.org/specification" class="bare">http://www.jsonrpc.org/specification</a></p>
 </div>
 <div class="paragraph">
-<p>A la API se accede a través de la url: <mark>URL_JEEDOM</mark>/core/api/jeeApi.php</p>
+<p>L&#8217;accès à l&#8217;API se fait par l&#8217;url : <mark>URL_JEEDOM</mark>/core/api/jeeApi.php</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_misceláneos">1. Misceláneos</h2>
+<h2 id="_divers">1. Divers</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_ping">1.1. ping</h3>
@@ -537,7 +537,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="_versión">1.2. versión</h3>
+<h3 id="_version">1.2. version</h3>
 <div class="paragraph">
 <p>Devuelve la versión de Jeedom</p>
 </div>
@@ -582,9 +582,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>Parámetros:</p>
 </div>
-<div class="paragraph">
-<p>-int activateOnly = 0 (devuelve sólo la lista de plugins activos)
--int orderByCaterogy = 0 (devuelve la lista de plugins ordenados por categoría)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>int activateOnly = 0 (ne retourne que la liste des plugins activés)</p>
+</li>
+<li>
+<p>int orderByCaterogy = 0 (retourne la liste des plugins triés par catégorie)</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -607,7 +613,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_object_byid">4.3. object::byId</h3>
 <div class="paragraph">
-<p>Devuelve el objeto especificado</p>
+<p>Retourne l&#8217;objet spécifié</p>
 </div>
 <div class="paragraph">
 <p>Parámetros:</p>
@@ -718,7 +724,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_eqlogic_byobjectid">6.5. eqLogic::byObjectId</h3>
 <div class="paragraph">
-<p>Devuelve todas las instalaciones pertenecientes a la especificada</p>
+<p>Retourne tous les équipements appartenant à l&#8217;objet spécifié</p>
 </div>
 <div class="paragraph">
 <p>Parámetros:</p>
@@ -734,14 +740,20 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_eqlogic_bytypeandid">6.6. eqLogic::byTypeAndId</h3>
 <div class="paragraph">
-<p>Devuelve un array de equipos dependiendo de la configuración. El resultado será de la forma array('eqType1' &#8658;array( 'id'&#8658;&#8230;&#8203;,'cmds' &#8658; array(&#8230;&#8203;.)),'eqType2' &#8658;array( 'id'&#8658;&#8230;&#8203;,'cmds' &#8658; array(&#8230;&#8203;.))&#8230;&#8203;.,id1 &#8658; array( 'id'&#8658;&#8230;&#8203;,'cmds' &#8658; array(&#8230;&#8203;.)),id2 &#8658; array( 'id'&#8658;&#8230;&#8203;,'cmds' &#8658; array(&#8230;&#8203;.))..)</p>
+<p>Renvoi un tableau d&#8217;équipement en fonction des paramètres. Le retour sera de la forme array('eqType1' &#8658;array( 'id'&#8658;&#8230;&#8203;,'cmds' &#8658; array(&#8230;&#8203;.)),'eqType2' &#8658;array( 'id'&#8658;&#8230;&#8203;,'cmds' &#8658; array(&#8230;&#8203;.))&#8230;&#8203;.,id1 &#8658; array( 'id'&#8658;&#8230;&#8203;,'cmds' &#8658; array(&#8230;&#8203;.)),id2 &#8658; array( 'id'&#8658;&#8230;&#8203;,'cmds' &#8658; array(&#8230;&#8203;.))..)</p>
 </div>
 <div class="paragraph">
 <p>Parámetros:</p>
 </div>
-<div class="paragraph">
-<p>-string eqType [] = array de los tipos de dispositivos necesarios
--int [] id = matriz ID de dispositivos deseados personalizados</p>
+<div class="ulist">
+<ul>
+<li>
+<p>string[] eqType = tableau des types d&#8217;équipements voulus</p>
+</li>
+<li>
+<p>int[] id = tableau des ID d&#8217;équipements personnalisés voulus</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
@@ -752,18 +764,42 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>Parámetros:</p>
 </div>
-<div class="paragraph">
-<p>-int id (vacío si es una creación)
--string eqType_name (tipo guión de dispositivo,  virtual&#8230;&#8203;)
-- string $name
-- string $logicalId = &lt;nowiki&gt;''&lt;/nowiki&gt;
-- int $object_id = null
-- int $eqReal_id = null;
-- int $isVisible = 0;
-- int $isEnable = 0;
-- array $configuration;
-- int $timeout;
-- array $category;</p>
+<div class="ulist">
+<ul>
+<li>
+<p>int id (vide si c&#8217;est une création)</p>
+</li>
+<li>
+<p>string eqType_name (type de l&#8217;équipement script, virtuel&#8230;&#8203;)</p>
+</li>
+<li>
+<p>string $name</p>
+</li>
+<li>
+<p>string $logicalId = &lt;nowiki&gt;''&lt;/nowiki&gt;</p>
+</li>
+<li>
+<p>int $object_id = null</p>
+</li>
+<li>
+<p>int $eqReal_id = null;</p>
+</li>
+<li>
+<p>int $isVisible = 0;</p>
+</li>
+<li>
+<p>int $isEnable = 0;</p>
+</li>
+<li>
+<p>array $configuration;</p>
+</li>
+<li>
+<p>int $timeout;</p>
+</li>
+<li>
+<p>array $category;</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -820,8 +856,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>int id
--[options] lista de opciones  del comando (dependiendo el tipo y el subtipo del comando)</p>
+<p>int id</p>
+</li>
+<li>
+<p>[options] Liste des options de la commande (dépend du type et du sous-type de la commande)</p>
 </li>
 </ul>
 </div>
@@ -837,11 +875,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>int id
--string startTime: fecha de inicio para el cálculo de las estadística</p>
+<p>int id</p>
 </li>
 <li>
-<p>string endTime : fecha de fin del calculo de las estadisticas</p>
+<p>string startTime : date de début de calcul des statistiques</p>
+</li>
+<li>
+<p>string endTime : date de fin de calcul des statistiques</p>
 </li>
 </ul>
 </div>
@@ -860,10 +900,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>int id</p>
 </li>
 <li>
-<p>string startTime : fecha de inicio de cálculo de la tendencia</p>
+<p>string startTime : date de début de calcul de la tendance</p>
 </li>
 <li>
-<p>string endTime : fecha final del cálculo de la tendencia</p>
+<p>string endTime : date de fin de calcul de la tendance</p>
 </li>
 </ul>
 </div>
@@ -871,7 +911,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_cmd_gethistory">7.7. cmd::getHistory</h3>
 <div class="paragraph">
-<p>Devuelve el historico del comando (no funciona con comandos tipo información e historicos)</p>
+<p>Retourne l&#8217;historique de la commande (ne marche que sur les commandes de type info et historisées)</p>
 </div>
 <div class="paragraph">
 <p>Parámetros:</p>
@@ -882,10 +922,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>int id</p>
 </li>
 <li>
-<p>string startTime : fecha de inicio del historico</p>
+<p>string startTime : date de début de l&#8217;historique</p>
 </li>
 <li>
-<p>string endTime : date de fin del historico</p>
+<p>string endTime : date de fin de l&#8217;historique</p>
 </li>
 </ul>
 </div>
@@ -931,7 +971,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>int id</p>
 </li>
 <li>
-<p>string state : [run,stop,enable,disable]</p>
+<p>string state : [run,stop,enable,disable]</p>
 </li>
 </ul>
 </div>
@@ -944,7 +984,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_datastore_bytypelinkidkey">9.1. datastore::byTypeLinkIdKey</h3>
 <div class="paragraph">
-<p>Recupera el valor de una variable que se almacena en el almacén de datos</p>
+<p>Récupère la valeur d&#8217;une variable stockée dans le datastore</p>
 </div>
 <div class="paragraph">
 <p>Parámetros:</p>
@@ -952,13 +992,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>string type : tipo de valor almacenado (para los escenarios es scenario)</p>
+<p>string type : type de la valeur stockée (pour les scénarios c&#8217;est scenario)</p>
 </li>
 <li>
 <p>id linkId : -1 pour le global (valeur pour les scénarios par défaut, ou l&#8217;id du scénario)</p>
 </li>
 <li>
-<p>string key : nombre de valor</p>
+<p>string key : nom de la valeur</p>
 </li>
 </ul>
 </div>
@@ -966,7 +1006,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_datastore_save">9.2. datastore::save</h3>
 <div class="paragraph">
-<p>Guarda el valor de una variable en el almacén de datos</p>
+<p>Enregistre la valeur d&#8217;une variable dans le datastore</p>
 </div>
 <div class="paragraph">
 <p>Parámetros:</p>
@@ -974,16 +1014,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>string type : tipo de valor almacenado (para los escenarios es scenario)</p>
+<p>string type : type de la valeur stockée (pour les scénarios c&#8217;est scenario)</p>
 </li>
 <li>
 <p>id linkId : -1 pour le global (valeur pour les scénarios par défaut, ou l&#8217;id du scénario)</p>
 </li>
 <li>
-<p>string key : nombre de valor</p>
+<p>string key : nom de la valeur</p>
 </li>
 <li>
-<p>mixte value : valor a guardar</p>
+<p>mixte value : valeur à enregistrer</p>
 </li>
 </ul>
 </div>
@@ -1021,7 +1061,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>query  (frase de petición)</p>
+<p>query (phrase de la demande)</p>
 </li>
 </ul>
 </div>
@@ -1034,7 +1074,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_jeedom_halt">12.1. jeedom::halt</h3>
 <div class="paragraph">
-<p>Permite detener Jeedom</p>
+<p>Permet d&#8217;arrêter Jeedom</p>
 </div>
 </div>
 <div class="sect2">
@@ -1051,7 +1091,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_plugin_install">13.1. plugin::install</h3>
 <div class="paragraph">
-<p>Instalación/actualización de un plugin determinado</p>
+<p>Installation/Mise à jour d&#8217;un plugin donné</p>
 </div>
 <div class="paragraph">
 <p>Parámetros:</p>
@@ -1059,7 +1099,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>string plugin_id : nombre del plugin (nombre lógico)</p>
+<p>string plugin_id : nom du plugin (nom logique)</p>
 </li>
 </ul>
 </div>
@@ -1067,7 +1107,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_plugin_remove">13.2. plugin::remove</h3>
 <div class="paragraph">
-<p>Eliminación de un plugin determinado</p>
+<p>Suppression d&#8217;un plugin donné</p>
 </div>
 <div class="paragraph">
 <p>Parámetros:</p>
@@ -1075,7 +1115,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>string plugin_id : nombre del plugin (nombre lógico)</p>
+<p>string plugin_id : nom du plugin (nom logique)</p>
 </li>
 </ul>
 </div>
@@ -1106,7 +1146,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_api_json_ejemplos">15. API JSON Ejemplos</h2>
+<h2 id="_api_json_exemples">15. API JSON Exemples</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Voici un exemple d&#8217;utilisation de l&#8217;API. Pour l&#8217;exemple ci-dessous j&#8217;utilise <a href="https://github.com/jeedom/core/blob/stable/core/class/jsonrpcClient.class.php">cette class php</a> qui permet de simplifier l&#8217;utilisation de l&#8217;api.</p>
@@ -1125,7 +1165,7 @@ if($jsonrpc-&gt;sendRequest('object::all', array())){
 </div>
 </div>
 <div class="paragraph">
-<p>Ejecutar un comando (con una opción de un título y mensaje)</p>
+<p>Exécution d&#8217;une commande (avec comme option un titre et un message)</p>
 </div>
 <div class="listingblock">
 <div class="content">

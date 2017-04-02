@@ -5,7 +5,8 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.3.dev">
-<title>Interacciones - principio</title>
+<meta name="author" content="Skyline-ch">
+<title>Interactions - Principe</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -412,57 +413,60 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Interacciones - principio</h1>
+<h1>Interactions - Principe</h1>
+<div class="details">
+<span id="author" class="author">Skyline-ch</span><br>
+<span id="email" class="email">&lt;<a href="mailto:skyline-ch@play-4-fun.net">skyline-ch@play-4-fun.net</a>&gt;</span><br>
+</div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table des matières</div>
 <ul class="sectlevel1">
-<li><a href="#_primer_paso">1. Primer paso</a>
+<li><a href="#_premier_pas">1. Premier pas</a>
 <ul class="sectlevel2">
-<li><a href="#_página_inicial_de_interacciones">1.1. Página inicial de interacciones</a></li>
-<li><a href="#_crear_editar_una_interacción">1.2. Crear-editar una interacción</a></li>
-<li><a href="#_interfaz_de_configuración">1.3. Interfaz de configuración</a></li>
-<li><a href="#_interacción_simple">1.4. Interacción simple</a>
+<li><a href="#_page_accueil_des_interactions">1.1. Page accueil des interactions</a></li>
+<li><a href="#_créer_modifier_une_interaction">1.2. Créer-Modifier une interaction</a>
 <ul class="sectlevel3">
-<li><a href="#_interaction_multiple_commandes">1.4.1. Interaction multiple commandes</a></li>
-<li><a href="#_función_interacción_avanzada">1.4.2. Función interacción avanzada</a></li>
-<li><a href="#_personalizar_respuestas">1.4.3. Personalizar respuestas</a></li>
+<li><a href="#_interphase_de_configuration">1.2.1. Interphase de configuration</a></li>
+<li><a href="#_interaction_simple">1.2.2. Interaction simple</a></li>
+<li><a href="#_interaction_multiple_commandes">1.2.3. Interaction multiple commandes</a></li>
+<li><a href="#_interaction_fonction_avancé">1.2.4. Interaction fonction Avancé</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_ejemplos">2. Ejemplos</a>
+<li><a href="#_exemples">2. Exemples</a>
 <ul class="sectlevel2">
-<li><a href="#_réponse_compuesta_con_más_informacion">2.1. Réponse compuesta con más informacion</a></li>
-<li><a href="#__hay_alguien_en_la_sala">2.2. ¿Hay alguien en la sala?</a>
+<li><a href="#_réponse_composé_de_plusieurs_informations">2.1. Réponse composé de plusieurs informations</a></li>
+<li><a href="#_y_a_t_il_quelqu_un_dans_la_chambre">2.2. Y a-t-il quelqu&#8217;un dans la chambre ?</a>
 <ul class="sectlevel3">
-<li><a href="#_versión_básica">2.2.1. Versión básica</a></li>
-<li><a href="#_evolución">2.2.2. Evolución</a></li>
+<li><a href="#_version_basique">2.2.1. Version basique</a></li>
+<li><a href="#_evolution">2.2.2. Evolution</a></li>
 </ul>
 </li>
 <li><a href="#_connaître_la_température_humidité_luminosité">2.3. Connaître la température/humidité/luminosité</a>
 <ul class="sectlevel3">
-<li><a href="#_versión_básica_2">2.3.1. Versión básica</a></li>
-<li><a href="#_evolución_2">2.3.2. Evolución</a></li>
+<li><a href="#_version_basique_2">2.3.1. Version basique</a></li>
+<li><a href="#_evolution_2">2.3.2. Evolution</a></li>
 </ul>
 </li>
-<li><a href="#_control_de_un_regulador_o_termostato_regulador">2.4. Control de un regulador o termostato (regulador)</a>
+<li><a href="#_piloter_un_dimmer_ou_un_thermostat_slider">2.4. Piloter un dimmer ou un thermostat (slider)</a>
 <ul class="sectlevel3">
-<li><a href="#_versión_básica_3">2.4.1. Versión básica</a></li>
-<li><a href="#_evolución_3">2.4.2. Evolución</a></li>
+<li><a href="#_version_basique_3">2.4.1. Version basique</a></li>
+<li><a href="#_evolution_3">2.4.2. Evolution</a></li>
 </ul>
 </li>
-<li><a href="#_controlar_el_color_de_una_tira_led">2.5. Controlar el color de una tira LED</a>
+<li><a href="#_piloter_la_couleur_d_un_bandeau_de_led">2.5. Piloter la couleur d&#8217;un bandeau de LED</a></li>
+<li><a href="#_utilisation_couplée_à_un_scénario">2.6. Utilisation couplée à un scénario</a>
 <ul class="sectlevel3">
-<li><a href="#_utilización_en_un_escenario">2.5.1. Utilización en un escenario</a></li>
-<li><a href="#_versión_básica_4">2.5.2. Versión básica</a></li>
+<li><a href="#_version_basique_4">2.6.1. Version basique</a></li>
 </ul>
 </li>
-<li><a href="#_programación_de_una_acción_con_las_interacciones">2.6. Programación de una acción con las interacciones</a></li>
+<li><a href="#_programmation_d_une_action_avec_les_interactions">2.7. Programmation d&#8217;une action avec les interactions</a></li>
 </ul>
 </li>
-<li><a href="#_probar_una_interacción">3. Probar una Interacción</a></li>
-<li><a href="#_configuración">4. Configuración</a></li>
-<li><a href="#_resumen">5. Resumen</a></li>
+<li><a href="#_tester_une_interaction">3. Tester une interaction</a></li>
+<li><a href="#_configuration">4. Configuration</a></li>
+<li><a href="#_résumé">5. Résumé</a></li>
 </ul>
 </div>
 </div>
@@ -478,7 +482,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>acción: ejecutar un comando ejemplos: activar o desactivar una lámpara, alarma, calefacción, etc&#8230;&#8203;.</p>
+<p>action : lancer une commande, exemples : activer ou désactiver une lampe, alarme, chauffage, etc&#8230;&#8203;</p>
 </li>
 <li>
 <p>Info : interroger Jeedom avec une commande info pour connaître, par exemple la température du salon, l&#8217;état d&#8217;un appareil.</p>
@@ -491,29 +495,29 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>SMS: enviar un SMS para ejecutar comandos (acción) o una pregunta (info).</p>
+<p>SMS : envoyer un SMS pour lancer des commandes (action) ou poser une question (info).</p>
 </li>
 <li>
-<p>Vocal: dictar una sentencia con Siri, Google Now, SARAH, etc&#8230;&#8203;. Para ejecutar comandos (acción) o una pregunta (info).</p>
+<p>Vocal : dicter une phrase avec Siri, Google Now, SARAH, etc&#8230;&#8203; Pour lancer des commandes (action) ou poser une question (info).</p>
 </li>
 <li>
-<p>HTTP: lanzar una dirección URL HTTP que contiene el texto (por ejemplo, Tasker, Slack) para ejecutar comandos (acción) o una pregunta (info).</p>
+<p>HTTP : lancer une URL HTTP contenant le texte (ex. Tasker, Slack) pour lancer des commandes (action) ou poser une question (info).</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>La importancia de las interacciones se encuentran en la integración simplificada en otro sistema como smartphones, tabletas, otro sistema domótico, ect&#8230;&#8203;</p>
+<p>L&#8217;intérêt des interactions réside dans l&#8217;intégration simplifiée dans d&#8217;autres systèmes comme smartphone, tablette, autre box domotique, ect&#8230;&#8203;</p>
 </div>
 <div class="paragraph">
-<p>Con un único mecanismo en otro sistema, por tanto, puede controlar cualquier Jeedom, lo que permite una gran flexibilidad y evita errores al cambiar las configuraciones de sus dispositivos como sería el caso con acceso directo a través de la url de cada comando.</p>
+<p>Avec un seul mécanisme sur d&#8217;autres systèmes, on peut donc contrôler tout Jeedom, ce qui permet une grande souplesse et d&#8217;éviter les bugs en cas de modification de la configuration de vos équipements comme ce serait le cas avec un accès direct via l&#8217;url de chaque commande.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_primer_paso">1. Primer paso</h2>
+<h2 id="_premier_pas">1. Premier pas</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_página_inicial_de_interacciones">1.1. Página inicial de interacciones</h3>
+<h3 id="_page_accueil_des_interactions">1.1. Page accueil des interactions</h3>
 <div class="paragraph">
 <p>Pour accéder à la page d&#8217;interaction il faut aller sur Outils &#8594; Interactions:</p>
 </div>
@@ -537,7 +541,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Al igual que en muchos lugares en Jeedom, situar el ratón en la zona la izquierda mostrará un menú de acceso rápido (se puede mostrar como "siempre visible" desde la configuración de su perfil).
+Comme à beaucoup d&#8217;endroits sur Jeedom, mettre la souris tout à gauche permet de faire apparaître un menu d&#8217;accès rapide (vous pouvez à partir de votre profil le laisser toujours visible).
 </td>
 </tr>
 </table>
@@ -545,11 +549,11 @@ Al igual que en muchos lugares en Jeedom, situar el ratón en la zona la izquier
 <div class="ulist">
 <ul>
 <li>
-<p>En el la parte superior de la página, hay 3 botones:</p>
+<p>En haut de page, on trouve 3 boutons :</p>
 <div class="ulist">
 <ul>
 <li>
-<p>1 * el botón "Añadir" que permite crear una nueva interacción.</p>
+<p><strong>1</strong> Le bouton "Ajouter" qui permet de créer de nouvelles interactions.</p>
 </li>
 <li>
 <p><strong>2</strong> Le bouton "Régénérer" qui va recréer toutes les interactions (peut être très long &gt; 5mn).</p>
@@ -576,7 +580,7 @@ Si vous avez une interaction qui génère les phrases pour les lumières par exe
 </div>
 </div>
 <div class="sect2">
-<h3 id="_crear_editar_una_interacción">1.2. Crear-editar una interacción</h3>
+<h3 id="_créer_modifier_une_interaction">1.2. Créer-Modifier une interaction</h3>
 <div class="paragraph">
 <p>El principio de creación es bastante sencillo, definiremos una oración modelo con el generador, que permitirá a Jeedom crear uno o varios cientos de frases ,que son combinaciones del modelo.</p>
 </div>
@@ -584,16 +588,15 @@ Si vous avez une interaction qui génère les phrases pour les lumières par exe
 <p>definir la misma forma de las respuestas con un modelo (permite a Jeedom tener respuestas múltiples a una sola pregunta).</p>
 </div>
 <div class="paragraph">
-<p>También se define un comando a ejecutar si por ejemplo la interacción no está relacionada con una acción, si no con información o si desea realizar una acción particular después (también es posible ejecutar un escenario, revisar varias órdenes&#8230;&#8203;).</p>
+<p>On peut aussi définir une commande à exécuter si par exemple l&#8217;interaction n&#8217;est pas liée à une action mais une information ou si on souhaite réaliser une action particulière après celle-ci (il est aussi possible d&#8217;exécuter un scénario, de contrôler plusieurs commandes&#8230;&#8203;).</p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_interfaz_de_configuración">1.3. Interfaz de configuración</h3>
+<div class="sect3">
+<h4 id="_interphase_de_configuration">1.2.1. Interphase de configuration</h4>
 <div class="paragraph">
 <p>Cette page permet de configurer toutes les interactions orales (via le module SARAH, ou tasker (+ autovoice), voir <a href="https://jeedom.fr/doc/documentation/howto/fr_FR/doc-howto-android.autovoice.html">ici</a>) ou écrites ( les SMS ou le plugin Slack par exemple…) que l’on peut trouver sur le Market Jeedom.</p>
 </div>
 <div class="paragraph">
-<p>Una vez creada la interacción, haga clic en una interacción existente para modificarla, se abrirá la página de configuración de la interacción:</p>
+<p>Une fois l&#8217;interaction créée ou un clic sur une interaction existante pour la modifier, vous arrivez sur la page de configuration de l&#8217;interaction :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -606,87 +609,87 @@ Si vous avez une interaction qui génère les phrases pour les lumières par exe
 <div class="ulist">
 <ul>
 <li>
-<p><strong>General</strong></p>
+<p><strong>Général</strong></p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Nombre</strong> : nombre de la interacción (puede estar vacía, el nombre reemplaza el texto de la aplicación en la lista de interacciones).</p>
+<p><strong>Nom</strong> : nom de l&#8217;interaction (peut être vide, le nom remplace le texte de la demande dans la liste des interactions).</p>
 </li>
 <li>
-<p><strong>Grupo</strong> : grupo de interacción, esto permite organizarlos (puede estar vacio, por lo que pertenecerán al grupo "ninguno").</p>
+<p><strong>Groupe</strong> : groupe de l&#8217;interaction, cela permet de les organiser (peut être vide, sera donc dans le groupe "aucun").</p>
 </li>
 <li>
-<p>Aplicación *: la frase modelo generada (obligatorio).</p>
+<p><strong>Demande</strong> : la phrase modèle génératrice (obligatoire).</p>
 </li>
 <li>
-<p><strong>Sinónimos</strong> : permite definir sinónimos de los nombres de los comandos.</p>
+<p><strong>Synonyme</strong> : permet de définir des synonymes sur les noms des commandes.</p>
 </li>
 <li>
-<p><strong>Respuesta</strong> : la respuesta a dar.</p>
+<p><strong>Réponse</strong> : la réponse à fournir.</p>
 </li>
 <li>
-<p>Conversión Binaria* : permite convertir los valores binarios en abierto/cerrado por ejemplo (sólo para comandos de tipo información binaria).</p>
+<p><strong>Conversion binaire</strong> : permet de convertir les valeurs binaires en ouvert/fermé par exemple (uniquement pour les commandes de type info binaire).</p>
 </li>
 <li>
-<p><strong>Usuarios autorizados</strong> : limita la interacción a ciertos usuarios (separados por un |).</p>
+<p><strong>Utilisateurs autorisés</strong> : limite l&#8217;interaction à certains utilisateurs (les logins séparés par des |).</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Filtros (limitar el alcance de la plantilla a los elementos seleccionados)</strong></p>
+<p><strong>Filtres (limite le champ d&#8217;application pour le modèle aux éléments sélectionnés)</strong></p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Limitar a órdenes de tipo</strong> : permite utilizar sólo los tipos acciones, información o los 2 tipos.</p>
+<p><strong>Limiter aux commandes de type</strong> : permet de n&#8217;utiliser que les types actions, infos ou les 2 types.</p>
 </li>
 <li>
-<p>* Límita permanente el subtipo *: permite limitar la generación de uno o más subtipos.</p>
+<p><strong>Limiter aux commandes ayant pour sous-type</strong> : permet de limiter la génération à un ou plusieurs sous-types.</p>
 </li>
 <li>
-<p>Límitar los comandos por unidad *: restringe la generación en una más unidades (Jeedom crea la lista automáticamente de las unidades definidas en sus comandos).</p>
+<p><strong>Limiter aux commandes ayant pour unité</strong> : permet de limiter la génération à une ou plusieurs unités (Jeedom crée la liste automatiquement à partir des unités définies dans vos commandes).</p>
 </li>
 <li>
-<p><strong>Limitar los comandos pertenecientes al objeto</strong> : permite limitar la generación en uno o más objetos (Jeedom crea la lista automáticamente de los objetos que ha creado).</p>
+<p><strong>Limiter aux commandes appartenant à l&#8217;objet</strong> : permet de limiter la génération à un ou plusieurs objets (Jeedom crée la liste automatiquement à partir des objets que vous avez créés).</p>
 </li>
 <li>
-<p>Limitar el plugin *: permite limitar la generación en uno o más plugins (Jeedom crea la lista automáticamente de los plugins instalados).</p>
+<p><strong>Limiter au plugin</strong> : permet de limiter la génération à un ou plusieurs plugins (Jeedom crée la liste automatiquement à partir des plugins installés).</p>
 </li>
 <li>
-<p><strong>Limitar categoría</strong> : permite limitar la generación en una o más categorías.</p>
+<p><strong>Limiter à la catégorie</strong> : permet de limiter la génération à une ou plusieurs catégories.</p>
 </li>
 <li>
-<p><strong>Límitar dispositivo</strong> : permite limitar la generación a un solo equipo/módulo (Jeedom crea la lista automáticamente de componentes y módulos que tiene).</p>
+<p><strong>Limiter à l&#8217;équipement</strong> : permet de limiter la génération à un seul équipement/module (Jeedom crée la liste automatiquement à partir des équipements/modules que vous avez).</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Acción</strong> : utilizar si quieres uno o más comandos específicos de destino o pasar parámetros específicos.</p>
+<p><strong>Action</strong> : à utiliser si vous voulez cibler une ou plusieurs commandes spécifiques ou passer des paramètres particuliers.</p>
 </li>
 <li>
-<p><strong>Frases generadas</strong></p>
+<p><strong>Phrases générées</strong></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Frases generadas* : botón que permite ver las frases generadas por frase modelo (debes guardar la interacción para construir o reconstruir las frases).</p>
-</li>
-</ul>
-</div>
+<p><strong>Phrases générées</strong> : Bouton qui permet de voir les phrases générées par la phrase modèle génératrice (Vous devez sauver l&#8217;interaction pour générer ou régénérer les phrases).</p>
 </li>
 <li>
-<p><strong>Número de frases generadas</strong> : número de frases generadas.</p>
+<p><strong>Nombre de phrases générées</strong> : nombre de phrases générées.</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_interacción_simple">1.4. Interacción simple</h3>
+<div class="sect3">
+<h4 id="_interaction_simple">1.2.2. Interaction simple</h4>
 <div class="paragraph">
-<p>La forma más sencilla de configurar una interacción es darle un modelo de generador rígido sin variación posible, este método enfocara específicamente con un comando o un script.</p>
+<p>La façon la plus simple de configurer une interaction c&#8217;est de lui donner un modèle générateur rigide sans variation possible, cette méthode ciblera très précisément une commande, ou un scénario.</p>
 </div>
 <div class="paragraph">
-<p>En el ejemplo que sigue, puede verse en el campo 'Demande' la frase exacta para activar la interacción, para encender la luz del techo del salón.</p>
+<p>Dans l&#8217;exemple qui suit, on peut voir dans le champ "Demande" la phrase exacte à fournir pour déclencher l&#8217;interaction, ici pour allumer le plafonnier du salon.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -697,7 +700,7 @@ Si vous avez une interaction qui génère les phrases pour les lumières par exe
 <p>Podemos ver esta captura la configuración para tener una interacción ligada a una acción específica, esta acción se define en el apartado Acción' de la página.</p>
 </div>
 <div class="paragraph">
-<p>Puedes imaginar en hacer lo mismo con varias acciones, para encender varias luces en el salón como en el ejemplo que sigue:</p>
+<p>On peut très bien imaginer faire de même avec plusieurs actions pour allumer plusieurs lampes dans le salon comme l&#8217;exemple qui suit :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -714,18 +717,19 @@ Si vous avez une interaction qui génère les phrases pour les lumières par exe
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Para agregar un escenario, crear una nueva acción, escribir "scenario" sin acento, presiona tab en el teclado para que aparezca el selector de escenario.
+Pour ajouter un scénario, créer une nouvelle action, écrire "scenario" sans accent, appuyer sur la touche tabulation de votre clavier pour faire apparaitre le sélecteur de scénario.
 </td>
 </tr>
 </table>
 </div>
+</div>
 <div class="sect3">
-<h4 id="_interaction_multiple_commandes">1.4.1. Interaction multiple commandes</h4>
+<h4 id="_interaction_multiple_commandes">1.2.3. Interaction multiple commandes</h4>
 <div class="paragraph">
 <p>Nous allons ici voir tout l&#8217;intérêt et toute la puissance des interactions, avec une phrase modèle nous allons pouvoir générer des phrases pour tout un groupe de commandes.</p>
 </div>
 <div class="paragraph">
-<p>para mejorar lo que ha hecho anteriormente, eliminar las acciones que hayas agregado y en su lugar en "Aplicación", usaremos las etiquetas * #commande#* y * #equipement#*, Jeedom reemplazará estas etiquetas por el nombre de órden y el nombre del dispositivo (se puede ver la importancia de tener nombres de comandos/dispositivos coherentes).</p>
+<p>On va reprendre ce qui a été fait plus haut, supprimer les actions que l&#8217;on avait ajoutées et à la place de la phrase fixe dans "Demande", nous allons utiliser les tags <strong>#commande#</strong> et <strong>#equipement#</strong>, Jeedom va donc remplacer ces tags par le nom des commandes et le nom de l&#8217;équipement (on peut voir l&#8217;importance d&#8217;avoir des noms de commande/équipement cohérents).</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -733,11 +737,11 @@ Para agregar un escenario, crear una nueva acción, escribir "scenario" sin acen
 </div>
 </div>
 <div class="paragraph">
-<p>Aquí puedes ver que jeedom ha generado 152 frases de nuestra frase, sin embargo no están muy bien construidas y tienen un poco de todo.</p>
+<p>On peut donc constater ici que Jeedom a généré 152 phrases à partir de notre modèle, toutefois elles ne sont pas très bien construites et l&#8217;on a un peu de tout.</p>
 </div>
 <div class="paragraph">
-<p>Para hacer la orden para todo, vamos a utilizar filtros (parte derecha de nuestra página de configuración).
-En este ejemplo queremos generar frases para encender las luces, así que puede desactivar el comando de tipo información (al guardar sólo quedam 95 frases generadas), luego en los subtipos puede mantener marcado por defecto la corresponde tecla de acción (por lo tanto quedan 16 frases).</p>
+<p>Pour faire de l&#8217;ordre dans tout cela, on va utiliser les filtres (partie droite de notre page de configuration).
+Dans cet exemple, on veut générer des phrases pour allumer des lumières. On peut donc décocher le type de commande info (si je sauve, il ne me reste plus que 95 phrase générées), puis dans les sous-types, on peut ne garder coché que défaut qui correspond au bouton d&#8217;action (reste donc plus que 16 phrases).</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -745,8 +749,8 @@ En este ejemplo queremos generar frases para encender las luces, así que puede 
 </div>
 </div>
 <div class="paragraph">
-<p>Es mejor y más natural si tomamos como ejemplo "en la entrada", sería bueno poder transformar esta frase en "ilumina la entrada" o "iluminar la entrada".
-Para ello Jeedom en el campo de aplicación, podemos generar un campo de sinónimos que nos permitirá nombrar diferentemente el nombre de órdenes en nuestras frases, aquí, tengo incluso "on2" en módulos que pueden controlar 2 salidas.</p>
+<p>C&#8217;est mieux mais on peut faire encore plus naturel. Si je prends l&#8217;exemple généré "On entrée", il serait bien de pouvoir transformer cette phrase en "allume l&#8217;entrée" ou en "allumer l&#8217;entrée".
+Pour faire cela Jeedom dispose sous le champ demande, un champ synonyme qui va nous permettre de nommer différemment le nom des commandes dans nos phrases "générer", ici c&#8217;est "on", j&#8217;ai même des "on2" dans les modules qui peuvent contrôler 2 sorties.</p>
 </div>
 <div class="paragraph">
 <p>En los sinónimos es donde vas a indicar el nombre del comando y el sinónimo(s) a utilizar :</p>
@@ -760,8 +764,8 @@ Para ello Jeedom en el campo de aplicación, podemos generar un campo de sinóni
 <p>On peut voir ici une syntaxe un peu nouvelle pour les synonymes, un nom de commande peut avoir plusieurs synonymes, ici "on" a comme synonyme "allume" et "allumer", la syntaxe c&#8217;est donc "<mark>nom de la commande</mark>" <strong><mark>=</mark></strong> "<mark>synonyme 1</mark>"<strong><mark>,</mark></strong> "<mark>synonyme 2</mark>" (on peut mettre autant de synonyme que l&#8217;on veut), puis pour ajouter des synonymes pour un autre nom de commande il suffit d&#8217;ajouter après le dernier synonyme une barre verticale "<mark>|</mark>" à la suite duquel vous pouvez à nouveau nommer la commande qui va avoir des synonymes comme pour la première partie.</p>
 </div>
 <div class="paragraph">
-<p>Bueno, esto esta mejor pero todavía faltan para el comando "en" "entrar" en el "el" y otro "la" o "el" o "una" ect&#8230;&#8203;
-Podría cambiar el nombre del dispositivo a agregar, sería una solución, de lo contrario puede utilizar cambios en la aplicación, se trata de una serie de posibles palabras a una ubicación en la frase de la lista, Jeedom por lo tanto generará frases con sus variaciones.</p>
+<p>Bien c&#8217;est déjà mieux mais il manque encore pour la commande "on" "entrée" le "l' " et pour d&#8217;autre le "la" ou "le" ou "un" etc&#8230;&#8203;
+On pourrait modifier le nom de l&#8217;équipement pour l&#8217;ajouter, ce serait une solution, sinon on peut utiliser les variations dans la demande, cela consiste à lister une série de mots possibles à un emplacement de la phrase, Jeedom va donc générer des phrases avec ses variations.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -773,7 +777,7 @@ Podría cambiar el nombre del dispositivo a agregar, sería una solución, de lo
 </div>
 <div class="paragraph">
 <p>Afin d&#8217;affiner et de ne pas avoir des choses improbables telles que "allume l&#8217;télé", on peut autoriser Jeedom à supprimer les demandes syntaxiquement incorrectes. Il va donc supprimer ce qui est trop éloigné de la syntaxe réelle d&#8217;une phrase.
-En nuestro caso pasamos de 168 oraciones a 130 oraciones.</p>
+Dans notre cas on passe de 168 phrases à 130 phrases.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -781,24 +785,22 @@ En nuestro caso pasamos de 168 oraciones a 130 oraciones.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Por lo tanto es importante construir bien sus frases modelos y sinónimos, así como seleccionar buenos filtros para no generar demasiadas frases innecesarias.
-Personalmente me parece interesante tener algunas incoherencias en el estilo 'una entrada' porque si, si eres una persona extranjera que no habla correctamente el francés, las interacciones trabajarán de la misma forma.</p>
+<p>Il devient donc important de bien construire ses phrases modèles et synonymes ainsi que de sélectionner les bons filtres pour ne pas générer trop de phrases inutiles.
+Personnellement, je trouve intéressant d&#8217;avoir quelques incohérences du style "un entrée" car si chez vous, vous avez une personne étrangère qui ne parle pas correctement le français les interactions fonctionneront tout de même.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_función_interacción_avanzada">1.4.2. Función interacción avanzada</h4>
-
-</div>
-<div class="sect3">
-<h4 id="_personalizar_respuestas">1.4.3. Personalizar respuestas</h4>
+<h4 id="_interaction_fonction_avancé">1.2.4. Interaction fonction Avancé</h4>
+<div class="sect4">
+<h5 id="_personnaliser_les_réponses">Personnaliser les réponses</h5>
 <div class="paragraph">
-<p>Hasta ahora como respuesta a una interacción, tuvimos una simple frase que no indica mucho, excepto que algo ha sucedido.
-La idea es que Jeedom nos diga lo que ha hecho con más precisión.
-Aquí interve el campo de la respuesta en la que podremos personalizar la respuesta según el comando ejecutado.</p>
+<p>Jusqu&#8217;à présent comme réponse à une interaction nous avions une simple phrase qui n&#8217;indique pas grand-chose à part que quelque chose s&#8217;est passé.
+L&#8217;idée serait que Jeedom nous indique ce qu&#8217;il a fait un peu plus précisément.
+C&#8217;est là qu&#8217;intervient le champ réponse dans lequel on va pouvoir personnaliser le retour en fonction de la commande exécutée.</p>
 </div>
 <div class="paragraph">
-<p>Para ello utilizamos otra vez las etiqueta deJeedom
-Nuestras luces pueden utilizar una frase del estilo: iluminar #equipement# (ver captura a continuación).</p>
+<p>Pour ce faire nous allons à nouveau utiliser les Tag Jeedom
+Pour nos lumières on peut utiliser une phrase du style : J&#8217;ai bien allumé #equipement# (voir capture ci-dessous).</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -806,17 +808,18 @@ Nuestras luces pueden utilizar una frase del estilo: iluminar #equipement# (ver 
 </div>
 </div>
 <div class="paragraph">
-<p>También puede Agregar un valor a otro comando como una temperatura, un número de personas etc&#8230;&#8203;.</p>
+<p>On peut aussi ajouter n&#8217;importe quelle valeur d&#8217;une autre commande comme une température, un nombre de personnes .etc&#8230;&#8203;.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/interact012.png" alt="interact012">
 </div>
 </div>
+</div>
 <div class="sect4">
-<h5 id="_conversión_binaria">Conversión binaria</h5>
+<h5 id="_conversion_binaire">Conversion binaire</h5>
 <div class="paragraph">
-<p>Las conversiones a binario se aplican a los comandos de tipo información, cuyo subtipo es binario (devuelve 0 o 1) por lo tanto debería activar buenos filtros, como se ve en la captura inferior (para categorías todos podemos comprobar, por ejemplo he guardado esa luz).</p>
+<p>Les conversions binaires s&#8217;appliquent aux commandes de type info dont le sous-type est binaire (retourne 0 ou 1 uniquement) il faut donc activer les bons filtres comme on peut le voir sur la capture un peu plus bas (pour les catégories on peut toutes les cocher, pour l&#8217;exemple je n&#8217;ai gardé que lumière).</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -824,14 +827,23 @@ Nuestras luces pueden utilizar una frase del estilo: iluminar #equipement# (ver 
 </div>
 </div>
 <div class="paragraph">
-<p>Como se ve aquí, mantuve casi la misma estructura de la aplicación (es voluntario para centrarse en los detalles), adapté los sinónimos para ser más coherentes, sin embargo, la respuesta es <mark>impératif # poner solamente \#valeur</mark> que representa el 0 o 1, Jeedom reemplazará por la conversión binario que sigue.</p>
+<p>Comme on peut le voir ici, j&#8217;ai conservé quasiment la même structure pour la demande (c&#8217;est volontaire pour se concentrer sur les spécificités), j&#8217;ai adapté bien sûr les synonymes pour avoir quelque chose de cohérent, par contre pour la réponse il est <mark>impératif</mark> de mettre uniquement #valeur# qui représente le 0 ou 1 que Jeedom va remplacer par la conversion binaire qui suit.</p>
 </div>
 <div class="paragraph">
-<p>El campo de conversión binaria debe contener 2 respuestas, primero la respuesta si el valor de la orden es 0, entonces para el comando de respuesta si, separar 1 con una barra vertical
-Aquí las respuestas son simplemente no y sí, pero podría poner una frase un poco más larga.</p>
+<p>Le champ conversion binaire doit contenir 2 réponses, en premier la réponse si la valeur de la commande vaut 0 puis pour la séparer de la réponse si la commande vaut 1 une barre verticale "|".
+Ici les réponses sont simplement non et oui mais on pourrait y mettre une phrase un peu plus longue.</p>
 </div>
-<div class="paragraph">
-<p>Las etiquetas no funcionan en las conversiones a binario.</p>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Les tags ne fonctionnent pas dans les conversions binaires.
+</td>
+</tr>
+</table>
 </div>
 <div class="sect5">
 <h6 id="_usuarios_autorizados">Usuarios autorizados</h6>
@@ -842,17 +854,26 @@ Aquí las respuestas son simplemente no y sí, pero podría poner una frase un p
 <p>Ejemplo: usuario1|usuario2</p>
 </div>
 <div class="paragraph">
-<p>Uno puede imaginar que una alarma puede habilitarse o deshabilitarse por un niño o a un vecino que riegue las plantas en tu ausencia&#8230;&#8203;</p>
+<p>On peut imaginer qu&#8217;une alarme peut être activée ou désactivée par un enfant ou un voisin qui viendrait arroser les plantes en votre absence&#8230;&#8203;</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_exclusión_regexp">Exclusión Regexp</h6>
-<div class="paragraph">
-<p>Fonction réservée aux connaisseurs ou téméraires qui savent utiliser Google.</p>
+<h6 id="_regexp_d_exclusion">Regexp d&#8217;exclusion</h6>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Fonction réservée aux connaisseurs ou téméraires qui savent utiliser Google.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>Puesto que Jeedom V2.00 tiene la capacidad de crear exclusiones tipo [Regexp] <a href="https://fr.wikipedia.org/wiki/Expression_rationnelle" class="bare">https://fr.wikipedia.org/wiki/Expression_rationnelle</a> , si una frase generada coincide con este Regexp se eliminarán.
-La intención es eliminar los falsos positivos, es decir una frase de Jeedom que permite algo que no coincide con lo que queremos o que puedan interferir con la interacción de otro que tenga una frase similar.</p>
+<p>Depuis Jeedom V2.00 on a la possibilité de créer des <a href="https://fr.wikipedia.org/wiki/Expression_rationnelle">Regexp</a> d&#8217;exclusion, si une phrase générée correspond à cette Regexp elle sera supprimée.
+L&#8217;intérêt c&#8217;est de pouvoir supprimer des faux positif, c&#8217;est à dire une phrase générée par Jeedom qui active quelque chose qui ne correspond pas à ce que l&#8217;on veut ou qui viendrait parasiter une autre interaction qui aurait une phrase similaire.</p>
 </div>
 <div class="paragraph">
 <p>Hay 2 lugares para aplicar una Regexp:</p>
@@ -860,7 +881,7 @@ La intención es eliminar los falsos positivos, es decir una frase de Jeedom que
 <div class="ulist">
 <ul>
 <li>
-<p>en la misma interacción en el campo "Exclusión Regexp".</p>
+<p>dans l&#8217;interaction même dans le champ "Regexp d&#8217;exclusion".</p>
 </li>
 <li>
 <p>Dans le menu "Configuration"&#8594;"Configuration des interactions"&#8594;champ "Regexp général d&#8217;exclusion pour les interactions".</p>
@@ -869,7 +890,7 @@ La intención es eliminar los falsos positivos, es decir una frase de Jeedom que
 </div>
 <div class="paragraph">
 <p>Pour le champ "Regex général d&#8217;exclusion pour les interactions", cette règle sera appliquée à toutes les interactions, qui seront créées ou sauvegarder de nouveau par la suite, si on veut l’appliquer à toutes les interactions existantes il faut régénérer les interactions.
-Generalmente se utiliza para eliminar frases mal formadas en interacciones más generadas.</p>
+Généralement on l&#8217;utilise pour effacer des phrases incorrectement formées se retrouvant dans la plupart des interactions générées.</p>
 </div>
 <div class="paragraph">
 <p>Pour le champ "Regexp d&#8217;exclusion" dans la page de config de chaque interaction, on peut mettre une Regexp spécifique qui va agir uniquement sur ladite interaction, elle vous permet donc de supprimer plus précisément  pour une interaction, cela peut aussi permettre d&#8217;effacer une interaction pour une commande spécifique pour laquelle on ne veut pas offrir cette possibilité dans le cadre d&#8217;une génération multiple commandes.</p>
@@ -883,8 +904,8 @@ Generalmente se utiliza para eliminar frases mal formadas en interacciones más 
 </div>
 </div>
 <div class="paragraph">
-<p>Como puedes ver en la siguiente imagen, he añadido una simple regexp que buscará la palabra "Julie" en las frases generadas y eliminarlas, sin embargo, se puede ver en la lista de la izquierda que aun hay frases con la palabra "julie", en expresiones regulares, Julie no es igual a julie, ésto se llama sensibilidad entre mayúsculas y minúsculas , en francés una letra mayúscula es diferente de una letra minúscula.
-Como se muestra en la siguiente pantalla, hay 71 frases, 5 con "Julie" se han eliminado.</p>
+<p>Comme vous pouvez le voir sur la capture suivante, j&#8217;ai ajouté une regexp simple qui va chercher le mot "Julie" dans les phrases générées et les supprimer, toutefois on peut voir dans la liste de gauche qu&#8217;il y a toujours des phrases avec le mot "julie", dans les expressions régulières, Julie n&#8217;est pas égale à julie, on appelle cela une sensibilité à la casse ou en bon français une majuscule est différente d&#8217;une minuscule.
+Comme on peut le voir dans la capture suivante, il ne reste plus que 71 phrases, les 5 avec un "Julie" ont été supprimées.</p>
 </div>
 <div class="paragraph">
 <p>Una expresión regular se compone como sigue:</p>
@@ -892,13 +913,13 @@ Como se muestra en la siguiente pantalla, hay 71 frases, 5 con "Julie" se han el
 <div class="ulist">
 <ul>
 <li>
-<p>Primero un delimitador, aquí es una barra "/" al principio y al final de la frase.</p>
+<p>En premier un délimiteur, ici c&#8217;est une barre oblique "/" placée en début et fin de l&#8217;expression.</p>
 </li>
 <li>
-<p>lo que sigue la barra representa cualquier carácter, espacio o numero.</p>
+<p>le point qui suit la barre oblique représente n&#8217;importe quel caractère, espace, ou nombre.</p>
 </li>
 <li>
-<p>El "*" mientras tanto, indica que puede ser 0 o varias veces el carácter anterior que le precede, aquí un punto, así que en buen francés cualquier elemento.</p>
+<p>Le "*" quant à lui indique qu&#8217;il peut y avoir 0 ou plusieurs fois le caractère qui le précède, ici un point, donc en bon français n&#8217;importe quelle élément.</p>
 </li>
 <li>
 <p>Puis Julie, qui est le mot à rechercher (mot ou autre schéma d&#8217;expression), suivi à nouveau d&#8217;un point puis barre oblique.</p>
@@ -906,7 +927,7 @@ Como se muestra en la siguiente pantalla, hay 71 frases, 5 con "Julie" se han el
 </ul>
 </div>
 <div class="paragraph">
-<p>Si traducimos esta expresión en una frase, sería "busca la palabra Julie que sea precedida por  nada y seguida por nada".</p>
+<p>Si on traduit cette expression en une phrase cela donnerait "cherche le mot Julie qui est précédé par n&#8217;importe quoi et suivi de n&#8217;importe quoi".</p>
 </div>
 <div class="paragraph">
 <p>C&#8217;est une version extrêmement simple des expressions régulièrse mais déjà très compliquée à comprendre, il m’a fallu un moment pour en saisir le fonctionnement. Comme exemple un peu plus complexe, une regexp pour vérifier une adresse url :</p>
@@ -931,7 +952,7 @@ Como se muestra en la siguiente pantalla, hay 71 frases, 5 con "Julie" se han el
 </div>
 </div>
 <div class="paragraph">
-<p>Añadiendo la opción "i" hay más que 55 frases generadas, en la lista de la izquierda con el filtro de julie para buscar las frases  que contienen esta palabra, y hay más.</p>
+<p>Avec l&#8217;ajout de l&#8217;option "i" on constate qu&#8217;il ne reste plus que 55 phrases générées, et dans la liste de gauche avec le filtre julie pour rechercher les phrases qui contiennent ce mot, on constate qu&#8217;il y en a bien plus.</p>
 </div>
 <div class="paragraph">
 <p>Comme c&#8217;est un sujet extrêmement complexe, je ne vais pas aller plus en détail ici, il y a suffisamment de tutos sur le net pour vous aider, et n&#8217;oubliez pas Google est votre ami aussi car oui, c&#8217;est mon ami, c&#8217;est lui qui m’a appris à comprendre les Regexp et même à coder. Donc s&#8217;il m&#8217;a aidé, il peut aussi vous aider si vous y mettez de la bonne volonté.</p>
@@ -962,10 +983,10 @@ Como se muestra en la siguiente pantalla, hay 71 frases, 5 con "Julie" se han el
 </div>
 </div>
 <div class="sect1">
-<h2 id="_ejemplos">2. Ejemplos</h2>
+<h2 id="_exemples">2. Exemples</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_réponse_compuesta_con_más_informacion">2.1. Réponse compuesta con más informacion</h3>
+<h3 id="_réponse_composé_de_plusieurs_informations">2.1. Réponse composé de plusieurs informations</h3>
 <div class="paragraph">
 <p>También es posible poner multiples comandos info una respuesta, por ejemplo obtener un resumen de la situación.</p>
 </div>
@@ -975,23 +996,23 @@ Como se muestra en la siguiente pantalla, hay 71 frases, 5 con "Julie" se han el
 </div>
 </div>
 <div class="paragraph">
-<p>En este ejemplo vemos una frase simple que devolverá una respuesta con 3 temperaturas diferentes, por lo que podemos obtener aquí una sistema de información de una sola vez.</p>
+<p>Dans cet exemple on voit une phrase simple qui va nous retourner une réponse avec 3 températures différentes, on peut donc ici mettre un peu tout ce que l&#8217;on veut afin d&#8217;avoir un ensemble d&#8217;informations en une seule fois.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="__hay_alguien_en_la_sala">2.2. ¿Hay alguien en la sala?</h3>
+<h3 id="_y_a_t_il_quelqu_un_dans_la_chambre">2.2. Y a-t-il quelqu&#8217;un dans la chambre ?</h3>
 <div class="sect3">
-<h4 id="_versión_básica">2.2.1. Versión básica</h4>
+<h4 id="_version_basique">2.2.1. Version basique</h4>
 <div class="ulist">
 <ul>
 <li>
-<p>La pregunta entonces es  "'y' hay alguien en la habitación "</p>
+<p>La question est donc "y’a-t-il quelqu’un dans la chambre"</p>
 </li>
 <li>
-<p>La respuesta será "no hay nadie allí en la sala" o "Si hay alguien en la habitación"</p>
+<p>La réponse sera "non il n’y a personne dans la chambre" ou "oui il y a quelqu’un dans la chambre"</p>
 </li>
 <li>
-<p>El comando a responder es "julie \#[Chambre] [FGMS-001-2] [presencia] #"</p>
+<p>La commande qui répond à ça est "#[Chambre de julie][FGMS-001-2][Présence]#"</p>
 </li>
 </ul>
 </div>
@@ -1005,20 +1026,20 @@ Como se muestra en la siguiente pantalla, hay 71 frases, 5 con "Julie" se han el
 </div>
 </div>
 <div class="sect3">
-<h4 id="_evolución">2.2.2. Evolución</h4>
+<h4 id="_evolution">2.2.2. Evolution</h4>
 <div class="ulist">
 <ul>
 <li>
-<p>La pregunta entonces es "#commande# [dans la |dans le] #objet#"</p>
+<p>La question est donc "#commande# [dans la |dans le] #objet#"</p>
 </li>
 <li>
-<p>La respuesta será "no hay nadie allí en la sala" o "Si hay alguien en la habitación"</p>
+<p>La réponse sera "non il n’y a personne dans la pièce" ou "oui il y a quelqu’un dans la pièce"</p>
 </li>
 <li>
 <p>Il n&#8217;y a pas de commande qui réponde à ça dans la partie Action vu que c&#8217;est une interaction Multiple commandes</p>
 </li>
 <li>
-<p>Añadir una expresión regular que podremos limpiar los comandos que desea que no contengan las frases acerca de los comandos 'Presencia'.</p>
+<p>En ajoutant une expression régulière on peut nettoyer les commandes que l&#8217;on ne veut pas voir pour n&#8217;avoir que les phrases sur les commandes "Présence".</p>
 </li>
 </ul>
 </div>
@@ -1028,15 +1049,15 @@ Como se muestra en la siguiente pantalla, hay 71 frases, 5 con "Julie" se han el
 </div>
 </div>
 <div class="paragraph">
-<p>Sin la expresión aquí se obtiene 11 sentencias, sin embargo mi interacción está diseñada para generar frases sólo para preguntar si hay alguien en una habitación, por lo que no tengo necesidad de saber el estado de la  lámpara ni de enchufes, que pueden ser solucionadas con el filtrado de regexp.
-Para hacerlo más flexible puedes agregar sinónimos, pero en este caso no te olvides de cambiar la expresión.</p>
+<p>Sans le Regexp on obtient ici 11 phrases, or mon interaction a pour but de générer des phrases uniquement pour demander s&#8217;il y a quelqu&#8217;un dans une pièce, donc je n&#8217;ai pas besoin d&#8217;état de lampe ou autre comme les prises, ce qui peut être résolu avec le filtrage regexp.
+Pour rendre encore plus flexible on peut ajouter des synonymes, mais dans ce cas il ne faudra pas oublier de modifier la regexp.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_connaître_la_température_humidité_luminosité">2.3. Connaître la température/humidité/luminosité</h3>
 <div class="sect3">
-<h4 id="_versión_básica_2">2.3.1. Versión básica</h4>
+<h4 id="_version_basique_2">2.3.1. Version basique</h4>
 <div class="paragraph">
 <p>On pourrait écrire la phrase en dur comme par exemple "quelle est la température du salon", mais il faudrait en faire une pour chaque capteur de température, luminosité et humidité. Avec le système de génération de phrase Jeedom, on peut donc avec une seule interaction générer les phrases pour tous les capteurs de ces 3 types de mesure.</p>
 </div>
@@ -1051,27 +1072,27 @@ Para hacerlo más flexible puedes agregar sinónimos, pero en este caso no te ol
 <div class="ulist">
 <ul>
 <li>
-<p>Puede hacer que una simple frase genérica tipo "Cuál es la temperatura de la habitación" o "Cual es el la luminosidad de la habitación" se puede convertir en: "quelle est [la |l\']#commande# <span class="du |de la |de l'| sur le |dans le | dans la">objet</span>" (el uso de [palabra1 | palabra2] permite esta posibilidad o esta otra para generar todas las variantes posibles de la frase palabra1 o palabra2). " Con la generación de Jeedom generará todas las posibles combinaciones de frases con todos los comandos existentes (dependiendo del filtro) sustituyendo #commande# por el nombre del comando y #objet# por el nombre del objeto.</p>
+<p>On peut donc voir qu&#8217;une phrase générique type "Quelle est la température du salon" ou "Quelle est la luminosité de la chambre" peut être convertie en : "quelle est [la |l\']#commande# <span class="du |de la |de l'| sur le |dans le | dans la">objet</span>" (l’utilisation de [mot1 | mot2] permet de dire cette possibilité ou celle-là pour générer toutes les variantes possibles de la phrase avec mot1 ou mot2). Lors de la génération Jeedom va générer toutes les combinaisons possibles de phrases avec toutes les commandes existantes (en fonction des filtres) en remplaçant #commande# par le nom de la commande et #objet# par le nom de l’objet.</p>
 </li>
 <li>
-<p>La respuesta será del tipo "21 ° C" o "200 lux" en pocas palabras: #valeur# #unite# (la unidad es configurable en la configuración de cada comando independientemente)</p>
+<p>La réponse sera de type "21 °C" ou "200 lux" il suffit de mettre : #valeur# #unite# (l&#8217;unité est à compléter dans la configuration de chaque commande pour laquelle on veut en avoir une)</p>
 </li>
 <li>
-<p>Este ejemplo por lo tanto genera una frase para todos los comandos de tipo información numérica que tiene una unidad, por lo tanto podemos desactivar las unidades en el filtro correspondiente para limitar al tipo que nos interesa.</p>
+<p>Cette exemple génère donc une phrase pour toutes les commandes de type info numérique qui ont une unité, on peut donc décocher des unités dans le filtre de droite limité au type qui nous intéresse.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_evolución_2">2.3.2. Evolución</h4>
+<h4 id="_evolution_2">2.3.2. Evolution</h4>
 <div class="paragraph">
-<p>Por lo tanto puedes agregar sinónimos en nombre de comando para obtener algo más natural, añadir una regexp para filtrar comandos que no  tenga nada que ver con nuestra interacción.</p>
+<p>On peut donc ajouter des synonymes au nom de commande pour avoir quelque chose de plus naturel, ajouter un regexp pour filtrer les commandes qui n&#8217;ont rien à voir avec notre interaction.</p>
 </div>
 <div class="paragraph">
 <p>Ajout de synonyme, permet de dire à Jeedom qu&#8217;une commande s&#8217;appellant "X" peut aussi s&#8217;appeler "Y" et donc dans notre phrase si on a "allume y", Jeedom sait que c&#8217;est allumer x. Cette méthode est très pratique pour renommer des noms de commande qui quand elles sont affichées à l&#8217;écran sont écrites d&#8217;une façon qui n&#8217;est pas naturelle vocalement ou dans une phrase écrite comme les "ON", un bouton écrit comme cela est totalement logique mais pas dans le contexte d&#8217;une phrase.</p>
 </div>
 <div class="paragraph">
-<p>También puede Agregar un filtro de Regexp para quitar unos cuantos comandos. Usando el simple ejemplo que vemos "batería" o "latencia", frases que no tienen nada que ver con la interacción de la temperatura, humedad y luminosidad.</p>
+<p>On peut aussi ajouter un filtre Regexp pour enlever quelques commandes. En reprenant l&#8217;exemple simple on voit des phrases "batterie" ou encore "latence", qui n&#8217;ont rien à voir avec notre interaction température/humidité/luminosité.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1082,20 +1103,29 @@ Para hacerlo más flexible puedes agregar sinónimos, pero en este caso no te ol
 <p>Por lo tanto, podemos ver una regexp:</p>
 </div>
 <div class="paragraph">
-<p><strong>(batería|latencia|presión|velocidad|consumo)</strong></p>
+<p><strong>(batterie|latence|pression|vitesse|consommation)</strong></p>
 </div>
 <div class="paragraph">
-<p>Esto permite eliminar todos los comandos que tengan una de estas palabras en su frase</p>
+<p>Celui-ci permet de supprimer toutes les commandes qui ont l&#8217;un de ces mots dans leur phrase</p>
 </div>
-<div class="paragraph">
-<p>La expresión aquí es una versión simplificada para un uso sencillo, por lo tanto ya sea para usar las expresiones tradicionales, utilice la expresión simplificada como en este ejemplo.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Le regexp ici est une version simplifiée pour une utilisation simple. On peut donc soit utiliser les expressions traditionnelles, soit utiliser les expressions simplifiées comme dans cet exemple.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_control_de_un_regulador_o_termostato_regulador">2.4. Control de un regulador o termostato (regulador)</h3>
+<h3 id="_piloter_un_dimmer_ou_un_thermostat_slider">2.4. Piloter un dimmer ou un thermostat (slider)</h3>
 <div class="sect3">
-<h4 id="_versión_básica_3">2.4.1. Versión básica</h4>
+<h4 id="_version_basique_3">2.4.1. Version basique</h4>
 <div class="paragraph">
 <p>Es posible controlar una lámpara en porcentaje (dimmer) o un termostato con interacciones. Este es un ejemplo para impulsar su atenuador en una lámpara con interacciones:</p>
 </div>
@@ -1105,18 +1135,27 @@ Para hacerlo más flexible puedes agregar sinónimos, pero en este caso no te ol
 </div>
 </div>
 <div class="paragraph">
-<p>Como se ve, aquí en la solicitud de etiquetado * #consigna#* (puedes poner lo que quieras) que esté incluido en el control de la unidad para aplicar el valor deseado.
-Para hacer esto tienes 3 partes:
-* Uso: en la cual creamos una etiqueta que representa el valor que se enviará a la interacción.
+<p>Comme on le voit, il y a ici dans la demande le tag <strong>#consigne#</strong> (on peut mettre ce que l&#8217;on veut) qui est repris dans la commande du variateur pour appliquer la valeur voulue.
+Pour ce faire, on a 3 parties :
+* Demande : dans laquelle on crée un tag qui va représenter la valeur qui sera envoyée à l&#8217;interaction.
 * Réponse : on réutilise le tag pour la réponse afin d&#8217;être sûr que Jeedom a correctement compris la demande.
 * Action : on met une action sur la lampe que l&#8217;on veut piloter et dans la valeur on lui passe notre tag <mark>consigne</mark>.</p>
 </div>
-<div class="paragraph">
-<p>On peut utiliser n&#8217;importe quel tag excepté ceux déjà utilisés par Jeedom, il peut y en avoir plusieurs pour piloter par exemple plusieurs commandes. A noter aussi que tous les tags sont passés aux scénarios lancés par l&#8217;interaction (il faut toutefois que le scénario soit en "Exécuter en avant plan").</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+On peut utiliser n&#8217;importe quel tag excepté ceux déjà utilisés par Jeedom, il peut y en avoir plusieurs pour piloter par exemple plusieurs commandes. A noter aussi que tous les tags sont passés aux scénarios lancés par l&#8217;interaction (il faut toutefois que le scénario soit en "Exécuter en avant plan").
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_evolución_3">2.4.2. Evolución</h4>
+<h4 id="_evolution_3">2.4.2. Evolution</h4>
 <div class="paragraph">
 <p>On peut vouloir piloter toutes les commandes de type curseur avec une seule interaction. Avec l&#8217;exemple qui suit on va donc pouvoir commander plusieurs variateurs avec une seule interaction et donc générer un ensemble de phrases pour les contrôler.</p>
 </div>
@@ -1130,7 +1169,7 @@ Para hacer esto tienes 3 partes:
 On peut aussi voir dans l&#8217;exemple que l&#8217;on peut utiliser dans la réponse un tag qui ne fait pas partie de la demande, la majorité des tags disponibles dans les scénarios sont disponibles aussi dans les interactions et donc peuvent être utilisés dans une réponse.</p>
 </div>
 <div class="paragraph">
-<p>El resultado de la interacción :</p>
+<p>Résultat de l&#8217;interaction :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1138,15 +1177,15 @@ On peut aussi voir dans l&#8217;exemple que l&#8217;on peut utiliser dans la ré
 </div>
 </div>
 <div class="paragraph">
-<p>Se puede observar que la etiqueta * #equipement#* que no se utiliza en la orden, se completa correctamente en la respuesta.</p>
+<p>On peut constater que le tag <strong>#equipement#</strong> qui n&#8217;est pas utilisé dans la demande est bien complété dans la réponse.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_controlar_el_color_de_una_tira_led">2.5. Controlar el color de una tira LED</h3>
+<h3 id="_piloter_la_couleur_d_un_bandeau_de_led">2.5. Piloter la couleur d&#8217;un bandeau de LED</h3>
 <div class="paragraph">
-<p>Es posible controlar el color por comando desde las interacciones ,por ejemplo pidiendo a Jeedom encender la tira led en azul.
-Aquí la interacción:</p>
+<p>Il est possible de piloter une commande couleur par les interactions en demandant par exemple à Jeedom d&#8217;allumer un bandeau de led en bleu.
+Voilà l&#8217;interaction à faire :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1170,19 +1209,18 @@ Aquí la interacción:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Se pueden agregar tantos como nos parezca, es posible asignar un nombre cualquiera, por lo que podría imaginar en asignar un nombre de color para cada miembro de la familia.</p>
+<p>On peut en ajouter autant que bon nous semble, on peut mettre comme nom n&#8217;importe lequel, ainsi on pourrait imaginer attribuer une couleur pour le nom de chaque membre de la famille.</p>
 </div>
 <div class="paragraph">
-<p>Una vez configurado, dirás "Enceder el abeto verde" Jeedom búsca el color y lo aplicará al comando.</p>
+<p>Une fois configuré, vous dites "Allume le sapin en vert", Jeedom va rechercher dans la demande une couleur et l&#8217;appliquer à la commande.</p>
 </div>
-<div class="sect3">
-<h4 id="_utilización_en_un_escenario">2.5.1. Utilización en un escenario</h4>
-
 </div>
+<div class="sect2">
+<h3 id="_utilisation_couplée_à_un_scénario">2.6. Utilisation couplée à un scénario</h3>
 <div class="sect3">
-<h4 id="_versión_básica_4">2.5.2. Versión básica</h4>
+<h4 id="_version_basique_4">2.6.1. Version basique</h4>
 <div class="paragraph">
-<p>Es posible asociar una interacción a un escenario a fin de realizar acciones más complejas que ejecutar una simple acción o una solicitud de información.</p>
+<p>Il est possible de coupler une interaction à un scénario afin de réaliser des actions un peu plus complexes que l&#8217;exécution d&#8217;une simple action ou d&#8217;une demande d&#8217;information.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1195,17 +1233,26 @@ Aquí la interacción:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_programación_de_una_acción_con_las_interacciones">2.6. Programación de una acción con las interacciones</h3>
+<h3 id="_programmation_d_une_action_avec_les_interactions">2.7. Programmation d&#8217;une action avec les interactions</h3>
 <div class="paragraph">
-<p>Las interacciones pueden hacer muchas cosas, en particular puedes programar dinámicamente una acción. Ejemplo: ' pon la calefacción a 22 por 14 h 50'. Esto es muy simple, sólo tiene que utilizar las etiquetas de #time# (si definimos un tiempo especificado) o #duration# (para X tiempo, ejemplo 1 hora):</p>
+<p>Les interactions permettent de faire beaucoup de choses en particulier. Vous pouvez programmer dynamiquement une action. Exemple : "Met le chauffage à 22 pour 14h50". Pour cela rien de plus simple, il suffit d&#8217;utiliser les tags #time# (si on définit une heure précise) ou  #duration# (pour dans X temps, exemple dans 1 heure) :</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/interact23.JPG" alt="interact23">
 </div>
 </div>
-<div class="paragraph">
-<p>tes darás cuenta que en la respuesta de la etiqueta #value# contiene en el caso de un tiempo de interacción programada de programación eficaz</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Vous remarquerez dans la réponse le tag #value# celui-ci contient dans le cas d&#8217;une interaction programmée l&#8217;heure de programmation effective
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Este es el resultado :</p>
@@ -1219,7 +1266,7 @@ Aquí la interacción:</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_probar_una_interacción">3. Probar una Interacción</h2>
+<h2 id="_tester_une_interaction">3. Tester une interaction</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Le bouton Tester (en haut a gauche) vous permet de saisir une phrase pour tester son bon fonctionnement et l&#8217;exécuter :</p>
@@ -1230,7 +1277,7 @@ Aquí la interacción:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>En respuesta, Jeedom devolverá la respuesta que corresponde a la interacción (campo respuesta):</p>
+<p>En réponse, Jeedom vous retournera la réponse qui correspond à l&#8217;interaction (champ réponse) :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1240,7 +1287,7 @@ Aquí la interacción:</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configuración">4. Configuración</h2>
+<h2 id="_configuration">4. Configuration</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>A la configuración se puede acceder desde el menú de configuración (arriba a la derecha) luego en "configuración de interacciones":</p>
@@ -1256,29 +1303,33 @@ Aquí la interacción:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Sensibilidad *: hay 4 niveles de correspondencia</p>
+<p><strong>Sensibilité</strong> : il y a 4 niveaux de correspondance</p>
+<div class="ulist">
+<ul>
+<li>
+<p>pour 1 mot : le niveau de correspondance pour les interactions à un seul mot</p>
 </li>
 <li>
-<p>para una 1 palabra: el nivel de correspondencia para las interacciones en una sola palabra</p>
+<p>2 mots : le niveau de correspondance pour les interactions à deux mots</p>
 </li>
 <li>
-<p>2 palabras: el nivel de correspondencia para las interacciones en dos palabras</p>
+<p>3 mots : le niveau de correspondance pour les interactions à trois mots</p>
 </li>
 <li>
-<p>3 palabras: el nivel de correspondencia para las interacciones en tres palabras</p>
+<p>+ de 3 mots : le niveau de correspondance pour les interactions à plus de trois mots</p>
 </li>
-<li>
-<p>+ 3 palabras: el nivel de correspondencia para las interacciones de más de tres palabras</p>
+</ul>
+</div>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>La sensibilidad oscila entre 1 (correspondencia exacta) a 99 (lo que es aceptable para mi),.</p>
+<p>La sensibilité va de 1 (correspond exactement) à 99 (je louche donc c&#8217;est ok pour moi),</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>* No contesto si no se incluye la interacción *: por defecto Jeedom respondió: "No entendí" si no se entiende la interacción, es posible deshabilitar esta función para que Jeedom no responda nada, ponga el botón en sí para desactivar la respuesta.</p>
+<p><strong>Ne pas répondre si l&#8217;interaction n&#8217;est pas comprise</strong> : par défaut Jeedom répond "je n&#8217;ai pas compris" si l&#8217;interaction n&#8217;est pas comprise. Il est possible de désactiver ce fonctionnement pour que Jeedom ne réponde rien, mettre le bouton à oui pour désactiver la réponse.</p>
 </li>
 <li>
 <p><strong>Regex général d&#8217;exclusion pour les interactions</strong> : permet de définir une regexp qui, si elle correspond à une interaction, supprimera automatiquement cette phrase de la génération (réservé aux experts). Pour plus d&#8217;infos voir les explications dans le chapitre <strong>"Regexp d&#8217;exclusion"</strong></p>
@@ -1286,10 +1337,19 @@ Aquí la interacción:</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Puedes encontrar la parte de ajustes de color, que se describe en detalle en el capítulo * "Controlar el color de una tira LED"*</p>
+<p>Puis vous retrouvez la partie paramétrage des couleurs qui est décrite en détail dans le chapitre <strong>"Piloter la couleur d’un bandeau de LED"</strong></p>
 </div>
-<div class="paragraph">
-<p>No te olvides de guardar, en la parte inferior de la página.</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Ne pas oublier de sauver en bas de page.
+</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1306,27 +1366,27 @@ Si vous activez les logs au niveau debug vous avez un log interact qui vous donn
 </div>
 </div>
 <div class="sect1">
-<h2 id="_resumen">5. Resumen</h2>
+<h2 id="_résumé">5. Résumé</h2>
 <div class="sectionbody">
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Aplicación</dt>
+<dt class="hdlist1">Demande</dt>
 <dd>
-<p>Puedes utilizar "#commande#" y "#objet#" (los 2 deben absolutamente ser usados conjuntamente ) para generar una lista de comandos (es posible filtrar la generación para reducir la lista). También es posible utilizar "#equipement#" (útil si varios comandos en el mismo objeto tienen el mismo nombre)
-Ejemplo: Qué es el "#commande# [de la |y |to la] #objet#"
-Durante la generación de las órdenes puedes usar el campo sinónimos (syn1 = syn2, syn3|syn4 = syn5) para reemplazar el nombre de objetos, equipos y comandos</p>
+<p>Vous pouvez utiliser "#commande#" et "#objet#" (les 2 doivent absolument être utilisés ensemble) pour générer une liste de commandes (il est possible de filtrer la génération pour réduire la liste). Il est aussi possible d&#8217;utiliser "#equipement#" (utile si plusieurs commandes appartenant au même objet ont le même nom)
+Exemple : Quelle est la "#commande# [du |de la |de l']#objet#"
+Lors de la génération des commandes, vous pouvez utiliser le champ synonyme (syn1=syn2,syn3|syn4=syn5) pour remplacer le nom des objets, des équipements et/ou des commandes</p>
 </dd>
-<dt class="hdlist1">Respuesta</dt>
+<dt class="hdlist1">Réponse</dt>
 <dd>
-<p>Puedes utilizar "#valeur#" y "#unite#" en la parte posterior (que se sustituirá por el valor y la unidad del comando). También tienes acceso a todas las etiquetas de los escenarios:
-"#profile#" &#8658; nombre de la persona que inició la ejecución (puede no estar disponible)
-Ejemplo: "#valeur# #unite#"
-Puedes utilizar el campo de conversión binaria para convertir valores binarios (0 y 1):
-Ejemplo: no|si</p>
+<p>Vous pouvez utiliser "#valeur#" et "#unite#" dans le retour (ils seront remplacés par la valeur et l&#8217;unité de la commande). Vous avez aussi accès à tous les tags des scénarios et à :
+"#profile#" &#8658; Nom de la personne ayant lancé l&#8217;exécution (peut ne pas être disponible)
+Exemple : "#valeur# #unite#"
+Vous pouvez utiliser le champ conversion binaire pour convertir les valeurs binaires (0 et 1) :
+Exemple : non|oui</p>
 </dd>
-<dt class="hdlist1">Persona</dt>
+<dt class="hdlist1">Personne</dt>
 <dd>
-<p>El campo persona, permitirá sólo a ciertas personas ejecutar el comando, puedes poner varios perfiles separados por |.
+<p>Le champ personne permet de n&#8217;autoriser que certaines personnes à exécuter la commande, vous pouvez mettre plusieurs profils en les séparant par |.
 Ejemplo: usuario1|usuario2</p>
 </dd>
 </dl>

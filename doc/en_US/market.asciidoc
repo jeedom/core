@@ -8,20 +8,20 @@ image::../images/market.png[]
 
 Celle-ci se décompose en plusieurs parties : 
 
-== My profile
+== Mon profil
 
 image::../images/market1.png[]
 
-Here you can fix your settings of your profile 
+C'est ici que vous allez pouvoir régler différents paramètres de votre profil : 
 
-* *Profile*
-** *Login* : Your login on the market, it cannot be changed
-** *Name* : Your name (this information is only useful to make the mails nicer)
-** *Name* : Your name (this information is useful only to make mails funnier)
+* *Profil*
+** *Login* : Votre login sur le market, il ne peut être changé
+** *Nom* : Votre nom (cette information n'est utile que pour rendre les mails plus sympa)
+** *Prénom* : Votre prénom (cette information n'est utile que pour rendre les mails plus sympa)
 ** *Pseudo* : Votre pseudo (uniquement pour les développeurs)
-** *Email* : Your mail
+** *Email* : Votre mail
 ** *Email public* : Non utilisé pour le moment mais ça pourrait être un email de contact pour les développeurs si un jour on met en place ce genre de service
-** *Language* : Your language
+** *Langue* : Votre langue
 ** *Compte paypal* : Votre mail de compte Paypal (uniquement utilisé pour payer les developpeurs)
 ** *Mot de passe && Confirmer le mot de passe* : permet de changer votre mot passe
 * *CGU*
@@ -34,13 +34,13 @@ Here you can fix your settings of your profile
 [TIP]
 N'oubliez pas de sauvegarder
 
-== My Jeedoms
+== Mes Jeedoms
 
 image::../images/market2.png[]
 
 Ici vous pouvoir : 
 
-* *Level*
+* *Niveau*
 ** *Jeedom* : votre niveau de service pack
 ** *Entrer un numéro de service pack* : permet d'entrer votre numéro de service pack (il se trouve dans le mail envoyé par Jeedom lors de votre commande)
 * *Clef d'installation*
@@ -58,19 +58,19 @@ Il est possible que le market vous demande parfois de remettre à zéro vos clef
 ** *DNS* : permet de personnaliser votre DNS Jeedom
 ** *Date de création* : date de création de ce Jeedom sur votre compte market (pour rappel cela se fait automatiquement lorsque vous le liez au market)
 ** *Dernière mise à jour* : dernière communication du Jeedom avec le market
-** *Hardware* : Hardware name of Jeedom
+** *Hardware* : Nom du hardware du Jeedom
 ** *Version* : la version de Jeedom installée
 
 [TIP]
 N'oubliez pas de sauvegarder
 
-== My backups
+== Mes backups
 
 image::../images/market3.png[]
 
 Sur cette onglet vous pouvez consulter les backups présents sur le market et en télécharger un. En dessous vous avez accès au lien pour acheter 1,3,6 ou 12 mois d'abonnement à la sauvegarde cloud
 
-== My purchase/discounts/gifts
+== Mes achats/promos/dons
 
 image::../images/market4.png[]
 
@@ -81,7 +81,7 @@ Si vous achetez un plugin officiel vous recevez une facture. En revanche pour un
 
 Vous pouvez aussi à partir de cet onglet entrer un code promo (un code pour un plugin par exemple que le développeur a pu vous transmettre) et faire un don.
 
-== My developments
+== Mes développments
 
 image::../images/market5.png[]
 

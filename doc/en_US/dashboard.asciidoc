@@ -2,7 +2,7 @@
 
 Une des pages principales de Jeedom affiche un compte-rendu de toute votre domotique. Ce compte-rendu (contrairement aux vues et design) est auto-généré par Jeedom.
 
-It is accessible by clicking on Main -> Dashboard
+Il est accessible en cliquant sur Accueil -> Dashboard
 
 image::../images/dashboard2.JPG[]
 

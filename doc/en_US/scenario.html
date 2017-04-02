@@ -416,13 +416,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table des matières</div>
 <ul class="sectlevel1">
-<li><a href="#_the_scenario_page">1. The scenario page</a></li>
-<li><a href="#_simple_mode">2. Simple mode</a>
+<li><a href="#_la_page_scénario">1. La page scénario</a></li>
+<li><a href="#_mode_simple">2. Mode simple</a>
 <ul class="sectlevel2">
 <li><a href="#_exemple_allumer_sur_présence">2.1. Exemple allumer sur présence</a></li>
 </ul>
 </li>
-<li><a href="#_advanced_mode">3. Advanced mode</a>
+<li><a href="#_mode_avancée">3. Mode avancée</a>
 <ul class="sectlevel2">
 <li><a href="#_déclencheurs">3.1. Déclencheurs</a></li>
 <li><a href="#_condition_ou_valeur_d_une_commande_d_action">3.2. Condition ou valeur d&#8217;une commande d&#8217;action</a></li>
@@ -432,7 +432,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#_les_variables">4. Les variables</a></li>
 <li><a href="#_template_de_scénario">5. Template de scénario</a></li>
-<li><a href="#_the_logs">6. The logs</a></li>
+<li><a href="#_les_logs">6. Les logs</a></li>
 </ul>
 </div>
 </div>
@@ -445,7 +445,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_the_scenario_page">1. The scenario page</h2>
+<h2 id="_la_page_scénario">1. La page scénario</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Pour y accéder rien de plus simple, il suffit d&#8217;aller sur Outils &#8594; Scénarios :</p>
@@ -469,7 +469,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Add</strong> : allows to add a scenario</p>
+<p><strong>Ajouter</strong> : permet d&#8217;ajouter un scénario</p>
 </li>
 <li>
 <p><strong>Désactiver scénarios</strong> : permet de désactiver tous les scénarios</p>
@@ -539,7 +539,7 @@ Il est possible de passer un scénario du mode simple au mode avancé mais pas l
 </div>
 </div>
 <div class="sect1">
-<h2 id="_simple_mode">2. Simple mode</h2>
+<h2 id="_mode_simple">2. Mode simple</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Voilà l&#8217;interface en mode simple :</p>
@@ -689,7 +689,7 @@ Il ne faut pas oublier de faire le même genre de scénario mais pour éteindre 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_advanced_mode">3. Advanced mode</h2>
+<h2 id="_mode_avancée">3. Mode avancée</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Voici un exemple de scénario en mode avancé :</p>
@@ -705,7 +705,7 @@ Il ne faut pas oublier de faire le même genre de scénario mais pour éteindre 
 <div class="ulist">
 <ul>
 <li>
-<p><strong>name</strong></p>
+<p><strong>nom</strong></p>
 </li>
 <li>
 <p><strong>groupe</strong> : permet d&#8217;organiser les scénarios</p>
@@ -853,7 +853,7 @@ Si vous cliquez sur "Ne rien mettre" Jeedom va juste écrire la commande dans le
 </div>
 </div>
 <div class="paragraph">
-<p>In order :</p>
+<p>Dans l&#8217;ordre :</p>
 </div>
 <div class="ulist">
 <ul>
@@ -923,27 +923,27 @@ Vous avez ici aussi un bouton pour aller chercher une commande
 <div class="sect2">
 <h3 id="_condition_ou_valeur_d_une_commande_d_action">3.2. Condition ou valeur d&#8217;une commande d&#8217;action</h3>
 <div class="paragraph">
-<p>You can use any of the following symbols for the operators :</p>
+<p>Vous pouvez utiliser n&#8217;importe lequel des symboles suivant pour les opérateurs :</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>==: equal,</p>
+<p>== : égal,</p>
 </li>
 <li>
-<p>&gt; : superior,</p>
+<p>&gt; : supérieur,</p>
 </li>
 <li>
-<p>&gt;= : superior or equal,</p>
+<p>&gt;= : supérieur ou égal,</p>
 </li>
 <li>
 <p>&lt; : inférieur,</p>
 </li>
 <li>
-<p>&lt;= : inferior or equal,</p>
+<p>&lt;= : inférieur ou égal,</p>
 </li>
 <li>
-<p>!= : different,</p>
+<p>!= : différent,</p>
 </li>
 <li>
 <p>matches : contient (ex : <mark>[Salle de bain][Hydrometrie][etat]</mark> matches "/humide/" ),</p>
@@ -954,7 +954,7 @@ Vous avez ici aussi un bouton pour aller chercher une commande
 </ul>
 </div>
 <div class="paragraph">
-<p>You can combine any operation with the following operators :</p>
+<p>Vous pouvez combiner n&#8217;importe quelle opération avec les opérateurs suivants :</p>
 </div>
 <div class="ulist">
 <ul>
@@ -999,10 +999,10 @@ Un tag est remplacé lors de l&#8217;exécution du scénario par sa valeur
 <p><strong>#jour#</strong> : jour courant,</p>
 </li>
 <li>
-<p><strong>#month#</strong> : current month,</p>
+<p><strong>#mois#</strong> : mois courant,</p>
 </li>
 <li>
-<p><strong>#year#</strong> : current year,</p>
+<p><strong>#annee#</strong> : année courante,</p>
 </li>
 <li>
 <p><strong>#time#</strong> : heure et minute courante (ex : 1715 pour 17h15),</p>
@@ -1539,7 +1539,7 @@ Attention les tags ne sont pas disponibles dans un bloc de type code.
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Commands (sensors and actuators)</dt>
+<dt class="hdlist1">Commandes (capteurs et actionneurs)</dt>
 <dd>
 <div class="ulist">
 <ul>
@@ -1653,7 +1653,7 @@ Attention les tags ne sont pas disponibles dans un bloc de type code.
 </div>
 </li>
 <li>
-<p>* $scenario\-&gt; getIsActive() *;</p>
+<p><strong>$scenario-&gt;getIsActive()</strong>;</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1833,7 +1833,7 @@ Attention les tags ne sont pas disponibles dans un bloc de type code.
 <p><strong>Partager</strong> : partager le template sur le Market</p>
 </li>
 <li>
-<p><strong>Cancel</strong> : cancel the template</p>
+<p><strong>Supprimer</strong> : supprimer le template</p>
 </li>
 <li>
 <p><strong>Télécharger</strong> : permet de récupérer le template sous forme de fichier JSON pour le renvoyer sur un autre Jeedom par exemple</p>
@@ -1861,7 +1861,7 @@ Etant donné que d&#8217;un Jeedom à l&#8217;autre ou d&#8217;une installation 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_the_logs">6. The logs</h2>
+<h2 id="_les_logs">6. Les logs</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Vous pouvez accéder aux logs d&#8217;éxecution d&#8217;un scénario en cliquant sur le bouton log de celui-ci :</p>

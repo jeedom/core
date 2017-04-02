@@ -1,18 +1,18 @@
-= Ansichten
+= Vues
 
-In der Ansicht können einfache persönliche Ansichten erstellt werden, sie sind nicht so fortgeschritten wie die im Design, aber es erlaubt in wenigen Minuten eine eigene Anzeige zu haben.
+Les vues permettent simplement de créer un affichage personnalisé. Ce n'est pas aussi puissant que les designs mais cela permet en quelques minutes d'avoir un affichage plus personnalisé.
 
-Die Ansichten sind über das Menü  Mein Haus -> Ansicht erreichbar : 
+Les vues sont accessibles à partir du menu Accueil -> Vue : 
 
 image::../images/view.png[]
 
 [TIP]
-Wie Sie auf der Aufnahme sehen können, ist es möglich, direkt zu einer Ansicht über das Untermenü zu gehen.
+Comme vous pouvez le voir sur la capture, il est possible d'aller directement sur une vue grâce au sous-menu.
 
 [TIP]
-Sie können ein Profil in der Standardansicht wählen, wenn sie auf das Menü Ansichten klicken.
+Vous pouvez dans votre profil choisir la vue par défaut lors du clic sur le menu des vues.
 
-== Die Ansichten
+== Les vues
 
 Dies ist ein Beispiel einer Ansicht : 
 
@@ -25,74 +25,74 @@ Auf dieser Seite finden wir oben links eine Schaltfläche zum ein- oder ausblend
 image::../images/view3.png[]
 
 [TIP]
-Sie können in Ihrem Profil diese Option ändern, damit die Liste der Ansichten standardmäßig sichtbar ist.
+Vous pouvez dans votre profil modifier cette option pour que la liste des vues soit visible par défaut.
 
 Mit der Schaltfläche oben rechts können Sie die aktuelle Ansicht bearbeiten.
 
-== Ansicht hinzufügen/bearbeiten
+== Ajout/Edition d'une vue
 
-Hier ist die Seite zum hinzufügen/bearbeiten von Ansichten : 
+Voici la page d'ajout/édition d'une vue : 
 
 image::../images/view4.png[]
 
-Prinzip::
+Principe::
 
-Das Prinzip ist ganz einfach : eine Ansicht ist aus mehreren Bereichen zusammengesetzt, (Sie können so viele einsetzen, wie Sie möchten). Jeder Bereich ist ein Diagramm- oder Widget-Typ : Entsprechend dem Typ können Sie Widgets oder Diagramme in den Bereichen einsetzen.
+Le principe est assez simple : une vue est composée de zones (on peut en mettre autant que l'on veut). Chaque zone est de type graphique ou widget : en fonction du type vous pourrez mettre des widgets ou des graphiques dedans.
 
 [TIP]
-Es ist möglich, die Reihenfolge der Bereiche zu verschieben, indem sie Ziehen/Ablegen.
+Il est possible de déplacer l'ordre des zones en les glissant/déposant.
 
-Auf der linken Seite befindet sich die Liste der Ansichten sowie eine Schaltfläche zum hinzufügen.
+Sur la gauche de la page on retrouve la liste des vues ainsi qu'un bouton d'ajout.
 
-Im Zentrum haben Sie eine Schaltfläche, zum umbenennen einer Ansicht, eine Schaltfläche Bereich hinzufügen, eine Schaltfläche zum Speichern (vergessen Sie nicht zu speichern, bevor Sie auf "Ergebnis sehen" klicken) und eine Schaltfläche zum löschen der Ansicht.
+Au centre vous avez un bouton pour renommer une vue, le bouton d'ajout de zone, un bouton pour voir le résultat, un bouton pour sauvegarder (ne pas oubliez de le faire avant de cliquer sur "voir le résultat") et un bouton pour supprimer la vue.
 
-Nachdem die Taste "Bereich hinzufügen" geklickt wurde, bittet Sie Jeedom einen Namen und den Typ einzugeben : 
+Après avoir cliqué sur le bouton d'ajout de zone, Jeedom vous demande son nom et le type : 
 
 image::../images/view5.png[]
 
-=== Bereich Widget-Typ
+=== Zone de type widget
 
 image::../images/view6.png[]
 
-Der Bereich vom Widget-Typ ermöglicht es Widgets hinzuzufügen, der hat auf der Rechten Seite 4 Schaltflächen :  
+Une zone de type widget permet d'ajouter des widgets, elle a 3 boutons sur la droite : 
 
-* *Breite* : definiert die Breite des Bereiches (nur im Desktop-Modus)
-* *Widget hinzufügen* : zum hinzufügen von Widgets, die in dem Bereich angezeigt werden sollen
-* *Bearbeiten* : erlaubt den Namen den Bereich zu ändern
-* *Löschen* : um den Bereich zu löschen
-
-[TIP]
-Sie können ein Widget direkt löschen, indem sie auf den Mülleimer vor diesem klicken.
+* *Largeur* : définit la largeur de la zone (en mode desktop seulement)
+* *Ajouter/Editer widget* : permet d'ajouter/modifier des widgets à afficher dans la zone
+* *Editer* : permet de changer le nom de la zone
+* *Supprimer* : permet de supprimer la zone
 
 [TIP]
-Sie können durch Ziehen/Ablegen die Reihenfolge der Widgets im Bereich ändern.
+Vous pouvez supprimer un widget directement en cliquant sur la poubelle devant celui-ci.
 
-Wurde die Schaltfläche zum hinzufügen von einem Widget einmal angeklickt, erscheint folgendes Fenster : 
+[TIP]
+Il est possible de modifier l'ordre des widgets dans la zone en les glissant/déposant.
+
+Une fois le bouton d'ajout/edition de widget pressé, vous obtenez : 
 
 image::../images/view7.png[]
 
 In diesem Fenster müssen Sie nur die Objekte/Geräte zum hinzufügen für den Bereich auswählen und Bestätigen.
 
-=== Bereich Diagramm-Typ
+=== Zone de type graphique
 
 image::../images/view8.png[]
 
-Der Bereich vom Diagramm-Typ, erlaubt es Ihnen Diagramme zu Ihrer Ansicht hinzuzufügen, er besitzt die folgenden Optionen : 
+Une zone de type graphique permet d'ajouter des graphiques à votre vue, elle possède les options suivantes : 
 
-* *Periode* : Sie ermöglicht es, die Anzeigeperiode von Diagrammen (30 min, 1 Tag, 1 Woche, 1 Monat, 1 Jahr oder alle) zu wählen
-* *Breite* : definiert die Breite des Bereiches (nur im Desktop-Modus)
-* *Widget hinzufügen* : zum hinzufügen von Diagrammen , die in dem Bereich angezeigt werden sollen
-* *Bearbeiten* : erlaubt den Namen den Bereich zu ändern
-* *Löschen* : um den Bereich zu löschen
-
-[TIP]
-Sie können ein Diagramm direkt löschen, indem sie auf den Mülleimer vor diesem klicken.
+* *Periode* : permet de choisir la période d'affichage des graphiques (30 min, 1 jour, 1 semaine, 1 mois, 1 année ou tout)
+* *Largeur* : définit la largeur de la zone (en mode desktop seulement)
+* *Ajouter/Editer widget* : permet d'ajouter/modifier des graphiques
+* *Editer* : permet de changer le nom de la zone
+* *Supprimer* : permet de supprimer la zone
 
 [TIP]
-Sie können durch Ziehen/Ablegen die Reihenfolge der Diagramme im Bereich ändern.
+Vous pouvez supprimer une donnée à grapher directement en cliquant sur la poubelle devant celui-ci.
 
-Wurde die Schaltfläche zum hinzufügen von einem Diagramm einmal angeklickt, erscheint folgendes Fenster : 
+[TIP]
+Il est possible de modifier l'ordre des graphiques dans la zone en les glissant/déposant.
+
+Une fois le bouton d'ajout/édition des graphiques pressé, vous obtenez : 
 
 image::../images/view9.png[]
 
-Einmal hinzugefügt, haben Sie Zugang zu Konfigurationsoptionen : die verschiedenen Optionen werden link:https://jeedom.com/doc/documentation/core/fr_FR/doc-core-history.html#_graphique_sur_les_vues_et_les_designs[hier] erklärt.
+Une fois ajouté vous avez accès à des options de configuration : les différentes options sont expliquées link:https://jeedom.com/doc/documentation/core/fr_FR/doc-core-history.html#_graphique_sur_les_vues_et_les_designs[ici]

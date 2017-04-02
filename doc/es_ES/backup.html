@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.3.dev">
-<title>Copia de seguridad y restauración</title>
+<title>Sauvegarde et restauration</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -412,15 +412,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Copia de seguridad y restauración</h1>
+<h1>Sauvegarde et restauration</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table des matières</div>
 <ul class="sectlevel1">
-<li><a href="#_configuración">1. Configuración</a></li>
-<li><a href="#__que_es_lo_que_se_salva">2. ¿Que es lo que se salva?</a></li>
-<li><a href="#_copia_de_seguridad_en_la_nube">3. Copia de seguridad en la nube</a></li>
-<li><a href="#_frecuencia_de_los_backups">4. Frecuencia de los backups</a></li>
-<li><a href="#_caso_de_un_esclavo">5. Caso de un esclavo</a></li>
+<li><a href="#_configuration">1. Configuration</a></li>
+<li><a href="#_qu_est_ce_qui_est_sauvegardé">2. Qu&#8217;est-ce qui est sauvegardé ?</a></li>
+<li><a href="#_sauvegarde_cloud">3. Sauvegarde cloud</a></li>
+<li><a href="#_fréquence_des_backups">4. Fréquence des backups</a></li>
+<li><a href="#_cas_d_un_esclave">5. Cas d&#8217;un esclave</a></li>
 </ul>
 </div>
 </div>
@@ -433,10 +433,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configuración">1. Configuración</h2>
+<h2 id="_configuration">1. Configuration</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Acceso desde Administración &#8594; copia de seguridad:</p>
+<p>Accessible depuis Administration &#8594; Sauvegarde :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -452,7 +452,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>En esta página puede encontrar a la izquierda la configuración y botones de acción y a la derecha el estado en tiempo real de la acción en curso (backup o restore), si se ha iniciado alguna.</p>
+<p>Sur cette page vous retrouvez à gauche les paramètres et les boutons d&#8217;action, et à droite le statut en temps réel de l&#8217;action en cours (sauvegarde en cours ou restauration), si vous en avez lancée une.</p>
 </div>
 <div class="paragraph">
 <p>A la izquierda:</p>
@@ -460,53 +460,61 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>Copias de seguridad *.</p>
-</li>
-<li>
-<p>Copia de seguridad *: permite iniciar una copia de seguridad inmediatamente (útil si usted quiere hacer un cambio crítico, esto le permitirá volver atrás). También tiene un botón para iniciar una copia de seguridad sin enviar el archivo a la nube (requiere un suscripción, ver más abajo). El envío del archivo puede llevar tiempo, por lo tanto esto puede acelerar el proceso un poco.</p>
-</li>
-<li>
-<p>Ubicación de copias de seguridad *: lugar donde Jeedom pone las copias de seguridad, se recomienda no cambiar. Si usted está en la ruta de acceso relativa, así que su origen es el lugar donde Jeedom está instalado (/ usr/share/nginx/www/jeedom).</p>
-</li>
-<li>
-<p>Número de día (s) de respaoldo de copias de seguridad *: número de días de respaldo a mantener. Una vez finalizado este período se eliminan copias de seguridad anteriores. PRECAUCIÓN No coloque un número de días demasiado alto, de lo contrario usted puede llenar el sistema de archivos.</p>
-</li>
-<li>
-<p>Tamaño máximo total de copias de seguridad (MB) *: permite limitar el tamaño total de las copias de seguridad. Si se supera este valor Jeedom eliminará los anteriores. Asegúrese de estar por debajo del tamaño máximo de copias de seguridad.</p>
-</li>
-<li>
-<p>Enviar backups en la nube *: Indica a Jeedom que envie los Backups al Market, debe haber abonado la suscripción.</p>
-</li>
-<li>
-<p>Copia de seguridad local *.</p>
-</li>
-<li>
-<p><strong>Copias de seguridad Disponibles</strong>: lista de copias de seguridad disponibles</p>
-</li>
-<li>
-<p>Restaurar desde copia de seguridad *: lanza la restauración seleccionando una copia de seguridad anterior</p>
-</li>
-<li>
-<p>*Eliminar copia de seguridad *: elimina las copias de seguridad seleccionados, realizadas con anterioridad</p>
-</li>
-<li>
-<p>Enviar una copia de seguridad *: le permite a Jeedom cargar un archivo de copia de seguridad (permite por ejemplo, restaurar desde un archivo previamente salvado, en un nuevo Jeedom o tras una reinstalación)</p>
-</li>
-<li>
-<p>*Descargar backup *: le permite descargar el archivo de una copia de seguridad anterior</p>
+<p><strong>Sauvegardes</strong></p>
 <div class="ulist">
 <ul>
 <li>
-<p>* Nube de backups *.</p>
+<p><strong>Sauvegarde</strong> : permet de lancer une sauvegarde immédiatement (utile si vous voulez faire un changement critique, cela vous permettra de revenir en arrière). Vous avez aussi un bouton pour lancer une sauvegarde sans envoyer l&#8217;archive sur le cloud (nécessite un abonnement voir plus bas), l&#8217;envoi de l&#8217;archive peut prendre du temps cela permet donc d&#8217;en gagner un peu.</p>
+</li>
+<li>
+<p><strong>Emplacement des sauvegardes</strong> : endroit où Jeedom met les sauvegardes, il est recommandé de ne pas le changer. Si vous êtes en chemin relatif, alors son origine est l&#8217;endroit ou Jeedom est installé (/usr/share/nginx/www/jeedom).</p>
+</li>
+<li>
+<p><strong>Nombre de jour(s) de mémorisation des sauvegardes</strong> : nombre de jours de sauvegarde à garder. Une fois ce délai passé les sauvegardes sont supprimées. Attention à ne pas mettre un nombre de jours trop élevé, sinon vous pouvez remplir votre système de fichiers.</p>
+</li>
+<li>
+<p><strong>Taille totale maximale des backups (Mo)</strong> : Permet de limiter la taille totale des sauvegardes. Si cette valeur est dépassée alors Jeedom va supprimer les sauvegardes les plus vieilles jusqu&#8217;à retomber en-dessous de la taille maximale.</p>
+</li>
+<li>
+<p><strong>Envoyer les sauvegardes dans le cloud</strong> : indique à Jeedom d&#8217;envoyer les sauvegardes au Market, attention il faut avoir pris l&#8217;abonnement.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>*Copias de seguridad disponibles *: lista de copias de seguridad disponibles ne la nube</p>
+<p><strong>Sauvegardes locales</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Sauvegardes disponibles</strong> : liste des sauvegardes disponibles</p>
 </li>
 <li>
-<p>*Restaurar desde copia de seguridad *: inicia la restauración de una copia de seguridad de en la nube</p>
+<p><strong>Restaurer la sauvegarde</strong> : lance la restauration de la sauvegarde sélectionnée au-dessus</p>
+</li>
+<li>
+<p><strong>Supprimer la sauvegarde</strong> : supprime la sauvegarde sélectionnée au-dessus</p>
+</li>
+<li>
+<p><strong>Envoyer une sauvegarde</strong> : vous permet d&#8217;envoyer à Jeedom une archive de sauvegarde (permet par exemple de restaurer une archive précédemment récupérée sur un nouveau Jeedom ou une réinstallation)</p>
+</li>
+<li>
+<p><strong>Télécharger la sauvegarde</strong> : vous permet de récupérer l&#8217;archive de la sauvegarde sélectionnée au-dessus</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Sauvegardes cloud</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Sauvegardes disponibles</strong> : liste des sauvegardes cloud disponibles</p>
+</li>
+<li>
+<p><strong>Restaurer la sauvegarde</strong> : lance la restauration d&#8217;une sauvegarde cloud</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -517,7 +525,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Durante una reinstalación de Jeedom y habiendo abonado la suscripción de copia de seguridad en la nube, usted tiene derecho en su nuevo Jeedom introducir su cuenta del Market y luego venir aquí para iniciar la restauración.
+Lors d&#8217;une réinstallation de Jeedom et en ayant pris l&#8217;abonnement de sauvegarde cloud, vous avez juste sur votre nouveau Jeedom à renseigner votre compte Market puis à venir ici pour lancer la restauration.
 </td>
 </tr>
 </table>
@@ -529,7 +537,7 @@ Durante una reinstalación de Jeedom y habiendo abonado la suscripción de copia
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Es posible, en caso de problemas, realizar una copia de seguridad en línea de comandos: 'sudo php usr/share/nginx/www/jeedom/install/backup.php'
+Il est possible, en cas de soucis, de faire un backup en ligne de commandes : <code>sudo php /usr/share/nginx/www/jeedom/install/backup.php</code>
 </td>
 </tr>
 </table>
@@ -541,7 +549,7 @@ Es posible, en caso de problemas, realizar una copia de seguridad en línea de c
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-También puede restaurar una copia de seguridad desde la línea de comandos (por defecto Jeedom restaura la copia de seguridad más reciente en el directorio de copia de seguridad): 'sudo php usr/share/nginx/www/jeedom/install/restore.php'
+Il est possible aussi de restaurer un backup en ligne de commandes (par défaut Jeedom restaure le backup le plus récent présent dans le répertoire de backup) : <code>sudo php /usr/share/nginx/www/jeedom/install/restore.php</code>
 </td>
 </tr>
 </table>
@@ -549,21 +557,21 @@ También puede restaurar una copia de seguridad desde la línea de comandos (por
 </div>
 </div>
 <div class="sect1">
-<h2 id="__que_es_lo_que_se_salva">2. ¿Que es lo que se salva?</h2>
+<h2 id="_qu_est_ce_qui_est_sauvegardé">2. Qu&#8217;est-ce qui est sauvegardé ?</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Durante una copia de seguridad, Jeedom guardará todos sus archivos y la base de datos. Contiene por lo tanto de su configuración (equipo, ordenes, historial, escenas, diseño&#8230;&#8203;).</p>
+<p>Lors d&#8217;une sauvegarde, Jeedom va sauvegarder tous ses fichiers et la base de données. Cela contient donc toute votre configuration (équipement, commande, historique, scénario, design&#8230;&#8203;).</p>
 </div>
 <div class="paragraph">
-<p>A nivel de los protocolos, sólo Z-Wave (OpenZwave) es un poco diferente porque no es posible guardar las inclusiones. Estos se incluyen directamente en el controlador, por lo tanto, mantener el mismo para todo.</p>
+<p>Au niveau des protocoles, seul le Z-Wave (OpenZwave) est un peu différent car il n&#8217;est pas possible de sauvegarder les inclusions. Celles-ci sont directement incluses dans le contrôleur, il faut donc garder le même pour tout retrouver.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_copia_de_seguridad_en_la_nube">3. Copia de seguridad en la nube</h2>
+<h2 id="_sauvegarde_cloud">3. Sauvegarde cloud</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>El backup en la nube permite a Jeedom enviar copias de seguridad directamente al Market. Esto le permite restaurar fácilmente y asegurarse de no perderlos. El Market mantiene las últimas 14 copias de seguridad. Para suscribirse ir a tu perfil en la página de Market:</p>
+<p>La sauvegarde dans le cloud permet à Jeedom d&#8217;envoyer vos sauvegardes directement sur le Market. Cela vous permet de les restaurer facilement et d&#8217;être sûr de ne pas les perdre. Le Market conserve les 14 dernières sauvegardes. Pour vous abonner il suffit d&#8217;aller sur votre page profil sur le Market :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -571,7 +579,7 @@ También puede restaurar una copia de seguridad desde la línea de comandos (por
 </div>
 </div>
 <div class="paragraph">
-<p>Entonces en la pestaña mis copias de seguridad:</p>
+<p>Puis dans l&#8217;onglet mes backups :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -588,7 +596,7 @@ También puede restaurar una copia de seguridad desde la línea de comandos (por
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Puedes poner un nombre más adecuado a tus de copia de seguridad en la pestaña "My Jeedoms" indicando un nombre.
+Vous pouvez mettre un nom de sauvegarde plus sympa à partir de l&#8217;onglet "Mes Jeedoms" en donnant un nom à ceux-ci.
 </td>
 </tr>
 </table>
@@ -596,18 +604,18 @@ Puedes poner un nombre más adecuado a tus de copia de seguridad en la pestaña 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_frecuencia_de_los_backups">4. Frecuencia de los backups</h2>
+<h2 id="_fréquence_des_backups">4. Fréquence des backups</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Jeedom realiza una copia de seguridad cada día a las 2:00 de la mañana. Puede modificarse (esta es la copia de seguridad Jeedom) pero no es recomendable porque este horario se calcula en relación con la carga de trabajo y el tiempo de la copia de seguridad del Market.</p>
+<p>Jeedom effectue une sauvegarde tous les jours.Vous pouvez modifier cette heure à partir du "Moteur de tâches" (la tâche est nommée 'Jeedom backup') mais ce n&#8217;est pas recommandé car cette heure est calculée par rapport à la charge et l&#8217;heure de la sauvegarde du Market.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_caso_de_un_esclavo">5. Caso de un esclavo</h2>
+<h2 id="_cas_d_un_esclave">5. Cas d&#8217;un esclave</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>El caso de un esclavo es algo especial, porque él enviará cada backup al maestro (y en el Market si tienes una suscripción para el servicio de cloud backup). Usted puede por lo tanto desde el maestro recuperar una copia de seguridad del esclavo que se instale en otro esclavo por ejemplo.</p>
+<p>Le cas d&#8217;un esclave est un peu particulier, car il va après chaque sauvegarde envoyer celle-ci sur son maître (et sur le Market si vous avez un abonnement au service de sauvegarde cloud). Vous pouvez donc à partir du maître récupérer une sauvegarde de l&#8217;esclave pour l&#8217;installer sur un autre esclave par exemple.</p>
 </div>
 </div>
 </div>

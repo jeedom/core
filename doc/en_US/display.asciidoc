@@ -1,4 +1,4 @@
-= Automation summary
+= Résumé domotique
 
 Cette page permet d'avoir un résumé sur sa domotique et donne aussi accès à des fonctions d'organisation des équipements et des commandes, à la configuration avancée des équipements et des commandes ainsi qu'à des possibilités de configuration d'affichage. Elle se décompose en un onglet "Ma domotique" et un un onglet "Configuration de l'affichage".
 
@@ -14,9 +14,9 @@ On retrouve tout en haut un résumé du nombre d'objets existants, du nombre d'�
 
 En dessous on retrouve un cadre par objet. Dans chaque cadre se trouve la liste des équipements (en bleu) contenus dans l'objet. Vous avez sur la ligne du nom de l'objet jusqu'à 3 boutons, dans l'ordre : 
 
-* the first one is used to open the configuration page of the object in the new tag
+* le premier sert à ouvrir la page de configuration de l'objet dans un nouvel onglet
 * le deuxième donne un résumé sur l'objet
-* the last one allows to hide the equipment lists (in blue below)
+* le dernier permet de masquer la liste des équipements (en dessous en bleu)
 
 [TIP]
 La couleur de fond des cadres objets dépend de la couleur mise dans la configuration de l'objet
@@ -68,7 +68,7 @@ image::../images/display9.png[]
 L'onglet information contient les informations générales de l'équipement : 
 
 * *ID* : identifiant unique dans la base de données
-* *Name* : equipment name
+* *Nom* : nom de l'équipement
 * *ID logique* : identifiant logique de l'équipement (peut être vide)
 * *ID de l'objet* : identifiant unique de l'objet père (peut être vide)
 * *Date de création* : date de création de l'équipement
@@ -96,7 +96,7 @@ En-dessous, on retrouve des paramètres optionnels d'affichage que l'on peut pas
 image::../images/display11.png[]
 
 [TIP]
-Don't forget to save after any changes
+N'oubliez pas de sauvegarder après toute modification
 
 === Batteries
 
@@ -144,7 +144,7 @@ Pour une commande de type info :
 * *Type générique* : cette partie permet de configurer le type générique de la commande (Jeedom essaie de le trouver par lui-même en mode auto). Cette information est utilisée par l'application mobile.
 * *Action sur la valeur* : cette partie permet de faire des sortes de mini scénarios, vous pouvez par exemple dire que si la valeur vaut plus de 50 pendant 3 minutes alors il faut faire telle action. Cela permet par exemple d'éteindre une lumiere X minutes après que celle-ci se soit allumée
 * *Historique* : voir link:https://jeedom.com/doc/documentation/core/fr_FR/doc-core-history.html#_configuration_spécifique_par_commande[ici]
-* *Others*
+* *Autres*
 ** *Ne pas répéter si la valeur ne change pas* : Si la commande remonte 2 fois la même valeur d'affilée alors Jeedom ne prend pas en compte la 2eme remontée (évite de déclencher plusieurs fois un scénario par exemple si la valeur ne change pas)
 ** *Push URL* : permet de rajouter une URL à appeler en cas de mise à jour de la commande. Vous pouvez utiliser les tags suivant : \#value# pour la valeur de la commande, \#cmd_name# pour le nom de la commande, \#cmd_id# pour l'identifiant unique de la commande, \#humanname# pour le nom complet de la commande (ex : \#[Salle de bain][Hydrometrie][Humidité]#)
 
@@ -172,4 +172,4 @@ You can :
 En-dessous, on retrouve des paramètres optionnels d'affichage que l'on peut passer au widget. Ces paramètres dependent du widget en question, il faut donc regarder sa fiche sur le Market pour les connaitre.
 
 [TIP]
-Don't forget to save after any changes
+N'oubliez pas de sauvegarder après toute modification

@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.3.dev">
-<title>Szenario</title>
+<title>Scénario</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -412,27 +412,27 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Szenario</h1>
+<h1>Scénario</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table des matières</div>
 <ul class="sectlevel1">
-<li><a href="#_die_szenario_seite">1. Die Szenario Seite</a></li>
-<li><a href="#_einfacher_modus">2. Einfacher Modus</a>
+<li><a href="#_la_page_scénario">1. La page scénario</a></li>
+<li><a href="#_mode_simple">2. Mode simple</a>
 <ul class="sectlevel2">
-<li><a href="#_beispiel_auf_anwesenheit_einzuschalten">2.1. Beispiel, auf Anwesenheit einzuschalten</a></li>
+<li><a href="#_exemple_allumer_sur_présence">2.1. Exemple allumer sur présence</a></li>
 </ul>
 </li>
-<li><a href="#_erweiterter_modus">3. Erweiterter Modus</a>
+<li><a href="#_mode_avancée">3. Mode avancée</a>
 <ul class="sectlevel2">
-<li><a href="#_auslöser">3.1. Auslöser</a></li>
-<li><a href="#_bedingung_oder_wert_eines_aktionsbefehls">3.2. Bedingung oder Wert eines Aktionsbefehls</a></li>
+<li><a href="#_déclencheurs">3.1. Déclencheurs</a></li>
+<li><a href="#_condition_ou_valeur_d_une_commande_d_action">3.2. Condition ou valeur d&#8217;une commande d&#8217;action</a></li>
 <li><a href="#_action">3.3. Action</a></li>
 <li><a href="#_code">3.4. Code</a></li>
 </ul>
 </li>
-<li><a href="#_die_variablen">4. Die Variablen</a></li>
-<li><a href="#_szenario_vorlagen">5. Szenario Vorlagen</a></li>
-<li><a href="#_die_protokolle">6. Die Protokolle</a></li>
+<li><a href="#_les_variables">4. Les variables</a></li>
+<li><a href="#_template_de_scénario">5. Template de scénario</a></li>
+<li><a href="#_les_logs">6. Les logs</a></li>
 </ul>
 </div>
 </div>
@@ -445,7 +445,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_die_szenario_seite">1. Die Szenario Seite</h2>
+<h2 id="_la_page_scénario">1. La page scénario</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Pour y accéder rien de plus simple, il suffit d&#8217;aller sur Outils &#8594; Scénarios :</p>
@@ -469,13 +469,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Hinzufügen</strong> : um ein Szenario hinzuzufügen</p>
+<p><strong>Ajouter</strong> : permet d&#8217;ajouter un scénario</p>
 </li>
 <li>
-<p><strong>Szenarien deaktivieren</strong> : um alle Szenarien zu deaktivieren</p>
+<p><strong>Désactiver scénarios</strong> : permet de désactiver tous les scénarios</p>
 </li>
 <li>
-<p><strong>Variablen anzeigen</strong> : erlaubt die Variablen zu sehen, ihren Wert und den Ort, wo sie verwendet werden</p>
+<p><strong>Voir les variables</strong> : permet de voir les variables, leur valeur ainsi que l&#8217;endroit où elle sont utilisées</p>
 </li>
 </ul>
 </div>
@@ -486,7 +486,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Die Szenarien in rot sind diejenigen, die deaktiviert sind
+Les scénarios en rouge sont ceux qui sont désactivés
 </td>
 </tr>
 </table>
@@ -498,7 +498,7 @@ Die Szenarien in rot sind diejenigen, die deaktiviert sind
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Wie an vielen Orten auf Jeedom, wenn man die Maus ganz nach links bewegt ermöglicht es, ein Schnellzugangsmenü sichtbar zu machen(Sie können es in ihrem Profil immer sichtbar machen).
+Comme à beaucoup d&#8217;endroits sur Jeedom, mettre la souris tout à gauche permet de faire apparaître un menu d&#8217;accès rapide (vous pouvez à partir de votre profil le laisser toujours visible).
 </td>
 </tr>
 </table>
@@ -512,12 +512,21 @@ Wie an vielen Orten auf Jeedom, wenn man die Maus ganz nach links bewegt ermögl
 <p><strong>Simple</strong> : permet de faire des scénarios très simples type SI ça ALORS fait ça</p>
 </li>
 <li>
-<p><strong>Fortschrittlich</strong> : Sie können alles tun, aber es erfordert mehr wissen</p>
+<p><strong>Avancé</strong> : là vous pouvez tout faire mais cela demande plus de connaissances</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Es ist möglich, ein Szenario von einfachen Modus zum erweiterte Modus zu übergeben, aber nicht umgekehrt</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Il est possible de passer un scénario du mode simple au mode avancé mais pas l&#8217;inverse
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Beim Erstellen eines Szenario wird Jeedom nach den Namen und den Typ fragen :</p>
@@ -530,10 +539,10 @@ Wie an vielen Orten auf Jeedom, wenn man die Maus ganz nach links bewegt ermögl
 </div>
 </div>
 <div class="sect1">
-<h2 id="_einfacher_modus">2. Einfacher Modus</h2>
+<h2 id="_mode_simple">2. Mode simple</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Dies ist der Modus "Einfaches-Interface" :</p>
+<p>Voilà l&#8217;interface en mode simple :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -546,10 +555,10 @@ Wie an vielen Orten auf Jeedom, wenn man die Maus ganz nach links bewegt ermögl
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Name</strong> : Der Name des Szenarios</p>
+<p><strong>Nom</strong> : le nom du scénario</p>
 </li>
 <li>
-<p><strong>Beschreibung</strong> : Sie können eine Beschreibung hinzufügen, was das Szenario macht und zum Beispiel Überwachung</p>
+<p><strong>Description</strong> : une description que vous pouvez ajouter pour savoir ce que fait le scénario et faire un suivi par exemple</p>
 </li>
 <li>
 <p><strong>Actif</strong> : définit si le scénario est actif ou non</p>
@@ -561,7 +570,7 @@ Wie an vielen Orten auf Jeedom, wenn man die Maus ganz nach links bewegt ermögl
 <p><strong>Dernier lancement</strong> : la date de dernière exécution du scénario</p>
 </li>
 <li>
-<p><strong>Zustand</strong> : der aktuelle Zustand des Szenarios (laufend, angehalten&#8230;&#8203;)</p>
+<p><strong>Etat</strong> : l&#8217;état actuel du scénario (en cours, arrêté&#8230;&#8203;)</p>
 </li>
 </ul>
 </div>
@@ -571,13 +580,13 @@ Wie an vielen Orten auf Jeedom, wenn man die Maus ganz nach links bewegt ermögl
 <div class="ulist">
 <ul>
 <li>
-<p>eine Schaltfläche, um einen Text-Export des Szenarios zu machen (praktisch, um es auf dem Forum oder dem Supportteam zu zeigen)</p>
+<p>un bouton pour faire un export texte du scénario (pratique pour le montrer sur le forum ou à l&#8217;équipe support)</p>
 </li>
 <li>
-<p>eine Schaltfläche, um ein Protokoll des Szenarios zu haben</p>
+<p>un bouton pour avoir le log du scénario</p>
 </li>
 <li>
-<p>eine Schaltfläche, um das Szenario zu Kopieren</p>
+<p>un bouton pour dupliquer le scénario</p>
 </li>
 </ul>
 </div>
@@ -587,16 +596,16 @@ Wie an vielen Orten auf Jeedom, wenn man die Maus ganz nach links bewegt ermögl
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Szenario</strong> : um anzuzeigen, ob das Skript programmiert (an einer bestimmten Uhrzeit und Datum) oder wenn sie  verursacht wird (Wie die Erfassung der Bewegung)</p>
+<p><strong>Scénario</strong> : permet d&#8217;indiquer si le scénario est programmé (à une date et heure précise) ou s&#8217;il est provoqué (comme par exemple la détection d&#8217;un mouvement)</p>
 </li>
 <li>
 <p><strong>A exécuter</strong> : en mode programmé permet de dire s&#8217;il doit être exécuté une fois ou de manière répétée</p>
 </li>
 <li>
-<p><strong>Datiert</strong> : wenn es nur einmal ausgeführt wird, dann müssen sie das Datum und die Uhrzeit eingeben</p>
+<p><strong>En date du</strong> : s&#8217;il n&#8217;est exécuté qu&#8217;une fois alors il faut indiquer la date et l&#8217;heure</p>
 </li>
 <li>
-<p><strong>Häufigkeit</strong> : im Mehrmals Modus können Sie die Wiederholungsfrequenz wählen</p>
+<p><strong>Fréquence</strong> : en mode répété vous pouvez choisir la fréquence de répétition</p>
 </li>
 </ul>
 </div>
@@ -608,7 +617,7 @@ Wie an vielen Orten auf Jeedom, wenn man die Maus ganz nach links bewegt ermögl
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Von</strong> : Im verursacht-Modus können Sie den Befehl der das Szenario auslöst auswählen, indem Sie auf den kleinen Knopf rechts klicken</p>
+<p><strong>Par</strong> : en mode provoqué vous devez choisir la commande déclenchant le scénario, en cliquant sur le petit bouton à gauche</p>
 </li>
 </ul>
 </div>
@@ -632,10 +641,10 @@ Wie an vielen Orten auf Jeedom, wenn man die Maus ganz nach links bewegt ermögl
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Wenn</strong> : Damit können sie die Reihenfolge in der die Bedingung erfüllt ist wählen, indem Sie auf den kleinen Knopf auf der rechten Seite klicken</p>
+<p><strong>Si</strong> : permet de choisir la commande sur laquelle s&#8217;applique la condition, en cliquant sur le petit bouton à gauche</p>
 </li>
 <li>
-<p><strong>Ist</strong> : Sie können den Status wählen, der der vorherige Befehl haben muss, damit die Aktion (gemäß den Befehlen können die Optionen wechseln) ausgeführt werden soll</p>
+<p><strong>Est</strong> : permet de choisir le statut que doit avoir la commande précédente pour que les actions soient exécutées (en fonction de la commande les options peuvent changer)</p>
 </li>
 </ul>
 </div>
@@ -643,7 +652,7 @@ Wie an vielen Orten auf Jeedom, wenn man die Maus ganz nach links bewegt ermögl
 <p>Schließlich, auf der rechten Seite haben Sie die Aktion, hier genügt es einfach "Aktion hinzufügen" anzuklicken</p>
 </div>
 <div class="sect2">
-<h3 id="_beispiel_auf_anwesenheit_einzuschalten">2.1. Beispiel, auf Anwesenheit einzuschalten</h3>
+<h3 id="_exemple_allumer_sur_présence">2.1. Exemple allumer sur présence</h3>
 <div class="imageblock">
 <div class="content">
 <img src="../images/scenario13.JPG" alt="scenario13">
@@ -664,14 +673,23 @@ Ce scénario sera déclenché aussi bien lors de la détection d&#8217;une prés
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>Vergessen Sie nicht die gleiche Art von Szenario zu machen, aber das Licht auszuschalten, wenn niemand anwesend ist</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Il ne faut pas oublier de faire le même genre de scénario mais pour éteindre la lumière lorsque plus personne n&#8217;est présent
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_erweiterter_modus">3. Erweiterter Modus</h2>
+<h2 id="_mode_avancée">3. Mode avancée</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Hier ist ein Beispielszenario im erweiterten Modus :</p>
@@ -682,27 +700,27 @@ Ce scénario sera déclenché aussi bien lors de la détection d&#8217;une prés
 </div>
 </div>
 <div class="paragraph">
-<p>Oben finden wir den allgemeinen Teil wieder :</p>
+<p>En haut la partie générale où l&#8217;on retrouve :</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Name</strong></p>
+<p><strong>nom</strong></p>
 </li>
 <li>
-<p><strong>Gruppe</strong> : hilft Szenarien zu organisieren</p>
+<p><strong>groupe</strong> : permet d&#8217;organiser les scénarios</p>
 </li>
 <li>
-<p><strong>Aktiv</strong> : Ob das Szenario aktiv oder inaktiv sein soll</p>
+<p><strong>Actif</strong> : Si le scénario est actif ou non</p>
 </li>
 <li>
-<p><strong>Sichtbar</strong> : Ob das Szenario sichtbar oder nicht sichtbar sein soll</p>
+<p><strong>Visible</strong> : Si le scénario est visible ou non</p>
 </li>
 <li>
-<p><strong>Eltern-Objekt</strong> : Die Wahl zu einem übergeordneten Objekt zugewiesen zu werden oder nicht</p>
+<p><strong>Objet parent</strong> : Le choix d&#8217;affecter à un objet parent ou pas</p>
 </li>
 <li>
-<p><strong>Zeitüberschreitung Sekunden (0 = unbegrenzt)</strong> : Die maximal  erlaubte Ausführungszeit</p>
+<p><strong>Timeout secondes (0 = illimité)</strong> : La durée d’exécution maximum autorisée</p>
 </li>
 <li>
 <p><strong>Déclencheurs</strong> : Ensuite vient la partie des déclencheurs qui peuvent soit être un ou plusieurs événements et/ou une programmation (une heure donnée, une fréquence… Cette partie s’écrit à l’aide d’une syntaxe type crontab accessible via la touche, un assistant est disponible en cliquant sur ?. Attention vous pouvez avoir au maximum 28 déclencheurs sur un scénario.</p>
@@ -720,7 +738,7 @@ Ce scénario sera déclenché aussi bien lors de la détection d&#8217;une prés
 <p><strong>Pas de log</strong> : indique au scénario de ne pas écrire dans les logs (permet de le rendre un peu plus rapide)</p>
 </li>
 <li>
-<p><strong>Zustand</strong> : aktueller Zustand des Szenarios</p>
+<p><strong>Etat</strong> : état actuel du scénario</p>
 </li>
 </ul>
 </div>
@@ -735,25 +753,25 @@ Ce scénario sera déclenché aussi bien lors de la détection d&#8217;une prés
 <div class="ulist">
 <ul>
 <li>
-<p><strong>wenn/dann/sonst</strong> : Grundstein für das erreichen einer Bedingung</p>
+<p><strong>Si/Alors/Sinon</strong> : bloc de base permettant de réaliser des conditions.</p>
 </li>
 <li>
 <p><strong>Action</strong> : bloc permet de lancer une action simple sans aucune condition ou autre avant</p>
 </li>
 <li>
-<p>Schleifen : ermöglicht Schleifen auf 1 definierte Nummer (oder einen Wert eines Sensors oder Zufallszahl)</p>
+<p><strong>Boucle</strong> : permet de réaliser des boucles de 1 jusqu’à un nombre défini (ou même une valeur d’un capteur, ou nombre aléatoire).</p>
 </li>
 <li>
 <p><strong>Dans</strong> : permet de lancer une action dans X minute(s) (0 est une valeur possible). La particularité c&#8217;est que les actions sont lancées en arrière plan, elles ne bloquent donc pas la suite du scénario. C&#8217;est donc un bloc non bloquant.</p>
 </li>
 <li>
-<p><strong>A</strong> : erlaubt, Jeedom zu sagen, die Aktionen des Blocks A zu einer bestimmten Stunde zu starten (in der Form hhmm). Dieser Block ist nicht blockierend</p>
+<p><strong>A</strong> : permet de dire à Jeedom de lancer les actions du bloc A à une heure donnée (sous la forme hhmm). Ce bloc est non bloquant</p>
 </li>
 <li>
-<p><strong>Code</strong> : ermöglicht, direkt im PHP Code zu schreiben (demande certaines connaissances et peut être risqué mais permet de n’avoir plus aucune contrainte).</p>
+<p><strong>Code</strong> : permet d’écrire directement en code PHP (demande certaines connaissances et peut être risqué mais permet de n’avoir plus aucune contrainte).</p>
 </li>
 <li>
-<p><strong>Kommentar</strong> : ermöglicht, Kommentare zu seinem Szenario hinzufügen</p>
+<p><strong>Commentaire</strong> : permet d&#8217;ajouter des commentaires à son scénario</p>
 </li>
 </ul>
 </div>
@@ -790,7 +808,7 @@ Sur les blocs de type Si/Alors/Sinon vous avez devant des flèches circulaires, 
 </div>
 </div>
 <div class="paragraph">
-<p>Die erste Schaltfläche erlaubt es, einen Befehl zu  suchen :</p>
+<p>Le premier bouton permet d&#8217;aller chercher une commande :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -835,21 +853,21 @@ Si vous cliquez sur "Ne rien mettre" Jeedom va juste écrire la commande dans le
 </div>
 </div>
 <div class="paragraph">
-<p>In der Reihenfolge :</p>
+<p>Dans l&#8217;ordre :</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Schaltfläche zum Verschieben der Aktion (Doppelpfeile), klicken Sie einfach darauf und halten die Taste gedrückt und bewegen dann den Block</p>
+<p>un bouton pour déplacer l&#8217;action (les doubles flèches), il suffit de cliquer et maintenir le bouton puis de déplacer le bloc</p>
 </li>
 <li>
-<p>eine Schaltfläche zum Löschen der Aktion</p>
+<p>un bouton pour supprimer l&#8217;action</p>
 </li>
 <li>
-<p>eine Schaltfläche zum vorübergehenden deaktivieren der Aktion</p>
+<p>un bouton pour désactiver temporairement l&#8217;action</p>
 </li>
 <li>
-<p>eine Schaltfläche zum suchen eines Aktionsbefehls</p>
+<p>un bouton pour rechercher une commande d&#8217;action</p>
 </li>
 <li>
 <p>un bouton pour les actions spécifiques, avec à chaque fois la description de cette action</p>
@@ -857,32 +875,32 @@ Si vous cliquez sur "Ne rien mettre" Jeedom va juste écrire la commande dans le
 </ul>
 </div>
 <div class="sect2">
-<h3 id="_auslöser">3.1. Auslöser</h3>
+<h3 id="_déclencheurs">3.1. Déclencheurs</h3>
 <div class="paragraph">
 <p>Es gibt bestimmte Auslöser (außer jene, die durch die Befehle geliefert wurden) :</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>#start#</strong> : löst Jeedom (neu)start aus,</p>
+<p><strong>#start#</strong>  : déclenché au (re)démarrage de Jeedom,</p>
 </li>
 <li>
-<p><strong>#begin_backup#</strong>  : Ereignis, das zu Beginn des Backups gesendet wird.</p>
+<p><strong>#begin_backup#</strong>  : événement envoyé au début du backup.</p>
 </li>
 <li>
-<p><strong>#end_backup#</strong>  : Ereignis, das am Ende des Backups gesendet wird.</p>
+<p><strong>#end_backup#</strong>  : événement envoyé à la fin du backup.</p>
 </li>
 <li>
-<p><strong>#begin_update#</strong>  : Ereignis, das zu Beginn des Updates gesendet wird.</p>
+<p><strong>#begin_update#</strong>  : événement envoyé au début de la mise à jour.</p>
 </li>
 <li>
-<p><strong>#end_update#</strong>  : Ereignis, das am Ende des Updates gesendet wird.</p>
+<p><strong>#end_update#</strong>  : événement envoyé à la fin de la mise à jour.</p>
 </li>
 <li>
-<p><strong>#begin_restore#</strong>  : Ereignis, das zu Beginn der Wiederherstellung gesendet wird.</p>
+<p><strong>#begin_restore#</strong>  : événement envoyé au début du restore.</p>
 </li>
 <li>
-<p><strong>#end_restore#</strong>  :  Ereignis, das am Ende der Wiederherstellung gesendet wird.</p>
+<p><strong>#end_restore#</strong>  : événement envoyé à la fin du restore.</p>
 </li>
 </ul>
 </div>
@@ -896,36 +914,36 @@ Si vous cliquez sur "Ne rien mettre" Jeedom va juste écrire la commande dans le
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Hier haben Sie auch eine Schaltfläche, um einen Befehl zu suchen
+Vous avez ici aussi un bouton pour aller chercher une commande
 </td>
 </tr>
 </table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_bedingung_oder_wert_eines_aktionsbefehls">3.2. Bedingung oder Wert eines Aktionsbefehls</h3>
+<h3 id="_condition_ou_valeur_d_une_commande_d_action">3.2. Condition ou valeur d&#8217;une commande d&#8217;action</h3>
 <div class="paragraph">
-<p>Sie können irgendein Symbol entsprechend für die Operatoren benutzen :</p>
+<p>Vous pouvez utiliser n&#8217;importe lequel des symboles suivant pour les opérateurs :</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>== : gleich,</p>
+<p>== : égal,</p>
 </li>
 <li>
-<p>&gt; : größer,</p>
+<p>&gt; : supérieur,</p>
 </li>
 <li>
-<p>&gt;= : größer oder gleich</p>
+<p>&gt;= : supérieur ou égal,</p>
 </li>
 <li>
-<p>&lt; : kleiner,</p>
+<p>&lt; : inférieur,</p>
 </li>
 <li>
-<p>&#8656; : kleiner oder gleich</p>
+<p>&lt;= : inférieur ou égal,</p>
 </li>
 <li>
-<p>!= : unterschiedlich,</p>
+<p>!= : différent,</p>
 </li>
 <li>
 <p>matches : contient (ex : <mark>[Salle de bain][Hydrometrie][etat]</mark> matches "/humide/" ),</p>
@@ -936,22 +954,18 @@ Hier haben Sie auch eine Schaltfläche, um einen Befehl zu suchen
 </ul>
 </div>
 <div class="paragraph">
-<p>Sie können jede Operation mit den folgenden Operatoren kombinieren:</p>
+<p>Vous pouvez combiner n&#8217;importe quelle opération avec les opérateurs suivants :</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>&amp;&amp; / ET / et / AND / and : und,</p>
+<p>&amp;&amp; / ET / et / AND / and : et,</p>
 </li>
 <li>
-<p>|| / OU / ou / OR / or : oder,</p>
-<div class="ulist">
-<ul>
-<li>
-<p>|^ / XOR / xor : entweder oder</p>
+<p>|| / OU / ou / OR / or : ou,</p>
 </li>
-</ul>
-</div>
+<li>
+<p>|^ / XOR / xor : ou.</p>
 </li>
 </ul>
 </div>
@@ -965,7 +979,7 @@ Hier haben Sie auch eine Schaltfläche, um einen Befehl zu suchen
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Ein Tag wird während der Ausführung des Skripts durch seinen Wert ersetzt.
+Un tag est remplacé lors de l&#8217;exécution du scénario par sa valeur
 </td>
 </tr>
 </table>
@@ -973,52 +987,52 @@ Ein Tag wird während der Ausführung des Skripts durch seinen Wert ersetzt.
 <div class="ulist">
 <ul>
 <li>
-<p><strong>#seconde#</strong> : Sekunde,</p>
+<p><strong>#seconde#</strong> : seconde courante,</p>
 </li>
 <li>
-<p><strong>#heure#</strong> : Stunde (Bsp. : 17 als 17h15),</p>
+<p><strong>#heure#</strong> : heure courante (ex : 17 pour 17h15),</p>
 </li>
 <li>
-<p><strong>#minute#</strong> : Minute (Bsp. : 15 als 17h15),</p>
+<p><strong>#minute#</strong> : minute courante (ex : 15 pour 17h15),</p>
 </li>
 <li>
-<p><strong>#jour#</strong> : Tag,</p>
+<p><strong>#jour#</strong> : jour courant,</p>
 </li>
 <li>
-<p><strong>#mois#</strong> : Monat,</p>
+<p><strong>#mois#</strong> : mois courant,</p>
 </li>
 <li>
-<p><strong>#annee#</strong> : Jahr,</p>
+<p><strong>#annee#</strong> : année courante,</p>
 </li>
 <li>
-<p><strong>#time#</strong> : Stunde und Minute (Bsp. : 1715 als 17h15),</p>
+<p><strong>#time#</strong> : heure et minute courante (ex : 1715 pour 17h15),</p>
 </li>
 <li>
-<p><strong>#timestamp#</strong> : gibt die Anzahl der Sekunden seit dem 1. Januar 1970,</p>
+<p><strong>#timestamp#</strong> : retourne le nombre de secondes depuis le 1er janvier 1970,</p>
 </li>
 <li>
-<p><strong>#date#</strong> : Monat und Tag (Bsp. : 1215 als 15 Dezember),</p>
+<p><strong>#date#</strong> : jour et mois courant (ex : 1215 pour le 15 décembre),</p>
 </li>
 <li>
-<p><strong>#semaine#</strong> : Nummer der Woche (Bsp. : 51),</p>
+<p><strong>#semaine#</strong> : numéro de la semaine (ex : 51),</p>
 </li>
 <li>
-<p><strong>#sjour#</strong> : den Namen des Wochentages (Bsp. : Samstag),</p>
+<p><strong>#sjour#</strong> : pour le nom du jour de la semaine (ex : Samedi),</p>
 </li>
 <li>
-<p><strong>#njour#</strong> : Nummer des Tages von 0 (Sonntag) bis 6 (Samstag),</p>
+<p><strong>#njour#</strong> : numéro du jour de 0 (dimanche) à 6 (samedi),</p>
 </li>
 <li>
-<p><strong>#smois#</strong> : den Namen des Monats (Bsp. : Januar),</p>
+<p><strong>#smois#</strong> : pour le nom du mois (ex : Janvier),</p>
 </li>
 <li>
-<p><strong>#IP#</strong> : Interne Jeedom IP,</p>
+<p><strong>#IP#</strong> : IP interne de jeedom,</p>
 </li>
 <li>
-<p><strong>#hostname#</strong> : Name der Jeedom Maschine,</p>
+<p><strong>#hostname#</strong> : nom de la machine Jeedom,</p>
 </li>
 <li>
-<p><strong>#trigger#</strong> : Name des Befehls, der das Szenario auslöst.</p>
+<p><strong>#trigger#</strong> : nom de la commande qui a déclenché le scénario.</p>
 </li>
 </ul>
 </div>
@@ -1028,15 +1042,24 @@ Ein Tag wird während der Ausführung des Skripts durch seinen Wert ersetzt.
 <div class="ulist">
 <ul>
 <li>
-<p><strong>#query#</strong> : Interaktion, die das Szenario auslöst,</p>
+<p><strong>#query#</strong> : interaction ayant déclenché le scénario,</p>
 </li>
 <li>
-<p><strong>#profil#</strong> : Profil des Benutzers, der das Skript ausgelöst hat (kann leer sein).</p>
+<p><strong>#profil#</strong> : profil de l&#8217;utilisateur ayant déclenché le scénario (peut être vide).</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Lorsqu&#8217;un scénario est déclenché par une interaction, celui-ci est forcément exécuté en mode rapide.</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Lorsqu&#8217;un scénario est déclenché par une interaction, celui-ci est forcément exécuté en mode rapide.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Mehrere Funktionen sind für die Geräte verfügbar :</p>
@@ -1176,17 +1199,17 @@ Le seuil permet de definir la sensibilité, attention le calcul du seuil utilise
 </div>
 </li>
 <li>
-<p><strong>scenario</strong>(scenario) : liefert den Status des Szenarios</p>
+<p><strong>scenario</strong>(scenario) : donne le statut du scénario</p>
 </li>
 <li>
-<p>Bsp. : scenario(#[Badezimmer][Licht][Auto]#) : giebt zurück 1 läuft, 0 wenn gestoppt, -1 wenn deaktiviert, -2 wenn das Szenario nicht gefunden wurde und -3 wenn die Bedingung nicht konsistent</p>
+<p>Ex : scenario(#[Salle de bain][Lumière][Auto]#) : renvoie 1 en cours, 0 si arreté et -1 si desactivé, -2 si le scénario n&#8217;existe pas et -3 si l&#8217;état n&#8217;est pas cohérent</p>
 </li>
 <li>
-<p><strong>lastScenarioExecution</strong>(scenario) : gibt die Zeit in Sekunden seit dem letzten Start das Szenarios</p>
+<p><strong>lastScenarioExecution</strong>(scenario) : donne la durée en secondes depuis le dernier lancement du scénario</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Bsp. : lastScenarioExecution(#[Badezimmer][Licht][Auto]#) : giebt zurück 300, das Szenario wurde in diesem Fall zum letzten Mal vor 5min gestartet</p>
+<p>Ex : lastScenarioExecution(#[Salle de bain][Lumière][Auto]#) : renvoie 300 si le scénario s&#8217;est lancé pour la dernière fois il y a 5 min</p>
 </li>
 </ul>
 </div>
@@ -1196,7 +1219,7 @@ Le seuil permet de definir la sensibilité, attention le calcul du seuil utilise
 <div class="ulist">
 <ul>
 <li>
-<p>Bsp. : collectDate(#[Badezimmer][Hydrometrie][Luftfeuchtigkeit]#) : Rückgabe 2015-01-01 17:45:12</p>
+<p>Ex : collectDate(#[Salle de bain][Hydrometrie][Humidité]#) : renverra 2015-01-01 17:45:12</p>
 </li>
 </ul>
 </div>
@@ -1494,18 +1517,29 @@ Le seuil permet de definir la sensibilité, attention le calcul du seuil utilise
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Bild:&#8230;&#8203; / Bilder/scenario20. JPG]</p>
+<div class="imageblock">
+<div class="content">
+<img src="../images/scenario20.JPG" alt="scenario20">
+</div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_code">3.4. Code</h3>
-<div class="paragraph">
-<p>Achtung, Tags sind nicht in einem Block des Code-Typs verfügbar.</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Attention les tags ne sont pas disponibles dans un bloc de type code.
+</td>
+</tr>
+</table>
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Befehle (Sensoren und Aktoren)</dt>
+<dt class="hdlist1">Commandes (capteurs et actionneurs)</dt>
 <dd>
 <div class="ulist">
 <ul>
@@ -1514,10 +1548,10 @@ Le seuil permet de definir la sensibilité, attention le calcul du seuil utilise
 <div class="ulist">
 <ul>
 <li>
-<p>Liefert das entsprechende Befehlsobjekt</p>
+<p>Retourne l&#8217;objet commande correspondant</p>
 </li>
 <li>
-<p>$string &#8658; Link zum gewünschten Befehl : #[objekt][gerät][befehl]# (Bsp. :  #[Wohnung][Alarm][Aktiv]#)</p>
+<p>$string &#8658; lien vers la commande voulue : #[objet][equipement][commande]# (ex :  #[Appartement][Alarme][Actif]#)</p>
 </li>
 </ul>
 </div>
@@ -1527,10 +1561,10 @@ Le seuil permet de definir la sensibilité, attention le calcul du seuil utilise
 <div class="ulist">
 <ul>
 <li>
-<p>Liefert das entsprechende Befehlsobjekt</p>
+<p>Retourne l&#8217;objet commande correspondant</p>
 </li>
 <li>
-<p>$id &#8658; Id des gewünschten Befehls (siehe Allgemein&#8658;Anzeige)</p>
+<p>$id &#8658; Id de la commande voulue (voir Général &#8658; Affichage)</p>
 </li>
 </ul>
 </div>
@@ -1540,24 +1574,24 @@ Le seuil permet de definir la sensibilité, attention le calcul du seuil utilise
 <div class="ulist">
 <ul>
 <li>
-<p>Den Befehl ausführen und das Ergebnis ausgeben</p>
+<p>Exécute la commande et retourne le résultat</p>
 </li>
 <li>
-<p>$options &#8658; Optionen für die Befehlsausführung (kann spezifisch für das Plugin sein), Grundoption :</p>
+<p>$options &#8658; Options pour l&#8217;exécution de la commande (peut être spécifique au plugin), option de base :</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Subtyp des Befehls :</p>
+<p>Sous-type de la commande :</p>
 <div class="ulist">
 <ul>
 <li>
 <p>message &#8658; <code>$option = array('title' &#8658; 'titre du message , 'message' &#8658; 'Mon message');</code></p>
 </li>
 <li>
-<p>color &#8658; <code>$option = array('color' &#8658; 'Farbe in Hexadezimal');</code></p>
+<p>color &#8658; <code>$option = array('color' &#8658; 'couleur en hexadécimal');</code></p>
 </li>
 <li>
-<p>slider &#8658; <code>$option = array('slider' &#8658; 'gewünschten Wert von 0 bis 100');</code></p>
+<p>slider &#8658; <code>$option = array('slider' &#8658; 'valeur voulue de 0 à 100');</code></p>
 </li>
 </ul>
 </div>
@@ -1580,13 +1614,13 @@ Le seuil permet de definir la sensibilité, attention le calcul du seuil utilise
 <div class="ulist">
 <ul>
 <li>
-<p>filename &#8658; Name der Protokolldatei</p>
+<p>filename &#8658; nom du fichier de log</p>
 </li>
 <li>
 <p>level &#8658; [debug],[info],[error],[event]</p>
 </li>
 <li>
-<p>message &#8658; Nachricht in Protokoll schreiben</p>
+<p>message &#8658; message à écrire dans les logs</p>
 </li>
 </ul>
 </div>
@@ -1594,7 +1628,7 @@ Le seuil permet de definir la sensibilité, attention le calcul du seuil utilise
 </ul>
 </div>
 </dd>
-<dt class="hdlist1">Szenario</dt>
+<dt class="hdlist1">Scénario</dt>
 <dd>
 <div class="ulist">
 <ul>
@@ -1603,7 +1637,7 @@ Le seuil permet de definir la sensibilité, attention le calcul du seuil utilise
 <div class="ulist">
 <ul>
 <li>
-<p>Liefert den Namen des aktuellen Szenarios</p>
+<p>Retourne le nom du scénario courant</p>
 </li>
 </ul>
 </div>
@@ -1613,7 +1647,7 @@ Le seuil permet de definir la sensibilité, attention le calcul du seuil utilise
 <div class="ulist">
 <ul>
 <li>
-<p>Liefert die Szenariengruppe</p>
+<p>Retourne le groupe du scénario</p>
 </li>
 </ul>
 </div>
@@ -1623,7 +1657,7 @@ Le seuil permet de definir la sensibilité, attention le calcul du seuil utilise
 <div class="ulist">
 <ul>
 <li>
-<p>Liefert den Status des Szenarios</p>
+<p>Retourne l&#8217;état du scénario</p>
 </li>
 </ul>
 </div>
@@ -1633,10 +1667,10 @@ Le seuil permet de definir la sensibilité, attention le calcul du seuil utilise
 <div class="ulist">
 <ul>
 <li>
-<p>Ermöglicht das Szenario zu aktivieren oder deaktivieren</p>
+<p>Permet d&#8217;activer ou non le scénario</p>
 </li>
 <li>
-<p>$active &#8658; 1 aktiv , 0 nicht aktiv</p>
+<p>$active &#8658; 1 actif , 0 non actif</p>
 </li>
 </ul>
 </div>
@@ -1646,10 +1680,10 @@ Le seuil permet de definir la sensibilité, attention le calcul du seuil utilise
 <div class="ulist">
 <ul>
 <li>
-<p>Erlaubt zu sagen, ob das Szenario im Gange ist oder nicht</p>
+<p>Permet de dire si le scénario est en cours ou non</p>
 </li>
 <li>
-<p>$onGoing ⇒ 1 läuft, 0 gestoppt</p>
+<p>$onGoing &#8658; 1 en cours , 0 arrêté</p>
 </li>
 </ul>
 </div>
@@ -1659,7 +1693,7 @@ Le seuil permet de definir la sensibilité, attention le calcul du seuil utilise
 <div class="ulist">
 <ul>
 <li>
-<p>Änderungen speichern</p>
+<p>Sauvegarde les modifications</p>
 </li>
 </ul>
 </div>
@@ -1669,26 +1703,26 @@ Le seuil permet de definir la sensibilité, attention le calcul du seuil utilise
 <div class="ulist">
 <ul>
 <li>
-<p>Daten speichern (Variable)</p>
+<p>Sauvegarde une donnée (variable)</p>
 </li>
 <li>
-<p>$key &#8658; Schlüsselwert (int oder string)</p>
+<p>$key &#8658; clef de la valeur (int ou string)</p>
+</li>
+<li>
+<p>$value &#8658; valeur à stocker (int, string, array ou object)</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p>$value &#8658; Wert der gespeichert werden soll (int, string, array oder object)</p>
 </li>
 <li>
 <p><strong>$scenario-&gt;getData($key)</strong>;</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Daten abfragen (Variable)</p>
+<p>Récupère une donnée (variable)</p>
 </li>
 <li>
-<p>$key &#8658; Schlüsselwert (int oder string)</p>
+<p>$key &#8658; clef de la valeur (int ou string)</p>
 </li>
 </ul>
 </div>
@@ -1698,7 +1732,7 @@ Le seuil permet de definir la sensibilité, attention le calcul du seuil utilise
 <div class="ulist">
 <ul>
 <li>
-<p>Daten löschen</p>
+<p>Supprime une donnée</p>
 </li>
 </ul>
 </div>
@@ -1708,7 +1742,7 @@ Le seuil permet de definir la sensibilité, attention le calcul du seuil utilise
 <div class="ulist">
 <ul>
 <li>
-<p>Schreibt eine Nachricht in das Protokoll des Szenarios</p>
+<p>Ecris message dans le log du scénario</p>
 </li>
 </ul>
 </div>
@@ -1732,7 +1766,7 @@ Le seuil permet de definir la sensibilité, attention le calcul du seuil utilise
 </div>
 </div>
 <div class="sect1">
-<h2 id="_die_variablen">4. Die Variablen</h2>
+<h2 id="_les_variables">4. Les variables</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Vous pouvez en cliquant sur le bouton variable voir toutes les variables existantes sur votre système, changer leur valeur, les supprimer, en ajouter et voir dans quel scénario elles sont utilisées :</p>
@@ -1745,7 +1779,7 @@ Le seuil permet de definir la sensibilité, attention le calcul du seuil utilise
 </div>
 </div>
 <div class="sect1">
-<h2 id="_szenario_vorlagen">5. Szenario Vorlagen</h2>
+<h2 id="_template_de_scénario">5. Template de scénario</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Fonctionalité permettant de transformer un scénario en template pour par exemple l&#8217;appliquer sur un autre Jeedom ou le partager sur le Market. C&#8217;est aussi à partir de là que vous pouvez récupérer un scénario du Market</p>
@@ -1772,11 +1806,13 @@ Le seuil permet de definir la sensibilité, attention le calcul du seuil utilise
 <p>D&#8217;envoyer un template à Jeedom (fichier JSON préalablement récupéré)</p>
 </li>
 <li>
-<p>De consulter la liste des scénarios disponibles sur le Market
-Eine Vorlage von dem laufenden Szenario zu erschaffen (vergessen nicht, einen Namen zu vergeben)</p>
+<p>De consulter la liste des scénarios disponibles sur le Market</p>
 </li>
 <li>
-<p>Sie sehen die zur Zeit vorhandenen Vorlagen auf Ihrem Jeedom</p>
+<p>De créer un template à partir du scénario courant (n&#8217;oubliez pas de donner un nom)</p>
+</li>
+<li>
+<p>Consulter les templates actuellement présent sur votre Jeedom</p>
 </li>
 </ul>
 </div>
@@ -1797,10 +1833,10 @@ Eine Vorlage von dem laufenden Szenario zu erschaffen (vergessen nicht, einen Na
 <p><strong>Partager</strong> : partager le template sur le Market</p>
 </li>
 <li>
-<p><strong>Löschen</strong> : Vorlage löschen</p>
+<p><strong>Supprimer</strong> : supprimer le template</p>
 </li>
 <li>
-<p><strong>Herunterladen</strong> : erlaubt, die Vorlage in Form einer JSON-Datei abzuspeichern, um es als Beispiel auf ein anderes Jeedom zu schicken</p>
+<p><strong>Télécharger</strong> : permet de récupérer le template sous forme de fichier JSON pour le renvoyer sur un autre Jeedom par exemple</p>
 </li>
 </ul>
 </div>
@@ -1825,10 +1861,10 @@ Etant donné que d&#8217;un Jeedom à l&#8217;autre ou d&#8217;une installation 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_die_protokolle">6. Die Protokolle</h2>
+<h2 id="_les_logs">6. Les logs</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Sie können zum Ausführungsprotokoll eines Szenarios gelangen, indem Sie auf die Schaltfläche "Log" klicken :</p>
+<p>Vous pouvez accéder aux logs d&#8217;éxecution d&#8217;un scénario en cliquant sur le bouton log de celui-ci :</p>
 </div>
 <div class="imageblock">
 <div class="content">

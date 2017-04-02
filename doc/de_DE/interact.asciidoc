@@ -3,30 +3,30 @@
 :Date:      12.12.2015
 :Revision:  2.0.0
 
-= Interaktionen - Grundlagen
+= Interactions - Principe
 
-Das Interaktionssystem in Jeedom ermöglicht Aktionen von Text- oder Sprachbefehl.
+Le système d'interaction dans Jeedom permet de réaliser des actions à partir de commandes textes ou vocales.
 
 Befehls Typen :
 
-* aktion : Einen Befehl ausführen zum Beispiel : Ein- oder Ausschalten einer Lampe, Wecker, Heizung, etc ...
-* Info : Jeedom mit einem Info Befehl abfragen um zum Beispiel, die Temperatur des Raumes, den Zustand des Geräts zu kennen.
+* action : lancer une commande, exemples : activer ou désactiver une lampe, alarme, chauffage, etc...
+* Info : interroger Jeedom avec une commande info pour connaître, par exemple la température du salon, l'état d'un appareil.
 
 Diese Befehle können sie erhalten über :  
 
-* SMS : ein SMS senden, zum ausführen eines Befehls (Aktion), oder eine Frage (info) zu stellen.
-* Sprache :  einen Satz mit Siri, Google Now, SARAH, etc ... diktieren, um einen Befehl zu starten (Aktion) oder eine Frage zu stellen (info).
-* HTTP : eine HTTP-URL starten die den Text (ex. Tasker, Slack) enthält, zum ausführen eines Befehls (Aktion), oder eine Frage (info) zu stellen.
+* SMS : envoyer un SMS pour lancer des commandes (action) ou poser une question (info).
+* Vocal : dicter une phrase avec Siri, Google Now, SARAH, etc... Pour lancer des commandes (action) ou poser une question (info).
+* HTTP : lancer une URL HTTP contenant le texte (ex. Tasker, Slack) pour lancer des commandes (action) ou poser une question (info).
 
 L'intérêt des interactions réside dans l'intégration simplifiée dans d'autres systèmes comme smartphone, tablette, autre box domotique, ect...
 
 Avec un seul mécanisme sur d'autres systèmes, on peut donc contrôler tout Jeedom, ce qui permet une grande souplesse et d'éviter les bugs en cas de modification de la configuration de vos équipements comme ce serait le cas avec un accès direct via l'url de chaque commande.
 
-== Erste Schritte
+== Premier pas
 
-=== Interaktions Startseite
+=== Page accueil des interactions
 
-Zum Zugiff auf die Interaktions Seite, müssen sie auf Werkzeuge -> Interaktion gehen : 
+Pour accéder à la page d'interaction il faut aller sur Outils -> Interactions: 
 
 image::../images/interact001.png[]
 
@@ -35,12 +35,12 @@ Liste der Interaktionen und allgemeine Maßnahmen :
 image::../images/interact002.png[]
 
 [TIP]
-Wie an vielen Orten auf Jeedom, wenn man die Maus ganz nach links bewegt ermöglicht es, ein Schnellzugangsmenü sichtbar zu machen(Sie können es in ihrem Profil immer sichtbar machen).
+Comme à beaucoup d'endroits sur Jeedom, mettre la souris tout à gauche permet de faire apparaître un menu d'accès rapide (vous pouvez à partir de votre profil le laisser toujours visible).
 
-* Oben auf der Seite, gibt es 3 Schaltflächen :
-** *1* Die Schaltfläche "Hinzufügen", ist zum erstellen neuer Interaktionen.
+* En haut de page, on trouve 3 boutons :
+** *1* Le bouton "Ajouter" qui permet de créer de nouvelles interactions.
 ** *2* Le bouton "Régénérer" qui va recréer toutes les interactions (peut être très long > 5mn).
-** *3* Die Schaltfläche "Test", öffnet ein Dialogfeld um einen Satz zu schreiben und zu testen.
+** *3* Le bouton "Tester" qui permet d'ouvrir un boîte de dialogue pour écrire et tester une phrase.
 
 [TIP]
 Si vous avez une interaction qui génère les phrases pour les lumières par exemple, et que vous ajoutez un nouveau module de commande de lumière, il vous faudra soit régénérer toutes les interactions, soit aller dans l'interaction en question et la sauvegarder de nouveau pour créer les phrases de ce nouveau module.
@@ -64,7 +64,7 @@ image::../images/interact003.png[]
 
 Ici vous trouvez 2 zones avec plusieurs éléments en leur sein : 
 
-* *Allgemein*
+* *Général*
 ** *Nom* : nom de l'interaction (peut être vide, le nom remplace le texte de la demande dans la liste des interactions).
 ** *Groupe* : groupe de l'interaction, cela permet de les organiser (peut être vide, sera donc dans le groupe "aucun").
 ** *Demande* : la phrase modèle génératrice (obligatoire).
@@ -248,7 +248,7 @@ Nützliche Links :
 * https://openclassrooms.com/courses/concevez-votre-site-web-avec-php-et-mysql/les-expressions-regulieres-partie-1-2
 
 
-== Beispiele
+== Exemples
 
 === Réponse composé de plusieurs informations
 
@@ -271,7 +271,7 @@ image::../images/interact017.png[]
 
 Cette exemple cible précisément un équipement spécifique ce qui permet d'avoir une réponse personnalisée. On pourrait donc imaginer remplacer la réponse de l'exemple par "non il n’y a personne dans la chambre de #julie#|oui il y a quelqu’un dans la chambre de #julie#"
 
-==== Entwicklung 
+==== Evolution 
 
 * La question est donc "\#commande# [dans la |dans le] \#objet#"
 * La réponse sera "non il n’y a personne dans la pièce" ou "oui il y a quelqu’un dans la pièce"
@@ -298,7 +298,7 @@ image::../images/interact019.png[]
 * Cette exemple génère donc une phrase pour toutes les commandes de type info numérique qui ont une unité, on peut donc décocher des unités dans le filtre de droite limité au type qui nous intéresse.
 
 
-==== Entwicklung 
+==== Evolution 
 On peut donc ajouter des synonymes au nom de commande pour avoir quelque chose de plus naturel, ajouter un regexp pour filtrer les commandes qui n'ont rien à voir avec notre interaction.
 
 Ajout de synonyme, permet de dire à Jeedom qu'une commande s'appellant "X" peut aussi s'appeler "Y" et donc dans notre phrase si on a "allume y", Jeedom sait que c'est allumer x. Cette méthode est très pratique pour renommer des noms de commande qui quand elles sont affichées à l'écran sont écrites d'une façon qui n'est pas naturelle vocalement ou dans une phrase écrite comme les "ON", un bouton écrit comme cela est totalement logique mais pas dans le contexte d'une phrase.
@@ -334,7 +334,7 @@ Pour ce faire, on a 3 parties :
 [NOTE]
 On peut utiliser n'importe quel tag excepté ceux déjà utilisés par Jeedom, il peut y en avoir plusieurs pour piloter par exemple plusieurs commandes. A noter aussi que tous les tags sont passés aux scénarios lancés par l'interaction (il faut toutefois que le scénario soit en "Exécuter en avant plan").
 
-==== Entwicklung 
+==== Evolution 
 On peut vouloir piloter toutes les commandes de type curseur avec une seule interaction. Avec l'exemple qui suit on va donc pouvoir commander plusieurs variateurs avec une seule interaction et donc générer un ensemble de phrases pour les contrôler.
 
 image::../images/interact033.png[]
@@ -403,7 +403,7 @@ En réponse, Jeedom vous retournera la réponse qui correspond à l'interaction 
 image::../images/interact13.JPG[]
 
 
-== Konfiguration
+== Configuration
 
 La configuration est accessible à partir du menu Configuration (en haut à droite) puis la partie "Configuration des interactions" :
 
@@ -430,20 +430,20 @@ Ne pas oublier de sauver en bas de page.
 [TIP]
 Si vous activez les logs au niveau debug vous avez un log interact qui vous donne la niveau de sensibilité pour chaque comparaison de phrases, cela peut permettre de régler celui-ci plus facilement.
 
-== Zusammenfassung
+== Résumé
 
-Anwendung::
+Demande::
 Vous pouvez utiliser "\#commande#" et "\#objet#" (les 2 doivent absolument être utilisés ensemble) pour générer une liste de commandes (il est possible de filtrer la génération pour réduire la liste). Il est aussi possible d'utiliser "\#equipement#" (utile si plusieurs commandes appartenant au même objet ont le même nom)
 Exemple : Quelle est la "\#commande# [du |de la |de l']\#objet#"
-Bei der Erzeugung der Befehle können Sie das Synonym Feld verwenden (syn1 = SYN2, Syn3 | syn4 = syn5), um die Namen von Objekten, Geräten und/oder Befehle zu ersetzen.
+Lors de la génération des commandes, vous pouvez utiliser le champ synonyme (syn1=syn2,syn3|syn4=syn5) pour remplacer le nom des objets, des équipements et/ou des commandes
 
-Antwort::
+Réponse::
 Vous pouvez utiliser "\#valeur#" et "\#unite#" dans le retour (ils seront remplacés par la valeur et l'unité de la commande). Vous avez aussi accès à tous les tags des scénarios et à : 
-"\#profile#" => Name der Person, die tatsächliche die Ausführung gestartet hat (unter Umständen nicht verfügbar)
-Beispiel : "\#valeur# \#unite#"
-Sie können das binäre Umwandlung Feld verwenden, um die binären Werte (0 und 1) zu konvertieren : 
-Beispiel : nein|ja
+"\#profile#" => Nom de la personne ayant lancé l'exécution (peut ne pas être disponible)
+Exemple : "\#valeur# \#unite#"
+Vous pouvez utiliser le champ conversion binaire pour convertir les valeurs binaires (0 et 1) : 
+Exemple : non|oui
 
-Person::
-Das Personenfeld ermöglicht, nur gewisse Personen zu erlauben, den Befehl auszuführen, Sie können mehrere Profile setzen, indem Sie sie durch | trennen.
+Personne::
+Le champ personne permet de n'autoriser que certaines personnes à exécuter la commande, vous pouvez mettre plusieurs profils en les séparant par |.
 Beispiel : personne1|personne2

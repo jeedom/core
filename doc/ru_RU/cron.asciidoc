@@ -1,6 +1,6 @@
 = Moteur de tâches
 
-Позиция меню "Диспетчер задач" доступна только в режиме эксперта. Диспетчер задач предоставляет информацию обо всех задачах Jeedom, запущенных на сервере. Используйте эту функцию, только если Вы знаете, что делаете, или по запросу от службы технической поддержки.
+Le menu Moteur de tâches n'est accessible qu'en mode expert. Il informe de toutes les tâches applicatives Jeedom qui tournent sur le serveur. Ce menu est à utiliser en connaissance de cause, ou à la demande du support technique.
 
 [IMPORTANT]
 En cas de mauvaise manipulation sur cette page, toute demande de support peut vous être refusée.

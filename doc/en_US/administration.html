@@ -416,25 +416,25 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table des matières</div>
 <ul class="sectlevel1">
-<li><a href="#_general_settings">1. General settings</a></li>
-<li><a href="#_components_jeedom">2. Components Jeedom</a></li>
-<li><a href="#_database">3. Database</a></li>
-<li><a href="#_network_setup">4. Network setup</a></li>
-<li><a href="#_colour_settings">5. Colour Settings</a></li>
-<li><a href="#_configuration_commands">6. Configuration commands</a></li>
+<li><a href="#_configuration_générale">1. Configuration générale</a></li>
+<li><a href="#_composants_jeedom">2. Composants Jeedom</a></li>
+<li><a href="#_base_de_données">3. Base de données</a></li>
+<li><a href="#_configuration_réseau">4. Configuration réseau</a></li>
+<li><a href="#_configuration_des_couleurs">5. Configuration des couleurs</a></li>
+<li><a href="#_configuration_des_commandes">6. Configuration des commandes</a></li>
 <li><a href="#_configuration_des_interactions">7. Configuration des interactions</a></li>
 <li><a href="#_configuration_des_logs_messages">8. Configuration des logs &amp; messages</a></li>
-<li><a href="#_ldap_configuration">9. LDAP Configuration</a></li>
+<li><a href="#_configuration_ldap">9. Configuration LDAP</a></li>
 <li><a href="#_configuration_des_équipements">10. Configuration des équipements</a></li>
 <li><a href="#_mise_à_jour_et_fichiers">11. Mise à jour et fichiers</a>
 <ul class="sectlevel2">
 <li><a href="#_les_dépots">11.1. Les dépots</a>
 <ul class="sectlevel3">
 <li><a href="#_market">11.1.1. Market</a></li>
-<li><a href="#_url">11.1.2. URL</a></li>
+<li><a href="#_fichier">11.1.2. Fichier</a></li>
 <li><a href="#_github">11.1.3. Github</a></li>
 <li><a href="#_samba">11.1.4. Samba</a></li>
-<li><a href="#_url_2">11.1.5. URL</a></li>
+<li><a href="#_url">11.1.5. URL</a></li>
 </ul>
 </li>
 </ul>
@@ -449,7 +449,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Most configuration settings are here. Although there are a lot, all are pre-configured by default.</p>
 </div>
 <div class="paragraph">
-<p>The page is accessible by Administration &#8594; Configuration :</p>
+<p>La page est accessible par Administration &#8594; Configuration :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -463,7 +463,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-If you are not on expert mode, some settings can not be visible
+Si vous n&#8217;êtes pas en mode expert certains paramètres peuvent ne pas être visibles.
 </td>
 </tr>
 </table>
@@ -471,7 +471,7 @@ If you are not on expert mode, some settings can not be visible
 </div>
 </div>
 <div class="sect1">
-<h2 id="_general_settings">1. General settings</h2>
+<h2 id="_configuration_générale">1. Configuration générale</h2>
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
@@ -487,25 +487,25 @@ If you are not on expert mode, some settings can not be visible
 <p><strong>Nom de votre Jeedom</strong> : peut être réutilisé dans les scénarios ou permettre d&#8217;identifier un backup</p>
 </li>
 <li>
-<p><strong>API key</strong> : your API key, to be used at each Jeedom API call</p>
+<p><strong>Clef API</strong> : votre clef API, à utiliser pour toute requête vers l&#8217;API Jeedom</p>
 </li>
 <li>
 <p><strong>Clef API Pro</strong> : utilisée pour communiquer avec le système de gestion de parc</p>
 </li>
 <li>
-<p><strong>System</strong> : hardware type</p>
+<p><strong>Système</strong> : type de votre hardware</p>
 </li>
 <li>
 <p><strong>Clef d&#8217;installation</strong> : clef hardware de votre Jeedom sur le market. Si votre Jeedom n&#8217;apparaît pas dans la liste de vos Jeedom sur le market il est conseillé de cliquer sur ce bouton</p>
 </li>
 <li>
-<p><strong>Language</strong> : Language of your Jeedom</p>
+<p><strong>Langue</strong> : Langue de votre Jeedom</p>
 </li>
 <li>
-<p><strong>Session lifespan (hours)</strong> : PHP sessions life time, it is advisable not to change it</p>
+<p><strong>Durée de vie des sessions (heure)</strong> : durée de vie des sessions PHP, il est conseillé de ne pas y toucher</p>
 </li>
 <li>
-<p><strong>Date and time</strong> : your time zone</p>
+<p><strong>Date et heure</strong> : votre fuseau horaire</p>
 </li>
 <li>
 <p><strong>Serveur de temps optionnel</strong> : permet d&#8217;ajouter un serveur de temps optionnel (à réserver aux experts)</p>
@@ -521,7 +521,7 @@ If you are not on expert mode, some settings can not be visible
 </div>
 </div>
 <div class="sect1">
-<h2 id="_components_jeedom">2. Components Jeedom</h2>
+<h2 id="_composants_jeedom">2. Composants Jeedom</h2>
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
@@ -529,7 +529,7 @@ If you are not on expert mode, some settings can not be visible
 </div>
 </div>
 <div class="paragraph">
-<p>This part allows you to enable/disable certain components of the core jeedom:</p>
+<p>Cette partie permet d&#8217;activer/désactiver certains composants du core jeedom :</p>
 </div>
 <div class="ulist">
 <ul>
@@ -544,7 +544,7 @@ If you are not on expert mode, some settings can not be visible
 </div>
 </div>
 <div class="sect1">
-<h2 id="_database">3. Database</h2>
+<h2 id="_base_de_données">3. Base de données</h2>
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
@@ -557,10 +557,10 @@ If you are not on expert mode, some settings can not be visible
 <p><strong>Accès à l&#8217;interface d&#8217;administration</strong> : permet d&#8217;accèder à une interface d&#8217;administration de la base, les informations à renseigner sont en dessous</p>
 </li>
 <li>
-<p><strong>Server</strong> : database server address (localhost if on the same server than Jeedom)</p>
+<p><strong>Machine (hostname)</strong> : localisation de la base</p>
 </li>
 <li>
-<p><strong>Username</strong> : Jeedom database username</p>
+<p><strong>Utilisateur</strong> : nom d&#8217;utilisateur utilisé par Jeedom</p>
 </li>
 <li>
 <p><strong>Mot de passe</strong> : mot de passe d&#8217;accès à la base utilisée par Jeedom</p>
@@ -570,7 +570,7 @@ If you are not on expert mode, some settings can not be visible
 </div>
 </div>
 <div class="sect1">
-<h2 id="_network_setup">4. Network setup</h2>
+<h2 id="_configuration_réseau">4. Configuration réseau</h2>
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
@@ -583,14 +583,14 @@ If you are not on expert mode, some settings can not be visible
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Internal access</strong> : configuration to get access to Jeedom from a device on the same local area network</p>
+<p><strong>Accès interne</strong> : information pour joindre Jeedom à partir d&#8217;un équipement sur le même réseau</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Protocol</strong> : protocol to use, most often HTTP</p>
+<p><strong>Protocole</strong> : le protocole à utiliser, souvent HTTP</p>
 </li>
 <li>
-<p><strong>URL or IP address</strong> : Server name in the URL or local IP address of the Jeedom server.</p>
+<p><strong>Adresse URL ou IP</strong> : IP de Jeedom, à renseigner</p>
 </li>
 <li>
 <p><strong>Complément (exemple : /jeedom)</strong> : le fragment d&#8217;URL complémentaire (type /jeedom). Pour savoir si vous avez besoin de définir une valeur ici, regardez si quand vous vous connectez à Jeedom vous devez renseigner /jeedom après l&#8217;IP</p>
@@ -609,7 +609,7 @@ If you are not on expert mode, some settings can not be visible
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Protocol</strong> : protocol to use from external access</p>
+<p><strong>Protocole</strong> : protocole utilisé pour l&#8217;accès extérieur</p>
 </li>
 <li>
 <p><strong>Adresse URL ou IP</strong> : adresse ou IP externe si fixe</p>
@@ -699,7 +699,7 @@ Si vous n&#8217;arrivez pas à faire fonctionner le DNS Jeedom, regardez la conf
 </div>
 </div>
 <div class="sect1">
-<h2 id="_colour_settings">5. Colour Settings</h2>
+<h2 id="_configuration_des_couleurs">5. Configuration des couleurs</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>La colorisation des widgets est effectuée en fonction de la catégorie d&#8217;appartenance du widget qui est définie dans la configuration de chaque module (voir plugin Z-Wave, RFXCOM&#8230;&#8203; etc). Parmi les catégories on retrouve le chauffage, les lumières, les automatismes etc&#8230;&#8203;</p>
@@ -738,7 +738,7 @@ N&#8217;oubliez pas de sauvegarder après toute modification.
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configuration_commands">6. Configuration commands</h2>
+<h2 id="_configuration_des_commandes">6. Configuration des commandes</h2>
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
@@ -791,7 +791,7 @@ N&#8217;oubliez pas de sauvegarder après toute modification.
 </div>
 </div>
 <div class="sect1">
-<h2 id="_ldap_configuration">9. LDAP Configuration</h2>
+<h2 id="_configuration_ldap">9. Configuration LDAP</h2>
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
@@ -813,10 +813,10 @@ N&#8217;oubliez pas de sauvegarder après toute modification.
 <p><strong>Base DN</strong> : base DN de votre AD</p>
 </li>
 <li>
-<p><strong>Username</strong> : username to Jeedom to connect to the AD</p>
+<p><strong>Nom d&#8217;utilisateur</strong> : nom d&#8217;utilisateur pour que Jeedom se connecte à l&#8217;AD</p>
 </li>
 <li>
-<p><strong>Password</strong> : Password to Jeedom to connect to the AD</p>
+<p><strong>Mot de passe</strong> : mot de passe pour que Jeedom se connecte à l&#8217;AD</p>
 </li>
 <li>
 <p><strong>Filtre (optionnel)</strong> : filtre sur l&#8217;AD (pour la gestion des groupes par exemple)</p>
@@ -899,7 +899,7 @@ N&#8217;oubliez pas de sauvegarder après toute modification.
 </div>
 </div>
 <div class="sect3">
-<h4 id="_url">11.1.2. URL</h4>
+<h4 id="_fichier">11.1.2. Fichier</h4>
 <div class="paragraph">
 <p>Dépôt servant à activer l&#8217;envoi de plugins par des fichiers.</p>
 </div>
@@ -1004,7 +1004,7 @@ Jeedom doit être le seul à écrire dans ce dossier et il doit être vide par d
 </div>
 </div>
 <div class="sect3">
-<h4 id="_url_2">11.1.5. URL</h4>
+<h4 id="_url">11.1.5. URL</h4>
 <div class="imageblock">
 <div class="content">
 <img src="../images/administration19.png" alt="administration19">

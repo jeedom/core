@@ -1,6 +1,6 @@
 = Design
 
-This page allows to configure the display of all your automation in a very thin way. This one takes time but its own limit is your imagination.
+Cette page permet de configurer l'affichage de toute votre domotique de manière très fine. Celle-ci demande du temps mais sa seule limite est votre imagination.
 
 It is accessible by 
 
@@ -15,9 +15,9 @@ image::../images/plan2.png[]
 
 Sur cette page on retrouve, en haut (et dans l'ordre) : 
 
-* A menu to change the design
+* un menu pour changer de design
 * un menu pour créer un nouveau design
-* one to cancel
+* un pour le supprimer
 * un bouton pour éditer le design en cours
 * un pour passer en mode plein écran
 
@@ -46,11 +46,11 @@ image::../images/plan6.png[]
 
 We have here : 
 
-* *General*
-** *Name* : The name of your design
+* *Général*
+** *Nom* : Le nom de votre design
 ** *Icône* : Une icône pour celui-ci (apparait dans le menu de choix de design)
 ** *Disponible sur téléphone* : Rend ce design visible dans la liste des designs en version mobile
-** *Image* : add a background image to design
+** *Image* : permet d'ajouter une image de fond au design
 ** *Ne pas afficher la flèche de retour lors de la mise en plein écran* : en mode plein écran cette option masque le bouton de retour au mode fenêtré (idéal pour une tablette murale)
 * *Tailles*
 ** *Taille (LxH)* : Permet de fixer la taille de votre design (cadre gris en mode édition)
@@ -72,7 +72,7 @@ Vous voyez apparaître votre widget :
 image::../images/plan9.png[]
 
 [TIP]
-You can move it by clicking/sliding the widget
+Vous pouvez le déplacer en cliquant/glissant le widget
 
 Vous avez accès a la configuration avancée de l'affichage du widget en double cliquant sur celui-ci :
 
@@ -80,7 +80,7 @@ image::../images/plan10.png[]
 
 Here we have : 
 
-* *General*
+* *Général*
 ** *Taille du widget* : permet de definir un ratio de taille de widget, par exemple ici il ne fera que 65% de sa taille
 ** *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
 ** *Couleur des icônes et textes* : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
@@ -96,7 +96,7 @@ En fonction des plugins certaines options peuvent ne pas fonctionner
 [TIP]
 Vous pouvez en bas à droite redimensionner les widgets
 
-== Add text/html
+== Ajout texte/html
 
 image::../images/plan11.png[]
 
@@ -108,8 +108,8 @@ Un double clic dessus vous ammène à la fenêtre de configuration :
 
 image::../images/plan13.png[]
 
-* *Name* : allows to enter the text or the code html/javascript
-* *Icon* : allows to place the icon instead of the text
+* *Nom* : permet de rentrer le texte ou le code html/javascript
+* *Icone* : permet de mettre une icône à la place du texte
 * *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
 * *Couleur du textes* : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
 * *Arrondir les angles (ne pas oublier de mettre %, ex 50%)* : permet d'arrondir les angles, ne pas oublier de mettre le %
@@ -122,7 +122,7 @@ image::../images/plan13.png[]
 [TIP]
 Vous pouvez en bas à droite le redimensionner
 
-== Add a scenario
+== Ajout d'un scénario
 
 image::../images/plan14.png[]
 
@@ -138,7 +138,7 @@ Un double clic dessus vous amènera à la configuration de cet élément scénar
 
 image::../images/plan17.png[]
 
-* *General*
+* *Général*
 ** *Taille du widget* : permet de definir un ratio de taille de widget, par exemple ici il ne fera que 65% de sa taille
 ** *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
 ** *Couleur des icônes et textes* : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
@@ -150,7 +150,7 @@ image::../images/plan17.png[]
 [TIP]
 Vous pouvez en bas à droite le redimensionner
 
-== Add a link
+== Ajout d'un lien
 
 image::../images/plan18.png[]
 
@@ -169,9 +169,9 @@ image::../images/plan21.png[]
 We have here : 
 
 * *Nom* : permet de changer le nom du lien
-* *Link* : link destination
+* *Lien* : destination du lien
 * *Position* : permet de régler finement la position du lien sur la destination (pour par exemple arriver directement sur la cuisine)
-* *Icon* : allows to place the icon instead of the text
+* *Icone* : permet de mettre une icône à la place du texte
 * *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
 * *Couleur du textes* : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
 * *Arrondir les angles (ne pas oublier de mettre %, ex 50%)* : permet d'arrondir les angles, ne pas oublier de mettre le %
@@ -184,7 +184,7 @@ We have here :
 [TIP]
 Vous pouvez en bas à droite le redimensionner
 
-== Add a graph
+== Ajout d'un graph
 
 image::../images/plan22.png[]
 

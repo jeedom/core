@@ -1,8 +1,8 @@
-= Szenario
+= Scénario
 
 Das ist der wichtigste Teil einer Haus-Automatisierung: Die Szenarien. Das ist ein richtiges Gedächnis der Haustechnik, was es ermöglicht, mit der wirklichen Welt auf "intelligente" Art zu interagieren.
 
-== Die Szenario Seite
+== La page scénario
 
 Pour y accéder rien de plus simple, il suffit d'aller sur Outils -> Scénarios : 
 
@@ -14,60 +14,60 @@ image::../images/scenario.JPG[]
 
 Oben findet man eine Reihe von 3 Tasten wieder :   
 
-* *Hinzufügen* : um ein Szenario hinzuzufügen
-* *Szenarien deaktivieren* : um alle Szenarien zu deaktivieren
-* *Variablen anzeigen* : erlaubt die Variablen zu sehen, ihren Wert und den Ort, wo sie verwendet werden
+* *Ajouter* : permet d'ajouter un scénario
+* *Désactiver scénarios* : permet de désactiver tous les scénarios
+* *Voir les variables* : permet de voir les variables, leur valeur ainsi que l'endroit où elle sont utilisées
 
 [TIP]
-Die Szenarien in rot sind diejenigen, die deaktiviert sind
+Les scénarios en rouge sont ceux qui sont désactivés
 
 [TIP]
-Wie an vielen Orten auf Jeedom, wenn man die Maus ganz nach links bewegt ermöglicht es, ein Schnellzugangsmenü sichtbar zu machen(Sie können es in ihrem Profil immer sichtbar machen).
+Comme à beaucoup d'endroits sur Jeedom, mettre la souris tout à gauche permet de faire apparaître un menu d'accès rapide (vous pouvez à partir de votre profil le laisser toujours visible).
 
 Es gibt 2 Szenario Modi : 
 
 * *Simple* : permet de faire des scénarios très simples type SI ça ALORS fait ça
-* *Fortschrittlich* : Sie können alles tun, aber es erfordert mehr wissen
+* *Avancé* : là vous pouvez tout faire mais cela demande plus de connaissances
 
-[WICHTIG]
-Es ist möglich, ein Szenario von einfachen Modus zum erweiterte Modus zu übergeben, aber nicht umgekehrt 
+[IMPORTANT]
+Il est possible de passer un scénario du mode simple au mode avancé mais pas l'inverse
 
 Beim Erstellen eines Szenario wird Jeedom nach den Namen und den Typ fragen : 
 
 image::../images/scenario2.JPG[]
 
 
-== Einfacher Modus
+== Mode simple
 
-Dies ist der Modus "Einfaches-Interface" : 
+Voilà l'interface en mode simple : 
 
 image::../images/scenario9.JPG[]
 
 Hier finden Sie : 
 
-* *Name* : Der Name des Szenarios
-* *Beschreibung* : Sie können eine Beschreibung hinzufügen, was das Szenario macht und zum Beispiel Überwachung  
+* *Nom* : le nom du scénario
+* *Description* : une description que vous pouvez ajouter pour savoir ce que fait le scénario et faire un suivi par exemple
 * *Actif* : définit si le scénario est actif ou non
 * *Exécuter en avant plan* : permet de lancer le scénario directement et non dans un fil d'exécution séparé. Attention cette option peut être dangereuse car elle met en pause toutes les autres actions du scénario. IL NE FAUT JAMAIS l'activer sur un scénario déclenché par une programmation horaire
 * *Dernier lancement* : la date de dernière exécution du scénario
-* *Zustand* : der aktuelle Zustand des Szenarios (laufend, angehalten...)  
+* *Etat* : l'état actuel du scénario (en cours, arrêté...)
 
 Oben rechts finden wir :
 
-* eine Schaltfläche, um einen Text-Export des Szenarios zu machen (praktisch, um es auf dem Forum oder dem Supportteam zu zeigen) 
-* eine Schaltfläche, um ein Protokoll des Szenarios zu haben
-* eine Schaltfläche, um das Szenario zu Kopieren
+* un bouton pour faire un export texte du scénario (pratique pour le montrer sur le forum ou à l'équipe support)
+* un bouton pour avoir le log du scénario
+* un bouton pour dupliquer le scénario
 
 Unten links auf der Seite haben Sie die Ausführungsbedingung des Szenarios : 
 
-* *Szenario* : um anzuzeigen, ob das Skript programmiert (an einer bestimmten Uhrzeit und Datum) oder wenn sie  verursacht wird (Wie die Erfassung der Bewegung)
+* *Scénario* : permet d'indiquer si le scénario est programmé (à une date et heure précise) ou s'il est provoqué (comme par exemple la détection d'un mouvement)
 * *A exécuter* : en mode programmé permet de dire s'il doit être exécuté une fois ou de manière répétée
-* *Datiert* : wenn es nur einmal ausgeführt wird, dann müssen sie das Datum und die Uhrzeit eingeben
-* *Häufigkeit* : im Mehrmals Modus können Sie die Wiederholungsfrequenz wählen
+* *En date du* : s'il n'est exécuté qu'une fois alors il faut indiquer la date et l'heure
+* *Fréquence* : en mode répété vous pouvez choisir la fréquence de répétition
 
 image::../images/scenario10.JPG[]
 
-* *Von* : Im verursacht-Modus können Sie den Befehl der das Szenario auslöst auswählen, indem Sie auf den kleinen Knopf rechts klicken
+* *Par* : en mode provoqué vous devez choisir la commande déclenchant le scénario, en cliquant sur le petit bouton à gauche
 
 image::../images/scenario11.JPG[]
 
@@ -75,12 +75,12 @@ image::../images/scenario11.JPG[]
 
 image::../images/scenario12.JPG[]
 
-* *Wenn* : Damit können sie die Reihenfolge in der die Bedingung erfüllt ist wählen, indem Sie auf den kleinen Knopf auf der rechten Seite klicken 
-* *Ist* : Sie können den Status wählen, der der vorherige Befehl haben muss, damit die Aktion (gemäß den Befehlen können die Optionen wechseln) ausgeführt werden soll
+* *Si* : permet de choisir la commande sur laquelle s'applique la condition, en cliquant sur le petit bouton à gauche
+* *Est* : permet de choisir le statut que doit avoir la commande précédente pour que les actions soient exécutées (en fonction de la commande les options peuvent changer)
 
 Schließlich, auf der rechten Seite haben Sie die Aktion, hier genügt es einfach "Aktion hinzufügen" anzuklicken
 
-=== Beispiel, auf Anwesenheit einzuschalten
+=== Exemple allumer sur présence
 
 image::../images/scenario13.JPG[]
 
@@ -89,41 +89,41 @@ Dies ist ein sehr einfaches Szenario, das schaltet das Licht bei Anwesenheit an
 [TIP]
 Ce scénario sera déclenché aussi bien lors de la détection d'une présence que lors du relâchement (fin de présence), il est donc nécessaire de tester la valeur de la présence (ici déclenchée)
 
-[WICHTIG]
-Vergessen Sie nicht die gleiche Art von Szenario zu machen, aber das Licht auszuschalten, wenn niemand anwesend ist
+[IMPORTANT]
+Il ne faut pas oublier de faire le même genre de scénario mais pour éteindre la lumière lorsque plus personne n'est présent
 
-== Erweiterter Modus
+== Mode avancée
 
 Hier ist ein Beispielszenario im erweiterten Modus :
 
 image::../images/scenario3.JPG[]
 
-Oben finden wir den allgemeinen Teil wieder :
+En haut la partie générale où l'on retrouve :
 
-* *Name*
-* *Gruppe* : hilft Szenarien zu organisieren
-* *Aktiv* : Ob das Szenario aktiv oder inaktiv sein soll
-* *Sichtbar* : Ob das Szenario sichtbar oder nicht sichtbar sein soll
-* *Eltern-Objekt* : Die Wahl zu einem übergeordneten Objekt zugewiesen zu werden oder nicht
-* *Zeitüberschreitung Sekunden (0 = unbegrenzt)* : Die maximal  erlaubte Ausführungszeit
+* *nom*
+* *groupe* : permet d'organiser les scénarios
+* *Actif* : Si le scénario est actif ou non
+* *Visible* : Si le scénario est visible ou non
+* *Objet parent* : Le choix d'affecter à un objet parent ou pas
+* *Timeout secondes (0 = illimité)* : La durée d’exécution maximum autorisée
 * *Déclencheurs* : Ensuite vient la partie des déclencheurs qui peuvent soit être un ou plusieurs événements et/ou une programmation (une heure donnée, une fréquence… Cette partie s’écrit à l’aide d’une syntaxe type crontab accessible via la touche, un assistant est disponible en cliquant sur ?. Attention vous pouvez avoir au maximum 28 déclencheurs sur un scénario.
 * *Action* : En haut à droite on retrouve quelques actions utiles comme le lancement forcé du scénario (pour test),la suppression du scénario, la sauvegarde, la génération d'un template (voir le chapitre dédié), l'export, l’arrêt forcé d’un scénario (si en cours), log des dernières exécutions (très pratique pour vérifier le déroulement exact du scénario), la duplication.
 * *Execution en avant plan* : permet de lancer le scénario directement et non dans un fil d'exécution séparé. Attention cette option peut être dangereuse car elle met en pause toute les autres actions du scénario. IL NE FAUT JAMAIS l'activer sur un scénario déclenché par une programmation horaire ou un scénario contenant des actions de type sleep
 * *Enchaîner les commandes sans attendre* : permet d'enchaîner les suites d'actions sans attendre le retour et donc la vérification de la bonne exécution (attention actuellement seuls les plugins openzwave et script sont compatibles)
 * *Pas de log* : indique au scénario de ne pas écrire dans les logs (permet de le rendre un peu plus rapide)
-* *Zustand* : aktueller Zustand des Szenarios
+* *Etat* : état actuel du scénario
 
 Im unteren Teil kommt das Szenario selbst mit einer Schaltfläche zum hinzufügen von Blöcken : 
 
 image::../images/scenario4.JPG[]
 
-* *wenn/dann/sonst* : Grundstein für das erreichen einer Bedingung
+* *Si/Alors/Sinon* : bloc de base permettant de réaliser des conditions.
 * *Action* : bloc permet de lancer une action simple sans aucune condition ou autre avant
-* Schleifen : ermöglicht Schleifen auf 1 definierte Nummer (oder einen Wert eines Sensors oder Zufallszahl)
+* *Boucle* : permet de réaliser des boucles de 1 jusqu’à un nombre défini (ou même une valeur d’un capteur, ou nombre aléatoire).
 * *Dans* : permet de lancer une action dans X minute(s) (0 est une valeur possible). La particularité c'est que les actions sont lancées en arrière plan, elles ne bloquent donc pas la suite du scénario. C'est donc un bloc non bloquant.
-* *A* : erlaubt, Jeedom zu sagen, die Aktionen des Blocks A zu einer bestimmten Stunde zu starten (in der Form hhmm). Dieser Block ist nicht blockierend
-* *Code* : ermöglicht, direkt im PHP Code zu schreiben (demande certaines connaissances et peut être risqué mais permet de n’avoir plus aucune contrainte).
-* *Kommentar* : ermöglicht, Kommentare zu seinem Szenario hinzufügen
+* *A* : permet de dire à Jeedom de lancer les actions du bloc A à une heure donnée (sous la forme hhmm). Ce bloc est non bloquant
+* *Code* : permet d’écrire directement en code PHP (demande certaines connaissances et peut être risqué mais permet de n’avoir plus aucune contrainte).
+* *Commentaire* : permet d'ajouter des commentaires à son scénario
 
 [TIP]
 Devant chaque bloc (en dessous de la double flèche verticale qui permet de déplacer les blocs) vous avez un petit coche pour désactiver complètement le bloc sans pour autant supprimer celui-ci (permet de faire des tests pour le réactiver plus tard par exemple)
@@ -135,7 +135,7 @@ Pour les conditions, Jeedom essaye de faire en sorte qu’on puisse les écrire 
 
 image::../images/scenario5.JPG[]
 
-Die erste Schaltfläche erlaubt es, einen Befehl zu  suchen : 
+Le premier bouton permet d'aller chercher une commande : 
 
 image::../images/scenario6.JPG[]
 
@@ -156,78 +156,78 @@ Hier finden Sie die folgenden Optionen :
 
 image::../images/scenario8.JPG[]
 
-In der Reihenfolge : 
+Dans l'ordre : 
 
-* Schaltfläche zum Verschieben der Aktion (Doppelpfeile), klicken Sie einfach darauf und halten die Taste gedrückt und bewegen dann den Block
-* eine Schaltfläche zum Löschen der Aktion
-* eine Schaltfläche zum vorübergehenden deaktivieren der Aktion
-* eine Schaltfläche zum suchen eines Aktionsbefehls
+* un bouton pour déplacer l'action (les doubles flèches), il suffit de cliquer et maintenir le bouton puis de déplacer le bloc
+* un bouton pour supprimer l'action
+* un bouton pour désactiver temporairement l'action
+* un bouton pour rechercher une commande d'action
 * un bouton pour les actions spécifiques, avec à chaque fois la description de cette action
 
-=== Auslöser
+=== Déclencheurs
 
 Es gibt bestimmte Auslöser (außer jene, die durch die Befehle geliefert wurden) :
 
-* *\#start#* : löst Jeedom (neu)start aus,
-* *\#begin_backup#*  : Ereignis, das zu Beginn des Backups gesendet wird.
-* *\#end_backup#*  : Ereignis, das am Ende des Backups gesendet wird.
-* *\#begin_update#*  : Ereignis, das zu Beginn des Updates gesendet wird.
-* *\#end_update#*  : Ereignis, das am Ende des Updates gesendet wird.
-* *\#begin_restore#*  : Ereignis, das zu Beginn der Wiederherstellung gesendet wird.
-* *\#end_restore#*  :  Ereignis, das am Ende der Wiederherstellung gesendet wird.
+* *\#start#*  : déclenché au (re)démarrage de Jeedom,
+* *\#begin_backup#*  : événement envoyé au début du backup.
+* *\#end_backup#*  : événement envoyé à la fin du backup.
+* *\#begin_update#*  : événement envoyé au début de la mise à jour.
+* *\#end_update#*  : événement envoyé à la fin de la mise à jour.
+* *\#begin_restore#*  : événement envoyé au début du restore.
+* *\#end_restore#*  : événement envoyé à la fin du restore.
 
 Vous pouvez aussi déclencher un scénario sur mise à jour d'une variable en mettant : #variable(nom_variable)# ou en utilisant l'api http décrite ici : https://github.com/jeedom/core/blob/beta/doc/fr_FR/api_http.asciidoc#pilotage-des-scénarios
 
 [TIP]
-Hier haben Sie auch eine Schaltfläche, um einen Befehl zu suchen
+Vous avez ici aussi un bouton pour aller chercher une commande
 
-=== Bedingung oder Wert eines Aktionsbefehls
+=== Condition ou valeur d'une commande d'action
 
-Sie können irgendein Symbol entsprechend für die Operatoren benutzen : 
+Vous pouvez utiliser n'importe lequel des symboles suivant pour les opérateurs : 
 
-* == : gleich,
-* > : größer,
-* >= : größer oder gleich
-* < : kleiner,
-* <= : kleiner oder gleich
-* != : unterschiedlich,
+* == : égal,
+* > : supérieur,
+* >= : supérieur ou égal,
+* < : inférieur,
+* \<= : inférieur ou égal,
+* != : différent,
 * matches : contient (ex : #[Salle de bain][Hydrometrie][etat]# matches "/humide/" ),
 * not ( ... matches ...) : ne contient pas (ex : not(#[Salle de bain][Hydrometrie][etat]# matches "/humide/")),
 
-Sie können jede Operation mit den folgenden Operatoren kombinieren:
+Vous pouvez combiner n'importe quelle opération avec les opérateurs suivants :
 
-* && / ET / et / AND / and : und,
-* || / OU / ou / OR / or : oder,
-- |^ / XOR / xor : entweder oder
+* && / ET / et / AND / and : et,
+* || / OU / ou / OR / or : ou,
+* |^ / XOR / xor : ou.
 
 Außerdem können Sie mit den folgenden Tags:
 
 [TIP]
-Ein Tag wird während der Ausführung des Skripts durch seinen Wert ersetzt.
+Un tag est remplacé lors de l'exécution du scénario par sa valeur
 
-* *\#seconde#* : Sekunde,
-* *\#heure#* : Stunde (Bsp. : 17 als 17h15),
-* *\#minute#* : Minute (Bsp. : 15 als 17h15),
-* *\#jour#* : Tag,
-* *\#mois#* : Monat,
-* *\#annee#* : Jahr,
-* *\#time#* : Stunde und Minute (Bsp. : 1715 als 17h15),
-* *\#timestamp#* : gibt die Anzahl der Sekunden seit dem 1. Januar 1970,
-* *\#date#* : Monat und Tag (Bsp. : 1215 als 15 Dezember),
-* *\#semaine#* : Nummer der Woche (Bsp. : 51),
-* *\#sjour#* : den Namen des Wochentages (Bsp. : Samstag),
-* *\#njour#* : Nummer des Tages von 0 (Sonntag) bis 6 (Samstag),
-* *\#smois#* : den Namen des Monats (Bsp. : Januar),
-* *\#IP#* : Interne Jeedom IP,
-* *\#hostname#* : Name der Jeedom Maschine,
-* *\#trigger#* : Name des Befehls, der das Szenario auslöst.
+* *\#seconde#* : seconde courante,
+* *\#heure#* : heure courante (ex : 17 pour 17h15),
+* *\#minute#* : minute courante (ex : 15 pour 17h15),
+* *\#jour#* : jour courant,
+* *\#mois#* : mois courant,
+* *\#annee#* : année courante,
+* *\#time#* : heure et minute courante (ex : 1715 pour 17h15),
+* *\#timestamp#* : retourne le nombre de secondes depuis le 1er janvier 1970,
+* *\#date#* : jour et mois courant (ex : 1215 pour le 15 décembre),
+* *\#semaine#* : numéro de la semaine (ex : 51),
+* *\#sjour#* : pour le nom du jour de la semaine (ex : Samedi),
+* *\#njour#* : numéro du jour de 0 (dimanche) à 6 (samedi),
+* *\#smois#* : pour le nom du mois (ex : Janvier),
+* *\#IP#* : IP interne de jeedom,
+* *\#hostname#* : nom de la machine Jeedom,
+* *\#trigger#* : nom de la commande qui a déclenché le scénario.
 
 Sie haben auch die folgenden Tags und vieles mehr, wenn Ihr Szenario durch eine Interaktion ausgelöst wurde : 
 
-* *\#query#* : Interaktion, die das Szenario auslöst,
-* *\#profil#* : Profil des Benutzers, der das Skript ausgelöst hat (kann leer sein).
+* *\#query#* : interaction ayant déclenché le scénario,
+* *\#profil#* : profil de l'utilisateur ayant déclenché le scénario (peut être vide).
 
-[WICHTIG]
+[IMPORTANT]
 Lorsqu'un scénario est déclenché par une interaction, celui-ci est forcément exécuté en mode rapide.
     
 Mehrere Funktionen sind für die Geräte verfügbar :
@@ -262,12 +262,12 @@ Mehrere Funktionen sind für die Geräte verfügbar :
     ** Ex : lastBetween(\#[Salle de bain][Hydrometrie][Humidité]#,Yesterday,Today) : renvoie la dernière température enregistrée hier.
 * **variable**(mavariable,valeur par défaut) : récupération de la valeur d'une variable ou de la valeur souhaitée par défaut
     ** Ex : variable(plop,10) renvoie la valeur de la variable plop ou 10 si elle est vide ou n'existe pas
-* **scenario**(scenario) : liefert den Status des Szenarios
-    * Bsp. : scenario(\#[Badezimmer][Licht][Auto]#) : giebt zurück 1 läuft, 0 wenn gestoppt, -1 wenn deaktiviert, -2 wenn das Szenario nicht gefunden wurde und -3 wenn die Bedingung nicht konsistent
-* **lastScenarioExecution**(scenario) : gibt die Zeit in Sekunden seit dem letzten Start das Szenarios
-    ** Bsp. : lastScenarioExecution(\#[Badezimmer][Licht][Auto]#) : giebt zurück 300, das Szenario wurde in diesem Fall zum letzten Mal vor 5min gestartet
+* **scenario**(scenario) : donne le statut du scénario
+    * Ex : scenario(\#[Salle de bain][Lumière][Auto]#) : renvoie 1 en cours, 0 si arreté et -1 si desactivé, -2 si le scénario n'existe pas et -3 si l'état n'est pas cohérent
+* **lastScenarioExecution**(scenario) : donne la durée en secondes depuis le dernier lancement du scénario
+    ** Ex : lastScenarioExecution(\#[Salle de bain][Lumière][Auto]#) : renvoie 300 si le scénario s'est lancé pour la dernière fois il y a 5 min
 * **collectDate**(cmd,[format]) : renvoie la date de la dernière donnée pour la commande donnée en paramètre, le 2ème paramètre optionel permet de spécifier le format de retour (détails http://php.net/manual/fr/function.date.php[ici]). Un retour de -1 signifie que la commande est introuvable, et -2 que la commande n'est pas de type info
-    ** Bsp. : collectDate(\#[Badezimmer][Hydrometrie][Luftfeuchtigkeit]#) : Rückgabe 2015-01-01 17:45:12
+    ** Ex : collectDate(\#[Salle de bain][Hydrometrie][Humidité]#) : renverra 2015-01-01 17:45:12
 * **valueDate**(cmd,[format]) : renvoie la date de la dernière donnée pour la commande donnée en paramètre, le 2ème paramètre optionel permet de spécifier le format de retour (détails http://php.net/manual/fr/function.date.php[ici]). Un retour de -1 signifie que la commande est introuvable, et -2 que la commande n'est pas de type info
     ** Ex : valueDate(\#[Salle de bain][Hydrometrie][Humidité]#) : renverra 2015-01-01 17:50:12
 * **eqEnable**(equipement) : renvoie l'état de l'équipement (actif ou non)
@@ -348,83 +348,83 @@ En plus des commandes domotiques vous avez accès aux actions suivantes :
 * *popup* : permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page jeedom ouverte.
 * *ask* : permet d'indiquer à jeedom qu'il faut poser une question à l'utilisateur. La réponse est stockée dans une variable, il suffit ensuite de tester sa valeur. Pour le moment seuls les plugins sms et slack sont compatibles. Attention l'action ask est bloquante, tant qu'il n'y a pas de réponse ou que le timeout n'est pas atteint le scénario attend. Voila un exemple d'utilisation : 
 
-Bild:... / Bilder/scenario20. JPG]
+image::../images/scenario20.JPG[]
              
 === Code
 
-[WICHTIG]
-Achtung, Tags sind nicht in einem Block des Code-Typs verfügbar.
+[IMPORTANT]
+Attention les tags ne sont pas disponibles dans un bloc de type code.
 
-Befehle (Sensoren und Aktoren)::
+Commandes (capteurs et actionneurs)::
 
 * *cmd::byString($string)*;
-    ** Liefert das entsprechende Befehlsobjekt
-    ** $string => Link zum gewünschten Befehl : \#[objekt][gerät][befehl]# (Bsp. :  \#[Wohnung][Alarm][Aktiv]#)
+    ** Retourne l'objet commande correspondant
+    ** $string => lien vers la commande voulue : \#[objet][equipement][commande]# (ex :  \#[Appartement][Alarme][Actif]#)
 * *cmd::byId($id)*;
-    ** Liefert das entsprechende Befehlsobjekt
-    ** $id => Id des gewünschten Befehls (siehe Allgemein=>Anzeige)
+    ** Retourne l'objet commande correspondant
+    ** $id => Id de la commande voulue (voir Général => Affichage)
 * *$cmd->execCmd($options = null)*;
-    ** Den Befehl ausführen und das Ergebnis ausgeben 
-    ** $options => Optionen für die Befehlsausführung (kann spezifisch für das Plugin sein), Grundoption : 
-          *** Subtyp des Befehls : 
+    ** Exécute la commande et retourne le résultat
+    ** $options => Options pour l'exécution de la commande (peut être spécifique au plugin), option de base : 
+          *** Sous-type de la commande : 
           **** message => `$option = array('title' => 'titre du message , 'message' => 'Mon message');`
-          **** color => `$option = array('color' => 'Farbe in Hexadezimal');`
-          **** slider => `$option = array('slider' => 'gewünschten Wert von 0 bis 100');`
+          **** color => `$option = array('color' => 'couleur en hexadécimal');`
+          **** slider => `$option = array('slider' => 'valeur voulue de 0 à 100');`
 
 Log::
 
 * *log::add('filename','level','message')*;
-    ** filename => Name der Protokolldatei
+    ** filename => nom du fichier de log
     ** level => [debug],[info],[error],[event]
-    ** message => Nachricht in Protokoll schreiben
+    ** message => message à écrire dans les logs
                            
-Szenario::
+Scénario::
 
 * *$scenario\->getName()*;
-    ** Liefert den Namen des aktuellen Szenarios
+    ** Retourne le nom du scénario courant
                               
 * *$scenario\->getGroup()*;
-    ** Liefert die Szenariengruppe
+    ** Retourne le groupe du scénario
                            
 * *$scenario\->getIsActive()*;
-    ** Liefert den Status des Szenarios
+    ** Retourne l'état du scénario
                               
 * *$scenario\->setIsActive($active)*;
-    ** Ermöglicht das Szenario zu aktivieren oder deaktivieren
-    ** $active => 1 aktiv , 0 nicht aktiv
+    ** Permet d'activer ou non le scénario
+    ** $active => 1 actif , 0 non actif
                               
 * *$scenario\->setOnGoing($onGoing)*;
-    ** Erlaubt zu sagen, ob das Szenario im Gange ist oder nicht
-    ** $onGoing ⇒ 1 läuft, 0 gestoppt
+    ** Permet de dire si le scénario est en cours ou non
+    ** $onGoing => 1 en cours , 0 arrêté
                                
 * *$scenario\->save()*;
-    ** Änderungen speichern
+    ** Sauvegarde les modifications
                              
 * *$scenario\->setData($key, $value)*;
-    ** Daten speichern (Variable)
-    ** $key => Schlüsselwert (int oder string)
-    * $value => Wert der gespeichert werden soll (int, string, array oder object)
+    ** Sauvegarde une donnée (variable)
+    ** $key => clef de la valeur (int ou string)
+    ** $value => valeur à stocker (int, string, array ou object)
                                
 * *$scenario\->getData($key)*;
-    ** Daten abfragen (Variable)
-    ** $key => Schlüsselwert (int oder string)
+    ** Récupère une donnée (variable)
+    ** $key => clef de la valeur (int ou string)
                              
 * *$scenario\->removeData($key)*;
-    ** Daten löschen
+    ** Supprime une donnée
 
 * *$scenario\->setLog($message)*;
-    ** Schreibt eine Nachricht in das Protokoll des Szenarios
+    ** Ecris message dans le log du scénario
 
 * *$scenario\->persistLog()*;
     ** Force l'écriture du log (sinon il est écrit seulement à la fin du scénario). Attention ceci peut un peu ralentir le scénario
 
-== Die Variablen
+== Les variables
 
 Vous pouvez en cliquant sur le bouton variable voir toutes les variables existantes sur votre système, changer leur valeur, les supprimer, en ajouter et voir dans quel scénario elles sont utilisées : 
 
 image::../images/scenario14.JPG[]
 
-== Szenario Vorlagen
+== Template de scénario
 
 Fonctionalité permettant de transformer un scénario en template pour par exemple l'appliquer sur un autre Jeedom ou le partager sur le Market. C'est aussi à partir de là que vous pouvez récupérer un scénario du Market
 
@@ -438,8 +438,8 @@ Hier haben sie folgende Möglichkeiten :
 
 * D'envoyer un template à Jeedom (fichier JSON préalablement récupéré)
 * De consulter la liste des scénarios disponibles sur le Market
-Eine Vorlage von dem laufenden Szenario zu erschaffen (vergessen nicht, einen Namen zu vergeben)
-*  Sie sehen die zur Zeit vorhandenen Vorlagen auf Ihrem Jeedom 
+* De créer un template à partir du scénario courant (n'oubliez pas de donner un nom)
+* Consulter les templates actuellement présent sur votre Jeedom
 
 Par un clic sur un template vous obtenez : 
 
@@ -448,8 +448,8 @@ image::../images/scenario17.JPG[]
 Oben können sie : 
 
 * *Partager* : partager le template sur le Market
-* *Löschen* : Vorlage löschen 
-* *Herunterladen* : erlaubt, die Vorlage in Form einer JSON-Datei abzuspeichern, um es als Beispiel auf ein anderes Jeedom zu schicken
+* *Supprimer* : supprimer le template 
+* *Télécharger* : permet de récupérer le template sous forme de fichier JSON pour le renvoyer sur un autre Jeedom par exemple
 
 Darunter haben Sie den Teil, um Ihre Vorlage auf das laufende Szenario anzuwenden.
 
@@ -458,9 +458,9 @@ Etant donné que d'un Jeedom à l'autre ou d'une installation à une autre les c
 
 Il vous suffit de remplir la correspondance des commandes puis de faire appliquer
 
-== Die Protokolle
+== Les logs
 
-Sie können zum Ausführungsprotokoll eines Szenarios gelangen, indem Sie auf die Schaltfläche "Log" klicken : 
+Vous pouvez accéder aux logs d'éxecution d'un scénario en cliquant sur le bouton log de celui-ci : 
 
 image::../images/scenario17.JPG[]
 

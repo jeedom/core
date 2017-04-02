@@ -1,60 +1,60 @@
 = FAQ
 
-Does Jeedom requires a subscription?::
-No, Jeedom does not require a subscription to use. Only an online backup service is optional surcharge.
+Jeedom nécessite-t-il un abonnement ?::
+Non, Jeedom ne nécessite pas d'abonnement pour son utilisation. Seul un service de sauvegarde en ligne optionnel est payant.
 
 '''
-Does Jeedom require external servers to operate?::
+Jeedom utilise-t-il des serveurs extérieurs pour fonctionner ?::
 Non, Jeedom n'utilise pas d'infrastructure type "Cloud". Tout se fait en local et vous n'avez pas besoin de nos serveurs pour que votre installation fonctionne. Seuls les services comme le Market, la sauvegarde online ou le DNS Jeedom nécessitent l'utilisation de nos serveurs.
 
 '''
-Can the order of the controls of a device be changed?::
-Yes it is possible, simply drag & drop the controls of your device.
+Peut-on réordonner les commandes d'un équipement ?::
+Oui c'est possible, il suffit de glisser/déposer les commandes de votre objet sur sa configuration.
 
 '''
-Can the style of the widgets be edited? ::
-Yes it is possible either via the widget plugin, or using the page Main -> Command setup -> Advanced display
+Peut-on éditer le style des widgets ?::
+Oui c'est possible, soit en passant par le plugin widget, ou en utilisant la page Général -> Affichage
 
 '''
 Peut-on mettre plusieurs fois le même équipement sur un design ?::
-No this is not possible, but you can duplicate it using the virtual Plugin.
+Non ce n'est pas possible, mais vous pouvez dupliquer celui-ci grâce au plugin virtuel.
 
 '''
-How to change an erroneous data in the history?::
+Comment changer une donnée erronée de l'historique ?::
 On a historical chart, just click on the point in question to edit it. If you leave the fields blank then the value is deleted.
 
 '''
-How to avoid to log in each time?::
+Comment enregistrer un ordinateur pour ne plus avoir à s'identifier ?::
 At login just check the box "Register this computer".
 
 '''
-How long takes a backup?::
-There is no standard time, it depends on the system and the data volume, so it may take more than 5 minutes, which is normal.
+Combien de temps dure un backup ?::
+Il n'y a pas de durée standard, cela dépend du système et du volume de données à sauvegarder, mais il peut prendre plus de 5 minutes, c'est normal.
 
 '''
-Is there a native mobile app?::
-Jeedom has a version of the web application for mobile and tablet. A native mobile application is being developed by the team right now, but no release date has been announced yet.
-It is quite possible that third-party developers realized dedicated applications for Jeedom.
+Y a-t-il une application mobile dédiée ?::
+Jeedom possède une version mobile adaptée à l'utilisation sur mobile et tablette. Une application mobile est en cours de développement par l'équipe actuellement, aucune date de sortie n'est annoncée pour l'instant.
+Il est tout à fait possible que des développeurs tiers proposent des applications dédiées pour Jeedom.
 
 '''
-What are the credentials to use at login the first time?::
-When you first connect to Jeedom (and beyond if you don't change it) the user name is admin and the default password is admin.
-At the first connection, it is strongly recommended to change these identifiers for better security.
+Quels sont les identifiants pour me connecter la première fois ?::
+Lors de votre première connexion à Jeedom (et même après si vous ne les avez pas modifiés), le nom d'utilisateur et le mot de passe par défaut sont admin/admin.
+A la première connexion, il vous est fortement recommandé de modifier ces identifiants pour plus de sécurité.
 
 '''
-Where to buy the Mini +?::
-Jeedom Mini is marketed at our partner http://www.domadoo.fr/.
+Où acheter la Mini+ ?::
+La Jeedom Mini est commercialisée chez notre partenaire http://www.domadoo.fr/ .
 
 '''
-Impossible to access Jeedom from to the outside after purchasing a box::
-By default Jeedom is running at the root of Nginx on a box. You do not have to add /jeedom/ in the access address. The exact address will be: your_public_ip:your_port/
+Impossible d'accéder à Jeedom de l'extérieur depuis l'achat d'une box::
+Par défaut, Jeedom est à la racine de Nginx sur les box. Vous n'avez plus à rajouter /jeedom/ dans l'adresse d'accès. L'adresse exacte sera donc : votre_ip_public:votre_port/
 
 '''
 Peut-on mettre Jeedom en https ?::
 Yes, 3 possibilities:
-* You have a pack power or more, simply use the Jeedom DNS.
-* You already have a DNS name and you know how to produce a certificate, in this case it is a standard certificate installation.
-* You do not have a DNS, and you do not mind using a self-signed certificate (remember that a self-signed certificate encrypts the data but does not provide the validation of the site), in this case follows the steps below, if using HTTPS is not already working:
+* Vous avez un pack power ou plus, dans ce cas il vous suffit d'utiliser le DNS Jeedom.
+* Soit avez un DNS et vous savez mettre en place un certificat valide, dans ce cas c'est une installation standard d'un certificat.
+* Soit vous n'avez pas de DNS, et avoir un certificat auto-signé (pour rappel un certificat auto-signé assure le cryptage des données mais pas la validation du site) ne vous gêne pas, dans ce cas il faut faire ce qui suit, si ça ne marche pas quand vous mettez https devant l'URL :
 
 [source,bash]
 sudo su -
@@ -67,14 +67,14 @@ J'ai le message : "Vous avez un trop grand nombre de systèmes Jeedom déclarés
 Rendez vous sur le Market, connectez-vous avec votre compte puis allez sur votre page profil et demandez une réinitilisation des clefs d'installation.
 
 '''
-What is "event only " and "lifetime cache" ? ::
-* Event only: tells Jeedom to never request the value (it is the device / module that provides it). So when receiving a value, it is set as infinite lifetime (until reception of the next one).
-* Lifetime cache: how long a value is valid, if you put 60 seconds for example, when the value get older than 60 sec AND jeedom needs the value (dashboard, scenario ...) then it will ask for the device / module to get an updated value.
+Qu'est-ce "événement seulement" et "lifetime cache" ?::
+* Événement seulement : indique à Jeedom de ne jamais demander la valeur (c'est l'équipement qui la remonte). Donc lors de la réception d'une valeur, celle-ci à une durée de vie infinie (jusqu’à la réception de la suivante).
+* Lifetime cache : Durée de validité d'une valeur, si vous mettez 60 secondes par exemple, quand la valeur datera de plus de 60 secondes ET que jeedom en a besoin (dashboard, scénario...) alors il ira interroger le module pour avoir une valeur à jour.
 
 Attention, ces 2 options sont réservées aux utilisateurs avancés qui comprennent parfaitement leur fonction, une erreur de configuration dans cette partie peut rendre une installation instable voire inopérante. Par exemple, en zwave, rfxcom et enocean, la case événement seulement devrait TOUJOURS être cochée.
 
 '''
-How can I reset the permissions ?::
+Comment remettre à plat les droits ?::
 Connect with SSH and do the following: 
 [source,bash]
 sudo su -
@@ -82,11 +82,11 @@ chmod -R 775 /usr/share/nginx/www/jeedom
 chown -R www-data:www-data /usr/share/nginx/www/jeedom
 
 '''
-Where are the Jeedom backups ? ::
+Où se trouvent les backups de Jeedom ?::
 They are in the folder /usr/share/nginx/www/jeedom/backup
 
 '''
-How to update Jeedom from SSH?::
+Comment mettre à jour Jeedom en SSH ?::
 En SSH faîtes : 
 
 [source,bash]
@@ -96,9 +96,9 @@ chmod -R 775 /usr/share/nginx/www/jeedom
 chown -R www-data:www-data /usr/share/nginx/www/jeedom
 
 '''
-Is the Webapp compatible with Symbian ?::
-The webapp requires a smartphone that supports HTML5 and CSS3 . Therefore is unfortunately not compatible Symbian.
+La Webapp est-elle compatible Symbian ?::
+La webapp nécessite un smartphone supportant le HTML5 et le CSS3. Elle n'est donc malheureusement pas compatible Symbian.
 
 '''
-On what platforms Jeedom works ?::
+Sur quelles plateformes Jeedom peut-il fonctionner ?::
 Pour que Jeedom fonctionne il faut une plateforme linux avec les droits root ou un système type docker. Il ne fonctionne donc pas sur une plateforme android pure.

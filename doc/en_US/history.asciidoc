@@ -1,4 +1,4 @@
-= Historical
+= Historique
 
 Partie importante dans un logiciel : la partie historisation, véritable mémoire de celui-ci. Il est possible dans Jeedom d'historiser n'importe quelle commande de type information (binaire ou numérique). Cela vous permettra donc par exemple d'historiser une courbe de température, de consommation ou les ouvertures d'une porte...
 
@@ -15,7 +15,7 @@ Un des premiers éléments est de savoir si la commande que vous historisez est 
 * *Non évènement* : c'est le cas le plus simple. Jeedom va collecter toutes les 5mn la valeur de la commande et historiser le résultat.
 * *Evènement* : Jeedom sait qu'il ne peut récupérer la valeur. Il attend donc que le plugin (et indirectement le module) la lui transmette. Ensuite, en fonction de la fréquence et de vos réglages, il se peut qu'un premier lissage intervienne. En effet, si Jeedom reçoit 2 valeurs à moins de 5mn d'intervalle, il va par défaut en faire la moyenne pour n'en stocker qu'une. Vous pouvez bien sûr changer ce réglage pour qu'au lieu de la moyenne il prenne le maximum, le minimum ou au contraire qu'il garde les deux. Nous verrons par la suite comment changer ce réglage.
 
-=== Archiving
+=== Archivage
 
 L'archivage de données permet à Jeedom de réduire la quantité de données conservées en mémoire. Cela permet de ne pas utiliser trop de place et de ne pas ralentir le système. En effet, si vous conservez toute les mesures, cela fait d'autant plus de points à afficher et donc peut considérablement allonger les temps pour rendre un graphique. En cas d'un nombre trop important de points, cela peut même faire planter l'affichage du graphique.
 

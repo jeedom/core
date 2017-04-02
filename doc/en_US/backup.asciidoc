@@ -1,10 +1,10 @@
-= Saving and re-establishment
+= Sauvegarde et restauration
 
 The saving and the re-establishing of Jeedom allow to save this one and to re-establish it on itself or on another Jeedom.
 
 == Configuration
 
-Accessible from Administration -> Backup: 
+Accessible depuis Administration -> Sauvegarde : 
 
 image::../images/backup.png[]
 
@@ -12,20 +12,20 @@ This page allows the management of backups:
 
 image::../images/backup2.png[]
 
-On this page you find on the left the settings and the action buttons, and on the right the real-time status of the current action (current backup or restore), if you have started one.
+Sur cette page vous retrouvez à gauche les paramètres et les boutons d'action, et à droite le statut en temps réel de l'action en cours (sauvegarde en cours ou restauration), si vous en avez lancée une.
 
 On the left we have : 
 
-* *Savings*
+* *Sauvegardes*
 ** *Sauvegarde* : permet de lancer une sauvegarde immédiatement (utile si vous voulez faire un changement critique, cela vous permettra de revenir en arrière). Vous avez aussi un bouton pour lancer une sauvegarde sans envoyer l'archive sur le cloud (nécessite un abonnement voir plus bas), l'envoi de l'archive peut prendre du temps cela permet donc d'en gagner un peu.
 ** *Emplacement des sauvegardes* : endroit où Jeedom met les sauvegardes, il est recommandé de ne pas le changer. Si vous êtes en chemin relatif, alors son origine est l'endroit ou Jeedom est installé (/usr/share/nginx/www/jeedom).
 ** *Nombre de jour(s) de mémorisation des sauvegardes* : nombre de jours de sauvegarde à garder. Une fois ce délai passé les sauvegardes sont supprimées. Attention à ne pas mettre un nombre de jours trop élevé, sinon vous pouvez remplir votre système de fichiers.
 ** *Taille totale maximale des backups (Mo)* : Permet de limiter la taille totale des sauvegardes. Si cette valeur est dépassée alors Jeedom va supprimer les sauvegardes les plus vieilles jusqu'à retomber en-dessous de la taille maximale.
 ** *Envoyer les sauvegardes dans le cloud* : indique à Jeedom d'envoyer les sauvegardes au Market, attention il faut avoir pris l'abonnement.
 * *Sauvegardes locales*
-** * * Backups available: list of available backups
-** * Restore Backup *: launches restoration of the selected backup over
-** * * Delete Backup: Delete the selected backup above
+** *Sauvegardes disponibles* : liste des sauvegardes disponibles
+** *Restaurer la sauvegarde* : lance la restauration de la sauvegarde sélectionnée au-dessus
+** *Supprimer la sauvegarde* : supprime la sauvegarde sélectionnée au-dessus
 ** *Envoyer une sauvegarde* : vous permet d'envoyer à Jeedom une archive de sauvegarde (permet par exemple de restaurer une archive précédemment récupérée sur un nouveau Jeedom ou une réinstallation)
 ** *Télécharger la sauvegarde* : vous permet de récupérer l'archive de la sauvegarde sélectionnée au-dessus
 * *Sauvegardes cloud* 

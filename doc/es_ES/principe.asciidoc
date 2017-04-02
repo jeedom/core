@@ -1,17 +1,17 @@
-= Principio
+= Principe
 
-Jeedom consiste en un núcleo que se encarga de las funciones básicas: 
+Jeedom est composé d'un core qui se charge des fonctions de base : 
 
-* escena
-* histórico
+* scénario
+* historisation
 * affichage
-* interacción
-* actualización y copia de seguridad
+* interaction
+* mise à jour et sauvegarde
 
 Autour de ce core viennent se greffer des plugins qui peuvent être de toutes sortes :
  
 * protocole domotique (zwave, rfxcom, enOcean...)
-* protocolo IP (knx, xPL...)
+* protocole IP (knx,xPL...)
 * objet communiquant (nest, netatmo...)
 * haut niveau (alarme, thermostat...)
 * interface (widget)

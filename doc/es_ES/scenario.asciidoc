@@ -2,7 +2,7 @@
 
 Ésta es la parte más importante de la domótica: las escenas Es el cerebro real de la automatización, lo que le permite interactuar con el mundo real de forma "inteligente".
 
-== La página escenas
+== La page scénario
 
 Pour y accéder rien de plus simple, il suffit d'aller sur Outils -> Scénarios : 
 
@@ -14,60 +14,60 @@ image::../images/scenario.JPG[]
 
 Arriba encontrará 3 botones: 
 
-* *Añadir*: permite añadir una escena
-* *Desactivar escenas*: desactiva todas las escenas
-* * Ver variables* : Permite ver las variables, su valor actual y donde se estan usando,
+* *Ajouter* : permet d'ajouter un scénario
+* *Désactiver scénarios* : permet de désactiver tous les scénarios
+* *Voir les variables* : permet de voir les variables, leur valeur ainsi que l'endroit où elle sont utilisées
 
 [TIP]
-Las escenas en rojo son aquéllas que están desactivadas
+Les scénarios en rouge sont ceux qui sont désactivés
 
 [TIP]
-Al igual que en muchos lugares en Jeedom, situar el ratón en la zona la izquierda mostrará un menú de acceso rápido (se puede mostrar como "siempre visible" desde la configuración de su perfil).
+Comme à beaucoup d'endroits sur Jeedom, mettre la souris tout à gauche permet de faire apparaître un menu d'accès rapide (vous pouvez à partir de votre profil le laisser toujours visible).
 
 Hay 2 modelos de escenarios: 
 
 * *Simple* : permet de faire des scénarios très simples type SI ça ALORS fait ça
-* * * Avanzado: Permite un mayor control, pero se necesita más conocimiento
+* *Avancé* : là vous pouvez tout faire mais cela demande plus de connaissances
 
-[IMPORTANTE]
-Es posible pasar de una escena en modo simple a una en modo avanzado, pero no al contrario
+[IMPORTANT]
+Il est possible de passer un scénario du mode simple au mode avancé mais pas l'inverse
 
 Cuando cree una escena, Jeedom le pedirá el tipo de escena: 
 
 image::../images/scenario2.JPG[]
 
 
-== Modo simple
+== Mode simple
 
-Esta es la interfaz del modo simple: 
+Voilà l'interface en mode simple : 
 
 image::../images/scenario9.JPG[]
 
 Encontrará: 
 
-* *Nombre*: nombre de la escena
-* *Descripción*: descripción que se puede añadir para saber en qué consiste la escena o ejemplos de aplicación para la misma
+* *Nom* : le nom du scénario
+* *Description* : une description que vous pouvez ajouter pour savoir ce que fait le scénario et faire un suivi par exemple
 * *Actif* : définit si le scénario est actif ou non
 * *Exécuter en avant plan* : permet de lancer le scénario directement et non dans un fil d'exécution séparé. Attention cette option peut être dangereuse car elle met en pause toutes les autres actions du scénario. IL NE FAUT JAMAIS l'activer sur un scénario déclenché par une programmation horaire
 * *Dernier lancement* : la date de dernière exécution du scénario
-* *Estado*: el estado actual de la escena (ejecutándose, detenida...)
+* *Etat* : l'état actuel du scénario (en cours, arrêté...)
 
 Arriba a la derecha se encuentran:
 
 * un bouton pour faire un export texte du scénario (pratique pour le montrer sur le forum ou à l'équipe support)
 * un bouton pour avoir le log du scénario
-* un botón para duplicar la escena
+* un bouton pour dupliquer le scénario
 
 Abajo a la izquierda encontrará la configuración de la escena: 
 
 * *Scénario* : permet d'indiquer si le scénario est programmé (à une date et heure précise) ou s'il est provoqué (comme par exemple la détection d'un mouvement)
 * *A exécuter* : en mode programmé permet de dire s'il doit être exécuté une fois ou de manière répétée
 * *En date du* : s'il n'est exécuté qu'une fois alors il faut indiquer la date et l'heure
-* *Frecuencia*: En modo repetición puede elegir la frecuencia de repetición
+* *Fréquence* : en mode répété vous pouvez choisir la fréquence de répétition
 
 image::../images/scenario10.JPG[]
 
-* *Para*: En modo provocado debe elegir el comando de activación de la escena, haciendo clic en el pequeño botón a la izquierda
+* *Par* : en mode provoqué vous devez choisir la commande déclenchant le scénario, en cliquant sur le petit bouton à gauche
 
 image::../images/scenario11.JPG[]
 
@@ -89,7 +89,7 @@ Voila un scénario très simple qui allume la lumière en cas de présence
 [TIP]
 Ce scénario sera déclenché aussi bien lors de la détection d'une présence que lors du relâchement (fin de présence), il est donc nécessaire de tester la valeur de la présence (ici déclenchée)
 
-[IMPORTANTE]
+[IMPORTANT]
 Il ne faut pas oublier de faire le même genre de scénario mais pour éteindre la lumière lorsque plus personne n'est présent
 
 == Mode avancée
@@ -227,7 +227,7 @@ Vous avez aussi les tags suivants en plus si votre scénario a été déclenché
 * *\#query#* : interaction ayant déclenché le scénario,
 * *\#profil#* : profil de l'utilisateur ayant déclenché le scénario (peut être vide).
 
-[IMPORTANTE]
+[IMPORTANT]
 Lorsqu'un scénario est déclenché par une interaction, celui-ci est forcément exécuté en mode rapide.
     
 Plusieurs fonctions sont disponibles pour les équipements :
@@ -352,7 +352,7 @@ image::../images/scenario20.JPG[]
              
 === Code
 
-[IMPORTANTE]
+[IMPORTANT]
 Attention les tags ne sont pas disponibles dans un bloc de type code.
 
 Commandes (capteurs et actionneurs)::

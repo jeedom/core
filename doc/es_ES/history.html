@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.3.dev">
-<title>Historial</title>
+<title>Historique</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -412,14 +412,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Historial</h1>
+<h1>Historique</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table des matières</div>
 <ul class="sectlevel1">
-<li><a href="#_principio">1. Principio</a>
+<li><a href="#_principe">1. Principe</a>
 <ul class="sectlevel2">
-<li><a href="#_método_de_historial">1.1. Método de historial</a></li>
-<li><a href="#_archivo">1.2. Archivo</a></li>
+<li><a href="#_méthode_d_historisation">1.1. Méthode d&#8217;historisation</a></li>
+<li><a href="#_archivage">1.2. Archivage</a></li>
 <li><a href="#_tendances_et_statistiques">1.3. Tendances et statistiques</a></li>
 </ul>
 </li>
@@ -446,13 +446,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_principio">1. Principio</h2>
+<h2 id="_principe">1. Principe</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Ici est décrit le principe d&#8217;historisation de Jeedom. Il n&#8217;est nécessaire de le comprendre que si vous rencontrez des soucis d&#8217;historisation ou que vous voulez modifier les réglages de l&#8217;historisation. Les réglages par défaut conviennent dans la plupart des cas.</p>
 </div>
 <div class="sect2">
-<h3 id="_método_de_historial">1.1. Método de historial</h3>
+<h3 id="_méthode_d_historisation">1.1. Méthode d&#8217;historisation</h3>
 <div class="paragraph">
 <p>Uno de los primeros elementos es saber el tipo de comando que desea historizar es de typo evento o no:</p>
 </div>
@@ -468,9 +468,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="_archivo">1.2. Archivo</h3>
+<h3 id="_archivage">1.2. Archivage</h3>
 <div class="paragraph">
-<p>El archivo de datos permite a Jeedom reducir la cantidad de datos almacenados en la memoria. Esto permite que no se utilice demasiado espacio y no se ralentice el sistema. De hecho, si archivas todas las medidas, esto hará que se muestren más datos y por lo tanto, puede alargar significativamente el procesado de la gráfica. En el caso de un excesivo número de puntos, incluso puede hacer fallar la visualización del mismo.</p>
+<p>L&#8217;archivage de données permet à Jeedom de réduire la quantité de données conservées en mémoire. Cela permet de ne pas utiliser trop de place et de ne pas ralentir le système. En effet, si vous conservez toute les mesures, cela fait d&#8217;autant plus de points à afficher et donc peut considérablement allonger les temps pour rendre un graphique. En cas d&#8217;un nombre trop important de points, cela peut même faire planter l&#8217;affichage du graphique.</p>
 </div>
 <div class="paragraph">
 <p>L&#8217;archivage est une tâche qui se lance dans la nuit et compacte les données récupérées dans la journée. Par défaut Jeedom récupère toutes les données plus vieilles de 2h et en fait des paquets de 1h (soit une moyenne, un minimum ou un maximum en fonction des réglages). On a donc ici 2 paramètres, un pour la taille des paquets et un autre pour savoir à partir de quand en faire (pour rappel par défaut ce sont des paquets de 1h avec des données qui ont plus de 2h d&#8217;ancienneté).</p>
@@ -487,8 +487,17 @@ Si vous avez bien suivi vous devriez avoir une haute précision sur les 2 derni�
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>Bien sûr, ce principe d&#8217;archivage ne s&#8217;applique qu&#8217;aux commandes de type numérique ; sur les commandes de type binaire, Jeedom ne conserve que les dates de changement d&#8217;état.</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Bien sûr, ce principe d&#8217;archivage ne s&#8217;applique qu&#8217;aux commandes de type numérique ; sur les commandes de type binaire, Jeedom ne conserve que les dates de changement d&#8217;état.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">

@@ -416,8 +416,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table des matières</div>
 <ul class="sectlevel1">
-<li><a href="#_la_página_escenas">1. La página escenas</a></li>
-<li><a href="#_modo_simple">2. Modo simple</a>
+<li><a href="#_la_page_scénario">1. La page scénario</a></li>
+<li><a href="#_mode_simple">2. Mode simple</a>
 <ul class="sectlevel2">
 <li><a href="#_exemple_allumer_sur_présence">2.1. Exemple allumer sur présence</a></li>
 </ul>
@@ -445,7 +445,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_la_página_escenas">1. La página escenas</h2>
+<h2 id="_la_page_scénario">1. La page scénario</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Pour y accéder rien de plus simple, il suffit d&#8217;aller sur Outils &#8594; Scénarios :</p>
@@ -469,13 +469,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Añadir</strong>: permite añadir una escena</p>
+<p><strong>Ajouter</strong> : permet d&#8217;ajouter un scénario</p>
 </li>
 <li>
-<p><strong>Desactivar escenas</strong>: desactiva todas las escenas</p>
+<p><strong>Désactiver scénarios</strong> : permet de désactiver tous les scénarios</p>
 </li>
 <li>
-<p>* Ver variables* : Permite ver las variables, su valor actual y donde se estan usando,</p>
+<p><strong>Voir les variables</strong> : permet de voir les variables, leur valeur ainsi que l&#8217;endroit où elle sont utilisées</p>
 </li>
 </ul>
 </div>
@@ -486,7 +486,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Las escenas en rojo son aquéllas que están desactivadas
+Les scénarios en rouge sont ceux qui sont désactivés
 </td>
 </tr>
 </table>
@@ -498,7 +498,7 @@ Las escenas en rojo son aquéllas que están desactivadas
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Al igual que en muchos lugares en Jeedom, situar el ratón en la zona la izquierda mostrará un menú de acceso rápido (se puede mostrar como "siempre visible" desde la configuración de su perfil).
+Comme à beaucoup d&#8217;endroits sur Jeedom, mettre la souris tout à gauche permet de faire apparaître un menu d&#8217;accès rapide (vous pouvez à partir de votre profil le laisser toujours visible).
 </td>
 </tr>
 </table>
@@ -512,12 +512,21 @@ Al igual que en muchos lugares en Jeedom, situar el ratón en la zona la izquier
 <p><strong>Simple</strong> : permet de faire des scénarios très simples type SI ça ALORS fait ça</p>
 </li>
 <li>
-<p>* * Avanzado: Permite un mayor control, pero se necesita más conocimiento</p>
+<p><strong>Avancé</strong> : là vous pouvez tout faire mais cela demande plus de connaissances</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Es posible pasar de una escena en modo simple a una en modo avanzado, pero no al contrario</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Il est possible de passer un scénario du mode simple au mode avancé mais pas l&#8217;inverse
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Cuando cree una escena, Jeedom le pedirá el tipo de escena:</p>
@@ -530,10 +539,10 @@ Al igual que en muchos lugares en Jeedom, situar el ratón en la zona la izquier
 </div>
 </div>
 <div class="sect1">
-<h2 id="_modo_simple">2. Modo simple</h2>
+<h2 id="_mode_simple">2. Mode simple</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Esta es la interfaz del modo simple:</p>
+<p>Voilà l&#8217;interface en mode simple :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -546,10 +555,10 @@ Al igual que en muchos lugares en Jeedom, situar el ratón en la zona la izquier
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Nombre</strong>: nombre de la escena</p>
+<p><strong>Nom</strong> : le nom du scénario</p>
 </li>
 <li>
-<p><strong>Descripción</strong>: descripción que se puede añadir para saber en qué consiste la escena o ejemplos de aplicación para la misma</p>
+<p><strong>Description</strong> : une description que vous pouvez ajouter pour savoir ce que fait le scénario et faire un suivi par exemple</p>
 </li>
 <li>
 <p><strong>Actif</strong> : définit si le scénario est actif ou non</p>
@@ -561,7 +570,7 @@ Al igual que en muchos lugares en Jeedom, situar el ratón en la zona la izquier
 <p><strong>Dernier lancement</strong> : la date de dernière exécution du scénario</p>
 </li>
 <li>
-<p><strong>Estado</strong>: el estado actual de la escena (ejecutándose, detenida&#8230;&#8203;)</p>
+<p><strong>Etat</strong> : l&#8217;état actuel du scénario (en cours, arrêté&#8230;&#8203;)</p>
 </li>
 </ul>
 </div>
@@ -577,7 +586,7 @@ Al igual que en muchos lugares en Jeedom, situar el ratón en la zona la izquier
 <p>un bouton pour avoir le log du scénario</p>
 </li>
 <li>
-<p>un botón para duplicar la escena</p>
+<p>un bouton pour dupliquer le scénario</p>
 </li>
 </ul>
 </div>
@@ -596,7 +605,7 @@ Al igual que en muchos lugares en Jeedom, situar el ratón en la zona la izquier
 <p><strong>En date du</strong> : s&#8217;il n&#8217;est exécuté qu&#8217;une fois alors il faut indiquer la date et l&#8217;heure</p>
 </li>
 <li>
-<p><strong>Frecuencia</strong>: En modo repetición puede elegir la frecuencia de repetición</p>
+<p><strong>Fréquence</strong> : en mode répété vous pouvez choisir la fréquence de répétition</p>
 </li>
 </ul>
 </div>
@@ -608,7 +617,7 @@ Al igual que en muchos lugares en Jeedom, situar el ratón en la zona la izquier
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Para</strong>: En modo provocado debe elegir el comando de activación de la escena, haciendo clic en el pequeño botón a la izquierda</p>
+<p><strong>Par</strong> : en mode provoqué vous devez choisir la commande déclenchant le scénario, en cliquant sur le petit bouton à gauche</p>
 </li>
 </ul>
 </div>
@@ -664,8 +673,17 @@ Ce scénario sera déclenché aussi bien lors de la détection d&#8217;une prés
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>Il ne faut pas oublier de faire le même genre de scénario mais pour éteindre la lumière lorsque plus personne n&#8217;est présent</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Il ne faut pas oublier de faire le même genre de scénario mais pour éteindre la lumière lorsque plus personne n&#8217;est présent
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -1031,8 +1049,17 @@ Un tag est remplacé lors de l&#8217;exécution du scénario par sa valeur
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Lorsqu&#8217;un scénario est déclenché par une interaction, celui-ci est forcément exécuté en mode rapide.</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Lorsqu&#8217;un scénario est déclenché par une interaction, celui-ci est forcément exécuté en mode rapide.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Plusieurs fonctions sont disponibles pour les équipements :</p>
@@ -1498,8 +1525,17 @@ Le seuil permet de definir la sensibilité, attention le calcul du seuil utilise
 </div>
 <div class="sect2">
 <h3 id="_code">3.4. Code</h3>
-<div class="paragraph">
-<p>Attention les tags ne sont pas disponibles dans un bloc de type code.</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Attention les tags ne sont pas disponibles dans un bloc de type code.
+</td>
+</tr>
+</table>
 </div>
 <div class="dlist">
 <dl>

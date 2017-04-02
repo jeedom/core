@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.3.dev">
-<title>Sicherung und Wiederherstellen</title>
+<title>Sauvegarde et restauration</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -412,15 +412,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Sicherung und Wiederherstellen</h1>
+<h1>Sauvegarde et restauration</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table des matières</div>
 <ul class="sectlevel1">
-<li><a href="#_konfiguration">1. Konfiguration</a></li>
-<li><a href="#_was_wird_gespeichert">2. Was wird gespeichert ?</a></li>
-<li><a href="#_cloud_sicherung">3. Cloud Sicherung</a></li>
-<li><a href="#_häufigkeit_der_sicherungen">4. Häufigkeit der Sicherungen</a></li>
-<li><a href="#_slave_beispiel">5. Slave Beispiel</a></li>
+<li><a href="#_configuration">1. Configuration</a></li>
+<li><a href="#_qu_est_ce_qui_est_sauvegardé">2. Qu&#8217;est-ce qui est sauvegardé ?</a></li>
+<li><a href="#_sauvegarde_cloud">3. Sauvegarde cloud</a></li>
+<li><a href="#_fréquence_des_backups">4. Fréquence des backups</a></li>
+<li><a href="#_cas_d_un_esclave">5. Cas d&#8217;un esclave</a></li>
 </ul>
 </div>
 </div>
@@ -433,10 +433,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_konfiguration">1. Konfiguration</h2>
+<h2 id="_configuration">1. Configuration</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Erreichbar unter Verwaltung &#8594; Sicherungen :</p>
+<p>Accessible depuis Administration &#8594; Sauvegarde :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -452,7 +452,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>Auf dieser Seite haben sie auf der linken Seite die Parameter und Aktionsschaltflächen, und rechts ist der Echtzeitstatus der aktuellen Aktion (Sicherung oder Wiederherstellung), wenn sie etwas gestartet haben.</p>
+<p>Sur cette page vous retrouvez à gauche les paramètres et les boutons d&#8217;action, et à droite le statut en temps réel de l&#8217;action en cours (sauvegarde en cours ou restauration), si vous en avez lancée une.</p>
 </div>
 <div class="paragraph">
 <p>Auf der linken Seite haben wir :</p>
@@ -460,7 +460,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Sicherungen</strong></p>
+<p><strong>Sauvegardes</strong></p>
 <div class="ulist">
 <ul>
 <li>
@@ -482,36 +482,36 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </li>
 <li>
-<p><strong>Lokale Sicherung</strong></p>
+<p><strong>Sauvegardes locales</strong></p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Verfügbare Sicherungen</strong> : Liste der verfügbaren Sicherungen</p>
+<p><strong>Sauvegardes disponibles</strong> : liste des sauvegardes disponibles</p>
 </li>
 <li>
-<p><strong>Sicherung wiederherstellen</strong> : startet die Wiederherstellung der oben ausgewählten Sicherung</p>
+<p><strong>Restaurer la sauvegarde</strong> : lance la restauration de la sauvegarde sélectionnée au-dessus</p>
 </li>
 <li>
-<p><strong>Sicherung löschen</strong> : Entfernt die oben ausgewählte Sicherung</p>
+<p><strong>Supprimer la sauvegarde</strong> : supprime la sauvegarde sélectionnée au-dessus</p>
 </li>
 <li>
 <p><strong>Envoyer une sauvegarde</strong> : vous permet d&#8217;envoyer à Jeedom une archive de sauvegarde (permet par exemple de restaurer une archive précédemment récupérée sur un nouveau Jeedom ou une réinstallation)</p>
 </li>
 <li>
-<p><strong>Sicherungskopie herunterladen</strong> : Damit können sie das oben ausgewählte Archiv der Sicherung abrufen.</p>
+<p><strong>Télécharger la sauvegarde</strong> : vous permet de récupérer l&#8217;archive de la sauvegarde sélectionnée au-dessus</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Cloud Sicherungskopie</strong></p>
+<p><strong>Sauvegardes cloud</strong></p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Verfügbare Sicherungen</strong> : Liste der verfügbaren Cloud Sicherungen</p>
+<p><strong>Sauvegardes disponibles</strong> : liste des sauvegardes cloud disponibles</p>
 </li>
 <li>
-<p><strong>Sicherung wiederherstellen</strong> : Startet die Wiederherstellung einer Cloud Sicherung.</p>
+<p><strong>Restaurer la sauvegarde</strong> : lance la restauration d&#8217;une sauvegarde cloud</p>
 </li>
 </ul>
 </div>
@@ -537,7 +537,7 @@ Lors d&#8217;une réinstallation de Jeedom et en ayant pris l&#8217;abonnement d
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Es ist möglich, im Falle von Schwierigkeiten, unter der Komandozeile zu sichern : sudo php /usr/share/nginx/www/jeedom/install/backup.php`
+Il est possible, en cas de soucis, de faire un backup en ligne de commandes : <code>sudo php /usr/share/nginx/www/jeedom/install/backup.php</code>
 </td>
 </tr>
 </table>
@@ -557,7 +557,7 @@ Il est possible aussi de restaurer un backup en ligne de commandes (par défaut 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_was_wird_gespeichert">2. Was wird gespeichert ?</h2>
+<h2 id="_qu_est_ce_qui_est_sauvegardé">2. Qu&#8217;est-ce qui est sauvegardé ?</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Lors d&#8217;une sauvegarde, Jeedom va sauvegarder tous ses fichiers et la base de données. Cela contient donc toute votre configuration (équipement, commande, historique, scénario, design&#8230;&#8203;).</p>
@@ -568,7 +568,7 @@ Il est possible aussi de restaurer un backup en ligne de commandes (par défaut 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_cloud_sicherung">3. Cloud Sicherung</h2>
+<h2 id="_sauvegarde_cloud">3. Sauvegarde cloud</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>La sauvegarde dans le cloud permet à Jeedom d&#8217;envoyer vos sauvegardes directement sur le Market. Cela vous permet de les restaurer facilement et d&#8217;être sûr de ne pas les perdre. Le Market conserve les 14 dernières sauvegardes. Pour vous abonner il suffit d&#8217;aller sur votre page profil sur le Market :</p>
@@ -579,7 +579,7 @@ Il est possible aussi de restaurer un backup en ligne de commandes (par défaut 
 </div>
 </div>
 <div class="paragraph">
-<p>Dann in der Registerkarte meine Backups :</p>
+<p>Puis dans l&#8217;onglet mes backups :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -604,7 +604,7 @@ Vous pouvez mettre un nom de sauvegarde plus sympa à partir de l&#8217;onglet "
 </div>
 </div>
 <div class="sect1">
-<h2 id="_häufigkeit_der_sicherungen">4. Häufigkeit der Sicherungen</h2>
+<h2 id="_fréquence_des_backups">4. Fréquence des backups</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Jeedom effectue une sauvegarde tous les jours.Vous pouvez modifier cette heure à partir du "Moteur de tâches" (la tâche est nommée 'Jeedom backup') mais ce n&#8217;est pas recommandé car cette heure est calculée par rapport à la charge et l&#8217;heure de la sauvegarde du Market.</p>
@@ -612,7 +612,7 @@ Vous pouvez mettre un nom de sauvegarde plus sympa à partir de l&#8217;onglet "
 </div>
 </div>
 <div class="sect1">
-<h2 id="_slave_beispiel">5. Slave Beispiel</h2>
+<h2 id="_cas_d_un_esclave">5. Cas d&#8217;un esclave</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Le cas d&#8217;un esclave est un peu particulier, car il va après chaque sauvegarde envoyer celle-ci sur son maître (et sur le Market si vous avez un abonnement au service de sauvegarde cloud). Vous pouvez donc à partir du maître récupérer une sauvegarde de l&#8217;esclave pour l&#8217;installer sur un autre esclave par exemple.</p>

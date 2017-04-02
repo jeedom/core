@@ -1,4 +1,4 @@
-= Users
+= Utilisateur
 
 C'est ici que l'on va pouvoir définir la liste des utilisateurs autorisés à se connecter à Jeedom, mais également leurs droits d'administrateur
 
@@ -17,7 +17,7 @@ image::../images/user3.png[]
 
 Below there is a board :
 
-* *User name* : user login
+* *Nom d'utilisateur* : le login de l'utilisateur
 * *Actions* : La possibilité de changer le mot de passe de l'utilisateur ou de supprimer son compte
 * *Actif* : la possibilité de désactiver le compte
 * *Droits* : la possibilité de passer ou non l'utilisateur en mode administrateur (permet d'avoir accès à tout ce qui est configuration de Jeedom, création des scénarios, gestion des plugins, configuration des équipements, des designs, des vues...)
