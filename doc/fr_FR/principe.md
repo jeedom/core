@@ -10,7 +10,8 @@ Jeedom est composé d’un core qui se charge des fonctions de base :
 
 -   mise à jour et sauvegarde
 
-Autour de ce core viennent se greffer des plugins qui peuvent être de toutes sortes :
+Autour de ce core viennent se greffer des plugins qui peuvent être de
+toutes sortes :
 
 -   protocole domotique (zwave, rfxcom, enOcean…)
 
@@ -26,11 +27,19 @@ Autour de ce core viennent se greffer des plugins qui peuvent être de toutes so
 
 -   développement (script)
 
-Ces plugins peuvent être récupérés par le biais du Market et permettent d'étendre les possibilités de Jeedom.
+Ces plugins peuvent être récupérés par le biais du Market et permettent
+d'étendre les possibilités de Jeedom.
 
-Jeedom permet à n’importe quel plugin de discuter avec un autre sur une base normalisée, cela permet par exemple d’utiliser les plugins thermostat ou alarme avec n’importe quel protocole domotique ou même un plugin IP ou objet communiquant…
+Jeedom permet à n’importe quel plugin de discuter avec un autre sur une
+base normalisée, cela permet par exemple d’utiliser les plugins
+thermostat ou alarme avec n’importe quel protocole domotique ou même un
+plugin IP ou objet communiquant…
 
-De plus Jeedom a la particularité d'être sans abonnement et sans cloud. Cela permet de garantir le fonctionnement de votre domotique même si vous n’avez plus Internet. Cela garantit aussi la sécurité de vos données (évite les risques de piratage en masse de comptes).
+De plus Jeedom a la particularité d'être sans abonnement et sans cloud.
+Cela permet de garantir le fonctionnement de votre domotique même si
+vous n’avez plus Internet. Cela garantit aussi la sécurité de vos
+données (évite les risques de piratage en masse de comptes).
 
-Le projet étant ouvert et open-source, cela lui garantit aussi un fort taux d'évolution grâce aux nombreux contributeurs qui y participent.
+Le projet étant ouvert et open-source, cela lui garantit aussi un fort
+taux d'évolution grâce aux nombreux contributeurs qui y participent.
 

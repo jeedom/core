@@ -1,38 +1,60 @@
-Cette page permet d’avoir un résumé sur sa domotique et donne aussi accès à des fonctions d’organisation des équipements et des commandes, à la configuration avancée des équipements et des commandes ainsi qu'à des possibilités de configuration d’affichage. Elle se décompose en un onglet "Ma domotique" et un un onglet "Configuration de l’affichage".
+Cette page permet d’avoir un résumé sur sa domotique et donne aussi
+accès à des fonctions d’organisation des équipements et des commandes, à
+la configuration avancée des équipements et des commandes ainsi qu'à des
+possibilités de configuration d’affichage. Elle se décompose en un
+onglet "Ma domotique" et un un onglet "Configuration de l’affichage".
 
 Cette page est accessible par Outils → Résumé domotique :
 
 ![](../images/display.png)
 
-Le premièr onglet permet d’organiser les différents équipements, les commandes, d’avoir accès à la configuration avancée ainsi qu'à la configuration de masse. Voila celui-ci :
+Le premièr onglet permet d’organiser les différents équipements, les
+commandes, d’avoir accès à la configuration avancée ainsi qu'à la
+configuration de masse. Voila celui-ci :
 
 ![](../images/display2.png)
 
-On retrouve tout en haut un résumé du nombre d’objets existants, du nombre d'équipements et du nombre de commandes. Sur la droite se trouve un bouton pour masquer tous les équipements inactifs et un champ de recherche pour par exemple chercher un équipement, une commande ou tous les équipements d’un certain type (plugin, par exemple il suffit de taper rfxcom pour avoir tous les équipements rfxcom)
+On retrouve tout en haut un résumé du nombre d’objets existants, du
+nombre d'équipements et du nombre de commandes. Sur la droite se trouve
+un bouton pour masquer tous les équipements inactifs et un champ de
+recherche pour par exemple chercher un équipement, une commande ou tous
+les équipements d’un certain type (plugin, par exemple il suffit de
+taper rfxcom pour avoir tous les équipements rfxcom)
 
-En dessous on retrouve un cadre par objet. Dans chaque cadre se trouve la liste des équipements (en bleu) contenus dans l’objet. Vous avez sur la ligne du nom de l’objet jusqu'à 3 boutons, dans l’ordre :
+En dessous on retrouve un cadre par objet. Dans chaque cadre se trouve
+la liste des équipements (en bleu) contenus dans l’objet. Vous avez sur
+la ligne du nom de l’objet jusqu'à 3 boutons, dans l’ordre :
 
--   le premier sert à ouvrir la page de configuration de l’objet dans un nouvel onglet
+-   le premier sert à ouvrir la page de configuration de l’objet dans un
+    nouvel onglet
 
 -   le deuxième donne un résumé sur l’objet
 
--   le dernier permet de masquer la liste des équipements (en dessous en bleu)
+-   le dernier permet de masquer la liste des équipements (en dessous en
+    bleu)
 
 > **Tip**
 >
-> La couleur de fond des cadres objets dépend de la couleur mise dans la configuration de l’objet
+> La couleur de fond des cadres objets dépend de la couleur mise dans la
+> configuration de l’objet
 
-A partir de là vous pouvez en cliquant/maintenant un équipement changer l’ordre dans l’objet ou même l’affecter à un autre objet.
+A partir de là vous pouvez en cliquant/maintenant un équipement changer
+l’ordre dans l’objet ou même l’affecter à un autre objet.
 
 > **Tip**
 >
-> C’est à partir de cet ordre là qu’est calculé l’ordre d’affichage sur le dashboard
+> C’est à partir de cet ordre là qu’est calculé l’ordre d’affichage sur
+> le dashboard
 
 Sur chaque équipement on retrouve :
 
 ![](../images/display3.png)
 
--   une coche pour sélectionner l'équipement (vous pouvez en sélectionner plusieurs), si au moins un équipement est sélectionné vous avez des boutons d’action qui apparaissent pour supprimer, désactiver, activer, rendre visible ou invisible les équipements sélectionnés
+-   une coche pour sélectionner l'équipement (vous pouvez en
+    sélectionner plusieurs), si au moins un équipement est sélectionné
+    vous avez des boutons d’action qui apparaissent pour supprimer,
+    désactiver, activer, rendre visible ou invisible les équipements
+    sélectionnés
 
 ![](../images/display4.png)
 
@@ -40,82 +62,116 @@ Sur chaque équipement on retrouve :
 
 -   le type de l'équipement (identifiant du plugin auquel il appartient)
 
--   une croix signifie que l'équipement est inactif (si elle n’y est pas alors l'équipement est actif)
+-   une croix signifie que l'équipement est inactif (si elle n’y est pas
+    alors l'équipement est actif)
 
--   un oeil barré signifie que l'équipement est invisible (s’il n’y est pas alors l'équipement est visible)
+-   un oeil barré signifie que l'équipement est invisible (s’il n’y est
+    pas alors l'équipement est visible)
 
--   lien externe : permet d’ouvrir dans un nouvel onglet la page de configuration de l'équipement
+-   lien externe : permet d’ouvrir dans un nouvel onglet la page de
+    configuration de l'équipement
 
--   configuration avancée (petit roue crantée) : permet d’ouvrir la fenêtre de configuration avancée
+-   configuration avancée (petit roue crantée) : permet d’ouvrir la
+    fenêtre de configuration avancée
 
 > **Tip**
 >
-> Un double clic sur l'équipement permet aussi d’ouvrir la fenêtre de configuration avancée
+> Un double clic sur l'équipement permet aussi d’ouvrir la fenêtre de
+> configuration avancée
 
--   liste des commandes (la flèche) : permet de déplier la liste des commandes
+-   liste des commandes (la flèche) : permet de déplier la liste des
+    commandes
 
 Si vous dépliez la liste des commandes vous obtenez :
 
 ![](../images/display5.png)
 
-Chaque bloc jaune correspond à une commande de votre équipement (un nouveau clic sur la petite flèche de l'équipement permet de les masquer). Si vous faites un double clic sur la commande ou que vous cliquez sur la petite roue crantée cela fera apparaitre la fenêtre de configuration
+Chaque bloc jaune correspond à une commande de votre équipement (un
+nouveau clic sur la petite flèche de l'équipement permet de les
+masquer). Si vous faites un double clic sur la commande ou que vous
+cliquez sur la petite roue crantée cela fera apparaitre la fenêtre de
+configuration
 
 Configuration avancée d’un équipement
 =====================================
 
-La fenêtre de configuration avancée d’un équipement est composée de 2 onglets : Informations et Affichages avancés.
+La fenêtre de configuration avancée d’un équipement est composée de 2
+onglets : Informations et Affichages avancés.
 
-En haut vous retrouvez aussi un bouton sauvegarder et un bouton de suppression d'équipement
+En haut vous retrouvez aussi un bouton sauvegarder et un bouton de
+suppression d'équipement
 
 > **Tip**
 >
-> Il est possible d’accéder (si le plugin le supporte) directement à cette fenêtre à partir de la page de configuration de l'équipement en cliquant sur les 3 petites roues crantées (souvent placées tout en haut à coté du titre "Général")
+> Il est possible d’accéder (si le plugin le supporte) directement à
+> cette fenêtre à partir de la page de configuration de l'équipement en
+> cliquant sur les 3 petites roues crantées (souvent placées tout en
+> haut à coté du titre "Général")
 
 Informations
 ------------
 
 ![](../images/display9.png)
 
-L’onglet information contient les informations générales de l'équipement :
+L’onglet information contient les informations générales de l'équipement
+:
 
 -   **ID** : identifiant unique dans la base de données
 
 -   **Nom** : nom de l'équipement
 
--   **ID logique** : identifiant logique de l'équipement (peut être vide)
+-   **ID logique** : identifiant logique de l'équipement (peut être
+    vide)
 
--   **ID de l’objet** : identifiant unique de l’objet père (peut être vide)
+-   **ID de l’objet** : identifiant unique de l’objet père (peut être
+    vide)
 
 -   **Date de création** : date de création de l'équipement
 
--   **Activer** : permet d’activer ou non l'équipement (n’oubliez pas de sauvegarder)
+-   **Activer** : permet d’activer ou non l'équipement (n’oubliez pas de
+    sauvegarder)
 
--   **Visible** : permet de rendre visible ou non l'équipement (n’oubliez pas de sauvegarder)
+-   **Visible** : permet de rendre visible ou non l'équipement
+    (n’oubliez pas de sauvegarder)
 
 -   **Type** : identifiant du plugin auquel il appartient
 
--   **Tentative échouée** : nombre de tentatives de communications consécutives avec l'équipement qui ont échoué
+-   **Tentative échouée** : nombre de tentatives de communications
+    consécutives avec l'équipement qui ont échoué
 
--   **Dernière mise à jour** : date de dernière communication avec l'équipement
+-   **Dernière mise à jour** : date de dernière communication avec
+    l'équipement
 
 Affichage avancé
 ----------------
 
 ![](../images/display10.png)
 
-Dans cette partie vous allez pouvoir configurer certains comportements d’affichage de la tuile sur le dashboard, les vues, le design et en mobile.
+Dans cette partie vous allez pouvoir configurer certains comportements
+d’affichage de la tuile sur le dashboard, les vues, le design et en
+mobile.
 
 Vous pouvez :
 
--   **Visible** : permet de masquer ou non l'équipement en desktop ou mobile
+-   **Visible** : permet de masquer ou non l'équipement en desktop ou
+    mobile
 
--   **Afficher le nom** : permet de masquer le nom de l'équipement sur la tuile en fonction du contexte (dashboard et design, vue ou mobile)
+-   **Afficher le nom** : permet de masquer le nom de l'équipement sur
+    la tuile en fonction du contexte (dashboard et design, vue ou
+    mobile)
 
--   **Afficher le nom de l’objet** : uniquement sur les vues cela permet de ne pas afficher le nom de l’objet à coté du nom de l'équipement
+-   **Afficher le nom de l’objet** : uniquement sur les vues cela permet
+    de ne pas afficher le nom de l’objet à coté du nom de l'équipement
 
--   **Afficher le niveau de batterie** : uniquement pour le dashboard, les designs et les vues, cette option permet de masquer le niveau de la batterie de l'équipement (s’il est sur batterie bien sûr)
+-   **Afficher le niveau de batterie** : uniquement pour le dashboard,
+    les designs et les vues, cette option permet de masquer le niveau de
+    la batterie de l'équipement (s’il est sur batterie bien sûr)
 
-En-dessous, on retrouve des paramètres optionnels d’affichage que l’on peut passer à l'équipement. Ces paramètres sont composés d’un nom et d’une valeur. Pour les équipements, seule la valeur "style" est pour le moment utilisée, elle permet d’insérer du code CSS sur l'équipement en question. Exemple ici pour arrondir les angles :
+En-dessous, on retrouve des paramètres optionnels d’affichage que l’on
+peut passer à l'équipement. Ces paramètres sont composés d’un nom et
+d’une valeur. Pour les équipements, seule la valeur "style" est pour le
+moment utilisée, elle permet d’insérer du code CSS sur l'équipement en
+question. Exemple ici pour arrondir les angles :
 
 ![](../images/display11.png)
 
@@ -128,21 +184,28 @@ Batteries
 
 ![](../images/display16.png)
 
-Cet onglet permet d’avoir les informations sur la batterie de l'équipement : type de pile, dernière remontée de l’information, niveau restant (si bien sûr votre équipement fonctionne sur pile). Vous pourrez aussi à partir de celui-ci configurer les seuils spécifiques pour cet équipement.
+Cet onglet permet d’avoir les informations sur la batterie de
+l'équipement : type de pile, dernière remontée de l’information, niveau
+restant (si bien sûr votre équipement fonctionne sur pile). Vous pourrez
+aussi à partir de celui-ci configurer les seuils spécifiques pour cet
+équipement.
 
 Configuration avancée d’une commande
 ====================================
 
-La fenêtre de configuration avancée d’une commande est composée de 3 onglets : Informations, Configuration avancée et Affichage avancé.
+La fenêtre de configuration avancée d’une commande est composée de 3
+onglets : Informations, Configuration avancée et Affichage avancé.
 
-Elle a aussi 2 boutons, un pour sauvegarder et un pour appliquer les mêmes paramètres de configuration à une autre commande
+Elle a aussi 2 boutons, un pour sauvegarder et un pour appliquer les
+mêmes paramètres de configuration à une autre commande
 
 Informations
 ------------
 
 ![](../images/display12.png)
 
-L’onglet information contient les informations générales sur la commande :
+L’onglet information contient les informations générales sur la commande
+:
 
 -   **ID** : identifiant unique dans la base de données
 
@@ -154,75 +217,126 @@ L’onglet information contient les informations générales sur la commande :
 
 -   **Sous-type** : sous type de la commande (binaire, numérique…)
 
--   **URL directe** : fournit une URL (clic droit copier l’addresse du lien) pour, en fonction du type de la commande, déclencher l’action ou récupérer sa valeur (si c’est une commande de type info)
+-   **URL directe** : fournit une URL (clic droit copier l’addresse du
+    lien) pour, en fonction du type de la commande, déclencher l’action
+    ou récupérer sa valeur (si c’est une commande de type info)
 
 -   **Unité** : unité de la commande
 
--   **Commande déclenchant une mise à jour** : donne l’identifiant d’une autre commande qui, si cette autre commande change, va forcer la mise à jour de la commande visualisée
+-   **Commande déclenchant une mise à jour** : donne l’identifiant d’une
+    autre commande qui, si cette autre commande change, va forcer la
+    mise à jour de la commande visualisée
 
--   **Cache** : durée de vie de la valeur de la commande en mémoire (une fois ce délai passé Jeedom redemandera sa valeur). Attention si vous êtes en événement alors ce paramètre est ignoré car la durée de vie est infinie. Si vous n’avez aucune valeur et que vous n'êtes pas en événement alors la durée de vie est celle définie dans la configuration de Jeedom (par defaut 300s)
+-   **Cache** : durée de vie de la valeur de la commande en mémoire (une
+    fois ce délai passé Jeedom redemandera sa valeur). Attention si vous
+    êtes en événement alors ce paramètre est ignoré car la durée de vie
+    est infinie. Si vous n’avez aucune valeur et que vous n'êtes pas en
+    événement alors la durée de vie est celle définie dans la
+    configuration de Jeedom (par defaut 300s)
 
--   **Evènement seulement** : indique à Jeedom qu’il ne peut pas demander la valeur de la commande (c’est l'équipement ou le plugin qui le lui transmet)
+-   **Evènement seulement** : indique à Jeedom qu’il ne peut pas
+    demander la valeur de la commande (c’est l'équipement ou le plugin
+    qui le lui transmet)
 
 -   **Visible** : définit si la commande est visible ou non
 
-En-dessous, vous retrouvez la liste des différents équipements, commandes, scénarios ou interactions qui utilisent cette commande. Un clic dessus permet d’aller directement sur leur configuration respective
+En-dessous, vous retrouvez la liste des différents équipements,
+commandes, scénarios ou interactions qui utilisent cette commande. Un
+clic dessus permet d’aller directement sur leur configuration respective
 
 Configuration avancée
 ---------------------
 
 ![](../images/display13.png)
 
-Pas mal d’options ici (elles peuvent varier en fonction du type et du sous-type de la commande).
+Pas mal d’options ici (elles peuvent varier en fonction du type et du
+sous-type de la commande).
 
 Pour une commande de type info :
 
 -   **Calcul et arrondit**
 
-    -   **Formule de calcul (\#value\# pour la valeur)** : vous pouvez ici faire une opération sur la valeur de la commande avant le traitement par Jeedom, exemple : \#value\# - 0.2 pour retrancher 0.2 (offset sur un capteur de température)
+    -   **Formule de calcul (\#value\# pour la valeur)** : vous pouvez
+        ici faire une opération sur la valeur de la commande avant le
+        traitement par Jeedom, exemple : \#value\# - 0.2 pour retrancher
+        0.2 (offset sur un capteur de température)
 
-    -   **Arrondi (chiffre après la virgule)** : permet d’arrondir la valeur de la commande, exemple : mettre 2 pour tranformer 16.643345 en 16.64
+    -   **Arrondi (chiffre après la virgule)** : permet d’arrondir la
+        valeur de la commande, exemple : mettre 2 pour tranformer
+        16.643345 en 16.64
 
--   **Type générique** : cette partie permet de configurer le type générique de la commande (Jeedom essaie de le trouver par lui-même en mode auto). Cette information est utilisée par l’application mobile.
+-   **Type générique** : cette partie permet de configurer le type
+    générique de la commande (Jeedom essaie de le trouver par lui-même
+    en mode auto). Cette information est utilisée par l’application
+    mobile.
 
--   **Action sur la valeur** : cette partie permet de faire des sortes de mini scénarios, vous pouvez par exemple dire que si la valeur vaut plus de 50 pendant 3 minutes alors il faut faire telle action. Cela permet par exemple d'éteindre une lumiere X minutes après que celle-ci se soit allumée
+-   **Action sur la valeur** : cette partie permet de faire des sortes
+    de mini scénarios, vous pouvez par exemple dire que si la valeur
+    vaut plus de 50 pendant 3 minutes alors il faut faire telle action.
+    Cela permet par exemple d'éteindre une lumiere X minutes après que
+    celle-ci se soit allumée
 
--   **Historique** : voir [ici](https://jeedom.com/doc/documentation/core/fr_FR/doc-core-history.html#_configuration_spécifique_par_commande)
+-   **Historique** : voir
+    [ici](https://jeedom.com/doc/documentation/core/fr_FR/doc-core-history.html#_configuration_spécifique_par_commande)
 
 -   **Autres**
 
-    -   **Ne pas répéter si la valeur ne change pas** : Si la commande remonte 2 fois la même valeur d’affilée alors Jeedom ne prend pas en compte la 2eme remontée (évite de déclencher plusieurs fois un scénario par exemple si la valeur ne change pas)
+    -   **Ne pas répéter si la valeur ne change pas** : Si la commande
+        remonte 2 fois la même valeur d’affilée alors Jeedom ne prend
+        pas en compte la 2eme remontée (évite de déclencher plusieurs
+        fois un scénario par exemple si la valeur ne change pas)
 
-    -   **Push URL** : permet de rajouter une URL à appeler en cas de mise à jour de la commande. Vous pouvez utiliser les tags suivant : \#value\# pour la valeur de la commande, \#cmd\_name\# pour le nom de la commande, \#cmd\_id\# pour l’identifiant unique de la commande, \#humanname\# pour le nom complet de la commande (ex : \#[Salle de bain][Hydrometrie][Humidité]\#)
+    -   **Push URL** : permet de rajouter une URL à appeler en cas de
+        mise à jour de la commande. Vous pouvez utiliser les tags
+        suivant : \#value\# pour la valeur de la commande, \#cmd\_name\#
+        pour le nom de la commande, \#cmd\_id\# pour l’identifiant
+        unique de la commande, \#humanname\# pour le nom complet de la
+        commande (ex : \#[Salle de bain][Hydrometrie][Humidité]\#)
 
 Si vous êtes sur une commande type action vous avez :
 
 ![](../images/display15.png)
 
--   **Confirmer l’action** : lors d’une action à partir de l’interface sur cette commande Jeedom demandera une confirmation
+-   **Confirmer l’action** : lors d’une action à partir de l’interface
+    sur cette commande Jeedom demandera une confirmation
 
--   **Code d’accès** : lors d’une action à partir de l’interface sur cette commande Jeedom demandera le code
+-   **Code d’accès** : lors d’une action à partir de l’interface sur
+    cette commande Jeedom demandera le code
 
 Affichage avancé
 ----------------
 
 ![](../images/display14.png)
 
-Dans cettre partie vous allez pouvoir configurer certains comportements d’affichage du widget sur le dashboard, les vues, le design et en mobile.
+Dans cettre partie vous allez pouvoir configurer certains comportements
+d’affichage du widget sur le dashboard, les vues, le design et en
+mobile.
 
 Vous pouvez :
 
--   **Widget** : permet de choisir le widget sur dekstop ou mobile (à noter qu’il faut le plugin widget et que vous pouvez le faire aussi à partir de celui-ci)
+-   **Widget** : permet de choisir le widget sur dekstop ou mobile (à
+    noter qu’il faut le plugin widget et que vous pouvez le faire aussi
+    à partir de celui-ci)
 
--   **Visible** : permet de masquer ou non la commande en desktop ou mobile
+-   **Visible** : permet de masquer ou non la commande en desktop ou
+    mobile
 
--   **Afficher le nom** : permet de masquer le nom de la commande en fonction du contexte (dashboard et design, vue ou mobile)
+-   **Afficher le nom** : permet de masquer le nom de la commande en
+    fonction du contexte (dashboard et design, vue ou mobile)
 
--   **Afficher les statistiques** : permet de ne pas afficher les statistiques en fonction du contexte (dashboard et design, vue ou mobile). Attention, il faut avoir activé les statistiques dans la configuration de Jeedom pour que cette option ait un impact
+-   **Afficher les statistiques** : permet de ne pas afficher les
+    statistiques en fonction du contexte (dashboard et design, vue ou
+    mobile). Attention, il faut avoir activé les statistiques dans la
+    configuration de Jeedom pour que cette option ait un impact
 
--   **Retour à la ligne forcé avant le widget** : permet d’ajouter un retour à la ligne avant ou après le widget (pour forcer par exemple un affichage en colonne des différentes commandes de l'équipement au lieu de lignes par defaut)
+-   **Retour à la ligne forcé avant le widget** : permet d’ajouter un
+    retour à la ligne avant ou après le widget (pour forcer par exemple
+    un affichage en colonne des différentes commandes de l'équipement au
+    lieu de lignes par defaut)
 
-En-dessous, on retrouve des paramètres optionnels d’affichage que l’on peut passer au widget. Ces paramètres dependent du widget en question, il faut donc regarder sa fiche sur le Market pour les connaitre.
+En-dessous, on retrouve des paramètres optionnels d’affichage que l’on
+peut passer au widget. Ces paramètres dependent du widget en question,
+il faut donc regarder sa fiche sur le Market pour les connaitre.
 
 > **Tip**
 >

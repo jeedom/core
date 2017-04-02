@@ -1,5 +1,6 @@
 J’ai une page blanche  
-Il faut se connecter en SSH à jeedom et lancer un script d’auto-diagnostic :
+Il faut se connecter en SSH à jeedom et lancer un script
+d’auto-diagnostic :
 
 <!-- -->
 
@@ -9,9 +10,12 @@ Voila le résultat si tout est bon :
 
 ![](../images/depannage.png)
 
-S’il y a un souci, le script essaie de corriger, s’il n’y arrive pas il vous l’indiquera.
+S’il y a un souci, le script essaie de corriger, s’il n’y arrive pas il
+vous l’indiquera.
 
-Vous pouvez aussi regarder le log /usr/share/nginx/www/jeedom/log/nginx.error, très souvent celui-ci indique le souci
+Vous pouvez aussi regarder le log
+/usr/share/nginx/www/jeedom/log/nginx.error, très souvent celui-ci
+indique le souci
 
 J’ai un problème d’identifiant BDD  
 Il faut réinitialiser ceux-ci
@@ -28,40 +32,59 @@ Il faut réinitialiser ceux-ci
     sudo chown www-data:www-data core/config/common.config.php
 
 J’ai des {{…}} partout  
-La cause la plus fréquente est l’utilisation d’un plugin en version beta, et Jeedom en stable, ou l’inverse
+La cause la plus fréquente est l’utilisation d’un plugin en version
+beta, et Jeedom en stable, ou l’inverse
 
 Lors d’une commande j’ai une roue qui tourne sans s’arrêter  
-Encore une fois cela est souvent dû à un plugin en beta alors que Jeedom est en stable
+Encore une fois cela est souvent dû à un plugin en beta alors que Jeedom
+est en stable
 
 Je n’ai plus accès à Jeedom ni en SSH  
-Cette erreur n’est pas due à Jeedom mais à un problème avec le système. Si celui-ci persiste suite à une réinstallation il est conseillé de voir avec le SAV pour un souci hardware
+Cette erreur n’est pas due à Jeedom mais à un problème avec le système.
+Si celui-ci persiste suite à une réinstallation il est conseillé de voir
+avec le SAV pour un souci hardware
 
 Mon scénario ne s’arrête plus/pas  
-Il est conseillé de regarder les commandes exécutées par le scénario, souvent cela vient d’une commande qui ne se termine pas
+Il est conseillé de regarder les commandes exécutées par le scénario,
+souvent cela vient d’une commande qui ne se termine pas
 
 Mon scénario est lent à se déclencher  
-Si dans le scénario il n’y a pas de pause il est conseillé de cocher la case "éxécuter le plus rapidement possible" (disponible en mode expert)
+Si dans le scénario il n’y a pas de pause il est conseillé de cocher la
+case "éxécuter le plus rapidement possible" (disponible en mode expert)
 
 Je n’ai aucune erreur dans le log nginx.error malgrè des erreurs 500  
-En ssh : Editez le fichier /etc/php5/fpm/pool.d/www.conf et décommantez la ligne ";catch\_worket\_process=yes" (supression du ;) et redémarrez php "sudo service php5-fpm restart"
+En ssh : Editez le fichier /etc/php5/fpm/pool.d/www.conf et décommantez
+la ligne ";catch\_worket\_process=yes" (supression du ;) et redémarrez
+php "sudo service php5-fpm restart"
 
 J’ai des instabilités ou des erreurs 504  
-Vérifiez si votre système de fichiers n’est pas corrompu, en ssh la commande est : "sudo dmesg | grep error"
+Vérifiez si votre système de fichiers n’est pas corrompu, en ssh la
+commande est : "sudo dmesg | grep error"
 
 Je ne vois pas tous mes équipements sur le dashboard  
-Souvent cela est dû au fait que les équipements sont affectés à un objet qui n’est pas le fils ou l’objet lui-même du premier objet sélectionné à gauche dans l’arbre (vous pouvez dans votre profil configurer celui-ci)
+Souvent cela est dû au fait que les équipements sont affectés à un objet
+qui n’est pas le fils ou l’objet lui-même du premier objet sélectionné à
+gauche dans l’arbre (vous pouvez dans votre profil configurer celui-ci)
 
 Lors de la connexion du maître avec les esclaves j’ai des erreurs  
-Vérifiez que vous avez bien mis les /jeedom si vous utilisez ceux-ci juste après l’IP de jeedom (souvent le cas en installation DIY)
+Vérifiez que vous avez bien mis les /jeedom si vous utilisez ceux-ci
+juste après l’IP de jeedom (souvent le cas en installation DIY)
 
 J’ai l’erreur suivante : SQLSTATE[HY000] [2002] Can’t connect to local MySQL server through socket */var/run/mysqld/mysqld.sock*  
-Cela est dû à MySQL qui s’est arrêté, ce n’est pas normal, les cas courants sont :
+Cela est dû à MySQL qui s’est arrêté, ce n’est pas normal, les cas
+courants sont :
 
--   souci de place sur le système de fichiers (peut être vérifié en faisant la commande "df -h", en ssh)
+-   souci de place sur le système de fichiers (peut être vérifié en
+    faisant la commande "df -h", en ssh)
 
--   problème de corruption de fichier(s), arrive souvent suite à un arrêt non propre de Jeedom (coupure de courant)
+-   problème de corruption de fichier(s), arrive souvent suite à un
+    arrêt non propre de Jeedom (coupure de courant)
 
-Malheureusement, il n’y a pas beaucoup de solution si c’est le deuxième cas, le mieux étant de récupérer un backup (disponible dans /usr/share/nginx/www/jeedom/backup par défaut), de réinstaller Jeedom et de restaurer le backup. Vous pouvez aussi en ssh regarder pourquoi mysql ne veut pas démarrer :
+Malheureusement, il n’y a pas beaucoup de solution si c’est le deuxième
+cas, le mieux étant de récupérer un backup (disponible dans
+/usr/share/nginx/www/jeedom/backup par défaut), de réinstaller Jeedom et
+de restaurer le backup. Vous pouvez aussi en ssh regarder pourquoi mysql
+ne veut pas démarrer :
 
     sudo su -
     service mysql stop
@@ -70,10 +93,15 @@ Malheureusement, il n’y a pas beaucoup de solution si c’est le deuxième cas
 Ou consulter le log : /var/log/mysql/error.log
 
 Les boutons Eteindre/Redémarrer ne fonctionnent pas  
-Sur une installation DIY c’est normal, il faut faire en ssh la commande visudo et à la fin du fichier vous devez ajouter : www-data ALL=(ALL) NOPASSWD: ALL.
+Sur une installation DIY c’est normal, il faut faire en ssh la commande
+visudo et à la fin du fichier vous devez ajouter : www-data ALL=(ALL)
+NOPASSWD: ALL.
 
 J’ai souvent des "502 bad gateway"  
-Il faut aller (en mode expert) dans la configuration de Jeedom, puis Système OS et cliquer sur Lancer. Là vous cliquez sur "PHP log", si vous avez le message "server reached pm.max\_clidren", c’est qu’il manque des processus php fpm, il faut donc en autoriser plus. Pour cela faire :
+Il faut aller (en mode expert) dans la configuration de Jeedom, puis
+Système OS et cliquer sur Lancer. Là vous cliquez sur "PHP log", si vous
+avez le message "server reached pm.max\_clidren", c’est qu’il manque des
+processus php fpm, il faut donc en autoriser plus. Pour cela faire :
 
 <!-- -->
 
@@ -88,6 +116,7 @@ Ensuite il suffit de redémarrer php5-fpm
     sudo service php5-fpm restart
 
 Je ne vois pas certains plugins du Market  
-Ce genre de cas arrive si votre Jeedom n’est pas compatible avec le plugin, en général une mise à jour de jeedom corrige le souci
+Ce genre de cas arrive si votre Jeedom n’est pas compatible avec le
+plugin, en général une mise à jour de jeedom corrige le souci
 
 

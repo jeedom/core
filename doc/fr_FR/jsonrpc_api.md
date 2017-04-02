@@ -1,4 +1,6 @@
-Voici une documentation (qui évoluera) sur les méthodes de l’API. Tout d’abord voici les spécifications (JSON RPC 2.0) : <http://www.jsonrpc.org/specification>
+Voici une documentation (qui évoluera) sur les méthodes de l’API. Tout
+d’abord voici les spécifications (JSON RPC 2.0) :
+<http://www.jsonrpc.org/specification>
 
 L’accès à l’API se fait par l’url : URL\_JEEDOM/core/api/jeeApi.php
 
@@ -26,7 +28,9 @@ API JSON Event
 event::changes
 --------------
 
-Retourne la liste des changements depuis le datetime passé en paramètre (doit être en microsecondes). Vous aurez aussi dans la réponse le datetime courant de Jeedom (à réutiliser pour l’interrogation suivante)
+Retourne la liste des changements depuis le datetime passé en paramètre
+(doit être en microsecondes). Vous aurez aussi dans la réponse le
+datetime courant de Jeedom (à réutiliser pour l’interrogation suivante)
 
 Paramètres :
 
@@ -44,7 +48,8 @@ Paramètres :
 
 -   int activateOnly = 0 (ne retourne que la liste des plugins activés)
 
--   int orderByCaterogy = 0 (retourne la liste des plugins triés par catégorie)
+-   int orderByCaterogy = 0 (retourne la liste des plugins triés par
+    catégorie)
 
 API JSON Objet
 ==============
@@ -57,7 +62,9 @@ Retourne la liste de tous les objets
 object::full
 ------------
 
-Retourne la liste de tous les objets, avec pour chaque objet tous ses équipements et pour chaque équipement toutes ses commandes ainsi que les états de celles-ci (pour les commandes de type info)
+Retourne la liste de tous les objets, avec pour chaque objet tous ses
+équipements et pour chaque équipement toutes ses commandes ainsi que les
+états de celles-ci (pour les commandes de type info)
 
 object::byId
 ------------
@@ -71,7 +78,9 @@ Paramètres:
 object::fullById
 ----------------
 
-Retourne un objet, ses équipements et pour chaque équipement toutes ses commandes ainsi que les états de cellse-ci (pour les commandes de type info)
+Retourne un objet, ses équipements et pour chaque équipement toutes ses
+commandes ainsi que les états de cellse-ci (pour les commandes de type
+info)
 
 API JSON Summary
 ================
@@ -83,7 +92,8 @@ Retour le résumé global pour la clef passée en paramètre
 
 Paramètres:
 
--   string key : (optionnel), clef du résumé voulu, si vide alors Jeedom vous renvoi le résumé pour toute les clefs
+-   string key : (optionnel), clef du résumé voulu, si vide alors Jeedom
+    vous renvoi le résumé pour toute les clefs
 
 summary::byId
 -------------
@@ -94,7 +104,8 @@ Paramètres:
 
 -   int id : id de l’objet
 
--   string key : (optionnel), clef du résumé voulu, si vide alors Jeedom vous renvoi le résumé pour toute les clefs
+-   string key : (optionnel), clef du résumé voulu, si vide alors Jeedom
+    vous renvoi le résumé pour toute les clefs
 
 API JSON EqLogic
 ================
@@ -107,7 +118,8 @@ Retourne la liste de tous les équipements
 eqLogic::fullById
 -----------------
 
-Retourne un équipement et ses commandes ainsi que les états de celles-ci (pour les commandes de type info)
+Retourne un équipement et ses commandes ainsi que les états de celles-ci
+(pour les commandes de type info)
 
 eqLogic::byId
 -------------
@@ -139,7 +151,10 @@ Paramètres:
 eqLogic::byTypeAndId
 --------------------
 
-Renvoi un tableau d'équipement en fonction des paramètres. Le retour sera de la forme array(*eqType1* ⇒array( *id*⇒…,*cmds* ⇒ array(….)),*eqType2* ⇒array( *id*⇒…,*cmds* ⇒ array(….))….,id1 ⇒ array( *id*⇒…,*cmds* ⇒ array(….)),id2 ⇒ array( *id*⇒…,*cmds* ⇒ array(….))..)
+Renvoi un tableau d'équipement en fonction des paramètres. Le retour
+sera de la forme array(*eqType1* ⇒array( *id*⇒…,*cmds* ⇒
+array(….)),*eqType2* ⇒array( *id*⇒…,*cmds* ⇒ array(….))….,id1 ⇒ array(
+*id*⇒…,*cmds* ⇒ array(….)),id2 ⇒ array( *id*⇒…,*cmds* ⇒ array(….))..)
 
 Paramètres:
 
@@ -211,12 +226,14 @@ Paramètres:
 
 -   int id
 
--   [options] Liste des options de la commande (dépend du type et du sous-type de la commande)
+-   [options] Liste des options de la commande (dépend du type et du
+    sous-type de la commande)
 
 cmd::getStatistique
 -------------------
 
-Retourne les statistiques sur la commande (ne marche que sur les commandes de type info et historisées)
+Retourne les statistiques sur la commande (ne marche que sur les
+commandes de type info et historisées)
 
 Paramètres:
 
@@ -229,7 +246,8 @@ Paramètres:
 cmd::getTendance
 ----------------
 
-Retourne la tendance sur la commande (ne marche que sur les commandes de type info et historisées)
+Retourne la tendance sur la commande (ne marche que sur les commandes de
+type info et historisées)
 
 Paramètres:
 
@@ -242,7 +260,8 @@ Paramètres:
 cmd::getHistory
 ---------------
 
-Retourne l’historique de la commande (ne marche que sur les commandes de type info et historisées)
+Retourne l’historique de la commande (ne marche que sur les commandes de
+type info et historisées)
 
 Paramètres:
 
@@ -290,9 +309,11 @@ Récupère la valeur d’une variable stockée dans le datastore
 
 Paramètres:
 
--   string type : type de la valeur stockée (pour les scénarios c’est scenario)
+-   string type : type de la valeur stockée (pour les scénarios c’est
+    scenario)
 
--   id linkId : -1 pour le global (valeur pour les scénarios par défaut, ou l’id du scénario)
+-   id linkId : -1 pour le global (valeur pour les scénarios par défaut,
+    ou l’id du scénario)
 
 -   string key : nom de la valeur
 
@@ -303,9 +324,11 @@ Enregistre la valeur d’une variable dans le datastore
 
 Paramètres:
 
--   string type : type de la valeur stockée (pour les scénarios c’est scenario)
+-   string type : type de la valeur stockée (pour les scénarios c’est
+    scenario)
 
--   id linkId : -1 pour le global (valeur pour les scénarios par défaut, ou l’id du scénario)
+-   id linkId : -1 pour le global (valeur pour les scénarios par défaut,
+    ou l’id du scénario)
 
 -   string key : nom de la valeur
 
@@ -330,7 +353,8 @@ API JSON Interaction
 interact::tryToReply
 --------------------
 
-Essaie de faire correspondre une demande avec une interaction, exécute l’action et répond en conséquence
+Essaie de faire correspondre une demande avec une interaction, exécute
+l’action et répond en conséquence
 
 Paramètres:
 
@@ -376,7 +400,8 @@ API JSON update
 update::all
 -----------
 
-Retour la liste de tous les composants installés, leur version et les informations associées
+Retour la liste de tous les composants installés, leur version et les
+informations associées
 
 update::checkUpdate
 -------------------
@@ -391,7 +416,10 @@ Permet de mettre à jour Jeedom et tous les plugins
 API JSON Exemples
 =================
 
-Voici un exemple d’utilisation de l’API. Pour l’exemple ci-dessous j’utilise [cette class php](https://github.com/jeedom/core/blob/stable/core/class/jsonrpcClient.class.php) qui permet de simplifier l’utilisation de l’api.
+Voici un exemple d’utilisation de l’API. Pour l’exemple ci-dessous
+j’utilise [cette class
+php](https://github.com/jeedom/core/blob/stable/core/class/jsonrpcClient.class.php)
+qui permet de simplifier l’utilisation de l’api.
 
 Récupération de la liste des objets :
 
@@ -411,5 +439,6 @@ Exécution d’une commande (avec comme option un titre et un message)
         echo $jsonrpc->getError();
     }
 
-L’API est bien sur utilisable avec d’autres langages (simplement un post sur une page) 
+L’API est bien sur utilisable avec d’autres langages (simplement un post
+sur une page) 
 

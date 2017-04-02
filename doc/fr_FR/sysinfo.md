@@ -1,4 +1,5 @@
-La page Informations système vous permet d’avoir un résumé général sur votre système (hardware + OS)
+La page Informations système vous permet d’avoir un résumé général sur
+votre système (hardware + OS)
 
 Il est accessible à partir du menu Analyse → Informations système :
 
@@ -8,9 +9,11 @@ Une fois dessus vous obtenez :
 
 ![](../images/sysinfo2.png)
 
-Tout ne sera pas détaillé ici, cette page est plus là pour aider en cas de support. Ce qu’il faut savoir :
+Tout ne sera pas détaillé ici, cette page est plus là pour aider en cas
+de support. Ce qu’il faut savoir :
 
--   une mémoire pleine à 100% est normale sous linux, il ne la vide que quand il en a besoin
+-   une mémoire pleine à 100% est normale sous linux, il ne la vide que
+    quand il en a besoin
 
 -   on peut voir dans la partie tout en bas l’occupation du disque
 
