@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+
+<article lang="en">
+<articleinfo>
+    <title>Logs</title>
+</articleinfo>
+<section id="_ansicht">
+<title>Ansicht</title>
+<simpara>Im Logs-Menü können Sie verfolgen, was in der Home-Automation geschieht. In den meisten Fällen wird das Protokoll verwendet, um die Fehlersuche und Problemlösung durch das Support-Team durchzuführen. Dieses Menü ist nur im Experten-Modus verfügbar.</simpara>
+<simpara>Pour y accèder il faut aller dans Administration &#8594; Logs :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/log1.JPG"/>
+  </imageobject>
+  <textobject><phrase>../images/log1.JPG</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Hier finden Sie :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/log.JPG"/>
+  </imageobject>
+  <textobject><phrase>../images/log.JPG</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Die Logs-Seite ist ganz einfach, oben links ist ein Dropdown-Menü, dass die Auswahl der Logs ermöglicht und oberen rechts sind 5 Schaltflächen :</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Aktualisieren</emphasis> : Aktualisiert das aktuelle Protokoll,
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Herunterladen</emphasis> : zum herunterladen des aktuellen Protokolls ,
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Leeren</emphasis> : wird verwendet, um das aktuelle Protokoll zu löschen,
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Löschen</emphasis> : Löscht das aktuelle Protokoll, wenn Jeedom es benötigt, wird es automatisch neu erstellt,
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Alle Protokolle löschen</emphasis> : Löscht alle vorhandene Protokolle.
+</simpara>
+</listitem>
+</itemizedlist>
+<tip><simpara>Man beachte, daß das Protokoll nginx.error nicht gelöscht werden kann. Es ist unbedingt erforderlich! Wenn sie es entfernen (zum Beispiel in der Befehlszeile) wird es nicht neu erstellt, dazu muß Jeedom neu gestartet werden.</simpara></tip>
+</section>
+<section id="_konfiguration">
+<title>Konfiguration</title>
+<simpara>Es gibt bestimmte Konfigurations Parameter der Logs (zugänglich durch Administation - &gt; Konfiguration dann der Teil „Logs &amp; Nachrichten Konfiguration“).</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/log2.JPG"/>
+  </imageobject>
+  <textobject><phrase>../images/log2.JPG</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Hier haben Sie folgende Möglichkeiten :</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Nachricht</emphasis>
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Eine Nachricht zu jedem Fehler in den Logs hinzufügen</emphasis> : wenn ein Plugin oder Jeedom eine Fehlermeldung in ein Protokoll schreibt, fügt Jeedom automatisch eine Nachricht in die Nachrichtenzentrale (zumindest sind sie sicher, dass sie am Ende nichts verpassen)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Ne pas autoriser les messages venant de</emphasis> : permet d&#8217;interdire certains messages venant d&#8217;un plugin ou autre
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Commande d&#8217;information utilisateur</emphasis> : erlaubt, ein oder mehrere Befehle (ist durch &amp;&amp; zu trennen) vom Typ Nachricht auszuwählen, die bei neuen Nachrichten benutzt werden (ermöglicht, gleich benachrichtigt zu werden )
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Log</emphasis>
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Protokoll Engine</emphasis> : ermöglicht, die Protokoll Engine auszuwechseln, um sie zum Beispiel an einem syslog(d) Dämon zu senden
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Maximale Anzahl der Zeilen in einer Log-Datei</emphasis> : Legt die maximale Anzahl der Zeilen in einer Log-Datei fest, es wird empfohlen, diesen Wert nicht zu ändern, weil ein zu großer Wert auf das Dateisystem überfüllen könnte und/oder Jeedom ist nicht mehr in der Lage das Protokoll zu sehen.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Logs actifs</emphasis> : permet de définir les niveaux de log actif. Attention : plus il y a de niveaux actifs, plus Jeedom peut être lent ! Cela entraîne aussi une usure prématurée de la carte SD. Il est conseillé de n&#8217;activer que le niveau "Error". "Event" peut être activé aussi car il est nécessaire pour voir en temps réel ce qui se passe sur sa domotique (bien sûr c&#8217;est seulement si vous en avez besoin).
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_das_protokoll_ereignis_und_die_protokollebene_ereignis">
+<title>Das Protokoll "Ereignis" und die Protokollebene "Ereignis"</title>
+<simpara>Le log "Event" est un peu particulier. Tout d&#8217;abord pour qu&#8217;il fonctionne, il faut activer le niveau de log "Info" ou plus, ensuite celui-ci recense tous les évènements ou actions qui se passent sur la domotique. Pour y accéder, il faut cliquer sur la petite icône "compteur" en bas à droite dans Jeedom :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/log3.JPG"/>
+  </imageobject>
+  <textobject><phrase>../images/log3.JPG</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Sobald sie darauf klicken, erhalten sie ein Fenster, das jede Sekunde aktualisiert wird und alle Ereignisse in Ihrer Home-Automation anzeigt.</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/log4.JPG"/>
+  </imageobject>
+  <textobject><phrase>../images/log4.JPG</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Oben rechts haben sie ein Suchfelder  (funktioniert nur, wenn sie nicht angehalten haben) und eine Schaltfläche für die Pause (nützlich zum Beispiel für Kopieren/Einfügen).</simpara>
+<important><simpara>Pour que cela fonctionne il faut absolument avoir activé le niveau de log "Info" ou plus (voir paragraphe précédent)</simpara></important>
+</section>
+</article>

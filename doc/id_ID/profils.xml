@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+
+<article lang="en">
+<articleinfo>
+    <title>Profils</title>
+</articleinfo>
+<simpara>La page profils vous permet de configurer certains comportements de Jeedom spécifiques à l&#8217;utilisateur : page d&#8217;accueil, thèmes de la version desktop, de la version mobile, des graphiques&#8230; Elle permet aussi de changer votre mot de passe et de passer en mode expert permettant une configuration plus poussée de Jeedom.</simpara>
+<section id="_menu_profils">
+<title>Menu profils</title>
+<simpara>Vous retrouvez en haut à droite sur chaque page de Jeedom le menu Profil :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/profils1.png"/>
+  </imageobject>
+  <textobject><phrase>../images/profils1.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Vous retrouvez à coté de ce menu Profil, une information sur le nombre de messages dans le centre de messages (ces messages sont importants sinon Jeedom ne vous les remonterait pas), l&#8217;heure Jeedom (attention c&#8217;est bien l&#8217;heure de Jeedom et non de votre PC), le menu Profil, une icône indiquant la connexion (ici filaire, mais il est possible si vous êtes en wifi d&#8217;avoir celle-ci), l&#8217;icône pour l&#8217;accès à l&#8217;aide de la page en cours et l&#8217;icône pour faire une demande de support.</simpara>
+<simpara>Si vous cliquez sur le menu Profil vous obtenez :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/profils2.png"/>
+  </imageobject>
+  <textobject><phrase>../images/profils2.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>A partir de ce menu vous avez accès à la page Profil, à l&#8217;activation ou non du mode expert, au redémarrage de Jeedom, à l&#8217;arrêt de Jeedom, au passage en version mobile et un bouton pour se déconnecter.</simpara>
+<important><simpara>En DIY les actions de redémarrage et d&#8217;arrêt ne fonctionnent que si vous avez bien réalisé les actions visudo, voir link:https://jeedom.com/doc/documentation/installation/fr_FR/doc-installation.html#_etape_4_définition_des_droits_root_à_jeedom[ici]</simpara></important>
+</section>
+<section id="_page_profil">
+<title>Page Profil</title>
+<simpara>La page Profil ressemble à ca :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/profils3.png"/>
+  </imageobject>
+  <textobject><phrase>../images/profils3.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Vous retrouvez ici différents panneaux qui vous permettront de configurer Jeedom, tous ces réglages sont uniquement liés à votre utilisateur, il vous sont donc propres</simpara>
+<section id="_thèmes">
+<title>Thèmes</title>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/profils4.png"/>
+  </imageobject>
+  <textobject><phrase>../images/profils4.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Le panneau thèmes vous permet de régler des paramètres d&#8217;interface :</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Desktop</emphasis> : thèmes à utiliser en mode desktop, attention seul le thème par défaut est officiellement supporté par Jeedom
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Mobile</emphasis> : permet de légèrement configurer le thème mobile (ici tout est supporté), soit clair soit sombre, ainsi que la couleur dominante de celui-ci
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Graphique Desktop</emphasis> : permet de définir le thème par défaut des graphiques en mode desktop
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Graphique Mobile</emphasis> : permet de définir le thème par défaut des graphiques en mode mobile
+</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_interface">
+<title>Interface</title>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/profils5.png"/>
+  </imageobject>
+  <textobject><phrase>../images/profils5.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Vous permet de définir certains comportements de l&#8217;interface :</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Général</emphasis>
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Ne pas masquer les menus automatiquement</emphasis> : indique à Jeedom de ne pas masquer le panneau de gauche, lorsqu&#8217;il existe, pour rappel ce panneau est disponible sur la plupart des pages des plugins, ainsi que la page des scénarios, des interactions, des objets&#8230;.
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Page par défaut</emphasis>
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Desktop</emphasis> : page par défaut à afficher lors de la connexion en desktop
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Mobile</emphasis> : page par défaut à afficher lors de la connexion en mobile
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Objet par défaut sur le dashboard</emphasis> : objet à afficher par défaut lors de l&#8217;arrivée sur le dashboard
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Vue par défaut</emphasis> : vue à afficher par défaut lors de l&#8217;arrivée sur le dashboard
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Design par défaut</emphasis> : design à afficher par défaut lors de l&#8217;arrivée sur le dashboard
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Plein écran</emphasis> : affichage par défaut en plein écran lors de l&#8217;arrivée sur les designs
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Dashboard</emphasis>
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Déplier le panneau des scénarios</emphasis> : permet de rendre visible par défaut le menu des scénarios (à droite) sur le dashboard
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Déplier le panneau des objets</emphasis> : permet de rendre visible par défaut le menu des objets (à gauche) sur le dashboard
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Vue</emphasis>
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Déplier le panneau des vues</emphasis> : permet de rendre visible par défaut le menu des vues (à gauche) sur les vues
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_notifications">
+<title>Notifications</title>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/profils6.png"/>
+  </imageobject>
+  <textobject><phrase>../images/profils6.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Ici vous pouvez régler la couleur des notifications qui arrivent sur l&#8217;interface</simpara>
+</section>
+<section id="_sécurité">
+<title>Sécurité</title>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/profils7.png"/>
+  </imageobject>
+  <textobject><phrase>../images/profils7.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>C&#8217;est ici que vous pouvez changer votre mot de passe ainsi que la clef de sécurité pour les appareils enregistrés (ordinateur,téléphone&#8230;). Un changement de cette clef obligera tous les péripheriques se connectant automatiquement avec votre compte à se réauthentifier</simpara>
+</section>
+</section>
+</article>

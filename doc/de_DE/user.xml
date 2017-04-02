@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+
+<article lang="en">
+<articleinfo>
+    <title>Benutzer</title>
+</articleinfo>
+<simpara>Hier ist die Seite, wo man die Liste der Benutzer definieren kann, die befugt sind, sich in Jeedom einzuloggen und auch ihre Administratorrechte definieren kann.</simpara>
+<simpara>Erreichbar unter Einstellungen &#8594; Benutzer :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/user.png"/>
+  </imageobject>
+  <textobject><phrase>../images/user.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Sobald sie darauf sind, sehen sie :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/user2.png"/>
+  </imageobject>
+  <textobject><phrase>../images/user2.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Oben, haben Sie eine Schaltfläche zum hinzufügen eines temporären Kontos (z. B. um Zugang zu unterstützen). Sobald Sie darauf klicken, erhalten Sie eine URL, die Sie an die Person senden, die es benutzen will. Dieses Konto hat eine Lebensdauer von 24 Stunden.
+Sie haben auch eine Schaltfläche zum Hinzufügen eines Benutzers. Wenn Sie darauf klicken, bittet Jeedom Sie das Kennwort und den Anmeldenamen des Benutzers einzugeben :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/user3.png"/>
+  </imageobject>
+  <textobject><phrase>../images/user3.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Darunter haben Sie eine Tabelle :</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Benutzername</emphasis> : der Anmeldename des Benutzers
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Aktion</emphasis> : Dort besteht die Möglichkeit, das Kennwort des Benutzers zu ändern oder sein Konto zu löschen
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Aktiv</emphasis> : die Möglichkeit, das Konto zu deaktivieren
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Rechte</emphasis> : die Möglichkeit das der Benutzer in den Administrator-Modus wechseln kann oder nicht (Ermöglicht den Zugriff auf alles, Jeedom Konfiguration, Erstellung von Szenarien, Plugin Management, Konfiguration der Geräte, Design, Ansichten &#8230;)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">API-Schlüssel</emphasis> : der persönlichen Benutzer API-Schlüssel
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Datum der letzten Verbindung</emphasis> : Datum der letzten Anmeldung des Benutzers. Achtung hier ist die eigentliche Verbindungszeit ; also, wenn Sie Ihren Computer registrieren, wird die Verbindung Datum jedes Mal aktualisiert wenn Sie zurückkommen.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Direkter Zugang</emphasis> : zeigt eine URL an, um sich direkt mit dem betreffenden Jeedom Konto zu verbinden
+</simpara>
+</listitem>
+</itemizedlist>
+<tip><simpara>Im Falle einer Änderung, vergessen Sie nicht auf "Speichern" zu klicken.</simpara></tip>
+</article>

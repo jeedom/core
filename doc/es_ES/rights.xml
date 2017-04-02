@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+
+<article lang="en">
+<articleinfo>
+    <title>Permisos</title>
+</articleinfo>
+<simpara>C&#8217;est ici que vous allez pouvoir gérer finement les droits des utilisateurs sur les pages, équipements et scénarios.</simpara>
+<simpara>Accessible depuis Administration &#8594; Gestion des droits avancés :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/rights.png"/>
+  </imageobject>
+  <textobject><phrase>../images/rights.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Une fois dessus cette page se décompose en 3 parties : Général, Plugins/Equipements et Scénario.</simpara>
+<simpara>En haut à droite vous retrouvez le login de l&#8217;utilisateur pour lequel vous modifiez les droits et le bouton de sauvegarde</simpara>
+<simpara>Si l&#8217;utilisateur est admin, vous ne pouvez lui restreindre ses droits. Il faut d&#8217;abord lui désactiver les droits admin</simpara>
+<section id="_general">
+<title>General</title>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/rights2.png"/>
+  </imageobject>
+  <textobject><phrase>../images/rights2.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Rien de bien compliqué ici, vous activez ou non le droit d&#8217;accès à la page ou la fonctionalité pour l&#8217;utilisateur</simpara>
+</section>
+<section id="_plugins_equipements">
+<title>Plugins/Equipements</title>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/rights3.png"/>
+  </imageobject>
+  <textobject><phrase>../images/rights3.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Ici pour chaque équipement, vous pouvez décider si l&#8217;utilisateur a le droit de le voir sur le dahsboard/vue/design (droit voir) et s&#8217;il peut faire une action dessus (droit action)</simpara>
+</section>
+<section id="_escena">
+<title>Escena</title>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/rights4.png"/>
+  </imageobject>
+  <textobject><phrase>../images/rights4.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>C&#8217;est à partir de là que vous pouvez modifier les droits d&#8217;un utilisateur sur un scénario :</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Voir</emphasis> : droit de voir le scénario sur le dashboard/vue/design
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Editer</emphasis> : droit de modifier le scénario
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Action</emphasis> : droit de forcer l'éxecution du scénario à partir du dashboard/vue/design
+</simpara>
+</listitem>
+</itemizedlist>
+</section>
+</article>

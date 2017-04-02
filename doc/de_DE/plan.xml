@@ -1,0 +1,643 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+
+<article lang="en">
+<articleinfo>
+    <title>Design</title>
+</articleinfo>
+<simpara>Auf dieser Seite können sie die Anzeige der gesamten Haustechnik ganz  genau konfigurieren. Dies braucht Zeit, aber die einzige Grenze ist Ihre Vorstellungskraft.</simpara>
+<simpara>Er ist erreichbar über :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/plan1.png"/>
+  </imageobject>
+  <textobject><phrase>../images/plan1.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<tip><simpara>Comme vous pouvez le voir sur la capture il est possible d&#8217;aller directement sur un design grâce au sous-menu</simpara></tip>
+<simpara>Hier ist ein Beispiel für ein Design :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/plan2.png"/>
+  </imageobject>
+  <textobject><phrase>../images/plan2.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Sur cette page on retrouve, en haut (et dans l&#8217;ordre) :</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+ein Menü, um das Design zu wechseln
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+eine Schaltfläche, um ein neues Design zu erstellen
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+eine Schaltfläche zum Löschen
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+eine Schaltfläche, um das aktuelle Design zu bearbeiten
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+eine Schaltfläche, um in den Vollbildmodus zu wechseln
+</simpara>
+</listitem>
+</itemizedlist>
+<simpara>Zum Erstellen eines neuen Designs müssen sie nur auf die Schaltfläche + klicken, es erscheint ein Fenster in dem der Namen eingegeben werden muß :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/plan3.png"/>
+  </imageobject>
+  <textobject><phrase>../images/plan3.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Sie bekommen dann ein leeres Design :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/plan4.png"/>
+  </imageobject>
+  <textobject><phrase>../images/plan4.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Nun müssen sie auf die Schaltfläche Bearbeitungsmodus klicken, um das Design zu bearbeiten :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/plan5.png"/>
+  </imageobject>
+  <textobject><phrase>../images/plan5.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Comme on peut le voir il y a un peu plus de boutons maintenant, ainsi que le cadre du design (que l&#8217;on peut changer bien sûr).</simpara>
+<simpara>Oben links gibt es 2 Schaltflächen, zum bearbeiten der Eigenschaften und zum kopieren, des aktuellen Entwurfs.</simpara>
+<tip><simpara>Vergessen Sie nicht, nach jeder Veränderung zu speichern.</simpara></tip>
+<section id="_design_eigenschaften_editieren">
+<title>Design Eigenschaften editieren</title>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/plan6.png"/>
+  </imageobject>
+  <textobject><phrase>../images/plan6.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Hier haben wir :</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Allgemein</emphasis>
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Name</emphasis> : Der Name Ihres Designs
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Symbol</emphasis> : Ein Symbol dafür (erscheint im Menü der Designwahl)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Verfügbar auf Telefon</emphasis> : Macht dieses Design sichtbar, in der Design Liste der mobilen Version
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Bild</emphasis>: erlaubt, ein Hintergrundbild zum Design hinzuzufügen
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Den Zurück-Pfeil in dem Vollbild-Layout anzeigen</emphasis> : im Vollbildschirm Modus kann diese Option die Rückkehr Schaltfläche zum Fenstermodus anzeigen(Ideal für ein Wand Tabblet)
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Größe</emphasis>
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Größe (LxH)</emphasis> : Erlaubt, die Größe Ihres Designs festzulegen (grauer Rahmen in Bearbeiten-Modus)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Proportion Tablet (z.B.: 0,7)</emphasis> : Erlaubt, die Proportion des Designs auf Tablet zu ändern (um es zum Beispiel zu reduzieren, indem man noch die Größe beherrscht)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Proportion Telefon (z.B.: 0,5)</emphasis> : Erlaubt, die Proportion des Designs auf Telefon zu ändern (um es zum Beispiel zu reduzieren, indem man noch die Größe beherrscht)
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_widget_hinzufügen">
+<title>Widget hinzufügen</title>
+<simpara>Dann müssen sie Widgets zu ihrem Design hinzufügen, dafür müssen sie auf die Schaltfläche "+ Gerät" klicken :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/plan7.png"/>
+  </imageobject>
+  <textobject><phrase>../images/plan7.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Sobald sie darauf geklickt haben können sie das Widget wählen :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/plan8.png"/>
+  </imageobject>
+  <textobject><phrase>../images/plan8.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Nun sehen sie ihr Widget :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/plan9.png"/>
+  </imageobject>
+  <textobject><phrase>../images/plan9.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<tip><simpara>Sie können das Widget durch klicken/ziehen bewegen.</simpara></tip>
+<simpara>Sie gelangen zur erweiterten Konfiguration des angezeigten Widget durch doppelklicken :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/plan10.png"/>
+  </imageobject>
+  <textobject><phrase>../images/plan10.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Hier haben wir :</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Allgemein</emphasis>
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Größe des Widgets</emphasis> : ermöglicht ein Widget Größenverhältnis, zum Beispiel wird hier die Größe mit nur 65%  definieren
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Couleur de fond</emphasis> : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Couleur des icônes et textes</emphasis> : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Runde Ecken (vergessen Sie nicht das % einzugeben, bsp. 50%)</emphasis> : wird verwendet, um die Ecken abzurunden, vergessen sie nicht das % Zeichen einzugeben
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Bordure (attention syntaxe css, ex : solid 1px black)</emphasis> : permet d&#8217;ajouter une bordure, attention la syntaxe est HTML
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Tiefe</emphasis> : erlaubt das Niveau der Tiefe zu wählen, zum Beispiel um ein Widget mit einem andern zu überdecken
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Gerätename anzeigen</emphasis> : zum verstecken des Widget Namen, bezieht sich nur auf das Design
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Speziele</emphasis> : erlaubt, einige Befehle des Widget auf dem Design zu verstecken
+</simpara>
+</listitem>
+</itemizedlist>
+<important><simpara>En fonction des plugins certaines options peuvent ne pas fonctionner</simpara></important>
+<tip><simpara>Sie können rechts unten die Größe der Widgets ändern</simpara></tip>
+</section>
+<section id="_text_html_hinzufügen">
+<title>Text/html hinzufügen</title>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/plan11.png"/>
+  </imageobject>
+  <textobject><phrase>../images/plan11.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Ermöglicht einen Text oder HTML/Javascript Code hinzuzufügen, einmal oben anklicken bekommen sie :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/plan12.png"/>
+  </imageobject>
+  <textobject><phrase>../images/plan12.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Ein Doppelklick darauf dann gelangen sie zum Konfigurations Fenster :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/plan13.png"/>
+  </imageobject>
+  <textobject><phrase>../images/plan13.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Name</emphasis> : Sie können Text oder HTML/JavaScript eingeben
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Symbol</emphasis> : Sie können ein Symbol anstelle von Text einsetzen
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Couleur de fond</emphasis> : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Couleur du textes</emphasis> : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Runde Ecken (vergessen Sie nicht das % einzugeben, bsp. 50%)</emphasis> : wird verwendet, um die Ecken abzurunden, vergessen sie nicht das % Zeichen einzugeben
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Rand (Achtung css syntax, bsp.: solid 1px black)</emphasis> : um einen Rand hinzuzufügen, Achtung es ist die HTML Syntax zu verwenden
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Schriftgröße (z.B. 50%, das % -Zeichen muß eingegeben werden)</emphasis> : ermöglicht die Schriftgröße zu ändern
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Die vorgegebene Größe nicht berücksichtigen</emphasis> : ermöglicht die Voreinstellung der Widget Größe zu ignorieren
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Tiefe</emphasis> : erlaubt das Niveau der Tiefe zu wählen
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Fett</emphasis> : macht den Text fett
+</simpara>
+</listitem>
+</itemizedlist>
+<tip><simpara>Sie können unten rechts die Größe ändern</simpara></tip>
+</section>
+<section id="_ein_szenario_hinzufügen">
+<title>Ein Szenario hinzufügen</title>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/plan14.png"/>
+  </imageobject>
+  <textobject><phrase>../images/plan14.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Klicken sie oben und Jeedom wird sie nach dem Szenario fragen :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/plan15.png"/>
+  </imageobject>
+  <textobject><phrase>../images/plan15.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Einmal gewählt erscheint dieses auf dem Design</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/plan16.png"/>
+  </imageobject>
+  <textobject><phrase>../images/plan16.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Ein Doppelklick darauf dann gelangen sie auf die Konfiguration des Szenarioelementes :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/plan17.png"/>
+  </imageobject>
+  <textobject><phrase>../images/plan17.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Allgemein</emphasis>
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Größe des Widgets</emphasis> : ermöglicht ein Widget Größenverhältnis, zum Beispiel wird hier die Größe mit nur 65%  definieren
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Couleur de fond</emphasis> : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Couleur des icônes et textes</emphasis> : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Runde Ecken (vergessen Sie nicht das % einzugeben, bsp. 50%)</emphasis> : wird verwendet, um die Ecken abzurunden, vergessen sie nicht das % Zeichen einzugeben
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Bordure (attention syntaxe css, ex : solid 1px black)</emphasis> : permet d&#8217;ajouter une bordure, attention la syntaxe est HTML
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Tiefe</emphasis> : erlaubt das Niveau der Tiefe zu wählen, zum Beispiel um ein Widget mit einem andern zu überdecken
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Speziele</emphasis> : ermöglicht, den Aktions Befehl im Szenario zu verstecken
+</simpara>
+</listitem>
+</itemizedlist>
+<tip><simpara>Sie können unten rechts die Größe ändern</simpara></tip>
+</section>
+<section id="_einen_link_hinzufügen">
+<title>Einen Link hinzufügen</title>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/plan18.png"/>
+  </imageobject>
+  <textobject><phrase>../images/plan18.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Erlaubt, einen Link zu einer Ansicht oder einem anderen Design hinzuzufügen :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/plan19.png"/>
+  </imageobject>
+  <textobject><phrase>../images/plan19.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Celui-ci apparaît ensuite sur le design :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/plan20.png"/>
+  </imageobject>
+  <textobject><phrase>../images/plan20.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Ein Doppelklick darauf, dann gelangen sie auf die erweiterte Konfiguration :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/plan21.png"/>
+  </imageobject>
+  <textobject><phrase>../images/plan21.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Hier haben wir :</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Name</emphasis> : Hier können Sie den Namen des Links ändern
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Link</emphasis> :  Ziel Verknüpfung
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Position</emphasis> : ermöglicht, die Lage des Links auf dem Ziel sehr genau einzustellen (um zum Beispiel direkt auf die Küche zu kommen)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Symbol</emphasis> : Sie können ein Symbol anstelle von Text einsetzen
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Couleur de fond</emphasis> : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Couleur du textes</emphasis> : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Runde Ecken (vergessen Sie nicht das % einzugeben, bsp. 50%)</emphasis> : wird verwendet, um die Ecken abzurunden, vergessen sie nicht das % Zeichen einzugeben
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Rand (Achtung css syntax, bsp.: solid 1px black)</emphasis> : um einen Rand hinzuzufügen, Achtung es ist die HTML Syntax zu verwenden
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Tiefe</emphasis> : erlaubt das Niveau der Tiefe zu wählen
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Schriftgröße (z.B. 50%, das % -Zeichen muß eingegeben werden)</emphasis> : ermöglicht die Schriftgröße zu ändern
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Die vorgegebene Größe nicht berücksichtigen</emphasis> : ermöglicht die Voreinstellung der Widget Größe zu ignorieren
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Fett</emphasis> : macht den Text fett
+</simpara>
+</listitem>
+</itemizedlist>
+<tip><simpara>Sie können unten rechts die Größe ändern</simpara></tip>
+</section>
+<section id="_einen_graph_hinzufügen">
+<title>Einen Graph hinzufügen</title>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/plan22.png"/>
+  </imageobject>
+  <textobject><phrase>../images/plan22.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Einmal oben geklickt erhalten Sie :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/plan23.png"/>
+  </imageobject>
+  <textobject><phrase>../images/plan23.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Ein Doppelklick darauf, dann gelangen sie zur Diagramm Konfiguration</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/plan24.png"/>
+  </imageobject>
+  <textobject><phrase>../images/plan24.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Hier haben wir :</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Periode</emphasis> : Hier können Sie die Anzeigeperiode wählen
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Bordure (attention syntaxe css, ex : solid 1px black)</emphasis> : permet d&#8217;ajouter une bordure, attention la syntaxe est HTML
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Tiefe</emphasis> : erlaubt das Niveau der Tiefe zu wählen
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Beschriftung anzeigen</emphasis> : ermöglicht, das Anzeigen der Beschriftung
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Navigator</emphasis> : ermöglicht, das Anzeigen oder Ausblenden eines Navigators (etwas unterhalb des Diagramms)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Perioden Selektor anzeigen</emphasis> : oben links den Perioden Selektor anzeigen oder ausblenden
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Bildlaufleiste anzeigen</emphasis> : zum anzeigen oder ausblenden der Bildlaufleiste
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Transparenter Hintergrund</emphasis> : macht den Hintergrund transparent
+</simpara>
+</listitem>
+</itemizedlist>
+<simpara>Pour choisir les données à afficher il faut cliquer sur les 3 roues crantées :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/plan25.png"/>
+  </imageobject>
+  <textobject><phrase>../images/plan25.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Sie erhalten (es brauch möglicherweise etwas lange zu laden) :</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="../images/plan26.png"/>
+  </imageobject>
+  <textobject><phrase>../images/plan26.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Aktivieren</emphasis> : Die erste Schaltfläche ist zum aktivieren oder deaktivieren der Anzeige, des graphischen Datenelementes
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Farbe</emphasis> : die Farbe der Kurve
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Typ</emphasis> : der Typ des Diagramms (Fläche, Linie oder Säule)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Treppe</emphasis>: zeigt die Kurve in Form einer Treppe, die ununterbrochene wiedergegeben wird
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Stapeln</emphasis> : erlaubt, die Werte der Kurven zu stapeln (siehe das Ergebnis darunter)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Wertänderung</emphasis> : Zeigen den Unterschied der Werte im Vergleich zu dem vorherigen Punkt an.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Maßstab</emphasis> : Weil sie mehrere Diagramme (Daten) in der gleichen Grafik anzeigen können, ist es mit der Einstellung möglich, den Maßstab (rechts oder links) zu unterscheiden.
+</simpara>
+</listitem>
+</itemizedlist>
+<tip><simpara>Sie können unten rechts die Größe ändern</simpara></tip>
+</section>
+</article>
