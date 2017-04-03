@@ -321,6 +321,17 @@ try {
 
 	}
 
+	foreach (cmd::all() as $cmd) {
+		$change = false;
+		if ($cmd->getConfiguration('jeedomCheckCmdCmdActionId') != '') {
+			$cmd->setConfiguration('jeedomCheckCmdCmdActionId', '');
+			$change = true;
+		}
+		if ($change) {
+			$cmd->save();
+		}
+	}
+
 	try {
 		echo __("Rename adminer folder...", __FILE__);
 		jeedom::renameAdminerFolder();
