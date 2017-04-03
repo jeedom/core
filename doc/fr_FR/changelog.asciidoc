@@ -55,8 +55,7 @@
 * Optimisation du calcul des expressions (calcul des tags uniquement si présents dans l'expression)
 * Ajout dans l'API de fonction pour avoir accès au résumé (global et d'objet)
 * Possibilité de restreindre l'accès de chaque clef api en fonction de l'IP
-* Possibilité sur l'historique de faire des regroupements par année
-
+* Possibilité sur l'historique de faire des regroupements par heure ou année
 * Le timeout sur la commande wait peut maintenant être un calcul
 * Correction d'un bug s'il y a des " dans les paramètres d'une action
 * Passage au sha512 pour le hash des mots de passe (le sha1 étant compromis)
