@@ -7,8 +7,8 @@
 * Les mises à jour de variables déclenchent maintenant la mise à jour des commandes d'un équipement virtuel (il faut la dernière version du plugin)
 * Possibilité d'avoir une icone sur les commandes de type info
 * Possibilité sur les commandes d'afficher le nom et l'icone
-* Ajout d'une action "alert" sur les scénarios
-* Ajout d'une action "popup" sur les scénarios
+* Ajout d'une action "alert" sur les scénarios : message en haut dans jeedom
+* Ajout d'une action "popup" sur les scénarios : message a valider
 * Les widgets des commandes peuvent maintenant avoir une méthode d'update ce qui évite un appels AJAX à Jeedom
 * Les widgets des scénarios sont maintenant mis à jour sans appels ajax pour avoir le widget
 * Le résumé global et des pièces sont maintenant mis à jour sans appels ajax
@@ -56,6 +56,7 @@
 * Ajout dans l'API de fonction pour avoir accès au résumé (global et d'objet)
 * Possibilité de restreindre l'accès de chaque clef api en fonction de l'IP
 * Possibilité sur l'historique de faire des regroupements par année
+
 * Le timeout sur la commande wait peut maintenant être un calcul
 * Correction d'un bug s'il y a des " dans les paramètres d'une action
 * Passage au sha512 pour le hash des mots de passe (le sha1 étant compromis)
@@ -84,7 +85,7 @@
 * Possibilité de regler la profondeur des graphique de lien en fonction de l'objet d'origine
 * Possibilité d'avoir les logs des scénarios en temps réel (ralenti l'execution des scénarios)
 * Possibilité de passer des tags lors du lancement d'un scénario
-* Optimisation du chargement des scenarios et page utilisant des actions avec option
+* Optimisation du chargement des scenarios et page utilisant des actions avec option (type configuration du plugin alarme ou mode)
 
 = 2.4.6
 
