@@ -1126,11 +1126,11 @@ class scenarioExpression {
 					}
 					switch ($this->getOptions('action')) {
 						case 'start':
-							if (isset($options['tags']) && !is_array($options['tags'])) {
+							if ($this->getOptions('tags') != '' && !is_array($this->getOptions('tags'))) {
 								$tags = array();
-								$args = arg2array($options['tags']);
+								$args = arg2array($this->getOptions('tags'));
 								foreach ($args as $key => $value) {
-									$tags['#' . trim(trim($key), '#') . '#'] = trim($value);
+									$tags['#' . trim(trim($key), '#') . '#'] = self::setTags(trim($value), $scenario);
 								}
 								$actionScenario->setTags($tags);
 							}
@@ -1145,11 +1145,11 @@ class scenarioExpression {
 							}
 							break;
 						case 'startsync':
-							if (isset($options['tags']) && !is_array($options['tags'])) {
+							if ($this->getOptions('tags') != '' && !is_array($this->getOptions('tags'))) {
 								$tags = array();
-								$args = arg2array($options['tags']);
+								$args = arg2array($this->getOptions('tags'));
 								foreach ($args as $key => $value) {
-									$tags['#' . trim(trim($key), '#') . '#'] = trim($value);
+									$tags['#' . trim(trim($key), '#') . '#'] = self::setTags(trim($value), $scenario);
 								}
 								$actionScenario->setTags($tags);
 							}
