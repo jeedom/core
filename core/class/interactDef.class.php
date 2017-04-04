@@ -405,7 +405,7 @@ class interactDef {
 						if (isset($visible_filter['eqLogic']) && $visible_filter['eqLogic'] == 1 && $eqLogic->getIsVisible() != 1) {
 							continue;
 						}
-						$eq_caterogy = $eqLogic->getCategory();
+
 						$category_ok = true;
 						if (is_array($category_filter)) {
 							$category_ok = false;
