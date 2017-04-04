@@ -124,7 +124,12 @@ class scenarioExpression {
 	public static function humanAction($_action) {
 		$return = '';
 		if ($_action['cmd'] == 'scenario') {
-			$name = scenario::byId($_action['options']['scenario_id'])->getName();
+			$scenario = scenario::byId($_action['options']['scenario_id']);
+			if (!is_object($scenario)) {
+				$name = 'scenario ' . $_action['options']['scenario_id'];
+			} else {
+				$name = $scenario->getName();
+			}
 			$action = $_action['options']['action'];
 			$return .= __('Scénario : ', __FILE__) . $name . ' <i class="fa fa-arrow-right"></i> ' . $action;
 		} else if ($_action['cmd'] == 'variable') {
@@ -132,9 +137,9 @@ class scenarioExpression {
 			$value = $_action['options']['value'];
 			$return .= __('Variable : ', __FILE__) . $name . ' <i class="fa fa-arrow-right"></i> ' . $value;
 		} else if (is_object(cmd::byId(str_replace('#', '', $_action['cmd'])))) {
-			$cmdEx = cmd::byId(str_replace('#', '', $_action['cmd']));
-			$eqEx = $cmdEx->getEqLogic();
-			$return .= $eqEx->getHumanName(true) . ' ' . $cmdEx->getName();
+			$cmd = cmd::byId(str_replace('#', '', $_action['cmd']));
+			$eqLogic = $cmd->getEqLogic();
+			$return .= $eqLogic->getHumanName(true) . ' ' . $cmd->getName();
 		}
 		return trim($return);
 	}
