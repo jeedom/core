@@ -539,7 +539,6 @@ class scenarioExpression {
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
 		}
-		$cmd_id = $cmd->getId();
 
 		$_startDate = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
 		$_endDate = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
@@ -588,7 +587,7 @@ class scenarioExpression {
 	}
 
 	public static function statistics($_cmd_id, $_calc, $_period = '1 hour') {
-		$args = func_get_args();
+		
 		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
