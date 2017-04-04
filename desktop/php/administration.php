@@ -211,7 +211,7 @@ user::isBan();
 
 							<div class="form-group expertModeVisible">
 								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Accès API HTTP}}</label>
-								<div class="col-lg-1 col-md-2 col-sm-4 col-xs-6">
+								<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
 									<select class="form-control configKey" data-l1key="api::core::http::mode">
 										<option value="enable">{{Activé}}</option>
 										<option value="whiteip">{{IP blanche}}</option>
@@ -220,7 +220,7 @@ user::isBan();
 									</select>
 								</div>
 								<label class="col-lg-2 col-md-2 col-sm-3 col-xs-6 control-label">{{Accès API JSONRPC}}</label>
-								<div class="col-lg-1 col-md-2 col-sm-4 col-xs-6">
+								<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
 									<select class="form-control configKey" data-l1key="api::core::jsonrpc::mode">
 										<option value="enable">{{Activé}}</option>
 										<option value="whiteip">{{IP blanche}}</option>
@@ -229,7 +229,7 @@ user::isBan();
 									</select>
 								</div>
 								<label class="col-lg-2 col-md-2 col-sm-3 col-xs-6 control-label">{{Accès API TTS}}</label>
-								<div class="col-lg-1 col-md-2 col-sm-4 col-xs-6">
+								<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
 									<select class="form-control configKey" data-l1key="api::core::tts::mode">
 										<option value="enable">{{Activé}}</option>
 										<option value="whiteip">{{IP blanche}}</option>
@@ -262,7 +262,7 @@ user::isBan();
 									</div>
 								</div>
 								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Accès API}}</label>
-								<div class="col-lg-1 col-md-2 col-sm-4 col-xs-6">
+								<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
 									<select class="form-control configKey" data-l1key="api::core::pro::mode">
 										<option value="enable">{{Activé}}</option>
 										<option value="disable">{{Désactivé}}</option>
@@ -285,7 +285,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 	echo '</div>';
 	echo '</div>';
 	echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Accès API}}</label>';
-	echo '<div class="col-lg-1 col-md-2 col-sm-4 col-xs-6">';
+	echo '<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">';
 	echo '<select class="form-control configKey" data-l1key="api::' . $plugin->getId() . '::mode">';
 	echo '<option value="enable">{{Activé}}</option>';
 	echo '<option value="whiteip">{{IP blanche}}</option>';
