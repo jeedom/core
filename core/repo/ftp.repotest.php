@@ -245,7 +245,7 @@ class repo_ftp {
 			}
 			$connexion = self::getFtpConnection('plugin');
 			$factory = new FTPFactory;
-			$ftp = $factory->build($connection);
+			$ftp = $factory->build($connexion);
 			$file = $ftp->findFileByName('jeedom_version', new Directory(config::byKey('ftp::core::path')));
 			if (null === $file) {
 				return null;
