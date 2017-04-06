@@ -11,7 +11,6 @@ function init($_name, $_default = '') {
 		return $_POST[$_name];
 	}
 	if (isset($_REQUEST[$_name])) {
-		$cache[$_name] = $_REQUEST[$_name];
 		return $_REQUEST[$_name];
 	}
 	return $_default;
