@@ -27,8 +27,6 @@ class interactQuery {
 	private $query;
 	private $actions;
 
-	private static $_globalConfiguration;
-
 	/*     * ***********************Méthodes statiques*************************** */
 
 	public static function byId($_id) {
