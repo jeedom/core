@@ -144,7 +144,10 @@ class scenario {
 			return array_merge($result1, $result2);
 		}
 	}
-
+        /**
+         * 
+         * @return type
+         */
 	public static function schedule() {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM scenario
@@ -152,7 +155,11 @@ class scenario {
 		AND isActive=1';
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-
+        /**
+         * 
+         * @param type $_group
+         * @return type
+         */
 	public static function listGroup($_group = null) {
 		$values = array();
 		$sql = 'SELECT DISTINCT(`group`)
@@ -164,7 +171,11 @@ class scenario {
 		$sql .= ' ORDER BY `group`';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
 	}
-
+        /**
+         * 
+         * @param type $_cmd_id
+         * @return type
+         */
 	public static function byTrigger($_cmd_id) {
 		$values = array(
 			'cmd_id' => '%#' . $_cmd_id . '#%',
@@ -175,7 +186,11 @@ class scenario {
 		AND `trigger` LIKE :cmd_id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-
+        /**
+         * 
+         * @param type $_element_id
+         * @return type
+         */
 	public static function byElement($_element_id) {
 		$values = array(
 			'element_id' => '%"' . $_element_id . '"%',
@@ -185,7 +200,13 @@ class scenario {
 		WHERE `scenarioElement` LIKE :element_id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
-
+        /**
+         * 
+         * @param type $_object_id
+         * @param type $_onlyEnable
+         * @param type $_onlyVisible
+         * @return type
+         */
 	public static function byObjectId($_object_id, $_onlyEnable = true, $_onlyVisible = false) {
 		$values = array();
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
@@ -204,7 +225,12 @@ class scenario {
 		}
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-
+        /**
+         * 
+         * @param type $_event
+         * @param type $_forceSyncMode
+         * @return boolean
+         */
 	public static function check($_event = null, $_forceSyncMode = false) {
 		$message = '';
 		if ($_event != null) {
@@ -256,7 +282,11 @@ class scenario {
 		}
 		return true;
 	}
-
+        /**
+         * 
+         * @param array $_options
+         * @return type
+         */
 	public static function doIn($_options) {
 		$scenario = self::byId($_options['scenario_id']);
 		if (isset($_options['tags']) && is_array($_options['tags']) && count($_options['tags']) > 0) {
@@ -274,7 +304,9 @@ class scenario {
 		$scenario->setLog(__('************FIN sous tâche**************', __FILE__));
 		$scenario->persistLog();
 	}
-
+        /**
+         * 
+         */
 	public static function cleanTable() {
 		$ids = array(
 			'element' => array(),
@@ -311,7 +343,9 @@ class scenario {
 		$sql .= ')';
 		DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
 	}
-
+        /**
+         * 
+         */
 	public static function consystencyCheck() {
 		foreach (self::all() as $scenario) {
 			if ($scenario->getIsActive() != 1) {
@@ -351,7 +385,14 @@ class scenario {
 			}
 		}
 	}
-
+        
+        /**
+         * @name byObjectNameGroupNameScenarioName()
+         * @param object $_object_name
+         * @param type $_group_name
+         * @param type $_scenario_name
+         * @return type
+         */
 	public static function byObjectNameGroupNameScenarioName($_object_name, $_group_name, $_scenario_name) {
 		$values = array(
 			'scenario_name' => html_entity_decode($_scenario_name),
@@ -393,7 +434,12 @@ class scenario {
 		}
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
-
+        
+        /**
+         * @name toHumanReadable()
+         * @param object $_input
+         * @return string
+         */
 	public static function toHumanReadable($_input) {
 		if (is_object($_input)) {
 			$reflections = array();
@@ -429,7 +475,11 @@ class scenario {
 		}
 		return $text;
 	}
-
+        /**
+         * 
+         * @param type $_input
+         * @return type
+         */
 	public static function fromHumanReadable($_input) {
 		$isJson = false;
 		if (is_json($_input)) {
@@ -478,7 +528,11 @@ class scenario {
 
 		return $text;
 	}
-
+        /**
+         * 
+         * @param type $searchs
+         * @return type
+         */
 	public static function searchByUse($searchs) {
 		$return = array();
 		$expressions = array();
@@ -517,7 +571,11 @@ class scenario {
 		}
 		return $return;
 	}
-
+        /**
+         * 
+         * @param type $_template
+         * @return type
+         */
 	public static function getTemplate($_template = '') {
 		$path = dirname(__FILE__) . '/../config/scenario';
 		if (isset($_template) && $_template != '') {
@@ -544,7 +602,12 @@ class scenario {
 		}
 		return $tmp;
 	}
-
+        /**
+         * 
+         * @param type $market
+         * @param type $_path
+         * @throws Exception
+         */
 	public static function getFromMarket(&$market, $_path) {
 		$cibDir = dirname(__FILE__) . '/../config/scenario/';
 		if (!file_exists($cibDir)) {
@@ -568,7 +631,11 @@ class scenario {
 	}
 
 	/*     * *********************Méthodes d'instance************************* */
-
+        /**
+         * 
+         * @param type $_event
+         * @return boolean
+         */
 	public function testTrigger($_event) {
 		foreach ($this->getTrigger() as $trigger) {
 			$trigger = str_replace(array('#variable(', ')#'), array('variable(', ')'), $trigger);
@@ -580,7 +647,13 @@ class scenario {
 		}
 		return false;
 	}
-
+        /**
+         * 
+         * @param type $_trigger
+         * @param type $_message
+         * @param type $_forceSyncMode
+         * @return boolean
+         */
 	public function launch($_trigger = '', $_message = '', $_forceSyncMode = false) {
 		if (config::byKey('enableScenario') != 1 || $this->getIsActive() != 1) {
 			return false;
@@ -601,7 +674,12 @@ class scenario {
 		}
 		return true;
 	}
-
+        /**
+         * 
+         * @param type $_trigger
+         * @param type $_message
+         * @return type
+         */
 	public function execute($_trigger = '', $_message = '') {
 		if ($this->getCache('tags') != '') {
 			$this->setTags($this->getCache('tags'));
@@ -644,7 +722,11 @@ class scenario {
 		$this->persistLog();
 		return $this->getReturn();
 	}
-
+        /**
+         * 
+         * @param type $_name
+         * @return \scenario
+         */
 	public function copy($_name) {
 		$scenarioCopy = clone $this;
 		$scenarioCopy->setName($_name);
@@ -661,7 +743,11 @@ class scenario {
 		}
 		return $scenarioCopy;
 	}
-
+        /**
+         * 
+         * @param type $_version
+         * @return string
+         */
 	public function toHtml($_version) {
 		if (!$this->hasRight('r')) {
 			return '';
@@ -695,7 +781,9 @@ class scenario {
 		cache::set('scenarioHtml' . $version . $this->getId(), $html);
 		return $html;
 	}
-
+        /**
+         * 
+         */
 	public function emptyCacheWidget() {
 		$mc = cache::byKey('scenarioHtmldashboard' . $this->getId());
 		$mc->remove();
@@ -706,7 +794,11 @@ class scenario {
 		$mc = cache::byKey('scenarioHtmldview' . $this->getId());
 		$mc->remove();
 	}
-
+        /**
+         * 
+         * @param type $_only_class
+         * @return string
+         */
 	public function getIcon($_only_class = false) {
 		if ($_only_class) {
 			if ($this->getIsActive() == 1) {
@@ -742,11 +834,17 @@ class scenario {
 			}
 		}
 	}
-
+        /**
+         * 
+         * @return type
+         */
 	public function getLinkToConfiguration() {
 		return 'index.php?v=d&p=scenario&id=' . $this->getId();
 	}
-
+        /**
+         * 
+         * @throws Exception
+         */
 	public function preSave() {
 		if ($this->getTimeout() == '' || !is_numeric($this->getTimeout())) {
 			$this->setTimeout(0);
@@ -764,12 +862,16 @@ class scenario {
 			$this->setConfiguration('logmode', 'default');
 		}
 	}
-
+        /**
+         * 
+         */
 	public function postInsert() {
 		$this->setState('stop');
 		$this->setPID();
 	}
-
+        /**
+         * 
+         */
 	public function save() {
 		if ($this->getLastLaunch() == '' && ($this->getMode() == 'schedule' || $this->getMode() == 'all')) {
 			$calculateScheduleDate = $this->calculateScheduleDate();
@@ -781,11 +883,16 @@ class scenario {
 			event::add('scenario::update', array('scenario_id' => $this->getId(), 'isActive' => $this->getIsActive(), 'state' => $this->getState(), 'lastLaunch' => $this->getLastLaunch()));
 		}
 	}
-
+        /**
+         * 
+         */
 	public function refresh() {
 		DB::refresh($this);
 	}
-
+        /**
+         * 
+         * @return type
+         */
 	public function remove() {
 		viewData::removeByTypeLinkId('scenario', $this->getId());
 		dataStore::removeByTypeLinkId('scenario', $this->getId());
@@ -799,7 +906,12 @@ class scenario {
 		cache::delete('scenarioCacheAttr' . $this->getId());
 		return DB::remove($this);
 	}
-
+        /**
+         * 
+         * @param type $_key
+         * @param type $_private
+         * @return boolean
+         */
 	public function removeData($_key, $_private = false) {
 		if ($_private) {
 			$dataStore = dataStore::byTypeLinkIdKey('scenario', $this->getId(), $_key);
@@ -811,7 +923,13 @@ class scenario {
 		}
 		return true;
 	}
-
+        /**
+         * 
+         * @param type $_key
+         * @param type $_value
+         * @param bool $_private
+         * @return boolean
+         */
 	public function setData($_key, $_value, $_private = false) {
 		$dataStore = new dataStore();
 		$dataStore->setType('scenario');
@@ -837,7 +955,10 @@ class scenario {
 		}
 		return $_default;
 	}
-
+        /**
+         * 
+         * @return type
+         */
 	public function calculateScheduleDate() {
 		$calculatedDate = array('prevDate' => '', 'nextDate' => '');
 		if (is_array($this->getSchedule())) {
@@ -872,7 +993,10 @@ class scenario {
 		}
 		return $calculatedDate;
 	}
-
+        /**
+         * 
+         * @return boolean
+         */
 	public function isDue() {
 		$last = strtotime($this->getLastLaunch());
 		$now = time();
@@ -944,7 +1068,10 @@ class scenario {
 		}
 		return false;
 	}
-
+        /**
+         * 
+         * @return boolean
+         */
 	public function running() {
 		if (intval($this->getPID()) > 0 && posix_getsid(intval($this->getPID())) && (!file_exists('/proc/' . $this->getPID() . '/cmdline') || strpos(file_get_contents('/proc/' . $this->getPID() . '/cmdline'), 'scenario_id=' . $this->getId()) !== false)) {
 			return true;
@@ -954,7 +1081,11 @@ class scenario {
 		}
 		return false;
 	}
-
+        /**
+         * 
+         * @return boolean
+         * @throws Exception
+         */
 	public function stop() {
 		if ($this->running()) {
 			if ($this->getPID() > 0) {
@@ -982,7 +1113,10 @@ class scenario {
 		$this->setState('stop');
 		return true;
 	}
-
+        /**
+         * 
+         * @return type
+         */
 	public function getElement() {
 		if (count($this->_elements) > 0) {
 			return $this->_elements;
@@ -1009,7 +1143,11 @@ class scenario {
 		}
 		return array();
 	}
-
+        /**
+         * 
+         * @param type $_mode
+         * @return type
+         */
 	public function export($_mode = 'text') {
 		if ($_mode == 'text') {
 			$return = '';
@@ -1094,11 +1232,22 @@ class scenario {
 		}
 		return $return;
 	}
-
+        /**
+         * 
+         * @return object
+         */
 	public function getObject() {
 		return object::byId($this->object_id);
 	}
-
+        /**
+         * 
+         * @param type $_complete
+         * @param type $_noGroup
+         * @param type $_tag
+         * @param type $_prettify
+         * @param type $_withoutScenarioName
+         * @return string
+         */
 	public function getHumanName($_complete = false, $_noGroup = false, $_tag = false, $_prettify = false, $_withoutScenarioName = false) {
 		$name = '';
 		if (is_numeric($this->getObject_id())) {
@@ -1145,7 +1294,11 @@ class scenario {
 		}
 		return $name;
 	}
-
+        /**
+         * 
+         * @param type $_right
+         * @return boolean
+         */
 	public function hasRight($_right) {
 		if (!isConnect()) {
 			return false;
@@ -1158,7 +1311,11 @@ class scenario {
 		}
 		return false;
 	}
-
+        /**
+         * 
+         * @param type $_partial
+         * @return type
+         */
 	public function persistLog($_partial = false) {
 		if ($this->getConfiguration('logmode', 'default') == 'none') {
 			return;
@@ -1174,14 +1331,23 @@ class scenario {
 			file_put_contents($path, "------------------------------------\n" . $this->getLog(), FILE_APPEND);
 		}
 	}
-
+        /**
+         * 
+         * @return type
+         */
 	public function toArray() {
 		$return = utils::o2a($this, true);
 		$return['state'] = $this->getCache('state');
 		$return['lastLaunch'] = $this->getCache('lastLaunch');
 		return $return;
 	}
-
+        /**
+         * 
+         * @param type $_data
+         * @param type $_level
+         * @param type $_drill
+         * @return string
+         */
 	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = null) {
 		if ($_drill == null) {
 			$_drill = config::byKey('graphlink::scenario::drill');
@@ -1225,12 +1391,19 @@ class scenario {
 		addGraphLink($this, 'scenario', $usedBy['view'], 'view', $_data, $_level, $_drill, array('dashvalue' => '2,6', 'lengthfactor' => 0.6));
 		return $_data;
 	}
-
+        /**
+         * 
+         * @return type
+         */
 	public function getUse() {
 		$json = jeedom::fromHumanReadable(json_encode($this->export('array')));
 		return jeedom::getTypeUse($json);
 	}
-
+        /**
+         * 
+         * @param array $_array
+         * @return type
+         */
 	public function getUsedBy($_array = false) {
 		$return = array('cmd' => array(), 'eqLogic' => array(), 'scenario' => array(), 'plan' => array(), 'view' => array());
 		$return['cmd'] = cmd::searchConfiguration('#scenario' . $this->getId() . '#');
@@ -1253,36 +1426,62 @@ class scenario {
 	}
 
 	/*     * **********************Getteur Setteur*************************** */
-
+        /**
+         * 
+         * @return int
+         */
 	public function getId() {
 		return $this->id;
 	}
-
+        /**
+         * 
+         * @return string
+         */
 	public function getName() {
 		return $this->name;
 	}
-
+        /**
+         * 
+         * @return type
+         */
 	public function getState() {
 		return $this->getCache('state');
 	}
-
+        /**
+         * 
+         * @return bool
+         */
 	public function getIsActive() {
 		return $this->isActive;
 	}
-
+        /**
+         * 
+         * @return type
+         */
 	public function getGroup() {
 		return $this->group;
 	}
-
+        /**
+         * 
+         * @return type
+         */
 	public function getLastLaunch() {
 		return $this->getCache('lastLaunch');
 	}
-
+        /**
+         * 
+         * @param int $id
+         * @return $this
+         */
 	public function setId($id) {
 		$this->id = $id;
 		return $this;
 	}
-
+        /**
+         * 
+         * @param type $name
+         * @return $this
+         */
 	public function setName($name) {
 		if ($name != $this->getName()) {
 			$this->_changeState = true;
@@ -1290,7 +1489,11 @@ class scenario {
 		$this->name = $name;
 		return $this;
 	}
-
+        /**
+         * 
+         * @param type $isActive
+         * @return $this
+         */
 	public function setIsActive($isActive) {
 		if ($isActive != $this->getIsActive()) {
 			$this->_changeState = true;
@@ -1298,7 +1501,11 @@ class scenario {
 		$this->isActive = $isActive;
 		return $this;
 	}
-
+        /**
+         * 
+         * @param type $group
+         * @return $this
+         */
 	public function setGroup($group) {
 		if ($group != $this->getGroup()) {
 			$this->_changeState = true;
@@ -1306,7 +1513,10 @@ class scenario {
 		$this->group = $group;
 		return $this;
 	}
-
+        /**
+         * 
+         * @param type $state
+         */
 	public function setState($state) {
 		if ($this->getCache('state') != $state) {
 			$this->emptyCacheWidget();
@@ -1314,36 +1524,60 @@ class scenario {
 		}
 		$this->setCache('state', $state);
 	}
-
+        /**
+         * 
+         * @param type $lastLaunch
+         */
 	public function setLastLaunch($lastLaunch) {
 		$this->setCache('lastLaunch', $lastLaunch);
 	}
-
+        /**
+         * 
+         * @return type
+         */
 	public function getType() {
 		return $this->type;
 	}
-
+        /**
+         * 
+         * @param type $type
+         * @return $this
+         */
 	public function setType($type) {
 		$this->type = $type;
 		return $this;
 	}
-
+        /**
+         * 
+         * @return type
+         */
 	public function getMode() {
 		return $this->mode;
 	}
-
+        /**
+         * 
+         * @param type $mode
+         * @return $this
+         */
 	public function setMode($mode) {
 		$this->mode = $mode;
 		return $this;
 	}
-
+        /**
+         * 
+         * @return string/object
+         */
 	public function getSchedule() {
 		if (is_json($this->schedule)) {
 			return json_decode($this->schedule, true);
 		}
 		return $this->schedule;
 	}
-
+        /**
+         * 
+         * @param type $schedule
+         * @return $this
+         */
 	public function setSchedule($schedule) {
 		if (is_array($schedule)) {
 			$schedule = json_encode($schedule, JSON_UNESCAPED_UNICODE);
@@ -1351,22 +1585,35 @@ class scenario {
 		$this->schedule = $schedule;
 		return $this;
 	}
-
+        /**
+         * 
+         * @return type
+         */
 	public function getPID() {
 		return $this->getCache('pid');
 	}
-
+        /**
+         * 
+         * @param type $pid
+         */
 	public function setPID($pid = '') {
 		$this->setCache('pid', $pid);
 	}
-
+        /**
+         * 
+         * @return type
+         */
 	public function getScenarioElement() {
 		if (is_json($this->scenarioElement)) {
 			return json_decode($this->scenarioElement, true);
 		}
 		return $this->scenarioElement;
 	}
-
+        /**
+         * 
+         * @param type $scenarioElement
+         * @return $this
+         */
 	public function setScenarioElement($scenarioElement) {
 		if (is_array($scenarioElement)) {
 			$scenarioElement = json_encode($scenarioElement, JSON_UNESCAPED_UNICODE);
@@ -1374,14 +1621,21 @@ class scenario {
 		$this->scenarioElement = $scenarioElement;
 		return $this;
 	}
-
+        /**
+         * 
+         * @return type
+         */
 	public function getTrigger() {
 		if (is_json($this->trigger)) {
 			return json_decode($this->trigger, true);
 		}
 		return array($this->trigger);
 	}
-
+        /**
+         * 
+         * @param type $trigger
+         * @return $this
+         */
 	public function setTrigger($trigger) {
 		if (is_array($trigger)) {
 			$trigger = json_encode($trigger, JSON_UNESCAPED_UNICODE);
@@ -1389,11 +1643,17 @@ class scenario {
 		$this->trigger = cmd::humanReadableToCmd($trigger);
 		return $this;
 	}
-
+        /**
+         * 
+         * @return type
+         */
 	public function getLog() {
 		return $this->_log;
 	}
-
+        /**
+         * 
+         * @param type $log
+         */
 	public function setLog($log) {
 		$this->_log .= '[' . date('Y-m-d H:i:s') . '][SCENARIO] ' . $log . "\n";
 		if ($this->getConfiguration('logmode', 'default') == 'realtime') {
@@ -1401,14 +1661,22 @@ class scenario {
 			$this->_log = '';
 		}
 	}
-
+        /**
+         * 
+         * @param type $_default
+         * @return type
+         */
 	public function getTimeout($_default = null) {
 		if ($this->timeout == '' || !is_numeric($this->timeout)) {
 			return $_default;
 		}
 		return $this->timeout;
 	}
-
+        /**
+         * 
+         * @param string $timeout
+         * @return $this
+         */
 	public function setTimeout($timeout) {
 		if ($timeout == '' || is_nan(intval($timeout)) || $timeout < 1) {
 			$timeout = '';
@@ -1416,21 +1684,33 @@ class scenario {
 		$this->timeout = $timeout;
 		return $this;
 	}
-
+        /**
+         * 
+         * @param type $_default
+         * @return type
+         */
 	public function getObject_id($_default = null) {
 		if ($this->object_id == '' || !is_numeric($this->object_id)) {
 			return $_default;
 		}
 		return $this->object_id;
 	}
-
+        /**
+         * 
+         * @param type $_default
+         * @return type
+         */
 	public function getIsVisible($_default = 0) {
 		if ($this->isVisible == '' || !is_numeric($this->isVisible)) {
 			return $_default;
 		}
 		return $this->isVisible;
 	}
-
+        /**
+         * 
+         * @param type $object_id
+         * @return $this
+         */
 	public function setObject_id($object_id = null) {
 		if ($object_id != $this->getObject_id()) {
 			$this->_changeState = true;
@@ -1438,79 +1718,147 @@ class scenario {
 		$this->object_id = (!is_numeric($object_id)) ? null : $object_id;
 		return $this;
 	}
-
+        /**
+         * 
+         * @param type $isVisible
+         * @return $this
+         */
 	public function setIsVisible($isVisible) {
 		$this->isVisible = $isVisible;
 		return $this;
 	}
-
+        /**
+         * 
+         * @param type $_key
+         * @param type $_default
+         * @return type
+         */
 	public function getDisplay($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->display, $_key, $_default);
 	}
-
+        /**
+         * 
+         * @param type $_key
+         * @param type $_value
+         * @return $this
+         */
 	public function setDisplay($_key, $_value) {
 		$this->display = utils::setJsonAttr($this->display, $_key, $_value);
 		return $this;
 	}
-
+        /**
+         * 
+         * @return type
+         */
 	public function getDescription() {
 		return $this->description;
 	}
-
+        /**
+         * 
+         * @param type $description
+         * @return $this
+         */
 	public function setDescription($description) {
 		$this->description = $description;
 		return $this;
 	}
-
+        /**
+         * 
+         * @param type $_key
+         * @param type $_default
+         * @return type
+         */
 	public function getConfiguration($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->configuration, $_key, $_default);
 	}
-
+        /**
+         * 
+         * @param type $_key
+         * @param type $_value
+         * @return $this
+         */
 	public function setConfiguration($_key, $_value) {
 		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
 		return $this;
 	}
-
+        /**
+         * 
+         * @return type
+         */
 	public function getRealTrigger() {
 		return $this->_realTrigger;
 	}
-
+        /**
+         * 
+         * @param type $_realTrigger
+         * @return $this
+         */
 	public function setRealTrigger($_realTrigger) {
 		$this->_realTrigger = $_realTrigger;
 		return $this;
 	}
-
+        /**
+         * 
+         * @return type
+         */
 	public function getReturn() {
 		return $this->_return;
 	}
-
+        /**
+         * 
+         * @param type $_return
+         * @return $this
+         */
 	public function setReturn($_return) {
 		$this->_return = $_return;
 		return $this;
 	}
-
+        /**
+         * 
+         * @return type
+         */
 	public function getTags() {
 		return $this->_tags;
 	}
-
+        /**
+         * 
+         * @param type $_tags
+         * @return $this
+         */
 	public function setTags($_tags) {
 		$this->_tags = $_tags;
 		return $this;
 	}
-
+        /**
+         * 
+         * @return type
+         */
 	public function getDo() {
 		return $this->_do;
 	}
-
+        /**
+         * 
+         * @param type $_do
+         * @return $this
+         */
 	public function setDo($_do) {
 		$this->_do = $_do;
 		return $this;
 	}
-
+        /**
+         * 
+         * @param type $_key
+         * @param type $_default
+         * @return type
+         */
 	public function getCache($_key = '', $_default = '') {
 		return utils::getJsonAttr(cache::byKey('scenarioCacheAttr' . $this->getId())->getValue(), $_key, $_default);
 	}
-
+        /**
+         * 
+         * @param type $_key
+         * @param type $_value
+         */
 	public function setCache($_key, $_value = null) {
 		cache::set('scenarioCacheAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('scenarioCacheAttr' . $this->getId())->getValue(), $_key, $_value));
 	}
