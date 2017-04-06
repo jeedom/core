@@ -126,7 +126,7 @@ class repo_ftp {
 		}
 		$connexion = self::getFtpConnection('plugin');
 		$factory = new FTPFactory;
-		$ftp = $factory->build($connection);
+		$ftp = $factory->build($connexion);
 		$pathinfo = pathinfo($_update->getConfiguration('path'));
 		$file = $ftp->findFileByName($pathinfo['filename'] . '.' . $pathinfo['extension'], new Directory($pathinfo['dirname']));
 		$connexion->close();
@@ -162,7 +162,7 @@ class repo_ftp {
 
 		$connexion = self::getFtpConnection('plugin');
 		$factory = new FTPFactory;
-		$ftp = $factory->build($connection);
+		$ftp = $factory->build($connexion);
 		$pathinfo = pathinfo($_update->getConfiguration('path'));
 		$file = $ftp->findFileByName($pathinfo['filename'] . '.' . $pathinfo['extension'], new Directory($pathinfo['dirname']));
 		if (null === $file) {
@@ -191,7 +191,7 @@ class repo_ftp {
 	public static function sendBackup($_path) {
 		$connexion = self::getFtpConnection();
 		$factory = new FTPFactory;
-		$ftp = $factory->build($connection);
+		$ftp = $factory->build($connexion);
 		$ftp->upload(new File($_path), '.');
 		$connexion->close();
 	}
@@ -199,7 +199,7 @@ class repo_ftp {
 	public static function listeBackup() {
 		$connexion = self::getFtpConnection();
 		$factory = new FTPFactory;
-		$ftp = $factory->build($connection);
+		$ftp = $factory->build($connexion);
 		$list = $ftp->findFilesystems(new Directory(config::byKey('ftp::backup::folder')));
 		$connexion->close();
 		$return = array();
@@ -213,7 +213,7 @@ class repo_ftp {
 	public static function retoreBackup($_backup) {
 		$connexion = self::getFtpConnection();
 		$factory = new FTPFactory;
-		$ftp = $factory->build($connection);
+		$ftp = $factory->build($connexion);
 		$pathinfo = pathinfo(config::byKey('ftp::backup::folder') . '/' . $_backup);
 		$file = $ftp->findFileByName($pathinfo['filename'] . '.' . $pathinfo['extension'], new Directory($pathinfo['dirname']));
 		if (null === $file) {
@@ -229,7 +229,7 @@ class repo_ftp {
 	public static function downloadCore($_path) {
 		$connexion = self::getFtpConnection('plugin');
 		$factory = new FTPFactory;
-		$ftp = $factory->build($connection);
+		$ftp = $factory->build($connexion);
 		$file = $ftp->findFileByName('jeedom.zip', new Directory(config::byKey('ftp::core::path')));
 		if (null === $file) {
 			throw new Exception(__('Impossible de télécharger le fichier depuis : ' . config::byKey('ftp::core::path') . '.', __FILE__));
