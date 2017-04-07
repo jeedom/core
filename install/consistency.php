@@ -291,9 +291,15 @@ try {
 
 	if (!file_exists(dirname(__FILE__) . '/../plugins')) {
 		mkdir(dirname(__FILE__) . '/../plugins');
-		@chown(dirname(__FILE__) . '/../plugins', system::get('www-uid'));
-		@chgrp(dirname(__FILE__) . '/../plugins', system::get('www-gid'));
-		@chmod(dirname(__FILE__) . '/../plugins', 0775);
+                $returnValueDir = true;
+                
+		$returnValueDir = chown(dirname(__FILE__) . '/../plugins', system::get('www-uid'));
+		$returnValueDir = chgrp(dirname(__FILE__) . '/../plugins', system::get('www-gid'));
+		$returnValueDir = chmod(dirname(__FILE__) . '/../plugins', 0775);
+                
+                if(!$returnValueDir){
+                    echo 'le dossier ' . dirname(__FILE__) . "/../plugins n'a pas pu être modifié";
+                }
 	}
 	config::save('hardware_name', '');
 	if (config::byKey('api') == '') {
