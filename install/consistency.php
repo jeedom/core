@@ -291,9 +291,18 @@ try {
 
 	if (!file_exists(dirname(__FILE__) . '/../plugins')) {
 		mkdir(dirname(__FILE__) . '/../plugins');
-		@chown(dirname(__FILE__) . '/../plugins', system::get('www-uid'));
-		@chgrp(dirname(__FILE__) . '/../plugins', system::get('www-gid'));
-		@chmod(dirname(__FILE__) . '/../plugins', 0775);
+ 
+		if(!chown(dirname(__FILE__) . '/../plugins', system::get('www-uid'))){
+                    echo 'le propriétaire de ' . dirname(__FILE__) . "/../plugins n'a pas pu être modifié";
+                }
+ 
+		if(!chgrp(dirname(__FILE__) . '/../plugins', system::get('www-gid'))){
+                    echo 'le groupe de ' . dirname(__FILE__) . "/../plugins n'a pas pu être modifié";
+                }
+ 
+                if(!chmod(dirname(__FILE__) . '/../plugins', 0775)){
+                    echo 'les droits de ' . dirname(__FILE__) . "/../plugins n'ont pas pu être modifié";
+                }
 	}
 	config::save('hardware_name', '');
 	if (config::byKey('api') == '') {
