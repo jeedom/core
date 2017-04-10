@@ -135,7 +135,7 @@ class DB {
 	 * @param object $object
 	 * @return boolean
 	 */
-	public static function save($object, $_direct = false, $_replace = false) {
+	public static function save(plan $object, $_direct = false, $_replace = false) {
 		if (!$_direct && method_exists($object, 'preSave')) {
 			$object->preSave();
 		}
@@ -488,5 +488,3 @@ class DB {
 	}
 
 }
-
-?>
