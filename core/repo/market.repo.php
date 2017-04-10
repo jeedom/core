@@ -155,7 +155,7 @@ class repo_market {
 		}
 	}
 
-	public static function objectInfo($_update) {
+	public static function objectInfo(repo_market $_update) {
 		$url = 'https://jeedom.github.io/documentation/plugins/' . $_update->getLogicalId() . '/' . config::byKey('language', 'core', 'fr_FR') . '/index.html';
 		$header = get_headers($url);
 		if (strpos($header[0], '200') === false) {
