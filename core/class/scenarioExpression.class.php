@@ -698,7 +698,7 @@ class scenarioExpression {
 		return '#' . $color->red . $color->green . $color->blue;
 	}
 
-	public static function trigger($_name = '', &$_scenario = null) {
+	public static function trigger($_name = '',scenario &$_scenario = null) {
 		if ($_scenario != null) {
 			if (trim($_name) == '') {
 				return $_scenario->getRealTrigger();
