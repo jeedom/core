@@ -100,7 +100,11 @@ try {
 	echo "File use for restoration : " . $backup . "\n";
 
 	echo "Backup databse acces configuration...";
-	@copy(dirname(__FILE__) . '/../core/config/common.config.php', '/tmp/common.config.php');
+        
+        if(copy(dirname(__FILE__) . '/../core/config/common.config.php', '/tmp/common.config.php')){
+            echo 'Can not copy ' . dirname(__FILE__) . "/../core/config/common.config.php\n";
+        }
+	 
 	echo "OK\n";
 
 	try {
