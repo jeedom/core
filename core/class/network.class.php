@@ -60,7 +60,7 @@ class network {
 			self::checkConf($_mode);
 		}
 		if ($_mode == 'internal') {
-			if (strpos(config::byKey('internalAddr', 'core', $_default), 'http://') != false || strpos(config::byKey('internalAddr', 'core', $_default), 'https://') !== false) {
+			if (strpos(config::byKey('internalAddr', 'core', $_default), 'http://') !== false || strpos(config::byKey('internalAddr', 'core', $_default), 'https://') !== false) {
 				config::save('internalAddr', str_replace(array('http://', 'https://'), '', config::byKey('internalAddr', 'core', $_default)));
 			}
 			if ($_protocole == 'ip' || $_protocole == 'dns') {
@@ -353,7 +353,7 @@ class network {
 		}
 		$cmd->execCmd();
 		$interface = $openvpn->getInterfaceName();
-		if ($interface != null && $interface != '' && $interface !== false) {
+		if ($interface !== null && $interface != '' && $interface !== false) {
 			shell_exec(system::getCmdSudo() . 'iptables -A INPUT -i ' . $interface . ' -p tcp  --destination-port 80 -j ACCEPT');
 			shell_exec(system::getCmdSudo() . 'iptables -A INPUT -i ' . $interface . ' -j DROP');
 		}
@@ -451,9 +451,9 @@ class network {
 			$countInfo = count($info);
 			for ($i = 0; $i < $countInfo; $i++) {
 				if ($info[$i] != '' && filter_var($info[$i], FILTER_VALIDATE_IP)) {
-					if ($destination == null) {
+					if ($destination === null) {
 						$destination = $info[$i];
-					} elseif ($gw == null) {
+					} elseif ($gw === null) {
 						$gw = $info[$i];
 					}
 				}
