@@ -1273,7 +1273,7 @@ class cmd {
 		}
 	}
 
-(	public function actionAlertLevel($_level, $_value) {
+	public function actionAlertLevel($_level, $_value) {
 		if ($this->getType() != 'info') {
 			return;
 		}
