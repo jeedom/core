@@ -130,7 +130,11 @@ try {
 	$i = 0;
 	while (getDirectorySize($backup_dir) > $max_size) {
 		$older = array('file' => null, 'datetime' => null);
+
 		foreach (ls($backup_dir, '*') as $file) {
+			if (count(ls($backup_dir, '*')) < 2) {
+				break (2);
+			}
 			if (is_dir($backup_dir . '/' . $file)) {
 				foreach (ls($backup_dir . '/' . $file, '*') as $file2) {
 					if ($older['datetime'] === null) {
@@ -214,4 +218,3 @@ try {
 	echo "[END BACKUP ERROR]\n";
 	throw $e;
 }
-
