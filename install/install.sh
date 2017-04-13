@@ -313,11 +313,11 @@ step_10_jeedom_post() {
 
 step_11_jeedom_check() {
 	echo "---------------------------------------------------------------------"
-	echo "${JAUNE}Start step_12_jeedom_check${NORMAL}"
+	echo "${JAUNE}Start step_11_jeedom_check${NORMAL}"
 	php ${WEBSERVER_HOME}/sick.php
 	chmod 777 -R /tmp/jeedom
 	chown www-data:www-data -R /tmp/jeedom
-	echo "${VERT}step_12_jeedom_check success${NORMAL}"
+	echo "${VERT}step_11_jeedom_check success${NORMAL}"
 }
 
 distrib_1_spe(){
