@@ -818,6 +818,9 @@ class scenarioExpression {
 				case '#heure#':
 					$return['#heure#'] = (int) date('G');
 					break;
+				case '#heure12#':
+					$return['#heure12#'] = (int) date('g');
+					break;
 				case '#minute#':
 					$return['#minute#'] = (int) date('i');
 					break;
