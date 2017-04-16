@@ -206,7 +206,8 @@ Außerdem können Sie mit den folgenden Tags:
 Un tag est remplacé lors de l'exécution du scénario par sa valeur
 
 * *\#seconde#* : seconde courante,
-* *\#heure#* : heure courante (ex : 17 pour 17h15),
+* *\#heure#* : heure courante au format 24h  (ex : 17 pour 17h15),
+* *\#heure12#* : heure courante au format 12h (ex : 5 pour 17h15),
 * *\#minute#* : minute courante (ex : 15 pour 17h15),
 * *\#jour#* : jour courant,
 * *\#mois#* : mois courant,
