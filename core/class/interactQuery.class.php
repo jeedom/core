@@ -655,7 +655,7 @@ class interactQuery {
 			return $result;
 		}
 		$replace['#valeur#'] = '';
-		$colors = config::byKey('convertColor');
+		$colors = array_change_key_case(config::byKey('convertColor'));
 		if (is_array($this->getActions('cmd'))) {
 			foreach ($this->getActions('cmd') as $action) {
 				try {
@@ -667,6 +667,7 @@ class interactQuery {
 						foreach ($options as &$option) {
 							$option = str_replace(array_keys($tags_replace), $tags_replace, $option);
 						}
+
 						if (isset($options['color']) && isset($colors[strtolower($options['color'])])) {
 							$options['color'] = $colors[strtolower($options['color'])];
 						}
