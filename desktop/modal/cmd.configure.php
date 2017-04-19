@@ -273,7 +273,10 @@ foreach ($groups as $group) {
 		if ($key == 0) {
 			echo '<optgroup label="{{' . $info['family'] . '}}">';
 		}
-		echo '<option value="' . $info['key'] . '">' . $info['name'] . '</option>';
+		echo '<option value="' . $info['key'] . '"';
+		if ( $cmd->getDisplay('generic_type') == $info['key'] )
+			echo ' SELECTED';
+		echo '>' . $info['name'] . '</option>';
 	}
 	echo '</optgroup>';
 }
