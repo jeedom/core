@@ -34,6 +34,7 @@ mysql_sql() {
 step_1_upgrade() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_1_upgrade${NORMAL}"
+
 	apt-get update
 	apt-get -f install
 	apt-get -y dist-upgrade
@@ -44,7 +45,8 @@ step_2_mainpackage() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_2_mainpackage${NORMAL}"
 	apt_install ntp ca-certificates unzip curl sudo cron
-	apt-get -y install locate tar telnet wget logrotate fail2ban
+	apt-get -y install locate tar telnet wget logrotate fail2ban dos2unix ntpdate
+	apt-get -y install git python python-pip
 	apt-get -y install software-properties-common
 	apt-get -y install libexpat1 ssl-cert
 	apt-get -y install apt-transport-https
@@ -54,31 +56,8 @@ step_2_mainpackage() {
 	apt-get -y install libav-tools
 	apt-get -y install libsox-fmt-mp3 sox libttspico-utils
 	apt-get -y install smbclient htop iotop vim iftop
-	apt-get -y install dos2unix
-	apt-get -y install ntpdate
 	apt-get -y install espeak 
 	apt-get -y install mbrola
-	apt-get -y install git
-	apt-get -y install python
-	apt-get -y install python-pip
-	apt-get -y install python-serial
-	apt-get -y install python-requests
-	apt-get -y install python-pyudev
-	apt-get -y install python-nut
-	apt-get -y install python-dev python-setuptools python-louie python-sphinx make build-essential libudev-dev g++ gcc python-lxml libjpeg-dev
-	apt-get -y install openvpn
-	pip install enum-compat
-	pip install beautifulsoup4
-	pip install sphinxcontrib-blockdiag
-	pip install sphinxcontrib-actdiag
-	pip install sphinxcontrib-nwdiag
-	pip install sphinxcontrib-seqdiag
-	pip install urwid
-	pip install louie
-	pip install flask
-	pip install flask-restful
-	pip install flask-httpauth
-	pip install six
 	echo "${VERT}step_2_mainpackage success${NORMAL}"
 }
 
@@ -325,10 +304,10 @@ distrib_1_spe(){
 		rm post-install.sh
 	fi
 	if [ -f /etc/armbian.txt ]; then
-		wget https://raw.githubusercontent.com/jeedom/core/${VERSION}/install/OS_specific/armbian/post-install.sh
+		cp ${WEBSERVER_HOME}/install/OS_specific/armbian/post-install.sh post-install.sh
 	fi
 	if [ -f /usr/bin/raspi-config ]; then
-		wget https://raw.githubusercontent.com/jeedom/core/${VERSION}/install/OS_specific/rpi/post-install.sh
+		cp ${WEBSERVER_HOME}/install/OS_specific/rpi/post-install.sh post-install.sh
 	fi
 	if [ -f post-install.sh ]; then
 		chmod +x post-install.sh
