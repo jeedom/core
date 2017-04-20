@@ -403,6 +403,6 @@ class network {
 			return;
 		}
 		log::add('network', 'error', __('La passerelle distante de l\'interface ', __FILE__) . $iface . '(' . $gw['gateway'] . ')' . __(' est injoignable, je la redémarre pour essayer de corriger.', __FILE__));
-		exec(system::getCmdSudo() . 'if down;sleep 5;if up');
+		exec(system::getCmdSudo() . 'if down;sleep 5;' . system::getCmdSudo() . 'if up');
 	}
 }
