@@ -691,6 +691,17 @@ class jeedom {
 			}
 
 			try {
+				log::add('starting', 'debug', __('Vérification de la configuration réseau interne', __FILE__));
+				if (!network::test('internal')) {
+					network::checkConf('internal');
+				}
+			} catch (Exception $e) {
+				log::add('starting', 'error', __('Erreur sur la configuration réseau interne : ', __FILE__) . log::exception($e));
+			} catch (Error $e) {
+				log::add('starting', 'error', __('Erreur sur la configuration réseau interne : ', __FILE__) . log::exception($e));
+			}
+
+			try {
 				log::add('starting', 'debug', __('Envoi de l\'evenement de démarrage', __FILE__));
 				self::event('start');
 			} catch (Exception $e) {
@@ -728,30 +739,32 @@ class jeedom {
 				if (config::byKey('update::check') != '') {
 					$c = new Cron\CronExpression(config::byKey('update::check'), new Cron\FieldFactory);
 					$isDue = $c->isDue();
+					if ($isDue) {
+						if (config::byKey('update::lastCheck') == '' || (strtotime('now') - strtotime(config::byKey('update::lastCheck'))) > 3600) {
+							update::checkAllUpdate();
+							$updates = update::byStatus('update');
+							if (count($updates) > 0) {
+								$toUpdate = '';
+								foreach ($updates as $update) {
+									$toUpdate .= $update->getLogicalId() . ',';
+								}
+							}
+							$updates = update::byStatus('update');
+							if (count($updates) > 0) {
+								message::add('update', __('De nouvelles mises à jour sont disponibles : ', __FILE__) . trim($toUpdate, ','), '', 'newUpdate');
+							}
+							config::save('update::check', rand(1, 59) . ' ' . rand(6, 7) . ' * * *');
+						}
+					}
 				}
+
 			} catch (Exception $e) {
 
 			} catch (Error $e) {
 
 			}
 			try {
-				if ($isDue) {
-					if (config::byKey('update::lastCheck') == '' || (strtotime('now') - strtotime(config::byKey('update::lastCheck'))) > 3600) {
-						update::checkAllUpdate();
-						$updates = update::byStatus('update');
-						if (count($updates) > 0) {
-							$toUpdate = '';
-							foreach ($updates as $update) {
-								$toUpdate .= $update->getLogicalId() . ',';
-							}
-						}
-						$updates = update::byStatus('update');
-						if (count($updates) > 0) {
-							message::add('update', __('De nouvelles mises à jour sont disponibles : ', __FILE__) . trim($toUpdate, ','), '', 'newUpdate');
-						}
-						config::save('update::check', rand(1, 59) . ' ' . rand(6, 7) . ' * * *');
-					}
-				}
+
 			} catch (Exception $e) {
 
 			} catch (Error $e) {

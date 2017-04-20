@@ -45,7 +45,7 @@ step_2_mainpackage() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_2_mainpackage${NORMAL}"
 	apt_install ntp ca-certificates unzip curl sudo cron
-	apt-get -y install locate tar telnet wget logrotate fail2ban dos2unix ntpdate
+	apt-get -y install locate tar telnet wget logrotate fail2ban dos2unix ntpdate htop iotop vim iftop smbclient
 	apt-get -y install git python python-pip
 	apt-get -y install software-properties-common
 	apt-get -y install libexpat1 ssl-cert
@@ -55,7 +55,6 @@ step_2_mainpackage() {
 	apt-get update
 	apt-get -y install libav-tools
 	apt-get -y install libsox-fmt-mp3 sox libttspico-utils
-	apt-get -y install smbclient htop iotop vim iftop
 	apt-get -y install espeak 
 	apt-get -y install mbrola
 	echo "${VERT}step_2_mainpackage success${NORMAL}"
