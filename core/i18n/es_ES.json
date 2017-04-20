@@ -9,11 +9,11 @@
         "Valeur": "Valor",
         "Aucun": "Ninguno",
         "Erreur execution de la commande ": "Error al ejecutar el comando",
-        "Alert sur la commande ": "Alert sur la commande",
-        " niveau ": "niveau",
-        "[jeedom] Message de ": "[jeedom] Message de",
-        "pendant plus de ": "pendant plus de",
-        " minute(s)": "minute(s)"
+        "Alert sur la commande ": "Alerta en el comando",
+        " niveau ": "Nivel",
+        "[jeedom] Message de ": "[jeedom] Mensaje de",
+        "pendant plus de ": "Para más de",
+        " minute(s)": "minuto(s)"
     },
     "core/class/scenario.class.php": {
         "Scénario exécuté automatiquement sur événement venant de : ": "Escena ejecutada automáticamente sobre evento proveniente de:",
@@ -22,8 +22,8 @@
         "Exécution du scénario ": "Ejecución de escena",
         " déclenché par : ": "originado por:",
         "Fin correcte du scénario": "Escena finalizada correctamente",
-        "************Lancement sous tâche**************": "************Lancement sous tâche**************",
-        "************FIN sous tâche**************": "************FIN sous tâche**************",
+        "************Lancement sous tâche**************": "************Bajo lanzamiento de tarea **************",
+        "************FIN sous tâche**************": "************FIN de la tarea**************",
         "Scénario exécuté sur événement : #": "Escena ejecutada sobre evento: #",
         "Aucun": "Ninguno"
     },
@@ -37,7 +37,7 @@
         "Inconnue": "Desconocido",
         "Vous devez attendre au moins 45s entre 2 lancements du démon": "Debes esperar al menos 45 segundos entre 2 lanzamientos de demonio",
         "Erreur sur la fonction deamon_start du plugin : ": "Error en la función daemon_start del plugin :",
-        "Veuillez executer le script : ": "Veuillez executer le script :",
+        "Veuillez executer le script : ": "Por favor, ejecute el script :",
         "Lancement de : ": "Ejecutando:"
     },
     "core/class/scenarioSubElement.class.php": {
@@ -47,7 +47,7 @@
     "core/class/scenarioExpression.class.php": {
         "Evaluation de la condition : [": "Evaluación de la condición: [",
         "Vrai": "Real",
-        "Action stop": "Action stop",
+        "Action stop": "Parar Acción",
         "Exécution d'un bloc élément : ": "Ejecución de orden",
         "Exécution de la commande ": "Ejecución del comando",
         "Faux": "Falso",
@@ -58,21 +58,21 @@
         "Lancement provoqué": "Ejecución forzada",
         "Pause de ": "Pausa",
         " seconde(s)": "segundo(s)",
-        "Envoi du rapport généré sur ": "Envoi du rapport généré sur",
-        "Génération d'un rapport de type ": "Génération d'un rapport de type",
-        "Erreur : Aucun rapport généré": "Erreur : Aucun rapport généré",
-        "Génération du rapport ": "Génération du rapport",
-        "[jeedom] Rapport ": "[jeedom] Rapport",
-        "Veuillez trouver ci-joint le rapport ": "Veuillez trouver ci-joint le rapport",
+        "Envoi du rapport généré sur ": "Envío de Informe generado en",
+        "Génération d'un rapport de type ": "Generación de un reporte de tipo",
+        "Erreur : Aucun rapport généré": "Error ; Ningún reporte generado",
+        "Génération du rapport ": "Generación de reporte",
+        "[jeedom] Rapport ": "[jeedom] Reporte",
+        "Veuillez trouver ci-joint le rapport ": "Por favor, adjunta el informe",
         " du ": "del",
-        " généré le ": "généré le",
-        "Aucune durée trouvée pour l'action sleep ou la durée n'est pas valide : ": "Aucune durée trouvée pour l'action sleep ou la durée n'est pas valide :"
+        " généré le ": "generados el",
+        "Aucune durée trouvée pour l'action sleep ou la durée n'est pas valide : ": "Ninguna duración sobre la acción sleep o la duración no es valida :"
     },
     "core/class/scenarioElement.class.php": {
         "Non exécution des actions pour cause de répétition": "No aplicar las medidas por causa de la repetición",
-        "Tâche : ": "Tâche :",
-        " programmé à : ": "programmé à :",
-        " programmée à : ": "programmée à :"
+        "Tâche : ": "Tarea :",
+        " programmé à : ": "programado para :",
+        " programmée à : ": "programado en :"
     },
     "core/js/scenario.class.js": {
         "Sélectionner le scénario": "Seleccione la escena"
@@ -142,7 +142,7 @@
         "Authentification par défaut": "Autenticación por defecto",
         "Droits sudo": "Derechos Sudo",
         "NOK": "NOK",
-        "Appliquer <a href=\"https://www.jeedom.com/doc/documentation/installation/fr_FR/doc-installation.html#_etape_4_définition_des_droits_root_à_jeedom\" targe=\"_blank\">cette étape</a> de l'installation": "Appliquer <a href=\"https://www.jeedom.com/doc/documentation/installation/fr_FR/doc-installation.html#_etape_4_définition_des_droits_root_à_jeedom\" targe=\"_blank\">cette étape</a> de l'installation",
+        "Appliquer <a href=\"https://www.jeedom.com/doc/documentation/installation/fr_FR/doc-installation.html#_etape_4_définition_des_droits_root_à_jeedom\" targe=\"_blank\">cette étape</a> de l'installation": "Aplicar <a href=\"https://www.jeedom.com/doc/documentation/installation/fr_FR/doc-installation.html#_etape_4_définition_des_droits_root_à_jeedom\" targe=\"_blank\">cette étape</a> en la instalación",
         "Version Jeedom": "Versión de Jeedom",
         "Version PHP": "Versión PHP",
         "Version OS": "Versión SO",
@@ -169,10 +169,10 @@
         "Nettoyage du dossier temporaire...": "Limpieza de la carpeta temporal...",
         "Nom du backup : ": "Nombre del backup",
         "***************Fin de la sauvegarde de Jeedom***************\n": "***************Fin de la copia de seguridad de Jeedom***************",
-        "Echec lors de la compression de la sauvegarde. Sauvegarde introuvable : ": "Echec lors de la compression de la sauvegarde. Sauvegarde introuvable :",
-        "Erreur durant la sauvegarde : ": "Erreur durant la sauvegarde :",
-        "Détails : ": "Détails :",
-        "Persistance du cache : \n": "Persistance du cache :"
+        "Echec lors de la compression de la sauvegarde. Sauvegarde introuvable : ": "Error durante la compresión del Backup. Backup. Backup no encontrado",
+        "Erreur durant la sauvegarde : ": "Error durante el backup :",
+        "Détails : ": "Detalles :",
+        "Persistance du cache : \n": "Persistencia de la cache :"
     },
     "desktop/php/dashboard.php": {
         "Liste objets": "Lista de objetos",
@@ -239,7 +239,7 @@
         "Générale": "General",
         "Détaillée": "Detallado",
         "Ouverture d'un ticket": "Abrir un ticket",
-        "Rapport": "Rapport"
+        "Rapport": "Reporte"
     },
     "desktop/php/message.php": {
         "Vider": "Vaciar",
@@ -306,13 +306,13 @@
         "Démon": "Demonio",
         "Installation": "Instalación",
         "Configuration": "Configuración ",
-        "Fonctionalités": "Fonctionalités",
+        "Fonctionalités": "Características",
         "Panel": "Panel"
     },
     "core/class/interactQuery.class.php": {
-        "J'ai une correspondance  : ": "J'ai une correspondance  :",
-        " avec ": "avec",
-        "Correspondance trop éloigné : ": "Correspondance trop éloigné :",
+        "J'ai une correspondance  : ": "Tiene una correspondencia :",
+        " avec ": "con",
+        "Correspondance trop éloigné : ": "Correspondencia demasiado antigua :",
         "Désolé je n'ai pas compris": "Lo siento no entendí",
         "Désolé je n'ai pas compris la demande": "Lo siento, no entiendo la solicitud",
         "Désolé je ne comprends pas la demande": "Lo siento, no entiendo la solicitud",
@@ -321,25 +321,25 @@
         " je n'ai pas compris": "No entendí",
         " je n'ai pas compris ta demande": "No comprendí tu demanda",
         "aucune valeur": "ningún valor",
-        "J'ai executé ": "J'ai executé",
+        "J'ai executé ": "Ejecutar",
         " de ": "de",
-        " dans ": "dans",
+        " dans ": "en",
         "C'est fait": "Hecho",
-        "Erreur : ": "Erreur :"
+        "Erreur : ": "Error :"
     },
     "desktop/php/log.php": {
         "Rechercher": "Buscar",
-        "Supprimer tous": "Supprimer tous",
+        "Supprimer tous": "Borrar todos",
         "Supprimer": "Borrar",
         "Vider": "Vaciar",
         "Télécharger": "Descargar",
         "Pause": "Pausa"
     },
     "core/class/cache.class.php": {
-        "Inconnu": "Inconnu"
+        "Inconnu": "Desconocido"
     },
     "/var/www/html/desktop/php/administration.php": {
-        "objets": "objets"
+        "objets": "objetos"
     },
     "desktop/php/administration.php": {
         "Configuration générale": "Configuración general",
@@ -365,28 +365,28 @@
         "Indique à Jeedom de ne pas prendre en compte l'heure du système": "Indicar a Jeedom que no tenga en cuenta la hora de sistema",
         "Ignorer la vérification de l'heure": "Ignorar la verificación de tiempo",
         "Clefs API": "Claves API",
-        "Accès API HTTP": "Accès API HTTP",
+        "Accès API HTTP": "Acceso API HTTP",
         "Activé": "Activado",
-        "IP blanche": "IP blanche",
+        "IP blanche": "IP en blanco",
         "Localhost": "Localhost",
         "Désactivé": "Desactivado",
-        "Accès API JSONRPC": "Accès API JSONRPC",
-        "Accès API TTS": "Accès API TTS",
+        "Accès API JSONRPC": "Acceso API JSONRPC",
+        "Accès API TTS": "Acceso API TTS",
         "Clef API globale de Jeedom": "Clave API global de Jeedom",
         "Clef API": "Clave API",
         "Clef API Pro de Jeedom": "Clave API Pro Jeedom",
         "Clef API Pro": "Clave API pro",
-        "Accès API": "Accès API",
+        "Accès API": "Accesp API",
         "Clef API pour le plugin": "Clave API para el plugin",
         "Système (OS)": "Sistema Operativo (SO)",
         "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à Jeedom. L'équipe Jeedom se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "PRECAUCIÓN: Estas operaciones conllevan riesgo, puede perder el acceso a su sistema y Jeedom. El equipo de Jeedom se reserva el derecho de rechazar cualquier solicitud de soporte en caso de una mala utilización.",
         "Accès à l'interface d'administration": "Acceso a la interfaz de administración",
         "Lancer": "Lanzamiento",
-        "Securité": "Securité",
-        "Nombre d'échec toléré": "Nombre d'échec toléré",
-        "Temps maximum entre les échecs (s)": "Temps maximum entre les échecs (s)",
-        "Durée du bannissement (s), -1 pour infini": "Durée du bannissement (s), -1 pour infini",
-        "IP \"blanche\"": "IP \"blanche\"",
+        "Securité": "Seguridad",
+        "Nombre d'échec toléré": "Número de error tolerado",
+        "Temps maximum entre les échecs (s)": "Tiempo máximo entre el/los error (s)",
+        "Durée du bannissement (s), -1 pour infini": "Duración del baneo (s), -1 para siempre",
+        "IP \"blanche\"": "IP \"en Blanco\"",
         "IP": "IP",
         "Date": "Fecha",
         "Date de fin": "Fecha de fin",
@@ -435,7 +435,7 @@
         "6 mois": "6 meses",
         "3 mois": "3 meses",
         "1 mois": "1 mes",
-        "1 semaine": "1 semaine",
+        "1 semaine": "1 semana",
         "1 jour": "1 día",
         "Push": "Push",
         "URL de push globale": "Url de push global",
@@ -450,8 +450,8 @@
         "Port Memcache": "Puerto Memcache",
         "Adresse Redis": "Dirección Redis",
         "Port redis": "Puerto Redis",
-        "Nettoyer le cache": "Nettoyer le cache",
-        "Nettoyer": "Nettoyer",
+        "Nettoyer le cache": "Limpiar la caché",
+        "Nettoyer": "Limpiar",
         "Vider toutes les données en cache": "Vaciar todos los datos de la caché",
         "Vider": "Vaciar",
         "Temps de pause pour le long polling": "Tiempo de pausa para polling largo",
@@ -459,23 +459,23 @@
         "Général": "General",
         "Plus la sensibilité est basse (proche de 1) plus la corrrespondance doit être exacte": "Cuanto más baaja sea la sensibilidad (cercana a 1) más exacta será la correspondencia",
         "Sensibilité": "Sensibilidad",
-        "1 mot": "1 mot",
-        "2 mots": "2 mots",
-        "3 mots": "3 mots",
-        "Réduire le poid de": "Réduire le poid de",
-        "4 mots": "4 mots",
+        "1 mot": "1 mes",
+        "2 mots": "2 meses",
+        "3 mots": "3 meses",
+        "Réduire le poid de": "Reducir el peso de",
+        "4 mots": "4 meses",
         "Ne pas répondre si l'interaction n'est pas comprise": "No responder si la interacción no es entendida",
         "Regex général d'exclusion pour les interactions": "Expresión regular de exclusión para las interacciones",
-        "Interaction automatique & contextuelle": "Interaction automatique & contextuelle",
-        "Activer les interactions automatique": "Activer les interactions automatique",
-        "Activer les réponses contextuelle": "Activer les réponses contextuelle",
-        "Réponse contextuelle prioritaire si la phrase commence par": "Réponse contextuelle prioritaire si la phrase commence par",
-        "Découper une interaction en 2 si elle contient": "Découper une interaction en 2 si elle contient",
-        "Synonyme pour les objets": "Synonyme pour les objets",
-        "Synonyme pour les équipements": "Synonyme pour les équipements",
-        "Synonyme pour les commandes": "Synonyme pour les commandes",
-        "Synonyme pour les résumé": "Synonyme pour les résumé",
-        "Couleurs": "Couleurs",
+        "Interaction automatique & contextuelle": "Interacción automática y contextual ",
+        "Activer les interactions automatique": "Activar las interacciones automáticas",
+        "Activer les réponses contextuelle": "Activar las respuestas contextuales ",
+        "Réponse contextuelle prioritaire si la phrase commence par": "Respuesta contextual prioritaria si la frase comienza por ",
+        "Découper une interaction en 2 si elle contient": "Cortar una interacción en 2 si contiene",
+        "Synonyme pour les objets": "Sinónimos para objetos",
+        "Synonyme pour les équipements": "Sinónimos para dispositivos",
+        "Synonyme pour les commandes": "Sinónimos para los comandos ",
+        "Synonyme pour les résumé": "Sinónimos para el resumen",
+        "Couleurs": "Colores",
         "Nom": "Nombre",
         "Code HTML": "Código HTML",
         "Configuration des résumés d'objet": "Configuración de los resúmenes de objeto",
@@ -486,13 +486,13 @@
         "Méthode de comptage": "Método de conteo",
         "Affiché si valeur égale 0": "Si aparece el valor 0",
         "Liée à un virtuel": "Ligado a un virtual",
-        "Configuration des logs, messages & alertes": "Configuration des logs, messages & alertes",
+        "Configuration des logs, messages & alertes": "Configuración de los logs, mensajes y alertas",
         "Messages": "Mensajes",
         "Ajouter un message à chaque erreur dans les logs": "Añadir un mensaje a cada error en los registros",
         "Commande d'information utilisateur": "Orden de información usuario",
         "Alertes": "Alertas",
-        "Ajouter un message à chaque": "Ajouter un message à chaque",
-        "Commande sur": "Commande sur",
+        "Ajouter un message à chaque": "Añadir un mensaje a cada uno",
+        "Commande sur": "Comando sobre",
         "Log": "Registro",
         "Moteur de log": "Motor de registro",
         "Defaut": "General",
@@ -535,21 +535,21 @@
         "Activer": "Activar",
         "Tester": "Probar",
         "Sauvegarder": "Guardar",
-        "Configuration des rapports": "Configuration des rapports",
-        "Delai d'attente après génération de la page (en ms)": "Delai d'attente après génération de la page (en ms)",
-        "Largeur des rapport (en px)": "Largeur des rapport (en px)",
-        "Hauteur des rapport (en px)": "Hauteur des rapport (en px)",
-        "Largeur minimal (en px)": "Largeur minimal (en px)",
-        "Hauteur minimal (en px)": "Hauteur minimal (en px)",
-        "Nettoyer les rapport plus viex de (jours)": "Nettoyer les rapport plus viex de (jours)",
-        "Système de fichier (/tmp/jeedom/cache)": "Système de fichier (/tmp/jeedom/cache)",
+        "Configuration des rapports": "Configuración de reportes",
+        "Delai d'attente après génération de la page (en ms)": "Tiempo de espera después de generar la página (en ms)",
+        "Largeur des rapport (en px)": "Ancho del reporte (en px)",
+        "Hauteur des rapport (en px)": "Alto del reporte (en px)",
+        "Largeur minimal (en px)": "Ancho mínimo (en px)",
+        "Hauteur minimal (en px)": "Alto mínimo (en px)",
+        "Nettoyer les rapport plus viex de (jours)": "Limpiar los informes de más de (días)",
+        "Système de fichier (/tmp/jeedom/cache)": "Sistema de archivos (/tmp/jeedom/cache)",
         "Démarré : ": "Iniciado:",
-        "Configuration des graphiques de lien": "Configuration des graphiques de lien",
-        "Profondeur pour les scénarios": "Profondeur pour les scénarios",
-        "Profondeur pour les équipements": "Profondeur pour les équipements",
-        "Profondeur pour les commandes": "Profondeur pour les commandes",
-        "Profondeur pour les objets": "Profondeur pour les objets",
-        "Profondeur pour les variables": "Profondeur pour les variables"
+        "Configuration des graphiques de lien": "Configuración de gráficos de enlace",
+        "Profondeur pour les scénarios": "Profundidad para escenarios",
+        "Profondeur pour les équipements": "Profundidad para los dispositivos",
+        "Profondeur pour les commandes": "Profundidad para los comandos",
+        "Profondeur pour les objets": "Profundidad para los objetos",
+        "Profondeur pour les variables": "Profundidad para las variables"
     },
     "desktop/js/administration.js": {
         "Etes-vous sûr de vouloir réinitialiser la clef API de ": "Está seguro de que desea restablecer la clave de la API de",
@@ -559,7 +559,7 @@
         "Connexion échouée :": "Conexión en error",
         "Connexion réussie": "Conexión exitosa",
         "Cache vidé": "Caché vaciado",
-        "Cache nettoyé": "Cache nettoyé",
+        "Cache nettoyé": "Limpieza de Cache",
         "Test réussi": "Test superado",
         "Administration système": "Administración del sistema",
         "Création des commandes virtuel réussies": "Creación de órdenes virtuales correcta",
@@ -601,8 +601,8 @@
         "Limiter aux commandes appartenant à l'objet": "Limitar a comandos que pertenecen al objeto",
         "Limiter aux plugins": "Limitar plugins",
         "Limiter aux categories": "Limitar categorías",
-        "Sans catégorie": "Sans catégorie",
-        "Limiter aux visibles": "Limiter aux visibles",
+        "Sans catégorie": "Sin categoría",
+        "Limiter aux visibles": "Limitar los visibles",
         "Limiter à l'équipement": "Limitar al dispositivo",
         "Tous": "Todos",
         "Action": "Acción",
@@ -617,7 +617,7 @@
         "Sauvegarde effectuée avec succès": "Guardado correctamente",
         "Suppression effectuée avec succès": "Borrado finalizado con éxito",
         "Tester les interactions": "Probar las interacciones ",
-        "Sauvegarde réussie avec succès": "Sauvegarde réussie avec succès",
+        "Sauvegarde réussie avec succès": "Backup generado con éxito",
         "Etes-vous sûr de vouloir regénérer toutes les interations (cela peut être très long) ?": "¿ Está seguro que desea volver a generar todas las interacciones (esto puede llevar mucho tiempo) ?",
         "Toutes les interations ont été regénérées": "Todas las interacciones se han actualizado",
         "Etes-vous sûr de vouloir supprimer l\\'interaction": "¿Seguro que quieres eliminar la interacción ",
@@ -877,8 +877,8 @@
         "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte": "Permite ver una pequeña advertencia en todos los navegadores que tienen una página abierta de jeedom. Puedes también elegir 4 niveles de alertas",
         "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page jeedom d'ouvert.": "Permite ver un Pop-up que debe ser validada absolutamente en todos los navegadores que tienen una página abierta de jeedom.",
         "Valider": "Validar",
-        "Rapport": "Rapport",
-        "Permet d'envoyer par une commande message un rapport d'une vue, d'un design ou d'un panel en PNG/PDF/JPEG/SVG.": "Permet d'envoyer par une commande message un rapport d'une vue, d'un design ou d'un panel en PNG/PDF/JPEG/SVG.",
+        "Rapport": "Reporte",
+        "Permet d'envoyer par une commande message un rapport d'une vue, d'un design ou d'un panel en PNG/PDF/JPEG/SVG.": "Permite enviar un mensaje de comando un reporte de vista, un diseño o un panel en PNG/PDF/JPEG/SVG.",
         "Graphique": "Gráfico",
         "Liens": "Enlaces"
     },
@@ -892,7 +892,7 @@
         "Avancée": "Avanzada",
         "Etes-vous sûr de vouloir supprimer le scénario": "Está seguro de querer borrar la escena",
         "Lancement du scénario réussi": "Ejecución de escena realizada con éxito",
-        "Arrêt du scénario réussi": "Arrêt du scénario réussi",
+        "Arrêt du scénario réussi": "Parada de escenario corracta",
         "Variables des scénarios": "Variables de las escenas",
         "Testeur d'expression": "Comprobar expresión",
         "Résumé scénario": "Resumen de escenario",
@@ -924,7 +924,7 @@
         "Permet d\\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)": "Añada elementos funcionales esenciales para crear sus escenas (por ejemplo. SI/ENTONCES...)",
         "Ajouter bloc": "Añadir el bloque",
         "Inactif": "Inactivo",
-        "Sauvegarde du scénario réussi": "Sauvegarde du scénario réussi",
+        "Sauvegarde du scénario réussi": "Salvado de escenario correcto",
         "Evénement": "Evento",
         "Choisir une commande": "Elija una orden",
         "Choisir une variable": "Elija una variable",
@@ -949,13 +949,13 @@
         "FAIRE": "HACER",
         "CODE": "CODIGO",
         "ACTION": "ACCIÓN",
-        "Graphique de lien": "Graphique de lien"
+        "Graphique de lien": "Gráfico de enlace"
     },
     "core/template/scenario/report.default": {
         "Vue": "Vista",
         "Commandes": "Órdenes",
         "Sélectionner la commande": "Seleccione el comando",
-        "Exporter en": "Exporter en",
+        "Exporter en": "Exportar en",
         "PDF": "PDF",
         "PNG": "PNG",
         "JPEG": "JPEG",
@@ -982,10 +982,10 @@
         "Log vidés avec succès": "Registro vaciado con éxito"
     },
     "__FILE": {
-        "[jeedom] Rapport ": "[jeedom] Rapport",
+        "[jeedom] Rapport ": "[jeedom] Reporte",
         " du ": "del",
-        "Veuillez trouver ci-joint le rapport ": "Veuillez trouver ci-joint le rapport",
-        " généré le ": "généré le"
+        "Veuillez trouver ci-joint le rapport ": "Por favor, adjunta el informe",
+        " généré le ": "generados el"
     },
     "desktop/php/view_edit.php": {
         "Créer une vue": "Crear una vista",
@@ -1001,7 +1001,7 @@
         "Type": "Tipo",
         "Widget": "Widget",
         "Graphique": "Gráfico",
-        "Tableau": "Tableau",
+        "Tableau": "Panel",
         "Annuler": "Cancelar"
     },
     "desktop/js/view_edit.js": {
@@ -1108,15 +1108,15 @@
         "Vues": "Vistas",
         "Design": "Diseño",
         "Rechercher": "Buscar",
-        "Rapport": "Rapport",
+        "Rapport": "Reporte",
         "Général": "General",
         "Supprimer": "Borrar",
         "Nom": "Nombre",
         "Chemin": "Camino",
         "Télécharger": "Descargar",
         "Tout supprimer": "Borrar todo",
-        "Extension": "Extension",
-        "Id rapport": "Id rapport",
+        "Extension": "Extensión",
+        "Id rapport": "id reporte",
         "Plugin": "Plugin",
         "Aperçu": "Visión de conjunto"
     },
@@ -1148,8 +1148,8 @@
         "Supprimer l'image": "Borrar la imagen",
         "Tailles": "Tamaños",
         "Taille (LxH)": "Tamaño (ancho x alto)",
-        "Image supprimée": "Image supprimée",
-        "Design sauvegardé": "Design sauvegardé"
+        "Image supprimée": "Imagen suprimida",
+        "Design sauvegardé": "Diseño salvado "
     },
     "desktop/modal/cmd.history.php": {
         "Attention une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher": "Atención una banda de fechas demasiada grande  puede tardar mucho en ser calculada o hasta no mostrarse",
@@ -1167,10 +1167,10 @@
         "Moyenne par mois": "Promedio por mes",
         "Minimum par mois": "Mínimo al mes",
         "Maximum par mois": "Máximo al mes",
-        "Sommes par année": "Sommes par année",
-        "Moyenne par année": "Moyenne par année",
-        "Minimum par année": "Minimum par année",
-        "Maximum par année": "Maximum par année",
+        "Sommes par année": "Cantidad por años",
+        "Moyenne par année": "Promedio por año",
+        "Minimum par année": "Mínimo por año",
+        "Maximum par année": "Máximo por año",
         "Ligne": "Línea",
         "Aire": "Area",
         "Colonne": "Columna",
@@ -1216,7 +1216,7 @@
         "Etes vous sûr de vouloir supprimer ce plugin ?": "¿ Seguro que quieres eliminar el plugin ?",
         "Market": "Market",
         "Sauvegarde de la configuration des panels effectuée": "Copia de seguridad de la configuración de paneles efectuada",
-        "Sauvegarde des fonctionalités effectuée": "Sauvegarde des fonctionalités effectuée",
+        "Sauvegarde des fonctionalités effectuée": "Salvado de características efectuada",
         "Sauvegarde de la configuration des logs effectuée": "Copia de seguridad de la configuracion de los logs hecho",
         "Log du plugin": "Registro del plugin",
         "Sauvegarde effectuée": "Guardado correctamente",
@@ -1226,7 +1226,7 @@
         "Market Jeedom": "Market Jeedom"
     },
     "desktop/js/report.js": {
-        "Aucun aperçu possible en pdf": "Aucun aperçu possible en pdf"
+        "Aucun aperçu possible en pdf": "No hay descripción posible en pdf"
     },
     "core/js/plugin.template.js": {
         "Configuration du plugin": "Configuración del plugin",
@@ -1259,7 +1259,7 @@
         "Envoi des sauvegardes": "Envío de Backups",
         "Sauvegarder": "Guardar",
         "Informations": "Información",
-        "Envoyer la sauvegarde locale sélectionnée": "Envoyer la sauvegarde locale sélectionnée"
+        "Envoyer la sauvegarde locale sélectionnée": "Enviar el backup local seleccionado"
     },
     "desktop/js/backup.js": {
         "Sauvegarde réussie": "Copa de seguridad realizada con éxito",
@@ -1272,7 +1272,7 @@
         "Etes-vous sûr de vouloir restaurer Jeedom avec la sauvegarde Cloud": "¿Seguro que desea restaurar Jeedom con la copia de seguridad de la nube?",
         "L\\'opération est réussie": "Operación realizada con éxito",
         "L\\'opération a échoué": "La operación falló",
-        "Etes-vous sûr de vouloir envoyer une sauvegarde de Jeedom sur le cloud ? Une fois lancée cette opération ne peut être annulée": "Etes-vous sûr de vouloir envoyer une sauvegarde de Jeedom sur le cloud ? Une fois lancée cette opération ne peut être annulée"
+        "Etes-vous sûr de vouloir envoyer une sauvegarde de Jeedom sur le cloud ? Une fois lancée cette opération ne peut être annulée": "¿Está seguro que desea enviar un Backup de Jeedom en la nube? Una vez iniciada esta operación no se puede deshacer"
     },
     "desktop/php/user.php": {
         "Liste des utilisateurs :": "Lista de los usuarios:",
@@ -1299,16 +1299,16 @@
         "Modification effectuée": "Modificación realizada",
         "Actif": "Activo",
         "Local seulement": "Solo Local",
-        "Administrateur": "Administrateur",
+        "Administrateur": "Adminitrador",
         "Utilisateur": "Usuario",
-        "Utilisateur limité": "Utilisateur limité",
+        "Utilisateur limité": "Usuario limitado",
         "OK": "OK",
         "NOK": "NOK",
         "Renouveler la clef API": "Renovar clave de API",
-        "Regenérer clef API": "Regenérer clef API",
+        "Regenérer clef API": "Regenerar clave API",
         "Supprimer": "Borrar",
         "Changer le mot de passe": "Cambiar la contraseña",
-        "Gerer les droits": "Gerer les droits"
+        "Gerer les droits": "Gestión de permisos"
     },
     "desktop/modal/log.display.php": {
         "Supprimer": "Borrar",
@@ -1360,7 +1360,7 @@
         "Programmation": "Programación",
         "Timeout (min)": "Timeout (min)",
         "Dernier lancement": "Última ejecución",
-        "Derniere durée": "Derniere durée",
+        "Derniere durée": "Duración últimos",
         "Statut": "Estado"
     },
     "desktop/js/cron.js": {
@@ -1437,7 +1437,7 @@
         "Icône": "Icono",
         "Alerte": "Alerta",
         "Pop-up": "Pop-up",
-        "Rapport": "Rapport",
+        "Rapport": "Reporte",
         "Pause de x seconde(s)": "Pausa de x segundo(s)",
         "Attend jusqu’à ce que la condition soit valide (maximum 2h)": "Espera hasta que la condición sea válida (máximo 2 horas)",
         "Création/modification d’une variable ou de la valeur d’une variable": "Crear/modificar una variable o valor de una variable",
@@ -1454,7 +1454,7 @@
         "Permet d'affecter une icone au scénario": "Asignar un icono al escenario",
         "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte": "Permite ver una pequeña advertencia en todos los navegadores que tienen una página abierta de jeedom. Puedes también elegir 4 niveles de alertas",
         "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page jeedom d'ouvert.": "Permite ver un Pop-up que debe ser validada absolutamente en todos los navegadores que tienen una página abierta de jeedom.",
-        "Permet d'envoyer par une commande message un rapport d'une vue, d'un design ou d'un panel en PNG/PDF/JPEG/SVG.": "Permet d'envoyer par une commande message un rapport d'une vue, d'un design ou d'un panel en PNG/PDF/JPEG/SVG."
+        "Permet d'envoyer par une commande message un rapport d'une vue, d'un design ou d'un panel en PNG/PDF/JPEG/SVG.": "Permite enviar un mensaje de comando un reporte de vista, un diseño o un panel en PNG/PDF/JPEG/SVG."
     },
     "core/template/scenario/scenario.default": {
         "Scénario": "Escena",
@@ -1466,7 +1466,7 @@
         "Désactiver": "Desactivar"
     },
     "core/template/scenario/icon.default": {
-        "Rechercher icône": "Rechercher icône"
+        "Rechercher icône": "Buscar icono"
     },
     "mobile/html/connection.html": {
         "Nom d'utilisateur": "Nombre de usuario",
@@ -1505,10 +1505,10 @@
         "Moyenne par mois": "Promedio por mes",
         "Minimum par mois": "Mínimo al mes",
         "Maximum par mois": "Máximo al mes",
-        "Sommes par année": "Sommes par année",
-        "Moyenne par année": "Moyenne par année",
-        "Minimum par année": "Minimum par année",
-        "Maximum par année": "Maximum par année",
+        "Sommes par année": "Cantidades por año",
+        "Moyenne par année": "Promedio por año",
+        "Minimum par année": "Mínimo por año",
+        "Maximum par année": "Máximo por año",
         "Ligne": "Línea",
         "Areaspline": "Areaspline",
         "Barre": "Barra",
@@ -1570,7 +1570,7 @@
         "Configuration de la commande": "Configuración del mando",
         "Logs": "Registros",
         "Liens": "Enlaces",
-        "Graphique des liens": "Graphique des liens"
+        "Graphique des liens": "Gráfico de enlaces"
     },
     "desktop/modal/cmd.configure.php": {
         "Enregistrer": "Grabar",
@@ -1588,8 +1588,8 @@
         "Type": "Tipo",
         "Sous-type": "Sub-tipo",
         "Valeur": "Valor",
-        "Date collecte": "Date collecte",
-        "Date valeur": "Date valeur",
+        "Date collecte": "Fecha de colección",
+        "Date valeur": "Fecha valor",
         "URL directe": "URL directa",
         "Unité": "Unidad",
         "Commande déclenchant une mise à jour": "Orden activando una actualización",
@@ -1610,7 +1610,7 @@
         "Generic": "Genérico",
         "Lumière": "Luz",
         "Mode": "Modo",
-        "Portail/Garage": "Portail/Garage",
+        "Portail/Garage": "Puerta/Garaje",
         "Prise": "Enchufe",
         "Serrure": "Cerrar",
         "Sirène": "Sirena",
@@ -1636,10 +1636,10 @@
         "7 jours": "7 días",
         "1 mois": "1 mes",
         "6 mois": "6 meses",
-        "Gestion des valeurs": "Gestion des valeurs",
-        "Valeurs interdites (séparé par \";\")": "Valeurs interdites (séparé par \";\")",
-        "Valeur retour d'état": "Valeur retour d'état",
-        "Durée avant retour d'état (min)": "Durée avant retour d'état (min)",
+        "Gestion des valeurs": "Gestión de valores",
+        "Valeurs interdites (séparé par \";\")": "Valores prohibidos (separador por \";\")",
+        "Valeur retour d'état": "Valor retorno de estado",
+        "Durée avant retour d'état (min)": "Duración antes del retorno de estado (min)",
         "Autres": "Otros",
         "Gestion de la répétition des valeurs": "Gestión de la repetición de valores",
         "Automatique": "Automático",
@@ -1657,8 +1657,8 @@
         "Vue mobile": "Vista movil",
         "Niveau": "Nivel",
         "En": "En",
-        "si (#value# pour la valeur)": "si (#value# pour la valeur)",
-        "Pendant plus de (en min, laisser vide pour immediat)": "Pendant plus de (en min, laisser vide pour immediat)",
+        "si (#value# pour la valeur)": "si (#value# para el valor)",
+        "Pendant plus de (en min, laisser vide pour immediat)": "Durante más de (en minutos, en blanco para ahora)",
         "Widget": "Widget",
         "Vue": "Vista",
         "Afficher le nom": "Mostrar el nombre",
@@ -1688,7 +1688,7 @@
         "Action avant exécution de la commande": "Acción antes de la ejecución de la orden",
         "Action après exécution de la commande": "Después de ejecutar la acción de la orden",
         "Liens": "Enlaces",
-        "Graphique des liens": "Graphique des liens",
+        "Graphique des liens": "Gráfico de enlaces",
         "Copie des données historisé": "Copia de los datos archivados",
         "Copier l'historique de cette commande sur une autre commande": "Copiar el histórico de esta orden en otra orden"
     },
@@ -1723,7 +1723,7 @@
         "Etes-vous sûr de vouloir supprimer l\\'objet": "¿Seguro que desea borrar el objeto?",
         "Commande": "Comando",
         "Inverser": "Invertir",
-        "Graphique des liens": "Graphique des liens"
+        "Graphique des liens": "Gráfico de enlaces"
     },
     "desktop/modal/icon.selector.php": {
         "Rechercher": "Buscar",
@@ -1752,7 +1752,7 @@
         "Action": "Acción",
         "Data store supprimé": "Data store borrado",
         "Data store sauvegardé": "Data store guardado",
-        "Graphique de lien": "Graphique de lien"
+        "Graphique de lien": "Gráfico de enlace"
     },
     "core/class/dataStore.class.php": {
         "Variable :": "Variable :"
@@ -1769,7 +1769,7 @@
         "Téléchargement de ": "Descarga de"
     },
     "core/class/network.class.php": {
-        "Le plugin openvpn doit être actif": "Le plugin openvpn doit être actif"
+        "Le plugin openvpn doit être actif": "El plugin openvpn debe estar activo"
     },
     "core/repo/market.display.repo.php": {
         "Nom": "Nombre",
@@ -1794,25 +1794,25 @@
         "Objet installé avec succès": "Objeto instalado con éxito"
     },
     "core/class/view.class.php": {
-        "Vue :": "Vue :"
+        "Vue :": "Vista :"
     },
     "core/class/planHeader.class.php": {
-        "Design :": "Design :"
+        "Design :": "Diseño :"
     },
     "desktop/modal/plan.configure.php": {
         "Général": "General",
         "Sauvegarder": "Guardar",
         "Taille du widget": "Tamaño del widget",
         "Profondeur": "Profundidad",
-        "Niveau 0": "Niveau 0",
-        "Niveau 1": "Niveau 1",
-        "Niveau 2": "Niveau 2",
-        "Niveau 3": "Niveau 3",
+        "Niveau 0": "Nivel 0",
+        "Niveau 1": "Nivel 1",
+        "Niveau 2": "Nivel 2",
+        "Niveau 3": "Nivel 3",
         "Position X (%)": "Posición X (%)",
         "Position Y (%)": "Posición Y (%)",
-        "Largeur (px)": "Largeur (px)",
-        "Hauteur (px)": "Hauteur (px)",
-        "Spécifique": "Spécifique",
+        "Largeur (px)": "Ancho (px)",
+        "Hauteur (px)": "Alto (px)",
+        "Spécifique": "Especifico",
         "Afficher": "Mostrar",
         "Image": "Imagen",
         "Caméra": "Cámara",
@@ -1844,16 +1844,16 @@
         "Gras": "En negrita",
         "Normal": "Normal",
         "Texte": "Texto",
-        "Type de zone": "Type de zone",
+        "Type de zone": "Tipo de zona",
         "Macro simple": "Macro simple",
-        "Macro binaire": "Macro binaire",
-        "Widget au survol": "Widget au survol",
+        "Macro binaire": "Macro binario ",
+        "Widget au survol": "Resumen del Widget",
         "Action": "Acción",
         "Equipement": "Dispositivos",
-        "Afficher au survole": "Afficher au survole",
-        "Afficher sur un clic": "Afficher sur un clic",
-        "Information binaire": "Information binaire",
-        "Action on": "Action on",
-        "Action off": "Action off"
+        "Afficher au survole": "Mostrar resumen ",
+        "Afficher sur un clic": "Mostrar en un clic",
+        "Information binaire": "Información binaria",
+        "Action on": "Acción on",
+        "Action off": "Acción off"
     }
 }
