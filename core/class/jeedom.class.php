@@ -763,13 +763,6 @@ class jeedom {
 			} catch (Error $e) {
 
 			}
-			try {
-
-			} catch (Exception $e) {
-
-			} catch (Error $e) {
-
-			}
 		}
 	}
 
