@@ -876,124 +876,6 @@
         ]
     },
     {
-        "name": "symfony/expression-language",
-        "version": "v2.8.18",
-        "version_normalized": "2.8.18.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/symfony/expression-language.git",
-            "reference": "3d63ca2b4ccf670726f10764a9db4553b97fe136"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/symfony/expression-language/zipball/3d63ca2b4ccf670726f10764a9db4553b97fe136",
-            "reference": "3d63ca2b4ccf670726f10764a9db4553b97fe136",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.9"
-        },
-        "time": "2017-02-24 13:57:05",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "2.8-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Symfony\\Component\\ExpressionLanguage\\": ""
-            },
-            "exclude-from-classmap": [
-                "/Tests/"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Fabien Potencier",
-                "email": "fabien@symfony.com"
-            },
-            {
-                "name": "Symfony Community",
-                "homepage": "https://symfony.com/contributors"
-            }
-        ],
-        "description": "Symfony ExpressionLanguage Component",
-        "homepage": "https://symfony.com"
-    },
-    {
-        "name": "guzzlehttp/psr7",
-        "version": "1.4.1",
-        "version_normalized": "1.4.1.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/guzzle/psr7.git",
-            "reference": "0d6c7ca039329247e4f0f8f8f6506810e8248855"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/guzzle/psr7/zipball/0d6c7ca039329247e4f0f8f8f6506810e8248855",
-            "reference": "0d6c7ca039329247e4f0f8f8f6506810e8248855",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.4.0",
-            "psr/http-message": "~1.0"
-        },
-        "provide": {
-            "psr/http-message-implementation": "1.0"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "~4.0"
-        },
-        "time": "2017-02-27 10:51:17",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.4-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "GuzzleHttp\\Psr7\\": "src/"
-            },
-            "files": [
-                "src/functions_include.php"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Michael Dowling",
-                "email": "mtdowling@gmail.com",
-                "homepage": "https://github.com/mtdowling"
-            },
-            {
-                "name": "Tobias Schultze",
-                "homepage": "https://github.com/Tobion"
-            }
-        ],
-        "description": "PSR-7 message implementation that also provides common utility methods",
-        "keywords": [
-            "http",
-            "message",
-            "request",
-            "response",
-            "stream",
-            "uri",
-            "url"
-        ]
-    },
-    {
         "name": "guzzlehttp/guzzle",
         "version": "6.2.3",
         "version_normalized": "6.2.3.0",
@@ -1056,68 +938,6 @@
             "rest",
             "web service"
         ]
-    },
-    {
-        "name": "symfony/event-dispatcher",
-        "version": "v2.8.18",
-        "version_normalized": "2.8.18.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/symfony/event-dispatcher.git",
-            "reference": "bb4ec47e8e109c1c1172145732d0aa468d967cd0"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/bb4ec47e8e109c1c1172145732d0aa468d967cd0",
-            "reference": "bb4ec47e8e109c1c1172145732d0aa468d967cd0",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.9"
-        },
-        "require-dev": {
-            "psr/log": "~1.0",
-            "symfony/config": "^2.0.5|~3.0.0",
-            "symfony/dependency-injection": "~2.6|~3.0.0",
-            "symfony/expression-language": "~2.6|~3.0.0",
-            "symfony/stopwatch": "~2.3|~3.0.0"
-        },
-        "suggest": {
-            "symfony/dependency-injection": "",
-            "symfony/http-kernel": ""
-        },
-        "time": "2017-02-21 08:33:48",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "2.8-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Symfony\\Component\\EventDispatcher\\": ""
-            },
-            "exclude-from-classmap": [
-                "/Tests/"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Fabien Potencier",
-                "email": "fabien@symfony.com"
-            },
-            {
-                "name": "Symfony Community",
-                "homepage": "https://symfony.com/contributors"
-            }
-        ],
-        "description": "Symfony EventDispatcher Component",
-        "homepage": "https://symfony.com"
     },
     {
         "name": "monolog/monolog",
@@ -1248,5 +1068,247 @@
             "pseudorandom",
             "random"
         ]
+    },
+    {
+        "name": "guzzlehttp/psr7",
+        "version": "1.4.2",
+        "version_normalized": "1.4.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/guzzle/psr7.git",
+            "reference": "f5b8a8512e2b58b0071a7280e39f14f72e05d87c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/guzzle/psr7/zipball/f5b8a8512e2b58b0071a7280e39f14f72e05d87c",
+            "reference": "f5b8a8512e2b58b0071a7280e39f14f72e05d87c",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.4.0",
+            "psr/http-message": "~1.0"
+        },
+        "provide": {
+            "psr/http-message-implementation": "1.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4.0"
+        },
+        "time": "2017-03-20 17:10:46",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.4-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "GuzzleHttp\\Psr7\\": "src/"
+            },
+            "files": [
+                "src/functions_include.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Michael Dowling",
+                "email": "mtdowling@gmail.com",
+                "homepage": "https://github.com/mtdowling"
+            },
+            {
+                "name": "Tobias Schultze",
+                "homepage": "https://github.com/Tobion"
+            }
+        ],
+        "description": "PSR-7 message implementation that also provides common utility methods",
+        "keywords": [
+            "http",
+            "message",
+            "request",
+            "response",
+            "stream",
+            "uri",
+            "url"
+        ]
+    },
+    {
+        "name": "cebe/markdown",
+        "version": "1.1.1",
+        "version_normalized": "1.1.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/cebe/markdown.git",
+            "reference": "c30eb5e01fe021cc5bba2f9ee0eeef96d4931166"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/cebe/markdown/zipball/c30eb5e01fe021cc5bba2f9ee0eeef96d4931166",
+            "reference": "c30eb5e01fe021cc5bba2f9ee0eeef96d4931166",
+            "shasum": ""
+        },
+        "require": {
+            "lib-pcre": "*",
+            "php": ">=5.4.0"
+        },
+        "require-dev": {
+            "cebe/indent": "*",
+            "facebook/xhprof": "*@dev",
+            "phpunit/phpunit": "4.1.*"
+        },
+        "time": "2016-09-14 20:40:20",
+        "bin": [
+            "bin/markdown"
+        ],
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.1.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "cebe\\markdown\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Carsten Brandt",
+                "email": "mail@cebe.cc",
+                "homepage": "http://cebe.cc/",
+                "role": "Creator"
+            }
+        ],
+        "description": "A super fast, highly extensible markdown parser for PHP",
+        "homepage": "https://github.com/cebe/markdown#readme",
+        "keywords": [
+            "extensible",
+            "fast",
+            "gfm",
+            "markdown",
+            "markdown-extra"
+        ]
+    },
+    {
+        "name": "symfony/expression-language",
+        "version": "v2.8.19",
+        "version_normalized": "2.8.19.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/expression-language.git",
+            "reference": "269a0a751f07a58b315f74899a253ead71747f06"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/expression-language/zipball/269a0a751f07a58b315f74899a253ead71747f06",
+            "reference": "269a0a751f07a58b315f74899a253ead71747f06",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.9"
+        },
+        "time": "2017-04-03 23:11:44",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.8-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Symfony\\Component\\ExpressionLanguage\\": ""
+            },
+            "exclude-from-classmap": [
+                "/Tests/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "https://symfony.com/contributors"
+            }
+        ],
+        "description": "Symfony ExpressionLanguage Component",
+        "homepage": "https://symfony.com"
+    },
+    {
+        "name": "symfony/event-dispatcher",
+        "version": "v2.8.19",
+        "version_normalized": "2.8.19.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/event-dispatcher.git",
+            "reference": "88b65f0ac25355090e524aba4ceb066025df8bd2"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/88b65f0ac25355090e524aba4ceb066025df8bd2",
+            "reference": "88b65f0ac25355090e524aba4ceb066025df8bd2",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.9"
+        },
+        "require-dev": {
+            "psr/log": "~1.0",
+            "symfony/config": "^2.0.5|~3.0.0",
+            "symfony/dependency-injection": "~2.6|~3.0.0",
+            "symfony/expression-language": "~2.6|~3.0.0",
+            "symfony/stopwatch": "~2.3|~3.0.0"
+        },
+        "suggest": {
+            "symfony/dependency-injection": "",
+            "symfony/http-kernel": ""
+        },
+        "time": "2017-04-03 20:37:06",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.8-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Symfony\\Component\\EventDispatcher\\": ""
+            },
+            "exclude-from-classmap": [
+                "/Tests/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "https://symfony.com/contributors"
+            }
+        ],
+        "description": "Symfony EventDispatcher Component",
+        "homepage": "https://symfony.com"
     }
 ]

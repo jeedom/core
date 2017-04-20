@@ -15,6 +15,10 @@ class ComposerStaticInitc7412053f01762e82bf4bede3f471ac6
     );
 
     public static $prefixLengthsPsr4 = array (
+        'c' => 
+        array (
+            'cebe\\markdown\\' => 14,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Util\\' => 22,
@@ -58,6 +62,10 @@ class ComposerStaticInitc7412053f01762e82bf4bede3f471ac6
     );
 
     public static $prefixDirsPsr4 = array (
+        'cebe\\markdown\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/cebe/markdown',
+        ),
         'Symfony\\Polyfill\\Util\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-util',
