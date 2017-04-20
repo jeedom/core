@@ -373,8 +373,19 @@ class update {
 
 								}
 							}
+							foreach (explode(',', config::byKey('subClass', $this->getLogicalId()) as $eqLogicType) {
+								foreach (eqLogic::byType($$eqLogicType) as $eqLogic) {
+									try {
+										$eqLogic->remove();
+									} catch (Exception $e) {
+	
+									} catch (Error $e) {
+	
+									}
+								}
+							}
 						}
-						config::remove('*', $this->getLogicalId());
+						explode(',', config::remove('*', $this->getLogicalId());
 					} catch (Exception $e) {
 
 					} catch (Error $e) {
