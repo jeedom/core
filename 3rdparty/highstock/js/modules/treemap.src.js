@@ -1,11 +1,12 @@
 /**
- * @license Highcharts JS v5.0.7 (2017-01-17)
+ * @license Highcharts JS v5.0.10 (2017-03-31)
  *
  * (c) 2014 Highsoft AS
  * Authors: Jon Arild Nygard / Oystein Moseng
  *
  * License: www.highcharts.com/license
  */
+'use strict';
 (function(factory) {
     if (typeof module === 'object' && module.exports) {
         module.exports = factory;
@@ -20,7 +21,6 @@
          *
          * License: www.highcharts.com/license
          */
-        'use strict';
 
         var seriesType = H.seriesType,
             seriesTypes = H.seriesTypes,
@@ -81,6 +81,7 @@
                 headerFormat: '',
                 pointFormat: '<b>{point.name}</b>: {point.value}</b><br/>'
             },
+            ignoreHiddenPoint: true,
             layoutAlgorithm: 'sliceAndDice',
             layoutStartingDirection: 'vertical',
             alternateStartingDirection: false,
@@ -304,8 +305,9 @@
                         x2,
                         y1,
                         y2,
-                        strokeWidth = series.pointAttribs(point)['stroke-width'] || 0,
-                        crispCorr = (strokeWidth % 2) / 2;
+                        crispCorr = 0;
+
+
 
                     // Points which is ignored, have no values.
                     if (values && node.visible) {
@@ -338,8 +340,19 @@
                     point = series.points[node.i];
                     level = series.levelMap[node.levelDynamic];
                     // Select either point color, level color or inherited color.
-                    color = pick(point && point.options.color, level && level.color, color);
-                    colorIndex = pick(point && point.options.colorIndex, level && level.colorIndex, colorIndex);
+                    color = pick(
+                        point && point.options.color,
+                        level && level.color,
+                        color,
+                        series.color
+                    );
+                    colorIndex = pick(
+                        point && point.options.colorIndex,
+                        level && level.colorIndex,
+                        colorIndex,
+                        series.colorIndex
+                    );
+
                     if (point) {
                         point.color = color;
                         point.colorIndex = colorIndex;
@@ -868,9 +881,13 @@
             },
             setState: function(state) {
                 H.Point.prototype.setState.call(this, state);
-                this.graphic.attr({
-                    zIndex: state === 'hover' ? 1 : 0
-                });
+
+                // Graphic does not exist when point is not visible.
+                if (this.graphic) {
+                    this.graphic.attr({
+                        zIndex: state === 'hover' ? 1 : 0
+                    });
+                }
             },
             setVisible: seriesTypes.pie.prototype.pointClass.prototype.setVisible
         });

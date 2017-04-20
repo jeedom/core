@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v5.0.7 (2017-01-17)
+ * @license Highcharts JS v5.0.10 (2017-03-31)
  * GridAxis
  *
  * (c) 2016 Lars A. V. Cabrera
@@ -8,6 +8,7 @@
  *
  * License: www.highcharts.com/license
  */
+'use strict';
 (function(factory) {
     if (typeof module === 'object' && module.exports) {
         module.exports = factory;
@@ -22,7 +23,6 @@
          *
          * License: www.highcharts.com/license
          */
-        'use strict';
 
         var dateFormat = H.dateFormat,
             each = H.each,
@@ -168,11 +168,11 @@
                     })
                     .addClass('highcharts-axis-title')
 
-                .css(axisTitleOptions.style)
+                    .css(axisTitleOptions.style)
 
-                // Add to axisParent instead of axisGroup, to ignore the space
-                // it takes
-                .add(axisParent);
+                    // Add to axisParent instead of axisGroup, to ignore the space
+                    // it takes
+                    .add(axisParent);
                 axis.axisTitle.isNew = true;
             }
 

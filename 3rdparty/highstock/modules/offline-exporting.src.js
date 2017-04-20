@@ -1,11 +1,12 @@
 /**
- * @license Highcharts JS v5.0.7 (2017-01-17)
+ * @license Highcharts JS v5.0.10 (2017-03-31)
  * Client side exporting module
  *
  * (c) 2015 Torstein Honsi / Oystein Moseng
  *
  * License: www.highcharts.com/license
  */
+'use strict';
 (function(factory) {
     if (typeof module === 'object' && module.exports) {
         module.exports = factory;
@@ -22,7 +23,6 @@
          * License: www.highcharts.com/license
          */
 
-        'use strict';
         /*global MSBlobBuilder */
 
         var merge = Highcharts.merge,
@@ -500,7 +500,7 @@
 
         // Extend the default options to use the local exporter logic
         merge(true, Highcharts.getOptions().exporting, {
-            libURL: 'https://code.highcharts.com/5.0.7/lib/',
+            libURL: 'https://code.highcharts.com/5.0.10/lib/',
             buttons: {
                 contextButton: {
                     menuItems: [{

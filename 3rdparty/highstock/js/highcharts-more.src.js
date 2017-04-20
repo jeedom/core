@@ -1,10 +1,11 @@
 /**
- * @license Highcharts JS v5.0.7 (2017-01-17)
+ * @license Highcharts JS v5.0.10 (2017-03-31)
  *
  * (c) 2009-2016 Torstein Honsi
  *
  * License: www.highcharts.com/license
  */
+'use strict';
 (function(factory) {
     if (typeof module === 'object' && module.exports) {
         module.exports = factory;
@@ -14,12 +15,12 @@
 }(function(Highcharts) {
     (function(H) {
         /**
-         * (c) 2010-2016 Torstein Honsi
+         * (c) 2010-2017 Torstein Honsi
          *
          * License: www.highcharts.com/license
          */
-        'use strict';
-        var each = H.each,
+        var CenteredSeriesMixin = H.CenteredSeriesMixin,
+            each = H.each,
             extend = H.extend,
             merge = H.merge,
             splat = H.splat;
@@ -27,48 +28,112 @@
          * The Pane object allows options that are common to a set of X and Y axes.
          *
          * In the future, this can be extended to basic Highcharts and Highstock.
+         *
          */
-        function Pane(options, chart, firstAxis) {
-            this.init(options, chart, firstAxis);
+        function Pane(options, chart) {
+            this.init(options, chart);
         }
 
         // Extend the Pane prototype
         extend(Pane.prototype, {
 
+            coll: 'pane', // Member of chart.pane
+
             /**
              * Initiate the Pane object
              */
-            init: function(options, chart, firstAxis) {
-                var pane = this,
-                    backgroundOption,
-                    defaultOptions = pane.defaultOptions;
+            init: function(options, chart) {
+                this.chart = chart;
+                this.background = [];
 
-                pane.chart = chart;
+                chart.pane.push(this);
+
+                this.setOptions(options);
+            },
+
+            setOptions: function(options) {
 
                 // Set options. Angular charts have a default background (#3318)
-                pane.options = options = merge(defaultOptions, chart.angular ? {
-                    background: {}
-                } : undefined, options);
+                this.options = options = merge(
+                    this.defaultOptions,
+                    this.chart.angular ? {
+                        background: {}
+                    } : undefined,
+                    options
+                );
+            },
 
-                backgroundOption = options.background;
+            /**
+             * Render the pane with its backgrounds.
+             */
+            render: function() {
 
-                // To avoid having weighty logic to place, update and remove the backgrounds,
-                // push them to the first axis' plot bands and borrow the existing logic there.
-                if (backgroundOption) {
-                    each([].concat(splat(backgroundOption)).reverse(), function(config) {
-                        var mConfig,
-                            axisUserOptions = firstAxis.userOptions;
-                        mConfig = merge(pane.defaultBackgroundOptions, config);
+                var options = this.options,
+                    backgroundOption = this.options.background,
+                    renderer = this.chart.renderer,
+                    len,
+                    i;
 
-
-
-                        firstAxis.options.plotBands.unshift(mConfig);
-                        axisUserOptions.plotBands = axisUserOptions.plotBands || []; // #3176
-                        if (axisUserOptions.plotBands !== firstAxis.options.plotBands) {
-                            axisUserOptions.plotBands.unshift(mConfig);
-                        }
-                    });
+                if (!this.group) {
+                    this.group = renderer.g('pane-group')
+                        .attr({
+                            zIndex: options.zIndex || 0
+                        })
+                        .add();
                 }
+
+                this.updateCenter();
+
+                // Render the backgrounds
+                if (backgroundOption) {
+                    backgroundOption = splat(backgroundOption);
+                    len = Math.max(
+                        backgroundOption.length,
+                        this.background.length || 0
+                    );
+
+                    for (i = 0; i < len; i++) {
+                        if (backgroundOption[i]) {
+                            this.renderBackground(
+                                merge(
+                                    this.defaultBackgroundOptions,
+                                    backgroundOption[i]
+                                ),
+                                i
+                            );
+                        } else if (this.background[i]) {
+                            this.background[i] = this.background[i].destroy();
+                            this.background.splice(i, 1);
+                        }
+                    }
+                }
+            },
+
+            /**
+             * Render an individual pane background.
+             * @param  {Object} backgroundOptions Background options
+             * @param  {number} i The index of the background in this.backgrounds
+             */
+            renderBackground: function(backgroundOptions, i) {
+                var method = 'animate';
+
+                if (!this.background[i]) {
+                    this.background[i] = this.chart.renderer.path()
+                        .add(this.group);
+                    method = 'attr';
+                }
+
+                this.background[i][method]({
+                    'd': this.axis.getPlotBandPath(
+                        backgroundOptions.from,
+                        backgroundOptions.to,
+                        backgroundOptions
+                    )
+                }).attr({
+
+                    'class': 'highcharts-pane ' + (backgroundOptions.className || '')
+                });
+
             },
 
             /**
@@ -79,20 +144,58 @@
                 center: ['50%', '50%'],
                 size: '85%',
                 startAngle: 0
-                    //endAngle: startAngle + 360
+                //endAngle: startAngle + 360
             },
 
             /**
              * The default background options
              */
             defaultBackgroundOptions: {
-                className: 'highcharts-pane',
+                //className: 'highcharts-pane',
                 shape: 'circle',
 
                 from: -Number.MAX_VALUE, // corrected to axis min
                 innerRadius: 0,
                 to: Number.MAX_VALUE, // corrected to axis max
                 outerRadius: '105%'
+            },
+
+            /**
+             * Gets the center for the pane and its axis.
+             */
+            updateCenter: function(axis) {
+                this.center = (axis || this.axis || {}).center =
+                    CenteredSeriesMixin.getCenter.call(this);
+            },
+
+            /**
+             * Destroy the pane item
+             * /
+            destroy: function () {
+            	H.erase(this.chart.pane, this);
+            	each(this.background, function (background) {
+            		background.destroy();
+            	});
+            	this.background.length = 0;
+            	this.group = this.group.destroy();
+            },
+            */
+
+            /**
+             * Update the pane item with new options
+             * @param  {Object} options New pane options
+             */
+            update: function(options, redraw) {
+
+                merge(true, this.options, options);
+                this.setOptions(this.options);
+                this.render();
+                each(this.chart.axes, function(axis) {
+                    if (axis.pane === this) {
+                        axis.pane = null;
+                        axis.update({}, redraw);
+                    }
+                }, this);
             }
 
         });
@@ -102,23 +205,19 @@
     }(Highcharts));
     (function(H) {
         /**
-         * (c) 2010-2016 Torstein Honsi
+         * (c) 2010-2017 Torstein Honsi
          *
          * License: www.highcharts.com/license
          */
-        'use strict';
         var Axis = H.Axis,
-            CenteredSeriesMixin = H.CenteredSeriesMixin,
             each = H.each,
             extend = H.extend,
             map = H.map,
             merge = H.merge,
             noop = H.noop,
-            Pane = H.Pane,
             pick = H.pick,
             pInt = H.pInt,
             Tick = H.Tick,
-            splat = H.splat,
             wrap = H.wrap,
 
 
@@ -231,8 +330,6 @@
                 // Title or label offsets are not counted
                 this.chart.axisOffset[this.side] = 0;
 
-                // Set the center array
-                this.center = this.pane.center = CenteredSeriesMixin.getCenter.call(this.pane);
             },
 
 
@@ -323,7 +420,7 @@
                 if (this.isRadial) {
 
                     // Set the center array
-                    this.center = this.pane.center = CenteredSeriesMixin.getCenter.call(this.pane);
+                    this.pane.updateCenter(this);
 
                     // The sector is used in Axis.translate to compute the translation of reversed axis points (#2570)
                     if (this.isCircular) {
@@ -515,8 +612,7 @@
          * Override axisProto.init to mix in special axis instance functions and function overrides
          */
         wrap(axisProto, 'init', function(proceed, chart, userOptions) {
-            var axis = this,
-                angular = chart.angular,
+            var angular = chart.angular,
                 polar = chart.polar,
                 isX = userOptions.isX,
                 isHidden = angular && isX,
@@ -524,8 +620,8 @@
                 options,
                 chartOptions = chart.options,
                 paneIndex = userOptions.pane || 0,
-                pane,
-                paneOptions;
+                pane = this.pane = chart.pane[paneIndex],
+                paneOptions = pane.options;
 
             // Before prototype.init
             if (angular) {
@@ -551,22 +647,16 @@
                 this.isRadial = false;
             }
 
+            // A pointer back to this axis to borrow geometry
+            if (isCircular) {
+                pane.axis = this;
+            }
+
             // Run prototype.init
             proceed.call(this, chart, userOptions);
 
             if (!isHidden && (angular || polar)) {
                 options = this.options;
-
-                // Create the pane and set the pane options.
-                if (!chart.panes) {
-                    chart.panes = [];
-                }
-                this.pane = pane = chart.panes[paneIndex] = chart.panes[paneIndex] || new Pane(
-                    splat(chartOptions.pane)[paneIndex],
-                    chart,
-                    axis
-                );
-                paneOptions = pane.options;
 
                 // Start and end angle options are
                 // given in degrees relative to top, while internal computations are
@@ -687,11 +777,10 @@
     }(Highcharts));
     (function(H) {
         /**
-         * (c) 2010-2016 Torstein Honsi
+         * (c) 2010-2017 Torstein Honsi
          *
          * License: www.highcharts.com/license
          */
-        'use strict';
         var each = H.each,
             noop = H.noop,
             pick = H.pick,
@@ -1003,11 +1092,10 @@
     }(Highcharts));
     (function(H) {
         /**
-         * (c) 2010-2016 Torstein Honsi
+         * (c) 2010-2017 Torstein Honsi
          *
          * License: www.highcharts.com/license
          */
-        'use strict';
 
         var seriesType = H.seriesType,
             seriesTypes = H.seriesTypes;
@@ -1022,11 +1110,10 @@
     }(Highcharts));
     (function(H) {
         /**
-         * (c) 2010-2016 Torstein Honsi
+         * (c) 2010-2017 Torstein Honsi
          *
          * License: www.highcharts.com/license
          */
-        'use strict';
         var defaultPlotOptions = H.defaultPlotOptions,
             each = H.each,
             merge = H.merge,
@@ -1132,11 +1219,10 @@
     }(Highcharts));
     (function(H) {
         /**
-         * (c) 2010-2016 Torstein Honsi
+         * (c) 2010-2017 Torstein Honsi
          *
          * License: www.highcharts.com/license
          */
-        'use strict';
         var each = H.each,
             isNumber = H.isNumber,
             merge = H.merge,
@@ -1371,11 +1457,10 @@
     }(Highcharts));
     (function(H) {
         /**
-         * (c) 2010-2016 Torstein Honsi
+         * (c) 2010-2017 Torstein Honsi
          *
          * License: www.highcharts.com/license
          */
-        'use strict';
         var each = H.each,
             noop = H.noop,
             pick = H.pick,
@@ -1505,10 +1590,12 @@
                             point.medianShape = renderer.path(medianPath)
                                 .addClass('highcharts-boxplot-median')
                                 .add(graphic);
-
-
-
                         }
+
+
+
+
+
 
 
 
@@ -1613,11 +1700,10 @@
     }(Highcharts));
     (function(H) {
         /**
-         * (c) 2010-2016 Torstein Honsi
+         * (c) 2010-2017 Torstein Honsi
          *
          * License: www.highcharts.com/license
          */
-        'use strict';
         var each = H.each,
             noop = H.noop,
             seriesType = H.seriesType,
@@ -1671,14 +1757,12 @@
     }(Highcharts));
     (function(H) {
         /**
-         * (c) 2010-2016 Torstein Honsi
+         * (c) 2010-2017 Torstein Honsi
          *
          * License: www.highcharts.com/license
          */
-        'use strict';
         var correctFloat = H.correctFloat,
             isNumber = H.isNumber,
-            noop = H.noop,
             pick = H.pick,
             Point = H.Point,
             Series = H.Series,
@@ -1717,16 +1801,14 @@
                     previousIntermediate,
                     range,
                     minPointLength = pick(options.minPointLength, 5),
+                    halfMinPointLength = minPointLength / 2,
                     threshold = options.threshold,
                     stacking = options.stacking,
-                    // Separate offsets for negative and positive columns:
-                    positiveOffset = 0,
-                    negativeOffset = 0,
                     stackIndicator,
                     tooltipY;
 
                 // run column series translate
-                seriesTypes.column.prototype.translate.apply(this);
+                seriesTypes.column.prototype.translate.apply(series);
 
                 previousY = previousIntermediate = threshold;
                 points = series.points;
@@ -1734,14 +1816,18 @@
                 for (i = 0, len = points.length; i < len; i++) {
                     // cache current point object
                     point = points[i];
-                    yValue = this.processedYData[i];
+                    yValue = series.processedYData[i];
                     shapeArgs = point.shapeArgs;
 
                     // get current stack
                     stack = stacking && yAxis.stacks[(series.negStacks && yValue < threshold ? '-' : '') + series.stackKey];
-                    stackIndicator = series.getStackIndicator(stackIndicator, point.x);
+                    stackIndicator = series.getStackIndicator(
+                        stackIndicator,
+                        point.x,
+                        series.index
+                    );
                     range = stack ?
-                        stack[point.x].points[series.index + ',' + i + ',' + stackIndicator.index] : [0, yValue];
+                        stack[point.x].points[stackIndicator.key] : [0, yValue];
 
                     // override point value for sums
                     // #3710 Update point does not propagate to sum
@@ -1754,17 +1840,16 @@
                     y = Math.max(previousY, previousY + point.y) + range[0];
                     shapeArgs.y = yAxis.toPixels(y, true);
 
-
                     // sum points
                     if (point.isSum) {
                         shapeArgs.y = yAxis.toPixels(range[1], true);
                         shapeArgs.height = Math.min(yAxis.toPixels(range[0], true), yAxis.len) -
-                            shapeArgs.y + positiveOffset + negativeOffset; // #4256
+                            shapeArgs.y; // #4256
 
                     } else if (point.isIntermediateSum) {
                         shapeArgs.y = yAxis.toPixels(range[1], true);
                         shapeArgs.height = Math.min(yAxis.toPixels(previousIntermediate, true), yAxis.len) -
-                            shapeArgs.y + positiveOffset + negativeOffset;
+                            shapeArgs.y;
                         previousIntermediate = range[1];
 
                         // If it's not the sum point, update previous stack end position and get
@@ -1773,8 +1858,10 @@
                         shapeArgs.height = yValue > 0 ?
                             yAxis.toPixels(previousY, true) - shapeArgs.y :
                             yAxis.toPixels(previousY, true) - yAxis.toPixels(previousY - yValue, true);
-                        previousY += yValue;
+
+                        previousY += stack && stack[point.x] ? stack[point.x].total : yValue;
                     }
+
                     // #3952 Negative sum or intermediate sum not rendered correctly
                     if (shapeArgs.height < 0) {
                         shapeArgs.y += shapeArgs.height;
@@ -1785,25 +1872,22 @@
                     shapeArgs.height = Math.max(Math.round(shapeArgs.height), 0.001); // #3151
                     point.yBottom = shapeArgs.y + shapeArgs.height;
 
-                    // Before minPointLength, apply negative offset:
-                    shapeArgs.y -= negativeOffset;
-
-
                     if (shapeArgs.height <= minPointLength && !point.isNull) {
                         shapeArgs.height = minPointLength;
+                        shapeArgs.y -= halfMinPointLength;
+                        point.plotY = shapeArgs.y;
                         if (point.y < 0) {
-                            negativeOffset -= minPointLength;
+                            point.minPointLengthOffset = -halfMinPointLength;
                         } else {
-                            positiveOffset += minPointLength;
+                            point.minPointLengthOffset = halfMinPointLength;
                         }
+                    } else {
+                        point.minPointLengthOffset = 0;
                     }
 
-                    // After minPointLength is updated, apply positive offset:
-                    shapeArgs.y -= positiveOffset;
-
                     // Correct tooltip placement (#3014)
-                    tooltipY = point.plotY - negativeOffset - positiveOffset +
-                        (point.negative && negativeOffset >= 0 ? shapeArgs.height : 0);
+                    tooltipY = point.plotY + (point.negative ? shapeArgs.height : 0);
+
                     if (series.chart.inverted) {
                         point.tooltipPos[0] = yAxis.len - tooltipY;
                     } else {
@@ -1850,9 +1934,11 @@
 
                 Series.prototype.processData.call(this, force);
 
-                // Record extremes
-                series.dataMin = dataMin;
-                series.dataMax = dataMax;
+                // Record extremes only if stacking was not set:
+                if (!series.options.stacking) {
+                    series.dataMin = dataMin;
+                    series.dataMax = dataMax;
+                }
             },
 
             /**
@@ -1899,9 +1985,11 @@
 
                     d = [
                         'M',
-                        prevArgs.x + prevArgs.width, prevArgs.y + normalizer,
+                        prevArgs.x + prevArgs.width,
+                        prevArgs.y + data[i - 1].minPointLengthOffset + normalizer,
                         'L',
-                        pointArgs.x, prevArgs.y + normalizer
+                        pointArgs.x,
+                        prevArgs.y + data[i - 1].minPointLengthOffset + normalizer
                     ];
 
                     if (data[i - 1].y < 0) {
@@ -1927,9 +2015,39 @@
             },
 
             /**
-             * Extremes are recorded in processData
+             * Waterfall has stacking along the x-values too.
              */
-            getExtremes: noop
+            setStackedPoints: function() {
+                var series = this,
+                    options = series.options,
+                    stackedYLength,
+                    i;
+
+                Series.prototype.setStackedPoints.apply(series, arguments);
+
+                stackedYLength = series.stackedYData ? series.stackedYData.length : 0;
+
+                // Start from the second point:
+                for (i = 1; i < stackedYLength; i++) {
+                    if (!options.data[i].isSum &&
+                        !options.data[i].isIntermediateSum
+                    ) {
+                        // Sum previous stacked data as waterfall can grow up/down:
+                        series.stackedYData[i] += series.stackedYData[i - 1];
+                    }
+                }
+            },
+
+            /**
+             * Extremes for a non-stacked series are recorded in processData.
+             * In case of stacking, use Series.stackedYData to calculate extremes.
+             */
+            getExtremes: function() {
+                if (this.options.stacking) {
+                    return Series.prototype.getExtremes.apply(this, arguments);
+                }
+            }
+
 
             // Point members
         }, {
@@ -1959,11 +2077,10 @@
     }(Highcharts));
     (function(H) {
         /**
-         * (c) 2010-2016 Torstein Honsi
+         * (c) 2010-2017 Torstein Honsi
          *
          * License: www.highcharts.com/license
          */
-        'use strict';
         var LegendSymbolMixin = H.LegendSymbolMixin,
             noop = H.noop,
             Series = H.Series,
@@ -2017,11 +2134,10 @@
     }(Highcharts));
     (function(H) {
         /**
-         * (c) 2010-2016 Torstein Honsi
+         * (c) 2010-2017 Torstein Honsi
          *
          * License: www.highcharts.com/license
          */
-        'use strict';
         var arrayMax = H.arrayMax,
             arrayMin = H.arrayMin,
             Axis = H.Axis,
@@ -2086,6 +2202,7 @@
             trackerGroups: ['markerGroup', 'dataLabelsGroup'],
             bubblePadding: true,
             zoneAxis: 'z',
+            directTouch: true,
 
 
 
@@ -2199,11 +2316,11 @@
 
                     if (isNumber(radius) && radius >= this.minPxSize / 2) {
                         // Shape arguments
-                        point.marker = {
+                        point.marker = H.extend(point.marker, {
                             radius: radius,
                             width: 2 * radius,
                             height: 2 * radius
-                        };
+                        });
 
                         // Alignment box for the data label
                         point.dlBox = {
@@ -2227,7 +2344,7 @@
             haloPath: function(size) {
                 return Point.prototype.haloPath.call(
                     this,
-                    size === 0 ? 0 : this.marker.radius + size // #6067
+                    size === 0 ? 0 : (this.marker ? this.marker.radius || 0 : 0) + size // #6067
                 );
             },
             ttBelow: false
@@ -2344,11 +2461,10 @@
     }(Highcharts));
     (function(H) {
         /**
-         * (c) 2010-2016 Torstein Honsi
+         * (c) 2010-2017 Torstein Honsi
          *
          * License: www.highcharts.com/license
          */
-        'use strict';
 
         /**
          * Extensions for polar charts. Additionally, much of the geometry required for polar charts is
@@ -2385,6 +2501,96 @@
         };
 
         /**
+         * #6212 Calculate connectors for spline series in polar chart. 
+         * @param {Boolean} calculateNeighbours - Check if connectors should be calculated for neighbour points as well
+         * allows short recurence
+         */
+        seriesProto.getConnectors = function(segment, index, calculateNeighbours, connectEnds) {
+
+            var i,
+                prevPointInd,
+                nextPointInd,
+                previousPoint,
+                nextPoint,
+                previousX,
+                previousY,
+                nextX,
+                nextY,
+                plotX,
+                plotY,
+                ret,
+                smoothing = 1.5, // 1 means control points midway between points, 2 means 1/3 from the point, 3 is 1/4 etc;
+                denom = smoothing + 1,
+                leftContX,
+                leftContY,
+                rightContX,
+                rightContY,
+                dLControlPoint, //distance left control point
+                dRControlPoint,
+                leftContAngle,
+                rightContAngle,
+                jointAngle,
+                addedNumber = connectEnds ? 1 : 0;
+
+            /** calculate final index of points depending on the initial index value.
+             * Because of calculating neighbours, index may be outisde segment array.
+             */
+            if (index >= 0 && index <= segment.length - 1) {
+                i = index;
+            } else if (index < 0) {
+                i = segment.length - 1 + index;
+            } else {
+                i = 0;
+            }
+
+            prevPointInd = (i - 1 < 0) ? segment.length - (1 + addedNumber) : i - 1;
+            nextPointInd = (i + 1 > segment.length - 1) ? addedNumber : i + 1;
+            previousPoint = segment[prevPointInd];
+            nextPoint = segment[nextPointInd];
+            previousX = previousPoint.plotX;
+            previousY = previousPoint.plotY;
+            nextX = nextPoint.plotX;
+            nextY = nextPoint.plotY;
+            plotX = segment[i].plotX; // actual point
+            plotY = segment[i].plotY;
+            leftContX = (smoothing * plotX + previousX) / denom;
+            leftContY = (smoothing * plotY + previousY) / denom;
+            rightContX = (smoothing * plotX + nextX) / denom;
+            rightContY = (smoothing * plotY + nextY) / denom;
+            dLControlPoint = Math.sqrt(Math.pow(leftContX - plotX, 2) + Math.pow(leftContY - plotY, 2));
+            dRControlPoint = Math.sqrt(Math.pow(rightContX - plotX, 2) + Math.pow(rightContY - plotY, 2));
+            leftContAngle = Math.atan2(leftContY - plotY, leftContX - plotX);
+            rightContAngle = Math.atan2(rightContY - plotY, rightContX - plotX);
+            jointAngle = (Math.PI / 2) + ((leftContAngle + rightContAngle) / 2);
+            // Ensure the right direction, jointAngle should be in the same quadrant as leftContAngle
+            if (Math.abs(leftContAngle - jointAngle) > Math.PI / 2) {
+                jointAngle -= Math.PI;
+            }
+            // Find the corrected control points for a spline straight through the point
+            leftContX = plotX + Math.cos(jointAngle) * dLControlPoint;
+            leftContY = plotY + Math.sin(jointAngle) * dLControlPoint;
+            rightContX = plotX + Math.cos(Math.PI + jointAngle) * dRControlPoint;
+            rightContY = plotY + Math.sin(Math.PI + jointAngle) * dRControlPoint;
+
+            // push current point's connectors into returned object
+
+            ret = {
+                rightContX: rightContX,
+                rightContY: rightContY,
+                leftContX: leftContX,
+                leftContY: leftContY,
+                plotX: plotX,
+                plotY: plotY
+            };
+
+            // calculate connectors for previous and next point and push them inside returned object 
+            if (calculateNeighbours) {
+                ret.prevPointCont = this.getConnectors(segment, prevPointInd, false, connectEnds);
+            }
+            return ret;
+        };
+
+        /**
          * Wrap the buildKDTree function so that it searches by angle (clientX) in case of shared tooltip,
          * and by two dimensional distance in case of non-shared.
          */
@@ -2393,7 +2599,7 @@
                 if (this.kdByAngle) {
                     this.searchPoint = this.searchPointByAngle;
                 } else {
-                    this.kdDimensions = 2;
+                    this.options.findNearestPointBy = 'xy';
                 }
             }
             proceed.apply(this);
@@ -2437,104 +2643,35 @@
              * Overridden method for calculating a spline from one point to the next
              */
             wrap(seriesTypes.spline.prototype, 'getPointSpline', function(proceed, segment, point, i) {
-
                 var ret,
-                    smoothing = 1.5, // 1 means control points midway between points, 2 means 1/3 from the point, 3 is 1/4 etc;
-                    denom = smoothing + 1,
-                    plotX,
-                    plotY,
-                    lastPoint,
-                    nextPoint,
-                    lastX,
-                    lastY,
-                    nextX,
-                    nextY,
-                    leftContX,
-                    leftContY,
-                    rightContX,
-                    rightContY,
-                    distanceLeftControlPoint,
-                    distanceRightControlPoint,
-                    leftContAngle,
-                    rightContAngle,
-                    jointAngle;
-
+                    connectors;
 
                 if (this.chart.polar) {
-
-                    plotX = point.plotX;
-                    plotY = point.plotY;
-                    lastPoint = segment[i - 1];
-                    nextPoint = segment[i + 1];
-
-                    // Connect ends
-                    if (this.connectEnds) {
-                        if (!lastPoint) {
-                            lastPoint = segment[segment.length - 2]; // not the last but the second last, because the segment is already connected
-                        }
-                        if (!nextPoint) {
-                            nextPoint = segment[1];
-                        }
-                    }
-
-                    // find control points
-                    if (lastPoint && nextPoint) {
-
-                        lastX = lastPoint.plotX;
-                        lastY = lastPoint.plotY;
-                        nextX = nextPoint.plotX;
-                        nextY = nextPoint.plotY;
-                        leftContX = (smoothing * plotX + lastX) / denom;
-                        leftContY = (smoothing * plotY + lastY) / denom;
-                        rightContX = (smoothing * plotX + nextX) / denom;
-                        rightContY = (smoothing * plotY + nextY) / denom;
-                        distanceLeftControlPoint = Math.sqrt(Math.pow(leftContX - plotX, 2) + Math.pow(leftContY - plotY, 2));
-                        distanceRightControlPoint = Math.sqrt(Math.pow(rightContX - plotX, 2) + Math.pow(rightContY - plotY, 2));
-                        leftContAngle = Math.atan2(leftContY - plotY, leftContX - plotX);
-                        rightContAngle = Math.atan2(rightContY - plotY, rightContX - plotX);
-                        jointAngle = (Math.PI / 2) + ((leftContAngle + rightContAngle) / 2);
-
-
-                        // Ensure the right direction, jointAngle should be in the same quadrant as leftContAngle
-                        if (Math.abs(leftContAngle - jointAngle) > Math.PI / 2) {
-                            jointAngle -= Math.PI;
-                        }
-
-                        // Find the corrected control points for a spline straight through the point
-                        leftContX = plotX + Math.cos(jointAngle) * distanceLeftControlPoint;
-                        leftContY = plotY + Math.sin(jointAngle) * distanceLeftControlPoint;
-                        rightContX = plotX + Math.cos(Math.PI + jointAngle) * distanceRightControlPoint;
-                        rightContY = plotY + Math.sin(Math.PI + jointAngle) * distanceRightControlPoint;
-
-                        // Record for drawing in next point
-                        point.rightContX = rightContX;
-                        point.rightContY = rightContY;
-
-                    }
-
-
                     // moveTo or lineTo
                     if (!i) {
-                        ret = ['M', plotX, plotY];
+                        ret = ['M', point.plotX, point.plotY];
                     } else { // curve from last point to this
+                        connectors = this.getConnectors(segment, i, true, this.connectEnds);
                         ret = [
                             'C',
-                            lastPoint.rightContX || lastPoint.plotX,
-                            lastPoint.rightContY || lastPoint.plotY,
-                            leftContX || plotX,
-                            leftContY || plotY,
-                            plotX,
-                            plotY
+                            connectors.prevPointCont.rightContX,
+                            connectors.prevPointCont.rightContY,
+                            connectors.leftContX,
+                            connectors.leftContY,
+                            connectors.plotX,
+                            connectors.plotY
                         ];
-                        lastPoint.rightContX = lastPoint.rightContY = null; // reset for updating series later
                     }
-
-
                 } else {
                     ret = proceed.call(this, segment, point, i);
                 }
                 return ret;
             });
+
+            // #6430 Areasplinerange series use unwrapped getPointSpline method, so we need to set this method again.
+            if (seriesTypes.areasplinerange) {
+                seriesTypes.areasplinerange.prototype.getPointSpline = seriesTypes.spline.prototype.getPointSpline;
+            }
         }
 
         /**
@@ -2573,7 +2710,8 @@
         wrap(seriesProto, 'getGraphPath', function(proceed, points) {
             var series = this,
                 i,
-                firstValid;
+                firstValid,
+                popLastPoint;
 
             // Connect the path
             if (this.chart.polar) {
@@ -2589,6 +2727,7 @@
                 if (this.options.connectEnds !== false && firstValid !== undefined) {
                     this.connectEnds = true; // re-used in splines
                     points.splice(points.length, 0, points[firstValid]);
+                    popLastPoint = true;
                 }
 
                 // For area charts, pseudo points are added to the graph, now we need to translate these
@@ -2600,8 +2739,15 @@
             }
 
             // Run uber method
-            return proceed.apply(this, [].slice.call(arguments, 1));
+            var ret = proceed.apply(this, [].slice.call(arguments, 1));
 
+            /** #6212 points.splice method is adding points to an array. In case of areaspline getGraphPath method is used two times
+             * and in both times points are added to an array. That is why points.pop is used, to get unmodified points.
+             */
+            if (popLastPoint) {
+                points.pop();
+            }
+            return ret;
         });
 
 
@@ -2808,6 +2954,39 @@
             }
 
             return ret;
+        });
+
+        wrap(H.Chart.prototype, 'getAxes', function(proceed) {
+
+            if (!this.pane) {
+                this.pane = [];
+            }
+            each(H.splat(this.options.pane), function(paneOptions) {
+                new H.Pane( // eslint-disable-line no-new
+                    paneOptions,
+                    this
+                );
+            }, this);
+
+            proceed.call(this);
+        });
+
+        wrap(H.Chart.prototype, 'drawChartBox', function(proceed) {
+            proceed.call(this);
+
+            each(this.pane, function(pane) {
+                pane.render();
+            });
+        });
+
+        /**
+         * Extend chart.get to also search in panes. Used internally in responsiveness
+         * and chart.update.
+         */
+        wrap(H.Chart.prototype, 'get', function(proceed, id) {
+            return H.find(this.pane, function(pane) {
+                return pane.options.id === id;
+            }) || proceed.call(this, id);
         });
 
     }(Highcharts));

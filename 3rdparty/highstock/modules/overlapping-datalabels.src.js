@@ -1,10 +1,11 @@
 /**
- * @license Highcharts JS v5.0.7 (2017-01-17)
+ * @license Highcharts JS v5.0.10 (2017-03-31)
  *
- * (c) 2009-2016 Torstein Honsi
+ * (c) 2009-2017 Torstein Honsi
  *
  * License: www.highcharts.com/license
  */
+'use strict';
 (function(factory) {
     if (typeof module === 'object' && module.exports) {
         module.exports = factory;
@@ -14,33 +15,43 @@
 }(function(Highcharts) {
     (function(H) {
         /**
-         * (c) 2009-2016 Torstein Honsi
+         * (c) 2009-2017 Torstein Honsi
          *
          * License: www.highcharts.com/license
          */
-        'use strict';
         /**
-         * Highcharts module to hide overlapping data labels. This module is included in Highcharts.
+         * Highcharts module to hide overlapping data labels. This module is included in
+         * Highcharts.
          */
         var Chart = H.Chart,
             each = H.each,
             pick = H.pick,
             addEvent = H.addEvent;
 
-        // Collect potensial overlapping data labels. Stack labels probably don't need to be 
-        // considered because they are usually accompanied by data labels that lie inside the columns.
+        // Collect potensial overlapping data labels. Stack labels probably don't need
+        // to be considered because they are usually accompanied by data labels that lie
+        // inside the columns.
         Chart.prototype.callbacks.push(function(chart) {
             function collectAndHide() {
                 var labels = [];
 
-                each(chart.series, function(series) {
+                each(chart.series || [], function(series) {
                     var dlOptions = series.options.dataLabels,
-                        collections = series.dataLabelCollections || ['dataLabel']; // Range series have two collections
-                    if ((dlOptions.enabled || series._hasPointLabels) && !dlOptions.allowOverlap && series.visible) { // #3866
+                        // Range series have two collections
+                        collections = series.dataLabelCollections || ['dataLabel'];
+
+                    if (
+                        (dlOptions.enabled || series._hasPointLabels) &&
+                        !dlOptions.allowOverlap &&
+                        series.visible
+                    ) { // #3866
                         each(collections, function(coll) {
                             each(series.points, function(point) {
                                 if (point[coll]) {
-                                    point[coll].labelrank = pick(point.labelrank, point.shapeArgs && point.shapeArgs.height); // #4118
+                                    point[coll].labelrank = pick(
+                                        point.labelrank,
+                                        point.shapeArgs && point.shapeArgs.height
+                                    ); // #4118
                                     labels.push(point[coll]);
                                 }
                             });
@@ -59,8 +70,8 @@
         });
 
         /**
-         * Hide overlapping labels. Labels are moved and faded in and out on zoom to provide a smooth 
-         * visual imression.
+         * Hide overlapping labels. Labels are moved and faded in and out on zoom to
+         * provide a smooth visual imression.
          */
         Chart.prototype.hideOverlappingLabels = function(labels) {
 
@@ -94,9 +105,8 @@
                 }
             }
 
-            // Prevent a situation in a gradually rising slope, that each label
-            // will hide the previous one because the previous one always has
-            // lower rank.
+            // Prevent a situation in a gradually rising slope, that each label will
+            // hide the previous one because the previous one always has lower rank.
             labels.sort(function(a, b) {
                 return (b.labelrank || 0) - (a.labelrank || 0);
             });
@@ -107,12 +117,19 @@
 
                 for (j = i + 1; j < len; ++j) {
                     label2 = labels[j];
-                    if (label1 && label2 && label1.placed && label2.placed && label1.newOpacity !== 0 && label2.newOpacity !== 0) {
+                    if (
+                        label1 && label2 &&
+                        label1 !== label2 && // #6465, polar chart with connectEnds
+                        label1.placed && label2.placed &&
+                        label1.newOpacity !== 0 && label2.newOpacity !== 0
+                    ) {
                         pos1 = label1.alignAttr;
                         pos2 = label2.alignAttr;
-                        parent1 = label1.parentGroup; // Different panes have different positions
+                        // Different panes have different positions
+                        parent1 = label1.parentGroup;
                         parent2 = label2.parentGroup;
-                        padding = 2 * (label1.box ? 0 : label1.padding); // Substract the padding if no background or border (#4333)
+                        // Substract the padding if no background or border (#4333)
+                        padding = 2 * (label1.box ? 0 : label1.padding);
                         isIntersecting = intersectRect(
                             pos1.x + parent1.translateX,
                             pos1.y + parent1.translateY,
@@ -125,7 +142,8 @@
                         );
 
                         if (isIntersecting) {
-                            (label1.labelrank < label2.labelrank ? label1 : label2).newOpacity = 0;
+                            (label1.labelrank < label2.labelrank ? label1 : label2)
+                            .newOpacity = 0;
                         }
                     }
                 }
@@ -141,7 +159,8 @@
 
                     if (label.oldOpacity !== newOpacity && label.placed) {
 
-                        // Make sure the label is completely hidden to avoid catching clicks (#4362)
+                        // Make sure the label is completely hidden to avoid catching
+                        // clicks (#4362)
                         if (newOpacity) {
                             label.show(true);
                         } else {
@@ -152,7 +171,11 @@
 
                         // Animate or set the opacity					
                         label.alignAttr.opacity = newOpacity;
-                        label[label.isOld ? 'animate' : 'attr'](label.alignAttr, null, complete);
+                        label[label.isOld ? 'animate' : 'attr'](
+                            label.alignAttr,
+                            null,
+                            complete
+                        );
 
                     }
                     label.isOld = true;

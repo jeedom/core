@@ -1,11 +1,12 @@
 /**
- * @license Highcharts JS v5.0.7 (2017-01-17)
+ * @license Highcharts JS v5.0.10 (2017-03-31)
  * Highcharts Drilldown module
  * 
  * Author: Torstein Honsi
  * License: www.highcharts.com/license
  *
  */
+'use strict';
 (function(factory) {
     if (typeof module === 'object' && module.exports) {
         module.exports = factory;
@@ -22,7 +23,6 @@
          *
          */
 
-        'use strict';
 
         var noop = H.noop,
             color = H.color,
@@ -696,11 +696,11 @@
                     label
                         .addClass('highcharts-drilldown-axis-label')
 
-                    .css(axis.chart.options.drilldown.activeAxisLabelStyle)
+                        .css(axis.chart.options.drilldown.activeAxisLabelStyle)
 
-                    .on('click', function(e) {
-                        axis.drilldownCategory(pos, e);
-                    });
+                        .on('click', function(e) {
+                            axis.drilldownCategory(pos, e);
+                        });
 
                 } else if (label && label.drillable) {
 

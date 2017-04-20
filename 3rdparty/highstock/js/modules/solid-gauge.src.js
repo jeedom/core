@@ -1,11 +1,12 @@
 /**
- * @license  Highcharts JS v5.0.7 (2017-01-17)
+ * @license  Highcharts JS v5.0.10 (2017-03-31)
  * Solid angular gauge module
  *
- * (c) 2010-2016 Torstein Honsi
+ * (c) 2010-2017 Torstein Honsi
  *
  * License: www.highcharts.com/license
  */
+'use strict';
 (function(factory) {
     if (typeof module === 'object' && module.exports) {
         module.exports = factory;
@@ -17,18 +18,51 @@
         /**
          * Solid angular gauge module
          *
-         * (c) 2010-2016 Torstein Honsi
+         * (c) 2010-2017 Torstein Honsi
          *
          * License: www.highcharts.com/license
          */
 
-        'use strict';
 
         var pInt = H.pInt,
             pick = H.pick,
             each = H.each,
             isNumber = H.isNumber,
+            wrap = H.wrap,
+            Renderer = H.Renderer,
             colorAxisMethods;
+
+        /**
+         * Symbol definition of an arc with round edges.
+         * 
+         * @param  {Number} x - The X coordinate for the top left position.
+         * @param  {Number} y - The Y coordinate for the top left position.
+         * @param  {Number} w - The pixel width.
+         * @param  {Number} h - The pixel height.
+         * @param  {Object} [options] - Additional options, depending on the actual
+         *    symbol drawn.
+         * @param {boolean} [options.rounded] - Whether to draw rounded edges.
+         * @return {Array} Path of the created arc. 
+         */
+        wrap(Renderer.prototype.symbols, 'arc', function(proceed, x, y, w, h, options) {
+            var arc = proceed,
+                path = arc(x, y, w, h, options);
+            if (options.rounded) {
+                var r = options.r || w,
+                    smallR = (r - options.innerR) / 2,
+                    x1 = path[1],
+                    y1 = path[2],
+                    x2 = path[12],
+                    y2 = path[13],
+                    roundStart = ['A', smallR, smallR, 0, 1, 1, x1, y1],
+                    roundEnd = ['A', smallR, smallR, 0, 1, 1, x2, y2];
+                // Insert rounded edge on end, and remove line.
+                path.splice.apply(path, [path.length - 1, 0].concat(roundStart));
+                // Insert rounded edge on end, and remove line.
+                path.splice.apply(path, [11, 3].concat(roundEnd));
+            }
+            return path;
+        });
 
         // These methods are defined in the ColorAxis object, and copied here.
         // If we implement an AMD system we should make ColorAxis a dependency.
@@ -265,13 +299,15 @@
                         innerR: innerRadius,
                         start: minAngle,
                         end: maxAngle,
-                        fill: toColor
+                        rounded: options.rounded
                     };
                     point.startR = radius; // For PieSeries.animate
 
                     if (graphic) {
                         d = shapeArgs.d;
-                        graphic.animate(shapeArgs);
+                        graphic.animate(H.extend({
+                            fill: toColor
+                        }, shapeArgs));
                         if (d) {
                             shapeArgs.d = d; // animate alters it
                         }

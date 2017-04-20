@@ -1,11 +1,12 @@
 /**
- * @license Highcharts JS v5.0.7 (2017-01-17)
+ * @license Highcharts JS v5.0.10 (2017-03-31)
  * Highstock as a plugin for Highcharts
  *
  * (c) 2017 Torstein Honsi
  *
  * License: www.highcharts.com/license
  */
+'use strict';
 (function(factory) {
     if (typeof module === 'object' && module.exports) {
         module.exports = factory;
@@ -15,11 +16,10 @@
 }(function(Highcharts) {
     (function(H) {
         /**
-         * (c) 2010-2016 Torstein Honsi
+         * (c) 2010-2017 Torstein Honsi
          *
          * License: www.highcharts.com/license
          */
-        'use strict';
         var addEvent = H.addEvent,
             Axis = H.Axis,
             Chart = H.Chart,
@@ -470,7 +470,8 @@
                         options: {
                             ordinal: true
                         },
-                        val2lin: Axis.prototype.val2lin // #2590
+                        val2lin: Axis.prototype.val2lin, // #2590
+                        ordinal2lin: Axis.prototype.ordinal2lin // #6276
                     };
 
                     // Add the fake series to hold the full data, then apply processData to it
@@ -724,11 +725,10 @@
     }(Highcharts));
     (function(H) {
         /**
-         * (c) 2009-2016 Torstein Honsi
+         * (c) 2009-2017 Torstein Honsi
          *
          * License: www.highcharts.com/license
          */
-        'use strict';
 
         var pick = H.pick,
             wrap = H.wrap,
@@ -882,6 +882,7 @@
                         brk,
                         min = axis.userMin || axis.min,
                         max = axis.userMax || axis.max,
+                        pointRangePadding = pick(axis.pointRangePadding, 0),
                         start,
                         i,
                         j;
@@ -957,9 +958,22 @@
 
                     axis.breakArray = breakArray;
 
+                    // Used with staticScale, and below, the actual axis length when
+                    // breaks are substracted.
+                    axis.unitLength = max - min - length + pointRangePadding;
+
                     fireEvent(axis, 'afterBreaks');
 
-                    axis.transA *= ((max - axis.min) / (max - min - length));
+                    if (axis.options.staticScale) {
+                        axis.transA = axis.options.staticScale;
+                    } else {
+                        axis.transA *= (max - axis.min + pointRangePadding) /
+                            axis.unitLength;
+                    }
+
+                    if (pointRangePadding) {
+                        axis.minPixelPadding = axis.transA * axis.minPointOffset;
+                    }
 
                     axis.min = min;
                     axis.max = max;
@@ -1045,16 +1059,14 @@
     }(Highcharts));
     (function() {
 
-        'use strict';
 
     }());
     (function(H) {
         /**
-         * (c) 2010-2016 Torstein Honsi
+         * (c) 2010-2017 Torstein Honsi
          *
          * License: www.highcharts.com/license
          */
-        'use strict';
         var arrayMax = H.arrayMax,
             arrayMin = H.arrayMin,
             Axis = H.Axis,
@@ -1365,9 +1377,8 @@
             series.groupPixelWidth = null; // #2110
             series.hasProcessed = true; // #2692
 
-            // skip if processData returns false or if grouping is disabled (in that order) or #5493
-            skip = baseProcessData.apply(series, arguments) === false ||
-                !groupingEnabled || !visible;
+            // skip if processData returns false or if grouping is disabled (in that order)
+            skip = baseProcessData.apply(series, arguments) === false || !groupingEnabled;
             if (!skip) {
                 series.destroyGroupedData();
 
@@ -1419,7 +1430,8 @@
                     series.groupMap = groupedData[2];
 
                     // Make sure the X axis extends to show the first group (#2533)
-                    if (defined(groupedXData[0]) && groupedXData[0] < xAxis.dataMin) {
+                    // But only for visible series (#5493, #6393)
+                    if (defined(groupedXData[0]) && groupedXData[0] < xAxis.dataMin && visible) {
                         if (xAxis.min === xAxis.dataMin) {
                             xAxis.min = groupedXData[0];
                         }
@@ -1683,11 +1695,10 @@
     }(Highcharts));
     (function(H) {
         /**
-         * (c) 2010-2016 Torstein Honsi
+         * (c) 2010-2017 Torstein Honsi
          *
          * License: www.highcharts.com/license
          */
-        'use strict';
         var each = H.each,
             Point = H.Point,
             seriesType = H.seriesType,
@@ -1714,6 +1725,7 @@
 
 
         }, /** @lends seriesTypes.ohlc */ {
+            directTouch: false,
             pointArrayMap: ['open', 'high', 'low', 'close'], // array point configs are mapped to this
             toYData: function(point) { // return a plain array for speedy calculation
                 return [point.open, point.high, point.low, point.close];
@@ -1729,18 +1741,18 @@
                 var series = this,
                     yAxis = series.yAxis,
                     hasModifyValue = !!series.modifyValue,
-                    translatedOLC = ['plotOpen', 'yBottom', 'plotClose'];
+                    translated = ['plotOpen', 'plotHigh', 'plotLow', 'plotClose', 'yBottom']; // translate OHLC for
 
                 seriesTypes.column.prototype.translate.apply(series);
 
                 // Do the translation
                 each(series.points, function(point) {
-                    each([point.open, point.low, point.close], function(value, i) {
+                    each([point.open, point.high, point.low, point.close, point.low], function(value, i) {
                         if (value !== null) {
                             if (hasModifyValue) {
                                 value = series.modifyValue(value);
                             }
-                            point[translatedOLC[i]] = yAxis.toPixels(value, true);
+                            point[translated[i]] = yAxis.toPixels(value, true);
                         }
                     });
                 });
@@ -1848,11 +1860,10 @@
     }(Highcharts));
     (function(H) {
         /**
-         * (c) 2010-2016 Torstein Honsi
+         * (c) 2010-2017 Torstein Honsi
          *
          * License: www.highcharts.com/license
          */
-        'use strict';
         var defaultPlotOptions = H.defaultPlotOptions,
             each = H.each,
             merge = H.merge,
@@ -1968,11 +1979,10 @@
     }(Highcharts));
     (function(H) {
         /**
-         * (c) 2010-2016 Torstein Honsi
+         * (c) 2010-2017 Torstein Honsi
          *
          * License: www.highcharts.com/license
          */
-        'use strict';
         var addEvent = H.addEvent,
             each = H.each,
             merge = H.merge,
@@ -1984,7 +1994,8 @@
             SVGRenderer = H.SVGRenderer,
             TrackerMixin = H.TrackerMixin,
             VMLRenderer = H.VMLRenderer,
-            symbols = SVGRenderer.prototype.symbols;
+            symbols = SVGRenderer.prototype.symbols,
+            stableSort = H.stableSort;
 
         /**
          * The flags series type.
@@ -2040,6 +2051,7 @@
                     onData = onSeries && onSeries.points,
                     i = onData && onData.length,
                     xAxis = series.xAxis,
+                    yAxis = series.yAxis,
                     xAxisExt = xAxis.getExtremes(),
                     xOffset = 0,
                     leftPoint,
@@ -2054,7 +2066,7 @@
                     lastX = onData[i - 1].x + (currentDataGrouping ? currentDataGrouping.totalRange : 0); // #2374
 
                     // sort the data points
-                    points.sort(function(a, b) {
+                    stableSort(points, function(a, b) {
                         return (a.x - b.x);
                     });
 
@@ -2091,12 +2103,16 @@
 
                     var stackIndex;
 
-                    // Undefined plotY means the point is either on axis, outside series range or hidden series.
-                    // If the series is outside the range of the x axis it should fall through with
-                    // an undefined plotY, but then we must remove the shapeArgs (#847).
+                    // Undefined plotY means the point is either on axis, outside series
+                    // range or hidden series. If the series is outside the range of the
+                    // x axis it should fall through with an undefined plotY, but then
+                    // we must remove the shapeArgs (#847).
                     if (point.plotY === undefined) {
-                        if (point.x >= xAxisExt.min && point.x <= xAxisExt.max) { // we're inside xAxis range
-                            point.plotY = chart.chartHeight - xAxis.bottom - (xAxis.opposite ? xAxis.height : 0) + xAxis.offset - chart.plotTop;
+                        if (point.x >= xAxisExt.min && point.x <= xAxisExt.max) {
+                            // we're inside xAxis range
+                            point.plotY = chart.chartHeight - xAxis.bottom -
+                                (xAxis.opposite ? xAxis.height : 0) +
+                                xAxis.offset - yAxis.top; // #3517
                         } else {
                             point.shapeArgs = {}; // 847
                         }
@@ -2161,16 +2177,16 @@
                         // Create the flag
                         if (!graphic) {
                             graphic = point.graphic = renderer.label(
-                                '',
-                                null,
-                                null,
-                                shape,
-                                null,
-                                null,
-                                options.useHTML
-                            )
+                                    '',
+                                    null,
+                                    null,
+                                    shape,
+                                    null,
+                                    null,
+                                    options.useHTML
+                                )
 
-                            .attr({
+                                .attr({
                                     align: shape === 'flag' ? 'left' : 'center',
                                     width: options.width,
                                     height: options.height,
@@ -2178,6 +2194,11 @@
                                 })
                                 .addClass('highcharts-point')
                                 .add(series.markerGroup);
+
+                            // Add reference to the point for tracker (#6303)
+                            if (point.graphic.div) {
+                                point.graphic.div.point = point;
+                            }
 
 
                         }
@@ -2196,12 +2217,21 @@
                         });
 
                         // Set the tooltip anchor position
-                        point.tooltipPos = chart.inverted ? [yAxis.len + yAxis.pos - chart.plotLeft - plotY, series.xAxis.len - plotX] : [plotX, plotY];
+                        point.tooltipPos = chart.inverted ? [yAxis.len + yAxis.pos - chart.plotLeft - plotY, series.xAxis.len - plotX] : [plotX, plotY + yAxis.pos - chart.plotTop]; // #6327
 
                     } else if (graphic) {
                         point.graphic = graphic.destroy();
                     }
 
+                }
+
+                // Might be a mix of SVG and HTML and we need events for both (#6303)
+                if (options.useHTML) {
+                    H.wrap(series.markerGroup, 'on', function(proceed) {
+                        return H.SVGElement.prototype.on.apply(
+                            proceed.apply(this, [].slice.call(arguments, 1)), // for HTML
+                            [].slice.call(arguments, 1)); // and for SVG
+                    });
                 }
 
             },
@@ -2303,11 +2333,10 @@
     }(Highcharts));
     (function(H) {
         /**
-         * (c) 2010-2016 Torstein Honsi
+         * (c) 2010-2017 Torstein Honsi
          *
          * License: www.highcharts.com/license
          */
-        'use strict';
         var addEvent = H.addEvent,
             Axis = H.Axis,
             correctFloat = H.correctFloat,
@@ -2598,8 +2627,7 @@
                 }
 
                 from = Math.max(from, 0);
-
-                fromPX = fullWidth * from;
+                fromPX = Math.ceil(fullWidth * from);
                 toPX = fullWidth * Math.min(to, 1);
                 scroller.calculatedWidth = newSize = correctFloat(toPX - fromPX);
 
@@ -2878,7 +2906,7 @@
                     }
                 }, this);
 
-                if (scroller) {
+                if (scroller && this === scroller.scrollbar) { // #6421, chart may have more scrollbars
                     scroller.scrollbar = null;
 
                     // Destroy elements in collection
@@ -2892,7 +2920,7 @@
          */
         wrap(Axis.prototype, 'init', function(proceed) {
             var axis = this;
-            proceed.apply(axis, [].slice.call(arguments, 1));
+            proceed.apply(axis, Array.prototype.slice.call(arguments, 1));
 
             if (axis.options.scrollbar && axis.options.scrollbar.enabled) {
                 // Predefined options:
@@ -2930,26 +2958,37 @@
                 scrollMin = Math.min(pick(axis.options.min, axis.min), axis.min, axis.dataMin),
                 scrollMax = Math.max(pick(axis.options.max, axis.max), axis.max, axis.dataMax),
                 scrollbar = axis.scrollbar,
+                offsetsIndex,
                 from,
                 to;
 
-            proceed.apply(axis, [].slice.call(arguments, 1));
+            proceed.apply(axis, Array.prototype.slice.call(arguments, 1));
 
             if (scrollbar) {
+
                 if (axis.horiz) {
                     scrollbar.position(
                         axis.left,
-                        axis.top + axis.height + axis.offset + 2 + (axis.opposite ? 0 : axis.axisTitleMargin),
+                        axis.top + axis.height + 2 + axis.chart.scrollbarsOffsets[1] +
+                        (axis.opposite ? 0 : axis.axisTitleMargin + axis.offset),
                         axis.width,
                         axis.height
                     );
+                    offsetsIndex = 1;
                 } else {
                     scrollbar.position(
-                        axis.left + axis.width + 2 + axis.offset + (axis.opposite ? axis.axisTitleMargin : 0),
+                        axis.left + axis.width + 2 + axis.chart.scrollbarsOffsets[0] +
+                        (axis.opposite ? axis.axisTitleMargin + axis.offset : 0),
                         axis.top,
                         axis.width,
                         axis.height
                     );
+                    offsetsIndex = 0;
+                }
+
+                if ((!axis.opposite && !axis.horiz) || (axis.opposite && axis.horiz)) {
+                    axis.chart.scrollbarsOffsets[offsetsIndex] +=
+                        axis.scrollbar.size + axis.scrollbar.options.margin;
                 }
 
                 if (isNaN(scrollMin) || isNaN(scrollMax) || !defined(axis.min) || !defined(axis.max)) {
@@ -2975,9 +3014,10 @@
                 index = axis.horiz ? 2 : 1,
                 scrollbar = axis.scrollbar;
 
-            proceed.apply(axis, [].slice.call(arguments, 1));
+            proceed.apply(axis, Array.prototype.slice.call(arguments, 1));
 
             if (scrollbar) {
+                axis.chart.scrollbarsOffsets = [0, 0]; // reset scrollbars offsets
                 axis.chart.axisOffset[index] += scrollbar.size + scrollbar.options.margin;
             }
         });
@@ -2990,7 +3030,7 @@
                 this.scrollbar = this.scrollbar.destroy();
             }
 
-            proceed.apply(this, [].slice.call(arguments, 1));
+            proceed.apply(this, Array.prototype.slice.call(arguments, 1));
         });
 
         H.Scrollbar = Scrollbar;
@@ -2998,11 +3038,10 @@
     }(Highcharts));
     (function(H) {
         /**
-         * (c) 2010-2016 Torstein Honsi
+         * (c) 2010-2017 Torstein Honsi
          *
          * License: www.highcharts.com/license
          */
-        'use strict';
         /* ****************************************************************************
          * Start Navigator code														*
          *****************************************************************************/
@@ -3084,7 +3123,7 @@
                     threshold: null
                 },
                 //top: undefined,
-                //opposite: undefined, // docs
+                //opposite: undefined,
                 xAxis: {
                     className: 'highcharts-navigator-xaxis',
                     tickLength: 0,
@@ -3182,6 +3221,7 @@
                     maskInside = navigator.navigatorOptions.maskInside,
                     outlineWidth = navigator.outline.strokeWidth(),
                     halfOutline = outlineWidth / 2,
+                    outlineCorrection = (outlineWidth % 2) / 2, // #5800
                     outlineHeight = navigator.outlineHeight,
                     scrollbarHeight = navigator.scrollbarHeight,
                     navigatorSize = navigator.size,
@@ -3192,13 +3232,13 @@
 
                 if (inverted) {
                     left -= halfOutline;
-                    verticalMin = navigatorTop + zoomedMax + halfOutline;
-                    zoomedMax = navigatorTop + zoomedMin + halfOutline;
+                    verticalMin = navigatorTop + zoomedMax + outlineCorrection;
+                    zoomedMax = navigatorTop + zoomedMin + outlineCorrection;
 
                     path = [
                         'M',
                         left + outlineHeight,
-                        navigatorTop - scrollbarHeight - halfOutline, // top edge
+                        navigatorTop - scrollbarHeight - outlineCorrection, // top edge
                         'L',
                         left + outlineHeight,
                         verticalMin, // top right of zoomed range
@@ -3223,8 +3263,8 @@
                         zoomedMax + halfOutline // upper right of z.r.
                     ] : []);
                 } else {
-                    zoomedMin += left + scrollbarHeight - halfOutline; // #5800 - TO DO, remove halfOutline
-                    zoomedMax += left + scrollbarHeight - halfOutline; // #5800 - TO DO, remove halfOutline
+                    zoomedMin += left + scrollbarHeight - outlineCorrection;
+                    zoomedMax += left + scrollbarHeight - outlineCorrection;
                     navigatorTop += halfOutline;
 
                     path = [
@@ -3341,14 +3381,14 @@
                         .addClass('highcharts-navigator-mask' +
                             (index === 1 ? '-inside' : '-outside'))
 
-                    .add(navigatorGroup);
+                        .add(navigatorGroup);
                 });
 
                 // Create the outline:
                 navigator.outline = renderer.path()
                     .addClass('highcharts-navigator-outline')
 
-                .add(navigatorGroup);
+                    .add(navigatorGroup);
 
                 // Create the handlers:
                 each([0, 1], function(index) {
@@ -3423,20 +3463,18 @@
 
                 navigator.left = pick(
                     xAxis.left,
-                    chart.plotLeft + scrollbarHeight // in case of scrollbar only, without navigator
+                    // in case of scrollbar only, without navigator
+                    chart.plotLeft + scrollbarHeight + (inverted ? chart.plotWidth : 0)
+                );
+
+                navigator.size = zoomedMax = navigatorSize = pick(
+                    xAxis.len,
+                    (inverted ? chart.plotHeight : chart.plotWidth) - 2 * scrollbarHeight
                 );
 
                 if (inverted) {
-                    navigator.size = zoomedMax = navigatorSize = pick(
-                        xAxis.len,
-                        chart.plotHeight - 2 * scrollbarHeight
-                    );
                     navigatorWidth = scrollbarHeight;
                 } else {
-                    navigator.size = zoomedMax = navigatorSize = pick(
-                        xAxis.len,
-                        chart.plotWidth - 2 * scrollbarHeight
-                    );
                     navigatorWidth = navigatorSize + 2 * scrollbarHeight;
                 }
 
@@ -3473,6 +3511,7 @@
                     ),
                     zoomedMax
                 );
+
                 navigator.range = navigator.zoomedMax - navigator.zoomedMin;
 
                 zoomedMax = Math.round(navigator.zoomedMax);
@@ -3511,8 +3550,9 @@
                     );
                     // Keep scale 0-1
                     navigator.scrollbar.setRange(
-                        zoomedMin / navigatorSize,
-                        zoomedMax / navigatorSize
+                        // Use real value, not rounded because range can be very small (#1716)
+                        navigator.zoomedMin / navigatorSize,
+                        navigator.zoomedMax / navigatorSize
                     );
                 }
                 navigator.rendered = true;
@@ -3740,6 +3780,7 @@
                         } else if (chartX > navigatorSize + dragOffset - range) { // outside right
                             chartX = navigatorSize + dragOffset - range;
                         }
+
                         navigator.render(
                             0,
                             0,
@@ -3764,12 +3805,19 @@
                 var navigator = this,
                     chart = navigator.chart,
                     xAxis = navigator.xAxis,
+                    scrollbar = navigator.scrollbar,
                     fixedMin,
                     fixedMax,
                     ext,
                     DOMEvent = e.DOMEvent || e;
 
-                if (navigator.hasDragged || e.trigger === 'scrollbar') {
+                if (
+                    // MouseUp is called for both, navigator and scrollbar (that order),
+                    // which causes calling afterSetExtremes twice. Prevent first call
+                    // by checking if scrollbar is going to set new extremes (#6334)
+                    (navigator.hasDragged && (!scrollbar || !scrollbar.hasDragged)) ||
+                    e.trigger === 'scrollbar'
+                ) {
                     // When dragging one handle, make sure the other one doesn't change
                     if (navigator.zoomedMin === navigator.otherHandlePos) {
                         fixedMin = navigator.fixedExtreme;
@@ -3777,7 +3825,7 @@
                         fixedMax = navigator.fixedExtreme;
                     }
                     // Snap to right edge (#4076)
-                    if (navigator.zoomedMax === navigator.navigatorSize) {
+                    if (navigator.zoomedMax === navigator.size) {
                         fixedMax = navigator.getUnionExtremes().dataMax;
                     }
                     ext = xAxis.toFixedRange(
@@ -3866,6 +3914,8 @@
                 this.scrollbarOptions = scrollbarOptions;
                 this.outlineHeight = height + scrollbarHeight;
 
+                this.opposite = pick(navigatorOptions.opposite, !navigatorEnabled && chart.inverted); // #6262
+
                 var navigator = this,
                     baseSeries = navigator.baseSeries,
                     xAxisIndex = chart.xAxis.length,
@@ -3874,11 +3924,11 @@
 
                 // Make room for the navigator, can be placed around the chart:
                 chart.extraMargin = {
-                    type: navigatorOptions.opposite ? 'plotTop' : 'marginBottom',
-                    value: navigator.outlineHeight + navigatorOptions.margin
+                    type: navigator.opposite ? 'plotTop' : 'marginBottom',
+                    value: (navigatorEnabled || !chart.inverted ? navigator.outlineHeight : 0) + navigatorOptions.margin
                 };
                 if (chart.inverted) {
-                    chart.extraMargin.type = navigatorOptions.opposite ? 'marginRight' : 'plotLeft';
+                    chart.extraMargin.type = navigator.opposite ? 'marginRight' : 'plotLeft';
                 }
                 chart.isDirtyBox = true;
 
@@ -3949,7 +3999,7 @@
                         translate: function(value, reverse) {
                             var axis = chart.xAxis[0],
                                 ext = axis.getExtremes(),
-                                scrollTrackWidth = chart.plotWidth - 2 * scrollbarHeight,
+                                scrollTrackWidth = axis.len - 2 * scrollbarHeight,
                                 min = numExt('min', axis.options.min, ext.dataMin),
                                 valueRange = numExt('max', axis.options.max, ext.dataMax) - min;
 
@@ -4049,7 +4099,7 @@
              */
             setBaseSeries: function(baseSeriesOptions) {
                 var chart = this.chart,
-                    baseSeries = this.baseSeries = [];
+                    baseSeries;
 
                 baseSeriesOptions = baseSeriesOptions || chart.options && chart.options.navigator.baseSeries || 0;
 
@@ -4060,6 +4110,8 @@
                         s.destroy();
                     });
                 }
+
+                baseSeries = this.baseSeries = [];
 
                 // Iterate through series and add the ones that should be shown in navigator
                 each(chart.series || [], function(series, i) {
@@ -4148,17 +4200,13 @@
                     each(baseSeries, function(base) {
                         if (base.xAxis) {
                             addEvent(base, 'updatedData', this.updatedDataHandler);
-                            // Survive Series.update()
-                            base.userOptions.events = extend(base.userOptions.event, {
-                                updatedData: this.updatedDataHandler
-                            });
                         }
 
                         // Handle series removal
                         addEvent(base, 'remove', function() {
                             if (this.navigatorSeries) {
                                 erase(navigator.series, this.navigatorSeries);
-                                this.navigatorSeries.remove();
+                                this.navigatorSeries.remove(false);
                                 delete this.navigatorSeries;
                             }
                         });
@@ -4410,7 +4458,7 @@
 
                 // Compute the top position
                 if (this.inverted) {
-                    navigator.left = navigator.navigatorOptions.opposite ?
+                    navigator.left = navigator.opposite ?
                         this.chartWidth - scrollbarHeight - navigator.height :
                         this.spacing[3] + scrollbarHeight;
                     navigator.top = this.plotTop + scrollbarHeight;
@@ -4486,11 +4534,10 @@
     }(Highcharts));
     (function(H) {
         /**
-         * (c) 2010-2016 Torstein Honsi
+         * (c) 2010-2017 Torstein Honsi
          *
          * License: www.highcharts.com/license
          */
-        'use strict';
         var addEvent = H.addEvent,
             Axis = H.Axis,
             Chart = H.Chart,
@@ -5421,11 +5468,10 @@
     }(Highcharts));
     (function(H) {
         /**
-         * (c) 2010-2016 Torstein Honsi
+         * (c) 2010-2017 Torstein Honsi
          *
          * License: www.highcharts.com/license
          */
-        'use strict';
         var arrayMax = H.arrayMax,
             arrayMin = H.arrayMin,
             Axis = H.Axis,
@@ -5605,11 +5651,23 @@
                     if (labelOptions.align === undefined) {
                         labelOptions.align = 'right';
                     }
-                    panes[key] = 1;
+                    panes[key] = this;
                     return 'right';
                 }
             }
             return proceed.call(this, [].slice.call(arguments, 1));
+        });
+
+        // Clear axis from label panes (#6071)
+        wrap(Axis.prototype, 'destroy', function(proceed) {
+            var chart = this.chart,
+                key = this.options && (this.options.top + ',' + this.options.height);
+
+            if (key && chart._labelPanes && chart._labelPanes[key] === this) {
+                delete chart._labelPanes[key];
+            }
+
+            return proceed.call(this, Array.prototype.slice.call(arguments, 1));
         });
 
         // Override getPlotLinePath to allow for multipane charts
@@ -5916,7 +5974,7 @@
         });
 
         /* ****************************************************************************
-         * Start value compare logic                                                  *
+         * Start value compare logic												  *
          *****************************************************************************/
 
         /**
@@ -6065,7 +6123,7 @@
         };
 
         /* ****************************************************************************
-         * End value compare logic                                                    *
+         * End value compare logic													*
          *****************************************************************************/
 
 

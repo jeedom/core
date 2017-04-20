@@ -1,11 +1,12 @@
 /**
- * @license Highcharts JS v5.0.7 (2017-01-17)
+ * @license Highcharts JS v5.0.10 (2017-03-31)
  * Highcharts funnel module
  *
- * (c) 2010-2016 Torstein Honsi
+ * (c) 2010-2017 Torstein Honsi
  *
  * License: www.highcharts.com/license
  */
+'use strict';
 (function(factory) {
     if (typeof module === 'object' && module.exports) {
         module.exports = factory;
@@ -17,12 +18,11 @@
         /**
          * Highcharts funnel module
          *
-         * (c) 2010-2016 Torstein Honsi
+         * (c) 2010-2017 Torstein Honsi
          *
          * License: www.highcharts.com/license
          */
         /* eslint indent:0 */
-        'use strict';
 
         // create shortcuts
         var seriesType = Highcharts.seriesType,
@@ -46,7 +46,7 @@
                 dataLabels: {
                     //position: 'right',
                     connectorWidth: 1
-                        //connectorColor: null
+                    //connectorColor: null
                 },
                 states: {
                     select: {
@@ -68,7 +68,7 @@
                 translate: function() {
 
                     var
-                    // Get positions - either an integer or a percentage string must be given
+                        // Get positions - either an integer or a percentage string must be given
                         getLength = function(length, relativeTo) {
                             return (/%$/).test(length) ?
                                 relativeTo * parseInt(length, 10) / 100 :
