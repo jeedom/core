@@ -11,6 +11,12 @@ global $JEEDOM_INTERNAL_CONFIG;
 $configs = config::byKeys($keys);
 sendVarToJS('ldapEnable', $configs['ldap::enable']);
 user::isBan();
+if (!network::test('internal')) {
+	network::checkConf('internal');
+}
+if (!network::test('external')) {
+	network::checkConf('external');
+}
 ?>
 <br/>
 <div id="config">
