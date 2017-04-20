@@ -616,7 +616,6 @@ class jeedom {
 		if (!self::isStarted()) {
 			echo date('Y-m-d H:i:s') . ' starting Jeedom';
 			log::add('starting', 'debug', __('Démarrage de jeedom', __FILE__));
-
 			try {
 				log::add('starting', 'debug', __('Arret des crons', __FILE__));
 				foreach (cron::all() as $cron) {
