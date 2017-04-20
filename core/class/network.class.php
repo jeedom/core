@@ -525,10 +525,8 @@ class network {
 					if (strpos($iface, 'br0') !== false) {
 						continue;
 					}
-					log::add('network', 'error', __('La passerelle distante de l\'interface ', __FILE__) . $iface . '(' . $gw['gateway'] . ')' . __(' est injoignable, je la redémarre pour essayer de corriger.', __FILE__));
-					exec(system::getCmdSudo() . 'ifdown ' . $iface);
-					sleep(5);
-					exec(system::getCmdSudo() . 'ifup --force ' . $iface);
+					log::add('network', 'error', __('La passerelle distante de l\'interface ', __FILE__) . $iface . '(' . $gw['gateway'] . ')' . __(' est injoignable, j\'essaye de corriger.', __FILE__));
+					exec(system::getCmdSudo() . 'dhclient ' . $iface);
 				}
 			}
 		} catch (Exception $e) {
@@ -538,5 +536,3 @@ class network {
 		}
 	}
 }
-
-
