@@ -366,7 +366,7 @@ class network {
 
 	public static function getInterfaceMac($_interface) {
 		$valid_mac = "([0-9A-F]{2}[:-]){5}([0-9A-F]{2})";
-		$mac = trim(shell_exec(system::getCmdSudo() . "ip addr show ' . $_interface . ' 2>&1 | grep ether | awk '{print $2}'"));
+		$mac = trim(shell_exec(system::getCmdSudo() . "ip addr show " . $_interface . " 2>&1 | grep ether | awk '{print $2}'"));
 		if (preg_match("/" . $valid_mac . "/i", $mac)) {
 			return $mac;
 		}
@@ -385,7 +385,16 @@ class network {
 	}
 
 	public static function cron5() {
-		if (config::byKey('network::disableMangement') == 1 || !jeedom::isCapable('sudo') || jeedom::getHardwareName() == 'docker') {
+		if (config::byKey('network::disableMangement') == 1) {
+			return;
+		}
+		if (!network::test('internal')) {
+			network::checkConf('internal');
+		}
+		if (!network::test('external')) {
+			network::checkConf('external');
+		}
+		if (!jeedom::isCapable('sudo') || jeedom::getHardwareName() == 'docker') {
 			return;
 		}
 		exec(system::getCmdSudo() . 'ping -n -c 1 -t 255 8.8.8.8 2>&1 > /dev/null', $output, $return_val);

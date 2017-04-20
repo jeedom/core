@@ -11,12 +11,6 @@ global $JEEDOM_INTERNAL_CONFIG;
 $configs = config::byKeys($keys);
 sendVarToJS('ldapEnable', $configs['ldap::enable']);
 user::isBan();
-if (!network::test('internal')) {
-	network::checkConf('internal');
-}
-if (!network::test('external')) {
-	network::checkConf('external');
-}
 ?>
 <br/>
 <div id="config">
@@ -548,19 +542,33 @@ if (network::test('external')) {
 											<input type="checkbox" class="configKey" data-l1key="network::disableMangement" />
 										</div>
 									</div>
-									<?php
-foreach (array('eth0', 'wlan0', 'bond0') as $value) {
-	$mac = network::getInterfaceMac($value);
-	if ($mac !== false) {
-		echo '<div class="form-group expertModeVisible">';
-		echo '<label class="col-xs-4 control-label">{{Adresse mac}} ' . $value . '</label>';
-		echo '<div class="col-xs-8">';
-		echo '<span class="label label-primary" style="font-size:1em;">' . $mac . '</span>';
-		echo '</div>';
-		echo '</div>';
-	}
+									<table class="table">
+										<thead>
+											<tr>
+												<th>{{Interface}}</th>
+												<th>{{IP}}</th>
+												<th>{{Mac}}</th>
+											</tr>
+										</thead>
+										<tbody>
+																				<?php
+foreach (network::getInterfaces() as $interface) {
+	$mac = network::getInterfaceMac($interface);
+	echo '<tr>';
+	echo '<td>';
+	echo $interface;
+	echo '</td>';
+	echo '<td>';
+	echo network::getInterfaceIp($interface);
+	echo '</td>';
+	echo '<td>';
+	echo network::getInterfaceMac($interface);
+	echo '</td>';
+	echo '</tr>';
 }
 ?>
+										</tbody>
+									</table>
 								</div>
 								<div class="col-sm-6">
 									<?php
