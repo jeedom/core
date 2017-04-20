@@ -461,12 +461,20 @@ echo $CONFIG['db']['password'];
 			</div>
 			<div id="config_network" class="panel-collapse collapse">
 				<div class="panel-body">
+				<div class="alert alert-warning">{{Attention : cette configuration n'est là que pour informer Jeedom de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre Jeedom}}</div>
 					<form class="form-horizontal">
 						<fieldset>
-							<div class="alert alert-warning">{{Attention : cette configuration n'est là que pour informer Jeedom de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre Jeedom}}</div>
 							<legend>{{Accès interne}}</legend>
 							<div class="form-group">
-								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Protocole}}</label>
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">
+	<?php
+if (network::test('internal')) {
+	echo '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
+} else {
+	echo '<span class="label label-warning">{{NOK}}</span>';
+}
+?>
+								{{Protocole}}</label>
 								<div class="col-lg-8 col-md-9 col-sm-8 col-xs-6">
 									<div class="input-group">
 										<select class="configKey form-control" data-l1key="internalProtocol">
@@ -483,26 +491,21 @@ echo $CONFIG['db']['password'];
 									</div>
 								</div>
 							</div>
-
-							<div class="form-group">
-								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Statut}}</label>
-								<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-									<?php
-if (network::test('internal')) {
-	echo '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
-} else {
-	echo '<span class="label label-warning">{{NOK}}</span>';
-}
-?>
-								</div>
-							</div>
 						</fieldset>
 					</form>
 					<form class="form-horizontal">
 						<fieldset>
 							<legend>{{Accès externe}}</legend>
 							<div class="form-group">
-								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Protocole}}</label>
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">
+						<?php
+if (network::test('external')) {
+	echo '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
+} else {
+	echo '<span class="label label-warning">{{NOK}}</span>';
+}
+?>
+								{{Protocole}}</label>
 								<div class="col-lg-8 col-md-9 col-sm-8 col-xs-6">
 									<div class="input-group">
 										<select class="configKey form-control" data-l1key="externalProtocol">
@@ -519,24 +522,9 @@ if (network::test('internal')) {
 									</div>
 								</div>
 							</div>
-							<div class="form-group">
-								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Statut}}</label>
-								<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-									<?php
-if (network::test('external')) {
-	echo '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
-} else {
-	echo '<span class="label label-warning">{{NOK}}</span>';
-}
-?>
-								</div>
-							</div>
-
-
 							<div class="row">
 								<div class="col-sm-6">
 									<legend>{{Gestion avancée}}</legend>
-
 									<table class="table table-condensed table-bordered">
 										<thead>
 											<tr>
