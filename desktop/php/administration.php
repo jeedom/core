@@ -536,13 +536,8 @@ if (network::test('external')) {
 							<div class="row">
 								<div class="col-sm-6">
 									<legend>{{Gestion avancée}}</legend>
-									<div class="form-group expertModeVisible has-error">
-										<label class="col-xs-4 control-label">{{Désactiver la gestion du réseau par Jeedom}}</label>
-										<div class="col-xs-8">
-											<input type="checkbox" class="configKey" data-l1key="network::disableMangement" />
-										</div>
-									</div>
-									<table class="table">
+
+									<table class="table table-condensed table-bordered">
 										<thead>
 											<tr>
 												<th>{{Interface}}</th>
@@ -569,6 +564,12 @@ foreach (network::getInterfaces() as $interface) {
 ?>
 										</tbody>
 									</table>
+									<div class="form-group expertModeVisible has-error">
+										<label class="col-xs-6 control-label">{{Désactiver la gestion du réseau par Jeedom}}</label>
+										<div class="col-xs-4">
+											<input type="checkbox" class="configKey" data-l1key="network::disableMangement" />
+										</div>
+									</div>
 								</div>
 								<div class="col-sm-6">
 									<?php
