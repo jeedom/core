@@ -47,7 +47,7 @@ class interactQuery {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM interactQuery
 		WHERE query=:query';
-		if ($_interactDef_id != null) {
+		if ($_interactDef_id !== null) {
 			$values['interactDef_id'] = $_interactDef_id;
 			$sql .= ' AND interactDef_id=:interactDef_id';
 		}
@@ -202,15 +202,15 @@ class interactQuery {
 		if ($_type == 'object') {
 			$objects = object::all();
 		} elseif ($_type == 'eqLogic') {
-			if ($_data != null && is_object($_data['object'])) {
+			if ($_data !== null && is_object($_data['object'])) {
 				$objects = $_data['object']->getEqLogic();
 			} else {
 				$objects = eqLogic::all();
 			}
 		} elseif ($_type == 'cmd') {
-			if ($_data != null && is_object($_data['eqLogic'])) {
+			if ($_data !== null && is_object($_data['eqLogic'])) {
 				$objects = $_data['eqLogic']->getCmd();
-			} elseif ($_data != null && is_object($_data['object'])) {
+			} elseif ($_data !== null && is_object($_data['object'])) {
 				$objects = array();
 				foreach ($_data['object']->getEqLogic() as $eqLogic) {
 					foreach ($eqLogic->getCmd() as $cmd) {
@@ -220,7 +220,7 @@ class interactQuery {
 			} else {
 				$objects = cmd::all();
 			}
-		} else if ($_type == 'summary') {
+		} elseif ($_type == 'summary') {
 			foreach (config::byKey('object:summary') as $key => $value) {
 				if (count($synonyms) > 0 && in_array(strtolower($value['name']), $synonyms)) {
 					$return[$_type] = $value;
@@ -322,7 +322,7 @@ class interactQuery {
 				if (method_exists($plugin->getId(), 'interact')) {
 					$plugin_id = $plugin->getId();
 					$reply = $plugin_id::interact($_query, $_parameters);
-					if ($reply != null || is_array($reply)) {
+					if ($reply !== null || is_array($reply)) {
 						$reply['reply'] = '[' . $plugin_id . '] ' . $reply['reply'];
 						self::addLastInteract($_query, $_parameters['identifier']);
 						return $reply;
@@ -441,7 +441,7 @@ class interactQuery {
 		if (!isset($_parameters['identifier'])) {
 			$_parameters['identifier'] = '';
 		}
-		if ($_lastCmd == null) {
+		if ($_lastCmd === null) {
 			$last = cache::byKey('interact::lastCmd::' . $_parameters['identifier']);
 			if ($last->getValue() == '') {
 				return $return;
@@ -482,7 +482,7 @@ class interactQuery {
 			return $reply;
 		}
 		$return = self::autoInteract(str_replace(array('][', '[', ']'), array(' ', '', ''), $humanName), $_parameters);
-		if ($return == '' && $_lastCmd == null) {
+		if ($return == '' && $_lastCmd === null) {
 			$last = cache::byKey('interact::lastCmd2::' . $_parameters['identifier']);
 			if ($last->getValue() != '') {
 				$return = self::contextualReply($_query, $_parameters, $last->getValue());
@@ -663,7 +663,7 @@ class interactQuery {
 					if (isset($action['options'])) {
 						$options = $action['options'];
 					}
-					if ($tags != null) {
+					if ($tags !== null) {
 						foreach ($options as &$option) {
 							$option = str_replace(array_keys($tags_replace), $tags_replace, $option);
 						}
