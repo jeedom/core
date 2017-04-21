@@ -254,7 +254,7 @@ foreach (jeedom::getConfiguration('cmd::generic_type') as $key => $info) {
 		continue;
 	} elseif ($cmd->getType() == 'action' && $info['type'] == 'Info') {
 		continue;
-	} elseif (isset($info['ignore']) && $info['ignore'] == true) {
+	} elseif (isset($info['ignore']) && $info['ignore'] === true) {
 		continue;
 	}
 	$info['key'] = $key;
