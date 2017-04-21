@@ -145,6 +145,8 @@ step_7_jeedom_customization() {
 	cp ${WEBSERVER_HOME}/install/apache_default /etc/apache2/sites-available/000-default.conf
 	rm /etc/apache2/sites-enabled/000-default.conf > /dev/null 2>&1
 	ln -s /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-enabled/
+	ln -s /etc/apache2/mods-available/proxy.load /etc/apache2/mods-enabled/proxy.load
+	ln -s /etc/apache2/mods-available/proxy.conf /etc/apache2/mods-enabled/proxy.conf
 
 	rm /etc/apache2/conf-available/other-vhosts-access-log.conf > /dev/null 2>&1
 	rm /etc/apache2/conf-enabled/other-vhosts-access-log.conf > /dev/null 2>&1
