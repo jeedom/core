@@ -403,7 +403,7 @@ class network {
 		}
 		$gw = shell_exec("ip route show default | awk '/default/ {print $3}'");
 		if ($gw == '') {
-			log::add('network', 'error', __('', __FILE__));
+			log::add('network', 'error', __('Soucis réseaux detecté, redemarrage du réseaux', __FILE__));
 			exec(system::getCmdSudo() . 'service networking restart');
 			return;
 		}
@@ -411,7 +411,7 @@ class network {
 		if ($return_val == 0) {
 			return;
 		}
-		log::add('network', 'error', __('La passerelle distante de l\'interface ', __FILE__) . $iface . '(' . $gw['gateway'] . ')' . __(' est injoignable, je la redémarre pour essayer de corriger.', __FILE__));
-		exec(system::getCmdSudo() . 'if down;sleep 5;' . system::getCmdSudo() . 'if up');
+		log::add('network', 'error', __('Soucis réseaux detecté, redemarrage du réseaux', __FILE__));
+		exec(system::getCmdSudo() . 'service networking restart');
 	}
 }
