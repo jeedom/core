@@ -704,7 +704,7 @@ ORDER BY  datetime DESC';
 		} else {
 			$cmd = $_cmd;
 		}
-		if ($this->getDatetime() == '') {
+		if ($this->getDatetime() === null) {
 			$this->setDatetime(date('Y-m-d H:i:s'));
 		}
 		if ($cmd->getConfiguration('historizeRound') !== '' && is_numeric($cmd->getConfiguration('historizeRound')) && $cmd->getConfiguration('historizeRound') >= 0 && $this->getValue() !== null) {
@@ -762,7 +762,7 @@ ORDER BY  datetime DESC';
 			'datetime' => $this->getDatetime(),
 			'value' => $this->getValue(),
 		);
-		if ($values['value'] === '') {
+		if ($values['value'] === null) {
 			$values['value'] = null;
 		}
 		$sql = 'REPLACE INTO ' . $this->getTableName() . '
