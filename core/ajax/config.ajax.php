@@ -67,17 +67,6 @@ try {
 		$values = json_decode(init('value'), true);
 		foreach ($values as $key => $value) {
 			config::save($key, jeedom::fromHumanReadable($value), init('plugin', 'core'));
-			if ($key == 'market::allowDNS') {
-				if ($value == 1) {
-					if (!network::dns_run()) {
-						network::dns_start();
-					}
-				} else {
-					if (network::dns_run()) {
-						network::dns_stop();
-					}
-				}
-			}
 		}
 		ajax::success();
 	}

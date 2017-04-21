@@ -70,12 +70,9 @@ class config {
 			}
 		}
 
-		$function = str_replace(array('::', ':'), '_', $_key);
-		if ($_plugin == 'core') {
-			$class = 'config';
-		} else {
-			$class = $_plugin;
-		}
+		$class = ($_plugin == 'core') ? 'config' : $_plugin;
+
+		$function = 'preConfig_' . str_replace(array('::', ':'), '_', $_key);
 		if (method_exists($class, $function)) {
 			$_value = $class::$function($_value);
 		}
@@ -88,7 +85,12 @@ class config {
                 SET `key`=:key,
                     `value`=:value,
                      plugin=:plugin';
-		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+		DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+
+		$function = 'postConfig_' . str_replace(array('::', ':'), '_', $_key);
+		if (method_exists($class, $function)) {
+			$class::$function($_value);
+		}
 	}
 
 	/**
@@ -252,6 +254,20 @@ class config {
 			}
 		}
 		return $return;
+	}
+
+	/*     * *********************Action sur config************************* */
+
+	public static function postConfig_market_allowDNS($_value) {
+		if ($_value == 1) {
+			if (!network::dns_run()) {
+				network::dns_start();
+			}
+		} else {
+			if (network::dns_run()) {
+				network::dns_stop();
+			}
+		}
 	}
 
 	/*     * *********************Methode d'instance************************* */
