@@ -69,6 +69,16 @@ class config {
 				return true;
 			}
 		}
+
+		$function = str_replace(array('::', ':'), '_', $_key);
+		if ($_plugin == 'core') {
+			$class = 'config';
+		} else {
+			$class = $_plugin;
+		}
+		if (method_exists($class, $function)) {
+			$_value = $class::$function($_value);
+		}
 		$values = array(
 			'plugin' => $_plugin,
 			'key' => $_key,
