@@ -10,7 +10,7 @@ $name = init('name', null);
 if ($name == 'false') {
 	$name = null;
 }
-if ($name == null && $categorie == null && init('certification', null) == null && init('cost', null) == null && $type == 'plugin') {
+if ($name === null && $categorie === null && init('certification', null) === null && init('cost', null) === null && $type == 'plugin') {
 	$default = true;
 	$markets = repo_market::byFilter(array(
 		'status' => 'stable',
@@ -225,7 +225,7 @@ if (config::byKey('market::username') != '') {
 </form>
 </div>
 <?php
-if ($name != null && strpos($name, '$') !== false) {
+if ($name !== null && strpos($name, '$') !== false) {
 	echo '<a class="btn btn-default" id="bt_returnMarketList" style="margin-top : 50px;" data-href=' . buildUrl('name', '') . '><i class="fa fa-arrow-circle-left"></i> {{Retour}}</a>';
 }
 ?>
