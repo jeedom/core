@@ -699,7 +699,7 @@ class scenarioExpression {
 	}
 
 	public static function trigger($_name = '', &$_scenario = null) {
-		if ($_scenario != null) {
+		if ($_scenario !== null) {
 			if (trim($_name) == '') {
 				return $_scenario->getRealTrigger();
 			}
@@ -1055,14 +1055,14 @@ class scenarioExpression {
 					$this->setLog($scenario, __('Aucune durée trouvée pour l\'action sleep ou la durée n\'est pas valide : ', __FILE__) . $options['duration']);
 					return;
 				} else if ($this->getExpression() == 'stop') {
-					if ($scenario != null) {
+					if ($scenario !== null) {
 						$this->setLog($scenario, __('Action stop', __FILE__));
 						$scenario->setDo(false);
 						return;
 					}
 					die();
 				} else if ($this->getExpression() == 'log') {
-					if ($scenario != null) {
+					if ($scenario !== null) {
 						$scenario->setLog('Log : ' . $options['message']);
 					}
 					return;
@@ -1118,7 +1118,7 @@ class scenarioExpression {
 					event::add('jeedom::gotoplan', $options['plan_id']);
 					return;
 				} else if ($this->getExpression() == 'scenario') {
-					if ($scenario != null && $this->getOptions('scenario_id') == $scenario->getId()) {
+					if ($scenario !== null && $this->getOptions('scenario_id') == $scenario->getId()) {
 						$actionScenario = &$scenario;
 					} else {
 						$actionScenario = scenario::byId($this->getOptions('scenario_id'));
@@ -1140,7 +1140,7 @@ class scenarioExpression {
 								$actionScenario->setTags($this->getOptions('tags'));
 							}
 							$this->setLog($scenario, __('Lancement du scénario : ', __FILE__) . $actionScenario->getName() . __(' options : ', __FILE__) . print_r($actionScenario->getTags(), true));
-							if ($scenario != null) {
+							if ($scenario !== null) {
 								return $actionScenario->launch('scenario', __('Lancement provoqué par le scénario  : ', __FILE__) . $scenario->getHumanName());
 							} else {
 								return $actionScenario->launch('other', __('Lancement provoqué', __FILE__));
@@ -1159,7 +1159,7 @@ class scenarioExpression {
 								$actionScenario->setTags($this->getOptions('tags'));
 							}
 							$this->setLog($scenario, __('Lancement du scénario : ', __FILE__) . $actionScenario->getName() . __(' options : ', __FILE__) . print_r($actionScenario->getTags(), true));
-							if ($scenario != null) {
+							if ($scenario !== null) {
 								return $actionScenario->launch('scenario', __('Lancement provoqué par le scénario  : ', __FILE__) . $scenario->getHumanName(), true);
 							} else {
 								return $actionScenario->launch('other', __('Lancement provoqué', __FILE__), true);
@@ -1289,7 +1289,7 @@ class scenarioExpression {
 							$cmd_parameters['message'] = __('Veuillez trouver ci-joint le rapport ', __FILE__) . $plugin->getName() . __(' généré le ', __FILE__) . date('Y-m-d H:i:s');
 							break;
 					}
-					if ($cmd_parameters['files'] == null) {
+					if ($cmd_parameters['files'] === null) {
 						throw new Exception(__('Erreur : Aucun rapport généré', __FILE__));
 					}
 					if ($this->getOptions('cmd') != '') {
@@ -1504,7 +1504,7 @@ class scenarioExpression {
 	}
 
 	public function setLog(&$_scenario, $log) {
-		if ($_scenario != null && is_object($_scenario)) {
+		if ($_scenario !== null && is_object($_scenario)) {
 			$_scenario->setLog($log);
 		}
 	}
