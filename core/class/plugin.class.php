@@ -468,7 +468,7 @@ class plugin {
 	}
 
 	public function isActive() {
-		if (self::$_enable == null) {
+		if (self::$_enable === null) {
 			self::$_enable = config::getPluginEnable();
 		}
 		if (isset(self::$_enable[$this->id])) {
