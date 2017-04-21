@@ -319,7 +319,7 @@ try {
 			$eqLogic->emptyCacheWidget();
 		}
 	} catch (Exception $e) {
-
+		echo $exc->getMessage();
 	}
 
 	try {
