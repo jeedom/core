@@ -828,8 +828,8 @@ function savePlan(_refreshDisplay,_async) {
         plan.link_type = info.type;
         plan.link_id = info.id;
         plan.planHeader_id = planHeader_id;
-        plan.display.height = $(this).outerHeight() / $(this).attr('data-zoom');
-        plan.display.width = $(this).outerWidth() / $(this).attr('data-zoom');
+        plan.display.height = $(this).outerHeight();
+        plan.display.width = $(this).outerWidth();
         if(info.type == 'graph'){
            plan.display.graph = json_decode($(this).find('.graphOptions').value());
        }
