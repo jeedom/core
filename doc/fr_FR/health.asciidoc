@@ -16,9 +16,9 @@ En dessous vous retrouvez les mêmes tableaux mais par plugin (si le plugin est 
 
 L'icône à droite permet d'accéder à un benchmarck de votre jeedom
 
-image::../images/health3.png[]
+image::../images/health3.PNG[]
 
-image::../images/health4.png[]
+image::../images/health4.PNG[]
 
 
 == Aide à la résolution
