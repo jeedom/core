@@ -14,6 +14,13 @@ Vous retrouvez ici un tableau qui donne une description de ce que Jeedom vérifi
 
 En dessous vous retrouvez les mêmes tableaux mais par plugin (si le plugin est compatible). Un clic sur le nom du plugin vous amène directement sur sa page de configuration
 
+Un clik sur l'icône à droite permet d'accéder à un benchmarck de votre jeedom.
+
+image::../images/health3.PNG[]
+
+image::../images/health4.PNG[]
+
+
 == Aide à la résolution
 
 === Version PHP
