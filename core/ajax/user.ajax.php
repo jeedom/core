@@ -30,18 +30,21 @@ try {
 	}
 
 	if (init('action') == 'login') {
-		if (!isConnect() && config::byKey('sso:allowRemoteUser') == 1) {
-			$user = user::byLogin($_SERVER['REMOTE_USER']);
-			if (is_object($user) && $user->getEnable() == 1) {
-				@session_start();
-				$_SESSION['user'] = $user;
-				@session_write_close();
-				log::add('connection', 'info', __('Connexion de l\'utilisateur par REMOTE_USER : ', __FILE__) . $user->getLogin());
+		if (!isConnect()) {
+			if (config::byKey('sso:allowRemoteUser') == 1) {
+				$user = user::byLogin($_SERVER['REMOTE_USER']);
+				if (is_object($user) && $user->getEnable() == 1) {
+					@session_start();
+					$_SESSION['user'] = $user;
+					@session_write_close();
+					log::add('connection', 'info', __('Connexion de l\'utilisateur par REMOTE_USER : ', __FILE__) . $user->getLogin());
+				}
+			}
+			if (!login(init('username'), init('password'), init('twoFactorCode'))) {
+				throw new Exception('Mot de passe ou nom d\'utilisateur incorrect');
 			}
 		}
-		if (!isConnect() && !login(init('username'), init('password'), init('twoFactorCode'))) {
-			throw new Exception('Mot de passe ou nom d\'utilisateur incorrect');
-		}
+
 		if (init('storeConnection') == 1) {
 			setcookie('registerDevice', $_SESSION['user']->getHash(), time() + 365 * 24 * 3600, "/", '', false, true);
 			if (!isset($_COOKIE['jeedom_token'])) {
