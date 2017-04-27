@@ -548,7 +548,15 @@ ORDER BY  datetime DESC';
 		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 		return strtotime('now') - strtotime($result['lastCmdDuration']);
 	}
-
+	/**
+         * 
+         * @param int $_cmd_id
+         * @param string/float $_value
+         * @param string $_startTime
+         * @param string $_endTime
+         * @return array
+         * @throws Exception
+         */
 	public static function stateChanges($_cmd_id, $_value = null, $_startTime = null, $_endTime = null) {
 		$cmd = cmd::byId($_cmd_id);
 		if (!is_object($cmd)) {
@@ -567,7 +575,7 @@ ORDER BY  datetime DESC';
 			$_dateTime .= ' AND `datetime`<="' . $_endTime . '"';
 		}
 
-		if ($_value === null and !is_numeric($_value)) {
+		if ($_value === null && !is_numeric($_value)) {
 			$_condition = '';
 		} else {
 			$_value = str_replace(',', '.', $_value);
