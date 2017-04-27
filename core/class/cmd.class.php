@@ -761,12 +761,17 @@ class cmd {
 	}
 
 	/**
-	 *
-	 * @param type $_options
+         * 
+         * @param type $_options
+         * @param type $_sendNodeJsEvent
+         * @param type $_quote
 	 * @return command result
 	 * @throws Exception
-	 */
-	public function execCmd($_options = null, $_sendNodeJsEvent = true, $_quote = false) {
+         */
+	public function execCmd($_options = null, $_sendNodeJsEvent, $_quote = false) {
+		if ($_sendNodeJsEvent){
+			 trigger_error ('$_sendNodeJsEvent is deprecated', E_USER_DEPRECATED);
+		}
 		if ($this->getType() == 'info') {
 			$this->setCollectDate($this->getCache('collectDate', date('Y-m-d H:i:s'), true));
 			$this->setValueDate($this->getCache('valueDate', date('Y-m-d H:i:s'), true));
