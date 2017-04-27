@@ -550,8 +550,12 @@ class plugin {
 		}
 		return $return;
 	}
-
-	public function dependancy_install($_force = true) {
+	/**
+         * 
+         * @return null
+         * @throws Exception
+         */
+	public function dependancy_install() {
 		$plugin_id = $this->getId();
 		if ($this->getHasDependency() != 1 || !method_exists($plugin_id, 'dependancy_install')) {
 			return;
