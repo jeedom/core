@@ -126,7 +126,7 @@ try {
 			throw new Exception(__('EqLogic inconnu vérifiez l\'id', __FILE__));
 		}
 		if (!$eqLogic->hasRight('w')) {
-			throw new Exception('Vous n\'etês pas autorisé à faire cette action');
+			throw new Exception('Vous n\'êtes pas autorisé à faire cette action');
 		}
 		$eqLogic->setIsEnable(init('isEnable'));
 		$eqLogic->save();
