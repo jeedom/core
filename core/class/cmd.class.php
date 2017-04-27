@@ -1740,6 +1740,7 @@ class cmd {
 
 	public function setAlert($_key, $_value) {
 		$this->alert = utils::setJsonAttr($this->alert, $_key, $_value);
+		return $this;
 	}
 
 	public function getCollectDate() {
