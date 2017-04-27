@@ -162,7 +162,6 @@ class translate {
 }
 
 function __($_content, $_name, $_backslash = false) {
-	return translate::sentence($_content, $_name, $_backslash = false);
+	return translate::sentence($_content, $_name, $_backslash);
 }
 
-?>
