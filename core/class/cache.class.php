@@ -138,12 +138,17 @@ class cache {
 		return self::$cache;
 	}
 
-	public static function byKey($_key, $_noRemove = false) {
+	/**
+         * 
+         * @param type $_key
+         * @return type
+         */
+	public static function byKey($_key) {
 		$cache = self::getCache()->fetch($_key);
 		if (!is_object($cache)) {
-			$cache = new self();
-			$cache->setKey($_key);
-			$cache->setDatetime(date('Y-m-d H:i:s'));
+			$cache = (new self())
+                                ->setKey($_key)
+                                ->setDatetime(date('Y-m-d H:i:s'));
 		}
 		return $cache;
 	}
