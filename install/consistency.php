@@ -340,18 +340,6 @@ try {
 			$cmd->save();
 		}
 	}
-
-	try {
-		echo __("Rename adminer folder...", __FILE__);
-		jeedom::renameAdminerFolder();
-		echo __("OK\n", __FILE__);
-		echo __("Rename sysinfo folder...", __FILE__);
-		jeedom::renameSysInfoFolder();
-		echo __("OK\n", __FILE__);
-	} catch (Exception $e) {
-
-	}
-
 } catch (Exception $e) {
 	echo "Error : ";
 	echo $e->getMessage();
