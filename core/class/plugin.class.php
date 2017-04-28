@@ -108,11 +108,11 @@ class plugin {
 			}
 		} else {
 			libxml_use_internal_errors(true);
-                        $plugin_xml = simplexml_load_file($_id);
-                        if (!$plugin_xml) {
-                                throw new Exception('XML introuvable (chemin invalide) : ' . $_id );
-                        }
-		 
+			$plugin_xml = simplexml_load_file($_id);
+			if (!$plugin_xml) {
+				throw new Exception('XML introuvable (chemin invalide) : ' . $_id);
+			}
+
 			if (!is_object($plugin_xml)) {
 				throw new Exception('Plugin introuvable (xml invalide) : ' . $_id . '. Description : ' . print_r(libxml_get_errors(), true));
 			}
@@ -551,10 +551,10 @@ class plugin {
 		return $return;
 	}
 	/**
-         * 
-         * @return null
-         * @throws Exception
-         */
+	 *
+	 * @return null
+	 * @throws Exception
+	 */
 	public function dependancy_install() {
 		$plugin_id = $this->getId();
 		if ($this->getHasDependency() != 1 || !method_exists($plugin_id, 'dependancy_install')) {
