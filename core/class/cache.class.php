@@ -93,7 +93,12 @@ class cache {
 		}
 		return $return;
 	}
-
+	/**
+         * @name getCache()
+         * @access public
+         * @static
+         * @return type
+         */
 	public static function getCache() {
 		if (self::$cache !== null) {
 			return self::$cache;
@@ -127,7 +132,7 @@ class cache {
 				self::$cache->setRedis($redis);
 				break;
 			default:
-				$cache = new \Doctrine\Common\Cache\FilesystemCache(self::getFolder());
+				self::$cache = new \Doctrine\Common\Cache\FilesystemCache(self::getFolder());
 				break;
 		}
 		return self::$cache;
