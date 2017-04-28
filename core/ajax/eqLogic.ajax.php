@@ -138,7 +138,7 @@ try {
 		$sql = '';
 		foreach ($eqLogics as $eqLogic_json) {
 			if (!is_numeric($eqLogic_json['id']) || !is_numeric($eqLogic_json['order']) || (isset($eqLogic_json['object_id']) && !is_numeric($eqLogic_json['object_id']))) {
-				throw new Exception("Erreur une des valeurs n'est pas un numérique");
+				throw new Exception(__("Erreur une des valeurs n'est pas un numérique"));
 			}
 			if (isset($eqLogic_json['object_id'])) {
 				if ($eqLogic_json['object_id'] == -1) {
@@ -211,7 +211,7 @@ try {
 		}
 
 		if (!$eqLogic->hasRight('w')) {
-			throw new Exception('Vous n\'êtes pas autorisé à faire cette action');
+			throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action'));
 		}
 		utils::a2o($eqLogic, $eqLogicSave);
 		$eqLogic->save();
@@ -241,7 +241,7 @@ try {
 			throw new Exception(__('EqLogic inconnu vérifiez l\'id : ', __FILE__) . init('id'));
 		}
 		if (!$eqLogic->hasRight('w')) {
-			throw new Exception('Vous n\'êtes pas autorisé à faire cette action');
+			throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action'));
 		}
 		$eqLogic->remove();
 		ajax::success();
