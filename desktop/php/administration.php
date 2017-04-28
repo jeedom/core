@@ -306,7 +306,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 			<div class="panel-heading">
 				<h3 class="panel-title">
 					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_system">
-						<i class="fa fa-terminal"></i>  {{Système (OS)}}
+						<i class="fa fa-terminal"></i>  {{Système (OS) et base de données}}
 					</a>
 				</h3>
 			</div>
@@ -315,10 +315,38 @@ foreach (plugin::listPlugin(true) as $plugin) {
 					<form class="form-horizontal">
 						<fieldset>
 							<div class="alert alert-danger">{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à Jeedom. L'équipe Jeedom se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}</div>
+							<legend><i class="fa fa-terminal"></i> {{Système}}</legend>
 							<div class="form-group">
-								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Accès à l'interface d'administration}}</label>
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Administration}}</label>
 								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 									<a class="btn btn-danger" id="bt_accessSystemAdministration"><i class="fa fa-exclamation-triangle"></i> {{Lancer}}</a>
+								</div>
+							</div>
+							<legend><i class="fa fa-database"></i> {{Base de données}}</legend>
+							<div class="alert alert-danger">{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à Jeedom. L'équipe Jeedom se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}</div>
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Administration}}</label>
+								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+<a class="btn btn-danger" id="bt_accessDbAdministration"><i class="fa fa-exclamation-triangle"></i> {{Lancer}}</a>
+
+
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Utilisateur}}</label>
+								<div class="col-sm-1">
+									<?php
+global $CONFIG;
+echo $CONFIG['db']['username'];
+?>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mot de passe}}</label>
+								<div class="col-sm-1">
+									<?php
+echo $CONFIG['db']['password'];
+?>
 								</div>
 							</div>
 						</fieldset>
@@ -394,57 +422,6 @@ if (count($values) != 0) {
 								</tbody>
 							</table>
 
-						</fieldset>
-					</form>
-				</div>
-			</div>
-		</div>
-
-
-		<div class="panel panel-default expertModeVisible">
-			<div class="panel-heading">
-				<h3 class="panel-title">
-					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_database">
-						<i class="fa fa-database"></i>  {{Base de données}}
-					</a>
-				</h3>
-			</div>
-			<div id="config_database" class="panel-collapse collapse">
-				<div class="panel-body">
-					<form class="form-horizontal">
-						<fieldset>
-							<div class="alert alert-danger">{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à Jeedom. Suite à une modification de la base de données, l'équipe Jeedom se réserve le droit de refuser toute demande de support.}}</div>
-							<div class="form-group">
-								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Accès à l'interface d'administration}}</label>
-								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-									<a class="btn btn-danger" id="bt_accessDB" data-href="<?php echo jeedom::getCurrentAdminerFolder() . '/index.php' ?>"><i class="fa fa-exclamation-triangle"></i> {{Se connecter}}</a>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Machine (hostname)}}</label>
-								<div class="col-sm-1">
-									<?php
-global $CONFIG;
-echo $CONFIG['db']['host'] . ':' . $CONFIG['db']['port'];
-?>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Utilisateur}}</label>
-								<div class="col-sm-1">
-									<?php
-echo $CONFIG['db']['username'];
-?>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mot de passe}}</label>
-								<div class="col-sm-1">
-									<?php
-echo $CONFIG['db']['password'];
-?>
-								</div>
-							</div>
 						</fieldset>
 					</form>
 				</div>

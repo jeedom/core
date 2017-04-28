@@ -482,6 +482,12 @@ $('#bt_accessSystemAdministration').on('click',function(){
     $("#md_modal").load('index.php?v=d&modal=system.action').dialog('open');
 });
 
+/**************************SYSTEM***********************************/
+$('#bt_accessDbAdministration').on('click',function(){
+    $('#md_modal').dialog({title: "{{Administration base de données}}"});
+    $("#md_modal").load('index.php?v=d&modal=db.action').dialog('open');
+});
+
 /**************************Summary***********************************/
 
 $('#bt_addObjectSummary').on('click', function () {

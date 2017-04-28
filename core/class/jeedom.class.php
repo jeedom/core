@@ -775,8 +775,6 @@ class jeedom {
 			report::clean();
 			DB::optimize();
 			cache::clean();
-			self::renameAdminerFolder();
-			self::renameSysInfoFolder();
 		} catch (Exception $e) {
 			log::add('jeedom', 'error', $e->getMessage());
 		} catch (Error $e) {
@@ -1024,54 +1022,6 @@ class jeedom {
 			mkdir($return, 0777, true);
 		}
 		return $return;
-	}
-
-/*     * ****************************SQL BUDDY*************************** */
-
-	public static function getCurrentAdminerFolder() {
-		$dir = dirname(__FILE__) . '/../../';
-		$ls = ls($dir, 'adminer*');
-		if (count($ls) == 0) {
-			return '';
-		}
-		if (count($ls) > 1) {
-			$countLs = count($ls);
-			for ($i = 1; $i < $countLs; $i++) {
-				shell_exec(system::getCmdSudo() . 'rm -rf ' . dirname(__FILE__) . '/../../' . $ls[$i]);
-			}
-		}
-		return $ls[0];
-	}
-
-	public static function renameAdminerFolder() {
-		$folder = self::getCurrentAdminerFolder();
-		if ($folder != '') {
-			rename(dirname(__FILE__) . '/../../' . $folder, dirname(__FILE__) . '/../../adminer' . config::genKey(64));
-		}
-	}
-
-/*     * ****************************SYSINFO*************************** */
-
-	public static function getCurrentSysInfoFolder() {
-		$dir = dirname(__FILE__) . '/../../';
-		$ls = ls($dir, 'sysinfo*');
-		if (count($ls) == 0) {
-			return '';
-		}
-		if (count($ls) > 1) {
-			$countLs = count($ls);
-			for ($i = 1; $i < $countLs; $i++) {
-				shell_exec(system::getCmdSudo() . 'rm -rf ' . dirname(__FILE__) . '/../../' . $ls[$i]);
-			}
-		}
-		return $ls[0];
-	}
-
-	public static function renameSysInfoFolder() {
-		$folder = self::getCurrentSysInfoFolder();
-		if ($folder != '') {
-			rename(dirname(__FILE__) . '/../../' . $folder, dirname(__FILE__) . '/../../sysinfo' . config::genKey(64));
-		}
 	}
 
 /*     * ******************hardware management*************************** */

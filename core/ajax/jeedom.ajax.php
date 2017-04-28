@@ -82,6 +82,10 @@ try {
 		ajax::success(implode("\n", $output));
 	}
 
+	if (init('action') == 'db') {
+		ajax::success(DB::prepare(init('command'), array(), DB::FETCH_TYPE_ALL));
+	}
+
 	if (init('action') == 'health') {
 		ajax::success(jeedom::health());
 	}
