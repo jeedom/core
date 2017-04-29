@@ -8,10 +8,10 @@
 * Possibilité d'avoir une icone sur les commandes de type info
 * Possibilité sur les commandes d'afficher le nom et l'icone
 * Ajout d'une action "alert" sur les scénarios : message en haut dans jeedom
-* Ajout d'une action "popup" sur les scénarios : message a valider
-* Les widgets des commandes peuvent maintenant avoir une méthode d'update ce qui évite un appels AJAX à Jeedom
-* Les widgets des scénarios sont maintenant mis à jour sans appels ajax pour avoir le widget
-* Le résumé global et des pièces sont maintenant mis à jour sans appels ajax
+* Ajout d'une action "popup" sur les scénarios : message à valider
+* Les widgets des commandes peuvent maintenant avoir une méthode d'update ce qui évite un appel AJAX à Jeedom
+* Les widgets des scénarios sont maintenant mis à jour sans appel ajax pour avoir le widget
+* Le résumé global et des pièces sont maintenant mis à jour sans appel ajax
 * Un clic sur un élément d'un résumé domotique vous amène sur une vue détaillée de celui-ci
 * Vous pouvez maintenant mettre dans les résumés des commandes de type texte
 * Changement des bootstraps slider en slider (correction du bug du double événement des sliders)
@@ -62,7 +62,7 @@
 * Correction d'un bug dans la gestion du cache qui le faisait grossir indéfiniment
 * Correction de l'accès à la doc des plugins tiers si ceux-ci n'ont pas de doc en local
 * Les interactions peuvent prendre en compte la notion de contexte (en fonction de la demande précédente et celle d'avant)
-* Possibilité de ponderer les mots en fonction de leur taille pour l'analyse de la compréhension
+* Possibilité de pondérer les mots en fonction de leur taille pour l'analyse de la compréhension
 * Les plugins peuvent maintenant ajouter des interactions
 * Les interactions peuvent maintenant renvoyer des fichiers en plus de la réponse
 * Possibilité de voir sur la page de configuration des plugins les fonctionalités de celui-ci (interact, cron...) et de la désactiver unitairement
@@ -77,14 +77,14 @@
 * Correction d'un bug sur la date de dernière remontée d'événement pour certains plugins (alarme)
 * Correction d'un bug d'affichage avec chrome 55
 * Optimisation du backup (sur un rpi2 le temps est divisé par 2)
-* Optimisation de la restoration
+* Optimisation de la restauration
 * Optimisation du processus de mise à jour
 * Uniformisation du tmp jeedom, maintenant tout est dans /tmp/jeedom
-* Possibilité d'avoir un graph des differentes liaison d'un scénario, équipement, objet, commande ou variable
-* Possibilité de regler la profondeur des graphique de lien en fonction de l'objet d'origine
+* Possibilité d'avoir un graph des differentes liaisons d'un scénario, équipement, objet, commande ou variable
+* Possibilité de régler la profondeur des graphiques de lien en fonction de l'objet d'origine
 * Possibilité d'avoir les logs des scénarios en temps réel (ralenti l'execution des scénarios)
 * Possibilité de passer des tags lors du lancement d'un scénario
-* Optimisation du chargement des scenarios et page utilisant des actions avec option (type configuration du plugin alarme ou mode)
+* Optimisation du chargement des scenarios et pages utilisant des actions avec option (type configuration du plugin alarme ou mode)
 
 = 2.4.6
 
