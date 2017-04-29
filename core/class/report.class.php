@@ -24,6 +24,9 @@ class report {
 
 	/*     * ***********************Methode static*************************** */
 	public static function clean() {
+		if (!file_exists(dirname(__FILE__) . '/../../data/report')) {
+			return;
+		}
 		shell_exec('find ' . dirname(__FILE__) . '/../../data/report -type f -mtime +' . config::byKey('report::maxdays') . ' -delete');
 	}
 
