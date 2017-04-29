@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.3.dev">
-<title>API HTTP</title>
+<title>HTTP API</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -412,12 +412,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>API HTTP</h1>
+<h1>HTTP API</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table des matières</div>
 <ul class="sectlevel1">
-<li><a href="#_pilotage_des_scénarios">1. Pilotage des scénarios</a></li>
-<li><a href="#_pilotage_des_commandes">2. Pilotage des commandes</a></li>
+<li><a href="#_szenario_steuerung">1. Szenario Steuerung</a></li>
+<li><a href="#_steuerbefehle">2. Steuerbefehle</a></li>
 </ul>
 </div>
 </div>
@@ -425,33 +425,33 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Jeedom met à disposition des développeurs et des utilisateurs une API complète afin de pouvoir piloter Jeedom depuis n&#8217;importe quel objet connecté.</p>
+<p>Jeedom bietet Entwicklern und Anwendern eine umfassende API, um Jeedom von jedem angeschlossenen Objekt zu steuern.</p>
 </div>
 <div class="paragraph">
 <p>2 API sind verfügbar: Eines was  für Programmierer ausgerichtet ist,  in JSON RPC 2.0 und anderer via URL und der HTTP anfrage.</p>
 </div>
 <div class="paragraph">
-<p>Cette API s&#8217;utilise très facilement par de simples requêtes HTTP via URL. Pour simplifier au maximum, l&#8217;API utilise seulement 2 types de requête HTTP.</p>
+<p>Diese API ist einfach, mit einfachen HTTP-Anfragen über eine URL zu verwenden. Bis zum Maximum zu vereinfachen, verwendet die API nur 2 Arten von HTTP-Anfragen.</p>
 </div>
 <div class="paragraph">
-<p>Attention si vous êtes en DIY il faut ajouter un /jeedom après l&#8217;ip les URLs.</p>
+<p>Achtung, wenn sie ein DIY haben,  muß man /jeedom in der URL hinter der IP hinzufügen.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_pilotage_des_scénarios">1. Pilotage des scénarios</h2>
+<h2 id="_szenario_steuerung">1. Szenario Steuerung</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Die erste Abfrage wird nur verwendet, um ein Szenario zu steuern.</p>
 </div>
 <div class="paragraph">
-<p>Voici l&#8217;URL = <a href="http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&amp;type=scenario&amp;id=#ID#&amp;action=#ACTION#" class="bare">http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&amp;type=scenario&amp;id=#ID#&amp;action=#ACTION#</a></p>
+<p>Hier ist die URL = <a href="http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&amp;type=scenario&amp;id=#ID#&amp;action=#ACTION#" class="bare">http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&amp;type=scenario&amp;id=#ID#&amp;action=#ACTION#</a></p>
 </div>
 <div class="paragraph">
-<p>#IP_JEEDOM# correspond à votre url d’accès à Jeedom. Il s’agit (sauf si vous êtes connecté à votre réseau local) de l’adresse internet que vous utilisez pour accéder à Jeedom depuis l’extérieur.</p>
+<p>#IP_JEEDOM# Entspricht Ihrer URL um auf Jeedom zu zugreifen. Das ist Internet-Adresse, die Sie den Zugriff aus dem externen Jeedom verwenden (es sei denn, Sie sind mit Ihrem lokalen Netzwerk verbunden).</p>
 </div>
 <div class="paragraph">
-<p>#API_KEY# correspond à votre clé API, propre à votre installation. Pour la trouver il faut aller dans le menu « Général », puis « Administration » et « Configuration », en activant le mode Expert vous verrez alors une ligne Clef API.</p>
+<p>#API_KEY# Entspricht Ihrem spezifischen API-Schlüssel, für Ihre Installation. Um ihn zu finden, muß man in das Menü "Administration" &#8594; "Konfiguration" und dann "Hauptkonfiguration" gehen, im Expertenmodus sehen sie dann den API Schlüssel.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -459,7 +459,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>#ID# correspond à l’id de votre scénario. L&#8217;ID se trouve sur la page des scénarios&#8230;&#8203;(Ne pas oublier d&#8217;activer le mode Expert)</p>
+<p>#ID# Ist die ID Ihres Szenarios. Die ID ist auf der Seite der Szenarien &#8230;&#8203; (Vergessen Sie nicht, den Expertenmodus zu aktivieren)</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -467,27 +467,27 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>#ACTION# correspond à l&#8217;action que vous voulez appliquer au scénario. Les commandes disponibles sont : "start" pour démarrer un scénario ,"stop" pour arrêter un scénario ,"désactiver" pour désactiver un scénario ,"activer" pour activer un scénario.</p>
+<p>#ACTION# entspricht der Aktion, die sie in dem Skript anwenden möchten. Die zur Verfügung stehenden Befehle sind : "start" ein Szenario zu starten, "stop" ein Szenario zu stoppen, "désactiver" um ein Skript zu deaktivieren, "activer" ein Szenario zu aktivieren.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_pilotage_des_commandes">2. Pilotage des commandes</h2>
+<h2 id="_steuerbefehle">2. Steuerbefehle</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Die zweite Abfrage ermöglicht ganz einfach, alle anderen Module von Jeedom zu steuern  (Haustechnik Module / Plugin u.s.w.).</p>
 </div>
 <div class="paragraph">
-<p>Voici l&#8217;URL = <a href="http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&amp;type=cmd&amp;id=#ID#" class="bare">http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&amp;type=cmd&amp;id=#ID#</a></p>
+<p>Hier ist die URL = <a href="http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&amp;type=cmd&amp;id=#ID#" class="bare">http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&amp;type=cmd&amp;id=#ID#</a></p>
 </div>
 <div class="paragraph">
-<p>#IP_JEEDOM# et #API_KEY# s&#8217;utilisent de la même façon que précédement.</p>
+<p>#IP_JEEDOM# und #API_KEY# werden in der gleichen Weise wie zuvor verwendet.</p>
 </div>
 <div class="paragraph">
-<p>#ID# correspond à l’id de ce que vous voulez piloter ou recevoir comme informations.</p>
+<p>#ID# ist die ID von dem, was Sie kontrollieren oder Informationen erhalten möchten.</p>
 </div>
 <div class="paragraph">
-<p>Le plus simple pour avoir cette URL est d&#8217;aller sur la page Résumé domotique, de chercher la commande puis d&#8217;ouvrir sa configuration avancée et là vous allez voir une URL qui contient déjà tout ce qu&#8217;il faut en fonction du type et du sous-type de la commande. Voir <a href="https://jeedom.com/doc/documentation/core/fr_FR/doc-core-display.html#_informations_2">ici</a></p>
+<p>Der einfachste Weg, um diese URL zu erhalten, ist auf die Seite Übersicht Haus-Automatisierung zu gehen, suchen Sie nach dem Befehl und dann öffnen sie seine erweiterte Konfiguration  und sie erhalten eine URL zu sehen, die bereits alles, was Sie enthält je müssen sich auf die Art und Unter -Typ Ordnung. Siehe <a href="https://jeedom.com/doc/documentation/core/fr_FR/doc-core-display.html#_informations_2">hier</a></p>
 </div>
 </div>
 </div>

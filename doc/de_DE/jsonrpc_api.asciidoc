@@ -1,8 +1,8 @@
-= API JSON RPC
+= JSON RPC API 
 
-Voici une documentation (qui évoluera) sur les méthodes de l'API. Tout d'abord voici les spécifications (JSON RPC 2.0) : http://www.jsonrpc.org/specification
+Das ist eine Dokumentation (die sich entwickeln wird) für die Arbeitsweise der APIs. Zuallererst hier sind die Spezifizierungen  (JSON RPC 2.0) : http://www.jsonrpc.org/specification
 
-L'accès à l'API se fait par l'url : #URL_JEEDOM#/core/api/jeeApi.php
+Der Zugriff auf das API ist über die URL : #URL_JEEDOM#/core/api/jeeApi.php möglich
 
 == Divers
 
@@ -10,13 +10,13 @@ L'accès à l'API se fait par l'url : #URL_JEEDOM#/core/api/jeeApi.php
 
 Retourne pong, permet de tester la communication avec Jeedom
 
-=== version
+=== Version
 
 Gibt die Jeedom Version zurück
 
 === datetime
 
-Retourne le datetime de Jeedom en microsecondes
+Gibt die Jeedom Version zurück
 
 == API JSON Event
 

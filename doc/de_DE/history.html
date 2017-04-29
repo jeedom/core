@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.3.dev">
-<title>Historique</title>
+<title>Chronik</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -412,23 +412,23 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Historique</h1>
+<h1>Chronik</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table des matières</div>
 <ul class="sectlevel1">
-<li><a href="#_principe">1. Principe</a>
+<li><a href="#_bestandteil">1. Bestandteil</a>
 <ul class="sectlevel2">
-<li><a href="#_méthode_d_historisation">1.1. Méthode d&#8217;historisation</a></li>
-<li><a href="#_archivage">1.2. Archivage</a></li>
-<li><a href="#_tendances_et_statistiques">1.3. Tendances et statistiques</a></li>
+<li><a href="#_protokollierungs_methode">1.1. Protokollierungs-Methode</a></li>
+<li><a href="#_archivierung">1.2. Archivierung</a></li>
+<li><a href="#_trends_und_statistiken">1.3. Trends und Statistiken</a></li>
 </ul>
 </li>
-<li><a href="#_configuration_générale_de_l_historique">2. Configuration générale de l&#8217;historique</a></li>
-<li><a href="#_configuration_spécifique_par_commande">3. Configuration spécifique par commande</a></li>
-<li><a href="#_affichage_d_un_graphique">4. Affichage d&#8217;un graphique</a></li>
-<li><a href="#_graphique_sur_les_vues_et_les_designs">5. Graphique sur les vues et les designs</a></li>
-<li><a href="#_option_sur_la_page_d_historique">6. Option sur la page d&#8217;historique</a></li>
-<li><a href="#_suppression_de_valeur_incohérente">7. Suppression de valeur incohérente</a></li>
+<li><a href="#_allgemeine_chronik_konfiguration">2. Allgemeine Chronik Konfiguration</a></li>
+<li><a href="#_spezifische_befehle_konfigurieren">3. Spezifische Befehle Konfigurieren</a></li>
+<li><a href="#_diagramm_anzeigen">4. Diagramm anzeigen</a></li>
+<li><a href="#_grafik_auf_der_ansicht_und_dem_design">5. Grafik auf der Ansicht und dem Design</a></li>
+<li><a href="#_optionen_auf_der_chronik_seite">6. Optionen auf der Chronik Seite</a></li>
+<li><a href="#_löschen_von_inkonsistenten_wert">7. Löschen von inkonsistenten Wert</a></li>
 </ul>
 </div>
 </div>
@@ -446,13 +446,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_principe">1. Principe</h2>
+<h2 id="_bestandteil">1. Bestandteil</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Ici est décrit le principe d&#8217;historisation de Jeedom. Il n&#8217;est nécessaire de le comprendre que si vous rencontrez des soucis d&#8217;historisation ou que vous voulez modifier les réglages de l&#8217;historisation. Les réglages par défaut conviennent dans la plupart des cas.</p>
+<p>Hier ist das Prinzip der Archivierung von Jeedom beschrieben. Es ist erforderlich es zu begreifen, wenn Sie Probleme mit der Archivierung oder die Protokoll-Einstellungen ändern möchten. Die Standardeinstellungen eignen sich aber in den meisten Fällen.</p>
 </div>
 <div class="sect2">
-<h3 id="_méthode_d_historisation">1.1. Méthode d&#8217;historisation</h3>
+<h3 id="_protokollierungs_methode">1.1. Protokollierungs-Methode</h3>
 <div class="paragraph">
 <p>Un des premiers éléments est de savoir si la commande que vous historisez est de type évènement ou non :</p>
 </div>
@@ -468,7 +468,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="_archivage">1.2. Archivage</h3>
+<h3 id="_archivierung">1.2. Archivierung</h3>
 <div class="paragraph">
 <p>L&#8217;archivage de données permet à Jeedom de réduire la quantité de données conservées en mémoire. Cela permet de ne pas utiliser trop de place et de ne pas ralentir le système. En effet, si vous conservez toute les mesures, cela fait d&#8217;autant plus de points à afficher et donc peut considérablement allonger les temps pour rendre un graphique. En cas d&#8217;un nombre trop important de points, cela peut même faire planter l&#8217;affichage du graphique.</p>
 </div>
@@ -501,7 +501,7 @@ Bien sûr, ce principe d&#8217;archivage ne s&#8217;applique qu&#8217;aux comman
 </div>
 </div>
 <div class="sect2">
-<h3 id="_tendances_et_statistiques">1.3. Tendances et statistiques</h3>
+<h3 id="_trends_und_statistiken">1.3. Trends und Statistiken</h3>
 <div class="paragraph">
 <p>Il est possible d&#8217;activer sur les widgets l&#8217;affichage du minimum, de la moyenne, du maximum et de la tendance (par défaut ceci est désactivé car cela a une tendance à allonger le temps d&#8217;affichage du dashboard à cause des calculs).</p>
 </div>
@@ -515,7 +515,7 @@ Bien sûr, ce principe d&#8217;archivage ne s&#8217;applique qu&#8217;aux comman
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configuration_générale_de_l_historique">2. Configuration générale de l&#8217;historique</h2>
+<h2 id="_allgemeine_chronik_konfiguration">2. Allgemeine Chronik Konfiguration</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>La configuration générale de l&#8217;historique se passe sur la page Administration &#8594; Configuration.</p>
@@ -567,7 +567,7 @@ Bien sûr, ce principe d&#8217;archivage ne s&#8217;applique qu&#8217;aux comman
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configuration_spécifique_par_commande">3. Configuration spécifique par commande</h2>
+<h2 id="_spezifische_befehle_konfigurieren">3. Spezifische Befehle Konfigurieren</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Pour accèder à ces réglages, il faut aller dans la configuration avancée des commandes, en passant par Outils &#8594; Résumé domotique :</p>
@@ -592,7 +592,7 @@ Bien sûr, ce principe d&#8217;archivage ne s&#8217;applique qu&#8217;aux comman
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Vous pouvez aussi utiliser le champ de recherche à droite en tapant le nom de la commande que vous voulez.
+Sie können auch das Suchfeld rechts benutzen, um den Namen des Befehls einzugeben, den Sie wollen.
 </td>
 </tr>
 </table>
@@ -632,26 +632,26 @@ Vous pouvez aussi utiliser le champ de recherche à droite en tapant le nom de l
 </div>
 </div>
 <div class="sect1">
-<h2 id="_affichage_d_un_graphique">4. Affichage d&#8217;un graphique</h2>
+<h2 id="_diagramm_anzeigen">4. Diagramm anzeigen</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Il existe plusieurs moyens d&#8217;accéder à l&#8217;historique :</p>
+<p>Es gibt mehrere Möglichkeiten, um die Chronik anzuzeigen :</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>en mettant une zone graphe dans une vue (voir plus bas),</p>
+<p>einen Diagrammbereich in einer Ansicht einsetzen (siehe unten),</p>
 </li>
 <li>
-<p>en cliquant sur la commande voulue dans un widget,</p>
+<p>Durch Klick auf den gewünschten Befehl in einem Widget,</p>
 </li>
 <li>
-<p>en allant dans la page historique qui permet de superposer différentes courbes et de combiner les styles (aire, courbe, barre).</p>
+<p>Indem sie auf die Chronik Seite gehen, sie ermöglicht die verschiedenen Kurven zu überlagern und die Stilrichtungen zu kombinieren (Fläche, Kurve, Balken).</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Si vous affichez un graphique par la page historique ou en cliquant sur le widget, vous avez accès à plusieurs options d&#8217;affichage :</p>
+<p>Wenn Sie eine Diagramm auf der Chronik Seite oder durch einen Klick auf das Widget angezeigt bekommen, haben Sie Zugriff auf mehrere Anzeigeoptionen :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -664,19 +664,19 @@ Vous pouvez aussi utiliser le champ de recherche à droite en tapant le nom de l
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Escalier</strong> : permet d&#8217;afficher la courbe sous la forme d&#8217;un escalier ou d&#8217;un affichage continu.</p>
+<p><strong>Treppe</strong> : Zeigt die Kurve in Form einer Treppe oder sie wird kontinuierlich wiedergegeben.</p>
 </li>
 <li>
-<p><strong>Variation</strong> : affiche la différence de valeur par rapport au point précédent.</p>
+<p><strong>Wertänderung</strong> : Zeigen den Unterschied der Werte im Vergleich zu dem vorherigen Punkt an.</p>
 </li>
 <li>
-<p><strong>Ligne</strong> : affiche le graphique sous forme de lignes.</p>
+<p><strong>Linie</strong> : Zeigt das Diagramm in einer Linie an.</p>
 </li>
 <li>
-<p><strong>Aire</strong>  : affiche le graphique sous forme d&#8217;une aire.</p>
+<p><strong>Fläche</strong> : Zeigt das Diagramm als eine Fläche an.</p>
 </li>
 <li>
-<p><strong>Colonne</strong>* : affiche le graphique sous forme de barres.</p>
+<p><strong>Balken</strong>* : Zeigt das Diagramm in einer Balken Form an.</p>
 </li>
 </ul>
 </div>
@@ -699,12 +699,12 @@ Vous pouvez aussi utiliser le champ de recherche à droite en tapant le nom de l
 </div>
 </div>
 <div class="paragraph">
-<p>Sur ce dernier, on remarque une plus grande précision sur les dernières données (principe de l&#8217;archivage).</p>
+<p>Auf letzteren gibt es eine höhere Genauigkeit auf die aktuellen Daten (Prinzip der Archivierung).</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_graphique_sur_les_vues_et_les_designs">5. Graphique sur les vues et les designs</h2>
+<h2 id="_grafik_auf_der_ansicht_und_dem_design">5. Grafik auf der Ansicht und dem Design</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Sie können die Grafik auch in der Ansicht anzeigen (hier werden wir die Konfigurationsoptionen angezeigt und nicht wie, dafür muß man sich in die Dokumention der Ansicht oder des Designs zur Funktion begeben). Hier sind die Optionen :</p>
@@ -720,22 +720,22 @@ Vous pouvez aussi utiliser le champ de recherche à droite en tapant le nom de l
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Couleur</strong> : la couleur de la courbe.</p>
+<p><strong>Farbe</strong> : Die Farbe der Kurve.</p>
 </li>
 <li>
-<p><strong>Type</strong> : le type de graphique (aire, ligne ou colonne).</p>
+<p><strong>Typ</strong> : Der Typ des Diagramms (Fläche, Linie oder Balken).</p>
 </li>
 <li>
-<p><strong>Echelle</strong> : vu que vous pouvez mettre plusieurs courbes (données) sur le même graphique, il est possible de distinguer les échelles (droite ou gauche).</p>
+<p><strong>Maßstab</strong> : Weil Sie mehrere Diagramme (Daten) in der gleichen Grafik anzeigen können, ist es mit der Einstellung möglich, den Maßstab (rechts oder links) zu unterscheiden.</p>
 </li>
 <li>
-<p><strong>Escalier</strong> : permet d&#8217;afficher la courbe sous la forme d&#8217;un escalier ou d&#8217;un affichage continu</p>
+<p><strong>Treppe</strong> : Zeigt die Kurve in Form einer Treppe oder sie wird kontinuierlich wiedergegeben.</p>
 </li>
 <li>
-<p><strong>Empiler</strong> : permet d&#8217;empiler les valeurs des courbes (voir en dessous pour le résultat).</p>
+<p><strong>Stapeln</strong> : Erlaubt, die Werte der Kurven zu stapeln (siehe das Ergebnis darunter)</p>
 </li>
 <li>
-<p><strong>Variation</strong> : affiche la différence de valeur par rapport au point précédent.</p>
+<p><strong>Wertänderung</strong> : Zeigen den Unterschied der Werte im Vergleich zu dem vorherigen Punkt an.</p>
 </li>
 </ul>
 </div>
@@ -750,10 +750,10 @@ Vous pouvez aussi utiliser le champ de recherche à droite en tapant le nom de l
 </div>
 </div>
 <div class="sect1">
-<h2 id="_option_sur_la_page_d_historique">6. Option sur la page d&#8217;historique</h2>
+<h2 id="_optionen_auf_der_chronik_seite">6. Optionen auf der Chronik Seite</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>La page d&#8217;historique donne accès à quelques options supplémentaires :</p>
+<p>Die Chronik Seite bietet Zugriff auf einige zusätzliche Optionen :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -767,7 +767,7 @@ Vous pouvez aussi utiliser le champ de recherche à droite en tapant le nom de l
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Il suffit de cliquer sur le nom de l&#8217;objet pour le déplier ; apparaissent les commandes historisées qui peuvent être graphées.
+Klicken Sie einfach auf den Namen des Objekts um es zu entfalten ; angezeigt werden die archivierten Befehle, die ein Diagramm sein können.
 </td>
 </tr>
 </table>
@@ -779,7 +779,7 @@ Il suffit de cliquer sur le nom de l&#8217;objet pour le déplier ; apparaissent
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-La couleur d&#8217;arrière-plan des objets de cette liste peuvent être modifiées à partir de la configuration de l&#8217;objet.
+Die Hintergrundfarbe der Objekte in dieser Liste kann in der Konfiguration des Objektes verändert werden.
 </td>
 </tr>
 </table>
@@ -790,17 +790,17 @@ La couleur d&#8217;arrière-plan des objets de cette liste peuvent être modifi�
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Poubelle</strong> : permet de supprimer les données enregistrées ; lors du clic, Jeedom demande s&#8217;il faut supprimer les données avant une certaine date ou toutes les données.</p>
+<p><strong>Papierkorb</strong> : Löscht die gespeicherten Daten ; beim Klicken, fragt Jeedom, ob die Daten von einem bestimmten Datum oder alle Daten zu löschen sind.</p>
 </li>
 <li>
-<p><strong>Flèche</strong> : permet d&#8217;avoir un export CSV des données historisées.</p>
+<p><strong>Pfeil</strong> : Erlaubt einen CSV-Export archivierter Daten.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_suppression_de_valeur_incohérente">7. Suppression de valeur incohérente</h2>
+<h2 id="_löschen_von_inkonsistenten_wert">7. Löschen von inkonsistenten Wert</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Parfois, il se peut que vous ayez des valeurs incohérentes sur les graphiques. Cela est souvent dû à un souci d&#8217;interprétation de la valeur. Il est possible de supprimer ou changer la valeur du point en question, en cliquant sur celui-ci directement sur le graphique ; de plus, vous pouvez régler le minimum et le maximum autorisés afin d&#8217;éviter des problèmes futurs.</p>
