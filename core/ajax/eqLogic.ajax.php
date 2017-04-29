@@ -126,7 +126,7 @@ try {
 			throw new Exception(__('EqLogic inconnu vérifiez l\'id', __FILE__));
 		}
 		if (!$eqLogic->hasRight('w')) {
-			throw new Exception('Vous n\'êtes pas autorisé à faire cette action');
+			throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
 		}
 		$eqLogic->setIsEnable(init('isEnable'));
 		$eqLogic->save();
@@ -211,7 +211,7 @@ try {
 		}
 
 		if (!$eqLogic->hasRight('w')) {
-			throw new Exception('Vous n\'êtes pas autorisé à faire cette action');
+			throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
 		}
 		utils::a2o($eqLogic, $eqLogicSave);
 		$eqLogic->save();
@@ -241,7 +241,7 @@ try {
 			throw new Exception(__('EqLogic inconnu vérifiez l\'id : ', __FILE__) . init('id'));
 		}
 		if (!$eqLogic->hasRight('w')) {
-			throw new Exception('Vous n\'êtes pas autorisé à faire cette action');
+			throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
 		}
 		$eqLogic->remove();
 		ajax::success();
@@ -356,4 +356,3 @@ try {
 } catch (Exception $e) {
 	ajax::error(displayExeption($e), $e->getCode());
 }
- 
