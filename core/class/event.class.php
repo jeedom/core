@@ -22,7 +22,7 @@ require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 class event {
 	/*     * *************************Attributs****************************** */
 
-	static $limit = 250;
+	private static $limit = 250;
 	private static $_fd = null;
 
 	/*     * ***********************Methode static*************************** */
@@ -114,4 +114,4 @@ class event {
 	/*     * **********************Getteur Setteur*************************** */
 }
 
-?>
+
