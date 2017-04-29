@@ -30,8 +30,13 @@ class com_shell {
 	private $history = array();
 
 	/*     * ********************Functions static********************* */
-
-	function __construct($_cmd = null, $_background = false) {
+	
+        /**
+         * @access public
+         * @param type $_cmd
+         * @param type $_background
+         */
+	public function __construct($_cmd = null, $_background = false) {
 		$this->setBackground($_background);
 		if ($_cmd !== null) {
 			$this->addCmd($_cmd);
