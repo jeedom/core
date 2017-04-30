@@ -136,9 +136,6 @@ try {
 		if (!is_object($user)) {
 			throw new Exception('User id inconnu');
 		}
-		if (count(user::searchByRight('admin')) == 1 && $user->getRights('admin') == 1) {
-			throw new Exception(__('Vous ne pouvez supprimer le dernière administrateur', __FILE__));
-		}
 		$user->remove();
 		ajax::success();
 	}

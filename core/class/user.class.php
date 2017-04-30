@@ -287,10 +287,19 @@ class user {
 		if ($this->getLogin() == '') {
 			throw new Exception(__('Le nom d\'utilisateur ne peut pas être vide', __FILE__));
 		}
+		if (count(user::searchByRight('admin')) == 1 && $this->getRights('admin') == 1 && $this->getEnable() == 0) {
+			$this->setEnable(1);
+		}
 	}
 
 	public function save() {
 		return DB::save($this);
+	}
+
+	public function preRemove() {
+		if (count(user::searchByRight('admin')) == 1 && $this->getRights('admin') == 1) {
+			throw new Exception(__('Vous ne pouvez supprimer le dernière administrateur', __FILE__));
+		}
 	}
 
 	public function remove() {
