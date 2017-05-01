@@ -54,7 +54,6 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'nature' => array('name' => 'Nature', 'icon' => 'icon nature-leaf32'),
 			'automatisation' => array('name' => 'Automatisme', 'icon' => 'fa fa-magic'),
 			'energy' => array('name' => 'Energie', 'icon' => 'fa fa-bolt'),
-			'travel' => array('name' => 'Déplacement', 'icon' => 'fa fa-car'),
 		),
 	),
 	'alerts' => array(
