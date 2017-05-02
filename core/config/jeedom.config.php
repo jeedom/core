@@ -43,7 +43,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'security' => array('name' => 'Sécurité', 'icon' => 'fa-lock'),
 			'automation protocol' => array('name' => 'Protocole domotique', 'icon' => 'fa-rss'),
 			'programming' => array('name' => 'Programmation', 'icon' => 'fa-code'),
-			'organization' => array('name' => 'Organisation', 'icon' => 'fa-calendar'),
+			'organization' => array('name' => 'Organisation', 'icon' => 'fa-calendar', 'alias' => array('travel', 'finance')),
 			'weather' => array('name' => 'Météo', 'icon' => 'fa-sun-o'),
 			'communication' => array('name' => 'Communication', 'icon' => 'fa-comment-o'),
 			'devicecommunication' => array('name' => 'Objets connectés', 'icon' => 'fa-language'),
