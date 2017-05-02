@@ -19,7 +19,7 @@
 
  jeedom.cache = [];
  jeedom.display = {};
- jeedom.connect = true;
+ jeedom.connect = 0;
 
  if (!isset(jeedom.cache.getConfiguration)) {
     jeedom.cache.getConfiguration = null;
@@ -30,8 +30,8 @@ jeedom.changes = function(){
    var paramsSpecifics = {
     global: false,
     success: function(data) {
-        if(! jeedom.connect){
-           jeedom.connect = true;
+        if(jeedom.connect > 0){
+           jeedom.connect = 0;
        }
        jeedom.datetime = data.datetime;
        var cmd_update = [];
@@ -68,11 +68,12 @@ if(object_summary_update.length > 0){
 setTimeout(jeedom.changes, 1);
 },
 error: function(_error){
-    if( jeedom.connect){
+    if(jeedom.connect == 100){
         notify('{{Erreur de connexion}}','{{Erreur lors de la connexion à jeedom}} : '+_error.message);
-       jeedom.connect = false;
-   }
-   setTimeout(jeedom.changes, 1);
+
+    }
+    jeedom.connect++;
+    setTimeout(jeedom.changes, 1);
 }
 };
 try {
