@@ -180,6 +180,9 @@ class plugin {
 
 		if (!isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$plugin->category])) {
 			foreach ($JEEDOM_INTERNAL_CONFIG['plugin']['category'] as $key => $value) {
+				if (!isset($value['alias'])) {
+					continue;
+				}
 				if (in_array($plugin->category, $value['alias'])) {
 					$plugin->category = $key;
 					break;
