@@ -19,52 +19,60 @@
 
  jeedom.cache = [];
  jeedom.display = {};
+ jeedom.connect = true;
 
  if (!isset(jeedom.cache.getConfiguration)) {
     jeedom.cache.getConfiguration = null;
 }
 
 jeedom.changes = function(){
- var paramsRequired = [];
- var paramsSpecifics = {
+   var paramsRequired = [];
+   var paramsSpecifics = {
     global: false,
     success: function(data) {
-        jeedom.datetime = data.datetime;
-        var cmd_update = [];
-        var eqLogic_update = [];
-        var object_summary_update = [];
-        for(var i in data.result){
-            if(data.result[i].name == 'cmd::update'){
-                cmd_update.push(data.result[i].option);
-                continue;
-            }
-            if(data.result[i].name == 'eqLogic::update'){
-                eqLogic_update.push(data.result[i].option);
-                continue;
-            }
-            if(data.result[i].name == 'object::summary::update'){
-                object_summary_update.push(data.result[i].option);
-                continue;
-            }
-            if(isset(data.result[i].option)){
-               $('body').trigger(data.result[i].name,data.result[i].option);   
-           }else{
-            $('body').trigger(data.result[i].name);
+        if(! jeedom.connect){
+           jeedom.connect = true;
+       }
+       jeedom.datetime = data.datetime;
+       var cmd_update = [];
+       var eqLogic_update = [];
+       var object_summary_update = [];
+       for(var i in data.result){
+        if(data.result[i].name == 'cmd::update'){
+            cmd_update.push(data.result[i].option);
+            continue;
         }
+        if(data.result[i].name == 'eqLogic::update'){
+            eqLogic_update.push(data.result[i].option);
+            continue;
+        }
+        if(data.result[i].name == 'object::summary::update'){
+            object_summary_update.push(data.result[i].option);
+            continue;
+        }
+        if(isset(data.result[i].option)){
+         $('body').trigger(data.result[i].name,data.result[i].option);   
+     }else{
+        $('body').trigger(data.result[i].name);
     }
-    if(cmd_update.length > 0){
-       $('body').trigger('cmd::update',[cmd_update]); 
-   }
-   if(eqLogic_update.length > 0){
-       $('body').trigger('eqLogic::update',[eqLogic_update]); 
-   }
-   if(object_summary_update.length > 0){
+}
+if(cmd_update.length > 0){
+ $('body').trigger('cmd::update',[cmd_update]); 
+}
+if(eqLogic_update.length > 0){
+ $('body').trigger('eqLogic::update',[eqLogic_update]); 
+}
+if(object_summary_update.length > 0){
     $('body').trigger('object::summary::update',[object_summary_update]); 
 }
 setTimeout(jeedom.changes, 1);
 },
-error: function(){
-    setTimeout(jeedom.changes, 1);
+error: function(_error){
+    if( jeedom.connect){
+        notify('{{Erreur de connexion}}','{{Erreur lors de la connexion à jeedom}} : '+_error.message);
+       jeedom.connect = false;
+   }
+   setTimeout(jeedom.changes, 1);
 }
 };
 try {
@@ -116,7 +124,7 @@ jeedom.init = function () {
 
     $('body').on('ui::update', function (_event,_options) {
         if(isset(_options.page) && _options.page != ''){
-           if(!$.mobile && getUrlVars('p') != _options.page){
+         if(!$.mobile && getUrlVars('p') != _options.page){
             return;
         }
         if($.mobile && isset(CURRENT_PAGE) && CURRENT_PAGE != _options.page){
@@ -136,7 +144,7 @@ jeedom.init = function () {
     });
     $('body').on('jeedom::gotoplan', function (_event,_plan_id) {
         if(getUrlVars('p') == 'plan' && 'function' == typeof (displayPlan)){
-           if (_plan_id != $('#sel_planHeader').attr('data-link_id')) {
+         if (_plan_id != $('#sel_planHeader').attr('data-link_id')) {
             planHeader_id = _plan_id;
             displayPlan();
         }
@@ -145,7 +153,7 @@ jeedom.init = function () {
 
     $('body').on('jeedom::alert', function (_event,_options) {
         if (!isset(_options.message) || $.trim(_options.message) == '') {
-           if(isset(_options.page) && _options.page != ''){
+         if(isset(_options.page) && _options.page != ''){
             if(getUrlVars('p') == _options.page || ($.mobile && isset(CURRENT_PAGE) && CURRENT_PAGE == _options.page)){
                 $.hideAlert();
             }
@@ -400,7 +408,7 @@ jeedom.getCronSelectModal = function(_options,_callback) {
 };
 
 jeedom.getSelectActionModal = function(_options, _callback){
- if (!isset(_options)) {
+   if (!isset(_options)) {
     _options = {};
 }
 if ($("#mod_insertActionValue").length == 0) {
