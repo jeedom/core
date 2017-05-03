@@ -9,7 +9,7 @@ $starttime = getmicrotime();
 	<i class="fa fa-dashboard pull-right cursor" id="bt_benchmarkJeedom"></i>
 </legend>
 <table class="table table-condensed table-bordered">
-	<thead><tr><th style="width : 250px;"></th><th style="width : 350px;">{{Résultat}}</th><th style="">{{Conseil}}</th></tr></thead>
+	<thead><tr><th style="width : 250px;"></th><th style="width : 500px;">{{Résultat}}</th><th style="">{{Conseil}}</th></tr></thead>
 	<tbody>
 		<?php
 foreach (jeedom::health() as $datas) {
