@@ -57,7 +57,7 @@ class jeedom {
 		$return[] = array(
 			'name' => __('Démarré', __FILE__),
 			'state' => $state,
-			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
+			'result' => ($state) ? __('OK', __FILE__) . ' (' . file_get_contents(self::getTmpFolder() . '/started') . ')' : __('NOK', __FILE__),
 			'comment' => '',
 		);
 
@@ -675,9 +675,8 @@ class jeedom {
 
 			try {
 				log::add('starting', 'debug', __('Ecriture du fichier ', __FILE__) . self::getTmpFolder() . '/started');
-				if (!touch(self::getTmpFolder() . '/started')) {
-					log::add('starting', 'debug', __('Impossible d\'écrire ' . self::getTmpFolder() . '/started, tentative en shell', __FILE__));
-					com_shell::execute(system::getCmdSudo() . 'touch ' . self::getTmpFolder() . '/started;sudo chmod 777 ' . self::getTmpFolder() . '/started');
+				if (file_put_contents(self::getTmpFolder() . '/started', date('Y-m-d H:i:s')) === false) {
+					log::add('starting', 'error', __('Impossible d\'écrire ' . self::getTmpFolder() . '/started', __FILE__));
 				}
 			} catch (Exception $e) {
 				log::add('starting', 'error', __('Impossible d\'écrire ' . self::getTmpFolder() . '/started : ', __FILE__) . log::exception($e));
