@@ -194,7 +194,7 @@ if (init('type') == 'plugin') {
           <input type="checkbox" class="marketAttr" data-l1key="hardwareCompatibility" data-l2key="Jeedomboard"> Jeedomboard (mini+)
         </label>
          <label class="checkbox-inline">
-          <input type="checkbox" class="marketAttr" data-l1key="hardwareCompatibility" data-l2key="Jeedomboard"> Smart
+          <input type="checkbox" class="marketAttr" data-l1key="hardwareCompatibility" data-l2key="Smart"> Smart
         </label>
         <label class="checkbox-inline">
           <input type="checkbox" class="marketAttr" data-l1key="hardwareCompatibility" data-l2key="RPI/RPI2"> RPI/RPI2
