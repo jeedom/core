@@ -412,7 +412,7 @@ foreach ($groups as $group) {
   </div>
 
   <div class="form-group">
-    <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Purger l'historique si plus vieux de }}</label>
+    <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Purger l'historique si plus vieux que }}</label>
     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
      <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historyPurge">
        <option value="">{{Jamais}}</option>
@@ -425,7 +425,7 @@ foreach ($groups as $group) {
  </div>
  <?php if ($cmd->getIsHistorized() == 1) {?>
  <div class="form-group">
-  <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Copie des données historisé}}</label>
+  <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Copie des données historisées}}</label>
   <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
     <a class="btn btn-warning" id="bt_cmdConfigureCopyHistory"><i class="fa fa-clone"></i> {{Copier l'historique de cette commande sur une autre commande}}</a>
   </div>

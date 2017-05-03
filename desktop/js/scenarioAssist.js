@@ -151,7 +151,7 @@ $("#bt_addScenario,#bt_addScenario2").on('click', function (event) {
         '<input name="cbScenarioType" class="cb_scenarioType" type="radio" value="simple" checked="checked"> ' +
         '{{Simple}}</label> ' +
         '</div><div class="radio"> <label> ' +
-        '<input  name="cbScenarioType" class="cb_scenarioType" type="radio" value="expert"> {{Avancée}}</label> ' +
+        '<input  name="cbScenarioType" class="cb_scenarioType" type="radio" value="expert"> {{Avancé}}</label> ' +
         '</div> ' +
         '</div> </div>' +
         '</form> </div>  </div>',
