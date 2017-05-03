@@ -191,7 +191,10 @@ if (init('type') == 'plugin') {
         <label class="col-sm-4 control-label">{{Compatibilité matériel}}</label>
         <div class="col-sm-8">
          <label class="checkbox-inline">
-          <input type="checkbox" class="marketAttr" data-l1key="hardwareCompatibility" data-l2key="Jeedomboard"> Jeedomboard (mini+,center,pro)
+          <input type="checkbox" class="marketAttr" data-l1key="hardwareCompatibility" data-l2key="Jeedomboard"> Jeedomboard (mini+)
+        </label>
+         <label class="checkbox-inline">
+          <input type="checkbox" class="marketAttr" data-l1key="hardwareCompatibility" data-l2key="Jeedomboard"> Smart
         </label>
         <label class="checkbox-inline">
           <input type="checkbox" class="marketAttr" data-l1key="hardwareCompatibility" data-l2key="RPI/RPI2"> RPI/RPI2
