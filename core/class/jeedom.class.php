@@ -80,7 +80,7 @@ class jeedom {
 		$state = self::isCapable('sudo', true);
 		$return[] = array(
 			'name' => __('Droits sudo', __FILE__),
-			'state' => $state,
+			'state' => ($state) ? 1 : 2,
 			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
 			'comment' => ($state) ? '' : __('Appliquer <a href="https://www.jeedom.com/doc/documentation/installation/fr_FR/doc-installation.html#_etape_4_définition_des_droits_root_à_jeedom" targe="_blank">cette étape</a> de l\'installation', __FILE__),
 		);

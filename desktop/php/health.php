@@ -17,7 +17,9 @@ foreach (jeedom::health() as $datas) {
 	echo '<td style="font-weight : bold;">';
 	echo $datas['name'];
 	echo '</td>';
-	if ($datas['state']) {
+	if ($datas['state'] === 2) {
+		echo '<td class="alert alert-warning" style="">';
+	} else if ($datas['state']) {
 		echo '<td class="alert alert-success" style="">';
 	} else {
 		echo '<td class="alert alert-danger" style="">';
