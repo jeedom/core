@@ -576,7 +576,7 @@ class jeedom {
 		if (config::byKey('ignoreHourCheck') == 1) {
 			return true;
 		}
-		$maxdate = strtotime('2019-01-01 00:00:00');
+		$maxdate = strtotime('2020-01-01 00:00:00');
 		$mindate = strtotime('2016-01-01 00:00:00');
 		if (strtotime('now') < $mindate || strtotime('now') > $maxdate) {
 			self::forceSyncHour();
