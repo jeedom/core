@@ -484,6 +484,12 @@ function positionEqLogic(_id,_preResize) {
     if(_id != undefined){
         var eqLogic = $('.eqLogic-widget[data-eqlogic_id='+_id+']');
         eqLogic.css('margin','0px').css('padding','0px');
+        if($(this).width() == 0){
+            $(this).width('auto');
+        }
+        if($(this).height() == 0){
+            $(this).height('auto');
+        }
         if(init(_preResize,true)){
            eqLogic.width(Math.floor(eqLogic.width() / 40) * 40);
            eqLogic.height(Math.floor(eqLogic.height() / 80) * 80);
@@ -493,6 +499,12 @@ function positionEqLogic(_id,_preResize) {
    }else{
     $('.eqLogic-widget:not(.jeedomAlreadyPosition)').css('margin','0px').css('padding','0px');
     $('.eqLogic-widget:not(.jeedomAlreadyPosition)').each(function () {
+        if($(this).width() == 0){
+            $(this).width('auto');
+        }
+        if($(this).height() == 0){
+            $(this).height('auto');
+        }
         $(this).width(Math.ceil($(this).width() / 40) * 40 + (Math.ceil($(this).width() / 40)-1) * 2);
         $(this).height(Math.ceil($(this).height() / 80) * 80 + (Math.ceil($(this).height() / 80)-1) * 2);
     });
