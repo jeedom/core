@@ -572,17 +572,24 @@ class jeedom {
 		return file_exists(self::getTmpFolder() . '/started');
 	}
 
+	/**
+         * 
+         * @return boolean
+         */
 	public static function isDateOk() {
 		if (config::byKey('ignoreHourCheck') == 1) {
 			return true;
 		}
-		$maxdate = strtotime('2020-01-01 00:00:00');
-		$mindate = strtotime('2017-01-01 00:00:00');
+                $minDateValue = new \DateTime('2017-01-01');
+		$mindate = strtotime( $minDateValue->format('Y-m-d 00:00:00'));
+                $maxDateValue = $minDateValue->modify('+6 year')->format('Y-m-d 00:00:00');
+		$maxdate = strtotime($maxDateValue);
+              
 		if (strtotime('now') < $mindate || strtotime('now') > $maxdate) {
 			self::forceSyncHour();
 			sleep(3);
 			if (strtotime('now') < $mindate || strtotime('now') > $maxdate) {
-				log::add('core', 'error', __('La date du système est incorrect (avant 2016-01-01 ou après 2019-01-01) : ', __FILE__) . date('Y-m-d H:i:s'), 'dateCheckFailed');
+				log::add('core', 'error', __('La date du système est incorrect (avant ' . $minDateValue . ' ou après ' . $maxDateValue . ') : ', __FILE__) . (new \DateTime())->format('Y-m-d H:i:s'), 'dateCheckFailed');
 				return false;
 			}
 		}
