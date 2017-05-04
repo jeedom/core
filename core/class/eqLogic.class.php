@@ -726,6 +726,12 @@ class eqLogic {
 		if ($this->getDisplay('showObjectNameOnmview', -1) == -1) {
 			$this->setDisplay('showObjectNameOnmview', 1);
 		}
+		if ($this->getDisplay('height', -1) == -1 || intval($this->getDisplay('height')) < 2) {
+			$this->setDisplay('height', 'auto');
+		}
+		if ($this->getDisplay('width', -1) == -1 || intval($this->getDisplay('height')) < 2) {
+			$this->setDisplay('width', 'auto');
+		}
 		DB::save($this, $_direct);
 		if ($this->_needRefreshWidget) {
 			$this->refreshWidget();
