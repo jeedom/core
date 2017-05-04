@@ -16,7 +16,7 @@
  */
 
  positionEqLogic();
- $('.batteryListContainer,.alertListContainer').packery({
+ $('.batteryListContainer').packery({
  	itemSelector: ".eqLogic-widget",
  	columnWidth:40,
  	rowHeight: 80,
@@ -26,7 +26,7 @@
  $('#ul_tabBatteryAlert li').on('click',function(){
  	setTimeout(function(){ 
  		positionEqLogic();
- 		$('.batteryListContainer,.alertListContainer').packery({
+ 		$('.alertListContainer').packery({
  			itemSelector: ".eqLogic-widget",
  			columnWidth:40,
  			rowHeight: 80,
