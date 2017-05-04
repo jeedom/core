@@ -577,7 +577,7 @@ class jeedom {
 			return true;
 		}
 		$maxdate = strtotime('2020-01-01 00:00:00');
-		$mindate = strtotime('2016-01-01 00:00:00');
+		$mindate = strtotime('2017-01-01 00:00:00');
 		if (strtotime('now') < $mindate || strtotime('now') > $maxdate) {
 			self::forceSyncHour();
 			sleep(3);
