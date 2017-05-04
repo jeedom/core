@@ -16,7 +16,7 @@
  */
 
  positionEqLogic();
- $('.batteryListContainer').packery({
+ $('.batteryListContainer,.alertListContainer').packery({
  	itemSelector: ".eqLogic-widget",
  	columnWidth:40,
  	rowHeight: 80,
@@ -24,9 +24,10 @@
  });
 
  $('#ul_tabBatteryAlert li').on('click',function(){
+ 	$('.alertListContainer .jeedomAlreadyPosition').removeClass('jeedomAlreadyPosition');
  	setTimeout(function(){ 
  		positionEqLogic();
- 		$('.alertListContainer').packery({
+ 		$('.batteryListContainer,.alertListContainer').packery({
  			itemSelector: ".eqLogic-widget",
  			columnWidth:40,
  			rowHeight: 80,
@@ -37,6 +38,6 @@
 
 
  $('.cmdAction[data-action=configure]').on('click', function () {
-    $('#md_modal').dialog({title: "{{Configuration commande}}"});
-    $('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-cmd_id')).dialog('open');
-});
+ 	$('#md_modal').dialog({title: "{{Configuration commande}}"});
+ 	$('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-cmd_id')).dialog('open');
+ });
