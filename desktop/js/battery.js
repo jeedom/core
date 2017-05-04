@@ -16,6 +16,7 @@
  */
 
  positionEqLogic();
+ $('.alertListContainer .jeedomAlreadyPosition').removeClass('jeedomAlreadyPosition');
  $('.batteryListContainer,.alertListContainer').packery({
  	itemSelector: ".eqLogic-widget",
  	columnWidth:40,
@@ -24,7 +25,6 @@
  });
 
  $('#ul_tabBatteryAlert li').on('click',function(){
- 	$('.alertListContainer .jeedomAlreadyPosition').removeClass('jeedomAlreadyPosition');
  	setTimeout(function(){ 
  		positionEqLogic();
  		$('.batteryListContainer,.alertListContainer').packery({
