@@ -420,6 +420,7 @@ foreach ($groups as $group) {
        <option value="-7 days">{{7 jours}}</option>
        <option value="-1 month">{{1 mois}}</option>
        <option value="-6 month">{{6 mois}}</option>
+       <option value="-1 year">{{1 an}}</option>
      </select>
    </div>
  </div>
