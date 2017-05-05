@@ -775,7 +775,7 @@ class cmd {
 		if ($this->getType() == 'info') {
 			$this->setCollectDate($this->getCache('collectDate', date('Y-m-d H:i:s'), true));
 			$this->setValueDate($this->getCache('valueDate', date('Y-m-d H:i:s'), true));
-			return $this->getCache('value', '', true);
+			return $this->getCache('value', '');
 		}
 		$eqLogic = $this->getEqLogic();
 		if (!is_object($eqLogic) || $eqLogic->getIsEnable() != 1) {
@@ -1076,7 +1076,7 @@ class cmd {
 		if ($this->getConfiguration('denyValues') != '' && in_array($value, explode(';', $this->getConfiguration('denyValues')))) {
 			return;
 		}
-		$repeat = ($this->execCmd() === $value);
+		$repeat = ($this->execCmd() == $value && $this->execCmd() !== '');
 		$this->setCollectDate(($_datetime !== null) ? $_datetime : date('Y-m-d H:i:s'));
 		$this->setCache('collectDate', $this->getCollectDate());
 		$this->setValueDate(($repeat) ? $this->getValueDate() : $this->getCollectDate());
