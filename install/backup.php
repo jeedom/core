@@ -114,7 +114,7 @@ try {
 	foreach ($excludes as $folder) {
 		$exclude .= ' --exclude="' . $folder . '"';
 	}
-	system('cd ' . $jeedom_dir . '; tar cfz "' . $backup_dir . '/' . $backup_name . '" * ' . $exclude . ' > /dev/null 2>&1');
+	system('cd ' . $jeedom_dir . ';tar cfz "' . $backup_dir . '/' . $backup_name . '" ' . $exclude . ' * > /dev/null 2>&1');
 	echo "OK" . "\n";
 
 	if (!file_exists($backup_dir . '/' . $backup_name)) {
