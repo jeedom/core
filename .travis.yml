@@ -19,8 +19,8 @@ install:
   - sudo install/install.sh -w /home/travis/build/jeedom/core -s 7 -m root
   - sudo install/install.sh -w /home/travis/build/jeedom/core -s 8 -m root
   - php install/install.php mode=force
-  - chmod 777 -R /home/travis/build/jeedom
-  - chown www-data:www-data -R /home/travis/build/jeedom
+  - sudo chmod 777 -R /home/travis/build/jeedom
+  - sudo chown www-data:www-data -R /home/travis/build/jeedom
 before_script:
   - composer selfupdate --quiet
   - composer require "phpdocumentor/phpdocumentor:2.*"
@@ -28,7 +28,7 @@ before_script:
 script:
   - vendor/bin/phpdoc.php --quiet -d ./core/class -t ./build/docs
 after_script:
-  - chmod +x script/phpdoc.sh
-  - script/phpdoc.sh
+  - sudo chmod +x script/phpdoc.sh
+  - sudo script/phpdoc.sh
 notifications:
   slack: jeedom:uVLJjs0ANyRFWpFcUok4QFLr
