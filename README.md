@@ -1,4 +1,4 @@
-![Travis ci](https://travis-ci.org/jeedom/core.svg)
+![Travis ci](https://travis-ci.org/jeedom/core.svg?branch=stable)
 
 # Jeedom by Loïc #
 
