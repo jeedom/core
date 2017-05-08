@@ -239,7 +239,6 @@ class scenario {
 				$scenarios1 = self::byTrigger($_event->getId());
 				$trigger = '#' . $_event->getId() . '#';
 				$message = __('Scénario exécuté automatiquement sur événement venant de : ', __FILE__) . $_event->getHumanName();
-
 			} else {
 				$scenarios1 = self::byTrigger($_event);
 				$trigger = $_event;
