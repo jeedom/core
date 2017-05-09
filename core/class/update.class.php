@@ -350,7 +350,7 @@ class update {
 
 	public function deleteObjet() {
 		if ($this->getType() == 'core') {
-			throw new Exception('Vous ne pouvez pas supprimer le core de Jeedom');
+			throw new Exception(__('Vous ne pouvez pas supprimer le core de Jeedom',__FILE__));
 		} else {
 			switch ($this->getType()) {
 				case 'plugin':
@@ -468,7 +468,10 @@ class update {
 		}
 		return null;
 	}
-
+        /**
+         * 
+         * @return type
+         */
 	public function checkUpdate() {
 		if ($this->getConfiguration('doNotUpdate') == 1) {
 			log::add('update', 'alert', __('Vérification des mises à jour, mise à jour et réinstallation désactivé sur ', __FILE__) . $this->getLogicalId());
@@ -483,7 +486,7 @@ class update {
 					$version = $this->getLocalVersion();
 				} else {
 					$version = $class::versionCore();
-					if ($version == null) {
+					if ($version === null) {
 						$version = $this->getLocalVersion();
 					}
 				}
