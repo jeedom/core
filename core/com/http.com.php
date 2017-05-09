@@ -47,7 +47,14 @@ class com_http {
 	}
 
 	/*     * ************* Fonctions ************************************ */
-
+        
+        /**
+         * 
+         * @param int $_timeout
+         * @param int $_maxRetry
+         * @return string
+         * @throws Exception
+         */
 	public function exec($_timeout = 2, $_maxRetry = 3) {
 		$nbRetry = 0;
 		while ($nbRetry < $_maxRetry) {
@@ -104,7 +111,7 @@ class com_http {
 			if (curl_errno($ch)) {
 				$curl_error = curl_error($ch);
 				curl_close($ch);
-				if ($this->getNoReportError() === false && $this->getAllowEmptyReponse() == true && strpos($curl_error, 'Empty reply from server') !== false) {
+				if ($this->getNoReportError() === false && $this->getAllowEmptyReponse() === true && strpos($curl_error, 'Empty reply from server') !== false) {
 					return $response;
 				}
 				if ($this->getNoReportError() === false && $this->getLogError()) {
