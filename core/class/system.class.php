@@ -41,12 +41,16 @@ class system {
 		return self::$_command;
 	}
 
+        /**
+         * 
+         * @return string/object self:: 
+         */
 	public static function getDistrib() {
 		self::loadCommand();
 		if (isset(self::$_command['custom'])) {
 			return 'custom';
 		}
-		if (self::$_distrib == null) {
+		if (self::$_distrib === null) {
 			self::$_distrib = trim(shell_exec('grep CPE_NAME /etc/os-release | cut -d \'"\' -f 2 | cut -d : -f 3 '));
 			if (self::$_distrib == '') {
 				self::$_distrib = trim(shell_exec('grep -e "^ID" /etc/os-release | cut -d \'=\' -f 2'));
@@ -154,4 +158,3 @@ class system {
 		return exec('php ' . $arguments);
 	}
 }
-?>
