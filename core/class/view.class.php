@@ -77,10 +77,13 @@ class view {
 		$url .= '&auth=' . $user->getHash();
 		return report::generate($url, 'view', $this->getId(), $_format);
 	}
-
+ 	/**
+         * 
+         * @throws Exception
+         */
 	public function presave() {
 		if (trim($this->getName()) == '') {
-			throw new Exception('Le nom de la vue ne peut pas être vide');
+			throw new Exception(__('Le nom de la vue ne peut pas être vide',__FILE__));
 		}
 	}
 
