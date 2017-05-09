@@ -30,17 +30,24 @@ class message {
 	private $action;
 
 	/*     * ***********************Methode static*************************** */
-
+	/**
+         * 
+         * @param type $_type
+         * @param type $_message
+         * @param type $_action
+         * @param type $_logicalId
+         * @param type $_writeMessage
+         */
 	public static function add($_type, $_message, $_action = '', $_logicalId = '', $_writeMessage = true) {
-		$message = new message();
-		$message->setPlugin(secureXSS($_type));
-		$message->setMessage(secureXSS($_message));
-		$message->setAction(secureXSS($_action));
-		$message->setDate(date('Y-m-d H:i:s'));
-		$message->setLogicalId(secureXSS($_logicalId));
+		$message = (new message())
+                        ->setPlugin(secureXSS($_type))
+                        ->setMessage(secureXSS($_message))
+                        ->setAction(secureXSS($_action))
+                        ->setDate(date('Y-m-d H:i:s'))
+                        ->setLogicalId(secureXSS($_logicalId));
 		$message->save($_writeMessage);
 	}
-
+	
 	public static function removeAll($_plugin = '', $_logicalId = '', $_search = false) {
 		$values = array();
 		$sql = 'DELETE FROM message';
