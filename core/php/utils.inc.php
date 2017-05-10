@@ -662,33 +662,43 @@ function sizeFormat($size) {
 	return round($size, 2) . ' ' . $units[$i];
 }
 
+/**
+ * 
+ * @param string $network
+ * @param string $ip
+ * @return boolean
+ */
 function netMatch($network, $ip) {
-	$network = trim($network);
+
 	$ip = trim($ip);
-	if ($ip == $network) {
-		return TRUE;
+	if ($ip == trim($network)) {
+		return true;
 	}
 	$network = str_replace(' ', '', $network);
-	if (strpos($network, '*') !== FALSE) {
-		if (strpos($network, '/') !== FALSE) {
+	if (strpos($network, '*') !== false) {
+		if (strpos($network, '/') !== false) {
 			$asParts = explode('/', $network);
-			$network = @$asParts[0];
+                        if ($asParts[0]){
+                            $network = $asParts[0];
+                        } else {
+                            $network = null;
+                        }
 		}
 		$nCount = substr_count($network, '*');
 		$network = str_replace('*', '0', $network);
 		if ($nCount == 1) {
 			$network .= '/24';
-		} else if ($nCount == 2) {
+		} elseif ($nCount == 2) {
 			$network .= '/16';
-		} else if ($nCount == 3) {
+		} elseif ($nCount == 3) {
 			$network .= '/8';
-		} else if ($nCount > 3) {
-			return TRUE; // if *.*.*.*, then all, so matched
+		} elseif ($nCount > 3) {
+			return true; // if *.*.*.*, then all, so matched
 		}
 	}
 
 	$d = strpos($network, '-');
-	if ($d === FALSE) {
+	if ($d === false) {
 		if (strpos($network, '/') === false) {
 			if ($ip == $network) {
 				return true;
