@@ -73,7 +73,7 @@ class scenario {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
 			FROM scenario s
 			INNER JOIN object ob ON s.object_id=ob.id';
-			if ($_type != null) {
+			if ($_type !== null) {
 				$values['type'] = $_type;
 				$sql .= ' WHERE `type`=:type';
 			}
@@ -85,7 +85,7 @@ class scenario {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
 			FROM scenario s
 			WHERE s.object_id IS NULL';
-			if ($_type != null) {
+			if ($_type !== null) {
 				$values['type'] = $_type;
 				$sql .= ' AND `type`=:type';
 			}
@@ -97,7 +97,7 @@ class scenario {
 			FROM scenario s
 			INNER JOIN object ob ON s.object_id=ob.id
 			WHERE (`group` IS NULL OR `group` = "")';
-			if ($_type != null) {
+			if ($_type !== null) {
 				$values['type'] = $_type;
 				$sql .= ' AND `type`=:type';
 			}
@@ -110,7 +110,7 @@ class scenario {
 			FROM scenario s
 			WHERE (`group` IS NULL OR `group` = "")
 			AND s.object_id IS NULL';
-			if ($_type != null) {
+			if ($_type !== null) {
 				$values['type'] = $_type;
 				$sql .= ' AND `type`=:type';
 			}
@@ -125,7 +125,7 @@ class scenario {
 			FROM scenario s
 			INNER JOIN object ob ON s.object_id=ob.id
 			WHERE `group`=:group';
-			if ($_type != null) {
+			if ($_type !== null) {
 				$values['type'] = $_type;
 				$sql .= ' AND `type`=:type';
 			}
@@ -135,7 +135,7 @@ class scenario {
 			FROM scenario s
 			WHERE `group`=:group
 			AND s.object_id IS NULL';
-			if ($_type != null) {
+			if ($_type !== null) {
 				$values['type'] = $_type;
 				$sql .= ' AND `type`=:type';
 			}
@@ -164,7 +164,7 @@ class scenario {
 		$values = array();
 		$sql = 'SELECT DISTINCT(`group`)
 		FROM scenario';
-		if ($_group != null) {
+		if ($_group !== null) {
 			$values['group'] = '%' . $_group . '%';
 			$sql .= ' WHERE `group` LIKE :group';
 		}
@@ -211,7 +211,7 @@ class scenario {
 		$values = array();
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM scenario';
-		if ($_object_id == null) {
+		if ($_object_id === null) {
 			$sql .= ' WHERE object_id IS NULL';
 		} else {
 			$values['object_id'] = $_object_id;
@@ -233,7 +233,7 @@ class scenario {
 	 */
 	public static function check($_event = null, $_forceSyncMode = false) {
 		$message = '';
-		if ($_event != null) {
+		if ($_event !== null) {
 			$scenarios = array();
 			if (is_object($_event)) {
 				$scenarios1 = self::byTrigger($_event->getId());
@@ -612,7 +612,7 @@ class scenario {
 			mkdir($cibDir);
 		}
 		$zip = new ZipArchive;
-		if ($zip->open($_path) === TRUE) {
+		if ($zip->open($_path) === true) {
 			$zip->extractTo($cibDir . '/');
 			$zip->close();
 		} else {
@@ -621,7 +621,7 @@ class scenario {
 	}
 
 	public static function removeFromMarket(&$market) {
-
+                trigger_error('This method is deprecated', E_USER_DEPRECATED);
 	}
 
 	public static function listMarketObject() {
@@ -639,7 +639,7 @@ class scenario {
 			$trigger = str_replace(array('#variable(', ')#'), array('variable(', ')'), $trigger);
 			if ($trigger == $_event) {
 				return true;
-			} else if (strpos($trigger, $_event) !== false && jeedom::evaluateExpression($trigger)) {
+			} elseif (strpos($trigger, $_event) !== false && jeedom::evaluateExpression($trigger)) {
 				return true;
 			}
 		}
@@ -1347,7 +1347,7 @@ class scenario {
 	 * @return string
 	 */
 	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = null) {
-		if ($_drill == null) {
+		if ($_drill === null) {
 			$_drill = config::byKey('graphlink::scenario::drill');
 		}
 		if (isset($_data['node']['scenario' . $this->getId()])) {
