@@ -94,7 +94,7 @@ class com_shell {
 			exec($cmd, $output, $retval);
 			$return[] = implode("\n", $output);
 			if ($retval != 0) {
-				throw new Exception('Error on shell exec, return value : ' . $retval . '. Details : ' . print_r($return, true));
+				throw new Exception(__('Error on shell exec, return value : ',__FILE__) . $retval . '. Details : ' . print_r($return, true));
 			}
 			$this->history[] = $cmd;
 		}
