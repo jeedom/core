@@ -2,17 +2,7 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-
 ?>
-<span class="pull-left">
-{{Processus cron Jeedom :}} <span class="label label-default"><span class="tooltips" id="span_jeecronMasterRuns" title="{{Nombre de processus Jeedom cron maître (doit toujours être inférieur à 2)}}"></span> |
-<span id="span_jeecronRuns" class="tooltips" title="{{Nombre total de processus Jeedom en cours}}"></span> |
-<span id="span_nbProcess" class="tooltips" title="{{Nombre total de processus en cours sur la machine}}"></span></span>
-<br/>
-<span>{{Charge moyenne}} <span class="label label-default"><span id="span_loadAvg1" class="tooltips" title="{{Charge moyenne du système sur la dernière minute}}"></span> |
-<span id="span_loadAvg5" class="tooltips" title="{{Charge moyenne du système sur les 5 dernières minutes}}"></span> |
-<span id="span_loadAvg15" class="tooltips" title="{{Charge moyenne du système sur les 15 dernières minutes}}"></span></span></span>
-</span>
 
 <a class="btn btn-success pull-right" id="bt_save" style="margin-top: 5px;"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
 <a class="btn btn-default pull-right" id="bt_addCron" style="margin-top: 5px;"><i class="fa fa-plus-circle"></i> {{Ajouter}}</a>
@@ -24,7 +14,7 @@ if (config::byKey('enableCron') == 0) {
 	echo '<a class="btn btn-danger pull-right" id="bt_changeCronState" data-state="0" style="margin-top: 5px;"><i class="fa fa-times"></i> {{Désactiver le système cron}}</a>';
 }
 ?>
-<br/><br/><br/>
+<br/><br/>
 <table id="table_cron" class="table table-bordered table-condensed" >
     <thead>
         <tr>

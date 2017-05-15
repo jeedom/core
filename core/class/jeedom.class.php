@@ -129,11 +129,34 @@ class jeedom {
 		);
 
 		$value = self::checkSpaceLeft();
-		$state = ($value > 10);
 		$return[] = array(
 			'name' => __('Espace disque libre', __FILE__),
-			'state' => $state,
-			'result' => $value . '%',
+			'state' => ($value > 10),
+			'result' => $value . ' %',
+			'comment' => '',
+		);
+
+		$values = getSystemMemInfo();
+		$value = round(($values['MemAvailable'] / $values['MemTotal']) * 100);
+		$return[] = array(
+			'name' => __('Mémoire disponible', __FILE__),
+			'state' => ($value > 15),
+			'result' => $value . ' %',
+			'comment' => '',
+		);
+
+		$value = round(($values['SwapFree'] / $values['SwapTotal']) * 100);
+		$return[] = array(
+			'name' => __('Swap disponible', __FILE__),
+			'state' => ($value > 15),
+			'result' => $value . ' %',
+			'comment' => '',
+		);
+		$values = sys_getloadavg();
+		$return[] = array(
+			'name' => __('Charge', __FILE__),
+			'state' => ($values[2] < 20),
+			'result' => $values[0] . ' - ' . $values[1] . ' - ' . $values[2],
 			'comment' => '',
 		);
 

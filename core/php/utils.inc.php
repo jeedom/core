@@ -1057,3 +1057,17 @@ function addGraphLink($_from, $_from_type, $_to, $_to_type, &$_data, $_level, $_
 	}
 	return $_data;
 }
+
+function getSystemMemInfo() {
+	$data = explode("\n", file_get_contents("/proc/meminfo"));
+	$meminfo = array();
+	foreach ($data as $line) {
+		$info = explode(":", $line);
+		if (count($info) != 2) {
+			continue;
+		}
+		$value = explode(' ', trim($info[1]));
+		$meminfo[$info[0]] = trim($value[0]);
+	}
+	return $meminfo;
+}

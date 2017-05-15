@@ -100,7 +100,7 @@ step_4_apache() {
 step_5_php() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_5_php${NORMAL}"
-	apt-get -y install php7.0 php7.0-curl php7.0-gd php7.0-imap php7.0-json php7.0-mcrypt php7.0-mysql php7.0-xml php7.0-opcache php7.0-soap php7.0-xmlrpc libapache2-mod-php7.0 php7.0-common php7.0-dev php7.0-zip php7.0-ssh2 php7.0-calendar php7-0-redis
+	apt-get -y install php7.0 php7.0-curl php7.0-gd php7.0-imap php7.0-json php7.0-mcrypt php7.0-mysql php7.0-xml php7.0-opcache php7.0-soap php7.0-xmlrpc libapache2-mod-php7.0 php7.0-common php7.0-dev php7.0-zip php7.0-ssh2
 	if [ $? -ne 0 ]; then
 		apt_install libapache2-mod-php5 php5 php5-common php5-curl php5-dev php5-gd php5-json php5-memcached php5-mysqlnd php5-cli php5-ssh2 php5-redis
 	fi
@@ -148,6 +148,10 @@ step_7_jeedom_customization() {
 
 	rm /etc/apache2/conf-available/other-vhosts-access-log.conf > /dev/null 2>&1
 	rm /etc/apache2/conf-enabled/other-vhosts-access-log.conf > /dev/null 2>&1
+
+	sed -i 's/PrivateTmp=true/PrivateTmp=false/g' /lib/systemd/system/apache2.service /dev/null 2>&1
+
+	systemctl daemon-reload
 
 	for file in $(find / -iname php.ini -type f); do
 		echo "Update php file ${file}"
