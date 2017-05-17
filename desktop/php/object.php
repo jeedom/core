@@ -19,9 +19,9 @@ foreach ($allObject as $object) {
 	$margin = 15 * $object->getConfiguration('parentNumber');
 	echo '<li class="cursor li_object bt_sortable" data-object_id="' . $object->getId() . '" data-object_name="' . $object->getName() . '" data-object_icon=\'' . $object->getDisplay('icon', '<i class="fa fa-lemon-o"></i>') . '\'>';
 	echo '<i class="fa fa-arrows-v pull-left cursor"></i>';
-	echo '<a style="position:relative;left:' . $margin . 'px;">';
+	echo '<a><span style="position:relative;left:' . $margin . 'px;">';
 	echo $object->getHumanName(true, true);
-	echo '</a>';
+	echo '</span></a>';
 	echo '</li>';
 }
 ?>
