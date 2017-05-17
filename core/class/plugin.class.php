@@ -70,7 +70,7 @@ class plugin {
 		if (strpos($_id, '.json') !== false) {
 			$data = json_decode(file_get_contents($_id), true);
 			if (!is_array($data)) {
-				throw new Exception('Plugin introuvable (json invalide) : ' . $_id);
+				throw new Exception(__('Plugin introuvable (json invalide) : ',__FILE__) . $_id);
 			}
 			$plugin = new plugin();
 			$plugin->id = $data['id'];
@@ -111,11 +111,11 @@ class plugin {
 			libxml_use_internal_errors(true);
 			$plugin_xml = simplexml_load_file($_id);
 			if (!$plugin_xml) {
-				throw new Exception('XML introuvable (chemin invalide) : ' . $_id);
+				throw new Exception(__('XML introuvable (chemin invalide) : ',__FILE__) . $_id);
 			}
 
 			if (!is_object($plugin_xml)) {
-				throw new Exception('Plugin introuvable (xml invalide) : ' . $_id . '. Description : ' . print_r(libxml_get_errors(), true));
+				throw new Exception(__('Plugin introuvable (xml invalide) : ',__FILE__) . $_id . '. Description : ' . print_r(libxml_get_errors(), true));
 			}
 			$plugin = new plugin();
 			$plugin->id = (string) $plugin_xml->id;
@@ -756,12 +756,12 @@ class plugin {
 		}
 		try {
 			if ($_state == 1) {
-				log::add($this->getId(), 'info', 'Début d\'activation du plugin');
+				log::add($this->getId(), 'info',__('Début d\'activation du plugin',__FILE__));
 				$this->deamon_stop();
 
 				$deamon_info = $this->deamon_info();
 				sleep(1);
-				log::add($this->getId(), 'info', 'Info sur le démon : ' . print_r($deamon_info, true));
+				log::add($this->getId(), 'info', __('Info sur le démon : ',__FILE__) . print_r($deamon_info, true));
 				if ($deamon_info['state'] == 'ok') {
 					$this->deamon_stop();
 				}
@@ -779,7 +779,7 @@ class plugin {
 				rrmdir(jeedom::getTmpFolder('openvpn'));
 			}
 			if (isset($out) && trim($out) != '') {
-				log::add($this->getId(), 'info', "Installation/remove/update result : " . $out);
+				log::add($this->getId(), 'info', __('installation/remove/update result : ',__FILE__) . $out);
 			}
 		} catch (Exception $e) {
 			config::save('active', $alreadyActive, $this->getId());
@@ -807,7 +807,7 @@ class plugin {
 			throw new Exception('La fonction à lancer ne peut être vide');
 		}
 		if (!$_callInstallFunction && (!class_exists($this->getId()) || !method_exists($this->getId(), $_function))) {
-			throw new Exception('Il n\'existe aucune méthode : ' . $this->getId() . '::' . $_function . '()');
+			throw new Exception(__('Il n\'existe aucune méthode : ',__FILE__) . $this->getId() . '::' . $_function . '()');
 		}
 		$cmd = dirname(__FILE__) . '/../../core/php/jeePlugin.php ';
 		$cmd .= ' plugin_id=' . $this->getId();
