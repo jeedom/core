@@ -42,8 +42,8 @@ foreach ($list_logfile as $file) {
 		<a class="btn btn-success pull-right" id="bt_downloadLog"><i class="fa fa-cloud-download"></i> {{Télécharger}}</a>
 		<a class="btn btn-warning pull-right" data-state="1" id="bt_globalLogStopStart"><i class="fa fa-pause"></i> {{Pause}}</a>
 		<input style="max-width: 150px;" class="form-control pull-right" id="in_globalLogSearch" placeholder="{{Rechercher}}" />
-		<br/><br/>
-		<pre id='pre_globallog' style='overflow: auto; height: calc(100% - 50px);with:100%;'></pre>
+		<br/><br/><br/>
+		<pre id='pre_globallog' style='overflow: auto; height: calc(100% - 70px);with:100%;'></pre>
         </div>
 </div>
 <?php include_file('desktop', 'log', 'js');?>
