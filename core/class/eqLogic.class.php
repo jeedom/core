@@ -58,10 +58,8 @@ class eqLogic {
 	}
 
 	private static function cast($_inputs) {
-		if (is_object($_inputs)) {
-			if (class_exists($_inputs->getEqType_name())) {
-				return cast($_inputs, $_inputs->getEqType_name());
-			}
+		if (is_object($_inputs) && class_exists($_inputs->getEqType_name())) {
+			return cast($_inputs, $_inputs->getEqType_name());
 		}
 		if (is_array($_inputs)) {
 			$return = array();

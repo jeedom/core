@@ -19,7 +19,6 @@
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
 function include_file($_folder, $_fn, $_type, $_plugin = '') {
-	$type = 'php';
 	if ($_folder == '3rdparty') {
 		$_fn .= '.' . $_type;
 		$path = dirname(__FILE__) . '/../../' . $_folder . '/' . $_fn;
@@ -51,18 +50,26 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 		$_folder = 'plugins/' . $_plugin . '/' . $_folder;
 	}
 	$path = dirname(__FILE__) . '/../../' . $_folder . '/' . $_fn;
-	if (file_exists($path)) {
-		if ($type == 'php') {
+	if (!file_exists($path)) {
+		throw new Exception('File not found : ' . $_fn, 35486);
+	}
+	if ($type == 'php') {
+		if ($_type != 'class') {
 			ob_start();
 			require_once $path;
 			echo translate::exec(ob_get_clean(), $_folder . '/' . $_fn);
-		} else if ($type == 'css') {
-			echo '<link href="' . $_folder . '/' . $_fn . '?md5=' . md5_file($path) . '" rel="stylesheet" />';
-		} else if ($type == 'js') {
-			echo '<script type="text/javascript" src="core/php/getResource.php?file=' . $_folder . '/' . $_fn . '&md5=' . md5_file($path) . '&lang=' . translate::getLanguage() . '"></script>';
+			return;
 		}
-	} else {
-		throw new Exception('File not found : ' . $_fn, 35486);
+		require_once $path;
+		return;
+	}
+	if ($type == 'css') {
+		echo '<link href="' . $_folder . '/' . $_fn . '?md5=' . md5_file($path) . '" rel="stylesheet" />';
+		return;
+	}
+	if ($type == 'js') {
+		echo '<script type="text/javascript" src="core/php/getResource.php?file=' . $_folder . '/' . $_fn . '&md5=' . md5_file($path) . '&lang=' . translate::getLanguage() . '"></script>';
+		return;
 	}
 }
 
@@ -663,7 +670,7 @@ function sizeFormat($size) {
 }
 
 /**
- * 
+ *
  * @param string $network
  * @param string $ip
  * @return boolean
@@ -678,11 +685,11 @@ function netMatch($network, $ip) {
 	if (strpos($network, '*') !== false) {
 		if (strpos($network, '/') !== false) {
 			$asParts = explode('/', $network);
-                        if ($asParts[0]){
-                            $network = $asParts[0];
-                        } else {
-                            $network = null;
-                        }
+			if ($asParts[0]) {
+				$network = $asParts[0];
+			} else {
+				$network = null;
+			}
 		}
 		$nCount = substr_count($network, '*');
 		$network = str_replace('*', '0', $network);
