@@ -54,122 +54,57 @@ class plugin {
 		if (is_string($_id) && isset(self::$_cache[$_id])) {
 			return self::$_cache[$_id];
 		}
-		if (!file_exists($_id) || (strpos($_id, '.xml') === false && strpos($_id, '.json') === false)) {
+		if (!file_exists($_id)) {
 			$_id = self::getPathById($_id);
 			if (isset(self::$_cache[$_id])) {
 				return self::$_cache[$_id];
 			}
-			if (!file_exists($_id)) {
-				throw new Exception('Plugin introuvable : ' . $_id);
-			}
 		}
-		$_id = str_replace('//', '/', $_id);
-		if (file_exists(str_replace('.xml', '.json', $_id))) {
-			$_id = str_replace('.xml', '.json', $_id);
+		if (!file_exists($_id)) {
+			throw new Exception('Plugin introuvable : ' . $_id);
 		}
-		if (strpos($_id, '.json') !== false) {
-			$data = json_decode(file_get_contents($_id), true);
-			if (!is_array($data)) {
-				throw new Exception('Plugin introuvable (json invalide) : ' . $_id);
-			}
-			$plugin = new plugin();
-			$plugin->id = $data['id'];
-			$plugin->name = $data['name'];
-			$plugin->description = (isset($data['description'])) ? $data['description'] : '';
-			$plugin->licence = (isset($data['licence'])) ? $data['licence'] : '';
-			$plugin->author = (isset($data['author'])) ? $data['author'] : '';
-			$plugin->installation = (isset($data['installation'])) ? $data['installation'] : '';
-			$plugin->hasDependency = (isset($data['hasDependency'])) ? $data['hasDependency'] : 0;
-			$plugin->hasOwnDeamon = (isset($data['hasOwnDeamon'])) ? $data['hasOwnDeamon'] : 0;
-			$plugin->maxDependancyInstallTime = (isset($data['maxDependancyInstallTime'])) ? $data['maxDependancyInstallTime'] : 30;
-			$plugin->eventjs = (isset($data['eventjs'])) ? $data['eventjs'] : 0;
-			$plugin->require = (isset($data['require'])) ? $data['require'] : '';
-			$plugin->category = (isset($data['category'])) ? $data['category'] : '';
-			$plugin->filepath = $_id;
-			$plugin->index = (isset($data['index'])) ? (string) $data['index'] : $data['id'];
-			$plugin->display = (isset($data['display'])) ? (string) $data['display'] : '';
-			$plugin->issue = (isset($data['issue'])) ? (string) $data['issue'] : '';
-			$plugin->changelog = (isset($data['changelog'])) ? (string) $data['changelog'] : '';
-			$plugin->documentation = (isset($data['documentation'])) ? (string) $data['documentation'] : '';
-
-			$plugin->mobile = '';
-			if (file_exists(dirname(__FILE__) . '/../../plugins/' . $data['id'] . '/mobile/html')) {
-				$plugin->mobile = (isset($data['mobile'])) ? $data['mobile'] : $data['id'];
-			}
-			if (isset($data['include'])) {
-				$plugin->include = array(
-					'file' => $data['include']['file'],
-					'type' => $data['include']['type'],
-				);
-			} else {
-				$plugin->include = array(
-					'file' => $data['id'],
-					'type' => 'class',
-				);
-			}
+		$data = json_decode(file_get_contents($_id), true);
+		if (!is_array($data)) {
+			throw new Exception('Plugin introuvable (json invalide) : ' . $_id);
+		}
+		$plugin = new plugin();
+		$plugin->id = $data['id'];
+		$plugin->name = $data['name'];
+		$plugin->description = (isset($data['description'])) ? $data['description'] : '';
+		$plugin->licence = (isset($data['licence'])) ? $data['licence'] : '';
+		$plugin->author = (isset($data['author'])) ? $data['author'] : '';
+		$plugin->installation = (isset($data['installation'])) ? $data['installation'] : '';
+		$plugin->hasDependency = (isset($data['hasDependency'])) ? $data['hasDependency'] : 0;
+		$plugin->hasOwnDeamon = (isset($data['hasOwnDeamon'])) ? $data['hasOwnDeamon'] : 0;
+		$plugin->maxDependancyInstallTime = (isset($data['maxDependancyInstallTime'])) ? $data['maxDependancyInstallTime'] : 30;
+		$plugin->eventjs = (isset($data['eventjs'])) ? $data['eventjs'] : 0;
+		$plugin->require = (isset($data['require'])) ? $data['require'] : '';
+		$plugin->category = (isset($data['category'])) ? $data['category'] : '';
+		$plugin->filepath = $_id;
+		$plugin->index = (isset($data['index'])) ? (string) $data['index'] : $data['id'];
+		$plugin->display = (isset($data['display'])) ? (string) $data['display'] : '';
+		$plugin->issue = (isset($data['issue'])) ? (string) $data['issue'] : '';
+		$plugin->changelog = (isset($data['changelog'])) ? (string) $data['changelog'] : '';
+		$plugin->documentation = (isset($data['documentation'])) ? (string) $data['documentation'] : '';
+		$plugin->mobile = '';
+		if (file_exists(dirname(__FILE__) . '/../../plugins/' . $data['id'] . '/mobile/html')) {
+			$plugin->mobile = (isset($data['mobile'])) ? $data['mobile'] : $data['id'];
+		}
+		if (isset($data['include'])) {
+			$plugin->include = array(
+				'file' => $data['include']['file'],
+				'type' => $data['include']['type'],
+			);
 		} else {
-			libxml_use_internal_errors(true);
-			$plugin_xml = simplexml_load_file($_id);
-			if (!$plugin_xml) {
-				throw new Exception('XML introuvable (chemin invalide) : ' . $_id);
-			}
-
-			if (!is_object($plugin_xml)) {
-				throw new Exception('Plugin introuvable (xml invalide) : ' . $_id . '. Description : ' . print_r(libxml_get_errors(), true));
-			}
-			$plugin = new plugin();
-			$plugin->id = (string) $plugin_xml->id;
-			$plugin->name = (string) $plugin_xml->name;
-			$plugin->description = (string) $plugin_xml->description;
-			$plugin->licence = (string) $plugin_xml->licence;
-			$plugin->author = (string) $plugin_xml->author;
-			$plugin->require = (string) $plugin_xml->require;
-			$plugin->installation = (string) $plugin_xml->installation;
-			$plugin->category = (string) $plugin_xml->category;
-			$plugin->hasDependency = 0;
-			if (isset($plugin_xml->hasDependency)) {
-				$plugin->hasDependency = $plugin_xml->hasDependency;
-			}
-			$plugin->hasOwnDeamon = 0;
-			if (isset($plugin_xml->hasOwnDeamon)) {
-				$plugin->hasOwnDeamon = $plugin_xml->hasOwnDeamon;
-			}
-			if (isset($plugin_xml->maxDependancyInstallTime)) {
-				$plugin->maxDependancyInstallTime = $plugin_xml->maxDependancyInstallTime;
-			} else {
-				$plugin->maxDependancyInstallTime = 10;
-			}
-
-			$plugin->eventjs = 0;
-			if (isset($plugin_xml->eventjs)) {
-				$plugin->eventjs = 1;
-			}
-			$plugin->filepath = $_id;
-			$plugin->index = (isset($plugin_xml->index)) ? (string) $plugin_xml->index : $plugin_xml->id;
-			$plugin->display = (isset($plugin_xml->display)) ? (string) $plugin_xml->display : '';
-
-			$plugin->mobile = '';
-			if (file_exists(dirname(__FILE__) . '/../../plugins/' . $plugin_xml->id . '/mobile/html')) {
-				$plugin->mobile = (isset($plugin_xml->mobile)) ? (string) $plugin_xml->mobile : $plugin_xml->id;
-			}
-			if (isset($plugin_xml->include)) {
-				$plugin->include = array(
-					'file' => (string) $plugin_xml->include,
-					'type' => (string) $plugin_xml->include['type'],
-				);
-			} else {
-				$plugin->include = array(
-					'file' => $plugin_xml->id,
-					'type' => 'class',
-				);
-			}
+			$plugin->include = array(
+				'file' => $data['id'],
+				'type' => 'class',
+			);
 		}
-
 		if ($_translate) {
 			$plugin->description = __($plugin->description, $_id);
 			$plugin->installation = __($plugin->installation, $_id);
 		}
-
 		$plugin->functionality['interact'] = method_exists($plugin->getId(), 'interact');
 		$plugin->functionality['cron'] = method_exists($plugin->getId(), 'cron');
 		$plugin->functionality['cron5'] = method_exists($plugin->getId(), 'cron5');
@@ -177,7 +112,6 @@ class plugin {
 		$plugin->functionality['cron30'] = method_exists($plugin->getId(), 'cron30');
 		$plugin->functionality['cronHourly'] = method_exists($plugin->getId(), 'cronHourly');
 		$plugin->functionality['cronDaily'] = method_exists($plugin->getId(), 'cronDaily');
-
 		if (!isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$plugin->category])) {
 			foreach ($JEEDOM_INTERNAL_CONFIG['plugin']['category'] as $key => $value) {
 				if (!isset($value['alias'])) {
@@ -189,17 +123,13 @@ class plugin {
 				}
 			}
 		}
-
 		self::$_cache[$_id] = $plugin;
 		self::$_cache[$plugin->id] = $plugin;
 		return $plugin;
 	}
 
 	public static function getPathById($_id) {
-		if (file_exists(dirname(__FILE__) . '/../../plugins/' . $_id . '/plugin_info/info.json')) {
-			return dirname(__FILE__) . '/../../plugins/' . $_id . '/plugin_info/info.json';
-		}
-		return dirname(__FILE__) . '/../../plugins/' . $_id . '/plugin_info/info.xml';
+		return dirname(__FILE__) . '/../../plugins/' . $_id . '/plugin_info/info.json';
 	}
 
 	public function getPathToConfigurationById() {

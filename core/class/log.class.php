@@ -195,8 +195,7 @@ class log {
 		}
 		if (self::authorizeClearLog($_log)) {
 			$path = self::getPathToLog($_log);
-			com_shell::execute(system::getCmdSudo() . 'chmod 777 ' . $path);
-			unlink($path);
+			com_shell::execute(system::getCmdSudo() . 'chmod 777 ' . $path . '; rm ' . $path);
 			return true;
 		}
 	}
@@ -218,7 +217,7 @@ class log {
 	 */
 	public static function get($_log = 'core', $_begin, $_nbLines) {
 		self::chunk($_log);
-		 
+
 		$path = (!file_exists($_log) || !is_file($_log)) ? self::getPathToLog($_log) : $_log;
 		if (!file_exists($path)) {
 			return false;

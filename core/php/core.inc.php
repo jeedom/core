@@ -59,17 +59,10 @@ function jeedomCoreAutoload($classname) {
 function jeedomPluginAutoload($_classname) {
 	$classname = str_replace(array('Real', 'Cmd'), '', $_classname);
 	try {
-		$plugin = plugin::byId($classname);
-	} catch (Exception $e) {
-		if (strpos($classname, '_') !== false && strpos($classname, 'com_') === false) {
-			$plugin = plugin::byId(substr($classname, 0, strpos($classname, '_')));
+		if (config::byKey('active', $classname, 1) == 0) {
+			return;
 		}
-	}
-	try {
-		if (is_object($plugin) && $plugin->isActive() == 1) {
-			$include = $plugin->getInclude();
-			include_file('core', $include['file'], $include['type'], $plugin->getId());
-		}
+		include_file('core', $classname, 'class', $classname);
 	} catch (Exception $e) {
 
 	}
