@@ -490,7 +490,7 @@ class eqLogic {
 			'#category#' => $this->getPrimaryCategory(),
 			'#color#' => '#ffffff',
 			'#border#' => 'none',
-			'#border-radius#' => '2px',
+			'#border-radius#' => '4px',
 			'#style#' => '',
 			'#max_width#' => '650px',
 			'#logicalId#' => $this->getLogicalId(),
