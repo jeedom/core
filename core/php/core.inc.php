@@ -58,7 +58,6 @@ function jeedomCoreAutoload($classname) {
 
 function jeedomPluginAutoload($_classname) {
 	$classname = str_replace(array('Real', 'Cmd'), '', $_classname);
-	$plugin = null;
 	try {
 		$plugin = plugin::byId($classname);
 	} catch (Exception $e) {
