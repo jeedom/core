@@ -663,7 +663,7 @@ function sizeFormat($size) {
 }
 
 /**
- *
+ * 
  * @param string $network
  * @param string $ip
  * @return boolean
@@ -678,11 +678,11 @@ function netMatch($network, $ip) {
 	if (strpos($network, '*') !== false) {
 		if (strpos($network, '/') !== false) {
 			$asParts = explode('/', $network);
-			if ($asParts[0]) {
-				$network = $asParts[0];
-			} else {
-				$network = null;
-			}
+                        if ($asParts[0]){
+                            $network = $asParts[0];
+                        } else {
+                            $network = null;
+                        }
 		}
 		$nCount = substr_count($network, '*');
 		$network = str_replace('*', '0', $network);
