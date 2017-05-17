@@ -314,7 +314,7 @@ input[type=checkbox] {
   border-radius: 2px !important;
 }
 
-.btn{
+.btn:not(.btn-circle){
   border-radius: 2px !important;
 }
 
