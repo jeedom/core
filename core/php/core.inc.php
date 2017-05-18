@@ -57,7 +57,7 @@ function jeedomCoreAutoload($classname) {
 }
 
 function jeedomPluginAutoload($_classname) {
-	$classname = str_replace(array('Real', 'Cmd'), '', $_classname);
+	$classname = explode('_', str_replace(array('Real', 'Cmd'), '', $_classname))[0];
 	try {
 		if (config::byKey('active', $classname, 1) == 0) {
 			return;
