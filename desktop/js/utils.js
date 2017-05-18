@@ -32,6 +32,7 @@
 });
 
  function loadPage(_url){
+    window.history.pushState('','', _url);
     $('#div_pageContainer').empty().load(_url+'&ajax=1',function(){
         initPage();
     });
