@@ -56,9 +56,6 @@ class plugin {
 		}
 		if (!file_exists($_id)) {
 			$_id = self::getPathById($_id);
-			if (isset(self::$_cache[$_id])) {
-				return self::$_cache[$_id];
-			}
 		}
 		if (!file_exists($_id)) {
 			throw new Exception('Plugin introuvable : ' . $_id);
@@ -119,7 +116,6 @@ class plugin {
 				}
 			}
 		}
-		self::$_cache[$_id] = $plugin;
 		self::$_cache[$plugin->id] = $plugin;
 		return $plugin;
 	}
