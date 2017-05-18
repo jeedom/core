@@ -79,7 +79,6 @@ function jeedomOtherAutoload($classname) {
 		}
 	}
 }
-
-spl_autoload_register('jeedomCoreAutoload', true, true);
-spl_autoload_register('jeedomPluginAutoload', true, true);
 spl_autoload_register('jeedomOtherAutoload', true, true);
+spl_autoload_register('jeedomPluginAutoload', true, true);
+spl_autoload_register('jeedomCoreAutoload', true, true);
