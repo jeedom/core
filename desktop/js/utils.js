@@ -50,6 +50,9 @@ $(function () {
         if ($(this).attr('href').match("^http")) {
             return;
         }
+         if ($(this).attr('href').match("^#")) {
+            return;
+        }
         if($(this).attr('target') == '_blank'){
             return;
         }
