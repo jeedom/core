@@ -71,12 +71,15 @@ function jeedomPluginAutoload($_classname) {
 function jeedomOtherAutoload($classname) {
 	try {
 		include_file('core', substr($classname, 4), 'com');
+		return;
 	} catch (Exception $e) {
-		try {
-			include_file('core', substr($classname, 5), 'repo');
-		} catch (Exception $e) {
 
-		}
+	}
+	try {
+		include_file('core', substr($classname, 5), 'repo');
+		return;
+	} catch (Exception $e) {
+
 	}
 }
 spl_autoload_register('jeedomOtherAutoload', true, true);
