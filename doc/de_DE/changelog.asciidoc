@@ -85,6 +85,7 @@
 * Possibilité d'avoir les logs des scénarios en temps réel (ralenti l'execution des scénarios)
 * Possibilité de passer des tags lors du lancement d'un scénario
 * Optimisation du chargement des scenarios et pages utilisant des actions avec option (type configuration du plugin alarme ou mode)
+* Optimisation global de jeedom (sur le chargement des classes de plugin, temps presque divisé par 3)
 
 = 2.4.6
 
