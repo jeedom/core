@@ -101,10 +101,6 @@ class plugin {
 				'type' => 'class',
 			);
 		}
-		if ($_translate) {
-			$plugin->description = __($plugin->description, $_id);
-			$plugin->installation = __($plugin->installation, $_id);
-		}
 		$plugin->functionality['interact'] = method_exists($plugin->getId(), 'interact');
 		$plugin->functionality['cron'] = method_exists($plugin->getId(), 'cron');
 		$plugin->functionality['cron5'] = method_exists($plugin->getId(), 'cron5');
