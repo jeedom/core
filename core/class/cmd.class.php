@@ -1076,7 +1076,7 @@ class cmd {
 		if ($this->getConfiguration('denyValues') != '' && in_array($value, explode(';', $this->getConfiguration('denyValues')))) {
 			return;
 		}
-		$repeat = ($this->execCmd() == $value && $this->execCmd() !== '');
+		$repeat = ($this->execCmd() == $value && $this->execCmd() !== '' && $this->execCmd() !== null);
 		$this->setCollectDate(($_datetime !== null) ? $_datetime : date('Y-m-d H:i:s'));
 		$this->setCache('collectDate', $this->getCollectDate());
 		$this->setValueDate(($repeat) ? $this->getValueDate() : $this->getCollectDate());
