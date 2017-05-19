@@ -41,7 +41,7 @@
   jeedom.log.remove({
     log : $('.li_log.active').attr('data-log'),
     success: function(data) {
-      window.location.reload();
+       loadPage('index.php?v=d&p=log');
     }
   });
 });
@@ -64,7 +64,7 @@
        $('#div_alertError').showAlert({message: data.result, level: 'danger'});
        return;
      }
-     window.location.reload();
+     loadPage('index.php?v=d&p=log');
    }
  });
   }
