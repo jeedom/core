@@ -330,14 +330,14 @@ $('#in_addElementType').on('change',function(){
 
 /*******************Element***********************/
 
-$('body').delegate('.helpSelectCron','click',function(){
+$('body').on('click','.helpSelectCron',function(){
   var el = $(this).closest('.schedule').find('.scenarioAttr[data-l1key=schedule]');
   jeedom.getCronSelectModal({},function (result) {
     el.value(result.value);
   });
 });
 
-$('body').delegate( '.bt_addScenarioElement','click', function (event) {
+$('body').on( 'click','.bt_addScenarioElement', function (event) {
   var elementDiv = $(this).closest('.element');
   var expression = false;
   if ($(this).hasClass('fromSubElement')) {
@@ -345,8 +345,7 @@ $('body').delegate( '.bt_addScenarioElement','click', function (event) {
     expression = true;
   }
   $('#md_addElement').modal('show');
-  $("#bt_addElementSave").off();
-  $("#bt_addElementSave").on('click', function (event) {
+    $("#bt_addElementSave").on('click', function (event) {
     if (expression) {
       elementDiv.append(addExpression({type: 'element', element: {type: $("#in_addElementType").value()}}));
     } else {
@@ -358,7 +357,7 @@ $('body').delegate( '.bt_addScenarioElement','click', function (event) {
   });
 });
 
-$('body').delegate('.bt_removeElement', 'click', function (event) {
+$('body').on('click','.bt_removeElement',  function (event) {
   if ($(this).closest('.expression').length != 0) {
     $(this).closest('.expression').remove();
   } else {
@@ -366,18 +365,18 @@ $('body').delegate('.bt_removeElement', 'click', function (event) {
   }
 });
 
-$('body').delegate('.bt_addAction', 'click', function (event) {
+$('body').on( 'click','.bt_addAction', function (event) {
   $(this).closest('.subElement').children('.expressions').append(addExpression({type: 'action'}));
   setAutocomplete();
   updateSortable();
 });
 
-$('body').delegate('.bt_removeExpression', 'click', function (event) {
+$('body').on('click','.bt_removeExpression',  function (event) {
   $(this).closest('.expression').remove();
   updateSortable();
 });
 
-$('body').delegate('.bt_selectCmdExpression', 'click', function (event) {
+$('body').on('click','.bt_selectCmdExpression',  function (event) {
   var el = $(this);
   var expression = $(this).closest('.expression');
   var type = 'info';
@@ -525,7 +524,7 @@ $('body').delegate('.bt_selectCmdExpression', 'click', function (event) {
 });
 
 
-$('body').delegate('.bt_selectOtherActionExpression', 'click', function (event) {
+$('body').on('click','.bt_selectOtherActionExpression',  function (event) {
   var expression = $(this).closest('.expression');
   jeedom.getSelectActionModal({scenario : true}, function (result) {
    expression.find('.expressionAttr[data-l1key=expression]').value(result.human);
@@ -536,7 +535,7 @@ $('body').delegate('.bt_selectOtherActionExpression', 'click', function (event) 
 });
 
 
-$('body').delegate('.bt_selectScenarioExpression', 'click', function (event) {
+$('body').on('click','.bt_selectScenarioExpression',  function (event) {
   var expression = $(this).closest('.expression');
   jeedom.scenario.getSelectModal({}, function (result) {
     if (expression.find('.expressionAttr[data-l1key=type]').value() == 'action') {
@@ -548,7 +547,7 @@ $('body').delegate('.bt_selectScenarioExpression', 'click', function (event) {
   });
 });
 
-$('body').delegate('.bt_selectEqLogicExpression', 'click', function (event) {
+$('body').on('click','.bt_selectEqLogicExpression',  function (event) {
   var expression = $(this).closest('.expression');
   jeedom.eqLogic.getSelectModal({}, function (result) {
     if (expression.find('.expressionAttr[data-l1key=type]').value() == 'action') {
@@ -560,7 +559,7 @@ $('body').delegate('.bt_selectEqLogicExpression', 'click', function (event) {
   });
 });
 
-$('body').delegate('.expression .expressionAttr[data-l1key=expression]', 'focusout', function (event) {
+$('body').on('focusout','.expression .expressionAttr[data-l1key=expression]',  function (event) {
   var el = $(this);
   if (el.closest('.expression').find('.expressionAttr[data-l1key=type]').value() == 'action') {
     var expression = el.closest('.expression').getValues('.expressionAttr');
@@ -598,22 +597,22 @@ $('#bt_addSchedule').on('click', function () {
   addSchedule('');
 });
 
-$('body').delegate('.bt_removeTrigger', 'click', function (event) {
+$('body').on('click','.bt_removeTrigger',  function (event) {
   $(this).closest('.trigger').remove();
 });
 
-$('body').delegate('.bt_removeSchedule', 'click', function (event) {
+$('body').on('click','.bt_removeSchedule',  function (event) {
   $(this).closest('.schedule').remove();
 });
 
-$('body').delegate('.bt_selectTrigger', 'click', function (event) {
+$('body').on('click','.bt_selectTrigger',  function (event) {
   var el = $(this);
   jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function (result) {
     el.closest('.trigger').find('.scenarioAttr[data-l1key=trigger]').value(result.human);
   });
 });
 
-$('body').delegate('.bt_selectDataStoreTrigger', 'click', function (event) {
+$('body').on( 'click','.bt_selectDataStoreTrigger', function (event) {
   var el = $(this);
   jeedom.dataStore.getSelectModal({cmd: {type: 'info'}}, function (result) {
     el.closest('.trigger').find('.scenarioAttr[data-l1key=trigger]').value(result.human);
@@ -621,14 +620,13 @@ $('body').delegate('.bt_selectDataStoreTrigger', 'click', function (event) {
 });
 
 
-$('body').delegate('.bt_sortable', 'mouseenter', function () {
+$('body').on('mouseenter','.bt_sortable',  function () {
   var expressions = $(this).closest('.expressions');
   $("#div_scenarioElement").sortable({
     axis: "y",
     cursor: "move",
     items: ".sortable",
     opacity: 0.5,
-    //placeholder: "ui-state-highlight",
     forcePlaceholderSize: true,
     forceHelperSize: true,
     grid: [0, 11],
@@ -658,7 +656,7 @@ $('body').delegate('.bt_sortable', 'mouseenter', function () {
   $("#div_scenarioElement").sortable("enable");
 });
 
-$('body').delegate('.bt_sortable', 'mouseout', function () {
+$('body').on('mouseout','.bt_sortable',  function () {
   $("#div_scenarioElement").sortable("disable");
 
 });
@@ -685,19 +683,19 @@ $('#bt_templateScenario').on('click', function () {
 
 /**************** Initialisation **********************/
 
-$('body').delegate('.scenarioAttr', 'change', function () {
+$('body').on('change','.scenarioAttr',  function () {
   modifyWithoutSave = true;
 });
 
-$('body').delegate('.expressionAttr', 'change', function () {
+$('body').on('change','.expressionAttr',  function () {
   modifyWithoutSave = true;
 });
 
-$('body').delegate('.elementAttr', 'change', function () {
+$('body').on('change','.elementAttr',  function () {
   modifyWithoutSave = true;
 });
 
-$('body').delegate('.subElementAttr', 'change', function () {
+$('body').on('change', '.subElementAttr', function () {
   modifyWithoutSave = true;
 });
 
@@ -1008,7 +1006,7 @@ function addExpression(_expression) {
   return retour;
 }
 
-$('body').delegate('.subElementAttr[data-l1key=options][data-l2key=allowRepeatCondition]','click',function(){
+$('body').on('click','.subElementAttr[data-l1key=options][data-l2key=allowRepeatCondition]',function(){
   if($(this).attr('value') == 0){
     $(this).attr('value',1);
     $(this).html('<span class="fa-stack"><i class="fa fa-refresh fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span>');
