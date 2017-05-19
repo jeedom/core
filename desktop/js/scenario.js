@@ -330,14 +330,14 @@ $('#in_addElementType').on('change',function(){
 
 /*******************Element***********************/
 
-$('body').on('click','.helpSelectCron',function(){
+$('#div_pageContainer').on('click','.helpSelectCron',function(){
   var el = $(this).closest('.schedule').find('.scenarioAttr[data-l1key=schedule]');
   jeedom.getCronSelectModal({},function (result) {
     el.value(result.value);
   });
 });
 
-$('body').on( 'click','.bt_addScenarioElement', function (event) {
+$('#div_pageContainer').on( 'click','.bt_addScenarioElement', function (event) {
   var elementDiv = $(this).closest('.element');
   var expression = false;
   if ($(this).hasClass('fromSubElement')) {
@@ -357,7 +357,7 @@ $('body').on( 'click','.bt_addScenarioElement', function (event) {
   });
 });
 
-$('body').on('click','.bt_removeElement',  function (event) {
+$('#div_pageContainer').on('click','.bt_removeElement',  function (event) {
   if ($(this).closest('.expression').length != 0) {
     $(this).closest('.expression').remove();
   } else {
@@ -365,18 +365,18 @@ $('body').on('click','.bt_removeElement',  function (event) {
   }
 });
 
-$('body').on( 'click','.bt_addAction', function (event) {
+$('#div_pageContainer').on( 'click','.bt_addAction', function (event) {
   $(this).closest('.subElement').children('.expressions').append(addExpression({type: 'action'}));
   setAutocomplete();
   updateSortable();
 });
 
-$('body').on('click','.bt_removeExpression',  function (event) {
+$('#div_pageContainer').on('click','.bt_removeExpression',  function (event) {
   $(this).closest('.expression').remove();
   updateSortable();
 });
 
-$('body').on('click','.bt_selectCmdExpression',  function (event) {
+$('#div_pageContainer').on('click','.bt_selectCmdExpression',  function (event) {
   var el = $(this);
   var expression = $(this).closest('.expression');
   var type = 'info';
@@ -524,7 +524,7 @@ $('body').on('click','.bt_selectCmdExpression',  function (event) {
 });
 
 
-$('body').on('click','.bt_selectOtherActionExpression',  function (event) {
+$('#div_pageContainer').on('click','.bt_selectOtherActionExpression',  function (event) {
   var expression = $(this).closest('.expression');
   jeedom.getSelectActionModal({scenario : true}, function (result) {
    expression.find('.expressionAttr[data-l1key=expression]').value(result.human);
@@ -535,7 +535,7 @@ $('body').on('click','.bt_selectOtherActionExpression',  function (event) {
 });
 
 
-$('body').on('click','.bt_selectScenarioExpression',  function (event) {
+$('#div_pageContainer').on('click','.bt_selectScenarioExpression',  function (event) {
   var expression = $(this).closest('.expression');
   jeedom.scenario.getSelectModal({}, function (result) {
     if (expression.find('.expressionAttr[data-l1key=type]').value() == 'action') {
@@ -547,7 +547,7 @@ $('body').on('click','.bt_selectScenarioExpression',  function (event) {
   });
 });
 
-$('body').on('click','.bt_selectEqLogicExpression',  function (event) {
+$('#div_pageContainer').on('click','.bt_selectEqLogicExpression',  function (event) {
   var expression = $(this).closest('.expression');
   jeedom.eqLogic.getSelectModal({}, function (result) {
     if (expression.find('.expressionAttr[data-l1key=type]').value() == 'action') {
@@ -559,7 +559,7 @@ $('body').on('click','.bt_selectEqLogicExpression',  function (event) {
   });
 });
 
-$('body').on('focusout','.expression .expressionAttr[data-l1key=expression]',  function (event) {
+$('#div_pageContainer').on('focusout','.expression .expressionAttr[data-l1key=expression]',  function (event) {
   var el = $(this);
   if (el.closest('.expression').find('.expressionAttr[data-l1key=type]').value() == 'action') {
     var expression = el.closest('.expression').getValues('.expressionAttr');
@@ -597,22 +597,22 @@ $('#bt_addSchedule').on('click', function () {
   addSchedule('');
 });
 
-$('body').on('click','.bt_removeTrigger',  function (event) {
+$('#div_pageContainer').on('click','.bt_removeTrigger',  function (event) {
   $(this).closest('.trigger').remove();
 });
 
-$('body').on('click','.bt_removeSchedule',  function (event) {
+$('#div_pageContainer').on('click','.bt_removeSchedule',  function (event) {
   $(this).closest('.schedule').remove();
 });
 
-$('body').on('click','.bt_selectTrigger',  function (event) {
+$('#div_pageContainer').on('click','.bt_selectTrigger',  function (event) {
   var el = $(this);
   jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function (result) {
     el.closest('.trigger').find('.scenarioAttr[data-l1key=trigger]').value(result.human);
   });
 });
 
-$('body').on( 'click','.bt_selectDataStoreTrigger', function (event) {
+$('#div_pageContainer').on( 'click','.bt_selectDataStoreTrigger', function (event) {
   var el = $(this);
   jeedom.dataStore.getSelectModal({cmd: {type: 'info'}}, function (result) {
     el.closest('.trigger').find('.scenarioAttr[data-l1key=trigger]').value(result.human);
@@ -620,7 +620,7 @@ $('body').on( 'click','.bt_selectDataStoreTrigger', function (event) {
 });
 
 
-$('body').on('mouseenter','.bt_sortable',  function () {
+$('#div_pageContainer').on('mouseenter','.bt_sortable',  function () {
   var expressions = $(this).closest('.expressions');
   $("#div_scenarioElement").sortable({
     axis: "y",
@@ -656,7 +656,7 @@ $('body').on('mouseenter','.bt_sortable',  function () {
   $("#div_scenarioElement").sortable("enable");
 });
 
-$('body').on('mouseout','.bt_sortable',  function () {
+$('#div_pageContainer').on('mouseout','.bt_sortable',  function () {
   $("#div_scenarioElement").sortable("disable");
 
 });
@@ -683,19 +683,19 @@ $('#bt_templateScenario').on('click', function () {
 
 /**************** Initialisation **********************/
 
-$('body').on('change','.scenarioAttr',  function () {
+$('#div_pageContainer').on('change','.scenarioAttr',  function () {
   modifyWithoutSave = true;
 });
 
-$('body').on('change','.expressionAttr',  function () {
+$('#div_pageContainer').on('change','.expressionAttr',  function () {
   modifyWithoutSave = true;
 });
 
-$('body').on('change','.elementAttr',  function () {
+$('#div_pageContainer').on('change','.elementAttr',  function () {
   modifyWithoutSave = true;
 });
 
-$('body').on('change', '.subElementAttr', function () {
+$('#div_pageContainer').on('change', '.subElementAttr', function () {
   modifyWithoutSave = true;
 });
 
@@ -753,7 +753,7 @@ function setAutocomplete() {
 function printScenario(_id) {
   $.showLoading();
   jeedom.scenario.update[_id] =function(_options){
-    if(_options.scenario_id =! $('body').getValues('.scenarioAttr')[0]['id']){
+    if(_options.scenario_id =! $('#div_pageContainer').getValues('.scenarioAttr')[0]['id']){
       return;
     }
     switch(_options.state){
@@ -793,7 +793,7 @@ function printScenario(_id) {
     $('.scenarioAttr').value('');
     $('.scenarioAttr[data-l1key=object_id] option:first').attr('selected',true);
     $('.scenarioAttr[data-l1key=object_id]').val('');
-    $('body').setValues(data, '.scenarioAttr');
+    $('#div_pageContainer').setValues(data, '.scenarioAttr');
     data.lastLaunch = (data.lastLaunch == null) ? '{{Jamais}}' : data.lastLaunch;
     $('#span_lastLaunch').text(data.lastLaunch);
 
@@ -869,7 +869,7 @@ function printScenario(_id) {
 
 function saveScenario() {
   $.hideAlert();
-  var scenario = $('body').getValues('.scenarioAttr')[0];
+  var scenario = $('#div_pageContainer').getValues('.scenarioAttr')[0];
   scenario.type = "expert";
   var elements = [];
   $('#div_scenarioElement').children('.element').each(function () {
@@ -1006,7 +1006,7 @@ function addExpression(_expression) {
   return retour;
 }
 
-$('body').on('click','.subElementAttr[data-l1key=options][data-l2key=allowRepeatCondition]',function(){
+$('#div_pageContainer').on('click','.subElementAttr[data-l1key=options][data-l2key=allowRepeatCondition]',function(){
   if($(this).attr('value') == 0){
     $(this).attr('value',1);
     $(this).html('<span class="fa-stack"><i class="fa fa-refresh fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span>');

@@ -166,7 +166,7 @@
 });
  updateListBackup();
 
- $('body').delegate('.configKey', 'change', function () {
+ $('#div_pageContainer').delegate('.configKey', 'change', function () {
     modifyWithoutSave = true;
 });
 

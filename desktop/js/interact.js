@@ -149,7 +149,7 @@ $('#bt_testInteract,#bt_testInteract2').on('click', function () {
   $('#md_modal').load('index.php?v=d&modal=interact.test').dialog('open');
 });
 
-$('body').delegate('.listEquipementInfoReply', 'click', function () {
+$('#div_pageContainer').delegate('.listEquipementInfoReply', 'click', function () {
   jeedom.cmd.getSelectModal({cmd : {type : 'info'}}, function (result) {
     $('.interactAttr[data-l1key=reply]').atCaret('insert',result.human);
   });
@@ -234,7 +234,7 @@ $('#bt_addAction').off('click').on('click',function(){
   addAction({}, 'action','{{Action}}');
 });
 
-$('body').undelegate(".cmdAction.expressionAttr[data-l1key=cmd]", 'focusout').delegate('.cmdAction.expressionAttr[data-l1key=cmd]', 'focusout', function (event) {
+$('#div_pageContainer').undelegate(".cmdAction.expressionAttr[data-l1key=cmd]", 'focusout').delegate('.cmdAction.expressionAttr[data-l1key=cmd]', 'focusout', function (event) {
   var type = $(this).attr('data-type')
   var expression = $(this).closest('.' + type).getValues('.expressionAttr');
   var el = $(this);

@@ -21,14 +21,14 @@
 });
 
  $('#bt_configureTwoFactorAuthentification').on('click',function(){
-     var profil = $('body').getValues('.userAttr')[0];
+     var profil = $('#div_pageContainer').getValues('.userAttr')[0];
     $('#md_modal').dialog({title: "{{Authentification 2 étapes}}"});
     $("#md_modal").load('index.php?v=d&modal=twoFactor.authentification').dialog('open');
 });
 
  $("#bt_saveProfils").on('click', function (event) {
     $.hideAlert();
-    var profil = $('body').getValues('.userAttr')[0];
+    var profil = $('#div_pageContainer').getValues('.userAttr')[0];
     if (profil.password != $('#in_passwordCheck').value()) {
         $('#div_alert').showAlert({message: "{{Les deux mots de passe ne sont pas identiques}}", level: 'danger'});
         return;
@@ -45,7 +45,7 @@
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function (data) {
-                    $('body').setValues(data, '.userAttr');
+                    $('#div_pageContainer').setValues(data, '.userAttr');
                     modifyWithoutSave = false;
                 }
             });
@@ -55,7 +55,7 @@
 });
 
 $('#bt_genUserKeyAPI').on('click',function(){
-    var profil = $('body').getValues('.userAttr')[0];
+    var profil = $('#div_pageContainer').getValues('.userAttr')[0];
     profil.hash = '';
     jeedom.user.saveProfils({
         profils: profil,
@@ -69,7 +69,7 @@ $('#bt_genUserKeyAPI').on('click',function(){
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function (data) {
-                    $('body').setValues(data, '.userAttr');
+                    $('#div_pageContainer').setValues(data, '.userAttr');
                     modifyWithoutSave = false;
                 }
             });
@@ -91,13 +91,13 @@ jeedom.user.get({
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
     success: function (data) {
-        $('body').setValues(data, '.userAttr');
+        $('#div_pageContainer').setValues(data, '.userAttr');
         $('#in_passwordCheck').value(data.password);
         modifyWithoutSave = false;
     }
 });
 
-$('body').delegate('.userAttr', 'change', function () {
+$('#div_pageContainer').delegate('.userAttr', 'change', function () {
     modifyWithoutSave = true;
 });
 

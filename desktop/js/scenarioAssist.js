@@ -291,7 +291,7 @@ $('#bt_addAction').on('click', function () {
     addAction({});
 });
 
-$('body').delegate('.bt_removeExpression', 'click', function (event) {
+$('#div_pageContainer').delegate('.bt_removeExpression', 'click', function (event) {
     $(this).closest('.expression').remove();
 });
 
@@ -300,7 +300,7 @@ $('.scenarioAttr[data-l1key=mode]').on('change', function () {
     $('.mode.' + $(this).value()).show();
 });
 
-$('body').delegate('.bt_selectCmdExpression', 'click', function (event) {
+$('#div_pageContainer').delegate('.bt_selectCmdExpression', 'click', function (event) {
     var expression = $(this).closest('.expression');
     var type = 'info';
     if (expression.find('.expressionAttr[data-l1key=type]').value() == 'action') {
@@ -452,7 +452,7 @@ function printScenario(_id) {
                 loadPage("index.php?v=d&p=scenario&id=" + _id);
             }
             $('.scenarioAttr').value('');
-            $('body').setValues(data, '.scenarioAttr');
+            $('#div_pageContainer').setValues(data, '.scenarioAttr');
             data.lastLaunch = (data.lastLaunch == null) ? '{{Jamais}}' : data.lastLaunch;
             $('#span_lastLaunch').text(data.lastLaunch);
             $('.provokeMode').empty();

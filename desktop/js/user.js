@@ -120,11 +120,11 @@
     });
 });
 
- $('body').delegate('.userAttr', 'change', function () {
+ $('#div_pageContainer').delegate('.userAttr', 'change', function () {
     modifyWithoutSave = true;
 });
 
- $('body').delegate('.configKey', 'change', function () {
+ $('#div_pageContainer').delegate('.configKey', 'change', function () {
     modifyWithoutSave = true;
 });
 

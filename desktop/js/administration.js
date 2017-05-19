@@ -15,7 +15,7 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
- $('body').delegate('.configKey[data-l1key="market::allowDNS"]', 'change', function () {
+ $('#div_pageContainer').delegate('.configKey[data-l1key="market::allowDNS"]', 'change', function () {
     if($(this).value() == 1){
      $('.configKey[data-l1key=externalProtocol]').attr('disabled',true);
      $('.configKey[data-l1key=externalAddr]').attr('disabled',true);
@@ -30,7 +30,7 @@
 });
 
 
- $('body').delegate('.enableRepository', 'change', function () {
+ $('#div_pageContainer').delegate('.enableRepository', 'change', function () {
     if($(this).value() == 1){
         $('.repositoryConfiguration'+$(this).attr('data-repo')).show();
     }else{
@@ -38,7 +38,7 @@
     }
 });
 
- $('body').delegate('.configKey[data-l1key="ldap:enable"]', 'change', function () {
+ $('#div_pageContainer').delegate('.configKey[data-l1key="ldap:enable"]', 'change', function () {
     if($(this).value() == 1){
         $('#div_config_ldap').show();
     }else{
@@ -46,12 +46,12 @@
     }
 });
 
- $('body').delegate('.configKey[data-l1key="cache::engine"]', 'change', function () {
+ $('#div_pageContainer').delegate('.configKey[data-l1key="cache::engine"]', 'change', function () {
    $('.cacheEngine').hide();
    $('.cacheEngine.'+$(this).value()).show();
 });
 
- $('body').delegate('.configKey[data-l1key="log::engine"]', 'change', function () {
+ $('#div_pageContainer').delegate('.configKey[data-l1key="log::engine"]', 'change', function () {
    $('.logEngine').hide();
    $('.logEngine.'+$(this).value()).show();
 });
@@ -265,7 +265,7 @@ jeedom.config.load({
     }
 });
 
-$('body').delegate('.configKey', 'change', function () {
+$('#div_pageContainer').delegate('.configKey', 'change', function () {
     modifyWithoutSave = true;
 });
 
@@ -494,18 +494,18 @@ $('#bt_addObjectSummary').on('click', function () {
     addObjectSummary();
 });
 
-$('body').undelegate('.objectSummary .objectSummaryAction[data-l1key=chooseIcon]', 'click').delegate('.objectSummary .objectSummaryAction[data-l1key=chooseIcon]', 'click', function () {
+$('#div_pageContainer').undelegate('.objectSummary .objectSummaryAction[data-l1key=chooseIcon]', 'click').delegate('.objectSummary .objectSummaryAction[data-l1key=chooseIcon]', 'click', function () {
     var objectSummary = $(this).closest('.objectSummary');
     chooseIcon(function (_icon) {
         objectSummary.find('.objectSummaryAttr[data-l1key=icon]').empty().append(_icon);
     });
 });
 
-$('body').undelegate('.objectSummary .objectSummaryAction[data-l1key=remove]', 'click').delegate('.objectSummary .objectSummaryAction[data-l1key=remove]', 'click', function () {
+$('#div_pageContainer').undelegate('.objectSummary .objectSummaryAction[data-l1key=remove]', 'click').delegate('.objectSummary .objectSummaryAction[data-l1key=remove]', 'click', function () {
     $(this).closest('.objectSummary').remove();
 });
 
-$('body').undelegate('.objectSummary .objectSummaryAction[data-l1key=createVirtual]', 'click').delegate('.objectSummary .objectSummaryAction[data-l1key=createVirtual]', 'click', function () {
+$('#div_pageContainer').undelegate('.objectSummary .objectSummaryAction[data-l1key=createVirtual]', 'click').delegate('.objectSummary .objectSummaryAction[data-l1key=createVirtual]', 'click', function () {
     var objectSummary = $(this).closest('.objectSummary');
     $.ajax({
         type: "POST", 

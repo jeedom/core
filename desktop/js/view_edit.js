@@ -201,7 +201,7 @@ if (is_numeric(getUrlVars('view_id'))) {
 
 $("#div_viewZones").sortable({axis: "y", cursor: "move", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
 
-$('body').delegate('#table_addViewData .enable','change', function() {
+$('#div_pageContainer').delegate('#table_addViewData .enable','change', function() {
     var selectTr = $(this).closest('tr');
     if ($(this).value() == 1) {
         selectTr.find('div.option').show();
@@ -247,11 +247,11 @@ $('#div_viewZones').delegate('.bt_removeViewData', 'click', function() {
 });
 
 
-$('body').delegate('.viewZoneAttr', 'change', function() {
+$('#div_pageContainer').delegate('.viewZoneAttr', 'change', function() {
     modifyWithoutSave = true;
 });
 
-$('body').delegate('.viewDataAttr', 'change', function() {
+$('#div_pageContainer').delegate('.viewDataAttr', 'change', function() {
     modifyWithoutSave = true;
 });
 

@@ -506,14 +506,14 @@ $('#bt_createNewDesign').on('click',function(){
     createNewDesign();
 });
 
-$('body').delegate('.plan-link-widget', 'click', function () {
+$('#div_pageContainer').delegate('.plan-link-widget', 'click', function () {
     if (!editOption.state) {
         planHeader_id = $(this).attr('data-link_id');
         displayPlan();
     }
 });
 
-$('body').on( 'click','.zone-widget:not(.zoneEqLogic)', function () {
+$('#div_pageContainer').on( 'click','.zone-widget:not(.zoneEqLogic)', function () {
     var el = $(this);
     if (!editOption.state) {
         el.append('<center class="loading"><i class="fa fa-spinner fa-spin fa-4x"></i></center>');
@@ -535,7 +535,7 @@ $('body').on( 'click','.zone-widget:not(.zoneEqLogic)', function () {
     }
 });
 
-$('body').on('mouseenter','.zone-widget.zoneEqLogic.zoneEqLogicOnFly',  function () {
+$('#div_pageContainer').on('mouseenter','.zone-widget.zoneEqLogic.zoneEqLogicOnFly',  function () {
     if (!editOption.state) {
       clickedOpen = true;
       var el = $(this);
@@ -557,7 +557,7 @@ $('body').on('mouseenter','.zone-widget.zoneEqLogic.zoneEqLogicOnFly',  function
   }
 });
 
-$('body').on('click','.zone-widget.zoneEqLogic.zoneEqLogicOnClic', function () {
+$('#div_pageContainer').on('click','.zone-widget.zoneEqLogic.zoneEqLogicOnClic', function () {
     if (!editOption.state && !clickedOpen) {
       clickedOpen = true;
       var el = $(this);
@@ -609,13 +609,13 @@ $('.div_displayObject').delegate('.graph-widget', 'resize', function () {
     }
 });
 
-$('body').delegate('.div_displayObject > .eqLogic-widget .history', 'click', function () {
+$('#div_pageContainer').delegate('.div_displayObject > .eqLogic-widget .history', 'click', function () {
     if (!editOption.state) {
         $('#md_modal').dialog({title: "Historique"}).load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
     }
 });
 
-$('body').delegate('.div_displayObject > .cmd-widget .history', 'click', function () {
+$('#div_pageContainer').delegate('.div_displayObject > .cmd-widget .history', 'click', function () {
     if (!editOption.state) {
         $('#md_modal').dialog({title: "Historique"}).load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
     }

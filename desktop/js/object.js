@@ -240,7 +240,7 @@ if (is_numeric(getUrlVars('id'))) {
     }
 } 
 
-$('body').delegate('.objectAttr', 'change', function () {
+$('#div_pageContainer').delegate('.objectAttr', 'change', function () {
     modifyWithoutSave = true;
 });
 
@@ -250,14 +250,14 @@ $('.addSummary').on('click',function(){
     addSummaryInfo(el);
 });
 
-$('body').delegate(".listCmdInfo", 'click', function () {
+$('#div_pageContainer').delegate(".listCmdInfo", 'click', function () {
     var el = $(this).closest('.summary').find('.summaryAttr[data-l1key=cmd]');
     jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function (result) {
         el.value(result.human);
     });
 });
 
-$('body').delegate('.bt_removeSummary', 'click', function () {
+$('#div_pageContainer').delegate('.bt_removeSummary', 'click', function () {
     $(this).closest('.summary').remove();
 });
 

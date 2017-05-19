@@ -38,7 +38,7 @@
     $("#md_modal").dialog('close');
     $("#md_modal2").dialog('close');
     window.history.pushState('','', _url);
-    $('#div_pageContainer *').add("*").off();
+    $('#div_pageContainer').add("#div_pageContainer *").off();
     $('#div_pageContainer').empty().load(_url+'&ajax=1',function(){
         var title = getUrlVars('p');
         document.title = title[0].toUpperCase() + title.slice(1) +' - Jeedom';
@@ -51,7 +51,7 @@
 
 $(function () {
 
-    $('body').on('click','a',function(e){
+    $('#div_pageContainer').on('click','a',function(e){
         if($(this).hasClass('noOnePageLoad')){
             return;
         }
@@ -131,7 +131,7 @@ setInterval(function () {
 $.fn.modal.Constructor.prototype.enforceFocus = function () {
 };
 
-$('body').delegate(".modal", "show", function () {
+$('#div_pageContainer').delegate(".modal", "show", function () {
     document.activeElement.blur();
     $(this).find(".modal-body :input:visible:first").focus();
 });
@@ -242,11 +242,11 @@ if (isset(jeedom_langage)) {
         });
     });
 
-    $('body').delegate('.bt_pageHelp', 'click', function () {
+    $('#div_pageContainer').delegate('.bt_pageHelp', 'click', function () {
         showHelpModal($(this).attr('data-name'), $(this).attr('data-plugin'));
     });
 
-    $('body').delegate('.bt_reportBug', 'click', function () {
+    $('#div_pageContainer').delegate('.bt_reportBug', 'click', function () {
         $('#md_reportBug').load('index.php?v=d&modal=report.bug').dialog('open');
     });
 
@@ -310,7 +310,7 @@ if (isset(jeedom_langage)) {
         $('#md_modal').load('index.php?v=d&p=message&ajax=1').dialog('open');
     });
 
-    $('body').on('click','.objectSummaryParent',function(){
+    $('#div_pageContainer').on('click','.objectSummaryParent',function(){
        loadPage('index.php?v=d&p=dashboard&summary='+$(this).data('summary')+'&object_id='+$(this).data('object_id'));
    });
 
@@ -318,7 +318,7 @@ if (isset(jeedom_langage)) {
 });
 
 function initTextArea(){
-    $('body').on('change keyup keydown paste cut', 'textarea.autogrow', function () {
+    $('#div_pageContainer').on('change keyup keydown paste cut', 'textarea.autogrow', function () {
         $(this).height(0).height(this.scrollHeight);
     });
 }
@@ -476,7 +476,7 @@ jQuery.fn.findAtDepth = function (selector, maxDepth) {
 
 function chooseIcon(_callback) {
     if ($("#mod_selectIcon").length == 0) {
-        $('body').append('<div id="mod_selectIcon" title="{{Choisissez votre icône}}" ></div>');
+        $('#div_pageContainer').append('<div id="mod_selectIcon" title="{{Choisissez votre icône}}" ></div>');
 
         $("#mod_selectIcon").dialog({
             closeText: '',

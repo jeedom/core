@@ -14,7 +14,7 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
- $('body').on('click','.bt_gotoViewZone',function(){
+ $('#div_pageContainer').on('click','.bt_gotoViewZone',function(){
     var top = $('.div_displayViewContainer').scrollTop()+ $('.div_viewZone[data-zone_id='+$(this).attr('data-zone_id')+']').offset().top - 60;
     $('.div_displayViewContainer').animate({ scrollTop: top}, 500);
 });
@@ -100,7 +100,7 @@
 
 
 
-$('body').delegate('.cmd-widget.history', 'click', function () {
+$('#div_pageContainer').delegate('.cmd-widget.history', 'click', function () {
     $('#md_modal2').dialog({title: "Historique"});
     $("#md_modal2").load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
 });
