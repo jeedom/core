@@ -13,6 +13,14 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
+
+ function unload_page(){
+     if(getUrlVars('p') != 'plan'){
+        return;
+    }
+    $.contextMenu('destroy', '#div_pageContainer' );
+ }
+
  $('main').css('padding-right','0px').css('padding-left','0px').css('margin-right','0px').css('margin-left','0px');
  var deviceInfo = getDeviceType();
  var editOption = {state : false, snap : false,grid : false,gridSize:false,highlight:true};
