@@ -47,6 +47,9 @@
 $(function () {
 
     $('body').on('click','a',function(e){
+        if($(this).hasClass('noOnePageLoad')){
+            return;
+        }
         if($(this).attr('href') == undefined || $(this).attr('href') == '' || $(this).attr('href') == '#'){
             return;
         }

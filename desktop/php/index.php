@@ -388,7 +388,7 @@ if (isConnect('admin')) {
 	}
 	?>
 										<li class="divider"></li>
-										<li><a href="index.php?v=d&logout=1"><i class="fa fa-sign-out"></i> {{Se déconnecter}}</a></li>
+										<li><a href="index.php?v=d&logout=1" class="noOnePageLoad"><i class="fa fa-sign-out"></i> {{Se déconnecter}}</a></li>
 									</ul>
 								</li>
 								<li>
