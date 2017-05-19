@@ -12,7 +12,7 @@ $date = array(
 		<div class="col-lg-3 col-md-4 col-sm-5 bs-sidebar">
 			<ul id="ul_history" class="nav nav-list bs-sidenav">
 				<li class="nav-header"><i class="icon techno-courbes3"></i> {{Historique}}
-					<a id="bt_openCmdHistoryConfigure" class="btn btn-default btn-sm pull-right" style="position:relatif; top:-5px;"><i class="fa fa-cogs"></i> {{Configuration}}</a>
+					<a id="bt_openCmdHistoryConfigure" class="btn btn-default btn-sm pull-right" style="position:relatif; top:-5px;padding: 5px 10px;"><i class="fa fa-cogs"></i> {{Configuration}}</a>
 				</li>
 				<li class="filter"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" /></li>
 				<?php
