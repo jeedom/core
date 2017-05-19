@@ -36,7 +36,10 @@
         unload_page();
     }
     window.history.pushState('','', _url);
+
     $('#div_pageContainer').empty().load(_url+'&ajax=1',function(){
+        var title = getUrlVars('p');
+        document.title = title[0].toUpperCase() + title.slice(1) +' - Jeedom';
         initPage();
     });
     return;
