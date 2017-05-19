@@ -54,7 +54,7 @@ class plugin {
 		if (is_string($_id) && isset(self::$_cache[$_id])) {
 			return self::$_cache[$_id];
 		}
-		if (!file_exists($_id)) {
+		if (!file_exists($_id) || strpos($_id, '/') === false) {
 			$_id = self::getPathById($_id);
 		}
 		if (!file_exists($_id)) {
@@ -62,7 +62,7 @@ class plugin {
 		}
 		$data = json_decode(file_get_contents($_id), true);
 		if (!is_array($data)) {
-			throw new Exception('Plugin introuvable (json invalide) : ' . $_id);
+			throw new Exception('Plugin introuvable (json invalide) : ' . $_id . ' => ' . print_r($data, true));
 		}
 		$plugin = new plugin();
 		$plugin->id = $data['id'];
