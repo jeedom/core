@@ -353,11 +353,11 @@ function addAction(_action, _type, _name) {
   var div = '<div class="' + _type + '">';
   div += '<div class="form-group ">';
   div += '<div class="col-sm-5">';
-  div += '<div class="input-group">';
+  div += '<div class="input-group input-group-sm">';
   div += '<span class="input-group-btn">';
   div += '<a class="btn btn-default btn-sm bt_removeAction" data-type="' + _type + '"><i class="fa fa-minus-circle"></i></a>';
   div += '</span>';
-  div += '<input class="expressionAttr form-control input-sm cmdAction" data-l1key="cmd" data-type="' + _type + '" />';
+  div += '<input class="expressionAttr form-control cmdAction" data-l1key="cmd" data-type="' + _type + '" />';
   div += '<span class="input-group-btn">';
   div += '<a class="btn btn-default btn-sm listAction"" data-type="' + _type + '" title="{{Sélectionner un mot-clé}}"><i class="fa fa-tasks"></i></a>';
   div += '<a class="btn btn-default btn-sm listCmd" data-type="' + _type + '"><i class="fa fa-list-alt"></i></a>';
