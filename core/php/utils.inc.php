@@ -22,7 +22,7 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 	if ($_folder == '3rdparty') {
 		$_fn .= '.' . $_type;
 		$path = dirname(__FILE__) . '/../../' . $_folder . '/' . $_fn;
-		$type = ($_type == 'css' || $_type == 'js') ? $_type : $type;
+		$type = $_type;
 	} else {
 		$config = array(
 			'class' => array('/class', '.class.php', 'php'),
