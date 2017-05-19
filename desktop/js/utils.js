@@ -37,6 +37,7 @@
     }
     $("#md_modal").dialog('close');
     $("#md_modal2").dialog('close');
+    $.hideAlert();
     window.history.pushState('','', _url);
     $('#div_pageContainer').add("#div_pageContainer *").off();
     $('#div_pageContainer').empty().load(_url+'&ajax=1',function(){
