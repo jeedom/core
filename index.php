@@ -53,7 +53,6 @@ try {
 			include_file('desktop', 'index', 'php');
 		}
 	} elseif (isset($_GET['v']) && $_GET['v'] == 'm') {
-		$_folder = 'mobile';
 		$_fn = 'index';
 		$_type = 'html';
 		$_plugin = '';
@@ -65,7 +64,7 @@ try {
 			$_fn = $_GET['p'];
 			$_plugin = isset($_GET['m']) ? $_GET['m'] : $_plugin;
 		}
-		include_file($_folder, $_fn, $_type, $_plugin);
+		include_file('mobile', $_fn, $_type, $_plugin);
 	} else {
 		echo "Erreur: veuillez contacter l'administrateur";
 	}
