@@ -38,18 +38,16 @@ try {
 		}
 		die();
 	}
-
 	require_once dirname(__FILE__) . "/core/php/core.inc.php";
 	if (isset($_GET['v']) && $_GET['v'] == 'd') {
 		if (isset($_GET['modal'])) {
+			include_file('core', 'authentification', 'php');
 			include_file('desktop', init('modal'), 'modal', init('plugin'));
 		} elseif (isset($_GET['configure'])) {
-			$alert_folder = 'plugin_info/configure.php';
-			if (init('plugin') != '') {
-				$alert_folder = 'plugins/' . init('plugin') . '/' . $alert_folder;
-			}
+			include_file('core', 'authentification', 'php');
 			include_file('plugin_info', 'configuration', 'configuration', init('plugin'));
 		} elseif (isset($_GET['ajax']) && $_GET['ajax'] == 1) {
+			include_file('core', 'authentification', 'php');
 			include_file('desktop', init('p'), 'php', init('m'));
 		} else {
 			include_file('desktop', 'index', 'php');
