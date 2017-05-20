@@ -37,9 +37,9 @@
     }
     $("#md_modal").dialog('close');
     $("#md_modal2").dialog('close');
-    $.hideAlert();
     window.history.pushState('','', _url);
     $('#div_pageContainer').add("#div_pageContainer *").off();
+    $.hideAlert();
     $('#div_pageContainer').empty().load(_url+'&ajax=1',function(){
         var title = getUrlVars('p');
         document.title = title[0].toUpperCase() + title.slice(1) +' - Jeedom';
@@ -52,7 +52,7 @@
 
 $(function () {
 
-    $('#div_pageContainer').on('click','a',function(e){
+    $('body').on('click','a',function(e){
         if($(this).hasClass('noOnePageLoad')){
             return;
         }
