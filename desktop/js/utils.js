@@ -132,7 +132,7 @@ setInterval(function () {
 $.fn.modal.Constructor.prototype.enforceFocus = function () {
 };
 
-$('#div_pageContainer').delegate(".modal", "show", function () {
+$('body').on( "show", ".modal",function () {
     document.activeElement.blur();
     $(this).find(".modal-body :input:visible:first").focus();
 });
@@ -243,11 +243,11 @@ if (isset(jeedom_langage)) {
         });
     });
 
-    $('#div_pageContainer').delegate('.bt_pageHelp', 'click', function () {
+    $('body').on( 'click','.bt_pageHelp', function () {
         showHelpModal($(this).attr('data-name'), $(this).attr('data-plugin'));
     });
 
-    $('#div_pageContainer').delegate('.bt_reportBug', 'click', function () {
+    $('body').on( 'click','.bt_reportBug', function () {
         $('#md_reportBug').load('index.php?v=d&modal=report.bug').dialog('open');
     });
 
@@ -311,7 +311,7 @@ if (isset(jeedom_langage)) {
         $('#md_modal').load('index.php?v=d&p=message&ajax=1').dialog('open');
     });
 
-    $('#div_pageContainer').on('click','.objectSummaryParent',function(){
+    $('body').on('click','.objectSummaryParent',function(){
        loadPage('index.php?v=d&p=dashboard&summary='+$(this).data('summary')+'&object_id='+$(this).data('object_id'));
    });
 
@@ -319,7 +319,7 @@ if (isset(jeedom_langage)) {
 });
 
 function initTextArea(){
-    $('#div_pageContainer').on('change keyup keydown paste cut', 'textarea.autogrow', function () {
+    $('body').on('change keyup keydown paste cut', 'textarea.autogrow', function () {
         $(this).height(0).height(this.scrollHeight);
     });
 }
