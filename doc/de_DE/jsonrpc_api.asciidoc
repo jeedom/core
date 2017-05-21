@@ -201,7 +201,7 @@ Parameter :
 Parameter :
 
 - int id
-- string state : [run,stop,enable,disable]
+- string state : [run,stop,enable,disable]
 
 == API JSON datastore (variable)
 
@@ -212,7 +212,7 @@ Parameter :
 
 - string type : type de la valeur stockée (pour les scénarios c'est scenario)
 - id linkId : -1 pour le global (valeur pour les scénarios par défaut, ou l'id du scénario)
-- string key : nom de la valeur
+- string key : Name des Wert
 
 === datastore::save
 Enregistre la valeur d'une variable dans le datastore
@@ -221,7 +221,7 @@ Parameter :
 
 - string type : type de la valeur stockée (pour les scénarios c'est scenario)
 - id linkId : -1 pour le global (valeur pour les scénarios par défaut, ou l'id du scénario)
-- string key : nom de la valeur
+- string key : Name des Wert
 - mixte value : valeur à enregistrer
 
 == API JSON Message
