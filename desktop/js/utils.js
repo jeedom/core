@@ -46,6 +46,7 @@ $("#md_modal2").dialog('close');
 window.history.pushState('','', _url);
 $('#div_pageContainer').add("#div_pageContainer *").off();
 $.hideAlert();
+$('.bt_pluginTemplateShowSidebar').remove();
 $('#div_pageContainer').empty().load(_url+'&ajax=1',function(){
     var title = getUrlVars('p');
     document.title = title[0].toUpperCase() + title.slice(1) +' - Jeedom';
