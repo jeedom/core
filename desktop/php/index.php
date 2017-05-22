@@ -377,7 +377,7 @@ if (isConnect('admin')) {
 		}
 		?>
 											<li class="divider"></li>
-											<li><a href="index.php?v=m"><i class="fa fa-mobile"></i> {{Version mobile}}</a></li>
+											<li><a href="index.php?v=m" class="noOnePageLoad"><i class="fa fa-mobile"></i> {{Version mobile}}</a></li>
 											<li class="divider"></li>
 											<li><a href="#" id="bt_jeedomAbout"><i class="fa fa-info-circle"></i> {{Version}} v<?php echo jeedom::version(); ?></a></li>
 											<?php	if (jeedom::isCapable('sudo')) {
