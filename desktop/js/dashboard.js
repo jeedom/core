@@ -15,15 +15,6 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-function unload_page(){
-    if(getUrlVars('p') != 'dashboard'){
-        return;
-    }
-    $('#div_pageContainer').off('.eqLogic-widget .history', 'click');
-    $('#bt_displayScenario').off('click');
-    $('#bt_displayObject').off('click');
- }
-
  var category_dashabord = getUrlVars('category');
  if(category_dashabord == false){
     category_dashabord = 'all';
@@ -34,7 +25,7 @@ if(summary_dashabord == false){
     summary_dashabord = '';
 }
 
-$('#div_pageContainer').on('.eqLogic-widget .history', 'click', function () {
+$('#div_pageContainer').on( 'click','.eqLogic-widget .history', function () {
     $('#md_modal2').dialog({title: "Historique"});
     $("#md_modal2").load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
 });
