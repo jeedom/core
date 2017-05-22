@@ -25,7 +25,7 @@
     $('.eqLogicThumbnailDisplay').removeClass().addClass('eqLogicThumbnailDisplay col-lg-12');
     $('.eqLogic').removeClass('col-lg-10 col-md-9 col-sm-8 col-lg-9 col-md-8 col-sm-7').addClass('eqLogic col-lg-12');
 
-    $('#ul_eqLogic').closest('.bs-sidebar').parent().off('mouseleave').on('mouseleave',function(){
+    $('#ul_eqLogic').closest('.bs-sidebar').parent().on('mouseleave',function(){
         var timer = setTimeout(function(){
             $('#ul_eqLogic').closest('.bs-sidebar').parent().hide();
             $('.bt_pluginTemplateShowSidebar').find('i').show();
@@ -38,7 +38,7 @@
       clearTimeout($(this).data('timerMouseleave'));
   });
 
-    $('.bt_pluginTemplateShowSidebar').off('mouseenter').on('mouseenter',function(){
+    $('.bt_pluginTemplateShowSidebar').on('mouseenter',function(){
         var timer = setTimeout(function(){
             $('.eqLogicThumbnailDisplay').removeClass().addClass('eqLogicThumbnailDisplay col-lg-10 col-md-9 col-sm-8');
             $('.bt_pluginTemplateShowSidebar').find('i').hide();
@@ -52,16 +52,16 @@
   });
 }
 
-$('.eqLogicDisplayCard').off('click').on('click', function () {
+$('.eqLogicDisplayCard').on('click', function () {
     $('.li_eqLogic[data-eqLogic_id=' + $(this).attr('data-eqLogic_id') + ']').click();
 });
 
-$('.eqLogicAction[data-action=gotoPluginConf]').off('click').on('click', function () {
+$('.eqLogicAction[data-action=gotoPluginConf]').on('click', function () {
     $('#md_modal').dialog({title: "{{Configuration du plugin}}"});
     $("#md_modal").load('index.php?v=d&p=plugin&ajax=1&id='+eqType).dialog('open');
 });
 
-$('.eqLogicAction[data-action=returnToThumbnailDisplay]').off('click').on('click', function () {
+$('.eqLogicAction[data-action=returnToThumbnailDisplay]').on('click', function () {
     $('.eqLogic').hide();
     $('.eqLogicThumbnailDisplay').show();
     $('.li_eqLogic').removeClass('active');
@@ -69,7 +69,7 @@ $('.eqLogicAction[data-action=returnToThumbnailDisplay]').off('click').on('click
 });
 
 
-$(".li_eqLogic").off('click').on('click', function () {
+$(".li_eqLogic").on('click', function () {
     jeedom.eqLogic.cache.getCmd = Array();
     if ($('.eqLogicThumbnailDisplay').html() != undefined) {
         $('.eqLogicThumbnailDisplay').hide();
@@ -137,7 +137,7 @@ if (getUrlVars('removeSuccessFull') == 1) {
 }
 
 /**************************EqLogic*********************************************/
-$('.eqLogicAction[data-action=copy]').off('click').on('click', function () {
+$('.eqLogicAction[data-action=copy]').on('click', function () {
     if ($('.li_eqLogic.active').attr('data-eqLogic_id') != undefined) {
         bootbox.prompt("{{Nom de la copie de l'équipement ?}}", function (result) {
             if (result !== null) {
@@ -171,7 +171,7 @@ $('.eqLogicAction[data-action=copy]').off('click').on('click', function () {
 });
 
 
-$('.eqLogicAction[data-action=export]').off('click').on('click', function () {
+$('.eqLogicAction[data-action=export]').on('click', function () {
     window.open('core/php/export.php?type=eqLogic&id=' + $('.li_eqLogic.active').attr('data-eqLogic_id'), "_blank", null);
 });
 
@@ -180,7 +180,7 @@ jwerty.key('ctrl+s', function (e) {
     $('.eqLogicAction[data-action=save]').click();
 });
 
-$('.eqLogicAction[data-action=save]').off('click').on('click', function () {
+$('.eqLogicAction[data-action=save]').on('click', function () {
     var eqLogics = [];
     $('.eqLogic').each(function () {
         if ($(this).is(':visible')) {
@@ -221,15 +221,15 @@ $('.eqLogicAction[data-action=save]').off('click').on('click', function () {
     return false;
 });
 
-$('.eqLogicAttr[data-l1key=name]').off('click').on('change', function () {
+$('.eqLogicAttr[data-l1key=name]').on('change', function () {
     changeLeftMenuObjectOrEqLogicName = true;
 });
 
-$('.eqLogicAttr[data-l1key=object_id]').off('click').on('change', function () {
+$('.eqLogicAttr[data-l1key=object_id]').on('change', function () {
     changeLeftMenuObjectOrEqLogicName = true;
 });
 
-$('.eqLogicAction[data-action=remove]').off('click').on('click', function () {
+$('.eqLogicAction[data-action=remove]').on('click', function () {
     if ($('.li_eqLogic.active').attr('data-eqLogic_id') != undefined) {
         bootbox.confirm('{{Etes-vous sûr de vouloir supprimer l\'équipement}} ' + eqType + ' <b>' + $('.li_eqLogic.active a:first').text() + '</b> ?', function (result) {
             if (result) {
@@ -260,7 +260,7 @@ $('.eqLogicAction[data-action=remove]').off('click').on('click', function () {
 });
 
 
-$('.eqLogicAction[data-action=add]').off('click').on('click', function () {
+$('.eqLogicAction[data-action=add]').on('click', function () {
     bootbox.prompt("{{Nom de l'équipement ?}}", function (result) {
         if (result !== null) {
             jeedom.eqLogic.save({
@@ -286,39 +286,39 @@ $('.eqLogicAction[data-action=add]').off('click').on('click', function () {
     });
 });
 
-$('.eqLogic .eqLogicAction[data-action=configure]').off('click').on('click', function () {
+$('.eqLogic .eqLogicAction[data-action=configure]').on('click', function () {
     $('#md_modal').dialog({title: "{{Configuration de l'équipement}}"});
     $('#md_modal').load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $('.li_eqLogic.active').attr('data-eqLogic_id')).dialog('open');
 });
 
 /**************************CMD*********************************************/
-$('.cmdAction[data-action=add]').off('click').on('click', function () {
+$('.cmdAction[data-action=add]').on('click', function () {
     addCmdToTable();
     $('.cmd:last .cmdAttr[data-l1key=type]').trigger('change');
 });
 
-$('body').undelegate('.cmd .cmdAction[data-l1key=chooseIcon]', 'click').delegate('.cmd .cmdAction[data-l1key=chooseIcon]', 'click', function () {
+$('#div_pageContainer').on( 'click', '.cmd .cmdAction[data-l1key=chooseIcon]',function () {
     var cmd = $(this).closest('.cmd');
     chooseIcon(function (_icon) {
         cmd.find('.cmdAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
     });
 });
 
-$('body').undelegate('.cmd .cmdAction[data-l1key=display][data-l2key=icon]', 'click').delegate('.cmd .cmdAttr[data-l1key=display][data-l2key=icon]', 'click', function () {
+$('#div_pageContainer').on( 'click','.cmd .cmdAttr[data-l1key=display][data-l2key=icon]', function () {
     $(this).empty();
 });
 
-$('body').undelegate('.cmd .cmdAction[data-action=remove]', 'click').delegate('.cmd .cmdAction[data-action=remove]', 'click', function () {
+$('#div_pageContainer').on( 'click', '.cmd .cmdAction[data-action=remove]',function () {
   $(this).closest('tr').remove();
 });
 
-$('body').undelegate('.cmd .cmdAction[data-action=copy]', 'click').delegate('.cmd .cmdAction[data-action=copy]', 'click', function () {
+$('#div_pageContainer').on( 'click', '.cmd .cmdAction[data-action=copy]',function () {
     var cmd = $(this).closest('.cmd').getValues('.cmdAttr')[0];
     cmd.id= '';
     addCmdToTable(cmd);
 });
 
-$('body').undelegate('.cmd .cmdAction[data-action=test]', 'click').delegate('.cmd .cmdAction[data-action=test]', 'click', function (event) {
+$('#div_pageContainer').on( 'click','.cmd .cmdAction[data-action=test]',function (event) {
     $.hideAlert();
     if ($('.eqLogicAttr[data-l1key=isEnable]').is(':checked')) {
         var id = $(this).closest('.cmd').attr('data-cmd_id');
@@ -329,12 +329,12 @@ $('body').undelegate('.cmd .cmdAction[data-action=test]', 'click').delegate('.cm
 
 });
 
-$('body').undelegate('.cmd', 'dblclick').delegate('.cmd', 'dblclick', function () {
+$('#div_pageContainer').on( 'dblclick','.cmd', function () {
    $('#md_modal').dialog({title: "{{Configuration commande}}"});
    $('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.cmd').attr('data-cmd_id')).dialog('open');
 });
 
-$('body').undelegate('.cmd .cmdAction[data-action=configure]', 'click').delegate('.cmd .cmdAction[data-action=configure]', 'click', function () {
+$('#div_pageContainer').on( 'click', '.cmd .cmdAction[data-action=configure]',function () {
     $('#md_modal').dialog({title: "{{Configuration commande}}"});
     $('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.cmd').attr('data-cmd_id')).dialog('open');
 });
@@ -414,12 +414,4 @@ $("img.lazy").each(function () {
         });
         el.trigger("sporty");
     }
-});
-
-$('body').delegate('.cmdAttr', 'change switchChange.bootstrapSwitch', function () {
-    modifyWithoutSave = true;
-});
-
-$('body').delegate('.eqLogicAttr', 'change switchChange.bootstrapSwitch', function () {
-    modifyWithoutSave = true;
 });
