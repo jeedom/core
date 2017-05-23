@@ -216,6 +216,7 @@ step_7_jeedom_customization() {
 		echo "innodb_flush_method = O_DIRECT" >> /etc/mysql/conf.d/jeedom_my.cnf
 		echo "innodb_flush_log_at_trx_commit = 2" >> /etc/mysql/conf.d/jeedom_my.cnf
 		echo "innodb_log_file_size = 32M" >> /etc/mysql/conf.d/jeedom_my.cnf
+		echo "innodb_file_per_table = 1" >> /etc/mysql/conf.d/jeedom_my.cnf
     fi
 
   	systemctl start mysql > /dev/null 2>&1
