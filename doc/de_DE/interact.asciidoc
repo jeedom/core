@@ -46,7 +46,7 @@ Wie an vielen Orten auf Jeedom, wenn man die Maus ganz nach links bewegt ermögl
 Si vous avez une interaction qui génère les phrases pour les lumières par exemple, et que vous ajoutez un nouveau module de commande de lumière, il vous faudra soit régénérer toutes les interactions, soit aller dans l'interaction en question et la sauvegarder de nouveau pour créer les phrases de ce nouveau module.
 
 
-=== Schaffen-Verändern eine Interaktion
+=== Erschaffen-Verändern einer Interaktion
 
 Le principe de création est assez simple, on va définir une phrase modèle génératrice qui va permettre à Jeedom de créer une ou plusieurs centaines d’autres phrases qui seront des combinaisons possibles du modèle.
 
@@ -85,7 +85,7 @@ Ici vous trouvez 2 zones avec plusieurs éléments en leur sein :
 ** *Phrases générées* : Bouton qui permet de voir les phrases générées par la phrase modèle génératrice (Vous devez sauver l'interaction pour générer ou régénérer les phrases).
 ** *Nombre de phrases générées* : nombre de phrases générées.
 
-==== Interaction simple
+==== Einfache Interaktionen
 
 La façon la plus simple de configurer une interaction c'est de lui donner un modèle générateur rigide sans variation possible, cette méthode ciblera très précisément une commande, ou un scénario.
 
@@ -105,7 +105,7 @@ Dans les 2 exemples ci-dessus, la phrase modèle est identique mais les actions 
 Pour ajouter un scénario, créer une nouvelle action, écrire "scenario" sans accent, appuyer sur la touche tabulation de votre clavier pour faire apparaitre le sélecteur de scénario.
 
 
-==== Interaction multiple commandes
+==== Mehrfache Befehls Interaktionen
 
 Nous allons ici voir tout l'intérêt et toute la puissance des interactions, avec une phrase modèle nous allons pouvoir générer des phrases pour tout un groupe de commandes.
 
@@ -239,7 +239,7 @@ Comme c'est un sujet extrêmement complexe, je ne vais pas aller plus en détail
 
 Nützliche Links : 
 
-* http://google.fr
+* http://google.de
 
 * http://www.commentcamarche.net/contents/585-javascript-l-objet-regexp
 
