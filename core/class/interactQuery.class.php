@@ -497,11 +497,6 @@ class interactQuery {
 	}
 
 	public static function brainReply($_query, $_parameters) {
-		global $PROFILE;
-		$PROFILE = '';
-		if (isset($_parameters['profile'])) {
-			$PROFILE = $_parameters['profile'];
-		}
 		include_file('core', 'bot', 'config');
 		global $BRAINREPLY;
 		$shortest = 999;
