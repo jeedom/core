@@ -651,17 +651,19 @@ class scenarioExpression {
 		return strtotime('now') - strtotime($scenario->getLastLaunch());
 	}
 
-	public static function collectDate($_cmd, $_format = 'Y-m-d H:i:s') {
-		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd)));
-		if (!is_object($cmd)) {
-			return -1;
-		}
-		if ($cmd->getType() != 'info') {
-			return -2;
-		}
-		$cmd->execCmd();
-		return date($_format, strtotime($cmd->getCollectDate()));
-	}
+	public static function collectDate($_cmd, $_format = '%Y-%m-%d %H:%M:%S', $_lang = 'fr_FR.utf8') {
+         	$cmd = cmd::byId(trim(str_replace('#', '', $_cmd)));
+      		if (!is_object($cmd)) {
+         		return -1;
+      		}
+      		if ($cmd->getType() != 'info') {
+         		return -2;
+      		}
+      		$cmd->execCmd();
+         	
+		setlocale(LC_TIME, $_lang);
+      		return strftime($_format, strtotime($cmd->getCollectDate()));
+   }
 
 	public static function valueDate($_cmd_id, $_format = 'Y-m-d H:i:s') {
 		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
