@@ -16,16 +16,16 @@ function init($_name, $_default = '') {
 	return $_default;
 }
 
-if (!file_exists('/tmp/jeedom_tmp_key')) {
+if (!file_exists(__DIR__ . '/tmp/jeedom_tmp_key')) {
 	$tmp_key = '';
 	$chaine = "abcdefghijklmnpqrstuvwxy1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	srand((double) microtime() * 1000000);
 	for ($i = 0; $i < 50; $i++) {
 		$tmp_key .= $chaine[rand() % strlen($chaine)];
 	}
-	file_put_contents('/tmp/jeedom_tmp_key', $tmp_key);
+	file_put_contents(__DIR__ . '/tmp/jeedom_tmp_key', $tmp_key);
 } else {
-	$tmp_key = file_get_contents('/tmp/jeedom_tmp_key');
+	$tmp_key = file_get_contents(__DIR__ . '/tmp/jeedom_tmp_key');
 }
 
 if (init('log') == 1) {
