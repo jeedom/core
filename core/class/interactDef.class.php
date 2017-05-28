@@ -52,7 +52,7 @@ class interactDef {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM interactDef
         ORDER BY position';
-		} else if ($_group === null) {
+		} elseif ($_group === null) {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM interactDef
         WHERE (`group` IS NULL OR `group` = "")
@@ -157,8 +157,8 @@ class interactDef {
 			$list_id[$interactDef->getId()] = $interactDef->getId();
 		}
 		if (count($list_id) > 0) {
-			$sql = 'DELETE FROM interactQuery WHERE interactDef_id NOT IN (' . implode(',', $list_id) . ')';
-			return DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+			$sql = 'DELETE FROM interactQuery WHERE interactDef_id NOT IN (:listId)';
+			return DB::Prepare($sql, array('listId' => implode(',', $list_id),), DB::FETCH_TYPE_ROW);
 		}
 	}
 
