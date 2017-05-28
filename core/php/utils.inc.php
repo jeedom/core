@@ -73,11 +73,11 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 	}
 }
 
-function getTemplate($_folder, $_version, $_filename, $_plugin = '') {
+function getTemplate($_folder, $_version, $_filename, $_plugin = '', $_translate=false) {
 	$path = ($_plugin == '')
 	? dirname(__FILE__) . '/../../' . $_folder . '/template/' . $_version . '/' . $_filename . '.html'
 	: dirname(__FILE__) . '/../../plugins/' . $_plugin . '/core/template/' . $_version . '/' . $_filename . '.html';
-	return (file_exists($path)) ? file_get_contents($path) : '';
+	return (file_exists($path)) ? ($_translate ? translate::exec(file_get_contents($path), $path, true) : file_get_contents($path)) : '';
 }
 
 function template_replace($_array, $_subject) {
