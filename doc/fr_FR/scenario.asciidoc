@@ -310,7 +310,7 @@ Voici un exemple pratique pour comprendre les valeurs retournées par ces diffé
 Une boîte à outils de fonctions génériques peut également servir à effectuer des conversions ou calculs :
 
 * **rand**(1,10) : pour un nombre aléatoire de 1 à 10
-* **randText**(texte1;texte2;texte.....) : Permet de retourner un des textes aléatoirement (séparer les texte par un ";"), il ni as pas de limite dans le nombre de texte
+* **randText**(texte1;texte2;texte.....) : Permet de retourner un des textes aléatoirement (séparer les texte par un ";"), il n'y as pas de limite dans le nombre de texte
     ** Ex : randText(il fais \#[salon][oeil][température]#;La température est de \#[salon][oeil][température]#;Actuellement on a \#[salon][oeil][température]#)
     ** la fonction retournera un de ses textes aléatoirement à chaque execution
 * **randomColor**(min,max) : donne une couleur aléatoire compris entre 2 bornes ( 0 => rouge, 50 => vert, 100 => bleu)
