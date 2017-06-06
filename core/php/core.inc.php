@@ -57,14 +57,17 @@ function jeedomCoreAutoload($classname) {
 }
 
 function jeedomPluginAutoload($_classname) {
-	$classname = explode('_', str_replace(array('Real', 'Cmd'), '', $_classname))[0];
+	$classname = str_replace(array('Real', 'Cmd'), '', $_classname);
+	$plugin_active = config::byKey('active', $classname, null);
+	if($plugin_active === null){
+		$classname = explode('_', $classname)[0];
+		$plugin_active = config::byKey('active', $classname, null);
+	}
 	try {
-		if (config::byKey('active', $classname, 1) == 0) {
-			return;
+		if ($plugin_active == 1) {
+			include_file('core', $classname, 'class', $classname);
 		}
-		include_file('core', $classname, 'class', $classname);
 	} catch (Exception $e) {
-
 	}
 }
 
