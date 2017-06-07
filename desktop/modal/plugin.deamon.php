@@ -74,19 +74,18 @@ switch ($deamon_info['launchable']) {
 				<a class="btn btn-danger btn-sm bt_stopDeamon" style="position:relative;top:-5px;"><i class="fa fa-stop"></i></a>
 			</td>
 			<td>
-				<?php if ($deamon_info['auto'] == 1) {?>
-					<a class="btn btn-danger btn-sm bt_changeAutoMode" data-mode="0" style="position:relative;top:-5px;"><i class="fa fa-times"></i> {{Désactiver}}</a>
-					<?php } else {?>
+				<?php if ($deamon_info['auto'] == 1) :?>
+				 		<a class="btn btn-danger btn-sm bt_changeAutoMode" data-mode="0" style="position:relative;top:-5px;"><i class="fa fa-times"></i> {{Désactiver}}</a>
+					<?php else:?>
 						<a class="btn btn-success btn-sm bt_changeAutoMode" data-mode="1" style="position:relative;top:-5px;"><i class="fa fa-magic"></i> {{Activer}}</a>
-						<?php }
-?>
+				<?php endif  ?>
 					</td>
 					<td class="td_lastLaunchDeamon">
 						<?php
-if (isset($deamon_info['last_launch'])) {
-	echo $deamon_info['last_launch'];
-}
-?>
+							if (isset($deamon_info['last_launch'])) {
+								echo $deamon_info['last_launch'];
+								}
+						?>
 					</td>
 				</tr>
 			</tbody>
