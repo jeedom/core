@@ -513,7 +513,6 @@ class plugin {
 				throw new Exception(__('Les dépendances d\'un autre plugin sont déjà en cours, veuillez attendre qu\'elles soient finies : ', __FILE__) . $plugin->getId());
 			}
 		}
-		config::save('lastDependancyInstallTime', date('Y-m-d H:i:s'), $plugin_id);
 		$cmd = $plugin_id::dependancy_install();
 		if (is_array($cmd) && count($cmd) == 2) {
 			$script = str_replace('#stype#', system::get('type'), $cmd['script']);
@@ -522,10 +521,11 @@ class plugin {
 				if (jeedom::isCapable('sudo')) {
 					$this->deamon_stop();
 					message::add($plugin_id, __('Attention, installation des dépendances lancée', __FILE__));
+					config::save('lastDependancyInstallTime', date('Y-m-d H:i:s'), $plugin_id);
 					exec(system::getCmdSudo() . '/bin/bash ' . $script . ' >> ' . $cmd['log'] . ' 2>&1 &');
 					sleep(1);
 				} else {
-					log::add($plugin_id, 'error', __('Veuillez executer le script : ', __FILE__) . realpath($script));
+					log::add($plugin_id, 'error', __('Veuillez executer le script : ', __FILE__) . '/bin/bash ' . $script);
 				}
 			} else {
 				log::add($plugin_id, 'error', __('Aucun script ne correspond à votre type de linux : ', __FILE__) . $cmd['script'] . __(' avec #stype# : ', __FILE__) . system::get('type'));
