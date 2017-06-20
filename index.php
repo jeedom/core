@@ -47,8 +47,20 @@ try {
 			include_file('core', 'authentification', 'php');
 			include_file('plugin_info', 'configuration', 'configuration', init('plugin'));
 		} elseif (isset($_GET['ajax']) && $_GET['ajax'] == 1) {
-			include_file('core', 'authentification', 'php');
-			include_file('desktop', init('p'), 'php', init('m'));
+			try {
+				include_file('core', 'authentification', 'php');
+				include_file('desktop', init('p'), 'php', init('m'));
+			} catch (Exception $e) {
+				ob_end_clean();
+				echo '<div class="alert alert-danger div_alert">';
+				echo displayExeption($e);
+				echo '</div>';
+			} catch (Error $e) {
+				ob_end_clean();
+				echo '<div class="alert alert-danger div_alert">';
+				echo displayExeption($e);
+				echo '</div>';
+			}
 		} else {
 			include_file('desktop', 'index', 'php');
 		}
