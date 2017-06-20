@@ -41,8 +41,20 @@ try {
 	require_once dirname(__FILE__) . "/core/php/core.inc.php";
 	if (isset($_GET['v']) && $_GET['v'] == 'd') {
 		if (isset($_GET['modal'])) {
-			include_file('core', 'authentification', 'php');
-			include_file('desktop', init('modal'), 'modal', init('plugin'));
+			try {
+				include_file('core', 'authentification', 'php');
+				include_file('desktop', init('modal'), 'modal', init('plugin'));
+			} catch (Exception $e) {
+				ob_end_clean();
+				echo '<div class="alert alert-danger div_alert">';
+				echo displayExeption($e);
+				echo '</div>';
+			} catch (Error $e) {
+				ob_end_clean();
+				echo '<div class="alert alert-danger div_alert">';
+				echo displayExeption($e);
+				echo '</div>';
+			}
 		} elseif (isset($_GET['configure'])) {
 			include_file('core', 'authentification', 'php');
 			include_file('plugin_info', 'configuration', 'configuration', init('plugin'));
@@ -53,12 +65,12 @@ try {
 			} catch (Exception $e) {
 				ob_end_clean();
 				echo '<div class="alert alert-danger div_alert">';
-				echo displayExeption($e);
+				echo translate::exec(displayExeption($e), 'desktop/' . init('p') . '.php');
 				echo '</div>';
 			} catch (Error $e) {
 				ob_end_clean();
 				echo '<div class="alert alert-danger div_alert">';
-				echo displayExeption($e);
+				echo translate::exec(displayExeption($e), 'desktop/' . init('p') . '.php');
 				echo '</div>';
 			}
 		} else {
