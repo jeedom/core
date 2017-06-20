@@ -47,12 +47,12 @@ try {
 			} catch (Exception $e) {
 				ob_end_clean();
 				echo '<div class="alert alert-danger div_alert">';
-				echo displayExeption($e);
+				echo translate::exec(displayExeption($e), 'desktop/' . init('p') . '.php');
 				echo '</div>';
 			} catch (Error $e) {
 				ob_end_clean();
 				echo '<div class="alert alert-danger div_alert">';
-				echo displayExeption($e);
+				echo translate::exec(displayExeption($e), 'desktop/' . init('p') . '.php');
 				echo '</div>';
 			}
 		} elseif (isset($_GET['configure'])) {
