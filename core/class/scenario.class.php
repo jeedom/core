@@ -621,7 +621,7 @@ class scenario {
 	}
 
 	public static function removeFromMarket(&$market) {
-                trigger_error('This method is deprecated', E_USER_DEPRECATED);
+		trigger_error('This method is deprecated', E_USER_DEPRECATED);
 	}
 
 	public static function listMarketObject() {
@@ -1252,7 +1252,7 @@ class scenario {
 			$object = $this->getObject();
 			if ($_tag) {
 				if ($object->getDisplay('tagColor') != '') {
-					$name .= '<span class="label" style="text-shadow : none;background-color:' . $object->getDisplay('tagColor') . '">' . $object->getName() . '</span>';
+					$name .= '<span class="label" style="text-shadow : none;background-color:' . $object->getDisplay('tagColor') . ';color:' . $object->getDisplay('tagTextColor', 'white') . '">' . $object->getName() . '</span>';
 				} else {
 					$name .= '<span class="label label-primary" style="text-shadow : none;">' . $object->getName() . '</span>';
 				}
