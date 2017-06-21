@@ -587,7 +587,7 @@ class scenarioExpression {
 	}
 
 	public static function statistics($_cmd_id, $_calc, $_period = '1 hour') {
-		
+
 		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
@@ -869,6 +869,9 @@ class scenarioExpression {
 				case '#trigger#':
 					$return['#trigger#'] = '';
 					break;
+				case '#trigger_value#':
+					$return['#trigger_value#'] = '';
+					break;
 			}
 		}
 		return $return;
@@ -887,6 +890,7 @@ class scenarioExpression {
 			$cmd = cmd::byId(str_replace('#', '', $_scenario->getRealTrigger()));
 			if (is_object($cmd)) {
 				$replace1['#trigger#'] = $cmd->getHumanName();
+				$replace1['#trigger_value#'] = $cmd->execCmd();
 			} else {
 				$replace1['#trigger#'] = $_scenario->getRealTrigger();
 			}
