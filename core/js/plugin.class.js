@@ -104,8 +104,7 @@ jeedom.plugin.getDependancyInfo = function(_params) {
     paramsAJAX.url = 'core/ajax/plugin.ajax.php';
     paramsAJAX.data = {
         action: 'getDependancyInfo',
-        id: _params.id,
-        slave_id: _params.slave_id || 0
+        id: _params.id
     };
     $.ajax(paramsAJAX);
 };
@@ -124,8 +123,7 @@ jeedom.plugin.dependancyInstall = function(_params) {
     paramsAJAX.url = 'core/ajax/plugin.ajax.php';
     paramsAJAX.data = {
         action: 'dependancyInstall',
-        id: _params.id,
-        slave_id: _params.slave_id || 0
+        id: _params.id
     };
     $.ajax(paramsAJAX);
 };
@@ -146,8 +144,7 @@ jeedom.plugin.getDeamonInfo = function(_params) {
     paramsAJAX.url = 'core/ajax/plugin.ajax.php';
     paramsAJAX.data = {
         action: 'getDeamonInfo',
-        id: _params.id,
-        slave_id: _params.slave_id || 0
+        id: _params.id
     };
     $.ajax(paramsAJAX);
 };
@@ -167,7 +164,6 @@ jeedom.plugin.deamonStart = function(_params) {
     paramsAJAX.data = {
         action: 'deamonStart',
         id: _params.id,
-        slave_id: _params.slave_id || 0,
         debug: _params.debug || 0,
         forceRestart: _params.forceRestart || 0
     };
@@ -188,8 +184,7 @@ jeedom.plugin.deamonStop = function(_params) {
     paramsAJAX.url = 'core/ajax/plugin.ajax.php';
     paramsAJAX.data = {
         action: 'deamonStop',
-        id: _params.id,
-        slave_id: _params.slave_id || 0
+        id: _params.id
     };
     $.ajax(paramsAJAX);
 };
@@ -209,7 +204,6 @@ jeedom.plugin.deamonChangeAutoMode = function(_params) {
     paramsAJAX.data = {
         action: 'deamonChangeAutoMode',
         id: _params.id,
-        slave_id: _params.slave_id || 0,
         mode: _params.mode
     };
     $.ajax(paramsAJAX);

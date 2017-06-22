@@ -34,6 +34,7 @@ mysql_sql() {
 step_1_upgrade() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_1_upgrade${NORMAL}"
+
 	apt-get update
 	apt-get -f install
 	apt-get -y dist-upgrade
@@ -44,40 +45,18 @@ step_2_mainpackage() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_2_mainpackage${NORMAL}"
 	apt_install ntp ca-certificates unzip curl sudo cron
-	apt-get -y install locate tar telnet wget logrotate fail2ban
+	apt-get -y install locate tar telnet wget logrotate fail2ban dos2unix ntpdate htop iotop vim iftop smbclient
+	apt-get -y install git python python-pip
 	apt-get -y install software-properties-common
 	apt-get -y install libexpat1 ssl-cert
 	apt-get -y install apt-transport-https
+	apt-get -y install xvfb cutycapt
 	add-apt-repository non-free
 	apt-get update
 	apt-get -y install libav-tools
 	apt-get -y install libsox-fmt-mp3 sox libttspico-utils
-	apt-get -y install smbclient htop iotop vim iftop
-	apt-get -y install dos2unix
-	apt-get -y install ntpdate
 	apt-get -y install espeak 
 	apt-get -y install mbrola
-	apt-get -y install git
-	apt-get -y install python
-	apt-get -y install python-pip
-	apt-get -y install python-serial
-	apt-get -y install python-requests
-	apt-get -y install python-pyudev
-	apt-get -y install python-nut
-	apt-get -y install python-dev python-setuptools python-louie python-sphinx make build-essential libudev-dev g++ gcc python-lxml libjpeg-dev
-	apt-get -y install openvpn
-	pip install enum-compat
-	pip install beautifulsoup4
-	pip install sphinxcontrib-blockdiag
-	pip install sphinxcontrib-actdiag
-	pip install sphinxcontrib-nwdiag
-	pip install sphinxcontrib-seqdiag
-	pip install urwid
-	pip install louie
-	pip install flask
-	pip install flask-restful
-	pip install flask-httpauth
-	pip install six
 	echo "${VERT}step_2_mainpackage success${NORMAL}"
 }
 
@@ -121,9 +100,9 @@ step_4_apache() {
 step_5_php() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_5_php${NORMAL}"
-	apt-get -y install php7.0 php7.0-curl php7.0-gd php7.0-imap php7.0-json php7.0-mcrypt php7.0-mysql php7.0-xml php7.0-opcache php7.0-soap php7.0-xmlrpc libapache2-mod-php7.0 php7.0-common php7.0-dev php7.0-zip php7.0-ssh2 php7.0-calendar
+	apt-get -y install php7.0 php7.0-curl php7.0-gd php7.0-imap php7.0-json php7.0-mcrypt php7.0-mysql php7.0-xml php7.0-opcache php7.0-soap php7.0-xmlrpc libapache2-mod-php7.0 php7.0-common php7.0-dev php7.0-zip php7.0-ssh2
 	if [ $? -ne 0 ]; then
-		apt_install libapache2-mod-php5 php5 php5-common php5-curl php5-dev php5-gd php5-json php5-memcached php5-mysql php5-cli php5-ssh2
+		apt_install libapache2-mod-php5 php5 php5-common php5-curl php5-dev php5-gd php5-json php5-memcached php5-mysqlnd php5-cli php5-ssh2 php5-redis
 	fi
 	echo "${VERT}step_5_php success${NORMAL}"
 }
@@ -169,6 +148,10 @@ step_7_jeedom_customization() {
 
 	rm /etc/apache2/conf-available/other-vhosts-access-log.conf > /dev/null 2>&1
 	rm /etc/apache2/conf-enabled/other-vhosts-access-log.conf > /dev/null 2>&1
+
+	sed -i 's/PrivateTmp=true/PrivateTmp=false/g' /lib/systemd/system/apache2.service /dev/null 2>&1
+
+	systemctl daemon-reload
 
 	for file in $(find / -iname php.ini -type f); do
 		echo "Update php file ${file}"
@@ -269,6 +252,9 @@ step_8_jeedom_configuration() {
 step_9_jeedom_installation() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_9_jeedom_installation${NORMAL}"
+	mkdir -p /tmp/jeedom
+	chmod 777 -R /tmp/jeedom
+	chown www-data:www-data -R /tmp/jeedom
 	php ${WEBSERVER_HOME}/install/install.php mode=force
 	if [ $? -ne 0 ]; then
     	echo "${ROUGE}Could not install jeedom - abort${NORMAL}"
@@ -280,13 +266,17 @@ step_9_jeedom_installation() {
 step_10_jeedom_post() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_10_jeedom_post${NORMAL}"
-	if [ $(crontab -l | grep ${WEBSERVER_HOME}/core/php/jeeCron.php | wc -l) -eq 0 ];then
-		(echo "* * * * * su --shell=/bin/bash - www-data -c '/usr/bin/php ${WEBSERVER_HOME}/core/php/jeeCron.php' >> /dev/null"; crontab -l | grep -v "jeedom" | grep -v "jeeCron") | crontab -
+	if [ $(crontab -l | grep jeedom | wc -l) -eq 0 ];then
+		(echo crontab -l | grep -v "jeedom") | crontab -
+		
+  	fi
+	if [ ! -f /etc/cron.d/jeedom ]; then
+		echo "* * * * * www-data /usr/bin/php ${WEBSERVER_HOME}/core/php/jeeCron.php >> /dev/null" > /etc/cron.d/jeedom
 		if [ $? -ne 0 ]; then
 	    	echo "${ROUGE}Could not install jeedom cron - abort${NORMAL}"
 	    	exit 1
 	  	fi
-  	fi
+	fi
   	usermod -a -G dialout,tty www-data
 	if [ $(grep "www-data ALL=(ALL) NOPASSWD: ALL" /etc/sudoers | wc -l) -eq 0 ];then
 		echo "www-data ALL=(ALL) NOPASSWD: ALL" | (EDITOR="tee -a" visudo)
@@ -296,8 +286,8 @@ step_10_jeedom_post() {
   		fi
   	fi
   	if [ $(cat /proc/meminfo | grep MemTotal | awk '{ print $2 }') -gt 600000 ]; then
-  		if [ $(cat /etc/fstab | grep /tmp | grep tmpfs | wc -l) -eq 0 ];then
-  			echo 'tmpfs        /tmp            tmpfs  defaults,size=128M                                       0 0' >>  /etc/fstab
+  		if [ $(cat /etc/fstab | grep /tmp/jeedom | grep tmpfs | wc -l) -eq 0 ];then
+  			echo 'tmpfs        /tmp/jeedom            tmpfs  defaults,size=128M                                       0 0' >>  /etc/fstab
   		fi
   	fi
 	echo "${VERT}step_10_jeedom_post success${NORMAL}"
@@ -305,13 +295,11 @@ step_10_jeedom_post() {
 
 step_11_jeedom_check() {
 	echo "---------------------------------------------------------------------"
-	echo "${JAUNE}Start step_12_jeedom_check${NORMAL}"
+	echo "${JAUNE}Start step_11_jeedom_check${NORMAL}"
 	php ${WEBSERVER_HOME}/sick.php
-	if [ $? -ne 0 ]; then
-    	echo "${ROUGE}Could not install make jeedom sudo - abort${NORMAL}"
-    	exit 1
-  	fi
-	echo "${VERT}step_12_jeedom_check success${NORMAL}"
+	chmod 777 -R /tmp/jeedom
+	chown www-data:www-data -R /tmp/jeedom
+	echo "${VERT}step_11_jeedom_check success${NORMAL}"
 }
 
 distrib_1_spe(){
@@ -319,10 +307,10 @@ distrib_1_spe(){
 		rm post-install.sh
 	fi
 	if [ -f /etc/armbian.txt ]; then
-		wget https://raw.githubusercontent.com/jeedom/core/${VERSION}/install/OS_specific/armbian/post-install.sh
+		cp ${WEBSERVER_HOME}/install/OS_specific/armbian/post-install.sh post-install.sh
 	fi
 	if [ -f /usr/bin/raspi-config ]; then
-		wget https://raw.githubusercontent.com/jeedom/core/${VERSION}/install/OS_specific/rpi/post-install.sh
+		cp ${WEBSERVER_HOME}/install/OS_specific/rpi/post-install.sh post-install.sh
 	fi
 	if [ -f post-install.sh ]; then
 		chmod +x post-install.sh
@@ -399,6 +387,7 @@ case ${STEP} in
 	step_11_jeedom_check
 	distrib_1_spe
 	echo "/!\ IMPORTANT /!\ Root MySql password is ${MYSQL_ROOT_PASSWD}"
+	echo "Installation completed, a system reboot should be performed"
 	;;
    1) step_1_upgrade
 	;;

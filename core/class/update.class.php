@@ -89,7 +89,7 @@ class update {
 			if (substr_count($file, '.') != 2) {
 				continue;
 			}
-			$id = str_replace('.repo.php', '', $file);
+
 			$class = 'repo_' . str_replace('.repo.php', '', $file);
 			$return[str_replace('.repo.php', '', $file)] = array(
 				'name' => $class::$_name,
@@ -290,7 +290,7 @@ class update {
 			$class = 'repo_' . $this->getSource();
 			if (class_exists($class) && method_exists($class, 'downloadObject') && config::byKey($this->getSource() . '::enable') == 1) {
 				$this->preInstallUpdate();
-				$cibDir = '/tmp/jeedom_' . $this->getLogicalId();
+				$cibDir = jeedom::getTmpFolder('market') . '/' . $this->getLogicalId();
 				if (file_exists($cibDir)) {
 					rrmdir($cibDir);
 				}
@@ -330,9 +330,9 @@ class update {
 								$cibDir = $cibDir . '/' . $files[0];
 							}
 						}
-						rcopy($cibDir . '/', dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId(), false, array(), true);
+						rmove($cibDir . '/', dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId(), false, array(), true);
 						rrmdir($cibDir);
-						$cibDir = '/tmp/jeedom_' . $this->getLogicalId();
+						$cibDir = jeedom::getTmpFolder('market') . '/' . $this->getLogicalId();
 						if (file_exists($cibDir)) {
 							rrmdir($cibDir);
 						}
@@ -350,7 +350,7 @@ class update {
 
 	public function deleteObjet() {
 		if ($this->getType() == 'core') {
-			throw new Exception('Vous ne pouvez pas supprimer le core de Jeedom');
+			throw new Exception(__('Vous ne pouvez pas supprimer le core de Jeedom',__FILE__));
 		} else {
 			switch ($this->getType()) {
 				case 'plugin':
@@ -405,8 +405,8 @@ class update {
 	public function preInstallUpdate() {
 		if (!file_exists(dirname(__FILE__) . '/../../plugins')) {
 			mkdir(dirname(__FILE__) . '/../../plugins');
-			@chown(dirname(__FILE__) . '/../../plugins', 'www-data');
-			@chgrp(dirname(__FILE__) . '/../../plugins', 'www-data');
+			@chown(dirname(__FILE__) . '/../../plugins', system::getWWWUid());
+			@chgrp(dirname(__FILE__) . '/../../plugins', system::getWWWGid());
 			@chmod(dirname(__FILE__) . '/../../plugins', 0775);
 		}
 		log::add('update', 'alert', __('Début de la mise à jour de : ', __FILE__) . $this->getLogicalId() . "\n");
@@ -468,7 +468,10 @@ class update {
 		}
 		return null;
 	}
-
+        /**
+         * 
+         * @return type
+         */
 	public function checkUpdate() {
 		if ($this->getConfiguration('doNotUpdate') == 1) {
 			log::add('update', 'alert', __('Vérification des mises à jour, mise à jour et réinstallation désactivé sur ', __FILE__) . $this->getLogicalId());
@@ -483,7 +486,7 @@ class update {
 					$version = $this->getLocalVersion();
 				} else {
 					$version = $class::versionCore();
-					if ($version == null) {
+					if ($version === null) {
 						$version = $this->getLocalVersion();
 					}
 				}
@@ -550,18 +553,22 @@ class update {
 
 	public function setId($id) {
 		$this->id = $id;
+		return $this;
 	}
 
 	public function setName($name) {
 		$this->name = $name;
+		return $this;
 	}
 
 	public function setStatus($status) {
 		$this->status = $status;
+		return $this;
 	}
 
 	public function setConfiguration($_key, $_value) {
 		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
+		return $this;
 	}
 
 	public function getType() {
@@ -570,6 +577,7 @@ class update {
 
 	public function setType($type) {
 		$this->type = $type;
+		return $this;
 	}
 
 	public function getLocalVersion() {
@@ -582,10 +590,12 @@ class update {
 
 	public function setLocalVersion($localVersion) {
 		$this->localVersion = $localVersion;
+		return $this;
 	}
 
 	public function setRemoteVersion($remoteVersion) {
 		$this->remoteVersion = $remoteVersion;
+		return $this;
 	}
 
 	public function getLogicalId() {
@@ -594,6 +604,7 @@ class update {
 
 	public function setLogicalId($logicalId) {
 		$this->logicalId = $logicalId;
+		return $this;
 	}
 
 	public function getSource() {
@@ -602,8 +613,7 @@ class update {
 
 	public function setSource($source) {
 		$this->source = $source;
+		return $this;
 	}
 
 }
-
-?>

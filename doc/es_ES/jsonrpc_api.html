@@ -416,10 +416,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table des matières</div>
 <ul class="sectlevel1">
-<li><a href="#_misceláneos">1. Misceláneos</a>
+<li><a href="#_divers">1. Divers</a>
 <ul class="sectlevel2">
 <li><a href="#_ping">1.1. ping</a></li>
-<li><a href="#_versión">1.2. versión</a></li>
+<li><a href="#_version">1.2. version</a></li>
 <li><a href="#_datetime">1.3. datetime</a></li>
 </ul>
 </li>
@@ -441,72 +441,78 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_object_fullbyid">4.4. object::fullById</a></li>
 </ul>
 </li>
-<li><a href="#_api_json_eqlogic">5. API JSON EqLogic</a>
+<li><a href="#_api_json_summary">5. API JSON Summary</a>
 <ul class="sectlevel2">
-<li><a href="#_eqlogic_all">5.1. eqLogic::all</a></li>
-<li><a href="#_eqlogic_fullbyid">5.2. eqLogic::fullById</a></li>
-<li><a href="#_eqlogic_byid">5.3. eqLogic::byId</a></li>
-<li><a href="#_eqlogic_bytype">5.4. eqLogic::byType</a></li>
-<li><a href="#_eqlogic_byobjectid">5.5. eqLogic::byObjectId</a></li>
-<li><a href="#_eqlogic_bytypeandid">5.6. eqLogic::byTypeAndId</a></li>
-<li><a href="#_eqlogic_save">5.7. eqLogic::save</a></li>
+<li><a href="#_summary_global">5.1. summary::global</a></li>
+<li><a href="#_summary_byid">5.2. summary::byId</a></li>
 </ul>
 </li>
-<li><a href="#_api_json_cmd">6. API JSON Cmd</a>
+<li><a href="#_api_json_eqlogic">6. API JSON EqLogic</a>
 <ul class="sectlevel2">
-<li><a href="#_cmd_all">6.1. cmd::all</a></li>
-<li><a href="#_cmd_byid">6.2. cmd::byId</a></li>
-<li><a href="#_cmd_byeqlogicid">6.3. cmd::byEqLogicId</a></li>
-<li><a href="#_cmd_execcmd">6.4. cmd::execCmd</a></li>
-<li><a href="#_cmd_getstatistique">6.5. cmd::getStatistique</a></li>
-<li><a href="#_cmd_gettendance">6.6. cmd::getTendance</a></li>
-<li><a href="#_cmd_gethistory">6.7. cmd::getHistory</a></li>
+<li><a href="#_eqlogic_all">6.1. eqLogic::all</a></li>
+<li><a href="#_eqlogic_fullbyid">6.2. eqLogic::fullById</a></li>
+<li><a href="#_eqlogic_byid">6.3. eqLogic::byId</a></li>
+<li><a href="#_eqlogic_bytype">6.4. eqLogic::byType</a></li>
+<li><a href="#_eqlogic_byobjectid">6.5. eqLogic::byObjectId</a></li>
+<li><a href="#_eqlogic_bytypeandid">6.6. eqLogic::byTypeAndId</a></li>
+<li><a href="#_eqlogic_save">6.7. eqLogic::save</a></li>
 </ul>
 </li>
-<li><a href="#_api_json_scenario">7. API JSON Scenario</a>
+<li><a href="#_api_json_cmd">7. API JSON Cmd</a>
 <ul class="sectlevel2">
-<li><a href="#_scenario_all">7.1. scenario::all</a></li>
-<li><a href="#_scenario_byid">7.2. scenario::byId</a></li>
-<li><a href="#_scenario_changestate">7.3. scenario::changeState</a></li>
+<li><a href="#_cmd_all">7.1. cmd::all</a></li>
+<li><a href="#_cmd_byid">7.2. cmd::byId</a></li>
+<li><a href="#_cmd_byeqlogicid">7.3. cmd::byEqLogicId</a></li>
+<li><a href="#_cmd_execcmd">7.4. cmd::execCmd</a></li>
+<li><a href="#_cmd_getstatistique">7.5. cmd::getStatistique</a></li>
+<li><a href="#_cmd_gettendance">7.6. cmd::getTendance</a></li>
+<li><a href="#_cmd_gethistory">7.7. cmd::getHistory</a></li>
 </ul>
 </li>
-<li><a href="#_api_json_datastore_variable">8. API JSON datastore (variable)</a>
+<li><a href="#_api_json_scenario">8. API JSON Scenario</a>
 <ul class="sectlevel2">
-<li><a href="#_datastore_bytypelinkidkey">8.1. datastore::byTypeLinkIdKey</a></li>
-<li><a href="#_datastore_save">8.2. datastore::save</a></li>
+<li><a href="#_scenario_all">8.1. scenario::all</a></li>
+<li><a href="#_scenario_byid">8.2. scenario::byId</a></li>
+<li><a href="#_scenario_changestate">8.3. scenario::changeState</a></li>
 </ul>
 </li>
-<li><a href="#_api_json_message">9. API JSON Message</a>
+<li><a href="#_api_json_datastore_variable">9. API JSON datastore (variable)</a>
 <ul class="sectlevel2">
-<li><a href="#_message_all">9.1. message::all</a></li>
-<li><a href="#_message_removeall">9.2. message::removeAll</a></li>
+<li><a href="#_datastore_bytypelinkidkey">9.1. datastore::byTypeLinkIdKey</a></li>
+<li><a href="#_datastore_save">9.2. datastore::save</a></li>
 </ul>
 </li>
-<li><a href="#_api_json_interaction">10. API JSON Interaction</a>
+<li><a href="#_api_json_message">10. API JSON Message</a>
 <ul class="sectlevel2">
-<li><a href="#_interact_trytoreply">10.1. interact::tryToReply</a></li>
+<li><a href="#_message_all">10.1. message::all</a></li>
+<li><a href="#_message_removeall">10.2. message::removeAll</a></li>
 </ul>
 </li>
-<li><a href="#_api_json_system">11. API JSON System</a>
+<li><a href="#_api_json_interaction">11. API JSON Interaction</a>
 <ul class="sectlevel2">
-<li><a href="#_jeenetwork_halt">11.1. jeeNetwork::halt</a></li>
-<li><a href="#_jeenetwork_reboot">11.2. jeeNetwork::reboot</a></li>
+<li><a href="#_interact_trytoreply">11.1. interact::tryToReply</a></li>
 </ul>
 </li>
-<li><a href="#_api_json_plugin_2">12. API JSON plugin</a>
+<li><a href="#_api_json_system">12. API JSON System</a>
 <ul class="sectlevel2">
-<li><a href="#_plugin_install">12.1. plugin::install</a></li>
-<li><a href="#_plugin_remove">12.2. plugin::remove</a></li>
+<li><a href="#_jeedom_halt">12.1. jeedom::halt</a></li>
+<li><a href="#_jeedom_reboot">12.2. jeedom::reboot</a></li>
 </ul>
 </li>
-<li><a href="#_api_json_update">13. API JSON update</a>
+<li><a href="#_api_json_plugin_2">13. API JSON plugin</a>
 <ul class="sectlevel2">
-<li><a href="#_update_all">13.1. update::all</a></li>
-<li><a href="#_update_checkupdate">13.2. update::checkUpdate</a></li>
-<li><a href="#_update_update">13.3. update::update</a></li>
+<li><a href="#_plugin_install">13.1. plugin::install</a></li>
+<li><a href="#_plugin_remove">13.2. plugin::remove</a></li>
 </ul>
 </li>
-<li><a href="#_api_json_ejemplos">14. API JSON Ejemplos</a></li>
+<li><a href="#_api_json_update">14. API JSON update</a>
+<ul class="sectlevel2">
+<li><a href="#_update_all">14.1. update::all</a></li>
+<li><a href="#_update_checkupdate">14.2. update::checkUpdate</a></li>
+<li><a href="#_update_update">14.3. update::update</a></li>
+</ul>
+</li>
+<li><a href="#_api_json_exemples">15. API JSON Exemples</a></li>
 </ul>
 </div>
 </div>
@@ -514,15 +520,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Aquí esta la documentación sobre los métodos de la API. En primer lugar están las especificaciones (JSON RPC 2.0):</p>
+<p>Voici une documentation (qui évoluera) sur les méthodes de l&#8217;API. Tout d&#8217;abord voici les spécifications (JSON RPC 2.0) : <a href="http://www.jsonrpc.org/specification" class="bare">http://www.jsonrpc.org/specification</a></p>
 </div>
 <div class="paragraph">
-<p>A la API se accede a través de la url: <mark>URL_JEEDOM</mark>/core/api/jeeApi.php</p>
+<p>L&#8217;accès à l&#8217;API se fait par l&#8217;url : <mark>URL_JEEDOM</mark>/core/api/jeeApi.php</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_misceláneos">1. Misceláneos</h2>
+<h2 id="_divers">1. Divers</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_ping">1.1. ping</h3>
@@ -531,7 +537,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="_versión">1.2. versión</h3>
+<h3 id="_version">1.2. version</h3>
 <div class="paragraph">
 <p>Devuelve la versión de Jeedom</p>
 </div>
@@ -539,7 +545,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_datetime">1.3. datetime</h3>
 <div class="paragraph">
-<p>Devuelve la fecha y hora de jeedom en microsegundos</p>
+<p>Retourne le datetime de Jeedom en microsecondes</p>
 </div>
 </div>
 </div>
@@ -550,7 +556,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_event_changes">2.1. event::changes</h3>
 <div class="paragraph">
-<p>Devuelve la lista de cambios desde la fecha y hora en el parámetro (debe estar en microsegundos). También en la respuesta de la fecha y hora actual de Jeedom (para ser reutilizado para la petición siguiente)</p>
+<p>Retourne la liste des changements depuis le datetime passé en paramètre (doit être en microsecondes). Vous aurez aussi dans la réponse le datetime courant de Jeedom (à réutiliser pour l&#8217;interrogation suivante)</p>
 </div>
 <div class="paragraph">
 <p>Parámetros:</p>
@@ -576,9 +582,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>Parámetros:</p>
 </div>
-<div class="paragraph">
-<p>-int activateOnly = 0 (devuelve sólo la lista de plugins activos)
--int orderByCaterogy = 0 (devuelve la lista de plugins ordenados por categoría)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>int activateOnly = 0 (ne retourne que la liste des plugins activés)</p>
+</li>
+<li>
+<p>int orderByCaterogy = 0 (retourne la liste des plugins triés par catégorie)</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -595,13 +607,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_object_full">4.2. object::full</h3>
 <div class="paragraph">
-<p>Devuelve una lista de todos los objetos, para cada objeto de cada equipo y sus servicios, todos sus comandos, así como los Estados (para comandos de tipo información)</p>
+<p>Retourne la liste de tous les objets, avec pour chaque objet tous ses équipements et pour chaque équipement toutes ses commandes ainsi que les états de celles-ci (pour les commandes de type info)</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_object_byid">4.3. object::byId</h3>
 <div class="paragraph">
-<p>Devuelve el objeto especificado</p>
+<p>Retourne l&#8217;objet spécifié</p>
 </div>
 <div class="paragraph">
 <p>Parámetros:</p>
@@ -617,28 +629,68 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_object_fullbyid">4.4. object::fullById</h3>
 <div class="paragraph">
-<p>Devuelve un objeto, sus dispositivos y cada dispositivo con todos sus comandos, así como los Estados (para comandos de tipo información)</p>
+<p>Retourne un objet, ses équipements et pour chaque équipement toutes ses commandes ainsi que les états de cellse-ci (pour les commandes de type info)</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_api_json_eqlogic">5. API JSON EqLogic</h2>
+<h2 id="_api_json_summary">5. API JSON Summary</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_eqlogic_all">5.1. eqLogic::all</h3>
+<h3 id="_summary_global">5.1. summary::global</h3>
+<div class="paragraph">
+<p>Retour le résumé global pour la clef passée en paramètre</p>
+</div>
+<div class="paragraph">
+<p>Parámetros:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>string key : (optionnel), clef du résumé voulu, si vide alors Jeedom vous renvoi le résumé pour toute les clefs</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_summary_byid">5.2. summary::byId</h3>
+<div class="paragraph">
+<p>Retourne le résumé pour l&#8217;objet id</p>
+</div>
+<div class="paragraph">
+<p>Parámetros:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>int id : id de l&#8217;objet</p>
+</li>
+<li>
+<p>string key : (optionnel), clef du résumé voulu, si vide alors Jeedom vous renvoi le résumé pour toute les clefs</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_api_json_eqlogic">6. API JSON EqLogic</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_eqlogic_all">6.1. eqLogic::all</h3>
 <div class="paragraph">
 <p>Devuelve una lista de todos los dispositivos</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_eqlogic_fullbyid">5.2. eqLogic::fullById</h3>
+<h3 id="_eqlogic_fullbyid">6.2. eqLogic::fullById</h3>
 <div class="paragraph">
-<p>Devuelve un dispositivo y sus comandos, así como los estados (para comandos de tipo información)</p>
+<p>Retourne un équipement et ses commandes ainsi que les états de celles-ci (pour les commandes de type info)</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_eqlogic_byid">5.3. eqLogic::byId</h3>
+<h3 id="_eqlogic_byid">6.3. eqLogic::byId</h3>
 <div class="paragraph">
 <p>Devuelve el dispositivo especificado</p>
 </div>
@@ -654,7 +706,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="_eqlogic_bytype">5.4. eqLogic::byType</h3>
+<h3 id="_eqlogic_bytype">6.4. eqLogic::byType</h3>
 <div class="paragraph">
 <p>Devuelve todas las instalaciones pertenecientes al tipo especificado (plugin)</p>
 </div>
@@ -670,64 +722,99 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="_eqlogic_byobjectid">5.5. eqLogic::byObjectId</h3>
+<h3 id="_eqlogic_byobjectid">6.5. eqLogic::byObjectId</h3>
 <div class="paragraph">
-<p>Devuelve todas las instalaciones pertenecientes a la especificada</p>
-</div>
-<div class="paragraph">
-<p>Parámetros:
-- int object_id</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_eqlogic_bytypeandid">5.6. eqLogic::byTypeAndId</h3>
-<div class="paragraph">
-<p>Devuelve un array de equipos dependiendo de la configuración. El resultado será de la forma array('eqType1' &#8658;array( 'id'&#8658;&#8230;&#8203;,'cmds' &#8658; array(&#8230;&#8203;.)),'eqType2' &#8658;array( 'id'&#8658;&#8230;&#8203;,'cmds' &#8658; array(&#8230;&#8203;.))&#8230;&#8203;.,id1 &#8658; array( 'id'&#8658;&#8230;&#8203;,'cmds' &#8658; array(&#8230;&#8203;.)),id2 &#8658; array( 'id'&#8658;&#8230;&#8203;,'cmds' &#8658; array(&#8230;&#8203;.))..)</p>
+<p>Retourne tous les équipements appartenant à l&#8217;objet spécifié</p>
 </div>
 <div class="paragraph">
 <p>Parámetros:</p>
 </div>
-<div class="paragraph">
-<p>-string eqType [] = array de los tipos de dispositivos necesarios
--int [] id = matriz ID de dispositivos deseados personalizados</p>
+<div class="ulist">
+<ul>
+<li>
+<p>int object_id</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_eqlogic_save">5.7. eqLogic::save</h3>
+<h3 id="_eqlogic_bytypeandid">6.6. eqLogic::byTypeAndId</h3>
+<div class="paragraph">
+<p>Renvoi un tableau d&#8217;équipement en fonction des paramètres. Le retour sera de la forme array('eqType1' &#8658;array( 'id'&#8658;&#8230;&#8203;,'cmds' &#8658; array(&#8230;&#8203;.)),'eqType2' &#8658;array( 'id'&#8658;&#8230;&#8203;,'cmds' &#8658; array(&#8230;&#8203;.))&#8230;&#8203;.,id1 &#8658; array( 'id'&#8658;&#8230;&#8203;,'cmds' &#8658; array(&#8230;&#8203;.)),id2 &#8658; array( 'id'&#8658;&#8230;&#8203;,'cmds' &#8658; array(&#8230;&#8203;.))..)</p>
+</div>
+<div class="paragraph">
+<p>Parámetros:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>string[] eqType = tableau des types d&#8217;équipements voulus</p>
+</li>
+<li>
+<p>int[] id = tableau des ID d&#8217;équipements personnalisés voulus</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_eqlogic_save">6.7. eqLogic::save</h3>
 <div class="paragraph">
 <p>Devuelve el dispositivo guardado/creado</p>
 </div>
 <div class="paragraph">
 <p>Parámetros:</p>
 </div>
-<div class="paragraph">
-<p>-int id (vacío si es una creación)
--string eqType_name (tipo guión de dispositivo,  virtual&#8230;&#8203;)
-- string $name
-- string $logicalId = &lt;nowiki&gt;''&lt;/nowiki&gt;
-- int $object_id = null
-- int $eqReal_id = null;
-- int $isVisible = 0;
-- int $isEnable = 0;
-- array $configuration;
-- array $specificCapatibilities;
-- int $timeout;
-- array $category;</p>
+<div class="ulist">
+<ul>
+<li>
+<p>int id (vide si c&#8217;est une création)</p>
+</li>
+<li>
+<p>string eqType_name (type de l&#8217;équipement script, virtuel&#8230;&#8203;)</p>
+</li>
+<li>
+<p>string $name</p>
+</li>
+<li>
+<p>string $logicalId = &lt;nowiki&gt;''&lt;/nowiki&gt;</p>
+</li>
+<li>
+<p>int $object_id = null</p>
+</li>
+<li>
+<p>int $eqReal_id = null;</p>
+</li>
+<li>
+<p>int $isVisible = 0;</p>
+</li>
+<li>
+<p>int $isEnable = 0;</p>
+</li>
+<li>
+<p>array $configuration;</p>
+</li>
+<li>
+<p>int $timeout;</p>
+</li>
+<li>
+<p>array $category;</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_api_json_cmd">6. API JSON Cmd</h2>
+<h2 id="_api_json_cmd">7. API JSON Cmd</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_cmd_all">6.1. cmd::all</h3>
+<h3 id="_cmd_all">7.1. cmd::all</h3>
 <div class="paragraph">
 <p>Devuelve la lista de todos los comandos</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_cmd_byid">6.2. cmd::byId</h3>
+<h3 id="_cmd_byid">7.2. cmd::byId</h3>
 <div class="paragraph">
 <p>Devuelve el comando especificado</p>
 </div>
@@ -743,7 +830,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="_cmd_byeqlogicid">6.3. cmd::byEqLogicId</h3>
+<h3 id="_cmd_byeqlogicid">7.3. cmd::byEqLogicId</h3>
 <div class="paragraph">
 <p>Devuelve todos los comandos que pertenecen al dispositivo especificado</p>
 </div>
@@ -759,7 +846,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="_cmd_execcmd">6.4. cmd::execCmd</h3>
+<h3 id="_cmd_execcmd">7.4. cmd::execCmd</h3>
 <div class="paragraph">
 <p>Ejecuta el comando especificado</p>
 </div>
@@ -769,16 +856,18 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>int id
--[options] lista de opciones  del comando (dependiendo el tipo y el subtipo del comando)</p>
+<p>int id</p>
+</li>
+<li>
+<p>[options] Liste des options de la commande (dépend du type et du sous-type de la commande)</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_cmd_getstatistique">6.5. cmd::getStatistique</h3>
+<h3 id="_cmd_getstatistique">7.5. cmd::getStatistique</h3>
 <div class="paragraph">
-<p>Devuelve las estadísticas sobre el comando (no funciona en los comapdo tipo información e historico)</p>
+<p>Retourne les statistiques sur la commande (ne marche que sur les commandes de type info et historisées)</p>
 </div>
 <div class="paragraph">
 <p>Parámetros:</p>
@@ -786,17 +875,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>int id
--string startTime: fecha de inicio para el cálculo de las estadística</p>
+<p>int id</p>
 </li>
 <li>
-<p>string endTime : fecha de fin del calculo de las estadisticas</p>
+<p>string startTime : date de début de calcul des statistiques</p>
+</li>
+<li>
+<p>string endTime : date de fin de calcul des statistiques</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_cmd_gettendance">6.6. cmd::getTendance</h3>
+<h3 id="_cmd_gettendance">7.6. cmd::getTendance</h3>
 <div class="paragraph">
 <p>Devuelve la tendencia sobre el comando (no funciona con los comandos  tipo información e historicos)</p>
 </div>
@@ -809,18 +900,18 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>int id</p>
 </li>
 <li>
-<p>string startTime : fecha de inicio de cálculo de la tendencia</p>
+<p>string startTime : date de début de calcul de la tendance</p>
 </li>
 <li>
-<p>string endTime : fecha final del cálculo de la tendencia</p>
+<p>string endTime : date de fin de calcul de la tendance</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_cmd_gethistory">6.7. cmd::getHistory</h3>
+<h3 id="_cmd_gethistory">7.7. cmd::getHistory</h3>
 <div class="paragraph">
-<p>Devuelve el historico del comando (no funciona con comandos tipo información e historicos)</p>
+<p>Retourne l&#8217;historique de la commande (ne marche que sur les commandes de type info et historisées)</p>
 </div>
 <div class="paragraph">
 <p>Parámetros:</p>
@@ -831,10 +922,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>int id</p>
 </li>
 <li>
-<p>string startTime : fecha de inicio del historico</p>
+<p>string startTime : date de début de l&#8217;historique</p>
 </li>
 <li>
-<p>string endTime : date de fin del historico</p>
+<p>string endTime : date de fin de l&#8217;historique</p>
 </li>
 </ul>
 </div>
@@ -842,16 +933,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_api_json_scenario">7. API JSON Scenario</h2>
+<h2 id="_api_json_scenario">8. API JSON Scenario</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_scenario_all">7.1. scenario::all</h3>
+<h3 id="_scenario_all">8.1. scenario::all</h3>
 <div class="paragraph">
 <p>Devuelve una lista de todos los escenarios</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_scenario_byid">7.2. scenario::byId</h3>
+<h3 id="_scenario_byid">8.2. scenario::byId</h3>
 <div class="paragraph">
 <p>Devuelve el escenario especificado</p>
 </div>
@@ -867,7 +958,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="_scenario_changestate">7.3. scenario::changeState</h3>
+<h3 id="_scenario_changestate">8.3. scenario::changeState</h3>
 <div class="paragraph">
 <p>Cambia el estado del escenario especificado.</p>
 </div>
@@ -880,7 +971,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>int id</p>
 </li>
 <li>
-<p>string state : [run,stop,enable,disable]</p>
+<p>string state : [run,stop,enable,disable]</p>
 </li>
 </ul>
 </div>
@@ -888,12 +979,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_api_json_datastore_variable">8. API JSON datastore (variable)</h2>
+<h2 id="_api_json_datastore_variable">9. API JSON datastore (variable)</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_datastore_bytypelinkidkey">8.1. datastore::byTypeLinkIdKey</h3>
+<h3 id="_datastore_bytypelinkidkey">9.1. datastore::byTypeLinkIdKey</h3>
 <div class="paragraph">
-<p>Recupera el valor de una variable que se almacena en el almacén de datos</p>
+<p>Récupère la valeur d&#8217;une variable stockée dans le datastore</p>
 </div>
 <div class="paragraph">
 <p>Parámetros:</p>
@@ -901,21 +992,21 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>string type : tipo de valor almacenado (para los escenarios es scenario)</p>
+<p>string type : type de la valeur stockée (pour les scénarios c&#8217;est scenario)</p>
 </li>
 <li>
-<p>id link: -1 para el total (valor para escenarios por defecto, o le id del escenario)</p>
+<p>id linkId : -1 pour le global (valeur pour les scénarios par défaut, ou l&#8217;id du scénario)</p>
 </li>
 <li>
-<p>string key : nombre de valor</p>
+<p>string key : nom de la valeur</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_datastore_save">8.2. datastore::save</h3>
+<h3 id="_datastore_save">9.2. datastore::save</h3>
 <div class="paragraph">
-<p>Guarda el valor de una variable en el almacén de datos</p>
+<p>Enregistre la valeur d&#8217;une variable dans le datastore</p>
 </div>
 <div class="paragraph">
 <p>Parámetros:</p>
@@ -923,16 +1014,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>string type : tipo de valor almacenado (para los escenarios es scenario)</p>
+<p>string type : type de la valeur stockée (pour les scénarios c&#8217;est scenario)</p>
 </li>
 <li>
-<p>id link: -1 para el total (valor para escenarios por defecto, o le id del escenario)</p>
+<p>id linkId : -1 pour le global (valeur pour les scénarios par défaut, ou l&#8217;id du scénario)</p>
 </li>
 <li>
-<p>string key : nombre de valor</p>
+<p>string key : nom de la valeur</p>
 </li>
 <li>
-<p>mixte value : valor a guardar</p>
+<p>mixte value : valeur à enregistrer</p>
 </li>
 </ul>
 </div>
@@ -940,16 +1031,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_api_json_message">9. API JSON Message</h2>
+<h2 id="_api_json_message">10. API JSON Message</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_message_all">9.1. message::all</h3>
+<h3 id="_message_all">10.1. message::all</h3>
 <div class="paragraph">
 <p>Devuelve una lista de todos los mensajes</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_message_removeall">9.2. message::removeAll</h3>
+<h3 id="_message_removeall">10.2. message::removeAll</h3>
 <div class="paragraph">
 <p>Elimina todos los mensajes</p>
 </div>
@@ -957,12 +1048,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_api_json_interaction">10. API JSON Interaction</h2>
+<h2 id="_api_json_interaction">11. API JSON Interaction</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_interact_trytoreply">10.1. interact::tryToReply</h3>
+<h3 id="_interact_trytoreply">11.1. interact::tryToReply</h3>
 <div class="paragraph">
-<p>Trata de coincidir con una aplicación con interacción, realiza la acción y responde en consecuencia</p>
+<p>Essaie de faire correspondre une demande avec une interaction, exécute l&#8217;action et répond en conséquence</p>
 </div>
 <div class="paragraph">
 <p>Parámetros:</p>
@@ -970,7 +1061,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>query  (frase de petición)</p>
+<p>query (phrase de la demande)</p>
 </li>
 </ul>
 </div>
@@ -978,16 +1069,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_api_json_system">11. API JSON System</h2>
+<h2 id="_api_json_system">12. API JSON System</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_jeenetwork_halt">11.1. jeeNetwork::halt</h3>
+<h3 id="_jeedom_halt">12.1. jeedom::halt</h3>
 <div class="paragraph">
-<p>Permite detener Jeedom</p>
+<p>Permet d&#8217;arrêter Jeedom</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_jeenetwork_reboot">11.2. jeeNetwork::reboot</h3>
+<h3 id="_jeedom_reboot">12.2. jeedom::reboot</h3>
 <div class="paragraph">
 <p>Permite reiniciar Jeedom</p>
 </div>
@@ -995,12 +1086,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_api_json_plugin_2">12. API JSON plugin</h2>
+<h2 id="_api_json_plugin_2">13. API JSON plugin</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_plugin_install">12.1. plugin::install</h3>
+<h3 id="_plugin_install">13.1. plugin::install</h3>
 <div class="paragraph">
-<p>Instalación/actualización de un plugin determinado</p>
+<p>Installation/Mise à jour d&#8217;un plugin donné</p>
 </div>
 <div class="paragraph">
 <p>Parámetros:</p>
@@ -1008,15 +1099,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>string plugin_id : nombre del plugin (nombre lógico)</p>
+<p>string plugin_id : nom du plugin (nom logique)</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_plugin_remove">12.2. plugin::remove</h3>
+<h3 id="_plugin_remove">13.2. plugin::remove</h3>
 <div class="paragraph">
-<p>Eliminación de un plugin determinado</p>
+<p>Suppression d&#8217;un plugin donné</p>
 </div>
 <div class="paragraph">
 <p>Parámetros:</p>
@@ -1024,7 +1115,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>string plugin_id : nombre del plugin (nombre lógico)</p>
+<p>string plugin_id : nom du plugin (nom logique)</p>
 </li>
 </ul>
 </div>
@@ -1032,22 +1123,22 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_api_json_update">13. API JSON update</h2>
+<h2 id="_api_json_update">14. API JSON update</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_update_all">13.1. update::all</h3>
+<h3 id="_update_all">14.1. update::all</h3>
 <div class="paragraph">
 <p>Devuelve una lista de todos los componentes instalados, sus versiones e información asociada</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_update_checkupdate">13.2. update::checkUpdate</h3>
+<h3 id="_update_checkupdate">14.2. update::checkUpdate</h3>
 <div class="paragraph">
-<p>Permite comprobar las actualizaciones</p>
+<p>Permet de vérifier les mises à jour</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_update_update">13.3. update::update</h3>
+<h3 id="_update_update">14.3. update::update</h3>
 <div class="paragraph">
 <p>Permite actualizar Jeedom y todos los plugins</p>
 </div>
@@ -1055,10 +1146,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_api_json_ejemplos">14. API JSON Ejemplos</h2>
+<h2 id="_api_json_exemples">15. API JSON Exemples</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Aquí  un ejemplo del uso de la API. Para el ejemplo de abajo use <a href="https://github.com/jeedom/core/blob/stable/core/class/jsonrpcClient.class.php" class="bare">https://github.com/jeedom/core/blob/stable/core/class/jsonrpcClient.class.php</a> [esta clase php] que permite simplificar el uso de la api.</p>
+<p>Voici un exemple d&#8217;utilisation de l&#8217;API. Pour l&#8217;exemple ci-dessous j&#8217;utilise <a href="https://github.com/jeedom/core/blob/stable/core/class/jsonrpcClient.class.php">cette class php</a> qui permet de simplifier l&#8217;utilisation de l&#8217;api.</p>
 </div>
 <div class="paragraph">
 <p>Recuperar la lista de objetos:</p>
@@ -1074,7 +1165,7 @@ if($jsonrpc-&gt;sendRequest('object::all', array())){
 </div>
 </div>
 <div class="paragraph">
-<p>Ejecutar un comando (con una opción de un título y mensaje)</p>
+<p>Exécution d&#8217;une commande (avec comme option un titre et un message)</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1087,7 +1178,7 @@ if($jsonrpc-&gt;sendRequest('cmd::execCmd', array('id' =&gt; #cmd_id#, 'options'
 </div>
 </div>
 <div class="paragraph">
-<p>La API es también utilizable en otro idioma (solo un post en una página) </p>
+<p>L&#8217;API est bien sur utilisable avec d&#8217;autres langages (simplement un post sur une page) </p>
 </div>
 </div>
 </div>

@@ -9,12 +9,16 @@ class ComposerStaticInitc7412053f01762e82bf4bede3f471ac6
     public static $files = array (
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
-        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
+        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
     );
 
     public static $prefixLengthsPsr4 = array (
+        'c' => 
+        array (
+            'cebe\\markdown\\' => 14,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Util\\' => 22,
@@ -24,6 +28,7 @@ class ComposerStaticInitc7412053f01762e82bf4bede3f471ac6
         ),
         'P' => 
         array (
+            'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
             'PragmaRX\\Google2FA\\' => 19,
         ),
@@ -46,6 +51,10 @@ class ComposerStaticInitc7412053f01762e82bf4bede3f471ac6
         array (
             'Doctrine\\Common\\Cache\\' => 22,
         ),
+        'C' => 
+        array (
+            'Cron\\' => 5,
+        ),
         'B' => 
         array (
             'Base32\\' => 7,
@@ -53,6 +62,10 @@ class ComposerStaticInitc7412053f01762e82bf4bede3f471ac6
     );
 
     public static $prefixDirsPsr4 = array (
+        'cebe\\markdown\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/cebe/markdown',
+        ),
         'Symfony\\Polyfill\\Util\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-util',
@@ -68,6 +81,10 @@ class ComposerStaticInitc7412053f01762e82bf4bede3f471ac6
         'Symfony\\Component\\EventDispatcher\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/event-dispatcher',
+        ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
         'Psr\\Http\\Message\\' => 
         array (
@@ -105,6 +122,10 @@ class ComposerStaticInitc7412053f01762e82bf4bede3f471ac6
         array (
             0 => __DIR__ . '/..' . '/doctrine/cache/lib/Doctrine/Common/Cache',
         ),
+        'Cron\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron',
+        ),
         'Base32\\' => 
         array (
             0 => __DIR__ . '/..' . '/christian-riesen/base32/src',
@@ -134,13 +155,6 @@ class ComposerStaticInitc7412053f01762e82bf4bede3f471ac6
                 0 => __DIR__ . '/..' . '/ircmaxell/random-lib/lib',
             ),
         ),
-        'P' => 
-        array (
-            'Psr\\Log\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/psr/log',
-            ),
-        ),
         'G' => 
         array (
             'Guzzle\\Tests' => 
@@ -150,13 +164,6 @@ class ComposerStaticInitc7412053f01762e82bf4bede3f471ac6
             'Guzzle' => 
             array (
                 0 => __DIR__ . '/..' . '/guzzle/guzzle/src',
-            ),
-        ),
-        'C' => 
-        array (
-            'Cron' => 
-            array (
-                0 => __DIR__ . '/..' . '/mtdowling/cron-expression/src',
             ),
         ),
     );

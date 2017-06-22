@@ -82,6 +82,14 @@ try {
 		ajax::success(implode("\n", $output));
 	}
 
+	if (init('action') == 'db') {
+		ajax::success(DB::prepare(init('command'), array(), DB::FETCH_TYPE_ALL));
+	}
+
+	if (init('action') == 'health') {
+		ajax::success(jeedom::health());
+	}
+
 	if (init('action') == 'update') {
 		jeedom::update();
 		ajax::success();
@@ -114,11 +122,6 @@ try {
 
 	if (init('action') == 'getConfiguration') {
 		ajax::success(jeedom::getConfiguration(init('key'), init('default')));
-	}
-
-	if (init('action') == 'flushcache') {
-		cache::flush();
-		ajax::success();
 	}
 
 	if (init('action') == 'resetHwKey') {
@@ -183,6 +186,17 @@ try {
 		}
 		file_put_contents($path, init('content'));
 		ajax::success();
+	}
+
+	if (init('action') == 'getGraphData') {
+		$return = array('node' => array(), 'link' => array());
+		$object = null;
+		$type = init('filter_type');
+		$object = $type::byId(init('filter_id'));
+		if (!is_object($object)) {
+			throw new Exception(__('Type :', __FILE__) . init('filter_type') . __(' avec id : ', __FILE__) . init('filter_id') . __(' inconnu', __FILE__));
+		}
+		ajax::success($object->getLinkData());
 	}
 
 	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));

@@ -1,19 +1,19 @@
 = Dashboard
 
-Una de las páginas principales de Jeedom, muestra un informe de la domótica. Jeedom genera este informe automáticamente (a diferencia de las vistas y el diseño).
+Une des pages principales de Jeedom affiche un compte-rendu de toute votre domotique. Ce compte-rendu (contrairement aux vues et design) est auto-généré par Jeedom.
 
-Se puede acceder haciendo clic en Inicio -> Dashboard
+Il est accessible en cliquant sur Accueil -> Dashboard
 
 image::../images/dashboard2.JPG[]
 
 [TIP]
-Como se puede ver en la foto, es posible ir directamente a un objeto de la domótica. Esto permite ir a la configuración de los dispositivos que le interesan directamente.
+Comme vous pouvez le voir sur la capture il est possible d'aller directement sur un objet de votre domotique. Cela permet de n'avoir que les équipements qui vous intéressent et donc de charger la page plus rapidement
 
 Este es un ejemplo de Dashboard
 
 image::../images/dashboard.JPG[]
 
-En la parte superior izquierda hay un pequeño icono para mostrar u ocultar el árbol de objetos: 
+Vous avez en haut à gauche une petite icône pour faire afficher/masquer l'arbre des objets : 
 
 image::../images/dashboard1.JPG[]
 
@@ -21,11 +21,11 @@ En el centro puede elegir filtrar por ciertos tipos de equipos:
 
 image::../images/dashboard3.JPG[]
 
-A la derecha un primer botón para el modo edición, por ejemplo, para cambiar el orden de los widgets (haga clic en el widget), también en este modo de edición puede redimensionarlos y cambiar el orden de los controles en su interior
+A droite un premier bouton pour passer en mode édition, pour par exemple modifier l'ordre des widgets (à l'aide d'un cliqué déposé sur le widget), vous pouvez aussi dans ce mode édition redimensionner certains widgets et réorganiser l'ordre des commandes à l'intérieur de celui-ci
 
 Es un botón para mostrar/ocultar escenas:
 
 image::../images/dashboard4.JPG[]
 
 [TIP]
-Es posible desde tu perfil configurar Jeedom para que muestre el árbol de objetos o escenas  por defecto en el Dashboard
+Il est possible à partir de votre profil de configurer Jeedom pour que l'arbre des objets et/ou les scénarios soit visible par défaut lorsque vous arrivez sur le Dashboard

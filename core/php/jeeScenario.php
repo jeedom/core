@@ -57,7 +57,7 @@ if (init('scenarioElement_id') != '') {
 		$scenario->setState('error');
 		$scenario->setLog(__('Erreur : ', __FILE__) . $e->getMessage());
 		$scenario->setPID('');
-		$scenario->save();
+		$scenario->persistLog();
 		die();
 	}
 }

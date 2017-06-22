@@ -59,7 +59,7 @@
     });
 });
 
- $("#table_user").delegate(".del_user", 'click', function (event) {
+ $("#table_user").delegate(".bt_del_user", 'click', function (event) {
     $.hideAlert();
     var user = {id: $(this).closest('tr').find('.userAttr[data-l1key=id]').value()};
     bootbox.confirm('{{Etes-vous sûr de vouloir supprimer cet utilisateur ?}}', function (result) {
@@ -78,7 +78,7 @@
     });
 });
 
- $("#table_user").delegate(".change_mdp_user", 'click', function (event) {
+ $("#table_user").delegate(".bt_change_mdp_user", 'click', function (event) {
     $.hideAlert();
     var user = {id: $(this).closest('tr').find('.userAttr[data-l1key=id]').value(), login: $(this).closest('tr').find('.userAttr[data-l1key=login]').value()};
     bootbox.prompt("{{Quel est le nouveau mot de passe ?}}", function (result) {
@@ -142,40 +142,51 @@
                 ligne += '<span class="userAttr" data-l1key="id" style="display : none;"/>';
                 ligne += '<span class="userAttr" data-l1key="login" />';
                 ligne += '</td>';
-                ligne += '<td><center>';
-                if (ldapEnable != '1') {
-                    ligne += '<a class="btn btn-xs btn-danger pull-right del_user" style="margin-bottom : 5px;"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>';
-                    ligne += '<a class="btn btn-xs btn-warning pull-right change_mdp_user" style="margin-bottom : 5px;"><i class="fa fa-pencil"></i> {{Changer le mot de passe}}</a>';
-                }
-                ligne += '</center></td>';
                 ligne += '<td>';
                 ligne += '<label style="margin-right:25px;"><input type="checkbox" class="userAttr" data-l1key="enable" />{{Actif}}</label><br/>';
                 ligne += '<label style="margin-right:25px;"><input type="checkbox" class="userAttr" data-l1key="options" data-l2key="localOnly" />{{Local seulement}}</label>';
                 ligne += '</td>';
                 ligne += '<td>';
-                ligne += '<input type="checkbox" data-size="mini" class="userAttr" data-l1key="rights" data-l2key="admin"/>';
+                ligne += '<select class="userAttr form-control" data-l1key="profils">';
+                ligne += '<option value="admin">{{Administrateur}}</option>';
+                ligne += '<option value="user">{{Utilisateur}}</option>';
+                ligne += '<option value="restrict">{{Utilisateur limité}}</option>';
+                ligne += '</select>';
                 ligne += '</td>';
-                ligne += '<td>';
-                ligne += '<a class="cursor bt_changeHash" title="{{Renouveler la clef API}}"><i class="fa fa-refresh"></i></a> <textarea class="userAttr" data-l1key="hash" style="width:100%;" rows="7" disabled></textarea>';
+                ligne += '<td style="width:300px">';
+                ligne += '<textarea class="userAttr form-control" data-l1key="hash" style="width:100%;" rows="1" disabled></textarea>';
                 ligne += '</td>';
                 ligne += '<td>';
                 if(isset(data[i].options) && isset(data[i].options.twoFactorAuthentification) && data[i].options.twoFactorAuthentification == 1 && isset(data[i].options.twoFactorAuthentificationSecret) && data[i].options.twoFactorAuthentificationSecret != ''){
                     ligne += '<span class="label label-success" style="font-size:1em;">{{OK}}</span>';
                 }else{
-                   ligne += '<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>';
-               }
-               ligne += '</td>';
-               ligne += '<td>';
-               ligne += '<span class="userAttr" data-l1key="options" data-l2key="lastConnection"></span>';
-               ligne += '</td>';
-               ligne += '</tr>';
-               var result = $(ligne);
-               result.setValues(data[i], '.userAttr');
-               tr.push(result);
-           }
-           $('#table_user tbody').append(tr);
-           modifyWithoutSave = false;
-           $.hideLoading();
-       }
-   });
+                 ligne += '<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>';
+             }
+             ligne += '</td>';
+             ligne += '<td>';
+             ligne += '<span class="userAttr" data-l1key="options" data-l2key="lastConnection"></span>';
+             ligne += '</td>';
+             ligne += '<td>';
+             ligne += '<a class="cursor bt_changeHash btn btn-warning btn-xs pull-right" title="{{Renouveler la clef API}}"><i class="fa fa-refresh"></i> {{Regenérer clef API}}</a>';
+             if (ldapEnable != '1') {
+                ligne += '<a class="btn btn-xs btn-danger pull-right bt_del_user" style="margin-bottom : 5px;"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>';
+                ligne += '<a class="btn btn-xs btn-warning pull-right bt_change_mdp_user" style="margin-bottom : 5px;"><i class="fa fa-pencil"></i> {{Changer le mot de passe}}</a>';
+            }
+             ligne += '<a class="btn btn-xs btn-warning pull-right bt_manage_restrict_rights" style="margin-bottom : 5px;"><i class="fa fa-align-right"></i> {{Gerer les droits}}</a>';
+            ligne += '</td>';
+            ligne += '</tr>';
+            var result = $(ligne);
+            result.setValues(data[i], '.userAttr');
+            tr.push(result);
+        }
+        $('#table_user tbody').append(tr);
+        modifyWithoutSave = false;
+        $.hideLoading();
+    }
+});
 }
+
+$('#table_user').delegate('.bt_manage_restrict_rights', 'click', function () {
+    $('#md_modal').dialog({title: "Gestion des droits"});
+    $("#md_modal").load('index.php?v=d&modal=user.rights&id=' + $(this).closest('tr').find('.userAttr[data-l1key=id]').value()).dialog('open');
+});

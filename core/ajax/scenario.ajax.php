@@ -219,7 +219,7 @@ try {
 			$return = array();
 			foreach ($scenarios as $scenario) {
 				if ($scenario->getIsVisible() == 1) {
-					$return[$scenario->getId()] = $scenario->toHtml(init('version'));
+					$return[] = $scenario->toHtml(init('version'));
 				}
 			}
 			ajax::success($return);
@@ -339,6 +339,21 @@ try {
 	}
 
 	if (init('action') == 'actionToHtml') {
+		if (init('params') != '' && is_json(init('params'))) {
+			$return = array();
+			$params = json_decode(init('params'), true);
+			foreach ($params as $param) {
+				$html = scenarioExpression::getExpressionOptions($param['expression'], $param['options']);
+				if (!isset($html['html']) || $html['html'] == '') {
+					continue;
+				}
+				$return[] = array(
+					'html' => $html,
+					'id' => $param['id'],
+				);
+			}
+			ajax::success($return);
+		}
 		ajax::success(scenarioExpression::getExpressionOptions(init('expression'), init('option')));
 	}
 

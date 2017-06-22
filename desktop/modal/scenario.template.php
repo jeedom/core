@@ -17,7 +17,7 @@ sendVarToJS('scenario_template_id', init('scenario_id'));
     <div class="bs-sidebar nav nav-list bs-sidenav" >
         <center>
             <span class="btn btn-default btn-file">
-                <i class="fa fa-cloud-upload"></i> {{Envoyer un template}}<input class="expertModeVisible" id="bt_uploadScenarioTemplate" type="file" name="file" data-url="core/ajax/scenario.ajax.php?action=templateupload&jeedom_token=<?php echo ajax::getToken(); ?>" style="display : inline-block;">
+                <i class="fa fa-cloud-upload"></i> {{Appliquer un template}}<input class="expertModeVisible" id="bt_uploadScenarioTemplate" type="file" name="file" data-url="core/ajax/scenario.ajax.php?action=templateupload&jeedom_token=<?php echo ajax::getToken(); ?>" style="display : inline-block;">
             </span>
         </center>
         <br/>
@@ -67,7 +67,7 @@ foreach (update::listRepo() as $key => $value) {
             </div>
         </div>
         <div id='div_scenarioTemplateParametreConfiguration' style='display : none;'>
-            <legend>{{Paramètres du scénario}}<a class='btn btn-warning btn-xs pull-right' id='bt_scenarioTemplateApply'><i class="fa fa-check-circle"></i> Appliquer</a></legend>
+            <legend>{{Paramètres du scénario}}<a class='btn btn-warning btn-xs pull-right' id='bt_scenarioTemplateApply'><i class="fa fa-check-circle"></i> {{Appliquer}}</a></legend>
             <div id='div_scenarioTemplateParametreList'></div>
         </div>
     </form>
@@ -103,7 +103,7 @@ foreach (update::listRepo() as $key => $value) {
        $('#div_marketScenarioTemplate').load('index.php?v=d&modal=update.list&type=scenario&repo='+$(this).attr('data-repo')).show();
    });
 
-   $('#bt_scenarioTemplateShare').on('click', function () {
+   $('.bt_scenarioTemplateShare').on('click', function () {
     if($('#ul_scenarioTemplateList li.active').attr('data-template') == undefined){
         $('#md_scenarioTemplate').showAlert({message: 'Vous devez d\'abord selectionner un template', level: 'danger'});
         return;

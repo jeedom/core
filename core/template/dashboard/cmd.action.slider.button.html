@@ -1,23 +1,34 @@
-  <div class="cmd" data-type="action" data-subtype="slider" data-cmd_id="#id#" data-cmd_uid="#uid#" style="min-height:60px;" >
-  <center>
-     <input id="stateDanfoss#id#" type="text" class="value form-control input-sm" value="#state# #unite#" style="width: 50px;display: inline-block; position: relative; top : 1px;"/>
-    <div class="btn-group" style="position : relative;top:-3px;">
-        <a class="btn btn-default btn-sm bt_plus" style="background-color:#cmdColor# !important;border-color : transparent !important;"><i class="fa fa-plus"></i></a> 
-        <a class="btn btn-default btn-sm bt_minus" style="background-color:#cmdColor# !important;border-color : transparent !important;"><i class="fa fa-minus"></i></a>
-    </div>
-
-  </center>
-    <script>
-          $('.cmd[data-cmd_uid=#uid#] .bt_plus').on('click', function () {
-            $('.cmd[data-cmd_uid=#uid#] .value').val((parseFloat($('.cmd[data-cmd_uid=#uid#] .value').val()) + 0.5)+'#unite#');
-            $('.cmd[data-cmd_uid=#uid#] .value').trigger('change');
-        });
-        $('.cmd[data-cmd_uid=#uid#] .bt_minus').on('click', function () {
-            $('.cmd[data-cmd_uid=#uid#] .value').val((parseFloat($('.cmd[data-cmd_uid=#uid#] .value').val()) - 0.5)+'#unite#');
-            $('.cmd[data-cmd_uid=#uid#] .value').trigger('change');
-        });
-        $('.cmd[data-cmd_uid=#uid#] .value').on('change', function () {
-            jeedom.cmd.execute({id: '#id#', value: {slider: $('.cmd[data-cmd_uid=#uid#] .value').val().replace("#unite#", "")}});
-        });
-    </script>
+    <div class="cmd" data-type="action" data-subtype="slider" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" style="min-height:50px;">
+     <div style="font-weight: bold;font-size : 12px;#hideCmdName#">#name_display#</div>
+     <center>
+       <div class="input-group" style="width: 130px;">
+         <input type="text" class="value form-control input-sm" value="#state# #unite#" disabled style=""/>
+         <span class="input-group-btn" style="position: relative;top:-6px;">
+           <a class="btn btn-default bt_minus" style="background-color:#cmdColor# !important;border-color : transparent !important;"><i class="fa fa-minus"></i></a>
+           <a class="btn btn-default bt_plus" style="background-color:#cmdColor# !important;border-color : transparent !important;"><i class="fa fa-plus"></i></a> 
+         </span>
+       </div>
+     </center>
+     <script>
+      $('.cmd[data-cmd_uid=#uid#] .bt_plus').on('click', function () {
+        $('.cmd[data-cmd_uid=#uid#] .value').val((parseFloat($('.cmd[data-cmd_uid=#uid#] .value').val()) + 0.5)+' #unite#');
+        $('.cmd[data-cmd_uid=#uid#] .value').trigger('change');
+      });
+      $('.cmd[data-cmd_uid=#uid#] .bt_minus').on('click', function () {
+        $('.cmd[data-cmd_uid=#uid#] .value').val((parseFloat($('.cmd[data-cmd_uid=#uid#] .value').val()) - 0.5)+' #unite#');
+        $('.cmd[data-cmd_uid=#uid#] .value').trigger('change');
+      });
+      $('.cmd[data-cmd_uid=#uid#] .value').on('change', function () {
+        if (typeof timerHandle !== 'undefined') {
+         clearTimeout(timerHandle);
+         timerHandle = setTimeout(function() {
+          jeedom.cmd.execute({id:'#id#', value: {slider: $('.cmd[data-cmd_uid=#uid#] .value').val().replace("#unite#", "").replace(" ", "")}});
+        }, 1000)
+       } else {
+        timerHandle = setTimeout(function() {
+          jeedom.cmd.execute({id:'#id#', value: {slider: $('.cmd[data-cmd_uid=#uid#] .value').val().replace("#unite#", "").replace(" ", "")}});
+        }, 1000)
+      }    
+    });
+  </script>
 </div>

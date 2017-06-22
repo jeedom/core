@@ -146,16 +146,16 @@ class utils {
 			}
 		} else {
 			if ($_attr == '' || !is_json($_attr)) {
-				$_attr = json_encode(array($_key => $_value), JSON_UNESCAPED_UNICODE);
+				$attr = array();
 			} else {
 				$attr = json_decode($_attr, true);
-				if (is_array($_key)) {
-					$attr = array_merge($attr, $_key);
-				} else {
-					$attr[$_key] = $_value;
-				}
-				$_attr = json_encode($attr, JSON_UNESCAPED_UNICODE);
 			}
+			if (is_array($_key)) {
+				$attr = array_merge($attr, $_key);
+			} else {
+				$attr[$_key] = $_value;
+			}
+			$_attr = json_encode($attr, JSON_UNESCAPED_UNICODE);
 		}
 		return $_attr;
 	}

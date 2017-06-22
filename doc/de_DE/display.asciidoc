@@ -1,6 +1,6 @@
 = Übersicht Haus-Automatisierung
 
-Cette page permet d'avoir un résumé sur sa domotique et donne aussi accès à des fonctions d'organisation des équipements et des commandes, à de la configuration avancée des équipements et des commandes ainsi qu'à des possibilités de configuration d'affichage. Elle se décompose en un onglet "Ma domotique" et un un onglet "Configuration de l'affichage".
+Cette page permet d'avoir un résumé sur sa domotique et donne aussi accès à des fonctions d'organisation des équipements et des commandes, à la configuration avancée des équipements et des commandes ainsi qu'à des possibilités de configuration d'affichage. Elle se décompose en un onglet "Ma domotique" et un un onglet "Configuration de l'affichage".
 
 Diese Seite ist über Werkzeuge -> Übersicht Haus-Automatisierung erreichbar : 
 
@@ -12,7 +12,7 @@ image::../images/display2.png[]
 
 On retrouve tout en haut un résumé du nombre d'objets existants, du nombre d'équipements et du nombre de commandes. Sur la droite se trouve un bouton pour masquer tous les équipements inactifs et un champ de recherche pour par exemple chercher un équipement, une commande ou tous les équipements d'un certain type (plugin, par exemple il suffit de taper rfxcom pour avoir tous les équipements rfxcom)
 
-En dessous on retrouve un cadre par objet, dans chaque cadre se trouve la liste des équipements (en bleu) contenus dans l'objet. Vous avez sur la ligne du nom de l'objet jusqu'à 3 boutons, dans l'ordre : 
+En dessous on retrouve un cadre par objet. Dans chaque cadre se trouve la liste des équipements (en bleu) contenus dans l'objet. Vous avez sur la ligne du nom de l'objet jusqu'à 3 boutons, dans l'ordre : 
 
 * le premier sert à ouvrir la page de configuration de l'objet dans un nouvel onglet
 * le deuxième donne un résumé sur l'objet
@@ -35,7 +35,7 @@ image::../images/display3.png[]
 image::../images/display4.png[]
 
 * Gerätename
-* le type de l'équipement (identifiant du plugin auxquel il appartient)
+* le type de l'équipement (identifiant du plugin auquel il appartient)
 * une croix signifie que l'équipement est inactif (si elle n'y est pas alors l'équipement est actif)
 * un oeil barré signifie que l'équipement est invisible (s'il n'y est pas alors l'équipement est visible)
 * lien externe : permet d'ouvrir dans un nouvel onglet la page de configuration de l'équipement
@@ -50,7 +50,7 @@ Wenn Sie die Liste der Befehle entfalten erhalten Sie :
 
 image::../images/display5.png[]
 
-Chaque bloc jaune correspond à une commande de votre équipement (un nouveau sur la petite flèche de l'équipement permet de les masquer). Si vous faites un double clic sur la commande ou que vous cliquez sur la petite roue crantée cela fera apparaitre la fenêtre de configuration
+Chaque bloc jaune correspond à une commande de votre équipement (un nouveau clic sur la petite flèche de l'équipement permet de les masquer). Si vous faites un double clic sur la commande ou que vous cliquez sur la petite roue crantée cela fera apparaitre la fenêtre de configuration
 
 == Erweiterte Geräte Konfiguration
 
@@ -68,14 +68,14 @@ image::../images/display9.png[]
 L'onglet information contient les informations générales de l'équipement : 
 
 * *ID* : identifiant unique dans la base de données
-* *Nom* : nom de l'équipement
+* *Name* : Gerätename
 * *ID logique* : identifiant logique de l'équipement (peut être vide)
 * *ID de l'objet* : identifiant unique de l'objet père (peut être vide)
 * *Date de création* : date de création de l'équipement
 * *Activer* : permet d'activer ou non l'équipement (n'oubliez pas de sauvegarder)
 * *Visible* : permet de rendre visible ou non l'équipement (n'oubliez pas de sauvegarder)
 * *Type* : identifiant du plugin auquel il appartient
-* *Tentative échoué* : nombre de tentatives de communications consécutives avec l'équipement qui ont échoué
+* *Tentative échouée* : nombre de tentatives de communications consécutives avec l'équipement qui ont échoué
 * *Dernière mise à jour* : date de dernière communication avec l'équipement
 
 === Erweiterte Anzeige
@@ -118,35 +118,35 @@ L'onglet information contient les informations générales sur la commande :
 
 * *ID* : identifiant unique dans la base de données
 * *Logical ID* : identifiant logique de la commande (peut être vide)
-* *Nom* : nom de la commande
+* *Name* : Name des Befehls
 * *Type* : type de la commande (action ou info)
 * *Sous-type* : sous type de la commande (binaire, numérique...)
 * *URL directe* : fournit une URL (clic droit copier l'addresse du lien) pour, en fonction du type de la commande, déclencher l'action ou récupérer sa valeur (si c'est une commande de type info)
 * *Unité* : unité de la commande
-* *Commande déclenchant une mise à jour* : donne l'identifiant d'une autre commande qui si cette aute commande change, va forcer la mise à jour de la commande visualisée
-* *Cache* : durée de vie de la valeur de la commande en mémoire (une fois ce délai fini Jeedom redemandera sa valeur). Attention si vous êtes en événement alors ce paramètre est ignoré car la durée de vie est infinie. Si vous n'avez aucune valeur et que vous n'êtes pas en événement alors la durée de vie est celle définie dans la configuration de Jeedom (par defaut 300s)
+* *Commande déclenchant une mise à jour* : donne l'identifiant d'une autre commande qui, si cette autre commande change, va forcer la mise à jour de la commande visualisée
+* *Cache* : durée de vie de la valeur de la commande en mémoire (une fois ce délai passé Jeedom redemandera sa valeur). Attention si vous êtes en événement alors ce paramètre est ignoré car la durée de vie est infinie. Si vous n'avez aucune valeur et que vous n'êtes pas en événement alors la durée de vie est celle définie dans la configuration de Jeedom (par defaut 300s)
 * *Evènement seulement* : indique à Jeedom qu'il ne peut pas demander la valeur de la commande (c'est l'équipement ou le plugin qui le lui transmet)
-* *Visible* : defini si la commande est visible ou non
+* *Visible* : définit si la commande est visible ou non
 
 En-dessous, vous retrouvez la liste des différents équipements, commandes, scénarios ou interactions qui utilisent cette commande. Un clic dessus permet d'aller directement sur leur configuration respective
 
-=== Configuration avancée
+=== Erweiterte Konfiguration
 
 image::../images/display13.png[]
 
-Pas mal d'option ici (elles peuvent varier en fonction du type et du sous-type de la commande). 
+Pas mal d'options ici (elles peuvent varier en fonction du type et du sous-type de la commande). 
 
 Pour une commande de type info :
 
 * *Calcul et arrondit*
-** *Formule de calcul (\#value# pour la valeur)* : vous pouvez ici faire une opération sur la valeur de la commande avant le traitement par Jeedom, exemple : \#valeur# - 0.2 pour retrancher 0.2 (offset sur un capteur de température)
+** *Formule de calcul (\#value# pour la valeur)* : vous pouvez ici faire une opération sur la valeur de la commande avant le traitement par Jeedom, exemple : \#value# - 0.2 pour retrancher 0.2 (offset sur un capteur de température)
 ** *Arrondi (chiffre après la virgule)* : permet d'arrondir la valeur de la commande, exemple : mettre 2 pour tranformer 16.643345 en 16.64
-* *Type générique* : cette partie permet de configurer le type générique de la commande (jeedom essaie de le trouver par lui-même en mode auto). Cette information est utilisée par l'application mobile.
-* *Action sur la valeur* : cette partie permet de faire des sortes de mini scénarii, vous pouvez par exemple dire que si la valeur vaut plus de 50 pendant 3 minutes alors il faut faire telle action. Cela permet par exemple d'éteindre une lumiere X minutes après que celle-ci se soit allumée
+* *Type générique* : cette partie permet de configurer le type générique de la commande (Jeedom essaie de le trouver par lui-même en mode auto). Cette information est utilisée par l'application mobile.
+* *Action sur la valeur* : cette partie permet de faire des sortes de mini scénarios, vous pouvez par exemple dire que si la valeur vaut plus de 50 pendant 3 minutes alors il faut faire telle action. Cela permet par exemple d'éteindre une lumiere X minutes après que celle-ci se soit allumée
 * *Historique* : voir link:https://jeedom.com/doc/documentation/core/fr_FR/doc-core-history.html#_configuration_spécifique_par_commande[ici]
 * * Sonstige*
 ** *Ne pas répéter si la valeur ne change pas* : Si la commande remonte 2 fois la même valeur d'affilée alors Jeedom ne prend pas en compte la 2eme remontée (évite de déclencher plusieurs fois un scénario par exemple si la valeur ne change pas)
-** *Push URL* : permet de rajouter une URL à appeler en cas de mise à jour de la commande. Vous pouvez utiliser les tags suivant : \#value# pour la valeur de la commande, \#cmd_name# pour le nom de la commande, \#cmd_id# pour l'identifiant unique de la commande, \#humanname# pour le nom complet de la commande (ex : \#[Salle de bain][Hydrometrie][Humidité]#)
+** *Push URL* : Erlaubt eine URL hinzuzufügen, die bei Aktualisierung eines Befehls aufzurufen ist. Sie können die folgenden Tags benutzen :  \#value# für den Wert des Befehls, \#cmd_name# für den Namen des Befehls, \#cmd_id# für die eindeutige Kennung des Befehls, \#humanname# für den vollständigen Namen des Befehls (z.B. \#[Bad][Hydrometrie][Feuchtigkeit]#)
 
 Si vous êtes sur une commande type action vous avez : 
 
@@ -167,9 +167,9 @@ Sie können :
 * *Visible* : permet de masquer ou non la commande en desktop ou mobile
 * *Afficher le nom* : permet de masquer le nom de la commande en fonction du contexte (dashboard et design, vue ou mobile)
 * *Afficher les statistiques* : permet de ne pas afficher les statistiques en fonction du contexte (dashboard et design, vue ou mobile). Attention, il faut avoir activé les statistiques dans la configuration de Jeedom pour que cette option ait un impact
-* *Retour à la ligne forcé avant le widget* : permet d'ajouter un retour à la ligne avant ou après le widget (pour forcer par exemple un affichage en colonne des differentes commandes l'équipement au lieu de ligne par defaut)
+* *Retour à la ligne forcé avant le widget* : permet d'ajouter un retour à la ligne avant ou après le widget (pour forcer par exemple un affichage en colonne des différentes commandes de l'équipement au lieu de lignes par defaut)
 
-En-dessous, on retrouve des paramètres optionnels d'affichage que l'on peut passer au widget. Ces paramètres dependent du widget en question, il faut donc regarder sa fiche sur le market pour les connaitre.
+En-dessous, on retrouve des paramètres optionnels d'affichage que l'on peut passer au widget. Ces paramètres dependent du widget en question, il faut donc regarder sa fiche sur le Market pour les connaitre.
 
 [TIP]
 Vergessen Sie nicht, nach jeder Veränderung zu speichern.

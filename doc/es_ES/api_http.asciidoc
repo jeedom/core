@@ -8,32 +8,32 @@ Esta API se utiliza muy fácilmente a través de solicitudes HTTP vía URL. Para
 
 Atención si su versión es DIY es necesario añadir /jeedom después de las direcciones ip.
 
-== Manejo de las escenas
+== Manejo de las escenarios
 
 La primera consulta se utiliza sólo para activar una escena
 
-Aquí le damos la URL = http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=\#APIKEY#&type=scenario&id=\#ID#&action=\#ACCIÓN#
+Aquí la URL = http://\#IP_JEEDOM#/core/api/jeeApi.php?apikey=\#APIKEY#&type=scenario&id=\#ID#&action=\#ACTION#
 
-#IP_JEEDOM # corresponde a la url de Jeedom. Es la dirección de internet que utilizas para acceder a Jeedom desde fuera (a menos que estés conectado a tu red local).
+\#IP_JEEDOM # corresponde a la url de acceso a Jeedom. Es la dirección de internet que utilizas para acceder a Jeedom desde fuera (a menos que estés conectado a tu red local).
 
 #API_KEY # corresponde a tu API key, es único para su instalación. Para saber cual es, debe activar el modo experto. Ir a Menú superior, luego 'Administración' y en 'Configuración General', verá una línea con la clave API.
 
 image::../images/apihttp.jpg[]
 
-#ID # es el id de una escena. El ID se encuentra en la página de escenas... (No olvides activar el modo experto)
+#ID # es el id de un escenario. El ID se encuentra en la página de escenarios... (No olvides activar el modo experto)
 
 image::../images/apihttp2.png[]
 
-#ACCIÓN # corresponde a la acción que desea aplicar a una escena. Las ordenes disponibles son: "start" comenzar una escena, "stop" para detener una escena, "desactivar" para deshabilitar una escena, "activar" para activar una escena.
+#ACCIÓN # corresponde a la acción que desea aplicar a un escenario. Las ordenes disponibles son: "start" comenzar un escenario, "stop" para detener un escenario, "desactivar" para deshabilitar un escenario, "activar" para activar un escenario.
 
-== Manejo de ordenes
+== Manejo de comandos
 
 La segunda consulta permite simplemente controlar todos los otros módulos de Jeedom (módulo domotica/plugin etc.).
 
-Aquí le damos la URL = http://\#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY#&type=cmd&id=\#ID#
+Aquí la URL = http://\#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY#&type=cmd&id=\#ID#
 
 \#IP_JEEDOM# y \#API_KEY# se utilizan en la misma forma que antes.
 
 \#ID# es el id que desea manejar o recibir información.
 
-La forma más sencilla de obtener esta dirección URL es ir la página de resumen de domótica,  buscar el comando y a continuación, abrir configuración avanzada y ahí podrás ver una dirección URL que contiene todo la cadena de ejecución en función del tipo y subtipo del comando. Ver link:https://jeedom.com/doc/documentation/core/fr_FR/doc-core-display.html#_informations_2[ici]
+La forma más sencilla de obtener esta dirección URL es ir la página de resumen de domótica,  buscar el comando y a continuación, abrir configuración avanzada y ahí podrás ver una dirección URL que contiene todo la cadena de ejecución en función del tipo y subtipo del comando. Ver link:https://jeedom.com/doc/documentation/core/es_ES/doc-core-display.html#_informations_2[aquí]

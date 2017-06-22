@@ -8,21 +8,25 @@ if (!is_object($eqLogic)) {
 }
 
 sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
+sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->getHumanName())));
 ?>
 <div style="display: none;" id="md_displayEqLogicConfigure"></div>
 
 <a class="btn btn-danger pull-right btn-sm" id="bt_eqLogicConfigureRemove"><i class="fa fa-times"></i> {{Supprimer}}</a>
 <a class="btn btn-success pull-right btn-sm" id="bt_eqLogicConfigureSave"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
-<a class="btn btn-default pull-right btn-sm" id="bt_eqLogicConfigureRawObject"><i class="fa fa-info"></i> {{Informations brutes}}</a>
+<a class="btn btn-default pull-right btn-sm" id="bt_eqLogicConfigureRawObject"><i class="fa fa-info"></i> {{Informations}}</a>
+<a class="btn btn-default pull-right btn-sm" id="bt_eqLogicConfigureLogRealTime"><i class="fa fa-file"></i> {{Log}}</a>
+<a class="btn btn-default pull-right btn-sm" id="bt_eqLogicConfigureGraph"><i class="fa fa-object-group"></i> {{Liens}}</a>
 
 <ul class="nav nav-tabs" role="tablist">
 	<li role="presentation" class="active"><a href="#eqLogic_information" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-info-circle"></i> {{Informations}}</a></li>
 	<?php if ($eqLogic->widgetPossibility('custom')) {
 	?>
-		<li role="presentation"><a href="#eqLogic_display" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-desktop"></i> {{Affichage avancé}}</a></li>
+		<li role="presentation"><a href="#eqLogic_display" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-desktop"></i> {{Affichage}}</a></li>
 		<?php }
 ?>
 		<li role="presentation"><a href="#eqLogic_battery" aria-controls="messages" role="tab" data-toggle="tab"><i class="icon techno-charging"></i> {{Batterie}}</a></li>
+		<li role="presentation"><a href="#eqLogic_comment" aria-controls="messages" role="tab" data-toggle="tab" id="bt_EqLogicConfigurationTabComment"><i class="fa fa-commenting-o"></i> {{Commentaire}}</a></li>
 	</ul>
 
 	<div class="tab-content" id="div_displayEqLogicConfigure">
@@ -410,6 +414,10 @@ if ($eqLogic->getDisplay('parameters') != '') {
 													<label class="col-xs-2 label label-success" style="font-size : 1.8em">{{Ok}}</label>
 												</div>
 											</div>
+											<div role="tabpanel" class="tab-pane" id="eqLogic_comment">
+												<br/>
+												<textarea data-l1key="comment" class="form-control eqLogicAttr autogrow" ></textarea>
+											</div>
 										</div>
 										<script>
 											$('.background-color-default').off('change').on('change',function(){
@@ -419,7 +427,6 @@ if ($eqLogic->getDisplay('parameters') != '') {
 													$(this).closest('td').find('.span_configureBackgroundColor').show();
 												}
 											});
-
 											$('.background-color-transparent').off('change').on('change',function(){
 												var td = $(this).closest('td');
 												if($(this).value() == 1){
@@ -428,7 +435,6 @@ if ($eqLogic->getDisplay('parameters') != '') {
 													td.find('.background-color').show();
 												}
 											});
-
 											$('.color-default').off('change').on('change',function(){
 												var td = $(this).closest('td')
 												if($(this).value() == 1){
@@ -437,7 +443,6 @@ if ($eqLogic->getDisplay('parameters') != '') {
 													td.find('.color').show();
 												}
 											});
-
 											$('.border-default').off('change').on('change',function(){
 												var td = $(this).closest('td')
 												if($(this).value() == 1){
@@ -446,7 +451,6 @@ if ($eqLogic->getDisplay('parameters') != '') {
 													td.find('.border').show();
 												}
 											});
-
 											$('.border-radius-default').off('change').on('change',function(){
 												var td = $(this).closest('td')
 												if($(this).value() == 1){
@@ -455,7 +459,6 @@ if ($eqLogic->getDisplay('parameters') != '') {
 													td.find('.border-radius').show();
 												}
 											});
-
 											$('.advanceWidgetParameterDefault').off('change').on('change',function(){
 												if($(this).value() == 1){
 													$(this).closest('td').find('.advanceWidgetParameter').hide();
@@ -463,7 +466,6 @@ if ($eqLogic->getDisplay('parameters') != '') {
 													$(this).closest('td').find('.advanceWidgetParameter').show();
 												}
 											});
-
 											$('.advanceWidgetParameterColorTransparent').off('change').on('change',function(){
 												if($(this).value() == 1){
 													$(this).closest('td').find('.advanceWidgetParameterColor').hide();
@@ -471,16 +473,23 @@ if ($eqLogic->getDisplay('parameters') != '') {
 													$(this).closest('td').find('.advanceWidgetParameterColor').show();
 												}
 											});
-
 											$('#div_displayEqLogicConfigure').setValues(eqLogicInfo, '.eqLogicAttr');
-											$('#table_widgetParameters').delegate('.removeWidgetParameter', 'click', function () {
+
+											$('#bt_eqLogicConfigureGraph').on('click', function () {
+												$('#md_modal2').dialog({title: "{{Graphique des liens}}"});
+												$("#md_modal2").load('index.php?v=d&modal=graph.link&filter_type=eqLogic&filter_id='+eqLogicInfo.id).dialog('open');
+											});
+
+											$('#table_widgetParameters').on( 'click', '.removeWidgetParameter',function () {
 												$(this).closest('tr').remove();
+											});
+											$('#bt_EqLogicConfigurationTabComment').on('click', function () {
+												setTimeout(function(){ $('.eqLogicAttr[data-l1key=comment]').trigger('change'); }, 10);
 											});
 											$('#bt_eqLogicConfigureRawObject').off('click').on('click',function(){
 												$('#md_modal2').dialog({title: "{{Informations brutes}}"});
 												$("#md_modal2").load('index.php?v=d&modal=object.display&class=eqLogic&id='+eqLogicInfo.id).dialog('open');
 											})
-
 											$('#bt_addWidgetParameters').off().on('click', function () {
 												var tr = '<tr>';
 												tr += '<td>';
@@ -541,6 +550,12 @@ if ($eqLogic->getDisplay('parameters') != '') {
 												$('#md_modal2').dialog({title: "{{Configuration de la commande}}"});
 												$('#md_modal2').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open');
 											});
+
+											$('#bt_eqLogicConfigureLogRealTime').off('click').on('click', function () {
+												$('#md_modal2').dialog({title: "{{Logs}}"});
+												$('#md_modal2').load('index.php?v=d&modal=log.display&log=event&search=' + eqLogicInfoSearchString).dialog('open');
+											});
+
 
 
 										</script>

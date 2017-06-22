@@ -20,6 +20,11 @@
     category_dashabord = 'all';
 }
 
+var summary_dashabord = getUrlVars('summary');
+if(summary_dashabord == false){
+    summary_dashabord = '';
+}
+
 $('body').delegate('.eqLogic-widget .history', 'click', function () {
     $('#md_modal2').dialog({title: "Historique"});
     $("#md_modal2").load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
@@ -156,12 +161,17 @@ function getObjectHtml(_object_id){
     id: _object_id,
     version: 'dashboard',
     category : category_dashabord,
+    summary : summary_dashabord,
     error: function (error) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
     success: function (html) {
+        if($.trim(html) == ''){
+            $('#div_ob'+_object_id).parent().remove();
+            return;
+        }
         try {
-            $('#div_ob'+_object_id).empty().html(html);
+            $('#div_ob'+_object_id).empty().html(html).parent().show();
         }catch(err) {
             console.log(err);
         }
@@ -192,6 +202,7 @@ function getObjectHtml(_object_id){
                             eqLogics.push(eqLogic);
                         }
                     });
+                    $('.div_displayEquipement').packery();
                     jeedom.eqLogic.setOrder({
                         eqLogics: eqLogics,
                         error: function (error) {
@@ -218,4 +229,17 @@ $('#bt_editDashboardWidgetOrder').on('click',function(){
        editWidgetMode(1);
        $(this).css('color','rgb(46, 176, 75)');
    }
+});
+
+
+$('.li_object').on('click',function(){
+    var object_id = $(this).find('a').attr('data-object_id');
+    if($('.div_object[data-object_id='+object_id+']').html() != undefined){
+        $('.li_object').removeClass('active');
+        $(this).addClass('active');
+        var top = $('#div_displayObject').scrollTop()+ $('.div_object[data-object_id='+object_id+']').offset().top - 60;
+        $('#div_displayObject').animate({ scrollTop: top}, 500);
+    }else{
+        window.location.href = $(this).find('a').attr('data-href');
+    }
 });

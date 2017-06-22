@@ -9,7 +9,6 @@ if (!class_exists($plugin_id)) {
 }
 $plugin = plugin::byId($plugin_id);
 $dependancy_info = $plugin->dependancy_info();
-$refresh = array();
 ?>
 <table class="table table-bordered">
 	<thead>
@@ -23,9 +22,8 @@ $refresh = array();
 	<tbody>
 		<tr>
 			<td>{{Local}}</td>
-			<td class="dependancyState" data-slave_id="0">
+			<td class="dependancyState">
 				<?php
-$refresh[0] = 1;
 switch ($dependancy_info['state']) {
 	case 'ok':
 		echo '<span class="label label-success" style="font-size:1em;">{{OK}}</span>';
@@ -50,114 +48,48 @@ switch ($dependancy_info['state']) {
 ?>
 			</td>
 			<td>
-				<a class="btn btn-warning btn-sm launchInstallPluginDependancy" data-slave_id="0" style="position:relative;top:-5px;"><i class="fa fa-bicycle"></i> {{Relancer}}</a>
+				<a class="btn btn-warning btn-sm launchInstallPluginDependancy" style="position:relative;top:-5px;"><i class="fa fa-bicycle"></i> {{Relancer}}</a>
 			</td>
-			<td class="td_lastLaunchDependancy" data-slave_id="0">
+			<td class="td_lastLaunchDependancy">
 				<?php echo $dependancy_info['last_launch'] ?>
 			</td>
 		</tr>
-
-		<?php
-if (config::byKey('jeeNetwork::mode') == 'master') {
-	foreach (jeeNetwork::byPlugin($plugin_id) as $jeeNetwork) {
-		try {
-			$dependancy_info = $jeeNetwork->sendRawRequest('plugin::dependancyInfo', array('plugin_id' => $plugin_id));
-			?>
-					<tr>
-						<td>
-							<?php echo $jeeNetwork->getName(); ?>
-						</td>
-						<td class="dependancyState" data-slave_id="<?php echo $jeeNetwork->getId(); ?>">
-							<?php
-$refresh[$jeeNetwork->getId()] = 1;
-			if (!isset($dependancy_info['state'])) {
-				$dependancy_info['state'] = 'nok';
-			}
-			switch ($dependancy_info['state']) {
-				case 'ok':
-					echo '<span class="label label-success" style="font-size:1em;">{{OK}}</span>';
-					break;
-				case 'nok':
-					echo '<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>';
-					break;
-				case 'in_progress':
-					echo '<span class="label label-primary" style="font-size:1em;"><i class="fa fa-spinner fa-spin"></i> {{Installation en cours}}';
-					if (isset($dependancy_info['progression']) && $dependancy_info['progression'] !== '') {
-						echo ' - ' . $dependancy_info['progression'] . ' %';
-					}
-					if (isset($dependancy_info['duration']) && $dependancy_info['duration'] != -1) {
-						echo ' - ' . $dependancy_info['duration'] . ' min';
-					}
-					echo '</span>';
-					break;
-				default:
-					echo '<span class="label label-warning" style="font-size:1em;">' . $dependancy_info['state'] . '</span>';
-					break;
-			}
-			?>
-						</td>
-						<td>
-							<a class="btn btn-warning btn-sm launchInstallPluginDependancy" data-slave_id="<?php echo $jeeNetwork->getId(); ?>" style="position:relative;top:-5px;"><i class="fa fa-bicycle"></i> {{Relancer}}</a>
-						</td>
-						<td class="td_lastLaunchDependancy" data-slave_id="<?php echo $jeeNetwork->getId(); ?>">
-							<?php
-if (isset($dependancy_info['last_launch'])) {
-				echo $dependancy_info['last_launch'];
-			}
-			?>
-						</td>
-					</tr>
-					<?php
-} catch (Exception $e) {
-
-		}
-	}
-}
-?>
 	</tbody>
 </table>
-<?php
-sendVarToJs('refresh_dependancy_info', $refresh);
-?>
 <script>
 	function refreshDependancyInfo(){
 		var nok = false;
 		jeedom.plugin.getDependancyInfo({
 			id : plugin_id,
-			slave_id: json_encode(refresh_dependancy_info),
-			success: function (datas) {
-				for(var i in datas){
-					var data = datas[i];
-					switch(data.state) {
-						case 'ok':
-						$('.dependancyState[data-slave_id='+i+']').empty().append('<span class="label label-success" style="font-size:1em;">{{OK}}</span>');
-						break;
-						case 'nok':
-						nok = true;
-						$("#div_plugin_dependancy").closest('.panel').removeClass('panel-success panel-info').addClass('panel-danger');
-						$('.dependancyState[data-slave_id='+i+']').empty().append('<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>');
-						break;
-						case 'in_progress':
-						nok = true;
-						$("#div_plugin_dependancy").closest('.panel').removeClass('panel-success panel-danger').addClass('panel-info');
-						refresh_dependancy_info[i] = 1;
-						var html = '<span class="label label-primary" style="font-size:1em;"><i class="fa fa-spinner fa-spin"></i> {{Installation en cours}}';
-						if(isset(data.progression) && data.progression !== ''){
-							html += ' - '+data.progression+' %';
-						}
-						if(isset(data.duration) && data.duration != -1){
-							html += ' - '+data.duration+' min';
-						}
-						html += '</span>';
-						$('.dependancyState[data-slave_id='+i+']').empty().append(html);
-						break;
-						default:
-						$('.dependancyState[data-slave_id='+i+']').empty().append('<span class="label label-warning" style="font-size:1em;">'+data.state+'</span>');
+			success: function (data) {
+				switch(data.state) {
+					case 'ok':
+					$('.dependancyState').empty().append('<span class="label label-success" style="font-size:1em;">{{OK}}</span>');
+					break;
+					case 'nok':
+					nok = true;
+					$("#div_plugin_dependancy").closest('.panel').removeClass('panel-success panel-info').addClass('panel-danger');
+					$('.dependancyState').empty().append('<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>');
+					break;
+					case 'in_progress':
+					nok = true;
+					$("#div_plugin_dependancy").closest('.panel').removeClass('panel-success panel-danger').addClass('panel-info');
+					var html = '<span class="label label-primary" style="font-size:1em;"><i class="fa fa-spinner fa-spin"></i> {{Installation en cours}}';
+					if(isset(data.progression) && data.progression !== ''){
+						html += ' - '+data.progression+' %';
 					}
-					$('.td_lastLaunchDependancy[data-slave_id='+i+']').empty().append(data.last_launch);
-					if(!nok){
-						$("#div_plugin_dependancy").closest('.panel').removeClass('panel-danger panel-info').addClass('panel-success');
+					if(isset(data.duration) && data.duration != -1){
+						html += ' - '+data.duration+' min';
 					}
+					html += '</span>';
+					$('.dependancyState').empty().append(html);
+					break;
+					default:
+					$('.dependancyState').empty().append('<span class="label label-warning" style="font-size:1em;">'+data.state+'</span>');
+				}
+				$('.td_lastLaunchDependancy').empty().append(data.last_launch);
+				if(!nok){
+					$("#div_plugin_dependancy").closest('.panel').removeClass('panel-danger panel-info').addClass('panel-success');
 				}
 				if(nok){
 					setTimeout(refreshDependancyInfo, 5000);
@@ -168,10 +100,8 @@ sendVarToJs('refresh_dependancy_info', $refresh);
 	refreshDependancyInfo();
 
 	$('.launchInstallPluginDependancy').on('click',function(){
-		var slave_id = $(this).attr('data-slave_id');
 		jeedom.plugin.dependancyInstall({
 			id : plugin_id,
-			slave_id: slave_id,
 			error: function (error) {
 				$('#div_alert').showAlert({message: error.message, level: 'danger'});
 			},

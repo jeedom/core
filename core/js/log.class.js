@@ -37,8 +37,7 @@
  	paramsAJAX.url = 'core/ajax/log.ajax.php';
  	paramsAJAX.data = {
  		action: 'get',
- 		log: _params.log,
- 		jeeNetwork_id: _params.slaveId || ''
+ 		log: _params.log
  	};
  	$.ajax(paramsAJAX);
  }
@@ -59,8 +58,7 @@
  	paramsAJAX.url = 'core/ajax/log.ajax.php';
  	paramsAJAX.data = {
  		action: 'remove',
- 		log: _params.log,
- 		jeeNetwork_id: _params.slaveId || ''
+ 		log: _params.log
  	};
  	$.ajax(paramsAJAX);
  }
@@ -81,8 +79,7 @@
  	paramsAJAX.url = 'core/ajax/log.ajax.php';
  	paramsAJAX.data = {
  		action: 'clear',
- 		log: _params.log,
- 		jeeNetwork_id: _params.slaveId || ''
+ 		log: _params.log
  	};
  	$.ajax(paramsAJAX);
  }
@@ -109,7 +106,11 @@
  		return;
  	}
  	if(_params.callNumber == 0){
- 		_params['search'].value('');
+ 		if(isset(_params.default_search)){
+ 			_params['search'].value(_params.default_search);
+ 		}else{
+ 			_params['search'].value('');
+ 		}
  		_params.display.scrollTop(_params.display.height() + 200000);
  		if(_params['control'].attr('data-state') == 0){
  			_params['control'].attr('data-state',1);

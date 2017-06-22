@@ -38,7 +38,7 @@ if (isset($argv)) {
 
 try {
 	require_once dirname(__FILE__) . '/../core/php/core.inc.php';
-	
+
 	if (config::byKey('object:summary') == '' || !is_array(config::byKey('object:summary'))) {
 		config::save('object:summary',
 			array('security' => array('key' => 'security', 'name' => 'Alerte', 'calcul' => 'sum', 'icon' => '<i class="icon jeedom-alerte2"></i>', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
@@ -56,7 +56,6 @@ try {
 		);
 	}
 
-	
 	$crons = cron::all();
 	if (is_array($crons)) {
 		if (class_exists('Cron\CronExpression')) {
@@ -123,7 +122,6 @@ try {
 	}
 	$cron->setClass('jeedom');
 	$cron->setFunction('backup');
-
 	$cron->setSchedule(rand(10, 59) . ' 0' . rand(0, 7) . ' * * *');
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
@@ -291,29 +289,30 @@ try {
 	$cron->setDeamon(0);
 	$cron->save();
 
-	
-	if (!file_exists('/usr/local/share/ca-certificates/root_market.crt') && file_exists('/usr/local/share/ca-certificates')) {
-		echo 'Ajout du certificat du market...';
-		shell_exec('sudo cp ' . dirname(__FILE__) . '/../script/root_market.crt /usr/local/share/ca-certificates 2>&1 > /dev/null');
-		shell_exec('sudo update-ca-certificates 2>&1 > /dev/null');
-		echo "OK\n";
-	}
-
 	if (!file_exists(dirname(__FILE__) . '/../plugins')) {
 		mkdir(dirname(__FILE__) . '/../plugins');
-		@chown(dirname(__FILE__) . '/../plugins', 'www-data');
-		@chgrp(dirname(__FILE__) . '/../plugins', 'www-data');
-		@chmod(dirname(__FILE__) . '/../plugins', 0775);
+
+		if (!chown(dirname(__FILE__) . '/../plugins', system::get('www-uid'))) {
+			echo 'le propriétaire de ' . dirname(__FILE__) . "/../plugins n'a pas pu être modifié";
+		}
+
+		if (!chgrp(dirname(__FILE__) . '/../plugins', system::get('www-gid'))) {
+			echo 'le groupe de ' . dirname(__FILE__) . "/../plugins n'a pas pu être modifié";
+		}
+
+		if (!chmod(dirname(__FILE__) . '/../plugins', 0775)) {
+			echo 'les droits de ' . dirname(__FILE__) . "/../plugins n'ont pas pu être modifié";
+		}
 	}
 	config::save('hardware_name', '');
 	if (config::byKey('api') == '') {
 		config::save('api', config::genKey());
 	}
 	if (file_exists(dirname(__FILE__) . '/../../core/nodeJS')) {
-		shell_exec('sudo rm -rf ' . dirname(__FILE__) . '/../../core/nodeJS');
+		shell_exec(system::getCmdSudo() . 'rm -rf ' . dirname(__FILE__) . '/../../core/nodeJS');
 	}
 	if (file_exists(dirname(__FILE__) . '/../../script/ngrok')) {
-		shell_exec('sudo rm -Rf ' . dirname(__FILE__) . '/../../script/ngrok');
+		shell_exec(system::getCmdSudo() . 'rm -rf ' . dirname(__FILE__) . '/../../script/ngrok');
 	}
 	try {
 		foreach (eqLogic::all() as $eqLogic) {
@@ -328,20 +327,19 @@ try {
 			$object->save();
 		}
 	} catch (Exception $exc) {
-		echo $exc->getMessage();
-	}
-
-	try {
-		echo __("Renommage adminer en cours...", __FILE__);
-		jeedom::renameAdminerFolder();
-		echo __("OK\n", __FILE__);
-		echo __("Renommage sysinfo en cours...", __FILE__);
-		jeedom::renameSysInfoFolder();
-		echo __("OK\n", __FILE__);
-	} catch (Exception $e) {
 
 	}
 
+	foreach (cmd::all() as $cmd) {
+		$change = false;
+		if ($cmd->getConfiguration('jeedomCheckCmdCmdActionId') != '') {
+			$cmd->setConfiguration('jeedomCheckCmdCmdActionId', '');
+			$change = true;
+		}
+		if ($change) {
+			$cmd->save();
+		}
+	}
 } catch (Exception $e) {
 	echo "Error : ";
 	echo $e->getMessage();

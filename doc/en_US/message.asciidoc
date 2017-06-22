@@ -1,4 +1,4 @@
-= Message center
+= Centre des messages
 
 Le centre des messages regroupe tous les messages importants que vous devez regarder.
 
@@ -15,4 +15,4 @@ Il est assez simple. Il vous montre la date et l'heure du message, le plugin qui
 En haut, on retrouve un sélecteur pour filtrer les messages sur un plugin particulier et tout à droite un bouton pour vider tous les messages.
 
 [TIP]
-Lorsque vous avez une erreur dans le centre des messages, essayez d'abord de supprimer le message puis voir si l'erreur revient avant de contacter le support. Il arrive (comme sur la capture ici) que ce soit juste dû à un soucis de connexion réseau.
+Lorsque vous avez une erreur dans le centre des messages, essayez d'abord de supprimer le message puis voir si l'erreur revient avant de contacter le support. Il arrive (comme sur la capture ici) que ce soit juste dû à un souci de connexion réseau.

@@ -1,74 +1,10 @@
-FROM php:7-apache
+FROM debian:latest
 
 MAINTAINER info@jeedom.com
 
 ENV SHELL_ROOT_PASSWORD Mjeedom96
 
-RUN apt-get update && apt-get install -y \
-wget \
-libssh2-php \
-ntp \
-unzip \
-curl \
-openssh-server \
-supervisor \
-cron \
-usb-modeswitch \
-python-serial \
-nodejs \
-npm \
-tar \
-libmcrypt-dev \
-libcurl4-gnutls-dev \
-libfreetype6-dev \
-libjpeg62-turbo-dev \
-libpng12-dev \
-libxml2-dev \
-sudo \
-htop \
-net-tools \
-python \
-ca-certificates \
-vim \
-git \
-g++ \
-locate \
-mysql-client \
-telnet \
-man \
-usbutils \
-libtinyxml-dev \
-libjsoncpp-dev \
-snmp \
-libsnmp-dev \
-iputils-ping
-
-####################################################################PHP7 EXTENSION#######################################################################################
-
-RUN docker-php-ext-install json
-RUN docker-php-ext-install mcrypt
-RUN docker-php-ext-install curl
-RUN docker-php-ext-install opcache
-RUN docker-php-ext-install pdo
-RUN docker-php-ext-install pdo_mysql
-RUN docker-php-ext-install posix
-RUN docker-php-ext-install simplexml
-RUN docker-php-ext-install sockets
-RUN docker-php-ext-install zip
-RUN docker-php-ext-install iconv
-RUN docker-php-ext-install mbstring
-RUN docker-php-ext-install mysqli
-RUN docker-php-ext-install soap
-RUN docker-php-ext-install snmp
-RUN docker-php-ext-install pcntl
-RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
-RUN docker-php-ext-install gd
-RUN docker-php-ext-install calendar
-
-RUN rm /usr/bin/php
-RUN ln -s /usr/local/bin/php /usr/bin/php
-
-####################################################################SYSTEM#######################################################################################
+RUN apt-get update && apt-get install -y wget openssh-server supervisor mysql-client
 
 RUN echo "root:${SHELL_ROOT_PASSWORD}" | chpasswd && \
   sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config && \
@@ -81,14 +17,17 @@ RUN rm /root/.bashrc
 ADD install/bashrc /root/.bashrc
 ADD install/OS_specific/Docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
+ADD install/install.sh /root/install_docker.sh
+RUN chmod +x /root/install_docker.sh
+RUN /root/install_docker.sh -s 1;exit 0
+RUN /root/install_docker.sh -s 2;exit 0
+RUN /root/install_docker.sh -s 4;exit 0
+RUN /root/install_docker.sh -s 5;exit 0
+RUN /root/install_docker.sh -s 7;exit 0
+RUN /root/install_docker.sh -s 10;exit 0
+
 ADD install/OS_specific/Docker/init.sh /root/init.sh
 RUN chmod +x /root/init.sh
 CMD ["/root/init.sh"]
 
-EXPOSE 22 80 162 1886 4025 17100 10000 
-
-#17100 : zibasdom
-#10000 : orvibo
-#1886 : MQTT
-#162 : SNMP
-#4025 : DSC
+EXPOSE 22 80

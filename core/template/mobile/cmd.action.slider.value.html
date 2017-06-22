@@ -1,0 +1,22 @@
+<div class="cmd" data-type="action" data-subtype="slider" data-cmd_id="#id#" data-cmd_uid="#uid#">
+	<div class="slider" style="width: 96%;text-align: right;min-width : 100px;" style="background-color:#cmdColor# !important;">
+		<input type="range" min="#minValue#" max="#maxValue#" data-theme="a" value="#state#" style="background-color:#cmdColor# !important;"/>
+	</div>
+	<script>
+		$("body").undelegate(".cmd[data-cmd_uid=#uid#] .slider");
+		$("body").delegate(".cmd[data-cmd_uid=#uid#] .slider",'slidestop', function (event, ui) {
+			jeedom.cmd.execute({id: '#id#', value: {slider: $(".cmd[data-cmd_uid=#uid#] .slider input").value()}});
+		});
+		jeedom.cmd.update['#id#'] = function(_options){
+			$(".cmd[data-cmd_id=#id#] .slider input").value(_options.display_value);
+		}
+	</script>
+	<style>
+		.cmd[data-cmd_uid="#uid#"] .ui-slider-handle{
+			background-color:#cmdColor# !important;
+		}
+		.cmd[data-cmd_uid="#uid#"] .ui-slider-bg{
+			background-color:#cmdColor# !important;
+		}
+	</style>
+</div>

@@ -1,5 +1,5 @@
 <?php
-if (!hasRight('batteryview')) {
+if (!isConnect()) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 $list = array();
@@ -9,7 +9,7 @@ $objects = array();
 foreach (object::all() as $object) {
 	foreach ($object->getEqLogic() as $eqLogic) {
 		$battery_type = str_replace(array('(', ')'), array('', ''), $eqLogic->getConfiguration('battery_type', ''));
-		if ($eqLogic->getCache('batteryStatus', -2) != -2) {
+		if ($eqLogic->getStatus('battery', -2) != -2) {
 			array_push($list, $eqLogic);
 			array_push($plugins, $eqLogic->getEqType_name());
 			array_push($objects, $eqLogic->getobject()->getName());
@@ -24,55 +24,22 @@ foreach (object::all() as $object) {
 	}
 }
 usort($list, function ($a, $b) {
-	return ($a->getCache('batteryStatus') < $b->getCache('batteryStatus')) ? -1 : (($a->getCache('batteryStatus') > $b->getCache('batteryStatus')) ? 1 : 0);
+	return ($a->getStatus('battery') < $b->getStatus('battery')) ? -1 : (($a->getStatus('battery') > $b->getStatus('battery')) ? 1 : 0);
 });
 sort($plugins);
 sort($battery);
 ?>
-<div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;background-color:#f6f6f6;" class="div_smallSideBar" id="bt_displayFilter"><i class="fa fa-arrow-circle-o-right" style="color : #b6b6b6;"></i></div>
-<div class="row row-overflow">
-    <div class="col-md-3 col-sm-4" id="sd_filterList" style="z-index:999;display:none;">
-        <div class="bs-sidebar">
-            <ul id="ul_object" class="nav nav-list bs-sidenav">
-				<sup><i class="fa fa-question-circle pull-right" style="font-size : 1em;color:grey;" title="Les 'NON' sont prioritaires aux 'OUI'. Si vous voulez voir uniquement les piles salons (par exemple), il faut mettre oui partout dans les catégories Santé, Piles, Plugins ; et dans la catégorie Objets avoir uniquement Salon sur Oui. Ainsi vous verrez toutes les piles dans le salon et pas ailleurs et ceci quelquesoit le plugin, la santé et le type de piles. Pour voir les piles salons uniquement AAA, il faut OUI partout dans santé, OUI partout dans plugins ; dans Objets uniquement Salon sur OUI et dans Piles uniquement AAA sur oui etc...."></i></sup>
-				<li><div class="col-md-8 col-sm-9" style="cursor :default;"><legend><i class="icon divers-caduceus3"></i>  {{Santé}}</legend></div><div class="col-md-4 col-sm-3" style="margin-top:5px;"><i class="fa fa-times cursor  pull-right bt_globalsanteoff" title="Tout masquer" style="color : grey;"></i><i class="fa fa-refresh cursor pull-right bt_globalsantetoggle" title="Inverser" style="color : grey;"></i><i class="fa fa-check cursor pull-right bt_globalsanteon" title="Tout afficher" style="color : grey;"></i></li>
-				<li><div class="col-md-8 col-sm-9" style="cursor :default;">{{Critique}}</div>
-				<div class="col-md-4 col-sm-3">
-				<input type="checkbox" data-size="mini" id="critical" class="globalsante bootstrapSwitch" checked/></div></li>
-               <li><div class="col-md-8 col-sm-9" style="cursor :default;">{{Warning}}</div>
-			   <div class="col-md-4 col-sm-3">
-				<input type="checkbox" data-size="mini" id="warning" class="globalsante bootstrapSwitch" checked/></div></li>
-			   <li><div class="col-md-8 col-sm-9" style="cursor :default;">{{Bonne}}</div>
-			   <div class="col-md-4 col-sm-3">
-				<input type="checkbox" data-size="mini" id="good" class="globalsante bootstrapSwitch" checked/></div></li>
-				<li><div class="col-md-8 col-sm-9" style="cursor :default;"><legend><i class="icon techno-charging"></i>  {{Piles}}</legend></div><div class="col-md-4 col-sm-3" style="margin-top:15px;"><i class="fa fa-times cursor  pull-right bt_globalpileoff" title="Tout masquer" style="color : grey;"></i><i class="fa fa-refresh cursor pull-right bt_globalpiletoggle" title="Inverser" style="color : grey;"></i><i class="fa fa-check cursor pull-right bt_globalpileon" title="Tout afficher" style="color : grey;"></i></li>
-				<li><div class="col-md-8 col-sm-9" style="cursor :default;">{{Non définies}}</div><div class="col-md-4 col-sm-3"><input type="checkbox" data-size="mini" id="none" class="globalpile bootstrapSwitch" checked/></div></li>
-                <?php
-foreach (array_unique($battery) as $battery_type) {
-	echo '<li><div class="col-md-8 col-sm-9" style="cursor :default;">' . $battery_type . '</div><div class="col-md-4 col-sm-3">';
-	echo '<input type="checkbox" data-size="mini" id="' . $battery_type . '" class="globalpile bootstrapSwitch" checked/></div></li>';
-}
-?>
-				<li><div class="col-md-8 col-sm-9" style="cursor :default;"><legend><i class="fa fa-tasks"></i>  {{Plugins}}</legend></div><div class="col-md-4 col-sm-3" style="margin-top:15px;"><i class="fa fa-times cursor  pull-right bt_globalpluginoff" title="Tout masquer" style="color : grey;"></i><i class="fa fa-refresh cursor pull-right bt_globalplugintoggle" title="Inverser" style="color : grey;"></i><i class="fa fa-check cursor pull-right bt_globalpluginon" title="Tout afficher" style="color : grey;"></i></li>
-                <?php
-foreach (array_unique($plugins) as $plugins_type) {
-	echo '<li><div class="col-md-8 col-sm-9" style="cursor :default;">' . ucfirst($plugins_type) . '</div><div class="col-md-4 col-sm-3">';
-	echo '<input type="checkbox" data-size="mini" id="' . $plugins_type . '" class="globalplugin bootstrapSwitch" checked/></div></li>';
-}
-?>
-				<li><div class="col-md-8 col-sm-9" style="cursor :default;"><legend><i class="fa fa-picture-o" ></i>  {{Objets}}</legend></div><div class="col-md-4 col-sm-3" style="margin-top:15px;"><i class="fa fa-times cursor  pull-right bt_globalobjetoff" title="Tout masquer" style="color : grey;"></i><i class="fa fa-refresh cursor pull-right bt_globalobjettoggle" title="Inverser" style="color : grey;"></i><i class="fa fa-check cursor pull-right bt_globalobjeton" title="Tout afficher" style="color : grey;"></i></li>
-                <?php
-foreach (array_unique($objects) as $objets_type) {
-	echo '<li><div class="col-md-8 col-sm-9" style="cursor :default;">' . $objets_type . '</div><div class="col-md-4 col-sm-3">';
-	echo '<input type="checkbox" data-size="mini" id="' . str_replace(array(' ', '(', ')'), array('_', '', ''), $objets_type) . '" class="globalobjet bootstrapSwitch" checked/></div></li>';
-}
-?>
-           </ul>
-       </div>
-   </div>
-   <div class="col-md-9 col-sm-8" id="div_resumeBatteryList" style="border-left: solid 1px #EEE; padding-left: 25px;">
-   <div class="batteryListContainer">
-<?php
+<br/>
+<ul class="nav nav-tabs" role="tablist" id="ul_tabBatteryAlert">
+	<li role="presentation" class="active"><a href="#battery" aria-controls="battery" role="tab" data-toggle="tab"><i class="fa fa-battery-full"></i> {{Batterie}}</a></li>
+	<li role="presentation"><a href="#alertEqlogic" aria-controls="alertEqlogic" role="tab" data-toggle="tab"><i class="fa fa-exclamation-triangle"></i> {{Module en alerte}}</a></li>
+	<li role="presentation"><a href="#actionCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fa fa-gears"></i> {{Actions définies}}</a></li>
+</ul>
+
+<div class="tab-content">
+	<div role="tabpanel" class="tab-pane active" id="battery">
+		<div class="batteryListContainer">
+			<?php
 foreach ($list as $eqLogic) {
 	$color = '#2ecc71';
 	$level = 'good';
@@ -82,30 +49,113 @@ foreach ($list as $eqLogic) {
 	}
 	$plugins = $eqLogic->getEqType_name();
 	$objets = str_replace(array(' ', '(', ')'), array('_', '', ''), $eqLogic->getobject()->getName());
-	if ($eqLogic->getCache('batteryStatus') <= $eqLogic->getConfiguration('battery_danger_threshold', config::byKey('battery::danger'))) {
+	if ($eqLogic->getStatus('battery') <= $eqLogic->getConfiguration('battery_danger_threshold', config::byKey('battery::danger'))) {
 		$color = '#e74c3c';
 		$level = 'critical';
-	} else if ($eqLogic->getCache('batteryStatus') <= $eqLogic->getConfiguration('battery_warning_threshold', config::byKey('battery::warning'))) {
+	} else if ($eqLogic->getStatus('battery') <= $eqLogic->getConfiguration('battery_warning_threshold', config::byKey('battery::warning'))) {
 		$color = '#f1c40f';
 		$level = 'warning';
 	}
 	$classAttr = $level . ' ' . $battery . ' ' . $plugins . ' ' . $objets;
 	$idAttr = $level . '__' . $battery . '__' . $plugins . '__' . $objets;
 	echo '<div class="eqLogic eqLogic-widget ' . $classAttr . '" style="min-width:80px;background-color:' . $color . '" id="' . $idAttr . '">';
-	echo '<center class="widget-name"><a href="' . $eqLogic->getLinkToConfiguration() . '" style="font-size : 1.5em;">' . $eqLogic->getName() . '</a><br/><span style="font-size: 0.95em;position:relative;top:-5px;cursor:default;">' . $eqLogic->getobject()->getName() . '</span></center>';
-	echo '<center><span style="font-size:2.2em;font-weight: bold;cursor:default;">' . $eqLogic->getCache('batteryStatus', -2) . '</span><span>%</span></center>';
-	echo '<center style="cursor:default;">{{Le }}' . $eqLogic->getCache('batteryStatusDatetime', __('inconnue', __FILE__)) . '</center>';
+	echo '<div class="widget-name" style="text-align : center;"><a href="' . $eqLogic->getLinkToConfiguration() . '" style="font-size : 1.5em;">' . $eqLogic->getName() . '</a><br/><span style="font-size: 0.95em;position:relative;top:-5px;cursor:default;">' . $eqLogic->getobject()->getName() . '</span></div>';
+	echo '<div style="text-align : center;"><span style="font-size:2.2em;font-weight: bold;cursor:default;">' . $eqLogic->getStatus('battery', -2) . '</span><span>%</span></div>';
+	echo '<div style="text-align : center; cursor:default;">{{Le }}' . $eqLogic->getStatus('batteryDatetime', __('inconnue', __FILE__)) . '</div>';
 	if ($eqLogic->getConfiguration('battery_type', '') != '') {
 		echo '<span class="pull-right" style="font-size : 0.8em;margin-bottom: 3px;margin-right: 5px;cursor:default;" title="Piles">' . $eqLogic->getConfiguration('battery_type', '') . '</span>';
 	}
 	echo '<span class="pull-left" style="font-size : 0.8em;margin-bottom: 3px;margin-left: 5px;cursor:default;" title="Plugin">' . ucfirst($eqLogic->getEqType_name()) . '</span>';
-	if ($eqLogic->getConfiguration('battery_danger_threshold') != '' or $eqLogic->getConfiguration('battery_warning_threshold') != '') {
+	if ($eqLogic->getConfiguration('battery_danger_threshold') != '' || $eqLogic->getConfiguration('battery_warning_threshold') != '') {
 		echo '<i class="icon techno-fingerprint41 pull-right" style="position:absolute;bottom: 3px;right: 3px;cursor:default;" title="Seuil manuel défini"></i>';
 	}
 	echo '</div>';
 }
 echo '</div>';
 ?>
+		</div>
+		<div role="tabpanel" class="tab-pane" id="alertEqlogic">
+			<div class="alertListContainer">
+				<?php
+$hasAlert = '';
+foreach (eqLogic::all() as $eqLogic) {
+	if ($eqLogic->getAlert() == '') {
+		continue;
+	}
+	$hasAlert = 1;
+	echo $eqLogic->toHtml('dashboard');
+}
+if ($hasAlert == '') {
+	echo '<br/><div class="alert alert-success">{{Aucun module en Alerte pour le moment}}</div>';
+}
+?>
+			</div>
+		</div>
+		<div role="tabpanel" class="tab-pane" id="actionCmd">
+			<div class="cmdListContainer">
+				<table class="table table-condensed tablesorter" id="table_Action">
+					<thead>
+						<tr>
+							<th>{{Equipement}}</th>
+							<th>{{Commande}}</th>
+							<th>{{Type}}</th>
+							<th>{{Actions}}</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php
+foreach (eqLogic::all() as $eqLogic) {
+	foreach ($eqLogic->getCmd('info') as $cmd) {
+		if (count($cmd->getConfiguration('actionCheckCmd', array())) > 0) {
+			echo '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '" style="text-decoration: none;">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Action sur état}}</td>';
+			echo '<td>Si ' . $cmd->getConfiguration('jeedomCheckCmdOperator') . ' ' . $cmd->getConfiguration('jeedomCheckCmdTest') . ' {{plus de}} ' . $cmd->getConfiguration('jeedomCheckCmdTime') . ' {{minutes alors}} : ';
+			$actions = '';
+			foreach ($cmd->getConfiguration('actionCheckCmd') as $actionCmd) {
+				$actions .= scenarioExpression::humanAction($actionCmd) . '|';
+			}
+			echo trim($actions, '|');
+			echo '</td>';
+			echo '<td>';
+			echo '<a class="btn btn-default btn-xs cmdAction expertModeVisible pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fa fa-cogs"></i></a>';
+			echo '</td>';
+			echo '</tr>';
+		}
+	}
+	foreach ($eqLogic->getCmd('action') as $cmd) {
+		if (count($cmd->getConfiguration('jeedomPreExecCmd', array())) > 0) {
+			echo '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '" style="text-decoration: none;">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Pre exécution}}</td><td>';
+			$actions = '';
+			foreach ($cmd->getConfiguration('jeedomPreExecCmd') as $actionCmd) {
+				$actions .= scenarioExpression::humanAction($actionCmd) . '|';
+			}
+			echo trim($actions, '|');
+			echo '</td>';
+			echo '<td>';
+			echo '<a class="btn btn-default btn-xs cmdAction expertModeVisible pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fa fa-cogs"></i></a>';
+			echo '</td>';
+			echo '</tr>';
+		}
+		if (count($cmd->getConfiguration('jeedomPostExecCmd', array())) > 0) {
+			echo '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '" style="text-decoration: none;">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Post exécution}}</td><td>';
+			$actions = '';
+			foreach ($cmd->getConfiguration('jeedomPostExecCmd') as $actionCmd) {
+				$actions .= scenarioExpression::humanAction($actionCmd) . '|';
+			}
+			echo trim($actions, '|');
+			echo '</td>';
+			echo '<td>';
+			echo '<a class="btn btn-default btn-xs cmdAction expertModeVisible pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fa fa-cogs"></i></a>';
+			echo '</td>';
+			echo '</tr>';
+		}
+	}
+}
+?>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
 <?php include_file('desktop', 'battery', 'js');?>
-</div>
-</div>

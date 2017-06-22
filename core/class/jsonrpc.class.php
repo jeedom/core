@@ -24,13 +24,17 @@ class jsonrpc {
 	private $jsonrpc;
 	private $method;
 	private $params;
-	private $id;
+	private $id = 99999;
 	private $startTime;
 	private $applicationName;
 
 	/*     * ********Static******************* */
 
-	function __construct($_jsonrpc) {
+	/**
+         * 
+         * @param string $_jsonrpc
+         */
+	public function __construct($_jsonrpc) {
 		$this->startTime = getmicrotime();
 		$this->applicationName = 'Unknown';
 		$jsonrpc = json_decode($_jsonrpc, true);
@@ -105,8 +109,7 @@ class jsonrpc {
 
 	public function setApplicationName($applicationName) {
 		$this->applicationName = $applicationName;
+		return $this;
 	}
 
 }
-
-?>

@@ -36,7 +36,7 @@ class message {
 		$message->setPlugin(secureXSS($_type));
 		$message->setMessage(secureXSS($_message));
 		$message->setAction(secureXSS($_action));
-		$message->setDate(date('Y-m-d H:i:m'));
+		$message->setDate(date('Y-m-d H:i:s'));
 		$message->setLogicalId(secureXSS($_logicalId));
 		$message->save($_writeMessage);
 	}
@@ -124,18 +124,26 @@ class message {
 		}
 		if ($this->getLogicalId() == '') {
 			$this->setLogicalId($this->getPlugin() . '::' . config::genKey());
-		}
-		$values = array(
-			'message' => $this->getMessage(),
-			'logicalId' => $this->getLogicalId(),
-			'plugin' => $this->getPlugin(),
-		);
-		$sql = 'SELECT count(*)
+			$values = array(
+				'message' => $this->getMessage(),
+				'plugin' => $this->getPlugin(),
+			);
+			$sql = 'SELECT count(*)
 				FROM message
 				WHERE plugin=:plugin
-					AND (logicalId=:logicalId
-						OR message=:message)';
-		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+					AND message=:message';
+			$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+		} else {
+			$values = array(
+				'logicalId' => $this->getLogicalId(),
+				'plugin' => $this->getPlugin(),
+			);
+			$sql = 'SELECT count(*)
+				FROM message
+				WHERE plugin=:plugin
+					AND logicalId=:logicalId';
+			$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+		}
 		if ($result['count(*)'] != 0) {
 			return;
 		}
@@ -187,22 +195,27 @@ class message {
 
 	public function setId($id) {
 		$this->id = $id;
+		return $this;
 	}
 
 	public function setDate($date) {
 		$this->date = $date;
+		return $this;
 	}
 
 	public function setPlugin($plugin) {
 		$this->plugin = $plugin;
+		return $this;
 	}
 
 	public function setMessage($message) {
 		$this->message = $message;
+		return $this;
 	}
 
 	public function setAction($action) {
 		$this->action = $action;
+		return $this;
 	}
 
 	public function getLogicalId() {
@@ -211,8 +224,7 @@ class message {
 
 	public function setLogicalId($logicalId) {
 		$this->logicalId = $logicalId;
+		return $this;
 	}
 
 }
-
-?>

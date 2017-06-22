@@ -106,16 +106,10 @@
          $.showLoading();
          $('#table_cron tbody').empty();
          var tr = [];
-         for (var i in data.crons) {
-           tr.push(addCron(data.crons[i]));
+         for (var i in data) {
+           tr.push(addCron(data[i]));
        }
        $('#table_cron tbody').append(tr);
-       $('#span_jeecronMasterRuns').html(data.nbMasterCronRun);
-       $('#span_jeecronRuns').html(data.nbCronRun);
-       $('#span_nbProcess').html(data.nbProcess);
-       $('#span_loadAvg1').html(data.loadAvg[0]);
-       $('#span_loadAvg5').html(data.loadAvg[1]);
-       $('#span_loadAvg15').html(data.loadAvg[2]);
        $("#table_cron").trigger("update");
        modifyWithoutSave = false;
        $.hideLoading();
@@ -166,6 +160,9 @@ function addCron(_cron) {
     tr += '</td>';
     tr += '<td class="lastRun">';
     tr += init(_cron.lastRun);
+    tr += '</td>';
+    tr += '<td class="runtime">';
+    tr += init(_cron.runtime,'0')+'s';
     tr += '</td>';
     tr += '<td class="state">';
     var label = 'label label-info';

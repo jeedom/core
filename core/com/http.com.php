@@ -40,15 +40,22 @@ class com_http {
 
 	/*     * ********************Fonctions statiques********************* */
 
-	function __construct($_url = '', $_username = '', $_password = '') {
+	public function __construct($_url = '', $_username = '', $_password = '') {
 		$this->url = $_url;
 		$this->username = $_username;
 		$this->password = $_password;
 	}
 
 	/*     * ************* Fonctions ************************************ */
-
-	function exec($_timeout = 2, $_maxRetry = 3) {
+        
+        /**
+         * 
+         * @param int $_timeout
+         * @param int $_maxRetry
+         * @return string
+         * @throws Exception
+         */
+	public function exec($_timeout = 2, $_maxRetry = 3) {
 		$nbRetry = 0;
 		while ($nbRetry < $_maxRetry) {
 			$ch = curl_init();
@@ -104,7 +111,7 @@ class com_http {
 			if (curl_errno($ch)) {
 				$curl_error = curl_error($ch);
 				curl_close($ch);
-				if ($this->getNoReportError() === false && $this->getAllowEmptyReponse() == true && strpos($curl_error, 'Empty reply from server') !== false) {
+				if ($this->getNoReportError() === false && $this->getAllowEmptyReponse() === true && strpos($curl_error, 'Empty reply from server') !== false) {
 					return $response;
 				}
 				if ($this->getNoReportError() === false && $this->getLogError()) {
@@ -117,6 +124,7 @@ class com_http {
 				curl_close($ch);
 			}
 		}
+		$ch = null;
 		return $response;
 	}
 
@@ -130,10 +138,12 @@ class com_http {
 
 	public function setPing($ping) {
 		$this->ping = $ping;
+		return $this;
 	}
 
 	public function setNoSslCheck($noSslCHeck) {
 		$this->noSslCheck = $noSslCHeck;
+		return $this;
 	}
 
 	public function getLogError() {
@@ -142,6 +152,7 @@ class com_http {
 
 	public function setLogError($logError) {
 		$this->logError = $logError;
+		return $this;
 	}
 
 	public function getSleepTime() {
@@ -150,6 +161,7 @@ class com_http {
 
 	public function setSleepTime($sleepTime) {
 		$this->sleepTime = $sleepTime * 1000000;
+		return $this;
 	}
 
 	public function getPost() {
@@ -158,6 +170,7 @@ class com_http {
 
 	public function setPost($post) {
 		$this->post = $post;
+		return $this;
 	}
 
 	public function getHeader() {
@@ -166,6 +179,7 @@ class com_http {
 
 	public function setHeader($header) {
 		$this->header = $header;
+		return $this;
 	}
 
 	public function getCookiesession() {
@@ -174,6 +188,7 @@ class com_http {
 
 	public function setCookiesession($cookiesession) {
 		$this->cookiesession = $cookiesession;
+		return $this;
 	}
 
 	public function getAllowEmptyReponse() {
@@ -182,6 +197,7 @@ class com_http {
 
 	public function setAllowEmptyReponse($allowEmptyReponse) {
 		$this->allowEmptyReponse = $allowEmptyReponse;
+		return $this;
 	}
 
 	public function getNoReportError() {
@@ -190,6 +206,7 @@ class com_http {
 
 	public function setNoReportError($noReportError) {
 		$this->noReportError = $noReportError;
+		return $this;
 	}
 
 	public function getUrl() {
@@ -198,32 +215,34 @@ class com_http {
 
 	public function setUrl($url) {
 		$this->url = $url;
+		return $this;
 	}
 
-	function getCURLOPT_HTTPAUTH() {
+	public function getCURLOPT_HTTPAUTH() {
 		return $this->CURLOPT_HTTPAUTH;
 	}
 
-	function setCURLOPT_HTTPAUTH($CURLOPT_HTTPAUTH) {
+	public function setCURLOPT_HTTPAUTH($CURLOPT_HTTPAUTH) {
 		$this->CURLOPT_HTTPAUTH = $CURLOPT_HTTPAUTH;
+		return $this;
 	}
 
-	function getPut() {
+	public function getPut() {
 		return $this->put;
 	}
 
-	function setPut($put) {
+	public function setPut($put) {
 		$this->put = $put;
+		return $this;
 	}
 
-	function getUserAgent() {
+	public function getUserAgent() {
 		return $this->userAgent;
 	}
 
-	function setUserAgent($userAgent) {
+	public function setUserAgent($userAgent) {
 		$this->userAgent = $userAgent;
+		return $this;
 	}
 
 }
-
-?>

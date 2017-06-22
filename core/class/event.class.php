@@ -22,15 +22,15 @@ require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 class event {
 	/*     * *************************Attributs****************************** */
 
-	static $limit = 250;
+	private static $limit = 250;
 	private static $_fd = null;
 
 	/*     * ***********************Methode static*************************** */
 
 	public static function getFileDescriptorLock() {
-		if (self::$_fd == null) {
-			self::$_fd = fopen('/tmp/jeedom__event_cache_lock', 'w');
-			chmod('/tmp/jeedom__event_cache_lock', 0777);
+		if (self::$_fd === null) {
+			self::$_fd = fopen(jeedom::getTmpFolder() . '/event_cache_lock', 'w');
+			chmod(jeedom::getTmpFolder() . '/event_cache_lock', 0777);
 		}
 		return self::$_fd;
 	}
@@ -70,7 +70,7 @@ class event {
 
 	public static function changes($_datetime, $_longPolling = null) {
 		$return = self::changesSince($_datetime);
-		if ($_longPolling == null || count($return['result']) > 0) {
+		if ($_longPolling === null || count($return['result']) > 0) {
 			return $return;
 		}
 		$waitTime = config::byKey('event::waitPollingTime');
@@ -105,6 +105,7 @@ class event {
 				$return['result'][] = $value;
 			}
 		}
+		$return['result'] = array_reverse($return['result']);
 		return $return;
 	}
 
@@ -113,4 +114,4 @@ class event {
 	/*     * **********************Getteur Setteur*************************** */
 }
 
-?>
+

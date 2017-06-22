@@ -24,7 +24,7 @@ Wie kann man eine fehlerhafte Chronik ändern ?::
 Es genügt auf einer Kurve der entsprechenden Chronik, auf den fraglichen Punkt zu klicken. Wenn Sie das Feld leer lassen, dann wird der Wert gelöscht.
 
 '''
-Wie kann man einen Computer registrieren damit mann sich nicht anzumelden muß ?::
+Wie kann man einen Computer registrieren, damit man sich nicht anmelden muß ?::
 Nur beim Verbinden das Kontrollkästchen "Speichern auf Computer" anklicken.
 
 '''
@@ -96,7 +96,7 @@ chmod -R 775 /usr/share/nginx/www/jeedom
 chown -R www-data:www-data /usr/share/nginx/www/jeedom
 
 '''
-Ist die Webapp kompatible Symbian ?::
+Ist die Webapp mit Symbian kompatibel ?::
 Die Webapp erfordert ein Smartphone, das HTML5 und CSS3 unterstützt. Sie ist daher leider nicht mit Symbian kompatibel.
 
 '''

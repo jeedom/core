@@ -417,22 +417,23 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toctitle">Table des matières</div>
 <ul class="sectlevel1">
 <li><a href="#_configuraciónn_general">1. Configuraciónn general</a></li>
-<li><a href="#_base_de_datos">2. Base de datos</a></li>
-<li><a href="#_configuración_de_red">3. Configuración de red</a></li>
-<li><a href="#_configuración_de_colores">4. Configuración de colores</a></li>
-<li><a href="#_configuración_de_comandos">5. Configuración de comandos</a></li>
-<li><a href="#_configuración_de_interacciones">6. Configuración de interacciones</a></li>
-<li><a href="#_configuración_de_logs_y_mensajes">7. Configuración de logs y mensajes</a></li>
-<li><a href="#_configuración_ldap">8. Configuración LDAP</a></li>
-<li><a href="#_configuración_de_dispositivos">9. Configuración de dispositivos</a></li>
-<li><a href="#_actualización_y_ficheros">10. Actualización y ficheros</a></li>
-<li><a href="#_depósitos">11. Depósitos</a>
+<li><a href="#_componentes_de_jeedom">2. Componentes de Jeedom</a></li>
+<li><a href="#_base_de_datos">3. Base de datos</a></li>
+<li><a href="#_configuración_de_red">4. Configuración de red</a></li>
+<li><a href="#_configuración_de_colores">5. Configuración de colores</a></li>
+<li><a href="#_configuración_de_comandos">6. Configuración de comandos</a></li>
+<li><a href="#_configuración_de_interacciones">7. Configuración de interacciones</a></li>
+<li><a href="#_configuración_de_logs_y_mensajes">8. Configuración de logs y mensajes</a></li>
+<li><a href="#_configuración_ldap">9. Configuración LDAP</a></li>
+<li><a href="#_configuración_de_dispositivos">10. Configuración de dispositivos</a></li>
+<li><a href="#_actualización_y_ficheros">11. Actualización y ficheros</a></li>
+<li><a href="#_los_repositiorios">12. Los Repositiorios</a>
 <ul class="sectlevel3">
-<li><a href="#_market">11.1. Market</a></li>
-<li><a href="#_archivo">11.2. Archivo</a></li>
-<li><a href="#_github">11.3. Github</a></li>
-<li><a href="#_samba">11.4. Samba</a></li>
-<li><a href="#_url">11.5. URL</a></li>
+<li><a href="#_market">12.1. Market</a></li>
+<li><a href="#_archivo">12.2. Archivo</a></li>
+<li><a href="#_github">12.3. Github</a></li>
+<li><a href="#_samba">12.4. Samba</a></li>
+<li><a href="#_url">12.5. URL</a></li>
 </ul>
 </li>
 </ul>
@@ -471,16 +472,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>* Nombre de su Jeedom *: pueden ser reutilizados en escenarios o permite identificar una copia de seguridad</p>
+<p>* Nombre de Jeedom* : se puede reutlizar en los escenarios o permite identificar un backup</p>
 </li>
 <li>
-<p>* * Clave API: la clave de la API a utilizar para cualquier aplicación en la API de Jeedom</p>
+<p>*Clave API: la clave de la API a utilizar para cualquier aplicación en la API de Jeedom</p>
 </li>
 <li>
-<p><strong>Clave API Pro</strong> : utilizado para conectar con el sistema de gestión de Parque</p>
+<p>*Clave API Pro *: utilizado para conectar con el sistema de gestión de Parque</p>
 </li>
 <li>
-<p><strong>Sistema</strong>: modelo de hardware</p>
+<p><strong>Sistema</strong> : modelo de hardware</p>
 </li>
 <li>
 <p><strong>Clave de instalación</strong> : clave de hardware de su Jeedom en el market. Si tu Jeedom no aparece en la lista de tus Jeedom en el market, es recomendable hacer clic en este botón</p>
@@ -489,47 +490,49 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><strong>Idioma</strong> : Idioma de su Jeedom</p>
 </li>
 <li>
-<p><strong>Duración de sesión (tiempo)</strong>: Duración de la sesión en PHP; se aconseja no modificar este valor</p>
+<p><strong>Duración de sesión (tiempo)</strong>: Duración de la sesión PHP; se aconseja no modificar este valor</p>
 </li>
 <li>
-<p><strong>Fecha y hora</strong>: Su zona horaria</p>
+<p><strong>Fecha y hora</strong> : Su zona horaria</p>
 </li>
 <li>
 <p><strong>Servidor de tiempo opcional</strong> : permite añadir un servidor de tiempo opcional (reservado para expertos)</p>
 </li>
 <li>
-<p><strong>Ignorar la verificación de tiempo</strong>: Jeedom no verificará si el tiempo es coherente. Es útil por ejemplo si Jeedom no va a estar conectado a internet ni dispone de batería RTC.</p>
+<p><strong>Ignorar la verificación horario</strong> : indica a Jeedom que no verifique si la hora es coherente. Útil por ejemplo si no conecta Jeedom a Internet y no dispone de ninguna batería RTC</p>
 </li>
 <li>
-<p><strong>Modo</strong>: Modo de Jeedom, maestro o esclavo. Atención, al pasar a esclavo, todos los dispositivos, escenas, diseños&#8230;&#8203; serán eliminados</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>==Componentes de Jeedom</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/administration12.png" alt="administration12">
-</div>
-</div>
-<div class="paragraph">
-<p>Esta sección le permite activar o desactivar algunos componentes del nucleo de Jeedom</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>* * Permisos avanzados: desactiva la gestión de permisos avanzado (su uso incorrecto puede hacer Jeedom mas vulnerable)</p>
-</li>
-<li>
-<p>* Seguridad*: Habilitar o no la seguridad contra la piratería (Acceso mediante fuerza bruta).</p>
+<p><strong>Modo</strong> : Modo de Jeedom, maestro o esclavo. Atención, al pasar a esclavo, todos los dispositivos, escenas, diseños&#8230;&#8203; serán eliminados</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_base_de_datos">2. Base de datos</h2>
+<h2 id="_componentes_de_jeedom">2. Componentes de Jeedom</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="../images/administration12.png" alt="administration12">
+</div>
+</div>
+<div class="paragraph">
+<p>Esta sección le permite activar/desactivar algunos componentes del nucleo de Jeedom</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Permisos avanzados</strong> : desactiva la gestión de permisos avanzado (su uso incorrecto puede hacer Jeedom mas vulnerable)</p>
+</li>
+<li>
+<p>*Seguridad * : Habilitar o no la seguridad anti hackeo (Acceso mediante fuerza bruta).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_base_de_datos">3. Base de datos</h2>
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
@@ -539,23 +542,23 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Acceso al interface de administración</strong>: Permite acceder al interface de administración de la base de datos. La información a completar está más abajo</p>
+<p><strong>Acceso al interface de administración</strong> : Permite acceder al interface de administración de la base de datos. La información a completar está más abajo</p>
 </li>
 <li>
-<p><strong>Máquina (hostname)</strong>: Ubicación de la base de datos</p>
+<p><strong>Máquina (hostname)</strong> : Ubicación de la base de datos</p>
 </li>
 <li>
-<p><strong>Usuario</strong>: Nombre de usuario utilizado por Jeedom</p>
+<p><strong>Usuario</strong> : Nombre de usuario utilizado por Jeedom</p>
 </li>
 <li>
-<p><strong>Contraseña</strong>: Contraseña de accesso a la base de datos utilizada por Jeedom</p>
+<p><strong>Contraseña</strong> : Contraseña de accesso a la base de datos utilizada por Jeedom</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configuración_de_red">3. Configuración de red</h2>
+<h2 id="_configuración_de_red">4. Configuración de red</h2>
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
@@ -563,60 +566,50 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>Parte muy importante en Jeedom, debes configurarlo correctamente de lo contrario muchos plugins pueden dejar de ser funcionales</p>
+<p>Parte muy importante en Jeedom, debe ser capaz de configurarlo correctamente, de lo contrario una gran cantidad de plugins pueden no ser no funcionales.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Acceso a internet</strong>: Información para acceder a Jeedom desde un equipo de la misma red</p>
+<p><strong>Acceso a internet</strong> : Información para acceder a Jeedom desde un equipo de la misma red</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Protocolo</strong>: El protocolo a utilizar, normalmente HTTP</p>
+<p><strong>Protocolo</strong> : El protocolo a utilizar, normalmente HTTP</p>
 </li>
 <li>
-<p><strong>Dirección URL o IP</strong>: IP de Jeedom para informar</p>
+<p><strong>Dirección URL o IP</strong> : IP de Jeedom para informar</p>
 </li>
 <li>
-<p><strong>Complemento (por ejemplo: /jeedom)</strong>: ruta adicional de la URL (escriba /jeedom). Para saber si debe definir este valor, vea si necesita añadir /jeedom después de la IP.</p>
+<p><strong>Complemento (por ejemplo: /jeedom)</strong> : Fragmento adicional de URL (escriba /jeedom). Para saber si debe definir este valor, vea si necesita añadir /jeedom después de la IP.</p>
 </li>
 <li>
-<p><strong>Puerto</strong>: El puerto, generalmente 80. Atención, cambiar el puerto aquí no cambia el puerto real de Jeedom, que seguirá siendo el mismo.</p>
+<p>*Puerto *: El puerto, generalmente 80. Atención, cambiar el puerto aquí no cambia el puerto real de Jeedom, que seguirá siendo el mismo.</p>
 </li>
 <li>
-<p><strong>Estado</strong>: Indica si la conexión de red interna es correcta</p>
+<p><strong>Estado</strong> : indica si la configuración de la red interna es correcta</p>
+</li>
+<li>
+<p>Acceso externo* : información para conectar a Jeedom desde el exterior. Rellenar sólo si no utilizas el DNS Jeedom</p>
+</li>
+<li>
+<p><strong>Protocolo</strong> : Protocolo a utilizar para el acceso desde el exterior</p>
+</li>
+<li>
+<p><strong>Dirección URL o IP</strong> : Dirección o IP externa si es fija</p>
+</li>
+<li>
+<p><strong>Complemento (por ejemplo: /jeedom)</strong> : ruta adicional de la URL (escriba /jeedom). Para saber si debe definir este valor, vea si necesita añadir /jeedom después de la IP.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Acceso externo</strong>: Información para acceder a Jeedom desde el exterior. Completar sólo si no se utiliza el servicio DNS de Jeedom.</p>
+<p><strong>Administracion avanzada</strong> : puede no aparecer dependiendo de la compatibilidad con el hardware</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Protocolo</strong>: Protocolo a utilizar para el acceso desde el exterior</p>
-</li>
-<li>
-<p><strong>Dirección URL o IP</strong>: Dirección o IO externa si es fija</p>
-</li>
-<li>
-<p><strong>Complemento (por ejemplo: /jeedom)</strong>: ruta adicional de la URL (escriba /jeedom). Para saber si debe definir este valor, vea si necesita añadir /jeedom después de la IP.</p>
-</li>
-<li>
-<p><strong>Puerto</strong>: El puerto, generalmente 80. Atención, cambiar el puerto aquí no cambia el puerto real de Jeedom, que seguirá siendo el mismo.</p>
-</li>
-<li>
-<p><strong>Estado</strong>: Indica si la conexión de red externa es correcta</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>*Administracion avanzada: puede no aparecer dependiendo de la compatibilidad con el hardware</p>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Desactivar la gestión de redes en Jeedom</strong>: Jeedom no supervisará la red (deberá ser activado si Jeedom no está conectado a ninguna red)</p>
+<p><strong>Desactivar la gestión de redes en Jeedom</strong> : Jeedom no supervisará la red (deberá ser activado si Jeedom no está conectado a ninguna red)</p>
 </li>
 </ul>
 </div>
@@ -626,13 +619,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Usar DNS Jeedom</strong>: Activars DNS Jeedom (se requiere disponer de un service pack)</p>
+<p><strong>Usar DNS Jeedom</strong> : Activar DNS Jeedom (se requiere disponer de un service pack)</p>
 </li>
 <li>
 <p>Estado DNS* : estado de http DNS</p>
 </li>
 <li>
-<p><strong>Gestión</strong>: Permite detener y reiniciar el servicio DNS</p>
+<p>*Gestión *: Permite detener y reiniciar el servicio DNS</p>
 </li>
 </ul>
 </div>
@@ -655,7 +648,7 @@ Si accede a través de HTTPS, el puerto por defecto es el 443 y si lo hace a tra
 <p>Esta parte es para mostrar el entorno Jeedom: un cambio en el puerto o IP, no va a cambiar el puerto y la IP de Jeedom. Para ello debe conectarse por SSH y editar el archivo/etc/network/interfaces para la IP y los archivos etc/nginx/sitios-disponible/default y etc/nginx/sitios-disponible/default_ssl (para HTTPS). En caso de manipulación inadecuada de su configuración, el equipo de Jeedom no será responsable y podrá denegar cualquier solicitud de soporte.</p>
 </div>
 <div class="paragraph">
-<p>Puede ver <a href="http://blog.domadoo.fr/2014/10/15/acceder-depuis-lexterieur-jeedom-en-https">aquí</a> un tutorial para instalar un certificado auto firmado</p>
+<p>Puede ver el <a href="http://blog.domadoo.fr/2014/10/15/acceder-depuis-lexterieur-jeedom-en-https">aquí</a> un tutorial para instalar un certificado autofirmado</p>
 </div>
 <div class="paragraph">
 <p>Si no le es posible hacer funcionar DNS Jeedom, revise la configuración del firewall y el filtro parental de su router</p>
@@ -663,7 +656,7 @@ Si accede a través de HTTPS, el puerto por defecto es el 443 y si lo hace a tra
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configuración_de_colores">4. Configuración de colores</h2>
+<h2 id="_configuración_de_colores">5. Configuración de colores</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>El ajuste de color de los widgets se realiza en función de la categoría a la que pertenece el widget que se define en la configuración de cada módulo (ver plugin de Z-Wave, RFXCOM&#8230;&#8203; etc). Las categorías incluyen calefacción, luces, automatización etc &#8230;&#8203;</p>
@@ -685,7 +678,7 @@ Si accede a través de HTTPS, el puerto por defecto es el 443 y si lo hace a tra
 </div>
 </div>
 <div class="paragraph">
-<p>También puede ajustar la transparencia de los widgets en una forma global (que será el valor por defecto, es posible entonces cambiar este valor del widget por widget)</p>
+<p>También puede ajustar la transparencia de los widgets en una forma global (que será el valor por defecto, es posible cambiar este valor widget por widget)</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -702,7 +695,7 @@ No olvide guardar los cambios después de hacer modificaciones
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configuración_de_comandos">5. Configuración de comandos</h2>
+<h2 id="_configuración_de_comandos">6. Configuración de comandos</h2>
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
@@ -712,7 +705,7 @@ No olvide guardar los cambios después de hacer modificaciones
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Histórico</strong>: Ver <a href="https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-history.html#_configuration_général_de_l_historique">aquí</a></p>
+<p><strong>Histórico</strong> : Ver <a href="https://jeedom.com/doc/documentation/core/es_ES/doc-core-history.html#_configuration_général_de_l_historique">aquí</a></p>
 </li>
 <li>
 <p><strong>Push</strong></p>
@@ -729,7 +722,7 @@ No olvide guardar los cambios después de hacer modificaciones
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configuración_de_interacciones">6. Configuración de interacciones</h2>
+<h2 id="_configuración_de_interacciones">7. Configuración de interacciones</h2>
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
@@ -737,12 +730,12 @@ No olvide guardar los cambios después de hacer modificaciones
 </div>
 </div>
 <div class="paragraph">
-<p>Ver <a href="https://jeedom.fr/doc/documentation/core/es_ES/doc-core-interact.html#_configuration_2">aquí</a></p>
+<p>Ver <a href="https://jeedom.com/doc/documentation/core/es_ES/doc-core-interact.html#_configuration_2">aquí</a></p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configuración_de_logs_y_mensajes">7. Configuración de logs y mensajes</h2>
+<h2 id="_configuración_de_logs_y_mensajes">8. Configuración de logs y mensajes</h2>
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
@@ -750,12 +743,12 @@ No olvide guardar los cambios después de hacer modificaciones
 </div>
 </div>
 <div class="paragraph">
-<p>Ver <a href="https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-log.html#_configuration">aquí</a></p>
+<p>Ver <a href="https://jeedom.com/doc/documentation/core/es_ES/doc-core-log.html#_configuration">aquí</a></p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configuración_ldap">8. Configuración LDAP</h2>
+<h2 id="_configuración_ldap">9. Configuración LDAP</h2>
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
@@ -765,35 +758,35 @@ No olvide guardar los cambios después de hacer modificaciones
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Activar autentificaación LDAP</strong>: Activar la autentificación a través de Active Directory (LDAP)</p>
+<p><strong>Activar autentificaación LDAP</strong> : Activar la autentificación a través de Active Directory (LDAP)</p>
 </li>
 <li>
-<p><strong>Anfitrión</strong>: Servidor de Active Directory</p>
+<p><strong>Anfitrión</strong> : Servidor de Active Directory</p>
 </li>
 <li>
-<p><strong>Dominio</strong>: Dominio de Active Directory</p>
+<p><strong>Dominio</strong> : Dominio de Active Directory</p>
 </li>
 <li>
-<p><strong>Base DN</strong>: Base DN de Active Directory</p>
+<p><strong>Base DN</strong> : Base DN de Active Directory</p>
 </li>
 <li>
-<p><strong>Nombre de usuario</strong>: Nombre de usuario para que Jeedom se conecte a Active Directory</p>
+<p><strong>Nombre de usuario</strong> : Nombre de usuario para que Jeedom se conecte a Active Directory</p>
 </li>
 <li>
-<p><strong>Contraseña</strong>: Contraseña para que Jeedom se conecte a Active Directory</p>
+<p><strong>Contraseña</strong> : Contraseña para que Jeedom se conecte a Active Directory</p>
 </li>
 <li>
-<p><strong>Filtro (opcional)</strong>: Filtro de Active Directory (para la gestión de grupos por ejemplo)</p>
+<p><strong>Filtro (opcional)</strong> : Filtro de Active Directory (para la gestión de grupos por ejemplo)</p>
 </li>
 <li>
-<p><strong>Permitir REMOTE_USER</strong>: Activar REMOTE_USER (Utilizado en SSO por ejemplo)</p>
+<p><strong>Permitir REMOTE_USER</strong> : Activar REMOTE_USER (Utilizado en SSO por ejemplo)</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configuración_de_dispositivos">9. Configuración de dispositivos</h2>
+<h2 id="_configuración_de_dispositivos">10. Configuración de dispositivos</h2>
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
@@ -807,7 +800,7 @@ No olvide guardar los cambios después de hacer modificaciones
 <div class="ulist">
 <ul>
 <li>
-<p>Umbrales de batería *: le permite administrar los umbrales de alertas globales sobre las baterías</p>
+<p>Umbrales de batería* : le permite administrar los umbrales de alertas globales sobre las baterías</p>
 </li>
 </ul>
 </div>
@@ -817,7 +810,7 @@ No olvide guardar los cambios después de hacer modificaciones
 </div>
 </div>
 <div class="sect1">
-<h2 id="_actualización_y_ficheros">10. Actualización y ficheros</h2>
+<h2 id="_actualización_y_ficheros">11. Actualización y ficheros</h2>
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
@@ -830,7 +823,7 @@ No olvide guardar los cambios después de hacer modificaciones
 <p>Fuente de actualización :</p>
 </li>
 <li>
-<p>Hacer una copia de seguridad antes de la actualización</p>
+<p>Hacer un backup antes de la actualización</p>
 </li>
 <li>
 <p>Comprueba automáticamente si hay actualizaciones</p>
@@ -840,13 +833,13 @@ No olvide guardar los cambios después de hacer modificaciones
 </div>
 </div>
 <div class="sect1">
-<h2 id="_depósitos">11. Depósitos</h2>
+<h2 id="_los_repositiorios">12. Los Repositiorios</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Los depósitos son espacios de almacenamiento (y servicio) para poder poner copias de seguridad, obtener plugins, recuperar la base de jeedom&#8230;&#8203;</p>
+<p>Los repositorio son espacios de almacenamiento (y servicio) para poder poner copias de seguridad, obtener plugins, recuperar la base de jeedom&#8230;&#8203;</p>
 </div>
 <div class="sect3">
-<h4 id="_market">11.1. Market</h4>
+<h4 id="_market">12.1. Market</h4>
 <div class="paragraph">
 <p>Servidor de repositiorios conectados al market de Jeedom, es recomendable utilizar este repositorio. Atención cualquier solicitud de soporte podrá ser denegada si usted utiliza otro repositorio diferente a este.</p>
 </div>
@@ -858,21 +851,21 @@ No olvide guardar los cambios después de hacer modificaciones
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Dirección</strong>: Dirección del market</p>
+<p><strong>Dirección</strong> : Dirección del market</p>
 </li>
 <li>
-<p><strong>Nombre de usuario</strong>: Su nombre de usuario para el market</p>
+<p><strong>Nombre de usuario</strong> : Su nombre de usuario para el market</p>
 </li>
 <li>
-<p><strong>Contraseña</strong>: Su contraseña para el market</p>
+<p><strong>Contraseña</strong> : Su contraseña para el market</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_archivo">11.2. Archivo</h4>
+<h4 id="_archivo">12.2. Archivo</h4>
 <div class="paragraph">
-<p>Depósito para activar el  envio de ficheros de plugin</p>
+<p>Repositorio para activar el  envio de ficheros de plugin.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -881,9 +874,9 @@ No olvide guardar los cambios después de hacer modificaciones
 </div>
 </div>
 <div class="sect3">
-<h4 id="_github">11.3. Github</h4>
+<h4 id="_github">12.3. Github</h4>
 <div class="paragraph">
-<p>Depósito utilizado para conectar Jeedom a Github</p>
+<p>Repositiorio utilizado para conectar Jeedom a Github</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -893,13 +886,13 @@ No olvide guardar los cambios después de hacer modificaciones
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Token</strong> : Token para el acceso al depositivo privada</p>
+<p><strong>Token</strong> : Token para el acceso al repositorio privado</p>
 </li>
 <li>
-<p>*Usuario u organización del repositorio para el core de Jeedom *.</p>
+<p><strong>Usuario u organización del repositorio para el core de Jeedom</strong></p>
 </li>
 <li>
-<p>*Nombre del repositorio para el core de Jeedom *.</p>
+<p><strong>Nombre del repositorio para el core de Jeedom</strong></p>
 </li>
 <li>
 <p><strong>Branch para el core de jedoom</strong></p>
@@ -908,7 +901,7 @@ No olvide guardar los cambios después de hacer modificaciones
 </div>
 </div>
 <div class="sect3">
-<h4 id="_samba">11.4. Samba</h4>
+<h4 id="_samba">12.4. Samba</h4>
 <div class="paragraph">
 <p>Repositorio para enviar un backup automático de jeedom en un recurso compartido de samba (ej. NAS Synology)</p>
 </div>
@@ -932,19 +925,23 @@ No olvide guardar los cambios después de hacer modificaciones
 <p><strong>[Backup] recurso</strong> : La ruta del recurso compartido (Asegúrese de indicar la ruta compartida correcta)</p>
 </li>
 <li>
-<p>*[Ruta Backup] *: Ruta para compartirr (para ser relativa),  debe existir</p>
+<p>*[Ruta Backup] * : Ruta para compartirr (para ser relativa),  debe existir</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Tal vez necesite instalar el paquete smbclient para que repositorio funcione</p>
+<p>SI la ruta de acceso a vuestra carpeta de backup samba es : \\192.168.0.1\Sauvegardes\Domotique\Jeedom
+Si IP = 192.168.0.1 , Compartir = //192.168.0.1/Sauvegardes , ruta = Domotique/Jeedom</p>
+</div>
+<div class="paragraph">
+<p>Tal vez necesite instalar el paquete smbclient para que el repositorio funcione</p>
 </div>
 <div class="paragraph">
 <p>Jeedom debe poder escribir en esta carpeta, y debe estar vacía por defecto (es decir, que antes de hacer la configuración y enviar el primer Backup, la carpeta no puede contener ningún archivo o carpeta)</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_url">11.5. URL</h4>
+<h4 id="_url">12.5. URL</h4>
 <div class="imageblock">
 <div class="content">
 <img src="../images/administration19.png" alt="administration19">

@@ -1,10 +1,10 @@
 = Log
 
-== Visualización
+== Affichage
 
-El menú de registros permite ver lo que está sucediendo en  la Domótica. En la mayoría de los casos los registros son utilizados para realizar la depuración y solución de problemas por el equipo de soporte. Este menú sólo está disponible en modo experto.
+Le menu Logs permet de suivre ce qui se passe sur sa domotique. Dans la plupart des cas les logs ne serviront qu'à effectuer du debuggage et à résoudre des problèmes par l'équipe de support. Ce menu est d'ailleurs accessible uniquement en mode expert.
 
-Para acceder ir a Administración -> Registros : 
+Pour y accèder il faut aller dans Administration -> Logs : 
 
 image::../images/log1.JPG[]
 
@@ -14,35 +14,35 @@ image::../images/log.JPG[]
 
 La página de registros es bastante sencilla, en la parte superior izquierda veras un menú desplegable que permite la elección del registro a consultar, en la parte superior derecha hay 5 botones:
 
-** Refrescar *: permite actualizar el registro actual.
-* *Descargar* : permite descargar el registro actual.
-* * Vacíar* : le permite borrar el registro actual.
-* * Borrar* : permite borrar el registro actual, si Jeedom lo necesita lo volverá a crear automáticamente.
-* *Borrar todos los logs* : borra todos los logs presentes.
+* *Rafraîchir* : permet de rafraîchir le log actuel,
+* *Télécharger* : permet de télécharger le log actuel,
+* *Vider* : permet de vider le log actuel,
+* *Supprimer* : permet de supprimer le log actuel, si Jeedom en a besoin il le recréera automatiquement,
+* *Supprimer tous les logs* : supprime tous les logs présents.
 
 [TIP]
-Tenga en cuenta que no se puede eliminar el registro de nginx.error. ¡ Es esencial! Si  lo elimina (desde consola por ejemplo) no se volverá a generar hasta que reinicie Jeedom.
+A noter que le log nginx.error ne peut être supprimé. Il est essentiel ! si vous le supprimez (en ligne de commande par exemple) celui-ci ne se recréera pas tout seul, il faut redémarrer Jeedom.
 
-== Configuración
+== Configuration
 
-Hay algunas opciones de configuración de registro (accesible a través de la Administración -> configuración y luego en "Configuración de registro y mensajes").
+Il existe certains paramètres de configuration des logs (accessible par Administation -> Configuration puis la partie "Configuration des logs & messages").
 
 image::../images/log2.JPG[]
 
 Aquí, tienes las siguientes opciones :
 
-* *Mensajes*
-** Añadir un mensaje a cada error en los registros *: Si un plugin o Jeedom escribe un mensaje de error en un registro, Jeedom agrega automáticamente un mensaje en el centro de mensajes (Al menos de que estés seguro, no los marques)
-** *No permitir mensajes procedentes de * : permite prohibir algunos mensajes de plugin u otros
-** *Información control de usuario *: permite seleccionar una o más ordenes  (separar con &&) de tipo mensaje que se utilizarán por los nuevos mensajes (pueden ser notificados de inmediato)
-* *Registro* 
-** *Motor de registro *: permite cambiar el motor de registro por ejemplo enviar a un demonio syslog(d)
-** Número de lineas máximo de un archivo de registro *: establece el número máximo de líneas en un archivo de registro, se recomienda no tocar este valor, ya que un valor demasiado grande puede llenar el sistema de archivos o hacer que Jeedom no pueda mostrar registros
-** *Nivel de registro* : permite establecer los niveles de registro activo. PRECAUCIÓN: ha mayor nivel de registro, Jeedom se puede volver más lento! Esto también conduce a un desgaste prematuro de la tarjeta SD. Se recomienda configurar sólo el nivel de "Error". "Evento" puede activarse también porque es necesario ver en tiempo real lo que está sucediendo en la Domótica (esto si es solo necesario).
+* *Message*
+** *Ajouter un message à chaque erreur dans les logs* : si un plugin ou Jeedom écrit un message d'erreur dans un log, Jeedom ajoute automatiquement un message dans le centre des messages (au moins vous êtes sûr de ne pas le manquer)
+** *Ne pas autoriser les messages venant de* : permet d'interdire certains messages venant d'un plugin ou autre
+** *Commande d'information utilisateur* : permet de sélectionner une ou plusieurs commandes (à séparer par des &&) de type message qui seront utilisées lors de nouveaux messages (permet d'être tout de suite prévenu)
+* *Log* 
+** *Moteur de log* : permet de changer le moteur de log pour par exemple les envoyer à un demon syslog(d)
+** *Nombre de lignes maximum dans un fichier de log* : Définit le nombre maximum de lignes dans un fichier de log, il est recommandé de ne pas toucher cette valeur, car une valeur trop grande pourrait remplir le système de fichiers et/ou rendre Jeedom incapable d'afficher le log
+** *Logs actifs* : permet de définir les niveaux de log actif. Attention : plus il y a de niveaux actifs, plus Jeedom peut être lent ! Cela entraîne aussi une usure prématurée de la carte SD. Il est conseillé de n'activer que le niveau "Error". "Event" peut être activé aussi car il est nécessaire pour voir en temps réel ce qui se passe sur sa domotique (bien sûr c'est seulement si vous en avez besoin).
 
-== Registro "Evento" y nivel de registro de "Evento"
+== Le log "Event" et le niveau de log "Event"
 
-El registro de "Evento" es algo particular. Para ponerlo en marcha, por favor, activar el nivel de registro de "Info" o más, entonces verá una lista de todos los eventos o acciones que suceden en la Domótica. Para acceder, usted debe hacer clic en el icono pequeño en la parte inferior derecha "contador" en Jeedom: 
+Le log "Event" est un peu particulier. Tout d'abord pour qu'il fonctionne, il faut activer le niveau de log "Info" ou plus, ensuite celui-ci recense tous les évènements ou actions qui se passent sur la domotique. Pour y accéder, il faut cliquer sur la petite icône "compteur" en bas à droite dans Jeedom : 
 
 image::../images/log3.JPG[]
 
@@ -52,5 +52,5 @@ image::../images/log4.JPG[]
 
 Arriba a la derecha tienes un campo de búsqueda (sólo funcional cuando este pausado) y un botón de pausa (útil para hacer un copy/paste por ejemplo).
 
-[IMPORTANTE]
-Para ponerlo en marcha, es absolutamente necesario activar el nivel "Info" o más (ver párrafo anterior)
+[IMPORTANT]
+Pour que cela fonctionne il faut absolument avoir activé le niveau de log "Info" ou plus (voir paragraphe précédent)

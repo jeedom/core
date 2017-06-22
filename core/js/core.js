@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
-var noBootstrapTooltips = false;
 $(function () {
     if (!$.mobile) {
         jeedom.init();

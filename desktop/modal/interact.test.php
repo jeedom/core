@@ -38,7 +38,10 @@ if (!isConnect('admin')) {
 			},
 			success: function (data) {
 				$('#div_interactTestResult').empty();
-				$('#div_interactTestResult').append('<div class="alert alert-info"><i class="fa fa-comment"></i> '+data+'</div>');
+				for(var i in data){
+					$('#div_interactTestResult').append('<div class="alert alert-info"><i class="fa fa-comment"></i> '+i+' => '+data[i]+'</div>');
+				}
+
 			}
 		});
 	});

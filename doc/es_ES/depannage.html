@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.3.dev">
-<title>Solución de problemas</title>
+<title>Dépannage</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -412,7 +412,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Solución de problemas</h1>
+<h1>Dépannage</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table des matières</div>
 
@@ -421,9 +421,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="content">
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Obtengo una página en blanco</dt>
+<dt class="hdlist1">J&#8217;ai une page blanche</dt>
 <dd>
-<p>Debe conectarse a  jeedom por SSH y lanzar un script de autodiagnóstico:</p>
+<p>Il faut se connecter en SSH à jeedom et lancer un script d&#8217;auto-diagnostic :</p>
 </dd>
 </dl>
 </div>
@@ -441,15 +441,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>Si hay un problema en el script lo intentará corregir, si no se lo indicará.</p>
+<p>S&#8217;il y a un souci, le script essaie de corriger, s&#8217;il n&#8217;y arrive pas il vous l&#8217;indiquera.</p>
 </div>
 <div class="paragraph">
 <p>También puede ver el registro de usr/share/nginx/www/jeedom/log/nginx.error, muy a menudo esto le indica los problemas</p>
 </div>
 <hr>
-<div class="paragraph">
-<p>Tengo un problema de identificación de la BDD:
-Necesidad de reajustarlos</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">J&#8217;ai un problème d&#8217;identifiant BDD</dt>
+<dd>
+<p>Necesidad de reajustarlos</p>
+</dd>
+</dl>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -464,70 +468,78 @@ sudo chown www-data:www-data core/config/common.config.php</code></pre>
 </div>
 </div>
 <hr>
-<div class="paragraph">
-<p>Tengo {&#8230;&#8203;} en todas partes.
-La causa más frecuente es el uso de un plugin en versión beta y no Jeedom, o viceversa</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">J&#8217;ai des {{&#8230;&#8203;}} partout</dt>
+<dd>
+<p>La cause la plus fréquente est l&#8217;utilisation d&#8217;un plugin en version beta, et Jeedom en stable, ou l&#8217;inverse</p>
+</dd>
+</dl>
 </div>
 <hr>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Al lanzar un comando tengo una rueda que gira sin parar</dt>
+<dt class="hdlist1">Lors d&#8217;une commande j&#8217;ai une roue qui tourne sans s&#8217;arrêter</dt>
 <dd>
 <p>Sin embargo, esto ocurre amenudo debido al uso de un plugin en versión beta, mientras que Jeedom es estable</p>
 </dd>
 </dl>
 </div>
 <hr>
-<div class="paragraph">
-<p>Ya no tengo acceso a Jeedom ni por  ssh:.
-Este error es debido a un problema con el sistema pero no de Jeedom.
-Si persiste después de la reinstalación es recomendable comprobar con el SAT si se trata de un problema de hardware</p>
-</div>
-<hr>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Mi escena no funciona</dt>
+<dt class="hdlist1">Je n&#8217;ai plus accès à Jeedom ni en SSH</dt>
 <dd>
-<p>Se recomienda ver los comandos ejecutadas por la escena,
-a menudo esto es una orden que no termina (Bucle loop)</p>
+<p>Cette erreur n&#8217;est pas due à Jeedom mais à un problème avec le système.
+Si celui-ci persiste suite à une réinstallation il est conseillé de voir avec le SAV pour un souci hardware</p>
 </dd>
 </dl>
 </div>
 <hr>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Mi escena es lenta al ser ejecutada</dt>
+<dt class="hdlist1">Mon scénario ne s&#8217;arrête plus/pas</dt>
 <dd>
-<p>Si la escena no tiene pausas es aconsejable chequear "ejecutar tan pronto como sea posible" (disponible en modo experto)</p>
+<p>Il est conseillé de regarder les commandes exécutées par le scénario,
+souvent cela vient d&#8217;une commande qui ne se termine pas</p>
 </dd>
 </dl>
 </div>
 <hr>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">No tengo ningún error en el registro nginx.error a pesar de los errores 500</dt>
+<dt class="hdlist1">Mon scénario est lent à se déclencher</dt>
 <dd>
-<p>ssh :
-Editar el archivo /etc/php5/fpm/pool.d/www.conf y descomentar la línea "; catch_worket_process = yes" (borra el ;))
-Reiniciar el php "sudo service php5-fpm restart"</p>
+<p>Si dans le scénario il n&#8217;y a pas de pause il est conseillé de cocher la case "éxécuter le plus rapidement possible" (disponible en mode expert)</p>
 </dd>
 </dl>
 </div>
 <hr>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Tengo inestabilidades o errores 504</dt>
+<dt class="hdlist1">Je n&#8217;ai aucune erreur dans le log nginx.error malgrè des erreurs 500</dt>
 <dd>
-<p>Compruebe que su sistema de archivos no está dañado, por ssh ejecute el comando: "sudo dmesg |" grep error"</p>
+<p>En ssh :
+Editez le fichier /etc/php5/fpm/pool.d/www.conf et décommantez la ligne ";catch_worket_process=yes" (supression du ;)
+et redémarrez php "sudo service php5-fpm restart"</p>
 </dd>
 </dl>
 </div>
 <hr>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">No veo todos mis dispositivos en el dashboard</dt>
+<dt class="hdlist1">J&#8217;ai des instabilités ou des erreurs 504</dt>
 <dd>
-<p>A menudo esto es debido a que los dispositivos se asignan a un objeto del que no es hijo
+<p>Vérifiez si votre système de fichiers n&#8217;est pas corrompu, en ssh la commande est : "sudo dmesg | grep error"</p>
+</dd>
+</dl>
+</div>
+<hr>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Je ne vois pas tous mes équipements sur le dashboard</dt>
+<dd>
+<p>Souvent cela est dû au fait que les équipements sont affectés à un objet qui n&#8217;est pas le fils ou
 l&#8217;objet lui-même du premier objet sélectionné à gauche dans l&#8217;arbre (vous pouvez dans votre profil configurer celui-ci)</p>
 </dd>
 </dl>
@@ -535,26 +547,26 @@ l&#8217;objet lui-même du premier objet sélectionné à gauche dans l&#8217;ar
 <hr>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Al conectar al maestro con los esclavos obtengo errores</dt>
+<dt class="hdlist1">Lors de la connexion du maître avec les esclaves j&#8217;ai des erreurs</dt>
 <dd>
-<p>Compruebe que ha puesto el /jeedom correctamente  Si lo utilizas debe ir justo después de la IP jeedom
-(a menudo en caso de instalación DIY)</p>
+<p>Vérifiez que vous avez bien mis les /jeedom si vous utilisez ceux-ci juste après l&#8217;IP de jeedom
+(souvent le cas en installation DIY)</p>
 </dd>
 </dl>
 </div>
 <hr>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Tengo el siguiente error : SQLSTATE[HY000] [2002] Can&#8217;t connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock'</dt>
+<dt class="hdlist1">J&#8217;ai l&#8217;erreur suivante : SQLSTATE[HY000] [2002] Can&#8217;t connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock'</dt>
 <dd>
-<p>Esto se debe a que MySQL se detiene , no es normal, las posibles causas son :</p>
+<p>Cela est dû à MySQL qui s&#8217;est arrêté, ce n&#8217;est pas normal, les cas courants sont :</p>
 <div class="ulist">
 <ul>
 <li>
-<p>problemas de espacio en el sistema de archivos (se puede verificar utilizando el comando "df - h", SSH)</p>
+<p>souci de place sur le système de fichiers (peut être vérifié en faisant la commande "df -h", en ssh)</p>
 </li>
 <li>
-<p>problema de corrupción de archivo, a menudo ocurre después de un cierre no limpio de jeedom (apagón)</p>
+<p>problème de corruption de fichier(s), arrive souvent suite à un arrêt non propre de Jeedom (coupure de courant)</p>
 </li>
 </ul>
 </div>
@@ -562,10 +574,10 @@ l&#8217;objet lui-même du premier objet sélectionné à gauche dans l&#8217;ar
 </dl>
 </div>
 <div class="paragraph">
-<p>Por desgracia no hay solución en el segundo caso,
-Lo mejor sería recuperar una copia de seguridad (disponibles en /usr/share/nginx/www/jeedom/backup por defecto),
-reinstale jeedom y restaurare desde la copia de seguridad.
-También puedes comprobar desde SSH porque no se ejecuta mysql:</p>
+<p>Malheureusement, il n&#8217;y a pas beaucoup de solution si c&#8217;est le deuxième cas,
+le mieux étant de récupérer un backup (disponible dans /usr/share/nginx/www/jeedom/backup par défaut),
+de réinstaller Jeedom et de restaurer le backup.
+Vous pouvez aussi en ssh regarder pourquoi mysql ne veut pas démarrer :</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -578,15 +590,23 @@ mysqld --verbose</code></pre>
 <p>O consultar el registro: /var/log/mysql/error.log</p>
 </div>
 <hr>
-<div class="paragraph">
-<p>los botones de parada/reinicio no funcionan:.
-En una instalación  DIY es normal hacer uso del comando visudo en SSH
-Debe añadir: www-data ALL=(ALL) NOPASSWD: ALL.</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Les boutons Eteindre/Redémarrer ne fonctionnent pas</dt>
+<dd>
+<p>Sur une installation DIY c&#8217;est normal, il faut faire en ssh la commande visudo et à la fin du fichier
+vous devez ajouter : www-data ALL=(ALL) NOPASSWD: ALL.</p>
+</dd>
+</dl>
 </div>
 <hr>
-<div class="paragraph">
-<p>A menudo obtengo un "502 bad gateway":
-Tenemos que entrar (modo experto) en el jeedom, luego en configuración OS y haga clic en Inicio. Hacer clic en 'Registro' PHP, Si obtienes el mensaje 'servidor alcanzado pm.max_clidren' falta procesos php fpm , por lo tanto, hay que autorizar. Para hacer esto:</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">J&#8217;ai souvent des "502 bad gateway"</dt>
+<dd>
+<p>Il faut aller (en mode expert) dans la configuration de Jeedom, puis Système OS et cliquer sur Lancer. Là vous cliquez sur "PHP log", si vous avez le message "server reached pm.max_clidren", c&#8217;est qu&#8217;il manque des processus php fpm, il faut donc en autoriser plus. Pour cela faire :</p>
+</dd>
+</dl>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -596,7 +616,7 @@ vim www.conf</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Editar la linea "pm.max_children" en mettant "pm.max_children = 20"</p>
+<p>Editer la ligne "pm.max_children" en mettant "pm.max_children = 20"</p>
 </div>
 <div class="paragraph">
 <p>Simplemente reinicie php5-fpm</p>
@@ -608,9 +628,9 @@ vim www.conf</code></pre>
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">No veo algunos plugins del market </dt>
+<dt class="hdlist1">Je ne vois pas certains plugins du Market </dt>
 <dd>
-<p>Esto ocurre si su jeedom no es compatible con el plugin, en general una actualización de jeedom puede corrige el problema.</p>
+<p>Ce genre de cas arrive si votre Jeedom n&#8217;est pas compatible avec le plugin, en général une mise à jour de jeedom corrige le souci</p>
 </dd>
 </dl>
 </div>

@@ -24,7 +24,6 @@ CREATE TABLE IF NOT EXISTS `object` (
   `position` INT NULL,
   `configuration` TEXT NULL,
   `display` TEXT NULL,
-  `image` MEDIUMTEXT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `name_UNIQUE` (`name` ASC),
   INDEX `fk_object_object1_idx1` (`father_id` ASC),
@@ -65,7 +64,6 @@ CREATE TABLE IF NOT EXISTS `eqLogic` (
   `logicalId` VARCHAR(127) NULL,
   `object_id` INT NULL,
   `eqType_name` VARCHAR(127) NOT NULL,
-  `specificCapatibilities` MEDIUMTEXT NULL,
   `configuration` TEXT NULL,
   `isVisible` TINYINT(1) NULL,
   `eqReal_id` INT NULL,
@@ -75,6 +73,7 @@ CREATE TABLE IF NOT EXISTS `eqLogic` (
   `category` TEXT NULL DEFAULT NULL,
   `display` TEXT NULL,
   `order` INT NULL DEFAULT '1',
+  `comment` TEXT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `unique` (`name` ASC, `object_id` ASC),
   INDEX `eqTypeName` (`eqType_name` ASC),
@@ -117,6 +116,7 @@ CREATE TABLE IF NOT EXISTS `cmd` (
   `isVisible` INT NULL DEFAULT 1,
   `value` VARCHAR(255) NULL,
   `html` MEDIUMTEXT NULL,
+  `alert` TEXT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `unique` (`eqLogic_id` ASC, `name` ASC),
   INDEX `isHistorized` (`isHistorized` ASC),
@@ -142,6 +142,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `login` VARCHAR(45) NULL,
+  `profils` VARCHAR(45) NOT NULL DEFAULT 'admin',
   `password` VARCHAR(255) NULL,
   `options` TEXT NULL,
   `hash` VARCHAR(255) NULL,
@@ -160,29 +161,6 @@ CREATE TABLE IF NOT EXISTS `config` (
   `value` TEXT NULL,
   PRIMARY KEY (`key`, `plugin`))
 ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `rights`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `rights` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `entity` VARCHAR(127) NULL DEFAULT NULL,
-  `user_id` INT(11) NOT NULL,
-  `right` INT(11) NULL DEFAULT NULL,
-  `options` TEXT NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_rights_user1_idx` (`user_id` ASC),
-  UNIQUE INDEX `entityUser` (`entity` ASC, `user_id` ASC),
-  CONSTRAINT `fk_rights_user1`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `user` (`id`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_general_ci;
-
 
 -- -----------------------------------------------------
 -- Table `scenario`
@@ -332,7 +310,7 @@ CREATE TABLE IF NOT EXISTS `viewData` (
   `order` INT NULL,
   `viewZone_id` INT NOT NULL,
   `type` VARCHAR(127) NULL,
-  `link_id` INT NOT NULL,
+  `link_id` INT NULL,
   `configuration` TEXT NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_data_zone1_idx` (`viewZone_id` ASC),
@@ -469,27 +447,6 @@ CREATE TABLE IF NOT EXISTS `update` (
   INDEX `status` (`status` ASC))
 ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `connection`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `connection` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `ip` VARCHAR(127) NULL,
-  `failure` INT NULL,
-  `localisation` VARCHAR(511) NULL,
-  `datetime` DATETIME NULL,
-  `username` VARCHAR(127) NULL,
-  `status` VARCHAR(127) NULL,
-  `options` VARCHAR(2048) NULL,
-  `informations` VARCHAR(2048) NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `ip_UNIQUE` (`ip` ASC),
-  INDEX `datetime` (`datetime` ASC),
-  INDEX `status_datetime` (`status` ASC, `datetime` ASC))
-ENGINE = MEMORY;
-
-
 -- -----------------------------------------------------
 -- Table `listener`
 -- -----------------------------------------------------
@@ -527,6 +484,7 @@ CREATE TABLE IF NOT EXISTS `plan` (
   `position` TEXT NULL,
   `display` TEXT NULL,
   `css` TEXT NULL,
+  `configuration` TEXT NULL,
   PRIMARY KEY (`id`),
   INDEX `unique` (`link_type` ASC, `link_id` ASC),
   INDEX `fk_plan_planHeader1_idx` (`planHeader_id` ASC),
@@ -536,23 +494,6 @@ CREATE TABLE IF NOT EXISTS `plan` (
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `jeeNetwork`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `jeeNetwork` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `ip` VARCHAR(127) NULL,
-  `apikey` VARCHAR(255) NULL,
-  `plugin` TEXT NULL,
-  `configuration` TEXT NULL,
-  `name` VARCHAR(127) NULL,
-  `status` VARCHAR(127) NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `ip_UNIQUE` (`ip` ASC))
-ENGINE = InnoDB;
-
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

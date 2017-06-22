@@ -17,14 +17,70 @@
  */
 
 /* * ***************************Includes********************************* */
-require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 
 class system {
+
+	private static $_distrib = null;
+	private static $_command = array(
+		'suse' => array('cmd_check' => ' rpm -qa | grep ', 'cmd_install' => ' zypper in --non-interactive ', 'www-uid' => 'wwwrun', 'www-gid' => 'www', 'type' => 'zypper'),
+		'sles' => array('cmd_check' => ' rpm -qa | grep ', 'cmd_install' => ' zypper in --non-interactive ', 'www-uid' => 'wwwrun', 'www-gid' => 'www', 'type' => 'zypper'),
+		'redhat' => array('cmd_check' => ' rpm -qa | grep ', 'cmd_install' => ' yum install ', 'www-uid' => 'www-data', 'www-gid' => 'www-data', 'type' => 'yum'),
+		'fedora' => array('cmd_check' => ' rpm -qa | grep ', 'cmd_install' => ' dnf install ', 'www-uid' => 'www-data', 'www-gid' => 'www-data', 'type' => 'dnf'),
+		'debian' => array('cmd_check' => ' dpkg --get-selections | grep -v deinstall | grep ', 'cmd_install' => ' apt-get install -y ', 'www-uid' => 'www-data', 'www-gid' => 'www-data', 'type' => 'apt'),
+	);
+
+	/*     * ***********************Methode static*************************** */
+
+	public static function loadCommand() {
+		if (file_exists(dirname(__FILE__) . '/../../config/system_cmd.json')) {
+			$content = file_get_contents(dirname(__FILE__) . '/../../config/system_cmd.json');
+			if (is_json($content)) {
+				self::$_command['custom'] = json_decode($content, true);
+			}
+		}
+		return self::$_command;
+	}
+
+        /**
+         * 
+         * @return string/object self:: 
+         */
+	public static function getDistrib() {
+		self::loadCommand();
+		if (isset(self::$_command['custom'])) {
+			return 'custom';
+		}
+		if (self::$_distrib === null) {
+			self::$_distrib = trim(shell_exec('grep CPE_NAME /etc/os-release | cut -d \'"\' -f 2 | cut -d : -f 3 '));
+			if (self::$_distrib == '') {
+				self::$_distrib = trim(shell_exec('grep -e "^ID" /etc/os-release | cut -d \'=\' -f 2'));
+			}
+			if (self::$_distrib == '' || !isset(self::$_command[self::$_distrib])) {
+				self::$_distrib = 'debian';
+			}
+		}
+		return self::$_distrib;
+	}
+
+	public static function get($_key = '') {
+		if (!isset(self::$_command[self::getDistrib()][$_key])) {
+			return '';
+		}
+		return self::$_command[self::getDistrib()][$_key];
+	}
+
+	public static function getCmdSudo() {
+		if (!jeedom::isCapable('sudo')) {
+			return '';
+		}
+		return 'sudo ';
+	}
+
 	public static function fuserk($_port, $_protocol = 'tcp') {
 		if (file_exists($_port)) {
-			exec('fuser -k ' . $_port . ' > /dev/null 2>&1;sudo fuser -k ' . $_port . ' > /dev/null 2>&1');
+			exec(system::getCmdSudo() . 'fuser -k ' . $_port . ' > /dev/null 2>&1');
 		} else {
-			exec('fuser -k ' . $_port . '/' . $_protocol . ' > /dev/null 2>&1;sudo fuser -k ' . $_port . '/' . $_protocol . ' > /dev/null 2>&1');
+			exec(system::getCmdSudo() . 'fuser -k ' . $_port . '/' . $_protocol . ' > /dev/null 2>&1');
 		}
 	}
 
@@ -84,20 +140,16 @@ class system {
 					return true;
 				}
 				usleep(100);
-				$cmd = 'kill -9 ' . $_find;
-				$cmd .= '; sudo kill -9 ' . $_find;
-				exec($cmd);
+				exec(system::getCmdSudo() . 'kill -9 ' . $_find);
 			} else {
 				$kill = posix_kill($_find, 15);
 			}
 			return;
 		}
 		if ($_kill9) {
-			$cmd = "(ps ax || ps w) | grep -ie '" . $_find . "' | grep -v grep | awk '{print $1}' | xargs kill -9 > /dev/null 2>&1";
-			$cmd .= "; (ps ax || ps w) | grep -ie '" . $_find . "' | grep -v grep | awk '{print $1}' | xargs sudo kill -9 > /dev/null 2>&1";
+			$cmd = "(ps ax || ps w) | grep -ie '" . $_find . "' | grep -v grep | awk '{print $1}' | xargs " . system::getCmdSudo() . "kill -9 > /dev/null 2>&1";
 		} else {
-			$cmd = "(ps ax || ps w) | grep -ie '" . $_find . "' | grep -v grep | awk '{print $1}' | xargs kill > /dev/null 2>&1";
-			$cmd .= "; (ps ax || ps w) | grep -ie '" . $_find . "' | grep -v grep | awk '{print $1}' | xargs sudo kill > /dev/null 2>&1";
+			$cmd = "(ps ax || ps w) | grep -ie '" . $_find . "' | grep -v grep | awk '{print $1}' | xargs " . system::getCmdSudo() . "kill > /dev/null 2>&1";
 		}
 		exec($cmd);
 	}
@@ -106,4 +158,3 @@ class system {
 		return exec('php ' . $arguments);
 	}
 }
-?>

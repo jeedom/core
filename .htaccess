@@ -1,4 +1,5 @@
 ServerSignature Off
+Options -Indexes
 
 <IfModule mod_php5.c>
 	php_value post_max_size 1G
@@ -119,3 +120,4 @@ ServerSignature Off
 	deny from all
 	satisfy all
 </Files>
+

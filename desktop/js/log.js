@@ -20,6 +20,9 @@
  $(".li_log").on('click', function() {
   $(".li_log").removeClass('active');
   $(this).addClass('active');
+  $('#bt_globalLogStopStart').removeClass('btn-success').addClass('btn-warning');
+  $('#bt_globalLogStopStart').html('<i class="fa fa-pause"></i> {{Pause}}');
+  $('#bt_globalLogStopStart').attr('data-state',1);
   jeedom.log.autoupdate({
     log : $(this).attr('data-log'),
     display : $('#pre_globallog'),
@@ -37,9 +40,9 @@
  $("#bt_removeLog").on('click', function(event) {
   jeedom.log.remove({
     log : $('.li_log.active').attr('data-log'),
-     success: function(data) {
-        window.location.reload();
-     }
+    success: function(data) {
+      window.location.reload();
+    }
   });
 });
 

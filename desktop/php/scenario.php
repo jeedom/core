@@ -1,5 +1,5 @@
 <?php
-if (!hasRight('scenarioview', true)) {
+if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 
@@ -76,49 +76,43 @@ foreach ($scenarioListGroup as $group) {
 
  <div class="scenarioListContainer">
      <legend>{{Gestion}}</legend>
-     <div class="cursor" id="bt_addScenario2" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-       <center>
+     <div class="cursor" id="bt_addScenario2" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
         <i class="fa fa-plus-circle" style="font-size : 6em;color:#94ca02;"></i>
-    </center>
-    <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>{{Ajouter}}</center></span>
-</div>
-<?php if (config::byKey('enableScenario') == 0) {?>
-    <div class="cursor expertModeVisible" id="bt_changeAllScenarioState2" data-state="1" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-       <center>
+        <br>
+        <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02">{{Ajouter}}</span>
+    </div>
+    <?php if (config::byKey('enableScenario') == 0) {?>
+        <div class="cursor expertModeVisible" id="bt_changeAllScenarioState2" data-state="1" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
            <i class="fa fa-check" style="font-size : 6em;color:#5cb85c;"></i>
-       </center>
-       <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#5cb85c"><center>{{Activer scénarios}}</center></span>
-   </div>
-   <?php } else {?>
-       <div class="cursor expertModeVisible" id="bt_changeAllScenarioState2" data-state="0" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-           <center>
-               <i class="fa fa-times" style="font-size : 6em;color:#d9534f;"></i>
-           </center>
-           <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#d9534f"><center>{{Désactiver scénarios}}</center></span>
+           <br>
+           <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#5cb85c">{{Activer scénarios}}</span>
+       </div>
+       <?php } else {?>
+       <div class="cursor expertModeVisible" id="bt_changeAllScenarioState2" data-state="0" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
+           <i class="fa fa-times" style="font-size : 6em;color:#d9534f;"></i>
+           <br>
+           <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#d9534f">{{Désactiver scénarios}}</span>
        </div>
        <?php }
 ?>
 
-       <div class="cursor expertModeVisible" id="bt_displayScenarioVariable2" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-           <center>
-            <i class="fa fa-eye" style="font-size : 6em;color:#337ab7;"></i>
-        </center>
-        <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Voir variables}}</center></span>
+       <div class="cursor expertModeVisible" id="bt_displayScenarioVariable2" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
+        <i class="fa fa-eye" style="font-size : 6em;color:#337ab7;"></i>
+        <br>
+        <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7">{{Voir variables}}</span>
     </div>
 
-    <div class="cursor expertModeVisible bt_showScenarioSummary" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-       <center>
+    <div class="cursor expertModeVisible bt_showScenarioSummary" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
         <i class="fa fa-list" style="font-size : 6em;color:#337ab7;"></i>
-    </center>
-    <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Vue d'ensemble}}</center></span>
-</div>
+        <br>
+        <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7">{{Vue d'ensemble}}</span>
+    </div>
 
-<div class="cursor expertModeVisible bt_showExpressionTest" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-   <center>
-    <i class="fa fa-check" style="font-size : 6em;color:#337ab7;"></i>
-</center>
-<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Testeur d'expression}}</center></span>
-</div>
+    <div class="cursor expertModeVisible bt_showExpressionTest" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
+        <i class="fa fa-check" style="font-size : 6em;color:#337ab7;"></i>
+        <br>
+        <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7">{{Testeur d'expression}}</span>
+    </div>
 </div>
 
 <legend>{{Mes scénarios}}</legend>
@@ -131,11 +125,10 @@ if (count($scenarios) == 0) {
 		echo '<div class="scenarioListContainer">';
 		foreach ($scenarios[-1] as $scenario) {
 			$opacity = ($scenario->getIsActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-			echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="background-color : #ffffff; min-height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
-			echo "<center>";
+			echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="text-align: center; background-color : #ffffff; min-height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
 			echo '<img src="core/img/scenario.png" height="90" width="85" />';
-			echo "</center>";
-			echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $scenario->getHumanName(true, true, true, true) . '</center></span>';
+			echo "<br>";
+			echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $scenario->getHumanName(true, true, true, true) . '</span>';
 			echo '</div>';
 		}
 		echo '</div>';
@@ -146,11 +139,10 @@ if (count($scenarios) == 0) {
 			echo '<div class="scenarioListContainer">';
 			foreach ($scenarios[$group['group']] as $scenario) {
 				$opacity = ($scenario->getIsActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-				echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="background-color : #ffffff; min-height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
-				echo "<center>";
+				echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="text-align: center; background-color : #ffffff; min-height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
 				echo '<img src="core/img/scenario.png" height="90" width="85" />';
-				echo "</center>";
-				echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $scenario->getHumanName(true, true, true, true) . '</center></span>';
+				echo "<br>";
+				echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $scenario->getHumanName(true, true, true, true) . '</span>';
 				echo '</div>';
 			}
 			echo '</div>';
@@ -163,11 +155,12 @@ if (count($scenarios) == 0) {
 <div id="div_editScenario" style="display: none; border-left: solid 1px #EEE; padding-left: 25px;">
     <legend style="height: 35px;"><i class="fa fa-arrow-circle-left cursor" id="bt_scenarioThumbnailDisplay"></i> {{Scénario}}
         <span class="expertModeVisible">(ID : <span class="scenarioAttr" data-l1key="id" ></span>)</span>
-        <a class="btn btn-default btn-xs pull-right expertModeVisible" id="bt_copyScenario"><i class="fa fa-copy"></i> {{Dupliquer}}</a>
-        <a class="btn btn-default btn-xs pull-right expertModeVisible" id="bt_logScenario"><i class="fa fa-file-text-o"></i> {{Log}}</a>
-        <a class="btn btn-default btn-xs pull-right expertModeVisible" id="bt_exportScenario"><i class="fa fa fa-share"></i> {{Exporter}}</a>
-        <a class="btn btn-danger btn-xs pull-right expertModeVisible" id="bt_stopScenario"><i class="fa fa-stop"></i> {{Arrêter}}</a>
-        <a class="btn btn-default btn-xs pull-right expertModeVisible" id="bt_templateScenario"><i class="fa fa-cubes"></i> {{Template/Market}}</a>
+        <a class="btn btn-default btn-xs pull-right" id="bt_graphScenario"><i class="fa fa-object-group"></i> {{Liens}}</a>
+        <a class="btn btn-default btn-xs pull-right" id="bt_copyScenario"><i class="fa fa-copy"></i> {{Dupliquer}}</a>
+        <a class="btn btn-default btn-xs pull-right" id="bt_logScenario"><i class="fa fa-file-text-o"></i> {{Log}}</a>
+        <a class="btn btn-default btn-xs pull-right" id="bt_exportScenario"><i class="fa fa fa-share"></i> {{Exporter}}</a>
+        <a class="btn btn-danger btn-xs pull-right" id="bt_stopScenario"><i class="fa fa-stop"></i> {{Arrêter}}</a>
+        <a class="btn btn-default btn-xs pull-right" id="bt_templateScenario"><i class="fa fa-cubes"></i> {{Template/Market}}</a>
         <a class="btn btn-success btn-xs pull-right" id="bt_saveScenario2"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
         <a class="btn btn-danger btn-xs pull-right" id="bt_delScenario2"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
         <a class="btn btn-warning btn-xs pull-right" id="bt_testScenario2" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.}}'><i class="fa fa-gamepad"></i> {{Executer}}</a>
@@ -196,103 +189,107 @@ if (count($scenarios) == 0) {
                         </div>
                     </div>
                     <div class="form-group">
-                    <label class="col-xs-6 control-label"></label>
+                        <label class="col-xs-6 control-label"></label>
                         <label>
                             {{Actif}} <input type="checkbox" class="scenarioAttr" data-l1key="isActive">
                         </label>
                         <label>
                            {{Visible}} <input type="checkbox" class="scenarioAttr" data-l1key="isVisible">
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-xs-6 control-label" >{{Objet parent}}</label>
-                        <div class="col-xs-6">
-                            <select class="scenarioAttr form-control input-sm" data-l1key="object_id">
-                                <option value="">{{Aucun}}</option>
-                                <?php
+                       </label>
+                   </div>
+                   <div class="form-group">
+                    <label class="col-xs-6 control-label" >{{Objet parent}}</label>
+                    <div class="col-xs-6">
+                        <select class="scenarioAttr form-control input-sm" data-l1key="object_id">
+                            <option value="">{{Aucun}}</option>
+                            <?php
 foreach (object::all() as $object) {
 	echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
 }
 ?>
-                           </select>
-                       </div>
+                       </select>
                    </div>
-                   <div class="form-group expertModeVisible">
-                    <label class="col-xs-6 control-label">{{Timeout secondes (0 = illimité)}}</label>
-                    <div class="col-xs-6">
-                        <input class="form-control scenarioAttr input-sm" data-l1key="timeout">
-                    </div>
-                </div>
-
-            </fieldset>
-        </form>
-    </div>
-    <div class="col-sm-5">
-        <form class="form-horizontal">
-            <div class="form-group">
-                <label class="col-sm-3 col-xs-6 control-label" >{{Mode du scénario}}</label>
-                <div class="col-sm-9 col-xs-6">
-                    <div class="input-group">
-                        <select class="form-control scenarioAttr input-sm" data-l1key="mode">
-                            <option value="provoke">{{Provoqué}}</option>
-                            <option value="schedule">{{Programmé}}</option>
-                            <option value="all">{{Les deux}}</option>
-                        </select>
-                        <span class="input-group-btn">
-                            <a class="btn btn-default btn-sm" id="bt_addTrigger"><i class="fa fa-plus-square"></i> {{Déclencheur}}</a>
-                            <a class="btn btn-default btn-sm" id="bt_addSchedule"><i class="fa fa-plus-square"></i> {{Programmation}}</a>
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="scheduleDisplay" style="display: none;">
-                <div class="form-group">
-                    <label class="col-xs-3 control-label" >{{Précédent}}</label>
-                    <div class="col-xs-3" ><span class="scenarioAttr label label-primary" data-l1key="forecast" data-l2key="prevDate" data-l3key="date"></span></div>
-                    <label class="col-xs-3 control-label" >{{Prochain}}</label>
-                    <div class="col-xs-3"><span class="scenarioAttr label label-success" data-l1key="forecast" data-l2key="nextDate" data-l3key="date"></span></div>
-                </div>
-                <div class="scheduleMode"></div>
-            </div>
-            <div class="provokeMode provokeDisplay" style="display: none;">
-
-            </div>
-        </form>
-    </div>
-    <div class="col-sm-3">
-        <form class="form-horizontal">
-            <div class="form-group">
-                <div class="col-md-11">
-                    <textarea class="form-control scenarioAttr" data-l1key="description" placeholder="Description"></textarea>
-                </div>
-            </div>
-            <div class="form-group expertModeVisible">
-                <label class="col-xs-6 control-label">{{Autoriser plusieurs lancement en parallèle}}</label>
-                <div class="col-xs-1">
-                    <input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="allowMultiInstance" title="{{Le scénario pourra tourné plusieurs fois en même temps}}">
-                </div>
-            </div>
-            <div class="form-group expertModeVisible">
-                <label class="col-xs-6 control-label">{{Pas de log}}</label>
-                <div class="col-xs-1">
-                    <input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="noLog" title="{{Le scénario n'écrit plus de log}}">
-                </div>
-            </div>
-            <div class="form-group expertModeVisible">
-                <label class="col-xs-6 control-label">{{Mode synchrone}}</label>
-                <div class="col-xs-1">
-                    <input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="syncmode" title="{{Le scénario est mode synchrone, attention peux rendre le système instable}}">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-xs-6 control-label" for="span_ongoing">{{Etat}}</label>
+               </div>
+               <div class="form-group expertModeVisible">
+                <label class="col-xs-6 control-label">{{Timeout secondes (0 = illimité)}}</label>
                 <div class="col-xs-6">
-                    <div><span id="span_ongoing" class="label" style="font-size : 1em;"></span></div>
+                    <input class="form-control scenarioAttr input-sm" data-l1key="timeout">
                 </div>
             </div>
 
-        </form>
-    </div>
+        </fieldset>
+    </form>
+</div>
+<div class="col-sm-5">
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="col-sm-3 col-xs-6 control-label" >{{Mode du scénario}}</label>
+            <div class="col-sm-9 col-xs-6">
+                <div class="input-group">
+                    <select class="form-control scenarioAttr input-sm" data-l1key="mode">
+                        <option value="provoke">{{Provoqué}}</option>
+                        <option value="schedule">{{Programmé}}</option>
+                        <option value="all">{{Les deux}}</option>
+                    </select>
+                    <span class="input-group-btn">
+                        <a class="btn btn-default btn-sm" id="bt_addTrigger"><i class="fa fa-plus-square"></i> {{Déclencheur}}</a>
+                        <a class="btn btn-default btn-sm" id="bt_addSchedule"><i class="fa fa-plus-square"></i> {{Programmation}}</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="scheduleDisplay" style="display: none;">
+            <div class="form-group">
+                <label class="col-xs-3 control-label" >{{Précédent}}</label>
+                <div class="col-xs-3" ><span class="scenarioAttr label label-primary" data-l1key="forecast" data-l2key="prevDate" data-l3key="date"></span></div>
+                <label class="col-xs-3 control-label" >{{Prochain}}</label>
+                <div class="col-xs-3"><span class="scenarioAttr label label-success" data-l1key="forecast" data-l2key="nextDate" data-l3key="date"></span></div>
+            </div>
+            <div class="scheduleMode"></div>
+        </div>
+        <div class="provokeMode provokeDisplay" style="display: none;">
+
+        </div>
+    </form>
+</div>
+<div class="col-sm-3">
+    <form class="form-horizontal">
+        <div class="form-group">
+            <div class="col-md-11">
+                <textarea class="form-control scenarioAttr" data-l1key="description" placeholder="Description"></textarea>
+            </div>
+        </div>
+        <div class="form-group expertModeVisible">
+            <label class="col-xs-5 control-label">{{Multi lancement}}</label>
+            <div class="col-xs-1">
+                <input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="allowMultiInstance" title="{{Le scénario pourra tourné plusieurs fois en même temps}}">
+            </div>
+        </div>
+        <div class="form-group expertModeVisible">
+            <label class="col-xs-5 control-label">{{Log}}</label>
+            <div class="col-xs-6">
+                <select class="scenarioAttr form-control" data-l1key="configuration" data-l2key="logmode">
+                    <option value="default">{{Défaut}}</option>
+                    <option value="none">{{Aucun}}</option>
+                    <option value="realtime">{{Temps réel}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group expertModeVisible">
+            <label class="col-xs-5 control-label">{{Mode synchrone}}</label>
+            <div class="col-xs-1">
+                <input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="syncmode" title="{{Le scénario est mode synchrone, attention peux rendre le système instable}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-5 control-label" for="span_ongoing">{{Etat}}</label>
+            <div class="col-xs-4">
+                <div><span id="span_ongoing" class="label" style="font-size : 1em;"></span></div>
+            </div>
+        </div>
+
+    </form>
+</div>
 </div>
 
 <div id="div_scenarioElement" class="element"></div>
@@ -381,96 +378,6 @@ foreach (object::all() as $object) {
             <a class="btn btn-success" id="bt_addElementSave"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
         </div>
     </div>
-</div>
-</div>
-
-<div class="modal fade" id="md_selectOtherAction">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button class="close" data-dismiss="modal">×</button>
-                <h3>{{Sélectionner le mot-clé}}</h3>
-            </div>
-            <div class="modal-body">
-                <center>
-                    <select id="sel_otherAction" class="form-control">
-                        <option value="sleep">{{Pause}}</option>
-                        <option value="variable">{{Variable}}</option>
-                        <option value="scenario">{{Scénario}}</option>
-                        <option value="stop">{{Stop}}</option>
-                        <option value="wait">{{Attendre}}</option>
-                        <option value="gotodesign">{{Aller au design}}</option>
-                        <option value="log">{{Ajouter un log}}</option>
-                        <option value="message">{{Creer un message}}</option>
-                        <option value="equipement">{{Activer/Desactiver Masquer/Afficher un équipement}}</option>
-                        <option value="ask">{{Faire une demande}}</option>
-                        <option value="jeedom_poweroff">{{Arrêter Jeedom}}</option>
-                        <option value="scenario_return">{{Retourner un texte/une données}}</option>
-                        <option value="icon">{{Icône}}</option>
-                    </select>
-                </center>
-                <br/>
-                <div class="alert alert-info sel_otherActionDescription sleep">
-                    {{Pause de x seconde(s)}}
-                </div>
-
-                <div class="alert alert-info sel_otherActionDescription wait" style="display:none;">
-                    {{Attend jusqu’à ce que la condition soit valide (maximum 2h)}}
-                </div>
-
-                <div class="alert alert-info sel_otherActionDescription variable" style="display:none;">
-                    {{Création/modification d’une ou de la valeur d’une variable}}
-                </div>
-
-                <div class="alert alert-info sel_otherActionDescription scenario" style="display:none;">
-                    {{Permet le contrôle des scénarios}}
-                </div>
-
-                <div class="alert alert-info sel_otherActionDescription stop" style="display:none;">
-                   {{Arrête le scénario}}
-               </div>
-
-               <div class="alert alert-info sel_otherActionDescription say" style="display:none;">
-                {{Permet de faire dire un texte à Jeedom (ne marche que si un onglet jeedom est ouvert dans le navigateur)}}
-            </div>
-
-            <div class="alert alert-info sel_otherActionDescription gotodesign" style="display:none;">
-                {{Change le design affiché sur tous les navigateurs qui affichent un design par le design demandé}}
-            </div>
-
-            <div class="alert alert-info sel_otherActionDescription log" style="display:none;">
-               {{Permet de rajouter un message dans les logs}}
-           </div>
-
-           <div class="alert alert-info sel_otherActionDescription message" style="display:none;">
-               {{Permet d'ajouter une message dans le centre de message}}
-           </div>
-
-           <div class="alert alert-info sel_otherActionDescription equipement" style="display:none;">
-            {{Permet de modifier les prorietés visible/invisible actif/inactif d'un équipement}}
-        </div>
-
-        <div class="alert alert-info sel_otherActionDescription ask" style="display:none;">
-            {{Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finie que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec le plugin SMS, Slack et SARAH.}}
-        </div>
-
-        <div class="alert alert-info sel_otherActionDescription jeedom_poweroff" style="display:none;">
-            {{Envoi l'ordre à Jeedom de s'éteindre}}
-        </div>
-
-        <div class="alert alert-info sel_otherActionDescription scenario_return" style="display:none;">
-            {{Retour un texte ou une valeur pour une intéraction par exemple}}
-        </div>
-
-          <div class="alert alert-info sel_otherActionDescription icon" style="display:none;">
-            {{Permet d'affecter une icone au scénario}}
-        </div>
-    </div>
-    <div class="modal-footer">
-        <a class="btn btn-default" data-dismiss="modal">{{Annuler}}</a>
-        <a class="btn btn-primary" id="bt_selectOtherActionSave">{{Valider}}</a>
-    </div>
-</div>
 </div>
 </div>
 

@@ -1,5 +1,10 @@
 function initHome() {
     refreshMessageNumber();
+    $('#bottompanel_otherActionList').empty();
+    $('#bottompanel_otherActionList').append('<a class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" href="index.php?v=d"><i class="fa fa-desktop"></i> {{Version desktop}}</a>');
+    $('#bottompanel_otherActionList').append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="deamon" data-title="{{Démons}}"><i class="fa fa-bug" ></i> {{Démons}}</a>');
+    $('#bottompanel_otherActionList').append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="cron" data-title="{{Crons}}"><i class="fa fa-cogs" ></i> {{Crons}}</a>');
+    $('#bottompanel_otherActionList').append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="health" data-title="{{Santé}}"><i class="icon divers-caduceus3" ></i> {{Santé}}</a>');
 
     jeedom.object.all({
         error: function (error) {
@@ -48,9 +53,7 @@ function initHome() {
         success: function (planHeader) {
             var li = '';
             for (var i in planHeader) {
-                if (deviceInfo.type != 'phone' || (deviceInfo.type == 'phone' && planHeader[i].configuration.enableOnMobile == "1")) {
-                    li += '<a class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" href="index.php?v=d&p=plan&plan_id=' + planHeader[i].id + '" data-ajax="false">' +init(planHeader[i].configuration['icon'])+' '+ planHeader[i].name + '</a>'
-                }
+                li += '<a class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" href="index.php?v=d&p=plan&plan_id=' + planHeader[i].id + '" data-ajax="false">' +init(planHeader[i].configuration['icon'])+' '+ planHeader[i].name + '</a>'
             }
             $('#bottompanel_planList').empty().append(li);
         }
@@ -67,7 +70,7 @@ function initHome() {
                 continue;
             }
             li += '<a href="#" class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="' + plugins[i].mobile + '" data-plugin="' + plugins[i].id + '" data-title="' + plugins[i].name + '">';
-            li += '<img src="plugins/'+plugins[i].id +'/doc/images/'+plugins[i].id +'_icon.png" style="width : 20px;position:relative;top:5px;" onerror=\'this.style.display = "none"\' /> ';
+            li += '<img src="plugins/'+plugins[i].id +'/plugin_info/'+plugins[i].id +'_icon.png" style="width : 20px;position:relative;top:5px;" onerror=\'this.style.display = "none"\' /> ';
             li +=  plugins[i].name;
             li +=  '</a>';
         }
@@ -81,17 +84,17 @@ function initHome() {
 }
 
 $('#bt_logout').off().on('click', function () {
-        $.ajax({
-            type: "POST", 
-            url: "core/ajax/user.ajax.php", 
-            data: {
-                action: "logout",
-            },
-            dataType: 'json',
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_alert'));
-            },
-            success: function (data) { 
+    $.ajax({
+        type: "POST", 
+        url: "core/ajax/user.ajax.php", 
+        data: {
+            action: "logout",
+        },
+        dataType: 'json',
+        error: function (request, status, error) {
+            handleAjaxError(request, status, error, $('#div_alert'));
+        },
+        success: function (data) { 
             if (data.state != 'ok') {
                 $('#div_alert').showAlert({message: data.result, level: 'danger'});
                 return;
@@ -99,7 +102,7 @@ $('#bt_logout').off().on('click', function () {
             initApplication();
         }
     });
-    });
+});
 setTimeout(function(){$('#pagecontainer').css('padding-top','64px');; }, 100);
 }
 

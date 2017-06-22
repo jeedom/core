@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.3.dev">
-<title>Saving and re-establishment</title>
+<title>Sauvegarde et restauration</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -412,7 +412,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Saving and re-establishment</h1>
+<h1>Sauvegarde et restauration</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table des matières</div>
 <ul class="sectlevel1">
@@ -436,7 +436,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_configuration">1. Configuration</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Accessible from Administration &#8594; Backup:</p>
+<p>Accessible depuis Administration &#8594; Sauvegarde :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -452,7 +452,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>On this page you find on the left the settings and the action buttons, and on the right the real-time status of the current action (current backup or restore), if you have started one.</p>
+<p>Sur cette page vous retrouvez à gauche les paramètres et les boutons d&#8217;action, et à droite le statut en temps réel de l&#8217;action en cours (sauvegarde en cours ou restauration), si vous en avez lancée une.</p>
 </div>
 <div class="paragraph">
 <p>On the left we have :</p>
@@ -460,7 +460,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Savings</strong></p>
+<p><strong>Sauvegardes</strong></p>
 <div class="ulist">
 <ul>
 <li>
@@ -473,10 +473,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><strong>Nombre de jour(s) de mémorisation des sauvegardes</strong> : nombre de jours de sauvegarde à garder. Une fois ce délai passé les sauvegardes sont supprimées. Attention à ne pas mettre un nombre de jours trop élevé, sinon vous pouvez remplir votre système de fichiers.</p>
 </li>
 <li>
-<p><strong>Taille totale maximale des backups (Mo)</strong> : Permet de limiter la taille totale des sauvegardes. Si cette valeur est dépassée alors Jeedom va supprimer les sauvegardes les plus veillez jusqu&#8217;à retomber en-dessous de la taille maximale.</p>
+<p><strong>Taille totale maximale des backups (Mo)</strong> : Permet de limiter la taille totale des sauvegardes. Si cette valeur est dépassée alors Jeedom va supprimer les sauvegardes les plus vieilles jusqu&#8217;à retomber en-dessous de la taille maximale.</p>
 </li>
 <li>
-<p><strong>Envoyer les sauvegardes dans le cloud</strong> : indique à Jeedom d&#8217;envoyer les sauvegardes au market, attention il faut avoir pris l&#8217;abonnement.</p>
+<p><strong>Envoyer les sauvegardes dans le cloud</strong> : indique à Jeedom d&#8217;envoyer les sauvegardes au Market, attention il faut avoir pris l&#8217;abonnement.</p>
 </li>
 </ul>
 </div>
@@ -486,13 +486,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>* * Backups available: list of available backups</p>
+<p><strong>Sauvegardes disponibles</strong> : liste des sauvegardes disponibles</p>
 </li>
 <li>
-<p>* Restore Backup *: launches restoration of the selected backup over</p>
+<p><strong>Restaurer la sauvegarde</strong> : lance la restauration de la sauvegarde sélectionnée au-dessus</p>
 </li>
 <li>
-<p>* * Delete Backup: Delete the selected backup above</p>
+<p><strong>Supprimer la sauvegarde</strong> : supprime la sauvegarde sélectionnée au-dessus</p>
 </li>
 <li>
 <p><strong>Envoyer une sauvegarde</strong> : vous permet d&#8217;envoyer à Jeedom une archive de sauvegarde (permet par exemple de restaurer une archive précédemment récupérée sur un nouveau Jeedom ou une réinstallation)</p>
@@ -525,7 +525,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Lors d&#8217;une réinstallation de Jeedom et en ayant pris l&#8217;abonnement de sauvegarde cloud, vous avez juste sur votre nouveau Jeedom à renseigner votre compte market puis à venir ici pour lancer la restauration.
+Lors d&#8217;une réinstallation de Jeedom et en ayant pris l&#8217;abonnement de sauvegarde cloud, vous avez juste sur votre nouveau Jeedom à renseigner votre compte Market puis à venir ici pour lancer la restauration.
 </td>
 </tr>
 </table>
@@ -571,7 +571,7 @@ Il est possible aussi de restaurer un backup en ligne de commandes (par défaut 
 <h2 id="_sauvegarde_cloud">3. Sauvegarde cloud</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>La sauvegarde dans le cloud permet à Jeedom d&#8217;envoyer vos sauvegardes directement sur le market. Cela vous permet de les restaurer facilement et d&#8217;être sûr de ne pas les perdre. Le market conserve les 14 dernières sauvegardes. Pour vous abonner il suffit d&#8217;aller sur votre page profil sur le market :</p>
+<p>La sauvegarde dans le cloud permet à Jeedom d&#8217;envoyer vos sauvegardes directement sur le Market. Cela vous permet de les restaurer facilement et d&#8217;être sûr de ne pas les perdre. Le Market conserve les 14 dernières sauvegardes. Pour vous abonner il suffit d&#8217;aller sur votre page profil sur le Market :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -607,7 +607,7 @@ Vous pouvez mettre un nom de sauvegarde plus sympa à partir de l&#8217;onglet "
 <h2 id="_fréquence_des_backups">4. Fréquence des backups</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Jeedom effectue une sauvegarde tous les jours à 2h du matin. Vous pouvez modifier cette heure à partir du "Moteur de tâche" (la tâche est la Jeedom backup) mais ce n&#8217;est pas recommandé car cette heure est calculée par rapport à la charge et l&#8217;heure de la sauvegarde du market.</p>
+<p>Jeedom effectue une sauvegarde tous les jours.Vous pouvez modifier cette heure à partir du "Moteur de tâches" (la tâche est nommée 'Jeedom backup') mais ce n&#8217;est pas recommandé car cette heure est calculée par rapport à la charge et l&#8217;heure de la sauvegarde du Market.</p>
 </div>
 </div>
 </div>
@@ -615,7 +615,7 @@ Vous pouvez mettre un nom de sauvegarde plus sympa à partir de l&#8217;onglet "
 <h2 id="_cas_d_un_esclave">5. Cas d&#8217;un esclave</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Le cas d&#8217;un esclave est un peu particulier, car il va après chaque sauvegarde envoyer celle-ci sur son maître (et sur le market si vous avez un abonnement au service de sauvegarde cloud). Vous pouvez donc à partir du maître récupérer une sauvegarde de l&#8217;esclave pour l&#8217;installer sur un autre esclave par exemple.</p>
+<p>Le cas d&#8217;un esclave est un peu particulier, car il va après chaque sauvegarde envoyer celle-ci sur son maître (et sur le Market si vous avez un abonnement au service de sauvegarde cloud). Vous pouvez donc à partir du maître récupérer une sauvegarde de l&#8217;esclave pour l&#8217;installer sur un autre esclave par exemple.</p>
 </div>
 </div>
 </div>

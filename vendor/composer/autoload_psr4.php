@@ -6,10 +6,12 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'cebe\\markdown\\' => array($vendorDir . '/cebe/markdown'),
     'Symfony\\Polyfill\\Util\\' => array($vendorDir . '/symfony/polyfill-util'),
     'Symfony\\Polyfill\\Php56\\' => array($vendorDir . '/symfony/polyfill-php56'),
     'Symfony\\Component\\ExpressionLanguage\\' => array($vendorDir . '/symfony/expression-language'),
     'Symfony\\Component\\EventDispatcher\\' => array($vendorDir . '/symfony/event-dispatcher'),
+    'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
     'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-message/src'),
     'PragmaRX\\Google2FA\\' => array($vendorDir . '/pragmarx/google2fa/src'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
@@ -19,5 +21,6 @@ return array(
     'GuzzleHttp\\' => array($vendorDir . '/guzzlehttp/guzzle/src'),
     'Github\\' => array($vendorDir . '/knplabs/github-api/lib/Github'),
     'Doctrine\\Common\\Cache\\' => array($vendorDir . '/doctrine/cache/lib/Doctrine/Common/Cache'),
+    'Cron\\' => array($vendorDir . '/mtdowling/cron-expression/src/Cron'),
     'Base32\\' => array($vendorDir . '/christian-riesen/base32/src'),
 );

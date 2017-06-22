@@ -103,6 +103,7 @@ jeedom.object.toHtml = function(_params) {
         id: ($.isArray(_params.id)) ? json_encode(_params.id) : _params.id,
         version: _params.version || 'dashboard',
         category :  _params.category || 'all',
+        summary :  _params.summary || '',
     };
     $.ajax(paramsAJAX);
 };
@@ -217,11 +218,28 @@ jeedom.object.setOrder = function(_params) {
 jeedom.object.summaryUpdate = function(_params) {
     var objects = {};
     var sends = {};
-    _params.push({object_id:'global'})
     for(var i in _params){
         var object = $('.objectSummary' + _params[i].object_id);
         if (object.html() == undefined || object.attr('data-version') == undefined) {
             continue;
+        }
+        if(isset(_params[i]['keys'])){
+            var updated = false;
+            for(var j in _params[i]['keys']){
+                var keySpan = object.find('.objectSummary'+j);
+                if(keySpan.html() != undefined){
+                    updated = true;
+                    if(keySpan.closest('.objectSummaryParent').attr('data-displayZeroValue') == 0 && _params[i]['keys'][j]['value'] == 0){
+                        keySpan.closest('.objectSummaryParent').hide();
+                        continue;
+                    }
+                    keySpan.closest('.objectSummaryParent').show();
+                    keySpan.empty().append(_params[i]['keys'][j]['value']);
+                }
+            }
+            if(updated){
+                continue;
+            }
         }
         objects[_params[i].object_id] = {object : object, version : object.attr('data-version')};
         sends[_params[i].object_id] = {version : object.attr('data-version')};

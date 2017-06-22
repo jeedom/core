@@ -14,17 +14,16 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
-
+ uniqId_count = 0;
  modifyWithoutSave = false;
  nbActiveAjaxRequest = 0;
  utid = Date.now();
 
-  // Ajax Loading Screen
-  $(document).ajaxStart(function () {
+ $(document).ajaxStart(function () {
     nbActiveAjaxRequest++;
     $.showLoading();
 });
-  $(document).ajaxStop(function () {
+ $(document).ajaxStop(function () {
     nbActiveAjaxRequest--;
     if (nbActiveAjaxRequest <= 0) {
         nbActiveAjaxRequest = 0;
@@ -32,15 +31,14 @@
     }
 });
 
-  
-  function loadPage(_url){
+
+ function loadPage(_url){
     window.location.href = _url;
     return;
 }
 
 $(function () {
-
-   toastr.options = {
+ toastr.options = {
     "closeButton": true,
     "debug": false,
     "positionClass": "toast-top-right",
@@ -228,7 +226,7 @@ if (isset(jeedom_langage)) {
     });
 
 
-    if (typeof jeedom_firstUse != undefined && isset(jeedom_firstUse) && jeedom_firstUse == 1 && getUrlVars('noFirstUse') != 1) {
+    if (typeof jeedom_firstUse != 'undefined' && isset(jeedom_firstUse) && jeedom_firstUse == 1 && getUrlVars('noFirstUse') != 1) {
         $('#md_modal').dialog({title: "{{Bienvenue dans Jeedom}}"});
         $("#md_modal").load('index.php?v=d&modal=first.use').dialog('open');
     }
@@ -252,9 +250,9 @@ if (isset(jeedom_langage)) {
     });
 
     $('#bt_showEventInRealTime').on('click',function(){
-       $('#md_modal').dialog({title: "{{Evènement en temps réel}}"});
-       $("#md_modal").load('index.php?v=d&modal=log.display&log=event').dialog('open');
-   });
+     $('#md_modal').dialog({title: "{{Evénement en temps réel}}"});
+     $("#md_modal").load('index.php?v=d&modal=log.display&log=event').dialog('open');
+ });
 
     $('#bt_gotoDashboard').on('click',function(){
         $('ul.dropdown-menu [data-toggle=dropdown]').parent().parent().parent().siblings().removeClass('open');
@@ -268,7 +266,7 @@ if (isset(jeedom_langage)) {
 
     $('#bt_gotoPlan').on('click',function(){
         $('ul.dropdown-menu [data-toggle=dropdown]').parent().parent().parent().siblings().removeClass('open');
-        loadPage('index.php?v=d&p=plan');
+        window.location.href =  'index.php?v=d&p=plan';
     });
 
     $('#bt_messageModal').on('click',function(){
@@ -276,41 +274,40 @@ if (isset(jeedom_langage)) {
         $('#md_modal').load('index.php?v=d&p=message&ajax=1').dialog('open');
     });
 
-    $.fn.bootstrapSwitch.defaults.onText = '{{Oui}}';
-    $.fn.bootstrapSwitch.defaults.offText = '{{Non}}';
-    $.fn.bootstrapSwitch.defaults.onColor = 'success';
-    $.fn.bootstrapSwitch.defaults.offColor = 'danger';
+    $('body').on('click','.objectSummaryParent',function(){
+        window.location.href = 'index.php?v=d&p=dashboard&summary='+$(this).data('summary')+'&object_id='+$(this).data('object_id');
+    });
 
     initPage();
 });
 
+function initTextArea(){
+    $('body').on('change keyup keydown paste cut', 'textarea.autogrow', function () {
+        $(this).height(0).height(this.scrollHeight);
+    });
+}
 
 function initCheckBox(){
-    $("input[type=checkbox].bootstrapSwitch").bootstrapSwitch();
+
 }
 
 function initPage(){
     initTableSorter();
     initExpertMode();
+    initReportMode();
     $.initTableFilter();
     initRowOverflow();
-    initCheckBox();
     initHelp();
+    initTextArea();
 }
 
 function linkify(inputText) {
-    //URLs starting with http://, https://, or ftp://
     var replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
     var replacedText = inputText.replace(replacePattern1, '<a href="$1" target="_blank">$1</a>');
-
-    //URLs starting with www. (without // before it, or it'd re-link the ones done above)
     var replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
     var replacedText = replacedText.replace(replacePattern2, '$1<a href="http://$2" target="_blank">$2</a>');
-
-    //Change email addresses to mailto:: links
     var replacePattern3 = /(\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,6})/gim;
     var replacedText = replacedText.replace(replacePattern3, '<a href="mailto:$1">$1</a>');
-
     return replacedText
 }
 
@@ -318,8 +315,8 @@ function initRowOverflow() {
     if ($(window).width() < 1180) {
         $('.row-overflow > div').css('height', 'auto').css('overflow-y', 'initial').css('overflow-x', 'initial');
     } else {
-        var hWindow = $(window).outerHeight() - $('header').outerHeight() - $('#div_alert').outerHeight() - 20;
-        $('.row-overflow > div').height(hWindow).css('overflow-y', 'auto').css('overflow-x', 'hidden');
+        var hWindow = $(window).outerHeight() - $('header').outerHeight() - $('#div_alert').outerHeight();
+        $('.row-overflow > div').height(hWindow).css('overflow-y', 'auto').css('overflow-x', 'hidden').css('padding-top','5px');
     }
 }
 
@@ -333,6 +330,17 @@ function initExpertMode() {
         $('.expertModeVisible').hide();
         $('.expertModeHidden').show();
     }
+}
+
+function initReportMode() {
+    if (getUrlVars('report') == 1) {
+       $('header').hide();
+       $('footer').hide();
+       $('#div_mainContainer').css('margin-top', '-50px');
+       $('#wrap').css('margin-bottom', '0px');
+       $('.reportModeVisible').show();
+       $('.reportModeHidden').hide();
+   } 
 }
 
 function initTableSorter() {
@@ -472,21 +480,47 @@ function chooseIcon(_callback) {
 }
 
 
-function positionEqLogic(_id) {
+function positionEqLogic(_id,_preResize) {
     if(_id != undefined){
         var eqLogic = $('.eqLogic-widget[data-eqlogic_id='+_id+']');
         eqLogic.css('margin','0px').css('padding','0px');
-        eqLogic.width(Math.floor(eqLogic.width() / 40) * 40);
-        eqLogic.height(Math.floor(eqLogic.height() / 80) * 80);
-        eqLogic.width(Math.ceil(eqLogic.width() / 40) * 40 + (Math.ceil(eqLogic.width() / 40)-1) * 2);
-        eqLogic.height(Math.ceil(eqLogic.height() / 80) * 80 + (Math.ceil(eqLogic.height() / 80)-1) * 2);
-    }else{
-        $('.eqLogic-widget:not(.jeedomAlreadyPosition)').css('margin','0px').css('padding','0px');
-        $('.eqLogic-widget:not(.jeedomAlreadyPosition)').each(function () {
-            $(this).width(Math.ceil($(this).width() / 40) * 40 + (Math.ceil($(this).width() / 40)-1) * 2);
-            $(this).height(Math.ceil($(this).height() / 80) * 80 + (Math.ceil($(this).height() / 80)-1) * 2);
-        });
-        $('.eqLogic-widget').addClass('jeedomAlreadyPosition');
-    }
+        if($(this).width() == 0){
+            $(this).width('auto');
+        }
+        if($(this).height() == 0){
+            $(this).height('auto');
+        }
+        if(init(_preResize,true)){
+           eqLogic.width(Math.floor(eqLogic.width() / 40) * 40);
+           eqLogic.height(Math.floor(eqLogic.height() / 80) * 80);
+       }
+       eqLogic.width(Math.ceil(eqLogic.width() / 40) * 40 + (Math.ceil(eqLogic.width() / 40)-1) * 2);
+       eqLogic.height(Math.ceil(eqLogic.height() / 80) * 80 + (Math.ceil(eqLogic.height() / 80)-1) * 2);
+   }else{
+    $('.eqLogic-widget:not(.jeedomAlreadyPosition)').css('margin','0px').css('padding','0px');
+    $('.eqLogic-widget:not(.jeedomAlreadyPosition)').each(function () {
+        if($(this).width() == 0){
+            $(this).width('auto');
+        }
+        if($(this).height() == 0){
+            $(this).height('auto');
+        }
+        $(this).width(Math.ceil($(this).width() / 40) * 40 + (Math.ceil($(this).width() / 40)-1) * 2);
+        $(this).height(Math.ceil($(this).height() / 80) * 80 + (Math.ceil($(this).height() / 80)-1) * 2);
+    });
+    $('.eqLogic-widget').addClass('jeedomAlreadyPosition');
+}
 }
 
+
+function uniqId(_prefix){
+    if(typeof _prefix == 'undefined'){
+        _prefix = 'jee-uniq';
+    }
+    var result = _prefix +'-'+ uniqId_count + '-'+Math.random().toString(36).substring(8);;
+    uniqId_count++;
+    if($('#'+result).length){
+        return uniqId(_prefix);
+    }
+    return result;
+}

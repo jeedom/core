@@ -71,7 +71,7 @@ class interactDef {
 		$values = array();
 		$sql = 'SELECT DISTINCT(`group`)
         FROM interactDef';
-		if ($_group != null) {
+		if ($_group !== null) {
 			$values['group'] = '%' . $_group . '%';
 			$sql .= ' WHERE `group` LIKE :group';
 		}
@@ -106,7 +106,6 @@ class interactDef {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM interactDef
         WHERE query LIKE :query';
-
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -128,7 +127,8 @@ class interactDef {
 			}
 			preg_match_all("/" . $regexp . "$/", strtolower($_query), $matches, PREG_SET_ORDER);
 			if (isset($matches[0])) {
-				for ($i = 0; $i < count($tags[1]); $i++) {
+				$countTags = count($tags[1]);
+				for ($i = 0; $i < $countTags; $i++) {
 					if (isset($matches[0][$i + 1])) {
 						$options[$tags[1][$i]] = $matches[0][$i + 1];
 					}
@@ -160,6 +160,28 @@ class interactDef {
 			$sql = 'DELETE FROM interactQuery WHERE interactDef_id NOT IN (' . implode(',', $list_id) . ')';
 			return DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 		}
+	}
+
+	public static function searchByUse($_search) {
+		$return = array();
+		$values = array(
+			'search' => '%' . $_search . '%',
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+        FROM interactDef
+        WHERE actions LIKE :search
+        	OR reply LIKE :search';
+		$interactDefs = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+		$interactQueries = interactQuery::searchActions($_search);
+		foreach ($interactQueries as $interactQuery) {
+			$interactDefs[] = $interactQuery->getInteractDef();
+		}
+		foreach ($interactDefs as $interactDef) {
+			if (!isset($return[$interactDef->getId()])) {
+				$return[$interactDef->getId()] = $interactDef;
+			}
+		}
+		return $return;
 	}
 
 	/*     * *********************Méthodes d'instance************************* */
@@ -283,6 +305,7 @@ class interactDef {
 				'le buanderie',
 				'du buanderie',
 				'la bureau',
+				'(dans|quelqu\'un) entr(é|e)e',
 			);
 			if (preg_match('/( |^)' . implode('( |$)|( |^)', $disallow) . '( |$)/i', $_query)) {
 				return false;
@@ -358,14 +381,18 @@ class interactDef {
 		$subtype_filter = $this->getFiltres('subtype');
 		$unite_filter = $this->getFiltres('unite');
 		$plugin_filter = $this->getFiltres('plugin');
+		$visible_filter = $this->getFiltres('visible');
 		$category_filter = $this->getFiltres('category');
-		$eqLogic_category_filter = $this->getFiltres('eqLogic_category');
+
 		foreach ($inputs as $input) {
 			preg_match_all("/#(.*?)#/", $input, $matches);
 			$matches = $matches[1];
 			if (in_array('commande', $matches) && (in_array('objet', $matches) || in_array('equipement', $matches))) {
 				foreach (object::all() as $object) {
 					if (isset($object_filter[$object->getId()]) && $object_filter[$object->getId()] == 0) {
+						continue;
+					}
+					if (isset($visible_filter['object']) && $visible_filter['object'] == 1 && $object->getIsVisible() != 1) {
 						continue;
 					}
 					foreach ($object->getEqLogic() as $eqLogic) {
@@ -375,7 +402,10 @@ class interactDef {
 						if (isset($plugin_filter[$eqLogic->getEqType_name()]) && $plugin_filter[$eqLogic->getEqType_name()] == 0) {
 							continue;
 						}
-						$eq_caterogy = $eqLogic->getCategory();
+						if (isset($visible_filter['eqLogic']) && $visible_filter['eqLogic'] == 1 && $eqLogic->getIsVisible() != 1) {
+							continue;
+						}
+
 						$category_ok = true;
 						if (is_array($category_filter)) {
 							$category_ok = false;
@@ -396,6 +426,9 @@ class interactDef {
 							continue;
 						}
 						foreach ($eqLogic->getCmd() as $cmd) {
+							if (isset($visible_filter['cmd']) && $visible_filter['cmd'] == 1 && $cmd->getIsVisible() != 1) {
+								continue;
+							}
 							if (isset($subtype_filter[$cmd->getSubType()]) && $subtype_filter[$cmd->getSubType()] == 0) {
 								continue;
 							}
@@ -503,6 +536,28 @@ class interactDef {
 		return $this->getQuery();
 	}
 
+	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = 3) {
+		if (isset($_data['node']['interactDef' . $this->getId()])) {
+			return;
+		}
+		$_level++;
+		if ($_level > $_drill) {
+			return $_data;
+		}
+		$icon = findCodeIcon('fa-comments-o');
+		$_data['node']['interactDef' . $this->getId()] = array(
+			'id' => 'interactDef' . $this->getId(),
+			'name' => substr($this->getHumanName(), 0, 20),
+			'icon' => $icon['icon'],
+			'fontfamily' => $icon['fontfamily'],
+			'fontsize' => '1.5em',
+			'fontweight' => ($_level == 1) ? 'bold' : 'normal',
+			'texty' => -14,
+			'textx' => 0,
+			'title' => $this->getHumanName(),
+		);
+	}
+
 /*     * **********************Getteur Setteur*************************** */
 
 	public function getId() {
@@ -511,6 +566,7 @@ class interactDef {
 
 	public function setId($id) {
 		$this->id = $id;
+		return $this;
 	}
 
 	public function getQuery() {
@@ -519,6 +575,7 @@ class interactDef {
 
 	public function setQuery($query) {
 		$this->query = $query;
+		return $this;
 	}
 
 	public function getReply() {
@@ -527,6 +584,7 @@ class interactDef {
 
 	public function setReply($reply) {
 		$this->reply = $reply;
+		return $this;
 	}
 
 	public function getPerson() {
@@ -535,6 +593,7 @@ class interactDef {
 
 	public function setPerson($person) {
 		$this->person = $person;
+		return $this;
 	}
 
 	public function getOptions($_key = '', $_default = '') {
@@ -543,6 +602,7 @@ class interactDef {
 
 	public function setOptions($_key, $_value) {
 		$this->options = utils::setJsonAttr($this->options, $_key, $_value);
+		return $this;
 	}
 
 	public function getFiltres($_key = '', $_default = '') {
@@ -551,6 +611,7 @@ class interactDef {
 
 	public function setFiltres($_key, $_value) {
 		$this->filtres = utils::setJsonAttr($this->filtres, $_key, $_value);
+		return $this;
 	}
 
 	public function getPosition() {
@@ -559,6 +620,7 @@ class interactDef {
 
 	public function setPosition($position) {
 		$this->position = $position;
+		return $this;
 	}
 
 	public function getEnable() {
@@ -567,6 +629,7 @@ class interactDef {
 
 	public function setEnable($enable) {
 		$this->enable = $enable;
+		return $this;
 	}
 
 	public function getName() {
@@ -575,6 +638,7 @@ class interactDef {
 
 	public function setName($name) {
 		$this->name = $name;
+		return $this;
 	}
 
 	public function getGroup() {
@@ -583,6 +647,7 @@ class interactDef {
 
 	public function setGroup($group) {
 		$this->group = $group;
+		return $this;
 	}
 
 	public function getActions($_key = '', $_default = '') {
@@ -591,8 +656,7 @@ class interactDef {
 
 	public function setActions($_key, $_value) {
 		$this->actions = utils::setJsonAttr($this->actions, $_key, $_value);
+		return $this;
 	}
 
 }
-
-?>

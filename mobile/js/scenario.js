@@ -6,11 +6,7 @@ function initScenario() {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (htmls) {
-            var html = '';
-            for (var i in htmls) {
-                html += htmls[i];
-            }
-            $('#div_displayScenario').empty().html(html).trigger('create');
+            $('#div_displayScenario').empty().html(htmls).trigger('create');
             setTileSize('.scenario');
             $('#div_displayScenario').packery({gutter : 4});
         }

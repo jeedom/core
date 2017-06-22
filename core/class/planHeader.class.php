@@ -20,129 +20,179 @@
 require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 
 class planHeader {
-    /*     * *************************Attributs****************************** */
+	/*     * *************************Attributs****************************** */
 
-    private $id;
-    private $name;
-    private $image;
-    private $configuration;
+	private $id;
+	private $name;
+	private $image;
+	private $configuration;
 
-    /*     * ***********************Méthodes statiques*************************** */
+	/*     * ***********************Méthodes statiques*************************** */
 
-    public static function byId($_id) {
-        $values = array(
-            'id' => $_id
-        );
-        $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+	public static function byId($_id) {
+		$values = array(
+			'id' => $_id,
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
                 FROM planHeader
                 WHERE id=:id';
-        return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
-    }
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
+	}
 
-    public static function all() {
-        $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+	public static function all() {
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
                 FROM planHeader';
-        return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
-    }
+		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+	}
 
-    /*     * *********************Méthodes d'instance************************* */
+	public static function searchByUse($_type, $_id) {
+		$return = array();
+		$plans = plan::byLinkTypeLinkId($_type, $_id);
+		$search = '#' . str_replace('cmd', '', $_type . $_id) . '#';
+		$plans = array_merge($plans, plan::searchByConfiguration($search, 'eqLogic'));
+		foreach ($plans as $plan) {
+			$planHeader = $plan->getPlanHeader();
+			$return[$planHeader->getId()] = $planHeader;
+		}
+		return $return;
+	}
 
-    public function copy($_name) {
-        $planHeaderCopy = clone $this;
-        $planHeaderCopy->setName($_name);
-        $planHeaderCopy->setId('');
-        $planHeaderCopy->save();
-        foreach ($this->getPlan() as $plan) {
-            $planCopy = clone $plan;
-            $planCopy->setId('');
-            $planCopy->setPlanHeader_id($planHeaderCopy->getId());
-            $planCopy->save();
-        }
-        return $planHeaderCopy;
-    }
+	/*     * *********************Méthodes d'instance************************* */
 
-    public function preSave() {
-        if (trim($this->getName()) == '') {
-            throw new Exception(__('Le nom du plan ne peut pas être vide'));
-        }
-    }
+	public function report($_format = 'pdf', $_parameters = array()) {
+		if (!isset($_parameters['user'])) {
+			$users = user::searchByRight('admin');
+			if (count($users) == 0) {
+				throw new Exception(__('Aucun utilisateur admin trouvé pour la génération du rapport', __FILE__));
+			}
+			$user = $users[0];
+		} else {
+			$user = user::byId($_parameters['user']);
+		}
+		$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=plan';
+		$url .= '&plan_id=' . $this->getId();
+		$url .= '&report=1';
+		$url .= '&auth=' . $user->getHash();
+		return report::generate($url, 'plan', $this->getId(), $_format);
+	}
 
-    public function preInsert() {
-        if ($this->getConfiguration('desktopSizeX') == '') {
-            $this->setConfiguration('desktopSizeX', 500);
-        }
-        if ($this->getConfiguration('desktopSizeY') == '') {
-            $this->setConfiguration('desktopSizeY', 500);
-        }
-    }
+	public function copy($_name) {
+		$planHeaderCopy = clone $this;
+		$planHeaderCopy->setName($_name);
+		$planHeaderCopy->setId('');
+		$planHeaderCopy->save();
+		foreach ($this->getPlan() as $plan) {
+			$planCopy = clone $plan;
+			$planCopy->setId('');
+			$planCopy->setPlanHeader_id($planHeaderCopy->getId());
+			$planCopy->save();
+		}
+		return $planHeaderCopy;
+	}
 
-    public function save() {
-        DB::save($this);
-    }
+	public function preSave() {
+		if (trim($this->getName()) == '') {
+			throw new Exception(__('Le nom du plan ne peut pas être vide', __FILE__));
+		}
+		if ($this->getConfiguration('desktopSizeX') == '') {
+			$this->setConfiguration('desktopSizeX', 500);
+		}
+		if ($this->getConfiguration('desktopSizeY') == '') {
+			$this->setConfiguration('desktopSizeY', 500);
+		}
+	}
 
-    public function remove() {
-        DB::remove($this);
-    }
+	public function save() {
+		DB::save($this);
+	}
 
-    public function displayImage() {
-        if ($this->getImage('data') == '') {
-            return '';
-        }
-        $dir = dirname(__FILE__) . '/../../core/img/plan';
-        if (!file_exists($dir)) {
-            mkdir($dir);
-        }
-        if ($this->getImage('sha1') == '') {
-            $this->setImage('sha1', sha1($this->getImage('data')));
-            $this->save();
-        }
-        $filename = $this->getImage('sha1') . '.' . $this->getImage('type');
-        $filepath = $dir . '/' . $filename;
-        if (!file_exists($filepath)) {
-            file_put_contents($filepath, base64_decode($this->getImage('data')));
-        }
-        $size = $this->getImage('size');
-        return '<img src="core/img/plan/' . $filename . '" data-sixe_y="' . $size[1] . '" data-sixe_x="' . $size[0] . '">';
-    }
+	public function remove() {
+		DB::remove($this);
+	}
 
-    public function getPlan() {
-        return plan::byPlanHeaderId($this->getId());
-    }
+	public function displayImage() {
+		if ($this->getImage('data') == '') {
+			return '';
+		}
+		$dir = dirname(__FILE__) . '/../../core/img/plan';
+		if (!file_exists($dir)) {
+			mkdir($dir);
+		}
+		if ($this->getImage('sha512') == '') {
+			$this->setImage('sha512', sha512($this->getImage('data')));
+			$this->save();
+		}
+		$filename = $this->getImage('sha512') . '.' . $this->getImage('type');
+		$filepath = $dir . '/' . $filename;
+		if (!file_exists($filepath)) {
+			file_put_contents($filepath, base64_decode($this->getImage('data')));
+		}
+		$size = $this->getImage('size');
+		return '<img style="z-index:997" src="core/img/plan/' . $filename . '" data-sixe_y="' . $size[1] . '" data-sixe_x="' . $size[0] . '">';
+	}
 
-    /*     * **********************Getteur Setteur*************************** */
+	public function getPlan() {
+		return plan::byPlanHeaderId($this->getId());
+	}
 
-    public function getId() {
-        return $this->id;
-    }
+	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = 3) {
+		if (isset($_data['node']['plan' . $this->getId()])) {
+			return;
+		}
+		$_level++;
+		if ($_level > $_drill) {
+			return $_data;
+		}
+		$icon = findCodeIcon('fa-paint-brush');
+		$_data['node']['plan' . $this->getId()] = array(
+			'id' => 'interactDef' . $this->getId(),
+			'name' => substr($this->getName(), 0, 20),
+			'icon' => $icon['icon'],
+			'fontfamily' => $icon['fontfamily'],
+			'fontsize' => '1.5em',
+			'fontweight' => ($_level == 1) ? 'bold' : 'normal',
+			'texty' => -14,
+			'textx' => 0,
+			'title' => __('Design :', __FILE__) . ' ' . $this->getName(),
+		);
+	}
 
-    public function getName() {
-        return $this->name;
-    }
+	/*     * **********************Getteur Setteur*************************** */
 
-    public function setId($id) {
-        $this->id = $id;
-    }
+	public function getId() {
+		return $this->id;
+	}
 
-    public function setName($name) {
-        $this->name = $name;
-    }
+	public function getName() {
+		return $this->name;
+	}
 
-    public function getImage($_key = '', $_default = '') {
-        return utils::getJsonAttr($this->image, $_key, $_default);
-    }
+	public function setId($id) {
+		$this->id = $id;
+		return $this;
+	}
 
-    public function setImage($_key, $_value) {
-        $this->image = utils::setJsonAttr($this->image, $_key, $_value);
-    }
+	public function setName($name) {
+		$this->name = $name;
+		return $this;
+	}
 
-    public function getConfiguration($_key = '', $_default = '') {
-        return utils::getJsonAttr($this->configuration, $_key, $_default);
-    }
+	public function getImage($_key = '', $_default = '') {
+		return utils::getJsonAttr($this->image, $_key, $_default);
+	}
 
-    public function setConfiguration($_key, $_value) {
-        $this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
-    }
+	public function setImage($_key, $_value) {
+		$this->image = utils::setJsonAttr($this->image, $_key, $_value);
+		return $this;
+	}
+
+	public function getConfiguration($_key = '', $_default = '') {
+		return utils::getJsonAttr($this->configuration, $_key, $_default);
+	}
+
+	public function setConfiguration($_key, $_value) {
+		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
+		return $this;
+	}
 
 }
-
-?>

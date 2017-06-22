@@ -16,13 +16,13 @@ Retourne la version de Jeedom
 
 === datetime
 
-Retourne le datetime de jeedom en microseconde
+Retourne le datetime de Jeedom en microsecondes
 
 == API JSON Event
 
 === event::changes 
 
-Retourne la liste des changements depuis le datetime passée en paramètre (doit être en microseconde). Vous aurez aussi dans la réponse le datetime courant de Jeedom (à réutiliser pour l'interrogation suivante)
+Retourne la liste des changements depuis le datetime passé en paramètre (doit être en microsecondes). Vous aurez aussi dans la réponse le datetime courant de Jeedom (à réutiliser pour l'interrogation suivante)
 
 Paramètres :
 
@@ -45,7 +45,7 @@ Paramètres :
 Retourne la liste de tous les objets
 
 === object::full
-Retourne la liste de tous les objets, avec pour chaque objet tous ses équipements et pour chaque équipement toutes ses commandes ainsi que les états de celle-ci (pour les commandes de type info)
+Retourne la liste de tous les objets, avec pour chaque objet tous ses équipements et pour chaque équipement toutes ses commandes ainsi que les états de celles-ci (pour les commandes de type info)
 
 === object::byId
 Retourne l'objet spécifié
@@ -55,14 +55,31 @@ Paramètres:
 - int id
 
 === object::fullById
-Retourne un objet, ses équipements et pour chaque équipement toutes ses commandes ainsi que les états de celle-ci (pour les commandes de type info)
+Retourne un objet, ses équipements et pour chaque équipement toutes ses commandes ainsi que les états de cellse-ci (pour les commandes de type info)
+
+== API JSON Summary
+
+=== summary::global
+Retour le résumé global pour la clef passée en paramètre
+
+Paramètres:
+
+- string key : (optionnel), clef du résumé voulu, si vide alors Jeedom vous renvoi le résumé pour toute les clefs
+
+=== summary::byId
+Retourne le résumé pour l'objet id
+
+Paramètres:
+
+- int id : id de l'objet
+- string key : (optionnel), clef du résumé voulu, si vide alors Jeedom vous renvoi le résumé pour toute les clefs
 
 == API JSON EqLogic
 === eqLogic::all
 Retourne la liste de tous les équipements
 
 === eqLogic::fullById
-Retourne un équipement et ses commandes ainsi que les états de celle-ci (pour les commandes de type info)
+Retourne un équipement et ses commandes ainsi que les états de celles-ci (pour les commandes de type info)
 
 === eqLogic::byId
 Retourne l'équipement spécifié
@@ -83,6 +100,7 @@ Paramètres:
 Retourne tous les équipements appartenant à l'objet spécifié
 
 Paramètres:
+
 - int object_id
 
 === eqLogic::byTypeAndId
@@ -107,7 +125,6 @@ Paramètres:
 - int $isVisible = 0;
 - int $isEnable = 0;
 - array $configuration;
-- array $specificCapatibilities;
 - int $timeout;
 - array $category;
 
@@ -139,7 +156,7 @@ Paramètres:
 - [options] Liste des options de la commande (dépend du type et du sous-type de la commande)
 
 === cmd::getStatistique
-Retourne les statistiques sur la commande (ne marche que sur les commandes de type info et historisée)
+Retourne les statistiques sur la commande (ne marche que sur les commandes de type info et historisées)
 
 Paramètres:
 
@@ -194,7 +211,7 @@ Récupère la valeur d'une variable stockée dans le datastore
 Paramètres:
 
 - string type : type de la valeur stockée (pour les scénarios c'est scenario)
-- id linkId : -1 pour le global (valeur pour les scénarios par defaut, ou l'id du scénario)
+- id linkId : -1 pour le global (valeur pour les scénarios par défaut, ou l'id du scénario)
 - string key : nom de la valeur
 
 === datastore::save
@@ -203,7 +220,7 @@ Enregistre la valeur d'une variable dans le datastore
 Paramètres:
 
 - string type : type de la valeur stockée (pour les scénarios c'est scenario)
-- id linkId : -1 pour le global (valeur pour les scénarios par defaut, ou l'id du scénario)
+- id linkId : -1 pour le global (valeur pour les scénarios par défaut, ou l'id du scénario)
 - string key : nom de la valeur
 - mixte value : valeur à enregistrer
 
@@ -218,7 +235,7 @@ Supprime tous les messages
 == API JSON Interaction
 
 === interact::tryToReply
-Essaye de faire correspondre une demande avec une interaction, exécute l'action et répond en conséquence
+Essaie de faire correspondre une demande avec une interaction, exécute l'action et répond en conséquence
 
 Paramètres:
 
@@ -226,10 +243,10 @@ Paramètres:
 
 == API JSON System
 
-=== jeeNetwork::halt
+=== jeedom::halt
 Permet d'arrêter Jeedom
 
-=== jeeNetwork::reboot
+=== jeedom::reboot
 Permet de redémarrer Jeedom
 
 
@@ -255,13 +272,13 @@ Paramètres:
 Retour la liste de tous les composants installés, leur version et les informations associées
 
 === update::checkUpdate
-Permet de mettre de faire vérifier les mises à jour
+Permet de vérifier les mises à jour
 
 === update::update
 Permet de mettre à jour Jeedom et tous les plugins
 
 == API JSON Exemples
-Voici un exemple d'utilisation de l'API. Pour l'exemple si dessous j'utilise https://github.com/jeedom/core/blob/stable/core/class/jsonrpcClient.class.php[cette class php] qui permet de simplifier l'utilisation de l'api.
+Voici un exemple d'utilisation de l'API. Pour l'exemple ci-dessous j'utilise https://github.com/jeedom/core/blob/stable/core/class/jsonrpcClient.class.php[cette class php] qui permet de simplifier l'utilisation de l'api.
 
 Récupération de la liste des objets :
 
@@ -285,4 +302,4 @@ if($jsonrpc->sendRequest('cmd::execCmd', array('id' => #cmd_id#, 'options' => ar
     echo $jsonrpc->getError();
 }
  
-L'API est bien sur utilisable avec d'autre langage (simplement un post sur une page) 
+L'API est bien sur utilisable avec d'autres langages (simplement un post sur une page) 

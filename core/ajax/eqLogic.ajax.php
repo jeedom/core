@@ -30,7 +30,7 @@ try {
 		$object = object::byId(init('object_id'));
 
 		if (!is_object($object)) {
-			throw new Exception(__('Objet inconnu verifié l\'id', __FILE__));
+			throw new Exception(__('Objet inconnu verifiez l\'id', __FILE__));
 		}
 		$return = utils::o2a($object);
 		$return['eqLogic'] = array();
@@ -50,7 +50,7 @@ try {
 	if (init('action') == 'byId') {
 		$eqLogic = eqLogic::byId(init('id'));
 		if (!is_object($eqLogic)) {
-			throw new Exception(__('EqLogic inconnu verifié l\'id', __FILE__));
+			throw new Exception(__('EqLogic inconnu vérifiez l\'id', __FILE__));
 		}
 		ajax::success(utils::o2a($eqLogic));
 	}
@@ -74,7 +74,7 @@ try {
 		} else {
 			$eqLogic = eqLogic::byId(init('id'));
 			if (!is_object($eqLogic)) {
-				throw new Exception(__('Eqlogic inconnu verifié l\'id', __FILE__));
+				throw new Exception(__('Eqlogic inconnu vérifiez l\'id', __FILE__));
 			}
 			$info_eqLogic = array();
 			$info_eqLogic['id'] = $eqLogic->getId();
@@ -123,10 +123,10 @@ try {
 		}
 		$eqLogic = eqLogic::byId(init('id'));
 		if (!is_object($eqLogic)) {
-			throw new Exception(__('EqLogic inconnu verifié l\'id', __FILE__));
+			throw new Exception(__('EqLogic inconnu vérifiez l\'id', __FILE__));
 		}
 		if (!$eqLogic->hasRight('w')) {
-			throw new Exception('Vous n\'etês pas autorisé à faire cette action');
+			throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
 		}
 		$eqLogic->setIsEnable(init('isEnable'));
 		$eqLogic->save();
@@ -158,7 +158,7 @@ try {
 		foreach ($eqLogics as $id) {
 			$eqLogic = eqLogic::byId($id);
 			if (!is_object($eqLogic)) {
-				throw new Exception(__('EqLogic inconnu verifié l\'id :', __FILE__) . ' ' . $id);
+				throw new Exception(__('EqLogic inconnu vérifiez l\'id :', __FILE__) . ' ' . $id);
 			}
 			if (!$eqLogic->hasRight('w')) {
 				continue;
@@ -189,7 +189,7 @@ try {
 		foreach ($eqLogics as $id) {
 			$eqLogic = eqLogic::byId($id);
 			if (!is_object($eqLogic)) {
-				throw new Exception(__('EqLogic inconnu verifié l\'id :', __FILE__) . ' ' . $id);
+				throw new Exception(__('EqLogic inconnu vérifiez l\'id :', __FILE__) . ' ' . $id);
 			}
 			if (!$eqLogic->hasRight('w')) {
 				continue;
@@ -207,11 +207,11 @@ try {
 		$eqLogicSave = json_decode(init('eqLogic'), true);
 		$eqLogic = eqLogic::byId($eqLogicSave['id']);
 		if (!is_object($eqLogic)) {
-			throw new Exception(__('EqLogic inconnu verifié l\'id : ', __FILE__) . $eqLogicsSave['id']);
+			throw new Exception(__('EqLogic inconnu vérifiez l\'id : ', __FILE__) . $eqLogicsSave['id']);
 		}
 
 		if (!$eqLogic->hasRight('w')) {
-			throw new Exception('Vous n\'etês pas autorisé à faire cette action');
+			throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
 		}
 		utils::a2o($eqLogic, $eqLogicSave);
 		$eqLogic->save();
@@ -224,7 +224,7 @@ try {
 		}
 		$eqLogic = eqLogic::byId(init('id'));
 		if (!is_object($eqLogic)) {
-			throw new Exception(__('EqLogic inconnu verifié l\'id', __FILE__));
+			throw new Exception(__('EqLogic inconnu vérifiez l\'id', __FILE__));
 		}
 		if (init('name') == '') {
 			throw new Exception(__('Le nom de la copie de l\'équipement ne peut être vide', __FILE__));
@@ -238,10 +238,10 @@ try {
 		}
 		$eqLogic = eqLogic::byId(init('id'));
 		if (!is_object($eqLogic)) {
-			throw new Exception(__('EqLogic inconnu verifié l\'id : ', __FILE__) . init('id'));
+			throw new Exception(__('EqLogic inconnu vérifiez l\'id : ', __FILE__) . init('id'));
 		}
 		if (!$eqLogic->hasRight('w')) {
-			throw new Exception('Vous n\'etês pas autorisé à faire cette action');
+			throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
 		}
 		$eqLogic->remove();
 		ajax::success();
@@ -254,7 +254,7 @@ try {
 		}
 		$eqLogic = $typeEqLogic::byId(init('id'));
 		if (!is_object($eqLogic)) {
-			throw new Exception(__('EqLogic inconnu verifié l\'id : ', __FILE__) . init('id'));
+			throw new Exception(__('EqLogic inconnu vérifiez l\'id : ', __FILE__) . init('id'));
 		}
 		$return = utils::o2a($eqLogic);
 		if (init('status') == 1) {
@@ -296,7 +296,7 @@ try {
 					$eqLogic->setEqType_name(init('type'));
 				} else {
 					if (!$eqLogic->hasRight('w')) {
-						throw new Exception(__('Vous n\'etês pas autorisé à faire cette action', __FILE__));
+						throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
 					}
 				}
 				if (method_exists($eqLogic, 'preAjax')) {
@@ -356,4 +356,3 @@ try {
 } catch (Exception $e) {
 	ajax::error(displayExeption($e), $e->getCode());
 }
-?>

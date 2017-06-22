@@ -125,7 +125,10 @@ class scenarioElement {
 		DB::remove($this);
 	}
 
-	public function execute(&$_scenario) {
+	public function execute(&$_scenario = null) {
+		if ($_scenario != null && !$_scenario->getDo()) {
+			return;
+		}
 		if ($this->getType() == 'if') {
 			if ($this->getSubElement('if')->getOptions('enable', 1) == 0) {
 				return true;
@@ -215,7 +218,7 @@ class scenarioElement {
 				$cron = new cron();
 				$cron->setClass('scenario');
 				$cron->setFunction('doIn');
-				$cron->setOption(array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => date('s')));
+				$cron->setOption(array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => date('s'), 'tags' => $_scenario->getTags()));
 				$cron->setLastRun(date('Y-m-d H:i:s'));
 				$cron->setOnce(1);
 				$next = strtotime('+ ' . $time . ' min');
@@ -231,17 +234,10 @@ class scenarioElement {
 			}
 			$at = $at->getExpression();
 			$next = jeedom::evaluateExpression($at[0]->getExpression());
-			if (($next % 100) > 59) {
-				if (strpos($at[0]->getExpression(), '-') !== false) {
-					$next -= 40;
-				} else {
-					$next += 40;
-				}
-			}
 			if (!is_numeric($next) || $next < 0) {
 				$_scenario->setLog(__('Erreur dans bloc (type A) : ', __FILE__) . $this->getId() . __(', heure programmée invalide : ', __FILE__) . $next);
 			}
-			if ($next < (date('Gi') + 1)) {
+			if ($next < date('Gi', strtotime('+1 minute' . date('G:i')))) {
 				if (strlen($next) == 3) {
 					$next = date('Y-m-d', strtotime('+1 day' . date('Y-m-d'))) . ' 0' . substr($next, 0, 1) . ':' . substr($next, 1, 3);
 				} else {
@@ -266,8 +262,8 @@ class scenarioElement {
 			$cron = new cron();
 			$cron->setClass('scenario');
 			$cron->setFunction('doIn');
-			$cron->setOption(array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => 0));
-			$cron->setLastRun(date('Y-m-d H:i:s'));
+			$cron->setOption(array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => 0, 'tags' => $_scenario->getTags()));
+			$cron->setLastRun(date('Y-m-d H:i:s', strtotime('now')));
 			$cron->setOnce(1);
 			$cron->setSchedule(cron::convertDateToCron($next));
 			$cron->save();
@@ -465,6 +461,7 @@ class scenarioElement {
 
 	public function setId($id) {
 		$this->id = $id;
+		return $this;
 	}
 
 	public function getName() {
@@ -473,6 +470,7 @@ class scenarioElement {
 
 	public function setName($name) {
 		$this->name = $name;
+		return $this;
 	}
 
 	public function getType() {
@@ -481,6 +479,7 @@ class scenarioElement {
 
 	public function setType($type) {
 		$this->type = $type;
+		return $this;
 	}
 
 	public function getOptions($_key = '', $_default = '') {
@@ -489,6 +488,7 @@ class scenarioElement {
 
 	public function setOptions($_key, $_value) {
 		$this->options = utils::setJsonAttr($this->options, $_key, $_value);
+		return $this;
 	}
 
 	public function getOrder() {
@@ -497,8 +497,7 @@ class scenarioElement {
 
 	public function setOrder($order) {
 		$this->order = $order;
+		return $this;
 	}
 
 }
-
-?>

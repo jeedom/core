@@ -75,7 +75,7 @@ class repo_github {
 
 	public static function getGithubClient() {
 		$client = new \Github\Client(
-			new \Github\HttpClient\CachedHttpClient(array('cache_dir' => '/tmp/jeedom-github-api-cache'))
+			new \Github\HttpClient\CachedHttpClient(array('cache_dir' => jeedom::getTmpFolder('github') . '/cache'))
 		);
 		if (config::byKey('github::token') != '') {
 			$client->authenticate(config::byKey('github::token'), '', Github\Client::AUTH_URL_TOKEN);
@@ -124,13 +124,13 @@ class repo_github {
 		} catch (Exception $e) {
 			throw new Exception(__('Dépot github non trouvé : ', __FILE__) . $_update->getConfiguration('user') . '/' . $_update->getConfiguration('repository') . '/' . $_update->getConfiguration('version', 'master'));
 		}
-		$tmp_dir = '/tmp';
+		$tmp_dir = jeedom::getTmpFolder('github');
 		$tmp = $tmp_dir . '/' . $_update->getLogicalId() . '.zip';
 		if (file_exists($tmp)) {
 			unlink($tmp);
 		}
 		if (!is_writable($tmp_dir)) {
-			exec('sudo chmod 777 -R ' . $tmp);
+			exec(system::getCmdSudo() . 'chmod 777 -R ' . $tmp);
 		}
 		if (!is_writable($tmp_dir)) {
 			throw new Exception(__('Impossible d\'écrire dans le répertoire : ', __FILE__) . $tmp . __('. Exécuter la commande suivante en SSH : sudo chmod 777 -R ', __FILE__) . $tmp_dir);
@@ -165,7 +165,7 @@ class repo_github {
 	public static function downloadCore($_path) {
 		$client = self::getGithubClient();
 		try {
-			$branch = $client->api('repo')->branches(config::byKey('github::core::user', 'core', 'jeedom'), config::byKey('github::core::repository', 'core', 'core'), config::byKey('github::core::branch', 'core', 'stable'));
+			$client->api('repo')->branches(config::byKey('github::core::user', 'core', 'jeedom'), config::byKey('github::core::repository', 'core', 'core'), config::byKey('github::core::branch', 'core', 'stable'));
 		} catch (Exception $e) {
 			throw new Exception(__('Dépot github non trouvé : ', __FILE__) . config::byKey('github::core::user', 'core', 'jeedom') . '/' . config::byKey('github::core::repository', 'core', 'core') . '/' . config::byKey('github::core::branch', 'core', 'stable'));
 		}

@@ -13,28 +13,32 @@ if (!isConnect('admin')) {
   <div class="bs-sidebar">
    <ul class="nav nav-list bs-sidenav list-group">
     <li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
-    <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo ../../health.sh">health.sh</a></li>
-    <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo dmesg">dmesg</a></li>
-    <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo ifconfig">ifconfig</a></li>
-    <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo lsusb">lsusb</a></li>
-    <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo ls -la /dev/ttyUSB*">ls -la /dev/ttyUSB*</a></li>
-    <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo free -m">free -m</a></li>
-    <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo ps ax">ps ax</a></li>
-    <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo cat /var/log/mysql/error.log">MySQL log</a></li>
-    <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo cat /var/log/php5-fpm.log">PHP log</a></li>
-    <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo df -h">df -h</a></li>
-    <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo w">w</a></li>
-    <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo dpkg -l">dpkg -l</a></li>
-    <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo  netstat -tupln"> netstat -tupln</a></li>
-  </ul>
-</div>
-</div>
-<div class="col-lg-10 col-md-9 col-sm-8" style="border-left: solid 1px #EEE; padding-left: 25px;overflow-y:hidden;overflow-x:hidden;">
+    <?php if (jeedom::isCapable('sudo')) {?>
+      <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo ../../health.sh">health.sh</a></li>
+      <?php }?>
+      <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="dmesg">dmesg</a></li>
+      <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="ifconfig">ifconfig</a></li>
+      <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="lsusb">lsusb</a></li>
+      <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="ls -la /dev/ttyUSB*">ls -la /dev/ttyUSB*</a></li>
+      <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="free -m">free -m</a></li>
+      <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="ps ax">ps ax</a></li>
+      <?php if (jeedom::isCapable('sudo')) {?>
+        <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo cat /var/log/mysql/error.log">MySQL log</a></li>
+        <?php }?>
+        <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="cat /var/log/php5-fpm.log">PHP log</a></li>
+        <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="df -h">df -h</a></li>
+        <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="w">w</a></li>
+        <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="dpkg -l">dpkg -l</a></li>
+        <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="netstat -tupln"> netstat -tupln</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-lg-10 col-md-9 col-sm-8" style="border-left: solid 1px #EEE; padding-left: 25px;overflow-y:hidden;overflow-x:hidden;">
 
-  <h3 id="h3_executeCommand">{{Cliquez sur une commande à droite ou tapez une commande personalisé ci-dessous}}</h3>
-  <input id="in_specificCommand" class="form-control" style="width:90%;display:inline-block;" /> <a id="bt_validateSpecifiCommand" class="btn btn-warning" style="position:relative;top:-2px;"><i class="fa fa-check"></i> {{OK}}</a>
-  <pre id="pre_commandResult" style="width:100%;margin-top:5px;"></pre>
-</div>
+    <h3 id="h3_executeCommand">{{Cliquez sur une commande à droite ou tapez une commande personnalisée ci-dessous}}</h3>
+    <input id="in_specificCommand" class="form-control" style="width:90%;display:inline-block;" /> <a id="bt_validateSpecifiCommand" class="btn btn-warning" style="position:relative;top:-2px;"><i class="fa fa-check"></i> {{OK}}</a>
+    <pre id="pre_commandResult" style="width:100%;margin-top:5px;"></pre>
+  </div>
 </div>
 
 <script>

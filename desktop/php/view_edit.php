@@ -1,5 +1,5 @@
 <?php
-if (!hasRight('viewedit')) {
+if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 ?>
@@ -76,6 +76,7 @@ foreach (view::all() as $view) {
                             <select class="form-control" id="sel_addEditviewZoneType">
                                 <option value="widget">{{Widget}}</option>
                                 <option value="graph">{{Graphique}}</option>
+                                <option value="table">{{Tableau}}</option>
                             </select>
                         </div>
                     </div>

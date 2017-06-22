@@ -46,11 +46,44 @@ class view {
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
+	public static function searchByUse($_type, $_id) {
+		$return = array();
+		$viewDatas = viewData::byTypeLinkId($_type, $_id);
+		$search = '#' . str_replace('cmd', '', $_type . $_id) . '#';
+		$viewDatas = array_merge($viewDatas, viewData::searchByConfiguration($search));
+		foreach ($viewDatas as $viewData) {
+			$viewZone = $viewData->getviewZone();
+			$view = $viewZone->getView();
+			$return[$view->getId()] = $view;
+		}
+		return $return;
+	}
+
 	/*     * *********************Méthodes d'instance************************* */
 
+	public function report($_format = 'pdf', $_parameters = array()) {
+		if (!isset($_parameters['user'])) {
+			$users = user::searchByRight('admin');
+			if (count($users) == 0) {
+				throw new Exception(__('Aucun utilisateur admin trouvé pour la génération du rapport', __FILE__));
+			}
+			$user = $users[0];
+		} else {
+			$user = user::byId($_parameters['user']);
+		}
+		$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=view';
+		$url .= '&view_id=' . $this->getId();
+		$url .= '&report=1';
+		$url .= '&auth=' . $user->getHash();
+		return report::generate($url, 'view', $this->getId(), $_format);
+	}
+ 	/**
+         * 
+         * @throws Exception
+         */
 	public function presave() {
-		if ($this->getName() == '') {
-			throw new Exception('Le nom de la vue ne peut pas être vide');
+		if (trim($this->getName()) == '') {
+			throw new Exception(__('Le nom de la vue ne peut pas être vide',__FILE__));
 		}
 	}
 
@@ -75,6 +108,7 @@ class view {
 		$return['viewZone'] = array();
 		foreach ($this->getViewZone() as $viewZone) {
 			$viewZone_info = utils::o2a($viewZone);
+
 			$viewZone_info['viewData'] = array();
 			foreach ($viewZone->getViewData() as $viewData) {
 				$viewData_info = utils::o2a($viewData);
@@ -109,10 +143,63 @@ class view {
 						break;
 				}
 				$viewZone_info['viewData'][] = $viewData_info;
+				if ($viewZone->getType() == 'table') {
+					$viewZone_info['html'] = '<table class="table table-condensed ui-responsive table-stroke" data-role="table" data-mode="columntoggle">';
+
+					if (count($viewZone_info['viewData']) != 1) {
+						continue;
+					}
+					$viewData = $viewZone_info['viewData'][0];
+					$configurationViewZoneLine = $viewZone->getConfiguration('nbline', 2);
+					for ($i = 0; $i < $configurationViewZoneLine; $i++) {
+						$viewZone_info['html'] .= '<tr>';
+						$configurationViewZoneColumn = $viewZone->getConfiguration('nbcol', 2);
+						for ($j = 0; $j < $configurationViewZoneColumn; $j++) {
+							$viewZone_info['html'] .= '<td><center>';
+							if (isset($viewData['configuration'][$i][$j])) {
+								$replace = array();
+								preg_match_all("/#([0-9]*)#/", $viewData['configuration'][$i][$j], $matches);
+								foreach ($matches[1] as $cmd_id) {
+									$cmd = cmd::byId($cmd_id);
+									if (!is_object($cmd)) {
+										continue;
+									}
+									$replace['#' . $cmd_id . '#'] = $cmd->toHtml($_version);
+								}
+								$viewZone_info['html'] .= str_replace(array_keys($replace), $replace, $viewData['configuration'][$i][$j]);
+							}
+							$viewZone_info['html'] .= '</center></td>';
+						}
+						$viewZone_info['html'] .= '</tr>';
+					}
+					$viewZone_info['html'] .= '</table>';
+				}
 			}
 			$return['viewZone'][] = $viewZone_info;
 		}
-		return $return;
+		return jeedom::toHumanReadable($return);
+	}
+
+	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = 3) {
+		if (isset($_data['node']['view' . $this->getId()])) {
+			return;
+		}
+		$_level++;
+		if ($_level > $_drill) {
+			return $_data;
+		}
+		$icon = findCodeIcon('fa-picture-o');
+		$_data['node']['view' . $this->getId()] = array(
+			'id' => 'interactDef' . $this->getId(),
+			'name' => substr($this->getName(), 0, 20),
+			'icon' => $icon['icon'],
+			'fontfamily' => $icon['fontfamily'],
+			'fontsize' => '1.5em',
+			'fontweight' => ($_level == 1) ? 'bold' : 'normal',
+			'texty' => -14,
+			'textx' => 0,
+			'title' => __('Vue :', __FILE__) . ' ' . $this->getName(),
+		);
 	}
 
 	/*     * **********************Getteur Setteur*************************** */
@@ -123,7 +210,7 @@ class view {
 
 	public function setId($id) {
 		$this->id = $id;
-                return $this;
+		return $this;
 	}
 
 	public function getName() {
@@ -132,7 +219,7 @@ class view {
 
 	public function setName($name) {
 		$this->name = $name;
-                return $this;
+		return $this;
 	}
 
 	public function getOrder($_default = null) {
@@ -144,7 +231,7 @@ class view {
 
 	public function setOrder($order) {
 		$this->order = $order;
-                return $this;
+		return $this;
 	}
 
 	public function getDisplay($_key = '', $_default = '') {
@@ -153,9 +240,7 @@ class view {
 
 	public function setDisplay($_key, $_value) {
 		$this->display = utils::setJsonAttr($this->display, $_key, $_value);
-                return $this;
+		return $this;
 	}
 
 }
-
-?>

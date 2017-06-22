@@ -1,23 +1,23 @@
 = Design
 
-This page allows to configure the display of all your automation in a very thin way. This one takes time but its own limit is your imagination.
+Cette page permet de configurer l'affichage de toute votre domotique de manière très fine. Celle-ci demande du temps mais sa seule limite est votre imagination.
 
 It is accessible by 
 
 image::../images/plan1.png[]
 
 [TIP]
-Comme vous pouvez le voir sur la capture il est possible d'aller directement sur un design grace au sous-menu
+Comme vous pouvez le voir sur la capture il est possible d'aller directement sur un design grâce au sous-menu
 
 Here is an example of design :
 
 image::../images/plan2.png[]
 
-Sur cette pas on retrouve, en haut (et dans l'ordre) : 
+Sur cette page on retrouve, en haut (et dans l'ordre) : 
 
-* A menu to change the design
+* un menu pour changer de design
 * un menu pour créer un nouveau design
-* one to cancel
+* un pour le supprimer
 * un bouton pour éditer le design en cours
 * un pour passer en mode plein écran
 
@@ -33,7 +33,7 @@ Il faut donc cliquer le bouton d'édition pour passer en mode édition :
 
 image::../images/plan5.png[]
 
-Comme on peut le voir il y a un peu plus de boutons maintenant maintenant, ainsi que le cadre du design (que l'on peut changer bien sur).
+Comme on peut le voir il y a un peu plus de boutons maintenant, ainsi que le cadre du design (que l'on peut changer bien sûr).
 
 En haut à gauche on retrouve 2 boutons, celui pour éditer les propriétés du design en cours et celui pour le dupliquer.
 
@@ -46,11 +46,11 @@ image::../images/plan6.png[]
 
 We have here : 
 
-* *General*
-** *Name* : The name of your design
+* *Général*
+** *Nom* : Le nom de votre design
 ** *Icône* : Une icône pour celui-ci (apparait dans le menu de choix de design)
 ** *Disponible sur téléphone* : Rend ce design visible dans la liste des designs en version mobile
-** *Image* : add a background image to design
+** *Image* : permet d'ajouter une image de fond au design
 ** *Ne pas afficher la flèche de retour lors de la mise en plein écran* : en mode plein écran cette option masque le bouton de retour au mode fenêtré (idéal pour une tablette murale)
 * *Tailles*
 ** *Taille (LxH)* : Permet de fixer la taille de votre design (cadre gris en mode édition)
@@ -72,7 +72,7 @@ Vous voyez apparaître votre widget :
 image::../images/plan9.png[]
 
 [TIP]
-You can move it by clicking/sliding the widget
+Vous pouvez le déplacer en cliquant/glissant le widget
 
 Vous avez accès a la configuration avancée de l'affichage du widget en double cliquant sur celui-ci :
 
@@ -80,23 +80,23 @@ image::../images/plan10.png[]
 
 Here we have : 
 
-* *General*
+* *Général*
 ** *Taille du widget* : permet de definir un ratio de taille de widget, par exemple ici il ne fera que 65% de sa taille
-** *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Defaut" sur NON
-** *Couleur des icônes et textes* : permet de changer la couleur des icônes et des textes (attention à bien passer défaut sur Non)
+** *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
+** *Couleur des icônes et textes* : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
 ** *Arrondir les angles (ne pas oublier de mettre %, ex 50%)* : permet d'arrondir les angles du widget, ne pas oublier de mettre le %
-** *Bordure (attention syntax css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
+** *Bordure (attention syntaxe css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
 ** *Profondeur* : permet de choisir le niveau de la profondeur, pour par exemple passer un widget par dessus un autre
 ** *Ne pas afficher le nom de l'équipement* : masque le nom du widget, s'applique uniquement sur le design
 * *Spécifique* : permet de masquer certaines commandes du widget uniquement sur le design
 
 [IMPORTANT]
-En fonction des plugins certaines options peuvent ne pas marcher
+En fonction des plugins certaines options peuvent ne pas fonctionner
 
 [TIP]
 Vous pouvez en bas à droite redimensionner les widgets
 
-== Add text/html
+== Ajout texte/html
 
 image::../images/plan11.png[]
 
@@ -108,10 +108,10 @@ Un double clic dessus vous ammène à la fenêtre de configuration :
 
 image::../images/plan13.png[]
 
-* *Name* : allows to enter the text or the code html/javascript
-* *Icon* : allows to place the icon instead of the text
-* *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Defaut" sur NON
-* *Couleur du textes* : permet de changer la couleur des icônes et des textes (attention à bien passer défaut sur Non)
+* *Nom* : permet de rentrer le texte ou le code html/javascript
+* *Icone* : permet de mettre une icône à la place du texte
+* *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
+* *Couleur du textes* : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
 * *Arrondir les angles (ne pas oublier de mettre %, ex 50%)* : permet d'arrondir les angles, ne pas oublier de mettre le %
 * *Bordure (attention syntax css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
 * *Taille de la police (ex 50%, il faut bien mettre le signe %)* : permet de modifier la taille de la police
@@ -122,7 +122,7 @@ image::../images/plan13.png[]
 [TIP]
 Vous pouvez en bas à droite le redimensionner
 
-== Add a scenario
+== Ajout d'un scénario
 
 image::../images/plan14.png[]
 
@@ -138,19 +138,19 @@ Un double clic dessus vous amènera à la configuration de cet élément scénar
 
 image::../images/plan17.png[]
 
-* *General*
+* *Général*
 ** *Taille du widget* : permet de definir un ratio de taille de widget, par exemple ici il ne fera que 65% de sa taille
-** *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Defaut" sur NON
-** *Couleur des icônes et textes* : permet de changer la couleur des icônes et des textes (attention à bien passer défaut sur Non)
+** *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
+** *Couleur des icônes et textes* : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
 ** *Arrondir les angles (ne pas oublier de mettre %, ex 50%)* : permet d'arrondir les angles du widget, ne pas oublier de mettre le %
-** *Bordure (attention syntax css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
+** *Bordure (attention syntaxe css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
 ** *Profondeur* : permet de choisir le niveau de la profondeur, pour par exemple passer un widget par dessus un autre
 * *Spécifique* : permet de masquer les commandes d'action sur le scénario
 
 [TIP]
 Vous pouvez en bas à droite le redimensionner
 
-== Add a link
+== Ajout d'un lien
 
 image::../images/plan18.png[]
 
@@ -158,22 +158,22 @@ Permet d'ajouter un lien vers une vue ou un autre design :
 
 image::../images/plan19.png[]
 
-Celui-ci apparait ensuite sur le design : 
+Celui-ci apparaît ensuite sur le design : 
 
 image::../images/plan20.png[]
 
-Un double clic dessus vous amene sur la configuration avancée : 
+Un double clic dessus vous amène sur la configuration avancée : 
 
 image::../images/plan21.png[]
 
 We have here : 
 
 * *Nom* : permet de changer le nom du lien
-* *Link* : link destination
+* *Lien* : destination du lien
 * *Position* : permet de régler finement la position du lien sur la destination (pour par exemple arriver directement sur la cuisine)
-* *Icon* : allows to place the icon instead of the text
-* *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Defaut" sur NON
-* *Couleur du textes* : permet de changer la couleur des icônes et des textes (attention à bien passer defaut sur Non)
+* *Icone* : permet de mettre une icône à la place du texte
+* *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
+* *Couleur du textes* : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
 * *Arrondir les angles (ne pas oublier de mettre %, ex 50%)* : permet d'arrondir les angles, ne pas oublier de mettre le %
 * *Bordure (attention syntax css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
 * *Profondeur* : permet de choisir le niveau de la profondeur
@@ -184,7 +184,7 @@ We have here :
 [TIP]
 Vous pouvez en bas à droite le redimensionner
 
-== Add a graph
+== Ajout d'un graph
 
 image::../images/plan22.png[]
 
@@ -192,14 +192,14 @@ Once you click on it you will see :
 
 image::../images/plan23.png[]
 
-Un double clic dessus vous amene à la configuration de l'élement graph
+Un double clic dessus vous amène à la configuration de l'élement graph
 
 image::../images/plan24.png[]
 
 Here we have : 
 
 * *Période* : permet de choisir la période d'affichage
-* *Bordure (attention syntax css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
+* *Bordure (attention syntaxe css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
 * *Profondeur* : permet de choisir le niveau de la profondeur
 * *Afficher la légende* : permet d'afficher ou non la légende
 * *Afficher le navigateur* : permet d'afficher ou non le navigateur (deuxième graph plus léger en dessous du premier)
@@ -207,7 +207,7 @@ Here we have :
 * *Afficher la barre de défilement* : affiche ou non la barre de défilement
 * *Fond transparent* : rend le fond transparent
 
-Pour choisir les données à afficher il faut cliquecliquer sur les 3 roues crantées : 
+Pour choisir les données à afficher il faut cliquer sur les 3 roues crantées : 
 
 image::../images/plan25.png[]
 

@@ -1,8 +1,8 @@
-= Health
+= Santé
 
 La page de santé de Jeedom vous permet d'avoir un aperçu rapide de l'état de santé de votre Jeedom. Il indique aussi (si les plugins l'utilisent), l'état de santé par plugin
 
-It is accessible by Analysis -> Health
+Il est accessible par Analyse -> Santé
 
 image::../images/health1.png[]
 
@@ -10,11 +10,18 @@ Une fois dessus, voilà ce que vous avez :
 
 image::../images/health2.png[]
 
-Vous retrouvez ici un tableau qui donne une description de ce que Jeedom verifie et du statut de celle-ci dans la 2ème colonne, enfin la dernière colonne peut vous donner des conseils de résolution si la vérification n'est pas OK
+Vous retrouvez ici un tableau qui donne une description de ce que Jeedom vérifie et du statut de celle-ci dans la 2ème colonne, enfin la dernière colonne peut vous donner des conseils de résolution si la vérification n'est pas OK
 
 En dessous vous retrouvez les mêmes tableaux mais par plugin (si le plugin est compatible). Un clic sur le nom du plugin vous amène directement sur sa page de configuration
 
-== Troubleshooting
+Un clik sur l'icône à droite permet d'accéder à un benchmarck de votre jeedom.
+
+image::../images/health3.PNG[]
+
+image::../images/health4.PNG[]
+
+
+== Aide à la résolution
 
 === Version PHP
 
@@ -32,7 +39,7 @@ cp /usr/share/nginx/www/jeedom/install/nginx_default_without_jeedom /etc/nginx/s
 service nginx restart
 ---- 
 
-- You want the / jeedom
+- Vous voulez le /jeedom
 
 ----
 sudo su -

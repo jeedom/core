@@ -114,11 +114,10 @@ class log {
 			$logger->$action($_message);
 			try {
 				$level = Logger::toMonologLevel($_type);
-				$write_message = ($level != Logger::ALERT && $logger->isHandling($level));
 				if ($level == Logger::ERROR && self::getConfig('addMessageForErrorLog') == 1) {
-					@message::add($_log, $_message, '', $_logicalId, $write_message);
+					@message::add($_log, $_message, '', $_logicalId);
 				} elseif ($level > Logger::ALERT) {
-					@message::add($_log, $_message, '', $_logicalId, $write_message);
+					@message::add($_log, $_message, '', $_logicalId);
 				}
 			} catch (Exception $e) {
 
@@ -155,9 +154,9 @@ class log {
 		if ($maxLineLog < self::DEFAULT_MAX_LINE) {
 			$maxLineLog = self::DEFAULT_MAX_LINE;
 		}
-		com_shell::execute('sudo chmod 777 ' . $_path . ' ;echo "$(tail -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
-		@chown($_path, 'www-data');
-		@chgrp($_path, 'www-data');
+		com_shell::execute(system::getCmdSudo() . 'chmod 777 ' . $_path . ' ;echo "$(tail -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
+		@chown($_path, system::get('www-uid'));
+		@chgrp($_path, system::get('www-gid'));
 	}
 
 	public static function getPathToLog($_log = 'core') {
@@ -180,7 +179,7 @@ class log {
 	public static function clear($_log) {
 		if (self::authorizeClearLog($_log)) {
 			$path = self::getPathToLog($_log);
-			com_shell::execute('sudo chmod 777 ' . $path . ';cat /dev/null > ' . $path);
+			com_shell::execute(system::getCmdSudo() . 'chmod 777 ' . $path . ';cat /dev/null > ' . $path);
 			return true;
 		}
 		return;
@@ -196,7 +195,7 @@ class log {
 		}
 		if (self::authorizeClearLog($_log)) {
 			$path = self::getPathToLog($_log);
-			com_shell::execute('sudo chmod 777 ' . $path);
+			com_shell::execute(system::getCmdSudo() . 'chmod 777 ' . $path);
 			unlink($path);
 			return true;
 		}
@@ -219,10 +218,7 @@ class log {
 	 */
 	public static function get($_log = 'core', $_begin, $_nbLines) {
 		self::chunk($_log);
-		$replace = array(
-			'&gt;' => '>',
-			'&apos;' => '',
-		);
+		 
 		$path = (!file_exists($_log) || !is_file($_log)) ? self::getPathToLog($_log) : $_log;
 		if (!file_exists($path)) {
 			return false;

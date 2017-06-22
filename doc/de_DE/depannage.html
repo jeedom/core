@@ -470,9 +470,9 @@ sudo chown www-data:www-data core/config/common.config.php</code></pre>
 <hr>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Ich habe überall {{&#8230;&#8203;}} </dt>
+<dt class="hdlist1">Ich habe überall {{&#8230;&#8203;}}</dt>
 <dd>
-<p>Die häufigste Ursache ist die Verwendung eines Plugins im Beta-Version und nicht Jeedom, oder umgekehrt</p>
+<p>Die häufigste Ursache ist die Verwendung eines Plugins im Beta-Version und stabilen Jeedom, oder umgekehrt</p>
 </dd>
 </dl>
 </div>
@@ -510,7 +510,7 @@ oft kommt das von einem Befehl, der nicht endet.</p>
 <dl>
 <dt class="hdlist1">Mein Szenario ist zu langsam, um zu schalten</dt>
 <dd>
-<p>Wenn es im Szenario keine Pause gibt, wird geraten das Kontrollkästchen "so schnell wie möglich auszuführen" anzukreuzen (verfügbar im Experten-Modus)</p>
+<p>Wenn es im Szenario keine Pause gibt, wird geraten das Kontrollkästchen anzukreuzen "so schnell wie möglich auszuführen" (verfügbar im Experten-Modus)</p>
 </dd>
 </dl>
 </div>
@@ -530,7 +530,7 @@ und php neustarten "sudo service php5-fpm restart"</p>
 <dl>
 <dt class="hdlist1">Ich habe Instabilitäten oder Fehler 504</dt>
 <dd>
-<p>Überprüfen Sie, ob das Dateisystem nicht beschädigt ist, in SSH ist das der Befehl : "sudo dmesg | grep error"</p>
+<p>Überprüfen Sie, ob das Dateisystem nicht beschädigt ist, in SSH ist der Befehl: "sudo dmesg | grep error"</p>
 </dd>
 </dl>
 </div>
@@ -549,7 +549,7 @@ das Objekt selbst des ersten Objekts in der Baumstruktur auf der linken Seite au
 <dl>
 <dt class="hdlist1">Bei der Verbindung vom Master mit den Slave habe ich einen Fehler</dt>
 <dd>
-<p>Vergewissern Sie sich, das sie "/jeedom" direkt nach der Jeedom-IP verwenden
+<p>Vergewissern Sie sich, das sie /jeedom direkt nach der Jeedom-IP verwenden
 (Oft ist es bei der DIY Installation der Fall)</p>
 </dd>
 </dl>
@@ -564,7 +564,7 @@ das Objekt selbst des ersten Objekts in der Baumstruktur auf der linken Seite au
 <ul>
 <li>
 <p>Probleme wegen Speicherplatz auf dem Dateisystem (kann mit dem Befehl "df -h" in SSH überprüft werden).
-Datei Beschädigungs Probleme, sind oft nach einem unsauberen Herunterfahren von Jeedom (Stromausfall).</p>
+Datei(en) Beschädigungs Probleme, sind oft nach einem unsauberen Herunterfahren von Jeedom (Stromausfall).</p>
 </li>
 </ul>
 </div>
@@ -590,7 +590,7 @@ mysqld --verbose</code></pre>
 <hr>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Die Stop/Neustart Schaltflächen funktionieren nicht</dt>
+<dt class="hdlist1">Die Ausschalten/Neustart Schaltflächen funktionieren nicht</dt>
 <dd>
 <p>Auf einer DIY Installation ist das normal, man muss daher unter SSH den Befehl visudo eingeben und am Ende der Datei
 müssen sie hinzufügen : www-data ALL=(ALL) NOPASSWD: ALL.</p>

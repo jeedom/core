@@ -39,7 +39,11 @@ fi
 
 echo -n "[$(date +%d-%m-%Y\ %H:%M:%S)] Check cron jeedom..."
 if [ $(crontab -l | grep jeeCron | wc -l) -lt 1 ]; then
-	echo 'NOK'
+	if [ ! -f /etc/cron.d/jeedom ]; then
+		echo 'NOK'
+	else
+		echo "OK"
+	fi
 else
 	echo "OK"
 fi
@@ -47,8 +51,8 @@ DIR="$( cd "$( dirname "$0" )" && pwd )"
 echo -n "[$(date +%d-%m-%Y\ %H:%M:%S)] Check right..."
 sudo chown -R www-data:www-data ${DIR}/*
 sudo chmod -R 775 ${DIR}/*
-sudo chown -R www-data:www-data /tmp/jeedom-cache
-sudo chmod -R 775 /tmp/jeedom-cache
+sudo chown -R www-data:www-data /tmp/jeedom/cache
+sudo chmod -R 775 /tmp/jeedom/cache
 sudo chown -R www-data:www-data /var/www
 sudo chmod -R 775 /var/www
 	echo "OK"

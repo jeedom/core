@@ -71,6 +71,16 @@ class viewData {
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
+	public static function searchByConfiguration($_search) {
+		$value = array(
+			'search' => '%' . $_search . '%',
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+                FROM viewData
+                WHERE configuration LIKE :search';
+		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+	}
+
 	public static function removeByTypeLinkId($_type, $_link_id) {
 		$viewDatas = self::byTypeLinkId($_type, $_link_id);
 		foreach ($viewDatas as $viewData) {
@@ -101,6 +111,7 @@ class viewData {
 
 	public function setId($id) {
 		$this->id = $id;
+		return $this;
 	}
 
 	public function getOrder() {
@@ -109,6 +120,7 @@ class viewData {
 
 	public function setOrder($order) {
 		$this->order = $order;
+		return $this;
 	}
 
 	public function getviewZone_id() {
@@ -117,6 +129,7 @@ class viewData {
 
 	public function setviewZone_id($viewZone_id) {
 		$this->viewZone_id = $viewZone_id;
+		return $this;
 	}
 
 	public function getType() {
@@ -125,6 +138,7 @@ class viewData {
 
 	public function setType($type) {
 		$this->type = $type;
+		return $this;
 	}
 
 	public function getLink_id() {
@@ -133,6 +147,7 @@ class viewData {
 
 	public function setLink_id($link_id) {
 		$this->link_id = $link_id;
+		return $this;
 	}
 
 	public function getLinkObject() {
@@ -165,8 +180,7 @@ class viewData {
 			$options[$_key] = $_value;
 			$this->configuration = json_encode($options);
 		}
+		return $this;
 	}
 
 }
-
-?>

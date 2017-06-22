@@ -1,8 +1,8 @@
-= Vistas
+= Vues
 
 Les vues permettent simplement de créer un affichage personnalisé. Ce n'est pas aussi puissant que les designs mais cela permet en quelques minutes d'avoir un affichage plus personnalisé.
 
-Les vues sont accessibles à partir du menu Accueil -> Vues : 
+Les vues sont accessibles à partir du menu Accueil -> Vue : 
 
 image::../images/view.png[]
 
@@ -12,7 +12,7 @@ Comme vous pouvez le voir sur la capture, il est possible d'aller directement su
 [TIP]
 Vous pouvez dans votre profil choisir la vue par défaut lors du clic sur le menu des vues.
 
-== Las vistas
+== Les vues
 
 Voilà un exemple de vue :
 
@@ -46,7 +46,7 @@ Sur la gauche de la page on retrouve la liste des vues ainsi qu'un bouton d'ajou
 
 Au centre vous avez un bouton pour renommer une vue, le bouton d'ajout de zone, un bouton pour voir le résultat, un bouton pour sauvegarder (ne pas oubliez de le faire avant de cliquer sur "voir le résultat") et un bouton pour supprimer la vue.
 
-Une fois le bouton d'ajout de zone cliqué, Jeedom vous demande son nom et le type : 
+Après avoir cliqué sur le bouton d'ajout de zone, Jeedom vous demande son nom et le type : 
 
 image::../images/view5.png[]
 
@@ -65,7 +65,7 @@ Une zone de type widget permet d'ajouter des widgets, elle a 3 boutons sur la dr
 Vous pouvez supprimer un widget directement en cliquant sur la poubelle devant celui-ci.
 
 [TIP]
-Il est possible de modifier l'ordre des widgets dans la zone en les glissant/deposant.
+Il est possible de modifier l'ordre des widgets dans la zone en les glissant/déposant.
 
 Une fois le bouton d'ajout/edition de widget pressé, vous obtenez : 
 

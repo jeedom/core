@@ -1,7 +1,6 @@
 <a class="ui-btn ui-btn-raised clr-warning" id='div_updateInProgress' style='display:none;margin-right : 5px;margin-left:5px;'>
     <p>Mise à jour de l'application en cours</p>
 </a>
-
 <div class="ui-grid-a">
     <div class="ui-block-a">
         <center>
@@ -10,7 +9,6 @@
             </a>
         </center>
     </div>
-
     <div class="ui-block-b">
         <center>
             <a href="#" class="link ui-btn ui-btn-raised clr-primary waves-effect waves-button" data-page="scenario" data-title="{{Scénarios}}" data-role="button" style="margin: 5px;">
@@ -18,11 +16,8 @@
             </a>
         </center>
     </div>
-
 </div>
-
-<div data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" id="bottompanel_objectList" data-animate="false" data-position='bottom' data-display="overlay"></div>
-
+<div data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" id="bottompanel_objectList" data-animate="true" data-position='bottom' data-display="overlay"></div>
 <div class="ui-grid-a">
     <div class="ui-block-a">
         <center>
@@ -31,7 +26,6 @@
             </a>
         </center>
     </div>
-
     <div class="ui-block-b">
         <center>
             <a class="ui-btn ui-btn-raised clr-primary waves-effect waves-button" style="margin: 5px;" href="#bottompanel_planList">
@@ -40,10 +34,8 @@
         </center>
     </div>
 </div>
-
-<div data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" id="bottompanel_planList" data-animate="false" data-position='bottom' data-display="overlay"></div>
-<div data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" id="bottompanel_viewList" data-animate="false" data-position='bottom' data-display="overlay"></div>
-
+<div data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" id="bottompanel_planList" data-animate="true" data-position='bottom' data-display="overlay"></div>
+<div data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" id="bottompanel_viewList" data-animate="true" data-position='bottom' data-display="overlay"></div>
 <div class="ui-grid-a">
     <div class="ui-block-a">
         <center>
@@ -52,7 +44,6 @@
             </a>
         </center>
     </div>
-
     <div class="ui-block-b">
         <center id="bt_listPlugin">
             <a href="#bottompanel_pluginList" class="ui-btn ui-btn-raised clr-primary waves-effect waves-button" style="margin: 5px;">
@@ -61,14 +52,13 @@
         </center>
     </div>
 </div>
-
-<div data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" id="bottompanel_pluginList" data-animate="false" data-position='bottom' data-display="overlay"></div>
-
+<div data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" id="bottompanel_pluginList" data-animate="true" data-position='bottom' data-display="overlay"></div>
+<div data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" id="bottompanel_otherActionList" data-animate="true" data-position='bottom' data-display="overlay"></div>
 <div class="ui-grid-a">
     <div class="ui-block-a">
         <center>
-            <a href="index.php?v=d" class="ui-btn ui-btn-raised clr-primary waves-effect waves-button" data-role="button" style="margin: 5px;" data-ajax="false">
-                <i class="fa fa-desktop" style="font-size: 3em;"></i><br/>{{Version desktop}}
+            <a href="#bottompanel_otherActionList" class="ui-btn ui-btn-raised clr-primary waves-effect waves-button" data-role="button" style="margin: 5px;">
+                <i class="fa fa-crop" style="font-size: 3em;"></i><br/>{{Autre}}
             </a>
         </center>
     </div>
@@ -80,5 +70,4 @@
         </center>
     </div>
 </div>
-
 <script src="core/php/getJS.php?file=mobile/js/home.js"></script>

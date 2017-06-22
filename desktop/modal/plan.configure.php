@@ -2,7 +2,7 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-$plan = plan::byLinkTypeLinkIdPlanHedaerId(init('link_type'), init('link_id'), init('planHeader_id'));
+$plan = plan::byId(init('id'));
 if (!is_object($plan)) {
 	throw new Exception('Impossible de trouver le design');
 }
@@ -13,43 +13,29 @@ sendVarToJS('id', $plan->getId());
 
 <form class="form-horizontal">
     <fieldset id="fd_planConfigure">
-        <legend>Général
+        <legend>{{Général}}
             <a class='btn btn-success btn-xs pull-right cursor' style="color: white;" id='bt_saveConfigurePlan'><i class="fa fa-check"></i> {{Sauvegarder}}</a>
-            <a class='btn btn-danger btn-xs pull-right cursor' style="color: white;" id='bt_removeConfigurePlan'><i class="fa fa-times"></i> {{Supprimer}}</a>
-            <?php if ($plan->getLink_type() == 'eqLogic') {?>
-            <a class='btn btn-default btn-xs pull-right cursor' id='bt_advanceEqLogicConfiguration' data-id='<?php echo $link->getId(); ?>'><i class="fa fa-cogs"></i> {{Configuration avancée de l'équipement}}</a>
-            <?php }
-?>
         </legend>
         <input type="text"  class="planAttr form-control" data-l1key="id" style="display: none;"/>
         <input type="text"  class="planAttr form-control" data-l1key="link_type" style="display: none;"/>
-        <?php if ($plan->getLink_type() == 'eqLogic' || $plan->getLink_type() == 'scenario') {
-	?>
-         <div class="form-group">
+        <div class="form-group link_type link_eqLogic link_cmd link_scenario">
             <label class="col-lg-4 control-label">{{Taille du widget}}</label>
             <div class="col-lg-2">
-                <?php
-if ($plan->getLink_type() == 'eqLogic') {
-		echo '<input type="text" class="planAttr form-control" data-l1key="css" data-l2key="zoom" value="0.65"/>';
-	}
-	if ($plan->getLink_type() == 'scenario') {
-		echo '<input type="text" class="planAttr form-control" data-l1key="css" data-l2key="zoom" value="1"/>';
-	}
-	?>
-          </div>
-      </div>
-      <div class="form-group">
+               <input type="text" class="planAttr form-control" data-l1key="css" data-l2key="zoom"/>
+           </div>
+       </div>
+       <div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan link_image link_zone link_summary">
         <label class="col-lg-4 control-label">{{Profondeur}}</label>
         <div class="col-lg-2">
             <select class="form-control planAttr" data-l1key="css" data-l2key="z-index" >
-                <option value="99">Niveau -1</option>
-                <option value="1000" selected>Niveau 1</option>
-                <option value="1001">Niveau 2</option>
-                <option value="1002">Niveau 3</option>
+                <option value="999">{{Niveau 0}}</option>
+                <option value="1000" selected>{{Niveau 1}}</option>
+                <option value="1001">{{Niveau 2}}</option>
+                <option value="1002">{{Niveau 3}}</option>
             </select>
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan link_image link_zone link_summary">
         <label class="col-lg-4 control-label">{{Position X (%)}}</label>
         <div class="col-lg-2">
             <input type="text" class="planAttr form-control" data-l1key="position" data-l2key="top" />
@@ -59,41 +45,47 @@ if ($plan->getLink_type() == 'eqLogic') {
             <input type="text" class="planAttr form-control" data-l1key="position" data-l2key="left" />
         </div>
     </div>
-    <legend>Spécifique</legend>
-    <?php
-if ($plan->getLink_type() == 'eqLogic' && is_object($link)) {
-		echo '<table class="table table-condensed">';
-		echo '<thead>';
-		echo '<tr>';
-		echo '<th>{{Commande}}</th>';
-		echo '<th>{{Configuration avancée}}</th>';
-		echo '</tr>';
-		echo '</thead>';
-		echo '<tbody>';
-		foreach ($link->getCmd() as $cmd) {
-			if ($cmd->getIsVisible() == 1) {
-				echo '<tr>';
-				echo '<td>' . $cmd->getHumanName() . '</td>';
-				echo '<td>';
-				echo '<a class="btn btn-default btn-xs pull-right cursor bt_advanceCmdConfiguration" data-id="' . $cmd->getId() . '"><i class="fa fa-cogs"></i></a>';
-				echo '</td>';
-				echo '</tr>';
-			}
-		}
-		echo '</tbody>';
-		echo '</table>';
-	}
-	if ($plan->getLink_type() == 'scenario') {
-		echo '<div class="form-group">';
-		echo '<label class="col-lg-6 control-label">{{Masquer les commandes}}</label>';
-		echo '<div class="col-lg-1">';
-		echo '<input type="checkbox" class="planAttr" data-l1key="display" data-l2key="hideCmd" />';
-		echo '</div>';
-		echo '</div>';
-	}
-	?>
-<?php } else if ($plan->getLink_type() == 'graph') {?>
-<div class="form-group">
+    <div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan link_image link_zone link_summary">
+      <label class="col-lg-4 control-label">{{Largeur (px)}}</label>
+      <div class="col-lg-2">
+        <input type="text" class="planAttr form-control" data-l1key="display" data-l2key="width" />
+    </div>
+    <label class="col-lg-2 control-label">{{Hauteur (px)}}</label>
+    <div class="col-lg-2">
+        <input type="text" class="planAttr form-control" data-l1key="display" data-l2key="height" />
+    </div>
+</div>
+<legend>{{Spécifique}}</legend>
+<div class="form-group link_type link_image">
+    <label class="col-lg-4 control-label">{{Afficher}}</label>
+    <div class="col-lg-3">
+      <select class="form-control planAttr" data-l1key="configuration" data-l2key="display_mode">
+          <option value="image">{{Image}}</option>
+          <option value="camera">{{Caméra}}</option>
+      </select>
+  </div>
+</div>
+<div class="form-group link_type link_image display_mode display_mode_image">
+    <label class="col-lg-4 control-label">{{Image}}</label>
+    <div class="col-lg-8">
+      <span class="btn btn-default btn-file">
+          <i class="fa fa-cloud-upload"></i> {{Envoyer}}<input  id="bt_uploadImagePlan" type="file" name="file" style="display: inline-block;">
+      </span>
+  </div>
+</div>
+<div class="form-group link_type link_image display_mode display_mode_camera" style="display:none;">
+    <label class="col-lg-4 control-label">{{Caméra}}</label>
+    <div class="col-lg-3">
+        <div class="input-group">
+            <input type="text" class="planAttr form-control" data-l1key="configuration" data-l2key="camera"/>
+            <span class="input-group-btn">
+               <a class="btn btn-default" id="bt_planConfigureSelectCamera"><i class="fa fa-list-alt"></i></a>
+           </span>
+       </div>
+   </div>
+</div>
+
+<div class="form-group link_type link_graph">
     <label class="col-lg-4 control-label">{{Période}}</label>
     <div class="col-lg-2">
         <select class="planAttr form-control" data-l1key="display" data-l2key="dateRange">
@@ -106,106 +98,81 @@ if ($plan->getLink_type() == 'eqLogic' && is_object($link)) {
         </select>
     </div>
 </div>
-<div class="form-group">
-    <label class="col-lg-4 control-label">{{Bordure (attention syntax css, ex : solid 1px black}}</label>
-    <div class="col-lg-2">
-        <input class="form-control planAttr" data-l1key="css" data-l2key="border" />
-    </div>
-</div>
-<div class="form-group">
-    <label class="col-lg-4 control-label">{{Profondeur}}</label>
-    <div class="col-lg-2">
-        <select class="form-control planAttr" data-l1key="css" data-l2key="z-index" >
-            <option value="99">Niveau -1</option>
-            <option value="1000" selected>Niveau 1</option>
-            <option value="1001">Niveau 2</option>
-            <option value="1002">Niveau 3</option>
-        </select>
-    </div>
-</div>
-<div class="form-group">
+<div class="form-group link_type link_graph">
     <label class="col-lg-4 control-label">{{Afficher la légende}}</label>
     <div class="col-lg-2">
         <input type="checkbox" checked class="planAttr" data-l1key="display" data-l2key="showLegend" >
     </div>
 </div>
-<div class="form-group">
+<div class="form-group link_type link_graph">
     <label class="col-lg-4 control-label">{{Afficher le navigateur}}</label>
     <div class="col-lg-2">
         <input type="checkbox" checked class="planAttr" data-l1key="display" data-l2key="showNavigator" >
     </div>
 </div>
-<div class="form-group">
+<div class="form-group link_type link_graph">
     <label class="col-lg-4 control-label">{{Afficher le sélecteur de période}}</label>
     <div class="col-lg-2">
         <input type="checkbox" class="planAttr" checked data-l1key="display" data-l2key="showTimeSelector" >
     </div>
 </div>
-<div class="form-group">
+<div class="form-group link_type link_graph">
     <label class="col-lg-4 control-label">{{Afficher la barre de défilement}}</label>
     <div class="col-lg-2">
         <input type="checkbox" class="planAttr" checked data-l1key="display" data-l2key="showScrollbar" >
     </div>
 </div>
-<div class="form-group">
+<div class="form-group link_type link_graph">
     <label class="col-lg-4 control-label">{{Fond transparent}}</label>
     <div class="col-lg-2">
         <input type="checkbox" class="planAttr" checked data-l1key="display" data-l2key="transparentBackground" >
     </div>
 </div>
-<?php } else if ($plan->getLink_type() == 'plan' || $plan->getLink_type() == 'view') {
-	?>
-    <div class="form-group">
-        <label class="col-lg-4 control-label">{{Nom}}</label>
-        <div class="col-lg-2">
-            <input class="planAttr form-control" data-l1key="display" data-l2key="name" />
-        </div>
+<div class="form-group link_type link_plan link_view">
+    <label class="col-lg-4 control-label">{{Nom}}</label>
+    <div class="col-lg-2">
+        <input class="planAttr form-control" data-l1key="display" data-l2key="name" />
     </div>
-    <?php if ($plan->getLink_type() == 'view') {
-		?>
-      <div class="form-group">
-        <label class="col-lg-4 control-label">{{Lien}}</label>
-        <div class="col-lg-2">
-            <select class="form-control planAttr" data-l1key="link_id">
-                <?php
-foreach (view::all() as $views) {
-			echo '<option value="' . $views->getId() . '">' . $views->getName() . '</option>';
-		}
-		?>
-           </select>
-       </div>
-   </div>
-   <?php
+</div>
+<div class="form-group link_type link_summary">
+    <label class="col-lg-4 control-label">{{Lien}}</label>
+    <div class="col-lg-2">
+        <select class="form-control planAttr" data-l1key="link_id">
+            <option value="-1">{{Aucun}}</option>
+            <option value="0">{{Général}}</option>
+            <?php
+foreach (object::all() as $object) {
+	echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
 }
-	if ($plan->getLink_type() == 'plan') {
-		?>
-  <div class="form-group">
+?>
+       </select>
+   </div>
+</div>
+<div class="form-group link_type link_view">
     <label class="col-lg-4 control-label">{{Lien}}</label>
     <div class="col-lg-2">
         <select class="form-control planAttr" data-l1key="link_id">
             <?php
-foreach (planHeader::all() as $planHeader_select) {
-			if ($planHeader_select->getId() != $plan->getPlanHeader_id()) {
-				echo '<option value="' . $planHeader_select->getId() . '">' . $planHeader_select->getName() . '</option>';
-			}
-		}
-		?>
-    </select>
+foreach (view::all() as $view) {
+	echo '<option value="' . $view->getId() . '">' . $view->getName() . '</option>';
+}
+?>
+       </select>
+   </div>
 </div>
-</div>
-<div class="form-group">
-    <label class="col-lg-4 control-label">{{Position X}}</label>
+<div class="form-group link_type link_plan">
+    <label class="col-lg-4 control-label">{{Lien}}</label>
     <div class="col-lg-2">
-        <input class="planAttr form-control" data-l1key="display" data-l2key="offsetX" />
-    </div>
-    <label class="col-lg-2 control-label">{{Position Y}}</label>
-    <div class="col-lg-2">
-        <input class="planAttr form-control" data-l1key="display" data-l2key="offsetY" />
-    </div>
+        <select class="form-control planAttr" data-l1key="link_id">
+            <?php
+foreach (planHeader::all() as $plan) {
+	echo '<option value="' . $plan->getId() . '">' . $plan->getName() . '</option>';
+}
+?>
+       </select>
+   </div>
 </div>
-<?php }
-	?>
-<div class="form-group">
+<div class="form-group link_type link_plan link_view link_text">
     <label class="col-lg-4 control-label">{{Icône}}</label>
     <div class="col-lg-2">
         <div class="planAttr" data-l1key="display" data-l2key="icon" ></div>
@@ -214,7 +181,7 @@ foreach (planHeader::all() as $planHeader_select) {
         <a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fa fa-flag"></i> {{Choisir une icône}}</a>
     </div>
 </div>
-<div class="form-group">
+<div class="form-group link_type link_plan link_view link_text link_summary">
     <label class="col-lg-4 control-label">{{Couleur de fond}}</label>
     <div class="col-lg-2">
         <input type="color" class="planAttr form-control" data-l1key="css" data-l2key="background-color" />
@@ -228,7 +195,7 @@ foreach (planHeader::all() as $planHeader_select) {
         <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="background-defaut" checked />
     </div>
 </div>
-<div class="form-group">
+<div class="form-group link_type link_plan link_view link_text link_summary">
     <label class="col-lg-4 control-label">{{Couleur du texte}}</label>
     <div class="col-lg-2">
         <input type="color" class="planAttr form-control" data-l1key="css" data-l2key="color" />
@@ -238,143 +205,191 @@ foreach (planHeader::all() as $planHeader_select) {
         <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="color-defaut" checked />
     </div>
 </div>
-<div class="form-group">
+<div class="form-group link_type link_plan link_view link_text link_summary">
     <label class="col-lg-4 control-label">{{Arrondir les angles (ne pas oublié de mettre %, ex 50%)}}</label>
     <div class="col-lg-2">
         <input class="form-control planAttr" data-l1key="css" data-l2key="border-radius" />
     </div>
 </div>
-<div class="form-group">
+<div class="form-group link_type link_plan link_view link_text link_graph link_summary">
     <label class="col-lg-4 control-label">{{Bordure (attention syntax css, ex : solid 1px black)}}</label>
     <div class="col-lg-2">
         <input class="form-control planAttr" data-l1key="css" data-l2key="border" />
     </div>
 </div>
-<div class="form-group">
-    <label class="col-lg-4 control-label">{{Profondeur}}</label>
-    <div class="col-lg-2">
-        <select class="form-control planAttr" data-l1key="css" data-l2key="z-index" >
-            <option value="99">Niveau -1</option>
-            <option value="1000" selected>Niveau 1</option>
-            <option value="1001">Niveau 2</option>
-            <option value="1002">Niveau 3</option>
-        </select>
-    </div>
-</div>
-<div class="form-group">
+<div class="form-group link_type link_plan link_view link_text link_summary">
     <label class="col-lg-4 control-label">{{Taille de la police (ex 50%, il faut bien mettre le signe %)}}</label>
     <div class="col-lg-2">
         <input class="planAttr form-control" data-l1key="css" data-l2key="font-size" />
     </div>
 </div>
-<div class="form-group">
+<div class="form-group link_type link_plan link_view link_text link_summary">
     <label class="col-lg-4 control-label">{{Gras}}</label>
     <div class="col-lg-2">
         <select class="planAttr form-control" data-l1key="css" data-l2key="font-weight">
-            <option value="bold">Gras</option>
-            <option value="normal">Normal</option>
+            <option value="bold">{{Gras}}</option>
+            <option value="normal">{{Normal}}</option>
         </select>
     </div>
 </div>
-<?php } else if ($plan->getLink_type() == 'text') {?>
-<div class="form-group">
-    <label class="col-lg-4 control-label">{{Nom}}</label>
+<div class="form-group link_type link_text">
+    <label class="col-lg-4 control-label">{{Texte}}</label>
     <div class="col-lg-8">
-        <textarea class="planAttr form-control" data-l1key="display" data-l2key="text" rows=10>Texte à insérer ici</textarea>
+        <textarea class="planAttr form-control" data-l1key="display" data-l2key="text" rows="10">Texte à insérer ici</textarea>
+    </div>
+</div>
+<div class="link_type link_zone">
+    <div class="form-group">
+        <label class="col-lg-4 control-label">{{Type de zone}}</label>
+        <div class="col-lg-2">
+            <select class="planAttr form-control" data-l1key="configuration" data-l2key="zone_mode">
+                <option value="simple">{{Macro simple}}</option>
+                <option value="binary">{{Macro binaire}}</option>
+                <option value="widget">{{Widget au survol}}</option>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="zone_mode zone_simple">
+      <legend>{{Action}}<a class="btn btn-success pull-right btn-xs bt_planConfigurationAction" data-type="other"><i class="fa fa-plus"></i></a></legend>
+      <div id="div_planConfigureActionother"></div>
+  </div>
+
+  <div class="zone_mode zone_widget" style="display:none;">
+      <div class="form-group">
+        <label class="col-lg-4 control-label">{{Equipement}}</label>
+        <div class="col-lg-3">
+         <div class="input-group">
+             <input type="text" class="planAttr form-control" data-l1key="configuration" data-l2key="eqLogic"/>
+             <span class="input-group-btn">
+               <a class="btn btn-default" id="bt_planConfigureAddEqLogic"><i class="fa fa-list-alt"></i></a>
+           </div>
+       </div>
+   </div>
+   <div class="form-group">
+    <label class="col-lg-4 control-label">{{Afficher au survole}}</label>
+    <div class="col-lg-2">
+        <input type="checkbox" checked class="planAttr" data-l1key="configuration" data-l2key="showOnFly" >
     </div>
 </div>
 <div class="form-group">
-    <label class="col-lg-4 control-label">{{Icône}}</label>
+    <label class="col-lg-4 control-label">{{Afficher sur un clic}}</label>
     <div class="col-lg-2">
-        <div class="planAttr" data-l1key="display" data-l2key="icon" ></div>
-    </div>
-    <div class="col-lg-2">
-        <a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fa fa-flag"></i> {{Choisir une icône}}</a>
+        <input type="checkbox" checked class="planAttr" data-l1key="configuration" data-l2key="showOnClic" >
     </div>
 </div>
-<div class="form-group">
-    <label class="col-lg-4 control-label">{{Couleur de fond}}</label>
-    <div class="col-lg-2">
-        <input type="color" class="planAttr form-control" data-l1key="css" data-l2key="background-color" />
-    </div>
-    <label class="col-lg-1 control-label">{{Transparent}}</label>
-    <div class="col-lg-1">
-        <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="background-transparent" />
-    </div>
-    <label class="col-lg-1 control-label">{{Défaut}}</label>
-    <div class="col-lg-1">
-        <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="background-defaut" checked />
-    </div>
 </div>
-<div class="form-group">
-    <label class="col-lg-4 control-label">{{Couleur du texte}}</label>
-    <div class="col-lg-2">
-        <input type="color" class="planAttr form-control" data-l1key="css" data-l2key="color" />
-    </div>
-    <label class="col-lg-1 control-label">{{Défaut}}</label>
-    <div class="col-lg-1">
-        <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="color-defaut" checked />
-    </div>
+
+<div class="zone_mode zone_binary" style="display: none;">
+    <div class="form-group">
+        <label class="col-lg-4 control-label">{{Information binaire}}</label>
+        <div class="col-lg-3">
+           <input type="text" class="planAttr form-control" data-l1key="configuration" data-l2key="binary_info"/>
+       </div>
+       <div class="col-lg-3">
+           <a class="btn btn-default" id="bt_planConfigureSelectBinary"><i class="fa fa-list-alt"></i></a>
+       </div>
+   </div>
+   <legend>{{Action on}}<a class="btn btn-success pull-right btn-xs bt_planConfigurationAction" data-type="on"><i class="fa fa-plus"></i></a></legend>
+   <div id="div_planConfigureActionon"></div>
+
+   <legend>{{Action off}}<a class="btn btn-success pull-right btn-xs bt_planConfigurationAction" data-type="off"><i class="fa fa-plus"></i></a></legend>
+   <div id="div_planConfigureActionoff"></div>
 </div>
-<div class="form-group">
-    <label class="col-lg-4 control-label">{{Arrondir les angles (ne pas oublié de mettre %, ex 50%)}}</label>
-    <div class="col-lg-2">
-        <input class="form-control planAttr" data-l1key="css" data-l2key="border-radius" />
-    </div>
 </div>
-<div class="form-group">
-    <label class="col-lg-4 control-label">{{Bordure (attention syntaxe css, ex : solid 1px black)}}</label>
-    <div class="col-lg-2">
-        <input class="form-control planAttr" data-l1key="css" data-l2key="border" />
-    </div>
-</div>
-<div class="form-group">
-    <label class="col-lg-4 control-label">{{Taille de la police (ex 50%, il faut bien mettre le signe %)}}</label>
-    <div class="col-lg-2">
-        <input class="planAttr form-control" data-l1key="css" data-l2key="font-size" />
-    </div>
-</div>
-<div class="form-group expertModeVisible">
-    <label class="col-lg-4 control-label">{{Ignorer la taille predefinie}}</label>
-    <div class="col-lg-4">
-        <input type="checkbox" class="planHeaderAttr" data-l1key='configuration' data-l2key="noPredefineSize" />
-    </div>
-</div>
-<div class="form-group">
-    <label class="col-lg-4 control-label">{{Profondeur}}</label>
-    <div class="col-lg-2">
-        <select class="form-control planAttr" data-l1key="css" data-l2key="z-index" >
-            <option value="99">Niveau -1</option>
-            <option value="1000" selected>Niveau 1</option>
-            <option value="1001">Niveau 2</option>
-            <option value="1002">Niveau 3</option>
-        </select>
-    </div>
-</div>
-<div class="form-group">
-    <label class="col-lg-4 control-label">{{Gras}}</label>
-    <div class="col-lg-2">
-        <select class="planAttr form-control" data-l1key="css" data-l2key="font-weight">
-            <option value="bold">Gras</option>
-            <option value="normal">Normal</option>
-        </select>
-    </div>
-</div>
-<?php }
-?>
 </fieldset>
 </form>
-
-
 <script>
-    $('#bt_advanceEqLogicConfiguration').off('click').on('click', function () {
-        $('#md_modal2').dialog({title: "{{Configuration de l'équipement}}"});
-        $('#md_modal2').load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $(this).attr('data-id')).dialog('open');
+    $('.planAttr[data-l1key=configuration][data-l2key=zone_mode]').on('change',function(){
+        $('.zone_mode').hide();
+        $('.zone_mode.zone_'+$(this).value()).show();
     });
 
-    $('.bt_advanceCmdConfiguration').off('click').on('click', function () {
-        $('#md_modal2').dialog({title: "{{Configuration de la commande}}"});
-        $('#md_modal2').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open');
+    $('.planAttr[data-l1key=configuration][data-l2key=display_mode]').on('change',function(){
+        $('.display_mode').hide();
+        $('.display_mode.display_mode_'+$(this).value()).show();
+    });
+
+    $('.bt_planConfigurationAction').on('click',function(){
+        addActionPlanConfigure({},$(this).attr('data-type'));
+    });
+
+    $("body").delegate('.bt_removeAction', 'click', function () {
+        $(this).closest('.' +  $(this).attr('data-type')).remove();
+    });
+
+    $("body").delegate(".listCmdAction", 'click', function () {
+        var type = $(this).attr('data-type');
+        var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]');
+        jeedom.cmd.getSelectModal({cmd: {type: 'action'}}, function (result) {
+            el.value(result.human);
+            jeedom.cmd.displayActionOption(el.value(), '', function (html) {
+                el.closest('.' + type).find('.actionOptions').html(html);
+            });
+        });
+    });
+
+    function addActionPlanConfigure(_action, _type) {
+        if (!isset(_action)) {
+            _action = {};
+        }
+        if (!isset(_action.options)) {
+            _action.options = {};
+        }
+        var div = '<div class="' + _type + '">';
+        div += '<div class="form-group ">';
+        div += '<label class="col-sm-1 control-label">{{Action}}</label>';
+        div += '<div class="col-sm-4">';
+        div += '<div class="input-group">';
+        div += '<span class="input-group-btn">';
+        div += '<a class="btn btn-default bt_removeAction btn-sm" data-type="' + _type + '"><i class="fa fa-minus-circle"></i></a>';
+        div += '</span>';
+        div += '<input class="expressionAttr form-control input-sm cmdAction" data-l1key="cmd" data-type="' + _type + '" />';
+        div += '<span class="input-group-btn">';
+        div += '<a class="btn btn-default btn-sm listCmdAction" data-type="' + _type + '"><i class="fa fa-list-alt"></i></a>';
+        div += '</span>';
+        div += '</div>';
+        div += '</div>';
+        div += '<div class="col-sm-7 actionOptions">';
+        div += jeedom.cmd.displayActionOption(init(_action.cmd, ''), _action.options);
+        div += '</div>';
+        div += '</div>';
+        $('#div_planConfigureAction' + _type).append(div);
+        $('#div_planConfigureAction' + _type + ' .' + _type + ':last').setValues(_action, '.expressionAttr');
+    }
+
+
+    $('#bt_planConfigureAddEqLogic').on('click', function() {
+        var el = $(this);
+        jeedom.eqLogic.getSelectModal({}, function(result) {
+            el.parent().parent().find('.planAttr[data-l1key=configuration][data-l2key=eqLogic]').value(result.human);
+        });
+    });
+
+    $('#bt_planConfigureSelectCamera').on('click', function() {
+        var el = $(this);
+        jeedom.eqLogic.getSelectModal({eqLogic: {eqType_name: 'camera'}}, function(result) {
+            el.parent().parent().find('.planAttr[data-l1key=configuration][data-l2key=camera]').value(result.human);
+        });
+    });
+
+    $('#bt_planConfigureSelectBinary').on('click', function() {
+        var el = $(this);
+        jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function(result) {
+            el.parent().parent().find('.planAttr[data-l1key=configuration][data-l2key=binary_info]').value(result.human);
+        });
+    });
+    $('#bt_uploadImagePlan').fileupload({
+        replaceFileInput: false,
+        url: 'core/ajax/plan.ajax.php?action=uploadImagePlan&id=' + id+'&jeedom_token='+JEEDOM_AJAX_TOKEN,
+        dataType: 'json',
+        done: function (e, data) {
+            if (data.result.state != 'ok') {
+                $('#div_alertPlanConfigure').showAlert({message: data.result.result, level: 'danger'});
+                return;
+            }
+        }
     });
 
     $('#fd_planConfigure').on('change','.planAttr[data-l1key=display][data-l2key=background-transparent]', function() {
@@ -408,36 +423,40 @@ foreach (planHeader::all() as $planHeader_select) {
         save();
     });
 
-    $('#bt_removeConfigurePlan').on('click', function () {
-        bootbox.confirm('Etes-vous sûr de vouloir supprimer cet object du design ?', function (result) {
-            if (result) {
-                remove();
-            }
-        });
-    });
-
     if (isset(id) && id != '') {
-        load(id);
-    }
-
-    function load(_id) {
-        $.ajax({// fonction permettant de faire de l'ajax
-            type: "POST", // methode de transmission des données au fichier php
-            url: "core/ajax/plan.ajax.php", // url du fichier php
-            data: {
-                action: "get",
-                id: _id
-            },
-            dataType: 'json',
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_alertPlanConfigure'));
-            },
-            success: function (data) { // si l'appel a bien fonctionné
+       $.ajax({
+        type: "POST",
+        url: "core/ajax/plan.ajax.php",
+        data: {
+            action: "get",
+            id: id
+        },
+        dataType: 'json',
+        error: function (request, status, error) {
+            handleAjaxError(request, status, error, $('#div_alertPlanConfigure'));
+        },
+        success: function (data) {
             if (data.state != 'ok') {
                 $('#div_alertPlanConfigure').showAlert({message: data.result, level: 'danger'});
                 return;
             }
+            $('.link_type:not(.link_'+data.result.link_type+')').remove()
             $('#fd_planConfigure').setValues(data.result, '.planAttr');
+            if (isset(data.result.configuration.action_on)) {
+                for (var i in data.result.configuration.action_on) {
+                    addActionPlanConfigure(data.result.configuration.action_on[i],'on');
+                }
+            }
+            if (isset(data.result.configuration.action_off)) {
+                for (var i in data.result.configuration.action_off) {
+                    addActionPlanConfigure(data.result.configuration.action_off[i],'off');
+                }
+            }
+            if (isset(data.result.configuration.action_other)) {
+                for (var i in data.result.configuration.action_other) {
+                    addActionPlanConfigure(data.result.configuration.action_other[i],'other');
+                }
+            }
             if (data.result.link_type == 'text') {
                 var code = $('.planAttr[data-l1key=display][data-l2key=text]');
                 if (code.attr('id') == undefined) {
@@ -452,56 +471,34 @@ foreach (planHeader::all() as $planHeader_select) {
                     }, 1);
                 }
             }
-
-
         }
     });
-    }
+   }
 
-
-    function save() {
-        var plans = $('#fd_planConfigure').getValues('.planAttr');
-        if (plans[0].link_type == 'text') {
-            var id = $('.planAttr[data-l1key=display][data-l2key=text]').attr('id');
-            if (id != undefined && isset(editor[id])) {
-                plans[0].display.text = editor[id].getValue();
-            }
+   function save() {
+    var plans = $('#fd_planConfigure').getValues('.planAttr');
+    if (plans[0].link_type == 'text') {
+        var id = $('.planAttr[data-l1key=display][data-l2key=text]').attr('id');
+        if (id != undefined && isset(editor[id])) {
+            plans[0].display.text = editor[id].getValue();
         }
-        jeedom.plan.save({
-            plans: plans,
-            error: function (error) {
-                $('#div_alertPlanConfigure').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function () {
-                $('#div_alertPlanConfigure').showAlert({message: 'Design sauvegardé', level: 'success'});
-                displayPlan();
-                $('#fd_planConfigure').closest("div.ui-dialog-content").dialog("close");
-            },
-        });
     }
-
-    function remove() {
-        $.ajax({// fonction permettant de faire de l'ajax
-            type: "POST", // methode de transmission des données au fichier php
-            url: "core/ajax/plan.ajax.php", // url du fichier php
-            data: {
-                action: "remove",
-                id: $(".planAttr[data-l1key=id]").value()
-            },
-            dataType: 'json',
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_alertPlanConfigure'));
-            },
-            success: function (data) { // si l'appel a bien fonctionné
-            if (data.state != 'ok') {
-                $('#div_alertPlanConfigure').showAlert({message: data.result, level: 'danger'});
-                return;
-            }
-            $('#div_alertPlanConfigure').showAlert({message: 'Design supprimé', level: 'success'});
+    if(!isset(plans[0].configuration)){
+        plans[0].configuration = {};
+    }
+    plans[0].configuration.action_on = $('#div_planConfigureActionon .on').getValues('.expressionAttr');
+    plans[0].configuration.action_off = $('#div_planConfigureActionoff .off').getValues('.expressionAttr');
+    plans[0].configuration.action_other = $('#div_planConfigureActionother .other').getValues('.expressionAttr');
+    jeedom.plan.save({
+        plans: plans,
+        error: function (error) {
+            $('#div_alertPlanConfigure').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+            $('#div_alertPlanConfigure').showAlert({message: 'Design sauvegardé', level: 'success'});
             displayPlan();
             $('#fd_planConfigure').closest("div.ui-dialog-content").dialog("close");
-        }
+        },
     });
-    }
-
+}
 </script>

@@ -1,5 +1,5 @@
 <?php
-if (!hasRight('backupview', true)) {
+if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 ?>
@@ -40,7 +40,7 @@ if (!hasRight('backupview', true)) {
                 <fieldset>
                     <div class="form-group">
                         <label class="col-sm-4 col-xs-6 control-label">{{Sauvegardes disponibles}}</label>
-                        <div class="col-sm-4 col-xs-6">
+                        <div class="col-sm-6 col-xs-6">
                             <select class="form-control" id="sel_restoreBackup"> </select>
                         </div>
                     </div>
@@ -86,11 +86,19 @@ foreach (update::listRepo() as $rkey => $value) {
 	echo '<form class="form-horizontal repo">';
 	echo '<fieldset>';
 	echo '<div class="form-group">';
-	echo '<label class="col-sm-4 col-xs-6 control-label">{{Envoyer les sauvegardes dans le cloud}}</label>';
+	echo '<label class="col-sm-4 col-xs-6 control-label">{{Envoi des sauvegardes}}</label>';
 	echo '<div class="col-sm-4 col-xs-6">';
 	echo '<input type="checkbox" class="configKey" data-l1key="' . $rkey . '::cloudUpload" />';
 	echo '</div>';
 	echo '</div>';
+	if ($class == 'repo_market') {
+		echo '<div class="form-group">';
+		echo '<label class="col-sm-4 col-xs-6 control-label">{{Envoyer la sauvegarde locale sélectionnée}}</label>';
+		echo '<div class="col-sm-4 col-xs-6">';
+		echo '<a class="btn btn-success bt_uploadCloudBackup" data-repo="' . $rkey . '"> <i class="fa fa-file"></i> {{Envoyer}}</a>';
+		echo '</div>';
+		echo '</div>';
+	}
 	try {
 		$listeCloudBackup = $class::listeBackup();
 	} catch (Exception $e) {

@@ -1,5 +1,6 @@
 <div class="input-group input-group-sm" style="width: 100%">
 	<span class="input-group-addon" id="basic-addon1" style="width: 100px">#title_placeholder#</span>
+	<input type="color" class="color form-control input-sm cursor colorChooser" data-uid="#uid#" value="#color#" style="width: 20%; display: inline-block;"/>
 	<input class="title expressionAttr form-control input-sm" data-l1key="options" data-l2key="title" value="#title#" data-cmd_id="#id#" data-uid="#uid#"/>
 </div>
 
@@ -13,28 +14,38 @@
 
 <script>
 	if('#title_disable#' == '1'){
-		$('.expressionAttr[data-l1key=options][data-l2key=title][data-uid=#uid#][data-cmd_id=#id#]').parent().hide();
+		$('.expressionAttr[data-l1key=options][data-l2key=title][data-uid=#uid#]').parent().hide();
 	}
 	if('#message_disable#' == '1'){
-		$('.expressionAttr[data-l1key=options][data-l2key=message][data-uid=#uid#][data-cmd_id=#id#]').parent().hide();
+		$('.expressionAttr[data-l1key=options][data-l2key=message][data-uid=#uid#]').parent().hide();
 	}
 	$('.listEquipementInfo[data-uid=#uid#]').on('click', function() {
 		if('#message_cmd_subtype#' != ''){
-			jeedom.cmd.getSelectModal({cmd: {type: '#message_cmd_type#','subType' : '#message_cmd_subtype#'}}, function(result) {
-				$('.expressionAttr[data-l1key=options][data-l2key=message][data-uid=#uid#][data-cmd_id=#id#]').atCaret('insert', result.human);
+			jeedom.cmd.getSelectModal({cmd: {type: '#message_cmd_type#',subType : '#message_cmd_subtype#'}}, function(result) {
+				$('.expressionAttr[data-l1key=options][data-l2key=message][data-uid=#uid#]').atCaret('insert', result.human);
 			});
 		}else{
 			jeedom.cmd.getSelectModal({cmd: {type: '#message_cmd_type#'}}, function(result) {
-				$('.expressionAttr[data-l1key=options][data-l2key=message][data-uid=#uid#][data-cmd_id=#id#]').atCaret('insert', result.human);
+				$('.expressionAttr[data-l1key=options][data-l2key=message][data-uid=#uid#]').atCaret('insert', result.human);
 			});
 		}
 	});
 	if('#title_possibility_list#' != ''){
-		$('.expressionAttr[data-l1key=options][data-l2key=title][data-uid=#uid#][data-cmd_id=#id#]').autocomplete({
+		$('.expressionAttr[data-l1key=options][data-l2key=title][data-uid=#uid#]').autocomplete({
 			source: json_decode('#title_possibility_list#'),
 			close: function (event, ui) {
 				$(this).trigger('focusout');
 			}
 		});
 	}
+	if('#title_color#' == 1){
+		$('.colorChooser[data-uid=#uid#]').css("display","inline-block");
+		$('.title[data-uid=#uid#]').css("width","80%");
+		$('.colorChooser[data-uid=#uid#]').val($('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=title]').value());
+	} else {
+		$('.colorChooser[data-uid=#uid#]').css("display","none");
+	}
+	$('.colorChooser[data-uid=#uid#]').on('change', function () {
+        $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=title]').value($(this).value());
+	});
 </script>

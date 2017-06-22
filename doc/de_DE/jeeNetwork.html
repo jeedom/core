@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.3.dev">
-<title>Jeedom Netzwerk</title>
+<title>Réseaux Jeedom</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -412,13 +412,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Jeedom Netzwerk</h1>
+<h1>Réseaux Jeedom</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table des matières</div>
 <ul class="sectlevel1">
-<li><a href="#_das_jeedom_netzwerk">1. Das Jeedom Netzwerk</a></li>
-<li><a href="#_konfiguration">2. Konfiguration</a></li>
-<li><a href="#_fehlerbehebung">3. Fehlerbehebung</a></li>
+<li><a href="#_le_réseaux_jeedom">1. Le réseaux Jeedom</a></li>
+<li><a href="#_configuration">2. Configuration</a></li>
+<li><a href="#_troubleshooting">3. Troubleshooting</a></li>
 </ul>
 </div>
 </div>
@@ -426,15 +426,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Page permettant d&#8217;interconnecter plusieurs Jeedom en mode maître/esclave. Cette possibilité permet par exemple de déporter le Z-Wave, le RFXCom, l&#8217;EnOcean ou le GSM sur d&#8217;autres Raspberry Pi ou Jeedom mini. Vous pourrez aussi à partir de cette page avoir un statut de vos Jeedom esclaves, consulter leur log, les mettre à jour, les arrêter, etc.</p>
+<p>Page permettant d&#8217;interconnecter plusieurs Jeedom en mode maître/esclave. Cette possibilité permet par exemple de déporter le zwave, le rfxcom, l&#8217;enOcean ou le GSM sur d&#8217;autres raspberry pi ou Jeedom Mini. Vous pourrez aussi à partir de cette page avoir un statut de vos Jeedom esclave, consulter leurs logs, les mettres à jour, les arrêter&#8230;&#8203;</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_das_jeedom_netzwerk">1. Das Jeedom Netzwerk</h2>
+<h2 id="_le_réseaux_jeedom">1. Le réseaux Jeedom</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Erreichbar unter Verwaltung &#8594; Jeedom Netzwerk :</p>
+<p>Accessible depuis Général &#8594; Administration &#8594; Réseaux Jeedom :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -442,7 +442,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>Einmal oben, haben Sie :</p>
+<p>Une fois dessus, vous avez :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -450,20 +450,28 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>Diese Seite listet all Ihre Slave auf und erlaubt jeden, mit bestimmten Konfigurationsmöglichkeiten und einem direkten Zugang, im Einzelnen zu sehen.</p>
+<p>Cette page liste tous vos esclaves et permet de voir en details chacun d&#8217;entre eux avec certaines possibilités de configuration et un accès direct à ceux-ci.</p>
 </div>
-<div class="paragraph">
-<p>Cette documentation ne décrit pas volontairement tous les menus disponibles car ils ne sont qu&#8217;un report des menus existants sur le maître pour centraliser la configuration. Il faut donc se reporter à la documentation existante pour avoir le détail de fonctionnement.</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Cette documentation ne décrit pas volontairement tous les menus disponible car ils ne sont qu&#8217;un report des menus existants sur le maître pour centraliser la configuration. Il faut donc se reporter aux docs existantes pour avoir le détail de fonctionnement.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_konfiguration">2. Konfiguration</h2>
+<h2 id="_configuration">2. Configuration</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Das Setup ist sehr einfach, Sie müssen zunächst entscheiden, was der Master- und was das Slave-System ist.
-Danach muss man auf den Slave auf Verwaltung&#8594;Konfiguration  im Teil "Netzwerkkonfiguration" gehen
-und klicken Sie auf Slave :</p>
+<p>La configuration est assez simple, il faut tout d&#8217;abord décider le systeme maître et esclave.
+Ensuite, sur l&#8217;esclave, il faut aller dans Général &#8594; Administration &#8594; Configuration puis dans la partie "Configuration réseaux" et cliquer sur esclave :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -471,12 +479,11 @@ und klicken Sie auf Slave :</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Sie müssen dann die notwendigen Plugins in Remote-Installation (Vorsicht nicht alle Plugins sind unbedingt kompatibel),
-aktivieren und konfigurieren.</p>
+<p>Il faut ensuite installer les plugins voulus en déportés (attention tous les plugins ne sont pas forcément compatibles),
+les activer et les configurer.</p>
 </div>
 <div class="paragraph">
-<p>Ensuite du coté du maître, aller dans Administration &#8594; Configuration dans la partie "Configuration réseau" et
-kompletter Teil "Accès interne" :</p>
+<p>Ensuite, du coté du maître, vous devez aller dans Général &#8594; Administration &#8594; Configuration puis dans la partie "Configuration réseaux", remplir la partie "Accès interne" :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -484,30 +491,26 @@ kompletter Teil "Accès interne" :</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Hier sind die Details:</p>
+<p>Voici le detail :</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Protokoll</strong> : Das http Protokoll wird in der Regel verwendet</p>
-<div class="ulist">
-<ul>
-<li>
-<p>IP/Adresse : IP (oder Adresse, aber intern ist es ziemlich selten) des Masters (allgemein in der Form 192.168.xxx.xxx)</p>
-</li>
-</ul>
-</div>
+<p><strong>Protocole</strong> : protocole utilisé (en générale HTTP)</p>
 </li>
 <li>
-<p><strong>Complement</strong> : si vous avez une mini, center ou pro vous n&#8217;avez rien à mettre sinon vous devez mettre /jeedom</p>
+<p><strong>Adresse/IP</strong> : IP (ou adresse mais en interne c&#8217;est assez rare) du maître (en général de la forme 192.168.xxx.xxx)</p>
 </li>
 <li>
-<p><strong>Port</strong> : 80, wenn Sie nicht die nginx-Konfiguration ändern</p>
+<p><strong>Complement</strong> : si vous avez une Mini, Center ou Pro vous n&#8217;avez rien a mettre sinon vous devez mettre /jeedom (si présent dans l&#8217;adresse après l&#8217;IP)</p>
+</li>
+<li>
+<p><strong>Port</strong> : 80 si vous n&#8217;avez pas modifié la configuration nginx</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Danach immer auf dem Master auf Einstellungen &#8594; Jeedom Netzwerk gehen und auf "Jeedom hinzufügen" klicken :</p>
+<p>Ensuite, toujours sur le maître, aller sur Général &#8594; Administration &#8594; Réseaux Jeedom et faites "Ajouter un Jeedom" :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -517,16 +520,16 @@ kompletter Teil "Accès interne" :</p>
 <div class="ulist">
 <ul>
 <li>
-<p>einen Namen geben</p>
+<p>donnez-lui un nom</p>
 </li>
 <li>
-<p>Slave ID anzeigen</p>
+<p>indiquez l&#8217;IP de l&#8217;esclave</p>
 </li>
 <li>
-<p>die Ergänzung anzugeben wenn nötig (z.B.: /jeedom wenn sie einen Mini/Center/Pro haben  und verwenden sie /jeedom, um sich auf dem Slave zu verbinden</p>
+<p>indiquez le complément si nécessaire (ex : /jeedom si vous n&#8217;avez pas une Mini/Center/Pro et que vous utilisez le /jeedom pour vous connecter sur l&#8217;esclave)</p>
 </li>
 <li>
-<p>Der API-Schlüssel des Slave (ist auf dem Slave im Menü Administration &#8594; Konfiguration zu finden)</p>
+<p>la clef API de l&#8217;esclave (elle se trouve sur l&#8217;esclave dans Général &#8594; Administration &#8594; Configuration)</p>
 </li>
 <li>
 <p>Sicherungskopie</p>
@@ -534,21 +537,30 @@ kompletter Teil "Accès interne" :</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Wenn sie eine Meldung erhalten die sagt, es ist OK, dann ist alles miteinander verbunden, normalerweise sollte der Master automatisch die Plugins vom Slave erkennen.</p>
+<p>Si vous avez un message vous disant que c&#8217;est OK, alors tout est lié, normalement le maître devrait détecter automatiquement les plugins de l&#8217;esclave.</p>
 </div>
-<div class="paragraph">
-<p>Bei Problemen mit einem Plugin im entfernten Modus finden Sie in der Dokumentation Hilfe.</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+En cas de souci avec un plugin en mode deporté, reportez-vous à sa documentation.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_fehlerbehebung">3. Fehlerbehebung</h2>
+<h2 id="_troubleshooting">3. Troubleshooting</h2>
 <div class="sectionbody">
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Fehler 404 beim Speichern</dt>
+<dt class="hdlist1">Erreur 404 lors de la sauvegarde</dt>
 <dd>
-<p>Es geht darum, dass es einen Fehler in der Netzwerk Konfiguration des Masters (im Allgemeinen) gibt.</p>
+<p>C&#8217;est qu&#8217;il y a une erreur sur la configuration réseau du maître (en général).</p>
 </dd>
 </dl>
 </div>

@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.3.dev">
-<title>Réseau Jeedom</title>
+<title>Réseaux Jeedom</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -412,11 +412,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Réseau Jeedom</h1>
+<h1>Réseaux Jeedom</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table des matières</div>
 <ul class="sectlevel1">
-<li><a href="#_le_réseau_jeedom">1. Le réseau Jeedom</a></li>
+<li><a href="#_le_réseaux_jeedom">1. Le réseaux Jeedom</a></li>
 <li><a href="#_configuration">2. Configuration</a></li>
 <li><a href="#_troubleshooting">3. Troubleshooting</a></li>
 </ul>
@@ -426,15 +426,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Page permettant d&#8217;interconnecter plusieurs Jeedom en mode maître/esclave. Cette possibilité permet par exemple de déporter le Z-Wave, le RFXCom, l&#8217;EnOcean ou le GSM sur d&#8217;autres Raspberry Pi ou Jeedom mini. Vous pourrez aussi à partir de cette page avoir un statut de vos Jeedom esclaves, consulter leur log, les mettre à jour, les arrêter, etc.</p>
+<p>Page permettant d&#8217;interconnecter plusieurs Jeedom en mode maître/esclave. Cette possibilité permet par exemple de déporter le zwave, le rfxcom, l&#8217;enOcean ou le GSM sur d&#8217;autres raspberry pi ou Jeedom Mini. Vous pourrez aussi à partir de cette page avoir un statut de vos Jeedom esclave, consulter leurs logs, les mettres à jour, les arrêter&#8230;&#8203;</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_le_réseau_jeedom">1. Le réseau Jeedom</h2>
+<h2 id="_le_réseaux_jeedom">1. Le réseaux Jeedom</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Accessible depuis Administration &#8594; Réseau Jeedom :</p>
+<p>Accessible depuis Général &#8594; Administration &#8594; Réseaux Jeedom :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -442,7 +442,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>Une fois dessus vous avez :</p>
+<p>Une fois dessus, vous avez :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -450,7 +450,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>Cette page liste tous vos esclaves et permet de voir en détail chacun d&#8217;entre eux avec certaines possibilités de configuration et un accès direct à chacun.</p>
+<p>Cette page liste tous vos esclaves et permet de voir en details chacun d&#8217;entre eux avec certaines possibilités de configuration et un accès direct à ceux-ci.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -459,7 +459,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Cette documentation ne décrit pas volontairement tous les menus disponibles car ils ne sont qu&#8217;un report des menus existants sur le maître pour centraliser la configuration. Il faut donc se reporter à la documentation existante pour avoir le détail de fonctionnement.
+Cette documentation ne décrit pas volontairement tous les menus disponible car ils ne sont qu&#8217;un report des menus existants sur le maître pour centraliser la configuration. Il faut donc se reporter aux docs existantes pour avoir le détail de fonctionnement.
 </td>
 </tr>
 </table>
@@ -470,9 +470,8 @@ Cette documentation ne décrit pas volontairement tous les menus disponibles car
 <h2 id="_configuration">2. Configuration</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>La configuration est assez simple, il faut tout d&#8217;abord décider le système maître et esclave.
-Ensuite sur l&#8217;esclave, il faut aller dans Administration &#8594; Configuration dans la partie "Configuration réseau"
-et cliquer sur esclave :</p>
+<p>La configuration est assez simple, il faut tout d&#8217;abord décider le systeme maître et esclave.
+Ensuite, sur l&#8217;esclave, il faut aller dans Général &#8594; Administration &#8594; Configuration puis dans la partie "Configuration réseaux" et cliquer sur esclave :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -480,12 +479,11 @@ et cliquer sur esclave :</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Il faut ensuite installer les plugins voulus en déporté (attention tous les plugins ne sont pas forcément compatibles),
+<p>Il faut ensuite installer les plugins voulus en déportés (attention tous les plugins ne sont pas forcément compatibles),
 les activer et les configurer.</p>
 </div>
 <div class="paragraph">
-<p>Ensuite du coté du maître, aller dans Administration &#8594; Configuration dans la partie "Configuration réseau" et
-remplir la partie "Accès interne" :</p>
+<p>Ensuite, du coté du maître, vous devez aller dans Général &#8594; Administration &#8594; Configuration puis dans la partie "Configuration réseaux", remplir la partie "Accès interne" :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -493,18 +491,18 @@ remplir la partie "Accès interne" :</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Voici le détail :</p>
+<p>Voici le detail :</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Protocole</strong> : protocole utilisé, en général http</p>
+<p><strong>Protocole</strong> : protocole utilisé (en générale HTTP)</p>
 </li>
 <li>
 <p><strong>Adresse/IP</strong> : IP (ou adresse mais en interne c&#8217;est assez rare) du maître (en général de la forme 192.168.xxx.xxx)</p>
 </li>
 <li>
-<p><strong>Complement</strong> : si vous avez une mini, center ou pro vous n&#8217;avez rien à mettre sinon vous devez mettre /jeedom</p>
+<p><strong>Complement</strong> : si vous avez une Mini, Center ou Pro vous n&#8217;avez rien a mettre sinon vous devez mettre /jeedom (si présent dans l&#8217;adresse après l&#8217;IP)</p>
 </li>
 <li>
 <p><strong>Port</strong> : 80 si vous n&#8217;avez pas modifié la configuration nginx</p>
@@ -512,7 +510,7 @@ remplir la partie "Accès interne" :</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Ensuite toujours sur le maître, aller sur Administration &#8594; Réseau Jeedom et faire "Ajouter un Jeedom" :</p>
+<p>Ensuite, toujours sur le maître, aller sur Général &#8594; Administration &#8594; Réseaux Jeedom et faites "Ajouter un Jeedom" :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -522,16 +520,16 @@ remplir la partie "Accès interne" :</p>
 <div class="ulist">
 <ul>
 <li>
-<p>donner un nom</p>
+<p>donnez-lui un nom</p>
 </li>
 <li>
-<p>indiquer l&#8217;IP de l&#8217;esclave</p>
+<p>indiquez l&#8217;IP de l&#8217;esclave</p>
 </li>
 <li>
-<p>indiquer le complément si nécessaire (ex : /jeedom si vous n&#8217;avez pas une mini/center/pro et que vous utilisez le /jeedom pour vous connecter sur l&#8217;esclave)</p>
+<p>indiquez le complément si nécessaire (ex : /jeedom si vous n&#8217;avez pas une Mini/Center/Pro et que vous utilisez le /jeedom pour vous connecter sur l&#8217;esclave)</p>
 </li>
 <li>
-<p>la clef API de l&#8217;esclave (elle se trouve sur l&#8217;esclave dans Administration &#8594; Configuration)</p>
+<p>la clef API de l&#8217;esclave (elle se trouve sur l&#8217;esclave dans Général &#8594; Administration &#8594; Configuration)</p>
 </li>
 <li>
 <p>sauvegarder</p>
@@ -539,7 +537,7 @@ remplir la partie "Accès interne" :</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Si vous avez un message vous disant que c&#8217;est OK alors tout est lié, normalement le maître devrait détecter automatiquement les plugins de l&#8217;esclave.</p>
+<p>Si vous avez un message vous disant que c&#8217;est OK, alors tout est lié, normalement le maître devrait détecter automatiquement les plugins de l&#8217;esclave.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -548,7 +546,7 @@ remplir la partie "Accès interne" :</p>
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-En cas de soucis avec un plugin en mode deporté, reportez-vous à sa documentation.
+En cas de souci avec un plugin en mode deporté, reportez-vous à sa documentation.
 </td>
 </tr>
 </table>
@@ -562,7 +560,7 @@ En cas de soucis avec un plugin en mode deporté, reportez-vous à sa documentat
 <dl>
 <dt class="hdlist1">Erreur 404 lors de la sauvegarde</dt>
 <dd>
-<p>C&#8217;est qu&#8217;il y a une erreur sur la configuration reseau du maître (en général).</p>
+<p>C&#8217;est qu&#8217;il y a une erreur sur la configuration réseau du maître (en général).</p>
 </dd>
 </dl>
 </div>

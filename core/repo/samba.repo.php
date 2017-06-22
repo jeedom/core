@@ -96,13 +96,13 @@ class repo_samba {
 	}
 
 	public static function downloadObject($_update) {
-		$tmp_dir = '/tmp';
+		$tmp_dir = jeedom::getTmpFolder('samba');
 		$tmp = $tmp_dir . '/' . $_update->getLogicalId() . '.zip';
 		if (file_exists($tmp)) {
 			unlink($tmp);
 		}
 		if (!is_writable($tmp_dir)) {
-			exec('sudo chmod 777 -R ' . $tmp);
+			exec(system::getCmdSudo() . 'chmod 777 -R ' . $tmp);
 		}
 		if (!is_writable($tmp_dir)) {
 			throw new Exception(__('Impossible d\'écrire dans le répertoire : ', __FILE__) . $tmp . __('. Exécuter la commande suivante en SSH : sudo chmod 777 -R ', __FILE__) . $tmp_dir);
@@ -127,7 +127,7 @@ class repo_samba {
 	}
 
 	public static function makeSambaCommand($_cmd, $_type = 'backup') {
-		return 'sudo smbclient ' . config::byKey('samba::' . $_type . '::share') . ' -U ' . config::byKey('samba::' . $_type . '::username') . '%' . config::byKey('samba::' . $_type . '::password') . ' -I ' . config::byKey('samba::' . $_type . '::ip') . ' -c "' . $_cmd . '"';
+		return system::getCmdSudo() . 'smbclient ' . config::byKey('samba::' . $_type . '::share') . ' -U "' . config::byKey('samba::' . $_type . '::username') . '%' . config::byKey('samba::' . $_type . '::password') . '" -I ' . config::byKey('samba::' . $_type . '::ip') . ' -c "' . $_cmd . '"';
 	}
 
 	public static function sortByDatetime($a, $b) {
@@ -190,7 +190,7 @@ class repo_samba {
 		$cmd = 'cd ' . $backup_dir . ';';
 		$cmd .= self::makeSambaCommand('cd ' . config::byKey('samba::backup::folder') . ';get ' . $_backup);
 		com_shell::execute($cmd);
-		com_shell::execute('sudo chmod 777 -R ' . $backup_dir . '/*');
+		com_shell::execute(system::getCmdSudo() . 'chmod 777 -R ' . $backup_dir . '/*');
 		jeedom::restore('backup/' . $_backup, true);
 	}
 
@@ -199,23 +199,23 @@ class repo_samba {
 		$cmd = 'cd ' . $pathinfo['dirname'] . ';';
 		$cmd .= self::makeSambaCommand('get ' . config::byKey('samba::core::path') . '/jeedom.zip', 'plugin');
 		com_shell::execute($cmd);
-		com_shell::execute('sudo chmod 777 -R ' . $_path);
+		com_shell::execute(system::getCmdSudo() . 'chmod 777 -R ' . $_path);
 		return;
 	}
 
 	public static function versionCore() {
 		try {
-			if (file_exists('/tmp/jeedom_version')) {
-				com_shell::execute('sudo rm /tmp/jeedom_version');
+			if (file_exists(jeedom::getTmpFolder('samba') . '/version')) {
+				com_shell::execute(system::getCmdSudo() . 'rm /tmp/jeedom_version');
 			}
 			$cmd = 'cd /tmp;';
 			$cmd .= self::makeSambaCommand('get ' . config::byKey('samba::core::path') . '/jeedom_version', 'plugin');
 			com_shell::execute($cmd);
-			if (!file_exists('/tmp/jeedom_version')) {
+			if (!file_exists(jeedom::getTmpFolder('samba') . '/version')) {
 				return null;
 			}
-			$version = trim(file_get_contents('/tmp/jeedom_version'));
-			com_shell::execute('sudo rm /tmp/jeedom_version');
+			$version = trim(file_get_contents(jeedom::getTmpFolder('samba') . '/version'));
+			com_shell::execute(system::getCmdSudo() . 'rm ' . jeedom::getTmpFolder('samba') . '/version');
 			return $version;
 		} catch (Exception $e) {
 

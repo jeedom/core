@@ -416,8 +416,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table des matières</div>
 <ul class="sectlevel1">
-<li><a href="#_manejo_de_las_escenas">1. Manejo de las escenas</a></li>
-<li><a href="#_manejo_de_ordenes">2. Manejo de ordenes</a></li>
+<li><a href="#_manejo_de_las_escenarios">1. Manejo de las escenarios</a></li>
+<li><a href="#_manejo_de_comandos">2. Manejo de comandos</a></li>
 </ul>
 </div>
 </div>
@@ -439,16 +439,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_manejo_de_las_escenas">1. Manejo de las escenas</h2>
+<h2 id="_manejo_de_las_escenarios">1. Manejo de las escenarios</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>La primera consulta se utiliza sólo para activar una escena</p>
 </div>
 <div class="paragraph">
-<p>Aquí le damos la URL = http://<mark>IP_JEEDOM</mark>/core/api/jeeApi.php?apikey=#APIKEY#&amp;type=scenario&amp;id=#ID#&amp;action=#ACCIÓN#</p>
+<p>Aquí la URL = <a href="http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&amp;type=scenario&amp;id=#ID#&amp;action=#ACTION#" class="bare">http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&amp;type=scenario&amp;id=#ID#&amp;action=#ACTION#</a></p>
 </div>
 <div class="paragraph">
-<p>#IP_JEEDOM # corresponde a la url de Jeedom. Es la dirección de internet que utilizas para acceder a Jeedom desde fuera (a menos que estés conectado a tu red local).</p>
+<p>\#IP_JEEDOM # corresponde a la url de acceso a Jeedom. Es la dirección de internet que utilizas para acceder a Jeedom desde fuera (a menos que estés conectado a tu red local).</p>
 </div>
 <div class="paragraph">
 <p>#API_KEY # corresponde a tu API key, es único para su instalación. Para saber cual es, debe activar el modo experto. Ir a Menú superior, luego 'Administración' y en 'Configuración General', verá una línea con la clave API.</p>
@@ -459,7 +459,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>#ID # es el id de una escena. El ID se encuentra en la página de escenas&#8230;&#8203; (No olvides activar el modo experto)</p>
+<p>#ID # es el id de un escenario. El ID se encuentra en la página de escenarios&#8230;&#8203; (No olvides activar el modo experto)</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -467,18 +467,18 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>#ACCIÓN # corresponde a la acción que desea aplicar a una escena. Las ordenes disponibles son: "start" comenzar una escena, "stop" para detener una escena, "desactivar" para deshabilitar una escena, "activar" para activar una escena.</p>
+<p>#ACCIÓN # corresponde a la acción que desea aplicar a un escenario. Las ordenes disponibles son: "start" comenzar un escenario, "stop" para detener un escenario, "desactivar" para deshabilitar un escenario, "activar" para activar un escenario.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_manejo_de_ordenes">2. Manejo de ordenes</h2>
+<h2 id="_manejo_de_comandos">2. Manejo de comandos</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>La segunda consulta permite simplemente controlar todos los otros módulos de Jeedom (módulo domotica/plugin etc.).</p>
 </div>
 <div class="paragraph">
-<p>Aquí le damos la URL = <a href="http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&amp;type=cmd&amp;id=#ID#" class="bare">http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&amp;type=cmd&amp;id=#ID#</a></p>
+<p>Aquí la URL = <a href="http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&amp;type=cmd&amp;id=#ID#" class="bare">http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&amp;type=cmd&amp;id=#ID#</a></p>
 </div>
 <div class="paragraph">
 <p>#IP_JEEDOM# y #API_KEY# se utilizan en la misma forma que antes.</p>
@@ -487,7 +487,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>#ID# es el id que desea manejar o recibir información.</p>
 </div>
 <div class="paragraph">
-<p>La forma más sencilla de obtener esta dirección URL es ir la página de resumen de domótica,  buscar el comando y a continuación, abrir configuración avanzada y ahí podrás ver una dirección URL que contiene todo la cadena de ejecución en función del tipo y subtipo del comando. Ver <a href="https://jeedom.com/doc/documentation/core/fr_FR/doc-core-display.html#_informations_2">ici</a></p>
+<p>La forma más sencilla de obtener esta dirección URL es ir la página de resumen de domótica,  buscar el comando y a continuación, abrir configuración avanzada y ahí podrás ver una dirección URL que contiene todo la cadena de ejecución en función del tipo y subtipo del comando. Ver <a href="https://jeedom.com/doc/documentation/core/es_ES/doc-core-display.html#_informations_2">aquí</a></p>
 </div>
 </div>
 </div>

@@ -26,7 +26,7 @@ if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SE
 }
 set_time_limit(1800);
 echo "[START UPDATE]\n";
-
+$starttime = strtotime('now');
 if (isset($argv)) {
 	foreach ($argv as $arg) {
 		$argList = explode('=', $arg);
@@ -103,10 +103,10 @@ try {
 		if (init('level', -1) < 1) {
 			if (config::byKey('update::backupBefore') == 1 && init('mode') != 'force') {
 				try {
-					global $NO_PLUGIN_BAKCUP;
-					$NO_PLUGIN_BAKCUP = true;
-					global $NO_CLOUD_BAKCUP;
-					$NO_CLOUD_BAKCUP = true;
+					global $NO_PLUGIN_BACKUP;
+					$NO_PLUGIN_BACKUP = true;
+					global $NO_CLOUD_BACKUP;
+					$NO_CLOUD_BACKUP = true;
 					jeedom::backup();
 				} catch (Exception $e) {
 					if (init('mode') != 'force') {
@@ -124,18 +124,16 @@ try {
 			if (init('version') == '') {
 				try {
 					echo 'Clean temporary file (tmp)...';
-					exec('rm -rf ' . dirname(__FILE__) . '/../tmp/*.zip');
-					exec('rm -rf ' . dirname(__FILE__) . '/../tmp/backup');
-					exec('rm -rf ' . dirname(__FILE__) . '/../install/update/*');
+					shell_exec('rm -rf ' . dirname(__FILE__) . '/../install/update/*');
 					echo "OK\n";
 				} catch (Exception $e) {
 					echo '***ERROR*** ' . $e->getMessage() . "\n";
 				}
-				$tmp_dir = dirname(__FILE__) . '/../tmp';
+				$tmp_dir = jeedom::getTmpFolder('install');
 				$tmp = $tmp_dir . '/jeedom_update.zip';
 				try {
 					if (config::byKey('core::repo::provider') == 'default') {
-						$url = 'https://github.com/jeedom/core/archive/stable.zip';
+						$url = 'https://github.com/jeedom/core/archive/' . config::byKey('core::branch') . '.zip';
 						echo "Download url : " . $url . "\n";
 						echo "Download in progress...";
 						if (!is_writable($tmp_dir)) {
@@ -163,7 +161,7 @@ try {
 					}
 					echo "OK\n";
 					echo "Cleaning folder...";
-					$cibDir = dirname(__FILE__) . '/../tmp/jeedom';
+					$cibDir = jeedom::getTmpFolder('install/unzip');
 					if (file_exists($cibDir)) {
 						rrmdir($cibDir);
 					}
@@ -178,8 +176,8 @@ try {
 						@rrmdir(dirname(__FILE__) . '/../' . $file);
 					}
 					echo "OK\n";
-					echo "Création des dossiers temporaire...";
-					if (!file_exists($cibDir) && !mkdir($cibDir, 0775, true)) {
+					echo "Create temporary folder...";
+					if (!file_exists($cibDir) && !mkdir($cibDir, 0777, true)) {
 						throw new Exception('Can not write into  : ' . $cibDir . '.');
 					}
 					echo "OK\n";
@@ -194,7 +192,7 @@ try {
 						throw new Exception('Unable to unzip file : ' . $tmp);
 					}
 					echo "OK\n";
-					echo "Copying file...";
+					echo "Moving file...";
 					$update_begin = true;
 					if (!file_exists($cibDir . '/core')) {
 						$files = ls($cibDir, '*');
@@ -202,11 +200,10 @@ try {
 							$cibDir = $cibDir . '/' . $files[0];
 						}
 					}
-					rcopy($cibDir . '/', dirname(__FILE__) . '/../', false, array(), true);
+					rmove($cibDir . '/', dirname(__FILE__) . '/../', false, array(), true);
 					echo "OK\n";
 					echo "Remove temporary file...";
 					rrmdir($cibDir);
-					unlink($tmp);
 					echo "OK\n";
 					config::save('update::lastDateCore', date('Y-m-d H:i:s'));
 				} catch (Exception $e) {
@@ -395,7 +392,7 @@ try {
 		echo "Add user (admin,admin)\n";
 		$user = new user();
 		$user->setLogin('admin');
-		$user->setPassword(sha1('admin'));
+		$user->setPassword(sha512('admin'));
 		$user->setRights('admin', 1);
 		$user->save();
 		config::save('log::level', 400);
@@ -434,7 +431,7 @@ try {
 } catch (Exception $e) {
 
 }
-
+echo "Install/update duration : " . (strtotime('now') - $starttime) . "s\n";
 echo "[END UPDATE SUCCESS]\n";
 
 function incrementVersion($_version) {

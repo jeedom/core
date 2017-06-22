@@ -1,40 +1,17 @@
-/*@import url(//fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic);
-@import url(//fonts.googleapis.com/css?family=Roboto:400,300,500,400italic,700,900);*/
-
 html {
   height: 100%;
   /* The html and body elements cannot have any padding or margin. */
 }
 
 body {
-  font-family: 'Roboto', sans-serif !important;
+  font-family: 'noto', sans-serif !important;
   font-size: 1.42em;
-  padding-top: 60px;
+  padding-top: 50px;
   height: 100%;
 }
-/*
-header{
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-}
-
-.btn,.bootstrap-switch{
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-}
-
-.btn,.bootstrap-switch{
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-}
-
-.form-control{
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-}
-
-.div_smallSideBar{
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-}*/
 
 .btn:hover { 
-   opacity: 0.7;
+ opacity: 0.7;
 }
 
 .sidebar-nav {
@@ -129,7 +106,6 @@ header{
 .cmd-widget{
   display: inline-block;
   position : relative;
-  height : 100%;
   vertical-align: top;
 }
 

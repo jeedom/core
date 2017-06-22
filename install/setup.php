@@ -1,4 +1,6 @@
 <?php
+require_once dirname(__FILE__) . '/../core/class/system.class.php';
+
 function init($_name, $_default = '') {
 	if (isset($_GET[$_name])) {
 		$cache[$_name] = $_GET[$_name];
@@ -9,7 +11,6 @@ function init($_name, $_default = '') {
 		return $_POST[$_name];
 	}
 	if (isset($_REQUEST[$_name])) {
-		$cache[$_name] = $_REQUEST[$_name];
 		return $_REQUEST[$_name];
 	}
 	return $_default;
@@ -51,7 +52,7 @@ if (file_exists(dirname(__FILE__) . '/../core/config/common.config.php')) {
 	echo "The page that you have requested could not be found.";
 	exit();
 }
-$needpackages = array('unzip', 'curl', 'sudo', 'ntp');
+$needpackages = array('unzip', 'curl', 'ntp');
 $needphpextensions = array('curl', 'json', 'mysql', 'gd');
 $loadExtensions = get_loaded_extensions();
 ?>
@@ -77,38 +78,24 @@ if (version_compare(PHP_VERSION, '5.6.0', '<')) {
 	echo '<center style="font-size:1.2em;">Jeedom need php 5.6 or upper (current : ' . PHP_VERSION . ')</center>';
 	echo '</div>';
 }
-if (shell_exec('sudo -l > /dev/null 2>&1; echo $?') != 0) {
-	$error = true;
-
+if (!file_exists('/etc/cron.d/jeedom')) {
 	echo '<div class="alert alert-warning" style="margin:15px;">';
-	echo '<center style="font-size:1.2em;">Jeedom has not sudo right please do in ssh : </center>';
+	echo '<center style="font-size:1.2em;">Please add crontab line for jeedom (if jeedom has no sudo right this error is normal): </center>';
 	echo '<pre>';
 	echo "sudo su -\n";
-	echo 'echo "' . get_current_user() . ' ALL=(ALL) NOPASSWD: ALL" | (EDITOR="tee -a" visudo)';
-	echo '</pre>';
-	echo '</div>';
-}
-if (shell_exec('sudo crontab -l | grep jeeCron.php | wc -l') == 0) {
-	$error = true;
-	echo '<div class="alert alert-warning" style="margin:15px;">';
-	echo '<center style="font-size:1.2em;">Please add crontab line for jeedom : </center>';
-	echo '<pre>';
-	echo "sudo su -\n";
-	echo 'croncmd="su --shell=/bin/bash - ' . get_current_user() . ' -c \'/usr/bin/php ' . realpath(dirname(__FILE__) . '/../') . '/core/php/jeeCron.php\' >> /dev/null 2>&1"' . "\n";
-	echo 'cronjob="* * * * * $croncmd"' . "\n";
-	echo '( crontab -l | grep -v "$croncmd" ; echo "$cronjob" ) | crontab -' . "\n";
+	echo 'echo "* * * * * ' . get_current_user() . ' /usr/bin/php /var/www/html/core/php/jeeCron.php >> /dev/null" > /etc/cron.d/jeedom';
 	echo '</pre>';
 	echo '</div>';
 }
 
 foreach ($needpackages as $needpackage) {
-	if (shell_exec(' dpkg --get-selections | grep -v deinstall | grep ' . $needpackage . ' | wc -l') == 0) {
+	if (shell_exec(system::get('cmd_check') . $needpackage . ' | wc -l') == 0) {
 		$error = true;
 		echo '<div class="alert alert-warning" style="margin:15px;">';
 		echo '<center style="font-size:1.2em;">Jeedom need ' . $needpackage . ' package, please do in ssh : </center>';
 		echo '<pre>';
 		echo "sudo su -\n";
-		echo 'apt-get install -y ' . $needpackage;
+		echo system::get('cmd_install') . $needpackage;
 		echo '</pre>';
 		echo '</div>';
 	}
@@ -124,7 +111,7 @@ foreach ($needphpextensions as $needphpextension) {
 	echo '<center style="font-size:1.2em;">Jeedom need ' . $needphpextension . ' php extension, please do in ssh : </center>';
 	echo '<pre>';
 	echo "sudo su -\n";
-	echo 'apt-get install -y php5-' . $needphpextension . "\n";
+	echo system::get('cmd_install') . ' php5-' . $needphpextension . "\n";
 	echo 'systemctl reload php5-fpm <strong>or</strong> systemctl reload apache2';
 	echo '</pre>';
 	echo '</div>';
@@ -239,7 +226,7 @@ if ($config) {
 		</form>
 		<?php } else {
 	shell_exec('sudo chmod 775 -R ' . dirname(__FILE__) . '/../*');
-	shell_exec('sudo chown www-data:www-data -R ' . dirname(__FILE__) . '/../*');
+	shell_exec('sudo chown ' . system::get('www-uid') . ':' . system::get('www-gid') . ' -R ' . dirname(__FILE__) . '/../*');
 	if (!is_writable(dirname(__FILE__) . '/../core/config')) {
 		echo '<div class="alert alert-danger" style="margin:15px;">';
 		echo '<center style="font-size:1.2em;">Folder ' . dirname(__FILE__) . '/../core/config' . ' must be writable</center>';
@@ -257,8 +244,7 @@ if ($config) {
 	);
 	$config = str_replace(array_keys($replace), $replace, file_get_contents(dirname(__FILE__) . '/../core/config/common.config.sample.php'));
 	file_put_contents(dirname(__FILE__) . '/../core/config/common.config.php', $config);
-	shell_exec('sudo echo "" ' . dirname(__FILE__) . '/../log/jeedom_installation 2>&1');
-	shell_exec('sudo php ' . dirname(__FILE__) . '/install.php mode=force > ' . dirname(__FILE__) . '/../log/jeedom_installation 2>&1 &');
+	shell_exec('php ' . dirname(__FILE__) . '/install.php mode=force > ' . dirname(__FILE__) . '/../log/jeedom_installation 2>&1 &');
 	echo '<div id="div_alertMessage" class="alert alert-warning" style="margin:15px;">';
 	echo '<center style="font-size:1.2em;"><i class="fa fa-spinner fa-spin"></i> The installation jeedom is ongoing.</center>';
 	echo '</div>';

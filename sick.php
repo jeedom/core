@@ -39,20 +39,6 @@ try {
 	die();
 }
 
-/* Check tmp dir */
-echo "Check if tmp is wirtable...";
-if (!file_exists($install_dir . '/tmp')) {
-	echo "not found\n";
-	echo "Do : mkdir " . $install_dir . "/tmp\n";
-	die();
-}
-if (!is_writable($install_dir . '/tmp')) {
-	echo "not writable\n";
-	echo "Do : chown  -R " . $processUser['name'] . ' ' . $install_dir . "/tmp\n";
-	die();
-}
-echo "OK\n";
-
 /* Check log dir */
 echo "Check if log is wirtable...";
 if (!file_exists($install_dir . '/log')) {
@@ -86,9 +72,9 @@ try {
 	if (!$foundAdmin) {
 		echo "No admin user found, create it...";
 		$user = (new \user())
-		    ->setLogin('admin')
-		    ->setPassword(sha1('admin'))
-		    ->setRights('admin', 1);
+			->setLogin('admin')
+			->setPassword(sha512('admin'))
+			->setRights('admin', 1);
 		$user->save();
 		echo "OK (admin/admin)\n";
 	}

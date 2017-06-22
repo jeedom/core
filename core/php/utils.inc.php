@@ -19,7 +19,6 @@
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
 function include_file($_folder, $_fn, $_type, $_plugin = '') {
-	$type = 'php';
 	if ($_folder == '3rdparty') {
 		$_fn .= '.' . $_type;
 		$path = dirname(__FILE__) . '/../../' . $_folder . '/' . $_fn;
@@ -51,18 +50,26 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 		$_folder = 'plugins/' . $_plugin . '/' . $_folder;
 	}
 	$path = dirname(__FILE__) . '/../../' . $_folder . '/' . $_fn;
-	if (file_exists($path)) {
-		if ($type == 'php') {
+	if (!file_exists($path)) {
+		throw new Exception('File not found : ' . $_fn, 35486);
+	}
+	if ($type == 'php') {
+		if ($_type != 'class') {
 			ob_start();
 			require_once $path;
 			echo translate::exec(ob_get_clean(), $_folder . '/' . $_fn);
-		} else if ($type == 'css') {
-			echo '<link href="' . $_folder . '/' . $_fn . '?md5=' . md5_file($path) . '" rel="stylesheet" />';
-		} else if ($type == 'js') {
-			echo '<script type="text/javascript" src="core/php/getResource.php?file=' . $_folder . '/' . $_fn . '&md5=' . md5_file($path) . '&lang=' . translate::getLanguage() . '"></script>';
+			return;
 		}
-	} else {
-		throw new Exception('File not found : ' . $_fn, 35486);
+		require_once $path;
+		return;
+	}
+	if ($type == 'css') {
+		echo '<link href="' . $_folder . '/' . $_fn . '?md5=' . md5_file($path) . '" rel="stylesheet" />';
+		return;
+	}
+	if ($type == 'js') {
+		echo '<script type="text/javascript" src="core/php/getResource.php?file=' . $_folder . '/' . $_fn . '&md5=' . md5_file($path) . '&lang=' . translate::getLanguage() . '"></script>';
+		return;
 	}
 }
 
@@ -87,7 +94,6 @@ function init($_name, $_default = '') {
 		return $_POST[$_name];
 	}
 	if (isset($_REQUEST[$_name])) {
-		$cache[$_name] = $_REQUEST[$_name];
 		return $_REQUEST[$_name];
 	}
 	return $_default;
@@ -182,7 +188,7 @@ function mySqlIsHere() {
 	return is_object(DB::getConnection());
 }
 
-function displayExeption($e) {
+function displayExeption(Exception $e) {
 	$message = '<span id="span_errorMessage">' . $e->getMessage() . '</span>';
 	if (DEBUG) {
 		$message .= '<a class="pull-right bt_errorShowTrace cursor">Show traces</a>';
@@ -200,6 +206,13 @@ function is_sha1($_string = '') {
 		return false;
 	}
 	return preg_match('/^[0-9a-f]{40}$/i', $_string);
+}
+
+function is_sha512($_string = '') {
+	if ($_string == '') {
+		return false;
+	}
+	return preg_match('/^[0-9a-f]{128}$/i', $_string);
 }
 
 function cleanPath($path) {
@@ -274,7 +287,7 @@ function ls($folder = "", $pattern = "*", $recursivly = false, $options = array(
 			}
 		}
 	}
-	if ($recursivly or $get_folders) {
+	if ($recursivly || $get_folders) {
 		$folders = glob("*", GLOB_ONLYDIR + GLOB_MARK);
 	}
 
@@ -286,7 +299,7 @@ function ls($folder = "", $pattern = "*", $recursivly = false, $options = array(
 
 	//Get just the files by removing the folders from the list of all files.
 	$all = array_values(array_diff($both, $folders));
-	if ($recursivly or $get_folders) {
+	if ($recursivly || $get_folders) {
 		foreach ($folders as $this_folder) {
 			if ($get_folders) {
 				//If a pattern is specified, make sure even the folders match that pattern.
@@ -334,11 +347,7 @@ function ls($folder = "", $pattern = "*", $recursivly = false, $options = array(
 }
 
 function removeCR($_string) {
-	$_string = str_replace("\n", '', $_string);
-	$_string = str_replace("\r\n", '', $_string);
-	$_string = str_replace("\r", '', $_string);
-	$_string = str_replace("\n\r", '', $_string);
-	return trim($_string);
+	return trim(str_replace(array("\n", "\r\n", "\r", "\n\r"), '', $_string));
 }
 
 function rcopy($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = false) {
@@ -366,6 +375,39 @@ function rcopy($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = 
 				return copy($src, $dst);
 			} else {
 				@copy($src, $dst);
+				return true;
+			}
+
+		}
+	}
+	return true;
+}
+
+function rmove($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = false) {
+	if (!file_exists($src)) {
+		return true;
+	}
+	if ($_emptyDest) {
+		rrmdir($dst);
+	}
+	if (is_dir($src)) {
+		if (!file_exists($dst)) {
+			@mkdir($dst);
+		}
+		$files = scandir($src);
+		foreach ($files as $file) {
+			if ($file != "." && $file != ".." && !in_array($file, $_exclude) && !in_array(realpath($src . '/' . $file), $_exclude)) {
+				if (!rmove($src . '/' . $file, $dst . '/' . $file, $_emptyDest, $_exclude, $_noError) && !$_noError) {
+					return false;
+				}
+			}
+		}
+	} else {
+		if (!in_array(basename($src), $_exclude) && !in_array(realpath($src), $_exclude)) {
+			if (!$_noError) {
+				return rename($src, $dst);
+			} else {
+				@rename($src, $dst);
 				return true;
 			}
 
@@ -545,40 +587,35 @@ function convertDayEnToFr($_day) {
 	return $_day;
 }
 
-function create_zip($source_arr, $destination) {
+function create_zip($source_arr, $destination, $_excludes = array()) {
 	if (is_string($source_arr)) {
 		$source_arr = array($source_arr);
 	}
-	// convert it to array
-
 	if (!extension_loaded('zip')) {
 		throw new Exception('Extension php ZIP non chargée');
 	}
-
 	$zip = new ZipArchive();
 	if (!$zip->open($destination, ZIPARCHIVE::CREATE)) {
 		throw new Exception('Impossible de creer l\'archive ZIP dans le dossier de destination : ' . $destination);
 	}
-
 	foreach ($source_arr as $source) {
 		if (!file_exists($source)) {
 			continue;
 		}
-
 		$source = str_replace('\\', '/', realpath($source));
-
 		if (is_dir($source) === true) {
 			$files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($source), RecursiveIteratorIterator::SELF_FIRST);
-
 			foreach ($files as $file) {
 				if (strpos($file, $source) === false) {
 					continue;
 				}
-				if ($file == $source . '/..') {
+				if ($file == $source . '/.' || $file == $source . '/..' || in_array(basename($file), $_excludes) || in_array(realpath($file), $_excludes)) {
 					continue;
 				}
-				if ($file == $source . '/.') {
-					continue;
+				foreach ($_excludes as $exclude) {
+					if (strpos($file, trim('/' . $exclude . '/', '/')) !== false) {
+						continue (2);
+					}
 				}
 				$file = str_replace('\\', '/', realpath($file));
 				if (is_dir($file) === true) {
@@ -591,7 +628,6 @@ function create_zip($source_arr, $destination) {
 			$zip->addFromString(basename($source), file_get_contents($source));
 		}
 	}
-
 	return $zip->close();
 }
 
@@ -633,34 +669,43 @@ function sizeFormat($size) {
 	return round($size, 2) . ' ' . $units[$i];
 }
 
+/**
+ *
+ * @param string $network
+ * @param string $ip
+ * @return boolean
+ */
 function netMatch($network, $ip) {
-	$network = trim($network);
-	$orig_network = $network;
+
 	$ip = trim($ip);
-	if ($ip == $network) {
-		return TRUE;
+	if ($ip == trim($network)) {
+		return true;
 	}
 	$network = str_replace(' ', '', $network);
-	if (strpos($network, '*') !== FALSE) {
-		if (strpos($network, '/') !== FALSE) {
+	if (strpos($network, '*') !== false) {
+		if (strpos($network, '/') !== false) {
 			$asParts = explode('/', $network);
-			$network = @$asParts[0];
+			if ($asParts[0]) {
+				$network = $asParts[0];
+			} else {
+				$network = null;
+			}
 		}
 		$nCount = substr_count($network, '*');
 		$network = str_replace('*', '0', $network);
 		if ($nCount == 1) {
 			$network .= '/24';
-		} else if ($nCount == 2) {
+		} elseif ($nCount == 2) {
 			$network .= '/16';
-		} else if ($nCount == 3) {
+		} elseif ($nCount == 3) {
 			$network .= '/8';
-		} else if ($nCount > 3) {
-			return TRUE; // if *.*.*.*, then all, so matched
+		} elseif ($nCount > 3) {
+			return true; // if *.*.*.*, then all, so matched
 		}
 	}
 
 	$d = strpos($network, '-');
-	if ($d === FALSE) {
+	if ($d === false) {
 		if (strpos($network, '/') === false) {
 			if ($ip == $network) {
 				return true;
@@ -681,7 +726,7 @@ function netMatch($network, $ip) {
 		$from = trim(ip2long(substr($network, 0, $d)));
 		$to = trim(ip2long(substr($network, $d + 1)));
 		$ip = ip2long($ip);
-		return ($ip >= $from and $ip <= $to);
+		return ($ip >= $from && $ip <= $to);
 	}
 	return false;
 }
@@ -808,60 +853,23 @@ function sanitizeAccent($_message) {
 		'Ù' => 'u', 'Ú' => 'u', 'Û' => 'u', 'Ü' => 'u', 'ù' => 'u', 'ú' => 'u', 'û' => 'u', 'ü' => 'u', 'µ' => 'u',
 		'Œ' => 'oe', 'œ' => 'oe',
 		'$' => 's');
-	return preg_replace('#[^A-Za-z0-9 \n\.\'=\*:]+\##', '', strtr($_message, $caracteres));
+	return preg_replace('#[^A-Za-z0-9 \n\.\'=\*:]+\#\)\(#', '', strtr($_message, $caracteres));
 }
 
 function isConnect($_right = '') {
 	if (session_status() == PHP_SESSION_DISABLED || !isset($_SESSION) || !isset($_SESSION['user'])) {
 		return false;
 	}
+	if (isset($_SESSION['apimaster']) && $_SESSION['apimaster']) {
+		return true;
+	}
 	if (isset($_SESSION['user']) && is_object($_SESSION['user']) && $_SESSION['user']->is_Connected()) {
 		if ($_right != '') {
-			return ($_SESSION['user']->getRights($_right) == 1) ? true : false;
+			return ($_SESSION['user']->getProfils() == $_right) ? true : false;
 		}
 		return true;
 	}
 	return false;
-}
-
-function hasRight($_right, $_needAdmin = false) {
-	if (!isConnect()) {
-		return false;
-	}
-	if (!isset($_SESSION['rights']) || !is_array($_SESSION['rights'])) {
-		@session_start();
-		$_SESSION['rights'] = array();
-		@session_write_close();
-	}
-	if (isset($_SESSION['rights']['*'])) {
-		return $_SESSION['rights']['*'];
-	}
-	if (isset($_SESSION['rights'][$_right])) {
-		if ($_SESSION['rights'][$_right] == -1) {
-			return !$_needAdmin;
-		}
-		return $_SESSION['rights'][$_right];
-	}
-	if (isConnect('admin')) {
-		@session_start();
-		$_SESSION['rights']['*'] = true;
-		@session_write_close();
-		return true;
-	}
-	if (config::byKey('rights::enable') == 0) {
-		return !$_needAdmin;
-	}
-	$rights = rights::byuserIdAndEntity($_SESSION['user']->getId(), $_right);
-	if (!is_object($rights)) {
-		@session_start();
-		$_SESSION['rights'][$_right] = -1;
-		@session_write_close();
-		return !$_needAdmin;
-	}
-	@session_start();
-	$_SESSION['rights'][$_right] = $rights->getRight();
-	@session_write_close();
-	return $_SESSION['rights'][$_right];
 }
 
 function ZipErrorMessage($code) {
@@ -945,18 +953,21 @@ function ZipErrorMessage($code) {
 
 function arg2array($_string) {
 	$return = array();
-	foreach (explode(' ', $_string) as $arg) {
-		$argList = explode('=', $arg);
-		if (isset($argList[0]) && isset($argList[1])) {
-			$return[$argList[0]] = $argList[1];
+	$re = '/[\/-]?(([a-zA-Z0-9_#]+)(?:[=:]("[^"]+"|[^\s"]+))?)(?:\s+|$)/';
+	preg_match_all($re, $_string, $matches, PREG_SET_ORDER, 0);
+	foreach ($matches as $match) {
+		if (count($match) != 4) {
+			continue;
 		}
+		$return[$match[2]] = $match[3];
 	}
 	return $return;
 }
 
 function strToHex($string) {
 	$hex = '';
-	for ($i = 0; $i < strlen($string); $i++) {
+	$calculateStrLen = strlen($string);
+	for ($i = 0; $i < $calculateStrLen; $i++) {
 		$ord = ord($string[$i]);
 		$hexCode = dechex($ord);
 		$hex .= substr('0' . $hexCode, -2);
@@ -976,4 +987,94 @@ function hex2rgb($hex) {
 		$b = hexdec(substr($hex, 4, 2));
 	}
 	return array($r, $g, $b);
+}
+
+function getDominantColor($_pathimg) {
+	$rTotal = 0;
+	$gTotal = 0;
+	$bTotal = 0;
+	$total = 0;
+	$i = imagecreatefromjpeg($_pathimg);
+	$imagesX = imagesx($i);
+	for ($x = 0; $x < $imagesX; $x++) {
+		$imagesY = imagesy($i);
+		for ($y = 0; $y < $imagesY; $y++) {
+			$rgb = imagecolorat($i, $x, $y);
+			$r = ($rgb >> 16) & 0xFF;
+			$g = ($rgb >> 8) & 0xFF;
+			$b = $rgb & 0xFF;
+			$rTotal += $r;
+			$gTotal += $g;
+			$bTotal += $b;
+			$total++;
+		}
+	}
+	return '#' . sprintf('%02x', round($rTotal / $total)) . sprintf('%02x', round($gTotal / $total)) . sprintf('%02x', round($bTotal / $total));
+}
+
+function sha512($_string) {
+	return hash('sha512', $_string);
+}
+
+function findCodeIcon($_icon) {
+	$icon = trim(str_replace(array('fa ', 'icon ', '></i>', '<i', 'class="', '"'), '', trim($_icon)));
+	$re = '/.' . $icon . ':.*\n.*content:.*"(.*?)";/m';
+
+	$css = file_get_contents(dirname(__FILE__) . '/../../3rdparty/font-awesome/css/font-awesome.css');
+	preg_match($re, $css, $matches);
+	if (isset($matches[1])) {
+		return array('icon' => trim($matches[1], '\\'), 'fontfamily' => 'FontAwesome');
+	}
+
+	foreach (ls(dirname(__FILE__) . '/../css/icon', '*') as $dir) {
+		if (is_dir(dirname(__FILE__) . '/../css/icon/' . $dir) && file_exists(dirname(__FILE__) . '/../css/icon/' . $dir . '/style.css')) {
+			$css = file_get_contents(dirname(__FILE__) . '/../css/icon/' . $dir . '/style.css');
+			preg_match($re, $css, $matches);
+			if (isset($matches[1])) {
+				return array('icon' => trim($matches[1], '\\'), 'fontfamily' => trim($dir, '/'));
+			}
+		}
+	}
+	return array('icon' => '', 'fontfamily' => '');
+}
+
+function addGraphLink($_from, $_from_type, $_to, $_to_type, &$_data, $_level, $_drill, $_display = array('dashvalue' => '5,3', 'lengthfactor' => 0.6)) {
+	if (is_array($_to) && count($_to) == 0) {
+		return;
+	}
+	if (!is_array($_to)) {
+		if (!is_object($_to)) {
+			return;
+		}
+		$_to = array($_to);
+	}
+	foreach ($_to as $to) {
+		$to->getLinkData($_data, $_level, $_drill);
+		if (isset($_data['link'][$_to_type . $to->getId() . '-' . $_from_type . $_from->getId()])) {
+			continue;
+		}
+		if (isset($_data['link'][$_from_type . $_from->getId() . '-' . $_to_type . $to->getId()])) {
+			continue;
+		}
+		$_data['link'][$_to_type . $to->getId() . '-' . $_from_type . $_from->getId()] = array(
+			'from' => $_to_type . $to->getId(),
+			'to' => $_from_type . $_from->getId(),
+		);
+		$_data['link'][$_to_type . $to->getId() . '-' . $_from_type . $_from->getId()] = array_merge($_data['link'][$_to_type . $to->getId() . '-' . $_from_type . $_from->getId()], $_display);
+	}
+	return $_data;
+}
+
+function getSystemMemInfo() {
+	$data = explode("\n", file_get_contents("/proc/meminfo"));
+	$meminfo = array();
+	foreach ($data as $line) {
+		$info = explode(":", $line);
+		if (count($info) != 2) {
+			continue;
+		}
+		$value = explode(' ', trim($info[1]));
+		$meminfo[$info[0]] = trim($value[0]);
+	}
+	return $meminfo;
 }

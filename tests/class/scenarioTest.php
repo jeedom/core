@@ -44,7 +44,7 @@ class scenarioTest extends \PHPUnit_Framework_TestCase {
 			array('ScenarioElement', 'foo', 'foo'),
 			array('Trigger', array('foo' => 'bar'), array('foo' => 'bar')),
 			array('Trigger', '{"foo":"bar"}', array('foo' => 'bar')),
-			array('Trigger', 'foo', 'foo'),
+			array('Trigger', 'foo', array('foo')),
 			array('Timeout', '', null),
 			array('Timeout', 'foo', null),
 			array('Timeout', 0.9, null),
@@ -86,51 +86,5 @@ class scenarioTest extends \PHPUnit_Framework_TestCase {
 		$scenario->persistLog();
 		$this->assertTrue(file_exists($path));
 		shell_exec('rm ' . $path);
-	}
-
-	public function testHasRight() {
-		$scenId = 50000;
-		$r = 25;
-
-		$scenario = new scenario();
-		$config = config::byKey('rights::enable');
-		config::save('rights::enable', 0);
-		$this->assertTrue($scenario->hasRight('foo'));
-
-		config::save('rights::enable', 1);
-		$this->assertTrue($scenario->hasRight('foo'));
-		$_SESSION['user'] = 'foo';
-		$this->assertFalse($scenario->hasRight('foo'));
-		$_SESSION['user'] = new user();
-		$this->assertFalse($scenario->hasRight('foo'));
-		$_SESSION['user']->setLogin('foo');
-		$_SESSION['user']->setRights('admin', 1);
-		$_SESSION['user']->save();
-		$userId = $_SESSION['user']->getId();
-		$this->assertTrue($scenario->hasRight('foo'));
-
-		$scenario->setId($scenId);
-		$right = new rights();
-		$right->setUser_id($userId);
-		$right->setRight($r);
-
-		$this->assertTrue($scenario->hasRight('x'));
-		$right->setEntity('scenario' . $scenId . 'action');
-		$right->save();
-		$this->assertEquals($r, $scenario->hasRight('x'));
-
-		$this->assertTrue($scenario->hasRight('w'));
-		$right->setEntity('scenario' . $scenId . 'edit');
-		$right->save();
-		$this->assertEquals($r, $scenario->hasRight('w'));
-
-		$this->assertTrue($scenario->hasRight('r'));
-		$right->setEntity('scenario' . $scenId . 'view');
-		$right->save();
-		$this->assertEquals($r, $scenario->hasRight('r'));
-
-		$right->remove();
-		$_SESSION['user']->remove();
-		config::save('rights::enable', $config);
 	}
 }

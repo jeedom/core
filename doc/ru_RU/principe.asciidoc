@@ -8,7 +8,7 @@ Jeedom est composé d'un core qui se charge des fonctions de base :
 * interaction
 * mise à jour et sauvegarde
 
-Вокруг ядра сосуществуют плагины, которые могут быть различных типов:
+Autour de ce core viennent se greffer des plugins qui peuvent être de toutes sortes :
  
 * protocole domotique (zwave, rfxcom, enOcean...)
 * protocole IP (knx,xPL...)
@@ -18,7 +18,7 @@ Jeedom est composé d'un core qui se charge des fonctions de base :
 * organisation (agenda, Google agenda)
 * développement (script)
 
-Ces plugins peuvent être récuperés par le biais du market et permettent d'étendre les possibilités de Jeedom.
+Ces plugins peuvent être récupérés par le biais du Market et permettent d'étendre les possibilités de Jeedom.
 
 Jeedom permet à n'importe quel plugin de discuter avec un autre sur une base normalisée, cela permet par exemple d'utiliser les plugins thermostat ou alarme avec n'importe quel protocole domotique ou même un plugin IP ou objet communiquant...
 

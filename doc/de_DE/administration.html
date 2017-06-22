@@ -421,7 +421,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_datenbank">3. Datenbank</a></li>
 <li><a href="#_netzwerkkonfiguration">4. Netzwerkkonfiguration</a></li>
 <li><a href="#_farbeinstellungen">5. Farbeinstellungen</a></li>
-<li><a href="#_befehle_konfigurieren">6. Befehle Konfigurieren</a></li>
+<li><a href="#_befehle_konfiguration">6. Befehle Konfiguration</a></li>
 <li><a href="#_interaktion_konfiguration">7. Interaktion Konfiguration</a></li>
 <li><a href="#_logs_nachrichten_konfiguration">8. Logs &amp; Nachrichten Konfiguration</a></li>
 <li><a href="#_ldap_konfiguration">9. LDAP Konfiguration</a></li>
@@ -449,7 +449,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Hier befindet sich die Mehrheit der Konfigurationsparameter. Obwohl viele standardmäßig vorkonfiguriert sind.</p>
 </div>
 <div class="paragraph">
-<p>Die Seite ist über Einstellungen &#8594; Konfiguration erreichbar :</p>
+<p>La page est accessible par Administration &#8594; Configuration :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -484,16 +484,16 @@ Wenn sie nicht im Experten-Modus sind, sind möglicherweise einige Parameter nic
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Namen von Ihrem Jeedom</strong> : kann in den Szenarien wieder verwendet werden oder zum identifizieren eines Backups</p>
+<p><strong>Name von Ihrem Jeedom</strong> : kann in den Szenarien wieder verwendet werden oder zum identifizieren eines Backups</p>
 </li>
 <li>
 <p><strong>API Schlüssel</strong> : Ihr API-Schlüssel, wird verwendet für jede Anfrage zur Jeedom-API</p>
 </li>
 <li>
-<p><strong>Clef API Pro</strong> : utilisé pour communiquer avec le systeme de gestion de parc</p>
+<p><strong>Clef API Pro</strong> : utilisée pour communiquer avec le système de gestion de parc</p>
 </li>
 <li>
-<p><strong>Systeme</strong> : Zeigt den Hardwaretyp an</p>
+<p><strong>System</strong> : Zeigt den Hardwaretyp an</p>
 </li>
 <li>
 <p><strong>Installationsschlüssel</strong> : Hardware-Schlüssel von Ihrem Jeedom auf dem Markt. Wenn Ihr Jeedom nicht in der Liste Ihrer Jeedom auf dem Markt erscheint, ist es ratsam auf diese Schaltfläche zu klicken</p>
@@ -617,12 +617,6 @@ Wenn sie nicht im Experten-Modus sind, sind möglicherweise einige Parameter nic
 <li>
 <p><strong>Complément (exemple : /jeedom)</strong> :  le fragment d&#8217;URL complémentaire (type /jeedom). Pour savoir si vous avez besoin de définir une valeur ici, regardez si quand vous vous connectez à Jeedom vous devez renseigner /jeedom après l&#8217;IP</p>
 </li>
-<li>
-<p><strong>Port</strong> : Der Port, im allgemeinen 80. Achtung, den Port hier zu ändern, ändert tatsächlich nicht den Jeedom Port, der wird derselbe bleiben</p>
-</li>
-<li>
-<p><strong>Status</strong> : Zeigt an, ob die externe Netzwerkkonfiguration korrekt ist</p>
-</li>
 </ul>
 </div>
 </li>
@@ -631,7 +625,7 @@ Wenn sie nicht im Experten-Modus sind, sind möglicherweise einige Parameter nic
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Deaktivieren der Jeedom Netzwerkverwaltung</strong> : giebt an ob Jeedom das Netzwerk überwachen soll  (ist zu Aktivieren, wenn Jeedom mit einem Netzwerk verbunden ist)</p>
+<p><strong>Deaktivieren der Jeedom Netzwerkverwaltung</strong> : gibt an ob Jeedom das Netzwerk überwachen soll  (ist zu Aktivieren, wenn Jeedom mit einem Netzwerk verbunden ist)</p>
 </li>
 </ul>
 </div>
@@ -673,7 +667,7 @@ Wenn Sie den HTTPS-Port haben, ist der Port 443 (Standard) und der HTTP-Port ist
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Cette partie est juste là pour expliquer à Jeedom son environnement : une modification du port ou de l&#8217;IP ici ne changera pas le port ou l&#8217;IP de Jeedom. Pour cela il faut se connecter en SSH et éditer le fichier /etc/network/interfaces pour l&#8217;IP et les fichiers etc/nginx/sites-available/default et etc/nginx/sites-available/default_ssl (pour le HTTPS). En cas de mauvaise manipulation de votre Jeedom, l&#8217;équipe Jeedom ne pourra être tenue responsable et pourra refuser toute demande de support.
+Cette partie est juste là pour expliquer à Jeedom son environnement : une modification du port ou de l&#8217;IP ici ne changera pas le port ou l&#8217;IP de Jeedom. Pour cela il faut se connecter en SSH et éditer le fichier /etc/network/interfaces pour l&#8217;IP et les fichiers etc/nginx/sites-available/default et etc/nginx/sites-available/default_ssl (pour le HTTPS). En cas de mauvaise manipulation de votre Jeedom, l&#8217;équipe Jeedom ne pourra être tenue pour responsable et pourra refuser toute demande de support.
 </td>
 </tr>
 </table>
@@ -711,7 +705,7 @@ Wenn Sie die DNS-Jeedom betreiben können, betrachten Sie die Konfiguration der 
 <p>Die farbliche Kennzeichnung der Widgets erfolgt entsprechend der Kategorie des Widgets, die in der Konfiguration der einzelnen Module definiert ist (siehe Plugin Z-Wave, RFXCOM&#8230;&#8203; etc.). Die Kategorien umfassen Heizung, Licht, Automation etc&#8230;&#8203;.</p>
 </div>
 <div class="paragraph">
-<p>Für jede Kategorie, können wir eine andere Farbe zwischen der Desktop-Version und Mobile-Version wählen. Außerdem gibt es zwei Arten von Farben, Widget Hintergrundfarben  und Befehls Farbe, wenn das Widget erfolgt schrittweise Typ, z.B. Beleuchtung, Jalousien, Temperaturen.</p>
+<p>Für jede Kategorie, können wir eine andere Farbe zwischen der Desktop-Version und Mobile-Version wählen. Außerdem gibt es zwei Arten von Farben, Widget Hintergrundfarben  und Befehls Farbe, wenn das Widget erfolgt schrittweise Typ, zB Beleuchtung, Jalousien, Temperaturen.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -719,7 +713,7 @@ Wenn Sie die DNS-Jeedom betreiben können, betrachten Sie die Konfiguration der 
 </div>
 </div>
 <div class="paragraph">
-<p>Durch Klick auf die Farbe öffnet sich ein Fenster, in dem Sie die Farbe wählen können.</p>
+<p>En cliquant sur la couleur une fenêtre s&#8217;ouvre, permettant de choisir sa couleur.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -744,7 +738,7 @@ Vergessen Sie nicht, nach jeder Veränderung zu speichern.
 </div>
 </div>
 <div class="sect1">
-<h2 id="_befehle_konfigurieren">6. Befehle Konfigurieren</h2>
+<h2 id="_befehle_konfiguration">6. Befehle Konfiguration</h2>
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
@@ -883,7 +877,7 @@ Vergessen Sie nicht, nach jeder Veränderung zu speichern.
 <div class="sect3">
 <h4 id="_markt">11.1.1. Markt</h4>
 <div class="paragraph">
-<p>Dépot servant à reliéer Jeedom au market, il est vivement conseillé d&#8217;utiliser ce dépot. Attention toute demande de support pourra être refusée si vous utilisé un autre de dépot que celui-ci.</p>
+<p>Aufbewahrungsort, der dazu dient, Jeedom mit dem Markt zu verbinden, es wird sehr geraten, diesen Ort zu benutzen. Achtung, es kann jede Supportanfrage abgelehnt werden, wenn Sie einen anderen Aufbewahrungsort wie diesen benutzt.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -907,7 +901,7 @@ Vergessen Sie nicht, nach jeder Veränderung zu speichern.
 <div class="sect3">
 <h4 id="_dateien">11.1.2. Dateien</h4>
 <div class="paragraph">
-<p>Depot aktivieren, zum versenden von Plugins als Dateien</p>
+<p>Depot aktivieren, zum versenden von Plugins als Dateien.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -918,7 +912,7 @@ Vergessen Sie nicht, nach jeder Veränderung zu speichern.
 <div class="sect3">
 <h4 id="_github">11.1.3. Github</h4>
 <div class="paragraph">
-<p>Depot, die dazu dient, Jeedom mit Github zu verbinden</p>
+<p>Depot, das dazu dient, Jeedom mit Github zu verbinden</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -928,16 +922,16 @@ Vergessen Sie nicht, nach jeder Veränderung zu speichern.
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Token</strong> : Token pour l&#8217;accès au dépot privé</p>
+<p><strong>Token</strong> : Token für den Zugriff auf den privaten Aufbewahrungsort</p>
 </li>
 <li>
-<p><strong>Utilisateur ou organisation du dépot pour le core Jeedom</strong></p>
+<p><strong>Benutzer oder Organisation des Aufbewahrungsorts für den Jeedom Kern</strong></p>
 </li>
 <li>
-<p><strong>Nom du dépôt pour le core Jeedom</strong></p>
+<p><strong>Name vom Aufbewahrungsort für den den Jeedom Kern</strong></p>
 </li>
 <li>
-<p><strong>Branche pour le core Jeedom</strong></p>
+<p><strong>Zweig für den Jeedom Kern</strong></p>
 </li>
 </ul>
 </div>
@@ -945,7 +939,7 @@ Vergessen Sie nicht, nach jeder Veränderung zu speichern.
 <div class="sect3">
 <h4 id="_samba">11.1.4. Samba</h4>
 <div class="paragraph">
-<p>Dépot permettant d&#8217;envoyer automatique un backup de jeedom sur un partage samba (ex NAS Synology)</p>
+<p>Dépôt permettant d&#8217;envoyer automatiquement un backup de Jeedom sur un partage Samba (ex NAS Synology).</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -964,12 +958,25 @@ Vergessen Sie nicht, nach jeder Veränderung zu speichern.
 <p><strong>[Backup] Passwort</strong> : Benutzerpasswort</p>
 </li>
 <li>
-<p><strong>[Backup] Partage</strong> : Chemin du partage (attention à bien s&#8217;arreter au niveau du partage)</p>
+<p><strong>[Backup] Partage</strong> : chemin du partage (attention à bien s&#8217;arrêter au niveau du partage)</p>
 </li>
 <li>
-<p><strong>[Backup] Chemin</strong> : Chemin dans le partage (à mettre en relatif), celui-ci doit exister</p>
+<p><strong>[Backup] Chemin</strong> : chemin dans le partage (à mettre en relatif), celui-ci doit exister</p>
 </li>
 </ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Si le chemin d&#8217;accès à votre dossier de sauvegarde samba est : \\192.168.0.1\Sauvegardes\Domotique\Jeedom
+Alors IP = 192.168.0.1 , Partage = //192.168.0.1/Sauvegardes , Chemin = Domotique/Jeedom
+</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -990,7 +997,7 @@ Es wir notwendig sein, das sie das smbclient Software-Paket installieren, damit 
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Jeedom doit être le seul à écrire dans ce dossier et il doit etre vide par defaut (c&#8217;est à dire avant la configuration et l&#8217;envoi du premier backup le dossier ne doit contenir aucun fichier ou dossier)
+Jeedom doit être le seul à écrire dans ce dossier et il doit être vide par défaut (c&#8217;est à dire avant la configuration et l&#8217;envoi du premier backup, le dossier ne doit contenir aucun fichier ou dossier).
 </td>
 </tr>
 </table>
@@ -1006,10 +1013,10 @@ Jeedom doit être le seul à écrire dans ce dossier et il doit etre vide par de
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Jeedom Core URL</strong></p>
+<p><strong>URL Jeedom Kern</strong></p>
 </li>
 <li>
-<p><strong>Jeedom Core Version URL</strong></p>
+<p><strong>URL Jeedom Kern Version</strong></p>
 </li>
 </ul>
 </div>

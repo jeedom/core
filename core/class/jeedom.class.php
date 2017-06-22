@@ -26,24 +26,236 @@ class jeedom {
 
 	/*     * ***********************Methode static*************************** */
 
+	public static function health() {
+		$return = array();
+		$nbNeedUpdate = update::nbNeedUpdate();
+		$state = ($nbNeedUpdate == 0) ? true : false;
+		$return[] = array(
+			'name' => __('Système à jour', __FILE__),
+			'state' => $state,
+			'result' => ($state) ? __('OK', __FILE__) : $nbNeedUpdate,
+			'comment' => '',
+		);
+
+		$state = (config::byKey('enableCron', 'core', 1, true) != 0) ? true : false;
+		$return[] = array(
+			'name' => __('Cron actif', __FILE__),
+			'state' => $state,
+			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
+			'comment' => ($state) ? '' : __('Erreur cron : les crons sont désactivés. Allez dans Administration -> Moteur de tâches pour les réactiver', __FILE__),
+		);
+
+		$state = (config::byKey('enableScenario') == 0 && count(scenario::all()) > 0) ? false : true;
+		$return[] = array(
+			'name' => __('Scénario actif', __FILE__),
+			'state' => $state,
+			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
+			'comment' => ($state) ? '' : __('Erreur scénario : tous les scénarios sont désactivés. Allez dans Outils -> Scénarios pour les réactiver', __FILE__),
+		);
+
+		$state = self::isStarted();
+		$return[] = array(
+			'name' => __('Démarré', __FILE__),
+			'state' => $state,
+			'result' => ($state) ? __('OK', __FILE__) . ' (' . file_get_contents(self::getTmpFolder() . '/started') . ')' : __('NOK', __FILE__),
+			'comment' => '',
+		);
+
+		$state = self::isDateOk();
+		$return[] = array(
+			'name' => __('Date système', __FILE__),
+			'state' => $state,
+			'result' => ($state) ? __('OK', __FILE__) : date('Y-m-d H:i:s'),
+			'comment' => '',
+		);
+
+		$state = !user::hasDefaultIdentification();
+		$return[] = array(
+			'name' => __('Authentification par défaut', __FILE__),
+			'state' => $state,
+			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
+			'comment' => ($state) ? '' : __('Attention vous avez toujours l\'utilisateur admin/admin de configuré, cela représente une grave faille de sécurité, aller <a href=\'index.php?v=d&p=user\'>ici</a> pour modifier le mot de passe de l\'utilisateur admin', __FILE__),
+		);
+
+		$state = self::isCapable('sudo', true);
+		$return[] = array(
+			'name' => __('Droits sudo', __FILE__),
+			'state' => ($state) ? 1 : 2,
+			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
+			'comment' => ($state) ? '' : __('Appliquer <a href="https://www.jeedom.com/doc/documentation/installation/fr_FR/doc-installation.html#_etape_4_définition_des_droits_root_à_jeedom" targe="_blank">cette étape</a> de l\'installation', __FILE__),
+		);
+
+		$return[] = array(
+			'name' => __('Version Jeedom', __FILE__),
+			'state' => true,
+			'result' => self::version(),
+			'comment' => '',
+		);
+
+		$state = version_compare(phpversion(), '5.5', '>=');
+		$return[] = array(
+			'name' => __('Version PHP', __FILE__),
+			'state' => $state,
+			'result' => phpversion(),
+			'comment' => ($state) ? '' : __('Si vous êtes en version 5.4.x on vous indiquera quand la version 5.5 sera obligatoire', __FILE__),
+		);
+
+		$state = true;
+		$version = '';
+		$uname = shell_exec('uname -a');
+		if (system::getDistrib() != 'debian') {
+			$state = false;
+		} else {
+			$version = trim(strtolower(file_get_contents('/etc/debian_version')));
+			if (version_compare($version, '8', '<')) {
+				if (strpos($version, 'jessie') === false && strpos($version, 'stretch')) {
+					$state = false;
+				}
+			}
+		}
+		$return[] = array(
+			'name' => __('Version OS', __FILE__),
+			'state' => $state,
+			'result' => ($state) ? $uname . ' [' . $version . ']' : $uname,
+			'comment' => ($state) ? '' : __('Vous n\'êtes pas sur un OS officiellement supporté par l\'équipe Jeedom (toute demande de support pourra donc être refusée). Les OS officiellement supporté sont Debian Jessie et Debian Strech (voir <a href="https://www.jeedom.com/doc/documentation/compatibility/fr_FR/doc-compatibility.html#_logiciel" target="_blank">ici</a>)', __FILE__),
+		);
+
+		$version = DB::Prepare('select version()', array(), DB::FETCH_TYPE_ROW);
+		$return[] = array(
+			'name' => __('Version database', __FILE__),
+			'state' => true,
+			'result' => $version['version()'],
+			'comment' => '',
+		);
+
+		$value = self::checkSpaceLeft();
+		$return[] = array(
+			'name' => __('Espace disque libre', __FILE__),
+			'state' => ($value > 10),
+			'result' => $value . ' %',
+			'comment' => '',
+		);
+
+		$values = getSystemMemInfo();
+		$value = round(($values['MemAvailable'] / $values['MemTotal']) * 100);
+		$return[] = array(
+			'name' => __('Mémoire disponible', __FILE__),
+			'state' => ($value > 15),
+			'result' => $value . ' %',
+			'comment' => '',
+		);
+
+		$value = round(($values['SwapFree'] / $values['SwapTotal']) * 100);
+		$return[] = array(
+			'name' => __('Swap disponible', __FILE__),
+			'state' => ($value > 15),
+			'result' => $value . ' %',
+			'comment' => '',
+		);
+		$values = sys_getloadavg();
+		$return[] = array(
+			'name' => __('Charge', __FILE__),
+			'state' => ($values[2] < 20),
+			'result' => $values[0] . ' - ' . $values[1] . ' - ' . $values[2],
+			'comment' => '',
+		);
+
+		$state = network::test('internal');
+		$return[] = array(
+			'name' => __('Configuration réseau interne', __FILE__),
+			'state' => $state,
+			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
+			'comment' => ($state) ? '' : __('Allez sur Administration -> Configuration puis configurez correctement la partie réseau', __FILE__),
+		);
+
+		$state = network::test('external');
+		$return[] = array(
+			'name' => __('Configuration réseau externe', __FILE__),
+			'state' => $state,
+			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
+			'comment' => ($state) ? '' : __('Allez sur Administration -> Configuration puis configurez correctement la partie réseau', __FILE__),
+		);
+
+		$cache_health = array('comment' => '', 'name' => __('Persistance du cache', __FILE__));
+		if (cache::isPersistOk()) {
+			if (config::byKey('cache::engine') != 'FilesystemCache' && config::byKey('cache::engine') != 'PhpFileCache') {
+				$cache_health['state'] = true;
+				$cache_health['result'] = __('OK', __FILE__);
+			} else {
+				$filename = dirname(__FILE__) . '/../../cache.tar.gz';
+				$cache_health['state'] = true;
+				$cache_health['result'] = __('OK', __FILE__) . ' (' . date('Y-m-d H:i:s', filemtime($filename)) . ')';
+			}
+		} else {
+			$cache_health['state'] = false;
+			$cache_health['result'] = __('NOK', __FILE__);
+			$cache_health['comment'] = __('Votre cache n\'est pas sauvegardé. En cas de redémarrage, certaines informations peuvent être perdues. Essayez de lancer (à partir du moteur de tâches) la tâche cache::persist.', __FILE__);
+			$state = network::test('external');
+		}
+		$return[] = $cache_health;
+
+		return $return;
+	}
+
 	public static function sick() {
 		$cmd = dirname(__FILE__) . '/../../sick.php';
 		$cmd .= ' >> ' . log::getPathToLog('sick') . ' 2>&1';
 		system::php($cmd);
 	}
-	
+
 	public static function getApiKey($_plugin = 'core') {
+		if ($_plugin == 'proapi') {
+			if (config::byKey('proapi') == '') {
+				config::save('proapi', config::genKey());
+			}
+			return config::byKey('proapi');
+		}
 		if (config::byKey('api', $_plugin) == '') {
 			config::save('api', config::genKey(), $_plugin);
 		}
 		return config::byKey('api', $_plugin);
 	}
 
-	public static function apiAccess($_apikey = '',$_plugin = 'core') {
-		if ($_apikey == '') {
+	public static function apiModeResult($_mode = 'enable') {
+		switch ($_mode) {
+			case 'disable':
+				return false;
+			case 'whiteip':
+				$ip = getClientIp();
+				$find = false;
+				$whiteIps = explode(';', config::byKey('security::whiteips'));
+				if (config::byKey('security::whiteips') != '' && count($whiteIps) > 0) {
+					foreach ($whiteIps as $whiteip) {
+						if (netMatch($whiteip, $ip)) {
+							$find = true;
+						}
+					}
+					if (!$find) {
+						return false;
+					}
+				}
+				break;
+			case 'localhost':
+				if (getClientIp() != '127.0.0.1') {
+					return false;
+				}
+				break;
+		}
+		return true;
+	}
+
+	public static function apiAccess($_apikey = '', $_plugin = 'core') {
+		if (trim($_apikey) == '') {
+			sleep(5);
 			return false;
 		}
-		if (self::getApiKey($_plugin) == $_apikey) {
+		if ($_plugin != 'core' && $_plugin != 'proapi' && !self::apiModeResult(config::byKey('api::' . $_plugin . '::mode', 'core', 'enable'))) {
+			sleep(5);
+			return false;
+		}
+		$apikey = self::getApiKey($_plugin);
+
+		if (trim($apikey) != '' && $apikey == $_apikey) {
 			@session_start();
 			$_SESSION['apimaster'] = true;
 			@session_write_close();
@@ -54,7 +266,7 @@ class jeedom {
 		@session_write_close();
 		$user = user::byHash($_apikey);
 		if (is_object($user)) {
-			if ($user->getOptions('localOnly', 0) == 1 && network::getUserLocation() != 'internal') {
+			if ($user->getOptions('localOnly', 0) == 1 && !self::apiModeResult('whiteip')) {
 				sleep(5);
 				return false;
 			}
@@ -69,16 +281,16 @@ class jeedom {
 	}
 
 	public static function isOk() {
-		if (!jeedom::isStarted()) {
+		if (!self::isStarted()) {
 			return false;
 		}
-		if (!jeedom::isDateOk()) {
+		if (!self::isDateOk()) {
 			return false;
 		}
 		if (config::byKey('enableScenario') == 0 && count(scenario::all()) > 0) {
 			return false;
 		}
-		if (!jeedom::isCapable('sudo')) {
+		if (!self::isCapable('sudo')) {
 			return false;
 		}
 		if (config::byKey('enableCron', 'core', 1, true) == 0) {
@@ -231,7 +443,7 @@ class jeedom {
 	public static function restore($_backup = '', $_background = false) {
 		if ($_background) {
 			log::clear('restore');
-			$cmd = dirname(__FILE__) . '/../../install/restore.php backup=' . $_backup;
+			$cmd = dirname(__FILE__) . '/../../install/restore.php "backup=' . $_backup . '"';
 			$cmd .= ' >> ' . log::getPathToLog('restore') . ' 2>&1 &';
 			system::php($cmd);
 		} else {
@@ -245,7 +457,7 @@ class jeedom {
 
 	public static function update($_mode = '', $_level = -1, $_version = '', $__onlyThisVersion = '') {
 		log::clear('update');
-		$cmd = dirname(__FILE__) . '/../../install/install.php mode=' . $_mode . ' level=' . $_level . ' version=' . $_version . ' onlyThisVersion=' . $__onlyThisVersion;
+		$cmd = dirname(__FILE__) . '/../../install/install.php "mode=' . $_mode . '" "level=' . $_level . '" "version=' . $_version . '" "onlyThisVersion=' . $__onlyThisVersion . '"';
 		$cmd .= ' >> ' . log::getPathToLog('update') . ' 2>&1 &';
 		system::php($cmd);
 	}
@@ -307,7 +519,7 @@ class jeedom {
 	/**********************START AND DATE MANAGEMENT*************************************************************/
 
 	public static function stop() {
-		echo "Desactivation de toutes les tâches";
+		echo "Disable all task";
 		config::save('enableCron', 0);
 		foreach (cron::all() as $cron) {
 			if ($cron->running()) {
@@ -329,7 +541,7 @@ class jeedom {
 		/*         * **********Arret des crons********************* */
 
 		if (cron::jeeCronRun()) {
-			echo "Arret du cron master ";
+			echo "Stop cron master...";
 			$pid = cron::getPidFile();
 			system::kill($pid);
 			echo " OK\n";
@@ -337,7 +549,7 @@ class jeedom {
 
 		/*         * *********Arrêt des scénarios**************** */
 
-		echo "Désactivation de tous les scénarios";
+		echo "Disable all scenario";
 		config::save('enableScenario', 0);
 		foreach (scenario::all() as $scenario) {
 			try {
@@ -357,40 +569,40 @@ class jeedom {
 	public static function start() {
 		try {
 			/*             * *********Réactivation des scénarios**************** */
-			echo "Réactivation des scénarios : ";
+			echo "Enable scenario : ";
 			config::save('enableScenario', 1);
 			echo "OK\n";
 			/*             * *********Réactivation des tâches**************** */
-			echo "Réactivation des tâches : ";
+			echo "Enable task : ";
 			config::save('enableCron', 1);
 			echo "OK\n";
 		} catch (Exception $e) {
 			if (!isset($_GET['mode']) || $_GET['mode'] != 'force') {
 				throw $e;
 			} else {
-				echo '***ERREUR*** ' . $e->getMessage();
+				echo '***ERROR*** ' . $e->getMessage();
 			}
 		} catch (Error $e) {
 			if (!isset($_GET['mode']) || $_GET['mode'] != 'force') {
 				throw $e;
 			} else {
-				echo '***ERREUR*** ' . $e->getMessage();
+				echo '***ERROR*** ' . $e->getMessage();
 			}
 		}
 	}
 
 	public static function isStarted() {
-		return file_exists('/tmp/jeedom_start');
+		return file_exists(self::getTmpFolder() . '/started');
 	}
 
 	public static function isDateOk() {
 		if (config::byKey('ignoreHourCheck') == 1) {
 			return true;
 		}
-		$maxdate = strtotime('2019-01-01 00:00:00');
-		$mindate = strtotime('2016-01-01 00:00:00');
+		$maxdate = strtotime('2020-01-01 00:00:00');
+		$mindate = strtotime('2017-01-01 00:00:00');
 		if (strtotime('now') < $mindate || strtotime('now') > $maxdate) {
-			jeedom::forceSyncHour();
+			self::forceSyncHour();
 			sleep(3);
 			if (strtotime('now') < $mindate || strtotime('now') > $maxdate) {
 				log::add('core', 'error', __('La date du système est incorrect (avant 2016-01-01 ou après 2019-01-01) : ', __FILE__) . date('Y-m-d H:i:s'), 'dateCheckFailed');
@@ -416,9 +628,6 @@ class jeedom {
 		}
 		try {
 			eqLogic::checkAlive();
-			if (config::byKey('jeeNetwork::mode') != 'slave') {
-				jeeNetwork::pull();
-			}
 		} catch (Exception $e) {
 
 		} catch (Error $e) {
@@ -430,7 +639,6 @@ class jeedom {
 		if (!self::isStarted()) {
 			echo date('Y-m-d H:i:s') . ' starting Jeedom';
 			log::add('starting', 'debug', __('Démarrage de jeedom', __FILE__));
-
 			try {
 				log::add('starting', 'debug', __('Arret des crons', __FILE__));
 				foreach (cron::all() as $cron) {
@@ -481,7 +689,7 @@ class jeedom {
 
 			try {
 				log::add('starting', 'debug', __('Démarrage des processus internet de jeedom', __FILE__));
-				jeedom::start();
+				self::start();
 			} catch (Exception $e) {
 				log::add('starting', 'error', __('Erreur sur le démarrage interne de jeedom : ', __FILE__) . log::exception($e));
 			} catch (Error $e) {
@@ -489,20 +697,30 @@ class jeedom {
 			}
 
 			try {
-				log::add('starting', 'debug', __('Ecriture du fichier /tmp/jeedom_start', __FILE__));
-				if (!touch('/tmp/jeedom_start')) {
-					log::add('starting', 'debug', __('Impossible d\'écrire /tmp/jeedom_start, tentative en shell', __FILE__));
-					com_shell::execute('sudo touch /tmp/jeedom_start;sudo chmod 777 /tmp/jeedom_start');
+				log::add('starting', 'debug', __('Ecriture du fichier ', __FILE__) . self::getTmpFolder() . '/started');
+				if (file_put_contents(self::getTmpFolder() . '/started', date('Y-m-d H:i:s')) === false) {
+					log::add('starting', 'error', __('Impossible d\'écrire ' . self::getTmpFolder() . '/started', __FILE__));
 				}
 			} catch (Exception $e) {
-				log::add('starting', 'error', __('Impossible d\'écrire /tmp/jeedom_start : ', __FILE__) . log::exception($e));
+				log::add('starting', 'error', __('Impossible d\'écrire ' . self::getTmpFolder() . '/started : ', __FILE__) . log::exception($e));
 			} catch (Error $e) {
-				log::add('starting', 'error', __('Impossible d\'écrire /tmp/jeedom_start : ', __FILE__) . log::exception($e));
+				log::add('starting', 'error', __('Impossible d\'écrire ' . self::getTmpFolder() . '/started : ', __FILE__) . log::exception($e));
 			}
 
-			if (!file_exists('/tmp/jeedom_start')) {
-				log::add('starting', 'critical', __('Impossible d\'écrire /tmp/jeedom_start pour une raison inconnue. Jeedom ne peut démarrer', __FILE__));
+			if (!file_exists(self::getTmpFolder() . '/started')) {
+				log::add('starting', 'critical', __('Impossible d\'écrire ' . self::getTmpFolder() . '/started pour une raison inconnue. Jeedom ne peut démarrer', __FILE__));
 				return;
+			}
+
+			try {
+				log::add('starting', 'debug', __('Vérification de la configuration réseau interne', __FILE__));
+				if (!network::test('internal')) {
+					network::checkConf('internal');
+				}
+			} catch (Exception $e) {
+				log::add('starting', 'error', __('Erreur sur la configuration réseau interne : ', __FILE__) . log::exception($e));
+			} catch (Error $e) {
+				log::add('starting', 'error', __('Erreur sur la configuration réseau interne : ', __FILE__) . log::exception($e));
 			}
 
 			try {
@@ -543,30 +761,25 @@ class jeedom {
 				if (config::byKey('update::check') != '') {
 					$c = new Cron\CronExpression(config::byKey('update::check'), new Cron\FieldFactory);
 					$isDue = $c->isDue();
-				}
-			} catch (Exception $e) {
-
-			} catch (Error $e) {
-
-			}
-			try {
-				if ($isDue) {
-					if (config::byKey('update::lastCheck') == '' || (strtotime('now') - strtotime(config::byKey('update::lastCheck'))) > 3600) {
-						update::checkAllUpdate();
-						$updates = update::byStatus('update');
-						if (count($updates) > 0) {
-							$toUpdate = '';
-							foreach ($updates as $update) {
-								$toUpdate .= $update->getLogicalId() . ',';
+					if ($isDue) {
+						if (config::byKey('update::lastCheck') == '' || (strtotime('now') - strtotime(config::byKey('update::lastCheck'))) > 3600) {
+							update::checkAllUpdate();
+							$updates = update::byStatus('update');
+							if (count($updates) > 0) {
+								$toUpdate = '';
+								foreach ($updates as $update) {
+									$toUpdate .= $update->getLogicalId() . ',';
+								}
 							}
+							$updates = update::byStatus('update');
+							if (count($updates) > 0) {
+								message::add('update', __('De nouvelles mises à jour sont disponibles : ', __FILE__) . trim($toUpdate, ','), '', 'newUpdate');
+							}
+							config::save('update::check', rand(1, 59) . ' ' . rand(6, 7) . ' * * *');
 						}
-						$updates = update::byStatus('update');
-						if (count($updates) > 0) {
-							message::add('update', __('De nouvelles mises à jour sont disponibles : ', __FILE__) . trim($toUpdate, ','), '', 'newUpdate');
-						}
-						config::save('update::check', rand(1, 59) . ' ' . rand(6, 7) . ' * * *');
 					}
 				}
+
 			} catch (Exception $e) {
 
 			} catch (Error $e) {
@@ -581,7 +794,9 @@ class jeedom {
 			scenario::consystencyCheck();
 			log::chunk();
 			cron::clean();
+			report::clean();
 			DB::optimize();
+			cache::clean();
 		} catch (Exception $e) {
 			log::add('jeedom', 'error', $e->getMessage());
 		} catch (Error $e) {
@@ -611,7 +826,8 @@ class jeedom {
 		foreach ($_replaces as $key => $value) {
 			$datas = array_merge($datas, cmd::searchConfiguration($key));
 			$datas = array_merge($datas, eqLogic::searchConfiguration($key));
-			$datas = array_merge($datas, scenario::byUsedCommand($key));
+			$datas = array_merge($datas, object::searchConfiguration($key));
+			$datas = array_merge($datas, scenario::searchByUse(array(array('action' => '#' . $key . '#'))));
 			$datas = array_merge($datas, scenarioExpression::searchExpression($key, $key, false));
 			$datas = array_merge($datas, scenarioExpression::searchExpression('variable(' . str_replace('#', '', $key) . ')'));
 			$datas = array_merge($datas, scenarioExpression::searchExpression('variable', str_replace('#', '', $key), true));
@@ -688,72 +904,146 @@ class jeedom {
 		return null;
 	}
 
+	public static function getTypeUse($_string = '') {
+		$return = array('cmd' => array(), 'scenario' => array(), 'eqLogic' => array(), 'dataStore' => array(), 'plan' => array(), 'view' => array());
+		preg_match_all("/#([0-9]*)#/", $_string, $matches);
+		foreach ($matches[1] as $cmd_id) {
+			if (isset($return['cmd'][$cmd_id])) {
+				continue;
+			}
+			$cmd = cmd::byId($cmd_id);
+			if (!is_object($cmd)) {
+				continue;
+			}
+			$return['cmd'][$cmd_id] = $cmd;
+		}
+		preg_match_all('/"scenario_id":"([0-9]*)"/', $_string, $matches);
+		foreach ($matches[1] as $scenario_id) {
+			if (isset($return['scenario'][$scenario_id])) {
+				continue;
+			}
+			$scenario = scenario::byId($scenario_id);
+			if (!is_object($scenario)) {
+				continue;
+			}
+			$return['scenario'][$scenario_id] = $scenario;
+		}
+		preg_match_all("/#scenario([0-9]*)#/", $_string, $matches);
+		foreach ($matches[1] as $scenario_id) {
+			if (isset($return['scenario'][$scenario_id])) {
+				continue;
+			}
+			$scenario = scenario::byId($scenario_id);
+			if (!is_object($scenario)) {
+				continue;
+			}
+			$return['scenario'][$scenario_id] = $scenario;
+		}
+		preg_match_all("/#eqLogic([0-9]*)#/", $_string, $matches);
+		foreach ($matches[1] as $eqLogic_id) {
+			if (isset($return['eqLogic'][$eqLogic_id])) {
+				continue;
+			}
+			$eqLogic = eqLogic::byId($eqLogic_id);
+			if (!is_object($eqLogic)) {
+				continue;
+			}
+			$return['eqLogic'][$eqLogic_id] = $eqLogic;
+		}
+		preg_match_all('/"eqLogic":"([0-9]*)"/', $_string, $matches);
+		foreach ($matches[1] as $eqLogic_id) {
+			if (isset($return['eqLogic'][$eqLogic_id])) {
+				continue;
+			}
+			$eqLogic = eqLogic::byId($eqLogic_id);
+			if (!is_object($eqLogic)) {
+				continue;
+			}
+			$return['eqLogic'][$eqLogic_id] = $eqLogic;
+		}
+		preg_match_all('/variable\((.*?)\)/', $_string, $matches);
+		foreach ($matches[1] as $variable) {
+			if (isset($return['dataStore'][$variable])) {
+				continue;
+			}
+			$dataStore = dataStore::byTypeLinkIdKey('scenario', -1, trim($variable));
+			if (!is_object($dataStore)) {
+				continue;
+			}
+			$return['dataStore'][$variable] = $dataStore;
+		}
+		preg_match_all('/"view_id":"([0-9]*)"/', $_string, $matches);
+		foreach ($matches[1] as $view_id) {
+			if (isset($return['view'][$view_id])) {
+				continue;
+			}
+			$view = view::byId($view_id);
+			if (!is_object($view)) {
+				continue;
+			}
+			$return['view'][$view_id] = $view;
+		}
+		preg_match_all('/"plan_id":"([0-9]*)"/', $_string, $matches);
+		foreach ($matches[1] as $plan_id) {
+			if (isset($return['plan'][$plan_id])) {
+				continue;
+			}
+			$plan = planHeader::byId($plan_id);
+			if (!is_object($plan)) {
+				continue;
+			}
+			$return['plan'][$plan_id] = $plan;
+		}
+		return $return;
+	}
+
 	/******************************SYSTEM MANAGEMENT**********************************************************/
 
 	public static function haltSystem() {
 		plugin::stop();
 		cache::persist();
-		exec('sudo shutdown -h now');
+		if (self::isCapable('sudo')) {
+			exec(system::getCmdSudo() . 'shutdown -h now');
+		} else {
+			throw new Exception(__('Vous pouvez arreter le système', __FILE__));
+		}
 	}
 
 	public static function rebootSystem() {
 		plugin::stop();
 		cache::persist();
-		exec('sudo reboot');
+		if (self::isCapable('sudo')) {
+			exec(system::getCmdSudo() . 'reboot');
+		} else {
+			throw new Exception(__('Vous pouvez lancer le reboot du système', __FILE__));
+		}
 	}
 
 	public static function forceSyncHour() {
-		shell_exec('sudo service ntp stop;sudo ntpdate -s ' . config::byKey('ntp::optionalServer', 'core', '0.debian.pool.ntp.org') . ';sudo service ntp start');
+		shell_exec(system::getCmdSudo() . 'service ntp stop;' . system::getCmdSudo() . 'ntpdate -s ' . config::byKey('ntp::optionalServer', 'core', '0.debian.pool.ntp.org') . ';' . system::getCmdSudo() . 'service ntp start');
 	}
 
 	public static function cleanFileSytemRight() {
 		$processUser = posix_getpwuid(posix_geteuid());
 		$processGroup = posix_getgrgid(posix_getegid());
 		$path = dirname(__FILE__) . '/../../*';
-		exec('sudo chown -R ' . $processUser['name'] . ':' . $processGroup['name'] . ' ' . $path . ';sudo chmod 775 -R ' . $path);
+		exec(system::getCmdSudo() . 'chown -R ' . $processUser['name'] . ':' . $processGroup['name'] . ' ' . $path . ';' . system::getCmdSudo() . 'chmod 775 -R ' . $path);
 	}
 
 	public static function checkSpaceLeft() {
 		$path = dirname(__FILE__) . '/../../';
-		$free = disk_free_space($path);
-		$total = disk_total_space($path);
-		return round($free / $total * 100);
+		return round(disk_free_space($path) / disk_total_space($path) * 100);
 	}
 
-/*     * ****************************SQL BUDDY*************************** */
-
-	public static function getCurrentAdminerFolder() {
-		$dir = dirname(__FILE__) . '/../../';
-		$ls = ls($dir, 'adminer*');
-		if (count($ls) != 1) {
-			return '';
+	public static function getTmpFolder($_plugin = null) {
+		$return = '/' . trim(config::byKey('folder::tmp'), '/');
+		if ($_plugin !== null) {
+			$return .= '/' . $_plugin;
 		}
-		return $ls[0];
-	}
-
-	public static function renameAdminerFolder() {
-		$folder = self::getCurrentAdminerFolder();
-		if ($folder != '') {
-			rename(dirname(__FILE__) . '/../../' . $folder, dirname(__FILE__) . '/../../adminer' . config::genKey());
+		if (!file_exists($return)) {
+			mkdir($return, 0777, true);
 		}
-	}
-
-/*     * ****************************SYSINFO*************************** */
-
-	public static function getCurrentSysInfoFolder() {
-		$dir = dirname(__FILE__) . '/../../';
-		$ls = ls($dir, 'sysinfo*');
-		if (count($ls) != 1) {
-			return '';
-		}
-		return $ls[0];
-	}
-
-	public static function renameSysInfoFolder() {
-		$folder = self::getCurrentSysInfoFolder();
-		if ($folder != '') {
-			rename(dirname(__FILE__) . '/../../' . $folder, dirname(__FILE__) . '/../../sysinfo' . config::genKey());
-		}
+		return $return;
 	}
 
 /*     * ******************hardware management*************************** */
@@ -761,7 +1051,7 @@ class jeedom {
 	public static function getHardwareKey() {
 		$return = config::byKey('jeedom::installKey');
 		if ($return == '') {
-			$return = sha1(microtime() . config::genKey());
+			$return = substr(sha512(microtime() . config::genKey()), 0, 63);
 			config::save('jeedom::installKey', $return);
 		}
 		return $return;
@@ -777,17 +1067,25 @@ class jeedom {
 			$result = 'Docker';
 		} else if (file_exists('/usr/bin/raspi-config')) {
 			$result = 'RPI/RPI2';
-		} else if (strpos($uname, 'cubox') !== false) {
+		} else if (strpos($uname, 'cubox') !== false || strpos($uname, 'imx6') !== false || file_exists('/media/boot/multiboot/meson64_odroidc2.dtb.linux')) {
 			$result = 'Jeedomboard';
 		}
 		config::save('hardware_name', $result);
 		return config::byKey('hardware_name');
 	}
 
-	public static function isCapable($_function) {
+	public static function isCapable($_function, $_forceRefresh = false) {
 		global $JEEDOM_COMPATIBILIY_CONFIG;
 		if ($_function == 'sudo') {
-			return (shell_exec('sudo -l > /dev/null 2>&1; echo $?') == 0) ? true : false;
+			if (!$_forceRefresh) {
+				$cache = cache::byKey('jeedom::isCapable::sudo');
+				if ($cache->getValue(0) == 1) {
+					return true;
+				}
+			}
+			$result = (shell_exec('sudo -l > /dev/null 2>&1; echo $?') == 0) ? true : false;
+			cache::set('jeedom::isCapable::sudo', $result);
+			return $result;
 		}
 		$hardware = self::getHardwareName();
 		if (!isset($JEEDOM_COMPATIBILIY_CONFIG[$hardware])) {
@@ -849,11 +1147,11 @@ class jeedom {
 		$starttime = getmicrotime();
 		for ($i = 0; $i < $param['database_update']; $i++) {
 			$sql = 'UPDATE config
-                	SET `value`="' . $i . '"
+                	SET `value`=:value
                 	WHERE `key`="jeedom_benchmark"
                 		AND plugin="core"';
 			try {
-				DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+				DB::Prepare($sql, array('value' => $i), DB::FETCH_TYPE_ROW);
 			} catch (Exception $e) {
 
 			}
@@ -887,5 +1185,3 @@ class jeedom {
 	}
 
 }
-
-?>

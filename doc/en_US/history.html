@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.3.dev">
-<title>Historical</title>
+<title>Historique</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -412,14 +412,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Historical</h1>
+<h1>Historique</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table des matières</div>
 <ul class="sectlevel1">
 <li><a href="#_principe">1. Principe</a>
 <ul class="sectlevel2">
 <li><a href="#_méthode_d_historisation">1.1. Méthode d&#8217;historisation</a></li>
-<li><a href="#_archiving">1.2. Archiving</a></li>
+<li><a href="#_archivage">1.2. Archivage</a></li>
 <li><a href="#_tendances_et_statistiques">1.3. Tendances et statistiques</a></li>
 </ul>
 </li>
@@ -436,7 +436,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Partie importante dans un logiciel : la partie historisation, véritable mémoire de celle-ci. Il est possible dans Jeedom d&#8217;historiser n&#8217;importe quelle commande de type information (binaire ou numérique). Cela vous permettra donc par exemple d&#8217;historiser une courbe de température, de consommation ou les ouvertures d&#8217;une porte&#8230;&#8203;</p>
+<p>Partie importante dans un logiciel : la partie historisation, véritable mémoire de celui-ci. Il est possible dans Jeedom d&#8217;historiser n&#8217;importe quelle commande de type information (binaire ou numérique). Cela vous permettra donc par exemple d&#8217;historiser une courbe de température, de consommation ou les ouvertures d&#8217;une porte&#8230;&#8203;</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -449,7 +449,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_principe">1. Principe</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Ici est décrit le principe d&#8217;historisation de Jeedom. Il n&#8217;est nécessaire de les comprendre que si vous rencontrez des soucis d&#8217;historisation ou que vous voulez modifier les réglages de l&#8217;historisation. Les réglages par défaut conviennent dans la plupart des cas.</p>
+<p>Ici est décrit le principe d&#8217;historisation de Jeedom. Il n&#8217;est nécessaire de le comprendre que si vous rencontrez des soucis d&#8217;historisation ou que vous voulez modifier les réglages de l&#8217;historisation. Les réglages par défaut conviennent dans la plupart des cas.</p>
 </div>
 <div class="sect2">
 <h3 id="_méthode_d_historisation">1.1. Méthode d&#8217;historisation</h3>
@@ -459,21 +459,21 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Non évènement</strong> : c&#8217;est le cas le plus simple. Jeedom va collecter toutes les 5min la valeur de la commande et historiser le résultat.</p>
+<p><strong>Non évènement</strong> : c&#8217;est le cas le plus simple. Jeedom va collecter toutes les 5mn la valeur de la commande et historiser le résultat.</p>
 </li>
 <li>
-<p><strong>Evènement</strong> : Jeedom sait qu&#8217;il ne peut récupérer la valeur. Il attend donc que le plugin (et indirectement le module) la lui transmette. Ensuite, en fonction de la fréquence et de vos réglages, il se peut qu&#8217;un premier lissage intervienne. En effet, si Jeedom reçoit 2 valeurs à moins de 5min d&#8217;intervalle, il va par défaut en faire la moyenne pour n&#8217;en stocker qu&#8217;une. Vous pouvez bien sûr changer ce réglage pour qu&#8217;au lieu de la moyenne il prenne le maximum, le minimum ou au contraire qu&#8217;il garde les deux. Nous verrons par la suite comment changer ce réglage.</p>
+<p><strong>Evènement</strong> : Jeedom sait qu&#8217;il ne peut récupérer la valeur. Il attend donc que le plugin (et indirectement le module) la lui transmette. Ensuite, en fonction de la fréquence et de vos réglages, il se peut qu&#8217;un premier lissage intervienne. En effet, si Jeedom reçoit 2 valeurs à moins de 5mn d&#8217;intervalle, il va par défaut en faire la moyenne pour n&#8217;en stocker qu&#8217;une. Vous pouvez bien sûr changer ce réglage pour qu&#8217;au lieu de la moyenne il prenne le maximum, le minimum ou au contraire qu&#8217;il garde les deux. Nous verrons par la suite comment changer ce réglage.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_archiving">1.2. Archiving</h3>
+<h3 id="_archivage">1.2. Archivage</h3>
 <div class="paragraph">
 <p>L&#8217;archivage de données permet à Jeedom de réduire la quantité de données conservées en mémoire. Cela permet de ne pas utiliser trop de place et de ne pas ralentir le système. En effet, si vous conservez toute les mesures, cela fait d&#8217;autant plus de points à afficher et donc peut considérablement allonger les temps pour rendre un graphique. En cas d&#8217;un nombre trop important de points, cela peut même faire planter l&#8217;affichage du graphique.</p>
 </div>
 <div class="paragraph">
-<p>L&#8217;archivage est une tâche qui se lance dans la nuit et compacte les données récuperées dans la journée. Par défaut Jeedom récupère toutes les données plus vieille de 2h et en fait des paquets de 1h (soit une moyenne, un minimum ou un maximum en fonction des réglages). On a donc ici 2 paramètres, un pour la taille des paquets et un autre pour savoir à partir de quand en faire (pour rappel par défaut ce sont des paquets de 1h avec des données qui ont plus de 2h d&#8217;ancienneté).</p>
+<p>L&#8217;archivage est une tâche qui se lance dans la nuit et compacte les données récupérées dans la journée. Par défaut Jeedom récupère toutes les données plus vieilles de 2h et en fait des paquets de 1h (soit une moyenne, un minimum ou un maximum en fonction des réglages). On a donc ici 2 paramètres, un pour la taille des paquets et un autre pour savoir à partir de quand en faire (pour rappel par défaut ce sont des paquets de 1h avec des données qui ont plus de 2h d&#8217;ancienneté).</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -578,7 +578,7 @@ Bien sûr, ce principe d&#8217;archivage ne s&#8217;applique qu&#8217;aux comman
 </div>
 </div>
 <div class="paragraph">
-<p>Puis en dépliant la liste des commande d&#8217;un équipement (petite flèche à droite) et, soit en double-cliquant sur la commande, soit en cliquant sur la petite roue :</p>
+<p>Puis en dépliant la liste des commandes d&#8217;un équipement (petite flèche à droite) en double-cliquant sur la commande ou en cliquant sur la petite roue :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -598,7 +598,7 @@ Vous pouvez aussi utiliser le champ de recherche à droite en tapant le nom de l
 </table>
 </div>
 <div class="paragraph">
-<p>Vous pouvez également y accèder par la page de l&#8217;équipement en question et en cliquant sur la petite roue tout à droite sur la ligne de la commande (si le plugin a intégré cette option) :</p>
+<p>Vous pouvez également y accèder par la page de l&#8217;équipement en question et en cliquant sur la petite roue à droite sur la ligne de la commande (si le plugin a intégré cette option) :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -622,7 +622,7 @@ Vous pouvez aussi utiliser le champ de recherche à droite en tapant le nom de l
 <p><strong>Historiser</strong> : permet de définir si vous voulez historiser ou non cette commande.</p>
 </li>
 <li>
-<p><strong>Mode de lissage</strong> : mode de lissage ou d&#8217;archivage permet de choisir la manière d&#8217;archiver la donnée ; par défaut c&#8217;est une moyenne ; il est aussi possible de choisir le maximum, le minimum, ou aucun ; aucun permet de dire à Jeedom qu&#8217;il ne doit pas réaliser d&#8217;archivage sur cette commande (aussi bien sur la première période des 5 min qu&#8217;avec la tache d&#8217;archivage). Cette option est dangereuse car Jeedom conserve tout : il va donc y avoir beaucoup plus de données conservées.</p>
+<p><strong>Mode de lissage</strong> : mode de lissage ou d&#8217;archivage permet de choisir la manière d&#8217;archiver la donnée ; par défaut c&#8217;est une moyenne ; il est aussi possible de choisir le maximum, le minimum, ou aucun ; aucun permet de dire à Jeedom qu&#8217;il ne doit pas réaliser d&#8217;archivage sur cette commande (aussi bien sur la première période des 5 mn qu&#8217;avec la tâche d&#8217;archivage). Cette option est dangereuse car Jeedom conserve tout : il va donc y avoir beaucoup plus de données conservées.</p>
 </li>
 <li>
 <p><strong>Purger l&#8217;historique si plus vieux de</strong> : cette option permet de dire à Jeedom de supprimer toutes les données plus vieilles qu&#8217;une certaine période. Peut être pratique pour ne pas conserver de données si ça n&#8217;est pas nécessaire et donc limiter la quantité d&#8217;informations enregistrées par Jeedom.</p>
@@ -659,7 +659,7 @@ Vous pouvez aussi utiliser le champ de recherche à droite en tapant le nom de l
 </div>
 </div>
 <div class="paragraph">
-<p>On retrouve en haut à droite la période d&#8217;affichage (ici sur la dernière semaine car, par défaut je veux que ça soit seulement une semaine - voir 2 paragraphes au-dessus), ensuite viennent les paramètres de la courbe (ces paramètres sont gardés d&#8217;un affichage à l&#8217;autre ; vous n&#8217;avez donc qu&#8217;à les configurer une fois).</p>
+<p>On retrouve en haut à droite la période d&#8217;affichage (ici sur la dernière semaine car, par défaut je veux que ça soit seulement une semaine - voir 2 paragraphes au-dessus), ensuite viennent les paramètres de la courbe (ces paramètres sont gardés d&#8217;un affichage à l&#8217;autre ; vous n&#8217;avez donc qu&#8217;a les configurer une fois).</p>
 </div>
 <div class="ulist">
 <ul>

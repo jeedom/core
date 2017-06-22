@@ -53,18 +53,32 @@ try {
 	}
 
 	if (init('action') == 'all') {
-		$datastores = utils::o2a(dataStore::byTypeLinkId(init('type')));
+		$dataStores = dataStore::byTypeLinkId(init('type'));
+		$return = array();
 		if (init('usedBy') == 1) {
-			foreach ($datastores as &$datastore) {
-				$datastore['usedBy'] = array(
+			foreach ($dataStores as $datastore) {
+				$info_datastore = utils::o2a($datastore);
+				$info_datastore['usedBy'] = array(
 					'scenario' => array(),
+					'eqLogic' => array(),
+					'cmd' => array(),
 				);
-				foreach (scenario::byUsedCommand($datastore['key'], true) as $scenario) {
-					$datastore['usedBy']['scenario'][] = $scenario->getHumanName();
+				$usedBy = $datastore->getUsedBy();
+				foreach ($usedBy['scenario'] as $scenario) {
+					$info_datastore['usedBy']['scenario'][] = $scenario->getHumanName();
 				}
+				foreach ($usedBy['eqLogic'] as $eqLogic) {
+					$info_datastore['usedBy']['eqLogic'][] = $eqLogic->getHumanName();
+				}
+				foreach ($usedBy['cmd'] as $cmd) {
+					$info_datastore['usedBy']['cmd'][] = $cmd->getHumanName();
+				}
+				$return[] = $info_datastore;
 			}
+		} else {
+			$return = utils::o2a($dataStore);
 		}
-		ajax::success($datastores);
+		ajax::success($return);
 	}
 
 	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));

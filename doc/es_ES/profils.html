@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.3.dev">
-<title>Perfiles</title>
+<title>Profils</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -412,14 +412,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Perfiles</h1>
+<h1>Profils</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table des matières</div>
 <ul class="sectlevel1">
 <li><a href="#_menu_profils">1. Menu profils</a></li>
-<li><a href="#_page_profils">2. Page profils</a>
+<li><a href="#_page_profil">2. Page Profil</a>
 <ul class="sectlevel2">
-<li><a href="#_temas">2.1. Temas</a></li>
+<li><a href="#_thèmes">2.1. Thèmes</a></li>
 <li><a href="#_interface">2.2. Interface</a></li>
 <li><a href="#_notifications">2.3. Notifications</a></li>
 <li><a href="#_sécurité">2.4. Sécurité</a></li>
@@ -432,7 +432,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>La page profils vous permet de configurer certains comportements de Jeedom spécifiques à votre utilisateur : page d&#8217;accueil, thèmes de la version desktop, de la version mobile, des graphiques&#8230;&#8203; Elle permet aussi de changer votre mot de passe et de passer en mode expert permettant une configuration plus poussée de Jeedom.</p>
+<p>La page profils vous permet de configurer certains comportements de Jeedom spécifiques à l&#8217;utilisateur : page d&#8217;accueil, thèmes de la version desktop, de la version mobile, des graphiques&#8230;&#8203; Elle permet aussi de changer votre mot de passe et de passer en mode expert permettant une configuration plus poussée de Jeedom.</p>
 </div>
 </div>
 </div>
@@ -440,7 +440,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_menu_profils">1. Menu profils</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Vous retourver en haut à droite sur chaque page de Jeedom le menu profils :</p>
+<p>Vous retrouvez en haut à droite sur chaque page de Jeedom le menu Profil :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -448,10 +448,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>Vous retrouvez à coté de ce menu profil, une information sur le nombre de messages dans le centre de messages (ces messages sont importants sinon Jeedom ne vous les remonterait pas), l&#8217;heure Jeedom (attention c&#8217;est bien l&#8217;heure de Jeedom et non de votre PC), le menu profils, une icône indiquant la connexion (ici filaire, mais il est possible si vous êtes en wifi d&#8217;avoir celle-ci), l&#8217;icône pour l&#8217;accès à l&#8217;aide de la page en cours et l&#8217;icône pour faire une demande de support.</p>
+<p>Vous retrouvez à coté de ce menu Profil, une information sur le nombre de messages dans le centre de messages (ces messages sont importants sinon Jeedom ne vous les remonterait pas), l&#8217;heure Jeedom (attention c&#8217;est bien l&#8217;heure de Jeedom et non de votre PC), le menu Profil, une icône indiquant la connexion (ici filaire, mais il est possible si vous êtes en wifi d&#8217;avoir celle-ci), l&#8217;icône pour l&#8217;accès à l&#8217;aide de la page en cours et l&#8217;icône pour faire une demande de support.</p>
 </div>
 <div class="paragraph">
-<p>Si vous cliquez sur le menu profils vous obtenez :</p>
+<p>Si vous cliquez sur le menu Profil vous obtenez :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -459,18 +459,27 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>A partir de ce menu vous avez accès à la page profils, à l&#8217;activation ou non du mode expert, au redémarrage de Jeedom, à l&#8217;arrêt de Jeedom, au passage en version mobile et un bouton pour se déconnecter.</p>
+<p>A partir de ce menu vous avez accès à la page Profil, à l&#8217;activation ou non du mode expert, au redémarrage de Jeedom, à l&#8217;arrêt de Jeedom, au passage en version mobile et un bouton pour se déconnecter.</p>
 </div>
-<div class="paragraph">
-<p>En DIY les actions de redémarrage et d&#8217;arrêt ne marche que si vous avez bien fait les actions visudo, voir <a href="https://jeedom.com/doc/documentation/installation/fr_FR/doc-installation.html#_etape_4_définition_des_droits_root_à_jeedom">ici</a></p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+En DIY les actions de redémarrage et d&#8217;arrêt ne fonctionnent que si vous avez bien réalisé les actions visudo, voir <a href="https://jeedom.com/doc/documentation/installation/fr_FR/doc-installation.html#_etape_4_définition_des_droits_root_à_jeedom">ici</a>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_page_profils">2. Page profils</h2>
+<h2 id="_page_profil">2. Page Profil</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>La page profils ressemble à ca :</p>
+<p>La page Profil ressemble à ca :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -481,7 +490,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Vous retrouvez ici différents panneaux qui vous permettront de configurer Jeedom, tous ces réglages sont uniquement liés à votre utilisateur, il vous sont donc propres</p>
 </div>
 <div class="sect2">
-<h3 id="_temas">2.1. Temas</h3>
+<h3 id="_thèmes">2.1. Thèmes</h3>
 <div class="imageblock">
 <div class="content">
 <img src="../images/profils4.png" alt="profils4">
@@ -496,13 +505,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><strong>Desktop</strong> : thèmes à utiliser en mode desktop, attention seul le thème par défaut est officiellement supporté par Jeedom</p>
 </li>
 <li>
-<p><strong>Mobile</strong> : permet de légèrement configurer le thème mobile (ici tout est supporté), soit clair soit sombre, ainsi que la couleur dominant de celui-ci</p>
+<p><strong>Mobile</strong> : permet de légèrement configurer le thème mobile (ici tout est supporté), soit clair soit sombre, ainsi que la couleur dominante de celui-ci</p>
 </li>
 <li>
-<p><strong>Graphique Desktop</strong> : permet de definir le thème par défaut des graphiques en mode desktop</p>
+<p><strong>Graphique Desktop</strong> : permet de définir le thème par défaut des graphiques en mode desktop</p>
 </li>
 <li>
-<p><strong>Graphique Mobile</strong> : permet de definir le thème par défaut des graphiques en mode mobile</p>
+<p><strong>Graphique Mobile</strong> : permet de définir le thème par défaut des graphiques en mode mobile</p>
 </li>
 </ul>
 </div>
@@ -603,7 +612,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>C&#8217;est ici que vous pouvez changer votre mot de passe ainsi que la clef de sécurité pour les appareils (ordinateur,téléphone&#8230;&#8203;) enregistrés. Un changement de cette clef obligera tous les péripheriques se connectant automatiquement avec votre compte à se réauthentifier</p>
+<p>C&#8217;est ici que vous pouvez changer votre mot de passe ainsi que la clef de sécurité pour les appareils enregistrés (ordinateur,téléphone&#8230;&#8203;). Un changement de cette clef obligera tous les péripheriques se connectant automatiquement avec votre compte à se réauthentifier</p>
 </div>
 </div>
 </div>

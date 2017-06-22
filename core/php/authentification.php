@@ -35,6 +35,15 @@ if (!headers_sent()) {
 }
 @session_write_close();
 
+if (user::isBan()) {
+	header("Status: 404 Not Found");
+	header('HTTP/1.0 404 Not Found');
+	$_SERVER['REDIRECT_STATUS'] = 404;
+	echo "<h1>404 Not Found</h1>";
+	echo "The page that you have requested could not be found.";
+	die();
+}
+
 if (!isConnect() && isset($_COOKIE['registerDevice'])) {
 	if (loginByHash($_COOKIE['registerDevice'])) {
 		setcookie('registerDevice', $_COOKIE['registerDevice'], time() + 365 * 24 * 3600, "/", '', false, true);
@@ -58,6 +67,10 @@ if (!isConnect() && $configs['sso:allowRemoteUser'] == 1) {
 	}
 }
 
+if (!isConnect() && init('auth') != '') {
+	loginByHash(init('auth'));
+}
+
 if (init('logout') == 1) {
 	logout();
 }
@@ -67,15 +80,18 @@ if (init('logout') == 1) {
 function login($_login, $_password, $_twoFactor = null) {
 	$user = user::connect($_login, $_password);
 	if (!is_object($user) || $user->getEnable() == 0) {
+		user::failedLogin();
 		sleep(5);
 		return false;
 	}
 	if ($user->getOptions('localOnly', 0) == 1 && network::getUserLocation() != 'internal') {
+		user::failedLogin();
 		sleep(5);
 		return false;
 	}
 	if (network::getUserLocation() != 'internal' && $user->getOptions('twoFactorAuthentification', 0) == 1 && $user->getOptions('twoFactorAuthentificationSecret') != '') {
-		if (trim($_twoFactor) == '' || $_twoFactor == null || !$user->validateTwoFactorCode($_twoFactor)) {
+		if (trim($_twoFactor) == '' || $_twoFactor === null || !$user->validateTwoFactorCode($_twoFactor)) {
+			user::failedLogin();
 			sleep(5);
 			return false;
 		}
@@ -97,10 +113,12 @@ function login($_login, $_password, $_twoFactor = null) {
 function loginByHash($_key) {
 	$user = user::byHash($_key);
 	if (!is_object($user) || $user->getEnable() == 0) {
+		user::failedLogin();
 		sleep(5);
 		return false;
 	}
 	if ($user->getOptions('localOnly', 0) == 1 && network::getUserLocation() != 'internal') {
+		user::failedLogin();
 		sleep(5);
 		return false;
 	}
@@ -113,7 +131,6 @@ function loginByHash($_key) {
 		setcookie('jeedom_token', ajax::getToken(), time() + 365 * 24 * 3600, "/", '', false, true);
 	}
 	log::add('connection', 'info', __('Connexion de l\'utilisateur par clef : ', __FILE__) . $user->getLogin());
-	unset($_GET['auth']);
 	return true;
 }
 
@@ -126,4 +143,3 @@ function logout() {
 	return;
 }
 
-?>

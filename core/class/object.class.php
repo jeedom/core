@@ -143,16 +143,17 @@ class object {
 		$toRefreshCmd = array();
 		$global = array();
 		foreach ($objects as $object) {
-			$events[] = array('object_id' => $object->getId());
 			$summaries = $object->getConfiguration('summary');
 			if (!is_array($summaries)) {
 				continue;
 			}
+			$event = array('object_id' => $object->getId(), 'keys' => array());
 			foreach ($summaries as $key => $summary) {
 				foreach ($summary as $cmd_info) {
 					preg_match_all("/#([0-9]*)#/", $cmd_info['cmd'], $matches);
 					foreach ($matches[1] as $cmd_id) {
 						if ($cmd_id == $_cmd_id) {
+							$event['keys'][$key] = array('value' => $object->getSummary($key));
 							$toRefreshCmd[] = array('key' => $key, 'object' => $object);
 							if ($object->getConfiguration('summary::global::' . $key, 0) == 1) {
 								$global[$key] = 1;
@@ -161,10 +162,7 @@ class object {
 					}
 				}
 			}
-		}
-
-		if (count($events) > 0) {
-			event::adds('object::summary::update', $events);
+			$events[] = $event;
 		}
 		if (count($toRefreshCmd) > 0) {
 			foreach ($toRefreshCmd as $value) {
@@ -189,8 +187,11 @@ class object {
 			}
 		}
 		if (count($global) > 0) {
+			$event = array('object_id' => 'global', 'keys' => array());
 			foreach ($global as $key => $value) {
 				try {
+					$result = object::getGlobalSummary($key);
+					$event['keys'][$key] = array('value' => $result);
 					$virtual = eqLogic::byLogicalId('summaryglobal', 'virtual');
 					if (!is_object($virtual)) {
 						continue;
@@ -199,11 +200,15 @@ class object {
 					if (!is_object($cmd)) {
 						continue;
 					}
-					$cmd->event(object::getGlobalSummary($key));
+					$cmd->event($result);
 				} catch (Exception $e) {
 
 				}
 			}
+			$events[] = $event;
+		}
+		if (count($events) > 0) {
+			event::adds('object::summary::update', $events);
 		}
 	}
 
@@ -226,6 +231,9 @@ class object {
 		}
 		if (count($value) == 0) {
 			return null;
+		}
+		if ($def[$_key]['calcul'] == 'text') {
+			return trim(implode(',', $value), ',');
 		}
 		return round(jeedom::calculStat($def[$_key]['calcul'], $value), 1);
 	}
@@ -250,17 +258,27 @@ class object {
 				$values[$key] = array_merge($values[$key], $result);
 			}
 		}
-		$margin = ($_version == 'desktop') ? 3 : 1;
+		$margin = ($_version == 'desktop') ? 4 : 2;
 
 		foreach ($values as $key => $value) {
 			if (count($value) == 0) {
 				continue;
 			}
-			$result = round(jeedom::calculStat($def[$key]['calcul'], $value), 1);
-			if ($def[$key]['allowDisplayZero'] == false && $result == 0) {
-				continue;
+			$style = '';
+			$allowDisplayZero = $def[$key]['allowDisplayZero'];
+			if ($def[$key]['calcul'] == 'text') {
+				$result = trim(implode(',', $value), ',');
+				$allowDisplayZero = 1;
+			} else {
+				$result = round(jeedom::calculStat($def[$key]['calcul'], $value), 1);
+
 			}
-			$return .= '<span style="margin-right:' . $margin . 'px;">' . $def[$key]['icon'] . ' <span class="objectSummary' . $key . '">' . $result . '</span> ' . $def[$key]['unit'] . '</span> ';
+			if ($allowDisplayZero == 0 && $result == 0) {
+				$style = 'display:none;';
+			}
+			$return .= '<span class="objectSummaryParent cursor" data-summary="' . $key . '" data-object_id="" style="margin-right:' . $margin . 'px;' . $style . '" data-displayZeroValue="' . $allowDisplayZero . '">';
+			$return .= $def[$key]['icon'] . ' <span class="objectSummary' . $key . '">' . $result . '</span> ' . $def[$key]['unit'];
+			$return .= '</span>';
 		}
 		return trim($return) . '</span>';
 	}
@@ -331,7 +349,11 @@ class object {
 		$cmd->setEqLogic_id($virtual->getId());
 		$cmd->setLogicalId($_key);
 		$cmd->setType('info');
-		$cmd->setSubtype('numeric');
+		if ($def[$_key]['calcul'] == 'text') {
+			$cmd->setSubtype('string');
+		} else {
+			$cmd->setSubtype('numeric');
+		}
 		$cmd->setUnite($def[$_key]['unit']);
 		$cmd->save();
 
@@ -366,7 +388,11 @@ class object {
 			$cmd->setEqLogic_id($virtual->getId());
 			$cmd->setLogicalId($_key);
 			$cmd->setType('info');
-			$cmd->setSubtype('numeric');
+			if ($def[$_key]['calcul'] == 'text') {
+				$cmd->setSubtype('string');
+			} else {
+				$cmd->setSubtype('numeric');
+			}
 			$cmd->setUnite($def[$_key]['unit']);
 			$cmd->save();
 		}
@@ -425,11 +451,40 @@ class object {
 	public function getEqLogic($_onlyEnable = true, $_onlyVisible = false, $_eqType_name = null, $_logicalId = null) {
 		$eqLogics = eqLogic::byObjectId($this->getId(), $_onlyEnable, $_onlyVisible, $_eqType_name, $_logicalId);
 		if (is_array($eqLogics)) {
-			foreach ($eqLogics as $eqLogic) {
+			foreach ($eqLogics as &$eqLogic) {
 				$eqLogic->setObject($this);
 			}
 		}
 		return $eqLogics;
+	}
+
+	public function getEqLogicBySummary($_summary = '', $_onlyEnable = true, $_onlyVisible = false, $_eqType_name = null, $_logicalId = null) {
+		$def = config::byKey('object:summary');
+		if ($_summary == '' || !isset($def[$_summary])) {
+			return null;
+		}
+		$summaries = $this->getConfiguration('summary');
+		if (!isset($summaries[$_summary])) {
+			return array();
+		}
+		$eqLogics = eqLogic::byObjectId($this->getId(), $_onlyEnable, $_onlyVisible, $_eqType_name, $_logicalId);
+		$eqLogics_id = array();
+		foreach ($summaries[$_summary] as $infos) {
+			$cmd = cmd::byId(str_replace('#', '', $infos['cmd']));
+			if (is_object($cmd)) {
+				$eqLogics_id[$cmd->getEqLogic_id()] = $cmd->getEqLogic_id();
+			}
+		}
+		$return = array();
+		if (is_array($eqLogics)) {
+			foreach ($eqLogics as $eqLogic) {
+				if (isset($eqLogics_id[$eqLogic->getId()])) {
+					$eqLogic->setObject($this);
+					$return[] = $eqLogic;
+				}
+			}
+		}
+		return $return;
 	}
 
 	public function getScenario($_onlyEnable = true, $_onlyVisible = false) {
@@ -506,7 +561,10 @@ class object {
 		if ($_raw) {
 			return $values;
 		}
-		return jeedom::calculStat($def[$_key]['calcul'], $values);
+		if ($def[$_key]['calcul'] == 'text') {
+			return trim(implode(',', $values), ',');
+		}
+		return round(jeedom::calculStat($def[$_key]['calcul'], $values), 1);
 	}
 
 	public function getHtmlSummary($_version = 'desktop') {
@@ -517,14 +575,57 @@ class object {
 			}
 			$result = $this->getSummary($key);
 			if ($result !== null) {
-				$result = round($result, 1);
-				if ($value['allowDisplayZero'] == false && $result == 0) {
-					continue;
+				$style = '';
+				$allowDisplayZero = $value['allowDisplayZero'];
+				if ($value['calcul'] == 'text') {
+					$allowDisplayZero = 1;
 				}
-				$return .= '<span style="margin-right:5px;">' . $value['icon'] . ' <span class="objectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . '</span>';
+				if ($allowDisplayZero == 0 && $result == 0) {
+					$style = 'display:none;';
+				}
+				$return .= '<span style="margin-right:5px;' . $style . '" class="objectSummaryParent cursor" data-summary="' . $key . '" data-object_id="' . $this->getId() . '" data-displayZeroValue="' . $allowDisplayZero . '">' . $value['icon'] . ' <span class="objectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . '</span>';
 			}
 		}
 		return trim($return) . '</span>';
+	}
+
+	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = null) {
+		if ($_drill === null) {
+			$_drill = config::byKey('graphlink::object::drill');
+		}
+		if (isset($_data['node']['object' . $this->getId()])) {
+			return;
+		}
+		$_level++;
+		if ($_level > $_drill) {
+			return $_data;
+		}
+		$icon = findCodeIcon($this->getDisplay('icon'));
+		$_data['node']['object' . $this->getId()] = array(
+			'id' => 'object' . $this->getId(),
+			'name' => $this->getName(),
+			'icon' => $icon['icon'],
+			'fontfamily' => $icon['fontfamily'],
+			'fontweight' => ($_level == 1) ? 'bold' : 'normal',
+			'fontsize' => '4em',
+			'texty' => -35,
+			'textx' => 0,
+			'title' => $this->getHumanName(),
+		);
+		$use = $this->getUse();
+		addGraphLink($this, 'object', $this->getEqLogic(), 'eqLogic', $_data, $_level, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
+		addGraphLink($this, 'object', $use['cmd'], 'cmd', $_data, $_level, $_drill);
+		addGraphLink($this, 'object', $use['scenario'], 'scenario', $_data, $_level, $_drill);
+		addGraphLink($this, 'object', $use['eqLogic'], 'eqLogic', $_data, $_level, $_drill);
+		addGraphLink($this, 'object', $use['dataStore'], 'dataStore', $_data, $_level, $_drill);
+		addGraphLink($this, 'object', $this->getChild(), 'object', $_data, $_level, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
+		addGraphLink($this, 'object', $this->getScenario(), 'scenario', $_data, $_level, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
+		return $_data;
+	}
+
+	public function getUse() {
+		$json = jeedom::fromHumanReadable(json_encode(utils::o2a($this)));
+		return jeedom::getTypeUse($json);
 	}
 
 	/*     * **********************Getteur Setteur*************************** */
@@ -553,19 +654,23 @@ class object {
 
 	public function setId($id) {
 		$this->id = $id;
+		return $this;
 	}
 
 	public function setName($name) {
 		$name = str_replace(array('&', '#', ']', '[', '%'), '', $name);
 		$this->name = $name;
+		return $this;
 	}
 
 	public function setFather_id($father_id = null) {
 		$this->father_id = ($father_id == '') ? null : $father_id;
+		return $this;
 	}
 
 	public function setIsVisible($isVisible) {
 		$this->isVisible = $isVisible;
+		return $this;
 	}
 
 	public function getPosition($_default = null) {
@@ -577,6 +682,7 @@ class object {
 
 	public function setPosition($position) {
 		$this->position = $position;
+		return $this;
 	}
 
 	public function getConfiguration($_key = '', $_default = '') {
@@ -585,6 +691,7 @@ class object {
 
 	public function setConfiguration($_key, $_value) {
 		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
+		return $this;
 	}
 
 	public function getDisplay($_key = '', $_default = '') {
@@ -593,8 +700,7 @@ class object {
 
 	public function setDisplay($_key, $_value) {
 		$this->display = utils::setJsonAttr($this->display, $_key, $_value);
+		return $this;
 	}
 
 }
-
-?>

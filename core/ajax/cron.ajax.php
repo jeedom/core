@@ -41,13 +41,7 @@ try {
 	}
 
 	if (init('action') == 'all') {
-		$results = array();
-		$results['crons'] = utils::o2a(cron::all(true));
-		$results['nbCronRun'] = cron::nbCronRun();
-		$results['nbProcess'] = cron::nbProcess();
-		$results['nbMasterCronRun'] = (cron::jeeCronRun()) ? 1 : 0;
-		$results['loadAvg'] = cron::loadAvg();
-		ajax::success($results);
+		ajax::success(utils::o2a(cron::all(true)));
 	}
 
 	if (init('action') == 'start') {

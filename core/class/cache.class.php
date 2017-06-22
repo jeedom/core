@@ -32,25 +32,78 @@ class cache {
 
 	/*     * ***********************Methode static*************************** */
 
+	public static function getFolder() {
+		$return = jeedom::getTmpFolder('cache');
+		if (!file_exists($return)) {
+			mkdir($return, 0777);
+		}
+		return $return;
+	}
+
 	public static function set($_key, $_value, $_lifetime = 0, $_options = null) {
 		if ($_lifetime < 0) {
 			$_lifetime = 0;
 		}
-		$cache = new self();
-		$cache->setKey($_key);
-		$cache->setValue($_value);
-		$cache->setLifetime($_lifetime);
+		$cache = (new self())
+			->setKey($_key)
+			->setValue($_value)
+			->setLifetime($_lifetime);
 		if ($_options != null) {
 			$cache->options = json_encode($_options, JSON_UNESCAPED_UNICODE);
 		}
 		return $cache->save();
 	}
 
+	public static function delete($_key) {
+		$cache = cache::byKey($_key);
+		if (is_object($cache)) {
+			$cache->remove();
+		}
+	}
+
+	public static function stats($_details = false) {
+		$return = self::getCache()->getStats();
+		$return['count'] = __('Inconnu', __FILE__);
+		if (config::byKey('cache::engine') == 'FilesystemCache') {
+			$return['count'] = 0;
+			foreach (ls(self::getFolder()) as $folder) {
+				foreach (ls(self::getFolder() . '/' . $folder) as $file) {
+					if (strpos($file, 'swap') !== false) {
+						continue;
+					}
+					$return['count']++;
+				}
+			}
+		}
+		if ($_details) {
+			$re = '/s:\d*:(.*?);s:\d*:"(.*?)";s/';
+			$result = array();
+			foreach (ls(self::getFolder()) as $folder) {
+				foreach (ls(self::getFolder() . '/' . $folder) as $file) {
+					$path = self::getFolder() . '/' . $folder . '/' . $file;
+					$str = (string) str_replace("\n", '', file_get_contents($path));
+					preg_match_all($re, $str, $matches);
+					if (!isset($matches[2]) || !isset($matches[2][0]) || trim($matches[2][0]) == '') {
+						continue;
+					}
+					$result[] = $matches[2][0];
+				}
+			}
+			$return['details'] = $result;
+		}
+		return $return;
+	}
+	/**
+         * @name getCache()
+         * @access public
+         * @static
+         * @return type
+         */
 	public static function getCache() {
 		if (self::$cache !== null) {
 			return self::$cache;
 		}
-		$engine = \config::byKey('cache::engine');
+		$engine = config::byKey('cache::engine');
 		if ($engine == 'MemcachedCache' && !class_exists('memcached')) {
 			$engine = 'FilesystemCache';
 			config::save('cache::engine', 'FilesystemCache');
@@ -61,10 +114,10 @@ class cache {
 		}
 		switch ($engine) {
 			case 'FilesystemCache':
-				self::$cache = new \Doctrine\Common\Cache\FilesystemCache("/tmp/jeedom-cache");
+				self::$cache = new \Doctrine\Common\Cache\FilesystemCache(self::getFolder());
 				break;
 			case 'PhpFileCache':
-				self::$cache = new \Doctrine\Common\Cache\PhpFileCache("/tmp/jeedom-cache-php");
+				self::$cache = new \Doctrine\Common\Cache\FilesystemCache(self::getFolder());
 				break;
 			case 'MemcachedCache':
 				$memcached = new Memcached();
@@ -79,26 +132,30 @@ class cache {
 				self::$cache->setRedis($redis);
 				break;
 			default:
-				$cache = new \Doctrine\Common\Cache\FilesystemCache("/tmp/jeedom-cache");
+				self::$cache = new \Doctrine\Common\Cache\FilesystemCache(self::getFolder());
 				break;
 		}
 		return self::$cache;
 	}
 
-	public static function byKey($_key, $_noRemove = false) {
+	/**
+         * 
+         * @param type $_key
+         * @return type
+         */
+	public static function byKey($_key) {
 		$cache = self::getCache()->fetch($_key);
 		if (!is_object($cache)) {
-			$cache = new self();
-			$cache->setKey($_key);
-			$cache->setDatetime(date('Y-m-d H:i:s'));
+			$cache = (new self())
+                                ->setKey($_key)
+                                ->setDatetime(date('Y-m-d H:i:s'));
 		}
 		return $cache;
 	}
 
 	public static function flush() {
 		self::getCache()->deleteAll();
-		shell_exec('sudo rm -rf /tmp/jeedom-cache 2>&1 > /dev/null');
-		shell_exec('rm -rf /tmp/jeedom-cache 2>&1 > /dev/null');
+		shell_exec('rm -rf ' . self::getFolder() . ' 2>&1 > /dev/null');
 	}
 
 	public static function search() {
@@ -108,16 +165,16 @@ class cache {
 	public static function persist() {
 		switch (config::byKey('cache::engine')) {
 			case 'FilesystemCache':
-				$cache_dir = '/tmp/jeedom-cache';
+				$cache_dir = self::getFolder();
 				break;
 			case 'PhpFileCache':
-				$cache_dir = '/tmp/jeedom-cache-php';
+				$cache_dir = self::getFolder();
 				break;
 			default:
 				return;
 		}
 		try {
-			com_shell::execute('sudo rm -rf ' . dirname(__FILE__) . '/../../cache.tar.gz;cd ' . $cache_dir . ';sudo tar cfz ' . dirname(__FILE__) . '/../../cache.tar.gz * 2>&1 > /dev/null;sudo chmod 775 ' . dirname(__FILE__) . '/../../cache.tar.gz;sudo chown www-data:www-data ' . dirname(__FILE__) . '/../../cache.tar.gz;sudo chmod 777 -R ' . $cache_dir);
+			com_shell::execute('rm -rf ' . dirname(__FILE__) . '/../../cache.tar.gz;cd ' . $cache_dir . ';tar cfz ' . dirname(__FILE__) . '/../../cache.tar.gz * 2>&1 > /dev/null;chmod 775 ' . dirname(__FILE__) . '/../../cache.tar.gz;chown ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . dirname(__FILE__) . '/../../cache.tar.gz;chmod 777 -R ' . $cache_dir . ' 2>&1 > /dev/null');
 		} catch (Exception $e) {
 			log::add('cache', 'debug', $e->getMessage());
 		}
@@ -141,26 +198,162 @@ class cache {
 	public static function restore() {
 		switch (config::byKey('cache::engine')) {
 			case 'FilesystemCache':
-				$cache_dir = '/tmp/jeedom-cache';
+				$cache_dir = self::getFolder();
 				break;
 			case 'PhpFileCache':
-				$cache_dir = '/tmp/jeedom-cache-php';
+				$cache_dir = self::getFolder();
 				break;
 			default:
 				return;
 		}
 		if (!file_exists(dirname(__FILE__) . '/../../cache.tar.gz')) {
-			$cmd = 'sudo mkdir ' . $cache_dir . ';';
-			$cmd .= 'sudo chmod -R 777 ' . $cache_dir . ';';
+			$cmd = 'mkdir ' . $cache_dir . ';';
+			$cmd .= 'chmod -R 777 ' . $cache_dir . ';';
 			com_shell::execute($cmd);
 			return;
 		}
-		$cmd = 'sudo rm -rf ' . $cache_dir . ';';
-		$cmd .= 'sudo mkdir ' . $cache_dir . ';';
+		$cmd = 'rm -rf ' . $cache_dir . ';';
+		$cmd .= 'mkdir ' . $cache_dir . ';';
 		$cmd .= 'cd ' . $cache_dir . ';';
-		$cmd .= 'sudo tar xfz ' . dirname(__FILE__) . '/../../cache.tar.gz;';
-		$cmd .= 'sudo chmod -R 777 ' . $cache_dir . ';';
+		$cmd .= 'tar xfz ' . dirname(__FILE__) . '/../../cache.tar.gz;';
+		$cmd .= 'chmod -R 777 ' . $cache_dir . ' 2>&1 > /dev/null;';
 		com_shell::execute($cmd);
+	}
+
+	public static function clean() {
+		if (config::byKey('cache::engine') != 'FilesystemCache') {
+			return;
+		}
+		$re = '/s:\d*:(.*?);s:\d*:"(.*?)";s/';
+		$result = array();
+		foreach (ls(self::getFolder()) as $folder) {
+			foreach (ls(self::getFolder() . '/' . $folder) as $file) {
+				$path = self::getFolder() . '/' . $folder . '/' . $file;
+				if (strpos($file, 'swap') !== false) {
+					unlink($path);
+					continue;
+				}
+				$str = (string) str_replace("\n", '', file_get_contents($path));
+				preg_match_all($re, $str, $matches);
+				if (!isset($matches[2]) || !isset($matches[2][0]) || trim($matches[2][0]) == '') {
+					continue;
+				}
+				$result[] = $matches[2][0];
+			}
+		}
+		$cleanCache = array(
+			'cmdCacheAttr' => 'cmd',
+			'cmd' => 'cmd',
+			'eqLogicCacheAttr' => 'eqLogic',
+			'eqLogicStatusAttr' => 'eqLogic',
+			'scenarioCacheAttr' => 'scenario',
+			'cronCacheAttr' => 'cron',
+			'cron' => 'cron',
+		);
+		foreach ($result as $key) {
+			$matches = null;
+			if (strpos($key, '::lastCommunication') !== false) {
+				cache::delete($key);
+				continue;
+			}
+			if (strpos($key, '::state') !== false) {
+				cache::delete($key);
+				continue;
+			}
+			if (strpos($key, '::numberTryWithoutSuccess') !== false) {
+				cache::delete($key);
+				continue;
+			}
+			foreach ($cleanCache as $kClean => $value) {
+				if (strpos($key, $kClean) !== false) {
+					$id = str_replace($kClean, '', $key);
+					if (!is_numeric($id)) {
+						continue;
+					}
+					$object = $value::byId($id);
+					if (!is_object($object)) {
+						cache::delete($key);
+					}
+					continue;
+				}
+			}
+			preg_match_all('/widgetHtml(\d*)(.*?)/', $key, $matches);
+			if (isset($matches[1]) && isset($matches[1][0])) {
+				if (!is_numeric($matches[1][0])) {
+					continue;
+				}
+				$object = eqLogic::byId($matches[1][0]);
+				if (!is_object($object)) {
+					cache::delete($key);
+				}
+			}
+			preg_match_all('/camera(\d*)(.*?)/', $key, $matches);
+			if (isset($matches[1]) && isset($matches[1][0])) {
+				if (!is_numeric($matches[1][0])) {
+					continue;
+				}
+				$object = eqLogic::byId($matches[1][0]);
+				if (!is_object($object)) {
+					cache::delete($key);
+				}
+			}
+			preg_match_all('/scenarioHtml(.*?)(\d*)/', $key, $matches);
+			if (isset($matches[1]) && isset($matches[1][0])) {
+				if (!is_numeric($matches[1][0])) {
+					continue;
+				}
+				$object = scenario::byId($matches[1][0]);
+				if (!is_object($object)) {
+					cache::delete($key);
+				}
+			}
+			if (strpos($key, 'widgetHtmlmobile') !== false) {
+				$id = str_replace('widgetHtmlmobile', '', $key);
+				if (is_numeric($id)) {
+					cache::delete($key);
+				}
+				continue;
+			}
+			if (strpos($key, 'widgetHtmldashboard') !== false) {
+				$id = str_replace('widgetHtmldashboard', '', $key);
+				if (is_numeric($id)) {
+					cache::delete($key);
+				}
+				continue;
+			}
+			if (strpos($key, 'widgetHtmldplan') !== false) {
+				$id = str_replace('widgetHtmldplan', '', $key);
+				if (is_numeric($id)) {
+					cache::delete($key);
+				}
+				continue;
+			}
+			if (strpos($key, 'widgetHtml') !== false) {
+				$id = str_replace('widgetHtml', '', $key);
+				if (is_numeric($id)) {
+					cache::delete($key);
+				}
+				continue;
+			}
+			if (strpos($key, 'cmd') !== false) {
+				$id = str_replace('cmd', '', $key);
+				if (is_numeric($id)) {
+					cache::delete($key);
+				}
+				continue;
+			}
+			preg_match_all('/dependancy(.*)/', $key, $matches);
+			if (isset($matches[1]) && isset($matches[1][0])) {
+				try {
+					$plugin = plugin::byId($matches[1][0]);
+					if (!is_object($plugin)) {
+						cache::delete($key);
+					}
+				} catch (Exception $e) {
+					cache::delete($key);
+				}
+			}
+		}
 	}
 
 	/*     * *********************Methode d'instance************************* */
@@ -228,10 +421,9 @@ class cache {
 		return utils::getJsonAttr($this->options, $_key, $_default);
 	}
 
-	public function setOptions($_key, $_value) {
+	public function setOptions($_key, $_value = null) {
 		$this->options = utils::setJsonAttr($this->options, $_key, $_value);
+		return $this;
 	}
 
 }
-
-?>

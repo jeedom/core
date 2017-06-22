@@ -217,24 +217,27 @@ class listener {
 
 	public function setId($id) {
 		$this->id = $id;
+		return $this;
 	}
 
 	public function setEvent($event) {
 		$this->event = json_encode($event, JSON_UNESCAPED_UNICODE);
+		return $this;
 	}
 
 	public function setClass($class) {
 		$this->class = $class;
+		return $this;
 	}
 
 	public function setFunction($function) {
 		$this->function = $function;
+		return $this;
 	}
 
 	public function setOption($option) {
 		$this->option = json_encode($option, JSON_UNESCAPED_UNICODE);
+		return $this;
 	}
 
 }
-
-?>

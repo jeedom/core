@@ -131,11 +131,11 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
       }
       $('#span_plugin_delete').empty().append('<a class="btn btn-danger btn-xs removePlugin" data-market_logicalId="' + data.id + '"><i class="fa fa-trash"></i> {{Supprimer}}</a> ');
       $('#span_plugin_doc').empty();
-      if(isset(data.info.doc) && data.info.doc != ''){
-        $('#span_plugin_doc').append('<a class="btn btn-primary btn-xs" target="_blank" href="'+data.info.doc+'"><i class="fa fa-book"></i> {{Documentation}}</a> ');
+      if(isset(data.documentation) && data.documentation != ''){
+        $('#span_plugin_doc').append('<a class="btn btn-primary btn-xs" target="_blank" href="'+data.documentation+'"><i class="fa fa-book"></i> {{Documentation}}</a> ');
       }
-      if(isset(data.info.changelog) && data.info.changelog != ''){
-        $('#span_plugin_doc').append('<a class="btn btn-primary btn-xs" target="_blank" href="'+data.info.changelog+'"><i class="fa fa-book"></i> {{Changelog}}</a> ');
+      if(isset(data.changelog) && data.changelog != ''){
+        $('#span_plugin_doc').append('<a class="btn btn-primary btn-xs" target="_blank" href="'+data.changelog+'"><i class="fa fa-book"></i> {{Changelog}}</a> ');
       }
       if(isset(data.info.display) && data.info.display != ''){
         $('#span_plugin_doc').append('<a class="btn btn-primary btn-xs" target="_blank" href="'+data.info.display+'"><i class="fa fa-book"></i> {{Détails}}</a> ');
@@ -152,7 +152,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
       if(isset(data.display) && data.display != ''){
         $('#div_configPanel').show();
         var config_panel_html = '<div class="form-group">';
-        config_panel_html += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Afficher le panel desktop}}</label>';
+        config_panel_html += '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6 control-label">{{Afficher le panel desktop}}</label>';
         config_panel_html += '<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">';
         config_panel_html += '<input type="checkbox" class="configKey tooltips" data-l1key="displayDesktopPanel" />';
         config_panel_html += '</div>';
@@ -163,7 +163,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
       if(isset(data.mobile) && data.mobile != ''){
         $('#div_configPanel').show();
         var config_panel_html = '<div class="form-group">';
-        config_panel_html += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Afficher le panel mobile}}</label>';
+        config_panel_html += '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6 control-label">{{Afficher le panel mobile}}</label>';
         config_panel_html += '<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">';
         config_panel_html += '<input type="checkbox" class="configKey tooltips" data-l1key="displayMobilePanel" />';
         config_panel_html += '</div>';
@@ -171,10 +171,38 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
         $('#div_plugin_panel').append(config_panel_html);
       }
 
-      initCheckBox();
+      $('#div_plugin_functionality').empty();
+      count = 0;
+      var config_panel_html = '<div class="row">';
+      config_panel_html += '<div class="col-sm-6">';
+      for(var i in data.functionality){
+        config_panel_html += '<div class="form-group">';
+        config_panel_html += '<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6 control-label">'+i+'</label>';
+        config_panel_html += '<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">';
+        if(data.functionality[i]){
+          config_panel_html += '<span class="label label-success">{{Oui}}</span>';
+          config_panel_html += '</div>';
+          config_panel_html += '<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Activer}}</label>';
+          config_panel_html += '<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">';
+          config_panel_html += '<input type="checkbox" class="configKey tooltips" data-l1key="functionality::'+i+'::enable" checked/>';
+          config_panel_html += '</div>';
+        }else{
+          config_panel_html += '<span class="label label-danger">{{Non}}</span>';
+          config_panel_html += '</div>';
+        }
+        config_panel_html += '</div>';
+        count++;
+        if(count == 4){
+         config_panel_html += '</div>';
+         config_panel_html += '<div class="col-sm-6">';
+       }
+     }
+     config_panel_html += '</div>';
+     config_panel_html += '</div>';
+     $('#div_plugin_functionality').append(config_panel_html);
 
-      $('#div_plugin_toggleState').empty();
-      if (data.checkVersion != -1) {
+     $('#div_plugin_toggleState').empty();
+     if (data.checkVersion != -1) {
        var html = '<form class="form-horizontal">';
        html += '<div class="form-group">';
        html += '<label class="col-sm-2 control-label">{{Statut}}</label>';
@@ -269,6 +297,18 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
     }
   });
   jeedom.config.load({
+    configuration: $('#div_plugin_functionality').getValues('.configKey')[0],
+    plugin: $('.li_plugin.active').attr('data-plugin_id'),
+    error: function (error) {
+      alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (data) {
+      $('#div_plugin_functionality').setValues(data, '.configKey');
+      modifyWithoutSave = false;
+      initExpertMode();
+    }
+  });
+  jeedom.config.load({
     configuration: $('#div_plugin_log').getValues('.configKey')[0],
     error: function (error) {
       alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
@@ -279,24 +319,6 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
       initExpertMode();
     }
   });
-  $('.slaveConfig').each(function(){
-    var slave_id = $(this).attr('data-slave_id');
-    jeedom.jeeNetwork.loadConfig({
-      configuration: $('#div_plugin_configuration .slaveConfig[data-slave_id='+slave_id+']').getValues('.slaveConfigKey')[0],
-      plugin: $('.li_plugin.active').attr('data-plugin_id'),
-      id: slave_id,
-      error: function (error) {
-        alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
-      },
-      success: function (data) {
-        $('#div_plugin_configuration .slaveConfig[data-slave_id='+slave_id+']').setValues(data, '.slaveConfigKey');
-        modifyWithoutSave = false;
-        initExpertMode();
-      }
-    });
-  })
-
-
 } else {
   $('#div_plugin_configuration').closest('.alert').hide();
 }
@@ -368,7 +390,7 @@ $("#bt_savePluginConfig").on('click', function (event) {
 });
 
 $('.displayStore').on('click', function () {
-  $('#md_modal').dialog({title: "{{Store}}"});
+  $('#md_modal').dialog({title: "{{Market}}"});
   $('#md_modal').load('index.php?v=d&modal=update.list&type=plugin&repo='+$(this).attr('data-repo')).dialog('open');
 });
 
@@ -395,6 +417,20 @@ $('#bt_savePluginPanelConfig').off('click').on('click',function(){
 });
 })
 
+$('#bt_savePluginFunctionalityConfig').off('click').on('click',function(){
+ jeedom.config.save({
+  configuration: $('#div_plugin_functionality').getValues('.configKey')[0],
+  plugin: $('.li_plugin.active').attr('data-plugin_id'),
+  error: function (error) {
+    alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
+  },
+  success: function () {
+    alert_div_plugin_configuration.showAlert({message: '{{Sauvegarde des fonctionalités effectuée}}', level: 'success'});
+    modifyWithoutSave = false;
+  }
+});
+})
+
 $('#bt_savePluginLogConfig').off('click').on('click',function(){
  jeedom.config.save({
   configuration: $('#div_plugin_log').getValues('.configKey')[0],
@@ -405,21 +441,6 @@ $('#bt_savePluginLogConfig').off('click').on('click',function(){
     alert_div_plugin_configuration.showAlert({message: '{{Sauvegarde de la configuration des logs effectuée}}', level: 'success'});
     modifyWithoutSave = false;
   }
-});
-
- $('#div_plugin_log .slaveConfig').each(function(){
-  var slave_id = $(this).attr('data-slave_id');
-  jeedom.jeeNetwork.saveConfig({
-    configuration: $('#div_plugin_log .slaveConfig[data-slave_id='+slave_id+']').getValues('.slaveConfigKey')[0],
-    id: slave_id,
-    error: function (error) {
-      alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
-    },
-    success: function () {
-      alert_div_plugin_configuration.showAlert({message: '{{Sauvegarde effectuée}}', level: 'success'});
-      modifyWithoutSave = false;
-    }
-  });
 });
 })
 
@@ -464,42 +485,6 @@ function savePluginConfig(_param) {
         });
       }
     }
-  });
-
-  $('#div_plugin_configuration .slaveConfig').each(function(){
-    var slave_id = $(this).attr('data-slave_id');
-    jeedom.jeeNetwork.saveConfig({
-      configuration: $('#div_plugin_configuration .slaveConfig[data-slave_id='+slave_id+']').getValues('.slaveConfigKey')[0],
-      plugin: $('.li_plugin.active').attr('data-plugin_id'),
-      id: slave_id,
-      error: function (error) {
-        alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
-      },
-      success: function () {
-        alert_div_plugin_configuration.showAlert({message: '{{Sauvegarde effectuée}}', level: 'success'});
-        modifyWithoutSave = false;
-        var postSave = $('.li_plugin.active').attr('data-plugin_id')+'_postSaveSlaveConfiguration';
-        if (typeof window[postSave] == 'function'){
-          window[postSave](slave_id);
-        }
-        if (isset(_param) && typeof _param.success == 'function'){
-          _param.success(slave_id);
-        }
-        if(!isset(_param) || !isset(_param.relaunchDeamon) || _param.relaunchDeamon){
-         jeedom.plugin.deamonStart({
-          id : $('.li_plugin.active').attr('data-plugin_id'),
-          slave_id: slave_id,
-          forceRestart: 1,
-          error: function (error) {
-            alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
-          },
-          success: function (data) {
-            $("#div_plugin_deamon").load('index.php?v=d&modal=plugin.deamon&plugin_id='+$('.li_plugin.active').attr('data-plugin_id'));
-          }
-        });
-       }
-     }
-   });
   });
 }
 

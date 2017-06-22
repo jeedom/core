@@ -10,12 +10,14 @@ if (!isConnect()) {
 <table class="table table-bordered table-condensed" id="table_scenarioSummary">
 	<thead>
 		<tr>
+			<th>{{ID}}</th>
 			<th>{{Scénario}}</th>
 			<th>{{Statut}}</th>
 			<th>{{Dernier lancement}}</th>
 			<th>{{Actif}}</th>
 			<th>{{Visible}}</th>
-			<th>{{Pas de log}}</th>
+			<th>{{Multi lancement}}</th>
+			<th>{{Log}}</th>
 			<th>{{Mode synchrone}}</th>
 			<th>{{Actions}}</th>
 		</tr>
@@ -44,7 +46,9 @@ if (!isConnect()) {
 				for(var i in data){
 					var tr = '<tr class="scenario" data-id="' + init(data[i].id) + '">';
 					tr += '<td>';
-					tr += '<span class="scenarioAttr" data-l1key="id" style="display:none;"></span>';
+					tr += '<span class="scenarioAttr" data-l1key="id"></span>';
+					tr += '</td>';
+					tr += '<td>';
 					tr += '<span class="scenarioAttr cursor bt_summaryGotoScenario" data-l1key="humanName"></span>';
 					tr += '</td>';
 					tr += '<td>';
@@ -55,7 +59,7 @@ if (!isConnect()) {
 						case 'on' :
 						tr += '<span class="label label-info" style="font-size : 1em;">{{Actif}}</span>';
 						break;
-						case 'in_progress' :
+						case 'in progress' :
 						tr += '<span class="label label-success" style="font-size : 1em;">{{En cours}}</span>';
 						break;
 						case 'stop' :
@@ -73,7 +77,14 @@ if (!isConnect()) {
 					tr += '<input type="checkbox" class="scenarioAttr" data-label-text="{{Visible}}" data-l1key="isVisible">';
 					tr += '</td>';
 					tr += '<td>';
-					tr += '<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="noLog">';
+					tr += '<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="allowMultiInstance">';
+					tr += '</td>';
+					tr += '<td>';
+					tr += '<select class="scenarioAttr form-control" data-l1key="configuration" data-l2key="logmode">';
+					tr += '<option value="default">{{Défaut}}</option>';
+					tr += '<option value="none">{{Aucun}}</option>';
+					tr += '<option value="realtime">{{Temps réel}}</option>';
+					tr += '</select>';
 					tr += '</td>';
 					tr += '<td>';
 					tr += '<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="syncmode">';
@@ -133,19 +144,19 @@ if (!isConnect()) {
 				});
 			}
 		});
-	}
+}
 
 
-	$('#bt_saveSummaryScenario').off().on('click',function(){
-		var scenarios = $('#table_scenarioSummary tbody .scenario').getValues('.scenarioAttr');
-		jeedom.scenario.saveAll({
-			scenarios : scenarios,
-			error: function (error) {
-				$('#div_alertScenarioSummary').showAlert({message: error.message, level: 'danger'});
-			},
-			success : function(data){
-				refreshScenarioSummary();
-			}
-		});
-	})
+$('#bt_saveSummaryScenario').off().on('click',function(){
+	var scenarios = $('#table_scenarioSummary tbody .scenario').getValues('.scenarioAttr');
+	jeedom.scenario.saveAll({
+		scenarios : scenarios,
+		error: function (error) {
+			$('#div_alertScenarioSummary').showAlert({message: error.message, level: 'danger'});
+		},
+		success : function(data){
+			refreshScenarioSummary();
+		}
+	});
+})
 </script>

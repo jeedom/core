@@ -11,15 +11,16 @@
 
 namespace Symfony\Component\ExpressionLanguage\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\ExpressionLanguage\Parser;
 use Symfony\Component\ExpressionLanguage\Lexer;
 use Symfony\Component\ExpressionLanguage\Node;
 
-class ParserTest extends \PHPUnit_Framework_TestCase
+class ParserTest extends TestCase
 {
     /**
      * @expectedException        \Symfony\Component\ExpressionLanguage\SyntaxError
-     * @expectedExceptionMessage Variable "foo" is not valid around position 1.
+     * @expectedExceptionMessage Variable "foo" is not valid around position 1 for expression `foo`.
      */
     public function testParseWithInvalidName()
     {
@@ -30,7 +31,7 @@ class ParserTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @expectedException        \Symfony\Component\ExpressionLanguage\SyntaxError
-     * @expectedExceptionMessage Variable "foo" is not valid around position 1.
+     * @expectedExceptionMessage Variable "foo" is not valid around position 1 for expression `foo`.
      */
     public function testParseWithZeroInNames()
     {

@@ -34,20 +34,23 @@ class plugin {
 	private $index;
 	private $display;
 	private $mobile;
-	private $allowRemote;
 	private $eventjs;
 	private $hasDependency;
 	private $maxDependancyInstallTime;
 	private $hasOwnDeamon;
 	private $issue = '';
+	private $changelog = '';
+	private $documentation = '';
 	private $info = array();
 	private $include = array();
+	private $functionality = array();
 	private static $_cache = array();
 	private static $_enable = null;
 
 	/*     * ***********************Méthodes statiques*************************** */
 
 	public static function byId($_id, $_translate = true) {
+		global $JEEDOM_INTERNAL_CONFIG;
 		if (is_string($_id) && isset(self::$_cache[$_id])) {
 			return self::$_cache[$_id];
 		}
@@ -76,17 +79,18 @@ class plugin {
 			$plugin->licence = (isset($data['licence'])) ? $data['licence'] : '';
 			$plugin->author = (isset($data['author'])) ? $data['author'] : '';
 			$plugin->installation = (isset($data['installation'])) ? $data['installation'] : '';
-			$plugin->allowRemote = (isset($data['allowRemote'])) ? $data['allowRemote'] : 0;
 			$plugin->hasDependency = (isset($data['hasDependency'])) ? $data['hasDependency'] : 0;
 			$plugin->hasOwnDeamon = (isset($data['hasOwnDeamon'])) ? $data['hasOwnDeamon'] : 0;
 			$plugin->maxDependancyInstallTime = (isset($data['maxDependancyInstallTime'])) ? $data['maxDependancyInstallTime'] : 30;
 			$plugin->eventjs = (isset($data['eventjs'])) ? $data['eventjs'] : 0;
-			$plugin->require = $data['require'];
-			$plugin->category = $data['category'];
+			$plugin->require = (isset($data['require'])) ? $data['require'] : '';
+			$plugin->category = (isset($data['category'])) ? $data['category'] : '';
 			$plugin->filepath = $_id;
 			$plugin->index = (isset($data['index'])) ? (string) $data['index'] : $data['id'];
 			$plugin->display = (isset($data['display'])) ? (string) $data['display'] : '';
 			$plugin->issue = (isset($data['issue'])) ? (string) $data['issue'] : '';
+			$plugin->changelog = (isset($data['changelog'])) ? (string) $data['changelog'] : '';
+			$plugin->documentation = (isset($data['documentation'])) ? (string) $data['documentation'] : '';
 
 			$plugin->mobile = '';
 			if (file_exists(dirname(__FILE__) . '/../../plugins/' . $data['id'] . '/mobile/html')) {
@@ -105,7 +109,11 @@ class plugin {
 			}
 		} else {
 			libxml_use_internal_errors(true);
-			$plugin_xml = @simplexml_load_file($_id);
+			$plugin_xml = simplexml_load_file($_id);
+			if (!$plugin_xml) {
+				throw new Exception('XML introuvable (chemin invalide) : ' . $_id);
+			}
+
 			if (!is_object($plugin_xml)) {
 				throw new Exception('Plugin introuvable (xml invalide) : ' . $_id . '. Description : ' . print_r(libxml_get_errors(), true));
 			}
@@ -118,10 +126,6 @@ class plugin {
 			$plugin->require = (string) $plugin_xml->require;
 			$plugin->installation = (string) $plugin_xml->installation;
 			$plugin->category = (string) $plugin_xml->category;
-			$plugin->allowRemote = 0;
-			if (isset($plugin_xml->allowRemote)) {
-				$plugin->allowRemote = $plugin_xml->allowRemote;
-			}
 			$plugin->hasDependency = 0;
 			if (isset($plugin_xml->hasDependency)) {
 				$plugin->hasDependency = $plugin_xml->hasDependency;
@@ -164,6 +168,26 @@ class plugin {
 		if ($_translate) {
 			$plugin->description = __($plugin->description, $_id);
 			$plugin->installation = __($plugin->installation, $_id);
+		}
+
+		$plugin->functionality['interact'] = method_exists($plugin->getId(), 'interact');
+		$plugin->functionality['cron'] = method_exists($plugin->getId(), 'cron');
+		$plugin->functionality['cron5'] = method_exists($plugin->getId(), 'cron5');
+		$plugin->functionality['cron15'] = method_exists($plugin->getId(), 'cron15');
+		$plugin->functionality['cron30'] = method_exists($plugin->getId(), 'cron30');
+		$plugin->functionality['cronHourly'] = method_exists($plugin->getId(), 'cronHourly');
+		$plugin->functionality['cronDaily'] = method_exists($plugin->getId(), 'cronDaily');
+
+		if (!isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$plugin->category])) {
+			foreach ($JEEDOM_INTERNAL_CONFIG['plugin']['category'] as $key => $value) {
+				if (!isset($value['alias'])) {
+					continue;
+				}
+				if (in_array($plugin->category, $value['alias'])) {
+					$plugin->category = $key;
+					break;
+				}
+			}
 		}
 
 		self::$_cache[$_id] = $plugin;
@@ -270,6 +294,9 @@ class plugin {
 	public static function cron() {
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'cron')) {
+				if (config::byKey('functionality::cron::enable', $plugin->getId(), 1) == 0) {
+					continue;
+				}
 				$plugin_id = $plugin->getId();
 				try {
 					$plugin_id::cron();
@@ -285,6 +312,9 @@ class plugin {
 	public static function cron5() {
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'cron5')) {
+				if (config::byKey('functionality::cron5::enable', $plugin->getId(), 1) == 0) {
+					continue;
+				}
 				$plugin_id = $plugin->getId();
 				try {
 					$plugin_id::cron5();
@@ -300,6 +330,9 @@ class plugin {
 	public static function cron15() {
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'cron15')) {
+				if (config::byKey('functionality::cron15::enable', $plugin->getId(), 1) == 0) {
+					continue;
+				}
 				$plugin_id = $plugin->getId();
 				try {
 					$plugin_id::cron15();
@@ -315,6 +348,9 @@ class plugin {
 	public static function cron30() {
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'cron30')) {
+				if (config::byKey('functionality::cron30::enable', $plugin->getId(), 1) == 0) {
+					continue;
+				}
 				$plugin_id = $plugin->getId();
 				try {
 					$plugin_id::cron30();
@@ -330,6 +366,9 @@ class plugin {
 	public static function cronDaily() {
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'cronDaily')) {
+				if (config::byKey('functionality::cronDaily::enable', $plugin->getId(), 1) == 0) {
+					continue;
+				}
 				$plugin_id = $plugin->getId();
 				try {
 					$plugin_id::cronDaily();
@@ -345,6 +384,9 @@ class plugin {
 	public static function cronHourly() {
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'cronHourly')) {
+				if (config::byKey('functionality::cronHourly::enable', $plugin->getId(), 1) == 0) {
+					continue;
+				}
 				$plugin_id = $plugin->getId();
 				try {
 					$plugin_id::cronHourly();
@@ -403,7 +445,7 @@ class plugin {
 				}
 			} else if ($dependancy_info['state'] == 'in_progress' && $dependancy_info['duration'] > $plugin->getMaxDependancyInstallTime()) {
 				if (isset($return['progress_file']) && file_exists($return['progress_file'])) {
-					shell_exec('sudo rm ' . $return['progress_file']);
+					shell_exec('rm ' . $return['progress_file']);
 				}
 				config::save('deamonAutoMode', 0, $plugin->getId());
 				log::add($plugin->getId(), 'error', __('Attention l\'installation des dépendances ont dépassées le temps maximum autorisé : ', __FILE__) . $plugin->getMaxDependancyInstallTime() . 'min');
@@ -418,8 +460,28 @@ class plugin {
 
 	/*     * *********************Méthodes d'instance************************* */
 
+	public function report($_format = 'pdf', $_parameters = array()) {
+		if ($this->getDisplay() == '') {
+			throw new Exception(__('Vous ne pouvez faire un report sur un plugin sans panel', __FILE__));
+		}
+		if (!isset($_parameters['user'])) {
+			$users = user::searchByRight('admin');
+			if (count($users) == 0) {
+				throw new Exception(__('Aucun utilisateur admin trouvé pour la génération du rapport', __FILE__));
+			}
+			$user = $users[0];
+		} else {
+			$user = user::byId($_parameters['user']);
+		}
+		$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=' . $this->getDisplay();
+		$url .= '&m=' . $this->getId();
+		$url .= '&report=1';
+		$url .= '&auth=' . $user->getHash();
+		return report::generate($url, 'plugin', $this->getId(), $_format);
+	}
+
 	public function isActive() {
-		if (self::$_enable == null) {
+		if (self::$_enable === null) {
 			self::$_enable = config::getPluginEnable();
 		}
 		if (isset(self::$_enable[$this->id])) {
@@ -501,8 +563,12 @@ class plugin {
 		}
 		return $return;
 	}
-
-	public function dependancy_install($_force = true) {
+	/**
+	 *
+	 * @return null
+	 * @throws Exception
+	 */
+	public function dependancy_install() {
 		$plugin_id = $this->getId();
 		if ($this->getHasDependency() != 1 || !method_exists($plugin_id, 'dependancy_install')) {
 			return;
@@ -525,11 +591,24 @@ class plugin {
 				throw new Exception(__('Les dépendances d\'un autre plugin sont déjà en cours, veuillez attendre qu\'elles soient finies : ', __FILE__) . $plugin->getId());
 			}
 		}
-		message::add($plugin_id, __('Attention, installation des dépendances lancée', __FILE__));
-		$this->deamon_stop();
 		config::save('lastDependancyInstallTime', date('Y-m-d H:i:s'), $plugin_id);
-		$plugin_id::dependancy_install();
-		sleep(1);
+		$cmd = $plugin_id::dependancy_install();
+		if (is_array($cmd) && count($cmd) == 2) {
+			$script = str_replace('#stype#', system::get('type'), $cmd['script']);
+			$script_array = explode(' ', $script);
+			if (file_exists($script_array[0])) {
+				if (jeedom::isCapable('sudo')) {
+					$this->deamon_stop();
+					message::add($plugin_id, __('Attention, installation des dépendances lancée', __FILE__));
+					exec(system::getCmdSudo() . '/bin/bash ' . $script . ' >> ' . $cmd['log'] . ' 2>&1 &');
+					sleep(1);
+				} else {
+					log::add($plugin_id, 'error', __('Veuillez executer le script : ', __FILE__) . realpath($script));
+				}
+			} else {
+				log::add($plugin_id, 'error', __('Aucun script ne correspond à votre type de linux : ', __FILE__) . $cmd['script'] . __(' avec #stype# : ', __FILE__) . system::get('type'));
+			}
+		}
 		$cache = cache::byKey('dependancy' . $this->getID());
 		$cache->remove();
 		return;
@@ -599,7 +678,6 @@ class plugin {
 					$info = $inprogress->getValue(array('state' => 0, 'datetime' => strtotime('now')));
 					if ($info['state'] == 1 && (strtotime('now') - 45) <= $info['datetime']) {
 						throw new Exception(__('Vous devez attendre au moins 45s entre 2 lancements du démon', __FILE__));
-						return;
 					}
 					cache::set('deamonStart' . $this->getId() . 'inprogress', array('state' => 1, 'datetime' => strtotime('now')));
 					config::save('lastDeamonLaunchTime', date('Y-m-d H:i:s'), $plugin_id);
@@ -636,9 +714,6 @@ class plugin {
 		}
 		$alreadyActive = config::byKey('active', $this->getId(), 0);
 		if ($_state == 1) {
-			if (config::byKey('jeeNetwork::mode') != 'master' && $this->getAllowRemote() != 1) {
-				throw new Exception(__('Vous ne pouvez pas activer ce plugin sur un Jeedom configuré en esclave', __FILE__));
-			}
 			config::save('active', $_state, $this->getId());
 		}
 		$deamonAutoState = config::byKey('deamonAutoMode', $this->getId(), 1);
@@ -701,6 +776,7 @@ class plugin {
 				if ($alreadyActive == 1) {
 					$out = $this->callInstallFunction('remove');
 				}
+				rrmdir(jeedom::getTmpFolder('openvpn'));
 			}
 			if (isset($out) && trim($out) != '') {
 				log::add($this->getId(), 'info', "Installation/remove/update result : " . $out);
@@ -828,9 +904,6 @@ class plugin {
 	}
 
 	public function getInfo($_name = '', $_default = '') {
-		if ($_name == 'doc' && file_exists(dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/doc/' . config::byKey('language', 'core', 'fr_FR') . '/index.html')) {
-			return 'plugins/' . $this->getId() . '/doc/' . config::byKey('language', 'core', 'fr_FR') . '/index.html';
-		}
 		if (count($this->info) == 0) {
 			$update = update::byLogicalId($this->id);
 			if (is_object($update)) {
@@ -884,6 +957,7 @@ class plugin {
 
 	public function setDisplay($display) {
 		$this->display = $display;
+		return $this;
 	}
 
 	public function getMobile() {
@@ -892,14 +966,7 @@ class plugin {
 
 	public function setMobile($mobile) {
 		$this->mobile = $mobile;
-	}
-
-	public function getAllowRemote() {
-		return $this->allowRemote;
-	}
-
-	public function setAllowRemote($allowRemote) {
-		$this->allowRemote = $allowRemote;
+		return $this;
 	}
 
 	public function getEventjs() {
@@ -908,6 +975,7 @@ class plugin {
 
 	public function setEventjs($eventjs) {
 		$this->eventjs = $eventjs;
+		return $this;
 	}
 
 	public function getHasDependency() {
@@ -916,6 +984,7 @@ class plugin {
 
 	public function setHasDependency($hasDependency) {
 		$this->hasDependency = $hasDependency;
+		return $this;
 	}
 
 	public function getHasOwnDeamon() {
@@ -924,6 +993,7 @@ class plugin {
 
 	public function setHasOwnDeamony($hasOwnDeamon) {
 		$this->hasOwnDeamon = $hasOwnDeamon;
+		return $this;
 	}
 
 	public function getMaxDependancyInstallTime() {
@@ -932,8 +1002,9 @@ class plugin {
 
 	public function setMaxDependancyInstallTime($maxDependancyInstallTime) {
 		$this->maxDependancyInstallTime = $maxDependancyInstallTime;
+		return $this;
 	}
-	
+
 	public function getIssue() {
 		return $this->issue;
 	}
@@ -943,6 +1014,31 @@ class plugin {
 		return $this;
 	}
 
-}
+	public function getChangelog() {
+		if ($this->changelog == '') {
+			return $this->getInfo('changelog');
+		}
+		return $this->changelog;
+	}
 
-?>
+	public function setChangelog($changelog) {
+		$this->changelog = $changelog;
+		return $this;
+	}
+
+	public function getDocumentation() {
+		if ($this->documentation == '') {
+			if (file_exists(dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/doc/' . config::byKey('language', 'core', 'fr_FR') . '/index.html')) {
+				return 'plugins/' . $this->getId() . '/doc/' . config::byKey('language', 'core', 'fr_FR') . '/index.html';
+			}
+			return $this->getInfo('doc');
+		}
+		return $this->documentation;
+	}
+
+	public function setDocumentation($documentation) {
+		$this->documentation = $documentation;
+		return $this;
+	}
+
+}

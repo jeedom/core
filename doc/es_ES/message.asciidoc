@@ -1,8 +1,8 @@
-= Centro de mensajes
+= Centre des messages
 
 El centro de mensajes reúne todos los mensajes importantes que necesita mirar.
 
-Es accesible sólo cuando hay mensajes, haciendo clic en el número de mensajes: 
+Il n'est accessible que lorsqu'il y a des messages en cliquant sur le nombre de messages : 
 
 image::../images/message1.png[]
 
@@ -10,9 +10,9 @@ Aquí un ejemplo:
 
 image::../images/message.png[]
 
-Es muy simple. Muestra la fecha y hora del mensaje, el plugin que lo ha emitido y el mensaje en cuestión. Se puede, pulsando el botón al principio de la línea de un mensaje, borrar el mensaje en cuestión (volverá si el problema sigue siendo relevante).
+Il est assez simple. Il vous montre la date et l'heure du message, le plugin qui l'a émis et le message en question. Vous pouvez, en appuyant sur le bouton au tout début de la ligne d'un message, supprimer le message en question (il reviendra si le problème est toujours d'actualité).
 
 En la parte superior, encontramos a un selector de filtro de mensajes en un plugin en particular y a la derecha un botón para purgar todos los mensajes.
 
 [TIP]
-Cuando tienes un error en el centro de mensajes, primero trate de eliminar el mensaje y luego ver si el error vuelve a producirse antes de ponerse en contacto con soporte. A veces (como en el pantallazo aquí) sólo sea debido a un problema de conexión de red.
+Lorsque vous avez une erreur dans le centre des messages, essayez d'abord de supprimer le message puis voir si l'erreur revient avant de contacter le support. Il arrive (comme sur la capture ici) que ce soit juste dû à un souci de connexion réseau.

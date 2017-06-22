@@ -2,7 +2,7 @@
 
 Hier befindet sich die Mehrheit der Konfigurationsparameter. Obwohl viele standardmäßig vorkonfiguriert sind.
 
-Die Seite ist über Einstellungen -> Konfiguration erreichbar : 
+La page est accessible par Administration -> Configuration : 
 
 image::../images/administration.png[]
 
@@ -15,10 +15,10 @@ image::../images/administration1.png[]
 
 Diese Registerkarte enthält allgemeine Informationen zu Jeedom : 
 
-* *Namen von Ihrem Jeedom* : kann in den Szenarien wieder verwendet werden oder zum identifizieren eines Backups
+* *Name von Ihrem Jeedom* : kann in den Szenarien wieder verwendet werden oder zum identifizieren eines Backups
 * *API Schlüssel* : Ihr API-Schlüssel, wird verwendet für jede Anfrage zur Jeedom-API  
-* *Clef API Pro* : utilisé pour communiquer avec le systeme de gestion de parc
-* *Systeme* : Zeigt den Hardwaretyp an
+* *Clef API Pro* : utilisée pour communiquer avec le système de gestion de parc
+* *System* : Zeigt den Hardwaretyp an
 * *Installationsschlüssel* : Hardware-Schlüssel von Ihrem Jeedom auf dem Markt. Wenn Ihr Jeedom nicht in der Liste Ihrer Jeedom auf dem Markt erscheint, ist es ratsam auf diese Schaltfläche zu klicken
 * *Sprache* : Ihre Sprache in Jeedom
 * *Cache Verfallszeit (Stunde)* : Lebensdauer der PHP-Sitzungen es wird er geraten, dort nicht zu ändern
@@ -61,10 +61,8 @@ Das ist ein sehr wichtiger Teil in Jeedom, man muss ihn unbedingt richtig konfig
 ** *Protokolle* : verwendetes Protokoll für den Zugriff von außen 
 ** *URL oder IP Adresse* : wenn eine externe Adresse oder IP fest sein soll
 ** *Complément (exemple : /jeedom)* :  le fragment d'URL complémentaire (type /jeedom). Pour savoir si vous avez besoin de définir une valeur ici, regardez si quand vous vous connectez à Jeedom vous devez renseigner /jeedom après l'IP
-** *Port* : Der Port, im allgemeinen 80. Achtung, den Port hier zu ändern, ändert tatsächlich nicht den Jeedom Port, der wird derselbe bleiben
-** *Status* : Zeigt an, ob die externe Netzwerkkonfiguration korrekt ist
 * *Erweiterte Verwaltung* : abhängig von der Kompatibilität ihrer Hardware kann es möglicherweise nicht angezeigt werden
-** *Deaktivieren der Jeedom Netzwerkverwaltung* : giebt an ob Jeedom das Netzwerk überwachen soll  (ist zu Aktivieren, wenn Jeedom mit einem Netzwerk verbunden ist)
+** *Deaktivieren der Jeedom Netzwerkverwaltung* : gibt an ob Jeedom das Netzwerk überwachen soll  (ist zu Aktivieren, wenn Jeedom mit einem Netzwerk verbunden ist)
 * *Markt Proxy* : erlaubt einen entfernten Zugang zu Ihrem Jeedom ohne ein DNS, eine feste IP oder offene Ports auf Ihrem System
 ** *Die Jeedom DNS benutzen* : aktive Jeedom DNS (Achtung, das erfordert mindestens ein Servicepack)
 ** *DNS Status* : der DNS-http-Status
@@ -74,7 +72,7 @@ Das ist ein sehr wichtiger Teil in Jeedom, man muss ihn unbedingt richtig konfig
 Wenn Sie den HTTPS-Port haben, ist der Port 443 (Standard) und der HTTP-Port ist standardmäßig 80
 
 [IMPORTANT]
-Cette partie est juste là pour expliquer à Jeedom son environnement : une modification du port ou de l'IP ici ne changera pas le port ou l'IP de Jeedom. Pour cela il faut se connecter en SSH et éditer le fichier /etc/network/interfaces pour l'IP et les fichiers etc/nginx/sites-available/default et etc/nginx/sites-available/default_ssl (pour le HTTPS). En cas de mauvaise manipulation de votre Jeedom, l'équipe Jeedom ne pourra être tenue responsable et pourra refuser toute demande de support.
+Cette partie est juste là pour expliquer à Jeedom son environnement : une modification du port ou de l'IP ici ne changera pas le port ou l'IP de Jeedom. Pour cela il faut se connecter en SSH et éditer le fichier /etc/network/interfaces pour l'IP et les fichiers etc/nginx/sites-available/default et etc/nginx/sites-available/default_ssl (pour le HTTPS). En cas de mauvaise manipulation de votre Jeedom, l'équipe Jeedom ne pourra être tenue pour responsable et pourra refuser toute demande de support.
 
 [NOTE]
 Sie können link:http://blog.domadoo.fr/2014/10/15/acceder-depuis-lexterieur-jeedom-en-https[hier] eine Tutoriel sehen, wie ein selbst signiertes HTTPS Zertifikat eingerichtet wird
@@ -86,11 +84,11 @@ Wenn Sie die DNS-Jeedom betreiben können, betrachten Sie die Konfiguration der 
 
 Die farbliche Kennzeichnung der Widgets erfolgt entsprechend der Kategorie des Widgets, die in der Konfiguration der einzelnen Module definiert ist (siehe Plugin Z-Wave, RFXCOM... etc.). Die Kategorien umfassen Heizung, Licht, Automation etc....  
 
-Für jede Kategorie, können wir eine andere Farbe zwischen der Desktop-Version und Mobile-Version wählen. Außerdem gibt es zwei Arten von Farben, Widget Hintergrundfarben  und Befehls Farbe, wenn das Widget erfolgt schrittweise Typ, z.B. Beleuchtung, Jalousien, Temperaturen.
+Für jede Kategorie, können wir eine andere Farbe zwischen der Desktop-Version und Mobile-Version wählen. Außerdem gibt es zwei Arten von Farben, Widget Hintergrundfarben  und Befehls Farbe, wenn das Widget erfolgt schrittweise Typ, zB Beleuchtung, Jalousien, Temperaturen.
 
 image::../images/display6.png[]
 
-Durch Klick auf die Farbe öffnet sich ein Fenster, in dem Sie die Farbe wählen können.
+En cliquant sur la couleur une fenêtre s'ouvre, permettant de choisir sa couleur.
 
 image::../images/display7.png[]
 
@@ -99,7 +97,7 @@ Sie können auch hier die Transparenz der Widgets allgemein konfigurieren (das w
 [TIP]
 Vergessen Sie nicht, nach jeder Veränderung zu speichern.
 
-==  Befehle Konfigurieren
+==  Befehle Konfiguration
 
 image::../images/administration4.png[]
 
@@ -153,7 +151,7 @@ Das Depot ist ein Internet-Speicherplatz (und Service), um Backups zu speichern,
 
 ==== Markt
 
-Dépot servant à reliéer Jeedom au market, il est vivement conseillé d'utiliser ce dépot. Attention toute demande de support pourra être refusée si vous utilisé un autre de dépot que celui-ci.
+Aufbewahrungsort, der dazu dient, Jeedom mit dem Markt zu verbinden, es wird sehr geraten, diesen Ort zu benutzen. Achtung, es kann jede Supportanfrage abgelehnt werden, wenn Sie einen anderen Aufbewahrungsort wie diesen benutzt.
 
 image::../images/administration17.png[]
 
@@ -163,42 +161,46 @@ image::../images/administration17.png[]
 
 ==== Dateien
 
-Depot aktivieren, zum versenden von Plugins als Dateien
+Depot aktivieren, zum versenden von Plugins als Dateien.
 
 image::../images/administration15.png[]
 
 ==== Github
 
-Depot, die dazu dient, Jeedom mit Github zu verbinden
+Depot, das dazu dient, Jeedom mit Github zu verbinden
 
 image::../images/administration16.png[]
 
-* *Token* : Token pour l'accès au dépot privé
-* *Utilisateur ou organisation du dépot pour le core Jeedom*
-* *Nom du dépôt pour le core Jeedom*
-* *Branche pour le core Jeedom*
+* *Token* : Token für den Zugriff auf den privaten Aufbewahrungsort
+* *Benutzer oder Organisation des Aufbewahrungsorts für den Jeedom Kern* 
+* *Name vom Aufbewahrungsort für den den Jeedom Kern*
+* *Zweig für den Jeedom Kern*
 
 ==== Samba
 
-Dépot permettant d'envoyer automatique un backup de jeedom sur un partage samba (ex NAS Synology)
+Dépôt permettant d'envoyer automatiquement un backup de Jeedom sur un partage Samba (ex NAS Synology).
 
 image::../images/administration18.png[]
 
 * *[Backup] IP* : IP des Samba Servers
 * *[Backup] Benutzer* : Benutzernamen für die Verbindung (anonyme Verbindungen sind nicht möglich)
 * *[Backup] Passwort* : Benutzerpasswort
-* *[Backup] Partage* : Chemin du partage (attention à bien s'arreter au niveau du partage)
-* *[Backup] Chemin* : Chemin dans le partage (à mettre en relatif), celui-ci doit exister
+* *[Backup] Partage* : chemin du partage (attention à bien s'arrêter au niveau du partage)
+* *[Backup] Chemin* : chemin dans le partage (à mettre en relatif), celui-ci doit exister
+
+[NOTE]
+Si le chemin d'accès à votre dossier de sauvegarde samba est : \\192.168.0.1\Sauvegardes\Domotique\Jeedom
+Alors IP = 192.168.0.1 , Partage = //192.168.0.1/Sauvegardes , Chemin = Domotique/Jeedom
 
 [IMPORTANT]
 Es wir notwendig sein, das sie das smbclient Software-Paket installieren, damit das Depot funktioniert
 
 [IMPORTANT]
-Jeedom doit être le seul à écrire dans ce dossier et il doit etre vide par defaut (c'est à dire avant la configuration et l'envoi du premier backup le dossier ne doit contenir aucun fichier ou dossier)
+Jeedom doit être le seul à écrire dans ce dossier et il doit être vide par défaut (c'est à dire avant la configuration et l'envoi du premier backup, le dossier ne doit contenir aucun fichier ou dossier).
 
 ==== URL
 
 image::../images/administration19.png[]
 
-* *Jeedom Core URL*
-* *Jeedom Core Version URL*
+* *URL Jeedom Kern*
+* *URL Jeedom Kern Version*

@@ -59,6 +59,7 @@ jeedom.view.toHtml = function (_params) {
     var paramsSpecifics = {
         pre_success: function (data) {
             result = jeedom.view.handleViewAjax({view: data.result});
+            result.raw = data.result;
             data.result = result;
             return data;
         }
@@ -84,12 +85,10 @@ jeedom.view.handleViewAjax = function (_params) {
     var result = {html: '', scenario: [], cmd: [], eqLogic: []};
     for (var i in _params.view.viewZone) {
         var viewZone = _params.view.viewZone[i];
-        if ($.mobile) {
-            result.html += '<div>';
-        }else{
-            result.html += '<div class="col-xs-'+init(viewZone.configuration.zoneCol,12)+'">';
-        }
-        result.html += '<legend style="color : #716b7a">' + viewZone.name + '</legend>';
+        
+        result.html += '<div class="col-xs-12 col-sm-'+init(viewZone.configuration.zoneCol,12)+'">';
+        
+        result.html += '<legend class="div_viewZone" style="color : #716b7a" data-zone_id="' + viewZone.id + '">' + viewZone.name + '</legend>';
         var div_id = 'div_viewZone' + viewZone.id + Date.now();
         /*         * *****************viewZone widget***************** */
         if (viewZone.type == 'widget') {
@@ -100,23 +99,22 @@ jeedom.view.handleViewAjax = function (_params) {
                 result[viewData.type].push(viewData.id);
             }
             result.html += '</div>';
-        }
-        /*         * *****************viewZone graph***************** */
-        if (viewZone.type == 'graph') {
+        }else if (viewZone.type == 'graph') {
             result.html += '<div id="' + div_id + '" class="chartContainer">';
             result.html += '<script>';
             for (var j in viewZone.viewData) {
                 var viewData = viewZone.viewData[j];
                 var configuration = json_encode(viewData.configuration);
-                console.log(configuration);
                 result.html += 'jeedom.history.drawChart({cmd_id : ' + viewData.link_id + ',el : "' + div_id + '",dateRange : "' + viewZone.configuration.dateRange + '",option : jQuery.parseJSON("' + configuration.replace(/\"/g, "\\\"") + '")});';
             }
             result.html += '</script>';
             result.html += '</div>';
-        }
-        result.html += '</div>';
-    }
-    return result;
+        }else if (viewZone.type == 'table') {
+           result.html += viewZone.html;; 
+       }
+       result.html += '</div>';
+   }
+   return result;
 }
 
 

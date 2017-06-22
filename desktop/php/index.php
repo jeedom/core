@@ -1,13 +1,10 @@
 <?php
 include_file('core', 'authentification', 'php');
 global $JEEDOM_INTERNAL_CONFIG;
-$configs = config::byKeys(array('jeeNetwork::mode', 'enableCustomCss', 'language', 'jeedom::firstUse', 'rights::enable'));
+$configs = config::byKeys(array('enableCustomCss', 'language', 'jeedom::firstUse'));
 if (isConnect()) {
-	if ($configs['jeeNetwork::mode'] == 'master') {
-		$homePage = explode('::', $_SESSION['user']->getOptions('homePage', 'core::dashboard'));
-	} else {
-		$homePage = array('core', 'plugin');
-	}
+	$homePage = explode('::', $_SESSION['user']->getOptions('homePage', 'core::dashboard'));
+
 	if (count($homePage) == 2) {
 		if ($homePage[0] == 'core') {
 			$homeLink = 'index.php?v=d&p=' . $homePage[1];
@@ -52,9 +49,9 @@ if (count($plugins_list) > 0) {
 				$plugin = $pluginList;
 				$title = ucfirst($plugin->getName()) . ' - Jeedom';
 			}
-			$plugin_menu .= '<li><a href="index.php?v=d&m=' . $pluginList->getId() . '&p=' . $pluginList->getIndex() . '"><img class="img-responsive" style="width : 20px;display:inline-block;" src="' . $pluginList->getPathImgIcon() . '" /> ' . $pluginList->getName() . '</a></li>';
+			$plugin_menu .= '<li style="padding-right:10px"><a href="index.php?v=d&m=' . $pluginList->getId() . '&p=' . $pluginList->getIndex() . '"><img class="img-responsive" style="width : 20px;display:inline-block;" src="' . $pluginList->getPathImgIcon() . '" /> ' . $pluginList->getName() . '</a></li>';
 			if ($pluginList->getDisplay() != '' && config::bykey('displayDesktopPanel', $pluginList->getId(), 0) != 0) {
-				$panel_menu .= '<li><a href="index.php?v=d&m=' . $pluginList->getId() . '&p=' . $pluginList->getDisplay() . '"><img class="img-responsive" style="width : 20px;display:inline-block;" src="' . $pluginList->getPathImgIcon() . '" /> ' . $pluginList->getName() . '</a></li>';
+				$panel_menu .= '<li style="padding-right:10px"><a href="index.php?v=d&m=' . $pluginList->getId() . '&p=' . $pluginList->getDisplay() . '"><img class="img-responsive" style="width : 20px;display:inline-block;" src="' . $pluginList->getPathImgIcon() . '" /> ' . $pluginList->getName() . '</a></li>';
 			}
 			if ($pluginList->getEventjs() == 1) {
 				$eventjs_plugin[] = $pluginList->getId();
@@ -104,7 +101,6 @@ include_file('core', 'core', 'css');
 include_file('3rdparty', 'jquery.toastr/jquery.toastr.min', 'css');
 include_file('3rdparty', 'jquery.ui/jquery-ui-bootstrap/jquery-ui', 'css');
 include_file('3rdparty', 'jquery.utils/jquery.utils', 'css');
-include_file('3rdparty', 'bootstrap.slider/css/slider', 'css');
 include_file('3rdparty', 'jquery/jquery.min', 'js');
 ?>
 	<script>
@@ -117,6 +113,7 @@ include_file('3rdparty', 'jquery/jquery.min', 'js');
 		})
 	</script>
 	<?php
+include_file('3rdparty', 'font-noto/font-noto', 'css');
 include_file('3rdparty', 'jquery.utils/jquery.utils', 'js');
 include_file('core', 'core', 'js');
 include_file('3rdparty', 'bootstrap/bootstrap.min', 'js');
@@ -131,7 +128,6 @@ include_file('3rdparty', 'highstock/modules/exporting', 'js');
 include_file('desktop', 'utils', 'js');
 include_file('3rdparty', 'jquery.toastr/jquery.toastr.min', 'js');
 include_file('3rdparty', 'jquery.at.caret/jquery.at.caret.min', 'js');
-include_file('3rdparty', 'bootstrap.slider/js/bootstrap-slider', 'js');
 include_file('3rdparty', 'jwerty/jwerty', 'js');
 include_file('3rdparty', 'jquery.packery/jquery.packery', 'js');
 include_file('3rdparty', 'jquery.lazyload/jquery.lazyload', 'js');
@@ -157,8 +153,8 @@ include_file('3rdparty', 'datetimepicker/jquery.datetimepicker', 'js');
 include_file('3rdparty', 'datetimepicker/jquery.datetimepicker', 'css');
 include_file('3rdparty', 'jquery.cron/jquery.cron.min', 'js');
 include_file('3rdparty', 'jquery.cron/jquery.cron', 'css');
-include_file('3rdparty', 'bootstrap-switch/bootstrap-switch.min', 'js');
-include_file('3rdparty', 'bootstrap-switch/bootstrap-switch.min', 'css');
+include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'css');
+include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'js');
 if ($configs['enableCustomCss'] == 1) {
 	if (file_exists(dirname(__FILE__) . '/../custom/custom.css')) {
 		include_file('desktop', '', 'custom.css');
@@ -219,7 +215,7 @@ if (!isConnect()) {
 		}
 	}
 	?>
-		<header class="navbar navbar-fixed-top navbar-default">
+		<header class="navbar navbar-fixed-top navbar-default reportModeHidden" style="margin-bottom: 0px !important;">
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<a class="navbar-brand" href="<?php echo $homeLink; ?>">
@@ -233,233 +229,146 @@ if (!isConnect()) {
 					</button>
 				</div>
 				<nav class="navbar-collapse collapse">
-
 					<ul class="nav navbar-nav">
-						<?php if ($configs['jeeNetwork::mode'] == 'master') {
-		?>
-							<li class="dropdown cursor">
-								<a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-home"></i> {{Accueil}} <b class="caret"></b></a>
-								<ul class="dropdown-menu">
-									<?php if (hasRight('dashboardview')) {
-			?>
-										<li class="dropdown-submenu">
-											<a data-toggle="dropdown" id="bt_gotoDashboard" href="index.php?v=d&p=dashboard"><i class="fa fa-dashboard"></i> {{Dashboard}}</a>
-											<ul class="dropdown-menu">
-												<?php
+						<li class="dropdown cursor">
+							<a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-home"></i> <span class="hidden-xs hidden-sm hidden-md">{{Accueil}}</span> <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+
+								<li class="dropdown-submenu">
+									<a data-toggle="dropdown" id="bt_gotoDashboard" href="index.php?v=d&p=dashboard"><i class="fa fa-dashboard"></i> {{Dashboard}}</a>
+									<ul class="dropdown-menu">
+										<?php
 foreach (object::buildTree(null, true) as $object_li) {
-				echo '<li><a href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '">' . $object_li->getHumanName(true) . '</a></li>';
-			}
-			?>
-											</ul>
-										</li>
+		echo '<li><a href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '">' . $object_li->getHumanName(true) . '</a></li>';
+	}
+	?>
+									</ul>
+								</li>
+								<li class="dropdown-submenu">
+									<a data-toggle="dropdown" id="bt_gotoView"><i class="fa fa-picture-o"></i> {{Vue}}</a>
+									<ul class="dropdown-menu">
 										<?php
-}
-		if (hasRight('viewview')) {
-			?>
-										<li class="dropdown-submenu">
-											<a data-toggle="dropdown" id="bt_gotoView"><i class="fa fa-picture-o"></i> {{Vue}}</a>
-											<ul class="dropdown-menu">
-												<?php
 foreach (view::all() as $view_menu) {
-				echo '<li><a href="index.php?v=d&p=view&view_id=' . $view_menu->getId() . '">' . trim($view_menu->getDisplay('icon')) . ' ' . $view_menu->getName() . '</a></li>';
-			}
-			?>
-											</ul>
-										</li>
+		echo '<li><a href="index.php?v=d&p=view&view_id=' . $view_menu->getId() . '">' . trim($view_menu->getDisplay('icon')) . ' ' . $view_menu->getName() . '</a></li>';
+	}
+	?>
+									</ul>
+								</li>
+								<li class="dropdown-submenu">
+									<a data-toggle="dropdown" id="bt_gotoPlan"><i class="fa fa-paint-brush"></i> {{Design}}</a>
+									<ul class="dropdown-menu">
 										<?php
-}
-		if (hasRight('planview')) {
-			?>
-										<li class="dropdown-submenu">
-											<a data-toggle="dropdown" id="bt_gotoPlan"><i class="fa fa-paint-brush"></i> {{Design}}</a>
-											<ul class="dropdown-menu">
-												<?php
 foreach (planHeader::all() as $plan_menu) {
-				echo '<li><a href="index.php?v=d&p=plan&plan_id=' . $plan_menu->getId() . '">' . trim($plan_menu->getConfiguration('icon') . ' ' . $plan_menu->getName()) . '</a></li>';
-			}
-			?>
-											</ul>
-										</li>
-										<?php
-}
-		echo $panel_menu;
-		?>
-								</ul>
-							</li>
-							<?php }
+		echo '<li><a href="index.php?v=d&p=plan&plan_id=' . $plan_menu->getId() . '">' . trim($plan_menu->getConfiguration('icon') . ' ' . $plan_menu->getName()) . '</a></li>';
+	}
 	?>
+									</ul>
+								</li>
+								<?php
+echo $panel_menu;
+	?>
+							</ul>
+						</li>
+						<li class="dropdown cursor">
+							<a data-toggle="dropdown"><i class="fa fa-stethoscope"></i> <span class="hidden-xs hidden-sm hidden-md">{{Analyse}}</span> <b class="caret"></b></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="index.php?v=d&p=history"><i class="fa fa-bar-chart-o"></i> {{Historique}}</a></li>
+<?php
+if (isConnect('admin')) {
+		?>
+								<li><a href="index.php?v=d&p=report"><i class="fa fa-newspaper-o"></i> {{Rapport}}</a></li>
+																	<?php
+}
+	?>
+								<li class="divider"></li>
+								<li class="expertModeVisible"><a href="#" id="bt_showEventInRealTime"><i class="fa fa-tachometer"></i> {{Temps réel}}</a></li>
+								<?php
+if (isConnect('admin')) {
+		?>
+									<li class="expertModeVisible"><a href="index.php?v=d&p=log"><i class="fa fa-file-o"></i> {{Logs}}</a></li>
+									<li><a href="index.php?v=d&p=battery"><i class="fa fa-battery-full"></i> {{Equipements}}</a></li>
+									<li class="divider"></li>
+									<li><a href="index.php?v=d&p=health"><i class="fa fa-medkit"></i> {{Santé}}</a></li>
+									<?php
+}
+	?>
+							</ul>
+						</li>
+						<?php
+if (isConnect('admin')) {
+		?>
 							<li class="dropdown cursor">
-								<a data-toggle="dropdown"><i class="fa fa-stethoscope"></i> {{Analyse}} <b class="caret"></b></a>
+								<a data-toggle="dropdown"><i class="fa fa-wrench"></i> <span class="hidden-xs hidden-sm hidden-md">{{Outils}}</span> <b class="caret"></b></a>
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="index.php?v=d&p=history"><i class="fa fa-bar-chart-o"></i> {{Historique}}</a></li>
-									<li class="divider"></li>
-									<li class="expertModeVisible"><a href="#" id="bt_showEventInRealTime"><i class="fa fa-tachometer"></i> {{Temps réel}}</a></li>
-									<?php
-if (hasRight('logview', true)) {
-		?>
-										<li class="expertModeVisible"><a href="index.php?v=d&p=log"><i class="fa fa-file-o"></i> {{Logs}}</a></li>
-										<?php
-}
-	?>
-									<?php
-if (hasRight('batteryview', true)) {
-		?>
-										<li><a href="index.php?v=d&p=battery"><i class="fa fa-battery-full"></i> {{Batteries}}</a></li>
-										<?php
-}
-	?>
-									<li class="divider"></li>
-
-									<?php if (hasRight('sysinfo', true)) {
-		?>
-										<li class="expertModeVisible"><a href="index.php?v=d&p=sysinfo"><i class="fa fa-info-circle"></i> {{Informations système}}</a></li>
-										<?php
-}if (hasRight('sysinfo', true)) {
-		?>
-										<li><a href="index.php?v=d&p=health"><i class="fa fa-medkit"></i> {{Santé}}</a></li>
-										<?php
-}
-	?>
-
+									<li><a href="index.php?v=d&p=object"><i class="fa fa-picture-o"></i> {{Objets}}</a></li>
+									<li><a href="index.php?v=d&p=interact"><i class="fa fa-comments-o"></i> {{Interactions}}</a></li>
+									<li><a href="index.php?v=d&p=display"><i class="fa fa-th"></i> {{Résumé domotique}}</a></li>
+									<li><a href = "index.php?v=d&p=scenarioAssist"><i class = "fa fa-cogs"></i> {{Scénarios}}</a></li>
 								</ul>
 							</li>
-
-
-							<?php
-if ($configs['jeeNetwork::mode'] == 'master' && (hasRight('objectview', true) || hasRight('interactview', true) || hasRight('displayview', true) || hasRight('scenarioview', true))) {
-		?>
-								<li class="dropdown cursor">
-									<a data-toggle="dropdown"><i class="fa fa-wrench"></i> {{Outils}} <b class="caret"></b></a>
-									<ul class="dropdown-menu" role="menu">
-										<?php
-if ($configs['jeeNetwork::mode'] == 'master' && hasRight('objectview', true)) {
-			?>
-											<li><a href="index.php?v=d&p=object"><i class="fa fa-picture-o"></i> {{Objets}}</a></li>
-											<?php
-
-		}
-		if ($configs['jeeNetwork::mode'] == 'master' && hasRight('interactview', true)) {
-			?>
-											<li><a href="index.php?v=d&p=interact"><i class="fa fa-comments-o"></i> {{Interactions}}</a></li>
-											<?php }
-		if (hasRight('displayview', true)) {
-			?>
-												<li><a href="index.php?v=d&p=display"><i class="fa fa-th"></i> {{Résumé domotique}}</a></li>
-												<?php
-}
-		if ($configs['jeeNetwork::mode'] == 'master' && hasRight('scenarioview', true)) {
-			echo '<li><a href = "index.php?v=d&p=scenarioAssist"><i class = "fa fa-cogs"></i> {{Scénarios}}</a></li>';
-		}
-		?>
-										</ul>
-									</li>
+							<li class="dropdown cursor">
+								<a data-toggle="dropdown"><i class="fa fa-tasks"></i> <span class="hidden-xs hidden-sm hidden-md">{{Plugins}}</span> <b class="caret"></b></a>
+								<ul class="dropdown-menu" role="menu">
+									<li><a href="index.php?v=d&p=plugin"><i class="fa fa-tags"></i> {{Gestion des plugins}}</a></li>
+									<li role="separator" class="divider"></li>
 									<?php
-}
-	if (isConnect('admin')) {
-		?>
-									<li class="dropdown cursor">
-										<a data-toggle="dropdown"><i class="fa fa-tasks"></i> {{Plugins}} <b class="caret"></b></a>
-										<ul class="dropdown-menu" role="menu">
-											<?php if (hasRight('pluginview', true)) {
-			?>
-												<li><a href="index.php?v=d&p=plugin"><i class="fa fa-tags"></i> {{Gestion des plugins}}</a></li>
-												<?php if ($configs['jeeNetwork::mode'] == 'master') {
-				?>
-													<li role="separator" class="divider"></li>
-													<?php
 echo $plugin_menu;
-			}
-			?>
-											</ul>
-										</li>
-										<?php }
-	}
-	?>
+		?>
 								</ul>
-
-								<ul class="nav navbar-nav navbar-right">
-									<?php
-$nbMessage = message::nbMessage();
-	$displayMessage = ($nbMessage > 0) ? '' : 'display : none;';?>
-									<li>
-										<a href="#" id="bt_messageModal">
-											<span class="badge" id="span_nbMessage" title="{{Nombre de messages}}" style="background-color : #ec971f;<?php echo $displayMessage; ?>">
-												<?php echo $nbMessage; ?>
-											</span>
-										</a>
-									</li>
-									<?php $nbUpdate = update::nbNeedUpdate();
-	if ($nbUpdate > 0) {
-		echo '<li>
-										<a href="index.php?v=d&p=update">
-											<span class="badge" title="{{Nombre de mises à jour}}" style="background-color : #c9302c;">' . $nbUpdate . '</span></a></li>';
-	}
+							</li>
+							<?php
+}
 	?>
-										<li>
-											<a href="#" style="cursor:default;">
-												<?php
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<a href="#" style="cursor:default;">
+								<?php
 echo object::getGlobalHtmlSummary();
 	?>
-											</a>
-										</li>
-										<?php if (isConnect('admin') || hasRight('backupview', true) || hasRight('updateview', true) || hasRight('cronview', true) || hasRight('customview', true) || hasRight('userview', true)) {
-		?>
-											<li class="dropdown">
-												<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-cogs"></i><span class="caret"></span></a>
-												<ul class="dropdown-menu">
-													<?php if (hasRight('administrationview', true)) {?>
-													<li><a href="index.php?v=d&p=administration" tabindex="0"><i class="fa fa-wrench"></i> {{Configuration}}</a></li>
-													<?php
-}
-		if (hasRight('backupview', true)) {
-			?>
-													<li><a href="index.php?v=d&p=backup"><i class="fa fa-floppy-o"></i> {{Sauvegardes}}</a></li>
-													<?php
-}
-		if (hasRight('updateview', true)) {
-			?>
-													<li><a href="index.php?v=d&p=update"><i class="fa fa-refresh"></i> {{Centre de mise à jour}}</a></li>
-													<?php
-}
-		if ($configs['jeeNetwork::mode'] == 'master') {
-			?>
-													<li class="expertModeVisible"><a href="index.php?v=d&p=jeeNetwork"><i class="fa fa-sitemap"></i> {{Réseau Jeedom}}</a></li>
-													<?php }
-		if (hasRight('cronview', true)) {?>
-													<li class="expertModeVisible"><a href="index.php?v=d&p=cron"><i class="fa fa-tasks"></i> {{Moteur de tâches}}</a></li>
-													<?php
-}
-		if ($configs['jeeNetwork::mode'] == 'master' && hasRight('customview', true)) {
-			?>
-													<li class="expertModeVisible"><a href="index.php?v=d&p=custom"><i class="fa fa-pencil-square-o"></i> {{Personnalisation avancée}}</a></li>
-													<?php
-}
-		?>
-												<li role="separator" class="divider"></li>
-												<?php
-if (hasRight('userview', true)) {
-			?>
-													<li><a href="index.php?v=d&p=user"><i class="fa fa-users"></i> {{Utilisateurs}}</a></li>
-													<?php
-}
-		if ($configs['rights::enable'] != 0 && isConnect('admin')) {
-			?>
-													<li><a href="index.php?v=d&p=rights"><i class="fa fa-graduation-cap"></i> {{Gestion des droits avancés}}</a></li>
-													<?php }
-		?>
-												</ul>
-											</li>
-											<?php }
+							</a>
+						</li>
+						<?php
+$nbMessage = message::nbMessage();
+	$displayMessage = ($nbMessage > 0) ? '' : 'display : none;';?>
+						<li>
+							<a href="#" id="bt_messageModal">
+								<span class="badge" id="span_nbMessage" title="{{Nombre de messages}}" style="background-color : #ec971f;<?php echo $displayMessage; ?>">
+									<?php echo $nbMessage; ?>
+								</span>
+							</a>
+						</li>
+						<?php $nbUpdate = update::nbNeedUpdate();
+	if ($nbUpdate > 0) {
+		echo '<li>
+							<a href="index.php?v=d&p=update">
+								<span class="badge" title="{{Nombre de mises à jour}}" style="background-color : #c9302c;">' . $nbUpdate . '</span></a></li>';
+	}
 	?>
-											<li class="dropdown">
-												<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-													<i class="fa fa-user"></i>
-													<span class="caret"></span>
-												</a>
-												<ul class="dropdown-menu">
-													<li><a href="index.php?v=d&p=profils"><i class="fa fa-briefcase"></i> {{Profil}} <?php echo $_SESSION['user']->getLogin(); ?></a></li>
-
-													<?php
+							<?php if (isConnect('admin')) {
+		?>
+								<li class="dropdown">
+									<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-cogs"></i><span class="caret"></span></a>
+									<ul class="dropdown-menu">
+										<li><a href="index.php?v=d&p=administration" tabindex="0"><i class="fa fa-wrench"></i> {{Configuration}}</a></li>
+										<li><a href="index.php?v=d&p=backup"><i class="fa fa-floppy-o"></i> {{Sauvegardes}}</a></li>
+										<li><a href="index.php?v=d&p=update"><i class="fa fa-refresh"></i> {{Centre de mise à jour}}</a></li>
+										<li class="expertModeVisible"><a href="index.php?v=d&p=cron"><i class="fa fa-tasks"></i> {{Moteur de tâches}}</a></li>
+										<li class="expertModeVisible"><a href="index.php?v=d&p=custom"><i class="fa fa-pencil-square-o"></i> {{Personnalisation avancée}}</a></li>
+										<li role="separator" class="divider"></li>
+										<li><a href="index.php?v=d&p=user"><i class="fa fa-users"></i> {{Utilisateurs}}</a></li>
+									</ul>
+								</li>
+								<?php }
+	?>
+								<li class="dropdown">
+									<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+										<i class="fa fa-user"></i>
+										<span class="caret"></span>
+									</a>
+									<ul class="dropdown-menu">
+										<li><a href="index.php?v=d&p=profils"><i class="fa fa-briefcase"></i> {{Profil}} <?php echo $_SESSION['user']->getLogin(); ?></a></li>
+										<?php
 if (isConnect('admin')) {
 		if ($_SESSION['user']->getOptions('expertMode') == 1) {
 			echo '<li class="cursor"><a id="bt_expertMode" state="1"><i class="fa fa-check-square-o"></i> {{Mode expert}}</a></li>';
@@ -467,28 +376,25 @@ if (isConnect('admin')) {
 			echo '<li class="cursor"><a id="bt_expertMode" state="0"><i class="fa fa-square-o"></i> {{Mode expert}}</a></li>';
 		}
 		?>
-
-
-														<li class="divider"></li>
-														<li><a href="index.php?v=m"><i class="fa fa-mobile"></i> {{Version mobile}}</a></li>
-														<li class="divider"></li>
-														<li><a href="#" id="bt_jeedomAbout"><i class="fa fa-info-circle"></i> {{Version}} v<?php echo jeedom::version(); ?></a></li>
-
-														<?php	if (jeedom::isCapable('sudo')) {
+											<li class="divider"></li>
+											<li><a href="index.php?v=m"><i class="fa fa-mobile"></i> {{Version mobile}}</a></li>
+											<li class="divider"></li>
+											<li><a href="#" id="bt_jeedomAbout"><i class="fa fa-info-circle"></i> {{Version}} v<?php echo jeedom::version(); ?></a></li>
+											<?php	if (jeedom::isCapable('sudo')) {
 			echo '<li class="divider expertModeVisible"></li>';
 			echo '<li class="cursor expertModeVisible"><a id="bt_rebootSystem" state="0"><i class="fa fa-repeat"></i> {{Redémarrer}}</a></li>';
 			echo '<li class="cursor expertModeVisible"><a id="bt_haltSystem" state="0"><i class="fa fa-power-off"></i> {{Eteindre}}</a></li>';
 		}
 	}
 	?>
-													<li class="divider"></li>
-													<li><a href="index.php?v=d&logout=1"><i class="fa fa-sign-out"></i> {{Se déconnecter}}</a></li>
-												</ul>
-											</li>
-											<li>
-												<?php if (isset($plugin) && is_object($plugin)) {
-		if ($plugin->getInfo('doc') != '') {
-			echo '<a class="cursor" target="_blank" href="' . $plugin->getInfo('doc') . '" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
+										<li class="divider"></li>
+										<li><a href="index.php?v=d&logout=1"><i class="fa fa-sign-out"></i> {{Se déconnecter}}</a></li>
+									</ul>
+								</li>
+								<li>
+									<?php if (isset($plugin) && is_object($plugin)) {
+		if ($plugin->getDocumentation() != '') {
+			echo '<a class="cursor" target="_blank" href="' . $plugin->getDocumentation() . '" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
 		}
 	} else {
 		if (init('p') == 'scenarioAssist') {
@@ -500,37 +406,36 @@ if (isConnect('admin')) {
 		}
 	}
 	?>
-											</li>
-											<?php if (hasRight('reportsend', true)) {
+								</li>
+								<?php if (isConnect('admin')) {
 		?>
-											<li>
-												<?php if (isset($plugin) && is_object($plugin) && $plugin->getIssue() != '') {
+									<li>
+										<?php if (isset($plugin) && is_object($plugin) && $plugin->getIssue() != '') {
 			?>
-													<a target="_blank" href="<?php echo $plugin->getIssue() ?>" title="{{Envoyer un rapport de bug}}">
-														<i class="fa fa-exclamation-circle" ></i>
-													</a>
-													<?php } else {?>
-													<a class="bt_reportBug cursor" title="{{Envoyer un rapport de bug}}">
-														<i class="fa fa-exclamation-circle" ></i>
-													</a>
-													<?php }?>
-												</li>
-												<?php }
+											<a target="_blank" href="<?php echo $plugin->getIssue() ?>" title="{{Envoyer un rapport de bug}}">
+												<i class="fa fa-exclamation-circle" ></i>
+											</a>
+											<?php } else {?>
+											<a class="bt_reportBug cursor" title="{{Envoyer un rapport de bug}}">
+												<i class="fa fa-exclamation-circle" ></i>
+											</a>
+											<?php }?>
+										</li>
+										<?php }
 	?>
-												<li>
-													<a href="#" style="cursor:default;">
-														<span id="horloge"><?php echo date('H:i:s'); ?></span>
-													</a>
-												</li>
-											</ul>
-										</nav><!--/.nav-collapse -->
-									</div>
-								</header>
-								<main class="container-fluid" id="div_mainContainer">
-									<div style="display: none;width : 100%" id="div_alert"></div>
-
-									<div id="div_pageContainer">
-										<?php
+										<li>
+											<a href="#" style="cursor:default;">
+												<span id="horloge"><?php echo date('H:i:s'); ?></span>
+											</a>
+										</li>
+									</ul>
+								</nav>
+							</div>
+						</header>
+						<main class="container-fluid" id="div_mainContainer">
+							<div style="display: none;width : 100%" id="div_alert"></div>
+							<div id="div_pageContainer">
+								<?php
 try {
 		if (!jeedom::isStarted()) {
 			echo '<div class="alert alert-danger">{{Jeedom est en cours de démarrage veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé}}</div>';
@@ -552,23 +457,23 @@ try {
 		echo '</div>';
 	}
 	?>
-									</div>
-									<div id="md_modal"></div>
-									<div id="md_modal2"></div>
-									<div id="md_pageHelp" style="display: none;" title="Aide">
-										<ul class="nav nav-tabs">
-											<li class="active"><a href="#div_helpWebsite" data-toggle="tab">{{Générale}}</a></li>
-											<li><a href="#div_helpSpe" data-toggle="tab">{{Détaillée}}</a></li>
-										</ul>
-										<div class="tab-content">
-											<div class="tab-pane active" id="div_helpWebsite" ></div>
-											<div class="tab-pane" id="div_helpSpe" ></div>
-										</div>
-									</div>
-									<div id="md_reportBug" title="{{Ouverture d'un ticket}}"></div>
-								</main>
-								<?php
+							</div>
+							<div id="md_modal"></div>
+							<div id="md_modal2"></div>
+							<div id="md_pageHelp" style="display: none;" title="Aide">
+								<ul class="nav nav-tabs">
+									<li class="active"><a href="#div_helpWebsite" data-toggle="tab">{{Générale}}</a></li>
+									<li><a href="#div_helpSpe" data-toggle="tab">{{Détaillée}}</a></li>
+								</ul>
+								<div class="tab-content">
+									<div class="tab-pane active" id="div_helpWebsite" ></div>
+									<div class="tab-pane" id="div_helpSpe" ></div>
+								</div>
+							</div>
+							<div id="md_reportBug" title="{{Ouverture d'un ticket}}"></div>
+						</main>
+						<?php
 }
 ?>
-						</body>
-						</html>
+				</body>
+				</html>

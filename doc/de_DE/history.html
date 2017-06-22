@@ -423,11 +423,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_trends_und_statistiken">1.3. Trends und Statistiken</a></li>
 </ul>
 </li>
-<li><a href="#_configuration_spécifique_par_commande">2. Configuration spécifique par commande</a></li>
-<li><a href="#_diagramm_anzeigen">3. Diagramm anzeigen</a></li>
-<li><a href="#_grafik_auf_der_ansicht_und_dem_design">4. Grafik auf der Ansicht und dem Design</a></li>
-<li><a href="#_optionen_auf_der_chronik_seite">5. Optionen auf der Chronik Seite</a></li>
-<li><a href="#_löschen_von_inkonsistenten_wert">6. Löschen von inkonsistenten Wert</a></li>
+<li><a href="#_allgemeine_chronik_konfiguration">2. Allgemeine Chronik Konfiguration</a></li>
+<li><a href="#_spezifische_befehle_konfigurieren">3. Spezifische Befehle Konfigurieren</a></li>
+<li><a href="#_diagramm_anzeigen">4. Diagramm anzeigen</a></li>
+<li><a href="#_grafik_auf_der_ansicht_und_dem_design">5. Grafik auf der Ansicht und dem Design</a></li>
+<li><a href="#_optionen_auf_der_chronik_seite">6. Optionen auf der Chronik Seite</a></li>
+<li><a href="#_löschen_von_inkonsistenten_wert">7. Löschen von inkonsistenten Wert</a></li>
 </ul>
 </div>
 </div>
@@ -435,7 +436,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Partie importante dans un logiciel : la partie historisation, véritable mémoire de celle-ci. Il est possible dans Jeedom d&#8217;historiser n&#8217;importe quelle commande de type information (binaire ou numérique). Cela vous permettra donc par exemple d&#8217;historiser une courbe de température, de consommation ou les ouvertures d&#8217;une porte&#8230;&#8203;</p>
+<p>Partie importante dans un logiciel : la partie historisation, véritable mémoire de celui-ci. Il est possible dans Jeedom d&#8217;historiser n&#8217;importe quelle commande de type information (binaire ou numérique). Cela vous permettra donc par exemple d&#8217;historiser une courbe de température, de consommation ou les ouvertures d&#8217;une porte&#8230;&#8203;</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -458,10 +459,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Non évènement</strong> : c&#8217;est le cas le plus simple. Jeedom va collecter toutes les 5min la valeur de la commande et historiser le résultat.</p>
+<p><strong>Non évènement</strong> : c&#8217;est le cas le plus simple. Jeedom va collecter toutes les 5mn la valeur de la commande et historiser le résultat.</p>
 </li>
 <li>
-<p><strong>Evènement</strong> : Jeedom sait qu&#8217;il ne peut récupérer la valeur. Il attend donc que le plugin (et indirectement le module) la lui transmette. Ensuite, en fonction de la fréquence et de vos réglages, il se peut qu&#8217;un premier lissage intervienne. En effet, si Jeedom reçoit 2 valeurs à moins de 5min d&#8217;intervalle, il va par défaut en faire la moyenne pour n&#8217;en stocker qu&#8217;une. Vous pouvez bien sûr changer ce réglage pour qu&#8217;au lieu de la moyenne il prenne le maximum, le minimum ou au contraire qu&#8217;il garde les deux. Nous verrons par la suite comment changer ce réglage.</p>
+<p><strong>Evènement</strong> : Jeedom sait qu&#8217;il ne peut récupérer la valeur. Il attend donc que le plugin (et indirectement le module) la lui transmette. Ensuite, en fonction de la fréquence et de vos réglages, il se peut qu&#8217;un premier lissage intervienne. En effet, si Jeedom reçoit 2 valeurs à moins de 5mn d&#8217;intervalle, il va par défaut en faire la moyenne pour n&#8217;en stocker qu&#8217;une. Vous pouvez bien sûr changer ce réglage pour qu&#8217;au lieu de la moyenne il prenne le maximum, le minimum ou au contraire qu&#8217;il garde les deux. Nous verrons par la suite comment changer ce réglage.</p>
 </li>
 </ul>
 </div>
@@ -472,7 +473,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>L&#8217;archivage de données permet à Jeedom de réduire la quantité de données conservées en mémoire. Cela permet de ne pas utiliser trop de place et de ne pas ralentir le système. En effet, si vous conservez toute les mesures, cela fait d&#8217;autant plus de points à afficher et donc peut considérablement allonger les temps pour rendre un graphique. En cas d&#8217;un nombre trop important de points, cela peut même faire planter l&#8217;affichage du graphique.</p>
 </div>
 <div class="paragraph">
-<p>L&#8217;archivage est une tâche qui se lance dans la nuit et compacte les données récuperées dans la journée. Par défaut Jeedom récupère toutes les données plus vieille de 2h et en fait des paquets de 1h (soit une moyenne, un minimum ou un maximum en fonction des réglages). On a donc ici 2 paramètres, un pour la taille des paquets et un autre pour savoir à partir de quand en faire (pour rappel par défaut ce sont des paquets de 1h avec des données qui ont plus de 2h d&#8217;ancienneté).</p>
+<p>L&#8217;archivage est une tâche qui se lance dans la nuit et compacte les données récupérées dans la journée. Par défaut Jeedom récupère toutes les données plus vieilles de 2h et en fait des paquets de 1h (soit une moyenne, un minimum ou un maximum en fonction des réglages). On a donc ici 2 paramètres, un pour la taille des paquets et un autre pour savoir à partir de quand en faire (pour rappel par défaut ce sont des paquets de 1h avec des données qui ont plus de 2h d&#8217;ancienneté).</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -510,9 +511,12 @@ Bien sûr, ce principe d&#8217;archivage ne s&#8217;applique qu&#8217;aux comman
 <div class="paragraph">
 <p>La méthode de calcul de tendance est fondée sur le calcul des moindres carrés (voir <a href="https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s">ici</a> pour le détail).</p>
 </div>
-<div class="paragraph">
-<p>Allgemeine Chronik Konfiguration</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_allgemeine_chronik_konfiguration">2. Allgemeine Chronik Konfiguration</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>La configuration générale de l&#8217;historique se passe sur la page Administration &#8594; Configuration.</p>
 </div>
@@ -562,9 +566,8 @@ Bien sûr, ce principe d&#8217;archivage ne s&#8217;applique qu&#8217;aux comman
 </div>
 </div>
 </div>
-</div>
 <div class="sect1">
-<h2 id="_configuration_spécifique_par_commande">2. Configuration spécifique par commande</h2>
+<h2 id="_spezifische_befehle_konfigurieren">3. Spezifische Befehle Konfigurieren</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Pour accèder à ces réglages, il faut aller dans la configuration avancée des commandes, en passant par Outils &#8594; Résumé domotique :</p>
@@ -575,7 +578,7 @@ Bien sûr, ce principe d&#8217;archivage ne s&#8217;applique qu&#8217;aux comman
 </div>
 </div>
 <div class="paragraph">
-<p>Puis en dépliant la liste des commande d&#8217;un équipement (petite flèche à droite) et, soit en double-cliquant sur la commande, soit en cliquant sur la petite roue :</p>
+<p>Puis en dépliant la liste des commandes d&#8217;un équipement (petite flèche à droite) en double-cliquant sur la commande ou en cliquant sur la petite roue :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -589,13 +592,13 @@ Bien sûr, ce principe d&#8217;archivage ne s&#8217;applique qu&#8217;aux comman
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Vous pouvez aussi utiliser le champ de recherche à droite en tapant le nom de la commande que vous voulez.
+Sie können auch das Suchfeld rechts benutzen, um den Namen des Befehls einzugeben, den Sie wollen.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Vous pouvez également y accèder par la page de l&#8217;équipement en question et en cliquant sur la petite roue tout à droite sur la ligne de la commande (si le plugin a intégré cette option) :</p>
+<p>Vous pouvez également y accèder par la page de l&#8217;équipement en question et en cliquant sur la petite roue à droite sur la ligne de la commande (si le plugin a intégré cette option) :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -619,7 +622,7 @@ Vous pouvez aussi utiliser le champ de recherche à droite en tapant le nom de l
 <p><strong>Historiser</strong> : permet de définir si vous voulez historiser ou non cette commande.</p>
 </li>
 <li>
-<p><strong>Mode de lissage</strong> : mode de lissage ou d&#8217;archivage permet de choisir la manière d&#8217;archiver la donnée ; par défaut c&#8217;est une moyenne ; il est aussi possible de choisir le maximum, le minimum, ou aucun ; aucun permet de dire à Jeedom qu&#8217;il ne doit pas réaliser d&#8217;archivage sur cette commande (aussi bien sur la première période des 5 min qu&#8217;avec la tache d&#8217;archivage). Cette option est dangereuse car Jeedom conserve tout : il va donc y avoir beaucoup plus de données conservées.</p>
+<p><strong>Mode de lissage</strong> : mode de lissage ou d&#8217;archivage permet de choisir la manière d&#8217;archiver la donnée ; par défaut c&#8217;est une moyenne ; il est aussi possible de choisir le maximum, le minimum, ou aucun ; aucun permet de dire à Jeedom qu&#8217;il ne doit pas réaliser d&#8217;archivage sur cette commande (aussi bien sur la première période des 5 mn qu&#8217;avec la tâche d&#8217;archivage). Cette option est dangereuse car Jeedom conserve tout : il va donc y avoir beaucoup plus de données conservées.</p>
 </li>
 <li>
 <p><strong>Purger l&#8217;historique si plus vieux de</strong> : cette option permet de dire à Jeedom de supprimer toutes les données plus vieilles qu&#8217;une certaine période. Peut être pratique pour ne pas conserver de données si ça n&#8217;est pas nécessaire et donc limiter la quantité d&#8217;informations enregistrées par Jeedom.</p>
@@ -629,7 +632,7 @@ Vous pouvez aussi utiliser le champ de recherche à droite en tapant le nom de l
 </div>
 </div>
 <div class="sect1">
-<h2 id="_diagramm_anzeigen">3. Diagramm anzeigen</h2>
+<h2 id="_diagramm_anzeigen">4. Diagramm anzeigen</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Es gibt mehrere Möglichkeiten, um die Chronik anzuzeigen :</p>
@@ -656,7 +659,7 @@ Vous pouvez aussi utiliser le champ de recherche à droite en tapant le nom de l
 </div>
 </div>
 <div class="paragraph">
-<p>On retrouve en haut à droite la période d&#8217;affichage (ici sur la dernière semaine car, par défaut je veux que ça soit seulement une semaine - voir 2 paragraphes au-dessus), ensuite viennent les paramètres de la courbe (ces paramètres sont gardés d&#8217;un affichage à l&#8217;autre ; vous n&#8217;avez donc qu&#8217;à les configurer une fois).</p>
+<p>On retrouve en haut à droite la période d&#8217;affichage (ici sur la dernière semaine car, par défaut je veux que ça soit seulement une semaine - voir 2 paragraphes au-dessus), ensuite viennent les paramètres de la courbe (ces paramètres sont gardés d&#8217;un affichage à l&#8217;autre ; vous n&#8217;avez donc qu&#8217;a les configurer une fois).</p>
 </div>
 <div class="ulist">
 <ul>
@@ -701,7 +704,7 @@ Vous pouvez aussi utiliser le champ de recherche à droite en tapant le nom de l
 </div>
 </div>
 <div class="sect1">
-<h2 id="_grafik_auf_der_ansicht_und_dem_design">4. Grafik auf der Ansicht und dem Design</h2>
+<h2 id="_grafik_auf_der_ansicht_und_dem_design">5. Grafik auf der Ansicht und dem Design</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Sie können die Grafik auch in der Ansicht anzeigen (hier werden wir die Konfigurationsoptionen angezeigt und nicht wie, dafür muß man sich in die Dokumention der Ansicht oder des Designs zur Funktion begeben). Hier sind die Optionen :</p>
@@ -747,7 +750,7 @@ Vous pouvez aussi utiliser le champ de recherche à droite en tapant le nom de l
 </div>
 </div>
 <div class="sect1">
-<h2 id="_optionen_auf_der_chronik_seite">5. Optionen auf der Chronik Seite</h2>
+<h2 id="_optionen_auf_der_chronik_seite">6. Optionen auf der Chronik Seite</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Die Chronik Seite bietet Zugriff auf einige zusätzliche Optionen :</p>
@@ -797,10 +800,10 @@ Die Hintergrundfarbe der Objekte in dieser Liste kann in der Konfiguration des O
 </div>
 </div>
 <div class="sect1">
-<h2 id="_löschen_von_inkonsistenten_wert">6. Löschen von inkonsistenten Wert</h2>
+<h2 id="_löschen_von_inkonsistenten_wert">7. Löschen von inkonsistenten Wert</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Manchmal kann es sein, dass Sie inkonsistente Werte in den Diagrammen haben. Oft ist das auf eine Auslegung der Interpretation des Wertes zurückzuführen. Sie können den Wert der betreffenden Stelle löschen oder ändern, indem sie direkt auf die Grafik klicken; darüber hinaus können Sie das zulässige Minimum und das Maximum festlegen, um zukünftige Probleme zu vermeiden.</p>
+<p>Parfois, il se peut que vous ayez des valeurs incohérentes sur les graphiques. Cela est souvent dû à un souci d&#8217;interprétation de la valeur. Il est possible de supprimer ou changer la valeur du point en question, en cliquant sur celui-ci directement sur le graphique ; de plus, vous pouvez régler le minimum et le maximum autorisés afin d&#8217;éviter des problèmes futurs.</p>
 </div>
 </div>
 </div>

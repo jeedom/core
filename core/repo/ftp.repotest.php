@@ -126,7 +126,7 @@ class repo_ftp {
 		}
 		$connexion = self::getFtpConnection('plugin');
 		$factory = new FTPFactory;
-		$ftp = $factory->build($connection);
+		$ftp = $factory->build($connexion);
 		$pathinfo = pathinfo($_update->getConfiguration('path'));
 		$file = $ftp->findFileByName($pathinfo['filename'] . '.' . $pathinfo['extension'], new Directory($pathinfo['dirname']));
 		$connexion->close();
@@ -148,13 +148,13 @@ class repo_ftp {
 	}
 
 	public static function downloadObject($_update) {
-		$tmp_dir = '/tmp';
+		$tmp_dir = jeedom::getTmpFolder('ftp');
 		$tmp = $tmp_dir . '/' . $_update->getLogicalId() . '.zip';
 		if (file_exists($tmp)) {
 			unlink($tmp);
 		}
 		if (!is_writable($tmp_dir)) {
-			exec('sudo chmod 777 -R ' . $tmp);
+			exec(system::getCmdSudo() . 'chmod 777 -R ' . $tmp);
 		}
 		if (!is_writable($tmp_dir)) {
 			throw new Exception(__('Impossible d\'écrire dans le répertoire : ', __FILE__) . $tmp . __('. Exécuter la commande suivante en SSH : sudo chmod 777 -R ', __FILE__) . $tmp_dir);
@@ -162,7 +162,7 @@ class repo_ftp {
 
 		$connexion = self::getFtpConnection('plugin');
 		$factory = new FTPFactory;
-		$ftp = $factory->build($connection);
+		$ftp = $factory->build($connexion);
 		$pathinfo = pathinfo($_update->getConfiguration('path'));
 		$file = $ftp->findFileByName($pathinfo['filename'] . '.' . $pathinfo['extension'], new Directory($pathinfo['dirname']));
 		if (null === $file) {
@@ -191,7 +191,7 @@ class repo_ftp {
 	public static function sendBackup($_path) {
 		$connexion = self::getFtpConnection();
 		$factory = new FTPFactory;
-		$ftp = $factory->build($connection);
+		$ftp = $factory->build($connexion);
 		$ftp->upload(new File($_path), '.');
 		$connexion->close();
 	}
@@ -199,7 +199,7 @@ class repo_ftp {
 	public static function listeBackup() {
 		$connexion = self::getFtpConnection();
 		$factory = new FTPFactory;
-		$ftp = $factory->build($connection);
+		$ftp = $factory->build($connexion);
 		$list = $ftp->findFilesystems(new Directory(config::byKey('ftp::backup::folder')));
 		$connexion->close();
 		$return = array();
@@ -213,7 +213,7 @@ class repo_ftp {
 	public static function retoreBackup($_backup) {
 		$connexion = self::getFtpConnection();
 		$factory = new FTPFactory;
-		$ftp = $factory->build($connection);
+		$ftp = $factory->build($connexion);
 		$pathinfo = pathinfo(config::byKey('ftp::backup::folder') . '/' . $_backup);
 		$file = $ftp->findFileByName($pathinfo['filename'] . '.' . $pathinfo['extension'], new Directory($pathinfo['dirname']));
 		if (null === $file) {
@@ -221,7 +221,7 @@ class repo_ftp {
 		}
 		$ftp->download($backup_dir . '/' . $_backu, $file);
 		$connection->close();
-		com_shell::execute('sudo chmod 777 -R ' . $backup_dir . '/*');
+		com_shell::execute(system::getCmdSudo() . 'chmod 777 -R ' . $backup_dir . '/*');
 		jeedom::restore('backup/' . $_backup, true);
 
 	}
@@ -229,7 +229,7 @@ class repo_ftp {
 	public static function downloadCore($_path) {
 		$connexion = self::getFtpConnection('plugin');
 		$factory = new FTPFactory;
-		$ftp = $factory->build($connection);
+		$ftp = $factory->build($connexion);
 		$file = $ftp->findFileByName('jeedom.zip', new Directory(config::byKey('ftp::core::path')));
 		if (null === $file) {
 			throw new Exception(__('Impossible de télécharger le fichier depuis : ' . config::byKey('ftp::core::path') . '.', __FILE__));
@@ -240,23 +240,23 @@ class repo_ftp {
 
 	public static function versionCore() {
 		try {
-			if (file_exists('/tmp/jeedom_version')) {
-				com_shell::execute('sudo rm /tmp/jeedom_version');
+			if (file_exists(jeedom::getTmpFolder('ftp') . '/version')) {
+				com_shell::execute(jeedom::getTmpFolder('ftp') . '/version');
 			}
 			$connexion = self::getFtpConnection('plugin');
 			$factory = new FTPFactory;
-			$ftp = $factory->build($connection);
+			$ftp = $factory->build($connexion);
 			$file = $ftp->findFileByName('jeedom_version', new Directory(config::byKey('ftp::core::path')));
 			if (null === $file) {
 				return null;
 			}
-			$ftp->download('/tmp/jeedom_version', $file);
+			$ftp->download(jeedom::getTmpFolder('ftp') . '/version', $file);
 			$connection->close();
-			if (!file_exists('/tmp/jeedom_version')) {
+			if (!file_exists(jeedom::getTmpFolder('ftp') . '/version')) {
 				return null;
 			}
-			$version = trim(file_get_contents('/tmp/jeedom_version'));
-			com_shell::execute('sudo rm /tmp/jeedom_version');
+			$version = trim(file_get_contents(jeedom::getTmpFolder('ftp') . '/version'));
+			com_shell::execute('rm ' . jeedom::getTmpFolder('ftp') . '/version');
 			return $version;
 		} catch (Exception $e) {
 

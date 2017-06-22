@@ -1,5 +1,5 @@
 <?php
-if (!hasRight('interactview', true)) {
+if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 $interacts = array();
@@ -89,7 +89,6 @@ foreach ($interactListGroup as $group) {
 
 <legend><i class="fa fa-comments-o"></i>  {{Mes interactions}}</legend>
 <?php
-echo '<legend>Aucun</legend>';
 echo '<div class="interactListContainer">';
 foreach ($interacts[-1] as $interact) {
 	echo '<div class="interactDisplayCard cursor" data-interact_id="' . $interact->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
@@ -103,7 +102,6 @@ echo '</div>';
 
 foreach ($interactListGroup as $group) {
 	if ($group['group'] != '') {
-		echo '<legend>' . $group['group'] . '</legend>';
 		echo '<div class="interactListContainer">';
 		foreach ($interacts[$group['group']] as $interact) {
 			echo '<div class="interactDisplayCard cursor" data-interact_id="' . $interact->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
@@ -118,8 +116,6 @@ foreach ($interactListGroup as $group) {
 }
 ?>
 </div>
-
-
 
 <div class="interact" style="display: none;margin-left:20px;" id="div_conf">
   <div class="row">
@@ -222,7 +218,7 @@ foreach (jeedom::getConfiguration('cmd:type') as $type) {
       <div class="form-group">
         <label class="col-sm-3 control-label">{{Limiter aux commandes ayant pour unité}}</label>
         <div class="col-sm-9">
-        <label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="unite" data-l3key="none" checked="true" />{{Sans unité}}</label>
+          <label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="unite" data-l3key="none" checked="true" />{{Sans unité}}</label>
           <?php
 foreach (cmd::allUnite() as $unite) {
 	if (trim($unite['unite']) == '') {
@@ -231,9 +227,9 @@ foreach (cmd::allUnite() as $unite) {
 	echo '<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="unite" data-l3key="' . $unite['unite'] . '" checked="true" />' . $unite['unite'] . '</label> ';
 }
 ?>
-       </div>
-     </div>
-     <div class="form-group">
+      </div>
+    </div>
+    <div class="form-group">
       <label class="col-sm-3 control-label">{{Limiter aux commandes appartenant à l'objet}}</label>
       <div class="col-sm-9">
         <?php
@@ -254,18 +250,28 @@ foreach (eqLogic::allType() as $type) {
    </div>
  </div>
 
-    <div class="form-group">
-    <label class="col-sm-3 control-label">{{Limiter aux categories}}</label>
-    <div class="col-sm-9">
-      <?php
+ <div class="form-group">
+  <label class="col-sm-3 control-label">{{Limiter aux categories}}</label>
+  <div class="col-sm-9">
+    <?php
 echo '<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="category" data-l3key="noCategory" checked="true" />{{Sans catégorie}}</label> ';
 foreach (jeedom::getConfiguration('eqLogic:category') as $id => $category) {
 	echo '<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="category" data-l3key="' . $id . '" checked="true" />' . $category['name'] . '</label> ';
 }
 ?>
-   </div>
  </div>
- <div class="form-group">
+</div>
+<div class="form-group">
+  <label class="col-sm-3 control-label">{{Limiter aux visibles}}</label>
+  <div class="col-sm-9">
+   <?php
+foreach (array('object' => 'Objets', 'eqlogic' => 'Equipements', 'cmd' => 'Commandes') as $id => $name) {
+	echo '<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="visible" data-l3key="' . $id . '" />' . $name . '</label> ';
+}
+?>
+ </div>
+</div>
+<div class="form-group">
   <label class="col-sm-3 control-label">{{Limiter à l'équipement}}</label>
   <div class="col-sm-6">
     <select class='interactAttr form-control' data-l1key='filtres' data-l2key='eqLogic_id' >
@@ -278,13 +284,10 @@ foreach (eqLogic::all() as $eqLogic) {
    </select>
  </div>
 </div>
-
 </fieldset>
 </form>
 </div>
-
 </div>
-
 
 <div class="row">
   <div class="col-sm-6">

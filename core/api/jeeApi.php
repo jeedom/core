@@ -17,6 +17,14 @@
  */
 
 require_once dirname(__FILE__) . "/../php/core.inc.php";
+if (user::isBan()) {
+	header("Status: 404 Not Found");
+	header('HTTP/1.0 404 Not Found');
+	$_SERVER['REDIRECT_STATUS'] = 404;
+	echo "<h1>404 Not Found</h1>";
+	echo "The page that you have requested could not be found.";
+	die();
+}
 if (isset($argv)) {
 	foreach ($argv as $arg) {
 		$argList = explode('=', $arg);
@@ -28,11 +36,26 @@ if (isset($argv)) {
 
 if (init('type') != '') {
 	try {
-		if (!jeedom::apiAccess(init('apikey', init('api')))) {
-			sleep(5);
-			throw new Exception('Clé API non valide (ou vide) . Demande venant de :' . getClientIp() . '. Clé API : ' . secureXSS(init('apikey') . init('api')));
-		}
 		$type = init('type');
+		if (!jeedom::apiAccess(init('apikey', init('api')), init('plugin', 'core')) || !jeedom::apiModeResult(config::byKey('api::core::http::mode', 'core', 'enable'))) {
+			user::failedLogin();
+			throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__));
+		}
+		if ($type == 'ask') {
+			$cmd = cmd::byId(init('cmd_id'));
+			if (!is_object($cmd)) {
+				throw new Exception(__('Commande inconnue : ', __FILE__) . init('cmd_id'));
+			}
+			if ($cmd->getCache('ask::token', config::genKey()) != init('token')) {
+				throw new Exception(__('Token invalide', __FILE__) . $cmd->getCache('ask::token') . ' != ' . init('token'));
+			}
+			if (init('count', 0) != 0 && init('count', 0) > $cmd->getCache('ask::count', 0)) {
+				$cmd->setCache('ask::count', $cmd->getCache('ask::count', 0) + 1);
+				die();
+			}
+			$cmd->askResponse(init('response'));
+		}
+
 		if ($type == 'cmd') {
 			if (is_json(init('id'))) {
 				$ids = json_decode(init('id'), true);
@@ -42,18 +65,35 @@ if (init('type') != '') {
 					if (!is_object($cmd)) {
 						throw new Exception(__('Aucune commande correspondant à l\'id : ', __FILE__) . secureXSS($id));
 					}
+					if (init('plugin', 'core') != 'core' && init('plugin', 'core') != $cmd->getEqType()) {
+						throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__));
+					}
 					$result[$id] = $cmd->execCmd($_REQUEST);
 				}
 				echo json_encode($result);
+				die();
 			} else {
 				$cmd = cmd::byId(init('id'));
 				if (!is_object($cmd)) {
-					throw new Exception('Aucune commande correspondant à l\'id : ' . secureXSS(init('id')));
+					throw new Exception(__('Aucune commande correspondant à l\'id : ' ,__FILE__) . secureXSS(init('id')));
 				}
-				log::add('api', 'debug', 'Exécution de : ' . $cmd->getHumanName());
+				if (init('plugin', 'core') != 'core' && init('plugin', 'core') != $cmd->getEqType()) {
+					throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__));
+				}
+				log::add('api', 'debug', __('Exécution de : ' ,__FILE__) . $cmd->getHumanName());
 				echo $cmd->execCmd($_REQUEST);
+				die();
 			}
-		} else if ($type == 'interact') {
+		}
+		if ($type != init('plugin', 'core') && init('plugin', 'core') != 'core') {
+			throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__));
+		}
+		if (class_exists($type) && method_exists($type, 'event')) {
+			log::add('api', 'info',__('Appels de ' ,__FILE__) . secureXSS($type) . '::event()');
+			$type::event();
+			die();
+		}
+		if ($type == 'interact') {
 			$query = init('query');
 			if (init('utf8', 0) == 1) {
 				$query = utf8_encode($query);
@@ -65,16 +105,19 @@ if (init('type') != '') {
 			if (init('profile') != '') {
 				$param['profile'] = init('profile');
 			}
-			echo interactQuery::tryToReply($query, $param);
-		} else if ($type == 'scenario') {
-			log::add('api', 'debug', 'Demande api pour les scénarios');
+			$reply = interactQuery::tryToReply($query, $param);
+			echo $reply['reply'];
+			die();
+		}
+		if ($type == 'scenario') {
+			log::add('api', 'debug', __('Demande api pour les scénarios' ,__FILE__));
 			$scenario = scenario::byId(init('id'));
 			if (!is_object($scenario)) {
-				throw new Exception('Aucun scénario correspondant à l\'id : ' . secureXSS(init('id')));
+				throw new Exception(__('Aucun scénario correspondant à l\'id : ' ,__FILE__) . secureXSS(init('id')));
 			}
 			switch (init('action')) {
 				case 'start':
-					log::add('api', 'debug', 'Démarrage scénario de : ' . $scenario->getHumanName());
+					log::add('api', 'debug', __('Démarrage scénario de : ' ,__FILE__) . $scenario->getHumanName());
 					$tags = array();
 					foreach ($_REQUEST as $key => $value) {
 						$tags['#' . $key . '#'] = $value;
@@ -82,49 +125,49 @@ if (init('type') != '') {
 					$scenario->launch(false, __('Exécution provoquée par un appel API ', __FILE__));
 					break;
 				case 'stop':
-					log::add('api', 'debug', 'Arrêt scénario de : ' . $scenario->getHumanName());
+					log::add('api', 'debug', __('Arrêt scénario de : ' ,__FILE__) . $scenario->getHumanName());
 					$scenario->stop();
 					break;
 				case 'deactivate':
-					log::add('api', 'debug', 'Désactivation scénario de : ' . $scenario->getHumanName());
+					log::add('api', 'debug', __('Désactivation scénario de : ' ,__FILE__) . $scenario->getHumanName());
 					$scenario->setIsActive(0);
 					$scenario->save();
 					break;
 				case 'activate':
-					log::add('api', 'debug', 'Activation scénario de : ' . $scenario->getHumanName());
+					log::add('api', 'debug', __('Activation scénario de : ' ,__FILE__) . $scenario->getHumanName());
 					$scenario->setIsActive(1);
 					$scenario->save();
 					break;
 				default:
-					throw new Exception('Action non trouvée ou invalide [start,stop,deactivate,activate]');
+					throw new Exception(__('Action non trouvée ou invalide [start,stop,deactivate,activate]' ,__FILE__));
 			}
 			echo 'ok';
-		} else if ($type == 'message') {
-			log::add('api', 'debug', 'Demande API pour ajouter un message');
+			die();
+		}
+		if ($type == 'message') {
+			log::add('api', 'debug', __('Demande API pour ajouter un message' ,__FILE__) );
 			message::add(init('category'), init('message'));
-		} else if ($type == 'object') {
-			log::add('api', 'debug', 'Demande API pour les objets');
+			die();
+		}
+		if ($type == 'object') {
+			log::add('api', 'debug', __('Demande API pour les objets' ,__FILE__) );
 			echo json_encode(utils::o2a(object::all()));
-		} else if ($type == 'eqLogic') {
-			log::add('api', 'debug', 'Demande API pour les équipements');
+			die();
+		}
+		if ($type == 'eqLogic') {
+			log::add('api', 'debug', __('Demande API pour les équipements' ,__FILE__) );
 			echo json_encode(utils::o2a(eqLogic::byObjectId(init('object_id'))));
-		} else if ($type == 'command') {
-			log::add('api', 'debug', 'Demande API pour les commandes');
+			die();
+		}
+		if ($type == 'command') {
+			log::add('api', 'debug', __('Demande API pour les commandes' ,__FILE__));
 			echo json_encode(utils::o2a(cmd::byEqLogicId(init('eqLogic_id'))));
-		} else if ($type == 'fulData') {
-			log::add('api', 'debug', 'Demande API pour les commandes');
+			die();
+		}
+		if ($type == 'fulData') {
+			log::add('api', 'debug', __('Demande API pour les commandes' ,__FILE__));
 			echo json_encode(object::fullData());
-		} else {
-			if (class_exists($type)) {
-				if (method_exists($type, 'event')) {
-					log::add('api', 'info', 'Appels de ' . secureXSS($type) . '::event()');
-					$type::event();
-				} else {
-					throw new Exception('Aucune méthode correspondante : ' . secureXSS($type) . '::event()');
-				}
-			} else {
-				throw new Exception('Aucun plugin correspondant : ' . secureXSS($type));
-			}
+			die();
 		}
 	} catch (Exception $e) {
 		echo $e->getMessage();
@@ -142,8 +185,13 @@ if (init('type') != '') {
 
 		$jsonrpc = new jsonrpc($request);
 
+		if (!jeedom::apiModeResult(config::byKey('api::core::jsonrpc::mode', 'core', 'enable'))) {
+			throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__), -32001);
+		}
+
 		if ($jsonrpc->getJsonrpc() != '2.0') {
-			throw new Exception('Requête invalide. Version Jsonrpc invalide : ' . $jsonrpc->getJsonrpc(), -32001);
+			user::failedLogin();
+			throw new Exception(__('Requête invalide. Version Jsonrpc invalide : ' ,__FILE__) . $jsonrpc->getJsonrpc(), -32001);
 		}
 
 		$params = $jsonrpc->getParams();
@@ -161,18 +209,23 @@ if (init('type') != '') {
 
 		if ($jsonrpc->getMethod() == 'user::getHash') {
 			if (!isset($params['login']) || !isset($params['password']) || $params['login'] == '' || $params['password'] == '') {
+				user::failedLogin();
 				sleep(5);
-				throw new Exception('Le login ou le password ne peuvent être vide', -32001);
+				throw new Exception(__('Le login ou le password ne peuvent être vide' ,__FILE__), -32001);
 			}
 			$user = user::connect($params['login'], $params['password']);
 			if (!is_object($user) || $user->getEnable() != 1) {
+				@session_start();
+				$_SESSION['failed'] = (isset($_SESSION['failed'])) ? $_SESSION['failed'] + 1 : 1;
+				@session_write_close();
 				sleep(5);
-				throw new Exception('Echec de l\'authentification', -32001);
+				throw new Exception(__('Echec de l\'authentification' ,__FILE__), -32001);
 			}
 			if (network::getUserLocation() != 'internal' && $user->getOptions('twoFactorAuthentification', 0) == 1 && $user->getOptions('twoFactorAuthentificationSecret') != '') {
 				if (!isset($params['twoFactorCode']) || trim($params['twoFactorCode']) == '' || !$user->validateTwoFactorCode($params['twoFactorCode'])) {
+					user::failedLogin();
 					sleep(5);
-					throw new Exception('Echec de l\'authentification', -32001);
+					throw new Exception(__('Echec de l\'authentification' ,__FILE__), -32001);
 				}
 			}
 			$jsonrpc->makeSuccess($user->getHash());
@@ -183,11 +236,11 @@ if (init('type') != '') {
 		}
 
 		if (!isset($params['apikey']) && !isset($params['api'])) {
-			throw new Exception(__('Aucune clef API', __FILE__), -32001);
+			throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__), -32001);
 		}
 
 		if ((isset($params['apikey']) && !jeedom::apiAccess($params['apikey'])) || (isset($params['api']) && !jeedom::apiAccess($params['api']))) {
-			throw new Exception(__('Clé API invalide', __FILE__), -32001);
+			throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__), -32001);
 		}
 
 		/*             * ************************config*************************** */
@@ -200,7 +253,7 @@ if (init('type') != '') {
 		}
 
 		if (isset($params['plugin']) && $params['plugin'] != '' && $params['plugin'] != 'core') {
-			log::add('api', 'info', 'Demande pour le plugin : ' . secureXSS($params['plugin']));
+			log::add('api', 'info', __('Demande pour le plugin : ' ,__FILE__) . secureXSS($params['plugin']));
 			include_file('core', $params['plugin'], 'api', $params['plugin']);
 		} else {
 			/*             * ***********************Version********************************* */
@@ -225,6 +278,11 @@ if (init('type') != '') {
 
 			if ($jsonrpc->getMethod() == 'jeedom::update') {
 				jeedom::update('', 0);
+				$jsonrpc->makeSuccess('ok');
+			}
+
+			if ($jsonrpc->getMethod() == 'jeedom::backup') {
+				jeedom::backup(true);
 				$jsonrpc->makeSuccess('ok');
 			}
 
@@ -257,7 +315,7 @@ if (init('type') != '') {
 			if ($jsonrpc->getMethod() == 'object::byId') {
 				$object = object::byId($params['id']);
 				if (!is_object($object)) {
-					throw new Exception('Objet introuvable : ' . secureXSS($params['id']), -32601);
+					throw new Exception(__('Objet introuvable : ' ,__FILE__) . secureXSS($params['id']), -32601);
 				}
 				$jsonrpc->makeSuccess(utils::o2a($object));
 			}
@@ -285,7 +343,7 @@ if (init('type') != '') {
 			if ($jsonrpc->getMethod() == 'object::fullById') {
 				$object = object::byId($params['id']);
 				if (!is_object($object)) {
-					throw new Exception('Objet introuvable : ' . secureXSS($params['id']), -32601);
+					throw new Exception(__('Objet introuvable : ' ,__FILE__) . secureXSS($params['id']), -32601);
 				}
 				$return = utils::o2a($object);
 				$return['eqLogics'] = array();
@@ -298,6 +356,34 @@ if (init('type') != '') {
 					$return['eqLogics'][] = $eqLogic_return;
 				}
 				$jsonrpc->makeSuccess($return);
+			}
+
+			/*             * ************************Summary*************************** */
+
+			if ($jsonrpc->getMethod() == 'summary::global') {
+				if (isset($params['key'])) {
+					$jsonrpc->makeSuccess(object::getGlobalSummary($params['key']));
+				}
+				$return = array();
+				$def = config::byKey('object:summary');
+				foreach ($def as $key => $value) {
+					$return[$key] = object::getGlobalSummary($key);
+				}
+				$jsonrpc->makeSuccess($return);
+			}
+
+			if ($jsonrpc->getMethod() == 'summary::byId') {
+				$object = object::byId($params['id']);
+				if (!is_object($object)) {
+					throw new Exception(__('Objet introuvable : ' ,__FILE__) . secureXSS($params['id']), -32601);
+				}
+				if (!isset($params['key'])) {
+					$params['key'] = '';
+				}
+				if (!isset($params['raw'])) {
+					$params['raw'] = false;
+				}
+				$jsonrpc->makeSuccess($object->getSummary($params['key'], $params['raw']));
 			}
 
 			/*             * ************************datastore*************************** */
@@ -332,7 +418,7 @@ if (init('type') != '') {
 			if ($jsonrpc->getMethod() == 'eqLogic::byId') {
 				$eqLogic = eqLogic::byId($params['id']);
 				if (!is_object($eqLogic)) {
-					throw new Exception('EqLogic introuvable : ' . secureXSS($params['id']), -32602);
+					throw new Exception(__('EqLogic introuvable : ' ,__FILE__) . secureXSS($params['id']), -32602);
 				}
 				$jsonrpc->makeSuccess(utils::o2a($eqLogic));
 			}
@@ -340,7 +426,7 @@ if (init('type') != '') {
 			if ($jsonrpc->getMethod() == 'eqLogic::fullById') {
 				$eqLogic = eqLogic::byId($params['id']);
 				if (!is_object($eqLogic)) {
-					throw new Exception('EqLogic introuvable : ' . secureXSS($params['id']), -32602);
+					throw new Exception(__('EqLogic introuvable : ' ,__FILE__) . secureXSS($params['id']), -32602);
 				}
 				$return = utils::o2a($eqLogic);
 				$return['cmds'] = array();
@@ -441,7 +527,7 @@ if (init('type') != '') {
 			if ($jsonrpc->getMethod() == 'cmd::byId') {
 				$cmd = cmd::byId($params['id']);
 				if (!is_object($cmd)) {
-					throw new Exception('Cmd introuvable : ' . secureXSS($params['id']), -32701);
+					throw new Exception(__('Cmd introuvable : ' ,__FILE__) . secureXSS($params['id']), -32701);
 				}
 				$jsonrpc->makeSuccess($cmd->exportApi());
 			}
@@ -452,13 +538,16 @@ if (init('type') != '') {
 					foreach ($params['id'] as $id) {
 						$cmd = cmd::byId($id);
 						if (!is_object($cmd)) {
-							throw new Exception('Cmd introuvable : ' . secureXSS($id), -32702);
+							throw new Exception(__('Cmd introuvable : ' ,__FILE__) . secureXSS($id), -32702);
 						}
 						$eqLogic = $cmd->getEqLogic();
 						if ($cmd->getType() == 'action' && !$eqLogic->hasRight('x')) {
 							throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
 						}
-						if ($cmd->getType() == 'action' && $cmd->getConfiguration('actionCodeAccess') != '' && sha1($params['codeAccess']) != $cmd->getConfiguration('actionCodeAccess')) {
+						if (!isset($params['codeAccess'])) {
+							$params['codeAccess'] = '';
+						}
+						if (!$cmd->checkAccessCode($params['codeAccess'])) {
 							throw new Exception(__('Cette action nécessite un code d\'accès', __FILE__), -32005);
 						}
 						if ($cmd->getType() == 'action' && $cmd->getConfiguration('actionConfirm') == 1 && $params['confirmAction'] != 1) {
@@ -469,13 +558,16 @@ if (init('type') != '') {
 				} else {
 					$cmd = cmd::byId($params['id']);
 					if (!is_object($cmd)) {
-						throw new Exception('Cmd introuvable : ' . secureXSS($params['id']), -32702);
+						throw new Exception(__('Cmd introuvable : ' ,__FILE__) . secureXSS($params['id']), -32702);
 					}
 					$eqLogic = $cmd->getEqLogic();
 					if ($cmd->getType() == 'action' && !$eqLogic->hasRight('x')) {
 						throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
 					}
-					if ($cmd->getType() == 'action' && $cmd->getConfiguration('actionCodeAccess') != '' && sha1($params['codeAccess']) != $cmd->getConfiguration('actionCodeAccess')) {
+					if (!isset($params['codeAccess'])) {
+						$params['codeAccess'] = '';
+					}
+					if (!$cmd->checkAccessCode($params['codeAccess'])) {
 						throw new Exception(__('Cette action nécessite un code d\'accès', __FILE__), -32005);
 					}
 					if ($cmd->getType() == 'action' && $cmd->getConfiguration('actionConfirm') == 1 && $params['confirmAction'] != 1) {
@@ -518,7 +610,7 @@ if (init('type') != '') {
 			if ($jsonrpc->getMethod() == 'scenario::byId') {
 				$scenario = scenario::byId($params['id']);
 				if (!is_object($scenario)) {
-					throw new Exception('Scenario introuvable : ' . secureXSS($params['id']), -32703);
+					throw new Exception(__('Scenario introuvable : ' ,__FILE__) . secureXSS($params['id']), -32703);
 				}
 				$jsonrpc->makeSuccess(utils::o2a($scenario));
 			}
@@ -526,7 +618,7 @@ if (init('type') != '') {
 			if ($jsonrpc->getMethod() == 'scenario::changeState') {
 				$scenario = scenario::byId($params['id']);
 				if (!is_object($scenario)) {
-					throw new Exception('Scenario introuvable : ' . secureXSS($params['id']), -32702);
+					throw new Exception(__('Scenario introuvable : ' ,__FILE__) . secureXSS($params['id']), -32702);
 				}
 				if ($params['state'] == 'stop') {
 					$jsonrpc->makeSuccess($scenario->stop());
@@ -542,142 +634,7 @@ if (init('type') != '') {
 					$scenario->setIsActive(0);
 					$jsonrpc->makeSuccess($scenario->save());
 				}
-				throw new Exception('La paramètre "state" ne peut être vide et doit avoir pour valeur [run,stop,enable;disable]');
-			}
-
-			/*             * ************************JeeNetwork*************************** */
-			if ($jsonrpc->getMethod() == 'jeeNetwork::handshake') {
-				if (config::byKey('jeeNetwork::mode') != 'slave') {
-					throw new Exception('Impossible d\'ajouter une box jeedom non esclave à un réseau Jeedom');
-				}
-				$return = array(
-					'mode' => config::byKey('jeeNetwork::mode'),
-					'nbUpdate' => update::nbNeedUpdate(),
-					'version' => jeedom::version(),
-					'nbMessage' => message::nbMessage(),
-					'jeedom::url' => config::byKey('jeedom::url'),
-				);
-				if (!filter_var(network::getNetworkAccess('external', 'ip'), FILTER_VALIDATE_IP) && network::getNetworkAccess('external', 'ip') != '') {
-					$return['jeedom::url'] = network::getNetworkAccess('internal');
-				}
-				foreach (plugin::listPlugin(true) as $plugin) {
-					if ($plugin->getAllowRemote() == 1) {
-						$return['plugin'][] = $plugin->getId();
-					}
-				}
-				$address = (isset($params['address']) && $params['address'] != '') ? $params['address'] : getClientIp();
-				config::save('jeeNetwork::master::ip', $address);
-				config::save('jeeNetwork::master::apikey', $params['apikey_master']);
-				config::save('jeeNetwork::slave::id', $params['slave_id']);
-				if (config::byKey('internalAddr') == '') {
-					config::save('internalAddr', $params['slave_ip']);
-				}
-				jeeNetwork::testMaster();
-				$jsonrpc->makeSuccess($return);
-			}
-
-			if ($jsonrpc->getMethod() == 'jeeNetwork::reload') {
-				foreach (plugin::listPlugin(true) as $plugin) {
-					try {
-						$plugin->launch('slaveReload');
-					} catch (Exception $ex) {
-
-					}
-				}
-				$jsonrpc->makeSuccess('ok');
-			}
-
-			if ($jsonrpc->getMethod() == 'jeeNetwork::halt') {
-				jeedom::haltSystem();
-				$jsonrpc->makeSuccess('ok');
-			}
-
-			if ($jsonrpc->getMethod() == 'jeeNetwork::reboot') {
-				jeedom::rebootSystem();
-				$jsonrpc->makeSuccess('ok');
-			}
-
-			if ($jsonrpc->getMethod() == 'jeeNetwork::update') {
-				jeedom::update('', 0);
-				$jsonrpc->makeSuccess('ok');
-			}
-
-			if ($jsonrpc->getMethod() == 'jeeNetwork::checkUpdate') {
-				update::checkAllUpdate();
-				$jsonrpc->makeSuccess('ok');
-			}
-
-			if ($jsonrpc->getMethod() == 'jeeNetwork::receivedBackup') {
-				if (config::byKey('jeeNetwork::mode') == 'slave') {
-					throw new Exception(__('Seul un maître peut recevoir une sauvegarde', __FILE__));
-				}
-				$jeeNetwork = jeeNetwork::byId($params['slave_id']);
-				if (!is_object($jeeNetwork)) {
-					throw new Exception(__('Aucun esclave correspondant à l\'id : ', __FILE__) . secureXSS($params['slave_id']));
-				}
-				if (substr(config::byKey('backup::path'), 0, 1) != '/') {
-					$backup_dir = dirname(__FILE__) . '/../../' . config::byKey('backup::path');
-				} else {
-					$backup_dir = config::byKey('backup::path');
-				}
-				$uploaddir = $backup_dir . '/slave/';
-				if (!file_exists($uploaddir)) {
-					mkdir($uploaddir);
-				}
-				if (!file_exists($uploaddir)) {
-					throw new Exception('Répertoire de téléversement non trouvé : ' . secureXSS($uploaddir));
-				}
-				$_file = $_FILES['file'];
-				$extension = strtolower(strrchr($_file['name'], '.'));
-				if (!in_array($extension, array('.tar.gz', '.gz', '.tar'))) {
-					throw new Exception('Extension du fichier non valide (autorisé .tar.gz, .tar et .gz) : ' . secureXSS($extension));
-				}
-				if (filesize($_file['tmp_name']) > 100000000) {
-					throw new Exception('La taille du fichier est trop importante (maximum 100Mo)');
-				}
-				$uploadfile = $uploaddir . $jeeNetwork->getId() . '-' . $jeeNetwork->getName() . '-' . $jeeNetwork->getConfiguration('version') . '-' . date('Y-m-d_H\hi') . '.tar' . $extension;
-				if (!move_uploaded_file($_file['tmp_name'], $uploadfile)) {
-					throw new Exception('Impossible de téléverser le fichier');
-				}
-				system('find ' . $uploaddir . $jeeNetwork->getId() . '*' . ' -mtime +' . config::byKey('backup::keepDays') . ' -print | xargs -r rm');
-				$jsonrpc->makeSuccess('ok');
-			}
-
-			if ($jsonrpc->getMethod() == 'jeeNetwork::restoreBackup') {
-				if (config::byKey('jeeNetwork::mode') != 'slave') {
-					throw new Exception(__('Seul un esclave peut restaurer une sauvegarde', __FILE__));
-				}
-				if (substr(config::byKey('backup::path'), 0, 1) != '/') {
-					$uploaddir = dirname(__FILE__) . '/../../' . config::byKey('backup::path');
-				} else {
-					$uploaddir = config::byKey('backup::path');
-				}
-				if (!file_exists($uploaddir)) {
-					mkdir($uploaddir);
-				}
-				if (!file_exists($uploaddir)) {
-					throw new Exception('Repertoire de téléversement non trouvé : ' . secureXSS($uploaddir));
-				}
-				$_file = $_FILES['file'];
-				$extension = strtolower(strrchr($_file['name'], '.'));
-				if (!in_array($extension, array('.tar.gz', '.gz', '.tar'))) {
-					throw new Exception('Extension du fichier non valide (autorisé .tar.gz, .tar et .gz) : ' . secureXSS($extension));
-				}
-				if (filesize($_file['tmp_name']) > 100000000) {
-					throw new Exception('La taille du fichier est trop importante (maximum 100Mo)');
-				}
-				$bakcup_name = 'backup-' . jeedom::version() . '-' . date("d-m-Y-H\hi") . '.tar.gz';
-				$uploadfile = $uploaddir . '/' . $bakcup_name;
-				if (!move_uploaded_file($_file['tmp_name'], $uploadfile)) {
-					throw new Exception('Impossible de téléverser le fichier');
-				}
-				jeedom::restore($uploadfile, true);
-				$jsonrpc->makeSuccess('ok');
-			}
-
-			if ($jsonrpc->getMethod() == 'jeeNetwork::backup') {
-				jeedom::backup(true);
-				$jsonrpc->makeSuccess('ok');
+				throw new Exception(__('Le paramètre "state" ne peut être vide et doit avoir pour valeur [run,stop,enable;disable]' ,__FILE__));
 			}
 
 			/*             * ************************Log*************************** */
@@ -858,7 +815,7 @@ if (init('type') != '') {
 
 			/*             * ************************************************************************ */
 		}
-		throw new Exception('Aucune méthode correspondante : ' . secureXSS($jsonrpc->getMethod()), -32500);
+		throw new Exception(__('Aucune méthode correspondante : ' ,__FILE__) . secureXSS($jsonrpc->getMethod()), -32500);
 /*         * *********Catch exeption*************** */
 	} catch (Exception $e) {
 		$message = $e->getMessage();
@@ -867,4 +824,3 @@ if (init('type') != '') {
 		$jsonrpc->makeError($errorCode, $message);
 	}
 }
-?>

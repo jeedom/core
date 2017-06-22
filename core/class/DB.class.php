@@ -157,7 +157,13 @@ class DB {
 			$res = self::Prepare($sql, $parameters, DB::FETCH_TYPE_ROW);
 			$reflection = self::getReflectionClass($object);
 			if ($reflection->hasProperty('id')) {
-				self::setField($object, 'id', self::getLastInsertId());
+				try {
+					self::setField($object, 'id', self::getLastInsertId());
+				} catch (Exception $exc) {
+					trigger_error($exc->getMessage(), E_USER_NOTICE);
+				} catch (InvalidArgumentException $ex) {
+					trigger_error($ex->getMessage(), E_USER_NOTICE);
+				}
 			}
 			if (!$_direct && method_exists($object, 'postInsert')) {
 				$object->postInsert();

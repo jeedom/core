@@ -22,6 +22,9 @@ foreach (cmd::allHistoryCmd() as $cmd) {
 	if (!$eqLogic->hasRight('r')) {
 		continue;
 	}
+	if ($cmd->getSubType() != 'binary' && $cmd->getSubType() != 'numeric') {
+		continue;
+	}
 	if ($object_id != $eqLogic->getObject_id()) {
 		if ($object_id != -1) {
 			echo '</div>';
@@ -53,6 +56,10 @@ foreach (cmd::allHistoryCmd() as $cmd) {
 
 			<select class="form-control pull-right" id="sel_groupingType" style="width: 200px;">
 				<option value="">{{Aucun groupement}}</option>
+				<option value="sum::hour">{{Sommes par heure}}</option>
+				<option value="average::hour">{{Moyenne par heure}}</option>
+				<option value="low::hour">{{Minimum par heure}}</option>
+				<option value="high::hour">{{Maximum par heure}}</option>
 				<option value="sum::day">{{Sommes par jour}}</option>
 				<option value="average::day">{{Moyenne par jour}}</option>
 				<option value="low::day">{{Minimum par jour}}</option>
@@ -65,6 +72,10 @@ foreach (cmd::allHistoryCmd() as $cmd) {
 				<option value="average::month">{{Moyenne par mois}}</option>
 				<option value="low::month">{{Minimum par mois}}</option>
 				<option value="high::month">{{Maximum par mois}}</option>
+				<option value="sum::year">{{Sommes par année}}</option>
+				<option value="average::year">{{Moyenne par année}}</option>
+				<option value="low::year">{{Minimum par année}}</option>
+				<option value="high::year">{{Maximum par année}}</option>
 			</select>
 			<select class="form-control pull-right" id="sel_chartType" style="width: 200px;">
 				<option value="line">{{Ligne}}</option>

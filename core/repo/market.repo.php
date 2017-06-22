@@ -66,6 +66,7 @@ class repo_market {
 	private $description;
 	private $categorie;
 	private $changelog;
+	private $doc;
 	private $version;
 	private $user_id;
 	private $downloaded;
@@ -84,9 +85,7 @@ class repo_market {
 	private $certification;
 	private $language;
 	private $private;
-	private $change;
 	private $updateBy;
-	private $release;
 	private $hardwareCompatibility;
 	private $nbInstall;
 
@@ -157,9 +156,14 @@ class repo_market {
 	}
 
 	public static function objectInfo($_update) {
+		$url = 'https://jeedom.github.io/documentation/plugins/' . $_update->getLogicalId() . '/' . config::byKey('language', 'core', 'fr_FR') . '/index.html';
+		$header = get_headers($url);
+		if (strpos($header[0], '200') === false) {
+			$url = 'https://jeedom.github.io/documentation/third_plugin/' . $_update->getLogicalId() . '/' . config::byKey('language', 'core', 'fr_FR') . '/index.html';
+		}
 		return array(
-			'doc' => 'https://jeedom.github.io/documentation/plugins/' . $_update->getLogicalId() . '/' . config::byKey('language', 'core', 'fr_FR') . '/index.html',
-			'changelog' => 'https://jeedom.github.io/documentation/plugins/' . $_update->getLogicalId() . '/' . config::byKey('language', 'core', 'fr_FR') . '/index.html#_changelog',
+			'doc' => $url,
+			'changelog' => $url . '#_changelog',
 			'display' => 'https://market.jeedom.fr/index.php?v=d&p=market&type=plugin&plugin_id=' . $_update->getLogicalId(),
 		);
 	}
@@ -176,6 +180,56 @@ class repo_market {
 		}
 	}
 
+	public static function uploadChunk($path, $chunkStart, $chunkEnd, $id, $fileSize) {
+		$market = self::getJsonRpc();
+		$file = fopen($path, "r");
+		fseek($file, $chunkStart - $fileSize, SEEK_END);
+		$chunkSize = (($diff = $chunkEnd - $chunkStart) < 10240) ? 10240 : $diff;
+		$chunk = fread($file, $chunkSize);
+		$tmp = tmpfile();
+		$path = stream_get_meta_data($tmp);
+		fwrite($tmp, $chunk);
+		$rangeHeader = array('chunkStart' => $chunkStart, 'chunkEnd' => $chunkEnd, 'chunkSize' => $chunkSize, 'fileSize' => $fileSize);
+		if (!$market->sendRequest('backup::put', array('id' => $id, 'rangeHeader' => $rangeHeader), 7300, array('file' => '@' . $path['uri']))) {
+			fclose($tmp);
+			throw new Exception($market->getError());
+		}
+		$status = $market->getResult();
+		fclose($tmp);
+		return $status;
+	}
+
+	public static function sendBackupCloud($_path, $_chunksize = 1024000) {
+		$market = self::getJsonRpc();
+		if (!$market->sendRequest('backup::create', array('filename' => pathinfo($_path, PATHINFO_BASENAME), 'filesize' => filesize($_path), 'chunksize' => $_chunksize, 'checksum' => md5_file($_path)))) {
+			throw new Exception($market->getError());
+		}
+		$backup = $market->getResult();
+		if (isset($backup["completed_at"]) && $backup["completed_at"]) {
+			log::add('backupCloud', 'info', 'le backup est déjà sur le cloud');
+			return false;
+		}
+		if (isset($backup["retry"]) && $backup["retry"] > 5) {
+			log::add('backupCloud', 'info', 'Upload impossible, nombre d\'essais : 5');
+			return false;
+		}
+		$fileSize = filesize($_path);
+		while (!$backup["completed_at"]) {
+			try {
+				$backup = repo_market::uploadChunk($_path, $backup["chunk_start"], $backup["chunk_end"], $backup["id"], $fileSize);
+			} catch (Exception $e) {
+				echo $e->getMessage() . "\n";
+				repo_market::sendBackupCloud($_path);
+				break;
+			}
+
+		}
+		if ($backup["completed_at"] != "") {
+			log::add('backupCloud', 'info', 'le backup a fini l upload');
+			return true;
+		}
+	}
+
 	public static function listeBackup() {
 		$market = self::getJsonRpc();
 		if (!$market->sendRequest('backup::liste', array())) {
@@ -186,7 +240,7 @@ class repo_market {
 
 	public static function retoreBackup($_backup) {
 		$url = config::byKey('market::address') . "/core/php/downloadBackup.php?backup=" . $_backup . '&hwkey=' . jeedom::getHardwareKey() . '&username=' . urlencode(config::byKey('market::username')) . '&password=' . self::getPassword() . '&password_type=sha1';
-		$tmp_dir = dirname(__FILE__) . '/../../tmp';
+		$tmp_dir = jeedom::getTmpFolder('market');
 		$tmp = $tmp_dir . '/' . $_backup;
 		$opts = array(
 			"ssl" => array(
@@ -214,6 +268,7 @@ class repo_market {
 	/*     * ***********************CRON*************************** */
 
 	public static function cronHourly() {
+		sleep(rand(0, 600));
 		try {
 			self::test();
 		} catch (Exception $e) {
@@ -233,7 +288,8 @@ class repo_market {
 			}
 
 			$returns = array();
-			for ($i = 0; $i < count($_logicalId); $i++) {
+			$countLogicalId = count($_logicalId);
+			for ($i = 0; $i < $countLogicalId; $i++) {
 				if (is_array($_logicalId[$i])) {
 					$logicalId = $_logicalId[$i]['type'] . $_logicalId[$i]['logicalId'];
 				} else {
@@ -414,7 +470,6 @@ class repo_market {
 				'information' => array(
 					'nbMessage' => message::nbMessage(),
 					'nbUpdate' => update::nbNeedUpdate(),
-					'jeeNetwork::mode' => config::byKey('jeeNetwork::mode'),
 					'hardware' => (method_exists('jeedom', 'getHardwareName')) ? jeedom::getHardwareName() : '',
 				),
 				'localIp' => $internalIp,
@@ -489,10 +544,11 @@ class repo_market {
 		$market->setCategorie($_arrayMarket['categorie']);
 		$market->status = json_encode($_arrayMarket['status'], JSON_UNESCAPED_UNICODE);
 		$market->setAuthor($_arrayMarket['author']);
-		$market->setChangelog($_arrayMarket['changelog']);
+		@$market->setChangelog($_arrayMarket['changelog']);
+		@$market->setDoc($_arrayMarket['doc']);
 		$market->setLogicalId($_arrayMarket['logicalId']);
-		$market->setUtilization($_arrayMarket['utilization']);
-		$market->setCertification($_arrayMarket['certification']);
+		@$market->setUtilization($_arrayMarket['utilization']);
+		@$market->setCertification($_arrayMarket['certification']);
 		$market->setPurchase($_arrayMarket['purchase']);
 		$market->setCost($_arrayMarket['cost']);
 		$market->rating = ($_arrayMarket['rating']);
@@ -506,7 +562,6 @@ class repo_market {
 		if (isset($_arrayMarket['hardwareCompatibility'])) {
 			$market->hardwareCompatibility = json_encode($_arrayMarket['hardwareCompatibility'], JSON_UNESCAPED_UNICODE);
 		}
-		$market->change = '';
 
 		$market->setRealcost($_arrayMarket['realCost']);
 		if (!isset($_arrayMarket['isAuthor'])) {
@@ -657,13 +712,13 @@ class repo_market {
 	}
 
 	public function install($_version = 'stable') {
-		$tmp_dir = '/tmp';
+		$tmp_dir = jeedom::getTmpFolder('market');
 		$tmp = $tmp_dir . '/' . $this->getLogicalId() . '.zip';
 		if (file_exists($tmp)) {
 			unlink($tmp);
 		}
 		if (!is_writable($tmp_dir)) {
-			exec('sudo chmod 777 -R ' . $tmp);
+			exec(system::getCmdSudo() . 'chmod 777 -R ' . $tmp);
 		}
 		if (!is_writable($tmp_dir)) {
 			throw new Exception(__('Impossible d\'écrire dans le répertoire : ', __FILE__) . $tmp . __('. Exécuter la commande suivante en SSH : sudo chmod 777 -R ', __FILE__) . $tmp_dir);
@@ -726,7 +781,7 @@ class repo_market {
 		switch ($this->getType()) {
 			case 'plugin':
 				$plugin_id = $this->getLogicalId();
-				$cibDir = '/tmp/' . $plugin_id;
+				$cibDir = jeedom::getTmpFolder('market') . '/' . $plugin_id;
 				if (file_exists($cibDir)) {
 					rrmdir($cibDir);
 				}
@@ -744,7 +799,7 @@ class repo_market {
 				if (file_exists($cibDir . '/data')) {
 					rrmdir($cibDir . '/data');
 				}
-				$tmp = '/tmp/' . $plugin_id . '.zip';
+				$tmp = jeedom::getTmpFolder('market') . '/' . $plugin_id . '.zip';
 				if (file_exists($tmp)) {
 					if (!unlink($tmp)) {
 						throw new Exception(__('Impossible de supprimer : ', __FILE__) . $tmp . __('. Vérifiez les droits', __FILE__));
@@ -807,6 +862,7 @@ class repo_market {
 
 	public function setDatetime($_key, $_value) {
 		$this->datetime = utils::setJsonAttr($this->datetime, $_key, $_value);
+		return $this;
 	}
 
 	public function getDescription() {
@@ -831,34 +887,42 @@ class repo_market {
 
 	public function setId($id) {
 		$this->id = $id;
+		return $this;
 	}
 
 	public function setName($name) {
 		$this->name = $name;
+		return $this;
 	}
 
 	public function setType($type) {
 		$this->type = $type;
+		return $this;
 	}
 
 	public function setDescription($description) {
 		$this->description = $description;
+		return $this;
 	}
 
 	public function setCategorie($categorie) {
 		$this->categorie = $categorie;
+		return $this;
 	}
 
 	public function setVersion($version) {
 		$this->version = $version;
+		return $this;
 	}
 
 	public function setUser_id($user_id) {
 		$this->user_id = $user_id;
+		return $this;
 	}
 
 	public function setDownloaded($downloaded) {
 		$this->downloaded = $downloaded;
+		return $this;
 	}
 
 	public function getStatus($_key = '', $_default = '') {
@@ -867,6 +931,7 @@ class repo_market {
 
 	public function setStatus($_key, $_value) {
 		$this->status = utils::setJsonAttr($this->status, $_key, $_value);
+		return $this;
 	}
 
 	public function getLink($_key = '', $_default = '') {
@@ -875,6 +940,7 @@ class repo_market {
 
 	public function setLink($_key, $_value) {
 		$this->link = utils::setJsonAttr($this->link, $_key, $_value);
+		return $this;
 	}
 
 	public function getLanguage($_key = '', $_default = '') {
@@ -883,6 +949,7 @@ class repo_market {
 
 	public function setLanguage($_key, $_value) {
 		$this->language = utils::setJsonAttr($this->language, $_key, $_value);
+		return $this;
 	}
 
 	public function getImg($_key = '', $_default = '') {
@@ -895,6 +962,7 @@ class repo_market {
 
 	public function setAuthor($author) {
 		$this->author = $author;
+		return $this;
 	}
 
 	public function getChangelog() {
@@ -903,6 +971,7 @@ class repo_market {
 
 	public function setChangelog($changelog) {
 		$this->changelog = $changelog;
+		return $this;
 	}
 
 	public function getLogicalId() {
@@ -911,6 +980,7 @@ class repo_market {
 
 	public function setLogicalId($logicalId) {
 		$this->logicalId = $logicalId;
+		return $this;
 	}
 
 	public function getPrivate() {
@@ -919,6 +989,7 @@ class repo_market {
 
 	public function setPrivate($private) {
 		$this->private = $private;
+		return $this;
 	}
 
 	public function getIsAuthor() {
@@ -927,6 +998,7 @@ class repo_market {
 
 	public function setIsAuthor($isAuthor) {
 		$this->isAuthor = $isAuthor;
+		return $this;
 	}
 
 	public function getUtilization() {
@@ -935,6 +1007,7 @@ class repo_market {
 
 	public function setUtilization($utilization) {
 		$this->utilization = $utilization;
+		return $this;
 	}
 
 	public function getPurchase() {
@@ -943,6 +1016,7 @@ class repo_market {
 
 	public function setPurchase($purchase) {
 		$this->purchase = $purchase;
+		return $this;
 	}
 
 	public function getCost() {
@@ -951,6 +1025,7 @@ class repo_market {
 
 	public function setCost($cost) {
 		$this->cost = $cost;
+		return $this;
 	}
 
 	public function getRealcost() {
@@ -959,6 +1034,7 @@ class repo_market {
 
 	public function setRealcost($realcost) {
 		$this->realcost = $realcost;
+		return $this;
 	}
 
 	public function getBuyer() {
@@ -967,6 +1043,7 @@ class repo_market {
 
 	public function setBuyer($buyer) {
 		$this->buyer = $buyer;
+		return $this;
 	}
 
 	public function getCertification() {
@@ -975,22 +1052,16 @@ class repo_market {
 
 	public function setCertification($certification) {
 		$this->certification = $certification;
+		return $this;
 	}
 
-	public function getChange() {
-		return $this->change;
+	public function getDoc() {
+		return $this->doc;
 	}
 
-	public function setChange($change) {
-		$this->change = $change;
-	}
-
-	public function getRelease() {
-		return $this->release;
-	}
-
-	public function setRelease($release) {
-		$this->release = $release;
+	public function setDoc($doc) {
+		$this->doc = $doc;
+		return $this;
 	}
 
 	public function getUpdateBy() {
@@ -999,6 +1070,7 @@ class repo_market {
 
 	public function setUpdateBy($updateBy) {
 		$this->updateBy = $updateBy;
+		return $this;
 	}
 
 	public function getNbInstall() {
@@ -1007,6 +1079,7 @@ class repo_market {
 
 	public function setNbInstall($nbInstall) {
 		$this->nbInstall = $nbInstall;
+		return $this;
 	}
 
 	public function getHardwareCompatibility($_key = '', $_default = '') {
@@ -1015,6 +1088,7 @@ class repo_market {
 
 	public function setHardwareCompatibility($_key, $_value) {
 		$this->hardwareCompatibility = utils::setJsonAttr($this->hardwareCompatibility, $_key, $_value);
+		return $this;
 	}
 
 }

@@ -1,4 +1,4 @@
-/*! Widget: resizable - updated 11/4/2015 (v2.24.3) */
+/*! Widget: resizable - updated 6/28/2016 (v2.26.5) */
 /*jshint browser:true, jquery:true, unused:false */
 ;(function ($, window) {
 	'use strict';
@@ -102,7 +102,6 @@
 						.bind( 'selectstart', false );
 				}
 			}
-			ts.resizable.setHandlePosition( c, wo );
 			ts.resizable.bindings( c, wo );
 		},
 
@@ -152,12 +151,11 @@
 
 		setHandlePosition : function( c, wo ) {
 			var startPosition,
-				hasScroller = ts.hasWidget( c.table, 'scroller' ),
 				tableHeight = c.$table.height(),
 				$handles = wo.$resizable_container.children(),
 				handleCenter = Math.floor( $handles.width() / 2 );
 
-			if ( hasScroller ) {
+			if ( ts.hasWidget( c.table, 'scroller' ) ) {
 				tableHeight = 0;
 				c.$table.closest( '.' + ts.css.scrollerWrap ).children().each(function(){
 					var $this = $(this);
@@ -256,7 +254,7 @@
 
 			// right click to reset columns to default widths
 			c.$table
-				.bind( 'columnUpdate' + namespace, function() {
+				.bind( 'columnUpdate' + namespace + ' pagerComplete' + namespace, function() {
 					ts.resizable.setHandlePosition( c, wo );
 				})
 				.find( 'thead:first' )
@@ -339,6 +337,9 @@
 		},
 		init: function(table, thisWidget, c, wo) {
 			ts.resizable.init( c, wo );
+		},
+		format: function( table, c, wo ) {
+			ts.resizable.setHandlePosition( c, wo );
 		},
 		remove: function( table, c, wo, refreshing ) {
 			if (wo.$resizable_container) {

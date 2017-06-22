@@ -391,9 +391,9 @@
                     var hasLink = (_self.options.action.link);
                     var hasEvent = (_self.options.action.fn && typeof _self.options.action.fn === "function");
 
-                    toast.find(".nd2-toast-action a").on("click", function() {
+                    toast.find(".nd2-toast-action a").on("click", function(e) {
                         if (hasEvent) {
-                            _self.options.action.fn();
+                            _self.options.action.fn(e);
                         }
                         if (hasLink) {
                             $("body").pagecontainer("change", _self.options.action.link);

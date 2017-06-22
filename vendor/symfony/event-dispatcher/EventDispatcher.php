@@ -92,7 +92,7 @@ class EventDispatcher implements EventDispatcherInterface
         }
 
         foreach ($this->listeners[$eventName] as $priority => $listeners) {
-            if (false !== ($key = array_search($listener, $listeners, true))) {
+            if (false !== in_array($listener, $listeners, true)) {
                 return $priority;
             }
         }
@@ -103,7 +103,7 @@ class EventDispatcher implements EventDispatcherInterface
      */
     public function hasListeners($eventName = null)
     {
-        return (bool) count($this->getListeners($eventName));
+        return (bool) $this->getListeners($eventName);
     }
 
     /**

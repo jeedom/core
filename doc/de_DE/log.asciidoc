@@ -1,10 +1,10 @@
-= Logs
+= Log
 
-== Ansicht
+== Affichage
 
-Im Logs-Menü können Sie verfolgen, was in der Home-Automation geschieht. In den meisten Fällen wird das Protokoll verwendet, um die Fehlersuche und Problemlösung durch das Support-Team durchzuführen. Dieses Menü ist nur im Experten-Modus verfügbar.  
+Le menu Logs permet de suivre ce qui se passe sur sa domotique. Dans la plupart des cas les logs ne serviront qu'à effectuer du debuggage et à résoudre des problèmes par l'équipe de support. Ce menu est d'ailleurs accessible uniquement en mode expert.
 
-Um dorthin zu gelangen muss man auf Analyse -> Logs gehen : 
+Pour y accèder il faut aller dans Administration -> Logs : 
 
 image::../images/log1.JPG[]
 
@@ -14,35 +14,35 @@ image::../images/log.JPG[]
 
 Die Logs-Seite ist ganz einfach, oben links ist ein Dropdown-Menü, dass die Auswahl der Logs ermöglicht und oberen rechts sind 5 Schaltflächen :
 
-* *Aktualisieren* : Aktualisiert das aktuelle Protokoll,
-* *Herunterladen* : zum herunterladen des aktuellen Protokolls ,
-* *Leeren* : wird verwendet, um das aktuelle Protokoll zu löschen,
-* *Löschen* : Löscht das aktuelle Protokoll, wenn Jeedom es benötigt, wird es automatisch neu erstellt, 
-* *Alle Protokolle löschen* : Löscht alle vorhandene Protokolle.
+* *Rafraîchir* : permet de rafraîchir le log actuel,
+* *Télécharger* : permet de télécharger le log actuel,
+* *Vider* : permet de vider le log actuel,
+* *Supprimer* : permet de supprimer le log actuel, si Jeedom en a besoin il le recréera automatiquement,
+* *Supprimer tous les logs* : supprime tous les logs présents.
 
 [TIP]
-Man beachte, daß das Protokoll nginx.error nicht gelöscht werden kann. Es ist unbedingt erforderlich! Wenn sie es entfernen (zum Beispiel in der Befehlszeile) wird es nicht neu erstellt, dazu muß Jeedom neu gestartet werden.
+A noter que le log nginx.error ne peut être supprimé. Il est essentiel ! si vous le supprimez (en ligne de commande par exemple) celui-ci ne se recréera pas tout seul, il faut redémarrer Jeedom.
 
-== Konfiguration
+== Configuration
 
-Es gibt bestimmte Konfigurations Parameter der Logs (zugänglich durch Administation - > Konfiguration dann der Teil „Logs & Nachrichten Konfiguration“).
+Il existe certains paramètres de configuration des logs (accessible par Administation -> Configuration puis la partie "Configuration des logs & messages").
 
 image::../images/log2.JPG[]
 
 Hier haben Sie folgende Möglichkeiten :
 
-* *Nachricht*
-** *Eine Nachricht zu jedem Fehler in den Logs hinzufügen* : wenn ein Plugin oder Jeedom eine Fehlermeldung in ein Protokoll schreibt, fügt Jeedom automatisch eine Nachricht in die Nachrichtenzentrale (zumindest sind sie sicher, dass sie am Ende nichts verpassen)
-** *Nachrichten nicht zulassen von* : bestimmte Nachrichten von Plugins oder andere zu verbieten
-** *Commande d'information utilisateur* : erlaubt, ein oder mehrere Befehle (ist durch && zu trennen) vom Typ Nachricht auszuwählen, die bei neuen Nachrichten benutzt werden (ermöglicht, gleich benachrichtigt zu werden )
+* *Message*
+** *Ajouter un message à chaque erreur dans les logs* : si un plugin ou Jeedom écrit un message d'erreur dans un log, Jeedom ajoute automatiquement un message dans le centre des messages (au moins vous êtes sûr de ne pas le manquer)
+** *Ne pas autoriser les messages venant de* : permet d'interdire certains messages venant d'un plugin ou autre
+** *Commande d'information utilisateur* : permet de sélectionner une ou plusieurs commandes (à séparer par des &&) de type message qui seront utilisées lors de nouveaux messages (permet d'être tout de suite prévenu)
 * *Log* 
-** *Protokoll Engine* : ermöglicht, die Protokoll Engine auszuwechseln, um sie zum Beispiel an einem syslog(d) Dämon zu senden 
-** *Maximale Anzahl der Zeilen in einer Log-Datei* : Legt die maximale Anzahl der Zeilen in einer Log-Datei fest, es wird empfohlen, diesen Wert nicht zu ändern, weil ein zu großer Wert auf das Dateisystem überfüllen könnte und/oder Jeedom ist nicht mehr in der Lage das Protokoll zu sehen.
-** *Logs actifs* : permet de définir les niveaux de log actif. Attention : plus il y a de niveaux actifs, plus Jeedom peut être lent ! Cela entraîne aussi une usure prématurée de la carte SD. Il est conseillé de n'activer que le niveau "Error". "Event" peut être activé aussi car il est nécessaire pour voir en temps réel ce qu'il se passe sur sa domotique (bien sûr c'est seulement si vous en avez besoin).
+** *Moteur de log* : permet de changer le moteur de log pour par exemple les envoyer à un demon syslog(d)
+** *Nombre de lignes maximum dans un fichier de log* : Définit le nombre maximum de lignes dans un fichier de log, il est recommandé de ne pas toucher cette valeur, car une valeur trop grande pourrait remplir le système de fichiers et/ou rendre Jeedom incapable d'afficher le log
+** *Logs actifs* : permet de définir les niveaux de log actif. Attention : plus il y a de niveaux actifs, plus Jeedom peut être lent ! Cela entraîne aussi une usure prématurée de la carte SD. Il est conseillé de n'activer que le niveau "Error". "Event" peut être activé aussi car il est nécessaire pour voir en temps réel ce qui se passe sur sa domotique (bien sûr c'est seulement si vous en avez besoin).
 
-== Das Protokoll "Ereignis" und die Protokollebene "Ereignis"
+== Le log "Event" et le niveau de log "Event"
 
-Das Protokoll 'Ereignis' ist ein wenig speziell. Zum einen für sie zu arbeiten, aktivieren Sie die Log-Level 'Info' oder mehr, dann listet es alle Ereignisse und Aktionen, die auf Home Automation passieren. Um darauf zuzugreifen, klicken Sie auf das kleine Symbol 'Zähler' unten rechts in Jeedom: 
+Le log "Event" est un peu particulier. Tout d'abord pour qu'il fonctionne, il faut activer le niveau de log "Info" ou plus, ensuite celui-ci recense tous les évènements ou actions qui se passent sur la domotique. Pour y accéder, il faut cliquer sur la petite icône "compteur" en bas à droite dans Jeedom : 
 
 image::../images/log3.JPG[]
 
@@ -53,4 +53,4 @@ image::../images/log4.JPG[]
 Oben rechts haben sie ein Suchfelder  (funktioniert nur, wenn sie nicht angehalten haben) und eine Schaltfläche für die Pause (nützlich zum Beispiel für Kopieren/Einfügen).
 
 [IMPORTANT]
-Damit das geht, muss man unbedingt das Niveau von log "Info" aktiviert haben oder mehr (siehe vorhergehenden Absatz) 
+Pour que cela fonctionne il faut absolument avoir activé le niveau de log "Info" ou plus (voir paragraphe précédent)

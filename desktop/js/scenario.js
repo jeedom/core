@@ -49,9 +49,10 @@
  {val: 'median(commande1,commande2)'},
  {val: 'time(value)'},
  {val: 'collectDate(cmd)'},
+ {val: 'valueDate(cmd)'},
  {val: 'eqEnable(equipement)'}
  ];
- autoCompleteAction = ['sleep', 'variable', 'scenario', 'stop', 'wait','gotodesign','log','message','equipement','ask','jeedom_poweroff','scenario_return','icon'];
+ autoCompleteAction = ['report','sleep', 'variable', 'scenario', 'stop', 'wait','gotodesign','log','message','equipement','ask','jeedom_poweroff','scenario_return','alert','popup','icon','event'];
 
  if (getUrlVars('saveSuccessFull') == 1) {
   $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
@@ -198,7 +199,7 @@ $("#bt_addScenario,#bt_addScenario2").on('click', function (event) {
     '<input name="cbScenarioType" class="cb_scenarioType" type="radio" value="simple" checked="checked"> ' +
     '{{Simple}}</label> ' +
     '</div><div class="radio"> <label> ' +
-    '<input  name="cbScenarioType" class="cb_scenarioType" type="radio" value="expert"> {{Avancée}}</label> ' +
+    '<input  name="cbScenarioType" class="cb_scenarioType" type="radio" value="expert"> {{Avancé}}</label> ' +
     '</div> ' +
     '</div> </div>' +
     '</form> </div>  </div>',
@@ -273,7 +274,6 @@ $("#bt_testScenario,#bt_testScenario2").on('click', function () {
     },
     success: function () {
       $('#div_alert').showAlert({message: '{{Lancement du scénario réussi}}', level: 'success'});
-      setTimeout(function(){ printScenario($('.scenarioAttr[data-l1key=id]').value()); }, 100);
     }
   });
 });
@@ -303,7 +303,7 @@ $("#bt_stopScenario").on('click', function () {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
     success: function () {
-      printScenario($('.scenarioAttr[data-l1key=id]').value());
+      $('#div_alert').showAlert({message: '{{Arrêt du scénario réussi}}', level: 'success'});
     }
   });
 });
@@ -327,13 +327,6 @@ $('#in_addElementType').on('change',function(){
   $('.addElementTypeDescription').hide();
   $('.addElementTypeDescription.'+$(this).value()).show();
 });
-
-
-$('#sel_otherAction').on('change',function(){
-  $('.sel_otherActionDescription').hide();
-  $('.sel_otherActionDescription.'+$(this).value()).show();
-});
-
 
 /*******************Element***********************/
 
@@ -527,8 +520,6 @@ $('body').delegate('.bt_selectCmdExpression', 'click', function (event) {
     },
   }
 });
-
-
   }
 });
 });
@@ -536,16 +527,12 @@ $('body').delegate('.bt_selectCmdExpression', 'click', function (event) {
 
 $('body').delegate('.bt_selectOtherActionExpression', 'click', function (event) {
   var expression = $(this).closest('.expression');
-  $('#md_selectOtherAction').modal('show');
-  $("#bt_selectOtherActionSave").off().on('click', function (event) {
-    expression.find('.expressionAttr[data-l1key=expression]').value($('#sel_otherAction').value());
-    jeedom.cmd.displayActionOption(expression.find('.expressionAttr[data-l1key=expression]').value(), '', function (html) {
-      expression.find('.expressionOptions').html(html);
-    });
-    $('#md_selectOtherAction').modal('hide');
+  jeedom.getSelectActionModal({scenario : true}, function (result) {
+   expression.find('.expressionAttr[data-l1key=expression]').value(result.human);
+   jeedom.cmd.displayActionOption(expression.find('.expressionAttr[data-l1key=expression]').value(), '', function (html) {
+    expression.find('.expressionOptions').html(html);
   });
-
-
+ });
 });
 
 
@@ -626,12 +613,21 @@ $('body').delegate('.bt_selectTrigger', 'click', function (event) {
   });
 });
 
+$('body').delegate('.bt_selectDataStoreTrigger', 'click', function (event) {
+  var el = $(this);
+  jeedom.dataStore.getSelectModal({cmd: {type: 'info'}}, function (result) {
+    el.closest('.trigger').find('.scenarioAttr[data-l1key=trigger]').value(result.human);
+  });
+});
+
+
 $('body').delegate('.bt_sortable', 'mouseenter', function () {
   var expressions = $(this).closest('.expressions');
   $("#div_scenarioElement").sortable({
     axis: "y",
     cursor: "move",
     items: ".sortable",
+    opacity: 0.5,
     //placeholder: "ui-state-highlight",
     forcePlaceholderSize: true,
     forceHelperSize: true,
@@ -667,27 +663,25 @@ $('body').delegate('.bt_sortable', 'mouseout', function () {
 
 });
 
-/***********************LOG*****************************/
+$('#bt_graphScenario').on('click', function () {
+  $('#md_modal').dialog({title: "{{Graphique de lien}}"});
+  $("#md_modal").load('index.php?v=d&modal=graph.link&filter_type=scenario&filter_id='+$('.scenarioAttr[data-l1key=id]').value()).dialog('open');
+});
 
 $('#bt_logScenario').on('click', function () {
   $('#md_modal').dialog({title: "{{Log d'exécution du scénario}}"});
   $("#md_modal").load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + $('.scenarioAttr[data-l1key=id]').value()).dialog('open');
 });
 
-/***********************EXPORT*****************************/
-
 $('#bt_exportScenario').on('click', function () {
   $('#md_modal').dialog({title: "{{Export du scénario}}"});
   $("#md_modal").load('index.php?v=d&modal=scenario.export&scenario_id=' + $('.scenarioAttr[data-l1key=id]').value()).dialog('open');
 });
 
-/***********************Template*****************************/
-
 $('#bt_templateScenario').on('click', function () {
   $('#md_modal').dialog({title: "{{Template de scénario}}"});
   $("#md_modal").load('index.php?v=d&modal=scenario.template&scenario_id=' + $('.scenarioAttr[data-l1key=id]').value()).dialog('open');
 });
-
 
 /**************** Initialisation **********************/
 
@@ -760,99 +754,119 @@ function setAutocomplete() {
 
 function printScenario(_id) {
   $.showLoading();
-  jeedom.scenario.get({
-    id: _id,
-    error: function (error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'});
-    },
-    success: function (data) {
-      if (data.type == 'simple') {
-        $('#bt_switchToExpertMode').attr('href', 'index.php?v=d&p=scenarioAssist&id=' + _id)
-      }
-      pColor = 0;
-      $('.scenarioAttr').value('');
-      $('.scenarioAttr[data-l1key=object_id] option:first').attr('selected',true);
-      $('.scenarioAttr[data-l1key=object_id]').val('');
-      $('body').setValues(data, '.scenarioAttr');
-      data.lastLaunch = (data.lastLaunch == null) ? '{{Jamais}}' : data.lastLaunch;
-      $('#span_lastLaunch').text(data.lastLaunch);
+  jeedom.scenario.update[_id] =function(_options){
+    if(_options.scenario_id =! $('body').getValues('.scenarioAttr')[0]['id']){
+      return;
+    }
+    switch(_options.state){
+     case 'error' :
+     $('#bt_stopScenario').hide();
+     $('#span_ongoing').text('{{Erreur}}');
+     $('#span_ongoing').removeClass('label-info label-danger label-success').addClass('label-warning');
+     break;
+     case 'on' :
+     $('#bt_stopScenario').show();
+     $('#span_ongoing').text('{{Actif}}');
+     $('#span_ongoing').removeClass('label-info label-danger label-warning').addClass('label-success');
+     break;
+     case 'in progress' :
+     $('#bt_stopScenario').show();
+     $('#span_ongoing').text('{{En cours}}');
+     $('#span_ongoing').addClass('label-success');
+     $('#span_ongoing').removeClass('label-success label-danger label-warning').addClass('label-info');
+     break;
+     case 'stop' :
+     $('#bt_stopScenario').hide();
+     $('#span_ongoing').text('{{Arrêté}}');
+     $('#span_ongoing').removeClass('label-info label-success label-warning').addClass('label-danger');
+     break;
+   }
+ }
+ jeedom.scenario.get({
+  id: _id,
+  error: function (error) {
+    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+  },
+  success: function (data) {
+    if (data.type == 'simple') {
+      $('#bt_switchToExpertMode').attr('href', 'index.php?v=d&p=scenarioAssist&id=' + _id)
+    }
+    pColor = 0;
+    $('.scenarioAttr').value('');
+    $('.scenarioAttr[data-l1key=object_id] option:first').attr('selected',true);
+    $('.scenarioAttr[data-l1key=object_id]').val('');
+    $('body').setValues(data, '.scenarioAttr');
+    data.lastLaunch = (data.lastLaunch == null) ? '{{Jamais}}' : data.lastLaunch;
+    $('#span_lastLaunch').text(data.lastLaunch);
 
-      $('#div_scenarioElement').empty();
-      $('#div_scenarioElement').append('<a class="btn btn-default bt_addScenarioElement tootlips" title="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)}}"><i class="fa fa-plus-circle"></i> {{Ajouter bloc}}</a><br/><br/>');
-      $('.provokeMode').empty();
-      $('.scheduleMode').empty();
-      $('.scenarioAttr[data-l1key=mode]').trigger('change');
-      for (var i in data.schedules) {
-        $('#div_schedules').schedule.display(data.schedules[i]);
-      }
-      $('#bt_stopScenario').hide();
-      switch (data.state) {
-        case 'error' :
-        $('#span_ongoing').text('{{Erreur}}');
-        $('#span_ongoing').removeClass('label-info label-danger label-success').addClass('label-warning');
-        break;
-        case 'on' :
-        $('#span_ongoing').text('{{Actif}}');
-        $('#span_ongoing').removeClass('label-info label-danger label-warning').addClass('label-success');
-        break;
-        case 'in progress' :
-        $('#span_ongoing').text('{{En cours}}');
-        $('#span_ongoing').addClass('label-success');
-        $('#span_ongoing').removeClass('label-success label-danger label-warning').addClass('label-info');
-        $('#bt_stopScenario').show();
-        break;
-        case 'stop' :
-        $('#span_ongoing').text('{{Arrêté}}');
-        $('#span_ongoing').removeClass('label-info label-success label-warning').addClass('label-danger');
-        break;
-      }
-      if (data.isActive != 1) {
-        $('#in_ongoing').text('{{Inactif}}');
-        $('#in_ongoing').removeClass('label-danger');
-        $('#in_ongoing').removeClass('label-success');
-      }
-      if ($.isArray(data.trigger)) {
-        for (var i in data.trigger) {
-          if (data.trigger[i] != '' && data.trigger[i] != null) {
-            addTrigger(data.trigger[i]);
-          }
-        }
-      } else {
-        if (data.trigger != '' && data.trigger != null) {
-          addTrigger(data.trigger);
+    $('#div_scenarioElement').empty();
+    $('#div_scenarioElement').append('<a class="btn btn-default bt_addScenarioElement tootlips" title="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)}}"><i class="fa fa-plus-circle"></i> {{Ajouter bloc}}</a><br/><br/>');
+    $('.provokeMode').empty();
+    $('.scheduleMode').empty();
+    $('.scenarioAttr[data-l1key=mode]').trigger('change');
+    for (var i in data.schedules) {
+      $('#div_schedules').schedule.display(data.schedules[i]);
+    }
+    jeedom.scenario.update[_id](data);
+    if (data.isActive != 1) {
+      $('#in_ongoing').text('{{Inactif}}');
+      $('#in_ongoing').removeClass('label-danger');
+      $('#in_ongoing').removeClass('label-success');
+    }
+    if ($.isArray(data.trigger)) {
+      for (var i in data.trigger) {
+        if (data.trigger[i] != '' && data.trigger[i] != null) {
+          addTrigger(data.trigger[i]);
         }
       }
-      if ($.isArray(data.schedule)) {
-        for (var i in data.schedule) {
-          if (data.schedule[i] != '' && data.schedule[i] != null) {
-            addSchedule(data.schedule[i]);
-          }
-        }
-      } else {
-        if (data.schedule != '' && data.schedule != null) {
-          addSchedule(data.schedule);
+    } else {
+      if (data.trigger != '' && data.trigger != null) {
+        addTrigger(data.trigger);
+      }
+    }
+    if ($.isArray(data.schedule)) {
+      for (var i in data.schedule) {
+        if (data.schedule[i] != '' && data.schedule[i] != null) {
+          addSchedule(data.schedule[i]);
         }
       }
+    } else {
+      if (data.schedule != '' && data.schedule != null) {
+        addSchedule(data.schedule);
+      }
+    }
 
-      if(data.elements.length == 0){
-        $('#div_scenarioElement').append('<center><span style=\'color:#767676;font-size:1.2em;font-weight: bold;\'>Pour constituer votre scénario veuillez ajouter des blocs</span></center>')
+    if(data.elements.length == 0){
+      $('#div_scenarioElement').append('<center><span style=\'color:#767676;font-size:1.2em;font-weight: bold;\'>Pour constituer votre scénario veuillez ajouter des blocs</span></center>')
+    }
+    actionOptions = []
+    for (var i in data.elements) {
+      $('#div_scenarioElement').append(addElement(data.elements[i]));
+    }
+    jeedom.cmd.displayActionsOption({
+      params : actionOptions,
+      async : false,
+      error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+      },
+      success : function(data){
+       $.showLoading();
+       for(var i in data){
+        $('#'+data[i].id).append(data[i].html.html);
       }
-
-      for (var i in data.elements) {
-        $('#div_scenarioElement').append(addElement(data.elements[i]));
-      }
-      updateSortable();
-      initCheckBox();
-      setEditor();
-      setAutocomplete();
-      $('#div_editScenario').show();
       $.hideLoading();
-      modifyWithoutSave = false;
-      setTimeout(function () {
-        modifyWithoutSave = false;
-      }, 1000);
     }
   });
+    updateSortable();
+    setEditor();
+    setAutocomplete();
+    $('#div_editScenario').show();
+    modifyWithoutSave = false;
+    setTimeout(function () {
+      modifyWithoutSave = false;
+    }, 1000);
+  }
+});
 }
 
 function saveScenario() {
@@ -871,31 +885,21 @@ function saveScenario() {
     },
     success: function (data) {
       modifyWithoutSave = false;
-      if ($('#ul_scenario .li_scenario[data-scenario_id=' + data.id + ']').length != 0) {
-        $('#ul_scenario .li_scenario[data-scenario_id=' + data.id + ']').click();
-      } else {
-        var vars = getUrlVars();
-        var url = 'index.php?';
-        for (var i in vars) {
-          if (i != 'id' && i != 'saveSuccessFull' && i != 'removeSuccessFull') {
-            url += i + '=' + vars[i].replace('#', '') + '&';
-          }
-        }
-        url += 'id=' + data.id + '&saveSuccessFull=1';
-        loadPage(url);
-      }
+      $('#div_alert').showAlert({message: '{{Sauvegarde du scénario réussi}}', level: 'success'});
+      printScenario(scenario.id);
     }
   });
 }
 
 function addTrigger(_trigger) {
   var div = '<div class="form-group trigger">';
-  div += '<label class="col-xs-3 control-label">{{Evènement}}</label>';
+  div += '<label class="col-xs-3 control-label">{{Evénement}}</label>';
   div += '<div class="col-xs-9">';
   div += '<div class="input-group">';
-  div += '<input class="scenarioAttr input-sm form-control" data-l1key="trigger" value="' + _trigger + '" >';
+  div += '<input class="scenarioAttr input-sm form-control" data-l1key="trigger" value="' + _trigger.replace(/"/g,'&quot;') + '" >';
   div += '<span class="input-group-btn">';
-  div += '<a class="btn btn-default btn-sm cursor bt_selectTrigger"><i class="fa fa-list-alt"></i></a>';
+  div += '<a class="btn btn-default btn-sm cursor bt_selectTrigger" title="{{Choisir une commande}}"><i class="fa fa-list-alt"></i></a>';
+  div += '<a class="btn btn-default btn-sm cursor bt_selectDataStoreTrigger" title="{{Choisir une variable}}"><i class="fa fa-calculator"></i></a>';
   div += '<a class="btn btn-default btn-sm cursor bt_removeTrigger"><i class="fa fa-minus-circle"></i></a>';
   div += '</span>';
   div += '</div>';
@@ -909,7 +913,7 @@ function addSchedule(_schedule) {
   div += '<label class="col-xs-3 control-label">{{Programmation}}</label>';
   div += '<div class="col-xs-9">';
   div += '<div class="input-group">';
-  div += '<input class="scenarioAttr input-sm form-control" data-l1key="schedule" value="' + _schedule + '">';
+  div += '<input class="scenarioAttr input-sm form-control" data-l1key="schedule" value="' + _schedule.replace(/"/g,'&quot;') + '">';
   div += '<span class="input-group-btn">';
   div += '<a class="btn btn-default btn-sm cursor helpSelectCron"><i class="fa fa-question-circle"></i></a>';
   div += '<a class="btn btn-default btn-sm cursor bt_removeSchedule"><i class="fa fa-minus-circle"></i></a>';
@@ -928,7 +932,7 @@ function addExpression(_expression) {
   if (_expression.type == 'condition') {
     sortable = 'noSortable';
   }
-  var retour = '<div class="expression ' + sortable + ' col-xs-12" style="margin-bottom: 4px; margin-right: 0px;margin-left: 0px;padding-right: 0px; padding-left: 0px">';
+  var retour = '<div class="expression ' + sortable + ' col-xs-12" style="margin-bottom: 0px; margin-right: 0px;margin-left: 0px;padding-right: 0px; padding-left: 0px">';
   retour += '<input class="expressionAttr" data-l1key="id" style="display : none;" value="' + init(_expression.id) + '"/>';
   retour += '<input class="expressionAttr" data-l1key="scenarioSubElement_id" style="display : none;" value="' + init(_expression.scenarioSubElement_id) + '"/>';
   retour += '<input class="expressionAttr" data-l1key="type" style="display : none;" value="' + init(_expression.type) + '"/>';
@@ -973,15 +977,20 @@ function addExpression(_expression) {
     retour += '<span class="input-group-btn">';
     retour += '<button class="btn btn-default bt_removeExpression" type="button" title="{{Supprimer l\'action}}"><i class="fa fa-minus-circle"></i></button>';
     retour += '</span>';
-    retour += '<input class="expressionAttr form-control" data-l1key="expression" value="' + init(_expression.expression) + '" style="font-weight:bold;"/>';
+    retour += '<input class="expressionAttr form-control" data-l1key="expression" value="' + init(_expression.expression).replace(/"/g,'&quot;') + '" style="font-weight:bold;"/>';
     retour += '<span class="input-group-btn">';
     retour += '<button class="btn btn-default bt_selectOtherActionExpression" type="button" title="{{Sélectionner un mot-clé}}"><i class="fa fa-tasks"></i></button>';
     retour += '<button class="btn btn-default bt_selectCmdExpression" type="button" title="{{Sélectionner la commande}}"><i class="fa fa-list-alt"></i></button>';
     retour += '</span>';
     retour += '</div></div>';
-    retour += '<div class="col-xs-7 expressionOptions" style="margin-top: 4px">';
-    retour += jeedom.cmd.displayActionOption(init(_expression.expression), init(_expression.options));
+    var actionOption_id = uniqId();
+    retour += '<div class="col-xs-7 expressionOptions" style="margin-top: 4px" id="'+actionOption_id+'">';
     retour += '</div>';
+    actionOptions.push({
+      expression : init(_expression.expression, ''),
+      options : _expression.options,
+      id : actionOption_id
+    });
     break;
     case 'code' :
     retour += '<div class="col-xs-1">';
@@ -1045,7 +1054,7 @@ function addSubElement(_subElement, _pColor) {
       retour += '<a style="height : 30px;" class="btn btn-default btn-xs cursor subElementAttr tooltips pull-right" title="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="1"><span class="fa-stack"><i class="fa fa-refresh fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span></a>';
     }
     retour += '  </div>';
-    retour += '  <div class="expressions" style="display:table-cell; padding-bottom: 10px;">';
+    retour += '  <div class="expressions" style="display:table-cell;">';
     var expression = {type: 'condition'};
     if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
       expression = _subElement.expressions[0];
@@ -1292,7 +1301,7 @@ function addElement(_element) {
   }
   var color = pColor;
 
-  var div = '<div class="element" style="color : white;padding-right : 7px;padding-left : 7px;padding-bottom : 0px;padding-top : 2px;margin-bottom : 2px;background-color : ' + listColorStrong[color] + '; border :1px solid ' + listColorStrong[color] + '">';
+  var div = '<div class="element" style="color : white;padding-right : 7px;padding-left : 7px;padding-bottom : 0px;padding-top : 2px;margin-bottom : 0px;background-color : ' + listColorStrong[color] + '; border :1px solid ' + listColorStrong[color] + '">';
   div += '<input class="elementAttr" data-l1key="id" style="display : none;" value="' + init(_element.id) + '"/>';
   div += '<input class="elementAttr" data-l1key="type" style="display : none;" value="' + init(_element.type) + '"/>';
   switch (_element.type) {
@@ -1366,7 +1375,6 @@ function addElement(_element) {
     break;
   }
   div += '</div>';
-
   return div;
 }
 

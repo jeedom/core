@@ -43,7 +43,7 @@ if (init('type') == 'plugin') {
     <div class="col-lg-3">
       <div style="height: 130px;" class="priceChoose alert alert-success">
         <br/>
-        <center><input type="radio" name="rb_price" class="rb_price free" data-value="" checked/> <h4 style="display: inline-block">Gratuit</h4></center>
+        <center><input type="radio" name="rb_price" class="rb_price free" data-value="" checked/> <h4 style="display: inline-block">{{Gratuit}}</h4></center>
       </div>
     </div>
     <div class="col-lg-3">
@@ -60,7 +60,7 @@ if (init('type') == 'plugin') {
     </div>
     <div class="col-lg-3">
       <div style="height: 100px;" class="priceChoose">
-        <center><input type="radio" name="rb_price" class="rb_price" data-value="custom" /> <h4 style="display: inline-block">Libre</h4> <input class="form-control marketAttr input-sm" data-l1key="cost" placeholder="Prix" style="display : inline-block; width : 80px;"> €</center>
+        <center><input type="radio" name="rb_price" class="rb_price" data-value="custom" /> <h4 style="display: inline-block">{{Libre}}</h4> <input class="form-control marketAttr input-sm" data-l1key="cost" placeholder="Prix" style="display : inline-block; width : 80px;"> €</center>
         <center>{{Sur ce prix 65 % seront reversés au développeur (doit être supérieur ou égal à 5 €)}}</center>
       </div>
     </div>
@@ -104,36 +104,36 @@ if (init('type') == 'plugin') {
         <div class="col-lg-6">
           <input class="form-control input category marketAttr" data-l1key="categorie" >
           <select class="form-control widget category" data-l1key="categorie" style="display: none;">
-            <option>Alarme diverse</option>
-            <option>Audio/Vidéo</option>
-            <option>Automatisme</option>
-            <option>Autre</option>
-            <option>Energie</option>
-            <option>High tech</option>
-            <option>Humidité</option>
-            <option>Lumière</option>
-            <option>Météo</option>
-            <option>Ouverture</option>
-            <option>Présence</option>
-            <option>Température</option>
-            <option>Vie</option>
+            <option>{{Alarme diverse}}</option>
+            <option>{{Audio/Vidéo}}</option>
+            <option>{{Automatisme}}</option>
+            <option>{{Autre}}</option>
+            <option>{{Energie}}</option>
+            <option>{{High tech}}</option>
+            <option>{{Humidité}}</option>
+            <option>{{Lumière}}</option>
+            <option>{{Météo}}</option>
+            <option>{{Ouverture}}</option>
+            <option>{{Présence}}</option>
+            <option>{{Température}}</option>
+            <option>{{Vie}}</option>
           </select>
           <select class="form-control plugin category" data-l1key="categorie" style="display: none;">
-            <option>Autre</option>
-            <option>Communication</option>
-            <option>Confort</option>
-            <option>Energie</option>
-            <option>Météo</option>
-            <option>Monitoring</option>
-            <option>Multimédia</option>
-            <option>Nature</option>
-            <option>Objets connectés</option>
-            <option>Organisation</option>
-            <option>passerelle domotique</option>
-            <option>Programmation</option>
-            <option>Protocole domotique</option>
-            <option>Santé</option>
-            <option>Sécurité</option>
+            <option>{{Autre}}</option>
+            <option>{{Communication}}</option>
+            <option>{{Confort}}</option>
+            <option>{{Energie}}</option>
+            <option>{{Météo}}</option>
+            <option>{{Monitoring}}</option>
+            <option>{{Multimédia}}</option>
+            <option>{{Nature}}</option>
+            <option>{{Objets connectés}}</option>
+            <option>{{Organisation}}</option>
+            <option>{{passerelle domotique}}</option>
+            <option>{{Programmation}}</option>
+            <option>{{Protocole domotique}}</option>
+            <option>{{Santé}}</option>
+            <option>{{Sécurité}}</option>
           </select>
         </div>
       </div>
@@ -146,13 +146,13 @@ if (init('type') == 'plugin') {
     </div>
     <div class="col-lg-6">
      <div class="form-group">
-       <label class="col-sm-2 control-label">Video</label>
+       <label class="col-sm-2 control-label">{{Video}}</label>
        <div class="col-sm-9">
         <input class="form-control marketAttr" data-l1key="link" data-l2key="video">
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-2 control-label">Forum</label>
+      <label class="col-sm-2 control-label">{{Forum}}</label>
       <div class="col-sm-9">
         <input class="form-control marketAttr" data-l1key="link" data-l2key="forum">
       </div>
@@ -191,7 +191,10 @@ if (init('type') == 'plugin') {
         <label class="col-sm-4 control-label">{{Compatibilité matériel}}</label>
         <div class="col-sm-8">
          <label class="checkbox-inline">
-          <input type="checkbox" class="marketAttr" data-l1key="hardwareCompatibility" data-l2key="Jeedomboard"> Jeedomboard (mini+,center,pro)
+          <input type="checkbox" class="marketAttr" data-l1key="hardwareCompatibility" data-l2key="Jeedomboard"> Jeedomboard (mini+)
+        </label>
+         <label class="checkbox-inline">
+          <input type="checkbox" class="marketAttr" data-l1key="hardwareCompatibility" data-l2key="Smart"> Smart
         </label>
         <label class="checkbox-inline">
           <input type="checkbox" class="marketAttr" data-l1key="hardwareCompatibility" data-l2key="RPI/RPI2"> RPI/RPI2
@@ -207,50 +210,12 @@ if (init('type') == 'plugin') {
   </div>
 </div>
 </form>
-
-<div title="Qu'avez-vous changé ?" id="md_marketSendChangeChange">
-  <form class="form-horizontal" role="form">
-    <div class="form-group">
-      <label class="col-sm-3 control-label">{{Directe release}}</label>
-      <div class="col-sm-1">
-       <input type="checkbox" id="cb_marketSendRelease" />
-     </div>
-   </div>
-   <div class="form-group">
-    <label class="col-sm-3 control-label">{{Changement}}</label>
-    <div class="col-sm-9">
-     <textarea class="form-control" id="ta_marketSendChange" placeholder="{{Changement}}" style="height: 150px;"></textarea>
-   </div>
-
- </div>
- <a class="btn btn-success pull-right" id="bt_marketSendValideChange"><i class="fa fa-check"></i> {{Valider}}</a>
- <a class="btn btn-default pull-right" id="bt_marketSendCancelChange"><i class="fa fa-times"></i> {{Annuler}}</a>
-</form>
-</div>
-
 <?php
 if (is_object($market)) {
 	sendVarToJS('market_display_info', utils::o2a($market));
 }
 ?>
 <script>
-  $("#md_marketSendChangeChange").dialog({
-    closeText: '',
-    autoOpen: false,
-    modal: true,
-    height: 400,
-    width:700,
-    position: {my: 'center', at: 'center', of: window},
-    open: function () {
-      $("body").css({overflow: 'hidden'});
-    },
-    beforeClose: function (event, ui) {
-      $("body").css({overflow: 'inherit'});
-    }
-  });
-
-
-
   $('.marketAttr[data-l1key=type]').on('change', function () {
     $('.category').hide().removeClass('marketAttr');
     $('.category.' + $('.marketAttr[data-l1key=type] option:selected').attr('data-category')).show().addClass('marketAttr');
@@ -312,74 +277,59 @@ if (is_object($market)) {
     });
 
     if(market.id != ''){
-     $('#md_marketSendChangeChange').dialog('open');
-     $('#in_marketSendVersion').value(market_display_info.version);
-     $('#ta_marketSendChange').value('');
-     $('#cb_marketSendDocOnly').value(0);
-     $('#bt_marketSendCancelChange').off().on('click',function(){
-      $('#md_marketSendChangeChange').dialog('close');
-    });
-     $('#bt_marketSendValideChange').off().on('click',function(){
-      market.change = $('#ta_marketSendChange').value();
-      market.release = $('#cb_marketSendRelease').value();
-
-
-  $.ajax({// fonction permettant de faire de l'ajax
-            type: "POST", // methode de transmission des données au fichier php
-            url: "core/ajax/repo.ajax.php", // url du fichier php
-            data: {
-              action: "save",
-              repo : 'market',
-              market: json_encode(market),
-            },
-            dataType: 'json',
-            error: function (request, status, error) {
-              handleAjaxError(request, status, error, $('#div_alertMarketSend'));
-            },
-            success: function (data) { // si l'appel a bien fonctionné
-            if (data.state != 'ok') {
-              $('#div_alertMarketSend').showAlert({message: data.result, level: 'danger'});
-              return;
-            }
-            if (market.id == undefined || market.id == '') {
-              $.showLoading();
-              window.location.reload();
-            } else {
-             $('#md_marketSendChangeChange').dialog('close');
-             $('#div_alertMarketSend').showAlert({message: '{{Votre objet a été envoyé avec succès sur le market}}', level: 'success'});
-           }
-
-         }
-       });
-});
-
-   }else{
-        $.ajax({// fonction permettant de faire de l'ajax
-            type: "POST", // methode de transmission des données au fichier php
-            url: "core/ajax/repo.ajax.php", // url du fichier php
-            data: {
-              action: "save",
-              repo : 'market',
-              market: json_encode(market),
-            },
-            dataType: 'json',
-            error: function (request, status, error) {
-              handleAjaxError(request, status, error, $('#div_alertMarketSend'));
-            },
-            success: function (data) { // si l'appel a bien fonctionné
-            if (data.state != 'ok') {
-              $('#div_alertMarketSend').showAlert({message: data.result, level: 'danger'});
-              return;
-            }
-            if (market.id == undefined || market.id == '') {
-              $.showLoading();
-              window.location.reload();
-            } else {
-              $('#div_alertMarketSend').showAlert({message: '{{Votre objet a été envoyé avec succès sur le market}}', level: 'success'});
-            }
-
+      $.ajax({
+        type: "POST",
+        url: "core/ajax/repo.ajax.php",
+        data: {
+          action: "save",
+          repo : 'market',
+          market: json_encode(market),
+        },
+        dataType: 'json',
+        error: function (request, status, error) {
+          handleAjaxError(request, status, error, $('#div_alertMarketSend'));
+        },
+        success: function (data) {
+          if (data.state != 'ok') {
+            $('#div_alertMarketSend').showAlert({message: data.result, level: 'danger'});
+            return;
           }
-        });
-      }
-    });
+          if (market.id == undefined || market.id == '') {
+            $.showLoading();
+            window.location.reload();
+          } else {
+           $('#div_alertMarketSend').showAlert({message: '{{Votre objet a été envoyé avec succès sur le market}}', level: 'success'});
+         }
+
+       }
+     });
+    }else{
+      $.ajax({
+        type: "POST",
+        url: "core/ajax/repo.ajax.php",
+        data: {
+          action: "save",
+          repo : 'market',
+          market: json_encode(market),
+        },
+        dataType: 'json',
+        error: function (request, status, error) {
+          handleAjaxError(request, status, error, $('#div_alertMarketSend'));
+        },
+        success: function (data) {
+          if (data.state != 'ok') {
+            $('#div_alertMarketSend').showAlert({message: data.result, level: 'danger'});
+            return;
+          }
+          if (market.id == undefined || market.id == '') {
+            $.showLoading();
+            window.location.reload();
+          } else {
+            $('#div_alertMarketSend').showAlert({message: '{{Votre objet a été envoyé avec succès sur le market}}', level: 'success'});
+          }
+
+        }
+      });
+    }
+  });
 </script>

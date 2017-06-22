@@ -30,7 +30,16 @@ try {
 		$return = array();
 		foreach (update::all(init('filter')) as $update) {
 			$infos = utils::o2a($update);
-			$infos['info'] = $update->getInfo();
+			if ($update->getType() == 'plugin') {
+				try {
+					$plugin = plugin::byId($update->getLogicalId());
+					if (is_object($plugin)) {
+						$infos['plugin'] = utils::o2a($plugin);
+					}
+				} catch (Exception $e) {
+
+				}
+			}
 			$return[] = $infos;
 		}
 		ajax::success($return);

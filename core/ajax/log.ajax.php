@@ -27,26 +27,12 @@ try {
 	ajax::init();
 
 	if (init('action') == 'clear') {
-		if (init('jeeNetwork_id') != '') {
-			$jeeNetwork = jeeNetwork::byId(init('jeeNetwork_id'));
-			if (is_object($jeeNetwork)) {
-				$jeeNetwork->emptyLog(init('log'));
-			}
-		} else {
-			log::clear(init('log'));
-		}
+		log::clear(init('log'));
 		ajax::success();
 	}
 
 	if (init('action') == 'remove') {
-		if (init('jeeNetwork_id') != '') {
-			$jeeNetwork = jeeNetwork::byId(init('jeeNetwork_id'));
-			if (is_object($jeeNetwork)) {
-				$jeeNetwork->removeLog(init('log'));
-			}
-		} else {
-			log::remove(init('log'));
-		}
+		log::remove(init('log'));
 		ajax::success();
 	}
 
@@ -56,15 +42,7 @@ try {
 	}
 
 	if (init('action') == 'get') {
-		if (init('jeeNetwork_id') != '') {
-			$jeeNetwork = jeeNetwork::byId(init('jeeNetwork_id'));
-			if (is_object($jeeNetwork)) {
-				ajax::success($jeeNetwork->getLog(init('log'), init('start', 0), init('nbLine', 99999)));
-			}
-			throw new Exception(__('Impossible de trouver l\'esclave : ', __FILE__) . init('jeeNetwork_id'));
-		} else {
-			ajax::success(log::get(init('log'), init('start', 0), init('nbLine', 99999)));
-		}
+		ajax::success(log::get(init('log'), init('start', 0), init('nbLine', 99999)));
 	}
 
 	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));

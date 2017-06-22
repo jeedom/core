@@ -1,5 +1,5 @@
 <?php
-if (!hasRight('displayview', true)) {
+if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 $nbEqlogic = 0;
@@ -43,7 +43,7 @@ foreach ($objects as $object) {
 		padding: 5px;
 	}
 </style>
-
+<br/>
 <span class="pull-right">
 	<input class="form-control pull-right" id="in_search" placeholder="{{Rechercher}}" style="width : 200px;"/>
 	<label class="checkbox-inline"><input type="checkbox" id="cb_actifDisplay" checked />{{Inactif}}</label>
@@ -53,6 +53,7 @@ foreach ($objects as $object) {
 	<span class="label label-info" style="font-size : 1em;cursor : default;">{{Nombre d'équipement :}} <?php echo $nbEqlogic ?></span>
 	<span class="label label-primary" style="font-size : 1em;cursor : default;">{{Nombre de commande :}} <?php echo $nbCmd ?></span>
 </center>
+<br/>
 <a class="btn btn-danger btn-sm" id="bt_removeEqlogic" style="display:none;"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>
 <a class="btn btn-success btn-sm bt_setIsVisible" data-value="1" style="display:none;"><i class="fa fa-eye"></i> {{Visible}}</a>
 <a class="btn btn-warning btn-sm bt_setIsVisible" data-value="0" style="display:none;"><i class="fa fa-eye-slash"></i> {{Invisible}}</a>

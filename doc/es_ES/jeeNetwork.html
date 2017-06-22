@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.3.dev">
-<title>Red Jeedom</title>
+<title>Réseaux Jeedom</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -412,12 +412,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Red Jeedom</h1>
+<h1>Réseaux Jeedom</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table des matières</div>
 <ul class="sectlevel1">
-<li><a href="#_la_red_jeedom">1. La red Jeedom</a></li>
-<li><a href="#_configuración">2. Configuración</a></li>
+<li><a href="#_le_réseaux_jeedom">1. Le réseaux Jeedom</a></li>
+<li><a href="#_configuration">2. Configuration</a></li>
 <li><a href="#_troubleshooting">3. Troubleshooting</a></li>
 </ul>
 </div>
@@ -426,15 +426,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Página para interconectar múltiples Jeedom en modo maestro/esclavo. Esto permite por ejemplo exportar  Z-Wave, el RFXCom, EnOcean o GSM en otras Raspberry PI o Jeedom mini. También desde esta página tendrás un estatus de sus Jeedom esclavos Jeedom, consultar su registro, actualización, parada, etc..</p>
+<p>Page permettant d&#8217;interconnecter plusieurs Jeedom en mode maître/esclave. Cette possibilité permet par exemple de déporter le zwave, le rfxcom, l&#8217;enOcean ou le GSM sur d&#8217;autres raspberry pi ou Jeedom Mini. Vous pourrez aussi à partir de cette page avoir un statut de vos Jeedom esclave, consulter leurs logs, les mettres à jour, les arrêter&#8230;&#8203;</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_la_red_jeedom">1. La red Jeedom</h2>
+<h2 id="_le_réseaux_jeedom">1. Le réseaux Jeedom</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Acceso desde Administración &#8594; red Jeedom:</p>
+<p>Accessible depuis Général &#8594; Administration &#8594; Réseaux Jeedom :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -442,7 +442,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>Una vez dentro esto es lo que verá:</p>
+<p>Une fois dessus, vous avez :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -450,20 +450,28 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>Esta página enumera todos tus servidores esclavos y permite ver en detalle cada uno de ellos con algunas opciones de configuración y acceso directo.</p>
+<p>Cette page liste tous vos esclaves et permet de voir en details chacun d&#8217;entre eux avec certaines possibilités de configuration et un accès direct à ceux-ci.</p>
 </div>
-<div class="paragraph">
-<p>Esta documentación no describe todos los menús disponibles voluntariamente, porque son sólo una extensión de los menús existentes en el maestro donde se centraliza la configuración. Por lo tanto, consulta la documentación existente para los detalles de funcionamiento.</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Cette documentation ne décrit pas volontairement tous les menus disponible car ils ne sont qu&#8217;un report des menus existants sur le maître pour centraliser la configuration. Il faut donc se reporter aux docs existantes pour avoir le détail de fonctionnement.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configuración">2. Configuración</h2>
+<h2 id="_configuration">2. Configuration</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>La configuración es bastante simple, primero debe decidir el sistema maestro y el esclavo.
-A continuación, en el esclavo, tienes que ir en Administración &#8594; configuración &#8594; "Configuración de red"
-y haga clic en esclavo :</p>
+<p>La configuration est assez simple, il faut tout d&#8217;abord décider le systeme maître et esclave.
+Ensuite, sur l&#8217;esclave, il faut aller dans Général &#8594; Administration &#8594; Configuration puis dans la partie "Configuration réseaux" et cliquer sur esclave :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -471,12 +479,11 @@ y haga clic en esclavo :</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Entonces es necesario instalar los plugins que desea en remoto (atención no todos los plugins son necesariamente compatibles),
-activar y configurar.</p>
+<p>Il faut ensuite installer les plugins voulus en déportés (attention tous les plugins ne sont pas forcément compatibles),
+les activer et les configurer.</p>
 </div>
 <div class="paragraph">
-<p>A continuación, en el lado maestro, ir a Administración &#8594; configuración &#8594; "Configuración de red" y
-Completar la sección "Acceso interno" :</p>
+<p>Ensuite, du coté du maître, vous devez aller dans Général &#8594; Administration &#8594; Configuration puis dans la partie "Configuration réseaux", remplir la partie "Accès interne" :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -484,48 +491,65 @@ Completar la sección "Acceso interno" :</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Aquí en detalle:</p>
+<p>Voici le detail :</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Protocolo *: en general se utiliza el protocolo http</p>
-<div class="ulist">
-<ul>
-<li>
-<p>* Dirección * IP: IP (o dirección interna pero es bastante raro) del maestro (generalmente en la forma 192.168.xxx.xxx)</p>
+<p><strong>Protocole</strong> : protocole utilisé (en générale HTTP)</p>
 </li>
 <li>
-<p>* Complemento* : Si tienes un centro mini, o pro no tienes que poner nada, de lo contrario deberá actualizar /jeedom</p>
+<p><strong>Adresse/IP</strong> : IP (ou adresse mais en interne c&#8217;est assez rare) du maître (en général de la forme 192.168.xxx.xxx)</p>
 </li>
 <li>
-<p>* Puerto *: 80 si no ha modificado la configuración de nginx</p>
+<p><strong>Complement</strong> : si vous avez une Mini, Center ou Pro vous n&#8217;avez rien a mettre sinon vous devez mettre /jeedom (si présent dans l&#8217;adresse après l&#8217;IP)</p>
 </li>
-</ul>
-</div>
+<li>
+<p><strong>Port</strong> : 80 si vous n&#8217;avez pas modifié la configuration nginx</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Entonces desde el maestro, ir a Administración &#8594; red Jeedom y "Agregar un Jeedom":</p>
+<p>Ensuite, toujours sur le maître, aller sur Général &#8594; Administration &#8594; Réseaux Jeedom et faites "Ajouter un Jeedom" :</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/jeeNetwork.JPG" alt="jeeNetwork">
 </div>
 </div>
-<div class="paragraph">
-<p>-dar un nombre
-- especificar la IP del esclavo
-- indicar el complemento si es necesario (ex: /jeedom si no tienes un centro mini/pro, debes utilizar /jeedom para conectar en el esclavo)
--La clef API del esclavo (situado en el esclavo en Administración &#8594; Configuración)
-- Guardar</p>
+<div class="ulist">
+<ul>
+<li>
+<p>donnez-lui un nom</p>
+</li>
+<li>
+<p>indiquez l&#8217;IP de l&#8217;esclave</p>
+</li>
+<li>
+<p>indiquez le complément si nécessaire (ex : /jeedom si vous n&#8217;avez pas une Mini/Center/Pro et que vous utilisez le /jeedom pour vous connecter sur l&#8217;esclave)</p>
+</li>
+<li>
+<p>la clef API de l&#8217;esclave (elle se trouve sur l&#8217;esclave dans Général &#8594; Administration &#8594; Configuration)</p>
+</li>
+<li>
+<p>sauvegarder</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>Si tienes un mensaje diciéndote que todo esta OK y todo está conectado, normalmente el maestro debería detectar automáticamente los plugins del esclavo.</p>
+<p>Si vous avez un message vous disant que c&#8217;est OK, alors tout est lié, normalement le maître devrait détecter automatiquement les plugins de l&#8217;esclave.</p>
 </div>
-<div class="paragraph">
-<p>En caso de problemas con un plugin en modo remoto, consulte su documentación.</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+En cas de souci avec un plugin en mode deporté, reportez-vous à sa documentation.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -534,9 +558,9 @@ Completar la sección "Acceso interno" :</p>
 <div class="sectionbody">
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Error 404 cuando guarda</dt>
+<dt class="hdlist1">Erreur 404 lors de la sauvegarde</dt>
 <dd>
-<p>Hay un error en la configuración de red del maestro (en general).</p>
+<p>C&#8217;est qu&#8217;il y a une erreur sur la configuration réseau du maître (en général).</p>
 </dd>
 </dl>
 </div>

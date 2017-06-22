@@ -1,5 +1,5 @@
 <?php
-if (!hasRight('objectview', true)) {
+if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 sendVarToJS('select_id', init('id', '-1'));
@@ -19,9 +19,9 @@ foreach ($allObject as $object) {
 	$margin = 15 * $object->getConfiguration('parentNumber');
 	echo '<li class="cursor li_object bt_sortable" data-object_id="' . $object->getId() . '" data-object_name="' . $object->getName() . '" data-object_icon=\'' . $object->getDisplay('icon', '<i class="fa fa-lemon-o"></i>') . '\'>';
 	echo '<i class="fa fa-arrows-v pull-left cursor"></i>';
-	echo '<a style="position:relative;left:' . $margin . 'px;">';
+	echo '<a><span style="position:relative;left:' . $margin . 'px;">';
 	echo $object->getHumanName(true, true);
-	echo '</a>';
+	echo '</span></a>';
 	echo '</li>';
 }
 ?>
@@ -58,8 +58,10 @@ foreach ($allObject as $object) {
  <div class="col-md-10 col-sm-9 object" style="display: none;" id="div_conf">
    <a class="btn btn-success pull-right" id="bt_saveObject"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
    <a class="btn btn-danger pull-right" id="bt_removeObject"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
+   <a class="btn btn-default pull-right" id="bt_graphObject"><i class="fa fa-object-group"></i> {{Liens}}</a>
 
    <ul class="nav nav-tabs" role="tablist">
+     <li role="presentation"><a href="#" aria-controls="home" role="tab" data-toggle="tab" id="bt_returnToThumbnailDisplay"><i class="fa fa-arrow-circle-left"></i></a></li>
     <li role="presentation" class="active"><a href="#objecttab" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-tachometer"></i> {{Objet}}</a></li>
     <li role="presentation"><a href="#summarytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-list-alt"></i> {{Résumé}}</a></li>
   </ul>
@@ -68,7 +70,7 @@ foreach ($allObject as $object) {
     <div role="tabpanel" class="tab-pane active" id="objecttab">
       <form class="form-horizontal">
         <fieldset>
-          <legend><i class="fa fa-arrow-circle-left cursor" id="bt_returnToThumbnailDisplay"></i> {{Général}}</legend>
+          <legend>{{Général}}</legend>
           <div class="form-group">
             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nom de l'objet}}</label>
             <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
@@ -129,7 +131,6 @@ if (count(config::byKey('object:summary')) == 0) {
      <form class="form-horizontal">
       <fieldset>
         <legend class="objectname_resume" style="cursor:default;"></legend>
-        <legend style="cursor:default;"><i class="fa fa-picture-o"></i>  {{Options d'affichage}}</legend>
         <table class="table">
           <thead>
             <tr>
@@ -176,6 +177,10 @@ echo '<tr>';
 	echo '</tr>';
 	?>
         </table>
+      </fieldset>
+    </form>
+    <form class="form-horizontal">
+      <fieldset>
         <legend style="cursor:default;"><i class="fa fa-tachometer"></i>  {{Commandes}}</legend>
         <ul class="nav nav-tabs" role="tablist">
           <?php

@@ -36,10 +36,11 @@ class cmd {
 	protected $template;
 	protected $display;
 	protected $html;
-	protected $_collectDate = '';
-	protected $_valueDate = '';
 	protected $value = null;
 	protected $isVisible = 1;
+	protected $alert;
+	protected $_collectDate = '';
+	protected $_valueDate = '';
 	protected $_eqLogic = null;
 	protected $_needRefreshWidget;
 	private static $_templateArray = array();
@@ -48,7 +49,7 @@ class cmd {
 
 	private static function cast($_inputs, $_eqLogic = null) {
 		if (is_object($_inputs) && class_exists($_inputs->getEqType() . 'Cmd')) {
-			if ($_eqLogic != null) {
+			if ($_eqLogic !== null) {
 				$_inputs->_eqLogic = $_eqLogic;
 			}
 			return cast($_inputs, $_inputs->getEqType() . 'Cmd');
@@ -56,7 +57,7 @@ class cmd {
 		if (is_array($_inputs)) {
 			$return = array();
 			foreach ($_inputs as $input) {
-				if ($_eqLogic != null) {
+				if ($_eqLogic !== null) {
 					$input->_eqLogic = $_eqLogic;
 				}
 				$return[] = self::cast($input);
@@ -118,11 +119,11 @@ class cmd {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM cmd
 		WHERE eqLogic_id=:eqLogic_id';
-		if ($_type != null) {
+		if ($_type !== null) {
 			$values['type'] = $_type;
 			$sql .= ' AND `type`=:type';
 		}
-		if ($_visible != null) {
+		if ($_visible !== null) {
 			$sql .= ' AND `isVisible`=1';
 		}
 		$sql .= ' ORDER BY `order`,`name`';
@@ -136,7 +137,7 @@ class cmd {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM cmd
 		WHERE logicalId=:logicalId';
-		if ($_type != null) {
+		if ($_type !== null) {
 			$values['type'] = $_type;
 			$sql .= ' AND `type`=:type';
 		}
@@ -151,7 +152,7 @@ class cmd {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM cmd
 		WHERE configuration LIKE :configuration';
-		if ($_eqType != null) {
+		if ($_eqType !== null) {
 			$values['eqType'] = $_eqType;
 			$sql .= ' AND eqType=:eqType ';
 		}
@@ -167,7 +168,7 @@ class cmd {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM cmd
 		WHERE eqLogic_id=:eqLogic_id';
-		if ($_type != null) {
+		if ($_type !== null) {
 			$values['type'] = $_type;
 			$sql .= ' AND type=:type ';
 		}
@@ -182,15 +183,15 @@ class cmd {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM cmd
 		WHERE template LIKE :template';
-		if ($_eqType != null) {
+		if ($_eqType !== null) {
 			$values['eqType'] = $_eqType;
 			$sql .= ' AND eqType=:eqType ';
 		}
-		if ($_type != null) {
+		if ($_type !== null) {
 			$values['type'] = $_type;
 			$sql .= ' AND type=:type ';
 		}
-		if ($_subtype != null) {
+		if ($_subtype !== null) {
 			$values['subType'] = $_subtype;
 			$sql .= ' AND subType=:subType ';
 		}
@@ -208,7 +209,7 @@ class cmd {
 		WHERE eqLogic_id=:eqLogic_id
 		AND logicalId=:logicalId';
 
-		if ($_type != null) {
+		if ($_type !== null) {
 			$values['type'] = $_type;
 			$sql .= ' AND type=:type';
 		}
@@ -231,7 +232,7 @@ class cmd {
 			WHERE ( value=:value OR value LIKE :search)
 			AND el.isEnable=1
 			AND c.id!=:value';
-			if ($_type != null) {
+			if ($_type !== null) {
 				$values['type'] = $_type;
 				$sql .= ' AND c.type=:type ';
 			}
@@ -240,7 +241,7 @@ class cmd {
 			FROM cmd
 			WHERE ( value=:value OR value LIKE :search)
 			AND id!=:value';
-			if ($_type != null) {
+			if ($_type !== null) {
 				$values['type'] = $_type;
 				$sql .= ' AND type=:type ';
 			}
@@ -402,7 +403,8 @@ class cmd {
 		$replace = array();
 		preg_match_all("/#\[(.*?)\]\[(.*?)\]\[(.*?)\]#/", $_input, $matches);
 		if (count($matches) == 4) {
-			for ($i = 0; $i < count($matches[0]); $i++) {
+			$countMatches = count($matches[0]);
+			for ($i = 0; $i < $countMatches; $i++) {
 				if (isset($replace[$matches[0][$i]])) {
 					continue;
 				}
@@ -575,10 +577,12 @@ class cmd {
 	/*     * *********************Méthodes d'instance************************* */
 
 	public function formatValue($_value, $_quote = false) {
+		if (is_array($_value)) {
+			return '';
+		}
 		if (trim($_value) == '' && $_value !== false && $_value !== 0) {
 			return '';
 		}
-
 		$_value = trim(trim($_value), '"');
 		if (@strpos(strtolower($_value), 'error::') !== false) {
 			return $_value;
@@ -697,6 +701,8 @@ class cmd {
 		dataStore::removeByTypeLinkId('cmd', $this->getId());
 		$this->getEqLogic()->emptyCacheWidget();
 		$this->emptyHistory();
+		cache::delete('cmdCacheAttr' . $this->getId());
+		cache::delete('cmd' . $this->getId());
 		return DB::remove($this);
 	}
 
@@ -705,7 +711,7 @@ class cmd {
 	}
 
 	public function preExecCmd($_values = array()) {
-		if (!is_array($this->getConfiguration('jeedomPreExecCmd'))) {
+		if (!is_array($this->getConfiguration('jeedomPreExecCmd')) || count($this->getConfiguration('jeedomPreExecCmd')) == 0) {
 			return;
 		}
 		foreach ($this->getConfiguration('jeedomPreExecCmd') as $action) {
@@ -714,10 +720,12 @@ class cmd {
 				if (isset($action['options'])) {
 					$options = $action['options'];
 				}
-				foreach ($_values as $key => $value) {
-					foreach ($options as &$option) {
-						if (!is_array($option)) {
-							$option = str_replace('#' . $key . '#', $value, $option);
+				if (is_array($_values) && count($_values) > 0) {
+					foreach ($_values as $key => $value) {
+						foreach ($options as &$option) {
+							if (!is_array($option)) {
+								$option = str_replace('#' . $key . '#', $value, $option);
+							}
 						}
 					}
 				}
@@ -755,14 +763,19 @@ class cmd {
 	/**
 	 *
 	 * @param type $_options
+	 * @param type $_sendNodeJsEvent
+	 * @param type $_quote
 	 * @return command result
 	 * @throws Exception
 	 */
-	public function execCmd($_options = null, $_sendNodeJsEvent = true, $_quote = false) {
+	public function execCmd($_options = null, $_sendNodeJsEvent = false, $_quote = false) {
+		if ($_sendNodeJsEvent) {
+			trigger_error('$_sendNodeJsEvent is deprecated', E_USER_DEPRECATED);
+		}
 		if ($this->getType() == 'info') {
 			$this->setCollectDate($this->getCache('collectDate', date('Y-m-d H:i:s'), true));
 			$this->setValueDate($this->getCache('valueDate', date('Y-m-d H:i:s'), true));
-			return $this->getCache('value', '', true);
+			return $this->getCache('value', '');
 		}
 		$eqLogic = $this->getEqLogic();
 		if (!is_object($eqLogic) || $eqLogic->getIsEnable() != 1) {
@@ -869,7 +882,7 @@ class cmd {
 		return $template;
 	}
 
-	public function toHtml($_version = 'dashboard', $options = '', $_cmdColor = null) {
+	public function toHtml($_version = 'dashboard', $_options = '', $_cmdColor = null) {
 		$version2 = jeedom::versionAlias($_version, false);
 		if ($this->getDisplay('showOn' . $version2, 1) == 0) {
 			return '';
@@ -887,14 +900,36 @@ class cmd {
 			'#maxValue#' => $this->getConfiguration('maxValue', 100),
 			'#logicalId#' => $this->getLogicalId(),
 			'#uid#' => 'cmd' . $this->getId() . eqLogic::UIDDELIMITER . mt_rand() . eqLogic::UIDDELIMITER,
+			'#version#' => $_version,
 			'#hideCmdName#' => '',
 		);
+		if ($this->getConfiguration('listValue', '') != '') {
+			$listOption = '<option value="">Aucun</option>';
+			$elements = explode(';', $this->getConfiguration('listValue', ''));
+			foreach ($elements as $element) {
+				$coupleArray = explode('|', $element);
+				$cmdValue = $this->getCmdValue();
+				if (is_object($cmdValue) && $cmdValue->getType() == 'info') {
+					if ($cmdValue->execCmd() == $coupleArray[0]) {
+						$listOption .= '<option value="' . $coupleArray[0] . '" selected>' . $coupleArray[1] . '</option>';
+					} else {
+						$listOption .= '<option value="' . $coupleArray[0] . '">' . $coupleArray[1] . '</option>';
+					}
+				} else {
+					$listOption .= '<option value="' . $coupleArray[0] . '">' . $coupleArray[1] . '</option>';
+				}
+			}
+			$replace['#listValue#'] = $listOption;
+		}
 		if ($this->getDisplay('showNameOn' . $version2, 1) == 0) {
 			$replace['#hideCmdName#'] = 'display:none;';
 		}
+		if ($this->getDisplay('showIconAndName' . $version2, 0) == 1) {
+			$replace['#name_display#'] = $this->getDisplay('icon') . ' ' . $this->getName();
+		}
 		$template = $this->getWidgetTemplateCode($_version);
 
-		if ($_cmdColor == null && $version != 'scenario') {
+		if ($_cmdColor === null && $version != 'scenario') {
 			$eqLogic = $this->getEqLogic();
 			$vcolor = ($version == 'mobile') ? 'mcmdColor' : 'cmdColor';
 			if ($eqLogic->getPrimaryCategory() == '') {
@@ -926,6 +961,7 @@ class cmd {
 			}
 			$replace['#collectDate#'] = $this->getCollectDate();
 			$replace['#valueDate#'] = $this->getValueDate();
+			$replace['#alertLevel#'] = $this->getCache('alertLevel', 'none');
 			if ($this->getIsHistorized() == 1) {
 				$replace['#history#'] = 'history cursor';
 				if (config::byKey('displayStatsWidget') == 1 && strpos($template, '#displayHistory#') !== false) {
@@ -971,7 +1007,7 @@ class cmd {
 					$replace['#state#'] = 0;
 				}
 			} else {
-				$replace['#state#'] = ($this->getLastValue() != null) ? $this->getLastValue() : '';
+				$replace['#state#'] = ($this->getLastValue() !== null) ? $this->getLastValue() : '';
 				$replace['#valueName#'] = $this->getName();
 				$replace['#unite#'] = $this->getUnite();
 			}
@@ -986,8 +1022,8 @@ class cmd {
 			if (trim($html) == '') {
 				return $html;
 			}
-			if ($options != '') {
-				$options = jeedom::toHumanReadable($options);
+			if ($_options != '') {
+				$options = jeedom::toHumanReadable($_options);
 				if (is_json($options)) {
 					$options = json_decode($options, true);
 				}
@@ -1015,6 +1051,7 @@ class cmd {
 			$replace['#message_cmd_subtype#'] = $this->getDisplay('message_cmd_subtype', '');
 			$replace['#message_disable#'] = $this->getDisplay('message_disable', 0);
 			$replace['#title_disable#'] = $this->getDisplay('title_disable', 0);
+			$replace['#title_color#'] = $this->getDisplay('title_color', 0);
 			$replace['#title_possibility_list#'] = str_replace("'", "\'", $this->getDisplay('title_possibility_list', ''));
 			$replace['#slider_placeholder#'] = $this->getDisplay('slider_placeholder', __('Valeur', __FILE__));
 			$replace['#other_tooltips#'] = ($replace['#name#'] != $this->getName()) ? $this->getName() : '';
@@ -1036,9 +1073,13 @@ class cmd {
 			log::add('cmd', 'info', __('La commande n\'est pas dans la plage de valeur autorisée : ', __FILE__) . $this->getHumanName() . ' => ' . $value);
 			return;
 		}
-		$repeat = ($this->execCmd() == $value);
+		if ($this->getConfiguration('denyValues') != '' && in_array($value, explode(';', $this->getConfiguration('denyValues')))) {
+			return;
+		}
+		$repeat = ($this->execCmd() == $value && $this->execCmd() !== '');
 		$this->setCollectDate(($_datetime !== null) ? $_datetime : date('Y-m-d H:i:s'));
 		$this->setCache('collectDate', $this->getCollectDate());
+		$this->setValueDate(($repeat) ? $this->getValueDate() : $this->getCollectDate());
 		$eqLogic->setStatus(array('lastCommunication' => $this->getCollectDate(), 'timeout' => 0));
 		if ($repeat && $this->getConfiguration('repeatEventManagement', 'auto') == 'never') {
 			$this->addHistoryValue($value, $collectDate);
@@ -1056,8 +1097,6 @@ class cmd {
 
 		$events = array();
 		if (!$repeat) {
-			$valueDate = ($repeat) ? $this->getValueDate() : $this->getCollectDate();
-			$this->setValueDate($valueDate);
 			$this->setCache(array('value' => $value, 'valueDate' => $this->getValueDate()));
 			scenario::check($this);
 			$display_value = $value;
@@ -1069,7 +1108,8 @@ class cmd {
 				$display_value = 0;
 			}
 			$eqLogic->emptyCacheWidget();
-			$events = array(array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate()));
+			$level = $this->checkAlertLevel($value);
+			$events = array(array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate(), 'alertLevel' => $level));
 		}
 		$foundInfo = false;
 		$value_cmd = self::byValue($this->getId(), null, true);
@@ -1101,6 +1141,9 @@ class cmd {
 		$this->addHistoryValue($value, $this->getCollectDate());
 		$this->checkReturnState($value);
 		$this->checkCmdAlert($value);
+		if (isset($level) && $level != $this->getCache('alertLevel')) {
+			$this->actionAlertLevel($level, $value);
+		}
 		$this->pushUrl($value);
 	}
 
@@ -1131,15 +1174,20 @@ class cmd {
 				$this->executeAlertCmdAction();
 				return;
 			}
+			$next = strtotime('+ ' . ($this->getConfiguration('jeedomCheckCmdTime') + 1) . ' minutes ' . date('Y-m-d H:i:s'));
 			$cron = cron::byClassAndFunction('cmd', 'cmdAlert', array('cmd_id' => intval($this->getId())));
 			if (!is_object($cron)) {
 				$cron = new cron();
+			} else {
+				$nextRun = $cron->getNextRunDate();
+				if ($nextRun !== false && $next > strtotime($nextRun) && strtotime($nextRun) > strtotime('now')) {
+					return;
+				}
 			}
 			$cron->setClass('cmd');
 			$cron->setFunction('cmdAlert');
 			$cron->setOnce(1);
 			$cron->setOption(array('cmd_id' => intval($this->getId())));
-			$next = strtotime('+ ' . ($this->getConfiguration('jeedomCheckCmdTime') + 1) . ' minutes ' . date('Y-m-d H:i:s'));
 			$cron->setSchedule(cron::convertDateToCron($next));
 			$cron->setLastRun(date('Y-m-d H:i:s'));
 			$cron->save();
@@ -1165,6 +1213,109 @@ class cmd {
 			} catch (Exception $e) {
 				log::add('cmd', 'error', __('Erreur lors de l\'éxecution de ', __FILE__) . $action['cmd'] . __('. Détails : ', __FILE__) . $e->getMessage());
 			}
+		}
+	}
+
+	public function checkAlertLevel($_value, $_allowDuring = true) {
+		if ($this->getType() != 'info' || ($this->getAlert('warningif') == '' && $this->getAlert('dangerif') == '')) {
+			return 'none';
+		}
+		global $JEEDOM_INTERNAL_CONFIG;
+
+		$currentLevel = 'none';
+		foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
+			if (!$value['check']) {
+				continue;
+			}
+			if ($this->getAlert($level . 'if') != '') {
+				$check = jeedom::evaluateExpression(str_replace('#value#', $_value, $this->getAlert($level . 'if')));
+				if ($check == 1 || $check || $check == '1') {
+					$currentLevel = $level;
+				}
+			}
+		}
+		if ($_allowDuring && $this->getAlert($currentLevel . 'during') != '' && $this->getAlert($currentLevel . 'during') > 0) {
+			$cron = cron::byClassAndFunction('cmd', 'duringAlertLevel', array('cmd_id' => intval($this->getId())));
+			$next = strtotime('+ ' . $this->getAlert($currentLevel . 'during', 1) . ' minutes ' . date('Y-m-d H:i:s'));
+			if (!is_object($cron)) {
+				$cron = new cron();
+			} else {
+				$nextRun = $cron->getNextRunDate();
+				if ($nextRun !== false && $next > strtotime($nextRun) && strtotime($nextRun) > strtotime('now')) {
+					return 'none';
+				}
+			}
+			$cron->setClass('cmd');
+			$cron->setFunction('duringAlertLevel');
+			$cron->setOnce(1);
+			$cron->setOption(array('cmd_id' => intval($this->getId())));
+			$cron->setSchedule(cron::convertDateToCron($next));
+			$cron->setLastRun(date('Y-m-d H:i:s'));
+			$cron->save();
+			if ($currentLevel == 'none') {
+				$cron = cron::byClassAndFunction('cmd', 'duringAlertLevel', array('cmd_id' => intval($this->getId())));
+				if (is_object($cron)) {
+					$cron->remove(false);
+				}
+			}
+			return 'none';
+		}
+		return $currentLevel;
+	}
+
+	public static function duringAlertLevel($_options) {
+		$cmd = cmd::byId($_options['cmd_id']);
+		if (!is_object($cmd)) {
+			return;
+		}
+		if ($cmd->getType() != 'info') {
+			return;
+		}
+		$value = $cmd->execCmd();
+		$level = $cmd->checkAlertLevel($value, false);
+		if ($level != 'none') {
+			$cmd->actionAlertLevel($level, $value);
+		}
+	}
+
+	public function actionAlertLevel($_level, $_value) {
+		if ($this->getType() != 'info') {
+			return;
+		}
+		global $JEEDOM_INTERNAL_CONFIG;
+		$this->setCache('alertLevel', $_level);
+		if ($_level != 'none') {
+			$message = __('Alert sur la commande ', __FILE__) . $this->getHumanName() . __(' niveau ', __FILE__) . $_level . __(' valeur : ', __FILE__) . $_value;
+			if ($this->getAlert($_level . 'during') != '' && $this->getAlert($_level . 'during') > 0) {
+				$message .= ' ' . __('pendant plus de ', __FILE__) . $this->getAlert($_level . 'during') . __(' minute(s)', __FILE__);
+			}
+			log::add('event', 'info', $message);
+			$eqLogic = $this->getEqLogic();
+			if (config::ByKey('alert::addMessageOn' . ucfirst($_level)) == 1) {
+				message::add($eqLogic->getEqType_name(), $message);
+			}
+			$cmds = explode(('&&'), config::byKey('alert::' . $_level . 'Cmd'));
+			if (count($cmds) > 0 && trim(config::byKey('alert::' . $_level . 'Cmd')) != '') {
+				foreach ($cmds as $id) {
+					$cmd = cmd::byId(str_replace('#', '', $id));
+					if (is_object($cmd)) {
+						$cmd->execCmd(array(
+							'title' => __('[' . config::byKey('name', 'core', 'JEEDOM') . '] Message de ', __FILE__) . $this->getHumanName(),
+							'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $message,
+						));
+					}
+				}
+			}
+		}
+		$eqLogic = $this->getEqLogic();
+		$maxAlert = $eqLogic->getMaxCmdAlert();
+		$prevAlert = $eqLogic->getAlert();
+		$eqLogic->setStatus(array('warning' => 0, 'danger' => 0));
+		if ($maxAlert != 'none' && isset($JEEDOM_INTERNAL_CONFIG['alerts'][$maxAlert])) {
+			$eqLogic->setStatus($maxAlert, 1);
+		}
+		if ($prevAlert != $eqLogic->getAlert()) {
+			$eqLogic->refreshWidget();
 		}
 	}
 
@@ -1195,6 +1346,32 @@ class cmd {
 		}
 	}
 
+	public function generateAskResponseLink($_response, $_plugin = 'core', $_network = 'external') {
+		$token = $this->getCache('ask::token', config::genKey());
+		$this->setCache(array('ask::count' => 0, 'ask::token' => $token));
+		$return = network::getNetworkAccess($_network) . '/core/api/jeeApi.php?';
+		$return .= 'type=ask';
+		$return .= '&plugin=' . $_plugin;
+		$return .= '&apikey=' . jeedom::getApiKey($_plugin);
+		$return .= '&token=' . $token;
+		$return .= '&response=' . urlencode($_response);
+		$return .= '&cmd_id=' . $this->getId();
+		return $return;
+	}
+
+	public function askResponse($_response) {
+		if ($this->getCache('storeVariable', 'none') == 'none') {
+			throw new Exception(__('Demande invalide', __FILE__));
+		}
+		$dataStore = new dataStore();
+		$dataStore->setType('scenario');
+		$dataStore->setKey($this->getCache('storeVariable', 'none'));
+		$dataStore->setValue($_response);
+		$dataStore->setLink_id(-1);
+		$dataStore->save();
+		$this->setCache(array('storeVariable' => 'none', 'ask::count' => 0, 'ask::token' => null));
+	}
+
 	public function emptyHistory($_date = '') {
 		return history::emptyHistory($this->getId(), $_date);
 	}
@@ -1207,14 +1384,6 @@ class cmd {
 			$history->setDatetime($_datetime);
 			return $history->save($this);
 		}
-	}
-
-	public function getUsedBy() {
-		$return = array();
-		$return['cmd'] = self::searchConfiguration('#' . $this->getId() . '#');
-		$return['eqLogic'] = eqLogic::searchConfiguration('#' . $this->getId() . '#');
-		$return['scenario'] = scenario::byUsedCommand($this->getId());
-		return $return;
 	}
 
 	public function getStatistique($_startTime, $_endTime) {
@@ -1355,12 +1524,87 @@ class cmd {
 		return network::getNetworkAccess('external') . $url;
 	}
 
+	public function checkAccessCode($_code) {
+		if ($this->getType() != 'action' || trim($this->getConfiguration('actionCodeAccess')) == '') {
+			return true;
+		}
+		if (sha1($_code) == $this->getConfiguration('actionCodeAccess')) {
+			$this->setConfiguration('actionCodeAccess', sha512($_code));
+			$this->save();
+			return true;
+		}
+		if (sha512($_code) == $this->getConfiguration('actionCodeAccess')) {
+			return true;
+		}
+		return false;
+	}
+
 	public function exportApi() {
 		$value = ($this->getType() !== 'action') ? $this->execCmd(null, 2) : $this->getConfiguration('lastCmdValue', null);
 		$return = utils::o2a($this);
 		$return['generic_type'] = $this->getDisplay('generic_type', 'GENERIC_ERROR');
 		$return['currentValue'] = $value;
 		return $return;
+	}
+
+	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = null) {
+		if ($_drill === null) {
+			$_drill = config::byKey('graphlink::cmd::drill');
+		}
+		if (isset($_data['node']['cmd' . $this->getId()])) {
+			return;
+		}
+		$_level++;
+		if ($_level > $_drill) {
+			return $_data;
+		}
+		$icon = ($this->getType() == 'info') ? findCodeIcon('fa-eye') : findCodeIcon('fa-hand-paper-o');
+		$_data['node']['cmd' . $this->getId()] = array(
+			'id' => 'cmd' . $this->getId(),
+			'name' => $this->getName(),
+			'icon' => $icon['icon'],
+			'fontfamily' => $icon['fontfamily'],
+			'fontsize' => '1.5em',
+			'texty' => -14,
+			'textx' => 0,
+			'fontweight' => ($_level == 1) ? 'bold' : 'normal',
+			'title' => $this->getHumanName(),
+		);
+		$usedBy = $this->getUsedBy();
+		$use = $this->getUse();
+		addGraphLink($this, 'cmd', $usedBy['scenario'], 'scenario', $_data, $_level, $_drill);
+		addGraphLink($this, 'cmd', $usedBy['eqLogic'], 'eqLogic', $_data, $_level, $_drill);
+		addGraphLink($this, 'cmd', $usedBy['cmd'], 'cmd', $_data, $_level, $_drill);
+		addGraphLink($this, 'cmd', $usedBy['interactDef'], 'interactDef', $_data, $_level, $_drill, array('dashvalue' => '2,6', 'lengthfactor' => 0.6));
+		addGraphLink($this, 'cmd', $usedBy['plan'], 'plan', $_data, $_level, $_drill, array('dashvalue' => '2,6', 'lengthfactor' => 0.6));
+		addGraphLink($this, 'cmd', $usedBy['view'], 'view', $_data, $_level, $_drill, array('dashvalue' => '2,6', 'lengthfactor' => 0.6));
+		addGraphLink($this, 'cmd', $use['scenario'], 'scenario', $_data, $_level, $_drill);
+		addGraphLink($this, 'cmd', $use['eqLogic'], 'eqLogic', $_data, $_level, $_drill);
+		addGraphLink($this, 'cmd', $use['cmd'], 'cmd', $_data, $_level, $_drill);
+		addGraphLink($this, 'cmd', $use['dataStore'], 'dataStore', $_data, $_level, $_drill);
+		addGraphLink($this, 'cmd', $this->getEqLogic(), 'eqLogic', $_data, $_level, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
+		return $_data;
+	}
+
+	public function getUsedBy($_array = false) {
+		$return = array('cmd' => array(), 'eqLogic' => array(), 'scenario' => array(), 'plan' => array(), 'view' => array());
+		$return['cmd'] = self::searchConfiguration('#' . $this->getId() . '#');
+		$return['eqLogic'] = eqLogic::searchConfiguration('#' . $this->getId() . '#');
+		$return['scenario'] = scenario::searchByUse(array(array('action' => '#' . $this->getId() . '#')));
+		$return['interactDef'] = interactDef::searchByUse('#' . $this->getId() . '#');
+		$return['view'] = view::searchByUse('cmd', $this->getId());
+		$return['plan'] = planHeader::searchByUse('cmd', $this->getId());
+		if ($_array) {
+			foreach ($return as &$value) {
+				$value = utils::o2a($value);
+			}
+		}
+		return $return;
+	}
+
+	public function getUse() {
+		$json = jeedom::fromHumanReadable(json_encode(utils::o2a($this)));
+		return jeedom::getTypeUse($json);
 	}
 
 	/*     * **********************Getteur Setteur*************************** */
@@ -1398,7 +1642,7 @@ class cmd {
 	}
 
 	public function getEqLogic() {
-		if ($this->_eqLogic == null) {
+		if ($this->_eqLogic === null) {
 			$this->setEqLogic(eqLogic::byId($this->eqLogic_id));
 		}
 		return $this->_eqLogic;
@@ -1478,8 +1722,10 @@ class cmd {
 	}
 
 	public function setConfiguration($_key, $_value) {
-		if ($_key == 'actionCodeAccess' && !is_sha1($_value) && $_value != '') {
-			$_value = sha1($_value);
+		if ($_key == 'actionCodeAccess' && $_value != '') {
+			if (!is_sha1($_value) && !is_sha512($_value)) {
+				$_value = sha512($_value);
+			}
 		}
 		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
 	}
@@ -1491,6 +1737,15 @@ class cmd {
 	public function setDisplay($_key, $_value) {
 		$this->display = utils::setJsonAttr($this->display, $_key, $_value);
 		$this->_needRefreshWidget = true;
+	}
+
+	public function getAlert($_key = '', $_default = '') {
+		return utils::getJsonAttr($this->alert, $_key, $_default);
+	}
+
+	public function setAlert($_key, $_value) {
+		$this->alert = utils::setJsonAttr($this->alert, $_key, $_value);
+		return $this;
 	}
 
 	public function getCollectDate() {
@@ -1568,5 +1823,3 @@ class cmd {
 	}
 
 }
-
-?>

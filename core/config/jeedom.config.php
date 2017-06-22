@@ -43,22 +43,23 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'security' => array('name' => 'Sécurité', 'icon' => 'fa-lock'),
 			'automation protocol' => array('name' => 'Protocole domotique', 'icon' => 'fa-rss'),
 			'programming' => array('name' => 'Programmation', 'icon' => 'fa-code'),
-			'Panel' => array('name' => 'Panel', 'icon' => 'fa-thumb-tack'),
-			'organization' => array('name' => 'Organisation', 'icon' => 'fa-calendar'),
+			'organization' => array('name' => 'Organisation', 'icon' => 'fa-calendar', 'alias' => array('travel', 'finance')),
 			'weather' => array('name' => 'Météo', 'icon' => 'fa-sun-o'),
 			'communication' => array('name' => 'Communication', 'icon' => 'fa-comment-o'),
-			'devicecommunication' => array('name' => 'Objets communicants', 'icon' => 'fa-language'),
+			'devicecommunication' => array('name' => 'Objets connectés', 'icon' => 'fa-language'),
 			'multimedia' => array('name' => 'Multimédia', 'icon' => 'fa-sliders'),
-			'wellness' => array('name' => 'Bien-être', 'icon' => 'fa-user'),
-			'jeedomBox' => array('name' => 'Jeedom Box', 'icon' => 'fa-dropbox'),
+			'wellness' => array('name' => 'Confort', 'icon' => 'fa-user'),
 			'monitoring' => array('name' => 'Monitoring', 'icon' => 'fa-tachometer'),
 			'health' => array('name' => 'Santé', 'icon' => 'icon loisir-runner5'),
 			'nature' => array('name' => 'Nature', 'icon' => 'icon nature-leaf32'),
-			'finance' => array('name' => 'Finance', 'icon' => 'fa fa-eur'),
 			'automatisation' => array('name' => 'Automatisme', 'icon' => 'fa fa-magic'),
 			'energy' => array('name' => 'Energie', 'icon' => 'fa fa-bolt'),
-			'travel' => array('name' => 'Déplacement', 'icon' => 'fa fa-car'),
 		),
+	),
+	'alerts' => array(
+		'timeout' => array('name' => 'Timeout', 'icon' => 'fa fa-clock-o', 'level' => 1, 'check' => false, 'color' => '#FF0000'),
+		'warning' => array('name' => 'Warning', 'icon' => 'fa fa-bell', 'level' => 2, 'check' => true, 'color' => '#FFAB00'),
+		'danger' => array('name' => 'Danger', 'icon' => 'fa fa-exclamation', 'level' => 3, 'check' => true, 'color' => '#FF0000'),
 	),
 	'cmd' => array(
 		'generic_type' => array(
@@ -70,6 +71,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'LIGHT_COLOR' => array('name' => 'Lumière Couleur', 'family' => 'Lumière', 'type' => 'Info'),
 			'LIGHT_SET_COLOR' => array('name' => 'Lumière Couleur', 'family' => 'Lumière', 'type' => 'Action'),
 			'LIGHT_MODE' => array('name' => 'Lumière Mode', 'family' => 'Lumière', 'type' => 'Action'),
+			'LIGHT_TOGGLE' => array('name' => 'Lumière Toggle', 'family' => 'Lumière', 'type' => 'Action'),
 			'ENERGY_STATE' => array('name' => 'Prise Etat', 'family' => 'Prise', 'type' => 'Info'),
 			'ENERGY_ON' => array('name' => 'Prise Bouton On', 'family' => 'Prise', 'type' => 'Action'),
 			'ENERGY_OFF' => array('name' => 'Prise Bouton Off', 'family' => 'Prise', 'type' => 'Action'),
@@ -146,7 +148,12 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'WEATHER_TEMPERATURE_MAX_4' => array('name' => 'Météo Température max j+4', 'family' => 'Météo', 'type' => 'Info', 'ignore' => true),
 			'WEATHER_CONDITION_4' => array('name' => 'Météo condition j+4', 'family' => 'Météo', 'type' => 'Info', 'ignore' => true),
 			'WEATHER_CONDITION_ID_4' => array('name' => 'Météo condition (id) j+4', 'family' => 'Météo', 'type' => 'Info', 'ignore' => true),
-			'POWER' => array('name' => 'Puissance Electrique', 'family' => 'Generic', 'type' => 'Info', 'ignore' => true),
+			'GB_OPEN' => array('name' => 'Portail ou garage bouton d\'ouverture', 'family' => 'Portail/Garage', 'type' => 'Action', 'ignore' => true),
+			'GB_CLOSE' => array('name' => 'Portail ou garage bouton de fermeture', 'family' => 'Portail/Garage', 'type' => 'Action', 'ignore' => true),
+			'GB_TOGGLE' => array('name' => 'Portail ou garage bouton toggle', 'family' => 'Portail/Garage', 'type' => 'Action', 'ignore' => true),
+			'BARRIER_STATE' => array('name' => 'Portail état ouvrant', 'family' => 'Portail/Garage', 'type' => 'Info'),
+			'GARAGE_STATE' => array('name' => 'Garage état ouvrant', 'family' => 'Portail/Garage', 'type' => 'Info'),
+			'POWER' => array('name' => 'Puissance Electrique', 'family' => 'Generic', 'type' => 'Info'),
 			'CONSUMPTION' => array('name' => 'Consommation Electrique', 'family' => 'Generic', 'type' => 'Info', 'ignore' => true),
 			'TEMPERATURE' => array('name' => 'Température', 'family' => 'Generic', 'type' => 'Info'),
 			'BRIGHTNESS' => array('name' => 'Luminosité', 'family' => 'Generic', 'type' => 'Info'),
@@ -180,36 +187,39 @@ $JEEDOM_INTERNAL_CONFIG = array(
 						'name' => 'Numérique',
 						'configuration' => array(
 							'minValue' => array('visible' => true),
-							'maxValue' => array('visible' => true)),
+							'maxValue' => array('visible' => true),
+							'listValue' => array('visible' => false)),
 						'unite' => array('visible' => true),
 						'isHistorized' => array('visible' => true),
 						'display' => array(
 							'invertBinary' => array('visible' => false),
-							'icon' => array('visible' => false, 'parentVisible' => false),
+							'icon' => array('visible' => true, 'parentVisible' => true),
 						),
 					),
 					'binary' => array(
 						'name' => 'Binaire',
 						'configuration' => array(
 							'minValue' => array('visible' => false),
-							'maxValue' => array('visible' => false)),
+							'maxValue' => array('visible' => false),
+							'listValue' => array('visible' => false)),
 						'unite' => array('visible' => false),
 						'isHistorized' => array('visible' => true),
 						'display' => array(
 							'invertBinary' => array('visible' => true, 'parentVisible' => true),
-							'icon' => array('visible' => false, 'parentVisible' => false),
+							'icon' => array('visible' => true, 'parentVisible' => true),
 						),
 					),
 					'string' => array(
 						'name' => 'Autre',
 						'configuration' => array(
 							'minValue' => array('visible' => false),
-							'maxValue' => array('visible' => false)),
+							'maxValue' => array('visible' => false),
+							'listValue' => array('visible' => false)),
 						'unite' => array('visible' => true),
 						'isHistorized' => array('visible' => false),
 						'display' => array(
 							'invertBinary' => array('visible' => false),
-							'icon' => array('visible' => false, 'parentVisible' => false),
+							'icon' => array('visible' => true, 'parentVisible' => true),
 						),
 					),
 				),
@@ -221,7 +231,8 @@ $JEEDOM_INTERNAL_CONFIG = array(
 						'name' => 'Défaut',
 						'configuration' => array(
 							'minValue' => array('visible' => false),
-							'maxValue' => array('visible' => false)),
+							'maxValue' => array('visible' => false),
+							'listValue' => array('visible' => false)),
 						'unite' => array('visible' => false),
 						'isHistorized' => array('visible' => false),
 						'display' => array(
@@ -233,7 +244,8 @@ $JEEDOM_INTERNAL_CONFIG = array(
 						'name' => 'Curseur',
 						'configuration' => array(
 							'minValue' => array('visible' => true),
-							'maxValue' => array('visible' => true)),
+							'maxValue' => array('visible' => true),
+							'listValue' => array('visible' => false)),
 						'unite' => array('visible' => false),
 						'isHistorized' => array('visible' => false),
 						'display' => array(
@@ -245,7 +257,8 @@ $JEEDOM_INTERNAL_CONFIG = array(
 						'name' => 'Message',
 						'configuration' => array(
 							'minValue' => array('visible' => false),
-							'maxValue' => array('visible' => false)),
+							'maxValue' => array('visible' => false),
+							'listValue' => array('visible' => false)),
 						'unite' => array('visible' => false),
 						'isHistorized' => array('visible' => false),
 						'display' => array(
@@ -257,7 +270,21 @@ $JEEDOM_INTERNAL_CONFIG = array(
 						'name' => 'Couleur',
 						'configuration' => array(
 							'minValue' => array('visible' => false),
-							'maxValue' => array('visible' => false)),
+							'maxValue' => array('visible' => false),
+							'listValue' => array('visible' => false)),
+						'unite' => array('visible' => false),
+						'isHistorized' => array('visible' => false),
+						'display' => array(
+							'invertBinary' => array('visible' => false),
+							'icon' => array('visible' => true, 'parentVisible' => true),
+						),
+					),
+					'select' => array(
+						'name' => 'Liste',
+						'configuration' => array(
+							'minValue' => array('visible' => false),
+							'maxValue' => array('visible' => false),
+							'listValue' => array('visible' => true)),
 						'unite' => array('visible' => false),
 						'isHistorized' => array('visible' => false),
 						'display' => array(

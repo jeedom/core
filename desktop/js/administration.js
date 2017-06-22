@@ -17,12 +17,12 @@
 
  $('body').delegate('.configKey[data-l1key="market::allowDNS"]', 'change', function () {
     if($(this).value() == 1){
-       $('.configKey[data-l1key=externalProtocol]').attr('disabled',true);
-       $('.configKey[data-l1key=externalAddr]').attr('disabled',true);
-       $('.configKey[data-l1key=externalPort]').attr('disabled',true);
-       $('.configKey[data-l1key=externalAddr]').value('');
-       $('.configKey[data-l1key=externalPort]').value('');
-   }else{
+     $('.configKey[data-l1key=externalProtocol]').attr('disabled',true);
+     $('.configKey[data-l1key=externalAddr]').attr('disabled',true);
+     $('.configKey[data-l1key=externalPort]').attr('disabled',true);
+     $('.configKey[data-l1key=externalAddr]').value('');
+     $('.configKey[data-l1key=externalPort]').value('');
+ }else{
     $('.configKey[data-l1key=externalProtocol]').attr('disabled',false);
     $('.configKey[data-l1key=externalAddr]').attr('disabled',false);
     $('.configKey[data-l1key=externalPort]').attr('disabled',false);
@@ -47,32 +47,44 @@
 });
 
  $('body').delegate('.configKey[data-l1key="cache::engine"]', 'change', function () {
-     $('.cacheEngine').hide();
-     $('.cacheEngine.'+$(this).value()).show();
- });
+   $('.cacheEngine').hide();
+   $('.cacheEngine.'+$(this).value()).show();
+});
 
  $('body').delegate('.configKey[data-l1key="log::engine"]', 'change', function () {
-     $('.logEngine').hide();
-     $('.logEngine.'+$(this).value()).show();
+   $('.logEngine').hide();
+   $('.logEngine.'+$(this).value()).show();
+});
+
+ $(".bt_regenerate_api").on('click', function (event) {
+    $.hideAlert();
+    var el = $(this);
+    bootbox.confirm('{{Etes-vous sûr de vouloir réinitialiser la clef API de }}'+el.attr('data-plugin')+' ?', function (result) {
+        if (result) {
+         $.ajax({
+            type: "POST", 
+            url: "core/ajax/config.ajax.php",
+            data: {
+                action: "genApiKey",
+                plugin:el.attr('data-plugin'),
+            },
+            dataType: 'json',
+            error: function (request, status, error) {
+                handleAjaxError(request, status, error);
+            },
+            success: function (data) {
+                if (data.state != 'ok') {
+                    $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                    return;
+                }
+                el.closest('.input-group').find('.span_apikey').value(data.result);
+            }
+        });
+     }
  });
-
- $("#bt_genKeyAPI").on('click', function (event) {
-    $.hideAlert();
-    bootbox.confirm('{{Etes-vous sûr de vouloir réinitialiser la clef API de Jeedom ? Vous devrez reconfigurer tous les équipements communiquant avec Jeedom et utilisant la clef API}}', function (result) {
-        if (result) {
-            genKeyAPI();
-        }
-    });
 });
 
- $("#bt_genKeyAPIPro").on('click', function (event) {
-    $.hideAlert();
-    bootbox.confirm('{{Etes-vous sûr de vouloir réinitialiser la clef API PRO de Jeedom ?}}', function (result) {
-        if (result) {
-            genKeyAPIPro();
-        }
-    });
-});
+
 
  $('#bt_forceSyncHour').on('click', function () {
     $.hideAlert();
@@ -87,73 +99,61 @@
 });
 
  $('#bt_restartDns').on('click', function () {
-   $.hideAlert();
-   jeedom.config.save({
-    configuration: $('#config').getValues('.configKey')[0],
-    error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'});
-    },
-    success: function () {
-       jeedom.network.restartDns({
+     $.hideAlert();
+     jeedom.config.save({
+        configuration: $('#config').getValues('.configKey')[0],
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
-        success: function (data) {
-         modifyWithoutSave = false;
-         loadPage('index.php?v=d&p=administration&panel=config_network');
+        success: function () {
+         jeedom.network.restartDns({
+            error: function (error) {
+                $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            },
+            success: function (data) {
+               modifyWithoutSave = false;
+               loadPage('index.php?v=d&p=administration&panel=config_network');
+           }
+       });
      }
+ }); 
  });
-   }
-}); 
-});
 
 
  $('#bt_haltDns').on('click', function () {
-   $.hideAlert();
-   jeedom.config.save({
-    configuration: $('#config').getValues('.configKey')[0],
-    error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'});
-    },
-    success: function () {
-       jeedom.network.stopDns({
+     $.hideAlert();
+     jeedom.config.save({
+        configuration: $('#config').getValues('.configKey')[0],
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
-        success: function (data) {
-         modifyWithoutSave = false;
-         loadPage('index.php?v=d&p=administration&panel=config_network');
+        success: function () {
+         jeedom.network.stopDns({
+            error: function (error) {
+                $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            },
+            success: function (data) {
+               modifyWithoutSave = false;
+               loadPage('index.php?v=d&p=administration&panel=config_network');
+           }
+       });
      }
+ }); 
  });
-   }
-}); 
+
+ $("#bt_cleanCache").on('click', function (event) {
+    $.hideAlert();
+    cleanCache();
 });
 
- $("#bt_flushMemcache").on('click', function (event) {
+ $("#bt_flushCache").on('click', function (event) {
     $.hideAlert();
-    flushMemcache();
+    flushCache();
 });
 
  $("#bt_clearJeedomLastDate").on('click', function (event) {
     $.hideAlert();
     clearJeedomDate();
-});
-
- $('.changeJeeNetworkMode').on('click', function () {
-    var mode = $(this).attr('data-mode');
-    bootbox.confirm('{{Etes-vous sûr de vouloir changer le mode de Jeedom ? Cette opération est très risquée. Si vous passer de Maitre à Esclave cela va supprimer tous vos équipements, objet, vue, plan, plugin non compatibles avec le fonctionnement déporté. Aucun retour en arrière n\'est possible.}}', function (result) {
-        if (result) {
-            jeedom.jeeNetwork.changeMode({
-                mode: mode,
-                error: function (error) {
-                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                },
-                success: function (data) {
-                   loadPage('index.php?v=d&p=administration');
-               }
-           });
-        }
-    });
 });
 
  jwerty.key('ctrl+s', function (e) {
@@ -238,14 +238,21 @@
     });
 });
 
+ $('.bt_selectAlertCmd').on('click', function () {
+    var type=$(this).attr('data-type');
+    jeedom.cmd.getSelectModal({cmd: {type: 'action', subType: 'message'}}, function (result) {
+        $('.configKey[data-l1key="alert::'+type+'Cmd"]').atCaret('insert', result.human);
+    });
+});
+
  if (getUrlVars('panel') != false) {
-     $('a[href="#'+getUrlVars('panel')+'"]').click();
- }
+   $('a[href="#'+getUrlVars('panel')+'"]').click();
+}
 
- printConvertColor();
+printConvertColor();
 
- $.showLoading();
- jeedom.config.load({
+$.showLoading();
+jeedom.config.load({
     configuration: $('#config').getValues('.configKey:not(.noSet)')[0],
     error: function (error) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -258,22 +265,22 @@
     }
 });
 
- $('body').delegate('.configKey', 'change', function () {
+$('body').delegate('.configKey', 'change', function () {
     modifyWithoutSave = true;
 });
 
- $('#bt_resetHwKey').on('click',function(){
- $.ajax({// fonction permettant de faire de l'ajax
-        type: "POST", // methode de transmission des données au fichier php
-        url: "core/ajax/jeedom.ajax.php", // url du fichier php
-        data: {
-            action: "resetHwKey"
-        },
-        dataType: 'json',
-        error: function (request, status, error) {
-            handleAjaxError(request, status, error);
-        },
-        success: function (data) { // si l'appel a bien fonctionné
+$('#bt_resetHwKey').on('click',function(){
+   $.ajax({
+    type: "POST", 
+    url: "core/ajax/jeedom.ajax.php", 
+    data: {
+        action: "resetHwKey"
+    },
+    dataType: 'json',
+    error: function (request, status, error) {
+        handleAjaxError(request, status, error);
+    },
+    success: function (data) { 
         if (data.state != 'ok') {
             $('#div_alert').showAlert({message: data.result, level: 'danger'});
             return;
@@ -283,7 +290,7 @@
 });
 });
 
- $('#bt_resetHardwareType').on('click',function(){
+$('#bt_resetHardwareType').on('click',function(){
     jeedom.config.save({
         configuration: {hardware_name : ''},
         error: function (error) {
@@ -295,52 +302,10 @@
     });
 });
 
- function genKeyAPI() {
-    $.ajax({// fonction permettant de faire de l'ajax
-        type: "POST", // methode de transmission des données au fichier php
-        url: "core/ajax/config.ajax.php", // url du fichier php
-        data: {
-            action: "genKeyAPI"
-        },
-        dataType: 'json',
-        error: function (request, status, error) {
-            handleAjaxError(request, status, error);
-        },
-        success: function (data) { // si l'appel a bien fonctionné
-        if (data.state != 'ok') {
-            $('#div_alert').showAlert({message: data.result, level: 'danger'});
-            return;
-        }
-        $('#in_keyAPI').value(data.result);
-    }
-});
-}
-
-function genKeyAPIPro() {
-    $.ajax({// fonction permettant de faire de l'ajax
-        type: "POST", // methode de transmission des données au fichier php
-        url: "core/ajax/config.ajax.php", // url du fichier php
-        data: {
-            action: "genKeyAPIPro"
-        },
-        dataType: 'json',
-        error: function (request, status, error) {
-            handleAjaxError(request, status, error);
-        },
-        success: function (data) { // si l'appel a bien fonctionné
-        if (data.state != 'ok') {
-            $('#div_alert').showAlert({message: data.result, level: 'danger'});
-            return;
-        }
-        $('#in_keyAPIPro').value(data.result);
-    }
-});
-}
-
 function clearJeedomDate() {
-    $.ajax({// fonction permettant de faire de l'ajax
-        type: "POST", // methode de transmission des données au fichier php
-        url: "core/ajax/jeedom.ajax.php", // url du fichier php
+    $.ajax({
+        type: "POST", 
+        url: "core/ajax/jeedom.ajax.php", 
         data: {
             action: "clearDate"
         },
@@ -348,44 +313,58 @@ function clearJeedomDate() {
         error: function (request, status, error) {
             handleAjaxError(request, status, error);
         },
-        success: function (data) { // si l'appel a bien fonctionné
-        if (data.state != 'ok') {
-            $('#div_alert').showAlert({message: data.result, level: 'danger'});
-            return;
+        success: function (data) { 
+            if (data.state != 'ok') {
+                $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                return;
+            }
+            $('#in_jeedomLastDate').value('');
         }
-        $('#in_jeedomLastDate').value('');
-    }
-});
+    });
 }
 
 
-function flushMemcache() {
-    $.ajax({// fonction permettant de faire de l'ajax
-        type: "POST", // methode de transmission des données au fichier php
-        url: "core/ajax/jeedom.ajax.php", // url du fichier php
-        data: {
-            action: "flushcache"
-        },
-        dataType: 'json',
-        error: function (request, status, error) {
-            handleAjaxError(request, status, error);
-        },
-        success: function (data) { // si l'appel a bien fonctionné
-        if (data.state != 'ok') {
-            $('#div_alert').showAlert({message: data.result, level: 'danger'});
-            return;
-        }
-        $('#div_alert').showAlert({message: '{{Cache vidé}}', level: 'success'});
-    }
+function flushCache() {
+  jeedom.cache.flush({
+    error: function (error) {
+     $('#div_alert').showAlert({message: data.result, level: 'danger'});
+ },
+ success: function (data) {
+    updateCacheStats();
+    $('#div_alert').showAlert({message: '{{Cache vidé}}', level: 'success'});
+}
+});
+}
+
+function cleanCache() {
+    jeedom.cache.clean({
+    error: function (error) {
+     $('#div_alert').showAlert({message: data.result, level: 'danger'});
+ },
+ success: function (data) {
+    updateCacheStats();
+    $('#div_alert').showAlert({message: '{{Cache nettoyé}}', level: 'success'});
+}
+});
+}
+
+function updateCacheStats(){
+ jeedom.cache.stats({
+    error: function (error) {
+     $('#div_alert').showAlert({message: data.result, level: 'danger'});
+ },
+ success: function (data) {
+    $('#span_cacheObject').html(data.count);
+}
 });
 }
 
 
 /********************Convertion************************/
 function printConvertColor() {
-    $.ajax({// fonction permettant de faire de l'ajax
-        type: "POST", // methode de transmission des données au fichier php
-        url: "core/ajax/config.ajax.php", // url du fichier php
+    $.ajax({
+        type: "POST", 
+        url: "core/ajax/config.ajax.php", 
         data: {
             action: "getKey",
             key: 'convertColor'
@@ -394,19 +373,19 @@ function printConvertColor() {
         error: function (request, status, error) {
             handleAjaxError(request, status, error);
         },
-        success: function (data) { // si l'appel a bien fonctionné
-        if (data.state != 'ok') {
-            $('#div_alert').showAlert({message: data.result, level: 'danger'});
-            return;
-        }
+        success: function (data) { 
+            if (data.state != 'ok') {
+                $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                return;
+            }
 
-        $('#table_convertColor tbody').empty();
-        for (var color in data.result) {
-            addConvertColor(color, data.result[color]);
+            $('#table_convertColor tbody').empty();
+            for (var color in data.result) {
+                addConvertColor(color, data.result[color]);
+            }
+            modifyWithoutSave = false;
         }
-        modifyWithoutSave = false;
-    }
-});
+    });
 }
 
 function addConvertColor(_color, _html) {
@@ -429,9 +408,9 @@ function saveConvertColor() {
         colors[$(this).find('.color').value()] = $(this).find('.html').value();
     });
     value.convertColor = colors;
-    $.ajax({// fonction permettant de faire de l'ajax
-        type: "POST", // methode de transmission des données au fichier php
-        url: "core/ajax/config.ajax.php", // url du fichier php
+    $.ajax({
+        type: "POST", 
+        url: "core/ajax/config.ajax.php", 
         data: {
             action: 'addKey',
             value: json_encode(value)
@@ -440,14 +419,14 @@ function saveConvertColor() {
         error: function (request, status, error) {
             handleAjaxError(request, status, error);
         },
-        success: function (data) { // si l'appel a bien fonctionné
-        if (data.state != 'ok') {
-            $('#div_alert').showAlert({message: data.result, level: 'danger'});
-            return;
+        success: function (data) { 
+            if (data.state != 'ok') {
+                $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                return;
+            }
+            modifyWithoutSave = false;
         }
-        modifyWithoutSave = false;
-    }
-});
+    });
 }
 
 /*CMD color*/
@@ -503,6 +482,12 @@ $('#bt_accessSystemAdministration').on('click',function(){
     $("#md_modal").load('index.php?v=d&modal=system.action').dialog('open');
 });
 
+/**************************SYSTEM***********************************/
+$('#bt_accessDbAdministration').on('click',function(){
+    $('#md_modal').dialog({title: "{{Administration base de données}}"});
+    $("#md_modal").load('index.php?v=d&modal=db.action').dialog('open');
+});
+
 /**************************Summary***********************************/
 
 $('#bt_addObjectSummary').on('click', function () {
@@ -549,9 +534,9 @@ $("#table_objectSummary").sortable({axis: "y", cursor: "move", items: ".objectSu
 printObjectSummary();
 
 function printObjectSummary() {
-    $.ajax({// fonction permettant de faire de l'ajax
-        type: "POST", // methode de transmission des données au fichier php
-        url: "core/ajax/config.ajax.php", // url du fichier php
+    $.ajax({
+        type: "POST", 
+        url: "core/ajax/config.ajax.php", 
         data: {
             action: "getKey",
             key: 'object:summary'
@@ -560,15 +545,14 @@ function printObjectSummary() {
         error: function (request, status, error) {
             handleAjaxError(request, status, error);
         },
-        success: function (data) { // si l'appel a bien fonctionné
-        if (data.state != 'ok') {
-            $('#div_alert').showAlert({message: data.result, level: 'danger'});
-            return;
-        }
-
-        $('#table_objectSummary tbody').empty();
-        for (var i in data.result) {
-		 if(isset(data.result[i].key) && data.result[i].key == ''){
+        success: function (data) { 
+            if (data.state != 'ok') {
+                $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                return;
+            }
+            $('#table_objectSummary tbody').empty();
+            for (var i in data.result) {
+               if(isset(data.result[i].key) && data.result[i].key == ''){
                 continue;
             }
             if(!isset(data.result[i].name)){
@@ -596,6 +580,7 @@ function addObjectSummary(_summary) {
     tr += '<select class="objectSummaryAttr form-control input-sm" data-l1key="calcul">';
     tr += '<option value="sum">{{Somme}}</option>';
     tr += '<option value="avg">{{Moyenne}}</option>';
+    tr += '<option value="text">{{Texte}}</option>';
     tr += '</select>';
     tr += '</td>';
     tr += '<td>';
@@ -617,15 +602,15 @@ function addObjectSummary(_summary) {
     tr += '<td>';
     if(isset(_summary) && isset(_summary.key) && _summary.key != ''){
         tr += '<a class="btn btn-success btn-sm objectSummaryAction" data-l1key="createVirtual"><i class="fa fa-puzzle-piece"></i> {{Créer virtuel}}</a>';
-   }
-   tr += '</td>';
-   tr += '<td>';
-   tr += '<a class="objectSummaryAction cursor" data-l1key="remove"><i class="fa fa-minus-circle"></i></a>';
-   tr += '</td>';
-   tr += '</tr>';
-   $('#table_objectSummary tbody').append(tr);
-   if (isset(_summary)){
-	$('#table_objectSummary tbody tr:last').setValues(_summary, '.objectSummaryAttr');
+    }
+    tr += '</td>';
+    tr += '<td>';
+    tr += '<a class="objectSummaryAction cursor" data-l1key="remove"><i class="fa fa-minus-circle"></i></a>';
+    tr += '</td>';
+    tr += '</tr>';
+    $('#table_objectSummary tbody').append(tr);
+    if (isset(_summary)){
+       $('#table_objectSummary tbody tr:last').setValues(_summary, '.objectSummaryAttr');
    }
    if(isset(_summary) && isset(_summary.key) && _summary.key != ''){
     $('#table_objectSummary tbody tr:last .objectSummaryAttr[data-l1key=key]').attr('disabled','disabled');
@@ -655,13 +640,13 @@ function saveObjectSummary() {
         error: function (request, status, error) {
             handleAjaxError(request, status, error);
         },
-        success: function (data) { // si l'appel a bien fonctionné
-        if (data.state != 'ok') {
-            $('#div_alert').showAlert({message: data.result, level: 'danger'});
-            return;
+        success: function (data) { 
+            if (data.state != 'ok') {
+                $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                return;
+            }
+            printObjectSummary();
+            modifyWithoutSave = false;
         }
-        printObjectSummary();
-        modifyWithoutSave = false;
-    }
-});
+    });
 }

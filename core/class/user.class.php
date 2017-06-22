@@ -25,6 +25,7 @@ class user {
 
 	private $id;
 	private $login;
+	private $profils = 'admin';
 	private $password;
 	private $options;
 	private $rights;
@@ -46,11 +47,11 @@ class user {
 	/**
 	 * Retourne un object utilisateur (si les information de connection sont valide)
 	 * @param string $_login nom d'utilisateur
-	 * @param string $_mdp motsz de passe en sha1
+	 * @param string $_mdp motsz de passe en sha512
 	 * @return user object user
 	 */
 	public static function connect($_login, $_mdp) {
-		$sMdp = (!is_sha1($_mdp)) ? sha1($_mdp) : $_mdp;
+		$sMdp = (!is_sha512($_mdp)) ? sha512($_mdp) : $_mdp;
 		if (config::byKey('ldap:enable') == '1' && !$_hash) {
 			log::add("connection", "debug", __('Authentification par LDAP', __FILE__));
 			$ad = self::connectToLDAP();
@@ -107,6 +108,12 @@ class user {
 			}
 		}
 		$user = user::byLoginAndPassword($_login, $sMdp);
+		if (!is_object($user)) {
+			$user = user::byLoginAndPassword($_login, sha1($_mdp));
+			if (is_object($user)) {
+				$user->setPassword($sMdp);
+			}
+		}
 		if (is_object($user)) {
 			$user->setOptions('lastConnection', date('Y-m-d H:i:s'));
 			$user->save();
@@ -193,13 +200,85 @@ class user {
 	}
 
 	public static function hasDefaultIdentification() {
+		$values = array(
+			'password' => sha512('admin'),
+		);
 		$sql = 'SELECT count(id) as nb
         FROM user
         WHERE login="admin"
-        AND password=SHA1("admin")
+        AND password=:password
         AND `enable` = 1';
-		$result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 		return $result['nb'];
+	}
+
+	public static function failedLogin() {
+		@session_start();
+		$_SESSION['failed_count'] = (isset($_SESSION['failed_count'])) ? $_SESSION['failed_count'] + 1 : 1;
+		$_SESSION['failed_datetime'] = strtotime('now');
+		@session_write_close();
+	}
+
+	public static function isBan() {
+		$ip = getClientIp();
+		if ($ip == '') {
+			return false;
+		}
+		$whiteIps = explode(';', config::byKey('security::whiteips'));
+		if (config::byKey('security::whiteips') != '' && count($whiteIps) > 0) {
+			foreach ($whiteIps as $whiteip) {
+				if (netMatch($whiteip, $ip)) {
+					return false;
+				}
+			}
+		}
+		$cache = cache::byKey('security::banip');
+		$values = json_decode($cache->getValue('[]'), true);
+		if (!is_array($values)) {
+			$values = array();
+		}
+		$values_tmp = array();
+		if (count($values) > 0) {
+			foreach ($values as $value) {
+				if (config::byKey('security::bantime') >= 0 && $value['datetime'] + config::byKey('security::bantime') < strtotime('now')) {
+					continue;
+				}
+				$values_tmp[] = $value;
+			}
+		}
+		$values = $values_tmp;
+		if (isset($_SESSION['failed_count']) && $_SESSION['failed_count'] >= config::byKey('security::maxFailedLogin') && (strtotime('now') - config::byKey('security::timeLoginFailed')) < $_SESSION['failed_datetime']) {
+			$values_tmp = array();
+			foreach ($values as $value) {
+				if ($value['ip'] == $ip) {
+					continue;
+				}
+				$values_tmp[] = $value;
+			}
+			$values = $values_tmp;
+			$values[] = array('datetime' => strtotime('now'), 'ip' => getClientIp());
+			@session_start();
+			$_SESSION['failed_count'] = 0;
+			$_SESSION['failed_datetime'] = -1;
+			@session_write_close();
+		}
+		cache::set('security::banip', json_encode($values));
+		if (!is_array($values)) {
+			$values = array();
+		}
+		if (count($values) == 0) {
+			return false;
+		}
+		foreach ($values as $value) {
+			if ($value['ip'] != $ip) {
+				continue;
+			}
+			if (config::byKey('security::bantime') >= 0 && $value['datetime'] + config::byKey('security::bantime') < strtotime('now')) {
+				continue;
+			}
+			return true;
+		}
+		return false;
 	}
 
 	/*     * *********************Méthodes d'instance************************* */
@@ -208,10 +287,19 @@ class user {
 		if ($this->getLogin() == '') {
 			throw new Exception(__('Le nom d\'utilisateur ne peut pas être vide', __FILE__));
 		}
+		if (count(user::searchByRight('admin')) == 1 && $this->getRights('admin') == 1 && $this->getEnable() == 0) {
+			$this->setEnable(1);
+		}
 	}
 
 	public function save() {
 		return DB::save($this);
+	}
+
+	public function preRemove() {
+		if (count(user::searchByRight('admin')) == 1 && $this->getRights('admin') == 1) {
+			throw new Exception(__('Vous ne pouvez supprimer le dernière administrateur', __FILE__));
+		}
 	}
 
 	public function remove() {
@@ -260,7 +348,7 @@ class user {
 	}
 
 	public function setPassword($password) {
-		$this->password = (!is_sha1($password)) ? sha1($password) : $password;
+		$this->password = (!is_sha512($password)) ? sha512($password) : $password;
 		return $this;
 	}
 
@@ -293,9 +381,9 @@ class user {
 
 	public function getHash() {
 		if ($this->hash == '' && $this->id != '') {
-			$hash = config::genKey(255);
+			$hash = config::genKey();
 			while (is_object(self::byHash($hash))) {
-				$hash = config::genKey(255);
+				$hash = config::genKey();
 			}
 			$this->setHash($hash);
 			$this->save();
@@ -305,6 +393,15 @@ class user {
 
 	public function setHash($hash) {
 		$this->hash = $hash;
+		return $this;
+	}
+
+	public function getProfils() {
+		return $this->profils;
+	}
+
+	public function setProfils($profils) {
+		$this->profils = $profils;
 		return $this;
 	}
 
