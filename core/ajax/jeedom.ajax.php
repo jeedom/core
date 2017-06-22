@@ -69,7 +69,11 @@ try {
 	if (init('action') == 'getDocumentationUrl') {
 		$plugin = null;
 		if (init('plugin') != '') {
-			$plugin = plugin::byId(init('plugin'));
+			try {
+				$plugin = plugin::byId(init('plugin'));
+			} catch (Exception $e) {
+
+			}
 		}
 		if (isset($plugin) && is_object($plugin)) {
 			if ($plugin->getDocumentation() != '') {
