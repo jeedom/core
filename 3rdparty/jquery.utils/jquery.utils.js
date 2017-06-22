@@ -281,11 +281,11 @@
                                 options.emptyBefore = init(options.emptyBefore, true);
                                 options.show = init(options.show, true);
                                 if ($.mobile) {
-                                   new $.nd2Toast({
+                                 new $.nd2Toast({
                                     message :  options.message, 
                                     ttl : 3000
                                 });
-                               } else {
+                             } else {
                                 if (options.emptyBefore == false) {
                                     var html = $(this).find('.displayError').html();
                                     if (isset(html)) {
@@ -317,6 +317,9 @@
                                 $(this).find('.btn_closeAlert').on('click', function () {
                                     $(this).closest('.jqAlert').hide();
                                 });
+                                if(typeof initRowOverflow == 'function'){
+                                    initRowOverflow();
+                                }
                             }
         //Hide/show debug trace
         $(this).find('.bt_errorShowTrace').on('click', function () {
@@ -335,6 +338,9 @@
     $.fn.hideAlert = function () {
         $('#jqAlertSpacer' + $(this).attr('id')).remove();
         $(this).text('').hide();
+        if(typeof initRowOverflow == 'function'){
+            initRowOverflow();
+        }
         return $(this);
     };
 
@@ -342,6 +348,9 @@
         if (!$.mobile) {
             $('.jqAlert').text('');
             $('.jqAlert').hide();
+            if(typeof initRowOverflow == 'function'){
+                initRowOverflow();
+            }
         }
     };
 
@@ -383,8 +392,8 @@
                             $(this).prop('checked', (init(_value) == 1) ? true : false);
                         }
                     } else  if ($(this).attr('type') == 'radio') {
-                       $(this).prop('checked', (init(_value) == 1) ? true : false);
-                   } else {
+                     $(this).prop('checked', (init(_value) == 1) ? true : false);
+                 } else {
                     $(this).val(init(_value));
                 }
             }

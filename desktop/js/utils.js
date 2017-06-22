@@ -377,6 +377,9 @@ function initRowOverflow() {
         $('.row-overflow > div').css('height', 'auto').css('overflow-y', 'initial').css('overflow-x', 'initial');
     } else {
         var hWindow = $(window).outerHeight() - $('header').outerHeight() - $('#div_alert').outerHeight();
+        if($('#div_alert').outerHeight() > 0){
+            hWindow -= 10;
+        }
         $('.row-overflow > div').height(hWindow).css('overflow-y', 'auto').css('overflow-x', 'hidden').css('padding-top','5px');
     }
 }

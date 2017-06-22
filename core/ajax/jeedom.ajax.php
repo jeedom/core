@@ -68,7 +68,7 @@ try {
 
 	if (init('action') == 'getDocumentationUrl') {
 		$plugin = null;
-		if (init('plugin') != '') {
+		if (init('plugin') != '' || init('plugin') == 'false') {
 			try {
 				$plugin = plugin::byId(init('plugin'));
 			} catch (Exception $e) {
