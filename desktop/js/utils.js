@@ -49,6 +49,7 @@ $.hideAlert();
 $('.bt_pluginTemplateShowSidebar').remove();
 removeContextualFunction();
 $('#div_pageContainer').empty().load(_url+'&ajax=1',function(){
+    $('#bt_getHelpPage').attr('data-page',getUrlVars('p')).attr('data-plugin',getUrlVars('m'));
     var title = getUrlVars('p');
     document.title = title[0].toUpperCase() + title.slice(1) +' - Jeedom';
     initPage();
@@ -228,6 +229,19 @@ if (isset(jeedom_langage)) {
     $('#bt_jeedomAbout').on('click', function () {
         $('#md_modal').load('index.php?v=d&modal=about').dialog('open');
     });
+
+    $('#bt_getHelpPage').on('click',function(){
+     jeedom.getDocumentationUrl({
+        plugin: $(this).attr('data-plugin'),
+        page: $(this).attr('data-page'),
+        error: function(error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function(url) {
+         window.open(url,'_blank');
+     }
+ });
+ });
 
     /******************Gestion mode expert**********************/
 

@@ -392,20 +392,7 @@ if (isConnect('admin')) {
 									</ul>
 								</li>
 								<li>
-									<?php if (isset($plugin) && is_object($plugin)) {
-		if ($plugin->getDocumentation() != '') {
-			echo '<a class="cursor" target="_blank" href="' . $plugin->getDocumentation() . '" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
-		}
-	} else {
-		if (init('p') == 'scenarioAssist') {
-			echo '<a class="cursor" target="_blank" href="doc/' . config::byKey('language', 'core', 'fr_FR') . '/scenario.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
-		} else if (init('p') == 'view_edit') {
-			echo '<a class="cursor" target="_blank" href="doc/' . config::byKey('language', 'core', 'fr_FR') . '/view.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
-		} else {
-			echo '<a class="cursor" target="_blank" href="doc/' . config::byKey('language', 'core', 'fr_FR') . '/' . secureXSS(init('p')) . '.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
-		}
-	}
-	?>
+								<a id="bt_getHelpPage" class="cursor" data-plugin="<?php echo init('m'); ?>" data-page="<?php echo init('p'); ?>" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>
 								</li>
 								<?php if (isConnect('admin')) {
 		?>

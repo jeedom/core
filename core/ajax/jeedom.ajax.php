@@ -66,6 +66,27 @@ try {
 		ajax::success($return);
 	}
 
+	if (init('action') == 'getDocumentationUrl') {
+		$plugin = null;
+		if (init('plugin') != '') {
+			$plugin = plugin::byId(init('plugin'));
+		}
+		if (isset($plugin) && is_object($plugin)) {
+			if ($plugin->getDocumentation() != '') {
+				ajax::success($plugin->getDocumentation());
+			}
+		} else {
+			$page = init('page');
+			if (init('page') == 'scenarioAssist') {
+				$page = 'scenario';
+			} else if (init('page') == 'view_edit') {
+				$page = 'view';
+			}
+			ajax::success('doc/' . config::byKey('language', 'core', 'fr_FR') . '/' . secureXSS($page) . '.html');
+		}
+		throw new Exception(__('Aucune documentation trouvée', __FILE__), -1234);
+	}
+
 	if (!isConnect('admin')) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
 	}
