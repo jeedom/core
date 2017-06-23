@@ -15,6 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
+//error_reporting(E_ERROR);
 date_default_timezone_set('Europe/Brussels');
 require_once dirname(__FILE__) . '/../../vendor/autoload.php';
 require_once dirname(__FILE__) . '/../config/common.config.php';
@@ -40,14 +41,6 @@ try {
 
 }
 
-try {
-	if (isset($configs['log::level'])) {
-		log::define_error_reporting($configs['log::level']);
-	}
-} catch (Exception $e) {
-
-}
-
 function jeedomCoreAutoload($classname) {
 	try {
 		include_file('core', $classname, 'class');
@@ -56,30 +49,60 @@ function jeedomCoreAutoload($classname) {
 	}
 }
 
-function jeedomPluginAutoload($_classname) {
-	$classname = str_replace(array('Real', 'Cmd'), '', $_classname);
-	$plugin_active = config::byKey('active', $classname, null);
-	if($plugin_active === null || $plugin_active == ''){
-		$classname = explode('_', $classname)[0];
-		$plugin_active = config::byKey('active', $classname, null);
+try {
+	if (isset($configs['log::level'])) {
+		log::define_error_reporting($configs['log::level']);
 	}
-	try {
-		if ($plugin_active == 1) {
-			include_file('core', $classname, 'class', $classname);
-		}
-	} catch (Exception $e) {
-	}
+} catch (Exception $e) {
+
 }
 
 function jeedomOtherAutoload($classname) {
 	try {
 		include_file('core', substr($classname, 4), 'com');
 	} catch (Exception $e) {
-		try {
-			include_file('core', substr($classname, 5), 'repo');
-		} catch (Exception $e) {
 
+	}
+	try {
+		include_file('core', substr($classname, 5), 'repo');
+	} catch (Exception $e) {
+
+	}
+}
+
+function jeedomPluginAutoload($classname) {
+	$plugin = null;
+	try {
+		$plugin = plugin::byId($classname);
+	} catch (Exception $e) {
+		if (!is_object($plugin)) {
+			if (strpos($classname, 'Real') !== false) {
+				$plugin = plugin::byId(substr($classname, 0, -4));
+			}
+			if (!is_object($plugin) && strpos($classname, 'Cmd') !== false) {
+				$classname = str_replace('Cmd', '', $classname);
+				try {
+					$plugin = plugin::byId($classname);
+				} catch (Exception $e) {
+					if (strpos($classname, '_') !== false && strpos($classname, 'com_') === false) {
+						$plugin = plugin::byId(substr($classname, 0, strpos($classname, '_')));
+					}
+				}
+			}
+			if (!is_object($plugin) && strpos($classname, '_') !== false && strpos($classname, 'com_') === false) {
+				$plugin = plugin::byId(substr($classname, 0, strpos($classname, '_')));
+			}
 		}
+	}
+	try {
+		if (is_object($plugin)) {
+			if ($plugin->isActive() == 1) {
+				$include = $plugin->getInclude();
+				include_file('core', $include['file'], $include['type'], $plugin->getId());
+			}
+		}
+	} catch (Exception $e) {
+
 	}
 }
 
