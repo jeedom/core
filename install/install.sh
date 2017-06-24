@@ -57,6 +57,7 @@ step_2_mainpackage() {
 	apt-get -y install libsox-fmt-mp3 sox libttspico-utils
 	apt-get -y install espeak 
 	apt-get -y install mbrola
+	apt-get -y remove brltty
 	echo "${VERT}step_2_mainpackage success${NORMAL}"
 }
 
