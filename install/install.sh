@@ -149,7 +149,7 @@ step_7_jeedom_customization() {
 	rm /etc/apache2/conf-available/other-vhosts-access-log.conf > /dev/null 2>&1
 	rm /etc/apache2/conf-enabled/other-vhosts-access-log.conf > /dev/null 2>&1
 
-	sed -i 's/PrivateTmp=true/PrivateTmp=false/g' /lib/systemd/system/apache2.service /dev/null 2>&1
+	sed -i 's/PrivateTmp=true/PrivateTmp=false/g' /lib/systemd/system/apache2.service > /dev/null 2>&1
 
 	systemctl daemon-reload
 
