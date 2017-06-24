@@ -77,6 +77,7 @@ sendVarToJS('id', $planHeader->getId())
                 $('#div_alertPlanHeaderConfigure').showAlert({message: data.result.result, level: 'danger'});
                 return;
             }
+            loadPage('index.php?v=d&p=plan&plan_id='+planHeader_id);
         }
     });
 
