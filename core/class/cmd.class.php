@@ -690,7 +690,7 @@ class cmd {
 		if ($this->_needRefreshWidget) {
 			$this->getEqLogic()->refreshWidget();
 		}
-		if ($this->_needRefreshAlert) {
+		if ($this->_needRefreshAlert && $this->getType() == 'info') {
 			$level = $this->checkAlertLevel($this->execCmd());
 			if ($level != $this->getCache('alertLevel')) {
 				$this->actionAlertLevel($level, $value);
