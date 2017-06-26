@@ -380,7 +380,7 @@ function initRowOverflow() {
     if ($(window).width() < 1180) {
         $('.row-overflow > div').css('height', 'auto').css('overflow-y', 'initial').css('overflow-x', 'initial');
     } else {
-        var hWindow = $(window).outerHeight() - $('header').outerHeight() - $('#div_alert').outerHeight();
+        var hWindow = $(window).outerHeight() - $('header').outerHeight() - $('#div_alert').outerHeight()-4;
         if($('#div_alert').outerHeight() > 0){
             hWindow -= 10;
         }
