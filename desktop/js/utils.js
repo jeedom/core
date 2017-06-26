@@ -63,6 +63,10 @@ function removeContextualFunction(){
 
 $(function () {
 
+    $.alertTrigger = function(){
+        initRowOverflow();
+    }
+
     $('body').on('click','a',function(e){
         if($(this).hasClass('noOnePageLoad')){
             return;
