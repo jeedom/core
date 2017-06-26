@@ -67,6 +67,7 @@ function addCommandHistory(_cmd){
   tr += '<option value="-1 day">{{1 jour}}</option>';
   tr += '<option value="-7 days">{{7 jours}}</option>';
   tr += '<option value="-1 month">{{1 mois}}</option>';
+  tr += '<option value="-3 month">{{3 mois}}</option>';
   tr += '<option value="-6 month">{{6 mois}}</option>';
   tr += '<option value="-1 year">{{1 an}}</option>';
   tr += '</select>';
