@@ -46,12 +46,12 @@ class user {
 
 	/**
 	 * Retourne un object utilisateur (si les information de connection sont valide)
-	 * @param string $_login nom d'utilisateur
-	 * @param string $_mdp motsz de passe en sha512
+	 * @param string $login nom d'utilisateur
+	 * @param string $mdp mots de passe en sha512
 	 * @return user object user
 	 */
-	public static function connect($_login, $_mdp) {
-		$sMdp = (!is_sha512($_mdp)) ? sha512($_mdp) : $_mdp;
+	public static function connect($login, $mdp) {
+		$sMdp = (!is_sha512($mdp)) ? sha512($mdp) : $mdp;
 		if (config::byKey('ldap:enable') == '1' && !$_hash) {
 			log::add("connection", "debug", __('Authentification par LDAP', __FILE__));
 			$ad = self::connectToLDAP();
@@ -60,17 +60,17 @@ class user {
 				$ad = ldap_connect(config::byKey('ldap:host'), config::byKey('ldap:port'));
 				ldap_set_option($ad, LDAP_OPT_PROTOCOL_VERSION, 3);
 				ldap_set_option($ad, LDAP_OPT_REFERRALS, 0);
-				if (!ldap_bind($ad, 'uid=' . $_login . ',' . config::byKey('ldap:basedn'), $_mdp)) {
-					log::add("connection", "info", __('Mot de passe erroné (', __FILE__) . $_login . ')');
+				if (!ldap_bind($ad, 'uid=' . $login . ',' . config::byKey('ldap:basedn'), $mdp)) {
+					log::add("connection", "info", __('Mot de passe erroné (', __FILE__) . $login . ')');
 					return false;
 				}
 				log::add("connection", "debug", __('Bind user OK', __FILE__));
-				$result = ldap_search($ad, 'uid=' . $_login . ',' . config::byKey('ldap:basedn'), config::byKey('ldap:filter'));
-				log::add("connection", "info", __('Recherche LDAP (', __FILE__) . $_login . ')');
+				$result = ldap_search($ad, 'uid=' . $login . ',' . config::byKey('ldap:basedn'), config::byKey('ldap:filter'));
+				log::add("connection", "info", __('Recherche LDAP (', __FILE__) . $login . ')');
 				if ($result) {
 					$entries = ldap_get_entries($ad, $result);
 					if ($entries['count'] > 0) {
-						$user = self::byLogin($_login);
+						$user = self::byLogin($login);
 						if (is_object($user)) {
 							$user->setPassword($sMdp)
 								->setOptions('lastConnection', date('Y-m-d H:i:s'));
@@ -78,28 +78,28 @@ class user {
 							return $user;
 						}
 						$user = (new user)
-							->setLogin($_login)
+							->setLogin($login)
 							->setPassword($sMdp)
 							->setOptions('lastConnection', date('Y-m-d H:i:s'));
 						$user->save();
-						log::add("connection", "info", __('Utilisateur créé depuis le LDAP : ', __FILE__) . $_login);
+						log::add("connection", "info", __('Utilisateur créé depuis le LDAP : ', __FILE__) . $login);
 						jeedom::event('user_connect');
-						log::add('event', 'info', __('Connexion de l\'utilisateur ', __FILE__) . $_login);
+						log::add('event', 'info', __('Connexion de l\'utilisateur ', __FILE__) . $login);
 						return $user;
 					} else {
-						$user = self::byLogin($_login);
+						$user = self::byLogin($login);
 						if (is_object($user)) {
 							$user->remove();
 						}
-						log::add("connection", "info", __('Utilisateur non autorisé à accéder à Jeedom (', __FILE__) . $_login . ')');
+						log::add("connection", "info", __('Utilisateur non autorisé à accéder à Jeedom (', __FILE__) . $login . ')');
 						return false;
 					}
 				} else {
-					$user = self::byLogin($_login);
+					$user = self::byLogin($login);
 					if (is_object($user)) {
 						$user->remove();
 					}
-					log::add("connection", "info", __('Utilisateur non autorisé à accéder à Jeedom (', __FILE__) . $_login . ')');
+					log::add("connection", "info", __('Utilisateur non autorisé à accéder à Jeedom (', __FILE__) . $login . ')');
 					return false;
 				}
 				return false;
@@ -107,9 +107,9 @@ class user {
 				log::add("connection", "info", __('Impossible de se connecter au LDAP', __FILE__));
 			}
 		}
-		$user = user::byLoginAndPassword($_login, $sMdp);
+		$user = user::byLoginAndPassword($login, $sMdp);
 		if (!is_object($user)) {
-			$user = user::byLoginAndPassword($_login, sha1($_mdp));
+			$user = user::byLoginAndPassword($login, sha1($mdp));
 			if (is_object($user)) {
 				$user->setPassword($sMdp);
 			}
@@ -118,7 +118,7 @@ class user {
 			$user->setOptions('lastConnection', date('Y-m-d H:i:s'));
 			$user->save();
 			jeedom::event('user_connect');
-			log::add('event', 'info', __('Connexion de l\'utilisateur ', __FILE__) . $_login);
+			log::add('event', 'info', __('Connexion de l\'utilisateur ', __FILE__) . $login);
 		}
 		return $user;
 	}
@@ -406,5 +406,4 @@ class user {
 	}
 
 }
-
-?>
+ 
