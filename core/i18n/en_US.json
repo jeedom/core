@@ -9,10 +9,10 @@
         "Valeur": "Value",
         "Aucun": "None",
         "Erreur execution de la commande ": "Error running the command",
-        "Alert sur la commande ": "Alert sur la commande",
-        " niveau ": "niveau",
+        "Alert sur la commande ": "command warning",
+        " niveau ": "level",
         "[jeedom] Message de ": "[jeedom] Message de",
-        "pendant plus de ": "pendant plus de",
+        "pendant plus de ": "during more than",
         " minute(s)": "minute(s)"
     },
     "core/class/scenario.class.php": {
@@ -58,21 +58,21 @@
         "Lancement provoqué": "Triggered run",
         "Pause de ": "Break of",
         " seconde(s)": "second(s)",
-        "Envoi du rapport généré sur ": "Envoi du rapport généré sur",
+        "Envoi du rapport généré sur ": "Send generated report on",
         "Génération d'un rapport de type ": "Génération d'un rapport de type",
-        "Erreur : Aucun rapport généré": "Erreur : Aucun rapport généré",
-        "Génération du rapport ": "Génération du rapport",
+        "Erreur : Aucun rapport généré": "Error: report not generated",
+        "Génération du rapport ": "Generating report",
         "[jeedom] Rapport ": "[jeedom] Rapport",
         "Veuillez trouver ci-joint le rapport ": "Veuillez trouver ci-joint le rapport",
         " du ": "of",
         " généré le ": "généré le",
-        "Aucune durée trouvée pour l'action sleep ou la durée n'est pas valide : ": "Aucune durée trouvée pour l'action sleep ou la durée n'est pas valide :"
+        "Aucune durée trouvée pour l'action sleep ou la durée n'est pas valide : ": "No duration found or invalid duration for the sleep avtion"
     },
     "core/class/scenarioElement.class.php": {
         "Non exécution des actions pour cause de répétition": "Actions not executed because of redundancy",
-        "Tâche : ": "Tâche :",
-        " programmé à : ": "programmé à :",
-        " programmée à : ": "programmée à :"
+        "Tâche : ": "Task:",
+        " programmé à : ": "scheduled at:",
+        " programmée à : ": "scheduled at:"
     },
     "core/js/scenario.class.js": {
         "Sélectionner le scénario": "Select the scenario"
@@ -146,7 +146,7 @@
         "Version Jeedom": "Jeedom version",
         "Version PHP": "PHP version",
         "Version OS": "OS version",
-        "Version database": "Version database",
+        "Version database": "Database version",
         "Espace disque libre": "Free disk space",
         "Configuration réseau interne": "Configuration internal network",
         "Configuration réseau externe": "External network configuration",
@@ -170,7 +170,7 @@
         "Nom du backup : ": "Backup name :",
         "***************Fin de la sauvegarde de Jeedom***************\n": "*************** End of backup Jeedom ***************",
         "Echec lors de la compression de la sauvegarde. Sauvegarde introuvable : ": "Echec lors de la compression de la sauvegarde. Sauvegarde introuvable :",
-        "Erreur durant la sauvegarde : ": "Erreur durant la sauvegarde :",
+        "Erreur durant la sauvegarde : ": "Backup error",
         "Détails : ": "Détails :",
         "Persistance du cache : \n": "Persistance du cache :"
     },
@@ -239,7 +239,7 @@
         "Générale": "Main",
         "Détaillée": "Detailed",
         "Ouverture d'un ticket": "Open ticket",
-        "Rapport": "Rapport"
+        "Rapport": "Report"
     },
     "desktop/php/message.php": {
         "Vider": "Clear",
@@ -310,7 +310,7 @@
         "Panel": "Panel"
     },
     "core/class/interactQuery.class.php": {
-        "J'ai une correspondance  : ": "J'ai une correspondance  :",
+        "J'ai une correspondance  : ": "Match found:",
         " avec ": "avec",
         "Correspondance trop éloigné : ": "Correspondance trop éloigné :",
         "Désolé je n'ai pas compris": "Sorry I do not understand",
@@ -325,11 +325,11 @@
         " de ": "of",
         " dans ": "dans",
         "C'est fait": "It's done",
-        "Erreur : ": "Erreur :"
+        "Erreur : ": "Error :"
     },
     "desktop/php/log.php": {
         "Rechercher": "Search",
-        "Supprimer tous": "Supprimer tous",
+        "Supprimer tous": "Delete all",
         "Supprimer": "Delete",
         "Vider": "Clear",
         "Télécharger": "Download",
@@ -339,7 +339,7 @@
         "Inconnu": "Inconnu"
     },
     "/var/www/html/desktop/php/administration.php": {
-        "objets": "objets"
+        "objets": "Objects"
     },
     "desktop/php/administration.php": {
         "Configuration générale": "Main setup",
@@ -382,7 +382,7 @@
         "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à Jeedom. L'équipe Jeedom se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "CAUTION ! These operations are risky. You might lose access to your system and to Jeedom. Jeedom support team reserves the right to refuse any request for support in case of mishandling.",
         "Accès à l'interface d'administration": "Access to the administration interface",
         "Lancer": "Run",
-        "Securité": "Securité",
+        "Securité": "Security",
         "Nombre d'échec toléré": "Nombre d'échec toléré",
         "Temps maximum entre les échecs (s)": "Temps maximum entre les échecs (s)",
         "Durée du bannissement (s), -1 pour infini": "Durée du bannissement (s), -1 pour infini",
@@ -406,7 +406,7 @@
         "Accès externe": "External access",
         "Gestion avancée": "Advanced management",
         "Désactiver la gestion du réseau par Jeedom": "Disable the Jeedom network manager",
-        "Adresse mac": "Adresse mac",
+        "Adresse mac": "Mac address",
         "Proxy": "proxy",
         "Utiliser les DNS Jeedom": "Use Jeedom DNS",
         "Statut DNS": "DNS status",
@@ -526,7 +526,7 @@
         "Mises à jour et fichiers": "Mises à jour et fichiers",
         "Mise à jour de jeedom": "Updating Jeedom",
         "Source de mise à jour": "Source de mise à jour",
-        "Version du core": "Version du core",
+        "Version du core": "Core version",
         "Beta (Plus d'accès au support)": "Beta (Plus d'accès au support)",
         "Stable": "Stable",
         "Pro": "Pro",
@@ -542,7 +542,7 @@
         "Largeur minimal (en px)": "Largeur minimal (en px)",
         "Hauteur minimal (en px)": "Hauteur minimal (en px)",
         "Nettoyer les rapport plus viex de (jours)": "Nettoyer les rapport plus viex de (jours)",
-        "Système de fichier (/tmp/jeedom/cache)": "Système de fichier (/tmp/jeedom/cache)",
+        "Système de fichier (/tmp/jeedom/cache)": "File system (/tmp/jeedom/cache)",
         "Démarré : ": "Started:",
         "Configuration des graphiques de lien": "Configuration des graphiques de lien",
         "Profondeur pour les scénarios": "Profondeur pour les scénarios",
@@ -617,7 +617,7 @@
         "Sauvegarde effectuée avec succès": "Backup successfully completed",
         "Suppression effectuée avec succès": "Deletion successfully completed",
         "Tester les interactions": "Test interactions",
-        "Sauvegarde réussie avec succès": "Sauvegarde réussie avec succès",
+        "Sauvegarde réussie avec succès": "Backup successfully completed",
         "Etes-vous sûr de vouloir regénérer toutes les interations (cela peut être très long) ?": "Are you sure you want to regenerate all interactions (this might take a while)?",
         "Toutes les interations ont été regénérées": "All interactions have been regenerated",
         "Etes-vous sûr de vouloir supprimer l\\'interaction": "Do you really want to delete the interaction",
@@ -877,7 +877,7 @@
         "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte": "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte",
         "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page jeedom d'ouvert.": "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page jeedom d'ouvert.",
         "Valider": "Validate",
-        "Rapport": "Rapport",
+        "Rapport": "Report",
         "Permet d'envoyer par une commande message un rapport d'une vue, d'un design ou d'un panel en PNG/PDF/JPEG/SVG.": "Permet d'envoyer par une commande message un rapport d'une vue, d'un design ou d'un panel en PNG/PDF/JPEG/SVG.",
         "Graphique": "Graph",
         "Liens": "Links"
@@ -924,7 +924,7 @@
         "Permet d\\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)": "Adds essential functional elements to create your scenarios (eg. IF / THEN ...)",
         "Ajouter bloc": "Add block",
         "Inactif": "Inactive",
-        "Sauvegarde du scénario réussi": "Sauvegarde du scénario réussi",
+        "Sauvegarde du scénario réussi": "Scenario successfully saved",
         "Evénement": "Event",
         "Choisir une commande": "Choisir une commande",
         "Choisir une variable": "Choisir une variable",
@@ -1075,8 +1075,8 @@
         "Ajouter un lien": "Add link",
         "Vers une vue": "Vers une vue",
         "Vers un design": "Vers un design",
-        "Ajouter équipement": "Ajouter équipement",
-        "Ajouter commande": "Ajouter commande",
+        "Ajouter équipement": "Add device",
+        "Ajouter commande": "Add command",
         "Ajouter une image/caméra": "Ajouter une image/caméra",
         "Ajouter une zone": "Add a zone",
         "Ajouter un résumé": "Ajouter un résumé",
@@ -1108,7 +1108,7 @@
         "Vues": "View",
         "Design": "Design",
         "Rechercher": "Search",
-        "Rapport": "Rapport",
+        "Rapport": "Report",
         "Général": "Main",
         "Supprimer": "Delete",
         "Nom": "Name",
@@ -1149,7 +1149,7 @@
         "Tailles": "Size",
         "Taille (LxH)": "Size (WxL)",
         "Image supprimée": "Image supprimée",
-        "Design sauvegardé": "Design sauvegardé"
+        "Design sauvegardé": "Design saved"
     },
     "desktop/modal/cmd.history.php": {
         "Attention une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher": "Warning: a too wide date range can take very long time to be calculated, or even will never be displayed",
@@ -1218,7 +1218,7 @@
         "Sauvegarde de la configuration des panels effectuée": "Panels' setup saving done",
         "Sauvegarde des fonctionalités effectuée": "Sauvegarde des fonctionalités effectuée",
         "Sauvegarde de la configuration des logs effectuée": "Sauvegarde de la configuration des logs effectuée",
-        "Log du plugin": "Log du plugin",
+        "Log du plugin": "Plugin log",
         "Sauvegarde effectuée": "Save completed",
         "Ajouter un plugin": "Add a plugin"
     },
@@ -1272,7 +1272,7 @@
         "Etes-vous sûr de vouloir restaurer Jeedom avec la sauvegarde Cloud": "Are you sure you want to restore Jeedom with the Cloud backup",
         "L\\'opération est réussie": "The operation was successful",
         "L\\'opération a échoué": "The operation failed",
-        "Etes-vous sûr de vouloir envoyer une sauvegarde de Jeedom sur le cloud ? Une fois lancée cette opération ne peut être annulée": "Etes-vous sûr de vouloir envoyer une sauvegarde de Jeedom sur le cloud ? Une fois lancée cette opération ne peut être annulée"
+        "Etes-vous sûr de vouloir envoyer une sauvegarde de Jeedom sur le cloud ? Une fois lancée cette opération ne peut être annulée": "Are you sure you want to backup Jeedom on the cloud? Once started, this operation cannot be cancelled"
     },
     "desktop/php/user.php": {
         "Liste des utilisateurs :": "List of users:",
@@ -1437,7 +1437,7 @@
         "Icône": "Icon",
         "Alerte": "Warning",
         "Pop-up": "Pop-up",
-        "Rapport": "Rapport",
+        "Rapport": "Report",
         "Pause de x seconde(s)": "Break for x second(s)",
         "Attend jusqu’à ce que la condition soit valide (maximum 2h)": "Wait for the condition to be true (maximum 2 hours)",
         "Création/modification d’une variable ou de la valeur d’une variable": "Création/modification d’une variable ou de la valeur d’une variable",

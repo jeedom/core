@@ -2,6 +2,7 @@
 
 == 3.1
 
+* Correction de bug
 * Optimisation global de jeedom (sur le chargement des classes de plugin, temps presque divisé par 3)
 * Support de Debian 9
 * Mode onepage (changement de page sans recharger toute la page juste la partie qui change)
