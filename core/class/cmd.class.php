@@ -43,6 +43,7 @@ class cmd {
 	protected $_valueDate = '';
 	protected $_eqLogic = null;
 	protected $_needRefreshWidget;
+	protected $_needRefreshAlert;
 	private static $_templateArray = array();
 
 	/*     * ***********************Méthodes statiques*************************** */
@@ -688,6 +689,12 @@ class cmd {
 		DB::save($this);
 		if ($this->_needRefreshWidget) {
 			$this->getEqLogic()->refreshWidget();
+		}
+		if ($this->_needRefreshAlert) {
+			$level = $this->checkAlertLevel($this->execCmd());
+			if ($level != $this->getCache('alertLevel')) {
+				$this->actionAlertLevel($level, $value);
+			}
 		}
 		return true;
 	}
@@ -1745,6 +1752,7 @@ class cmd {
 
 	public function setAlert($_key, $_value) {
 		$this->alert = utils::setJsonAttr($this->alert, $_key, $_value);
+		$this->_needRefreshAlert = true;
 		return $this;
 	}
 
