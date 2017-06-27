@@ -183,7 +183,7 @@ function getClientIp() {
 	return '';
 }
 
-function mySqlIsHere() {
+function mySqlIsHere()::bool {
 	require_once dirname(__FILE__) . '/../class/DB.class.php';
 	return is_object(DB::getConnection());
 }
