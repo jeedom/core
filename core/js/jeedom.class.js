@@ -70,7 +70,6 @@ setTimeout(jeedom.changes, 1);
 error: function(_error){
     if(jeedom.connect == 100){
         notify('{{Erreur de connexion}}','{{Erreur lors de la connexion à jeedom}} : '+_error.message);
-
     }
     jeedom.connect++;
     setTimeout(jeedom.changes, 1);
@@ -108,7 +107,6 @@ jeedom.init = function () {
             weekdays: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi']
         }
     });
-
     $('body').on('cmd::update', function (_event,_options) {
         jeedom.cmd.refreshValue(_options);
     });
