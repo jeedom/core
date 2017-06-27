@@ -212,9 +212,12 @@ class log {
 
 	/**
 	 * Renvoi les x derniere ligne du fichier de log
-	 * @param int $_maxLigne nombre de ligne voulu
-	 * @return string Ligne du fichier de log
-	 */
+         * 
+         * @param string $_log
+         * @param int $_begin
+         * @param int $_nbLines
+         * @return boolean|array
+         */
 	public static function get($_log = 'core', $_begin, $_nbLines) {
 		self::chunk($_log);
 
