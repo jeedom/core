@@ -6,6 +6,7 @@
 * Optimisation global de jeedom (sur le chargement des classes de plugin, temps presque divisé par 3)
 * Support de Debian 9
 * Mode onepage (changement de page sans recharger toute la page juste la partie qui change)
+* Ajout d'une option pour masquer les objets sur le dashboard mais qui permet de toujours les avoir dans la liste
 
 == 3.0
 

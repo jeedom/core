@@ -62,11 +62,11 @@ foreach ($allObject as $object) {
 
    <ul class="nav nav-tabs" role="tablist">
      <li role="presentation"><a href="#" aria-controls="home" role="tab" data-toggle="tab" id="bt_returnToThumbnailDisplay"><i class="fa fa-arrow-circle-left"></i></a></li>
-    <li role="presentation" class="active"><a href="#objecttab" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-tachometer"></i> {{Objet}}</a></li>
-    <li role="presentation"><a href="#summarytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-list-alt"></i> {{Résumé}}</a></li>
-  </ul>
+     <li role="presentation" class="active"><a href="#objecttab" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-tachometer"></i> {{Objet}}</a></li>
+     <li role="presentation"><a href="#summarytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-list-alt"></i> {{Résumé}}</a></li>
+   </ul>
 
-  <div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
+   <div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
     <div role="tabpanel" class="tab-pane active" id="objecttab">
       <form class="form-horizontal">
         <fieldset>
@@ -98,51 +98,57 @@ foreach ($allObject as $object) {
           </div>
         </div>
         <div class="form-group">
-          <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Icône}}</label>
-          <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-            <div class="objectAttr" data-l1key="display" data-l2key="icon" style="font-size : 1.5em;"></div>
-          </div>
-          <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4">
-            <a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fa fa-flag"></i> {{Choisir}}</a>
-          </div>
+         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Masquer sur le dashboard}}</label>
+         <div class="col-sm-1">
+          <input class="objectAttr" type="checkbox" data-l1key="configuration" data-l2key="hideOnDashboard"/>
         </div>
-        <div class="form-group">
-          <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Couleur du tag}}</label>
-          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-            <input type="color" class="objectAttr form-control" data-l1key="display" data-l2key="tagColor" />
-          </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Icône}}</label>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+          <div class="objectAttr" data-l1key="display" data-l2key="icon" style="font-size : 1.5em;"></div>
         </div>
-        <div class="form-group">
-          <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Couleur du texte du tag}}</label>
-          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-            <input type="color" class="objectAttr form-control" data-l1key="display" data-l2key="tagTextColor" />
-          </div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4">
+          <a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fa fa-flag"></i> {{Choisir}}</a>
         </div>
-      </fieldset>
-    </form>
-  </div>
-  <div role="tabpanel" class="tab-pane" id="summarytab">
-    <?php
+      </div>
+      <div class="form-group">
+        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Couleur du tag}}</label>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+          <input type="color" class="objectAttr form-control" data-l1key="display" data-l2key="tagColor" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Couleur du texte du tag}}</label>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+          <input type="color" class="objectAttr form-control" data-l1key="display" data-l2key="tagTextColor" />
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>
+<div role="tabpanel" class="tab-pane" id="summarytab">
+  <?php
 if (count(config::byKey('object:summary')) == 0) {
 	echo '<div class="alert alert-danger>{{Vous n\'avez aucun résumé de créé. Allez sur la page d\'administration de Jeedom puis sur la partie "Configuration des résumés d\'objet"}}</div>';
 } else {
 
 	?>
-     <form class="form-horizontal">
-      <fieldset>
-        <legend class="objectname_resume" style="cursor:default;"></legend>
-        <table class="table">
-          <thead>
-            <tr>
-              <th></th>
-              <?php
+   <form class="form-horizontal">
+    <fieldset>
+      <legend class="objectname_resume" style="cursor:default;"></legend>
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <?php
 foreach (config::byKey('object:summary') as $key => $value) {
 		echo '<th style="cursor:default;">' . $value['name'] . '</th>';
 	}
 	?>
-            </tr>
-          </thead>
-          <?php
+          </tr>
+        </thead>
+        <?php
 echo '<tr>';
 	echo '<td style="cursor:default;">';
 	echo '{{Remonter dans le résumé global}}';
@@ -176,23 +182,23 @@ echo '<tr>';
 	}
 	echo '</tr>';
 	?>
-        </table>
-      </fieldset>
-    </form>
-    <form class="form-horizontal">
-      <fieldset>
-        <legend style="cursor:default;"><i class="fa fa-tachometer"></i>  {{Commandes}}</legend>
-        <ul class="nav nav-tabs" role="tablist">
-          <?php
+      </table>
+    </fieldset>
+  </form>
+  <form class="form-horizontal">
+    <fieldset>
+      <legend style="cursor:default;"><i class="fa fa-tachometer"></i>  {{Commandes}}</legend>
+      <ul class="nav nav-tabs" role="tablist">
+        <?php
 $active = 'active';
 	foreach (config::byKey('object:summary') as $key => $value) {
 		echo '<li class="' . $active . '"><a href="#summarytab' . $key . '" role="tab" data-toggle="tab">' . $value['icon'] . ' ' . $value['name'] . '</i>  <span class="tabnumber summarytabnumber' . $key . '"</span></a></li>';
 		$active = '';
 	}
 	?>
-        </ul>
-        <div class="tab-content">
-          <?php
+      </ul>
+      <div class="tab-content">
+        <?php
 $active = ' active';
 	foreach (config::byKey('object:summary') as $key => $value) {
 		echo '<div role="tabpanel" class="tab-pane type' . $key . $active . '" data-type="' . $key . '" id="summarytab' . $key . '">';
@@ -203,10 +209,10 @@ $active = ' active';
 		$active = '';
 	}
 	?>
-        </div>
-      </fieldset>
-    </form>
-    <?php
+      </div>
+    </fieldset>
+  </form>
+  <?php
 }
 ?>
 </div>

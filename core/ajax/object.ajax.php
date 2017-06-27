@@ -109,6 +109,9 @@ try {
 			} else {
 				$objects = array();
 				foreach (object::all() as $object) {
+					if ($object->getConfiguration('hideOnDashboard', 0) == 1) {
+						continue;
+					}
 					$objects[] = $object->getId();
 				}
 			}
