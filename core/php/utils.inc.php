@@ -826,7 +826,12 @@ function evaluate($_string) {
 	return $_string;
 }
 
-function secureXSS($_string) {
+/**
+ * 
+ * @param string $_string
+ * @return string
+ */
+function secureXSS(string $_string){
 	return str_replace('&amp;', '&', htmlspecialchars(strip_tags($_string), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
 }
 
