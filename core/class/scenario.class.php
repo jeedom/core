@@ -65,9 +65,11 @@ class scenario {
 
 	/**
 	 * Renvoie tous les objets scenario
-	 * @return [] scenario object scenario
-	 */
-	public static function all($_group = '', $_type = null) {
+         * @param type $_group
+         * @param type $_type
+         * @return array scenario object scenario
+         */
+	public static function all($_group = '', $_type = null):array {
 		$values = array();
 		if ($_group === '') {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
