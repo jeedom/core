@@ -447,13 +447,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Correction de bug</p>
 </li>
 <li>
-<p>Optimisation global de jeedom (sur le chargement des classes de plugin, temps presque divisé par 3)</p>
+<p>Optimisation globale de Jeedom (sur le chargement des classes de plugins, temps presque divisé par 3)</p>
 </li>
 <li>
 <p>Support de Debian 9</p>
 </li>
 <li>
 <p>Mode onepage (changement de page sans recharger toute la page juste la partie qui change)</p>
+</li>
+<li>
+<p>Ajout d&#8217;une option pour masquer les objets sur le dashboard mais qui permet de toujours les avoir dans la liste</p>
 </li>
 </ul>
 </div>
@@ -486,7 +489,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Ajout d&#8217;une action "popup" sur les scénarios : message à valider</p>
 </li>
 <li>
-<p>Les widgets des commandes peuvent maintenant avoir une méthode d&#8217;update ce qui évite un appel AJAX à Jeedom</p>
+<p>Les widgets des commandes peuvent maintenant avoir une méthode d&#8217;update ce qui évite un appel ajax à Jeedom</p>
 </li>
 <li>
 <p>Les widgets des scénarios sont maintenant mis à jour sans appel ajax pour avoir le widget</p>
@@ -523,7 +526,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>Toute les actions sont maintenant accessibles à partir d&#8217;un clic droit</p>
+<p>Toutes les actions sont maintenant accessibles à partir d&#8217;un clic droit</p>
 </li>
 <li>
 <p>Possibilité d&#8217;ajouter une commande seule</p>
@@ -563,7 +566,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Certains types de widgets peuvent maintenant être dupliqués</p>
 </li>
 <li>
-<p>Possibilité de verouiller un élément</p>
+<p>Possibilité de verrouiller un élément</p>
 </li>
 </ul>
 </div>
@@ -611,13 +614,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Possibilité dans les scénarios de modifier la valeur d&#8217;une commande avec l&#8217;action "event"</p>
 </li>
 <li>
-<p>Ajout d&#8217;un champs commentaire sur la configuration avancée d&#8217;un équipement</p>
+<p>Ajout d&#8217;un champ commentaire sur la configuration avancée d&#8217;un équipement</p>
 </li>
 <li>
 <p>Ajout d&#8217;un système d&#8217;alerte sur les commandes avec 2 niveaux : alerte et danger. La configuration se trouve dans la configuration avancée des commandes (de type info seulement bien sûr). Vous pouvez voir les modules en alerte sur la page Analyse &#8594; Equipement. Vous pouvez configurer les actions sur alerte sur la page de configuration générale de Jeedom</p>
 </li>
 <li>
-<p>Ajout d&#8217;une zone "tableau" sur les vues qui permet d&#8217;afficher une ou plusieurs colonnes par case. Les cases supportent aussi le code html</p>
+<p>Ajout d&#8217;une zone "tableau" sur les vues qui permet d&#8217;afficher une ou plusieurs colonnes par case. Les cases supportent aussi le code HTML</p>
 </li>
 <li>
 <p>Jeedom peut maintenant tourner sans les droits root (expérimental). Attention car sans les droits root vous devrez manuellement lancer les scripts pour les dépendances des plugins</p>
@@ -650,7 +653,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Correction de l&#8217;accès à la doc des plugins tiers si ceux-ci n&#8217;ont pas de doc en local</p>
 </li>
 <li>
-<p>Les interactions peuvent prendre en compte la notion de contexte (en fonction de la demande précédente et celle d&#8217;avant)</p>
+<p>Les interactions peuvent prendre en compte la notion de contexte (en fonction de la demande précédente ainsi que celle d&#8217;avant)</p>
 </li>
 <li>
 <p>Possibilité de pondérer les mots en fonction de leur taille pour l&#8217;analyse de la compréhension</p>
@@ -662,13 +665,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Les interactions peuvent maintenant renvoyer des fichiers en plus de la réponse</p>
 </li>
 <li>
-<p>Possibilité de voir sur la page de configuration des plugins les fonctionalités de celui-ci (interact, cron&#8230;&#8203;) et de la désactiver unitairement</p>
+<p>Possibilité de voir sur la page de configuration des plugins les fonctionalités de ceux-ci (interact, cron&#8230;&#8203;) et de les désactiver unitairement</p>
 </li>
 <li>
 <p>Les interactions automatiques peuvent renvoyer les valeurs des résumés</p>
 </li>
 <li>
-<p>Possibilité de définir des synomymes pour les objets, équipements, commandes et résumés qui seront utilisés dans les réponses contextuelle et résumés</p>
+<p>Possibilité de définir des synomymes pour les objets, équipements, commandes et résumés qui seront utilisés dans les réponses contextuelles et résumés</p>
 </li>
 <li>
 <p>Jeedom sait gérer plusieurs interactions liées (contextuellement) en une. Elles doivent être séparées par un mot clef (par défaut et). Exemple : "Combien fait-il dans la chambre et dans le salon ?" ou "Allume la lumière de la cuisine et de la chambre."</p>
@@ -689,13 +692,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Ajout d&#8217;une page de gestion de rapport (pour les retélécharger ou les supprimer)</p>
 </li>
 <li>
-<p>Correction d&#8217;un bug sur la date de dernière remontée d&#8217;événement pour certains plugins (alarme)</p>
+<p>Correction d&#8217;un bug sur la date de dernière remontée d&#8217;un événement pour certains plugins (alarme)</p>
 </li>
 <li>
-<p>Correction d&#8217;un bug d&#8217;affichage avec chrome 55</p>
+<p>Correction d&#8217;un bug d&#8217;affichage avec Chrome 55</p>
 </li>
 <li>
-<p>Optimisation du backup (sur un rpi2 le temps est divisé par 2)</p>
+<p>Optimisation du backup (sur un RPi2 le temps est divisé par 2)</p>
 </li>
 <li>
 <p>Optimisation de la restauration</p>
@@ -707,7 +710,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Uniformisation du tmp jeedom, maintenant tout est dans /tmp/jeedom</p>
 </li>
 <li>
-<p>Possibilité d&#8217;avoir un graph des differentes liaisons d&#8217;un scénario, équipement, objet, commande ou variable</p>
+<p>Possibilité d&#8217;avoir un graph des différentes liaisons d&#8217;un scénario, équipement, objet, commande ou variable</p>
 </li>
 <li>
 <p>Possibilité de régler la profondeur des graphiques de lien en fonction de l&#8217;objet d&#8217;origine</p>
@@ -719,7 +722,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Possibilité de passer des tags lors du lancement d&#8217;un scénario</p>
 </li>
 <li>
-<p>Optimisation du chargement des scenarios et pages utilisant des actions avec option (type configuration du plugin alarme ou mode)</p>
+<p>Optimisation du chargement des scénarios et pages utilisant des actions avec option (type configuration du plugin alarme ou mode)</p>
 </li>
 </ul>
 </div>

@@ -37,7 +37,7 @@
         "Inconnue": "Unknown",
         "Vous devez attendre au moins 45s entre 2 lancements du démon": "You must wait at least for 45s between 2 daemon starts",
         "Erreur sur la fonction deamon_start du plugin : ": "Error on deamon_start function of the plugin",
-        "Veuillez executer le script : ": "Veuillez executer le script :",
+        "Veuillez executer le script : ": "Please, run the script:",
         "Lancement de : ": "Launch of :"
     },
     "core/class/scenarioSubElement.class.php": {
@@ -65,7 +65,7 @@
         "[jeedom] Rapport ": "[jeedom] Rapport",
         "Veuillez trouver ci-joint le rapport ": "Veuillez trouver ci-joint le rapport",
         " du ": "of",
-        " généré le ": "généré le",
+        " généré le ": "generated on",
         "Aucune durée trouvée pour l'action sleep ou la durée n'est pas valide : ": "No duration found or invalid duration for the sleep avtion"
     },
     "core/class/scenarioElement.class.php": {
@@ -336,7 +336,7 @@
         "Pause": "Pause"
     },
     "core/class/cache.class.php": {
-        "Inconnu": "Inconnu"
+        "Inconnu": "Unknown"
     },
     "/var/www/html/desktop/php/administration.php": {
         "objets": "Objects"
@@ -985,7 +985,7 @@
         "[jeedom] Rapport ": "[jeedom] Rapport",
         " du ": "of",
         "Veuillez trouver ci-joint le rapport ": "Veuillez trouver ci-joint le rapport",
-        " généré le ": "généré le"
+        " généré le ": "generated on"
     },
     "desktop/php/view_edit.php": {
         "Créer une vue": "Create a view",
@@ -1069,7 +1069,7 @@
         "Designs": "Designs",
         "Edition": "Edition",
         "Plein écran": "Full screen",
-        "Ajouter Graphique": "Ajouter Graphique",
+        "Ajouter Graphique": "Add a Graph",
         "Ajouter texte/html": "Ajouter texte/html",
         "Ajouter scénario": "Add scenario",
         "Ajouter un lien": "Add link",
