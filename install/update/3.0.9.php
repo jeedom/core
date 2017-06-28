@@ -17,6 +17,15 @@ if (config::byKey('update3.09first', 'core', 0) == 0) {
 	jeedom::update();
 	die();
 } else {
+	shell_exec('sudo mv /home/jeedomtmp /tmp');
+	shell_exec('sudo rm -rf /home/jeedomtmp');
+	echo 'Move cache and tmp jeedom to new folder (/tmp/jeedom). It can take some times....';
+	jeedom::stop();
+	shell_exec('sudo mkdir -p /tmp/jeedom');
+	shell_exec('sudo rm -rf  /tmp/jeedom/cache;sudo mv /tmp/jeedom-cache /tmp/jeedom/cache');
+	shell_exec('sudo touch /tmp/jeedom/started');
+	shell_exec('sudo chmod 777 -R /tmp/jeedom');
+	jeedom::start();
 	echo "OK\n";
 }
 ?>
