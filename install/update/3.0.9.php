@@ -14,10 +14,8 @@ try {
 	shell_exec('sudo chmod 777 -R /tmp/jeedom');
 	jeedom::start();
 	echo "OK\n";
-	echo "Mise à jour terminée, veuillez redémarrer votre box pour finir";
-	echo "Mise à jour terminée, veuillez redémarrer votre box pour finir";
-	echo "Mise à jour terminée, veuillez redémarrer votre box pour finir";
-	echo "Mise à jour terminée, veuillez redémarrer votre box pour finir";
+	echo "***************Jeedom is up to date in 3.0.9***************\n";
+	jeedom::event('end_update');
 	die();
 } catch (Exception $e) {
 	echo $e->getMessage();
