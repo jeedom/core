@@ -1669,9 +1669,13 @@ class cmd {
 		return $this;
 	}
 
+	/**
+         * 
+         * @param type $name
+         * @return $this
+         */
 	public function setName($name) {
-		$name = str_replace(array('&', '#', ']', '[', '%', "'"), '', $name);
-		$this->name = $name;
+		$this->name = str_replace(array('&', '#', ']', '[', '%', "'"), '', $name);
 		return $this;
 	}
 
