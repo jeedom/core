@@ -14,6 +14,11 @@ try {
 	shell_exec('sudo chmod 777 -R /tmp/jeedom');
 	jeedom::start();
 	echo "OK\n";
+	echo "Mise à jour terminée, veuillez redémarrer votre box pour finir";
+	echo "Mise à jour terminée, veuillez redémarrer votre box pour finir";
+	echo "Mise à jour terminée, veuillez redémarrer votre box pour finir";
+	echo "Mise à jour terminée, veuillez redémarrer votre box pour finir";
+	die();
 } catch (Exception $e) {
 	echo $e->getMessage();
 }
