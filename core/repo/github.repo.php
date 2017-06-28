@@ -74,9 +74,15 @@ class repo_github {
 	/*     * ***********************Méthodes statiques*************************** */
 
 	public static function getGithubClient() {
-		$client = new \Github\Client(
-			new \Github\HttpClient\CachedHttpClient(array('cache_dir' => jeedom::getTmpFolder('github') . '/cache'))
-		);
+		try {
+			$client = new \Github\Client(
+				new \Github\HttpClient\CachedHttpClient(array('cache_dir' => jeedom::getTmpFolder('github') . '/cache'))
+			);
+		} catch (Exception $e) {
+			$client = new \Github\Client(
+				new \Github\HttpClient\CachedHttpClient(array('cache_dir' => '/tmp/jeedom/github/cache'))
+			);
+		}
 		if (config::byKey('github::token') != '') {
 			$client->authenticate(config::byKey('github::token'), '', Github\Client::AUTH_URL_TOKEN);
 		}
