@@ -166,16 +166,6 @@ try {
 						rrmdir($cibDir);
 					}
 					echo "OK\n";
-					echo "Cleaning adminer...";
-					foreach (ls(dirname(__FILE__) . '/../', 'adminer*') as $file) {
-						@rrmdir(dirname(__FILE__) . '/../' . $file);
-					}
-					echo "OK\n";
-					echo "Cleaning sysinfo...";
-					foreach (ls(dirname(__FILE__) . '/../', 'sysinfo*') as $file) {
-						@rrmdir(dirname(__FILE__) . '/../' . $file);
-					}
-					echo "OK\n";
 					echo "Create temporary folder...";
 					if (!file_exists($cibDir) && !mkdir($cibDir, 0777, true)) {
 						throw new Exception('Can not write into  : ' . $cibDir . '.');
