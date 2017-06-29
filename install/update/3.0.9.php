@@ -8,7 +8,7 @@ if (config::byKey('update3.09firstupd', 'core', 0) == 0) {
 		jeedom::stop();
 		shell_exec('sudo rm -rf  /tmp/jeedom-cache');
 		shell_exec('sudo rm /home/jeedomtmp/jeedom');
-		shell_exec('sudo mv /home/jeedomtmp/* /tmp');
+		shell_exec('sudo mv /home/jeedomtmp/jeedom* /tmp');
 		shell_exec('sudo rm -rf /home/jeedomtmp');
 		try {
 			echo "Check jeedom consistency...";
