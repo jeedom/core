@@ -133,7 +133,7 @@ try {
 				$tmp = $tmp_dir . '/jeedom_update.zip';
 				try {
 					if (config::byKey('core::repo::provider') == 'default') {
-						$url = 'https://github.com/jeedom/core/archive/' . config::byKey('core::branch') . '.zip';
+						$url = 'https://github.com/jeedom/core/archive/releas.zip';
 						echo "Download url : " . $url . "\n";
 						echo "Download in progress...";
 						if (!is_writable($tmp_dir)) {
