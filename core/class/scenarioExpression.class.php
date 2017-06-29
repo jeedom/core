@@ -149,6 +149,25 @@ class scenarioExpression {
 	public static function rand($_min, $_max) {
 		return rand($_min, $_max);
 	}
+	
+	public static function randText($_sValue) {
+		$_sValue = self::setTags($_sValue);
+		$_aValue = explode(";",$_sValue);
+		try {
+			$result = evaluate($_aValue);
+			if (is_string($result)) {
+				$result = $_aValue;
+			}
+		} catch (Exception $e) {
+			$result = $_aValue;
+		}
+		if (is_array($_aValue)) {
+			$nbr = mt_rand(0, count($_aValue)-1);
+			return $_aValue[$nbr];
+		} else {
+			return $_aValue;
+		}
+	}
 
 	public static function scenario($_scenario) {
 		$id = str_replace(array('scenario', '#'), '', trim($_scenario));
@@ -736,7 +755,7 @@ class scenarioExpression {
 			return round(floatval(str_replace(',', '.', $result)), $_decimal);
 		}
 	}
-
+	
 	public static function time_op($_time, $_value) {
 		$_time = self::setTags($_time);
 		$_value = self::setTags($_value);
@@ -1514,3 +1533,4 @@ class scenarioExpression {
 	}
 
 }
+
