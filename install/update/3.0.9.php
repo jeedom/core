@@ -8,6 +8,7 @@ try {
 	shell_exec('sudo rm -rf /home/jeedomtmp');
 	echo 'Move cache and tmp jeedom to new folder (/tmp/jeedom). It can take some times....\n';
 	jeedom::stop();
+	sleep(5);
 	shell_exec('sudo mkdir -p /tmp/jeedom');
 	shell_exec('sudo rm -rf  /tmp/jeedom/cache;sudo mv /tmp/jeedom-cache /tmp/jeedom/cache');
 	shell_exec('sudo touch /tmp/jeedom/started');
