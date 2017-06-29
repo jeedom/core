@@ -118,36 +118,45 @@ class dataStore {
 	public function remove() {
 		DB::remove($this);
 	}
-
-	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = null) {
-		if ($_drill == null) {
-			$_drill = config::byKey('graphlink::dataStore::drill');
+	
+	/**
+         * 
+         * @param array $data
+         * @param int $level
+         * @param int $drill
+         * @return array
+         */
+	public function getLinkData(&$data = array('node' => array(), 'link' => array()), $level = 0, $drill = null) {
+		if ($drill === null) {
+			$drill = config::byKey('graphlink::dataStore::drill');
 		}
-		if (isset($_data['node']['dataStore' . $this->getId()])) {
+		if (isset($data['node']['dataStore' . $this->getId()])) {
 			return;
 		}
-		$_level++;
-		if ($_level > $_drill) {
-			return $_data;
+		$level++;
+		if ($level > $drill) {
+			return $data;
 		}
 		$icon = findCodeIcon('fa-code');
-		$_data['node']['dataStore' . $this->getId()] = array(
-			'id' => 'dataStore' . $this->getId(),
-			'name' => $this->getKey(),
-			'icon' => $icon['icon'],
+		$data['node']['dataStore' . $this->getId()] = array(
+			'id'         => 'dataStore' . $this->getId(),
+			'name'       => $this->getKey(),
+			'icon'       => $icon['icon'],
 			'fontfamily' => $icon['fontfamily'],
-			'fontsize' => '1.5em',
-			'fontweight' => ($_level == 1) ? 'bold' : 'normal',
-			'texty' => -14,
-			'textx' => 0,
-			'title' => __('Variable :', __FILE__) . ' ' . $this->getKey(),
+			'fontsize'   => '1.5em',
+			'fontweight' => ($level == 1) ? 'bold' : 'normal',
+			'texty'      => -14,
+			'textx'      => 0,
+			'title'      => __('Variable :', __FILE__) . ' ' . $this->getKey(),
 		);
 		$usedBy = $this->getUsedBy();
-		addGraphLink($this, 'dataStore', $usedBy['scenario'], 'scenario', $_data, $_level, $_drill);
-		addGraphLink($this, 'dataStore', $usedBy['cmd'], 'cmd', $_data, $_level, $_drill);
-		addGraphLink($this, 'dataStore', $usedBy['eqLogic'], 'eqLogic', $_data, $_level, $_drill);
-		return $_data;
+		addGraphLink($this, 'dataStore', $usedBy['scenario'], 'scenario', $data, $level, $drill);
+		addGraphLink($this, 'dataStore', $usedBy['cmd'], 'cmd', $data, $level, $drill);
+		addGraphLink($this, 'dataStore', $usedBy['eqLogic'], 'eqLogic', $data, $level, $drill);
+		return $data;
 	}
+
+	
 
 	public function getUsedBy($_array = false) {
 		$return = array('cmd' => array(), 'eqLogic' => array(), 'scenario' => array());
