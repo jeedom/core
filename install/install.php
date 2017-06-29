@@ -193,7 +193,7 @@ try {
 					rmove($cibDir . '/', dirname(__FILE__) . '/../', false, array(), true);
 					echo "OK\n";
 					echo "Remove temporary file...";
-					rrmdir($cibDir);
+					rrmdir($tmp_dir);
 					echo "OK\n";
 					config::save('update::lastDateCore', date('Y-m-d H:i:s'));
 				} catch (Exception $e) {
@@ -426,10 +426,10 @@ echo "[END UPDATE SUCCESS]\n";
 
 function incrementVersion($_version) {
 	$version = explode('.', $_version);
-	if ($version[2] < 500) {
+	if ($version[2] < 100) {
 		$version[2]++;
 	} else {
-		if ($version[1] < 500) {
+		if ($version[1] < 100) {
 			$version[1]++;
 			$version[2] = 0;
 		} else {
