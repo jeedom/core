@@ -197,14 +197,17 @@ class jsonrpcClient {
 
 	public function setCb_function($cb_function) {
 		$this->cb_function = $cb_function;
+		return $this;
 	}
 
 	public function setCb_class($cb_class) {
 		$this->cb_class = $cb_class;
+		return $this;
 	}
 
 	public function setCertificate_path($certificate_path) {
 		$this->certificate_path = $certificate_path;
+		return $this;
 	}
 
 	public function getCertificate_path() {
@@ -213,6 +216,7 @@ class jsonrpcClient {
 
 	public function setDisable_ssl_verifiy($noSslCheck) {
 		$this->noSslCheck = $noSslCheck;
+		return $this;
 	}
 
 	public function getNoSslCheck() {
@@ -221,6 +225,7 @@ class jsonrpcClient {
 
 	public function setNoSslCheck($noSslCHeck) {
 		$this->noSslCheck = $noSslCHeck;
+		return $this;
 	}
 
 }
