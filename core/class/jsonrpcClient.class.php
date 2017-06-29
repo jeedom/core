@@ -45,14 +45,22 @@ class jsonrpcClient {
 		$this->apikey  = $_apikey;
 		$this->options = $_options;
 	}
-	
-	public function sendRequest($_method, $_params = null, $_timeout = 15, $_file = null, $_maxRetry = 2) {
+	/**
+         * 
+         * @param type $_method
+         * @param array $_params
+         * @param int $_timeout
+         * @param type $_file
+         * @param int $_maxRetry
+         * @return boolean
+         */
+	public function sendRequest($_method, array $_params = null, $_timeout = 15, $_file = null, $_maxRetry = 2) {
 		$_params['apikey'] = $this->apikey;
 		$_params = array_merge($_params, $this->options);
 		$request = array(
 			'request' => json_encode(array(
 				'jsonrpc' => '2.0',
-				'id' => rand(1, 9999),
+				'id' => mt_rand(1, 9999),
 				'method' => $_method,
 				'params' => $_params,
 			)));
@@ -217,4 +225,4 @@ class jsonrpcClient {
 
 }
 
-?>
+ 
