@@ -239,12 +239,12 @@ try {
 		}
 		$return['maxValue'] = '';
 		$return['minValue'] = '';
-		if ($dateStart == null) {
+		if ($dateStart === null) {
 			$return['dateStart'] = '';
 		} else {
 			$return['dateStart'] = $dateStart;
 		}
-		if ($dateEnd == null) {
+		if ($dateEnd === null) {
 			$return['dateEnd'] = '';
 		} else {
 			$return['dateEnd'] = $dateEnd;
@@ -275,7 +275,7 @@ try {
 				$info_history[] = floatval(strtotime($history->getDatetime() . " UTC")) * 1000;
 				$value = ($history->getValue() === null) ? null : floatval($history->getValue());
 				if ($derive == 1 || $derive == '1') {
-					if ($value !== null && $previsousValue != null) {
+					if ($value !== null && $previsousValue !== null) {
 						$value = $value - $previsousValue;
 					} else {
 						$value = null;
@@ -352,4 +352,4 @@ try {
 } catch (Exception $e) {
 	ajax::error(displayExeption($e), $e->getCode());
 }
-?>
+
