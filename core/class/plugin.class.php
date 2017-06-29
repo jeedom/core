@@ -543,9 +543,12 @@ class plugin {
 			$plugin_id::deamon_changeAutoMode($_mode);
 		}
 	}
-
+        /**
+         * 
+         * @return array
+         */
 	public function deamon_info() {
-		$return = array();
+		 
 		$plugin_id = $this->getId();
 		if ($this->getHasOwnDeamon() != 1 || !method_exists($plugin_id, 'deamon_info')) {
 			return array('launchable_message' => '', 'launchable' => 'nok', 'state' => 'nok', 'log' => 'nok', 'auto' => 0);
