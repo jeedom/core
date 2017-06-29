@@ -7,7 +7,7 @@ if (config::byKey('update3.09firstupd', 'core', 0) == 0) {
 		echo "OK\n";
 		jeedom::stop();
 		shell_exec('sudo rm -rf  /tmp/jeedom-cache >/dev/null 2>&1');
-		shell_exec('sudo rm /home/jeedomtmp/jeedom >/dev/null 2>&1');
+		shell_exec('sudo rm -rf /home/jeedomtmp/jeedom >/dev/null 2>&1');
 		shell_exec('sudo mv /home/jeedomtmp/jeedom* /tmp >/dev/null 2>&1');
 		shell_exec('sudo rm -rf /home/jeedomtmp >/dev/null 2>&1');
 		try {
