@@ -83,20 +83,26 @@ function getTemplate($_folder, $_version, $_filename, $_plugin = '') {
 function template_replace($_array, $_subject) {
 	return str_replace(array_keys($_array), array_values($_array), $_subject);
 }
-
-function init($_name, $_default = '') {
-	if (isset($_GET[$_name])) {
-		$cache[$_name] = $_GET[$_name];
-		return $_GET[$_name];
+/**
+ * 
+ * @param string $name
+ * @param type $default
+ * @return array
+ */
+function init($name, $default = '') {
+        
+        $getValue = filter_input(INPUT_GET, $name, FILTER_SANITIZE_STRING);
+        
+	if (isset($getValue[$name])) {
+		return $getValue[$name];
 	}
-	if (isset($_POST[$_name])) {
-		$cache[$_name] = $_POST[$_name];
-		return $_POST[$_name];
+	if (isset($_POST[$name])) {
+		return $_POST[$name];
 	}
-	if (isset($_REQUEST[$_name])) {
-		return $_REQUEST[$_name];
+	if (isset($_REQUEST[$name])) {
+		return $_REQUEST[$name];
 	}
-	return $_default;
+	return $default;
 }
 
 function sendVarToJS($_varName, $_value) {
