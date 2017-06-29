@@ -17,11 +17,11 @@
  */
 require_once dirname(__FILE__) . "/../php/core.inc.php";
 if (!jeedom::apiModeResult(config::byKey('api::core::tts::mode', 'core', 'enable'))) {
-	echo __('Vous n\'etes pas autorisé à effectuer cette action', __FILE__);
+	echo __('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__);
 	die();
 }
 if (!jeedom::apiAccess(init('apikey'))) {
-	echo __('Vous n\'etes pas autorisé à effectuer cette action', __FILE__);
+	echo __('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__);
 	die();
 }
 log::add('tts', 'debug', 'Call tts api : ' . print_r($_GET, true));
