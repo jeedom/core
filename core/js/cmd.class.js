@@ -413,6 +413,9 @@ jeedom.cmd.save = function(_params) {
             if (isset(jeedom.cmd.cache.byId[data.result.id])) {
                 delete jeedom.cmd.cache.byId[data.result.id];
             }
+            if (isset(jeedom.eqLogic.cache.byId[data.result.eqLogic_id])) {
+                delete jeedom.eqLogic.cache.byId[data.result.eqLogic_id];
+            }
             return data;
         }
     };
