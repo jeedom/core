@@ -7,6 +7,13 @@ if (config::byKey('update3.09firstupd', 'core', 0) == 0) {
 		echo "OK\n";
 		shell_exec('sudo mv /home/jeedomtmp/jeedom* /tmp');
 		shell_exec('sudo rm -rf /home/jeedomtmp');
+		try {
+			echo "Check jeedom consistency...";
+			require_once dirname(__FILE__) . '/../consistency.php';
+			echo "OK\n";
+		} catch (Exception $ex) {
+			echo "***ERREUR*** " . $ex->getMessage() . "\n";
+		}
 		echo 'Move cache and tmp jeedom to new folder (/tmp/jeedom). It can take some times....\n';
 		jeedom::stop();
 		sleep(5);
@@ -16,13 +23,6 @@ if (config::byKey('update3.09firstupd', 'core', 0) == 0) {
 		shell_exec('sudo chmod 777 -R /tmp/jeedom');
 		jeedom::start();
 		echo "OK\n";
-		try {
-			echo "Check jeedom consistency...";
-			require_once dirname(__FILE__) . '/../consistency.php';
-			echo "OK\n";
-		} catch (Exception $ex) {
-			echo "***ERREUR*** " . $ex->getMessage() . "\n";
-		}
 		config::save('update3.09firstupd', 1);
 		jeedom::event('end_update');
 		sleep(5);
