@@ -4,7 +4,7 @@ try {
 	shell_exec('sudo rm -rf ' . dirname(__FILE__) . '/../../../adminer*');
 	shell_exec('sudo rm -rf ' . dirname(__FILE__) . '/../../../sysinfo*');
 	echo "OK\n";
-	shell_exec('sudo mv /home/jeedomtmp /tmp');
+	shell_exec('sudo mv /home/jeedomtmp/jeedom* /tmp');
 	shell_exec('sudo rm -rf /home/jeedomtmp');
 	echo 'Move cache and tmp jeedom to new folder (/tmp/jeedom). It can take some times....\n';
 	jeedom::stop();
