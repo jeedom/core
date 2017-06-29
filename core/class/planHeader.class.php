@@ -44,12 +44,16 @@ class planHeader {
                 FROM planHeader';
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-
+	/**
+         * 
+         * @param type $_type
+         * @param type $_id
+         * @return type
+         */
 	public static function searchByUse($_type, $_id) {
 		$return = array();
-		$plans = plan::byLinkTypeLinkId($_type, $_id);
 		$search = '#' . str_replace('cmd', '', $_type . $_id) . '#';
-		$plans = array_merge($plans, plan::searchByConfiguration($search, 'eqLogic'));
+		$plans  = array_merge(plan::byLinkTypeLinkId($_type, $_id), plan::searchByConfiguration($search, 'eqLogic'));
 		foreach ($plans as $plan) {
 			$planHeader = $plan->getPlanHeader();
 			$return[$planHeader->getId()] = $planHeader;
