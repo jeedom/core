@@ -50,7 +50,7 @@ class config {
          * @param string $_plugin
          * @return boolean
          */
-	public static function save(string $_key, $_value, string $_plugin = 'core') {
+	public static function save($_key, $_value, $_plugin = 'core') {
 		if (is_object($_value) || is_array($_value)) {
 			$_value = json_encode($_value, JSON_UNESCAPED_UNICODE);
 		}
