@@ -16,10 +16,17 @@ if (config::byKey('update3.09firstupd', 'core', 0) == 0) {
 		shell_exec('sudo chmod 777 -R /tmp/jeedom');
 		jeedom::start();
 		echo "OK\n";
-		echo "***************Jeedom is up to date in 3.0.9***************\n";
+		try {
+			echo "Check jeedom consistency...";
+			require_once dirname(__FILE__) . '/../consistency.php';
+			echo "OK\n";
+		} catch (Exception $ex) {
+			echo "***ERREUR*** " . $ex->getMessage() . "\n";
+		}
 		config::save('update3.09firstupd', 1);
 		jeedom::event('end_update');
 		sleep(5);
+		echo "***************Jeedom is up to date in 3.0.9***************\n";
 		die();
 	} catch (Exception $e) {
 		echo $e->getMessage();
