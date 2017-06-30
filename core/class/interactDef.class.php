@@ -555,6 +555,7 @@ class interactDef {
 			'texty' => -14,
 			'textx' => 0,
 			'title' => $this->getHumanName(),
+			'url' => 'index.php?v=d&p=interact&id=' . $this->getId(),
 		);
 	}
 

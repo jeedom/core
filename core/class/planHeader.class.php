@@ -45,15 +45,15 @@ class planHeader {
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 	/**
-         * 
-         * @param type $_type
-         * @param type $_id
-         * @return type
-         */
+	 *
+	 * @param type $_type
+	 * @param type $_id
+	 * @return type
+	 */
 	public static function searchByUse($_type, $_id) {
 		$return = array();
 		$search = '#' . str_replace('cmd', '', $_type . $_id) . '#';
-		$plans  = array_merge(plan::byLinkTypeLinkId($_type, $_id), plan::searchByConfiguration($search, 'eqLogic'));
+		$plans = array_merge(plan::byLinkTypeLinkId($_type, $_id), plan::searchByConfiguration($search, 'eqLogic'));
 		foreach ($plans as $plan) {
 			$planHeader = $plan->getPlanHeader();
 			$return[$planHeader->getId()] = $planHeader;
@@ -158,6 +158,7 @@ class planHeader {
 			'texty' => -14,
 			'textx' => 0,
 			'title' => __('Design :', __FILE__) . ' ' . $this->getName(),
+			'url' => 'index.php?v=d&p=plan&view_id=' . $this->getId(),
 		);
 	}
 

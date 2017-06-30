@@ -1576,6 +1576,7 @@ class cmd {
 			'textx' => 0,
 			'fontweight' => ($_level == 1) ? 'bold' : 'normal',
 			'title' => $this->getHumanName(),
+			'url' => $this->getEqLogic()->getLinkToConfiguration(),
 		);
 		$usedBy = $this->getUsedBy();
 		$use = $this->getUse();

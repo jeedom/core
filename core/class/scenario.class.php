@@ -1371,6 +1371,7 @@ class scenario {
 			'color' => 'green',
 			'image' => 'core/img/scenario.png',
 			'title' => $this->getHumanName(),
+			'url' => 'index.php?v=d&p=scenario&id=' . $this->getId(),
 		);
 		$use = $this->getUse();
 		$usedBy = $this->getUsedBy();

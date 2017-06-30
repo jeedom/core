@@ -1070,6 +1070,7 @@ class eqLogic {
 			'fontweight' => ($_level == 1) ? 'bold' : 'normal',
 			'image' => $this->getImage(),
 			'title' => $this->getHumanName(),
+			'url' => $this->getLinkToConfiguration(),
 		);
 		$use = $this->getUse();
 		$usedBy = $this->getUsedBy();
