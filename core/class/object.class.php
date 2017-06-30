@@ -191,7 +191,7 @@ class object {
 			foreach ($global as $key => $value) {
 				try {
 					$result = object::getGlobalSummary($key);
-					if ($result === '') {
+					if ($result === null) {
 						continue;
 					}
 					$event['keys'][$key] = array('value' => $result);
