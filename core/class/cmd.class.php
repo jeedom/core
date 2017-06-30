@@ -1089,7 +1089,7 @@ class cmd {
 		$this->setValueDate(($repeat) ? $this->getValueDate() : $this->getCollectDate());
 		$eqLogic->setStatus(array('lastCommunication' => $this->getCollectDate(), 'timeout' => 0));
 		if ($repeat && $this->getConfiguration('repeatEventManagement', 'auto') == 'never') {
-			$this->addHistoryValue($value, $collectDate);
+			$this->addHistoryValue($value, $this->getCollectDate());
 			return;
 		}
 		$_loop++;
@@ -1670,10 +1670,10 @@ class cmd {
 	}
 
 	/**
-         * 
-         * @param type $name
-         * @return $this
-         */
+	 *
+	 * @param type $name
+	 * @return $this
+	 */
 	public function setName($name) {
 		$this->name = str_replace(array('&', '#', ']', '[', '%', "'"), '', $name);
 		return $this;
