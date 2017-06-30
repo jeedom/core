@@ -401,6 +401,12 @@ class eqLogic {
 		return $text;
 	}
 
+	public function clearCacheWidget() {
+		foreach (self::all() as $eqLogic) {
+			$eqLogic->emptyCacheWidget();
+		}
+	}
+
 	/*     * *********************Méthodes d'instance************************* */
 
 	public function checkAndUpdateCmd($_logicalId, $_value, $_updateTime = null) {

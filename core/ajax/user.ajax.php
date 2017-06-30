@@ -156,6 +156,7 @@ try {
 		$_SESSION['user']->setLogin($login);
 		$_SESSION['user']->save();
 		@session_write_close();
+		eqLogic::clearCacheWidget();
 		ajax::success();
 	}
 
