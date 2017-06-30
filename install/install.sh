@@ -208,12 +208,13 @@ step_7_jeedom_customization() {
     if [ -d /etc/mysql/conf.d ]; then
     	touch /etc/mysql/conf.d/jeedom_my.cnf
     	echo "[mysqld]" >> /etc/mysql/conf.d/jeedom_my.cnf
+    	echo "skip-name-resolve" >> /etc/mysql/conf.d/jeedom_my.cnf
     	echo "key_buffer_size = 16M" >> /etc/mysql/conf.d/jeedom_my.cnf
 		echo "thread_cache_size = 16" >> /etc/mysql/conf.d/jeedom_my.cnf
 		echo "tmp_table_size = 48M" >> /etc/mysql/conf.d/jeedom_my.cnf
 		echo "max_heap_table_size = 48M" >> /etc/mysql/conf.d/jeedom_my.cnf
 		echo "query_cache_type =1" >> /etc/mysql/conf.d/jeedom_my.cnf
-		echo "query_cache_size = 16M" >> /etc/mysql/conf.d/jeedom_my.cnf
+		echo "query_cache_size = 32M" >> /etc/mysql/conf.d/jeedom_my.cnf
 		echo "query_cache_limit = 2M" >> /etc/mysql/conf.d/jeedom_my.cnf
 		echo "query_cache_min_res_unit=3K" >> /etc/mysql/conf.d/jeedom_my.cnf
 		echo "innodb_flush_method = O_DIRECT" >> /etc/mysql/conf.d/jeedom_my.cnf
@@ -325,20 +326,17 @@ distrib_1_spe(){
 STEP=0
 VERSION=stable
 WEBSERVER_HOME=/var/www/html
-INSTALL_ZWAVE_DEP=0
 HTML_OUTPUT=0
 MYSQL_ROOT_PASSWD=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
 MYSQL_JEEDOM_PASSWD=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
 
-while getopts ":s:v:w:z:h:m:" opt; do
+while getopts ":s:v:w:h:m:" opt; do
   case $opt in
     s) STEP="$OPTARG"
     ;;
     v) VERSION="$OPTARG"
     ;;
     w) WEBSERVER_HOME="$OPTARG"
-    ;;
-    z) INSTALL_ZWAVE_DEP=1
     ;;
     h) HTML_OUTPUT=1
     ;;
@@ -370,9 +368,6 @@ fi
 echo "${JAUNE}Welcome to jeedom installer${NORMAL}"
 echo "${JAUNE}Jeedom install version : ${VERSION}${NORMAL}"
 echo "${JAUNE}Webserver home folder : ${WEBSERVER_HOME}${NORMAL}"
-if [ ${INSTALL_ZWAVE_DEP} -eq 1 ]; then
-	echo "${JAUNE}With openzwave${NORMAL}"
-fi
 
 case ${STEP} in
    0)
