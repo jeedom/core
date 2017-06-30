@@ -48,24 +48,6 @@ if (!isConnect()) {
                 $('#div_alertFirstUse').showAlert({message: error.message, level: 'danger'});
             },
             success: function () {
-                $.ajax({// fonction permettant de faire de l'ajax
-                        type: "POST", // methode de transmission des données au fichier php
-                        url: "core/ajax/config.ajax.php", // url du fichier php
-                        data: {
-                            action: "genKeyAPI"
-                        },
-                        dataType: 'json',
-                        error: function (request, status, error) {
-                            handleAjaxError(request, status, error);
-                        },
-                        success: function (data) { // si l'appel a bien fonctionné
-                        if (data.state != 'ok') {
-                            $('#div_alert').showAlert({message: data.result, level: 'danger'});
-                            return;
-                        }
-                        $('#in_keyAPI').value(data.result);
-                    }
-                });
                 $('#div_alertFirstUse').showAlert({message: '{{Sauvegarde réussie}}', level: 'success'});
             }
         });
