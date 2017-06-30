@@ -171,7 +171,7 @@ foreach (plugin::listPlugin() as $plugin) {
 <div class="row">
 <div class="col-md-6 col-sm-12">
   <div class="panel panel-primary" id="div_functionalityPanel">
-    <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-picture-o"></i> {{Fonctionalités}}
+    <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-picture-o"></i> {{Fonctionnalités}}
       <a class="btn btn-success btn-xs pull-right" id="bt_savePluginFunctionalityConfig"><i class="fa fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
     </h3></div>
     <div class="panel-body">
