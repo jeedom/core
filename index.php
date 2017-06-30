@@ -55,7 +55,7 @@ try {
 			}
 			ob_end_clean(); //Clean pile after expetion (to prevent no-traduction)
 			echo '<div class="alert alert-danger div_alert">';
-			echo translate::exec(displayExeption($e), $alert_folder);
+			echo displayExeption($e);
 			echo '</div>';
 		}
 	}
