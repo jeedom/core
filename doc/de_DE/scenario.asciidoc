@@ -1,10 +1,10 @@
-= Scénario
+= Szenario
 
 Das ist der wichtigste Teil einer Haus-Automatisierung: Die Szenarien. Das ist ein richtiges Gedächnis der Haustechnik, was es ermöglicht, mit der wirklichen Welt auf "intelligente" Art zu interagieren.
 
-== La page scénario
+== Die Szenario Seite
 
-Pour y accéder rien de plus simple, il suffit d'aller sur Outils -> Scénarios : 
+Der Zugriff darauf ist einfach, gehen Sie auf Werkzeuge -> Szenario : 
 
 image::../images/scenario1.JPG[]
 
@@ -15,22 +15,22 @@ image::../images/scenario.JPG[]
 Oben findet man eine Reihe von 3 Tasten wieder :   
 
 * *Ajouter* : permet d'ajouter un scénario
-* *Désactiver scénarios* : permet de désactiver tous les scénarios
-* *Voir les variables* : permet de voir les variables, leur valeur ainsi que l'endroit où elle sont utilisées
+* *Szenarien deaktivieren* : um alle Szenarien zu deaktivieren
+* *Variablen anzeigen* : erlaubt die Variablen zu sehen, ihren Wert und den Ort, wo sie verwendet werden
 
 [TIP]
-Les scénarios en rouge sont ceux qui sont désactivés
+Die Szenarien in rot sind diejenigen, die deaktiviert sind
 
 [TIP]
-Comme à beaucoup d'endroits sur Jeedom, mettre la souris tout à gauche permet de faire apparaître un menu d'accès rapide (vous pouvez à partir de votre profil le laisser toujours visible).
+Wie an vielen Orten auf Jeedom, wenn man die Maus ganz nach links bewegt ermöglicht es, ein Schnellzugangsmenü sichtbar zu machen(Sie können es in ihrem Profil immer sichtbar machen).
 
 Es gibt 2 Szenario Modi : 
 
-* *Simple* : permet de faire des scénarios très simples type SI ça ALORS fait ça
+* *Einfach* : es ermöglicht auf sehr einfache Art Szenarien zu erstellen "WENN das DANN mache das" 
 * *Avancé* : là vous pouvez tout faire mais cela demande plus de connaissances
 
 [IMPORTANT]
-Il est possible de passer un scénario du mode simple au mode avancé mais pas l'inverse
+Es ist möglich, ein Szenario von einfachen Modus zum erweiterte Modus zu übergeben, aber nicht umgekehrt 
 
 Beim Erstellen eines Szenario wird Jeedom nach den Namen und den Typ fragen : 
 
@@ -104,7 +104,7 @@ En haut la partie générale où l'on retrouve :
 * *groupe* : permet d'organiser les scénarios
 * *Actif* : Si le scénario est actif ou non
 * *Visible* : Si le scénario est visible ou non
-* *Objet parent* : Le choix d'affecter à un objet parent ou pas
+* *Eltern-Objekt* : Die Wahl zu einem übergeordneten Objekt zugewiesen zu werden oder nicht
 * *Timeout secondes (0 = illimité)* : La durée d’exécution maximum autorisée
 * *Déclencheurs* : Ensuite vient la partie des déclencheurs qui peuvent soit être un ou plusieurs événements et/ou une programmation (une heure donnée, une fréquence… Cette partie s’écrit à l’aide d’une syntaxe type crontab accessible via la touche, un assistant est disponible en cliquant sur ?. Attention vous pouvez avoir au maximum 28 déclencheurs sur un scénario.
 * *Action* : En haut à droite on retrouve quelques actions utiles comme le lancement forcé du scénario (pour test),la suppression du scénario, la sauvegarde, la génération d'un template (voir le chapitre dédié), l'export, l’arrêt forcé d’un scénario (si en cours), log des dernières exécutions (très pratique pour vérifier le déroulement exact du scénario), la duplication.

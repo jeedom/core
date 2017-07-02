@@ -1,6 +1,6 @@
-= Log
+= Protokolle
 
-== Affichage
+== Ansicht
 
 Le menu Logs permet de suivre ce qui se passe sur sa domotique. Dans la plupart des cas les logs ne serviront qu'à effectuer du debuggage et à résoudre des problèmes par l'équipe de support. Ce menu est d'ailleurs accessible uniquement en mode expert.
 
@@ -15,15 +15,15 @@ image::../images/log.JPG[]
 Die Logs-Seite ist ganz einfach, oben links ist ein Dropdown-Menü, dass die Auswahl der Logs ermöglicht und oberen rechts sind 5 Schaltflächen :
 
 * *Rafraîchir* : permet de rafraîchir le log actuel,
-* *Télécharger* : permet de télécharger le log actuel,
-* *Vider* : permet de vider le log actuel,
-* *Supprimer* : permet de supprimer le log actuel, si Jeedom en a besoin il le recréera automatiquement,
-* *Supprimer tous les logs* : supprime tous les logs présents.
+* *Herunterladen* : zum herunterladen des aktuellen Protokolls ,
+* *Leeren* : wird verwendet, um das aktuelle Protokoll zu löschen,
+* *Löschen* : Löscht das aktuelle Protokoll, wenn Jeedom es benötigt, wird es automatisch neu erstellt, 
+* *Alle Protokolle löschen* : Löscht alle vorhandene Protokolle.
 
 [TIP]
-A noter que le log nginx.error ne peut être supprimé. Il est essentiel ! si vous le supprimez (en ligne de commande par exemple) celui-ci ne se recréera pas tout seul, il faut redémarrer Jeedom.
+Man beachte, daß das Protokoll nginx.error nicht gelöscht werden kann. Es ist unbedingt erforderlich! Wenn sie es entfernen (zum Beispiel in der Befehlszeile) wird es nicht neu erstellt, dazu muß Jeedom neu gestartet werden.
 
-== Configuration
+== Konfiguration
 
 Il existe certains paramètres de configuration des logs (accessible par Administation -> Configuration puis la partie "Configuration des logs & messages").
 

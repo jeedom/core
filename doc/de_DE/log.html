@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.3.dev">
-<title>Log</title>
+<title>Protokolle</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -412,19 +412,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Log</h1>
+<h1>Protokolle</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table des matières</div>
 <ul class="sectlevel1">
-<li><a href="#_affichage">1. Affichage</a></li>
-<li><a href="#_configuration">2. Configuration</a></li>
+<li><a href="#_ansicht">1. Ansicht</a></li>
+<li><a href="#_konfiguration">2. Konfiguration</a></li>
 <li><a href="#_le_log_event_et_le_niveau_de_log_event">3. Le log "Event" et le niveau de log "Event"</a></li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_affichage">1. Affichage</h2>
+<h2 id="_ansicht">1. Ansicht</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Le menu Logs permet de suivre ce qui se passe sur sa domotique. Dans la plupart des cas les logs ne serviront qu&#8217;à effectuer du debuggage et à résoudre des problèmes par l&#8217;équipe de support. Ce menu est d&#8217;ailleurs accessible uniquement en mode expert.</p>
@@ -454,16 +454,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><strong>Rafraîchir</strong> : permet de rafraîchir le log actuel,</p>
 </li>
 <li>
-<p><strong>Télécharger</strong> : permet de télécharger le log actuel,</p>
+<p><strong>Herunterladen</strong> : zum herunterladen des aktuellen Protokolls ,</p>
 </li>
 <li>
-<p><strong>Vider</strong> : permet de vider le log actuel,</p>
+<p><strong>Leeren</strong> : wird verwendet, um das aktuelle Protokoll zu löschen,</p>
 </li>
 <li>
-<p><strong>Supprimer</strong> : permet de supprimer le log actuel, si Jeedom en a besoin il le recréera automatiquement,</p>
+<p><strong>Löschen</strong> : Löscht das aktuelle Protokoll, wenn Jeedom es benötigt, wird es automatisch neu erstellt,</p>
 </li>
 <li>
-<p><strong>Supprimer tous les logs</strong> : supprime tous les logs présents.</p>
+<p><strong>Alle Protokolle löschen</strong> : Löscht alle vorhandene Protokolle.</p>
 </li>
 </ul>
 </div>
@@ -474,7 +474,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-A noter que le log nginx.error ne peut être supprimé. Il est essentiel ! si vous le supprimez (en ligne de commande par exemple) celui-ci ne se recréera pas tout seul, il faut redémarrer Jeedom.
+Man beachte, daß das Protokoll nginx.error nicht gelöscht werden kann. Es ist unbedingt erforderlich! Wenn sie es entfernen (zum Beispiel in der Befehlszeile) wird es nicht neu erstellt, dazu muß Jeedom neu gestartet werden.
 </td>
 </tr>
 </table>
@@ -482,7 +482,7 @@ A noter que le log nginx.error ne peut être supprimé. Il est essentiel ! si vo
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configuration">2. Configuration</h2>
+<h2 id="_konfiguration">2. Konfiguration</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Il existe certains paramètres de configuration des logs (accessible par Administation &#8594; Configuration puis la partie "Configuration des logs &amp; messages").</p>

@@ -1,27 +1,27 @@
-= Principe
+= Grundlagen
 
 Jeedom est composé d'un core qui se charge des fonctions de base : 
 
-* scénario
-* historisation
-* affichage
-* interaction
-* mise à jour et sauvegarde
+* Szenario
+* Chronik
+* Ansicht
+* Interaktion
+* Update und Sicherung
 
 Autour de ce core viennent se greffer des plugins qui peuvent être de toutes sortes :
  
 * protocole domotique (zwave, rfxcom, enOcean...)
-* protocole IP (knx,xPL...)
-* objet communiquant (nest, netatmo...)
-* haut niveau (alarme, thermostat...)
-* interface (widget)
-* organisation (agenda, Google agenda)
-* développement (script)
+* IP Protokolle (KNX,xPL...)
+* Kommunikationsobjekte (Nest, Netatmo ...)
+* hohes Niveau (Alarm, Thermostat)
+* Schnittstelle (Widget)
+* Organisation (Kalender, Google Kalender)
+* Entwicklung (Skript)
 
 Ces plugins peuvent être récupérés par le biais du Market et permettent d'étendre les possibilités de Jeedom.
 
 Jeedom permet à n'importe quel plugin de discuter avec un autre sur une base normalisée, cela permet par exemple d'utiliser les plugins thermostat ou alarme avec n'importe quel protocole domotique ou même un plugin IP ou objet communiquant...
 
-De plus Jeedom a la particularité d'être sans abonnement et sans cloud. Cela permet de garantir le fonctionnement de votre domotique même si vous n'avez plus Internet. Cela garantit aussi la sécurité de vos données (évite les risques de piratage en masse de comptes).
+Außerdem hat Jeedom die Besonderheit, ohne Abo und ohne Cloud zu sein, wodurch das Funktionieren ihrer Hause-Automatisierung garantiert wird, auch wenn sie kein Internet mehr haben. Dadurch wird auch die Sicherheit ihrer Daten garantiert (vermeidet die Risiken der massenhaften Konten Piraterie).
 
 Das Projekt ist offen und Open-Source das gewährleistet auch eine hohe Rate der Entwicklung, dank der vielen Entwickler die teilnehmen.  

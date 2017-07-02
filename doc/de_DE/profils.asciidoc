@@ -1,8 +1,8 @@
-= Profils
+= Profil
 
 La page profils vous permet de configurer certains comportements de Jeedom spécifiques à l'utilisateur : page d'accueil, thèmes de la version desktop, de la version mobile, des graphiques... Elle permet aussi de changer votre mot de passe et de passer en mode expert permettant une configuration plus poussée de Jeedom.
 
-== Menu profils
+== Das Menü Profil
 
 Vous retrouvez en haut à droite sur chaque page de Jeedom le menu Profil : 
 
@@ -10,7 +10,7 @@ image::../images/profils1.png[]
 
 Vous retrouvez à coté de ce menu Profil, une information sur le nombre de messages dans le centre de messages (ces messages sont importants sinon Jeedom ne vous les remonterait pas), l'heure Jeedom (attention c'est bien l'heure de Jeedom et non de votre PC), le menu Profil, une icône indiquant la connexion (ici filaire, mais il est possible si vous êtes en wifi d'avoir celle-ci), l'icône pour l'accès à l'aide de la page en cours et l'icône pour faire une demande de support.
 
-Si vous cliquez sur le menu Profil vous obtenez : 
+Wenn sie auf das Menü Profil klicken, erhalten sie : 
 
 image::../images/profils2.png[]
 
@@ -19,9 +19,9 @@ A partir de ce menu vous avez accès à la page Profil, à l'activation ou non d
 [IMPORTANT]
 En DIY les actions de redémarrage et d'arrêt ne fonctionnent que si vous avez bien réalisé les actions visudo, voir link:https://jeedom.com/doc/documentation/installation/fr_FR/doc-installation.html#_etape_4_définition_des_droits_root_à_jeedom[ici]
 
-== Page Profil
+== Die Profil Seite
 
-La page Profil ressemble à ca : 
+Die Profilseite sieht wie folgt aus : 
 
 image::../images/profils3.png[]
 
@@ -33,7 +33,7 @@ image::../images/profils4.png[]
 
 Le panneau thèmes vous permet de régler des paramètres d'interface : 
 
-* *Desktop* : thèmes à utiliser en mode desktop, attention seul le thème par défaut est officiellement supporté par Jeedom
+* *Desktop* : Themen zum verwenden im Desktop-Modus, Achtung nur das Standard-Theme wird offiziell von Jeedom unterstützt
 * *Mobile* : permet de légèrement configurer le thème mobile (ici tout est supporté), soit clair soit sombre, ainsi que la couleur dominante de celui-ci
 * *Graphique Desktop* : permet de définir le thème par défaut des graphiques en mode desktop
 * *Graphique Mobile* : permet de définir le thème par défaut des graphiques en mode mobile

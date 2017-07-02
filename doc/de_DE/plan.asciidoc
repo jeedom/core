@@ -15,13 +15,13 @@ image::../images/plan2.png[]
 
 Sur cette page on retrouve, en haut (et dans l'ordre) : 
 
-* un menu pour changer de design
-* un menu pour créer un nouveau design
+* ein Menü, um das Design zu wechseln
+* eine Schaltfläche, um ein neues Design zu erstellen
 * un pour le supprimer
-* un bouton pour éditer le design en cours
-* un pour passer en mode plein écran
+* eine Schaltfläche, um das aktuelle Design zu bearbeiten
+* eine Schaltfläche, um in den Vollbildmodus zu wechseln
 
-Il vous suffit donc pour en créer un de cliquer sur le bouton d'ajout, une fenêtre va vous demander le nom de celui-ci : 
+Zum Erstellen eines neuen Designs müssen sie nur auf die Schaltfläche + klicken, es erscheint ein Fenster in dem der Namen eingegeben werden muß : 
 
 image::../images/plan3.png[]
 

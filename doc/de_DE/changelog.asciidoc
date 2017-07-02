@@ -2,9 +2,9 @@
 
 == 3.1
 
-* Correction de bug
+* Fehlerkorrekturen
 * Optimisation globale de Jeedom (sur le chargement des classes de plugins, temps presque divisé par 3)
-* Support de Debian 9
+* Support für Debian 9
 * Mode onepage (changement de page sans recharger toute la page juste la partie qui change)
 * Ajout d'une option pour masquer les objets sur le dashboard mais qui permet de toujours les avoir dans la liste
 
@@ -17,7 +17,7 @@
 * Möglichkeit, den Namen und das Symbol der Befehle anzuzeigen
 * Ajout d'une action "alert" sur les scénarios : message en haut dans jeedom
 * Ajout d'une action "popup" sur les scénarios : message à valider
-* Les widgets des commandes peuvent maintenant avoir une méthode d'update ce qui évite un appel ajax à Jeedom
+* Die Widgets der Befehle können jetzt eine Update Methode haben, was AJAX-Aufrufe an Jeedom vermeidet
 * Les widgets des scénarios sont maintenant mis à jour sans appel ajax pour avoir le widget
 * Le résumé global et des pièces sont maintenant mis à jour sans appel ajax
 * Un clic sur un élément d'un résumé domotique vous amène sur une vue détaillée de celui-ci

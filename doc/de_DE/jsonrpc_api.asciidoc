@@ -35,7 +35,7 @@ Gibt die Liste aller Plugins zurück
 
 Parameter :
 
-- int activateOnly = 0 (ne retourne que la liste des plugins activés)
+- int activateOnly = 0 (liefert nur die Liste der aktivierten Plugins)
 - int orderByCaterogy = 0 (retourne la liste des plugins triés par catégorie)
 
 

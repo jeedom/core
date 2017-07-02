@@ -1,4 +1,4 @@
-= Market
+= Markt
 
 Doc un peu particulière car elle va traiter uniquement de votre page profil du market.
 
@@ -8,20 +8,20 @@ image::../images/market.png[]
 
 Er besteht aus mehreren Teilen : 
 
-== Mon profil
+== Mein Profil
 
 image::../images/market1.png[]
 
 C'est ici que vous allez pouvoir régler différents paramètres de votre profil : 
 
 * *Profil*
-** *Login* : Votre login sur le market, il ne peut être changé
+** *Login* : Ihre Anmeldung auf dem Markt, es kann nicht geändert werden.
 ** *Nom* : Votre nom (cette information n'est utile que pour rendre les mails plus sympa)
-** *Prénom* : Votre prénom (cette information n'est utile que pour rendre les mails plus sympa)
-** *Pseudo* : Votre pseudo (uniquement pour les développeurs)
-** *Email* : Votre mail
-** *Email public* : Non utilisé pour le moment mais ça pourrait être un email de contact pour les développeurs si un jour on met en place ce genre de service
-** *Langue* : Votre langue
+** *Vorname* : Ihren Vorname (Diese Information ist sinnvoll, um freundliche E-Mails zubekommen)
+** *Spitzname* : Ihren Spitzname (nur für die Entwickler)
+** *Email* : Ihre E-Mail
+** *öffentliche E-Mail* : Wird noch nicht verwendet, aber es wird eine Kontakt E-Mail für Entwickler sein, wenn wir eines Tages diese Art von Service einrichten.
+** *Sprache* : Ihre Sprache
 ** *Compte paypal* : Votre mail de compte Paypal (uniquement utilisé pour payer les developpeurs)
 ** *Mot de passe && Confirmer le mot de passe* : permet de changer votre mot passe
 * *CGU*
@@ -43,7 +43,7 @@ Hier haben sie :
 * *Niveau*
 ** *Jeedom* : votre niveau de service pack
 ** *Entrer un numéro de service pack* : permet d'entrer votre numéro de service pack (il se trouve dans le mail envoyé par Jeedom lors de votre commande)
-* *Clef d'installation*
+* *Installationsschlüssel*
 ** *Nombre de clefs d'installation* : affiche le nombre d'installations Jeedom actuellement liées à votre compte ainsi que la limite autorisée
 ** *Clef d'installation* : vous pouvez demander ici une réinitialisation des clefs Jeedom liées à votre compte. Attention, dépassé les 2 demandes dans le mois, une vérification manuelle a lieu, la demande peut donc prendre plus de temps.
 [TIP]
@@ -59,7 +59,7 @@ Il est possible que le market vous demande parfois de remettre à zéro vos clef
 ** *Date de création* : date de création de ce Jeedom sur votre compte market (pour rappel cela se fait automatiquement lorsque vous le liez au market)
 ** *Dernière mise à jour* : dernière communication du Jeedom avec le market
 ** *Hardware* : Nom du hardware du Jeedom
-** *Version* : la version de Jeedom installée
+** *Version* : installierte Jeedom Version
 
 [TIP]
 N'oubliez pas de sauvegarder

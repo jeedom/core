@@ -2,9 +2,9 @@
 
 Das Untermenü Plugins, ermöglicht seine Plugins zu Verwalten : sie hochladen, sie auf den neuesten Stand bringen und sie zu aktivieren.
 
-== Gestion des plugins
+== Plugin Verwaltung
 
-Vous pouvez accèder à la page plugins à partir de Plugins -> Gestion des plugins : 
+Sie können auf die Plugin-Seite über das Menü  Plugin -> Plugin Verwaltung zugreifen : 
 
 image::../images/plugin1.png[]
 
@@ -19,17 +19,17 @@ Auf dieser Seite finden Sie alle Plugins die auf Ihrem Jeedom sind wieder. Dieje
 
 image::../images/plugin3.png[]
 
-En haut vous retrouvez l'ID et le nom du plugin, ainsi que la version installée (ici beta). En dessous vous avez le bouton d'activation/désactivation d'un plugin
+Oben sehen Sie die ID und Name des Plugins sowie die installierte Version (hier die Beta). Darunter haben Sie die Schaltfläche zum Aktiviern/Deaktivieren eines Plugins.
 
 [IMPORTANT]
-Lors du téléchargement d'un plugin celui-ci n'est pas activé, il faut donc que vous l'activiez
+Nach dem Herunterladen eines Plugin ist dieses nicht aktiviert, sodas sie es anschließend aktivieren müssen.
 
 Unten finden Sie 4 Schaltflächen : 
 
-* *Voir sur le Market* : permet de voir la fiche du plugin 
+* *Im Markt sehen* : erlaubt, das Datenblatt des Plugin zu sehen 
 * *Envoyer sur le Market* : permet d'envoyer le plugin sur le Market (uniquement disponible si vous en êtes l'auteur)
-* *Supprimer* : Supprime le plugin de votre Jeedom. Attention cela supprime définitivement tous les équipements de ce plugin aussi
-* *Documentation* : Permet d'accéder directement à la page de documentation du plugin
+* *Löschen* : Das Plugin wird von Jeedom entfernt. Achtung, dies entfernt auch dauerhaft die Geräte des Plugin
+* *Dokumentation* : Ermöglicht den direkten Zugriff auf die Dokumentationsseite vom Plugin
 
 [TIP]
 Certains plugins ont une partie configuration, il faut dans ce cas se référer à la doc du plugin en question pour savoir comment le configurer
@@ -61,9 +61,9 @@ Cette fiche vous donne beaucoup d'informations sur le plugin, entre autre :
 
 * S'il est officiel/recommandé ou s'il est obsolète (il faut vraiment éviter d'installer des plugins obsolètes)
 * 3 actions : 
-** *Installer stable* : permet d'installer le plugin dans sa version stable
-** *Installer beta* : permet d'installer le plugin dans sa version beta (seulement pour les betatesteurs)
-** *Supprimer* : si le plugin est actuellement installé, ce bouton permet de le supprimer
+** *Stabile Installation* : installiert das Plugin in einer stabilen Version
+** *Beta Installation* : installiert das Plugin in einer Beta Version (nur für die Betatester)
+** *Löschen* : Wenn das Plugin aktuell installiert ist, wird es mit dieser Schaltfläche gelöscht.
 
 En dessous vous retrouvez sur la gauche la description du plugin, la compatibilité (si Jeedom détecte une incompatibilité il vous le signalera), les avis sur le plugin (vous pouvez ici le noter), les commentaires sur celui-ci et des informations complémentaires (l'auteur, la personne ayant fait la dernière mise à jour, un lien vers la doc, le nombre de téléchargements).
 Sur la droite vous retrouvez la liste des dernières mises à jour (un bouton tout voir vous permet d'avoir tout l'historique), une documentation rapide d'utilisation (il est recommandé quand même de lire la documentation complète) et enfin le type (plugin, widget...), la langue et les diverses informations sur la date de la dernière stable, la beta et si vous pouvez sans crainte revenir sur la beta.

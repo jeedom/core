@@ -1,4 +1,4 @@
-= Vues
+= Ansichten
 
 Les vues permettent simplement de créer un affichage personnalisé. Ce n'est pas aussi puissant que les designs mais cela permet en quelques minutes d'avoir un affichage plus personnalisé.
 
@@ -10,7 +10,7 @@ image::../images/view.png[]
 Comme vous pouvez le voir sur la capture, il est possible d'aller directement sur une vue grâce au sous-menu.
 
 [TIP]
-Vous pouvez dans votre profil choisir la vue par défaut lors du clic sur le menu des vues.
+Sie können ein Profil in der Standardansicht wählen, wenn sie auf das Menü Ansichten klicken.
 
 == Les vues
 
@@ -35,7 +35,7 @@ Voici la page d'ajout/édition d'une vue :
 
 image::../images/view4.png[]
 
-Principe::
+Prinzip::
 
 Le principe est assez simple : une vue est composée de zones (on peut en mettre autant que l'on veut). Chaque zone est de type graphique ou widget : en fonction du type vous pourrez mettre des widgets ou des graphiques dedans.
 

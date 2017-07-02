@@ -478,7 +478,7 @@
         "Couleurs": "Farbe",
         "Nom": "Name",
         "Code HTML": "HTML Code",
-        "Configuration des résumés d'objet": "Configuration des résumés d'objet",
+        "Configuration des résumés d'objet": "Konfiguration der Objekt Zusammenfassung",
         "Clef": "Schlüssel ",
         "Calcul": "Berechnung",
         "Icone": "Symbol",
@@ -544,7 +544,7 @@
         "Nettoyer les rapport plus viex de (jours)": "Nettoyer les rapport plus viex de (jours)",
         "Système de fichier (/tmp/jeedom/cache)": "Dateisystem (/tmp/jeedom/cache)",
         "Démarré : ": "Gestartet :",
-        "Configuration des graphiques de lien": "Configuration des graphiques de lien",
+        "Configuration des graphiques de lien": " Grafik Link Konfiguration",
         "Profondeur pour les scénarios": "Tiefe für Szenarien",
         "Profondeur pour les équipements": "Tiefe für Geräte",
         "Profondeur pour les commandes": "Tiefe für Befehle",
@@ -949,7 +949,7 @@
         "FAIRE": "MACHEN",
         "CODE": "CODE",
         "ACTION": "AKTION",
-        "Graphique de lien": "Graphique de lien"
+        "Graphique de lien": "Link Graph"
     },
     "core/template/scenario/report.default": {
         "Vue": "Ansicht",
@@ -1570,7 +1570,7 @@
         "Configuration de la commande": "Befehl Konfiguration",
         "Logs": "Logs",
         "Liens": "Links",
-        "Graphique des liens": "Graphique des liens"
+        "Graphique des liens": "Grafik-Links"
     },
     "desktop/modal/cmd.configure.php": {
         "Enregistrer": "Speichern",
@@ -1597,7 +1597,7 @@
         "Icône": "Symbol",
         "Utilisé par": "verwendet von",
         "Remplacer cette commande par la commande": "Diesen Befehl durch den Befehl ersetzen",
-        "Cette commande remplace la commande": "Cette commande remplace la commande",
+        "Cette commande remplace la commande": "Dieser Befehl ersetzt den Befehl",
         "Cette commande remplace l'id": "Dieser Befehl ersetzt die ID",
         "Equipement": "Gerät",
         "Commandes": "Befehle",
@@ -1636,7 +1636,7 @@
         "7 jours": "7 Tage",
         "1 mois": "1 Monat",
         "6 mois": "6 Monate",
-        "Gestion des valeurs": "Gestion des valeurs",
+        "Gestion des valeurs": "Verwalten von Werten",
         "Valeurs interdites (séparé par \";\")": "Valeurs interdites (séparé par \";\")",
         "Valeur retour d'état": "Das Wert der Rückkehr",
         "Durée avant retour d'état (min)": "Die Dauer bevor Rückkehr (Minuten)",
@@ -1688,7 +1688,7 @@
         "Action avant exécution de la commande": "Aktion vor der Ausführung des Befehls",
         "Action après exécution de la commande": "Aktion nach Ausführung des Befehls",
         "Liens": "Links",
-        "Graphique des liens": "Graphique des liens",
+        "Graphique des liens": "Grafik-Links",
         "Copie des données historisé": "Kopieren der Chronik Daten",
         "Copier l'historique de cette commande sur une autre commande": "Kopieren der Chronik von diesem Befehls auf einen anderen Befehl"
     },
@@ -1723,7 +1723,7 @@
         "Etes-vous sûr de vouloir supprimer l\\'objet": "Sind Sie sicher, dass Sie das Objekt löschen möchten",
         "Commande": "Befehl",
         "Inverser": "umgekehrt",
-        "Graphique des liens": "Graphique des liens"
+        "Graphique des liens": "Grafik-Links"
     },
     "desktop/modal/icon.selector.php": {
         "Rechercher": "Suchen nach",
@@ -1752,7 +1752,7 @@
         "Action": "Aktion",
         "Data store supprimé": "Datenspeicher gelöscht",
         "Data store sauvegardé": "Datenspeicher gespeichert",
-        "Graphique de lien": "Graphique de lien"
+        "Graphique de lien": "Link Graph"
     },
     "core/class/dataStore.class.php": {
         "Variable :": "Variable :"

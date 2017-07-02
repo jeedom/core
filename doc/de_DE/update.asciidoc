@@ -1,6 +1,6 @@
-= Mise à jour
+= Update
 
-== Centre de mise à jour
+== Update Center
 
 Le centre de mise à jour centralise l'ensemble des fonctions de Jeedom, et permet de mettre à jour toutes les fonctionnalités de Jeedom, incluant le logiciel de base, les plugins, les widgets, etc...
 
@@ -14,15 +14,15 @@ image::../images/update2.png[]
 
 Il présente sous forme de tableau l'ensemble des éléments installés dans Jeedom. 
 [TIP]
-En mode Expert, on affiche tous les élements, si non, on affiche uniquement les éléments à mettre à jour.
+Im Experten-Modus werden alle Elemente angezeigt, ansonsten zeigt es nur Elemente die aktualisiert werden können.
 
 
 Es gibt insgesamt bis zu 5 Knöpfe, die von Element verfügbar sein können:
 
 * *Voir* : permet de consulter la page du Market correspondant à l'élément sélectionné
-* *Partager* : permet lorsque vous avez créé un élément de le partager sur le Market
-* *Supprimer* : permet de désinstaller un élément
-* *Mettre à jour* : permet de mettre à jour l'élément
+* *Teilen* : Ermöglicht, wenn Sie ein Element geschaffen haben, es auf dem Market zu teilen.
+* *Löschen* : Ermöglicht Elemente zu löschen.
+* *Update* : Ermöglicht Elemente zu aktualisieren.
 
 [TIP]
 A noter que "core:jeedom" signifie la mise à jour du logiciel de base Jeedom.
