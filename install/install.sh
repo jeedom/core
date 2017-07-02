@@ -271,7 +271,7 @@ step_9_jeedom_installation() {
 step_10_jeedom_post() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_10_jeedom_post${NORMAL}"
-	if [ $(crontab -l | grep jeedom | wc -l) -eq 0 ];then
+	if [ $(crontab -l | grep jeedom | wc -l) -ne 0 ];then
 		(echo crontab -l | grep -v "jeedom") | crontab -
 		
   	fi
