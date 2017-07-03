@@ -144,7 +144,7 @@ class repo_ftp {
 	}
 
 	public static function deleteObjet($_update) {
-
+		trigger_error('This method is deprecated', E_USER_DEPRECATED);
 	}
 
 	public static function downloadObject($_update) {
