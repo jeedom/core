@@ -53,8 +53,8 @@ class repo_url {
 
 	/*     * ***********************Méthodes statiques*************************** */
 
-	public static function checkUpdate($_update) {
-
+	public static function checkUpdate($_update = null ) {
+		trigger_error('This method is deprecated', E_USER_DEPRECATED);
 	}
 
 	public static function downloadObject($_update) {
