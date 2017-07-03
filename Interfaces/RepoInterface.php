@@ -18,6 +18,8 @@
 namespace Jeedom\core\Interfaces;
  
 interface RepoInterface {
+ 
+    public static function downloadObject($_update);
     
     public static function deleteObjet($_update);
     
