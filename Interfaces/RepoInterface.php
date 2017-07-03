@@ -15,7 +15,7 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Jeedom\core\Interfaces;
+namespace Jeedom\Interfaces;
  
 interface RepoInterface {
  
