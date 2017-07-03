@@ -91,8 +91,12 @@ class repo_samba {
 		$_update->save();
 	}
 
-	public static function deleteObjet($_update) {
-
+	/**
+         * @deprecated since 2.5
+         * @param type $_update
+         */
+	public static function deleteObjet($_update = null) {
+            trigger_error('This method is deprecated', E_USER_DEPRECATED);
 	}
 
 	public static function downloadObject($_update) {
