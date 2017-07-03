@@ -11,7 +11,7 @@
         "Erreur execution de la commande ": "Error running the command",
         "Alert sur la commande ": "command warning",
         " niveau ": "level",
-        "[jeedom] Message de ": "[jeedom] Message de",
+        "[jeedom] Message de ": "[jeedom] Message from",
         "pendant plus de ": "during more than",
         " minute(s)": "minute(s)"
     },
@@ -38,7 +38,8 @@
         "Vous devez attendre au moins 45s entre 2 lancements du démon": "You must wait at least for 45s between 2 daemon starts",
         "Erreur sur la fonction deamon_start du plugin : ": "Error on deamon_start function of the plugin",
         "Veuillez executer le script : ": "Please, run the script:",
-        "Lancement de : ": "Launch of :"
+        "Lancement de : ": "Launch of :",
+        "Gestion automatique désactivée": "Automatic management disabled"
     },
     "core/class/scenarioSubElement.class.php": {
         "Exécution du sous-élément de type [condition] : ": "Run the sub-element of type [condition] :",
@@ -47,7 +48,7 @@
     "core/class/scenarioExpression.class.php": {
         "Evaluation de la condition : [": "Evaluation of the condition: [",
         "Vrai": "True",
-        "Action stop": "Action stop",
+        "Action stop": "Stop action",
         "Exécution d'un bloc élément : ": "Run the element block:",
         "Exécution de la commande ": "Run the command",
         "Faux": "False",
@@ -66,7 +67,9 @@
         "Veuillez trouver ci-joint le rapport ": "Veuillez trouver ci-joint le rapport",
         " du ": "of",
         " généré le ": "generated on",
-        "Aucune durée trouvée pour l'action sleep ou la durée n'est pas valide : ": "No duration found or invalid duration for the sleep avtion"
+        "Aucune durée trouvée pour l'action sleep ou la durée n'est pas valide : ": "No duration found or invalid duration for the sleep avtion",
+        "[Erreur] Aucune commande trouvée pour ": "[Error] nothing command found for",
+        " options : ": "options:"
     },
     "core/class/scenarioElement.class.php": {
         "Non exécution des actions pour cause de répétition": "Actions not executed because of redundancy",
@@ -150,7 +153,10 @@
         "Espace disque libre": "Free disk space",
         "Configuration réseau interne": "Configuration internal network",
         "Configuration réseau externe": "External network configuration",
-        "Persistance du cache": "Persistance du cache"
+        "Persistance du cache": "Cache persistence",
+        "Mémoire disponible": "Available memory",
+        "Swap disponible": "Swap available",
+        "Charge": "Charge"
     },
     "core/class/message.class.php": {
         "Message de ": "Message from"
@@ -172,7 +178,7 @@
         "Echec lors de la compression de la sauvegarde. Sauvegarde introuvable : ": "Echec lors de la compression de la sauvegarde. Sauvegarde introuvable :",
         "Erreur durant la sauvegarde : ": "Backup error",
         "Détails : ": "Détails :",
-        "Persistance du cache : \n": "Persistance du cache :"
+        "Persistance du cache : \n": "Cache persistence:"
     },
     "desktop/php/dashboard.php": {
         "Liste objets": "Object list",
@@ -307,7 +313,8 @@
         "Installation": "Setup",
         "Configuration": "Setup",
         "Fonctionalités": "Fonctionalités",
-        "Panel": "Panel"
+        "Panel": "Panel",
+        "Fonctionnalités": "Features"
     },
     "core/class/interactQuery.class.php": {
         "J'ai une correspondance  : ": "Match found:",
@@ -376,7 +383,7 @@
         "Clef API": "API key",
         "Clef API Pro de Jeedom": "API Key Pro of Jeedom",
         "Clef API Pro": "API Key pro",
-        "Accès API": "Accès API",
+        "Accès API": "API access",
         "Clef API pour le plugin": "Clef API pour le plugin",
         "Système (OS)": "System (Os)",
         "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à Jeedom. L'équipe Jeedom se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "CAUTION ! These operations are risky. You might lose access to your system and to Jeedom. Jeedom support team reserves the right to refuse any request for support in case of mishandling.",
@@ -435,7 +442,7 @@
         "6 mois": "6 months",
         "3 mois": "3 months",
         "1 mois": "1 month",
-        "1 semaine": "1 semaine",
+        "1 semaine": "1 week",
         "1 jour": "1 day",
         "Push": "Push",
         "URL de push globale": "Global push URL",
@@ -450,7 +457,7 @@
         "Port Memcache": "Memcache port",
         "Adresse Redis": "Redis address",
         "Port redis": "Redis port",
-        "Nettoyer le cache": "Nettoyer le cache",
+        "Nettoyer le cache": "Empty cache",
         "Nettoyer": "Clean",
         "Vider toutes les données en cache": "Clear all cache data",
         "Vider": "Clear",
@@ -459,11 +466,11 @@
         "Général": "Main",
         "Plus la sensibilité est basse (proche de 1) plus la corrrespondance doit être exacte": "More sensitivity is low (close to 1) plus the corrrespondance must be accurate",
         "Sensibilité": "Sensibility",
-        "1 mot": "1 mot",
-        "2 mots": "2 mots",
-        "3 mots": "3 mots",
-        "Réduire le poid de": "Réduire le poid de",
-        "4 mots": "4 mots",
+        "1 mot": "1 word",
+        "2 mots": "2 words",
+        "3 mots": "3 words",
+        "Réduire le poid de": "Decrease the weight of",
+        "4 mots": "4 words",
         "Ne pas répondre si l'interaction n'est pas comprise": "Do not answer if the interaction is not included",
         "Regex général d'exclusion pour les interactions": "Regex general exclusion for interactions",
         "Interaction automatique & contextuelle": "Interaction automatique & contextuelle",
@@ -475,7 +482,7 @@
         "Synonyme pour les équipements": "Synonyme pour les équipements",
         "Synonyme pour les commandes": "Synonyme pour les commandes",
         "Synonyme pour les résumé": "Synonyme pour les résumé",
-        "Couleurs": "Couleurs",
+        "Couleurs": "Colors",
         "Nom": "Name",
         "Code HTML": "HTML Code",
         "Configuration des résumés d'objet": "Configuration des résumés d'objet",
@@ -523,7 +530,7 @@
         "Seuil des piles": "Batteries threshold",
         "Danger": "Danger",
         "Ok": "Ok",
-        "Mises à jour et fichiers": "Mises à jour et fichiers",
+        "Mises à jour et fichiers": "Updates and files",
         "Mise à jour de jeedom": "Updating Jeedom",
         "Source de mise à jour": "Source de mise à jour",
         "Version du core": "Core version",
@@ -531,7 +538,7 @@
         "Stable": "Stable",
         "Pro": "Pro",
         "Faire une sauvegarde avant la mise à jour": "Make a backup before updating",
-        "Vérifier automatiquement si il y a des mises à jour": "Vérifier automatiquement si il y a des mises à jour",
+        "Vérifier automatiquement si il y a des mises à jour": "Check for updates automatically",
         "Activer": "Activate",
         "Tester": "Test",
         "Sauvegarder": "Save",
@@ -549,7 +556,12 @@
         "Profondeur pour les équipements": "Profondeur pour les équipements",
         "Profondeur pour les commandes": "Profondeur pour les commandes",
         "Profondeur pour les objets": "Profondeur pour les objets",
-        "Profondeur pour les variables": "Profondeur pour les variables"
+        "Profondeur pour les variables": "Profondeur pour les variables",
+        "Système (OS) et base de données": "Système (OS) et base de données",
+        "Administration": "Administration",
+        "Interface": "Interface",
+        "Mac": "Mac",
+        "Nettoyer les rapport plus anciens de (jours)": "Nettoyer les rapport plus anciens de (jours)"
     },
     "desktop/js/administration.js": {
         "Etes-vous sûr de vouloir réinitialiser la clef API de ": "Etes-vous sûr de vouloir réinitialiser la clef API de",
@@ -880,7 +892,10 @@
         "Rapport": "Report",
         "Permet d'envoyer par une commande message un rapport d'une vue, d'un design ou d'un panel en PNG/PDF/JPEG/SVG.": "Permet d'envoyer par une commande message un rapport d'une vue, d'un design ou d'un panel en PNG/PDF/JPEG/SVG.",
         "Graphique": "Graph",
-        "Liens": "Links"
+        "Liens": "Links",
+        "Multi lancement": "Multi lancement",
+        "Défaut": "Default",
+        "Temps réel": "Real time"
     },
     "desktop/js/scenario.js": {
         "Sauvegarde effectuée avec succès": "Backup successfully completed",
@@ -949,7 +964,8 @@
         "FAIRE": "DO",
         "CODE": "CODE",
         "ACTION": "ACTION",
-        "Graphique de lien": "Graphique de lien"
+        "Graphique de lien": "Graphique de lien",
+        "Avancé": "Advanced"
     },
     "core/template/scenario/report.default": {
         "Vue": "View",
@@ -1070,35 +1086,35 @@
         "Edition": "Edit",
         "Plein écran": "Full screen",
         "Ajouter Graphique": "Add a Graph",
-        "Ajouter texte/html": "Ajouter texte/html",
+        "Ajouter texte/html": "Add text/html",
         "Ajouter scénario": "Add scenario",
         "Ajouter un lien": "Add link",
         "Vers une vue": "Vers une vue",
         "Vers un design": "Vers un design",
         "Ajouter équipement": "Add device",
         "Ajouter commande": "Add command",
-        "Ajouter une image/caméra": "Ajouter une image/caméra",
+        "Ajouter une image/caméra": "Add a picture/camera",
         "Ajouter une zone": "Add a zone",
-        "Ajouter un résumé": "Ajouter un résumé",
+        "Ajouter un résumé": "Add a summary",
         "Affichage": "Display",
         "Aimanter les élements": "Aimanter les élements",
         "Aimanter à la grille": "Aimanter à la grille",
         "Masquer surbrillance des éléments": "Masquer surbrillance des éléments",
         "Supprimer le design": "Delete design",
         "Etes vous sûr de vouloir supprimer ce design ?": "Do you really want to delete this design?",
-        "Creer un design": "Creer un design",
+        "Creer un design": "Create a design",
         "Dupliquer le design": "Duplicate design",
         "Nom la copie du design ?": "Name of the copy of the design?",
-        "Configurer le design": "Configurer le design",
+        "Configurer le design": "Configure design",
         "Configuration du design": "Design setup",
         "Sauvegarder": "Save",
-        "Paramètres d\\'affichage": "Paramètres d\\'affichage",
+        "Paramètres d\\'affichage": "Display settings",
         "Configuration du widget": "Widget setup",
         "Configuration avancée": "Advanced configuration",
         "Supprimer": "Delete",
         "Dupliquer": "Duplicate",
         "Verrouiller": "Lock",
-        "Nom du design ?": "Nom du design ?"
+        "Nom du design ?": "Design name?"
     },
     "core/com/http.com.php": {
         "Echec de la requête http : ": "Http request failed:"
@@ -1148,7 +1164,7 @@
         "Supprimer l'image": "Delete picture",
         "Tailles": "Size",
         "Taille (LxH)": "Size (WxL)",
-        "Image supprimée": "Image supprimée",
+        "Image supprimée": "Picture deleted",
         "Design sauvegardé": "Design saved"
     },
     "desktop/modal/cmd.history.php": {
@@ -1169,7 +1185,7 @@
         "Maximum par mois": "Monthly maximum",
         "Sommes par année": "Sommes par année",
         "Moyenne par année": "Average per year",
-        "Minimum par année": "Minimum par année",
+        "Minimum par année": "Minimum per year",
         "Maximum par année": "Maximum per year",
         "Ligne": "Line",
         "Aire": "Area",
@@ -1216,8 +1232,8 @@
         "Etes vous sûr de vouloir supprimer ce plugin ?": "Do you really want to delete this plugin?",
         "Market": "Market",
         "Sauvegarde de la configuration des panels effectuée": "Panels' setup saving done",
-        "Sauvegarde des fonctionalités effectuée": "Sauvegarde des fonctionalités effectuée",
-        "Sauvegarde de la configuration des logs effectuée": "Sauvegarde de la configuration des logs effectuée",
+        "Sauvegarde des fonctionalités effectuée": "Feature backup completed",
+        "Sauvegarde de la configuration des logs effectuée": "Log configuration backup completed",
         "Log du plugin": "Plugin log",
         "Sauvegarde effectuée": "Save completed",
         "Ajouter un plugin": "Add a plugin"
@@ -1298,8 +1314,8 @@
         "Etês vous sur de vouloir changer la clef API de l\\'utilisateur ?": "Are you sure you want to change the API key user?",
         "Modification effectuée": "Change made",
         "Actif": "Active",
-        "Local seulement": "Local seulement",
-        "Administrateur": "Administrateur",
+        "Local seulement": "Local only",
+        "Administrateur": "Administrator",
         "Utilisateur": "User",
         "Utilisateur limité": "Utilisateur limité",
         "OK": "OK",
@@ -1331,7 +1347,8 @@
         "Port configuré": "Port configuré",
         "Aucune santé spécifique": "Aucune santé spécifique",
         "NOK": "NOK",
-        "erreurs": "error"
+        "erreurs": "error",
+        "Démon en mode manuel": "Démon en mode manuel"
     },
     "desktop/js/health.js": {
         "Configuration du plugin": "Plugin setup",
@@ -1360,7 +1377,7 @@
         "Programmation": "Schedule",
         "Timeout (min)": "Timeout (min)",
         "Dernier lancement": "Last run",
-        "Derniere durée": "Derniere durée",
+        "Derniere durée": "Last duration",
         "Statut": "Statut"
     },
     "desktop/js/cron.js": {
@@ -1466,7 +1483,7 @@
         "Désactiver": "Disable"
     },
     "core/template/scenario/icon.default": {
-        "Rechercher icône": "Rechercher icône"
+        "Rechercher icône": "Search icon"
     },
     "mobile/html/connection.html": {
         "Nom d'utilisateur": "Username",
@@ -1490,9 +1507,9 @@
         "Ok": "Ok",
         "Aucun groupement": "No group",
         "Sommes par heure": "Sum by hour",
-        "Moyenne par heure": "Moyenne par heure",
-        "Minimum par heure": "Minimum par heure",
-        "Maximum par heure": "Maximum par heure",
+        "Moyenne par heure": "Average per hour",
+        "Minimum par heure": "Minimum per hour",
+        "Maximum par heure": "Maximum per hour",
         "Sommes par jour": "Daily amounts",
         "Moyenne par jour": "Daily average",
         "Minimum par jour": "Daily minimum",
@@ -1507,7 +1524,7 @@
         "Maximum par mois": "Monthly maximum",
         "Sommes par année": "Sommes par année",
         "Moyenne par année": "Average per year",
-        "Minimum par année": "Minimum par année",
+        "Minimum par année": "Minimum per year",
         "Maximum par année": "Maximum per year",
         "Ligne": "Line",
         "Areaspline": "Areaspline",
@@ -1570,7 +1587,7 @@
         "Configuration de la commande": "Command setup",
         "Logs": "Logs",
         "Liens": "Links",
-        "Graphique des liens": "Graphique des liens"
+        "Graphique des liens": "Links chart"
     },
     "desktop/modal/cmd.configure.php": {
         "Enregistrer": "Save",
@@ -1588,7 +1605,7 @@
         "Type": "Type",
         "Sous-type": "Sub-type",
         "Valeur": "Value",
-        "Date collecte": "Date collecte",
+        "Date collecte": "Collection date",
         "Date valeur": "Date valeur",
         "URL directe": "Direct URL",
         "Unité": "Unit",
@@ -1610,7 +1627,7 @@
         "Generic": "Generic",
         "Lumière": "Light",
         "Mode": "Mode",
-        "Portail/Garage": "Portail/Garage",
+        "Portail/Garage": "Gate/Garage",
         "Prise": "Plug",
         "Serrure": "Lock",
         "Sirène": "Siren",
@@ -1641,10 +1658,10 @@
         "Valeur retour d'état": "Valeur retour d'état",
         "Durée avant retour d'état (min)": "Durée avant retour d'état (min)",
         "Autres": "Any",
-        "Gestion de la répétition des valeurs": "Gestion de la répétition des valeurs",
+        "Gestion de la répétition des valeurs": "Repeated values management",
         "Automatique": "Automatic",
-        "Toujours répéter": "Toujours répéter",
-        "Jamais répéter": "Jamais répéter",
+        "Toujours répéter": "Always repeat",
+        "Jamais répéter": "Never repeat",
         "Push URL": "Push URL",
         "Mettez ici l'URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)": "Put here the URL to call in an update of the value of the order. You can use the following tags: #value# (order value) #cmd_id# (id Command) and #cmd_name # (command name)",
         "Activer la personalisation du widget": "Enable widget personalization",
@@ -1685,12 +1702,17 @@
         "Restriction de l'action": "Action restriction",
         "Confirmer l'action": "Confirm action",
         "Code d'accès": "Access code",
-        "Action avant exécution de la commande": "Action avant exécution de la commande",
-        "Action après exécution de la commande": "Action après exécution de la commande",
+        "Action avant exécution de la commande": "Action before command execution",
+        "Action après exécution de la commande": "Action after command execution",
         "Liens": "Links",
-        "Graphique des liens": "Graphique des liens",
+        "Graphique des liens": "Links chart",
         "Copie des données historisé": "Copie des données historisé",
-        "Copier l'historique de cette commande sur une autre commande": "Copier l'historique de cette commande sur une autre commande"
+        "Copier l'historique de cette commande sur une autre commande": "Copier l'historique de cette commande sur une autre commande",
+        "Arrondi (chiffre après la virgule)": "Rounding (after the decimal point)",
+        "Thermostat": "Thermostat",
+        "Purger l'historique si plus vieux que ": "Purger l'historique si plus vieux que",
+        "1 an": "1 year",
+        "Copie des données historisées": "Copie des données historisées"
     },
     "desktop/php/object.php": {
         "Ajouter objet": "Add object",
@@ -1710,8 +1732,8 @@
         "Couleur du tag": "Tag color",
         "Couleur du texte du tag": "Tag text color",
         "Remonter dans le résumé global": "Remonter dans le résumé global",
-        "Masquer en desktop": "Masquer en desktop",
-        "Masquer en mobile": "Masquer en mobile",
+        "Masquer en desktop": "Hide in desktop",
+        "Masquer en mobile": "Hide in mobile",
         "Commandes": "Commands",
         "Ajouter une commande": "Add a command",
         "Liens": "Links"
@@ -1723,7 +1745,7 @@
         "Etes-vous sûr de vouloir supprimer l\\'objet": "Do you really want to delete this object",
         "Commande": "Command",
         "Inverser": "Invert",
-        "Graphique des liens": "Graphique des liens"
+        "Graphique des liens": "Links chart"
     },
     "desktop/modal/icon.selector.php": {
         "Rechercher": "Search",
@@ -1804,14 +1826,14 @@
         "Sauvegarder": "Save",
         "Taille du widget": "Widget size",
         "Profondeur": "Depth",
-        "Niveau 0": "Niveau 0",
-        "Niveau 1": "Niveau 1",
-        "Niveau 2": "Niveau 2",
-        "Niveau 3": "Niveau 3",
+        "Niveau 0": "Level 0",
+        "Niveau 1": "Level 1",
+        "Niveau 2": "Level 2",
+        "Niveau 3": "Level 3",
         "Position X (%)": "Position X (%)",
         "Position Y (%)": "Position Y (%)",
-        "Largeur (px)": "Largeur (px)",
-        "Hauteur (px)": "Hauteur (px)",
+        "Largeur (px)": "Width (px)",
+        "Hauteur (px)": "Height (px)",
         "Spécifique": "Spécifique",
         "Afficher": "Show",
         "Image": "Picture",
@@ -1855,5 +1877,27 @@
         "Information binaire": "Information binaire",
         "Action on": "Action on",
         "Action off": "Action off"
+    },
+    "desktop/php/connection.php": {
+        "Nom d'utilisateur": "Username",
+        "Mot de passe": "Password",
+        "Code à 2 facteurs": "2 factor code",
+        "Enregistrer cet ordinateur": "Remember this computer",
+        "Connexion": "Connection"
+    },
+    "desktop/modal/jeedom.benchmark.php": {
+        "Nom": "Name",
+        "Temps": "Time"
+    },
+    "core/ajax/update.ajax.php": {
+        "[START UPDATE]": "[START UPDATE]",
+        "Launch cron dependancy plugins": "Launch cron dependancy plugins",
+        "[END UPDATE SUCCESS]": "[END UPDATE SUCCESS]"
+    },
+    "core/api/jeeApi.php": {
+        "Appels de ": "Appels de"
+    },
+    "mobile/js/message.js": {
+        "Vider": "Clear"
     }
 }

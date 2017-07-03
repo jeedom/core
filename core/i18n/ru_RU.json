@@ -38,7 +38,8 @@
         "Vous devez attendre au moins 45s entre 2 lancements du démon": "Vous devez attendre au moins 45s entre 2 lancements du démon",
         "Erreur sur la fonction deamon_start du plugin : ": "Erreur sur la fonction deamon_start du plugin :",
         "Veuillez executer le script : ": "Veuillez executer le script :",
-        "Lancement de : ": "Lancement de :"
+        "Lancement de : ": "Lancement de :",
+        "Gestion automatique désactivée": "Автоматическое управление отключено"
     },
     "core/class/scenarioSubElement.class.php": {
         "Exécution du sous-élément de type [condition] : ": "Запуск вложенного элемента [состояние]:",
@@ -66,7 +67,9 @@
         "Veuillez trouver ci-joint le rapport ": "Veuillez trouver ci-joint le rapport",
         " du ": "   ",
         " généré le ": "généré le",
-        "Aucune durée trouvée pour l'action sleep ou la durée n'est pas valide : ": "Aucune durée trouvée pour l'action sleep ou la durée n'est pas valide :"
+        "Aucune durée trouvée pour l'action sleep ou la durée n'est pas valide : ": "Aucune durée trouvée pour l'action sleep ou la durée n'est pas valide :",
+        "[Erreur] Aucune commande trouvée pour ": "[Erreur] Aucune commande trouvée pour",
+        " options : ": "options :"
     },
     "core/class/scenarioElement.class.php": {
         "Non exécution des actions pour cause de répétition": "Non exécution des actions pour cause de répétition",
@@ -150,7 +153,10 @@
         "Espace disque libre": "Espace disque libre",
         "Configuration réseau interne": "Configuration réseau interne",
         "Configuration réseau externe": "Configuration réseau externe",
-        "Persistance du cache": "Persistance du cache"
+        "Persistance du cache": "Persistance du cache",
+        "Mémoire disponible": "Mémoire disponible",
+        "Swap disponible": "Swap disponible",
+        "Charge": "Charge"
     },
     "core/class/message.class.php": {
         "Message de ": "Сообщение"
@@ -307,7 +313,8 @@
         "Installation": "Установка",
         "Configuration": "Конфигурация",
         "Fonctionalités": "Fonctionalités",
-        "Panel": "Панель"
+        "Panel": "Панель",
+        "Fonctionnalités": "Fonctionnalités"
     },
     "core/class/interactQuery.class.php": {
         "J'ai une correspondance  : ": "J'ai une correspondance  :",
@@ -549,7 +556,12 @@
         "Profondeur pour les équipements": "Profondeur pour les équipements",
         "Profondeur pour les commandes": "Profondeur pour les commandes",
         "Profondeur pour les objets": "Profondeur pour les objets",
-        "Profondeur pour les variables": "Profondeur pour les variables"
+        "Profondeur pour les variables": "Profondeur pour les variables",
+        "Système (OS) et base de données": "Système (OS) et base de données",
+        "Administration": "Администрирование",
+        "Interface": "Interface",
+        "Mac": "Mac",
+        "Nettoyer les rapport plus anciens de (jours)": "Nettoyer les rapport plus anciens de (jours)"
     },
     "desktop/js/administration.js": {
         "Etes-vous sûr de vouloir réinitialiser la clef API de ": "Etes-vous sûr de vouloir réinitialiser la clef API de",
@@ -880,7 +892,10 @@
         "Rapport": "Rapport",
         "Permet d'envoyer par une commande message un rapport d'une vue, d'un design ou d'un panel en PNG/PDF/JPEG/SVG.": "Permet d'envoyer par une commande message un rapport d'une vue, d'un design ou d'un panel en PNG/PDF/JPEG/SVG.",
         "Graphique": "Графический",
-        "Liens": "Liens"
+        "Liens": "Liens",
+        "Multi lancement": "Multi lancement",
+        "Défaut": "По умолчанию",
+        "Temps réel": "Окно событий"
     },
     "desktop/js/scenario.js": {
         "Sauvegarde effectuée avec succès": "Резервное копирование завершено успешно",
@@ -949,7 +964,8 @@
         "FAIRE": "СДЕЛАТЬ",
         "CODE": "КОД",
         "ACTION": "ДЕЙСТВИЕ",
-        "Graphique de lien": "Graphique de lien"
+        "Graphique de lien": "Graphique de lien",
+        "Avancé": "Avancé"
     },
     "core/template/scenario/report.default": {
         "Vue": "Вид",
@@ -1331,7 +1347,8 @@
         "Port configuré": "Port configuré",
         "Aucune santé spécifique": "Aucune santé spécifique",
         "NOK": "Неактивен",
-        "erreurs": "erreurs"
+        "erreurs": "erreurs",
+        "Démon en mode manuel": "Démon en mode manuel"
     },
     "desktop/js/health.js": {
         "Configuration du plugin": "Configuration du plugin",
@@ -1690,7 +1707,12 @@
         "Liens": "Liens",
         "Graphique des liens": "Graphique des liens",
         "Copie des données historisé": "Copie des données historisé",
-        "Copier l'historique de cette commande sur une autre commande": "Copier l'historique de cette commande sur une autre commande"
+        "Copier l'historique de cette commande sur une autre commande": "Copier l'historique de cette commande sur une autre commande",
+        "Arrondi (chiffre après la virgule)": "Округление (в десятичной системе)",
+        "Thermostat": "Термостат",
+        "Purger l'historique si plus vieux que ": "Purger l'historique si plus vieux que",
+        "1 an": "1 an",
+        "Copie des données historisées": "Copie des données historisées"
     },
     "desktop/php/object.php": {
         "Ajouter objet": "Добавить объект",
@@ -1855,5 +1877,27 @@
         "Information binaire": "Information binaire",
         "Action on": "Action on",
         "Action off": "Action off"
+    },
+    "desktop/php/connection.php": {
+        "Nom d'utilisateur": "Имя пользователя",
+        "Mot de passe": "Пароль",
+        "Code à 2 facteurs": "Code à 2 facteurs",
+        "Enregistrer cet ordinateur": "Запомнить параметры входа",
+        "Connexion": "Соединение"
+    },
+    "desktop/modal/jeedom.benchmark.php": {
+        "Nom": "Имя",
+        "Temps": "Temps"
+    },
+    "core/ajax/update.ajax.php": {
+        "[START UPDATE]": "[НАЧАЛО ОБНОВЛЕНИЯ]",
+        "Launch cron dependancy plugins": "Launch cron dependancy plugins",
+        "[END UPDATE SUCCESS]": "[ОКОНЧАНИЕ УСПЕШНОГО ОБНОВЛЕНИЯ]"
+    },
+    "core/api/jeeApi.php": {
+        "Appels de ": "Appels de"
+    },
+    "mobile/js/message.js": {
+        "Vider": "Пусто"
     }
 }
