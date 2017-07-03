@@ -42,16 +42,16 @@ class repo_file {
 
 	/*     * ***********************Méthodes statiques*************************** */
 
-	public static function checkUpdate($_update) {
-
+	public static function checkUpdate($_update = null) {
+		trigger_error('This method is deprecated', E_USER_DEPRECATED);
 	}
 
 	public static function downloadObject($_update) {
 		return array('localVersion' => date('Y-m-d H:i:s'), 'path' => $_update->getConfiguration('path'));
 	}
 
-	public static function deleteObjet($_update) {
-
+	public static function deleteObjet($_update = null) {
+		trigger_error('This method is deprecated', E_USER_DEPRECATED);
 	}
 
 	public static function objectInfo($_update) {
