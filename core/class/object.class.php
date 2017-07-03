@@ -614,6 +614,7 @@ class object {
 			'texty' => -35,
 			'textx' => 0,
 			'title' => $this->getHumanName(),
+			'url' => 'index.php?v=d&p=object&id=' . $this->getId(),
 		);
 		$use = $this->getUse();
 		addGraphLink($this, 'object', $this->getEqLogic(), 'eqLogic', $_data, $_level, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
