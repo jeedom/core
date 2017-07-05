@@ -43,13 +43,13 @@ class config {
 		}
 		return self::$defaultConfiguration[$_plugin];
 	}
-
-	/**
+        /**
 	 * Ajoute une clef à la config
-	 * @param string $_key nom de la clef
-	 * @param string $_value valeur de la clef
-	 * @return boolean vrai si ok faux sinon
-	 */
+         * @param string $_key
+         * @param string | object | array $_value
+         * @param string $_plugin
+         * @return boolean
+         */
 	public static function save($_key, $_value, $_plugin = 'core') {
 		if (is_object($_value) || is_array($_value)) {
 			$_value = json_encode($_value, JSON_UNESCAPED_UNICODE);
@@ -275,4 +275,4 @@ class config {
 	/*     * **********************Getteur Setteur*************************** */
 }
 
-?>
+
