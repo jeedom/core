@@ -177,7 +177,7 @@
         "***************Fin de la sauvegarde de Jeedom***************\n": "*************** End of backup Jeedom ***************",
         "Echec lors de la compression de la sauvegarde. Sauvegarde introuvable : ": "Echec lors de la compression de la sauvegarde. Sauvegarde introuvable :",
         "Erreur durant la sauvegarde : ": "Backup error",
-        "Détails : ": "Détails :",
+        "Détails : ": "Details:",
         "Persistance du cache : \n": "Cache persistence:"
     },
     "desktop/php/dashboard.php": {
@@ -328,7 +328,7 @@
         " je n'ai pas compris": "I don't understand",
         " je n'ai pas compris ta demande": "I don't understand your question",
         "aucune valeur": "no value",
-        "J'ai executé ": "J'ai executé",
+        "J'ai executé ": "I executed",
         " de ": "of",
         " dans ": "in",
         "C'est fait": "It's done",
@@ -498,7 +498,7 @@
         "Ajouter un message à chaque erreur dans les logs": "Add a message for each log error",
         "Commande d'information utilisateur": "User information command",
         "Alertes": "Warnings",
-        "Ajouter un message à chaque": "Ajouter un message à chaque",
+        "Ajouter un message à chaque": "Add a message for each",
         "Commande sur": "Commande sur",
         "Log": "Log",
         "Moteur de log": "Log engine",
@@ -709,7 +709,7 @@
         "La valeur a été éditée avec succès": "The value was successfully edited"
     },
     "core/js/dataStore.class.js": {
-        "Sélectionner une variable": "Sélectionner une variable"
+        "Sélectionner une variable": "Select a variable"
     },
     "desktop/js/utils.js": {
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "You have modified settings that haven\\'t been saved. Are you sure you want to continue?",
@@ -1132,7 +1132,7 @@
         "Télécharger": "Download",
         "Tout supprimer": "Delete all",
         "Extension": "Extension",
-        "Id rapport": "Id rapport",
+        "Id rapport": "Report Id",
         "Plugin": "Plugin",
         "Aperçu": "Preview"
     },
@@ -1317,7 +1317,7 @@
         "Local seulement": "Local only",
         "Administrateur": "Administrator",
         "Utilisateur": "User",
-        "Utilisateur limité": "Utilisateur limité",
+        "Utilisateur limité": "Restricted user",
         "OK": "OK",
         "NOK": "NOK",
         "Renouveler la clef API": "Renew the API key",
@@ -1344,7 +1344,7 @@
         "Dépendance": "Dependencie",
         "Configuration démon": "Daemon setup",
         "Statut démon": "Deamon status",
-        "Port configuré": "Port configuré",
+        "Port configuré": "Port configured",
         "Aucune santé spécifique": "Aucune santé spécifique",
         "NOK": "NOK",
         "erreurs": "error",
@@ -1674,8 +1674,8 @@
         "Vue mobile": "Mobile view",
         "Niveau": "Level",
         "En": "En",
-        "si (#value# pour la valeur)": "si (#value# pour la valeur)",
-        "Pendant plus de (en min, laisser vide pour immediat)": "Pendant plus de (en min, laisser vide pour immediat)",
+        "si (#value# pour la valeur)": "if (#value# for value)",
+        "Pendant plus de (en min, laisser vide pour immediat)": "For more than (in minutes, leave blank for immediate)",
         "Widget": "Widget",
         "Vue": "View",
         "Afficher le nom": "Display name",
@@ -1710,7 +1710,7 @@
         "Copier l'historique de cette commande sur une autre commande": "Copier l'historique de cette commande sur une autre commande",
         "Arrondi (chiffre après la virgule)": "Rounding (after the decimal point)",
         "Thermostat": "Thermostat",
-        "Purger l'historique si plus vieux que ": "Purger l'historique si plus vieux que",
+        "Purger l'historique si plus vieux que ": "Clear history older than",
         "1 an": "1 year",
         "Copie des données historisées": "Copie des données historisées"
     },
@@ -1873,7 +1873,7 @@
         "Action": "Action",
         "Equipement": "Device",
         "Afficher au survole": "Afficher au survole",
-        "Afficher sur un clic": "Afficher sur un clic",
+        "Afficher sur un clic": "Display on click",
         "Information binaire": "Information binaire",
         "Action on": "Action on",
         "Action off": "Action off"
