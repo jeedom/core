@@ -38,6 +38,7 @@ sort($battery);
 
 <div class="tab-content">
 	<div role="tabpanel" class="tab-pane active" id="battery">
+		<br/>
 		<div class="batteryListContainer">
 			<?php
 foreach ($list as $eqLogic) {
@@ -75,6 +76,7 @@ echo '</div>';
 ?>
 		</div>
 		<div role="tabpanel" class="tab-pane" id="alertEqlogic">
+			<br/>
 			<div class="alertListContainer">
 				<?php
 $hasAlert = '';
@@ -92,6 +94,7 @@ if ($hasAlert == '') {
 			</div>
 		</div>
 		<div role="tabpanel" class="tab-pane" id="actionCmd">
+			<br/>
 			<div class="cmdListContainer">
 				<table class="table table-condensed tablesorter" id="table_Action">
 					<thead>
