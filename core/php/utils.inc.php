@@ -827,15 +827,15 @@ function evaluate($_string) {
 }
 
 /**
- * 
+ *
  * @param string $_string
  * @return string
  */
-function secureXSS(string $_string){
+function secureXSS($_string) {
 	return str_replace('&amp;', '&', htmlspecialchars(strip_tags($_string), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
 }
 
-function minify($buffer) {
+function minify($_buffer) {
 	$search = array(
 		'/\>[^\S ]+/s', // strip whitespaces after tags, except space
 		'/[^\S ]+\</s', // strip whitespaces before tags, except space
@@ -846,7 +846,7 @@ function minify($buffer) {
 		'<',
 		'\\1',
 	);
-	return preg_replace($search, $replace, $buffer);
+	return preg_replace($search, $replace, $_buffer);
 }
 
 function sanitizeAccent($_message) {

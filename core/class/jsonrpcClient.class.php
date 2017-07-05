@@ -34,27 +34,27 @@ class jsonrpcClient {
 
 	/*     * ********Static******************* */
 
-	 /**
-         * 
-         * @param type $_apiAddr
-         * @param type $_apikey
-         * @param type $_options
-         */
+	/**
+	 *
+	 * @param type $_apiAddr
+	 * @param type $_apikey
+	 * @param type $_options
+	 */
 	public function __construct($_apiAddr, $_apikey, $_options = array()) {
 		$this->apiAddr = $_apiAddr;
-		$this->apikey  = $_apikey;
+		$this->apikey = $_apikey;
 		$this->options = $_options;
 	}
 	/**
-         * 
-         * @param type $_method
-         * @param array $_params
-         * @param int $_timeout
-         * @param type $_file
-         * @param int $_maxRetry
-         * @return boolean
-         */
-	public function sendRequest($_method, array $_params = null, $_timeout = 15, $_file = null, $_maxRetry = 2) {
+	 *
+	 * @param type $_method
+	 * @param array $_params
+	 * @param int $_timeout
+	 * @param type $_file
+	 * @param int $_maxRetry
+	 * @return boolean
+	 */
+	public function sendRequest($_method, $_params = null, $_timeout = 15, $_file = null, $_maxRetry = 2) {
 		$_params['apikey'] = $this->apikey;
 		$_params = array_merge($_params, $this->options);
 		$request = array(
@@ -229,5 +229,3 @@ class jsonrpcClient {
 	}
 
 }
-
- 
