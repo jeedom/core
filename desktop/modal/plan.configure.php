@@ -38,11 +38,11 @@ sendVarToJS('id', $plan->getId());
     <div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan link_image link_zone link_summary">
         <label class="col-lg-4 control-label">{{Position X (%)}}</label>
         <div class="col-lg-2">
-            <input type="text" class="planAttr form-control" data-l1key="position" data-l2key="top" />
+            <input type="text" class="planAttr form-control" data-l1key="position" data-l2key="left" />
         </div>
         <label class="col-lg-2 control-label">{{Position Y (%)}}</label>
         <div class="col-lg-2">
-            <input type="text" class="planAttr form-control" data-l1key="position" data-l2key="left" />
+            <input type="text" class="planAttr form-control" data-l1key="position" data-l2key="top" />
         </div>
     </div>
     <div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan link_image link_zone link_summary">
