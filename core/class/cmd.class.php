@@ -1088,9 +1088,18 @@ class cmd {
 		$this->setCache('collectDate', $this->getCollectDate());
 		$this->setValueDate(($repeat) ? $this->getValueDate() : $this->getCollectDate());
 		$eqLogic->setStatus(array('lastCommunication' => $this->getCollectDate(), 'timeout' => 0));
+		$display_value = $value;
+		if (method_exists($this, 'formatValueWidget')) {
+			$display_value = $this->formatValueWidget($value);
+		} else if ($this->getSubType() == 'binary' && $this->getDisplay('invertBinary') == 1) {
+			$display_value = ($value == 1) ? 0 : 1;
+		} else if ($this->getSubType() == 'numeric' && trim($value) === '') {
+			$display_value = 0;
+		}
 		if ($repeat && $this->getConfiguration('repeatEventManagement', 'auto') == 'never') {
 			$this->addHistoryValue($value, $this->getCollectDate());
-			event::adds('cmd::update', array('cmd_id' => $this->getId(), 'collectDate' => $this->getCollectDate()));
+			$eqLogic->emptyCacheWidget();
+			event::adds('cmd::update', array(array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate())));
 			return;
 		}
 		$_loop++;
@@ -1102,22 +1111,15 @@ class cmd {
 			$message .= ' (répétition)';
 		}
 		log::add('event', 'info', $message);
-
 		$events = array();
 		if (!$repeat) {
 			$this->setCache(array('value' => $value, 'valueDate' => $this->getValueDate()));
 			scenario::check($this);
-			$display_value = $value;
-			if (method_exists($this, 'formatValueWidget')) {
-				$display_value = $this->formatValueWidget($value);
-			} else if ($this->getSubType() == 'binary' && $this->getDisplay('invertBinary') == 1) {
-				$display_value = ($value == 1) ? 0 : 1;
-			} else if ($this->getSubType() == 'numeric' && trim($value) === '') {
-				$display_value = 0;
-			}
 			$eqLogic->emptyCacheWidget();
 			$level = $this->checkAlertLevel($value);
 			$events = array(array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate(), 'alertLevel' => $level));
+		} else {
+			$events = array(array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate()));
 		}
 		$foundInfo = false;
 		$value_cmd = self::byValue($this->getId(), null, true);
