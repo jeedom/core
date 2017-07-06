@@ -20,7 +20,7 @@ if (!isConnect()) {
   <div class="col-lg-2">
     <h3>{{Traducteur(s)}}</h3>
     <lu>
-      <li>Marie and all amazing people who help us on <a class="cursor" href="https://www.transifex.com/jeedom/public/" style="color:blue;" target="_blank">Transifex</a></li>
+      <li>All amazing people who help us on <a class="cursor" href="https://www.transifex.com/jeedom/public/" style="color:blue;" target="_blank">Transifex</a></li>
     </lu>
   </div>
   <div class="col-lg-2">
