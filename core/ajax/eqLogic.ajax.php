@@ -258,10 +258,7 @@ try {
 		}
 		$return = utils::o2a($eqLogic);
 		if (init('status') == 1) {
-			$return['status'] = array(
-				'state' => 'ok',
-				'lastCommunication' => $eqLogic->getStatus('lastCommunication'),
-			);
+			$return['status']['state'] = 'ok';
 			if ($eqLogic->getTimeout() > 0 && $eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s')) < date('Y-m-d H:i:s', strtotime('-' . $eqLogic->getTimeout() . ' minutes' . date('Y-m-d H:i:s')))) {
 				$return['status']['state'] = 'timeout';
 			}
