@@ -1090,6 +1090,7 @@ class cmd {
 		$eqLogic->setStatus(array('lastCommunication' => $this->getCollectDate(), 'timeout' => 0));
 		if ($repeat && $this->getConfiguration('repeatEventManagement', 'auto') == 'never') {
 			$this->addHistoryValue($value, $this->getCollectDate());
+			event::adds('cmd::update', array('cmd_id' => $this->getId(), 'collectDate' => $this->getCollectDate()));
 			return;
 		}
 		$_loop++;
