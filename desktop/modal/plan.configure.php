@@ -223,6 +223,17 @@ foreach (planHeader::all() as $plan) {
         <input class="planAttr form-control" data-l1key="css" data-l2key="font-size" />
     </div>
 </div>
+<div class="form-group link_type link_plan link_view link_text">
+    <label class="col-lg-4 control-label">{{Alignement du texte}}</label>
+    <div class="col-lg-2">
+        <select class="planAttr form-control" data-l1key="css" data-l2key="text-align">
+            <option value="initial">{{Par defaut}}</option>
+            <option value="left">{{Gauche}}</option>
+            <option value="right">{{Droite}}</option>
+            <option value="center">{{Centré}}</option>
+        </select>
+    </div>
+</div>
 <div class="form-group link_type link_plan link_view link_text link_summary">
     <label class="col-lg-4 control-label">{{Gras}}</label>
     <div class="col-lg-2">

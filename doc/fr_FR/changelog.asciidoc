@@ -8,6 +8,7 @@
 * Mode onepage (changement de page sans recharger toute la page juste la partie qui change)
 * Ajout d'une option pour masquer les objets sur le dashboard mais qui permet de toujours les avoir dans la liste
 * Un double clic sur un noeud sur le graphique de lien (sauf pour les variables) amène sur sa page de configuration
+* Possibilitée de mettre le texte à gauche/droit/au centre sur les designs pour les élements de type texte/vue/design
 
 == 3.0
 
