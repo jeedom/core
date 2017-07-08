@@ -11,6 +11,10 @@
 * Possibilitée de mettre le texte à gauche/droit/au centre sur les designs pour les élements de type texte/vue/design
 * Ajout des résumé d'objet sur la dashboard (liste des objets à gauche)
 
+== 3.0.10
+
+- Correction de bug sur l'interface de configuration des interactions
+
 == 3.0
 
 * Slave-Modus gelöscht
