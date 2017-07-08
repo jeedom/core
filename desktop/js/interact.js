@@ -365,9 +365,7 @@ function addAction(_action, _type, _name) {
   div += '</div>';
   div += '</div>';
   var actionOption_id = uniqId();
-  div += '<div class="col-sm-7 actionOptions" id="'+actionOption_id+'">';
-  div += jeedom.cmd.displayActionOption(init(_action.cmd, ''), _action.options);
-  div += '</div>';
+  div += '<div class="col-sm-7 actionOptions" id="'+actionOption_id+'"></div>';
   $('#div_' + _type).append(div);
   $('#div_' + _type + ' .' + _type + ':last').setValues(_action, '.expressionAttr');
   actionOptions.push({
