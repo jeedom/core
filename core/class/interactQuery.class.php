@@ -325,6 +325,7 @@ class interactQuery {
 					if ($reply !== null || is_array($reply)) {
 						$reply['reply'] = '[' . $plugin_id . '] ' . $reply['reply'];
 						self::addLastInteract($_query, $_parameters['identifier']);
+						log::add('interact', 'debug', 'Le plugin ' . $plugin_id . ' a répondu');
 						return $reply;
 					}
 				}
