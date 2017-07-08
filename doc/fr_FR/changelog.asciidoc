@@ -1,5 +1,9 @@
 == Changelog
 
+== 3.0.10
+
+- Correction de bug sur l'interface de configuration des interactions
+
 == 3.0
 
 * Suppression du mode esclave
