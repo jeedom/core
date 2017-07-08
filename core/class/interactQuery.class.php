@@ -399,6 +399,7 @@ class interactQuery {
 		if ($reply == '') {
 			$reply = self::pluginReply($_query, $_parameters);
 			if ($reply !== null) {
+				log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . '. Un plugin a répondu : ' . print_r($reply, true));
 				return $reply;
 			}
 			$interactQuery = interactQuery::recognize($_query);
@@ -408,7 +409,7 @@ class interactQuery {
 				if (isset($cmds[0]) && isset($cmds[0]['cmd'])) {
 					self::addLastInteract(str_replace('#', '', $cmds[0]['cmd']), $_parameters['identifier']);
 				}
-				log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . "\nJ'ai compris : " . $interactQuery->getQuery() . "\nJ'ai répondu : " . $reply);
+				log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . ".J'ai compris : " . $interactQuery->getQuery() . ".J'ai répondu : " . $reply);
 				return array('reply' => ucfirst($reply));
 			}
 		}
@@ -420,7 +421,7 @@ class interactQuery {
 		}
 		if ($reply == '' && config::byKey('interact::noResponseIfEmpty', 'core', 0) == 0 && (!isset($_parameters['emptyReply']) || $_parameters['emptyReply'] == 0)) {
 			$reply = self::dontUnderstand($_parameters);
-			log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . "\nJe n'ai rien compris\nJ'ai répondu : " . $reply);
+			log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . ".Je n'ai rien compris.J'ai répondu : " . $reply);
 		}
 		if (is_array($reply)) {
 			return $reply;
