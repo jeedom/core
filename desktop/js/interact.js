@@ -271,7 +271,6 @@ $("body").undelegate('.bt_removeAction', 'click').delegate('.bt_removeAction', '
 });
 
 function displayInteract(_id){
-
   $('#div_conf').show();
   $('#interactThumbnailDisplay').hide();
   $('.li_interact').removeClass('active');
