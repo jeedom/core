@@ -313,7 +313,7 @@ class interactQuery {
 		return preg_match('/( |^)' . preg_quote($word, '/') . '( |$)/', $string);
 	}
 
-	public function pluginReply($_query, $_parameters = array()) {
+	public static function pluginReply($_query, $_parameters = array()) {
 		try {
 			foreach (plugin::listPlugin(true) as $plugin) {
 				if (config::byKey('functionality::interact::enable', $plugin->getId(), 1) == 0) {
