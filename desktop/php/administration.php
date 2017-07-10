@@ -1029,6 +1029,18 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 									<input class="configKey form-control" data-l1key="graphlink::dataStore::drill" />
 								</div>
 							</div>
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Paramètre de prerender}}</label>
+								<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+									<input class="configKey form-control" data-l1key="graphlink::prerender" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Paramètre de render}}</label>
+								<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+									<input class="configKey form-control" data-l1key="graphlink::render" />
+								</div>
+							</div>
 						</fieldset>
 					</form>
 				</div>
