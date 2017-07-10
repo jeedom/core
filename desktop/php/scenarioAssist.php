@@ -20,39 +20,28 @@ if (is_array($scenarioListGroup)) {
         <div class="bs-sidebar nav nav-list bs-sidenav">
             <a class="btn btn-success pull-right form-control" id="bt_switchToExpertMode" href="index.php?v=d&p=scenario" style="text-shadow: none;"><i class="fa fa-toggle-off"></i> {{Interface simple}}</a>
             <center>
-                <div class="col-xs-6">
-                    <?php
-if (config::byKey('enableScenario') == 0) {
-	echo '<a class="btn btn-sm btn-success expertModeVisible" id="bt_changeAllScenarioState" data-state="1" style="margin-top : 3px;text-shadow: none;" ><i class="fa fa-check"></i> {{Act. scénarios}}</a>';
-} else {
-	echo '<a class="btn btn-sm btn-danger expertModeVisible" id="bt_changeAllScenarioState" data-state="0" style="margin-top : 3px;text-shadow: none;" ><i class="fa fa-times"></i> {{Désac. scénarios}}</a>';
-}
-?>
-               </div>
-               <div class="col-xs-6">
                 <a class="btn btn-default btn-sm expertModeVisible" id="bt_displayScenarioVariable" title="{{Voir toutes les variables de scénario}}" style="margin-top : 3px;text-shadow: none"><i class="fa fa fa-eye"></i> {{Voir variables}}</a>
-            </div>
-        </center>
-        <a class="btn btn-default" id="bt_addScenario" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-plus-circle cursor" ></i> {{Nouveau scénario}}</a>
-        <input id='in_treeSearch' class='form-control' placeholder="{{Rechercher}}" />
-        <div id="div_tree">
-            <ul id="ul_scenario" >
-                <li data-jstree='{"opened":true}'>
-                    <?php if (count($scenarios[-1]) > 0) {
+            </center>
+            <a class="btn btn-default" id="bt_addScenario" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-plus-circle cursor" ></i> {{Nouveau scénario}}</a>
+            <input id='in_treeSearch' class='form-control' placeholder="{{Rechercher}}" />
+            <div id="div_tree">
+                <ul id="ul_scenario" >
+                    <li data-jstree='{"opened":true}'>
+                        <?php if (count($scenarios[-1]) > 0) {
 	?>
-                       <a>Aucune</a>
-                       <ul>
-                        <?php
+                           <a>Aucune</a>
+                           <ul>
+                            <?php
 foreach ($scenarios[-1] as $scenario) {
 		echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
 		echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-type="' . $scenario->getType() . '" title="{{Scénario ID :}} ' . $scenario->getId() . ' ' . $scenario->getDescription() . '" data-scenario_id="' . $scenario->getId() . '" >' . $scenario->getHumanName(false, true) . '</a>';
 		echo '</li>';
 	}
 	?>
-                  </ul>
-                  <?php }
+                      </ul>
+                      <?php }
 ?>
-                  <?php
+                      <?php
 if (is_array($scenarioListGroup)) {
 	foreach ($scenarioListGroup as $group) {
 		if ($group['group'] != '' && count($scenarios[$group['group']]) > 0) {
@@ -70,55 +59,55 @@ if (is_array($scenarioListGroup)) {
 	}
 }
 ?>
-        </ul>
+            </ul>
+        </div>
     </div>
-</div>
 </div>
 
 
 <div id="scenarioThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
 
- <div class="scenarioListContainer">
-     <legend><i class="fa fa-cog"></i>  {{Gestion}}</legend>
-     <div class="cursor" id="bt_addScenario2" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
-       <center>
-        <i class="fa fa-plus-circle" style="font-size : 6em;color:#94ca02;"></i>
-    </center>
-    <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>{{Ajouter}}</center></span>
-</div>
-<?php if (config::byKey('enableScenario') == 0) {?>
-    <div class="cursor expertModeVisible" id="bt_changeAllScenarioState2" data-state="1" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
-       <center>
-           <i class="fa fa-check" style="font-size : 6em;color:#5cb85c;"></i>
-       </center>
-       <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#5cb85c"><center>{{Activer scénarios}}</center></span>
-   </div>
-   <?php } else {?>
-   <div class="cursor expertModeVisible" id="bt_changeAllScenarioState2" data-state="0" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
-       <center>
-           <i class="fa fa-times" style="font-size : 6em;color:#d9534f;"></i>
-       </center>
-       <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#d9534f"><center>{{Désactiver scénarios}}</center></span>
-   </div>
-   <?php }
+   <div class="scenarioListContainer">
+       <legend><i class="fa fa-cog"></i>  {{Gestion}}</legend>
+       <div class="cursor" id="bt_addScenario2" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
+         <center>
+            <i class="fa fa-plus-circle" style="font-size : 6em;color:#94ca02;"></i>
+        </center>
+        <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>{{Ajouter}}</center></span>
+    </div>
+    <?php if (config::byKey('enableScenario') == 0) {?>
+        <div class="cursor expertModeVisible" id="bt_changeAllScenarioState2" data-state="1" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
+         <center>
+             <i class="fa fa-check" style="font-size : 6em;color:#5cb85c;"></i>
+         </center>
+         <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#5cb85c"><center>{{Activer scénarios}}</center></span>
+     </div>
+     <?php } else {?>
+     <div class="cursor expertModeVisible" id="bt_changeAllScenarioState2" data-state="0" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
+         <center>
+             <i class="fa fa-times" style="font-size : 6em;color:#d9534f;"></i>
+         </center>
+         <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#d9534f"><center>{{Désactiver scénarios}}</center></span>
+     </div>
+     <?php }
 ?>
 
-   <div class="cursor expertModeVisible" id="bt_displayScenarioVariable2" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
-       <center>
-        <i class="fa fa-eye" style="font-size : 6em;color:#337ab7;"></i>
-    </center>
-    <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Voir variables}}</center></span>
-</div>
+     <div class="cursor expertModeVisible" id="bt_displayScenarioVariable2" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
+         <center>
+            <i class="fa fa-eye" style="font-size : 6em;color:#337ab7;"></i>
+        </center>
+        <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Voir variables}}</center></span>
+    </div>
 
-<div class="cursor expertModeVisible bt_showScenarioSummary" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
- <center>
-    <i class="fa fa-list" style="font-size : 6em;color:#337ab7;"></i>
-</center>
-<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Vue d'ensemble}}</center></span>
+    <div class="cursor expertModeVisible bt_showScenarioSummary" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
+       <center>
+        <i class="fa fa-list" style="font-size : 6em;color:#337ab7;"></i>
+    </center>
+    <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Vue d'ensemble}}</center></span>
 </div>
 
 <div class="cursor expertModeVisible bt_showExpressionTest" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
-   <center>
+ <center>
     <i class="fa fa-check" style="font-size : 6em;color:#337ab7;"></i>
 </center>
 <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Testeur d'expression}}</center></span>
@@ -194,150 +183,150 @@ foreach ($scenarioListGroup as $group) {
                 <div class="form-group">
                     <label class="col-sm-4 col-xs-4 control-label"></label>
                     <div class="col-sm-8 col-xs-8">
-                       {{Actif}} <input type="checkbox" class="scenarioAttr" data-l1key="isActive">
-                    </div>
+                     {{Actif}} <input type="checkbox" class="scenarioAttr" data-l1key="isActive">
+                 </div>
+             </div>
+             <div class="form-group">
+                <label class="col-xs-4 control-label" for="span_lastCheck">{{Dernier lancement}}</label>
+                <div class="col-xs-3">
+                    <div><span id="span_lastLaunch" class="label label-info" style="font-size : 1em;"></span></div>
                 </div>
-                <div class="form-group">
-                    <label class="col-xs-4 control-label" for="span_lastCheck">{{Dernier lancement}}</label>
-                    <div class="col-xs-3">
-                        <div><span id="span_lastLaunch" class="label label-info" style="font-size : 1em;"></span></div>
-                    </div>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-4 control-label" for="span_ongoing">{{Etat}}</label>
+                <div class="col-xs-3">
+                    <div><span id="span_ongoing" class="label" style="font-size : 1em;"></span></div>
                 </div>
-                <div class="form-group">
-                    <label class="col-xs-4 control-label" for="span_ongoing">{{Etat}}</label>
-                    <div class="col-xs-3">
-                        <div><span id="span_ongoing" class="label" style="font-size : 1em;"></span></div>
-                    </div>
-                </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
+</div>
 
-    <div class="row">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-2">
-            <center>
-                <img src="core/img/si.svg" class="img-responsive" style="height: 50px;" />
-            </center>
-        </div>
-        <div class="col-sm-1"></div>
-        <div class="col-sm-2">
-            <center><i class="fa fa-arrow-right fa-5x" style="color : #454449"></i></center>
-        </div>
-        <div class="col-sm-1"></div>
-        <div class="col-sm-2">
-            <center>
-                <img src="core/img/alors.svg" class="img-responsive" style="height: 50px" />
-            </center>
-        </div>
+<div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-2">
+        <center>
+            <img src="core/img/si.svg" class="img-responsive" style="height: 50px;" />
+        </center>
     </div>
-    <br/>
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="well">
-                <legend>2) Condition d'exécution</legend>
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <label class="col-xs-3 control-label" >{{Scénario}}</label>
-                        <div class="col-xs-9">
-                            <select class="form-control scenarioAttr input-sm" data-l1key="mode">
-                                <option value="schedule">Programmé</option>
-                                <option value="provoke">Déclenché</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group mode schedule">
-                        <label class="col-xs-3 control-label" >{{A exécuter}}</label>
-                        <div class="col-xs-9">
-                            <select class="form-control scenarioAttr input-sm" id="sel_scheduleMode">
-                                <option value="once">une seule fois</option>
-                                <option value="repete">répétitivement</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group mode schedule" id="div_scheduleConfig">
-
-                    </div>
-                    <div class="form-group mode provoke trigger">
-                        <label class="col-xs-3 control-label" >{{Par}}</label>
-                        <div class="col-xs-9">
-                           <div class="input-group">
-                            <input class="scenarioAttr form-control" data-l1key="trigger" disabled>
-                            <span class="input-group-btn">
-                                <a class="btn btn-default cursor" id="bt_selectTrigger"><i class="fa fa-list-alt"></i></a>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <hr/>
-                <div class="form-group">
-                    <label class="col-xs-3 control-label" >{{Condition optionnelle}}</label>
-                    <div class="col-xs-2">
-                        <input type="checkbox" id="cb_conditionStart" />
-                    </div>
-                </div>
-                <div class="form-group condition" style="display: none;">
-                    <label class="col-xs-3 control-label" >{{Si}}</label>
-                    <div class="col-xs-7">
-                        <input class="form-control" id="in_cmdCondition" disabled>
-                    </div>
-                    <div class="col-xs-2">
-                        <a class="btn btn-default cursor" id="bt_selectCondition"><i class="fa fa-list-alt"></i></a>
-                    </div>
-                </div>
-                <div class="form-group condition" style="display: none;">
-                    <label class="col-xs-3 control-label" >{{Est}}</label>
-                    <div class='conditionOptions' data-type="info" data-subtype="numeric" style="display : none;">
-                        <div class="col-xs-4">
-                            <select class="conditionAttr form-control" data-l1key="operator">
-                                <option value="==">{{égal}}</option>
-                                <option value=">">{{supérieur}}</option>
-                                <option value="<">{{inférieur}}</option>
-                                <option value="!=">{{différent}}</option>
-                            </select>
-                        </div>
-                        <div class="col-xs-5">
-                            <input type="number" class="conditionAttr form-control" data-l1key="operande" />
-                        </div>
-                    </div>
-                    <div class='conditionOptions' data-type="info" data-subtype="string" style="display : none;">
-                        <div class="col-xs-4">
-                            <select class="conditionAttr form-control" data-l1key="operator">
-                                <option value="==">{{égal}}</option>
-                                <option value="!=">{{différent}}</option>
-                            </select>
-                        </div>
-                        <div class="col-xs-5">
-                            <input class="conditionAttr form-control" data-l1key="operande" />
-                        </div>
-                    </div>
-                    <div class='conditionOptions' data-type="info" data-subtype="binary" style="display : none;">
-                        <div class="col-xs-9">
-                            <input class="conditionAttr" data-l1key="operator" value="==" style="display : none;" />
-                            <select class="conditionAttr form-control" data-l1key="operande">
-                                <option value="1">{{Ouvert}}</option>
-                                <option value="0">{{Fermé}}</option>
-                                <option value="1">{{Allumé}}</option>
-                                <option value="0">{{Eteint}}</option>
-                                <option value="1">{{Déclenché}}</option>
-                                <option value="0">{{Au repos}}</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
+    <div class="col-sm-1"></div>
+    <div class="col-sm-2">
+        <center><i class="fa fa-arrow-right fa-5x" style="color : #454449"></i></center>
     </div>
+    <div class="col-sm-1"></div>
+    <div class="col-sm-2">
+        <center>
+            <img src="core/img/alors.svg" class="img-responsive" style="height: 50px" />
+        </center>
+    </div>
+</div>
+<br/>
+<div class="row">
     <div class="col-sm-6">
         <div class="well">
+            <legend>2) Condition d'exécution</legend>
             <form class="form-horizontal">
-                <legend>3) Actions
-                    <a class="btn btn-xs pull-right btn-success" id="bt_addAction"><i class="fa fa-plus-circle"></i> Ajouter une action</a>
-                </legend>
-                <div id="div_actionList"></div>
-            </form>
-        </div>
+                <div class="form-group">
+                    <label class="col-xs-3 control-label" >{{Scénario}}</label>
+                    <div class="col-xs-9">
+                        <select class="form-control scenarioAttr input-sm" data-l1key="mode">
+                            <option value="schedule">Programmé</option>
+                            <option value="provoke">Déclenché</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group mode schedule">
+                    <label class="col-xs-3 control-label" >{{A exécuter}}</label>
+                    <div class="col-xs-9">
+                        <select class="form-control scenarioAttr input-sm" id="sel_scheduleMode">
+                            <option value="once">une seule fois</option>
+                            <option value="repete">répétitivement</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group mode schedule" id="div_scheduleConfig">
+
+                </div>
+                <div class="form-group mode provoke trigger">
+                    <label class="col-xs-3 control-label" >{{Par}}</label>
+                    <div class="col-xs-9">
+                     <div class="input-group">
+                        <input class="scenarioAttr form-control" data-l1key="trigger" disabled>
+                        <span class="input-group-btn">
+                            <a class="btn btn-default cursor" id="bt_selectTrigger"><i class="fa fa-list-alt"></i></a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+            <div class="form-group">
+                <label class="col-xs-3 control-label" >{{Condition optionnelle}}</label>
+                <div class="col-xs-2">
+                    <input type="checkbox" id="cb_conditionStart" />
+                </div>
+            </div>
+            <div class="form-group condition" style="display: none;">
+                <label class="col-xs-3 control-label" >{{Si}}</label>
+                <div class="col-xs-7">
+                    <input class="form-control" id="in_cmdCondition" disabled>
+                </div>
+                <div class="col-xs-2">
+                    <a class="btn btn-default cursor" id="bt_selectCondition"><i class="fa fa-list-alt"></i></a>
+                </div>
+            </div>
+            <div class="form-group condition" style="display: none;">
+                <label class="col-xs-3 control-label" >{{Est}}</label>
+                <div class='conditionOptions' data-type="info" data-subtype="numeric" style="display : none;">
+                    <div class="col-xs-4">
+                        <select class="conditionAttr form-control" data-l1key="operator">
+                            <option value="==">{{égal}}</option>
+                            <option value=">">{{supérieur}}</option>
+                            <option value="<">{{inférieur}}</option>
+                            <option value="!=">{{différent}}</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-5">
+                        <input type="number" class="conditionAttr form-control" data-l1key="operande" />
+                    </div>
+                </div>
+                <div class='conditionOptions' data-type="info" data-subtype="string" style="display : none;">
+                    <div class="col-xs-4">
+                        <select class="conditionAttr form-control" data-l1key="operator">
+                            <option value="==">{{égal}}</option>
+                            <option value="!=">{{différent}}</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-5">
+                        <input class="conditionAttr form-control" data-l1key="operande" />
+                    </div>
+                </div>
+                <div class='conditionOptions' data-type="info" data-subtype="binary" style="display : none;">
+                    <div class="col-xs-9">
+                        <input class="conditionAttr" data-l1key="operator" value="==" style="display : none;" />
+                        <select class="conditionAttr form-control" data-l1key="operande">
+                            <option value="1">{{Ouvert}}</option>
+                            <option value="0">{{Fermé}}</option>
+                            <option value="1">{{Allumé}}</option>
+                            <option value="0">{{Eteint}}</option>
+                            <option value="1">{{Déclenché}}</option>
+                            <option value="0">{{Au repos}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
+</div>
+<div class="col-sm-6">
+    <div class="well">
+        <form class="form-horizontal">
+            <legend>3) Actions
+                <a class="btn btn-xs pull-right btn-success" id="bt_addAction"><i class="fa fa-plus-circle"></i> Ajouter une action</a>
+            </legend>
+            <div id="div_actionList"></div>
+        </form>
+    </div>
+</div>
 </div>
 
 <div class="form-actions">

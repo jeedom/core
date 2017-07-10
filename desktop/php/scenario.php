@@ -19,38 +19,27 @@ if (is_array($scenarioListGroup)) {
         <div class="bs-sidebar nav nav-list bs-sidenav" >
             <a class="btn btn-warning form-control" id="bt_switchToExpertMode" href="index.php?v=d&p=scenarioAssist" style="text-shadow: none;"><i class="fa fa-toggle-on"></i> {{Interface avancée}}</a>
             <center>
-                <div class="col-xs-6">
-                    <?php
-if (config::byKey('enableScenario') == 0) {
-	echo '<a class="btn btn-sm btn-success expertModeVisible" id="bt_changeAllScenarioState" data-state="1" style="width : 48%;min-width : 127px;margin-top : 3px;text-shadow: none;" ><i class="fa fa-check"></i> {{Act. scénarios}}</a>';
-} else {
-	echo '<a class="btn btn-sm btn-danger expertModeVisible" id="bt_changeAllScenarioState" data-state="0" style="width : 48%;min-width : 127px;margin-top : 3px;text-shadow: none;" ><i class="fa fa-times"></i> {{Désac. scénarios}}</a>';
-}
-?>
-               </div>
-               <div class="col-xs-6">
                 <a class="btn btn-default btn-sm expertModeVisible" id="bt_displayScenarioVariable" title="{{Voir toutes les variables des scénarios}}" style="margin-top : 3px;text-shadow: none;"><i class="fa fa fa-eye"></i> {{Voir variables}}</a>
-            </div>
-        </center>
-        <a class="btn btn-default" id="bt_addScenario" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-plus-circle cursor" ></i> {{Nouveau scénario}}</a>
+            </center>
+            <a class="btn btn-default" id="bt_addScenario" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-plus-circle cursor" ></i> {{Nouveau scénario}}</a>
 
-        <input id='in_treeSearch' class='form-control' placeholder="{{Rechercher}}" />
-        <div id="div_tree">
-            <ul id="ul_scenario" >
-                <?php if (count($scenarios[-1]) > 0) {
+            <input id='in_treeSearch' class='form-control' placeholder="{{Rechercher}}" />
+            <div id="div_tree">
+                <ul id="ul_scenario" >
+                    <?php if (count($scenarios[-1]) > 0) {
 	?>
-                   <li data-jstree='{"opened":true}'>
-                    <a>Aucune</a>
-                    <ul>
-                        <?php
+                       <li data-jstree='{"opened":true}'>
+                        <a>Aucune</a>
+                        <ul>
+                            <?php
 foreach ($scenarios[-1] as $scenario) {
 		echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
 		echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-scenario_id="' . $scenario->getId() . '" title="{{Scénario ID :}} ' . $scenario->getId() . ' ' . $scenario->getDescription() . '">' . $scenario->getHumanName(false, true) . '</a>';
 		echo '</li>';
 	}
 	?>
-                  </ul>
-                  <?php
+                      </ul>
+                      <?php
 }
 foreach ($scenarioListGroup as $group) {
 	if ($group['group'] != '') {
@@ -67,36 +56,36 @@ foreach ($scenarioListGroup as $group) {
 	}
 }
 ?>
-     </ul>
+         </ul>
+     </div>
  </div>
-</div>
 </div>
 
 <div id="scenarioThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
 
- <div class="scenarioListContainer">
-     <legend>{{Gestion}}</legend>
-     <div class="cursor" id="bt_addScenario2" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
+   <div class="scenarioListContainer">
+       <legend>{{Gestion}}</legend>
+       <div class="cursor" id="bt_addScenario2" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
         <i class="fa fa-plus-circle" style="font-size : 6em;color:#94ca02;"></i>
         <br>
         <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02">{{Ajouter}}</span>
     </div>
     <?php if (config::byKey('enableScenario') == 0) {?>
         <div class="cursor expertModeVisible" id="bt_changeAllScenarioState2" data-state="1" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
-           <i class="fa fa-check" style="font-size : 6em;color:#5cb85c;"></i>
-           <br>
-           <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#5cb85c">{{Activer scénarios}}</span>
-       </div>
-       <?php } else {?>
-       <div class="cursor expertModeVisible" id="bt_changeAllScenarioState2" data-state="0" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
-           <i class="fa fa-times" style="font-size : 6em;color:#d9534f;"></i>
-           <br>
-           <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#d9534f">{{Désactiver scénarios}}</span>
-       </div>
-       <?php }
+         <i class="fa fa-check" style="font-size : 6em;color:#5cb85c;"></i>
+         <br>
+         <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#5cb85c">{{Activer scénarios}}</span>
+     </div>
+     <?php } else {?>
+     <div class="cursor expertModeVisible" id="bt_changeAllScenarioState2" data-state="0" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
+         <i class="fa fa-times" style="font-size : 6em;color:#d9534f;"></i>
+         <br>
+         <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#d9534f">{{Désactiver scénarios}}</span>
+     </div>
+     <?php }
 ?>
 
-       <div class="cursor expertModeVisible" id="bt_displayScenarioVariable2" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
+     <div class="cursor expertModeVisible" id="bt_displayScenarioVariable2" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
         <i class="fa fa-eye" style="font-size : 6em;color:#337ab7;"></i>
         <br>
         <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7">{{Voir variables}}</span>
@@ -194,10 +183,10 @@ if (count($scenarios) == 0) {
                             {{Actif}} <input type="checkbox" class="scenarioAttr" data-l1key="isActive">
                         </label>
                         <label>
-                           {{Visible}} <input type="checkbox" class="scenarioAttr" data-l1key="isVisible">
-                       </label>
-                   </div>
-                   <div class="form-group">
+                         {{Visible}} <input type="checkbox" class="scenarioAttr" data-l1key="isVisible">
+                     </label>
+                 </div>
+                 <div class="form-group">
                     <label class="col-xs-6 control-label" >{{Objet parent}}</label>
                     <div class="col-xs-6">
                         <select class="scenarioAttr form-control input-sm" data-l1key="object_id">
@@ -357,14 +346,14 @@ foreach (object::all() as $object) {
                 </div>
 
                 <div class="alert alert-info addElementTypeDescription in" style="display:none;">
-                 Permet de faire une action dans X min. Par exemple : Dans 5 min éteindre la lumière.
-             </div>
+                   Permet de faire une action dans X min. Par exemple : Dans 5 min éteindre la lumière.
+               </div>
 
-             <div class="alert alert-info addElementTypeDescription at" style="display:none;">
-                 A un temps précis, cet élément permet de lancer une action. Par exemple : A 9h30 ouvrir les volets.
-             </div>
+               <div class="alert alert-info addElementTypeDescription at" style="display:none;">
+                   A un temps précis, cet élément permet de lancer une action. Par exemple : A 9h30 ouvrir les volets.
+               </div>
 
-             <div class="alert alert-info addElementTypeDescription code" style="display:none;">
+               <div class="alert alert-info addElementTypeDescription code" style="display:none;">
                 Cet élément permet de rajouter dans votre scénario de la programmation à l’aide d’un code, PHP/Shell etc...
             </div>
 
