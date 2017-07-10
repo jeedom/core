@@ -1235,6 +1235,7 @@ class scenarioExpression {
 					}
 					if ($value == '') {
 						$value = __('Aucune réponse', __FILE__);
+						$cmd->setCache('storeVariable', 'none');
 						$dataStore = dataStore::byTypeLinkIdKey('scenario', -1, $this->getOptions('variable'));
 						$dataStore->setValue($value);
 						$dataStore->save();
