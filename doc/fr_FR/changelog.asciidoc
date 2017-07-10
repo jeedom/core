@@ -1,5 +1,9 @@
 == Changelog
 
+== 3.0.11
+
+- Correction de bug sur les demandes "ask" en timeout
+
 == 3.0.10
 
 - Correction de bug sur l'interface de configuration des interactions
