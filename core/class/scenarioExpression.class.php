@@ -517,9 +517,8 @@ class scenarioExpression {
 				return '';
 			}
 		}
-		$_endDate = date('Y-m-d H:i:s');
-		$_value = str_replace(',', '.', $_value);
-		$_decimal = strlen(substr(strrchr($_value, "."), 1));
+		$_endDate = date('Y-m-d H:i:s'); 
+		$_decimal = strlen(substr(strrchr(str_replace(',', '.', $_value), "."), 1));
 
 		$histories = $cmd->getHistory();
 
