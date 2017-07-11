@@ -173,7 +173,7 @@ try {
 		foreach ($eqLogics as $id) {
 			$eqLogic = eqLogic::byId($id);
 			if (!is_object($eqLogic)) {
-				throw new Exception(__('EqLogic inconnu verifié l\'id :', __FILE__) . ' ' . $id);
+				throw new Exception(__('EqLogic inconnu verifiez l\'id :', __FILE__) . ' ' . $id);
 			}
 			if (!$eqLogic->hasRight('w')) {
 				continue;
