@@ -196,10 +196,10 @@ try {
 	if (init('action') == 'saveCustom') {
 		$path = dirname(__FILE__) . '/../../';
 		if (init('version') != 'desktop' && init('version') != 'mobile') {
-			throw new Exception(__('La version ne peut etre que desktop ou mobile', __FILE__));
+			throw new Exception(__('La version ne peut être que desktop ou mobile', __FILE__));
 		}
 		if (init('type') != 'js' && init('type') != 'css') {
-			throw new Exception(__('La version ne peut etre que js ou css', __FILE__));
+			throw new Exception(__('La version ne peut être que js ou css', __FILE__));
 		}
 		$path .= init('version') . '/custom/';
 		if (!file_exists($path)) {
@@ -229,4 +229,4 @@ try {
 } catch (Exception $e) {
 	ajax::error(displayExeption($e), $e->getCode());
 }
-?>
+ 
