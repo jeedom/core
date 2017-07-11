@@ -4,6 +4,7 @@ if (!isConnect('admin')) {
 }
 
 $scenarios = array();
+$totalScenario = scenario::all();
 $scenarios[-1] = scenario::all(null);
 $scenarioListGroup = scenario::listGroup();
 if (is_array($scenarioListGroup)) {
@@ -26,42 +27,39 @@ if (is_array($scenarioListGroup)) {
             <input id='in_treeSearch' class='form-control' placeholder="{{Rechercher}}" />
             <div id="div_tree">
                 <ul id="ul_scenario" >
-                    <li data-jstree='{"opened":true}'>
-                        <?php if (count($scenarios[-1]) > 0) {
+                    <?php if (count($scenarios[-1]) > 0) {
 	?>
-                           <a>Aucune</a>
-                           <ul>
+                       <li data-jstree='{"opened":false}'>
                             <?php
+							echo '<a>Aucune - '  . count($scenarios[-1]).' scénario(s)</a>';
+							echo '<ul>';
 foreach ($scenarios[-1] as $scenario) {
 		echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
-		echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-type="' . $scenario->getType() . '" title="{{Scénario ID :}} ' . $scenario->getId() . ' ' . $scenario->getDescription() . '" data-scenario_id="' . $scenario->getId() . '" >' . $scenario->getHumanName(false, true) . '</a>';
+		echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-scenario_id="' . $scenario->getId() . '" title="{{Scénario ID :}} ' . $scenario->getId() . ' ' . $scenario->getDescription() . '">' . $scenario->getHumanName(false, true) . '</a>';
 		echo '</li>';
 	}
 	?>
                       </ul>
-                      <?php }
-?>
                       <?php
-if (is_array($scenarioListGroup)) {
-	foreach ($scenarioListGroup as $group) {
-		if ($group['group'] != '' && count($scenarios[$group['group']]) > 0) {
-			echo '<li data-jstree=\'{"opened":true}\'>';
-			echo '<a>' . $group['group'] . '</a>';
-			echo '<ul>';
-			foreach ($scenarios[$group['group']] as $scenario) {
-				echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
-				echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-type="' . $scenario->getType() . '" title="{{Scénario ID :}} ' . $scenario->getId() . ' ' . $scenario->getDescription() . '" data-scenario_id="' . $scenario->getId() . '" >' . $scenario->getHumanName(false, true) . '</a>';
-				echo '</li>';
-			}
-			echo '</ul>';
+}
+foreach ($scenarioListGroup as $group) {
+	if ($group['group'] != '') {
+		echo '<li data-jstree=\'{"opened":false}\'>';
+		echo '<a>' . $group['group'] . ' - ' . count($scenarios[$group['group']]) .' scénario(s)</a>';
+		echo '<ul>';
+		foreach ($scenarios[$group['group']] as $scenario) {
+			echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
+			echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-scenario_id="' . $scenario->getId() . '" title="{{Scénario ID :}} ' . $scenario->getId() . ' ' . $scenario->getDescription() . '">' . $scenario->getHumanName(false, true) . '</a>';
 			echo '</li>';
 		}
+		echo '</ul>';
+		echo '</li>';
 	}
 }
 ?>
-            </ul>
-        </div>
-    </div>
+         </ul>
+     </div>
+ </div>
 </div>
 
 
@@ -116,36 +114,60 @@ if (is_array($scenarioListGroup)) {
 
 <legend><i class="icon jeedom-clap_cinema"></i>  {{Mes scénarios}}</legend>
 <?php
-
-if (count($scenarios[-1]) > 0) {
-	echo '<legend>Aucun</legend>';
-	echo '<div class="scenarioListContainer">';
-	foreach ($scenarios[-1] as $scenario) {
-		$opacity = ($scenario->getIsActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-		echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" data-type="' . $scenario->getType() . ' title="' . $scenario->getDescription() . '" style="background-color : #ffffff; min-height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
-		echo "<center>";
-		echo '<img src="core/img/scenario.png" height="90" width="85" />';
-		echo "</center>";
-		echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $scenario->getHumanName(true, true, true, true) . '</center></span>';
+if (count($scenarios) == 0) {
+	echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun scénario. Cliquez sur ajouter un scénario pour commencer</span></center>";
+} else {
+	if (count($scenarios[-1]) > 0) {
+		echo "<center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous avez " . count($totalScenario) . " scénario(s) dans " . count($scenarioListGroup)  . " groupes</span></center>";
+		echo '<div class="panel-group" id="accordionScenar">';
+		echo '<div class="panel panel-default">';
+		echo '<div class="panel-heading">';
+		echo '<h3 class="panel-title">';
+		echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionScenar" href="#config_aucun" style="text-decoration:none;">Aucun - ' . count($scenarios[-1]) .' scénario(s)</a>';
+		echo '</h3>';
 		echo '</div>';
-	}
-	echo '</div>';
-}
-foreach ($scenarioListGroup as $group) {
-	if ($group['group'] != '' && count($scenarios[$group['group']]) > 0) {
-		echo '<legend>' . $group['group'] . '</legend>';
+		echo '<div id="config_aucun" class="panel-collapse collapse">';
+		echo '<div class="panel-body">';
 		echo '<div class="scenarioListContainer">';
-		foreach ($scenarios[$group['group']] as $scenario) {
+		foreach ($scenarios[-1] as $scenario) {
 			$opacity = ($scenario->getIsActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-			echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" data-type="' . $scenario->getType() . ' title="' . $scenario->getDescription() . '" style="background-color : #ffffff; min-height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
-			echo "<center>";
+			echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" title="' . $scenario->getDescription() . '" style="text-align: center; background-color : #ffffff; min-height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
 			echo '<img src="core/img/scenario.png" height="90" width="85" />';
-			echo "</center>";
-			echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $scenario->getHumanName(true, true, true, true) . '</center></span>';
+			echo "<br>";
+			echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $scenario->getHumanName(true, true, true, true) . '</span>';
 			echo '</div>';
 		}
 		echo '</div>';
+		echo '</div>';
+		echo '</div>';
+		echo '</div>';
 	}
+	foreach ($scenarioListGroup as $group) {
+		if ($group['group'] != '') {
+			echo '<div class="panel panel-default">';
+			echo '<div class="panel-heading">';
+			echo '<h3 class="panel-title">';
+			echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionScenar" href="#config_' . $group['group'] . '" style="text-decoration:none;">' . $group['group'] . ' - ' . count($scenarios[$group['group']]) .' scénario(s)</a>';
+			echo '</h3>';
+			echo '</div>';
+			echo '<div id="config_' . $group['group'] . '" class="panel-collapse collapse">';
+			echo '<div class="panel-body">';
+			echo '<div class="scenarioListContainer">';
+			foreach ($scenarios[$group['group']] as $scenario) {
+				$opacity = ($scenario->getIsActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
+				echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" title="' . $scenario->getDescription() . '" style="text-align: center; background-color : #ffffff; min-height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
+				echo '<img src="core/img/scenario.png" height="90" width="85" />';
+				echo "<br>";
+				echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $scenario->getHumanName(true, true, true, true) . '</span>';
+				echo '</div>';
+			}
+			echo '</div>';
+			echo '</div>';
+			echo '</div>';
+			echo '</div>';
+		}
+	}
+	echo '</div>';
 }
 ?>
 </div>

@@ -86,11 +86,18 @@ $('#bt_scenarioThumbnailDisplay').on('click', function () {
 
 $('.scenarioDisplayCard').on('click', function () {
     if ($(this).attr('data-type') == 'simple') {
+        $('#div_tree').jstree('open_all');
         $('#div_tree').jstree('deselect_all');
         $('#div_tree').jstree('select_node', 'scenario' + $(this).attr('data-scenario_id'));
     } else {
         loadPage("index.php?v=d&p=scenario&id=" + $(this).attr('data-scenario_id'));
     }
+});
+
+$('.accordion-toggle').off('click').on('click', function () {
+  setTimeout(function(){
+  $('.scenarioListContainer').packery();
+},100);
 });
 
 $('#div_tree').on('select_node.jstree', function (node, selected) {

@@ -4,6 +4,7 @@ if (!isConnect('admin')) {
 }
 
 $scenarios = array();
+$totalScenario = scenario::all();
 $scenarios[-1] = scenario::all(null);
 $scenarioListGroup = scenario::listGroup();
 if (is_array($scenarioListGroup)) {
@@ -29,9 +30,9 @@ if (is_array($scenarioListGroup)) {
                     <?php if (count($scenarios[-1]) > 0) {
 	?>
                        <li data-jstree='{"opened":true}'>
-                        <a>Aucune</a>
-                        <ul>
                             <?php
+							echo '<a>Aucune - '  . count($scenarios[-1]).' scénario(s)</a>';
+							echo '<ul>';
 foreach ($scenarios[-1] as $scenario) {
 		echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
 		echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-scenario_id="' . $scenario->getId() . '" title="{{Scénario ID :}} ' . $scenario->getId() . ' ' . $scenario->getDescription() . '">' . $scenario->getHumanName(false, true) . '</a>';
@@ -44,7 +45,7 @@ foreach ($scenarios[-1] as $scenario) {
 foreach ($scenarioListGroup as $group) {
 	if ($group['group'] != '') {
 		echo '<li data-jstree=\'{"opened":true}\'>';
-		echo '<a>' . $group['group'] . '</a>';
+		echo '<a>' . $group['group'] . ' - ' . count($scenarios[$group['group']]) .' scénario(s)</a>';
 		echo '<ul>';
 		foreach ($scenarios[$group['group']] as $scenario) {
 			echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
@@ -64,7 +65,7 @@ foreach ($scenarioListGroup as $group) {
 <div id="scenarioThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
 
    <div class="scenarioListContainer">
-       <legend>{{Gestion}}</legend>
+       <legend><i class="fa fa-cog"></i>  {{Gestion}}</legend>
        <div class="cursor" id="bt_addScenario2" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
         <i class="fa fa-plus-circle" style="font-size : 6em;color:#94ca02;"></i>
         <br>
@@ -104,13 +105,22 @@ foreach ($scenarioListGroup as $group) {
     </div>
 </div>
 
-<legend>{{Mes scénarios}}</legend>
+<legend><i class="icon jeedom-clap_cinema"></i>  {{Mes scénarios}}</legend>
 <?php
 if (count($scenarios) == 0) {
 	echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun scénario. Cliquez sur ajouter un scénario pour commencer</span></center>";
 } else {
 	if (count($scenarios[-1]) > 0) {
-		echo '<legend>Aucun</legend>';
+		echo "<center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous avez " . count($totalScenario) . " scénario(s) dans " . count($scenarioListGroup)  . " groupes</span></center>";
+		echo '<div class="panel-group" id="accordionScenar">';
+		echo '<div class="panel panel-default">';
+		echo '<div class="panel-heading">';
+		echo '<h3 class="panel-title">';
+		echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionScenar" href="#config_aucun" style="text-decoration:none;">Aucun - ' . count($scenarios[-1]) .' scénario(s)</a>';
+		echo '</h3>';
+		echo '</div>';
+		echo '<div id="config_aucun" class="panel-collapse collapse">';
+		echo '<div class="panel-body">';
 		echo '<div class="scenarioListContainer">';
 		foreach ($scenarios[-1] as $scenario) {
 			$opacity = ($scenario->getIsActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
@@ -121,10 +131,20 @@ if (count($scenarios) == 0) {
 			echo '</div>';
 		}
 		echo '</div>';
+		echo '</div>';
+		echo '</div>';
+		echo '</div>';
 	}
 	foreach ($scenarioListGroup as $group) {
 		if ($group['group'] != '') {
-			echo '<legend>' . $group['group'] . '</legend>';
+			echo '<div class="panel panel-default">';
+			echo '<div class="panel-heading">';
+			echo '<h3 class="panel-title">';
+			echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionScenar" href="#config_' . $group['group'] . '" style="text-decoration:none;">' . $group['group'] . ' - ' . count($scenarios[$group['group']]) .' scénario(s)</a>';
+			echo '</h3>';
+			echo '</div>';
+			echo '<div id="config_' . $group['group'] . '" class="panel-collapse collapse">';
+			echo '<div class="panel-body">';
 			echo '<div class="scenarioListContainer">';
 			foreach ($scenarios[$group['group']] as $scenario) {
 				$opacity = ($scenario->getIsActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
@@ -135,8 +155,12 @@ if (count($scenarios) == 0) {
 				echo '</div>';
 			}
 			echo '</div>';
+			echo '</div>';
+			echo '</div>';
+			echo '</div>';
 		}
 	}
+	echo '</div>';
 }
 ?>
 </div>
