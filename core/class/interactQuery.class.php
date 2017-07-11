@@ -426,10 +426,11 @@ class interactQuery {
 			$reply = self::dontUnderstand($_parameters);
 			log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . ".Je n'ai rien compris.J'ai répondu : " . $reply);
 		}
-		if (is_array($reply)) {
-			return $reply;
+		if (!is_array($reply)) {
+			$reply = array('reply' => ucfirst($reply));
 		}
-		return array('reply' => ucfirst($reply));
+		log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . ".Je réponds : " . print_r($reply, true));
+		return $reply;
 	}
 
 	public static function addLastInteract($_lastCmd, $_identifier = 'unknown') {
