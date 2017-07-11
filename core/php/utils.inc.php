@@ -188,7 +188,7 @@ function mySqlIsHere() {
 	return is_object(DB::getConnection());
 }
 
-function displayExeption(Exception $e) {
+function displayExeption($e) {
 	$message = '<span id="span_errorMessage">' . $e->getMessage() . '</span>';
 	if (DEBUG) {
 		$message .= '<a class="pull-right bt_errorShowTrace cursor">Show traces</a>';
@@ -1082,4 +1082,13 @@ function getSystemMemInfo() {
 		$meminfo[$info[0]] = trim($value[0]);
 	}
 	return $meminfo;
+}
+
+function strContain($_string, $_words) {
+	foreach ($_words as $word) {
+		if (strpos($_string, $word) !== false) {
+			return true;
+		}
+	}
+	return false;
 }

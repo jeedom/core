@@ -333,8 +333,39 @@ class interactQuery {
 		} catch (Exception $e) {
 			return array('reply' => __('Erreur : ', __FILE__) . $e->getMessage());
 		}
-
 		return null;
+	}
+
+	public static function warnMeInteract($_query, $_parameters = array()) {
+		if (!isset($_parameters['reply_cmd']) || !is_object($_parameters['reply_cmd'])) {
+			return null;
+		}
+		global $JEEDOM_INTERNAL_CONFIG;
+		$data = self::findInQuery('object', $_query);
+		$data = array_merge($data, self::findInQuery('eqLogic', $data['query'], $data));
+		$data = array_merge($data, self::findInQuery('cmd', $data['query'], $data));
+		if (!is_object($data['cmd']) || $data['cmd']->getType() == 'action') {
+			return null;
+		}
+		$operator = null;
+		$operand = null;
+		foreach ($JEEDOM_INTERNAL_CONFIG['interact']['test'] as $key => $value) {
+			if (strContain(strtolower(sanitizeAccent($_query)), $value)) {
+				$operator .= $key;
+				break;
+			}
+		}
+		preg_match_all('!\d+!', strtolower(sanitizeAccent($_query)), $matches);
+		if (isset($matches[0]) && isset($matches[0][0])) {
+			$operand = $matches[0][0];
+		}
+		if ($operand == null || $operator == null) {
+			return null;
+		}
+		$test = '#value# ' . $operator . ' ' . $operand;
+		$data['cmd']->setCache('warnMeCheck', $test);
+		$data['cmd']->setCache('warnMeCmd', $_parameters['reply_cmd']->getId());
+		return array('reply' => __('C\'est noté : ' . str_replace('#value#', $data['cmd']->getHumanName(), $test), __FILE__));
 	}
 
 	public static function tryToReply($_query, $_parameters = array()) {
@@ -359,6 +390,12 @@ class interactQuery {
 		$startContextual = explode(';', config::byKey('interact::contextual::startpriority'));
 		if (is_array($startContextual) && count($startContextual) > 0 && config::byKey('interact::contextual::enable') == 1 && isset($words[0]) && in_array(strtolower($words[0]), $startContextual)) {
 			$reply = self::contextualReply($_query, $_parameters);
+			log::add('interact', 'debug', 'Je cherche interaction contextuel (prioritaire) : ' . print_r($reply, true));
+		}
+		$startWarnMe = explode(';', config::byKey('interact::warnme::start'));
+		if (is_array($startWarnMe) && count($startWarnMe) > 0 && config::byKey('interact::warnme::enable') == 1 && strContain(strtolower(sanitizeAccent($_query)), $startWarnMe)) {
+			$reply = self::warnMeInteract($_query, $_parameters);
+			log::add('interact', 'debug', 'Je cherche interaction "previens-moi" : ' . print_r($reply, true));
 		}
 		if (config::byKey('interact::contextual::splitword') != '') {
 			$splitWords = explode(';', config::byKey('interact::contextual::splitword'));

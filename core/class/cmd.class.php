@@ -1154,6 +1154,7 @@ class cmd {
 		if (isset($level) && $level != $this->getCache('alertLevel')) {
 			$this->actionAlertLevel($level, $value);
 		}
+		$this->warnMeIf($value);
 		$this->pushUrl($value);
 	}
 
@@ -1326,6 +1327,27 @@ class cmd {
 		}
 		if ($prevAlert != $eqLogic->getAlert()) {
 			$eqLogic->refreshWidget();
+		}
+	}
+
+	public function warnMeIf($_value) {
+		$warnMeCheck = $this->getCache('warnMeCheck', '');
+		$warnMeCmd = $this->getCache('warnMeCmd', '');
+		if ($warnMeCheck == '' || $warnMeCmd == '') {
+			return;
+		}
+		$result = jeedom::evaluateExpression(str_replace('#value#', $_value, $warnMeCheck));
+		if ($result) {
+			$this->setCache('warnMeCheck', '');
+			$this->setCache('warnMeCmd', '');
+			$cmd = cmd::byId(str_replace('#', '', $warnMeCmd));
+			if (!is_object($cmd)) {
+				return;
+			}
+			$cmd->execCmd(array(
+				'title' => __('Alerte : ', __FILE__) . str_replace('#value#', $this->getHumanName(), $warnMeCheck) . __(' valeur : ', __FILE__) . $_value,
+				'message' => __('Alerte : ', __FILE__) . str_replace('#value#', $this->getHumanName(), $warnMeCheck) . __(' valeur : ', __FILE__) . $_value,
+			));
 		}
 	}
 

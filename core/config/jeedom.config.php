@@ -38,6 +38,13 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'mobile' => array('name' => 'Mobile'),
 		),
 	),
+	'interact' => array(
+		'test' => array(
+			'>' => array('superieur', '>', 'plus de', 'depasse'),
+			'<' => array('inferieur', '<', 'moins de', 'descends en dessous'),
+			'=' => array('egale', '=', 'vaut'),
+		),
+	),
 	'plugin' => array(
 		'category' => array(
 			'security' => array('name' => 'Sécurité', 'icon' => 'fa-lock'),
