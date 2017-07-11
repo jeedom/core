@@ -381,7 +381,7 @@ $('#div_viewZones').on('click','.bt_listEquipementInfo',function(){
 $('#div_viewZones').delegate('.bt_addViewGraph','click',function(){
     var el = $(this);
     jeedom.cmd.getSelectModal({cmd : {isHistorized : 1}}, function (result) {
-       el.closest('.viewZone').find('.div_viewData tbody').append( addGraphService({name : result.human,link_id : result.cmd.id,type : 'cmd'}));
+       el.closest('.viewZone').find('.div_viewData tbody').append(addGraphService({name : result.human.replace(/\#/g, ''),link_id : result.cmd.id,type : 'cmd'}));
    });
 });
 

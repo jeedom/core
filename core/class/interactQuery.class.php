@@ -416,18 +416,21 @@ class interactQuery {
 		}
 		if ($reply == '' && config::byKey('interact::autoreply::enable') == 1) {
 			$reply = self::autoInteract($_query, $_parameters);
+			log::add('interact', 'debug', 'Je cherche dans les interactions automatique, resultat : ' . $reply);
 		}
 		if ($reply == '' && config::byKey('interact::contextual::enable') == 1) {
 			$reply = self::contextualReply($_query, $_parameters);
+			log::add('interact', 'debug', 'Je cherche en réponse contextuel, resultat : ' . $reply);
 		}
 		if ($reply == '' && config::byKey('interact::noResponseIfEmpty', 'core', 0) == 0 && (!isset($_parameters['emptyReply']) || $_parameters['emptyReply'] == 0)) {
 			$reply = self::dontUnderstand($_parameters);
 			log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . ".Je n'ai rien compris.J'ai répondu : " . $reply);
 		}
-		if (is_array($reply)) {
-			return $reply;
+		if (!is_array($reply)) {
+			$reply = array('reply' => ucfirst($reply));
 		}
-		return array('reply' => ucfirst($reply));
+		log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . ".Je réponds : " . print_r($reply, true));
+		return $reply;
 	}
 
 	public static function addLastInteract($_lastCmd, $_identifier = 'unknown') {
