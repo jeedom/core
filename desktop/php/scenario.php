@@ -110,8 +110,8 @@ foreach ($scenarioListGroup as $group) {
 if (count($scenarios) == 0) {
 	echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun scénario. Cliquez sur ajouter un scénario pour commencer</span></center>";
 } else {
+	echo "<center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous avez " . count($totalScenario) . " scénario(s) dans " . count($scenarioListGroup) . " groupes</span></center>";
 	if (count($scenarios[-1]) > 0) {
-		echo "<center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous avez " . count($totalScenario) . " scénario(s) dans " . count($scenarioListGroup) . " groupes</span></center>";
 		echo '<div class="panel-group" id="accordionScenar">';
 		echo '<div class="panel panel-default">';
 		echo '<div class="panel-heading">';
@@ -135,15 +135,16 @@ if (count($scenarios) == 0) {
 		echo '</div>';
 		echo '</div>';
 	}
+	$i = 0;
 	foreach ($scenarioListGroup as $group) {
 		if ($group['group'] != '') {
 			echo '<div class="panel panel-default">';
 			echo '<div class="panel-heading">';
 			echo '<h3 class="panel-title">';
-			echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionScenar" href="#config_' . $group['group'] . '" style="text-decoration:none;">' . $group['group'] . ' - ' . count($scenarios[$group['group']]) . ' scénario(s)</a>';
+			echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionScenar" href="#config_' . $i . '" style="text-decoration:none;">' . $group['group'] . ' - ' . count($scenarios[$group['group']]) . ' scénario(s)</a>';
 			echo '</h3>';
 			echo '</div>';
-			echo '<div id="config_' . $group['group'] . '" class="panel-collapse collapse">';
+			echo '<div id="config_' . $i . '" class="panel-collapse collapse">';
 			echo '<div class="panel-body">';
 			echo '<div class="scenarioListContainer">';
 			foreach ($scenarios[$group['group']] as $scenario) {
@@ -159,6 +160,7 @@ if (count($scenarios) == 0) {
 			echo '</div>';
 			echo '</div>';
 		}
+		$i += 1;
 	}
 	echo '</div>';
 }
@@ -393,7 +395,6 @@ foreach (object::all() as $object) {
     </div>
 </div>
 </div>
-
 
 <?php
 include_file('desktop', 'scenario', 'js');

@@ -90,24 +90,26 @@ function loadObjectConfiguration(_id){
         },
         success: function (data) {
             $('.objectAttr').value('');
-            $('.objectAttr[data-l1key=display][data-l2key=tagColor]').value('#9b59b6');
-            $('.objectAttr[data-l1key=display][data-l2key=tagTextColor]').value('#ffffff');
             $('.objectAttr[data-l1key=father_id] option').show();
             $('#summarytab input[type=checkbox]').value(0);
             $('.object').setValues(data, '.objectAttr');
+            if(data['display'] == ''){
+                $('.objectAttr[data-l1key=display][data-l2key=tagColor]').value('#9b59b6');
+                $('.objectAttr[data-l1key=display][data-l2key=tagTextColor]').value('#ffffff');
+            }
             $('.objectAttr[data-l1key=father_id] option[value=' + data.id + ']').hide();
             $('.div_summary').empty();
-			$('.tabnumber').empty();
+            $('.tabnumber').empty();
             if (isset(data.configuration) && isset(data.configuration.summary)) {
-				for(var i in data.configuration.summary){
+                for(var i in data.configuration.summary){
                     var el = $('.type'+i);
                     if(el != undefined){
                         for(var j in data.configuration.summary[i]){
-							addSummaryInfo(el,data.configuration.summary[i][j]);
+                            addSummaryInfo(el,data.configuration.summary[i][j]);
                         }
-						if (data.configuration.summary[i].length != 0){
-							$('.summarytabnumber'+i).append('(' + data.configuration.summary[i].length + ')');
-						}
+                        if (data.configuration.summary[i].length != 0){
+                            $('.summarytabnumber'+i).append('(' + data.configuration.summary[i].length + ')');
+                        }
                     }
 
                 }
