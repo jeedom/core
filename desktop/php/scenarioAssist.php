@@ -31,9 +31,9 @@ if (is_array($scenarioListGroup)) {
 	?>
                        <li data-jstree='{"opened":false}'>
                             <?php
-							echo '<a>Aucune - '  . count($scenarios[-1]).' scénario(s)</a>';
-							echo '<ul>';
-foreach ($scenarios[-1] as $scenario) {
+echo '<a>Aucune - ' . count($scenarios[-1]) . ' scénario(s)</a>';
+	echo '<ul>';
+	foreach ($scenarios[-1] as $scenario) {
 		echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
 		echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-scenario_id="' . $scenario->getId() . '" title="{{Scénario ID :}} ' . $scenario->getId() . ' ' . $scenario->getDescription() . '">' . $scenario->getHumanName(false, true) . '</a>';
 		echo '</li>';
@@ -45,7 +45,7 @@ foreach ($scenarios[-1] as $scenario) {
 foreach ($scenarioListGroup as $group) {
 	if ($group['group'] != '') {
 		echo '<li data-jstree=\'{"opened":false}\'>';
-		echo '<a>' . $group['group'] . ' - ' . count($scenarios[$group['group']]) .' scénario(s)</a>';
+		echo '<a>' . $group['group'] . ' - ' . count($scenarios[$group['group']]) . ' scénario(s)</a>';
 		echo '<ul>';
 		foreach ($scenarios[$group['group']] as $scenario) {
 			echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
@@ -118,12 +118,12 @@ if (count($scenarios) == 0) {
 	echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun scénario. Cliquez sur ajouter un scénario pour commencer</span></center>";
 } else {
 	if (count($scenarios[-1]) > 0) {
-		echo "<center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous avez " . count($totalScenario) . " scénario(s) dans " . count($scenarioListGroup)  . " groupes</span></center>";
+		echo "<center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous avez " . count($totalScenario) . " scénario(s) dans " . count($scenarioListGroup) . " groupes</span></center>";
 		echo '<div class="panel-group" id="accordionScenar">';
 		echo '<div class="panel panel-default">';
 		echo '<div class="panel-heading">';
 		echo '<h3 class="panel-title">';
-		echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionScenar" href="#config_aucun" style="text-decoration:none;">Aucun - ' . count($scenarios[-1]) .' scénario(s)</a>';
+		echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionScenar" href="#config_aucun" style="text-decoration:none;">Aucun - ' . count($scenarios[-1]) . ' scénario(s)</a>';
 		echo '</h3>';
 		echo '</div>';
 		echo '<div id="config_aucun" class="panel-collapse collapse">';
@@ -147,7 +147,7 @@ if (count($scenarios) == 0) {
 			echo '<div class="panel panel-default">';
 			echo '<div class="panel-heading">';
 			echo '<h3 class="panel-title">';
-			echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionScenar" href="#config_' . $group['group'] . '" style="text-decoration:none;">' . $group['group'] . ' - ' . count($scenarios[$group['group']]) .' scénario(s)</a>';
+			echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionScenar" href="#config_' . $group['group'] . '" style="text-decoration:none;">' . $group['group'] . ' - ' . count($scenarios[$group['group']]) . ' scénario(s)</a>';
 			echo '</h3>';
 			echo '</div>';
 			echo '<div id="config_' . $group['group'] . '" class="panel-collapse collapse">';
