@@ -1332,7 +1332,7 @@ class cmd {
 
 	public function warnMeIf($_value) {
 		$warnMeCheck = $this->getCache('warnMeCheck', '');
-		$warnMeCmd = $this->getCache('warnMeCmd', '');
+		$warnMeCmd = $this->getCache('warnMeCmd', config::byKey('interact::warnme::defaultreturncmd'));
 		if ($warnMeCheck == '' || $warnMeCmd == '') {
 			return;
 		}

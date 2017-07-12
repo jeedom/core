@@ -925,6 +925,18 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 									</div>
 
 									<div class="form-group">
+										<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commande de retour par défaut}}</label>
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+											<div class="input-group">
+												<input type="text"  class="configKey form-control" data-l1key="interact::warnme::defaultreturncmd" />
+												<span class="input-group-btn">
+													<a class="btn btn-default cursor bt_selectWarnMeCmd" title="Rechercher une commande"><i class="fa fa-list-alt"></i></a>
+												</span>
+											</div>
+										</div>
+									</div>
+
+									<div class="form-group">
 										<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonyme pour les objets}}</label>
 										<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
 											<input class="configKey form-control" data-l1key="interact::autoreply::object::synonym" />
