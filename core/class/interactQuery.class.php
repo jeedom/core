@@ -341,12 +341,6 @@ class interactQuery {
 			return null;
 		}
 		global $JEEDOM_INTERNAL_CONFIG;
-		$data = self::findInQuery('object', $_query);
-		$data = array_merge($data, self::findInQuery('eqLogic', $data['query'], $data));
-		$data = array_merge($data, self::findInQuery('cmd', $data['query'], $data));
-		if (!is_object($data['cmd']) || $data['cmd']->getType() == 'action') {
-			return null;
-		}
 		$operator = null;
 		$operand = null;
 		foreach ($JEEDOM_INTERNAL_CONFIG['interact']['test'] as $key => $value) {
@@ -363,9 +357,32 @@ class interactQuery {
 			return null;
 		}
 		$test = '#value# ' . $operator . ' ' . $operand;
+
+		$data = self::findInQuery('object', $_query);
+		$data = array_merge($data, self::findInQuery('eqLogic', $data['query'], $data));
+		$data = array_merge($data, self::findInQuery('cmd', $data['query'], $data));
+
+		if (!is_object($data['cmd'])) {
+			$data = array_merge($data, self::findInQuery('summary', $data['query'], $data));
+			if (!isset($data['summary'])) {
+				return null;
+			}
+			$value = '';
+			if (is_object($data['object'])) {
+				$data['object']->setCache('warnMeCheck::' . $data['summary']['key'], $test);
+				$data['object']->setCache('warnMeCmd::' . $data['summary']['key'], $_parameters['reply_cmd']->getId());
+			} else {
+				cache::set('warnMeCheck::' . $_key, $test);
+				cache::set('warnMeCmd::' . $_key, $_parameters['reply_cmd']->getId());
+			}
+			return array('reply' => __('C\'est noté pour le résumé : ', __FILE__) . $data['summary']['name']);
+		}
+		if ($data['cmd']->getType() == 'action') {
+			return null;
+		}
 		$data['cmd']->setCache('warnMeCheck', $test);
 		$data['cmd']->setCache('warnMeCmd', $_parameters['reply_cmd']->getId());
-		return array('reply' => __('C\'est noté : ' . str_replace('#value#', $data['cmd']->getHumanName(), $test), __FILE__));
+		return array('reply' => __('C\'est noté : ', __FILE__) . str_replace('#value#', $data['cmd']->getHumanName(), $test));
 	}
 
 	public static function tryToReply($_query, $_parameters = array()) {

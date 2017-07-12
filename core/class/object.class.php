@@ -167,6 +167,7 @@ class object {
 		if (count($toRefreshCmd) > 0) {
 			foreach ($toRefreshCmd as $value) {
 				try {
+					$object->warnMeIf($value['key'], $object->getSummary($value['key']));
 					if ($object->getConfiguration('summary_virtual_id') == '') {
 						continue;
 					}
@@ -194,6 +195,7 @@ class object {
 					if ($result === null) {
 						continue;
 					}
+					object::warnMeGlobalIf($value['key'], $result);
 					$event['keys'][$key] = array('value' => $result);
 					$virtual = eqLogic::byLogicalId('summaryglobal', 'virtual');
 					if (!is_object($virtual)) {
@@ -401,7 +403,49 @@ class object {
 		}
 	}
 
+	public static function warnMeGlobalIf($_key, $_value) {
+		$warnMeCheck = cache::byKey('warnMeCheck::' . $_key, '');
+		$warnMeCmd = cache::byKey('warnMeCmd::' . $_key, config::byKey('interact::warnme::defaultreturncmd'));
+		if ($warnMeCheck == '' || $warnMeCmd == '') {
+			return;
+		}
+		$result = jeedom::evaluateExpression(str_replace('#value#', $_value, $warnMeCheck));
+		if ($result) {
+			cache::set('warnMeCheck::' . $_key, '');
+			cache::set('warnMeCmd::' . $_key, '');
+			$cmd = cmd::byId(str_replace('#', '', $warnMeCmd));
+			if (!is_object($cmd)) {
+				return;
+			}
+			$cmd->execCmd(array(
+				'title' => __('Alerte : ', __FILE__) . str_replace('#value#', $this->getHumanName(), $warnMeCheck) . __(' valeur : ', __FILE__) . $_value,
+				'message' => __('Alerte : ', __FILE__) . str_replace('#value#', $this->getHumanName(), $warnMeCheck) . __(' valeur : ', __FILE__) . $_value,
+			));
+		}
+	}
+
 	/*     * *********************Méthodes d'instance************************* */
+
+	public function warnMeIf($_key, $_value) {
+		$warnMeCheck = $this->getCache('warnMeCheck::' . $_key, '');
+		$warnMeCmd = $this->getCache('warnMeCmd::' . $_key, config::byKey('interact::warnme::defaultreturncmd'));
+		if ($warnMeCheck == '' || $warnMeCmd == '') {
+			return;
+		}
+		$result = jeedom::evaluateExpression(str_replace('#value#', $_value, $warnMeCheck));
+		if ($result) {
+			$this->setCache('warnMeCheck::' . $_key, '');
+			$this->setCache('warnMeCmd::' . $_key, '');
+			$cmd = cmd::byId(str_replace('#', '', $warnMeCmd));
+			if (!is_object($cmd)) {
+				return;
+			}
+			$cmd->execCmd(array(
+				'title' => __('Alerte : ', __FILE__) . str_replace('#value#', $this->getHumanName(), $warnMeCheck) . __(' valeur : ', __FILE__) . $_value,
+				'message' => __('Alerte : ', __FILE__) . str_replace('#value#', $this->getHumanName(), $warnMeCheck) . __(' valeur : ', __FILE__) . $_value,
+			));
+		}
+	}
 
 	public function checkTreeConsistency($_fathers = array()) {
 		$father = $this->getFather();
@@ -705,6 +749,14 @@ class object {
 	public function setDisplay($_key, $_value) {
 		$this->display = utils::setJsonAttr($this->display, $_key, $_value);
 		return $this;
+	}
+
+	public function getCache($_key = '', $_default = '') {
+		return utils::getJsonAttr(cache::byKey('objectCacheAttr' . $this->getId())->getValue(), $_key, $_default);
+	}
+
+	public function setCache($_key, $_value = null) {
+		cache::set('objectCacheAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('objectCacheAttr' . $this->getId())->getValue(), $_key, $_value));
 	}
 
 }
