@@ -267,8 +267,10 @@ class interactQuery {
 			$_parameters['identifier'] = '';
 		}
 		$data = self::findInQuery('object', $_query);
-		$data = array_merge($data, self::findInQuery('eqLogic', $data['query'], $data));
-		$data = array_merge($data, self::findInQuery('cmd', $data['query'], $data));
+		if (strpos(strtolower(sanitizeAccent($_query)), 'global') === false) {
+			$data = array_merge($data, self::findInQuery('eqLogic', $data['query'], $data));
+			$data = array_merge($data, self::findInQuery('cmd', $data['query'], $data));
+		}
 		if (!is_object($data['cmd'])) {
 			$data = array_merge($data, self::findInQuery('summary', $data['query'], $data));
 			if (!isset($data['summary'])) {
@@ -359,23 +361,26 @@ class interactQuery {
 		$test = '#value# ' . $operator . ' ' . $operand;
 
 		$data = self::findInQuery('object', $_query);
-		$data = array_merge($data, self::findInQuery('eqLogic', $data['query'], $data));
-		$data = array_merge($data, self::findInQuery('cmd', $data['query'], $data));
+		if (strpos(strtolower(sanitizeAccent($_query)), 'global') === false) {
+			$data = array_merge($data, self::findInQuery('eqLogic', $data['query'], $data));
+			$data = array_merge($data, self::findInQuery('cmd', $data['query'], $data));
+		}
 
-		if (!is_object($data['cmd'])) {
+		if (!is_object($data['cmd']) || strpos(strtolower(sanitizeAccent($_query)), 'global') !== false) {
 			$data = array_merge($data, self::findInQuery('summary', $data['query'], $data));
 			if (!isset($data['summary'])) {
 				return null;
 			}
-			$value = '';
 			if (is_object($data['object'])) {
 				$data['object']->setCache('warnMeCheck::' . $data['summary']['key'], $test);
 				$data['object']->setCache('warnMeCmd::' . $data['summary']['key'], $_parameters['reply_cmd']->getId());
+				return array('reply' => __('C\'est noté pour le résumé d\'object : ', __FILE__) . $data['object']->getName() . ' ' . $data['summary']['name']);
 			} else {
 				cache::set('warnMeCheck::' . $_key, $test);
 				cache::set('warnMeCmd::' . $_key, $_parameters['reply_cmd']->getId());
+				return array('reply' => __('C\'est noté pour le résumé global : ', __FILE__) . $data['summary']['name']);
 			}
-			return array('reply' => __('C\'est noté pour le résumé : ', __FILE__) . $data['summary']['name']);
+			return null;
 		}
 		if ($data['cmd']->getType() == 'action') {
 			return null;

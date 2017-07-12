@@ -404,9 +404,10 @@ class object {
 	}
 
 	public static function warnMeGlobalIf($_key, $_value) {
-		$warnMeCheck = cache::byKey('warnMeCheck::' . $_key, '');
-		$warnMeCmd = cache::byKey('warnMeCmd::' . $_key, config::byKey('interact::warnme::defaultreturncmd'));
+		$warnMeCheck = cache::byKey('warnMeCheck::' . $_key)->getValue('');
+		$warnMeCmd = cache::byKey('warnMeCmd::' . $_key)->getValue(config::byKey('interact::warnme::defaultreturncmd'));
 		if ($warnMeCheck == '' || $warnMeCmd == '') {
+			echo 'no action';
 			return;
 		}
 		$result = jeedom::evaluateExpression(str_replace('#value#', $_value, $warnMeCheck));
