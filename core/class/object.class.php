@@ -195,7 +195,7 @@ class object {
 					if ($result === null) {
 						continue;
 					}
-					object::warnMeGlobalIf($value['key'], $result);
+					object::warnMeGlobalIf($key, $result);
 					$event['keys'][$key] = array('value' => $result);
 					$virtual = eqLogic::byLogicalId('summaryglobal', 'virtual');
 					if (!is_object($virtual)) {
@@ -418,9 +418,13 @@ class object {
 			if (!is_object($cmd)) {
 				return;
 			}
+			$def = config::byKey('object:summary');
+			if ($_key == '' || !isset($def[$_key])) {
+				return;
+			}
 			$cmd->execCmd(array(
-				'title' => __('Alerte : ', __FILE__) . str_replace('#value#', $this->getHumanName(), $warnMeCheck) . __(' valeur : ', __FILE__) . $_value,
-				'message' => __('Alerte : ', __FILE__) . str_replace('#value#', $this->getHumanName(), $warnMeCheck) . __(' valeur : ', __FILE__) . $_value,
+				'title' => __('Alerte : ', __FILE__) . str_replace('#value#', $def[$_key]['name'] . ' global(e) ', $warnMeCheck) . __(' valeur : ', __FILE__) . $_value,
+				'message' => __('Alerte : ', __FILE__) . str_replace('#value#', $def[$_key]['name'] . ' global(e) ', $warnMeCheck) . __(' valeur : ', __FILE__) . $_value,
 			));
 		}
 	}
@@ -434,6 +438,7 @@ class object {
 			return;
 		}
 		$result = jeedom::evaluateExpression(str_replace('#value#', $_value, $warnMeCheck));
+		var_dump($result);
 		if ($result) {
 			$this->setCache('warnMeCheck::' . $_key, '');
 			$this->setCache('warnMeCmd::' . $_key, '');
@@ -441,9 +446,13 @@ class object {
 			if (!is_object($cmd)) {
 				return;
 			}
+			$def = config::byKey('object:summary');
+			if ($_key == '' || !isset($def[$_key])) {
+				return;
+			}
 			$cmd->execCmd(array(
-				'title' => __('Alerte : ', __FILE__) . str_replace('#value#', $this->getHumanName(), $warnMeCheck) . __(' valeur : ', __FILE__) . $_value,
-				'message' => __('Alerte : ', __FILE__) . str_replace('#value#', $this->getHumanName(), $warnMeCheck) . __(' valeur : ', __FILE__) . $_value,
+				'title' => __('Alerte : ', __FILE__) . str_replace('#value#', $def[$_key]['name'] . ' global(e) ', $warnMeCheck) . __(' valeur : ', __FILE__) . $_value,
+				'message' => __('Alerte : ', __FILE__) . str_replace('#value#', $def[$_key]['name'] . ' global(e) ', $warnMeCheck) . __(' valeur : ', __FILE__) . $_value,
 			));
 		}
 	}

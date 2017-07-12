@@ -271,7 +271,7 @@ class interactQuery {
 			$data = array_merge($data, self::findInQuery('eqLogic', $data['query'], $data));
 			$data = array_merge($data, self::findInQuery('cmd', $data['query'], $data));
 		}
-		if (!is_object($data['cmd'])) {
+		if (!isset($data['cmd']) || !is_object($data['cmd'])) {
 			$data = array_merge($data, self::findInQuery('summary', $data['query'], $data));
 			if (!isset($data['summary'])) {
 				return '';
@@ -339,9 +339,6 @@ class interactQuery {
 	}
 
 	public static function warnMeInteract($_query, $_parameters = array()) {
-		if (!isset($_parameters['reply_cmd']) || !is_object($_parameters['reply_cmd'])) {
-			return null;
-		}
 		global $JEEDOM_INTERNAL_CONFIG;
 		$operator = null;
 		$operand = null;
@@ -366,7 +363,7 @@ class interactQuery {
 			$data = array_merge($data, self::findInQuery('cmd', $data['query'], $data));
 		}
 
-		if (!is_object($data['cmd']) || strpos(strtolower(sanitizeAccent($_query)), 'global') !== false) {
+		if (!isset($data['cmd']) || !is_object($data['cmd'])) {
 			$data = array_merge($data, self::findInQuery('summary', $data['query'], $data));
 			if (!isset($data['summary'])) {
 				return null;
@@ -376,8 +373,10 @@ class interactQuery {
 				$data['object']->setCache('warnMeCmd::' . $data['summary']['key'], $_parameters['reply_cmd']->getId());
 				return array('reply' => __('C\'est noté pour le résumé d\'object : ', __FILE__) . $data['object']->getName() . ' ' . $data['summary']['name']);
 			} else {
-				cache::set('warnMeCheck::' . $_key, $test);
-				cache::set('warnMeCmd::' . $_key, $_parameters['reply_cmd']->getId());
+				cache::set('warnMeCheck::' . $data['summary']['key'], $test);
+				if (is_object($_parameters['reply_cmd'])) {
+					cache::set('warnMeCmd::' . $_key, $_parameters['reply_cmd']->getId());
+				}
 				return array('reply' => __('C\'est noté pour le résumé global : ', __FILE__) . $data['summary']['name']);
 			}
 			return null;
@@ -386,7 +385,9 @@ class interactQuery {
 			return null;
 		}
 		$data['cmd']->setCache('warnMeCheck', $test);
-		$data['cmd']->setCache('warnMeCmd', $_parameters['reply_cmd']->getId());
+		if (is_object($_parameters['reply_cmd'])) {
+			$data['cmd']->setCache('warnMeCmd', $_parameters['reply_cmd']->getId());
+		}
 		return array('reply' => __('C\'est noté : ', __FILE__) . str_replace('#value#', $data['cmd']->getHumanName(), $test));
 	}
 
