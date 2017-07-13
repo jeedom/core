@@ -102,12 +102,14 @@ try {
 		$listener->setClass('interactQuery');
 		$listener->setFunction('warnMeExecute');
 		$listener->addEvent($cmd->getId());
-		$listener->setOption(array(
+		$options = array(
 			'type' => 'cmd',
 			'cmd_id' => $cmd->getId(),
 			'name' => $cmd->getHumanName(),
 			'test' => init('test'),
-		));
+			'reply_cmd' => init('reply_cmd', $_SESSION['user']->getOptions('notification::cmd')),
+		);
+		$listener->setOption($options);
 		$listener->save(true);
 		ajax::success();
 	}

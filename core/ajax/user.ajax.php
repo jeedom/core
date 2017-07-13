@@ -141,7 +141,7 @@ try {
 	}
 
 	if (init('action') == 'saveProfils') {
-		$user_json = json_decode(init('profils'), true);
+		$user_json = jeedom::fromHumanReadable(json_decode(init('profils'), true));
 		if (isset($user_json['id']) && $user_json['id'] != $_SESSION['user']->getId()) {
 			throw new Exception('401 unautorized');
 		}
@@ -161,7 +161,7 @@ try {
 	}
 
 	if (init('action') == 'get') {
-		ajax::success(utils::o2a($_SESSION['user']));
+		ajax::success(jeedom::toHumanReadable(utils::o2a($_SESSION['user'])));
 	}
 
 	if (init('action') == 'testLdapConnection') {

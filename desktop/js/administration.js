@@ -247,7 +247,7 @@
 
  $('.bt_selectWarnMeCmd').on('click', function () {
     jeedom.cmd.getSelectModal({cmd: {type: 'action', subType: 'message'}}, function (result) {
-        $('.configKey[data-l1key="interact::warnme::defaultreturncmd"]').atCaret('insert', result.human);
+        $('.configKey[data-l1key="interact::warnme::defaultreturncmd"]').value(result.human);
     });
 });
 

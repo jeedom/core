@@ -281,7 +281,7 @@ foreach (planHeader::all() as $plan) {
   <div class="panel-heading">
     <h3 class="panel-title">
       <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_other">
-        <i class="icon securite-key1"></i>  {{Sécurité}}
+        <i class="icon securite-key1"></i>  {{Sécurité & notifications}}
       </a>
     </h3>
   </div>
@@ -328,6 +328,18 @@ if ($_SESSION['user']->getOptions('twoFactorAuthentification', 0) == 1) {
           </div>
           <div class="col-lg-2 col-md-3 col-sm-3">
             <a class="btn btn-default form-control" id="bt_genUserKeyAPI"><i class="fa fa-refresh"></i> {{Regénérer}}</a>
+          </div>
+        </div>
+
+        <div class="form-group expertModeVisible">
+          <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commande de notification utilisateur}}</label>
+          <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+            <div class="input-group">
+              <input type="text" class="userAttr form-control" data-l1key="options" data-l2key="notification::cmd" />
+              <span class="input-group-btn">
+                <a class="btn btn-default cursor bt_selectWarnMeCmd" title="Rechercher une commande"><i class="fa fa-list-alt"></i></a>
+              </span>
+            </div>
           </div>
         </div>
 
