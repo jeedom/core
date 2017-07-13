@@ -12,8 +12,6 @@ $(document).ajaxStop(function () {
     }
 });
 
-
-
 $(function () {
     MESSAGE_NUMBER = null;
     CURRENT_PAGE='home';
@@ -40,6 +38,12 @@ $(function () {
        panel(false);
        page('equipment', 'Résumé', $(this).data('object_id')+':'+$(this).data('summary'));
    });
+
+    $('body').on('taphold','.cmd[data-type=info]',function(){
+        $('#bottompanel_mainoption').empty();
+        $('#bottompanel_mainoption').append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="history" data-title="{{Historique}}" data-option="'+$(this).data('cmd_id')+'"><i class="fa fa-bar-chart"></i> {{Historique}}</a>');
+        $('#bottompanel_mainoption').panel('open');
+    });
 
     var webappCache = window.applicationCache;
 
@@ -190,6 +194,7 @@ function page(_page, _title, _option, _plugin,_dialog) {
     $.showLoading();
     try {
      $('#bottompanel').panel('close');
+     $('#bottompanel_mainoption').panel('close');
      $('.ui-popup').popup('close');
  } catch (e) {
 

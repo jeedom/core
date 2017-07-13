@@ -13,6 +13,7 @@
 * Ajout des interactions de type "previens moi si"
 * Revu de la page d'acceuil des scénarios
 * Ajout d'un historique de commande pour les commandes SQL ou système dans l'interface de jeedom
+* Possibilité d'avoir les graphiques d'historique des commandes en mobile (par appui long sur la commande)
 
 == 3.0.11
 
