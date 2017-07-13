@@ -43,6 +43,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'>' => array('superieur', '>', 'plus de', 'depasse'),
 			'<' => array('inferieur', '<', 'moins de', 'descends en dessous'),
 			'=' => array('egale', '=', 'vaut'),
+			'!=' => array('different'),
 		),
 		'global_summary' => array('global'),
 	),

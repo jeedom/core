@@ -66,6 +66,8 @@ try {
 		ajax::success($return);
 	}
 
+	ajax::init(true);
+
 	if (init('action') == 'getDocumentationUrl') {
 		$plugin = null;
 		if (init('plugin') != '' || init('plugin') == 'false') {
@@ -91,11 +93,28 @@ try {
 		throw new Exception(__('Aucune documentation trouvée', __FILE__), -1234);
 	}
 
+	if (init('action') == 'addWarnme') {
+		$cmd = cmd::byId(init('cmd_id'));
+		if (!is_object($cmd)) {
+			throw new Exception(__('Commande non trouvée : ', __FILE__) . init('cmd_id'));
+		}
+		$listener = new listener();
+		$listener->setClass('interactQuery');
+		$listener->setFunction('warnMeExecute');
+		$listener->addEvent($cmd->getId());
+		$listener->setOption(array(
+			'type' => 'cmd',
+			'cmd_id' => $cmd->getId(),
+			'name' => $cmd->getHumanName(),
+			'test' => init('test'),
+		));
+		$listener->save(true);
+		ajax::success();
+	}
+
 	if (!isConnect('admin')) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
 	}
-
-	ajax::init(true);
 
 	if (init('action') == 'ssh') {
 		$command = init('command');

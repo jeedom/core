@@ -156,6 +156,14 @@ foreach (plugin::listPlugin(true) as $plugin) {
 			}
 			echo 'index.php?v=m&ajax=1&p=' . substr($file, 0, -5) . '&m=' . $plugin->getId() . "\n";
 		}
+		foreach (ls(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/mobile/modal', '*.html') as $file) {
+			echo "\n";
+			if (file_exists(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/mobile/modal/' . $file)) {
+				echo '#' . md5_file(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/mobile/modal/' . $file);
+				echo "\n";
+			}
+			echo 'index.php?v=m&ajax=1&modal=' . substr($file, 0, -5) . '&m=' . $plugin->getId() . "\n";
+		}
 	}
 }
 
@@ -195,6 +203,16 @@ foreach (ls('mobile/html', '*.html') as $file) {
 		echo "\n";
 	}
 	echo 'index.php?v=m&ajax=1&p=' . substr($file, 0, -5);
+	echo "\n";
+}
+
+foreach (ls('mobile/modal', '*.html') as $file) {
+	echo "\n";
+	if (file_exists(dirname(__FILE__) . '/mobile/modal/' . $file)) {
+		echo '#' . md5_file(dirname(__FILE__) . '/mobile/modal/' . $file);
+		echo "\n";
+	}
+	echo 'index.php?v=m&ajax=1&modal=' . substr($file, 0, -5);
 	echo "\n";
 }
 

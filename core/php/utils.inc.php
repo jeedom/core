@@ -30,6 +30,7 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 			'repo' => array('/repo', '.repo.php', 'php'),
 			'config' => array('/config', '.config.php', 'php'),
 			'modal' => array('/modal', '.php', 'php'),
+			'modalhtml' => array('/modal', '.html', 'php'),
 			'php' => array('/php', '.php', 'php'),
 			'css' => array('/css', '.css', 'css'),
 			'js' => array('/js', '.js', 'js'),
@@ -51,7 +52,7 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 	}
 	$path = dirname(__FILE__) . '/../../' . $_folder . '/' . $_fn;
 	if (!file_exists($path)) {
-		throw new Exception('File not found : ' . $_fn, 35486);
+		throw new Exception('File not found : ' . $path, 35486);
 	}
 	if ($type == 'php') {
 		if ($_type != 'class') {

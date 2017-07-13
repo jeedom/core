@@ -36,14 +36,27 @@ $(function () {
     $('body').on('click','.objectSummaryParent',function(){
        modal(false);
        panel(false);
-       page('equipment', 'Résumé', $(this).data('object_id')+':'+$(this).data('summary'));
+       page('equipment', '{{Résumé}}', $(this).data('object_id')+':'+$(this).data('summary'));
    });
 
     $('body').on('taphold','.cmd[data-type=info]',function(){
         $('#bottompanel_mainoption').empty();
         $('#bottompanel_mainoption').append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="history" data-title="{{Historique}}" data-option="'+$(this).data('cmd_id')+'"><i class="fa fa-bar-chart"></i> {{Historique}}</a>');
-        $('#bottompanel_mainoption').append('<a class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button"><i class="fa fa-bell"></i> {{Préviens moi}}</a>');
+        $('#bottompanel_mainoption').append('<a class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" id="bt_warnmeCmd" data-cmd_id="'+$(this).data('cmd_id')+'"><i class="fa fa-bell"></i> {{Préviens moi}}</a>');
         $('#bottompanel_mainoption').panel('open');
+    });
+
+    $('body').on('click','#bt_warnmeCmd',function(){
+        var cmd_id = $(this).data('cmd_id')
+        $('#popupDialog .nd-title').empty().text('{{Me prévenir si}}');
+        $('#popupDialog .content').empty();
+        $('#popupDialog .content').append('');
+        $('#popupDialog').width(deviceInfo.width*0.6) 
+        $('#popupDialog .content').load('index.php?v=m&ajax=1&modal=warnme', function () {
+            $('#in_mdwarnme_cmd_id').value(cmd_id);
+            $('#popupDialog .content').trigger('create');
+            $('#popupDialog').popup('open');   
+        });
     });
 
     var webappCache = window.applicationCache;

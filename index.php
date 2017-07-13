@@ -82,7 +82,7 @@ try {
 		$_plugin = '';
 		if (isset($_GET['modal'])) {
 			$_fn = init('modal');
-			$_type = 'modal';
+			$_type = 'modalhtml';
 			$_plugin = init('plugin');
 		} elseif (isset($_GET['p']) && isset($_GET['ajax'])) {
 			$_fn = $_GET['p'];

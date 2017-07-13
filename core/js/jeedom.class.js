@@ -455,10 +455,6 @@ jeedom.getGraphData = function(_params) {
         return;
     }
     var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    if (isset(jeedom.object.cache.all)) {
-        params.success(jeedom.object.cache.all);
-        return;
-    }
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
     paramsAJAX.data = {
@@ -480,16 +476,33 @@ jeedom.getDocumentationUrl = function (_params) {
         return;
     }
     var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    if (isset(jeedom.object.cache.all)) {
-        params.success(jeedom.object.cache.all);
-        return;
-    }
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
     paramsAJAX.data = {
         action: 'getDocumentationUrl',
         plugin: params.plugin || null,
         page: params.page || null,
+    };
+    $.ajax(paramsAJAX);
+};
+
+
+jeedom.addWarnme = function(_params) {
+    var paramsRequired = [];
+    var paramsSpecifics = {};
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+    paramsAJAX.data = {
+        action: 'addWarnme',
+        cmd_id: params.cmd_id,
+        test: params.test,
     };
     $.ajax(paramsAJAX);
 };
