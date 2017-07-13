@@ -289,3 +289,8 @@ function addSummaryInfo(_el, _summary) {
     _el.find('.div_summary').append(div);
     _el.find('.summary:last').setValues(_summary, '.summaryAttr');
 }
+
+$('.bt_showObjectSummary').off('click').on('click', function () {
+  $('#md_modal').dialog({title: "{{Résumé objet}}"});
+  $("#md_modal").load('index.php?v=d&modal=object.summary').dialog('open');
+});

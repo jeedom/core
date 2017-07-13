@@ -30,15 +30,26 @@ foreach ($allObject as $object) {
  </div>
 
  <div class="col-lg-10 col-md-10 col-sm-9" id="div_resumeObjectList" style="border-left: solid 1px #EEE; padding-left: 25px;">
-   <legend><i class="fa fa-picture-o"></i>  {{Mes objets}}</legend>
-   <div class="objectListContainer">
-     <div class="cursor" id="bt_addObject2" style="background-color : #ffffff; height : 160px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+   <legend><i class="fa fa-cog"></i>  {{Gestion}}</legend>
+  <div class="objectListContainer">
+   <div class="cursor" id="bt_addObject2" style="background-color : #ffffff; height : 160px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
        <br/>
        <center style='margin-top:-14px;'>
          <i class="fa fa-plus-circle" style="font-size : 6em;color:#94ca02;margin-top:5px;"></i>
        </center>
        <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>Ajouter</center></span>
-     </div>
+   </div>
+  <div class="cursor expertModeVisible bt_showObjectSummary" style="text-align: center; background-color : #ffffff; height : 160px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+        <br/>
+       <center style='margin-top:-14px;'>
+	   <i class="fa fa-list" style="font-size : 6em;color:#337ab7;margin-top:5px;"></i>
+        </center>
+        <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7">{{Vue d'ensemble}}</span>
+    </div>
+</div>
+   
+   <legend><i class="fa fa-picture-o"></i>  {{Mes objets}}</legend>
+   <div class="objectListContainer">
      <?php
 foreach ($allObject as $object) {
 	echo '<div class="objectDisplayCard cursor" data-object_id="' . $object->getId() . '" data-object_name="' . $object->getName() . '" data-object_icon=\'' . $object->getDisplay('icon', '<i class="fa fa-lemon-o"></i>') . '\' style="background-color : #ffffff; height : 160px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
