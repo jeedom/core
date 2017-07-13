@@ -49,7 +49,7 @@
     $.ajax(paramsAJAX);
 }
 
- jeedom.history.copyHistoryToCmd = function (_params) {
+jeedom.history.copyHistoryToCmd = function (_params) {
     var paramsRequired = ['source_id', 'target_id'];
     var paramsSpecifics = {};
     try {
@@ -176,9 +176,9 @@ jeedom.history.drawChart = function (_params) {
       }
       if(charts.height < 10){
         charts.height = null;
-      }
+    }
 
-      if(isset(_params.transparentBackground) && _params.transparentBackground == "1"){
+    if(isset(_params.transparentBackground) && _params.transparentBackground == "1"){
         charts.backgroundColor = 'rgba(255, 255, 255, 0)';
     }
 
@@ -415,10 +415,18 @@ jeedom.history.drawChart = function (_params) {
     if (jeedom.history.chart[_params.el].color > 9) {
         jeedom.history.chart[_params.el].color = 0;
     }
-    $.hideLoading();
-    if (typeof (init(_params.success)) == 'function') {
-        _params.success(data.result);
-    }
+
+    var extremes = jeedom.history.chart[_params.el].chart.xAxis[0].getExtremes();
+    var plotband = jeedom.history.generatePlotBand(extremes.min,extremes.max);
+    for(var i in plotband){
+       console.log(plotband[i]);
+       jeedom.history.chart[_params.el].chart.xAxis[0].addPlotBand(plotband[i]);   
+   }
+
+   $.hideLoading();
+   if (typeof (init(_params.success)) == 'function') {
+    _params.success(data.result);
+}
 }
 });
 }
@@ -427,8 +435,8 @@ jeedom.history.drawChart = function (_params) {
 
 jeedom.history.generatePlotBand = function (_startTime, _endTime) {
     var plotBands = [];
-    var pas = 43200000;
-    var offset = 14400000; //Debut du jour - 4 (soit 20h)
+    var pas = 86400000;
+    var offset = 0; //Debut du jour - 4 (soit 20h)
     _startTime = (Math.floor(_startTime / 86400000) * 86400000) - offset;
     while (_startTime < _endTime) {
         var plotBand = {};
