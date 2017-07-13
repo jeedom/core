@@ -12,7 +12,6 @@ if (!isConnect('admin')) {
  <div class="col-lg-2 col-md-3 col-sm-4" style="overflow-y:auto;overflow-x:hidden;">
   <div class="bs-sidebar">
    <ul class="nav nav-list bs-sidenav list-group" id='ul_listSqlHistory'></ul>
-
    <ul class="nav nav-list bs-sidenav list-group" id='ul_listSqlRequest'>
     <li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
     <li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="SHOW TABLES;">Tables</a></li>
@@ -110,8 +109,6 @@ if (!isConnect('admin')) {
       if (kids.length >= 10) {
         kids.last().remove();
       }
-
-
     }
   })
 });
