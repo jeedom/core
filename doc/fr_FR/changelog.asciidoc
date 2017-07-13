@@ -14,6 +14,8 @@
 * Revu de la page d'acceuil des scénarios
 * Ajout d'un historique de commande pour les commandes SQL ou système dans l'interface de jeedom
 * Possibilité d'avoir les graphiques d'historique des commandes en mobile (par appui long sur la commande)
+* Ajout de l'avance de l'update de l'application mobile 
+* Reprise en cas d'erreur de mise à jour de l'application mobile
 
 == 3.0.11
 

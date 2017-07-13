@@ -42,6 +42,7 @@ $(function () {
     $('body').on('taphold','.cmd[data-type=info]',function(){
         $('#bottompanel_mainoption').empty();
         $('#bottompanel_mainoption').append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="history" data-title="{{Historique}}" data-option="'+$(this).data('cmd_id')+'"><i class="fa fa-bar-chart"></i> {{Historique}}</a>');
+        $('#bottompanel_mainoption').append('<a class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button"><i class="fa fa-bell"></i> {{Préviens moi}}</a>');
         $('#bottompanel_mainoption').panel('open');
     });
 
@@ -49,26 +50,35 @@ $(function () {
 
     function updateCacheEvent(e) {
         if (webappCache.status == 3) {
+            $('#div_updateInProgress').html('<p>Mise à jour de l\'application en cours<br/><span id="span_updateAdvancement">0</span>%</p>');
             $('#div_updateInProgress').show();
         } else if (e.type == 'updateready') {
             webappCache.swapCache();
             window.location.reload();
         }
+        if (e.type == 'progress') {
+           var progress = Math.round((e.loaded/e.total)*100 * 100) / 100
+           $('#span_updateAdvancement').text(progress);
+       }
+       if (e.type == 'error') {
+        $('#div_updateInProgress').html('<p>{{Erreur lors de la mise à jour}}<br/>{{Nouvelle tentative dans 5s}}</p>');
+        setTimeout(function(){ webappCache.update(); }, 5000);
     }
-    
-    webappCache.addEventListener('cached', updateCacheEvent, false);
-    webappCache.addEventListener('checking', updateCacheEvent, false);
-    webappCache.addEventListener('downloading', updateCacheEvent, false);
-    webappCache.addEventListener('error', updateCacheEvent, false);
-    webappCache.addEventListener('noupdate', updateCacheEvent, false);
-    webappCache.addEventListener('obsolete', updateCacheEvent, false);
-    webappCache.addEventListener('progress', updateCacheEvent, false);
-    webappCache.addEventListener('updateready', updateCacheEvent, false);
-    try{
-        webappCache.update();
-    }catch (e) {
+}
 
-    }
+webappCache.addEventListener('cached', updateCacheEvent, false);
+webappCache.addEventListener('checking', updateCacheEvent, false);
+webappCache.addEventListener('downloading', updateCacheEvent, false);
+webappCache.addEventListener('error', updateCacheEvent, false);
+webappCache.addEventListener('noupdate', updateCacheEvent, false);
+webappCache.addEventListener('obsolete', updateCacheEvent, false);
+webappCache.addEventListener('progress', updateCacheEvent, false);
+webappCache.addEventListener('updateready', updateCacheEvent, false);
+try{
+    webappCache.update();
+}catch (e) {
+
+}
 });
 
 function isset() {
