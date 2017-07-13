@@ -47,7 +47,7 @@ foreach ($allObject as $object) {
         <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7">{{Vue d'ensemble}}</span>
     </div>
 </div>
-   
+
    <legend><i class="fa fa-picture-o"></i>  {{Mes objets}}</legend>
    <div class="objectListContainer">
      <?php
