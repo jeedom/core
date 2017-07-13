@@ -64,7 +64,7 @@
         "Erreur : Aucun rapport généré": "Error: report not generated",
         "Génération du rapport ": "Generating report",
         "[jeedom] Rapport ": "[jeedom] Rapport",
-        "Veuillez trouver ci-joint le rapport ": "Veuillez trouver ci-joint le rapport",
+        "Veuillez trouver ci-joint le rapport ": "Please find enclosed the report",
         " du ": "of",
         " généré le ": "generated on",
         "Aucune durée trouvée pour l'action sleep ou la durée n'est pas valide : ": "No duration found or invalid duration for the sleep avtion",
@@ -1000,7 +1000,7 @@
     "__FILE": {
         "[jeedom] Rapport ": "[jeedom] Rapport",
         " du ": "of",
-        "Veuillez trouver ci-joint le rapport ": "Veuillez trouver ci-joint le rapport",
+        "Veuillez trouver ci-joint le rapport ": "Please find enclosed the report",
         " généré le ": "generated on"
     },
     "desktop/php/view_edit.php": {
