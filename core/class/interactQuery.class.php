@@ -338,7 +338,7 @@ class interactQuery {
 		return null;
 	}
 
-	public static function warnMeInteract($_query, $_parameters = array()) {
+	public static function warnMe($_query, $_parameters = array()) {
 		global $JEEDOM_INTERNAL_CONFIG;
 		$operator = null;
 		$operand = null;
@@ -356,39 +356,71 @@ class interactQuery {
 			return null;
 		}
 		$test = '#value# ' . $operator . ' ' . $operand;
-
+		$options = array('test' => $test);
+		if (is_object($_parameters['reply_cmd'])) {
+			$options['reply_cmd'] = $_parameters['reply_cmd']->getId();
+		}
+		$listener = new listener();
+		$listener->setClass('interactQuery');
+		$listener->setFunction('warnMeExecute');
 		$data = self::findInQuery('object', $_query);
 		if (strpos(strtolower(sanitizeAccent($_query)), 'global') === false) {
 			$data = array_merge($data, self::findInQuery('eqLogic', $data['query'], $data));
 			$data = array_merge($data, self::findInQuery('cmd', $data['query'], $data));
 		}
-
 		if (!isset($data['cmd']) || !is_object($data['cmd'])) {
 			$data = array_merge($data, self::findInQuery('summary', $data['query'], $data));
 			if (!isset($data['summary'])) {
 				return null;
 			}
+			$options['type'] = 'summary';
 			if (is_object($data['object'])) {
-				$data['object']->setCache('warnMeCheck::' . $data['summary']['key'], $test);
-				$data['object']->setCache('warnMeCmd::' . $data['summary']['key'], $_parameters['reply_cmd']->getId());
+				$options['name'] = $data['summary']['name'] . ' ' . $data['object']->getName();
+				$listener->addEvent($data['object']->getId() . '::' . $data['summary']['key'], 'summary');
+				$listener->setOption($options);
+				$listener->save(true);
 				return array('reply' => __('C\'est noté pour le résumé d\'object : ', __FILE__) . $data['object']->getName() . ' ' . $data['summary']['name']);
 			} else {
-				cache::set('warnMeCheck::' . $data['summary']['key'], $test);
-				if (is_object($_parameters['reply_cmd'])) {
-					cache::set('warnMeCmd::' . $_key, $_parameters['reply_cmd']->getId());
-				}
+				$options['name'] = $data['summary']['name'] . ' global(e)';
+				$listener->addEvent('global::' . $data['summary']['key'], 'summary');
+				$listener->setOption($options);
+				$listener->save(true);
 				return array('reply' => __('C\'est noté pour le résumé global : ', __FILE__) . $data['summary']['name']);
 			}
 			return null;
+		} else {
+			if ($data['cmd']->getType() == 'action') {
+				return null;
+			}
+			$options['type'] = 'cmd';
+			$options['cmd_id'] = $data['cmd']->getId();
+			$options['name'] = $data['cmd']->getHumanName();
+			$listener->addEvent($data['cmd']->getId());
+			$listener->setOption($options);
+			$listener->save(true);
+			return array('reply' => __('C\'est noté : ', __FILE__) . str_replace('#value#', $data['cmd']->getHumanName(), $test));
 		}
-		if ($data['cmd']->getType() == 'action') {
-			return null;
+		return null;
+	}
+
+	public static function warnMeExecute($_options) {
+		$warnMeCmd = (isset($_options['reply_cmd'])) ? $_options['reply_cmd'] : config::byKey('interact::warnme::defaultreturncmd');
+		if (!isset($_options['test']) || $_options['test'] == '' || $warnMeCmd == '') {
+			listener::byId($_options['listener_id'])->remove();
+			return;
 		}
-		$data['cmd']->setCache('warnMeCheck', $test);
-		if (is_object($_parameters['reply_cmd'])) {
-			$data['cmd']->setCache('warnMeCmd', $_parameters['reply_cmd']->getId());
+		$result = jeedom::evaluateExpression(str_replace('#value#', $_options['value'], $_options['test']));
+		if ($result) {
+			listener::byId($_options['listener_id'])->remove();
+			$cmd = cmd::byId(str_replace('#', '', $warnMeCmd));
+			if (!is_object($cmd)) {
+				return;
+			}
+			$cmd->execCmd(array(
+				'title' => __('Alerte : ', __FILE__) . str_replace('#value#', $_options['name'], $_options['test']) . __(' valeur : ', __FILE__) . $_options['value'],
+				'message' => __('Alerte : ', __FILE__) . str_replace('#value#', $_options['name'], $_options['test']) . __(' valeur : ', __FILE__) . $_options['value'],
+			));
 		}
-		return array('reply' => __('C\'est noté : ', __FILE__) . str_replace('#value#', $data['cmd']->getHumanName(), $test));
 	}
 
 	public static function tryToReply($_query, $_parameters = array()) {
@@ -417,7 +449,7 @@ class interactQuery {
 		}
 		$startWarnMe = explode(';', config::byKey('interact::warnme::start'));
 		if (is_array($startWarnMe) && count($startWarnMe) > 0 && config::byKey('interact::warnme::enable') == 1 && strContain(strtolower(sanitizeAccent($_query)), $startWarnMe)) {
-			$reply = self::warnMeInteract($_query, $_parameters);
+			$reply = self::warnMe($_query, $_parameters);
 			log::add('interact', 'debug', 'Je cherche interaction "previens-moi" : ' . print_r($reply, true));
 		}
 		if (config::byKey('interact::contextual::splitword') != '') {

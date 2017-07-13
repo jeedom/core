@@ -153,8 +153,9 @@ class object {
 					preg_match_all("/#([0-9]*)#/", $cmd_info['cmd'], $matches);
 					foreach ($matches[1] as $cmd_id) {
 						if ($cmd_id == $_cmd_id) {
-							$event['keys'][$key] = array('value' => $object->getSummary($key));
-							$toRefreshCmd[] = array('key' => $key, 'object' => $object);
+							$value = $object->getSummary($key);
+							$event['keys'][$key] = array('value' => $value);
+							$toRefreshCmd[] = array('key' => $key, 'object' => $object, 'value' => $value);
 							if ($object->getConfiguration('summary::global::' . $key, 0) == 1) {
 								$global[$key] = 1;
 							}
@@ -167,7 +168,7 @@ class object {
 		if (count($toRefreshCmd) > 0) {
 			foreach ($toRefreshCmd as $value) {
 				try {
-					$object->warnMeIf($value['key'], $object->getSummary($value['key']));
+					listener::check('#summary::' . $value['object']->getId() . '::' . $value['key'] . '#', $value['value']);
 					if ($object->getConfiguration('summary_virtual_id') == '') {
 						continue;
 					}
@@ -181,7 +182,7 @@ class object {
 					if (!is_object($cmd)) {
 						continue;
 					}
-					$cmd->event($object->getSummary($value['key']));
+					$cmd->event($value['value']);
 				} catch (Exception $e) {
 
 				}
@@ -195,7 +196,7 @@ class object {
 					if ($result === null) {
 						continue;
 					}
-					object::warnMeGlobalIf($key, $result);
+					listener::check('#summary::global::' . $key . '#', $result);
 					$event['keys'][$key] = array('value' => $result);
 					$virtual = eqLogic::byLogicalId('summaryglobal', 'virtual');
 					if (!is_object($virtual)) {
@@ -403,58 +404,7 @@ class object {
 		}
 	}
 
-	public static function warnMeGlobalIf($_key, $_value) {
-		$warnMeCheck = cache::byKey('warnMeCheck::' . $_key)->getValue('');
-		$warnMeCmd = cache::byKey('warnMeCmd::' . $_key)->getValue(config::byKey('interact::warnme::defaultreturncmd'));
-		if ($warnMeCheck == '' || $warnMeCmd == '') {
-			return;
-		}
-		$result = jeedom::evaluateExpression(str_replace('#value#', $_value, $warnMeCheck));
-		if ($result) {
-			cache::set('warnMeCheck::' . $_key, '');
-			cache::set('warnMeCmd::' . $_key, '');
-			$cmd = cmd::byId(str_replace('#', '', $warnMeCmd));
-			if (!is_object($cmd)) {
-				return;
-			}
-			$def = config::byKey('object:summary');
-			if ($_key == '' || !isset($def[$_key])) {
-				return;
-			}
-			$cmd->execCmd(array(
-				'title' => __('Alerte : ', __FILE__) . str_replace('#value#', $def[$_key]['name'] . ' global(e) ', $warnMeCheck) . __(' valeur : ', __FILE__) . $_value,
-				'message' => __('Alerte : ', __FILE__) . str_replace('#value#', $def[$_key]['name'] . ' global(e) ', $warnMeCheck) . __(' valeur : ', __FILE__) . $_value,
-			));
-		}
-	}
-
 	/*     * *********************Méthodes d'instance************************* */
-
-	public function warnMeIf($_key, $_value) {
-		$warnMeCheck = $this->getCache('warnMeCheck::' . $_key, '');
-		$warnMeCmd = $this->getCache('warnMeCmd::' . $_key, config::byKey('interact::warnme::defaultreturncmd'));
-		if ($warnMeCheck == '' || $warnMeCmd == '') {
-			return;
-		}
-		$result = jeedom::evaluateExpression(str_replace('#value#', $_value, $warnMeCheck));
-		var_dump($result);
-		if ($result) {
-			$this->setCache('warnMeCheck::' . $_key, '');
-			$this->setCache('warnMeCmd::' . $_key, '');
-			$cmd = cmd::byId(str_replace('#', '', $warnMeCmd));
-			if (!is_object($cmd)) {
-				return;
-			}
-			$def = config::byKey('object:summary');
-			if ($_key == '' || !isset($def[$_key])) {
-				return;
-			}
-			$cmd->execCmd(array(
-				'title' => __('Alerte : ', __FILE__) . str_replace('#value#', $def[$_key]['name'] . ' global(e) ', $warnMeCheck) . __(' valeur : ', __FILE__) . $_value,
-				'message' => __('Alerte : ', __FILE__) . str_replace('#value#', $def[$_key]['name'] . ' global(e) ', $warnMeCheck) . __(' valeur : ', __FILE__) . $_value,
-			));
-		}
-	}
 
 	public function checkTreeConsistency($_fathers = array()) {
 		$father = $this->getFather();

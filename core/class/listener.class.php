@@ -73,6 +73,33 @@ class listener {
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
+	public static function byClassFunctionAndEvent($_class, $_function, $_event) {
+		$value = array(
+			'class' => $_class,
+			'function' => $_function,
+			'event' => $_event,
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+                FROM listener
+                WHERE class=:class
+                    AND function=:function
+                    AND event=:event';
+		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+	}
+
+	public static function removeByClassFunctionAndEvent($_class, $_function, $_event) {
+		$value = array(
+			'class' => $_class,
+			'function' => $_function,
+			'event' => $_event,
+		);
+		$sql = 'DELETE FROM listener
+                WHERE class=:class
+                    AND function=:function
+                    AND event=:event';
+		DB::Prepare($sql, $value, DB::FETCH_TYPE_ROW);
+	}
+
 	public static function searchEvent($_event) {
 		if (strpos($_event, '#') !== false) {
 			$value = array(
@@ -135,6 +162,7 @@ class listener {
 			}
 			$option['event_id'] = $_event;
 			$option['value'] = $_value;
+			$option['listener_id'] = $this->getId();
 			if ($this->getClass() != '') {
 				$class = $this->getClass();
 				$function = $this->getFunction();
@@ -165,7 +193,10 @@ class listener {
 		}
 	}
 
-	public function save() {
+	public function save($_once = false) {
+		if ($_once) {
+			self::removeByClassFunctionAndEvent($this->getClass(), $this->getFunction(), $this->event);
+		}
 		return DB::save($this);
 	}
 
@@ -180,15 +211,12 @@ class listener {
 	public function addEvent($_id, $_type = 'cmd') {
 		$event = $this->getEvent();
 		if ($_type == 'cmd') {
-			if (strpos($_id, '#') !== false) {
-				if (!in_array($_id, $event)) {
-					$event[] = $_id;
-				}
-			} else {
-				if (!in_array('#' . $_id . '#', $event)) {
-					$event[] = '#' . $_id . '#';
-				}
-			}
+			$id = str_replace('#', '', $_id);
+		} else if ($_type == 'summary') {
+			$id = 'summary::' . $_id;
+		}
+		if (!in_array('#' . $id . '#', $event)) {
+			$event[] = '#' . $id . '#';
 		}
 		$this->setEvent($event);
 	}
