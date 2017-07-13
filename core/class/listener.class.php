@@ -210,6 +210,9 @@ class listener {
 
 	public function addEvent($_id, $_type = 'cmd') {
 		$event = $this->getEvent();
+		if (!is_array($event)) {
+			$event = array();
+		}
 		if ($_type == 'cmd') {
 			$id = str_replace('#', '', $_id);
 		} else if ($_type == 'summary') {
