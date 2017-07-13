@@ -7,15 +7,14 @@ if (!isConnect()) {
 <table class="table table-bordered table-condensed" id="table_ObjectSummary">
 	<thead>
 		<tr>
-			<th>{{ID}}</th>
-			<th>{{Objet}}</th>
-			<th>{{Père}}</th>
-			<th>{{Visible}}</th>
-			<th>{{Masqué}}</th>
-			<th>{{Résumé Global}}</th>
-			<th>{{Résumé Défini}}</th>
-			<th>{{Résumé Dashboard Masqué}}</th>
-			<th>{{Résumé Mobile Masqué}}</th>
+			<th style="cursor:default">{{ID}}</th>
+			<th style="cursor:default">{{Objet}}</th>
+			<th style="cursor:default">{{Père}}</th>
+			<th style="cursor:default">{{Visible}}</th>
+			<th style="cursor:default">{{Masqué}}</th>
+			<th style="cursor:default">{{Résumé Défini}} <sup style="cursor:default" title="Si grisé alors pas remonté en résumé global">?</th>
+			<th style="cursor:default">{{Résumé Dashboard Masqué}}</th>
+			<th style="cursor:default">{{Résumé Mobile Masqué}}</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -42,29 +41,26 @@ foreach ($allObject as $object) {
 	}
 	echo '<td>';
 	foreach (config::byKey('object:summary') as $key => $value) {
-		if ($object->getConfiguration('summary::global::' . $key) == 1){
-			echo '<a style="cursor:default;" title="' . $value['name'] . '">' . $value['icon'] . '</a>  ';
-		}
-	}
-	echo '</td>';
-	echo '<td>';
-	foreach (config::byKey('object:summary') as $key => $value) {
 		if (count($object->getConfiguration('summary')[$key]) >0){
-			echo '<a style="cursor:default;" title="' . $value['name'] . '">' . $value['icon'] . '<sup> ' . count($object->getConfiguration('summary')[$key]). '</sup></a>  ';
+			if ($object->getConfiguration('summary::global::' . $key) == 1){
+				echo '<a style="cursor:default;text-decoration:none;" title="' . $value['name'] . '">' . $value['icon'] . '<sup> ' . count($object->getConfiguration('summary')[$key]). '</sup></a>  ';
+			}else {
+				echo '<a style="cursor:default;color:grey;text-decoration:none;" title="' . $value['name'] . '">' . $value['icon'] . '<sup> ' . count($object->getConfiguration('summary')[$key]). '</sup></a>  ';
+			}
 		}
 	}
 	echo '</td>';
 	echo '<td>';
 	foreach (config::byKey('object:summary') as $key => $value) {
 		if ($object->getConfiguration('summary::hide::desktop::' . $key) == 1){
-			echo '<a style="cursor:default;" title="' . $value['name'] . '">' . $value['icon'] . '</a>  ';
+			echo '<a style="cursor:default;text-decoration:none;" title="' . $value['name'] . '">' . $value['icon'] . '</a>  ';
 		}
 	}
 	echo '</td>';
 	echo '<td>';
 	foreach (config::byKey('object:summary') as $key => $value) {
 		if ($object->getConfiguration('summary::hide::mobile::' . $key) == 1){
-			echo '<a style="cursor:default;" title="' . $value['name'] . '">' . $value['icon'] . '</a>  ';
+			echo '<a style="cursor:default;text-decoration:none;" title="' . $value['name'] . '">' . $value['icon'] . '</a>  ';
 		}
 	}
 	echo '</td>';
@@ -72,13 +68,3 @@ foreach ($allObject as $object) {
 ?>
 	</tbody>
 </table>
-
-<script>
-				$('.bt_summaryGotoObject').off().on('click',function(){
-					var tr = $(this).closest('tr');
-					window.location.href = 'index.php?v=d&p=ObjectAssist&id='+tr.attr('data-id');
-				});
-			}
-		});
-}
-</script>
