@@ -10,7 +10,9 @@
 * Un double clic sur un noeud sur le graphique de lien (sauf pour les variables) amène sur sa page de configuration
 * Possibilitée de mettre le texte à gauche/droit/au centre sur les designs pour les élements de type texte/vue/design
 * Ajout des résumé d'objet sur la dashboard (liste des objets à gauche)
-* Ajout des interactions de type "previens moi si" (attention les plugins doivent les gerer)
+* Ajout des interactions de type "previens moi si"
+* Revu de la page d'acceuil des scénarios
+* Ajout d'un historique de commande pour les commandes SQL ou système dans l'interface de jeedom
 
 == 3.0.11
 
