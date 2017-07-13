@@ -87,7 +87,7 @@ class listener {
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function removeByClassFunctionAndEvent($_class, $_function, $_event) {
+	public static function removeByClassFunctionAndEvent($_class, $_function, $_event, $_option = '') {
 		$value = array(
 			'class' => $_class,
 			'function' => $_function,
@@ -97,6 +97,11 @@ class listener {
                 WHERE class=:class
                     AND function=:function
                     AND event=:event';
+		if ($_option != '') {
+			$_option = json_encode($_option, JSON_UNESCAPED_UNICODE);
+			$value['option'] = $_option;
+			$sql .= ' AND `option`=:option';
+		}
 		DB::Prepare($sql, $value, DB::FETCH_TYPE_ROW);
 	}
 
@@ -195,7 +200,7 @@ class listener {
 
 	public function save($_once = false) {
 		if ($_once) {
-			self::removeByClassFunctionAndEvent($this->getClass(), $this->getFunction(), $this->event);
+			self::removeByClassFunctionAndEvent($this->getClass(), $this->getFunction(), $this->event, $this->getOption());
 		}
 		return DB::save($this);
 	}
