@@ -263,11 +263,12 @@ class interactQuery {
 	}
 
 	public static function autoInteract($_query, $_parameters = array()) {
+		global $JEEDOM_INTERNAL_CONFIG;
 		if (!isset($_parameters['identifier'])) {
 			$_parameters['identifier'] = '';
 		}
 		$data = self::findInQuery('object', $_query);
-		if (strpos(strtolower(sanitizeAccent($_query)), 'global') === false) {
+		if (!strContain(strtolower(sanitizeAccent($_query)), $JEEDOM_INTERNAL_CONFIG['interact']['global_summary'])) {
 			$data = array_merge($data, self::findInQuery('eqLogic', $data['query'], $data));
 			$data = array_merge($data, self::findInQuery('cmd', $data['query'], $data));
 		}
@@ -364,7 +365,7 @@ class interactQuery {
 		$listener->setClass('interactQuery');
 		$listener->setFunction('warnMeExecute');
 		$data = self::findInQuery('object', $_query);
-		if (strpos(strtolower(sanitizeAccent($_query)), 'global') === false) {
+		if (!strContain(strtolower(sanitizeAccent($_query)), $JEEDOM_INTERNAL_CONFIG['interact']['global_summary'])) {
 			$data = array_merge($data, self::findInQuery('eqLogic', $data['query'], $data));
 			$data = array_merge($data, self::findInQuery('cmd', $data['query'], $data));
 		}

@@ -44,6 +44,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'<' => array('inferieur', '<', 'moins de', 'descends en dessous'),
 			'=' => array('egale', '=', 'vaut'),
 		),
+		'global_summary' => array('global'),
 	),
 	'plugin' => array(
 		'category' => array(
