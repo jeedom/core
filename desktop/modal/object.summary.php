@@ -50,7 +50,7 @@ foreach ($allObject as $object) {
 	echo '<td>';
 	foreach (config::byKey('object:summary') as $key => $value) {
 		if (count($object->getConfiguration('summary')[$key]) >0){
-			echo '<a style="cursor:default;" title="' . $value['name'] . '">' . $value['icon'] . '</a>  ';
+			echo '<a style="cursor:default;" title="' . $value['name'] . '">' . $value['icon'] . '<sup> ' . count($object->getConfiguration('summary')[$key]). '</sup></a>  ';
 		}
 	}
 	echo '</td>';
