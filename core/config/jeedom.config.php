@@ -168,6 +168,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'BRIGHTNESS' => array('name' => 'Luminosité', 'family' => 'Generic', 'type' => 'Info'),
 			'PRESENCE' => array('name' => 'Présence', 'family' => 'Generic', 'type' => 'Info'),
 			'BATTERY' => array('name' => 'Batterie', 'family' => 'Generic', 'type' => 'Info', 'ignore' => true),
+			'BATTERY_CHARGING' => array('name' => 'Batterie en charge', 'family' => 'Generic', 'type' => 'Info', 'ignore' => true),
 			'SMOKE' => array('name' => 'Détection de fumée', 'family' => 'Generic', 'type' => 'Info'),
 			'FLOOD' => array('name' => 'Inondation', 'family' => 'Generic', 'type' => 'Info'),
 			'HUMIDITY' => array('name' => 'Humidité', 'family' => 'Generic', 'type' => 'Info'),
