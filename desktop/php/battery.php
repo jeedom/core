@@ -213,6 +213,7 @@ foreach (object::deadCmd() as $datas) {
 	echo '<td>' . $datas['help'] . '</td>';
 	echo '</tr>';
 }
+#interactions/scénarios/vues/designs/plugins
 ?>
 					</tbody>
 				</table>
