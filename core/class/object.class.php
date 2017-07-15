@@ -134,6 +134,20 @@ class object {
 		WHERE `configuration` LIKE :configuration';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
+	
+	public static function deadCmd() {
+		$return = array();
+		foreach (object::all() as $object) {
+			foreach ($object->getConfiguration('summary','') as $key => $summary) {
+				foreach ($summary as $cmdInfo){
+					if (!cmd::byId(str_replace('#','',$cmdInfo['cmd']))){
+						$return[]= array('detail' => 'Résumé ' . $object->getName(),'help' => config::byKey('object:summary')[$key]['name'],'who'=>$cmdInfo['cmd']);
+					}
+				}
+			}
+		}
+		return $return;
+	}
 
 	public static function checkSummaryUpdate($_cmd_id) {
 		$objects = self::searchConfiguration('#' . $_cmd_id . '#');

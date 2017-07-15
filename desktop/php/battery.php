@@ -205,6 +205,14 @@ foreach (cmd::deadCmd() as $datas) {
 	echo '<td>' . $datas['help'] . '</td>';
 	echo '</tr>';
 }
+foreach (object::deadCmd() as $datas) {
+	echo '<tr>';
+	echo '<td>Résumé</td>';
+	echo '<td>' . $datas['detail'] . '</td>';
+	echo '<td>' . $datas['who'] . '</td>';
+	echo '<td>' . $datas['help'] . '</td>';
+	echo '</tr>';
+}
 ?>
 					</tbody>
 				</table>
