@@ -166,6 +166,15 @@ foreach (eqLogic::all() as $eqLogic) {
 			echo '</td>';
 			echo '</tr>';
 		}
+		if ($cmd->getConfiguration('actionCodeAccess') && !$cmd->getConfiguration('actionConfirm')) {
+			echo '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '" style="text-decoration: none;">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Confirmation}}' . $code . '</td><td>';
+			echo 'Code de confirmation de l\'action';
+			echo '</td>';
+			echo '<td>';
+			echo '<a class="btn btn-default btn-xs cmdAction expertModeVisible pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fa fa-cogs"></i></a>';
+			echo '</td>';
+			echo '</tr>';
+		}
 	}
 }
 ?>
