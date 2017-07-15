@@ -214,6 +214,18 @@ foreach (object::deadCmd() as $datas) {
 	echo '</tr>';
 }
 #interactions/scénarios/vues/designs/plugins
+foreach (plugin::listPlugin(true) as $plugin) {
+	if (method_exists($plugin->getId(), 'deadCmd')) {
+		foreach ($plugin->getId()::deadCmd() as $datas) {
+			echo '<tr>';
+			echo '<td>Plugin ' . $plugin->getName() . '</td>';
+			echo '<td>' . $datas['detail'] . '</td>';
+			echo '<td>' . $datas['who'] . '</td>';
+			echo '<td>' . $datas['help'] . '</td>';
+			echo '</tr>';
+		}
+	}
+}
 ?>
 					</tbody>
 				</table>
