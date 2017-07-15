@@ -345,7 +345,8 @@ class scenario {
 	/**
 	 *
 	 */
-	public static function consystencyCheck() {
+	public static function consystencyCheck($_needsReturn = false) {
+		$return = array();
 		foreach (self::all() as $scenario) {
 			if ($scenario->getIsActive() != 1) {
 				continue;
@@ -358,7 +359,11 @@ class scenario {
 				preg_match_all("/#([0-9]*)#/", $trigger_list, $matches);
 				foreach ($matches[1] as $cmd_id) {
 					if (is_numeric($cmd_id)) {
-						log::add('scenario', 'error', __('Un déclencheur du scénario : ', __FILE__) . $scenario->getHumanName() . __(' est introuvable', __FILE__));
+						if ($_needsReturn){
+							$return[]= array('detail' => 'Scénario ' . $scenario->getHumanName(),'help' => 'Déclencheur du scénario','who'=>'#' . $cmd_id . '#');
+						} else {
+							log::add('scenario', 'error', __('Un déclencheur du scénario : ', __FILE__) . $scenario->getHumanName() . __(' est introuvable', __FILE__));
+						}
 					}
 				}
 			}
@@ -378,9 +383,16 @@ class scenario {
 			preg_match_all("/#([0-9]*)#/", $expression_list, $matches);
 			foreach ($matches[1] as $cmd_id) {
 				if (is_numeric($cmd_id)) {
-					log::add('scenario', 'error', __('Une commande du scénario : ', __FILE__) . $scenario->getHumanName() . __(' est introuvable', __FILE__));
+					if ($_needsReturn){
+						$return[]= array('detail' => 'Scénario ' . $scenario->getHumanName(),'help' => 'Utilisé dans le scénario','who'=>'#' . $cmd_id . '#');
+					} else {
+						log::add('scenario', 'error', __('Une commande du scénario : ', __FILE__) . $scenario->getHumanName() . __(' est introuvable', __FILE__));
+					}
 				}
 			}
+		}
+		if ($_needsReturn){
+			return $return;
 		}
 	}
 

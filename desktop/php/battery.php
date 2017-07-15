@@ -213,7 +213,15 @@ foreach (object::deadCmd() as $datas) {
 	echo '<td>' . $datas['help'] . '</td>';
 	echo '</tr>';
 }
-#interactions/scénarios/vues/designs
+foreach (scenario::consystencyCheck(true) as $datas) {
+	echo '<tr>';
+	echo '<td>Scénario</td>';
+	echo '<td>' . $datas['detail'] . '</td>';
+	echo '<td>' . $datas['who'] . '</td>';
+	echo '<td>' . $datas['help'] . '</td>';
+	echo '</tr>';
+}
+#interactions/vues/designs
 foreach (plugin::listPlugin(true) as $plugin) {
 	if (method_exists($plugin->getId(), 'deadCmd')) {
 		foreach ($plugin->getId()::deadCmd() as $datas) {
