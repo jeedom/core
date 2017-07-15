@@ -177,7 +177,7 @@ foreach (eqLogic::all() as $eqLogic) {
 			<div role="tabpanel" class="tab-pane" id="deadCmd">
 			<br/>
 			<div class="cmdListContainer">
-				<table class="table table-condensed tablesorter" id="table_Action">
+				<table class="table table-condensed tablesorter" id="table_deadCmd">
 					<thead>
 						<tr>
 							<th>{{Type}}</th>
