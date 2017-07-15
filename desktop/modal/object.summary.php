@@ -41,11 +41,19 @@ foreach ($allObject as $object) {
 	}
 	echo '<td>';
 	foreach (config::byKey('object:summary') as $key => $value) {
+		$title = '';
+		foreach ($object->getConfiguration('summary')[$key] as $summary) {
+			if (cmd::byId(str_replace('#','',$summary['cmd']))){
+				$title .= '&#10;' . cmd::byId(str_replace('#','',$summary['cmd']))->getHumanName();
+			} else {
+				$title .= '&#10;' . $summary['cmd'];
+			}
+		}
 		if (count($object->getConfiguration('summary')[$key]) > 0) {
 			if ($object->getConfiguration('summary::global::' . $key) == 1) {
-				echo '<a style="cursor:default;text-decoration:none;" title="' . $value['name'] . '">' . $value['icon'] . '<sup> ' . count($object->getConfiguration('summary')[$key]) . '</sup></a>  ';
+				echo '<a style="cursor:default;text-decoration:none;" title="' . $value['name'] . $title . '">' . $value['icon'] . '<sup> ' . count($object->getConfiguration('summary')[$key]) . '</sup></a>  ';
 			} else {
-				echo '<a style="cursor:default;color:grey;text-decoration:none;" title="' . $value['name'] . '">' . $value['icon'] . '<sup> ' . count($object->getConfiguration('summary')[$key]) . '</sup></a>  ';
+				echo '<a style="cursor:default;color:grey;text-decoration:none;" title="' . $value['name'] . $title .'">' . $value['icon'] . '<sup> ' . count($object->getConfiguration('summary')[$key]) . '</sup></a>  ';
 			}
 		}
 	}
