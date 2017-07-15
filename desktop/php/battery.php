@@ -223,8 +223,9 @@ foreach (scenario::consystencyCheck(true) as $datas) {
 }
 #interactions/vues/designs
 foreach (plugin::listPlugin(true) as $plugin) {
-	if (method_exists($plugin->getId(), 'deadCmd')) {
-		foreach ($plugin->getId()::deadCmd() as $datas) {
+	$plugin_id = $plugin->getId();
+	if (method_exists($plugin_id, 'deadCmd')) {
+		foreach ($plugin_id::deadCmd() as $datas) {
 			echo '<tr>';
 			echo '<td>Plugin ' . $plugin->getName() . '</td>';
 			echo '<td>' . $datas['detail'] . '</td>';
