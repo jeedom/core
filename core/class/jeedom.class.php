@@ -18,7 +18,7 @@
 
 /* * ***************************Includes********************************* */
 require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
-
+global $JEEDOM_INTERNAL_CONFIG;
 class jeedom {
 	/*     * *************************Attributs****************************** */
 
@@ -31,25 +31,25 @@ class jeedom {
 		$cmd = config::byKey('interact::warnme::defaultreturncmd', 'core', '');
 		if ($cmd != '') {
 			if (!cmd::byId(str_replace('#','',$cmd))){
-				$return[]= array('where' => 'Administration','help' => 'Commande retour interactions','who'=>$cmd);
+				$return[]= array('detail' => 'Administration','help' => 'Commande retour interactions','who'=>$cmd);
 			}
 		}
 		$cmd = config::byKey('emailAdmin', 'core', '');
 		if ($cmd != '') {
 			if (!cmd::byId(str_replace('#','',$cmd))){
-				$return[]= array('where' => 'Administration','help' => 'Commande information utilisateur','who'=>$cmd);
+				$return[]= array('detail' => 'Administration','help' => 'Commande information utilisateur','who'=>$cmd);
 			}
 		}
 		$cmd = config::byKey('alert::warningCmd', 'core', '');
 		if ($cmd != '') {
 			if (!cmd::byId(str_replace('#','',$cmd))){
-				$return[]= array('where' => 'Administration','help' => 'Commande sur warning','who'=>$cmd);
+				$return[]= array('detail' => 'Administration','help' => 'Commande sur warning','who'=>$cmd);
 			}
 		}
 		$cmd = config::byKey('alert::dangerCmd', 'core', '');
 		if ($cmd != '') {
 			if (!cmd::byId(str_replace('#','',$cmd))){
-				$return[]= array('where' => 'Administration','help' => 'Commande sur danger','who'=>$cmd);
+				$return[]= array('detail' => 'Administration','help' => 'Commande sur danger','who'=>$cmd);
 			}
 		}
 		return $return;

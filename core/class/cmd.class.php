@@ -562,6 +562,34 @@ class cmd {
 			$cmd->event($cmd->getConfiguration('returnStateValue', 0));
 		}
 	}
+	
+	public static function deadCmd() {
+		$return = array();
+		foreach (cmd::all() as $cmd) {
+			foreach ($cmd->getConfiguration('actionCheckCmd','') as $actionCmd) {
+				if ($actionCmd['cmd'] != '' && strpos($actionCmd['cmd'],'#') !== false) {
+					if (!cmd::byId(str_replace('#','',$actionCmd['cmd']))){
+						$return[]= array('detail' => 'Commande ' . $cmd->getName() . ' de ' . $cmd->getEqLogic()->getName() . ' (' . $cmd->getEqLogic()->getEqType_name().')'  ,'help' => 'Action sur valeur','who'=>$actionCmd['cmd']);
+					}
+				}
+			}
+			foreach ($cmd->getConfiguration('jeedomPostExecCmd','') as $actionCmd) {
+				if ($actionCmd['cmd'] != '' && strpos($actionCmd['cmd'],'#') !== false) {
+					if (!cmd::byId(str_replace('#','',$actionCmd['cmd']))){
+						$return[]= array('detail' => 'Commande ' . $cmd->getName() . ' de ' . $cmd->getEqLogic()->getName() . ' (' . $cmd->getEqLogic()->getEqType_name().')'  ,'help' => 'Post Exécution','who'=>$actionCmd['cmd']);
+					}
+				}
+			}
+			foreach ($cmd->getConfiguration('jeedomPreExecCmd','') as $actionCmd) {
+				if ($actionCmd['cmd'] != '' && strpos($actionCmd['cmd'],'#') !== false) {
+					if (!cmd::byId(str_replace('#','',$actionCmd['cmd']))){
+						$return[]= array('detail' => 'Commande ' . $cmd->getName() . ' de ' . $cmd->getEqLogic()->getName() . ' (' . $cmd->getEqLogic()->getEqType_name().')'  ,'help' => 'Pré Exécution','who'=>$actionCmd['cmd']);
+					}
+				}
+			}
+		}
+		return $return;
+	}
 
 	public static function cmdAlert($_options) {
 		$cmd = cmd::byId($_options['cmd_id']);

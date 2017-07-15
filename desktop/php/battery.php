@@ -180,8 +180,8 @@ foreach (eqLogic::all() as $eqLogic) {
 				<table class="table table-condensed tablesorter" id="table_Action">
 					<thead>
 						<tr>
-							<th>{{Plugin}}</th>
-							<th>{{Equipement}}</th>
+							<th>{{Type}}</th>
+							<th>{{Détail}}</th>
 							<th>{{Commande}}</th>
 							<th>{{Utilisation}}</th>
 						</tr>
@@ -192,12 +192,19 @@ foreach (eqLogic::all() as $eqLogic) {
 foreach (jeedom::deadCmd() as $datas) {
 	echo '<tr>';
 	echo '<td>Core</td>';
-	echo '<td>' . $datas['where'] . '</td>';
+	echo '<td>' . $datas['detail'] . '</td>';
 	echo '<td>' . $datas['who'] . '</td>';
 	echo '<td>' . $datas['help'] . '</td>';
 	echo '</tr>';
 }
-
+foreach (cmd::deadCmd() as $datas) {
+	echo '<tr>';
+	echo '<td>Commande</td>';
+	echo '<td>' . $datas['detail'] . '</td>';
+	echo '<td>' . $datas['who'] . '</td>';
+	echo '<td>' . $datas['help'] . '</td>';
+	echo '</tr>';
+}
 ?>
 					</tbody>
 				</table>
