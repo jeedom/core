@@ -348,8 +348,15 @@ class scenario {
 	public static function consystencyCheck($_needsReturn = false) {
 		$return = array();
 		foreach (self::all() as $scenario) {
+			if ($scenario->getGroup() == '') {
+				$group = 'aucun';
+			} else {
+				$group = $scenario->getGroup();
+			}
 			if ($scenario->getIsActive() != 1) {
-				continue;
+				if (!$_needsReturn) {
+					continue;
+				}
 			}
 			if ($scenario->getMode() == 'provoke' || $scenario->getMode() == 'all') {
 				$trigger_list = '';
@@ -360,7 +367,7 @@ class scenario {
 				foreach ($matches[1] as $cmd_id) {
 					if (is_numeric($cmd_id)) {
 						if ($_needsReturn){
-							$return[]= array('detail' => 'Scénario ' . $scenario->getHumanName(),'help' => 'Déclencheur du scénario','who'=>'#' . $cmd_id . '#');
+							$return[]= array('detail' => 'Scénario ' . $scenario->getName() . ' du groupe ' . $group,'help' => 'Déclencheur du scénario','who'=>'#' . $cmd_id . '#');
 						} else {
 							log::add('scenario', 'error', __('Un déclencheur du scénario : ', __FILE__) . $scenario->getHumanName() . __(' est introuvable', __FILE__));
 						}
@@ -384,7 +391,7 @@ class scenario {
 			foreach ($matches[1] as $cmd_id) {
 				if (is_numeric($cmd_id)) {
 					if ($_needsReturn){
-						$return[]= array('detail' => 'Scénario ' . $scenario->getHumanName(),'help' => 'Utilisé dans le scénario','who'=>'#' . $cmd_id . '#');
+						$return[]= array('detail' => 'Scénario ' . $scenario->getName() . ' du groupe ' . $group,'help' => 'Utilisé dans le scénario','who'=>'#' . $cmd_id . '#');
 					} else {
 						log::add('scenario', 'error', __('Une commande du scénario : ', __FILE__) . $scenario->getHumanName() . __(' est introuvable', __FILE__));
 					}
