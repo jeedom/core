@@ -213,7 +213,7 @@ foreach (object::deadCmd() as $datas) {
 	echo '<td>' . $datas['help'] . '</td>';
 	echo '</tr>';
 }
-#interactions/scénarios/vues/designs/plugins
+#interactions/scénarios/vues/designs
 foreach (plugin::listPlugin(true) as $plugin) {
 	if (method_exists($plugin->getId(), 'deadCmd')) {
 		foreach ($plugin->getId()::deadCmd() as $datas) {
