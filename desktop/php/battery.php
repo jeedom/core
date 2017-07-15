@@ -34,6 +34,7 @@ sort($battery);
 	<li role="presentation" class="active"><a href="#battery" aria-controls="battery" role="tab" data-toggle="tab"><i class="fa fa-battery-full"></i> {{Batterie}}</a></li>
 	<li role="presentation"><a href="#alertEqlogic" aria-controls="alertEqlogic" role="tab" data-toggle="tab"><i class="fa fa-exclamation-triangle"></i> {{Module en alerte}}</a></li>
 	<li role="presentation"><a href="#actionCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fa fa-gears"></i> {{Actions définies}}</a></li>
+	<li role="presentation"><a href="#deadCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fa fa-snapchat-ghost"></i> {{Commandes fantômes}}</a></li>
 </ul>
 
 <div class="tab-content">
@@ -172,6 +173,36 @@ foreach (eqLogic::all() as $eqLogic) {
 				</table>
 			</div>
 		</div>
-	</div>
+	
+			<div role="tabpanel" class="tab-pane" id="deadCmd">
+			<br/>
+			<div class="cmdListContainer">
+				<table class="table table-condensed tablesorter" id="table_Action">
+					<thead>
+						<tr>
+							<th>{{Plugin}}</th>
+							<th>{{Equipement}}</th>
+							<th>{{Commande}}</th>
+							<th>{{Utilisation}}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php
+
+foreach (jeedom::deadCmd() as $datas) {
+	echo '<tr>';
+	echo '<td>Core</td>';
+	echo '<td>' . $datas['where'] . '</td>';
+	echo '<td>' . $datas['who'] . '</td>';
+	echo '<td>' . $datas['help'] . '</td>';
+	echo '</tr>';
+}
+
+?>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		</div>
 
 <?php include_file('desktop', 'battery', 'js');?>

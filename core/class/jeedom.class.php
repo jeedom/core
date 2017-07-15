@@ -25,6 +25,35 @@ class jeedom {
 	private static $jeedomConfiguration;
 
 	/*     * ***********************Methode static*************************** */
+	
+	public static function deadCmd() {
+		$return = array();
+		$cmd = config::byKey('interact::warnme::defaultreturncmd', 'core', '');
+		if ($cmd != '') {
+			if (!cmd::byId(str_replace('#','',$cmd))){
+				$return[]= array('where' => 'Administration','help' => 'Commande retour interactions','who'=>$cmd);
+			}
+		}
+		$cmd = config::byKey('emailAdmin', 'core', '');
+		if ($cmd != '') {
+			if (!cmd::byId(str_replace('#','',$cmd))){
+				$return[]= array('where' => 'Administration','help' => 'Commande information utilisateur','who'=>$cmd);
+			}
+		}
+		$cmd = config::byKey('alert::warningCmd', 'core', '');
+		if ($cmd != '') {
+			if (!cmd::byId(str_replace('#','',$cmd))){
+				$return[]= array('where' => 'Administration','help' => 'Commande sur warning','who'=>$cmd);
+			}
+		}
+		$cmd = config::byKey('alert::dangerCmd', 'core', '');
+		if ($cmd != '') {
+			if (!cmd::byId(str_replace('#','',$cmd))){
+				$return[]= array('where' => 'Administration','help' => 'Commande sur danger','who'=>$cmd);
+			}
+		}
+		return $return;
+	}
 
 	public static function health() {
 		$return = array();
