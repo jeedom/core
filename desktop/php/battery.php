@@ -230,7 +230,15 @@ foreach (scenario::consystencyCheck(true) as $datas) {
 	echo '<td>' . $datas['help'] . '</td>';
 	echo '</tr>';
 }
-#interactions/vues/designs
+foreach (interactDef::deadCmd() as $datas) {
+	echo '<tr>';
+	echo '<td>Interaction</td>';
+	echo '<td>' . $datas['detail'] . '</td>';
+	echo '<td>' . $datas['who'] . '</td>';
+	echo '<td>' . $datas['help'] . '</td>';
+	echo '</tr>';
+}
+#vues/designs
 foreach (plugin::listPlugin(true) as $plugin) {
 	$plugin_id = $plugin->getId();
 	if (method_exists($plugin_id, 'deadCmd')) {
