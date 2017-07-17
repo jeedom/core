@@ -51,7 +51,6 @@ $(function () {
         $('#popupDialog .nd-title').empty().text('{{Me prévenir si}}');
         $('#popupDialog .content').empty();
         $('#popupDialog .content').append('');
-        $('#popupDialog').width(deviceInfo.width*0.6) 
         $('#popupDialog .content').load('index.php?v=m&ajax=1&modal=warnme', function () {
             $('#in_mdwarnme_cmd_id').value(cmd_id);
             $('#popupDialog .content').trigger('create');
