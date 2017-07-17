@@ -35,10 +35,10 @@ $(function () {
 
 
     $('body').on('click','.objectSummaryParent',function(){
-     modal(false);
-     panel(false);
-     page('equipment', '{{Résumé}}', $(this).data('object_id')+':'+$(this).data('summary'));
- });
+       modal(false);
+       panel(false);
+       page('equipment', '{{Résumé}}', $(this).data('object_id')+':'+$(this).data('summary'));
+   });
 
     $('body').on('taphold','.cmd[data-type=info]',function(){
         $('#bottompanel_mainoption').empty();
@@ -63,10 +63,10 @@ $(function () {
             window.location.reload();
         }
         if (e.type == 'progress') {
-         var progress = Math.round((e.loaded/e.total)*100 * 100) / 100
-         $('#span_updateAdvancement').text(progress);
-     }
-     if (e.type == 'error') {
+           var progress = Math.round((e.loaded/e.total)*100 * 100) / 100
+           $('#span_updateAdvancement').text(progress);
+       }
+       if (e.type == 'error') {
         $('#div_updateInProgress').html('<p>{{Erreur lors de la mise à jour}}<br/>{{Nouvelle tentative dans 5s}}</p>');
         setTimeout(function(){ webappCache.update(); }, 5000);
     }
@@ -171,7 +171,7 @@ function initApplication(_reinit) {
                             deviceInfo = getDeviceType();
                             jeedom.object.summaryUpdate([{object_id:'global'}])
                             if(getUrlVars('p') != '' && getUrlVars('ajax') != 1){
-                             switch (getUrlVars('p')) {
+                               switch (getUrlVars('p')) {
                                 case 'view' :
                                 page('view', 'Vue',getUrlVars('view_id'));
                                 break;
@@ -210,18 +210,18 @@ function initApplication(_reinit) {
 function page(_page, _title, _option, _plugin,_dialog) {
     $.showLoading();
     try {
-       $('#bottompanel').panel('close');
-       $('#bottompanel_mainoption').panel('close');
-       $('.ui-popup').popup('close');
-   } catch (e) {
+     $('#bottompanel').panel('close');
+     $('#bottompanel_mainoption').panel('close');
+     $('.ui-popup').popup('close');
+ } catch (e) {
 
-   }
-   if (isset(_title)) {
-    if(!isset(_dialog) || !_dialog){
-       $('#pageTitle').empty().append(_title);
-   }else{
-     $('#popupDialog .nd-title').text(_title);
  }
+ if (isset(_title)) {
+    if(!isset(_dialog) || !_dialog){
+     $('#pageTitle').empty().append(_title);
+ }else{
+   $('#popupDialog .nd-title').text(_title);
+}
 }
 if (_page == 'connection') {
     var page = 'index.php?v=m&ajax=1&p=' + _page;
@@ -242,18 +242,18 @@ jeedom.user.isConnect({
         }
         var page = 'index.php?v=m&ajax=1'
         if(isset(_dialog) && _dialog){
-         page += '&modal='+_page;
-     }else{
+           page += '&modal='+_page;
+       }else{
         page += '&p=' + _page;
     }
     if (init(_plugin) != '') {
         page += '&m=' + _plugin;
     }
     if(isset(_dialog) && _dialog){
-       $('#popupDialog .content').load(page, function () {
-           CURRENT_PAGE = _page;
-           var functionName = '';
-           if (init(_plugin) != '') {
+     $('#popupDialog .content').load(page, function () {
+         CURRENT_PAGE = _page;
+         var functionName = '';
+         if (init(_plugin) != '') {
             functionName = 'init' + _plugin.charAt(0).toUpperCase() + _plugin.substring(1).toLowerCase() + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
         } else {
             functionName = 'init' + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
@@ -278,12 +278,12 @@ jeedom.user.isConnect({
         $('#popupDialog').trigger('create');
         $('#popupDialog').popup('open');
     });
-   }else{
+ }else{
     $('#page').hide().load(page, function () {
-       CURRENT_PAGE = _page;
-       $('#page').trigger('create');
-       var functionName = '';
-       if (init(_plugin) != '') {
+     CURRENT_PAGE = _page;
+     $('#page').trigger('create');
+     var functionName = '';
+     if (init(_plugin) != '') {
         functionName = 'init' + _plugin.charAt(0).toUpperCase() + _plugin.substring(1).toLowerCase() + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
     } else {
         functionName = 'init' + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
