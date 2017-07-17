@@ -14,29 +14,8 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
- $("#div_action").sortable({axis: "y", cursor: "move", items: ".action", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
 
- $("#div_listInteract").resizable({
-  handles: "all",
-  grid: [1, 10000],
-  stop: function () {
-    $('.interactListContainer').packery();
-    var value = {options: {interactMenuSize: $("#div_listInteract").width()}};
-    jeedom.user.saveProfils({
-      profils: value,
-      global: false,
-      error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'});
-      },
-      success: function () {
-      }
-    });
-  }
-});
-
- if(!isset(userProfils.interactMenuSize) || userProfils.interactMenuSize > 0){
-  $("#div_listInteract").width( userProfils.interactMenuSize);
-}
+$("#div_action").sortable({axis: "y", cursor: "move", items: ".action", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
 
 $('.displayInteracQuery').on('click', function () {
   $('#md_modal').dialog({title: "{{Liste des interactions}}"});
@@ -45,10 +24,15 @@ $('.displayInteracQuery').on('click', function () {
 
 if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1) && !jQuery.support.touch){
   $('#div_listInteract').hide();
+  $('#interactThumbnailDisplay').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
+  $('#div_conf').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
+
   $('#bt_displayInteractList').on('mouseenter',function(){
    var timer = setTimeout(function(){
-    $('#div_listInteract').show();
     $('#bt_displayInteractList').find('i').hide();
+    $('#interactThumbnailDisplay').addClass('col-lg-10 col-md-10 col-sm-9').removeClass('col-lg-12');
+    $('#div_conf').addClass('col-lg-10 col-md-10 col-sm-9').removeClass('col-lg-12');
+    $('#div_listInteract').show();
     $('.interactListContainer').packery();
   }, 100);
    $(this).data('timerMouseleave', timer)
@@ -57,13 +41,15 @@ if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1)
 });
 
  $('#div_listInteract').on('mouseleave',function(){
-   var timer = setTimeout(function(){
-    $('#div_listInteract').hide();
-    $('#bt_displayInteractList').find('i').show();
-    $('.interactListContainer').packery();
-  }, 300);
-   $(this).data('timerMouseleave', timer);
- }).on("mouseenter", function(){
+  var timer = setTimeout(function(){
+   $('#div_listInteract').hide();
+   $('#bt_displayInteractList').find('i').show();
+   $('#interactThumbnailDisplay').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
+   $('#div_conf').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
+   $('.interactListContainer').packery();
+ }, 300);
+  $(this).data('timerMouseleave', timer);
+}).on("mouseenter", function(){
   clearTimeout($(this).data('timerMouseleave'));
 });
 }
@@ -340,7 +326,6 @@ jeedom.cmd.displayActionsOption({
 }
 });
 }
-
 
 function addAction(_action, _type, _name) {
   if (!isset(_action)) {
