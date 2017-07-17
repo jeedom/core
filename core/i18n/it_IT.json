@@ -9,21 +9,21 @@
         "Valeur": "Valore",
         "Aucun": "Nessuno",
         "Erreur execution de la commande ": "Errore eseguendo il comando",
-        "Alert sur la commande ": "Alert sur la commande",
-        " niveau ": "niveau",
-        "[jeedom] Message de ": "[jeedom] Message de",
-        "pendant plus de ": "pendant plus de",
-        " minute(s)": "minute(s)"
+        "Alert sur la commande ": "Avviso sul comando",
+        " niveau ": "livello",
+        "[jeedom] Message de ": "[jeedom] Messaggio di ",
+        "pendant plus de ": "per più di ",
+        " minute(s)": "minuto(i)"
     },
     "core/class/scenario.class.php": {
         "Scénario exécuté automatiquement sur événement venant de : ": "Scena eseguita automaticamente sull'evento da:",
         "Scénario exécuté automatiquement sur programmation": "Scena eseguita automaticamene su pianificazione",
-        "Lancement du scénario en mode synchrone": "Lancement du scénario en mode synchrone",
+        "Lancement du scénario en mode synchrone": "Avvio della scena in modo sincrono",
         "Exécution du scénario ": "Esecuzione della scena",
         " déclenché par : ": "innescato da:",
         "Fin correcte du scénario": "Finale corretto della scena",
-        "************Lancement sous tâche**************": "************Lancement sous tâche**************",
-        "************FIN sous tâche**************": "************FIN sous tâche**************",
+        "************Lancement sous tâche**************": "************Avvio azione secondaria**************",
+        "************FIN sous tâche**************": "************Fine dell'azione secondaria**************",
         "Scénario exécuté sur événement : #": "Esegui scena su evento: #",
         "Aucun": "Nessuno"
     },
@@ -35,10 +35,10 @@
     },
     "core/class/plugin.class.php": {
         "Inconnue": "Sconosciuto",
-        "Vous devez attendre au moins 45s entre 2 lancements du démon": "Vous devez attendre au moins 45s entre 2 lancements du démon",
-        "Erreur sur la fonction deamon_start du plugin : ": "Erreur sur la fonction deamon_start du plugin :",
-        "Veuillez executer le script : ": "Veuillez executer le script :",
-        "Lancement de : ": "Lancement de :",
+        "Vous devez attendre au moins 45s entre 2 lancements du démon": "Attendere almeno 45s tra 2 avvii del daemon",
+        "Erreur sur la fonction deamon_start du plugin : ": "Errore sulla funzione daemon_start del plugin",
+        "Veuillez executer le script : ": "Eseguite lo script:",
+        "Lancement de : ": "Avvio di :",
         "Gestion automatique désactivée": "Gestione automatica disattivato"
     },
     "core/class/scenarioSubElement.class.php": {
@@ -48,7 +48,7 @@
     "core/class/scenarioExpression.class.php": {
         "Evaluation de la condition : [": "Valutazione della condizione: [",
         "Vrai": "Vero",
-        "Action stop": "Action stop",
+        "Action stop": "Stop azione",
         "Exécution d'un bloc élément : ": "Esegui del blocco elemento:",
         "Exécution de la commande ": "Esecuzione del comando",
         "Faux": "Falso",
@@ -59,11 +59,11 @@
         "Lancement provoqué": "Esecuzione innescata",
         "Pause de ": "Pausa di",
         " seconde(s)": "Secondo(i)",
-        "Envoi du rapport généré sur ": "Envoi du rapport généré sur",
-        "Génération d'un rapport de type ": "Génération d'un rapport de type",
-        "Erreur : Aucun rapport généré": "Erreur : Aucun rapport généré",
-        "Génération du rapport ": "Génération du rapport",
-        "[jeedom] Rapport ": "[jeedom] Rapport",
+        "Envoi du rapport généré sur ": "Invio del rapporto generato su",
+        "Génération d'un rapport de type ": "Generazione di un rapporto di tipo",
+        "Erreur : Aucun rapport généré": "Errore : nessun rapporto generato",
+        "Génération du rapport ": "Generazione del rapporto",
+        "[jeedom] Rapport ": "[jeedom] Rappporto",
         "Veuillez trouver ci-joint le rapport ": "Veuillez trouver ci-joint le rapport",
         " du ": "di",
         " généré le ": "généré le",
@@ -73,9 +73,9 @@
     },
     "core/class/scenarioElement.class.php": {
         "Non exécution des actions pour cause de répétition": "Azione non eseguita a causa di una ridondanza",
-        "Tâche : ": "Tâche :",
-        " programmé à : ": "programmé à :",
-        " programmée à : ": "programmée à :"
+        "Tâche : ": "Azione",
+        " programmé à : ": "programmato a : ",
+        " programmée à : ": "programmata a : "
     },
     "core/js/scenario.class.js": {
         "Sélectionner le scénario": "Seleziona una scena"
@@ -105,13 +105,13 @@
     "mobile/html/deamon.html": {
         "Nom": "Nome",
         "Status": "Stato",
-        "Date lancement": "Date lancement",
+        "Date lancement": "Data di avvio",
         "Action": "Azione"
     },
     "mobile/html/cron.html": {
         "Nom": "Nome",
         "Status": "Stato",
-        "Date lancement": "Date lancement",
+        "Date lancement": "Data di avvio",
         "Action": "Azione"
     },
     "mobile/html/message.html": {
@@ -126,7 +126,7 @@
     },
     "mobile/js/home.js": {
         "Version desktop": "Versione desktop",
-        "Démons": "Démons",
+        "Démons": "Daemon",
         "Crons": "Crons",
         "Santé": "Salute",
         "Tout": "Tutto"
@@ -998,7 +998,7 @@
         "Log vidés avec succès": "Registro svuotato correttamente"
     },
     "__FILE": {
-        "[jeedom] Rapport ": "[jeedom] Rapport",
+        "[jeedom] Rapport ": "[jeedom] Rappporto",
         " du ": "di",
         "Veuillez trouver ci-joint le rapport ": "Veuillez trouver ci-joint le rapport",
         " généré le ": "généré le"
