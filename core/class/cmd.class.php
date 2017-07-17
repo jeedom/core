@@ -562,28 +562,28 @@ class cmd {
 			$cmd->event($cmd->getConfiguration('returnStateValue', 0));
 		}
 	}
-	
+
 	public static function deadCmd() {
 		$return = array();
 		foreach (cmd::all() as $cmd) {
-			foreach ($cmd->getConfiguration('actionCheckCmd','') as $actionCmd) {
-				if ($actionCmd['cmd'] != '' && strpos($actionCmd['cmd'],'#') !== false) {
-					if (!cmd::byId(str_replace('#','',$actionCmd['cmd']))){
-						$return[]= array('detail' => 'Commande ' . $cmd->getName() . ' de ' . $cmd->getEqLogic()->getName() . ' (' . $cmd->getEqLogic()->getEqType_name().')'  ,'help' => 'Action sur valeur','who'=>$actionCmd['cmd']);
+			foreach ($cmd->getConfiguration('actionCheckCmd', '') as $actionCmd) {
+				if ($actionCmd['cmd'] != '' && strpos($actionCmd['cmd'], '#') !== false) {
+					if (!cmd::byId(str_replace('#', '', $actionCmd['cmd']))) {
+						$return[] = array('detail' => 'Commande ' . $cmd->getName() . ' de ' . $cmd->getEqLogic()->getName() . ' (' . $cmd->getEqLogic()->getEqType_name() . ')', 'help' => 'Action sur valeur', 'who' => $actionCmd['cmd']);
 					}
 				}
 			}
-			foreach ($cmd->getConfiguration('jeedomPostExecCmd','') as $actionCmd) {
-				if ($actionCmd['cmd'] != '' && strpos($actionCmd['cmd'],'#') !== false) {
-					if (!cmd::byId(str_replace('#','',$actionCmd['cmd']))){
-						$return[]= array('detail' => 'Commande ' . $cmd->getName() . ' de ' . $cmd->getEqLogic()->getName() . ' (' . $cmd->getEqLogic()->getEqType_name().')'  ,'help' => 'Post Exécution','who'=>$actionCmd['cmd']);
+			foreach ($cmd->getConfiguration('jeedomPostExecCmd', '') as $actionCmd) {
+				if ($actionCmd['cmd'] != '' && strpos($actionCmd['cmd'], '#') !== false) {
+					if (!cmd::byId(str_replace('#', '', $actionCmd['cmd']))) {
+						$return[] = array('detail' => 'Commande ' . $cmd->getName() . ' de ' . $cmd->getEqLogic()->getName() . ' (' . $cmd->getEqLogic()->getEqType_name() . ')', 'help' => 'Post Exécution', 'who' => $actionCmd['cmd']);
 					}
 				}
 			}
-			foreach ($cmd->getConfiguration('jeedomPreExecCmd','') as $actionCmd) {
-				if ($actionCmd['cmd'] != '' && strpos($actionCmd['cmd'],'#') !== false) {
-					if (!cmd::byId(str_replace('#','',$actionCmd['cmd']))){
-						$return[]= array('detail' => 'Commande ' . $cmd->getName() . ' de ' . $cmd->getEqLogic()->getName() . ' (' . $cmd->getEqLogic()->getEqType_name().')'  ,'help' => 'Pré Exécution','who'=>$actionCmd['cmd']);
+			foreach ($cmd->getConfiguration('jeedomPreExecCmd', '') as $actionCmd) {
+				if ($actionCmd['cmd'] != '' && strpos($actionCmd['cmd'], '#') !== false) {
+					if (!cmd::byId(str_replace('#', '', $actionCmd['cmd']))) {
+						$return[] = array('detail' => 'Commande ' . $cmd->getName() . ' de ' . $cmd->getEqLogic()->getName() . ' (' . $cmd->getEqLogic()->getEqType_name() . ')', 'help' => 'Pré Exécution', 'who' => $actionCmd['cmd']);
 					}
 				}
 			}
@@ -1338,8 +1338,7 @@ class cmd {
 					$cmd = cmd::byId(str_replace('#', '', $id));
 					if (is_object($cmd)) {
 						$cmd->execCmd(array(
-							'title' => __('[' . config::byKey('name', 'core', 'JEEDOM') . '] Message de ', __FILE__) . $this->getHumanName(),
-							'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $message,
+							'title' => __('[' . config::byKey('name', 'core', 'JEEDOM') . '] ', __FILE__) . $message,
 						));
 					}
 				}
