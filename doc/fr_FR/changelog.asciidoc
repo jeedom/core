@@ -18,6 +18,7 @@
 * Reprise en cas d'erreur de mise à jour de l'application mobile
 * Suppression des scénarios "simple" (redondant avec la configuration avancé des commandes)
 * Ajout de hachurage sur les graphs pour distinguer les jours
+* Refonte de la page des interactions
 
 == 3.0.11
 

@@ -29,8 +29,8 @@ if (is_array($scenarioListGroup)) {
                 <ul id="ul_scenario" >
                     <?php if (count($scenarios[-1]) > 0) {
 	?>
-                       <li data-jstree='{"opened":true}'>
-                            <?php
+                     <li data-jstree='{"opened":true}'>
+                        <?php
 echo '<a>Aucune - ' . count($scenarios[-1]) . ' scénario(s)</a>';
 	echo '<ul>';
 	foreach ($scenarios[-1] as $scenario) {
@@ -39,8 +39,8 @@ echo '<a>Aucune - ' . count($scenarios[-1]) . ' scénario(s)</a>';
 		echo '</li>';
 	}
 	?>
-                      </ul>
-                      <?php
+                  </ul>
+                  <?php
 }
 foreach ($scenarioListGroup as $group) {
 	if ($group['group'] != '') {
@@ -57,36 +57,36 @@ foreach ($scenarioListGroup as $group) {
 	}
 }
 ?>
-         </ul>
-     </div>
- </div>
+   </ul>
+</div>
+</div>
 </div>
 
-<div id="scenarioThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
+<div id="scenarioThumbnailDisplay" class="col-lg-10 col-md-9 col-sm-8" style="border-left: solid 1px #EEE; padding-left: 25px;">
 
-   <div class="scenarioListContainer">
-       <legend><i class="fa fa-cog"></i>  {{Gestion}}</legend>
-       <div class="cursor" id="bt_addScenario2" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
+ <div class="scenarioListContainer">
+     <legend><i class="fa fa-cog"></i>  {{Gestion}}</legend>
+     <div class="cursor" id="bt_addScenario2" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
         <i class="fa fa-plus-circle" style="font-size : 6em;color:#94ca02;"></i>
         <br>
         <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02">{{Ajouter}}</span>
     </div>
     <?php if (config::byKey('enableScenario') == 0) {?>
         <div class="cursor expertModeVisible" id="bt_changeAllScenarioState2" data-state="1" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
-         <i class="fa fa-check" style="font-size : 6em;color:#5cb85c;"></i>
-         <br>
-         <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#5cb85c">{{Activer scénarios}}</span>
-     </div>
-     <?php } else {?>
-     <div class="cursor expertModeVisible" id="bt_changeAllScenarioState2" data-state="0" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
-         <i class="fa fa-times" style="font-size : 6em;color:#d9534f;"></i>
-         <br>
-         <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#d9534f">{{Désactiver scénarios}}</span>
-     </div>
-     <?php }
+           <i class="fa fa-check" style="font-size : 6em;color:#5cb85c;"></i>
+           <br>
+           <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#5cb85c">{{Activer scénarios}}</span>
+       </div>
+       <?php } else {?>
+       <div class="cursor expertModeVisible" id="bt_changeAllScenarioState2" data-state="0" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
+           <i class="fa fa-times" style="font-size : 6em;color:#d9534f;"></i>
+           <br>
+           <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#d9534f">{{Désactiver scénarios}}</span>
+       </div>
+       <?php }
 ?>
 
-     <div class="cursor expertModeVisible" id="bt_displayScenarioVariable2" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
+       <div class="cursor expertModeVisible" id="bt_displayScenarioVariable2" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
         <i class="fa fa-eye" style="font-size : 6em;color:#337ab7;"></i>
         <br>
         <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7">{{Voir variables}}</span>
@@ -167,21 +167,29 @@ if (count($scenarios) == 0) {
 ?>
 </div>
 
-<div id="div_editScenario" style="display: none; border-left: solid 1px #EEE; padding-left: 25px;">
-    <legend style="height: 35px;"><i class="fa fa-arrow-circle-left cursor" id="bt_scenarioThumbnailDisplay"></i> {{Scénario}}
-        <span class="expertModeVisible">(ID : <span class="scenarioAttr" data-l1key="id" ></span>)</span>
-        <a class="btn btn-default btn-xs pull-right" id="bt_graphScenario"><i class="fa fa-object-group"></i> {{Liens}}</a>
-        <a class="btn btn-default btn-xs pull-right" id="bt_copyScenario"><i class="fa fa-copy"></i> {{Dupliquer}}</a>
-        <a class="btn btn-default btn-xs pull-right" id="bt_logScenario"><i class="fa fa-file-text-o"></i> {{Log}}</a>
-        <a class="btn btn-default btn-xs pull-right" id="bt_exportScenario"><i class="fa fa fa-share"></i> {{Exporter}}</a>
-        <a class="btn btn-danger btn-xs pull-right" id="bt_stopScenario"><i class="fa fa-stop"></i> {{Arrêter}}</a>
-        <a class="btn btn-default btn-xs pull-right" id="bt_templateScenario"><i class="fa fa-cubes"></i> {{Template/Market}}</a>
-        <a class="btn btn-success btn-xs pull-right" id="bt_saveScenario2"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
-        <a class="btn btn-danger btn-xs pull-right" id="bt_delScenario2"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
-        <a class="btn btn-warning btn-xs pull-right" id="bt_testScenario2" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.}}'><i class="fa fa-gamepad"></i> {{Executer}}</a>
-        <a class="btn btn-primary btn-xs pull-right bt_showExpressionTest"><i class="fa fa-check"></i> {{Testeur d'expression}}</a>
-    </legend>
-    <div class="row">
+<div id="div_editScenario" class="col-lg-10 col-md-9 col-sm-8" style="display: none;">
+
+   <a class="btn btn-default btn-sm pull-right" id="bt_graphScenario"><i class="fa fa-object-group"></i> {{Liens}}</a>
+   <a class="btn btn-default btn-sm pull-right" id="bt_copyScenario"><i class="fa fa-copy"></i> {{Dupliquer}}</a>
+   <a class="btn btn-default btn-sm pull-right" id="bt_logScenario"><i class="fa fa-file-text-o"></i> {{Log}}</a>
+   <a class="btn btn-default btn-sm pull-right" id="bt_exportScenario"><i class="fa fa fa-share"></i> {{Exporter}}</a>
+   <a class="btn btn-danger btn-sm pull-right" id="bt_stopScenario"><i class="fa fa-stop"></i> {{Arrêter}}</a>
+   <a class="btn btn-default btn-sm pull-right" id="bt_templateScenario"><i class="fa fa-cubes"></i> {{Template/Market}}</a>
+   <a class="btn btn-success btn-sm pull-right" id="bt_saveScenario2"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
+   <a class="btn btn-danger btn-sm pull-right" id="bt_delScenario2"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
+   <a class="btn btn-warning btn-sm pull-right" id="bt_testScenario2" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.}}'><i class="fa fa-gamepad"></i> {{Executer}}</a>
+   <a class="btn btn-primary btn-sm pull-right bt_showExpressionTest"><i class="fa fa-check"></i> {{Testeur d'expression}}</a>
+
+   <ul class="nav nav-tabs" role="tablist">
+     <li role="presentation"><a href="#" aria-controls="home" role="tab" data-toggle="tab" id="bt_scenarioThumbnailDisplay"><i class="fa fa-arrow-circle-left"></i></a></li>
+     <li role="presentation" class="active"><a href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-tachometer"></i> {{Général}} (ID : <span class="scenarioAttr" data-l1key="id" ></span>)</a></li>
+     <li role="presentation"><a href="#scenariotab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-filter"></i> {{Scénario}}</a></li>
+ </ul>
+</ul>
+<div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
+  <div role="tabpanel" class="tab-pane active" id="generaltab">
+      <br/>
+      <div class="row">
         <div class="col-sm-4">
             <form class="form-horizontal">
                 <fieldset>
@@ -209,10 +217,10 @@ if (count($scenarios) == 0) {
                             {{Actif}} <input type="checkbox" class="scenarioAttr" data-l1key="isActive">
                         </label>
                         <label>
-                         {{Visible}} <input type="checkbox" class="scenarioAttr" data-l1key="isVisible">
-                     </label>
-                 </div>
-                 <div class="form-group">
+                           {{Visible}} <input type="checkbox" class="scenarioAttr" data-l1key="isVisible">
+                       </label>
+                   </div>
+                   <div class="form-group">
                     <label class="col-xs-6 control-label" >{{Objet parent}}</label>
                     <div class="col-xs-6">
                         <select class="scenarioAttr form-control input-sm" data-l1key="object_id">
@@ -222,10 +230,10 @@ foreach (object::all() as $object) {
 	echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
 }
 ?>
-                       </select>
-                   </div>
-               </div>
-               <div class="form-group expertModeVisible">
+                     </select>
+                 </div>
+             </div>
+             <div class="form-group expertModeVisible">
                 <label class="col-xs-6 control-label">{{Timeout secondes (0 = illimité)}}</label>
                 <div class="col-xs-6">
                     <input class="form-control scenarioAttr input-sm" data-l1key="timeout">
@@ -306,13 +314,11 @@ foreach (object::all() as $object) {
     </form>
 </div>
 </div>
-
-<div id="div_scenarioElement" class="element"></div>
-
-<div class="form-actions">
-    <a class="btn btn-warning" id="bt_testScenario" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.}}'><i class="fa fa-gamepad"></i> {{Exécuter}}</a>
-    <a class="btn btn-danger" id="bt_delScenario"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
-    <a class="btn btn-success" id="bt_saveScenario"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
+</div>
+<div role="tabpanel" class="tab-pane" id="scenariotab">
+    <br/>
+    <div id="div_scenarioElement" class="element"></div>
+</div>
 </div>
 
 </div>
@@ -372,14 +378,14 @@ foreach (object::all() as $object) {
                 </div>
 
                 <div class="alert alert-info addElementTypeDescription in" style="display:none;">
-                   Permet de faire une action dans X min. Par exemple : Dans 5 min éteindre la lumière.
-               </div>
+                 Permet de faire une action dans X min. Par exemple : Dans 5 min éteindre la lumière.
+             </div>
 
-               <div class="alert alert-info addElementTypeDescription at" style="display:none;">
-                   A un temps précis, cet élément permet de lancer une action. Par exemple : A 9h30 ouvrir les volets.
-               </div>
+             <div class="alert alert-info addElementTypeDescription at" style="display:none;">
+                 A un temps précis, cet élément permet de lancer une action. Par exemple : A 9h30 ouvrir les volets.
+             </div>
 
-               <div class="alert alert-info addElementTypeDescription code" style="display:none;">
+             <div class="alert alert-info addElementTypeDescription code" style="display:none;">
                 Cet élément permet de rajouter dans votre scénario de la programmation à l’aide d’un code, PHP/Shell etc...
             </div>
 

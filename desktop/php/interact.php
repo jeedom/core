@@ -117,6 +117,7 @@ foreach ($interactListGroup as $group) {
   <a class="btn btn-danger pull-right" id="bt_removeInteract"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
   <a class="btn btn-success pull-right" id="bt_saveInteract"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
   <a class="btn btn-default displayInteracQuery pull-right"><i class="fa fa-eye"></i> {{Phrase(s)}} <span class="label label-success interactAttr" data-l1key="nbInteractQuery"></span></a>
+
   <ul class="nav nav-tabs" role="tablist">
    <li role="presentation"><a href="#" aria-controls="home" role="tab" data-toggle="tab" id="bt_interactThumbnailDisplay"><i class="fa fa-arrow-circle-left"></i></a></li>
    <li role="presentation" class="active"><a href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-tachometer"></i> {{Général}}</a></li>

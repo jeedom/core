@@ -58,49 +58,34 @@
   $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
 }
 
-$("#div_listScenario").resizable({
-  handles: "all",
-  grid: [1, 10000],
-  stop: function () {
-    $('.scenarioListContainer').packery();
-    var value = {options: {scenarioMenuSize: $("#div_listScenario").width()}};
-    jeedom.user.saveProfils({
-      profils: value,
-      global: false,
-      error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'});
-      },
-      success: function () {
-      }
-    });
-  }
-});
-
-if(!isset(userProfils.scenarioMenuSize) || userProfils.scenarioMenuSize > 0){
-  $("#div_listScenario").width( userProfils.scenarioMenuSize);
-}
-
 if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1) && !jQuery.support.touch){
   $('#div_listScenario').hide();
-  $('#bt_displayScenarioList').off('mouseenter').on('mouseenter',function(){
-    var timer = setTimeout(function(){
-      $('#div_listScenario').show();
-      $('#bt_displayScenarioList').find('i').hide();
-      $('.scenarioListContainer').packery();
-    }, 100);
-    $(this).data('timerMouseleave', timer)
-  }).off('mouseleave').on("mouseleave", function(){
-    clearTimeout($(this).data('timerMouseleave'));
-  });
+  $('#scenarioListContainer').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
+  $('#div_editScenario').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
 
-  $('#div_listScenario').off('mouseleave').on('mouseleave',function(){
+  $('#bt_displayScenarioList').on('mouseenter',function(){
    var timer = setTimeout(function(){
-    $('#div_listScenario').hide();
-    $('#bt_displayScenarioList').find('i').show();
+    $('#bt_displayScenarioList').find('i').hide();
+    $('#scenarioListContainer').addClass('col-lg-10 col-md-10 col-sm-9').removeClass('col-lg-12');
+    $('#div_editScenario').addClass('col-lg-10 col-md-10 col-sm-9').removeClass('col-lg-12');
+    $('#div_listScenario').show();
     $('.scenarioListContainer').packery();
-  }, 300);
-   $(this).data('timerMouseleave', timer);
- }).off('mouseenter').on("mouseenter", function(){
+  }, 100);
+   $(this).data('timerMouseleave', timer)
+ }).on("mouseleave", function(){
+  clearTimeout($(this).data('timerMouseleave'));
+});
+
+ $('#div_listScenario').on('mouseleave',function(){
+  var timer = setTimeout(function(){
+   $('#div_listScenario').hide();
+   $('#bt_displayScenarioList').find('i').show();
+   $('#scenarioListContainer').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
+   $('#div_editScenario').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
+   $('.scenarioListContainer').packery();
+ }, 300);
+  $(this).data('timerMouseleave', timer);
+}).on("mouseenter", function(){
   clearTimeout($(this).data('timerMouseleave'));
 });
 }
@@ -128,8 +113,8 @@ $('.scenarioDisplayCard').off('click').on('click', function () {
 
 $('.accordion-toggle').off('click').on('click', function () {
   setTimeout(function(){
-  $('.scenarioListContainer').packery();
-},100);
+    $('.scenarioListContainer').packery();
+  },100);
 });
 
 $('#div_tree').off('click').on('select_node.jstree', function (node, selected) {
@@ -343,7 +328,7 @@ $('#div_pageContainer').off('click','.bt_addScenarioElement').on( 'click','.bt_a
     expression = true;
   }
   $('#md_addElement').modal('show');
-    $("#bt_addElementSave").off('click').on('click', function (event) {
+  $("#bt_addElementSave").off('click').on('click', function (event) {
     if (expression) {
       elementDiv.append(addExpression({type: 'element', element: {type: $("#in_addElementType").value()}}));
     } else {
@@ -796,7 +781,7 @@ function printScenario(_id) {
     $('#span_lastLaunch').text(data.lastLaunch);
 
     $('#div_scenarioElement').empty();
-    $('#div_scenarioElement').append('<a class="btn btn-default bt_addScenarioElement tootlips" title="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)}}"><i class="fa fa-plus-circle"></i> {{Ajouter bloc}}</a><br/><br/>');
+    $('#div_scenarioElement').append('<a class="btn btn-default btn-sm pull-right bt_addScenarioElement tootlips" title="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)}}"><i class="fa fa-plus-circle"></i> {{Ajouter bloc}}</a><br/><br/>');
     $('.provokeMode').empty();
     $('.scheduleMode').empty();
     $('.scenarioAttr[data-l1key=mode]').trigger('change');
