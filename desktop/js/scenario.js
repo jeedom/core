@@ -200,15 +200,6 @@ $("#bt_addScenario,#bt_addScenario2").off('click').on('click', function (event) 
     '<input id="in_scenarioAddName" type="text" placeholder="{{Nom de votre scénario}}" class="form-control input-md"> ' +
     '</div> ' +
     '</div> ' +
-    '<div class="form-group"> ' +
-    '<label class="col-md-4 control-label">{{Type}}</label> ' +
-    '<div class="col-md-4"> <div class="radio"> <label> ' +
-    '<input name="cbScenarioType" class="cb_scenarioType" type="radio" value="simple" checked="checked"> ' +
-    '{{Simple}}</label> ' +
-    '</div><div class="radio"> <label> ' +
-    '<input  name="cbScenarioType" class="cb_scenarioType" type="radio" value="expert"> {{Avancé}}</label> ' +
-    '</div> ' +
-    '</div> </div>' +
     '</form> </div>  </div>',
     buttons: {
       "Annuler": {

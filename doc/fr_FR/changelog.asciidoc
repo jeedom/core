@@ -16,6 +16,8 @@
 * Possibilité d'avoir les graphiques d'historique des commandes en mobile (par appui long sur la commande)
 * Ajout de l'avance de l'update de l'application mobile 
 * Reprise en cas d'erreur de mise à jour de l'application mobile
+* Suppression des scénarios "simple" (redondant avec la configuration avancé des commandes)
+* Ajout de hachurage sur les graphs pour distinguer les jours
 
 == 3.0.11
 

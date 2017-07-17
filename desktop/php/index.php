@@ -303,7 +303,7 @@ if (isConnect('admin')) {
 									<li><a href="index.php?v=d&p=object"><i class="fa fa-picture-o"></i> {{Objets}}</a></li>
 									<li><a href="index.php?v=d&p=interact"><i class="fa fa-comments-o"></i> {{Interactions}}</a></li>
 									<li><a href="index.php?v=d&p=display"><i class="fa fa-th"></i> {{Résumé domotique}}</a></li>
-									<li><a href = "index.php?v=d&p=scenarioAssist"><i class = "fa fa-cogs"></i> {{Scénarios}}</a></li>
+									<li><a href = "index.php?v=d&p=scenario"><i class = "fa fa-cogs"></i> {{Scénarios}}</a></li>
 								</ul>
 							</li>
 							<li class="dropdown cursor">

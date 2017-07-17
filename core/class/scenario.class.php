@@ -37,7 +37,7 @@ class scenario {
 	private $display;
 	private $description;
 	private $configuration;
-	private $type;
+	private $type = 'expert';
 	private static $_templateArray;
 	private $_elements = array();
 	private $_changeState = false;
