@@ -439,7 +439,7 @@ jeedom.history.generatePlotBand = function (_startTime, _endTime) {
     _startTime = (Math.floor(_startTime / 86400000) * 86400000) - offset;
     while (_startTime < _endTime) {
         var plotBand = {};
-        plotBand.color = '#E6E6E6';
+        plotBand.color = '#F8F8F8';
         plotBand.from = _startTime;
         plotBand.to = _startTime + pas;
         plotBands.push(plotBand);
