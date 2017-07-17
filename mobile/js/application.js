@@ -13,6 +13,7 @@ $(document).ajaxStop(function () {
 });
 
 $(function () {
+
     MESSAGE_NUMBER = null;
     CURRENT_PAGE='home';
     nbActiveAjaxRequest = 0;
@@ -34,10 +35,10 @@ $(function () {
 
 
     $('body').on('click','.objectSummaryParent',function(){
-       modal(false);
-       panel(false);
-       page('equipment', '{{Résumé}}', $(this).data('object_id')+':'+$(this).data('summary'));
-   });
+     modal(false);
+     panel(false);
+     page('equipment', '{{Résumé}}', $(this).data('object_id')+':'+$(this).data('summary'));
+ });
 
     $('body').on('taphold','.cmd[data-type=info]',function(){
         $('#bottompanel_mainoption').empty();
@@ -47,18 +48,11 @@ $(function () {
     });
 
     $('body').on('click','#bt_warnmeCmd',function(){
-        var cmd_id = $(this).data('cmd_id')
-        $('#popupDialog .nd-title').empty().text('{{Me prévenir si}}');
-        $('#popupDialog .content').empty();
-        $('#popupDialog .content').append('');
-        $('#popupDialog .content').load('index.php?v=m&ajax=1&modal=warnme', function () {
-            $('#in_mdwarnme_cmd_id').value(cmd_id);
-            $('#popupDialog .content').trigger('create');
-            $('#popupDialog').popup('open');   
-        });
+        page('warnme','{{Me prévenir si}}',{cmd_id : $(this).data('cmd_id')},null,true);
     });
 
     var webappCache = window.applicationCache;
+
 
     function updateCacheEvent(e) {
         if (webappCache.status == 3) {
@@ -69,14 +63,15 @@ $(function () {
             window.location.reload();
         }
         if (e.type == 'progress') {
-           var progress = Math.round((e.loaded/e.total)*100 * 100) / 100
-           $('#span_updateAdvancement').text(progress);
-       }
-       if (e.type == 'error') {
+         var progress = Math.round((e.loaded/e.total)*100 * 100) / 100
+         $('#span_updateAdvancement').text(progress);
+     }
+     if (e.type == 'error') {
         $('#div_updateInProgress').html('<p>{{Erreur lors de la mise à jour}}<br/>{{Nouvelle tentative dans 5s}}</p>');
         setTimeout(function(){ webappCache.update(); }, 5000);
     }
 }
+
 
 webappCache.addEventListener('cached', updateCacheEvent, false);
 webappCache.addEventListener('checking', updateCacheEvent, false);
@@ -176,7 +171,7 @@ function initApplication(_reinit) {
                             deviceInfo = getDeviceType();
                             jeedom.object.summaryUpdate([{object_id:'global'}])
                             if(getUrlVars('p') != '' && getUrlVars('ajax') != 1){
-                               switch (getUrlVars('p')) {
+                             switch (getUrlVars('p')) {
                                 case 'view' :
                                 page('view', 'Vue',getUrlVars('view_id'));
                                 break;
@@ -215,14 +210,18 @@ function initApplication(_reinit) {
 function page(_page, _title, _option, _plugin,_dialog) {
     $.showLoading();
     try {
-     $('#bottompanel').panel('close');
-     $('#bottompanel_mainoption').panel('close');
-     $('.ui-popup').popup('close');
- } catch (e) {
+       $('#bottompanel').panel('close');
+       $('#bottompanel_mainoption').panel('close');
+       $('.ui-popup').popup('close');
+   } catch (e) {
 
+   }
+   if (isset(_title)) {
+    if(!isset(_dialog) || !_dialog){
+       $('#pageTitle').empty().append(_title);
+   }else{
+     $('#popupDialog .nd-title').text(_title);
  }
- if (isset(_title) && (!isset(_dialog) || !_dialog)) {
-    $('#pageTitle').empty().append(_title);
 }
 if (_page == 'connection') {
     var page = 'index.php?v=m&ajax=1&p=' + _page;
@@ -241,62 +240,68 @@ jeedom.user.isConnect({
             initApplication(true);
             return;
         }
-        var page = 'index.php?v=m&ajax=1&p=' + _page;
-        if (init(_plugin) != '') {
-            page += '&m=' + _plugin;
-        }
+        var page = 'index.php?v=m&ajax=1'
         if(isset(_dialog) && _dialog){
-            $('#popupDialog .content').load(page, function () {
-             CURRENT_PAGE = _page;
-             var functionName = '';
-             if (init(_plugin) != '') {
-                functionName = 'init' + _plugin.charAt(0).toUpperCase() + _plugin.substring(1).toLowerCase() + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
+         page += '&modal='+_page;
+     }else{
+        page += '&p=' + _page;
+    }
+    if (init(_plugin) != '') {
+        page += '&m=' + _plugin;
+    }
+    if(isset(_dialog) && _dialog){
+       $('#popupDialog .content').load(page, function () {
+           CURRENT_PAGE = _page;
+           var functionName = '';
+           if (init(_plugin) != '') {
+            functionName = 'init' + _plugin.charAt(0).toUpperCase() + _plugin.substring(1).toLowerCase() + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
+        } else {
+            functionName = 'init' + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
+        }
+        if ('function' == typeof (window[functionName])) {
+            if (init(_option) != '') {
+                window[functionName](_option);
             } else {
-                functionName = 'init' + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
+                window[functionName]();
             }
-            if ('function' == typeof (window[functionName])) {
-                if (init(_option) != '') {
-                    window[functionName](_option);
-                } else {
-                    window[functionName]();
-                }
-            }
-            Waves.init();
-            $("#popupDialog").popup({
-                beforeposition: function () {
-                    $(this).css({
-                        width: window.innerWidth - 40,
-                    });
-                },
-                x: 5,
-                y: 70
-            });
-            $('#popupDialog').popup('open');
+        }
+        Waves.init();
+        $("#popupDialog").popup({
+            beforeposition: function () {
+                $(this).css({
+                    width: window.innerWidth - 40,
+                });
+            },
+            x: 5,
+            y: 70
         });
-        }else{
-            $('#page').hide().load(page, function () {
-             CURRENT_PAGE = _page;
-             $('#page').trigger('create');
-             var functionName = '';
-             if (init(_plugin) != '') {
-                functionName = 'init' + _plugin.charAt(0).toUpperCase() + _plugin.substring(1).toLowerCase() + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
-            } else {
-                functionName = 'init' + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
-            }
-            if ('function' == typeof (window[functionName])) {
-                if (init(_option) != '') {
-                    window[functionName](_option);
-                } else {
-                    window[functionName]();
-                }
-            }
-            Waves.init();
-            $('#pagecontainer').css('padding-top','64px');
-            $('#page').fadeIn(400);
-            setTimeout(function(){$('#pagecontainer').css('padding-top','64px');; }, 100);
-        });
+        $('#popupDialog').trigger('create');
+        $('#popupDialog').popup('open');
+    });
+   }else{
+    $('#page').hide().load(page, function () {
+       CURRENT_PAGE = _page;
+       $('#page').trigger('create');
+       var functionName = '';
+       if (init(_plugin) != '') {
+        functionName = 'init' + _plugin.charAt(0).toUpperCase() + _plugin.substring(1).toLowerCase() + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
+    } else {
+        functionName = 'init' + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
+    }
+    if ('function' == typeof (window[functionName])) {
+        if (init(_option) != '') {
+            window[functionName](_option);
+        } else {
+            window[functionName]();
         }
     }
+    Waves.init();
+    $('#pagecontainer').css('padding-top','64px');
+    $('#page').fadeIn(400);
+    setTimeout(function(){$('#pagecontainer').css('padding-top','64px');; }, 100);
+});
+}
+}
 });
 }
 
