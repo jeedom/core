@@ -1107,6 +1107,7 @@ function sanitize_output($_string) {
 	$_string = str_replace(array('( ', ' ('), '(', $_string);
 	$_string = str_replace(array(': ', ' :'), ':', $_string);
 	$_string = str_replace(array('== ', ' =='), '==', $_string);
+	$_string = str_replace(array('!= ', ' !='), '!=', $_string);
 	$_string = str_replace(array('&& ', ' &&'), '&&', $_string);
 	$_string = str_replace(array('|| ', ' ||'), '||', $_string);
 	$_string = str_replace(array(', ', ' ,'), ',', $_string);
