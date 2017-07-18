@@ -20,6 +20,8 @@
 * Ajout de hachurage sur les graphs pour distinguer les jours
 * Refonte de la page des interactions
 * Refonte de la page profils
+* Refonte de la page d'administration
+* Compression des widgets (gain d'environ 18%)
 
 == 3.0.11
 

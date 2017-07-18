@@ -21,7 +21,7 @@ require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 
 class eqLogic {
 	/*     * *************************Attributs****************************** */
-	const UIDDELIMITER = '____';
+	const UIDDELIMITER = '__';
 	protected $id;
 	protected $name;
 	protected $logicalId = '';
@@ -648,6 +648,7 @@ class eqLogic {
 		if (isset($_SESSION) && isset($_SESSION['user']) && is_object($_SESSION['user'])) {
 			$user_id = $_SESSION['user']->getId();
 		}
+		$_html = sanitize_output($_html);
 		cache::set('widgetHtml' . $this->getId() . $_version . $user_id, $_html);
 		return $_html;
 	}
