@@ -120,7 +120,7 @@ image::../images/plan13.png[]
 * *Gras* : met le texte en gras
 
 [TIP]
-Vous pouvez en bas à droite le redimensionner
+Sie können unten rechts die Größe ändern
 
 == Ajout d'un scénario
 
@@ -148,9 +148,9 @@ image::../images/plan17.png[]
 * *Spécifique* : permet de masquer les commandes d'action sur le scénario
 
 [TIP]
-Vous pouvez en bas à droite le redimensionner
+Sie können unten rechts die Größe ändern
 
-== Ajout d'un lien
+== Einen Link hinzufügen
 
 image::../images/plan18.png[]
 
@@ -182,9 +182,9 @@ Hier haben wir :
 * *Gras* : met le texte en gras
 
 [TIP]
-Vous pouvez en bas à droite le redimensionner
+Sie können unten rechts die Größe ändern
 
-== Ajout d'un graph
+== Einen Graph hinzufügen
 
 image::../images/plan22.png[]
 
@@ -224,4 +224,4 @@ image::../images/plan26.png[]
 * *Echelle* : vu que vous pouvez mettre plusieurs courbes (données) sur le même graphe il est possible de distinguer les échelles (droite ou gauche)
 
 [TIP]
-Vous pouvez en bas à droite le redimensionner
+Sie können unten rechts die Größe ändern

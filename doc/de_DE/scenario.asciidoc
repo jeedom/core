@@ -156,10 +156,10 @@ Hier finden Sie die folgenden Optionen :
 
 image::../images/scenario8.JPG[]
 
-Dans l'ordre : 
+In der Reihenfolge : 
 
 * un bouton pour déplacer l'action (les doubles flèches), il suffit de cliquer et maintenir le bouton puis de déplacer le bloc
-* un bouton pour supprimer l'action
+* eine Schaltfläche zum Löschen der Aktion
 * un bouton pour désactiver temporairement l'action
 * un bouton pour rechercher une commande d'action
 * un bouton pour les actions spécifiques, avec à chaque fois la description de cette action
