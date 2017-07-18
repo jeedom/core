@@ -60,13 +60,13 @@
 
 if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1) && !jQuery.support.touch){
   $('#div_listScenario').hide();
-  $('#scenarioListContainer').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
+  $('#scenarioThumbnailDisplay').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
   $('#div_editScenario').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
 
   $('#bt_displayScenarioList').on('mouseenter',function(){
    var timer = setTimeout(function(){
     $('#bt_displayScenarioList').find('i').hide();
-    $('#scenarioListContainer').addClass('col-lg-10 col-md-10 col-sm-9').removeClass('col-lg-12');
+    $('#scenarioThumbnailDisplay').addClass('col-lg-10 col-md-10 col-sm-9').removeClass('col-lg-12');
     $('#div_editScenario').addClass('col-lg-10 col-md-10 col-sm-9').removeClass('col-lg-12');
     $('#div_listScenario').show();
     $('.scenarioListContainer').packery();
@@ -80,7 +80,7 @@ if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1)
   var timer = setTimeout(function(){
    $('#div_listScenario').hide();
    $('#bt_displayScenarioList').find('i').show();
-   $('#scenarioListContainer').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
+   $('#scenarioThumbnailDisplay').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
    $('#div_editScenario').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
    $('.scenarioListContainer').packery();
  }, 300);
