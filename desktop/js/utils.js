@@ -163,7 +163,7 @@ if (isset(jeedom_langage)) {
     //Display report bug
     $("#md_reportBug").dialog({
         autoOpen: false,
-        modal: true,
+        modal: false,
         closeText: '',
         height: ((jQuery(window).height() - 100) < 700) ? jQuery(window).height() - 100 : 700,
         width: ((jQuery(window).width() - 100) < 900) ? (jQuery(window).width() - 100) : 900,
@@ -181,7 +181,7 @@ if (isset(jeedom_langage)) {
     //Display help
     $("#md_pageHelp").dialog({
         autoOpen: false,
-        modal: true,
+        modal: false,
         closeText: '',
         height: (jQuery(window).height() - 100),
         width: ((jQuery(window).width() - 100) < 1500) ? (jQuery(window).width() - 50) : 1500,
