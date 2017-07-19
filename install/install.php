@@ -121,7 +121,7 @@ try {
 				echo "/!\ Force update /!\ \n";
 			}
 			jeedom::stop();
-			if (init('version') == '') {
+			if (init('version') == '' && config::byKey('update::allowCore', 'core', 1) != 0) {
 				try {
 					echo 'Clean temporary file (tmp)...';
 					shell_exec('rm -rf ' . dirname(__FILE__) . '/../install/update/*');
