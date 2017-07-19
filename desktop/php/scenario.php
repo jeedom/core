@@ -167,7 +167,7 @@ if (count($scenarios) == 0) {
 ?>
 </div>
 
-<div id="div_editScenario" class="col-lg-10 col-md-9 col-sm-8" style="display: none;">
+<div id="div_editScenario" class="col-lg-10 col-md-9 col-sm-8" style="display: none;margin-top: 5px;">
 
    <a class="btn btn-default btn-sm pull-right" id="bt_graphScenario"><i class="fa fa-object-group"></i> {{Liens}}</a>
    <a class="btn btn-default btn-sm pull-right" id="bt_copyScenario"><i class="fa fa-copy"></i> {{Dupliquer}}</a>

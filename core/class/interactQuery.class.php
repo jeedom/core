@@ -268,10 +268,9 @@ class interactQuery {
 			$_parameters['identifier'] = '';
 		}
 		$data = self::findInQuery('object', $_query);
-		if (!strContain(strtolower(sanitizeAccent($_query)), $JEEDOM_INTERNAL_CONFIG['interact']['global_summary'])) {
-			$data = array_merge($data, self::findInQuery('eqLogic', $data['query'], $data));
-			$data = array_merge($data, self::findInQuery('cmd', $data['query'], $data));
-		}
+
+		$data = array_merge($data, self::findInQuery('eqLogic', $data['query'], $data));
+		$data = array_merge($data, self::findInQuery('cmd', $data['query'], $data));
 		if (!isset($data['cmd']) || !is_object($data['cmd'])) {
 			$data = array_merge($data, self::findInQuery('summary', $data['query'], $data));
 			if (!isset($data['summary'])) {
@@ -365,29 +364,9 @@ class interactQuery {
 		$listener->setClass('interactQuery');
 		$listener->setFunction('warnMeExecute');
 		$data = self::findInQuery('object', $_query);
-		if (!strContain(strtolower(sanitizeAccent($_query)), $JEEDOM_INTERNAL_CONFIG['interact']['global_summary'])) {
-			$data = array_merge($data, self::findInQuery('eqLogic', $data['query'], $data));
-			$data = array_merge($data, self::findInQuery('cmd', $data['query'], $data));
-		}
+		$data = array_merge($data, self::findInQuery('eqLogic', $data['query'], $data));
+		$data = array_merge($data, self::findInQuery('cmd', $data['query'], $data));
 		if (!isset($data['cmd']) || !is_object($data['cmd'])) {
-			$data = array_merge($data, self::findInQuery('summary', $data['query'], $data));
-			if (!isset($data['summary'])) {
-				return null;
-			}
-			$options['type'] = 'summary';
-			if (is_object($data['object'])) {
-				$options['name'] = $data['summary']['name'] . ' ' . $data['object']->getName();
-				$listener->addEvent($data['object']->getId() . '::' . $data['summary']['key'], 'summary');
-				$listener->setOption($options);
-				$listener->save(true);
-				return array('reply' => __('C\'est noté pour le résumé d\'object : ', __FILE__) . $data['object']->getName() . ' ' . $data['summary']['name']);
-			} else {
-				$options['name'] = $data['summary']['name'] . ' global(e)';
-				$listener->addEvent('global::' . $data['summary']['key'], 'summary');
-				$listener->setOption($options);
-				$listener->save(true);
-				return array('reply' => __('C\'est noté pour le résumé global : ', __FILE__) . $data['summary']['name']);
-			}
 			return null;
 		} else {
 			if ($data['cmd']->getType() == 'action') {

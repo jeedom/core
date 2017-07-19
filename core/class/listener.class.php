@@ -220,8 +220,6 @@ class listener {
 		}
 		if ($_type == 'cmd') {
 			$id = str_replace('#', '', $_id);
-		} else if ($_type == 'summary') {
-			$id = 'summary::' . $_id;
 		}
 		if (!in_array('#' . $id . '#', $event)) {
 			$event[] = '#' . $id . '#';

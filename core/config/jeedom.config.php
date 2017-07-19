@@ -45,7 +45,6 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'=' => array('egale', '=', 'vaut'),
 			'!=' => array('different'),
 		),
-		'global_summary' => array('global'),
 	),
 	'plugin' => array(
 		'category' => array(

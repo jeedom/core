@@ -181,7 +181,6 @@ class object {
 		if (count($toRefreshCmd) > 0) {
 			foreach ($toRefreshCmd as $value) {
 				try {
-					listener::check('#summary::' . $value['object']->getId() . '::' . $value['key'] . '#', $value['value']);
 					if ($object->getConfiguration('summary_virtual_id') == '') {
 						continue;
 					}
@@ -209,7 +208,6 @@ class object {
 					if ($result === null) {
 						continue;
 					}
-					listener::check('#summary::global::' . $key . '#', $result);
 					$event['keys'][$key] = array('value' => $result);
 					$virtual = eqLogic::byLogicalId('summaryglobal', 'virtual');
 					if (!is_object($virtual)) {
