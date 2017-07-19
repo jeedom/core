@@ -198,7 +198,7 @@ if (isset(jeedom_langage)) {
 
     $("#md_modal").dialog({
         autoOpen: false,
-        modal: true,
+        modal: false,
         closeText: '',
         height: (jQuery(window).height() - 100),
         width: ((jQuery(window).width() - 50) < 1500) ? (jQuery(window).width() - 50) : 1500,
@@ -215,7 +215,7 @@ if (isset(jeedom_langage)) {
 
     $("#md_modal2").dialog({
         autoOpen: false,
-        modal: true,
+        modal: false,
         closeText: '',
         height: (jQuery(window).height() - 150),
         width: ((jQuery(window).width() - 150) < 1200) ? (jQuery(window).width() - 50) : 1200,
