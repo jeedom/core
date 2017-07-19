@@ -24,6 +24,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
   <a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureRawObject"><i class="fa fa-info"></i> {{Informations}}</a>
   <a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureLogRealTime"><i class="fa fa-file"></i> {{Log}}</a>
   <a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureGraph"><i class="fa fa-object-group"></i> {{Liens}}</a>
+  <a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureTest"><i class="fa fa-rss"></i> {{Tester}}</a>
   <div role="tabpanel">
     <ul class="nav nav-tabs" role="tablist">
       <li role="presentation" class="active"><a href="#cmd_information" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-info-circle"></i> {{Informations}}</a></li>
@@ -39,11 +40,10 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 ?>
        <?php if ($cmd->widgetPossibility('custom::htmlCode')) {
 	?>
-         <li role="presentation"><a href="#cmd_html" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-code-fork"></i> {{Code du widget}}</a></li>
+         <li role="presentation"><a href="#cmd_html" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-code-fork"></i> {{Code}}</a></li>
          <?php }
 ?>
        </ul>
-
 
        <div class="tab-content" id="div_displayCmdConfigure">
         <div role="tabpanel" class="tab-pane active" id="cmd_information">
@@ -1213,5 +1213,9 @@ if ($cmd->getDisplay('parameters') != '') {
   $('#bt_cmdConfigureLogRealTime').off('click').on('click', function () {
     $('#md_modal2').dialog({title: "{{Logs}}"});
     $('#md_modal2').load('index.php?v=d&modal=log.display&log=event&search=' + cmdInfoSearchString).dialog('open');
+  });
+
+  $('#bt_cmdConfigureTest').on('click',function(){
+     jeedom.cmd.test({id: cmdInfo.id});
   });
 </script>
