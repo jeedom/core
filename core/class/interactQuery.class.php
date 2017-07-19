@@ -252,10 +252,10 @@ class interactQuery {
 		if ($_type != 'eqLogic') {
 			if (is_object($return[$_type])) {
 				$return['query'] = str_replace(strtolower(sanitizeAccent($return[$_type]->getName())), '', $return['query']);
-			}
-			if (count($synonyms) > 0) {
-				foreach ($synonyms as $value) {
-					$return['query'] = str_replace(strtolower(sanitizeAccent($value)), '', $return['query']);
+				if (count($synonyms) > 0) {
+					foreach ($synonyms as $value) {
+						$return['query'] = str_replace(strtolower(sanitizeAccent($value)), '', $return['query']);
+					}
 				}
 			}
 		}
@@ -272,12 +272,16 @@ class interactQuery {
 		$data = array_merge($data, self::findInQuery('eqLogic', $data['query'], $data));
 		$data = array_merge($data, self::findInQuery('cmd', $data['query'], $data));
 		if (!isset($data['cmd']) || !is_object($data['cmd'])) {
+
 			$data = array_merge($data, self::findInQuery('summary', $data['query'], $data));
+			log::add('interact', 'debug', print_r($data, true));
 			if (!isset($data['summary'])) {
 				return '';
 			}
+			$return = $data['summary']['name'];
 			$value = '';
 			if (is_object($data['object'])) {
+				$return .= ' ' . $data['object']->getName();
 				$value = $data['object']->getSummary($data['summary']['key']);
 			}
 			if (trim($value) === '') {
@@ -287,7 +291,7 @@ class interactQuery {
 				return '';
 			}
 			self::addLastInteract($_query, $_parameters['identifier']);
-			return $data['summary']['name'] . ' ' . $value . ' ' . $data['summary']['unit'];
+			return $return . ' ' . $value . ' ' . $data['summary']['unit'];
 		}
 		self::addLastInteract($data['cmd']->getId(), $_parameters['identifier']);
 		if ($data['cmd']->getType() == 'info') {
@@ -310,9 +314,10 @@ class interactQuery {
 	}
 
 	public static function autoInteractWordFind($_string, $_word) {
-		$string = str_replace("'", ' ', strtolower(sanitizeAccent($_string)));
-		$word = strtolower(sanitizeAccent($_word));
-		return preg_match('/( |^)' . preg_quote($word, '/') . '( |$)/', $string);
+		return preg_match(
+			'/( |^)' . preg_quote(strtolower(sanitizeAccent($_word)), '/') . '( |$)/',
+			str_replace("'", ' ', strtolower(sanitizeAccent($_string)))
+		);
 	}
 
 	public static function pluginReply($_query, $_parameters = array()) {
