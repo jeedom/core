@@ -317,7 +317,7 @@ foreach (object::all() as $object) {
 </div>
 <div role="tabpanel" class="tab-pane" id="scenariotab">
     <br/>
-    <div id="div_scenarioElement" class="element"></div>
+    <div id="div_scenarioElement" class="element" style="padding-bottom: 70px;"></div>
 </div>
 </div>
 
