@@ -216,9 +216,9 @@ Sie erhalten (es brauch möglicherweise etwas lange zu laden) :
 image::../images/plan26.png[]
 
 * *Activer* : le premier bouton permet d'activer ou non l'affichage de la donnée sur le graphique
-* *Couleur* : la couleur de la courbe
-* *Type* : le type de graph (aire, ligne ou colonne)
-* *Escalier* : permet d'afficher la courbe sous la forme d'un escalier au d'un affichage continue
+* *Farbe* : die Farbe der Kurve
+* *Typ* : der Typ des Diagramms (Fläche, Linie oder Säule)  
+* *Treppe* : zeigt die Kurve in Form einer Treppe, die ununterbrochen wiedergegeben wird 
 * *Empiler* : permet d'empiler les valeurs des courbes (voir en dessous pour le résultat)
 * *Variation* : affiche la différence de valeur par rapport au point précédent
 * *Echelle* : vu que vous pouvez mettre plusieurs courbes (données) sur le même graphe il est possible de distinguer les échelles (droite ou gauche)

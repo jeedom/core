@@ -164,7 +164,7 @@ In der Reihenfolge :
 * un bouton pour rechercher une commande d'action
 * un bouton pour les actions spécifiques, avec à chaque fois la description de cette action
 
-=== Déclencheurs
+=== Auslöser
 
 Es gibt bestimmte Auslöser (außer jene, die durch die Befehle geliefert wurden) :
 
@@ -181,16 +181,16 @@ Vous pouvez aussi déclencher un scénario sur mise à jour d'une variable en me
 [TIP]
 Vous avez ici aussi un bouton pour aller chercher une commande
 
-=== Condition ou valeur d'une commande d'action
+=== Bedingung oder Wert eines Aktionsbefehls
 
 Vous pouvez utiliser n'importe lequel des symboles suivant pour les opérateurs : 
 
 * == : égal,
-* > : supérieur,
-* >= : supérieur ou égal,
-* < : inférieur,
-* \<= : inférieur ou égal,
-* != : différent,
+* > : größer,
+* >= : größer oder gleich,
+* < : kleiner,
+* \<= : kleiner oder gleich,
+* != : unterschiedlich,
 * matches : contient (ex : #[Salle de bain][Hydrometrie][etat]# matches "/humide/" ),
 * not ( ... matches ...) : ne contient pas (ex : not(#[Salle de bain][Hydrometrie][etat]# matches "/humide/")),
 
