@@ -1238,7 +1238,8 @@ class scenarioExpression {
 						throw new Exception(__('Commande introuvable - Vérifiez l\'id : ', __FILE__) . $this->getOptions('cmd'));
 					}
 					$this->setLog($scenario, __('Demande ', __FILE__) . print_r($options_cmd, true));
-					$cmd->setCache('storeVariable', $this->getOptions('variable'));
+					$cmd->setCache('ask::variable', $this->getOptions('variable'));
+					$cmd->setCache('ask::endtime', strtotime('now') + $limit);
 					$cmd->execCmd($options_cmd);
 					$occurence = 0;
 					$value = '';
@@ -1258,7 +1259,7 @@ class scenarioExpression {
 					}
 					if ($value == '') {
 						$value = __('Aucune réponse', __FILE__);
-						$cmd->setCache('storeVariable', 'none');
+						$cmd->setCache('ask::variable', 'none');
 						$dataStore = dataStore::byTypeLinkIdKey('scenario', -1, $this->getOptions('variable'));
 						$dataStore->setValue($value);
 						$dataStore->save();

@@ -1397,16 +1397,20 @@ class cmd {
 	}
 
 	public function askResponse($_response) {
-		if ($this->getCache('storeVariable', 'none') == 'none') {
-			throw new Exception(__('Demande invalide', __FILE__));
+		if ($this->getCache('ask::variable', 'none') == 'none') {
+			return false;
+		}
+		if ($this->getCache('ask::endtime', null) == null || $this->getCache('ask::endtime', null) < strtotime('now')) {
+			return false;
 		}
 		$dataStore = new dataStore();
 		$dataStore->setType('scenario');
-		$dataStore->setKey($this->getCache('storeVariable', 'none'));
+		$dataStore->setKey($this->getCache('ask::variable', 'none'));
 		$dataStore->setValue($_response);
 		$dataStore->setLink_id(-1);
 		$dataStore->save();
-		$this->setCache(array('storeVariable' => 'none', 'ask::count' => 0, 'ask::token' => null));
+		$this->setCache(array('ask::variable' => 'none', 'ask::count' => 0, 'ask::token' => null, 'ask::endtime' => null));
+		return true;
 	}
 
 	public function emptyHistory($_date = '') {
