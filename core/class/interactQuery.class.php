@@ -495,10 +495,6 @@ class interactQuery {
 			$reply = self::autoInteract($_query, $_parameters);
 			log::add('interact', 'debug', 'Je cherche dans les interactions automatique, resultat : ' . $reply);
 		}
-		if ($reply == '' && config::byKey('interact::contextual::enable') == 1) {
-			$reply = self::contextualReply($_query, $_parameters);
-			log::add('interact', 'debug', 'Je cherche en réponse contextuel, resultat : ' . $reply);
-		}
 		if ($reply == '' && config::byKey('interact::noResponseIfEmpty', 'core', 0) == 0 && (!isset($_parameters['emptyReply']) || $_parameters['emptyReply'] == 0)) {
 			$reply = self::dontUnderstand($_parameters);
 			log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . ".Je n'ai rien compris.J'ai répondu : " . $reply);
@@ -574,8 +570,7 @@ class interactQuery {
 	}
 
 	public function replaceForContextual($_replace, $_by, $_in) {
-		$_in = str_replace($_replace, $_by, $_in);
-		return str_replace(strtolower(sanitizeAccent($_replace)), strtolower(sanitizeAccent($_by)), $_in);
+		return str_replace(strtolower(sanitizeAccent($_replace)), strtolower(sanitizeAccent($_by)), str_replace($_replace, $_by, $_in));
 	}
 
 	public static function brainReply($_query, $_parameters) {
