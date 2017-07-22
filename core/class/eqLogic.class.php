@@ -670,9 +670,9 @@ class eqLogic {
 		$hasAlert = '';
 		$maxLevel = 0;
 		foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $key => $data) {
-			if ($this->getStatus($key, 0) != 0 && $JEEDOM_INTERNAL_CONFIG['alerts'][$cmdLevel]['level'] > $maxLevel) {
+			if ($this->getStatus($key, 0) != 0 && $JEEDOM_INTERNAL_CONFIG['alerts'][$key]['level'] > $maxLevel) {
 				$hasAlert = $data;
-				$maxLevel = $JEEDOM_INTERNAL_CONFIG['alerts'][$cmdLevel]['level'];
+				$maxLevel = $JEEDOM_INTERNAL_CONFIG['alerts'][$key]['level'];
 			}
 		}
 		return $hasAlert;
