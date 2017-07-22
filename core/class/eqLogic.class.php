@@ -691,6 +691,7 @@ class eqLogic {
 			}
 			if ($JEEDOM_INTERNAL_CONFIG['alerts'][$cmdLevel]['level'] > $max) {
 				$return = $cmdLevel;
+				$max = $JEEDOM_INTERNAL_CONFIG['alerts'][$cmdLevel]['level'];
 			}
 		}
 		return $return;
