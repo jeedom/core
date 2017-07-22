@@ -821,7 +821,11 @@ class eqLogic {
 		}
 	}
 
-	public function batteryStatus($_pourcent, $_datetime = '') {
+	public function batteryStatus($_pourcent ='', $_datetime = '') {
+		if ($_pourcent == ''){
+			$_pourcent = $this->getStatus('battery');
+			$_datetime = $this->getStatus('batteryDatetime');
+		}
 		if ($_pourcent > 100) {
 			$_pourcent = 100;
 		}
@@ -829,14 +833,28 @@ class eqLogic {
 			$_pourcent = 0;
 		}
 		$warning_threshold = $this->getConfiguration('battery_warning_threshold', config::byKey('battery::warning'));
-		if ($this->getConfiguration('noBatterieCheck', 0) != 0 && $_pourcent < $warning_threshold) {
+		$danger_threshold = $this->getConfiguration('battery_danger_threshold', config::byKey('battery::danger'));
+		if ($this->getConfiguration('noBatterieCheck', 0) != 0 && $_pourcent < $danger_threshold) {
 			$logicalId = 'lowBattery' . $this->getId();
-			$message = 'Le module ' . $this->getEqType_name() . ' ' . $this->getHumanName() . ' a moins de ' . $_pourcent . '% de batterie';
+			$message = 'Le module ' . $this->getEqType_name() . ' ' . $this->getHumanName() . ' a moins de ' . $danger_threshold . '% de batterie';
 			if ($this->getConfiguration('battery_type') != '') {
 				$message .= ' (' . $this->getConfiguration('battery_type') . ')';
 			}
 			message::add($this->getEqType_name(), $message, '', $logicalId);
+			$this->setStatus('batterydanger',1);
+		}else if ($this->getConfiguration('noBatterieCheck', 0) != 0 && $_pourcent < $warning_threshold) {
+			$logicalId = 'warningBattery' . $this->getId();
+			$message = 'Le module ' . $this->getEqType_name() . ' ' . $this->getHumanName() . ' a moins de ' . $warning_threshold . '% de batterie';
+			if ($this->getConfiguration('battery_type') != '') {
+				$message .= ' (' . $this->getConfiguration('battery_type') . ')';
+			}
+			message::add($this->getEqType_name(), $message, '', $logicalId);
+			$this->setStatus('batterywarning',1);
+		} else {
+			$this->setStatus('batterydanger',0);
+			$this->setStatus('batterywarning',0);
 		}
+		
 		$this->setStatus(array('battery' => $_pourcent, 'batteryDatetime' => ($_datetime != '') ? $_datetime : date('Y-m-d H:i:s')));
 	}
 
