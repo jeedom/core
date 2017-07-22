@@ -103,9 +103,9 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
  </fieldset>
 </form>
 </div>
-</div>
  <div class="col-sm-6">
 <div class="img-responsive" id="div_imgThemeDesktop" style="height: 450px;"></div> 
+</div>
 </div>
 
 <div role="tabpanel" class="tab-pane" id="interfacetab">
