@@ -26,7 +26,7 @@ foreach (plugin::listPlugin() as $pluginList) {
 <div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
   <div role="tabpanel" class="tab-pane active" id="themetab">
     <br/>
-    <div class="pull-right img-responsive" id="div_imgThemeDesktop" style="height: 450px;"></div>
+    <div class="col-sm-6">
     <form class="form-horizontal">
       <fieldset>
         <div class="form-group">
@@ -102,6 +102,10 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 ?>
  </fieldset>
 </form>
+</div>
+</div>
+ <div class="col-sm-6">
+<div class="img-responsive" id="div_imgThemeDesktop" style="height: 450px;"></div> 
 </div>
 
 <div role="tabpanel" class="tab-pane" id="interfacetab">
