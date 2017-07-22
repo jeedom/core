@@ -1347,11 +1347,15 @@ class cmd {
 		$eqLogic = $this->getEqLogic();
 		$maxAlert = $eqLogic->getMaxCmdAlert();
 		$prevAlert = $eqLogic->getAlert();
-		$eqLogic->setStatus(array('warning' => 0, 'danger' => 0));
-		if ($maxAlert != 'none' && isset($JEEDOM_INTERNAL_CONFIG['alerts'][$maxAlert])) {
-			$eqLogic->setStatus($maxAlert, 1);
-		}
 		if ($prevAlert != $eqLogic->getAlert()) {
+			$status = array(
+				'warning' => 0,
+				'danger' => 0,
+			);
+			if ($maxAlert != 'none' && isset($JEEDOM_INTERNAL_CONFIG['alerts'][$maxAlert])) {
+				$status[$maxAlert] = 1;
+			}
+			$eqLogic->setStatus($status);
 			$eqLogic->refreshWidget();
 		}
 	}
