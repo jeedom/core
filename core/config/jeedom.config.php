@@ -201,7 +201,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 							'maxValue' => array('visible' => true),
 							'listValue' => array('visible' => false)),
 						'unite' => array('visible' => true),
-						'isHistorized' => array('visible' => true),
+						'isHistorized' => array('visible' => true, 'timelineOnly' => false, 'canBeSmooth' => true),
 						'display' => array(
 							'invertBinary' => array('visible' => false),
 							'icon' => array('visible' => true, 'parentVisible' => true),
@@ -214,7 +214,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 							'maxValue' => array('visible' => false),
 							'listValue' => array('visible' => false)),
 						'unite' => array('visible' => false),
-						'isHistorized' => array('visible' => true),
+						'isHistorized' => array('visible' => true, 'timelineOnly' => false, 'canBeSmooth' => false),
 						'display' => array(
 							'invertBinary' => array('visible' => true, 'parentVisible' => true),
 							'icon' => array('visible' => true, 'parentVisible' => true),
@@ -227,7 +227,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 							'maxValue' => array('visible' => false),
 							'listValue' => array('visible' => false)),
 						'unite' => array('visible' => true),
-						'isHistorized' => array('visible' => false),
+						'isHistorized' => array('visible' => true, 'timelineOnly' => true, 'canBeSmooth' => false),
 						'display' => array(
 							'invertBinary' => array('visible' => false),
 							'icon' => array('visible' => true, 'parentVisible' => true),

@@ -388,7 +388,7 @@ foreach ($groups as $group) {
 </form>
 <?php }?>
 
-<?php if ($cmd->getType() == 'info' && ($cmd->getSubType() == 'numeric' || $cmd->getSubType() == 'binary')) {
+<?php if ($cmd->getType() == 'info' && $JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['visible']) {
 	?>
  <form class="form-horizontal">
   <fieldset>
@@ -399,6 +399,7 @@ foreach ($groups as $group) {
       <input type="checkbox" class="cmdAttr" data-l1key="isHistorized" />
     </div>
   </div>
+  <?php if ($JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth']) {?>
   <div class="form-group">
     <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Mode de lissage}}</label>
     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
@@ -410,7 +411,8 @@ foreach ($groups as $group) {
       </select>
     </div>
   </div>
-
+<?php }
+	?>
   <div class="form-group">
     <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Purger l'historique si plus vieux que }}</label>
     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">

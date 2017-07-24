@@ -95,6 +95,7 @@ class history {
 	 * Archive les données de history dans historyArch
 	 */
 	public static function archive() {
+		global $JEEDOM_INTERNAL_CONFIG;
 		$sql = 'DELETE FROM history WHERE `datetime` <= "2000-01-01 01:00:00" OR  `datetime` >= "2020-01-01 01:00:00"';
 		DB::Prepare($sql, array());
 		$sql = 'DELETE FROM historyArch WHERE `datetime` <= "2000-01-01 01:00:00" OR  `datetime` >= "2020-01-01 01:00:00"';
@@ -136,7 +137,7 @@ class history {
 				$sql = 'DELETE FROM historyArch WHERE cmd_id=:cmd_id AND `datetime` < :datetime';
 				DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 			}
-			if ($cmd->getSubType() == 'binary' || $cmd->getConfiguration('historizeMode', 'avg') == 'none') {
+			if ($JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth'] || $cmd->getConfiguration('historizeMode', 'avg') == 'none') {
 				$values = array(
 					'cmd_id' => $cmd->getId(),
 				);
@@ -144,9 +145,9 @@ class history {
 					FROM history
 					WHERE cmd_id=:cmd_id ORDER BY `datetime` ASC';
 				$history = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
-				
+
 				$countHistory = count($history);
-				
+
 				for ($i = 1; $i < $countHistory; $i++) {
 					if ($history[$i]->getValue() != $history[$i - 1]->getValue()) {
 						$history[$i]->setTableName('historyArch');
@@ -549,14 +550,14 @@ ORDER BY  datetime DESC';
 		return strtotime('now') - strtotime($result['lastCmdDuration']);
 	}
 	/**
-         * 
-         * @param int $_cmd_id
-         * @param string/float $_value
-         * @param string $_startTime
-         * @param string $_endTime
-         * @return array
-         * @throws Exception
-         */
+	 *
+	 * @param int $_cmd_id
+	 * @param string/float $_value
+	 * @param string $_startTime
+	 * @param string $_endTime
+	 * @return array
+	 * @throws Exception
+	 */
 	public static function stateChanges($_cmd_id, $_value = null, $_startTime = null, $_endTime = null) {
 		$cmd = cmd::byId($_cmd_id);
 		if (!is_object($cmd)) {
@@ -565,10 +566,10 @@ ORDER BY  datetime DESC';
 
 		if ($_startTime === null) {
 			$_dateTime = '';
-		} else { 
+		} else {
 			$_dateTime = ' AND `datetime`>="' . $_startTime . '"';
 		}
-		
+
 		if ($_endTime === null) {
 			$_dateTime .= ' AND `datetime`<="' . date('Y-m-d H:i:s') . '"';
 		} else {
@@ -703,6 +704,7 @@ ORDER BY  datetime DESC';
 	/*     * *********************Methode d'instance************************* */
 
 	public function save($_cmd = null, $_direct = false) {
+		global $JEEDOM_INTERNAL_CONFIG;
 		if ($_cmd === null) {
 			$cmd = $this->getCmd();
 			if (!is_object($cmd)) {
@@ -718,7 +720,7 @@ ORDER BY  datetime DESC';
 		if ($cmd->getConfiguration('historizeRound') !== '' && is_numeric($cmd->getConfiguration('historizeRound')) && $cmd->getConfiguration('historizeRound') >= 0 && $this->getValue() !== null) {
 			$this->setValue(round($this->getValue(), $cmd->getConfiguration('historizeRound')));
 		}
-		if ($cmd->getSubType() != 'binary' && $cmd->getConfiguration('historizeMode', 'avg') != 'none' && $this->getValue() !== null && $_direct === false) {
+		if ($JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth'] && $cmd->getConfiguration('historizeMode', 'avg') != 'none' && $this->getValue() !== null && $_direct === false) {
 			if ($this->getTableName() == 'history') {
 				$time = strtotime($this->getDatetime());
 				$time -= $time % 300;
