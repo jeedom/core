@@ -210,6 +210,7 @@ try {
 	}
 
 	if (init('action') == 'getHistory') {
+		global $JEEDOM_INTERNAL_CONFIG;
 		$return = array();
 		$data = array();
 		$dateStart = null;
@@ -265,6 +266,7 @@ try {
 			$return['unite'] = $cmd->getUnite();
 			$return['cmd'] = utils::o2a($cmd);
 			$return['eqLogic'] = utils::o2a($cmd->getEqLogic());
+			$return['timelineOnly'] = $JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['timelineOnly'];
 			$previsousValue = null;
 			$derive = init('derive', $cmd->getDisplay('graphDerive'));
 			if (trim($derive) == '') {
@@ -273,21 +275,27 @@ try {
 			foreach ($histories as $history) {
 				$info_history = array();
 				$info_history[] = floatval(strtotime($history->getDatetime() . " UTC")) * 1000;
-				$value = ($history->getValue() === null) ? null : floatval($history->getValue());
-				if ($derive == 1 || $derive == '1') {
-					if ($value !== null && $previsousValue !== null) {
-						$value = $value - $previsousValue;
-					} else {
-						$value = null;
+				if ($JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['timelineOnly']) {
+					$value = $history->getValue();
+				} else {
+					$value = ($history->getValue() === null) ? null : floatval($history->getValue());
+					if ($derive == 1 || $derive == '1') {
+						if ($value !== null && $previsousValue !== null) {
+							$value = $value - $previsousValue;
+						} else {
+							$value = null;
+						}
+						$previsousValue = ($history->getValue() === null) ? null : floatval($history->getValue());
 					}
-					$previsousValue = ($history->getValue() === null) ? null : floatval($history->getValue());
 				}
 				$info_history[] = $value;
-				if (($value != null && $value > $return['maxValue']) || $return['maxValue'] == '') {
-					$return['maxValue'] = $value;
-				}
-				if (($value != null && $value < $return['minValue']) || $return['minValue'] == '') {
-					$return['minValue'] = $value;
+				if (!$JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['timelineOnly']) {
+					if (($value != null && $value > $return['maxValue']) || $return['maxValue'] == '') {
+						$return['maxValue'] = $value;
+					}
+					if (($value != null && $value < $return['minValue']) || $return['minValue'] == '') {
+						$return['minValue'] = $value;
+					}
 				}
 				$data[] = $info_history;
 			}
