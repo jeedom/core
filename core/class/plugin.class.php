@@ -64,12 +64,12 @@ class plugin {
 		if (!is_array($data)) {
 			throw new Exception('Plugin introuvable (json invalide) : ' . $_id . ' => ' . print_r($data, true));
 		}
-		$plugin = new plugin();
-		$plugin->id = $data['id'];
-		$plugin->name = $data['name'];
-		$plugin->description = (isset($data['description'])) ? $data['description'] : '';
-		$plugin->licence = (isset($data['licence'])) ? $data['licence'] : '';
-		$plugin->author = (isset($data['author'])) ? $data['author'] : '';
+		$plugin = new self();
+		$plugin->setId($data['id'])
+                       ->setName($data['name'])
+                       ->setDescription((isset($data['description'])) ? $data['description'] : '')
+                       ->setLicence((isset($data['licence'])) ? $data['licence'] : '')
+                       ->setAuthor((isset($data['author'])) ? $data['author'] : '');
 		$plugin->installation = (isset($data['installation'])) ? $data['installation'] : '';
 		$plugin->hasDependency = (isset($data['hasDependency'])) ? $data['hasDependency'] : 0;
 		$plugin->hasOwnDeamon = (isset($data['hasOwnDeamon'])) ? $data['hasOwnDeamon'] : 0;
@@ -77,7 +77,7 @@ class plugin {
 		$plugin->eventjs = (isset($data['eventjs'])) ? $data['eventjs'] : 0;
 		$plugin->require = (isset($data['require'])) ? $data['require'] : '';
 		$plugin->category = (isset($data['category'])) ? $data['category'] : '';
-		$plugin->filepath = $_id;
+		$plugin->setFilepath($_id);
 		$plugin->index = (isset($data['index'])) ? (string) $data['index'] : $data['id'];
 		$plugin->display = (isset($data['display'])) ? (string) $data['display'] : '';
 		$plugin->issue = (isset($data['issue'])) ? (string) $data['issue'] : '';
@@ -820,14 +820,29 @@ class plugin {
 		return $this->id;
 	}
 
-	public function getName() {
+        public function setId($id){
+            $this->id = $id;
+            return $this;
+        }
+
+        public function getName() {
 		return $this->name;
 	}
+        
+        public function setName($name) {
+            $this->name = $name;
+            return $this;
+        }
 
 	public function getDescription() {
 		return nl2br($this->description);
 	}
 
+        public function setDescription($description) {
+            $this->description = $description;
+            return $this;
+        }
+        
 	public function getInfo($_name = '', $_default = '') {
 		if (count($this->info) == 0) {
 			$update = update::byLogicalId($this->id);
@@ -848,6 +863,11 @@ class plugin {
 		return $this->author;
 	}
 
+        public function setAuthor($author) {
+            $this->author = $author;
+            return $this;
+        }
+  
 	public function getRequire() {
 		return $this->require;
 	}
@@ -860,10 +880,20 @@ class plugin {
 		return $this->licence;
 	}
 
-	public function getFilepath() {
+        public function setLicence($licence) {
+            $this->licence = $licence;
+            return $this;
+        }
+
+        public function getFilepath() {
 		return $this->filepath;
 	}
-
+        
+        public function setFilepath($filepath) {
+            $this->filepath = $filepath;
+            return $this;
+        }
+ 
 	public function getInstallation() {
 		return nl2br($this->installation);
 	}
