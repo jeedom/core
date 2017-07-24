@@ -576,6 +576,9 @@ class interactQuery {
 	}
 
 	public function executeAndReply($_parameters) {
+		if (isset($_parameters['reply_cmd'])) {
+			unset($_parameters['reply_cmd']);
+		}
 		$interactDef = interactDef::byId($this->getInteractDef_id());
 		if (!is_object($interactDef)) {
 			return __('Inconsistance de la base de données', __FILE__);
