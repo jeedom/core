@@ -47,11 +47,11 @@ try {
 
 	$params = $jsonrpc->getParams();
 
-	if (!isset($params['proapi'])) {
+	if (!isset($params['apipro'])) {
 		throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__), -32001);
 	}
 
-	if (isset($params['proapi']) && !jeedom::apiAccess($params['proapi'], 'proapi')) {
+	if (isset($params['apipro']) && !jeedom::apiAccess($params['apipro'], 'apipro')) {
 		throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__), -32001);
 	}
 
