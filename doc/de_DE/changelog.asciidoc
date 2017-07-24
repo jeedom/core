@@ -22,6 +22,9 @@
 * Refonte de la page profils
 * Refonte de la page d'administration
 * Compression des widgets (gain d'environ 18%)
+* Ajout d'une "santé" sur les objets
+* Correction de bug sur le niveau de batterie des équipements
+* Ajout de méthode dans le core pour la gestion des commandes mortes (doit être ensuite implementé dans le plugin)
 
 == 3.0.11
 
