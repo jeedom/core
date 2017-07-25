@@ -253,11 +253,22 @@ jeedom.history.drawChart = function (_params) {
             };
         }
         if( data.result.timelineOnly){
-         var series = {
+        if(!isset(jeedom.history.chart[_params.el]) || !isset(jeedom.history.chart[_params.el].nbTimeline)){
+            nbTimeline = 1;
+        }else{
+            jeedom.history.chart[_params.el].nbTimeline++;
+            nbTimeline = jeedom.history.chart[_params.el].nbTimeline;
+        }
+        
+        var series = {
             type: 'flags',
             name: (isset(_params.option.name)) ? _params.option.name + ' '+ data.result.unite : data.result.history_name+ ' '+ data.result.unite,
             data: [],
+            id: parseInt(_params.cmd_id),
+            color: _params.option.graphColor,
             shape: 'squarepin',
+            cursor: 'pointer',
+            y : -30 - 25*(nbTimeline - 1),
             point: {
                 events: {
                     click: function (event) {
@@ -337,6 +348,7 @@ jeedom.history.drawChart = function (_params) {
         jeedom.history.chart[_params.el] = {};
         jeedom.history.chart[_params.el].cmd = new Array();
         jeedom.history.chart[_params.el].color = 0;
+        jeedom.history.chart[_params.el].nbTimeline = 1;
 
         if(_params.dateRange == '30 min'){
             var dateRange = 0
