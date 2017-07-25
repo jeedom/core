@@ -354,6 +354,11 @@ $('#div_pageContainer').off('click','.bt_addAction').on( 'click','.bt_addAction'
   updateSortable();
 });
 
+$('#div_pageContainer').off('click','.bt_addSinon').on( 'click','.bt_addSinon', function (event) {
+  $(this).closest('.subElement').next().css('display','table');
+  $(this).closest('li').hide();
+});
+
 $('#div_pageContainer').off('click','.bt_removeExpression').on('click','.bt_removeExpression',  function (event) {
   $(this).closest('.expression').remove();
   updateSortable();
@@ -1010,7 +1015,11 @@ function addSubElement(_subElement, _pColor) {
   if (_subElement.type == 'if' || _subElement.type == 'for' || _subElement.type == 'code') {
     noSortable = 'noSortable';
   }
-  var retour = '<div class="subElement ' + noSortable + '" style="display:table; width:100%;">';
+  var displayElse = 'table';
+  if (_subElement.type == 'else') {
+    if (!isset(_subElement.expressions) || _subElement.expressions.length==0) displayElse = 'none';
+  }
+  var retour = '<div class="subElement ' + noSortable + '" style="display:' + displayElse + '; width:100%;">';
   retour += '<input class="subElementAttr" data-l1key="id" style="display : none;" value="' + init(_subElement.id) + '"/>';
   retour += '<input class="subElementAttr" data-l1key="scenarioElement_id" style="display : none;" value="' + init(_subElement.scenarioElement_id) + '"/>';
   retour += '<input class="subElementAttr" data-l1key="type" style="display : none;" value="' + init(_subElement.type) + '"/>';
@@ -1057,6 +1066,7 @@ function addSubElement(_subElement, _pColor) {
     retour += '       <ul class="dropdown-menu">';
     retour += '         <li><a class="bt_addScenarioElement fromSubElement tootlips" href="#" title="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)}}">{{Bloc}}</a></li>';
     retour += '         <li><a class="bt_addAction" href="#">{{Action}}</a></li>';
+    retour += '         <li><a class="bt_addSinon" href="#">{{Sinon}}</a></li>';
     retour += '       </ul>';
     retour += '     </div><p> </p>';
     retour += '   </div>';
