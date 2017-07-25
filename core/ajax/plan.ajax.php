@@ -95,7 +95,7 @@ try {
 		}
 		$planHeader = planHeader::byId(init('id'));
 		if (!is_object($planHeader)) {
-			throw new Exception(__('Objet inconnu verifié l\'id', __FILE__));
+			throw new Exception(__('Objet inconnu verifiez l\'id', __FILE__));
 		}
 		$planHeader->remove();
 		ajax::success();
@@ -115,7 +115,7 @@ try {
 	if (init('action') == 'getPlanHeader') {
 		$planHeader = planHeader::byId(init('id'));
 		if (!is_object($planHeader)) {
-			throw new Exception(__('Plan header inconnu verifié l\'id : ', __FILE__) . init('id'));
+			throw new Exception(__('Plan header inconnu verifiez l\'id : ', __FILE__) . init('id'));
 		}
 		$return = utils::o2a($planHeader);
 		$return['image'] = $planHeader->displayImage();
@@ -139,7 +139,7 @@ try {
 	if (init('action') == 'copyPlanHeader') {
 		$planHeader = planHeader::byId(init('id'));
 		if (!is_object($planHeader)) {
-			throw new Exception(__('Plan header inconnu verifié l\'id : ', __FILE__) . init('id'));
+			throw new Exception(__('Plan header inconnu verifiez l\'id : ', __FILE__) . init('id'));
 		}
 		ajax::success(utils::o2a($planHeader->copy(init('name'))));
 	}
@@ -147,7 +147,7 @@ try {
 	if (init('action') == 'removeImageHeader') {
 		$planHeader = planHeader::byId(init('id'));
 		if (!is_object($planHeader)) {
-			throw new Exception(__('Plan header inconnu verifié l\'id : ', __FILE__) . init('id'));
+			throw new Exception(__('Plan header inconnu verifiez l\'id : ', __FILE__) . init('id'));
 		}
 		$planHeader->setImage('data', '');
 		$planHeader->setImage('sha1', '');
@@ -159,10 +159,10 @@ try {
 	if (init('action') == 'uploadImage') {
 		$planHeader = planHeader::byId(init('id'));
 		if (!is_object($planHeader)) {
-			throw new Exception(__('Objet inconnu verifié l\'id', __FILE__));
+			throw new Exception(__('Objet inconnu verifiez l\'id', __FILE__));
 		}
 		if (!isset($_FILES['file'])) {
-			throw new Exception(__('Aucun fichier trouvé. Vérifié parametre PHP (post size limit)', __FILE__));
+			throw new Exception(__('Aucun fichier trouvé. Vérifiez le parametre PHP (post size limit)', __FILE__));
 		}
 		$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
 		if (!in_array($extension, array('.jpg', '.png'))) {
@@ -189,7 +189,7 @@ try {
 			throw new Exception(__('Objet inconnu verifié l\'id', __FILE__));
 		}
 		if (!isset($_FILES['file'])) {
-			throw new Exception(__('Aucun fichier trouvé. Vérifié parametre PHP (post size limit)', __FILE__));
+			throw new Exception(__('Aucun fichier trouvé. Vérifiez le parametre PHP (post size limit)', __FILE__));
 		}
 		$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
 		if (!in_array($extension, array('.jpg', '.png'))) {
@@ -220,4 +220,4 @@ try {
 } catch (Exception $e) {
 	ajax::error(displayExeption($e), $e->getCode());
 }
-?>
+ 
