@@ -64,8 +64,8 @@ class plugin {
 		if (!is_array($data)) {
 			throw new Exception('Plugin introuvable (json invalide) : ' . $_id . ' => ' . print_r($data, true));
 		}
-		$plugin = new self();
-		$plugin->setId($data['id'])
+		$plugin = (new self())
+		       ->setId($data['id'])
                        ->setName($data['name'])
                        ->setDescription((isset($data['description'])) ? $data['description'] : '')
                        ->setLicence((isset($data['licence'])) ? $data['licence'] : '')
