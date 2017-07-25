@@ -93,7 +93,7 @@ try {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
-		$plugin = plugin::byId(init('id'));
+
 		$return = array('state' => 'nok', 'log' => 'nok');
 		$plugin = plugin::byId(init('id'));
 		if (is_object($plugin)) {
