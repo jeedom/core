@@ -30,7 +30,7 @@ try {
 		$object = object::byId(init('object_id'));
 
 		if (!is_object($object)) {
-			throw new Exception(__('Objet inconnu verifiez l\'id', __FILE__));
+			throw new Exception(__('Objet inconnu, verifiez l\'id', __FILE__));
 		}
 		$return = utils::o2a($object);
 		$return['eqLogic'] = array();
