@@ -50,7 +50,7 @@ try {
 	if (init('action') == 'byId') {
 		$eqLogic = eqLogic::byId(init('id'));
 		if (!is_object($eqLogic)) {
-			throw new Exception(__('EqLogic inconnu vérifiez l\'id', __FILE__));
+			throw new Exception(__('EqLogic inconnu, vérifiez l\'id', __FILE__));
 		}
 		ajax::success(utils::o2a($eqLogic));
 	}
@@ -74,7 +74,7 @@ try {
 		} else {
 			$eqLogic = eqLogic::byId(init('id'));
 			if (!is_object($eqLogic)) {
-				throw new Exception(__('Eqlogic inconnu vérifiez l\'id', __FILE__));
+				throw new Exception(__('Eqlogic inconnu, vérifiez l\'id', __FILE__));
 			}
 			$info_eqLogic = array();
 			$info_eqLogic['id'] = $eqLogic->getId();
@@ -123,7 +123,7 @@ try {
 		}
 		$eqLogic = eqLogic::byId(init('id'));
 		if (!is_object($eqLogic)) {
-			throw new Exception(__('EqLogic inconnu vérifiez l\'id', __FILE__));
+			throw new Exception(__('EqLogic inconnu, vérifiez l\'id', __FILE__));
 		}
 		if (!$eqLogic->hasRight('w')) {
 			throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
@@ -158,7 +158,7 @@ try {
 		foreach ($eqLogics as $id) {
 			$eqLogic = eqLogic::byId($id);
 			if (!is_object($eqLogic)) {
-				throw new Exception(__('EqLogic inconnu vérifiez l\'id :', __FILE__) . ' ' . $id);
+				throw new Exception(__('EqLogic inconnu, vérifiez l\'id :', __FILE__) . ' ' . $id);
 			}
 			if (!$eqLogic->hasRight('w')) {
 				continue;
@@ -173,7 +173,7 @@ try {
 		foreach ($eqLogics as $id) {
 			$eqLogic = eqLogic::byId($id);
 			if (!is_object($eqLogic)) {
-				throw new Exception(__('EqLogic inconnu verifiez l\'id :', __FILE__) . ' ' . $id);
+				throw new Exception(__('EqLogic inconnu, verifiez l\'id :', __FILE__) . ' ' . $id);
 			}
 			if (!$eqLogic->hasRight('w')) {
 				continue;
@@ -189,7 +189,7 @@ try {
 		foreach ($eqLogics as $id) {
 			$eqLogic = eqLogic::byId($id);
 			if (!is_object($eqLogic)) {
-				throw new Exception(__('EqLogic inconnu vérifiez l\'id :', __FILE__) . ' ' . $id);
+				throw new Exception(__('EqLogic inconnu, vérifiez l\'id :', __FILE__) . ' ' . $id);
 			}
 			if (!$eqLogic->hasRight('w')) {
 				continue;
@@ -224,7 +224,7 @@ try {
 		}
 		$eqLogic = eqLogic::byId(init('id'));
 		if (!is_object($eqLogic)) {
-			throw new Exception(__('EqLogic inconnu vérifiez l\'id', __FILE__));
+			throw new Exception(__('EqLogic inconnu, vérifiez l\'id', __FILE__));
 		}
 		if (init('name') == '') {
 			throw new Exception(__('Le nom de la copie de l\'équipement ne peut être vide', __FILE__));
@@ -238,7 +238,7 @@ try {
 		}
 		$eqLogic = eqLogic::byId(init('id'));
 		if (!is_object($eqLogic)) {
-			throw new Exception(__('EqLogic inconnu vérifiez l\'id : ', __FILE__) . init('id'));
+			throw new Exception(__('EqLogic inconnu, vérifiez l\'id : ', __FILE__) . init('id'));
 		}
 		if (!$eqLogic->hasRight('w')) {
 			throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
@@ -254,7 +254,7 @@ try {
 		}
 		$eqLogic = $typeEqLogic::byId(init('id'));
 		if (!is_object($eqLogic)) {
-			throw new Exception(__('EqLogic inconnu vérifiez l\'id : ', __FILE__) . init('id'));
+			throw new Exception(__('EqLogic inconnu, vérifiez l\'id : ', __FILE__) . init('id'));
 		}
 		$return = utils::o2a($eqLogic);
 		$return['cmd'] = utils::o2a($eqLogic->getCmd());
@@ -276,7 +276,7 @@ try {
 				$typeEqLogic = init('type');
 				$typeCmd = $typeEqLogic . 'Cmd';
 				if ($typeEqLogic == '' || !class_exists($typeEqLogic) || !class_exists($typeCmd)) {
-					throw new Exception(__('Type incorrect (classe commande inexistante)', __FILE__) . $typeCmd);
+					throw new Exception(__('Type incorrect, (classe commande inexistante)', __FILE__) . $typeCmd);
 				}
 				$eqLogic = null;
 				if (isset($eqLogicSave['id'])) {
