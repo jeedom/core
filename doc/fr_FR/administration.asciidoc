@@ -198,6 +198,8 @@ Lors de la validation du partage samba, tel que décrit précédement, une nouve
 backup de jeedom. En l'activant, jeedom procedera à son envoi automatique lors du prochain backup. Un test est possible en
 effectuant un backup manuel. Le log devra donc ressembler à ceci :
 
+image::../images/Backup5.png[]
+
 [IMPORTANT]
 Il vous faudra peut-être installer le package smbclient pour que le dépôt fonctionne.
 
