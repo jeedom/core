@@ -20,7 +20,9 @@
 
 require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 
-class repo_file {
+use Jeedom\Interfaces\RepoInterface;
+
+class repo_file implements RepoInterface{
 	/*     * *************************Attributs****************************** */
 
 	public static $_name = 'Fichier';
