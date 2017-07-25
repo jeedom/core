@@ -69,34 +69,34 @@ class plugin {
                        ->setName($data['name'])
                        ->setDescription((isset($data['description'])) ? $data['description'] : '')
                        ->setLicence((isset($data['licence'])) ? $data['licence'] : '')
-                       ->setAuthor((isset($data['author'])) ? $data['author'] : '');
-		$plugin->installation = (isset($data['installation'])) ? $data['installation'] : '';
-		$plugin->hasDependency = (isset($data['hasDependency'])) ? $data['hasDependency'] : 0;
-		$plugin->hasOwnDeamon = (isset($data['hasOwnDeamon'])) ? $data['hasOwnDeamon'] : 0;
-		$plugin->maxDependancyInstallTime = (isset($data['maxDependancyInstallTime'])) ? $data['maxDependancyInstallTime'] : 30;
-		$plugin->eventjs = (isset($data['eventjs'])) ? $data['eventjs'] : 0;
-		$plugin->require = (isset($data['require'])) ? $data['require'] : '';
-		$plugin->category = (isset($data['category'])) ? $data['category'] : '';
-		$plugin->setFilepath($_id);
-		$plugin->index = (isset($data['index'])) ? (string) $data['index'] : $data['id'];
-		$plugin->display = (isset($data['display'])) ? (string) $data['display'] : '';
-		$plugin->issue = (isset($data['issue'])) ? (string) $data['issue'] : '';
-		$plugin->changelog = (isset($data['changelog'])) ? (string) $data['changelog'] : '';
-		$plugin->documentation = (isset($data['documentation'])) ? (string) $data['documentation'] : '';
-		$plugin->mobile = '';
+                       ->setAuthor((isset($data['author'])) ? $data['author'] : '')
+                       ->setInstallation( (isset($data['installation'])) ? $data['installation'] : '')
+                       ->setHasDependency( (isset($data['hasDependency'])) ? $data['hasDependency'] : 0)
+                       ->setHasOwnDeamony((isset($data['hasOwnDeamon'])) ? $data['hasOwnDeamon'] : 0)
+                       ->setMaxDependancyInstallTime((isset($data['maxDependancyInstallTime'])) ? $data['maxDependancyInstallTime'] : 30)
+                       ->setEventjs((isset($data['eventjs'])) ? $data['eventjs'] : 0)
+                       ->setRequire((isset($data['require'])) ? $data['require'] : '')
+                       ->setCategory( (isset($data['category'])) ? $data['category'] : '')
+                       ->setFilepath($_id)
+                       ->setIndex((isset($data['index'])) ? (string) $data['index'] : $data['id'])
+                       ->setDisplay((isset($data['display'])) ? (string) $data['display'] : '')
+                       ->setIssue( (isset($data['issue'])) ? (string) $data['issue'] : '')
+                       ->setChangelog((isset($data['changelog'])) ? (string) $data['changelog'] : '')
+                       ->setDocumentation((isset($data['documentation'])) ? (string) $data['documentation'] : '')
+                       ->setMobile('');
 		if (file_exists(dirname(__FILE__) . '/../../plugins/' . $data['id'] . '/mobile/html')) {
-			$plugin->mobile = (isset($data['mobile'])) ? $data['mobile'] : $data['id'];
+			$plugin->setMobile((isset($data['mobile'])) ? $data['mobile'] : $data['id']);
 		}
 		if (isset($data['include'])) {
-			$plugin->include = array(
+			$plugin->setInclude( array(
 				'file' => $data['include']['file'],
 				'type' => $data['include']['type'],
-			);
+			));
 		} else {
-			$plugin->include = array(
+			$plugin->setInclude( array(
 				'file' => $data['id'],
 				'type' => 'class',
-			);
+			));
 		}
 		$plugin->functionality['interact'] = method_exists($plugin->getId(), 'interact');
 		$plugin->functionality['cron'] = method_exists($plugin->getId(), 'cron');
@@ -105,13 +105,13 @@ class plugin {
 		$plugin->functionality['cron30'] = method_exists($plugin->getId(), 'cron30');
 		$plugin->functionality['cronHourly'] = method_exists($plugin->getId(), 'cronHourly');
 		$plugin->functionality['cronDaily'] = method_exists($plugin->getId(), 'cronDaily');
-		if (!isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$plugin->category])) {
+		if (!isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$plugin->getCategory()])) {
 			foreach ($JEEDOM_INTERNAL_CONFIG['plugin']['category'] as $key => $value) {
 				if (!isset($value['alias'])) {
 					continue;
 				}
 				if (in_array($plugin->category, $value['alias'])) {
-					$plugin->category = $key;
+					$plugin->setCategory($key);
 					break;
 				}
 			}
@@ -872,11 +872,21 @@ class plugin {
 		return $this->require;
 	}
 
-	public function getCategory() {
+        public function setRequire($require) {
+            $this->require = $require;
+            return $this;
+        }
+
+        public function getCategory() {
 		return $this->category;
 	}
+        
+        public function setCategory($category) {
+            $this->category = $category;
+            return $this;
+        }
 
-	public function getLicence() {
+        public function getLicence() {
 		return $this->licence;
 	}
 
@@ -898,13 +908,28 @@ class plugin {
 		return nl2br($this->installation);
 	}
 
-	public function getIndex() {
+        public function setInstallation($installation) {
+            $this->installation = $installation;
+            return $this;
+        }
+
+        public function getIndex() {
 		return $this->index;
 	}
+        
+        public function setIndex($index) {
+            $this->index = $index;
+            return $this;
+        }
 
-	public function getInclude() {
+        public function getInclude() {
 		return $this->include;
 	}
+        
+        public function setInclude($include) {
+            $this->include = $include;
+            return $this;
+        }
 
 	public function getDisplay() {
 		return $this->display;
@@ -935,7 +960,7 @@ class plugin {
 
 	public function getHasDependency() {
 		return $this->hasDependency;
-	}
+	}      
 
 	public function setHasDependency($hasDependency) {
 		$this->hasDependency = $hasDependency;
