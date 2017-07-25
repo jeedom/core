@@ -73,7 +73,7 @@ if ($market->getPurchase() == 1) {
 		echo ' <a class="btn btn-success bt_installFromMarket" data-version="stable" style="color : white;" data-market_logicalId="' . $market->getLogicalId() . '" data-market_id="' . $market->getId() . '" ><i class="fa fa-plus-circle"></i> {{Installer stable}}</a>';
 	}
 	if ($market->getStatus('beta') == 1) {
-		echo ' <a class="btn btn-warning bt_installFromMarket" data-version="beta" style="color : white;" data-market_logicalId="' . $market->getLogicalId() . '" data-market_id="' . $market->getId() . '" ><i class="fa fa-plus-circle"></i> {{Installer beta}}</a>';
+		echo ' <a class="btn btn-warning bt_installFromMarket" data-version="beta" style="color : white;" data-market_logicalId="' . $market->getLogicalId() . '" data-market_id="' . $market->getId() . '" ><i class="fa fa-plus-circle"></i> {{Installer bêta}}</a>';
 	}
 
 } else if ($market->getPrivate() == 1) {
@@ -183,7 +183,7 @@ if ($market->getHardwareCompatibility('Jeedomboard') == 1) {
       <div class='col-sm-6'>
         <?php if (config::byKey('market::apikey') != '' || (config::byKey('market::username') != '' && config::byKey('market::password') != '')) {?>
           <div class="form-group">
-            <label class="col-sm-4 control-label">{{Ma Note}}</label>
+            <label class="col-sm-4 control-label">{{Ma note}}</label>
             <div class="col-sm-8">
               <span><input type="number" class="rating" id="in_myRating" data-max="5" data-empty-value="0" data-min="1" data-clearable="Effacer" value="<?php echo $market->getRating('user') ?>" /></span>
             </div>
@@ -220,7 +220,7 @@ if ($market->getHardwareCompatibility('Jeedomboard') == 1) {
 ?>
       </div>
       <div class='col-sm-2'>
-       <label class="control-label">{{Nombre d'installation}}</label><br/>
+       <label class="control-label">{{Nombre d'installations}}</label><br/>
        <span class="marketAttr" data-l1key="nbInstall"></span><br/>
        <label class="control-label">{{Nombre de téléchargements}}</label><br/>
        <span class="marketAttr" data-l1key="downloaded"></span>
@@ -230,7 +230,7 @@ if ($market->getHardwareCompatibility('Jeedomboard') == 1) {
       <span class="marketAttr" data-l1key="type"></span>
     </div>
     <div class='col-sm-2'>
-      <label class="control-label">Langue disponible</label><br/>
+      <label class="control-label">{{Langue disponible}}</label><br/>
       <?php
 echo '<img src="core/img/francais.png" width="30" />';
 if ($market->getLanguage('en_US') == 1) {
@@ -310,7 +310,7 @@ if ($market->getLanguage('it_IT') == 1) {
       },
  success: function (data) { // si l'appel a bien fonctionné
  if(market_display_info.type == 'plugin'){
-   bootbox.confirm('{{Voulez vous aller sur la page de configuration de votre nouveau plugin ?}}', function (result) {
+   bootbox.confirm('{{Voulez-vous aller sur la page de configuration de votre nouveau plugin ?}}', function (result) {
      if (result) {
       loadPage('index.php?v=d&p=plugin&id=' + logicalId);
     }

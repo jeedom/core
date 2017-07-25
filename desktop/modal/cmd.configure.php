@@ -498,7 +498,7 @@ foreach ($groups as $group) {
         <input type="checkbox" class="cmdAttr" data-l1key="html" data-l2key="enable" />
       </div>
       <div class="col-xs-3">
-        <a class="btn btn-warning" id="bt_reinitHtmlCode"><i class="fa fa-times"></i> {{Reinitialiser la personalisation}}</a>
+        <a class="btn btn-warning" id="bt_reinitHtmlCode"><i class="fa fa-times"></i> {{Réinitialiser la personnalisation}}</a>
       </div>
     </div>
     <legend><i class="fa fa-code"></i> {{Code}}</legend>
@@ -597,7 +597,7 @@ foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
 		echo '</div>';
 		echo '</div>';
 		echo '<div class="form-group">';
-		echo '<label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Pendant plus de (en min, laisser vide pour immediat)}}</label>';
+		echo '<label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Pendant plus de (en min, laisser vide pour immédiat)}}</label>';
 		echo '<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">';
 		echo '<input type="number" class="cmdAttr form-control" data-l1key="alert" data-l2key="' . $level . 'during" />';
 		echo '</div>';

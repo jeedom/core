@@ -280,7 +280,7 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 													<?php if ($eqLogic->widgetPossibility('custom::border-radius')) {
 		?>
 														<tr>
-															<td>{{Arrondit des bordures (en px)}}</td>
+															<td>{{Arrondi des bordures (en px)}}</td>
 															<?php
 foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 			echo '<td>';
