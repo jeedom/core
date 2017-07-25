@@ -121,7 +121,16 @@ class plugin {
 	}
 
 	public static function getPathById($_id) {
-		return dirname(__FILE__) . '/../../plugins/' . $_id . '/plugin_info/info.json';
+                if (file_exists(dirname(__FILE__) . '/../../plugins/' . $_id . '/plugin_info/info.json')) {
+                        return dirname(__FILE__) . '/../../plugins/' . $_id . '/plugin_info/info.json';
+                }
+                if (preg_match("/^([^_]*)_.*$/", $_id, $_matches)) {
+                        if (file_exists(dirname(__FILE__) . '/../../plugins/' . $_matches[1] . '/plugin_info/info.json')) {
+                                return dirname(__FILE__) . '/../../plugins/' . $_matches[1] . '/plugin_info/info.json';
+                        }
+                }
+		
+		throw new Exception('Plugin introuvable : ' . $_id);
 	}
 
 	public function getPathToConfigurationById() {
