@@ -17,5 +17,10 @@
             "name": "Loic",
             "email": "loic@jeedom.com"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            "Jeedom\\": "core"
+        }
+    }
 }
