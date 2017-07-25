@@ -5,18 +5,18 @@
 * Fehlerkorrekturen
 * Optimisation globale de Jeedom (sur le chargement des classes de plugins, temps presque divisé par 3)
 * Support für Debian 9
-* Mode onepage (changement de page sans recharger toute la page juste la partie qui change)
+* Mode onepage (changement de page sans recharger toute la page, juste la partie qui change)
 * Ajout d'une option pour masquer les objets sur le dashboard mais qui permet de toujours les avoir dans la liste
 * Un double clic sur un noeud sur le graphique de lien (sauf pour les variables) amène sur sa page de configuration
 * Possibilitée de mettre le texte à gauche/droit/au centre sur les designs pour les élements de type texte/vue/design
-* Ajout des résumé d'objet sur la dashboard (liste des objets à gauche)
+* Ajout des résumés d'objets sur la dashboard (liste des objets à gauche)
 * Ajout des interactions de type "previens moi si"
-* Revu de la page d'acceuil des scénarios
-* Ajout d'un historique de commande pour les commandes SQL ou système dans l'interface de jeedom
+* Revue de la page d'acceuil des scénarios
+* Ajout d'un historique de commandes pour les commandes SQL ou système dans l'interface de Jeedom
 * Possibilité d'avoir les graphiques d'historique des commandes en mobile (par appui long sur la commande)
 * Ajout de l'avance de l'update de l'application mobile 
 * Reprise en cas d'erreur de mise à jour de l'application mobile
-* Suppression des scénarios "simple" (redondant avec la configuration avancé des commandes)
+* Suppression des scénarios "simples" (redondant avec la configuration avancée des commandes)
 * Ajout de hachurage sur les graphs pour distinguer les jours
 * Refonte de la page des interactions
 * Refonte de la page profils
@@ -25,14 +25,15 @@
 * Ajout d'une "santé" sur les objets
 * Correction de bug sur le niveau de batterie des équipements
 * Ajout de méthode dans le core pour la gestion des commandes mortes (doit être ensuite implementé dans le plugin)
+* Possibilité d'historiser des commandes de type texte
 
 == 3.0.11
 
-- Correction de bug sur les demandes "ask" en timeout
+- Correction de bugs sur les demandes "ask" en timeout
 
 == 3.0.10
 
-- Correction de bug sur l'interface de configuration des interactions
+- Correction de bugs sur l'interface de configuration des interactions
 
 == 3.0
 
@@ -54,7 +55,7 @@
 * Les développeurs tiers peuvent ajouter leur propre système de gestion de tickets
 * Refonte de la configuration des droits utilisateurs (tout est sur la page de gestion des utilisateurs)
 * Mise à jour des libs : jquery (en 3.0) , jquery mobile, hightstock et table sorter, font-awesome
-* Grosse amélioration des designs : 
+* Grosse amélioration des designs: 
 ** Toutes les actions sont maintenant accessibles à partir d'un clic droit
 ** Possibilité d'ajouter une commande seule
 ** Possibilité d'ajouter une image ou un flux vidéo
@@ -62,7 +63,7 @@
 *** Zone de type macro : lance une série d'actions lors d'un clic dessus
 *** Zone de type binaire : lance une série d'actions lors d'un clic dessus en fonction de l'état d'une commande
 *** Zone de type widget : affiche un widget au clic ou au survol de la zone
-** Optimisation général du code
+** Optimisation générale du code
 ** Possibilité de faire apparaître une grille et de choisir sa taille (10x10,15x15 ou 30x30)
 ** Possibilité d'activer une aimantation des widgets sur la grille
 ** Possibilité d'activer une aimantation des widgets entre eux
@@ -83,7 +84,7 @@
 * Ajout d'une fonction valueDate dans les scénarios (voir documentation des scénarios)
 * Possibilité dans les scénarios de modifier la valeur d'une commande avec l'action "event"
 * Ajout d'un champ commentaire sur la configuration avancée d'un équipement
-* Ajout d'un système d'alerte sur les commandes avec 2 niveaux : alerte et danger. La configuration se trouve dans la configuration avancée des commandes (de type info seulement bien sûr). Vous pouvez voir les modules en alerte sur la page Analyse -> Equipement. Vous pouvez configurer les actions sur alerte sur la page de configuration générale de Jeedom
+* Ajout d'un système d'alerte sur les commandes avec 2 niveaux : alerte et danger. La configuration se trouve dans la configuration avancée des commandes (de type info seulement bien sûr). Vous pouvez voir les modules en alerte sur la page Analyse -> Equipements. Vous pouvez configurer les actions sur alerte sur la page de configuration générale de Jeedom
 * Ajout d'une zone "tableau" sur les vues qui permet d'afficher une ou plusieurs colonnes par case. Les cases supportent aussi le code HTML
 * Jeedom peut maintenant tourner sans les droits root (expérimental). Attention car sans les droits root vous devrez manuellement lancer les scripts pour les dépendances des plugins
 * Optimisation du calcul des expressions (calcul des tags uniquement si présents dans l'expression)
@@ -116,7 +117,7 @@
 * Uniformisation du tmp jeedom, maintenant tout est dans /tmp/jeedom
 * Possibilité d'avoir un graph des différentes liaisons d'un scénario, équipement, objet, commande ou variable
 * Possibilité de régler la profondeur des graphiques de lien en fonction de l'objet d'origine
-* Possibilité d'avoir les logs des scénarios en temps réel (ralenti l'execution des scénarios)
+* Possibilité d'avoir les logs des scénarios en temps réel (ralentit l'exécution des scénarios)
 * Possibilité de passer des tags lors du lancement d'un scénario
 * Optimisation du chargement des scénarios et pages utilisant des actions avec option (type configuration du plugin alarme ou mode)
 

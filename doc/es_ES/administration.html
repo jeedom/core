@@ -919,6 +919,9 @@ No olvide guardar los cambios después de hacer modificaciones
 <p>*[Usuario backup] *: Nombre de usuario para la conexión (conexiones anónimas no son posibles)</p>
 </li>
 <li>
+<p>* L&#8217;utilisateur doit forcement avoir les droits lecture/ecriture sur ce repertoire</p>
+</li>
+<li>
 <p><strong>[Contraseña backup]</strong> : contraseña del usuario</p>
 </li>
 <li>
@@ -932,6 +935,16 @@ No olvide guardar los cambios después de hacer modificaciones
 <div class="paragraph">
 <p>SI la ruta de acceso a vuestra carpeta de backup samba es : \\192.168.0.1\Sauvegardes\Domotique\Jeedom
 Si IP = 192.168.0.1 , Compartir = //192.168.0.1/Sauvegardes , ruta = Domotique/Jeedom</p>
+</div>
+<div class="paragraph">
+<p>Lors de la validation du partage samba, tel que décrit précédement, une nouvelle forme de sauvegarde apparait dans l&#8217;onglet
+backup de jeedom. En l&#8217;activant, jeedom procedera à son envoi automatique lors du prochain backup. Un test est possible en
+effectuant un backup manuel. Le log devra donc ressembler à ceci :</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Backup5.png" alt="Backup5">
+</div>
 </div>
 <div class="paragraph">
 <p>Tal vez necesite instalar el paquete smbclient para que el repositorio funcione</p>

@@ -184,6 +184,7 @@ image::../images/administration18.png[]
 
 * *[Backup] IP* : IP des Samba Servers
 * *[Backup] Benutzer* : Benutzernamen für die Verbindung (anonyme Verbindungen sind nicht möglich)
+* * L'utilisateur doit forcement avoir les droits lecture/ecriture sur ce repertoire
 * *[Backup] Passwort* : Benutzerpasswort
 * *[Backup] Partage* : chemin du partage (attention à bien s'arrêter au niveau du partage)
 * *[Backup] Chemin* : chemin dans le partage (à mettre en relatif), celui-ci doit exister
@@ -191,6 +192,13 @@ image::../images/administration18.png[]
 [NOTE]
 Si le chemin d'accès à votre dossier de sauvegarde samba est : \\192.168.0.1\Sauvegardes\Domotique\Jeedom
 Alors IP = 192.168.0.1 , Partage = //192.168.0.1/Sauvegardes , Chemin = Domotique/Jeedom
+
+[NOTE]
+Lors de la validation du partage samba, tel que décrit précédement, une nouvelle forme de sauvegarde apparait dans l'onglet
+backup de jeedom. En l'activant, jeedom procedera à son envoi automatique lors du prochain backup. Un test est possible en
+effectuant un backup manuel. Le log devra donc ressembler à ceci :
+
+image::../images/Backup5.png[]
 
 [IMPORTANT]
 Es wir notwendig sein, das sie das smbclient Software-Paket installieren, damit das Depot funktioniert

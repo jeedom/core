@@ -955,6 +955,9 @@ N&#8217;oubliez pas de sauvegarder après toute modification.
 <p><strong>[Backup] Utilisateur</strong> : nom d&#8217;utilisateur pour la connexion (les connexions anonymes ne sont pas possibles)</p>
 </li>
 <li>
+<p>* L&#8217;utilisateur doit forcement avoir les droits lecture/ecriture sur ce repertoire</p>
+</li>
+<li>
 <p><strong>[Backup] Mot de passe</strong> : mot de passe de l&#8217;utilisateur</p>
 </li>
 <li>
@@ -977,6 +980,25 @@ Alors IP = 192.168.0.1 , Partage = //192.168.0.1/Sauvegardes , Chemin = Domotiqu
 </td>
 </tr>
 </table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Lors de la validation du partage samba, tel que décrit précédement, une nouvelle forme de sauvegarde apparait dans l&#8217;onglet
+backup de jeedom. En l&#8217;activant, jeedom procedera à son envoi automatique lors du prochain backup. Un test est possible en
+effectuant un backup manuel. Le log devra donc ressembler à ceci :
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Backup5.png" alt="Backup5">
+</div>
 </div>
 <div class="admonitionblock important">
 <table>
