@@ -681,6 +681,9 @@ ORDER BY  datetime DESC';
 				}
 			}
 			foreach ($cmd_histories as $datetime => $cmd_history) {
+				if (count($matches[1]) != count($cmd_history)) {
+					continue;
+				}
 				$datetime = floatval(strtotime($datetime . " UTC"));
 				$calcul = template_replace($cmd_history, $_strcalcul);
 				try {
