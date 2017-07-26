@@ -40,6 +40,8 @@ class eqLogic {
 	protected $_object = null;
 	private static $_templateArray = array();
 	protected $_needRefreshWidget = false;
+	protected $_timeoutUpdated = false;
+	protected $_batteryUpdated = false;
 	protected $_cmds = array();
 
 	/*     * ***********************Méthodes statiques*************************** */
@@ -740,6 +742,19 @@ class eqLogic {
 		if ($this->_needRefreshWidget) {
 			$this->refreshWidget();
 		}
+		if ($this->_batteryUpdated){
+			$this->batteryStatus();
+		}
+		if ($this->_timeoutUpdated){
+			if ($this->getTimeout() == null) {
+				foreach (message::byPluginLogicalId('core', 'noMessage' . $this->getId()) as $message) {
+					$message->remove();
+				}
+				$this->setStatus('timeout', 0);
+			}	else {
+				$this->checkAlive();
+			}
+		}
 	}
 
 	public function refresh() {
@@ -1272,16 +1287,12 @@ class eqLogic {
 	}
 
 	public function setConfiguration($_key, $_value) {
-		$updatedbattery = 0;
 		if (in_array($_key ,array('battery_warning_threshold','battery_danger_threshold'))){
 			if ($this->getConfiguration($_key, '') != $_value){
-				$updatedbattery = 1;
+				$this->_batteryUpdated = True;
 			}
 		}
 		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
-		if ($updatedbattery == 1) {
-			$this->batteryStatus();
-		}
 		return $this;
 	}
 
@@ -1304,6 +1315,9 @@ class eqLogic {
 	public function setTimeout($_timeout) {
 		if ($_timeout == '' || is_nan(intval($_timeout)) || $_timeout < 1) {
 			$_timeout = null;
+		}
+		if ($_timeout != $this->getTimeout()) {
+			$this->_timeoutUpdated = True;
 		}
 		$this->timeout = $_timeout;
 		return $this;
