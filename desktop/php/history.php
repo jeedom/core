@@ -7,9 +7,19 @@ $date = array(
 	'end' => date('Y-m-d'),
 );
 ?>
-
 	<div class="row row-overflow">
 		<div class="col-lg-3 col-md-4 col-sm-5 bs-sidebar">
+			<ul class="nav nav-list bs-sidenav">
+				<li>
+					<div class="input-group input-group-sm" style="width: 100%">
+						<textarea class="form-control input-sm" id='in_calculHistory' placeholder="{{Historique calculé}}" ></textarea>
+						<span class="input-group-btn">
+							<a class="btn btn-default" id="bt_findCmdCalculHistory" title="{{Sélectionner la commande}}"><i class="fa fa-list-alt"></i></a>
+							<a class="btn btn-success" id="bt_displayCalculHistory"><i class="fa fa-check"></i></a>
+						</span>
+					</div>
+				</li>
+			</ul>
 			<ul id="ul_history" class="nav nav-list bs-sidenav">
 				<li class="nav-header"><i class="icon techno-courbes3"></i> {{Historique}}
 					<a id="bt_openCmdHistoryConfigure" class="btn btn-default btn-sm pull-right" style="position:relatif; top:-5px;padding: 5px 10px;"><i class="fa fa-cogs"></i> {{Configuration}}</a>
@@ -47,9 +57,10 @@ foreach (cmd::allHistoryCmd() as $cmd) {
 		</div>
 
 		<div class="col-lg-9 col-md-8 col-sm-7" style="border-left: solid 1px #EEE; padding-left: 25px;height: 600px;">
-			<input id="in_startDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 150px;" value="<?php echo $date['start'] ?>"/>
-			<input id="in_endDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 150px;" value="<?php echo $date['end'] ?>"/>
-			<a class="btn btn-success btn-sm" id='bt_validChangeDate' title="{{Attention une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher}}">{{Ok}}</a>
+			<a class="btn btn-warning btn-sm" id='bt_clearGraph'><i class="fa fa-trash-o"></i> {{Vider}}</a>
+			<input id="in_startDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 150px;position:relative;top:1px;" value="<?php echo $date['start'] ?>"/>
+			<input id="in_endDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 150px;position:relative;top:1px;" value="<?php echo $date['end'] ?>"/>
+			<a class="btn btn-success btn-sm" id='bt_validChangeDate' title="{{Attention une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher}}"><i class="fa fa-check"></i> {{Ok}}</a>
 
 			<select class="form-control pull-right" id="sel_groupingType" style="width: 200px;">
 				<option value="">{{Aucun groupement}}</option>
