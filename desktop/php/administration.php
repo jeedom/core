@@ -1097,9 +1097,6 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 							<legend>{{Alertes}}</legend>
 							<?php
 foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
-	if (!$value['check']) {
-		continue;
-	}
 	echo '<div class="form-group">';
 	echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Ajouter un message à chaque}} ' . $value['name'] . '</label>';
 	echo '<div class="col-sm-1">';
