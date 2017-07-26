@@ -1,4 +1,5 @@
 <?php
+global $JEEDOM_INTERNAL_CONFIG;
 if (!isConnect()) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
@@ -34,6 +35,7 @@ sort($battery);
 	<li role="presentation" class="active"><a href="#battery" aria-controls="battery" role="tab" data-toggle="tab"><i class="fa fa-battery-full"></i> {{Batteries}}</a></li>
 	<li role="presentation"><a href="#alertEqlogic" aria-controls="alertEqlogic" role="tab" data-toggle="tab"><i class="fa fa-exclamation-triangle"></i> {{Modules en alerte}}</a></li>
 	<li role="presentation"><a href="#actionCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fa fa-gears"></i> {{Actions définies}}</a></li>
+	<li role="presentation"><a href="#alertCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fa fa-bell"></i> {{Alertes définies}}</a></li>
 	<li role="presentation"><a href="#deadCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fa fa-snapchat-ghost"></i> {{Commandes orphelines}}</a></li>
 </ul>
 
@@ -175,6 +177,79 @@ foreach (eqLogic::all() as $eqLogic) {
 			echo '</td>';
 			echo '</tr>';
 		}
+	}
+}
+?>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		
+			<div role="tabpanel" class="tab-pane" id="alertCmd">
+			<br/>
+			<div class="cmdListContainer">
+				<table class="table table-condensed tablesorter" id="table_deadCmd">
+					<thead>
+						<tr>
+							<th>{{Equipement}}</th>
+							<th>{{Alertes}}</th>
+							<th>{{Timeout}}</th>
+							<th>{{Seuils batterie}}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php
+foreach (eqLogic::all() as $eqLogic) {
+	$hasSomeAlerts = 0;
+	$listCmds = array();
+	foreach ($eqLogic->getCmd('info') as $cmd) {
+		foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
+			if (!$value['check']) {
+				continue;
+			}
+			if ($cmd->getAlert($level . 'if','') != ''){
+				$hasSomeAlerts += 1;
+				if (!in_array($cmd, $listCmds)){
+					$listCmds[]=$cmd;
+				}
+			}
+		}
+	}
+	if ($eqLogic->getConfiguration('battery_warning_threshold','') != ''){
+		$hasSomeAlerts += 1;
+	}
+	if ($eqLogic->getConfiguration('battery_danger_threshold','') != ''){
+		$hasSomeAlerts += 1;
+	}
+	if ($eqLogic->getTimeout('')){
+		$hasSomeAlerts += 1;
+	}
+	if ($hasSomeAlerts != 0){
+		echo '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '" style="text-decoration: none;">' . $eqLogic->getHumanName(true) . '</a></td>';
+		echo '<td>';
+		foreach ($listCmds as $cmdalert){
+			foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
+				if (!$value['check']) {
+					continue;
+				}
+				if ($cmdalert->getAlert($level . 'if','') != ''){
+					$during = $cmdalert->getAlert($level . 'during','') == '' ? ' effet immédiat' : ' pendant plus de ' .$cmdalert->getAlert($level . 'during','') . ' minute(s)';
+					echo ucfirst($level) . ' si ' . $cmdalert->getAlert($level . 'if','') . ' de <b>' . $cmdalert->getName() . ' (' . $cmdalert->getId() . ') </b>' . $during . '</br>';
+				}
+			}
+		}
+		echo '</td>';
+		if ($eqLogic->getTimeout('') != ''){
+			echo '<td>' . $eqLogic->getTimeout('') . ' minute(s)</td>';
+		}
+		echo '<td>';
+		if ($eqLogic->getConfiguration('battery_danger_threshold','') != ''){
+			echo '<label class="col-xs-6 eqLogicAttr label label-danger" style="font-size : 0.8em">{{Danger}} ' .$eqLogic->getConfiguration('battery_danger_threshold','') . ' % </label>';
+		}
+		if ($eqLogic->getConfiguration('battery_warning_threshold','') != ''){
+			echo '<label class="col-xs-6 label label-warning" style="font-size : 0.8em;">{{Warning}} ' .$eqLogic->getConfiguration('battery_warning_threshold','') . ' % </label>';
+		}
+		echo '</td></tr>';
 	}
 }
 ?>
