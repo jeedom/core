@@ -1272,7 +1272,16 @@ class eqLogic {
 	}
 
 	public function setConfiguration($_key, $_value) {
+		$updatedbattery = 0;
+		if (in_array($_key ,array('battery_warning_threshold','battery_danger_threshold'))){
+			if ($this->getConfiguration($_key, '') != $_value){
+				$updatedbattery = 1;
+			}
+		}
 		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
+		if ($updatedbattery == 1) {
+			$this->batteryStatus();
+		}
 		return $this;
 	}
 
