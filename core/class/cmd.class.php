@@ -1347,7 +1347,7 @@ class cmd {
 		$eqLogic = $this->getEqLogic();
 		$maxAlert = $eqLogic->getMaxCmdAlert();
 		$prevAlert = $eqLogic->getAlert();
-		if ($prevAlert != $eqLogic->getAlert()) {
+		if ($prevAlert != $maxAlert) {
 			$status = array(
 				'warning' => 0,
 				'danger' => 0,
