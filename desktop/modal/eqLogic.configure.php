@@ -25,7 +25,7 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 		<li role="presentation"><a href="#eqLogic_display" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-desktop"></i> {{Affichage}}</a></li>
 		<?php }
 ?>
-		<li role="presentation"><a href="#eqLogic_battery" aria-controls="messages" role="tab" data-toggle="tab"><i class="icon techno-charging"></i> {{Batterie}}</a></li>
+		<li role="presentation"><a href="#eqLogic_alert" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-exclamation-triangle"></i> {{Alertes}}</a></li>
 		<li role="presentation"><a href="#eqLogic_comment" aria-controls="messages" role="tab" data-toggle="tab" id="bt_EqLogicConfigurationTabComment"><i class="fa fa-commenting-o"></i> {{Commentaire}}</a></li>
 	</ul>
 
@@ -383,9 +383,9 @@ if ($eqLogic->getDisplay('parameters') != '') {
 
 												<?php }
 ?>
-												<div role="tabpanel" class="tab-pane" id="eqLogic_battery">
+												<div role="tabpanel" class="tab-pane" id="eqLogic_alert">
 													<br/>
-													<legend><i class="fa fa-info-circle"></i> {{Informations}}</legend>
+													<legend><i class="fa fa-info-circle"></i> {{Informations Batteries}}</legend>
 													<div class="row">
 														<div class="col-sm-4" >
 															<form class="form-horizontal">
@@ -400,7 +400,7 @@ if ($eqLogic->getDisplay('parameters') != '') {
 															</form>
 														</div>
 													</div>
-													<legend><i class="icon techno-fleches"></i> {{Seuils spécifiques}}</legend>
+													<legend><i class="icon techno-fleches"></i> {{Seuils spécifiques Batteries}}</legend>
 													<div class="form-group">
 														<label class="col-xs-2 eqLogicAttr label label-danger" style="font-size : 1.8em">{{Danger}}</label>
 														<div class="col-xs-2">
@@ -412,6 +412,14 @@ if ($eqLogic->getDisplay('parameters') != '') {
 														<input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_warning_threshold" />
 													</div>
 													<label class="col-xs-2 label label-success" style="font-size : 1.8em">{{Ok}}</label>
+												</div>
+												<legend><i class="fa fa-clock-o"></i> {{Alertes Communications}}</legend>
+													<div class="form-group">
+														<label class="col-xs-2 eqLogicAttr label label-danger" style="font-size : 1.8em">{{Danger}}</label>
+														<div class="col-xs-2">
+															<input class="eqLogicAttr form-control" data-l1key="timeout"/>
+														</input>{{(en minute)}}
+													</div>
 												</div>
 											</div>
 											<div role="tabpanel" class="tab-pane" id="eqLogic_comment">
