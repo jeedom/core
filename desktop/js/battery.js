@@ -17,17 +17,17 @@
 
  positionEqLogic();
  $('.alertListContainer .jeedomAlreadyPosition').removeClass('jeedomAlreadyPosition');
- $('.batteryListContainer,.alertListContainer').packery({
+ $('.batteryListContainer').packery({
  	itemSelector: ".eqLogic-widget",
  	columnWidth:40,
  	rowHeight: 80,
  	gutter : 2,
  });
-
- $('#ul_tabBatteryAlert li').on('click',function(){
+ 
+ $('.alerts').on('click',function(){
  	setTimeout(function(){ 
  		positionEqLogic();
- 		$('.batteryListContainer,.alertListContainer').packery({
+ 		$('.alertListContainer').packery({
  			itemSelector: ".eqLogic-widget",
  			columnWidth:40,
  			rowHeight: 80,
@@ -35,6 +35,8 @@
  		});
  	}, 10);
  });
+
+
 
 
  $('.cmdAction[data-action=configure]').on('click', function () {
