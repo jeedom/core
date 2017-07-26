@@ -1,4 +1,4 @@
-²<?php
+<?php
 
 /* This file is part of Jeedom.
  *
@@ -564,10 +564,10 @@ class object {
 		$values = array();
 		foreach ($summaries[$_key] as $infos) {
 			$cmd = cmd::byId(str_replace('#','',$infos['cmd']));
-			if ($cmd) {
+			if (is_object($cmd)) {
 				$eqLogic = $cmd->getEqLogic();
 			}
-			if ($eqLogic and $eqLogic->getAlert() != '') {
+			if (is_object($eqLogic) and $eqLogic->getAlert() != '') {
 				continue;
 			}
 			$value = jeedom::evaluateExpression(cmd::cmdToValue($infos['cmd']));
