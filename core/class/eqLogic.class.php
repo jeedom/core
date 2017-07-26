@@ -851,6 +851,12 @@ class eqLogic {
 			message::add($this->getEqType_name(), $message, '', $logicalId);
 			$this->setStatus('batterywarning',1);
 		} else {
+			foreach (message::byPluginLogicalId($this->getEqType_name(), 'warningBattery' . $this->getId()) as $message) {
+				$message->remove();
+			}
+			foreach (message::byPluginLogicalId($this->getEqType_name(), 'lowBattery' . $this->getId()) as $message) {
+				$message->remove();
+			}
 			$this->setStatus('batterydanger',0);
 			$this->setStatus('batterywarning',0);
 		}
