@@ -1,4 +1,4 @@
-<?php
+²<?php
 
 /* This file is part of Jeedom.
  *
@@ -567,7 +567,7 @@ class object {
 			if ($cmd) {
 				$eqLogic = $cmd->getEqLogic();
 			}
-			if ($eqLogic->getAlert() != '') {
+			if ($eqLogic and $eqLogic->getAlert() != '') {
 				continue;
 			}
 			$value = jeedom::evaluateExpression(cmd::cmdToValue($infos['cmd']));
