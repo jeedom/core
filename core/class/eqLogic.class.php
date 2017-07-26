@@ -280,6 +280,7 @@ class eqLogic {
 								if (is_object($cmd)) {
 									$cmd->execCmd(array(
 										'title' => __('[' . config::byKey('name', 'core', 'JEEDOM') . '] ', __FILE__) . $message,
+										'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $message,
 									));
 								}
 							}
@@ -879,6 +880,7 @@ class eqLogic {
 					if (is_object($cmd)) {
 						$cmd->execCmd(array(
 							'title' => __('[' . config::byKey('name', 'core', 'JEEDOM') . '] ', __FILE__) . $message,
+							'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $message,
 						));
 					}
 				}
@@ -900,6 +902,7 @@ class eqLogic {
 					if (is_object($cmd)) {
 						$cmd->execCmd(array(
 							'title' => __('[' . config::byKey('name', 'core', 'JEEDOM') . '] ', __FILE__) . $message,
+							'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $message,
 						));
 					}
 				}
