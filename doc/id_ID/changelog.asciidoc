@@ -26,6 +26,7 @@
 * Correction de bug sur le niveau de batterie des équipements
 * Ajout de méthode dans le core pour la gestion des commandes mortes (doit être ensuite implementé dans le plugin)
 * Possibilité d'historiser des commandes de type texte
+* Sur la page historique vous pouvez maintenant faire un graphique d'un calcul
 
 == 3.0.11
 
