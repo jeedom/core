@@ -819,10 +819,7 @@ ORDER BY  datetime DESC';
 	}
 
 	public function setValue($value) {
-		if ($value === null) {
-			$this->value = null;
-			return;
-		}
+		$this->value = $value;
 		return $this;
 	}
 
