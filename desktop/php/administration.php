@@ -1228,6 +1228,13 @@ foreach (plugin::listPlugin(true) as $plugin) {
 								</div>
 								<label class="col-xs-1 label label-success" style="font-size : 1.4em">{{Ok}}</label>
 							</div>
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Seuil de communication global (min)}}</label>
+								<label class="col-lg-1 col-md-1 col-sm-1 col-xs-1 eqLogicAttr label label-danger" style="font-size : 1.4em">{{Danger}}</label>
+								<div class="col-xs-1">
+									<input class="configKey form-control" data-l1key="timeout::danger" />
+								</div>
+							</div>
 						</fieldset>
 					</form>
 				</div>
