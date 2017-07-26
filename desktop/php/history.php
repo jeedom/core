@@ -7,9 +7,7 @@ $date = array(
 	'end' => date('Y-m-d'),
 );
 ?>
-
 	<div class="row row-overflow">
-
 		<div class="col-lg-3 col-md-4 col-sm-5 bs-sidebar">
 			<ul class="nav nav-list bs-sidenav">
 				<li>
@@ -59,9 +57,10 @@ foreach (cmd::allHistoryCmd() as $cmd) {
 		</div>
 
 		<div class="col-lg-9 col-md-8 col-sm-7" style="border-left: solid 1px #EEE; padding-left: 25px;height: 600px;">
-			<input id="in_startDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 150px;" value="<?php echo $date['start'] ?>"/>
-			<input id="in_endDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 150px;" value="<?php echo $date['end'] ?>"/>
-			<a class="btn btn-success btn-sm" id='bt_validChangeDate' title="{{Attention une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher}}">{{Ok}}</a>
+			<a class="btn btn-warning btn-sm" id='bt_clearGraph'><i class="fa fa-trash-o"></i> {{Vider}}</a>
+			<input id="in_startDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 150px;position:relative;top:1px;" value="<?php echo $date['start'] ?>"/>
+			<input id="in_endDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 150px;position:relative;top:1px;" value="<?php echo $date['end'] ?>"/>
+			<a class="btn btn-success btn-sm" id='bt_validChangeDate' title="{{Attention une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher}}"><i class="fa fa-check"></i> {{Ok}}</a>
 
 			<select class="form-control pull-right" id="sel_groupingType" style="width: 200px;">
 				<option value="">{{Aucun groupement}}</option>

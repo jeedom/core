@@ -33,6 +33,15 @@
     addChart($('#in_calculHistory').value(), 1) 
  });
 
+ $('#bt_clearGraph').on('click',function(){
+    while(jeedom.history.chart['div_graph'].chart.series.length > 0){
+        jeedom.history.chart['div_graph'].chart.series[0].remove(true);
+    }
+    delete jeedom.history.chart['div_graph'];
+    $(this).closest('.li_history').removeClass('active');
+ });
+
+
  $(".in_datepicker").datepicker();
 
  $(".li_history .history").on('click', function (event) {
