@@ -286,7 +286,7 @@ if (isConnect('admin')) {
 if (isConnect('admin')) {
 		?>
 									<li class="expertModeVisible"><a href="index.php?v=d&p=log"><i class="fa fa-file-o"></i> {{Logs}}</a></li>
-									<li><a href="index.php?v=d&p=battery"><i class="fa fa-battery-full"></i> {{Equipements}}</a></li>
+									<li><a href="index.php?v=d&p=eqAnalyse"><i class="fa fa-battery-full"></i> {{Equipements}}</a></li>
 									<li class="divider"></li>
 									<li><a href="index.php?v=d&p=health"><i class="fa fa-medkit"></i> {{Santé}}</a></li>
 									<?php

@@ -239,9 +239,11 @@ foreach (eqLogic::all() as $eqLogic) {
 			}
 		}
 		echo '</td>';
+		echo '<td>';
 		if ($eqLogic->getTimeout('') != ''){
-			echo '<td>' . $eqLogic->getTimeout('') . ' minute(s)</td>';
+			echo $eqLogic->getTimeout('') . ' minute(s)';
 		}
+		echo '</td>';
 		echo '<td>';
 		if ($eqLogic->getConfiguration('battery_danger_threshold','') != ''){
 			echo '<label class="col-xs-6 eqLogicAttr label label-danger" style="font-size : 0.8em">{{Danger}} ' .$eqLogic->getConfiguration('battery_danger_threshold','') . ' % </label>';
@@ -334,4 +336,4 @@ foreach (plugin::listPlugin(true) as $plugin) {
 		</div>
 		</div>
 
-<?php include_file('desktop', 'battery', 'js');?>
+<?php include_file('desktop', 'eqAnalyse', 'js');?>
