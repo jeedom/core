@@ -892,6 +892,7 @@ class eqLogic {
 				$message .= ' (' . $this->getConfiguration('battery_type') . ')';
 			}
 			$this->setStatus('batterywarning',1);
+			$this->setStatus('batterydanger',0);
 			if (config::ByKey('alert::addMessageOnBatterywarning') == 1) {
 				message::add($this->getEqType_name(), $message, '', $logicalId);
 			}
