@@ -684,7 +684,7 @@ ORDER BY  datetime DESC';
 				$datetime = floatval(strtotime($datetime . " UTC"));
 				$calcul = template_replace($cmd_history, $_strcalcul);
 				try {
-					$result = floatval(evaluate($calcul));
+					$result = floatval(jeedom::evaluateExpression($calcul));
 					$value[$datetime] = $result;
 				} catch (Exception $e) {
 
