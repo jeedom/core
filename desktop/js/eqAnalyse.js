@@ -17,17 +17,17 @@
 
  positionEqLogic();
  $('.alertListContainer .jeedomAlreadyPosition').removeClass('jeedomAlreadyPosition');
- $('.batteryListContainer').packery({
+ $('.batteryListContainer, .alertListContainer').packery({
  	itemSelector: ".eqLogic-widget",
  	columnWidth:40,
  	rowHeight: 80,
  	gutter : 2,
  });
  
- $('.alerts').on('click',function(){
+ $('.alerts, .batteries').on('click',function(){
  	setTimeout(function(){ 
  		positionEqLogic();
- 		$('.alertListContainer').packery({
+ 		$('.batteryListContainer, .alertListContainer').packery({
  			itemSelector: ".eqLogic-widget",
  			columnWidth:40,
  			rowHeight: 80,
