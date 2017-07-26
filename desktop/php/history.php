@@ -9,7 +9,19 @@ $date = array(
 ?>
 
 	<div class="row row-overflow">
+
 		<div class="col-lg-3 col-md-4 col-sm-5 bs-sidebar">
+			<ul class="nav nav-list bs-sidenav">
+				<li>
+					<div class="input-group input-group-sm" style="width: 100%">
+						<textarea class="form-control input-sm" id='in_calculHistory' placeholder="{{Historique calculé}}" ></textarea>
+						<span class="input-group-btn">
+							<a class="btn btn-default" id="bt_findCmdCalculHistory" title="{{Sélectionner la commande}}"><i class="fa fa-list-alt"></i></a>
+							<a class="btn btn-success" id="bt_displayCalculHistory"><i class="fa fa-check"></i></a>
+						</span>
+					</div>
+				</li>
+			</ul>
 			<ul id="ul_history" class="nav nav-list bs-sidenav">
 				<li class="nav-header"><i class="icon techno-courbes3"></i> {{Historique}}
 					<a id="bt_openCmdHistoryConfigure" class="btn btn-default btn-sm pull-right" style="position:relatif; top:-5px;padding: 5px 10px;"><i class="fa fa-cogs"></i> {{Configuration}}</a>

@@ -300,7 +300,7 @@ try {
 				$data[] = $info_history;
 			}
 		} else {
-			$histories = history::getHistoryFromCalcul(init('id'), $dateStart, $dateEnd, init('allowZero', true));
+			$histories = history::getHistoryFromCalcul(jeedom::fromHumanReadable(init('id')), $dateStart, $dateEnd, init('allowZero', false));
 			if (is_array($histories)) {
 				foreach ($histories as $datetime => $value) {
 					$info_history = array();
@@ -315,8 +315,8 @@ try {
 					$data[] = $info_history;
 				}
 			}
-			$return['cmd_name'] = init('name');
-			$return['history_name'] = init('name');
+			$return['cmd_name'] = init('id');
+			$return['history_name'] = init('id');
 			$return['unite'] = init('unite');
 		}
 		$last = end($data);
