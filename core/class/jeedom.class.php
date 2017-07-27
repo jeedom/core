@@ -27,6 +27,7 @@ class jeedom {
 	/*     * ***********************Methode static*************************** */
 	
 	public static function deadCmd() {
+		global $JEEDOM_INTERNAL_CONFIG;
 		$return = array();
 		$cmd = config::byKey('interact::warnme::defaultreturncmd', 'core', '');
 		if ($cmd != '') {
@@ -40,16 +41,13 @@ class jeedom {
 				$return[]= array('detail' => 'Administration','help' => 'Commande information utilisateur','who'=>$cmd);
 			}
 		}
-		$cmd = config::byKey('alert::warningCmd', 'core', '');
-		if ($cmd != '') {
-			if (!cmd::byId(str_replace('#','',$cmd))){
-				$return[]= array('detail' => 'Administration','help' => 'Commande sur warning','who'=>$cmd);
-			}
-		}
-		$cmd = config::byKey('alert::dangerCmd', 'core', '');
-		if ($cmd != '') {
-			if (!cmd::byId(str_replace('#','',$cmd))){
-				$return[]= array('detail' => 'Administration','help' => 'Commande sur danger','who'=>$cmd);
+		foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
+			$cmds = config::byKey('alert::' . $level . 'Cmd', 'core', '');
+			preg_match_all("/#([0-9]*)#/", $cmds, $matches);
+			foreach ($matches[1] as $cmd_id) {
+				if (!cmd::byId($cmd_id)){
+					$return[]= array('detail' => 'Administration','help' => 'Commande sur ' . $value['name'],'who'=>'#' . $cmd_id . '#');
+				}
 			}
 		}
 		return $return;
