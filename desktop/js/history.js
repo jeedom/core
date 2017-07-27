@@ -34,7 +34,7 @@
  });
 
  $('#bt_configureCalculHistory').on('click',function(){
-     $('#md_modal').dialog({title: "{{Configuration des formule de calcul}}"});
+     $('#md_modal').dialog({title: "{{Configuration des formules de calcul}}"});
     $("#md_modal").load('index.php?v=d&modal=history.calcul').dialog('open');
  });
 
