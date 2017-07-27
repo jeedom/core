@@ -33,6 +33,11 @@
     addChart($('#in_calculHistory').value(), 1) 
  });
 
+ $('#bt_configureCalculHistory').on('click',function(){
+     $('#md_modal').dialog({title: "{{Configuration des formule de calcul}}"});
+    $("#md_modal").load('index.php?v=d&modal=history.calcul').dialog('open');
+ });
+
  $('#bt_clearGraph').on('click',function(){
     while(jeedom.history.chart['div_graph'].chart.series.length > 0){
         jeedom.history.chart['div_graph'].chart.series[0].remove(true);

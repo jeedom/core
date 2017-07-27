@@ -16,6 +16,7 @@ $date = array(
 						<span class="input-group-btn">
 							<a class="btn btn-default" id="bt_findCmdCalculHistory" title="{{Sélectionner la commande}}"><i class="fa fa-list-alt"></i></a>
 							<a class="btn btn-success" id="bt_displayCalculHistory"><i class="fa fa-check"></i></a>
+							<a class="btn btn-default" id="bt_configureCalculHistory"><i class="fa fa-cogs"></i></a>
 						</span>
 					</div>
 				</li>
