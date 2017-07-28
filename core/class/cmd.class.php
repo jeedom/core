@@ -1278,6 +1278,9 @@ class cmd {
 				}
 			}
 		}
+		if ($currentLevel == strtolower($this->getEqLogic()->getAlert()['name'])) {
+			return $currentLevel;
+		}
 		if ($_allowDuring && $this->getAlert($currentLevel . 'during') != '' && $this->getAlert($currentLevel . 'during') > 0) {
 			$cron = cron::byClassAndFunction('cmd', 'duringAlertLevel', array('cmd_id' => intval($this->getId())));
 			$next = strtotime('+ ' . $this->getAlert($currentLevel . 'during', 1) . ' minutes ' . date('Y-m-d H:i:s'));
@@ -1327,11 +1330,11 @@ class cmd {
 			return;
 		}
 		global $JEEDOM_INTERNAL_CONFIG;
+		$this->setCache('alertLevel', $_level);
 		$eqLogic = $this->getEqLogic();
 		$maxAlert = $eqLogic->getMaxCmdAlert();
 		$prevAlert = $eqLogic->getAlert();
-		$this->setCache('alertLevel', $_level);
-		if ($_level != 'none' && $prevAlert != $maxAlert) {
+		if ($_level != 'none') {
 			$message = __('Alert sur la commande ', __FILE__) . $this->getHumanName() . __(' niveau ', __FILE__) . $_level . __(' valeur : ', __FILE__) . $_value;
 			if ($this->getAlert($_level . 'during') != '' && $this->getAlert($_level . 'during') > 0) {
 				$message .= ' ' . __('pendant plus de ', __FILE__) . $this->getAlert($_level . 'during') . __(' minute(s)', __FILE__);
