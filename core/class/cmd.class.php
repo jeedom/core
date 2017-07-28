@@ -1334,7 +1334,7 @@ class cmd {
 		$eqLogic = $this->getEqLogic();
 		$maxAlert = $eqLogic->getMaxCmdAlert();
 		$prevAlert = $eqLogic->getAlert();
-		if (!$_value){
+		if (!$_value) {
 			$_value = $this->execCmd();
 		}
 		if ($_level != 'none') {
@@ -1708,7 +1708,7 @@ class cmd {
 		return $this->_eqLogic;
 	}
 
-	public function setEqLogic($_eqLogic) {
+	public function setEqLogic(&$_eqLogic) {
 		$this->_eqLogic = $_eqLogic;
 		return $this;
 	}
