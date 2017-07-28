@@ -1334,6 +1334,9 @@ class cmd {
 		$eqLogic = $this->getEqLogic();
 		$maxAlert = $eqLogic->getMaxCmdAlert();
 		$prevAlert = $eqLogic->getAlert();
+		if (!$_value){
+			$_value = $this->execCmd();
+		}
 		if ($_level != 'none') {
 			$message = __('Alert sur la commande ', __FILE__) . $this->getHumanName() . __(' niveau ', __FILE__) . $_level . __(' valeur : ', __FILE__) . $_value;
 			if ($this->getAlert($_level . 'during') != '' && $this->getAlert($_level . 'during') > 0) {
