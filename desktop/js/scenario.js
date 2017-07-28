@@ -362,8 +362,15 @@ $('#div_pageContainer').off('click','.bt_addSinon').on( 'click','.bt_addSinon', 
   }
   else
   {
-     $(this).children("i").removeClass('fa-chevron-down').addClass('fa-chevron-right');
-      $(this).closest('.subElement').next().css('display','none');
+      if($(this).closest('.subElement').next().children('.expressions').children('.expression').length>0)
+      {
+         alert("{{Le bloc Sinon ne peut être supprimé s'il contient des éléments}}");
+      }
+      else
+      {  
+         $(this).children("i").removeClass('fa-chevron-down').addClass('fa-chevron-right');
+         $(this).closest('.subElement').next().css('display','none');
+      }
   }
 });
 
@@ -712,6 +719,12 @@ function updateSortable() {
   });
 }
 
+function updateElseToggle() {
+  $('.subElementElse').each(function () {
+    if ($(this).parent().css('display')=='table') $(this).parent().prev().find('.bt_addSinon:first').children('i').removeClass('fa-chevron-right').addClass('fa-chevron-down');
+  });
+}
+
 function setEditor() {
   $('.expressionAttr[data-l1key=type][value=code]').each(function () {
     var expression = $(this).closest('.expression');
@@ -854,6 +867,7 @@ function printScenario(_id) {
     updateSortable();
     setEditor();
     setAutocomplete();
+    updateElseToggle();
     $('#div_editScenario').show();
     modifyWithoutSave = false;
     setTimeout(function () {
@@ -1024,13 +1038,8 @@ function addSubElement(_subElement, _pColor) {
     noSortable = 'noSortable';
   }
   var displayElse = 'table';
-  var chevronElse = 'fa-chevron-down';
   if (_subElement.type == 'else') {
-    if (!isset(_subElement.expressions) || _subElement.expressions.length==0) 
-    {
-       displayElse = 'none';
-       chevronElse = 'fa-chevron-right';
-    }
+    if (!isset(_subElement.expressions) || _subElement.expressions.length==0) displayElse = 'none';
   }
   var retour = '<div class="subElement ' + noSortable + '" style="display:' + displayElse + '; width:100%;">';
   retour += '<input class="subElementAttr" data-l1key="id" style="display : none;" value="' + init(_subElement.id) + '"/>';
@@ -1072,7 +1081,7 @@ function addSubElement(_subElement, _pColor) {
     retour += '  <div style="display:table-cell; width: 125px;vertical-align: top; padding-left: 15px;">';
     retour += '     <legend style="margin-bottom: 0px; color : white;border : none;">{{ALORS}}</legend>'; 
     retour += '       <button class="btn btn-xs btn-default bt_addSinon" type="button" id="addSinon" data-toggle="dropdown" title="{{Afficher/masquer le bloc Sinon}}" aria-haspopup="true" aria-expanded="true">';
-    retour += '         <i class="fa '+chevronElse+'"></i>';
+    retour += '         <i class="fa fa-chevron-right"></i>';
     retour += '       </button>';
     retour += '     <div class="dropdown" style="display : inline-block;">';
     retour += '       <button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
@@ -1097,7 +1106,7 @@ function addSubElement(_subElement, _pColor) {
 
     break;
     case 'else' :
-    retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
+    retour += '<input class="subElementAttr subElementElse" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '  <div style="display:table-cell; width: 125px; vertical-align: top; padding-left: 15px;">';
     retour += '     <legend style="margin-bottom: 0px; color : white;border : none;">{{SINON}}</legend>'; 
     retour += '     <div class="dropdown">';
