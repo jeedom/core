@@ -234,7 +234,7 @@ foreach (eqLogic::all() as $eqLogic) {
 				}
 				if ($cmdalert->getAlert($level . 'if','') != ''){
 					$during = $cmdalert->getAlert($level . 'during','') == '' ? ' effet immédiat' : ' pendant plus de ' .$cmdalert->getAlert($level . 'during','') . ' minute(s)';
-					echo ucfirst($level) . ' si ' . jeedom::toHumanReadable(str_replace('#value#', '<b>' . $cmdalert->getName() . ' (' . $cmdalert->getId() . ') </b>',$cmdalert->getAlert($level . 'if',''))) . $during . '</br>';
+					echo ucfirst($level) . ' si ' . jeedom::toHumanReadable(str_replace('#value#', '<b>' . $cmdalert->getName() . '</b>',$cmdalert->getAlert($level . 'if',''))) . $during . '</br>';
 				}
 			}
 		}
