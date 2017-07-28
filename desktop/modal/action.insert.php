@@ -61,15 +61,15 @@ if (!isConnect()) {
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription equipement" style="display:none;">
-    {{Permet de modifier les prorietés visible/invisible actif/inactif d'un équipement}}
+    {{Permet de modifier les proriétés visible/invisible actif/inactif d'un équipement}}
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription ask" style="display:none;">
-    {{Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finie que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec le plugin SMS, Slack et SARAH.}}
+    {{Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que : si jeedom reçoit une réponse ou si le délai est atteint. Pour le moment cette action n'est compatible qu'avec le plugin SMS, Slack et SARAH.}}
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription jeedom_poweroff" style="display:none;">
-    {{Envoi l'ordre à Jeedom de s'éteindre}}
+    {{Envoie l'ordre à Jeedom de s'éteindre}}
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription scenario_return" style="display:none;">
@@ -81,11 +81,11 @@ if (!isConnect()) {
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription alert2" style="display:none;">
-    {{Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte}}
+    {{Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page jeedom ouverte. Vous pouvez en plus choisir 4 niveaux d'alerte}}
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription popup" style="display:none;">
-    {{Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page jeedom d'ouvert.}}
+    {{Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page jeedom ouverte.}}
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription report" style="display:none;">
