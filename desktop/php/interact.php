@@ -37,7 +37,7 @@ echo '<a>Aucune - ' . count($interacts[-1]) . ' interaction(s)</a>';
 	echo '<ul>';
 	foreach ($interacts[-1] as $interact) {
 		echo '<li data-jstree=\'{"opened":true,"icon":""}\'>';
-		echo ' <a class="li_scenario" id="interact' . $interact->getId() . '" data-interact_id="' . $interact->getId() . '" title="{{Interaction ID :}} ' . $interact->getId() . '">' . $interact->getHumanName(false, true) . '</a>';
+		echo ' <a class="li_interact" id="interact' . $interact->getId() . '" data-interact_id="' . $interact->getId() . '" title="{{Interaction ID :}} ' . $interact->getId() . '">' . $interact->getHumanName(false, true) . '</a>';
 		echo '</li>';
 	}
 	?>
@@ -51,7 +51,7 @@ foreach ($interactListGroup as $group) {
 		echo '<ul>';
 		foreach ($interacts[$group['group']] as $interact) {
 			echo '<li data-jstree=\'{"opened":true,"icon":""}\'>';
-			echo ' <a class="li_scenario" id="interact' . $interact->getId() . '" data-scenario_id="' . $interact->getId() . '" title="{{Interaction ID :}} ' . $interact->getId() . '">' . $interact->getHumanName(false, true) . '</a>';
+			echo ' <a class="li_interact" id="interact' . $interact->getId() . '" data-interact_id="' . $interact->getId() . '" title="{{Interaction ID :}} ' . $interact->getId() . '">' . $interact->getHumanName(false, true) . '</a>';
 			echo '</li>';
 		}
 		echo '</ul>';
