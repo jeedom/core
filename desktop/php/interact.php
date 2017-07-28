@@ -3,6 +3,7 @@ if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 $interacts = array();
+$totalInteract = interactDef::all();
 $interacts[-1] = interactDef::all(null);
 $interactListGroup = interactDef::listGroup();
 if (is_array($interactListGroup)) {
@@ -27,27 +28,30 @@ if (is_array($interactListGroup)) {
       </div>
       <input id='in_treeSearch' class='form-control' placeholder="{{Rechercher}}" />
       <div id="div_tree">
-        <ul id="ul_interact" >
-          <li data-jstree='{"opened":true}'>
-          <a>{{Aucune}}</a>
-            <ul>
-              <?php
-foreach ($interacts[-1] as $interact) {
-	echo '<li data-jstree=\'{"opened":true,"icon":""}\'>';
-	echo ' <a class="li_interact" id="interact' . $interact->getId() . '" data-interact_id="' . $interact->getId() . '" >' . $interact->getHumanName() . '</a>';
-	echo '</li>';
+         <ul id="ul_interact" >
+          <?php if (count($interacts[-1]) > 0) {
+	?>
+           <li data-jstree='{"opened":true}'>
+            <?php
+echo '<a>Aucune - ' . count($interacts[-1]) . ' interaction(s)</a>';
+	echo '<ul>';
+	foreach ($interacts[-1] as $interact) {
+		echo '<li data-jstree=\'{"opened":true,"icon":""}\'>';
+		echo ' <a class="li_scenario" id="interact' . $interact->getId() . '" data-interact_id="' . $interact->getId() . '" title="{{Interaction ID :}} ' . $interact->getId() . '">' . $interact->getHumanName(false, true) . '</a>';
+		echo '</li>';
+	}
+	?>
+          </ul>
+          <?php
 }
-?>
-           </ul>
-           <?php
 foreach ($interactListGroup as $group) {
 	if ($group['group'] != '') {
 		echo '<li data-jstree=\'{"opened":true}\'>';
-		echo '<a>' . $group['group'] . '</a>';
+		echo '<a>' . $group['group'] . ' - ' . count($interacts[$group['group']]) . ' interaction(s)</a>';
 		echo '<ul>';
 		foreach ($interacts[$group['group']] as $interact) {
 			echo '<li data-jstree=\'{"opened":true,"icon":""}\'>';
-			echo ' <a class="li_interact" id="interact' . $interact->getId() . '" data-interact_id="' . $interact->getId() . '" >' . $interact->getHumanName() . '</a>';
+			echo ' <a class="li_scenario" id="interact' . $interact->getId() . '" data-scenario_id="' . $interact->getId() . '" title="{{Interaction ID :}} ' . $interact->getId() . '">' . $interact->getHumanName(false, true) . '</a>';
 			echo '</li>';
 		}
 		echo '</ul>';
@@ -55,7 +59,7 @@ foreach ($interactListGroup as $group) {
 	}
 }
 ?>
-       </ul>
+   </ul>
      </div>
    </div>
 </div>
@@ -84,30 +88,62 @@ foreach ($interactListGroup as $group) {
 
 <legend><i class="fa fa-comments-o"></i>  {{Mes interactions}}</legend>
 <?php
-echo '<div class="interactListContainer">';
-foreach ($interacts[-1] as $interact) {
-	echo '<div class="interactDisplayCard cursor" data-interact_id="' . $interact->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
-	echo "<center>";
-	echo '<img src="core/img/interaction.png" height="90" width="85" />';
-	echo "</center>";
-	echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $interact->getHumanName() . '</center></span>';
-	echo '</div>';
-}
-echo '</div>';
-
-foreach ($interactListGroup as $group) {
-	if ($group['group'] != '') {
+if (count($totalInteract) == 0) {
+	echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucune interaction. Cliquez sur ajouter une interaction pour commencer</span></center>";
+} else {
+	echo "<center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous avez " . count($totalInteract) . " interaction(s) dans " . count($interactListGroup) . " groupes</span></center>";
+	if (count($interacts[-1]) > 0) {
+		echo '<div class="panel-group" id="accordionInteract">';
+		echo '<div class="panel panel-default">';
+		echo '<div class="panel-heading">';
+		echo '<h3 class="panel-title">';
+		echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionInteract" href="#config_aucun" style="text-decoration:none;">Aucun - ' . count($interacts[-1]) . ' interaction(s)</a>';
+		echo '</h3>';
+		echo '</div>';
+		echo '<div id="config_aucun" class="panel-collapse collapse">';
+		echo '<div class="panel-body">';
 		echo '<div class="interactListContainer">';
-		foreach ($interacts[$group['group']] as $interact) {
-			echo '<div class="interactDisplayCard cursor" data-interact_id="' . $interact->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
-			echo "<center>";
+		foreach ($interacts[-1] as $interact) {
+			#$opacity = ($interact->getIsActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
+			echo '<div class="interactDisplayCard cursor" data-interact_id="' . $interact->getId() . '" style="text-align: center; background-color : #ffffff; min-height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 			echo '<img src="core/img/interaction.png" height="90" width="85" />';
-			echo "</center>";
-			echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $interact->getHumanName() . '</center></span>';
+			echo "<br>";
+			echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $interact->getHumanName(true, true, true, true) . '</span>';
 			echo '</div>';
 		}
 		echo '</div>';
+		echo '</div>';
+		echo '</div>';
+		echo '</div>';
 	}
+	$i = 0;
+	foreach ($interactListGroup as $group) {
+		if ($group['group'] != '') {
+			echo '<div class="panel panel-default">';
+			echo '<div class="panel-heading">';
+			echo '<h3 class="panel-title">';
+			echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionInteract" href="#config_' . $i . '" style="text-decoration:none;">' . $group['group'] . ' - ' . count($interacts[$group['group']]) . ' interaction(s)</a>';
+			echo '</h3>';
+			echo '</div>';
+			echo '<div id="config_' . $i . '" class="panel-collapse collapse">';
+			echo '<div class="panel-body">';
+			echo '<div class="interactListContainer">';
+			foreach ($interacts[$group['group']] as $interact) {
+				#$opacity = ($interact->getIsActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
+				echo '<div class="interactDisplayCard cursor" data-interact_id="' . $interact->getId() . '" style="text-align: center; background-color : #ffffff; min-height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+				echo '<img src="core/img/interaction.png" height="90" width="85" />';
+				echo "<br>";
+				echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $interact->getHumanName(true, true, true, true) . '</span>';
+				echo '</div>';
+			}
+			echo '</div>';
+			echo '</div>';
+			echo '</div>';
+			echo '</div>';
+		}
+		$i += 1;
+	}
+	echo '</div>';
 }
 ?>
 </div>

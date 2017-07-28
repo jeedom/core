@@ -102,7 +102,7 @@ foreach ($scenarioListGroup as $group) {
 
 <legend><i class="icon jeedom-clap_cinema"></i>  {{Mes scénarios}}</legend>
 <?php
-if (count($scenarios) == 0) {
+if (count($totalScenario) == 0) {
 	echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun scénario. Cliquez sur ajouter un scénario pour commencer</span></center>";
 } else {
 	echo "<center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous avez " . count($totalScenario) . " scénario(s) dans " . count($scenarioListGroup) . " groupes</span></center>";
