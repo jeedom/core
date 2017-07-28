@@ -1,4 +1,4 @@
-<div class="cmd cmd-widget #history#" data-version="#version#" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" style="display: block;">
+<div class="cmd cmd-widget #history# label label-warning" data-version="#version#" data-type="info" data-subtype="binary" data-cmd_id="#id#" data-cmd_uid="#uid#" style="display: block;">
 	<center><span style="font-size : 12px;#hideCmdName#" class="cmdName">#name_display#</span> <span class="iconCmd"></span></center>
 	<script>
         jeedom.cmd.update['#id#'] = function(_options){
@@ -7,7 +7,13 @@
            }else {
             $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="fa fa-times"></i>');
         }
+        $('.cmd[data-cmd_id=#id#]').css('background-color', '');
+        if(_options.alertLevel == 'warning'){
+            $('.cmd[data-cmd_id=#id#]').css({"background-color":"#b2b200"});
+        }else if(_options.alertLevel == 'danger'){
+            $('.cmd[data-cmd_id=#id#]').css({"background-color":"#da2e37"});
+        }
     }
-    jeedom.cmd.update['#id#']({display_value:'#state#'});
+    jeedom.cmd.update['#id#']({display_value:'#state#',alertLevel:'#alertLevel#'});
 </script>
 </div>
