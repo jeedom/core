@@ -156,8 +156,8 @@ foreach (eqLogic::all() as $eqLogic) {
 			echo '</tr>';
 		}
 		if ($cmd->getConfiguration('actionConfirm')) {
-			$code ='';
-			if ($cmd->getConfiguration('actionCodeAccess')){
+			$code = '';
+			if ($cmd->getConfiguration('actionCodeAccess')) {
 				$code = ' avec code';
 			}
 			echo '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '" style="text-decoration: none;">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Confirmation}}' . $code . '</td><td>';
@@ -184,7 +184,7 @@ foreach (eqLogic::all() as $eqLogic) {
 				</table>
 			</div>
 		</div>
-		
+
 			<div role="tabpanel" class="tab-pane" id="alertCmd">
 			<br/>
 			<div class="cmdListContainer">
@@ -207,49 +207,49 @@ foreach (eqLogic::all() as $eqLogic) {
 			if (!$value['check']) {
 				continue;
 			}
-			if ($cmd->getAlert($level . 'if','') != ''){
+			if ($cmd->getAlert($level . 'if', '') != '') {
 				$hasSomeAlerts += 1;
-				if (!in_array($cmd, $listCmds)){
-					$listCmds[]=$cmd;
+				if (!in_array($cmd, $listCmds)) {
+					$listCmds[] = $cmd;
 				}
 			}
 		}
 	}
-	if ($eqLogic->getConfiguration('battery_warning_threshold','') != ''){
+	if ($eqLogic->getConfiguration('battery_warning_threshold', '') != '') {
 		$hasSomeAlerts += 1;
 	}
-	if ($eqLogic->getConfiguration('battery_danger_threshold','') != ''){
+	if ($eqLogic->getConfiguration('battery_danger_threshold', '') != '') {
 		$hasSomeAlerts += 1;
 	}
-	if ($eqLogic->getTimeout('')){
+	if ($eqLogic->getTimeout('')) {
 		$hasSomeAlerts += 1;
 	}
-	if ($hasSomeAlerts != 0){
+	if ($hasSomeAlerts != 0) {
 		echo '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '" style="text-decoration: none;">' . $eqLogic->getHumanName(true) . '</a></td>';
 		echo '<td>';
-		foreach ($listCmds as $cmdalert){
+		foreach ($listCmds as $cmdalert) {
 			foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
 				if (!$value['check']) {
 					continue;
 				}
-				if ($cmdalert->getAlert($level . 'if','') != ''){
-					$during = $cmdalert->getAlert($level . 'during','') == '' ? ' effet immédiat' : ' pendant plus de ' .$cmdalert->getAlert($level . 'during','') . ' minute(s)';
-					echo ucfirst($level) . ' si ' . jeedom::toHumanReadable(str_replace('#value#', '<b>' . $cmdalert->getName() . '</b>',$cmdalert->getAlert($level . 'if',''))) . $during . '</br>';
+				if ($cmdalert->getAlert($level . 'if', '') != '') {
+					$during = $cmdalert->getAlert($level . 'during', '') == '' ? ' effet immédiat' : ' pendant plus de ' . $cmdalert->getAlert($level . 'during', '') . ' minute(s)';
+					echo ucfirst($level) . ' si ' . jeedom::toHumanReadable(str_replace('#value#', '<b>' . $cmdalert->getName() . '</b>', $cmdalert->getAlert($level . 'if', ''))) . $during . '</br>';
 				}
 			}
 		}
 		echo '</td>';
 		echo '<td>';
-		if ($eqLogic->getTimeout('') != ''){
+		if ($eqLogic->getTimeout('') != '') {
 			echo $eqLogic->getTimeout('') . ' minute(s)';
 		}
 		echo '</td>';
 		echo '<td>';
-		if ($eqLogic->getConfiguration('battery_danger_threshold','') != ''){
-			echo '<label class="col-xs-6 eqLogicAttr label label-danger" style="font-size : 0.8em">{{Danger}} ' .$eqLogic->getConfiguration('battery_danger_threshold','') . ' % </label>';
+		if ($eqLogic->getConfiguration('battery_danger_threshold', '') != '') {
+			echo '<label class="col-xs-6 eqLogicAttr label label-danger" style="font-size : 0.8em">{{Danger}} ' . $eqLogic->getConfiguration('battery_danger_threshold', '') . ' % </label>';
 		}
-		if ($eqLogic->getConfiguration('battery_warning_threshold','') != ''){
-			echo '<label class="col-xs-6 label label-warning" style="font-size : 0.8em;">{{Warning}} ' .$eqLogic->getConfiguration('battery_warning_threshold','') . ' % </label>';
+		if ($eqLogic->getConfiguration('battery_warning_threshold', '') != '') {
+			echo '<label class="col-xs-6 label label-warning" style="font-size : 0.8em;">{{Warning}} ' . $eqLogic->getConfiguration('battery_warning_threshold', '') . ' % </label>';
 		}
 		echo '</td></tr>';
 	}
@@ -259,7 +259,7 @@ foreach (eqLogic::all() as $eqLogic) {
 				</table>
 			</div>
 		</div>
-	
+
 			<div role="tabpanel" class="tab-pane" id="deadCmd">
 			<br/>
 			<div class="cmdListContainer">
