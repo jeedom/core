@@ -60,14 +60,14 @@
 
 if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1) && !jQuery.support.touch){
   $('#div_listScenario').hide();
-  $('#scenarioThumbnailDisplay').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
-  $('#div_editScenario').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
+  $('#scenarioThumbnailDisplay').removeClass('col-lg-10 col-md-9 col-sm-8').addClass('col-lg-12');
+  $('#div_editScenario').removeClass('col-lg-10 col-md-9 col-sm-8').addClass('col-lg-12');
 
   $('#bt_displayScenarioList').on('mouseenter',function(){
    var timer = setTimeout(function(){
     $('#bt_displayScenarioList').find('i').hide();
-    $('#scenarioThumbnailDisplay').addClass('col-lg-10 col-md-10 col-sm-9').removeClass('col-lg-12');
-    $('#div_editScenario').addClass('col-lg-10 col-md-10 col-sm-9').removeClass('col-lg-12');
+    $('#scenarioThumbnailDisplay').addClass('col-lg-10 col-md-9 col-sm-8').removeClass('col-lg-12');
+    $('#div_editScenario').addClass('ccol-lg-10 col-md-9 col-sm-8').removeClass('col-lg-12');
     $('#div_listScenario').show();
     $('.scenarioListContainer').packery();
   }, 100);
@@ -80,8 +80,8 @@ if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1)
   var timer = setTimeout(function(){
    $('#div_listScenario').hide();
    $('#bt_displayScenarioList').find('i').show();
-   $('#scenarioThumbnailDisplay').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
-   $('#div_editScenario').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
+   $('#scenarioThumbnailDisplay').removeClass('col-lg-10 col-md-9 col-sm-8').addClass('col-lg-12');
+   $('#div_editScenario').removeClass('col-lg-10 col-md-9 col-sm-8').addClass('col-lg-12');
    $('.scenarioListContainer').packery();
  }, 300);
   $(this).data('timerMouseleave', timer);
@@ -352,6 +352,26 @@ $('#div_pageContainer').off('click','.bt_addAction').on( 'click','.bt_addAction'
   $(this).closest('.subElement').children('.expressions').append(addExpression({type: 'action'}));
   setAutocomplete();
   updateSortable();
+});
+
+$('#div_pageContainer').off('click','.bt_addSinon').on( 'click','.bt_addSinon', function (event) {
+ 
+  if($(this).children("i").hasClass('fa-chevron-right')){
+      $(this).children("i").removeClass('fa-chevron-right').addClass('fa-chevron-down');
+       $(this).closest('.subElement').next().css('display','table');
+  }
+  else
+  {
+      if($(this).closest('.subElement').next().children('.expressions').children('.expression').length>0)
+      {
+         alert("{{Le bloc Sinon ne peut être supprimé s'il contient des éléments}}");
+      }
+      else
+      {  
+         $(this).children("i").removeClass('fa-chevron-down').addClass('fa-chevron-right');
+         $(this).closest('.subElement').next().css('display','none');
+      }
+  }
 });
 
 $('#div_pageContainer').off('click','.bt_removeExpression').on('click','.bt_removeExpression',  function (event) {
@@ -699,6 +719,12 @@ function updateSortable() {
   });
 }
 
+function updateElseToggle() {
+  $('.subElementElse').each(function () {
+    if ($(this).parent().css('display')=='table') $(this).parent().prev().find('.bt_addSinon:first').children('i').removeClass('fa-chevron-right').addClass('fa-chevron-down');
+  });
+}
+
 function setEditor() {
   $('.expressionAttr[data-l1key=type][value=code]').each(function () {
     var expression = $(this).closest('.expression');
@@ -841,6 +867,7 @@ function printScenario(_id) {
     updateSortable();
     setEditor();
     setAutocomplete();
+    updateElseToggle();
     $('#div_editScenario').show();
     modifyWithoutSave = false;
     setTimeout(function () {
@@ -1010,7 +1037,11 @@ function addSubElement(_subElement, _pColor) {
   if (_subElement.type == 'if' || _subElement.type == 'for' || _subElement.type == 'code') {
     noSortable = 'noSortable';
   }
-  var retour = '<div class="subElement ' + noSortable + '" style="display:table; width:100%;">';
+  var displayElse = 'table';
+  if (_subElement.type == 'else') {
+    if (!isset(_subElement.expressions) || _subElement.expressions.length==0) displayElse = 'none';
+  }
+  var retour = '<div class="subElement ' + noSortable + '" style="display:' + displayElse + '; width:100%;">';
   retour += '<input class="subElementAttr" data-l1key="id" style="display : none;" value="' + init(_subElement.id) + '"/>';
   retour += '<input class="subElementAttr" data-l1key="scenarioElement_id" style="display : none;" value="' + init(_subElement.scenarioElement_id) + '"/>';
   retour += '<input class="subElementAttr" data-l1key="type" style="display : none;" value="' + init(_subElement.type) + '"/>';
@@ -1047,9 +1078,12 @@ function addSubElement(_subElement, _pColor) {
     break;
     case 'then' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
-    retour += '  <div style="display:table-cell; width: 100px;vertical-align: top; padding-left: 15px;">';
+    retour += '  <div style="display:table-cell; width: 125px;vertical-align: top; padding-left: 15px;">';
     retour += '     <legend style="margin-bottom: 0px; color : white;border : none;">{{ALORS}}</legend>'; 
-    retour += '     <div class="dropdown">';
+    retour += '       <button class="btn btn-xs btn-default bt_addSinon" type="button" id="addSinon" data-toggle="dropdown" title="{{Afficher/masquer le bloc Sinon}}" aria-haspopup="true" aria-expanded="true">';
+    retour += '         <i class="fa fa-chevron-right"></i>';
+    retour += '       </button>';
+    retour += '     <div class="dropdown" style="display : inline-block;">';
     retour += '       <button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
     retour += '         <i class="fa fa-plus-circle"></i> {{Ajouter}}';
     retour += '         <span class="caret"></span>';
@@ -1072,8 +1106,8 @@ function addSubElement(_subElement, _pColor) {
 
     break;
     case 'else' :
-    retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
-    retour += '  <div style="display:table-cell; width: 100px; vertical-align: top; padding-left: 15px;">';
+    retour += '<input class="subElementAttr subElementElse" data-l1key="subtype" style="display : none;" value="action"/>';
+    retour += '  <div style="display:table-cell; width: 125px; vertical-align: top; padding-left: 15px;">';
     retour += '     <legend style="margin-bottom: 0px; color : white;border : none;">{{SINON}}</legend>'; 
     retour += '     <div class="dropdown">';
     retour += '       <button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
