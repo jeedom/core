@@ -27,7 +27,7 @@ if (is_array($scenarioListGroup)) {
 	?>
            <li data-jstree='{"opened":true}'>
             <?php
-echo '<a>Aucune - ' . count($scenarios[-1]) . ' scénario(s)</a>';
+echo '<a>Aucun - ' . count($scenarios[-1]) . ' scénario(s)</a>';
 	echo '<ul>';
 	foreach ($scenarios[-1] as $scenario) {
 		echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
