@@ -80,7 +80,7 @@ if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1)
   var timer = setTimeout(function(){
    $('#div_listScenario').hide();
    $('#bt_displayScenarioList').find('i').show();
-   $('#scenarioThumbnailDisplay').removeClass('ccol-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
+   $('#scenarioThumbnailDisplay').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
    $('#div_editScenario').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
    $('.scenarioListContainer').packery();
  }, 300);
