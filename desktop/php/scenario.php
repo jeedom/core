@@ -58,7 +58,7 @@ foreach ($scenarioListGroup as $group) {
 </div>
 </div>
 
-<div id="scenarioThumbnailDisplay" class="col-lg-10 col-md-9 col-sm-8" style="border-left: solid 1px #EEE; padding-left: 25px;">
+<div id="scenarioThumbnailDisplay" class="col-lg-10 col-md-10 col-sm-9" style="border-left: solid 1px #EEE; padding-left: 25px;">
  <div class="scenarioListContainer">
    <legend><i class="fa fa-cog"></i>  {{Gestion}}</legend>
    <div class="cursor" id="bt_addScenario2" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
@@ -160,9 +160,8 @@ if (count($totalScenario) == 0) {
 	echo '</div>';
 }
 ?>
-</div>
 
-<div id="div_editScenario" class="col-lg-10 col-md-9 col-sm-8" style="display: none;margin-top: 5px;">
+<div id="div_editScenario" class="col-lg-10 col-md-10 col-sm-9" style="display: none;margin-top: 5px;">
 
  <a class="btn btn-default btn-sm pull-right" id="bt_graphScenario"><i class="fa fa-object-group"></i> {{Liens}}</a>
  <a class="btn btn-default btn-sm pull-right" id="bt_copyScenario"><i class="fa fa-copy"></i> {{Dupliquer}}</a>
