@@ -1278,7 +1278,8 @@ class cmd {
 				}
 			}
 		}
-		if ($currentLevel == strtolower($this->getEqLogic()->getAlert()['name'])) {
+		$level = $this->getEqLogic()->getAlert();
+		if (isset($level['name']) && $currentLevel == strtolower($level['name'])) {
 			return $currentLevel;
 		}
 		if ($_allowDuring && $this->getAlert($currentLevel . 'during') != '' && $this->getAlert($currentLevel . 'during') > 0) {
