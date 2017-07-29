@@ -374,6 +374,26 @@ $('#div_pageContainer').off('click','.bt_addSinon').on( 'click','.bt_addSinon', 
   }
 });
 
+$('#div_pageContainer').off('click','.bt_addSinon').on( 'click','.bt_addSinon', function (event) {
+ 
+  if($(this).children("i").hasClass('fa-chevron-right')){
+      $(this).children("i").removeClass('fa-chevron-right').addClass('fa-chevron-down');
+       $(this).closest('.subElement').next().css('display','table');
+  }
+  else
+  {
+      if($(this).closest('.subElement').next().children('.expressions').children('.expression').length>0)
+      {
+         alert("{{Le bloc Sinon ne peut être supprimé s'il contient des éléments}}");
+      }
+      else
+      {  
+         $(this).children("i").removeClass('fa-chevron-down').addClass('fa-chevron-right');
+         $(this).closest('.subElement').next().css('display','none');
+      }
+  }
+});
+
 $('#div_pageContainer').off('click','.bt_removeExpression').on('click','.bt_removeExpression',  function (event) {
   $(this).closest('.expression').remove();
   updateSortable();

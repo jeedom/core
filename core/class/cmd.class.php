@@ -1278,7 +1278,8 @@ class cmd {
 				}
 			}
 		}
-		if ($currentLevel == strtolower($this->getEqLogic()->getAlert()['name'])) {
+		$level = $this->getEqLogic()->getAlert();
+		if (is_array($level) && isset($level['name']) && $currentLevel == strtolower($level['name'])) {
 			return $currentLevel;
 		}
 		if ($_allowDuring && $this->getAlert($currentLevel . 'during') != '' && $this->getAlert($currentLevel . 'during') > 0) {
@@ -1708,7 +1709,7 @@ class cmd {
 		return $this->_eqLogic;
 	}
 
-	public function setEqLogic(&$_eqLogic) {
+	public function setEqLogic($_eqLogic) {
 		$this->_eqLogic = $_eqLogic;
 		return $this;
 	}
