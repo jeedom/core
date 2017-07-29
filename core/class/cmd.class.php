@@ -1708,7 +1708,7 @@ class cmd {
 		return $this->_eqLogic;
 	}
 
-	public function setEqLogic(&$_eqLogic) {
+	public function setEqLogic($_eqLogic) {
 		$this->_eqLogic = $_eqLogic;
 		return $this;
 	}
