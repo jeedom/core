@@ -34,7 +34,6 @@ function initAlert() {
                 $('#div_displayAlert').append(data.result[i]).trigger('create');
             }
             setTileSize('.eqLogic');
-            $('#div_displayAlert').packery({gutter : 4});
         }
     });
   }
