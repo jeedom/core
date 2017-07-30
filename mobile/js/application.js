@@ -34,10 +34,10 @@ $(function () {
 
 
     $('body').on('click','.objectSummaryParent',function(){
-       modal(false);
-       panel(false);
-       page('equipment', '{{Résumé}}', $(this).data('object_id')+':'+$(this).data('summary'));
-   });
+     modal(false);
+     panel(false);
+     page('equipment', '{{Résumé}}', $(this).data('object_id')+':'+$(this).data('summary'));
+ });
 
     $('body').on('taphold','.cmd[data-type=info]',function(){
         $('#bottompanel_mainoption').empty();
@@ -62,10 +62,10 @@ $(function () {
             window.location.reload();
         }
         if (e.type == 'progress') {
-           var progress = Math.round((e.loaded/e.total)*100 * 100) / 100
-           $('#span_updateAdvancement').text(progress);
-       }
-       if (e.type == 'error') {
+         var progress = Math.round((e.loaded/e.total)*100 * 100) / 100
+         $('#span_updateAdvancement').text(progress);
+     }
+     if (e.type == 'error') {
         $('#div_updateInProgress').html('<p>{{Erreur lors de la mise à jour}}<br/>{{Nouvelle tentative dans 5s}}</p>');
         setTimeout(function(){ webappCache.update(); }, 5000);
     }
@@ -169,34 +169,28 @@ function initApplication(_reinit) {
                     $.include(include, function () {
                         deviceInfo = getDeviceType();
                         jeedom.object.summaryUpdate([{object_id:'global'}])
-                        if(getUrlVars('p')){
-                            if(getUrlVars('m')){
-                               page(getUrlVars('p'), getUrlVars('p'));
-                           }else{
-                               page(getUrlVars('p'), getUrlVars('p'),'',getUrlVars('m'));
-                           }
-                       }else if (isset(userProfils) && userProfils != null && isset(userProfils.homePageMobile) && userProfils.homePageMobile != 'home' && getUrlVars('p') != 'home') {
-                        var res = userProfils.homePageMobile.split("::");
-                        if (res[0] == 'core') {
-                            switch (res[1]) {
-                                case 'dashboard' :
-                                page('equipment', userProfils.defaultMobileObjectName, userProfils.defaultMobileObject);
-                                break;
-                                case 'plan' :
-                                window.location.href = 'index.php?v=d&p=plan&plan_id=' + userProfils.defaultMobilePlan;
-                                break;
-                                case 'view' :
-                                page('view', userProfils.defaultMobileViewName, userProfils.defaultMobileView);
-                                break;
+                        if (isset(userProfils) && userProfils != null && isset(userProfils.homePageMobile) && userProfils.homePageMobile != 'home' && getUrlVars('p') != 'home') {
+                            var res = userProfils.homePageMobile.split("::");
+                            if (res[0] == 'core') {
+                                switch (res[1]) {
+                                    case 'dashboard' :
+                                    page('equipment', userProfils.defaultMobileObjectName, userProfils.defaultMobileObject);
+                                    break;
+                                    case 'plan' :
+                                    window.location.href = 'index.php?v=d&p=plan&plan_id=' + userProfils.defaultMobilePlan;
+                                    break;
+                                    case 'view' :
+                                    page('view', userProfils.defaultMobileViewName, userProfils.defaultMobileView);
+                                    break;
+                                }
+                            } else {
+                                page(res[1], 'Plugin', '', res[0]);
                             }
                         } else {
-                            page(res[1], 'Plugin', '', res[0]);
+                            page('home', 'Accueil');
                         }
-                    } else {
-                        page('home', 'Accueil');
-                    }
-                    $('#pagecontainer').css('padding-top','64px');
-                });
+                        $('#pagecontainer').css('padding-top','64px');
+                    });
                 });
             }
         }
@@ -206,18 +200,18 @@ function initApplication(_reinit) {
 function page(_page, _title, _option, _plugin,_dialog) {
     $.showLoading();
     try {
-     $('#bottompanel').panel('close');
-     $('#bottompanel_mainoption').panel('close');
-     $('.ui-popup').popup('close');
- } catch (e) {
+       $('#bottompanel').panel('close');
+       $('#bottompanel_mainoption').panel('close');
+       $('.ui-popup').popup('close');
+   } catch (e) {
 
- }
- if (isset(_title)) {
+   }
+   if (isset(_title)) {
     if(!isset(_dialog) || !_dialog){
-     $('#pageTitle').empty().append(_title);
- }else{
-   $('#popupDialog .nd-title').text(_title);
-}
+       $('#pageTitle').empty().append(_title);
+   }else{
+     $('#popupDialog .nd-title').text(_title);
+ }
 }
 if (_page == 'connection') {
     var page = 'index.php?v=m&ajax=1&p=' + _page;
@@ -230,7 +224,7 @@ if (_page == 'connection') {
 }
 var page = 'index.php?v=m&ajax=1'
 if(isset(_dialog) && _dialog){
-   page += '&modal='+_page;
+ page += '&modal='+_page;
 }else{
     page += '&p=' + _page;
 }
@@ -238,9 +232,9 @@ if (init(_plugin) != '') {
     page += '&m=' + _plugin;
 }
 if(isset(_dialog) && _dialog){
- $('#popupDialog .content').load(page, function () {
-     var functionName = '';
-     if (init(_plugin) != '') {
+   $('#popupDialog .content').load(page, function () {
+       var functionName = '';
+       if (init(_plugin) != '') {
         functionName = 'init' + _plugin.charAt(0).toUpperCase() + _plugin.substring(1).toLowerCase() + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
     } else {
         functionName = 'init' + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
@@ -267,10 +261,10 @@ if(isset(_dialog) && _dialog){
 });
 }else{
     $('#page').hide().load(page, function () {
-     window.history.pushState('','','index.php?v=m&p=' +_page);
-     $('#page').trigger('create');
-     var functionName = '';
-     if (init(_plugin) != '') {
+       window.history.pushState('','','index.php?v=m&p=' +_page);
+       $('#page').trigger('create');
+       var functionName = '';
+       if (init(_plugin) != '') {
         functionName = 'init' + _plugin.charAt(0).toUpperCase() + _plugin.substring(1).toLowerCase() + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
     } else {
         functionName = 'init' + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
