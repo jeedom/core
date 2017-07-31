@@ -863,7 +863,7 @@ class eqLogic {
 		}
 		$warning_threshold = $this->getConfiguration('battery_warning_threshold', config::byKey('battery::warning'));
 		$danger_threshold = $this->getConfiguration('battery_danger_threshold', config::byKey('battery::danger'));
-		if ($this->getConfiguration('noBatterieCheck', 0) == 0 && $_pourcent < $danger_threshold) {
+		if ($this->getConfiguration('noBatterieCheck', 0) == 0 && $_pourcent != '' && $_pourcent < $danger_threshold) {
 			$prevStatus = $this->getStatus('batterydanger', 0);
 			$logicalId = 'lowBattery' . $this->getId();
 			$message = 'Le module ' . $this->getEqType_name() . ' ' . $this->getHumanName() . ' a moins de ' . $danger_threshold . '% de batterie (niveau danger avec ' . $_pourcent . '% de batterie)';
@@ -888,7 +888,7 @@ class eqLogic {
 					}
 				}
 			}
-		} else if ($this->getConfiguration('noBatterieCheck', 0) == 0 && $_pourcent < $warning_threshold) {
+		} else if ($this->getConfiguration('noBatterieCheck', 0) == 0 && $_pourcent != '' && $_pourcent < $warning_threshold) {
 			$prevStatus = $this->getStatus('batterywarning', 0);
 			$logicalId = 'warningBattery' . $this->getId();
 			$message = 'Le module ' . $this->getEqType_name() . ' ' . $this->getHumanName() . ' a moins de ' . $warning_threshold . '% de batterie (niveau warning avec ' . $_pourcent . '% de batterie)';
