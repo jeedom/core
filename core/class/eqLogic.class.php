@@ -864,28 +864,32 @@ class eqLogic {
 		$warning_threshold = $this->getConfiguration('battery_warning_threshold', config::byKey('battery::warning'));
 		$danger_threshold = $this->getConfiguration('battery_danger_threshold', config::byKey('battery::danger'));
 		if ($this->getConfiguration('noBatterieCheck', 0) == 0 && $_pourcent < $danger_threshold) {
+			$prevStatus = $this->getStatus('batterydanger', 0);
 			$logicalId = 'lowBattery' . $this->getId();
 			$message = 'Le module ' . $this->getEqType_name() . ' ' . $this->getHumanName() . ' a moins de ' . $danger_threshold . '% de batterie (niveau danger avec ' . $_pourcent . '% de batterie)';
 			if ($this->getConfiguration('battery_type') != '') {
 				$message .= ' (' . $this->getConfiguration('battery_type') . ')';
 			}
 			$this->setStatus('batterydanger', 1);
-			if (config::ByKey('alert::addMessageOnBatterydanger') == 1) {
-				message::add($this->getEqType_name(), $message, '', $logicalId);
-			}
-			$cmds = explode(('&&'), config::byKey('alert::batterydangerCmd'));
-			if (count($cmds) > 0 && trim(config::byKey('alert::batterydangerCmd')) != '') {
-				foreach ($cmds as $id) {
-					$cmd = cmd::byId(str_replace('#', '', $id));
-					if (is_object($cmd)) {
-						$cmd->execCmd(array(
-							'title' => __('[' . config::byKey('name', 'core', 'JEEDOM') . '] ', __FILE__) . $message,
-							'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $message,
-						));
+			if ($prevStatus ==0) {
+				if (config::ByKey('alert::addMessageOnBatterydanger') == 1) {
+					message::add($this->getEqType_name(), $message, '', $logicalId);
+				}
+				$cmds = explode(('&&'), config::byKey('alert::batterydangerCmd'));
+				if (count($cmds) > 0 && trim(config::byKey('alert::batterydangerCmd')) != '') {
+					foreach ($cmds as $id) {
+						$cmd = cmd::byId(str_replace('#', '', $id));
+						if (is_object($cmd)) {
+							$cmd->execCmd(array(
+								'title' => __('[' . config::byKey('name', 'core', 'JEEDOM') . '] ', __FILE__) . $message,
+								'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $message,
+							));
+						}
 					}
 				}
 			}
 		} else if ($this->getConfiguration('noBatterieCheck', 0) == 0 && $_pourcent < $warning_threshold) {
+			$prevStatus = $this->getStatus('batterywarning', 0);
 			$logicalId = 'warningBattery' . $this->getId();
 			$message = 'Le module ' . $this->getEqType_name() . ' ' . $this->getHumanName() . ' a moins de ' . $warning_threshold . '% de batterie (niveau warning avec ' . $_pourcent . '% de batterie)';
 			if ($this->getConfiguration('battery_type') != '') {
@@ -893,18 +897,20 @@ class eqLogic {
 			}
 			$this->setStatus('batterywarning', 1);
 			$this->setStatus('batterydanger', 0);
-			if (config::ByKey('alert::addMessageOnBatterywarning') == 1) {
-				message::add($this->getEqType_name(), $message, '', $logicalId);
-			}
-			$cmds = explode(('&&'), config::byKey('alert::batterywarningCmd'));
-			if (count($cmds) > 0 && trim(config::byKey('alert::batterywarningCmd')) != '') {
-				foreach ($cmds as $id) {
-					$cmd = cmd::byId(str_replace('#', '', $id));
-					if (is_object($cmd)) {
-						$cmd->execCmd(array(
-							'title' => __('[' . config::byKey('name', 'core', 'JEEDOM') . '] ', __FILE__) . $message,
-							'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $message,
-						));
+			if ($prevStatus ==0) {
+				if (config::ByKey('alert::addMessageOnBatterywarning') == 1) {
+					message::add($this->getEqType_name(), $message, '', $logicalId);
+				}
+				$cmds = explode(('&&'), config::byKey('alert::batterywarningCmd'));
+				if (count($cmds) > 0 && trim(config::byKey('alert::batterywarningCmd')) != '') {
+					foreach ($cmds as $id) {
+						$cmd = cmd::byId(str_replace('#', '', $id));
+						if (is_object($cmd)) {
+							$cmd->execCmd(array(
+								'title' => __('[' . config::byKey('name', 'core', 'JEEDOM') . '] ', __FILE__) . $message,
+								'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $message,
+							));
+						}
 					}
 				}
 			}
