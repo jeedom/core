@@ -4,50 +4,76 @@ C’est ici que se trouvent la plupart des paramètres de configuration. Bien qu
 
 La page est accessible par Administration -> Configuration : 
 
-image::../images/administration.png[]
 
 [IMPORTANT]
 Si vous n'êtes pas en mode expert certains paramètres peuvent ne pas être visibles.
 
-== Configuration générale
-
-image::../images/administration1.png[]
+== Générale
 
 Dans cet onglet on retrouve des informations générales sur Jeedom : 
 
 * *Nom de votre Jeedom* : peut être réutilisé dans les scénarios ou permettre d'identifier un backup
 * *Clef API* : votre clef API, à utiliser pour toute requête vers l'API Jeedom
 * *Clef API Pro* : utilisée pour communiquer avec le système de gestion de parc
-* *Système* : type de votre hardware
 * *Clef d'installation* : clef hardware de votre Jeedom sur le market. Si votre Jeedom n'apparaît pas dans la liste de vos Jeedom sur le market il est conseillé de cliquer sur ce bouton
 * *Langue* : Langue de votre Jeedom
 * *Durée de vie des sessions (heure)* : durée de vie des sessions PHP, il est conseillé de ne pas y toucher
 * *Date et heure* : votre fuseau horaire
 * *Serveur de temps optionnel* : permet d'ajouter un serveur de temps optionnel (à réserver aux experts)
 * *Ignorer la vérification de l'heure* : indique à Jeedom de ne pas vérifier si l'heure est cohérente. Utile par exemple si vous ne connectez pas Jeedom à Internet et qu'il n'a pas de pile RTC
-* *Mode* : Mode de votre Jeedom maître ou esclave, attention lors du passage en esclave : tous vos équipements, scénarios, designs... seront supprimés.
 
-== Composants Jeedom
+== API
 
-image::../images/administration12.png[]
+Liste les differentes clef API de Jeedom : 
 
-Cette partie permet d'activer/désactiver certains composants du core jeedom : 
+* le core à 2 clef API, une general (autant que possibile il faut eviter de l'utiliser) et pour les Pro (utilisée pour la gestion de parc)
+* et une clef api par plugin en ayant besoin
 
-* *Droits avancés* : permet de désactiver la gestion des droits avancés (si vous ne vous en servez pas cela peut rendre Jeedom plus réactif)
-* *Sécurité* : permet d'activer ou non la sécurité anti-piratage de Jeedom (brute force sur le mot de passe). 
+Pour chaque clef API vous pouvez definir la porté : 
 
-== Base de données
+* *Désactiver* : la clef api ne peut etre utilisée
+* *IP blanche* : seule une liste d'ip est autorisé (voir configuration réseaux)
+* *Localhost* : seules les requetes venant du systeme lui meme sont autorisé
+* *Activé* : aucune restriction
 
-image::../images/administration2.png[]
+De plus vous pouvez aussi limité l'accès (par le meme systeme) aux APIs HTTP, JsonRpc et TTS
 
-* *Accès à l'interface d'administration* : permet d'accèder à une interface d'administration de la base, les informations à renseigner sont en dessous
+== OS/DB
+ 
+=== Système
+
+Permet d'accès à une interface d'administration systeme, sorte de console shell  (ATTENTION en touchant à cela le support peut refuser de vous aider)
+
+=== Base de données
+
+* *Administration* : permet d'accèder à une interface d'administration de la base en ligne de commande (ATTENTION en touchant à cela le support peut refuser de vous aider)
 * *Machine (hostname)* : localisation de la base
 * *Utilisateur* : nom d'utilisateur utilisé par Jeedom
 * *Mot de passe* : mot de passe d'accès à la base utilisée par Jeedom
 
-== Configuration réseau
+== Sécurité
 
-image::../images/administration3.png[]
+=== LDAP
+
+* *Activer l'authentification LDAP* : active l'authentification à travers un AD (LDAP)
+* *Hôte* : serveur hébergeant l'AD
+* *Domaine* : domaine de votre AD
+* *Base DN* : base DN de votre AD
+* *Nom d'utilisateur* : nom d'utilisateur pour que Jeedom se connecte à l'AD
+* *Mot de passe* : mot de passe pour que Jeedom se connecte à l'AD
+* *Filtre (optionnel)* : filtre sur l'AD (pour la gestion des groupes par exemple)
+* *Autoriser REMOTE_USER* : Active le REMOTE_USER (utilisé en SSO par exemple)
+
+=== Connexion
+
+* *Nombre d'échec toléré* : defini le nombre de tentative successivent autorisées avant de bannir l'IP
+* *Temps maximum entre les échecs (s)* : temps maximum pour que 2 tentatives soient considéré comme successive
+* *Durée du bannissement (s), -1 pour infini* : temps de banissement de l'IP
+* *IP "blanche"* : liste d'IP qui ne peuvent jamais etre banni
+
+En dessous vous avez un tableau qui donne la liste des IP bannis
+
+== Configuration réseau
 
 Partie très importante dans Jeedom, il faut absolument la configurer correctement sinon beaucoup de plugins risquent d'être non fonctionnels.
 
@@ -61,7 +87,7 @@ Partie très importante dans Jeedom, il faut absolument la configurer correcteme
 ** *Protocole* : protocole utilisé pour l'accès extérieur
 ** *Adresse URL ou IP* : adresse ou IP externe si fixe
 ** *Complément (exemple : /jeedom)* :  le fragment d'URL complémentaire (type /jeedom). Pour savoir si vous avez besoin de définir une valeur ici, regardez si quand vous vous connectez à Jeedom vous devez renseigner /jeedom après l'IP
-* *Gestion avancée* : peut ne pas apparaitre en fonction de la compatibilité avec votre matériel
+* *Gestion avancée* : peut ne pas apparaitre en fonction de la compatibilité avec votre matériel. Vous aurez ici la liste de vos interface réseaux
 ** *Désactiver la gestion du réseau par Jeedom* : indique à Jeedom de ne pas monitorer le réseau (à activer si Jeedom n'est connecté à aucun réseau)
 * *Proxy market* : permet un accès distant à votre Jeedom sans avoir besoin d'un DNS, d'une IP fixe ou d'ouvrir les ports de votre box
 ** *Utiliser les DNS Jeedom* : active les DNS Jeedom (attention cela nécessite au moins un service pack)
@@ -80,107 +106,117 @@ Vous pouvez voir link:http://blog.domadoo.fr/2014/10/15/acceder-depuis-lexterieu
 [IMPORTANT]
 Si vous n'arrivez pas à faire fonctionner le DNS Jeedom, regardez la configuration du pare-feu et filtre parental de votre box (sur livebox il faut par exemple le pare-feu en moyen).
 
-== Configuration des couleurs
+== Couleurs
 
 La colorisation des widgets est effectuée en fonction de la catégorie d'appartenance du widget qui est définie dans la configuration de chaque module (voir plugin Z-Wave, RFXCOM... etc). Parmi les catégories on retrouve le chauffage, les lumières, les automatismes etc...
 
 Pour chaque catégorie, on pourra choisir une couleur différente entre la version desktop et la version mobile. Il y a également 2 types de couleurs, les couleurs de fond des widgets et les couleurs des commandes lorsque le widget est de type graduel, par exemple les lumières, les volets, les températures.
 
-image::../images/display6.png[]
-
 En cliquant sur la couleur une fenêtre s'ouvre, permettant de choisir sa couleur.
-
-image::../images/display7.png[]
 
 Vous pouvez aussi configurer ici la transparence des widgets de manière globale (qui sera la valeur par défaut, il est possible ensuite de modifier cette valeur widget par widget).
 
 [TIP]
 N'oubliez pas de sauvegarder après toute modification.
 
-== Configuration des commandes
-
-image::../images/administration4.png[]
+== Commandes
 
 * *Historique* : voir link:https://jeedom.com/doc/documentation/core/fr_FR/doc-core-history.html#_configuration_général_de_l_historique[ici]
 * *Push*
 ** *URL de push globale* :  permet de rajouter une URL à appeler en cas de mise à jour d'une commande. Vous pouvez utiliser les tags suivant : \#value# pour la valeur de la commande, \#cmd_name# pour le nom de la commande, \#cmd_id# pour l'identifiant unique de la commande, \#humanname# pour le nom complet de la commande (ex : \#[Salle de bain][Hydrometrie][Humidité]#)
 
-== Configuration des interactions
+== Cache
 
-image::../images/administration5.png[]
+Permet de surveiller et d'agir sur le cache de Jeedom : 
 
-Voir link:https://jeedom.com/doc/documentation/core/fr_FR/doc-core-interact.html#_configuration_2[ici]
+* *Statistiques* : Nombre d'objet actuellement en cache
+* *Nettoyer le cache* : Force la suppression des objets qui ne sont plus utile (Jeedom le fait automatiquement toute les nuits)
+* *Vider toutes les données en cache* : Vide completement le cache (attention cela peut faire perdre des données)
+* *Temps de pause pour le long polling* : Fréquence a laquelle Jeedom verifie si il y a des evenements en attente pour les clients (interface web, application mobile...). Plus ce temps est cours plus l'interface se mettra à jour rapidement, en contre partie cela utilise plus de ressources et peut donc ralentir jeedom
 
-== Configuration des logs & messages
+== Interactions
 
-image::../images/administration7.png[]
+Voir link:doc-core-interact.html#_configuration_2[ici]
 
-Voir link:https://jeedom.com/doc/documentation/core/fr_FR/doc-core-log.html#_configuration[ici]
+== Rapports
 
-== Configuration LDAP
+Permet de configuration la generation et la gestion des raports
 
-image::../images/administration8.png[]
+* *Delai d'attente après génération de la page (en ms)* : Délai d'attente après chargement du rapport pour faire la "photo", à changer si votre rapport est incomplet par exemple
+* *Nettoyer les rapport plus anciens de (jours)* : défini le nombre de jour avant de supprimer un rapport (les rapports prennent un peu de place donc attention à ne pas mettre trop de conservation)
 
-* *Activer l'authentification LDAP* : active l'authentification à travers un AD (LDAP)
-* *Hôte* : serveur hébergeant l'AD
-* *Domaine* : domaine de votre AD
-* *Base DN* : base DN de votre AD
-* *Nom d'utilisateur* : nom d'utilisateur pour que Jeedom se connecte à l'AD
-* *Mot de passe* : mot de passe pour que Jeedom se connecte à l'AD
-* *Filtre (optionnel)* : filtre sur l'AD (pour la gestion des groupes par exemple)
-* *Autoriser REMOTE_USER* : Active le REMOTE_USER (utilisé en SSO par exemple)
+== Liens
 
-== Configuration des équipements
+Permet de configurer le graphique de lien
 
-image::../images/administration9.png[]
+* *Profondeur pour les scénarios* : Permet de définir, lors de l'affichage d'un graphique de lien d'un scénario, le nombre d'élément maximum à afficher (plus il y a d'élément plus le graphique sera lent à générer et plus il sera difficile à lire)
+* *Profondeur pour les objets* : idem pour les objets
+* *Profondeur pour les équipements* : idem pour les équipements
+* *Profondeur pour les commandes* : idem pour les commandes
+* *Profondeur pour les variables* : idem pour les variables
+* *Paramètre de prerender* : permet d'agir sur la disposition du graph
+* *Paramètre de render* : idem
+
+== Résumés
+
+Permet d'ajouter des résumés d'objet (information affiché tout en haut dans la barre de menu Jeedom ou a coté des objets) : 
+
+* *Clef* : clef du résumé, a ne surtout pas toucher
+* *Nom* : Nom du résumé
+* *Calcul* : Méthode de calcul, peut etre de type 
+** *Somme* : somme les differentes valeur
+** *Moyenne* : fait la moyenne des valeurs
+** *Texte* : afficher textuellement la valeur (surtout pour celle de type chaine de caractere)
+* *Icone* : icone du résumé
+* *Unité* : unité du résumé
+* *Méthode de comptage* : si vous compté une donnée binaire alors il faut mettre cette valeur a binaire, exemple si vous comptez ne nombre de lampe allumées mais que vous avez juste la valeur du variateur (0 à 100), alors il faut mettre binaire, comme cela jeedom considera que si la valeur est >1 alors Jeedom considera la lampe allumée 
+* *Affiché si valeur égale 0* : masquer la valeur si elle vos 0 
+* *Liée à un virtuel* : lance la création de commande virtuel ayant pour valeur celle du résumé
+
+== Logs
+
+Voir link:doc-core-log.html#_configuration[ici]
+
+== Equipements
 
 * *Nombre d'échecs avant désactivation de l'équipement* : nombre d'échecs de communication avec l'équipement avant desactivation de celui-ci (un message vous préviendra si cela arrive)
 * *Seuils des piles* : permet de gérer les seuils d'alertes globaux sur les piles
 
 == Mise à jour et fichiers
 
-image::../images/administration10.png[]
-
-* Source de mise à jour : 
-* Faire une sauvegarde avant la mise à jour
-* Vérifier automatiquement s'il y a des mises à jour
+* *Source de mise à jour* : choisir la source de mise à jour du core de jeedom
+* *Version du core* : version du core à récuperer
+* *Faire une sauvegarde avant la mise à jour* : indique si il faut faire une sauvegarde avant la mise à jour
+* *Vérifier automatiquement s'il y a des mises à jour* : indique si il faut chercher automatiquement si il y a de nouvelle mise à jour (attention pour eviter de faire tomber le market l'heure de verification peut changer)
 
 === Les dépots
 
 Les dépôts sont des espaces de stockage (et de service) pour pouvoir mettre des backups, récupérer des plugins, récupérer le core de jeedom....
 
-==== Market
-
-Dépôt servant à relier Jeedom au market, il est vivement conseillé d'utiliser ce dépôt. Attention toute demande de support pourra être refusée si vous utilisez un autre dépôt que celui-ci.
-
-image::../images/administration17.png[]
-
-* *Adresse* : adresse du Market
-* *Nom d'utilisateur* : votre nom d'utilisateur sur le Market
-* *Mot de passe* : votre mot de passe du Market
-
 ==== Fichier
 
 Dépôt servant à activer l'envoi de plugins par des fichiers.
-
-image::../images/administration15.png[]
 
 ==== Github
 
 Dépôt servant à relier Jeedom à Github.
 
-image::../images/administration16.png[]
-
 * *Token* : token pour l'accès au dépôt privé
-* *Utilisateur ou organisation du dépôt pour le core Jeedom*
-* *Nom du dépôt pour le core Jeedom*
-* *Branche pour le core Jeedom*
+* *Utilisateur ou organisation du dépôt pour le core Jeedom* : nom de l'utilisateur ou de l'organisation sur github pour le core
+* *Nom du dépôt pour le core Jeedom* : nom du dépot pour le core
+* *Branche pour le core Jeedom* : branche du dépot pour le core
+
+==== Market
+
+Dépôt servant à relier Jeedom au market, il est vivement conseillé d'utiliser ce dépôt. Attention toute demande de support pourra être refusée si vous utilisez un autre dépôt que celui-ci.
+
+* *Adresse* : adresse du Market
+* *Nom d'utilisateur* : votre nom d'utilisateur sur le Market
+* *Mot de passe* : votre mot de passe du Market
 
 ==== Samba
 
 Dépôt permettant d'envoyer automatiquement un backup de Jeedom sur un partage Samba (ex NAS Synology).
-
-image::../images/administration18.png[]
 
 * *[Backup] IP* : IP du serveur Samba
 * *[Backup] Utilisateur* : nom d'utilisateur pour la connexion (les connexions anonymes ne sont pas possibles)
@@ -198,8 +234,6 @@ Lors de la validation du partage samba, tel que décrit précédement, une nouve
 backup de jeedom. En l'activant, jeedom procedera à son envoi automatique lors du prochain backup. Un test est possible en
 effectuant un backup manuel. Le log devra donc ressembler à ceci :
 
-image::../images/Backup5.png[]
-
 [IMPORTANT]
 Il vous faudra peut-être installer le package smbclient pour que le dépôt fonctionne.
 
@@ -207,8 +241,6 @@ Il vous faudra peut-être installer le package smbclient pour que le dépôt fon
 Jeedom doit être le seul à écrire dans ce dossier et il doit être vide par défaut (c'est à dire avant la configuration et l'envoi du premier backup, le dossier ne doit contenir aucun fichier ou dossier).
 
 ==== URL
-
-image::../images/administration19.png[]
 
 * *URL core Jeedom*
 * *URL version core Jeedom*
