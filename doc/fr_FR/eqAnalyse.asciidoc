@@ -1,0 +1,41 @@
+= Anlayse d'équipements
+
+La page Analyse d'équipements vous permet de voir de nombreuses infos relatives aux équipements de manière centralisée:
+
+* l'état de vos piles
+* les modules en alertes
+* les actions définies
+* les alertes définies
+* les commandes orphelines
+
+== L'onglet Batteries
+
+Vous pouvez voir sur cet onglet la liste de vos modules sur batterie,le niveau restant (la couleur de la tuile dépend de ce niveau), le type et le nombre de piles qu'il faut mettre dans le module,
+le type du module ainsi que la date à laquelle l'information du niveau de batterie a été mise à jour. Vous pouvez aussi voir si un seuil spécifique a été établi pour le module en particulier (représenté par une main)
+
+[TIP]
+Les seuils d'alerte/warning sur les niveaux des batteries sont configurables de manière globale dans la configuration de Jeedom (Administration -> Configuration puis partie "Configuration des équipements"),
+ou par équipement sur la page de configuration avancée de ceux-ci dans l'onglet alertes.
+
+
+== L'onglet Modules en alerte
+
+Sur cet onglet vous verrez en temps réel les modules en alerte. Les alertes peuvent être de différents types :
+
+* timeout (configuré dans l'onglet alertes des équipements)
+* batterie en warning ou en danger
+* commande en warning ou danger (paramétrable dans l'onglet avancées des commandes)
+
+D'autres type d'alertes pourront éventuellement se retrouver ici. Chaque alerte sera représentée par la couleur de la tuile (le niveau d'alerte) et un logo en haut à gauche (le type d'alerte)
+
+[TIP]
+Ici seront affichés tous les modules en alerte même ceux configurés en "non visible". Il est tout de fois intéressant de noter que si le module est en "visible" l'alerte sera aussi visible sur le dashboard (dans l'objet concerné)
+
+== L'onglet Actions définies
+
+
+== L'onglet Alertes définies
+
+
+== L'onglet Commandes orphelines
+
