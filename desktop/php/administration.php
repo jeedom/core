@@ -18,7 +18,7 @@ user::isBan();
 	<ul class="nav nav-tabs" role="tablist">
 		<li role="presentation" class="active"><a href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-wrench"></i> {{Général}}</a></li>
 		<li role="presentation"><a href="#apitab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fa fa-key"></i> {{API}}</a></li>
-		<li role="presentation"><a href="#ostab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fa fa-terminal"></i> {{OS/BDD}}</a></li>
+		<li role="presentation"><a href="#ostab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fa fa-terminal"></i> {{OS/DB}}</a></li>
 		<li role="presentation"><a href="#securitytab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fa fa-shield"></i> {{Securité}}</a></li>
 		<li role="presentation"><a href="#networktab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fa fa-rss"></i> {{Réseaux}}</a></li>
 		<li role="presentation"><a href="#colortab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fa fa-tint"></i> {{Couleurs}}</a></li>
