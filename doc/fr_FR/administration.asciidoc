@@ -150,7 +150,59 @@ Permet de surveiller et d'agir sur le cache de Jeedom :
 
 == Interactions
 
-Voir link:doc-core-interact.html#_configuration_2[ici]
+=== Général
+
+Vous avez ici 3 paramètres : 
+
+* *Sensibilité* : il y a 4 niveaux de correspondance (La sensibilité va de 1 (correspond exactement) à 99)
+** pour 1 mot : le niveau de correspondance pour les interactions à un seul mot
+** 2 mots : le niveau de correspondance pour les interactions à deux mots
+** 3 mots : le niveau de correspondance pour les interactions à trois mots
+** + de 3 mots : le niveau de correspondance pour les interactions à plus de trois mots
+* *Ne pas répondre si l'interaction n'est pas comprise* : par défaut Jeedom répond "je n'ai pas compris" si l'interaction n'est pas comprise. Il est possible de désactiver ce fonctionnement pour que Jeedom ne réponde rien, mettre le bouton à oui pour désactiver la réponse.
+* *Regex général d'exclusion pour les interactions* : permet de définir une regexp qui, si elle correspond à une interaction, supprimera automatiquement cette phrase de la génération (réservé aux experts). Pour plus d'infos voir les explications dans le chapitre *"Regexp d'exclusion"*
+
+=== Interaction automatique, contextuelle & avertissement
+
+Les interactions automatique permettent a Jeedom de tenter de comprendre la commande meme si il n'y a pas d'interaction definie (il va chercher un nom d'objet et/ou d'équipement et/ou de commande pour essayer de répondre le mieux possible)
+
+Les interactions contextuelle vous permette d'enchainer plusieurs demande sans tout repeter, jeedom gardant le contexte, exemple : 
+
+* Vous : Combien fait-il dans la chambre ?
+* Jeedom : Température 25.2 °C
+* Vous : et dans le salon ?
+* Jeedom : Température 27.2 °C
+
+Il est aussi possible de poser 2 questions en une : 
+
+* Vous : Combien fait-il dans la chambre et dans le salon ?
+* Jeedom : Température 27.2 °C
+		   Température 27.2 °C
+
+Les intéractions de type prévient moi permette de demander à Jeedom de vous prevenir si une commande dépasse/descend ou vaut une certaine valeur. Ex :
+
+* Vous : Préviens moi si la température du salon dépasse 25°C ?
+* Jeedom : OK
+
+Dès que la température du salon dépassera 25°C jeedom vous le dira (une seule fois)
+
+[NOTE]
+Par defaut Jeedom vous répondra par le meme canal que celui que vous avez utilisé pour lui demander de vous prévenir. Si il n'en trouve pas alors il utilisera la commande par defaut spécifié dans la configuration
+
+* *Activer les interactions automatique* : active les interactions automatique
+* *Activer les réponses contextuelle* : active les interactions contextuelle
+* *Réponse contextuelle prioritaire si la phrase commence par* : si la phrase commence par le mot en question alors Jeedom va prioritiser une réponse contextuelle (vous pouvez mettre plusieurs mot en les séparant par des ;)
+* *Découper une interaction en 2 si elle contient* : idem mais pour le découpage d'une interaction contenant plusieurs question
+* *Réponse de type "previens moi" si la phrase commence par* : si la phrase commence par ce/ces mots alors Jeedom cherchera pour faire une interaction de type préviens moi (vous pouvez mettre plusieurs mot en les séparant par des ;)
+* *Commande de retour par défaut* : commande de retour par defaut pour une interaction de type préviens (utilisé notament si vous avez programé l'alerte par l'interface mobile)
+* *Synonyme pour les objets* : liste des synomnyme pour les objets (ex : rdc|rez de chaussé|sous sol|bas;sdb|salle de bain)
+* *Synonyme pour les équipements* : liste des synomnyme pour les équipements
+* *Synonyme pour les commandes* : liste des synomnyme pour les commandes
+* *Synonyme pour les résumé* : liste des synomnyme pour les résumés
+
+=== Couleurs
+
+Cette partie permet de definir les couleurs pour le pilotage des bandeaux de LED par exemple (pour que Jeedom comprenne les couleurs type rouge/bleu/noir...)
 
 == Rapports
 
