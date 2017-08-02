@@ -123,15 +123,14 @@ if (init('type') != '') {
 						$tags['#' . $key . '#'] = $value;
 					}
 					if (init('tags') != '' && !is_array(init('tags'))) {
-					    $_tags = array();
-					    $args = arg2array(init('tags'));
-					    foreach ($args as $key => $value) {
-					      $_tags['#' . trim(trim($key), '#') . '#'] = scenarioExpression::setTags(trim($value), $scenario);
-					    }
-					    $scenario->setTags($_tags);
-					}
-					else if (is_array(init('tags'))) {
-					    $scenario->setTags(init('tags'));
+						$_tags = array();
+						$args = arg2array(init('tags'));
+						foreach ($args as $key => $value) {
+							$_tags['#' . trim(trim($key), '#') . '#'] = scenarioExpression::setTags(trim($value), $scenario);
+						}
+						$scenario->setTags($_tags);
+					} else if (is_array(init('tags'))) {
+						$scenario->setTags(init('tags'));
 					}
 					$scenario->launch(false, __('Exécution provoquée par un appel API ', __FILE__));
 					break;
@@ -175,7 +174,7 @@ if (init('type') != '') {
 			echo json_encode(utils::o2a(cmd::byEqLogicId(init('eqLogic_id'))));
 			die();
 		}
-		if ($type == 'fulData') {
+		if ($type == 'fullData') {
 			log::add('api', 'debug', __('Demande API pour les commandes', __FILE__));
 			echo json_encode(object::fullData());
 			die();
