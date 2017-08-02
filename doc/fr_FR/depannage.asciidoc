@@ -120,5 +120,18 @@ Ensuite il suffit de redémarrer php5-fpm
 [source,bash]
 sudo service php5-fpm restart
 
+''''
+
 Je ne vois pas certains plugins du Market ::
 Ce genre de cas arrive si votre Jeedom n'est pas compatible avec le plugin, en général une mise à jour de jeedom corrige le souci
+
+''''
+
+J'ai acheté un plugin mais impossible de l'installer ::
+Un message affiche généralement "vous devez avoir renseigné vos identifiants market dans jeedom".
+
+image::..\images\depannage-plugin-non-installable.jpg[]
+
+Il faut donc aller dans le menu "Configuration" => "Mises à jour et fichiers" pour renseigner votre compte market.
+
+Pour plus d'information se référer à la doc administration du core. https://jeedom.github.io/documentation/core/fr_FR/administration.html#_market[Accès direct]
