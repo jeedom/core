@@ -13,10 +13,10 @@ Si vous n'êtes pas en mode expert certains paramètres peuvent ne pas être vis
 Dans cet onglet on retrouve des informations générales sur Jeedom : 
 
 * *Nom de votre Jeedom* : peut être réutilisé dans les scénarios ou permettre d'identifier un backup
-* *Clef API* : votre clef API, à utiliser pour toute requête vers l'API Jeedom
-* *Clef API Pro* : utilisée pour communiquer avec le système de gestion de parc
-* *Clef d'installation* : clef hardware de votre Jeedom sur le market. Si votre Jeedom n'apparaît pas dans la liste de vos Jeedom sur le market il est conseillé de cliquer sur ce bouton
+* *Système* : Type hardware du systeme sur lequelle est installé jeedom
+* *Clef d'installation* : clef hardware de votre Jeedom sur le market. Si votre Jeedom n'apparaît pas dans la liste de vos Jeedom sur le market il est conseillé de cliquer sur le bouton *Remise à zéro*
 * *Langue* : Langue de votre Jeedom
+* *Générer les traductions* : permet de générer les traductions, attention peut ralentir votre système
 * *Durée de vie des sessions (heure)* : durée de vie des sessions PHP, il est conseillé de ne pas y toucher
 * *Date et heure* : votre fuseau horaire
 * *Serveur de temps optionnel* : permet d'ajouter un serveur de temps optionnel (à réserver aux experts)
@@ -36,7 +36,7 @@ Pour chaque clef API vous pouvez definir la porté :
 * *Localhost* : seules les requetes venant du systeme lui meme sont autorisé
 * *Activé* : aucune restriction
 
-De plus vous pouvez aussi limité l'accès (par le meme systeme) aux APIs HTTP, JsonRpc et TTS
+De plus vous pouvez aussi limiter l'accès (par le même système) aux APIs HTTP, JsonRpc et TTS
 
 == OS/DB
  
