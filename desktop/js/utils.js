@@ -67,6 +67,11 @@ $(function () {
         initRowOverflow();
     }
 
+    window.addEventListener('popstate', function (event){
+       var url = window.location.href.split("index.php?");
+       loadPage('index.php?'+url[1])
+    });
+
     $('body').on('click','a',function(e){
         if($(this).hasClass('noOnePageLoad')){
             return;
