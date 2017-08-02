@@ -5,8 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.3.dev">
-<meta name="author" content="Skyline-ch">
-<title>Interactions - Principe</title>
+<title>Interactions</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -413,60 +412,51 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Interactions - Principe</h1>
-<div class="details">
-<span id="author" class="author">Skyline-ch</span><br>
-<span id="email" class="email">&lt;<a href="mailto:skyline-ch@play-4-fun.net">skyline-ch@play-4-fun.net</a>&gt;</span><br>
-</div>
+<h1>Interactions</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table des matières</div>
 <ul class="sectlevel1">
-<li><a href="#_premier_pas">1. Premier pas</a>
+<li><a href="#_principe">1. Principe</a></li>
+<li><a href="#_configuration">2. Configuration</a></li>
+<li><a href="#_général">3. Général</a></li>
+<li><a href="#_filtres">4. Filtres</a></li>
+<li><a href="#_action">5. Action</a></li>
+<li><a href="#_exemples">6. Exemples</a>
 <ul class="sectlevel2">
-<li><a href="#_page_accueil_des_interactions">1.1. Page accueil des interactions</a></li>
-<li><a href="#_créer_modifier_une_interaction">1.2. Créer-Modifier une interaction</a>
+<li><a href="#_interaction_simple">6.1. Interaction simple</a></li>
+<li><a href="#_interaction_multiple_commandes">6.2. Interaction multiple commandes</a></li>
+<li><a href="#_personnaliser_les_réponses">6.3. Personnaliser les réponses</a></li>
+<li><a href="#_conversion_binaire">6.4. Conversion binaire</a></li>
+<li><a href="#_utilisateurs_autorisés">6.5. Utilisateurs autorisés</a></li>
+<li><a href="#_regexp_d_exclusion">6.6. Regexp d&#8217;exclusion</a></li>
+<li><a href="#_réponse_composé_de_plusieurs_informations">6.7. Réponse composé de plusieurs informations</a></li>
+<li><a href="#_y_a_t_il_quelqu_un_dans_la_chambre">6.8. Y a-t-il quelqu&#8217;un dans la chambre ?</a>
 <ul class="sectlevel3">
-<li><a href="#_interphase_de_configuration">1.2.1. Interphase de configuration</a></li>
-<li><a href="#_interaction_simple">1.2.2. Interaction simple</a></li>
-<li><a href="#_interaction_multiple_commandes">1.2.3. Interaction multiple commandes</a></li>
-<li><a href="#_interaction_fonction_avancé">1.2.4. Interaction fonction Avancé</a></li>
+<li><a href="#_version_basique">6.8.1. Version basique</a></li>
+<li><a href="#_evolution">6.8.2. Evolution</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><a href="#_exemples">2. Exemples</a>
-<ul class="sectlevel2">
-<li><a href="#_réponse_composé_de_plusieurs_informations">2.1. Réponse composé de plusieurs informations</a></li>
-<li><a href="#_y_a_t_il_quelqu_un_dans_la_chambre">2.2. Y a-t-il quelqu&#8217;un dans la chambre ?</a>
+<li><a href="#_connaître_la_température_humidité_luminosité">6.9. Connaître la température/humidité/luminosité</a>
 <ul class="sectlevel3">
-<li><a href="#_version_basique">2.2.1. Version basique</a></li>
-<li><a href="#_evolution">2.2.2. Evolution</a></li>
+<li><a href="#_version_basique_2">6.9.1. Version basique</a></li>
+<li><a href="#_evolution_2">6.9.2. Evolution</a></li>
 </ul>
 </li>
-<li><a href="#_connaître_la_température_humidité_luminosité">2.3. Connaître la température/humidité/luminosité</a>
+<li><a href="#_piloter_un_dimmer_ou_un_thermostat_slider">6.10. Piloter un dimmer ou un thermostat (slider)</a>
 <ul class="sectlevel3">
-<li><a href="#_version_basique_2">2.3.1. Version basique</a></li>
-<li><a href="#_evolution_2">2.3.2. Evolution</a></li>
+<li><a href="#_version_basique_3">6.10.1. Version basique</a></li>
+<li><a href="#_evolution_3">6.10.2. Evolution</a></li>
 </ul>
 </li>
-<li><a href="#_piloter_un_dimmer_ou_un_thermostat_slider">2.4. Piloter un dimmer ou un thermostat (slider)</a>
+<li><a href="#_piloter_la_couleur_d_un_bandeau_de_led">6.11. Piloter la couleur d&#8217;un bandeau de LED</a></li>
+<li><a href="#_utilisation_couplée_à_un_scénario">6.12. Utilisation couplée à un scénario</a>
 <ul class="sectlevel3">
-<li><a href="#_version_basique_3">2.4.1. Version basique</a></li>
-<li><a href="#_evolution_3">2.4.2. Evolution</a></li>
+<li><a href="#_version_basique_4">6.12.1. Version basique</a></li>
 </ul>
 </li>
-<li><a href="#_piloter_la_couleur_d_un_bandeau_de_led">2.5. Piloter la couleur d&#8217;un bandeau de LED</a></li>
-<li><a href="#_utilisation_couplée_à_un_scénario">2.6. Utilisation couplée à un scénario</a>
-<ul class="sectlevel3">
-<li><a href="#_version_basique_4">2.6.1. Version basique</a></li>
+<li><a href="#_programmation_d_une_action_avec_les_interactions">6.13. Programmation d&#8217;une action avec les interactions</a></li>
 </ul>
 </li>
-<li><a href="#_programmation_d_une_action_avec_les_interactions">2.7. Programmation d&#8217;une action avec les interactions</a></li>
-</ul>
-</li>
-<li><a href="#_tester_une_interaction">3. Tester une interaction</a></li>
-<li><a href="#_configuration">4. Configuration</a></li>
-<li><a href="#_résumé">5. Résumé</a></li>
 </ul>
 </div>
 </div>
@@ -477,25 +467,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Le système d&#8217;interaction dans Jeedom permet de réaliser des actions à partir de commandes textes ou vocales.</p>
 </div>
 <div class="paragraph">
-<p>Type de commandes :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>action : lancer une commande, exemples : activer ou désactiver une lampe, alarme, chauffage, etc&#8230;&#8203;</p>
-</li>
-<li>
-<p>Info : interroger Jeedom avec une commande info pour connaître, par exemple la température du salon, l&#8217;état d&#8217;un appareil.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
 <p>Ces commandes peuvent être obtenues par :</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p>SMS : envoyer un SMS pour lancer des commandes (action) ou poser une question (info).</p>
+</li>
+<li>
+<p>Chat : Telegram, Slack&#8230;&#8203;</p>
 </li>
 <li>
 <p>Vocal : dicter une phrase avec Siri, Google Now, SARAH, etc&#8230;&#8203; Pour lancer des commandes (action) ou poser une question (info).</p>
@@ -506,63 +486,24 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 <div class="paragraph">
-<p>L&#8217;intérêt des interactions réside dans l&#8217;intégration simplifiée dans d&#8217;autres systèmes comme smartphone, tablette, autre box domotique, ect&#8230;&#8203;</p>
+<p>L&#8217;intérêt des interactions réside dans l&#8217;intégration simplifiée dans d&#8217;autres systèmes comme smartphone, tablette, autre box domotique, etc&#8230;&#8203;</p>
 </div>
-<div class="paragraph">
-<p>Avec un seul mécanisme sur d&#8217;autres systèmes, on peut donc contrôler tout Jeedom, ce qui permet une grande souplesse et d&#8217;éviter les bugs en cas de modification de la configuration de vos équipements comme ce serait le cas avec un accès direct via l&#8217;url de chaque commande.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_premier_pas">1. Premier pas</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_page_accueil_des_interactions">1.1. Page accueil des interactions</h3>
 <div class="paragraph">
 <p>Pour accéder à la page d&#8217;interaction il faut aller sur Outils &#8594; Interactions:</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/interact001.png" alt="interact001">
-</div>
-</div>
 <div class="paragraph">
-<p>Liste des interactions et action générale :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/interact002.png" alt="interact002">
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Comme à beaucoup d&#8217;endroits sur Jeedom, mettre la souris tout à gauche permet de faire apparaître un menu d&#8217;accès rapide (vous pouvez à partir de votre profil le laisser toujours visible).
-</td>
-</tr>
-</table>
-</div>
-<div class="ulist">
-<ul>
-<li>
 <p>En haut de page, on trouve 3 boutons :</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>1</strong> Le bouton "Ajouter" qui permet de créer de nouvelles interactions.</p>
+<p><strong>Ajouter</strong> : qui permet de créer de nouvelles interactions.</p>
 </li>
 <li>
-<p><strong>2</strong> Le bouton "Régénérer" qui va recréer toutes les interactions (peut être très long &gt; 5mn).</p>
+<p><strong>Régénérer</strong> : qui va recréer toutes les interactions (peut être très long &gt; 5mn).</p>
 </li>
 <li>
-<p><strong>3</strong> Le bouton "Tester" qui permet d&#8217;ouvrir un boîte de dialogue pour écrire et tester une phrase.</p>
-</li>
-</ul>
-</div>
+<p><strong>Tester</strong> : qui permet d&#8217;ouvrir un boîte de dialogue pour écrire et tester une phrase.</p>
 </li>
 </ul>
 </div>
@@ -579,8 +520,10 @@ Si vous avez une interaction qui génère les phrases pour les lumières par exe
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_créer_modifier_une_interaction">1.2. Créer-Modifier une interaction</h3>
+</div>
+<div class="sect1">
+<h2 id="_principe">1. Principe</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Le principe de création est assez simple, on va définir une phrase modèle génératrice qui va permettre à Jeedom de créer une ou plusieurs centaines d’autres phrases qui seront des combinaisons possibles du modèle.</p>
 </div>
@@ -590,26 +533,35 @@ Si vous avez une interaction qui génère les phrases pour les lumières par exe
 <div class="paragraph">
 <p>On peut aussi définir une commande à exécuter si par exemple l&#8217;interaction n&#8217;est pas liée à une action mais une information ou si on souhaite réaliser une action particulière après celle-ci (il est aussi possible d&#8217;exécuter un scénario, de contrôler plusieurs commandes&#8230;&#8203;).</p>
 </div>
-<div class="sect3">
-<h4 id="_interphase_de_configuration">1.2.1. Interphase de configuration</h4>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configuration">2. Configuration</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Cette page permet de configurer toutes les interactions orales (via le module SARAH, ou tasker (+ autovoice), voir <a href="https://jeedom.fr/doc/documentation/howto/fr_FR/doc-howto-android.autovoice.html">ici</a>) ou écrites ( les SMS ou le plugin Slack par exemple…) que l’on peut trouver sur le Market Jeedom.</p>
-</div>
-<div class="paragraph">
-<p>Une fois l&#8217;interaction créée ou un clic sur une interaction existante pour la modifier, vous arrivez sur la page de configuration de l&#8217;interaction :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/interact003.png" alt="interact003">
-</div>
-</div>
-<div class="paragraph">
-<p>Ici vous trouvez 2 zones avec plusieurs éléments en leur sein :</p>
+<p>La page de configuration est constituée de plusieurs onglets et des boutons :</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Général</strong></p>
+<p><strong>Phrases</strong> : Affiche le nombre de phrase de l&#8217;interaction (un clique dessus vous les montres)</p>
+</li>
+<li>
+<p><strong>Enregistrer</strong> : enregistre l&#8217;interaction en courante</p>
+</li>
+<li>
+<p><strong>Supprimer</strong> : supprime l&#8217;interaction en courante</p>
+</li>
+<li>
+<p><strong>Dupliquer</strong> : duplique l&#8217;interaction courrante</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_général">3. Général</h2>
+<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
@@ -635,9 +587,11 @@ Si vous avez une interaction qui génère les phrases pour les lumières par exe
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p><strong>Filtres (limite le champ d&#8217;application pour le modèle aux éléments sélectionnés)</strong></p>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_filtres">4. Filtres</h2>
+<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
@@ -663,28 +617,33 @@ Si vous avez une interaction qui génère les phrases pour les lumières par exe
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p><strong>Action</strong> : à utiliser si vous voulez cibler une ou plusieurs commandes spécifiques ou passer des paramètres particuliers.</p>
-</li>
-<li>
-<p><strong>Phrases générées</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Phrases générées</strong> : Bouton qui permet de voir les phrases générées par la phrase modèle génératrice (Vous devez sauver l&#8217;interaction pour générer ou régénérer les phrases).</p>
-</li>
-<li>
-<p><strong>Nombre de phrases générées</strong> : nombre de phrases générées.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_interaction_simple">1.2.2. Interaction simple</h4>
+<div class="sect1">
+<h2 id="_action">5. Action</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A utiliser si vous voulez cibler une ou plusieurs commandes spécifiques ou passer des paramètres particuliers.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_exemples">6. Exemples</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Les captures d&#8217;écran peuvent ne pas contractuelles
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_interaction_simple">6.1. Interaction simple</h3>
 <div class="paragraph">
 <p>La façon la plus simple de configurer une interaction c&#8217;est de lui donner un modèle générateur rigide sans variation possible, cette méthode ciblera très précisément une commande, ou un scénario.</p>
 </div>
@@ -723,8 +682,8 @@ Pour ajouter un scénario, créer une nouvelle action, écrire "scenario" sans a
 </table>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_interaction_multiple_commandes">1.2.3. Interaction multiple commandes</h4>
+<div class="sect2">
+<h3 id="_interaction_multiple_commandes">6.2. Interaction multiple commandes</h3>
 <div class="paragraph">
 <p>Nous allons ici voir tout l&#8217;intérêt et toute la puissance des interactions, avec une phrase modèle nous allons pouvoir générer des phrases pour tout un groupe de commandes.</p>
 </div>
@@ -789,10 +748,8 @@ Dans notre cas on passe de 168 phrases à 130 phrases.</p>
 Personnellement, je trouve intéressant d&#8217;avoir quelques incohérences du style "un entrée" car si chez vous, vous avez une personne étrangère qui ne parle pas correctement le français les interactions fonctionneront tout de même.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_interaction_fonction_avancé">1.2.4. Interaction fonction Avancé</h4>
-<div class="sect4">
-<h5 id="_personnaliser_les_réponses">Personnaliser les réponses</h5>
+<div class="sect2">
+<h3 id="_personnaliser_les_réponses">6.3. Personnaliser les réponses</h3>
 <div class="paragraph">
 <p>Jusqu&#8217;à présent comme réponse à une interaction nous avions une simple phrase qui n&#8217;indique pas grand-chose à part que quelque chose s&#8217;est passé.
 L&#8217;idée serait que Jeedom nous indique ce qu&#8217;il a fait un peu plus précisément.
@@ -816,8 +773,8 @@ Pour nos lumières on peut utiliser une phrase du style : J&#8217;ai bien allum�
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_conversion_binaire">Conversion binaire</h5>
+<div class="sect2">
+<h3 id="_conversion_binaire">6.4. Conversion binaire</h3>
 <div class="paragraph">
 <p>Les conversions binaires s&#8217;appliquent aux commandes de type info dont le sous-type est binaire (retourne 0 ou 1 uniquement) il faut donc activer les bons filtres comme on peut le voir sur la capture un peu plus bas (pour les catégories on peut toutes les cocher, pour l&#8217;exemple je n&#8217;ai gardé que lumière).</p>
 </div>
@@ -845,8 +802,9 @@ Les tags ne fonctionnent pas dans les conversions binaires.
 </tr>
 </table>
 </div>
-<div class="sect5">
-<h6 id="_authorized_users">Authorized users</h6>
+</div>
+<div class="sect2">
+<h3 id="_utilisateurs_autorisés">6.5. Utilisateurs autorisés</h3>
 <div class="paragraph">
 <p>Le champ "Utilisateurs autorisés" permet de n’autoriser que certaines personnes à exécuter la commande, vous pouvez mettre plusieurs profils en les séparant par un "|".</p>
 </div>
@@ -857,22 +815,10 @@ Les tags ne fonctionnent pas dans les conversions binaires.
 <p>On peut imaginer qu&#8217;une alarme peut être activée ou désactivée par un enfant ou un voisin qui viendrait arroser les plantes en votre absence&#8230;&#8203;</p>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_regexp_d_exclusion">Regexp d&#8217;exclusion</h6>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-Fonction réservée aux connaisseurs ou téméraires qui savent utiliser Google.
-</td>
-</tr>
-</table>
-</div>
+<div class="sect2">
+<h3 id="_regexp_d_exclusion">6.6. Regexp d&#8217;exclusion</h3>
 <div class="paragraph">
-<p>Depuis Jeedom V2.00 on a la possibilité de créer des <a href="https://fr.wikipedia.org/wiki/Expression_rationnelle">Regexp</a> d&#8217;exclusion, si une phrase générée correspond à cette Regexp elle sera supprimée.
+<p>Il est possible de créer des <a href="https://fr.wikipedia.org/wiki/Expression_rationnelle">Regexp</a> d&#8217;exclusion, si une phrase générée correspond à cette Regexp elle sera supprimée.
 L&#8217;intérêt c&#8217;est de pouvoir supprimer des faux positif, c&#8217;est à dire une phrase générée par Jeedom qui active quelque chose qui ne correspond pas à ce que l&#8217;on veut ou qui viendrait parasiter une autre interaction qui aurait une phrase similaire.</p>
 </div>
 <div class="paragraph">
@@ -963,9 +909,6 @@ Comme on peut le voir dans la capture suivante, il ne reste plus que 71 phrases,
 <div class="ulist">
 <ul>
 <li>
-<p><a href="http://google.fr" class="bare">http://google.fr</a></p>
-</li>
-<li>
 <p><a href="http://www.commentcamarche.net/contents/585-javascript-l-objet-regexp" class="bare">http://www.commentcamarche.net/contents/585-javascript-l-objet-regexp</a></p>
 </li>
 <li>
@@ -977,16 +920,8 @@ Comme on peut le voir dans la capture suivante, il ne reste plus que 71 phrases,
 </ul>
 </div>
 </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_exemples">2. Exemples</h2>
-<div class="sectionbody">
 <div class="sect2">
-<h3 id="_réponse_composé_de_plusieurs_informations">2.1. Réponse composé de plusieurs informations</h3>
+<h3 id="_réponse_composé_de_plusieurs_informations">6.7. Réponse composé de plusieurs informations</h3>
 <div class="paragraph">
 <p>Il est aussi possible de mettre plusieurs commandes info dans une réponse, par exemple pour avoir un résumé de situation.</p>
 </div>
@@ -1000,9 +935,9 @@ Comme on peut le voir dans la capture suivante, il ne reste plus que 71 phrases,
 </div>
 </div>
 <div class="sect2">
-<h3 id="_y_a_t_il_quelqu_un_dans_la_chambre">2.2. Y a-t-il quelqu&#8217;un dans la chambre ?</h3>
+<h3 id="_y_a_t_il_quelqu_un_dans_la_chambre">6.8. Y a-t-il quelqu&#8217;un dans la chambre ?</h3>
 <div class="sect3">
-<h4 id="_version_basique">2.2.1. Version basique</h4>
+<h4 id="_version_basique">6.8.1. Version basique</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1026,7 +961,7 @@ Comme on peut le voir dans la capture suivante, il ne reste plus que 71 phrases,
 </div>
 </div>
 <div class="sect3">
-<h4 id="_evolution">2.2.2. Evolution</h4>
+<h4 id="_evolution">6.8.2. Evolution</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1055,9 +990,9 @@ Pour rendre encore plus flexible on peut ajouter des synonymes, mais dans ce cas
 </div>
 </div>
 <div class="sect2">
-<h3 id="_connaître_la_température_humidité_luminosité">2.3. Connaître la température/humidité/luminosité</h3>
+<h3 id="_connaître_la_température_humidité_luminosité">6.9. Connaître la température/humidité/luminosité</h3>
 <div class="sect3">
-<h4 id="_version_basique_2">2.3.1. Version basique</h4>
+<h4 id="_version_basique_2">6.9.1. Version basique</h4>
 <div class="paragraph">
 <p>On pourrait écrire la phrase en dur comme par exemple "quelle est la température du salon", mais il faudrait en faire une pour chaque capteur de température, luminosité et humidité. Avec le système de génération de phrase Jeedom, on peut donc avec une seule interaction générer les phrases pour tous les capteurs de ces 3 types de mesure.</p>
 </div>
@@ -1084,7 +1019,7 @@ Pour rendre encore plus flexible on peut ajouter des synonymes, mais dans ce cas
 </div>
 </div>
 <div class="sect3">
-<h4 id="_evolution_2">2.3.2. Evolution</h4>
+<h4 id="_evolution_2">6.9.2. Evolution</h4>
 <div class="paragraph">
 <p>On peut donc ajouter des synonymes au nom de commande pour avoir quelque chose de plus naturel, ajouter un regexp pour filtrer les commandes qui n&#8217;ont rien à voir avec notre interaction.</p>
 </div>
@@ -1123,9 +1058,9 @@ Le regexp ici est une version simplifiée pour une utilisation simple. On peut d
 </div>
 </div>
 <div class="sect2">
-<h3 id="_piloter_un_dimmer_ou_un_thermostat_slider">2.4. Piloter un dimmer ou un thermostat (slider)</h3>
+<h3 id="_piloter_un_dimmer_ou_un_thermostat_slider">6.10. Piloter un dimmer ou un thermostat (slider)</h3>
 <div class="sect3">
-<h4 id="_version_basique_3">2.4.1. Version basique</h4>
+<h4 id="_version_basique_3">6.10.1. Version basique</h4>
 <div class="paragraph">
 <p>Il est possible de piloter une lampe en pourcentage (variateur) ou un thermostat avec les interactions. Voici un exemple pour piloter son variateur sur une lampe avec des interactions :</p>
 </div>
@@ -1155,7 +1090,7 @@ On peut utiliser n&#8217;importe quel tag excepté ceux déjà utilisés par Jee
 </div>
 </div>
 <div class="sect3">
-<h4 id="_evolution_3">2.4.2. Evolution</h4>
+<h4 id="_evolution_3">6.10.2. Evolution</h4>
 <div class="paragraph">
 <p>On peut vouloir piloter toutes les commandes de type curseur avec une seule interaction. Avec l&#8217;exemple qui suit on va donc pouvoir commander plusieurs variateurs avec une seule interaction et donc générer un ensemble de phrases pour les contrôler.</p>
 </div>
@@ -1182,7 +1117,7 @@ On peut aussi voir dans l&#8217;exemple que l&#8217;on peut utiliser dans la ré
 </div>
 </div>
 <div class="sect2">
-<h3 id="_piloter_la_couleur_d_un_bandeau_de_led">2.5. Piloter la couleur d&#8217;un bandeau de LED</h3>
+<h3 id="_piloter_la_couleur_d_un_bandeau_de_led">6.11. Piloter la couleur d&#8217;un bandeau de LED</h3>
 <div class="paragraph">
 <p>Il est possible de piloter une commande couleur par les interactions en demandant par exemple à Jeedom d&#8217;allumer un bandeau de led en bleu.
 Voilà l&#8217;interaction à faire :</p>
@@ -1216,9 +1151,9 @@ Voilà l&#8217;interaction à faire :</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_utilisation_couplée_à_un_scénario">2.6. Utilisation couplée à un scénario</h3>
+<h3 id="_utilisation_couplée_à_un_scénario">6.12. Utilisation couplée à un scénario</h3>
 <div class="sect3">
-<h4 id="_version_basique_4">2.6.1. Version basique</h4>
+<h4 id="_version_basique_4">6.12.1. Version basique</h4>
 <div class="paragraph">
 <p>Il est possible de coupler une interaction à un scénario afin de réaliser des actions un peu plus complexes que l&#8217;exécution d&#8217;une simple action ou d&#8217;une demande d&#8217;information.</p>
 </div>
@@ -1233,7 +1168,7 @@ Voilà l&#8217;interaction à faire :</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_programmation_d_une_action_avec_les_interactions">2.7. Programmation d&#8217;une action avec les interactions</h3>
+<h3 id="_programmation_d_une_action_avec_les_interactions">6.13. Programmation d&#8217;une action avec les interactions</h3>
 <div class="paragraph">
 <p>Les interactions permettent de faire beaucoup de choses en particulier. Vous pouvez programmer dynamiquement une action. Exemple : "Met le chauffage à 22 pour 14h50". Pour cela rien de plus simple, il suffit d&#8217;utiliser les tags #time# (si on définit une heure précise) ou  #duration# (pour dans X temps, exemple dans 1 heure) :</p>
 </div>
@@ -1254,142 +1189,6 @@ Vous remarquerez dans la réponse le tag #value# celui-ci contient dans le cas d
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>Voilà le résultat :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/interact24.JPG" alt="interact24">
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_tester_une_interaction">3. Tester une interaction</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Le bouton Tester (en haut a gauche) vous permet de saisir une phrase pour tester son bon fonctionnement et l&#8217;exécuter :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/interact11.JPG" alt="interact11">
-</div>
-</div>
-<div class="paragraph">
-<p>En réponse, Jeedom vous retournera la réponse qui correspond à l&#8217;interaction (champ réponse) :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/interact13.JPG" alt="interact13">
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_configuration">4. Configuration</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>La configuration est accessible à partir du menu Configuration (en haut à droite) puis la partie "Configuration des interactions" :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/interact14.JPG" alt="interact14">
-</div>
-</div>
-<div class="paragraph">
-<p>Vous avez ici 3 paramètres :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Sensibilité</strong> : il y a 4 niveaux de correspondance</p>
-<div class="ulist">
-<ul>
-<li>
-<p>pour 1 mot : le niveau de correspondance pour les interactions à un seul mot</p>
-</li>
-<li>
-<p>2 mots : le niveau de correspondance pour les interactions à deux mots</p>
-</li>
-<li>
-<p>3 mots : le niveau de correspondance pour les interactions à trois mots</p>
-</li>
-<li>
-<p>+ de 3 mots : le niveau de correspondance pour les interactions à plus de trois mots</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>La sensibilité va de 1 (correspond exactement) à 99 (je louche donc c&#8217;est ok pour moi),</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Ne pas répondre si l&#8217;interaction n&#8217;est pas comprise</strong> : par défaut Jeedom répond "je n&#8217;ai pas compris" si l&#8217;interaction n&#8217;est pas comprise. Il est possible de désactiver ce fonctionnement pour que Jeedom ne réponde rien, mettre le bouton à oui pour désactiver la réponse.</p>
-</li>
-<li>
-<p><strong>Regex général d&#8217;exclusion pour les interactions</strong> : permet de définir une regexp qui, si elle correspond à une interaction, supprimera automatiquement cette phrase de la génération (réservé aux experts). Pour plus d&#8217;infos voir les explications dans le chapitre <strong>"Regexp d&#8217;exclusion"</strong></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Puis vous retrouvez la partie paramétrage des couleurs qui est décrite en détail dans le chapitre <strong>"Piloter la couleur d’un bandeau de LED"</strong></p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-Ne pas oublier de sauver en bas de page.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Si vous activez les logs au niveau debug vous avez un log interact qui vous donne la niveau de sensibilité pour chaque comparaison de phrases, cela peut permettre de régler celui-ci plus facilement.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_résumé">5. Résumé</h2>
-<div class="sectionbody">
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Demande</dt>
-<dd>
-<p>Vous pouvez utiliser "#commande#" et "#objet#" (les 2 doivent absolument être utilisés ensemble) pour générer une liste de commandes (il est possible de filtrer la génération pour réduire la liste). Il est aussi possible d&#8217;utiliser "#equipement#" (utile si plusieurs commandes appartenant au même objet ont le même nom)
-Exemple : Quelle est la "#commande# [du |de la |de l']#objet#"
-Lors de la génération des commandes, vous pouvez utiliser le champ synonyme (syn1=syn2,syn3|syn4=syn5) pour remplacer le nom des objets, des équipements et/ou des commandes</p>
-</dd>
-<dt class="hdlist1">Réponse</dt>
-<dd>
-<p>Vous pouvez utiliser "#valeur#" et "#unite#" dans le retour (ils seront remplacés par la valeur et l&#8217;unité de la commande). Vous avez aussi accès à tous les tags des scénarios et à :
-"#profile#" &#8658; Nom de la personne ayant lancé l&#8217;exécution (peut ne pas être disponible)
-Exemple : "#valeur# #unite#"
-Vous pouvez utiliser le champ conversion binaire pour convertir les valeurs binaires (0 et 1) :
-Exemple : non|oui</p>
-</dd>
-<dt class="hdlist1">Personne</dt>
-<dd>
-<p>Le champ personne permet de n&#8217;autoriser que certaines personnes à exécuter la commande, vous pouvez mettre plusieurs profils en les séparant par |.
-Example: person1|person2</p>
-</dd>
-</dl>
 </div>
 </div>
 </div>
