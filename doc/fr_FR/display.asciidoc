@@ -147,7 +147,10 @@ Pour une commande de type info :
 ** *Arrondi (chiffre après la virgule)* : permet d'arrondir la valeur de la commande, exemple : mettre 2 pour tranformer 16.643345 en 16.64
 * *Type générique* : cette partie permet de configurer le type générique de la commande (Jeedom essaie de le trouver par lui-même en mode auto). Cette information est utilisée par l'application mobile.
 * *Action sur la valeur* : cette partie permet de faire des sortes de mini scénarios, vous pouvez par exemple dire que si la valeur vaut plus de 50 pendant 3 minutes alors il faut faire telle action. Cela permet par exemple d'éteindre une lumiere X minutes après que celle-ci se soit allumée
-* *Historique* : voir link:https://jeedom.com/doc/documentation/core/fr_FR/doc-core-history.html#_configuration_spécifique_par_commande[ici]
+* *Historique*
+** *Historiser* : permet de définir si vous voulez historiser ou non cette commande.
+** *Mode de lissage* : mode de lissage ou d'archivage permet de choisir la manière d'archiver la donnée ; par défaut c'est une moyenne ; il est aussi possible de choisir le maximum, le minimum, ou aucun ; aucun permet de dire à Jeedom qu'il ne doit pas réaliser d'archivage sur cette commande (aussi bien sur la première période des 5 mn qu'avec la tâche d'archivage). Cette option est dangereuse car Jeedom conserve tout : il va donc y avoir beaucoup plus de données conservées.
+** *Purger l'historique si plus vieux de* : cette option permet de dire à Jeedom de supprimer toutes les données plus vieilles qu'une certaine période. Peut être pratique pour ne pas conserver de données si ça n'est pas nécessaire et donc limiter la quantité d'informations enregistrées par Jeedom.
 * *Gestion des valeurs*
 ** *Valeur interdite* : si la commande prend une des valeurs en question jeedom l'ignore avant de l'appliquer
 ** *Valeur retour d'état* : permet de faire revenir la commande à cette valeur après un certain temps

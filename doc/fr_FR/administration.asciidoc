@@ -121,8 +121,22 @@ N'oubliez pas de sauvegarder après toute modification.
 
 == Commandes
 
-* *Historique* : voir link:https://jeedom.com/doc/documentation/core/fr_FR/doc-core-history.html#_configuration_général_de_l_historique[ici]
-* *Push*
+=== Historique
+
+* *Afficher les statistiques sur les widgets* : permet d'afficher ou non les statistiques sur les widgets ; il faut que le widget soit compatible, ce qui est le cas pour la plupart ; il faut aussi que la commande soit de type numérique
+* *Période de calcul pour min, max, moyenne (en heures)* : période de calcul des statistiques (par défaut 24h), il n'est pas possible de mettre moins d'une heure
+* *Période de calcul pour la tendance (en heures)* : période de calcul des tendances (par défaut 2h), il n'est pas possible de mettre moins d'une heure
+* *Délai avant archivage (en heures)* : donne le délai avant archivage, par défaut la valeur est de 24h, c'est-à-dire que les données historisées doivent avoir plus de 24h pour être archivées (pour rappel, l'archivage va soit moyenner, soit prendre le maximum ou le minimum de la donnée sur une période qui correspond à la taille des paquets)
+* *Archiver par paquet de (en heures)* : ce paramètre donne justement la taille des paquets, par defaut 1h ; cela signifie que Jeedom va prendre des périodes de 1h, moyenner (par exemple, suivant le réglage de la commande) et stocker cette nouvelle valeur (en supprimant les valeurs moyennées).
+* *Seuil de calcul de tendance basse* : cette valeur correspond au seuil de tendance basse (Jeedom indique que la valeur est en baisse), il doit être négatif (par défaut -0.1).
+* *Seuil de calcul de tendance haut* : idem mais à la tendance haute.
+* *Période d'affichage des graphiques par defaut* : pour des questions de performance lors de l'affichage à la volée (en cliquant sur le widget ou par la page historique) Jeedom n'affiche qu'une période restreinte de l'historique (cela permet un affichage plus rapide) ; il est ici possible de régler cette valeur.
+
+[NOTE]
+Il est possible d'activer sur les widgets l'affichage du minimum, de la moyenne, du maximum et de la tendance (par défaut ceci est désactivé car cela a une tendance à allonger le temps d'affichage du dashboard à cause des calculs). Si vous activez cette option, par défaut, Jeedom se fonde sur les données des dernières 24h pour calculer ces statistiques. Les tendances sont par défaut calculées sur 2h. Ce paramètre est bien sûr modifiable (voir plus bas).La méthode de calcul de tendance est fondée sur le calcul des moindres carrés (voir https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s[ici] pour le détail).
+
+=== Push
+
 ** *URL de push globale* :  permet de rajouter une URL à appeler en cas de mise à jour d'une commande. Vous pouvez utiliser les tags suivant : \#value# pour la valeur de la commande, \#cmd_name# pour le nom de la commande, \#cmd_id# pour l'identifiant unique de la commande, \#humanname# pour le nom complet de la commande (ex : \#[Salle de bain][Hydrometrie][Humidité]#)
 
 == Cache
