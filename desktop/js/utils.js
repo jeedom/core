@@ -31,7 +31,7 @@
     }
 });
 
- function loadPage(_url){
+ function loadPage(_url,_noPushHistory){
   if (modifyWithoutSave) {
     if (!confirm('{{Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?}}')) {
         return;
@@ -43,7 +43,9 @@ if (typeof unload_page !== "undefined") {
 }
 $("#md_modal").dialog('close');
 $("#md_modal2").dialog('close');
-window.history.pushState('','', _url);
+if(!isset(_noPushHistory) || _noPushHistory == false){
+    window.history.pushState('','', _url);
+}
 $('#div_pageContainer').add("#div_pageContainer *").off();
 $.hideAlert();
 $('.bt_pluginTemplateShowSidebar').remove();
@@ -68,11 +70,15 @@ $(function () {
     }
 
     window.addEventListener('popstate', function (event){
-       var url = window.location.href.split("index.php?");
-       loadPage('index.php?'+url[1])
+        if(event.state === null){
+            return;
+        }
+        var url = window.location.href.split("index.php?");
+        loadPage('index.php?'+url[1],true)
     });
 
     $('body').on('click','a',function(e){
+
         if($(this).hasClass('noOnePageLoad')){
             return;
         }
@@ -240,17 +246,17 @@ if (isset(jeedom_langage)) {
     });
 
     $('#bt_getHelpPage').on('click',function(){
-     jeedom.getDocumentationUrl({
+       jeedom.getDocumentationUrl({
         plugin: $(this).attr('data-plugin'),
         page: $(this).attr('data-page'),
         error: function(error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function(url) {
-         window.open(url,'_blank');
-     }
- });
- });
+           window.open(url,'_blank');
+       }
+   });
+   });
 
     /******************Gestion mode expert**********************/
 
@@ -320,9 +326,9 @@ if (isset(jeedom_langage)) {
     });
 
     $('#bt_showEventInRealTime').on('click',function(){
-     $('#md_modal').dialog({title: "{{Evénement en temps réel}}"});
-     $("#md_modal").load('index.php?v=d&modal=log.display&log=event').dialog('open');
- });
+       $('#md_modal').dialog({title: "{{Evénement en temps réel}}"});
+       $("#md_modal").load('index.php?v=d&modal=log.display&log=event').dialog('open');
+   });
 
     $('#bt_gotoDashboard').on('click',function(){
         $('ul.dropdown-menu [data-toggle=dropdown]').parent().parent().parent().siblings().removeClass('open');
@@ -345,8 +351,8 @@ if (isset(jeedom_langage)) {
     });
 
     $('body').on('click','.objectSummaryParent',function(){
-     loadPage('index.php?v=d&p=dashboard&summary='+$(this).data('summary')+'&object_id='+$(this).data('object_id'));
- });
+       loadPage('index.php?v=d&p=dashboard&summary='+$(this).data('summary')+'&object_id='+$(this).data('object_id'));
+   });
 
     initPage();
 });
@@ -407,13 +413,13 @@ function initExpertMode() {
 
 function initReportMode() {
     if (getUrlVars('report') == 1) {
-       $('header').hide();
-       $('footer').hide();
-       $('#div_mainContainer').css('margin-top', '-50px');
-       $('#wrap').css('margin-bottom', '0px');
-       $('.reportModeVisible').show();
-       $('.reportModeHidden').hide();
-   } 
+     $('header').hide();
+     $('footer').hide();
+     $('#div_mainContainer').css('margin-top', '-50px');
+     $('#wrap').css('margin-bottom', '0px');
+     $('.reportModeVisible').show();
+     $('.reportModeHidden').hide();
+ } 
 }
 
 function initTableSorter() {
@@ -564,12 +570,12 @@ function positionEqLogic(_id,_preResize) {
             $(this).height('auto');
         }
         if(init(_preResize,true)){
-           eqLogic.width(Math.floor(eqLogic.width() / 40) * 40);
-           eqLogic.height(Math.floor(eqLogic.height() / 80) * 80);
-       }
-       eqLogic.width(Math.ceil(eqLogic.width() / 40) * 40 + (Math.ceil(eqLogic.width() / 40)-1) * 2);
-       eqLogic.height(Math.ceil(eqLogic.height() / 80) * 80 + (Math.ceil(eqLogic.height() / 80)-1) * 2);
-   }else{
+         eqLogic.width(Math.floor(eqLogic.width() / 40) * 40);
+         eqLogic.height(Math.floor(eqLogic.height() / 80) * 80);
+     }
+     eqLogic.width(Math.ceil(eqLogic.width() / 40) * 40 + (Math.ceil(eqLogic.width() / 40)-1) * 2);
+     eqLogic.height(Math.ceil(eqLogic.height() / 80) * 80 + (Math.ceil(eqLogic.height() / 80)-1) * 2);
+ }else{
     $('.eqLogic-widget:not(.jeedomAlreadyPosition)').css('margin','0px').css('padding','0px');
     $('.eqLogic-widget:not(.jeedomAlreadyPosition)').each(function () {
         if($(this).width() == 0){
