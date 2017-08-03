@@ -13,10 +13,10 @@ Si vous n'êtes pas en mode expert certains paramètres peuvent ne pas être vis
 Dans cet onglet on retrouve des informations générales sur Jeedom : 
 
 * *Nom de votre Jeedom* : peut être réutilisé dans les scénarios ou permettre d'identifier un backup
-* *Clef API* : votre clef API, à utiliser pour toute requête vers l'API Jeedom
-* *Clef API Pro* : utilisée pour communiquer avec le système de gestion de parc
-* *Clef d'installation* : clef hardware de votre Jeedom sur le market. Si votre Jeedom n'apparaît pas dans la liste de vos Jeedom sur le market il est conseillé de cliquer sur ce bouton
+* *Système* : Type hardware du systeme sur lequelle est installé jeedom
+* *Clef d'installation* : clef hardware de votre Jeedom sur le market. Si votre Jeedom n'apparaît pas dans la liste de vos Jeedom sur le market il est conseillé de cliquer sur le bouton *Remise à zéro*
 * *Langue* : Langue de votre Jeedom
+* *Générer les traductions* : permet de générer les traductions, attention peut ralentir votre système
 * *Durée de vie des sessions (heure)* : durée de vie des sessions PHP, il est conseillé de ne pas y toucher
 * *Date et heure* : votre fuseau horaire
 * *Serveur de temps optionnel* : permet d'ajouter un serveur de temps optionnel (à réserver aux experts)
@@ -36,7 +36,7 @@ Pour chaque clef API vous pouvez definir la porté :
 * *Localhost* : seules les requetes venant du systeme lui meme sont autorisé
 * *Activé* : aucune restriction
 
-De plus vous pouvez aussi limité l'accès (par le meme systeme) aux APIs HTTP, JsonRpc et TTS
+De plus vous pouvez aussi limiter l'accès (par le même système) aux APIs HTTP, JsonRpc et TTS
 
 == OS/DB
  
@@ -121,8 +121,22 @@ N'oubliez pas de sauvegarder après toute modification.
 
 == Commandes
 
-* *Historique* : voir link:https://jeedom.com/doc/documentation/core/fr_FR/doc-core-history.html#_configuration_général_de_l_historique[ici]
-* *Push*
+=== Historique
+
+* *Afficher les statistiques sur les widgets* : permet d'afficher ou non les statistiques sur les widgets ; il faut que le widget soit compatible, ce qui est le cas pour la plupart ; il faut aussi que la commande soit de type numérique
+* *Période de calcul pour min, max, moyenne (en heures)* : période de calcul des statistiques (par défaut 24h), il n'est pas possible de mettre moins d'une heure
+* *Période de calcul pour la tendance (en heures)* : période de calcul des tendances (par défaut 2h), il n'est pas possible de mettre moins d'une heure
+* *Délai avant archivage (en heures)* : donne le délai avant archivage, par défaut la valeur est de 24h, c'est-à-dire que les données historisées doivent avoir plus de 24h pour être archivées (pour rappel, l'archivage va soit moyenner, soit prendre le maximum ou le minimum de la donnée sur une période qui correspond à la taille des paquets)
+* *Archiver par paquet de (en heures)* : ce paramètre donne justement la taille des paquets, par defaut 1h ; cela signifie que Jeedom va prendre des périodes de 1h, moyenner (par exemple, suivant le réglage de la commande) et stocker cette nouvelle valeur (en supprimant les valeurs moyennées).
+* *Seuil de calcul de tendance basse* : cette valeur correspond au seuil de tendance basse (Jeedom indique que la valeur est en baisse), il doit être négatif (par défaut -0.1).
+* *Seuil de calcul de tendance haut* : idem mais à la tendance haute.
+* *Période d'affichage des graphiques par defaut* : pour des questions de performance lors de l'affichage à la volée (en cliquant sur le widget ou par la page historique) Jeedom n'affiche qu'une période restreinte de l'historique (cela permet un affichage plus rapide) ; il est ici possible de régler cette valeur.
+
+[NOTE]
+Il est possible d'activer sur les widgets l'affichage du minimum, de la moyenne, du maximum et de la tendance (par défaut ceci est désactivé car cela a une tendance à allonger le temps d'affichage du dashboard à cause des calculs). Si vous activez cette option, par défaut, Jeedom se fonde sur les données des dernières 24h pour calculer ces statistiques. Les tendances sont par défaut calculées sur 2h. Ce paramètre est bien sûr modifiable (voir plus bas).La méthode de calcul de tendance est fondée sur le calcul des moindres carrés (voir https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s[ici] pour le détail).
+
+=== Push
+
 ** *URL de push globale* :  permet de rajouter une URL à appeler en cas de mise à jour d'une commande. Vous pouvez utiliser les tags suivant : \#value# pour la valeur de la commande, \#cmd_name# pour le nom de la commande, \#cmd_id# pour l'identifiant unique de la commande, \#humanname# pour le nom complet de la commande (ex : \#[Salle de bain][Hydrometrie][Humidité]#)
 
 == Cache
@@ -136,7 +150,59 @@ Permet de surveiller et d'agir sur le cache de Jeedom :
 
 == Interactions
 
-Voir link:doc-core-interact.html#_configuration_2[ici]
+=== Général
+
+Vous avez ici 3 paramètres : 
+
+* *Sensibilité* : il y a 4 niveaux de correspondance (La sensibilité va de 1 (correspond exactement) à 99)
+** pour 1 mot : le niveau de correspondance pour les interactions à un seul mot
+** 2 mots : le niveau de correspondance pour les interactions à deux mots
+** 3 mots : le niveau de correspondance pour les interactions à trois mots
+** + de 3 mots : le niveau de correspondance pour les interactions à plus de trois mots
+* *Ne pas répondre si l'interaction n'est pas comprise* : par défaut Jeedom répond "je n'ai pas compris" si l'interaction n'est pas comprise. Il est possible de désactiver ce fonctionnement pour que Jeedom ne réponde rien, mettre le bouton à oui pour désactiver la réponse.
+* *Regex général d'exclusion pour les interactions* : permet de définir une regexp qui, si elle correspond à une interaction, supprimera automatiquement cette phrase de la génération (réservé aux experts). Pour plus d'infos voir les explications dans le chapitre *"Regexp d'exclusion"*
+
+=== Interaction automatique, contextuelle & avertissement
+
+Les interactions automatique permettent a Jeedom de tenter de comprendre la commande meme si il n'y a pas d'interaction definie (il va chercher un nom d'objet et/ou d'équipement et/ou de commande pour essayer de répondre le mieux possible)
+
+Les interactions contextuelle vous permette d'enchainer plusieurs demande sans tout repeter, jeedom gardant le contexte, exemple : 
+
+* Vous : Combien fait-il dans la chambre ?
+* Jeedom : Température 25.2 °C
+* Vous : et dans le salon ?
+* Jeedom : Température 27.2 °C
+
+Il est aussi possible de poser 2 questions en une : 
+
+* Vous : Combien fait-il dans la chambre et dans le salon ?
+* Jeedom : Température 27.2 °C
+		   Température 27.2 °C
+
+Les intéractions de type prévient moi permette de demander à Jeedom de vous prevenir si une commande dépasse/descend ou vaut une certaine valeur. Ex :
+
+* Vous : Préviens moi si la température du salon dépasse 25°C ?
+* Jeedom : OK
+
+Dès que la température du salon dépassera 25°C jeedom vous le dira (une seule fois)
+
+[NOTE]
+Par defaut Jeedom vous répondra par le meme canal que celui que vous avez utilisé pour lui demander de vous prévenir. Si il n'en trouve pas alors il utilisera la commande par defaut spécifié dans la configuration
+
+* *Activer les interactions automatique* : active les interactions automatique
+* *Activer les réponses contextuelle* : active les interactions contextuelle
+* *Réponse contextuelle prioritaire si la phrase commence par* : si la phrase commence par le mot en question alors Jeedom va prioritiser une réponse contextuelle (vous pouvez mettre plusieurs mot en les séparant par des ;)
+* *Découper une interaction en 2 si elle contient* : idem mais pour le découpage d'une interaction contenant plusieurs question
+* *Réponse de type "previens moi" si la phrase commence par* : si la phrase commence par ce/ces mots alors Jeedom cherchera pour faire une interaction de type préviens moi (vous pouvez mettre plusieurs mot en les séparant par des ;)
+* *Commande de retour par défaut* : commande de retour par defaut pour une interaction de type préviens (utilisé notament si vous avez programé l'alerte par l'interface mobile)
+* *Synonyme pour les objets* : liste des synomnyme pour les objets (ex : rdc|rez de chaussé|sous sol|bas;sdb|salle de bain)
+* *Synonyme pour les équipements* : liste des synomnyme pour les équipements
+* *Synonyme pour les commandes* : liste des synomnyme pour les commandes
+* *Synonyme pour les résumé* : liste des synomnyme pour les résumés
+
+=== Couleurs
+
+Cette partie permet de definir les couleurs pour le pilotage des bandeaux de LED par exemple (pour que Jeedom comprenne les couleurs type rouge/bleu/noir...)
 
 == Rapports
 

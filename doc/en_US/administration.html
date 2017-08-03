@@ -432,9 +432,20 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#_configuration_réseau">5. Configuration réseau</a></li>
 <li><a href="#_couleurs">6. Couleurs</a></li>
-<li><a href="#_commandes">7. Commandes</a></li>
+<li><a href="#_commandes">7. Commandes</a>
+<ul class="sectlevel2">
+<li><a href="#_historique">7.1. Historique</a></li>
+<li><a href="#_push">7.2. Push</a></li>
+</ul>
+</li>
 <li><a href="#_cache">8. Cache</a></li>
-<li><a href="#_interactions">9. Interactions</a></li>
+<li><a href="#_interactions">9. Interactions</a>
+<ul class="sectlevel2">
+<li><a href="#_général">9.1. Général</a></li>
+<li><a href="#_interaction_automatique_contextuelle_avertissement">9.2. Interaction automatique, contextuelle &amp; avertissement</a></li>
+<li><a href="#_couleurs_2">9.3. Couleurs</a></li>
+</ul>
+</li>
 <li><a href="#_rapports">10. Rapports</a></li>
 <li><a href="#_liens">11. Liens</a></li>
 <li><a href="#_résumés">12. Résumés</a></li>
@@ -491,16 +502,16 @@ Si vous n&#8217;êtes pas en mode expert certains paramètres peuvent ne pas êt
 <p><strong>Nom de votre Jeedom</strong> : peut être réutilisé dans les scénarios ou permettre d&#8217;identifier un backup</p>
 </li>
 <li>
-<p><strong>Clef API</strong> : votre clef API, à utiliser pour toute requête vers l&#8217;API Jeedom</p>
+<p><strong>Système</strong> : Type hardware du systeme sur lequelle est installé jeedom</p>
 </li>
 <li>
-<p><strong>Clef API Pro</strong> : utilisée pour communiquer avec le système de gestion de parc</p>
-</li>
-<li>
-<p><strong>Clef d&#8217;installation</strong> : clef hardware de votre Jeedom sur le market. Si votre Jeedom n&#8217;apparaît pas dans la liste de vos Jeedom sur le market il est conseillé de cliquer sur ce bouton</p>
+<p><strong>Clef d&#8217;installation</strong> : clef hardware de votre Jeedom sur le market. Si votre Jeedom n&#8217;apparaît pas dans la liste de vos Jeedom sur le market il est conseillé de cliquer sur le bouton <strong>Remise à zéro</strong></p>
 </li>
 <li>
 <p><strong>Langue</strong> : Langue de votre Jeedom</p>
+</li>
+<li>
+<p><strong>Générer les traductions</strong> : permet de générer les traductions, attention peut ralentir votre système</p>
 </li>
 <li>
 <p><strong>Durée de vie des sessions (heure)</strong> : durée de vie des sessions PHP, il est conseillé de ne pas y toucher</p>
@@ -554,7 +565,7 @@ Si vous n&#8217;êtes pas en mode expert certains paramètres peuvent ne pas êt
 </ul>
 </div>
 <div class="paragraph">
-<p>De plus vous pouvez aussi limité l&#8217;accès (par le meme systeme) aux APIs HTTP, JsonRpc et TTS</p>
+<p>De plus vous pouvez aussi limiter l&#8217;accès (par le même système) aux APIs HTTP, JsonRpc et TTS</p>
 </div>
 </div>
 </div>
@@ -802,13 +813,51 @@ N&#8217;oubliez pas de sauvegarder après toute modification.
 <div class="sect1">
 <h2 id="_commandes">7. Commandes</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_historique">7.1. Historique</h3>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Historique</strong> : voir <a href="https://jeedom.com/doc/documentation/core/fr_FR/doc-core-history.html#_configuration_général_de_l_historique">ici</a></p>
+<p><strong>Afficher les statistiques sur les widgets</strong> : permet d&#8217;afficher ou non les statistiques sur les widgets ; il faut que le widget soit compatible, ce qui est le cas pour la plupart ; il faut aussi que la commande soit de type numérique</p>
 </li>
 <li>
-<p><strong>Push</strong></p>
+<p><strong>Période de calcul pour min, max, moyenne (en heures)</strong> : période de calcul des statistiques (par défaut 24h), il n&#8217;est pas possible de mettre moins d&#8217;une heure</p>
+</li>
+<li>
+<p><strong>Période de calcul pour la tendance (en heures)</strong> : période de calcul des tendances (par défaut 2h), il n&#8217;est pas possible de mettre moins d&#8217;une heure</p>
+</li>
+<li>
+<p><strong>Délai avant archivage (en heures)</strong> : donne le délai avant archivage, par défaut la valeur est de 24h, c&#8217;est-à-dire que les données historisées doivent avoir plus de 24h pour être archivées (pour rappel, l&#8217;archivage va soit moyenner, soit prendre le maximum ou le minimum de la donnée sur une période qui correspond à la taille des paquets)</p>
+</li>
+<li>
+<p><strong>Archiver par paquet de (en heures)</strong> : ce paramètre donne justement la taille des paquets, par defaut 1h ; cela signifie que Jeedom va prendre des périodes de 1h, moyenner (par exemple, suivant le réglage de la commande) et stocker cette nouvelle valeur (en supprimant les valeurs moyennées).</p>
+</li>
+<li>
+<p><strong>Seuil de calcul de tendance basse</strong> : cette valeur correspond au seuil de tendance basse (Jeedom indique que la valeur est en baisse), il doit être négatif (par défaut -0.1).</p>
+</li>
+<li>
+<p><strong>Seuil de calcul de tendance haut</strong> : idem mais à la tendance haute.</p>
+</li>
+<li>
+<p><strong>Période d&#8217;affichage des graphiques par defaut</strong> : pour des questions de performance lors de l&#8217;affichage à la volée (en cliquant sur le widget ou par la page historique) Jeedom n&#8217;affiche qu&#8217;une période restreinte de l&#8217;historique (cela permet un affichage plus rapide) ; il est ici possible de régler cette valeur.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Il est possible d&#8217;activer sur les widgets l&#8217;affichage du minimum, de la moyenne, du maximum et de la tendance (par défaut ceci est désactivé car cela a une tendance à allonger le temps d&#8217;affichage du dashboard à cause des calculs). Si vous activez cette option, par défaut, Jeedom se fonde sur les données des dernières 24h pour calculer ces statistiques. Les tendances sont par défaut calculées sur 2h. Ce paramètre est bien sûr modifiable (voir plus bas).La méthode de calcul de tendance est fondée sur le calcul des moindres carrés (voir <a href="https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s">ici</a> pour le détail).
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_push">7.2. Push</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -816,8 +865,6 @@ N&#8217;oubliez pas de sauvegarder après toute modification.
 </li>
 </ul>
 </div>
-</li>
-</ul>
 </div>
 </div>
 </div>
@@ -848,8 +895,147 @@ N&#8217;oubliez pas de sauvegarder après toute modification.
 <div class="sect1">
 <h2 id="_interactions">9. Interactions</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_général">9.1. Général</h3>
 <div class="paragraph">
-<p>Voir <a href="doc-core-interact.html#_configuration_2">ici</a></p>
+<p>Vous avez ici 3 paramètres :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Sensibilité</strong> : il y a 4 niveaux de correspondance (La sensibilité va de 1 (correspond exactement) à 99)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>pour 1 mot : le niveau de correspondance pour les interactions à un seul mot</p>
+</li>
+<li>
+<p>2 mots : le niveau de correspondance pour les interactions à deux mots</p>
+</li>
+<li>
+<p>3 mots : le niveau de correspondance pour les interactions à trois mots</p>
+</li>
+<li>
+<p>+ de 3 mots : le niveau de correspondance pour les interactions à plus de trois mots</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Ne pas répondre si l&#8217;interaction n&#8217;est pas comprise</strong> : par défaut Jeedom répond "je n&#8217;ai pas compris" si l&#8217;interaction n&#8217;est pas comprise. Il est possible de désactiver ce fonctionnement pour que Jeedom ne réponde rien, mettre le bouton à oui pour désactiver la réponse.</p>
+</li>
+<li>
+<p><strong>Regex général d&#8217;exclusion pour les interactions</strong> : permet de définir une regexp qui, si elle correspond à une interaction, supprimera automatiquement cette phrase de la génération (réservé aux experts). Pour plus d&#8217;infos voir les explications dans le chapitre <strong>"Regexp d&#8217;exclusion"</strong></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_interaction_automatique_contextuelle_avertissement">9.2. Interaction automatique, contextuelle &amp; avertissement</h3>
+<div class="paragraph">
+<p>Les interactions automatique permettent a Jeedom de tenter de comprendre la commande meme si il n&#8217;y a pas d&#8217;interaction definie (il va chercher un nom d&#8217;objet et/ou d&#8217;équipement et/ou de commande pour essayer de répondre le mieux possible)</p>
+</div>
+<div class="paragraph">
+<p>Les interactions contextuelle vous permette d&#8217;enchainer plusieurs demande sans tout repeter, jeedom gardant le contexte, exemple :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Vous : Combien fait-il dans la chambre ?</p>
+</li>
+<li>
+<p>Jeedom : Température 25.2 °C</p>
+</li>
+<li>
+<p>Vous : et dans le salon ?</p>
+</li>
+<li>
+<p>Jeedom : Température 27.2 °C</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Il est aussi possible de poser 2 questions en une :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Vous : Combien fait-il dans la chambre et dans le salon ?</p>
+</li>
+<li>
+<p>Jeedom : Température 27.2 °C
+Température 27.2 °C</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Les intéractions de type prévient moi permette de demander à Jeedom de vous prevenir si une commande dépasse/descend ou vaut une certaine valeur. Ex :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Vous : Préviens moi si la température du salon dépasse 25°C ?</p>
+</li>
+<li>
+<p>Jeedom : OK</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Dès que la température du salon dépassera 25°C jeedom vous le dira (une seule fois)</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Par defaut Jeedom vous répondra par le meme canal que celui que vous avez utilisé pour lui demander de vous prévenir. Si il n&#8217;en trouve pas alors il utilisera la commande par defaut spécifié dans la configuration
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Activer les interactions automatique</strong> : active les interactions automatique</p>
+</li>
+<li>
+<p><strong>Activer les réponses contextuelle</strong> : active les interactions contextuelle</p>
+</li>
+<li>
+<p><strong>Réponse contextuelle prioritaire si la phrase commence par</strong> : si la phrase commence par le mot en question alors Jeedom va prioritiser une réponse contextuelle (vous pouvez mettre plusieurs mot en les séparant par des ;)</p>
+</li>
+<li>
+<p><strong>Découper une interaction en 2 si elle contient</strong> : idem mais pour le découpage d&#8217;une interaction contenant plusieurs question</p>
+</li>
+<li>
+<p><strong>Réponse de type "previens moi" si la phrase commence par</strong> : si la phrase commence par ce/ces mots alors Jeedom cherchera pour faire une interaction de type préviens moi (vous pouvez mettre plusieurs mot en les séparant par des ;)</p>
+</li>
+<li>
+<p><strong>Commande de retour par défaut</strong> : commande de retour par defaut pour une interaction de type préviens (utilisé notament si vous avez programé l&#8217;alerte par l&#8217;interface mobile)</p>
+</li>
+<li>
+<p><strong>Synonyme pour les objets</strong> : liste des synomnyme pour les objets (ex : rdc|rez de chaussé|sous sol|bas;sdb|salle de bain)</p>
+</li>
+<li>
+<p><strong>Synonyme pour les équipements</strong> : liste des synomnyme pour les équipements</p>
+</li>
+<li>
+<p><strong>Synonyme pour les commandes</strong> : liste des synomnyme pour les commandes</p>
+</li>
+<li>
+<p><strong>Synonyme pour les résumé</strong> : liste des synomnyme pour les résumés</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_couleurs_2">9.3. Couleurs</h3>
+<div class="paragraph">
+<p>Cette partie permet de definir les couleurs pour le pilotage des bandeaux de LED par exemple (pour que Jeedom comprenne les couleurs type rouge/bleu/noir&#8230;&#8203;)</p>
+</div>
 </div>
 </div>
 </div>
