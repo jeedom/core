@@ -150,23 +150,25 @@ class interactDef {
 		$_query = strtolower(sanitizeAccent($_query));
 		return $_query;
 	}
-	
+
 	public static function deadCmd() {
 		$return = array();
 		foreach (interactDef::all() as $interact) {
-			foreach ($interact->getActions('cmd') as $actions) {
-				if (!cmd::byId(str_replace('#','',$actions['cmd']))){
-					$return[]= array('detail' => 'Interaction ' . $interact->getName() . ' du groupe ' . $interact->getGroup(),'help' => 'Action','who'=>$actions['cmd']);
+			if (is_array($interact->getActions('cmd'))) {
+				foreach ($interact->getActions('cmd') as $actions) {
+					if (!cmd::byId(str_replace('#', '', $actions['cmd']))) {
+						$return[] = array('detail' => 'Interaction ' . $interact->getName() . ' du groupe ' . $interact->getGroup(), 'help' => 'Action', 'who' => $actions['cmd']);
+					}
 				}
 			}
 			preg_match_all("/#([0-9]*)#/", $interact->getReply(), $matches);
-				foreach ($matches[1] as $cmd_id) {
-					if (is_numeric($cmd_id)) {
-						if (!cmd::byId(str_replace('#','',$cmd_id))){
-							$return[]= array('detail' => 'Interaction ' . $interact->getName() . ' du groupe ' . $interact->getGroup(),'help' => 'Réponse','who'=>'#' . $cmd_id . '#');
-						}
+			foreach ($matches[1] as $cmd_id) {
+				if (is_numeric($cmd_id)) {
+					if (!cmd::byId(str_replace('#', '', $cmd_id))) {
+						$return[] = array('detail' => 'Interaction ' . $interact->getName() . ' du groupe ' . $interact->getGroup(), 'help' => 'Réponse', 'who' => '#' . $cmd_id . '#');
 					}
 				}
+			}
 		}
 		return $return;
 	}
