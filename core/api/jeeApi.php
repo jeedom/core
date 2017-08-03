@@ -255,10 +255,19 @@ if (init('type') != '') {
 
 		/*             * ************************config*************************** */
 		if ($jsonrpc->getMethod() == 'config::byKey') {
+			if (!isset($params['default'])) {
+				$params['default'] = '';
+			}
+			if (!isset($params['plugin'])) {
+				$params['plugin'] = 'core';
+			}
 			$jsonrpc->makeSuccess(config::byKey($params['key'], $params['plugin'], $params['default']));
 		}
 
 		if ($jsonrpc->getMethod() == 'config::save') {
+			if (!isset($params['plugin'])) {
+				$params['plugin'] = 'core';
+			}
 			$jsonrpc->makeSuccess(config::save($params['key'], $params['value'], $params['plugin']));
 		}
 
@@ -795,15 +804,6 @@ if (init('type') != '') {
 			}
 
 			if ($jsonrpc->getMethod() == 'network::dnsRun') {
-				if (!isset($params['proto'])) {
-					$params['proto'] = 'https';
-				}
-				if (!isset($params['port'])) {
-					$params['port'] = 80;
-				}
-				if (!isset($params['name'])) {
-					$params['name'] = '';
-				}
 				$jsonrpc->makeSuccess(network::dns_run());
 			}
 
