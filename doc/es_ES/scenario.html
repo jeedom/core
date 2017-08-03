@@ -984,25 +984,38 @@ Un tag est remplacé lors de l&#8217;exécution du scénario par sa valeur
 </tr>
 </table>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Pour avoir les zéros intiaux à l&#8217;affichage, il faut utilier la fonction Date().
+Voir <a href="http://php.net/manual/fr/function.date.php" class="bare">http://php.net/manual/fr/function.date.php</a>
+</td>
+</tr>
+</table>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>#seconde#</strong> : seconde courante,</p>
+<p><strong>#seconde#</strong> : seconde courante (sans les zéros initiaux, ex : 6 pour 08:07:06),</p>
 </li>
 <li>
-<p><strong>#heure#</strong> : heure courante au format 24h  (ex : 17 pour 17h15),</p>
+<p><strong>#heure#</strong> : heure courante au format 24h  (ex : 17 pour 17h15) (sans les zéros initiaux, ex : 8 pour 08:07:06),</p>
 </li>
 <li>
-<p><strong>#heure12#</strong> : heure courante au format 12h (ex : 5 pour 17h15),</p>
+<p><strong>#heure12#</strong> : heure courante au format 12h (ex : 5 pour 17h15) (sans les zéros initiaux, ex : 8 pour 08:07:06),</p>
 </li>
 <li>
-<p><strong>#minute#</strong> : minute courante (ex : 15 pour 17h15),</p>
+<p><strong>#minute#</strong> : minute courante (ex : 15 pour 17h15) (sans les zéros initiaux, ex : 7 pour 08:07:06),</p>
 </li>
 <li>
-<p><strong>#jour#</strong> : jour courant,</p>
+<p><strong>#jour#</strong> : jour courant (sans les zéros initiaux, ex : 6 pour 06/07/2017),</p>
 </li>
 <li>
-<p><strong>#mois#</strong> : mois courant,</p>
+<p><strong>#mois#</strong> : mois courant (sans les zéros initiaux, ex : 7 pour 06/07/2017),</p>
 </li>
 <li>
 <p><strong>#annee#</strong> : année courante,</p>

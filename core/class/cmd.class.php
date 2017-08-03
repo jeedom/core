@@ -566,24 +566,30 @@ class cmd {
 	public static function deadCmd() {
 		$return = array();
 		foreach (cmd::all() as $cmd) {
-			foreach ($cmd->getConfiguration('actionCheckCmd', '') as $actionCmd) {
-				if ($actionCmd['cmd'] != '' && strpos($actionCmd['cmd'], '#') !== false) {
-					if (!cmd::byId(str_replace('#', '', $actionCmd['cmd']))) {
-						$return[] = array('detail' => 'Commande ' . $cmd->getName() . ' de ' . $cmd->getEqLogic()->getName() . ' (' . $cmd->getEqLogic()->getEqType_name() . ')', 'help' => 'Action sur valeur', 'who' => $actionCmd['cmd']);
+			if (is_array($cmd->getConfiguration('actionCheckCmd', ''))) {
+				foreach ($cmd->getConfiguration('actionCheckCmd', '') as $actionCmd) {
+					if ($actionCmd['cmd'] != '' && strpos($actionCmd['cmd'], '#') !== false) {
+						if (!cmd::byId(str_replace('#', '', $actionCmd['cmd']))) {
+							$return[] = array('detail' => 'Commande ' . $cmd->getName() . ' de ' . $cmd->getEqLogic()->getName() . ' (' . $cmd->getEqLogic()->getEqType_name() . ')', 'help' => 'Action sur valeur', 'who' => $actionCmd['cmd']);
+						}
 					}
 				}
 			}
-			foreach ($cmd->getConfiguration('jeedomPostExecCmd', '') as $actionCmd) {
-				if ($actionCmd['cmd'] != '' && strpos($actionCmd['cmd'], '#') !== false) {
-					if (!cmd::byId(str_replace('#', '', $actionCmd['cmd']))) {
-						$return[] = array('detail' => 'Commande ' . $cmd->getName() . ' de ' . $cmd->getEqLogic()->getName() . ' (' . $cmd->getEqLogic()->getEqType_name() . ')', 'help' => 'Post Exécution', 'who' => $actionCmd['cmd']);
+			if (is_array($cmd->getConfiguration('jeedomPostExecCmd', ''))) {
+				foreach ($cmd->getConfiguration('jeedomPostExecCmd', '') as $actionCmd) {
+					if ($actionCmd['cmd'] != '' && strpos($actionCmd['cmd'], '#') !== false) {
+						if (!cmd::byId(str_replace('#', '', $actionCmd['cmd']))) {
+							$return[] = array('detail' => 'Commande ' . $cmd->getName() . ' de ' . $cmd->getEqLogic()->getName() . ' (' . $cmd->getEqLogic()->getEqType_name() . ')', 'help' => 'Post Exécution', 'who' => $actionCmd['cmd']);
+						}
 					}
 				}
 			}
-			foreach ($cmd->getConfiguration('jeedomPreExecCmd', '') as $actionCmd) {
-				if ($actionCmd['cmd'] != '' && strpos($actionCmd['cmd'], '#') !== false) {
-					if (!cmd::byId(str_replace('#', '', $actionCmd['cmd']))) {
-						$return[] = array('detail' => 'Commande ' . $cmd->getName() . ' de ' . $cmd->getEqLogic()->getName() . ' (' . $cmd->getEqLogic()->getEqType_name() . ')', 'help' => 'Pré Exécution', 'who' => $actionCmd['cmd']);
+			if (is_array($cmd->getConfiguration('jeedomPreExecCmd', ''))) {
+				foreach ($cmd->getConfiguration('jeedomPreExecCmd', '') as $actionCmd) {
+					if ($actionCmd['cmd'] != '' && strpos($actionCmd['cmd'], '#') !== false) {
+						if (!cmd::byId(str_replace('#', '', $actionCmd['cmd']))) {
+							$return[] = array('detail' => 'Commande ' . $cmd->getName() . ' de ' . $cmd->getEqLogic()->getName() . ' (' . $cmd->getEqLogic()->getEqType_name() . ')', 'help' => 'Pré Exécution', 'who' => $actionCmd['cmd']);
+						}
 					}
 				}
 			}
@@ -1272,6 +1278,10 @@ class cmd {
 				}
 			}
 		}
+		$level = $this->getEqLogic()->getAlert();
+		if (is_array($level) && isset($level['name']) && $currentLevel == strtolower($level['name'])) {
+			return $currentLevel;
+		}
 		if ($_allowDuring && $this->getAlert($currentLevel . 'during') != '' && $this->getAlert($currentLevel . 'during') > 0) {
 			$cron = cron::byClassAndFunction('cmd', 'duringAlertLevel', array('cmd_id' => intval($this->getId())));
 			$next = strtotime('+ ' . $this->getAlert($currentLevel . 'during', 1) . ' minutes ' . date('Y-m-d H:i:s'));
@@ -1322,6 +1332,12 @@ class cmd {
 		}
 		global $JEEDOM_INTERNAL_CONFIG;
 		$this->setCache('alertLevel', $_level);
+		$eqLogic = $this->getEqLogic();
+		$maxAlert = $eqLogic->getMaxCmdAlert();
+		$prevAlert = $eqLogic->getAlert();
+		if (!$_value) {
+			$_value = $this->execCmd();
+		}
 		if ($_level != 'none') {
 			$message = __('Alert sur la commande ', __FILE__) . $this->getHumanName() . __(' niveau ', __FILE__) . $_level . __(' valeur : ', __FILE__) . $_value;
 			if ($this->getAlert($_level . 'during') != '' && $this->getAlert($_level . 'during') > 0) {
@@ -1339,15 +1355,14 @@ class cmd {
 					if (is_object($cmd)) {
 						$cmd->execCmd(array(
 							'title' => __('[' . config::byKey('name', 'core', 'JEEDOM') . '] ', __FILE__) . $message,
+							'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $message,
 						));
 					}
 				}
 			}
 		}
-		$eqLogic = $this->getEqLogic();
-		$maxAlert = $eqLogic->getMaxCmdAlert();
-		$prevAlert = $eqLogic->getAlert();
-		if ($prevAlert != $eqLogic->getAlert()) {
+
+		if ($prevAlert != $maxAlert) {
 			$status = array(
 				'warning' => 0,
 				'danger' => 0,

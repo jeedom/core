@@ -23,6 +23,30 @@
 
  initHistoryTrigger();
 
+ $('#bt_findCmdCalculHistory').on('click',function(){
+    jeedom.cmd.getSelectModal({cmd: {type: 'info',subType : 'numeric',isHistorized : 1}}, function(result) {
+        $('#in_calculHistory').atCaret('insert', result.human);
+    });
+});
+
+ $('#bt_displayCalculHistory').on('click',function(){
+    addChart($('#in_calculHistory').value(), 1) 
+ });
+
+ $('#bt_configureCalculHistory').on('click',function(){
+     $('#md_modal').dialog({title: "{{Configuration des formules de calcul}}"});
+    $("#md_modal").load('index.php?v=d&modal=history.calcul').dialog('open');
+ });
+
+ $('#bt_clearGraph').on('click',function(){
+    while(jeedom.history.chart['div_graph'].chart.series.length > 0){
+        jeedom.history.chart['div_graph'].chart.series[0].remove(true);
+    }
+    delete jeedom.history.chart['div_graph'];
+    $(this).closest('.li_history').removeClass('active');
+ });
+
+
  $(".in_datepicker").datepicker();
 
  $(".li_history .history").on('click', function (event) {
@@ -182,7 +206,7 @@ function addChart(_cmd_id, _action) {
             dateEnd :  $('#in_endDate').value(),
             height : $('#div_graph').height(),
             success: function (data) {
-                if(isset(data.cmd.display)){
+                if(isset(data.cmd) && isset(data.cmd.display)){
                     if (init(data.cmd.display.graphStep) != '') {
                         $('#cb_step').off().value(init(data.cmd.display.graphStep));
                     }

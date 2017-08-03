@@ -767,7 +767,14 @@ class interactQuery {
 							}
 						}
 					}
-					$options['tags'] = $tags_replace;
+					$tags = array();
+					if (isset($options['tags'])) {
+						$options['tags'] = arg2array($options['tags']);
+						foreach ($options['tags'] as $key => $value) {
+							$tags['#' . trim(trim($key), '#') . '#'] = scenarioExpression::setTags(trim($value));
+						}
+					}
+					$options['tags'] = array_merge($tags_replace, $tags);
 					$return = scenarioExpression::createAndExec('action', $action['cmd'], $options);
 					if (trim($return) !== '' && trim($return) !== null) {
 						$replace['#valeur#'] .= ' ' . $return;

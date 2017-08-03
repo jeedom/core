@@ -4,28 +4,18 @@ Une des pages principales de Jeedom affiche un compte-rendu de toute votre domot
 
 Il est accessible en cliquant sur Accueil -> Dashboard
 
-image::../images/dashboard2.JPG[]
-
 [TIP]
-Comme vous pouvez le voir sur la capture il est possible d'aller directement sur un objet de votre domotique. Cela permet de n'avoir que les équipements qui vous intéressent et donc de charger la page plus rapidement
+Il est possible d'aller directement sur un objet de votre domotique. Cela permet de n'avoir que les équipements qui vous intéressent et donc de charger la page plus rapidement
 
-Este es un ejemplo de Dashboard
-
-image::../images/dashboard.JPG[]
-
-Vous avez en haut à gauche une petite icône pour faire afficher/masquer l'arbre des objets : 
-
-image::../images/dashboard1.JPG[]
-
-En el centro puede elegir filtrar por ciertos tipos de equipos:
-
-image::../images/dashboard3.JPG[]
-
-A droite un premier bouton pour passer en mode édition, pour par exemple modifier l'ordre des widgets (à l'aide d'un cliqué déposé sur le widget), vous pouvez aussi dans ce mode édition redimensionner certains widgets et réorganiser l'ordre des commandes à l'intérieur de celui-ci
-
-Es un botón para mostrar/ocultar escenas:
-
-image::../images/dashboard4.JPG[]
+* Vous avez en haut à gauche une petite icône pour faire afficher/masquer l'arbre des objets (celui-ci affiche aussi les informations des résumés d'objet) 
+* Au milieu vous pouvez choisir de ne filtrer que sur certains types d'équipements
+* A droite un premier bouton pour passer en mode édition, pour par exemple modifier l'ordre des widgets (à l'aide d'un cliqué déposé sur le widget), vous pouvez aussi dans ce mode édition redimensionner certains widgets et réorganiser l'ordre des commandes à l'intérieur de celui-ci
+* A gauche un bouton pour afficher/masquer les scénarios
+* En cliquant sur un résumé d'objet vous pouvez filtrer pour n'affiché que les équipements comportant des commandes de celui-ci
+* Un clique sur une commande de type information permet d'afficher l'historique de la commande (si elle est historisée)
 
 [TIP]
 Il est possible à partir de votre profil de configurer Jeedom pour que l'arbre des objets et/ou les scénarios soit visible par défaut lorsque vous arrivez sur le Dashboard
+
+[TIP]
+En mobile un appui long sur une commande de type info permet d'afficher un menu vous proposant soit d'afficher l'historique de la commande, ou de mettre une alerte sur celle-ci pour que jeedom vous previenne (une seule fois) dès que la valeur passe un certain seuil

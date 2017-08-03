@@ -64,12 +64,18 @@ if (init('cron_id') != '') {
 						$class::$function();
 					}
 				} else {
+					$gc = 0;
 					while (true) {
 						$cycleStartTime = getmicrotime();
 						if ($option !== null) {
 							$class::$function($option);
 						} else {
 							$class::$function();
+						}
+						$gc++;
+						if ($gc > 30) {
+							gc_collect_cycles();
+							$gc = 0;
 						}
 						if ($cron->getDeamonSleepTime() > 1) {
 							sleep($cron->getDeamonSleepTime());
@@ -99,12 +105,18 @@ if (init('cron_id') != '') {
 						$function();
 					}
 				} else {
+					$gc = 0;
 					while (true) {
 						$cycleStartTime = getmicrotime();
 						if ($option !== null) {
 							$function($option);
 						} else {
 							$function();
+						}
+						$gc++;
+						if ($gc > 30) {
+							gc_collect_cycles();
+							$gc = 0;
 						}
 						$cycleDuration = getmicrotime() - $cycleStartTime;
 						if ($cron->getDeamonSleepTime() > 1) {

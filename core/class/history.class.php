@@ -636,9 +636,9 @@ ORDER BY  datetime DESC';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 	}
 
-	public static function getHistoryFromCalcul($_strcalcul, $_dateStart = null, $_dateEnd = null, $_allowZero = true) {
+	public static function getHistoryFromCalcul($_strcalcul, $_dateStart = null, $_dateEnd = null) {
 		$now = strtotime('now');
-		$archiveTime = (config::byKey('historyArchiveTime') + 1) * 3600;
+		$archiveTime = (config::byKey('historyArchiveTime') + 1) * 3600 + 86400;
 		$packetTime = (config::byKey('historyArchivePackage')) * 3600;
 		$value = array();
 		$cmd_histories = array();
@@ -659,15 +659,11 @@ ORDER BY  datetime DESC';
 							if (!isset($cmd_histories[$histories_cmd[$i]->getDatetime()]['#' . $cmd_id . '#'])) {
 								if ($prevDatetime !== null) {
 									$datetime = strtotime($histories_cmd[$i]->getDatetime());
-									while (($now - strtotime($prevDatetime) > $archiveTime) && strtotime($prevDatetime) < $datetime) {
+									while (($now - strtotime($prevDatetime)) > $archiveTime && strtotime($prevDatetime) < $datetime) {
 										$prevDatetime = date('Y-m-d H:00:00', strtotime($prevDatetime) + $packetTime);
-										if ($_allowZero) {
-											$cmd_histories[$prevDatetime]['#' . $cmd_id . '#'] = 0;
-										} else {
-											$cmd_histories[$prevDatetime]['#' . $cmd_id . '#'] = $prevValue;
-										}
+										$cmd_histories[$prevDatetime]['#' . $cmd_id . '#'] = $prevValue;
 									}
-									while (($now - strtotime($prevDatetime)) > 300 && strtotime($prevDatetime) < $datetime) {
+									while (($now - strtotime($prevDatetime)) < $archiveTime && strtotime($prevDatetime) < $datetime) {
 										$prevDatetime = date('Y-m-d H:i:00', strtotime($prevDatetime) + 300);
 										$cmd_histories[$prevDatetime]['#' . $cmd_id . '#'] = $prevValue;
 									}
@@ -678,13 +674,20 @@ ORDER BY  datetime DESC';
 							$prevValue = $histories_cmd[$i]->getValue();
 						}
 					}
+					while (strtotime($prevDatetime) < strtotime($_dateEnd)) {
+						$prevDatetime = date('Y-m-d H:i:00', strtotime($prevDatetime) + 300);
+						$cmd_histories[$prevDatetime]['#' . $cmd_id . '#'] = $prevValue;
+					}
 				}
 			}
 			foreach ($cmd_histories as $datetime => $cmd_history) {
+				if (count($matches[1]) != count($cmd_history)) {
+					continue;
+				}
 				$datetime = floatval(strtotime($datetime . " UTC"));
 				$calcul = template_replace($cmd_history, $_strcalcul);
 				try {
-					$result = floatval(evaluate($calcul));
+					$result = floatval(jeedom::evaluateExpression($calcul));
 					$value[$datetime] = $result;
 				} catch (Exception $e) {
 
@@ -819,10 +822,7 @@ ORDER BY  datetime DESC';
 	}
 
 	public function setValue($value) {
-		if ($value === null) {
-			$this->value = null;
-			return;
-		}
+		$this->value = $value;
 		return $this;
 	}
 

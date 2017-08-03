@@ -416,8 +416,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table des matières</div>
 <ul class="sectlevel1">
-<li><a href="#_pilotage_des_scénarios">1. Pilotage des scénarios</a></li>
-<li><a href="#_pilotage_des_commandes">2. Pilotage des commandes</a></li>
+<li><a href="#_scénario">1. Scénario</a></li>
+<li><a href="#_info_action_commande">2. Info/Action commande</a></li>
+<li><a href="#_interaction">3. Interaction</a></li>
+<li><a href="#_message">4. Message</a></li>
+<li><a href="#_objet">5. Objet</a></li>
+<li><a href="#_equipement">6. Equipement</a></li>
+<li><a href="#_commande">7. Commande</a></li>
+<li><a href="#_full_data">8. Full Data</a></li>
 </ul>
 </div>
 </div>
@@ -431,63 +437,188 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Deux API sont disponibles : une orientée développeur qui se pilote en JSON RPC 2.0, et une autre via URL et requête HTTP.</p>
 </div>
 <div class="paragraph">
-<p>Cette API s&#8217;utilise très facilement par de simples requêtes HTTP via URL. Pour simplifier au maximum, l&#8217;API utilise seulement 2 types de requête HTTP.</p>
+<p>Cette API s&#8217;utilise très facilement par de simples requêtes HTTP via URL.</p>
 </div>
-<div class="paragraph">
-<p>Attention si vous êtes en DIY il faut ajouter un /jeedom après l&#8217;ip les URLs.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Pour toute cette documentation #IP_JEEDOM# correspond à votre url d’accès à Jeedom. Il s’agit (sauf si vous êtes connecté à votre réseau local) de l’adresse internet que vous utilisez pour accéder à Jeedom depuis l’extérieur.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Pour toute cette documentation #API_KEY# correspond à votre clé API, propre à votre installation. Pour la trouver il faut aller dans le menu « Général », puis « Administration »
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_pilotage_des_scénarios">1. Pilotage des scénarios</h2>
+<h2 id="_scénario">1. Scénario</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>La première requête est utilisée uniquement pour piloter un scénario.</p>
-</div>
 <div class="paragraph">
 <p>Voici l&#8217;URL = <a href="http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&amp;type=scenario&amp;id=#ID#&amp;action=#ACTION#" class="bare">http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&amp;type=scenario&amp;id=#ID#&amp;action=#ACTION#</a></p>
 </div>
-<div class="paragraph">
-<p>#IP_JEEDOM# correspond à votre url d’accès à Jeedom. Il s’agit (sauf si vous êtes connecté à votre réseau local) de l’adresse internet que vous utilisez pour accéder à Jeedom depuis l’extérieur.</p>
-</div>
-<div class="paragraph">
-<p>#API_KEY# correspond à votre clé API, propre à votre installation. Pour la trouver il faut aller dans le menu « Général », puis « Administration » et « Configuration », en activant le mode Expert vous verrez alors une ligne Clef API.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/apihttp.jpg" alt="apihttp">
-</div>
-</div>
-<div class="paragraph">
-<p>#ID# correspond à l’id de votre scénario. L&#8217;ID se trouve sur la page des scénarios&#8230;&#8203;(Ne pas oublier d&#8217;activer le mode Expert)</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/apihttp2.png" alt="apihttp2">
-</div>
-</div>
-<div class="paragraph">
-<p>#ACTION# correspond à l&#8217;action que vous voulez appliquer au scénario. Les commandes disponibles sont : "start" pour démarrer un scénario ,"stop" pour arrêter un scénario ,"désactiver" pour désactiver un scénario ,"activer" pour activer un scénario.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>id</strong> :  correspond à l’id de votre scénario. L&#8217;ID se trouve sur la page des scénarios&#8230;&#8203;(Ne pas oublier d&#8217;activer le mode Expert)</p>
+</li>
+<li>
+<p><strong>action</strong> :  correspond à l&#8217;action que vous voulez appliquer au scénario. Les commandes disponibles sont : "start" pour démarrer un scénario ,"stop" pour arrêter un scénario ,"désactiver" pour désactiver un scénario ,"activer" pour activer un scénario</p>
+</li>
+<li>
+<p><strong>tags</strong> [optionnel] : si l&#8217;action est start vous pouvez passer des tags au scénario (voir doc scénario) sous la forme tags=toto%3D1%20tata%3D2 (a noter que %20 est pour un espace et %3D pour =)</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_pilotage_des_commandes">2. Pilotage des commandes</h2>
+<h2 id="_info_action_commande">2. Info/Action commande</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>La seconde requête permet tout simplement de piloter tous les autres modules de Jeedom (module domotique/plugin etc).</p>
-</div>
 <div class="paragraph">
 <p>Voici l&#8217;URL = <a href="http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&amp;type=cmd&amp;id=#ID#" class="bare">http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&amp;type=cmd&amp;id=#ID#</a></p>
 </div>
-<div class="paragraph">
-<p>#IP_JEEDOM# et #API_KEY# s&#8217;utilisent de la même façon que précédement.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>id</strong> : correspond à l’id de ce que vous voulez piloter ou recevoir comme informations</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>#ID# correspond à l’id de ce que vous voulez piloter ou recevoir comme informations.</p>
+<p>Le plus simple pour avoir cette URL est d&#8217;aller sur la page Résumé domotique, de chercher la commande puis d&#8217;ouvrir sa configuration avancée et là vous allez voir une URL qui contient déjà tout ce qu&#8217;il faut en fonction du type et du sous-type de la commande.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Il est possible pour le champs #ID# de passer plusieurs commande d&#8217;un coup, pour cela il faut passer un tableau en json (ex %5B12,58,23%5D, a noter que [ et ] doivent etre encodé d&#8217;ou les %5B et %5D). Le retour de Jeedom sera un json
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Les parametres doivent etre encoder pour les url, voir <a href="https://meyerweb.com/eric/tools/dencoder/">ici</a>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_interaction">3. Interaction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Voici l&#8217;URL = <a href="http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&amp;type=interact&amp;query=#QUERY#" class="bare">http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&amp;type=interact&amp;query=#QUERY#</a></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>query</strong> : question à poser à jeedom</p>
+</li>
+<li>
+<p><strong>utf8</strong> [optionnel] : indique à jeedom si il faut encoder query en utf8 avant de chercher à répondre</p>
+</li>
+<li>
+<p><strong>emptyReply</strong> [optionnel] : 0 pour que jeedom réponde meme si il n&#8217;a pas compris, 1 sinon</p>
+</li>
+<li>
+<p><strong>profile</strong> [optionnel] : nom d&#8217;utilisateur de la personne déclenchant l&#8217;interaction</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_message">4. Message</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Voici l&#8217;URL = <a href="http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&amp;type=message&amp;category=#CATEGORY#&amp;message=#MESSAGE#" class="bare">http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&amp;type=message&amp;category=#CATEGORY#&amp;message=#MESSAGE#</a></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>category</strong> : categorie du message à ajouter au centre de message</p>
+</li>
+<li>
+<p><strong>message</strong> : message en question, attention a bien penser à encoder le message (espace devient %20, = %3D&#8230;&#8203;)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_objet">5. Objet</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Voici l&#8217;URL = <a href="http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&amp;type=object" class="bare">http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&amp;type=object</a></p>
 </div>
 <div class="paragraph">
-<p>Le plus simple pour avoir cette URL est d&#8217;aller sur la page Résumé domotique, de chercher la commande puis d&#8217;ouvrir sa configuration avancée et là vous allez voir une URL qui contient déjà tout ce qu&#8217;il faut en fonction du type et du sous-type de la commande. Voir <a href="https://jeedom.com/doc/documentation/core/fr_FR/doc-core-display.html#_informations_2">ici</a></p>
+<p>Renvoi en json la liste de tous les objets de jeedom</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_equipement">6. Equipement</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Voici l&#8217;URL = <a href="http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&amp;type=eqLogic&amp;object_id=#OBJECT_ID#" class="bare">http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&amp;type=eqLogic&amp;object_id=#OBJECT_ID#</a></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>object_id</strong> : ID de l&#8217;objet dont on veut récuperer les équipements</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_commande">7. Commande</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Voici l&#8217;URL = <a href="http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&amp;type=command&amp;eqLogic_id=#EQLOGIC_ID#" class="bare">http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&amp;type=command&amp;eqLogic_id=#EQLOGIC_ID#</a></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>eqLogic_id</strong> : ID de l&#8217;équipement dont on veut récuperer les commande</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_full_data">8. Full Data</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Voici l&#8217;URL = <a href="http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&amp;type=fullData" class="bare">http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&amp;type=fullData</a></p>
+</div>
+<div class="paragraph">
+<p>Renvoi toutes les objets,equipement,commande (et leur valeur si c&#8217;est des infos) en json</p>
 </div>
 </div>
 </div>

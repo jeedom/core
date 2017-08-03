@@ -27,7 +27,7 @@ if (is_array($scenarioListGroup)) {
 	?>
            <li data-jstree='{"opened":true}'>
             <?php
-echo '<a>Aucune - ' . count($scenarios[-1]) . ' scénario(s)</a>';
+echo '<a>Aucun - ' . count($scenarios[-1]) . ' scénario(s)</a>';
 	echo '<ul>';
 	foreach ($scenarios[-1] as $scenario) {
 		echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
@@ -58,7 +58,7 @@ foreach ($scenarioListGroup as $group) {
 </div>
 </div>
 
-<div id="scenarioThumbnailDisplay" class="col-lg-10 col-md-9 col-sm-8" style="border-left: solid 1px #EEE; padding-left: 25px;">
+<div id="scenarioThumbnailDisplay" class="col-lg-10 col-md-10 col-sm-9" style="border-left: solid 1px #EEE; padding-left: 25px;">
  <div class="scenarioListContainer">
    <legend><i class="fa fa-cog"></i>  {{Gestion}}</legend>
    <div class="cursor" id="bt_addScenario2" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
@@ -102,7 +102,7 @@ foreach ($scenarioListGroup as $group) {
 
 <legend><i class="icon jeedom-clap_cinema"></i>  {{Mes scénarios}}</legend>
 <?php
-if (count($scenarios) == 0) {
+if (count($totalScenario) == 0) {
 	echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun scénario. Cliquez sur ajouter un scénario pour commencer</span></center>";
 } else {
 	echo "<center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous avez " . count($totalScenario) . " scénario(s) dans " . count($scenarioListGroup) . " groupes</span></center>";
@@ -162,7 +162,7 @@ if (count($scenarios) == 0) {
 ?>
 </div>
 
-<div id="div_editScenario" class="col-lg-10 col-md-9 col-sm-8" style="display: none;margin-top: 5px;">
+<div id="div_editScenario" class="col-lg-10 col-md-10 col-sm-9" style="display: none;margin-top: 5px;">
 
  <a class="btn btn-default btn-sm pull-right" id="bt_graphScenario"><i class="fa fa-object-group"></i> {{Liens}}</a>
  <a class="btn btn-default btn-sm pull-right" id="bt_copyScenario"><i class="fa fa-copy"></i> {{Dupliquer}}</a>

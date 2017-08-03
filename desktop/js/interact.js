@@ -95,6 +95,12 @@ $('.interactDisplayCard').on('click',function(){
   displayInteract($(this).attr('data-interact_id'));
 });
 
+$('.accordion-toggle').off('click').on('click', function () {
+  setTimeout(function(){
+    $('.interactListContainer').packery();
+  },100);
+});
+
 $('#bt_duplicate').on('click', function () {
   bootbox.prompt("Nom ?", function (result) {
     if (result !== null) {

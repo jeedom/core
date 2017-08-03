@@ -18,7 +18,7 @@ user::isBan();
 	<ul class="nav nav-tabs" role="tablist">
 		<li role="presentation" class="active"><a href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-wrench"></i> {{Général}}</a></li>
 		<li role="presentation"><a href="#apitab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fa fa-key"></i> {{API}}</a></li>
-		<li role="presentation"><a href="#ostab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fa fa-terminal"></i> {{OS/BDD}}</a></li>
+		<li role="presentation"><a href="#ostab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fa fa-terminal"></i> {{OS/DB}}</a></li>
 		<li role="presentation"><a href="#securitytab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fa fa-shield"></i> {{Securité}}</a></li>
 		<li role="presentation"><a href="#networktab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fa fa-rss"></i> {{Réseaux}}</a></li>
 		<li role="presentation"><a href="#colortab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fa fa-tint"></i> {{Couleurs}}</a></li>
@@ -1097,9 +1097,6 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 							<legend>{{Alertes}}</legend>
 							<?php
 foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
-	if (!$value['check']) {
-		continue;
-	}
 	echo '<div class="form-group">';
 	echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Ajouter un message à chaque}} ' . $value['name'] . '</label>';
 	echo '<div class="col-sm-1">';
@@ -1173,7 +1170,7 @@ foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
 							</div>
 							<?php
 
-$other_log = array('scenario', 'plugin', 'market', 'api', 'connection', 'interact', 'tts', 'report');
+$other_log = array('scenario', 'plugin', 'market', 'api', 'connection', 'interact', 'tts', 'report', 'event');
 foreach ($other_log as $name) {
 	echo '<form class="form-horizontal">';
 	echo '<div class="form-group">';

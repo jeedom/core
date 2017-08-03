@@ -54,7 +54,8 @@ jeedom.config.load = function (_params) {
     paramsAJAX.data = {
         action: 'getKey',
         key: ($.isArray(_params.configuration) || $.isPlainObject(_params.configuration)) ? json_encode(_params.configuration) : _params.configuration,
-        plugin: _params.plugin || 'core'
+        plugin: _params.plugin || 'core',
+        convertToHumanReadable :  _params.convertToHumanReadable || false
     };
     $.ajax(paramsAJAX);
 };

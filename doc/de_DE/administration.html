@@ -416,25 +416,50 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table des matières</div>
 <ul class="sectlevel1">
-<li><a href="#_hauptkonfiguration">1. Hauptkonfiguration</a></li>
-<li><a href="#_jeedom_komponenten">2. Jeedom Komponenten</a></li>
-<li><a href="#_datenbank">3. Datenbank</a></li>
-<li><a href="#_netzwerkkonfiguration">4. Netzwerkkonfiguration</a></li>
-<li><a href="#_farbeinstellungen">5. Farbeinstellungen</a></li>
-<li><a href="#_befehle_konfiguration">6. Befehle Konfiguration</a></li>
-<li><a href="#_interaktion_konfiguration">7. Interaktion Konfiguration</a></li>
-<li><a href="#_logs_nachrichten_konfiguration">8. Logs &amp; Nachrichten Konfiguration</a></li>
-<li><a href="#_ldap_konfiguration">9. LDAP Konfiguration</a></li>
-<li><a href="#_geräte_konfiguration">10. Geräte Konfiguration</a></li>
-<li><a href="#_update_und_dateien">11. Update und Dateien</a>
+<li><a href="#_générale">1. Générale</a></li>
+<li><a href="#_api">2. API</a></li>
+<li><a href="#_os_db">3. OS/DB</a>
 <ul class="sectlevel2">
-<li><a href="#_das_depot">11.1. Das Depot</a>
+<li><a href="#_système">3.1. Système</a></li>
+<li><a href="#_base_de_données">3.2. Base de données</a></li>
+</ul>
+</li>
+<li><a href="#_sécurité">4. Sécurité</a>
+<ul class="sectlevel2">
+<li><a href="#_ldap">4.1. LDAP</a></li>
+<li><a href="#_connexion">4.2. Connexion</a></li>
+</ul>
+</li>
+<li><a href="#_netzwerkkonfiguration">5. Netzwerkkonfiguration</a></li>
+<li><a href="#_couleurs">6. Couleurs</a></li>
+<li><a href="#_commandes">7. Commandes</a>
+<ul class="sectlevel2">
+<li><a href="#_historique">7.1. Historique</a></li>
+<li><a href="#_push">7.2. Push</a></li>
+</ul>
+</li>
+<li><a href="#_cache">8. Cache</a></li>
+<li><a href="#_interactions">9. Interactions</a>
+<ul class="sectlevel2">
+<li><a href="#_général">9.1. Général</a></li>
+<li><a href="#_interaction_automatique_contextuelle_avertissement">9.2. Interaction automatique, contextuelle &amp; avertissement</a></li>
+<li><a href="#_couleurs_2">9.3. Couleurs</a></li>
+</ul>
+</li>
+<li><a href="#_rapports">10. Rapports</a></li>
+<li><a href="#_liens">11. Liens</a></li>
+<li><a href="#_résumés">12. Résumés</a></li>
+<li><a href="#_logs">13. Logs</a></li>
+<li><a href="#_equipements">14. Equipements</a></li>
+<li><a href="#_update_und_dateien">15. Update und Dateien</a>
+<ul class="sectlevel2">
+<li><a href="#_das_depot">15.1. Das Depot</a>
 <ul class="sectlevel3">
-<li><a href="#_markt">11.1.1. Markt</a></li>
-<li><a href="#_dateien">11.1.2. Dateien</a></li>
-<li><a href="#_github">11.1.3. Github</a></li>
-<li><a href="#_samba">11.1.4. Samba</a></li>
-<li><a href="#_url">11.1.5. URL</a></li>
+<li><a href="#_dateien">15.1.1. Dateien</a></li>
+<li><a href="#_github">15.1.2. Github</a></li>
+<li><a href="#_markt">15.1.3. Markt</a></li>
+<li><a href="#_samba">15.1.4. Samba</a></li>
+<li><a href="#_url">15.1.5. URL</a></li>
 </ul>
 </li>
 </ul>
@@ -451,11 +476,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>La page est accessible par Administration &#8594; Configuration :</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/administration.png" alt="administration">
-</div>
-</div>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -471,13 +491,8 @@ Wenn sie nicht im Experten-Modus sind, sind möglicherweise einige Parameter nic
 </div>
 </div>
 <div class="sect1">
-<h2 id="_hauptkonfiguration">1. Hauptkonfiguration</h2>
+<h2 id="_générale">1. Générale</h2>
 <div class="sectionbody">
-<div class="imageblock">
-<div class="content">
-<img src="../images/administration1.png" alt="administration1">
-</div>
-</div>
 <div class="paragraph">
 <p>Diese Registerkarte enthält allgemeine Informationen zu Jeedom :</p>
 </div>
@@ -487,19 +502,16 @@ Wenn sie nicht im Experten-Modus sind, sind möglicherweise einige Parameter nic
 <p><strong>Name von Ihrem Jeedom</strong> : kann in den Szenarien wieder verwendet werden oder zum identifizieren eines Backups</p>
 </li>
 <li>
-<p><strong>API Schlüssel</strong> : Ihr API-Schlüssel, wird verwendet für jede Anfrage zur Jeedom-API</p>
+<p><strong>Système</strong> : Type hardware du systeme sur lequelle est installé jeedom</p>
 </li>
 <li>
-<p><strong>Clef API Pro</strong> : utilisée pour communiquer avec le système de gestion de parc</p>
-</li>
-<li>
-<p><strong>System</strong> : Zeigt den Hardwaretyp an</p>
-</li>
-<li>
-<p><strong>Installationsschlüssel</strong> : Hardware-Schlüssel von Ihrem Jeedom auf dem Markt. Wenn Ihr Jeedom nicht in der Liste Ihrer Jeedom auf dem Markt erscheint, ist es ratsam auf diese Schaltfläche zu klicken</p>
+<p><strong>Clef d&#8217;installation</strong> : clef hardware de votre Jeedom sur le market. Si votre Jeedom n&#8217;apparaît pas dans la liste de vos Jeedom sur le market il est conseillé de cliquer sur le bouton <strong>Remise à zéro</strong></p>
 </li>
 <li>
 <p><strong>Sprache</strong> : Ihre Sprache in Jeedom</p>
+</li>
+<li>
+<p><strong>Générer les traductions</strong> : permet de générer les traductions, attention peut ralentir votre système</p>
 </li>
 <li>
 <p><strong>Cache Verfallszeit (Stunde)</strong> : Lebensdauer der PHP-Sitzungen es wird er geraten, dort nicht zu ändern</p>
@@ -513,48 +525,65 @@ Wenn sie nicht im Experten-Modus sind, sind möglicherweise einige Parameter nic
 <li>
 <p><strong>Die Überprüfung der Zeit ignorieren</strong> : Weist Jeedom an, nicht zu überprüfen, ob die Zeit übereinstimmt. Nützlich zum Beispiel, wenn Sie Jeedom nicht an das Internet angeschlossen haben und es keine RTC-Batterie hat.</p>
 </li>
-<li>
-<p><strong>Modus</strong> : Ihr Jeedom-Modus Master oder Slave, Achtung beim Wechsel in den Slave-Modus : werden all Ihre Geräte, Szenarien, Designs… gelöscht.</p>
-</li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_jeedom_komponenten">2. Jeedom Komponenten</h2>
+<h2 id="_api">2. API</h2>
 <div class="sectionbody">
-<div class="imageblock">
-<div class="content">
-<img src="../images/administration12.png" alt="administration12">
+<div class="paragraph">
+<p>Liste les differentes clef API de Jeedom :</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>le core à 2 clef API, une general (autant que possibile il faut eviter de l&#8217;utiliser) et pour les Pro (utilisée pour la gestion de parc)</p>
+</li>
+<li>
+<p>et une clef api par plugin en ayant besoin</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>In diesem Abschnitt können sie einige Komponenten des Jeedom Kerns aktivieren/deaktivieren :</p>
+<p>Pour chaque clef API vous pouvez definir la porté :</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Erweiterte Rechteverwaltung</strong> :  Erlaubt, die Erweiterte Rechteverwaltung zu deaktivieren (wenn sie es nicht benutzen, kann das Jeedom schneller machen)</p>
+<p><strong>Désactiver</strong> : la clef api ne peut etre utilisée</p>
 </li>
 <li>
-<p><strong>Anti-Piraterie-Sicherheit</strong> : ermöglicht das Aktivieren der Anti-Piraterie-Sicherheit von Jeedom (Brute-Force das Passwortes).</p>
+<p><strong>IP blanche</strong> : seule une liste d&#8217;ip est autorisé (voir configuration réseaux)</p>
+</li>
+<li>
+<p><strong>Localhost</strong> : seules les requetes venant du systeme lui meme sont autorisé</p>
+</li>
+<li>
+<p><strong>Activé</strong> : aucune restriction</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>De plus vous pouvez aussi limiter l&#8217;accès (par le même système) aux APIs HTTP, JsonRpc et TTS</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_datenbank">3. Datenbank</h2>
+<h2 id="_os_db">3. OS/DB</h2>
 <div class="sectionbody">
-<div class="imageblock">
-<div class="content">
-<img src="../images/administration2.png" alt="administration2">
+<div class="sect2">
+<h3 id="_système">3.1. Système</h3>
+<div class="paragraph">
+<p>Permet d&#8217;accès à une interface d&#8217;administration systeme, sorte de console shell  (ATTENTION en touchant à cela le support peut refuser de vous aider)</p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_base_de_données">3.2. Base de données</h3>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Zugriff auf die Administrationsoberfläche</strong> : ermöglicht den Zugriff auf die Administrationsoberflächen-Datenbank, die nötigen Informationen sind unten einzugeben</p>
+<p><strong>Administration</strong> : permet d&#8217;accèder à une interface d&#8217;administration de la base en ligne de commande (ATTENTION en touchant à cela le support peut refuser de vous aider)</p>
 </li>
 <li>
 <p><strong>Geräte (hostname)</strong> : Datenbank Standort</p>
@@ -569,14 +598,68 @@ Wenn sie nicht im Experten-Modus sind, sind möglicherweise einige Parameter nic
 </div>
 </div>
 </div>
+</div>
 <div class="sect1">
-<h2 id="_netzwerkkonfiguration">4. Netzwerkkonfiguration</h2>
+<h2 id="_sécurité">4. Sécurité</h2>
 <div class="sectionbody">
-<div class="imageblock">
-<div class="content">
-<img src="../images/administration3.png" alt="administration3">
+<div class="sect2">
+<h3 id="_ldap">4.1. LDAP</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>LDAP-Authentifizierung aktivieren</strong> : aktiviert die Authentifizierung über AD (LDAP)</p>
+</li>
+<li>
+<p><strong>Host</strong> : Server-Host des AD</p>
+</li>
+<li>
+<p><strong>Domaine</strong> : Ihr AD-Domaine</p>
+</li>
+<li>
+<p><strong>Basis-DN</strong> : Basis-DN ihres AD</p>
+</li>
+<li>
+<p><strong>Benutzername</strong> : Benutzernamen für die Verbindung von Jeedom mit dem AD</p>
+</li>
+<li>
+<p><strong>Passwort</strong> : Passwort für die Verbindung von Jeedom mit dem AD</p>
+</li>
+<li>
+<p><strong>Filter (optional)</strong> : Filter auf dem AD (zum Beispiel für Gruppenmanagement)</p>
+</li>
+<li>
+<p><strong>REMOTE_USER zulassen</strong> : REMOTE_USER aktivieren (zum Beispiel verwendet  in SSO)</p>
+</li>
+</ul>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_connexion">4.2. Connexion</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Nombre d&#8217;échec toléré</strong> : defini le nombre de tentative successivent autorisées avant de bannir l&#8217;IP</p>
+</li>
+<li>
+<p><strong>Temps maximum entre les échecs (s)</strong> : temps maximum pour que 2 tentatives soient considéré comme successive</p>
+</li>
+<li>
+<p><strong>Durée du bannissement (s), -1 pour infini</strong> : temps de banissement de l&#8217;IP</p>
+</li>
+<li>
+<p><strong>IP "blanche"</strong> : liste d&#8217;IP qui ne peuvent jamais etre banni</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>En dessous vous avez un tableau qui donne la liste des IP bannis</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_netzwerkkonfiguration">5. Netzwerkkonfiguration</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Das ist ein sehr wichtiger Teil in Jeedom, man muss ihn unbedingt richtig konfigurieren, andernfalls können viele Plugins nicht richtig funktionieren.</p>
 </div>
@@ -621,7 +704,7 @@ Wenn sie nicht im Experten-Modus sind, sind möglicherweise einige Parameter nic
 </div>
 </li>
 <li>
-<p><strong>Erweiterte Verwaltung</strong> : abhängig von der Kompatibilität ihrer Hardware kann es möglicherweise nicht angezeigt werden</p>
+<p><strong>Gestion avancée</strong> : peut ne pas apparaitre en fonction de la compatibilité avec votre matériel. Vous aurez ici la liste de vos interface réseaux</p>
 <div class="ulist">
 <ul>
 <li>
@@ -699,7 +782,7 @@ Wenn Sie die DNS-Jeedom betreiben können, betrachten Sie die Konfiguration der 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_farbeinstellungen">5. Farbeinstellungen</h2>
+<h2 id="_couleurs">6. Couleurs</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Die farbliche Kennzeichnung der Widgets erfolgt entsprechend der Kategorie des Widgets, die in der Konfiguration der einzelnen Module definiert ist (siehe Plugin Z-Wave, RFXCOM&#8230;&#8203; etc.). Die Kategorien umfassen Heizung, Licht, Automation etc&#8230;&#8203;.</p>
@@ -707,18 +790,8 @@ Wenn Sie die DNS-Jeedom betreiben können, betrachten Sie die Konfiguration der 
 <div class="paragraph">
 <p>Für jede Kategorie, können wir eine andere Farbe zwischen der Desktop-Version und Mobile-Version wählen. Außerdem gibt es zwei Arten von Farben, Widget Hintergrundfarben  und Befehls Farbe, wenn das Widget erfolgt schrittweise Typ, zB Beleuchtung, Jalousien, Temperaturen.</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/display6.png" alt="display6">
-</div>
-</div>
 <div class="paragraph">
 <p>En cliquant sur la couleur une fenêtre s&#8217;ouvre, permettant de choisir sa couleur.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/display7.png" alt="display7">
-</div>
 </div>
 <div class="paragraph">
 <p>Sie können auch hier die Transparenz der Widgets allgemein konfigurieren (das wird die Standardvorgabe sein, es ist danach möglich, diesen Wert der Widget zu ändern</p>
@@ -738,20 +811,53 @@ Vergessen Sie nicht, nach jeder Veränderung zu speichern.
 </div>
 </div>
 <div class="sect1">
-<h2 id="_befehle_konfiguration">6. Befehle Konfiguration</h2>
+<h2 id="_commandes">7. Commandes</h2>
 <div class="sectionbody">
-<div class="imageblock">
-<div class="content">
-<img src="../images/administration4.png" alt="administration4">
-</div>
-</div>
+<div class="sect2">
+<h3 id="_historique">7.1. Historique</h3>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Chronik</strong> : siehe <a href="https://jeedom.com/doc/documentation/core/fr_FR/doc-core-history.html#_configuration_général_de_l_historique">hier</a></p>
+<p><strong>Afficher les statistiques sur les widgets</strong> : permet d&#8217;afficher ou non les statistiques sur les widgets ; il faut que le widget soit compatible, ce qui est le cas pour la plupart ; il faut aussi que la commande soit de type numérique</p>
 </li>
 <li>
-<p><strong>drücken</strong></p>
+<p><strong>Période de calcul pour min, max, moyenne (en heures)</strong> : période de calcul des statistiques (par défaut 24h), il n&#8217;est pas possible de mettre moins d&#8217;une heure</p>
+</li>
+<li>
+<p><strong>Période de calcul pour la tendance (en heures)</strong> : période de calcul des tendances (par défaut 2h), il n&#8217;est pas possible de mettre moins d&#8217;une heure</p>
+</li>
+<li>
+<p><strong>Délai avant archivage (en heures)</strong> : donne le délai avant archivage, par défaut la valeur est de 24h, c&#8217;est-à-dire que les données historisées doivent avoir plus de 24h pour être archivées (pour rappel, l&#8217;archivage va soit moyenner, soit prendre le maximum ou le minimum de la donnée sur une période qui correspond à la taille des paquets)</p>
+</li>
+<li>
+<p><strong>Archiver par paquet de (en heures)</strong> : ce paramètre donne justement la taille des paquets, par defaut 1h ; cela signifie que Jeedom va prendre des périodes de 1h, moyenner (par exemple, suivant le réglage de la commande) et stocker cette nouvelle valeur (en supprimant les valeurs moyennées).</p>
+</li>
+<li>
+<p><strong>Seuil de calcul de tendance basse</strong> : cette valeur correspond au seuil de tendance basse (Jeedom indique que la valeur est en baisse), il doit être négatif (par défaut -0.1).</p>
+</li>
+<li>
+<p><strong>Seuil de calcul de tendance haut</strong> : idem mais à la tendance haute.</p>
+</li>
+<li>
+<p><strong>Période d&#8217;affichage des graphiques par defaut</strong> : pour des questions de performance lors de l&#8217;affichage à la volée (en cliquant sur le widget ou par la page historique) Jeedom n&#8217;affiche qu&#8217;une période restreinte de l&#8217;historique (cela permet un affichage plus rapide) ; il est ici possible de régler cette valeur.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Il est possible d&#8217;activer sur les widgets l&#8217;affichage du minimum, de la moyenne, du maximum et de la tendance (par défaut ceci est désactivé car cela a une tendance à allonger le temps d&#8217;affichage du dashboard à cause des calculs). Si vous activez cette option, par défaut, Jeedom se fonde sur les données des dernières 24h pour calculer ces statistiques. Les tendances sont par défaut calculées sur 2h. Ce paramètre est bien sûr modifiable (voir plus bas).La méthode de calcul de tendance est fondée sur le calcul des moindres carrés (voir <a href="https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s">ici</a> pour le détail).
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_push">7.2. Push</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -759,83 +865,291 @@ Vergessen Sie nicht, nach jeder Veränderung zu speichern.
 </li>
 </ul>
 </div>
-</li>
-</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_interaktion_konfiguration">7. Interaktion Konfiguration</h2>
+<h2 id="_cache">8. Cache</h2>
 <div class="sectionbody">
-<div class="imageblock">
-<div class="content">
-<img src="../images/administration5.png" alt="administration5">
-</div>
-</div>
 <div class="paragraph">
-<p>Siehe <a href="https://jeedom.com/doc/documentation/core/fr_FR/doc-core-interact.html#_configuration_2">hier</a></p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_logs_nachrichten_konfiguration">8. Logs &amp; Nachrichten Konfiguration</h2>
-<div class="sectionbody">
-<div class="imageblock">
-<div class="content">
-<img src="../images/administration7.png" alt="administration7">
-</div>
-</div>
-<div class="paragraph">
-<p>Siehe <a href="https://jeedom.com/doc/documentation/core/fr_FR/doc-core-log.html#_configuration">hier</a></p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_ldap_konfiguration">9. LDAP Konfiguration</h2>
-<div class="sectionbody">
-<div class="imageblock">
-<div class="content">
-<img src="../images/administration8.png" alt="administration8">
-</div>
+<p>Permet de surveiller et d&#8217;agir sur le cache de Jeedom :</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>LDAP-Authentifizierung aktivieren</strong> : aktiviert die Authentifizierung über AD (LDAP)</p>
+<p><strong>Statistiques</strong> : Nombre d&#8217;objet actuellement en cache</p>
 </li>
 <li>
-<p><strong>Host</strong> : Server-Host des AD</p>
+<p><strong>Nettoyer le cache</strong> : Force la suppression des objets qui ne sont plus utile (Jeedom le fait automatiquement toute les nuits)</p>
 </li>
 <li>
-<p><strong>Domaine</strong> : Ihr AD-Domaine</p>
+<p><strong>Vider toutes les données en cache</strong> : Vide completement le cache (attention cela peut faire perdre des données)</p>
 </li>
 <li>
-<p><strong>Basis-DN</strong> : Basis-DN ihres AD</p>
-</li>
-<li>
-<p><strong>Benutzername</strong> : Benutzernamen für die Verbindung von Jeedom mit dem AD</p>
-</li>
-<li>
-<p><strong>Passwort</strong> : Passwort für die Verbindung von Jeedom mit dem AD</p>
-</li>
-<li>
-<p><strong>Filter (optional)</strong> : Filter auf dem AD (zum Beispiel für Gruppenmanagement)</p>
-</li>
-<li>
-<p><strong>REMOTE_USER zulassen</strong> : REMOTE_USER aktivieren (zum Beispiel verwendet  in SSO)</p>
+<p><strong>Temps de pause pour le long polling</strong> : Fréquence a laquelle Jeedom verifie si il y a des evenements en attente pour les clients (interface web, application mobile&#8230;&#8203;). Plus ce temps est cours plus l&#8217;interface se mettra à jour rapidement, en contre partie cela utilise plus de ressources et peut donc ralentir jeedom</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_geräte_konfiguration">10. Geräte Konfiguration</h2>
+<h2 id="_interactions">9. Interactions</h2>
 <div class="sectionbody">
-<div class="imageblock">
-<div class="content">
-<img src="../images/administration9.png" alt="administration9">
+<div class="sect2">
+<h3 id="_général">9.1. Général</h3>
+<div class="paragraph">
+<p>Vous avez ici 3 paramètres :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Sensibilité</strong> : il y a 4 niveaux de correspondance (La sensibilité va de 1 (correspond exactement) à 99)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>pour 1 mot : le niveau de correspondance pour les interactions à un seul mot</p>
+</li>
+<li>
+<p>2 mots : le niveau de correspondance pour les interactions à deux mots</p>
+</li>
+<li>
+<p>3 mots : le niveau de correspondance pour les interactions à trois mots</p>
+</li>
+<li>
+<p>+ de 3 mots : le niveau de correspondance pour les interactions à plus de trois mots</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Ne pas répondre si l&#8217;interaction n&#8217;est pas comprise</strong> : par défaut Jeedom répond "je n&#8217;ai pas compris" si l&#8217;interaction n&#8217;est pas comprise. Il est possible de désactiver ce fonctionnement pour que Jeedom ne réponde rien, mettre le bouton à oui pour désactiver la réponse.</p>
+</li>
+<li>
+<p><strong>Regex général d&#8217;exclusion pour les interactions</strong> : permet de définir une regexp qui, si elle correspond à une interaction, supprimera automatiquement cette phrase de la génération (réservé aux experts). Pour plus d&#8217;infos voir les explications dans le chapitre <strong>"Regexp d&#8217;exclusion"</strong></p>
+</li>
+</ul>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_interaction_automatique_contextuelle_avertissement">9.2. Interaction automatique, contextuelle &amp; avertissement</h3>
+<div class="paragraph">
+<p>Les interactions automatique permettent a Jeedom de tenter de comprendre la commande meme si il n&#8217;y a pas d&#8217;interaction definie (il va chercher un nom d&#8217;objet et/ou d&#8217;équipement et/ou de commande pour essayer de répondre le mieux possible)</p>
+</div>
+<div class="paragraph">
+<p>Les interactions contextuelle vous permette d&#8217;enchainer plusieurs demande sans tout repeter, jeedom gardant le contexte, exemple :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Vous : Combien fait-il dans la chambre ?</p>
+</li>
+<li>
+<p>Jeedom : Température 25.2 °C</p>
+</li>
+<li>
+<p>Vous : et dans le salon ?</p>
+</li>
+<li>
+<p>Jeedom : Température 27.2 °C</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Il est aussi possible de poser 2 questions en une :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Vous : Combien fait-il dans la chambre et dans le salon ?</p>
+</li>
+<li>
+<p>Jeedom : Température 27.2 °C
+Température 27.2 °C</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Les intéractions de type prévient moi permette de demander à Jeedom de vous prevenir si une commande dépasse/descend ou vaut une certaine valeur. Ex :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Vous : Préviens moi si la température du salon dépasse 25°C ?</p>
+</li>
+<li>
+<p>Jeedom : OK</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Dès que la température du salon dépassera 25°C jeedom vous le dira (une seule fois)</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Par defaut Jeedom vous répondra par le meme canal que celui que vous avez utilisé pour lui demander de vous prévenir. Si il n&#8217;en trouve pas alors il utilisera la commande par defaut spécifié dans la configuration
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Activer les interactions automatique</strong> : active les interactions automatique</p>
+</li>
+<li>
+<p><strong>Activer les réponses contextuelle</strong> : active les interactions contextuelle</p>
+</li>
+<li>
+<p><strong>Réponse contextuelle prioritaire si la phrase commence par</strong> : si la phrase commence par le mot en question alors Jeedom va prioritiser une réponse contextuelle (vous pouvez mettre plusieurs mot en les séparant par des ;)</p>
+</li>
+<li>
+<p><strong>Découper une interaction en 2 si elle contient</strong> : idem mais pour le découpage d&#8217;une interaction contenant plusieurs question</p>
+</li>
+<li>
+<p><strong>Réponse de type "previens moi" si la phrase commence par</strong> : si la phrase commence par ce/ces mots alors Jeedom cherchera pour faire une interaction de type préviens moi (vous pouvez mettre plusieurs mot en les séparant par des ;)</p>
+</li>
+<li>
+<p><strong>Commande de retour par défaut</strong> : commande de retour par defaut pour une interaction de type préviens (utilisé notament si vous avez programé l&#8217;alerte par l&#8217;interface mobile)</p>
+</li>
+<li>
+<p><strong>Synonyme pour les objets</strong> : liste des synomnyme pour les objets (ex : rdc|rez de chaussé|sous sol|bas;sdb|salle de bain)</p>
+</li>
+<li>
+<p><strong>Synonyme pour les équipements</strong> : liste des synomnyme pour les équipements</p>
+</li>
+<li>
+<p><strong>Synonyme pour les commandes</strong> : liste des synomnyme pour les commandes</p>
+</li>
+<li>
+<p><strong>Synonyme pour les résumé</strong> : liste des synomnyme pour les résumés</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_couleurs_2">9.3. Couleurs</h3>
+<div class="paragraph">
+<p>Cette partie permet de definir les couleurs pour le pilotage des bandeaux de LED par exemple (pour que Jeedom comprenne les couleurs type rouge/bleu/noir&#8230;&#8203;)</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_rapports">10. Rapports</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Permet de configuration la generation et la gestion des raports</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Delai d&#8217;attente après génération de la page (en ms)</strong> : Délai d&#8217;attente après chargement du rapport pour faire la "photo", à changer si votre rapport est incomplet par exemple</p>
+</li>
+<li>
+<p><strong>Nettoyer les rapport plus anciens de (jours)</strong> : défini le nombre de jour avant de supprimer un rapport (les rapports prennent un peu de place donc attention à ne pas mettre trop de conservation)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_liens">11. Liens</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Permet de configurer le graphique de lien</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Profondeur pour les scénarios</strong> : Permet de définir, lors de l&#8217;affichage d&#8217;un graphique de lien d&#8217;un scénario, le nombre d&#8217;élément maximum à afficher (plus il y a d&#8217;élément plus le graphique sera lent à générer et plus il sera difficile à lire)</p>
+</li>
+<li>
+<p><strong>Profondeur pour les objets</strong> : idem pour les objets</p>
+</li>
+<li>
+<p><strong>Profondeur pour les équipements</strong> : idem pour les équipements</p>
+</li>
+<li>
+<p><strong>Profondeur pour les commandes</strong> : idem pour les commandes</p>
+</li>
+<li>
+<p><strong>Profondeur pour les variables</strong> : idem pour les variables</p>
+</li>
+<li>
+<p><strong>Paramètre de prerender</strong> : permet d&#8217;agir sur la disposition du graph</p>
+</li>
+<li>
+<p><strong>Paramètre de render</strong> : idem</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_résumés">12. Résumés</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Permet d&#8217;ajouter des résumés d&#8217;objet (information affiché tout en haut dans la barre de menu Jeedom ou a coté des objets) :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Clef</strong> : clef du résumé, a ne surtout pas toucher</p>
+</li>
+<li>
+<p><strong>Nom</strong> : Nom du résumé</p>
+</li>
+<li>
+<p><strong>Calcul</strong> : Méthode de calcul, peut etre de type</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Somme</strong> : somme les differentes valeur</p>
+</li>
+<li>
+<p><strong>Moyenne</strong> : fait la moyenne des valeurs</p>
+</li>
+<li>
+<p><strong>Texte</strong> : afficher textuellement la valeur (surtout pour celle de type chaine de caractere)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Icone</strong> : icone du résumé</p>
+</li>
+<li>
+<p><strong>Unité</strong> : unité du résumé</p>
+</li>
+<li>
+<p><strong>Méthode de comptage</strong> : si vous compté une donnée binaire alors il faut mettre cette valeur a binaire, exemple si vous comptez ne nombre de lampe allumées mais que vous avez juste la valeur du variateur (0 à 100), alors il faut mettre binaire, comme cela jeedom considera que si la valeur est &gt;1 alors Jeedom considera la lampe allumée</p>
+</li>
+<li>
+<p><strong>Affiché si valeur égale 0</strong> : masquer la valeur si elle vos 0</p>
+</li>
+<li>
+<p><strong>Liée à un virtuel</strong> : lance la création de commande virtuel ayant pour valeur celle du résumé</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_logs">13. Logs</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Voir <a href="doc-core-log.html#_configuration">ici</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_equipements">14. Equipements</h2>
+<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
@@ -849,40 +1163,61 @@ Vergessen Sie nicht, nach jeder Veränderung zu speichern.
 </div>
 </div>
 <div class="sect1">
-<h2 id="_update_und_dateien">11. Update und Dateien</h2>
+<h2 id="_update_und_dateien">15. Update und Dateien</h2>
 <div class="sectionbody">
-<div class="imageblock">
-<div class="content">
-<img src="../images/administration10.png" alt="administration10">
-</div>
-</div>
 <div class="ulist">
 <ul>
 <li>
-<p>Update Quelle :</p>
+<p><strong>Source de mise à jour</strong> : choisir la source de mise à jour du core de jeedom</p>
 </li>
 <li>
-<p>Eine Sicherung vor der Aktualisierung erstellen</p>
+<p><strong>Version du core</strong> : version du core à récuperer</p>
 </li>
 <li>
-<p>Automatisch überprüfen, ob es Aktualisierungen gibt</p>
+<p><strong>Faire une sauvegarde avant la mise à jour</strong> : indique si il faut faire une sauvegarde avant la mise à jour</p>
+</li>
+<li>
+<p><strong>Vérifier automatiquement s&#8217;il y a des mises à jour</strong> : indique si il faut chercher automatiquement si il y a de nouvelle mise à jour (attention pour eviter de faire tomber le market l&#8217;heure de verification peut changer)</p>
 </li>
 </ul>
 </div>
 <div class="sect2">
-<h3 id="_das_depot">11.1. Das Depot</h3>
+<h3 id="_das_depot">15.1. Das Depot</h3>
 <div class="paragraph">
 <p>Das Depot ist ein Internet-Speicherplatz (und Service), um Backups zu speichern, Plugins wiederherzustellen, den Jeedom Core wiederherstellen zu können….</p>
 </div>
 <div class="sect3">
-<h4 id="_markt">11.1.1. Markt</h4>
+<h4 id="_dateien">15.1.1. Dateien</h4>
+<div class="paragraph">
+<p>Depot aktivieren, zum versenden von Plugins als Dateien.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_github">15.1.2. Github</h4>
+<div class="paragraph">
+<p>Depot, das dazu dient, Jeedom mit Github zu verbinden</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Token</strong> : Token für den Zugriff auf den privaten Aufbewahrungsort</p>
+</li>
+<li>
+<p><strong>Utilisateur ou organisation du dépôt pour le core Jeedom</strong> : nom de l&#8217;utilisateur ou de l&#8217;organisation sur github pour le core</p>
+</li>
+<li>
+<p><strong>Nom du dépôt pour le core Jeedom</strong> : nom du dépot pour le core</p>
+</li>
+<li>
+<p><strong>Branche pour le core Jeedom</strong> : branche du dépot pour le core</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_markt">15.1.3. Markt</h4>
 <div class="paragraph">
 <p>Aufbewahrungsort, der dazu dient, Jeedom mit dem Markt zu verbinden, es wird sehr geraten, diesen Ort zu benutzen. Achtung, es kann jede Supportanfrage abgelehnt werden, wenn Sie einen anderen Aufbewahrungsort wie diesen benutzt.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/administration17.png" alt="administration17">
-</div>
 </div>
 <div class="ulist">
 <ul>
@@ -899,52 +1234,9 @@ Vergessen Sie nicht, nach jeder Veränderung zu speichern.
 </div>
 </div>
 <div class="sect3">
-<h4 id="_dateien">11.1.2. Dateien</h4>
-<div class="paragraph">
-<p>Depot aktivieren, zum versenden von Plugins als Dateien.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/administration15.png" alt="administration15">
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_github">11.1.3. Github</h4>
-<div class="paragraph">
-<p>Depot, das dazu dient, Jeedom mit Github zu verbinden</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/administration16.png" alt="administration16">
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Token</strong> : Token für den Zugriff auf den privaten Aufbewahrungsort</p>
-</li>
-<li>
-<p><strong>Benutzer oder Organisation des Aufbewahrungsorts für den Jeedom Kern</strong></p>
-</li>
-<li>
-<p><strong>Name vom Aufbewahrungsort für den den Jeedom Kern</strong></p>
-</li>
-<li>
-<p><strong>Zweig für den Jeedom Kern</strong></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_samba">11.1.4. Samba</h4>
+<h4 id="_samba">15.1.4. Samba</h4>
 <div class="paragraph">
 <p>Dépôt permettant d&#8217;envoyer automatiquement un backup de Jeedom sur un partage Samba (ex NAS Synology).</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/administration18.png" alt="administration18">
-</div>
 </div>
 <div class="ulist">
 <ul>
@@ -953,6 +1245,9 @@ Vergessen Sie nicht, nach jeder Veränderung zu speichern.
 </li>
 <li>
 <p><strong>[Backup] Benutzer</strong> : Benutzernamen für die Verbindung (anonyme Verbindungen sind nicht möglich)</p>
+</li>
+<li>
+<p>* L&#8217;utilisateur doit forcement avoir les droits lecture/ecriture sur ce repertoire</p>
 </li>
 <li>
 <p><strong>[Backup] Passwort</strong> : Benutzerpasswort</p>
@@ -974,6 +1269,20 @@ Vergessen Sie nicht, nach jeder Veränderung zu speichern.
 <td class="content">
 Si le chemin d&#8217;accès à votre dossier de sauvegarde samba est : \\192.168.0.1\Sauvegardes\Domotique\Jeedom
 Alors IP = 192.168.0.1 , Partage = //192.168.0.1/Sauvegardes , Chemin = Domotique/Jeedom
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Lors de la validation du partage samba, tel que décrit précédement, une nouvelle forme de sauvegarde apparait dans l&#8217;onglet
+backup de jeedom. En l&#8217;activant, jeedom procedera à son envoi automatique lors du prochain backup. Un test est possible en
+effectuant un backup manuel. Le log devra donc ressembler à ceci :
 </td>
 </tr>
 </table>
@@ -1004,12 +1313,7 @@ Jeedom doit être le seul à écrire dans ce dossier et il doit être vide par d
 </div>
 </div>
 <div class="sect3">
-<h4 id="_url">11.1.5. URL</h4>
-<div class="imageblock">
-<div class="content">
-<img src="../images/administration19.png" alt="administration19">
-</div>
-</div>
+<h4 id="_url">15.1.5. URL</h4>
 <div class="ulist">
 <ul>
 <li>

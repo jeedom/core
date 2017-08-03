@@ -50,7 +50,7 @@ try {
 	if (init('action') == 'removeMessage') {
 		$message = message::byId(init('id'));
 		if (!is_object($message)) {
-			throw new Exception(__('Message inconnu verifié l\'id', __FILE__));
+			throw new Exception(__('Message inconnu verifiez l\'id', __FILE__));
 		}
 		$message->remove();
 		ajax::success();
@@ -61,4 +61,4 @@ try {
 } catch (Exception $e) {
 	ajax::error(displayExeption($e), $e->getCode());
 }
-?>
+ 

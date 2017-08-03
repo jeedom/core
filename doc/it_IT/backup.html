@@ -420,7 +420,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_qu_est_ce_qui_est_sauvegardé">2. Qu&#8217;est-ce qui est sauvegardé ?</a></li>
 <li><a href="#_sauvegarde_cloud">3. Sauvegarde cloud</a></li>
 <li><a href="#_fréquence_des_backups">4. Fréquence des backups</a></li>
-<li><a href="#_cas_d_un_esclave">5. Cas d&#8217;un esclave</a></li>
 </ul>
 </div>
 </div>
@@ -436,20 +435,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_configuration">1. Configuration</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Accessible depuis Administration &#8594; Sauvegarde :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/backup.png" alt="backup">
-</div>
-</div>
-<div class="paragraph">
-<p>Cette page permet la gestion des sauvegardes :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/backup2.png" alt="backup2">
-</div>
+<p>Accessible depuis Administration &#8594; Sauvegarde, cette page permet la gestion des sauvegardes.</p>
 </div>
 <div class="paragraph">
 <p>Sur cette page vous retrouvez à gauche les paramètres et les boutons d&#8217;action, et à droite le statut en temps réel de l&#8217;action en cours (sauvegarde en cours ou restauration), si vous en avez lancée une.</p>
@@ -467,16 +453,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><strong>Sauvegarde</strong> : permet de lancer une sauvegarde immédiatement (utile si vous voulez faire un changement critique, cela vous permettra de revenir en arrière). Vous avez aussi un bouton pour lancer une sauvegarde sans envoyer l&#8217;archive sur le cloud (nécessite un abonnement voir plus bas), l&#8217;envoi de l&#8217;archive peut prendre du temps cela permet donc d&#8217;en gagner un peu.</p>
 </li>
 <li>
-<p><strong>Emplacement des sauvegardes</strong> : endroit où Jeedom met les sauvegardes, il est recommandé de ne pas le changer. Si vous êtes en chemin relatif, alors son origine est l&#8217;endroit ou Jeedom est installé (/usr/share/nginx/www/jeedom).</p>
+<p><strong>Emplacement des sauvegardes</strong> : endroit où Jeedom met les sauvegardes, il est recommandé de ne pas le changer. Si vous êtes en chemin relatif, alors son origine est l&#8217;endroit ou Jeedom est installé.</p>
 </li>
 <li>
 <p><strong>Nombre de jour(s) de mémorisation des sauvegardes</strong> : nombre de jours de sauvegarde à garder. Une fois ce délai passé les sauvegardes sont supprimées. Attention à ne pas mettre un nombre de jours trop élevé, sinon vous pouvez remplir votre système de fichiers.</p>
 </li>
 <li>
-<p><strong>Taille totale maximale des backups (Mo)</strong> : Permet de limiter la taille totale des sauvegardes. Si cette valeur est dépassée alors Jeedom va supprimer les sauvegardes les plus vieilles jusqu&#8217;à retomber en-dessous de la taille maximale.</p>
-</li>
-<li>
-<p><strong>Envoyer les sauvegardes dans le cloud</strong> : indique à Jeedom d&#8217;envoyer les sauvegardes au Market, attention il faut avoir pris l&#8217;abonnement.</p>
+<p><strong>Taille totale maximale des backups (Mo)</strong> : Permet de limiter la taille totale des sauvegardes. Si cette valeur est dépassée alors Jeedom va supprimer les sauvegardes les plus vieilles jusqu&#8217;à retomber en-dessous de la taille maximale ou à garder une seule sauvegarde</p>
 </li>
 </ul>
 </div>
@@ -504,9 +487,31 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </li>
 <li>
-<p><strong>Sauvegardes cloud</strong></p>
+<p><strong>Sauvegardes market</strong></p>
 <div class="ulist">
 <ul>
+<li>
+<p><strong>Envoi des sauvegardes</strong> : indique à Jeedom d&#8217;envoyer les sauvegardes au Market, attention il faut avoir pris l&#8217;abonnement.</p>
+</li>
+<li>
+<p><strong>Envoyer une sauvegarde</strong> : vous permet d&#8217;envoyer sur le cloud une archive de sauvegarde</p>
+</li>
+<li>
+<p><strong>Sauvegardes disponibles</strong> : liste des sauvegardes cloud disponibles</p>
+</li>
+<li>
+<p><strong>Restaurer la sauvegarde</strong> : lance la restauration d&#8217;une sauvegarde cloud</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Sauvegardes samba</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Envoi des sauvegardes</strong> : indique à Jeedom d&#8217;envoyer les sauvegardes sur le partage samba configuré ici Administration&#8594;Configuration&#8594;Onglet mise à jours.</p>
+</li>
 <li>
 <p><strong>Sauvegardes disponibles</strong> : liste des sauvegardes cloud disponibles</p>
 </li>
@@ -517,6 +522,18 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </li>
 </ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Selon ce qui sera activé ou non dans la page Administration&#8594;Configuration&#8594;Onglet mise à jours, vous pouvez voir moins de sections.
+</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -537,7 +554,7 @@ Lors d&#8217;une réinstallation de Jeedom et en ayant pris l&#8217;abonnement d
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Il est possible, en cas de soucis, de faire un backup en ligne de commandes : <code>sudo php /usr/share/nginx/www/jeedom/install/backup.php</code>
+Il est possible, en cas de soucis, de faire un backup en ligne de commandes : <code>sudo php /usr/share/nginx/www/jeedom/install/backup.php</code> ou <code>sudo php /var/www/html/install/backup.php</code> selon votre système
 </td>
 </tr>
 </table>
@@ -549,7 +566,7 @@ Il est possible, en cas de soucis, de faire un backup en ligne de commandes : <c
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Il est possible aussi de restaurer un backup en ligne de commandes (par défaut Jeedom restaure le backup le plus récent présent dans le répertoire de backup) : <code>sudo php /usr/share/nginx/www/jeedom/install/restore.php</code>
+Il est possible aussi de restaurer un backup en ligne de commandes (par défaut Jeedom restaure le backup le plus récent présent dans le répertoire de backup) : <code>sudo php /usr/share/nginx/www/jeedom/install/restore.php</code> ou <code>sudo php /var/www/html/install/restore.php</code>
 </td>
 </tr>
 </table>
@@ -571,23 +588,8 @@ Il est possible aussi de restaurer un backup en ligne de commandes (par défaut 
 <h2 id="_sauvegarde_cloud">3. Sauvegarde cloud</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>La sauvegarde dans le cloud permet à Jeedom d&#8217;envoyer vos sauvegardes directement sur le Market. Cela vous permet de les restaurer facilement et d&#8217;être sûr de ne pas les perdre. Le Market conserve les 14 dernières sauvegardes. Pour vous abonner il suffit d&#8217;aller sur votre page profil sur le Market :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/backup3.png" alt="backup3">
-</div>
-</div>
-<div class="paragraph">
-<p>Puis dans l&#8217;onglet mes backups :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/backup4.png" alt="backup4">
-</div>
-</div>
-<div class="paragraph">
-<p>Vous pouvez, à partir de cette page, récupérer un backup ou acheter un abonnement (pour 1, 3, 6 ou 12 mois).</p>
+<p>La sauvegarde dans le cloud permet à Jeedom d&#8217;envoyer vos sauvegardes directement sur le Market. Cela vous permet de les restaurer facilement et d&#8217;être sûr de ne pas les perdre. Le Market conserve les 6 dernières sauvegardes. Pour vous abonner il suffit d&#8217;aller sur votre page profil sur le Market.
+Puis dans l&#8217;onglet mes backups. Vous pouvez, à partir de cette page, récupérer un backup ou acheter un abonnement (pour 1, 3, 6 ou 12 mois).</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -608,14 +610,6 @@ Vous pouvez mettre un nom de sauvegarde plus sympa à partir de l&#8217;onglet "
 <div class="sectionbody">
 <div class="paragraph">
 <p>Jeedom effectue une sauvegarde tous les jours.Vous pouvez modifier cette heure à partir du "Moteur de tâches" (la tâche est nommée 'Jeedom backup') mais ce n&#8217;est pas recommandé car cette heure est calculée par rapport à la charge et l&#8217;heure de la sauvegarde du Market.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_cas_d_un_esclave">5. Cas d&#8217;un esclave</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Le cas d&#8217;un esclave est un peu particulier, car il va après chaque sauvegarde envoyer celle-ci sur son maître (et sur le Market si vous avez un abonnement au service de sauvegarde cloud). Vous pouvez donc à partir du maître récupérer une sauvegarde de l&#8217;esclave pour l&#8217;installer sur un autre esclave par exemple.</p>
 </div>
 </div>
 </div>

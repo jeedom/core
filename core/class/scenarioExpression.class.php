@@ -824,7 +824,7 @@ class scenarioExpression {
 
 	public static function getRequestTags($_expression) {
 		$return = array();
-		preg_match_all("/#([a-zA-Z]*)#/", $_expression, $matches);
+		preg_match_all("/#([a-zA-Z0-9]*)#/", $_expression, $matches);
 		if (count($matches) == 0) {
 			return $return;
 		}

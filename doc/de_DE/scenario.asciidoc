@@ -205,12 +205,17 @@ Außerdem können Sie mit den folgenden Tags:
 [TIP]
 Un tag est remplacé lors de l'exécution du scénario par sa valeur
 
-* *\#seconde#* : seconde courante,
-* *\#heure#* : heure courante au format 24h  (ex : 17 pour 17h15),
-* *\#heure12#* : heure courante au format 12h (ex : 5 pour 17h15),
-* *\#minute#* : minute courante (ex : 15 pour 17h15),
-* *\#jour#* : jour courant,
-* *\#mois#* : mois courant,
+[TIP]
+Pour avoir les zéros intiaux à l'affichage, il faut utilier la fonction Date().
+Voir http://php.net/manual/fr/function.date.php
+
+
+* *\#seconde#* : seconde courante (sans les zéros initiaux, ex : 6 pour 08:07:06),
+* *\#heure#* : heure courante au format 24h  (ex : 17 pour 17h15) (sans les zéros initiaux, ex : 8 pour 08:07:06),
+* *\#heure12#* : heure courante au format 12h (ex : 5 pour 17h15) (sans les zéros initiaux, ex : 8 pour 08:07:06),
+* *\#minute#* : minute courante (ex : 15 pour 17h15) (sans les zéros initiaux, ex : 7 pour 08:07:06),
+* *\#jour#* : jour courant (sans les zéros initiaux, ex : 6 pour 06/07/2017),
+* *\#mois#* : mois courant (sans les zéros initiaux, ex : 7 pour 06/07/2017),
 * *\#annee#* : année courante,
 * *\#time#* : heure et minute courante (ex : 1715 pour 17h15),
 * *\#timestamp#* : retourne le nombre de secondes depuis le 1er janvier 1970,

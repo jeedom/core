@@ -419,15 +419,18 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_configuration_avancée_d_un_équipement">1. Configuration avancée d&#8217;un équipement</a>
 <ul class="sectlevel2">
 <li><a href="#_informations">1.1. Informations</a></li>
-<li><a href="#_affichage_avancé">1.2. Affichage avancé</a></li>
-<li><a href="#_batteries">1.3. Batteries</a></li>
+<li><a href="#_affichage">1.2. Affichage</a></li>
+<li><a href="#_alertes">1.3. Alertes</a></li>
+<li><a href="#_commentaire">1.4. Commentaire</a></li>
 </ul>
 </li>
 <li><a href="#_configuration_avancée_d_une_commande">2. Configuration avancée d&#8217;une commande</a>
 <ul class="sectlevel2">
 <li><a href="#_informations_2">2.1. Informations</a></li>
-<li><a href="#_configuration_avancée">2.2. Configuration avancée</a></li>
-<li><a href="#_affichage_avancé_2">2.3. Affichage avancé</a></li>
+<li><a href="#_configuration">2.2. Configuration</a></li>
+<li><a href="#_alerte">2.3. Alerte</a></li>
+<li><a href="#_affichage_2">2.4. Affichage</a></li>
+<li><a href="#_code">2.5. Code</a></li>
 </ul>
 </li>
 </ul>
@@ -440,20 +443,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Cette page permet d&#8217;avoir un résumé sur sa domotique et donne aussi accès à des fonctions d&#8217;organisation des équipements et des commandes, à la configuration avancée des équipements et des commandes ainsi qu&#8217;à des possibilités de configuration d&#8217;affichage. Elle se décompose en un onglet "Ma domotique" et un un onglet "Configuration de l&#8217;affichage".</p>
 </div>
 <div class="paragraph">
-<p>Cette page est accessible par Outils &#8594; Résumé domotique :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/display.png" alt="display">
-</div>
-</div>
-<div class="paragraph">
-<p>Le premièr onglet permet d&#8217;organiser les différents équipements, les commandes, d&#8217;avoir accès à la configuration avancée ainsi qu&#8217;à la configuration de masse. Voila celui-ci :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/display2.png" alt="display2">
-</div>
+<p>Cette page est accessible par Outils &#8594; Résumé domotique.</p>
 </div>
 <div class="paragraph">
 <p>On retrouve tout en haut un résumé du nombre d&#8217;objets existants, du nombre d&#8217;équipements et du nombre de commandes. Sur la droite se trouve un bouton pour masquer tous les équipements inactifs et un champ de recherche pour par exemple chercher un équipement, une commande ou tous les équipements d&#8217;un certain type (plugin, par exemple il suffit de taper rfxcom pour avoir tous les équipements rfxcom)</p>
@@ -504,25 +494,11 @@ C&#8217;est à partir de cet ordre là qu&#8217;est calculé l&#8217;ordre d&#82
 <div class="paragraph">
 <p>En cada dispositivo encontramos :</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/display3.png" alt="display3">
-</div>
-</div>
 <div class="ulist">
 <ul>
 <li>
 <p>une coche pour sélectionner l&#8217;équipement (vous pouvez en sélectionner plusieurs), si au moins un équipement est sélectionné vous avez des boutons d&#8217;action qui apparaissent pour supprimer, désactiver, activer, rendre visible ou invisible les équipements sélectionnés</p>
 </li>
-</ul>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/display4.png" alt="display4">
-</div>
-</div>
-<div class="ulist">
-<ul>
 <li>
 <p>le nom de l&#8217;équipement</p>
 </li>
@@ -541,6 +517,9 @@ C&#8217;est à partir de cet ordre là qu&#8217;est calculé l&#8217;ordre d&#82
 <li>
 <p>configuration avancée (petit roue crantée) : permet d&#8217;ouvrir la fenêtre de configuration avancée</p>
 </li>
+<li>
+<p>liste des commandes (la flèche) : permet de déplier la liste des commandes</p>
+</li>
 </ul>
 </div>
 <div class="admonitionblock tip">
@@ -555,23 +534,8 @@ Un double clic sur l&#8217;équipement permet aussi d&#8217;ouvrir la fenêtre d
 </tr>
 </table>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>liste des commandes (la flèche) : permet de déplier la liste des commandes</p>
-</li>
-</ul>
-</div>
 <div class="paragraph">
-<p>Si se despliega la lista de ordenes se obtiene:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/display5.png" alt="display5">
-</div>
-</div>
-<div class="paragraph">
-<p>Chaque bloc jaune correspond à une commande de votre équipement (un nouveau clic sur la petite flèche de l&#8217;équipement permet de les masquer). Si vous faites un double clic sur la commande ou que vous cliquez sur la petite roue crantée cela fera apparaitre la fenêtre de configuration</p>
+<p>Si vous dépliez la liste des commandes vous obtenez chaque bloc jaune correspond à une commande de votre équipement (un nouveau clic sur la petite flèche de l&#8217;équipement permet de les masquer). Si vous faites un double clic sur la commande ou que vous cliquez sur la petite roue crantée cela fera apparaitre la fenêtre de configuration</p>
 </div>
 </div>
 </div>
@@ -579,10 +543,29 @@ Un double clic sur l&#8217;équipement permet aussi d&#8217;ouvrir la fenêtre d
 <h2 id="_configuration_avancée_d_un_équipement">1. Configuration avancée d&#8217;un équipement</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>La fenêtre de configuration avancée d&#8217;un équipement est composée de 2 onglets : Informations et Affichages avancés.</p>
+<p>La fenêtre de configuration avancée d&#8217;un équipement permet d&#8217;avoir de modifier et d&#8217;éditer la configuration de l&#8217;équipement</p>
 </div>
 <div class="paragraph">
-<p>En la parte superior también encontrará un botón guardar y un botón borrar dispositivo</p>
+<p>Vous avez en haut des boutons :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Liens</strong> : Permet d&#8217;afficher les liens de l&#8217;équipement avec les objets,commandes,scénario, variable, interaction&#8230;&#8203;. sous forme graphique (dans un graphique un double clique sur un élement vous amene sur celui-ci)</p>
+</li>
+<li>
+<p><strong>Log</strong> : affiche les évènements de l&#8217;équipement en question</p>
+</li>
+<li>
+<p><strong>Informations</strong> : affiche les proprietés brute de l&#8217;équipement</p>
+</li>
+<li>
+<p><strong>Enregistrer</strong> : Enregistre les modifications faite sur l&#8217;équipement</p>
+</li>
+<li>
+<p><strong>Supprimer</strong> : supprime l&#8217;équipement</p>
+</li>
+</ul>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -591,18 +574,13 @@ Un double clic sur l&#8217;équipement permet aussi d&#8217;ouvrir la fenêtre d
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Il est possible d&#8217;accéder (si le plugin le supporte) directement à cette fenêtre à partir de la page de configuration de l&#8217;équipement en cliquant sur les 3 petites roues crantées (souvent placées tout en haut à coté du titre "Général")
+Il est possible d&#8217;accéder (si le plugin le supporte) directement à cette fenêtre à partir de la page de configuration de l&#8217;équipement en cliquant sur le bouton configuration avancée
 </td>
 </tr>
 </table>
 </div>
 <div class="sect2">
 <h3 id="_informations">1.1. Informations</h3>
-<div class="imageblock">
-<div class="content">
-<img src="../images/display9.png" alt="display9">
-</div>
-</div>
 <div class="paragraph">
 <p>L&#8217;onglet information contient les informations générales de l&#8217;équipement :</p>
 </div>
@@ -640,14 +618,12 @@ Il est possible d&#8217;accéder (si le plugin le supporte) directement à cette
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>En dessous vous retrouvez un tableau avec la liste des commandes de l&#8217;équipement</p>
+</div>
 </div>
 <div class="sect2">
-<h3 id="_affichage_avancé">1.2. Affichage avancé</h3>
-<div class="imageblock">
-<div class="content">
-<img src="../images/display10.png" alt="display10">
-</div>
-</div>
+<h3 id="_affichage">1.2. Affichage</h3>
 <div class="paragraph">
 <p>Dans cette partie vous allez pouvoir configurer certains comportements d&#8217;affichage de la tuile sur le dashboard, les vues, le design et en mobile.</p>
 </div>
@@ -666,17 +642,24 @@ Il est possible d&#8217;accéder (si le plugin le supporte) directement à cette
 <p><strong>Afficher le nom de l&#8217;objet</strong> : uniquement sur les vues cela permet de ne pas afficher le nom de l&#8217;objet à coté du nom de l&#8217;équipement</p>
 </li>
 <li>
-<p><strong>Afficher le niveau de batterie</strong> : uniquement pour le dashboard, les designs et les vues, cette option permet de masquer le niveau de la batterie de l&#8217;équipement (s&#8217;il est sur batterie bien sûr)</p>
+<p><strong>Couleur de fond</strong> : couleur de fond du widget</p>
+</li>
+<li>
+<p><strong>Opacité</strong> : opacité du widget</p>
+</li>
+<li>
+<p><strong>Couleur du texte</strong> : couleur du texte</p>
+</li>
+<li>
+<p><strong>Bordures</strong> : permet d&#8217;ajouter une bordure, il faut mettre du code css, proprieté border (ex "3px blue dashed" pour une bordure pointillé de 3px en bleu)</p>
+</li>
+<li>
+<p><strong>Arrondit des bordures (en px)</strong> : permet d&#8217;arrondir les bordure, il faut mettre du code css, proprieté border-radius (ex "10px")</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>En-dessous, on retrouve des paramètres optionnels d&#8217;affichage que l&#8217;on peut passer à l&#8217;équipement. Ces paramètres sont composés d&#8217;un nom et d&#8217;une valeur. Pour les équipements, seule la valeur "style" est pour le moment utilisée, elle permet d&#8217;insérer du code CSS sur l&#8217;équipement en question. Exemple ici pour arrondir les angles :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/display11.png" alt="display11">
-</div>
+<p>En-dessous, on retrouve des paramètres optionnels d&#8217;affichage que l&#8217;on peut passer à l&#8217;équipement. Ces paramètres sont composés d&#8217;un nom et d&#8217;une valeur. Pour les équipements, seule la valeur "style" est pour le moment utilisée, elle permet d&#8217;insérer du code CSS sur l&#8217;équipement en question.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -692,14 +675,18 @@ N&#8217;oubliez pas de sauvegarder après toute modification
 </div>
 </div>
 <div class="sect2">
-<h3 id="_batteries">1.3. Batteries</h3>
-<div class="imageblock">
-<div class="content">
-<img src="../images/display16.png" alt="display16">
-</div>
-</div>
+<h3 id="_alertes">1.3. Alertes</h3>
 <div class="paragraph">
 <p>Cet onglet permet d&#8217;avoir les informations sur la batterie de l&#8217;équipement : type de pile, dernière remontée de l&#8217;information, niveau restant (si bien sûr votre équipement fonctionne sur pile). Vous pourrez aussi à partir de celui-ci configurer les seuils spécifiques pour cet équipement.</p>
+</div>
+<div class="paragraph">
+<p>Il permet aussi de gerer le timeout de l&#8217;équipement, ex 30 indique à jeedom que si l&#8217;équipement n&#8217;a pas communiqué depuis plus de 30min alors il faut le mettre en alerte</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_commentaire">1.4. Commentaire</h3>
+<div class="paragraph">
+<p>Permet de mettre des commentaire sur l&#8217;équipement (date de change de pile par exemple)</p>
 </div>
 </div>
 </div>
@@ -708,20 +695,46 @@ N&#8217;oubliez pas de sauvegarder après toute modification
 <h2 id="_configuration_avancée_d_une_commande">2. Configuration avancée d&#8217;une commande</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>La fenêtre de configuration avancée d&#8217;une commande est composée de 3 onglets : Informations, Configuration avancée et Affichage avancé.</p>
+<p>Vous avez en haut des boutons :</p>
 </div>
-<div class="paragraph">
-<p>También tiene 2 botones, uno para salvar y otro para aplicar la misma configuración a otra orden</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Tester</strong> : permet de tester la commande</p>
+</li>
+<li>
+<p><strong>Liens</strong> : Permet d&#8217;afficher les liens de l&#8217;équipement avec les objets,commandes,scénario, variable, interaction&#8230;&#8203;. sous forme graphique (dans un graphique un double clique sur un élement vous amene sur celui-ci)</p>
+</li>
+<li>
+<p><strong>Log</strong> : affiche les évènements de l&#8217;équipement en question</p>
+</li>
+<li>
+<p><strong>Informations</strong> : affiche les proprietés brute de l&#8217;équipement</p>
+</li>
+<li>
+<p>Appliquer à* : permet d&#8217;appliquer la meme configuration sur plusieurs commande</p>
+</li>
+<li>
+<p><strong>Enregistrer</strong> : Enregistre les modifications faite sur l&#8217;équipement</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+En fonction du type de la commande les informations/actions affichées oeuvent changer
+</td>
+</tr>
+</table>
 </div>
 <div class="sect2">
 <h3 id="_informations_2">2.1. Informations</h3>
-<div class="imageblock">
-<div class="content">
-<img src="../images/display12.png" alt="display12">
-</div>
-</div>
 <div class="paragraph">
-<p>L&#8217;onglet information contient les informations générales sur la commande :</p>
+<p>L&#8217;onglet information contient les informations générales sur la commande  :</p>
 </div>
 <div class="ulist">
 <ul>
@@ -750,30 +763,47 @@ N&#8217;oubliez pas de sauvegarder après toute modification
 <p><strong>Commande déclenchant une mise à jour</strong> : donne l&#8217;identifiant d&#8217;une autre commande qui, si cette autre commande change, va forcer la mise à jour de la commande visualisée</p>
 </li>
 <li>
-<p><strong>Cache</strong> : durée de vie de la valeur de la commande en mémoire (une fois ce délai passé Jeedom redemandera sa valeur). Attention si vous êtes en événement alors ce paramètre est ignoré car la durée de vie est infinie. Si vous n&#8217;avez aucune valeur et que vous n&#8217;êtes pas en événement alors la durée de vie est celle définie dans la configuration de Jeedom (par defaut 300s)</p>
-</li>
-<li>
-<p><strong>Evènement seulement</strong> : indique à Jeedom qu&#8217;il ne peut pas demander la valeur de la commande (c&#8217;est l&#8217;équipement ou le plugin qui le lui transmet)</p>
-</li>
-<li>
 <p><strong>Visible</strong> : définit si la commande est visible ou non</p>
 </li>
+<li>
+<p><strong>Icône</strong> : permet de changer l&#8217;icone de la commande</p>
+</li>
 </ul>
+</div>
+<div class="paragraph">
+<p>Vous avez aussi differents boutons :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Cette commande remplace l&#8217;id</strong> : permet de remplacer un id de commande par la commande en question, utile si vous avez supprimé un équipement dans jeedom et que vous avez des scénarios utilisant des commandes de celui-ci.</p>
+</li>
+<li>
+<p><strong>Cette commande remplace la commande</strong> : Remplace une commande par la commande courrante</p>
+</li>
+<li>
+<p><strong>Remplacer cette commande la commande</strong> : L&#8217;inverse, remplace la commande par une autre commande</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Ce genre d&#8217;action remplace les commandes partout dans jeedom (scénario, interaction, commande, équipement&#8230;&#8203;.)
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>En-dessous, vous retrouvez la liste des différents équipements, commandes, scénarios ou interactions qui utilisent cette commande. Un clic dessus permet d&#8217;aller directement sur leur configuration respective</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_configuration_avancée">2.2. Configuration avancée</h3>
-<div class="imageblock">
-<div class="content">
-<img src="../images/display13.png" alt="display13">
-</div>
-</div>
-<div class="paragraph">
-<p>Pas mal d&#8217;options ici (elles peuvent varier en fonction du type et du sous-type de la commande).</p>
-</div>
+<h3 id="_configuration">2.2. Configuration</h3>
 <div class="paragraph">
 <p>Para una orden de tipo información:</p>
 </div>
@@ -799,14 +829,43 @@ N&#8217;oubliez pas de sauvegarder après toute modification
 <p><strong>Action sur la valeur</strong> : cette partie permet de faire des sortes de mini scénarios, vous pouvez par exemple dire que si la valeur vaut plus de 50 pendant 3 minutes alors il faut faire telle action. Cela permet par exemple d&#8217;éteindre une lumiere X minutes après que celle-ci se soit allumée</p>
 </li>
 <li>
-<p><strong>Historique</strong> : voir <a href="https://jeedom.com/doc/documentation/core/fr_FR/doc-core-history.html#_configuration_spécifique_par_commande">ici</a></p>
+<p><strong>Historique</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Historiser</strong> : permet de définir si vous voulez historiser ou non cette commande.</p>
+</li>
+<li>
+<p><strong>Mode de lissage</strong> : mode de lissage ou d&#8217;archivage permet de choisir la manière d&#8217;archiver la donnée ; par défaut c&#8217;est une moyenne ; il est aussi possible de choisir le maximum, le minimum, ou aucun ; aucun permet de dire à Jeedom qu&#8217;il ne doit pas réaliser d&#8217;archivage sur cette commande (aussi bien sur la première période des 5 mn qu&#8217;avec la tâche d&#8217;archivage). Cette option est dangereuse car Jeedom conserve tout : il va donc y avoir beaucoup plus de données conservées.</p>
+</li>
+<li>
+<p><strong>Purger l&#8217;historique si plus vieux de</strong> : cette option permet de dire à Jeedom de supprimer toutes les données plus vieilles qu&#8217;une certaine période. Peut être pratique pour ne pas conserver de données si ça n&#8217;est pas nécessaire et donc limiter la quantité d&#8217;informations enregistrées par Jeedom.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Gestion des valeurs</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Valeur interdite</strong> : si la commande prend une des valeurs en question jeedom l&#8217;ignore avant de l&#8217;appliquer</p>
+</li>
+<li>
+<p><strong>Valeur retour d&#8217;état</strong> : permet de faire revenir la commande à cette valeur après un certain temps</p>
+</li>
+<li>
+<p><strong>Durée avant retour d&#8217;état (min)</strong> : temps avant le retour à la valeur ci-dessus</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p><strong>Autres</strong></p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Ne pas répéter si la valeur ne change pas</strong> : Si la commande remonte 2 fois la même valeur d&#8217;affilée alors Jeedom ne prend pas en compte la 2eme remontée (évite de déclencher plusieurs fois un scénario par exemple si la valeur ne change pas)</p>
+<p><strong>Gestion de la répétition des valeurs</strong> : En automatique si la commande remonte 2 fois la même valeur d&#8217;affilée alors Jeedom ne prend pas en compte la 2eme remontée (évite de déclencher plusieurs fois un scénario par exemple si la valeur ne change pas sauf si la commande est de type binaire). Vous pouvez forcer la répétition de la valeur ou l&#8217;interdire completement</p>
 </li>
 <li>
 <p><strong>Push URL</strong> : permet de rajouter une URL à appeler en cas de mise à jour de la commande. Vous pouvez utiliser les tags suivant : #value# pour la valeur de la commande, #cmd_name# pour le nom de la commande, #cmd_id# pour l&#8217;identifiant unique de la commande, #humanname# pour le nom complet de la commande (ex : #[Salle de bain][Hydrometrie][Humidité]#)</p>
@@ -819,11 +878,6 @@ N&#8217;oubliez pas de sauvegarder après toute modification
 <div class="paragraph">
 <p>Si se despliega la lista de comandos se obtiene:</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/display15.png" alt="display15">
-</div>
-</div>
 <div class="ulist">
 <ul>
 <li>
@@ -832,16 +886,35 @@ N&#8217;oubliez pas de sauvegarder après toute modification
 <li>
 <p><strong>Code d&#8217;accès</strong> : lors d&#8217;une action à partir de l&#8217;interface sur cette commande Jeedom demandera le code</p>
 </li>
+<li>
+<p><strong>Action avant exécution de la commande</strong> : action qui sera faite avant chaque execution de la commande</p>
+</li>
+<li>
+<p><strong>Action après execution de la commande</strong> : action faite après chaque execution de la commande</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_affichage_avancé_2">2.3. Affichage avancé</h3>
-<div class="imageblock">
-<div class="content">
-<img src="../images/display14.png" alt="display14">
+<h3 id="_alerte">2.3. Alerte</h3>
+<div class="paragraph">
+<p>Permet de definir un niveau d&#8217;alerte (warning ou danger) en fonction de certain condition, exemple si <mark>value</mark> &gt; 8 pendant 30min alors l&#8217;équipement peut passer en alerte warning.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Vous pouvez sur la page d&#8217;administration de Jeedom configurer une commande de type message qui permettra à Jeedom de vous prevenir si on atteint le seuil warning ou danger
+</td>
+</tr>
+</table>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_affichage_2">2.4. Affichage</h3>
 <div class="paragraph">
 <p>Dans cettre partie vous allez pouvoir configurer certains comportements d&#8217;affichage du widget sur le dashboard, les vues, le design et en mobile.</p>
 </div>
@@ -857,10 +930,10 @@ N&#8217;oubliez pas de sauvegarder après toute modification
 <p><strong>Visible</strong> : permet de masquer ou non la commande en desktop ou mobile</p>
 </li>
 <li>
-<p><strong>Afficher le nom</strong> : permet de masquer le nom de la commande en fonction du contexte (dashboard et design, vue ou mobile)</p>
+<p><strong>Afficher le nom</strong> : permet de masquer le nom de la commande en fonction du contexte</p>
 </li>
 <li>
-<p><strong>Afficher les statistiques</strong> : permet de ne pas afficher les statistiques en fonction du contexte (dashboard et design, vue ou mobile). Attention, il faut avoir activé les statistiques dans la configuration de Jeedom pour que cette option ait un impact</p>
+<p><strong>Afficher le nom et l&#8217;icône</strong> : permet d&#8217;afficher l&#8217;icône en plus du nom de la commande</p>
 </li>
 <li>
 <p><strong>Retour à la ligne forcé avant le widget</strong> : permet d&#8217;ajouter un retour à la ligne avant ou après le widget (pour forcer par exemple un affichage en colonne des différentes commandes de l&#8217;équipement au lieu de lignes par defaut)</p>
@@ -878,6 +951,24 @@ N&#8217;oubliez pas de sauvegarder après toute modification
 </td>
 <td class="content">
 N&#8217;oubliez pas de sauvegarder après toute modification
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_code">2.5. Code</h3>
+<div class="paragraph">
+<p>Permet de modifier le code du widget juste pour la commande courrante</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Si vous voulez modifier le code n&#8217;oubliez pas de cocher la case "Activer la personalisation du widget"
 </td>
 </tr>
 </table>
