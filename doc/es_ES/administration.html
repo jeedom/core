@@ -1082,7 +1082,83 @@ Température 27.2 °C</p>
 <h2 id="_logs">13. Logs</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Voir <a href="doc-core-log.html#_configuration">ici</a></p>
+<p>Vous avez ici les options suivantes :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Message</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Ajouter un message à chaque erreur dans les logs</strong> : si un plugin ou Jeedom écrit un message d&#8217;erreur dans un log, Jeedom ajoute automatiquement un message dans le centre des messages (au moins vous êtes sûr de ne pas le manquer)</p>
+</li>
+<li>
+<p><strong>Commande d&#8217;information utilisateur</strong> : permet de sélectionner une ou plusieurs commandes (à séparer par des &amp;&amp;) de type message qui seront utilisées lors de nouveaux messages (permet d&#8217;être tout de suite prévenu)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alertes</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Ajouter un message à chaque Timeout</strong> : ajoute un message dans le centre de message si un équipement tombe en timeout</p>
+</li>
+<li>
+<p><strong>Commande sur Timeout</strong> : commande de type message à utiliser si un équipement est en timeout</p>
+</li>
+<li>
+<p><strong>Ajouter un message à chaque Batterie en Warning</strong> : ajoute un message dans le centre de message si un équipement à son niveau de batterie en warning</p>
+</li>
+<li>
+<p><strong>Commande sur Batterie en Warning</strong> : commande de type message à utiliser si un équipement à son niveau de batterie en warning</p>
+</li>
+<li>
+<p><strong>Ajouter un message à chaque Batterie en Danger</strong> : ajoute un message dans le centre de message si un équipement à son niveau de betterie en danger</p>
+</li>
+<li>
+<p><strong>Commande sur Batterie en Danger</strong> : commande de type message à utiliser si un équipement à son niveau de betterie en danger</p>
+</li>
+<li>
+<p><strong>Ajouter un message à chaque Warning</strong> : ajoute un message dans le centre de message si une commande passe en alerte warning</p>
+</li>
+<li>
+<p><strong>Commande sur Warning</strong> : commande de type message à utiliser si une commande passe en alerte warning</p>
+</li>
+<li>
+<p><strong>Ajouter un message à chaque Danger</strong> : ajoute un message dans le centre de message si une commande passe en alerte danger</p>
+</li>
+<li>
+<p><strong>Commande sur Danger</strong> : commande de type message à utiliser si une commande passe en alerte danger</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Log</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Moteur de log</strong> : permet de changer le moteur de log pour par exemple les envoyer à un demon syslog(d)</p>
+</li>
+<li>
+<p><strong>Format des logs</strong> : Format des logs à utiliser (attention ca n&#8217;affecte pas les logs des démons)</p>
+</li>
+<li>
+<p><strong>Nombre de lignes maximum dans un fichier de log</strong> : Définit le nombre maximum de lignes dans un fichier de log, il est recommandé de ne pas toucher cette valeur, car une valeur trop grande pourrait remplir le système de fichiers et/ou rendre Jeedom incapable d&#8217;afficher le log</p>
+</li>
+<li>
+<p><strong>Niveau de log par défaut</strong> : niveau de log par defaut de jeedom</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>En dessous vous retrouvez un tableau permet de gerer finement le niveau de log par type ou plugin de Jeedom</p>
 </div>
 </div>
 </div>

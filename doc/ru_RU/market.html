@@ -419,8 +419,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_mon_profil">1. Mon profil</a></li>
 <li><a href="#_mes_jeedoms">2. Mes Jeedoms</a></li>
 <li><a href="#_mes_backups">3. Mes backups</a></li>
-<li><a href="#_mes_achats_promos_dons">4. Mes achats/promos/dons</a></li>
-<li><a href="#_mes_développments">5. Mes développments</a></li>
+<li><a href="#_mes_sms_appels">4. Mes SMS/Appels</a></li>
+<li><a href="#_mes_achats_promos_dons">5. Mes achats/promos/dons</a></li>
+<li><a href="#_mes_développments">6. Mes développments</a></li>
 </ul>
 </div>
 </div>
@@ -431,12 +432,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Doc un peu particulière car elle va traiter uniquement de votre page profil du market.</p>
 </div>
 <div class="paragraph">
-<p>Disponible en allant sur votre nom d&#8217;utilisateur puis profil à partir du market (un peu comme sur Jeedom) :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/market.png" alt="market">
-</div>
+<p>Disponible en allant sur votre nom d&#8217;utilisateur puis profil à partir du market (un peu comme sur Jeedom).</p>
 </div>
 <div class="paragraph">
 <p>Celle-ci se décompose en plusieurs parties :</p>
@@ -446,11 +442,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect1">
 <h2 id="_mon_profil">1. Mon profil</h2>
 <div class="sectionbody">
-<div class="imageblock">
-<div class="content">
-<img src="../images/market1.png" alt="market1">
-</div>
-</div>
 <div class="paragraph">
 <p>C&#8217;est ici que vous allez pouvoir régler différents paramètres de votre profil :</p>
 </div>
@@ -470,19 +461,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><strong>Prénom</strong> : Votre prénom (cette information n&#8217;est utile que pour rendre les mails plus sympa)</p>
 </li>
 <li>
-<p><strong>Pseudo</strong> : Votre pseudo (uniquement pour les développeurs)</p>
+<p><strong>Nom d&#8217;utilisateur sur le forum</strong> : Votre pseudo sur le forum</p>
 </li>
 <li>
 <p><strong>Email</strong> : Votre mail</p>
 </li>
 <li>
-<p><strong>Email public</strong> : Non utilisé pour le moment mais ça pourrait être un email de contact pour les développeurs si un jour on met en place ce genre de service</p>
-</li>
-<li>
 <p><strong>Langue</strong> : Votre langue</p>
-</li>
-<li>
-<p><strong>Compte paypal</strong> : Votre mail de compte Paypal (uniquement utilisé pour payer les developpeurs)</p>
 </li>
 <li>
 <p><strong>Mot de passe &amp;&amp; Confirmer le mot de passe</strong> : permet de changer votre mot passe</p>
@@ -490,28 +475,75 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 </li>
-<li>
-<p><strong>CGU</strong></p>
+</ul>
+</div>
+<div class="paragraph">
+<p>Pour les développeurs :</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Utilisateur</strong> : conditions générales d&#8217;utilisation (attention à bien les lire car elles vous engage)</p>
+<p><strong>Nom d&#8217;utilisateur sur le forum</strong> : Votre pseudo sur le forum</p>
 </li>
 <li>
-<p><strong>Developpeur</strong> : conditions générales d&#8217;utilisation pour les développeurs</p>
+<p><strong>Email public</strong> : Votre mail pour recevoir des éventuelles communications de notre part</p>
+</li>
+<li>
+<p><strong>Compte paypal</strong> : Votre mail de compte Paypal (uniquement utilisé pour payer les developpeurs)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Pour les pros :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Compte mail installateur</strong> : Votre mail de contact pro</p>
+</li>
+<li>
+<p><strong>Destinataire des demandes de support</strong> : savoir qui recevra les mails de support (client final, installateur ou les deux)</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>CGU</strong></p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Tickets</strong></p>
+<p><strong>Utilisateur</strong> : conditions générales d&#8217;utilisation (attention à bien les lire car elles vous engage)</p>
+</li>
+<li>
+<p><strong>Developpeur</strong> : conditions générales d&#8217;utilisation pour les développeurs</p>
 <div class="ulist">
 <ul>
+<li>
+<p><strong>Tickets</strong></p>
+</li>
+</ul>
+</div>
+</li>
 <li>
 <p><strong>Nombre de tickets</strong> : Nombre de tickets pour le mois en cours ainsi que votre limite</p>
 </li>
 <li>
 <p><strong>Support</strong> : bouton pour envoyer une demande de support (accessible aussi par le point d&#8217;exclamation en haut à droite sur le market ou sur votre Jeedom)</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Accés aux betas</strong></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Activer l&#8217;accès aux plugins beta</strong> : permet d&#8217;activer l&#8217;accès aux plugins betas (attention cela vous interdira tout accès au support)</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Résumé</strong>
+Ici vous retrouverez un résumé de vos différents droits et services</p>
 </li>
 </ul>
 </div>
@@ -535,14 +567,6 @@ N&#8217;oubliez pas de sauvegarder
 <div class="sect1">
 <h2 id="_mes_jeedoms">2. Mes Jeedoms</h2>
 <div class="sectionbody">
-<div class="imageblock">
-<div class="content">
-<img src="../images/market2.png" alt="market2">
-</div>
-</div>
-<div class="paragraph">
-<p>Ici vous pouvoir :</p>
-</div>
 <div class="ulist">
 <ul>
 <li>
@@ -565,8 +589,11 @@ N&#8217;oubliez pas de sauvegarder
 <li>
 <p><strong>Nombre de clefs d&#8217;installation</strong> : affiche le nombre d&#8217;installations Jeedom actuellement liées à votre compte ainsi que la limite autorisée</p>
 </li>
-<li>
-<p><strong>Clef d&#8217;installation</strong> : vous pouvez demander ici une réinitialisation des clefs Jeedom liées à votre compte. Attention, dépassé les 2 demandes dans le mois, une vérification manuelle a lieu, la demande peut donc prendre plus de temps.</p>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 <div class="admonitionblock tip">
 <table>
 <tr>
@@ -579,10 +606,8 @@ Il est possible que le market vous demande parfois de remettre à zéro vos clef
 </tr>
 </table>
 </div>
-</li>
-</ul>
-</div>
-</li>
+<div class="ulist">
+<ul>
 <li>
 <p><strong>Mes Jeedoms</strong> : c&#8217;est ici que sont listés tous vos Jeedom</p>
 <div class="ulist">
@@ -591,22 +616,22 @@ Il est possible que le market vous demande parfois de remettre à zéro vos clef
 <p><strong>Nom</strong> : le nom que vous voulez donner à votre Jeedom (se retrouve dans le nom du backup si vous avez l&#8217;abonnement de sauvegarde cloud)</p>
 </li>
 <li>
-<p><strong>Protocole</strong> : protocole utilisé pour se connecter à votre Jeedom (se configure à partir de Jeedom)</p>
+<p><strong>Etat</strong> : permet de voir l&#8217;état du Jeedom en question</p>
 </li>
 <li>
-<p><strong>IP ou adresse</strong> : IP ou addresse de ce Jeedom, se configure dans Jeedom, si vous ne mettez rien ça sera la dernière IP connue</p>
+<p><strong>IP locale / distante</strong> : IP ou addresse de ce Jeedom, se configure dans Jeedom, si vous ne mettez rien ça sera la dernière IP connue</p>
 </li>
 <li>
-<p><strong>Port</strong> : port utilisé pour joindre le Jeedom (se configure a partir de Jeedom)</p>
+<p><strong>DNS</strong> : permet de personnaliser le nom de votre DNS</p>
 </li>
 <li>
-<p><strong>URL</strong> : liste les différentes URL d&#8217;accès au Jeedom ainsi que le port pour le SSH. Attention, si vous n&#8217;avez pas de service pack power ou plus, vous n&#8217;avez pas le service DNS Jeedom, vous aurez donc moins de valeur dans ce champ</p>
+<p><strong>URL</strong> : liste les différentes URL d&#8217;accès au Jeedom.</p>
 </li>
 <li>
-<p><strong>Accès</strong> : vous indique si le DNS Jeedom est OK</p>
+<p><strong>Serveur DNS</strong> : vous indique si le serveur DNS auquel vous êtes rattachés</p>
 </li>
 <li>
-<p><strong>DNS</strong> : permet de personnaliser votre DNS Jeedom</p>
+<p><strong>Statut du DNS</strong> : permet de voir le statut du DNS</p>
 </li>
 <li>
 <p><strong>Date de création</strong> : date de création de ce Jeedom sur votre compte market (pour rappel cela se fait automatiquement lorsque vous le liez au market)</p>
@@ -642,24 +667,22 @@ N&#8217;oubliez pas de sauvegarder
 <div class="sect1">
 <h2 id="_mes_backups">3. Mes backups</h2>
 <div class="sectionbody">
-<div class="imageblock">
-<div class="content">
-<img src="../images/market3.png" alt="market3">
-</div>
-</div>
 <div class="paragraph">
 <p>Sur cette onglet vous pouvez consulter les backups présents sur le market et en télécharger un. En dessous vous avez accès au lien pour acheter 1,3,6 ou 12 mois d&#8217;abonnement à la sauvegarde cloud</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_mes_achats_promos_dons">4. Mes achats/promos/dons</h2>
+<h2 id="_mes_sms_appels">4. Mes SMS/Appels</h2>
 <div class="sectionbody">
-<div class="imageblock">
-<div class="content">
-<img src="../images/market4.png" alt="market4">
+<div class="paragraph">
+<p>Sur cette onglet vous pouvez consulter votre solde SMS/Appels (utilisable avec le plugin Phone market). En dessous vous avez les différentes options permettant d&#8217;acheter du solde supplémentaire.</p>
 </div>
 </div>
+</div>
+<div class="sect1">
+<h2 id="_mes_achats_promos_dons">5. Mes achats/promos/dons</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Ici vous retrouvez tous vos achats et vous pouvez demander le renvoi du mail de facture ou de reçu</p>
 </div>
@@ -681,13 +704,8 @@ Si vous achetez un plugin officiel vous recevez une facture. En revanche pour un
 </div>
 </div>
 <div class="sect1">
-<h2 id="_mes_développments">5. Mes développments</h2>
+<h2 id="_mes_développments">6. Mes développments</h2>
 <div class="sectionbody">
-<div class="imageblock">
-<div class="content">
-<img src="../images/market5.png" alt="market5">
-</div>
-</div>
 <div class="paragraph">
 <p>Si vous êtes développeur vous retrouvez ici la liste de toutes vos ventes sur une période, la liste de vos versements ainsi qu&#8217;un résumé du nombre de téléchargements, du nombre de ventes&#8230;&#8203;</p>
 </div>

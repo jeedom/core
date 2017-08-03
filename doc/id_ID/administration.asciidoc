@@ -241,7 +241,29 @@ Permet d'ajouter des résumés d'objet (information affiché tout en haut dans l
 
 == Logs
 
-Voir link:doc-core-log.html#_configuration[ici]
+Vous avez ici les options suivantes :
+
+* *Message*
+** *Ajouter un message à chaque erreur dans les logs* : si un plugin ou Jeedom écrit un message d'erreur dans un log, Jeedom ajoute automatiquement un message dans le centre des messages (au moins vous êtes sûr de ne pas le manquer)
+** *Commande d'information utilisateur* : permet de sélectionner une ou plusieurs commandes (à séparer par des &&) de type message qui seront utilisées lors de nouveaux messages (permet d'être tout de suite prévenu)
+* *Alertes*
+** *Ajouter un message à chaque Timeout* : ajoute un message dans le centre de message si un équipement tombe en timeout
+** *Commande sur Timeout* : commande de type message à utiliser si un équipement est en timeout
+** *Ajouter un message à chaque Batterie en Warning* : ajoute un message dans le centre de message si un équipement à son niveau de batterie en warning
+** *Commande sur Batterie en Warning* : commande de type message à utiliser si un équipement à son niveau de batterie en warning
+** *Ajouter un message à chaque Batterie en Danger* : ajoute un message dans le centre de message si un équipement à son niveau de betterie en danger
+** *Commande sur Batterie en Danger* : commande de type message à utiliser si un équipement à son niveau de betterie en danger
+** *Ajouter un message à chaque Warning* : ajoute un message dans le centre de message si une commande passe en alerte warning
+** *Commande sur Warning* : commande de type message à utiliser si une commande passe en alerte warning
+** *Ajouter un message à chaque Danger* : ajoute un message dans le centre de message si une commande passe en alerte danger
+** *Commande sur Danger* : commande de type message à utiliser si une commande passe en alerte danger
+* *Log* 
+** *Moteur de log* : permet de changer le moteur de log pour par exemple les envoyer à un demon syslog(d)
+** *Format des logs* : Format des logs à utiliser (attention ca n'affecte pas les logs des démons)
+** *Nombre de lignes maximum dans un fichier de log* : Définit le nombre maximum de lignes dans un fichier de log, il est recommandé de ne pas toucher cette valeur, car une valeur trop grande pourrait remplir le système de fichiers et/ou rendre Jeedom incapable d'afficher le log
+** *Niveau de log par défaut* : niveau de log par defaut de jeedom
+
+En dessous vous retrouvez un tableau permet de gerer finement le niveau de log par type ou plugin de Jeedom
 
 == Equipements
 

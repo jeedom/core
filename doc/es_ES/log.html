@@ -417,8 +417,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toctitle">Table des matières</div>
 <ul class="sectlevel1">
 <li><a href="#_affichage">1. Affichage</a></li>
-<li><a href="#_configuration">2. Configuration</a></li>
-<li><a href="#_le_log_event_et_le_niveau_de_log_event">3. Le log "Event" et le niveau de log "Event"</a></li>
+<li><a href="#_le_log_event">2. Le log "Event"</a></li>
 </ul>
 </div>
 </div>
@@ -432,26 +431,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>Pour y accèder il faut aller dans Administration &#8594; Logs :</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/log1.JPG" alt="log1">
-</div>
-</div>
-<div class="paragraph">
-<p>Se obtiene :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/log.JPG" alt="log">
-</div>
-</div>
 <div class="paragraph">
 <p>La página de registros es bastante sencilla, en la parte superior izquierda veras un menú desplegable que permite la elección del registro a consultar, en la parte superior derecha hay 5 botones:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Rafraîchir</strong> : permet de rafraîchir le log actuel,</p>
+<p><strong>Rechercher</strong> : permet de filtrer l&#8217;affiche de log</p>
+</li>
+<li>
+<p><strong>Pause/Reprendre</strong> : permet de mettre en pause/reprendre la mise à jour en temps réel des logs</p>
 </li>
 <li>
 <p><strong>Télécharger</strong> : permet de télécharger le log actuel,</p>
@@ -474,7 +463,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-A noter que le log nginx.error ne peut être supprimé. Il est essentiel ! si vous le supprimez (en ligne de commande par exemple) celui-ci ne se recréera pas tout seul, il faut redémarrer Jeedom.
+A noter que le log http.error ne peut être supprimé. Il est essentiel ! si vous le supprimez (en ligne de commande par exemple) celui-ci ne se recréera pas tout seul, il faut redémarrer le système.
 </td>
 </tr>
 </table>
@@ -482,90 +471,16 @@ A noter que le log nginx.error ne peut être supprimé. Il est essentiel ! si vo
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configuration">2. Configuration</h2>
+<h2 id="_le_log_event">2. Le log "Event"</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Il existe certains paramètres de configuration des logs (accessible par Administation &#8594; Configuration puis la partie "Configuration des logs &amp; messages").</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/log2.JPG" alt="log2">
-</div>
+<p>Le log "Event" est un peu particulier. Tout d&#8217;abord pour qu&#8217;il fonctionne, il faut qu&#8217;il soit en niveau info ou debug, ensuite celui-ci recense tous les évènements ou actions qui se passent sur la domotique. Pour y accéder, il faut soit aller sur la page de log soit dans Analyse &#8594; Temps réel</p>
 </div>
 <div class="paragraph">
-<p>Aquí, tienes las siguientes opciones :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Message</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Ajouter un message à chaque erreur dans les logs</strong> : si un plugin ou Jeedom écrit un message d&#8217;erreur dans un log, Jeedom ajoute automatiquement un message dans le centre des messages (au moins vous êtes sûr de ne pas le manquer)</p>
-</li>
-<li>
-<p><strong>Ne pas autoriser les messages venant de</strong> : permet d&#8217;interdire certains messages venant d&#8217;un plugin ou autre</p>
-</li>
-<li>
-<p><strong>Commande d&#8217;information utilisateur</strong> : permet de sélectionner une ou plusieurs commandes (à séparer par des &amp;&amp;) de type message qui seront utilisées lors de nouveaux messages (permet d&#8217;être tout de suite prévenu)</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Log</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Moteur de log</strong> : permet de changer le moteur de log pour par exemple les envoyer à un demon syslog(d)</p>
-</li>
-<li>
-<p><strong>Nombre de lignes maximum dans un fichier de log</strong> : Définit le nombre maximum de lignes dans un fichier de log, il est recommandé de ne pas toucher cette valeur, car une valeur trop grande pourrait remplir le système de fichiers et/ou rendre Jeedom incapable d&#8217;afficher le log</p>
-</li>
-<li>
-<p><strong>Logs actifs</strong> : permet de définir les niveaux de log actif. Attention : plus il y a de niveaux actifs, plus Jeedom peut être lent ! Cela entraîne aussi une usure prématurée de la carte SD. Il est conseillé de n&#8217;activer que le niveau "Error". "Event" peut être activé aussi car il est nécessaire pour voir en temps réel ce qui se passe sur sa domotique (bien sûr c&#8217;est seulement si vous en avez besoin).</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_le_log_event_et_le_niveau_de_log_event">3. Le log "Event" et le niveau de log "Event"</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Le log "Event" est un peu particulier. Tout d&#8217;abord pour qu&#8217;il fonctionne, il faut activer le niveau de log "Info" ou plus, ensuite celui-ci recense tous les évènements ou actions qui se passent sur la domotique. Pour y accéder, il faut cliquer sur la petite icône "compteur" en bas à droite dans Jeedom :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/log3.JPG" alt="log3">
-</div>
-</div>
-<div class="paragraph">
-<p>Una vez hecho clic en él, sale una ventana que se actualiza cada segundo y muestra todos los eventos de la Domótica.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/log4.JPG" alt="log4">
-</div>
+<p>Une fois que vous avez cliqué dessus, vous obtenez une fenêtre qui se met à jour en temps réel et vous affiche tous les évènements de votre domotique.</p>
 </div>
 <div class="paragraph">
 <p>Arriba a la derecha tienes un campo de búsqueda (sólo funcional cuando este pausado) y un botón de pausa (útil para hacer un copy/paste por ejemplo).</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-Pour que cela fonctionne il faut absolument avoir activé le niveau de log "Info" ou plus (voir paragraphe précédent)
-</td>
-</tr>
-</table>
 </div>
 </div>
 </div>

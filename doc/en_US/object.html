@@ -415,49 +415,38 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h1>Objet</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table des matières</div>
-
+<ul class="sectlevel1">
+<li><a href="#_configuration">1. Configuration</a>
+<ul class="sectlevel2">
+<li><a href="#_objet">1.1. Objet</a></li>
+<li><a href="#_résumé">1.2. Résumé</a>
+<ul class="sectlevel3">
+<li><a href="#_général">1.2.1. Général</a></li>
+<li><a href="#_commandes">1.2.2. Commandes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_vue_d_ensemble">2. Vue d&#8217;ensemble</a></li>
+</ul>
 </div>
 </div>
 <div id="content">
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
-<p>Le sous-menu Objets, permet de définir l&#8217;arborescence de sa domotique. Elle se fait en créant des objets. Accessible à partir de là :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/object1.JPG" alt="object1">
-</div>
+<p>Le sous-menu Objets, permet de définir l&#8217;arborescence de sa domotique. Elle se fait en créant des objets. Accessible à partir du menu Outils &#8594; Objets</p>
 </div>
 <div class="paragraph">
 <p>Pour laisser libre choix à la personnalisation, vous pouvez nommer ces objets comme vous le voulez. Mais dans la plupart des cas on y définira les différentes parties de sa maison, comme le nom des pièces (c&#8217;est d&#8217;ailleurs la configuration recommandée).</p>
 </div>
-<div class="paragraph">
-<p>En arrivant sur la page vous obtenez (ici avec déjà quelques objets) :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/object2.JPG" alt="object2">
 </div>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Comme à beaucoup d&#8217;endroits sur Jeedom, placer la souris tout à gauche permet de faire apparaître un menu d&#8217;accès rapide (vous pouvez, à partir de votre profil, le laisser toujours visible).
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Une fois votre objet ajouté ou après un clic sur un objet existant, vous obtenez :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/object3.JPG" alt="object3">
-</div>
-</div>
+<div class="sect1">
+<h2 id="_configuration">1. Configuration</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_objet">1.1. Objet</h3>
 <div class="paragraph">
 <p>From here you have different options :</p>
 </div>
@@ -473,6 +462,9 @@ Comme à beaucoup d&#8217;endroits sur Jeedom, placer la souris tout à gauche p
 <p><strong>Visible</strong> : permet de définir si cet objet est visible sur le dashboard ou non</p>
 </li>
 <li>
+<p><strong>Masquer sur le dashboard</strong> : permet de masquer l&#8217;objet sur le dashboard mais le conserve dans la liste, cela permet donc de l&#8217;afficher mais que si explicitement demandée</p>
+</li>
+<li>
 <p><strong>Icône</strong> : vous permet de choisir une icône pour votre objet</p>
 </li>
 <li>
@@ -483,16 +475,77 @@ Comme à beaucoup d&#8217;endroits sur Jeedom, placer la souris tout à gauche p
 </li>
 </ul>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_résumé">1.2. Résumé</h3>
 <div class="paragraph">
-<p>Si vous mettez votre souris tout à gauche vous pourrez faire apparaître le menu suivant :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/object4.JPG" alt="object4">
-</div>
+<p>Cette partie vous permet de configurer les résumé des objets en leur affectant les commandes correspondante</p>
 </div>
 <div class="paragraph">
-<p>Grâce à celui-ci vous pourrez modifier l&#8217;ordre de vos objets en maintenant le clic appuyé sur la double flèche au début de la ligne et en glissant l&#8217;objet vers la position voulue.</p>
+<p>Les résumés sont des informations global à l&#8217;objet s&#8217;affichant sur le dashboard en face du nom de celui-ci, ou si il est global en haut dans la barre de menu de Jeedom. A noter que vous pouvez lier les résumé à une commande virtuel pour pouvoir historiser celui-ci ou faire des scénarios dessus</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Vous pouvez ajouter des résumés en allant dans la configuration de Jeedom (voir documentation sur l&#8217;administration de Jeedom)
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_général">1.2.1. Général</h4>
+<div class="paragraph">
+<p>Ici vous indiquer pour chaque résumé si celui-ci doit remonter en global ou non. Vous pouvez aussi décider de l&#8217;affichage en mobile/desktop ou non de certain résumé</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_commandes">1.2.2. Commandes</h4>
+<div class="paragraph">
+<p>C&#8217;est ici que vous ajouter les commandes pour le calcul des résumés (la méthode de calcul étant elle configuré dans l&#8217;administration de Jeedom)</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_vue_d_ensemble">2. Vue d&#8217;ensemble</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>La vue d&#8217;ensemble vous permet d&#8217;avoir une vue global de la configuration des objets dans Jeedom :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>ID</strong> : ID de l&#8217;objet</p>
+</li>
+<li>
+<p><strong>Objet</strong> : Nom de l&#8217;objet</p>
+</li>
+<li>
+<p><strong>Père</strong> : Nom de l&#8217;objet père</p>
+</li>
+<li>
+<p><strong>Visible</strong> : visible ou non</p>
+</li>
+<li>
+<p><strong>Masqué sur le dashboard</strong> : maqué ou non sur le dashboard</p>
+</li>
+<li>
+<p><strong>Résumé Défini</strong> : indique le nombre de commande par résumé ainsi que si il est global (bleu) ou non</p>
+</li>
+<li>
+<p><strong>Résumé Dashboard Masqué</strong> : indique les résumé masqué sur le dashboard</p>
+</li>
+<li>
+<p><strong>Résumé Mobile Masqué</strong> : indique les résumé masqué sur le mobile</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <div id="footer">
