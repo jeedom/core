@@ -341,6 +341,24 @@ foreach (planHeader::all() as $plan) {
         });
     });
 
+    $('body').off('focusout','.expressionAttr[data-l1key=cmd]').on('focusout','.expressionAttr[data-l1key=cmd]',  function (event) {
+       var type = $(this).attr('data-type');
+       var el = $(this);
+       jeedom.cmd.displayActionOption(el.value(), '', function (html) {
+        el.closest('.' + type).find('.actionOptions').html(html);
+    });
+   });
+
+    $('body').off('click','.bt_selectOtherActionExpression').on('click','.bt_selectOtherActionExpression',  function (event) {
+      var expression = $(this).closest('.expression');
+      jeedom.getSelectActionModal({scenario : true}, function (result) {
+       expression.find('.expressionAttr[data-l1key=cmd]').value(result.human);
+       jeedom.cmd.displayActionOption(expression.find('.expressionAttr[data-l1key=cmd]').value(), '', function (html) {
+        expression.find('.actionOptions').html(html);
+    });
+   });
+  });
+
     function addActionPlanConfigure(_action, _type) {
         if (!isset(_action)) {
             _action = {};
@@ -348,7 +366,7 @@ foreach (planHeader::all() as $plan) {
         if (!isset(_action.options)) {
             _action.options = {};
         }
-        var div = '<div class="' + _type + '">';
+        var div = '<div class="expression ' + _type + '">';
         div += '<div class="form-group ">';
         div += '<label class="col-sm-1 control-label">{{Action}}</label>';
         div += '<div class="col-sm-4">';
@@ -358,6 +376,7 @@ foreach (planHeader::all() as $plan) {
         div += '</span>';
         div += '<input class="expressionAttr form-control input-sm cmdAction" data-l1key="cmd" data-type="' + _type + '" />';
         div += '<span class="input-group-btn">';
+        div += '<a class="btn btn-default btn-sm bt_selectOtherActionExpression" data-type="' + _type + '" title="{{Sélectionner un mot-clé}}"><i class="fa fa-tasks"></i></a>';
         div += '<a class="btn btn-default btn-sm listCmdAction" data-type="' + _type + '"><i class="fa fa-list-alt"></i></a>';
         div += '</span>';
         div += '</div>';
