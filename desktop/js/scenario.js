@@ -311,6 +311,11 @@ $('#in_addElementType').off('change').on('change',function(){
   $('.addElementTypeDescription.'+$(this).value()).show();
 });
 
+$('#bt_scenarioTab').on('click',function(){
+  setTimeout(function(){ setEditor(); }, 50);
+  
+});
+
 /*******************Element***********************/
 
 $('#div_pageContainer').off('click','.helpSelectCron').on('click','.helpSelectCron',function(){
@@ -355,43 +360,43 @@ $('#div_pageContainer').off('click','.bt_addAction').on( 'click','.bt_addAction'
 });
 
 $('#div_pageContainer').off('click','.bt_addSinon').on( 'click','.bt_addSinon', function (event) {
- 
+
   if($(this).children("i").hasClass('fa-chevron-right')){
-      $(this).children("i").removeClass('fa-chevron-right').addClass('fa-chevron-down');
-       $(this).closest('.subElement').next().css('display','table');
+    $(this).children("i").removeClass('fa-chevron-right').addClass('fa-chevron-down');
+    $(this).closest('.subElement').next().css('display','table');
   }
   else
   {
-      if($(this).closest('.subElement').next().children('.expressions').children('.expression').length>0)
-      {
-         alert("{{Le bloc Sinon ne peut être supprimé s'il contient des éléments}}");
-      }
-      else
-      {  
-         $(this).children("i").removeClass('fa-chevron-down').addClass('fa-chevron-right');
-         $(this).closest('.subElement').next().css('display','none');
-      }
-  }
+    if($(this).closest('.subElement').next().children('.expressions').children('.expression').length>0)
+    {
+     alert("{{Le bloc Sinon ne peut être supprimé s'il contient des éléments}}");
+   }
+   else
+   {  
+     $(this).children("i").removeClass('fa-chevron-down').addClass('fa-chevron-right');
+     $(this).closest('.subElement').next().css('display','none');
+   }
+ }
 });
 
 $('#div_pageContainer').off('click','.bt_addSinon').on( 'click','.bt_addSinon', function (event) {
- 
+
   if($(this).children("i").hasClass('fa-chevron-right')){
-      $(this).children("i").removeClass('fa-chevron-right').addClass('fa-chevron-down');
-       $(this).closest('.subElement').next().css('display','table');
+    $(this).children("i").removeClass('fa-chevron-right').addClass('fa-chevron-down');
+    $(this).closest('.subElement').next().css('display','table');
   }
   else
   {
-      if($(this).closest('.subElement').next().children('.expressions').children('.expression').length>0)
-      {
-         alert("{{Le bloc Sinon ne peut être supprimé s'il contient des éléments}}");
-      }
-      else
-      {  
-         $(this).children("i").removeClass('fa-chevron-down').addClass('fa-chevron-right');
-         $(this).closest('.subElement').next().css('display','none');
-      }
-  }
+    if($(this).closest('.subElement').next().children('.expressions').children('.expression').length>0)
+    {
+     alert("{{Le bloc Sinon ne peut être supprimé s'il contient des éléments}}");
+   }
+   else
+   {  
+     $(this).children("i").removeClass('fa-chevron-down').addClass('fa-chevron-right');
+     $(this).closest('.subElement').next().css('display','none');
+   }
+ }
 });
 
 $('#div_pageContainer').off('click','.bt_removeExpression').on('click','.bt_removeExpression',  function (event) {
@@ -749,7 +754,7 @@ function setEditor() {
   $('.expressionAttr[data-l1key=type][value=code]').each(function () {
     var expression = $(this).closest('.expression');
     var code = expression.find('.expressionAttr[data-l1key=expression]');
-    if (code.attr('id') == undefined) {
+    if (code.attr('id') == undefined && code.is(':visible')) {
       code.uniqueId();
       var id = code.attr('id');
       setTimeout(function () {
@@ -760,6 +765,7 @@ function setEditor() {
         });
       }, 1);
     }
+    
   });
 }
 

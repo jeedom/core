@@ -178,7 +178,7 @@ if (count($totalScenario) == 0) {
  <ul class="nav nav-tabs" role="tablist">
    <li role="presentation"><a href="#" aria-controls="home" role="tab" data-toggle="tab" id="bt_scenarioThumbnailDisplay"><i class="fa fa-arrow-circle-left"></i></a></li>
    <li role="presentation" class="active"><a href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-tachometer"></i> {{Général}} (ID : <span class="scenarioAttr" data-l1key="id" ></span>)</a></li>
-   <li role="presentation"><a href="#scenariotab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-filter"></i> {{Scénario}}</a></li>
+   <li role="presentation"><a id="bt_scenarioTab" href="#scenariotab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-filter"></i> {{Scénario}}</a></li>
  </ul>
 </ul>
 <div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
