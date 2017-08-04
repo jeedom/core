@@ -2,226 +2,201 @@
 
 Cette page permet de configurer l'affichage de toute votre domotique de manière très fine. Celle-ci demande du temps mais sa seule limite est votre imagination.
 
-Elle est accessible par 
-
-image::../images/plan1.png[]
+Elle est accessible par Acceuil -> Dashboard
 
 [TIP]
-Comme vous pouvez le voir sur la capture il est possible d'aller directement sur un design grâce au sous-menu
+Il est possible d'aller directement sur un design grâce au sous-menu.
 
-Voici un exemple de design :
+[IMPORTANT]
+Toute les actions ce font par un clic droit sur cette page, attention a bien le faire dans le design. Lors de la création il faut donc le faire au milieu de la page (pour etre sur d'etre sur le design)
 
-image::../images/plan2.png[]
+Dans le menu nous retrouvons (clic droit donc) nous retrouvons les actions suivantes : 
 
-Sur cette page on retrouve, en haut (et dans l'ordre) : 
+* *Designs* : Affiche la liste de vos designs et vous permet de naviguer de dedans
+* *Edition* : Permet de passer en édition
+* *Plein ecran* : Affiche le design en pleine écran
+* *Ajouter graphique* : Permet d'ajouter un graphique
+* *Ajouter texte/html* : Permet d'ajouter du texte ou du code html/javascript
+* *Ajouter scénario* : Permet d'ajouter un scénario
+* *Ajouter lien*
+** *Vers une vue* : Permet d'ajouter un lien vers une vue
+** *Vers un design* : Permet d'ajouter un lien vers un autre design
+* *Ajouter équipement* : Permet d'ajouter un équipement
+* *Ajouter commande* : Permet d'ajouter une commande
+* *Ajouter image/caméra* : Permet d'ajouter une image ou le flux d'une caméra
+* *Ajouter zone* : Permet d'ajouter une zone transparante cliquable qui pourra executer une serie d'action lors d'un clic (en fonction ou non de l'état d'une autre commande)
+* *Ajouter résumé* : Ajoute les informations d'un résumé d'objet ou général
+* *Affichage *
+** *Aucune* : N'affiche aucune grille
+** *10x10* : Affiche une grille de 10 par 10
+** *15x15* : Affiche une grille de 15 par 15
+** *20x20* : Affiche une grille de 20 par 20
+** *Aimanter les élements* : Ajoute une aimantation entre les élements pour permettre de les coller plus facilement
+** *Aimanter à la grille* : Ajouter une aimantation des éléments à la grille (attention en fonction du zoom de l'élément cette fonctionalité peut plus ou moins fonctionner) 
+** *Masquer la surbrillance des éléments* : Masque la surbrillance autour des élements
+* *Supprimer le design* : supprime le design
+* *Créer un design* : permet d'ajouter un design
+* *Dupliquer le design* : duplique le design courant
+* *Configurer le design* : accès à la configuration du design
+* *Sauvegarder* : permet de sauvegarder le design (attention il y aussi des sauvegarde automatique lors de certaine action)
 
-* un menu pour changer de design
-* un menu pour créer un nouveau design
-* un pour le supprimer
-* un bouton pour éditer le design en cours
-* un pour passer en mode plein écran
+[IMPORTANT]
+La configuration des éléments du désign se fait par un clic sur ceux-ci
 
-Il vous suffit donc pour en créer un de cliquer sur le bouton d'ajout, une fenêtre va vous demander le nom de celui-ci : 
-
-image::../images/plan3.png[]
-
-Vous arrivez donc sur un design vide : 
-
-image::../images/plan4.png[]
-
-Il faut donc cliquer le bouton d'édition pour passer en mode édition : 
-
-image::../images/plan5.png[]
-
-Comme on peut le voir il y a un peu plus de boutons maintenant, ainsi que le cadre du design (que l'on peut changer bien sûr).
-
-En haut à gauche on retrouve 2 boutons, celui pour éditer les propriétés du design en cours et celui pour le dupliquer.
-
-[TIP]
-N'oubliez pas de sauvegarder après chaque modification
-
-== Edition des proprietés du designs
-
-image::../images/plan6.png[]
+== Configuration design
 
 On retrouve ici : 
 
 * *Général*
 ** *Nom* : Le nom de votre design
 ** *Icône* : Une icône pour celui-ci (apparait dans le menu de choix de design)
-** *Disponible sur téléphone* : Rend ce design visible dans la liste des designs en version mobile
-** *Image* : permet d'ajouter une image de fond au design
-** *Ne pas afficher la flèche de retour lors de la mise en plein écran* : en mode plein écran cette option masque le bouton de retour au mode fenêtré (idéal pour une tablette murale)
+** *Image* 
+*** *Envoyer* : permet d'ajouter une image de fond au design
+*** *Supprimer l'image* : permet de supprimer l'image
 * *Tailles*
 ** *Taille (LxH)* : Permet de fixer la taille de votre design (cadre gris en mode édition)
-** *Proportion tablette (ex : 0.7)* : permet de changer la proportion du design sur tablette (pour le reduire par exemple tout en maitrisant encore la taille)
-** *Proportion téléphone (ex 0.5)* : permet de changer la proportion du design sur téléphone (pour le reduire par exemple tout en maitrisant encore la taille)
 
-== Ajout d'un widget
+== Configuration général des éléments
 
-Ensuite il faut ajouter des widgets à votre design, pour cela il faut cliquer sur le bouton d'ajout de widget : 
+[NOTE]
+En fonction du type de l'élement les options peuvent changer
 
-image::../images/plan7.png[]
+[NOTE]
+L'element séléctionné apparait en surbrillance rouge (au lieu de vert pour tous les autres)
 
-Une fois cliqué il vous faut choisir le widget : 
+=== Paramètre d'affichage
 
-image::../images/plan8.png[]
-
-Vous voyez apparaître votre widget :
-
-image::../images/plan9.png[]
-
-[TIP]
-Vous pouvez le déplacer en cliquant/glissant le widget
-
-Vous avez accès a la configuration avancée de l'affichage du widget en double cliquant sur celui-ci :
-
-image::../images/plan10.png[]
-
-Ici on a : 
-
-* *Général*
-** *Taille du widget* : permet de definir un ratio de taille de widget, par exemple ici il ne fera que 65% de sa taille
-** *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
-** *Couleur des icônes et textes* : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
-** *Arrondir les angles (ne pas oublier de mettre %, ex 50%)* : permet d'arrondir les angles du widget, ne pas oublier de mettre le %
-** *Bordure (attention syntaxe css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
-** *Profondeur* : permet de choisir le niveau de la profondeur, pour par exemple passer un widget par dessus un autre
-** *Ne pas afficher le nom de l'équipement* : masque le nom du widget, s'applique uniquement sur le design
-* *Spécifique* : permet de masquer certaines commandes du widget uniquement sur le design
-
-[IMPORTANT]
-En fonction des plugins certaines options peuvent ne pas fonctionner
-
-[TIP]
-Vous pouvez en bas à droite redimensionner les widgets
-
-== Ajout texte/html
-
-image::../images/plan11.png[]
-
-Permet d'ajouter un texte ou du code html/javascript, une fois cliqué dessus vous obtenez : 
-
-image::../images/plan12.png[]
-
-Un double clic dessus vous ammène à la fenêtre de configuration : 
-
-image::../images/plan13.png[]
-
-* *Nom* : permet de rentrer le texte ou le code html/javascript
-* *Icone* : permet de mettre une icône à la place du texte
-* *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
-* *Couleur du textes* : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
-* *Arrondir les angles (ne pas oublier de mettre %, ex 50%)* : permet d'arrondir les angles, ne pas oublier de mettre le %
-* *Bordure (attention syntax css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
-* *Taille de la police (ex 50%, il faut bien mettre le signe %)* : permet de modifier la taille de la police
-* *Ne pas prendre en compte la taille prédéfinie* : permet d'ignorer la taille prédéfinie du widget
 * *Profondeur* : permet de choisir le niveau de la profondeur
-* *Gras* : met le texte en gras
+* *Position X (%)* :
+* *Position Y (%)* :
+* *Largeur (px)* :
+* *Hauteur (px)* :
 
-[TIP]
-Vous pouvez en bas à droite le redimensionner
+=== Supprimer
 
-== Ajout d'un scénario
+Permet de supprimer l'élement
 
-image::../images/plan14.png[]
+=== Dupliquer
 
-Un clic dessus et Jeedom vous demandera le scénario en question : 
+Permet de dupliquer l'élement
 
-image::../images/plan15.png[]
+=== Verrouiller
 
-Une fois choisi celui-ci apparait sur le design : 
+Permet de verrouiller l'élement pour plus qu'il soit déplacable ou redimmensionnable
 
-image::../images/plan16.png[]
+== Graphique
 
-Un double clic dessus vous amènera à la configuration de cet élément scénario : 
-
-image::../images/plan17.png[]
-
-* *Général*
-** *Taille du widget* : permet de definir un ratio de taille de widget, par exemple ici il ne fera que 65% de sa taille
-** *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
-** *Couleur des icônes et textes* : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
-** *Arrondir les angles (ne pas oublier de mettre %, ex 50%)* : permet d'arrondir les angles du widget, ne pas oublier de mettre le %
-** *Bordure (attention syntaxe css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
-** *Profondeur* : permet de choisir le niveau de la profondeur, pour par exemple passer un widget par dessus un autre
-* *Spécifique* : permet de masquer les commandes d'action sur le scénario
-
-[TIP]
-Vous pouvez en bas à droite le redimensionner
-
-== Ajout d'un lien
-
-image::../images/plan18.png[]
-
-Permet d'ajouter un lien vers une vue ou un autre design : 
-
-image::../images/plan19.png[]
-
-Celui-ci apparaît ensuite sur le design : 
-
-image::../images/plan20.png[]
-
-Un double clic dessus vous amène sur la configuration avancée : 
-
-image::../images/plan21.png[]
-
-On retrouve ici : 
-
-* *Nom* : permet de changer le nom du lien
-* *Lien* : destination du lien
-* *Position* : permet de régler finement la position du lien sur la destination (pour par exemple arriver directement sur la cuisine)
-* *Icone* : permet de mettre une icône à la place du texte
-* *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
-* *Couleur du textes* : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
-* *Arrondir les angles (ne pas oublier de mettre %, ex 50%)* : permet d'arrondir les angles, ne pas oublier de mettre le %
-* *Bordure (attention syntax css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
-* *Profondeur* : permet de choisir le niveau de la profondeur
-* *Taille de la police (ex 50%, il faut bien mettre le signe %)* : permet de modifier la taille de la police
-* *Ne pas prendre en compte la taille prédéfinie* : permet d'ignorer la taille prédéfinie du widget
-* *Gras* : met le texte en gras
-
-[TIP]
-Vous pouvez en bas à droite le redimensionner
-
-== Ajout d'un graph
-
-image::../images/plan22.png[]
-
-Une fois cliqué dessus vous obtenez : 
-
-image::../images/plan23.png[]
-
-Un double clic dessus vous amène à la configuration de l'élement graph
-
-image::../images/plan24.png[]
-
-Ici on retrouve : 
+=== Paramètre d'affichage
 
 * *Période* : permet de choisir la période d'affichage
-* *Bordure (attention syntaxe css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
-* *Profondeur* : permet de choisir le niveau de la profondeur
 * *Afficher la légende* : permet d'afficher ou non la légende
 * *Afficher le navigateur* : permet d'afficher ou non le navigateur (deuxième graph plus léger en dessous du premier)
 * *Afficher le sélecteur de période* : affiche ou non le sélecteur de période en haut à gauche
 * *Afficher la barre de défilement* : affiche ou non la barre de défilement
 * *Fond transparent* : rend le fond transparent
+* *Bordure (attention syntax css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
 
-Pour choisir les données à afficher il faut cliquer sur les 3 roues crantées : 
+=== Configuration avancée
 
-image::../images/plan25.png[]
+Permet de choisir les commandes à grapher
 
-Vous obtenez (ça peut être un peu long à charger) : 
+== Text/html
 
-image::../images/plan26.png[]
+* *Icone* : Icone à affiché devant
+* *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
+* *Couleur du texte* : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
+* *Arrondir les angles (ne pas oublié de mettre %, ex 50%)* : permet d'arrondir les angles, ne pas oublier de mettre le %
+* *Bordure (attention syntax css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
+* *Taille de la police (ex 50%, il faut bien mettre le signe %)* : permet de modifier la taille de la police
+* *Alignement du texte* : permet de choisir l'alignement du texte (gauche/droit/centré)
+* *Gras* : met le texte en gras
+* *Texte* : Texte au code html qui sera dans l'élement
 
-* *Activer* : le premier bouton permet d'activer ou non l'affichage de la donnée sur le graphique
-* *Couleur* : la couleur de la courbe
-* *Type* : le type de graph (aire, ligne ou colonne)
-* *Escalier* : permet d'afficher la courbe sous la forme d'un escalier au d'un affichage continue
-* *Empiler* : permet d'empiler les valeurs des courbes (voir en dessous pour le résultat)
-* *Variation* : affiche la différence de valeur par rapport au point précédent
-* *Echelle* : vu que vous pouvez mettre plusieurs courbes (données) sur le même graphe il est possible de distinguer les échelles (droite ou gauche)
+[IMPORTANT]
+Si vous mettez du code html (en particulier du javascript), attention à bien le vérifier avant car vous pouvez si il y a une erreur dedans ou si il écrase un composant Jeedom planter completement le design et il ne restera plus qu'a le supprimer directement base de données
 
-[TIP]
-Vous pouvez en bas à droite le redimensionner
+== Scénario
+
+=== Paramètre d'affichage
+
+Aucun paramètre spécifique d'affichage
+
+== Lien
+
+=== Paramètre d'affichage
+
+* *Nom* : Nom du lien (texte affiché)
+* *Lien* : Lien vers le design ou la vue en question
+* *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
+* *Couleur du texte* : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
+* *Arrondir les angles (ne pas oublié de mettre %, ex 50%)* : permet d'arrondir les angles, ne pas oublier de mettre le %
+* *Bordure (attention syntax css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
+* *Taille de la police (ex 50%, il faut bien mettre le signe %)* : permet de modifier la taille de la police
+* *Alignement du texte* : permet de choisir l'alignement du texte (gauche/droit/centré)
+* *Gras* : met le texte en gras
+
+== Equipement
+
+=== Paramètre d'affichage
+
+Aucun paramètre spécifique d'affichage
+
+=== Configuration avancée
+
+Affiche la fenetre de configuration avancé de l'équipement (voir documentation Résumé domotique ("display"))
+
+== Commande
+
+=== Paramètre d'affichage
+
+Aucun paramètre spécifique d'affichage
+
+=== Configuration avancée
+
+Affiche la fenetre de configuration avancé de la commande (voir documentation Résumé domotique ("display"))
+
+== Image/Caméra
+
+=== Paramètre d'affichage
+
+* *Afficher* : défini ceux que vous voulez afficher, image fixe ou flux d'une caméra
+* *Image* : permet d'envoyer l'image en question (si vous avez choisi une image)
+* *Caméra* : caméra à afficher (si vous avez choisi caméra)
+
+== Zone
+
+=== Paramètre d'affichage
+
+* *Type de zone* : C'est ici que vous choissez le type de la zone : Macro simple, Macro Binaire ou Widget au survol
+
+==== Macro simple
+
+Dans ce mode la un clic sur la zone execute une ou plusieurs action.
+
+Il vous suffit ici d'indiquer la liste des actions à faire lors du clic sur la zone
+
+==== Macro binaire
+
+Dans ce mode Jeedom va executer la ou les action(s) On ou Off en fonction de l'état de la commande que vous donnez. Ex si la commande vaut 0 alors Jeedom executera la ou les action(s) On sinon il executera la ou les action(s) off
+
+* *Information binaire* : Commande donnant l'état à verifier pour decider de l'action à faire (on ou off)
+
+Il vous suffit en dessous de mettre les actions à faire pour le on et pour le off
+
+==== Widget au survol
+
+Dans ce mode lors du survole ou du clic dans la zone jeedom vous affichera le widget en question
+
+* *Equipement* : widget à afficher lors du survole ou du clic
+* *Afficher au survol* : si coché affiche le widget au survol
+* *Afficher sur un clic* : si coché alors le widget est affiché au clic
+
+== Résumé
+
+* *Lien* : Permet d'indiqué le résumé à afficher (Général pour le globale sinon indiquer l'objet)
+* *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
+* *Couleur du texte* : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
+* *Arrondir les angles (ne pas oublié de mettre %, ex 50%)* : permet d'arrondir les angles, ne pas oublier de mettre le %
+* *Bordure (attention syntax css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
+* *Taille de la police (ex 50%, il faut bien mettre le signe %)* : permet de modifier la taille de la police
+* *Gras* : met le texte en gras

@@ -2,28 +2,36 @@
 
 C'est ici que l'on va pouvoir définir la liste des utilisateurs autorisés à se connecter à Jeedom, mais également leurs droits d'administrateur
 
-Erreichbar unter Einstellungen -> Benutzer : 
+Accessible par Administration -> Utilisateurs.
 
-image::../images/user.png[]
-
-Sobald sie darauf sind, sehen sie : 
-
-image::../images/user2.png[]
-
-Oben, haben Sie eine Schaltfläche zum hinzufügen eines temporären Kontos (z. B. um Zugang zu unterstützen). Sobald Sie darauf klicken, erhalten Sie eine URL, die Sie an die Person senden, die es benutzen will. Dieses Konto hat eine Lebensdauer von 24 Stunden.
-Vous avez aussi un bouton pour ajouter un utilisateur. Si vous cliquez dessus, Jeedom vous demandera le mot de passe et le login de l'utilisateur :
-
-image::../images/user3.png[]
+En haut vous avez en haut à droite un bouton pour ajouter un utilisateur et un pour sauvegarder.
 
 Darunter haben Sie eine Tabelle :
 
 * *Benutzername* : der Anmeldename des Benutzers
-* *Aktion* : Dort besteht die Möglichkeit, das Kennwort des Benutzers zu ändern oder sein Konto zu löschen
 * *Aktiv* : die Möglichkeit, das Konto zu deaktivieren
-* *Rechte* : die Möglichkeit das der Benutzer in den Administrator-Modus wechseln kann oder nicht (Ermöglicht den Zugriff auf alles, Jeedom Konfiguration, Erstellung von Szenarien, Plugin Management, Konfiguration der Geräte, Design, Ansichten ...)
+* *Local seulement* : autorise la connexion de l'utilisateur que si il est en local
+* *Profils* : permet de choisir le profils de l'utilisateur : 
+** *Administrateur* : tous les droits sur Jeedom
+** *Utilisateur* : peut voir le dashboard, les vues, les design... et agir sur les équipements/commandes, en revanche il n'aura pas accès a la configuration des commandes/équipements et de Jeedom
+** *Utilisateur limité* : l'utilisateur ne voit que les équipements autorisé (configurable avec le bouton "Gerer les droits")
 * *API-Schlüssel* : der persönlichen Benutzer API-Schlüssel
+* *Double authentification* : indique si la double authentification est active ou non
 * *Datum der letzten Verbindung* : Datum der letzten Anmeldung des Benutzers. Achtung hier ist die eigentliche Verbindungszeit ; also, wenn Sie Ihren Computer registrieren, wird die Verbindung Datum jedes Mal aktualisiert wenn Sie zurückkommen.
-* *Accès direct* : donne une URL pour se connecter directement à Jeedom avec le compte en question
+* *Changer le mot de passe* : permet de changer le mot de passe de l'utilisateur
+* *Supprimer* : permet de supprimer l'utilisateur
+* *Regenerer clef API* : regenere la clef API de l'utilisateur
+* *Gerer les droits* : permet de gerer finiment les droits de l'utilisateur (attention le profils doit etre en "utilisateur limité")
 
-[TIP]
-Im Falle einer Änderung, vergessen Sie nicht auf "Speichern" zu klicken.
+== Gestion des droits
+
+Lors du clique sur "Gerer les droits" une fenetre apparait et vous permet de gerer finement les droits de l'utilisateur
+
+[IMPORTANT]
+Le profils doit etre en limité sinon aucun restriction mise ici ne marchera
+
+Vous avez ici un trableau qui permet pour chaque équipement et chaque scénario de définir les droits de l'utilisateur : 
+
+* *Aucun* : l'utilisateur ne voit pas l'équipement/scénario
+* *Visualisation* : l'utilisateur voit l'équipement/scénario mais ne peut pas agir dessus
+* *Visualisation et éxecution* : l'utilisateur voit l'équipement/scénario et peut agir dessus (allumé une lampe, lancer le scénario...)

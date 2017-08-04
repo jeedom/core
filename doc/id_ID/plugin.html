@@ -418,8 +418,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel1">
 <li><a href="#_gestion_des_plugins">1. Gestion des plugins</a></li>
 <li><a href="#_installation_d_un_plugin">2. Installation d&#8217;un plugin</a></li>
-<li><a href="#_la_partie_démon_des_plugins">3. La partie démon des plugins</a></li>
-<li><a href="#_la_partie_dépendances">4. La partie Dépendances</a></li>
 </ul>
 </div>
 </div>
@@ -435,20 +433,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_gestion_des_plugins">1. Gestion des plugins</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Vous pouvez accèder à la page plugins à partir de Plugins &#8594; Gestion des plugins :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/plugin1.png" alt="plugin1">
-</div>
-</div>
-<div class="paragraph">
-<p>Une fois que l&#8217;on clique dessus on retrouve la page qui nous présente la liste des plugins :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/plugin2.png" alt="plugin2">
-</div>
+<p>Vous pouvez accèder à la page plugins à partir de Plugins &#8594; Gestion des plugins. Une fois que l&#8217;on clique dessus on retrouve la page qui nous présente la liste des plugins.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -463,15 +448,10 @@ Comme à beaucoup d&#8217;endroits sur Jeedom, mettre la souris tout à gauche p
 </table>
 </div>
 <div class="paragraph">
-<p>Sur cette page vous retrouvez tous les plugins présents sur votre Jeedom; en rouge ceux qui sont désactivés. En cliquant sur un plugin vous accèdez à sa configuration :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/plugin3.png" alt="plugin3">
-</div>
+<p>Sur cette page vous retrouvez tous les plugins présents sur votre Jeedom; en opaque ceux qui sont désactivés. En cliquant sur un plugin vous accèdez à sa configuration.</p>
 </div>
 <div class="paragraph">
-<p>En haut vous retrouvez l&#8217;ID et le nom du plugin, ainsi que la version installée (ici beta). En dessous vous avez le bouton d&#8217;activation/désactivation d&#8217;un plugin</p>
+<p>En haut vous retrouvez l&#8217;ID et le nom du plugin, ainsi que la version installée. En dessous vous avez le bouton d&#8217;activation/désactivation d&#8217;un plugin</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -486,12 +466,12 @@ Lors du téléchargement d&#8217;un plugin celui-ci n&#8217;est pas activé, il 
 </table>
 </div>
 <div class="paragraph">
-<p>En dessous vous retrouvez 4 boutons :</p>
+<p>Sur la droite vous retrouvez 4 boutons :</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Voir sur le Market</strong> : permet de voir la fiche du plugin</p>
+<p><strong>Changelog</strong> : permet de voir le changelog du plugin si il existe</p>
 </li>
 <li>
 <p><strong>Envoyer sur le Market</strong> : permet d&#8217;envoyer le plugin sur le Market (uniquement disponible si vous en êtes l&#8217;auteur)</p>
@@ -504,6 +484,84 @@ Lors du téléchargement d&#8217;un plugin celui-ci n&#8217;est pas activé, il 
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>En dessous on retrouve une zone etat avec :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Statut</strong> : permet de voir le statut du plugin (actif / inactif)</p>
+</li>
+<li>
+<p><strong>Version</strong> : la version du plugin que vous possédez</p>
+</li>
+<li>
+<p><strong>Auteur</strong> : l&#8217;auteur du plugin</p>
+</li>
+<li>
+<p><strong>Action</strong> : Permet d&#8217;activer ou désactiver le plugin</p>
+</li>
+<li>
+<p><strong>Version jeedom</strong> : Indique la version minimum requise du plugin</p>
+</li>
+<li>
+<p><strong>Licence</strong> : Indique la licence du plugin qui sera généralement AGPL</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A droite on retrouve la zone log qui permet de spécifier le niveau de log spécifiquement pour le plugin (on retrouve cette même possibilité dans Administatrion-&#8594; Configuration sur l&#8217;onglet logs).</p>
+</div>
+<div class="paragraph">
+<p>Si le plugin possède des dépendances et /ou un démon on peut retrouver ces deux zones.</p>
+</div>
+<div class="paragraph">
+<p>Dépendances :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Nom</strong> : généralement sera local</p>
+</li>
+<li>
+<p><strong>Statut</strong> : vous dira si les dépendances sont OK ou KO</p>
+</li>
+<li>
+<p><strong>Installation</strong> : permettra d&#8217;installer ou réinstaller les dépendances (si vous ne le faites pas manuellement et qu&#8217;elles sont KO jeedom se chargera de lui même au bout d&#8217;un moment de le faire)</p>
+</li>
+<li>
+<p><strong>Dernière installation</strong> : date de la dernière installation des dépendances</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Démon :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Nom</strong> : généralement sera local</p>
+</li>
+<li>
+<p><strong>Statut</strong> : vous dira si le démon est OK ou KO</p>
+</li>
+<li>
+<p><strong>Configuration</strong> : sera OK si tous les critères pour que le démon tourne sont réunis ou donnera la cause du blocage</p>
+</li>
+<li>
+<p><strong>(Re)Démarrer</strong> : permet de lancer ou relancer le démon</p>
+</li>
+<li>
+<p><strong>Arrêter</strong> : permet d&#8217;arrêter le démon (que dans le cas ou la gestion automatique est désactivée</p>
+</li>
+<li>
+<p><strong>Gestion automatique</strong> : permet d&#8217;activer ou désactiver la gestion automatique (ce qui permet à jeedom de gérer lui même le démon et le relancer si besoin, sauf contre indications il est conseiller de laisser la gestion automatique active)</p>
+</li>
+<li>
+<p><strong>Dernièr lancement</strong> : date du dernier lancement du démon</p>
+</li>
+</ul>
+</div>
 <div class="admonitionblock tip">
 <table>
 <tr>
@@ -511,10 +569,53 @@ Lors du téléchargement d&#8217;un plugin celui-ci n&#8217;est pas activé, il 
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Certains plugins ont une partie configuration, il faut dans ce cas se référer à la doc du plugin en question pour savoir comment le configurer
+Certains plugins ont une partie configuration, il faut dans ce cas se référer à la doc du plugin en question pour savoir comment le configurer (si tel est le cas elle apparaitra ici)
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>En dessous on retrouve une zone fonctionnalités. Celle-ci permet de voir si le plugin utilise ou non une des fonctions cores Jeedom tel que :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Interact</strong> : des interactions spécifiques</p>
+</li>
+<li>
+<p><strong>Cron</strong> : un cron à la minute</p>
+</li>
+<li>
+<p><strong>Cron5</strong> : un cron toutes les 5 minutes</p>
+</li>
+<li>
+<p><strong>Cron15</strong> : toutes les 15 minutes</p>
+</li>
+<li>
+<p><strong>Cron30</strong> : toutes les 30 minutes</p>
+</li>
+<li>
+<p><strong>CronHourly</strong> : toutes les heures</p>
+</li>
+<li>
+<p><strong>CronDaily</strong> : journalier</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Si le plugin utilise une de ces fonctions. Vous pourrez spécifiquement lui interdire de le faire en décochant la case "activer" qui sera présente à côté.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Enfin on peut retrouver un section Panel qui permettra d&#8217;activer ou désactiver l&#8217;affichage du panel sur le dashboard ou en mobile si le plugin en propose un.</p>
 </div>
 </div>
 </div>
@@ -522,20 +623,7 @@ Certains plugins ont une partie configuration, il faut dans ce cas se référer 
 <h2 id="_installation_d_un_plugin">2. Installation d&#8217;un plugin</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Pour en installer un nouveau il suffit de cliquer sur le bouton "Accéder au Market" :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/plugin4.png" alt="plugin4">
-</div>
-</div>
-<div class="paragraph">
-<p>Après un petit temps de chargement vous obtenez :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/plugin5.png" alt="plugin5">
-</div>
+<p>Pour installer un nouveau plugin il suffit de cliquer sur le bouton "Market". Après un petit temps de chargement vous obtiendrez la page.</p>
 </div>
 <div class="paragraph">
 <p>Tout en haut comme sur le Market vous avez des filtres :</p>
@@ -546,13 +634,13 @@ Certains plugins ont une partie configuration, il faut dans ce cas se référer 
 <p><strong>Gratuit/Payant</strong> : permet de ne filtrer que sur les gratuits ou les payants, la petite croix permet de réinitialiser le filtre</p>
 </li>
 <li>
-<p><strong>Nouveau/Populaire</strong> : permet d&#8217;afficher les derniers plugins ou ceux les plus téléchargés, la petite croix permet de réinitialiser le filtre</p>
+<p><strong>Officiel/Conseillé</strong> : permet d&#8217;afficher les plugins officiels ou les conseillés uniquement</p>
 </li>
 <li>
 <p><strong>Installé/Non installé</strong> : permet de n&#8217;afficher que les plugins installés ou non, la petite croix permet de réinitialiser le filtre</p>
 </li>
 <li>
-<p><strong>Catégorie</strong> : permet de n&#8217;afficher que certaines catégories de plugins</p>
+<p><strong>Menu déroulant Catégorie</strong> : permet de n&#8217;afficher que certaines catégories de plugins</p>
 </li>
 <li>
 <p><strong>Rechercher</strong> : permet de rechercher un plugin (dans le nom ou la description de celui-ci)</p>
@@ -563,12 +651,7 @@ Certains plugins ont une partie configuration, il faut dans ce cas se référer 
 </ul>
 </div>
 <div class="paragraph">
-<p>Un fois le plugin voulu trouvé il suffit de cliquer sur celui-ci pour faire apparaître la fiche du plugin :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/plugin6.png" alt="plugin6">
-</div>
+<p>Un fois le plugin voulu trouvé il suffit de cliquer sur celui-ci pour faire apparaître la fiche du plugin.</p>
 </div>
 <div class="paragraph">
 <p>Cette fiche vous donne beaucoup d&#8217;informations sur le plugin, entre autre :</p>
@@ -579,7 +662,7 @@ Certains plugins ont une partie configuration, il faut dans ce cas se référer 
 <p>S&#8217;il est officiel/recommandé ou s&#8217;il est obsolète (il faut vraiment éviter d&#8217;installer des plugins obsolètes)</p>
 </li>
 <li>
-<p>3 actions :</p>
+<p>4 actions :</p>
 <div class="ulist">
 <ul>
 <li>
@@ -587,6 +670,9 @@ Certains plugins ont une partie configuration, il faut dans ce cas se référer 
 </li>
 <li>
 <p><strong>Installer beta</strong> : permet d&#8217;installer le plugin dans sa version beta (seulement pour les betatesteurs)</p>
+</li>
+<li>
+<p><strong>Installer pro</strong> : permet d&#8217;installer la version pro (très peu utilisé)</p>
 </li>
 <li>
 <p><strong>Supprimer</strong> : si le plugin est actuellement installé, ce bouton permet de le supprimer</p>
@@ -597,8 +683,8 @@ Certains plugins ont une partie configuration, il faut dans ce cas se référer 
 </ul>
 </div>
 <div class="paragraph">
-<p>En dessous vous retrouvez sur la gauche la description du plugin, la compatibilité (si Jeedom détecte une incompatibilité il vous le signalera), les avis sur le plugin (vous pouvez ici le noter), les commentaires sur celui-ci et des informations complémentaires (l&#8217;auteur, la personne ayant fait la dernière mise à jour, un lien vers la doc, le nombre de téléchargements).
-Sur la droite vous retrouvez la liste des dernières mises à jour (un bouton tout voir vous permet d&#8217;avoir tout l&#8217;historique), une documentation rapide d&#8217;utilisation (il est recommandé quand même de lire la documentation complète) et enfin le type (plugin, widget&#8230;&#8203;), la langue et les diverses informations sur la date de la dernière stable, la beta et si vous pouvez sans crainte revenir sur la beta.</p>
+<p>En dessous vous retrouvez la description du plugin, la compatibilité (si Jeedom détecte une incompatibilité il vous le signalera), les avis sur le plugin (vous pouvez ici le noter) et des informations complémentaires (l&#8217;auteur, la personne ayant fait la dernière mise à jour, un lien vers la doc, le nombre de téléchargements).
+Sur la droite vous retrouvez la liste des dernières mises à jour (un bouton tout voir vous permet d&#8217;avoir tout l&#8217;historique), une documentation rapide d&#8217;utilisation (il est recommandé quand même de lire la documentation complète) et enfin le type (plugin, widget&#8230;&#8203;), la langue et les diverses informations sur la date de la dernière stable.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -607,7 +693,7 @@ Sur la droite vous retrouvez la liste des dernières mises à jour (un bouton to
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Il n&#8217;est vraiment pas recommandé de mettre un plugin beta sur un Jeedom beta, beaucoup de soucis de fonctionnement peuvent en résulter.
+Il n&#8217;est vraiment pas recommandé de mettre un plugin beta sur un Jeedom non beta, beaucoup de soucis de fonctionnement peuvent en résulter.
 </td>
 </tr>
 </table>
@@ -635,85 +721,6 @@ Vous pouvez aussi ajouter un plugin à Jeedom à partir d&#8217;un fichier ou de
 </td>
 </tr>
 </table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_la_partie_démon_des_plugins">3. La partie démon des plugins</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Certains plugins ont des démons, vous trouverez ici le statut des démons par jeedom (maître ou esclave)</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/plugin7.png" alt="plugin7">
-</div>
-</div>
-<div class="paragraph">
-<p>Vous avez ici :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Nom</strong> : jeedom en question (local veut dire celui sur lequel vous êtes)</p>
-</li>
-<li>
-<p><strong>Statut</strong> : indique le statut du démon</p>
-</li>
-<li>
-<p><strong>Configuration</strong> : indique si tout est bon niveau configuration pour que le démon tourne</p>
-</li>
-<li>
-<p><strong>(Re)Démarrer</strong> : permet de redémarrer le démon</p>
-</li>
-<li>
-<p><strong>Arrêter</strong> : permet d&#8217;arreter le démon (disponible seulement si la gestion automatique est désactivée)</p>
-</li>
-<li>
-<p><strong>Debug</strong> : permet de lancer le démon en debug (une icône sur le statut vous indiquera que vous êtes en debug)</p>
-</li>
-<li>
-<p><strong>Log</strong> : permet d&#8217;afficher la log du démon</p>
-</li>
-<li>
-<p><strong>Gestion automatique</strong> : autorise Jeedom à démarrer et à relancer le démon en cas de soucis. Elle est à désactiver quand vous êtes en déporté et que par exemple sur le maître vous n&#8217;avez pas besoin que le démon tourne</p>
-</li>
-<li>
-<p><strong>Dernier lancement</strong> : date de démarrage du démon</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_la_partie_dépendances">4. La partie Dépendances</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Certains plugins ont des dépendances, vous trouverez ici le statut des dépendances par jeedom (maître ou esclave)</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/plugin8.png" alt="plugin8">
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Nom</strong> : jeedom en question (local veut dire celui sur lequel vous êtes)</p>
-</li>
-<li>
-<p><strong>Statut</strong> : indique si les dépendances sont bien installées</p>
-</li>
-<li>
-<p><strong>Installation</strong> : lance l&#8217;installation des dépendances</p>
-</li>
-<li>
-<p><strong>Log</strong> : permet de voir la log d&#8217;installation des dépendances</p>
-</li>
-<li>
-<p><strong>Dernière installation</strong> : donne la date à laquelle les dépendances ont été lancées pour la derniere fois</p>
-</li>
-</ul>
 </div>
 </div>
 </div>

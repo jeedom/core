@@ -416,12 +416,61 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table des matières</div>
 <ul class="sectlevel1">
-<li><a href="#_edition_des_proprietés_du_designs">1. Edition des proprietés du designs</a></li>
-<li><a href="#_ajout_d_un_widget">2. Ajout d&#8217;un widget</a></li>
-<li><a href="#_ajout_texte_html">3. Ajout texte/html</a></li>
-<li><a href="#_ajout_d_un_scénario">4. Ajout d&#8217;un scénario</a></li>
-<li><a href="#_ajout_d_un_lien">5. Ajout d&#8217;un lien</a></li>
-<li><a href="#_ajout_d_un_graph">6. Ajout d&#8217;un graph</a></li>
+<li><a href="#_configuration_design">1. Configuration design</a></li>
+<li><a href="#_configuration_général_des_éléments">2. Configuration général des éléments</a>
+<ul class="sectlevel2">
+<li><a href="#_paramètre_d_affichage">2.1. Paramètre d&#8217;affichage</a></li>
+<li><a href="#_supprimer">2.2. Supprimer</a></li>
+<li><a href="#_dupliquer">2.3. Dupliquer</a></li>
+<li><a href="#_verrouiller">2.4. Verrouiller</a></li>
+</ul>
+</li>
+<li><a href="#_graphique">3. Graphique</a>
+<ul class="sectlevel2">
+<li><a href="#_paramètre_d_affichage_2">3.1. Paramètre d&#8217;affichage</a></li>
+<li><a href="#_configuration_avancée">3.2. Configuration avancée</a></li>
+</ul>
+</li>
+<li><a href="#_text_html">4. Text/html</a></li>
+<li><a href="#_scénario">5. Scénario</a>
+<ul class="sectlevel2">
+<li><a href="#_paramètre_d_affichage_3">5.1. Paramètre d&#8217;affichage</a></li>
+</ul>
+</li>
+<li><a href="#_lien">6. Lien</a>
+<ul class="sectlevel2">
+<li><a href="#_paramètre_d_affichage_4">6.1. Paramètre d&#8217;affichage</a></li>
+</ul>
+</li>
+<li><a href="#_equipement">7. Equipement</a>
+<ul class="sectlevel2">
+<li><a href="#_paramètre_d_affichage_5">7.1. Paramètre d&#8217;affichage</a></li>
+<li><a href="#_configuration_avancée_2">7.2. Configuration avancée</a></li>
+</ul>
+</li>
+<li><a href="#_commande">8. Commande</a>
+<ul class="sectlevel2">
+<li><a href="#_paramètre_d_affichage_6">8.1. Paramètre d&#8217;affichage</a></li>
+<li><a href="#_configuration_avancée_3">8.2. Configuration avancée</a></li>
+</ul>
+</li>
+<li><a href="#_image_caméra">9. Image/Caméra</a>
+<ul class="sectlevel2">
+<li><a href="#_paramètre_d_affichage_7">9.1. Paramètre d&#8217;affichage</a></li>
+</ul>
+</li>
+<li><a href="#_zone">10. Zone</a>
+<ul class="sectlevel2">
+<li><a href="#_paramètre_d_affichage_8">10.1. Paramètre d&#8217;affichage</a>
+<ul class="sectlevel3">
+<li><a href="#_macro_simple">10.1.1. Macro simple</a></li>
+<li><a href="#_macro_binaire">10.1.2. Macro binaire</a></li>
+<li><a href="#_widget_au_survol">10.1.3. Widget au survol</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_résumé">11. Résumé</a></li>
 </ul>
 </div>
 </div>
@@ -432,12 +481,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Cette page permet de configurer l&#8217;affichage de toute votre domotique de manière très fine. Celle-ci demande du temps mais sa seule limite est votre imagination.</p>
 </div>
 <div class="paragraph">
-<p>Elle est accessible par</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/plan1.png" alt="plan1">
-</div>
+<p>Elle est accessible par Acceuil &#8594; Dashboard</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -446,79 +490,127 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Comme vous pouvez le voir sur la capture il est possible d&#8217;aller directement sur un design grâce au sous-menu
+Il est possible d&#8217;aller directement sur un design grâce au sous-menu.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Toute les actions ce font par un clic droit sur cette page, attention a bien le faire dans le design. Lors de la création il faut donc le faire au milieu de la page (pour etre sur d&#8217;etre sur le design)
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Voici un exemple de design :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/plan2.png" alt="plan2">
-</div>
-</div>
-<div class="paragraph">
-<p>Sur cette page on retrouve, en haut (et dans l&#8217;ordre) :</p>
+<p>Dans le menu nous retrouvons (clic droit donc) nous retrouvons les actions suivantes :</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>un menu pour changer de design</p>
+<p><strong>Designs</strong> : Affiche la liste de vos designs et vous permet de naviguer de dedans</p>
 </li>
 <li>
-<p>un menu pour créer un nouveau design</p>
+<p><strong>Edition</strong> : Permet de passer en édition</p>
 </li>
 <li>
-<p>un pour le supprimer</p>
+<p><strong>Plein ecran</strong> : Affiche le design en pleine écran</p>
 </li>
 <li>
-<p>un bouton pour éditer le design en cours</p>
+<p><strong>Ajouter graphique</strong> : Permet d&#8217;ajouter un graphique</p>
 </li>
 <li>
-<p>un pour passer en mode plein écran</p>
+<p><strong>Ajouter texte/html</strong> : Permet d&#8217;ajouter du texte ou du code html/javascript</p>
+</li>
+<li>
+<p><strong>Ajouter scénario</strong> : Permet d&#8217;ajouter un scénario</p>
+</li>
+<li>
+<p><strong>Ajouter lien</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Vers une vue</strong> : Permet d&#8217;ajouter un lien vers une vue</p>
+</li>
+<li>
+<p><strong>Vers un design</strong> : Permet d&#8217;ajouter un lien vers un autre design</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Il vous suffit donc pour en créer un de cliquer sur le bouton d&#8217;ajout, une fenêtre va vous demander le nom de celui-ci :</p>
+</li>
+<li>
+<p><strong>Ajouter équipement</strong> : Permet d&#8217;ajouter un équipement</p>
+</li>
+<li>
+<p><strong>Ajouter commande</strong> : Permet d&#8217;ajouter une commande</p>
+</li>
+<li>
+<p><strong>Ajouter image/caméra</strong> : Permet d&#8217;ajouter une image ou le flux d&#8217;une caméra</p>
+</li>
+<li>
+<p><strong>Ajouter zone</strong> : Permet d&#8217;ajouter une zone transparante cliquable qui pourra executer une serie d&#8217;action lors d&#8217;un clic (en fonction ou non de l&#8217;état d&#8217;une autre commande)</p>
+</li>
+<li>
+<p><strong>Ajouter résumé</strong> : Ajoute les informations d&#8217;un résumé d&#8217;objet ou général</p>
+</li>
+<li>
+<p>*Affichage *</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Aucune</strong> : N&#8217;affiche aucune grille</p>
+</li>
+<li>
+<p><strong>10x10</strong> : Affiche une grille de 10 par 10</p>
+</li>
+<li>
+<p><strong>15x15</strong> : Affiche une grille de 15 par 15</p>
+</li>
+<li>
+<p><strong>20x20</strong> : Affiche une grille de 20 par 20</p>
+</li>
+<li>
+<p><strong>Aimanter les élements</strong> : Ajoute une aimantation entre les élements pour permettre de les coller plus facilement</p>
+</li>
+<li>
+<p><strong>Aimanter à la grille</strong> : Ajouter une aimantation des éléments à la grille (attention en fonction du zoom de l&#8217;élément cette fonctionalité peut plus ou moins fonctionner)</p>
+</li>
+<li>
+<p><strong>Masquer la surbrillance des éléments</strong> : Masque la surbrillance autour des élements</p>
+</li>
+</ul>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/plan3.png" alt="plan3">
+</li>
+<li>
+<p><strong>Supprimer le design</strong> : supprime le design</p>
+</li>
+<li>
+<p><strong>Créer un design</strong> : permet d&#8217;ajouter un design</p>
+</li>
+<li>
+<p><strong>Dupliquer le design</strong> : duplique le design courant</p>
+</li>
+<li>
+<p><strong>Configurer le design</strong> : accès à la configuration du design</p>
+</li>
+<li>
+<p><strong>Sauvegarder</strong> : permet de sauvegarder le design (attention il y aussi des sauvegarde automatique lors de certaine action)</p>
+</li>
+</ul>
 </div>
-</div>
-<div class="paragraph">
-<p>Vous arrivez donc sur un design vide :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/plan4.png" alt="plan4">
-</div>
-</div>
-<div class="paragraph">
-<p>Il faut donc cliquer le bouton d&#8217;édition pour passer en mode édition :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/plan5.png" alt="plan5">
-</div>
-</div>
-<div class="paragraph">
-<p>Comme on peut le voir il y a un peu plus de boutons maintenant, ainsi que le cadre du design (que l&#8217;on peut changer bien sûr).</p>
-</div>
-<div class="paragraph">
-<p>En haut à gauche on retrouve 2 boutons, celui pour éditer les propriétés du design en cours et celui pour le dupliquer.</p>
-</div>
-<div class="admonitionblock tip">
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-N&#8217;oubliez pas de sauvegarder après chaque modification
+La configuration des éléments du désign se fait par un clic sur ceux-ci
 </td>
 </tr>
 </table>
@@ -526,13 +618,8 @@ N&#8217;oubliez pas de sauvegarder après chaque modification
 </div>
 </div>
 <div class="sect1">
-<h2 id="_edition_des_proprietés_du_designs">1. Edition des proprietés du designs</h2>
+<h2 id="_configuration_design">1. Configuration design</h2>
 <div class="sectionbody">
-<div class="imageblock">
-<div class="content">
-<img src="../images/plan6.png" alt="plan6">
-</div>
-</div>
 <div class="paragraph">
 <p>On retrouve ici :</p>
 </div>
@@ -549,13 +636,17 @@ N&#8217;oubliez pas de sauvegarder après chaque modification
 <p><strong>Icône</strong> : Une icône pour celui-ci (apparait dans le menu de choix de design)</p>
 </li>
 <li>
-<p><strong>Disponible sur téléphone</strong> : Rend ce design visible dans la liste des designs en version mobile</p>
+<p><strong>Image</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Envoyer</strong> : permet d&#8217;ajouter une image de fond au design</p>
 </li>
 <li>
-<p><strong>Image</strong> : permet d&#8217;ajouter une image de fond au design</p>
+<p><strong>Supprimer l&#8217;image</strong> : permet de supprimer l&#8217;image</p>
 </li>
-<li>
-<p><strong>Ne pas afficher la flèche de retour lors de la mise en plein écran</strong> : en mode plein écran cette option masque le bouton de retour au mode fenêtré (idéal pour une tablette murale)</p>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -567,12 +658,6 @@ N&#8217;oubliez pas de sauvegarder après chaque modification
 <li>
 <p><strong>Taille (LxH)</strong> : Permet de fixer la taille de votre design (cadre gris en mode édition)</p>
 </li>
-<li>
-<p><strong>Proportion tablette (ex : 0.7)</strong> : permet de changer la proportion du design sur tablette (pour le reduire par exemple tout en maitrisant encore la taille)</p>
-</li>
-<li>
-<p><strong>Proportion téléphone (ex 0.5)</strong> : permet de changer la proportion du design sur téléphone (pour le reduire par exemple tout en maitrisant encore la taille)</p>
-</li>
 </ul>
 </div>
 </li>
@@ -581,392 +666,83 @@ N&#8217;oubliez pas de sauvegarder après chaque modification
 </div>
 </div>
 <div class="sect1">
-<h2 id="_ajout_d_un_widget">2. Ajout d&#8217;un widget</h2>
+<h2 id="_configuration_général_des_éléments">2. Configuration général des éléments</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>Ensuite il faut ajouter des widgets à votre design, pour cela il faut cliquer sur le bouton d&#8217;ajout de widget :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/plan7.png" alt="plan7">
-</div>
-</div>
-<div class="paragraph">
-<p>Une fois cliqué il vous faut choisir le widget :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/plan8.png" alt="plan8">
-</div>
-</div>
-<div class="paragraph">
-<p>Vous voyez apparaître votre widget :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/plan9.png" alt="plan9">
-</div>
-</div>
-<div class="admonitionblock tip">
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Vous pouvez le déplacer en cliquant/glissant le widget
+En fonction du type de l&#8217;élement les options peuvent changer
 </td>
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>Vous avez accès a la configuration avancée de l&#8217;affichage du widget en double cliquant sur celui-ci :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/plan10.png" alt="plan10">
-</div>
-</div>
-<div class="paragraph">
-<p>Ici on a :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Général</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Taille du widget</strong> : permet de definir un ratio de taille de widget, par exemple ici il ne fera que 65% de sa taille</p>
-</li>
-<li>
-<p><strong>Couleur de fond</strong> : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON</p>
-</li>
-<li>
-<p><strong>Couleur des icônes et textes</strong> : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)</p>
-</li>
-<li>
-<p><strong>Arrondir les angles (ne pas oublier de mettre %, ex 50%)</strong> : permet d&#8217;arrondir les angles du widget, ne pas oublier de mettre le %</p>
-</li>
-<li>
-<p><strong>Bordure (attention syntaxe css, ex : solid 1px black)</strong> : permet d&#8217;ajouter une bordure, attention la syntaxe est HTML</p>
-</li>
-<li>
-<p><strong>Profondeur</strong> : permet de choisir le niveau de la profondeur, pour par exemple passer un widget par dessus un autre</p>
-</li>
-<li>
-<p><strong>Ne pas afficher le nom de l&#8217;équipement</strong> : masque le nom du widget, s&#8217;applique uniquement sur le design</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Spécifique</strong> : permet de masquer certaines commandes du widget uniquement sur le design</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock important">
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-important" title="Important"></i>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-En fonction des plugins certaines options peuvent ne pas fonctionner
+L&#8217;element séléctionné apparait en surbrillance rouge (au lieu de vert pour tous les autres)
 </td>
 </tr>
 </table>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Vous pouvez en bas à droite redimensionner les widgets
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_ajout_texte_html">3. Ajout texte/html</h2>
-<div class="sectionbody">
-<div class="imageblock">
-<div class="content">
-<img src="../images/plan11.png" alt="plan11">
-</div>
-</div>
-<div class="paragraph">
-<p>Permet d&#8217;ajouter un texte ou du code html/javascript, une fois cliqué dessus vous obtenez :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/plan12.png" alt="plan12">
-</div>
-</div>
-<div class="paragraph">
-<p>Un double clic dessus vous ammène à la fenêtre de configuration :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/plan13.png" alt="plan13">
-</div>
-</div>
+<div class="sect2">
+<h3 id="_paramètre_d_affichage">2.1. Paramètre d&#8217;affichage</h3>
 <div class="ulist">
 <ul>
-<li>
-<p><strong>Nom</strong> : permet de rentrer le texte ou le code html/javascript</p>
-</li>
-<li>
-<p><strong>Icone</strong> : permet de mettre une icône à la place du texte</p>
-</li>
-<li>
-<p><strong>Couleur de fond</strong> : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON</p>
-</li>
-<li>
-<p><strong>Couleur du textes</strong> : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)</p>
-</li>
-<li>
-<p><strong>Arrondir les angles (ne pas oublier de mettre %, ex 50%)</strong> : permet d&#8217;arrondir les angles, ne pas oublier de mettre le %</p>
-</li>
-<li>
-<p><strong>Bordure (attention syntax css, ex : solid 1px black)</strong> : permet d&#8217;ajouter une bordure, attention la syntaxe est HTML</p>
-</li>
-<li>
-<p><strong>Taille de la police (ex 50%, il faut bien mettre le signe %)</strong> : permet de modifier la taille de la police</p>
-</li>
-<li>
-<p><strong>Ne pas prendre en compte la taille prédéfinie</strong> : permet d&#8217;ignorer la taille prédéfinie du widget</p>
-</li>
 <li>
 <p><strong>Profondeur</strong> : permet de choisir le niveau de la profondeur</p>
 </li>
 <li>
-<p><strong>Gras</strong> : met le texte en gras</p>
+<p><strong>Position X (%)</strong> :</p>
+</li>
+<li>
+<p><strong>Position Y (%)</strong> :</p>
+</li>
+<li>
+<p><strong>Largeur (px)</strong> :</p>
+</li>
+<li>
+<p><strong>Hauteur (px)</strong> :</p>
 </li>
 </ul>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Vous pouvez en bas à droite le redimensionner
-</td>
-</tr>
-</table>
+</div>
+<div class="sect2">
+<h3 id="_supprimer">2.2. Supprimer</h3>
+<div class="paragraph">
+<p>Permet de supprimer l&#8217;élement</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_dupliquer">2.3. Dupliquer</h3>
+<div class="paragraph">
+<p>Permet de dupliquer l&#8217;élement</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_verrouiller">2.4. Verrouiller</h3>
+<div class="paragraph">
+<p>Permet de verrouiller l&#8217;élement pour plus qu&#8217;il soit déplacable ou redimmensionnable</p>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_ajout_d_un_scénario">4. Ajout d&#8217;un scénario</h2>
+<h2 id="_graphique">3. Graphique</h2>
 <div class="sectionbody">
-<div class="imageblock">
-<div class="content">
-<img src="../images/plan14.png" alt="plan14">
-</div>
-</div>
-<div class="paragraph">
-<p>Un clic dessus et Jeedom vous demandera le scénario en question :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/plan15.png" alt="plan15">
-</div>
-</div>
-<div class="paragraph">
-<p>Une fois choisi celui-ci apparait sur le design :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/plan16.png" alt="plan16">
-</div>
-</div>
-<div class="paragraph">
-<p>Un double clic dessus vous amènera à la configuration de cet élément scénario :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/plan17.png" alt="plan17">
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Général</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Taille du widget</strong> : permet de definir un ratio de taille de widget, par exemple ici il ne fera que 65% de sa taille</p>
-</li>
-<li>
-<p><strong>Couleur de fond</strong> : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON</p>
-</li>
-<li>
-<p><strong>Couleur des icônes et textes</strong> : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)</p>
-</li>
-<li>
-<p><strong>Arrondir les angles (ne pas oublier de mettre %, ex 50%)</strong> : permet d&#8217;arrondir les angles du widget, ne pas oublier de mettre le %</p>
-</li>
-<li>
-<p><strong>Bordure (attention syntaxe css, ex : solid 1px black)</strong> : permet d&#8217;ajouter une bordure, attention la syntaxe est HTML</p>
-</li>
-<li>
-<p><strong>Profondeur</strong> : permet de choisir le niveau de la profondeur, pour par exemple passer un widget par dessus un autre</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Spécifique</strong> : permet de masquer les commandes d&#8217;action sur le scénario</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Vous pouvez en bas à droite le redimensionner
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_ajout_d_un_lien">5. Ajout d&#8217;un lien</h2>
-<div class="sectionbody">
-<div class="imageblock">
-<div class="content">
-<img src="../images/plan18.png" alt="plan18">
-</div>
-</div>
-<div class="paragraph">
-<p>Permet d&#8217;ajouter un lien vers une vue ou un autre design :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/plan19.png" alt="plan19">
-</div>
-</div>
-<div class="paragraph">
-<p>Celui-ci apparaît ensuite sur le design :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/plan20.png" alt="plan20">
-</div>
-</div>
-<div class="paragraph">
-<p>Un double clic dessus vous amène sur la configuration avancée :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/plan21.png" alt="plan21">
-</div>
-</div>
-<div class="paragraph">
-<p>On retrouve ici :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Nom</strong> : permet de changer le nom du lien</p>
-</li>
-<li>
-<p><strong>Lien</strong> : destination du lien</p>
-</li>
-<li>
-<p><strong>Position</strong> : permet de régler finement la position du lien sur la destination (pour par exemple arriver directement sur la cuisine)</p>
-</li>
-<li>
-<p><strong>Icone</strong> : permet de mettre une icône à la place du texte</p>
-</li>
-<li>
-<p><strong>Couleur de fond</strong> : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON</p>
-</li>
-<li>
-<p><strong>Couleur du textes</strong> : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)</p>
-</li>
-<li>
-<p><strong>Arrondir les angles (ne pas oublier de mettre %, ex 50%)</strong> : permet d&#8217;arrondir les angles, ne pas oublier de mettre le %</p>
-</li>
-<li>
-<p><strong>Bordure (attention syntax css, ex : solid 1px black)</strong> : permet d&#8217;ajouter une bordure, attention la syntaxe est HTML</p>
-</li>
-<li>
-<p><strong>Profondeur</strong> : permet de choisir le niveau de la profondeur</p>
-</li>
-<li>
-<p><strong>Taille de la police (ex 50%, il faut bien mettre le signe %)</strong> : permet de modifier la taille de la police</p>
-</li>
-<li>
-<p><strong>Ne pas prendre en compte la taille prédéfinie</strong> : permet d&#8217;ignorer la taille prédéfinie du widget</p>
-</li>
-<li>
-<p><strong>Gras</strong> : met le texte en gras</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Vous pouvez en bas à droite le redimensionner
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_ajout_d_un_graph">6. Ajout d&#8217;un graph</h2>
-<div class="sectionbody">
-<div class="imageblock">
-<div class="content">
-<img src="../images/plan22.png" alt="plan22">
-</div>
-</div>
-<div class="paragraph">
-<p>Une fois cliqué dessus vous obtenez :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/plan23.png" alt="plan23">
-</div>
-</div>
-<div class="paragraph">
-<p>Un double clic dessus vous amène à la configuration de l&#8217;élement graph</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/plan24.png" alt="plan24">
-</div>
-</div>
-<div class="paragraph">
-<p>Ici on retrouve :</p>
-</div>
+<div class="sect2">
+<h3 id="_paramètre_d_affichage_2">3.1. Paramètre d&#8217;affichage</h3>
 <div class="ulist">
 <ul>
 <li>
 <p><strong>Période</strong> : permet de choisir la période d&#8217;affichage</p>
-</li>
-<li>
-<p><strong>Bordure (attention syntaxe css, ex : solid 1px black)</strong> : permet d&#8217;ajouter une bordure, attention la syntaxe est HTML</p>
-</li>
-<li>
-<p><strong>Profondeur</strong> : permet de choisir le niveau de la profondeur</p>
 </li>
 <li>
 <p><strong>Afficher la légende</strong> : permet d&#8217;afficher ou non la légende</p>
@@ -983,60 +759,259 @@ Vous pouvez en bas à droite le redimensionner
 <li>
 <p><strong>Fond transparent</strong> : rend le fond transparent</p>
 </li>
+<li>
+<p><strong>Bordure (attention syntax css, ex : solid 1px black)</strong> : permet d&#8217;ajouter une bordure, attention la syntaxe est HTML</p>
+</li>
 </ul>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_configuration_avancée">3.2. Configuration avancée</h3>
 <div class="paragraph">
-<p>Pour choisir les données à afficher il faut cliquer sur les 3 roues crantées :</p>
+<p>Permet de choisir les commandes à grapher</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/plan25.png" alt="plan25">
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_text_html">4. Text/html</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Icone</strong> : Icone à affiché devant</p>
+</li>
+<li>
+<p><strong>Couleur de fond</strong> : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON</p>
+</li>
+<li>
+<p><strong>Couleur du texte</strong> : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)</p>
+</li>
+<li>
+<p><strong>Arrondir les angles (ne pas oublié de mettre %, ex 50%)</strong> : permet d&#8217;arrondir les angles, ne pas oublier de mettre le %</p>
+</li>
+<li>
+<p><strong>Bordure (attention syntax css, ex : solid 1px black)</strong> : permet d&#8217;ajouter une bordure, attention la syntaxe est HTML</p>
+</li>
+<li>
+<p><strong>Taille de la police (ex 50%, il faut bien mettre le signe %)</strong> : permet de modifier la taille de la police</p>
+</li>
+<li>
+<p><strong>Alignement du texte</strong> : permet de choisir l&#8217;alignement du texte (gauche/droit/centré)</p>
+</li>
+<li>
+<p><strong>Gras</strong> : met le texte en gras</p>
+</li>
+<li>
+<p><strong>Texte</strong> : Texte au code html qui sera dans l&#8217;élement</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Si vous mettez du code html (en particulier du javascript), attention à bien le vérifier avant car vous pouvez si il y a une erreur dedans ou si il écrase un composant Jeedom planter completement le design et il ne restera plus qu&#8217;a le supprimer directement base de données
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_scénario">5. Scénario</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_paramètre_d_affichage_3">5.1. Paramètre d&#8217;affichage</h3>
+<div class="paragraph">
+<p>Aucun paramètre spécifique d&#8217;affichage</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_lien">6. Lien</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_paramètre_d_affichage_4">6.1. Paramètre d&#8217;affichage</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Nom</strong> : Nom du lien (texte affiché)</p>
+</li>
+<li>
+<p><strong>Lien</strong> : Lien vers le design ou la vue en question</p>
+</li>
+<li>
+<p><strong>Couleur de fond</strong> : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON</p>
+</li>
+<li>
+<p><strong>Couleur du texte</strong> : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)</p>
+</li>
+<li>
+<p><strong>Arrondir les angles (ne pas oublié de mettre %, ex 50%)</strong> : permet d&#8217;arrondir les angles, ne pas oublier de mettre le %</p>
+</li>
+<li>
+<p><strong>Bordure (attention syntax css, ex : solid 1px black)</strong> : permet d&#8217;ajouter une bordure, attention la syntaxe est HTML</p>
+</li>
+<li>
+<p><strong>Taille de la police (ex 50%, il faut bien mettre le signe %)</strong> : permet de modifier la taille de la police</p>
+</li>
+<li>
+<p><strong>Alignement du texte</strong> : permet de choisir l&#8217;alignement du texte (gauche/droit/centré)</p>
+</li>
+<li>
+<p><strong>Gras</strong> : met le texte en gras</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_equipement">7. Equipement</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_paramètre_d_affichage_5">7.1. Paramètre d&#8217;affichage</h3>
+<div class="paragraph">
+<p>Aucun paramètre spécifique d&#8217;affichage</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuration_avancée_2">7.2. Configuration avancée</h3>
+<div class="paragraph">
+<p>Affiche la fenetre de configuration avancé de l&#8217;équipement (voir documentation Résumé domotique ("display"))</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_commande">8. Commande</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_paramètre_d_affichage_6">8.1. Paramètre d&#8217;affichage</h3>
+<div class="paragraph">
+<p>Aucun paramètre spécifique d&#8217;affichage</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuration_avancée_3">8.2. Configuration avancée</h3>
+<div class="paragraph">
+<p>Affiche la fenetre de configuration avancé de la commande (voir documentation Résumé domotique ("display"))</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_image_caméra">9. Image/Caméra</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_paramètre_d_affichage_7">9.1. Paramètre d&#8217;affichage</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Afficher</strong> : défini ceux que vous voulez afficher, image fixe ou flux d&#8217;une caméra</p>
+</li>
+<li>
+<p><strong>Image</strong> : permet d&#8217;envoyer l&#8217;image en question (si vous avez choisi une image)</p>
+</li>
+<li>
+<p><strong>Caméra</strong> : caméra à afficher (si vous avez choisi caméra)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_zone">10. Zone</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_paramètre_d_affichage_8">10.1. Paramètre d&#8217;affichage</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Type de zone</strong> : C&#8217;est ici que vous choissez le type de la zone : Macro simple, Macro Binaire ou Widget au survol</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_macro_simple">10.1.1. Macro simple</h4>
+<div class="paragraph">
+<p>Dans ce mode la un clic sur la zone execute une ou plusieurs action.</p>
 </div>
 <div class="paragraph">
-<p>Vous obtenez (ça peut être un peu long à charger) :</p>
+<p>Il vous suffit ici d&#8217;indiquer la liste des actions à faire lors du clic sur la zone</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/plan26.png" alt="plan26">
 </div>
+<div class="sect3">
+<h4 id="_macro_binaire">10.1.2. Macro binaire</h4>
+<div class="paragraph">
+<p>Dans ce mode Jeedom va executer la ou les action(s) On ou Off en fonction de l&#8217;état de la commande que vous donnez. Ex si la commande vaut 0 alors Jeedom executera la ou les action(s) On sinon il executera la ou les action(s) off</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Activer</strong> : le premier bouton permet d&#8217;activer ou non l&#8217;affichage de la donnée sur le graphique</p>
-</li>
-<li>
-<p><strong>Couleur</strong> : la couleur de la courbe</p>
-</li>
-<li>
-<p><strong>Type</strong> : le type de graph (aire, ligne ou colonne)</p>
-</li>
-<li>
-<p><strong>Escalier</strong> : permet d&#8217;afficher la courbe sous la forme d&#8217;un escalier au d&#8217;un affichage continue</p>
-</li>
-<li>
-<p><strong>Empiler</strong> : permet d&#8217;empiler les valeurs des courbes (voir en dessous pour le résultat)</p>
-</li>
-<li>
-<p><strong>Variation</strong> : affiche la différence de valeur par rapport au point précédent</p>
-</li>
-<li>
-<p><strong>Echelle</strong> : vu que vous pouvez mettre plusieurs courbes (données) sur le même graphe il est possible de distinguer les échelles (droite ou gauche)</p>
+<p><strong>Information binaire</strong> : Commande donnant l&#8217;état à verifier pour decider de l&#8217;action à faire (on ou off)</p>
 </li>
 </ul>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Vous pouvez en bas à droite le redimensionner
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>Il vous suffit en dessous de mettre les actions à faire pour le on et pour le off</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_widget_au_survol">10.1.3. Widget au survol</h4>
+<div class="paragraph">
+<p>Dans ce mode lors du survole ou du clic dans la zone jeedom vous affichera le widget en question</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Equipement</strong> : widget à afficher lors du survole ou du clic</p>
+</li>
+<li>
+<p><strong>Afficher au survol</strong> : si coché affiche le widget au survol</p>
+</li>
+<li>
+<p><strong>Afficher sur un clic</strong> : si coché alors le widget est affiché au clic</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_résumé">11. Résumé</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Lien</strong> : Permet d&#8217;indiqué le résumé à afficher (Général pour le globale sinon indiquer l&#8217;objet)</p>
+</li>
+<li>
+<p><strong>Couleur de fond</strong> : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON</p>
+</li>
+<li>
+<p><strong>Couleur du texte</strong> : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)</p>
+</li>
+<li>
+<p><strong>Arrondir les angles (ne pas oublié de mettre %, ex 50%)</strong> : permet d&#8217;arrondir les angles, ne pas oublier de mettre le %</p>
+</li>
+<li>
+<p><strong>Bordure (attention syntax css, ex : solid 1px black)</strong> : permet d&#8217;ajouter une bordure, attention la syntaxe est HTML</p>
+</li>
+<li>
+<p><strong>Taille de la police (ex 50%, il faut bien mettre le signe %)</strong> : permet de modifier la taille de la police</p>
+</li>
+<li>
+<p><strong>Gras</strong> : met le texte en gras</p>
+</li>
+</ul>
 </div>
 </div>
 </div>

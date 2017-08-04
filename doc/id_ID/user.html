@@ -415,37 +415,22 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h1>Utilisateur</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table des matières</div>
-
+<ul class="sectlevel1">
+<li><a href="#_gestion_des_droits">1. Gestion des droits</a></li>
+</ul>
 </div>
 </div>
 <div id="content">
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
 <p>C&#8217;est ici que l&#8217;on va pouvoir définir la liste des utilisateurs autorisés à se connecter à Jeedom, mais également leurs droits d&#8217;administrateur</p>
 </div>
 <div class="paragraph">
-<p>Accessible par Administration &#8594; Utilisateurs :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/user.png" alt="user">
-</div>
+<p>Accessible par Administration &#8594; Utilisateurs.</p>
 </div>
 <div class="paragraph">
-<p>Une fois dessus vous obtenez :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/user2.png" alt="user2">
-</div>
-</div>
-<div class="paragraph">
-<p>En haut vous avez un bouton pour ajouter un compte temporaire (pour par exemple fournir un accès au support). Une fois que vous cliquez dessus, vous allez avoir une URL à envoyer à la personne devant l&#8217;utiliser. Ce compte a une durée de vie de 24h.
-Vous avez aussi un bouton pour ajouter un utilisateur. Si vous cliquez dessus, Jeedom vous demandera le mot de passe et le login de l&#8217;utilisateur :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/user3.png" alt="user3">
-</div>
+<p>En haut vous avez en haut à droite un bouton pour ajouter un utilisateur et un pour sauvegarder.</p>
 </div>
 <div class="paragraph">
 <p>En dessous vous avez un tableau :</p>
@@ -456,36 +441,87 @@ Vous avez aussi un bouton pour ajouter un utilisateur. Si vous cliquez dessus, J
 <p><strong>Nom d&#8217;utilisateur</strong> : le login de l&#8217;utilisateur</p>
 </li>
 <li>
-<p><strong>Actions</strong> : La possibilité de changer le mot de passe de l&#8217;utilisateur ou de supprimer son compte</p>
-</li>
-<li>
 <p><strong>Actif</strong> : la possibilité de désactiver le compte</p>
 </li>
 <li>
-<p><strong>Droits</strong> : la possibilité de passer ou non l&#8217;utilisateur en mode administrateur (permet d&#8217;avoir accès à tout ce qui est configuration de Jeedom, création des scénarios, gestion des plugins, configuration des équipements, des designs, des vues&#8230;&#8203;)</p>
+<p><strong>Local seulement</strong> : autorise la connexion de l&#8217;utilisateur que si il est en local</p>
+</li>
+<li>
+<p><strong>Profils</strong> : permet de choisir le profils de l&#8217;utilisateur :</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Administrateur</strong> : tous les droits sur Jeedom</p>
+</li>
+<li>
+<p><strong>Utilisateur</strong> : peut voir le dashboard, les vues, les design&#8230;&#8203; et agir sur les équipements/commandes, en revanche il n&#8217;aura pas accès a la configuration des commandes/équipements et de Jeedom</p>
+</li>
+<li>
+<p><strong>Utilisateur limité</strong> : l&#8217;utilisateur ne voit que les équipements autorisé (configurable avec le bouton "Gerer les droits")</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p><strong>Clef API</strong> : clef API personnelle de l&#8217;utilisateur</p>
 </li>
 <li>
+<p><strong>Double authentification</strong> : indique si la double authentification est active ou non</p>
+</li>
+<li>
 <p><strong>Date de dernière connexion</strong> : date de dernière connexion de l&#8217;utilisateur. Attention, ici c&#8217;est la date de connexion réelle; ainsi si vous enregistrez votre ordinateur, la date de connexion n&#8217;est pas mise à jour à chaque fois que vous y retournez.</p>
 </li>
 <li>
-<p><strong>Accès direct</strong> : donne une URL pour se connecter directement à Jeedom avec le compte en question</p>
+<p><strong>Changer le mot de passe</strong> : permet de changer le mot de passe de l&#8217;utilisateur</p>
+</li>
+<li>
+<p><strong>Supprimer</strong> : permet de supprimer l&#8217;utilisateur</p>
+</li>
+<li>
+<p><strong>Regenerer clef API</strong> : regenere la clef API de l&#8217;utilisateur</p>
+</li>
+<li>
+<p><strong>Gerer les droits</strong> : permet de gerer finiment les droits de l&#8217;utilisateur (attention le profils doit etre en "utilisateur limité")</p>
 </li>
 </ul>
 </div>
-<div class="admonitionblock tip">
+</div>
+</div>
+<div class="sect1">
+<h2 id="_gestion_des_droits">1. Gestion des droits</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Lors du clique sur "Gerer les droits" une fenetre apparait et vous permet de gerer finement les droits de l&#8217;utilisateur</p>
+</div>
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-En cas de changement, n&#8217;oubliez pas de cliquer sur "sauvegarder".
+Le profils doit etre en limité sinon aucun restriction mise ici ne marchera
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>Vous avez ici un trableau qui permet pour chaque équipement et chaque scénario de définir les droits de l&#8217;utilisateur :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Aucun</strong> : l&#8217;utilisateur ne voit pas l&#8217;équipement/scénario</p>
+</li>
+<li>
+<p><strong>Visualisation</strong> : l&#8217;utilisateur voit l&#8217;équipement/scénario mais ne peut pas agir dessus</p>
+</li>
+<li>
+<p><strong>Visualisation et éxecution</strong> : l&#8217;utilisateur voit l&#8217;équipement/scénario et peut agir dessus (allumé une lampe, lancer le scénario&#8230;&#8203;)</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <div id="footer">
