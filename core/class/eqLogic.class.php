@@ -73,11 +73,14 @@ class eqLogic {
 		return $_inputs;
 	}
 
-	public static function all() {
+	public static function all($_onlyEnable = false) {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__, 'el') . '
         FROM eqLogic el
-        LEFT JOIN object ob ON el.object_id=ob.id
-        ORDER BY ob.name,el.name';
+        LEFT JOIN object ob ON el.object_id=ob.id';
+		if ($_onlyEnable) {
+			$sql .= ' AND isEnable=1';
+		}
+		$sql .= ' ORDER BY ob.name,el.name';
 		return self::cast(DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
@@ -871,7 +874,7 @@ class eqLogic {
 				$message .= ' (' . $this->getConfiguration('battery_type') . ')';
 			}
 			$this->setStatus('batterydanger', 1);
-			if ($prevStatus ==0) {
+			if ($prevStatus == 0) {
 				if (config::ByKey('alert::addMessageOnBatterydanger') == 1) {
 					message::add($this->getEqType_name(), $message, '', $logicalId);
 				}
@@ -897,7 +900,7 @@ class eqLogic {
 			}
 			$this->setStatus('batterywarning', 1);
 			$this->setStatus('batterydanger', 0);
-			if ($prevStatus ==0) {
+			if ($prevStatus == 0) {
 				if (config::ByKey('alert::addMessageOnBatterywarning') == 1) {
 					message::add($this->getEqType_name(), $message, '', $logicalId);
 				}

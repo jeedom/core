@@ -205,7 +205,7 @@ class interactQuery {
 			if ($_data !== null && is_object($_data['object'])) {
 				$objects = $_data['object']->getEqLogic();
 			} else {
-				$objects = eqLogic::all();
+				$objects = eqLogic::all(true);
 			}
 		} elseif ($_type == 'cmd') {
 			if ($_data !== null && is_object($_data['eqLogic'])) {
@@ -213,6 +213,9 @@ class interactQuery {
 			} elseif ($_data !== null && is_object($_data['object'])) {
 				$objects = array();
 				foreach ($_data['object']->getEqLogic() as $eqLogic) {
+					if ($eqLogic->getIsEnable() == 0) {
+						continue;
+					}
 					foreach ($eqLogic->getCmd() as $cmd) {
 						$objects[] = $cmd;
 					}

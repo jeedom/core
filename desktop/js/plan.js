@@ -19,15 +19,15 @@
         return;
     }
     $.contextMenu('destroy', '#div_pageContainer' );
- }
+}
 
- $('main').css('padding-right','0px').css('padding-left','0px').css('margin-right','0px').css('margin-left','0px');
- var deviceInfo = getDeviceType();
- var editOption = {state : false, snap : false,grid : false,gridSize:false,highlight:true};
- var clickedOpen = false;
+$('main').css('padding-right','0px').css('padding-left','0px').css('margin-right','0px').css('margin-left','0px');
+var deviceInfo = getDeviceType();
+var editOption = {state : false, snap : false,grid : false,gridSize:false,highlight:true};
+var clickedOpen = false;
 
- planHeaderContextMenu = {};
- for(var i in planHeader){
+planHeaderContextMenu = {};
+for(var i in planHeader){
     planHeaderContextMenu[planHeader[i].id] = {
         name:planHeader[i].name,
         callback: function(key, opt){
@@ -938,6 +938,7 @@ if(_plan.link_type == 'graph'){
             }
         }
     }
+    initEditOption(editOption.state);
     return;
 }
 if (init(_noRender, false)) {
