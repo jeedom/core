@@ -200,4 +200,3 @@ Dans ce mode lors du survole ou du clic dans la zone jeedom vous affichera le wi
 * *Bordure (attention syntax css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
 * *Taille de la police (ex 50%, il faut bien mettre le signe %)* : permet de modifier la taille de la police
 * *Gras* : met le texte en gras
-
