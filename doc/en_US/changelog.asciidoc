@@ -28,6 +28,11 @@
 * Possibilité d'historiser des commandes de type texte
 * Sur la page historique vous pouvez maintenant faire un graphique d'un calcul
 * Ajout d'un gestion de formule de calcul pour les historique
+* Remise à jour de toute la documentation : 
+** Toute les docs ont été revue
+** Suppression des images pour faciliter la mise à jour et le multilingue
+* Plus de choix possible sur le reglage des tailles de zone dans les vues
+* Possibilité de choisir la couleur du texte du résumé d'objet
 
 == 3.0.11
 

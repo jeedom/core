@@ -19,7 +19,7 @@ Enfin, en-dessous vous avez le tableau de toutes les tâches existantes (attenti
 * *Unique* : si c'est à "oui" alors la tâche se lancera une fois puis se supprimera
 * *Classe* : classe PHP appelée pour exécuter la tâche (peut être vide)
 * *Fonction* : fonction  PHP appelée dans la classe appelée (ou non si la classe est vide) 
-* *Programmation* : la programmationd de la tâche au format CRON
+* *Programmation* : la programmation de la tâche au format CRON
 * *Timeout* : durée maximale de fonctionnement de la tâche. Si la tâche est un démon alors elle sera automatiquement arrêtée et redémarrée à la fin du timeout
 * *Dernier lancement* : date de dernier lancement de la tâche
 * *Dernière durée* : dernière durée pour accomplir la tâche (un démon sera toujours à 0s, il ne faut pas s'inquiéter d'autres tâches peuvent être à 0s)

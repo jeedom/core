@@ -4,25 +4,17 @@ Les vues permettent simplement de créer un affichage personnalisé. Ce n'est pa
 
 Les vues sont accessibles à partir du menu Accueil -> Vue : 
 
-image::../images/view.png[]
-
 [TIP]
-Comme vous pouvez le voir sur la capture, il est possible d'aller directement sur une vue grâce au sous-menu.
+Il est possible d'aller directement sur une vue grâce au sous-menu.
 
 [TIP]
 Sie können ein Profil in der Standardansicht wählen, wenn sie auf das Menü Ansichten klicken.
 
 == Les vues
 
-Dies ist ein Beispiel einer Ansicht : 
-
-image::../images/view2.png[]
-
-Wie das Bildschirmfoto von der Ansicht zeigt, kann man ebenso gut Widgets sowie grafische Darstellungen (die aus mehreren Daten zusammengestellt sein können) anzeigen lassen.
+On peut mettre aussi bien des widgets, des graphiques (qui peuvent être composés de plusieurs données) ou des zone tableau (qui contiennent les widgets des commandes)
 
 Auf dieser Seite finden wir oben links eine Schaltfläche zum ein- oder ausblenden der Ansichten Liste, sowie die Schaltfläche zum hinzufügen (Jeedom wird Sie nach einen Namen fragen und Sie auf die Bearbeitungsseite schicken) : 
-
-image::../images/view3.png[]
 
 [TIP]
 Vous pouvez dans votre profil modifier cette option pour que la liste des vues soit visible par défaut.
@@ -31,68 +23,71 @@ Mit der Schaltfläche oben rechts können Sie die aktuelle Ansicht bearbeiten.
 
 == Ajout/Edition d'une vue
 
-Voici la page d'ajout/édition d'une vue : 
-
-image::../images/view4.png[]
-
-Prinzip::
-
-Le principe est assez simple : une vue est composée de zones (on peut en mettre autant que l'on veut). Chaque zone est de type graphique ou widget : en fonction du type vous pourrez mettre des widgets ou des graphiques dedans.
+Le principe est assez simple : une vue est composée de zones (on peut en mettre autant que l'on veut). Chaque zone est de type graphique, widget ou tableau, en fonction du type vous pourrez mettre des widgets d'équipement, de commande ou des graphiques dans celle-ci.
 
 [TIP]
-Il est possible de déplacer l'ordre des zones en les glissant/déposant.
+Il est possible de déplacer l'ordre des zones par glisser/déposer.
 
 Sur la gauche de la page on retrouve la liste des vues ainsi qu'un bouton d'ajout.
 
-Au centre vous avez un bouton pour renommer une vue, le bouton d'ajout de zone, un bouton pour voir le résultat, un bouton pour sauvegarder (ne pas oubliez de le faire avant de cliquer sur "voir le résultat") et un bouton pour supprimer la vue.
+Au centre vous avez un bouton pour renommer une vue, un bouton d'ajout de zone, un bouton pour voir le résultat, un bouton pour sauvegarder et un bouton pour supprimer la vue.
 
-Après avoir cliqué sur le bouton d'ajout de zone, Jeedom vous demande son nom et le type : 
+Après avoir cliqué sur le bouton d'ajout de zone, Jeedom vous demandera son nom et son type.
 
-image::../images/view5.png[]
+Sur chaque zone vous avez les options générales suivantes : 
+
+* *Largeur* : définit la largeur de la zone (en mode desktop seulement)
+* *Editer* : permet de changer le nom de la zone
+* *Supprimer* : permet de supprimer la zone
 
 === Zone de type widget
 
-image::../images/view6.png[]
+Une zone de type widget permet d'ajouter des widgets : 
 
-Une zone de type widget permet d'ajouter des widgets, elle a 3 boutons sur la droite : 
-
-* *Largeur* : définit la largeur de la zone (en mode desktop seulement)
-* *Ajouter/Editer widget* : permet d'ajouter/modifier des widgets à afficher dans la zone
-* *Editer* : permet de changer le nom de la zone
-* *Supprimer* : permet de supprimer la zone
+* *Ajouter widget* : permet d'ajouter/modifier des widgets à afficher dans la zone
 
 [TIP]
 Vous pouvez supprimer un widget directement en cliquant sur la poubelle devant celui-ci.
 
 [TIP]
-Il est possible de modifier l'ordre des widgets dans la zone en les glissant/déposant.
+Il est possible de modifier l'ordre des widgets dans la zone par glisser/déposer.
 
-Une fois le bouton d'ajout/edition de widget pressé, vous obtenez : 
-
-image::../images/view7.png[]
-
-In diesem Fenster müssen Sie nur die Objekte/Geräte zum hinzufügen für den Bereich auswählen und Bestätigen.
+Une fois le bouton d'ajout de widget pressé, vous obtenez une fenetre qui vous demandera le widget à ajouter
 
 === Zone de type graphique
-
-image::../images/view8.png[]
 
 Une zone de type graphique permet d'ajouter des graphiques à votre vue, elle possède les options suivantes : 
 
 * *Periode* : permet de choisir la période d'affichage des graphiques (30 min, 1 jour, 1 semaine, 1 mois, 1 année ou tout)
-* *Largeur* : définit la largeur de la zone (en mode desktop seulement)
-* *Ajouter/Editer widget* : permet d'ajouter/modifier des graphiques
-* *Editer* : permet de changer le nom de la zone
-* *Supprimer* : permet de supprimer la zone
+* *Ajouter courbe* : permet d'ajouter/modifier des graphiques
+
+Quand vous pressez le bouton "Ajouter courbe" jeedom affichera la liste des commandes historisé et vous pouvez choisir celle à ajouter, une fois cela fait vous avez accès aux options suivantes : 
+
+* *Poubelle* : supprime la commande du graphique
+* *Nom* : nom de la commande graphée
+* *Couleur* : couleur de la courbe
+* *Type* : type de la courbe
+* *Groupement* : permet de grouper les données (type maximum par jour)
+* *Echelle* : echelle (droite ou gauche) de la courbe
+* *Escalier* : affiche la courbe en escalier
+* *Empiler* : empile la courbe avec les autres courbes de type empiler
+* *Variation* : graphe seulement les variations avec la valeur précedente
 
 [TIP]
-Vous pouvez supprimer une donnée à grapher directement en cliquant sur la poubelle devant celui-ci.
+Il est possible de modifier l'ordre des graphiques dans la zone par glisser/déposer.
+ 
+=== Zone de type tableau
 
-[TIP]
-Il est possible de modifier l'ordre des graphiques dans la zone en les glissant/déposant.
+Vous avez ici les boutons : 
 
-Une fois le bouton d'ajout/édition des graphiques pressé, vous obtenez : 
+* *Ajouter colonne* : permet d'ajouter une ligne au tableau
+* *Ajouter ligne* : permet d'ajouter une colonne au tableau
 
-image::../images/view9.png[]
+[NOTE]
+Il est possible de régoraniser les lignes par glisser/déposer mais pas les colonnes
 
-Une fois ajouté vous avez accès à des options de configuration : les différentes options sont expliquées link:https://jeedom.com/doc/documentation/core/fr_FR/doc-core-history.html#_graphique_sur_les_vues_et_les_designs[ici]
+Une fois que vous avez ajoutez vos lignes/colonnes vous pouvez ajouter des informations dans les cases : 
+
+* *texte* : juste du texte à ecrire
+* *html* : n'importe quels code html (javascript possible mais fortement déconseillé)
+* *widget de commande* : le bouton à droite vous permet de choisir la commande a afficher (attention cela affiche le widget de la commande)

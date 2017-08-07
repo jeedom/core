@@ -19,7 +19,7 @@ Enfin, en-dessous vous avez le tableau de toutes les tâches existantes (attenti
 * *Unique* : wenn das "Ja" aktiviert ist, dann wird der Task einmalig ausgeführt und danach gelöscht
 * *Klasse* : PHP Klasse aufgerufen, um den Task auszuführen (kann leer sein)
 * *Funktion* : PHP-Funktion in der Klasse mit dem Namen e genannt (oder auch nicht, wenn die Klasse leer ist) 
-* *Programmation* : la programmationd de la tâche au format CRON
+* *Programmation* : la programmation de la tâche au format CRON
 * *Auszeit* : Maximale Betriebsdauer der Aufgabe. Wenn die Aufgabe ein Dämon ist, dann wird sie automatisch beendet und wird am Ende der Auszeit neu gestartet.
 * *Letzter Start* : Datum des letzten Aufgaben Starts   
 * *Dernière durée* : dernière durée pour accomplir la tâche (un démon sera toujours à 0s, il ne faut pas s'inquiéter d'autres tâches peuvent être à 0s)
