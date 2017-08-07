@@ -23,16 +23,16 @@ Un bouton en haut à droite vous permet d'éditer la vue courante.
 
 == Ajout/Edition d'une vue
 
-Le principe est assez simple : une vue est composée de zones (on peut en mettre autant que l'on veut). Chaque zone est de type graphique, widget ou tableau : en fonction du type vous pourrez mettre des widgets d'équipement, de commande ou des graphiques dedans.
+Le principe est assez simple : une vue est composée de zones (on peut en mettre autant que l'on veut). Chaque zone est de type graphique, widget ou tableau, en fonction du type vous pourrez mettre des widgets d'équipement, de commande ou des graphiques dans celle-ci.
 
 [TIP]
-Il est possible de déplacer l'ordre des zones en les glissant/déposant.
+Il est possible de déplacer l'ordre des zones par glisser/déposer.
 
 Sur la gauche de la page on retrouve la liste des vues ainsi qu'un bouton d'ajout.
 
-Au centre vous avez un bouton pour renommer une vue, le bouton d'ajout de zone, un bouton pour voir le résultat, un bouton pour sauvegarder et un bouton pour supprimer la vue.
+Au centre vous avez un bouton pour renommer une vue, un bouton d'ajout de zone, un bouton pour voir le résultat, un bouton pour sauvegarder et un bouton pour supprimer la vue.
 
-Après avoir cliqué sur le bouton d'ajout de zone, Jeedom vous demandera son nom et le type.
+Après avoir cliqué sur le bouton d'ajout de zone, Jeedom vous demandera son nom et son type.
 
 Sur chaque zone vous avez les options générales suivantes : 
 
@@ -50,9 +50,9 @@ Une zone de type widget permet d'ajouter des widgets :
 Vous pouvez supprimer un widget directement en cliquant sur la poubelle devant celui-ci.
 
 [TIP]
-Il est possible de modifier l'ordre des widgets dans la zone en les glissant/déposant.
+Il est possible de modifier l'ordre des widgets dans la zone par glisser/déposer.
 
-Une fois le bouton d'ajout de widget pressé, vous obtenez une fenetre qui vous demandera la widget à ajouter
+Une fois le bouton d'ajout de widget pressé, vous obtenez une fenetre qui vous demandera le widget à ajouter
 
 === Zone de type graphique
 
@@ -70,13 +70,13 @@ Quand vous pressez le bouton "Ajouter courbe" jeedom affichera la liste des comm
 * *Groupement* : permet de grouper les données (type maximum par jour)
 * *Echelle* : echelle (droite ou gauche) de la courbe
 * *Escalier* : affiche la courbe en escalier
-* *Empiler* : empile la courbe avec les autres courbes de type empilées
+* *Empiler* : empile la courbe avec les autres courbes de type empiler
 * *Variation* : graphe seulement les variations avec la valeur précedente
 
 [TIP]
-Il est possible de modifier l'ordre des graphiques dans la zone en les glissant/déposant.
+Il est possible de modifier l'ordre des graphiques dans la zone par glisser/déposer.
  
-=== Zone de type graphique
+=== Zone de type tableau
 
 Vous avez ici les boutons : 
 
@@ -84,7 +84,7 @@ Vous avez ici les boutons :
 * *Ajouter ligne* : permet d'ajouter une colonne au tableau
 
 [NOTE]
-Il est possible de régoraniser les lignes par glisser/déposé mais pas les colonnes
+Il est possible de régoraniser les lignes par glisser/déposer mais pas les colonnes
 
 Une fois que vous avez ajoutez vos lignes/colonnes vous pouvez ajouter des informations dans les cases : 
 
