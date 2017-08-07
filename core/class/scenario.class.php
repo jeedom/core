@@ -184,9 +184,9 @@ class scenario {
 		FROM scenario
 		WHERE mode != "schedule"';
 		if ($_onlyEnable) {
-			$sql .= 'AND isActive=1';
+			$sql .= ' AND isActive=1';
 		}
-		$sql .= 'AND `trigger` LIKE :cmd_id';
+		$sql .= ' AND `trigger` LIKE :cmd_id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 	/**
