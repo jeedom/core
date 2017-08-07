@@ -176,14 +176,17 @@ class scenario {
 	 * @param type $_cmd_id
 	 * @return type
 	 */
-	public static function byTrigger($_cmd_id) {
+	public static function byTrigger($_cmd_id, $_onlyEnable = true) {
 		$values = array(
 			'cmd_id' => '%#' . $_cmd_id . '#%',
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM scenario
-		WHERE mode != "schedule"
-		AND `trigger` LIKE :cmd_id';
+		WHERE mode != "schedule"';
+		if ($_onlyEnable) {
+			$sql .= 'AND isActive=1';
+		}
+		$sql .= 'AND `trigger` LIKE :cmd_id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 	/**
@@ -366,8 +369,8 @@ class scenario {
 				preg_match_all("/#([0-9]*)#/", $trigger_list, $matches);
 				foreach ($matches[1] as $cmd_id) {
 					if (is_numeric($cmd_id)) {
-						if ($_needsReturn){
-							$return[]= array('detail' => 'Scénario ' . $scenario->getName() . ' du groupe ' . $group,'help' => 'Déclencheur du scénario','who'=>'#' . $cmd_id . '#');
+						if ($_needsReturn) {
+							$return[] = array('detail' => 'Scénario ' . $scenario->getName() . ' du groupe ' . $group, 'help' => 'Déclencheur du scénario', 'who' => '#' . $cmd_id . '#');
 						} else {
 							log::add('scenario', 'error', __('Un déclencheur du scénario : ', __FILE__) . $scenario->getHumanName() . __(' est introuvable', __FILE__));
 						}
@@ -390,15 +393,15 @@ class scenario {
 			preg_match_all("/#([0-9]*)#/", $expression_list, $matches);
 			foreach ($matches[1] as $cmd_id) {
 				if (is_numeric($cmd_id)) {
-					if ($_needsReturn){
-						$return[]= array('detail' => 'Scénario ' . $scenario->getName() . ' du groupe ' . $group,'help' => 'Utilisé dans le scénario','who'=>'#' . $cmd_id . '#');
+					if ($_needsReturn) {
+						$return[] = array('detail' => 'Scénario ' . $scenario->getName() . ' du groupe ' . $group, 'help' => 'Utilisé dans le scénario', 'who' => '#' . $cmd_id . '#');
 					} else {
 						log::add('scenario', 'error', __('Une commande du scénario : ', __FILE__) . $scenario->getHumanName() . __(' est introuvable', __FILE__));
 					}
 				}
 			}
 		}
-		if ($_needsReturn){
+		if ($_needsReturn) {
 			return $return;
 		}
 	}
@@ -556,7 +559,7 @@ class scenario {
 		$scenarios = array();
 		foreach ($searchs as $search) {
 			$_cmd_id = str_replace('#', '', $search['action']);
-			$return = array_merge($return, self::byTrigger($_cmd_id));
+			$return = array_merge($return, self::byTrigger($_cmd_id, false));
 			if (!isset($search['and'])) {
 				$search['and'] = false;
 			}
