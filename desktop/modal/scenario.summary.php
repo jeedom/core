@@ -3,6 +3,10 @@ if (!isConnect()) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 ?>
+<style>
+#table_scenarioSummary>thead>tr>th {vertical-align: middle;}
+</style>
+
 <div id="div_alertScenarioSummary"></div>
 <a class="btn btn-success btn-sm pull-right" id="bt_saveSummaryScenario"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
 <a class="btn btn-default btn-sm pull-right" id="bt_refreshSummaryScenario"><i class="fa fa-refresh"></i> {{Rafraîchir}}</a>
@@ -11,7 +15,7 @@ if (!isConnect()) {
 	<thead>
 		<tr>
 			<th>{{ID}}</th>
-			<th>{{Scénario}}</th>
+			<th>{{Scénario}}<input id="filtreScenario" type="text" style="margin-left:10px;" value="filter"></th>
 			<th>{{Statut}}</th>
 			<th>{{Dernier lancement}}</th>
 			<th data-sorter="false" data-filter="false">{{Actif}}</th>
@@ -33,6 +37,25 @@ if (!isConnect()) {
 
 	$('#bt_refreshSummaryScenario').off().on('click',function(){
 		refreshScenarioSummary();
+	});
+   
+   //Astruce pour rendre le :contains() non sensitive
+   $.expr[":"].contains2 = $.expr.createPseudo(function(arg) {
+    return function( elem ) {
+        return $(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
+    };
+   });
+   
+   $('#filtreScenario').on('click',function(){
+      if($(this).value()=='filter')
+      {
+         $(this).value('');
+         $('#filtreScenario').off().on('keyup',function(){
+            var filter = $(this).value();
+            $("tr.scenario").show();
+            $("tr.scenario>td:nth-child(2)>span:not(:contains2("+filter+"))").closest('tr').hide();
+      }  );
+      }
 	});
 
 	function refreshScenarioSummary(){
