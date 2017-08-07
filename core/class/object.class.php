@@ -436,6 +436,15 @@ class object {
 		}
 		$this->checkTreeConsistency();
 		$this->setConfiguration('parentNumber', $this->parentNumber());
+		if ($this->getConfiguration('tagColor') == '') {
+			$this->setConfiguration('tagColor', '#000000');
+		}
+		if ($this->getConfiguration('tagTextColor') == '') {
+			$this->setConfiguration('tagTextColor', '#FFFFFF');
+		}
+		if ($this->getConfiguration('summaryTextColor') == '') {
+			$this->setConfiguration('summaryTextColor', '');
+		}
 	}
 
 	public function save() {
@@ -563,7 +572,7 @@ class object {
 		}
 		$values = array();
 		foreach ($summaries[$_key] as $infos) {
-			$cmd = cmd::byId(str_replace('#','',$infos['cmd']));
+			$cmd = cmd::byId(str_replace('#', '', $infos['cmd']));
 			if (is_object($cmd)) {
 				$eqLogic = $cmd->getEqLogic();
 			}
@@ -599,7 +608,7 @@ class object {
 			}
 			$result = $this->getSummary($key);
 			if ($result !== null) {
-				$style = '';
+				$style = 'color:' . $this->getConfiguration('summaryTextColor', '#000000') . ';';
 				$allowDisplayZero = $value['allowDisplayZero'];
 				if ($value['calcul'] == 'text') {
 					$allowDisplayZero = 1;
