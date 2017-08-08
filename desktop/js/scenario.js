@@ -337,6 +337,7 @@ $('#div_pageContainer').off('click','.bt_addScenarioElement').on( 'click','.bt_a
     if (expression) {
       elementDiv.append(addExpression({type: 'element', element: {type: $("#in_addElementType").value()}}));
     } else {
+      $('#div_scenarioElement .span_noScenarioElement').remove();
       elementDiv.append(addElement({type: $("#in_addElementType").value()}));
     }
     setEditor();
@@ -870,7 +871,7 @@ function printScenario(_id) {
     }
 
     if(data.elements.length == 0){
-      $('#div_scenarioElement').append('<center><span style=\'color:#767676;font-size:1.2em;font-weight: bold;\'>Pour constituer votre scénario veuillez ajouter des blocs</span></center>')
+      $('#div_scenarioElement').append('<center class="span_noScenarioElement"><span style=\'color:#767676;font-size:1.2em;font-weight: bold;\'>Pour constituer votre scénario veuillez ajouter des blocs</span></center>')
     }
     actionOptions = []
     for (var i in data.elements) {
