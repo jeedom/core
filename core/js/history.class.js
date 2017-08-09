@@ -75,9 +75,9 @@ jeedom.history.drawChart = function (_params) {
         _params.dateRange = json_encode(_params.dateRange);
     }
     _params.option = init(_params.option, {derive: ''});
-    $.ajax({// fonction permettant de faire de l'ajax
-        type: "POST", // methode de transmission des données au fichier php
-        url: "core/ajax/cmd.ajax.php", // url du fichier php
+    $.ajax({
+        type: "POST",
+        url: "core/ajax/cmd.ajax.php",
         data: {
             action: "getHistory",
             id: _params.cmd_id,
@@ -92,66 +92,45 @@ jeedom.history.drawChart = function (_params) {
         error: function (request, status, error) {
             handleAjaxError(request, status, error);
         },
-        success: function (data) { // si l'appel a bien fonctionné 
-        if (data.state != 'ok') {
-            $('#div_alert').showAlert({message: data.result, level: 'danger'});
-            return;
-        }
-
-        if (data.result.data.length < 1) {
-            var message = '{{Il n\'existe encore aucun historique pour cette commande :}} ' + data.result.history_name;
-            if (init(data.result.dateStart) != '') {
-                if (init(data.result.dateEnd) != '') {
-                    message += ' {{du}} ' + data.result.dateStart + ' {{au}} ' + data.result.dateEnd;
+        success: function (data) {
+            if (data.state != 'ok') {
+                $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                return;
+            }
+            if (data.result.data.length < 1) {
+                var message = '{{Il n\'existe encore aucun historique pour cette commande :}} ' + data.result.history_name;
+                if (init(data.result.dateStart) != '') {
+                    message += (init(data.result.dateEnd) != '') ?  ' {{du}} ' + data.result.dateStart + ' {{au}} ' + data.result.dateEnd : ' {{à partir de}} ' + data.result.dateStart;
                 } else {
-                    message += ' {{à partir de}} ' + data.result.dateStart;
+                    message += (init(data.result.dateEnd) != '') ? ' {{jusqu\'au}} ' + data.result.dateEnd:'';
                 }
-            } else {
-                if (init(data.result.dateEnd) != '') {
-                    message += ' {{jusqu\'au}} ' + data.result.dateEnd;
-                }
+                $('#div_alert').showAlert({message: message, level: 'danger'});
+                return;
             }
-            $('#div_alert').showAlert({message: message, level: 'danger'});
-            return;
-        }
-        if (isset(jeedom.history.chart[_params.el]) && isset(jeedom.history.chart[_params.el].cmd[_params.cmd_id])) {
-            jeedom.history.chart[_params.el].cmd[_params.cmd_id] = null;
-        }
-        if (isset(jeedom.history.chart[_params.el])) {
-            _params.option.graphColor = init(_params.option.graphColor, Highcharts.getOptions().colors[init(jeedom.history.chart[_params.el].color, 0)]);
-        } else {
-            _params.option.graphColor = init(_params.option.graphColor, Highcharts.getOptions().colors[0]);
-        }
-        if(isset(data.result.cmd)){
-            if (init(_params.option.graphStep) == '') {
-                if (isset(data.result.cmd.display) && init(data.result.cmd.display.graphStep) != '') {
-                    _params.option.graphStep = (data.result.cmd.display.graphStep == "0") ? false : true;
-                } else {
-                    _params.option.graphStep = (data.result.cmd.subType == 'binary') ? true : false;
-                }
-            } else {
-                _params.option.graphStep = (_params.option.graphStep == "1") ? true : false;
+            if (isset(jeedom.history.chart[_params.el]) && isset(jeedom.history.chart[_params.el].cmd[_params.cmd_id])) {
+                jeedom.history.chart[_params.el].cmd[_params.cmd_id] = null;
             }
-            if (init(_params.option.graphType) == '') {
-                if (isset(data.result.cmd.display) && init(data.result.cmd.display.graphType) != '') {
-                    _params.option.graphType = data.result.cmd.display.graphType;
-                } else {
-                    _params.option.graphType = 'line';
-                }
-            }
-            if (init(_params.option.groupingType) == '') {
-                if (isset(data.result.cmd.display) && init(data.result.cmd.display.groupingType) != '') {
-                    _params.option.groupingType = {};
-                    var split = data.result.cmd.display.groupingType.split('::');
-                    _params.option.groupingType = {function :split[0],time : split[1] };
-                }
-            }
-        }else{
+            _params.option.graphColor = (isset(jeedom.history.chart[_params.el])) ? init(_params.option.graphColor, Highcharts.getOptions().colors[init(jeedom.history.chart[_params.el].color, 0)]) : init(_params.option.graphColor, Highcharts.getOptions().colors[0]);
             if (init(_params.option.graphStep) == '') {
                 _params.option.graphStep = false;
             }
             if (init(_params.option.graphType) == '') {
                 _params.option.graphType = 'line';
+            }
+            _params.option.graphStep = (_params.option.graphStep == "1") ? true : false;
+            if(isset(data.result.cmd)){
+                if (init(_params.option.graphStep) == '') {
+                 _params.option.graphStep = (data.result.cmd.subType == 'binary') ? true : false;
+                 if (isset(data.result.cmd.display) && init(data.result.cmd.display.graphStep) != '') {
+                    _params.option.graphStep = (data.result.cmd.display.graphStep == "0") ? false : true;
+                }
+            }
+            if (init(_params.option.graphType) == '') {
+                _params.option.graphType = (isset(data.result.cmd.display) && init(data.result.cmd.display.graphType) != '') ? data.result.cmd.display.graphType : 'line';
+            }
+            if (init(_params.option.groupingType) == '' && isset(data.result.cmd.display) && init(data.result.cmd.display.groupingType) != '') {
+                var split = data.result.cmd.display.groupingType.split('::');
+                _params.option.groupingType = {function :split[0],time : split[1] };
             }
         }
         var stacking = (_params.option.graphStack == undefined || _params.option.graphStack == null || _params.option.graphStack == 0) ? null : 'value';
@@ -162,11 +141,7 @@ jeedom.history.drawChart = function (_params) {
         _params.showScrollbar = (init(_params.showScrollbar, true) && init(_params.showScrollbar, true) != "0") ? true : false;
         _params.showNavigator = (init(_params.showNavigator, true) && init(_params.showNavigator, true) != "0") ? true : false;
         
-        var legend = {
-            borderColor: 'black',
-            borderWidth: 2,
-            shadow: true
-        };
+        var legend = {borderColor: 'black',borderWidth: 2,shadow: true};
         legend.enabled = init(_params.showLegend, true);
         if(isset(_params.newGraph) && _params.newGraph == true){
             delete jeedom.history.chart[_params.el];
@@ -476,11 +451,11 @@ jeedom.history.drawChart = function (_params) {
     var extremes = jeedom.history.chart[_params.el].chart.xAxis[0].getExtremes();
     var plotband = jeedom.history.generatePlotBand(extremes.min,extremes.max);
     for(var i in plotband){
-       jeedom.history.chart[_params.el].chart.xAxis[0].addPlotBand(plotband[i]);   
-   }
+     jeedom.history.chart[_params.el].chart.xAxis[0].addPlotBand(plotband[i]);   
+ }
 
-   $.hideLoading();
-   if (typeof (init(_params.success)) == 'function') {
+ $.hideLoading();
+ if (typeof (init(_params.success)) == 'function') {
     _params.success(data.result);
 }
 }
