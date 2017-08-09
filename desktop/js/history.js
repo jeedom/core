@@ -31,11 +31,11 @@
 
  $('#bt_displayCalculHistory').on('click',function(){
     addChart($('#in_calculHistory').value(), 1) 
- });
+});
 
  $('#bt_configureCalculHistory').on('click',function(){
      $('#md_modal').dialog({title: "{{Configuration des formules de calcul}}"});
-    $("#md_modal").load('index.php?v=d&modal=history.calcul').dialog('open');
+     $("#md_modal").load('index.php?v=d&modal=history.calcul').dialog('open');
  });
 
  $('#bt_clearGraph').on('click',function(){
@@ -44,7 +44,7 @@
     }
     delete jeedom.history.chart['div_graph'];
     $(this).closest('.li_history').removeClass('active');
- });
+});
 
 
  $(".in_datepicker").datepicker();
@@ -57,7 +57,6 @@
     } else {
         $(this).closest('.li_history').addClass('active');
         addChart($(this).closest('.li_history').attr('data-cmd_id'), 1);
-        lastId = $(this).closest('.li_history').attr('data-cmd_id');
     }
     return false;
 });
@@ -129,23 +128,18 @@
 
 function initHistoryTrigger() {
     $('#sel_chartType').off('change').on('change', function () {
-       $('.li_history[data-cmd_id=' + lastId + ']').removeClass('active');
-       addChart(lastId,0);
-       jeedom.cmd.save({
-        cmd: {id: lastId, display: {graphType: $(this).value()}},
-        error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function () {
-            $('.li_history[data-cmd_id=' + lastId + '] .history').click();
+        if(lastId == null){
+            return;
         }
-    });
-   });
-    $('#sel_groupingType').off('change').on('change', function () {
+        if(lastId.indexOf('#') != -1){
+            addChart(lastId,0);
+            addChart(lastId,1);
+            return;
+        }
         $('.li_history[data-cmd_id=' + lastId + ']').removeClass('active');
         addChart(lastId,0);
         jeedom.cmd.save({
-            cmd: {id: lastId, display: {groupingType: $(this).value()}},
+            cmd: {id: lastId, display: {graphType: $(this).value()}},
             error: function (error) {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
             },
@@ -154,10 +148,39 @@ function initHistoryTrigger() {
             }
         });
     });
+    $('#sel_groupingType').off('change').on('change', function () {
+       if(lastId == null){
+        return;
+    }
+    if(lastId.indexOf('#') != -1){
+        addChart(lastId,0);
+        addChart(lastId,1);
+        return;
+    }
+    $('.li_history[data-cmd_id=' + lastId + ']').removeClass('active');
+    addChart(lastId,0);
+    jeedom.cmd.save({
+        cmd: {id: lastId, display: {groupingType: $(this).value()}},
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+            $('.li_history[data-cmd_id=' + lastId + '] .history').click();
+        }
+    });
+});
     $('#cb_derive').off('change').on('change', function () {
-       $('.li_history[data-cmd_id=' + lastId + ']').removeClass('active');
-       addChart(lastId,0);
-       jeedom.cmd.save({
+       if(lastId == null){
+        return;
+    }
+    if(lastId.indexOf('#') != -1){
+        addChart(lastId,0);
+        addChart(lastId,1);
+        return;
+    }
+    $('.li_history[data-cmd_id=' + lastId + ']').removeClass('active');
+    addChart(lastId,0);
+    jeedom.cmd.save({
         cmd: {id: lastId, display: {graphDerive: $(this).value()}},
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -166,20 +189,28 @@ function initHistoryTrigger() {
             $('.li_history[data-cmd_id=' + lastId + '] .history').click();
         }
     });
-   });
+});
     $('#cb_step').off('change').on('change', function () {
-        $('.li_history[data-cmd_id=' + lastId + ']').removeClass('active');
+       if(lastId == null){
+        return;
+    }
+    if(lastId.indexOf('#') != -1){
         addChart(lastId,0);
-        jeedom.cmd.save({
-            cmd: {id: lastId, display: {graphStep: $(this).value()}},
-            error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function () {
-                $('.li_history[data-cmd_id=' + lastId + '] .history').click();
-            }
-        });
+        addChart(lastId,1);
+        return;
+    }
+    $('.li_history[data-cmd_id=' + lastId + ']').removeClass('active');
+    addChart(lastId,0);
+    jeedom.cmd.save({
+        cmd: {id: lastId, display: {graphStep: $(this).value()}},
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+            $('.li_history[data-cmd_id=' + lastId + '] .history').click();
+        }
     });
+});
 }
 
 $('#bt_validChangeDate').on('click',function(){
@@ -194,10 +225,17 @@ $('#bt_validChangeDate').on('click',function(){
 
 function addChart(_cmd_id, _action) {
     if (_action == 0) {
-        if (isset(jeedom.history.chart['div_graph']) && jeedom.history.chart['div_graph'].chart.get(parseInt(_cmd_id)) !== null) {
-            jeedom.history.chart['div_graph'].chart.get(parseInt(_cmd_id)).remove();
+        if (isset(jeedom.history.chart['div_graph']) && jeedom.history.chart['div_graph'].chart.get(_cmd_id) !== undefined) {
+            jeedom.history.chart['div_graph'].chart.get(_cmd_id).remove();
         }
     } else {
+        options = {};
+        lastId = _cmd_id
+        if(_cmd_id.indexOf('#') != 1){
+            options.graphType = $('#sel_chartType').value()
+            options.groupingType = $('#sel_groupingType').value()
+            options.graphStep =  ($('#cb_step').value() == 0) ? false : true;
+        }
         jeedom.history.drawChart({
             cmd_id: _cmd_id,
             el: 'div_graph',
@@ -205,6 +243,7 @@ function addChart(_cmd_id, _action) {
             dateStart : $('#in_startDate').value(),
             dateEnd :  $('#in_endDate').value(),
             height : $('#div_graph').height(),
+            option : options,
             success: function (data) {
                 if(isset(data.cmd) && isset(data.cmd.display)){
                     if (init(data.cmd.display.graphStep) != '') {
