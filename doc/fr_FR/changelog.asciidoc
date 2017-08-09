@@ -33,6 +33,7 @@
 ** Suppression des images pour faciliter la mise à jour et le multilingue
 * Plus de choix possible sur le reglage des tailles de zone dans les vues
 * Possibilité de choisir la couleur du texte du résumé d'objet
+* Ajout d'une action remove_inat dans les scénarios permettant d'annuler toutes les programmations des bloc DANS/A
 
 == 3.0.11
 
