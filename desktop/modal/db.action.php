@@ -91,6 +91,7 @@ if (!isConnect('admin')) {
     command : command,
     success : function(log){
      $('#h3_executeCommand').empty().append('{{Commande : }}'+command);
+     $('#in_specificCommand').value(command)
      $('#div_commandResult').append(dbGenerateTableFromResponse(log));
    }
  })
