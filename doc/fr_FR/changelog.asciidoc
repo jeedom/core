@@ -14,7 +14,7 @@
 * Revue de la page d'acceuil des scénarios
 * Ajout d'un historique de commandes pour les commandes SQL ou système dans l'interface de Jeedom
 * Possibilité d'avoir les graphiques d'historique des commandes en mobile (par appui long sur la commande)
-* Ajout de l'avance de l'update de l'application mobile 
+* Ajout de l'avancement de l'update de l'application mobile 
 * Reprise en cas d'erreur de mise à jour de l'application mobile
 * Suppression des scénarios "simples" (redondant avec la configuration avancée des commandes)
 * Ajout de hachurage sur les graphs pour distinguer les jours
