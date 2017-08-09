@@ -21,6 +21,7 @@ if (!isConnect()) {
         <option value="alert">{{Alerte}}</option>
         <option value="popup">{{Pop-up}}</option>
         <option value="report">{{Rapport}}</option>
+        <option value="remove_inat">{{Supprimer bloc DANS/A programmé}}</option>
     </select>
 </center>
 <br/>
@@ -90,6 +91,10 @@ if (!isConnect()) {
 
 <div class="alert alert-info mod_actionValue_selDescription report" style="display:none;">
     {{Permet d'envoyer par une commande message un rapport d'une vue, d'un design ou d'un panel en PNG/PDF/JPEG/SVG.}}
+</div>
+
+<div class="alert alert-info mod_actionValue_selDescription remove_inat" style="display:none;">
+    {{Permet d'annuler la programmation de tous les bloc DANS et A du scénario}}
 </div>
 <script>
     $('#mod_actionValue_sel').on('change',function(){
