@@ -354,6 +354,7 @@ En plus des commandes domotiques vous avez accès aux actions suivantes :
 * *scenario_return* : Retourne un texte ou une valeur pour une intéraction par exemple
 * *event* : Permet de modifier la valeur d'une commande
 * *alert* : permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page jeedom ouverte. Vous pouvez en plus choisir 4 niveaux d'alerte
+* *remove_inat* : Permet de supprimer la programmation de tous les blocs DANS et A du scénario
 * *popup* : permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page jeedom ouverte.
 * *ask* : permet d'indiquer à jeedom qu'il faut poser une question à l'utilisateur. La réponse est stockée dans une variable, il suffit ensuite de tester sa valeur. Pour le moment seuls les plugins sms et slack sont compatibles. Attention l'action ask est bloquante, tant qu'il n'y a pas de réponse ou que le timeout n'est pas atteint le scénario attend. Voila un exemple d'utilisation : 
 
