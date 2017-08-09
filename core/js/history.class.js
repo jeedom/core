@@ -122,7 +122,6 @@ jeedom.history.drawChart = function (_params) {
         } else {
             _params.option.graphColor = init(_params.option.graphColor, Highcharts.getOptions().colors[0]);
         }
-console.log(_params);
         if(isset(data.result.cmd)){
             if (init(_params.option.graphStep) == '') {
                 if (isset(data.result.cmd.display) && init(data.result.cmd.display.graphStep) != '') {

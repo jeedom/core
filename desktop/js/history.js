@@ -223,18 +223,20 @@ $('#bt_validChangeDate').on('click',function(){
 });
 });
 
-function addChart(_cmd_id, _action) {
+function addChart(_cmd_id, _action,_options) {
     if (_action == 0) {
         if (isset(jeedom.history.chart['div_graph']) && jeedom.history.chart['div_graph'].chart.get(_cmd_id) !== undefined) {
             jeedom.history.chart['div_graph'].chart.get(_cmd_id).remove();
         }
     } else {
-        options = {};
         lastId = _cmd_id
-        if(_cmd_id.indexOf('#') != 1){
-            options.graphType = $('#sel_chartType').value()
-            options.groupingType = $('#sel_groupingType').value()
-            options.graphStep =  ($('#cb_step').value() == 0) ? false : true;
+        if(init(_options) == ''){
+            _options = {};
+            if(_cmd_id.indexOf('#') != 1){
+                _options.graphType = $('#sel_chartType').value()
+                _options.groupingType = $('#sel_groupingType').value()
+                _options.graphStep =  ($('#cb_step').value() == 0) ? false : true;
+            }
         }
         jeedom.history.drawChart({
             cmd_id: _cmd_id,
@@ -243,7 +245,7 @@ function addChart(_cmd_id, _action) {
             dateStart : $('#in_startDate').value(),
             dateEnd :  $('#in_endDate').value(),
             height : $('#div_graph').height(),
-            option : options,
+            option : _options,
             success: function (data) {
                 if(isset(data.cmd) && isset(data.cmd.display)){
                     if (init(data.cmd.display.graphStep) != '') {
