@@ -94,7 +94,7 @@ if (!isConnect()) {
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription remove_inat" style="display:none;">
-    {{Permet d'annuler la programmation de tous les bloc DANS et A du scénario}}
+    {{Permet de supprimer la programmation de tous les blocs DANS et A du scénario}}
 </div>
 <script>
     $('#mod_actionValue_sel').on('change',function(){
