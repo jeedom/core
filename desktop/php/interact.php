@@ -104,7 +104,6 @@ if (count($totalInteract) == 0) {
 		echo '<div class="panel-body">';
 		echo '<div class="interactListContainer">';
 		foreach ($interacts[-1] as $interact) {
-			#$opacity = ($interact->getIsActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
 			echo '<div class="interactDisplayCard cursor" data-interact_id="' . $interact->getId() . '" style="text-align: center; background-color : #ffffff; min-height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 			echo '<img src="core/img/interaction.png" height="90" width="85" />';
 			echo "<br>";
@@ -129,7 +128,6 @@ if (count($totalInteract) == 0) {
 			echo '<div class="panel-body">';
 			echo '<div class="interactListContainer">';
 			foreach ($interacts[$group['group']] as $interact) {
-				#$opacity = ($interact->getIsActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
 				echo '<div class="interactDisplayCard cursor" data-interact_id="' . $interact->getId() . '" style="text-align: center; background-color : #ffffff; min-height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 				echo '<img src="core/img/interaction.png" height="90" width="85" />';
 				echo "<br>";
@@ -155,7 +153,7 @@ if (count($totalInteract) == 0) {
   <a class="btn btn-default displayInteracQuery pull-right"><i class="fa fa-eye"></i> {{Phrase(s)}} <span class="label label-success interactAttr" data-l1key="nbInteractQuery"></span></a>
 
   <ul class="nav nav-tabs" role="tablist">
-   <li role="presentation"><a href="#" aria-controls="home" role="tab" data-toggle="tab" id="bt_interactThumbnailDisplay"><i class="fa fa-arrow-circle-left"></i></a></li>
+   <li role="presentation"><a class="cursor" aria-controls="home" role="tab" id="bt_interactThumbnailDisplay"><i class="fa fa-arrow-circle-left"></i></a></li>
    <li role="presentation" class="active"><a href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-tachometer"></i> {{Général}}</a></li>
    <li role="presentation"><a href="#filtertab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-filter"></i> {{Filtres}}</a></li>
    <li role="presentation"><a href="#actiontab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-cogs"></i> {{Actions}}</a></li>

@@ -72,7 +72,7 @@ foreach ($allObject as $object) {
  <a class="btn btn-default pull-right" id="bt_graphObject"><i class="fa fa-object-group"></i> {{Liens}}</a>
 
  <ul class="nav nav-tabs" role="tablist">
-   <li role="presentation"><a href="#" aria-controls="home" role="tab" data-toggle="tab" id="bt_returnToThumbnailDisplay"><i class="fa fa-arrow-circle-left"></i></a></li>
+   <li role="presentation"><a class="cursor" aria-controls="home" role="tab" id="bt_returnToThumbnailDisplay"><i class="fa fa-arrow-circle-left"></i></a></li>
    <li role="presentation" class="active"><a href="#objecttab" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-tachometer"></i> {{Objet}}</a></li>
    <li role="presentation"><a href="#summarytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-list-alt"></i> {{Résumé}}</a></li>
  </ul>
