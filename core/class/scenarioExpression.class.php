@@ -1279,6 +1279,20 @@ class scenarioExpression {
 						$scenario->setReturn($scenario->getReturn() . ' ' . $options['message']);
 					}
 					return;
+				} elseif ($this->getExpression() == 'remove_inat') {
+					if ($scenario == null) {
+						return;
+					}
+					$this->setLog($scenario, __('Suppresion des blocs DANS et A programmés du scénario ', __FILE__));
+					$crons = cron::searchClassAndFunction('scenario', 'doIn', '"scenario_id":' . $scenario->getId());
+					if (is_array($crons)) {
+						foreach ($crons as $cron) {
+							if ($cron->getState() != 'run') {
+								$cron->remove();
+							}
+						}
+					}
+					return;
 				} else if ($this->getExpression() == 'report') {
 					$cmd_parameters = array('files' => null);
 					$this->setLog($scenario, __('Génération d\'un rapport de type ', __FILE__) . $options['type']);
