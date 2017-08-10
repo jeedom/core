@@ -575,6 +575,7 @@ function positionEqLogic(_id,_preResize) {
      }
      eqLogic.width(Math.ceil(eqLogic.width() / 40) * 40 + (Math.ceil(eqLogic.width() / 40)-1) * 2);
      eqLogic.height(Math.ceil(eqLogic.height() / 80) * 80 + (Math.ceil(eqLogic.height() / 80)-1) * 2);
+     eqLogic.trigger('resize');
  }else{
     $('.eqLogic-widget:not(.jeedomAlreadyPosition)').css('margin','0px').css('padding','0px');
     $('.eqLogic-widget:not(.jeedomAlreadyPosition)').each(function () {
@@ -586,6 +587,7 @@ function positionEqLogic(_id,_preResize) {
         }
         $(this).width(Math.ceil($(this).width() / 40) * 40 + (Math.ceil($(this).width() / 40)-1) * 2);
         $(this).height(Math.ceil($(this).height() / 80) * 80 + (Math.ceil($(this).height() / 80)-1) * 2);
+        $(this).trigger('resize');
     });
     $('.eqLogic-widget').addClass('jeedomAlreadyPosition');
 }
