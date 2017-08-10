@@ -190,6 +190,7 @@ Dans ce mode lors du survole ou du clic dans la zone jeedom vous affichera le wi
 * *Equipement* : widget à afficher lors du survole ou du clic
 * *Afficher au survol* : si coché affiche le widget au survol
 * *Afficher sur un clic* : si coché alors le widget est affiché au clic
+* *Position* : permet de choisir l'emplacement d'apparition du widget (par defaut bas droite)
 
 == Résumé
 
