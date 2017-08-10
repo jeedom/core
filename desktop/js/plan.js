@@ -544,7 +544,9 @@ $('#div_pageContainer').on('mouseenter','.zone-widget.zoneEqLogic.zoneEqLogicOnF
         version : 'dplan',
         global:false,
         success:function(data){
-            el.empty().append($(data.html).css('position','absolute'));
+            var html = $(data.html).css('position','absolute');
+            html.attr("style", html.attr("style") + "; " + el.attr('data-position'));
+            el.empty().append(html);
             positionEqLogic(el.attr('data-eqLogic_id'),false);
             if(deviceInfo.type == 'desktop'){
                 el.off('mouseleave').on('mouseleave',function(){
