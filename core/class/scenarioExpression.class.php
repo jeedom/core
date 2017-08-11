@@ -518,7 +518,7 @@ class scenarioExpression {
 			}
 		}
 		$_endDate = date('Y-m-d H:i:s');
-		$_value = str_replace(',', '.', $_value);
+		$_value = commaToDot($_value);
 		$_decimal = strlen(substr(strrchr($_value, "."), 1));
 
 		$histories = $cmd->getHistory();
@@ -561,7 +561,7 @@ class scenarioExpression {
 
 		$_startDate = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
 		$_endDate = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
-		$_value = str_replace(',', '.', $_value);
+		$_value = commaToDot($_value);
 		$_decimal = strlen(substr(strrchr($_value, "."), 1));
 
 		$histories = $cmd->getHistory();
@@ -1473,6 +1473,9 @@ class scenarioExpression {
 		}
 	}
 
+        private function commaToDot($_value){
+                return str_replace(',', '.', $_value);
+        }
 /*     * **********************Getteur Setteur*************************** */
 
 	public function getId() {
@@ -1547,5 +1550,6 @@ class scenarioExpression {
 			$_scenario->setLog($log);
 		}
 	}
+
 
 }
