@@ -1280,7 +1280,7 @@ class scenarioExpression {
 					}
 					return;
 				} elseif ($this->getExpression() == 'remove_inat') {
-					if ($scenario == null) {
+					if ($scenario === null) {
 						return;
 					}
 					$this->setLog($scenario, __('Suppresion des blocs DANS et A programmés du scénario ', __FILE__));
@@ -1370,7 +1370,7 @@ class scenarioExpression {
 				}
 				$this->setLog($scenario, $message);
 				return $result;
-			} else if ($this->getType() == 'code') {
+			} elseif ($this->getType() == 'code') {
 				$this->setLog($scenario, __('Exécution d\'un bloc code', __FILE__));
 				return eval($this->getExpression());
 			}
@@ -1447,16 +1447,16 @@ class scenarioExpression {
 		if ($this->getType() == 'action') {
 			if ($this->getExpression() == 'icon') {
 				return '';
-			} else if ($this->getExpression() == 'sleep') {
+			} elseif ($this->getExpression() == 'sleep') {
 				return '(sleep) Pause de  : ' . $options['duration'];
-			} else if ($this->getExpression() == 'stop') {
+			} elseif ($this->getExpression() == 'stop') {
 				return '(stop) Arret du scenario';
-			} else if ($this->getExpression() == 'scenario') {
+			} elseif ($this->getExpression() == 'scenario') {
 				$actionScenario = scenario::byId($this->getOptions('scenario_id'));
 				if (is_object($actionScenario)) {
 					return '(scenario) ' . $this->getOptions('action') . ' de ' . $actionScenario->getHumanName();
 				}
-			} else if ($this->getExpression() == 'variable') {
+			} elseif ($this->getExpression() == 'variable') {
 				return '(variable) Affectation de la variable : ' . $this->getOptions('name') . ' à ' . $this->getOptions('value');
 			} else {
 				$return = jeedom::toHumanReadable($this->getExpression());
@@ -1465,7 +1465,7 @@ class scenarioExpression {
 				}
 				return $return;
 			}
-		} else if ($this->getType() == 'condition') {
+		} elseif ($this->getType() == 'condition') {
 			return jeedom::toHumanReadable($this->getExpression());
 		}
 		if ($this->getType() == 'code') {
