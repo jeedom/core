@@ -315,9 +315,9 @@ class object {
 				if (!is_object($update)) {
 					$update = new update();
 				}
-				$update->setLogicalId('virtual');
-				$update->setSource('market');
-				$update->setConfiguration('version', 'stable');
+				$update->setLogicalId('virtual')
+                                        ->setSource('market')
+                                        ->setConfiguration('version', 'stable');
 				$update->save();
 				$update->doUpdate();
 				sleep(2);
@@ -328,9 +328,9 @@ class object {
 			if (!is_object($update)) {
 				$update = new update();
 			}
-			$update->setLogicalId('virtual');
-			$update->setSource('market');
-			$update->setConfiguration('version', 'stable');
+			$update->setLogicalId('virtual')
+                                ->setSource('market')
+                                ->setConfiguration('version', 'stable');
 			$update->save();
 			$update->doUpdate();
 			sleep(2);
