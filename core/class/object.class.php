@@ -576,7 +576,7 @@ class object {
 			if (is_object($cmd)) {
 				$eqLogic = $cmd->getEqLogic();
 			}
-			if (is_object($eqLogic) and $eqLogic->getAlert() != '') {
+			if (is_object($eqLogic) && $eqLogic->getAlert() != '') {
 				continue;
 			}
 			$value = jeedom::evaluateExpression(cmd::cmdToValue($infos['cmd']));
