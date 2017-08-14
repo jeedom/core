@@ -109,6 +109,7 @@ if (init('type') != '') {
 				$reply_cmd = cmd::byId(init('reply_cmd'));
 				if (is_object($reply_cmd)) {
 					$param['reply_cmd'] = $reply_cmd;
+					$param['force_reply_cmd'] = 1;
 				}
 			}
 			$reply = interactQuery::tryToReply($query, $param);
@@ -682,6 +683,7 @@ if (init('type') != '') {
 					$reply_cmd = cmd::byId($params['reply_cmd']);
 					if (is_object($reply_cmd)) {
 						$params['reply_cmd'] = $reply_cmd;
+						$params['force_reply_cmd'] = 1;
 					}
 				}
 				$jsonrpc->makeSuccess(interactQuery::tryToReply($params['query'], $params));
