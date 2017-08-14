@@ -196,6 +196,7 @@ if (init('cron_id') != '') {
 	foreach (cron::all() as $cron) {
 		try {
 			if ($cron->getDeamon() == 1) {
+				$cron->refresh();
 				continue;
 			}
 			if (!$started && $cron->getClass() != 'jeedom' && $cron->getFunction() != 'cron') {
