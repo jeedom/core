@@ -35,6 +35,7 @@
 * Possibilité de choisir la couleur du texte du résumé d'objet
 * Ajout d'une action remove_inat dans les scénarios permettant d'annuler toutes les programmations des bloc DANS/A
 * Possibilité dans les designs pour les widgets au survol de choisir la position du widget
+* Ajout d'un parametre reply_cmd sur les interactions pour spécifier l'id de la commande à utiliser pour répondre
 
 == 3.0.11
 

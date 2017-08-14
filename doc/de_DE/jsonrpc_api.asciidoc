@@ -333,6 +333,7 @@ Essaie de faire correspondre une demande avec une interaction, exécute l'action
 Parameter :
 
 - query (phrase de la demande)
+- int reply_cmd = NULL : ID de la commande à utiliser pour répondre, si non préciser alors Jeedom vous renvoi la réponse dans le json
 
 === interact::all
 

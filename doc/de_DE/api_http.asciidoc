@@ -42,6 +42,7 @@ Voici l'URL = http://\#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY#&ty
 * *utf8* [optionnel] : indique à jeedom si il faut encoder query en utf8 avant de chercher à répondre
 * *emptyReply* [optionnel] : 0 pour que jeedom réponde meme si il n'a pas compris, 1 sinon
 * *profile* [optionnel] : nom d'utilisateur de la personne déclenchant l'interaction
+* *reply_cmd* [optionnel] : ID de la commande à utiliser pour répondre à la demande
 
 == Message
 
