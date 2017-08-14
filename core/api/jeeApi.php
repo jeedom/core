@@ -105,6 +105,12 @@ if (init('type') != '') {
 			if (init('profile') != '') {
 				$param['profile'] = init('profile');
 			}
+			if (init('reply_cmd') != '') {
+				$reply_cmd = cmd::byId(init('reply_cmd'));
+				if (is_object($reply_cmd)) {
+					$param['reply_cmd'] = $reply_cmd;
+				}
+			}
 			$reply = interactQuery::tryToReply($query, $param);
 			echo $reply['reply'];
 			die();
@@ -672,7 +678,13 @@ if (init('type') != '') {
 
 			/*             * ************************Interact*************************** */
 			if ($jsonrpc->getMethod() == 'interact::tryToReply') {
-				$jsonrpc->makeSuccess(interactQuery::tryToReply($params['query']));
+				if (isset($params['reply_cmd'])) {
+					$reply_cmd = cmd::byId($params['reply_cmd']);
+					if (is_object($reply_cmd)) {
+						$params['reply_cmd'] = $reply_cmd;
+					}
+				}
+				$jsonrpc->makeSuccess(interactQuery::tryToReply($params['query'], $params));
 			}
 
 			if ($jsonrpc->getMethod() == 'interactQuery::all') {

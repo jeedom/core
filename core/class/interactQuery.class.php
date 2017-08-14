@@ -506,6 +506,9 @@ class interactQuery {
 			$reply = array('reply' => ucfirst($reply));
 		}
 		log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . ".Je réponds : " . print_r($reply, true));
+		if (is_object($_parameters['reply_cmd'])) {
+			return $_parameters['reply_cmd']->execCmd(array('message' => $reply));
+		}
 		return $reply;
 	}
 
