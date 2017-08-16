@@ -650,6 +650,14 @@ class scenario {
 		return array();
 	}
 
+	public static function timelineDisplay($_event) {
+		$return = array();
+		$return['date'] = $_event['datetime'];
+		$return['group'] = 'scenario';
+		$return['html'] = '<div><i class="fa fa-gears"></i> ' . $_event['name'] . '<hr/>' . $_event['trigger'] . '</div>';
+		return $return;
+	}
+
 	/*     * *********************Méthodes d'instance************************* */
 	/**
 	 *

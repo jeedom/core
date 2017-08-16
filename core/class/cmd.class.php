@@ -609,6 +609,18 @@ class cmd {
 		}
 	}
 
+	public static function timelineDisplay($_event) {
+		$return = array();
+		$return['date'] = $_event['datetime'];
+		$return['group'] = $_event['subtype'];
+		if ($_event['subtype'] == 'action') {
+			$return['html'] = '<div><i class="fa fa-eye"></i> ' . $_event['name'] . '<hr/>' . $_event['value'] . '</div>';
+		} else {
+			$return['html'] = '<div><i class="fa fa-hand-paper-o"></i> ' . $_event['name'] . '<hr/>' . $_event['options'] . '</div>';
+		}
+		return $return;
+	}
+
 	/*     * *********************Méthodes d'instance************************* */
 
 	public function formatValue($_value, $_quote = false) {
@@ -1189,7 +1201,7 @@ class cmd {
 			$this->actionAlertLevel($level, $value);
 		}
 		if ($this->getConfiguration('timeline::enable')) {
-			jeedom::addTimelineEvent(array('type' => 'cmd', 'id' => $this->getId(), 'name' => $this->getHumanName(), 'datetime' => $this->getValueDate(), 'value' => $value));
+			jeedom::addTimelineEvent(array('type' => 'cmd', 'subtype' => 'info', 'id' => $this->getId(), 'name' => $this->getHumanName(), 'datetime' => $this->getValueDate(), 'value' => $value));
 		}
 		$this->pushUrl($value);
 	}

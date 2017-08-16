@@ -17,8 +17,9 @@ if (!isConnect()) {
 			<th data-sorter="false" data-filter="false">{{Actif}}</th>
 			<th data-sorter="false" data-filter="false">{{Visible}}</th>
 			<th data-sorter="false" data-filter="false">{{Multi lancement}}</th>
-			<th data-sorter="false" data-filter="false">{{Log}}</th>
 			<th data-sorter="false" data-filter="false">{{Mode synchrone}}</th>
+			<th data-sorter="false" data-filter="false">{{Log}}</th>
+			<th data-sorter="false" data-filter="false">{{Timeline}}</th>
 			<th data-sorter="false" data-filter="false">{{Actions}}</th>
 		</tr>
 	</thead>
@@ -81,6 +82,9 @@ if (!isConnect()) {
 					tr += '<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="allowMultiInstance">';
 					tr += '</td>';
 					tr += '<td>';
+					tr += '<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="syncmode">';
+					tr += '</td>';
+					tr += '<td>';
 					tr += '<select class="scenarioAttr form-control" data-l1key="configuration" data-l2key="logmode">';
 					tr += '<option value="default">{{Défaut}}</option>';
 					tr += '<option value="none">{{Aucun}}</option>';
@@ -88,7 +92,7 @@ if (!isConnect()) {
 					tr += '</select>';
 					tr += '</td>';
 					tr += '<td>';
-					tr += '<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="syncmode">';
+					tr += '<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="timeline::enable">';
 					tr += '</td>';
 					tr += '<td>';
 					tr += '<a class="btn btn-default tooltips btn-xs bt_summarayViewLog" title="{{Voir les logs}}"><i class="fa fa-file-o"></i></a> ';

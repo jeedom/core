@@ -169,11 +169,12 @@ if (count($totalScenario) == 0) {
  <a class="btn btn-default btn-sm pull-right" id="bt_logScenario"><i class="fa fa-file-text-o"></i> {{Log}}</a>
  <a class="btn btn-default btn-sm pull-right" id="bt_exportScenario"><i class="fa fa fa-share"></i> {{Exporter}}</a>
  <a class="btn btn-danger btn-sm pull-right" id="bt_stopScenario"><i class="fa fa-stop"></i> {{Arrêter}}</a>
- <a class="btn btn-default btn-sm pull-right" id="bt_templateScenario"><i class="fa fa-cubes"></i> {{Template/Market}}</a>
+ <a class="btn btn-default btn-sm pull-right" id="bt_templateScenario"><i class="fa fa-cubes"></i> {{Template}}</a>
  <a class="btn btn-success btn-sm pull-right" id="bt_saveScenario2"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
  <a class="btn btn-danger btn-sm pull-right" id="bt_delScenario2"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
  <a class="btn btn-warning btn-sm pull-right" id="bt_testScenario2" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.}}'><i class="fa fa-gamepad"></i> {{Executer}}</a>
- <a class="btn btn-primary btn-sm pull-right bt_showExpressionTest"><i class="fa fa-check"></i> {{Testeur d'expression}}</a>
+ <a class="btn btn-primary btn-sm pull-right bt_showExpressionTest"><i class="fa fa-check"></i> {{Expression}}</a>
+ <span id="span_ongoing" class="label pull-right" style="font-size : 1em;position:relative;top:5px;"></span>
 
  <ul class="nav nav-tabs" role="tablist">
    <li role="presentation"><a class="cursor" aria-controls="home" role="tab" id="bt_scenarioThumbnailDisplay"><i class="fa fa-arrow-circle-left"></i></a></li>
@@ -185,29 +186,29 @@ if (count($totalScenario) == 0) {
   <div role="tabpanel" class="tab-pane active" id="generaltab">
     <br/>
     <div class="row">
-      <div class="col-sm-4">
+      <div class="col-sm-6">
         <form class="form-horizontal">
           <fieldset>
             <div class="form-group">
-              <label class="col-xs-6 control-label" >{{Nom du scénario}}</label>
+              <label class="col-xs-5 control-label" >{{Nom du scénario}}</label>
               <div class="col-xs-6">
                 <input class="form-control scenarioAttr input-sm" data-l1key="name" type="text" placeholder="{{Nom du scénario}}"/>
               </div>
             </div>
             <div class="form-group">
-              <label class="col-xs-6 control-label" >{{Nom à afficher}}</label>
+              <label class="col-xs-5 control-label" >{{Nom à afficher}}</label>
               <div class="col-xs-6">
                 <input class="form-control scenarioAttr input-sm" title="{{Ne rien mettre pour laisser le nom par défaut}}" data-l1key="display" data-l2key="name" type="text" placeholder="{{Nom à afficher}}"/>
               </div>
             </div>
             <div class="form-group">
-              <label class="col-xs-6 control-label" >{{Groupe}}</label>
+              <label class="col-xs-5 control-label" >{{Groupe}}</label>
               <div class="col-xs-6">
                 <input class="form-control scenarioAttr input-sm" data-l1key="group" type="text" placeholder="{{Groupe du scénario}}"/>
               </div>
             </div>
             <div class="form-group">
-              <label class="col-xs-6 control-label"></label>
+              <label class="col-xs-5 control-label"></label>
               <label>
                 {{Actif}} <input type="checkbox" class="scenarioAttr" data-l1key="isActive">
               </label>
@@ -216,7 +217,7 @@ if (count($totalScenario) == 0) {
              </label>
            </div>
            <div class="form-group">
-            <label class="col-xs-6 control-label" >{{Objet parent}}</label>
+            <label class="col-xs-5 control-label" >{{Objet parent}}</label>
             <div class="col-xs-6">
               <select class="scenarioAttr form-control input-sm" data-l1key="object_id">
                 <option value="">{{Aucun}}</option>
@@ -229,85 +230,77 @@ foreach (object::all() as $object) {
            </div>
          </div>
          <div class="form-group expertModeVisible">
-          <label class="col-xs-6 control-label">{{Timeout secondes (0 = illimité)}}</label>
+          <label class="col-xs-5 control-label">{{Timeout secondes (0 = illimité)}}</label>
           <div class="col-xs-6">
             <input class="form-control scenarioAttr input-sm" data-l1key="timeout">
           </div>
         </div>
-
+        <div class="form-group expertModeVisible">
+          <label class="col-xs-5 control-label">{{Multi lancement}}</label>
+          <div class="col-xs-1">
+            <input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="allowMultiInstance" title="{{Le scénario pourra tourné plusieurs fois en même temps}}">
+          </div>
+           <label class="col-xs-4 control-label">{{Mode synchrone}}</label>
+          <div class="col-xs-1">
+            <input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="syncmode" title="{{Le scénario est mode synchrone, attention peux rendre le système instable}}">
+          </div>
+        </div>
+        <div class="form-group expertModeVisible">
+          <label class="col-xs-5 control-label">{{Log}}</label>
+          <div class="col-xs-6">
+            <select class="scenarioAttr form-control" data-l1key="configuration" data-l2key="logmode">
+              <option value="default">{{Défaut}}</option>
+              <option value="none">{{Aucun}}</option>
+              <option value="realtime">{{Temps réel}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group expertModeVisible">
+          <label class="col-xs-5 control-label">{{Suivre dans la timeline}}</label>
+          <div class="col-xs-1">
+            <input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="timeline::enable" title="{{Les executions du scénario pourront etre vu dans la timeline}}">
+          </div>
+        </div>
       </fieldset>
     </form>
   </div>
-  <div class="col-sm-5">
+  <div class="col-sm-6">
     <form class="form-horizontal">
-      <div class="form-group">
-        <label class="col-sm-3 col-xs-6 control-label" >{{Mode du scénario}}</label>
-        <div class="col-sm-9 col-xs-6">
-          <div class="input-group">
-            <select class="form-control scenarioAttr input-sm" data-l1key="mode">
-              <option value="provoke">{{Provoqué}}</option>
-              <option value="schedule">{{Programmé}}</option>
-              <option value="all">{{Les deux}}</option>
-            </select>
-            <span class="input-group-btn">
-              <a class="btn btn-default btn-sm" id="bt_addTrigger"><i class="fa fa-plus-square"></i> {{Déclencheur}}</a>
-              <a class="btn btn-default btn-sm" id="bt_addSchedule"><i class="fa fa-plus-square"></i> {{Programmation}}</a>
-            </span>
-          </div>
-        </div>
+     <div class="form-group">
+     <div class="col-md-12">
+        <textarea class="form-control scenarioAttr" data-l1key="description" placeholder="Description"></textarea>
       </div>
-      <div class="scheduleDisplay" style="display: none;">
-        <div class="form-group">
-          <label class="col-xs-3 control-label" >{{Précédent}}</label>
-          <div class="col-xs-3" ><span class="scenarioAttr label label-primary" data-l1key="forecast" data-l2key="prevDate" data-l3key="date"></span></div>
-          <label class="col-xs-3 control-label" >{{Prochain}}</label>
-          <div class="col-xs-3"><span class="scenarioAttr label label-success" data-l1key="forecast" data-l2key="nextDate" data-l3key="date"></span></div>
-        </div>
-        <div class="scheduleMode"></div>
-      </div>
-      <div class="provokeMode provokeDisplay" style="display: none;">
-
-      </div>
-    </form>
-  </div>
-  <div class="col-sm-3">
-    <form class="form-horizontal">
-      <div class="form-group">
-        <div class="col-md-11">
-          <textarea class="form-control scenarioAttr" data-l1key="description" placeholder="Description"></textarea>
-        </div>
-      </div>
-      <div class="form-group expertModeVisible">
-        <label class="col-xs-5 control-label">{{Multi lancement}}</label>
-        <div class="col-xs-1">
-          <input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="allowMultiInstance" title="{{Le scénario pourra tourné plusieurs fois en même temps}}">
-        </div>
-      </div>
-      <div class="form-group expertModeVisible">
-        <label class="col-xs-5 control-label">{{Log}}</label>
-        <div class="col-xs-6">
-          <select class="scenarioAttr form-control" data-l1key="configuration" data-l2key="logmode">
-            <option value="default">{{Défaut}}</option>
-            <option value="none">{{Aucun}}</option>
-            <option value="realtime">{{Temps réel}}</option>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 col-xs-6 control-label" >{{Mode du scénario}}</label>
+      <div class="col-sm-9 col-xs-6">
+        <div class="input-group">
+          <select class="form-control scenarioAttr input-sm" data-l1key="mode">
+            <option value="provoke">{{Provoqué}}</option>
+            <option value="schedule">{{Programmé}}</option>
+            <option value="all">{{Les deux}}</option>
           </select>
+          <span class="input-group-btn">
+            <a class="btn btn-default btn-sm" id="bt_addTrigger"><i class="fa fa-plus-square"></i> {{Déclencheur}}</a>
+            <a class="btn btn-default btn-sm" id="bt_addSchedule"><i class="fa fa-plus-square"></i> {{Programmation}}</a>
+          </span>
         </div>
       </div>
-      <div class="form-group expertModeVisible">
-        <label class="col-xs-5 control-label">{{Mode synchrone}}</label>
-        <div class="col-xs-1">
-          <input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="syncmode" title="{{Le scénario est mode synchrone, attention peux rendre le système instable}}">
-        </div>
-      </div>
+    </div>
+    <div class="scheduleDisplay" style="display: none;">
       <div class="form-group">
-        <label class="col-xs-5 control-label" for="span_ongoing">{{Etat}}</label>
-        <div class="col-xs-4">
-          <div><span id="span_ongoing" class="label" style="font-size : 1em;"></span></div>
-        </div>
+        <label class="col-xs-3 control-label" >{{Précédent}}</label>
+        <div class="col-xs-3" ><span class="scenarioAttr label label-primary" data-l1key="forecast" data-l2key="prevDate" data-l3key="date"></span></div>
+        <label class="col-xs-3 control-label" >{{Prochain}}</label>
+        <div class="col-xs-3"><span class="scenarioAttr label label-success" data-l1key="forecast" data-l2key="nextDate" data-l3key="date"></span></div>
       </div>
+      <div class="scheduleMode"></div>
+    </div>
+    <div class="provokeMode provokeDisplay" style="display: none;">
 
-    </form>
-  </div>
+    </div>
+  </form>
+</div>
 </div>
 </div>
 <div role="tabpanel" class="tab-pane" id="scenariotab">

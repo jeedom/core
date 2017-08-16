@@ -27,7 +27,18 @@ class jeedom {
 	/*     * ***********************Methode static*************************** */
 
 	public static function addTimelineEvent($_event) {
-		file_put_contents(dirname(__FILE__) . '/../../data/timeline.json', json_encode($_event), FILE_APPEND | LOCK_EX);
+		file_put_contents(dirname(__FILE__) . '/../../data/timeline.json', json_encode($_event) . "\n", FILE_APPEND | LOCK_EX);
+	}
+
+	public static function getTimelineEvent() {
+		$path = dirname(__FILE__) . '/../../data/timeline.json';
+		com_shell::execute(system::getCmdSudo() . 'chmod 777 ' . $path . ' > /dev/null 2>&1;echo "$(tail -n 500 ' . $path . ')" > ' . $path);
+		$lines = explode("\n", trim(file_get_contents($path)));
+		$result = array();
+		foreach ($lines as $line) {
+			$result[] = json_decode($line, true);
+		}
+		return $result;
 	}
 
 	public static function deadCmd() {

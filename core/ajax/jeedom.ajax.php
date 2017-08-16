@@ -247,39 +247,16 @@ try {
 
 	if (init('action') == 'getEvents') {
 		$return = array();
-		$event_log = implode("\n", log::get('event', 0, 9999));
-		preg_match_all('/\[(.*?)\]\[.*?\] : Evènement sur la commande (\[.*?\]\[.*?\]\[.*?\]) valeur : (.*)/', $event_log, $matches, PREG_SET_ORDER);
-		foreach ($matches as $match) {
-			if (count($match) != 4) {
-				continue;
+		$events = jeedom::getTimelineEvent();
+		foreach ($events as $event) {
+			switch ($event['type']) {
+				case 'cmd':
+					$return[] = cmd::timelineDisplay($event);
+					break;
+				case 'scenario':
+					$return[] = scenario::timelineDisplay($event);
+					break;
 			}
-			$return[] = array(
-				'date' => $match[1],
-				'group' => 'info',
-				'html' => '<div><i class="fa fa-eye"></i> ' . $match[2] . '<hr/>' . $match[3] . '</div>',
-			);
-		}
-		preg_match_all('/\[(.*?)\]\[.*?\] : Exécution de la commande (\[.*?\]\[.*?\]\[.*?\]) avec les paramètres (.*)/', $event_log, $matches, PREG_SET_ORDER);
-		foreach ($matches as $match) {
-			if (count($match) != 4) {
-				continue;
-			}
-			$return[] = array(
-				'date' => $match[1],
-				'group' => 'action',
-				'html' => '<div><i class="fa fa-hand-paper-o"></i> ' . $match[2] . '<hr/>' . $match[3] . '</div>',
-			);
-		}
-		preg_match_all('/\[(.*?)\]\[.*?\] : Exécution du scénario (\[.*?\]\[.*?\]\[.*?\]) déclenché par : (.*)/', $event_log, $matches, PREG_SET_ORDER);
-		foreach ($matches as $match) {
-			if (count($match) != 4) {
-				continue;
-			}
-			$return[] = array(
-				'date' => $match[1],
-				'group' => 'scenario',
-				'html' => '<div><i class="fa fa-gears"></i> ' . $match[2] . '<hr/>' . $match[3] . '</div>',
-			);
 		}
 		ajax::success($return);
 	}

@@ -156,6 +156,12 @@ echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fa 
                   <a class="btn btn-default btn-sm" id="bt_cmdConfigureChooseIcon"><i class="fa fa-flag"></i> {{Icône}}</a>
                 </div>
               </div>
+               <div class="form-group">
+                  <label class="col-xs-4 control-label">{{Suivre dans la timeline}}</label>
+                  <div class="col-xs-4">
+                    <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="timeline::enable" />
+                  </div>
+                </div>
             </fieldset>
           </form>
         </div>
