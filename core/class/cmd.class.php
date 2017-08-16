@@ -1188,6 +1188,9 @@ class cmd {
 		if (isset($level) && $level != $this->getCache('alertLevel')) {
 			$this->actionAlertLevel($level, $value);
 		}
+		if ($this->getConfiguration('timeline::enable')) {
+			jeedom::addTimelineEvent(array('type' => 'cmd', 'id' => $this->getId(), 'name' => $this->getHumanName(), 'datetime' => $this->getValueDate(), 'value' => $value));
+		}
 		$this->pushUrl($value);
 	}
 

@@ -25,28 +25,32 @@ class jeedom {
 	private static $jeedomConfiguration;
 
 	/*     * ***********************Methode static*************************** */
-	
+
+	public static function addTimelineEvent($_event) {
+		file_put_contents(dirname(__FILE__) . '/../../data/timeline.json', json_encode($_event), FILE_APPEND | LOCK_EX);
+	}
+
 	public static function deadCmd() {
 		global $JEEDOM_INTERNAL_CONFIG;
 		$return = array();
 		$cmd = config::byKey('interact::warnme::defaultreturncmd', 'core', '');
 		if ($cmd != '') {
-			if (!cmd::byId(str_replace('#','',$cmd))){
-				$return[]= array('detail' => 'Administration','help' => 'Commande retour interactions','who'=>$cmd);
+			if (!cmd::byId(str_replace('#', '', $cmd))) {
+				$return[] = array('detail' => 'Administration', 'help' => 'Commande retour interactions', 'who' => $cmd);
 			}
 		}
 		$cmd = config::byKey('emailAdmin', 'core', '');
 		if ($cmd != '') {
-			if (!cmd::byId(str_replace('#','',$cmd))){
-				$return[]= array('detail' => 'Administration','help' => 'Commande information utilisateur','who'=>$cmd);
+			if (!cmd::byId(str_replace('#', '', $cmd))) {
+				$return[] = array('detail' => 'Administration', 'help' => 'Commande information utilisateur', 'who' => $cmd);
 			}
 		}
 		foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
 			$cmds = config::byKey('alert::' . $level . 'Cmd', 'core', '');
 			preg_match_all("/#([0-9]*)#/", $cmds, $matches);
 			foreach ($matches[1] as $cmd_id) {
-				if (!cmd::byId($cmd_id)){
-					$return[]= array('detail' => 'Administration','help' => 'Commande sur ' . $value['name'],'who'=>'#' . $cmd_id . '#');
+				if (!cmd::byId($cmd_id)) {
+					$return[] = array('detail' => 'Administration', 'help' => 'Commande sur ' . $value['name'], 'who' => '#' . $cmd_id . '#');
 				}
 			}
 		}
@@ -623,18 +627,18 @@ class jeedom {
 	}
 
 	/**
-         * 
-         * @return boolean
-         */
+	 *
+	 * @return boolean
+	 */
 	public static function isDateOk() {
 		if (config::byKey('ignoreHourCheck') == 1) {
 			return true;
 		}
-                $minDateValue = new \DateTime('2017-01-01');
-		$mindate = strtotime( $minDateValue->format('Y-m-d 00:00:00'));
-                $maxDateValue = $minDateValue->modify('+6 year')->format('Y-m-d 00:00:00');
+		$minDateValue = new \DateTime('2017-01-01');
+		$mindate = strtotime($minDateValue->format('Y-m-d 00:00:00'));
+		$maxDateValue = $minDateValue->modify('+6 year')->format('Y-m-d 00:00:00');
 		$maxdate = strtotime($maxDateValue);
-              
+
 		if (strtotime('now') < $mindate || strtotime('now') > $maxdate) {
 			self::forceSyncHour();
 			sleep(3);

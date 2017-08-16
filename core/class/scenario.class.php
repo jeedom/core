@@ -715,11 +715,18 @@ class scenario {
 			$this->persistLog();
 			return;
 		}
+
 		$cmd = cmd::byId(str_replace('#', '', $_trigger));
 		if (is_object($cmd)) {
 			log::add('event', 'info', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclenché par : ', __FILE__) . $cmd->getHumanName());
+			if ($this->getConfiguration('timeline::enable')) {
+				jeedom::addTimelineEvent(array('type' => 'scenario', 'id' => $this->getId(), 'name' => $this->getHumanName(), 'datetime' => date('Y-m-d H:i:s'), 'trigger' => $cmd->getHumanName()));
+			}
 		} else {
 			log::add('event', 'info', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclenché par : ', __FILE__) . $_trigger);
+			if ($this->getConfiguration('timeline::enable')) {
+				jeedom::addTimelineEvent(array('type' => 'scenario', 'id' => $this->getId(), 'name' => $this->getHumanName(), 'datetime' => date('Y-m-d H:i:s'), 'trigger' => $_trigger));
+			}
 		}
 		if (count($this->getTags()) == 0) {
 			$this->setLog('Start : ' . $_message . '.');
