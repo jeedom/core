@@ -93,7 +93,17 @@ class eqLogic {
         WHERE eqReal_id=:eqReal_id';
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
-
+	/**
+         * @name byObjectId()
+         * @access public static
+         * @param type $_object_id
+         * @param bool|true $_onlyEnable
+         * @param bool|false $_onlyVisible
+         * @param type $_eqType_name
+         * @param type $_logicalId
+         * @param type $_orderByName
+         * @return self 
+         */
 	public static function byObjectId($_object_id, $_onlyEnable = true, $_onlyVisible = false, $_eqType_name = null, $_logicalId = null, $_orderByName = false) {
 		$values = array();
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
