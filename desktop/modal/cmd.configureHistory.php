@@ -13,6 +13,7 @@ if (!isConnect('admin')) {
      <thead>
       <tr>
        <th>{{Historisé}}</th>
+       <th>{{Timeline}}</th>
        <th>{{Nom}}</th>
        <th>{{Mode de lissage}}</th>
        <th>{{Purge de l'historique si plus vieux}}</th>
@@ -22,7 +23,7 @@ if (!isConnect('admin')) {
 <tbody>
   <?php
 $list_cmd = array();
-foreach (array_merge(cmd::byTypeSubType('info', 'numeric'), cmd::byTypeSubType('info', 'binary')) as $cmd) {
+foreach (cmd::all() as $cmd) {
 	$info_cmd = utils::o2a($cmd);
 	$info_cmd['humanName'] = $cmd->getHumanName(true);
 	$list_cmd[] = $info_cmd;
@@ -47,6 +48,9 @@ function addCommandHistory(_cmd){
   var tr = '<tr data-cmd_id="' +_cmd.id+ '">';
   tr += '<td>';
   tr += '<input type="checkbox" class="cmdAttr" data-l1key="isHistorized" />';
+  tr += '</td>';
+  tr += '<td>';
+  tr += '<input type="checkbox" class="cmdAttr" data-l1key="timeline::enable" />';
   tr += '</td>';
   tr += '<td>';
   tr += '<span class="cmdAttr" data-l1key="id" style="display:none;"></span>';

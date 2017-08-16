@@ -21,8 +21,6 @@ $date = array(
 		<li role="presentation"><a id="bt_tabTimeline" href="#timelinetab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fa fa-clock-o"></i> {{Timeline}}</a></li>
 	</ul>
 
-
-
 	<div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
 		<div role="tabpanel" class="tab-pane active" id="histoytab">
 			<br/>
@@ -120,6 +118,9 @@ foreach (cmd::allHistoryCmd() as $cmd) {
 		</div>
 		<div role="tabpanel" class="tab-pane" id="timelinetab">
 			<br/>
+			<a class="btn btn-sm btn-default pull-right" id="bt_configureTimelineCommand"><i class="fa fa-cogs"></i> {{Configuration des commandes}}</a>
+			<a class="btn btn-sm btn-default pull-right" id="bt_configureTimelineScenario"><i class="fa fa-cogs"></i> {{Configuration des scénarios}}</a>
+			<br/><br/>
 			<div id="div_visualization"></div>
 
 		</div>

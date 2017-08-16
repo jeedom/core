@@ -849,16 +849,18 @@ class cmd {
 			if ($this->getSubType() == 'color' && isset($options['color']) && substr($options['color'], 0, 1) != '#') {
 				$options['color'] = cmd::convertColor($options['color']);
 			}
+			$str_option = '';
 			if (is_array($options) && count($options) > 0) {
-				log::add('event', 'info', __('Exécution de la commande ', __FILE__) . $this->getHumanName() . __(' avec les paramètres ', __FILE__) . str_replace(array("\n", '  ', 'Array', '>'), '', print_r($options, true)));
-			} else {
-				log::add('event', 'info', __('Exécution de la commande ', __FILE__) . $this->getHumanName());
+				$str_option = str_replace(array("\n", '  ', 'Array', '>'), '', print_r($options, true));
+			}
+			log::add('event', 'info', __('Exécution de la commande ', __FILE__) . $this->getHumanName() . __(' avec les paramètres ', __FILE__) . $str_option);
+			if ($this->getConfiguration('timeline::enable')) {
+				jeedom::addTimelineEvent(array('type' => 'cmd', 'subtype' => 'action', 'id' => $this->getId(), 'name' => $this->getHumanName(), 'datetime' => date('Y-m-d H:i:s'), 'options' => $str_option));
 			}
 			$this->preExecCmd($options);
 			$value = $this->formatValue($this->execute($options), $_quote);
 			$this->postExecCmd($options);
 		} catch (Exception $e) {
-			//Si impossible de contacter l'équipement
 			$type = $eqLogic->getEqType_name();
 			if ($eqLogic->getConfiguration('nerverFail') != 1) {
 				$numberTryWithoutSuccess = $eqLogic->getStatus('numberTryWithoutSuccess', 0);

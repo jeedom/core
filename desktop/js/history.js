@@ -34,9 +34,9 @@
 });
 
  $('#bt_configureCalculHistory').on('click',function(){
-     $('#md_modal').dialog({title: "{{Configuration des formules de calcul}}"});
-     $("#md_modal").load('index.php?v=d&modal=history.calcul').dialog('open');
- });
+   $('#md_modal').dialog({title: "{{Configuration des formules de calcul}}"});
+   $("#md_modal").load('index.php?v=d&modal=history.calcul').dialog('open');
+});
 
  $('#bt_clearGraph').on('click',function(){
     while(jeedom.history.chart['div_graph'].chart.series.length > 0){
@@ -149,7 +149,7 @@ function initHistoryTrigger() {
         });
     });
     $('#sel_groupingType').off('change').on('change', function () {
-       if(lastId == null){
+     if(lastId == null){
         return;
     }
     if(lastId.indexOf('#') != -1){
@@ -170,7 +170,7 @@ function initHistoryTrigger() {
     });
 });
     $('#cb_derive').off('change').on('change', function () {
-       if(lastId == null){
+     if(lastId == null){
         return;
     }
     if(lastId.indexOf('#') != -1){
@@ -191,7 +191,7 @@ function initHistoryTrigger() {
     });
 });
     $('#cb_step').off('change').on('change', function () {
-       if(lastId == null){
+     if(lastId == null){
         return;
     }
     if(lastId.indexOf('#') != -1){
@@ -215,7 +215,7 @@ function initHistoryTrigger() {
 
 $('#bt_validChangeDate').on('click',function(){
     $(jeedom.history.chart['div_graph'].chart.series).each(function(i, serie){
-     if(!isNaN(serie.options.id)){
+       if(!isNaN(serie.options.id)){
         var cmd_id = serie.options.id;
         addChart(cmd_id, 0);
         addChart(cmd_id, 1);
@@ -274,6 +274,16 @@ $('#bt_tabTimeline').on('click',function(){
     displayTimeline();
 });
 
+$('#bt_configureTimelineCommand').on('click',function(){
+    $('#md_modal').dialog({title: "{{Résumé scénario}}"});
+  $("#md_modal").load('index.php?v=d&modal=cmd.configureHistory').dialog('open');
+});
+
+$('#bt_configureTimelineScenario').on('click',function(){
+  $('#md_modal').dialog({title: "{{Résumé scénario}}"});
+  $("#md_modal").load('index.php?v=d&modal=scenario.summary').dialog('open');
+});
+
 function displayTimeline(){
     jeedom.getEvents({
         error: function (error) {
@@ -293,7 +303,7 @@ function displayTimeline(){
                 groupOrder:'content',
                 verticalScroll: true,
                 zoomKey: 'ctrlKey',
-                maxHeight: $('body').height() - $('header').height() - 50,
+                maxHeight: $('body').height() - $('header').height() - 75,
             };
             var timeline = new vis.Timeline(container);
             timeline.setOptions(options);
