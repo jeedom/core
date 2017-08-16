@@ -266,3 +266,38 @@ function addChart(_cmd_id, _action,_options) {
         });
     }
 }
+
+/**************TIMELINE********************/
+
+$('#bt_tabTimeline').on('click',function(){
+    $('#div_visualization').empty();
+    displayTimeline();
+});
+
+function displayTimeline(){
+    jeedom.getEvents({
+        error: function (error) {
+            $('#div_Alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+            data_item = [];
+            id = 0;
+            for(var i in data){
+                item = {id : id,start : data[i].date,content : data[i].html,group : data[i].group};
+                id++;
+                data_item.push(item);
+            }
+            var items = new vis.DataSet(data_item);
+            var container = document.getElementById('div_visualization');
+            var options = {
+                groupOrder:'content',
+                verticalScroll: true,
+                zoomKey: 'ctrlKey',
+                maxHeight: $('body').height() - $('header').height() - 50,
+            };
+            var timeline = new vis.Timeline(container);
+            timeline.setOptions(options);
+            timeline.setItems(items);
+        }
+    });
+}
