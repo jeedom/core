@@ -36,6 +36,7 @@
 * Ajout d'une action remove_inat dans les scénarios permettant d'annuler toutes les programmations des bloc DANS/A
 * Possibilité dans les designs pour les widgets au survol de choisir la position du widget
 * Ajout d'un parametre reply_cmd sur les interactions pour spécifier l'id de la commande à utiliser pour répondre
+* Ajout d'une timeline sur la page historique (attention doit etre activé sur chaque commande et/ou scénario que vous voulez voir apparaitre)
 
 == 3.0.11
 

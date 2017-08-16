@@ -2,19 +2,19 @@
 
 Hier befindet sich die Mehrheit der Konfigurationsparameter. Obwohl viele standardmäßig vorkonfiguriert sind.
 
-La page est accessible par Administration -> Configuration : 
+Die Seite ist über Einstellungen -> Konfiguration erreichbar : 
 
 
 [IMPORTANT]
 Wenn sie nicht im Experten-Modus sind, sind möglicherweise einige Parameter nicht sichtbar.
 
-== Générale
+== Allgemein
 
 Diese Registerkarte enthält allgemeine Informationen zu Jeedom : 
 
 * *Name von Ihrem Jeedom* : kann in den Szenarien wieder verwendet werden oder zum identifizieren eines Backups
 * *Système* : Type hardware du systeme sur lequelle est installé jeedom
-* *Clef d'installation* : clef hardware de votre Jeedom sur le market. Si votre Jeedom n'apparaît pas dans la liste de vos Jeedom sur le market il est conseillé de cliquer sur le bouton *Remise à zéro*
+* *Installationsschlüssel* : Hardware-Schlüssel von Ihrem Jeedom auf dem Markt. Wenn Ihr Jeedom nicht in der Liste Ihrer Jeedom auf dem Markt erscheint, ist es ratsam auf diese Schaltfläche zu klicken *Remise à zéro*
 * *Sprache* : Ihre Sprache in Jeedom
 * *Générer les traductions* : permet de générer les traductions, attention peut ralentir votre système
 * *Cache Verfallszeit (Stunde)* : Lebensdauer der PHP-Sitzungen es wird er geraten, dort nicht zu ändern
@@ -40,18 +40,18 @@ De plus vous pouvez aussi limiter l'accès (par le même système) aux APIs HTTP
 
 == OS/DB
  
-=== Système
+=== System
 
 Permet d'accès à une interface d'administration systeme, sorte de console shell  (ATTENTION en touchant à cela le support peut refuser de vous aider)
 
-=== Base de données
+=== Datenbank
 
 * *Administration* : permet d'accèder à une interface d'administration de la base en ligne de commande (ATTENTION en touchant à cela le support peut refuser de vous aider)
 * *Geräte (hostname)* : Datenbank Standort
 * *Benutzer* : von Jeedom verwendeter Benutzername
 * *Passwort* : Passwort für den Zugriff auf die Datenbank von Jeedom 
 
-== Sécurité
+== Sicherheit
 
 === LDAP
 
@@ -64,7 +64,7 @@ Permet d'accès à une interface d'administration systeme, sorte de console shel
  * *Filter (optional)* : Filter auf dem AD (zum Beispiel für Gruppenmanagement)
 * *REMOTE_USER zulassen* : REMOTE_USER aktivieren (zum Beispiel verwendet  in SSO)
 
-=== Connexion
+=== Verbindung
 
 * *Nombre d'échec toléré* : defini le nombre de tentative successivent autorisées avant de bannir l'IP
 * *Temps maximum entre les échecs (s)* : temps maximum pour que 2 tentatives soient considéré comme successive
@@ -106,11 +106,11 @@ Sie können link:http://blog.domadoo.fr/2014/10/15/acceder-depuis-lexterieur-jee
 [IMPORTANT]
 Wenn Sie die DNS-Jeedom betreiben können, betrachten Sie die Konfiguration der Firewall und Kindersicherung Filter von der Box (Livebox sollte z. B. die Firewall in der Mittelstellung sein)
 
-== Couleurs
+== Farben
 
 Die farbliche Kennzeichnung der Widgets erfolgt entsprechend der Kategorie des Widgets, die in der Konfiguration der einzelnen Module definiert ist (siehe Plugin Z-Wave, RFXCOM... etc.). Die Kategorien umfassen Heizung, Licht, Automation etc....  
 
-Für jede Kategorie, können wir eine andere Farbe zwischen der Desktop-Version und Mobile-Version wählen. Außerdem gibt es zwei Arten von Farben, Widget Hintergrundfarben  und Befehls Farbe, wenn das Widget erfolgt schrittweise Typ, zB Beleuchtung, Jalousien, Temperaturen.
+Für jede Kategorie, können wir eine andere Farbe zwischen der Desktop-Version und Mobile-Version wählen. Außerdem gibt es 2 Arten von Farben, Widget Hintergrundfarben  und Befehls Farbe, wenn das Widget erfolgt schrittweise Typ, zB Beleuchtung, Jalousien, Temperaturen.
 
 En cliquant sur la couleur une fenêtre s'ouvre, permettant de choisir sa couleur.
 
@@ -119,9 +119,9 @@ Sie können auch hier die Transparenz der Widgets allgemein konfigurieren (das w
 [TIP]
 Vergessen Sie nicht, nach jeder Veränderung zu speichern.
 
-== Commandes
+== Befehle
 
-=== Historique
+=== Chronik
 
 * *Afficher les statistiques sur les widgets* : permet d'afficher ou non les statistiques sur les widgets ; il faut que le widget soit compatible, ce qui est le cas pour la plupart ; il faut aussi que la commande soit de type numérique
 * *Période de calcul pour min, max, moyenne (en heures)* : période de calcul des statistiques (par défaut 24h), il n'est pas possible de mettre moins d'une heure
@@ -148,9 +148,9 @@ Permet de surveiller et d'agir sur le cache de Jeedom :
 * *Vider toutes les données en cache* : Vide completement le cache (attention cela peut faire perdre des données)
 * *Temps de pause pour le long polling* : Fréquence a laquelle Jeedom verifie si il y a des evenements en attente pour les clients (interface web, application mobile...). Plus ce temps est cours plus l'interface se mettra à jour rapidement, en contre partie cela utilise plus de ressources et peut donc ralentir jeedom
 
-== Interactions
+== Interaktion 
 
-=== Général
+=== Allgemein
 
 Vous avez ici 3 paramètres : 
 
@@ -169,15 +169,15 @@ Les interactions automatique permettent a Jeedom de tenter de comprendre la comm
 Les interactions contextuelle vous permette d'enchainer plusieurs demande sans tout repeter, jeedom gardant le contexte, exemple : 
 
 * Vous : Combien fait-il dans la chambre ?
-* Jeedom : Température 25.2 °C
+* Jeedom : Temperatur 25.2 °C
 * Vous : et dans le salon ?
-* Jeedom : Température 27.2 °C
+* Jeedom : Temperatur 27.2 °C
 
 Il est aussi possible de poser 2 questions en une : 
 
 * Vous : Combien fait-il dans la chambre et dans le salon ?
-* Jeedom : Température 27.2 °C
-		   Température 27.2 °C
+* Jeedom : Temperatur 27.2 °C
+		   Temperatur 27.2 °C
 
 Les intéractions de type prévient moi permette de demander à Jeedom de vous prevenir si une commande dépasse/descend ou vaut une certaine valeur. Ex :
 
@@ -200,18 +200,18 @@ Par defaut Jeedom vous répondra par le meme canal que celui que vous avez utili
 * *Synonyme pour les commandes* : liste des synomnyme pour les commandes
 * *Synonyme pour les résumé* : liste des synomnyme pour les résumés
 
-=== Couleurs
+=== Farben
 
 Cette partie permet de definir les couleurs pour le pilotage des bandeaux de LED par exemple (pour que Jeedom comprenne les couleurs type rouge/bleu/noir...)
 
-== Rapports
+== Berichte
 
 Permet de configuration la generation et la gestion des raports
 
 * *Delai d'attente après génération de la page (en ms)* : Délai d'attente après chargement du rapport pour faire la "photo", à changer si votre rapport est incomplet par exemple
 * *Nettoyer les rapport plus anciens de (jours)* : défini le nombre de jour avant de supprimer un rapport (les rapports prennent un peu de place donc attention à ne pas mettre trop de conservation)
 
-== Liens
+== Links
 
 Permet de configurer le graphique de lien
 
@@ -223,7 +223,7 @@ Permet de configurer le graphique de lien
 * *Paramètre de prerender* : permet d'agir sur la disposition du graph
 * *Paramètre de render* : idem
 
-== Résumés
+== Zusammenfassungen
 
 Permet d'ajouter des résumés d'objet (information affiché tout en haut dans la barre de menu Jeedom ou a coté des objets) : 
 
@@ -239,13 +239,13 @@ Permet d'ajouter des résumés d'objet (information affiché tout en haut dans l
 * *Affiché si valeur égale 0* : masquer la valeur si elle vos 0 
 * *Liée à un virtuel* : lance la création de commande virtuel ayant pour valeur celle du résumé
 
-== Logs
+== Protokolle
 
-Vous avez ici les options suivantes :
+Hier haben Sie folgende Möglichkeiten :
 
-* *Message*
-** *Ajouter un message à chaque erreur dans les logs* : si un plugin ou Jeedom écrit un message d'erreur dans un log, Jeedom ajoute automatiquement un message dans le centre des messages (au moins vous êtes sûr de ne pas le manquer)
-** *Commande d'information utilisateur* : permet de sélectionner une ou plusieurs commandes (à séparer par des &&) de type message qui seront utilisées lors de nouveaux messages (permet d'être tout de suite prévenu)
+* *Nachricht*
+** *Eine Nachricht zu jedem Fehler in den Logs hinzufügen* : wenn ein Plugin oder Jeedom eine Fehlermeldung in ein Protokoll schreibt, fügt Jeedom automatisch eine Nachricht in die Nachrichtenzentrale (zumindest sind sie sicher, dass sie am Ende nichts verpassen)
+** *Commande d'information utilisateur* : erlaubt, ein oder mehrere Befehle (ist durch && zu trennen) vom Typ Nachricht auszuwählen, die bei neuen Nachrichten benutzt werden (ermöglicht, gleich benachrichtigt zu werden )
 * *Alertes*
 ** *Ajouter un message à chaque Timeout* : ajoute un message dans le centre de message si un équipement tombe en timeout
 ** *Commande sur Timeout* : commande de type message à utiliser si un équipement est en timeout
@@ -257,15 +257,15 @@ Vous avez ici les options suivantes :
 ** *Commande sur Warning* : commande de type message à utiliser si une commande passe en alerte warning
 ** *Ajouter un message à chaque Danger* : ajoute un message dans le centre de message si une commande passe en alerte danger
 ** *Commande sur Danger* : commande de type message à utiliser si une commande passe en alerte danger
-* *Log* 
-** *Moteur de log* : permet de changer le moteur de log pour par exemple les envoyer à un demon syslog(d)
+* *Protokoll* 
+** *Protokoll Engine* : ermöglicht, die Protokoll Engine auszuwechseln, um sie zum Beispiel an einem syslog(d) Dämon zu senden 
 ** *Format des logs* : Format des logs à utiliser (attention ca n'affecte pas les logs des démons)
-** *Nombre de lignes maximum dans un fichier de log* : Définit le nombre maximum de lignes dans un fichier de log, il est recommandé de ne pas toucher cette valeur, car une valeur trop grande pourrait remplir le système de fichiers et/ou rendre Jeedom incapable d'afficher le log
+** *Maximale Anzahl der Zeilen in einer Log-Datei* : Legt die maximale Anzahl der Zeilen in einer Log-Datei fest, es wird empfohlen, diesen Wert nicht zu ändern, weil ein zu großer Wert auf das Dateisystem überfüllen könnte und/oder Jeedom ist nicht mehr in der Lage das Protokoll zu sehen.
 ** *Niveau de log par défaut* : niveau de log par defaut de jeedom
 
 En dessous vous retrouvez un tableau permet de gerer finement le niveau de log par type ou plugin de Jeedom
 
-== Equipements
+== Geräte
 
 * *Anzahl der Fehler vor dem Deaktivieren der Geräte* : Anzahl von Kommunikationsausfällen der Geräte bevor sie Deaktiviert werden (eine Nachricht wird Sie warnen, wenn dies geschieht)
 * *Batterien Schwellenwerte* : erlaubt, die globalen Alarmschwellen für die Batterien zu verwalten
