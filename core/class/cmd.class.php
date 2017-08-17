@@ -614,9 +614,15 @@ class cmd {
 		$return['date'] = $_event['datetime'];
 		$return['group'] = $_event['subtype'];
 		if ($_event['subtype'] == 'action') {
-			$return['html'] = '<div><i class="fa fa-eye"></i> ' . $_event['name'] . '<hr/>' . $_event['value'] . '</div>';
+			$return['html'] = '<div>'
+				. '<div style="background-color:#F5A9BC;padding:1px;font-size:0.9em;font-weight: bold;">' . $_event['name'] . '</div>'
+				. '<div style="background-color:white;padding:1px;font-size:0.8em;">' . $_event['options'] . '<div/>'
+				. '</div>';
 		} else {
-			$return['html'] = '<div><i class="fa fa-hand-paper-o"></i> ' . $_event['name'] . '<hr/>' . $_event['options'] . '</div>';
+			$return['html'] = '<div>'
+				. '<div style="background-color:#A9D0F5;padding:1px;font-size:0.9em;font-weight: bold;">' . $_event['name'] . '</div>'
+				. '<div style="background-color:white;padding:1px;font-size:0.8em;">' . $_event['value'] . '<div/>'
+				. '</div>';
 		}
 		return $return;
 	}

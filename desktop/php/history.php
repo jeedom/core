@@ -10,9 +10,11 @@ $date = array(
 );
 ?>
 	<style>
-		div.vis-item {
+		div.vis-item,div.vis-item-content {
 			background-color: white;
 			border-color: #D7D7D7;
+			padding:0px !important;
+			margin:0px !important;
 		}
 	</style>
 

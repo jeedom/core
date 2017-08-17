@@ -655,8 +655,8 @@ class scenario {
 		$return['date'] = $_event['datetime'];
 		$return['group'] = 'scenario';
 		$return['html'] = '<div>'
-			. '<div style="background-color:#e7e7e7;"><i class="fa fa-gears"></i> ' . $_event['name'] . '<div/>'
-			. '<div style="background-color:white;">' . $_event['trigger'] . '<div/>'
+			. '<div style="background-color:#e7e7e7;padding:1px;font-size:0.9em;font-weight: bold;">' . $_event['name'] . '</div>'
+			. '<div style="background-color:white;padding:1px;font-size:0.8em;">' . $_event['trigger'] . '<div/>'
 			. '</div>';
 		return $return;
 	}

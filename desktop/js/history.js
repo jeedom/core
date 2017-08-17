@@ -284,12 +284,17 @@ $('#bt_configureTimelineScenario').on('click',function(){
   $("#md_modal").load('index.php?v=d&modal=scenario.summary').dialog('open');
 });
 
+timeline = null;
+
 function displayTimeline(){
     jeedom.getEvents({
         error: function (error) {
             $('#div_Alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {
+            if(timeline != null){
+                timeline.destroy()
+            }
             data_item = [];
             id = 0;
             for(var i in data){
@@ -303,12 +308,10 @@ function displayTimeline(){
                 groupOrder:'content',
                 verticalScroll: true,
                 zoomKey: 'ctrlKey',
-                maxHeight: $('body').height() - $('header').height() - 75,
-                rollingMode : {follow : true,offset : 0.5}
+                maxHeight: $('body').height() - $('header').height() - 75
             };
-            var timeline = new vis.Timeline(container);
-            timeline.setOptions(options);
-            timeline.setItems(items);
+            timeline = new vis.Timeline(container,items,options);
+            timeline.moveTo(new Date())
         }
     });
 }
