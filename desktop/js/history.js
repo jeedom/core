@@ -275,7 +275,7 @@ $('#bt_tabTimeline').on('click',function(){
 });
 
 $('#bt_configureTimelineCommand').on('click',function(){
-    $('#md_modal').dialog({title: "{{Résumé scénario}}"});
+    $('#md_modal').dialog({title: "{{Configuration de l'historique des commandes}}"});
     $("#md_modal").load('index.php?v=d&modal=cmd.configureHistory').dialog('open');
 });
 
