@@ -12,12 +12,12 @@ if (!isConnect('admin')) {
    <table class="table table-bordered table-condensed tablesorter" id="table_cmdConfigureHistory" style="width:100%">
      <thead>
       <tr>
-       <th>{{Historisé}}</th>
-       <th>{{Timeline}}</th>
+       <th data-sorter="false" data-filter="false">{{Historisé}}</th>
+       <th data-sorter="false" data-filter="false">{{Timeline}}</th>
        <th>{{Nom}}</th>
-       <th>{{Mode de lissage}}</th>
-       <th>{{Purge de l'historique si plus vieux}}</th>
-       <th>{{Action}}</th>
+       <th data-sorter="false" data-filter="false">{{Mode de lissage}}</th>
+       <th data-sorter="false" data-filter="false">{{Purge de l'historique si plus vieux}}</th>
+       <th data-sorter="false" data-filter="false">{{Action}}</th>
      </tr>
    </thead>
    <tbody>
