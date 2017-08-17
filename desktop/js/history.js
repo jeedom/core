@@ -34,9 +34,9 @@
 });
 
  $('#bt_configureCalculHistory').on('click',function(){
-   $('#md_modal').dialog({title: "{{Configuration des formules de calcul}}"});
-   $("#md_modal").load('index.php?v=d&modal=history.calcul').dialog('open');
-});
+     $('#md_modal').dialog({title: "{{Configuration des formules de calcul}}"});
+     $("#md_modal").load('index.php?v=d&modal=history.calcul').dialog('open');
+ });
 
  $('#bt_clearGraph').on('click',function(){
     while(jeedom.history.chart['div_graph'].chart.series.length > 0){
@@ -149,7 +149,7 @@ function initHistoryTrigger() {
         });
     });
     $('#sel_groupingType').off('change').on('change', function () {
-     if(lastId == null){
+       if(lastId == null){
         return;
     }
     if(lastId.indexOf('#') != -1){
@@ -170,7 +170,7 @@ function initHistoryTrigger() {
     });
 });
     $('#cb_derive').off('change').on('change', function () {
-     if(lastId == null){
+       if(lastId == null){
         return;
     }
     if(lastId.indexOf('#') != -1){
@@ -191,7 +191,7 @@ function initHistoryTrigger() {
     });
 });
     $('#cb_step').off('change').on('change', function () {
-     if(lastId == null){
+       if(lastId == null){
         return;
     }
     if(lastId.indexOf('#') != -1){
@@ -215,7 +215,7 @@ function initHistoryTrigger() {
 
 $('#bt_validChangeDate').on('click',function(){
     $(jeedom.history.chart['div_graph'].chart.series).each(function(i, serie){
-       if(!isNaN(serie.options.id)){
+     if(!isNaN(serie.options.id)){
         var cmd_id = serie.options.id;
         addChart(cmd_id, 0);
         addChart(cmd_id, 1);
@@ -298,6 +298,30 @@ $('#div_visualization').on('click','.bt_configureCmd',function(){
   $('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.cmd').attr('data-id')).dialog('open');
 });
 
+$('.bt_timelineZoom').on('click',function(){
+    zoom = $(this).attr('data-zoom');
+    var end = new Date();
+    var start = new Date();
+    if(zoom == 'all'){
+        timeline.fit();
+        return;
+    }else if (zoom == 'y'){
+        start.setFullYear(end.getFullYear() - 1);
+    }else if (zoom == 'm'){
+        if(end.getMonth() == 1){
+           start.setFullYear(end.getFullYear() - 1);
+           start.setMonth(12);
+       }else{
+           start.setMonth(end.getMonth() - 1);
+       }
+   }else if (zoom == 'w'){
+    start.setTime(end.getTime() - 7 * 24 *3600 * 1000);
+}else if (zoom == 'd'){
+ start.setTime(end.getTime() - 1 * 24 *3600 * 1000);
+}
+timeline.setWindow(start, end);
+});
+
 timeline = null;
 
 function displayTimeline(){
@@ -317,14 +341,13 @@ function displayTimeline(){
                 data_item.push(item);
             }
             var items = new vis.DataSet(data_item);
-            var container = document.getElementById('div_visualization');
             var options = {
                 groupOrder:'content',
                 verticalScroll: true,
                 zoomKey: 'ctrlKey',
                 maxHeight: $('body').height() - $('header').height() - 75
             };
-            timeline = new vis.Timeline(container,items,options);
+            timeline = new vis.Timeline(document.getElementById('div_visualization'),items,options);
             timeline.moveTo(new Date())
         }
     });

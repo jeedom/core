@@ -120,6 +120,14 @@ foreach (cmd::allHistoryCmd() as $cmd) {
 		</div>
 		<div role="tabpanel" class="tab-pane" id="timelinetab">
 			<br/>
+			<div class="btn-group" role="group" aria-label="...">
+				<a class="btn btn-sm btn-default bt_timelineZoom" data-zoom="d">J</a>
+				<a class="btn btn-sm btn-default bt_timelineZoom" data-zoom="w">S</a>
+				<a class="btn btn-sm btn-default bt_timelineZoom" data-zoom="m">M</a>
+				<a class="btn btn-sm btn-default bt_timelineZoom" data-zoom="y">A</a>
+				<a class="btn btn-sm btn-default bt_timelineZoom" data-zoom="all">{{Tous}}</a>
+			</div>
+
 			<a class="btn btn-sm btn-default pull-right" id="bt_configureTimelineCommand"><i class="fa fa-cogs"></i> {{Configuration des commandes}}</a>
 			<a class="btn btn-sm btn-default pull-right" id="bt_configureTimelineScenario"><i class="fa fa-cogs"></i> {{Configuration des scénarios}}</a>
 			<br/><br/>
