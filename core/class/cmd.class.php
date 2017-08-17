@@ -615,13 +615,18 @@ class cmd {
 		$return['group'] = $_event['subtype'];
 		if ($_event['subtype'] == 'action') {
 			$return['html'] = '<div class="cmd" data-id="' . $_event['id'] . '">'
-				. '<div style="background-color:#F5A9BC;padding:1px;font-size:0.9em;font-weight: bold;">' . $_event['name'] . '<i class="fa fa-cogs pull-right cursor bt_configureCmd"></i></div>'
-				. '<div style="background-color:white;padding:1px;font-size:0.8em;">' . $_event['options'] . '<div/>'
+				. '<div style="background-color:#F5A9BC;padding:1px;font-size:0.9em;font-weight: bold;cursor:help;" title="Le ' .$_event['datetime'].'">' . $_event['name'] . '<i class="fa fa-cogs pull-right cursor bt_configureCmd"></i></div>'
+				. '<div style="background-color:white;padding:1px;font-size:0.8em;cursor:default;">' . $_event['options'] . '<div/>'
 				. '</div>';
 		} else {
+			$backgroundColor = '#A9D0F5';
+			log::add('camera','error',print_r($_event,true));
+			if (isset($_event['cmdType']) && $_event['cmdType'] == 'binary'){
+				$backgroundColor = ($_event['value'] == 0 ? '#ff8693' : '#c1e5bd');
+			}
 			$return['html'] = '<div>'
-				. '<div style="background-color:#A9D0F5;padding:1px;font-size:0.9em;font-weight: bold;">' . $_event['name'] . '<i class="fa fa-cogs pull-right cursor bt_configureCmd"></i></div>'
-				. '<div style="background-color:white;padding:1px;font-size:0.8em;">' . $_event['value'] . '<div/>'
+				. '<div style="background-color:' . $backgroundColor . ';padding:1px;font-size:0.9em;font-weight: bold;cursor:help;" title="Le ' .$_event['datetime'].'">' . $_event['name'] . '<i class="fa fa-cogs pull-right cursor bt_configureCmd"></i></div>'
+				. '<div style="background-color:white;padding:1px;font-size:0.8em;cursor:default;">' . $_event['value'] . '<div/>'
 				. '</div>';
 		}
 		return $return;
@@ -861,7 +866,7 @@ class cmd {
 			}
 			log::add('event', 'info', __('Exécution de la commande ', __FILE__) . $this->getHumanName() . __(' avec les paramètres ', __FILE__) . $str_option);
 			if ($this->getConfiguration('timeline::enable')) {
-				jeedom::addTimelineEvent(array('type' => 'cmd', 'subtype' => 'action', 'id' => $this->getId(), 'name' => $this->getHumanName(), 'datetime' => date('Y-m-d H:i:s'), 'options' => $str_option));
+				jeedom::addTimelineEvent(array('type' => 'cmd', 'subtype' => 'action', 'id' => $this->getId(), 'name' => $this->getHumanName(true), 'datetime' => date('Y-m-d H:i:s'), 'options' => $str_option));
 			}
 			$this->preExecCmd($options);
 			$value = $this->formatValue($this->execute($options), $_quote);
@@ -1209,7 +1214,7 @@ class cmd {
 			$this->actionAlertLevel($level, $value);
 		}
 		if ($this->getConfiguration('timeline::enable')) {
-			jeedom::addTimelineEvent(array('type' => 'cmd', 'subtype' => 'info', 'id' => $this->getId(), 'name' => $this->getHumanName(), 'datetime' => $this->getValueDate(), 'value' => $value));
+			jeedom::addTimelineEvent(array('type' => 'cmd', 'subtype' => 'info', 'cmdType' => $this->getSubType(), 'id' => $this->getId(), 'name' => $this->getHumanName(true), 'datetime' => $this->getValueDate(), 'value' => $value));
 		}
 		$this->pushUrl($value);
 	}

@@ -655,8 +655,8 @@ class scenario {
 		$return['date'] = $_event['datetime'];
 		$return['group'] = 'scenario';
 		$return['html'] = '<div class="scenario" data-id="' . $_event['id'] . '">'
-			. '<div style="background-color:#e7e7e7;padding:1px;font-size:0.9em;font-weight: bold;">' . $_event['name'] . ' <i class="fa fa-file-text-o pull-right cursor bt_scenarioLog"></i> <i class="fa fa-share pull-right cursor bt_gotoScenario"></i></div>'
-			. '<div style="background-color:white;padding:1px;font-size:0.8em;">' . $_event['trigger'] . '<div/>'
+			. '<div style="background-color:#e7e7e7;padding:1px;font-size:0.9em;font-weight: bold;cursor:help;" title="Le ' .$_event['datetime'].'">' . $_event['name'] . ' <i class="fa fa-file-text-o pull-right cursor bt_scenarioLog"></i> <i class="fa fa-share pull-right cursor bt_gotoScenario"></i></div>'
+			. '<div style="background-color:white;padding:1px;font-size:0.8em;cursor:default;">Déclenché par ' . $_event['trigger'] . '<div/>'
 			. '</div>';
 		return $return;
 	}
@@ -731,12 +731,12 @@ class scenario {
 		if (is_object($cmd)) {
 			log::add('event', 'info', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclenché par : ', __FILE__) . $cmd->getHumanName());
 			if ($this->getConfiguration('timeline::enable')) {
-				jeedom::addTimelineEvent(array('type' => 'scenario', 'id' => $this->getId(), 'name' => $this->getHumanName(), 'datetime' => date('Y-m-d H:i:s'), 'trigger' => $cmd->getHumanName()));
+				jeedom::addTimelineEvent(array('type' => 'scenario', 'id' => $this->getId(), 'name' => $this->getHumanName(true), 'datetime' => date('Y-m-d H:i:s'), 'trigger' => $cmd->getHumanName(true)));
 			}
 		} else {
 			log::add('event', 'info', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclenché par : ', __FILE__) . $_trigger);
 			if ($this->getConfiguration('timeline::enable')) {
-				jeedom::addTimelineEvent(array('type' => 'scenario', 'id' => $this->getId(), 'name' => $this->getHumanName(), 'datetime' => date('Y-m-d H:i:s'), 'trigger' => $_trigger));
+				jeedom::addTimelineEvent(array('type' => 'scenario', 'id' => $this->getId(), 'name' => $this->getHumanName(true), 'datetime' => date('Y-m-d H:i:s'), 'trigger' => $_trigger == '#schedule#' ? 'programmation' : $_trigger));
 			}
 		}
 		if (count($this->getTags()) == 0) {
