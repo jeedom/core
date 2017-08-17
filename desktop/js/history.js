@@ -321,7 +321,7 @@ $('.bt_timelineZoom').on('click',function(){
 }else if (zoom == 'h'){
  start.setTime(end.getTime() -  3600 * 1000);
 }
-timeline.setWindow(start, end);
+timeline.setWindow(start,end);
 });
 
 timeline = null;
@@ -338,7 +338,7 @@ function displayTimeline(){
             data_item = [];
             id = 0;
             for(var i in data){
-                item = {id : id,start : data[i].date,content : data[i].html,group : data[i].group};
+                item = {id : id,start : data[i].date,content : data[i].html,group : data[i].group,title:data[i].date};
                 id++;
                 data_item.push(item);
             }
@@ -347,6 +347,7 @@ function displayTimeline(){
                 groupOrder:'content',
                 verticalScroll: true,
                 zoomKey: 'ctrlKey',
+                orientation : 'top',
                 maxHeight: $('body').height() - $('header').height() - 75
             };
             timeline = new vis.Timeline(document.getElementById('div_visualization'),items,options);

@@ -615,16 +615,17 @@ class cmd {
 		$return['group'] = $_event['subtype'];
 		if ($_event['subtype'] == 'action') {
 			$return['html'] = '<div class="cmd" data-id="' . $_event['id'] . '">'
-				. '<div style="background-color:#F5A9BC;padding:1px;font-size:0.9em;font-weight: bold;cursor:help;" title="Le ' .$_event['datetime'].'">' . $_event['name'] . '<i class="fa fa-cogs pull-right cursor bt_configureCmd"></i></div>'
+				. '<div style="background-color:#F5A9BC;padding:1px;font-size:0.9em;font-weight: bold;cursor:help;">' . $_event['name'] . '<i class="fa fa-cogs pull-right cursor bt_configureCmd"></i></div>'
 				. '<div style="background-color:white;padding:1px;font-size:0.8em;cursor:default;">' . $_event['options'] . '<div/>'
 				. '</div>';
 		} else {
 			$backgroundColor = '#A9D0F5';
+			log::add('camera','error',print_r($_event,true));
 			if (isset($_event['cmdType']) && $_event['cmdType'] == 'binary'){
 				$backgroundColor = ($_event['value'] == 0 ? '#ff8693' : '#c1e5bd');
 			}
 			$return['html'] = '<div>'
-				. '<div style="background-color:' . $backgroundColor . ';padding:1px;font-size:0.9em;font-weight: bold;cursor:help;" title="Le ' .$_event['datetime'].'">' . $_event['name'] . '<i class="fa fa-cogs pull-right cursor bt_configureCmd"></i></div>'
+				. '<div style="background-color:' . $backgroundColor . ';padding:1px;font-size:0.9em;font-weight: bold;cursor:help;">' . $_event['name'] . '<i class="fa fa-cogs pull-right cursor bt_configureCmd"></i></div>'
 				. '<div style="background-color:white;padding:1px;font-size:0.8em;cursor:default;">' . $_event['value'] . '<div/>'
 				. '</div>';
 		}
