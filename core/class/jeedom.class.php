@@ -188,12 +188,22 @@ class jeedom {
 		);
 
 		$value = round(($values['SwapFree'] / $values['SwapTotal']) * 100);
-		$return[] = array(
-			'name' => __('Swap disponible', __FILE__),
-			'state' => ($value > 15),
-			'result' => $value . ' %',
-			'comment' => '',
-		);
+		if ($values['SwapTotal'] !=0 && $values['SwapTotal'] != null) {
+			$return[] = array(
+				'name' => __('Swap disponible', __FILE__),
+				'state' => ($value > 15),
+				'result' => $value . ' %',
+				'comment' => '',
+			);
+		}else{
+			$return[] = array(
+				'name' => __('Swap disponible', __FILE__),
+				'state' => 2,
+				'result' => __('Inconnue', __FILE__),
+				'comment' => '',
+			);		
+		}
+		
 		$values = sys_getloadavg();
 		$return[] = array(
 			'name' => __('Charge', __FILE__),
