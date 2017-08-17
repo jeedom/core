@@ -192,19 +192,19 @@ if (count($totalScenario) == 0) {
             <div class="form-group">
               <label class="col-xs-5 control-label" >{{Nom du scénario}}</label>
               <div class="col-xs-6">
-                <input class="form-control scenarioAttr input-sm" data-l1key="name" type="text" placeholder="{{Nom du scénario}}"/>
+                <input class="form-control scenarioAttr" data-l1key="name" type="text" placeholder="{{Nom du scénario}}"/>
               </div>
             </div>
             <div class="form-group">
               <label class="col-xs-5 control-label" >{{Nom à afficher}}</label>
               <div class="col-xs-6">
-                <input class="form-control scenarioAttr input-sm" title="{{Ne rien mettre pour laisser le nom par défaut}}" data-l1key="display" data-l2key="name" type="text" placeholder="{{Nom à afficher}}"/>
+                <input class="form-control scenarioAttr" title="{{Ne rien mettre pour laisser le nom par défaut}}" data-l1key="display" data-l2key="name" type="text" placeholder="{{Nom à afficher}}"/>
               </div>
             </div>
             <div class="form-group">
               <label class="col-xs-5 control-label" >{{Groupe}}</label>
               <div class="col-xs-6">
-                <input class="form-control scenarioAttr input-sm" data-l1key="group" type="text" placeholder="{{Groupe du scénario}}"/>
+                <input class="form-control scenarioAttr" data-l1key="group" type="text" placeholder="{{Groupe du scénario}}"/>
               </div>
             </div>
             <div class="form-group">
@@ -219,7 +219,7 @@ if (count($totalScenario) == 0) {
            <div class="form-group">
             <label class="col-xs-5 control-label" >{{Objet parent}}</label>
             <div class="col-xs-6">
-              <select class="scenarioAttr form-control input-sm" data-l1key="object_id">
+              <select class="scenarioAttr form-control" data-l1key="object_id">
                 <option value="">{{Aucun}}</option>
                 <?php
 foreach (object::all() as $object) {
@@ -232,7 +232,7 @@ foreach (object::all() as $object) {
          <div class="form-group expertModeVisible">
           <label class="col-xs-5 control-label">{{Timeout secondes (0 = illimité)}}</label>
           <div class="col-xs-6">
-            <input class="form-control scenarioAttr input-sm" data-l1key="timeout">
+            <input class="form-control scenarioAttr" data-l1key="timeout">
           </div>
         </div>
         <div class="form-group expertModeVisible">
@@ -275,7 +275,7 @@ foreach (object::all() as $object) {
       <label class="col-sm-3 col-xs-6 control-label" >{{Mode du scénario}}</label>
       <div class="col-sm-9 col-xs-6">
         <div class="input-group">
-          <select class="form-control scenarioAttr input-sm" data-l1key="mode">
+          <select class="form-control scenarioAttr" data-l1key="mode">
             <option value="provoke">{{Provoqué}}</option>
             <option value="schedule">{{Programmé}}</option>
             <option value="all">{{Les deux}}</option>
