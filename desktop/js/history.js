@@ -318,6 +318,8 @@ $('.bt_timelineZoom').on('click',function(){
     start.setTime(end.getTime() - 7 * 24 *3600 * 1000);
 }else if (zoom == 'd'){
  start.setTime(end.getTime() - 1 * 24 *3600 * 1000);
+}else if (zoom == 'h'){
+ start.setTime(end.getTime() -  3600 * 1000);
 }
 timeline.setWindow(start, end);
 });
