@@ -304,6 +304,7 @@ function displayTimeline(){
                 verticalScroll: true,
                 zoomKey: 'ctrlKey',
                 maxHeight: $('body').height() - $('header').height() - 75,
+                rollingMode : {follow : true,offset : 0.5}
             };
             var timeline = new vis.Timeline(container);
             timeline.setOptions(options);
