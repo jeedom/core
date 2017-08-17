@@ -37,9 +37,12 @@ if (isset($argv)) {
 if (init('type') != '') {
 	try {
 		$type = init('type');
-		if (!jeedom::apiAccess(init('apikey', init('api')), init('plugin', 'core')) || !jeedom::apiModeResult(config::byKey('api::core::http::mode', 'core', 'enable'))) {
+		if ((!jeedom::apiAccess(init('apikey', init('api')), init('plugin', 'core')) &&
+			!jeedom::apiAccess(init('apikey', init('api')), init('type', 'core'))) ||
+			(!jeedom::apiModeResult(config::byKey('api::core::http::mode', init('plugin', 'core'), 'disable')) &&
+				!jeedom::apiModeResult(config::byKey('api::core::http::mode', init('type', 'core'), 'disable')))) {
 			user::failedLogin();
-			throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__));
+			throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action 1', __FILE__));
 		}
 		if ($type == 'ask') {
 			$cmd = cmd::byId(init('cmd_id'));
@@ -66,7 +69,7 @@ if (init('type') != '') {
 						throw new Exception(__('Aucune commande correspondant à l\'id : ', __FILE__) . secureXSS($id));
 					}
 					if (init('plugin', 'core') != 'core' && init('plugin', 'core') != $cmd->getEqType()) {
-						throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__));
+						throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action 2', __FILE__));
 					}
 					$result[$id] = $cmd->execCmd($_REQUEST);
 				}
@@ -78,7 +81,7 @@ if (init('type') != '') {
 					throw new Exception(__('Aucune commande correspondant à l\'id : ', __FILE__) . secureXSS(init('id')));
 				}
 				if (init('plugin', 'core') != 'core' && init('plugin', 'core') != $cmd->getEqType()) {
-					throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__));
+					throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action 3', __FILE__));
 				}
 				log::add('api', 'debug', __('Exécution de : ', __FILE__) . $cmd->getHumanName());
 				echo $cmd->execCmd($_REQUEST);
@@ -86,7 +89,7 @@ if (init('type') != '') {
 			}
 		}
 		if ($type != init('plugin', 'core') && init('plugin', 'core') != 'core') {
-			throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__));
+			throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action 4', __FILE__));
 		}
 		if (class_exists($type) && method_exists($type, 'event')) {
 			log::add('api', 'info', __('Appels de ', __FILE__) . secureXSS($type) . '::event()');
