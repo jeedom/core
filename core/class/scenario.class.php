@@ -654,8 +654,8 @@ class scenario {
 		$return = array();
 		$return['date'] = $_event['datetime'];
 		$return['group'] = 'scenario';
-		$return['html'] = '<div>'
-			. '<div style="background-color:#e7e7e7;padding:1px;font-size:0.9em;font-weight: bold;">' . $_event['name'] . '</div>'
+		$return['html'] = '<div class="scenario" data-id="' . $_event['id'] . '">'
+			. '<div style="background-color:#e7e7e7;padding:1px;font-size:0.9em;font-weight: bold;">' . $_event['name'] . ' <i class="fa fa-file-text-o pull-right cursor bt_scenarioLog"></i> <i class="fa fa-share pull-right cursor bt_gotoScenario"></i></div>'
 			. '<div style="background-color:white;padding:1px;font-size:0.8em;">' . $_event['trigger'] . '<div/>'
 			. '</div>';
 		return $return;

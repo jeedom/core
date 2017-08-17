@@ -614,13 +614,13 @@ class cmd {
 		$return['date'] = $_event['datetime'];
 		$return['group'] = $_event['subtype'];
 		if ($_event['subtype'] == 'action') {
-			$return['html'] = '<div>'
-				. '<div style="background-color:#F5A9BC;padding:1px;font-size:0.9em;font-weight: bold;">' . $_event['name'] . '</div>'
+			$return['html'] = '<div class="cmd" data-id="' . $_event['id'] . '">'
+				. '<div style="background-color:#F5A9BC;padding:1px;font-size:0.9em;font-weight: bold;">' . $_event['name'] . '<i class="fa fa-cogs pull-right cursor bt_configureCmd"></i></div>'
 				. '<div style="background-color:white;padding:1px;font-size:0.8em;">' . $_event['options'] . '<div/>'
 				. '</div>';
 		} else {
 			$return['html'] = '<div>'
-				. '<div style="background-color:#A9D0F5;padding:1px;font-size:0.9em;font-weight: bold;">' . $_event['name'] . '</div>'
+				. '<div style="background-color:#A9D0F5;padding:1px;font-size:0.9em;font-weight: bold;">' . $_event['name'] . '<i class="fa fa-cogs pull-right cursor bt_configureCmd"></i></div>'
 				. '<div style="background-color:white;padding:1px;font-size:0.8em;">' . $_event['value'] . '<div/>'
 				. '</div>';
 		}

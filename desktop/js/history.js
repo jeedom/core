@@ -276,12 +276,26 @@ $('#bt_tabTimeline').on('click',function(){
 
 $('#bt_configureTimelineCommand').on('click',function(){
     $('#md_modal').dialog({title: "{{Résumé scénario}}"});
-  $("#md_modal").load('index.php?v=d&modal=cmd.configureHistory').dialog('open');
+    $("#md_modal").load('index.php?v=d&modal=cmd.configureHistory').dialog('open');
 });
 
 $('#bt_configureTimelineScenario').on('click',function(){
   $('#md_modal').dialog({title: "{{Résumé scénario}}"});
   $("#md_modal").load('index.php?v=d&modal=scenario.summary').dialog('open');
+});
+
+$('#div_visualization').on('click','.bt_scenarioLog',function(){
+    $('#md_modal').dialog({title: "{{Log d'exécution du scénario}}"});
+    $("#md_modal").load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + $(this).closest('.scenario').attr('data-id')).dialog('open');
+});
+
+$('#div_visualization').on('click','.bt_gotoScenario',function(){
+    loadPage('index.php?v=d&p=scenario&id='+ $(this).closest('.scenario').attr('data-id'));
+});
+
+$('#div_visualization').on('click','.bt_configureCmd',function(){
+  $('#md_modal').dialog({title: "{{Configuration de la commande}}"});
+  $('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.cmd').attr('data-id')).dialog('open');
 });
 
 timeline = null;
