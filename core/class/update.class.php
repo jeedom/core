@@ -66,11 +66,11 @@ class update {
 			}
 		}
 		if (!$findCore) {
-			$update = new update();
-			$update->setType('core');
-			$update->setLogicalId('jeedom');
-			$update->setSource(config::byKey('core::repo::provider'));
-			$update->setLocalVersion(jeedom::version());
+			$update = (new update())
+                                ->setType('core')
+                                ->setLogicalId('jeedom')
+                                ->setSource(config::byKey('core::repo::provider'))
+                                ->setLocalVersion(jeedom::version());
 			$update->save();
 			$update->checkUpdate();
 		}
@@ -228,10 +228,10 @@ class update {
 			$plugin_id = $plugin->getId();
 			$update = self::byTypeAndLogicalId('plugin', $plugin_id);
 			if (!is_object($update)) {
-				$update = new update();
-				$update->setLogicalId($plugin_id);
-				$update->setType('plugin');
-				$update->setLocalVersion(date('Y-m-d H:i:s'));
+				$update = (new update())
+                                        ->setLogicalId($plugin_id)
+                                        ->setType('plugin')
+                                        ->setLocalVersion(date('Y-m-d H:i:s'));
 				$update->save();
 			}
 			$find = array();
@@ -240,10 +240,10 @@ class update {
 					$find[$logical_id] = true;
 					$update = self::byTypeAndLogicalId($plugin_id, $logical_id);
 					if (!is_object($update)) {
-						$update = new update();
-						$update->setLogicalId($logical_id);
-						$update->setType($plugin_id);
-						$update->setLocalVersion(date('Y-m-d H:i:s'));
+						$update =(new update())
+                                                        ->setLogicalId($logical_id)
+                                                        ->setType($plugin_id)
+                                                        ->setLocalVersion(date('Y-m-d H:i:s'));
 						$update->save();
 					}
 				}
@@ -317,7 +317,7 @@ class update {
 					log::add('update', 'alert', __('Décompression du zip...', __FILE__));
 					$zip = new ZipArchive;
 					$res = $zip->open($tmp);
-					if ($res === TRUE) {
+					if ($res === true) {
 						if (!$zip->extractTo($cibDir . '/')) {
 							$content = file_get_contents($tmp);
 							throw new Exception(__('Impossible d\'installer le plugin. Les fichiers n\'ont pas pu être décompressés : ', __FILE__) . substr($content, 255));
