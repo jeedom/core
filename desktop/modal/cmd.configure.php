@@ -149,6 +149,12 @@ echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fa 
                     <input type="checkbox" class="cmdAttr" data-l1key="isVisible" />
                   </div>
                 </div>
+                <div class="form-group">
+                  <label class="col-xs-4 control-label">{{Suivre dans la timeline}}</label>
+                  <div class="col-xs-4">
+                    <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="timeline::enable" />
+                  </div>
+                </div>
                 <div class="iconeGeneric">
                  <label class="col-xs-4 control-label">{{Icône}}</label>
                  <div class="col-xs-4">
@@ -156,12 +162,7 @@ echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fa 
                   <a class="btn btn-default btn-sm" id="bt_cmdConfigureChooseIcon"><i class="fa fa-flag"></i> {{Icône}}</a>
                 </div>
               </div>
-               <div class="form-group">
-                  <label class="col-xs-4 control-label">{{Suivre dans la timeline}}</label>
-                  <div class="col-xs-4">
-                    <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="timeline::enable" />
-                  </div>
-                </div>
+
             </fieldset>
           </form>
         </div>
@@ -417,7 +418,7 @@ foreach ($groups as $group) {
       </select>
     </div>
   </div>
-<?php }
+  <?php }
 	?>
   <div class="form-group">
     <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Purger l'historique si plus vieux que }}</label>
@@ -1224,6 +1225,6 @@ if ($cmd->getDisplay('parameters') != '') {
   });
 
   $('#bt_cmdConfigureTest').on('click',function(){
-     jeedom.cmd.test({id: cmdInfo.id});
-  });
+   jeedom.cmd.test({id: cmdInfo.id});
+ });
 </script>
