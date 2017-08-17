@@ -612,7 +612,15 @@ class cmd {
 	public static function timelineDisplay($_event) {
 		$return = array();
 		$return['date'] = $_event['datetime'];
+		$return['type'] = $_event['type'];
 		$return['group'] = $_event['subtype'];
+		$cmd = cmd::byId($_event['id']);
+		$eqLogic = $cmd->getEqLogic();
+		$object = $eqLogic->getObject();
+		$return['object'] = is_object($object) ? $object->getId() : 'aucun';
+		$return['plugins'] = $eqLogic->getEqType_name();
+		$return['category'] = $eqLogic->getCategory();
+		
 		if ($_event['subtype'] == 'action') {
 			$return['html'] = '<div class="cmd" data-id="' . $_event['id'] . '">'
 				. '<div style="background-color:#F5A9BC;padding:1px;font-size:0.9em;font-weight: bold;cursor:help;">' . $_event['name'] . '<i class="fa fa-cogs pull-right cursor bt_configureCmd"></i></div>'

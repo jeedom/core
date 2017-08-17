@@ -298,6 +298,26 @@ $('#div_visualization').on('click','.bt_configureCmd',function(){
   $('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.cmd').attr('data-id')).dialog('open');
 });
 
+$('#bt_refreshTimeline').on('click',function(){
+  displayTimeline();
+});
+
+$("#sel_typesTimeline").change(function(){
+    displayTimeline();
+});
+
+$("#sel_objectsTimeline").change(function(){
+    displayTimeline();
+});
+
+$("#sel_categoryTimeline").change(function(){
+    displayTimeline();
+});
+
+$("#sel_pluginsTimeline").change(function(){
+    displayTimeline();
+});
+
 $('.bt_timelineZoom').on('click',function(){
     zoom = $(this).attr('data-zoom');
     var end = new Date();
@@ -327,6 +347,10 @@ timeline.setWindow(start,end);
 timeline = null;
 
 function displayTimeline(){
+    var typefilter = $("#sel_typesTimeline").value();
+    var pluginfilter = $("#sel_pluginsTimeline").value();
+    var categoryfilter = $("#sel_categoryTimeline").value();
+    var objectfilter = $("#sel_objectsTimeline").value();
     jeedom.getEvents({
         error: function (error) {
             $('#div_Alert').showAlert({message: error.message, level: 'danger'});
@@ -338,9 +362,37 @@ function displayTimeline(){
             data_item = [];
             id = 0;
             for(var i in data){
-                item = {id : id,start : data[i].date,content : data[i].html,group : data[i].group,title:data[i].date};
-                id++;
-                data_item.push(item);
+                var toAdd = 1;
+                if (typefilter != 'all' && data[i].type != typefilter) {
+					console.log('typ');
+					toAdd = 0;
+				}
+				if (pluginfilter != 'all' && data[i].plugins != pluginfilter) {
+					console.log('plug');
+					toAdd = 0;
+				}
+				if (objectfilter != 'all' && data[i].object != objectfilter) {
+					console.log('obj');
+					toAdd = 0;
+				}
+				if (categoryfilter != 'all'){
+					var hascat =0;
+					for (var category in data[i].category){
+						if (category == categoryfilter && data[i].category[category] == 1) {
+							hascat += 1;
+							console.log('cat');
+						}
+					}
+					if (hascat==0){
+						toAdd = 0;
+					}
+				}
+				console.log(toAdd);
+				if (toAdd == 1){
+					item = {id : id,start : data[i].date,content : data[i].html,group : data[i].group,title:data[i].date};
+					id++;
+					data_item.push(item);
+				}
             }
             var items = new vis.DataSet(data_item);
             var options = {
