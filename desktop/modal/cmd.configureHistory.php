@@ -6,10 +6,10 @@ if (!isConnect('admin')) {
    <div style="display: none;" id="md_cmdConfigureHistory"></div>
    <div>
      <a class="btn btn-success pull-right" id="bt_cmdConfigureCmdHistoryApply" style="color : white;" ><i class="fa fa-check"></i> {{Valider}}</a>
- </div>
- <br/>
- <br/>
- <table class="table table-bordered table-condensed tablesorter" id="table_cmdConfigureHistory" style="width:100%">
+   </div>
+   <br/>
+   <br/>
+   <table class="table table-bordered table-condensed tablesorter" id="table_cmdConfigureHistory" style="width:100%">
      <thead>
       <tr>
        <th>{{Historisé}}</th>
@@ -18,10 +18,10 @@ if (!isConnect('admin')) {
        <th>{{Mode de lissage}}</th>
        <th>{{Purge de l'historique si plus vieux}}</th>
        <th>{{Action}}</th>
-   </tr>
-</thead>
-<tbody>
-  <?php
+     </tr>
+   </thead>
+   <tbody>
+    <?php
 $list_cmd = array();
 foreach (cmd::all() as $cmd) {
 	$info_cmd = utils::o2a($cmd);
@@ -30,7 +30,7 @@ foreach (cmd::all() as $cmd) {
 }
 sendVarToJs('cmds_history_configure', $list_cmd);
 ?>
-</tbody>
+ </tbody>
 </table>
 
 <script>
@@ -47,7 +47,9 @@ $("#table_cmdConfigureHistory").width('100%');
 function addCommandHistory(_cmd){
   var tr = '<tr data-cmd_id="' +_cmd.id+ '">';
   tr += '<td>';
-  tr += '<input type="checkbox" class="cmdAttr" data-l1key="isHistorized" />';
+  if(_cmd.type == 'info'){
+    tr += '<input type="checkbox" class="cmdAttr" data-l1key="isHistorized" />';
+  }
   tr += '</td>';
   tr += '<td>';
   tr += '<input type="checkbox" class="cmdAttr" data-l1key="timeline::enable" />';
@@ -57,27 +59,33 @@ function addCommandHistory(_cmd){
   tr += '<span class="cmdAttr" data-l1key="humanName"></span>';
   tr += '</td>';
   tr += '<td>';
-  tr += '<div class="form-group">';
-  tr += '<select class="form-control cmdAttr input-sm" data-l1key="configuration" data-l2key="historizeMode">';
-  tr += '<option value="avg">{{Moyenne}}</option>';
-  tr += '<option value="min">{{Minimum}}</option>';
-  tr += '<option value="max">{{Maximum}}</option>';
-  tr += '<option value="none">{{Aucun}}</option>';
-  tr += '</select>';
+  if(_cmd.type == 'info'){
+    tr += '<div class="form-group">';
+    tr += '<select class="form-control cmdAttr input-sm" data-l1key="configuration" data-l2key="historizeMode">';
+    tr += '<option value="avg">{{Moyenne}}</option>';
+    tr += '<option value="min">{{Minimum}}</option>';
+    tr += '<option value="max">{{Maximum}}</option>';
+    tr += '<option value="none">{{Aucun}}</option>';
+    tr += '</select>';
+  }
   tr += '</td>';
   tr += '<td>';
-  tr += '<select class="form-control cmdAttr input-sm" data-l1key="configuration" data-l2key="historyPurge">';
-  tr += '<option value="">{{Jamais}}</option>';
-  tr += '<option value="-1 day">{{1 jour}}</option>';
-  tr += '<option value="-7 days">{{7 jours}}</option>';
-  tr += '<option value="-1 month">{{1 mois}}</option>';
-  tr += '<option value="-3 month">{{3 mois}}</option>';
-  tr += '<option value="-6 month">{{6 mois}}</option>';
-  tr += '<option value="-1 year">{{1 an}}</option>';
-  tr += '</select>';
+  if(_cmd.type == 'info'){
+    tr += '<select class="form-control cmdAttr input-sm" data-l1key="configuration" data-l2key="historyPurge">';
+    tr += '<option value="">{{Jamais}}</option>';
+    tr += '<option value="-1 day">{{1 jour}}</option>';
+    tr += '<option value="-7 days">{{7 jours}}</option>';
+    tr += '<option value="-1 month">{{1 mois}}</option>';
+    tr += '<option value="-3 month">{{3 mois}}</option>';
+    tr += '<option value="-6 month">{{6 mois}}</option>';
+    tr += '<option value="-1 year">{{1 an}}</option>';
+    tr += '</select>';
+  }
   tr += '</td>';
   tr += '<td>';
-  tr += '<a class="btn btn-default btn-sm pull-right cursor bt_configureHistoryExportData" data-id="'  +_cmd.id+ '"><i class="fa fa-share export"></i></a>';
+  if(_cmd.type == 'info'){
+    tr += '<a class="btn btn-default btn-sm pull-right cursor bt_configureHistoryExportData" data-id="'  +_cmd.id+ '"><i class="fa fa-share export"></i></a>';
+  }
   tr += '<a class="btn btn-default btn-sm pull-right cursor bt_configureHistoryAdvanceCmdConfiguration" data-id="'  +_cmd.id+ '"><i class="fa fa-cogs"></i></a>';
   tr += '</td>';
   tr += '</tr>';
@@ -88,34 +96,34 @@ function addCommandHistory(_cmd){
 
 
 $('.bt_configureHistoryAdvanceCmdConfiguration').off('click').on('click', function () {
-    $('#md_modal2').dialog({title: "{{Configuration de la commande}}"});
-    $('#md_modal2').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open');
+  $('#md_modal2').dialog({title: "{{Configuration de la commande}}"});
+  $('#md_modal2').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open');
 });
 
 $(".bt_configureHistoryExportData").on('click', function () {
-    window.open('core/php/export.php?type=cmdHistory&id=' + $(this).attr('data-id'), "_blank", null);
+  window.open('core/php/export.php?type=cmdHistory&id=' + $(this).attr('data-id'), "_blank", null);
 });
 
 $('.cmdAttr').on('change click',function(){
-    $(this).closest('tr').attr('data-change','1');
+  $(this).closest('tr').attr('data-change','1');
 });
 
 $('#bt_cmdConfigureCmdHistoryApply').on('click',function(){
-    var cmds = [];
-    $('#table_cmdConfigureHistory tbody tr').each(function(){
-        if($(this).attr('data-change') == '1'){
-            cmds.push($(this).getValues('.cmdAttr')[0]);
-        }
-    })
-    jeedom.cmd.multiSave({
-        cmds : cmds,
-        error: function (error) {
-            $('#md_cmdConfigureHistory').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function (data) {
-           $('#md_cmdConfigureHistory').showAlert({message: '{{Modifications sauvegardées avec succès}}', level: 'success'});
-       }
-   });
+  var cmds = [];
+  $('#table_cmdConfigureHistory tbody tr').each(function(){
+    if($(this).attr('data-change') == '1'){
+      cmds.push($(this).getValues('.cmdAttr')[0]);
+    }
+  })
+  jeedom.cmd.multiSave({
+    cmds : cmds,
+    error: function (error) {
+      $('#md_cmdConfigureHistory').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (data) {
+     $('#md_cmdConfigureHistory').showAlert({message: '{{Modifications sauvegardées avec succès}}', level: 'success'});
+   }
+ });
 });
 
 </script>
