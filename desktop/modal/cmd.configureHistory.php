@@ -52,7 +52,7 @@ function addCommandHistory(_cmd){
   }
   tr += '</td>';
   tr += '<td>';
-  tr += '<input type="checkbox" class="cmdAttr" data-l1key="timeline::enable" />';
+  tr += '<input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="timeline::enable" />';
   tr += '</td>';
   tr += '<td>';
   tr += '<span class="cmdAttr" data-l1key="id" style="display:none;"></span>';
