@@ -275,7 +275,7 @@ foreach (object::all() as $object) {
       <label class="col-sm-3 col-xs-6 control-label" >{{Mode du scénario}}</label>
       <div class="col-sm-9 col-xs-6">
         <div class="input-group">
-          <select class="form-control scenarioAttr" data-l1key="mode">
+          <select class="form-control scenarioAttr input-sm" data-l1key="mode">
             <option value="provoke">{{Provoqué}}</option>
             <option value="schedule">{{Programmé}}</option>
             <option value="all">{{Les deux}}</option>
