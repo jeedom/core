@@ -364,15 +364,12 @@ function displayTimeline(){
             for(var i in data){
                 var toAdd = 1;
                 if (typefilter != 'all' && data[i].type != typefilter) {
-					console.log('typ');
 					toAdd = 0;
 				}
 				if (pluginfilter != 'all' && data[i].plugins != pluginfilter) {
-					console.log('plug');
 					toAdd = 0;
 				}
 				if (objectfilter != 'all' && data[i].object != objectfilter) {
-					console.log('obj');
 					toAdd = 0;
 				}
 				if (categoryfilter != 'all'){
@@ -380,14 +377,12 @@ function displayTimeline(){
 					for (var category in data[i].category){
 						if (category == categoryfilter && data[i].category[category] == 1) {
 							hascat += 1;
-							console.log('cat');
 						}
 					}
 					if (hascat==0){
 						toAdd = 0;
 					}
 				}
-				console.log(toAdd);
 				if (toAdd == 1){
 					item = {id : id,start : data[i].date,content : data[i].html,group : data[i].group,title:data[i].date};
 					id++;
