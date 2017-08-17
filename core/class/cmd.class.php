@@ -620,7 +620,6 @@ class cmd {
 				. '</div>';
 		} else {
 			$backgroundColor = '#A9D0F5';
-			log::add('camera','error',print_r($_event,true));
 			if (isset($_event['cmdType']) && $_event['cmdType'] == 'binary'){
 				$backgroundColor = ($_event['value'] == 0 ? '#ff8693' : '#c1e5bd');
 			}
