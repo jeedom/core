@@ -620,7 +620,7 @@ class cmd {
 		$return['object'] = is_object($object) ? $object->getId() : 'aucun';
 		$return['plugins'] = $eqLogic->getEqType_name();
 		$return['category'] = $eqLogic->getCategory();
-		
+
 		if ($_event['subtype'] == 'action') {
 			$return['html'] = '<div class="cmd" data-id="' . $_event['id'] . '">'
 				. '<div style="background-color:#F5A9BC;padding:1px;font-size:0.9em;font-weight: bold;cursor:help;">' . $_event['name'] . '<i class="fa fa-cogs pull-right cursor bt_configureCmd"></i></div>'
@@ -1149,7 +1149,8 @@ class cmd {
 		if ($this->getConfiguration('denyValues') != '' && in_array($value, explode(';', $this->getConfiguration('denyValues')))) {
 			return;
 		}
-		$repeat = ($this->execCmd() == $value && $this->execCmd() !== '' && $this->execCmd() !== null);
+		$oldValue = $this->execCmd();
+		$repeat = ($oldValue == $value && $oldValue !== '' && $oldValue !== null);
 		$this->setCollectDate(($_datetime !== null) ? $_datetime : date('Y-m-d H:i:s'));
 		$this->setCache('collectDate', $this->getCollectDate());
 		$this->setValueDate(($repeat) ? $this->getValueDate() : $this->getCollectDate());
