@@ -327,19 +327,25 @@ $('.bt_timelineZoom').on('click',function(){
         return;
     }else if (zoom == 'y'){
         start.setFullYear(end.getFullYear() - 1);
+        end.setTime(start.getTime() + 390 * 24 *3600 *1000);
     }else if (zoom == 'm'){
         if(end.getMonth() == 1){
          start.setFullYear(end.getFullYear() - 1);
          start.setMonth(12);
+         end.setTime(start.getTime() + 35 * 24 *3600 *1000);
      }else{
          start.setMonth(end.getMonth() - 1);
+         end.setTime(start.getTime() + 33 * 24 *3600 *1000);
      }
  }else if (zoom == 'w'){
     start.setTime(end.getTime() - 7 * 24 *3600 * 1000);
+    end.setTime(start.getTime() + 7.5 * 24 *3600 *1000);
 }else if (zoom == 'd'){
    start.setTime(end.getTime() - 1 * 24 *3600 * 1000);
+   end.setTime(start.getTime() + 1.1 * 24 *3600 *1000);
 }else if (zoom == 'h'){
    start.setTime(end.getTime() -  3600 * 1000);
+   end.setTime(start.getTime() + 3700 *1000);
 }
 timeline.setWindow(start,end);
 });
