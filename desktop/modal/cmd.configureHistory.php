@@ -13,7 +13,7 @@ if (!isConnect('admin')) {
      <thead>
       <tr>
        <th data-sorter="false" data-filter="false">{{Historisé}}</th>
-       <th data-sorter="false" data-filter="false">{{Timeline}}</th>
+       <th data-sorter="false" data-filter="false">{{Timeline}} <a class="btn btn-danger btn-xs pull-right" id="bt_canceltimeline" style="color : white;" ><i class="fa fa-times"></i></a><a class="btn btn-success btn-xs pull-right" id="bt_applytimeline" style="color : white;" ><i class="fa fa-check"></i></a></th>
        <th>{{Nom}}</th>
        <th>{{Plugin}}</th>
        <th data-sorter="false" data-filter="false">{{Mode de lissage}}</th>
@@ -130,6 +130,18 @@ $('#bt_cmdConfigureCmdHistoryApply').on('click',function(){
      $('#md_cmdConfigureHistory').showAlert({message: '{{Modifications sauvegardées avec succès}}', level: 'success'});
    }
  });
+});
+
+$('#bt_canceltimeline').on('click',function(){
+  $('.cmdAttr[data-l1key=configuration][data-l2key="timeline::enable"]:visible').each(function(){
+	$(this).prop('checked', false);
+  });
+});
+
+$('#bt_applytimeline').on('click',function(){
+  $('.cmdAttr[data-l1key=configuration][data-l2key="timeline::enable"]:visible').each(function(){
+	$(this).prop('checked', true);
+  });
 });
 
 </script>
