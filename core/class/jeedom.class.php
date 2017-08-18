@@ -27,7 +27,7 @@ class jeedom {
 	/*     * ***********************Methode static*************************** */
 
 	public static function addTimelineEvent($_event) {
-		file_put_contents(dirname(__FILE__) . '/../../data/timeline.json', json_encode($_event) . "\n", FILE_APPEND | LOCK_EX);
+		file_put_contents(dirname(__FILE__) . '/../../data/timeline.json', json_encode($_event) . "\n", FILE_APPEND);
 	}
 
 	public static function getTimelineEvent() {
@@ -188,22 +188,22 @@ class jeedom {
 		);
 
 		$value = round(($values['SwapFree'] / $values['SwapTotal']) * 100);
-		if ($values['SwapTotal'] !=0 && $values['SwapTotal'] != null) {
+		if ($values['SwapTotal'] != 0 && $values['SwapTotal'] != null) {
 			$return[] = array(
 				'name' => __('Swap disponible', __FILE__),
 				'state' => ($value > 15),
 				'result' => $value . ' %',
 				'comment' => '',
 			);
-		}else{
+		} else {
 			$return[] = array(
 				'name' => __('Swap disponible', __FILE__),
 				'state' => 2,
 				'result' => __('Inconnue', __FILE__),
 				'comment' => '',
-			);		
+			);
 		}
-		
+
 		$values = sys_getloadavg();
 		$return[] = array(
 			'name' => __('Charge', __FILE__),

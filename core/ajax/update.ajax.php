@@ -83,6 +83,7 @@ try {
 	}
 
 	if (init('action') == 'remove') {
+		update::findNewUpdateObject();
 		$update = update::byId(init('id'));
 		if (!is_object($update)) {
 			$update = update::byLogicalId(init('id'));
