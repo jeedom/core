@@ -193,7 +193,7 @@ if (count($totalInteract) == 0) {
         <div class="form-group">
           <label class="col-sm-2 col-xs-2 control-label">{{Réponse}}</label>
           <div class="col-sm-8 col-xs-8">
-            <textarea class="form-control interactAttr" type="text" data-l1key="reply" placeholder=""></textarea>
+            <textarea class="form-control interactAttr ta_autosize" type="text" data-l1key="reply" placeholder=""></textarea>
           </div>
           <div class="col-sm-1">
             <a class="btn btn-default cursor listEquipementInfoReply input-sm"><i class="fa fa-list-alt "></i></a>

@@ -1121,6 +1121,7 @@ if ($cmd->getDisplay('parameters') != '') {
       el.value(result.human);
       jeedom.cmd.displayActionOption(el.value(), '', function (html) {
         el.closest('.' + type).find('.actionOptions').html(html);
+        taAutosize();
       });
     });
   });
@@ -1131,6 +1132,7 @@ if ($cmd->getDisplay('parameters') != '') {
     var el = $(this);
     jeedom.cmd.displayActionOption($(this).value(), init(expression[0].options), function (html) {
       el.closest('.' + type).find('.actionOptions').html(html);
+      taAutosize();
     })
   });
 
@@ -1159,6 +1161,7 @@ if ($cmd->getDisplay('parameters') != '') {
     div += '</div>';
     $('#div_' + _type).append(div);
     $('#div_' + _type + ' .' + _type + ':last').setValues(_action, '.expressionAttr');
+    taAutosize();
   }
 
 
