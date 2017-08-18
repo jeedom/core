@@ -347,6 +347,7 @@ foreach (planHeader::all() as $plan) {
       el.value(result.human);
       jeedom.cmd.displayActionOption(el.value(), '', function (html) {
         el.closest('.' + type).find('.actionOptions').html(html);
+        taAutosize();
       });
     });
   });
@@ -356,6 +357,7 @@ foreach (planHeader::all() as $plan) {
    var el = $(this);
    jeedom.cmd.displayActionOption(el.value(), '', function (html) {
     el.closest('.' + type).find('.actionOptions').html(html);
+    taAutosize();
   });
  });
 
@@ -365,6 +367,7 @@ foreach (planHeader::all() as $plan) {
      expression.find('.expressionAttr[data-l1key=cmd]').value(result.human);
      jeedom.cmd.displayActionOption(expression.find('.expressionAttr[data-l1key=cmd]').value(), '', function (html) {
       expression.find('.actionOptions').html(html);
+      taAutosize();
     });
    });
   });
@@ -397,6 +400,7 @@ foreach (planHeader::all() as $plan) {
     div += '</div>';
     $('#div_planConfigureAction' + _type).append(div);
     $('#div_planConfigureAction' + _type + ' .' + _type + ':last').setValues(_action, '.expressionAttr');
+    taAutosize();
   }
 
 

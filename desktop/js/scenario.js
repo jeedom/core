@@ -420,6 +420,7 @@ $('#div_pageContainer').off('click','.bt_selectCmdExpression').on('click','.bt_s
       expression.find('.expressionAttr[data-l1key=expression]').value(result.human);
       jeedom.cmd.displayActionOption(expression.find('.expressionAttr[data-l1key=expression]').value(), '', function (html) {
         expression.find('.expressionOptions').html(html);
+        taAutosize();
       });
     }
     if (expression.find('.expressionAttr[data-l1key=type]').value() == 'condition') {
@@ -562,6 +563,7 @@ $('#div_pageContainer').off('click','.bt_selectOtherActionExpression').on('click
    expression.find('.expressionAttr[data-l1key=expression]').value(result.human);
    jeedom.cmd.displayActionOption(expression.find('.expressionAttr[data-l1key=expression]').value(), '', function (html) {
     expression.find('.expressionOptions').html(html);
+    taAutosize();
   });
  });
 });
@@ -597,6 +599,7 @@ $('#div_pageContainer').off('focusout','.expression .expressionAttr[data-l1key=e
     var expression = el.closest('.expression').getValues('.expressionAttr');
     jeedom.cmd.displayActionOption(el.value(), init(expression[0].options), function (html) {
       el.closest('.expression').find('.expressionOptions').html(html);
+      taAutosize();
     });
   }
 });
@@ -892,6 +895,7 @@ function printScenario(_id) {
         $('#'+data[i].id).append(data[i].html.html);
       }
       $.hideLoading();
+      taAutosize();
     }
   });
     updateSortable();

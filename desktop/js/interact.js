@@ -15,14 +15,14 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-$("#div_action").sortable({axis: "y", cursor: "move", items: ".action", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
+ $("#div_action").sortable({axis: "y", cursor: "move", items: ".action", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
 
-$('.displayInteracQuery').on('click', function () {
+ $('.displayInteracQuery').on('click', function () {
   $('#md_modal').dialog({title: "{{Liste des interactions}}"});
   $('#md_modal').load('index.php?v=d&modal=interact.query.display&interactDef_id=' + $('.interactAttr[data-l1key=id]').value()).dialog('open');
 });
 
-if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1) && !jQuery.support.touch){
+ if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1) && !jQuery.support.touch){
   $('#div_listInteract').hide();
   $('#interactThumbnailDisplay').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
   $('#div_conf').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
@@ -232,6 +232,7 @@ $('#div_pageContainer').undelegate(".cmdAction.expressionAttr[data-l1key=cmd]", 
   var el = $(this);
   jeedom.cmd.displayActionOption($(this).value(), init(expression[0].options), function (html) {
     el.closest('.' + type).find('.actionOptions').html(html);
+    taAutosize();
   })
 });
 
@@ -242,6 +243,7 @@ $("body").undelegate(".listCmd", 'click').delegate(".listCmd", 'click', function
     el.value(result.human);
     jeedom.cmd.displayActionOption(el.value(), '', function (html) {
       el.closest('.' + type).find('.actionOptions').html(html);
+      taAutosize();
     });
   });
 });
@@ -253,6 +255,7 @@ $("body").undelegate(".listAction", 'click').delegate(".listAction", 'click', fu
     el.value(result.human);
     jeedom.cmd.displayActionOption(el.value(), '', function (html) {
       el.closest('.' + type).find('.actionOptions').html(html);
+      taAutosize();
     });
   });
 });
@@ -327,6 +330,7 @@ jeedom.cmd.displayActionsOption({
         $('#'+data[i].id).append(data[i].html.html);
       }
     }
+    taAutosize();
   }
 });
 }
