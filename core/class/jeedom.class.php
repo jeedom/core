@@ -32,6 +32,9 @@ class jeedom {
 
 	public static function getTimelineEvent() {
 		$path = dirname(__FILE__) . '/../../data/timeline.json';
+		if (!file_exists($path)) {
+			return array();
+		}
 		com_shell::execute(system::getCmdSudo() . 'chmod 777 ' . $path . ' > /dev/null 2>&1;echo "$(tail -n ' . config::byKey('timeline::maxevent') . ' ' . $path . ')" > ' . $path);
 		$lines = explode("\n", trim(file_get_contents($path)));
 		$result = array();
@@ -39,6 +42,12 @@ class jeedom {
 			$result[] = json_decode($line, true);
 		}
 		return $result;
+	}
+
+	public static function removeTimelineEvent() {
+		$path = dirname(__FILE__) . '/../../data/timeline.json';
+		com_shell::execute(system::getCmdSudo() . 'chmod 777 ' . $path . ' > /dev/null 2>&1;');
+		unlink($path);
 	}
 
 	public static function deadCmd() {

@@ -245,7 +245,7 @@ try {
 		ajax::success($object->getLinkData());
 	}
 
-	if (init('action') == 'getEvents') {
+	if (init('action') == 'getTimelineEvents') {
 		$return = array();
 		$events = jeedom::getTimelineEvent();
 		foreach ($events as $event) {
@@ -259,6 +259,10 @@ try {
 			}
 		}
 		ajax::success($return);
+	}
+
+	if (init('action') == 'removeTimelineEvents') {
+		ajax::success(jeedom::removeTimelineEvent());
 	}
 
 	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));

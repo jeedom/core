@@ -131,23 +131,23 @@ foreach (cmd::allHistoryCmd() as $cmd) {
 			<a class="btn btn-sm btn-success pull-right" id="bt_refreshTimeline"><i class="fa fa-refresh"></i> {{Rafraîchir}}</a>
 			<a class="btn btn-sm btn-default pull-right" id="bt_configureTimelineCommand"><i class="fa fa-cogs"></i> {{Configuration des commandes}}</a>
 			<a class="btn btn-sm btn-default pull-right" id="bt_configureTimelineScenario"><i class="fa fa-cogs"></i> {{Configuration des scénarios}}</a>
-			<select class="form-control pull-right" id="sel_pluginsTimeline" style="width: 200px;">
+			<select class="form-control pull-right" id="sel_pluginsTimeline" style="width: 180px;">
 				<option value="all">{{Tous (Plugins)}}</option>
 				<?php
 foreach (plugin::listPlugin() as $plugin) {
-	echo '<option value="' . $plugin->getId() . '">' .  $plugin->getName() . '</option>';
+	echo '<option value="' . $plugin->getId() . '">' . $plugin->getName() . '</option>';
 }
 ?>
 			</select>
-			<select class="form-control pull-right" id="sel_categoryTimeline" style="width: 200px;">
+			<select class="form-control pull-right" id="sel_categoryTimeline" style="width: 180px;">
 				<option value="all">{{Tous (Catégories)}}</option>
 				<?php
 foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
-	echo '<option value="' . $key . '">' .  $value['name'] . '</option>';
+	echo '<option value="' . $key . '">' . $value['name'] . '</option>';
 }
 ?>
 			</select>
-			<select class="form-control pull-right" id="sel_objectsTimeline" style="width: 200px;">
+			<select class="form-control pull-right" id="sel_objectsTimeline" style="width: 180px;">
 				<option value="all">{{Tous (Objets)}}</option>
 				<?php
 foreach (object::all() as $object) {
@@ -155,7 +155,7 @@ foreach (object::all() as $object) {
 }
 ?>
 			</select>
-			<select class="form-control pull-right" id="sel_typesTimeline" style="width: 200px;">
+			<select class="form-control pull-right" id="sel_typesTimeline" style="width: 180px;">
 				<option value="all">{{Tous (Types)}}</option>
 				<option value="cmd">{{Commandes}}</option>
 				<option value="scenario">{{Scénarios}}</option>

@@ -1079,6 +1079,12 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 									<input type="text" class="configKey form-control" data-l1key="timeline::maxevent"/>
 								</div>
 							</div>
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Supprimer tous les évènements}}</label>
+								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+									<a type="text" class="btn btn-danger" id="bt_removeTimelineEvent" ><i class="fa fa-trash"></i> {{Supprimer}}</a>
+								</div>
+							</div>
 							<legend>{{Messages}}</legend>
 							<div class="form-group">
 								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Ajouter un message à chaque erreur dans les logs}}</label>
