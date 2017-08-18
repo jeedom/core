@@ -15,6 +15,7 @@ if (!isConnect('admin')) {
        <th data-sorter="false" data-filter="false">{{Historisé}}</th>
        <th data-sorter="false" data-filter="false">{{Timeline}}</th>
        <th>{{Nom}}</th>
+       <th>{{Plugin}}</th>
        <th data-sorter="false" data-filter="false">{{Mode de lissage}}</th>
        <th data-sorter="false" data-filter="false">{{Purge de l'historique si plus vieux}}</th>
        <th data-sorter="false" data-filter="false">{{Action}}</th>
@@ -26,6 +27,8 @@ $list_cmd = array();
 foreach (cmd::all() as $cmd) {
 	$info_cmd = utils::o2a($cmd);
 	$info_cmd['humanName'] = $cmd->getHumanName(true);
+	$eqLogic = $cmd->getEqLogic();
+	$info_cmd['plugins'] = $eqLogic->getEqType_name();
 	$list_cmd[] = $info_cmd;
 }
 sendVarToJs('cmds_history_configure', $list_cmd);
@@ -57,6 +60,9 @@ function addCommandHistory(_cmd){
   tr += '<td>';
   tr += '<span class="cmdAttr" data-l1key="id" style="display:none;"></span>';
   tr += '<span class="cmdAttr" data-l1key="humanName"></span>';
+  tr += '</td>';
+  tr += '<td>';
+  tr += '<span class="cmdAttr" data-l1key="plugins"></span>';
   tr += '</td>';
   tr += '<td>';
   if(_cmd.type == 'info'){
