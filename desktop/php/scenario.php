@@ -268,7 +268,7 @@ foreach (object::all() as $object) {
     <form class="form-horizontal">
      <div class="form-group">
      <div class="col-md-12">
-        <textarea class="form-control scenarioAttr" data-l1key="description" placeholder="Description"></textarea>
+        <textarea class="form-control scenarioAttr ta_autosize" data-l1key="description" placeholder="Description"></textarea>
       </div>
     </div>
     <div class="form-group">
