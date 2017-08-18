@@ -357,12 +357,19 @@ function displayTimeline(){
     var pluginfilter = $("#sel_pluginsTimeline").value();
     var categoryfilter = $("#sel_categoryTimeline").value();
     var objectfilter = $("#sel_objectsTimeline").value();
+    var end = new Date();
+    var start = new Date();
+    start.setTime(end.getTime() -  3600 * 1000);
+    end.setTime(start.getTime() + 3700 *1000);
     jeedom.getTimelineEvents({
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {
             if(timeline != null){
+                windowTimeline = timeline.getWindow()
+                end=windowTimeline.end
+                start = windowTimeline.start
                 timeline.destroy()
             }
             data_item = [];
@@ -401,10 +408,6 @@ function displayTimeline(){
         maxHeight: $('body').height() - $('header').height() - 75
     };
     timeline = new vis.Timeline(document.getElementById('div_visualization'),items,options);
-	var end = new Date();
-    var start = new Date();
-	start.setTime(end.getTime() -  3600 * 1000);
-    end.setTime(start.getTime() + 3700 *1000);
     timeline.setWindow(start,end);
 }
 });
