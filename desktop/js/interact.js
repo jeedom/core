@@ -318,6 +318,7 @@ if(isset(data.actions.cmd) && $.isArray(data.actions.cmd) && data.actions.cmd.le
     addAction(data.actions.cmd[i], 'action','{{Action}}');
   }
 }
+taAutosize();
 jeedom.cmd.displayActionsOption({
   params : actionOptions,
   async : false,
