@@ -654,6 +654,10 @@ class scenario {
 		$return = array();
 		$return['date'] = $_event['datetime'];
 		$return['group'] = 'scenario';
+		$return['type'] = $_event['type'];
+		$scenario = scenario::byId($_event['id']);
+		$object = $scenario->getObject();
+		$return['object'] = is_object($object) ? $object->getId() : 'aucun';
 		$return['html'] = '<div class="scenario" data-id="' . $_event['id'] . '">'
 			. '<div style="background-color:#e7e7e7;padding:1px;font-size:0.9em;font-weight: bold;cursor:help;">' . $_event['name'] . ' <i class="fa fa-file-text-o pull-right cursor bt_scenarioLog"></i> <i class="fa fa-share pull-right cursor bt_gotoScenario"></i></div>'
 			. '<div style="background-color:white;padding:1px;font-size:0.8em;cursor:default;">Déclenché par ' . $_event['trigger'] . '<div/>'

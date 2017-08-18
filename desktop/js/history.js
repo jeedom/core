@@ -34,9 +34,9 @@
 });
 
  $('#bt_configureCalculHistory').on('click',function(){
-     $('#md_modal').dialog({title: "{{Configuration des formules de calcul}}"});
-     $("#md_modal").load('index.php?v=d&modal=history.calcul').dialog('open');
- });
+   $('#md_modal').dialog({title: "{{Configuration des formules de calcul}}"});
+   $("#md_modal").load('index.php?v=d&modal=history.calcul').dialog('open');
+});
 
  $('#bt_clearGraph').on('click',function(){
     while(jeedom.history.chart['div_graph'].chart.series.length > 0){
@@ -149,7 +149,7 @@ function initHistoryTrigger() {
         });
     });
     $('#sel_groupingType').off('change').on('change', function () {
-       if(lastId == null){
+     if(lastId == null){
         return;
     }
     if(lastId.indexOf('#') != -1){
@@ -170,7 +170,7 @@ function initHistoryTrigger() {
     });
 });
     $('#cb_derive').off('change').on('change', function () {
-       if(lastId == null){
+     if(lastId == null){
         return;
     }
     if(lastId.indexOf('#') != -1){
@@ -191,7 +191,7 @@ function initHistoryTrigger() {
     });
 });
     $('#cb_step').off('change').on('change', function () {
-       if(lastId == null){
+     if(lastId == null){
         return;
     }
     if(lastId.indexOf('#') != -1){
@@ -215,7 +215,7 @@ function initHistoryTrigger() {
 
 $('#bt_validChangeDate').on('click',function(){
     $(jeedom.history.chart['div_graph'].chart.series).each(function(i, serie){
-     if(!isNaN(serie.options.id)){
+       if(!isNaN(serie.options.id)){
         var cmd_id = serie.options.id;
         addChart(cmd_id, 0);
         addChart(cmd_id, 1);
@@ -329,17 +329,17 @@ $('.bt_timelineZoom').on('click',function(){
         start.setFullYear(end.getFullYear() - 1);
     }else if (zoom == 'm'){
         if(end.getMonth() == 1){
-           start.setFullYear(end.getFullYear() - 1);
-           start.setMonth(12);
-       }else{
-           start.setMonth(end.getMonth() - 1);
-       }
-   }else if (zoom == 'w'){
+         start.setFullYear(end.getFullYear() - 1);
+         start.setMonth(12);
+     }else{
+         start.setMonth(end.getMonth() - 1);
+     }
+ }else if (zoom == 'w'){
     start.setTime(end.getTime() - 7 * 24 *3600 * 1000);
 }else if (zoom == 'd'){
- start.setTime(end.getTime() - 1 * 24 *3600 * 1000);
+   start.setTime(end.getTime() - 1 * 24 *3600 * 1000);
 }else if (zoom == 'h'){
- start.setTime(end.getTime() -  3600 * 1000);
+   start.setTime(end.getTime() -  3600 * 1000);
 }
 timeline.setWindow(start,end);
 });
@@ -351,9 +351,9 @@ function displayTimeline(){
     var pluginfilter = $("#sel_pluginsTimeline").value();
     var categoryfilter = $("#sel_categoryTimeline").value();
     var objectfilter = $("#sel_objectsTimeline").value();
-    jeedom.getEvents({
+    jeedom.getTimelineEvents({
         error: function (error) {
-            $('#div_Alert').showAlert({message: error.message, level: 'danger'});
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {
             if(timeline != null){
@@ -362,43 +362,40 @@ function displayTimeline(){
             data_item = [];
             id = 0;
             for(var i in data){
-                var toAdd = 1;
                 if (typefilter != 'all' && data[i].type != typefilter) {
-					toAdd = 0;
-				}
-				if (pluginfilter != 'all' && data[i].plugins != pluginfilter) {
-					toAdd = 0;
-				}
-				if (objectfilter != 'all' && data[i].object != objectfilter) {
-					toAdd = 0;
-				}
-				if (categoryfilter != 'all'){
-					var hascat =0;
-					for (var category in data[i].category){
-						if (category == categoryfilter && data[i].category[category] == 1) {
-							hascat += 1;
-						}
-					}
-					if (hascat==0){
-						toAdd = 0;
-					}
-				}
-				if (toAdd == 1){
-					item = {id : id,start : data[i].date,content : data[i].html,group : data[i].group,title:data[i].date};
-					id++;
-					data_item.push(item);
-				}
-            }
-            var items = new vis.DataSet(data_item);
-            var options = {
-                groupOrder:'content',
-                verticalScroll: true,
-                zoomKey: 'ctrlKey',
-                orientation : 'top',
-                maxHeight: $('body').height() - $('header').height() - 75
-            };
-            timeline = new vis.Timeline(document.getElementById('div_visualization'),items,options);
-            timeline.moveTo(new Date())
-        }
-    });
+                   continue;
+               }
+               if (pluginfilter != 'all' && data[i].plugins != pluginfilter && typefilter != 'scenario') {
+                   continue;
+               }
+               if (objectfilter != 'all' && data[i].object != objectfilter) {
+                   continue;
+               }
+               if (categoryfilter != 'all' && typefilter != 'scenario'){
+                   var hascat =0;
+                   for (var category in data[i].category){
+                      if (category == categoryfilter && data[i].category[category] == 1) {
+                         hascat += 1;
+                     }
+                 }
+                 if (hascat==0){
+                  continue;
+              }
+          }
+          item = {id : id,start : data[i].date,content : data[i].html,group : data[i].group,title:data[i].date};
+          id++;
+          data_item.push(item);
+      }
+      var items = new vis.DataSet(data_item);
+      var options = {
+        groupOrder:'content',
+        verticalScroll: true,
+        zoomKey: 'ctrlKey',
+        orientation : 'top',
+        maxHeight: $('body').height() - $('header').height() - 75
+    };
+    timeline = new vis.Timeline(document.getElementById('div_visualization'),items,options);
+    timeline.moveTo(new Date())
+}
+});
 }
