@@ -608,3 +608,9 @@ function uniqId(_prefix){
     }
     return result;
 }
+
+
+function taAutosize(){
+    autosize($('.ta_autosize'));
+    autosize.update($('.ta_autosize'));
+}

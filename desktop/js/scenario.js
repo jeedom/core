@@ -312,8 +312,11 @@ $('#in_addElementType').off('change').on('change',function(){
 });
 
 $('#bt_scenarioTab').on('click',function(){
-  setTimeout(function(){ setEditor(); }, 50);
-  
+
+  setTimeout(function(){ 
+    setEditor(); 
+    taAutosize();
+  }, 50);
 });
 
 /*******************Element***********************/
@@ -896,6 +899,7 @@ function printScenario(_id) {
     setAutocomplete();
     updateElseToggle();
     $('#div_editScenario').show();
+    taAutosize();
     modifyWithoutSave = false;
     setTimeout(function () {
       modifyWithoutSave = false;
