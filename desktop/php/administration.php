@@ -414,25 +414,31 @@ echo $CONFIG['db']['password'];
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nombre d'échec toléré}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<input type="text"  class="configKey form-control" data-l1key="security::maxFailedLogin" />
+							<input type="text" class="configKey form-control" data-l1key="security::maxFailedLogin" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Temps maximum entre les échecs (s)}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<input type="text"  class="configKey form-control" data-l1key="security::timeLoginFailed" />
+							<input type="text" class="configKey form-control" data-l1key="security::timeLoginFailed" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Durée du bannissement (s), -1 pour infini}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<input type="text"  class="configKey form-control" data-l1key="security::bantime" />
+							<input type="text" class="configKey form-control" data-l1key="security::bantime" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{IP "blanche"}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<input type="text"  class="configKey form-control" data-l1key="security::whiteips" />
+							<input type="text" class="configKey form-control" data-l1key="security::whiteips" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Supprimer les IPs bannies}}</label>
+						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<a type="text" class="btn btn-warning" id="bt_removeBanIp"><i class="fa fa-trash"></i> {{Supprimer}}</a>
 						</div>
 					</div>
 
