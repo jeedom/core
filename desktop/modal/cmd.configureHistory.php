@@ -135,12 +135,14 @@ $('#bt_cmdConfigureCmdHistoryApply').on('click',function(){
 $('#bt_canceltimeline').on('click',function(){
   $('.cmdAttr[data-l1key=configuration][data-l2key="timeline::enable"]:visible').each(function(){
 	$(this).prop('checked', false);
+	$(this).closest('tr').attr('data-change','1');
   });
 });
 
 $('#bt_applytimeline').on('click',function(){
   $('.cmdAttr[data-l1key=configuration][data-l2key="timeline::enable"]:visible').each(function(){
 	$(this).prop('checked', true);
+	 $(this).closest('tr').attr('data-change','1');
   });
 });
 
