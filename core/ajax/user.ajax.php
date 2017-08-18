@@ -175,6 +175,10 @@ try {
 		ajax::success();
 	}
 
+	if (init('action') == 'removeBanIp') {
+		ajax::success(user::removeBanIp());
+	}
+
 	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {

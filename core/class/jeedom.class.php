@@ -27,11 +27,14 @@ class jeedom {
 	/*     * ***********************Methode static*************************** */
 
 	public static function addTimelineEvent($_event) {
-		file_put_contents(dirname(__FILE__) . '/../../data/timeline.json', json_encode($_event) . "\n", FILE_APPEND | LOCK_EX);
+		file_put_contents(dirname(__FILE__) . '/../../data/timeline.json', json_encode($_event) . "\n", FILE_APPEND);
 	}
 
 	public static function getTimelineEvent() {
 		$path = dirname(__FILE__) . '/../../data/timeline.json';
+		if (!file_exists($path)) {
+			return array();
+		}
 		com_shell::execute(system::getCmdSudo() . 'chmod 777 ' . $path . ' > /dev/null 2>&1;echo "$(tail -n ' . config::byKey('timeline::maxevent') . ' ' . $path . ')" > ' . $path);
 		$lines = explode("\n", trim(file_get_contents($path)));
 		$result = array();
@@ -39,6 +42,12 @@ class jeedom {
 			$result[] = json_decode($line, true);
 		}
 		return $result;
+	}
+
+	public static function removeTimelineEvent() {
+		$path = dirname(__FILE__) . '/../../data/timeline.json';
+		com_shell::execute(system::getCmdSudo() . 'chmod 777 ' . $path . ' > /dev/null 2>&1;');
+		unlink($path);
 	}
 
 	public static function deadCmd() {
@@ -188,22 +197,22 @@ class jeedom {
 		);
 
 		$value = round(($values['SwapFree'] / $values['SwapTotal']) * 100);
-		if ($values['SwapTotal'] !=0 && $values['SwapTotal'] != null) {
+		if ($values['SwapTotal'] != 0 && $values['SwapTotal'] != null) {
 			$return[] = array(
 				'name' => __('Swap disponible', __FILE__),
 				'state' => ($value > 15),
 				'result' => $value . ' %',
 				'comment' => '',
 			);
-		}else{
+		} else {
 			$return[] = array(
 				'name' => __('Swap disponible', __FILE__),
 				'state' => 2,
 				'result' => __('Inconnue', __FILE__),
 				'comment' => '',
-			);		
+			);
 		}
-		
+
 		$values = sys_getloadavg();
 		$return[] = array(
 			'name' => __('Charge', __FILE__),

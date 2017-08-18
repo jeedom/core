@@ -308,6 +308,28 @@
     });
 });
 
+ $('#bt_removeTimelineEvent').on('click',function(){
+    jeedom.removeTimelineEvents({
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+            $('#div_alert').showAlert({message: '{{Evènement de la timeline supprimé avec succès}}', level: 'success'});
+        }
+    });
+});
+
+  $('#bt_removeBanIp').on('click',function(){
+    jeedom.user.removeBanIp({
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+            $('#div_alert').showAlert({message: '{{Suppression des IPs bannies réussie}}', level: 'success'});
+        }
+    });
+});
+
  function clearJeedomDate() {
     $.ajax({
         type: "POST", 

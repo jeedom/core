@@ -219,6 +219,11 @@ class user {
 		@session_write_close();
 	}
 
+	public static function removeBanIp() {
+		$cache = cache::byKey('security::banip');
+		$cache->remove();
+	}
+
 	public static function isBan() {
 		$ip = getClientIp();
 		if ($ip == '') {
@@ -406,5 +411,3 @@ class user {
 	}
 
 }
-
-

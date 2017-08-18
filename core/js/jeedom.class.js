@@ -26,18 +26,18 @@
 }
 
 jeedom.changes = function(){
-   var paramsRequired = [];
-   var paramsSpecifics = {
+ var paramsRequired = [];
+ var paramsSpecifics = {
     global: false,
     success: function(data) {
         if(jeedom.connect > 0){
-           jeedom.connect = 0;
-       }
-       jeedom.datetime = data.datetime;
-       var cmd_update = [];
-       var eqLogic_update = [];
-       var object_summary_update = [];
-       for(var i in data.result){
+         jeedom.connect = 0;
+     }
+     jeedom.datetime = data.datetime;
+     var cmd_update = [];
+     var eqLogic_update = [];
+     var object_summary_update = [];
+     for(var i in data.result){
         if(data.result[i].name == 'cmd::update'){
             cmd_update.push(data.result[i].option);
             continue;
@@ -51,16 +51,16 @@ jeedom.changes = function(){
             continue;
         }
         if(isset(data.result[i].option)){
-         $('body').trigger(data.result[i].name,data.result[i].option);   
-     }else{
+           $('body').trigger(data.result[i].name,data.result[i].option);   
+       }else{
         $('body').trigger(data.result[i].name);
     }
 }
 if(cmd_update.length > 0){
- $('body').trigger('cmd::update',[cmd_update]); 
+   $('body').trigger('cmd::update',[cmd_update]); 
 }
 if(eqLogic_update.length > 0){
- $('body').trigger('eqLogic::update',[eqLogic_update]); 
+   $('body').trigger('eqLogic::update',[eqLogic_update]); 
 }
 if(object_summary_update.length > 0){
     $('body').trigger('object::summary::update',[object_summary_update]); 
@@ -123,7 +123,7 @@ jeedom.init = function () {
 
     $('body').on('ui::update', function (_event,_options) {
         if(isset(_options.page) && _options.page != ''){
-         if(!$.mobile && getUrlVars('p') != _options.page){
+           if(!$.mobile && getUrlVars('p') != _options.page){
             return;
         }
         if($.mobile && isset(CURRENT_PAGE) && CURRENT_PAGE != _options.page){
@@ -143,7 +143,7 @@ jeedom.init = function () {
     });
     $('body').on('jeedom::gotoplan', function (_event,_plan_id) {
         if(getUrlVars('p') == 'plan' && 'function' == typeof (displayPlan)){
-         if (_plan_id != $('#sel_planHeader').attr('data-link_id')) {
+           if (_plan_id != $('#sel_planHeader').attr('data-link_id')) {
             planHeader_id = _plan_id;
             displayPlan();
         }
@@ -152,7 +152,7 @@ jeedom.init = function () {
 
     $('body').on('jeedom::alert', function (_event,_options) {
         if (!isset(_options.message) || $.trim(_options.message) == '') {
-         if(isset(_options.page) && _options.page != ''){
+           if(isset(_options.page) && _options.page != ''){
             if(getUrlVars('p') == _options.page || ($.mobile && isset(CURRENT_PAGE) && CURRENT_PAGE == _options.page)){
                 $.hideAlert();
             }
@@ -407,7 +407,7 @@ jeedom.getCronSelectModal = function(_options,_callback) {
 };
 
 jeedom.getSelectActionModal = function(_options, _callback){
-   if (!isset(_options)) {
+ if (!isset(_options)) {
     _options = {};
 }
 if ($("#mod_insertActionValue").length == 0) {
@@ -508,7 +508,7 @@ jeedom.addWarnme = function(_params) {
 };
 
 
-jeedom.getEvents = function(_params) {
+jeedom.getTimelineEvents = function(_params) {
     var paramsRequired = [];
     var paramsSpecifics = {};
     try {
@@ -521,7 +521,25 @@ jeedom.getEvents = function(_params) {
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
     paramsAJAX.data = {
-        action: 'getEvents'
+        action: 'getTimelineEvents'
+    };
+    $.ajax(paramsAJAX);
+};
+
+jeedom.removeTimelineEvents = function(_params) {
+ var paramsRequired = [];
+    var paramsSpecifics = {};
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+    paramsAJAX.data = {
+        action: 'removeTimelineEvents'
     };
     $.ajax(paramsAJAX);
 };

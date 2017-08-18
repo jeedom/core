@@ -17,7 +17,7 @@
  */
 
 require_once dirname(__FILE__) . "/../php/core.inc.php";
-if (user::isBan()) {
+if (user::isBan() && false) {
 	header("Status: 404 Not Found");
 	header('HTTP/1.0 404 Not Found');
 	$_SERVER['REDIRECT_STATUS'] = 404;
@@ -39,8 +39,8 @@ if (init('type') != '') {
 		$type = init('type');
 		if ((!jeedom::apiAccess(init('apikey', init('api')), init('plugin', 'core')) &&
 			!jeedom::apiAccess(init('apikey', init('api')), init('type', 'core'))) ||
-			(!jeedom::apiModeResult(config::byKey('api::core::http::mode', init('plugin', 'core'), 'disable')) &&
-				!jeedom::apiModeResult(config::byKey('api::core::http::mode', init('type', 'core'), 'disable')))) {
+			(!jeedom::apiModeResult(config::byKey('api::core::http::mode', init('plugin', 'core'), 'enable')) &&
+				!jeedom::apiModeResult(config::byKey('api::core::http::mode', init('type', 'core'), 'enable')))) {
 			user::failedLogin();
 			throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action 1', __FILE__));
 		}

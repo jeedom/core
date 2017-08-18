@@ -608,7 +608,7 @@ class object {
 			}
 			$result = $this->getSummary($key);
 			if ($result !== null) {
-				$style = 'color:' . $this->getConfiguration('summaryTextColor', '#000000') . ';';
+				$style = 'color:' . $this->getDisplay('summaryTextColor', '#000000') . ';';
 				$allowDisplayZero = $value['allowDisplayZero'];
 				if ($value['calcul'] == 'text') {
 					$allowDisplayZero = 1;
