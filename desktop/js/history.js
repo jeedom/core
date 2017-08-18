@@ -401,7 +401,11 @@ function displayTimeline(){
         maxHeight: $('body').height() - $('header').height() - 75
     };
     timeline = new vis.Timeline(document.getElementById('div_visualization'),items,options);
-    timeline.moveTo(new Date())
+	var end = new Date();
+    var start = new Date();
+	start.setTime(end.getTime() -  3600 * 1000);
+    end.setTime(start.getTime() + 3700 *1000);
+    timeline.setWindow(start,end);
 }
 });
 }
