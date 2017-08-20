@@ -43,6 +43,24 @@ if (typeof unload_page !== "undefined") {
 }
 $("#md_modal").dialog('close');
 $("#md_modal2").dialog('close');
+if ($("#mod_insertCmdValue").length != 0) {
+    $("#mod_insertCmdValue").dialog('close');
+}
+if ($("#mod_insertDataStoreValue").length != 0) {
+    $("#mod_insertDataStoreValue").dialog('close');
+}
+if ($("#mod_insertEqLogicValue").length != 0) {
+    $("#mod_insertEqLogicValue").dialog('close');
+}
+if ($("#mod_insertCronValue").length != 0) {
+    $("#mod_insertCronValue").dialog('close');
+}
+if ($("#mod_insertActionValue").length != 0) {
+    $("#mod_insertActionValue").dialog('close');
+}
+if ($("#mod_insertScenarioValue").length != 0) {
+    $("#mod_insertScenarioValue").dialog('close');
+}
 if(!isset(_noPushHistory) || _noPushHistory == false){
     window.history.pushState('','', _url);
 }
