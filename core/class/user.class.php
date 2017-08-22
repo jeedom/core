@@ -199,13 +199,23 @@ class user {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function searchByProfils($_rights) {
+	public static function byProfils($_profils) {
 		$values = array(
-			'profils' => $_rights,
+			'profils' => $_profils,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM user
         WHERE profils=:profils';
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+	}
+
+	public static function byEnable($_enable) {
+		$values = array(
+			'enable' => $_enable,
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+        FROM user
+        WHERE enable=:enable';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -302,12 +312,12 @@ class user {
 		if ($this->getLogin() == '') {
 			throw new Exception(__('Le nom d\'utilisateur ne peut pas être vide', __FILE__));
 		}
-		$admins = user::searchByProfils('admin');
+		$admins = user::byProfils('admin');
 		if (count($admins) == 1 && $this->getProfils() == 'admin' && $this->getEnable() == 0) {
-			$this->setEnable(1);
+			throw new Exception(__('Vous ne pouvez désactiver le dernière utilisateur', __FILE__));
 		}
 		if (count($admins) == 1 && $admins[0]->getId() == $this->getid()) {
-			$this->setProfils('admin');
+			throw new Exception(__('Vous ne pouvez changer le profils du dernière administrateur', __FILE__));
 		}
 	}
 
@@ -316,7 +326,7 @@ class user {
 	}
 
 	public function preRemove() {
-		if (count(user::searchByProfils('admin')) == 1 && $this->getProfils() == 'admin') {
+		if (count(user::byProfils('admin')) == 1 && $this->getProfils() == 'admin') {
 			throw new Exception(__('Vous ne pouvez supprimer le dernière administrateur', __FILE__));
 		}
 	}

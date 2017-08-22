@@ -387,7 +387,7 @@ class plugin {
 			throw new Exception(__('Vous ne pouvez faire un report sur un plugin sans panel', __FILE__));
 		}
 		if (!isset($_parameters['user'])) {
-			$users = user::searchByProfils('admin');
+			$users = user::byProfils('admin');
 			if (count($users) == 0) {
 				throw new Exception(__('Aucun utilisateur admin trouvé pour la génération du rapport', __FILE__));
 			}
