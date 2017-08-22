@@ -20,13 +20,13 @@ global $JEEDOM_INTERNAL_CONFIG;
 $JEEDOM_INTERNAL_CONFIG = array(
 	'eqLogic' => array(
 		'category' => array(
-			'heating' => array('name' => 'Chauffage', 'color' => '#2980b9', 'mcolor' => '#2980b9', 'cmdColor' => '#3498db', 'mcmdColor' => '#3498db'),
-			'security' => array('name' => 'Sécurité', 'color' => '#745cb0', 'mcolor' => '#745cb0', 'cmdColor' => '#ac92ed', 'mcmdColor' => '#ac92ed'),
-			'energy' => array('name' => 'Energie', 'color' => '#2eb04b', 'mcolor' => '#2eb04b', 'cmdColor' => '#69e283', 'mcmdColor' => '#69e283'),
-			'light' => array('name' => 'Lumière', 'color' => '#f39c12', 'mcolor' => '#f39c12', 'cmdColor' => '#f1c40f', 'mcmdColor' => '#f1c40f'),
-			'automatism' => array('name' => 'Automatisme', 'color' => '#808080', 'mcolor' => '#808080', 'cmdColor' => '#c2beb8', 'mcmdColor' => '#c2beb8'),
-			'multimedia' => array('name' => 'Multimedia', 'color' => '#34495e', 'mcolor' => '#34495e', 'cmdColor' => '#576E84', 'mcmdColor' => '#576E84'),
-			'default' => array('name' => 'Defaut', 'color' => '#19bc9c', 'mcolor' => '#19bc9c', 'cmdColor' => '#4CDFC2', 'mcmdColor' => '#4CDFC2'),
+			'heating' => array('name' => 'Chauffage', 'icon' => 'fa fa-fire', 'color' => '#2980b9', 'mcolor' => '#2980b9', 'cmdColor' => '#3498db', 'mcmdColor' => '#3498db'),
+			'security' => array('name' => 'Sécurité', 'icon' => 'fa fa-lock', 'color' => '#745cb0', 'mcolor' => '#745cb0', 'cmdColor' => '#ac92ed', 'mcmdColor' => '#ac92ed'),
+			'energy' => array('name' => 'Energie', 'icon' => 'fa fa-bolt', 'color' => '#2eb04b', 'mcolor' => '#2eb04b', 'cmdColor' => '#69e283', 'mcmdColor' => '#69e283'),
+			'light' => array('name' => 'Lumière', 'icon' => 'fa fa-lightbulb-o', 'color' => '#f39c12', 'mcolor' => '#f39c12', 'cmdColor' => '#f1c40f', 'mcmdColor' => '#f1c40f'),
+			'automatism' => array('name' => 'Automatisme', 'icon' => 'fa fa-magic', 'color' => '#808080', 'mcolor' => '#808080', 'cmdColor' => '#c2beb8', 'mcmdColor' => '#c2beb8'),
+			'multimedia' => array('name' => 'Multimedia', 'icon' => 'fa fa-sliders', 'color' => '#34495e', 'mcolor' => '#34495e', 'cmdColor' => '#576E84', 'mcmdColor' => '#576E84'),
+			'default' => array('name' => 'Autre', 'icon' => 'fa fa-circle-o', 'color' => '#19bc9c', 'mcolor' => '#19bc9c', 'cmdColor' => '#4CDFC2', 'mcmdColor' => '#4CDFC2'),
 		),
 		'style' => array(
 			'noactive' => '-webkit-filter: grayscale(100%);-moz-filter: grayscale(100);-o-filter: grayscale(100%);-ms-filter: grayscale(100%);filter: grayscale(100%); opacity: 0.35;',
@@ -36,6 +36,14 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'plan' => array('name' => 'Design'),
 			'view' => array('name' => 'Vue'),
 			'mobile' => array('name' => 'Mobile'),
+		),
+	),
+	'interact' => array(
+		'test' => array(
+			'>' => array('superieur', '>', 'plus de', 'depasse'),
+			'<' => array('inferieur', '<', 'moins de', 'descends en dessous'),
+			'=' => array('egale', '=', 'vaut'),
+			'!=' => array('different'),
 		),
 	),
 	'plugin' => array(
@@ -58,8 +66,10 @@ $JEEDOM_INTERNAL_CONFIG = array(
 	),
 	'alerts' => array(
 		'timeout' => array('name' => 'Timeout', 'icon' => 'fa fa-clock-o', 'level' => 1, 'check' => false, 'color' => '#FF0000'),
-		'warning' => array('name' => 'Warning', 'icon' => 'fa fa-bell', 'level' => 2, 'check' => true, 'color' => '#FFAB00'),
-		'danger' => array('name' => 'Danger', 'icon' => 'fa fa-exclamation', 'level' => 3, 'check' => true, 'color' => '#FF0000'),
+		'batterywarning' => array('name' => 'Batterie en Warning', 'icon' => 'fa fa-battery-quarter', 'level' => 2, 'check' => false, 'color' => '#FFAB00'),
+		'batterydanger' => array('name' => 'Batterie en Danger', 'icon' => 'fa fa-battery-empty', 'level' => 3, 'check' => false, 'color' => '#FF0000'),
+		'warning' => array('name' => 'Warning', 'icon' => 'fa fa-bell', 'level' => 4, 'check' => true, 'color' => '#FFAB00'),
+		'danger' => array('name' => 'Danger', 'icon' => 'fa fa-exclamation', 'level' => 5, 'check' => true, 'color' => '#FF0000'),
 	),
 	'cmd' => array(
 		'generic_type' => array(
@@ -159,6 +169,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'BRIGHTNESS' => array('name' => 'Luminosité', 'family' => 'Generic', 'type' => 'Info'),
 			'PRESENCE' => array('name' => 'Présence', 'family' => 'Generic', 'type' => 'Info'),
 			'BATTERY' => array('name' => 'Batterie', 'family' => 'Generic', 'type' => 'Info', 'ignore' => true),
+			'BATTERY_CHARGING' => array('name' => 'Batterie en charge', 'family' => 'Generic', 'type' => 'Info', 'ignore' => true),
 			'SMOKE' => array('name' => 'Détection de fumée', 'family' => 'Generic', 'type' => 'Info'),
 			'FLOOD' => array('name' => 'Inondation', 'family' => 'Generic', 'type' => 'Info'),
 			'HUMIDITY' => array('name' => 'Humidité', 'family' => 'Generic', 'type' => 'Info'),
@@ -190,7 +201,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 							'maxValue' => array('visible' => true),
 							'listValue' => array('visible' => false)),
 						'unite' => array('visible' => true),
-						'isHistorized' => array('visible' => true),
+						'isHistorized' => array('visible' => true, 'timelineOnly' => false, 'canBeSmooth' => true),
 						'display' => array(
 							'invertBinary' => array('visible' => false),
 							'icon' => array('visible' => true, 'parentVisible' => true),
@@ -203,7 +214,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 							'maxValue' => array('visible' => false),
 							'listValue' => array('visible' => false)),
 						'unite' => array('visible' => false),
-						'isHistorized' => array('visible' => true),
+						'isHistorized' => array('visible' => true, 'timelineOnly' => false, 'canBeSmooth' => false),
 						'display' => array(
 							'invertBinary' => array('visible' => true, 'parentVisible' => true),
 							'icon' => array('visible' => true, 'parentVisible' => true),
@@ -216,7 +227,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 							'maxValue' => array('visible' => false),
 							'listValue' => array('visible' => false)),
 						'unite' => array('visible' => true),
-						'isHistorized' => array('visible' => false),
+						'isHistorized' => array('visible' => true, 'timelineOnly' => true, 'canBeSmooth' => false),
 						'display' => array(
 							'invertBinary' => array('visible' => false),
 							'icon' => array('visible' => true, 'parentVisible' => true),

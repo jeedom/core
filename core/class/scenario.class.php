@@ -37,7 +37,7 @@ class scenario {
 	private $display;
 	private $description;
 	private $configuration;
-	private $type;
+	private $type = 'expert';
 	private static $_templateArray;
 	private $_elements = array();
 	private $_changeState = false;
@@ -176,14 +176,17 @@ class scenario {
 	 * @param type $_cmd_id
 	 * @return type
 	 */
-	public static function byTrigger($_cmd_id) {
+	public static function byTrigger($_cmd_id, $_onlyEnable = true) {
 		$values = array(
 			'cmd_id' => '%#' . $_cmd_id . '#%',
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM scenario
-		WHERE mode != "schedule"
-		AND `trigger` LIKE :cmd_id';
+		WHERE mode != "schedule"';
+		if ($_onlyEnable) {
+			$sql .= ' AND isActive=1';
+		}
+		$sql .= ' AND `trigger` LIKE :cmd_id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 	/**
@@ -345,10 +348,18 @@ class scenario {
 	/**
 	 *
 	 */
-	public static function consystencyCheck() {
+	public static function consystencyCheck($_needsReturn = false) {
+		$return = array();
 		foreach (self::all() as $scenario) {
+			if ($scenario->getGroup() == '') {
+				$group = 'aucun';
+			} else {
+				$group = $scenario->getGroup();
+			}
 			if ($scenario->getIsActive() != 1) {
-				continue;
+				if (!$_needsReturn) {
+					continue;
+				}
 			}
 			if ($scenario->getMode() == 'provoke' || $scenario->getMode() == 'all') {
 				$trigger_list = '';
@@ -358,7 +369,11 @@ class scenario {
 				preg_match_all("/#([0-9]*)#/", $trigger_list, $matches);
 				foreach ($matches[1] as $cmd_id) {
 					if (is_numeric($cmd_id)) {
-						log::add('scenario', 'error', __('Un déclencheur du scénario : ', __FILE__) . $scenario->getHumanName() . __(' est introuvable', __FILE__));
+						if ($_needsReturn) {
+							$return[] = array('detail' => 'Scénario ' . $scenario->getName() . ' du groupe ' . $group, 'help' => 'Déclencheur du scénario', 'who' => '#' . $cmd_id . '#');
+						} else {
+							log::add('scenario', 'error', __('Un déclencheur du scénario : ', __FILE__) . $scenario->getHumanName() . __(' est introuvable', __FILE__));
+						}
 					}
 				}
 			}
@@ -378,9 +393,16 @@ class scenario {
 			preg_match_all("/#([0-9]*)#/", $expression_list, $matches);
 			foreach ($matches[1] as $cmd_id) {
 				if (is_numeric($cmd_id)) {
-					log::add('scenario', 'error', __('Une commande du scénario : ', __FILE__) . $scenario->getHumanName() . __(' est introuvable', __FILE__));
+					if ($_needsReturn) {
+						$return[] = array('detail' => 'Scénario ' . $scenario->getName() . ' du groupe ' . $group, 'help' => 'Utilisé dans le scénario', 'who' => '#' . $cmd_id . '#');
+					} else {
+						log::add('scenario', 'error', __('Une commande du scénario : ', __FILE__) . $scenario->getHumanName() . __(' est introuvable', __FILE__));
+					}
 				}
 			}
+		}
+		if ($_needsReturn) {
+			return $return;
 		}
 	}
 
@@ -537,7 +559,7 @@ class scenario {
 		$scenarios = array();
 		foreach ($searchs as $search) {
 			$_cmd_id = str_replace('#', '', $search['action']);
-			$return = array_merge($return, self::byTrigger($_cmd_id));
+			$return = array_merge($return, self::byTrigger($_cmd_id, false));
 			if (!isset($search['and'])) {
 				$search['and'] = false;
 			}
@@ -621,11 +643,26 @@ class scenario {
 	}
 
 	public static function removeFromMarket(&$market) {
-                trigger_error('This method is deprecated', E_USER_DEPRECATED);
+		trigger_error('This method is deprecated', E_USER_DEPRECATED);
 	}
 
 	public static function listMarketObject() {
 		return array();
+	}
+
+	public static function timelineDisplay($_event) {
+		$return = array();
+		$return['date'] = $_event['datetime'];
+		$return['group'] = 'scenario';
+		$return['type'] = $_event['type'];
+		$scenario = scenario::byId($_event['id']);
+		$object = $scenario->getObject();
+		$return['object'] = is_object($object) ? $object->getId() : 'aucun';
+		$return['html'] = '<div class="scenario" data-id="' . $_event['id'] . '">'
+			. '<div style="background-color:#e7e7e7;padding:1px;font-size:0.9em;font-weight: bold;cursor:help;">' . $_event['name'] . ' <i class="fa fa-file-text-o pull-right cursor bt_scenarioLog"></i> <i class="fa fa-share pull-right cursor bt_gotoScenario"></i></div>'
+			. '<div style="background-color:white;padding:1px;font-size:0.8em;cursor:default;">Déclenché par ' . $_event['trigger'] . '<div/>'
+			. '</div>';
+		return $return;
 	}
 
 	/*     * *********************Méthodes d'instance************************* */
@@ -693,11 +730,18 @@ class scenario {
 			$this->persistLog();
 			return;
 		}
+
 		$cmd = cmd::byId(str_replace('#', '', $_trigger));
 		if (is_object($cmd)) {
 			log::add('event', 'info', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclenché par : ', __FILE__) . $cmd->getHumanName());
+			if ($this->getConfiguration('timeline::enable')) {
+				jeedom::addTimelineEvent(array('type' => 'scenario', 'id' => $this->getId(), 'name' => $this->getHumanName(true), 'datetime' => date('Y-m-d H:i:s'), 'trigger' => $cmd->getHumanName(true)));
+			}
 		} else {
 			log::add('event', 'info', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclenché par : ', __FILE__) . $_trigger);
+			if ($this->getConfiguration('timeline::enable')) {
+				jeedom::addTimelineEvent(array('type' => 'scenario', 'id' => $this->getId(), 'name' => $this->getHumanName(true), 'datetime' => date('Y-m-d H:i:s'), 'trigger' => $_trigger == '#schedule#' ? 'programmation' : $_trigger));
+			}
 		}
 		if (count($this->getTags()) == 0) {
 			$this->setLog('Start : ' . $_message . '.');
@@ -1252,7 +1296,7 @@ class scenario {
 			$object = $this->getObject();
 			if ($_tag) {
 				if ($object->getDisplay('tagColor') != '') {
-					$name .= '<span class="label" style="text-shadow : none;background-color:' . $object->getDisplay('tagColor') . '">' . $object->getName() . '</span>';
+					$name .= '<span class="label" style="text-shadow : none;background-color:' . $object->getDisplay('tagColor') . ';color:' . $object->getDisplay('tagTextColor', 'white') . '">' . $object->getName() . '</span>';
 				} else {
 					$name .= '<span class="label label-primary" style="text-shadow : none;">' . $object->getName() . '</span>';
 				}
@@ -1371,6 +1415,7 @@ class scenario {
 			'color' => 'green',
 			'image' => 'core/img/scenario.png',
 			'title' => $this->getHumanName(),
+			'url' => 'index.php?v=d&p=scenario&id=' . $this->getId(),
 		);
 		$use = $this->getUse();
 		$usedBy = $this->getUsedBy();

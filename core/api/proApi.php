@@ -42,20 +42,20 @@ try {
 	}
 
 	if ($jsonrpc->getJsonrpc() != '2.0') {
-		throw new Exception(__('Requête invalide. Version Jsonrpc invalide : ' . $jsonrpc->getJsonrpc(),__FILE__), -32001);
+		throw new Exception(__('Requête invalide. Version Jsonrpc invalide : ' . $jsonrpc->getJsonrpc(), __FILE__), -32001);
 	}
 
 	$params = $jsonrpc->getParams();
 
-	if (!isset($params['proapi'])) {
+	if (!isset($params['apipro'])) {
 		throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__), -32001);
 	}
 
-	if (isset($params['proapi']) && !jeedom::apiAccess($params['proapi'], 'proapi')) {
+	if (isset($params['apipro']) && !jeedom::apiAccess($params['apipro'], 'apipro')) {
 		throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__), -32001);
 	}
 
-	log::add('api', 'info', __('connexion valide et verifiee : ' . $jsonrpc->getMethod(),__FILE__));
+	log::add('api', 'info', __('connexion valide et verifiee : ' . $jsonrpc->getMethod(), __FILE__));
 
 	/*             * ************************config*************************** */
 	if ($jsonrpc->getMethod() == 'config::byKey') {
@@ -100,7 +100,7 @@ try {
 			if (config::byKey('enableCron', 'core', 1, true) == 0) {
 				$defaut = 1;
 				$result = 'NOK';
-				$advice = __('Erreur cron : les crons sont désactivés. Allez dans Administration -> Moteur de tâches pour les réactiver',__FILE__);
+				$advice = __('Erreur cron : les crons sont désactivés. Allez dans Administration -> Moteur de tâches pour les réactiver', __FILE__);
 			}
 			$health[] = array('plugin' => 'core', 'type' => 'Cron actif', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
 
@@ -110,7 +110,7 @@ try {
 			if (config::byKey('enableScenario') == 0 && count(scenario::all()) > 0) {
 				$defaut = 1;
 				$result = 'NOK';
-				$advice = __('Erreur scénario : tous les scénarios sont désactivés. Allez dans Outils -> Scénarios pour les réactiver',__FILE__);
+				$advice = __('Erreur scénario : tous les scénarios sont désactivés. Allez dans Outils -> Scénarios pour les réactiver', __FILE__);
 			}
 			$health[] = array('plugin' => 'core', 'type' => 'Scénario actif', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
 
@@ -138,7 +138,7 @@ try {
 			if (user::hasDefaultIdentification() == 1) {
 				$defaut = 1;
 				$result = 'NOK';
-				$advice = __('Attention vous avez toujours l\'utilisateur admin/admin de configuré, cela représente une grave faille de sécurité, aller <a href=\'index.php?v=d&p=user\'>ici</a> pour modifier le mot de passe de l\'utilisateur admin',__file);
+				$advice = __('Attention vous avez toujours l\'utilisateur admin/admin de configuré, cela représente une grave faille de sécurité, aller <a href=\'index.php?v=d&p=user\'>ici</a> pour modifier le mot de passe de l\'utilisateur admin', __file);
 			}
 			$health[] = array('plugin' => 'core', 'type' => 'Authentification par défaut', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
 
@@ -162,7 +162,7 @@ try {
 			$advice = '';
 			if (version_compare(phpversion(), '5.5', '<')) {
 				$defaut = 1;
-				$advice = __('Si vous êtes en version 5.4.x on vous indiquera quand la version 5.5 sera obligatoire',__FILE__);
+				$advice = __('Si vous êtes en version 5.4.x on vous indiquera quand la version 5.5 sera obligatoire', __FILE__);
 			}
 			$health[] = array('plugin' => 'core', 'type' => 'Version PHP', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
 
@@ -186,7 +186,7 @@ try {
 			if (!network::test('internal')) {
 				$defaut = 1;
 				$result = 'NOK';
-				$advice = __('Allez sur Administration -> Configuration puis configurez correctement la partie réseau',__FILE__);
+				$advice = __('Allez sur Administration -> Configuration puis configurez correctement la partie réseau', __FILE__);
 			}
 			$health[] = array('plugin' => 'core', 'type' => 'Configuration réseau interne', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
 
@@ -196,7 +196,7 @@ try {
 			if (!network::test('external')) {
 				$defaut = 1;
 				$result = 'NOK';
-				$advice = __('Allez sur Administration -> Configuration puis configurez correctement la partie réseau',__FILE__);
+				$advice = __('Allez sur Administration -> Configuration puis configurez correctement la partie réseau', __FILE__);
 			}
 			$health[] = array('plugin' => 'core', 'type' => 'Configuration réseau externe', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
 
@@ -212,7 +212,7 @@ try {
 			} else {
 				$result = 'NOK';
 				$defaut = 1;
-				$advice = __('Votre cache n\'est pas sauvegardé. En cas de redémarrage, certaines informations peuvent être perdues. Essayez de lancer (à partir du moteur de tâches) la tâche cache::persist.',__FILE__);
+				$advice = __('Votre cache n\'est pas sauvegardé. En cas de redémarrage, certaines informations peuvent être perdues. Essayez de lancer (à partir du moteur de tâches) la tâche cache::persist.', __FILE__);
 			}
 			$health[] = array('plugin' => 'core', 'type' => 'Persistance du cache', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
 
@@ -331,23 +331,7 @@ try {
 		}
 
 		if ($jsonrpc->getMethod() == 'object::full') {
-			$cache = cache::byKey('api::object::full');
-			$cron = cron::byClassAndFunction('object', 'fullData');
-			if (!is_object($cron)) {
-				$cron = new cron();
-			}
-			$cron->setClass('object');
-			$cron->setFunction('fullData');
-			$cron->setSchedule('* * * * * 2000');
-			$cron->setTimeout(10);
-			$cron->save();
-			if (!$cron->running()) {
-				$cron->run(true);
-			}
-			if ($cache->getValue() != '') {
-				$jsonrpc->makeSuccess(json_decode($cache->getValue(), true));
-			}
-			$jsonrpc->makeSuccess(array());
+			$jsonrpc->makeSuccess(object::fullData());
 		}
 
 		if ($jsonrpc->getMethod() == 'object::fullById') {
@@ -562,7 +546,7 @@ try {
 		if ($jsonrpc->getMethod() == 'cmd::getTendance') {
 			$cmd = cmd::byId($params['id']);
 			if (!is_object($cmd)) {
-				throw new Exception(__('Cmd introuvable : ', __FILE__) . secureXSS($params['id']) , -32702);
+				throw new Exception(__('Cmd introuvable : ', __FILE__) . secureXSS($params['id']), -32702);
 			}
 			$jsonrpc->makeSuccess($cmd->getTendance($params['startTime'], $params['endTime']));
 		}
@@ -607,13 +591,13 @@ try {
 				$scenario->setIsActive(0);
 				$jsonrpc->makeSuccess($scenario->save());
 			}
-			throw new Exception(__('Le paramètre "state" ne peut être vide et doit avoir pour valeur [run,stop,enable;disable]',__FILE__));
+			throw new Exception(__('Le paramètre "state" ne peut être vide et doit avoir pour valeur [run,stop,enable;disable]', __FILE__));
 		}
 
 		/*             * ************************JeeNetwork*************************** */
 		if ($jsonrpc->getMethod() == 'jeeNetwork::handshake') {
 			if (config::byKey('jeeNetwork::mode') != 'slave') {
-				throw new Exception(__('Impossible d\'ajouter une box jeedom non esclave à un réseau Jeedom',__FILE__));
+				throw new Exception(__('Impossible d\'ajouter une box jeedom non esclave à un réseau Jeedom', __FILE__));
 			}
 			$auiKey = config::byKey('auiKey');
 			if ($auiKey == '') {
@@ -913,4 +897,3 @@ try {
 	$errorCode = (is_numeric($e->getCode())) ? -32000 - $e->getCode() : -32599;
 	$jsonrpc->makeError($errorCode, $message);
 }
-

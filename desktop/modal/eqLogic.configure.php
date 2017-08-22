@@ -25,7 +25,7 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 		<li role="presentation"><a href="#eqLogic_display" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-desktop"></i> {{Affichage}}</a></li>
 		<?php }
 ?>
-		<li role="presentation"><a href="#eqLogic_battery" aria-controls="messages" role="tab" data-toggle="tab"><i class="icon techno-charging"></i> {{Batterie}}</a></li>
+		<li role="presentation"><a href="#eqLogic_alert" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-exclamation-triangle"></i> {{Alertes}}</a></li>
 		<li role="presentation"><a href="#eqLogic_comment" aria-controls="messages" role="tab" data-toggle="tab" id="bt_EqLogicConfigurationTabComment"><i class="fa fa-commenting-o"></i> {{Commentaire}}</a></li>
 	</ul>
 
@@ -153,7 +153,13 @@ foreach ($eqLogic->getCmd() as $cmd) {
 							<th></th>
 							<?php
 foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
-		echo '<th>{{' . $value['name'] . '}}</th>';
+		echo '<th>{{' . $value['name'] . '}}';
+		if (in_array($key, array('plan', 'view'))) {
+			echo '<i class="fa fa-eye pull-right cursor bt_displayWidget" data-version="d' . $key . '" aria-hidden="true"></i>';
+		} elseif ($key == 'dashboard') {
+			echo '<i class="fa fa-eye pull-right cursor bt_displayWidget" data-version="' . $key . '" aria-hidden="true"></i>';
+		}
+		echo '</th>';
 	}
 	?>
 						</tr>
@@ -346,19 +352,100 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 	?>
 													</tbody>
 												</table>
-												<?php if ($eqLogic->widgetPossibility('custom::optionalParameters')) {
+												<?php if ($eqLogic->widgetPossibility('custom::layout')) {
 		?>
-													<legend><i class="fa fa-pencil-square-o"></i> {{Paramètres optionnels sur la tuile}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fa fa-plus-circle"></i> Ajouter</a></legend>
-													<table class="table table-bordered table-condensed" id="table_widgetParameters">
+													<legend><i class="fa fa-table"></i> {{Disposition}}</legend>
+
+
+													<table class="table table-bordered table-condensed">
 														<thead>
 															<tr>
-																<th>{{Nom}}</th>
-																<th>{{Valeur}}</th>
-																<th>{{Action}}</th>
+																<th></th>
+																<?php
+foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
+			echo '<th>{{' . $value['name'] . '}}';
+			if (in_array($key, array('plan', 'view'))) {
+				echo '<i class="fa fa-eye pull-right cursor bt_displayWidget" data-version="d' . $key . '" aria-hidden="true"></i>';
+			} elseif ($key == 'dashboard') {
+				echo '<i class="fa fa-eye pull-right cursor bt_displayWidget" data-version="' . $key . '" aria-hidden="true"></i>';
+			}
+			echo '</th>';
+		}
+		?>
 															</tr>
 														</thead>
 														<tbody>
-															<?php
+															<tr>
+																<td>{{Disposition}}</td>
+																<?php
+foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
+			echo '<td>';
+			echo '<select class="eqLogicAttr form-control sel_layout" data-l1key="display" data-l2key="layout::' . $key . '" data-type="' . $key . '">';
+			echo '<option value="default">{{Defaut}}</option>';
+			echo '<option value="table">{{Tableau}}</option>';
+			echo '</select>';
+			echo '</td>';
+		}
+		?>
+															</tr>
+															<tr>
+																<td>{{Parametres}}</td>
+																<?php
+foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
+			echo '<td>';
+			echo '<div class="widget_layout default" data-type="' . $key . '">';
+			echo '</div>';
+			echo '<div class="widget_layout table" data-type="' . $key . '" style="display:none;">';
+			echo '<input type="number" class="eqLogicAttr form-control layout_table_parameters" data-l1key="display" data-l2key="layout::' . $key . '::table::nbLine" data-type="' . $key . '" style="display:inline-block;width:60px;" /> x ';
+			echo '<input type="number" class="eqLogicAttr form-control layout_table_parameters" data-l1key="display" data-l2key="layout::' . $key . '::table::nbColumn" data-type="' . $key . '" style="display:inline-block;width:60px;" />';
+			echo '</div>';
+			echo '</td>';
+		}
+		?>
+															</tr>
+															<tr>
+																<td>{{Options}}</td>
+																<?php
+foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
+			echo '<td>';
+			echo '<div class="widget_layout default" data-type="' . $key . '">';
+			echo '</div>';
+			echo '<div class="widget_layout table" data-type="' . $key . '" style="display:none;">';
+			foreach ($eqLogic->getCmd() as $cmd) {
+				if ($cmd->getIsVisible() == 0) {
+					continue;
+				}
+				echo $cmd->getName() . ' : <input class="eqLogicAttr form-control" data-l1key="display" data-l2key="layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line" style="display:inline-block;width:60px;" /> x ';
+				echo ' <input class="eqLogicAttr form-control" data-l1key="display" data-l2key="layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column" style="display:inline-block;width:60px;" /><br/>';
+			}
+			echo '</div>';
+			echo '</td>';
+		}
+		?>
+															</tr>
+														</tbody>
+													</table>
+													<script type="text/javascript">
+														$('.sel_layout').on('change',function(){
+															var type = $(this).attr('data-type');
+															$('.widget_layout[data-type='+type+']').hide();
+															$('.widget_layout.'+$(this).value()+'[data-type='+type+']').show();
+														});
+													</script>
+													<?php }
+	if ($eqLogic->widgetPossibility('custom::optionalParameters')) {
+		?>
+														<legend><i class="fa fa-pencil-square-o"></i> {{Paramètres optionnels sur la tuile}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fa fa-plus-circle"></i> Ajouter</a></legend>
+														<table class="table table-bordered table-condensed" id="table_widgetParameters">
+															<thead>
+																<tr>
+																	<th>{{Nom}}</th>
+																	<th>{{Valeur}}</th>
+																	<th>{{Action}}</th>
+																</tr>
+															</thead>
+															<tbody>
+																<?php
 if ($eqLogic->getDisplay('parameters') != '') {
 			foreach ($eqLogic->getDisplay('parameters') as $key => $value) {
 				echo '<tr>';
@@ -375,43 +462,51 @@ if ($eqLogic->getDisplay('parameters') != '') {
 			}
 		}
 		?>
-														</tbody>
-													</table>
-													<?php }
+															</tbody>
+														</table>
+														<?php }
 	?>
-												</div>
-
-												<?php }
-?>
-												<div role="tabpanel" class="tab-pane" id="eqLogic_battery">
-													<br/>
-													<legend><i class="fa fa-info-circle"></i> {{Informations}}</legend>
-													<div class="row">
-														<div class="col-sm-4" >
-															<form class="form-horizontal">
-																<fieldset>
-																	<div class="form-group">
-																		<label class="col-sm-4 control-label">{{Type de batterie}}</label>
-																		<div class="col-sm-4">
-																			<span class="eqLogicAttr label label-primary" data-l1key="configuration" data-l2key="battery_type" style="font-size : 1em;"></span>
-																		</div>
-																	</div>
-																</fieldset>
-															</form>
-														</div>
 													</div>
-													<legend><i class="icon techno-fleches"></i> {{Seuils spécifiques}}</legend>
+
+													<?php }
+?>
+													<div role="tabpanel" class="tab-pane" id="eqLogic_alert">
+														<br/>
+														<legend><i class="fa fa-info-circle"></i> {{Informations Batteries}}</legend>
+														<div class="row">
+															<div class="col-sm-4" >
+																<form class="form-horizontal">
+																	<fieldset>
+																		<div class="form-group">
+																			<label class="col-sm-4 control-label">{{Type de batterie}}</label>
+																			<div class="col-sm-4">
+																				<span class="eqLogicAttr label label-primary" data-l1key="configuration" data-l2key="battery_type" style="font-size : 1em;"></span>
+																			</div>
+																		</div>
+																	</fieldset>
+																</form>
+															</div>
+														</div>
+														<legend><i class="icon techno-fleches"></i> {{Seuils spécifiques Batteries}}</legend>
+														<div class="form-group">
+															<label class="col-xs-2 eqLogicAttr label label-danger" style="font-size : 1.8em">{{Danger}}</label>
+															<div class="col-xs-2">
+																<input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_danger_threshold" />
+															</input>
+														</div>
+														<label class="col-xs-2 label label-warning" style="font-size : 1.8em">{{Warning}}</label>
+														<div class="col-xs-2">
+															<input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_warning_threshold" />
+														</div>
+														<label class="col-xs-2 label label-success" style="font-size : 1.8em">{{Ok}}</label>
+													</div>
+													<legend><i class="fa fa-clock-o"></i> {{Alertes Communications}}</legend>
 													<div class="form-group">
 														<label class="col-xs-2 eqLogicAttr label label-danger" style="font-size : 1.8em">{{Danger}}</label>
 														<div class="col-xs-2">
-															<input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_danger_threshold" />
-														</input>
+															<input class="eqLogicAttr form-control" data-l1key="timeout"/>
+														</input>{{(en minute)}}
 													</div>
-													<label class="col-xs-2 label label-warning" style="font-size : 1.8em">{{Warning}}</label>
-													<div class="col-xs-2">
-														<input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_warning_threshold" />
-													</div>
-													<label class="col-xs-2 label label-success" style="font-size : 1.8em">{{Ok}}</label>
 												</div>
 											</div>
 											<div role="tabpanel" class="tab-pane" id="eqLogic_comment">
@@ -503,6 +598,12 @@ if ($eqLogic->getDisplay('parameters') != '') {
 												tr += '</td>';
 												tr += '</tr>';
 												$('#table_widgetParameters tbody').append(tr);
+											});
+
+											$('.bt_displayWidget').off('click').on('click',function(){
+												var eqLogic = $('#div_displayEqLogicConfigure').getValues('.eqLogicAttr')[0];
+												$('#md_modal2').dialog({title: "{{Widget}}"});
+												$('#md_modal2').load('index.php?v=d&modal=eqLogic.displayWidget&eqLogic_id=' + eqLogic.id+'&version='+$(this).attr('data-version')).dialog('open');
 											});
 
 											$('#bt_eqLogicConfigureSave').on('click', function () {

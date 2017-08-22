@@ -4,6 +4,7 @@ function initHealth() {
     rightPanel += '<li><a class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" href="index.php?v=d"><i class="fa fa-desktop"></i> {{Version desktop}}</a></li>';
   rightPanel += '<li><a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="deamon" data-title="{{Démons}}"><i class="fa fa-bug" ></i> {{Démons}}</a></li>';
   rightPanel += '<li><a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="cron" data-title="{{Crons}}"><i class="fa fa-cogs" ></i> {{Crons}}</a></li>';
+  rightPanel += '<li><a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="alert" data-title="{{Alertes}}"><i class="icon jeedom-alerte" ></i> {{Alertes}}</a></li>';
   rightPanel += '</ul>';
   panel(rightPanel);
   getHealth();

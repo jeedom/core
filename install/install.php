@@ -121,7 +121,7 @@ try {
 				echo "/!\ Force update /!\ \n";
 			}
 			jeedom::stop();
-			if (init('version') == '') {
+			if (init('version') == '' && config::byKey('update::allowCore', 'core', 1) != 0) {
 				try {
 					echo 'Clean temporary file (tmp)...';
 					shell_exec('rm -rf ' . dirname(__FILE__) . '/../install/update/*');
@@ -166,16 +166,6 @@ try {
 						rrmdir($cibDir);
 					}
 					echo "OK\n";
-					echo "Cleaning adminer...";
-					foreach (ls(dirname(__FILE__) . '/../', 'adminer*') as $file) {
-						@rrmdir(dirname(__FILE__) . '/../' . $file);
-					}
-					echo "OK\n";
-					echo "Cleaning sysinfo...";
-					foreach (ls(dirname(__FILE__) . '/../', 'sysinfo*') as $file) {
-						@rrmdir(dirname(__FILE__) . '/../' . $file);
-					}
-					echo "OK\n";
 					echo "Create temporary folder...";
 					if (!file_exists($cibDir) && !mkdir($cibDir, 0777, true)) {
 						throw new Exception('Can not write into  : ' . $cibDir . '.');
@@ -203,7 +193,7 @@ try {
 					rmove($cibDir . '/', dirname(__FILE__) . '/../', false, array(), true);
 					echo "OK\n";
 					echo "Remove temporary file...";
-					rrmdir($cibDir);
+					rrmdir($tmp_dir);
 					echo "OK\n";
 					config::save('update::lastDateCore', date('Y-m-d H:i:s'));
 				} catch (Exception $e) {
@@ -393,7 +383,7 @@ try {
 		$user = new user();
 		$user->setLogin('admin');
 		$user->setPassword(sha512('admin'));
-		$user->setRights('admin', 1);
+		$user->setProfils('admin');
 		$user->save();
 		config::save('log::level', 400);
 		echo "OK\n";
@@ -436,10 +426,10 @@ echo "[END UPDATE SUCCESS]\n";
 
 function incrementVersion($_version) {
 	$version = explode('.', $_version);
-	if ($version[2] < 500) {
+	if ($version[2] < 100) {
 		$version[2]++;
 	} else {
-		if ($version[1] < 500) {
+		if ($version[1] < 100) {
 			$version[1]++;
 			$version[2] = 0;
 		} else {

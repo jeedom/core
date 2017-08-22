@@ -4,45 +4,18 @@ La page de santé de Jeedom vous permet d'avoir un aperçu rapide de l'état de 
 
 Il est accessible par Analyse -> Santé
 
-image::../images/health1.png[]
+[NOTE]
+Un clic sur l'icône à droite permet d'accéder à un benchmarck de votre jeedom.
 
-Una vez dentro esto es lo que verá: 
+Une fois dessus, voilà ce que vous retrouvez ici un tableau qui donne une description de ce que Jeedom vérifie et du statut de celle-ci dans la 2ème colonne, enfin la dernière colonne peut vous donner des conseils de résolution si la vérification n'est pas OK
 
-image::../images/health2.png[]
+En dessous vous retrouvez la santé pour chaque plugin, un clique sur le nom du plugin donne le details de santé de celui-ci. A droite vous retrouvez les icones : 
 
-Vous retrouvez ici un tableau qui donne une description de ce que Jeedom vérifie et du statut de celle-ci dans la 2ème colonne, enfin la dernière colonne peut vous donner des conseils de résolution si la vérification n'est pas OK
+* Port d'accès au matériel du plugin (type clef Zwave)
+* Mode du démon
+* Affichage de la page de santé des équipements du plugin
+* Affichage de la page de configuration du plugin
+* Etat global du plugin
 
-A continuación encontrará la misma tabla pero para el plugin (si el plugin es compatible). Haga clic en el nombre del plugin, le lleva directamente a su página de configuración
-
-Un clik sur l'icône à droite permet d'accéder à un benchmarck de votre jeedom.
-
-image::../images/health3.PNG[]
-
-image::../images/health4.PNG[]
-
-
-== Aide à la résolution
-
-=== Version PHP
-
-Pour l'instant la version 5.5 de php n'est pas obligatoire. Vous pouvez donc tout laisser comme ça pour le moment. Le jour où la version 5.5 devient obligatoire vous serez prévenu
-
-=== Configuration nginx
-
-Mi configuración de nginx esta NOK, esto puede ser normal si ha cambiado el archivo/etc/nginx/sitios-disponible/default, en caso contrario haga desde SSH: 
-
-- Si vous êtes sur une mini/mini+ ou que vous ne voulez pas de /jeedom : 
-
-----
-sudo su -
-cp /usr/share/nginx/www/jeedom/install/nginx_default_without_jeedom /etc/nginx/sites-available/defaut
-service nginx restart
----- 
-
-- Vous voulez le /jeedom
-
-----
-sudo su -
-cp /usr/share/nginx/www/jeedom/install/nginx_default /etc/nginx/sites-available/defaut
-service nginx restart
----- 
+[NOTE]
+Les icones peuvent varier en fonction du plugin

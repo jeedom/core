@@ -229,8 +229,11 @@ jeedom.object.summaryUpdate = function(_params) {
                 var keySpan = object.find('.objectSummary'+j);
                 if(keySpan.html() != undefined){
                     updated = true;
-                    if(keySpan.closest('.objectSummaryParent').attr('data-displayZeroValue') == 0 && _params[i]['keys'][j]['value'] == 0){
+                    if(keySpan.closest('.objectSummaryParent').attr('data-displayZeroValue') == 0 && _params[i]['keys'][j]['value'] === 0){
                         keySpan.closest('.objectSummaryParent').hide();
+                        continue;
+                    }
+                    if(_params[i]['keys'][j]['value'] === null){
                         continue;
                     }
                     keySpan.closest('.objectSummaryParent').show();

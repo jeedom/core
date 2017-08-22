@@ -155,6 +155,7 @@ include_file('3rdparty', 'jquery.cron/jquery.cron.min', 'js');
 include_file('3rdparty', 'jquery.cron/jquery.cron', 'css');
 include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'css');
 include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'js');
+include_file('3rdparty', 'autosize/autosize.min', 'js');
 if ($configs['enableCustomCss'] == 1) {
 	if (file_exists(dirname(__FILE__) . '/../custom/custom.css')) {
 		include_file('desktop', '', 'custom.css');
@@ -238,7 +239,7 @@ if (!isConnect()) {
 									<a data-toggle="dropdown" id="bt_gotoDashboard" href="index.php?v=d&p=dashboard"><i class="fa fa-dashboard"></i> {{Dashboard}}</a>
 									<ul class="dropdown-menu">
 										<?php
-foreach (object::buildTree(null, true) as $object_li) {
+foreach (object::buildTree(null, false) as $object_li) {
 		echo '<li><a href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '">' . $object_li->getHumanName(true) . '</a></li>';
 	}
 	?>
@@ -286,7 +287,7 @@ if (isConnect('admin')) {
 if (isConnect('admin')) {
 		?>
 									<li class="expertModeVisible"><a href="index.php?v=d&p=log"><i class="fa fa-file-o"></i> {{Logs}}</a></li>
-									<li><a href="index.php?v=d&p=battery"><i class="fa fa-battery-full"></i> {{Equipements}}</a></li>
+									<li><a href="index.php?v=d&p=eqAnalyse"><i class="fa fa-battery-full"></i> {{Equipements}}</a></li>
 									<li class="divider"></li>
 									<li><a href="index.php?v=d&p=health"><i class="fa fa-medkit"></i> {{Santé}}</a></li>
 									<?php
@@ -303,7 +304,7 @@ if (isConnect('admin')) {
 									<li><a href="index.php?v=d&p=object"><i class="fa fa-picture-o"></i> {{Objets}}</a></li>
 									<li><a href="index.php?v=d&p=interact"><i class="fa fa-comments-o"></i> {{Interactions}}</a></li>
 									<li><a href="index.php?v=d&p=display"><i class="fa fa-th"></i> {{Résumé domotique}}</a></li>
-									<li><a href = "index.php?v=d&p=scenarioAssist"><i class = "fa fa-cogs"></i> {{Scénarios}}</a></li>
+									<li><a href = "index.php?v=d&p=scenario"><i class = "fa fa-cogs"></i> {{Scénarios}}</a></li>
 								</ul>
 							</li>
 							<li class="dropdown cursor">
@@ -392,20 +393,7 @@ if (isConnect('admin')) {
 									</ul>
 								</li>
 								<li>
-									<?php if (isset($plugin) && is_object($plugin)) {
-		if ($plugin->getDocumentation() != '') {
-			echo '<a class="cursor" target="_blank" href="' . $plugin->getDocumentation() . '" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
-		}
-	} else {
-		if (init('p') == 'scenarioAssist') {
-			echo '<a class="cursor" target="_blank" href="doc/' . config::byKey('language', 'core', 'fr_FR') . '/scenario.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
-		} else if (init('p') == 'view_edit') {
-			echo '<a class="cursor" target="_blank" href="doc/' . config::byKey('language', 'core', 'fr_FR') . '/view.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
-		} else {
-			echo '<a class="cursor" target="_blank" href="doc/' . config::byKey('language', 'core', 'fr_FR') . '/' . secureXSS(init('p')) . '.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
-		}
-	}
-	?>
+								<a id="bt_getHelpPage" class="cursor" data-plugin="<?php echo init('m'); ?>" data-page="<?php echo init('p'); ?>" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>
 								</li>
 								<?php if (isConnect('admin')) {
 		?>

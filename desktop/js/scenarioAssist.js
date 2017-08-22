@@ -86,11 +86,18 @@ $('#bt_scenarioThumbnailDisplay').on('click', function () {
 
 $('.scenarioDisplayCard').on('click', function () {
     if ($(this).attr('data-type') == 'simple') {
+        $('#div_tree').jstree('open_all');
         $('#div_tree').jstree('deselect_all');
         $('#div_tree').jstree('select_node', 'scenario' + $(this).attr('data-scenario_id'));
     } else {
         loadPage("index.php?v=d&p=scenario&id=" + $(this).attr('data-scenario_id'));
     }
+});
+
+$('.accordion-toggle').off('click').on('click', function () {
+  setTimeout(function(){
+      $('.scenarioListContainer').packery();
+  },100);
 });
 
 $('#div_tree').on('select_node.jstree', function (node, selected) {
@@ -311,6 +318,7 @@ $('#div_pageContainer').delegate('.bt_selectCmdExpression', 'click', function (e
             expression.find('.expressionAttr[data-l1key=expression]').value(result.human);
             jeedom.cmd.displayActionOption(expression.find('.expressionAttr[data-l1key=expression]').value(), '', function (html) {
                 expression.find('.expressionOptions').html(html);
+                taAutosize();
             });
         }
         if (expression.find('.expressionAttr[data-l1key=type]').value() == 'condition') {
@@ -416,6 +424,7 @@ function addAction(_action) {
     retour += jeedom.cmd.displayActionOption(init(_action.expression), init(_action.options));
     retour += '</div></div>';
     $('#div_actionList').append(retour);
+    taAutosize();
 }
 
 function addCondition(_condition) {

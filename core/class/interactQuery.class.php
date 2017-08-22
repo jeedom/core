@@ -205,7 +205,7 @@ class interactQuery {
 			if ($_data !== null && is_object($_data['object'])) {
 				$objects = $_data['object']->getEqLogic();
 			} else {
-				$objects = eqLogic::all();
+				$objects = eqLogic::all(true);
 			}
 		} elseif ($_type == 'cmd') {
 			if ($_data !== null && is_object($_data['eqLogic'])) {
@@ -213,6 +213,9 @@ class interactQuery {
 			} elseif ($_data !== null && is_object($_data['object'])) {
 				$objects = array();
 				foreach ($_data['object']->getEqLogic() as $eqLogic) {
+					if ($eqLogic->getIsEnable() == 0) {
+						continue;
+					}
 					foreach ($eqLogic->getCmd() as $cmd) {
 						$objects[] = $cmd;
 					}
@@ -252,10 +255,10 @@ class interactQuery {
 		if ($_type != 'eqLogic') {
 			if (is_object($return[$_type])) {
 				$return['query'] = str_replace(strtolower(sanitizeAccent($return[$_type]->getName())), '', $return['query']);
-			}
-			if (count($synonyms) > 0) {
-				foreach ($synonyms as $value) {
-					$return['query'] = str_replace(strtolower(sanitizeAccent($value)), '', $return['query']);
+				if (count($synonyms) > 0) {
+					foreach ($synonyms as $value) {
+						$return['query'] = str_replace(strtolower(sanitizeAccent($value)), '', $return['query']);
+					}
 				}
 			}
 		}
@@ -263,19 +266,25 @@ class interactQuery {
 	}
 
 	public static function autoInteract($_query, $_parameters = array()) {
+		global $JEEDOM_INTERNAL_CONFIG;
 		if (!isset($_parameters['identifier'])) {
 			$_parameters['identifier'] = '';
 		}
 		$data = self::findInQuery('object', $_query);
+
 		$data = array_merge($data, self::findInQuery('eqLogic', $data['query'], $data));
 		$data = array_merge($data, self::findInQuery('cmd', $data['query'], $data));
-		if (!is_object($data['cmd'])) {
+		if (!isset($data['cmd']) || !is_object($data['cmd'])) {
+
 			$data = array_merge($data, self::findInQuery('summary', $data['query'], $data));
+			log::add('interact', 'debug', print_r($data, true));
 			if (!isset($data['summary'])) {
 				return '';
 			}
+			$return = $data['summary']['name'];
 			$value = '';
 			if (is_object($data['object'])) {
+				$return .= ' ' . $data['object']->getName();
 				$value = $data['object']->getSummary($data['summary']['key']);
 			}
 			if (trim($value) === '') {
@@ -285,7 +294,7 @@ class interactQuery {
 				return '';
 			}
 			self::addLastInteract($_query, $_parameters['identifier']);
-			return $data['summary']['name'] . ' ' . $value . ' ' . $data['summary']['unit'];
+			return $return . ' ' . $value . ' ' . $data['summary']['unit'];
 		}
 		self::addLastInteract($data['cmd']->getId(), $_parameters['identifier']);
 		if ($data['cmd']->getType() == 'info') {
@@ -308,12 +317,13 @@ class interactQuery {
 	}
 
 	public static function autoInteractWordFind($_string, $_word) {
-		$string = str_replace("'", ' ', strtolower(sanitizeAccent($_string)));
-		$word = strtolower(sanitizeAccent($_word));
-		return preg_match('/( |^)' . preg_quote($word, '/') . '( |$)/', $string);
+		return preg_match(
+			'/( |^)' . preg_quote(strtolower(sanitizeAccent($_word)), '/') . '( |$)/',
+			str_replace("'", ' ', strtolower(sanitizeAccent($_string)))
+		);
 	}
 
-	public function pluginReply($_query, $_parameters = array()) {
+	public static function pluginReply($_query, $_parameters = array()) {
 		try {
 			foreach (plugin::listPlugin(true) as $plugin) {
 				if (config::byKey('functionality::interact::enable', $plugin->getId(), 1) == 0) {
@@ -325,6 +335,7 @@ class interactQuery {
 					if ($reply !== null || is_array($reply)) {
 						$reply['reply'] = '[' . $plugin_id . '] ' . $reply['reply'];
 						self::addLastInteract($_query, $_parameters['identifier']);
+						log::add('interact', 'debug', 'Le plugin ' . $plugin_id . ' a répondu');
 						return $reply;
 					}
 				}
@@ -332,8 +343,72 @@ class interactQuery {
 		} catch (Exception $e) {
 			return array('reply' => __('Erreur : ', __FILE__) . $e->getMessage());
 		}
-
 		return null;
+	}
+
+	public static function warnMe($_query, $_parameters = array()) {
+		global $JEEDOM_INTERNAL_CONFIG;
+		$operator = null;
+		$operand = null;
+		foreach ($JEEDOM_INTERNAL_CONFIG['interact']['test'] as $key => $value) {
+			if (strContain(strtolower(sanitizeAccent($_query)), $value)) {
+				$operator .= $key;
+				break;
+			}
+		}
+		preg_match_all('!\d+!', strtolower(sanitizeAccent($_query)), $matches);
+		if (isset($matches[0]) && isset($matches[0][0])) {
+			$operand = $matches[0][0];
+		}
+		if ($operand == null || $operator == null) {
+			return null;
+		}
+		$test = '#value# ' . $operator . ' ' . $operand;
+		$options = array('test' => $test);
+		if (is_object($_parameters['reply_cmd'])) {
+			$options['reply_cmd'] = $_parameters['reply_cmd']->getId();
+		}
+		$listener = new listener();
+		$listener->setClass('interactQuery');
+		$listener->setFunction('warnMeExecute');
+		$data = self::findInQuery('object', $_query);
+		$data = array_merge($data, self::findInQuery('eqLogic', $data['query'], $data));
+		$data = array_merge($data, self::findInQuery('cmd', $data['query'], $data));
+		if (!isset($data['cmd']) || !is_object($data['cmd'])) {
+			return null;
+		} else {
+			if ($data['cmd']->getType() == 'action') {
+				return null;
+			}
+			$options['type'] = 'cmd';
+			$options['cmd_id'] = $data['cmd']->getId();
+			$options['name'] = $data['cmd']->getHumanName();
+			$listener->addEvent($data['cmd']->getId());
+			$listener->setOption($options);
+			$listener->save(true);
+			return array('reply' => __('C\'est noté : ', __FILE__) . str_replace('#value#', $data['cmd']->getHumanName(), $test));
+		}
+		return null;
+	}
+
+	public static function warnMeExecute($_options) {
+		$warnMeCmd = (isset($_options['reply_cmd'])) ? $_options['reply_cmd'] : config::byKey('interact::warnme::defaultreturncmd');
+		if (!isset($_options['test']) || $_options['test'] == '' || $warnMeCmd == '') {
+			listener::byId($_options['listener_id'])->remove();
+			return;
+		}
+		$result = jeedom::evaluateExpression(str_replace('#value#', $_options['value'], $_options['test']));
+		if ($result) {
+			listener::byId($_options['listener_id'])->remove();
+			$cmd = cmd::byId(str_replace('#', '', $warnMeCmd));
+			if (!is_object($cmd)) {
+				return;
+			}
+			$cmd->execCmd(array(
+				'title' => __('Alerte : ', __FILE__) . str_replace('#value#', $_options['name'], $_options['test']) . __(' valeur : ', __FILE__) . $_options['value'],
+				'message' => __('Alerte : ', __FILE__) . str_replace('#value#', $_options['name'], $_options['test']) . __(' valeur : ', __FILE__) . $_options['value'],
+			));
+		}
 	}
 
 	public static function tryToReply($_query, $_parameters = array()) {
@@ -358,6 +433,12 @@ class interactQuery {
 		$startContextual = explode(';', config::byKey('interact::contextual::startpriority'));
 		if (is_array($startContextual) && count($startContextual) > 0 && config::byKey('interact::contextual::enable') == 1 && isset($words[0]) && in_array(strtolower($words[0]), $startContextual)) {
 			$reply = self::contextualReply($_query, $_parameters);
+			log::add('interact', 'debug', 'Je cherche interaction contextuel (prioritaire) : ' . print_r($reply, true));
+		}
+		$startWarnMe = explode(';', config::byKey('interact::warnme::start'));
+		if (is_array($startWarnMe) && count($startWarnMe) > 0 && config::byKey('interact::warnme::enable') == 1 && strContain(strtolower(sanitizeAccent($_query)), $startWarnMe)) {
+			$reply = self::warnMe($_query, $_parameters);
+			log::add('interact', 'debug', 'Je cherche interaction "previens-moi" : ' . print_r($reply, true));
 		}
 		if (config::byKey('interact::contextual::splitword') != '') {
 			$splitWords = explode(';', config::byKey('interact::contextual::splitword'));
@@ -399,6 +480,7 @@ class interactQuery {
 		if ($reply == '') {
 			$reply = self::pluginReply($_query, $_parameters);
 			if ($reply !== null) {
+				log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . '. Un plugin a répondu : ' . print_r($reply, true));
 				return $reply;
 			}
 			$interactQuery = interactQuery::recognize($_query);
@@ -408,24 +490,27 @@ class interactQuery {
 				if (isset($cmds[0]) && isset($cmds[0]['cmd'])) {
 					self::addLastInteract(str_replace('#', '', $cmds[0]['cmd']), $_parameters['identifier']);
 				}
-				log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . "\nJ'ai compris : " . $interactQuery->getQuery() . "\nJ'ai répondu : " . $reply);
+				log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . ".J'ai compris : " . $interactQuery->getQuery() . ".J'ai répondu : " . $reply);
 				return array('reply' => ucfirst($reply));
 			}
 		}
 		if ($reply == '' && config::byKey('interact::autoreply::enable') == 1) {
 			$reply = self::autoInteract($_query, $_parameters);
-		}
-		if ($reply == '' && config::byKey('interact::contextual::enable') == 1) {
-			$reply = self::contextualReply($_query, $_parameters);
+			log::add('interact', 'debug', 'Je cherche dans les interactions automatique, resultat : ' . $reply);
 		}
 		if ($reply == '' && config::byKey('interact::noResponseIfEmpty', 'core', 0) == 0 && (!isset($_parameters['emptyReply']) || $_parameters['emptyReply'] == 0)) {
 			$reply = self::dontUnderstand($_parameters);
-			log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . "\nJe n'ai rien compris\nJ'ai répondu : " . $reply);
+			log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . ".Je n'ai rien compris.J'ai répondu : " . $reply);
 		}
-		if (is_array($reply)) {
-			return $reply;
+		if (!is_array($reply)) {
+			$reply = array('reply' => ucfirst($reply));
 		}
-		return array('reply' => ucfirst($reply));
+		log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . ".Je réponds : " . print_r($reply, true));
+		if (is_object($_parameters['reply_cmd']) && isset($_parameters['force_reply_cmd'])) {
+			$_parameters['reply_cmd']->execCmd(array('message' => $reply['reply']));
+			return true;
+		}
+		return $reply;
 	}
 
 	public static function addLastInteract($_lastCmd, $_identifier = 'unknown') {
@@ -492,8 +577,7 @@ class interactQuery {
 	}
 
 	public function replaceForContextual($_replace, $_by, $_in) {
-		$_in = str_replace($_replace, $_by, $_in);
-		return str_replace(strtolower(sanitizeAccent($_replace)), strtolower(sanitizeAccent($_by)), $_in);
+		return str_replace(strtolower(sanitizeAccent($_replace)), strtolower(sanitizeAccent($_by)), str_replace($_replace, $_by, $_in));
 	}
 
 	public static function brainReply($_query, $_parameters) {
@@ -576,6 +660,9 @@ class interactQuery {
 	}
 
 	public function executeAndReply($_parameters) {
+		if (isset($_parameters['reply_cmd'])) {
+			unset($_parameters['reply_cmd']);
+		}
 		$interactDef = interactDef::byId($this->getInteractDef_id());
 		if (!is_object($interactDef)) {
 			return __('Inconsistance de la base de données', __FILE__);
@@ -687,7 +774,14 @@ class interactQuery {
 							}
 						}
 					}
-					$options['tags'] = $tags_replace;
+					$tags = array();
+					if (isset($options['tags'])) {
+						$options['tags'] = arg2array($options['tags']);
+						foreach ($options['tags'] as $key => $value) {
+							$tags['#' . trim(trim($key), '#') . '#'] = scenarioExpression::setTags(trim($value));
+						}
+					}
+					$options['tags'] = array_merge($tags_replace, $tags);
 					$return = scenarioExpression::createAndExec('action', $action['cmd'], $options);
 					if (trim($return) !== '' && trim($return) !== null) {
 						$replace['#valeur#'] .= ' ' . $return;

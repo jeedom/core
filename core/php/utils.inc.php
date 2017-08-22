@@ -30,6 +30,7 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 			'repo' => array('/repo', '.repo.php', 'php'),
 			'config' => array('/config', '.config.php', 'php'),
 			'modal' => array('/modal', '.php', 'php'),
+			'modalhtml' => array('/modal', '.html', 'php'),
 			'php' => array('/php', '.php', 'php'),
 			'css' => array('/css', '.css', 'css'),
 			'js' => array('/js', '.js', 'js'),
@@ -51,7 +52,7 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 	}
 	$path = dirname(__FILE__) . '/../../' . $_folder . '/' . $_fn;
 	if (!file_exists($path)) {
-		throw new Exception('File not found : ' . $_fn, 35486);
+		throw new Exception('File not found : ' . $path, 35486);
 	}
 	if ($type == 'php') {
 		if ($_type != 'class') {
@@ -188,7 +189,7 @@ function mySqlIsHere() {
 	return is_object(DB::getConnection());
 }
 
-function displayExeption(Exception $e) {
+function displayExeption($e) {
 	$message = '<span id="span_errorMessage">' . $e->getMessage() . '</span>';
 	if (DEBUG) {
 		$message .= '<a class="pull-right bt_errorShowTrace cursor">Show traces</a>';
@@ -826,11 +827,16 @@ function evaluate($_string) {
 	return $_string;
 }
 
+/**
+ *
+ * @param string $_string
+ * @return string
+ */
 function secureXSS($_string) {
 	return str_replace('&amp;', '&', htmlspecialchars(strip_tags($_string), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
 }
 
-function minify($buffer) {
+function minify($_buffer) {
 	$search = array(
 		'/\>[^\S ]+/s', // strip whitespaces after tags, except space
 		'/[^\S ]+\</s', // strip whitespaces before tags, except space
@@ -841,7 +847,7 @@ function minify($buffer) {
 		'<',
 		'\\1',
 	);
-	return preg_replace($search, $replace, $buffer);
+	return preg_replace($search, $replace, $_buffer);
 }
 
 function sanitizeAccent($_message) {
@@ -865,7 +871,7 @@ function isConnect($_right = '') {
 	}
 	if (isset($_SESSION['user']) && is_object($_SESSION['user']) && $_SESSION['user']->is_Connected()) {
 		if ($_right != '') {
-			return ($_SESSION['user']->getProfils() == $_right) ? true : false;
+			return ($_SESSION['user']->getProfils() == $_right);
 		}
 		return true;
 	}
@@ -1077,4 +1083,52 @@ function getSystemMemInfo() {
 		$meminfo[$info[0]] = trim($value[0]);
 	}
 	return $meminfo;
+}
+
+function strContain($_string, $_words) {
+	foreach ($_words as $word) {
+		if (strpos($_string, $word) !== false) {
+			return true;
+		}
+	}
+	return false;
+}
+
+function sanitize_output($_string) {
+	$_string = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $_string);
+	$_string = str_replace(array("\r", "\t", '    ', '    '), '', $_string);
+	$_string = str_replace(array(";\n", ";\r\n"), ';', $_string);
+	$_string = str_replace(array(">\n", ">\r\n", " >"), '>', $_string);
+	$_string = str_replace(array("\n<"), '<', $_string);
+	$_string = str_replace(array('{ ', "{\n"), '{', $_string);
+	$_string = str_replace(array(' }'), '}', $_string);
+	$_string = str_replace(array('; '), ';', $_string);
+	$_string = str_replace(array(' )', ') '), ')', $_string);
+	$_string = str_replace(array('( ', ' ('), '(', $_string);
+	$_string = str_replace(array(': ', ' :'), ':', $_string);
+	$_string = str_replace(array('== ', ' =='), '==', $_string);
+	$_string = str_replace(array('!= ', ' !='), '!=', $_string);
+	$_string = str_replace(array('&& ', ' &&'), '&&', $_string);
+	$_string = str_replace(array('|| ', ' ||'), '||', $_string);
+	$_string = str_replace(array(', ', ' ,'), ',', $_string);
+	return $_string;
+}
+
+function generateHtmlTable($_nbLine, $_nbColumn) {
+	$return = array('html' => '', 'replace' => array());
+	$return['html'] .= '<table>';
+	$return['html'] .= '<tbody>';
+	for ($i = 1; $i <= $_nbLine; $i++) {
+		$return['html'] .= '<tr>';
+		for ($j = 1; $j <= $_nbColumn; $j++) {
+			$return['html'] .= '<td>';
+			$return['html'] .= '#cmd::' . $i . '::' . $j . '#';
+			$return['html'] .= '</td>';
+			$return['tag']['#cmd::' . $i . '::' . $j . '#'] = '';
+		}
+		$return['html'] .= '</tr>';
+	}
+	$return['html'] .= '</tbody>';
+	$return['html'] .= '</table>';
+	return $return;
 }

@@ -34,25 +34,33 @@ class jsonrpcClient {
 
 	/*     * ********Static******************* */
 
-	 /**
-         * 
-         * @param type $_apiAddr
-         * @param type $_apikey
-         * @param type $_options
-         */
+	/**
+	 *
+	 * @param type $_apiAddr
+	 * @param type $_apikey
+	 * @param type $_options
+	 */
 	public function __construct($_apiAddr, $_apikey, $_options = array()) {
 		$this->apiAddr = $_apiAddr;
-		$this->apikey  = $_apikey;
+		$this->apikey = $_apikey;
 		$this->options = $_options;
 	}
-	
+	/**
+	 *
+	 * @param type $_method
+	 * @param array $_params
+	 * @param int $_timeout
+	 * @param type $_file
+	 * @param int $_maxRetry
+	 * @return boolean
+	 */
 	public function sendRequest($_method, $_params = null, $_timeout = 15, $_file = null, $_maxRetry = 2) {
 		$_params['apikey'] = $this->apikey;
 		$_params = array_merge($_params, $this->options);
 		$request = array(
 			'request' => json_encode(array(
 				'jsonrpc' => '2.0',
-				'id' => rand(1, 9999),
+				'id' => mt_rand(1, 9999),
 				'method' => $_method,
 				'params' => $_params,
 			)));
@@ -189,14 +197,17 @@ class jsonrpcClient {
 
 	public function setCb_function($cb_function) {
 		$this->cb_function = $cb_function;
+		return $this;
 	}
 
 	public function setCb_class($cb_class) {
 		$this->cb_class = $cb_class;
+		return $this;
 	}
 
 	public function setCertificate_path($certificate_path) {
 		$this->certificate_path = $certificate_path;
+		return $this;
 	}
 
 	public function getCertificate_path() {
@@ -205,6 +216,7 @@ class jsonrpcClient {
 
 	public function setDisable_ssl_verifiy($noSslCheck) {
 		$this->noSslCheck = $noSslCheck;
+		return $this;
 	}
 
 	public function getNoSslCheck() {
@@ -213,8 +225,7 @@ class jsonrpcClient {
 
 	public function setNoSslCheck($noSslCHeck) {
 		$this->noSslCheck = $noSslCHeck;
+		return $this;
 	}
 
 }
-
-?>

@@ -41,14 +41,38 @@ try {
 	require_once dirname(__FILE__) . "/core/php/core.inc.php";
 	if (isset($_GET['v']) && $_GET['v'] == 'd') {
 		if (isset($_GET['modal'])) {
-			include_file('core', 'authentification', 'php');
-			include_file('desktop', init('modal'), 'modal', init('plugin'));
+			try {
+				include_file('core', 'authentification', 'php');
+				include_file('desktop', init('modal'), 'modal', init('plugin'));
+			} catch (Exception $e) {
+				ob_end_clean();
+				echo '<div class="alert alert-danger div_alert">';
+				echo translate::exec(displayExeption($e), 'desktop/' . init('p') . '.php');
+				echo '</div>';
+			} catch (Error $e) {
+				ob_end_clean();
+				echo '<div class="alert alert-danger div_alert">';
+				echo translate::exec(displayExeption($e), 'desktop/' . init('p') . '.php');
+				echo '</div>';
+			}
 		} elseif (isset($_GET['configure'])) {
 			include_file('core', 'authentification', 'php');
 			include_file('plugin_info', 'configuration', 'configuration', init('plugin'));
 		} elseif (isset($_GET['ajax']) && $_GET['ajax'] == 1) {
-			include_file('core', 'authentification', 'php');
-			include_file('desktop', init('p'), 'php', init('m'));
+			try {
+				include_file('core', 'authentification', 'php');
+				include_file('desktop', init('p'), 'php', init('m'));
+			} catch (Exception $e) {
+				ob_end_clean();
+				echo '<div class="alert alert-danger div_alert">';
+				echo translate::exec(displayExeption($e), 'desktop/' . init('p') . '.php');
+				echo '</div>';
+			} catch (Error $e) {
+				ob_end_clean();
+				echo '<div class="alert alert-danger div_alert">';
+				echo translate::exec(displayExeption($e), 'desktop/' . init('p') . '.php');
+				echo '</div>';
+			}
 		} else {
 			include_file('desktop', 'index', 'php');
 		}
@@ -58,7 +82,7 @@ try {
 		$_plugin = '';
 		if (isset($_GET['modal'])) {
 			$_fn = init('modal');
-			$_type = 'modal';
+			$_type = 'modalhtml';
 			$_plugin = init('plugin');
 		} elseif (isset($_GET['p']) && isset($_GET['ajax'])) {
 			$_fn = $_GET['p'];

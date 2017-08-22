@@ -150,6 +150,25 @@ class scenarioExpression {
 		return rand($_min, $_max);
 	}
 
+	public static function randText($_sValue) {
+		$_sValue = self::setTags($_sValue);
+		$_aValue = explode(";", $_sValue);
+		try {
+			$result = evaluate($_aValue);
+			if (is_string($result)) {
+				$result = $_aValue;
+			}
+		} catch (Exception $e) {
+			$result = $_aValue;
+		}
+		if (is_array($_aValue)) {
+			$nbr = mt_rand(0, count($_aValue) - 1);
+			return $_aValue[$nbr];
+		} else {
+			return $_aValue;
+		}
+	}
+
 	public static function scenario($_scenario) {
 		$id = str_replace(array('scenario', '#'), '', trim($_scenario));
 		$scenario = scenario::byId($id);
@@ -587,7 +606,7 @@ class scenarioExpression {
 	}
 
 	public static function statistics($_cmd_id, $_calc, $_period = '1 hour') {
-		
+
 		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
@@ -805,7 +824,7 @@ class scenarioExpression {
 
 	public static function getRequestTags($_expression) {
 		$return = array();
-		preg_match_all("/#([a-zA-Z]*)#/", $_expression, $matches);
+		preg_match_all("/#([a-zA-Z0-9]*)#/", $_expression, $matches);
 		if (count($matches) == 0) {
 			return $return;
 		}
@@ -869,6 +888,9 @@ class scenarioExpression {
 				case '#trigger#':
 					$return['#trigger#'] = '';
 					break;
+				case '#trigger_value#':
+					$return['#trigger_value#'] = '';
+					break;
 			}
 		}
 		return $return;
@@ -887,6 +909,7 @@ class scenarioExpression {
 			$cmd = cmd::byId(str_replace('#', '', $_scenario->getRealTrigger()));
 			if (is_object($cmd)) {
 				$replace1['#trigger#'] = $cmd->getHumanName();
+				$replace1['#trigger_value#'] = $cmd->execCmd();
 			} else {
 				$replace1['#trigger#'] = $_scenario->getRealTrigger();
 			}
@@ -1209,13 +1232,14 @@ class scenarioExpression {
 					$dataStore->setLink_id(-1);
 					$dataStore->save();
 					$limit = (isset($options['timeout'])) ? $options['timeout'] : 300;
-					$options_cmd = array('title' => '', 'message' => $options['question'], 'answer' => explode(';', $options['answer']), 'timeout' => $limit, 'variable' => $this->getOptions('variable'));
+					$options_cmd = array('title' => $options['question'], 'message' => $options['question'], 'answer' => explode(';', $options['answer']), 'timeout' => $limit, 'variable' => $this->getOptions('variable'));
 					$cmd = cmd::byId(str_replace('#', '', $this->getOptions('cmd')));
 					if (!is_object($cmd)) {
 						throw new Exception(__('Commande introuvable - Vérifiez l\'id : ', __FILE__) . $this->getOptions('cmd'));
 					}
 					$this->setLog($scenario, __('Demande ', __FILE__) . print_r($options_cmd, true));
-					$cmd->setCache('storeVariable', $this->getOptions('variable'));
+					$cmd->setCache('ask::variable', $this->getOptions('variable'));
+					$cmd->setCache('ask::endtime', strtotime('now') + $limit);
 					$cmd->execCmd($options_cmd);
 					$occurence = 0;
 					$value = '';
@@ -1235,6 +1259,7 @@ class scenarioExpression {
 					}
 					if ($value == '') {
 						$value = __('Aucune réponse', __FILE__);
+						$cmd->setCache('ask::variable', 'none');
 						$dataStore = dataStore::byTypeLinkIdKey('scenario', -1, $this->getOptions('variable'));
 						$dataStore->setValue($value);
 						$dataStore->save();
@@ -1252,6 +1277,20 @@ class scenarioExpression {
 						$scenario->setReturn($options['message']);
 					} else {
 						$scenario->setReturn($scenario->getReturn() . ' ' . $options['message']);
+					}
+					return;
+				} elseif ($this->getExpression() == 'remove_inat') {
+					if ($scenario === null) {
+						return;
+					}
+					$this->setLog($scenario, __('Suppresion des blocs DANS et A programmés du scénario ', __FILE__));
+					$crons = cron::searchClassAndFunction('scenario', 'doIn', '"scenario_id":' . $scenario->getId());
+					if (is_array($crons)) {
+						foreach ($crons as $cron) {
+							if ($cron->getState() != 'run') {
+								$cron->remove();
+							}
+						}
 					}
 					return;
 				} else if ($this->getExpression() == 'report') {
@@ -1331,7 +1370,7 @@ class scenarioExpression {
 				}
 				$this->setLog($scenario, $message);
 				return $result;
-			} else if ($this->getType() == 'code') {
+			} elseif ($this->getType() == 'code') {
 				$this->setLog($scenario, __('Exécution d\'un bloc code', __FILE__));
 				return eval($this->getExpression());
 			}
@@ -1408,16 +1447,16 @@ class scenarioExpression {
 		if ($this->getType() == 'action') {
 			if ($this->getExpression() == 'icon') {
 				return '';
-			} else if ($this->getExpression() == 'sleep') {
+			} elseif ($this->getExpression() == 'sleep') {
 				return '(sleep) Pause de  : ' . $options['duration'];
-			} else if ($this->getExpression() == 'stop') {
+			} elseif ($this->getExpression() == 'stop') {
 				return '(stop) Arret du scenario';
-			} else if ($this->getExpression() == 'scenario') {
+			} elseif ($this->getExpression() == 'scenario') {
 				$actionScenario = scenario::byId($this->getOptions('scenario_id'));
 				if (is_object($actionScenario)) {
 					return '(scenario) ' . $this->getOptions('action') . ' de ' . $actionScenario->getHumanName();
 				}
-			} else if ($this->getExpression() == 'variable') {
+			} elseif ($this->getExpression() == 'variable') {
 				return '(variable) Affectation de la variable : ' . $this->getOptions('name') . ' à ' . $this->getOptions('value');
 			} else {
 				$return = jeedom::toHumanReadable($this->getExpression());
@@ -1426,7 +1465,7 @@ class scenarioExpression {
 				}
 				return $return;
 			}
-		} else if ($this->getType() == 'condition') {
+		} elseif ($this->getType() == 'condition') {
 			return jeedom::toHumanReadable($this->getExpression());
 		}
 		if ($this->getType() == 'code') {

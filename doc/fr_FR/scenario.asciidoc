@@ -205,12 +205,17 @@ Vous pouvez aussi utiliser les tags suivants :
 [TIP]
 Un tag est remplacé lors de l'exécution du scénario par sa valeur
 
-* *\#seconde#* : seconde courante,
-* *\#heure#* : heure courante au format 24h  (ex : 17 pour 17h15),
-* *\#heure12#* : heure courante au format 12h (ex : 5 pour 17h15),
-* *\#minute#* : minute courante (ex : 15 pour 17h15),
-* *\#jour#* : jour courant,
-* *\#mois#* : mois courant,
+[TIP]
+Pour avoir les zéros intiaux à l'affichage, il faut utilier la fonction Date().
+Voir http://php.net/manual/fr/function.date.php
+
+
+* *\#seconde#* : seconde courante (sans les zéros initiaux, ex : 6 pour 08:07:06),
+* *\#heure#* : heure courante au format 24h  (ex : 17 pour 17h15) (sans les zéros initiaux, ex : 8 pour 08:07:06),
+* *\#heure12#* : heure courante au format 12h (ex : 5 pour 17h15) (sans les zéros initiaux, ex : 8 pour 08:07:06),
+* *\#minute#* : minute courante (ex : 15 pour 17h15) (sans les zéros initiaux, ex : 7 pour 08:07:06),
+* *\#jour#* : jour courant (sans les zéros initiaux, ex : 6 pour 06/07/2017),
+* *\#mois#* : mois courant (sans les zéros initiaux, ex : 7 pour 06/07/2017),
 * *\#annee#* : année courante,
 * *\#time#* : heure et minute courante (ex : 1715 pour 17h15),
 * *\#timestamp#* : retourne le nombre de secondes depuis le 1er janvier 1970,
@@ -310,6 +315,9 @@ Voici un exemple pratique pour comprendre les valeurs retournées par ces diffé
 Une boîte à outils de fonctions génériques peut également servir à effectuer des conversions ou calculs :
 
 * **rand**(1,10) : pour un nombre aléatoire de 1 à 10
+* **randText**(texte1;texte2;texte.....) : Permet de retourner un des textes aléatoirement (séparer les texte par un ";"), il n'y as pas de limite dans le nombre de texte
+    ** Ex : randText(il fais \#[salon][oeil][température]#;La température est de \#[salon][oeil][température]#;Actuellement on a \#[salon][oeil][température]#)
+    ** la fonction retournera un de ses textes aléatoirement à chaque execution
 * **randomColor**(min,max) : donne une couleur aléatoire compris entre 2 bornes ( 0 => rouge, 50 => vert, 100 => bleu)
     ** Ex : randomColor(40,60) : pour avoir une couleur aléatoire proche du vert
 * **trigger**(commande) : permet de connaître le déclencheur du scénario ou de savoir si c'est bien la commande passée en paramètre qui a déclenché le scénario
@@ -346,6 +354,7 @@ En plus des commandes domotiques vous avez accès aux actions suivantes :
 * *scenario_return* : Retourne un texte ou une valeur pour une intéraction par exemple
 * *event* : Permet de modifier la valeur d'une commande
 * *alert* : permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page jeedom ouverte. Vous pouvez en plus choisir 4 niveaux d'alerte
+* *remove_inat* : Permet de supprimer la programmation de tous les blocs DANS et A du scénario
 * *popup* : permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page jeedom ouverte.
 * *ask* : permet d'indiquer à jeedom qu'il faut poser une question à l'utilisateur. La réponse est stockée dans une variable, il suffit ensuite de tester sa valeur. Pour le moment seuls les plugins sms et slack sont compatibles. Attention l'action ask est bloquante, tant qu'il n'y a pas de réponse ou que le timeout n'est pas atteint le scénario attend. Voila un exemple d'utilisation : 
 

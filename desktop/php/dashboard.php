@@ -27,16 +27,15 @@ if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 ?>
 	<div class="bs-sidebar">
 		<ul id="ul_object" class="nav nav-list bs-sidenav">
-			<li class="nav-header">{{Liste objets}} </li>
 			<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
 			<?php
 $allObject = object::buildTree(null, true);
 foreach ($allObject as $object_li) {
-	$margin = 15 * $object_li->getConfiguration('parentNumber');
+	$margin = 5 * $object_li->getConfiguration('parentNumber');
 	if ($object_li->getId() == $object->getId()) {
-		echo '<li class="cursor li_object active" ><a data-object_id="' . $object_li->getId() . '" data-href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '&category=' . init('category', 'all') . '&summary=' . init('summary') . '"><span style="position:relative;left:' . $margin . 'px;">' . $object_li->getHumanName(true) . '</span></a></li>';
+		echo '<li class="cursor li_object active" ><a data-object_id="' . $object_li->getId() . '" data-href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '&category=' . init('category', 'all') . '" style="padding: 2px 0px;"><span style="position:relative;left:' . $margin . 'px;">' . $object_li->getHumanName(true) . '</span><span style="font-size : 0.65em;float:right;position:relative;top:7px;">' . $object_li->getHtmlSummary() . '</span></a></li>';
 	} else {
-		echo '<li class="cursor li_object" ><a data-object_id="' . $object_li->getId() . '" data-href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '&category=' . init('category', 'all') . '&summary=' . init('summary') . '"><span style="position:relative;left:' . $margin . 'px;">' . $object_li->getHumanName(true) . '</span></a></li>';
+		echo '<li class="cursor li_object" ><a data-object_id="' . $object_li->getId() . '" data-href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '&category=' . init('category', 'all') . '" style="padding: 2px 0px;"><span style="position:relative;left:' . $margin . 'px;">' . $object_li->getHumanName(true) . '</span><span style="font-size : 0.65em;float:right;position:relative;top:7px;">' . $object_li->getHtmlSummary() . '</span></a></li>';
 	}
 }
 ?>
@@ -67,21 +66,16 @@ if ($_SESSION['user']->getOptions('displayScenarioByDefault') == 1) {
 <div style="text-align : center;">
 	<?php
 if (init('category', 'all') == 'all') {
-	echo '<a href="index.php?v=d&p=dashboard&object_id=' . init('object_id') . '&category=all&summary=' . init('summary') . '" class="btn btn-primary btn-sm categoryAction" style="margin-bottom: 5px;margin-right: 3px;">{{Tous}}</a>';
+	echo '<a href="index.php?v=d&p=dashboard&object_id=' . init('object_id') . '&category=all&summary=' . init('summary') . '" class="btn btn-primary btn-sm categoryAction" style="margin-bottom: 5px;margin-right: 3px;"><i class="fa fa-asterisk"></i> {{Tous}}</a>';
 } else {
-	echo '<a href="index.php?v=d&p=dashboard&object_id=' . init('object_id') . '&category=all&summary=' . init('summary') . '" class="btn btn-default btn-sm categoryAction" style="margin-bottom: 5px;margin-right: 3px;">{{Tous}}</a>';
+	echo '<a href="index.php?v=d&p=dashboard&object_id=' . init('object_id') . '&category=all&summary=' . init('summary') . '" class="btn btn-default btn-sm categoryAction" style="margin-bottom: 5px;margin-right: 3px;"><i class="fa fa-asterisk"></i> {{Tous}}</a>';
 }
 foreach (jeedom::getConfiguration('eqLogic:category', true) as $key => $value) {
 	if (init('category', 'all') == $key) {
-		echo '<a href="index.php?v=d&p=dashboard&object_id=' . init('object_id') . '&category=' . $key . '&summary=' . init('summary') . '" class="btn btn-primary btn-sm categoryAction" data-l1key="' . $key . '" style="margin-bottom: 5px;margin-right: 3px;">{{' . $value['name'] . '}}</a>';
+		echo '<a href="index.php?v=d&p=dashboard&object_id=' . init('object_id') . '&category=' . $key . '&summary=' . init('summary') . '" class="btn btn-primary btn-sm categoryAction" data-l1key="' . $key . '" style="margin-bottom: 5px;margin-right: 3px;"><i class="' . $value['icon'] . '"></i> {{' . $value['name'] . '}}</a>';
 	} else {
-		echo '<a href="index.php?v=d&p=dashboard&object_id=' . init('object_id') . '&category=' . $key . '&summary=' . init('summary') . '" class="btn btn-default btn-sm categoryAction" data-l1key="' . $key . '" style="margin-bottom: 5px;margin-right: 3px;">{{' . $value['name'] . '}}</a>';
+		echo '<a href="index.php?v=d&p=dashboard&object_id=' . init('object_id') . '&category=' . $key . '&summary=' . init('summary') . '" class="btn btn-default btn-sm categoryAction" data-l1key="' . $key . '" style="margin-bottom: 5px;margin-right: 3px;"><i class="' . $value['icon'] . '"></i> {{' . $value['name'] . '}}</a>';
 	}
-}
-if (init('category', 'all') == 'other') {
-	echo '<a href="index.php?v=d&p=dashboard&object_id=' . init('object_id') . '&category=other&summary=' . init('summary') . '" class="btn btn-primary btn-sm categoryAction" style="margin-bottom: 5px;margin-right: 3px;">{{Autre}}</a>';
-} else {
-	echo '<a href="index.php?v=d&p=dashboard&object_id=' . init('object_id') . '&category=other&summary=' . init('summary') . '" class="btn btn-default btn-sm categoryAction" style="margin-bottom: 5px;margin-right: 3px;">{{Autre}}</a>';
 }
 ?>
 </div>
@@ -94,6 +88,9 @@ echo '<script>getObjectHtml(' . $object->getId() . ')</script>';
 echo '</div>';
 echo '</div>';
 foreach ($child_object as $child) {
+	if ($child->getConfiguration('hideOnDashboard', 0) == 1) {
+		continue;
+	}
 	echo '<div data-object_id="' . $child->getId() . '" style="margin-bottom : 3px;" class="div_object">';
 	echo '<legend style="margin-bottom : 0px;"><a style="text-decoration:none" href="index.php?v=d&p=object&id=' . $child->getId() . '">' . $child->getDisplay('icon') . ' ' . $child->getName() . '</a><span style="font-size : 0.6em;margin-left:10px;">' . $child->getHtmlSummary() . '</span></legend>';
 	echo '<div class="div_displayEquipement" id="div_ob' . $child->getId() . '" style="width: 100%;padding-top:3px;margin-bottom : 3px;">';

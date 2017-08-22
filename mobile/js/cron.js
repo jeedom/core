@@ -4,6 +4,7 @@ function initCron() {
   rightPanel += '<li><a class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" href="index.php?v=d"><i class="fa fa-desktop"></i> {{Version desktop}}</a></li>';
   rightPanel += '<li><a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="deamon" data-title="{{Démons}}"><i class="fa fa-bug" ></i> {{Démons}}</a></li>';
   rightPanel += '<li><a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="health" data-title="{{Santé}}"><i class="icon divers-caduceus3" ></i> {{Santé}}</a></li>';
+  rightPanel += '<li><a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="alert" data-title="{{Alertes}}"><i class="icon jeedom-alerte" ></i> {{Alertes}}</a></li>';
   rightPanel += '</ul>';
   panel(rightPanel);
   getCronState();
@@ -19,9 +20,8 @@ function initCron() {
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
       },
       success: function (data) {
-        $('#span_loadavg').empty().append(data.loadAvg[0]+', '+data.loadAvg[1]+', '+data.loadAvg[2]+' - '+data.nbProcess);
-        var html = '';
-        crons = data.crons
+		 var html = '';
+        crons = data
         for(var i in crons){
          html += '<tr>';
          html += '<td>';

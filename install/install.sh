@@ -57,6 +57,7 @@ step_2_mainpackage() {
 	apt-get -y install libsox-fmt-mp3 sox libttspico-utils
 	apt-get -y install espeak 
 	apt-get -y install mbrola
+	apt-get -y remove brltty
 	echo "${VERT}step_2_mainpackage success${NORMAL}"
 }
 
@@ -149,7 +150,10 @@ step_7_jeedom_customization() {
 	rm /etc/apache2/conf-available/other-vhosts-access-log.conf > /dev/null 2>&1
 	rm /etc/apache2/conf-enabled/other-vhosts-access-log.conf > /dev/null 2>&1
 
-	sed -i 's/PrivateTmp=true/PrivateTmp=false/g' /lib/systemd/system/apache2.service /dev/null 2>&1
+	rm /etc/systemd/system/multi-user.target.wants/apache2.service
+	cp /lib/systemd/system/apache2.service /etc/systemd/system/multi-user.target.wants/
+	sed -i 's/PrivateTmp=true/PrivateTmp=false/g' /etc/systemd/system/multi-user.target.wants/apache2.service > /dev/null 2>&1
+	sed -i 's/PrivateTmp=true/PrivateTmp=false/g' /lib/systemd/system/apache2.service > /dev/null 2>&1
 
 	systemctl daemon-reload
 
@@ -205,12 +209,13 @@ step_7_jeedom_customization() {
     if [ -d /etc/mysql/conf.d ]; then
     	touch /etc/mysql/conf.d/jeedom_my.cnf
     	echo "[mysqld]" >> /etc/mysql/conf.d/jeedom_my.cnf
+    	echo "skip-name-resolve" >> /etc/mysql/conf.d/jeedom_my.cnf
     	echo "key_buffer_size = 16M" >> /etc/mysql/conf.d/jeedom_my.cnf
 		echo "thread_cache_size = 16" >> /etc/mysql/conf.d/jeedom_my.cnf
 		echo "tmp_table_size = 48M" >> /etc/mysql/conf.d/jeedom_my.cnf
 		echo "max_heap_table_size = 48M" >> /etc/mysql/conf.d/jeedom_my.cnf
 		echo "query_cache_type =1" >> /etc/mysql/conf.d/jeedom_my.cnf
-		echo "query_cache_size = 16M" >> /etc/mysql/conf.d/jeedom_my.cnf
+		echo "query_cache_size = 32M" >> /etc/mysql/conf.d/jeedom_my.cnf
 		echo "query_cache_limit = 2M" >> /etc/mysql/conf.d/jeedom_my.cnf
 		echo "query_cache_min_res_unit=3K" >> /etc/mysql/conf.d/jeedom_my.cnf
 		echo "innodb_flush_method = O_DIRECT" >> /etc/mysql/conf.d/jeedom_my.cnf
@@ -237,7 +242,7 @@ step_8_jeedom_configuration() {
 	mysql_sql "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${MYSQL_JEEDOM_PASSWD}';"
 	mysql_sql "DROP DATABASE IF EXISTS jeedom;"
 	mysql_sql "CREATE DATABASE jeedom;"
-	mysql_sql "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'%';"
+	mysql_sql "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'localhost';"
 	cp ${WEBSERVER_HOME}/core/config/common.config.sample.php ${WEBSERVER_HOME}/core/config/common.config.php
 	sed -i "s/#PASSWORD#/${MYSQL_JEEDOM_PASSWD}/g" ${WEBSERVER_HOME}/core/config/common.config.php 
 	sed -i "s/#DBNAME#/jeedom/g" ${WEBSERVER_HOME}/core/config/common.config.php 
@@ -266,7 +271,7 @@ step_9_jeedom_installation() {
 step_10_jeedom_post() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Start step_10_jeedom_post${NORMAL}"
-	if [ $(crontab -l | grep jeedom | wc -l) -eq 0 ];then
+	if [ $(crontab -l | grep jeedom | wc -l) -ne 0 ];then
 		(echo crontab -l | grep -v "jeedom") | crontab -
 		
   	fi
@@ -322,20 +327,17 @@ distrib_1_spe(){
 STEP=0
 VERSION=stable
 WEBSERVER_HOME=/var/www/html
-INSTALL_ZWAVE_DEP=0
 HTML_OUTPUT=0
 MYSQL_ROOT_PASSWD=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
 MYSQL_JEEDOM_PASSWD=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
 
-while getopts ":s:v:w:z:h:m:" opt; do
+while getopts ":s:v:w:h:m:" opt; do
   case $opt in
     s) STEP="$OPTARG"
     ;;
     v) VERSION="$OPTARG"
     ;;
     w) WEBSERVER_HOME="$OPTARG"
-    ;;
-    z) INSTALL_ZWAVE_DEP=1
     ;;
     h) HTML_OUTPUT=1
     ;;
@@ -367,9 +369,6 @@ fi
 echo "${JAUNE}Welcome to jeedom installer${NORMAL}"
 echo "${JAUNE}Jeedom install version : ${VERSION}${NORMAL}"
 echo "${JAUNE}Webserver home folder : ${WEBSERVER_HOME}${NORMAL}"
-if [ ${INSTALL_ZWAVE_DEP} -eq 1 ]; then
-	echo "${JAUNE}With openzwave${NORMAL}"
-fi
 
 case ${STEP} in
    0)

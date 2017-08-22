@@ -14,41 +14,25 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
+
  $("#div_action").sortable({axis: "y", cursor: "move", items: ".action", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
 
- $("#div_listInteract").resizable({
-  handles: "all",
-  grid: [1, 10000],
-  stop: function () {
-    $('.interactListContainer').packery();
-    var value = {options: {interactMenuSize: $("#div_listInteract").width()}};
-    jeedom.user.saveProfils({
-      profils: value,
-      global: false,
-      error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'});
-      },
-      success: function () {
-      }
-    });
-  }
-});
-
- if(!isset(userProfils.interactMenuSize) || userProfils.interactMenuSize > 0){
-  $("#div_listInteract").width( userProfils.interactMenuSize);
-}
-
-$('.displayInteracQuery').on('click', function () {
+ $('.displayInteracQuery').on('click', function () {
   $('#md_modal').dialog({title: "{{Liste des interactions}}"});
   $('#md_modal').load('index.php?v=d&modal=interact.query.display&interactDef_id=' + $('.interactAttr[data-l1key=id]').value()).dialog('open');
 });
 
-if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1) && !jQuery.support.touch){
+ if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1) && !jQuery.support.touch){
   $('#div_listInteract').hide();
+  $('#interactThumbnailDisplay').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
+  $('#div_conf').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
+
   $('#bt_displayInteractList').on('mouseenter',function(){
    var timer = setTimeout(function(){
-    $('#div_listInteract').show();
     $('#bt_displayInteractList').find('i').hide();
+    $('#interactThumbnailDisplay').addClass('col-lg-10 col-md-10 col-sm-9').removeClass('col-lg-12');
+    $('#div_conf').addClass('col-lg-10 col-md-10 col-sm-9').removeClass('col-lg-12');
+    $('#div_listInteract').show();
     $('.interactListContainer').packery();
   }, 100);
    $(this).data('timerMouseleave', timer)
@@ -57,13 +41,15 @@ if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1)
 });
 
  $('#div_listInteract').on('mouseleave',function(){
-   var timer = setTimeout(function(){
-    $('#div_listInteract').hide();
-    $('#bt_displayInteractList').find('i').show();
-    $('.interactListContainer').packery();
-  }, 300);
-   $(this).data('timerMouseleave', timer);
- }).on("mouseenter", function(){
+  var timer = setTimeout(function(){
+   $('#div_listInteract').hide();
+   $('#bt_displayInteractList').find('i').show();
+   $('#interactThumbnailDisplay').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
+   $('#div_conf').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
+   $('.interactListContainer').packery();
+ }, 300);
+  $(this).data('timerMouseleave', timer);
+}).on("mouseenter", function(){
   clearTimeout($(this).data('timerMouseleave'));
 });
 }
@@ -107,6 +93,12 @@ $('#in_treeSearch').keyup(function () {
 
 $('.interactDisplayCard').on('click',function(){
   displayInteract($(this).attr('data-interact_id'));
+});
+
+$('.accordion-toggle').off('click').on('click', function () {
+  setTimeout(function(){
+    $('.interactListContainer').packery();
+  },100);
 });
 
 $('#bt_duplicate').on('click', function () {
@@ -240,6 +232,7 @@ $('#div_pageContainer').undelegate(".cmdAction.expressionAttr[data-l1key=cmd]", 
   var el = $(this);
   jeedom.cmd.displayActionOption($(this).value(), init(expression[0].options), function (html) {
     el.closest('.' + type).find('.actionOptions').html(html);
+    taAutosize();
   })
 });
 
@@ -250,6 +243,7 @@ $("body").undelegate(".listCmd", 'click').delegate(".listCmd", 'click', function
     el.value(result.human);
     jeedom.cmd.displayActionOption(el.value(), '', function (html) {
       el.closest('.' + type).find('.actionOptions').html(html);
+      taAutosize();
     });
   });
 });
@@ -261,6 +255,7 @@ $("body").undelegate(".listAction", 'click').delegate(".listAction", 'click', fu
     el.value(result.human);
     jeedom.cmd.displayActionOption(el.value(), '', function (html) {
       el.closest('.' + type).find('.actionOptions').html(html);
+      taAutosize();
     });
   });
 });
@@ -271,7 +266,6 @@ $("body").undelegate('.bt_removeAction', 'click').delegate('.bt_removeAction', '
 });
 
 function displayInteract(_id){
-
   $('#div_conf').show();
   $('#interactThumbnailDisplay').hide();
   $('.li_interact').removeClass('active');
@@ -324,6 +318,7 @@ if(isset(data.actions.cmd) && $.isArray(data.actions.cmd) && data.actions.cmd.le
     addAction(data.actions.cmd[i], 'action','{{Action}}');
   }
 }
+taAutosize();
 jeedom.cmd.displayActionsOption({
   params : actionOptions,
   async : false,
@@ -336,12 +331,12 @@ jeedom.cmd.displayActionsOption({
         $('#'+data[i].id).append(data[i].html.html);
       }
     }
+    taAutosize();
   }
 });
 }
 });
 }
-
 
 function addAction(_action, _type, _name) {
   if (!isset(_action)) {
@@ -365,9 +360,7 @@ function addAction(_action, _type, _name) {
   div += '</div>';
   div += '</div>';
   var actionOption_id = uniqId();
-  div += '<div class="col-sm-7 actionOptions" id="'+actionOption_id+'">';
-  div += jeedom.cmd.displayActionOption(init(_action.cmd, ''), _action.options);
-  div += '</div>';
+  div += '<div class="col-sm-7 actionOptions" id="'+actionOption_id+'"></div>';
   $('#div_' + _type).append(div);
   $('#div_' + _type + ' .' + _type + ':last').setValues(_action, '.expressionAttr');
   actionOptions.push({

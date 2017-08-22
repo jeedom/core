@@ -94,11 +94,11 @@ class cache {
 		return $return;
 	}
 	/**
-         * @name getCache()
-         * @access public
-         * @static
-         * @return type
-         */
+	 * @name getCache()
+	 * @access public
+	 * @static
+	 * @return type
+	 */
 	public static function getCache() {
 		if (self::$cache !== null) {
 			return self::$cache;
@@ -139,16 +139,16 @@ class cache {
 	}
 
 	/**
-         * 
-         * @param type $_key
-         * @return type
-         */
+	 *
+	 * @param type $_key
+	 * @return type
+	 */
 	public static function byKey($_key) {
 		$cache = self::getCache()->fetch($_key);
 		if (!is_object($cache)) {
 			$cache = (new self())
-                                ->setKey($_key)
-                                ->setDatetime(date('Y-m-d H:i:s'));
+				->setKey($_key)
+				->setDatetime(date('Y-m-d H:i:s'));
 		}
 		return $cache;
 	}
@@ -176,7 +176,7 @@ class cache {
 		try {
 			com_shell::execute('rm -rf ' . dirname(__FILE__) . '/../../cache.tar.gz;cd ' . $cache_dir . ';tar cfz ' . dirname(__FILE__) . '/../../cache.tar.gz * 2>&1 > /dev/null;chmod 775 ' . dirname(__FILE__) . '/../../cache.tar.gz;chown ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . dirname(__FILE__) . '/../../cache.tar.gz;chmod 777 -R ' . $cache_dir . ' 2>&1 > /dev/null');
 		} catch (Exception $e) {
-			log::add('cache', 'debug', $e->getMessage());
+
 		}
 
 	}

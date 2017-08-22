@@ -9,12 +9,12 @@ if (!is_object($scenario)) {
 sendVarToJs('scenarioLog_scenario_id', init('scenario_id'));
 ?>
 <div style="display: none;width : 100%" id="div_alertScenarioLog"></div>
-
+<?php echo '<span style="font-weight: bold;font-size:1.5em;">' . $scenario->getHumanName() . '</span>'; ?>
 <a class="btn btn-warning pull-right" data-state="1" id="bt_scenarioLogStopStart"><i class="fa fa-pause"></i> {{Pause}}</a>
 <input class="form-control pull-right" id="in_scenarioLogSearch" style="width : 300px;" placeholder="{{Rechercher}}" />
-<a class="btn btn-danger pull-right" id="bt_scenarioLogEmpty"><i class="fa fa-trash"></i> {{Vider les logs}}</a>
+<a class="btn btn-danger pull-right" id="bt_scenarioLogEmpty"><i class="fa fa-trash"></i> {{Vider le log}}</a>
 <a class="btn btn-success pull-right" id="bt_scenarioLogDownload"><i class="fa fa-cloud-download"></i> {{Télécharger}}</a>
-<br/><br/><br/>
+<br/><br/>
 <pre id='pre_scenariolog' style='overflow: auto; height: calc(100% - 70px);with:90%;'></pre>
 
 <script>
@@ -32,7 +32,7 @@ sendVarToJs('scenarioLog_scenario_id', init('scenario_id'));
             $('#div_alertScenarioLog').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-            $('#div_alertScenarioLog').showAlert({message: '{{Log vidés avec succès}}', level: 'success'});
+            $('#div_alertScenarioLog').showAlert({message: '{{Log vidé avec succès}}', level: 'success'});
             $('#pre_logScenarioDisplay').empty();
         }
     });

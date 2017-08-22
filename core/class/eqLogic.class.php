@@ -21,7 +21,7 @@ require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 
 class eqLogic {
 	/*     * *************************Attributs****************************** */
-	const UIDDELIMITER = '____';
+	const UIDDELIMITER = '__';
 	protected $id;
 	protected $name;
 	protected $logicalId = '';
@@ -40,6 +40,8 @@ class eqLogic {
 	protected $_object = null;
 	private static $_templateArray = array();
 	protected $_needRefreshWidget = false;
+	protected $_timeoutUpdated = false;
+	protected $_batteryUpdated = false;
 	protected $_cmds = array();
 
 	/*     * ***********************Méthodes statiques*************************** */
@@ -71,11 +73,14 @@ class eqLogic {
 		return $_inputs;
 	}
 
-	public static function all() {
+	public static function all($_onlyEnable = false) {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__, 'el') . '
         FROM eqLogic el
-        LEFT JOIN object ob ON el.object_id=ob.id
-        ORDER BY ob.name,el.name';
+        LEFT JOIN object ob ON el.object_id=ob.id';
+		if ($_onlyEnable) {
+			$sql .= ' AND isEnable=1';
+		}
+		$sql .= ' ORDER BY ob.name,el.name';
 		return self::cast(DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
@@ -267,8 +272,22 @@ class eqLogic {
 					if ($eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s')) < date('Y-m-d H:i:s', strtotime('-' . $noReponseTimeLimit . ' minutes' . date('Y-m-d H:i:s')))) {
 						$message = __('Attention', __FILE__) . ' ' . $eqLogic->getHumanName();
 						$message .= __(' n\'a pas envoyé de message depuis plus de ', __FILE__) . $noReponseTimeLimit . __(' min (vérifier les piles)', __FILE__);
-						message::add('core', $message, '', $logicalId);
 						$eqLogic->setStatus('timeout', 1);
+						if (config::ByKey('alert::addMessageOnTimeout') == 1) {
+							message::add('core', $message, '', $logicalId);
+						}
+						$cmds = explode(('&&'), config::byKey('alert::timeoutCmd'));
+						if (count($cmds) > 0 && trim(config::byKey('alert::timeoutCmd')) != '') {
+							foreach ($cmds as $id) {
+								$cmd = cmd::byId(str_replace('#', '', $id));
+								if (is_object($cmd)) {
+									$cmd->execCmd(array(
+										'title' => __('[' . config::byKey('name', 'core', 'JEEDOM') . '] ', __FILE__) . $message,
+										'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $message,
+									));
+								}
+							}
+						}
 					}
 				} else {
 					if ($eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s')) > date('Y-m-d H:i:s', strtotime('-' . $noReponseTimeLimit . ' minutes' . date('Y-m-d H:i:s')))) {
@@ -399,6 +418,12 @@ class eqLogic {
 			}
 		}
 		return $text;
+	}
+
+	public function clearCacheWidget() {
+		foreach (self::all() as $eqLogic) {
+			$eqLogic->emptyCacheWidget();
+		}
 	}
 
 	/*     * *********************Méthodes d'instance************************* */
@@ -614,23 +639,49 @@ class eqLogic {
 			return $replace;
 		}
 		$version = jeedom::versionAlias($_version);
-		$cmd_html = '';
-		$br_before = 0;
-		foreach ($this->getCmd(null, null, true) as $cmd) {
-			if (isset($replace['#refresh_id#']) && $cmd->getId() == $replace['#refresh_id#']) {
-				continue;
-			}
-			if ($br_before == 0 && $cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
-				$cmd_html .= '<br/>';
-			}
-			$cmd_html .= $cmd->toHtml($_version, '', $replace['#cmd-background-color#']);
-			$br_before = 0;
-			if ($cmd->getDisplay('forceReturnLineAfter', 0) == 1) {
-				$cmd_html .= '<br/>';
-				$br_before = 1;
-			}
+
+		switch ($this->getDisplay('layout::' . $version)) {
+			case 'table':
+				$table = generateHtmlTable($this->getDisplay('layout::' . $version . '::table::nbLine'), $this->getDisplay('layout::' . $version . '::table::nbColumn'));
+				$br_before = 0;
+				foreach ($this->getCmd(null, null, true) as $cmd) {
+					if (isset($replace['#refresh_id#']) && $cmd->getId() == $replace['#refresh_id#']) {
+						continue;
+					}
+					$tag = '#cmd::' . $this->getDisplay('layout::' . $version . '::table::cmd::' . $cmd->getId() . '::line', 1) . '::' . $this->getDisplay('layout::' . $version . '::table::cmd::' . $cmd->getId() . '::column', 1) . '#';
+
+					if ($br_before == 0 && $cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
+						$table['tag'][$tag] .= '<br/>';
+					}
+					$table['tag'][$tag] .= $cmd->toHtml($_version, '', $replace['#cmd-background-color#']);
+					$br_before = 0;
+					if ($cmd->getDisplay('forceReturnLineAfter', 0) == 1) {
+						$table['tag'][$tag] .= '<br/>';
+						$br_before = 1;
+					}
+				}
+				$replace['#cmd#'] = template_replace($table['tag'], $table['html']);
+				break;
+			default:
+				$cmd_html = '';
+				$br_before = 0;
+				foreach ($this->getCmd(null, null, true) as $cmd) {
+					if (isset($replace['#refresh_id#']) && $cmd->getId() == $replace['#refresh_id#']) {
+						continue;
+					}
+					if ($br_before == 0 && $cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
+						$cmd_html .= '<br/>';
+					}
+					$cmd_html .= $cmd->toHtml($_version, '', $replace['#cmd-background-color#']);
+					$br_before = 0;
+					if ($cmd->getDisplay('forceReturnLineAfter', 0) == 1) {
+						$cmd_html .= '<br/>';
+						$br_before = 1;
+					}
+				}
+				$replace['#cmd#'] = $cmd_html;
+				break;
 		}
-		$replace['#cmd#'] = $cmd_html;
 		if (!isset(self::$_templateArray[$version])) {
 			self::$_templateArray[$version] = getTemplate('core', $version, 'eqLogic');
 		}
@@ -642,6 +693,7 @@ class eqLogic {
 		if (isset($_SESSION) && isset($_SESSION['user']) && is_object($_SESSION['user'])) {
 			$user_id = $_SESSION['user']->getId();
 		}
+		$_html = sanitize_output($_html);
 		cache::set('widgetHtml' . $this->getId() . $_version . $user_id, $_html);
 		return $_html;
 	}
@@ -661,13 +713,11 @@ class eqLogic {
 	public function getAlert() {
 		global $JEEDOM_INTERNAL_CONFIG;
 		$hasAlert = '';
-		if (!isset($JEEDOM_INTERNAL_CONFIG['alerts'])) {
-			return $hasAlert;
-		}
+		$maxLevel = 0;
 		foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $key => $data) {
-			if ($this->getStatus($key, 0) != 0) {
+			if ($this->getStatus($key, 0) != 0 && $JEEDOM_INTERNAL_CONFIG['alerts'][$key]['level'] > $maxLevel) {
 				$hasAlert = $data;
-				break;
+				$maxLevel = $JEEDOM_INTERNAL_CONFIG['alerts'][$key]['level'];
 			}
 		}
 		return $hasAlert;
@@ -684,6 +734,7 @@ class eqLogic {
 			}
 			if ($JEEDOM_INTERNAL_CONFIG['alerts'][$cmdLevel]['level'] > $max) {
 				$return = $cmdLevel;
+				$max = $JEEDOM_INTERNAL_CONFIG['alerts'][$cmdLevel]['level'];
 			}
 		}
 		return $return;
@@ -733,6 +784,19 @@ class eqLogic {
 		DB::save($this, $_direct);
 		if ($this->_needRefreshWidget) {
 			$this->refreshWidget();
+		}
+		if ($this->_batteryUpdated) {
+			$this->batteryStatus();
+		}
+		if ($this->_timeoutUpdated) {
+			if ($this->getTimeout() == null) {
+				foreach (message::byPluginLogicalId('core', 'noMessage' . $this->getId()) as $message) {
+					$message->remove();
+				}
+				$this->setStatus('timeout', 0);
+			} else {
+				$this->checkAlive();
+			}
 		}
 	}
 
@@ -815,7 +879,14 @@ class eqLogic {
 		}
 	}
 
-	public function batteryStatus($_pourcent, $_datetime = '') {
+	public function batteryStatus($_pourcent = '', $_datetime = '') {
+		if ($this->getConfiguration('noBatterieCheck', 0) == 1) {
+			return;
+		}
+		if ($_pourcent == '') {
+			$_pourcent = $this->getStatus('battery');
+			$_datetime = $this->getStatus('batteryDatetime');
+		}
 		if ($_pourcent > 100) {
 			$_pourcent = 100;
 		}
@@ -823,14 +894,69 @@ class eqLogic {
 			$_pourcent = 0;
 		}
 		$warning_threshold = $this->getConfiguration('battery_warning_threshold', config::byKey('battery::warning'));
-		if ($this->getConfiguration('noBatterieCheck', 0) != 0 && $_pourcent < $warning_threshold) {
+		$danger_threshold = $this->getConfiguration('battery_danger_threshold', config::byKey('battery::danger'));
+		if ($_pourcent != '' && $_pourcent < $danger_threshold) {
+			$prevStatus = $this->getStatus('batterydanger', 0);
 			$logicalId = 'lowBattery' . $this->getId();
-			$message = 'Le module ' . $this->getEqType_name() . ' ' . $this->getHumanName() . ' a moins de ' . $_pourcent . '% de batterie';
+			$message = 'Le module ' . $this->getEqType_name() . ' ' . $this->getHumanName() . ' a moins de ' . $danger_threshold . '% de batterie (niveau danger avec ' . $_pourcent . '% de batterie)';
 			if ($this->getConfiguration('battery_type') != '') {
 				$message .= ' (' . $this->getConfiguration('battery_type') . ')';
 			}
-			message::add($this->getEqType_name(), $message, '', $logicalId);
+			$this->setStatus('batterydanger', 1);
+			if ($prevStatus == 0) {
+				if (config::ByKey('alert::addMessageOnBatterydanger') == 1) {
+					message::add($this->getEqType_name(), $message, '', $logicalId);
+				}
+				$cmds = explode(('&&'), config::byKey('alert::batterydangerCmd'));
+				if (count($cmds) > 0 && trim(config::byKey('alert::batterydangerCmd')) != '') {
+					foreach ($cmds as $id) {
+						$cmd = cmd::byId(str_replace('#', '', $id));
+						if (is_object($cmd)) {
+							$cmd->execCmd(array(
+								'title' => __('[' . config::byKey('name', 'core', 'JEEDOM') . '] ', __FILE__) . $message,
+								'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $message,
+							));
+						}
+					}
+				}
+			}
+		} else if ($_pourcent != '' && $_pourcent < $warning_threshold) {
+			$prevStatus = $this->getStatus('batterywarning', 0);
+			$logicalId = 'warningBattery' . $this->getId();
+			$message = 'Le module ' . $this->getEqType_name() . ' ' . $this->getHumanName() . ' a moins de ' . $warning_threshold . '% de batterie (niveau warning avec ' . $_pourcent . '% de batterie)';
+			if ($this->getConfiguration('battery_type') != '') {
+				$message .= ' (' . $this->getConfiguration('battery_type') . ')';
+			}
+			$this->setStatus('batterywarning', 1);
+			$this->setStatus('batterydanger', 0);
+			if ($prevStatus == 0) {
+				if (config::ByKey('alert::addMessageOnBatterywarning') == 1) {
+					message::add($this->getEqType_name(), $message, '', $logicalId);
+				}
+				$cmds = explode(('&&'), config::byKey('alert::batterywarningCmd'));
+				if (count($cmds) > 0 && trim(config::byKey('alert::batterywarningCmd')) != '') {
+					foreach ($cmds as $id) {
+						$cmd = cmd::byId(str_replace('#', '', $id));
+						if (is_object($cmd)) {
+							$cmd->execCmd(array(
+								'title' => __('[' . config::byKey('name', 'core', 'JEEDOM') . '] ', __FILE__) . $message,
+								'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $message,
+							));
+						}
+					}
+				}
+			}
+		} else {
+			foreach (message::byPluginLogicalId($this->getEqType_name(), 'warningBattery' . $this->getId()) as $message) {
+				$message->remove();
+			}
+			foreach (message::byPluginLogicalId($this->getEqType_name(), 'lowBattery' . $this->getId()) as $message) {
+				$message->remove();
+			}
+			$this->setStatus('batterydanger', 0);
+			$this->setStatus('batterywarning', 0);
 		}
+
 		$this->setStatus(array('battery' => $_pourcent, 'batteryDatetime' => ($_datetime != '') ? $_datetime : date('Y-m-d H:i:s')));
 	}
 
@@ -1064,6 +1190,7 @@ class eqLogic {
 			'fontweight' => ($_level == 1) ? 'bold' : 'normal',
 			'image' => $this->getImage(),
 			'title' => $this->getHumanName(),
+			'url' => $this->getLinkToConfiguration(),
 		);
 		$use = $this->getUse();
 		$usedBy = $this->getUsedBy();
@@ -1241,6 +1368,11 @@ class eqLogic {
 	}
 
 	public function setConfiguration($_key, $_value) {
+		if (in_array($_key, array('battery_warning_threshold', 'battery_danger_threshold'))) {
+			if ($this->getConfiguration($_key, '') != $_value) {
+				$this->_batteryUpdated = True;
+			}
+		}
 		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
 		return $this;
 	}
@@ -1262,8 +1394,11 @@ class eqLogic {
 	}
 
 	public function setTimeout($_timeout) {
-		if ($_timeout == '' || is_string($_timeout) || is_nan(intval($_timeout)) || $_timeout < 1) {
+		if ($_timeout == '' || is_nan(intval($_timeout)) || $_timeout < 1) {
 			$_timeout = null;
+		}
+		if ($_timeout != $this->getTimeout()) {
+			$this->_timeoutUpdated = True;
 		}
 		$this->timeout = $_timeout;
 		return $this;

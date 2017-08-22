@@ -161,6 +161,7 @@ $('.eqLogicAction[data-action=copy]').on('click', function () {
                             }
                             url += 'id=' + data.id + '&saveSuccessFull=1';
                             loadPage(url);
+                            bootbox.hideAll();
                         }
                     }
                 });

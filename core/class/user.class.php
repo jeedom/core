@@ -199,6 +199,26 @@ class user {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
+	public static function byProfils($_profils) {
+		$values = array(
+			'profils' => $_profils,
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+        FROM user
+        WHERE profils=:profils';
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+	}
+
+	public static function byEnable($_enable) {
+		$values = array(
+			'enable' => $_enable,
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+        FROM user
+        WHERE enable=:enable';
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+	}
+
 	public static function hasDefaultIdentification() {
 		$values = array(
 			'password' => sha512('admin'),
@@ -217,6 +237,11 @@ class user {
 		$_SESSION['failed_count'] = (isset($_SESSION['failed_count'])) ? $_SESSION['failed_count'] + 1 : 1;
 		$_SESSION['failed_datetime'] = strtotime('now');
 		@session_write_close();
+	}
+
+	public static function removeBanIp() {
+		$cache = cache::byKey('security::banip');
+		$cache->remove();
 	}
 
 	public static function isBan() {
@@ -283,12 +308,16 @@ class user {
 
 	/*     * *********************Méthodes d'instance************************* */
 
-	public function presave() {
+	public function preSave() {
 		if ($this->getLogin() == '') {
 			throw new Exception(__('Le nom d\'utilisateur ne peut pas être vide', __FILE__));
 		}
-		if (count(user::searchByRight('admin')) == 1 && $this->getRights('admin') == 1 && $this->getEnable() == 0) {
-			$this->setEnable(1);
+		$admins = user::byProfils('admin');
+		if (count($admins) == 1 && $this->getProfils() == 'admin' && $this->getEnable() == 0) {
+			throw new Exception(__('Vous ne pouvez désactiver le dernière utilisateur', __FILE__));
+		}
+		if (count($admins) == 1 && $admins[0]->getId() == $this->getid()) {
+			throw new Exception(__('Vous ne pouvez changer le profils du dernière administrateur', __FILE__));
 		}
 	}
 
@@ -297,7 +326,7 @@ class user {
 	}
 
 	public function preRemove() {
-		if (count(user::searchByRight('admin')) == 1 && $this->getRights('admin') == 1) {
+		if (count(user::byProfils('admin')) == 1 && $this->getProfils() == 'admin') {
 			throw new Exception(__('Vous ne pouvez supprimer le dernière administrateur', __FILE__));
 		}
 	}
@@ -406,5 +435,3 @@ class user {
 	}
 
 }
-
-?>

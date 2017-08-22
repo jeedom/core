@@ -32,7 +32,7 @@ try {
 		}
 		$object = object::byId(init('id'));
 		if (!is_object($object)) {
-			throw new Exception(__('Objet inconnu verifié l\'id', __FILE__));
+			throw new Exception(__('Objet inconnu verifiez l\'id', __FILE__));
 		}
 		$object->remove();
 		ajax::success();
@@ -74,10 +74,10 @@ try {
 	if (init('action') == 'uploadImage') {
 		$object = object::byId(init('id'));
 		if (!is_object($object)) {
-			throw new Exception(__('Objet inconnu verifié l\'id', __FILE__));
+			throw new Exception(__('Objet inconnu verifiez l\'id', __FILE__));
 		}
 		if (!isset($_FILES['file'])) {
-			throw new Exception(__('Aucun fichier trouvé. Vérifié parametre PHP (post size limit)', __FILE__));
+			throw new Exception(__('Aucun fichier trouvé. Vérifiez le parametre PHP (post size limit)', __FILE__));
 		}
 		$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
 		if (!in_array($extension, array('.jpg', '.png'))) {
@@ -96,7 +96,7 @@ try {
 	if (init('action') == 'getChild') {
 		$object = object::byId(init('id'));
 		if (!is_object($object)) {
-			throw new Exception(__('Objet inconnu verifié l\'id', __FILE__));
+			throw new Exception(__('Objet inconnu verifiez l\'id', __FILE__));
 		}
 		$return = utils::o2a($object->getChild());
 		ajax::success($return);
@@ -109,6 +109,9 @@ try {
 			} else {
 				$objects = array();
 				foreach (object::all() as $object) {
+					if ($object->getConfiguration('hideOnDashboard', 0) == 1) {
+						continue;
+					}
 					$objects[] = $object->getId();
 				}
 			}
@@ -189,7 +192,7 @@ try {
 		} else {
 			$object = object::byId(init('id'));
 			if (!is_object($object)) {
-				throw new Exception(__('Objet inconnu verifié l\'id', __FILE__));
+				throw new Exception(__('Objet inconnu verifiez l\'id', __FILE__));
 			}
 			$info_object = array();
 			$info_object['id'] = $object->getId();
@@ -203,4 +206,4 @@ try {
 } catch (Exception $e) {
 	ajax::error(displayExeption($e), $e->getCode());
 }
-?>
+ 

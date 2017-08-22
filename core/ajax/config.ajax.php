@@ -54,9 +54,16 @@ try {
 			foreach ($keys as $key => $value) {
 				$return[$key] = jeedom::toHumanReadable($configs[$key]);
 			}
+			if (init('convertToHumanReadable', 0)) {
+				$return = jeedom::toHumanReadable($return);
+			}
 			ajax::success($return);
 		} else {
-			ajax::success(config::byKey($keys, init('plugin', 'core')));
+			$return = config::byKey($keys, init('plugin', 'core'));
+			if (init('convertToHumanReadable', 0)) {
+				$return = jeedom::toHumanReadable($return);
+			}
+			ajax::success($return);
 		}
 	}
 

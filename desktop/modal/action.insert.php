@@ -21,6 +21,7 @@ if (!isConnect()) {
         <option value="alert">{{Alerte}}</option>
         <option value="popup">{{Pop-up}}</option>
         <option value="report">{{Rapport}}</option>
+        <option value="remove_inat">{{Supprimer bloc DANS/A programmé}}</option>
     </select>
 </center>
 <br/>
@@ -65,7 +66,7 @@ if (!isConnect()) {
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription ask" style="display:none;">
-    {{Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finie que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec le plugin SMS, Slack et SARAH.}}
+    {{Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finie que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.}}
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription jeedom_poweroff" style="display:none;">
@@ -90,6 +91,10 @@ if (!isConnect()) {
 
 <div class="alert alert-info mod_actionValue_selDescription report" style="display:none;">
     {{Permet d'envoyer par une commande message un rapport d'une vue, d'un design ou d'un panel en PNG/PDF/JPEG/SVG.}}
+</div>
+
+<div class="alert alert-info mod_actionValue_selDescription remove_inat" style="display:none;">
+    {{Permet de supprimer la programmation de tous les blocs DANS et A du scénario}}
 </div>
 <script>
     $('#mod_actionValue_sel').on('change',function(){

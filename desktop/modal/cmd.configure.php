@@ -24,6 +24,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
   <a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureRawObject"><i class="fa fa-info"></i> {{Informations}}</a>
   <a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureLogRealTime"><i class="fa fa-file"></i> {{Log}}</a>
   <a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureGraph"><i class="fa fa-object-group"></i> {{Liens}}</a>
+  <a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureTest"><i class="fa fa-rss"></i> {{Tester}}</a>
   <div role="tabpanel">
     <ul class="nav nav-tabs" role="tablist">
       <li role="presentation" class="active"><a href="#cmd_information" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-info-circle"></i> {{Informations}}</a></li>
@@ -39,11 +40,10 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 ?>
        <?php if ($cmd->widgetPossibility('custom::htmlCode')) {
 	?>
-         <li role="presentation"><a href="#cmd_html" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-code-fork"></i> {{Code du widget}}</a></li>
+         <li role="presentation"><a href="#cmd_html" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-code-fork"></i> {{Code}}</a></li>
          <?php }
 ?>
        </ul>
-
 
        <div class="tab-content" id="div_displayCmdConfigure">
         <div role="tabpanel" class="tab-pane active" id="cmd_information">
@@ -149,6 +149,12 @@ echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fa 
                     <input type="checkbox" class="cmdAttr" data-l1key="isVisible" />
                   </div>
                 </div>
+                <div class="form-group">
+                  <label class="col-xs-4 control-label">{{Suivre dans la timeline}}</label>
+                  <div class="col-xs-4">
+                    <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="timeline::enable" />
+                  </div>
+                </div>
                 <div class="iconeGeneric">
                  <label class="col-xs-4 control-label">{{Icône}}</label>
                  <div class="col-xs-4">
@@ -156,6 +162,7 @@ echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fa 
                   <a class="btn btn-default btn-sm" id="bt_cmdConfigureChooseIcon"><i class="fa fa-flag"></i> {{Icône}}</a>
                 </div>
               </div>
+
             </fieldset>
           </form>
         </div>
@@ -388,7 +395,7 @@ foreach ($groups as $group) {
 </form>
 <?php }?>
 
-<?php if ($cmd->getType() == 'info' && ($cmd->getSubType() == 'numeric' || $cmd->getSubType() == 'binary')) {
+<?php if ($cmd->getType() == 'info' && $JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['visible']) {
 	?>
  <form class="form-horizontal">
   <fieldset>
@@ -399,6 +406,7 @@ foreach ($groups as $group) {
       <input type="checkbox" class="cmdAttr" data-l1key="isHistorized" />
     </div>
   </div>
+  <?php if ($JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth']) {?>
   <div class="form-group">
     <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Mode de lissage}}</label>
     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
@@ -410,7 +418,8 @@ foreach ($groups as $group) {
       </select>
     </div>
   </div>
-
+  <?php }
+	?>
   <div class="form-group">
     <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Purger l'historique si plus vieux que }}</label>
     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
@@ -419,6 +428,7 @@ foreach ($groups as $group) {
        <option value="-1 day">{{1 jour}}</option>
        <option value="-7 days">{{7 jours}}</option>
        <option value="-1 month">{{1 mois}}</option>
+       <option value="-3 month">{{3 mois}}</option>
        <option value="-6 month">{{6 mois}}</option>
        <option value="-1 year">{{1 an}}</option>
      </select>
@@ -1111,6 +1121,7 @@ if ($cmd->getDisplay('parameters') != '') {
       el.value(result.human);
       jeedom.cmd.displayActionOption(el.value(), '', function (html) {
         el.closest('.' + type).find('.actionOptions').html(html);
+        taAutosize();
       });
     });
   });
@@ -1121,6 +1132,7 @@ if ($cmd->getDisplay('parameters') != '') {
     var el = $(this);
     jeedom.cmd.displayActionOption($(this).value(), init(expression[0].options), function (html) {
       el.closest('.' + type).find('.actionOptions').html(html);
+      taAutosize();
     })
   });
 
@@ -1149,6 +1161,7 @@ if ($cmd->getDisplay('parameters') != '') {
     div += '</div>';
     $('#div_' + _type).append(div);
     $('#div_' + _type + ' .' + _type + ':last').setValues(_action, '.expressionAttr');
+    taAutosize();
   }
 
 
@@ -1213,4 +1226,8 @@ if ($cmd->getDisplay('parameters') != '') {
     $('#md_modal2').dialog({title: "{{Logs}}"});
     $('#md_modal2').load('index.php?v=d&modal=log.display&log=event&search=' + cmdInfoSearchString).dialog('open');
   });
+
+  $('#bt_cmdConfigureTest').on('click',function(){
+   jeedom.cmd.test({id: cmdInfo.id});
+ });
 </script>

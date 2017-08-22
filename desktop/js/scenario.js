@@ -52,55 +52,40 @@
  {val: 'valueDate(cmd)'},
  {val: 'eqEnable(equipement)'}
  ];
- autoCompleteAction = ['report','sleep', 'variable', 'scenario', 'stop', 'wait','gotodesign','log','message','equipement','ask','jeedom_poweroff','scenario_return','alert','popup','icon','event'];
+ autoCompleteAction = ['report','sleep', 'variable', 'scenario', 'stop', 'wait','gotodesign','log','message','equipement','ask','jeedom_poweroff','scenario_return','alert','popup','icon','event','remove_inat'];
 
  if (getUrlVars('saveSuccessFull') == 1) {
   $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
 }
 
-$("#div_listScenario").resizable({
-  handles: "all",
-  grid: [1, 10000],
-  stop: function () {
-    $('.scenarioListContainer').packery();
-    var value = {options: {scenarioMenuSize: $("#div_listScenario").width()}};
-    jeedom.user.saveProfils({
-      profils: value,
-      global: false,
-      error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'});
-      },
-      success: function () {
-      }
-    });
-  }
-});
-
-if(!isset(userProfils.scenarioMenuSize) || userProfils.scenarioMenuSize > 0){
-  $("#div_listScenario").width( userProfils.scenarioMenuSize);
-}
-
 if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1) && !jQuery.support.touch){
   $('#div_listScenario').hide();
-  $('#bt_displayScenarioList').on('mouseenter',function(){
-    var timer = setTimeout(function(){
-      $('#div_listScenario').show();
-      $('#bt_displayScenarioList').find('i').hide();
-      $('.scenarioListContainer').packery();
-    }, 100);
-    $(this).data('timerMouseleave', timer)
-  }).on("mouseleave", function(){
-    clearTimeout($(this).data('timerMouseleave'));
-  });
+  $('#scenarioThumbnailDisplay').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
+  $('#div_editScenario').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
 
-  $('#div_listScenario').on('mouseleave',function(){
+  $('#bt_displayScenarioList').on('mouseenter',function(){
    var timer = setTimeout(function(){
-    $('#div_listScenario').hide();
-    $('#bt_displayScenarioList').find('i').show();
+    $('#bt_displayScenarioList').find('i').hide();
+    $('#scenarioThumbnailDisplay').addClass('col-lg-10 col-md-10 col-sm-9').removeClass('col-lg-12');
+    $('#div_editScenario').addClass('col-lg-10 col-md-10 col-sm-9').removeClass('col-lg-12');
+    $('#div_listScenario').show();
     $('.scenarioListContainer').packery();
-  }, 300);
-   $(this).data('timerMouseleave', timer);
- }).on("mouseenter", function(){
+  }, 100);
+   $(this).data('timerMouseleave', timer)
+ }).on("mouseleave", function(){
+  clearTimeout($(this).data('timerMouseleave'));
+});
+
+ $('#div_listScenario').on('mouseleave',function(){
+  var timer = setTimeout(function(){
+   $('#div_listScenario').hide();
+   $('#bt_displayScenarioList').find('i').show();
+   $('#scenarioThumbnailDisplay').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
+   $('#div_editScenario').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
+   $('.scenarioListContainer').packery();
+ }, 300);
+  $(this).data('timerMouseleave', timer);
+}).on("mouseenter", function(){
   clearTimeout($(this).data('timerMouseleave'));
 });
 }
@@ -113,19 +98,26 @@ $("#div_listScenario").trigger('resize');
 
 $('.scenarioListContainer').packery();
 
-$('#bt_scenarioThumbnailDisplay').on('click', function () {
+$('#bt_scenarioThumbnailDisplay').off('click').on('click', function () {
   $('#div_editScenario').hide();
   $('#scenarioThumbnailDisplay').show();
   $('.li_scenario').removeClass('active');
   $('.scenarioListContainer').packery();
 });
 
-$('.scenarioDisplayCard').on('click', function () {
+$('.scenarioDisplayCard').off('click').on('click', function () {
+  $('#div_tree').jstree('open_all');
   $('#div_tree').jstree('deselect_all');
   $('#div_tree').jstree('select_node', 'scenario' + $(this).attr('data-scenario_id'));
 });
 
-$('#div_tree').on('select_node.jstree', function (node, selected) {
+$('.accordion-toggle').off('click').on('click', function () {
+  setTimeout(function(){
+    $('.scenarioListContainer').packery();
+  },100);
+});
+
+$('#div_tree').off('click').on('select_node.jstree', function (node, selected) {
   if (selected.node.a_attr.class == 'li_scenario') {
     $.hideAlert();
     $(".li_scenario").removeClass('active');
@@ -168,7 +160,7 @@ $('.scenarioAttr[data-l1key=group]').autocomplete({
   minLength: 1,
 });
 
-$("#bt_changeAllScenarioState,#bt_changeAllScenarioState2").on('click', function () {
+$("#bt_changeAllScenarioState,#bt_changeAllScenarioState2").off('click').on('click', function () {
   var el = $(this);
   jeedom.config.save({
     configuration: {enableScenario: el.attr('data-state')},
@@ -181,7 +173,7 @@ $("#bt_changeAllScenarioState,#bt_changeAllScenarioState2").on('click', function
  });
 });
 
-$("#bt_addScenario,#bt_addScenario2").on('click', function (event) {
+$("#bt_addScenario,#bt_addScenario2").off('click').on('click', function (event) {
   bootbox.dialog({
     title: "{{Ajout d'un nouveau scénario}}",
     message: '<div class="row">  ' +
@@ -193,15 +185,6 @@ $("#bt_addScenario,#bt_addScenario2").on('click', function (event) {
     '<input id="in_scenarioAddName" type="text" placeholder="{{Nom de votre scénario}}" class="form-control input-md"> ' +
     '</div> ' +
     '</div> ' +
-    '<div class="form-group"> ' +
-    '<label class="col-md-4 control-label">{{Type}}</label> ' +
-    '<div class="col-md-4"> <div class="radio"> <label> ' +
-    '<input name="cbScenarioType" class="cb_scenarioType" type="radio" value="simple" checked="checked"> ' +
-    '{{Simple}}</label> ' +
-    '</div><div class="radio"> <label> ' +
-    '<input  name="cbScenarioType" class="cb_scenarioType" type="radio" value="expert"> {{Avancé}}</label> ' +
-    '</div> ' +
-    '</div> </div>' +
     '</form> </div>  </div>',
     buttons: {
       "Annuler": {
@@ -242,11 +225,11 @@ jwerty.key('ctrl+s', function (e) {
   saveScenario();
 });
 
-$("#bt_saveScenario,#bt_saveScenario2").on('click', function (event) {
+$("#bt_saveScenario,#bt_saveScenario2").off('click').on('click', function (event) {
   saveScenario();
 });
 
-$("#bt_delScenario,#bt_delScenario2").on('click', function (event) {
+$("#bt_delScenario,#bt_delScenario2").off('click').on('click', function (event) {
   $.hideAlert();
   bootbox.confirm('{{Etes-vous sûr de vouloir supprimer le scénario}} <span style="font-weight: bold ;">' + $('.scenarioAttr[data-l1key=name]').value() + '</span> ?', function (result) {
     if (result) {
@@ -264,7 +247,7 @@ $("#bt_delScenario,#bt_delScenario2").on('click', function (event) {
   });
 });
 
-$("#bt_testScenario,#bt_testScenario2").on('click', function () {
+$("#bt_testScenario,#bt_testScenario2").off('click').on('click', function () {
   $.hideAlert();
   jeedom.scenario.changeState({
     id: $('.scenarioAttr[data-l1key=id]').value(),
@@ -278,7 +261,7 @@ $("#bt_testScenario,#bt_testScenario2").on('click', function () {
   });
 });
 
-$("#bt_copyScenario").on('click', function () {
+$("#bt_copyScenario").off('click').on('click', function () {
   bootbox.prompt("Nom du scénario ?", function (result) {
     if (result !== null) {
       jeedom.scenario.copy({
@@ -295,7 +278,7 @@ $("#bt_copyScenario").on('click', function () {
   });
 });
 
-$("#bt_stopScenario").on('click', function () {
+$("#bt_stopScenario").off('click').on('click', function () {
   jeedom.scenario.changeState({
     id: $('.scenarioAttr[data-l1key=id]').value(),
     state: 'stop',
@@ -308,36 +291,44 @@ $("#bt_stopScenario").on('click', function () {
   });
 });
 
-$('#bt_displayScenarioVariable,#bt_displayScenarioVariable2').on('click', function () {
+$('#bt_displayScenarioVariable,#bt_displayScenarioVariable2').off('click').on('click', function () {
   $('#md_modal').dialog({title: "{{Variables des scénarios}}"});
   $("#md_modal").load('index.php?v=d&modal=dataStore.management&type=scenario').dialog('open');
 });
 
-$('.bt_showExpressionTest').on('click', function () {
+$('.bt_showExpressionTest').off('click').on('click', function () {
   $('#md_modal').dialog({title: "{{Testeur d'expression}}"});
   $("#md_modal").load('index.php?v=d&modal=expression.test').dialog('open');
 });
 
-$('.bt_showScenarioSummary').on('click', function () {
+$('.bt_showScenarioSummary').off('click').on('click', function () {
   $('#md_modal').dialog({title: "{{Résumé scénario}}"});
   $("#md_modal").load('index.php?v=d&modal=scenario.summary').dialog('open');
 });
 
-$('#in_addElementType').on('change',function(){
+$('#in_addElementType').off('change').on('change',function(){
   $('.addElementTypeDescription').hide();
   $('.addElementTypeDescription.'+$(this).value()).show();
 });
 
+$('#bt_scenarioTab').on('click',function(){
+
+  setTimeout(function(){ 
+    setEditor(); 
+    taAutosize();
+  }, 50);
+});
+
 /*******************Element***********************/
 
-$('#div_pageContainer').on('click','.helpSelectCron',function(){
+$('#div_pageContainer').off('click','.helpSelectCron').on('click','.helpSelectCron',function(){
   var el = $(this).closest('.schedule').find('.scenarioAttr[data-l1key=schedule]');
   jeedom.getCronSelectModal({},function (result) {
     el.value(result.value);
   });
 });
 
-$('#div_pageContainer').on( 'click','.bt_addScenarioElement', function (event) {
+$('#div_pageContainer').off('click','.bt_addScenarioElement').on( 'click','.bt_addScenarioElement', function (event) {
   var elementDiv = $(this).closest('.element');
   var expression = false;
   if ($(this).hasClass('fromSubElement')) {
@@ -345,10 +336,11 @@ $('#div_pageContainer').on( 'click','.bt_addScenarioElement', function (event) {
     expression = true;
   }
   $('#md_addElement').modal('show');
-    $("#bt_addElementSave").on('click', function (event) {
+  $("#bt_addElementSave").off('click').on('click', function (event) {
     if (expression) {
       elementDiv.append(addExpression({type: 'element', element: {type: $("#in_addElementType").value()}}));
     } else {
+      $('#div_scenarioElement .span_noScenarioElement').remove();
       elementDiv.append(addElement({type: $("#in_addElementType").value()}));
     }
     setEditor();
@@ -357,7 +349,7 @@ $('#div_pageContainer').on( 'click','.bt_addScenarioElement', function (event) {
   });
 });
 
-$('#div_pageContainer').on('click','.bt_removeElement',  function (event) {
+$('#div_pageContainer').off('click','.bt_removeElement').on('click','.bt_removeElement',  function (event) {
   if ($(this).closest('.expression').length != 0) {
     $(this).closest('.expression').remove();
   } else {
@@ -365,18 +357,58 @@ $('#div_pageContainer').on('click','.bt_removeElement',  function (event) {
   }
 });
 
-$('#div_pageContainer').on( 'click','.bt_addAction', function (event) {
+$('#div_pageContainer').off('click','.bt_addAction').on( 'click','.bt_addAction', function (event) {
   $(this).closest('.subElement').children('.expressions').append(addExpression({type: 'action'}));
   setAutocomplete();
   updateSortable();
 });
 
-$('#div_pageContainer').on('click','.bt_removeExpression',  function (event) {
+$('#div_pageContainer').off('click','.bt_addSinon').on( 'click','.bt_addSinon', function (event) {
+
+  if($(this).children("i").hasClass('fa-chevron-right')){
+    $(this).children("i").removeClass('fa-chevron-right').addClass('fa-chevron-down');
+    $(this).closest('.subElement').next().css('display','table');
+  }
+  else
+  {
+    if($(this).closest('.subElement').next().children('.expressions').children('.expression').length>0)
+    {
+     alert("{{Le bloc Sinon ne peut être supprimé s'il contient des éléments}}");
+   }
+   else
+   {  
+     $(this).children("i").removeClass('fa-chevron-down').addClass('fa-chevron-right');
+     $(this).closest('.subElement').next().css('display','none');
+   }
+ }
+});
+
+$('#div_pageContainer').off('click','.bt_addSinon').on( 'click','.bt_addSinon', function (event) {
+
+  if($(this).children("i").hasClass('fa-chevron-right')){
+    $(this).children("i").removeClass('fa-chevron-right').addClass('fa-chevron-down');
+    $(this).closest('.subElement').next().css('display','table');
+  }
+  else
+  {
+    if($(this).closest('.subElement').next().children('.expressions').children('.expression').length>0)
+    {
+     alert("{{Le bloc Sinon ne peut être supprimé s'il contient des éléments}}");
+   }
+   else
+   {  
+     $(this).children("i").removeClass('fa-chevron-down').addClass('fa-chevron-right');
+     $(this).closest('.subElement').next().css('display','none');
+   }
+ }
+});
+
+$('#div_pageContainer').off('click','.bt_removeExpression').on('click','.bt_removeExpression',  function (event) {
   $(this).closest('.expression').remove();
   updateSortable();
 });
 
-$('#div_pageContainer').on('click','.bt_selectCmdExpression',  function (event) {
+$('#div_pageContainer').off('click','.bt_selectCmdExpression').on('click','.bt_selectCmdExpression',  function (event) {
   var el = $(this);
   var expression = $(this).closest('.expression');
   var type = 'info';
@@ -388,6 +420,7 @@ $('#div_pageContainer').on('click','.bt_selectCmdExpression',  function (event) 
       expression.find('.expressionAttr[data-l1key=expression]').value(result.human);
       jeedom.cmd.displayActionOption(expression.find('.expressionAttr[data-l1key=expression]').value(), '', function (html) {
         expression.find('.expressionOptions').html(html);
+        taAutosize();
       });
     }
     if (expression.find('.expressionAttr[data-l1key=type]').value() == 'condition') {
@@ -524,18 +557,19 @@ $('#div_pageContainer').on('click','.bt_selectCmdExpression',  function (event) 
 });
 
 
-$('#div_pageContainer').on('click','.bt_selectOtherActionExpression',  function (event) {
+$('#div_pageContainer').off('click','.bt_selectOtherActionExpression').on('click','.bt_selectOtherActionExpression',  function (event) {
   var expression = $(this).closest('.expression');
   jeedom.getSelectActionModal({scenario : true}, function (result) {
    expression.find('.expressionAttr[data-l1key=expression]').value(result.human);
    jeedom.cmd.displayActionOption(expression.find('.expressionAttr[data-l1key=expression]').value(), '', function (html) {
     expression.find('.expressionOptions').html(html);
+    taAutosize();
   });
  });
 });
 
 
-$('#div_pageContainer').on('click','.bt_selectScenarioExpression',  function (event) {
+$('#div_pageContainer').off('click','.bt_selectScenarioExpression').on('click','.bt_selectScenarioExpression',  function (event) {
   var expression = $(this).closest('.expression');
   jeedom.scenario.getSelectModal({}, function (result) {
     if (expression.find('.expressionAttr[data-l1key=type]').value() == 'action') {
@@ -547,7 +581,7 @@ $('#div_pageContainer').on('click','.bt_selectScenarioExpression',  function (ev
   });
 });
 
-$('#div_pageContainer').on('click','.bt_selectEqLogicExpression',  function (event) {
+$('#div_pageContainer').off('click','.bt_selectEqLogicExpression').on('click','.bt_selectEqLogicExpression',  function (event) {
   var expression = $(this).closest('.expression');
   jeedom.eqLogic.getSelectModal({}, function (result) {
     if (expression.find('.expressionAttr[data-l1key=type]').value() == 'action') {
@@ -559,12 +593,13 @@ $('#div_pageContainer').on('click','.bt_selectEqLogicExpression',  function (eve
   });
 });
 
-$('#div_pageContainer').on('focusout','.expression .expressionAttr[data-l1key=expression]',  function (event) {
+$('#div_pageContainer').off('focusout','.expression .expressionAttr[data-l1key=expression]').on('focusout','.expression .expressionAttr[data-l1key=expression]',  function (event) {
   var el = $(this);
   if (el.closest('.expression').find('.expressionAttr[data-l1key=type]').value() == 'action') {
     var expression = el.closest('.expression').getValues('.expressionAttr');
     jeedom.cmd.displayActionOption(el.value(), init(expression[0].options), function (html) {
       el.closest('.expression').find('.expressionOptions').html(html);
+      taAutosize();
     });
   }
 });
@@ -572,7 +607,7 @@ $('#div_pageContainer').on('focusout','.expression .expressionAttr[data-l1key=ex
 
 /**************** Scheduler **********************/
 
-$('.scenarioAttr[data-l1key=mode]').on('change', function () {
+$('.scenarioAttr[data-l1key=mode]').off('change').on('change', function () {
   if ($(this).value() == 'schedule' || $(this).value() == 'all') {
     $('.scheduleDisplay').show();
     $('#bt_addSchedule').show();
@@ -589,30 +624,30 @@ $('.scenarioAttr[data-l1key=mode]').on('change', function () {
   }
 });
 
-$('#bt_addTrigger').on('click', function () {
+$('#bt_addTrigger').off('click').on('click', function () {
   addTrigger('');
 });
 
-$('#bt_addSchedule').on('click', function () {
+$('#bt_addSchedule').off('click').on('click', function () {
   addSchedule('');
 });
 
-$('#div_pageContainer').on('click','.bt_removeTrigger',  function (event) {
+$('#div_pageContainer').off('click','.bt_removeTrigger').on('click','.bt_removeTrigger',  function (event) {
   $(this).closest('.trigger').remove();
 });
 
-$('#div_pageContainer').on('click','.bt_removeSchedule',  function (event) {
+$('#div_pageContainer').off('click','.bt_removeSchedule').on('click','.bt_removeSchedule',  function (event) {
   $(this).closest('.schedule').remove();
 });
 
-$('#div_pageContainer').on('click','.bt_selectTrigger',  function (event) {
+$('#div_pageContainer').off('click','.bt_selectTrigger').on('click','.bt_selectTrigger',  function (event) {
   var el = $(this);
   jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function (result) {
     el.closest('.trigger').find('.scenarioAttr[data-l1key=trigger]').value(result.human);
   });
 });
 
-$('#div_pageContainer').on( 'click','.bt_selectDataStoreTrigger', function (event) {
+$('#div_pageContainer').off('click','.bt_selectDataStoreTrigger').on( 'click','.bt_selectDataStoreTrigger', function (event) {
   var el = $(this);
   jeedom.dataStore.getSelectModal({cmd: {type: 'info'}}, function (result) {
     el.closest('.trigger').find('.scenarioAttr[data-l1key=trigger]').value(result.human);
@@ -620,7 +655,7 @@ $('#div_pageContainer').on( 'click','.bt_selectDataStoreTrigger', function (even
 });
 
 
-$('#div_pageContainer').on('mouseenter','.bt_sortable',  function () {
+$('#div_pageContainer').off('mouseenter','.bt_sortable').on('mouseenter','.bt_sortable',  function () {
   var expressions = $(this).closest('.expressions');
   $("#div_scenarioElement").sortable({
     axis: "y",
@@ -656,27 +691,27 @@ $('#div_pageContainer').on('mouseenter','.bt_sortable',  function () {
   $("#div_scenarioElement").sortable("enable");
 });
 
-$('#div_pageContainer').on('mouseout','.bt_sortable',  function () {
+$('#div_pageContainer').off('mouseout','.bt_sortable').on('mouseout','.bt_sortable',  function () {
   $("#div_scenarioElement").sortable("disable");
 
 });
 
-$('#bt_graphScenario').on('click', function () {
+$('#bt_graphScenario').off('click').on('click', function () {
   $('#md_modal').dialog({title: "{{Graphique de lien}}"});
   $("#md_modal").load('index.php?v=d&modal=graph.link&filter_type=scenario&filter_id='+$('.scenarioAttr[data-l1key=id]').value()).dialog('open');
 });
 
-$('#bt_logScenario').on('click', function () {
+$('#bt_logScenario').off('click').on('click', function () {
   $('#md_modal').dialog({title: "{{Log d'exécution du scénario}}"});
   $("#md_modal").load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + $('.scenarioAttr[data-l1key=id]').value()).dialog('open');
 });
 
-$('#bt_exportScenario').on('click', function () {
+$('#bt_exportScenario').off('click').on('click', function () {
   $('#md_modal').dialog({title: "{{Export du scénario}}"});
   $("#md_modal").load('index.php?v=d&modal=scenario.export&scenario_id=' + $('.scenarioAttr[data-l1key=id]').value()).dialog('open');
 });
 
-$('#bt_templateScenario').on('click', function () {
+$('#bt_templateScenario').off('click').on('click', function () {
   $('#md_modal').dialog({title: "{{Template de scénario}}"});
   $("#md_modal").load('index.php?v=d&modal=scenario.template&scenario_id=' + $('.scenarioAttr[data-l1key=id]').value()).dialog('open');
 });
@@ -716,11 +751,17 @@ function updateSortable() {
   });
 }
 
+function updateElseToggle() {
+  $('.subElementElse').each(function () {
+    if ($(this).parent().css('display')=='table') $(this).parent().prev().find('.bt_addSinon:first').children('i').removeClass('fa-chevron-right').addClass('fa-chevron-down');
+  });
+}
+
 function setEditor() {
   $('.expressionAttr[data-l1key=type][value=code]').each(function () {
     var expression = $(this).closest('.expression');
     var code = expression.find('.expressionAttr[data-l1key=expression]');
-    if (code.attr('id') == undefined) {
+    if (code.attr('id') == undefined && code.is(':visible')) {
       code.uniqueId();
       var id = code.attr('id');
       setTimeout(function () {
@@ -731,6 +772,7 @@ function setEditor() {
         });
       }, 1);
     }
+    
   });
 }
 
@@ -798,7 +840,7 @@ function printScenario(_id) {
     $('#span_lastLaunch').text(data.lastLaunch);
 
     $('#div_scenarioElement').empty();
-    $('#div_scenarioElement').append('<a class="btn btn-default bt_addScenarioElement tootlips" title="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)}}"><i class="fa fa-plus-circle"></i> {{Ajouter bloc}}</a><br/><br/>');
+    $('#div_scenarioElement').append('<a class="btn btn-default btn-sm pull-right bt_addScenarioElement tootlips" title="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)}}"><i class="fa fa-plus-circle"></i> {{Ajouter bloc}}</a><br/><br/>');
     $('.provokeMode').empty();
     $('.scheduleMode').empty();
     $('.scenarioAttr[data-l1key=mode]').trigger('change');
@@ -835,7 +877,7 @@ function printScenario(_id) {
     }
 
     if(data.elements.length == 0){
-      $('#div_scenarioElement').append('<center><span style=\'color:#767676;font-size:1.2em;font-weight: bold;\'>Pour constituer votre scénario veuillez ajouter des blocs</span></center>')
+      $('#div_scenarioElement').append('<center class="span_noScenarioElement"><span style=\'color:#767676;font-size:1.2em;font-weight: bold;\'>Pour constituer votre scénario veuillez ajouter des blocs</span></center>')
     }
     actionOptions = []
     for (var i in data.elements) {
@@ -853,12 +895,15 @@ function printScenario(_id) {
         $('#'+data[i].id).append(data[i].html.html);
       }
       $.hideLoading();
+      taAutosize();
     }
   });
     updateSortable();
     setEditor();
     setAutocomplete();
+    updateElseToggle();
     $('#div_editScenario').show();
+    taAutosize();
     modifyWithoutSave = false;
     setTimeout(function () {
       modifyWithoutSave = false;
@@ -1027,7 +1072,11 @@ function addSubElement(_subElement, _pColor) {
   if (_subElement.type == 'if' || _subElement.type == 'for' || _subElement.type == 'code') {
     noSortable = 'noSortable';
   }
-  var retour = '<div class="subElement ' + noSortable + '" style="display:table; width:100%;">';
+  var displayElse = 'table';
+  if (_subElement.type == 'else') {
+    if (!isset(_subElement.expressions) || _subElement.expressions.length==0) displayElse = 'none';
+  }
+  var retour = '<div class="subElement ' + noSortable + '" style="display:' + displayElse + '; width:100%;">';
   retour += '<input class="subElementAttr" data-l1key="id" style="display : none;" value="' + init(_subElement.id) + '"/>';
   retour += '<input class="subElementAttr" data-l1key="scenarioElement_id" style="display : none;" value="' + init(_subElement.scenarioElement_id) + '"/>';
   retour += '<input class="subElementAttr" data-l1key="type" style="display : none;" value="' + init(_subElement.type) + '"/>';
@@ -1064,9 +1113,12 @@ function addSubElement(_subElement, _pColor) {
     break;
     case 'then' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
-    retour += '  <div style="display:table-cell; width: 100px;vertical-align: top; padding-left: 15px;">';
+    retour += '  <div style="display:table-cell; width: 125px;vertical-align: top; padding-left: 15px;">';
     retour += '     <legend style="margin-bottom: 0px; color : white;border : none;">{{ALORS}}</legend>'; 
-    retour += '     <div class="dropdown">';
+    retour += '       <button class="btn btn-xs btn-default bt_addSinon" type="button" id="addSinon" data-toggle="dropdown" title="{{Afficher/masquer le bloc Sinon}}" aria-haspopup="true" aria-expanded="true">';
+    retour += '         <i class="fa fa-chevron-right"></i>';
+    retour += '       </button>';
+    retour += '     <div class="dropdown" style="display : inline-block;">';
     retour += '       <button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
     retour += '         <i class="fa fa-plus-circle"></i> {{Ajouter}}';
     retour += '         <span class="caret"></span>';
@@ -1089,8 +1141,8 @@ function addSubElement(_subElement, _pColor) {
 
     break;
     case 'else' :
-    retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
-    retour += '  <div style="display:table-cell; width: 100px; vertical-align: top; padding-left: 15px;">';
+    retour += '<input class="subElementAttr subElementElse" data-l1key="subtype" style="display : none;" value="action"/>';
+    retour += '  <div style="display:table-cell; width: 125px; vertical-align: top; padding-left: 15px;">';
     retour += '     <legend style="margin-bottom: 0px; color : white;border : none;">{{SINON}}</legend>'; 
     retour += '     <div class="dropdown">';
     retour += '       <button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';

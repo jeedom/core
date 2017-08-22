@@ -121,7 +121,6 @@ class object {
 				$return[] = $object_return;
 			}
 		}
-		cache::set('api::object::full', json_encode($return));
 		return $return;
 	}
 
@@ -133,6 +132,20 @@ class object {
 		FROM object
 		WHERE `configuration` LIKE :configuration';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+	}
+
+	public static function deadCmd() {
+		$return = array();
+		foreach (object::all() as $object) {
+			foreach ($object->getConfiguration('summary', '') as $key => $summary) {
+				foreach ($summary as $cmdInfo) {
+					if (!cmd::byId(str_replace('#', '', $cmdInfo['cmd']))) {
+						$return[] = array('detail' => 'Résumé ' . $object->getName(), 'help' => config::byKey('object:summary')[$key]['name'], 'who' => $cmdInfo['cmd']);
+					}
+				}
+			}
+		}
+		return $return;
 	}
 
 	public static function checkSummaryUpdate($_cmd_id) {
@@ -153,8 +166,9 @@ class object {
 					preg_match_all("/#([0-9]*)#/", $cmd_info['cmd'], $matches);
 					foreach ($matches[1] as $cmd_id) {
 						if ($cmd_id == $_cmd_id) {
-							$event['keys'][$key] = array('value' => $object->getSummary($key));
-							$toRefreshCmd[] = array('key' => $key, 'object' => $object);
+							$value = $object->getSummary($key);
+							$event['keys'][$key] = array('value' => $value);
+							$toRefreshCmd[] = array('key' => $key, 'object' => $object, 'value' => $value);
 							if ($object->getConfiguration('summary::global::' . $key, 0) == 1) {
 								$global[$key] = 1;
 							}
@@ -180,7 +194,7 @@ class object {
 					if (!is_object($cmd)) {
 						continue;
 					}
-					$cmd->event($object->getSummary($value['key']));
+					$cmd->event($value['value']);
 				} catch (Exception $e) {
 
 				}
@@ -191,6 +205,9 @@ class object {
 			foreach ($global as $key => $value) {
 				try {
 					$result = object::getGlobalSummary($key);
+					if ($result === null) {
+						continue;
+					}
 					$event['keys'][$key] = array('value' => $result);
 					$virtual = eqLogic::byLogicalId('summaryglobal', 'virtual');
 					if (!is_object($virtual)) {
@@ -277,7 +294,7 @@ class object {
 				$style = 'display:none;';
 			}
 			$return .= '<span class="objectSummaryParent cursor" data-summary="' . $key . '" data-object_id="" style="margin-right:' . $margin . 'px;' . $style . '" data-displayZeroValue="' . $allowDisplayZero . '">';
-			$return .= $def[$key]['icon'] . ' <span class="objectSummary' . $key . '">' . $result . '</span> ' . $def[$key]['unit'];
+			$return .= $def[$key]['icon'] . ' <sup><span class="objectSummary' . $key . '">' . $result . '</span> ' . $def[$key]['unit'] . '</sup>';
 			$return .= '</span>';
 		}
 		return trim($return) . '</span>';
@@ -419,6 +436,15 @@ class object {
 		}
 		$this->checkTreeConsistency();
 		$this->setConfiguration('parentNumber', $this->parentNumber());
+		if ($this->getConfiguration('tagColor') == '') {
+			$this->setConfiguration('tagColor', '#000000');
+		}
+		if ($this->getConfiguration('tagTextColor') == '') {
+			$this->setConfiguration('tagTextColor', '#FFFFFF');
+		}
+		if ($this->getConfiguration('summaryTextColor') == '') {
+			$this->setConfiguration('summaryTextColor', '');
+		}
 	}
 
 	public function save() {
@@ -546,6 +572,13 @@ class object {
 		}
 		$values = array();
 		foreach ($summaries[$_key] as $infos) {
+			$cmd = cmd::byId(str_replace('#', '', $infos['cmd']));
+			if (is_object($cmd)) {
+				$eqLogic = $cmd->getEqLogic();
+			}
+			if (is_object($eqLogic) && $eqLogic->getAlert() != '') {
+				continue;
+			}
 			$value = jeedom::evaluateExpression(cmd::cmdToValue($infos['cmd']));
 			if (isset($infos['invert']) && $infos['invert'] == 1) {
 				$value = !$value;
@@ -575,7 +608,7 @@ class object {
 			}
 			$result = $this->getSummary($key);
 			if ($result !== null) {
-				$style = '';
+				$style = 'color:' . $this->getDisplay('summaryTextColor', '#000000') . ';';
 				$allowDisplayZero = $value['allowDisplayZero'];
 				if ($value['calcul'] == 'text') {
 					$allowDisplayZero = 1;
@@ -583,7 +616,7 @@ class object {
 				if ($allowDisplayZero == 0 && $result == 0) {
 					$style = 'display:none;';
 				}
-				$return .= '<span style="margin-right:5px;' . $style . '" class="objectSummaryParent cursor" data-summary="' . $key . '" data-object_id="' . $this->getId() . '" data-displayZeroValue="' . $allowDisplayZero . '">' . $value['icon'] . ' <span class="objectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . '</span>';
+				$return .= '<span style="margin-right:5px;' . $style . '" class="objectSummaryParent cursor" data-summary="' . $key . '" data-object_id="' . $this->getId() . '" data-displayZeroValue="' . $allowDisplayZero . '">' . $value['icon'] . ' <sup><span class="objectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . '</span></sup>';
 			}
 		}
 		return trim($return) . '</span>';
@@ -611,6 +644,7 @@ class object {
 			'texty' => -35,
 			'textx' => 0,
 			'title' => $this->getHumanName(),
+			'url' => 'index.php?v=d&p=object&id=' . $this->getId(),
 		);
 		$use = $this->getUse();
 		addGraphLink($this, 'object', $this->getEqLogic(), 'eqLogic', $_data, $_level, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
@@ -701,6 +735,14 @@ class object {
 	public function setDisplay($_key, $_value) {
 		$this->display = utils::setJsonAttr($this->display, $_key, $_value);
 		return $this;
+	}
+
+	public function getCache($_key = '', $_default = '') {
+		return utils::getJsonAttr(cache::byKey('objectCacheAttr' . $this->getId())->getValue(), $_key, $_default);
+	}
+
+	public function setCache($_key, $_value = null) {
+		cache::set('objectCacheAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('objectCacheAttr' . $this->getId())->getValue(), $_key, $_value));
 	}
 
 }

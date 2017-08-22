@@ -415,103 +415,64 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h1>Santé</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table des matières</div>
-<ul class="sectlevel1">
-<li><a href="#_aide_à_la_résolution">1. Aide à la résolution</a>
-<ul class="sectlevel2">
-<li><a href="#_version_php">1.1. Version PHP</a></li>
-<li><a href="#_configuration_nginx">1.2. Configuration nginx</a></li>
-</ul>
-</li>
-</ul>
+
 </div>
 </div>
 <div id="content">
-<div id="preamble">
-<div class="sectionbody">
 <div class="paragraph">
 <p>La page de santé de Jeedom vous permet d&#8217;avoir un aperçu rapide de l&#8217;état de santé de votre Jeedom. Il indique aussi (si les plugins l&#8217;utilisent), l&#8217;état de santé par plugin</p>
 </div>
 <div class="paragraph">
 <p>Il est accessible par Analyse &#8594; Santé</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/health1.png" alt="health1">
-</div>
-</div>
-<div class="paragraph">
-<p>Une fois dessus, voilà ce que vous avez :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/health2.png" alt="health2">
-</div>
-</div>
-<div class="paragraph">
-<p>Vous retrouvez ici un tableau qui donne une description de ce que Jeedom vérifie et du statut de celle-ci dans la 2ème colonne, enfin la dernière colonne peut vous donner des conseils de résolution si la vérification n&#8217;est pas OK</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Un clic sur l&#8217;icône à droite permet d&#8217;accéder à un benchmarck de votre jeedom.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>En dessous vous retrouvez les mêmes tableaux mais par plugin (si le plugin est compatible). Un clic sur le nom du plugin vous amène directement sur sa page de configuration</p>
+<p>Une fois dessus, voilà ce que vous retrouvez ici un tableau qui donne une description de ce que Jeedom vérifie et du statut de celle-ci dans la 2ème colonne, enfin la dernière colonne peut vous donner des conseils de résolution si la vérification n&#8217;est pas OK</p>
 </div>
 <div class="paragraph">
-<p>Un clik sur l&#8217;icône à droite permet d&#8217;accéder à un benchmarck de votre jeedom.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/health3.PNG" alt="health3">
-</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/health4.PNG" alt="health4">
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_aide_à_la_résolution">1. Aide à la résolution</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_version_php">1.1. Version PHP</h3>
-<div class="paragraph">
-<p>Pour l&#8217;instant la version 5.5 de php n&#8217;est pas obligatoire. Vous pouvez donc tout laisser comme ça pour le moment. Le jour où la version 5.5 devient obligatoire vous serez prévenu</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_configuration_nginx">1.2. Configuration nginx</h3>
-<div class="paragraph">
-<p>Ma configuration nginx est NOK, cela peut être normal si vous avez modifié le fichier /etc/nginx/sites-available/defaut, sinon en SSH faites :</p>
+<p>En dessous vous retrouvez la santé pour chaque plugin, un clique sur le nom du plugin donne le details de santé de celui-ci. A droite vous retrouvez les icones :</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Si vous êtes sur une mini/mini+ ou que vous ne voulez pas de /jeedom :</p>
+<p>Port d&#8217;accès au matériel du plugin (type clef Zwave)</p>
 </li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>sudo su -
-cp /usr/share/nginx/www/jeedom/install/nginx_default_without_jeedom /etc/nginx/sites-available/defaut
-service nginx restart</pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
 <li>
-<p>Vous voulez le /jeedom</p>
+<p>Mode du démon</p>
+</li>
+<li>
+<p>Affichage de la page de santé des équipements du plugin</p>
+</li>
+<li>
+<p>Affichage de la page de configuration du plugin</p>
+</li>
+<li>
+<p>Etat global du plugin</p>
 </li>
 </ul>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre>sudo su -
-cp /usr/share/nginx/www/jeedom/install/nginx_default /etc/nginx/sites-available/defaut
-service nginx restart</pre>
-</div>
-</div>
-</div>
-</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Les icones peuvent varier en fonction du plugin
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div id="footer">

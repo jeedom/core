@@ -317,6 +317,9 @@
                                 $(this).find('.btn_closeAlert').on('click', function () {
                                     $(this).closest('.jqAlert').hide();
                                 });
+                                if(typeof initRowOverflow == 'function'){
+                                    initRowOverflow();
+                                }
                             }
         //Hide/show debug trace
         $(this).find('.bt_errorShowTrace').on('click', function () {
@@ -335,6 +338,7 @@
     $.fn.hideAlert = function () {
         $('#jqAlertSpacer' + $(this).attr('id')).remove();
         $(this).text('').hide();
+        $.alertTrigger();
         return $(this);
     };
 
@@ -342,8 +346,11 @@
         if (!$.mobile) {
             $('.jqAlert').text('');
             $('.jqAlert').hide();
+            $.alertTrigger();
         }
     };
+
+    $.alertTrigger = function () {}
 
     /**********************Jquery.value******************************/
 

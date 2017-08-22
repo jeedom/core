@@ -101,4 +101,10 @@ $('#div_pageContainer').delegate('.userAttr', 'change', function () {
     modifyWithoutSave = true;
 });
 
+ $('.bt_selectWarnMeCmd').on('click', function () {
+    jeedom.cmd.getSelectModal({cmd: {type: 'action', subType: 'message'}}, function (result) {
+        $('.userAttr[data-l1key="options"][data-l2key="notification::cmd"]').value(result.human);
+    });
+});
+
 

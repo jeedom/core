@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.3.dev">
-<title>Vues</title>
+<title>Ansichten</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -412,7 +412,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Vues</h1>
+<h1>Ansichten</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table des matières</div>
 <ul class="sectlevel1">
@@ -421,6 +421,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_zone_de_type_widget">2.1. Zone de type widget</a></li>
 <li><a href="#_zone_de_type_graphique">2.2. Zone de type graphique</a></li>
+<li><a href="#_zone_de_type_tableau">2.3. Zone de type tableau</a></li>
 </ul>
 </li>
 </ul>
@@ -435,11 +436,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>Les vues sont accessibles à partir du menu Accueil &#8594; Vue :</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/view.png" alt="view">
-</div>
-</div>
 <div class="admonitionblock tip">
 <table>
 <tr>
@@ -447,7 +443,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Comme vous pouvez le voir sur la capture, il est possible d&#8217;aller directement sur une vue grâce au sous-menu.
+Il est possible d&#8217;aller directement sur une vue grâce au sous-menu.
 </td>
 </tr>
 </table>
@@ -459,7 +455,7 @@ Comme vous pouvez le voir sur la capture, il est possible d&#8217;aller directem
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Vous pouvez dans votre profil choisir la vue par défaut lors du clic sur le menu des vues.
+Sie können ein Profil in der Standardansicht wählen, wenn sie auf das Menü Ansichten klicken.
 </td>
 </tr>
 </table>
@@ -470,23 +466,10 @@ Vous pouvez dans votre profil choisir la vue par défaut lors du clic sur le men
 <h2 id="_les_vues">1. Les vues</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Dies ist ein Beispiel einer Ansicht :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/view2.png" alt="view2">
-</div>
-</div>
-<div class="paragraph">
-<p>Wie das Bildschirmfoto von der Ansicht zeigt, kann man ebenso gut Widgets sowie grafische Darstellungen (die aus mehreren Daten zusammengestellt sein können) anzeigen lassen.</p>
+<p>On peut mettre aussi bien des widgets, des graphiques (qui peuvent être composés de plusieurs données) ou des zone tableau (qui contiennent les widgets des commandes)</p>
 </div>
 <div class="paragraph">
 <p>Auf dieser Seite finden wir oben links eine Schaltfläche zum ein- oder ausblenden der Ansichten Liste, sowie die Schaltfläche zum hinzufügen (Jeedom wird Sie nach einen Namen fragen und Sie auf die Bearbeitungsseite schicken) :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/view3.png" alt="view3">
-</div>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -509,20 +492,7 @@ Vous pouvez dans votre profil modifier cette option pour que la liste des vues s
 <h2 id="_ajout_edition_d_une_vue">2. Ajout/Edition d&#8217;une vue</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Voici la page d&#8217;ajout/édition d&#8217;une vue :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/view4.png" alt="view4">
-</div>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Principe</dt>
-<dd>
-<p>Le principe est assez simple : une vue est composée de zones (on peut en mettre autant que l&#8217;on veut). Chaque zone est de type graphique ou widget : en fonction du type vous pourrez mettre des widgets ou des graphiques dedans.</p>
-</dd>
-</dl>
+<p>Le principe est assez simple : une vue est composée de zones (on peut en mettre autant que l&#8217;on veut). Chaque zone est de type graphique, widget ou tableau, en fonction du type vous pourrez mettre des widgets d&#8217;équipement, de commande ou des graphiques dans celle-ci.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -531,7 +501,7 @@ Vous pouvez dans votre profil modifier cette option pour que la liste des vues s
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Il est possible de déplacer l&#8217;ordre des zones en les glissant/déposant.
+Il est possible de déplacer l&#8217;ordre des zones par glisser/déposer.
 </td>
 </tr>
 </table>
@@ -540,25 +510,13 @@ Il est possible de déplacer l&#8217;ordre des zones en les glissant/déposant.
 <p>Sur la gauche de la page on retrouve la liste des vues ainsi qu&#8217;un bouton d&#8217;ajout.</p>
 </div>
 <div class="paragraph">
-<p>Au centre vous avez un bouton pour renommer une vue, le bouton d&#8217;ajout de zone, un bouton pour voir le résultat, un bouton pour sauvegarder (ne pas oubliez de le faire avant de cliquer sur "voir le résultat") et un bouton pour supprimer la vue.</p>
+<p>Au centre vous avez un bouton pour renommer une vue, un bouton d&#8217;ajout de zone, un bouton pour voir le résultat, un bouton pour sauvegarder et un bouton pour supprimer la vue.</p>
 </div>
 <div class="paragraph">
-<p>Après avoir cliqué sur le bouton d&#8217;ajout de zone, Jeedom vous demande son nom et le type :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/view5.png" alt="view5">
-</div>
-</div>
-<div class="sect2">
-<h3 id="_zone_de_type_widget">2.1. Zone de type widget</h3>
-<div class="imageblock">
-<div class="content">
-<img src="../images/view6.png" alt="view6">
-</div>
+<p>Après avoir cliqué sur le bouton d&#8217;ajout de zone, Jeedom vous demandera son nom et son type.</p>
 </div>
 <div class="paragraph">
-<p>Une zone de type widget permet d&#8217;ajouter des widgets, elle a 3 boutons sur la droite :</p>
+<p>Sur chaque zone vous avez les options générales suivantes :</p>
 </div>
 <div class="ulist">
 <ul>
@@ -566,13 +524,22 @@ Il est possible de déplacer l&#8217;ordre des zones en les glissant/déposant.
 <p><strong>Largeur</strong> : définit la largeur de la zone (en mode desktop seulement)</p>
 </li>
 <li>
-<p><strong>Ajouter/Editer widget</strong> : permet d&#8217;ajouter/modifier des widgets à afficher dans la zone</p>
-</li>
-<li>
 <p><strong>Editer</strong> : permet de changer le nom de la zone</p>
 </li>
 <li>
 <p><strong>Supprimer</strong> : permet de supprimer la zone</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_zone_de_type_widget">2.1. Zone de type widget</h3>
+<div class="paragraph">
+<p>Une zone de type widget permet d&#8217;ajouter des widgets :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Ajouter widget</strong> : permet d&#8217;ajouter/modifier des widgets à afficher dans la zone</p>
 </li>
 </ul>
 </div>
@@ -595,30 +562,17 @@ Vous pouvez supprimer un widget directement en cliquant sur la poubelle devant c
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Il est possible de modifier l&#8217;ordre des widgets dans la zone en les glissant/déposant.
+Il est possible de modifier l&#8217;ordre des widgets dans la zone par glisser/déposer.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Une fois le bouton d&#8217;ajout/edition de widget pressé, vous obtenez :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/view7.png" alt="view7">
-</div>
-</div>
-<div class="paragraph">
-<p>In diesem Fenster müssen Sie nur die Objekte/Geräte zum hinzufügen für den Bereich auswählen und Bestätigen.</p>
+<p>Une fois le bouton d&#8217;ajout de widget pressé, vous obtenez une fenetre qui vous demandera le widget à ajouter</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_zone_de_type_graphique">2.2. Zone de type graphique</h3>
-<div class="imageblock">
-<div class="content">
-<img src="../images/view8.png" alt="view8">
-</div>
-</div>
 <div class="paragraph">
 <p>Une zone de type graphique permet d&#8217;ajouter des graphiques à votre vue, elle possède les options suivantes :</p>
 </div>
@@ -628,16 +582,41 @@ Il est possible de modifier l&#8217;ordre des widgets dans la zone en les glissa
 <p><strong>Periode</strong> : permet de choisir la période d&#8217;affichage des graphiques (30 min, 1 jour, 1 semaine, 1 mois, 1 année ou tout)</p>
 </li>
 <li>
-<p><strong>Largeur</strong> : définit la largeur de la zone (en mode desktop seulement)</p>
+<p><strong>Ajouter courbe</strong> : permet d&#8217;ajouter/modifier des graphiques</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Quand vous pressez le bouton "Ajouter courbe" jeedom affichera la liste des commandes historisé et vous pouvez choisir celle à ajouter, une fois cela fait vous avez accès aux options suivantes :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Poubelle</strong> : supprime la commande du graphique</p>
 </li>
 <li>
-<p><strong>Ajouter/Editer widget</strong> : permet d&#8217;ajouter/modifier des graphiques</p>
+<p><strong>Nom</strong> : nom de la commande graphée</p>
 </li>
 <li>
-<p><strong>Editer</strong> : permet de changer le nom de la zone</p>
+<p><strong>Couleur</strong> : couleur de la courbe</p>
 </li>
 <li>
-<p><strong>Supprimer</strong> : permet de supprimer la zone</p>
+<p><strong>Type</strong> : type de la courbe</p>
+</li>
+<li>
+<p><strong>Groupement</strong> : permet de grouper les données (type maximum par jour)</p>
+</li>
+<li>
+<p><strong>Echelle</strong> : echelle (droite ou gauche) de la courbe</p>
+</li>
+<li>
+<p><strong>Escalier</strong> : affiche la courbe en escalier</p>
+</li>
+<li>
+<p><strong>Empiler</strong> : empile la courbe avec les autres courbes de type empiler</p>
+</li>
+<li>
+<p><strong>Variation</strong> : graphe seulement les variations avec la valeur précedente</p>
 </li>
 </ul>
 </div>
@@ -648,33 +627,54 @@ Il est possible de modifier l&#8217;ordre des widgets dans la zone en les glissa
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Vous pouvez supprimer une donnée à grapher directement en cliquant sur la poubelle devant celui-ci.
+Il est possible de modifier l&#8217;ordre des graphiques dans la zone par glisser/déposer.
 </td>
 </tr>
 </table>
 </div>
-<div class="admonitionblock tip">
+</div>
+<div class="sect2">
+<h3 id="_zone_de_type_tableau">2.3. Zone de type tableau</h3>
+<div class="paragraph">
+<p>Vous avez ici les boutons :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Ajouter colonne</strong> : permet d&#8217;ajouter une ligne au tableau</p>
+</li>
+<li>
+<p><strong>Ajouter ligne</strong> : permet d&#8217;ajouter une colonne au tableau</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Il est possible de modifier l&#8217;ordre des graphiques dans la zone en les glissant/déposant.
+Il est possible de régoraniser les lignes par glisser/déposer mais pas les colonnes
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Une fois le bouton d&#8217;ajout/édition des graphiques pressé, vous obtenez :</p>
+<p>Une fois que vous avez ajoutez vos lignes/colonnes vous pouvez ajouter des informations dans les cases :</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/view9.png" alt="view9">
-</div>
-</div>
-<div class="paragraph">
-<p>Une fois ajouté vous avez accès à des options de configuration : les différentes options sont expliquées <a href="https://jeedom.com/doc/documentation/core/fr_FR/doc-core-history.html#_graphique_sur_les_vues_et_les_designs">ici</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>texte</strong> : juste du texte à ecrire</p>
+</li>
+<li>
+<p><strong>html</strong> : n&#8217;importe quels code html (javascript possible mais fortement déconseillé)</p>
+</li>
+<li>
+<p><strong>widget de commande</strong> : le bouton à droite vous permet de choisir la commande a afficher (attention cela affiche le widget de la commande)</p>
+</li>
+</ul>
 </div>
 </div>
 </div>

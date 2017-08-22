@@ -146,7 +146,7 @@
                 ligne += '<label style="margin-right:25px;"><input type="checkbox" class="userAttr" data-l1key="enable" />{{Actif}}</label><br/>';
                 ligne += '<label style="margin-right:25px;"><input type="checkbox" class="userAttr" data-l1key="options" data-l2key="localOnly" />{{Local seulement}}</label>';
                 ligne += '</td>';
-                ligne += '<td>';
+                ligne += '<td style="width:175px;">';
                 ligne += '<select class="userAttr form-control" data-l1key="profils">';
                 ligne += '<option value="admin">{{Administrateur}}</option>';
                 ligne += '<option value="user">{{Utilisateur}}</option>';

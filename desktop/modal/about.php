@@ -11,23 +11,16 @@ if (!isConnect()) {
     </lu>
   </div>
   <div class="col-lg-2">
-    <h3>{{Développeur(s)}}</h3>
+    <h3>{{Développeurs principaux}}</h3>
     <lu>
       <li><a class="cursor" href="http://jeedom.com/" style="color:blue;" target="_blank">Loïc</a></li>
-      <li>Thomas Martinez</li>
-      <li><a class="cursor" href="http://arnaud.quette.fr" style="color:blue;" target="_blank">Arnaud Quette</a></li>
+      <li>Ludovic</li>
     </lu>
   </div>
   <div class="col-lg-2">
     <h3>{{Traducteur(s)}}</h3>
     <lu>
-      <li>Marie (US)</li>
-    </lu>
-  </div>
-  <div class="col-lg-2">
-    <h3>{{Correcteur(s)}}</h3>
-    <lu>
-      <li>Marie</li>
+      <li>All amazing people who help us on <a class="cursor" href="https://www.transifex.com/jeedom/public/" style="color:blue;" target="_blank">Transifex</a></li>
     </lu>
   </div>
   <div class="col-lg-2">
@@ -41,11 +34,7 @@ if (!isConnect()) {
   <div class="col-lg-2">
     <h3>{{Beta-testeur(s)}}</h3>
     <lu>
-      <li><a class="cursor" href="http://jeedom.com/" style="color:blue;" target="_blank">Loïc</a></li>
-      <li>Marie</li>
-      <li><a class="cursor" href="http://ma-maison-domotique.blogspot.com/" style="color:blue;" target="_blank">Mathieu (alias Algeroth)</a></li>
-      <li>Gerandhal</li>
-      <li>Stouille</li>
+      <li>Amesome people</li>
     </lu>
   </div>
 </div>

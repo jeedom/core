@@ -151,6 +151,28 @@ class interactDef {
 		return $_query;
 	}
 
+	public static function deadCmd() {
+		$return = array();
+		foreach (interactDef::all() as $interact) {
+			if (is_array($interact->getActions('cmd'))) {
+				foreach ($interact->getActions('cmd') as $actions) {
+					if (!cmd::byId(str_replace('#', '', $actions['cmd']))) {
+						$return[] = array('detail' => 'Interaction ' . $interact->getName() . ' du groupe ' . $interact->getGroup(), 'help' => 'Action', 'who' => $actions['cmd']);
+					}
+				}
+			}
+			preg_match_all("/#([0-9]*)#/", $interact->getReply(), $matches);
+			foreach ($matches[1] as $cmd_id) {
+				if (is_numeric($cmd_id)) {
+					if (!cmd::byId(str_replace('#', '', $cmd_id))) {
+						$return[] = array('detail' => 'Interaction ' . $interact->getName() . ' du groupe ' . $interact->getGroup(), 'help' => 'Réponse', 'who' => '#' . $cmd_id . '#');
+					}
+				}
+			}
+		}
+		return $return;
+	}
+
 	public static function cleanInteract() {
 		$list_id = array();
 		foreach (self::all() as $interactDef) {
@@ -326,12 +348,15 @@ class interactDef {
 		return $replies[$random];
 	}
 
+	public function preInsert() {
+		if ($this->getReply() == '') {
+			$this->setReply('#valeur#');
+		}
+	}
+
 	public function preSave() {
 		if ($this->getOptions('allowSyntaxCheck') === '') {
 			$this->setOptions('allowSyntaxCheck', 1);
-		}
-		if ($this->getReply() == '') {
-			$this->setReply('#valeur#');
 		}
 	}
 
@@ -555,6 +580,7 @@ class interactDef {
 			'texty' => -14,
 			'textx' => 0,
 			'title' => $this->getHumanName(),
+			'url' => 'index.php?v=d&p=interact&id=' . $this->getId(),
 		);
 	}
 

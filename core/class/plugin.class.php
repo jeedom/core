@@ -387,7 +387,7 @@ class plugin {
 			throw new Exception(__('Vous ne pouvez faire un report sur un plugin sans panel', __FILE__));
 		}
 		if (!isset($_parameters['user'])) {
-			$users = user::searchByRight('admin');
+			$users = user::byProfils('admin');
 			if (count($users) == 0) {
 				throw new Exception(__('Aucun utilisateur admin trouvé pour la génération du rapport', __FILE__));
 			}
@@ -513,7 +513,6 @@ class plugin {
 				throw new Exception(__('Les dépendances d\'un autre plugin sont déjà en cours, veuillez attendre qu\'elles soient finies : ', __FILE__) . $plugin->getId());
 			}
 		}
-		config::save('lastDependancyInstallTime', date('Y-m-d H:i:s'), $plugin_id);
 		$cmd = $plugin_id::dependancy_install();
 		if (is_array($cmd) && count($cmd) == 2) {
 			$script = str_replace('#stype#', system::get('type'), $cmd['script']);
@@ -522,10 +521,11 @@ class plugin {
 				if (jeedom::isCapable('sudo')) {
 					$this->deamon_stop();
 					message::add($plugin_id, __('Attention, installation des dépendances lancée', __FILE__));
+					config::save('lastDependancyInstallTime', date('Y-m-d H:i:s'), $plugin_id);
 					exec(system::getCmdSudo() . '/bin/bash ' . $script . ' >> ' . $cmd['log'] . ' 2>&1 &');
 					sleep(1);
 				} else {
-					log::add($plugin_id, 'error', __('Veuillez executer le script : ', __FILE__) . realpath($script));
+					log::add($plugin_id, 'error', __('Veuillez executer le script : ', __FILE__) . '/bin/bash ' . $script);
 				}
 			} else {
 				log::add($plugin_id, 'error', __('Aucun script ne correspond à votre type de linux : ', __FILE__) . $cmd['script'] . __(' avec #stype# : ', __FILE__) . system::get('type'));
@@ -543,9 +543,12 @@ class plugin {
 			$plugin_id::deamon_changeAutoMode($_mode);
 		}
 	}
-
+	/**
+	 *
+	 * @return array
+	 */
 	public function deamon_info() {
-		$return = array();
+
 		$plugin_id = $this->getId();
 		if ($this->getHasOwnDeamon() != 1 || !method_exists($plugin_id, 'deamon_info')) {
 			return array('launchable_message' => '', 'launchable' => 'nok', 'state' => 'nok', 'log' => 'nok', 'auto' => 0);

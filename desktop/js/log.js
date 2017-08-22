@@ -18,6 +18,7 @@
 });
 
  $(".li_log").on('click', function() {
+  $('#pre_globallog').empty();
   $(".li_log").removeClass('active');
   $(this).addClass('active');
   $('#bt_globalLogStopStart').removeClass('btn-success').addClass('btn-warning');

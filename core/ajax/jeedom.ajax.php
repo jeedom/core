@@ -66,11 +66,57 @@ try {
 		ajax::success($return);
 	}
 
+	ajax::init(true);
+
+	if (init('action') == 'getDocumentationUrl') {
+		$plugin = null;
+		if (init('plugin') != '' || init('plugin') == 'false') {
+			try {
+				$plugin = plugin::byId(init('plugin'));
+			} catch (Exception $e) {
+
+			}
+		}
+		if (isset($plugin) && is_object($plugin)) {
+			if ($plugin->getDocumentation() != '') {
+				ajax::success($plugin->getDocumentation());
+			}
+		} else {
+			$page = init('page');
+			if (init('page') == 'scenarioAssist') {
+				$page = 'scenario';
+			} else if (init('page') == 'view_edit') {
+				$page = 'view';
+			}
+			ajax::success('doc/' . config::byKey('language', 'core', 'fr_FR') . '/' . secureXSS($page) . '.html');
+		}
+		throw new Exception(__('Aucune documentation trouvée', __FILE__), -1234);
+	}
+
+	if (init('action') == 'addWarnme') {
+		$cmd = cmd::byId(init('cmd_id'));
+		if (!is_object($cmd)) {
+			throw new Exception(__('Commande non trouvée : ', __FILE__) . init('cmd_id'));
+		}
+		$listener = new listener();
+		$listener->setClass('interactQuery');
+		$listener->setFunction('warnMeExecute');
+		$listener->addEvent($cmd->getId());
+		$options = array(
+			'type' => 'cmd',
+			'cmd_id' => $cmd->getId(),
+			'name' => $cmd->getHumanName(),
+			'test' => init('test'),
+			'reply_cmd' => init('reply_cmd', $_SESSION['user']->getOptions('notification::cmd')),
+		);
+		$listener->setOption($options);
+		$listener->save(true);
+		ajax::success();
+	}
+
 	if (!isConnect('admin')) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
 	}
-
-	ajax::init(true);
 
 	if (init('action') == 'ssh') {
 		$command = init('command');
@@ -171,10 +217,10 @@ try {
 	if (init('action') == 'saveCustom') {
 		$path = dirname(__FILE__) . '/../../';
 		if (init('version') != 'desktop' && init('version') != 'mobile') {
-			throw new Exception(__('La version ne peut etre que desktop ou mobile', __FILE__));
+			throw new Exception(__('La version ne peut être que desktop ou mobile', __FILE__));
 		}
 		if (init('type') != 'js' && init('type') != 'css') {
-			throw new Exception(__('La version ne peut etre que js ou css', __FILE__));
+			throw new Exception(__('La version ne peut être que js ou css', __FILE__));
 		}
 		$path .= init('version') . '/custom/';
 		if (!file_exists($path)) {
@@ -199,9 +245,28 @@ try {
 		ajax::success($object->getLinkData());
 	}
 
+	if (init('action') == 'getTimelineEvents') {
+		$return = array();
+		$events = jeedom::getTimelineEvent();
+		foreach ($events as $event) {
+			switch ($event['type']) {
+				case 'cmd':
+					$return[] = cmd::timelineDisplay($event);
+					break;
+				case 'scenario':
+					$return[] = scenario::timelineDisplay($event);
+					break;
+			}
+		}
+		ajax::success($return);
+	}
+
+	if (init('action') == 'removeTimelineEvents') {
+		ajax::success(jeedom::removeTimelineEvent());
+	}
+
 	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
 	ajax::error(displayExeption($e), $e->getCode());
 }
-?>

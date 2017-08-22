@@ -90,24 +90,26 @@ function loadObjectConfiguration(_id){
         },
         success: function (data) {
             $('.objectAttr').value('');
-            $('.objectAttr[data-l1key=display][data-l2key=tagColor]').value('#9b59b6');
-            $('.objectAttr[data-l1key=display][data-l2key=tagTextColor]').value('#ffffff');
             $('.objectAttr[data-l1key=father_id] option').show();
             $('#summarytab input[type=checkbox]').value(0);
             $('.object').setValues(data, '.objectAttr');
+            if(data['display'] == ''){
+                $('.objectAttr[data-l1key=display][data-l2key=tagColor]').value('#9b59b6');
+                $('.objectAttr[data-l1key=display][data-l2key=tagTextColor]').value('#ffffff');
+            }
             $('.objectAttr[data-l1key=father_id] option[value=' + data.id + ']').hide();
             $('.div_summary').empty();
-			$('.tabnumber').empty();
+            $('.tabnumber').empty();
             if (isset(data.configuration) && isset(data.configuration.summary)) {
-				for(var i in data.configuration.summary){
+                for(var i in data.configuration.summary){
                     var el = $('.type'+i);
                     if(el != undefined){
                         for(var j in data.configuration.summary[i]){
-							addSummaryInfo(el,data.configuration.summary[i][j]);
+                            addSummaryInfo(el,data.configuration.summary[i][j]);
                         }
-						if (data.configuration.summary[i].length != 0){
-							$('.summarytabnumber'+i).append('(' + data.configuration.summary[i].length + ')');
-						}
+                        if (data.configuration.summary[i].length != 0){
+                            $('.summarytabnumber'+i).append('(' + data.configuration.summary[i].length + ')');
+                        }
                     }
 
                 }
@@ -128,7 +130,7 @@ $("#bt_addObject,#bt_addObject2").on('click', function (event) {
                 success: function (data) {
                     modifyWithoutSave = false;
                     loadPage('index.php?v=d&p=object&id=' + data.id + '&saveSuccessFull=1');
-                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                    $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
                 }
             });
         }
@@ -287,3 +289,8 @@ function addSummaryInfo(_el, _summary) {
     _el.find('.div_summary').append(div);
     _el.find('.summary:last').setValues(_summary, '.summaryAttr');
 }
+
+$('.bt_showObjectSummary').off('click').on('click', function () {
+  $('#md_modal').dialog({title: "{{Résumé objet}}"});
+  $("#md_modal").load('index.php?v=d&modal=object.summary').dialog('open');
+});

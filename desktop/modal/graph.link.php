@@ -18,6 +18,8 @@
 if (!isConnect('admin')) {
 	throw new Exception('401 Unauthorized');
 }
+sendVarToJS('prerenderGraph', config::byKey('graphlink::prerender', 'core', 10));
+sendVarToJS('renderGraph', config::byKey('graphlink::render', 'core', 3000));
 ?>
 <script type="text/javascript" src="3rdparty/vivagraph/vivagraph.min.js"></script>
 <style>
@@ -85,7 +87,6 @@ if (!isConnect('admin')) {
 				.attr('alignment-baseline','central')
 				.attr('text-anchor','middle')
 				.text(String.fromCodePoint(parseInt(node.data.icon, 16)));
-
 				text.attr("y",node.data.texty);
 				text.attr("x",node.data.textx);
 			}else if(typeof node.data.shape != 'undefined' && $.trim(node.data.shape) != ''){
@@ -104,6 +105,11 @@ if (!isConnect('admin')) {
 			}
 			ui.append(text);
 			ui.append(img);
+			$(ui).on('dblclick',function(){
+				if(node.data.url != 'undefined'){
+					loadPage(node.data.url);
+				}
+			});
 			$(ui).hover(function () {
 				highlightRelatedNodes(node.id, true);
 			}, function () {
@@ -136,7 +142,7 @@ if (!isConnect('admin')) {
 		var renderer = Viva.Graph.View.renderer(graph, {
 			layout: layout,
 			graphics: graphics,
-			prerender: 10,
+			prerender: parseInt(prerenderGraph),
 			renderLinks: true,
 			container: document.getElementById('div_graphLinkRenderer')
 		});
@@ -144,6 +150,6 @@ if (!isConnect('admin')) {
 		setTimeout(function () {
 			renderer.pause();
 			renderer.reset();
-		}, 3000);
+		}, parseInt(renderGraph));
 	}
 </script>

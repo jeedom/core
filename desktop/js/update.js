@@ -205,6 +205,7 @@ function printUpdate() {
         },
         success: function (data) {
             $('#table_update tbody').empty();
+            $('#table_updateOther tbody').empty();
             for (var i in data) {
                 addUpdate(data[i]);
             }

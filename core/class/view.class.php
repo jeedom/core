@@ -63,7 +63,7 @@ class view {
 
 	public function report($_format = 'pdf', $_parameters = array()) {
 		if (!isset($_parameters['user'])) {
-			$users = user::searchByRight('admin');
+			$users = user::byProfils('admin');
 			if (count($users) == 0) {
 				throw new Exception(__('Aucun utilisateur admin trouvé pour la génération du rapport', __FILE__));
 			}
@@ -77,13 +77,13 @@ class view {
 		$url .= '&auth=' . $user->getHash();
 		return report::generate($url, 'view', $this->getId(), $_format);
 	}
- 	/**
-         * 
-         * @throws Exception
-         */
+	/**
+	 *
+	 * @throws Exception
+	 */
 	public function presave() {
 		if (trim($this->getName()) == '') {
-			throw new Exception(__('Le nom de la vue ne peut pas être vide',__FILE__));
+			throw new Exception(__('Le nom de la vue ne peut pas être vide', __FILE__));
 		}
 	}
 
@@ -199,6 +199,7 @@ class view {
 			'texty' => -14,
 			'textx' => 0,
 			'title' => __('Vue :', __FILE__) . ' ' . $this->getName(),
+			'url' => 'index.php?v=d&p=view&view_id=' . $this->getId(),
 		);
 	}
 

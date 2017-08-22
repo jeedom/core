@@ -3,6 +3,7 @@
   "background_color": "#94ca02",
   "theme_color": "#94ca02",
   "name": "Jeedom",
+  "gcm_sender_id": "103953800507",
   "icons": [
     {
       "src": "core/img/logo-white-256x256.png",

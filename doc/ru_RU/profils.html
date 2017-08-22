@@ -416,13 +416,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table des matières</div>
 <ul class="sectlevel1">
-<li><a href="#_menu_profils">1. Menu profils</a></li>
-<li><a href="#_page_profil">2. Page Profil</a>
+<li><a href="#_thèmes">1. Thèmes</a>
 <ul class="sectlevel2">
-<li><a href="#_thèmes">2.1. Thèmes</a></li>
-<li><a href="#_interface">2.2. Interface</a></li>
-<li><a href="#_notifications">2.3. Notifications</a></li>
-<li><a href="#_sécurité">2.4. Sécurité</a></li>
+<li><a href="#_interface">1.1. Interface</a></li>
+<li><a href="#_sécurité">1.2. Sécurité</a></li>
+<li><a href="#_notifications">1.3. Notifications</a></li>
 </ul>
 </li>
 </ul>
@@ -434,68 +432,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>La page profils vous permet de configurer certains comportements de Jeedom spécifiques à l&#8217;utilisateur : page d&#8217;accueil, thèmes de la version desktop, de la version mobile, des graphiques&#8230;&#8203; Elle permet aussi de changer votre mot de passe et de passer en mode expert permettant une configuration plus poussée de Jeedom.</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_menu_profils">1. Menu profils</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>Vous retrouvez en haut à droite sur chaque page de Jeedom le menu Profil :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/profils1.png" alt="profils1">
-</div>
-</div>
-<div class="paragraph">
-<p>Vous retrouvez à coté de ce menu Profil, une information sur le nombre de messages dans le centre de messages (ces messages sont importants sinon Jeedom ne vous les remonterait pas), l&#8217;heure Jeedom (attention c&#8217;est bien l&#8217;heure de Jeedom et non de votre PC), le menu Profil, une icône indiquant la connexion (ici filaire, mais il est possible si vous êtes en wifi d&#8217;avoir celle-ci), l&#8217;icône pour l&#8217;accès à l&#8217;aide de la page en cours et l&#8217;icône pour faire une demande de support.</p>
-</div>
-<div class="paragraph">
-<p>Si vous cliquez sur le menu Profil vous obtenez :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/profils2.png" alt="profils2">
-</div>
-</div>
-<div class="paragraph">
-<p>A partir de ce menu vous avez accès à la page Profil, à l&#8217;activation ou non du mode expert, au redémarrage de Jeedom, à l&#8217;arrêt de Jeedom, au passage en version mobile et un bouton pour se déconnecter.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-En DIY les actions de redémarrage et d&#8217;arrêt ne fonctionnent que si vous avez bien réalisé les actions visudo, voir <a href="https://jeedom.com/doc/documentation/installation/fr_FR/doc-installation.html#_etape_4_définition_des_droits_root_à_jeedom">ici</a>
-</td>
-</tr>
-</table>
+<p>Vous retrouvez en haut à droite en cliquant sur le l&#8217;icone bonhomme puis profils</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_page_profil">2. Page Profil</h2>
+<h2 id="_thèmes">1. Thèmes</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>La page Profil ressemble à ca :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/profils3.png" alt="profils3">
-</div>
-</div>
-<div class="paragraph">
-<p>Vous retrouvez ici différents panneaux qui vous permettront de configurer Jeedom, tous ces réglages sont uniquement liés à votre utilisateur, il vous sont donc propres</p>
-</div>
-<div class="sect2">
-<h3 id="_thèmes">2.1. Thèmes</h3>
-<div class="imageblock">
-<div class="content">
-<img src="../images/profils4.png" alt="profils4">
-</div>
-</div>
 <div class="paragraph">
 <p>Le panneau thèmes vous permet de régler des paramètres d&#8217;interface :</p>
 </div>
@@ -505,7 +449,7 @@ En DIY les actions de redémarrage et d&#8217;arrêt ne fonctionnent que si vous
 <p><strong>Desktop</strong> : thèmes à utiliser en mode desktop, attention seul le thème par défaut est officiellement supporté par Jeedom</p>
 </li>
 <li>
-<p><strong>Mobile</strong> : permet de légèrement configurer le thème mobile (ici tout est supporté), soit clair soit sombre, ainsi que la couleur dominante de celui-ci</p>
+<p><strong>Mobile couleur</strong> : permet de choisir la couleur de l&#8217;interface (ici tout est supporté)</p>
 </li>
 <li>
 <p><strong>Graphique Desktop</strong> : permet de définir le thème par défaut des graphiques en mode desktop</p>
@@ -513,16 +457,22 @@ En DIY les actions de redémarrage et d&#8217;arrêt ne fonctionnent que si vous
 <li>
 <p><strong>Graphique Mobile</strong> : permet de définir le thème par défaut des graphiques en mode mobile</p>
 </li>
+<li>
+<p><strong>Opacité par des widgets Dashboard</strong> : permet de donner l&#8217;opacité (entre 0 et 1) des widgets sur le dashboard</p>
+</li>
+<li>
+<p><strong>Opacité par des widgets Design</strong> : permet de donner l&#8217;opacité (entre 0 et 1) des widgets sur les designs</p>
+</li>
+<li>
+<p><strong>Opacité par des widgets Vue</strong> : permet de donner l&#8217;opacité (entre 0 et 1) des widgets sur les vues</p>
+</li>
+<li>
+<p><strong>Opacité par des widgets Mobile</strong> : permet de donner l&#8217;opacité (entre 0 et 1) des widgets en mobile</p>
+</li>
 </ul>
 </div>
-</div>
 <div class="sect2">
-<h3 id="_interface">2.2. Interface</h3>
-<div class="imageblock">
-<div class="content">
-<img src="../images/profils5.png" alt="profils5">
-</div>
-</div>
+<h3 id="_interface">1.1. Interface</h3>
 <div class="paragraph">
 <p>Vous permet de définir certains comportements de l&#8217;interface :</p>
 </div>
@@ -533,7 +483,7 @@ En DIY les actions de redémarrage et d&#8217;arrêt ne fonctionnent que si vous
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Ne pas masquer les menus automatiquement</strong> : indique à Jeedom de ne pas masquer le panneau de gauche, lorsqu&#8217;il existe, pour rappel ce panneau est disponible sur la plupart des pages des plugins, ainsi que la page des scénarios, des interactions, des objets&#8230;&#8203;.</p>
+<p><strong>Afficher les menus</strong> : indique à Jeedom d&#8217;afficher le panneau de gauche, lorsqu&#8217;il existe, pour rappel ce panneau est disponible sur la plupart des pages des plugins, ainsi que la page des scénarios, des interactions, des objets&#8230;&#8203;.</p>
 </li>
 </ul>
 </div>
@@ -594,25 +544,29 @@ En DIY les actions de redémarrage et d&#8217;arrêt ne fonctionnent que si vous
 </div>
 </div>
 <div class="sect2">
-<h3 id="_notifications">2.3. Notifications</h3>
-<div class="imageblock">
-<div class="content">
-<img src="../images/profils6.png" alt="profils6">
-</div>
-</div>
-<div class="paragraph">
-<p>Ici vous pouvez régler la couleur des notifications qui arrivent sur l&#8217;interface</p>
+<h3 id="_sécurité">1.2. Sécurité</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Authentification en 2 étapes</strong> : permet de configurer l&#8217;authentification en 2 étape (pour rappels c&#8217;est un code changeant toute les XX secondes qui s&#8217;affiche sur une application mobile, type google authentificator)</p>
+</li>
+<li>
+<p><strong>Mot de passe</strong> : permet de changer votre mot de passe (ne pas oublier de le retaper en dessous)</p>
+</li>
+<li>
+<p><strong>Hash de l&#8217;utilisateur</strong> : votre clef api d&#8217;utilisateur</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_sécurité">2.4. Sécurité</h3>
-<div class="imageblock">
-<div class="content">
-<img src="../images/profils7.png" alt="profils7">
-</div>
-</div>
-<div class="paragraph">
-<p>C&#8217;est ici que vous pouvez changer votre mot de passe ainsi que la clef de sécurité pour les appareils enregistrés (ordinateur,téléphone&#8230;&#8203;). Un changement de cette clef obligera tous les péripheriques se connectant automatiquement avec votre compte à se réauthentifier</p>
+<h3 id="_notifications">1.3. Notifications</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Commande de notification utilisateur</strong> : Commande par défaut pour vous joindre (commande de type message)</p>
+</li>
+</ul>
 </div>
 </div>
 </div>

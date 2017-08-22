@@ -984,25 +984,38 @@ Un tag est remplacé lors de l&#8217;exécution du scénario par sa valeur
 </tr>
 </table>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Pour avoir les zéros intiaux à l&#8217;affichage, il faut utilier la fonction Date().
+Voir <a href="http://php.net/manual/fr/function.date.php" class="bare">http://php.net/manual/fr/function.date.php</a>
+</td>
+</tr>
+</table>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>#seconde#</strong> : seconde courante,</p>
+<p><strong>#seconde#</strong> : seconde courante (sans les zéros initiaux, ex : 6 pour 08:07:06),</p>
 </li>
 <li>
-<p><strong>#heure#</strong> : heure courante au format 24h  (ex : 17 pour 17h15),</p>
+<p><strong>#heure#</strong> : heure courante au format 24h  (ex : 17 pour 17h15) (sans les zéros initiaux, ex : 8 pour 08:07:06),</p>
 </li>
 <li>
-<p><strong>#heure12#</strong> : heure courante au format 12h (ex : 5 pour 17h15),</p>
+<p><strong>#heure12#</strong> : heure courante au format 12h (ex : 5 pour 17h15) (sans les zéros initiaux, ex : 8 pour 08:07:06),</p>
 </li>
 <li>
-<p><strong>#minute#</strong> : minute courante (ex : 15 pour 17h15),</p>
+<p><strong>#minute#</strong> : minute courante (ex : 15 pour 17h15) (sans les zéros initiaux, ex : 7 pour 08:07:06),</p>
 </li>
 <li>
-<p><strong>#jour#</strong> : jour courant,</p>
+<p><strong>#jour#</strong> : jour courant (sans les zéros initiaux, ex : 6 pour 06/07/2017),</p>
 </li>
 <li>
-<p><strong>#mois#</strong> : mois courant,</p>
+<p><strong>#mois#</strong> : mois courant (sans les zéros initiaux, ex : 7 pour 06/07/2017),</p>
 </li>
 <li>
 <p><strong>#annee#</strong> : année courante,</p>
@@ -1371,6 +1384,19 @@ Le seuil permet de definir la sensibilité, attention le calcul du seuil utilise
 <p><strong>rand</strong>(1,10) : pour un nombre aléatoire de 1 à 10</p>
 </li>
 <li>
+<p><strong>randText</strong>(texte1;texte2;texte&#8230;&#8203;..) : Permet de retourner un des textes aléatoirement (séparer les texte par un ";"), il n&#8217;y as pas de limite dans le nombre de texte</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Ex : randText(il fais #[salon][oeil][température]#;La température est de #[salon][oeil][température]#;Actuellement on a #[salon][oeil][température]#)</p>
+</li>
+<li>
+<p>la fonction retournera un de ses textes aléatoirement à chaque execution</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
 <p><strong>randomColor</strong>(min,max) : donne une couleur aléatoire compris entre 2 bornes ( 0 &#8658; rouge, 50 &#8658; vert, 100 &#8658; bleu)</p>
 <div class="ulist">
 <ul>
@@ -1511,6 +1537,9 @@ Le seuil permet de definir la sensibilité, attention le calcul du seuil utilise
 </li>
 <li>
 <p><strong>alert</strong> : permet d&#8217;afficher un petit message d&#8217;alerte sur tous les navigateurs qui ont une page jeedom ouverte. Vous pouvez en plus choisir 4 niveaux d&#8217;alerte</p>
+</li>
+<li>
+<p><strong>remove_inat</strong> : Permet de supprimer la programmation de tous les blocs DANS et A du scénario</p>
 </li>
 <li>
 <p><strong>popup</strong> : permet d&#8217;afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page jeedom ouverte.</p>

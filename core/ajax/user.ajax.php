@@ -132,6 +132,9 @@ try {
 		if (config::byKey('ldap::enable') == '1') {
 			throw new Exception(__('Vous devez desactiver l\'authentification LDAP pour pouvoir supprimer un utilisateur', __FILE__));
 		}
+		if (init('id') == $_SESSION['user']->getId()) {
+			throw new Exception(__('Vous ne pouvez supprimer le compte avec lequel vous êtes connecté', __FILE__));
+		}
 		$user = user::byId(init('id'));
 		if (!is_object($user)) {
 			throw new Exception('User id inconnu');
@@ -141,7 +144,7 @@ try {
 	}
 
 	if (init('action') == 'saveProfils') {
-		$user_json = json_decode(init('profils'), true);
+		$user_json = jeedom::fromHumanReadable(json_decode(init('profils'), true));
 		if (isset($user_json['id']) && $user_json['id'] != $_SESSION['user']->getId()) {
 			throw new Exception('401 unautorized');
 		}
@@ -156,11 +159,12 @@ try {
 		$_SESSION['user']->setLogin($login);
 		$_SESSION['user']->save();
 		@session_write_close();
+		eqLogic::clearCacheWidget();
 		ajax::success();
 	}
 
 	if (init('action') == 'get') {
-		ajax::success(utils::o2a($_SESSION['user']));
+		ajax::success(jeedom::toHumanReadable(utils::o2a($_SESSION['user'])));
 	}
 
 	if (init('action') == 'testLdapConnection') {
@@ -172,6 +176,10 @@ try {
 			throw new Exception();
 		}
 		ajax::success();
+	}
+
+	if (init('action') == 'removeBanIp') {
+		ajax::success(user::removeBanIp());
 	}
 
 	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));

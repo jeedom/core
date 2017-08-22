@@ -418,17 +418,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel1">
 <li><a href="#_principe">1. Principe</a>
 <ul class="sectlevel2">
-<li><a href="#_méthode_d_historisation">1.1. Méthode d&#8217;historisation</a></li>
-<li><a href="#_archivage">1.2. Archivage</a></li>
-<li><a href="#_tendances_et_statistiques">1.3. Tendances et statistiques</a></li>
+<li><a href="#_archivage">1.1. Archivage</a></li>
 </ul>
 </li>
-<li><a href="#_configuration_générale_de_l_historique">2. Configuration générale de l&#8217;historique</a></li>
-<li><a href="#_configuration_spécifique_par_commande">3. Configuration spécifique par commande</a></li>
-<li><a href="#_affichage_d_un_graphique">4. Affichage d&#8217;un graphique</a></li>
-<li><a href="#_graphique_sur_les_vues_et_les_designs">5. Graphique sur les vues et les designs</a></li>
-<li><a href="#_option_sur_la_page_d_historique">6. Option sur la page d&#8217;historique</a></li>
-<li><a href="#_suppression_de_valeur_incohérente">7. Suppression de valeur incohérente</a></li>
+<li><a href="#_affichage_d_un_graphique">2. Affichage d&#8217;un graphique</a></li>
+<li><a href="#_graphique_sur_les_vues_et_les_designs">3. Graphique sur les vues et les designs</a></li>
+<li><a href="#_option_sur_la_page_d_historique">4. Option sur la page d&#8217;historique</a>
+<ul class="sectlevel2">
+<li><a href="#_historique_calculé">4.1. Historique calculé</a></li>
+<li><a href="#_historique_de_commande">4.2. Historique de commande</a></li>
+</ul>
+</li>
+<li><a href="#_suppression_de_valeur_incohérente">5. Suppression de valeur incohérente</a></li>
+<li><a href="#_timeline">Timeline</a></li>
 </ul>
 </div>
 </div>
@@ -437,11 +439,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sectionbody">
 <div class="paragraph">
 <p>Partie importante dans un logiciel : la partie historisation, véritable mémoire de celui-ci. Il est possible dans Jeedom d&#8217;historiser n&#8217;importe quelle commande de type information (binaire ou numérique). Cela vous permettra donc par exemple d&#8217;historiser une courbe de température, de consommation ou les ouvertures d&#8217;une porte&#8230;&#8203;</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/history.JPG" alt="history">
-</div>
 </div>
 </div>
 </div>
@@ -452,23 +449,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Ici est décrit le principe d&#8217;historisation de Jeedom. Il n&#8217;est nécessaire de le comprendre que si vous rencontrez des soucis d&#8217;historisation ou que vous voulez modifier les réglages de l&#8217;historisation. Les réglages par défaut conviennent dans la plupart des cas.</p>
 </div>
 <div class="sect2">
-<h3 id="_méthode_d_historisation">1.1. Méthode d&#8217;historisation</h3>
-<div class="paragraph">
-<p>Un des premiers éléments est de savoir si la commande que vous historisez est de type évènement ou non :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Non évènement</strong> : c&#8217;est le cas le plus simple. Jeedom va collecter toutes les 5mn la valeur de la commande et historiser le résultat.</p>
-</li>
-<li>
-<p><strong>Evènement</strong> : Jeedom sait qu&#8217;il ne peut récupérer la valeur. Il attend donc que le plugin (et indirectement le module) la lui transmette. Ensuite, en fonction de la fréquence et de vos réglages, il se peut qu&#8217;un premier lissage intervienne. En effet, si Jeedom reçoit 2 valeurs à moins de 5mn d&#8217;intervalle, il va par défaut en faire la moyenne pour n&#8217;en stocker qu&#8217;une. Vous pouvez bien sûr changer ce réglage pour qu&#8217;au lieu de la moyenne il prenne le maximum, le minimum ou au contraire qu&#8217;il garde les deux. Nous verrons par la suite comment changer ce réglage.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_archivage">1.2. Archivage</h3>
+<h3 id="_archivage">1.1. Archivage</h3>
 <div class="paragraph">
 <p>L&#8217;archivage de données permet à Jeedom de réduire la quantité de données conservées en mémoire. Cela permet de ne pas utiliser trop de place et de ne pas ralentir le système. En effet, si vous conservez toute les mesures, cela fait d&#8217;autant plus de points à afficher et donc peut considérablement allonger les temps pour rendre un graphique. En cas d&#8217;un nombre trop important de points, cela peut même faire planter l&#8217;affichage du graphique.</p>
 </div>
@@ -500,139 +481,10 @@ Bien sûr, ce principe d&#8217;archivage ne s&#8217;applique qu&#8217;aux comman
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_tendances_et_statistiques">1.3. Tendances et statistiques</h3>
-<div class="paragraph">
-<p>Il est possible d&#8217;activer sur les widgets l&#8217;affichage du minimum, de la moyenne, du maximum et de la tendance (par défaut ceci est désactivé car cela a une tendance à allonger le temps d&#8217;affichage du dashboard à cause des calculs).</p>
-</div>
-<div class="paragraph">
-<p>Si vous activez cette option, par défaut, Jeedom se fonde sur les données des dernières 24h pour calculer ces statistiques. Les tendances sont par défaut calculées sur 2h. Ce paramètre est bien sûr modifiable (voir plus bas).</p>
-</div>
-<div class="paragraph">
-<p>La méthode de calcul de tendance est fondée sur le calcul des moindres carrés (voir <a href="https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s">ici</a> pour le détail).</p>
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configuration_générale_de_l_historique">2. Configuration générale de l&#8217;historique</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>La configuration générale de l&#8217;historique se passe sur la page Administration &#8594; Configuration.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/administration.png" alt="administration">
-</div>
-</div>
-<div class="paragraph">
-<p>Nous allons voir ici les détails de la partie configuration des commandes, qui contient toute une branche concernant l&#8217;historique.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/history3.JPG" alt="history3">
-</div>
-</div>
-<div class="paragraph">
-<p>We have here :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Afficher les statistiques sur les widgets</strong> : permet d&#8217;afficher ou non les statistiques sur les widgets ; il faut que le widget soit compatible, ce qui est le cas pour la plupart ; il faut aussi que la commande soit de type numérique</p>
-</li>
-<li>
-<p><strong>Période de calcul pour min, max, moyenne (en heures)</strong> : période de calcul des statistiques (par défaut 24h), il n&#8217;est pas possible de mettre moins d&#8217;une heure</p>
-</li>
-<li>
-<p><strong>Période de calcul pour la tendance (en heures)</strong> : période de calcul des tendances (par défaut 2h), il n&#8217;est pas possible de mettre moins d&#8217;une heure</p>
-</li>
-<li>
-<p><strong>Délai avant archivage (en heures)</strong> : donne le délai avant archivage, par défaut la valeur est de 24h, c&#8217;est-à-dire que les données historisées doivent avoir plus de 24h pour être archivées (pour rappel, l&#8217;archivage va soit moyenner, soit prendre le maximum ou le minimum de la donnée sur une période qui correspond à la taille des paquets)</p>
-</li>
-<li>
-<p><strong>Archiver par paquet de (en heures)</strong> : ce paramètre donne justement la taille des paquets, par defaut 1h ; cela signifie que Jeedom va prendre des périodes de 1h, moyenner (par exemple, suivant le réglage de la commande) et stocker cette nouvelle valeur (en supprimant les valeurs moyennées).</p>
-</li>
-<li>
-<p><strong>Seuil de calcul de tendance basse</strong> : cette valeur correspond au seuil de tendance basse (Jeedom indique que la valeur est en baisse), il doit être négatif (par défaut -0.1).</p>
-</li>
-<li>
-<p><strong>Seuil de calcul de tendance haut</strong> : idem mais à la tendance haute.</p>
-</li>
-<li>
-<p><strong>Période d&#8217;affichage des graphiques par defaut</strong> : pour des questions de performance lors de l&#8217;affichage à la volée (en cliquant sur le widget ou par la page historique) Jeedom n&#8217;affiche qu&#8217;une période restreinte de l&#8217;historique (cela permet un affichage plus rapide) ; il est ici possible de régler cette valeur.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_configuration_spécifique_par_commande">3. Configuration spécifique par commande</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Pour accèder à ces réglages, il faut aller dans la configuration avancée des commandes, en passant par Outils &#8594; Résumé domotique :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/display.png" alt="display">
-</div>
-</div>
-<div class="paragraph">
-<p>Puis en dépliant la liste des commandes d&#8217;un équipement (petite flèche à droite) en double-cliquant sur la commande ou en cliquant sur la petite roue :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/history9.JPG" alt="history9">
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Vous pouvez aussi utiliser le champ de recherche à droite en tapant le nom de la commande que vous voulez.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Vous pouvez également y accèder par la page de l&#8217;équipement en question et en cliquant sur la petite roue à droite sur la ligne de la commande (si le plugin a intégré cette option) :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/history10.JPG" alt="history10">
-</div>
-</div>
-<div class="paragraph">
-<p>A partir de là, vous devez avoir une fenêtre qui apparait, il faut cliquer sur "Configuration avancée" :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/display13.JPG" alt="display13">
-</div>
-</div>
-<div class="paragraph">
-<p>A partir de là, vous avez plusieurs possibilités de réglages. En ce qui concerne l&#8217;historique, il y a :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Historiser</strong> : permet de définir si vous voulez historiser ou non cette commande.</p>
-</li>
-<li>
-<p><strong>Mode de lissage</strong> : mode de lissage ou d&#8217;archivage permet de choisir la manière d&#8217;archiver la donnée ; par défaut c&#8217;est une moyenne ; il est aussi possible de choisir le maximum, le minimum, ou aucun ; aucun permet de dire à Jeedom qu&#8217;il ne doit pas réaliser d&#8217;archivage sur cette commande (aussi bien sur la première période des 5 mn qu&#8217;avec la tâche d&#8217;archivage). Cette option est dangereuse car Jeedom conserve tout : il va donc y avoir beaucoup plus de données conservées.</p>
-</li>
-<li>
-<p><strong>Purger l&#8217;historique si plus vieux de</strong> : cette option permet de dire à Jeedom de supprimer toutes les données plus vieilles qu&#8217;une certaine période. Peut être pratique pour ne pas conserver de données si ça n&#8217;est pas nécessaire et donc limiter la quantité d&#8217;informations enregistrées par Jeedom.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_affichage_d_un_graphique">4. Affichage d&#8217;un graphique</h2>
+<h2 id="_affichage_d_un_graphique">2. Affichage d&#8217;un graphique</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Il existe plusieurs moyens d&#8217;accéder à l&#8217;historique :</p>
@@ -646,17 +498,15 @@ Vous pouvez aussi utiliser le champ de recherche à droite en tapant le nom de l
 <p>en cliquant sur la commande voulue dans un widget,</p>
 </li>
 <li>
-<p>en allant dans la page historique qui permet de superposer différentes courbes et de combiner les styles (aire, courbe, barre).</p>
+<p>en allant dans la page historique qui permet de superposer différentes courbes et de combiner les styles (aire, courbe, barre)</p>
+</li>
+<li>
+<p>en mobile en restant appuyé sur le widget en question</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
 <p>Si vous affichez un graphique par la page historique ou en cliquant sur le widget, vous avez accès à plusieurs options d&#8217;affichage :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/history4.JPG" alt="history4">
-</div>
 </div>
 <div class="paragraph">
 <p>On retrouve en haut à droite la période d&#8217;affichage (ici sur la dernière semaine car, par défaut je veux que ça soit seulement une semaine - voir 2 paragraphes au-dessus), ensuite viennent les paramètres de la courbe (ces paramètres sont gardés d&#8217;un affichage à l&#8217;autre ; vous n&#8217;avez donc qu&#8217;a les configurer une fois).</p>
@@ -680,39 +530,13 @@ Vous pouvez aussi utiliser le champ de recherche à droite en tapant le nom de l
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Here are few examples :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/history5.JPG" alt="history5">
-</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/history6.JPG" alt="history6">
-</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/history7.JPG" alt="history7">
-</div>
-</div>
-<div class="paragraph">
-<p>Sur ce dernier, on remarque une plus grande précision sur les dernières données (principe de l&#8217;archivage).</p>
-</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_graphique_sur_les_vues_et_les_designs">5. Graphique sur les vues et les designs</h2>
+<h2 id="_graphique_sur_les_vues_et_les_designs">3. Graphique sur les vues et les designs</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Vous pouvez aussi afficher les graphiques sur les vues (nous verrons ici les options de configuration et non comment faire, pour cela il faut se rendre sur la documention des vues ou des designs en fonction). Voici les options :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/history13.JPG" alt="history13">
-</div>
 </div>
 <div class="paragraph">
 <p>Une fois une donnée activée, vous pouvez choisir :</p>
@@ -739,26 +563,21 @@ Vous pouvez aussi utiliser le champ de recherche à droite en tapant le nom de l
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Voici un exemple de courbes empilées :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/history14.JPG" alt="history14">
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_option_sur_la_page_d_historique">6. Option sur la page d&#8217;historique</h2>
+<h2 id="_option_sur_la_page_d_historique">4. Option sur la page d&#8217;historique</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>La page d&#8217;historique donne accès à quelques options supplémentaires :</p>
+<p>La page d&#8217;historique donne accès à quelques options supplémentaires</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/history15.JPG" alt="history15">
+<div class="sect2">
+<h3 id="_historique_calculé">4.1. Historique calculé</h3>
+<div class="paragraph">
+<p>Permet d&#8217;affiché une courbe en fonction d&#8217;un calcul sur plusieurs commande (vous pouvez à peu pret tout faire, +-/* valeur absolue&#8230;&#8203; voir documentation PHP pour certaine fonction). Ex : abs(<mark>[Jardin][Hygrometrie][Température]</mark> - <mark>[Espace de vie][Hygrométrie][Température]</mark>)</p>
 </div>
+<div class="paragraph">
+<p>Vous avez aussi accès à un gestion de formules de calcul qui vous permet de les sauvegarder pour les réafficher plus facilement</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -772,18 +591,9 @@ Il suffit de cliquer sur le nom de l&#8217;objet pour le déplier ; apparaissent
 </tr>
 </table>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-La couleur d&#8217;arrière-plan des objets de cette liste peuvent être modifiées à partir de la configuration de l&#8217;objet.
-</td>
-</tr>
-</table>
 </div>
+<div class="sect2">
+<h3 id="_historique_de_commande">4.2. Historique de commande</h3>
 <div class="paragraph">
 <p>Devant chaque donnée pouvant être graphée, vous retrouvez deux icônes :</p>
 </div>
@@ -799,13 +609,74 @@ La couleur d&#8217;arrière-plan des objets de cette liste peuvent être modifi�
 </div>
 </div>
 </div>
+</div>
 <div class="sect1">
-<h2 id="_suppression_de_valeur_incohérente">7. Suppression de valeur incohérente</h2>
+<h2 id="_suppression_de_valeur_incohérente">5. Suppression de valeur incohérente</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Parfois, il se peut que vous ayez des valeurs incohérentes sur les graphiques. Cela est souvent dû à un souci d&#8217;interprétation de la valeur. Il est possible de supprimer ou changer la valeur du point en question, en cliquant sur celui-ci directement sur le graphique ; de plus, vous pouvez régler le minimum et le maximum autorisés afin d&#8217;éviter des problèmes futurs.</p>
 </div>
 </div>
+</div>
+<h1 id="_timeline" class="sect0">Timeline</h1>
+<div class="paragraph">
+<p>La timeline affiche certain évènements de votre domotique sous forme chronologique.</p>
+</div>
+<div class="paragraph">
+<p>Pour les voirs vous faut d&#8217;abord activer le suivi sur la timeline des commandes ou scénarios voulu :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Scenario</strong> : soit directement sur la page de scénario ou sur la page de résumé de scénario pour le faire en "mass"</p>
+</li>
+<li>
+<p><strong>Commande</strong> : soit dans la configuration avancé de la commande soit dans la configuration de l&#8217;historique pour le faire en "mass"</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Vous avez accès au fenetre de résumé des scénarios ou configuration de l&#8217;historique directement à partir de la page de timeline
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Une fois que vous avez activer le suivi dans la timeline des commandes et scénario voulu vous pourrez voir apparaitre ceux-ci sur la timeline</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Il faut attendre de nouveau évènement après avoir activer le suivi sur la timeline avant de les voir apparaitre
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Les cartes sur la timeline affiche :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Commande action</strong> : en fond rouge, une icone à droite vous permet d&#8217;afficher la fenetre de configuration avancée de la commande</p>
+</li>
+<li>
+<p><strong>Commande info</strong> : en fond bleu, une icone à droite vous permet d&#8217;afficher la fenetre de configuration avancée de la commande</p>
+</li>
+<li>
+<p><strong>Scénario</strong> : en fond gris, vous avez 2 icônes, une pour afficher le log du scénario et une pour aller sur le scénario</p>
+</li>
+</ul>
 </div>
 </div>
 <div id="footer">

@@ -38,7 +38,8 @@
         "Vous devez attendre au moins 45s entre 2 lancements du démon": "Sie müssen mindestens 45 Sekunden zwischen 2 Starts des Dämons warten.",
         "Erreur sur la fonction deamon_start du plugin : ": "Fehler des Plugins bei Funktion Deamon_start :",
         "Veuillez executer le script : ": "Bitte führen Sie das Skript aus :",
-        "Lancement de : ": "Starten von :"
+        "Lancement de : ": "Starten von :",
+        "Gestion automatique désactivée": "Automatische Verwaltung deaktiviert"
     },
     "core/class/scenarioSubElement.class.php": {
         "Exécution du sous-élément de type [condition] : ": "Ausführung des Unterelementes des Typs [Bedingung]:",
@@ -66,7 +67,9 @@
         "Veuillez trouver ci-joint le rapport ": "Im Anhang finden Sie den Bericht",
         " du ": "die",
         " généré le ": "erzeugt den",
-        "Aucune durée trouvée pour l'action sleep ou la durée n'est pas valide : ": "Keine Zeit für die Aktion Schlafen gefunden oder die Zeit ist ungültig :"
+        "Aucune durée trouvée pour l'action sleep ou la durée n'est pas valide : ": "Keine Zeit für die Aktion Schlafen gefunden oder die Zeit ist ungültig :",
+        "[Erreur] Aucune commande trouvée pour ": "[Fehler] Keine Befehle gefunden",
+        " options : ": "Optionen :"
     },
     "core/class/scenarioElement.class.php": {
         "Non exécution des actions pour cause de répétition": "Nicht ausführen der Aktion wegen der Wiederholung ",
@@ -150,7 +153,10 @@
         "Espace disque libre": "Freier Festplattenspeicher",
         "Configuration réseau interne": "interne Netzwerkkonfiguration",
         "Configuration réseau externe": "externe Netzwerkkonfiguration",
-        "Persistance du cache": " Caches Persistenz"
+        "Persistance du cache": " Caches Persistenz",
+        "Mémoire disponible": "verfügbarer Speicher",
+        "Swap disponible": "Swap disponible",
+        "Charge": "Last"
     },
     "core/class/message.class.php": {
         "Message de ": "Nachricht"
@@ -307,7 +313,8 @@
         "Installation": "Installation",
         "Configuration": "Konfiguration",
         "Fonctionalités": "Funktionalität",
-        "Panel": "Tafel"
+        "Panel": "Tafel",
+        "Fonctionnalités": "Fonctionnalités"
     },
     "core/class/interactQuery.class.php": {
         "J'ai une correspondance  : ": "Ich habe eine Übereinstimmung :",
@@ -383,7 +390,7 @@
         "Accès à l'interface d'administration": "Zugriff auf die Administrationsoberfläche",
         "Lancer": "Start",
         "Securité": "Sicherheit",
-        "Nombre d'échec toléré": "Nombre d'échec toléré",
+        "Nombre d'échec toléré": "Anzahl der tolerierten Ausfälle ",
         "Temps maximum entre les échecs (s)": "Maximale Zeit zwischen den Ausfällen",
         "Durée du bannissement (s), -1 pour infini": "Dauer der Verbannung (s), -1 für unendlich",
         "IP \"blanche\"": "IP \"blanche\"",
@@ -478,7 +485,7 @@
         "Couleurs": "Farbe",
         "Nom": "Name",
         "Code HTML": "HTML Code",
-        "Configuration des résumés d'objet": "Configuration des résumés d'objet",
+        "Configuration des résumés d'objet": "Konfiguration der Objekt Zusammenfassung",
         "Clef": "Schlüssel ",
         "Calcul": "Berechnung",
         "Icone": "Symbol",
@@ -544,12 +551,17 @@
         "Nettoyer les rapport plus viex de (jours)": "Nettoyer les rapport plus viex de (jours)",
         "Système de fichier (/tmp/jeedom/cache)": "Dateisystem (/tmp/jeedom/cache)",
         "Démarré : ": "Gestartet :",
-        "Configuration des graphiques de lien": "Configuration des graphiques de lien",
+        "Configuration des graphiques de lien": " Grafik Link Konfiguration",
         "Profondeur pour les scénarios": "Tiefe für Szenarien",
         "Profondeur pour les équipements": "Tiefe für Geräte",
         "Profondeur pour les commandes": "Tiefe für Befehle",
         "Profondeur pour les objets": "Tiefe für Objekte",
-        "Profondeur pour les variables": "Tiefe für Variablen"
+        "Profondeur pour les variables": "Tiefe für Variablen",
+        "Système (OS) et base de données": "Système (OS) et base de données",
+        "Administration": "Verwaltung",
+        "Interface": "Interface",
+        "Mac": "MAC",
+        "Nettoyer les rapport plus anciens de (jours)": "Nettoyer les rapport plus anciens de (jours)"
     },
     "desktop/js/administration.js": {
         "Etes-vous sûr de vouloir réinitialiser la clef API de ": "Sind Sie sicher, dass Sie den API-Schlüssel zurücksetzen möchten",
@@ -870,8 +882,8 @@
         "Permet de rajouter un message dans les logs": "Hier können Sie eine Nachricht in den Protokollen hinzufügen",
         "Permet d'ajouter une message dans le centre de message": "Eine Nachricht in der Nachrichtenzentrale hinzufügen",
         "Permet de modifier les prorietés visible/invisible actif/inactif d'un équipement": "Erlaubt, die Eigenschaften sichtbar/unsichtbar aktiv/inaktiv der Geräte zu ändern",
-        "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finie que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec le plugin SMS, Slack et SARAH.": "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finie que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec le plugin SMS, Slack et SARAH.",
-        "Envoi l'ordre à Jeedom de s'éteindre": "Envoi l'ordre à Jeedom de s'éteindre",
+        "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finie que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.": "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finie que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.",
+        "Envoi l'ordre à Jeedom de s'éteindre": "Befehl an Jeedom senden, um zu löschen",
         "Retourne un texte ou une valeur pour une interaction par exemple": "Retourne un texte ou une valeur pour une interaction par exemple",
         "Permet d'affecter une icone au scénario": "Erlaub dem Szenario ein Symbol zuzuweisen",
         "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte": "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte",
@@ -880,7 +892,10 @@
         "Rapport": "Bericht",
         "Permet d'envoyer par une commande message un rapport d'une vue, d'un design ou d'un panel en PNG/PDF/JPEG/SVG.": "Permet d'envoyer par une commande message un rapport d'une vue, d'un design ou d'un panel en PNG/PDF/JPEG/SVG.",
         "Graphique": "Grafik",
-        "Liens": "Links"
+        "Liens": "Links",
+        "Multi lancement": "Multi lancement",
+        "Défaut": "Standard",
+        "Temps réel": "Echtzeit"
     },
     "desktop/js/scenario.js": {
         "Sauvegarde effectuée avec succès": "Speichern erfolgreich abgeschlossen",
@@ -949,7 +964,8 @@
         "FAIRE": "MACHEN",
         "CODE": "CODE",
         "ACTION": "AKTION",
-        "Graphique de lien": "Graphique de lien"
+        "Graphique de lien": "Link Graph",
+        "Avancé": "Avancé"
     },
     "core/template/scenario/report.default": {
         "Vue": "Ansicht",
@@ -1079,7 +1095,7 @@
         "Ajouter commande": "Befehl hinzufügen",
         "Ajouter une image/caméra": "Bild/Kamera hinzufügen",
         "Ajouter une zone": "Bereich hinzufügen",
-        "Ajouter un résumé": "Ajouter un résumé",
+        "Ajouter un résumé": "Inhalte hinzufügen",
         "Affichage": "Anzeigen",
         "Aimanter les élements": "Ausrichten der Elemente",
         "Aimanter à la grille": "Am Gitter ausrichten",
@@ -1331,7 +1347,8 @@
         "Port configuré": "Port konfiguriert",
         "Aucune santé spécifique": "Keine spezifische Gesundheit",
         "NOK": "NOK",
-        "erreurs": "Fehler"
+        "erreurs": "Fehler",
+        "Démon en mode manuel": "Démon en mode manuel"
     },
     "desktop/js/health.js": {
         "Configuration du plugin": "Plugin-Konfiguration",
@@ -1449,7 +1466,7 @@
         "Permet d'ajouter une message dans le centre de message": "Eine Nachricht in der Nachrichtenzentrale hinzufügen",
         "Permet de modifier les prorietés visible/invisible actif/inactif d'un équipement": "Erlaubt, die Eigenschaften sichtbar/unsichtbar aktiv/inaktiv der Geräte zu ändern",
         "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finie que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec le plugin SMS, Slack et SARAH.": "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finie que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec le plugin SMS, Slack et SARAH.",
-        "Envoi l'ordre à Jeedom de s'éteindre": "Envoi l'ordre à Jeedom de s'éteindre",
+        "Envoi l'ordre à Jeedom de s'éteindre": "Befehl an Jeedom senden, um zu löschen",
         "Retourne un texte ou une valeur pour une interaction par exemple": "Retourne un texte ou une valeur pour une interaction par exemple",
         "Permet d'affecter une icone au scénario": "Erlaub dem Szenario ein Symbol zuzuweisen",
         "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte": "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte",
@@ -1570,7 +1587,7 @@
         "Configuration de la commande": "Befehl Konfiguration",
         "Logs": "Logs",
         "Liens": "Links",
-        "Graphique des liens": "Graphique des liens"
+        "Graphique des liens": "Grafik-Links"
     },
     "desktop/modal/cmd.configure.php": {
         "Enregistrer": "Speichern",
@@ -1597,7 +1614,7 @@
         "Icône": "Symbol",
         "Utilisé par": "verwendet von",
         "Remplacer cette commande par la commande": "Diesen Befehl durch den Befehl ersetzen",
-        "Cette commande remplace la commande": "Cette commande remplace la commande",
+        "Cette commande remplace la commande": "Dieser Befehl ersetzt den Befehl",
         "Cette commande remplace l'id": "Dieser Befehl ersetzt die ID",
         "Equipement": "Gerät",
         "Commandes": "Befehle",
@@ -1636,7 +1653,7 @@
         "7 jours": "7 Tage",
         "1 mois": "1 Monat",
         "6 mois": "6 Monate",
-        "Gestion des valeurs": "Gestion des valeurs",
+        "Gestion des valeurs": "Verwalten von Werten",
         "Valeurs interdites (séparé par \";\")": "Valeurs interdites (séparé par \";\")",
         "Valeur retour d'état": "Das Wert der Rückkehr",
         "Durée avant retour d'état (min)": "Die Dauer bevor Rückkehr (Minuten)",
@@ -1688,9 +1705,14 @@
         "Action avant exécution de la commande": "Aktion vor der Ausführung des Befehls",
         "Action après exécution de la commande": "Aktion nach Ausführung des Befehls",
         "Liens": "Links",
-        "Graphique des liens": "Graphique des liens",
+        "Graphique des liens": "Grafik-Links",
         "Copie des données historisé": "Kopieren der Chronik Daten",
-        "Copier l'historique de cette commande sur une autre commande": "Kopieren der Chronik von diesem Befehls auf einen anderen Befehl"
+        "Copier l'historique de cette commande sur une autre commande": "Kopieren der Chronik von diesem Befehls auf einen anderen Befehl",
+        "Arrondi (chiffre après la virgule)": "Abgerundet (Zahl nach dem Komma)",
+        "Thermostat": "Thermostat",
+        "Purger l'historique si plus vieux que ": "Purger l'historique si plus vieux que",
+        "1 an": "1 an",
+        "Copie des données historisées": "Copie des données historisées"
     },
     "desktop/php/object.php": {
         "Ajouter objet": "Objekt hinzufügen",
@@ -1723,7 +1745,7 @@
         "Etes-vous sûr de vouloir supprimer l\\'objet": "Sind Sie sicher, dass Sie das Objekt löschen möchten",
         "Commande": "Befehl",
         "Inverser": "umgekehrt",
-        "Graphique des liens": "Graphique des liens"
+        "Graphique des liens": "Grafik-Links"
     },
     "desktop/modal/icon.selector.php": {
         "Rechercher": "Suchen nach",
@@ -1752,7 +1774,7 @@
         "Action": "Aktion",
         "Data store supprimé": "Datenspeicher gelöscht",
         "Data store sauvegardé": "Datenspeicher gespeichert",
-        "Graphique de lien": "Graphique de lien"
+        "Graphique de lien": "Link Graph"
     },
     "core/class/dataStore.class.php": {
         "Variable :": "Variable :"
@@ -1855,5 +1877,27 @@
         "Information binaire": "Binärer Information",
         "Action on": "Aktion an",
         "Action off": "Aktion aus"
+    },
+    "desktop/php/connection.php": {
+        "Nom d'utilisateur": "Benutzername",
+        "Mot de passe": "Passwort",
+        "Code à 2 facteurs": "Code à 2 facteurs",
+        "Enregistrer cet ordinateur": "Diesen Computer speichern",
+        "Connexion": "Einloggen"
+    },
+    "desktop/modal/jeedom.benchmark.php": {
+        "Nom": "Name",
+        "Temps": "Temps"
+    },
+    "core/ajax/update.ajax.php": {
+        "[START UPDATE]": "[START UPDATE]",
+        "Launch cron dependancy plugins": "Cron Plugin Abhängigkeiten starten ",
+        "[END UPDATE SUCCESS]": "[UPDATE ENDE ERFOLGREICH]"
+    },
+    "core/api/jeeApi.php": {
+        "Appels de ": "Appels de"
+    },
+    "mobile/js/message.js": {
+        "Vider": "Leeren"
     }
 }

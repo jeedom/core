@@ -18,13 +18,64 @@
 
 /* * ***************************Includes********************************* */
 require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
-
+global $JEEDOM_INTERNAL_CONFIG;
 class jeedom {
 	/*     * *************************Attributs****************************** */
 
 	private static $jeedomConfiguration;
 
 	/*     * ***********************Methode static*************************** */
+
+	public static function addTimelineEvent($_event) {
+		file_put_contents(dirname(__FILE__) . '/../../data/timeline.json', json_encode($_event) . "\n", FILE_APPEND);
+	}
+
+	public static function getTimelineEvent() {
+		$path = dirname(__FILE__) . '/../../data/timeline.json';
+		if (!file_exists($path)) {
+			return array();
+		}
+		com_shell::execute(system::getCmdSudo() . 'chmod 777 ' . $path . ' > /dev/null 2>&1;echo "$(tail -n ' . config::byKey('timeline::maxevent') . ' ' . $path . ')" > ' . $path);
+		$lines = explode("\n", trim(file_get_contents($path)));
+		$result = array();
+		foreach ($lines as $line) {
+			$result[] = json_decode($line, true);
+		}
+		return $result;
+	}
+
+	public static function removeTimelineEvent() {
+		$path = dirname(__FILE__) . '/../../data/timeline.json';
+		com_shell::execute(system::getCmdSudo() . 'chmod 777 ' . $path . ' > /dev/null 2>&1;');
+		unlink($path);
+	}
+
+	public static function deadCmd() {
+		global $JEEDOM_INTERNAL_CONFIG;
+		$return = array();
+		$cmd = config::byKey('interact::warnme::defaultreturncmd', 'core', '');
+		if ($cmd != '') {
+			if (!cmd::byId(str_replace('#', '', $cmd))) {
+				$return[] = array('detail' => 'Administration', 'help' => 'Commande retour interactions', 'who' => $cmd);
+			}
+		}
+		$cmd = config::byKey('emailAdmin', 'core', '');
+		if ($cmd != '') {
+			if (!cmd::byId(str_replace('#', '', $cmd))) {
+				$return[] = array('detail' => 'Administration', 'help' => 'Commande information utilisateur', 'who' => $cmd);
+			}
+		}
+		foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
+			$cmds = config::byKey('alert::' . $level . 'Cmd', 'core', '');
+			preg_match_all("/#([0-9]*)#/", $cmds, $matches);
+			foreach ($matches[1] as $cmd_id) {
+				if (!cmd::byId($cmd_id)) {
+					$return[] = array('detail' => 'Administration', 'help' => 'Commande sur ' . $value['name'], 'who' => '#' . $cmd_id . '#');
+				}
+			}
+		}
+		return $return;
+	}
 
 	public static function health() {
 		$return = array();
@@ -146,12 +197,22 @@ class jeedom {
 		);
 
 		$value = round(($values['SwapFree'] / $values['SwapTotal']) * 100);
-		$return[] = array(
-			'name' => __('Swap disponible', __FILE__),
-			'state' => ($value > 15),
-			'result' => $value . ' %',
-			'comment' => '',
-		);
+		if ($values['SwapTotal'] != 0 && $values['SwapTotal'] != null) {
+			$return[] = array(
+				'name' => __('Swap disponible', __FILE__),
+				'state' => ($value > 15),
+				'result' => $value . ' %',
+				'comment' => '',
+			);
+		} else {
+			$return[] = array(
+				'name' => __('Swap disponible', __FILE__),
+				'state' => 2,
+				'result' => __('Inconnue', __FILE__),
+				'comment' => '',
+			);
+		}
+
 		$values = sys_getloadavg();
 		$return[] = array(
 			'name' => __('Charge', __FILE__),
@@ -595,17 +656,24 @@ class jeedom {
 		return file_exists(self::getTmpFolder() . '/started');
 	}
 
+	/**
+	 *
+	 * @return boolean
+	 */
 	public static function isDateOk() {
 		if (config::byKey('ignoreHourCheck') == 1) {
 			return true;
 		}
-		$maxdate = strtotime('2020-01-01 00:00:00');
-		$mindate = strtotime('2017-01-01 00:00:00');
+		$minDateValue = new \DateTime('2017-01-01');
+		$mindate = strtotime($minDateValue->format('Y-m-d 00:00:00'));
+		$maxDateValue = $minDateValue->modify('+6 year')->format('Y-m-d 00:00:00');
+		$maxdate = strtotime($maxDateValue);
+
 		if (strtotime('now') < $mindate || strtotime('now') > $maxdate) {
 			self::forceSyncHour();
 			sleep(3);
 			if (strtotime('now') < $mindate || strtotime('now') > $maxdate) {
-				log::add('core', 'error', __('La date du système est incorrect (avant 2016-01-01 ou après 2019-01-01) : ', __FILE__) . date('Y-m-d H:i:s'), 'dateCheckFailed');
+				log::add('core', 'error', __('La date du système est incorrect (avant ' . $minDateValue . ' ou après ' . $maxDateValue . ') : ', __FILE__) . (new \DateTime())->format('Y-m-d H:i:s'), 'dateCheckFailed');
 				return false;
 			}
 		}
