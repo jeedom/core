@@ -871,7 +871,7 @@ function isConnect($_right = '') {
 	}
 	if (isset($_SESSION['user']) && is_object($_SESSION['user']) && $_SESSION['user']->is_Connected()) {
 		if ($_right != '') {
-			return ($_SESSION['user']->getProfils() == $_right) ? true : false;
+			return ($_SESSION['user']->getProfils() == $_right);
 		}
 		return true;
 	}
