@@ -383,7 +383,7 @@ try {
 		$user = new user();
 		$user->setLogin('admin');
 		$user->setPassword(sha512('admin'));
-		$user->setRights('admin', 1);
+		$user->setProfils('admin');
 		$user->save();
 		config::save('log::level', 400);
 		echo "OK\n";
