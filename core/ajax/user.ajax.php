@@ -132,6 +132,9 @@ try {
 		if (config::byKey('ldap::enable') == '1') {
 			throw new Exception(__('Vous devez desactiver l\'authentification LDAP pour pouvoir supprimer un utilisateur', __FILE__));
 		}
+		if (init('id') == $_SESSION['user']->getId()) {
+			throw new Exception(__('Vous ne pouvez supprimer le compte avec lequel vous etês connecté', __FILE__));
+		}
 		$user = user::byId(init('id'));
 		if (!is_object($user)) {
 			throw new Exception('User id inconnu');
