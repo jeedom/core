@@ -199,6 +199,16 @@ class user {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
+	public static function searchByProfils($_rights) {
+		$values = array(
+			'profils' => $_rights,
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+        FROM user
+        WHERE profils=:profils';
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+	}
+
 	public static function hasDefaultIdentification() {
 		$values = array(
 			'password' => sha512('admin'),
@@ -292,7 +302,7 @@ class user {
 		if ($this->getLogin() == '') {
 			throw new Exception(__('Le nom d\'utilisateur ne peut pas être vide', __FILE__));
 		}
-		if (count(user::searchByRight('admin')) == 1 && $this->getRights('admin') == 1 && $this->getEnable() == 0) {
+		if (count(user::searchByProfils('admin')) == 1 && $this->getProfils() == 'admin' && $this->getEnable() == 0) {
 			$this->setEnable(1);
 		}
 	}
@@ -302,7 +312,7 @@ class user {
 	}
 
 	public function preRemove() {
-		if (count(user::searchByRight('admin')) == 1 && $this->getRights('admin') == 1) {
+		if (count(user::searchByProfils('admin')) == 1 && $this->getProfils() == 'admin') {
 			throw new Exception(__('Vous ne pouvez supprimer le dernière administrateur', __FILE__));
 		}
 	}

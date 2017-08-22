@@ -65,7 +65,7 @@ class planHeader {
 
 	public function report($_format = 'pdf', $_parameters = array()) {
 		if (!isset($_parameters['user'])) {
-			$users = user::searchByRight('admin');
+			$users = user::searchByProfils('admin');
 			if (count($users) == 0) {
 				throw new Exception(__('Aucun utilisateur admin trouvé pour la génération du rapport', __FILE__));
 			}

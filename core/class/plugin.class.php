@@ -387,7 +387,7 @@ class plugin {
 			throw new Exception(__('Vous ne pouvez faire un report sur un plugin sans panel', __FILE__));
 		}
 		if (!isset($_parameters['user'])) {
-			$users = user::searchByRight('admin');
+			$users = user::searchByProfils('admin');
 			if (count($users) == 0) {
 				throw new Exception(__('Aucun utilisateur admin trouvé pour la génération du rapport', __FILE__));
 			}
@@ -543,12 +543,12 @@ class plugin {
 			$plugin_id::deamon_changeAutoMode($_mode);
 		}
 	}
-        /**
-         * 
-         * @return array
-         */
+	/**
+	 *
+	 * @return array
+	 */
 	public function deamon_info() {
-		 
+
 		$plugin_id = $this->getId();
 		if ($this->getHasOwnDeamon() != 1 || !method_exists($plugin_id, 'deamon_info')) {
 			return array('launchable_message' => '', 'launchable' => 'nok', 'state' => 'nok', 'log' => 'nok', 'auto' => 0);
