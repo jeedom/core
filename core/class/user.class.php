@@ -298,12 +298,16 @@ class user {
 
 	/*     * *********************Méthodes d'instance************************* */
 
-	public function presave() {
+	public function preSave() {
 		if ($this->getLogin() == '') {
 			throw new Exception(__('Le nom d\'utilisateur ne peut pas être vide', __FILE__));
 		}
-		if (count(user::searchByProfils('admin')) == 1 && $this->getProfils() == 'admin' && $this->getEnable() == 0) {
+		$admins = user::searchByProfils('admin');
+		if (count($admins) == 1 && $this->getProfils() == 'admin' && $this->getEnable() == 0) {
 			$this->setEnable(1);
+		}
+		if (count($admins) == 1 && $admins[0]->getId() == $this->getid()) {
+			$this->setProfils('admin');
 		}
 	}
 
