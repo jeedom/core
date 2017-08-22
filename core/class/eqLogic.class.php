@@ -420,10 +420,45 @@ class eqLogic {
 		return $text;
 	}
 
-	public function clearCacheWidget() {
+	public static function clearCacheWidget() {
 		foreach (self::all() as $eqLogic) {
 			$eqLogic->emptyCacheWidget();
 		}
+	}
+
+	public static function generateHtmlTable($_nbLine, $_nbColumn, $_options = array()) {
+		$return = array('html' => '', 'replace' => array());
+
+		if (!isset($_options['styletd'])) {
+			$_options['styletd'] = '';
+		}
+		if (!isset($_options['center'])) {
+			$_options['center'] = 0;
+		}
+		if (!isset($_options['styletable'])) {
+			$_options['styletable'] = '';
+		}
+		$return['html'] .= '<table style="' . $_options['styletable'] . '">';
+		$return['html'] .= '<tbody>';
+		for ($i = 1; $i <= $_nbLine; $i++) {
+			$return['html'] .= '<tr>';
+			for ($j = 1; $j <= $_nbColumn; $j++) {
+				$return['html'] .= '<td style="' . $_options['styletd'] . '">';
+				if ($_options['center'] == 1) {
+					$return['html'] .= '<center>';
+				}
+				$return['html'] .= '#cmd::' . $i . '::' . $j . '#';
+				if ($_options['center'] == 1) {
+					$return['html'] .= '</center>';
+				}
+				$return['html'] .= '</td>';
+				$return['tag']['#cmd::' . $i . '::' . $j . '#'] = '';
+			}
+			$return['html'] .= '</tr>';
+		}
+		$return['html'] .= '</tbody>';
+		$return['html'] .= '</table>';
+		return $return;
 	}
 
 	/*     * *********************Méthodes d'instance************************* */
@@ -501,7 +536,7 @@ class eqLogic {
 		if (!$_noCache) {
 			$mc = cache::byKey('widgetHtml' . $this->getId() . $_version . $user_id);
 			if ($mc->getValue() != '') {
-				return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
+				//return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
 			}
 		}
 		$replace = array(
@@ -642,7 +677,7 @@ class eqLogic {
 
 		switch ($this->getDisplay('layout::' . $version)) {
 			case 'table':
-				$table = generateHtmlTable($this->getDisplay('layout::' . $version . '::table::nbLine'), $this->getDisplay('layout::' . $version . '::table::nbColumn'));
+				$table = self::generateHtmlTable($this->getDisplay('layout::' . $version . '::table::nbLine'), $this->getDisplay('layout::' . $version . '::table::nbColumn'), $this->getDisplay('layout::' . $version . '::table::parameters'));
 				$br_before = 0;
 				foreach ($this->getCmd(null, null, true) as $cmd) {
 					if (isset($replace['#refresh_id#']) && $cmd->getId() == $replace['#refresh_id#']) {
