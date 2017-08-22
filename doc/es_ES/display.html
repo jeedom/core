@@ -419,7 +419,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_configuration_avancée_d_un_équipement">1. Configuration avancée d&#8217;un équipement</a>
 <ul class="sectlevel2">
 <li><a href="#_informations">1.1. Informations</a></li>
-<li><a href="#_affichage">1.2. Affichage</a></li>
+<li><a href="#_affichage">1.2. Affichage</a>
+<ul class="sectlevel3">
+<li><a href="#_widget">1.2.1. Widget</a></li>
+<li><a href="#_disposition">1.2.2. Disposition</a></li>
+<li><a href="#_paramètres_optionnels_sur_la_tuile">1.2.3. Paramètres optionnels sur la tuile</a></li>
+</ul>
+</li>
 <li><a href="#_alertes">1.3. Alertes</a></li>
 <li><a href="#_commentaire">1.4. Commentaire</a></li>
 </ul>
@@ -627,6 +633,8 @@ Il est possible d&#8217;accéder (si le plugin le supporte) directement à cette
 <div class="paragraph">
 <p>Dans cette partie vous allez pouvoir configurer certains comportements d&#8217;affichage de la tuile sur le dashboard, les vues, le design et en mobile.</p>
 </div>
+<div class="sect3">
+<h4 id="_widget">1.2.1. Widget</h4>
 <div class="paragraph">
 <p>Puedes:</p>
 </div>
@@ -658,6 +666,71 @@ Il est possible d&#8217;accéder (si le plugin le supporte) directement à cette
 </li>
 </ul>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_disposition">1.2.2. Disposition</h4>
+<div class="paragraph">
+<p>Cette partie vous permet de choisir entre la disposition standard des commandes (cote à cote dans le widget), ou en mode tableau.</p>
+</div>
+<div class="paragraph">
+<p>En mode tableau vous pouvez :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Choisir la dimmension du tableau ligne x colonne</p>
+</li>
+<li>
+<p>Choisir de center les commandes dans les cases du tableau</p>
+</li>
+<li>
+<p>Donner le style (en css) des cases</p>
+</li>
+<li>
+<p>Donner le style (en css) du tableau</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>En dessous pour chaque commande vous pouvez choisir la position :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>En ligne x colonne</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Par defaut toutes les commandes sont en 1x1 (ligne 1 colonne 1).</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Il est possible de mettre plusieurs commande dans la meme case
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Si dans une case du tableau vous voulez mettre 2 commandes l&#8217;une en dessous de l&#8217;autre il ne faut pas oublier de rajouter un retour à la ligne après la premiere commande dans la configuration avancée de celle-ci
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_paramètres_optionnels_sur_la_tuile">1.2.3. Paramètres optionnels sur la tuile</h4>
 <div class="paragraph">
 <p>En-dessous, on retrouve des paramètres optionnels d&#8217;affichage que l&#8217;on peut passer à l&#8217;équipement. Ces paramètres sont composés d&#8217;un nom et d&#8217;une valeur. Pour les équipements, seule la valeur "style" est pour le moment utilisée, elle permet d&#8217;insérer du code CSS sur l&#8217;équipement en question.</p>
 </div>
@@ -672,6 +745,7 @@ N&#8217;oubliez pas de sauvegarder après toute modification
 </td>
 </tr>
 </table>
+</div>
 </div>
 </div>
 <div class="sect2">
