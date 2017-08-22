@@ -1113,3 +1113,22 @@ function sanitize_output($_string) {
 	$_string = str_replace(array(', ', ' ,'), ',', $_string);
 	return $_string;
 }
+
+function generateHtmlTable($_nbLine, $_nbColumn) {
+	$return = array('html' => '', 'replace' => array());
+	$return['html'] .= '<table>';
+	$return['html'] .= '<tbody>';
+	for ($i = 1; $i <= $_nbLine; $i++) {
+		$return['html'] .= '<tr>';
+		for ($j = 1; $j <= $_nbColumn; $j++) {
+			$return['html'] .= '<td>';
+			$return['html'] .= '#cmd::' . $i . '::' . $j . '#';
+			$return['html'] .= '</td>';
+			$return['tag']['#cmd::' . $i . '::' . $j . '#'] = '';
+		}
+		$return['html'] .= '</tr>';
+	}
+	$return['html'] .= '</tbody>';
+	$return['html'] .= '</table>';
+	return $return;
+}

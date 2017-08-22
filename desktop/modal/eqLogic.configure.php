@@ -352,19 +352,100 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 	?>
 													</tbody>
 												</table>
-												<?php if ($eqLogic->widgetPossibility('custom::optionalParameters')) {
+												<?php if ($eqLogic->widgetPossibility('custom::layout')) {
 		?>
-													<legend><i class="fa fa-pencil-square-o"></i> {{Paramètres optionnels sur la tuile}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fa fa-plus-circle"></i> Ajouter</a></legend>
-													<table class="table table-bordered table-condensed" id="table_widgetParameters">
+													<legend><i class="fa fa-table"></i> {{Disposition}}</legend>
+
+
+													<table class="table table-bordered table-condensed">
 														<thead>
 															<tr>
-																<th>{{Nom}}</th>
-																<th>{{Valeur}}</th>
-																<th>{{Action}}</th>
+																<th></th>
+																<?php
+foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
+			echo '<th>{{' . $value['name'] . '}}';
+			if (in_array($key, array('plan', 'view'))) {
+				echo '<i class="fa fa-eye pull-right cursor bt_displayWidget" data-version="d' . $key . '" aria-hidden="true"></i>';
+			} elseif ($key == 'dashboard') {
+				echo '<i class="fa fa-eye pull-right cursor bt_displayWidget" data-version="' . $key . '" aria-hidden="true"></i>';
+			}
+			echo '</th>';
+		}
+		?>
 															</tr>
 														</thead>
 														<tbody>
-															<?php
+															<tr>
+																<td>{{Disposition}}</td>
+																<?php
+foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
+			echo '<td>';
+			echo '<select class="eqLogicAttr form-control sel_layout" data-l1key="display" data-l2key="layout::' . $key . '" data-type="' . $key . '">';
+			echo '<option value="default">{{Defaut}}</option>';
+			echo '<option value="table">{{Tableau}}</option>';
+			echo '</select>';
+			echo '</td>';
+		}
+		?>
+															</tr>
+															<tr>
+																<td>{{Parametres}}</td>
+																<?php
+foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
+			echo '<td>';
+			echo '<div class="widget_layout default" data-type="' . $key . '">';
+			echo '</div>';
+			echo '<div class="widget_layout table" data-type="' . $key . '" style="display:none;">';
+			echo '<input type="number" class="eqLogicAttr form-control layout_table_parameters" data-l1key="display" data-l2key="layout::' . $key . '::table::nbLine" data-type="' . $key . '" style="display:inline-block;width:60px;" /> x ';
+			echo '<input type="number" class="eqLogicAttr form-control layout_table_parameters" data-l1key="display" data-l2key="layout::' . $key . '::table::nbColumn" data-type="' . $key . '" style="display:inline-block;width:60px;" />';
+			echo '</div>';
+			echo '</td>';
+		}
+		?>
+															</tr>
+															<tr>
+																<td>{{Options}}</td>
+																<?php
+foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
+			echo '<td>';
+			echo '<div class="widget_layout default" data-type="' . $key . '">';
+			echo '</div>';
+			echo '<div class="widget_layout table" data-type="' . $key . '" style="display:none;">';
+			foreach ($eqLogic->getCmd() as $cmd) {
+				if ($cmd->getIsVisible() == 0) {
+					continue;
+				}
+				echo $cmd->getName() . ' : <input class="eqLogicAttr form-control" data-l1key="display" data-l2key="layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line" style="display:inline-block;width:60px;" /> x ';
+				echo ' <input class="eqLogicAttr form-control" data-l1key="display" data-l2key="layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column" style="display:inline-block;width:60px;" /><br/>';
+			}
+			echo '</div>';
+			echo '</td>';
+		}
+		?>
+															</tr>
+														</tbody>
+													</table>
+													<script type="text/javascript">
+														$('.sel_layout').on('change',function(){
+															var type = $(this).attr('data-type');
+															$('.widget_layout[data-type='+type+']').hide();
+															$('.widget_layout.'+$(this).value()+'[data-type='+type+']').show();
+														});
+													</script>
+													<?php }
+	if ($eqLogic->widgetPossibility('custom::optionalParameters')) {
+		?>
+														<legend><i class="fa fa-pencil-square-o"></i> {{Paramètres optionnels sur la tuile}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fa fa-plus-circle"></i> Ajouter</a></legend>
+														<table class="table table-bordered table-condensed" id="table_widgetParameters">
+															<thead>
+																<tr>
+																	<th>{{Nom}}</th>
+																	<th>{{Valeur}}</th>
+																	<th>{{Action}}</th>
+																</tr>
+															</thead>
+															<tbody>
+																<?php
 if ($eqLogic->getDisplay('parameters') != '') {
 			foreach ($eqLogic->getDisplay('parameters') as $key => $value) {
 				echo '<tr>';
@@ -381,201 +462,201 @@ if ($eqLogic->getDisplay('parameters') != '') {
 			}
 		}
 		?>
-														</tbody>
-													</table>
-													<?php }
+															</tbody>
+														</table>
+														<?php }
 	?>
-												</div>
-
-												<?php }
-?>
-												<div role="tabpanel" class="tab-pane" id="eqLogic_alert">
-													<br/>
-													<legend><i class="fa fa-info-circle"></i> {{Informations Batteries}}</legend>
-													<div class="row">
-														<div class="col-sm-4" >
-															<form class="form-horizontal">
-																<fieldset>
-																	<div class="form-group">
-																		<label class="col-sm-4 control-label">{{Type de batterie}}</label>
-																		<div class="col-sm-4">
-																			<span class="eqLogicAttr label label-primary" data-l1key="configuration" data-l2key="battery_type" style="font-size : 1em;"></span>
-																		</div>
-																	</div>
-																</fieldset>
-															</form>
-														</div>
 													</div>
-													<legend><i class="icon techno-fleches"></i> {{Seuils spécifiques Batteries}}</legend>
+
+													<?php }
+?>
+													<div role="tabpanel" class="tab-pane" id="eqLogic_alert">
+														<br/>
+														<legend><i class="fa fa-info-circle"></i> {{Informations Batteries}}</legend>
+														<div class="row">
+															<div class="col-sm-4" >
+																<form class="form-horizontal">
+																	<fieldset>
+																		<div class="form-group">
+																			<label class="col-sm-4 control-label">{{Type de batterie}}</label>
+																			<div class="col-sm-4">
+																				<span class="eqLogicAttr label label-primary" data-l1key="configuration" data-l2key="battery_type" style="font-size : 1em;"></span>
+																			</div>
+																		</div>
+																	</fieldset>
+																</form>
+															</div>
+														</div>
+														<legend><i class="icon techno-fleches"></i> {{Seuils spécifiques Batteries}}</legend>
+														<div class="form-group">
+															<label class="col-xs-2 eqLogicAttr label label-danger" style="font-size : 1.8em">{{Danger}}</label>
+															<div class="col-xs-2">
+																<input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_danger_threshold" />
+															</input>
+														</div>
+														<label class="col-xs-2 label label-warning" style="font-size : 1.8em">{{Warning}}</label>
+														<div class="col-xs-2">
+															<input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_warning_threshold" />
+														</div>
+														<label class="col-xs-2 label label-success" style="font-size : 1.8em">{{Ok}}</label>
+													</div>
+													<legend><i class="fa fa-clock-o"></i> {{Alertes Communications}}</legend>
 													<div class="form-group">
 														<label class="col-xs-2 eqLogicAttr label label-danger" style="font-size : 1.8em">{{Danger}}</label>
 														<div class="col-xs-2">
-															<input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_danger_threshold" />
-														</input>
+															<input class="eqLogicAttr form-control" data-l1key="timeout"/>
+														</input>{{(en minute)}}
 													</div>
-													<label class="col-xs-2 label label-warning" style="font-size : 1.8em">{{Warning}}</label>
-													<div class="col-xs-2">
-														<input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_warning_threshold" />
-													</div>
-													<label class="col-xs-2 label label-success" style="font-size : 1.8em">{{Ok}}</label>
-												</div>
-												<legend><i class="fa fa-clock-o"></i> {{Alertes Communications}}</legend>
-												<div class="form-group">
-													<label class="col-xs-2 eqLogicAttr label label-danger" style="font-size : 1.8em">{{Danger}}</label>
-													<div class="col-xs-2">
-														<input class="eqLogicAttr form-control" data-l1key="timeout"/>
-													</input>{{(en minute)}}
 												</div>
 											</div>
+											<div role="tabpanel" class="tab-pane" id="eqLogic_comment">
+												<br/>
+												<textarea data-l1key="comment" class="form-control eqLogicAttr autogrow" ></textarea>
+											</div>
 										</div>
-										<div role="tabpanel" class="tab-pane" id="eqLogic_comment">
-											<br/>
-											<textarea data-l1key="comment" class="form-control eqLogicAttr autogrow" ></textarea>
-										</div>
-									</div>
-									<script>
-										$('.background-color-default').off('change').on('change',function(){
-											if($(this).value() == 1){
-												$(this).closest('td').find('.span_configureBackgroundColor').hide();
-											}else{
-												$(this).closest('td').find('.span_configureBackgroundColor').show();
-											}
-										});
-										$('.background-color-transparent').off('change').on('change',function(){
-											var td = $(this).closest('td');
-											if($(this).value() == 1){
-												td.find('.background-color').hide();
-											}else{
-												td.find('.background-color').show();
-											}
-										});
-										$('.color-default').off('change').on('change',function(){
-											var td = $(this).closest('td')
-											if($(this).value() == 1){
-												td.find('.color').hide();
-											}else{
-												td.find('.color').show();
-											}
-										});
-										$('.border-default').off('change').on('change',function(){
-											var td = $(this).closest('td')
-											if($(this).value() == 1){
-												td.find('.border').hide();
-											}else{
-												td.find('.border').show();
-											}
-										});
-										$('.border-radius-default').off('change').on('change',function(){
-											var td = $(this).closest('td')
-											if($(this).value() == 1){
-												td.find('.border-radius').hide();
-											}else{
-												td.find('.border-radius').show();
-											}
-										});
-										$('.advanceWidgetParameterDefault').off('change').on('change',function(){
-											if($(this).value() == 1){
-												$(this).closest('td').find('.advanceWidgetParameter').hide();
-											}else{
-												$(this).closest('td').find('.advanceWidgetParameter').show();
-											}
-										});
-										$('.advanceWidgetParameterColorTransparent').off('change').on('change',function(){
-											if($(this).value() == 1){
-												$(this).closest('td').find('.advanceWidgetParameterColor').hide();
-											}else{
-												$(this).closest('td').find('.advanceWidgetParameterColor').show();
-											}
-										});
-										$('#div_displayEqLogicConfigure').setValues(eqLogicInfo, '.eqLogicAttr');
-
-										$('#bt_eqLogicConfigureGraph').on('click', function () {
-											$('#md_modal2').dialog({title: "{{Graphique des liens}}"});
-											$("#md_modal2").load('index.php?v=d&modal=graph.link&filter_type=eqLogic&filter_id='+eqLogicInfo.id).dialog('open');
-										});
-
-										$('#table_widgetParameters').on( 'click', '.removeWidgetParameter',function () {
-											$(this).closest('tr').remove();
-										});
-										$('#bt_EqLogicConfigurationTabComment').on('click', function () {
-											setTimeout(function(){ $('.eqLogicAttr[data-l1key=comment]').trigger('change'); }, 10);
-										});
-										$('#bt_eqLogicConfigureRawObject').off('click').on('click',function(){
-											$('#md_modal2').dialog({title: "{{Informations brutes}}"});
-											$("#md_modal2").load('index.php?v=d&modal=object.display&class=eqLogic&id='+eqLogicInfo.id).dialog('open');
-										})
-										$('#bt_addWidgetParameters').off().on('click', function () {
-											var tr = '<tr>';
-											tr += '<td>';
-											tr += '<input class="form-control key" />';
-											tr += '</td>';
-											tr += '<td>';
-											tr += '<input class="form-control value" />';
-											tr += '</td>';
-											tr += '<td>';
-											tr += '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fa fa-times"></i> Supprimer</a>';
-											tr += '</td>';
-											tr += '</tr>';
-											$('#table_widgetParameters tbody').append(tr);
-										});
-
-										$('.bt_displayWidget').off('click').on('click',function(){
-											var eqLogic = $('#div_displayEqLogicConfigure').getValues('.eqLogicAttr')[0];
-											$('#md_modal2').dialog({title: "{{Widget}}"});
-											$('#md_modal2').load('index.php?v=d&modal=eqLogic.displayWidget&eqLogic_id=' + eqLogic.id+'&version='+$(this).attr('data-version')).dialog('open');
-										});
-
-										$('#bt_eqLogicConfigureSave').on('click', function () {
-											var eqLogic = $('#div_displayEqLogicConfigure').getValues('.eqLogicAttr')[0];
-											if (!isset(eqLogic.display)) {
-												eqLogic.display = {};
-											}
-											if (!isset(eqLogic.display.parameters)) {
-												eqLogic.display.parameters = {};
-											}
-											$('#table_widgetParameters tbody tr').each(function () {
-												eqLogic.display.parameters[$(this).find('.key').value()] = $(this).find('.value').value();
-											});
-											jeedom.eqLogic.save({
-												eqLogics: [eqLogic],
-												type: eqLogic.eqType_name,
-												error: function (error) {
-													$('#md_displayEqLogicConfigure').showAlert({message: error.message, level: 'danger'});
-												},
-												success: function () {
-													$('#md_displayEqLogicConfigure').showAlert({message: '{{Enregistrement réussi}}', level: 'success'});
+										<script>
+											$('.background-color-default').off('change').on('change',function(){
+												if($(this).value() == 1){
+													$(this).closest('td').find('.span_configureBackgroundColor').hide();
+												}else{
+													$(this).closest('td').find('.span_configureBackgroundColor').show();
 												}
 											});
-										});
-
-										$('#bt_eqLogicConfigureRemove').on('click',function(){
-											bootbox.confirm('{{Etes-vous sûr de vouloir supprimer cet équipement ?}}', function (result) {
-												if (result) {
-													var eqLogic = $('#div_displayEqLogicConfigure').getValues('.eqLogicAttr')[0];
-													jeedom.eqLogic.remove({
-														id : eqLogic.id,
-														type : eqLogic.eqType_name,
-														error: function (error) {
-															$('#md_displayEqLogicConfigure').showAlert({message: error.message, level: 'danger'});
-														},
-														success: function (data) {
-															$('#md_displayEqLogicConfigure').showAlert({message: '{{Suppression réalisée avec succès}}', level: 'success'});
-														}
-													});
+											$('.background-color-transparent').off('change').on('change',function(){
+												var td = $(this).closest('td');
+												if($(this).value() == 1){
+													td.find('.background-color').hide();
+												}else{
+													td.find('.background-color').show();
 												}
 											});
-										});
+											$('.color-default').off('change').on('change',function(){
+												var td = $(this).closest('td')
+												if($(this).value() == 1){
+													td.find('.color').hide();
+												}else{
+													td.find('.color').show();
+												}
+											});
+											$('.border-default').off('change').on('change',function(){
+												var td = $(this).closest('td')
+												if($(this).value() == 1){
+													td.find('.border').hide();
+												}else{
+													td.find('.border').show();
+												}
+											});
+											$('.border-radius-default').off('change').on('change',function(){
+												var td = $(this).closest('td')
+												if($(this).value() == 1){
+													td.find('.border-radius').hide();
+												}else{
+													td.find('.border-radius').show();
+												}
+											});
+											$('.advanceWidgetParameterDefault').off('change').on('change',function(){
+												if($(this).value() == 1){
+													$(this).closest('td').find('.advanceWidgetParameter').hide();
+												}else{
+													$(this).closest('td').find('.advanceWidgetParameter').show();
+												}
+											});
+											$('.advanceWidgetParameterColorTransparent').off('change').on('change',function(){
+												if($(this).value() == 1){
+													$(this).closest('td').find('.advanceWidgetParameterColor').hide();
+												}else{
+													$(this).closest('td').find('.advanceWidgetParameterColor').show();
+												}
+											});
+											$('#div_displayEqLogicConfigure').setValues(eqLogicInfo, '.eqLogicAttr');
 
-										$('.bt_advanceCmdConfigurationOnEqLogicConfiguration').off('click').on('click', function () {
-											$('#md_modal2').dialog({title: "{{Configuration de la commande}}"});
-											$('#md_modal2').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open');
-										});
+											$('#bt_eqLogicConfigureGraph').on('click', function () {
+												$('#md_modal2').dialog({title: "{{Graphique des liens}}"});
+												$("#md_modal2").load('index.php?v=d&modal=graph.link&filter_type=eqLogic&filter_id='+eqLogicInfo.id).dialog('open');
+											});
 
-										$('#bt_eqLogicConfigureLogRealTime').off('click').on('click', function () {
-											$('#md_modal2').dialog({title: "{{Logs}}"});
-											$('#md_modal2').load('index.php?v=d&modal=log.display&log=event&search=' + eqLogicInfoSearchString).dialog('open');
-										});
+											$('#table_widgetParameters').on( 'click', '.removeWidgetParameter',function () {
+												$(this).closest('tr').remove();
+											});
+											$('#bt_EqLogicConfigurationTabComment').on('click', function () {
+												setTimeout(function(){ $('.eqLogicAttr[data-l1key=comment]').trigger('change'); }, 10);
+											});
+											$('#bt_eqLogicConfigureRawObject').off('click').on('click',function(){
+												$('#md_modal2').dialog({title: "{{Informations brutes}}"});
+												$("#md_modal2").load('index.php?v=d&modal=object.display&class=eqLogic&id='+eqLogicInfo.id).dialog('open');
+											})
+											$('#bt_addWidgetParameters').off().on('click', function () {
+												var tr = '<tr>';
+												tr += '<td>';
+												tr += '<input class="form-control key" />';
+												tr += '</td>';
+												tr += '<td>';
+												tr += '<input class="form-control value" />';
+												tr += '</td>';
+												tr += '<td>';
+												tr += '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fa fa-times"></i> Supprimer</a>';
+												tr += '</td>';
+												tr += '</tr>';
+												$('#table_widgetParameters tbody').append(tr);
+											});
+
+											$('.bt_displayWidget').off('click').on('click',function(){
+												var eqLogic = $('#div_displayEqLogicConfigure').getValues('.eqLogicAttr')[0];
+												$('#md_modal2').dialog({title: "{{Widget}}"});
+												$('#md_modal2').load('index.php?v=d&modal=eqLogic.displayWidget&eqLogic_id=' + eqLogic.id+'&version='+$(this).attr('data-version')).dialog('open');
+											});
+
+											$('#bt_eqLogicConfigureSave').on('click', function () {
+												var eqLogic = $('#div_displayEqLogicConfigure').getValues('.eqLogicAttr')[0];
+												if (!isset(eqLogic.display)) {
+													eqLogic.display = {};
+												}
+												if (!isset(eqLogic.display.parameters)) {
+													eqLogic.display.parameters = {};
+												}
+												$('#table_widgetParameters tbody tr').each(function () {
+													eqLogic.display.parameters[$(this).find('.key').value()] = $(this).find('.value').value();
+												});
+												jeedom.eqLogic.save({
+													eqLogics: [eqLogic],
+													type: eqLogic.eqType_name,
+													error: function (error) {
+														$('#md_displayEqLogicConfigure').showAlert({message: error.message, level: 'danger'});
+													},
+													success: function () {
+														$('#md_displayEqLogicConfigure').showAlert({message: '{{Enregistrement réussi}}', level: 'success'});
+													}
+												});
+											});
+
+											$('#bt_eqLogicConfigureRemove').on('click',function(){
+												bootbox.confirm('{{Etes-vous sûr de vouloir supprimer cet équipement ?}}', function (result) {
+													if (result) {
+														var eqLogic = $('#div_displayEqLogicConfigure').getValues('.eqLogicAttr')[0];
+														jeedom.eqLogic.remove({
+															id : eqLogic.id,
+															type : eqLogic.eqType_name,
+															error: function (error) {
+																$('#md_displayEqLogicConfigure').showAlert({message: error.message, level: 'danger'});
+															},
+															success: function (data) {
+																$('#md_displayEqLogicConfigure').showAlert({message: '{{Suppression réalisée avec succès}}', level: 'success'});
+															}
+														});
+													}
+												});
+											});
+
+											$('.bt_advanceCmdConfigurationOnEqLogicConfiguration').off('click').on('click', function () {
+												$('#md_modal2').dialog({title: "{{Configuration de la commande}}"});
+												$('#md_modal2').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open');
+											});
+
+											$('#bt_eqLogicConfigureLogRealTime').off('click').on('click', function () {
+												$('#md_modal2').dialog({title: "{{Logs}}"});
+												$('#md_modal2').load('index.php?v=d&modal=log.display&log=event&search=' + eqLogicInfoSearchString).dialog('open');
+											});
 
 
 
-									</script>
+										</script>

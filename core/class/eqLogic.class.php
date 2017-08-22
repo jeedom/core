@@ -639,23 +639,49 @@ class eqLogic {
 			return $replace;
 		}
 		$version = jeedom::versionAlias($_version);
-		$cmd_html = '';
-		$br_before = 0;
-		foreach ($this->getCmd(null, null, true) as $cmd) {
-			if (isset($replace['#refresh_id#']) && $cmd->getId() == $replace['#refresh_id#']) {
-				continue;
-			}
-			if ($br_before == 0 && $cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
-				$cmd_html .= '<br/>';
-			}
-			$cmd_html .= $cmd->toHtml($_version, '', $replace['#cmd-background-color#']);
-			$br_before = 0;
-			if ($cmd->getDisplay('forceReturnLineAfter', 0) == 1) {
-				$cmd_html .= '<br/>';
-				$br_before = 1;
-			}
+
+		switch ($this->getDisplay('layout::' . $version)) {
+			case 'table':
+				$table = generateHtmlTable($this->getDisplay('layout::' . $version . '::table::nbLine'), $this->getDisplay('layout::' . $version . '::table::nbColumn'));
+				$br_before = 0;
+				foreach ($this->getCmd(null, null, true) as $cmd) {
+					if (isset($replace['#refresh_id#']) && $cmd->getId() == $replace['#refresh_id#']) {
+						continue;
+					}
+					$tag = '#cmd::' . $this->getDisplay('layout::' . $version . '::table::cmd::' . $cmd->getId() . '::line', 1) . '::' . $this->getDisplay('layout::' . $version . '::table::cmd::' . $cmd->getId() . '::column', 1) . '#';
+
+					if ($br_before == 0 && $cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
+						$table['tag'][$tag] .= '<br/>';
+					}
+					$table['tag'][$tag] .= $cmd->toHtml($_version, '', $replace['#cmd-background-color#']);
+					$br_before = 0;
+					if ($cmd->getDisplay('forceReturnLineAfter', 0) == 1) {
+						$table['tag'][$tag] .= '<br/>';
+						$br_before = 1;
+					}
+				}
+				$replace['#cmd#'] = template_replace($table['tag'], $table['html']);
+				break;
+			default:
+				$cmd_html = '';
+				$br_before = 0;
+				foreach ($this->getCmd(null, null, true) as $cmd) {
+					if (isset($replace['#refresh_id#']) && $cmd->getId() == $replace['#refresh_id#']) {
+						continue;
+					}
+					if ($br_before == 0 && $cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
+						$cmd_html .= '<br/>';
+					}
+					$cmd_html .= $cmd->toHtml($_version, '', $replace['#cmd-background-color#']);
+					$br_before = 0;
+					if ($cmd->getDisplay('forceReturnLineAfter', 0) == 1) {
+						$cmd_html .= '<br/>';
+						$br_before = 1;
+					}
+				}
+				$replace['#cmd#'] = $cmd_html;
+				break;
 		}
-		$replace['#cmd#'] = $cmd_html;
 		if (!isset(self::$_templateArray[$version])) {
 			self::$_templateArray[$version] = getTemplate('core', $version, 'eqLogic');
 		}
