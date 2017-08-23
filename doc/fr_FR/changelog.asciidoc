@@ -44,6 +44,7 @@
 ** Prévention du passage en normal du derniere administrateur
 ** Ajout d'une sécurité pour éviter la suppression du compte avec lequel on est connecté
 * Possibilité dans la configuration avancé des équipements de mettre la disposition des commandes dans le widgets en mode table en choissisant pour chaque commande la case ou la mettre
+* Possibilité de reorganiser les widgets des équipements depuis le dashboard (en mode edition clic droit sur le widget)
 
 == 3.0.11
 

@@ -88,7 +88,7 @@ function editWidgetMode(_mode){
     }
     if(_mode == 0){
        $( ".div_displayEquipement .eqLogic-widget.eqLogic_layout_table table.tableCmd").removeClass('table-bordered');
-       $.contextMenu('destroy', '.div_displayEquipement .eqLogic-widget' );
+       $.contextMenu('destroy');
        if( $('.div_displayEquipement .eqLogic-widget.ui-resizable').length > 0){
         $('.div_displayEquipement .eqLogic-widget.allowResize').resizable('destroy');
     }
