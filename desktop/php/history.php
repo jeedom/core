@@ -19,12 +19,12 @@ $date = array(
 	</style>
 
 	<ul class="nav nav-tabs" role="tablist">
-		<li role="presentation" class="active"><a href="#histoytab" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-bar-chart-o"></i> {{Historique}}</a></li>
+		<li role="presentation" class="active"><a href="#historytab" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-bar-chart-o"></i> {{Historique}}</a></li>
 		<li role="presentation"><a id="bt_tabTimeline" href="#timelinetab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fa fa-clock-o"></i> {{Timeline}}</a></li>
 	</ul>
 
 	<div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
-		<div role="tabpanel" class="tab-pane active" id="histoytab">
+		<div role="tabpanel" class="tab-pane active" id="historytab">
 			<br/>
 
 			<div class="row row-overflow" data-offset="70">

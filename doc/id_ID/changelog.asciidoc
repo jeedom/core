@@ -39,6 +39,11 @@
 * Ajout d'une timeline sur la page historique (attention doit etre activé sur chaque commande et/ou scénario que vous voulez voir apparaitre)
 * Possibilité de vider les evenements de la timeline
 * Possibilité de vider les IPs bannies
+* Correction/amélioration de la gestion des comptes utilisateurs
+** Possibilité de supprimer le compte admin de base
+** Prévention du passage en normal du derniere administrateur
+** Ajout d'une sécurité pour éviter la suppression du compte avec lequel on est connecté
+* Possibilité dans la configuration avancé des équipements de mettre la disposition des commandes dans le widgets en mode table en choissisant pour chaque commande la case ou la mettre
 
 == 3.0.11
 

@@ -420,10 +420,45 @@ class eqLogic {
 		return $text;
 	}
 
-	public function clearCacheWidget() {
+	public static function clearCacheWidget() {
 		foreach (self::all() as $eqLogic) {
 			$eqLogic->emptyCacheWidget();
 		}
+	}
+
+	public static function generateHtmlTable($_nbLine, $_nbColumn, $_options = array()) {
+		$return = array('html' => '', 'replace' => array());
+
+		if (!isset($_options['styletd'])) {
+			$_options['styletd'] = '';
+		}
+		if (!isset($_options['center'])) {
+			$_options['center'] = 0;
+		}
+		if (!isset($_options['styletable'])) {
+			$_options['styletable'] = '';
+		}
+		$return['html'] .= '<table style="' . $_options['styletable'] . '">';
+		$return['html'] .= '<tbody>';
+		for ($i = 1; $i <= $_nbLine; $i++) {
+			$return['html'] .= '<tr>';
+			for ($j = 1; $j <= $_nbColumn; $j++) {
+				$return['html'] .= '<td style="' . $_options['styletd'] . '">';
+				if ($_options['center'] == 1) {
+					$return['html'] .= '<center>';
+				}
+				$return['html'] .= '#cmd::' . $i . '::' . $j . '#';
+				if ($_options['center'] == 1) {
+					$return['html'] .= '</center>';
+				}
+				$return['html'] .= '</td>';
+				$return['tag']['#cmd::' . $i . '::' . $j . '#'] = '';
+			}
+			$return['html'] .= '</tr>';
+		}
+		$return['html'] .= '</tbody>';
+		$return['html'] .= '</table>';
+		return $return;
 	}
 
 	/*     * *********************Méthodes d'instance************************* */
@@ -642,7 +677,7 @@ class eqLogic {
 
 		switch ($this->getDisplay('layout::' . $version)) {
 			case 'table':
-				$table = generateHtmlTable($this->getDisplay('layout::' . $version . '::table::nbLine'), $this->getDisplay('layout::' . $version . '::table::nbColumn'));
+				$table = self::generateHtmlTable($this->getDisplay('layout::' . $version . '::table::nbLine'), $this->getDisplay('layout::' . $version . '::table::nbColumn'), $this->getDisplay('layout::' . $version . '::table::parameters'));
 				$br_before = 0;
 				foreach ($this->getCmd(null, null, true) as $cmd) {
 					if (isset($replace['#refresh_id#']) && $cmd->getId() == $replace['#refresh_id#']) {
@@ -780,6 +815,16 @@ class eqLogic {
 		}
 		if ($this->getDisplay('width', -1) == -1 || intval($this->getDisplay('height')) < 2) {
 			$this->setDisplay('width', 'auto');
+		}
+		foreach ($this->getCmd() as $cmd) {
+			foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
+				if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line') == '' && $cmd->getDisplay('layout::' . $key . '::table::cmd::line') != '') {
+					$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line', $cmd->getDisplay('layout::' . $key . '::table::cmd::line'));
+				}
+				if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column') == '' && $cmd->getDisplay('layout::' . $key . '::table::cmd::column') != '') {
+					$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column', $cmd->getDisplay('layout::' . $key . '::table::cmd::column'));
+				}
+			}
 		}
 		DB::save($this, $_direct);
 		if ($this->_needRefreshWidget) {
@@ -1131,6 +1176,9 @@ class eqLogic {
 		if (property_exists($class, '_widgetPossibility')) {
 			$return = $class::$_widgetPossibility;
 			if ($_key != '') {
+				if (isset($return[$_key])) {
+					return $return[$_key];
+				}
 				$keys = explode('::', $_key);
 				foreach ($keys as $k) {
 					if (!isset($return[$k])) {
