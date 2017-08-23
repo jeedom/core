@@ -82,13 +82,13 @@ class DB {
 
 		if ($stmt != false && $stmt->execute($_params) != false) {
 			if ($_fetchType == self::FETCH_TYPE_ROW) {
-				if ($_fetch_opt == NULL) {
+				if ($_fetch_opt === null) {
 					$res = $stmt->fetch($_fetch_param);
 				} else if ($_fetch_param == PDO::FETCH_CLASS) {
 					$res = $stmt->fetchObject($_fetch_opt);
 				}
 			} else {
-				if ($_fetch_opt == NULL) {
+				if ($_fetch_opt === null) {
 					$res = $stmt->fetchAll($_fetch_param);
 				} else {
 					$res = $stmt->fetchAll($_fetch_param, $_fetch_opt);
@@ -489,4 +489,4 @@ class DB {
 
 }
 
-?>
+ 
