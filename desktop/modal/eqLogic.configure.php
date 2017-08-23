@@ -153,7 +153,7 @@ foreach ($eqLogic->getCmd() as $cmd) {
 							<th></th>
 							<?php
 foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
-		echo '<th>{{' . $value['name'] . '}}';
+		echo '<th style="width:20%">{{' . $value['name'] . '}}';
 		if (in_array($key, array('plan', 'view'))) {
 			echo '<i class="fa fa-eye pull-right cursor bt_displayWidget" data-version="d' . $key . '" aria-hidden="true"></i>';
 		} elseif ($key == 'dashboard') {
@@ -363,12 +363,7 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 																<th></th>
 																<?php
 foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
-			echo '<th>{{' . $value['name'] . '}}';
-			if (in_array($key, array('plan', 'view'))) {
-				echo '<i class="fa fa-eye pull-right cursor bt_displayWidget" data-version="d' . $key . '" aria-hidden="true"></i>';
-			} elseif ($key == 'dashboard') {
-				echo '<i class="fa fa-eye pull-right cursor bt_displayWidget" data-version="' . $key . '" aria-hidden="true"></i>';
-			}
+			echo '<th style="width:20%">{{' . $value['name'] . '}}';
 			echo '</th>';
 		}
 		?>
@@ -397,10 +392,10 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 			echo '</div>';
 			echo '<div class="widget_layout table" data-type="' . $key . '" style="display:none;">';
 			echo '<input type="number" class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::' . $key . '::table::nbLine" style="display:inline-block;width:60px;" /> x ';
-			echo '<input type="number" class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::' . $key . '::table::nbColumn" style="display:inline-block;width:60px;" /><br/>';
+			echo '<input type="number" class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::' . $key . '::table::nbColumn" style="display:inline-block;width:60px;" /> ';
 			echo '{{Centrer}} : <input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="layout::' . $key . '::table::parameters" data-l3key="center" /><br/>';
-			echo '{{Style case}} : <input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::' . $key . '::table::parameters" data-l3key="styletd" style="display:inline-block;width:300px;" /><br/>';
-			echo '{{Style table}} : <input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::' . $key . '::table::parameters" data-l3key="styletable" style="display:inline-block;width:300px;" /><br/>';
+			echo '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::' . $key . '::table::parameters" data-l3key="styletd" style="display:inline-block;width:49%;margin-top:3px;" placeholder="{{Style case}}" /> ';
+			echo '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::' . $key . '::table::parameters" data-l3key="styletable" style="display:inline-block;width:49%;margin-top:3px;" placeholder="{{Style table}}" /><br/>';
 			echo '</div>';
 			echo '</td>';
 		}
@@ -414,13 +409,40 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 			echo '<div class="widget_layout default" data-type="' . $key . '">';
 			echo '</div>';
 			echo '<div class="widget_layout table" data-type="' . $key . '" style="display:none;">';
+			echo '<table class="table table-condensed table-bordered">';
+			echo '<thead>';
+			echo '<tr>';
+			echo '<th>';
+			echo '{{Commande}}';
+			echo '</th>';
+			echo '<th>';
+			echo '{{Ligne}}';
+			echo '</th>';
+			echo '<th>';
+			echo '{{Colonne}}';
+			echo '</th>';
+			echo '</tr>';
+			echo '</thead>';
+			echo '<tbody>';
 			foreach ($eqLogic->getCmd() as $cmd) {
 				if ($cmd->getIsVisible() == 0) {
 					continue;
 				}
-				echo $cmd->getName() . ' : <input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line" style="display:inline-block;width:60px;" /> x ';
-				echo ' <input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column" style="display:inline-block;width:60px;" /><br/>';
+				echo '<tr>';
+				echo '<td>';
+				echo $cmd->getName();
+				echo '</td>';
+				echo '<td>';
+				echo '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line" style="display:inline-block;width:60px;margin-top:3px;" />';
+				echo '</td>';
+				echo '<td>';
+				echo ' <input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column" style="display:inline-block;width:60px;margin-top:3px;" />';
+				echo '</td>';
+
+				echo '</tr>';
 			}
+			echo '</tbody>';
+			echo '</table>';
 			echo '</div>';
 			echo '</td>';
 		}

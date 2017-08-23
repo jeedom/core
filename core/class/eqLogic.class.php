@@ -536,7 +536,7 @@ class eqLogic {
 		if (!$_noCache) {
 			$mc = cache::byKey('widgetHtml' . $this->getId() . $_version . $user_id);
 			if ($mc->getValue() != '') {
-				//return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
+				return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
 			}
 		}
 		$replace = array(
@@ -815,6 +815,16 @@ class eqLogic {
 		}
 		if ($this->getDisplay('width', -1) == -1 || intval($this->getDisplay('height')) < 2) {
 			$this->setDisplay('width', 'auto');
+		}
+		foreach ($this->getCmd() as $cmd) {
+			foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
+				if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line') == '' && $cmd->getDisplay('layout::' . $key . '::table::cmd::line') != '') {
+					$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line', $cmd->getDisplay('layout::' . $key . '::table::cmd::line'));
+				}
+				if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column') == '' && $cmd->getDisplay('layout::' . $key . '::table::cmd::column') != '') {
+					$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column', $cmd->getDisplay('layout::' . $key . '::table::cmd::column'));
+				}
+			}
 		}
 		DB::save($this, $_direct);
 		if ($this->_needRefreshWidget) {
