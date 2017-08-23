@@ -88,7 +88,7 @@ function editWidgetMode(_mode){
     }
     if(_mode == 0){
        $( ".div_displayEquipement .eqLogic-widget.eqLogic_layout_table table.tableCmd").removeClass('table-bordered');
-       $('.div_displayEquipement .eqLogic-widget .layoutMode').hide();
+       $.contextMenu('destroy', '.div_displayEquipement .eqLogic-widget' );
        if( $('.div_displayEquipement .eqLogic-widget.ui-resizable').length > 0){
         $('.div_displayEquipement .eqLogic-widget.allowResize').resizable('destroy');
     }
@@ -242,6 +242,9 @@ function editWidgetMode(_mode){
    addTableColumn: {
     name: "{{Ajouter colonne}}",
     icon : 'fa-plus',
+    disabled:function(key, opt) { 
+        return !$(this).hasClass('eqLogic_layout_table'); 
+    },
     callback: function(key, opt){
        jeedom.eqLogic.simpleSave({
         eqLogic : {
@@ -257,6 +260,9 @@ function editWidgetMode(_mode){
 addTableLine: {
     name: "{{Ajouter ligne}}",
     icon : 'fa-plus',
+    disabled:function(key, opt) { 
+        return !$(this).hasClass('eqLogic_layout_table'); 
+    },
     callback: function(key, opt){
        jeedom.eqLogic.simpleSave({
         eqLogic : {
@@ -269,9 +275,12 @@ addTableLine: {
     });
    }
 },
-  removeTableColumn: {
+removeTableColumn: {
     name: "{{Supprimer colonne}}",
     icon : 'fa-minus',
+    disabled:function(key, opt) { 
+        return !$(this).hasClass('eqLogic_layout_table'); 
+    },
     callback: function(key, opt){
        jeedom.eqLogic.simpleSave({
         eqLogic : {
@@ -287,6 +296,9 @@ addTableLine: {
 removeTableLine: {
     name: "{{Supprimer ligne}}",
     icon : 'fa-minus',
+    disabled:function(key, opt) { 
+        return !$(this).hasClass('eqLogic_layout_table'); 
+    },
     callback: function(key, opt){
        jeedom.eqLogic.simpleSave({
         eqLogic : {
