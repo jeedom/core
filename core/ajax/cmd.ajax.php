@@ -290,10 +290,10 @@ try {
 				}
 				$info_history[] = $value;
 				if (!$JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['timelineOnly']) {
-					if (($value != null && $value > $return['maxValue']) || $return['maxValue'] == '') {
+					if (($value !== null && $value > $return['maxValue']) || $return['maxValue'] == '') {
 						$return['maxValue'] = $value;
 					}
-					if (($value != null && $value < $return['minValue']) || $return['minValue'] == '') {
+					if (($value !== null && $value < $return['minValue']) || $return['minValue'] == '') {
 						$return['minValue'] = $value;
 					}
 				}
