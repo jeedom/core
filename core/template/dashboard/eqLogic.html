@@ -1,4 +1,4 @@
-<div class="eqLogic eqLogic-widget allowResize allowReorderCmd" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-version="#version#" style="border:#border#;border-radius:#border-radius#;background-color: #background-color#;color: #color#;width: #width#;height: #height#;#style#" data-category="#category#">
+<div class="eqLogic eqLogic-widget allowResize allowReorderCmd #eqLogic_class#" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-version="#version#" style="border:#border#;border-radius:#border-radius#;background-color: #background-color#;color: #color#;width: #width#;height: #height#;#style#" data-category="#category#">
 	<span class="pull-left" style="margin-top: 3px;margin-left: 3px;" title="#alert_name#">
 		<i class='#alert_icon#'></i>
 	</span>
@@ -16,6 +16,12 @@
 		</center>
 	</div>
 	<span class="statusCmd" style="position : absolute;left : 5px;bottom : 0px; width : 30px;z-index: 1030;"></span>
+
+
+	<select class="form-control input-sm layoutMode" style="display: inline-block;width: 100px;position : absolute;right : 3px;bottom : 3px;z-index: 1030;">
+		<option value="default">Défaut</option>
+		<option value="table">Table</option>
+	</select>
 	<script>
 		if ('#refresh_id#' != ''){
 			$('.eqLogic[data-eqLogic_uid=#uid#] .refresh').on('click', function () {
@@ -24,5 +30,9 @@
 		}else{
 			$('.eqLogic[data-eqLogic_uid=#uid#] .refresh').remove();
 		}
+		if($('.eqLogic[data-eqLogic_uid=#uid#] .tableCmd').html() != undefined){
+			$('.eqLogic[data-eqLogic_uid=#uid#] .layoutMode').value('table');
+		}
+		$('.eqLogic[data-eqLogic_uid=#uid#] .layoutMode').hide();
 	</script>
 </div>

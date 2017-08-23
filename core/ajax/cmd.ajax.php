@@ -340,6 +340,7 @@ try {
 	}
 
 	if (init('action') == 'setOrder') {
+
 		$cmds = json_decode(init('cmds'), true);
 		foreach ($cmds as $cmd_json) {
 			if (!isset($cmd_json['id']) || trim($cmd_json['id']) == '') {
@@ -351,6 +352,12 @@ try {
 			}
 			$cmd->setOrder($cmd_json['order']);
 			$cmd->save();
+			if (isset($cmd_json['line']) && isset($cmd_json['column'])) {
+				$eqLogic = $cmd->getEqLogic();
+				$eqLogic->setDisplay('layout::' . init('version', 'dashboard') . '::table::cmd::' . $cmd->getId() . '::line', $cmd_json['line']);
+				$eqLogic->setDisplay('layout::' . init('version', 'dashboard') . '::table::cmd::' . $cmd->getId() . '::column', $cmd_json['column']);
+				$eqLogic->save();
+			}
 		}
 		ajax::success();
 	}

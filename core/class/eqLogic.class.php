@@ -438,12 +438,12 @@ class eqLogic {
 		if (!isset($_options['styletable'])) {
 			$_options['styletable'] = '';
 		}
-		$return['html'] .= '<table style="' . $_options['styletable'] . '">';
+		$return['html'] .= '<table style="' . $_options['styletable'] . '" class="tableCmd">';
 		$return['html'] .= '<tbody>';
 		for ($i = 1; $i <= $_nbLine; $i++) {
 			$return['html'] .= '<tr>';
 			for ($j = 1; $j <= $_nbColumn; $j++) {
-				$return['html'] .= '<td style="' . $_options['styletd'] . '">';
+				$return['html'] .= '<td style="' . $_options['styletd'] . '" data-line="' . $i . '" data-column="' . $j . '">';
 				if ($_options['center'] == 1) {
 					$return['html'] .= '<center>';
 				}
@@ -536,7 +536,7 @@ class eqLogic {
 		if (!$_noCache) {
 			$mc = cache::byKey('widgetHtml' . $this->getId() . $_version . $user_id);
 			if ($mc->getValue() != '') {
-				return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
+				//	return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
 			}
 		}
 		$replace = array(
@@ -677,7 +677,8 @@ class eqLogic {
 
 		switch ($this->getDisplay('layout::' . $version)) {
 			case 'table':
-				$table = self::generateHtmlTable($this->getDisplay('layout::' . $version . '::table::nbLine'), $this->getDisplay('layout::' . $version . '::table::nbColumn'), $this->getDisplay('layout::' . $version . '::table::parameters'));
+				$replace['#eqLogic_class#'] = 'eqLogic_layout_table';
+				$table = self::generateHtmlTable($this->getDisplay('layout::' . $version . '::table::nbLine', 1), $this->getDisplay('layout::' . $version . '::table::nbColumn', 1), $this->getDisplay('layout::' . $version . '::table::parameters'));
 				$br_before = 0;
 				foreach ($this->getCmd(null, null, true) as $cmd) {
 					if (isset($replace['#refresh_id#']) && $cmd->getId() == $replace['#refresh_id#']) {
@@ -698,6 +699,7 @@ class eqLogic {
 				$replace['#cmd#'] = template_replace($table['tag'], $table['html']);
 				break;
 			default:
+				$replace['#eqLogic_class#'] = 'eqLogic_layout_default';
 				$cmd_html = '';
 				$br_before = 0;
 				foreach ($this->getCmd(null, null, true) as $cmd) {
@@ -816,8 +818,18 @@ class eqLogic {
 		if ($this->getDisplay('width', -1) == -1 || intval($this->getDisplay('height')) < 2) {
 			$this->setDisplay('width', 'auto');
 		}
-		foreach ($this->getCmd() as $cmd) {
-			foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
+
+		$versions = array('dashboard' => array('name' => 'Dashboard'), 'mobile' => array('name' => 'Mobile'));
+		foreach ($versions as $key => $value) {
+			if ($this->getDisplay('layout::' . $version) == 'table') {
+				if ($this->getDisplay('layout::' . $version . '::table::nbLine') == '') {
+					$this->setDisplay('layout::' . $version . '::table::nbLine', 1);
+				}
+				if ($this->getDisplay('layout::' . $version . '::table::nbColumn') == '') {
+					$this->setDisplay('layout::' . $version . '::table::nbLine', 1);
+				}
+			}
+			foreach ($this->getCmd() as $cmd) {
 				if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line') == '' && $cmd->getDisplay('layout::' . $key . '::table::cmd::line') != '') {
 					$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line', $cmd->getDisplay('layout::' . $key . '::table::cmd::line'));
 				}
