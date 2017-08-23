@@ -428,7 +428,6 @@ class eqLogic {
 
 	public static function generateHtmlTable($_nbLine, $_nbColumn, $_options = array()) {
 		$return = array('html' => '', 'replace' => array());
-
 		if (!isset($_options['styletd'])) {
 			$_options['styletd'] = '';
 		}
@@ -438,12 +437,12 @@ class eqLogic {
 		if (!isset($_options['styletable'])) {
 			$_options['styletable'] = '';
 		}
-		$return['html'] .= '<table style="' . $_options['styletable'] . '" class="tableCmd">';
+		$return['html'] .= '<table style="' . $_options['styletable'] . '" class="tableCmd" data-line="' . $_nbLine . '" data-column="' . $_nbColumn . '">';
 		$return['html'] .= '<tbody>';
 		for ($i = 1; $i <= $_nbLine; $i++) {
 			$return['html'] .= '<tr>';
 			for ($j = 1; $j <= $_nbColumn; $j++) {
-				$return['html'] .= '<td style="' . $_options['styletd'] . '" data-line="' . $i . '" data-column="' . $j . '">';
+				$return['html'] .= '<td style="min-width:30px;height:30px;' . $_options['styletd'] . '" data-line="' . $i . '" data-column="' . $j . '">';
 				if ($_options['center'] == 1) {
 					$return['html'] .= '<center>';
 				}
@@ -458,6 +457,7 @@ class eqLogic {
 		}
 		$return['html'] .= '</tbody>';
 		$return['html'] .= '</table>';
+
 		return $return;
 	}
 
@@ -536,7 +536,7 @@ class eqLogic {
 		if (!$_noCache) {
 			$mc = cache::byKey('widgetHtml' . $this->getId() . $_version . $user_id);
 			if ($mc->getValue() != '') {
-				//	return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
+				//return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
 			}
 		}
 		$replace = array(
@@ -685,16 +685,8 @@ class eqLogic {
 						continue;
 					}
 					$tag = '#cmd::' . $this->getDisplay('layout::' . $version . '::table::cmd::' . $cmd->getId() . '::line', 1) . '::' . $this->getDisplay('layout::' . $version . '::table::cmd::' . $cmd->getId() . '::column', 1) . '#';
-
-					if ($br_before == 0 && $cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
-						$table['tag'][$tag] .= '<br/>';
-					}
 					$table['tag'][$tag] .= $cmd->toHtml($_version, '', $replace['#cmd-background-color#']);
-					$br_before = 0;
-					if ($cmd->getDisplay('forceReturnLineAfter', 0) == 1) {
-						$table['tag'][$tag] .= '<br/>';
-						$br_before = 1;
-					}
+					$table['tag'][$tag] .= '<br/>';
 				}
 				$replace['#cmd#'] = template_replace($table['tag'], $table['html']);
 				break;
@@ -818,15 +810,17 @@ class eqLogic {
 		if ($this->getDisplay('width', -1) == -1 || intval($this->getDisplay('height')) < 2) {
 			$this->setDisplay('width', 'auto');
 		}
-
 		$versions = array('dashboard' => array('name' => 'Dashboard'), 'mobile' => array('name' => 'Mobile'));
 		foreach ($versions as $key => $value) {
-			if ($this->getDisplay('layout::' . $version) == 'table') {
-				if ($this->getDisplay('layout::' . $version . '::table::nbLine') == '') {
-					$this->setDisplay('layout::' . $version . '::table::nbLine', 1);
+			if ($this->setDisplay('layout::' . $key . '::table::parameters') == '') {
+				$this->setDisplay('layout::' . $key . '::table::parameters', array('center' => 1, 'styletd' => 'padding:3px;'));
+			}
+			if ($this->getDisplay('layout::' . $key) == 'table') {
+				if ($this->getDisplay('layout::' . $key . '::table::nbLine') == '') {
+					$this->setDisplay('layout::' . $key . '::table::nbLine', 1);
 				}
-				if ($this->getDisplay('layout::' . $version . '::table::nbColumn') == '') {
-					$this->setDisplay('layout::' . $version . '::table::nbLine', 1);
+				if ($this->getDisplay('layout::' . $key . '::table::nbColumn') == '') {
+					$this->setDisplay('layout::' . $key . '::table::nbLine', 1);
 				}
 			}
 			foreach ($this->getCmd() as $cmd) {
@@ -836,8 +830,21 @@ class eqLogic {
 				if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column') == '' && $cmd->getDisplay('layout::' . $key . '::table::cmd::column') != '') {
 					$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column', $cmd->getDisplay('layout::' . $key . '::table::cmd::column'));
 				}
+				if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line', 1) > $this->getDisplay('layout::' . $key . '::table::nbLine', 1)) {
+					$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line', $this->getDisplay('layout::' . $key . '::table::nbLine', 1));
+				}
+				if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column', 1) > $this->getDisplay('layout::' . $key . '::table::nbColumn', 1)) {
+					$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column', $this->getDisplay('layout::' . $key . '::table::nbColumn', 1));
+				}
+				if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line') == '') {
+					$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line', 1);
+				}
+				if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column') == '') {
+					$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column', 1);
+				}
 			}
 		}
+
 		DB::save($this, $_direct);
 		if ($this->_needRefreshWidget) {
 			$this->refreshWidget();

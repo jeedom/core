@@ -16,12 +16,6 @@
 		</center>
 	</div>
 	<span class="statusCmd" style="position : absolute;left : 5px;bottom : 0px; width : 30px;z-index: 1030;"></span>
-
-
-	<select class="form-control input-sm layoutMode" style="display: inline-block;width: 100px;position : absolute;right : 3px;bottom : 3px;z-index: 1030;">
-		<option value="default">Défaut</option>
-		<option value="table">Table</option>
-	</select>
 	<script>
 		if ('#refresh_id#' != ''){
 			$('.eqLogic[data-eqLogic_uid=#uid#] .refresh').on('click', function () {
@@ -30,9 +24,5 @@
 		}else{
 			$('.eqLogic[data-eqLogic_uid=#uid#] .refresh').remove();
 		}
-		if($('.eqLogic[data-eqLogic_uid=#uid#] .tableCmd').html() != undefined){
-			$('.eqLogic[data-eqLogic_uid=#uid#] .layoutMode').value('table');
-		}
-		$('.eqLogic[data-eqLogic_uid=#uid#] .layoutMode').hide();
 	</script>
 </div>
