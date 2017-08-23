@@ -362,9 +362,8 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 															<tr>
 																<th></th>
 																<?php
-$versions = array('dashboard' => array('name' => 'Dashboard'), 'mobile' => array('name' => 'Mobile'));
-		foreach ($versions as $key => $value) {
-			echo '<th style="width:40%">{{' . $value['name'] . '}}';
+foreach (array('dashboard', 'mobile') as $key) {
+			echo '<th style="width:40%">{{' . $key . '}}';
 			echo '</th>';
 		}
 		?>
@@ -374,7 +373,7 @@ $versions = array('dashboard' => array('name' => 'Dashboard'), 'mobile' => array
 															<tr>
 																<td>{{Disposition}}</td>
 																<?php
-foreach ($versions as $key => $value) {
+foreach (array('dashboard', 'mobile') as $key) {
 			echo '<td>';
 			echo '<select class="eqLogicAttr form-control sel_layout" data-l1key="display" data-l2key="layout::' . $key . '" data-type="' . $key . '">';
 			echo '<option value="default">{{Defaut}}</option>';
@@ -387,7 +386,7 @@ foreach ($versions as $key => $value) {
 															<tr>
 																<td>{{Parametres}}</td>
 																<?php
-foreach ($versions as $key => $value) {
+foreach (array('dashboard', 'mobile') as $key) {
 			echo '<td>';
 			echo '<div class="widget_layout default" data-type="' . $key . '">';
 			echo '</div>';
@@ -405,7 +404,7 @@ foreach ($versions as $key => $value) {
 															<tr>
 																<td>{{Options}}</td>
 																<?php
-foreach ($versions as $key => $value) {
+foreach (array('dashboard', 'mobile') as $key) {
 			echo '<td>';
 			echo '<div class="widget_layout default" data-type="' . $key . '">';
 			echo '</div>';

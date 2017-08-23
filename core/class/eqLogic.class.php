@@ -810,8 +810,7 @@ class eqLogic {
 		if ($this->getDisplay('width', -1) == -1 || intval($this->getDisplay('height')) < 2) {
 			$this->setDisplay('width', 'auto');
 		}
-		$versions = array('dashboard' => array('name' => 'Dashboard'), 'mobile' => array('name' => 'Mobile'));
-		foreach ($versions as $key => $value) {
+		foreach (array('dashboard', 'mobile') as $key) {
 			if ($this->setDisplay('layout::' . $key . '::table::parameters') == '') {
 				$this->setDisplay('layout::' . $key . '::table::parameters', array('center' => 1, 'styletd' => 'padding:3px;'));
 			}
