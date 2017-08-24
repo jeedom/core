@@ -344,9 +344,7 @@ function getObjectHtml(_object_id){
             $('#div_ob'+_object_id+'.div_displayEquipement').each(function(){
                 var container = $(this).packery({
                     itemSelector: ".eqLogic-widget",
-                    columnWidth:20,
-                    rowHeight: 20,
-                    gutter : 2,
+                    gutter : 1.5
                 });
                 var itemElems =  container.find('.eqLogic-widget');
                 itemElems.draggable();
