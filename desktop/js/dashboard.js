@@ -115,7 +115,7 @@ function editWidgetMode(_mode){
    $('.div_displayEquipement .eqLogic-widget').draggable('enable');
 
    $( ".div_displayEquipement .eqLogic-widget.allowResize").resizable({
-      grid: [ 40, 80 ],
+      grid: [ 20, 20 ],
       resize: function( event, ui ) {
        var el = ui.element;
        el.closest('.div_displayEquipement').packery();
@@ -126,8 +126,8 @@ function editWidgetMode(_mode){
     el.closest('.div_displayEquipement').packery();
     var eqLogic = {id : el.attr('data-eqlogic_id')}
     eqLogic.display = {};
-    eqLogic.display.width =  Math.floor(el.width() / 40) * 40 + 'px';
-    eqLogic.display.height = Math.floor(el.height() / 80) * 80+ 'px';
+    eqLogic.display.width =  Math.floor(el.width() / 20) * 20 + 'px';
+    eqLogic.display.height = Math.floor(el.height() / 20) * 20+ 'px';
     jeedom.eqLogic.simpleSave({
         eqLogic : eqLogic,
         error: function (error) {
@@ -344,8 +344,8 @@ function getObjectHtml(_object_id){
             $('#div_ob'+_object_id+'.div_displayEquipement').each(function(){
                 var container = $(this).packery({
                     itemSelector: ".eqLogic-widget",
-                    columnWidth:40,
-                    rowHeight: 80,
+                    columnWidth:20,
+                    rowHeight: 20,
                     gutter : 2,
                 });
                 var itemElems =  container.find('.eqLogic-widget');

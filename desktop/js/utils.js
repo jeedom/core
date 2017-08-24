@@ -581,6 +581,8 @@ function chooseIcon(_callback) {
 
 
 function positionEqLogic(_id,_preResize) {
+    var width_step = 20;
+    var height_step = 20;
     if(_id != undefined){
         var eqLogic = $('.eqLogic-widget[data-eqlogic_id='+_id+']');
         eqLogic.css('margin','0px').css('padding','0px');
@@ -591,11 +593,11 @@ function positionEqLogic(_id,_preResize) {
             $(this).height('auto');
         }
         if(init(_preResize,true)){
-         eqLogic.width(Math.floor(eqLogic.width() / 40) * 40);
-         eqLogic.height(Math.floor(eqLogic.height() / 80) * 80);
+         eqLogic.width(Math.floor(eqLogic.width() / width_step) * width_step);
+         eqLogic.height(Math.floor(eqLogic.height() / height_step) * height_step);
      }
-     eqLogic.width(Math.ceil(eqLogic.width() / 40) * 40 + (Math.ceil(eqLogic.width() / 40)-1) * 2);
-     eqLogic.height(Math.ceil(eqLogic.height() / 80) * 80 + (Math.ceil(eqLogic.height() / 80)-1) * 2);
+     eqLogic.width(Math.ceil(eqLogic.width() / width_step) * width_step + (Math.ceil(eqLogic.width() / width_step)-1) * 2);
+     eqLogic.height(Math.ceil(eqLogic.height() / height_step) * height_step + (Math.ceil(eqLogic.height() / height_step)-1) * 2);
      eqLogic.trigger('resize');
  }else{
     $('.eqLogic-widget:not(.jeedomAlreadyPosition)').css('margin','0px').css('padding','0px');
@@ -606,8 +608,8 @@ function positionEqLogic(_id,_preResize) {
         if($(this).height() == 0){
             $(this).height('auto');
         }
-        $(this).width(Math.ceil($(this).width() / 40) * 40 + (Math.ceil($(this).width() / 40)-1) * 2);
-        $(this).height(Math.ceil($(this).height() / 80) * 80 + (Math.ceil($(this).height() / 80)-1) * 2);
+        $(this).width(Math.ceil($(this).width() / width_step) * width_step + (Math.ceil($(this).width() / width_step)-1) * 2);
+        $(this).height(Math.ceil($(this).height() / height_step) * height_step + (Math.ceil($(this).height() / height_step)-1) * 2);
         $(this).trigger('resize');
     });
     $('.eqLogic-widget').addClass('jeedomAlreadyPosition');
