@@ -160,4 +160,5 @@ function editWidgetMode(_mode){
 }
 });
 }
+editWidgetCmdMode(_mode);
 }
