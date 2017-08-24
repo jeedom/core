@@ -285,8 +285,11 @@ class log {
 				throw new Exception('log::level invalide ("' . $log_level . '")');
 		}
 	}
-
-	public static function exception($e) {
+	/**
+	*@acces public static
+	*@param object Exception
+	*/
+	public static function exception(Exception $e) {
 		if (self::getConfig('log::level') > 100) {
 			return $e->getMessage();
 		} else {
