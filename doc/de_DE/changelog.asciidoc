@@ -7,13 +7,13 @@
 * Support für Debian 9
 * Mode onepage (changement de page sans recharger toute la page, juste la partie qui change)
 * Ajout d'une option pour masquer les objets sur le dashboard mais qui permet de toujours les avoir dans la liste
-* Un double clic sur un noeud sur le graphique de lien (sauf pour les variables) amène sur sa page de configuration
-* Possibilitée de mettre le texte à gauche/droit/au centre sur les designs pour les élements de type texte/vue/design
-* Ajout des résumés d'objets sur la dashboard (liste des objets à gauche)
-* Ajout des interactions de type "previens moi si"
+* Un double-clic sur un noeud sur le graphique de lien (sauf pour les variables) amène sur sa page de configuration
+* Possibilité de mettre le texte à gauche/droit/au centre sur les designs pour les élements de type texte/vue/design
+* Ajout des résumés d'objets sur le dashboard (liste des objets à gauche)
+* Ajout des interactions de type "previens-moi-si"
 * Revue de la page d'acceuil des scénarios
 * Ajout d'un historique de commandes pour les commandes SQL ou système dans l'interface de Jeedom
-* Possibilité d'avoir les graphiques d'historique des commandes en mobile (par appui long sur la commande)
+* Possibilité d'avoir les graphiques d'historiques des commandes en mobile (par appui long sur la commande)
 * Ajout de l'avancement de l'update de l'application mobile 
 * Reprise en cas d'erreur de mise à jour de l'application mobile
 * Suppression des scénarios "simples" (redondant avec la configuration avancée des commandes)
@@ -24,26 +24,27 @@
 * Compression des widgets (gain d'environ 18%)
 * Ajout d'une "santé" sur les objets
 * Correction de bug sur le niveau de batterie des équipements
-* Ajout de méthode dans le core pour la gestion des commandes mortes (doit être ensuite implementé dans le plugin)
+* Ajout de méthode dans le core pour la gestion des commandes mortes (doit être ensuite implementée dans le plugin)
 * Possibilité d'historiser des commandes de type texte
-* Sur la page historique vous pouvez maintenant faire un graphique d'un calcul
-* Ajout d'un gestion de formule de calcul pour les historique
+* Sur la page historique vous pouvez maintenant faire le graphique d'un calcul
+* Ajout d'une gestion de formule de calcul pour les historiques
 * Remise à jour de toute la documentation : 
-** Toute les docs ont été revue
+** Toute les docs ont été revues
 ** Suppression des images pour faciliter la mise à jour et le multilingue
-* Plus de choix possible sur le reglage des tailles de zone dans les vues
+* Plus de choix possibles sur les réglage des tailles de zone dans les vues
 * Possibilité de choisir la couleur du texte du résumé d'objet
 * Ajout d'une action remove_inat dans les scénarios permettant d'annuler toutes les programmations des bloc DANS/A
 * Possibilité dans les designs pour les widgets au survol de choisir la position du widget
 * Ajout d'un parametre reply_cmd sur les interactions pour spécifier l'id de la commande à utiliser pour répondre
-* Ajout d'une timeline sur la page historique (attention doit etre activé sur chaque commande et/ou scénario que vous voulez voir apparaitre)
-* Possibilité de vider les evenements de la timeline
+* Ajout d'une timeline sur la page historique (attention doit etre activée sur chaque commande et/ou scénario que vous voulez voir apparaitre)
+* Possibilité de vider les évènements de la timeline
 * Possibilité de vider les IPs bannies
 * Correction/amélioration de la gestion des comptes utilisateurs
 ** Possibilité de supprimer le compte admin de base
 ** Prévention du passage en normal du derniere administrateur
 ** Ajout d'une sécurité pour éviter la suppression du compte avec lequel on est connecté
 * Possibilité dans la configuration avancé des équipements de mettre la disposition des commandes dans le widgets en mode table en choissisant pour chaque commande la case ou la mettre
+* Possibilité de reorganiser les widgets des équipements depuis le dashboard (en mode edition clic droit sur le widget)
 
 == 3.0.11
 

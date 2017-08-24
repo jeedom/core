@@ -4,7 +4,7 @@ La copia de seguridad y restauración de Jeedom permite guardar y restaurar en l
 
 == Configuración
 
-Accessible depuis Administration -> Sauvegarde, cette page permet la gestion des sauvegardes.
+Accesible desde Administración -> Copia de seguridad, esta página permite la gestión de copias de seguridad.
 
 En esta página puede encontrar a la izquierda la configuración y botones de acción y a la derecha el estado en tiempo real de la acción en curso (backup o restore), si se ha iniciado alguna.
 
@@ -12,24 +12,24 @@ A la izquierda:
 
 * *Backups*
 ** Backup* : permite iniciar una copia de seguridad inmediatamente (útil si usted quiere hacer un cambio crítico, esto le permitirá volver atrás). También tiene un botón para iniciar una copia de seguridad para enviar el archivo a la nube (requiere un suscripción, ver más abajo). El envío del archivo puede llevar tiempo, por lo tanto esto puede acelerar el proceso un poco.
-** *Emplacement des sauvegardes* : endroit où Jeedom met les sauvegardes, il est recommandé de ne pas le changer. Si vous êtes en chemin relatif, alors son origine est l'endroit ou Jeedom est installé.
+** *Ubicación de las copias de seguridad* : donde guarda Jeedom las copias de seguridad, se recomienda no cambiarlo. Si usted está en la ruta relativa, entonces su origen es donde está instalado Jeedom.
 ** *Número de día(s) de respaldo de Backups*: número de días de respaldo a mantener. Una vez finalizado este período se eliminan las copias de seguridad anteriores. PRECAUCIÓN No coloque un número de días demasiado alto, de lo contrario usted puede llenar el sistema de archivos.
 ** *Taille totale maximale des backups (Mo)* : Permet de limiter la taille totale des sauvegardes. Si cette valeur est dépassée alors Jeedom va supprimer les sauvegardes les plus vieilles jusqu'à retomber en-dessous de la taille maximale ou à garder une seule sauvegarde
 
-** Backups locales*
+* *Backups locales*
 **  *Backups disponibles* : lista de Backups disponibles
 ** *Restaurar desde Backup* : lanza la restauración seleccionando una copia de seguridad anterior
 ** *Eliminar Backup* : elimina las copias de seguridad os Backups seleccionados
 ** Enviar un Backup* : le permite a Jeedom cargar un archivo de copia de seguridad (permite por ejemplo, restaurar desde un archivo previamente salvado, en un nuevo Jeedom o tras una reinstalación)
 **  *Descargar backup* : le permite descargar el archivo de una copia de seguridad anterior
 
-* *Sauvegardes market*
-** *Envoi des sauvegardes* : indique à Jeedom d'envoyer les sauvegardes au Market, attention il faut avoir pris l'abonnement.
-** *Envoyer une sauvegarde* : vous permet d'envoyer sur le cloud une archive de sauvegarde
+* *Copias de seguridad del market*
+** *Envío de copias de seguridad* : le pide a Jeedom que envíe copias de seguridad al market, así que tenga cuidado, necesita suscripción.
+** *Enviar copia de seguridad* : le permite enviar un archivo de copia de seguridad a la nube
 **  *Backups disponibles* : lista de copias de seguridad disponibles en la nube
 ** *Restaurar desde Backup* : inicia la restauración de una copia de seguridad desde la nube
 
-* *Sauvegardes samba*
+* *Copias de seguridad Samba*
 ** *Envoi des sauvegardes* : indique à Jeedom d'envoyer les sauvegardes sur le partage samba configuré ici Administration->Configuration->Onglet mise à jours.
 **  *Backups disponibles* : lista de copias de seguridad disponibles en la nube
 ** *Restaurar desde Backup* : inicia la restauración de una copia de seguridad desde la nube
