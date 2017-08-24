@@ -17,6 +17,7 @@ Hier haben Sie verschiedene Optionen :
 * *Symbol* : Damit können Sie ein Symbol für das Objekt festlegen
 * *Tag Farbe* : Hier können Sie die Farbe des Objekts wählen (diese Farbe wird zum Beispiel in der Home-Automation-Übersichtsseite verwendet)
 * *Couleur du texte du tag* : permet de choisir la couleur du texte de l'objet (cette couleur est par exemple utilisée sur la page de résumé domotique)
+* *Taille sur le dashboard (1 à 12)* : indique la largeur que la "carré" objet prend sur le dashboard. Si vous mettez 6 à 2 objets qui se suivent alors il seront cote à cote sur l'objet
 
 === Résumé
 

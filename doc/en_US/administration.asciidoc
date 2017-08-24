@@ -2,13 +2,13 @@
 
 Most configuration settings are here. Although there are a lot, all are pre-configured by default.
 
-La page est accessible par Administration -> Configuration : 
+The page is accessible by Administration -> Configuration : 
 
 
 [IMPORTANT]
-Si vous n'êtes pas en mode expert certains paramètres peuvent ne pas être visibles.
+If you are not on expert mode, some settings can not be visible
 
-== Générale
+=== Main
 
 In this tag we have general informations on Jeedom : 
 

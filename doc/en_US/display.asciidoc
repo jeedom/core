@@ -85,30 +85,6 @@ You can :
 * *Bordures* : permet d'ajouter une bordure, il faut mettre du code css, proprieté border (ex "3px blue dashed" pour une bordure pointillé de 3px en bleu)
 * *Arrondit des bordures (en px)* : permet d'arrondir les bordure, il faut mettre du code css, proprieté border-radius (ex "10px")
 
-==== Disposition
-
-Cette partie vous permet de choisir entre la disposition standard des commandes (cote à cote dans le widget), ou en mode tableau.
-
-En mode tableau vous pouvez : 
-
-* Choisir la dimmension du tableau ligne x colonne
-* Choisir de center les commandes dans les cases du tableau
-* Donner le style (en css) des cases
-* Donner le style (en css) du tableau
-
-En dessous pour chaque commande vous pouvez choisir la position :
-
-* En ligne x colonne
-
-Par defaut toutes les commandes sont en 1x1 (ligne 1 colonne 1).
-
-[TIP]
-Il est possible de mettre plusieurs commande dans la meme case
-
-[TIP]
-Si dans une case du tableau vous voulez mettre 2 commandes l'une en dessous de l'autre il ne faut pas oublier de rajouter un retour à la ligne après la premiere commande dans la configuration avancée de celle-ci
-
-
 ==== Paramètres optionnels sur la tuile
 
 En-dessous, on retrouve des paramètres optionnels d'affichage que l'on peut passer à l'équipement. Ces paramètres sont composés d'un nom et d'une valeur. Pour les équipements, seule la valeur "style" est pour le moment utilisée, elle permet d'insérer du code CSS sur l'équipement en question.

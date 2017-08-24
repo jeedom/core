@@ -17,6 +17,7 @@ A partir de ahí tienes varias opciones:
 * *Icône* : vous permet de choisir une icône pour votre objet
 * *Couleur du tag* : permet de choisir la couleur de l'objet (cette couleur est par exemple utilisée sur la page de résumé domotique)
 * *Couleur du texte du tag* : permet de choisir la couleur du texte de l'objet (cette couleur est par exemple utilisée sur la page de résumé domotique)
+* *Taille sur le dashboard (1 à 12)* : indique la largeur que la "carré" objet prend sur le dashboard. Si vous mettez 6 à 2 objets qui se suivent alors il seront cote à cote sur l'objet
 
 === Résumé
 
