@@ -141,6 +141,12 @@ foreach ($allObject as $object) {
         <input type="color" class="objectAttr form-control" data-l1key="display" data-l2key="summaryTextColor" />
       </div>
     </div>
+     <div class="form-group">
+      <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Taille sur le dashboard (1 à 12)}}</label>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <input type="number" class="objectAttr form-control" data-l1key="display" data-l2key="dashboard::size" />
+      </div>
+    </div>
   </fieldset>
 </form>
 </div>
