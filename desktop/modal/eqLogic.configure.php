@@ -352,8 +352,66 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 	?>
 													</tbody>
 												</table>
-													<?php
-if ($eqLogic->widgetPossibility('custom::optionalParameters')) {
+												<?php if ($eqLogic->widgetPossibility('custom::layout')) {
+		?>
+													<legend><i class="fa fa-table"></i> {{Disposition}}</legend>
+
+
+													<table class="table table-bordered table-condensed">
+														<thead>
+															<tr>
+																<th></th>
+																<?php
+foreach (array('dashboard') as $key) {
+			echo '<th style="width:80%">{{' . $key . '}}';
+			echo '</th>';
+		}
+		?>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>{{Disposition}}</td>
+																<?php
+foreach (array('dashboard') as $key) {
+			echo '<td>';
+			echo '<select class="eqLogicAttr form-control sel_layout" data-l1key="display" data-l2key="layout::' . $key . '" data-type="' . $key . '">';
+			echo '<option value="default">{{Defaut}}</option>';
+			echo '<option value="table">{{Tableau}}</option>';
+			echo '</select>';
+			echo '</td>';
+		}
+		?>
+															</tr>
+															<tr>
+																<td>{{Parametres}}</td>
+																<?php
+foreach (array('dashboard') as $key) {
+			echo '<td>';
+			echo '<div class="widget_layout default" data-type="' . $key . '">';
+			echo '</div>';
+			echo '<div class="widget_layout table" data-type="' . $key . '" style="display:none;">';
+			echo '<input type="number" class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::' . $key . '::table::nbLine" style="display:inline-block;width:60px;" /> x ';
+			echo '<input type="number" class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::' . $key . '::table::nbColumn" style="display:inline-block;width:60px;" /> ';
+			echo '{{Centrer}} : <input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="layout::' . $key . '::table::parameters" data-l3key="center" /><br/>';
+			echo '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::' . $key . '::table::parameters" data-l3key="styletd" style="display:inline-block;width:49%;margin-top:3px;" placeholder="{{Style case}}" /> ';
+			echo '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::' . $key . '::table::parameters" data-l3key="styletable" style="display:inline-block;width:49%;margin-top:3px;" placeholder="{{Style table}}" /><br/>';
+			echo '</div>';
+			echo '</td>';
+		}
+		?>
+															</tr>
+														</tbody>
+													</table>
+													<script type="text/javascript">
+														$('.sel_layout').on('change',function(){
+															var type = $(this).attr('data-type');
+															$('.widget_layout[data-type='+type+']').hide();
+															$('.widget_layout.'+$(this).value()+'[data-type='+type+']').show();
+														});
+													</script>
+													<?php }
+	if ($eqLogic->widgetPossibility('custom::optionalParameters')) {
 		?>
 														<legend><i class="fa fa-pencil-square-o"></i> {{Paramètres optionnels sur la tuile}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fa fa-plus-circle"></i> Ajouter</a></legend>
 														<table class="table table-bordered table-condensed" id="table_widgetParameters">
