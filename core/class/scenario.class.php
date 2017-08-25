@@ -1468,6 +1468,10 @@ class scenario {
 		return $return;
 	}
 
+	public function clearLog() {
+		$this->_log = '';
+	}
+
 	/*     * **********************Getteur Setteur*************************** */
 	/**
 	 *
