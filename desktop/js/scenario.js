@@ -657,7 +657,6 @@ $('#div_pageContainer').off('click','.bt_selectDataStoreTrigger').on( 'click','.
 $('#div_pageContainer').off('mouseenter','.bt_sortable').on('mouseenter','.bt_sortable',  function () {
   var expressions = $(this).closest('.expressions');
   $("#div_scenarioElement").sortable({
-    axis: "y",
     cursor: "move",
     items: ".sortable",
     opacity: 0.5,
