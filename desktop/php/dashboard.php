@@ -98,11 +98,7 @@ foreach ($child_object as $child) {
 	if ($child->getConfiguration('hideOnDashboard', 0) == 1) {
 		continue;
 	}
-	if (init('object_id') != '') {
-		echo '<div class="col-md-12">';
-	} else {
-		echo '<div class="col-md-' . $child->getDisplay('dashboard::size', 12) . '">';
-	}
+	echo '<div class="col-md-' . $child->getDisplay('dashboard::size', 12) . '">';
 	echo '<div data-object_id="' . $child->getId() . '" style="margin-bottom : 3px;" class="div_object">';
 	echo '<legend style="margin-bottom : 0px;"><a style="text-decoration:none" href="index.php?v=d&p=object&id=' . $child->getId() . '">' . $child->getDisplay('icon') . ' ' . $child->getName() . '</a><span style="font-size : 0.6em;margin-left:10px;">' . $child->getHtmlSummary() . '</span></legend>';
 	echo '<div class="div_displayEquipement" id="div_ob' . $child->getId() . '" style="width: 100%;padding-top:3px;margin-bottom : 3px;">';
