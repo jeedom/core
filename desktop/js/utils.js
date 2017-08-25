@@ -716,7 +716,7 @@ if( $('.div_displayEquipement .eqLogic-widget.ui-draggable').length > 0){
     $('.div_displayEquipement .eqLogic-widget').draggable('enable');
 });
  $.contextMenu({
-    selector: '.div_displayEquipement .eqLogic-widget',
+    selector: '.eqLogic-widget.allowLayout',
     zIndex: 9999,
     events: {
         show: function(opt) {

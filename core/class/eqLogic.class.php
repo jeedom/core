@@ -560,6 +560,7 @@ class eqLogic {
 			'#version#' => $_version,
 			'#alert_name#' => '',
 			'#alert_icon#' => '',
+			'#custom_layout#' => ($this->widgetPossibility('custom::layout')) ? 'allowLayout' : '',
 		);
 
 		if ($this->getDisplay('background-color-default' . $version, 1) == 1) {
