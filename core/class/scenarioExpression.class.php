@@ -993,11 +993,34 @@ class scenarioExpression {
 
 /*     * *********************Methode d'instance************************* */
 
+	public function checkBackground() {
+		if ($this->getOptions('background', 0) == 0) {
+			return;
+		}
+		if (in_array($this->getExpression(), array('wait', 'sleep', 'stop', 'scenario_return'))) {
+			$this->setOptions('background', 0);
+		}
+		return;
+	}
+
 	public function execute(&$scenario = null) {
 		if ($scenario !== null && !$scenario->getDo()) {
 			return;
 		}
 		if ($this->getOptions('enable', 1) == 0) {
+			return;
+		}
+		$this->checkBackground();
+		if ($this->getOptions('background', 0) == 1) {
+			$key = 'scenarioElement' . config::genKey(10);
+			while (cache::exist($key)) {
+				$key = 'scenarioElement' . config::genKey(10);
+			}
+			cache::set($key, array('scenarioExpression' => $this, 'scenario' => $scenario), 60);
+			$cmd = dirname(__FILE__) . '/../php/jeeScenarioExpression.php';
+			$cmd .= ' key=' . $key;
+			$this->setLog($scenario, __('Execution du lancement en arriere plan : ', __FILE__) . $key);
+			system::php($cmd . ' >> /dev/null 2>&1 &');
 			return;
 		}
 		$message = '';
@@ -1382,6 +1405,7 @@ class scenarioExpression {
 	}
 
 	public function save() {
+		$this->checkBackground();
 		DB::save($this);
 	}
 
