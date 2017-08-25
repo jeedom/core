@@ -581,8 +581,8 @@ function chooseIcon(_callback) {
 
 
 function positionEqLogic(_id,_preResize) {
-    var width_step = 20;
-    var height_step = 20;
+    var width_step = 10;
+    var height_step = 10;
     if(_id != undefined){
         var eqLogic = $('.eqLogic-widget[data-eqlogic_id='+_id+']');
         eqLogic.css('margin','0px').css('padding','0px');
