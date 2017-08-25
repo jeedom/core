@@ -654,7 +654,6 @@ $('#div_pageContainer').off('click','.bt_selectDataStoreTrigger').on( 'click','.
   });
 });
 
-
 $('#div_pageContainer').off('mouseenter','.bt_sortable').on('mouseenter','.bt_sortable',  function () {
   var expressions = $(this).closest('.expressions');
   $("#div_scenarioElement").sortable({
@@ -664,9 +663,7 @@ $('#div_pageContainer').off('mouseenter','.bt_sortable').on('mouseenter','.bt_so
     opacity: 0.5,
     forcePlaceholderSize: true,
     forceHelperSize: true,
-    grid: [0, 11],
-    refreshPositions: true,
-    dropOnEmpty: false,
+    placeholder: "sortable-placeholder",
     update: function (event, ui) {
       if (ui.item.findAtDepth('.element', 2).length == 1 && ui.item.parent().attr('id') == 'div_scenarioElement') {
         ui.item.replaceWith(ui.item.findAtDepth('.element', 2));

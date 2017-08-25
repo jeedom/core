@@ -13,6 +13,11 @@ if (is_array($scenarioListGroup)) {
 	}
 }
 ?>
+<style>
+.expressions .sortable-placeholder{
+  background-color: #94CA02;
+}
+</style>
 <div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;background-color:#f6f6f6;" class="div_smallSideBar" id="bt_displayScenarioList"><i class="fa fa-arrow-circle-o-right" style="color : #b6b6b6;"></i></div>
 
 <div class="row row-overflow">
