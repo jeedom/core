@@ -684,9 +684,17 @@ class eqLogic {
 					if (isset($replace['#refresh_id#']) && $cmd->getId() == $replace['#refresh_id#']) {
 						continue;
 					}
+
 					$tag = '#cmd::' . $this->getDisplay('layout::' . $version . '::table::cmd::' . $cmd->getId() . '::line', 1) . '::' . $this->getDisplay('layout::' . $version . '::table::cmd::' . $cmd->getId() . '::column', 1) . '#';
+					if ($br_before == 0 && $cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
+						$table['tag'][$tag] .= '<br/>';
+					}
 					$table['tag'][$tag] .= $cmd->toHtml($_version, '', $replace['#cmd-background-color#']);
-					$table['tag'][$tag] .= '<br/>';
+					$br_before = 0;
+					if ($cmd->getDisplay('forceReturnLineAfter', 0) == 1) {
+						$table['tag'][$tag] .= '<br/>';
+						$br_before = 1;
+					}
 				}
 				$replace['#cmd#'] = template_replace($table['tag'], $table['html']);
 				break;
