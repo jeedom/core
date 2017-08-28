@@ -820,7 +820,7 @@ class eqLogic {
 			$this->setDisplay('width', 'auto');
 		}
 		foreach (array('dashboard', 'mobile') as $key) {
-			if ($this->setDisplay('layout::' . $key . '::table::parameters') == '') {
+			if ($this->getDisplay('layout::' . $key . '::table::parameters') == '') {
 				$this->setDisplay('layout::' . $key . '::table::parameters', array('center' => 1, 'styletd' => 'padding:3px;'));
 			}
 			if ($this->getDisplay('layout::' . $key) == 'table') {
