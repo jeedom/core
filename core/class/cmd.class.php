@@ -1617,6 +1617,9 @@ class cmd {
 				case 'message':
 					$url .= '&title=montitre&message=monmessage';
 					break;
+				case 'select':
+					$url .= '&select=value';
+					break;
 			}
 		}
 		return network::getNetworkAccess('external') . $url;

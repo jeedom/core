@@ -88,6 +88,26 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                     </div>
                   </div>
 
+                  <?php if ($cmd->getType() == 'action' && $cmd->getSubtype() == 'select') {
+	?>
+                  <div class="form-group">
+                    <label class="col-xs-4 control-label">{{Valeurs possibles}}</label>
+                    <div class="col-xs-8">
+                    <?php
+$elements = explode(';', $cmd->getConfiguration('listValue', ''));
+	foreach ($elements as $element) {
+		$coupleArray = explode('|', $element);
+		echo $coupleArray[1] . ' => ' . $coupleArray[0] . '<br/>';
+	}
+	?>
+                    </div>
+                  </div>
+
+
+                  <?php }?>
+
+
+
                   <?php if ($cmd->getType() == 'info') {?>
                   <div class="form-group">
                     <label class="col-xs-4 control-label">{{Valeur}}</label>
