@@ -19,9 +19,7 @@
  $('.alertListContainer .jeedomAlreadyPosition').removeClass('jeedomAlreadyPosition');
  $('.batteryListContainer, .alertListContainer').packery({
  	itemSelector: ".eqLogic-widget",
- 	columnWidth:40,
- 	rowHeight: 80,
- 	gutter : 2,
+ 	gutter : 1.5
  });
  
  $('.alerts, .batteries').on('click',function(){
@@ -29,15 +27,10 @@
  		positionEqLogic();
  		$('.batteryListContainer, .alertListContainer').packery({
  			itemSelector: ".eqLogic-widget",
- 			columnWidth:40,
- 			rowHeight: 80,
- 			gutter : 2,
+ 			gutter : 1.5
  		});
  	}, 10);
  });
-
-
-
 
  $('.cmdAction[data-action=configure]').on('click', function () {
  	$('#md_modal').dialog({title: "{{Configuration commande}}"});
