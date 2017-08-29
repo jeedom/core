@@ -716,7 +716,7 @@ if( $('.div_displayEquipement .eqLogic-widget.ui-draggable').length > 0){
     $('.div_displayEquipement .eqLogic-widget').draggable('enable');
 });
  $.contextMenu({
-    selector: '.eqLogic-widget.allowLayout',
+    selector: '.eqLogic-widget',
     zIndex: 9999,
     events: {
         show: function(opt) {
@@ -727,37 +727,53 @@ if( $('.div_displayEquipement .eqLogic-widget.ui-draggable').length > 0){
         }
     },
     items: {
-        layoutDefaut: {
-            name: "{{Defaut}}",
-            icon : 'fa-square-o',
-            callback: function(key, opt){
-             jeedom.eqLogic.simpleSave({
-                eqLogic : {
-                    id : $(this).attr('data-eqLogic_id'),
-                    display : {'layout::dashboard' : 'default'},
-                },
-                error: function (error) {
-                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                }
-            });
-         }
-     },
-     layoutTable: {
-        name: "{{Table}}",
-        icon : 'fa-table',
+     configuration: {
+        name: "{{Configuration avancée}}",
+        icon : 'fa-cog',
         callback: function(key, opt){
-         jeedom.eqLogic.simpleSave({
-            eqLogic : {
-                id : $(this).attr('data-eqLogic_id'),
-                display : {'layout::dashboard' : 'table'},
-            },
-            error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-            }
-        });
+         $('#md_modal').dialog({title: "{{Configuration du widget}}"});
+         $('#md_modal').load('index.php?v=d&modal=eqLogic.configure&eqLogic_id='+$(this).attr('data-eqLogic_id'),).dialog('open');
      }
  },
- addTableColumn: {
+ sep1 : "---------",
+ layoutDefaut: {
+    name: "{{Defaut}}",
+    icon : 'fa-square-o',
+    disabled:function(key, opt) { 
+        return !$(this).hasClass('allowLayout'); 
+    },
+    callback: function(key, opt){
+     jeedom.eqLogic.simpleSave({
+        eqLogic : {
+            id : $(this).attr('data-eqLogic_id'),
+            display : {'layout::dashboard' : 'default'},
+        },
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        }
+    });
+ }
+},
+layoutTable: {
+    name: "{{Table}}",
+    icon : 'fa-table',
+    disabled:function(key, opt) { 
+        return !$(this).hasClass('allowLayout'); 
+    },
+    callback: function(key, opt){
+     jeedom.eqLogic.simpleSave({
+        eqLogic : {
+            id : $(this).attr('data-eqLogic_id'),
+            display : {'layout::dashboard' : 'table'},
+        },
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        }
+    });
+ }
+},
+sep2 : "---------",
+addTableColumn: {
     name: "{{Ajouter colonne}}",
     icon : 'fa-plus',
     disabled:function(key, opt) { 
