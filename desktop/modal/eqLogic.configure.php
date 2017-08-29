@@ -485,8 +485,8 @@ if ($eqLogic->getDisplay('parameters') != '') {
 														<?php
 $table = array();
 foreach ($eqLogic->getCmd(null, null, true) as $cmd) {
-	$line = $cmd->getDisplay('layout::dashboard::table::cmd::' . $cmd->getId() . '::line', 1);
-	$column = $cmd->getDisplay('layout::dashboard::table::cmd::' . $cmd->getId() . '::column', 1);
+	$line = $eqLogic->getDisplay('layout::dashboard::table::cmd::' . $cmd->getId() . '::line', 1);
+	$column = $eqLogic->getDisplay('layout::dashboard::table::cmd::' . $cmd->getId() . '::column', 1);
 	if (!isset($table[$line])) {
 		$table[$line] = array();
 	}
