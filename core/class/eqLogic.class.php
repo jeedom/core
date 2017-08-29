@@ -442,9 +442,13 @@ class eqLogic {
 		for ($i = 1; $i <= $_nbLine; $i++) {
 			$return['html'] .= '<tr>';
 			for ($j = 1; $j <= $_nbColumn; $j++) {
-				$return['html'] .= '<td style="min-width:30px;height:30px;' . $_options['styletd'] . '" data-line="' . $i . '" data-column="' . $j . '">';
+				$styletd = isset($_options['style::td::' . $i . '::' . $j]) ? $_options['style::td::' . $i . '::' . $j] : $_options['styletd'];
+				$return['html'] .= '<td style="min-width:30px;height:30px;' . $styletd . '" data-line="' . $i . '" data-column="' . $j . '">';
 				if ($_options['center'] == 1) {
 					$return['html'] .= '<center>';
+				}
+				if (isset($_options['text::td::' . $i . '::' . $j])) {
+					$return['html'] .= $_options['text::td::' . $i . '::' . $j];
 				}
 				$return['html'] .= '#cmd::' . $i . '::' . $j . '#';
 				if ($_options['center'] == 1) {

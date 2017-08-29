@@ -773,6 +773,17 @@ layoutTable: {
  }
 },
 sep2 : "---------",
+configurationTable: {
+    name: "{{Configuration table}}",
+    icon : 'fa-cog',
+    disabled:function(key, opt) { 
+        return !$(this).hasClass('eqLogic_layout_table'); 
+    },
+    callback: function(key, opt){
+        $('#md_modal').dialog({title: "{{Configuration disposition widget}}"});
+        $('#md_modal').load('index.php?v=d&modal=widget.table&eqLogic_id='+$(this).attr('data-eqLogic_id'),).dialog('open');
+    }
+},
 addTableColumn: {
     name: "{{Ajouter colonne}}",
     icon : 'fa-plus',
