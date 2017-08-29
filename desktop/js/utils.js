@@ -740,7 +740,7 @@ if( $('.div_displayEquipement .eqLogic-widget.ui-draggable').length > 0){
     name: "{{Defaut}}",
     icon : 'fa-square-o',
     disabled:function(key, opt) { 
-        return !$(this).hasClass('allowLayout'); 
+        return !$(this).hasClass('allowLayout') || !$(this).hasClass('eqLogic_layout_table'); 
     },
     callback: function(key, opt){
      jeedom.eqLogic.simpleSave({
@@ -758,7 +758,7 @@ layoutTable: {
     name: "{{Table}}",
     icon : 'fa-table',
     disabled:function(key, opt) { 
-        return !$(this).hasClass('allowLayout'); 
+        return !$(this).hasClass('allowLayout') || $(this).hasClass('eqLogic_layout_table'); 
     },
     callback: function(key, opt){
      jeedom.eqLogic.simpleSave({
