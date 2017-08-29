@@ -21,10 +21,9 @@ if (is_array($scenarioListGroup)) {
 <div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;background-color:#f6f6f6;" class="div_smallSideBar" id="bt_displayScenarioList"><i class="fa fa-arrow-circle-o-right" style="color : #b6b6b6;"></i></div>
 
 <div class="row row-overflow">
-  <div class="col-lg-2 col-md-3 col-sm-4" id="div_listScenario" style="z-index:999">
+  <div class="col-lg-2 col-md-2 col-sm-3" id="div_listScenario" style="z-index:999">
     <div class="bs-sidebar nav nav-list bs-sidenav" >
       <a class="btn btn-default" id="bt_addScenario" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-plus-circle cursor" ></i> {{Nouveau scénario}}</a>
-
       <input id='in_treeSearch' class='form-control' placeholder="{{Rechercher}}" />
       <div id="div_tree">
         <ul id="ul_scenario" >
@@ -162,13 +161,11 @@ if (count($totalScenario) == 0) {
 		}
 		$i += 1;
 	}
-	echo '</div>';
 }
 ?>
 </div>
 
-<div id="div_editScenario" class="col-lg-10 col-md-10 col-sm-9" style="display: none;margin-top: 5px;">
-
+<div id="div_editScenario" class="col-lg-10 col-md-10 col-sm-9" style="border-left: solid 1px #EEE; padding-left: 25px;display: none;" >
  <a class="btn btn-default btn-sm pull-right" id="bt_graphScenario"><i class="fa fa-object-group"></i> {{Liens}}</a>
  <a class="btn btn-default btn-sm pull-right" id="bt_copyScenario"><i class="fa fa-copy"></i> {{Dupliquer}}</a>
  <a class="btn btn-default btn-sm pull-right" id="bt_logScenario"><i class="fa fa-file-text-o"></i> {{Log}}</a>
