@@ -442,8 +442,11 @@ class object {
 		if ($this->getConfiguration('tagTextColor') == '') {
 			$this->setConfiguration('tagTextColor', '#FFFFFF');
 		}
-		if ($this->getConfiguration('summaryTextColor') == '') {
-			$this->setConfiguration('summaryTextColor', '');
+		if ($this->getConfiguration('desktop::summaryTextColor') == '') {
+			$this->setConfiguration('desktop::summaryTextColor', '');
+		}
+		if ($this->getConfiguration('mobile::summaryTextColor') == '') {
+			$this->setConfiguration('mobile::summaryTextColor', '');
 		}
 	}
 
@@ -608,7 +611,7 @@ class object {
 			}
 			$result = $this->getSummary($key);
 			if ($result !== null) {
-				$style = 'color:' . $this->getDisplay('summaryTextColor', '#000000') . ';';
+				$style = 'color:' . $this->getDisplay($_version . '::summaryTextColor', '#000000') . ';';
 				$allowDisplayZero = $value['allowDisplayZero'];
 				if ($value['calcul'] == 'text') {
 					$allowDisplayZero = 1;
