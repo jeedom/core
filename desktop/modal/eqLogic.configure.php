@@ -464,15 +464,15 @@ if ($eqLogic->getDisplay('parameters') != '') {
 															</div>
 														</div>
 														<div class="form-group">
-															<label class="col-sm-2 control-label">{{Style générale des cases}}</label>
+															<label class="col-sm-2 control-label">{{Style générale des cases (CSS)}}</label>
 															<div class="col-sm-10">
 																<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="styletd" />
 															</div>
 														</div>
 														<div class="form-group">
-															<label class="col-sm-2 control-label">{{Style du tableau}}</label>
+															<label class="col-sm-2 control-label">{{Style du tableau (CSS)}}</label>
 															<div class="col-sm-10">
-																<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="styletable" />
+																<input class="eqLogicAttr form-control" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="styletable" />
 															</div>
 														</div>
 													</div>
@@ -483,12 +483,34 @@ if ($eqLogic->getDisplay('parameters') != '') {
 												<table class="table table-bordered table-condensed">
 													<tbody>
 														<?php
+$table = array();
+foreach ($eqLogic->getCmd(null, null, true) as $cmd) {
+	$line = $cmd->getDisplay('layout::dashboard::table::cmd::' . $cmd->getId() . '::line', 1);
+	$column = $cmd->getDisplay('layout::dashboard::table::cmd::' . $cmd->getId() . '::column', 1);
+	if (!isset($table[$line])) {
+		$table[$line] = array();
+	}
+	if (!isset($table[$line][$column])) {
+		$table[$line][$column] = array();
+	}
+	$table[$line][$column][] = $cmd;
+}
 for ($i = 1; $i <= $eqLogic->getDisplay('layout::dashboard::table::nbLine', 1); $i++) {
 	echo '<tr>';
 	for ($j = 1; $j <= $eqLogic->getDisplay('layout::dashboard::table::nbColumn', 1); $j++) {
 		echo '<td>';
+		$string_cmd = '<center>';
+		if (isset($table[$i][$j]) && count($table[$i][$j]) > 0) {
+			foreach ($table[$i][$j] as $cmd) {
+				$string_cmd .= '<strong>' . $cmd->getName() . '</strong>/';
+			}
+		}
+		if ($string_cmd == '<center>') {
+			$string_cmd .= '<br/>';
+		}
+		echo trim($string_cmd, '/') . '</center>';
 		echo '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="text::td::' . $i . '::' . $j . '" placeholder="{{Texte de la case}}"/>';
-		echo '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="style::td::' . $i . '::' . $j . '" placeholder="{{Style de la case}}" style="margin-top:3px;"/>';
+		echo '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="style::td::' . $i . '::' . $j . '" placeholder="{{Style de la case (CSS)}}" style="margin-top:3px;"/>';
 		echo '</td>';
 	}
 	echo '</tr>';

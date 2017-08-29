@@ -689,7 +689,6 @@ class eqLogic {
 					if (isset($replace['#refresh_id#']) && $cmd->getId() == $replace['#refresh_id#']) {
 						continue;
 					}
-
 					$tag = '#cmd::' . $this->getDisplay('layout::' . $version . '::table::cmd::' . $cmd->getId() . '::line', 1) . '::' . $this->getDisplay('layout::' . $version . '::table::cmd::' . $cmd->getId() . '::column', 1) . '#';
 					if ($br_before == 0 && $cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
 						$table['tag'][$tag] .= '<br/>';

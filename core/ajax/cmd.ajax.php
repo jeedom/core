@@ -340,7 +340,6 @@ try {
 	}
 
 	if (init('action') == 'setOrder') {
-
 		$cmds = json_decode(init('cmds'), true);
 		foreach ($cmds as $cmd_json) {
 			if (!isset($cmd_json['id']) || trim($cmd_json['id']) == '') {
