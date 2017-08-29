@@ -457,8 +457,8 @@ if ($eqLogic->getDisplay('parameters') != '') {
 																	<fieldset>
 																		<div class="form-group">
 																			<label class="col-sm-4 control-label">{{Type de batterie}}</label>
-																			<div class="col-sm-4">
-																				<span class="eqLogicAttr label label-primary" data-l1key="configuration" data-l2key="battery_type" style="font-size : 1em;"></span>
+																			<div class="col-sm-6">
+																				<input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_type"></input>
 																			</div>
 																		</div>
 																	</fieldset>
