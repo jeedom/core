@@ -436,41 +436,53 @@ if ($eqLogic->getDisplay('parameters') != '') {
 												<fieldset>
 													<legend>{{Configuration général}}</legend>
 													<div class="form-group">
-														<label class="col-sm-4 control-label">{{Nombre de ligne}}</label>
+														<label class="col-sm-2 control-label">{{Disposition}}</label>
 														<div class="col-sm-2">
-															<input type="number" class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::nbLine" />
+															<select class="eqLogicAttr form-control sel_layout" data-l1key="display" data-l2key="layout::dashboard">
+																<option value="default">{{Defaut}}</option>
+																<option value="table">{{Tableau}}</option>
+															</select>
 														</div>
 													</div>
-													<div class="form-group">
-														<label class="col-sm-4 control-label">{{Nombre de colonne}}</label>
-														<div class="col-sm-2">
-															<input type="number" class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::nbColumn" />
+													<div class="widget_layout table" style="display: none;">
+														<div class="form-group">
+															<label class="col-sm-2 control-label">{{Nombre de ligne}}</label>
+															<div class="col-sm-2">
+																<input type="number" class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::nbLine" />
+															</div>
 														</div>
-													</div>
-													<div class="form-group">
-														<label class="col-sm-4 control-label">{{Centrer dans les cases}}</label>
-														<div class="col-sm-2">
-															<input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="center" />
+														<div class="form-group">
+															<label class="col-sm-2 control-label">{{Nombre de colonne}}</label>
+															<div class="col-sm-2">
+																<input type="number" class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::nbColumn" />
+															</div>
 														</div>
-													</div>
-													<div class="form-group">
-														<label class="col-sm-4 control-label">{{Style générale des cases}}</label>
-														<div class="col-sm-8">
-															<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="styletd" />
+														<div class="form-group">
+															<label class="col-sm-2 control-label">{{Centrer dans les cases}}</label>
+															<div class="col-sm-2">
+																<input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="center" />
+															</div>
 														</div>
-													</div>
-													<div class="form-group">
-														<label class="col-sm-4 control-label">{{Style du tableau}}</label>
-														<div class="col-sm-8">
-															<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="styletable" />
+														<div class="form-group">
+															<label class="col-sm-2 control-label">{{Style générale des cases}}</label>
+															<div class="col-sm-10">
+																<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="styletd" />
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="col-sm-2 control-label">{{Style du tableau}}</label>
+															<div class="col-sm-10">
+																<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="styletable" />
+															</div>
 														</div>
 													</div>
 												</fieldset>
 											</form>
-											<legend>{{Configuration détaillée}}</legend>
-											<table class="table table-bordered table-condensed">
-												<tbody>
-													<?php
+											<div class="widget_layout table" style="display: none;">
+												<legend>{{Configuration détaillée}}</legend>
+												<table class="table table-bordered table-condensed">
+													<tbody>
+														<?php
 for ($i = 1; $i <= $eqLogic->getDisplay('layout::dashboard::table::nbLine', 1); $i++) {
 	echo '<tr>';
 	for ($j = 1; $j <= $eqLogic->getDisplay('layout::dashboard::table::nbColumn', 1); $j++) {
@@ -482,11 +494,18 @@ for ($i = 1; $i <= $eqLogic->getDisplay('layout::dashboard::table::nbLine', 1); 
 	echo '</tr>';
 }
 ?>
-												</tbody>
-											</table>
+													</tbody>
+												</table>
+											</div>
 										</div>
 									</div>
 									<script>
+
+										$('.sel_layout').on('change',function(){
+											var type = $(this).attr('data-type');
+											$('.widget_layout').hide();
+											$('.widget_layout.'+$(this).value()).show();
+										});
 										$('.background-color-default').off('change').on('change',function(){
 											if($(this).value() == 1){
 												$(this).closest('td').find('.span_configureBackgroundColor').hide();
