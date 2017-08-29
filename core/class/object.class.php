@@ -611,7 +611,10 @@ class object {
 			}
 			$result = $this->getSummary($key);
 			if ($result !== null) {
-				$style = 'color:' . $this->getDisplay($_version . '::summaryTextColor', '#000000') . ';';
+				$style = '';
+				if ($_version == 'desktop') {
+					$style = 'color:' . $this->getDisplay($_version . '::summaryTextColor', '#000000') . ';';
+				}
 				$allowDisplayZero = $value['allowDisplayZero'];
 				if ($value['calcul'] == 'text') {
 					$allowDisplayZero = 1;
