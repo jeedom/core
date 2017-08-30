@@ -27,6 +27,11 @@ En mode édition vous pouvez changer la taille des widgets et leur disposition s
 Vous pouvez aussi editer la disposition interne des commande du widget : 
 
 * soit les reorganiser par glisser/déposé
-* en faisant un clic droit sur le widget vous pouvez aussi changer la disposition de celui-ci de standart à tableau : 
-** standard : dispsition par defaut, tout est en automatique avec juste la possibilité de reorganiser l'ordre de commande
-** tableau : permet de mettre les commandes dans un tableau, les colonnes et lignes s'ajoutent et se suppriment par clic droit, ensuite il suffit de déplacer les commandes dans les cases voulu, vous pouvez mettre plusieurs commande par cases
+* en faisant un clic droit sur le widget vous pouvez aussi : 
+** *Configuration avancée* : permet d'acceder à la configuration avancée de la commande
+** *Standard* : disposition par defaut, tout est en automatique avec juste la possibilité de reorganiser l'ordre de commande
+** *Tableau* : permet de mettre les commandes dans un tableau, les colonnes et lignes s'ajoutent et se suppriment par clic droit, ensuite il suffit de déplacer les commandes dans les cases voulu, vous pouvez mettre plusieurs commande par cases
+** *Ajouter colonne* : ajoute une colonne au tableau (accessible que si vous êtes en disposition tableau)
+** *Ajouter ligne* : ajoute une ligne au tableau (accessible que si vous êtes en disposition tableau)
+** *Supprimer colonne* : supprime une colonne au tableau (accessible que si vous êtes en disposition tableau)
+** *Supprimer ligne* : supprime une ligne au tableau (accessible que si vous êtes en disposition tableau)

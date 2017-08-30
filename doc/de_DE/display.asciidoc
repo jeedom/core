@@ -92,6 +92,26 @@ En-dessous, on retrouve des paramètres optionnels d'affichage que l'on peut pas
 [TIP]
 Vergessen Sie nicht, nach jeder Veränderung zu speichern.
 
+=== Disposition
+
+Cette partie vous permet de choisir entre la disposition standard des commandes (cote à cote dans le widget), ou en mode tableau.
+
+En mode tableau vous pouvez :
+
+* Choisir la dimmension du tableau ligne x colonne
+* Choisir de center les commandes dans les cases du tableau
+* Donner le style (en css) des cases
+* Donner le style (en css) du tableau
+
+En dessous pour chaque case vous pouvez :
+
+* Ajouter un texte en plus de la commande (ou tout seul si il n'y a pas de commande dans la case)
+* Modifier le CSS spécifique de la case (attention celui-ci ecrase et remplace le CSS général des cases)
+
+
+[TIP]
+Si dans une case du tableau vous voulez mettre 2 commandes l’une en dessous de l’autre il ne faut pas oublier de rajouter un retour à la ligne après la premiere commande dans la configuration avancée de celle-ci
+
 === Alertes
 
 Cet onglet permet d'avoir les informations sur la batterie de l'équipement : type de pile, dernière remontée de l'information, niveau restant (si bien sûr votre équipement fonctionne sur pile). Vous pourrez aussi à partir de celui-ci configurer les seuils spécifiques pour cet équipement.

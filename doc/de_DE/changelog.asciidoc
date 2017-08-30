@@ -45,7 +45,7 @@
 ** Ajout d'une sécurité pour éviter la suppression du compte avec lequel on est connecté
 * Possibilité dans la configuration avancé des équipements de mettre la disposition des commandes dans le widgets en mode table en choissisant pour chaque commande la case ou la mettre
 * Possibilité de reorganiser les widgets des équipements depuis le dashboard (en mode edition clic droit sur le widget)
-* Changement du pas des widgets (de 40*80 à 20*20). Attention cela va impacter la disposition sur votre dashboard/vue/design
+* Changement du pas des widgets (de 40*80 à 10*10). Attention cela va impacter la disposition sur votre dashboard/vue/design
 * Possibilité de donner une taille de 1 à 12 aux objets sur le dashboard
 * Possibilité de lancer independament les actions des scénarios (et plugin type mode/alarm si compatible) en parallèle des autres
 

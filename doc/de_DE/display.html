@@ -425,8 +425,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_paramètres_optionnels_sur_la_tuile">1.2.2. Paramètres optionnels sur la tuile</a></li>
 </ul>
 </li>
-<li><a href="#_alertes">1.3. Alertes</a></li>
-<li><a href="#_commentaire">1.4. Commentaire</a></li>
+<li><a href="#_disposition">1.3. Disposition</a></li>
+<li><a href="#_alertes">1.4. Alertes</a></li>
+<li><a href="#_commentaire">1.5. Commentaire</a></li>
 </ul>
 </li>
 <li><a href="#_configuration_avancée_d_une_commande">2. Configuration avancée d&#8217;une commande</a>
@@ -686,7 +687,57 @@ Vergessen Sie nicht, nach jeder Veränderung zu speichern.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_alertes">1.3. Alertes</h3>
+<h3 id="_disposition">1.3. Disposition</h3>
+<div class="paragraph">
+<p>Cette partie vous permet de choisir entre la disposition standard des commandes (cote à cote dans le widget), ou en mode tableau.</p>
+</div>
+<div class="paragraph">
+<p>En mode tableau vous pouvez :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Choisir la dimmension du tableau ligne x colonne</p>
+</li>
+<li>
+<p>Choisir de center les commandes dans les cases du tableau</p>
+</li>
+<li>
+<p>Donner le style (en css) des cases</p>
+</li>
+<li>
+<p>Donner le style (en css) du tableau</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>En dessous pour chaque case vous pouvez :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Ajouter un texte en plus de la commande (ou tout seul si il n&#8217;y a pas de commande dans la case)</p>
+</li>
+<li>
+<p>Modifier le CSS spécifique de la case (attention celui-ci ecrase et remplace le CSS général des cases)</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Si dans une case du tableau vous voulez mettre 2 commandes l’une en dessous de l’autre il ne faut pas oublier de rajouter un retour à la ligne après la premiere commande dans la configuration avancée de celle-ci
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_alertes">1.4. Alertes</h3>
 <div class="paragraph">
 <p>Cet onglet permet d&#8217;avoir les informations sur la batterie de l&#8217;équipement : type de pile, dernière remontée de l&#8217;information, niveau restant (si bien sûr votre équipement fonctionne sur pile). Vous pourrez aussi à partir de celui-ci configurer les seuils spécifiques pour cet équipement.</p>
 </div>
@@ -695,7 +746,7 @@ Vergessen Sie nicht, nach jeder Veränderung zu speichern.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_commentaire">1.4. Commentaire</h3>
+<h3 id="_commentaire">1.5. Commentaire</h3>
 <div class="paragraph">
 <p>Permet de mettre des commentaire sur l&#8217;équipement (date de change de pile par exemple)</p>
 </div>
