@@ -199,13 +199,16 @@ class user {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function byProfils($_profils) {
+	public static function byProfils($_profils, $_enable = false) {
 		$values = array(
 			'profils' => $_profils,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM user
         WHERE profils=:profils';
+		if ($_enable) {
+			$sql .= ' AND enable=1';
+		}
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -312,7 +315,7 @@ class user {
 		if ($this->getLogin() == '') {
 			throw new Exception(__('Le nom d\'utilisateur ne peut pas être vide', __FILE__));
 		}
-		$admins = user::byProfils('admin');
+		$admins = user::byProfils('admin', true);
 		if (count($admins) == 1 && $this->getProfils() == 'admin' && $this->getEnable() == 0) {
 			throw new Exception(__('Vous ne pouvez désactiver le dernière utilisateur', __FILE__));
 		}
@@ -326,7 +329,7 @@ class user {
 	}
 
 	public function preRemove() {
-		if (count(user::byProfils('admin')) == 1 && $this->getProfils() == 'admin') {
+		if (count(user::byProfils('admin', true)) == 1 && $this->getProfils() == 'admin') {
 			throw new Exception(__('Vous ne pouvez supprimer le dernière administrateur', __FILE__));
 		}
 	}
