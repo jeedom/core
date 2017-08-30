@@ -64,6 +64,7 @@ if ($("#mod_insertScenarioValue").length != 0) {
 if(!isset(_noPushHistory) || _noPushHistory == false){
     window.history.pushState('','', _url);
 }
+$('main').css('padding-right','').css('padding-left','').css('margin-right','').css('margin-left','');
 $('#div_pageContainer').add("#div_pageContainer *").off();
 $.hideAlert();
 $('.bt_pluginTemplateShowSidebar').remove();

@@ -22,6 +22,7 @@ $.contextMenu('destroy', '#div_pageContainer' );
 }
 
 $('main').css('padding-right','0px').css('padding-left','0px').css('margin-right','0px').css('margin-left','0px');
+
 var deviceInfo = getDeviceType();
 var editOption = {state : false, snap : false,grid : false,gridSize:false,highlight:true};
 var clickedOpen = false;
