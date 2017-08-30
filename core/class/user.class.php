@@ -316,7 +316,7 @@ class user {
 		if (count($admins) == 1 && $this->getProfils() == 'admin' && $this->getEnable() == 0) {
 			throw new Exception(__('Vous ne pouvez désactiver le dernière utilisateur', __FILE__));
 		}
-		if (count($admins) == 1 && $admins[0]->getId() == $this->getid()) {
+		if (count($admins) == 1 && $admins[0]->getId() == $this->getid() && $this->getProfils() != 'admin') {
 			throw new Exception(__('Vous ne pouvez changer le profils du dernière administrateur', __FILE__));
 		}
 	}
