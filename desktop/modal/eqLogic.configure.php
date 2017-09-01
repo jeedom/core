@@ -502,7 +502,7 @@ for ($i = 1; $i <= $eqLogic->getDisplay('layout::dashboard::table::nbLine', 1); 
 		$string_cmd = '<center class="cmdLayoutContainer" style="min-height:30px;">';
 		if (isset($table[$i][$j]) && count($table[$i][$j]) > 0) {
 			foreach ($table[$i][$j] as $cmd) {
-				$string_cmd .= '<span class="label label-default cmdLayout" data-cmd_id="' . $cmd->getId() . '" style="margin:2px;">' . $cmd->getName() . '</span>';
+				$string_cmd .= '<span class="label label-default cmdLayout cursor" data-cmd_id="' . $cmd->getId() . '" style="margin:2px;">' . $cmd->getName() . '</span>';
 			}
 		}
 		echo $string_cmd . '</center>';
