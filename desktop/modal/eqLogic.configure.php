@@ -480,7 +480,7 @@ if ($eqLogic->getDisplay('parameters') != '') {
 											</form>
 											<div class="widget_layout table" style="display: none;">
 												<legend>{{Configuration détaillée}}</legend>
-												<table class="table table-bordered table-condensed">
+												<table class="table table-bordered table-condensed" id="tableCmdLayoutConfiguration">
 													<tbody>
 														<?php
 $table = array();
@@ -498,19 +498,17 @@ foreach ($eqLogic->getCmd(null, null, true) as $cmd) {
 for ($i = 1; $i <= $eqLogic->getDisplay('layout::dashboard::table::nbLine', 1); $i++) {
 	echo '<tr>';
 	for ($j = 1; $j <= $eqLogic->getDisplay('layout::dashboard::table::nbColumn', 1); $j++) {
-		echo '<td>';
-		$string_cmd = '<center>';
+		echo '<td data-line="' . $i . '" data-column="' . $j . '">';
+		$string_cmd = '<center class="cmdLayoutContainer" style="min-height:30px;">';
 		if (isset($table[$i][$j]) && count($table[$i][$j]) > 0) {
 			foreach ($table[$i][$j] as $cmd) {
-				$string_cmd .= '<strong>' . $cmd->getName() . '</strong>/';
+				$string_cmd .= '<span class="label label-default cmdLayout" data-cmd_id="' . $cmd->getId() . '" style="margin:2px;">' . $cmd->getName() . '</span>';
 			}
 		}
-		if ($string_cmd == '<center>') {
-			$string_cmd .= '<br/>';
-		}
-		echo trim($string_cmd, '/') . '</center>';
-		echo '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="text::td::' . $i . '::' . $j . '" placeholder="{{Texte de la case}}"/>';
+		echo $string_cmd . '</center>';
+		echo '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="text::td::' . $i . '::' . $j . '" placeholder="{{Texte de la case}}" style="margin-top:3px;"/>';
 		echo '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="style::td::' . $i . '::' . $j . '" placeholder="{{Style de la case (CSS)}}" style="margin-top:3px;"/>';
+
 		echo '</td>';
 	}
 	echo '</tr>';
@@ -522,6 +520,31 @@ for ($i = 1; $i <= $eqLogic->getDisplay('layout::dashboard::table::nbLine', 1); 
 										</div>
 									</div>
 									<script>
+
+										$('#tableCmdLayoutConfiguration tbody td .cmdLayoutContainer').sortable({
+											connectWith: '#tableCmdLayoutConfiguration tbody td .cmdLayoutContainer',
+											items: ".cmdLayout",
+											stop: function (event, ui) {
+												var cmds = [];
+												order = 1;
+												$('#tableCmdLayoutConfiguration tbody td').find('.cmdLayout').each(function(){
+													cmd = {};
+													cmd.id = $(this).attr('data-cmd_id');
+													cmd.line = $(this).closest('td').attr('data-line');
+													cmd.column = $(this).closest('td').attr('data-column');
+													cmd.order = order;
+													cmds.push(cmd);
+													order++;
+												});
+												jeedom.cmd.setOrder({
+													version : 'dashboard',
+													cmds: cmds,
+													error: function (error) {
+														$('#md_displayEqLogicConfigure').showAlert({message: error.message, level: 'danger'});
+													}
+												});
+											}
+										});
 
 										$('.sel_layout').on('change',function(){
 											var type = $(this).attr('data-type');
