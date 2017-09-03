@@ -68,7 +68,7 @@ if(object_summary_update.length > 0){
 setTimeout(jeedom.changes, 1);
 },
 error: function(_error){
-    if(jeedom.connect == 100){
+    if(typeof(user_id) != "undefined" && jeedom.connect == 100){
         notify('{{Erreur de connexion}}','{{Erreur lors de la connexion à jeedom}} : '+_error.message);
     }
     jeedom.connect++;
