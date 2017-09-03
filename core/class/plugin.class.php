@@ -78,11 +78,11 @@ class plugin {
 		$plugin->require = (isset($data['require'])) ? $data['require'] : '';
 		$plugin->category = (isset($data['category'])) ? $data['category'] : '';
 		$plugin->filepath = $_id;
-		$plugin->index = (isset($data['index'])) ? (string) $data['index'] : $data['id'];
-		$plugin->display = (isset($data['display'])) ? (string) $data['display'] : '';
-		$plugin->issue = (isset($data['issue'])) ? (string) $data['issue'] : '';
-		$plugin->changelog = (isset($data['changelog'])) ? (string) $data['changelog'] : '';
-		$plugin->documentation = (isset($data['documentation'])) ? (string) $data['documentation'] : '';
+		$plugin->index = (isset($data['index'])) ? $data['index'] : $data['id'];
+		$plugin->display = (isset($data['display'])) ? $data['display'] : '';
+		$plugin->issue = (isset($data['issue'])) ? $data['issue'] : '';
+		$plugin->changelog = (isset($data['changelog'])) ? str_replace('#language#', config::byKey('language', 'core', 'fr_FR'), $data['changelog']) : '';
+		$plugin->documentation = (isset($data['documentation'])) ? str_replace('#language#', config::byKey('language', 'core', 'fr_FR'), $data['documentation']) : '';
 		$plugin->mobile = '';
 		if (file_exists(dirname(__FILE__) . '/../../plugins/' . $data['id'] . '/mobile/html')) {
 			$plugin->mobile = (isset($data['mobile'])) ? $data['mobile'] : $data['id'];
