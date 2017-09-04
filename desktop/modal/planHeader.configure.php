@@ -22,6 +22,12 @@ sendVarToJS('id', $planHeader->getId())
                     <input class="planHeaderAttr form-control" data-l1key="name" />
                 </div>
             </div>
+             <div class="form-group">
+                <label class="col-lg-4 control-label">{{Code d'accès}}</label>
+                <div class="col-lg-2">
+                    <input type="password" class="planHeaderAttr form-control" data-l1key="configuration" data-l2key="accessCode" />
+                </div>
+            </div>
             <div class="form-group">
                 <label class="col-lg-4 control-label">{{Icône}}</label>
                 <div class="col-lg-2">

@@ -196,6 +196,11 @@ class planHeader {
 	}
 
 	public function setConfiguration($_key, $_value) {
+		if ($_key == 'accessCode' && $_value != '') {
+			if (!is_sha512($_value)) {
+				$_value = sha512($_value);
+			}
+		}
 		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
 		return $this;
 	}
