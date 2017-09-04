@@ -48,6 +48,7 @@
 * Changement du pas des widgets (de 40*80 à 10*10). Attention cela va impacter la disposition sur votre dashboard/vue/design
 * Possibilité de donner une taille de 1 à 12 aux objets sur le dashboard
 * Possibilité de lancer independament les actions des scénarios (et plugin type mode/alarm si compatible) en parallèle des autres
+* Possibilité d'ajouter un code d'accès à un design
 
 == 3.0.11
 
