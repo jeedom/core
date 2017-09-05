@@ -61,6 +61,5 @@ if ($rc == 0) {
 	exec('systemctl status apache2', $output, $rc);
 	if ($rc != 0) {
 		echo "NOK. Please check manually why...\n";
-		die();
 	}
 }
