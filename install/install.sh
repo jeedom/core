@@ -282,6 +282,13 @@ step_10_jeedom_post() {
 	    	exit 1
 	  	fi
 	fi
+	if [ ! -f /etc/cron.d/jeedom_watchdog ]; then
+		echo "* * * * * root /usr/bin/php ${WEBSERVER_HOME}/core/php/watchdog.php >> /dev/null" > /etc/cron.d/jeedom_watchdog
+		if [ $? -ne 0 ]; then
+	    	echo "${ROUGE}Could not install jeedom cron - abort${NORMAL}"
+	    	exit 1
+	  	fi
+	fi
   	usermod -a -G dialout,tty www-data
 	if [ $(grep "www-data ALL=(ALL) NOPASSWD: ALL" /etc/sudoers | wc -l) -eq 0 ];then
 		echo "www-data ALL=(ALL) NOPASSWD: ALL" | (EDITOR="tee -a" visudo)
