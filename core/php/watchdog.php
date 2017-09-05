@@ -27,6 +27,12 @@ if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SE
 $datetime = date('Y-m-d H:i:s');
 echo "Watchdog Jeedom at " . $datetime . "\n";
 
+$update_in_progress = exec('ps ax | grep -E "dpkg|apt" | grep -v grep | wc -l');
+if ($update_in_progress != 0) {
+	echo 'Update (apt or dpkg) in progress, cancel watchdog';
+	die();
+}
+
 /********************************MySQL****************************************/
 echo 'Check MySql => ';
 $output = array();
