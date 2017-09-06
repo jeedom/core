@@ -733,7 +733,7 @@ function editWidgetCmdMode(_mode){
         icon : 'fa-cog',
         callback: function(key, opt){
            $('#md_modal').dialog({title: "{{Configuration du widget}}"});
-           $('#md_modal').load('index.php?v=d&modal=eqLogic.configure&eqLogic_id='+$(this).attr('data-eqLogic_id'),).dialog('open');
+           $('#md_modal').load('index.php?v=d&modal=eqLogic.configure&eqLogic_id='+$(this).attr('data-eqLogic_id')).dialog('open');
        }
    },
    sep1 : "---------",
