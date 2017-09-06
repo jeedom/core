@@ -863,19 +863,22 @@ function sanitizeAccent($_message) {
 }
 
 function isConnect($_right = '') {
+	if (isset($GLOBALS['isConnect::' . $_right]) && $GLOBALS['isConnect::' . $_right]) {
+		return $GLOBALS['isConnect::' . $_right];
+	}
+	$GLOBALS['isConnect::' . $_right] = false;
 	if (session_status() == PHP_SESSION_DISABLED || !isset($_SESSION) || !isset($_SESSION['user'])) {
-		return false;
-	}
-	if (isset($_SESSION['apimaster']) && $_SESSION['apimaster']) {
-		return true;
-	}
-	if (isset($_SESSION['user']) && is_object($_SESSION['user']) && $_SESSION['user']->is_Connected()) {
+		$GLOBALS['isConnect::' . $_right] = false;
+	} else if (isset($_SESSION['apimaster']) && $_SESSION['apimaster']) {
+		$GLOBALS['isConnect::' . $_right] = true;
+	} else if (isset($_SESSION['user']) && is_object($_SESSION['user']) && $_SESSION['user']->is_Connected()) {
 		if ($_right != '') {
-			return ($_SESSION['user']->getProfils() == $_right);
+			$GLOBALS['isConnect::' . $_right] = ($_SESSION['user']->getProfils() == $_right);
+		} else {
+			$GLOBALS['isConnect::' . $_right] = true;
 		}
-		return true;
 	}
-	return false;
+	return $GLOBALS['isConnect::' . $_right];
 }
 
 function ZipErrorMessage($code) {
