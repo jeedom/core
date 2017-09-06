@@ -9,7 +9,8 @@
         "monolog/monolog": "^1.17",
         "knplabs/github-api": "^1.7",
         "pragmarx/google2fa": "^1.0",
-        "touki/ftp": "^1.2"
+        "touki/ftp": "^1.2",
+        "symfony/debug" : "~3.3"
     },
     "license": "GPL",
     "config": {
