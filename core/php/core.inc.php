@@ -29,6 +29,9 @@ include_file('core', 'compatibility', 'config');
 include_file('core', 'utils', 'class');
 include_file('core', 'log', 'class');
 
+use Symfony\Component\Debug\ErrorHandler;
+use Symfony\Component\Debug\ExceptionHandler;
+
 try {
 	$configs = config::byKeys(array('timezone', 'log::level'));
 	if (isset($configs['timezone'])) {
