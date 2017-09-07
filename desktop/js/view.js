@@ -51,9 +51,7 @@
             $( "textarea").click(function() { $(this).focus(); });
             $('.eqLogicZone').each(function () {
                 var container = $(this).packery({
-                    columnWidth: 40,
-                    rowHeight: 80,
-                    gutter : 2,
+                    gutter : 1.5
                 });
                 var itemElems =  container.find('.eqLogic-widget');
                 itemElems.draggable();
