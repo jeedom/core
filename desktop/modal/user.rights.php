@@ -59,7 +59,7 @@ foreach (eqLogic::all() as $eqLogic) {
 				<?php
 foreach (scenario::all() as $scenario) {
 	echo '<tr>';
-	echo '<td>' . $scenario->getHumanName(true) . '</td>';
+	echo '<td>' . $scenario->getHumanName(true, true, true) . '</td>';
 	echo '<td>';
 	echo '<select class="form-control userAttr input-sm" data-l1key="rights" data-l2key="scenario' . $scenario->getId() . '">';
 	echo '<option value="n">{{Aucun}}</option>';
