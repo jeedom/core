@@ -311,6 +311,12 @@ class user {
 
 	/*     * *********************Méthodes d'instance************************* */
 
+	public static function preInsert() {
+		if (count(self::byLogin($this->getLogin())) > 0) {
+			throw new Exception(__('Ce nom d\'utilisateur est déja pris', __FILE__));
+		}
+	}
+
 	public function preSave() {
 		if ($this->getLogin() == '') {
 			throw new Exception(__('Le nom d\'utilisateur ne peut pas être vide', __FILE__));

@@ -33,12 +33,12 @@ if ($user->getProfils() != 'restrict') {
 				<?php
 foreach (eqLogic::all() as $eqLogic) {
 	echo '<tr>';
-	echo '<td>' . $eqLogic->getHumanName() . '</td>';
+	echo '<td>' . $eqLogic->getHumanName(true) . '</td>';
 	echo '<td>';
 	echo '<select class="form-control userAttr input-sm" data-l1key="rights" data-l2key="eqLogic' . $eqLogic->getId() . '">';
 	echo '<option value="n">{{Aucun}}</option>';
 	echo '<option value="r">{{Visualisation}}</option>';
-	echo '<option value="rx">{{Visualisation et éxécution}}</option>';
+	echo '<option value="rx">{{Visualisation et exécution}}</option>';
 	echo '</select>';
 	echo '</td>';
 	echo '</tr>';
@@ -59,12 +59,12 @@ foreach (eqLogic::all() as $eqLogic) {
 				<?php
 foreach (scenario::all() as $scenario) {
 	echo '<tr>';
-	echo '<td>' . $scenario->getHumanName() . '</td>';
+	echo '<td>' . $scenario->getHumanName(true) . '</td>';
 	echo '<td>';
 	echo '<select class="form-control userAttr input-sm" data-l1key="rights" data-l2key="scenario' . $scenario->getId() . '">';
 	echo '<option value="n">{{Aucun}}</option>';
 	echo '<option value="r">{{Visualisation}}</option>';
-	echo '<option value="rx">{{Visualisation et éxécution}}</option>';
+	echo '<option value="rx">{{Visualisation et exécution}}</option>';
 	echo '</select>';
 	echo '</td>';
 	echo '</tr>';
