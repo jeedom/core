@@ -952,10 +952,10 @@ class plugin {
 	}
 
 	public function getDocumentation() {
+		if (file_exists(dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/doc/' . config::byKey('language', 'core', 'fr_FR') . '/index.html')) {
+			return 'plugins/' . $this->getId() . '/doc/' . config::byKey('language', 'core', 'fr_FR') . '/index.html';
+		}
 		if ($this->documentation == '') {
-			if (file_exists(dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/doc/' . config::byKey('language', 'core', 'fr_FR') . '/index.html')) {
-				return 'plugins/' . $this->getId() . '/doc/' . config::byKey('language', 'core', 'fr_FR') . '/index.html';
-			}
 			return $this->getInfo('doc');
 		}
 		return $this->documentation;
