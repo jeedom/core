@@ -7,7 +7,8 @@ $planHeader = planHeader::byId(init('planHeader_id'));
 if (!is_object($planHeader)) {
 	throw new Exception('Impossible de trouver le plan');
 }
-sendVarToJS('id', $planHeader->getId())
+sendVarToJS('id', $planHeader->getId());
+sendVarToJS('planHeader', utils::o2a($planHeader));
 ?>
 <div id="div_alertPlanHeaderConfigure"></div>
 <a class='btn btn-success btn-xs pull-right cursor' style="color: white;" id='bt_saveConfigurePlanHeader'><i class="fa fa-check"></i> {{Sauvegarder}}</a>
@@ -22,7 +23,7 @@ sendVarToJS('id', $planHeader->getId())
                     <input class="planHeaderAttr form-control" data-l1key="name" />
                 </div>
             </div>
-             <div class="form-group">
+            <div class="form-group">
                 <label class="col-lg-4 control-label">{{Code d'accès}}</label>
                 <div class="col-lg-2">
                     <input type="password" class="planHeaderAttr form-control" data-l1key="configuration" data-l2key="accessCode" />
@@ -113,14 +114,6 @@ sendVarToJS('id', $planHeader->getId())
   });
 
     if (isset(id) && id != '') {
-       jeedom.plan.getHeader({
-        id: id,
-        error: function (error) {
-            $('#div_alertPlanHeaderConfigure').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function (planHeader) {
-         $('#div_planHeaderConfigure').setValues(planHeader, '.planHeaderAttr');
-     }
- });
+       $('#div_planHeaderConfigure').setValues(planHeader, '.planHeaderAttr');
    }
 </script>
