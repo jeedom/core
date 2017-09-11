@@ -123,7 +123,9 @@ class plan {
 	/*     * *********************Methode d'instance************************* */
 
 	public function preInsert() {
-		$this->setCss('z-index', 1000);
+		if ($this->getCss('z-index') == '') {
+			$this->setCss('z-index', 1000);
+		}
 		if (in_array($this->getLink_type(), array('eqLogic', 'cmd', 'scenario'))) {
 			self::removeByLinkTypeLinkIdPlanHedaerId($this->getLink_type(), $this->getLink_id(), $this->getPlanHeader_id());
 		}
