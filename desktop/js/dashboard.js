@@ -150,7 +150,7 @@ function getObjectHtml(_object_id){
             $('#div_ob'+_object_id+'.div_displayEquipement').each(function(){
                 var container = $(this).packery({
                     itemSelector: ".eqLogic-widget",
-                    gutter : 1.5
+                    gutter : 2
                 });
                 var itemElems =  container.find('.eqLogic-widget');
                 itemElems.draggable();

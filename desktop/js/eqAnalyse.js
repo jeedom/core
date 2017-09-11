@@ -19,7 +19,7 @@
  $('.alertListContainer .jeedomAlreadyPosition').removeClass('jeedomAlreadyPosition');
  $('.batteryListContainer, .alertListContainer').packery({
  	itemSelector: ".eqLogic-widget",
- 	gutter : 1.5
+ 	gutter : 2
  });
  
  $('.alerts, .batteries').on('click',function(){
@@ -27,7 +27,7 @@
  		positionEqLogic();
  		$('.batteryListContainer, .alertListContainer').packery({
  			itemSelector: ".eqLogic-widget",
- 			gutter : 1.5
+ 			gutter : 2
  		});
  	}, 10);
  });
