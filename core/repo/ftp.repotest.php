@@ -110,7 +110,7 @@ class repo_ftp {
 		} else {
 			$connection = new Connection(config::byKey('ftp::' . $_type . '::ip'), config::byKey('ftp::' . $_type . '::user'), config::byKey('ftp::' . $_type . '::password'), config::byKey('ftp::' . $_type . '::port'), 120, config::byKey('ftp::' . $_type . '::passive', 'core', false));
 		}
-		$connexion->open();
+		$connection->open();
 		return $connection;
 	}
 
@@ -169,7 +169,7 @@ class repo_ftp {
 			throw new Exception(__('Impossible de télécharger le fichier depuis : ' . $_update->getConfiguration('path') . '.', __FILE__));
 		}
 		$ftp->download($tmp, $file);
-		$connection->close();
+		$connexion->close();
 
 		if (!file_exists($tmp)) {
 			throw new Exception(__('Impossible de télécharger le fichier depuis : ' . $_update->getConfiguration('path') . '.', __FILE__));
@@ -220,12 +220,17 @@ class repo_ftp {
 			throw new Exception(__('Impossible de télécharger le fichier depuis : ' . config::byKey('ftp::backup::folder') . '/' . $_backup . '.', __FILE__));
 		}
 		$ftp->download($backup_dir . '/' . $_backu, $file);
-		$connection->close();
+		$connexion->close();
 		com_shell::execute(system::getCmdSudo() . 'chmod 777 -R ' . $backup_dir . '/*');
 		jeedom::restore('backup/' . $_backup, true);
 
 	}
 
+        /**
+         * 
+         * @param string $_path
+         * @throws Exception
+         */
 	public static function downloadCore($_path) {
 		$connexion = self::getFtpConnection('plugin');
 		$factory = new FTPFactory;
@@ -235,7 +240,7 @@ class repo_ftp {
 			throw new Exception(__('Impossible de télécharger le fichier depuis : ' . config::byKey('ftp::core::path') . '.', __FILE__));
 		}
 		$ftp->download($_path, $file);
-		$connection->close();
+		$connexion->close();
 	}
 
 	public static function versionCore() {
@@ -251,7 +256,7 @@ class repo_ftp {
 				return null;
 			}
 			$ftp->download(jeedom::getTmpFolder('ftp') . '/version', $file);
-			$connection->close();
+			$connexion->close();
 			if (!file_exists(jeedom::getTmpFolder('ftp') . '/version')) {
 				return null;
 			}
