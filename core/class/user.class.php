@@ -311,8 +311,12 @@ class user {
 
 	/*     * *********************Méthodes d'instance************************* */
 
+	/**
+         * 
+         * @throws Exception
+         */
 	public static function preInsert() {
-		if (count(self::byLogin($this->getLogin())) > 0) {
+		if (count(self::byLogin(self::getLogin())) > 0) {
 			throw new Exception(__('Ce nom d\'utilisateur est déja pris', __FILE__));
 		}
 	}
