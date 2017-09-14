@@ -356,11 +356,14 @@ class user {
 		return (is_numeric($this->id) && $this->login != '');
 	}
 
+	/**
+         * 
+         * @param string $_code
+         * @return object \Google2FA()
+         */
 	public function validateTwoFactorCode($_code) {
-		$google2fa = new Google2FA();
-		return $google2fa->verifyKey($this->getOptions('twoFactorAuthentificationSecret'), $_code);
+		return (new Google2FA())->verifyKey($this->getOptions('twoFactorAuthentificationSecret'), $_code);
 	}
-
 	/*     * **********************Getteur Setteur*************************** */
 
 	public function getId() {
