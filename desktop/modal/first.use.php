@@ -24,7 +24,7 @@ if (!isConnect()) {
 </div>
 <div class="col-xs-4">
    <center>
-    <a href="https://jeedom.com/doc/documentation/premiers-pas/fr_FR/doc-premiers-pas.html" target="_blank">
+    <a href="https://jeedom.github.io/documentation/premiers-pas/fr_FR/index.html" target="_blank">
         <i class="fa fa-check-square" style="font-size:12em;"></i><br/>
         {{Documentation de démarrage}}
     </a>
