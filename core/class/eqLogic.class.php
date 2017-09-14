@@ -501,11 +501,22 @@ class eqLogic {
 		foreach ($eqLogicCopy->getCmd() as $cmd) {
 			$cmd->remove();
 		}
+		$cmd_link = array();
 		foreach ($this->getCmd() as $cmd) {
 			$cmdCopy = clone $cmd;
 			$cmdCopy->setId('');
 			$cmdCopy->setEqLogic_id($eqLogicCopy->getId());
 			$cmdCopy->save();
+			$cmd_link[$cmd->getId()] = $cmdCopy;
+		}
+		foreach ($this->getCmd() as $cmd) {
+			if (!isset($cmd_link[$cmd->getId()])) {
+				continue;
+			}
+			if ($cmd->getValue() != '' && isset($cmd_link[$cmd->getValue()])) {
+				$cmd_link[$cmd->getId()]->setValue($cmd_link[$cmd->getValue()]->getId());
+				$cmd_link[$cmd->getId()]->save();
+			}
 		}
 		return $eqLogicCopy;
 	}
