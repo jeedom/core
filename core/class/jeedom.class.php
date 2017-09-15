@@ -159,7 +159,7 @@ class jeedom {
 		} else {
 			$version = trim(strtolower(file_get_contents('/etc/debian_version')));
 			if (version_compare($version, '8', '<')) {
-				if (strpos($version, 'jessie') === false && strpos($version, 'stretch')) {
+				if (strpos($version, 'jessie') === false && strpos($version, 'stretch') === false) {
 					$state = false;
 				}
 			}
@@ -168,7 +168,7 @@ class jeedom {
 			'name' => __('Version OS', __FILE__),
 			'state' => $state,
 			'result' => ($state) ? $uname . ' [' . $version . ']' : $uname,
-			'comment' => ($state) ? '' : __('Vous n\'êtes pas sur un OS officiellement supporté par l\'équipe Jeedom (toute demande de support pourra donc être refusée). Les OS officiellement supporté sont Debian Jessie et Debian Strech (voir <a href="https://www.jeedom.com/doc/documentation/compatibility/fr_FR/doc-compatibility.html#_logiciel" target="_blank">ici</a>)', __FILE__),
+			'comment' => ($state) ? '' : __('Vous n\'êtes pas sur un OS officiellement supporté par l\'équipe Jeedom (toute demande de support pourra donc être refusée). Les OS officiellement supporté sont Debian Jessie et Debian Strech (voir <a href="https://github.com/jeedom/documentation/blob/master/compatibility/fr_FR/software.asciidoc" target="_blank">ici</a>)', __FILE__),
 		);
 
 		$version = DB::Prepare('select version()', array(), DB::FETCH_TYPE_ROW);
@@ -254,6 +254,14 @@ class jeedom {
 			$state = network::test('external');
 		}
 		$return[] = $cache_health;
+
+		$state = (count(ls('/tmp/', '*private*apache*')) == 0);
+		$return[] = array(
+			'name' => __('Private tmp', __FILE__),
+			'state' => $state,
+			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
+			'comment' => ($state) ? '' : 'https://github.com/jeedom/documentation/blob/master/howto/fr_FR/debian.trucs_et_astuces.asciidoc#private-tmp',
+		);
 
 		return $return;
 	}
