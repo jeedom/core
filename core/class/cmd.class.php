@@ -1079,6 +1079,9 @@ class cmd {
 				if (trim($replace['#state#']) === '' && ($cmdValue->getSubtype() == 'binary' || $cmdValue->getSubtype() == 'numeric')) {
 					$replace['#state#'] = 0;
 				}
+				if ($cmdValue->getSubType() == 'binary' && $cmdValue->getDisplay('invertBinary') == 1) {
+					$replace['#state#'] = ($replace['#state#'] == 1) ? 0 : 1;
+				}
 			} else {
 				$replace['#state#'] = ($this->getLastValue() !== null) ? $this->getLastValue() : '';
 				$replace['#valueName#'] = $this->getName();
