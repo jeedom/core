@@ -481,7 +481,7 @@ class jeedom {
 			log::clear('backup');
 			$cmd = dirname(__FILE__) . '/../../install/backup.php';
 			$cmd .= ' >> ' . log::getPathToLog('backup') . ' 2>&1 &';
-			system::php($cmd);
+			system::php($cmd, true);
 		} else {
 			require_once dirname(__FILE__) . '/../../install/backup.php';
 		}
@@ -514,7 +514,7 @@ class jeedom {
 			log::clear('restore');
 			$cmd = dirname(__FILE__) . '/../../install/restore.php "backup=' . $_backup . '"';
 			$cmd .= ' >> ' . log::getPathToLog('restore') . ' 2>&1 &';
-			system::php($cmd);
+			system::php($cmd, true);
 		} else {
 			global $BACKUP_FILE;
 			$BACKUP_FILE = $_backup;
