@@ -294,10 +294,10 @@ try {
 				$info_history[] = $value;
 				if (!$JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['timelineOnly']) {
 					if (($value !== null && $value > $return['maxValue']) || $return['maxValue'] == '') {
-						$return['maxValue'] = $value;
+						$return['maxValue'] = round($value, 1);
 					}
 					if (($value !== null && $value < $return['minValue']) || $return['minValue'] == '') {
-						$return['minValue'] = $value;
+						$return['minValue'] = round($value, 1);
 					}
 				}
 				$data[] = $info_history;
@@ -310,10 +310,10 @@ try {
 					$info_history[] = floatval($datetime) * 1000;
 					$info_history[] = ($value === null) ? null : floatval($value);
 					if ($value > $return['maxValue'] || $return['maxValue'] == '') {
-						$return['maxValue'] = $value;
+						$return['maxValue'] = round($value, 1);
 					}
 					if ($value < $return['minValue'] || $return['minValue'] == '') {
-						$return['minValue'] = $value;
+						$return['minValue'] = round($value, 1);
 					}
 					$data[] = $info_history;
 				}
