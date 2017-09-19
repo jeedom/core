@@ -28,9 +28,9 @@ function initHealth() {
          html += '</td>';
           html += '<td>';
          if(data[i].state){
-          html += '<td style="background-color:rgba(148, 202, 2, 0.3);color:rgba(255,255,255,0.85)">';
+          html += '<td style="background-color:#3ADF00">';
         }else{
-          html += '<td style="background-color:rgb(244,67,54);color:rgba(255,255,255,0.85)">';
+          html += '<td style="background-color:#FF0000">';
         }
         html += data[i].result;
          html += '<a>';

@@ -20,9 +20,9 @@ function initCron() {
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
       },
       success: function (data) {
-		 var html = '';
-        crons = data
-        for(var i in crons){
+       var html = '';
+       crons = data
+       for(var i in crons){
          html += '<tr>';
          html += '<td>';
          html += crons[i].class+'::'+crons[i].function;
