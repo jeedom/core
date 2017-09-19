@@ -239,7 +239,6 @@ jeedom.history.drawChart = function (_params) {
                 jeedom.history.chart[_params.el].nbTimeline++;
                 nbTimeline = jeedom.history.chart[_params.el].nbTimeline;
             }
-
             var series = {
                 type: 'flags',
                 name: (isset(_params.option.name)) ? _params.option.name + ' '+ data.result.unite : data.result.history_name+ ' '+ data.result.unite,
@@ -323,6 +322,10 @@ jeedom.history.drawChart = function (_params) {
                 }
             };
         }
+        if(isset(_params.option.graphZindex)){
+            series.zIndex = _params.option.graphZindex;
+        }
+
         if (!isset(jeedom.history.chart[_params.el]) || (isset(_params.newGraph) && _params.newGraph == true)) {
             jeedom.history.chart[_params.el] = {};
             jeedom.history.chart[_params.el].cmd = new Array();
