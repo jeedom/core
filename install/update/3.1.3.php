@@ -10,4 +10,11 @@ if (file_exists('/etc/cron.d/jeedom_watchdog')) {
 } else {
 	echo " NOK\n";
 }
+if (file_exists('/media/boot/multiboot/meson64_odroidc2.dtb.linux')) {
+	echo 'Remove deb-multimedia repository';
+	exec('sudo rm -rf /etc/apt/sources.list.d/deb-multimedia.list');
+	echo " OK\n";
+	echo 'Update APT sources\n';
+	exec('sudo apt-get update');
+}
 ?>
