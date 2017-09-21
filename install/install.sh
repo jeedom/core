@@ -155,6 +155,9 @@ step_7_jeedom_customization() {
 	sed -i 's/PrivateTmp=true/PrivateTmp=false/g' /etc/systemd/system/multi-user.target.wants/apache2.service > /dev/null 2>&1
 	sed -i 's/PrivateTmp=true/PrivateTmp=false/g' /lib/systemd/system/apache2.service > /dev/null 2>&1
 
+	mkdir /etc/systemd/system/apache2.service.d
+	echo -e "[Service]\nPrivateTmp=no" > /etc/systemd/system/apache2.service.d/privatetmp.conf
+
 	systemctl daemon-reload
 
 	for file in $(find / -iname php.ini -type f); do
