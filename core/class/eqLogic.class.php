@@ -476,7 +476,8 @@ class eqLogic {
 		if (!is_object($cmd)) {
 			return false;
 		}
-		if ($cmd->execCmd() != $cmd->formatValue($_value)) {
+		$oldValue = $cmd->execCmd();
+		if (($oldValue != $cmd->formatValue($_value)) || $oldValue == '') {
 			$cmd->event($_value, $_updateTime);
 			return true;
 		}
