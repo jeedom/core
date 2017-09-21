@@ -254,15 +254,6 @@ class jeedom {
 			$state = network::test('external');
 		}
 		$return[] = $cache_health;
-
-		$state = (count(ls('/tmp/', '*private*apache*')) == 0);
-		$return[] = array(
-			'name' => __('Private tmp', __FILE__),
-			'state' => $state,
-			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
-			'comment' => ($state) ? '' : 'https://github.com/jeedom/documentation/blob/master/howto/fr_FR/debian.trucs_et_astuces.asciidoc#private-tmp',
-		);
-
 		return $return;
 	}
 
