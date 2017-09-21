@@ -863,7 +863,7 @@ function sanitizeAccent($_message) {
 }
 
 function isConnect($_right = '') {
-	if (isset($GLOBALS['isConnect::' . $_right]) && $GLOBALS['isConnect::' . $_right]) {
+	if (isset($_SESSION['user']) && isset($GLOBALS['isConnect::' . $_right]) && $GLOBALS['isConnect::' . $_right]) {
 		return $GLOBALS['isConnect::' . $_right];
 	}
 	$GLOBALS['isConnect::' . $_right] = false;
