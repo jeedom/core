@@ -159,9 +159,9 @@ class plugin {
 			$rootPluginPath = dirname(__FILE__) . '/../../plugins';
 			foreach (ls($rootPluginPath, '*') as $dirPlugin) {
 				if (is_dir($rootPluginPath . '/' . $dirPlugin)) {
-					$pathInfoPlugin = $rootPluginPath . '/' . $dirPlugin . '/plugin_info/info.json';
+					$pathInfoPlugin = $rootPluginPath . '/' . $dirPlugin . 'plugin_info/info.json';
 					if (!file_exists($pathInfoPlugin)) {
-						$pathInfoPlugin = $rootPluginPath . '/' . $dirPlugin . '/plugin_info/info.xml';
+						continue;
 					}
 					if (file_exists($pathInfoPlugin)) {
 						try {
