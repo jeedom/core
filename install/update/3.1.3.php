@@ -17,4 +17,7 @@ if (file_exists('/media/boot/multiboot/meson64_odroidc2.dtb.linux')) {
 	echo 'Update APT sources\n';
 	exec('sudo apt-get update');
 }
+if (config::byKey('core::branch') == 'beta') {
+	config::save('core::branch', 'master', 'core');
+}
 ?>
