@@ -897,6 +897,7 @@ class scenarioExpression {
 	}
 
 	public static function setTags($_expression, &$_scenario = null, $_quote = false, $_nbCall = 0) {
+		$_quote = false;
 		if ($_nbCall > 10) {
 			return $_expression;
 		}
