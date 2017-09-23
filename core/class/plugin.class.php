@@ -163,14 +163,12 @@ class plugin {
 					if (!file_exists($pathInfoPlugin)) {
 						continue;
 					}
-					if (file_exists($pathInfoPlugin)) {
-						try {
-							$listPlugin[] = plugin::byId($pathInfoPlugin, $_translate);
-						} catch (Exception $e) {
-							log::add('plugin', 'error', $e->getMessage(), 'pluginNotFound::' . $pathInfoPlugin);
-						} catch (Error $e) {
-							log::add('plugin', 'error', $e->getMessage(), 'pluginNotFound::' . $pathInfoPlugin);
-						}
+					try {
+						$listPlugin[] = plugin::byId($pathInfoPlugin, $_translate);
+					} catch (Exception $e) {
+						log::add('plugin', 'error', $e->getMessage(), 'pluginNotFound::' . $pathInfoPlugin);
+					} catch (Error $e) {
+						log::add('plugin', 'error', $e->getMessage(), 'pluginNotFound::' . $pathInfoPlugin);
 					}
 				}
 			}
