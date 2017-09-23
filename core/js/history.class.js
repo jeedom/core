@@ -111,12 +111,6 @@ jeedom.history.drawChart = function (_params) {
                 jeedom.history.chart[_params.el].cmd[_params.cmd_id] = null;
             }
             _params.option.graphColor = (isset(jeedom.history.chart[_params.el])) ? init(_params.option.graphColor, Highcharts.getOptions().colors[init(jeedom.history.chart[_params.el].color, 0)]) : init(_params.option.graphColor, Highcharts.getOptions().colors[0]);
-            if (init(_params.option.graphStep) == '') {
-                _params.option.graphStep = false;
-            }
-            if (init(_params.option.graphType) == '') {
-                _params.option.graphType = 'line';
-            }
             _params.option.graphStep = (_params.option.graphStep == "1") ? true : false;
             if(isset(data.result.cmd)){
                 if (init(_params.option.graphStep) == '') {
