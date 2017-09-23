@@ -476,6 +476,7 @@ class cmd {
 				$cmd_value = '"' . trim($cmd_value, '"') . '"';
 			}
 			if (!$json) {
+				$replace['"#' . $cmd_id . '#"'] = $cmd_value;
 				$replace['#' . $cmd_id . '#'] = $cmd_value;
 				$replace['#collectDate' . $cmd_id . '#'] = $collectDate;
 				$replace['#valueDate' . $cmd_id . '#'] = $valueDate;
