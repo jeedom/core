@@ -129,8 +129,8 @@ foreach (cmd::allHistoryCmd() as $cmd) {
 				<a class="btn btn-sm btn-default bt_timelineZoom" data-zoom="all">{{Tous}}</a>
 			</div>
 			<a class="btn btn-sm btn-success pull-right" id="bt_refreshTimeline"><i class="fa fa-refresh"></i> {{Rafraîchir}}</a>
-			<a class="btn btn-sm btn-default pull-right" id="bt_configureTimelineCommand"><i class="fa fa-cogs"></i> {{Configuration des commandes}}</a>
-			<a class="btn btn-sm btn-default pull-right" id="bt_configureTimelineScenario"><i class="fa fa-cogs"></i> {{Configuration des scénarios}}</a>
+			<a class="btn btn-sm btn-default pull-right" id="bt_configureTimelineCommand"><i class="fa fa-cogs"></i> {{Commandes}}</a>
+			<a class="btn btn-sm btn-default pull-right" id="bt_configureTimelineScenario"><i class="fa fa-cogs"></i> {{Scénarios}}</a>
 			<select class="form-control pull-right" id="sel_pluginsTimeline" style="width: 140px;">
 				<option value="all">{{Tous (Plugins)}}</option>
 				<?php
