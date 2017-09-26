@@ -495,9 +495,11 @@ foreach ($eqLogic->getCmd(null, null, true) as $cmd) {
 	}
 	$table[$line][$column][] = $cmd;
 }
-for ($i = 1; $i <= $eqLogic->getDisplay('layout::dashboard::table::nbLine', 1); $i++) {
+$displayLine = $eqLogic->getDisplay('layout::dashboard::table::nbLine', 1);														
+for ($i = 1; $i <= $displayLine; $i++) {
 	echo '<tr>';
-	for ($j = 1; $j <= $eqLogic->getDisplay('layout::dashboard::table::nbColumn', 1); $j++) {
+	$displayColumn = $eqLogic->getDisplay('layout::dashboard::table::nbColumn', 1)
+	for ($j = 1; $j <= $displayColumn; $j++) {
 		echo '<td data-line="' . $i . '" data-column="' . $j . '">';
 		$string_cmd = '<center class="cmdLayoutContainer" style="min-height:30px;">';
 		if (isset($table[$i][$j]) && count($table[$i][$j]) > 0) {
