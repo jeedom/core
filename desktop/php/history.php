@@ -120,8 +120,6 @@ foreach (cmd::allHistoryCmd() as $cmd) {
 		</div>
 		<div role="tabpanel" class="tab-pane" id="timelinetab">
 			<br/>
-			<div class="row form-group">
-			<div class="col-sm-12">
 			<div class="btn-group" role="group" aria-label="...">
 				<a class="btn btn-sm btn-default bt_timelineZoom" data-zoom="h">H</a>
 				<a class="btn btn-sm btn-default bt_timelineZoom" data-zoom="d">J</a>
@@ -162,11 +160,7 @@ foreach (object::all() as $object) {
 				<option value="cmd">{{Commandes}}</option>
 				<option value="scenario">{{Scénarios}}</option>
 			</select>
-			</div>
-			</div>
-			<div class="row">
 			<div id="div_visualization"></div>
-			</div>
 
 		</div>
 	</div>
