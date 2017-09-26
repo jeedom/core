@@ -419,12 +419,14 @@ if ($eqLogic->getDisplay('parameters') != '') {
 												</div>
 												</div>
 												<legend><i class="fa fa-clock-o"></i> {{Alertes Communications}}</legend>
+												<div class="row">
 												<div class="form-group">
 													<label class="col-xs-2 eqLogicAttr label label-danger" style="font-size : 1.8em">{{Danger}}</label>
 													<div class="col-xs-2">
 														<input class="eqLogicAttr form-control" data-l1key="timeout"/>
 													</input>{{(en minute)}}
 												</div>
+											</div>
 											</div>
 										</div>
 										<div role="tabpanel" class="tab-pane" id="eqLogic_comment">
