@@ -15,7 +15,7 @@ if (is_array($interactListGroup)) {
 
 <div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;background-color:#f6f6f6;" class="div_smallSideBar" id="bt_displayInteractList"><i class="fa fa-arrow-circle-o-right" style="color : #b6b6b6;"></i></div>
 <div class="row row-overflow">
-  <div class="col-lg-2 col-md-3 col-sm-4" id="div_listInteract" style="z-index:999">
+  <div class="col-xs-2" id="div_listInteract" style="z-index:999">
     <div class="bs-sidebar nav nav-list bs-sidenav" >
       <a id="bt_addInteract" class="btn btn-default" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-plus-circle"></i> {{Ajouter interaction}}</a>
       <div class="row">
@@ -63,7 +63,7 @@ foreach ($interactListGroup as $group) {
      </div>
    </div>
 </div>
-<div id="interactThumbnailDisplay" class="col-lg-10 col-md-9 col-sm-8" style="border-left: solid 1px #EEE; padding-left: 25px;">
+<div id="interactThumbnailDisplay" class="col-xs-10" style="border-left: solid 1px #EEE; padding-left: 25px;">
  <div class="interactListContainer">
    <legend><i class="fa fa-cog"></i>  {{Gestion}}</legend>
    <div class="cursor" id="bt_addInteract2" style="background-color : #ffffff; height : 120px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 140px;margin-left : 10px;" >
@@ -146,7 +146,7 @@ if (count($totalInteract) == 0) {
 ?>
 </div>
 
-<div class="interact col-lg-10 col-md-9 col-sm-8" style="display: none;" id="div_conf">
+<div class="interact col-xs-10" style="display: none;" id="div_conf">
   <a class="btn btn-default pull-right" id="bt_duplicate"><i class="fa fa-files-o"></i> {{Dupliquer}}</a>
   <a class="btn btn-danger pull-right" id="bt_removeInteract"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
   <a class="btn btn-success pull-right" id="bt_saveInteract"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>

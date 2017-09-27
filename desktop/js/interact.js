@@ -24,14 +24,14 @@
 
  if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1) && !jQuery.support.touch){
   $('#div_listInteract').hide();
-  $('#interactThumbnailDisplay').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
-  $('#div_conf').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
+  $('#interactThumbnailDisplay').removeClass('col-xs-10').addClass('col-xs-12');
+  $('#div_conf').removeClass('col-xs-10').addClass('col-xs-12');
 
   $('#bt_displayInteractList').on('mouseenter',function(){
    var timer = setTimeout(function(){
     $('#bt_displayInteractList').find('i').hide();
-    $('#interactThumbnailDisplay').addClass('col-lg-10 col-md-10 col-sm-9').removeClass('col-lg-12');
-    $('#div_conf').addClass('col-lg-10 col-md-10 col-sm-9').removeClass('col-lg-12');
+    $('#interactThumbnailDisplay').addClass('col-xs-10').removeClass('col-xs-12');
+    $('#div_conf').addClass('col-xs-10').removeClass('col-xs-12');
     $('#div_listInteract').show();
     $('.interactListContainer').packery();
   }, 100);
@@ -44,8 +44,8 @@
   var timer = setTimeout(function(){
    $('#div_listInteract').hide();
    $('#bt_displayInteractList').find('i').show();
-   $('#interactThumbnailDisplay').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
-   $('#div_conf').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
+   $('#interactThumbnailDisplay').removeClass('col-xs-10').addClass('col-xs-12');
+   $('#div_conf').removeClass('col-xs-10').addClass('col-xs-12');
    $('.interactListContainer').packery();
  }, 300);
   $(this).data('timerMouseleave', timer);

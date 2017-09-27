@@ -975,7 +975,7 @@ class scenarioExpression {
 			}
 		}
 		$return = cmd::cmdToValue(str_replace(array_keys($replace1), array_values($replace1), str_replace(array_keys($replace2), array_values($replace2), $_expression)), $_quote);
-		preg_match_all("/#([a-zA-Z0-9]*)#/", $return, $matches);
+		preg_match_all("/#([a-zA-Z]*)#/", $return, $matches);
 		$matches = array_unique($matches[0]);
 		if (count($matches) > 0) {
 			foreach ($matches as $tag) {
