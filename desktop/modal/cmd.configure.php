@@ -4,7 +4,7 @@ if (!isConnect('admin')) {
 }
 $cmd = cmd::byId(init('cmd_id'));
 if (!is_object($cmd)) {
-	throw new Exception('Commande non trouvé : ' . init('cmd_id'));
+	throw new Exception('Commande non trouvée : ' . init('cmd_id'));
 }
 $cmdInfo = jeedom::toHumanReadable(utils::o2a($cmd));
 foreach (array('dashboard', 'mobile', 'dview', 'mview', 'dplan') as $value) {
@@ -472,7 +472,7 @@ foreach ($groups as $group) {
   <fieldset>
     <legend><i class="fa fa-thermometer-three-quarters"></i> {{Gestion des valeurs}}</legend>
     <div class="form-group">
-      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Valeurs interdites (séparé par ";")}}</label>
+      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Valeurs interdites (séparées par ";")}}</label>
       <div class="col-xs-3">
         <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="denyValues" />
       </div>
@@ -1167,7 +1167,7 @@ if ($cmd->getDisplay('parameters') != '') {
     div += '<div class="form-group ">';
     div += '<div class="col-sm-1">';
     div += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour desactiver l\'action}}" />';
-    div += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" title="{{Cocher pour que la commande s\'éxecute en parrallele des autres actions}}" />';
+    div += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" title="{{Cocher pour que la commande s\'exécute en parallèle des autres actions}}" />';
     div += '</div>';
     div += '<div class="col-sm-4">';
     div += '<div class="input-group">';
