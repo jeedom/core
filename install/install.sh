@@ -151,7 +151,8 @@ step_7_jeedom_customization() {
 	rm /etc/apache2/conf-enabled/other-vhosts-access-log.conf > /dev/null 2>&1
 
 	mkdir /etc/systemd/system/apache2.service.d
-	echo -e "[Service]\nPrivateTmp=no" > /etc/systemd/system/apache2.service.d/privatetmp.conf
+	echo "[Service]" > /etc/systemd/system/apache2.service.d/privatetmp.conf
+	echo "PrivateTmp=no" >> /etc/systemd/system/apache2.service.d/privatetmp.conf
 
 	systemctl daemon-reload
 
