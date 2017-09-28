@@ -616,6 +616,9 @@ class cmd {
 		$return['type'] = $_event['type'];
 		$return['group'] = $_event['subtype'];
 		$cmd = cmd::byId($_event['id']);
+		if (!is_object($cmd)) {
+			return null;
+		}
 		$eqLogic = $cmd->getEqLogic();
 		$object = $eqLogic->getObject();
 		$return['object'] = is_object($object) ? $object->getId() : 'aucun';

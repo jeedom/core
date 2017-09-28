@@ -656,6 +656,9 @@ class scenario {
 		$return['group'] = 'scenario';
 		$return['type'] = $_event['type'];
 		$scenario = scenario::byId($_event['id']);
+		if (!is_object($scenario)) {
+			return null;
+		}
 		$object = $scenario->getObject();
 		$return['object'] = is_object($object) ? $object->getId() : 'aucun';
 		$return['html'] = '<div class="scenario" data-id="' . $_event['id'] . '">'

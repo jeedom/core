@@ -249,13 +249,17 @@ try {
 		$return = array();
 		$events = jeedom::getTimelineEvent();
 		foreach ($events as $event) {
+			$info = null;
 			switch ($event['type']) {
 				case 'cmd':
-					$return[] = cmd::timelineDisplay($event);
+					$info = cmd::timelineDisplay($event);
 					break;
 				case 'scenario':
-					$return[] = scenario::timelineDisplay($event);
+					$info = scenario::timelineDisplay($event);
 					break;
+			}
+			if ($info != null) {
+				$return[] = $info;
 			}
 		}
 		ajax::success($return);
