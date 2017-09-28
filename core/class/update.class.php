@@ -478,7 +478,7 @@ class update {
 			return;
 		}
 		if ($this->getType() == 'core') {
-			if (config::byKey('update::allowCore', 'core', 1) != 0) {
+			if (config::byKey('update::allowCore', 'core', 1) != 1) {
 				return;
 			}
 			if (config::byKey('core::repo::provider') == 'default') {
