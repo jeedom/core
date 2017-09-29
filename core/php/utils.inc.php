@@ -1096,23 +1096,3 @@ function strContain($_string, $_words) {
 	}
 	return false;
 }
-
-function sanitize_output($_string) {
-	$_string = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $_string);
-	$_string = str_replace(array("\r", "\t", '    ', '    '), '', $_string);
-	$_string = str_replace(array(";\n", ";\r\n"), ';', $_string);
-	$_string = str_replace(array(">\n", ">\r\n", " >"), '>', $_string);
-	$_string = str_replace(array("\n<"), '<', $_string);
-	$_string = str_replace(array('{ ', "{\n"), '{', $_string);
-	$_string = str_replace(array(' }'), '}', $_string);
-	$_string = str_replace(array('; '), ';', $_string);
-	$_string = str_replace(array(' )', ') '), ')', $_string);
-	$_string = str_replace(array('( ', ' ('), '(', $_string);
-	$_string = str_replace(array(': ', ' :'), ':', $_string);
-	$_string = str_replace(array('== ', ' =='), '==', $_string);
-	$_string = str_replace(array('!= ', ' !='), '!=', $_string);
-	$_string = str_replace(array('&& ', ' &&'), '&&', $_string);
-	$_string = str_replace(array('|| ', ' ||'), '||', $_string);
-	$_string = str_replace(array(', ', ' ,'), ',', $_string);
-	return $_string;
-}
