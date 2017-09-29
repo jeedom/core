@@ -35,7 +35,7 @@ echo '<a>Aucun - ' . count($scenarios[-1]) . ' scénario(s)</a>';
 	echo '<ul>';
 	foreach ($scenarios[-1] as $scenario) {
 		echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
-		echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-scenario_id="' . $scenario->getId() . '" title="{{Scénario ID :}} ' . $scenario->getId() . ' ' . str_replace('"', '\"', $scenario->getDescription()) . '">' . $scenario->getHumanName(false, true) . '</a>';
+		echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-scenario_id="' . $scenario->getId() . '">' . $scenario->getHumanName(false, true) . '</a>';
 		echo '</li>';
 	}
 	?>
@@ -49,7 +49,7 @@ foreach ($scenarioListGroup as $group) {
 		echo '<ul>';
 		foreach ($scenarios[$group['group']] as $scenario) {
 			echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
-			echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-scenario_id="' . $scenario->getId() . '" title="{{Scénario ID :}} ' . $scenario->getId() . ' ' . str_replace('"', '\"', $scenario->getDescription()) . '">' . $scenario->getHumanName(false, true) . '</a>';
+			echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-scenario_id="' . $scenario->getId() . '">' . $scenario->getHumanName(false, true) . '</a>';
 			echo '</li>';
 		}
 		echo '</ul>';
@@ -123,7 +123,7 @@ if (count($totalScenario) == 0) {
 		echo '<div class="scenarioListContainer">';
 		foreach ($scenarios[-1] as $scenario) {
 			$opacity = ($scenario->getIsActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-			echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" title="' . str_replace('"', '\"', $scenario->getDescription()) . '" style="text-align: center; background-color : #ffffff; min-height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
+			echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="text-align: center; background-color : #ffffff; min-height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
 			echo '<img src="core/img/scenario.png" height="90" width="85" />';
 			echo "<br>";
 			echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $scenario->getHumanName(true, true, true, true) . '</span>';
@@ -150,7 +150,7 @@ if (count($totalScenario) == 0) {
 		echo '<div class="scenarioListContainer">';
 		foreach ($scenarios[$group['group']] as $scenario) {
 			$opacity = ($scenario->getIsActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-			echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" title="' . str_replace('"', '\"', $scenario->getDescription()) . '" style="text-align: center; background-color : #ffffff; min-height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
+			echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="text-align: center; background-color : #ffffff; min-height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
 			echo '<img src="core/img/scenario.png" height="90" width="85" />';
 			echo "<br>";
 			echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $scenario->getHumanName(true, true, true, true) . '</span>';
