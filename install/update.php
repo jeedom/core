@@ -41,13 +41,13 @@ $backup_ok = false;
 $update_begin = false;
 try {
 	require_once dirname(__FILE__) . '/../core/php/core.inc.php';
-	if (count(system::ps('install/install.php', 'sudo')) > 1) {
-		echo "Une mise a jour/installation est deja en cours. Vous devez attendre qu'elle soit finie avant d'en relancer une\n";
-		print_r(system::ps('install/install.php', 'sudo'));
+	if (count(system::ps('install/update.php', 'sudo')) > 1) {
+		echo "Une mise a jour est deja en cours. Vous devez attendre qu'elle soit finie avant d'en relancer une\n";
+		print_r(system::ps('install/update.php', 'sudo'));
 		echo "[END UPDATE]\n";
 		die();
 	}
-	echo "****Install/update jeedom from " . jeedom::version() . " (" . date('Y-m-d H:i:s') . ")****\n";
+	echo "****Update jeedom from " . jeedom::version() . " (" . date('Y-m-d H:i:s') . ")****\n";
 	echo "Parameters : " . print_r($_GET, true);
 
 	/*         * ************************MISE A JOUR********************************** */
@@ -359,7 +359,7 @@ try {
 		}
 		jeedom::start();
 	}
-	echo 'Error during install : ' . $e->getMessage();
+	echo 'Error during update : ' . $e->getMessage();
 	echo 'Details : ' . print_r($e->getTrace(), true);
 	echo "[END UPDATE ERROR]\n";
 	throw $e;
@@ -383,7 +383,7 @@ try {
 } catch (Exception $e) {
 
 }
-echo "Install/update duration : " . (strtotime('now') - $starttime) . "s\n";
+echo "Update duration : " . (strtotime('now') - $starttime) . "s\n";
 echo "[END UPDATE SUCCESS]\n";
 
 function incrementVersion($_version) {
