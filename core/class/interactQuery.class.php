@@ -128,6 +128,11 @@ class interactQuery {
 			$input = interactDef::sanitizeQuery($query->getQuery());
 			$tags = interactDef::getTagFromQuery($query->getQuery(), $_query);
 			if (count($tags) > 0) {
+				foreach ($tags as $value) {
+					if ($value == "") {
+						continue (2);
+					}
+				}
 				$input = str_replace(array_keys($tags), $tags, $input);
 			}
 			$lev = levenshtein($input, $_query);
