@@ -21,7 +21,7 @@
 
 
  jeedom.update.doAll = function (_params) {
-    var paramsRequired = ['level', 'mode'];
+    var paramsRequired = [];
     var paramsSpecifics = {};
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired);

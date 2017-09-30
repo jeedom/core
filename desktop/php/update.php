@@ -65,7 +65,7 @@ if (!isConnect('admin')) {
          <div class="form-group">
             <label class="col-xs-6 control-label">{{Sauvegarder avant}}</label>
             <div class="col-xs-4">
-                <input type="checkbox" class="updateOption" data-l1key="backup::defore" checked />
+                <input type="checkbox" class="updateOption" data-l1key="backup::before" checked />
             </div>
         </div>
         <div class="form-group">
@@ -78,6 +78,12 @@ if (!isConnect('admin')) {
             <label class="col-xs-6 control-label">{{Mettre à jour les plugins}}</label>
             <div class="col-xs-4">
                 <input type="checkbox" class="updateOption" data-l1key="plugins" checked />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-6 control-label">{{Mettre à jour le core}}</label>
+            <div class="col-xs-4">
+                <input type="checkbox" class="updateOption" data-l1key="core" checked />
             </div>
         </div>
         <div class="form-group">

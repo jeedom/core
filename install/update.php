@@ -40,11 +40,12 @@ require_once dirname(__FILE__) . '/../core/php/core.inc.php';
 /*********************Step management*********************************/
 if (!isset($_GET['step'])) {
 	$default = array(
-		'backup::defore' => 1,
+		'backup::before' => 1,
 		'backup::cloudSend' => 0,
 		'plugins' => 1,
 		'force' => 0,
 		'version' => config::byKey('version'),
+		'core' => 1,
 	);
 	$_GET = array_merge($default, $_GET);
 	$params = '';
@@ -60,24 +61,41 @@ if (!isset($_GET['step'])) {
 	echo "Parameters : " . print_r($_GET, true) . "\n";
 
 	$rc = 0;
-	if ($_GET['backup::defore'] == 1) {
+	if (init('backup::before', 1) == 1) {
 		echo "Launch step 10 : backup\n";
 		$output = array();
 		exec('php ' . dirname(__FILE__) . '/update.php step=10 ' . $params, $output, $rc);
 		testRc($rc, $output, 10);
 	}
-	echo "Launch step 20 : download jeedom zip and update updater\n";
+
+	if (init('core', 1) == 1) {
+		echo "Launch step 20 : download jeedom zip and update updater\n";
+		$output = array();
+		exec('php ' . dirname(__FILE__) . '/update.php step=20 ' . $params, $output, $rc);
+		testRc($rc, $output, 20);
+
+		echo "Launch step 30 : update jeedom file and database\n";
+		$output = array();
+		exec('php ' . dirname(__FILE__) . '/update.php step=30 ' . $params, $output, $rc);
+		testRc($rc, $output, 30);
+
+		echo "Launch step 40 : update jeedom\n";
+		$output = array();
+		exec('php ' . dirname(__FILE__) . '/update.php step=40 ' . $params, $output, $rc);
+		testRc($rc, $output, 40);
+	}
+
+	if (init('plugin', 1) == 1) {
+		echo "Launch step 50 : update plugins\n";
+		$output = array();
+		exec('php ' . dirname(__FILE__) . '/update.php step=50 ' . $params, $output, $rc);
+		testRc($rc, $output, 50);
+	}
+
+	echo "Launch step 50 : check updates\n";
 	$output = array();
-	exec('php ' . dirname(__FILE__) . '/update.php step=20 ' . $params, $output, $rc);
-	testRc($rc, $output, 20);
-	echo "Launch step 30 : update jeedom file and database\n";
-	$output = array();
-	exec('php ' . dirname(__FILE__) . '/update.php step=30 ' . $params, $output, $rc);
-	testRc($rc, $output, 30);
-	echo "Launch step 40 : update jeedom\n";
-	$output = array();
-	exec('php ' . dirname(__FILE__) . '/update.php step=40 ' . $params, $output, $rc);
-	testRc($rc, $output, 40);
+	exec('php ' . dirname(__FILE__) . '/update.php step=60 ' . $params, $output, $rc);
+	testRc($rc, $output, 60);
 } else {
 	testUpdateInProgress();
 	$function = 'step' . $_GET['step'];
@@ -266,22 +284,27 @@ function step40() {
 
 	echo "***************Jeedom is up to date in " . jeedom::version() . "***************\n";
 
-	if (init('plugin', 1) == 1) {
-		echo "***************Update plugins***************\n";
-		update::updateAll();
-		echo "***************Update plugin successfully***************\n";
+	try {
+		jeedom::start();
+	} catch (Exception $ex) {
+		echo "***ERREUR*** " . $ex->getMessage() . "\n";
 	}
+}
 
+//Step 50 update plugins
+function step50() {
+	echo "***************Update plugins***************\n";
+	update::updateAll();
+	echo "***************Update plugin successfully***************\n";
+}
+
+//Step 50 check update
+function step60() {
 	try {
 		message::removeAll('update', 'newUpdate');
 		echo "Check update\n";
 		update::checkAllUpdate();
 		echo "OK\n";
-	} catch (Exception $ex) {
-		echo "***ERREUR*** " . $ex->getMessage() . "\n";
-	}
-	try {
-		jeedom::start();
 	} catch (Exception $ex) {
 		echo "***ERREUR*** " . $ex->getMessage() . "\n";
 	}
