@@ -1286,12 +1286,6 @@ foreach ($repos as $key => $value) {
 										</div>
 									</div>
 									<div class="form-group expertModeVisible">
-										<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Faire une sauvegarde avant la mise à jour}}</label>
-										<div class="col-sm-1">
-											<input type="checkbox" class="configKey" data-l1key="update::backupBefore"/>
-										</div>
-									</div>
-									<div class="form-group expertModeVisible">
 										<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Vérifier automatiquement si il y a des mises à jour}}</label>
 										<div class="col-sm-1">
 											<input type="checkbox" class="configKey" data-l1key="update::autocheck"/>
