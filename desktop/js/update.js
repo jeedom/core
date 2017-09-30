@@ -223,13 +223,6 @@ function addUpdate(_update) {
 }else if (_update.type != 'core') {
     tr += '<a class="btn btn-info btn-xs update" style="margin-bottom : 5px;" title="{{Re-installer}}"><i class="fa fa-refresh"></i> {{Reinstaller}}</a> ';
 }
-if (_update.type != 'core') {
-    if (isset(_update.plugin) && isset(_update.plugin.changelog) && _update.plugin.changelog != '') {
-        tr += '<a class="btn btn-default btn-xs cursor" target="_blank" href="'+_update.plugin.changelog+'" style="margin-bottom : 5px;"><i class="fa fa-book"></i> {{Changelog}}</a>';
-    }
-}else{
- tr += '<a class="btn btn-default btn-xs" href="https://github.com/jeedom/core/blob/stable/doc/fr_FR/changelog.asciidoc" target="_blank" style="margin-bottom : 5px;"><i class="fa fa-book"></i> {{Changelog}}</a>'; 
-}
 tr += '<a class="btn btn-info btn-xs pull-right checkUpdate expertModeVisible" style="margin-bottom : 5px;" ><i class="fa fa-check"></i> {{Vérifier}}</a>';
 if (_update.type != 'core') {
     tr += '<a class="btn btn-danger btn-xs pull-right remove expertModeVisible" style="margin-bottom : 5px;" ><i class="fa fa-trash-o"></i> {{Supprimer}}</a>';  
