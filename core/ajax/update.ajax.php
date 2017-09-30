@@ -108,7 +108,7 @@ try {
 	}
 
 	if (init('action') == 'updateAll') {
-		update::makeUpdateLevel(init('mode'), init('level'), init('version', ''), init('onlyThisVersion', ''));
+		jeedom::update(json_decode(init('options', '{}'), true));
 		ajax::success();
 	}
 
