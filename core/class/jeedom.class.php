@@ -520,7 +520,7 @@ class jeedom {
 		$params = '';
 		if (count($_options) > 0) {
 			foreach ($_options as $key => $value) {
-				$params .= '"' . $key . '"="' . $value . '"';
+				$params .= '"' . $key . '"="' . $value . '" ';
 			}
 		}
 		$cmd = dirname(__FILE__) . '/../../install/update.php ' . $params;
