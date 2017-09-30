@@ -34,7 +34,7 @@
     paramsAJAX.url = 'core/ajax/update.ajax.php';
     paramsAJAX.data = {
         action: 'updateAll',
-        options: _params.options || '',
+        options: json_encode(_params.options) || '',
     };
     $.ajax(paramsAJAX);
 }
