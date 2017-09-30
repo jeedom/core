@@ -69,12 +69,6 @@ if (!isConnect('admin')) {
             </div>
         </div>
         <div class="form-group">
-            <label class="col-xs-6 control-label">{{Si sauvegarde envoyer dans le cloud}}</label>
-            <div class="col-xs-4">
-                <input type="checkbox" class="updateOption" data-l1key="backup::cloudSend" />
-            </div>
-        </div>
-        <div class="form-group">
             <label class="col-xs-6 control-label">{{Mettre à jour les plugins}}</label>
             <div class="col-xs-4">
                 <input type="checkbox" class="updateOption" data-l1key="plugins" checked />

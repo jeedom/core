@@ -34,7 +34,8 @@ try {
 				try {
 					$plugin = plugin::byId($update->getLogicalId());
 					if (is_object($plugin)) {
-						$infos['plugin'] = utils::o2a($plugin);
+						$infos['plugin'] = array();
+						$infos['plugin']['changelog'] = $plugin->getChangelog();
 					}
 				} catch (Exception $e) {
 

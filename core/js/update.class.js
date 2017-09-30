@@ -34,10 +34,7 @@
     paramsAJAX.url = 'core/ajax/update.ajax.php';
     paramsAJAX.data = {
         action: 'updateAll',
-        level: _params.level,
-        mode: _params.mode,
-        version: _params.version || '',
-        onlyThisVersion: _params.onlyThisVersion || '',
+        options: _params.options || '',
     };
     $.ajax(paramsAJAX);
 }

@@ -38,6 +38,7 @@
 
 
  $('#bt_doUpdate').on('click', function () {
+    $("#md_specifyUpdate").dialog('close');
     var options = $('#md_specifyUpdate').getValues('.updateOption')[0];
     $.hideAlert();
     jeedom.update.doAll({
@@ -227,7 +228,7 @@ if (_update.type != 'core') {
         tr += '<a class="btn btn-default btn-xs cursor" target="_blank" href="'+_update.plugin.changelog+'" style="margin-bottom : 5px;"><i class="fa fa-book"></i> {{Changelog}}</a>';
     }
 }else{
-   tr += '<a class="btn btn-default btn-xs" href="https://github.com/jeedom/core/blob/stable/doc/fr_FR/changelog.asciidoc" target="_blank" style="margin-bottom : 5px;"><i class="fa fa-book"></i> {{Changelog}}</a>'; 
+ tr += '<a class="btn btn-default btn-xs" href="https://github.com/jeedom/core/blob/stable/doc/fr_FR/changelog.asciidoc" target="_blank" style="margin-bottom : 5px;"><i class="fa fa-book"></i> {{Changelog}}</a>'; 
 }
 tr += '<a class="btn btn-info btn-xs pull-right checkUpdate expertModeVisible" style="margin-bottom : 5px;" ><i class="fa fa-check"></i> {{Vérifier}}</a>';
 if (_update.type != 'core') {
@@ -252,8 +253,8 @@ $('#bt_saveUpdate').on('click',function(){
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {
-           $('#div_alert').showAlert({message: '{{Sauvegarde effectuée}}', level: 'success'});
-           printUpdate();
-       }
-   });
+         $('#div_alert').showAlert({message: '{{Sauvegarde effectuée}}', level: 'success'});
+         printUpdate();
+     }
+ });
 });
