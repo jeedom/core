@@ -1281,7 +1281,6 @@ foreach ($repos as $key => $value) {
 											<select class="configKey form-control" data-l1key="core::branch">
 												<option value="master">{{Beta (Plus d'accès au support)}}</option>
 												<option value="stable">{{Stable}}</option>
-												<option value="pro">{{Pro}}</option>
 											</select>
 										</div>
 									</div>
