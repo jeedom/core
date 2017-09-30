@@ -112,10 +112,6 @@ class update {
 		return $return;
 	}
 
-	public static function makeUpdateLevel($_mode = '', $_level = 1, $_version = '', $_onlyThisVersion = '') {
-		jeedom::update($_mode, $_level, $_version, $_onlyThisVersion);
-	}
-
 	public static function updateAll($_filter = '') {
 		if ($_filter == 'core') {
 			foreach (self::byType($_filter) as $update) {
@@ -478,7 +474,7 @@ class update {
 			return;
 		}
 		if ($this->getType() == 'core') {
-			if (config::byKey('update::allowCore', 'core', 1) != 0) {
+			if (config::byKey('update::allowCore', 'core', 1) != 1) {
 				return;
 			}
 			if (config::byKey('core::repo::provider') == 'default') {

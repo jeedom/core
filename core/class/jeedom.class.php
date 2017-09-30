@@ -515,9 +515,15 @@ class jeedom {
 
 	/****************************UPDATE*****************************************************************/
 
-	public static function update($_mode = '', $_level = -1, $_version = '', $__onlyThisVersion = '') {
+	public static function update($_options = array()) {
 		log::clear('update');
-		$cmd = dirname(__FILE__) . '/../../install/install.php "mode=' . $_mode . '" "level=' . $_level . '" "version=' . $_version . '" "onlyThisVersion=' . $__onlyThisVersion . '"';
+		$params = '';
+		if (count($_options) > 0) {
+			foreach ($_options as $key => $value) {
+				$params .= '"' . $key . '"="' . $value . '" ';
+			}
+		}
+		$cmd = dirname(__FILE__) . '/../../install/update.php ' . $params;
 		$cmd .= ' >> ' . log::getPathToLog('update') . ' 2>&1 &';
 		system::php($cmd);
 	}

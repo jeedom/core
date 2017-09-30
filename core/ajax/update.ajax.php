@@ -30,16 +30,6 @@ try {
 		$return = array();
 		foreach (update::all(init('filter')) as $update) {
 			$infos = utils::o2a($update);
-			if ($update->getType() == 'plugin') {
-				try {
-					$plugin = plugin::byId($update->getLogicalId());
-					if (is_object($plugin)) {
-						$infos['plugin'] = utils::o2a($plugin);
-					}
-				} catch (Exception $e) {
-
-				}
-			}
 			$return[] = $infos;
 		}
 		ajax::success($return);
@@ -108,7 +98,7 @@ try {
 	}
 
 	if (init('action') == 'updateAll') {
-		update::makeUpdateLevel(init('mode'), init('level'), init('version', ''), init('onlyThisVersion', ''));
+		jeedom::update(json_decode(init('options', '{}'), true));
 		ajax::success();
 	}
 

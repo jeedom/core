@@ -21,7 +21,7 @@
 
 
  jeedom.update.doAll = function (_params) {
-    var paramsRequired = ['level', 'mode'];
+    var paramsRequired = [];
     var paramsSpecifics = {};
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
@@ -34,10 +34,7 @@
     paramsAJAX.url = 'core/ajax/update.ajax.php';
     paramsAJAX.data = {
         action: 'updateAll',
-        level: _params.level,
-        mode: _params.mode,
-        version: _params.version || '',
-        onlyThisVersion: _params.onlyThisVersion || '',
+        options: json_encode(_params.options) || '',
     };
     $.ajax(paramsAJAX);
 }
