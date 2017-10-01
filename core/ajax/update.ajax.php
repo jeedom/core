@@ -26,6 +26,10 @@ try {
 
 	ajax::init();
 
+	if (init('action') == 'nbUpdate') {
+		ajax::success(update::nbNeedUpdate());
+	}
+
 	if (init('action') == 'all') {
 		$return = array();
 		foreach (update::all(init('filter')) as $update) {

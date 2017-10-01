@@ -479,6 +479,23 @@ function refreshMessageNumber() {
     });
 }
 
+function refreshUpdateNumber() {
+    jeedom.update.number({
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success : function (_number) {
+            UPDATE_NUMBER = _number;
+            if (_number == 0 || _number == '0') {
+                $('#span_nbUpdate').hide();
+            } else {
+                $('#span_nbUpdate span').html(_number);
+                $('#span_nbUpdate').show();
+            }
+        }
+    });
+}
+
 function notify(_title, _text, _class_name) {
     if (_title == '' && _text == '') {
         return true;
