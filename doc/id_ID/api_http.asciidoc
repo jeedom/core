@@ -16,7 +16,7 @@ Pour toute cette documentation, \#API_KEY# correspond à votre clé API, propre 
 
 Voici l'URL = http://\#IP_JEEDOM#/core/api/jeeApi.php?apikey=\#APIKEY#&type=scenario&id=\#ID#&action=\#ACTION#
 
-* *id* :  correspond à l’id de votre scénario. L'ID se trouve sur la page des scénarios...(Ne pas oublier d'activer le mode Expert)
+* *id* :  correspond à l’id de votre scénario. L'ID se trouve sur la page des scénarios...
 * *action* :  correspond à l'action que vous voulez appliquer au scénario. Les commandes disponibles sont : "start" pour démarrer un scénario ,"stop" pour arrêter un scénario ,"désactiver" pour désactiver un scénario ,"activer" pour activer un scénario
 * *tags* [optionnel] : si l'action est start, vous pouvez passer des tags au scénario (voir doc scénario) sous la forme tags=toto%3D1%20tata%3D2 (a noter que %20 est pour un espace et %3D pour =)
 
