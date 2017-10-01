@@ -106,7 +106,7 @@ foreach ($udpates as $value) {
    </div>
 </fieldset>
 </form>
-<a class="btn btn-success" style="color:white;" id="bt_doUpdate"><i class="fa fa-check"></i> {{Mettre à jour}}</a>
+<a class="btn btn-success pull-right" style="color:white;" id="bt_doUpdate"><i class="fa fa-check"></i> {{Mettre à jour}}</a>
 </div>
 
 <?php include_file('desktop', 'update', 'js');?>
