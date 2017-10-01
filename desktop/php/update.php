@@ -9,22 +9,7 @@ if (!isConnect('admin')) {
         <i class="fa fa-clock-o" style="cursor:default;"></i> <span style="cursor:default;">{{Dernière vérification : }}</span><span class="label label-info" id="span_lastUpdateCheck" style="margin-bottom: 5px;font-size:1em;cursor:default;"></span>
         <a class="btn btn-success pull-right" id="bt_saveUpdate" style="margin-top:5px;"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
         <a class="btn btn-info pull-right" id="bt_checkAllUpdate" style="margin-top:5px;"><i class="fa fa-refresh"></i> {{Vérifier les mises à jour}}</a>
-        <div class="btn-group pull-right" style="margin-top:5px;">
-            <a href="#" class="bt_updateAll btn btn-default"  data-level="0" data-mode=""><i class="fa fa-check"></i> {{Mettre à jour}}</a>
-            <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a href="#" class="bt_updateAll expertModeVisible" data-level="0" data-mode="force"> <i class="fa fa-gavel"></i> {{Tout forcer}}</a></li>
-                    <li><a href="#" class="bt_updateAll" data-level="1" data-mode=""><i class="fa fa-cube"></i> {{Plugins seulement}}</a></li>
-                    <li><a href="#" class="bt_updateAll expertModeVisible" data-level="1" data-mode="force"><i class="fa fa-cube"></i> <i class="fa fa-gavel"></i> {{Plugins seulement forcés}}</a></li>
-                    <li><a href="#" class="bt_updateAll" data-level="-1" data-mode=""><i class="fa fa-database"></i> {{Jeedom seulement}}</a></li>
-                    <li><a href="#" class="bt_updateAll expertModeVisible" data-level="-1" data-mode="force"><i class="fa fa-database"></i> <i class="fa fa-gavel"></i> {{Jeedom seulement forcé}}</a></li>
-                    <li><a href="#" class="expertModeVisible" id="bt_reapplyUpdate"><i class="fa fa-retweet"></i> {{Réappliquer une mise à jour}}</a></li>
-                </ul>
-            </div>
-        </div>
+            <a href="#" class="btn btn-default pull-right" id="bt_updateJeedom" style="margin-top:5px;"><i class="fa fa-check"></i> {{Mettre à jour}}</a>
         <br/><br/>
 
         <ul class="nav nav-tabs" role="tablist">
@@ -76,10 +61,35 @@ if (!isConnect('admin')) {
 <div id="md_specifyUpdate">
    <form class="form-horizontal">
     <fieldset>
+        <div class="alert alert-danger">{{Avant toute mise à jour merci de consulter la note de version du core de Jeedom}} <a target="_blank" href="https://github.com/jeedom/core/blob/stable/doc/fr_FR/noteVersion.asciidoc">{{ici}}<a></div>
      <div class="form-group">
-         <label class="col-xs-6 control-label">{{Mise à jour à réappliquer}}</label>
-         <div class="col-xs-6">
-            <select id="sel_updateVersion" class="form-control">
+         <div class="form-group">
+            <label class="col-xs-6 control-label">{{Sauvegarder avant}}</label>
+            <div class="col-xs-4">
+                <input type="checkbox" class="updateOption" data-l1key="backup::before" checked />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-6 control-label">{{Mettre à jour les plugins}}</label>
+            <div class="col-xs-4">
+                <input type="checkbox" class="updateOption" data-l1key="plugins" checked />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-6 control-label">{{Mettre à jour le core}}</label>
+            <div class="col-xs-4">
+                <input type="checkbox" class="updateOption" data-l1key="core" checked />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-6 control-label">{{Mode forcé}}</label>
+            <div class="col-xs-4">
+                <input type="checkbox" class="updateOption" data-l1key="force" />
+            </div>
+        </div>
+        <label class="col-xs-6 control-label">{{Mise à jour à réappliquer}}</label>
+        <div class="col-xs-5">
+            <select id="sel_updateVersion" class="form-control updateOption" data-l1key="update::reapply">
                 <option value="">{{Aucune}}</option>
                 <?php
 $udpates = array();
@@ -94,24 +104,9 @@ foreach ($udpates as $value) {
            </select>
        </div>
    </div>
-   <div class="form-group">
-    <label class="col-xs-6 control-label">{{Mode forcé}}</label>
-    <div class="col-xs-4">
-        <input type="checkbox" id="cb_forceReapplyUpdate" checked />
-    </div>
-</div>
-<div class="form-group">
-    <label class="col-xs-6 control-label">{{Tout depuis cette version}}</label>
-    <div class="col-xs-4">
-        <input type="checkbox" id="cb_allFromThisUpdate" checked />
-    </div>
-</div>
 </fieldset>
 </form>
-<a class="btn btn-success pull-right" style="color:white;" id="bt_reapplySpecifyUpdate"><i class="fa fa-check"></i> {{Valider}}</a>
-</div>
-
-
+<a class="btn btn-success pull-right" style="color:white;" id="bt_doUpdate"><i class="fa fa-check"></i> {{Mettre à jour}}</a>
 </div>
 
 <?php include_file('desktop', 'update', 'js');?>

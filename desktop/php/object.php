@@ -39,7 +39,7 @@ foreach ($allObject as $object) {
        </center>
        <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>Ajouter</center></span>
      </div>
-     <div class="cursor expertModeVisible bt_showObjectSummary" style="text-align: center; background-color : #ffffff; height : 160px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+     <div class="cursor bt_showObjectSummary" style="text-align: center; background-color : #ffffff; height : 160px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
       <br/>
       <center style='margin-top:-14px;'>
         <i class="fa fa-list" style="font-size : 6em;color:#337ab7;margin-top:5px;"></i>

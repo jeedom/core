@@ -21,7 +21,7 @@
 
 
  jeedom.update.doAll = function (_params) {
-    var paramsRequired = ['level', 'mode'];
+    var paramsRequired = [];
     var paramsSpecifics = {};
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
@@ -34,10 +34,7 @@
     paramsAJAX.url = 'core/ajax/update.ajax.php';
     paramsAJAX.data = {
         action: 'updateAll',
-        level: _params.level,
-        mode: _params.mode,
-        version: _params.version || '',
-        onlyThisVersion: _params.onlyThisVersion || '',
+        options: json_encode(_params.options) || '',
     };
     $.ajax(paramsAJAX);
 }
@@ -170,6 +167,26 @@ jeedom.update.saves = function (_params) {
     paramsAJAX.data = {
         action: 'saves',
         updates: json_encode(_params.updates)
+    };
+    $.ajax(paramsAJAX);
+}
+
+jeedom.update.number = function(_params) {
+    var paramsRequired = [];
+    var paramsSpecifics = {
+        global: false,
+    };
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/update.ajax.php';
+    paramsAJAX.data = {
+        action: 'nbUpdate',
     };
     $.ajax(paramsAJAX);
 }

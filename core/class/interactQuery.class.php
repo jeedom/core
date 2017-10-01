@@ -126,9 +126,14 @@ class interactQuery {
 		$shortest = 999;
 		foreach ($queries as $query) {
 			$input = interactDef::sanitizeQuery($query->getQuery());
-			preg_match_all("/#(.*?)#/", $input, $matches);
-			foreach ($matches[1] as $match) {
-				$input = str_replace('#' . $match . '#', '', $input);
+			$tags = interactDef::getTagFromQuery($query->getQuery(), $_query);
+			if (count($tags) > 0) {
+				foreach ($tags as $value) {
+					if ($value == "") {
+						continue (2);
+					}
+				}
+				$input = str_replace(array_keys($tags), $tags, $input);
 			}
 			$lev = levenshtein($input, $_query);
 			log::add('interact', 'debug', 'Je compare : ' . $_query . ' avec ' . $input . ' => ' . $lev);
@@ -675,35 +680,32 @@ class interactQuery {
 			}
 		}
 		$reply = $interactDef->selectReply();
-		$replace = array();
-		$tags_replace = array('#query#' => $this->getQuery());
+		$replace = array('#query#' => $this->getQuery());
 		foreach ($_parameters as $key => $value) {
-			$tags_replace['#' . $key . '#'] = $value;
+			$replace['#' . $key . '#'] = $value;
 		}
 		$tags = null;
 		if (isset($_parameters['dictation'])) {
 			$tags = interactDef::getTagFromQuery($this->getQuery(), $_parameters['dictation']);
-			$tags_replace['#dictation#'] = $_parameters['dictation'];
+			$replace['#dictation#'] = $_parameters['dictation'];
 		}
 		if (is_array($tags)) {
-			foreach ($tags as $key => $value) {
-				$tags_replace['#' . $key . '#'] = $value;
-				$replace['#' . $key . '#'] = $value;
-			}
+			$replace = array_merge($replace, $tags);
 		}
 		$executeDate = null;
-		$dateConvert = array(
-			'heure' => 'hour',
-			'mois' => 'month',
-			'semaine' => 'week',
-			'année' => 'year',
-		);
-		if (isset($tags_replace['#duration#'])) {
-			$tags_replace['#duration#'] = str_replace(array_keys($dateConvert), $dateConvert, $tags_replace['#duration#']);
-			$executeDate = strtotime('+' . $tags_replace['#duration#']);
+
+		if (isset($replace['#duration#'])) {
+			$dateConvert = array(
+				'heure' => 'hour',
+				'mois' => 'month',
+				'semaine' => 'week',
+				'année' => 'year',
+			);
+			$replace['#duration#'] = str_replace(array_keys($dateConvert), $dateConvert, $replace['#duration#']);
+			$executeDate = strtotime('+' . $replace['#duration#']);
 		}
-		if (isset($tags_replace['#time#'])) {
-			$time = str_replace(array('h'), array(':'), $tags_replace['#time#']);
+		if (isset($replace['#time#'])) {
+			$time = str_replace(array('h'), array(':'), $replace['#time#']);
 			if (strlen($time) == 2) {
 				$time .= ':00';
 			} else if (strlen($time) == 3) {
@@ -752,9 +754,8 @@ class interactQuery {
 					}
 					if ($tags !== null) {
 						foreach ($options as &$option) {
-							$option = str_replace(array_keys($tags_replace), $tags_replace, $option);
+							$option = str_replace(array_keys($replace), $replace, $option);
 						}
-
 						if (isset($options['color']) && isset($colors[strtolower($options['color'])])) {
 							$options['color'] = $colors[strtolower($options['color'])];
 						}
@@ -781,12 +782,11 @@ class interactQuery {
 							$tags['#' . trim(trim($key), '#') . '#'] = scenarioExpression::setTags(trim($value));
 						}
 					}
-					$options['tags'] = array_merge($tags_replace, $tags);
+					$options['tags'] = array_merge($replace, $tags);
 					$return = scenarioExpression::createAndExec('action', $action['cmd'], $options);
 					if (trim($return) !== '' && trim($return) !== null) {
 						$replace['#valeur#'] .= ' ' . $return;
 					}
-
 				} catch (Exception $e) {
 					log::add('interact', 'error', __('Erreur lors de l\'éxecution de ', __FILE__) . $action['cmd'] . __('. Détails : ', __FILE__) . $e->getMessage());
 				} catch (Error $e) {

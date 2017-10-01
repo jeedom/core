@@ -21,7 +21,7 @@ if (is_array($scenarioListGroup)) {
         <div class="bs-sidebar nav nav-list bs-sidenav">
             <a class="btn btn-success pull-right form-control" id="bt_switchToExpertMode" href="index.php?v=d&p=scenario" style="text-shadow: none;"><i class="fa fa-toggle-off"></i> {{Interface simple}}</a>
             <center>
-                <a class="btn btn-default btn-sm expertModeVisible" id="bt_displayScenarioVariable" title="{{Voir toutes les variables de scénario}}" style="margin-top : 3px;text-shadow: none"><i class="fa fa fa-eye"></i> {{Voir variables}}</a>
+                <a class="btn btn-default btn-sm" id="bt_displayScenarioVariable" title="{{Voir toutes les variables de scénario}}" style="margin-top : 3px;text-shadow: none"><i class="fa fa fa-eye"></i> {{Voir variables}}</a>
             </center>
             <a class="btn btn-default" id="bt_addScenario" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-plus-circle cursor" ></i> {{Nouveau scénario}}</a>
             <input id='in_treeSearch' class='form-control' placeholder="{{Rechercher}}" />
@@ -74,14 +74,14 @@ foreach ($scenarioListGroup as $group) {
         <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>{{Ajouter}}</center></span>
     </div>
     <?php if (config::byKey('enableScenario') == 0) {?>
-        <div class="cursor expertModeVisible" id="bt_changeAllScenarioState2" data-state="1" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
+        <div class="cursor" id="bt_changeAllScenarioState2" data-state="1" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
          <center>
              <i class="fa fa-check" style="font-size : 6em;color:#5cb85c;"></i>
          </center>
          <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#5cb85c"><center>{{Activer scénarios}}</center></span>
      </div>
      <?php } else {?>
-     <div class="cursor expertModeVisible" id="bt_changeAllScenarioState2" data-state="0" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
+     <div class="cursor" id="bt_changeAllScenarioState2" data-state="0" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
          <center>
              <i class="fa fa-times" style="font-size : 6em;color:#d9534f;"></i>
          </center>
@@ -90,21 +90,21 @@ foreach ($scenarioListGroup as $group) {
      <?php }
 ?>
 
-     <div class="cursor expertModeVisible" id="bt_displayScenarioVariable2" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
+     <div class="cursor" id="bt_displayScenarioVariable2" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
          <center>
             <i class="fa fa-eye" style="font-size : 6em;color:#337ab7;"></i>
         </center>
         <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Voir variables}}</center></span>
     </div>
 
-    <div class="cursor expertModeVisible bt_showScenarioSummary" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
+    <div class="cursor bt_showScenarioSummary" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
        <center>
         <i class="fa fa-list" style="font-size : 6em;color:#337ab7;"></i>
     </center>
     <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Vue d'ensemble}}</center></span>
 </div>
 
-<div class="cursor expertModeVisible bt_showExpressionTest" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
+<div class="cursor bt_showExpressionTest" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
  <center>
     <i class="fa fa-check" style="font-size : 6em;color:#337ab7;"></i>
 </center>
@@ -176,10 +176,10 @@ if (count($scenarios) == 0) {
 
 <div id="div_editScenario" style="display: none; border-left: solid 1px #EEE; padding-left: 25px;">
     <legend style="height: 35px;"><i class="fa fa-arrow-circle-left cursor" id="bt_scenarioThumbnailDisplay"></i> {{Scénario}}
-        <a class="btn btn-default btn-xs pull-right expertModeVisible" id="bt_copyScenario"><i class="fa fa-copy"></i> {{Dupliquer}}</a>
-        <a class="btn btn-default btn-xs pull-right expertModeVisible" id="bt_logScenario"><i class="fa fa-file-text-o"></i> {{Log}}</a>
-        <a class="btn btn-default btn-xs pull-right expertModeVisible" id="bt_exportScenario"><i class="fa fa fa-share"></i> {{Exporter}}</a>
-        <a class="btn btn-danger btn-xs pull-right expertModeVisible" id="bt_stopScenario"><i class="fa fa-stop"></i> {{Arrêter}}</a>
+        <a class="btn btn-default btn-xs pull-right" id="bt_copyScenario"><i class="fa fa-copy"></i> {{Dupliquer}}</a>
+        <a class="btn btn-default btn-xs pull-right" id="bt_logScenario"><i class="fa fa-file-text-o"></i> {{Log}}</a>
+        <a class="btn btn-default btn-xs pull-right" id="bt_exportScenario"><i class="fa fa fa-share"></i> {{Exporter}}</a>
+        <a class="btn btn-danger btn-xs pull-right" id="bt_stopScenario"><i class="fa fa-stop"></i> {{Arrêter}}</a>
     </legend>
 
     <div class="row well" style="margin: 0px;margin-bottom: 15px;">
