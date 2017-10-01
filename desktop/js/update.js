@@ -116,11 +116,6 @@
 
 });
 
-
- $('#bt_expertMode').on('click', function () {
-    printUpdate();
-});
-
  function getJeedomLog(_autoUpdate, _log) {
     $.ajax({
         type: 'POST',
@@ -230,9 +225,9 @@ if (_update.type != 'core') {
 }else{        
   tr += '<a class="btn btn-default btn-xs" href="https://github.com/jeedom/core/blob/stable/doc/fr_FR/changelog.asciidoc" target="_blank" style="margin-bottom : 5px;"><i class="fa fa-book"></i> {{Changelog}}</a>';      
 }
-tr += '<a class="btn btn-info btn-xs pull-right checkUpdate expertModeVisible" style="margin-bottom : 5px;" ><i class="fa fa-check"></i> {{Vérifier}}</a>';
+tr += '<a class="btn btn-info btn-xs pull-right checkUpdate" style="margin-bottom : 5px;" ><i class="fa fa-check"></i> {{Vérifier}}</a>';
 if (_update.type != 'core') {
-    tr += '<a class="btn btn-danger btn-xs pull-right remove expertModeVisible" style="margin-bottom : 5px;" ><i class="fa fa-trash-o"></i> {{Supprimer}}</a>';  
+    tr += '<a class="btn btn-danger btn-xs pull-right remove" style="margin-bottom : 5px;" ><i class="fa fa-trash-o"></i> {{Supprimer}}</a>';  
 }
 tr += '</td>';
 tr += '</tr>';

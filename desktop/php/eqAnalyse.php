@@ -123,7 +123,7 @@ foreach (eqLogic::all() as $eqLogic) {
 			echo trim($actions, '|');
 			echo '</td>';
 			echo '<td>';
-			echo '<a class="btn btn-default btn-xs cmdAction expertModeVisible pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fa fa-cogs"></i></a>';
+			echo '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fa fa-cogs"></i></a>';
 			echo '</td>';
 			echo '</tr>';
 		}
@@ -138,7 +138,7 @@ foreach (eqLogic::all() as $eqLogic) {
 			echo trim($actions, '|');
 			echo '</td>';
 			echo '<td>';
-			echo '<a class="btn btn-default btn-xs cmdAction expertModeVisible pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fa fa-cogs"></i></a>';
+			echo '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fa fa-cogs"></i></a>';
 			echo '</td>';
 			echo '</tr>';
 		}
@@ -151,7 +151,7 @@ foreach (eqLogic::all() as $eqLogic) {
 			echo trim($actions, '|');
 			echo '</td>';
 			echo '<td>';
-			echo '<a class="btn btn-default btn-xs cmdAction expertModeVisible pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fa fa-cogs"></i></a>';
+			echo '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fa fa-cogs"></i></a>';
 			echo '</td>';
 			echo '</tr>';
 		}
@@ -164,7 +164,7 @@ foreach (eqLogic::all() as $eqLogic) {
 			echo 'Confirmation de l\'action' . $code;
 			echo '</td>';
 			echo '<td>';
-			echo '<a class="btn btn-default btn-xs cmdAction expertModeVisible pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fa fa-cogs"></i></a>';
+			echo '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fa fa-cogs"></i></a>';
 			echo '</td>';
 			echo '</tr>';
 		}
@@ -173,7 +173,7 @@ foreach (eqLogic::all() as $eqLogic) {
 			echo 'Code de confirmation de l\'action';
 			echo '</td>';
 			echo '<td>';
-			echo '<a class="btn btn-default btn-xs cmdAction expertModeVisible pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fa fa-cogs"></i></a>';
+			echo '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fa fa-cogs"></i></a>';
 			echo '</td>';
 			echo '</tr>';
 		}

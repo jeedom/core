@@ -824,9 +824,6 @@ function printScenario(_id) {
     $('#div_alert').showAlert({message: error.message, level: 'danger'});
   },
   success: function (data) {
-    if (data.type == 'simple') {
-      $('#bt_switchToExpertMode').attr('href', 'index.php?v=d&p=scenarioAssist&id=' + _id)
-    }
     pColor = 0;
     $('.scenarioAttr').value('');
     $('.scenarioAttr[data-l1key=object_id] option:first').attr('selected',true);

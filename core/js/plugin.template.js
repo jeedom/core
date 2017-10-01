@@ -120,7 +120,6 @@ $(".li_eqLogic").on('click', function () {
             $('body').delegate('.cmd .cmdAttr[data-l1key=subType]', 'change', function () {
                 jeedom.cmd.changeSubType($(this).closest('.cmd'));
             });
-            initExpertMode();
             changeLeftMenuObjectOrEqLogicName = false;
             $.hideLoading();
         }
