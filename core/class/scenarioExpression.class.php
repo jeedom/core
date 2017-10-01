@@ -1067,7 +1067,7 @@ class scenarioExpression {
 						$timeout = jeedom::evaluateExpression($options['timeout']);
 						$limit = (is_numeric($timeout)) ? $timeout : 7200;
 					}
-					while ($result !== true) {
+					while (!$result) {
 						$expression = self::setTags($options['condition'], $scenario, true);
 						$result = evaluate($expression);
 						if ($occurence > $limit) {
