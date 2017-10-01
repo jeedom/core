@@ -1,6 +1,6 @@
 = Interactions
 
-Le système d'interaction dans Jeedom permet de réaliser des actions à partir de commandes textes ou vocales.
+Le système d'interactions dans Jeedom permet de réaliser des actions à partir de commandes textes ou vocales.
 
 Ces commandes peuvent être obtenues par :
 
@@ -11,20 +11,20 @@ Ces commandes peuvent être obtenues par :
 
 L'intérêt des interactions réside dans l'intégration simplifiée dans d'autres systèmes comme smartphone, tablette, autre box domotique, etc...
 
-Pour accéder à la page d'interaction il faut aller sur Outils -> Interactions: 
+Pour accéder à la page d'interaction, il faut aller sur Outils -> Interactions: 
 
 En haut de page, on trouve 3 boutons :
 
 * *Ajouter* : qui permet de créer de nouvelles interactions.
 * *Régénérer* : qui va recréer toutes les interactions (peut être très long > 5mn).
-* *Tester* : qui permet d'ouvrir un boîte de dialogue pour écrire et tester une phrase.
+* *Tester* : qui permet d'ouvrir une boîte de dialogue pour écrire et tester une phrase.
 
 [TIP]
-Si vous avez une interaction qui génère les phrases pour les lumières par exemple, et que vous ajoutez un nouveau module de commande de lumière, il vous faudra soit régénérer toutes les interactions, soit aller dans l'interaction en question et la sauvegarder de nouveau pour créer les phrases de ce nouveau module.
+Si vous avez une interaction qui génère les phrases pour les lumières par exemple, et que vous ajoutez un nouveau module de commande de lumière, il vous faudra soit regénérer toutes les interactions, soit aller dans l'interaction en question et la sauvegarder de nouveau pour créer les phrases de ce nouveau module.
 
 == Principe
 
-Le principe de création est assez simple, on va définir une phrase modèle génératrice qui va permettre à Jeedom de créer une ou plusieurs centaines d’autres phrases qui seront des combinaisons possibles du modèle.
+Le principe de création est assez simple : on va définir une phrase modèle génératrice qui va permettre à Jeedom de créer une ou plusieurs centaines d’autres phrases qui seront des combinaisons possibles du modèle.
 
 On va définir de la même façon des réponses avec un modèle (ça permet à Jeedom d’avoir plusieurs réponses pour une seule et même question).
 
@@ -34,10 +34,10 @@ On peut aussi définir une commande à exécuter si par exemple l'interaction n'
 
 La page de configuration est constituée de plusieurs onglets et des boutons :
 
-* *Phrases* : Affiche le nombre de phrase de l'interaction (un clique dessus vous les montres)
-* *Enregistrer* : enregistre l'interaction en courante
-* *Supprimer* : supprime l'interaction en courante
-* *Dupliquer* : duplique l'interaction courrante
+* *Phrases* : Affiche le nombre de phrases de l'interaction (un clic dessus vous les montre)
+* *Enregistrer* : enregistre l'interaction courante
+* *Supprimer* : supprime l'interaction courante
+* *Dupliquer* : duplique l'interaction courante
 
 == Général
 
@@ -70,7 +70,7 @@ Les captures d'écran peuvent ne pas contractuelles
 
 === Interaction simple
 
-La façon la plus simple de configurer une interaction c'est de lui donner un modèle générateur rigide sans variation possible, cette méthode ciblera très précisément une commande, ou un scénario.
+La façon la plus simple de configurer une interaction, c'est de lui donner un modèle générateur rigide sans variation possible, cette méthode ciblera très précisément une commande, ou un scénario.
 
 Dans l'exemple qui suit, on peut voir dans le champ "Demande" la phrase exacte à fournir pour déclencher l'interaction, ici pour allumer le plafonnier du salon.
 
@@ -103,15 +103,15 @@ Dans cet exemple, on veut générer des phrases pour allumer des lumières. On p
 image::../images/interact007.png[]
 
 C'est mieux mais on peut faire encore plus naturel. Si je prends l'exemple généré "On entrée", il serait bien de pouvoir transformer cette phrase en "allume l'entrée" ou en "allumer l'entrée".
-Pour faire cela Jeedom dispose sous le champ demande, un champ synonyme qui va nous permettre de nommer différemment le nom des commandes dans nos phrases "générer", ici c'est "on", j'ai même des "on2" dans les modules qui peuvent contrôler 2 sorties.
+Pour faire cela, Jeedom dispose sous le champ demande d'un champ synonyme qui va nous permettre de nommer différemment le nom des commandes dans nos phrases "générer", ici c'est "on", j'ai même des "on2" dans les modules qui peuvent contrôler 2 sorties.
 
 On va donc dans les synonymes indiquer le nom de la commande et le(s) synonyme(s) à utiliser : 
 
 image::../images/interact008.png[]
 
-On peut voir ici une syntaxe un peu nouvelle pour les synonymes, un nom de commande peut avoir plusieurs synonymes, ici "on" a comme synonyme "allume" et "allumer", la syntaxe c'est donc "#nom de la commande#" *#=#* "#synonyme 1#"*#,#* "#synonyme 2#" (on peut mettre autant de synonyme que l'on veut), puis pour ajouter des synonymes pour un autre nom de commande il suffit d'ajouter après le dernier synonyme une barre verticale "#|#" à la suite duquel vous pouvez à nouveau nommer la commande qui va avoir des synonymes comme pour la première partie.
+On peut voir ici une syntaxe un peu nouvelle pour les synonymes, un nom de commande peut avoir plusieurs synonymes, ici "on" a comme synonyme "allume" et "allumer", la syntaxe c'est donc "#nom de la commande#" *#=#* "#synonyme 1#"*#,#* "#synonyme 2#" (on peut mettre autant de synonymes que l'on veut), puis pour ajouter des synonymes pour un autre nom de commande, il suffit d'ajouter après le dernier synonyme une barre verticale "#|#" à la suite duquel vous pouvez à nouveau nommer la commande qui va avoir des synonymes comme pour la première partie.
 
-Bien c'est déjà mieux mais il manque encore pour la commande "on" "entrée" le "l' " et pour d'autre le "la" ou "le" ou "un" etc...
+Bien, c'est déjà mieux mais il manque encore pour la commande "on" "entrée" le "l' " et pour d'autre le "la" ou "le" ou "un" etc...
 On pourrait modifier le nom de l'équipement pour l'ajouter, ce serait une solution, sinon on peut utiliser les variations dans la demande, cela consiste à lister une série de mots possibles à un emplacement de la phrase, Jeedom va donc générer des phrases avec ses variations.
 
 image::../images/interact009.png[]
@@ -132,8 +132,8 @@ Jusqu'à présent comme réponse à une interaction nous avions une simple phras
 L'idée serait que Jeedom nous indique ce qu'il a fait un peu plus précisément.
 C'est là qu'intervient le champ réponse dans lequel on va pouvoir personnaliser le retour en fonction de la commande exécutée.
 
-Pour ce faire nous allons à nouveau utiliser les Tag Jeedom
-Pour nos lumières on peut utiliser une phrase du style : J'ai bien allumé \#equipement# (voir capture ci-dessous).
+Pour ce faire nous allons à nouveau utiliser les Tags Jeedom
+Pour nos lumières, on peut utiliser une phrase du style : J'ai bien allumé \#equipement# (voir capture ci-dessous).
 
 image::../images/interact011.png[]
 
@@ -143,7 +143,7 @@ image::../images/interact012.png[]
 
 === Conversion binaire
 
-Les conversions binaires s'appliquent aux commandes de type info dont le sous-type est binaire (retourne 0 ou 1 uniquement) il faut donc activer les bons filtres comme on peut le voir sur la capture un peu plus bas (pour les catégories on peut toutes les cocher, pour l'exemple je n'ai gardé que lumière).
+Les conversions binaires s'appliquent aux commandes de type info dont le sous-type est binaire (retourne 0 ou 1 uniquement). Il faut donc activer les bons filtres comme on peut le voir sur la capture un peu plus bas (pour les catégories on peut toutes les cocher, pour l'exemple je n'ai gardé que lumière).
 
 image::../images/interact013.png[]
 

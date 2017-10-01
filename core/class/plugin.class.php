@@ -368,7 +368,7 @@ class plugin {
 					shell_exec('rm ' . $return['progress_file']);
 				}
 				config::save('deamonAutoMode', 0, $plugin->getId());
-				log::add($plugin->getId(), 'error', __('Attention l\'installation des dépendances ont dépassées le temps maximum autorisé : ', __FILE__) . $plugin->getMaxDependancyInstallTime() . 'min');
+				log::add($plugin->getId(), 'error', __('Attention l\'installation des dépendances a dépassé le temps maximum autorisé : ', __FILE__) . $plugin->getMaxDependancyInstallTime() . 'min');
 			}
 			try {
 				$plugin->deamon_start(false, true);
@@ -523,7 +523,7 @@ class plugin {
 					exec(system::getCmdSudo() . '/bin/bash ' . $script . ' >> ' . $cmd['log'] . ' 2>&1 &');
 					sleep(1);
 				} else {
-					log::add($plugin_id, 'error', __('Veuillez executer le script : ', __FILE__) . '/bin/bash ' . $script);
+					log::add($plugin_id, 'error', __('Veuillez exécuter le script : ', __FILE__) . '/bin/bash ' . $script);
 				}
 			} else {
 				log::add($plugin_id, 'error', __('Aucun script ne correspond à votre type de linux : ', __FILE__) . $cmd['script'] . __(' avec #stype# : ', __FILE__) . system::get('type'));
