@@ -234,7 +234,7 @@ class scenarioExpression {
 				}
 			}
 			$historyStatistique = $cmd->getStatistique($startHist, date('Y-m-d H:i:s'));
-			if ($historyStatistique['avg'] == '') {
+			if (!isset($historyStatistique['avg']) || $historyStatistique['avg'] == '') {
 				return $cmd->execCmd();
 			}
 			return round($historyStatistique['avg'], 1);
@@ -249,6 +249,9 @@ class scenarioExpression {
 		$_startDate = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
 		$_endDate = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
 		$historyStatistique = $cmd->getStatistique($_startDate, $_endDate);
+		if (!isset($historyStatistique['avg'])) {
+			return '';
+		}
 		return round($historyStatistique['avg'], 1);
 	}
 
@@ -289,7 +292,7 @@ class scenarioExpression {
 				}
 			}
 			$historyStatistique = $cmd->getStatistique($startHist, date('Y-m-d H:i:s'));
-			if ($historyStatistique['max'] == '') {
+			if (!isset($historyStatistique['max']) || $historyStatistique['max'] == '') {
 				return $cmd->execCmd();
 			}
 			return round($historyStatistique['max'], 1);
@@ -305,6 +308,9 @@ class scenarioExpression {
 		$_endDate = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
 		$historyStatistique = $cmd->getStatistique($_startDate, $_endDate);
 		$historyStatistique = $cmd->getStatistique(self::setTags($_startDate), self::setTags($_endDate));
+		if (!isset($historyStatistique['max'])) {
+			return '';
+		}
 		return round($historyStatistique['max'], 1);
 	}
 
@@ -362,7 +368,7 @@ class scenarioExpression {
 				}
 			}
 			$historyStatistique = $cmd->getStatistique($startHist, date('Y-m-d H:i:s'));
-			if ($historyStatistique['min'] == '') {
+			if (!isset($historyStatistique['min']) || $historyStatistique['min'] == '') {
 				return $cmd->execCmd();
 			}
 			return round($historyStatistique['min'], 1);
@@ -377,6 +383,9 @@ class scenarioExpression {
 		$_startDate = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
 		$_endDate = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
 		$historyStatistique = $cmd->getStatistique($_startDate, $_endDate);
+		if (!isset($historyStatistique['min'])) {
+			return '';
+		}
 		return round($historyStatistique['min'], 1);
 	}
 
