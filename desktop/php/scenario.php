@@ -178,6 +178,7 @@ if (count($totalScenario) == 0) {
  <a class="btn btn-danger btn-sm pull-right" id="bt_delScenario2"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
  <a class="btn btn-warning btn-sm pull-right" id="bt_testScenario2" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.}}'><i class="fa fa-gamepad"></i> {{Executer}}</a>
  <a class="btn btn-primary btn-sm pull-right bt_showExpressionTest"><i class="fa fa-check"></i> {{Expression}}</a>
+ <a class="btn btn-primary btn-sm pull-right" id="bt_displayScenarioVariable"><i class="fa fa-eye"></i> {{Variables}}</a>
  <span id="span_ongoing" class="label pull-right" style="font-size : 1em;position:relative;top:5px;"></span>
 
  <ul class="nav nav-tabs" role="tablist">
