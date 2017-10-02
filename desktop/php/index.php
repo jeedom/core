@@ -343,7 +343,7 @@ $nbMessage = message::nbMessage();
 	$displayUpdate = ($nbUpdate > 0) ? '' : 'display : none;';?>
 						<li>
 							<a href="index.php?v=d&p=update">
-								<span class="badge" id="span_nbUpdate"  title="{{Nombre de mises à jour}}" style="background-color : #c9302c;<?php echo $displayMessage; ?>"><?php echo $nbUpdate; ?></span></a></li>
+								<span class="badge" id="span_nbUpdate"  title="{{Nombre de mises à jour}}" style="background-color : #c9302c;<?php echo $displayUpdate; ?>"><?php echo $nbUpdate; ?></span></a></li>
 								<?php if (isConnect('admin')) {
 		?>
 									<li class="dropdown">
