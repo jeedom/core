@@ -19,7 +19,7 @@
 /* * ***************************Includes********************************* */
 require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 
-class eqLogic {
+abstract class eqLogic {
 	/*     * *************************Attributs****************************** */
 	const UIDDELIMITER = '__';
 	protected $id;
