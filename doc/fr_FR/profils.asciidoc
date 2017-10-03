@@ -2,7 +2,7 @@
 
 La page profils vous permet de configurer certains comportements de Jeedom spécifiques à l'utilisateur : page d'accueil, thèmes de la version desktop, de la version mobile, des graphiques... Elle permet aussi de changer votre mot de passe.
 
-Vous retrouvez en haut à droite en cliquant sur le l'icone bonhomme puis profils
+Vous la retrouvez en haut à droite en cliquant sur l'icone bonhomme puis profils
 
 == Thèmes
 
@@ -22,7 +22,7 @@ Le panneau thèmes vous permet de régler des paramètres d'interface :
 Vous permet de définir certains comportements de l'interface :
 
 * *Général*
-** *Afficher les menus* : indique à Jeedom d'afficher le panneau de gauche, lorsqu'il existe, pour rappel ce panneau est disponible sur la plupart des pages des plugins, ainsi que la page des scénarios, des interactions, des objets....
+** *Afficher les menus* : indique à Jeedom d'afficher le panneau de gauche, lorsqu'il existe. Pour rappel, ce panneau est disponible sur la plupart des pages des plugins, ainsi que la page des scénarios, des interactions, des objets....
 * *Page par défaut*
 ** *Desktop* : page par défaut à afficher lors de la connexion en desktop
 ** *Mobile* : page par défaut à afficher lors de la connexion en mobile
@@ -38,9 +38,9 @@ Vous permet de définir certains comportements de l'interface :
 
 === Sécurité
 
-* *Authentification en 2 étapes* : permet de configurer l'authentification en 2 étape (pour rappels c'est un code changeant toute les XX secondes qui s'affiche sur une application mobile, type google authentificator)
+* *Authentification en 2 étapes* : permet de configurer l'authentification en 2 étapes (pour rappel, c'est un code changeant toutes les XX secondes qui s'affiche sur une application mobile, type google authentificator)
 * *Mot de passe* : permet de changer votre mot de passe (ne pas oublier de le retaper en dessous)
-* *Hash de l'utilisateur* : votre clef api d'utilisateur
+* *Hash de l'utilisateur* : votre clé api d'utilisateur
 
 === Notifications
 
