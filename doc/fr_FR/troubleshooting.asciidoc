@@ -42,7 +42,7 @@ Il est conseillé de regarder les commandes exécutées par le scénario, souven
 
 == Mon scénario est lent à se déclencher
 
-Si dans le scénario, il n'y a pas de pause, il est conseillé de cocher la case "exécuter le plus rapidement possible" (disponible en mode expert)
+Si dans le scénario, il n'y a pas de pause, il est conseillé de cocher la case "exécuter le plus rapidement possible"
 
 == J'ai des instabilités ou des erreurs 504
 

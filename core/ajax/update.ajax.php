@@ -26,10 +26,25 @@ try {
 
 	ajax::init();
 
+	if (init('action') == 'nbUpdate') {
+		ajax::success(update::nbNeedUpdate());
+	}
+
 	if (init('action') == 'all') {
 		$return = array();
 		foreach (update::all(init('filter')) as $update) {
 			$infos = utils::o2a($update);
+			if ($update->getType() == 'plugin') {
+				try {
+					$plugin = plugin::byId($update->getLogicalId());
+					if (is_object($plugin)) {
+						$infos['plugin'] = array();
+						$infos['plugin']['changelog'] = $plugin->getChangelog();
+					}
+				} catch (Exception $e) {
+
+				}
+			}
 			$return[] = $infos;
 		}
 		ajax::success($return);

@@ -15,19 +15,19 @@ if (!isConnect('admin')) {
                             <a class="btn btn-success bt_backupJeedom"><i class="fa fa-refresh fa-spin" style="display : none;"></i> <i class="fa fa-floppy-o"></i> {{Lancer}}</a>
                         </div>
                     </div>
-                    <div class="form-group expertModeVisible">
+                    <div class="form-group">
                         <label class="col-sm-4 col-xs-6 control-label">{{Emplacement des sauvegardes}}</label>
                         <div class="col-sm-4 col-xs-6">
                             <input type="text" class="configKey form-control" data-l1key="backup::path" />
                         </div>
                     </div>
-                    <div class="form-group expertModeVisible">
+                    <div class="form-group">
                         <label class="col-sm-4 col-xs-6 control-label">{{Nombre de jour(s) de mémorisation des sauvegardes}}</label>
                         <div class="col-sm-4 col-xs-6">
                             <input type="text" class="configKey form-control" data-l1key="backup::keepDays" />
                         </div>
                     </div>
-                    <div class="form-group expertModeVisible">
+                    <div class="form-group">
                         <label class="col-sm-4 col-xs-6 control-label">{{Taille totale maximale des backups (Mo)}}</label>
                         <div class="col-sm-4 col-xs-6">
                             <input type="text" class="configKey form-control" data-l1key="backup::maxSize" />

@@ -6,9 +6,6 @@ Il est accessible par le menu Administration -> Centre de mise à jour :
 
 Il présente sous forme de tableau l'ensemble des éléments installés dans Jeedom. 
 
-[TIP]
-En mode Expert, on affiche tous les élements, sinon, on affiche uniquement les éléments à mettre à jour.
-
 En haut du tableau se trouvent les boutons de commande. Jeedom se connecte périodiquement avec le Market pour voir si des mises à jour sont disponibles (la date de dernière vérification est indiquée tout en haut du tableau à gauche). Si vous voulez réaliser une vérification manuelle, vous pouvez appuyer sur le bouton "Vérifier les mises à jour".
 
 Le bouton "Mettre à jour" permet de mettre à jour l'ensemble de Jeedom :

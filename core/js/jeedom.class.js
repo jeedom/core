@@ -176,6 +176,9 @@ jeedom.init = function () {
     $('body').on('message::refreshMessageNumber', function (_event,_options) {
         refreshMessageNumber();
     });
+      $('body').on('update::refreshUpdateNumber', function (_event,_options) {
+        refreshUpdateNumber();
+    });
     $('body').on('notify', function (_event,_options) {
         notify(_options.title, _options.message, _options.theme);
     });

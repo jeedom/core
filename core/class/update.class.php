@@ -81,6 +81,7 @@ class update {
 			}
 		}
 		config::save('update::lastCheck', date('Y-m-d H:i:s'));
+		event::add('update::refreshUpdateNumber');
 	}
 
 	public static function listRepo() {

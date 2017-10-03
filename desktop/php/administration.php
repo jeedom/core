@@ -52,7 +52,7 @@ user::isBan();
 							<a class="btn btn-default form-control" id="bt_resetHardwareType"><i class="fa fa-refresh"></i> {{Rafraîchir}}</a>
 						</div>
 					</div>
-					<div class="form-group expertModeVisible">
+					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef d'installation qui permet d'identifier votre Jeedom quand il communique avec le market}}">{{Clef d'installation}}</label>
 						<div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
 							<span class="label label-info" style="font-size : 1em;"><?php echo jeedom::getHardwareKey() ?></span>
@@ -74,7 +74,7 @@ user::isBan();
 								<option value="it_IT">Italiano</option>
 							</select>
 						</div>
-						<div class="expertModeVisible">
+						<div>
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Générer les traductions}}</label>
 							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 								<input type="checkbox" class="configKey" data-l1key="generateTranslation" title="{{Option pour les développeurs permettant à Jeedom de générer les phrases à traduire}}" />
@@ -188,13 +188,13 @@ user::isBan();
 							<a class="btn btn-primary" id="bt_forceSyncHour"><i class="fa fa-clock-o"></i> {{Forcer la synchronisation de l'heure}}</a>
 						</div>
 					</div>
-					<div class="form-group expertModeVisible">
+					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Permet d'ajouter un serveur de temps à Jeedom utilisé lorsque Jeedom force la synchronisation de l'heure}}">{{Serveur de temps optionnel}}</label>
 						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 							<input type="text"  class="configKey form-control" data-l1key="ntp::optionalServer" />
 						</div>
 					</div>
-					<div class="form-group expertModeVisible">
+					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Indique à Jeedom de ne pas prendre en compte l'heure du système}}">{{Ignorer la vérification de l'heure}}</label>
 						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 							<input type="checkbox" class="configKey" data-l1key="ignoreHourCheck" />
@@ -209,7 +209,7 @@ user::isBan();
 			<br/>
 			<form class="form-horizontal">
 				<fieldset>
-					<div class="form-group expertModeVisible">
+					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Accès API HTTP}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
 							<select class="form-control configKey" data-l1key="api::core::http::mode">
@@ -239,7 +239,7 @@ user::isBan();
 						</div>
 					</div>
 
-					<div class="form-group expertModeVisible">
+					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API globale de Jeedom}}">{{Clef API}}</label>
 						<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
 							<div class="input-group">
@@ -251,7 +251,7 @@ user::isBan();
 						</div>
 					</div>
 
-					<div class="form-group expertModeVisible">
+					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API Pro de Jeedom}}">{{Clef API Pro}}</label>
 						<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
 							<div class="input-group">
@@ -274,7 +274,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 	if (config::byKey('api', $plugin->getId()) == '') {
 		continue;
 	}
-	echo '<div class="form-group expertModeVisible">';
+	echo '<div class="form-group">';
 	echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API pour le plugin}} ' . $plugin->getName() . '">{{Clef API}} ' . $plugin->getName() . '</label>';
 	echo '<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">';
 	echo '<div class="input-group">';
@@ -568,7 +568,7 @@ foreach (network::getInterfaces() as $interface) {
 ?>
 										</tbody>
 									</table>
-									<div class="form-group expertModeVisible has-error">
+									<div class="form-group has-error">
 										<label class="col-xs-6 control-label">{{Désactiver la gestion du réseau par Jeedom}}</label>
 										<div class="col-xs-4">
 											<input type="checkbox" class="configKey" data-l1key="network::disableMangement" />
@@ -1284,7 +1284,7 @@ foreach ($repos as $key => $value) {
 											</select>
 										</div>
 									</div>
-									<div class="form-group expertModeVisible">
+									<div class="form-group">
 										<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Vérifier automatiquement si il y a des mises à jour}}</label>
 										<div class="col-sm-1">
 											<input type="checkbox" class="configKey" data-l1key="update::autocheck"/>

@@ -274,19 +274,19 @@ echo $panel_menu;
 							<a data-toggle="dropdown"><i class="fa fa-stethoscope"></i> <span class="hidden-xs hidden-sm hidden-md">{{Analyse}}</span> <b class="caret"></b></a>
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="index.php?v=d&p=history"><i class="fa fa-bar-chart-o"></i> {{Historique}}</a></li>
-<?php
-if (isConnect('admin')) {
-		?>
-								<li><a href="index.php?v=d&p=report"><i class="fa fa-newspaper-o"></i> {{Rapport}}</a></li>
-																	<?php
-}
-	?>
-								<li class="divider"></li>
-								<li class="expertModeVisible"><a href="#" id="bt_showEventInRealTime"><i class="fa fa-tachometer"></i> {{Temps réel}}</a></li>
 								<?php
 if (isConnect('admin')) {
 		?>
-									<li class="expertModeVisible"><a href="index.php?v=d&p=log"><i class="fa fa-file-o"></i> {{Logs}}</a></li>
+									<li><a href="index.php?v=d&p=report"><i class="fa fa-newspaper-o"></i> {{Rapport}}</a></li>
+									<?php
+}
+	?>
+								<li class="divider"></li>
+								<li><a href="#" id="bt_showEventInRealTime"><i class="fa fa-tachometer"></i> {{Temps réel}}</a></li>
+								<?php
+if (isConnect('admin')) {
+		?>
+									<li><a href="index.php?v=d&p=log"><i class="fa fa-file-o"></i> {{Logs}}</a></li>
 									<li><a href="index.php?v=d&p=eqAnalyse"><i class="fa fa-battery-full"></i> {{Equipements}}</a></li>
 									<li class="divider"></li>
 									<li><a href="index.php?v=d&p=health"><i class="fa fa-medkit"></i> {{Santé}}</a></li>
@@ -340,90 +340,80 @@ $nbMessage = message::nbMessage();
 							</a>
 						</li>
 						<?php $nbUpdate = update::nbNeedUpdate();
-	if ($nbUpdate > 0) {
-		echo '<li>
+	$displayUpdate = ($nbUpdate > 0) ? '' : 'display : none;';?>
+						<li>
 							<a href="index.php?v=d&p=update">
-								<span class="badge" title="{{Nombre de mises à jour}}" style="background-color : #c9302c;">' . $nbUpdate . '</span></a></li>';
-	}
-	?>
-							<?php if (isConnect('admin')) {
+								<span class="badge" id="span_nbUpdate"  title="{{Nombre de mises à jour}}" style="background-color : #c9302c;<?php echo $displayUpdate; ?>"><?php echo $nbUpdate; ?></span></a></li>
+								<?php if (isConnect('admin')) {
 		?>
-								<li class="dropdown">
-									<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-cogs"></i><span class="caret"></span></a>
-									<ul class="dropdown-menu">
-										<li><a href="index.php?v=d&p=administration" tabindex="0"><i class="fa fa-wrench"></i> {{Configuration}}</a></li>
-										<li><a href="index.php?v=d&p=backup"><i class="fa fa-floppy-o"></i> {{Sauvegardes}}</a></li>
-										<li><a href="index.php?v=d&p=update"><i class="fa fa-refresh"></i> {{Centre de mise à jour}}</a></li>
-										<li class="expertModeVisible"><a href="index.php?v=d&p=cron"><i class="fa fa-tasks"></i> {{Moteur de tâches}}</a></li>
-										<li class="expertModeVisible"><a href="index.php?v=d&p=custom"><i class="fa fa-pencil-square-o"></i> {{Personnalisation avancée}}</a></li>
-										<li role="separator" class="divider"></li>
-										<li><a href="index.php?v=d&p=user"><i class="fa fa-users"></i> {{Utilisateurs}}</a></li>
-									</ul>
-								</li>
-								<?php }
+									<li class="dropdown">
+										<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-cogs"></i><span class="caret"></span></a>
+										<ul class="dropdown-menu">
+											<li><a href="index.php?v=d&p=administration" tabindex="0"><i class="fa fa-wrench"></i> {{Configuration}}</a></li>
+											<li><a href="index.php?v=d&p=backup"><i class="fa fa-floppy-o"></i> {{Sauvegardes}}</a></li>
+											<li><a href="index.php?v=d&p=update"><i class="fa fa-refresh"></i> {{Centre de mise à jour}}</a></li>
+											<li><a href="index.php?v=d&p=cron"><i class="fa fa-tasks"></i> {{Moteur de tâches}}</a></li>
+											<li><a href="index.php?v=d&p=custom"><i class="fa fa-pencil-square-o"></i> {{Personnalisation avancée}}</a></li>
+											<li role="separator" class="divider"></li>
+											<li><a href="index.php?v=d&p=user"><i class="fa fa-users"></i> {{Utilisateurs}}</a></li>
+										</ul>
+									</li>
+									<?php }
 	?>
-								<li class="dropdown">
-									<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-										<i class="fa fa-user"></i>
-										<span class="caret"></span>
-									</a>
-									<ul class="dropdown-menu">
-										<li><a href="index.php?v=d&p=profils"><i class="fa fa-briefcase"></i> {{Profil}} <?php echo $_SESSION['user']->getLogin(); ?></a></li>
-										<?php
-if (isConnect('admin')) {
-		if ($_SESSION['user']->getOptions('expertMode') == 1) {
-			echo '<li class="cursor"><a id="bt_expertMode" state="1"><i class="fa fa-check-square-o"></i> {{Mode expert}}</a></li>';
-		} else {
-			echo '<li class="cursor"><a id="bt_expertMode" state="0"><i class="fa fa-square-o"></i> {{Mode expert}}</a></li>';
-		}
-		?>
+									<li class="dropdown">
+										<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+											<i class="fa fa-user"></i>
+											<span class="caret"></span>
+										</a>
+										<ul class="dropdown-menu">
+											<li><a href="index.php?v=d&p=profils"><i class="fa fa-briefcase"></i> {{Profil}} <?php echo $_SESSION['user']->getLogin(); ?></a></li>
 											<li class="divider"></li>
 											<li><a href="index.php?v=m" class="noOnePageLoad"><i class="fa fa-mobile"></i> {{Version mobile}}</a></li>
 											<li class="divider"></li>
 											<li><a href="#" id="bt_jeedomAbout"><i class="fa fa-info-circle"></i> {{Version}} v<?php echo jeedom::version(); ?></a></li>
 											<?php	if (jeedom::isCapable('sudo')) {
-			echo '<li class="divider expertModeVisible"></li>';
-			echo '<li class="cursor expertModeVisible"><a id="bt_rebootSystem" state="0"><i class="fa fa-repeat"></i> {{Redémarrer}}</a></li>';
-			echo '<li class="cursor expertModeVisible"><a id="bt_haltSystem" state="0"><i class="fa fa-power-off"></i> {{Eteindre}}</a></li>';
-		}
+		echo '<li class="divider"></li>';
+		echo '<li class="cursor"><a id="bt_rebootSystem" state="0"><i class="fa fa-repeat"></i> {{Redémarrer}}</a></li>';
+		echo '<li class="cursor"><a id="bt_haltSystem" state="0"><i class="fa fa-power-off"></i> {{Eteindre}}</a></li>';
+
 	}
 	?>
-										<li class="divider"></li>
-										<li><a href="index.php?v=d&logout=1" class="noOnePageLoad"><i class="fa fa-sign-out"></i> {{Se déconnecter}}</a></li>
-									</ul>
-								</li>
-								<li>
-								<a id="bt_getHelpPage" class="cursor" data-plugin="<?php echo init('m'); ?>" data-page="<?php echo init('p'); ?>" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>
-								</li>
-								<?php if (isConnect('admin')) {
-		?>
+											<li class="divider"></li>
+											<li><a href="index.php?v=d&logout=1" class="noOnePageLoad"><i class="fa fa-sign-out"></i> {{Se déconnecter}}</a></li>
+										</ul>
+									</li>
 									<li>
-										<?php if (isset($plugin) && is_object($plugin) && $plugin->getIssue() != '') {
-			?>
-											<a target="_blank" href="<?php echo $plugin->getIssue() ?>" title="{{Envoyer un rapport de bug}}">
-												<i class="fa fa-exclamation-circle" ></i>
-											</a>
-											<?php } else {?>
-											<a class="bt_reportBug cursor" title="{{Envoyer un rapport de bug}}">
-												<i class="fa fa-exclamation-circle" ></i>
-											</a>
-											<?php }?>
-										</li>
-										<?php }
-	?>
+										<a id="bt_getHelpPage" class="cursor" data-plugin="<?php echo init('m'); ?>" data-page="<?php echo init('p'); ?>" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>
+									</li>
+									<?php if (isConnect('admin')) {
+		?>
 										<li>
-											<a href="#" style="cursor:default;">
-												<span id="horloge"><?php echo date('H:i:s'); ?></span>
-											</a>
-										</li>
-									</ul>
-								</nav>
-							</div>
-						</header>
-						<main class="container-fluid" id="div_mainContainer">
-							<div style="display: none;width : 100%" id="div_alert"></div>
-							<div id="div_pageContainer">
-								<?php
+											<?php if (isset($plugin) && is_object($plugin) && $plugin->getIssue() != '') {
+			?>
+												<a target="_blank" href="<?php echo $plugin->getIssue() ?>" title="{{Envoyer un rapport de bug}}">
+													<i class="fa fa-exclamation-circle" ></i>
+												</a>
+												<?php } else {?>
+												<a class="bt_reportBug cursor" title="{{Envoyer un rapport de bug}}">
+													<i class="fa fa-exclamation-circle" ></i>
+												</a>
+												<?php }?>
+											</li>
+											<?php }
+	?>
+											<li>
+												<a href="#" style="cursor:default;">
+													<span id="horloge"><?php echo date('H:i:s'); ?></span>
+												</a>
+											</li>
+										</ul>
+									</nav>
+								</div>
+							</header>
+							<main class="container-fluid" id="div_mainContainer">
+								<div style="display: none;width : 100%" id="div_alert"></div>
+								<div id="div_pageContainer">
+									<?php
 try {
 		if (!jeedom::isStarted()) {
 			echo '<div class="alert alert-danger">{{Jeedom est en cours de démarrage veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé}}</div>';
@@ -445,23 +435,23 @@ try {
 		echo '</div>';
 	}
 	?>
-							</div>
-							<div id="md_modal"></div>
-							<div id="md_modal2"></div>
-							<div id="md_pageHelp" style="display: none;" title="Aide">
-								<ul class="nav nav-tabs">
-									<li class="active"><a href="#div_helpWebsite" data-toggle="tab">{{Générale}}</a></li>
-									<li><a href="#div_helpSpe" data-toggle="tab">{{Détaillée}}</a></li>
-								</ul>
-								<div class="tab-content">
-									<div class="tab-pane active" id="div_helpWebsite" ></div>
-									<div class="tab-pane" id="div_helpSpe" ></div>
 								</div>
-							</div>
-							<div id="md_reportBug" title="{{Ouverture d'un ticket}}"></div>
-						</main>
-						<?php
+								<div id="md_modal"></div>
+								<div id="md_modal2"></div>
+								<div id="md_pageHelp" style="display: none;" title="Aide">
+									<ul class="nav nav-tabs">
+										<li class="active"><a href="#div_helpWebsite" data-toggle="tab">{{Générale}}</a></li>
+										<li><a href="#div_helpSpe" data-toggle="tab">{{Détaillée}}</a></li>
+									</ul>
+									<div class="tab-content">
+										<div class="tab-pane active" id="div_helpWebsite" ></div>
+										<div class="tab-pane" id="div_helpSpe" ></div>
+									</div>
+								</div>
+								<div id="md_reportBug" title="{{Ouverture d'un ticket}}"></div>
+							</main>
+							<?php
 }
 ?>
-				</body>
-				</html>
+					</body>
+					</html>

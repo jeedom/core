@@ -61,6 +61,7 @@ if (!isConnect('admin')) {
 <div id="md_specifyUpdate">
    <form class="form-horizontal">
     <fieldset>
+        <div class="alert alert-danger">{{Avant toute mise à jour merci de consulter la note de version du core de Jeedom}} <a target="_blank" href="https://github.com/jeedom/core/blob/stable/doc/fr_FR/noteVersion.asciidoc">{{ici}}<a></div>
      <div class="form-group">
          <div class="form-group">
             <label class="col-xs-6 control-label">{{Sauvegarder avant}}</label>
@@ -91,12 +92,13 @@ if (!isConnect('admin')) {
             <select id="sel_updateVersion" class="form-control updateOption" data-l1key="update::reapply">
                 <option value="">{{Aucune}}</option>
                 <?php
-$udpates = array();
+$updates = array();
 foreach (update::listCoreUpdate() as $udpate) {
-	$udpates[str_replace(array('.php', '.sql'), '', $udpate)] = str_replace(array('.php', '.sql'), '', $udpate);
+	$updates[str_replace(array('.php', '.sql'), '', $udpate)] = str_replace(array('.php', '.sql'), '', $udpate);
 }
-usort($udpates, 'version_compare');
-foreach ($udpates as $value) {
+usort($updates, 'version_compare');
+$updates = array_reverse($updates);
+foreach ($updates as $value) {
 	echo '<option value="' . $value . '">' . $value . '</option>';
 }
 ?>
@@ -105,7 +107,7 @@ foreach ($udpates as $value) {
    </div>
 </fieldset>
 </form>
-<a class="btn btn-success" style="color:white;" id="bt_doUpdate"><i class="fa fa-check"></i> {{Mettre à jour}}</a>
+<a class="btn btn-success pull-right" style="color:white;" id="bt_doUpdate"><i class="fa fa-check"></i> {{Mettre à jour}}</a>
 </div>
 
 <?php include_file('desktop', 'update', 'js');?>

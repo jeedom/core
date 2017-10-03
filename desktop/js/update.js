@@ -21,7 +21,7 @@
     closeText: '',
     autoOpen: false,
     modal: true,
-    height: 400,
+    height: 450,
     width: 600,
     open: function () {
         $("body").css({overflow: 'hidden'});
@@ -114,11 +114,6 @@
         }
     });
 
-});
-
-
- $('#bt_expertMode').on('click', function () {
-    printUpdate();
 });
 
  function getJeedomLog(_autoUpdate, _log) {
@@ -223,9 +218,16 @@ function addUpdate(_update) {
 }else if (_update.type != 'core') {
     tr += '<a class="btn btn-info btn-xs update" style="margin-bottom : 5px;" title="{{Re-installer}}"><i class="fa fa-refresh"></i> {{Reinstaller}}</a> ';
 }
-tr += '<a class="btn btn-info btn-xs pull-right checkUpdate expertModeVisible" style="margin-bottom : 5px;" ><i class="fa fa-check"></i> {{Vérifier}}</a>';
+if (_update.type != 'core') {       
+   if (isset(_update.plugin) && isset(_update.plugin.changelog) && _update.plugin.changelog != '') {     
+       tr += '<a class="btn btn-default btn-xs cursor" target="_blank" href="'+_update.plugin.changelog+'" style="margin-bottom : 5px;"><i class="fa fa-book"></i> {{Changelog}}</a>';       
+   }     
+}else{        
+  tr += '<a class="btn btn-default btn-xs" href="https://github.com/jeedom/core/blob/stable/doc/fr_FR/changelog.asciidoc" target="_blank" style="margin-bottom : 5px;"><i class="fa fa-book"></i> {{Changelog}}</a>';      
+}
+tr += '<a class="btn btn-info btn-xs pull-right checkUpdate" style="margin-bottom : 5px;" ><i class="fa fa-check"></i> {{Vérifier}}</a>';
 if (_update.type != 'core') {
-    tr += '<a class="btn btn-danger btn-xs pull-right remove expertModeVisible" style="margin-bottom : 5px;" ><i class="fa fa-trash-o"></i> {{Supprimer}}</a>';  
+    tr += '<a class="btn btn-danger btn-xs pull-right remove" style="margin-bottom : 5px;" ><i class="fa fa-trash-o"></i> {{Supprimer}}</a>';  
 }
 tr += '</td>';
 tr += '</tr>';
@@ -246,8 +248,8 @@ $('#bt_saveUpdate').on('click',function(){
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {
-         $('#div_alert').showAlert({message: '{{Sauvegarde effectuée}}', level: 'success'});
-         printUpdate();
-     }
- });
+           $('#div_alert').showAlert({message: '{{Sauvegarde effectuée}}', level: 'success'});
+           printUpdate();
+       }
+   });
 });
