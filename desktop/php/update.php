@@ -92,12 +92,13 @@ if (!isConnect('admin')) {
             <select id="sel_updateVersion" class="form-control updateOption" data-l1key="update::reapply">
                 <option value="">{{Aucune}}</option>
                 <?php
-$udpates = array();
+$updates = array();
 foreach (update::listCoreUpdate() as $udpate) {
-	$udpates[str_replace(array('.php', '.sql'), '', $udpate)] = str_replace(array('.php', '.sql'), '', $udpate);
+	$updates[str_replace(array('.php', '.sql'), '', $udpate)] = str_replace(array('.php', '.sql'), '', $udpate);
 }
-usort($udpates, 'version_compare');
-foreach ($udpates as $value) {
+usort($updates, 'version_compare');
+$updates = array_reverse($updates);
+foreach ($updates as $value) {
 	echo '<option value="' . $value . '">' . $value . '</option>';
 }
 ?>
