@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 try {
 	if (config::byKey('market::username') != '') {
 		config::save('market::enable', 1);
