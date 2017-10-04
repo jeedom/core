@@ -1,5 +1,11 @@
 == Changelog
 
+== 3.1.6
+
+* Correction de bug (en particulier sur les historiques et fonction statistique)
+* Amélioration du systeme de mise à jour avec une page de note de version (que vous devez verifier vous meme avant chaque mise à jour !!!!)
+
+
 == 3.1
 
 * Correction de bugs
