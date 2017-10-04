@@ -130,14 +130,14 @@ class interactDef {
 				$countTags = count($tags[1]);
 				for ($i = 0; $i < $countTags; $i++) {
 					if (isset($matches[0][$i + 1])) {
-						$options[$tags[1][$i]] = $matches[0][$i + 1];
+						$options['#' . $tags[1][$i] . '#'] = $matches[0][$i + 1];
 					}
 				}
 			}
 		}
 		foreach ($tags[1] as $match) {
-			if (!isset($options[$match])) {
-				$options[$match] = '""';
+			if (!isset($options['#' . $match . '#'])) {
+				$options['#' . $match . '#'] = '';
 			}
 		}
 		return $options;

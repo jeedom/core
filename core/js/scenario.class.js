@@ -43,7 +43,7 @@ jeedom.scenario.all = function (_params) {
         return;
     }
     var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    if (isset(jeedom.scenario.cache.all) && init(_params.nocache,false) == false) {
+    if (isset(jeedom.scenario.cache.all) && jeedom.scenario.cache.all != null && init(_params.nocache,false) == false) {
         params.success(jeedom.scenario.cache.all);
         return;
     }
@@ -64,6 +64,7 @@ jeedom.scenario.saveAll = function (_params) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
         return;
     }
+    delete jeedom.scenario.cache.all
     var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/scenario.ajax.php';
@@ -275,6 +276,7 @@ jeedom.scenario.copy = function (_params) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
         return;
     }
+    delete jeedom.scenario.cache.all
     var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/scenario.ajax.php';
@@ -315,6 +317,7 @@ jeedom.scenario.save = function (_params) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
         return;
     }
+    delete jeedom.scenario.cache.all
     var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/scenario.ajax.php';
@@ -334,6 +337,7 @@ jeedom.scenario.remove = function (_params) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
         return;
     }
+    delete jeedom.scenario.cache.all
     var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/scenario.ajax.php';
@@ -367,20 +371,21 @@ jeedom.scenario.getSelectModal = function (_options, callback) {
     if (!isset(_options)) {
         _options = {};
     }
-    if ($("#mod_insertScenarioValue").length == 0) {
-        $('body').append('<div id="mod_insertScenarioValue" title="{{Sélectionner le scénario}}" ></div>');
-
-        $("#mod_insertScenarioValue").dialog({
-            closeText: '',
-            autoOpen: false,
-            modal: true,
-            height: 250,
-            width: 800
-        });
-        jQuery.ajaxSetup({async: false});
-        $('#mod_insertScenarioValue').load('index.php?v=d&modal=scenario.human.insert');
-        jQuery.ajaxSetup({async: true});
+    if ($("#mod_insertScenarioValue").length != 0) {
+        $("#mod_insertScenarioValue").remove();
     }
+    $('body').append('<div id="mod_insertScenarioValue" title="{{Sélectionner le scénario}}" ></div>');
+    $("#mod_insertScenarioValue").dialog({
+        closeText: '',
+        autoOpen: false,
+        modal: true,
+        height: 250,
+        width: 800
+    });
+    jQuery.ajaxSetup({async: false});
+    $('#mod_insertScenarioValue').load('index.php?v=d&modal=scenario.human.insert');
+    jQuery.ajaxSetup({async: true});
+    
     mod_insertScenario.setOptions(_options);
     $("#mod_insertScenarioValue").dialog('option', 'buttons', {
         "Annuler": function () {

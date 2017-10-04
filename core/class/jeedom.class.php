@@ -264,11 +264,11 @@ class jeedom {
 	}
 
 	public static function getApiKey($_plugin = 'core') {
-		if ($_plugin == 'proapi') {
-			if (config::byKey('proapi') == '') {
-				config::save('proapi', config::genKey());
+		if ($_plugin == 'apipro') {
+			if (config::byKey('apipro') == '') {
+				config::save('apipro', config::genKey());
 			}
-			return config::byKey('proapi');
+			return config::byKey('apipro');
 		}
 		if (config::byKey('api', $_plugin) == '') {
 			config::save('api', config::genKey(), $_plugin);
@@ -515,9 +515,15 @@ class jeedom {
 
 	/****************************UPDATE*****************************************************************/
 
-	public static function update($_mode = '', $_level = -1, $_version = '', $__onlyThisVersion = '') {
+	public static function update($_options = array()) {
 		log::clear('update');
-		$cmd = dirname(__FILE__) . '/../../install/install.php "mode=' . $_mode . '" "level=' . $_level . '" "version=' . $_version . '" "onlyThisVersion=' . $__onlyThisVersion . '"';
+		$params = '';
+		if (count($_options) > 0) {
+			foreach ($_options as $key => $value) {
+				$params .= '"' . $key . '"="' . $value . '" ';
+			}
+		}
+		$cmd = dirname(__FILE__) . '/../../install/update.php ' . $params;
 		$cmd .= ' >> ' . log::getPathToLog('update') . ' 2>&1 &';
 		system::php($cmd);
 	}

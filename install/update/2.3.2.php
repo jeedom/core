@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 try {
 	$sql = "ALTER TABLE `update`
 			ADD `source` varchar(127) COLLATE 'utf8_general_ci' NOT NULL DEFAULT 'market' AFTER `status`;";

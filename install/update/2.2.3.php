@@ -1,5 +1,5 @@
 <?php
-
+require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 try {
 	foreach (cmd::all() as $cmd) {
 		foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {

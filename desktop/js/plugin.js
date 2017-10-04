@@ -255,8 +255,6 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
   }
   log_conf += '</form>';
   $('#div_plugin_log').empty().append(log_conf);
-
-  initExpertMode();
   $('#div_plugin_configuration').empty();
   if (data.checkVersion != -1) {
     if (data.configurationPath != '' && data.activate == 1) {
@@ -277,7 +275,6 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
         $('#div_plugin_configuration').setValues(data, '.configKey');
         $('#div_plugin_configuration').parent().show();
         modifyWithoutSave = false;
-        initExpertMode();
       }
     });
    });
@@ -293,7 +290,6 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
     success: function (data) {
       $('#div_plugin_panel').setValues(data, '.configKey');
       modifyWithoutSave = false;
-      initExpertMode();
     }
   });
   jeedom.config.load({
@@ -305,7 +301,6 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
     success: function (data) {
       $('#div_plugin_functionality').setValues(data, '.configKey');
       modifyWithoutSave = false;
-      initExpertMode();
     }
   });
   jeedom.config.load({
@@ -316,7 +311,6 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
     success: function (data) {
       $('#div_plugin_log').setValues(data, '.configKey');
       modifyWithoutSave = false;
-      initExpertMode();
     }
   });
 } else {

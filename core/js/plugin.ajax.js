@@ -198,7 +198,6 @@ $('body').on('click', '.li_eqLogic', function(event) {
             $('body').on('.cmd .cmdAttr[data-l1key=subType]', 'change', function () {
                 jeedom.cmd.changeSubType($(this).closest('.cmd'));
             });
-            initExpertMode();
             var vars = getMyUrlVars();
             var url = 'index.php?';
             for (var i in vars) {

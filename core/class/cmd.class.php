@@ -1493,6 +1493,9 @@ class cmd {
 	}
 
 	public function getStatistique($_startTime, $_endTime) {
+		if ($this->getType() != 'info' || $this->getType() == 'string') {
+			return array();
+		}
 		return history::getStatistique($this->getId(), $_startTime, $_endTime);
 	}
 

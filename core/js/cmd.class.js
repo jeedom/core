@@ -556,9 +556,6 @@ jeedom.cmd.changeType = function(_cmd, _subType) {
                 modifyWithoutSave = false;
             }
             jeedom.cmd.changeSubType(_cmd);
-            if ('function' == typeof(initExpertMode)) {
-                initExpertMode();
-            }
         }
     });
 };
@@ -669,9 +666,6 @@ if (_cmd.find('.cmdAttr[data-l1key=type]').value() == 'action') {
    _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdToValue]').hide();
 }
 modifyWithoutSave = false;
-if ('function' == typeof(initExpertMode)) {
-    initExpertMode();
-}
 }
 });
 };

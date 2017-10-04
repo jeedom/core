@@ -81,6 +81,7 @@ class update {
 			}
 		}
 		config::save('update::lastCheck', date('Y-m-d H:i:s'));
+		event::add('update::refreshUpdateNumber');
 	}
 
 	public static function listRepo() {
@@ -110,10 +111,6 @@ class update {
 		);
 		$return['enable'] = config::byKey($_id . '::enable');
 		return $return;
-	}
-
-	public static function makeUpdateLevel($_mode = '', $_level = 1, $_version = '', $_onlyThisVersion = '') {
-		jeedom::update($_mode, $_level, $_version, $_onlyThisVersion);
 	}
 
 	public static function updateAll($_filter = '') {

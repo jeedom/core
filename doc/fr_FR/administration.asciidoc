@@ -4,10 +4,6 @@ C’est ici que se trouvent la plupart des paramètres de configuration. Bien qu
 
 La page est accessible par Administration -> Configuration : 
 
-
-[IMPORTANT]
-Si vous n'êtes pas en mode expert certains paramètres peuvent ne pas être visibles.
-
 == Générale
 
 Dans cet onglet on retrouve des informations générales sur Jeedom : 

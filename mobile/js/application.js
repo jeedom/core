@@ -326,6 +326,10 @@ function refreshMessageNumber() {
     });
 }
 
+function refreshUpdateNumber() {
+   
+}
+
 function notify(_title, _text) {
     new $.nd2Toast({
         message :  _title+'. '+_text,

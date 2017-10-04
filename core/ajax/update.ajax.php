@@ -26,6 +26,10 @@ try {
 
 	ajax::init();
 
+	if (init('action') == 'nbUpdate') {
+		ajax::success(update::nbNeedUpdate());
+	}
+
 	if (init('action') == 'all') {
 		$return = array();
 		foreach (update::all(init('filter')) as $update) {
@@ -34,7 +38,8 @@ try {
 				try {
 					$plugin = plugin::byId($update->getLogicalId());
 					if (is_object($plugin)) {
-						$infos['plugin'] = utils::o2a($plugin);
+						$infos['plugin'] = array();
+						$infos['plugin']['changelog'] = $plugin->getChangelog();
 					}
 				} catch (Exception $e) {
 
@@ -108,7 +113,7 @@ try {
 	}
 
 	if (init('action') == 'updateAll') {
-		update::makeUpdateLevel(init('mode'), init('level'), init('version', ''), init('onlyThisVersion', ''));
+		jeedom::update(json_decode(init('options', '{}'), true));
 		ajax::success();
 	}
 

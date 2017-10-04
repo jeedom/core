@@ -279,30 +279,6 @@ if (isset(jeedom_langage)) {
    });
    });
 
-    /******************Gestion mode expert**********************/
-
-    $('#bt_expertMode').on('click', function () {
-        if ($(this).attr('state') == 1) {
-            var value = {options: {expertMode: 0}};
-            $(this).attr('state', 0);
-            $(this).find('i').removeClass('fa-check-square-o').addClass('fa-square-o');
-        } else {
-            var value = {options: {expertMode: 1}};
-            $(this).attr('state', 1);
-            $(this).find('i').removeClass('fa-square-o').addClass('fa-check-square-o');
-        }
-        initExpertMode();
-        jeedom.user.saveProfils({
-            profils: value,
-            global: false,
-            error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function () {
-            }
-        });
-    });
-
     $('body').on( 'click','.bt_pageHelp', function () {
         showHelpModal($(this).attr('data-name'), $(this).attr('data-plugin'));
     });
@@ -390,7 +366,6 @@ function initCheckBox(){
 
 function initPage(){
     initTableSorter();
-    initExpertMode();
     initReportMode();
     $.initTableFilter();
     initRowOverflow();
@@ -421,18 +396,6 @@ function initRowOverflow() {
        }
        $('.row-overflow > div').height(hWindow).css('overflow-y', 'auto').css('overflow-x', 'hidden').css('padding-top','5px');
    }
-}
-
-function initExpertMode() {
-    if ($('#bt_expertMode').attr('state') == 1) {
-        $('.expertModeDisable').attr('disabled', false);
-        $('.expertModeVisible').show();
-        $('.expertModeHidden').hide();
-    } else {
-        $('.expertModeDisable').attr('disabled', true);
-        $('.expertModeVisible').hide();
-        $('.expertModeHidden').show();
-    }
 }
 
 function initReportMode() {
@@ -511,6 +474,23 @@ function refreshMessageNumber() {
             } else {
                 $('#span_nbMessage').html(_number);
                 $('#span_nbMessage').show();
+            }
+        }
+    });
+}
+
+function refreshUpdateNumber() {
+    jeedom.update.number({
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success : function (_number) {
+            UPDATE_NUMBER = _number;
+            if (_number == 0 || _number == '0') {
+                $('#span_nbUpdate').hide();
+            } else {
+                $('#span_nbUpdate span').html(_number);
+                $('#span_nbUpdate').show();
             }
         }
     });
