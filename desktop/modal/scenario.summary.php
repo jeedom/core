@@ -84,7 +84,7 @@ if (!isConnect()) {
 					tr += '<td>';
 					tr += '<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="syncmode">';
 					tr += '</td>';
-					tr += '<td>';
+					tr += '<td style="width: 150px;">';
 					tr += '<select class="scenarioAttr form-control" data-l1key="configuration" data-l2key="logmode">';
 					tr += '<option value="default">{{Défaut}}</option>';
 					tr += '<option value="none">{{Aucun}}</option>';
