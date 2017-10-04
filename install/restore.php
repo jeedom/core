@@ -37,7 +37,7 @@ if (isset($argv)) {
 
 try {
 	require_once dirname(__FILE__) . '/../core/php/core.inc.php';
-	echo "***************Start of Jeedom restoration ". date('Y-m-d H:i:s') . "***************\n";
+	echo "***************Start of Jeedom restoration " . date('Y-m-d H:i:s') . "***************\n";
 
 	try {
 		echo "Send begin restoration event...";
@@ -100,11 +100,11 @@ try {
 	echo "File use for restoration : " . $backup . "\n";
 
 	echo "Backup databse acces configuration...";
-        
-        if(copy(dirname(__FILE__) . '/../core/config/common.config.php', '/tmp/common.config.php')){
-            echo 'Can not copy ' . dirname(__FILE__) . "/../core/config/common.config.php\n";
-        }
-	 
+
+	if (copy(dirname(__FILE__) . '/../core/config/common.config.php', '/tmp/common.config.php')) {
+		echo 'Can not copy ' . dirname(__FILE__) . "/../core/config/common.config.php\n";
+	}
+
 	echo "OK\n";
 
 	try {
@@ -114,8 +114,21 @@ try {
 	}
 
 	echo "Decompression of backup...";
+	$excludes = array(
+		'tmp',
+		'log',
+		'backup',
+		'.git',
+		'.log',
+		'core/config/common.config.php',
+		config::byKey('backup::path'),
+	);
+	$exclude = '';
+	foreach ($excludes as $folder) {
+		$exclude .= ' --exclude="' . $folder . '"';
+	}
 	$rc = 0;
-	system('cd ' . $jeedom_dir . '; tar xfz "' . $backup . '" ');
+	system('cd ' . $jeedom_dir . '; tar xfz "' . $backup . '" ' . $exclude);
 	echo "OK\n";
 	if (!file_exists($jeedom_dir . "/DB_backup.sql")) {
 		throw new Exception('Cannot find backup database file : DB_backup.sql');
@@ -195,4 +208,3 @@ try {
 	jeedom::start();
 	throw $e;
 }
- 
