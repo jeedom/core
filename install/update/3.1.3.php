@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 echo 'Add Jeedom watchdog';
 $cdir = dirname(__FILE__);
 if (!file_exists('/etc/cron.d/jeedom_watchdog')) {

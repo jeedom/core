@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 if (config::byKey('update1.212first', 'core', 0) == 0) {
 	echo 'Relance de la mise à jour (normal) pour passer au nouveau systeme de cache. La log peut etre illisible pour suivre l\'avancement allez sur dans log puis choissiez update';
 	sleep(20);

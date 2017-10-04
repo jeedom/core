@@ -973,7 +973,7 @@ class scenarioExpression {
 				} else {
 					if (function_exists($function)) {
 						foreach ($arguments as &$argument) {
-							$argument = evaluate(self::setTags($argument, $_scenario, $_quote));
+							$argument = trim(evaluate(self::setTags($argument, $_scenario, $_quote)));
 						}
 						$replace2[$replace_string] = call_user_func_array($function, $arguments);
 					}

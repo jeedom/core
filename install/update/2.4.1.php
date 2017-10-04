@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 try {
 	foreach (cmd::all() as $cmd) {
 		$mc = cache::byKey('cmd' . $cmd->getId());
