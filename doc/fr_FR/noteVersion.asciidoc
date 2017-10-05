@@ -2,5 +2,8 @@
 
 == 3.1
 
-* Attention nous avons changer les pas des widgets cela peut donc avoir un impact sur le positionement de vos widget sur les designs/vue et dashboard
-* Cette mise à jour rend un changement dans la conception des plugins obligatoire (changement recommandé en 3.0). Certain plugin pourront donc ne plus etre disponible dans cette version jusqu'a correction par l'auteur. Vous pouvez retrouver la liste des plugins en question ici : https://www.jeedom.com/market/index.php?v=d&p=scoring
+* Attention nous avons changé les pas des widgets, cela peut donc avoir un impact sur le positionement de vos widgets sur les designs/vues et dashboard.
+* Cette mise à jour requiert un changement obligatoire dans la conception des plugins (changement recommandé en 3.0). 
+* Certains plugins pourront donc ne plus être disponibles dans cette version jusqu'à correction par l'auteur.
+
+* Vous pouvez retrouver la liste des plugins en question ici : https://www.jeedom.com/market/index.php?v=d&p=scoring
