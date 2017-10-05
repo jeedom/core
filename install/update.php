@@ -49,6 +49,7 @@ try {
 	}
 	echo "****Update jeedom from " . jeedom::version() . " (" . date('Y-m-d H:i:s') . ")****\n";
 	echo "Parameters : " . print_r($_GET, true);
+	$curentVersion = config::byKey('version');
 
 	/*         * ************************MISE A JOUR********************************** */
 
