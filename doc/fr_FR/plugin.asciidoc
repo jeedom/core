@@ -1,6 +1,6 @@
 = Plugins
 
-Le sous-menu Plugins, permet de gérer ses plugins, à savoir : les télécharger, les mettre à jour et les activer.
+Le sous-menu Plugins permet de gérer ses plugins, à savoir : les télécharger, les mettre à jour et les activer.
 
 == Gestion des plugins
 
@@ -11,36 +11,38 @@ Comme à beaucoup d'endroits sur Jeedom, mettre la souris tout à gauche permet 
 
 Sur cette page vous retrouvez tous les plugins présents sur votre Jeedom; en opaque ceux qui sont désactivés. En cliquant sur un plugin vous accèdez à sa configuration.
 
-En haut vous retrouvez l'ID et le nom du plugin, ainsi que la version installée. En dessous vous avez le bouton d'activation/désactivation d'un plugin
+En haut vous retrouvez l'ID et le nom du plugin, ainsi que le type version installée (stable, béta)
 
 [IMPORTANT]
 Lors du téléchargement d'un plugin celui-ci n'est pas activé, il faut donc que vous l'activiez
 
 Sur la droite vous retrouvez 4 boutons : 
 
+* *Documentation* : Permet d'accéder directement à la page de documentation du plugin
 * *Changelog* : permet de voir le changelog du plugin si il existe 
 * *Envoyer sur le Market* : permet d'envoyer le plugin sur le Market (uniquement disponible si vous en êtes l'auteur)
+* *Détails* : permet d'ouvrir la page duplugin sur le market
 * *Supprimer* : Supprime le plugin de votre Jeedom. Attention cela supprime définitivement tous les équipements de ce plugin aussi
-* *Documentation* : Permet d'accéder directement à la page de documentation du plugin
 
-En dessous on retrouve une zone etat avec : 
+
+En dessous à gauche on retrouve une zone état avec : 
 
 * *Statut* : permet de voir le statut du plugin (actif / inactif)
-* *Version* : la version du plugin que vous possédez
+* *Version* : la version du plugin installée
 * *Auteur* : l'auteur du plugin
 * *Action* : Permet d'activer ou désactiver le plugin
-* *Version jeedom* : Indique la version minimum requise du plugin
+* *Version jeedom* : Indique la version minimum requise de Jeedom nécessaire pour le plugin
 * *Licence* : Indique la licence du plugin qui sera généralement AGPL
 
-A droite on retrouve la zone log qui permet de spécifier le niveau de log spécifiquement pour le plugin (on retrouve cette même possibilité dans Administatrion--> Configuration sur l'onglet logs).
+A droite on retrouve la zone log qui permet de définir le niveau de log spécifique au plugin (on retrouve cette même possibilité dans Administatrion--> Configuration sur l'onglet logs).
 
-Si le plugin possède des dépendances et /ou un démon on peut retrouver ces deux zones.
+Si le plugin possède des dépendances et/ou un démon ces zones supplémentaires s'affichent sous les zones citées ci-dessus.
 
 Dépendances :
 
 * *Nom* : généralement sera local
 * *Statut* : vous dira si les dépendances sont OK ou KO
-* *Installation* : permettra d'installer ou réinstaller les dépendances (si vous ne le faites pas manuellement et qu'elles sont KO jeedom se chargera de lui même au bout d'un moment de le faire)
+* *Installation* : permettra d'installer ou réinstaller les dépendances (si vous ne le faites pas manuellement et qu'elles sont KO Jeedom se chargera de lui même au bout d'un moment de le faire)
 * *Dernière installation* : date de la dernière installation des dépendances
 
 Démon :
@@ -49,12 +51,12 @@ Démon :
 * *Statut* : vous dira si le démon est OK ou KO
 * *Configuration* : sera OK si tous les critères pour que le démon tourne sont réunis ou donnera la cause du blocage
 * *(Re)Démarrer* : permet de lancer ou relancer le démon
-* *Arrêter* : permet d'arrêter le démon (que dans le cas ou la gestion automatique est désactivée
-* *Gestion automatique* : permet d'activer ou désactiver la gestion automatique (ce qui permet à jeedom de gérer lui même le démon et le relancer si besoin, sauf contre indications il est conseiller de laisser la gestion automatique active)
-* *Dernièr lancement* : date du dernier lancement du démon
+* *Arrêter* : permet d'arrêter le démon (que dans le cas ou la gestion automatique est désactivée)
+* *Gestion automatique* : permet d'activer ou désactiver la gestion automatique (ce qui permet à Jeedom de gérer lui même le démon et le relancer si besoin, sauf contre indication il est conseillé de laisser la gestion automatique active)
+* *Dernier lancement* : date du dernier lancement du démon
 
 [TIP]
-Certains plugins ont une partie configuration, il faut dans ce cas se référer à la doc du plugin en question pour savoir comment le configurer (si tel est le cas elle apparaitra ici)
+Certains plugins ont une partie configuration, si tel est le cas elle apparaitra sauf les zones dépendances et démon décrites ci-dessus. Il faut dans ce cas se référer à la documentation du plugin en question pour savoir comment le configurer
 
 En dessous on retrouve une zone fonctionnalités. Celle-ci permet de voir si le plugin utilise ou non une des fonctions cores Jeedom tel que :
 
@@ -76,14 +78,17 @@ Enfin on peut retrouver un section Panel qui permettra d'activer ou désactiver 
 
 Pour installer un nouveau plugin il suffit de cliquer sur le bouton "Market". Après un petit temps de chargement vous obtiendrez la page.
 
-Tout en haut comme sur le Market vous avez des filtres : 
+[TIP]
+Vous devez avoir saisi les informations de votre compte du market dans la configuration -> Mises à jour section market afin de retrouver les plugins que vous avez déjà acheté par exemple
+
+En haut de la fenêtre vous avez des filtres : 
 
 * *Gratuit/Payant* : permet de ne filtrer que sur les gratuits ou les payants, la petite croix permet de réinitialiser le filtre
 * *Officiel/Conseillé* : permet d'afficher les plugins officiels ou les conseillés uniquement
 * *Installé/Non installé* : permet de n'afficher que les plugins installés ou non, la petite croix permet de réinitialiser le filtre
 * *Menu déroulant Catégorie* : permet de n'afficher que certaines catégories de plugins
 * *Rechercher* : permet de rechercher un plugin (dans le nom ou la description de celui-ci)
-* *Nom d'utilisateur* : affiche le nom d'utilisateur utilisé pour la connexion au Market ainsi que le statut de la connexion (ici ok)
+* *Nom d'utilisateur* : affiche le nom d'utilisateur utilisé pour la connexion au Market ainsi que le statut de la connexion
 
 Un fois le plugin voulu trouvé il suffit de cliquer sur celui-ci pour faire apparaître la fiche du plugin.
 
@@ -97,7 +102,7 @@ Cette fiche vous donne beaucoup d'informations sur le plugin, entre autre :
 ** *Supprimer* : si le plugin est actuellement installé, ce bouton permet de le supprimer
 
 En dessous vous retrouvez la description du plugin, la compatibilité (si Jeedom détecte une incompatibilité il vous le signalera), les avis sur le plugin (vous pouvez ici le noter) et des informations complémentaires (l'auteur, la personne ayant fait la dernière mise à jour, un lien vers la doc, le nombre de téléchargements).
-Sur la droite vous retrouvez la liste des dernières mises à jour (un bouton tout voir vous permet d'avoir tout l'historique), une documentation rapide d'utilisation (il est recommandé quand même de lire la documentation complète) et enfin le type (plugin, widget...), la langue et les diverses informations sur la date de la dernière stable.
+Sur la droite vous retrouvez un bouton "Changelog" qui vous permet d'avoir tout l'historique des modifications,un bouton "Documentation" qui renvoit vers la documentation du plugin. Ensuite vous avez la langue disponible et les diverses informations sur la date de la dernière version stable.
 
 [IMPORTANT]
 Il n'est vraiment pas recommandé de mettre un plugin beta sur un Jeedom non beta, beaucoup de soucis de fonctionnement peuvent en résulter.
