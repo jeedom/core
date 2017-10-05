@@ -42,7 +42,7 @@ A noter que "core : jeedom" signifie la mise à jour du logiciel de base Jeedom.
 Il est possible de faire une mise à jour de Jeedom directement en SSH, voici comment faire : 
 
 ----
-sudo php /var/www/html/install/install.php
+sudo php /var/www/html/install/update.php
 ----
 
 Voilà les paramètres possibles :
@@ -53,7 +53,7 @@ Voilà les paramètres possibles :
 Exemple pour faire une mise à jour forcée en réappliquant les changements depuis la 1.188.0 : 
 
 ----
-sudo php  /var/www/html/install/install.php mode=force version=1.188.0
+sudo php  /var/www/html/install/update.php mode=force version=1.188.0
 ----
 
 Attention, après une mise à jour en ligne de commande, il faut réappliquer les droits sur le dossier Jeedom :
