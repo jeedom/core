@@ -4,6 +4,7 @@
 
 * Correction de bug
 * Possibilité de désactiver une intéraction
+* Ajout d'un editeur de fichier (réservé aux utilisateurs expérimentés)
 
 == 3.1.7
 
