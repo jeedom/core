@@ -88,7 +88,7 @@ try {
 			} else if (init('page') == 'view_edit') {
 				$page = 'view';
 			}
-			ajax::success('doc/' . config::byKey('language', 'core', 'fr_FR') . '/' . secureXSS($page) . '.html');
+			ajax::success('https://github.com/jeedom/core/blob/master/doc/' . config::byKey('language', 'core', 'fr_FR') . '/' . secureXSS($page) . '.asciidoc');
 		}
 		throw new Exception(__('Aucune documentation trouvée', __FILE__), -1234);
 	}
