@@ -370,19 +370,21 @@ class interactDef {
 	public function postSave() {
 		$queries = $this->generateQueryVariant();
 		interactQuery::removeByInteractDefId($this->getId());
-		DB::beginTransaction();
-		foreach ($queries as $query) {
-			$query['query'] = self::sanitizeQuery($query['query']);
-			if (!$this->checkQuery($query['query'])) {
-				continue;
+		if ($this->getEnable()) {
+			DB::beginTransaction();
+			foreach ($queries as $query) {
+				$query['query'] = self::sanitizeQuery($query['query']);
+				if (!$this->checkQuery($query['query'])) {
+					continue;
+				}
+				$interactQuery = new interactQuery();
+				$interactQuery->setInteractDef_id($this->getId());
+				$interactQuery->setQuery($query['query']);
+				$interactQuery->setActions('cmd', $query['cmd']);
+				$interactQuery->save();
 			}
-			$interactQuery = new interactQuery();
-			$interactQuery->setInteractDef_id($this->getId());
-			$interactQuery->setQuery($query['query']);
-			$interactQuery->setActions('cmd', $query['cmd']);
-			$interactQuery->save();
+			DB::commit();
 		}
-		DB::commit();
 		self::cleanInteract();
 	}
 

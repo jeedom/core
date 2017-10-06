@@ -43,6 +43,7 @@ La page de configuration est constituée de plusieurs onglets et des boutons :
 
 * *Nom* : nom de l'interaction (peut être vide, le nom remplace le texte de la demande dans la liste des interactions).
 * *Groupe* : groupe de l'interaction, cela permet de les organiser (peut être vide, sera donc dans le groupe "aucun").
+* *Actif* : permet d'activer ou désactive l'interaction
 * *Demande* : la phrase modèle génératrice (obligatoire).
 * *Synonyme* : permet de définir des synonymes sur les noms des commandes.
 * *Réponse* : la réponse à fournir.
