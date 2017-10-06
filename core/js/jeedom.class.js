@@ -546,3 +546,63 @@ jeedom.removeTimelineEvents = function(_params) {
     };
     $.ajax(paramsAJAX);
 };
+
+
+jeedom.getFileFolder = function(_params) {
+ var paramsRequired = ['type','path'];
+    var paramsSpecifics = {};
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+    paramsAJAX.data = {
+        action: 'getFileFolder',
+        type : _params.type,
+        path : _params.path,
+    };
+    $.ajax(paramsAJAX);
+};
+
+jeedom.getFileContent = function(_params) {
+ var paramsRequired = ['path'];
+    var paramsSpecifics = {};
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+    paramsAJAX.data = {
+        action: 'getFileContent',
+        path : _params.path,
+    };
+    $.ajax(paramsAJAX);
+};
+
+jeedom.setFileContent = function(_params) {
+ var paramsRequired = ['path','content'];
+    var paramsSpecifics = {};
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+    paramsAJAX.data = {
+        action: 'setFileContent',
+        path : _params.path,
+        content : _params.content,
+    };
+    $.ajax(paramsAJAX);
+};

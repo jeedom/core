@@ -354,6 +354,7 @@ $nbMessage = message::nbMessage();
 											<li><a href="index.php?v=d&p=update"><i class="fa fa-refresh"></i> {{Centre de mise à jour}}</a></li>
 											<li><a href="index.php?v=d&p=cron"><i class="fa fa-tasks"></i> {{Moteur de tâches}}</a></li>
 											<li><a href="index.php?v=d&p=custom"><i class="fa fa-pencil-square-o"></i> {{Personnalisation avancée}}</a></li>
+											<li><a href="index.php?v=d&p=editor"><i class="fa fa-pencil"></i> {{Editor}}</a></li>
 											<li role="separator" class="divider"></li>
 											<li><a href="index.php?v=d&p=user"><i class="fa fa-users"></i> {{Utilisateurs}}</a></li>
 										</ul>

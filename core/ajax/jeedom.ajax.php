@@ -269,6 +269,25 @@ try {
 		ajax::success(jeedom::removeTimelineEvent());
 	}
 
+	if (init('action') == 'getFileFolder') {
+		ajax::success(ls(init('path'), '*', false, array(init('type'))));
+	}
+
+	if (init('action') == 'getFileContent') {
+		$pathinfo = pathinfo(init('path'));
+		if (!in_array($pathinfo['extension'], array('php', 'js', 'json'))) {
+			throw new Exception(__('Vous ne pouvez éditer ce type d\'extension : ' . $pathinfo['extension'], __FILE__));
+		}
+		ajax::success(file_get_contents(init('path')));
+	}
+
+	if (init('action') == 'setFileContent') {
+		if (!in_array($pathinfo['extension'], array('php', 'js', 'json'))) {
+			throw new Exception(__('Vous ne pouvez éditer ce type d\'extension : ' . $pathinfo['extension'], __FILE__));
+		}
+		ajax::success(file_put_contents(init('path'), init('content')));
+	}
+
 	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {

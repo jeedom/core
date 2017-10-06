@@ -27,10 +27,10 @@
 	 */
 	$.jstree.defaults.search = {
 		/**
-		 * a jQuery-like AJAX config, which jstree uses if a server should be queried for results. 
-		 * 
+		 * a jQuery-like AJAX config, which jstree uses if a server should be queried for results.
+		 *
 		 * A `str` (which is the search string) parameter will be added with the request, an optional `inside` parameter will be added if the search is limited to a node id. The expected result is a JSON array with nodes that need to be opened so that matching nodes will be revealed.
-		 * Leave this setting as `false` to not query the server. You can also set this to a function, which will be invoked in the instance's scope and receive 3 parameters - the search string, the callback to call with the array of nodes to load, and the optional node ID to limit the search to 
+		 * Leave this setting as `false` to not query the server. You can also set this to a function, which will be invoked in the instance's scope and receive 3 parameters - the search string, the callback to call with the array of nodes to load, and the optional node ID to limit the search to
 		 * @name $.jstree.defaults.search.ajax
 		 * @plugin search
 		 */
@@ -48,7 +48,7 @@
 		 */
 		case_sensitive : false,
 		/**
-		 * Indicates if the tree should be filtered (by default) to show only matching nodes (keep in mind this can be a heavy on large trees in old browsers). 
+		 * Indicates if the tree should be filtered (by default) to show only matching nodes (keep in mind this can be a heavy on large trees in old browsers).
 		 * This setting can be changed at runtime when calling the search method. Default is `false`.
 		 * @name $.jstree.defaults.search.show_only_matches
 		 * @plugin search
@@ -97,24 +97,30 @@
 			this.element
 				.on("search.jstree", $.proxy(function (e, data) {
 						if(this._data.search.som && data.res.length) {
-							var m = this._model.data, i, j, p = [];
+							var m = this._model.data, i, j, p = [], k, l;
 							for(i = 0, j = data.res.length; i < j; i++) {
 								if(m[data.res[i]] && !m[data.res[i]].state.hidden) {
 									p.push(data.res[i]);
 									p = p.concat(m[data.res[i]].parents);
 									if(this._data.search.smc) {
-										p = p.concat(m[data.res[i]].children_d);
+										for (k = 0, l = m[data.res[i]].children_d.length; k < l; k++) {
+											if (m[m[data.res[i]].children_d[k]] && !m[m[data.res[i]].children_d[k]].state.hidden) {
+												p.push(m[data.res[i]].children_d[k]);
+											}
+										}
 									}
 								}
 							}
 							p = $.vakata.array_remove_item($.vakata.array_unique(p), $.jstree.root);
 							this._data.search.hdn = this.hide_all(true);
-							this.show_node(p);
+							this.show_node(p, true);
+							this.redraw(true);
 						}
 					}, this))
 				.on("clear_search.jstree", $.proxy(function (e, data) {
 						if(this._data.search.som && data.res.length) {
-							this.show_node(this._data.search.hdn);
+							this.show_node(this._data.search.hdn, true);
+							this.redraw(true);
 						}
 					}, this));
 		};
@@ -156,8 +162,8 @@
 					return a.call(this, str, $.proxy(function (d) {
 							if(d && d.d) { d = d.d; }
 							this._load_nodes(!$.isArray(d) ? [] : $.vakata.array_unique(d), function () {
-								this.search(str, true, show_only_matches, inside, append);
-							}, true);
+								this.search(str, true, show_only_matches, inside, append, show_only_matches_children);
+							});
 						}, this), inside);
 				}
 				else {
@@ -167,7 +173,10 @@
 					if(inside) {
 						a.data.inside = inside;
 					}
-					return $.ajax(a)
+					if (this._data.search.lastRequest) {
+						this._data.search.lastRequest.abort();
+					}
+					this._data.search.lastRequest = $.ajax(a)
 						.fail($.proxy(function () {
 							this._data.core.last_error = { 'error' : 'ajax', 'plugin' : 'search', 'id' : 'search_01', 'reason' : 'Could not load search parents', 'data' : JSON.stringify(a) };
 							this.settings.core.error.call(this, this._data.core.last_error);
@@ -175,9 +184,10 @@
 						.done($.proxy(function (d) {
 							if(d && d.d) { d = d.d; }
 							this._load_nodes(!$.isArray(d) ? [] : $.vakata.array_unique(d), function () {
-								this.search(str, true, show_only_matches, inside, append);
-							}, true);
+								this.search(str, true, show_only_matches, inside, append, show_only_matches_children);
+							});
 						}, this));
+					return this._data.search.lastRequest;
 				}
 			}
 			if(!append) {
@@ -192,7 +202,7 @@
 			f = new $.vakata.search(str, true, { caseSensitive : s.case_sensitive, fuzzy : s.fuzzy });
 			$.each(m[inside ? inside : $.jstree.root].children_d, function (ii, i) {
 				var v = m[i];
-				if(v.text && (!s.search_leaves_only || (v.state.loaded && v.children.length === 0)) && ( (s.search_callback && s.search_callback.call(this, str, v)) || (!s.search_callback && f.search(v.text).isMatch) ) ) {
+				if(v.text && !v.state.hidden && (!s.search_leaves_only || (v.state.loaded && v.children.length === 0)) && ( (s.search_callback && s.search_callback.call(this, str, v)) || (!s.search_callback && f.search(v.text).isMatch) ) ) {
 					r.push(i);
 					p = p.concat(v.parents);
 				}
