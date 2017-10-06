@@ -2,9 +2,9 @@
 
 == 3.1.7
 
-* Correction de bug (en particulier sur les historiques et fonction statistique)
-* Amélioration du systeme de mise à jour avec une page de note de version (que vous devez verifier vous meme avant chaque mise à jour !!!!)
-* Correction d'un bug qui recuperer les logs lors des restorations
+* Correction de bug (en particulier sur les historiques et fonctions statistiques)
+* Amélioration du système de mise à jour avec une page de note de version (que vous devez vérifier vous-mêmes avant chaque mise à jour !!!!)
+* Correction d'un bug qui recupère les logs lors des restorations
 
 
 == 3.1
@@ -36,26 +36,26 @@
 * Ajout d'une gestion de formule de calcul pour les historiques
 * Remise à jour de toute la documentation : 
 ** Toute les docs ont été revues
-** Suppression des images pour faciliter la mise à jour et le multilingue
-* Plus de choix possibles sur les réglage des tailles de zone dans les vues
+** Suppression des images pour faciliter la mise à jour et le multilinguisme
+* Plus de choix possibles sur les réglages des tailles de zone dans les vues
 * Possibilité de choisir la couleur du texte du résumé d'objet
 * Ajout d'une action remove_inat dans les scénarios permettant d'annuler toutes les programmations des bloc DANS/A
 * Possibilité dans les designs pour les widgets au survol de choisir la position du widget
 * Ajout d'un parametre reply_cmd sur les interactions pour spécifier l'id de la commande à utiliser pour répondre
-* Ajout d'une timeline sur la page historique (attention doit etre activée sur chaque commande et/ou scénario que vous voulez voir apparaitre)
+* Ajout d'une timeline sur la page historique (attention doit etre activée sur chaque commande et/ou scénario que vous voulez voir apparaître)
 * Possibilité de vider les évènements de la timeline
 * Possibilité de vider les IPs bannies
 * Correction/amélioration de la gestion des comptes utilisateurs
 ** Possibilité de supprimer le compte admin de base
-** Prévention du passage en normal du derniere administrateur
+** Prévention du passage en normal du dernier administrateur
 ** Ajout d'une sécurité pour éviter la suppression du compte avec lequel on est connecté
-* Possibilité dans la configuration avancé des équipements de mettre la disposition des commandes dans le widgets en mode table en choissisant pour chaque commande la case ou la mettre
-* Possibilité de reorganiser les widgets des équipements depuis le dashboard (en mode edition clic droit sur le widget)
+* Possibilité dans la configuration avancée des équipements de mettre la disposition des commandes dans le widgets en mode table en choissisant pour chaque commande la case où la mettre
+* Possibilité de réorganiser les widgets des équipements depuis le dashboard (en mode édition clic droit sur le widget)
 * Changement du pas des widgets (de 40*80 à 10*10). Attention cela va impacter la disposition sur votre dashboard/vue/design
 * Possibilité de donner une taille de 1 à 12 aux objets sur le dashboard
-* Possibilité de lancer independament les actions des scénarios (et plugin type mode/alarm si compatible) en parallèle des autres
+* Possibilité de lancer indépendamment les actions des scénarios (et plugin type mode/alarm si compatible) en parallèle des autres
 * Possibilité d'ajouter un code d'accès à un design
-* Ajout d'un watchdog independant de Jeedom pour verifier le status de MySql et Apache
+* Ajout d'un watchdog independant de Jeedom pour vérifier le statuts de MySql et Apache
 
 == 3.0.11
 
@@ -70,8 +70,8 @@
 * Suppression du mode esclave
 * Possibilité de déclencher un scénario sur un changement d'une variable
 * Les mises à jour de variables déclenchent maintenant la mise à jour des commandes d'un équipement virtuel (il faut la dernière version du plugin)
-* Possibilité d'avoir une icone sur les commandes de type info
-* Possibilité sur les commandes d'afficher le nom et l'icone
+* Possibilité d'avoir une icône sur les commandes de type info
+* Possibilité sur les commandes d'afficher le nom et l'icône
 * Ajout d'une action "alert" sur les scénarios : message en haut dans jeedom
 * Ajout d'une action "popup" sur les scénarios : message à valider
 * Les widgets des commandes peuvent maintenant avoir une méthode d'update ce qui évite un appel ajax à Jeedom
