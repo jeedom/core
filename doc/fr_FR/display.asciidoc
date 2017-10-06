@@ -6,7 +6,7 @@ Cette page est accessible par Outils -> Résumé domotique.
 
 On retrouve tout en haut un résumé du nombre d'objets existants, du nombre d'équipements et du nombre de commandes. Sur la droite se trouve un bouton pour masquer tous les équipements inactifs et un champ de recherche pour par exemple chercher un équipement, une commande ou tous les équipements d'un certain type (plugin, par exemple il suffit de taper rfxcom pour avoir tous les équipements rfxcom)
 
-En dessous on retrouve un cadre par objet. Dans chaque cadre se trouve la liste des équipements (en bleu) contenus dans l'objet. Vous avez sur la ligne du nom de l'objet jusqu'à 3 boutons, dans l'ordre : 
+En-dessous on retrouve un cadre par objet. Dans chaque cadre se trouve la liste des équipements (en bleu) contenus dans l'objet. Vous avez sur la ligne du nom de l'objet jusqu'à 3 boutons, dans l'ordre : 
 
 * le premier sert à ouvrir la page de configuration de l'objet dans un nouvel onglet
 * le deuxième donne un résumé sur l'objet
@@ -38,14 +38,14 @@ Si vous dépliez la liste des commandes vous obtenez chaque bloc jaune correspon
 
 == Configuration avancée d'un équipement
 
-La fenêtre de configuration avancée d'un équipement permet d'avoir de modifier et d'éditer la configuration de l'équipement
+La fenêtre de configuration avancée d'un équipement permet de voir, de modifier et d'éditer la configuration de l'équipement
 
 Vous avez en haut des boutons : 
 
-* *Liens* : Permet d'afficher les liens de l'équipement avec les objets,commandes,scénario, variable, interaction.... sous forme graphique (dans un graphique un double clique sur un élement vous amene sur celui-ci)
+* *Liens* : Permet d'afficher les liens de l'équipement avec les objets,commandes,scénario, variable, interaction.... sous forme graphique (dans un graphique un double clic sur un élément vous amène sur celui-ci)
 * *Log* : affiche les évènements de l'équipement en question
-* *Informations* : affiche les proprietés brute de l'équipement
-* *Enregistrer* : Enregistre les modifications faite sur l'équipement
+* *Informations* : affiche les proprietés brutes de l'équipement
+* *Enregistrer* : Enregistre les modifications faites sur l'équipement
 * *Supprimer* : supprime l'équipement
 
 [TIP]
@@ -66,7 +66,7 @@ L'onglet information contient les informations générales de l'équipement :
 * *Tentative échouée* : nombre de tentatives de communications consécutives avec l'équipement qui ont échoué
 * *Dernière mise à jour* : date de dernière communication avec l'équipement
 
-En dessous vous retrouvez un tableau avec la liste des commandes de l'équipement
+En-dessous vous retrouvez un tableau avec la liste des commandes de l'équipement
 
 === Affichage
 
@@ -83,7 +83,7 @@ Vous pouvez :
 * *Opacité* : opacité du widget
 * *Couleur du texte* : couleur du texte
 * *Bordures* : permet d'ajouter une bordure, il faut mettre du code css, proprieté border (ex "3px blue dashed" pour une bordure pointillé de 3px en bleu)
-* *Arrondit des bordures (en px)* : permet d'arrondir les bordure, il faut mettre du code css, proprieté border-radius (ex "10px")
+* *Arrondit des bordures (en px)* : permet d'arrondir les bordures, il faut mettre du code css, proprieté border-radius (ex "10px")
 
 ==== Paramètres optionnels sur la tuile
 
@@ -94,19 +94,19 @@ N'oubliez pas de sauvegarder après toute modification
 
 === Disposition
 
-Cette partie vous permet de choisir entre la disposition standard des commandes (cote à cote dans le widget), ou en mode tableau.
+Cette partie vous permet de choisir entre la disposition standard des commandes (côte à côte dans le widget), ou en mode tableau.
 
 En mode tableau vous pouvez :
 
-* Choisir la dimmension du tableau ligne x colonne
-* Choisir de center les commandes dans les cases du tableau
+* Choisir la dimension du tableau ligne x colonne
+* Choisir de centrer les commandes dans les cases du tableau
 * Donner le style (en css) des cases
 * Donner le style (en css) du tableau
 
-En dessous pour chaque case vous pouvez :
+En-dessous pour chaque case vous pouvez :
 
-* Ajouter un texte en plus de la commande (ou tout seul si il n'y a pas de commande dans la case)
-* Modifier le CSS spécifique de la case (attention celui-ci ecrase et remplace le CSS général des cases)
+* Ajouter un texte en plus de la commande (ou tout seul s'il n'y a pas de commande dans la case)
+* Modifier le CSS spécifique de la case (attention celui-ci écrase et remplace le CSS général des cases)
 
 
 [TIP]
@@ -116,25 +116,25 @@ Si dans une case du tableau vous voulez mettre 2 commandes l’une en dessous de
 
 Cet onglet permet d'avoir les informations sur la batterie de l'équipement : type de pile, dernière remontée de l'information, niveau restant (si bien sûr votre équipement fonctionne sur pile). Vous pourrez aussi à partir de celui-ci configurer les seuils spécifiques pour cet équipement.
 
-Il permet aussi de gerer le timeout de l'équipement, ex 30 indique à jeedom que si l'équipement n'a pas communiqué depuis plus de 30min alors il faut le mettre en alerte
+Il permet aussi de gérer le timeout de l'équipement, ex 30 indique à jeedom que si l'équipement n'a pas communiqué depuis plus de 30min alors il faut le mettre en alerte
 
 === Commentaire
 
-Permet de mettre des commentaire sur l'équipement (date de change de pile par exemple)
+Permet de mettre des commentaires sur l'équipement (date de change de pile par exemple)
 
 == Configuration avancée d'une commande
 
 Vous avez en haut des boutons : 
 
 * *Tester* : permet de tester la commande
-* *Liens* : Permet d'afficher les liens de l'équipement avec les objets,commandes,scénario, variable, interaction.... sous forme graphique (dans un graphique un double clique sur un élement vous amene sur celui-ci)
+* *Liens* : Permet d'afficher les liens de l'équipement avec les objets,commandes,scénario, variable, interaction.... sous forme graphique (dans un graphique un double clic sur un élément vous amène sur celui-ci)
 * *Log* : affiche les évènements de l'équipement en question
-* *Informations* : affiche les proprietés brute de l'équipement
-* Appliquer à* : permet d'appliquer la meme configuration sur plusieurs commande
-* *Enregistrer* : Enregistre les modifications faite sur l'équipement
+* *Informations* : affiche les proprietés brutes de l'équipement
+* Appliquer à* : permet d'appliquer la même configuration sur plusieurs commandes
+* *Enregistrer* : Enregistre les modifications faites sur l'équipement
 
 [NOTE]
-En fonction du type de la commande les informations/actions affichées oeuvent changer
+En fonction du type de la commande les informations/actions affichées peuvent changer
 
 === Informations
 
@@ -154,7 +154,7 @@ L'onglet information contient les informations générales sur la commande  :
 Vous avez aussi differents boutons : 
 
 * *Cette commande remplace l'id* : permet de remplacer un id de commande par la commande en question, utile si vous avez supprimé un équipement dans jeedom et que vous avez des scénarios utilisant des commandes de celui-ci.
-* *Cette commande remplace la commande* : Remplace une commande par la commande courrante
+* *Cette commande remplace la commande* : Remplace une commande par la commande courante
 * *Remplacer cette commande la commande* : L'inverse, remplace la commande par une autre commande
 
 [NOTE]
@@ -180,22 +180,22 @@ Pour une commande de type info :
 ** *Valeur retour d'état* : permet de faire revenir la commande à cette valeur après un certain temps
 ** *Durée avant retour d'état (min)* : temps avant le retour à la valeur ci-dessus
 * *Autres*
-** *Gestion de la répétition des valeurs* : En automatique si la commande remonte 2 fois la même valeur d'affilée alors Jeedom ne prend pas en compte la 2eme remontée (évite de déclencher plusieurs fois un scénario par exemple si la valeur ne change pas sauf si la commande est de type binaire). Vous pouvez forcer la répétition de la valeur ou l'interdire completement
+** *Gestion de la répétition des valeurs* : En automatique si la commande remonte 2 fois la même valeur d'affilée alors Jeedom ne prend pas en compte la 2eme remontée (évite de déclencher plusieurs fois un scénario par exemple si la valeur ne change pas sauf si la commande est de type binaire). Vous pouvez forcer la répétition de la valeur ou l'interdire complètement
 ** *Push URL* : permet de rajouter une URL à appeler en cas de mise à jour de la commande. Vous pouvez utiliser les tags suivant : \#value# pour la valeur de la commande, \#cmd_name# pour le nom de la commande, \#cmd_id# pour l'identifiant unique de la commande, \#humanname# pour le nom complet de la commande (ex : \#[Salle de bain][Hydrometrie][Humidité]#)
 
 Si vous êtes sur une commande type action vous avez : 
 
 * *Confirmer l'action* : lors d'une action à partir de l'interface sur cette commande Jeedom demandera une confirmation
 * *Code d'accès* : lors d'une action à partir de l'interface sur cette commande Jeedom demandera le code
-* *Action avant exécution de la commande* : action qui sera faite avant chaque execution de la commande
-* *Action après execution de la commande* : action faite après chaque execution de la commande
+* *Action avant exécution de la commande* : action qui sera faite avant chaque exécution de la commande
+* *Action après exécution de la commande* : action faite après chaque exécution de la commande
 
 === Alerte
 
-Permet de definir un niveau d'alerte (warning ou danger) en fonction de certain condition, exemple si #value# > 8 pendant 30min alors l'équipement peut passer en alerte warning.
+Permet de définir un niveau d'alerte (warning ou danger) en fonction de certaines conditions, exemple si #value# > 8 pendant 30min alors l'équipement peut passer en alerte warning.
 
 [NOTE]
-Vous pouvez sur la page d'administration de Jeedom configurer une commande de type message qui permettra à Jeedom de vous prevenir si on atteint le seuil warning ou danger
+Vous pouvez sur la page d'administration de Jeedom configurer une commande de type message qui permettra à Jeedom de vous prévenir si on atteint le seuil warning ou danger
 
 === Affichage
 
