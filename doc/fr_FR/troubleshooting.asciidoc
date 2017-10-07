@@ -2,12 +2,12 @@
 
 == J'ai une page blanche
 
-Il faut se connecter en SSH à jeedom et lancer un script d'auto-diagnostic : 
+Il faut se connecter en SSH à Jeedom et lancer le script d'auto-diagnostic : 
 
 [source,bash]
 sudo chmod +x /var/www/html/health.sh;sudo /var/www/html/health.sh
 
-S'il y a un souci, le script essaie de corriger, s'il n'y arrive pas il vous l'indiquera.
+S'il y a un souci, le script essaiera de le corriger, s'il n'y arrive pas il vous l'indiquera.
 
 Vous pouvez aussi regarder le log /var/www/html/http.error, très souvent celui-ci indique le souci
 
@@ -26,23 +26,19 @@ sudo chown www-data:www-data core/config/common.config.php
 
 == J'ai des {{...}} partout
 
-La cause la plus fréquente est l'utilisation d'un plugin en version beta, et Jeedom en stable, ou l'inverse. Pour avoir le details de l'erreur il faut regarder le log http.error (dans /var/www/html/log)
+La cause la plus fréquente est l'utilisation d'un plugin en version beta et Jeedom en stable, ou l'inverse. Pour avoir le détails de l'erreur il faut regarder le log http.error (dans /var/www/html/log)
 
 == Lors d'une commande j'ai une roue qui tourne sans s'arrêter
 
 Encore une fois cela est souvent dû à un plugin en beta alors que Jeedom est en stable. Pour voir l'erreur il faut faire F12 puis console
 
-== Je n'ai plus accès à Jeedom ni en SSH
+== Je n'ai plus accès à Jeedom par interface web ni en console par SSH
 
 Cette erreur n'est pas due à Jeedom mais à un problème avec le système. Si celui-ci persiste suite à une réinstallation il est conseillé de voir avec le SAV pour un souci hardware
 
 == Mon scénario ne s'arrête plus/pas
 
 Il est conseillé de regarder les commandes exécutées par le scénario, souvent cela vient d'une commande qui ne se termine pas
-
-== Mon scénario est lent à se déclencher
-
-Si dans le scénario il n'y a pas de pause il est conseillé de cocher la case "éxécuter le plus rapidement possible"
 
 == J'ai des instabilités ou des erreurs 504
 
@@ -51,10 +47,6 @@ Vérifiez si votre système de fichiers n'est pas corrompu, en ssh la commande e
 == Je ne vois pas tous mes équipements sur le dashboard
 
 Souvent cela est dû au fait que les équipements sont affectés à un objet qui n'est pas le fils ou l'objet lui-même du premier objet sélectionné à gauche dans l'arbre (vous pouvez dans votre profil configurer celui-ci)
-
-== Lors de la connexion du maître avec les esclaves j'ai des erreurs
-
-Vérifiez que vous avez bien mis les /jeedom si vous utilisez ceux-ci juste après l'IP de jeedom (souvent le cas en installation DIY)
 
 == J'ai l'erreur suivante : SQLSTATE[HY000] [2002] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock'
 
