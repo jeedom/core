@@ -8,11 +8,11 @@ Elle est accessible par Acceuil -> Dashboard
 Il est possible d'aller directement sur un design grâce au sous-menu.
 
 [IMPORTANT]
-Toute les actions ce font par un clic droit sur cette page, attention a bien le faire dans le design. Lors de la création il faut donc le faire au milieu de la page (pour etre sur d'etre sur le design)
+Toute les actions se font par un clic droit sur cette page, attention à bien le faire dans le design. Lors de la création il faut donc le faire au milieu de la page (pour être sûr d'être sur le design)
 
 Dans le menu nous retrouvons (clic droit donc) nous retrouvons les actions suivantes : 
 
-* *Designs* : Affiche la liste de vos designs et vous permet de naviguer de dedans
+* *Designs* : Affiche la liste de vos designs et vous permet de naviguer dedans
 * *Edition* : Permet de passer en édition
 * *Plein ecran* : Affiche le design en pleine écran
 * *Ajouter graphique* : Permet d'ajouter un graphique
@@ -24,7 +24,7 @@ Dans le menu nous retrouvons (clic droit donc) nous retrouvons les actions suiva
 * *Ajouter équipement* : Permet d'ajouter un équipement
 * *Ajouter commande* : Permet d'ajouter une commande
 * *Ajouter image/caméra* : Permet d'ajouter une image ou le flux d'une caméra
-* *Ajouter zone* : Permet d'ajouter une zone transparante cliquable qui pourra executer une serie d'action lors d'un clic (en fonction ou non de l'état d'une autre commande)
+* *Ajouter zone* : Permet d'ajouter une zone transparente cliquable qui pourra exécuter une série d'action lors d'un clic (en fonction ou non de l'état d'une autre commande)
 * *Ajouter résumé* : Ajoute les informations d'un résumé d'objet ou général
 * *Affichage *
 ** *Aucune* : N'affiche aucune grille
@@ -33,12 +33,12 @@ Dans le menu nous retrouvons (clic droit donc) nous retrouvons les actions suiva
 ** *20x20* : Affiche une grille de 20 par 20
 ** *Aimanter les élements* : Ajoute une aimantation entre les élements pour permettre de les coller plus facilement
 ** *Aimanter à la grille* : Ajouter une aimantation des éléments à la grille (attention en fonction du zoom de l'élément cette fonctionalité peut plus ou moins fonctionner) 
-** *Masquer la surbrillance des éléments* : Masque la surbrillance autour des élements
+** *Masquer la surbrillance des éléments* : Masque la surbrillance autour des éléments
 * *Supprimer le design* : supprime le design
 * *Créer un design* : permet d'ajouter un design
 * *Dupliquer le design* : duplique le design courant
 * *Configurer le design* : accès à la configuration du design
-* *Sauvegarder* : permet de sauvegarder le design (attention il y aussi des sauvegarde automatique lors de certaine action)
+* *Sauvegarder* : permet de sauvegarder le design (attention il y aussi des sauvegardes automatiques lors de certaines actions)
 
 [IMPORTANT]
 La configuration des éléments du désign se fait par un clic sur ceux-ci
@@ -49,7 +49,7 @@ On retrouve ici :
 
 * *Général*
 ** *Nom* : Le nom de votre design
-** *Icône* : Une icône pour celui-ci (apparait dans le menu de choix de design)
+** *Icône* : Une icône pour celui-ci (apparaît dans le menu de choix de design)
 ** *Image* 
 *** *Envoyer* : permet d'ajouter une image de fond au design
 *** *Supprimer l'image* : permet de supprimer l'image
@@ -62,7 +62,7 @@ On retrouve ici :
 En fonction du type de l'élement les options peuvent changer
 
 [NOTE]
-L'element séléctionné apparait en surbrillance rouge (au lieu de vert pour tous les autres)
+L'élément séléctionné apparaît en surbrillance rouge (au lieu de vert pour tous les autres)
 
 === Paramètre d'affichage
 
@@ -74,15 +74,15 @@ L'element séléctionné apparait en surbrillance rouge (au lieu de vert pour to
 
 === Supprimer
 
-Permet de supprimer l'élement
+Permet de supprimer l'élément
 
 === Dupliquer
 
-Permet de dupliquer l'élement
+Permet de dupliquer l'élément
 
 === Verrouiller
 
-Permet de verrouiller l'élement pour plus qu'il soit déplacable ou redimmensionnable
+Permet de verrouiller l'élément pour qu'il ne soit plus déplacable ou redimmensionnable
 
 == Graphique
 
@@ -90,7 +90,7 @@ Permet de verrouiller l'élement pour plus qu'il soit déplacable ou redimmensio
 
 * *Période* : permet de choisir la période d'affichage
 * *Afficher la légende* : permet d'afficher ou non la légende
-* *Afficher le navigateur* : permet d'afficher ou non le navigateur (deuxième graph plus léger en dessous du premier)
+* *Afficher le navigateur* : permet d'afficher ou non le navigateur (deuxième graphe plus léger en-dessous du premier)
 * *Afficher le sélecteur de période* : affiche ou non le sélecteur de période en haut à gauche
 * *Afficher la barre de défilement* : affiche ou non la barre de défilement
 * *Fond transparent* : rend le fond transparent
@@ -102,10 +102,10 @@ Permet de choisir les commandes à grapher
 
 == Text/html
 
-* *Icone* : Icone à affiché devant
+* *Icone* : Icône à afficher devant
 * *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
 * *Couleur du texte* : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
-* *Arrondir les angles (ne pas oublié de mettre %, ex 50%)* : permet d'arrondir les angles, ne pas oublier de mettre le %
+* *Arrondir les angles (ne pas oublier de mettre %, ex 50%)* : permet d'arrondir les angles, ne pas oublier de mettre le %
 * *Bordure (attention syntax css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
 * *Taille de la police (ex 50%, il faut bien mettre le signe %)* : permet de modifier la taille de la police
 * *Alignement du texte* : permet de choisir l'alignement du texte (gauche/droit/centré)
@@ -113,7 +113,7 @@ Permet de choisir les commandes à grapher
 * *Texte* : Texte au code html qui sera dans l'élement
 
 [IMPORTANT]
-Si vous mettez du code html (en particulier du javascript), attention à bien le vérifier avant car vous pouvez si il y a une erreur dedans ou si il écrase un composant Jeedom planter completement le design et il ne restera plus qu'a le supprimer directement base de données
+Si vous mettez du code html (en particulier du javascript), attention à bien le vérifier avant car vous pouvez s'il y a une erreur dedans ou s'il écrase un composant Jeedom planter complètement le design et il ne restera plus qu'à le supprimer directement de la base de données
 
 == Scénario
 
@@ -129,7 +129,7 @@ Aucun paramètre spécifique d'affichage
 * *Lien* : Lien vers le design ou la vue en question
 * *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
 * *Couleur du texte* : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
-* *Arrondir les angles (ne pas oublié de mettre %, ex 50%)* : permet d'arrondir les angles, ne pas oublier de mettre le %
+* *Arrondir les angles (ne pas oublier de mettre %, ex 50%)* : permet d'arrondir les angles, ne pas oublier de mettre le %
 * *Bordure (attention syntax css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
 * *Taille de la police (ex 50%, il faut bien mettre le signe %)* : permet de modifier la taille de la police
 * *Alignement du texte* : permet de choisir l'alignement du texte (gauche/droit/centré)
@@ -143,7 +143,7 @@ Aucun paramètre spécifique d'affichage
 
 === Configuration avancée
 
-Affiche la fenetre de configuration avancé de l'équipement (voir documentation Résumé domotique ("display"))
+Affiche la fenêtre de configuration avancée de l'équipement (voir documentation Résumé domotique ("display"))
 
 == Commande
 
@@ -153,7 +153,7 @@ Aucun paramètre spécifique d'affichage
 
 === Configuration avancée
 
-Affiche la fenetre de configuration avancé de la commande (voir documentation Résumé domotique ("display"))
+Affiche la fenêtre de configuration avancée de la commande (voir documentation Résumé domotique ("display"))
 
 == Image/Caméra
 
@@ -161,40 +161,40 @@ Affiche la fenetre de configuration avancé de la commande (voir documentation R
 
 * *Afficher* : défini ceux que vous voulez afficher, image fixe ou flux d'une caméra
 * *Image* : permet d'envoyer l'image en question (si vous avez choisi une image)
-* *Caméra* : caméra à afficher (si vous avez choisi caméra)
+* *Caméra* : caméra à afficher (si vous avez choisi une caméra)
 
 == Zone
 
 === Paramètre d'affichage
 
-* *Type de zone* : C'est ici que vous choissez le type de la zone : Macro simple, Macro Binaire ou Widget au survol
+* *Type de zone* : C'est ici que vous choisissez le type de la zone : Macro simple, Macro Binaire ou Widget au survol
 
 ==== Macro simple
 
-Dans ce mode la un clic sur la zone execute une ou plusieurs action.
+Dans ce mode là, un clic sur la zone exécute une ou plusieurs actions.
 
 Il vous suffit ici d'indiquer la liste des actions à faire lors du clic sur la zone
 
 ==== Macro binaire
 
-Dans ce mode Jeedom va executer la ou les action(s) On ou Off en fonction de l'état de la commande que vous donnez. Ex si la commande vaut 0 alors Jeedom executera la ou les action(s) On sinon il executera la ou les action(s) off
+Dans ce mode Jeedom va exécuter la ou les action(s) On ou Off en fonction de l'état de la commande que vous donnez. Ex si la commande vaut 0 alors Jeedom exécutera la ou les action(s) On sinon il exécutera la ou les action(s) off
 
 * *Information binaire* : Commande donnant l'état à verifier pour decider de l'action à faire (on ou off)
 
-Il vous suffit en dessous de mettre les actions à faire pour le on et pour le off
+Il vous suffit en-dessous de mettre les actions à faire pour le on et pour le off
 
 ==== Widget au survol
 
-Dans ce mode lors du survole ou du clic dans la zone jeedom vous affichera le widget en question
+Dans ce mode lors du survol ou du clic dans la zone, jeedom vous affichera le widget en question
 
-* *Equipement* : widget à afficher lors du survole ou du clic
+* *Equipement* : widget à afficher lors du survol ou du clic
 * *Afficher au survol* : si coché affiche le widget au survol
 * *Afficher sur un clic* : si coché alors le widget est affiché au clic
-* *Position* : permet de choisir l'emplacement d'apparition du widget (par defaut bas droite)
+* *Position* : permet de choisir l'emplacement d'apparition du widget (par défaut bas droite)
 
 == Résumé
 
-* *Lien* : Permet d'indiqué le résumé à afficher (Général pour le globale sinon indiquer l'objet)
+* *Lien* : Permet d'indiquer le résumé à afficher (Général pour le global sinon indiquer l'objet)
 * *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
 * *Couleur du texte* : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
 * *Arrondir les angles (ne pas oublié de mettre %, ex 50%)* : permet d'arrondir les angles, ne pas oublier de mettre le %
