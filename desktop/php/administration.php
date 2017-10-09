@@ -309,7 +309,15 @@ foreach (plugin::listPlugin(true) as $plugin) {
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Administration}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<a class="btn btn-danger" id="bt_accessSystemAdministration"><i class="fa fa-exclamation-triangle"></i> {{Lancer}}</a>
+							<a class="btn btn-danger" href="index.php?v=d&p=system"><i class="fa fa-exclamation-triangle"></i> {{Lancer}}</a>
+						</div>
+					</div>
+					<legend><i class="fa fa-database"></i> {{Editeur de fichier}}</legend>
+					<div class="alert alert-danger">{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à Jeedom. L'équipe Jeedom se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}</div>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Editeur}}</label>
+						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<a class="btn btn-danger" href="index.php?v=d&p=editor"><i class="fa fa-exclamation-triangle"></i> {{Lancer}}</a>
 						</div>
 					</div>
 					<legend><i class="fa fa-database"></i> {{Base de données}}</legend>
@@ -317,9 +325,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Administration}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<a class="btn btn-danger" id="bt_accessDbAdministration"><i class="fa fa-exclamation-triangle"></i> {{Lancer}}</a>
-
-
+							<a class="btn btn-danger" href="index.php?v=d&p=database"><i class="fa fa-exclamation-triangle"></i> {{Lancer}}</a>
 						</div>
 					</div>
 					<div class="form-group">

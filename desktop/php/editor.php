@@ -30,11 +30,7 @@ foreach (ls(dirname(__FILE__) . '/../../', '*', false, array('folders')) as $fol
 			<a class="btn btn-danger btn-xs pull-right" id="bt_deleteFile" style="position: relative;top:4px;"><i class="fa fa-times"></i> {{Supprimer}}</a>
 			<a class="btn btn-default btn-xs pull-right" id="bt_createFile" style="position: relative;top:4px;"><i class="fa fa-file"></i> {{Nouveau}}</a>
 		</legend>
-		<div class="alert alert-danger">{{Attention la moindre erreur dans la modification d'un fichier peut rendre votre Jeedom non fonctionnel et vous interdir l'accès au support}}</div>
 		<textarea class="form-control ta_autosize" id="ta_fileContent"></textarea>
 	</div>
 </div>
-
-
-
 <?php include_file("desktop", "editor", "js");?>
