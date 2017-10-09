@@ -199,7 +199,7 @@ Exécute la commande spécifiée
 
 Paramètres:
 
-- int id : id d'une commande ou tableau d'id si vous voulez executer plusieurs commande d'un coup
+- int id : id d'une commande ou tableau d'id si vous voulez exécuter plusieurs commandeé d'un coup
 - [options] Liste des options de la commande (dépend du type et du sous-type de la commande)
 
 === cmd::getStatistique
@@ -262,17 +262,17 @@ Permet de récuperer un log
 
 Paramètres:
 
-- string log : nom du log à recuperer
+- string log : nom du log à recupérer
 - string start : numéro de ligne sur laquelle commencer la lecture
-- string nbLine : nombre de ligne à recuperer
+- string nbLine : nombre de ligne à recupérer
 
 === log::list
 
-Permet de récuperer la list des logs de Jeedom
+Permet de récupérer la liste des logs de Jeedom
 
 Paramètres:
 
-- string filtre : (optionnel) filtre sur le nom des logs à recuperer
+- string filtre : (optionnel) filtre sur le nom des logs à recupérer
 
 === log::empty
 
@@ -288,7 +288,7 @@ Permet de supprimer un log
 
 Paramètres:
 
-- string log : nom du log a supprimer
+- string log : nom du log à supprimer
 
 
 == API JSON datastore (variable)
@@ -299,7 +299,7 @@ Récupère la valeur d'une variable stockée dans le datastore
 
 Paramètres:
 
-- string type : type de la valeur stockée (pour les scénarios c'est scenario)
+- string type : type de la valeur stockée (pour les scénarios c'est scenario (sans accent))
 - id linkId : -1 pour le global (valeur pour les scénarios par défaut, ou l'id du scénario)
 - string key : nom de la valeur
 
@@ -333,11 +333,11 @@ Essaie de faire correspondre une demande avec une interaction, exécute l'action
 Paramètres:
 
 - query (phrase de la demande)
-- int reply_cmd = NULL : ID de la commande à utiliser pour répondre, si non préciser alors Jeedom vous renvoi la réponse dans le json
+- int reply_cmd = NULL : ID de la commande à utiliser pour répondre, sinon préciser alors Jeedom vous renvoie la réponse dans le json
 
 === interact::all
 
-Renvoi la liste complete de toute les interactions
+Renvoi la liste complète de toutes les interactions
 
 
 == API JSON System
@@ -364,7 +364,7 @@ Permet de lancer un backup de Jeedom
 
 === jeedom::getUsbMapping
 
-Liste des ports USB et des noms de clef USB branché dessus
+Liste des ports USB et des noms de clef USB branchés dessus
 
 == API JSON plugin
 
@@ -386,7 +386,7 @@ Paramètres:
 
 === plugin::dependancyInfo
 
-Renvoi les informations sur le status des dépendances du plugins
+Renvoie les informations sur le statuts des dépendances du plugin
 
 Paramètres:
 
@@ -402,7 +402,7 @@ Paramètres:
 
 === plugin::deamonInfo
 
-Renvoi les informations sur le status du démon du plugin
+Renvoie les informations sur le statuts du démon du plugin
 
 Paramètres:
 
@@ -418,7 +418,7 @@ Paramètres:
 
 === plugin::deamonStop
 
-Force l'arret du démon
+Force l'arrêt du démon
 
 Paramètres:
 
@@ -437,7 +437,7 @@ Paramètres:
 
 === update::all
 
-Retour la liste de tous les composants installés, leur version et les informations associées
+Retourne la liste de tous les composants installés, leur version et les informations associées
 
 === update::checkUpdate
 
@@ -459,7 +459,7 @@ Force l'arret du DNS Jeedom
 
 === network::dnsRun
 
-Renvoi le status du DNS Jeedom
+Renvoie le statuts du DNS Jeedom
 
 == API JSON Exemples
 
@@ -486,4 +486,4 @@ if($jsonrpc->sendRequest('cmd::execCmd', array('id' => #cmd_id#, 'options' => ar
     echo $jsonrpc->getError();
 }
  
-L'API est bien sur utilisable avec d'autres langages (simplement un post sur une page) 
+L'API est bien sûr utilisable avec d'autres langages (simplement un post sur une page) 
