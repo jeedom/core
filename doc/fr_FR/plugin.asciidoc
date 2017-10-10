@@ -11,19 +11,19 @@ Comme à beaucoup d'endroits sur Jeedom, mettre la souris tout à gauche permet 
 
 Sur cette page vous retrouvez tous les plugins présents sur votre Jeedom; en opaque ceux qui sont désactivés. En cliquant sur un plugin vous accèdez à sa configuration.
 
-En haut vous retrouvez l'ID et le nom du plugin, ainsi que la version installée. En dessous vous avez le bouton d'activation/désactivation d'un plugin
+En haut vous retrouvez l'ID et le nom du plugin, ainsi que la version installée. En-dessous vous avez le bouton d'activation/désactivation d'un plugin
 
 [IMPORTANT]
 Lors du téléchargement d'un plugin celui-ci n'est pas activé, il faut donc que vous l'activiez
 
 Sur la droite vous retrouvez 4 boutons : 
 
-* *Changelog* : permet de voir le changelog du plugin si il existe 
+* *Changelog* : permet de voir le changelog du plugin s'il existe 
 * *Envoyer sur le Market* : permet d'envoyer le plugin sur le Market (uniquement disponible si vous en êtes l'auteur)
 * *Supprimer* : Supprime le plugin de votre Jeedom. Attention cela supprime définitivement tous les équipements de ce plugin aussi
 * *Documentation* : Permet d'accéder directement à la page de documentation du plugin
 
-En dessous on retrouve une zone etat avec : 
+En-dessous, on retrouve une zone état avec : 
 
 * *Statut* : permet de voir le statut du plugin (actif / inactif)
 * *Version* : la version du plugin que vous possédez
@@ -32,7 +32,7 @@ En dessous on retrouve une zone etat avec :
 * *Version jeedom* : Indique la version minimum requise du plugin
 * *Licence* : Indique la licence du plugin qui sera généralement AGPL
 
-A droite on retrouve la zone log qui permet de spécifier le niveau de log spécifiquement pour le plugin (on retrouve cette même possibilité dans Administatrion--> Configuration sur l'onglet logs).
+A droite, on retrouve la zone log qui permet de spécifier le niveau de log spécifiquement pour le plugin (on retrouve cette même possibilité dans Administatrion--> Configuration sur l'onglet logs).
 
 Si le plugin possède des dépendances et /ou un démon on peut retrouver ces deux zones.
 
@@ -54,9 +54,9 @@ Démon :
 * *Dernièr lancement* : date du dernier lancement du démon
 
 [TIP]
-Certains plugins ont une partie configuration, il faut dans ce cas se référer à la doc du plugin en question pour savoir comment le configurer (si tel est le cas elle apparaitra ici)
+Certains plugins ont une partie configuration, il faut dans ce cas se référer à la doc du plugin en question pour savoir comment le configurer (si tel est le cas elle apparaîtra ici)
 
-En dessous on retrouve une zone fonctionnalités. Celle-ci permet de voir si le plugin utilise ou non une des fonctions cores Jeedom tel que :
+En-dessous, on retrouve une zone fonctionnalités. Celle-ci permet de voir si le plugin utilise ou non une des fonctions cores Jeedom tel que :
 
 * *Interact* : des interactions spécifiques
 * *Cron* : un cron à la minute
@@ -87,7 +87,7 @@ Tout en haut comme sur le Market vous avez des filtres :
 
 Un fois le plugin voulu trouvé il suffit de cliquer sur celui-ci pour faire apparaître la fiche du plugin.
 
-Cette fiche vous donne beaucoup d'informations sur le plugin, entre autre : 
+Cette fiche vous donne beaucoup d'informations sur le plugin, entre autres : 
 
 * S'il est officiel/recommandé ou s'il est obsolète (il faut vraiment éviter d'installer des plugins obsolètes)
 * 4 actions : 
@@ -96,7 +96,7 @@ Cette fiche vous donne beaucoup d'informations sur le plugin, entre autre :
 ** *Installer pro* : permet d'installer la version pro (très peu utilisé)
 ** *Supprimer* : si le plugin est actuellement installé, ce bouton permet de le supprimer
 
-En dessous vous retrouvez la description du plugin, la compatibilité (si Jeedom détecte une incompatibilité il vous le signalera), les avis sur le plugin (vous pouvez ici le noter) et des informations complémentaires (l'auteur, la personne ayant fait la dernière mise à jour, un lien vers la doc, le nombre de téléchargements).
+En-dessous, vous retrouvez la description du plugin, la compatibilité (si Jeedom détecte une incompatibilité, il vous le signalera), les avis sur le plugin (vous pouvez ici le noter) et des informations complémentaires (l'auteur, la personne ayant fait la dernière mise à jour, un lien vers la doc, le nombre de téléchargements).
 Sur la droite vous retrouvez la liste des dernières mises à jour (un bouton tout voir vous permet d'avoir tout l'historique), une documentation rapide d'utilisation (il est recommandé quand même de lire la documentation complète) et enfin le type (plugin, widget...), la langue et les diverses informations sur la date de la dernière stable.
 
 [IMPORTANT]
