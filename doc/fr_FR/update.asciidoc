@@ -23,16 +23,16 @@ Avant une mise à jour, Jeedom va par défaut faire une sauvegarde. En cas de so
 [TIP]
 Vous pouvez forcer une mise à jour de Jeedom meme si celui-ci ne vous en propose pas
 
-Dans le tableau vous retrouvez la liste des plugins (sur le premiere onglet et des widgets et autre élements sur le deuxieme), sur chaque ligne vous pouvez faire : 
+Dans le tableau vous retrouvez la liste des plugins (sur le premier onglet et des widgets et autre élements sur le deuxieme), sur chaque ligne vous pouvez faire : 
 
-* *Reinstaller* : force la reinstallation du plugin en question
+* *Réinstaller* : force la réinstallation du plugin en question
 * *Supprimer* : permet de désinstaller un élément
-* *Verifier* : vérifie si l'élement en question à une mise à jour
+* *Vérifier* : vérifie si l'élement en question à une mise à jour
 * *Mettre à jour* : permet de mettre à jour l'élément (si celui-ci à une mise à jour)
 * *Changelog* : permet de voir les changement de la mise à jour
 
 [IMPORTANT]
-Si le changelog est vide mais que vous avez une mise à jour quand meme cela signifie juste que c'est la documentation qui a été mise à jour, il n'est donc pas necessaire de demander au développeur les changements vu qu'il n'y en as pas forcement (c'est souvent juste une mise à jour de la traduction de la documentation)
+Si le changelog est vide mais que vous avez une mise à jour quand même cela signifie juste que c'est la documentation qui a été mise à jour, il n'est donc pas necessaire de demander au développeur les changements vu qu'il n'y en a pas forcément (c'est souvent juste une mise à jour de la traduction de la documentation)
 
 [TIP]
 A noter que "core : jeedom" signifie la mise à jour du logiciel de base Jeedom.
@@ -47,7 +47,7 @@ sudo php /var/www/html/install/update.php
 
 Voilà les paramètres possibles :
 
-* *mode* : force, pour lancer une mise à jour en mode forcé (ne tiens pas compte des erreurs)
+* *mode* : force, pour lancer une mise à jour en mode forcé (ne tient pas compte des erreurs)
 * *version* : numéro de version, pour réapliquer les changements depuis cette version
 
 Exemple pour faire une mise à jour forcée en réappliquant les changements depuis la 1.188.0 : 
