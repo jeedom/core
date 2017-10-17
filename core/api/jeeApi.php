@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
-
+header('Access-Control-Allow-Origin: *');
 require_once dirname(__FILE__) . "/../php/core.inc.php";
 if (user::isBan() && false) {
 	header("Status: 404 Not Found");
@@ -206,7 +206,7 @@ if (init('type') != '') {
 		$jsonrpc = new jsonrpc($request);
 
 		if (!jeedom::apiModeResult(config::byKey('api::core::jsonrpc::mode', 'core', 'enable'))) {
-			throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__), -32001);
+			throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action (jsonrpc disable)', __FILE__), -32001);
 		}
 
 		if ($jsonrpc->getJsonrpc() != '2.0') {

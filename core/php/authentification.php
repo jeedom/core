@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
-header('Access-Control-Allow-Origin: *');
 require_once dirname(__FILE__) . '/core.inc.php';
 
 $configs = config::byKeys(array('session_lifetime', 'sso:allowRemoteUser'));
