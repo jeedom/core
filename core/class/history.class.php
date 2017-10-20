@@ -575,34 +575,21 @@ LIMIT 1';
 		}
 
 		if ($_value === null) {
-			$_condition = 'prev_value <> value';
-		} else {
-			if ($cmd->getSubType() != 'string') {
-				$_value = str_replace(',', '.', $_value);
-				$_decimal = strlen(substr(strrchr($_value, "."), 1));
-				$_condition = ' ROUND(CAST(value AS DECIMAL(12,2)),' . $_decimal . ') = ' . $_value;
-			} else {
-				$_condition = ' value = ' . $_value;
-			}
+			$_value = $cmd->execCmd();
 		}
+		if ($cmd->getSubType() != 'string') {
+			$_value = str_replace(',', '.', $_value);
+			$_decimal = strlen(substr(strrchr($_value, "."), 1));
+			$_condition = ' ROUND(CAST(value AS DECIMAL(12,2)),' . $_decimal . ') = ' . $_value;
+		} else {
+			$_condition = ' value = ' . $_value;
+		}
+
 		$values = array(
 			'cmd_id' => $_cmd_id,
 		);
 		$sql = 'SELECT count(*) as changes
-				FROM (SELECT t1.*,
-				(SELECT value
-					FROM (
-						SELECT *
-						FROM history
-						WHERE cmd_id=:cmd_id ' . $_dateTime . '
-						UNION ALL
-						SELECT *
-						FROM historyArch
-						WHERE cmd_id=:cmd_id ' . $_dateTime . '
-					) as t2
-					WHERE t2.datetime < t1.datetime
-					ORDER BY datetime desc LIMIT 1
-				) as prev_value
+				FROM (SELECT t1.*
 				FROM (
 					SELECT *
 					FROM history
