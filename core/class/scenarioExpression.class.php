@@ -495,7 +495,6 @@ class scenarioExpression {
 			$_startDate = func_get_arg(1);
 			$_value = null;
 		}
-		//echo self::setTags($_startDate) . ' -> ' . $_endDate;
 		$_startDate = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
 		$_endDate = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
 
