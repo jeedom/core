@@ -476,19 +476,11 @@ class scenarioExpression {
 				$_value = null;
 			}
 		}
-
-		if (str_word_count($_period) == 1 && is_numeric(trim($_period)[0])) {
-			$startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . $_period));
-		} else {
-			$startHist = date('Y-m-d H:i:s', strtotime($_period));
-			if ($startHist == date('Y-m-d H:i:s', strtotime(0))) {
-				return '';
-			}
-		}
+		$startHist = date('Y-m-d H:i:s', strtotime($_period));
 		return history::stateChanges($cmd_id, $_value, $startHist, date('Y-m-d H:i:s'));
 	}
 
-	public static function stateChangesBetween($_cmd_id, $_value = null, $_startDate, $_endDate) {
+	public static function stateChangesBetween($_cmd_id, $_value, $_startDate, $_endDate) {
 		if (!is_numeric(str_replace('#', '', $_cmd_id))) {
 			$cmd = cmd::byId(str_replace('#', '', cmd::humanReadableToCmd($_cmd_id)));
 		} else { $cmd = cmd::byId(str_replace('#', '', $_cmd_id));}
@@ -503,8 +495,10 @@ class scenarioExpression {
 			$_startDate = func_get_arg(1);
 			$_value = null;
 		}
+		//echo self::setTags($_startDate) . ' -> ' . $_endDate;
 		$_startDate = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
 		$_endDate = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
+
 		return history::stateChanges($cmd_id, $_value, $_startDate, $_endDate);
 	}
 

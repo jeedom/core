@@ -563,10 +563,8 @@ LIMIT 1';
 		if (!is_object($cmd)) {
 			throw new Exception(__('Commande introuvable : ', __FILE__) . $_cmd_id);
 		}
-
-		if ($_startTime === null) {
-			$_dateTime = '';
-		} else {
+		$_dateTime = '';
+		if ($_startTime !== null) {
 			$_dateTime = ' AND `datetime`>="' . $_startTime . '"';
 		}
 
@@ -576,12 +574,16 @@ LIMIT 1';
 			$_dateTime .= ' AND `datetime`<="' . $_endTime . '"';
 		}
 
-		if ($_value === null && !is_numeric($_value)) {
-			$_condition = '';
+		if ($_value === null) {
+			$_condition = 'prev_value <> value';
 		} else {
-			$_value = str_replace(',', '.', $_value);
-			$_decimal = strlen(substr(strrchr($_value, "."), 1));
-			$_condition = ' and ROUND(CAST(value AS DECIMAL(12,2)),' . $_decimal . ') = ' . $_value;
+			if ($cmd->getSubType() != 'string') {
+				$_value = str_replace(',', '.', $_value);
+				$_decimal = strlen(substr(strrchr($_value, "."), 1));
+				$_condition = ' ROUND(CAST(value AS DECIMAL(12,2)),' . $_decimal . ') = ' . $_value;
+			} else {
+				$_condition = ' value = ' . $_value;
+			}
 		}
 		$values = array(
 			'cmd_id' => $_cmd_id,
@@ -597,22 +599,22 @@ LIMIT 1';
 						SELECT *
 						FROM historyArch
 						WHERE cmd_id=:cmd_id ' . $_dateTime . '
-						) as t2
-						WHERE t2.datetime < t1.datetime
-						ORDER BY datetime desc LIMIT 1
-						) as prev_value
-						FROM (
-							SELECT *
-							FROM history
-							WHERE cmd_id=:cmd_id' . $_dateTime . '
-							UNION ALL
-							SELECT *
-							FROM historyArch
-							WHERE cmd_id=:cmd_id' . $_dateTime . '
-							) as t1
-						WHERE cmd_id=:cmd_id' . $_dateTime . '
-						) as t1
-						where prev_value <> value' . $_condition . '';
+					) as t2
+					WHERE t2.datetime < t1.datetime
+					ORDER BY datetime desc LIMIT 1
+				) as prev_value
+				FROM (
+					SELECT *
+					FROM history
+					WHERE cmd_id=:cmd_id' . $_dateTime . '
+					UNION ALL
+					SELECT *
+					FROM historyArch
+					WHERE cmd_id=:cmd_id' . $_dateTime . '
+				) as t1
+				WHERE cmd_id=:cmd_id' . $_dateTime . '
+			) as t1
+			where ' . $_condition . '';
 		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 		return $result['changes'];
 	}
