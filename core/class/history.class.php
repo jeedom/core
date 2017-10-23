@@ -444,30 +444,53 @@ class history {
 		$values = array(
 			'cmd_id' => $_cmd_id,
 		);
+		$cValue = $cmd->execCmd();
 		if ($_value === null) {
-			$values['value'] = $cmd->execCmd();
+			$values['value'] = $cValue;
 		} else {
 			$values['value'] = $_value;
 		}
-		$sql = 'SELECT  `datetime`
-	FROM (
-		SELECT `datetime`
-		FROM  `history`
-		WHERE  `cmd_id`=:cmd_id
-		AND  `value` =:value
-		UNION ALL
-		SELECT `datetime`
-		FROM  `historyArch`
-		WHERE  `cmd_id`=:cmd_id
-		AND  `value` =:value
-		) as dt
-ORDER BY  `datetime` DESC
-LIMIT 1';
+		$sql = 'SELECT  ' . DB::buildField(__CLASS__) . '
+				FROM (
+					SELECT `datetime`
+					FROM  `history`
+					WHERE  `cmd_id`=:cmd_id
+					AND  `value` =:value
+					UNION ALL
+					SELECT `datetime`
+					FROM  `historyArch`
+					WHERE  `cmd_id`=:cmd_id
+					AND  `value` =:value
+					) as dt
+			ORDER BY  `datetime` DESC
+			LIMIT 1';
 		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-		if ($result['datetime'] == '' || strtotime($result['datetime']) === false || strtotime($result['datetime']) == 0) {
+		$lastDatetime = $result['datetime'];
+		if ($lastDatetime == '' || strtotime($lastDatetime) == false) {
 			return -1;
 		}
-		return strtotime('now') - strtotime($result['datetime']);
+		if ($values['value'] == $cValue) {
+			return strtotime('now') - strtotime($lastDatetime);
+		}
+		$sql = 'SELECT  ' . DB::buildField(__CLASS__) . '
+				FROM (
+					SELECT `datetime`
+					FROM  `history`
+					WHERE  `cmd_id`=:cmd_id
+					AND  `value` <>:value
+					UNION ALL
+					SELECT `datetime`
+					FROM  `historyArch`
+					WHERE  `cmd_id`=:cmd_id
+					AND  `value` <>:value
+					) as dt
+			ORDER BY  `datetime` DESC
+			LIMIT 1';
+		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+		if ($result['datetime'] == '' || strtotime($result['datetime']) == false || strtotime($result['datetime']) < strtotime($lastDatetime)) {
+			return -1;
+		}
+		return strtotime($result['datetime']) - strtotime($lastDatetime);
 	}
 
 	public static function lastStateDuration($_cmd_id, $_value = null) {
@@ -481,7 +504,7 @@ LIMIT 1';
 		$values = array(
 			'cmd_id' => $_cmd_id,
 		);
-		$sql = 'SELECT value, datetime
+		$sql = 'SELECT value, `datetime`
 		FROM (
 			SELECT *
 			FROM  history
@@ -491,7 +514,7 @@ LIMIT 1';
 			FROM  historyArch
 			WHERE  cmd_id=:cmd_id
 		) as dt
-		ORDER BY  datetime DESC';
+		ORDER BY  `datetime` DESC';
 		$histories = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
 
 		if ($_value === null) {
