@@ -313,7 +313,7 @@ jeedom.cmd.refreshValue = function(_params) {
     var sends = {};
     for(var i in _params){
         var cmd = $('.cmd[data-cmd_id=' + _params[i].cmd_id + ']');
-        if (cmd.html() == undefined || (cmd.closest('.eqLogic').attr('data-version') == undefined && cmd.attr('data-version') == undefined) || cmd.hasClass('noRefresh')) {
+        if (cmd.html() == undefined || cmd.hasClass('noRefresh')) {
             continue;
         }
         if (!isset(_params[i].global) || !_params[i].global) {
@@ -322,7 +322,16 @@ jeedom.cmd.refreshValue = function(_params) {
                 continue;
             }
         }
-        version = cmd.closest('.eqLogic').attr('data-version');
+        version == null;
+        if (cmd.closest('.eqLogic').attr('data-version') != undefined) {
+            version = cmd.closest('.eqLogic').attr('data-version');
+        }
+         if (cmd.attr('data-version') != undefined) {
+            version =cmd.attr('data-version');
+        }
+        if(version == null){
+            continue;
+        }
         if(version == undefined){
             version = cmd.attr('data-version');
         }
@@ -338,9 +347,6 @@ jeedom.cmd.refreshValue = function(_params) {
            for(var i in result){
             var cmd = cmds[i].cmd;
             var html = $(result[i].html);
-            
-
-
             if(html.attr('data-cmd_uid') != 'undefined'){
                 cmd.attr('data-cmd_uid',html.attr('data-cmd_uid'));
             }
