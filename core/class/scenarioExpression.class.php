@@ -234,7 +234,7 @@ class scenarioExpression {
 				}
 			}
 			$historyStatistique = $cmd->getStatistique($startHist, date('Y-m-d H:i:s'));
-			if ($historyStatistique['avg'] == '') {
+			if (!isset($historyStatistique['avg']) || $historyStatistique['avg'] == '') {
 				return $cmd->execCmd();
 			}
 			return round($historyStatistique['avg'], 1);
@@ -249,6 +249,9 @@ class scenarioExpression {
 		$_startDate = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
 		$_endDate = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
 		$historyStatistique = $cmd->getStatistique($_startDate, $_endDate);
+		if (!isset($historyStatistique['avg'])) {
+			return '';
+		}
 		return round($historyStatistique['avg'], 1);
 	}
 
@@ -289,7 +292,7 @@ class scenarioExpression {
 				}
 			}
 			$historyStatistique = $cmd->getStatistique($startHist, date('Y-m-d H:i:s'));
-			if ($historyStatistique['max'] == '') {
+			if (!isset($historyStatistique['max']) || $historyStatistique['max'] == '') {
 				return $cmd->execCmd();
 			}
 			return round($historyStatistique['max'], 1);
@@ -305,6 +308,9 @@ class scenarioExpression {
 		$_endDate = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
 		$historyStatistique = $cmd->getStatistique($_startDate, $_endDate);
 		$historyStatistique = $cmd->getStatistique(self::setTags($_startDate), self::setTags($_endDate));
+		if (!isset($historyStatistique['max'])) {
+			return '';
+		}
 		return round($historyStatistique['max'], 1);
 	}
 
@@ -362,7 +368,7 @@ class scenarioExpression {
 				}
 			}
 			$historyStatistique = $cmd->getStatistique($startHist, date('Y-m-d H:i:s'));
-			if ($historyStatistique['min'] == '') {
+			if (!isset($historyStatistique['min']) || $historyStatistique['min'] == '') {
 				return $cmd->execCmd();
 			}
 			return round($historyStatistique['min'], 1);
@@ -377,6 +383,9 @@ class scenarioExpression {
 		$_startDate = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
 		$_endDate = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
 		$historyStatistique = $cmd->getStatistique($_startDate, $_endDate);
+		if (!isset($historyStatistique['min'])) {
+			return '';
+		}
 		return round($historyStatistique['min'], 1);
 	}
 
@@ -467,19 +476,11 @@ class scenarioExpression {
 				$_value = null;
 			}
 		}
-
-		if (str_word_count($_period) == 1 && is_numeric(trim($_period)[0])) {
-			$startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . $_period));
-		} else {
-			$startHist = date('Y-m-d H:i:s', strtotime($_period));
-			if ($startHist == date('Y-m-d H:i:s', strtotime(0))) {
-				return '';
-			}
-		}
+		$startHist = date('Y-m-d H:i:s', strtotime($_period));
 		return history::stateChanges($cmd_id, $_value, $startHist, date('Y-m-d H:i:s'));
 	}
 
-	public static function stateChangesBetween($_cmd_id, $_value = null, $_startDate, $_endDate) {
+	public static function stateChangesBetween($_cmd_id, $_value, $_startDate, $_endDate) {
 		if (!is_numeric(str_replace('#', '', $_cmd_id))) {
 			$cmd = cmd::byId(str_replace('#', '', cmd::humanReadableToCmd($_cmd_id)));
 		} else { $cmd = cmd::byId(str_replace('#', '', $_cmd_id));}
@@ -496,6 +497,7 @@ class scenarioExpression {
 		}
 		$_startDate = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
 		$_endDate = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
+
 		return history::stateChanges($cmd_id, $_value, $_startDate, $_endDate);
 	}
 
@@ -964,7 +966,7 @@ class scenarioExpression {
 				} else {
 					if (function_exists($function)) {
 						foreach ($arguments as &$argument) {
-							$argument = evaluate(self::setTags($argument, $_scenario, $_quote));
+							$argument = trim(evaluate(self::setTags($argument, $_scenario, $_quote)));
 						}
 						$replace2[$replace_string] = call_user_func_array($function, $arguments);
 					}
@@ -1067,7 +1069,7 @@ class scenarioExpression {
 						$timeout = jeedom::evaluateExpression($options['timeout']);
 						$limit = (is_numeric($timeout)) ? $timeout : 7200;
 					}
-					while ($result !== true) {
+					while (!$result) {
 						$expression = self::setTags($options['condition'], $scenario, true);
 						$result = evaluate($expression);
 						if ($occurence > $limit) {

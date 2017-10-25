@@ -862,11 +862,16 @@ function savePlan(_refreshDisplay,_async) {
         if(info.type == 'graph'){
            plan.display.graph = json_decode($(this).find('.graphOptions').value());
        }
-       var position = $(this).position();
-       plan.position.top = (((position.top)) / $('.div_displayObject').height()) * 100;
-       plan.position.left = (((position.left)) / $('.div_displayObject').width()) * 100;
-       plans.push(plan);
-   });
+       if(!$(this).is(':visible')){
+        var position = $(this).show().position();
+        $(this).hide();
+    }else{
+        var position = $(this).position();
+    }
+    plan.position.top = (((position.top)) / $('.div_displayObject').height()) * 100;
+    plan.position.left = (((position.left)) / $('.div_displayObject').width()) * 100;
+    plans.push(plan);
+});
     jeedom.plan.save({
         plans: plans,
         async : _async || true,
@@ -912,6 +917,8 @@ function displayObject(_plan,_html, _noRender) {
     html.css('-moz-transform-origin', '0 0');
     html.css('-moz-transform', 'scale(' + init(_plan.css.zoom, 1) + ')');
     html.addClass('noResize');
+    console.log(html);
+    console.log(_plan);
     if (isset(_plan.display) && isset(_plan.display.width)) {
         html.css('width', init(_plan.display.width, 50));
     }

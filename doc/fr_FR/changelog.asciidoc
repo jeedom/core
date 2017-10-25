@@ -1,5 +1,18 @@
 == Changelog
 
+== Next
+
+* Correction de bugs
+* Possibilité de désactiver une intéraction
+* Ajout d'un éditeur de fichiers (réservé aux utilisateurs expérimentés)
+
+== 3.1.7
+
+* Correction de bugs (en particulier sur les historiques et fonctions statistiques)
+* Amélioration du système de mises à jour avec une page de notes de version (que vous devez vérifier vous même avant chaque mise à jour !!!!)
+* Correction d'un bug qui récuperait les logs lors des restorations
+
+
 == 3.1
 
 * Correction de bugs

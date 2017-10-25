@@ -31,6 +31,7 @@ class update {
 	private $status;
 	private $configuration;
 	private $source = 'market';
+	private $_changeUpdate = false;
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -81,7 +82,6 @@ class update {
 			}
 		}
 		config::save('update::lastCheck', date('Y-m-d H:i:s'));
-		event::add('update::refreshUpdateNumber');
 	}
 
 	public static function listRepo() {
@@ -492,6 +492,7 @@ class update {
 				}
 				$this->setRemoteVersion($version);
 			}
+			$change = false;
 			if (version_compare($this->getRemoteVersion(), $this->getLocalVersion(), '>')) {
 				$this->setStatus('update');
 			} else {
@@ -523,6 +524,12 @@ class update {
 
 	public function save() {
 		return DB::save($this);
+	}
+
+	public function postSave() {
+		if ($this->_changeUpdate) {
+			event::add('update::refreshUpdateNumber');
+		}
 	}
 
 	public function remove() {
@@ -562,6 +569,9 @@ class update {
 	}
 
 	public function setStatus($status) {
+		if ($status != $this->status) {
+			$this->_changeUpdate = true;
+		}
 		$this->status = $status;
 		return $this;
 	}

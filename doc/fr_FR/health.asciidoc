@@ -1,13 +1,13 @@
 = Santé
 
-La page de santé de Jeedom vous permet d'avoir un aperçu rapide de l'état de santé de votre Jeedom. Il indique aussi (si les plugins l'utilisent), l'état de santé par plugin
+La page de santé de Jeedom vous permet d'avoir un aperçu rapide de l'état de santé de votre Jeedom. Elle indique aussi (si les plugins l'utilisent) l'état de santé par plugin.
 
-Il est accessible par Analyse -> Santé
+La page est accessible par Analyse -> Santé
 
 [NOTE]
-Un clic sur l'icône à droite permet d'accéder à un benchmarck de votre jeedom.
+Un clic sur l'icône à droite permet d'accéder au benchmarck de votre Jeedom.
 
-Une fois dessus, voilà ce que vous retrouvez ici un tableau qui donne une description de ce que Jeedom vérifie et du statut de celle-ci dans la 2ème colonne, enfin la dernière colonne peut vous donner des conseils de résolution si la vérification n'est pas OK
+La page santé de Jeedom se présente sous la forme d'un tableau. La 1ere vous donne une description de ce que Jeedom vérifie et dont le statut est affiché dans la 2ème colonne. Enfin la dernière colonne peut vous donner des conseils de résolution si la vérification n'est pas OK.
 
 En dessous vous retrouvez la santé pour chaque plugin, un clique sur le nom du plugin donne le details de santé de celui-ci. A droite vous retrouvez les icones : 
 
@@ -19,4 +19,3 @@ En dessous vous retrouvez la santé pour chaque plugin, un clique sur le nom du 
 
 [NOTE]
 Les icones peuvent varier en fonction du plugin
-

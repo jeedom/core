@@ -142,4 +142,3 @@ function logout() {
 	session_destroy();
 	return;
 }
-

@@ -99,7 +99,6 @@ $(function () {
     });
 
     $('body').on('click','a',function(e){
-
         if($(this).hasClass('noOnePageLoad')){
             return;
         }

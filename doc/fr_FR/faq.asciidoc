@@ -48,7 +48,7 @@ En SSH faîtes :
 
 [source,bash]
 sudo su -
-php /var/www/html/install/install.php
+php /var/www/html/install/update.php
 chmod -R 775 /var/www/html
 chown -R www-data:www-data /var/www/html
 

@@ -195,7 +195,7 @@ class history {
 					'archivePackage' => $archivePackage,
 				);
 
-				$sql = 'SELECT ' . $mode . '(value) as value,
+				$sql = 'SELECT ' . $mode . '(CAST(value AS DECIMAL(12,2))) as value,
 						FROM_UNIXTIME(AVG(UNIX_TIMESTAMP(`datetime`))) as datetime
 						FROM history
 						WHERE TIMEDIFF(`datetime`,:oldest)<:archivePackage
@@ -271,7 +271,7 @@ class history {
 			$sql .= ' AND `datetime`<=:endTime';
 		}
 		$sql .= ' ) as dt
-ORDER BY `datetime` ASC';
+				ORDER BY `datetime` ASC';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -288,18 +288,18 @@ ORDER BY `datetime` ASC';
 		switch ($_period) {
 			case 'day':
 				if ($_offset == 0) {
-					$select = 'SELECT cmd_id,MAX(`value`) as `value`,DATE_FORMAT(`datetime`,"%Y-%m-%d 00:00:00") as `datetime`';
+					$select = 'SELECT cmd_id,MAX(CAST(value AS DECIMAL(12,2))) as `value`,DATE_FORMAT(`datetime`,"%Y-%m-%d 00:00:00") as `datetime`';
 				} elseif ($_offset > 0) {
-					$select = 'SELECT cmd_id,MAX(`value`) as `value`,DATE_FORMAT(DATE_ADD(`datetime`, INTERVAL ' . $_offset . ' HOUR),"%Y-%m-%d 00:00:00") as `datetime`';
+					$select = 'SELECT cmd_id,MAX(CAST(value AS DECIMAL(12,2))) as `value`,DATE_FORMAT(DATE_ADD(`datetime`, INTERVAL ' . $_offset . ' HOUR),"%Y-%m-%d 00:00:00") as `datetime`';
 				} else {
-					$select = 'SELECT cmd_id,MAX(`value`) as `value`,DATE_FORMAT(DATE_SUB(`datetime`, INTERVAL ' . abs($_offset) . ' HOUR),"%Y-%m-%d 00:00:00") as `datetime`';
+					$select = 'SELECT cmd_id,MAX(CAST(value AS DECIMAL(12,2))) as `value`,DATE_FORMAT(DATE_SUB(`datetime`, INTERVAL ' . abs($_offset) . ' HOUR),"%Y-%m-%d 00:00:00") as `datetime`';
 				}
 				break;
 			case 'month':
-				$select = 'SELECT cmd_id,MAX(`value`) as `value`,DATE_FORMAT(`datetime`,"%Y-%m-01 00:00:00") as `datetime`';
+				$select = 'SELECT cmd_id,MAX(CAST(value AS DECIMAL(12,2))) as `value`,DATE_FORMAT(`datetime`,"%Y-%m-01 00:00:00") as `datetime`';
 				break;
 			case 'year':
-				$select = 'SELECT cmd_id,MAX(`value`) as `value`,DATE_FORMAT(`datetime`,"%Y-01-01 00:00:00") as `datetime`';
+				$select = 'SELECT cmd_id,MAX(CAST(value AS DECIMAL(12,2))) as `value`,DATE_FORMAT(`datetime`,"%Y-01-01 00:00:00") as `datetime`';
 				break;
 			default:
 				$select = 'SELECT ' . DB::buildField(__CLASS__);
@@ -326,7 +326,7 @@ ORDER BY `datetime` ASC';
 				break;
 		}
 		$sql = $select . '
-	FROM (
+			FROM (
 		' . $select . '
 		FROM history
 		WHERE cmd_id=:cmd_id ';
@@ -360,7 +360,7 @@ ORDER BY `datetime` ASC';
 			'startTime' => $_startTime,
 			'endTime' => $_endTime,
 		);
-		$sql = 'SELECT AVG(value) as avg, MIN(value) as min, MAX(value) as max, SUM(value) as sum, COUNT(value) as count, STD(value) as std, VARIANCE(value) as variance
+		$sql = 'SELECT AVG(CAST(value AS DECIMAL(12,2))) as avg, MIN(CAST(value AS DECIMAL(12,2))) as min, MAX(CAST(value AS DECIMAL(12,2))) as max, SUM(CAST(value AS DECIMAL(12,2))) as sum, COUNT(CAST(value AS DECIMAL(12,2))) as count, STD(CAST(value AS DECIMAL(12,2))) as std, VARIANCE(CAST(value AS DECIMAL(12,2))) as variance
 		FROM (
 			SELECT *
 			FROM history
@@ -444,30 +444,53 @@ ORDER BY `datetime` ASC';
 		$values = array(
 			'cmd_id' => $_cmd_id,
 		);
+		$cValue = $cmd->execCmd();
 		if ($_value === null) {
-			$values['value'] = $cmd->execCmd();
+			$values['value'] = $cValue;
 		} else {
 			$values['value'] = $_value;
 		}
-		$sql = 'SELECT  `datetime`
-	FROM (
-		SELECT `datetime`
-		FROM  `history`
-		WHERE  `cmd_id`=:cmd_id
-		AND  `value` =:value
-		UNION ALL
-		SELECT `datetime`
-		FROM  `historyArch`
-		WHERE  `cmd_id`=:cmd_id
-		AND  `value` =:value
-		) as dt
-ORDER BY  `datetime` DESC
-LIMIT 1';
+		$sql = 'SELECT  ' . DB::buildField(__CLASS__) . '
+				FROM (
+					SELECT `datetime`
+					FROM  `history`
+					WHERE  `cmd_id`=:cmd_id
+					AND  `value` =:value
+					UNION ALL
+					SELECT `datetime`
+					FROM  `historyArch`
+					WHERE  `cmd_id`=:cmd_id
+					AND  `value` =:value
+					) as dt
+			ORDER BY  `datetime` DESC
+			LIMIT 1';
 		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-		if ($result['datetime'] == '' || strtotime($result['datetime']) === false || strtotime($result['datetime']) == 0) {
+		$lastDatetime = $result['datetime'];
+		if ($lastDatetime == '' || strtotime($lastDatetime) == false) {
 			return -1;
 		}
-		return strtotime('now') - strtotime($result['datetime']);
+		if ($values['value'] == $cValue) {
+			return strtotime('now') - strtotime($lastDatetime);
+		}
+		$sql = 'SELECT  ' . DB::buildField(__CLASS__) . '
+				FROM (
+					SELECT `datetime`
+					FROM  `history`
+					WHERE  `cmd_id`=:cmd_id
+					AND  `value` <>:value
+					UNION ALL
+					SELECT `datetime`
+					FROM  `historyArch`
+					WHERE  `cmd_id`=:cmd_id
+					AND  `value` <>:value
+					) as dt
+			ORDER BY  `datetime` DESC
+			LIMIT 1';
+		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+		if ($result['datetime'] == '' || strtotime($result['datetime']) == false || strtotime($result['datetime']) < strtotime($lastDatetime)) {
+			return -1;
+		}
+		return strtotime($result['datetime']) - strtotime($lastDatetime);
 	}
 
 	public static function lastStateDuration($_cmd_id, $_value = null) {
@@ -481,17 +504,17 @@ LIMIT 1';
 		$values = array(
 			'cmd_id' => $_cmd_id,
 		);
-		$sql = 'SELECT value, datetime
-	FROM (
-		SELECT *
-		FROM  history
-		WHERE  cmd_id=:cmd_id
-		UNION ALL
-		SELECT *
-		FROM  historyArch
-		WHERE  cmd_id=:cmd_id
+		$sql = 'SELECT value, `datetime`
+		FROM (
+			SELECT *
+			FROM  history
+			WHERE  cmd_id=:cmd_id
+			UNION ALL
+			SELECT *
+			FROM  historyArch
+			WHERE  cmd_id=:cmd_id
 		) as dt
-ORDER BY  datetime DESC';
+		ORDER BY  `datetime` DESC';
 		$histories = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
 
 		if ($_value === null) {
@@ -544,7 +567,7 @@ ORDER BY  datetime DESC';
 			select min(`datetime`) as datetime from `historyArch`
 			where `cmd_id`=:cmd_id and `value`=:value and
 			`datetime` > COALESCE((select max(`datetime`) from `historyArch` where `value`!=:value and `cmd_id`=:cmd_id and `datetime` < (select max(`datetime`) from historyArch where `cmd_id`=:cmd_id and `value` =:value)),1) and
-			`datetime` <= COALESCE((select max(`datetime`) from `historyArch` where `cmd_id`=:cmd_id and `value` =:value),now())
+			`datetime` <= COALESCE((select max(`datetime`) from `historyArch` where `cmd_id`=:cmd_id and `value`=:value),now())
 			) as t';
 		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 		return strtotime('now') - strtotime($result['lastCmdDuration']);
@@ -563,10 +586,8 @@ ORDER BY  datetime DESC';
 		if (!is_object($cmd)) {
 			throw new Exception(__('Commande introuvable : ', __FILE__) . $_cmd_id);
 		}
-
-		if ($_startTime === null) {
-			$_dateTime = '';
-		} else {
+		$_dateTime = '';
+		if ($_startTime !== null) {
 			$_dateTime = ' AND `datetime`>="' . $_startTime . '"';
 		}
 
@@ -576,43 +597,34 @@ ORDER BY  datetime DESC';
 			$_dateTime .= ' AND `datetime`<="' . $_endTime . '"';
 		}
 
-		if ($_value === null && !is_numeric($_value)) {
-			$_condition = '';
-		} else {
+		if ($_value === null) {
+			$_value = $cmd->execCmd();
+		}
+		if ($cmd->getSubType() != 'string') {
 			$_value = str_replace(',', '.', $_value);
 			$_decimal = strlen(substr(strrchr($_value, "."), 1));
-			$_condition = ' and ROUND(value,' . $_decimal . ') = ' . $_value;
+			$_condition = ' ROUND(CAST(value AS DECIMAL(12,2)),' . $_decimal . ') = ' . $_value;
+		} else {
+			$_condition = ' value = ' . $_value;
 		}
+
 		$values = array(
 			'cmd_id' => $_cmd_id,
 		);
 		$sql = 'SELECT count(*) as changes
-				FROM (SELECT t1.*,
-				(SELECT value
-					FROM (
-						SELECT *
-						FROM history
-						WHERE cmd_id=:cmd_id ' . $_dateTime . '
-						UNION ALL
-						SELECT *
-						FROM historyArch
-						WHERE cmd_id=:cmd_id ' . $_dateTime . '
-						) as t2
-						WHERE t2.datetime < t1.datetime
-						ORDER BY datetime desc LIMIT 1
-						) as prev_value
-						FROM (
-							SELECT *
-							FROM history
-							WHERE cmd_id=:cmd_id' . $_dateTime . '
-							UNION ALL
-							SELECT *
-							FROM historyArch
-							WHERE cmd_id=:cmd_id' . $_dateTime . '
-							) as t1
-						WHERE cmd_id=:cmd_id' . $_dateTime . '
-						) as t1
-						where prev_value <> value' . $_condition . '';
+				FROM (SELECT t1.*
+				FROM (
+					SELECT *
+					FROM history
+					WHERE cmd_id=:cmd_id' . $_dateTime . '
+					UNION ALL
+					SELECT *
+					FROM historyArch
+					WHERE cmd_id=:cmd_id' . $_dateTime . '
+				) as t1
+				WHERE cmd_id=:cmd_id' . $_dateTime . '
+			) as t1
+			where ' . $_condition . '';
 		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 		return $result['changes'];
 	}

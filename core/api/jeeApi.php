@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
-
+header('Access-Control-Allow-Origin: *');
 require_once dirname(__FILE__) . "/../php/core.inc.php";
 if (user::isBan() && false) {
 	header("Status: 404 Not Found");
@@ -125,6 +125,9 @@ if (init('type') != '') {
 			if (!is_object($scenario)) {
 				throw new Exception(__('Aucun scénario correspondant à l\'id : ', __FILE__) . secureXSS(init('id')));
 			}
+			if (!$scenario->hasRight('w')) {
+				throw new Exception(__('Vous n\'avez pas le droit de faire une action sur ce scénario', __FILE__));
+			}
 			switch (init('action')) {
 				case 'start':
 					log::add('api', 'debug', __('Démarrage scénario de : ', __FILE__) . $scenario->getHumanName());
@@ -206,7 +209,7 @@ if (init('type') != '') {
 		$jsonrpc = new jsonrpc($request);
 
 		if (!jeedom::apiModeResult(config::byKey('api::core::jsonrpc::mode', 'core', 'enable'))) {
-			throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__), -32001);
+			throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action (jsonrpc disable)', __FILE__), -32001);
 		}
 
 		if ($jsonrpc->getJsonrpc() != '2.0') {

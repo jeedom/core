@@ -1034,10 +1034,7 @@ function addExpression(_expression) {
     });
     break;
     case 'code' :
-    retour += '<div class="col-xs-1">';
-    retour += '<i class="fa fa-bars pull-left cursor bt_sortable" style="margin-top : 9px;"></i>';
-    retour += '</div>';
-    retour += '<div class="col-xs-11">';
+    retour += '<div class="col-xs-12">';
     retour += '<textarea class="expressionAttr form-control" data-l1key="expression">' + init(_expression.expression) + '</textarea>';
     retour += '</div>';
     break;

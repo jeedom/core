@@ -844,9 +844,6 @@ class cmd {
 	 * @throws Exception
 	 */
 	public function execCmd($_options = null, $_sendNodeJsEvent = false, $_quote = false) {
-		if ($_sendNodeJsEvent) {
-			trigger_error('$_sendNodeJsEvent is deprecated', E_USER_DEPRECATED);
-		}
 		if ($this->getType() == 'info') {
 			$this->setCollectDate($this->getCache('collectDate', date('Y-m-d H:i:s'), true));
 			$this->setValueDate($this->getCache('valueDate', date('Y-m-d H:i:s'), true));
@@ -1493,6 +1490,9 @@ class cmd {
 	}
 
 	public function getStatistique($_startTime, $_endTime) {
+		if ($this->getType() != 'info' || $this->getType() == 'string') {
+			return array();
+		}
 		return history::getStatistique($this->getId(), $_startTime, $_endTime);
 	}
 

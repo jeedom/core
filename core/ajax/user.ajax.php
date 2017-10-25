@@ -54,6 +54,13 @@ try {
 		ajax::success();
 	}
 
+	if (init('action') == 'getApikey') {
+		if (!login(init('username'), init('password'), init('twoFactorCode'))) {
+			throw new Exception('Mot de passe ou nom d\'utilisateur incorrect');
+		}
+		ajax::success($_SESSION['user']->getHash());
+	}
+
 	if (!isConnect()) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
 	}

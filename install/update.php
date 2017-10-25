@@ -49,6 +49,7 @@ try {
 	}
 	echo "****Update jeedom from " . jeedom::version() . " (" . date('Y-m-d H:i:s') . ")****\n";
 	echo "Parameters : " . print_r($_GET, true);
+	$curentVersion = config::byKey('version');
 
 	/*         * ************************MISE A JOUR********************************** */
 
@@ -238,7 +239,7 @@ try {
 			if (file_exists($updateScript)) {
 				try {
 					echo "Update system into : " . init('update::reapply') . "\n";
-					require_once $updateScript;
+					echo exec(system::getCmdSudo() . ' php ' . $updateScript);
 					echo "OK\n";
 				} catch (Exception $e) {
 					if (init('force') != 1) {
@@ -249,9 +250,7 @@ try {
 				}
 			}
 			$curentVersion = init('update::reapply');
-		}
-
-		if (init('update::reapply') != '') {
+		} else {
 			while (version_compare(jeedom::version(), $curentVersion, '>')) {
 				$nextVersion = incrementVersion($curentVersion);
 				$updateSql = dirname(__FILE__) . '/update/' . $nextVersion . '.sql';
@@ -301,7 +300,7 @@ try {
 				if (file_exists($updateScript)) {
 					try {
 						echo "Update system into : " . $nextVersion . "...";
-						require_once $updateScript;
+						echo exec(system::getCmdSudo() . ' php ' . $updateScript);
 						echo "OK\n";
 					} catch (Exception $e) {
 						if (init('force') != 1) {
