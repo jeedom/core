@@ -186,6 +186,14 @@ try {
 	$cache->remove();
 
 	try {
+		echo 'Check jeedom file right...';
+		jeedom::cleanFileSytemRight();
+		echo "OK\n";
+	} catch (Exception $e) {
+		echo "NOK\n";
+	}
+
+	try {
 		jeedom::start();
 	} catch (Exception $e) {
 		echo $e->getMessage();
