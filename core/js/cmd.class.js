@@ -313,7 +313,7 @@ jeedom.cmd.refreshValue = function(_params) {
     var sends = {};
     for(var i in _params){
         var cmd = $('.cmd[data-cmd_id=' + _params[i].cmd_id + ']');
-        if (cmd.html() == undefined || (cmd.closest('.eqLogic').attr('data-version') == undefined && cmd.attr('data-version') == undefined) || cmd.hasClass('noRefresh')) {
+        if (cmd.html() == undefined || cmd.hasClass('noRefresh')) {
             continue;
         }
         if (!isset(_params[i].global) || !_params[i].global) {
@@ -325,6 +325,9 @@ jeedom.cmd.refreshValue = function(_params) {
         version = cmd.closest('.eqLogic').attr('data-version');
         if(version == undefined){
             version = cmd.attr('data-version');
+        }
+        if(version == undefined){
+            continue;
         }
         cmds[_params[i].cmd_id] = {cmd : cmd, version : version};
         sends[_params[i].cmd_id] = {version : version};
