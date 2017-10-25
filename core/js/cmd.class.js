@@ -322,7 +322,7 @@ jeedom.cmd.refreshValue = function(_params) {
                 continue;
             }
         }
-        version == null;
+        version = null;
         if (cmd.closest('.eqLogic').attr('data-version') != undefined) {
             version = cmd.closest('.eqLogic').attr('data-version');
         }
@@ -330,12 +330,6 @@ jeedom.cmd.refreshValue = function(_params) {
             version =cmd.attr('data-version');
         }
         if(version == null){
-            continue;
-        }
-        if(version == undefined){
-            version = cmd.attr('data-version');
-        }
-        if(version == undefined){
             continue;
         }
         cmds[_params[i].cmd_id] = {cmd : cmd, version : version};
