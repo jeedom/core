@@ -309,7 +309,7 @@ class plan {
  				$color = '';
  			}
  			$html = '<div class="summary-widget" data-summary_id="' . $this->getLink_id() . '" style="' . $background_color . $color . ';min-width:10px;min-height:10px;">';
-          	$summary = '';
+			$summary = '';
 			if ($this->getLink_id() == 0) {
 				$summary = object::getGlobalHtmlSummary($_version);
 			} else {
