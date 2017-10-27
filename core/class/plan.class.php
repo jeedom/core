@@ -298,18 +298,18 @@ class plan {
 			);
 		} else if ($this->getLink_type() == 'summary') {
 			$background_color = 'background-color : '.$this->getCss('background-color', 'black').';';
-			if ($this->getDisplay('background-defaut', true)) {
-				$background_color = 'black';
-			}
-			if ($this->getDisplay('background-transparent', true)) {
-				$background_color = '';
-			}
-			$background_color = 'color : '.$this->getCss('color', 'black').';';
-			if ($this->getDisplay('color-defaut', true)) {
-				$color = 'black';
-			}
-			$html = '<div class="summary-widget" data-summary_id="' . $this->getLink_id() . '" style="' . $background_color . $color . ';min-width:10px;min-height:10px;">';
-			$summary = '';
+ 			if ($this->getDisplay('background-defaut', false)) {
+ 				$background_color = 'background-color : black;';
+ 			}
+ 			if ($this->getDisplay('background-transparent', false)) {
+ 				$background_color = '';
+ 			}
+ 			$color = 'color : '.$this->getCss('color', 'black').';';
+ 			if ($this->getDisplay('color-defaut', false)) {
+ 				$color = '';
+ 			}
+ 			$html = '<div class="summary-widget" data-summary_id="' . $this->getLink_id() . '" style="' . $background_color . $color . ';min-width:10px;min-height:10px;">';
+          	$summary = '';
 			if ($this->getLink_id() == 0) {
 				$summary = object::getGlobalHtmlSummary($_version);
 			} else {
