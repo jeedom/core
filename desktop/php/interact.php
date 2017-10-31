@@ -18,21 +18,15 @@ if (is_array($interactListGroup)) {
   <div class="col-xs-2" id="div_listInteract" style="z-index:999">
     <div class="bs-sidebar nav nav-list bs-sidenav" >
       <a id="bt_addInteract" class="btn btn-default" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-plus-circle"></i> {{Ajouter interaction}}</a>
-      <div class="row">
-        <div class="col-xs-6">
-          <a id="bt_regenerateInteract" class="btn btn-warning" style="width : 100%;margin-top : 5px;margin-bottom: 5px;text-shadow : none;"><i class="fa fa-refresh"></i> {{Regénérer}}</a>
-        </div>
-        <div class="col-xs-6">
-          <a id="bt_testInteract" class="btn btn-primary" style="width : 100%;margin-top : 5px;margin-bottom: 5px;text-shadow : none;"><i class="fa fa-comment-o"></i> {{Tester}}</a>
-        </div>
-      </div>
+      <a id="bt_regenerateInteract" class="btn btn-warning" style="width : 100%;margin-top : 5px;margin-bottom: 5px;text-shadow : none;"><i class="fa fa-refresh"></i> {{Regénérer}}</a>
+      <a id="bt_testInteract" class="btn btn-primary" style="width : 100%;margin-top : 5px;margin-bottom: 5px;text-shadow : none;"><i class="fa fa-comment-o"></i> {{Tester}}</a>
       <input id='in_treeSearch' class='form-control' placeholder="{{Rechercher}}" />
       <div id="div_tree">
-         <ul id="ul_interact" >
-          <?php if (count($interacts[-1]) > 0) {
+       <ul id="ul_interact" >
+        <?php if (count($interacts[-1]) > 0) {
 	?>
-           <li data-jstree='{"opened":true}'>
-            <?php
+         <li data-jstree='{"opened":true}'>
+          <?php
 echo '<a>Aucune - ' . count($interacts[-1]) . ' interaction(s)</a>';
 	echo '<ul>';
 	foreach ($interacts[-1] as $interact) {
@@ -41,8 +35,8 @@ echo '<a>Aucune - ' . count($interacts[-1]) . ' interaction(s)</a>';
 		echo '</li>';
 	}
 	?>
-          </ul>
-          <?php
+        </ul>
+        <?php
 }
 foreach ($interactListGroup as $group) {
 	if ($group['group'] != '') {
@@ -59,9 +53,9 @@ foreach ($interactListGroup as $group) {
 	}
 }
 ?>
-   </ul>
-     </div>
-   </div>
+ </ul>
+</div>
+</div>
 </div>
 <div id="interactThumbnailDisplay" class="col-xs-10" style="border-left: solid 1px #EEE; padding-left: 25px;">
  <div class="interactListContainer">
@@ -177,7 +171,7 @@ if (count($totalInteract) == 0) {
             <input class="form-control interactAttr" type="text" data-l1key="group" placeholder=""/>
           </div>
         </div>
-         <div class="form-group">
+        <div class="form-group">
           <label class="col-sm-2 col-xs-2 control-label">{{Actif}}</label>
           <div class="col-sm-9 col-xs-9">
             <input class="interactAttr" type="checkbox" data-l1key="enable" placeholder=""/>
@@ -188,6 +182,12 @@ if (count($totalInteract) == 0) {
           <div class="col-sm-9 col-xs-9">
             <input class="form-control interactAttr" type="text" data-l1key="id" style="display : none;"/>
             <input class="form-control interactAttr" type="text" data-l1key="query" placeholder=""/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 col-xs-2 control-label">{{Mot(s) obligatoire}}</label>
+          <div class="col-sm-9 col-xs-9">
+            <input class="form-control interactAttr" type="text" data-l1key="options" data-l2key="mustcontain"/>
           </div>
         </div>
         <div class="form-group">
