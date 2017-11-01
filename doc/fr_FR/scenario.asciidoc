@@ -16,7 +16,7 @@ En haut on retrouve une série de 3 boutons :
 
 * *Ajouter* : permet d'ajouter un scénario
 * *Désactiver scénarios* : permet de désactiver tous les scénarios
-* *Voir les variables* : permet de voir les variables, leur valeur ainsi que l'endroit où elle sont utilisées
+* *Voir les variables* : permet de voir les variables, leur valeur ainsi que l'endroit où elles sont utilisées
 
 [TIP]
 Les scénarios en rouge sont ceux qui sont désactivés
@@ -80,11 +80,11 @@ image::../images/scenario12.JPG[]
 
 Enfin sur la droite vous avez les actions, ici très simple il suffit de cliquer sur "Ajouter une action"
 
-=== Exemple allumer sur présence
+=== Exemple : allumer sur présence
 
 image::../images/scenario13.JPG[]
 
-Voila un scénario très simple qui allume la lumière en cas de présence
+Voilà un scénario très simple qui allume la lumière en cas de présence
 
 [TIP]
 Ce scénario sera déclenché aussi bien lors de la détection d'une présence que lors du relâchement (fin de présence), il est donc nécessaire de tester la valeur de la présence (ici déclenchée)
@@ -107,7 +107,7 @@ En haut la partie générale où l'on retrouve :
 * *Objet parent* : Le choix d'affecter à un objet parent ou pas
 * *Timeout secondes (0 = illimité)* : La durée d’exécution maximum autorisée
 * *Déclencheurs* : Ensuite vient la partie des déclencheurs qui peuvent soit être un ou plusieurs événements et/ou une programmation (une heure donnée, une fréquence… Cette partie s’écrit à l’aide d’une syntaxe type crontab accessible via la touche, un assistant est disponible en cliquant sur ?. Attention vous pouvez avoir au maximum 28 déclencheurs sur un scénario.
-* *Action* : En haut à droite on retrouve quelques actions utiles comme le lancement forcé du scénario (pour test),la suppression du scénario, la sauvegarde, la génération d'un template (voir le chapitre dédié), l'export, l’arrêt forcé d’un scénario (si en cours), log des dernières exécutions (très pratique pour vérifier le déroulement exact du scénario), la duplication.
+* *Action* : En haut à droite on retrouve quelques actions utiles comme le lancement forcé du scénario (pour test), la suppression du scénario, la sauvegarde, la génération d'un template (voir le chapitre dédié), l'export, l’arrêt forcé d’un scénario (si en cours), log des dernières exécutions (très pratique pour vérifier le déroulement exact du scénario), la duplication.
 * *Execution en avant plan* : permet de lancer le scénario directement et non dans un fil d'exécution séparé. Attention cette option peut être dangereuse car elle met en pause toute les autres actions du scénario. IL NE FAUT JAMAIS l'activer sur un scénario déclenché par une programmation horaire ou un scénario contenant des actions de type sleep
 * *Enchaîner les commandes sans attendre* : permet d'enchaîner les suites d'actions sans attendre le retour et donc la vérification de la bonne exécution (attention actuellement seuls les plugins openzwave et script sont compatibles)
 * *Pas de log* : indique au scénario de ne pas écrire dans les logs (permet de le rendre un peu plus rapide)
@@ -120,7 +120,7 @@ image::../images/scenario4.JPG[]
 * *Si/Alors/Sinon* : bloc de base permettant de réaliser des conditions.
 * *Action* : bloc permet de lancer une action simple sans aucune condition ou autre avant
 * *Boucle* : permet de réaliser des boucles de 1 jusqu’à un nombre défini (ou même une valeur d’un capteur, ou nombre aléatoire).
-* *Dans* : permet de lancer une action dans X minute(s) (0 est une valeur possible). La particularité c'est que les actions sont lancées en arrière plan, elles ne bloquent donc pas la suite du scénario. C'est donc un bloc non bloquant.
+* *Dans* : permet de lancer une action dans X minute(s) (0 est une valeur possible). La particularité c'est que les actions sont lancées en arrière-plan, elles ne bloquent donc pas la suite du scénario. C'est donc un bloc non bloquant.
 * *A* : permet de dire à Jeedom de lancer les actions du bloc A à une heure donnée (sous la forme hhmm). Ce bloc est non bloquant
 * *Code* : permet d’écrire directement en code PHP (demande certaines connaissances et peut être risqué mais permet de n’avoir plus aucune contrainte).
 * *Commentaire* : permet d'ajouter des commentaires à son scénario
@@ -129,7 +129,7 @@ image::../images/scenario4.JPG[]
 Devant chaque bloc (en dessous de la double flèche verticale qui permet de déplacer les blocs) vous avez un petit coche pour désactiver complètement le bloc sans pour autant supprimer celui-ci (permet de faire des tests pour le réactiver plus tard par exemple)
 
 [NOTE]
-Sur les blocs de type Si/Alors/Sinon vous avez devant des flèches circulaires, elles permettent d'activer ou non la répétition des actions si l'évaluation de la condition donne le même résultat que la précedente évaluation
+Sur les blocs de type Si/Alors/Sinon vous avez devant des flèches circulaires, elles permettent d'activer ou non la répétition des actions si l'évaluation de la condition donne le même résultat que la précédente évaluation
 
 Pour les conditions, Jeedom essaye de faire en sorte qu’on puisse les écrire le plus possible en langage naturel tout en restant souple. On a donc un bouton permettant de sélectionner un équipement puis on écrit la condition. Il existe une liste de tags permettant d’avoir accès à des variables issues du scénario ou d’un autre, à l’heure, à la date, à un nombre aléatoire….
 
@@ -356,7 +356,7 @@ En plus des commandes domotiques vous avez accès aux actions suivantes :
 * *alert* : permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page jeedom ouverte. Vous pouvez en plus choisir 4 niveaux d'alerte
 * *remove_inat* : Permet de supprimer la programmation de tous les blocs DANS et A du scénario
 * *popup* : permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page jeedom ouverte.
-* *ask* : permet d'indiquer à jeedom qu'il faut poser une question à l'utilisateur. La réponse est stockée dans une variable, il suffit ensuite de tester sa valeur. Pour le moment seuls les plugins sms et slack sont compatibles. Attention l'action ask est bloquante, tant qu'il n'y a pas de réponse ou que le timeout n'est pas atteint le scénario attend. Voila un exemple d'utilisation : 
+* *ask* : permet d'indiquer à jeedom qu'il faut poser une question à l'utilisateur. La réponse est stockée dans une variable, il suffit ensuite de tester sa valeur. Pour le moment seuls les plugins sms et slack sont compatibles. Attention l'action ask est bloquante, tant qu'il n'y a pas de réponse ou que le timeout n'est pas atteint le scénario attend. Voilà un exemple d'utilisation : 
 
 image::../images/scenario20.JPG[]
              
@@ -470,7 +470,7 @@ Il vous suffit de remplir la correspondance des commandes puis de faire applique
 
 == Les logs
 
-Vous pouvez accéder aux logs d'éxecution d'un scénario en cliquant sur le bouton log de celui-ci : 
+Vous pouvez accéder aux logs d'exécution d'un scénario en cliquant sur le bouton log de celui-ci : 
 
 image::../images/scenario17.JPG[]
 
