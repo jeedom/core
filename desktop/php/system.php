@@ -26,7 +26,6 @@ if (!isConnect('admin')) {
         <?php if (jeedom::isCapable('sudo')) {?>
           <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo cat /var/log/mysql/error.log">MySQL log</a></li>
           <?php }?>
-          <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="cat /var/log/php5-fpm.log">PHP log</a></li>
           <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="df -h">df -h</a></li>
           <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="w">w</a></li>
           <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="dpkg -l">dpkg -l</a></li>
