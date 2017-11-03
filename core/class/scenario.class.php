@@ -291,6 +291,14 @@ class scenario {
 	 */
 	public static function doIn($_options) {
 		$scenario = self::byId($_options['scenario_id']);
+		if (!is_object($scenario)) {
+			return;
+		}
+		if ($scenario->getIsActive() == 0) {
+			$scenario->setLog(__('Scénario désactivé non lancement de la sous tâche', __FILE__));
+			$scenario->persistLog();
+			return;
+		}
 		if (isset($_options['tags']) && is_array($_options['tags']) && count($_options['tags']) > 0) {
 			$scenario->setTags($_options['tags']);
 		}
