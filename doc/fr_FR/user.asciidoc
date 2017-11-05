@@ -2,28 +2,36 @@
 
 C'est ici que l'on va pouvoir définir la liste des utilisateurs autorisés à se connecter à Jeedom, mais également leurs droits d'administrateur
 
-Accessible par Administration -> Utilisateurs : 
+Accessible par Administration -> Utilisateurs.
 
-image::../images/user.png[]
-
-Une fois dessus vous obtenez : 
-
-image::../images/user2.png[]
-
-En haut vous avez un bouton pour ajouter un compte temporaire (pour par exemple fournir un accès au support). Une fois que vous cliquez dessus, vous allez avoir une URL à envoyer à la personne devant l'utiliser. Ce compte a une durée de vie de 24h.
-Vous avez aussi un bouton pour ajouter un utilisateur. Si vous cliquez dessus, Jeedom vous demandera le mot de passe et le login de l'utilisateur :
-
-image::../images/user3.png[]
+En haut à droite vous avez un bouton pour ajouter un utilisateur et un pour sauvegarder.
 
 En dessous vous avez un tableau :
 
 * *Nom d'utilisateur* : le login de l'utilisateur
-* *Actions* : La possibilité de changer le mot de passe de l'utilisateur ou de supprimer son compte
 * *Actif* : la possibilité de désactiver le compte
-* *Droits* : la possibilité de passer ou non l'utilisateur en mode administrateur (permet d'avoir accès à tout ce qui est configuration de Jeedom, création des scénarios, gestion des plugins, configuration des équipements, des designs, des vues...)
+* *Local seulement* : autorise la connexion de l'utilisateur que si il est en local
+* *Profils* : permet de choisir le profil de l'utilisateur : 
+** *Administrateur* : tous les droits sur Jeedom
+** *Utilisateur* : peut voir le dashboard, les vues, les design, etc. et agir sur les équipements/commandes, en revanche il n'aura pas accès a la configuration des commandes/équipements ni à la configuration de Jeedom
+** *Utilisateur limité* : l'utilisateur ne voit que les équipements autorisés (configurable avec le bouton "Gérer les droits")
 * *Clef API* : clef API personnelle de l'utilisateur
+* *Double authentification* : indique si la double authentification est active ou non
 * *Date de dernière connexion* : date de dernière connexion de l'utilisateur. Attention, ici c'est la date de connexion réelle; ainsi si vous enregistrez votre ordinateur, la date de connexion n'est pas mise à jour à chaque fois que vous y retournez.
-* *Accès direct* : donne une URL pour se connecter directement à Jeedom avec le compte en question
+* *Changer le mot de passe* : permet de changer le mot de passe de l'utilisateur
+* *Supprimer* : permet de supprimer l'utilisateur
+* *Regénerer clef API* : regénère la clef API de l'utilisateur
+* *Gérer les droits* : permet de gérer finiment les droits de l'utilisateur (attention le profils doit être en "utilisateur limité")
 
-[TIP]
-En cas de changement, n'oubliez pas de cliquer sur "sauvegarder".
+== Gestion des droits
+
+Lors du clique sur "Gérer les droits" une fenêtre apparait et vous permet de gérer finement les droits de l'utilisateur
+
+[IMPORTANT]
+Le profil doit être en limité sinon aucune restriction mise ici ne sera prise en compte
+
+Vous avez ici un tableau qui permet pour chaque équipement et chaque scénario de définir les droits de l'utilisateur : 
+
+* *Aucun* : l'utilisateur ne voit pas l'équipement/scénario
+* *Visualisation* : l'utilisateur voit l'équipement/scénario mais ne peut pas agir dessus
+* *Visualisation et éxecution* : l'utilisateur voit l'équipement/scénario et peut agir dessus (allumer une lampe, lancer le scénario, etc.)

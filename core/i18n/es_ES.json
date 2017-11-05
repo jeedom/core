@@ -69,7 +69,7 @@
         " généré le ": "generados el",
         "Aucune durée trouvée pour l'action sleep ou la durée n'est pas valide : ": "Ninguna duración sobre la acción sleep o la duración no es valida :",
         "[Erreur] Aucune commande trouvée pour ": "[Error] Comando no encontrado",
-        " options : ": "options :"
+        " options : ": "opciones:"
     },
     "core/class/scenarioElement.class.php": {
         "Non exécution des actions pour cause de répétition": "No aplicar las medidas por causa de la repetición",
@@ -154,7 +154,7 @@
         "Configuration réseau interne": "Configuración de la red interna",
         "Configuration réseau externe": "Configuración de la red externa",
         "Persistance du cache": "Persistencia de la caché",
-        "Mémoire disponible": "Mémoire disponible",
+        "Mémoire disponible": "Memoria disponible",
         "Swap disponible": "Swap disponible",
         "Charge": "Carga"
     },
@@ -314,7 +314,7 @@
         "Configuration": "Configuración ",
         "Fonctionalités": "Características",
         "Panel": "Panel",
-        "Fonctionnalités": "Fonctionnalités"
+        "Fonctionnalités": "Características"
     },
     "core/class/interactQuery.class.php": {
         "J'ai une correspondance  : ": "Tiene una correspondencia :",
@@ -557,16 +557,16 @@
         "Profondeur pour les commandes": "Profundidad para los comandos",
         "Profondeur pour les objets": "Profundidad para los objetos",
         "Profondeur pour les variables": "Profundidad para las variables",
-        "Système (OS) et base de données": "Système (OS) et base de données",
+        "Système (OS) et base de données": "Sistema (OS) y base de datos",
         "Administration": "Administración",
         "Interface": "Interfaz",
         "Mac": "Mac",
-        "Nettoyer les rapport plus anciens de (jours)": "Nettoyer les rapport plus anciens de (jours)"
+        "Nettoyer les rapport plus anciens de (jours)": "Eliminar los informes más antiguos de (días)"
     },
     "desktop/js/administration.js": {
         "Etes-vous sûr de vouloir réinitialiser la clef API de ": "Está seguro de que desea restablecer la clave de la API de",
         "Commande réalisée avec succès": "Orden ejecutada con éxito",
-        "Sauvegarde réussie": "Copa de seguridad realizada con éxito",
+        "Sauvegarde réussie": "Copia de seguridad realizada con éxito",
         "Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et qu\\'en cas de Jeedom non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\\'accès est enregistrée) ?": "Tenga en cuenta que es una operación arriesgada. ¿ Usted Confirma que entiende bien los riesgos y que en caso de que Jeedom no funciona posteriormente no se aceptará ninguna solicitud de soporte (este intento de acceso está guardado)?",
         "Connexion échouée :": "Conexión en error",
         "Connexion réussie": "Conexión exitosa",
@@ -882,7 +882,7 @@
         "Permet de rajouter un message dans les logs": "Permite añadir un mensaje en los logs",
         "Permet d'ajouter une message dans le centre de message": "Permite añadir un mensaje en el centro de mensajes",
         "Permet de modifier les prorietés visible/invisible actif/inactif d'un équipement": "Permite modificar las propiedades visibles/invisibles activos/inactivos de un dispositivo",
-        "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finie que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.": "Acción que permite a Jeedom realizar una petición y almacenar la respuesta en una variable. Esta acción terminará cuando Jeedom reciba una respuesta o se alcance el tiempo de espera máximo. Esta acción sólo es compatible con los plugins de SMS, Slack, Sarah y Telegram de momento.",
+        "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finie que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.": "Acción que permite a Jeedom realizar una petición y luego almacenar la respuesta en una variable. Esta acción se bloquea y solo termina: si Jeedom recibe una respuesta o si transcurre el tiempo de espera. Por el momento esta acción sólo es compatible con los plugin SMS, Slack, SARAH y Telegram.",
         "Envoi l'ordre à Jeedom de s'éteindre": "Enviar la orden para apagar Jeedom",
         "Retourne un texte ou une valeur pour une interaction par exemple": "Devuelve un texto o un valor para una interacción por ejemplo",
         "Permet d'affecter une icone au scénario": "Asignar un icono al escenario",
@@ -893,7 +893,7 @@
         "Permet d'envoyer par une commande message un rapport d'une vue, d'un design ou d'un panel en PNG/PDF/JPEG/SVG.": "Permite enviar un mensaje de comando un reporte de vista, un diseño o un panel en PNG/PDF/JPEG/SVG.",
         "Graphique": "Gráfico",
         "Liens": "Enlaces",
-        "Multi lancement": "Multi lancement",
+        "Multi lancement": "Ejecución multiple",
         "Défaut": "Por defecto",
         "Temps réel": "Tiempo real"
     },
@@ -965,7 +965,7 @@
         "CODE": "CODIGO",
         "ACTION": "ACCIÓN",
         "Graphique de lien": "Gráfico de enlace",
-        "Avancé": "Avancé"
+        "Avancé": "Avanzado"
     },
     "core/template/scenario/report.default": {
         "Vue": "Vista",
@@ -1710,9 +1710,9 @@
         "Copier l'historique de cette commande sur une autre commande": "Copiar el histórico de esta orden en otra orden",
         "Arrondi (chiffre après la virgule)": "Redondeo (cifra después de la coma)",
         "Thermostat": "Termostato",
-        "Purger l'historique si plus vieux que ": "Purger l'historique si plus vieux que",
-        "1 an": "1 an",
-        "Copie des données historisées": "Copie des données historisées"
+        "Purger l'historique si plus vieux que ": "Vaciar el historial si es más antiguo de",
+        "1 an": "1 año",
+        "Copie des données historisées": "Copiar los datos históricos"
     },
     "desktop/php/object.php": {
         "Ajouter objet": "Añadir objeto",
@@ -1895,7 +1895,7 @@
         "[END UPDATE SUCCESS]": "[END UPDATE SUCCESS]"
     },
     "core/api/jeeApi.php": {
-        "Appels de ": "Appels de"
+        "Appels de ": "Llamadas"
     },
     "mobile/js/message.js": {
         "Vider": "Vaciar"

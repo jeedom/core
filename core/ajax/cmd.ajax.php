@@ -238,6 +238,9 @@ try {
 				$dateEnd = date('Y-m-d H:i:s');
 			}
 		}
+		if (strtotime($dateEnd) > strtotime('now')) {
+			$dateEnd = date('Y-m-d H:i:s');
+		}
 		$return['maxValue'] = '';
 		$return['minValue'] = '';
 		if ($dateStart === null) {
@@ -290,11 +293,11 @@ try {
 				}
 				$info_history[] = $value;
 				if (!$JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['timelineOnly']) {
-					if (($value != null && $value > $return['maxValue']) || $return['maxValue'] == '') {
-						$return['maxValue'] = $value;
+					if (($value !== null && $value > $return['maxValue']) || $return['maxValue'] == '') {
+						$return['maxValue'] = round($value, 1);
 					}
-					if (($value != null && $value < $return['minValue']) || $return['minValue'] == '') {
-						$return['minValue'] = $value;
+					if (($value !== null && $value < $return['minValue']) || $return['minValue'] == '') {
+						$return['minValue'] = round($value, 1);
 					}
 				}
 				$data[] = $info_history;
@@ -307,10 +310,10 @@ try {
 					$info_history[] = floatval($datetime) * 1000;
 					$info_history[] = ($value === null) ? null : floatval($value);
 					if ($value > $return['maxValue'] || $return['maxValue'] == '') {
-						$return['maxValue'] = $value;
+						$return['maxValue'] = round($value, 1);
 					}
 					if ($value < $return['minValue'] || $return['minValue'] == '') {
-						$return['minValue'] = $value;
+						$return['minValue'] = round($value, 1);
 					}
 					$data[] = $info_history;
 				}
@@ -320,8 +323,8 @@ try {
 			$return['unite'] = init('unite');
 		}
 		$last = end($data);
-		if ($last[0] < (strtotime($dateEnd) * 1000)) {
-			//$data[] = array((strtotime($dateEnd) * 1000), $last[1]);
+		if ($last[0] < (strtotime($dateEnd . " UTC") * 1000)) {
+			$data[] = array((strtotime($dateEnd . " UTC") * 1000), $last[1]);
 		}
 		$return['data'] = $data;
 		ajax::success($return);
@@ -351,6 +354,12 @@ try {
 			}
 			$cmd->setOrder($cmd_json['order']);
 			$cmd->save();
+			if (isset($cmd_json['line']) && isset($cmd_json['column'])) {
+				$eqLogic = $cmd->getEqLogic();
+				$eqLogic->setDisplay('layout::' . init('version', 'dashboard') . '::table::cmd::' . $cmd->getId() . '::line', $cmd_json['line']);
+				$eqLogic->setDisplay('layout::' . init('version', 'dashboard') . '::table::cmd::' . $cmd->getId() . '::column', $cmd_json['column']);
+				$eqLogic->save();
+			}
 		}
 		ajax::success();
 	}

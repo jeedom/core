@@ -61,7 +61,7 @@ try {
 	foreach (user::all() as $user) {
 		echo $user->getLogin();
 		echo " => ";
-		if ($user->getRights('admin') == 1) {
+		if ($user->getProfils() == 'admin') {
 			$foundAdmin = true;
 			echo " Admin\n";
 		} else {

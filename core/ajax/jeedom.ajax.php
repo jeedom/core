@@ -88,7 +88,7 @@ try {
 			} else if (init('page') == 'view_edit') {
 				$page = 'view';
 			}
-			ajax::success('doc/' . config::byKey('language', 'core', 'fr_FR') . '/' . secureXSS($page) . '.html');
+			ajax::success('https://github.com/jeedom/core/blob/stable/doc/' . config::byKey('language', 'core', 'fr_FR') . '/' . secureXSS($page) . '.asciidoc');
 		}
 		throw new Exception(__('Aucune documentation trouvée', __FILE__), -1234);
 	}
@@ -245,9 +245,68 @@ try {
 		ajax::success($object->getLinkData());
 	}
 
+	if (init('action') == 'getTimelineEvents') {
+		$return = array();
+		$events = jeedom::getTimelineEvent();
+		foreach ($events as $event) {
+			$info = null;
+			switch ($event['type']) {
+				case 'cmd':
+					$info = cmd::timelineDisplay($event);
+					break;
+				case 'scenario':
+					$info = scenario::timelineDisplay($event);
+					break;
+			}
+			if ($info != null) {
+				$return[] = $info;
+			}
+		}
+		ajax::success($return);
+	}
+
+	if (init('action') == 'removeTimelineEvents') {
+		ajax::success(jeedom::removeTimelineEvent());
+	}
+
+	if (init('action') == 'getFileFolder') {
+		ajax::success(ls(init('path'), '*', false, array(init('type'))));
+	}
+
+	if (init('action') == 'getFileContent') {
+		$pathinfo = pathinfo(init('path'));
+		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql'))) {
+			throw new Exception(__('Vous ne pouvez éditer ce type d\'extension : ' . $pathinfo['extension'], __FILE__));
+		}
+		ajax::success(file_get_contents(init('path')));
+	}
+
+	if (init('action') == 'setFileContent') {
+		$pathinfo = pathinfo(init('path'));
+		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql'))) {
+			throw new Exception(__('Vous ne pouvez éditer ce type d\'extension : ' . $pathinfo['extension'], __FILE__));
+		}
+		ajax::success(file_put_contents(init('path'), init('content')));
+	}
+
+	if (init('action') == 'deleteFile') {
+		$pathinfo = pathinfo(init('path'));
+		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql'))) {
+			throw new Exception(__('Vous ne pouvez éditer ce type d\'extension : ' . $pathinfo['extension'], __FILE__));
+		}
+		ajax::success(unlink(init('path')));
+	}
+
+	if (init('action') == 'createFile') {
+		$pathinfo = pathinfo(init('name'));
+		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql'))) {
+			throw new Exception(__('Vous ne pouvez éditer ce type d\'extension : ' . $pathinfo['extension'], __FILE__));
+		}
+		ajax::success(touch(init('path') . init('name')));
+	}
+
 	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
 	ajax::error(displayExeption($e), $e->getCode());
 }
- 

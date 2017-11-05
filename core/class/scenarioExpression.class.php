@@ -234,7 +234,7 @@ class scenarioExpression {
 				}
 			}
 			$historyStatistique = $cmd->getStatistique($startHist, date('Y-m-d H:i:s'));
-			if ($historyStatistique['avg'] == '') {
+			if (!isset($historyStatistique['avg']) || $historyStatistique['avg'] == '') {
 				return $cmd->execCmd();
 			}
 			return round($historyStatistique['avg'], 1);
@@ -249,6 +249,9 @@ class scenarioExpression {
 		$_startDate = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
 		$_endDate = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
 		$historyStatistique = $cmd->getStatistique($_startDate, $_endDate);
+		if (!isset($historyStatistique['avg'])) {
+			return '';
+		}
 		return round($historyStatistique['avg'], 1);
 	}
 
@@ -289,7 +292,7 @@ class scenarioExpression {
 				}
 			}
 			$historyStatistique = $cmd->getStatistique($startHist, date('Y-m-d H:i:s'));
-			if ($historyStatistique['max'] == '') {
+			if (!isset($historyStatistique['max']) || $historyStatistique['max'] == '') {
 				return $cmd->execCmd();
 			}
 			return round($historyStatistique['max'], 1);
@@ -305,6 +308,9 @@ class scenarioExpression {
 		$_endDate = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
 		$historyStatistique = $cmd->getStatistique($_startDate, $_endDate);
 		$historyStatistique = $cmd->getStatistique(self::setTags($_startDate), self::setTags($_endDate));
+		if (!isset($historyStatistique['max'])) {
+			return '';
+		}
 		return round($historyStatistique['max'], 1);
 	}
 
@@ -362,7 +368,7 @@ class scenarioExpression {
 				}
 			}
 			$historyStatistique = $cmd->getStatistique($startHist, date('Y-m-d H:i:s'));
-			if ($historyStatistique['min'] == '') {
+			if (!isset($historyStatistique['min']) || $historyStatistique['min'] == '') {
 				return $cmd->execCmd();
 			}
 			return round($historyStatistique['min'], 1);
@@ -377,6 +383,9 @@ class scenarioExpression {
 		$_startDate = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
 		$_endDate = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
 		$historyStatistique = $cmd->getStatistique($_startDate, $_endDate);
+		if (!isset($historyStatistique['min'])) {
+			return '';
+		}
 		return round($historyStatistique['min'], 1);
 	}
 
@@ -467,19 +476,11 @@ class scenarioExpression {
 				$_value = null;
 			}
 		}
-
-		if (str_word_count($_period) == 1 && is_numeric(trim($_period)[0])) {
-			$startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . $_period));
-		} else {
-			$startHist = date('Y-m-d H:i:s', strtotime($_period));
-			if ($startHist == date('Y-m-d H:i:s', strtotime(0))) {
-				return '';
-			}
-		}
+		$startHist = date('Y-m-d H:i:s', strtotime($_period));
 		return history::stateChanges($cmd_id, $_value, $startHist, date('Y-m-d H:i:s'));
 	}
 
-	public static function stateChangesBetween($_cmd_id, $_value = null, $_startDate, $_endDate) {
+	public static function stateChangesBetween($_cmd_id, $_value, $_startDate, $_endDate) {
 		if (!is_numeric(str_replace('#', '', $_cmd_id))) {
 			$cmd = cmd::byId(str_replace('#', '', cmd::humanReadableToCmd($_cmd_id)));
 		} else { $cmd = cmd::byId(str_replace('#', '', $_cmd_id));}
@@ -496,6 +497,7 @@ class scenarioExpression {
 		}
 		$_startDate = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
 		$_endDate = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
+
 		return history::stateChanges($cmd_id, $_value, $_startDate, $_endDate);
 	}
 
@@ -922,61 +924,60 @@ class scenarioExpression {
 			}
 		}
 		$replace2 = array();
-		if (is_string($_expression)) {
-			preg_match_all("/([a-zA-Z][a-zA-Z_]*?)\((.*?)\)/", $_expression, $matches, PREG_SET_ORDER);
-			if (is_array($matches)) {
-				foreach ($matches as $match) {
-					$function = $match[1];
-					$replace_string = $match[0];
-					if (substr_count($match[2], '(') != substr_count($match[2], ')')) {
-						$pos = strpos($_expression, $match[2]) + strlen($match[2]);
-						while (substr_count($match[2], '(') > substr_count($match[2], ')')) {
-							$match[2] .= $_expression[$pos];
-							$pos++;
-							if ($pos > strlen($_expression)) {
-								break;
-							}
+		if (!is_string($_expression)) {
+			return $_expression;
+		}
+		preg_match_all("/([a-zA-Z][a-zA-Z_]*?)\((.*?)\)/", $_expression, $matches, PREG_SET_ORDER);
+		if (is_array($matches)) {
+			foreach ($matches as $match) {
+				$function = $match[1];
+				$replace_string = $match[0];
+				if (substr_count($match[2], '(') != substr_count($match[2], ')')) {
+					$pos = strpos($_expression, $match[2]) + strlen($match[2]);
+					while (substr_count($match[2], '(') > substr_count($match[2], ')')) {
+						$match[2] .= $_expression[$pos];
+						$pos++;
+						if ($pos > strlen($_expression)) {
+							break;
 						}
-						$arguments = self::setTags($match[2], $_scenario, $_quote, $_nbCall++);
-						$result = str_replace($match[2], $arguments, $_expression);
-						while (substr_count($result, '(') > substr_count($result, ')')) {
-							$result .= ')';
-						}
-						$result = self::setTags($result, $_scenario, $_quote, $_nbCall++);
-						return cmd::cmdToValue(str_replace(array_keys($replace1), array_values($replace1), $result), $_quote);
-					} else {
-						$arguments = explode(',', $match[2]);
 					}
-					if (method_exists(__CLASS__, $function)) {
-						if ($function == 'trigger') {
-							if (!isset($arguments[0])) {
-								$arguments[0] = '';
-							}
-							$replace2[$replace_string] = self::trigger($arguments[0], $_scenario);
-						} elseif ($function == 'triggerValue') {
-							$replace2[$replace_string] = self::triggerValue($_scenario);
-						} else {
-							$replace2[$replace_string] = call_user_func_array(__CLASS__ . "::" . $function, $arguments);
+					$arguments = self::setTags($match[2], $_scenario, $_quote, $_nbCall++);
+					$result = str_replace($match[2], $arguments, $_expression);
+					while (substr_count($result, '(') > substr_count($result, ')')) {
+						$result .= ')';
+					}
+					$result = self::setTags($result, $_scenario, $_quote, $_nbCall++);
+					return cmd::cmdToValue(str_replace(array_keys($replace1), array_values($replace1), $result), $_quote);
+				} else {
+					$arguments = explode(',', $match[2]);
+				}
+				if (method_exists(__CLASS__, $function)) {
+					if ($function == 'trigger') {
+						if (!isset($arguments[0])) {
+							$arguments[0] = '';
+						}
+						$replace2[$replace_string] = self::trigger($arguments[0], $_scenario);
+					} elseif ($function == 'triggerValue') {
+						$replace2[$replace_string] = self::triggerValue($_scenario);
+					} else {
+						$replace2[$replace_string] = call_user_func_array(__CLASS__ . "::" . $function, $arguments);
 
-						}
-					} else {
-						if (function_exists($function)) {
-							foreach ($arguments as &$argument) {
-								$argument = evaluate(self::setTags($argument, $_scenario, $_quote));
-							}
-							$replace2[$replace_string] = call_user_func_array($function, $arguments);
-						}
 					}
-					if ($_quote && isset($replace2[$replace_string]) && (strpos($replace2[$replace_string], ' ') !== false || preg_match("/[a-zA-Z#]/", $replace2[$replace_string]) || $replace2[$replace_string] === '')) {
-						$replace2[$replace_string] = '"' . trim($replace2[$replace_string], '"') . '"';
+				} else {
+					if (function_exists($function)) {
+						foreach ($arguments as &$argument) {
+							$argument = trim(evaluate(self::setTags($argument, $_scenario, $_quote)));
+						}
+						$replace2[$replace_string] = call_user_func_array($function, $arguments);
 					}
 				}
+				if ($_quote && isset($replace2[$replace_string]) && (strpos($replace2[$replace_string], ' ') !== false || preg_match("/[a-zA-Z#]/", $replace2[$replace_string]) || $replace2[$replace_string] === '')) {
+					$replace2[$replace_string] = '"' . trim($replace2[$replace_string], '"') . '"';
+				}
 			}
-		} else {
-			log::add('scenario', 'debug', print_r($_expression, true));
 		}
-		return cmd::cmdToValue(str_replace(array_keys($replace1), array_values($replace1), str_replace(array_keys($replace2), array_values($replace2), $_expression)), $_quote);
-
+		$return = cmd::cmdToValue(str_replace(array_keys($replace1), array_values($replace1), str_replace(array_keys($replace2), array_values($replace2), $_expression)), $_quote);
+		return $return;
 	}
 
 	public static function createAndExec($_type, $_cmd, $_options = null) {
@@ -993,11 +994,34 @@ class scenarioExpression {
 
 /*     * *********************Methode d'instance************************* */
 
+	public function checkBackground() {
+		if ($this->getOptions('background', 0) == 0) {
+			return;
+		}
+		if (in_array($this->getExpression(), array('wait', 'sleep', 'stop', 'scenario_return'))) {
+			$this->setOptions('background', 0);
+		}
+		return;
+	}
+
 	public function execute(&$scenario = null) {
 		if ($scenario !== null && !$scenario->getDo()) {
 			return;
 		}
 		if ($this->getOptions('enable', 1) == 0) {
+			return;
+		}
+		$this->checkBackground();
+		if ($this->getOptions('background', 0) == 1) {
+			$key = 'scenarioElement' . config::genKey(10);
+			while (cache::exist($key)) {
+				$key = 'scenarioElement' . config::genKey(10);
+			}
+			cache::set($key, array('scenarioExpression' => $this, 'scenario' => $scenario), 60);
+			$cmd = dirname(__FILE__) . '/../php/jeeScenarioExpression.php';
+			$cmd .= ' key=' . $key;
+			$this->setLog($scenario, __('Execution du lancement en arriere plan : ', __FILE__) . $key);
+			system::php($cmd . ' >> /dev/null 2>&1 &');
 			return;
 		}
 		$message = '';
@@ -1045,7 +1069,7 @@ class scenarioExpression {
 						$timeout = jeedom::evaluateExpression($options['timeout']);
 						$limit = (is_numeric($timeout)) ? $timeout : 7200;
 					}
-					while ($result !== true) {
+					while (!$result) {
 						$expression = self::setTags($options['condition'], $scenario, true);
 						$result = evaluate($expression);
 						if ($occurence > $limit) {
@@ -1279,6 +1303,20 @@ class scenarioExpression {
 						$scenario->setReturn($scenario->getReturn() . ' ' . $options['message']);
 					}
 					return;
+				} elseif ($this->getExpression() == 'remove_inat') {
+					if ($scenario === null) {
+						return;
+					}
+					$this->setLog($scenario, __('Suppresion des blocs DANS et A programmés du scénario ', __FILE__));
+					$crons = cron::searchClassAndFunction('scenario', 'doIn', '"scenario_id":' . $scenario->getId());
+					if (is_array($crons)) {
+						foreach ($crons as $cron) {
+							if ($cron->getState() != 'run') {
+								$cron->remove();
+							}
+						}
+					}
+					return;
 				} else if ($this->getExpression() == 'report') {
 					$cmd_parameters = array('files' => null);
 					$this->setLog($scenario, __('Génération d\'un rapport de type ', __FILE__) . $options['type']);
@@ -1356,7 +1394,7 @@ class scenarioExpression {
 				}
 				$this->setLog($scenario, $message);
 				return $result;
-			} else if ($this->getType() == 'code') {
+			} elseif ($this->getType() == 'code') {
 				$this->setLog($scenario, __('Exécution d\'un bloc code', __FILE__));
 				return eval($this->getExpression());
 			}
@@ -1368,6 +1406,7 @@ class scenarioExpression {
 	}
 
 	public function save() {
+		$this->checkBackground();
 		DB::save($this);
 	}
 
@@ -1433,16 +1472,16 @@ class scenarioExpression {
 		if ($this->getType() == 'action') {
 			if ($this->getExpression() == 'icon') {
 				return '';
-			} else if ($this->getExpression() == 'sleep') {
+			} elseif ($this->getExpression() == 'sleep') {
 				return '(sleep) Pause de  : ' . $options['duration'];
-			} else if ($this->getExpression() == 'stop') {
+			} elseif ($this->getExpression() == 'stop') {
 				return '(stop) Arret du scenario';
-			} else if ($this->getExpression() == 'scenario') {
+			} elseif ($this->getExpression() == 'scenario') {
 				$actionScenario = scenario::byId($this->getOptions('scenario_id'));
 				if (is_object($actionScenario)) {
 					return '(scenario) ' . $this->getOptions('action') . ' de ' . $actionScenario->getHumanName();
 				}
-			} else if ($this->getExpression() == 'variable') {
+			} elseif ($this->getExpression() == 'variable') {
 				return '(variable) Affectation de la variable : ' . $this->getOptions('name') . ' à ' . $this->getOptions('value');
 			} else {
 				$return = jeedom::toHumanReadable($this->getExpression());
@@ -1451,7 +1490,7 @@ class scenarioExpression {
 				}
 				return $return;
 			}
-		} else if ($this->getType() == 'condition') {
+		} elseif ($this->getType() == 'condition') {
 			return jeedom::toHumanReadable($this->getExpression());
 		}
 		if ($this->getType() == 'code') {

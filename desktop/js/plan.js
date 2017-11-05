@@ -19,15 +19,16 @@
         return;
     }
     $.contextMenu('destroy', '#div_pageContainer' );
- }
+}
 
- $('main').css('padding-right','0px').css('padding-left','0px').css('margin-right','0px').css('margin-left','0px');
- var deviceInfo = getDeviceType();
- var editOption = {state : false, snap : false,grid : false,gridSize:false,highlight:true};
- var clickedOpen = false;
+$('main').css('padding-right','0px').css('padding-left','0px').css('margin-right','0px').css('margin-left','0px');
 
- planHeaderContextMenu = {};
- for(var i in planHeader){
+var deviceInfo = getDeviceType();
+var editOption = {state : false, snap : false,grid : false,gridSize:false,highlight:true};
+var clickedOpen = false;
+
+planHeaderContextMenu = {};
+for(var i in planHeader){
     planHeaderContextMenu[planHeader[i].id] = {
         name:planHeader[i].name,
         callback: function(key, opt){
@@ -390,7 +391,6 @@ items: {
         icon:'fa-cogs',
         callback: function(key, opt){
             savePlan(false,false);
-            var info = getObjectInfo($(this));
             $('#md_modal').dialog({title: "{{Configuration du widget}}"});
             $('#md_modal').load('index.php?v=d&modal=plan.configure&id='+$(this).attr('data-plan_id')).dialog('open');
         }
@@ -544,7 +544,9 @@ $('#div_pageContainer').on('mouseenter','.zone-widget.zoneEqLogic.zoneEqLogicOnF
         version : 'dplan',
         global:false,
         success:function(data){
-            el.empty().append($(data.html).css('position','absolute'));
+            var html = $(data.html).css('position','absolute');
+            html.attr("style", html.attr("style") + "; " + el.attr('data-position'));
+            el.empty().append(html);
             positionEqLogic(el.attr('data-eqLogic_id'),false);
             if(deviceInfo.type == 'desktop'){
                 el.off('mouseleave').on('mouseleave',function(){
@@ -669,7 +671,13 @@ function initEditOption(_state) {
         cancel : '.locked',
         stop: function( event, ui ) {
             savePlan(false,false);
-        }
+        },
+        drag: function(evt,ui) {
+            var zoom = $(this).css('zoom');
+            var factor = 1- (1 / zoom)
+            ui.position.top += Math.round((ui.position.top - ui.originalPosition.top) * factor);
+            ui.position.left += Math.round((ui.position.left- ui.originalPosition.left) * factor);
+        }    
     });
       if(editOption.highlight){
         $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').addClass('widget-shadow-edit');
@@ -732,17 +740,30 @@ function addObject(_plan){
     });
 }
 
-function displayPlan() {
+function displayPlan(_code) {
     if(planHeader_id == -1){
         return;
+    }
+    if(typeof _code == "undefined"){
+        _code = null;
     }
     if (getUrlVars('fullscreen') == 1) {
         fullScreen(true);
     }
     jeedom.plan.getHeader({
         id: planHeader_id,
+        code : _code,
         error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            if(error.code == -32005){
+                var result = prompt("{{Veuillez indiquer le code ?}}", "")
+                if(result == null){
+                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                    return;
+                }
+                displayPlan(result);
+            }else{
+                $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            }
         },
         success: function (data) {
             $('.div_displayObject').empty();
@@ -841,11 +862,16 @@ function savePlan(_refreshDisplay,_async) {
         if(info.type == 'graph'){
            plan.display.graph = json_decode($(this).find('.graphOptions').value());
        }
-       var position = $(this).position();
-       plan.position.top = (((position.top)) / $('.div_displayObject').height()) * 100;
-       plan.position.left = (((position.left)) / $('.div_displayObject').width()) * 100;
-       plans.push(plan);
-   });
+       if(!$(this).is(':visible')){
+        var position = $(this).show().position();
+        $(this).hide();
+    }else{
+        var position = $(this).position();
+    }
+    plan.position.top = (((position.top)) / $('.div_displayObject').height()) * 100;
+    plan.position.left = (((position.left)) / $('.div_displayObject').width()) * 100;
+    plans.push(plan);
+});
     jeedom.plan.save({
         plans: plans,
         async : _async || true,
@@ -891,6 +917,8 @@ function displayObject(_plan,_html, _noRender) {
     html.css('-moz-transform-origin', '0 0');
     html.css('-moz-transform', 'scale(' + init(_plan.css.zoom, 1) + ')');
     html.addClass('noResize');
+    console.log(html);
+    console.log(_plan);
     if (isset(_plan.display) && isset(_plan.display.width)) {
         html.css('width', init(_plan.display.width, 50));
     }
@@ -938,6 +966,7 @@ if(_plan.link_type == 'graph'){
             }
         }
     }
+    initEditOption(editOption.state);
     return;
 }
 if (init(_noRender, false)) {

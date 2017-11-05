@@ -7,19 +7,20 @@ if (!isConnect()) {
 <a class="btn btn-success btn-sm pull-right" id="bt_saveSummaryScenario"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
 <a class="btn btn-default btn-sm pull-right" id="bt_refreshSummaryScenario"><i class="fa fa-refresh"></i> {{Rafraîchir}}</a>
 <br/><br/>
-<table class="table table-bordered table-condensed" id="table_scenarioSummary">
+<table class="table table-bordered table-condensed tablesorter" id="table_scenarioSummary">
 	<thead>
 		<tr>
 			<th>{{ID}}</th>
 			<th>{{Scénario}}</th>
 			<th>{{Statut}}</th>
 			<th>{{Dernier lancement}}</th>
-			<th>{{Actif}}</th>
-			<th>{{Visible}}</th>
-			<th>{{Multi lancement}}</th>
-			<th>{{Log}}</th>
-			<th>{{Mode synchrone}}</th>
-			<th>{{Actions}}</th>
+			<th data-sorter="false" data-filter="false">{{Actif}}</th>
+			<th data-sorter="false" data-filter="false">{{Visible}}</th>
+			<th data-sorter="false" data-filter="false">{{Multi lancement}}</th>
+			<th data-sorter="false" data-filter="false">{{Mode synchrone}}</th>
+			<th data-sorter="false" data-filter="false">{{Log}}</th>
+			<th data-sorter="false" data-filter="false">{{Timeline}}</th>
+			<th data-sorter="false" data-filter="false">{{Actions}}</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -28,6 +29,7 @@ if (!isConnect()) {
 </table>
 
 <script>
+	initTableSorter();
 	refreshScenarioSummary();
 
 	$('#bt_refreshSummaryScenario').off().on('click',function(){
@@ -71,13 +73,16 @@ if (!isConnect()) {
 					tr += '<span class="scenarioAttr" data-l1key="lastLaunch"></span>';
 					tr += '</td>';
 					tr += '<td>';
-					tr += '<input type="checkbox" class="scenarioAttr" data-label-text="{{Actif}}" data-l1key="isActive">';
+					tr += '<center><input type="checkbox" class="scenarioAttr" data-label-text="{{Actif}}" data-l1key="isActive"></center>';
 					tr += '</td>';
 					tr += '<td>';
-					tr += '<input type="checkbox" class="scenarioAttr" data-label-text="{{Visible}}" data-l1key="isVisible">';
+					tr += '<center><input type="checkbox" class="scenarioAttr" data-label-text="{{Visible}}" data-l1key="isVisible"></center>';
 					tr += '</td>';
 					tr += '<td>';
-					tr += '<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="allowMultiInstance">';
+					tr += '<center><input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="allowMultiInstance"></center>';
+					tr += '</td>';
+					tr += '<td>';
+					tr += '<center><input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="syncmode"></center>';
 					tr += '</td>';
 					tr += '<td>';
 					tr += '<select class="scenarioAttr form-control" data-l1key="configuration" data-l2key="logmode">';
@@ -87,7 +92,7 @@ if (!isConnect()) {
 					tr += '</select>';
 					tr += '</td>';
 					tr += '<td>';
-					tr += '<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="syncmode">';
+					tr += '<center><input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="timeline::enable"></center>';
 					tr += '</td>';
 					tr += '<td>';
 					tr += '<a class="btn btn-default tooltips btn-xs bt_summarayViewLog" title="{{Voir les logs}}"><i class="fa fa-file-o"></i></a> ';
@@ -103,6 +108,7 @@ if (!isConnect()) {
 					table.push(result);
 				}
 				$('#table_scenarioSummary tbody').append(table);
+				$("#table_scenarioSummary").trigger("update");
 
 				$('.bt_summarayViewLog').off().on('click',function(){
 					var tr = $(this).closest('tr');

@@ -18,7 +18,7 @@ user::isBan();
 	<ul class="nav nav-tabs" role="tablist">
 		<li role="presentation" class="active"><a href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-wrench"></i> {{Général}}</a></li>
 		<li role="presentation"><a href="#apitab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fa fa-key"></i> {{API}}</a></li>
-		<li role="presentation"><a href="#ostab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fa fa-terminal"></i> {{OS/BDD}}</a></li>
+		<li role="presentation"><a href="#ostab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fa fa-terminal"></i> {{OS/DB}}</a></li>
 		<li role="presentation"><a href="#securitytab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fa fa-shield"></i> {{Securité}}</a></li>
 		<li role="presentation"><a href="#networktab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fa fa-rss"></i> {{Réseaux}}</a></li>
 		<li role="presentation"><a href="#colortab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fa fa-tint"></i> {{Couleurs}}</a></li>
@@ -52,7 +52,7 @@ user::isBan();
 							<a class="btn btn-default form-control" id="bt_resetHardwareType"><i class="fa fa-refresh"></i> {{Rafraîchir}}</a>
 						</div>
 					</div>
-					<div class="form-group expertModeVisible">
+					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef d'installation qui permet d'identifier votre Jeedom quand il communique avec le market}}">{{Clef d'installation}}</label>
 						<div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
 							<span class="label label-info" style="font-size : 1em;"><?php echo jeedom::getHardwareKey() ?></span>
@@ -74,7 +74,7 @@ user::isBan();
 								<option value="it_IT">Italiano</option>
 							</select>
 						</div>
-						<div class="expertModeVisible">
+						<div>
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Générer les traductions}}</label>
 							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 								<input type="checkbox" class="configKey" data-l1key="generateTranslation" title="{{Option pour les développeurs permettant à Jeedom de générer les phrases à traduire}}" />
@@ -188,13 +188,13 @@ user::isBan();
 							<a class="btn btn-primary" id="bt_forceSyncHour"><i class="fa fa-clock-o"></i> {{Forcer la synchronisation de l'heure}}</a>
 						</div>
 					</div>
-					<div class="form-group expertModeVisible">
+					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Permet d'ajouter un serveur de temps à Jeedom utilisé lorsque Jeedom force la synchronisation de l'heure}}">{{Serveur de temps optionnel}}</label>
 						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 							<input type="text"  class="configKey form-control" data-l1key="ntp::optionalServer" />
 						</div>
 					</div>
-					<div class="form-group expertModeVisible">
+					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Indique à Jeedom de ne pas prendre en compte l'heure du système}}">{{Ignorer la vérification de l'heure}}</label>
 						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 							<input type="checkbox" class="configKey" data-l1key="ignoreHourCheck" />
@@ -209,7 +209,7 @@ user::isBan();
 			<br/>
 			<form class="form-horizontal">
 				<fieldset>
-					<div class="form-group expertModeVisible">
+					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Accès API HTTP}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
 							<select class="form-control configKey" data-l1key="api::core::http::mode">
@@ -239,7 +239,7 @@ user::isBan();
 						</div>
 					</div>
 
-					<div class="form-group expertModeVisible">
+					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API globale de Jeedom}}">{{Clef API}}</label>
 						<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
 							<div class="input-group">
@@ -251,7 +251,7 @@ user::isBan();
 						</div>
 					</div>
 
-					<div class="form-group expertModeVisible">
+					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API Pro de Jeedom}}">{{Clef API Pro}}</label>
 						<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
 							<div class="input-group">
@@ -274,7 +274,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 	if (config::byKey('api', $plugin->getId()) == '') {
 		continue;
 	}
-	echo '<div class="form-group expertModeVisible">';
+	echo '<div class="form-group">';
 	echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API pour le plugin}} ' . $plugin->getName() . '">{{Clef API}} ' . $plugin->getName() . '</label>';
 	echo '<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">';
 	echo '<div class="input-group">';
@@ -309,7 +309,15 @@ foreach (plugin::listPlugin(true) as $plugin) {
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Administration}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<a class="btn btn-danger" id="bt_accessSystemAdministration"><i class="fa fa-exclamation-triangle"></i> {{Lancer}}</a>
+							<a class="btn btn-danger" href="index.php?v=d&p=system"><i class="fa fa-exclamation-triangle"></i> {{Lancer}}</a>
+						</div>
+					</div>
+					<legend><i class="fa fa-database"></i> {{Editeur de fichier}}</legend>
+					<div class="alert alert-danger">{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à Jeedom. L'équipe Jeedom se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}</div>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Editeur}}</label>
+						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<a class="btn btn-danger" href="index.php?v=d&p=editor"><i class="fa fa-exclamation-triangle"></i> {{Lancer}}</a>
 						</div>
 					</div>
 					<legend><i class="fa fa-database"></i> {{Base de données}}</legend>
@@ -317,9 +325,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Administration}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<a class="btn btn-danger" id="bt_accessDbAdministration"><i class="fa fa-exclamation-triangle"></i> {{Lancer}}</a>
-
-
+							<a class="btn btn-danger" href="index.php?v=d&p=database"><i class="fa fa-exclamation-triangle"></i> {{Lancer}}</a>
 						</div>
 					</div>
 					<div class="form-group">
@@ -347,7 +353,7 @@ echo $CONFIG['db']['password'];
 			<br/>
 			<form class="form-horizontal">
 				<fieldset>
-				<legend>{{LDAP}}</legend>
+					<legend>{{LDAP}}</legend>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer l'authentification LDAP}}</label>
 						<div class="col-sm-1">
@@ -414,25 +420,31 @@ echo $CONFIG['db']['password'];
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nombre d'échec toléré}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<input type="text"  class="configKey form-control" data-l1key="security::maxFailedLogin" />
+							<input type="text" class="configKey form-control" data-l1key="security::maxFailedLogin" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Temps maximum entre les échecs (s)}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<input type="text"  class="configKey form-control" data-l1key="security::timeLoginFailed" />
+							<input type="text" class="configKey form-control" data-l1key="security::timeLoginFailed" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Durée du bannissement (s), -1 pour infini}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<input type="text"  class="configKey form-control" data-l1key="security::bantime" />
+							<input type="text" class="configKey form-control" data-l1key="security::bantime" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{IP "blanche"}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<input type="text"  class="configKey form-control" data-l1key="security::whiteips" />
+							<input type="text" class="configKey form-control" data-l1key="security::whiteips" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Supprimer les IPs bannies}}</label>
+						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<a type="text" class="btn btn-warning" id="bt_removeBanIp"><i class="fa fa-trash"></i> {{Supprimer}}</a>
 						</div>
 					</div>
 
@@ -562,7 +574,7 @@ foreach (network::getInterfaces() as $interface) {
 ?>
 										</tbody>
 									</table>
-									<div class="form-group expertModeVisible has-error">
+									<div class="form-group has-error">
 										<label class="col-xs-6 control-label">{{Désactiver la gestion du réseau par Jeedom}}</label>
 										<div class="col-xs-4">
 											<input type="checkbox" class="configKey" data-l1key="network::disableMangement" />
@@ -1072,6 +1084,19 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 					<br/>
 					<form class="form-horizontal">
 						<fieldset>
+							<legend>{{Timeline}}</legend>
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nombre maximum d'évènements}}</label>
+								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+									<input type="text" class="configKey form-control" data-l1key="timeline::maxevent"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Supprimer tous les évènements}}</label>
+								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+									<a type="text" class="btn btn-danger" id="bt_removeTimelineEvent" ><i class="fa fa-trash"></i> {{Supprimer}}</a>
+								</div>
+							</div>
 							<legend>{{Messages}}</legend>
 							<div class="form-group">
 								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Ajouter un message à chaque erreur dans les logs}}</label>
@@ -1170,7 +1195,7 @@ foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
 							</div>
 							<?php
 
-$other_log = array('scenario', 'plugin', 'market', 'api', 'connection', 'interact', 'tts', 'report');
+$other_log = array('scenario', 'plugin', 'market', 'api', 'connection', 'interact', 'tts', 'report', 'event');
 foreach ($other_log as $name) {
 	echo '<form class="form-horizontal">';
 	echo '<div class="form-group">';
@@ -1260,19 +1285,12 @@ foreach ($repos as $key => $value) {
 										<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Version du core}}</label>
 										<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 											<select class="configKey form-control" data-l1key="core::branch">
-												<option value="beta">{{Beta (Plus d'accès au support)}}</option>
+												<option value="master">{{Beta (Plus d'accès au support)}}</option>
 												<option value="stable">{{Stable}}</option>
-												<option value="pro">{{Pro}}</option>
 											</select>
 										</div>
 									</div>
-									<div class="form-group expertModeVisible">
-										<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Faire une sauvegarde avant la mise à jour}}</label>
-										<div class="col-sm-1">
-											<input type="checkbox" class="configKey" data-l1key="update::backupBefore"/>
-										</div>
-									</div>
-									<div class="form-group expertModeVisible">
+									<div class="form-group">
 										<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Vérifier automatiquement si il y a des mises à jour}}</label>
 										<div class="col-sm-1">
 											<input type="checkbox" class="configKey" data-l1key="update::autocheck"/>

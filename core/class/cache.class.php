@@ -153,6 +153,10 @@ class cache {
 		return $cache;
 	}
 
+	public static function exist($_key) {
+		return is_object(self::getCache()->fetch($_key));
+	}
+
 	public static function flush() {
 		self::getCache()->deleteAll();
 		shell_exec('rm -rf ' . self::getFolder() . ' 2>&1 > /dev/null');

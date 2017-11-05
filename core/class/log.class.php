@@ -210,17 +210,15 @@ class log {
 		return true;
 	}
 
-	/**
-	 * Renvoi les x derniere ligne du fichier de log
-         * 
-         * @param string $_log
-         * @param int $_begin
-         * @param int $_nbLines
-         * @return boolean|array
-         */
+/*
+ *
+ * @param string $_log
+ * @param int $_begin
+ * @param int $_nbLines
+ * @return boolean|array
+ */
 	public static function get($_log = 'core', $_begin, $_nbLines) {
 		self::chunk($_log);
-
 		$path = (!file_exists($_log) || !is_file($_log)) ? self::getPathToLog($_log) : $_log;
 		if (!file_exists($path)) {
 			return false;

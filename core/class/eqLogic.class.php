@@ -73,11 +73,14 @@ class eqLogic {
 		return $_inputs;
 	}
 
-	public static function all() {
+	public static function all($_onlyEnable = false) {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__, 'el') . '
         FROM eqLogic el
-        LEFT JOIN object ob ON el.object_id=ob.id
-        ORDER BY ob.name,el.name';
+        LEFT JOIN object ob ON el.object_id=ob.id';
+		if ($_onlyEnable) {
+			$sql .= ' AND isEnable=1';
+		}
+		$sql .= ' ORDER BY ob.name,el.name';
 		return self::cast(DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
@@ -417,10 +420,49 @@ class eqLogic {
 		return $text;
 	}
 
-	public function clearCacheWidget() {
+	public static function clearCacheWidget() {
 		foreach (self::all() as $eqLogic) {
 			$eqLogic->emptyCacheWidget();
 		}
+	}
+
+	public static function generateHtmlTable($_nbLine, $_nbColumn, $_options = array()) {
+		$return = array('html' => '', 'replace' => array());
+		if (!isset($_options['styletd'])) {
+			$_options['styletd'] = '';
+		}
+		if (!isset($_options['center'])) {
+			$_options['center'] = 0;
+		}
+		if (!isset($_options['styletable'])) {
+			$_options['styletable'] = '';
+		}
+		$return['html'] .= '<table style="' . $_options['styletable'] . '" class="tableCmd" data-line="' . $_nbLine . '" data-column="' . $_nbColumn . '">';
+		$return['html'] .= '<tbody>';
+		for ($i = 1; $i <= $_nbLine; $i++) {
+			$return['html'] .= '<tr>';
+			for ($j = 1; $j <= $_nbColumn; $j++) {
+				$styletd = (isset($_options['style::td::' . $i . '::' . $j]) && $_options['style::td::' . $i . '::' . $j] != '') ? $_options['style::td::' . $i . '::' . $j] : $_options['styletd'];
+				$return['html'] .= '<td style="min-width:30px;height:30px;' . $styletd . '" data-line="' . $i . '" data-column="' . $j . '">';
+				if ($_options['center'] == 1) {
+					$return['html'] .= '<center>';
+				}
+				if (isset($_options['text::td::' . $i . '::' . $j])) {
+					$return['html'] .= $_options['text::td::' . $i . '::' . $j];
+				}
+				$return['html'] .= '#cmd::' . $i . '::' . $j . '#';
+				if ($_options['center'] == 1) {
+					$return['html'] .= '</center>';
+				}
+				$return['html'] .= '</td>';
+				$return['tag']['#cmd::' . $i . '::' . $j . '#'] = '';
+			}
+			$return['html'] .= '</tr>';
+		}
+		$return['html'] .= '</tbody>';
+		$return['html'] .= '</table>';
+
+		return $return;
 	}
 
 	/*     * *********************Méthodes d'instance************************* */
@@ -434,7 +476,8 @@ class eqLogic {
 		if (!is_object($cmd)) {
 			return false;
 		}
-		if ($cmd->execCmd() != $cmd->formatValue($_value)) {
+		$oldValue = $cmd->execCmd();
+		if (($oldValue != $cmd->formatValue($_value)) || $oldValue === '') {
 			$cmd->event($_value, $_updateTime);
 			return true;
 		}
@@ -459,11 +502,22 @@ class eqLogic {
 		foreach ($eqLogicCopy->getCmd() as $cmd) {
 			$cmd->remove();
 		}
+		$cmd_link = array();
 		foreach ($this->getCmd() as $cmd) {
 			$cmdCopy = clone $cmd;
 			$cmdCopy->setId('');
 			$cmdCopy->setEqLogic_id($eqLogicCopy->getId());
 			$cmdCopy->save();
+			$cmd_link[$cmd->getId()] = $cmdCopy;
+		}
+		foreach ($this->getCmd() as $cmd) {
+			if (!isset($cmd_link[$cmd->getId()])) {
+				continue;
+			}
+			if ($cmd->getValue() != '' && isset($cmd_link[$cmd->getValue()])) {
+				$cmd_link[$cmd->getId()]->setValue($cmd_link[$cmd->getValue()]->getId());
+				$cmd_link[$cmd->getId()]->save();
+			}
 		}
 		return $eqLogicCopy;
 	}
@@ -522,6 +576,7 @@ class eqLogic {
 			'#version#' => $_version,
 			'#alert_name#' => '',
 			'#alert_icon#' => '',
+			'#custom_layout#' => ($this->widgetPossibility('custom::layout')) ? 'allowLayout' : '',
 		);
 
 		if ($this->getDisplay('background-color-default' . $version, 1) == 1) {
@@ -636,23 +691,50 @@ class eqLogic {
 			return $replace;
 		}
 		$version = jeedom::versionAlias($_version);
-		$cmd_html = '';
-		$br_before = 0;
-		foreach ($this->getCmd(null, null, true) as $cmd) {
-			if (isset($replace['#refresh_id#']) && $cmd->getId() == $replace['#refresh_id#']) {
-				continue;
-			}
-			if ($br_before == 0 && $cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
-				$cmd_html .= '<br/>';
-			}
-			$cmd_html .= $cmd->toHtml($_version, '', $replace['#cmd-background-color#']);
-			$br_before = 0;
-			if ($cmd->getDisplay('forceReturnLineAfter', 0) == 1) {
-				$cmd_html .= '<br/>';
-				$br_before = 1;
-			}
+
+		switch ($this->getDisplay('layout::' . $version)) {
+			case 'table':
+				$replace['#eqLogic_class#'] = 'eqLogic_layout_table';
+				$table = self::generateHtmlTable($this->getDisplay('layout::' . $version . '::table::nbLine', 1), $this->getDisplay('layout::' . $version . '::table::nbColumn', 1), $this->getDisplay('layout::' . $version . '::table::parameters'));
+				$br_before = 0;
+				foreach ($this->getCmd(null, null, true) as $cmd) {
+					if (isset($replace['#refresh_id#']) && $cmd->getId() == $replace['#refresh_id#']) {
+						continue;
+					}
+					$tag = '#cmd::' . $this->getDisplay('layout::' . $version . '::table::cmd::' . $cmd->getId() . '::line', 1) . '::' . $this->getDisplay('layout::' . $version . '::table::cmd::' . $cmd->getId() . '::column', 1) . '#';
+					if ($br_before == 0 && $cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
+						$table['tag'][$tag] .= '<br/>';
+					}
+					$table['tag'][$tag] .= $cmd->toHtml($_version, '', $replace['#cmd-background-color#']);
+					$br_before = 0;
+					if ($cmd->getDisplay('forceReturnLineAfter', 0) == 1) {
+						$table['tag'][$tag] .= '<br/>';
+						$br_before = 1;
+					}
+				}
+				$replace['#cmd#'] = template_replace($table['tag'], $table['html']);
+				break;
+			default:
+				$replace['#eqLogic_class#'] = 'eqLogic_layout_default';
+				$cmd_html = '';
+				$br_before = 0;
+				foreach ($this->getCmd(null, null, true) as $cmd) {
+					if (isset($replace['#refresh_id#']) && $cmd->getId() == $replace['#refresh_id#']) {
+						continue;
+					}
+					if ($br_before == 0 && $cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
+						$cmd_html .= '<br/>';
+					}
+					$cmd_html .= $cmd->toHtml($_version, '', $replace['#cmd-background-color#']);
+					$br_before = 0;
+					if ($cmd->getDisplay('forceReturnLineAfter', 0) == 1) {
+						$cmd_html .= '<br/>';
+						$br_before = 1;
+					}
+				}
+				$replace['#cmd#'] = $cmd_html;
+				break;
 		}
-		$replace['#cmd#'] = $cmd_html;
 		if (!isset(self::$_templateArray[$version])) {
 			self::$_templateArray[$version] = getTemplate('core', $version, 'eqLogic');
 		}
@@ -664,7 +746,6 @@ class eqLogic {
 		if (isset($_SESSION) && isset($_SESSION['user']) && is_object($_SESSION['user'])) {
 			$user_id = $_SESSION['user']->getId();
 		}
-		$_html = sanitize_output($_html);
 		cache::set('widgetHtml' . $this->getId() . $_version . $user_id, $_html);
 		return $_html;
 	}
@@ -752,20 +833,54 @@ class eqLogic {
 		if ($this->getDisplay('width', -1) == -1 || intval($this->getDisplay('height')) < 2) {
 			$this->setDisplay('width', 'auto');
 		}
+		foreach (array('dashboard', 'mobile') as $key) {
+			if ($this->getDisplay('layout::' . $key . '::table::parameters') == '') {
+				$this->setDisplay('layout::' . $key . '::table::parameters', array('center' => 1, 'styletd' => 'padding:3px;'));
+			}
+			if ($this->getDisplay('layout::' . $key) == 'table') {
+				if ($this->getDisplay('layout::' . $key . '::table::nbLine') == '') {
+					$this->setDisplay('layout::' . $key . '::table::nbLine', 1);
+				}
+				if ($this->getDisplay('layout::' . $key . '::table::nbColumn') == '') {
+					$this->setDisplay('layout::' . $key . '::table::nbLine', 1);
+				}
+			}
+			foreach ($this->getCmd() as $cmd) {
+				if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line') == '' && $cmd->getDisplay('layout::' . $key . '::table::cmd::line') != '') {
+					$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line', $cmd->getDisplay('layout::' . $key . '::table::cmd::line'));
+				}
+				if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column') == '' && $cmd->getDisplay('layout::' . $key . '::table::cmd::column') != '') {
+					$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column', $cmd->getDisplay('layout::' . $key . '::table::cmd::column'));
+				}
+				if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line', 1) > $this->getDisplay('layout::' . $key . '::table::nbLine', 1)) {
+					$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line', $this->getDisplay('layout::' . $key . '::table::nbLine', 1));
+				}
+				if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column', 1) > $this->getDisplay('layout::' . $key . '::table::nbColumn', 1)) {
+					$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column', $this->getDisplay('layout::' . $key . '::table::nbColumn', 1));
+				}
+				if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line') == '') {
+					$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line', 1);
+				}
+				if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column') == '') {
+					$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column', 1);
+				}
+			}
+		}
+
 		DB::save($this, $_direct);
 		if ($this->_needRefreshWidget) {
 			$this->refreshWidget();
 		}
-		if ($this->_batteryUpdated){
+		if ($this->_batteryUpdated) {
 			$this->batteryStatus();
 		}
-		if ($this->_timeoutUpdated){
+		if ($this->_timeoutUpdated) {
 			if ($this->getTimeout() == null) {
 				foreach (message::byPluginLogicalId('core', 'noMessage' . $this->getId()) as $message) {
 					$message->remove();
 				}
 				$this->setStatus('timeout', 0);
-			}	else {
+			} else {
 				$this->checkAlive();
 			}
 		}
@@ -850,8 +965,11 @@ class eqLogic {
 		}
 	}
 
-	public function batteryStatus($_pourcent ='', $_datetime = '') {
-		if ($_pourcent == ''){
+	public function batteryStatus($_pourcent = '', $_datetime = '') {
+		if ($this->getConfiguration('noBatterieCheck', 0) == 1) {
+			return;
+		}
+		if ($_pourcent == '') {
 			$_pourcent = $this->getStatus('battery');
 			$_datetime = $this->getStatus('batteryDatetime');
 		}
@@ -863,48 +981,54 @@ class eqLogic {
 		}
 		$warning_threshold = $this->getConfiguration('battery_warning_threshold', config::byKey('battery::warning'));
 		$danger_threshold = $this->getConfiguration('battery_danger_threshold', config::byKey('battery::danger'));
-		if ($this->getConfiguration('noBatterieCheck', 0) == 0 && $_pourcent < $danger_threshold) {
+		if ($_pourcent != '' && $_pourcent < $danger_threshold) {
+			$prevStatus = $this->getStatus('batterydanger', 0);
 			$logicalId = 'lowBattery' . $this->getId();
-			$message = 'Le module ' . $this->getEqType_name() . ' ' . $this->getHumanName() . ' a moins de ' . $danger_threshold . '% de batterie (niveau danger avec '. $_pourcent . '% de batterie)';
+			$message = 'Le module ' . $this->getEqType_name() . ' ' . $this->getHumanName() . ' a moins de ' . $danger_threshold . '% de batterie (niveau danger avec ' . $_pourcent . '% de batterie)';
 			if ($this->getConfiguration('battery_type') != '') {
 				$message .= ' (' . $this->getConfiguration('battery_type') . ')';
 			}
-			$this->setStatus('batterydanger',1);
-			if (config::ByKey('alert::addMessageOnBatterydanger') == 1) {
-				message::add($this->getEqType_name(), $message, '', $logicalId);
-			}
-			$cmds = explode(('&&'), config::byKey('alert::batterydangerCmd'));
-			if (count($cmds) > 0 && trim(config::byKey('alert::batterydangerCmd')) != '') {
-				foreach ($cmds as $id) {
-					$cmd = cmd::byId(str_replace('#', '', $id));
-					if (is_object($cmd)) {
-						$cmd->execCmd(array(
-							'title' => __('[' . config::byKey('name', 'core', 'JEEDOM') . '] ', __FILE__) . $message,
-							'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $message,
-						));
+			$this->setStatus('batterydanger', 1);
+			if ($prevStatus == 0) {
+				if (config::ByKey('alert::addMessageOnBatterydanger') == 1) {
+					message::add($this->getEqType_name(), $message, '', $logicalId);
+				}
+				$cmds = explode(('&&'), config::byKey('alert::batterydangerCmd'));
+				if (count($cmds) > 0 && trim(config::byKey('alert::batterydangerCmd')) != '') {
+					foreach ($cmds as $id) {
+						$cmd = cmd::byId(str_replace('#', '', $id));
+						if (is_object($cmd)) {
+							$cmd->execCmd(array(
+								'title' => __('[' . config::byKey('name', 'core', 'JEEDOM') . '] ', __FILE__) . $message,
+								'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $message,
+							));
+						}
 					}
 				}
 			}
-		}else if ($this->getConfiguration('noBatterieCheck', 0) == 0 && $_pourcent < $warning_threshold) {
+		} else if ($_pourcent != '' && $_pourcent < $warning_threshold) {
+			$prevStatus = $this->getStatus('batterywarning', 0);
 			$logicalId = 'warningBattery' . $this->getId();
-			$message = 'Le module ' . $this->getEqType_name() . ' ' . $this->getHumanName() . ' a moins de ' . $warning_threshold . '% de batterie (niveau warning avec '. $_pourcent . '% de batterie)';
+			$message = 'Le module ' . $this->getEqType_name() . ' ' . $this->getHumanName() . ' a moins de ' . $warning_threshold . '% de batterie (niveau warning avec ' . $_pourcent . '% de batterie)';
 			if ($this->getConfiguration('battery_type') != '') {
 				$message .= ' (' . $this->getConfiguration('battery_type') . ')';
 			}
-			$this->setStatus('batterywarning',1);
-			$this->setStatus('batterydanger',0);
-			if (config::ByKey('alert::addMessageOnBatterywarning') == 1) {
-				message::add($this->getEqType_name(), $message, '', $logicalId);
-			}
-			$cmds = explode(('&&'), config::byKey('alert::batterywarningCmd'));
-			if (count($cmds) > 0 && trim(config::byKey('alert::batterywarningCmd')) != '') {
-				foreach ($cmds as $id) {
-					$cmd = cmd::byId(str_replace('#', '', $id));
-					if (is_object($cmd)) {
-						$cmd->execCmd(array(
-							'title' => __('[' . config::byKey('name', 'core', 'JEEDOM') . '] ', __FILE__) . $message,
-							'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $message,
-						));
+			$this->setStatus('batterywarning', 1);
+			$this->setStatus('batterydanger', 0);
+			if ($prevStatus == 0) {
+				if (config::ByKey('alert::addMessageOnBatterywarning') == 1) {
+					message::add($this->getEqType_name(), $message, '', $logicalId);
+				}
+				$cmds = explode(('&&'), config::byKey('alert::batterywarningCmd'));
+				if (count($cmds) > 0 && trim(config::byKey('alert::batterywarningCmd')) != '') {
+					foreach ($cmds as $id) {
+						$cmd = cmd::byId(str_replace('#', '', $id));
+						if (is_object($cmd)) {
+							$cmd->execCmd(array(
+								'title' => __('[' . config::byKey('name', 'core', 'JEEDOM') . '] ', __FILE__) . $message,
+								'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $message,
+							));
+						}
 					}
 				}
 			}
@@ -915,10 +1039,10 @@ class eqLogic {
 			foreach (message::byPluginLogicalId($this->getEqType_name(), 'lowBattery' . $this->getId()) as $message) {
 				$message->remove();
 			}
-			$this->setStatus('batterydanger',0);
-			$this->setStatus('batterywarning',0);
+			$this->setStatus('batterydanger', 0);
+			$this->setStatus('batterywarning', 0);
 		}
-		
+
 		$this->setStatus(array('battery' => $_pourcent, 'batteryDatetime' => ($_datetime != '') ? $_datetime : date('Y-m-d H:i:s')));
 	}
 
@@ -1093,6 +1217,9 @@ class eqLogic {
 		if (property_exists($class, '_widgetPossibility')) {
 			$return = $class::$_widgetPossibility;
 			if ($_key != '') {
+				if (isset($return[$_key])) {
+					return $return[$_key];
+				}
 				$keys = explode('::', $_key);
 				foreach ($keys as $k) {
 					if (!isset($return[$k])) {
@@ -1330,8 +1457,8 @@ class eqLogic {
 	}
 
 	public function setConfiguration($_key, $_value) {
-		if (in_array($_key ,array('battery_warning_threshold','battery_danger_threshold'))){
-			if ($this->getConfiguration($_key, '') != $_value){
+		if (in_array($_key, array('battery_warning_threshold', 'battery_danger_threshold'))) {
+			if ($this->getConfiguration($_key, '') != $_value) {
 				$this->_batteryUpdated = True;
 			}
 		}

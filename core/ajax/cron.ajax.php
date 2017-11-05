@@ -41,7 +41,11 @@ try {
 	}
 
 	if (init('action') == 'all') {
-		ajax::success(utils::o2a(cron::all(true)));
+		$crons = cron::all(true);
+		foreach ($crons as $cron) {
+			$cron->refresh();
+		}
+		ajax::success(utils::o2a($crons));
 	}
 
 	if (init('action') == 'start') {
@@ -70,4 +74,3 @@ try {
 } catch (Exception $e) {
 	ajax::error(displayExeption($e), $e->getCode());
 }
-?>

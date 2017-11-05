@@ -52,7 +52,7 @@
  {val: 'valueDate(cmd)'},
  {val: 'eqEnable(equipement)'}
  ];
- autoCompleteAction = ['report','sleep', 'variable', 'scenario', 'stop', 'wait','gotodesign','log','message','equipement','ask','jeedom_poweroff','scenario_return','alert','popup','icon','event'];
+ autoCompleteAction = ['report','sleep', 'variable', 'scenario', 'stop', 'wait','gotodesign','log','message','equipement','ask','jeedom_poweroff','scenario_return','alert','popup','icon','event','remove_inat'];
 
  if (getUrlVars('saveSuccessFull') == 1) {
   $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
@@ -60,14 +60,14 @@
 
 if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1) && !jQuery.support.touch){
   $('#div_listScenario').hide();
-  $('#scenarioThumbnailDisplay').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
-  $('#div_editScenario').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
+  $('#scenarioThumbnailDisplay').removeClass('col-xs-10').addClass('col-xs-12');
+  $('#div_editScenario').removeClass('col-xs-10').addClass('col-xs-12');
 
   $('#bt_displayScenarioList').on('mouseenter',function(){
    var timer = setTimeout(function(){
     $('#bt_displayScenarioList').find('i').hide();
-    $('#scenarioThumbnailDisplay').addClass('col-lg-10 col-md-10 col-sm-9').removeClass('col-lg-12');
-    $('#div_editScenario').addClass('col-lg-10 col-md-10 col-sm-9').removeClass('col-lg-12');
+    $('#scenarioThumbnailDisplay').addClass('col-xs-10').removeClass('col-xs-12');
+    $('#div_editScenario').addClass('col-xs-10').removeClass('col-xs-12');
     $('#div_listScenario').show();
     $('.scenarioListContainer').packery();
   }, 100);
@@ -80,8 +80,8 @@ if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1)
   var timer = setTimeout(function(){
    $('#div_listScenario').hide();
    $('#bt_displayScenarioList').find('i').show();
-   $('#scenarioThumbnailDisplay').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
-   $('#div_editScenario').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
+   $('#scenarioThumbnailDisplay').removeClass('col-xs-10').addClass('col-xs-12');
+   $('#div_editScenario').removeClass('col-xs-10').addClass('col-xs-12');
    $('.scenarioListContainer').packery();
  }, 300);
   $(this).data('timerMouseleave', timer);
@@ -311,6 +311,14 @@ $('#in_addElementType').off('change').on('change',function(){
   $('.addElementTypeDescription.'+$(this).value()).show();
 });
 
+$('#bt_scenarioTab').on('click',function(){
+
+  setTimeout(function(){ 
+    setEditor(); 
+    taAutosize();
+  }, 50);
+});
+
 /*******************Element***********************/
 
 $('#div_pageContainer').off('click','.helpSelectCron').on('click','.helpSelectCron',function(){
@@ -332,6 +340,7 @@ $('#div_pageContainer').off('click','.bt_addScenarioElement').on( 'click','.bt_a
     if (expression) {
       elementDiv.append(addExpression({type: 'element', element: {type: $("#in_addElementType").value()}}));
     } else {
+      $('#div_scenarioElement .span_noScenarioElement').remove();
       elementDiv.append(addElement({type: $("#in_addElementType").value()}));
     }
     setEditor();
@@ -354,6 +363,46 @@ $('#div_pageContainer').off('click','.bt_addAction').on( 'click','.bt_addAction'
   updateSortable();
 });
 
+$('#div_pageContainer').off('click','.bt_addSinon').on( 'click','.bt_addSinon', function (event) {
+
+  if($(this).children("i").hasClass('fa-chevron-right')){
+    $(this).children("i").removeClass('fa-chevron-right').addClass('fa-chevron-down');
+    $(this).closest('.subElement').next().css('display','table');
+  }
+  else
+  {
+    if($(this).closest('.subElement').next().children('.expressions').children('.expression').length>0)
+    {
+     alert("{{Le bloc Sinon ne peut être supprimé s'il contient des éléments}}");
+   }
+   else
+   {  
+     $(this).children("i").removeClass('fa-chevron-down').addClass('fa-chevron-right');
+     $(this).closest('.subElement').next().css('display','none');
+   }
+ }
+});
+
+$('#div_pageContainer').off('click','.bt_addSinon').on( 'click','.bt_addSinon', function (event) {
+
+  if($(this).children("i").hasClass('fa-chevron-right')){
+    $(this).children("i").removeClass('fa-chevron-right').addClass('fa-chevron-down');
+    $(this).closest('.subElement').next().css('display','table');
+  }
+  else
+  {
+    if($(this).closest('.subElement').next().children('.expressions').children('.expression').length>0)
+    {
+     alert("{{Le bloc Sinon ne peut être supprimé s'il contient des éléments}}");
+   }
+   else
+   {  
+     $(this).children("i").removeClass('fa-chevron-down').addClass('fa-chevron-right');
+     $(this).closest('.subElement').next().css('display','none');
+   }
+ }
+});
+
 $('#div_pageContainer').off('click','.bt_removeExpression').on('click','.bt_removeExpression',  function (event) {
   $(this).closest('.expression').remove();
   updateSortable();
@@ -371,6 +420,7 @@ $('#div_pageContainer').off('click','.bt_selectCmdExpression').on('click','.bt_s
       expression.find('.expressionAttr[data-l1key=expression]').value(result.human);
       jeedom.cmd.displayActionOption(expression.find('.expressionAttr[data-l1key=expression]').value(), '', function (html) {
         expression.find('.expressionOptions').html(html);
+        taAutosize();
       });
     }
     if (expression.find('.expressionAttr[data-l1key=type]').value() == 'condition') {
@@ -513,6 +563,7 @@ $('#div_pageContainer').off('click','.bt_selectOtherActionExpression').on('click
    expression.find('.expressionAttr[data-l1key=expression]').value(result.human);
    jeedom.cmd.displayActionOption(expression.find('.expressionAttr[data-l1key=expression]').value(), '', function (html) {
     expression.find('.expressionOptions').html(html);
+    taAutosize();
   });
  });
 });
@@ -542,12 +593,13 @@ $('#div_pageContainer').off('click','.bt_selectEqLogicExpression').on('click','.
   });
 });
 
-$('#div_pageContainer').off('click','.expression .expressionAttr[data-l1key=expression]').on('focusout','.expression .expressionAttr[data-l1key=expression]',  function (event) {
+$('#div_pageContainer').off('focusout','.expression .expressionAttr[data-l1key=expression]').on('focusout','.expression .expressionAttr[data-l1key=expression]',  function (event) {
   var el = $(this);
   if (el.closest('.expression').find('.expressionAttr[data-l1key=type]').value() == 'action') {
     var expression = el.closest('.expression').getValues('.expressionAttr');
     jeedom.cmd.displayActionOption(el.value(), init(expression[0].options), function (html) {
       el.closest('.expression').find('.expressionOptions').html(html);
+      taAutosize();
     });
   }
 });
@@ -602,19 +654,15 @@ $('#div_pageContainer').off('click','.bt_selectDataStoreTrigger').on( 'click','.
   });
 });
 
-
 $('#div_pageContainer').off('mouseenter','.bt_sortable').on('mouseenter','.bt_sortable',  function () {
   var expressions = $(this).closest('.expressions');
   $("#div_scenarioElement").sortable({
-    axis: "y",
     cursor: "move",
     items: ".sortable",
     opacity: 0.5,
     forcePlaceholderSize: true,
     forceHelperSize: true,
-    grid: [0, 11],
-    refreshPositions: true,
-    dropOnEmpty: false,
+    placeholder: "sortable-placeholder",
     update: function (event, ui) {
       if (ui.item.findAtDepth('.element', 2).length == 1 && ui.item.parent().attr('id') == 'div_scenarioElement') {
         ui.item.replaceWith(ui.item.findAtDepth('.element', 2));
@@ -699,11 +747,17 @@ function updateSortable() {
   });
 }
 
+function updateElseToggle() {
+  $('.subElementElse').each(function () {
+    if ($(this).parent().css('display')=='table') $(this).parent().prev().find('.bt_addSinon:first').children('i').removeClass('fa-chevron-right').addClass('fa-chevron-down');
+  });
+}
+
 function setEditor() {
   $('.expressionAttr[data-l1key=type][value=code]').each(function () {
     var expression = $(this).closest('.expression');
     var code = expression.find('.expressionAttr[data-l1key=expression]');
-    if (code.attr('id') == undefined) {
+    if (code.attr('id') == undefined && code.is(':visible')) {
       code.uniqueId();
       var id = code.attr('id');
       setTimeout(function () {
@@ -714,6 +768,7 @@ function setEditor() {
         });
       }, 1);
     }
+    
   });
 }
 
@@ -769,9 +824,6 @@ function printScenario(_id) {
     $('#div_alert').showAlert({message: error.message, level: 'danger'});
   },
   success: function (data) {
-    if (data.type == 'simple') {
-      $('#bt_switchToExpertMode').attr('href', 'index.php?v=d&p=scenarioAssist&id=' + _id)
-    }
     pColor = 0;
     $('.scenarioAttr').value('');
     $('.scenarioAttr[data-l1key=object_id] option:first').attr('selected',true);
@@ -818,7 +870,7 @@ function printScenario(_id) {
     }
 
     if(data.elements.length == 0){
-      $('#div_scenarioElement').append('<center><span style=\'color:#767676;font-size:1.2em;font-weight: bold;\'>Pour constituer votre scénario veuillez ajouter des blocs</span></center>')
+      $('#div_scenarioElement').append('<center class="span_noScenarioElement"><span style=\'color:#767676;font-size:1.2em;font-weight: bold;\'>Pour constituer votre scénario veuillez ajouter des blocs</span></center>')
     }
     actionOptions = []
     for (var i in data.elements) {
@@ -836,12 +888,15 @@ function printScenario(_id) {
         $('#'+data[i].id).append(data[i].html.html);
       }
       $.hideLoading();
+      taAutosize();
     }
   });
     updateSortable();
     setEditor();
     setAutocomplete();
+    updateElseToggle();
     $('#div_editScenario').show();
+    taAutosize();
     modifyWithoutSave = false;
     setTimeout(function () {
       modifyWithoutSave = false;
@@ -947,10 +1002,15 @@ function addExpression(_expression) {
     break;
     case 'action' :
     retour += '<div class="col-xs-1" style="margin-top: 4px">';
-    if (!isset(_expression.options) || !isset(_expression.options.enable) || _expression.options.enable == 1) {
-      retour += '<input type="checkbox" class="expressionAttr pull-right " data-l1key="options" data-l2key="enable" checked style="margin-top : 9px;" title="Décocher pour desactiver l\'action"/>';
+    if (!isset(_expression.options) || !isset(_expression.options.background) || _expression.options.background == 0) {
+      retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" style="margin-top : 9px;" title="{{Cocher pour que la commande s\'éxecute en parrallele des autres actions}}"/>';
     } else {
-      retour += '<input type="checkbox" class="expressionAttr pull-right " data-l1key="options" data-l2key="enable" style="margin-top : 9px;" title="Décocher pour désactiver l\'action"/>';
+      retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" checked style="margin-top : 9px;" title="{{Cocher pour que la commande s\'éxecute en parrallele des autres actions}}"/>';
+    }
+    if (!isset(_expression.options) || !isset(_expression.options.enable) || _expression.options.enable == 1) {
+      retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable" checked style="margin-top : 9px;" title="{{Décocher pour desactiver l\'action}}"/>';
+    } else {
+      retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable" style="margin-top : 9px;" title="{{Décocher pour désactiver l\'action}}"/>';
     }
     retour += '<i class="fa fa-arrows-v pull-right cursor bt_sortable" style="margin-top : 9px; margin-right: 10px; "></i>';
     retour += '</div>';
@@ -974,10 +1034,7 @@ function addExpression(_expression) {
     });
     break;
     case 'code' :
-    retour += '<div class="col-xs-1">';
-    retour += '<i class="fa fa-bars pull-left cursor bt_sortable" style="margin-top : 9px;"></i>';
-    retour += '</div>';
-    retour += '<div class="col-xs-11">';
+    retour += '<div class="col-xs-12">';
     retour += '<textarea class="expressionAttr form-control" data-l1key="expression">' + init(_expression.expression) + '</textarea>';
     retour += '</div>';
     break;
@@ -1010,7 +1067,11 @@ function addSubElement(_subElement, _pColor) {
   if (_subElement.type == 'if' || _subElement.type == 'for' || _subElement.type == 'code') {
     noSortable = 'noSortable';
   }
-  var retour = '<div class="subElement ' + noSortable + '" style="display:table; width:100%;">';
+  var displayElse = 'table';
+  if (_subElement.type == 'else') {
+    if (!isset(_subElement.expressions) || _subElement.expressions.length==0) displayElse = 'none';
+  }
+  var retour = '<div class="subElement ' + noSortable + '" style="display:' + displayElse + '; width:100%;">';
   retour += '<input class="subElementAttr" data-l1key="id" style="display : none;" value="' + init(_subElement.id) + '"/>';
   retour += '<input class="subElementAttr" data-l1key="scenarioElement_id" style="display : none;" value="' + init(_subElement.scenarioElement_id) + '"/>';
   retour += '<input class="subElementAttr" data-l1key="type" style="display : none;" value="' + init(_subElement.type) + '"/>';
@@ -1047,9 +1108,12 @@ function addSubElement(_subElement, _pColor) {
     break;
     case 'then' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
-    retour += '  <div style="display:table-cell; width: 100px;vertical-align: top; padding-left: 15px;">';
+    retour += '  <div style="display:table-cell; width: 125px;vertical-align: top; padding-left: 15px;">';
     retour += '     <legend style="margin-bottom: 0px; color : white;border : none;">{{ALORS}}</legend>'; 
-    retour += '     <div class="dropdown">';
+    retour += '       <button class="btn btn-xs btn-default bt_addSinon" type="button" id="addSinon" data-toggle="dropdown" title="{{Afficher/masquer le bloc Sinon}}" aria-haspopup="true" aria-expanded="true">';
+    retour += '         <i class="fa fa-chevron-right"></i>';
+    retour += '       </button>';
+    retour += '     <div class="dropdown" style="display : inline-block;">';
     retour += '       <button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
     retour += '         <i class="fa fa-plus-circle"></i> {{Ajouter}}';
     retour += '         <span class="caret"></span>';
@@ -1072,8 +1136,8 @@ function addSubElement(_subElement, _pColor) {
 
     break;
     case 'else' :
-    retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
-    retour += '  <div style="display:table-cell; width: 100px; vertical-align: top; padding-left: 15px;">';
+    retour += '<input class="subElementAttr subElementElse" data-l1key="subtype" style="display : none;" value="action"/>';
+    retour += '  <div style="display:table-cell; width: 125px; vertical-align: top; padding-left: 15px;">';
     retour += '     <legend style="margin-bottom: 0px; color : white;border : none;">{{SINON}}</legend>'; 
     retour += '     <div class="dropdown">';
     retour += '       <button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';

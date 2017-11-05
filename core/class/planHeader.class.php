@@ -65,7 +65,7 @@ class planHeader {
 
 	public function report($_format = 'pdf', $_parameters = array()) {
 		if (!isset($_parameters['user'])) {
-			$users = user::searchByRight('admin');
+			$users = user::byProfils('admin');
 			if (count($users) == 0) {
 				throw new Exception(__('Aucun utilisateur admin trouvé pour la génération du rapport', __FILE__));
 			}
@@ -196,6 +196,11 @@ class planHeader {
 	}
 
 	public function setConfiguration($_key, $_value) {
+		if ($_key == 'accessCode' && $_value != '') {
+			if (!is_sha512($_value)) {
+				$_value = sha512($_value);
+			}
+		}
 		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
 		return $this;
 	}

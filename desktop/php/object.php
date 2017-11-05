@@ -31,26 +31,26 @@ foreach ($allObject as $object) {
 
  <div class="col-lg-10 col-md-10 col-sm-9" id="div_resumeObjectList" style="border-left: solid 1px #EEE; padding-left: 25px;">
    <legend><i class="fa fa-cog"></i>  {{Gestion}}</legend>
-  <div class="objectListContainer">
-   <div class="cursor" id="bt_addObject2" style="background-color : #ffffff; height : 160px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+   <div class="objectListContainer">
+     <div class="cursor" id="bt_addObject2" style="background-color : #ffffff; height : 160px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
        <br/>
        <center style='margin-top:-14px;'>
          <i class="fa fa-plus-circle" style="font-size : 6em;color:#94ca02;margin-top:5px;"></i>
        </center>
        <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>Ajouter</center></span>
-   </div>
-  <div class="cursor expertModeVisible bt_showObjectSummary" style="text-align: center; background-color : #ffffff; height : 160px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-        <br/>
-       <center style='margin-top:-14px;'>
-	   <i class="fa fa-list" style="font-size : 6em;color:#337ab7;margin-top:5px;"></i>
-        </center>
-        <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7">{{Vue d'ensemble}}</span>
+     </div>
+     <div class="cursor bt_showObjectSummary" style="text-align: center; background-color : #ffffff; height : 160px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+      <br/>
+      <center style='margin-top:-14px;'>
+        <i class="fa fa-list" style="font-size : 6em;color:#337ab7;margin-top:5px;"></i>
+      </center>
+      <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7">{{Vue d'ensemble}}</span>
     </div>
-</div>
+  </div>
 
-   <legend><i class="fa fa-picture-o"></i>  {{Mes objets}}</legend>
-   <div class="objectListContainer">
-     <?php
+  <legend><i class="fa fa-picture-o"></i>  {{Mes objets}}</legend>
+  <div class="objectListContainer">
+   <?php
 foreach ($allObject as $object) {
 	echo '<div class="objectDisplayCard cursor" data-object_id="' . $object->getId() . '" data-object_name="' . $object->getName() . '" data-object_icon=\'' . $object->getDisplay('icon', '<i class="fa fa-lemon-o"></i>') . '\' style="background-color : #ffffff; height : 160px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 	echo "<center style='margin-top:10px;'>";
@@ -63,80 +63,92 @@ foreach ($allObject as $object) {
 	echo '</div>';
 }
 ?>
-   </div>
  </div>
+</div>
 
- <div class="col-md-10 col-sm-9 object" style="display: none;" id="div_conf">
-   <a class="btn btn-success pull-right" id="bt_saveObject"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
-   <a class="btn btn-danger pull-right" id="bt_removeObject"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
-   <a class="btn btn-default pull-right" id="bt_graphObject"><i class="fa fa-object-group"></i> {{Liens}}</a>
+<div class="col-md-10 col-sm-9 object" style="display: none;" id="div_conf">
+ <a class="btn btn-success pull-right" id="bt_saveObject"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
+ <a class="btn btn-danger pull-right" id="bt_removeObject"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
+ <a class="btn btn-default pull-right" id="bt_graphObject"><i class="fa fa-object-group"></i> {{Liens}}</a>
 
-   <ul class="nav nav-tabs" role="tablist">
-     <li role="presentation"><a href="#" aria-controls="home" role="tab" data-toggle="tab" id="bt_returnToThumbnailDisplay"><i class="fa fa-arrow-circle-left"></i></a></li>
-     <li role="presentation" class="active"><a href="#objecttab" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-tachometer"></i> {{Objet}}</a></li>
-     <li role="presentation"><a href="#summarytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-list-alt"></i> {{Résumé}}</a></li>
-   </ul>
+ <ul class="nav nav-tabs" role="tablist">
+   <li role="presentation"><a class="cursor" aria-controls="home" role="tab" id="bt_returnToThumbnailDisplay"><i class="fa fa-arrow-circle-left"></i></a></li>
+   <li role="presentation" class="active"><a href="#objecttab" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-tachometer"></i> {{Objet}}</a></li>
+   <li role="presentation"><a href="#summarytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-list-alt"></i> {{Résumé}}</a></li>
+ </ul>
 
-   <div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
-    <div role="tabpanel" class="tab-pane active" id="objecttab">
-      <form class="form-horizontal">
-        <fieldset>
-          <legend>{{Général}}</legend>
-          <div class="form-group">
-            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nom de l'objet}}</label>
-            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-              <input class="form-control objectAttr" type="text" data-l1key="id" style="display : none;"/>
-              <input class="form-control objectAttr" type="text" data-l1key="name" placeholder="Nom de l'objet"/>
-            </div>
+ <div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
+  <div role="tabpanel" class="tab-pane active" id="objecttab">
+    <br/>
+    <form class="form-horizontal">
+      <fieldset>
+        <div class="form-group">
+          <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nom de l'objet}}</label>
+          <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+            <input class="form-control objectAttr" type="text" data-l1key="id" style="display : none;"/>
+            <input class="form-control objectAttr" type="text" data-l1key="name" placeholder="Nom de l'objet"/>
           </div>
-          <div class="form-group">
-            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Père}}</label>
-            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-              <select class="form-control objectAttr" data-l1key="father_id">
-                <option value="">{{Aucun}}</option>
-                <?php
+        </div>
+        <div class="form-group">
+          <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Père}}</label>
+          <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+            <select class="form-control objectAttr" data-l1key="father_id">
+              <option value="">{{Aucun}}</option>
+              <?php
 foreach ($allObject as $object) {
 	echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
 }
 ?>
-             </select>
-           </div>
+           </select>
          </div>
-         <div class="form-group">
-          <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Visible}}</label>
-          <div class="col-sm-1">
-            <input class="objectAttr" type="checkbox" data-l1key="isVisible" checked/>
-          </div>
-        </div>
-        <div class="form-group">
-         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Masquer sur le dashboard}}</label>
-         <div class="col-sm-1">
-          <input class="objectAttr" type="checkbox" data-l1key="configuration" data-l2key="hideOnDashboard"/>
+       </div>
+       <div class="form-group">
+        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Visible}}</label>
+        <div class="col-sm-1">
+          <input class="objectAttr" type="checkbox" data-l1key="isVisible" checked/>
         </div>
       </div>
       <div class="form-group">
-        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Icône}}</label>
-        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-          <div class="objectAttr" data-l1key="display" data-l2key="icon" style="font-size : 1.5em;"></div>
-        </div>
-        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4">
-          <a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fa fa-flag"></i> {{Choisir}}</a>
-        </div>
+       <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Masquer sur le dashboard}}</label>
+       <div class="col-sm-1">
+        <input class="objectAttr" type="checkbox" data-l1key="configuration" data-l2key="hideOnDashboard"/>
       </div>
-      <div class="form-group">
-        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Couleur du tag}}</label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-          <input type="color" class="objectAttr form-control" data-l1key="display" data-l2key="tagColor" />
-        </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Icône}}</label>
+      <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+        <div class="objectAttr" data-l1key="display" data-l2key="icon" style="font-size : 1.5em;"></div>
       </div>
-      <div class="form-group">
-        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Couleur du texte du tag}}</label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-          <input type="color" class="objectAttr form-control" data-l1key="display" data-l2key="tagTextColor" />
-        </div>
+      <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4">
+        <a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fa fa-flag"></i> {{Choisir}}</a>
       </div>
-    </fieldset>
-  </form>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Couleur du tag}}</label>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <input type="color" class="objectAttr form-control" data-l1key="display" data-l2key="tagColor" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Couleur du texte du tag}}</label>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <input type="color" class="objectAttr form-control" data-l1key="display" data-l2key="tagTextColor" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Couleur du texte du résumé}}</label>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <input type="color" class="objectAttr form-control" data-l1key="display" data-l2key="desktop::summaryTextColor" />
+      </div>
+    </div>
+     <div class="form-group">
+      <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Taille sur le dashboard (1 à 12)}}</label>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <input type="number" class="objectAttr form-control" data-l1key="display" data-l2key="dashboard::size" />
+      </div>
+    </div>
+  </fieldset>
+</form>
 </div>
 <div role="tabpanel" class="tab-pane" id="summarytab">
   <?php
@@ -147,7 +159,6 @@ if (count(config::byKey('object:summary')) == 0) {
 	?>
    <form class="form-horizontal">
     <fieldset>
-      <legend class="objectname_resume" style="cursor:default;"></legend>
       <table class="table">
         <thead>
           <tr>

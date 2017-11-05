@@ -75,9 +75,9 @@ jeedom.history.drawChart = function (_params) {
         _params.dateRange = json_encode(_params.dateRange);
     }
     _params.option = init(_params.option, {derive: ''});
-    $.ajax({// fonction permettant de faire de l'ajax
-        type: "POST", // methode de transmission des données au fichier php
-        url: "core/ajax/cmd.ajax.php", // url du fichier php
+    $.ajax({
+        type: "POST",
+        url: "core/ajax/cmd.ajax.php",
         data: {
             action: "getHistory",
             id: _params.cmd_id,
@@ -92,68 +92,41 @@ jeedom.history.drawChart = function (_params) {
         error: function (request, status, error) {
             handleAjaxError(request, status, error);
         },
-        success: function (data) { // si l'appel a bien fonctionné 
-        if (data.state != 'ok') {
-            $('#div_alert').showAlert({message: data.result, level: 'danger'});
-            return;
-        }
-
-        if (data.result.data.length < 1) {
-            var message = '{{Il n\'existe encore aucun historique pour cette commande :}} ' + data.result.history_name;
-            if (init(data.result.dateStart) != '') {
-                if (init(data.result.dateEnd) != '') {
-                    message += ' {{du}} ' + data.result.dateStart + ' {{au}} ' + data.result.dateEnd;
-                } else {
-                    message += ' {{à partir de}} ' + data.result.dateStart;
-                }
-            } else {
-                if (init(data.result.dateEnd) != '') {
-                    message += ' {{jusqu\'au}} ' + data.result.dateEnd;
-                }
+        success: function (data) {
+            if (data.state != 'ok') {
+                $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                return;
             }
-            $('#div_alert').showAlert({message: message, level: 'danger'});
-            return;
-        }
-        if (isset(jeedom.history.chart[_params.el]) && isset(jeedom.history.chart[_params.el].cmd[parseInt(_params.cmd_id)])) {
-            jeedom.history.chart[_params.el].cmd[parseInt(_params.cmd_id)] = null;
-        }
-        if (isset(jeedom.history.chart[_params.el])) {
-            _params.option.graphColor = init(_params.option.graphColor, Highcharts.getOptions().colors[init(jeedom.history.chart[_params.el].color, 0)]);
-        } else {
-            _params.option.graphColor = init(_params.option.graphColor, Highcharts.getOptions().colors[0]);
-        }
-
-        if(isset(data.result.cmd)){
-            if (init(_params.option.graphStep) == '') {
-                if (isset(data.result.cmd.display) && init(data.result.cmd.display.graphStep) != '') {
-                    _params.option.graphStep = (data.result.cmd.display.graphStep == "0") ? false : true;
+            if (data.result.data.length < 1) {
+                var message = '{{Il n\'existe encore aucun historique pour cette commande :}} ' + data.result.history_name;
+                if (init(data.result.dateStart) != '') {
+                    message += (init(data.result.dateEnd) != '') ?  ' {{du}} ' + data.result.dateStart + ' {{au}} ' + data.result.dateEnd : ' {{à partir de}} ' + data.result.dateStart;
                 } else {
-                    _params.option.graphStep = (data.result.cmd.subType == 'binary') ? true : false;
+                    message += (init(data.result.dateEnd) != '') ? ' {{jusqu\'au}} ' + data.result.dateEnd:'';
                 }
-            } else {
-                _params.option.graphStep = (_params.option.graphStep == "1") ? true : false;
+                $('#div_alert').showAlert({message: message, level: 'danger'});
+                return;
+            }
+            if (isset(jeedom.history.chart[_params.el]) && isset(jeedom.history.chart[_params.el].cmd[_params.cmd_id])) {
+                jeedom.history.chart[_params.el].cmd[_params.cmd_id] = null;
+            }
+            _params.option.graphColor = (isset(jeedom.history.chart[_params.el])) ? init(_params.option.graphColor, Highcharts.getOptions().colors[init(jeedom.history.chart[_params.el].color, 0)]) : init(_params.option.graphColor, Highcharts.getOptions().colors[0]);
+            _params.option.graphStep = (_params.option.graphStep == "1") ? true : false;
+            if(isset(data.result.cmd)){
+                if (init(_params.option.graphStep) == '') {
+                 _params.option.graphStep = (data.result.cmd.subType == 'binary') ? true : false;
+                 if (isset(data.result.cmd.display) && init(data.result.cmd.display.graphStep) != '') {
+                    _params.option.graphStep = (data.result.cmd.display.graphStep == "0") ? false : true;
+                }
             }
             if (init(_params.option.graphType) == '') {
-                if (isset(data.result.cmd.display) && init(data.result.cmd.display.graphType) != '') {
-                    _params.option.graphType = data.result.cmd.display.graphType;
-                } else {
-                    _params.option.graphType = 'line';
-                }
+                _params.option.graphType = (isset(data.result.cmd.display) && init(data.result.cmd.display.graphType) != '') ? data.result.cmd.display.graphType : 'line';
             }
-            if (init(_params.option.groupingType) == '') {
-                if (isset(data.result.cmd.display) && init(data.result.cmd.display.groupingType) != '') {
-                    _params.option.groupingType = {};
-                    var split = data.result.cmd.display.groupingType.split('::');
-                    _params.option.groupingType.function = split[0];
-                    _params.option.groupingType.time = split[1];
-                }
+            if (init(_params.option.groupingType) == '' && isset(data.result.cmd.display) && init(data.result.cmd.display.groupingType) != '') {
+                var split = data.result.cmd.display.groupingType.split('::');
+                _params.option.groupingType = {function :split[0],time : split[1] };
             }
-        }else{
-            _params.option.graphStep = false;
-            _params.option.graphType = 'line';
         }
-
-        
         var stacking = (_params.option.graphStack == undefined || _params.option.graphStack == null || _params.option.graphStack == 0) ? null : 'value';
         _params.option.graphStack = (_params.option.graphStack == undefined || _params.option.graphStack == null || _params.option.graphStack == 0) ? Math.floor(Math.random() * 10000 + 2) : 1;
         _params.option.graphScale = (_params.option.graphScale == undefined) ? 0 : parseInt(_params.option.graphScale);
@@ -161,12 +134,8 @@ jeedom.history.drawChart = function (_params) {
         _params.showTimeSelector = (init(_params.showTimeSelector, true) && init(_params.showTimeSelector, true) != "0") ? true : false;
         _params.showScrollbar = (init(_params.showScrollbar, true) && init(_params.showScrollbar, true) != "0") ? true : false;
         _params.showNavigator = (init(_params.showNavigator, true) && init(_params.showNavigator, true) != "0") ? true : false;
-
-        var legend = {
-            borderColor: 'black',
-            borderWidth: 2,
-            shadow: true
-        };
+        
+        var legend = {borderColor: 'black',borderWidth: 2,shadow: true};
         legend.enabled = init(_params.showLegend, true);
         if(isset(_params.newGraph) && _params.newGraph == true){
             delete jeedom.history.chart[_params.el];
@@ -196,7 +165,7 @@ jeedom.history.drawChart = function (_params) {
     if( _params.option.graphType == 'pie'){
         var series = {
             type: _params.option.graphType,
-            id: parseInt(_params.cmd_id),
+            id: _params.cmd_id,
             cursor: 'pointer',
             data: [{y:data.result.data[data.result.data.length - 1][1], name : (isset(_params.option.name)) ? _params.option.name + ' '+ data.result.unite : data.result.history_name + ' '+ data.result.unite}],
             color: _params.option.graphColor,
@@ -247,9 +216,7 @@ jeedom.history.drawChart = function (_params) {
         };
         if(isset(_params.option.groupingType) && jQuery.type(_params.option.groupingType) == 'string' && _params.option.groupingType != ''){
             var split = _params.option.groupingType.split('::');
-            _params.option.groupingType = {};
-            _params.option.groupingType.function = split[0];
-            _params.option.groupingType.time = split[1];
+            _params.option.groupingType = {function :split[0],time : split[1] };
         }
         if(isset(_params.option.groupingType) && isset(_params.option.groupingType.function) && isset(_params.option.groupingType.time)){
             dataGrouping = {
@@ -266,12 +233,11 @@ jeedom.history.drawChart = function (_params) {
                 jeedom.history.chart[_params.el].nbTimeline++;
                 nbTimeline = jeedom.history.chart[_params.el].nbTimeline;
             }
-
             var series = {
                 type: 'flags',
                 name: (isset(_params.option.name)) ? _params.option.name + ' '+ data.result.unite : data.result.history_name+ ' '+ data.result.unite,
                 data: [],
-                id: parseInt(_params.cmd_id),
+                id: _params.cmd_id,
                 color: _params.option.graphColor,
                 shape: 'squarepin',
                 cursor: 'pointer',
@@ -312,7 +278,7 @@ jeedom.history.drawChart = function (_params) {
             var series = {
                 dataGrouping: dataGrouping,
                 type: _params.option.graphType,
-                id: parseInt(_params.cmd_id),
+                id: _params.cmd_id,
                 cursor: 'pointer',
                 name: (isset(_params.option.name)) ? _params.option.name + ' '+ data.result.unite : data.result.history_name+ ' '+ data.result.unite,
                 data: data.result.data,
@@ -349,6 +315,9 @@ jeedom.history.drawChart = function (_params) {
                     }
                 }
             };
+        }
+        if(isset(_params.option.graphZindex)){
+            series.zIndex = _params.option.graphZindex;
         }
 
         if (!isset(jeedom.history.chart[_params.el]) || (isset(_params.newGraph) && _params.newGraph == true)) {
@@ -424,7 +393,7 @@ jeedom.history.drawChart = function (_params) {
                 },
                 legend: legend,
                 tooltip: {
-                    pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y} (Min : {series.dataMin}, Max : {series.dataMax})</b><br/>',
+                    pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b><br/>',
                     valueDecimals: 2,
                 },
                 yAxis: [{
@@ -468,7 +437,7 @@ jeedom.history.drawChart = function (_params) {
         } else {
             jeedom.history.chart[_params.el].chart.addSeries(series);
         }
-        jeedom.history.chart[_params.el].cmd[parseInt(_params.cmd_id)] = {option: _params.option, dateRange: _params.dateRange};
+        jeedom.history.chart[_params.el].cmd[_params.cmd_id] = {option: _params.option, dateRange: _params.dateRange};
     }
 
     jeedom.history.chart[_params.el].color++;
@@ -518,15 +487,15 @@ jeedom.history.changePoint = function (_params) {
             $('#div_alert').showAlert({message: '{{La valeur a été éditée avec succès}}', level: 'success'});
             var serie = null;
             for (var i in jeedom.history.chart) {
-                serie = jeedom.history.chart[i].chart.get(parseInt(_params.cmd_id));
+                serie = jeedom.history.chart[i].chart.get(_params.cmd_id);
                 if (serie != null && serie != undefined) {
                     serie.remove();
                     serie = null;
                     jeedom.history.drawChart({
                         cmd_id: _params.cmd_id,
                         el: i,
-                        dateRange: jeedom.history.chart[i].cmd[parseInt(_params.cmd_id)].dateRange,
-                        option: jeedom.history.chart[i].cmd[parseInt(_params.cmd_id)].option
+                        dateRange: jeedom.history.chart[i].cmd[_params.cmd_id].dateRange,
+                        option: jeedom.history.chart[i].cmd[_params.cmd_id].option
                     });
                 }
             }

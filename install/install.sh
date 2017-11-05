@@ -150,10 +150,9 @@ step_7_jeedom_customization() {
 	rm /etc/apache2/conf-available/other-vhosts-access-log.conf > /dev/null 2>&1
 	rm /etc/apache2/conf-enabled/other-vhosts-access-log.conf > /dev/null 2>&1
 
-	rm /etc/systemd/system/multi-user.target.wants/apache2.service
-	cp /lib/systemd/system/apache2.service /etc/systemd/system/multi-user.target.wants/
-	sed -i 's/PrivateTmp=true/PrivateTmp=false/g' /etc/systemd/system/multi-user.target.wants/apache2.service > /dev/null 2>&1
-	sed -i 's/PrivateTmp=true/PrivateTmp=false/g' /lib/systemd/system/apache2.service > /dev/null 2>&1
+	mkdir /etc/systemd/system/apache2.service.d
+	echo "[Service]" > /etc/systemd/system/apache2.service.d/privatetmp.conf
+	echo "PrivateTmp=no" >> /etc/systemd/system/apache2.service.d/privatetmp.conf
 
 	systemctl daemon-reload
 
@@ -277,6 +276,13 @@ step_10_jeedom_post() {
   	fi
 	if [ ! -f /etc/cron.d/jeedom ]; then
 		echo "* * * * * www-data /usr/bin/php ${WEBSERVER_HOME}/core/php/jeeCron.php >> /dev/null" > /etc/cron.d/jeedom
+		if [ $? -ne 0 ]; then
+	    	echo "${ROUGE}Could not install jeedom cron - abort${NORMAL}"
+	    	exit 1
+	  	fi
+	fi
+	if [ ! -f /etc/cron.d/jeedom_watchdog ]; then
+		echo "* * * * * root /usr/bin/php ${WEBSERVER_HOME}/core/php/watchdog.php >> /dev/null" > /etc/cron.d/jeedom_watchdog
 		if [ $? -ne 0 ]; then
 	    	echo "${ROUGE}Could not install jeedom cron - abort${NORMAL}"
 	    	exit 1

@@ -4,17 +4,17 @@ if (!isConnect()) {
 }
 ?>
 <div id="div_alertObjectSummary"></div>
-<table class="table table-bordered table-condensed" id="table_ObjectSummary">
+<table class="table table-bordered table-condensed tablesorter" id="table_ObjectSummary">
 	<thead>
 		<tr>
 			<th style="cursor:default">{{ID}}</th>
 			<th style="cursor:default">{{Objet}}</th>
 			<th style="cursor:default">{{Père}}</th>
-			<th style="cursor:default">{{Visible}}</th>
-			<th style="cursor:default">{{Masqué}}</th>
-			<th style="cursor:default">{{Résumé Défini}} <sup style="cursor:default" title="Si grisé alors pas remonté en résumé global">?</th>
-			<th style="cursor:default">{{Résumé Dashboard Masqué}}</th>
-			<th style="cursor:default">{{Résumé Mobile Masqué}}</th>
+			<th style="cursor:default" data-sorter="false" data-filter="false">{{Visible}}</th>
+			<th style="cursor:default" data-sorter="false" data-filter="false">{{Masqué}}</th>
+			<th style="cursor:default" data-sorter="false" data-filter="false">{{Résumé Défini}} <sup style="cursor:default" title="Si grisé alors pas remonté en résumé global">?</th>
+			<th style="cursor:default" data-sorter="false" data-filter="false">{{Résumé Dashboard Masqué}}</th>
+			<th style="cursor:default" data-sorter="false" data-filter="false">{{Résumé Mobile Masqué}}</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -43,8 +43,8 @@ foreach ($allObject as $object) {
 	foreach (config::byKey('object:summary') as $key => $value) {
 		$title = '';
 		foreach ($object->getConfiguration('summary')[$key] as $summary) {
-			if (cmd::byId(str_replace('#','',$summary['cmd']))){
-				$title .= '&#10;' . cmd::byId(str_replace('#','',$summary['cmd']))->getHumanName();
+			if (cmd::byId(str_replace('#', '', $summary['cmd']))) {
+				$title .= '&#10;' . cmd::byId(str_replace('#', '', $summary['cmd']))->getHumanName();
 			} else {
 				$title .= '&#10;' . $summary['cmd'];
 			}
@@ -53,7 +53,7 @@ foreach ($allObject as $object) {
 			if ($object->getConfiguration('summary::global::' . $key) == 1) {
 				echo '<a style="cursor:default;text-decoration:none;" title="' . $value['name'] . $title . '">' . $value['icon'] . '<sup> ' . count($object->getConfiguration('summary')[$key]) . '</sup></a>  ';
 			} else {
-				echo '<a style="cursor:default;color:grey;text-decoration:none;" title="' . $value['name'] . $title .'">' . $value['icon'] . '<sup> ' . count($object->getConfiguration('summary')[$key]) . '</sup></a>  ';
+				echo '<a style="cursor:default;color:grey;text-decoration:none;" title="' . $value['name'] . $title . '">' . $value['icon'] . '<sup> ' . count($object->getConfiguration('summary')[$key]) . '</sup></a>  ';
 			}
 		}
 	}
@@ -76,3 +76,7 @@ foreach ($allObject as $object) {
 ?>
 	</tbody>
 </table>
+
+<script>
+	initTableSorter();
+</script>

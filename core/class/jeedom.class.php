@@ -25,28 +25,52 @@ class jeedom {
 	private static $jeedomConfiguration;
 
 	/*     * ***********************Methode static*************************** */
-	
+
+	public static function addTimelineEvent($_event) {
+		file_put_contents(dirname(__FILE__) . '/../../data/timeline.json', json_encode($_event) . "\n", FILE_APPEND);
+	}
+
+	public static function getTimelineEvent() {
+		$path = dirname(__FILE__) . '/../../data/timeline.json';
+		if (!file_exists($path)) {
+			return array();
+		}
+		com_shell::execute(system::getCmdSudo() . 'chmod 777 ' . $path . ' > /dev/null 2>&1;echo "$(tail -n ' . config::byKey('timeline::maxevent') . ' ' . $path . ')" > ' . $path);
+		$lines = explode("\n", trim(file_get_contents($path)));
+		$result = array();
+		foreach ($lines as $line) {
+			$result[] = json_decode($line, true);
+		}
+		return $result;
+	}
+
+	public static function removeTimelineEvent() {
+		$path = dirname(__FILE__) . '/../../data/timeline.json';
+		com_shell::execute(system::getCmdSudo() . 'chmod 777 ' . $path . ' > /dev/null 2>&1;');
+		unlink($path);
+	}
+
 	public static function deadCmd() {
 		global $JEEDOM_INTERNAL_CONFIG;
 		$return = array();
 		$cmd = config::byKey('interact::warnme::defaultreturncmd', 'core', '');
 		if ($cmd != '') {
-			if (!cmd::byId(str_replace('#','',$cmd))){
-				$return[]= array('detail' => 'Administration','help' => 'Commande retour interactions','who'=>$cmd);
+			if (!cmd::byId(str_replace('#', '', $cmd))) {
+				$return[] = array('detail' => 'Administration', 'help' => 'Commande retour interactions', 'who' => $cmd);
 			}
 		}
 		$cmd = config::byKey('emailAdmin', 'core', '');
 		if ($cmd != '') {
-			if (!cmd::byId(str_replace('#','',$cmd))){
-				$return[]= array('detail' => 'Administration','help' => 'Commande information utilisateur','who'=>$cmd);
+			if (!cmd::byId(str_replace('#', '', $cmd))) {
+				$return[] = array('detail' => 'Administration', 'help' => 'Commande information utilisateur', 'who' => $cmd);
 			}
 		}
 		foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
 			$cmds = config::byKey('alert::' . $level . 'Cmd', 'core', '');
 			preg_match_all("/#([0-9]*)#/", $cmds, $matches);
 			foreach ($matches[1] as $cmd_id) {
-				if (!cmd::byId($cmd_id)){
-					$return[]= array('detail' => 'Administration','help' => 'Commande sur ' . $value['name'],'who'=>'#' . $cmd_id . '#');
+				if (!cmd::byId($cmd_id)) {
+					$return[] = array('detail' => 'Administration', 'help' => 'Commande sur ' . $value['name'], 'who' => '#' . $cmd_id . '#');
 				}
 			}
 		}
@@ -135,7 +159,7 @@ class jeedom {
 		} else {
 			$version = trim(strtolower(file_get_contents('/etc/debian_version')));
 			if (version_compare($version, '8', '<')) {
-				if (strpos($version, 'jessie') === false && strpos($version, 'stretch')) {
+				if (strpos($version, 'jessie') === false && strpos($version, 'stretch') === false) {
 					$state = false;
 				}
 			}
@@ -144,7 +168,7 @@ class jeedom {
 			'name' => __('Version OS', __FILE__),
 			'state' => $state,
 			'result' => ($state) ? $uname . ' [' . $version . ']' : $uname,
-			'comment' => ($state) ? '' : __('Vous n\'êtes pas sur un OS officiellement supporté par l\'équipe Jeedom (toute demande de support pourra donc être refusée). Les OS officiellement supporté sont Debian Jessie et Debian Strech (voir <a href="https://www.jeedom.com/doc/documentation/compatibility/fr_FR/doc-compatibility.html#_logiciel" target="_blank">ici</a>)', __FILE__),
+			'comment' => ($state) ? '' : __('Vous n\'êtes pas sur un OS officiellement supporté par l\'équipe Jeedom (toute demande de support pourra donc être refusée). Les OS officiellement supporté sont Debian Jessie et Debian Strech (voir <a href="https://github.com/jeedom/documentation/blob/master/compatibility/fr_FR/software.asciidoc" target="_blank">ici</a>)', __FILE__),
 		);
 
 		$version = DB::Prepare('select version()', array(), DB::FETCH_TYPE_ROW);
@@ -172,13 +196,23 @@ class jeedom {
 			'comment' => '',
 		);
 
-		$value = round(($values['SwapFree'] / $values['SwapTotal']) * 100);
-		$return[] = array(
-			'name' => __('Swap disponible', __FILE__),
-			'state' => ($value > 15),
-			'result' => $value . ' %',
-			'comment' => '',
-		);
+		if ($values['SwapTotal'] != 0 && $values['SwapTotal'] != null) {
+			$value = round(($values['SwapFree'] / $values['SwapTotal']) * 100);
+			$return[] = array(
+				'name' => __('Swap disponible', __FILE__),
+				'state' => ($value > 15),
+				'result' => $value . ' %',
+				'comment' => '',
+			);
+		} else {
+			$return[] = array(
+				'name' => __('Swap disponible', __FILE__),
+				'state' => 2,
+				'result' => __('Inconnue', __FILE__),
+				'comment' => '',
+			);
+		}
+
 		$values = sys_getloadavg();
 		$return[] = array(
 			'name' => __('Charge', __FILE__),
@@ -220,7 +254,6 @@ class jeedom {
 			$state = network::test('external');
 		}
 		$return[] = $cache_health;
-
 		return $return;
 	}
 
@@ -231,11 +264,11 @@ class jeedom {
 	}
 
 	public static function getApiKey($_plugin = 'core') {
-		if ($_plugin == 'proapi') {
-			if (config::byKey('proapi') == '') {
-				config::save('proapi', config::genKey());
+		if ($_plugin == 'apipro') {
+			if (config::byKey('apipro') == '') {
+				config::save('apipro', config::genKey());
 			}
-			return config::byKey('proapi');
+			return config::byKey('apipro');
 		}
 		if (config::byKey('api', $_plugin) == '') {
 			config::save('api', config::genKey(), $_plugin);
@@ -439,7 +472,7 @@ class jeedom {
 			log::clear('backup');
 			$cmd = dirname(__FILE__) . '/../../install/backup.php';
 			$cmd .= ' >> ' . log::getPathToLog('backup') . ' 2>&1 &';
-			system::php($cmd);
+			system::php($cmd, true);
 		} else {
 			require_once dirname(__FILE__) . '/../../install/backup.php';
 		}
@@ -472,7 +505,7 @@ class jeedom {
 			log::clear('restore');
 			$cmd = dirname(__FILE__) . '/../../install/restore.php "backup=' . $_backup . '"';
 			$cmd .= ' >> ' . log::getPathToLog('restore') . ' 2>&1 &';
-			system::php($cmd);
+			system::php($cmd, true);
 		} else {
 			global $BACKUP_FILE;
 			$BACKUP_FILE = $_backup;
@@ -482,9 +515,15 @@ class jeedom {
 
 	/****************************UPDATE*****************************************************************/
 
-	public static function update($_mode = '', $_level = -1, $_version = '', $__onlyThisVersion = '') {
+	public static function update($_options = array()) {
 		log::clear('update');
-		$cmd = dirname(__FILE__) . '/../../install/install.php "mode=' . $_mode . '" "level=' . $_level . '" "version=' . $_version . '" "onlyThisVersion=' . $__onlyThisVersion . '"';
+		$params = '';
+		if (count($_options) > 0) {
+			foreach ($_options as $key => $value) {
+				$params .= '"' . $key . '"="' . $value . '" ';
+			}
+		}
+		$cmd = dirname(__FILE__) . '/../../install/update.php ' . $params;
 		$cmd .= ' >> ' . log::getPathToLog('update') . ' 2>&1 &';
 		system::php($cmd);
 	}
@@ -623,18 +662,18 @@ class jeedom {
 	}
 
 	/**
-         * 
-         * @return boolean
-         */
+	 *
+	 * @return boolean
+	 */
 	public static function isDateOk() {
 		if (config::byKey('ignoreHourCheck') == 1) {
 			return true;
 		}
-                $minDateValue = new \DateTime('2017-01-01');
-		$mindate = strtotime( $minDateValue->format('Y-m-d 00:00:00'));
-                $maxDateValue = $minDateValue->modify('+6 year')->format('Y-m-d 00:00:00');
+		$minDateValue = new \DateTime('2017-01-01');
+		$mindate = strtotime($minDateValue->format('Y-m-d 00:00:00'));
+		$maxDateValue = $minDateValue->modify('+6 year')->format('Y-m-d 00:00:00');
 		$maxdate = strtotime($maxDateValue);
-              
+
 		if (strtotime('now') < $mindate || strtotime('now') > $maxdate) {
 			self::forceSyncHour();
 			sleep(3);

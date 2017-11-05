@@ -16,7 +16,6 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 try {
-
 	if (!file_exists(dirname(__FILE__) . '/core/config/common.config.php')) {
 		header("location: install/setup.php");
 	}

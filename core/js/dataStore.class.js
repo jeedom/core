@@ -69,20 +69,20 @@ jeedom.dataStore.getSelectModal = function (_options, callback) {
     if (!isset(_options)) {
         _options = {};
     }
-    if ($("#mod_insertDataStoreValue").length == 0) {
-        $('body').append('<div id="mod_insertDataStoreValue" title="{{Sélectionner une variable}}" ></div>');
-
-        $("#mod_insertDataStoreValue").dialog({
-            closeText: '',
-            autoOpen: false,
-            modal: true,
-            height: 250,
-            width: 800
-        });
-        jQuery.ajaxSetup({async: false});
-        $('#mod_insertDataStoreValue').load('index.php?v=d&modal=dataStore.human.insert');
-        jQuery.ajaxSetup({async: true});
+    if ($("#mod_insertDataStoreValue").length != 0) {
+        $("#mod_insertDataStoreValue").remove();
     }
+    $('body').append('<div id="mod_insertDataStoreValue" title="{{Sélectionner une variable}}" ></div>');
+    $("#mod_insertDataStoreValue").dialog({
+        closeText: '',
+        autoOpen: false,
+        modal: true,
+        height: 250,
+        width: 800
+    });
+    jQuery.ajaxSetup({async: false});
+    $('#mod_insertDataStoreValue').load('index.php?v=d&modal=dataStore.human.insert');
+    jQuery.ajaxSetup({async: true});
     mod_insertDataStore.setOptions(_options);
     $("#mod_insertDataStoreValue").dialog('option', 'buttons', {
         "Annuler": function () {

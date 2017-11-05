@@ -41,10 +41,10 @@ class system {
 		return self::$_command;
 	}
 
-        /**
-         * 
-         * @return string/object self:: 
-         */
+	/**
+	 *
+	 * @return string/object self::
+	 */
 	public static function getDistrib() {
 		self::loadCommand();
 		if (isset(self::$_command['custom'])) {
@@ -154,7 +154,10 @@ class system {
 		exec($cmd);
 	}
 
-	public static function php($arguments) {
+	public static function php($arguments, $_sudo = false) {
+		if ($_sudo) {
+			return exec(self::getCmdSudo() . ' php ' . $arguments);
+		}
 		return exec('php ' . $arguments);
 	}
 }

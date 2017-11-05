@@ -21,8 +21,8 @@
     closeText: '',
     autoOpen: false,
     modal: true,
-    height: 300,
-    width: 400,
+    height: 450,
+    width: 600,
     open: function () {
         $("body").css({overflow: 'hidden'});
     },
@@ -31,50 +31,25 @@
     }
 });
 
- $('#bt_reapplyUpdate').on('click', function () {
+ $('#bt_updateJeedom').on('click', function () {
   $('#md_specifyUpdate').dialog({title: "{{Options}}"});
   $("#md_specifyUpdate").dialog('open');
 });
 
- $('#bt_reapplySpecifyUpdate').on('click',function(){
-     var level = "-1";
-     var mode = '';
-     if($('#cb_forceReapplyUpdate').value() == 1){
-        mode = 'force';
-    }
+
+ $('#bt_doUpdate').on('click', function () {
+    $("#md_specifyUpdate").dialog('close');
+    var options = $('#md_specifyUpdate').getValues('.updateOption')[0];
+    $.hideAlert();
     jeedom.update.doAll({
-        mode: mode,
-        level: level,
-        version : $('#sel_updateVersion').value(),
-        onlyThisVersion : ($('#cb_allFromThisUpdate').value() == 1) ? 'no':'yes',
+        options: options,
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-           $("#md_specifyUpdate").dialog('close');
-           getJeedomLog(1, 'update');
-       }
-   });
-});
-
- $('.bt_updateAll').on('click', function () {
-  var level = $(this).attr('data-level');
-  var mode = $(this).attr('data-mode');
-  bootbox.confirm('{{Etes-vous sur de vouloir faire les mises à jour ?}} ', function (result) {
-    if (result) {
-        $.hideAlert();
-        jeedom.update.doAll({
-            mode: mode,
-            level: level,
-            error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function () {
-                getJeedomLog(1, 'update');
-            }
-        });
-    }
-});
+            getJeedomLog(1, 'update');
+        }
+    });
 });
 
  $('#bt_checkAllUpdate').on('click', function () {
@@ -141,11 +116,6 @@
 
 });
 
-
- $('#bt_expertMode').on('click', function () {
-    printUpdate();
-});
-
  function getJeedomLog(_autoUpdate, _log) {
     $.ajax({
         type: 'POST',
@@ -174,7 +144,7 @@
                     log += data.result[i]+"\n";
                     if(data.result[i].indexOf('[END ' + _log.toUpperCase() + ' SUCCESS]') != -1){
                         printUpdate();
-                        $('#div_alert').showAlert({message: '{{L\'opération est réussie}}', level: 'success'});
+                        $('#div_alert').showAlert({message: '{{L\'opération est réussie. Merci de faire F5 pour avoir les dernières nouveautés}}', level: 'success'});
                         _autoUpdate = 0;
                     }
                     if(data.result[i].indexOf('[END ' + _log.toUpperCase() + ' ERROR]') != -1){
@@ -205,6 +175,7 @@ function printUpdate() {
         },
         success: function (data) {
             $('#table_update tbody').empty();
+            $('#table_updateOther tbody').empty();
             for (var i in data) {
                 addUpdate(data[i]);
             }
@@ -247,16 +218,16 @@ function addUpdate(_update) {
 }else if (_update.type != 'core') {
     tr += '<a class="btn btn-info btn-xs update" style="margin-bottom : 5px;" title="{{Re-installer}}"><i class="fa fa-refresh"></i> {{Reinstaller}}</a> ';
 }
-if (_update.type != 'core') {
-    if (isset(_update.plugin) && isset(_update.plugin.changelog) && _update.plugin.changelog != '') {
-        tr += '<a class="btn btn-default btn-xs cursor" target="_blank" href="'+_update.plugin.changelog+'" style="margin-bottom : 5px;"><i class="fa fa-book"></i> {{Changelog}}</a>';
-    }
-}else{
- tr += '<a class="btn btn-default btn-xs" href="https://jeedom.github.io/documentation/core/fr_FR/changelog.html" target="_blank" style="margin-bottom : 5px;"><i class="fa fa-book"></i> {{Changelog}}</a>'; 
+if (_update.type != 'core') {       
+   if (isset(_update.plugin) && isset(_update.plugin.changelog) && _update.plugin.changelog != '') {     
+       tr += '<a class="btn btn-default btn-xs cursor" target="_blank" href="'+_update.plugin.changelog+'" style="margin-bottom : 5px;"><i class="fa fa-book"></i> {{Changelog}}</a>';       
+   }     
+}else{        
+  tr += '<a class="btn btn-default btn-xs" href="https://github.com/jeedom/core/blob/stable/doc/fr_FR/changelog.asciidoc" target="_blank" style="margin-bottom : 5px;"><i class="fa fa-book"></i> {{Changelog}}</a>';      
 }
-tr += '<a class="btn btn-info btn-xs pull-right checkUpdate expertModeVisible" style="margin-bottom : 5px;" ><i class="fa fa-check"></i> {{Vérifier}}</a>';
+tr += '<a class="btn btn-info btn-xs pull-right checkUpdate" style="margin-bottom : 5px;" ><i class="fa fa-check"></i> {{Vérifier}}</a>';
 if (_update.type != 'core') {
-    tr += '<a class="btn btn-danger btn-xs pull-right remove expertModeVisible" style="margin-bottom : 5px;" ><i class="fa fa-trash-o"></i> {{Supprimer}}</a>';  
+    tr += '<a class="btn btn-danger btn-xs pull-right remove" style="margin-bottom : 5px;" ><i class="fa fa-trash-o"></i> {{Supprimer}}</a>';  
 }
 tr += '</td>';
 tr += '</tr>';
@@ -277,8 +248,8 @@ $('#bt_saveUpdate').on('click',function(){
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {
-         $('#div_alert').showAlert({message: '{{Sauvegarde effectuée}}', level: 'success'});
-         printUpdate();
-     }
- });
+           $('#div_alert').showAlert({message: '{{Sauvegarde effectuée}}', level: 'success'});
+           printUpdate();
+       }
+   });
 });

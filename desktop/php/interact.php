@@ -3,6 +3,7 @@ if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 $interacts = array();
+$totalInteract = interactDef::all();
 $interacts[-1] = interactDef::all(null);
 $interactListGroup = interactDef::listGroup();
 if (is_array($interactListGroup)) {
@@ -14,40 +15,37 @@ if (is_array($interactListGroup)) {
 
 <div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;background-color:#f6f6f6;" class="div_smallSideBar" id="bt_displayInteractList"><i class="fa fa-arrow-circle-o-right" style="color : #b6b6b6;"></i></div>
 <div class="row row-overflow">
-  <div class="col-lg-2 col-md-3 col-sm-4" id="div_listInteract" style="z-index:999">
+  <div class="col-xs-2" id="div_listInteract" style="z-index:999">
     <div class="bs-sidebar nav nav-list bs-sidenav" >
       <a id="bt_addInteract" class="btn btn-default" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-plus-circle"></i> {{Ajouter interaction}}</a>
-      <div class="row">
-        <div class="col-xs-6">
-          <a id="bt_regenerateInteract" class="btn btn-warning" style="width : 100%;margin-top : 5px;margin-bottom: 5px;text-shadow : none;"><i class="fa fa-refresh"></i> {{Regénérer}}</a>
-        </div>
-        <div class="col-xs-6">
-          <a id="bt_testInteract" class="btn btn-primary" style="width : 100%;margin-top : 5px;margin-bottom: 5px;text-shadow : none;"><i class="fa fa-comment-o"></i> {{Tester}}</a>
-        </div>
-      </div>
+      <a id="bt_regenerateInteract" class="btn btn-warning" style="width : 100%;margin-top : 5px;margin-bottom: 5px;text-shadow : none;"><i class="fa fa-refresh"></i> {{Regénérer}}</a>
+      <a id="bt_testInteract" class="btn btn-primary" style="width : 100%;margin-top : 5px;margin-bottom: 5px;text-shadow : none;"><i class="fa fa-comment-o"></i> {{Tester}}</a>
       <input id='in_treeSearch' class='form-control' placeholder="{{Rechercher}}" />
       <div id="div_tree">
-        <ul id="ul_interact" >
-          <li data-jstree='{"opened":true}'>
-          <a>{{Aucune}}</a>
-            <ul>
-              <?php
-foreach ($interacts[-1] as $interact) {
-	echo '<li data-jstree=\'{"opened":true,"icon":""}\'>';
-	echo ' <a class="li_interact" id="interact' . $interact->getId() . '" data-interact_id="' . $interact->getId() . '" >' . $interact->getHumanName() . '</a>';
-	echo '</li>';
+       <ul id="ul_interact" >
+        <?php if (count($interacts[-1]) > 0) {
+	?>
+         <li data-jstree='{"opened":true}'>
+          <?php
+echo '<a>Aucune - ' . count($interacts[-1]) . ' interaction(s)</a>';
+	echo '<ul>';
+	foreach ($interacts[-1] as $interact) {
+		echo '<li data-jstree=\'{"opened":true,"icon":""}\'>';
+		echo ' <a class="li_interact" id="interact' . $interact->getId() . '" data-interact_id="' . $interact->getId() . '" title="{{Interaction ID :}} ' . $interact->getId() . '">' . $interact->getHumanName(false, true) . '</a>';
+		echo '</li>';
+	}
+	?>
+        </ul>
+        <?php
 }
-?>
-           </ul>
-           <?php
 foreach ($interactListGroup as $group) {
 	if ($group['group'] != '') {
 		echo '<li data-jstree=\'{"opened":true}\'>';
-		echo '<a>' . $group['group'] . '</a>';
+		echo '<a>' . $group['group'] . ' - ' . count($interacts[$group['group']]) . ' interaction(s)</a>';
 		echo '<ul>';
 		foreach ($interacts[$group['group']] as $interact) {
 			echo '<li data-jstree=\'{"opened":true,"icon":""}\'>';
-			echo ' <a class="li_interact" id="interact' . $interact->getId() . '" data-interact_id="' . $interact->getId() . '" >' . $interact->getHumanName() . '</a>';
+			echo ' <a class="li_interact" id="interact' . $interact->getId() . '" data-interact_id="' . $interact->getId() . '" title="{{Interaction ID :}} ' . $interact->getId() . '">' . $interact->getHumanName(false, true) . '</a>';
 			echo '</li>';
 		}
 		echo '</ul>';
@@ -55,11 +53,11 @@ foreach ($interactListGroup as $group) {
 	}
 }
 ?>
-       </ul>
-     </div>
-   </div>
+ </ul>
 </div>
-<div id="interactThumbnailDisplay" class="col-lg-10 col-md-9 col-sm-8" style="border-left: solid 1px #EEE; padding-left: 25px;">
+</div>
+</div>
+<div id="interactThumbnailDisplay" class="col-xs-10" style="border-left: solid 1px #EEE; padding-left: 25px;">
  <div class="interactListContainer">
    <legend><i class="fa fa-cog"></i>  {{Gestion}}</legend>
    <div class="cursor" id="bt_addInteract2" style="background-color : #ffffff; height : 120px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 140px;margin-left : 10px;" >
@@ -84,42 +82,74 @@ foreach ($interactListGroup as $group) {
 
 <legend><i class="fa fa-comments-o"></i>  {{Mes interactions}}</legend>
 <?php
-echo '<div class="interactListContainer">';
-foreach ($interacts[-1] as $interact) {
-	echo '<div class="interactDisplayCard cursor" data-interact_id="' . $interact->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
-	echo "<center>";
-	echo '<img src="core/img/interaction.png" height="90" width="85" />';
-	echo "</center>";
-	echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $interact->getHumanName() . '</center></span>';
-	echo '</div>';
-}
-echo '</div>';
-
-foreach ($interactListGroup as $group) {
-	if ($group['group'] != '') {
+if (count($totalInteract) == 0) {
+	echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucune interaction. Cliquez sur ajouter une interaction pour commencer</span></center>";
+} else {
+	echo "<center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous avez " . count($totalInteract) . " interaction(s) dans " . count($interactListGroup) . " groupes</span></center>";
+	if (count($interacts[-1]) > 0) {
+		echo '<div class="panel-group" id="accordionInteract">';
+		echo '<div class="panel panel-default">';
+		echo '<div class="panel-heading">';
+		echo '<h3 class="panel-title">';
+		echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionInteract" href="#config_aucun" style="text-decoration:none;">Aucun - ' . count($interacts[-1]) . ' interaction(s)</a>';
+		echo '</h3>';
+		echo '</div>';
+		echo '<div id="config_aucun" class="panel-collapse collapse">';
+		echo '<div class="panel-body">';
 		echo '<div class="interactListContainer">';
-		foreach ($interacts[$group['group']] as $interact) {
-			echo '<div class="interactDisplayCard cursor" data-interact_id="' . $interact->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
-			echo "<center>";
+		foreach ($interacts[-1] as $interact) {
+			$opacity = ($interact->getEnable()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
+			echo '<div class="interactDisplayCard cursor" data-interact_id="' . $interact->getId() . '" style="text-align: center; background-color : #ffffff; min-height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
 			echo '<img src="core/img/interaction.png" height="90" width="85" />';
-			echo "</center>";
-			echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $interact->getHumanName() . '</center></span>';
+			echo "<br>";
+			echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $interact->getHumanName(true, true, true, true) . '</span>';
 			echo '</div>';
 		}
 		echo '</div>';
+		echo '</div>';
+		echo '</div>';
+		echo '</div>';
 	}
+	$i = 0;
+	foreach ($interactListGroup as $group) {
+		if ($group['group'] != '') {
+			echo '<div class="panel panel-default">';
+			echo '<div class="panel-heading">';
+			echo '<h3 class="panel-title">';
+			echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionInteract" href="#config_' . $i . '" style="text-decoration:none;">' . $group['group'] . ' - ' . count($interacts[$group['group']]) . ' interaction(s)</a>';
+			echo '</h3>';
+			echo '</div>';
+			echo '<div id="config_' . $i . '" class="panel-collapse collapse">';
+			echo '<div class="panel-body">';
+			echo '<div class="interactListContainer">';
+			foreach ($interacts[$group['group']] as $interact) {
+				$opacity = ($interact->getEnable()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
+				echo '<div class="interactDisplayCard cursor" data-interact_id="' . $interact->getId() . '" style="text-align: center; background-color : #ffffff; min-height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
+				echo '<img src="core/img/interaction.png" height="90" width="85" />';
+				echo "<br>";
+				echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $interact->getHumanName(true, true, true, true) . '</span>';
+				echo '</div>';
+			}
+			echo '</div>';
+			echo '</div>';
+			echo '</div>';
+			echo '</div>';
+		}
+		$i += 1;
+	}
+	echo '</div>';
 }
 ?>
 </div>
 
-<div class="interact col-lg-10 col-md-9 col-sm-8" style="display: none;" id="div_conf">
+<div class="interact col-xs-10" style="display: none;" id="div_conf">
   <a class="btn btn-default pull-right" id="bt_duplicate"><i class="fa fa-files-o"></i> {{Dupliquer}}</a>
   <a class="btn btn-danger pull-right" id="bt_removeInteract"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
   <a class="btn btn-success pull-right" id="bt_saveInteract"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
   <a class="btn btn-default displayInteracQuery pull-right"><i class="fa fa-eye"></i> {{Phrase(s)}} <span class="label label-success interactAttr" data-l1key="nbInteractQuery"></span></a>
 
   <ul class="nav nav-tabs" role="tablist">
-   <li role="presentation"><a href="#" aria-controls="home" role="tab" data-toggle="tab" id="bt_interactThumbnailDisplay"><i class="fa fa-arrow-circle-left"></i></a></li>
+   <li role="presentation"><a class="cursor" aria-controls="home" role="tab" id="bt_interactThumbnailDisplay"><i class="fa fa-arrow-circle-left"></i></a></li>
    <li role="presentation" class="active"><a href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-tachometer"></i> {{Général}}</a></li>
    <li role="presentation"><a href="#filtertab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-filter"></i> {{Filtres}}</a></li>
    <li role="presentation"><a href="#actiontab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-cogs"></i> {{Actions}}</a></li>
@@ -144,10 +174,22 @@ foreach ($interactListGroup as $group) {
           </div>
         </div>
         <div class="form-group">
+          <label class="col-sm-2 col-xs-2 control-label">{{Actif}}</label>
+          <div class="col-sm-9 col-xs-9">
+            <input class="interactAttr" type="checkbox" data-l1key="enable" placeholder=""/>
+          </div>
+        </div>
+        <div class="form-group">
           <label class="col-sm-2 col-xs-2 control-label">{{Demande}}</label>
           <div class="col-sm-9 col-xs-9">
             <input class="form-control interactAttr" type="text" data-l1key="id" style="display : none;"/>
             <input class="form-control interactAttr" type="text" data-l1key="query" placeholder=""/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 col-xs-2 control-label">{{Mot(s) obligatoire}}</label>
+          <div class="col-sm-9 col-xs-9">
+            <input class="form-control interactAttr" type="text" data-l1key="options" data-l2key="mustcontain"/>
           </div>
         </div>
         <div class="form-group">
@@ -159,7 +201,7 @@ foreach ($interactListGroup as $group) {
         <div class="form-group">
           <label class="col-sm-2 col-xs-2 control-label">{{Réponse}}</label>
           <div class="col-sm-8 col-xs-8">
-            <textarea class="form-control interactAttr" type="text" data-l1key="reply" placeholder=""></textarea>
+            <textarea class="form-control interactAttr ta_autosize" type="text" data-l1key="reply" placeholder=""></textarea>
           </div>
           <div class="col-sm-1">
             <a class="btn btn-default cursor listEquipementInfoReply input-sm"><i class="fa fa-list-alt "></i></a>

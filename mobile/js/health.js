@@ -4,6 +4,7 @@ function initHealth() {
     rightPanel += '<li><a class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" href="index.php?v=d"><i class="fa fa-desktop"></i> {{Version desktop}}</a></li>';
   rightPanel += '<li><a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="deamon" data-title="{{Démons}}"><i class="fa fa-bug" ></i> {{Démons}}</a></li>';
   rightPanel += '<li><a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="cron" data-title="{{Crons}}"><i class="fa fa-cogs" ></i> {{Crons}}</a></li>';
+  rightPanel += '<li><a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="alert" data-title="{{Alertes}}"><i class="icon jeedom-alerte" ></i> {{Alertes}}</a></li>';
   rightPanel += '</ul>';
   panel(rightPanel);
   getHealth();
@@ -27,9 +28,9 @@ function initHealth() {
          html += '</td>';
           html += '<td>';
          if(data[i].state){
-          html += '<td style="background-color:rgba(148, 202, 2, 0.3);color:rgba(255,255,255,0.85)">';
+          html += '<td style="background-color:#3ADF00">';
         }else{
-          html += '<td style="background-color:rgb(244,67,54);color:rgba(255,255,255,0.85)">';
+          html += '<td style="background-color:#FF0000">';
         }
         html += data[i].result;
          html += '<a>';

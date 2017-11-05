@@ -155,7 +155,7 @@
         "Configuration réseau externe": "externe Netzwerkkonfiguration",
         "Persistance du cache": " Caches Persistenz",
         "Mémoire disponible": "verfügbarer Speicher",
-        "Swap disponible": "Swap disponible",
+        "Swap disponible": "Verfügbarer Swap",
         "Charge": "Last"
     },
     "core/class/message.class.php": {
@@ -314,7 +314,7 @@
         "Configuration": "Konfiguration",
         "Fonctionalités": "Funktionalität",
         "Panel": "Tafel",
-        "Fonctionnalités": "Fonctionnalités"
+        "Fonctionnalités": "Funktionalität"
     },
     "core/class/interactQuery.class.php": {
         "J'ai une correspondance  : ": "Ich habe eine Übereinstimmung :",
@@ -557,11 +557,11 @@
         "Profondeur pour les commandes": "Tiefe für Befehle",
         "Profondeur pour les objets": "Tiefe für Objekte",
         "Profondeur pour les variables": "Tiefe für Variablen",
-        "Système (OS) et base de données": "Système (OS) et base de données",
+        "Système (OS) et base de données": "System (OS) und Datenbank",
         "Administration": "Verwaltung",
         "Interface": "Interface",
         "Mac": "MAC",
-        "Nettoyer les rapport plus anciens de (jours)": "Nettoyer les rapport plus anciens de (jours)"
+        "Nettoyer les rapport plus anciens de (jours)": "Saubere ältere Berichte (Tage)"
     },
     "desktop/js/administration.js": {
         "Etes-vous sûr de vouloir réinitialiser la clef API de ": "Sind Sie sicher, dass Sie den API-Schlüssel zurücksetzen möchten",
@@ -884,7 +884,7 @@
         "Permet de modifier les prorietés visible/invisible actif/inactif d'un équipement": "Erlaubt, die Eigenschaften sichtbar/unsichtbar aktiv/inaktiv der Geräte zu ändern",
         "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finie que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.": "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finie que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.",
         "Envoi l'ordre à Jeedom de s'éteindre": "Befehl an Jeedom senden, um zu löschen",
-        "Retourne un texte ou une valeur pour une interaction par exemple": "Retourne un texte ou une valeur pour une interaction par exemple",
+        "Retourne un texte ou une valeur pour une interaction par exemple": "Gibt einen Text oder Wert, zum Beispiel für eine Interaktion, zurück",
         "Permet d'affecter une icone au scénario": "Erlaub dem Szenario ein Symbol zuzuweisen",
         "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte": "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte",
         "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page jeedom d'ouvert.": "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page jeedom d'ouvert.",
@@ -965,7 +965,7 @@
         "CODE": "CODE",
         "ACTION": "AKTION",
         "Graphique de lien": "Link Graph",
-        "Avancé": "Avancé"
+        "Avancé": "Fortschritt"
     },
     "core/template/scenario/report.default": {
         "Vue": "Ansicht",
@@ -1144,7 +1144,7 @@
         "401 - Accès non autorisé": "401 - unberechtigter Zugriff"
     },
     "core/class/ajax.class.php": {
-        "Token d'accès invalide": "Token d'accès invalide"
+        "Token d'accès invalide": "Ungültiger Zugriffstoken"
     },
     "desktop/modal/cron.human.insert.php": {
         "A exécuter": "Auszuführen",
@@ -1467,7 +1467,7 @@
         "Permet de modifier les prorietés visible/invisible actif/inactif d'un équipement": "Erlaubt, die Eigenschaften sichtbar/unsichtbar aktiv/inaktiv der Geräte zu ändern",
         "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finie que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec le plugin SMS, Slack et SARAH.": "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finie que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec le plugin SMS, Slack et SARAH.",
         "Envoi l'ordre à Jeedom de s'éteindre": "Befehl an Jeedom senden, um zu löschen",
-        "Retourne un texte ou une valeur pour une interaction par exemple": "Retourne un texte ou une valeur pour une interaction par exemple",
+        "Retourne un texte ou une valeur pour une interaction par exemple": "Gibt einen Text oder Wert, zum Beispiel für eine Interaktion, zurück",
         "Permet d'affecter une icone au scénario": "Erlaub dem Szenario ein Symbol zuzuweisen",
         "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte": "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte",
         "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page jeedom d'ouvert.": "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page jeedom d'ouvert.",

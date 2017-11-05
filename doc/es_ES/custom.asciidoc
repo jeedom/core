@@ -2,13 +2,7 @@
 
 Réservé aux experts, cette page permet d'ajouter des script CSS ou JS en plus dans Jeedom, qui sont exécutés sur chaque page
 
-Accessible par Administration -> Personnalisation avancée : 
-
-image::../images/custom.png[]
-
-Una vez arriba se obtiene: 
-
-image::../images/custom2.png[]
+Accessible par Administration -> Personnalisation avancée
 
 Vous pouvez donc à partir de cette page ajouter des scripts JS et CSS executés partout dans Jeedom en distinguant la version desktop de la version mobile
 

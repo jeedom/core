@@ -78,11 +78,11 @@ class plugin {
 		$plugin->require = (isset($data['require'])) ? $data['require'] : '';
 		$plugin->category = (isset($data['category'])) ? $data['category'] : '';
 		$plugin->filepath = $_id;
-		$plugin->index = (isset($data['index'])) ? (string) $data['index'] : $data['id'];
-		$plugin->display = (isset($data['display'])) ? (string) $data['display'] : '';
-		$plugin->issue = (isset($data['issue'])) ? (string) $data['issue'] : '';
-		$plugin->changelog = (isset($data['changelog'])) ? (string) $data['changelog'] : '';
-		$plugin->documentation = (isset($data['documentation'])) ? (string) $data['documentation'] : '';
+		$plugin->index = (isset($data['index'])) ? $data['index'] : $data['id'];
+		$plugin->display = (isset($data['display'])) ? $data['display'] : '';
+		$plugin->issue = (isset($data['issue'])) ? $data['issue'] : '';
+		$plugin->changelog = (isset($data['changelog'])) ? str_replace('#language#', config::byKey('language', 'core', 'fr_FR'), $data['changelog']) : '';
+		$plugin->documentation = (isset($data['documentation'])) ? str_replace('#language#', config::byKey('language', 'core', 'fr_FR'), $data['documentation']) : '';
 		$plugin->mobile = '';
 		if (file_exists(dirname(__FILE__) . '/../../plugins/' . $data['id'] . '/mobile/html')) {
 			$plugin->mobile = (isset($data['mobile'])) ? $data['mobile'] : $data['id'];
@@ -159,18 +159,16 @@ class plugin {
 			$rootPluginPath = dirname(__FILE__) . '/../../plugins';
 			foreach (ls($rootPluginPath, '*') as $dirPlugin) {
 				if (is_dir($rootPluginPath . '/' . $dirPlugin)) {
-					$pathInfoPlugin = $rootPluginPath . '/' . $dirPlugin . '/plugin_info/info.json';
+					$pathInfoPlugin = $rootPluginPath . '/' . $dirPlugin . 'plugin_info/info.json';
 					if (!file_exists($pathInfoPlugin)) {
-						$pathInfoPlugin = $rootPluginPath . '/' . $dirPlugin . '/plugin_info/info.xml';
+						continue;
 					}
-					if (file_exists($pathInfoPlugin)) {
-						try {
-							$listPlugin[] = plugin::byId($pathInfoPlugin, $_translate);
-						} catch (Exception $e) {
-							log::add('plugin', 'error', $e->getMessage(), 'pluginNotFound::' . $pathInfoPlugin);
-						} catch (Error $e) {
-							log::add('plugin', 'error', $e->getMessage(), 'pluginNotFound::' . $pathInfoPlugin);
-						}
+					try {
+						$listPlugin[] = plugin::byId($pathInfoPlugin, $_translate);
+					} catch (Exception $e) {
+						log::add('plugin', 'error', $e->getMessage(), 'pluginNotFound::' . $pathInfoPlugin);
+					} catch (Error $e) {
+						log::add('plugin', 'error', $e->getMessage(), 'pluginNotFound::' . $pathInfoPlugin);
 					}
 				}
 			}
@@ -387,7 +385,7 @@ class plugin {
 			throw new Exception(__('Vous ne pouvez faire un report sur un plugin sans panel', __FILE__));
 		}
 		if (!isset($_parameters['user'])) {
-			$users = user::searchByRight('admin');
+			$users = user::byProfils('admin');
 			if (count($users) == 0) {
 				throw new Exception(__('Aucun utilisateur admin trouvé pour la génération du rapport', __FILE__));
 			}
@@ -543,12 +541,12 @@ class plugin {
 			$plugin_id::deamon_changeAutoMode($_mode);
 		}
 	}
-        /**
-         * 
-         * @return array
-         */
+	/**
+	 *
+	 * @return array
+	 */
 	public function deamon_info() {
-		 
+
 		$plugin_id = $this->getId();
 		if ($this->getHasOwnDeamon() != 1 || !method_exists($plugin_id, 'deamon_info')) {
 			return array('launchable_message' => '', 'launchable' => 'nok', 'state' => 'nok', 'log' => 'nok', 'auto' => 0);
@@ -953,9 +951,6 @@ class plugin {
 
 	public function getDocumentation() {
 		if ($this->documentation == '') {
-			if (file_exists(dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/doc/' . config::byKey('language', 'core', 'fr_FR') . '/index.html')) {
-				return 'plugins/' . $this->getId() . '/doc/' . config::byKey('language', 'core', 'fr_FR') . '/index.html';
-			}
 			return $this->getInfo('doc');
 		}
 		return $this->documentation;

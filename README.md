@@ -1,5 +1,3 @@
-![Travis ci](https://travis-ci.org/jeedom/core.svg?branch=stable)
-
 # Jeedom by Loïc #
 
 Website (English): [https://jeedom.com/site/en/](https://jeedom.com/site/en/)

@@ -31,6 +31,7 @@ class update {
 	private $status;
 	private $configuration;
 	private $source = 'market';
+	private $_changeUpdate = false;
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -110,10 +111,6 @@ class update {
 		);
 		$return['enable'] = config::byKey($_id . '::enable');
 		return $return;
-	}
-
-	public static function makeUpdateLevel($_mode = '', $_level = 1, $_version = '', $_onlyThisVersion = '') {
-		jeedom::update($_mode, $_level, $_version, $_onlyThisVersion);
 	}
 
 	public static function updateAll($_filter = '') {
@@ -478,7 +475,7 @@ class update {
 			return;
 		}
 		if ($this->getType() == 'core') {
-			if (config::byKey('update::allowCore', 'core', 1) != 0) {
+			if (config::byKey('update::allowCore', 'core', 1) != 1) {
 				return;
 			}
 			if (config::byKey('core::repo::provider') == 'default') {
@@ -495,6 +492,7 @@ class update {
 				}
 				$this->setRemoteVersion($version);
 			}
+			$change = false;
 			if (version_compare($this->getRemoteVersion(), $this->getLocalVersion(), '>')) {
 				$this->setStatus('update');
 			} else {
@@ -526,6 +524,12 @@ class update {
 
 	public function save() {
 		return DB::save($this);
+	}
+
+	public function postSave() {
+		if ($this->_changeUpdate) {
+			event::add('update::refreshUpdateNumber');
+		}
 	}
 
 	public function remove() {
@@ -565,6 +569,9 @@ class update {
 	}
 
 	public function setStatus($status) {
+		if ($status != $this->status) {
+			$this->_changeUpdate = true;
+		}
 		$this->status = $status;
 		return $this;
 	}

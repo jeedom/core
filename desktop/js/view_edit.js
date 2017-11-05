@@ -273,11 +273,19 @@ function addEditviewZone(_viewZone) {
     }else{
      div += '<a class="btn btn-primary btn-xs pull-right bt_addViewWidget"><i class="fa fa-plus-circle"></i> Ajouter Widget</a>';
  }
- div += '<select class="pull-right viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="zoneCol" style="width : 200px;">';
- div += '<option value="12">{{Largeur de 1/1}}</option>';
- div += '<option value="6">{{Largeur de 1/2}}</option>';
- div += '<option value="4">{{Largeur de 1/3}}</option>';
- div += '<option value="3">{{Largeur de 1/4}}</option>';
+ div += '<select class="pull-right viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="zoneCol" style="width : 110px;">';
+ div += '<option value="12">{{Largeur}} 12</option>';
+ div += '<option value="11">{{Largeur}} 11</option>';
+ div += '<option value="10">{{Largeur}} 10</option>';
+ div += '<option value="9">{{Largeur}} 9</option>';
+ div += '<option value="8">{{Largeur}} 8</option>';
+ div += '<option value="7">{{Largeur}} 7</option>';
+ div += '<option value="6">{{Largeur}} 6</option>';
+ div += '<option value="5">{{Largeur}} 5</option>';
+ div += '<option value="4">{{Largeur}} 4</option>';
+ div += '<option value="3">{{Largeur}} 3</option>';
+ div += '<option value="2">{{Largeur}} 2</option>';
+ div += '<option value="1">{{Largeur}} 1</option>';
  div += '</select>';
  if (init(_viewZone.type, 'widget') == 'graph') {
     div += '<select class="pull-right viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="dateRange" style="width : 200px;">';
@@ -437,6 +445,9 @@ function addGraphService(_viewData){
     tr += '<option value="average::month">{{Moyenne par mois}}</option>'
     tr += '<option value="low::month">{{Minimum par mois}}</option>'
     tr += '<option value="high::month">{{Maximum par mois}}</option>'
+    tr += '<option value="average::year">{{Moyenne par année}}</option>'
+    tr += '<option value="low::year">{{Minimum par année}}</option>'
+    tr += '<option value="high::year">{{Maximum par année}}</option>'
     tr +=  '</select>'
     tr += '</td>';
     tr += '<td>';

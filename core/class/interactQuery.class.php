@@ -126,9 +126,14 @@ class interactQuery {
 		$shortest = 999;
 		foreach ($queries as $query) {
 			$input = interactDef::sanitizeQuery($query->getQuery());
-			preg_match_all("/#(.*?)#/", $input, $matches);
-			foreach ($matches[1] as $match) {
-				$input = str_replace('#' . $match . '#', '', $input);
+			$tags = interactDef::getTagFromQuery($query->getQuery(), $_query);
+			if (count($tags) > 0) {
+				foreach ($tags as $value) {
+					if ($value == "") {
+						continue (2);
+					}
+				}
+				$input = str_replace(array_keys($tags), $tags, $input);
 			}
 			$lev = levenshtein($input, $_query);
 			log::add('interact', 'debug', 'Je compare : ' . $_query . ' avec ' . $input . ' => ' . $lev);
@@ -170,6 +175,11 @@ class interactQuery {
 			log::add('interact', 'debug', __('Aucune phrase trouvée', __FILE__));
 			return null;
 		}
+		$interactDef = $closest->getInteractDef();
+		if ($interactDef->getOptions('mustcontain') != '' && strpos($_query, interactDef::sanitizeQuery($interactDef->getOptions('mustcontain'))) === false) {
+			log::add('interact', 'debug', __('Correspondance trouvée : ', __FILE__) . $query->getQuery() . __(' mais ne contient pas : ', __FILE__) . interactDef::sanitizeQuery($interactDef->getOptions('mustcontain')));
+			return null;
+		}
 		log::add('interact', 'debug', __('J\'ai une correspondance  : ', __FILE__) . $closest->getQuery() . __(' avec ', __FILE__) . $shortest);
 		return $closest;
 	}
@@ -205,7 +215,7 @@ class interactQuery {
 			if ($_data !== null && is_object($_data['object'])) {
 				$objects = $_data['object']->getEqLogic();
 			} else {
-				$objects = eqLogic::all();
+				$objects = eqLogic::all(true);
 			}
 		} elseif ($_type == 'cmd') {
 			if ($_data !== null && is_object($_data['eqLogic'])) {
@@ -213,6 +223,9 @@ class interactQuery {
 			} elseif ($_data !== null && is_object($_data['object'])) {
 				$objects = array();
 				foreach ($_data['object']->getEqLogic() as $eqLogic) {
+					if ($eqLogic->getIsEnable() == 0) {
+						continue;
+					}
 					foreach ($eqLogic->getCmd() as $cmd) {
 						$objects[] = $cmd;
 					}
@@ -503,6 +516,10 @@ class interactQuery {
 			$reply = array('reply' => ucfirst($reply));
 		}
 		log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . ".Je réponds : " . print_r($reply, true));
+		if (is_object($_parameters['reply_cmd']) && isset($_parameters['force_reply_cmd'])) {
+			$_parameters['reply_cmd']->execCmd(array('message' => $reply['reply']));
+			return true;
+		}
 		return $reply;
 	}
 
@@ -668,35 +685,32 @@ class interactQuery {
 			}
 		}
 		$reply = $interactDef->selectReply();
-		$replace = array();
-		$tags_replace = array('#query#' => $this->getQuery());
+		$replace = array('#query#' => $this->getQuery());
 		foreach ($_parameters as $key => $value) {
-			$tags_replace['#' . $key . '#'] = $value;
+			$replace['#' . $key . '#'] = $value;
 		}
 		$tags = null;
 		if (isset($_parameters['dictation'])) {
 			$tags = interactDef::getTagFromQuery($this->getQuery(), $_parameters['dictation']);
-			$tags_replace['#dictation#'] = $_parameters['dictation'];
+			$replace['#dictation#'] = $_parameters['dictation'];
 		}
 		if (is_array($tags)) {
-			foreach ($tags as $key => $value) {
-				$tags_replace['#' . $key . '#'] = $value;
-				$replace['#' . $key . '#'] = $value;
-			}
+			$replace = array_merge($replace, $tags);
 		}
 		$executeDate = null;
-		$dateConvert = array(
-			'heure' => 'hour',
-			'mois' => 'month',
-			'semaine' => 'week',
-			'année' => 'year',
-		);
-		if (isset($tags_replace['#duration#'])) {
-			$tags_replace['#duration#'] = str_replace(array_keys($dateConvert), $dateConvert, $tags_replace['#duration#']);
-			$executeDate = strtotime('+' . $tags_replace['#duration#']);
+
+		if (isset($replace['#duration#'])) {
+			$dateConvert = array(
+				'heure' => 'hour',
+				'mois' => 'month',
+				'semaine' => 'week',
+				'année' => 'year',
+			);
+			$replace['#duration#'] = str_replace(array_keys($dateConvert), $dateConvert, $replace['#duration#']);
+			$executeDate = strtotime('+' . $replace['#duration#']);
 		}
-		if (isset($tags_replace['#time#'])) {
-			$time = str_replace(array('h'), array(':'), $tags_replace['#time#']);
+		if (isset($replace['#time#'])) {
+			$time = str_replace(array('h'), array(':'), $replace['#time#']);
 			if (strlen($time) == 2) {
 				$time .= ':00';
 			} else if (strlen($time) == 3) {
@@ -745,9 +759,8 @@ class interactQuery {
 					}
 					if ($tags !== null) {
 						foreach ($options as &$option) {
-							$option = str_replace(array_keys($tags_replace), $tags_replace, $option);
+							$option = str_replace(array_keys($replace), $replace, $option);
 						}
-
 						if (isset($options['color']) && isset($colors[strtolower($options['color'])])) {
 							$options['color'] = $colors[strtolower($options['color'])];
 						}
@@ -767,12 +780,18 @@ class interactQuery {
 							}
 						}
 					}
-					$options['tags'] = $tags_replace;
+					$tags = array();
+					if (isset($options['tags'])) {
+						$options['tags'] = arg2array($options['tags']);
+						foreach ($options['tags'] as $key => $value) {
+							$tags['#' . trim(trim($key), '#') . '#'] = scenarioExpression::setTags(trim($value));
+						}
+					}
+					$options['tags'] = array_merge($replace, $tags);
 					$return = scenarioExpression::createAndExec('action', $action['cmd'], $options);
 					if (trim($return) !== '' && trim($return) !== null) {
 						$replace['#valeur#'] .= ' ' . $return;
 					}
-
 				} catch (Exception $e) {
 					log::add('interact', 'error', __('Erreur lors de l\'éxecution de ', __FILE__) . $action['cmd'] . __('. Détails : ', __FILE__) . $e->getMessage());
 				} catch (Error $e) {

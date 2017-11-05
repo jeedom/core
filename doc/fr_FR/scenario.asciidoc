@@ -92,7 +92,7 @@ Ce scénario sera déclenché aussi bien lors de la détection d'une présence q
 [IMPORTANT]
 Il ne faut pas oublier de faire le même genre de scénario mais pour éteindre la lumière lorsque plus personne n'est présent
 
-== Mode avancée
+== Mode avancé
 
 Voici un exemple de scénario en mode avancé :
 
@@ -343,7 +343,7 @@ En plus des commandes domotiques vous avez accès aux actions suivantes :
 * *sleep* : pause de x seconde(s)
 * *wait* : attend jusqu'à ce que la condition soit valide (maximum 2h), le timeout est en seconde(s)                   
 * *variable* : création/modification d'une variable ou de la valeur d'une variable
-* *scenario* : permet le contrôle des scénarios, la partie tags permets d'envoyer des tags au scénario, ex montag=2
+* *scenario* : permet le contrôle des scénarios, la partie tags permets d'envoyer des tags au scénario, ex montag=2 (attention il ne faut utiliser que des lettre de a à z, pas de majuscule pas d'accent et pas de caractères spéciaux)
 * *stop* : arrête le scénario
 * *icon* : permet de changer l'icône de représentation du scénario
 * *gotodesign* : change le design affiché sur tous les navigateurs par le design demandé
@@ -354,6 +354,7 @@ En plus des commandes domotiques vous avez accès aux actions suivantes :
 * *scenario_return* : Retourne un texte ou une valeur pour une intéraction par exemple
 * *event* : Permet de modifier la valeur d'une commande
 * *alert* : permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page jeedom ouverte. Vous pouvez en plus choisir 4 niveaux d'alerte
+* *remove_inat* : Permet de supprimer la programmation de tous les blocs DANS et A du scénario
 * *popup* : permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page jeedom ouverte.
 * *ask* : permet d'indiquer à jeedom qu'il faut poser une question à l'utilisateur. La réponse est stockée dans une variable, il suffit ensuite de tester sa valeur. Pour le moment seuls les plugins sms et slack sont compatibles. Attention l'action ask est bloquante, tant qu'il n'y a pas de réponse ou que le timeout n'est pas atteint le scénario attend. Voila un exemple d'utilisation : 
 

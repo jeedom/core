@@ -130,14 +130,14 @@ class interactDef {
 				$countTags = count($tags[1]);
 				for ($i = 0; $i < $countTags; $i++) {
 					if (isset($matches[0][$i + 1])) {
-						$options[$tags[1][$i]] = $matches[0][$i + 1];
+						$options['#' . $tags[1][$i] . '#'] = $matches[0][$i + 1];
 					}
 				}
 			}
 		}
 		foreach ($tags[1] as $match) {
-			if (!isset($options[$match])) {
-				$options[$match] = '""';
+			if (!isset($options['#' . $match . '#'])) {
+				$options['#' . $match . '#'] = '';
 			}
 		}
 		return $options;
@@ -150,23 +150,25 @@ class interactDef {
 		$_query = strtolower(sanitizeAccent($_query));
 		return $_query;
 	}
-	
+
 	public static function deadCmd() {
 		$return = array();
 		foreach (interactDef::all() as $interact) {
-			foreach ($interact->getActions('cmd') as $actions) {
-				if (!cmd::byId(str_replace('#','',$actions['cmd']))){
-					$return[]= array('detail' => 'Interaction ' . $interact->getName() . ' du groupe ' . $interact->getGroup(),'help' => 'Action','who'=>$actions['cmd']);
+			if (is_array($interact->getActions('cmd'))) {
+				foreach ($interact->getActions('cmd') as $actions) {
+					if (!cmd::byId(str_replace('#', '', $actions['cmd']))) {
+						$return[] = array('detail' => 'Interaction ' . $interact->getName() . ' du groupe ' . $interact->getGroup(), 'help' => 'Action', 'who' => $actions['cmd']);
+					}
 				}
 			}
 			preg_match_all("/#([0-9]*)#/", $interact->getReply(), $matches);
-				foreach ($matches[1] as $cmd_id) {
-					if (is_numeric($cmd_id)) {
-						if (!cmd::byId(str_replace('#','',$cmd_id))){
-							$return[]= array('detail' => 'Interaction ' . $interact->getName() . ' du groupe ' . $interact->getGroup(),'help' => 'Réponse','who'=>'#' . $cmd_id . '#');
-						}
+			foreach ($matches[1] as $cmd_id) {
+				if (is_numeric($cmd_id)) {
+					if (!cmd::byId(str_replace('#', '', $cmd_id))) {
+						$return[] = array('detail' => 'Interaction ' . $interact->getName() . ' du groupe ' . $interact->getGroup(), 'help' => 'Réponse', 'who' => '#' . $cmd_id . '#');
 					}
 				}
+			}
 		}
 		return $return;
 	}
@@ -368,19 +370,21 @@ class interactDef {
 	public function postSave() {
 		$queries = $this->generateQueryVariant();
 		interactQuery::removeByInteractDefId($this->getId());
-		DB::beginTransaction();
-		foreach ($queries as $query) {
-			$query['query'] = self::sanitizeQuery($query['query']);
-			if (!$this->checkQuery($query['query'])) {
-				continue;
+		if ($this->getEnable()) {
+			DB::beginTransaction();
+			foreach ($queries as $query) {
+				$query['query'] = self::sanitizeQuery($query['query']);
+				if (!$this->checkQuery($query['query'])) {
+					continue;
+				}
+				$interactQuery = new interactQuery();
+				$interactQuery->setInteractDef_id($this->getId());
+				$interactQuery->setQuery($query['query']);
+				$interactQuery->setActions('cmd', $query['cmd']);
+				$interactQuery->save();
 			}
-			$interactQuery = new interactQuery();
-			$interactQuery->setInteractDef_id($this->getId());
-			$interactQuery->setQuery($query['query']);
-			$interactQuery->setActions('cmd', $query['cmd']);
-			$interactQuery->save();
+			DB::commit();
 		}
-		DB::commit();
 		self::cleanInteract();
 	}
 

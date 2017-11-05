@@ -88,6 +88,26 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                     </div>
                   </div>
 
+                  <?php if ($cmd->getType() == 'action' && $cmd->getSubtype() == 'select') {
+	?>
+                  <div class="form-group">
+                    <label class="col-xs-4 control-label">{{Valeurs possibles}}</label>
+                    <div class="col-xs-8">
+                    <?php
+$elements = explode(';', $cmd->getConfiguration('listValue', ''));
+	foreach ($elements as $element) {
+		$coupleArray = explode('|', $element);
+		echo $coupleArray[1] . ' => ' . $coupleArray[0] . '<br/>';
+	}
+	?>
+                    </div>
+                  </div>
+
+
+                  <?php }?>
+
+
+
                   <?php if ($cmd->getType() == 'info') {?>
                   <div class="form-group">
                     <label class="col-xs-4 control-label">{{Valeur}}</label>
@@ -149,6 +169,12 @@ echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fa 
                     <input type="checkbox" class="cmdAttr" data-l1key="isVisible" />
                   </div>
                 </div>
+                <div class="form-group">
+                  <label class="col-xs-4 control-label">{{Suivre dans la timeline}}</label>
+                  <div class="col-xs-4">
+                    <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="timeline::enable" />
+                  </div>
+                </div>
                 <div class="iconeGeneric">
                  <label class="col-xs-4 control-label">{{Icône}}</label>
                  <div class="col-xs-4">
@@ -156,6 +182,7 @@ echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fa 
                   <a class="btn btn-default btn-sm" id="bt_cmdConfigureChooseIcon"><i class="fa fa-flag"></i> {{Icône}}</a>
                 </div>
               </div>
+
             </fieldset>
           </form>
         </div>
@@ -411,7 +438,7 @@ foreach ($groups as $group) {
       </select>
     </div>
   </div>
-<?php }
+  <?php }
 	?>
   <div class="form-group">
     <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Purger l'historique si plus vieux que }}</label>
@@ -1114,6 +1141,7 @@ if ($cmd->getDisplay('parameters') != '') {
       el.value(result.human);
       jeedom.cmd.displayActionOption(el.value(), '', function (html) {
         el.closest('.' + type).find('.actionOptions').html(html);
+        taAutosize();
       });
     });
   });
@@ -1124,6 +1152,7 @@ if ($cmd->getDisplay('parameters') != '') {
     var el = $(this);
     jeedom.cmd.displayActionOption($(this).value(), init(expression[0].options), function (html) {
       el.closest('.' + type).find('.actionOptions').html(html);
+      taAutosize();
     })
   });
 
@@ -1136,7 +1165,11 @@ if ($cmd->getDisplay('parameters') != '') {
     }
     var div = '<div class="' + _type + '">';
     div += '<div class="form-group ">';
-    div += '<div class="col-sm-5">';
+    div += '<div class="col-sm-1">';
+    div += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour desactiver l\'action}}" />';
+    div += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" title="{{Cocher pour que la commande s\'éxecute en parrallele des autres actions}}" />';
+    div += '</div>';
+    div += '<div class="col-sm-4">';
     div += '<div class="input-group">';
     div += '<span class="input-group-btn">';
     div += '<a class="btn btn-default btn-sm bt_removeAction" data-type="' + _type + '"><i class="fa fa-minus-circle"></i></a>';
@@ -1152,6 +1185,7 @@ if ($cmd->getDisplay('parameters') != '') {
     div += '</div>';
     $('#div_' + _type).append(div);
     $('#div_' + _type + ' .' + _type + ':last').setValues(_action, '.expressionAttr');
+    taAutosize();
   }
 
 
@@ -1218,6 +1252,6 @@ if ($cmd->getDisplay('parameters') != '') {
   });
 
   $('#bt_cmdConfigureTest').on('click',function(){
-     jeedom.cmd.test({id: cmdInfo.id});
-  });
+   jeedom.cmd.test({id: cmdInfo.id});
+ });
 </script>

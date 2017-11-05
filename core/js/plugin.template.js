@@ -21,16 +21,16 @@
     $('#div_mainContainer').append('<div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;background-color:#f6f6f6;" class="bt_pluginTemplateShowSidebar div_smallSideBar"><i class="fa fa-arrow-circle-o-right" style="color : #b6b6b6;"></i><div>');
     $('#ul_eqLogic').closest('.bs-sidebar').parent().hide();
     $('#ul_eqLogic').closest('.bs-sidebar').parent().css('z-index','999');
-    $('#ul_eqLogic').closest('.bs-sidebar').parent().removeClass().addClass('col-lg-2');
-    $('.eqLogicThumbnailDisplay').removeClass().addClass('eqLogicThumbnailDisplay col-lg-12');
-    $('.eqLogic').removeClass('col-lg-10 col-md-9 col-sm-8 col-lg-9 col-md-8 col-sm-7').addClass('eqLogic col-lg-12');
+    $('#ul_eqLogic').closest('.bs-sidebar').parent().removeClass().addClass('col-xs-2');
+    $('.eqLogicThumbnailDisplay').removeClass().addClass('eqLogicThumbnailDisplay col-xs-12');
+    $('.eqLogic').removeClass('col-xs-10 col-lg-10 col-md-9 col-sm-8 col-lg-9 col-md-8 col-sm-7').addClass('eqLogic col-xs-12');
 
     $('#ul_eqLogic').closest('.bs-sidebar').parent().on('mouseleave',function(){
         var timer = setTimeout(function(){
             $('#ul_eqLogic').closest('.bs-sidebar').parent().hide();
             $('.bt_pluginTemplateShowSidebar').find('i').show();
-            $('.eqLogicThumbnailDisplay').removeClass().addClass('eqLogicThumbnailDisplay col-lg-12');
-            $('.eqLogic').removeClass('col-lg-10 col-md-9 col-sm-8 col-lg-9 col-md-8 col-sm-7').addClass('col-lg-12');
+            $('.eqLogicThumbnailDisplay').removeClass().addClass('eqLogicThumbnailDisplay col-xs-12');
+            $('.eqLogic').removeClass('col-xs-10 col-lg-10 col-md-9 col-sm-8 col-lg-9 col-md-8 col-sm-7').addClass('col-xs-12');
             $('.eqLogicThumbnailContainer').packery();
         }, 300);
         $(this).data('timerMouseleave', timer)
@@ -40,9 +40,9 @@
 
     $('.bt_pluginTemplateShowSidebar').on('mouseenter',function(){
         var timer = setTimeout(function(){
-            $('.eqLogicThumbnailDisplay').removeClass().addClass('eqLogicThumbnailDisplay col-lg-10 col-md-9 col-sm-8');
+            $('.eqLogicThumbnailDisplay').removeClass().addClass('eqLogicThumbnailDisplay col-xs-10');
             $('.bt_pluginTemplateShowSidebar').find('i').hide();
-            $('.eqLogic').removeClass('col-lg-12').addClass('eqLogic col-lg-10 col-md-9 col-sm-8');
+            $('.eqLogic').removeClass('col-xs-12').addClass('eqLogic col-xs-10');
             $('#ul_eqLogic').closest('.bs-sidebar').parent().show();
             $('.eqLogicThumbnailContainer').packery();
         }, 100);
@@ -120,7 +120,6 @@ $(".li_eqLogic").on('click', function () {
             $('body').delegate('.cmd .cmdAttr[data-l1key=subType]', 'change', function () {
                 jeedom.cmd.changeSubType($(this).closest('.cmd'));
             });
-            initExpertMode();
             changeLeftMenuObjectOrEqLogicName = false;
             $.hideLoading();
         }
@@ -294,34 +293,34 @@ $('.eqLogic .eqLogicAction[data-action=configure]').on('click', function () {
 
 /**************************CMD*********************************************/
 $('.cmdAction[data-action=add]').on('click', function () {
-   modifyWithoutSave = true;
-   addCmdToTable();
-   $('.cmd:last .cmdAttr[data-l1key=type]').trigger('change');
+ modifyWithoutSave = true;
+ addCmdToTable();
+ $('.cmd:last .cmdAttr[data-l1key=type]').trigger('change');
 });
 
 $('#div_pageContainer').on( 'click', '.cmd .cmdAction[data-l1key=chooseIcon]',function () {
-   modifyWithoutSave = true;
-   var cmd = $(this).closest('.cmd');
-   chooseIcon(function (_icon) {
+ modifyWithoutSave = true;
+ var cmd = $(this).closest('.cmd');
+ chooseIcon(function (_icon) {
     cmd.find('.cmdAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
 });
 });
 
 $('#div_pageContainer').on( 'click','.cmd .cmdAttr[data-l1key=display][data-l2key=icon]', function () {
-   modifyWithoutSave = true;
-   $(this).empty();
+ modifyWithoutSave = true;
+ $(this).empty();
 });
 
 $('#div_pageContainer').on( 'click', '.cmd .cmdAction[data-action=remove]',function () {
-   modifyWithoutSave = true;
-   $(this).closest('tr').remove();
+ modifyWithoutSave = true;
+ $(this).closest('tr').remove();
 });
 
 $('#div_pageContainer').on( 'click', '.cmd .cmdAction[data-action=copy]',function () {
-   modifyWithoutSave = true;
-   var cmd = $(this).closest('.cmd').getValues('.cmdAttr')[0];
-   cmd.id= '';
-   addCmdToTable(cmd);
+ modifyWithoutSave = true;
+ var cmd = $(this).closest('.cmd').getValues('.cmdAttr')[0];
+ cmd.id= '';
+ addCmdToTable(cmd);
 });
 
 $('#div_pageContainer').on( 'click','.cmd .cmdAction[data-action=test]',function (event) {
@@ -335,9 +334,13 @@ $('#div_pageContainer').on( 'click','.cmd .cmdAction[data-action=test]',function
 
 });
 
+$('#div_pageContainer').on( 'dblclick','.cmd input,select,span', function (event) {
+   event.stopPropagation();
+});
+
 $('#div_pageContainer').on( 'dblclick','.cmd', function () {
- $('#md_modal').dialog({title: "{{Configuration commande}}"});
- $('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.cmd').attr('data-cmd_id')).dialog('open');
+   $('#md_modal').dialog({title: "{{Configuration commande}}"});
+   $('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.cmd').attr('data-cmd_id')).dialog('open');
 });
 
 $('#div_pageContainer').on( 'click', '.cmd .cmdAction[data-action=configure]',function () {

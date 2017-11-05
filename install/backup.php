@@ -85,7 +85,7 @@ try {
 	echo "OK" . "\n";
 
 	echo 'Backup database...';
-	$rc = system("mysqldump --host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'] . "  > " . $jeedom_dir . "/DB_backup.sql");
+	system("mysqldump --host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'] . "  > " . $jeedom_dir . "/DB_backup.sql", $rc);
 	if ($rc != 0) {
 		throw new Exception('Failed to save the BDD, verify that mysqldump is present. Return Code : ' . $rc);
 	}
@@ -103,6 +103,7 @@ try {
 
 	$excludes = array(
 		'tmp',
+		'log',
 		'backup',
 		'.git',
 		'.log',

@@ -31,7 +31,7 @@ if ($text == '') {
 	echo __('Aucun text à dire', __FILE__);
 	die();
 }
-
+$text = str_replace(array('[', ']', '#', '{', '}'), '', $text);
 $md5 = md5($text);
 $filename = jeedom::getTmpFolder('tts') . '/' . $md5 . '.mp3';
 switch ($engine) {

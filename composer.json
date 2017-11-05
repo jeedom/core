@@ -12,10 +12,16 @@
         "touki/ftp": "^1.2"
     },
     "license": "GPL",
-    "authors": [
-        {
-            "name": "Loic",
-            "email": "loic@jeedom.com"
-        }
-    ]
+    "config": {
+       "preferred-install": "dist",
+       "platform": {
+           "php": "5.6.0"
+       }
+   },
+   "authors": [
+    {
+        "name": "Loic",
+        "email": "loic@jeedom.com"
+    }
+]
 }

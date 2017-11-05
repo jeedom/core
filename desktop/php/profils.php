@@ -31,7 +31,7 @@ foreach (plugin::listPlugin() as $pluginList) {
       <fieldset>
         <div class="form-group">
           <label class="col-sm-3 control-label">{{Desktop}}</label>
-          <div class="col-sm-2">
+          <div class="col-sm-3">
             <select class="userAttr form-control" data-l1key="options" data-l2key="bootstrap_theme">
               <option value="">Défaut</option>
               <?php
@@ -46,7 +46,7 @@ foreach (ls(dirname(__FILE__) . '/../../core/themes') as $dir) {
       </div>
       <div class="form-group">
         <label class="col-sm-3 control-label">{{Mobile couleur}}</label>
-        <div class="col-sm-2">
+        <div class="col-sm-3">
           <select class="userAttr form-control" data-l1key="options" data-l2key="mobile_theme_color">
             <?php
 foreach (ls(dirname(__FILE__) . '/../../core/themes') as $dir) {
@@ -60,7 +60,7 @@ foreach (ls(dirname(__FILE__) . '/../../core/themes') as $dir) {
     </div>
     <div class="form-group">
       <label class="col-sm-3 control-label">{{Graphique Desktop}}</label>
-      <div class="col-sm-2">
+      <div class="col-sm-3">
         <select class="userAttr form-control" data-l1key="options" data-l2key="desktop_highcharts_theme">
           <option value="">Défaut</option>
           <option value="dark-blue">Dark-blue</option>
@@ -76,7 +76,7 @@ foreach (ls(dirname(__FILE__) . '/../../core/themes') as $dir) {
     </div>
     <div class="form-group">
       <label class="col-sm-3 control-label">{{Graphique mobile}}</label>
-      <div class="col-sm-2">
+      <div class="col-sm-3">
         <select class="userAttr form-control" data-l1key="options" data-l2key="mobile_highcharts_theme">
           <option value="">Défaut</option>
           <option value="dark-blue">Dark-blue</option>
@@ -94,7 +94,7 @@ foreach (ls(dirname(__FILE__) . '/../../core/themes') as $dir) {
 foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 	echo '<div class="form-group">';
 	echo '<label class="col-sm-3 control-label">{{Opacité par des widgets}} ' . $value['name'] . '</label>';
-	echo '<div class="col-sm-2">';
+	echo '<div class="col-sm-3">';
 	echo '<input type="number" min="0" max="1" class="userAttr form-control" data-l1key="options" data-l2key="widget::background-opacity::' . $key . '"/>';
 	echo '</div>';
 	echo '</div>';
@@ -104,7 +104,7 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 </form>
 </div>
  <div class="col-sm-6">
-<div class="img-responsive" id="div_imgThemeDesktop" style="height: 450px;"></div> 
+<div class="img-responsive" id="div_imgThemeDesktop" style="height: 450px;"></div>
 </div>
 </div>
 
@@ -126,7 +126,7 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
       <legend><i class="fa fa-file-o"></i>  {{Page par défaut}}</legend>
       <div class="form-group">
         <label class="col-sm-3 control-label">{{Desktop}}</label>
-        <div class="col-sm-2">
+        <div class="col-sm-3">
           <select class="userAttr form-control" data-l1key="options" data-l2key="homePage">
             <?php
 foreach ($homePage as $key => $value) {
@@ -303,7 +303,7 @@ if ($_SESSION['user']->getOptions('twoFactorAuthentification', 0) == 1) {
     </div>
     <?php }
 ?>
-    <div class="form-group expertModeVisible">
+    <div class="form-group">
       <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Hash de l'utilisateur}}</label>
       <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
         <span class="userAttr" data-l1key="hash"></span>

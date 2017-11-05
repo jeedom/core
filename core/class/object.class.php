@@ -436,6 +436,18 @@ class object {
 		}
 		$this->checkTreeConsistency();
 		$this->setConfiguration('parentNumber', $this->parentNumber());
+		if ($this->getConfiguration('tagColor') == '') {
+			$this->setConfiguration('tagColor', '#000000');
+		}
+		if ($this->getConfiguration('tagTextColor') == '') {
+			$this->setConfiguration('tagTextColor', '#FFFFFF');
+		}
+		if ($this->getConfiguration('desktop::summaryTextColor') == '') {
+			$this->setConfiguration('desktop::summaryTextColor', '');
+		}
+		if ($this->getConfiguration('mobile::summaryTextColor') == '') {
+			$this->setConfiguration('mobile::summaryTextColor', '');
+		}
 	}
 
 	public function save() {
@@ -540,7 +552,7 @@ class object {
 		if ($_tag) {
 			if ($_prettify) {
 				if ($this->getDisplay('tagColor') != '') {
-					return '<span class="label" style="text-shadow : none;background-color:' . $this->getDisplay('tagColor') . ';color:' . $this->getDisplay('tagTextColor', 'white') . '">' . $this->getDisplay('icon') . ' ' . $this->getName() . '</span>';
+					return '<span class="label" style="text-shadow : none;background-color:' . $this->getDisplay('tagColor') . ' !important;color:' . $this->getDisplay('tagTextColor', 'white') . ' !important">' . $this->getDisplay('icon') . ' ' . $this->getName() . '</span>';
 				} else {
 					return '<span class="label label-primary" style="text-shadow : none;">' . $this->getDisplay('icon') . ' ' . $this->getName() . '</span>';
 				}
@@ -563,11 +575,11 @@ class object {
 		}
 		$values = array();
 		foreach ($summaries[$_key] as $infos) {
-			$cmd = cmd::byId(str_replace('#','',$infos['cmd']));
+			$cmd = cmd::byId(str_replace('#', '', $infos['cmd']));
 			if (is_object($cmd)) {
 				$eqLogic = $cmd->getEqLogic();
 			}
-			if (is_object($eqLogic) and $eqLogic->getAlert() != '') {
+			if (is_object($eqLogic) && $eqLogic->getAlert() != '') {
 				continue;
 			}
 			$value = jeedom::evaluateExpression(cmd::cmdToValue($infos['cmd']));
@@ -600,6 +612,9 @@ class object {
 			$result = $this->getSummary($key);
 			if ($result !== null) {
 				$style = '';
+				if ($_version == 'desktop') {
+					$style = 'color:' . $this->getDisplay($_version . '::summaryTextColor', '#000000') . ';';
+				}
 				$allowDisplayZero = $value['allowDisplayZero'];
 				if ($value['calcul'] == 'text') {
 					$allowDisplayZero = 1;

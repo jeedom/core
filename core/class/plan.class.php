@@ -123,7 +123,9 @@ class plan {
 	/*     * *********************Methode d'instance************************* */
 
 	public function preInsert() {
-		$this->setCss('z-index', 1000);
+		if ($this->getCss('z-index') == '') {
+			$this->setCss('z-index', 1000);
+		}
 		if (in_array($this->getLink_type(), array('eqLogic', 'cmd', 'scenario'))) {
 			self::removeByLinkTypeLinkIdPlanHedaerId($this->getLink_type(), $this->getLink_id(), $this->getPlanHeader_id());
 		}
@@ -218,7 +220,6 @@ class plan {
 				'html' => $link->toHtml($_version),
 			);
 		} else if ($this->getLink_type() == 'plan') {
-			$link = 'index.php?v=d&p=plan&plan_id=' . $this->getLink_id();
 			$html = '<span class="cursor plan-link-widget" data-link_id="' . $this->getLink_id() . '" data-offsetX="' . $this->getDisplay('offsetX') . '" data-offsetY="' . $this->getDisplay('offsetY') . '">';
 			$html .= '<a style="color:' . $this->getCss('color', 'black') . ';text-decoration:none;font-size : 1.5em;">';
 			$html .= $this->getDisplay('icon') . ' ' . $this->getDisplay('name');
@@ -230,8 +231,8 @@ class plan {
 			);
 		} else if ($this->getLink_type() == 'view') {
 			$link = 'index.php?p=view&view_id=' . $this->getLink_id();
-			$html = '<span href="' . $link . '" class=" cursor view-link-widget" data-link_id="' . $this->getLink_id() . '" >';
-			$html .= '<a href="' . $link . '" style="color:' . $this->getCss('color', 'black') . ';text-decoration:none;font-size : 1.5em;">';
+			$html = '<span href="' . $link . '" class="cursor view-link-widget" data-link_id="' . $this->getLink_id() . '" >';
+			$html .= '<a href="' . $link . '" class="noOnePageLoad" style="color:' . $this->getCss('color', 'black') . ';text-decoration:none;font-size : 1.5em;">';
 			$html .= $this->getDisplay('icon') . ' ' . $this->getDisplay('name');
 			$html .= '</a>';
 			$html .= '</span>';
@@ -288,7 +289,7 @@ class plan {
 				if ($this->getConfiguration('showOnClic') == 1) {
 					$class .= 'zoneEqLogicOnClic ';
 				}
-				$html = '<div class="zone-widget cursor zoneEqLogic ' . $class . '" data-eqLogic_id="' . str_replace(array('#', 'eqLogic'), array('', ''), $this->getConfiguration('eqLogic')) . '" data-zone_id="' . $this->getLink_id() . '" style="min-width:20px;min-height:20px;"></div>';
+				$html = '<div class="zone-widget cursor zoneEqLogic ' . $class . '" data-position="' . $this->getConfiguration('position') . '" data-eqLogic_id="' . str_replace(array('#', 'eqLogic'), array('', ''), $this->getConfiguration('eqLogic')) . '" data-zone_id="' . $this->getLink_id() . '" style="min-width:20px;min-height:20px;"></div>';
 			} else {
 				$html = '<div class="zone-widget cursor" data-zone_id="' . $this->getLink_id() . '" style="min-width:20px;min-height:20px;"></div>';
 			}

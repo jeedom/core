@@ -31,7 +31,7 @@
     }
 });
 
- function loadPage(_url){
+ function loadPage(_url,_noPushHistory){
   if (modifyWithoutSave) {
     if (!confirm('{{Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?}}')) {
         return;
@@ -43,7 +43,28 @@ if (typeof unload_page !== "undefined") {
 }
 $("#md_modal").dialog('close');
 $("#md_modal2").dialog('close');
-window.history.pushState('','', _url);
+if ($("#mod_insertCmdValue").length != 0) {
+    $("#mod_insertCmdValue").dialog('close');
+}
+if ($("#mod_insertDataStoreValue").length != 0) {
+    $("#mod_insertDataStoreValue").dialog('close');
+}
+if ($("#mod_insertEqLogicValue").length != 0) {
+    $("#mod_insertEqLogicValue").dialog('close');
+}
+if ($("#mod_insertCronValue").length != 0) {
+    $("#mod_insertCronValue").dialog('close');
+}
+if ($("#mod_insertActionValue").length != 0) {
+    $("#mod_insertActionValue").dialog('close');
+}
+if ($("#mod_insertScenarioValue").length != 0) {
+    $("#mod_insertScenarioValue").dialog('close');
+}
+if(!isset(_noPushHistory) || _noPushHistory == false){
+    window.history.pushState('','', _url);
+}
+$('main').css('padding-right','').css('padding-left','').css('margin-right','').css('margin-left','');
 $('#div_pageContainer').add("#div_pageContainer *").off();
 $.hideAlert();
 $('.bt_pluginTemplateShowSidebar').remove();
@@ -51,8 +72,10 @@ removeContextualFunction();
 $('#div_pageContainer').empty().load(_url+'&ajax=1',function(){
     $('#bt_getHelpPage').attr('data-page',getUrlVars('p')).attr('data-plugin',getUrlVars('m'));
     var title = getUrlVars('p');
-    document.title = title[0].toUpperCase() + title.slice(1) +' - Jeedom';
-    initPage();
+    if(title !== false){
+     document.title = title[0].toUpperCase() + title.slice(1) +' - Jeedom';
+ }
+ initPage();
 });
 return;
 }
@@ -66,6 +89,14 @@ $(function () {
     $.alertTrigger = function(){
         initRowOverflow();
     }
+
+    window.addEventListener('popstate', function (event){
+        if(event.state === null){
+            return;
+        }
+        var url = window.location.href.split("index.php?");
+        loadPage('index.php?'+url[1],true)
+    });
 
     $('body').on('click','a',function(e){
         if($(this).hasClass('noOnePageLoad')){
@@ -167,7 +198,7 @@ if (isset(jeedom_langage)) {
         closeText: '',
         height: ((jQuery(window).height() - 100) < 700) ? jQuery(window).height() - 100 : 700,
         width: ((jQuery(window).width() - 100) < 900) ? (jQuery(window).width() - 100) : 900,
-        position: {my: 'center', at: 'center bottom-10px', of: window},
+        position: { my: "center bottom-10", at: "center bottom", of: window },
         open: function () {
             $("body").css({overflow: 'hidden'})
             $(this).closest( ".ui-dialog" ).find(":button").blur();
@@ -185,7 +216,7 @@ if (isset(jeedom_langage)) {
         closeText: '',
         height: (jQuery(window).height() - 100),
         width: ((jQuery(window).width() - 100) < 1500) ? (jQuery(window).width() - 50) : 1500,
-        position: {my: 'center', at: 'center bottom-10px', of: window},
+        position: { my: "center bottom-10", at: "center bottom", of: window },
         open: function () {
             $("body").css({overflow: 'hidden'});
             $(this).closest( ".ui-dialog" ).find(":button").blur();
@@ -246,30 +277,6 @@ if (isset(jeedom_langage)) {
      }
  });
  });
-
-    /******************Gestion mode expert**********************/
-
-    $('#bt_expertMode').on('click', function () {
-        if ($(this).attr('state') == 1) {
-            var value = {options: {expertMode: 0}};
-            $(this).attr('state', 0);
-            $(this).find('i').removeClass('fa-check-square-o').addClass('fa-square-o');
-        } else {
-            var value = {options: {expertMode: 1}};
-            $(this).attr('state', 1);
-            $(this).find('i').removeClass('fa-square-o').addClass('fa-check-square-o');
-        }
-        initExpertMode();
-        jeedom.user.saveProfils({
-            profils: value,
-            global: false,
-            error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function () {
-            }
-        });
-    });
 
     $('body').on( 'click','.bt_pageHelp', function () {
         showHelpModal($(this).attr('data-name'), $(this).attr('data-plugin'));
@@ -358,7 +365,6 @@ function initCheckBox(){
 
 function initPage(){
     initTableSorter();
-    initExpertMode();
     initReportMode();
     $.initTableFilter();
     initRowOverflow();
@@ -384,20 +390,11 @@ function initRowOverflow() {
         if($('#div_alert').outerHeight() > 0){
             hWindow -= 10;
         }
-        $('.row-overflow > div').height(hWindow).css('overflow-y', 'auto').css('overflow-x', 'hidden').css('padding-top','5px');
-    }
-}
-
-function initExpertMode() {
-    if ($('#bt_expertMode').attr('state') == 1) {
-        $('.expertModeDisable').attr('disabled', false);
-        $('.expertModeVisible').show();
-        $('.expertModeHidden').hide();
-    } else {
-        $('.expertModeDisable').attr('disabled', true);
-        $('.expertModeVisible').hide();
-        $('.expertModeHidden').show();
-    }
+        if($('.row-overflow').attr('data-offset') != undefined){
+         hWindow -= $('.row-overflow').attr('data-offset');
+     }
+     $('.row-overflow > div').height(hWindow).css('overflow-y', 'auto').css('overflow-x', 'hidden').css('padding-top','5px');
+ }
 }
 
 function initReportMode() {
@@ -481,6 +478,23 @@ function refreshMessageNumber() {
     });
 }
 
+function refreshUpdateNumber() {
+    jeedom.update.number({
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success : function (_number) {
+            UPDATE_NUMBER = _number;
+            if (_number == 0 || _number == '0') {
+                $('#span_nbUpdate').hide();
+            } else {
+                $('#span_nbUpdate span').html(_number);
+                $('#span_nbUpdate').show();
+            }
+        }
+    });
+}
+
 function notify(_title, _text, _class_name) {
     if (_title == '' && _text == '') {
         return true;
@@ -549,6 +563,8 @@ function chooseIcon(_callback) {
 
 
 function positionEqLogic(_id,_preResize) {
+    var width_step = 2;
+    var height_step = 2;
     if(_id != undefined){
         var eqLogic = $('.eqLogic-widget[data-eqlogic_id='+_id+']');
         eqLogic.css('margin','0px').css('padding','0px');
@@ -559,11 +575,12 @@ function positionEqLogic(_id,_preResize) {
             $(this).height('auto');
         }
         if(init(_preResize,true)){
-           eqLogic.width(Math.floor(eqLogic.width() / 40) * 40);
-           eqLogic.height(Math.floor(eqLogic.height() / 80) * 80);
+           eqLogic.width(Math.floor(eqLogic.width() / width_step) * width_step);
+           eqLogic.height(Math.floor(eqLogic.height() / height_step) * height_step);
        }
-       eqLogic.width(Math.ceil(eqLogic.width() / 40) * 40 + (Math.ceil(eqLogic.width() / 40)-1) * 2);
-       eqLogic.height(Math.ceil(eqLogic.height() / 80) * 80 + (Math.ceil(eqLogic.height() / 80)-1) * 2);
+       eqLogic.width(Math.ceil(eqLogic.width() / width_step) * width_step);
+       eqLogic.height(Math.ceil(eqLogic.height() / height_step) * height_step);
+       eqLogic.trigger('resize');
    }else{
     $('.eqLogic-widget:not(.jeedomAlreadyPosition)').css('margin','0px').css('padding','0px');
     $('.eqLogic-widget:not(.jeedomAlreadyPosition)').each(function () {
@@ -573,8 +590,9 @@ function positionEqLogic(_id,_preResize) {
         if($(this).height() == 0){
             $(this).height('auto');
         }
-        $(this).width(Math.ceil($(this).width() / 40) * 40 + (Math.ceil($(this).width() / 40)-1) * 2);
-        $(this).height(Math.ceil($(this).height() / 80) * 80 + (Math.ceil($(this).height() / 80)-1) * 2);
+        $(this).width(Math.ceil($(this).width() / width_step) * width_step);
+        $(this).height(Math.ceil($(this).height() / height_step) * height_step);
+        $(this).trigger('resize');
     });
     $('.eqLogic-widget').addClass('jeedomAlreadyPosition');
 }
@@ -591,4 +609,229 @@ function uniqId(_prefix){
         return uniqId(_prefix);
     }
     return result;
+}
+
+
+function taAutosize(){
+    autosize($('.ta_autosize'));
+    autosize.update($('.ta_autosize'));
+}
+
+
+function editWidgetCmdMode(_mode){
+    if(!isset(_mode)){
+        if($('#bt_editDashboardWidgetOrder').attr('data-mode') != undefined && $('#bt_editDashboardWidgetOrder').attr('data-mode') == 1){
+            editWidgetMode(0);
+            editWidgetMode(1);
+        }
+        return;
+    }
+    if(_mode == 0){
+       $( ".eqLogic-widget.eqLogic_layout_table table.tableCmd").removeClass('table-bordered');
+       $.contextMenu('destroy');
+       if( $('.eqLogic-widget.allowReorderCmd.eqLogic_layout_table table.tableCmd.ui-sortable').length > 0){
+        try{
+          $('.eqLogic-widget.allowReorderCmd.eqLogic_layout_table table.tableCmd').sortable('destroy');
+      }catch(e){
+
+      }
+  }
+  if( $('.eqLogic-widget.allowReorderCmd.eqLogic_layout_default.ui-sortable').length > 0){
+      try{
+         $('.eqLogic-widget.allowReorderCmd.eqLogic_layout_default').sortable('destroy');
+     }catch(e){
+
+     }
+ }
+ if( $('.eqLogic-widget.ui-draggable').length > 0){
+    $('.eqLogic-widget.allowReorderCmd').off('mouseover','.cmd');
+    $('.eqLogic-widget.allowReorderCmd').off('mouseleave','.cmd');
+}
+}else{
+   $( ".eqLogic-widget.allowReorderCmd.eqLogic_layout_default").sortable({
+    items: ".cmd",
+    stop: function (event, ui) {
+        var cmds = [];
+        var eqLogic = ui.item.closest('.eqLogic-widget');
+        order = 1;
+        eqLogic.find('.cmd').each(function(){
+            cmd = {};
+            cmd.id = $(this).attr('data-cmd_id');
+            cmd.order = order;
+            cmds.push(cmd);
+            order++;
+        });
+        jeedom.cmd.setOrder({
+            cmds: cmds,
+            error: function (error) {
+                $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            }
+        });
+    }
+});
+   $(".eqLogic-widget.eqLogic_layout_table table.tableCmd").addClass('table-bordered');
+   $('.eqLogic-widget.eqLogic_layout_table table.tableCmd td').sortable({
+    connectWith: '.eqLogic-widget.eqLogic_layout_table table.tableCmd td',
+    items: ".cmd",
+    stop: function (event, ui) {
+        var cmds = [];
+        var eqLogic = ui.item.closest('.eqLogic-widget');
+        order = 1;
+        eqLogic.find('.cmd').each(function(){
+            cmd = {};
+            cmd.id = $(this).attr('data-cmd_id');
+            cmd.line = $(this).closest('td').attr('data-line');
+            cmd.column = $(this).closest('td').attr('data-column');
+            cmd.order = order;
+            cmds.push(cmd);
+            order++;
+        });
+        jeedom.cmd.setOrder({
+            version : 'dashboard',
+            cmds: cmds,
+            error: function (error) {
+                $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            }
+        });
+    }
+});
+   $('.eqLogic-widget.allowReorderCmd').on('mouseover','.cmd',function(){
+    $('.eqLogic-widget').draggable('disable');
+});
+   $('.eqLogic-widget.allowReorderCmd').on('mouseleave','.cmd',function(){
+    $('.eqLogic-widget').draggable('enable');
+});
+   $.contextMenu({
+    selector: '.eqLogic-widget',
+    zIndex: 9999,
+    events: {
+        show: function(opt) {
+            $.contextMenu.setInputValues(opt, this.data());
+        }, 
+        hide: function(opt) {
+            $.contextMenu.getInputValues(opt, this.data());
+        }
+    },
+    items: {
+       configuration: {
+        name: "{{Configuration avancée}}",
+        icon : 'fa-cog',
+        callback: function(key, opt){
+           $('#md_modal').dialog({title: "{{Configuration du widget}}"});
+           $('#md_modal').load('index.php?v=d&modal=eqLogic.configure&eqLogic_id='+$(this).attr('data-eqLogic_id')).dialog('open');
+       }
+   },
+   sep1 : "---------",
+   layoutDefaut: {
+    name: "{{Defaut}}",
+    icon : 'fa-square-o',
+    disabled:function(key, opt) { 
+        return !$(this).hasClass('allowLayout') || !$(this).hasClass('eqLogic_layout_table'); 
+    },
+    callback: function(key, opt){
+       jeedom.eqLogic.simpleSave({
+        eqLogic : {
+            id : $(this).attr('data-eqLogic_id'),
+            display : {'layout::dashboard' : 'default'},
+        },
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        }
+    });
+   }
+},
+layoutTable: {
+    name: "{{Table}}",
+    icon : 'fa-table',
+    disabled:function(key, opt) { 
+        return !$(this).hasClass('allowLayout') || $(this).hasClass('eqLogic_layout_table'); 
+    },
+    callback: function(key, opt){
+       jeedom.eqLogic.simpleSave({
+        eqLogic : {
+            id : $(this).attr('data-eqLogic_id'),
+            display : {'layout::dashboard' : 'table'},
+        },
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        }
+    });
+   }
+},
+sep2 : "---------",
+addTableColumn: {
+    name: "{{Ajouter colonne}}",
+    icon : 'fa-plus',
+    disabled:function(key, opt) { 
+        return !$(this).hasClass('eqLogic_layout_table'); 
+    },
+    callback: function(key, opt){
+       jeedom.eqLogic.simpleSave({
+        eqLogic : {
+            id : $(this).attr('data-eqLogic_id'),
+            display : {'layout::dashboard::table::nbColumn' : parseInt($(this).find('table.tableCmd').attr('data-column')) + 1},
+        },
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        }
+    });
+   }
+},
+addTableLine: {
+    name: "{{Ajouter ligne}}",
+    icon : 'fa-plus',
+    disabled:function(key, opt) { 
+        return !$(this).hasClass('eqLogic_layout_table'); 
+    },
+    callback: function(key, opt){
+       jeedom.eqLogic.simpleSave({
+        eqLogic : {
+            id : $(this).attr('data-eqLogic_id'),
+            display : {'layout::dashboard::table::nbLine' : parseInt($(this).find('table.tableCmd').attr('data-line')) + 1},
+        },
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        }
+    });
+   }
+},
+removeTableColumn: {
+    name: "{{Supprimer colonne}}",
+    icon : 'fa-minus',
+    disabled:function(key, opt) { 
+        return !$(this).hasClass('eqLogic_layout_table'); 
+    },
+    callback: function(key, opt){
+       jeedom.eqLogic.simpleSave({
+        eqLogic : {
+            id : $(this).attr('data-eqLogic_id'),
+            display : {'layout::dashboard::table::nbColumn' : parseInt($(this).find('table.tableCmd').attr('data-column')) - 1},
+        },
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        }
+    });
+   }
+},
+removeTableLine: {
+    name: "{{Supprimer ligne}}",
+    icon : 'fa-minus',
+    disabled:function(key, opt) { 
+        return !$(this).hasClass('eqLogic_layout_table'); 
+    },
+    callback: function(key, opt){
+       jeedom.eqLogic.simpleSave({
+        eqLogic : {
+            id : $(this).attr('data-eqLogic_id'),
+            display : {'layout::dashboard::table::nbLine' : parseInt($(this).find('table.tableCmd').attr('data-line')) - 1},
+        },
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        }
+    });
+   }
+},
+}
+});
+}
 }

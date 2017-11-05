@@ -15,9 +15,9 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
-
+header('Access-Control-Allow-Origin: *');
 require_once dirname(__FILE__) . "/../php/core.inc.php";
-if (user::isBan()) {
+if (user::isBan() && false) {
 	header("Status: 404 Not Found");
 	header('HTTP/1.0 404 Not Found');
 	$_SERVER['REDIRECT_STATUS'] = 404;
@@ -37,9 +37,12 @@ if (isset($argv)) {
 if (init('type') != '') {
 	try {
 		$type = init('type');
-		if (!jeedom::apiAccess(init('apikey', init('api')), init('plugin', 'core')) || !jeedom::apiModeResult(config::byKey('api::core::http::mode', 'core', 'enable'))) {
+		if ((!jeedom::apiAccess(init('apikey', init('api')), init('plugin', 'core')) &&
+			!jeedom::apiAccess(init('apikey', init('api')), init('type', 'core'))) ||
+			(!jeedom::apiModeResult(config::byKey('api::core::http::mode', init('plugin', 'core'), 'enable')) &&
+				!jeedom::apiModeResult(config::byKey('api::core::http::mode', init('type', 'core'), 'enable')))) {
 			user::failedLogin();
-			throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__));
+			throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action 1', __FILE__));
 		}
 		if ($type == 'ask') {
 			$cmd = cmd::byId(init('cmd_id'));
@@ -66,7 +69,7 @@ if (init('type') != '') {
 						throw new Exception(__('Aucune commande correspondant à l\'id : ', __FILE__) . secureXSS($id));
 					}
 					if (init('plugin', 'core') != 'core' && init('plugin', 'core') != $cmd->getEqType()) {
-						throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__));
+						throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action 2', __FILE__));
 					}
 					$result[$id] = $cmd->execCmd($_REQUEST);
 				}
@@ -78,7 +81,7 @@ if (init('type') != '') {
 					throw new Exception(__('Aucune commande correspondant à l\'id : ', __FILE__) . secureXSS(init('id')));
 				}
 				if (init('plugin', 'core') != 'core' && init('plugin', 'core') != $cmd->getEqType()) {
-					throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__));
+					throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action 3', __FILE__));
 				}
 				log::add('api', 'debug', __('Exécution de : ', __FILE__) . $cmd->getHumanName());
 				echo $cmd->execCmd($_REQUEST);
@@ -86,7 +89,7 @@ if (init('type') != '') {
 			}
 		}
 		if ($type != init('plugin', 'core') && init('plugin', 'core') != 'core') {
-			throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__));
+			throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action 4', __FILE__));
 		}
 		if (class_exists($type) && method_exists($type, 'event')) {
 			log::add('api', 'info', __('Appels de ', __FILE__) . secureXSS($type) . '::event()');
@@ -105,6 +108,13 @@ if (init('type') != '') {
 			if (init('profile') != '') {
 				$param['profile'] = init('profile');
 			}
+			if (init('reply_cmd') != '') {
+				$reply_cmd = cmd::byId(init('reply_cmd'));
+				if (is_object($reply_cmd)) {
+					$param['reply_cmd'] = $reply_cmd;
+					$param['force_reply_cmd'] = 1;
+				}
+			}
 			$reply = interactQuery::tryToReply($query, $param);
 			echo $reply['reply'];
 			die();
@@ -115,6 +125,9 @@ if (init('type') != '') {
 			if (!is_object($scenario)) {
 				throw new Exception(__('Aucun scénario correspondant à l\'id : ', __FILE__) . secureXSS(init('id')));
 			}
+			if (!$scenario->hasRight('w')) {
+				throw new Exception(__('Vous n\'avez pas le droit de faire une action sur ce scénario', __FILE__));
+			}
 			switch (init('action')) {
 				case 'start':
 					log::add('api', 'debug', __('Démarrage scénario de : ', __FILE__) . $scenario->getHumanName());
@@ -123,15 +136,14 @@ if (init('type') != '') {
 						$tags['#' . $key . '#'] = $value;
 					}
 					if (init('tags') != '' && !is_array(init('tags'))) {
-					    $_tags = array();
-					    $args = arg2array(init('tags'));
-					    foreach ($args as $key => $value) {
-					      $_tags['#' . trim(trim($key), '#') . '#'] = scenarioExpression::setTags(trim($value), $scenario);
-					    }
-					    $scenario->setTags($_tags);
-					}
-					else if (is_array(init('tags'))) {
-					    $scenario->setTags(init('tags'));
+						$_tags = array();
+						$args = arg2array(init('tags'));
+						foreach ($args as $key => $value) {
+							$_tags['#' . trim(trim($key), '#') . '#'] = scenarioExpression::setTags(trim($value), $scenario);
+						}
+						$scenario->setTags($_tags);
+					} else if (is_array(init('tags'))) {
+						$scenario->setTags(init('tags'));
 					}
 					$scenario->launch(false, __('Exécution provoquée par un appel API ', __FILE__));
 					break;
@@ -175,7 +187,7 @@ if (init('type') != '') {
 			echo json_encode(utils::o2a(cmd::byEqLogicId(init('eqLogic_id'))));
 			die();
 		}
-		if ($type == 'fulData') {
+		if ($type == 'fullData') {
 			log::add('api', 'debug', __('Demande API pour les commandes', __FILE__));
 			echo json_encode(object::fullData());
 			die();
@@ -197,7 +209,7 @@ if (init('type') != '') {
 		$jsonrpc = new jsonrpc($request);
 
 		if (!jeedom::apiModeResult(config::byKey('api::core::jsonrpc::mode', 'core', 'enable'))) {
-			throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__), -32001);
+			throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action (jsonrpc disable)', __FILE__), -32001);
 		}
 
 		if ($jsonrpc->getJsonrpc() != '2.0') {
@@ -256,10 +268,19 @@ if (init('type') != '') {
 
 		/*             * ************************config*************************** */
 		if ($jsonrpc->getMethod() == 'config::byKey') {
+			if (!isset($params['default'])) {
+				$params['default'] = '';
+			}
+			if (!isset($params['plugin'])) {
+				$params['plugin'] = 'core';
+			}
 			$jsonrpc->makeSuccess(config::byKey($params['key'], $params['plugin'], $params['default']));
 		}
 
 		if ($jsonrpc->getMethod() == 'config::save') {
+			if (!isset($params['plugin'])) {
+				$params['plugin'] = 'core';
+			}
 			$jsonrpc->makeSuccess(config::save($params['key'], $params['value'], $params['plugin']));
 		}
 
@@ -664,7 +685,14 @@ if (init('type') != '') {
 
 			/*             * ************************Interact*************************** */
 			if ($jsonrpc->getMethod() == 'interact::tryToReply') {
-				$jsonrpc->makeSuccess(interactQuery::tryToReply($params['query']));
+				if (isset($params['reply_cmd'])) {
+					$reply_cmd = cmd::byId($params['reply_cmd']);
+					if (is_object($reply_cmd)) {
+						$params['reply_cmd'] = $reply_cmd;
+						$params['force_reply_cmd'] = 1;
+					}
+				}
+				$jsonrpc->makeSuccess(interactQuery::tryToReply($params['query'], $params));
 			}
 
 			if ($jsonrpc->getMethod() == 'interactQuery::all') {
@@ -796,15 +824,6 @@ if (init('type') != '') {
 			}
 
 			if ($jsonrpc->getMethod() == 'network::dnsRun') {
-				if (!isset($params['proto'])) {
-					$params['proto'] = 'https';
-				}
-				if (!isset($params['port'])) {
-					$params['port'] = 80;
-				}
-				if (!isset($params['name'])) {
-					$params['name'] = '';
-				}
 				$jsonrpc->makeSuccess(network::dns_run());
 			}
 

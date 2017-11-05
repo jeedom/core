@@ -43,7 +43,7 @@
     $.ajax(paramsAJAX);
 };
 
- jeedom.plan.execute = function (_params) {
+jeedom.plan.execute = function (_params) {
     var paramsRequired = ['id'];
     var paramsSpecifics = {global: false};
     try {
@@ -279,7 +279,8 @@ jeedom.plan.getHeader = function (_params) {
     paramsAJAX.url = 'core/ajax/plan.ajax.php';
     paramsAJAX.data = {
         action: 'getPlanHeader',
-        id: _params.id
+        id: _params.id,
+        code: _params.code
     };
     $.ajax(paramsAJAX);
 };

@@ -6,51 +6,22 @@ Le menu Logs permet de suivre ce qui se passe sur sa domotique. Dans la plupart 
 
 Pour y accèder il faut aller dans Administration -> Logs : 
 
-image::../images/log1.JPG[]
-
-Hier finden Sie : 
-
-image::../images/log.JPG[]
-
 Die Logs-Seite ist ganz einfach, oben links ist ein Dropdown-Menü, dass die Auswahl der Logs ermöglicht und oberen rechts sind 5 Schaltflächen :
 
-* *Rafraîchir* : permet de rafraîchir le log actuel,
+* *Rechercher* : permet de filtrer l'affiche de log
+* *Pause/Reprendre* : permet de mettre en pause/reprendre la mise à jour en temps réel des logs
 * *Herunterladen* : zum herunterladen des aktuellen Protokolls ,
 * *Leeren* : wird verwendet, um das aktuelle Protokoll zu löschen,
 * *Löschen* : Löscht das aktuelle Protokoll, wenn Jeedom es benötigt, wird es automatisch neu erstellt, 
 * *Alle Protokolle löschen* : Löscht alle vorhandene Protokolle.
 
 [TIP]
-Man beachte, daß das Protokoll nginx.error nicht gelöscht werden kann. Es ist unbedingt erforderlich! Wenn sie es entfernen (zum Beispiel in der Befehlszeile) wird es nicht neu erstellt, dazu muß Jeedom neu gestartet werden.
+A noter que le log http.error ne peut être supprimé. Il est essentiel ! si vous le supprimez (en ligne de commande par exemple) celui-ci ne se recréera pas tout seul, il faut redémarrer le système.
 
-== Konfiguration
+== Le log "Event"
 
-Il existe certains paramètres de configuration des logs (accessible par Administation -> Configuration puis la partie "Configuration des logs & messages").
+Le log "Event" est un peu particulier. Tout d'abord pour qu'il fonctionne, il faut qu'il soit en niveau info ou debug, ensuite celui-ci recense tous les évènements ou actions qui se passent sur la domotique. Pour y accéder, il faut soit aller sur la page de log soit dans Analyse -> Temps réel
 
-image::../images/log2.JPG[]
-
-Hier haben Sie folgende Möglichkeiten :
-
-* *Message*
-** *Ajouter un message à chaque erreur dans les logs* : si un plugin ou Jeedom écrit un message d'erreur dans un log, Jeedom ajoute automatiquement un message dans le centre des messages (au moins vous êtes sûr de ne pas le manquer)
-** *Ne pas autoriser les messages venant de* : permet d'interdire certains messages venant d'un plugin ou autre
-** *Commande d'information utilisateur* : permet de sélectionner une ou plusieurs commandes (à séparer par des &&) de type message qui seront utilisées lors de nouveaux messages (permet d'être tout de suite prévenu)
-* *Log* 
-** *Moteur de log* : permet de changer le moteur de log pour par exemple les envoyer à un demon syslog(d)
-** *Nombre de lignes maximum dans un fichier de log* : Définit le nombre maximum de lignes dans un fichier de log, il est recommandé de ne pas toucher cette valeur, car une valeur trop grande pourrait remplir le système de fichiers et/ou rendre Jeedom incapable d'afficher le log
-** *Logs actifs* : permet de définir les niveaux de log actif. Attention : plus il y a de niveaux actifs, plus Jeedom peut être lent ! Cela entraîne aussi une usure prématurée de la carte SD. Il est conseillé de n'activer que le niveau "Error". "Event" peut être activé aussi car il est nécessaire pour voir en temps réel ce qui se passe sur sa domotique (bien sûr c'est seulement si vous en avez besoin).
-
-== Le log "Event" et le niveau de log "Event"
-
-Le log "Event" est un peu particulier. Tout d'abord pour qu'il fonctionne, il faut activer le niveau de log "Info" ou plus, ensuite celui-ci recense tous les évènements ou actions qui se passent sur la domotique. Pour y accéder, il faut cliquer sur la petite icône "compteur" en bas à droite dans Jeedom : 
-
-image::../images/log3.JPG[]
-
-Sobald sie darauf klicken, erhalten sie ein Fenster, das jede Sekunde aktualisiert wird und alle Ereignisse in Ihrer Home-Automation anzeigt.
-
-image::../images/log4.JPG[]
+Une fois que vous avez cliqué dessus, vous obtenez une fenêtre qui se met à jour en temps réel et vous affiche tous les évènements de votre domotique.
 
 Oben rechts haben sie ein Suchfelder  (funktioniert nur, wenn sie nicht angehalten haben) und eine Schaltfläche für die Pause (nützlich zum Beispiel für Kopieren/Einfügen).
-
-[IMPORTANT]
-Pour que cela fonctionne il faut absolument avoir activé le niveau de log "Info" ou plus (voir paragraphe précédent)
