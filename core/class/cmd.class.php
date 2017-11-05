@@ -1124,6 +1124,7 @@ class cmd {
 			}
 			$replace['#title_placeholder#'] = $this->getDisplay('title_placeholder', __('Titre', __FILE__));
 			$replace['#message_placeholder#'] = $this->getDisplay('message_placeholder', __('Message', __FILE__));
+			$replace['#files_placeholder#'] = $this->getDisplay('files_placeholder', __('Fichier', __FILE__));
 			$replace['#message_cmd_type#'] = $this->getDisplay('message_cmd_type', 'info');
 			$replace['#message_cmd_subtype#'] = $this->getDisplay('message_cmd_subtype', '');
 			$replace['#message_disable#'] = $this->getDisplay('message_disable', 0);
