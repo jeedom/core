@@ -92,7 +92,7 @@ Ce scénario sera déclenché aussi bien lors de la détection d'une présence q
 [IMPORTANT]
 Il ne faut pas oublier de faire le même genre de scénario mais pour éteindre la lumière lorsque plus personne n'est présent
 
-== Mode avancée
+== Mode avancé
 
 Voici un exemple de scénario en mode avancé :
 
