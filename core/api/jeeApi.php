@@ -374,6 +374,18 @@ if (init('type') != '') {
 				$jsonrpc->makeSuccess($return);
 			}
 
+			if ($jsonrpc->getMethod() == 'object::save') {
+				if (isset($params['id'])) {
+					$object = object::byId($params['id']);
+				}
+				if (!is_object($object)) {
+					$object = new object();
+				}
+				utils::a2o($object, jeedom::fromHumanReadable($params));
+				$object->save();
+				$jsonrpc->makeSuccess($object);
+			}
+
 			/*             * ************************Summary*************************** */
 
 			if ($jsonrpc->getMethod() == 'summary::global') {
