@@ -92,6 +92,20 @@ Paramètres:
 
 Retourne un objet, ses équipements et pour chaque équipement toutes ses commandes ainsi que les états de cellse-ci (pour les commandes de type info)
 
+=== object::save
+
+Retourne l'objet spécifié
+
+Paramètres:
+
+- int id (vide si c'est une création)
+- string name
+- int father_id = null
+- int isVisible = 0
+- int position
+- array configuration
+- array display
+
 == API JSON Summary
 
 === summary::global
@@ -162,15 +176,15 @@ Paramètres:
 
 - int id (vide si c'est une création)
 - string eqType_name (type de l'équipement script, virtuel...)
-- string $name
-- string $logicalId = ''
-- int $object_id = null
-- int $eqReal_id = null;
-- int $isVisible = 0;
-- int $isEnable = 0;
-- array $configuration;
-- int $timeout;
-- array $category;
+- string name
+- string logicalId = ''
+- int object_id = null
+- int eqReal_id = null
+- int isVisible = 0
+- int isEnable = 0
+- array configuration
+- int timeout
+- array category
 
 == API JSON Cmd
 
@@ -230,6 +244,30 @@ Paramètres:
 - int id
 - string startTime : date de début de l'historique
 - string endTime : date de fin de l'historique
+
+=== cmd::save
+
+Retourne l'objet spécifié
+
+Paramètres:
+
+- int id (vide si c'est une création)
+- string name
+- string logicalId
+- string eqType
+- string order
+- string type
+- string subType
+- int eqLogic_id
+- int isHistorized = 0
+- string unite = ''
+- array configuration
+- array template
+- array display
+- array html
+- int value = null
+- int isVisible = 1
+- array alert
 
 == API JSON Scenario
 
