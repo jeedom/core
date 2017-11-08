@@ -114,7 +114,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'THERMOSTAT_SET_MODE' => array('name' => 'Thermostat Mode', 'family' => 'Thermostat', 'type' => 'Action', 'ignore' => true),
 			'THERMOSTAT_MODE' => array('name' => 'Thermostat Mode', 'family' => 'Thermostat', 'type' => 'Info', 'ignore' => true),
 			'THERMOSTAT_SET_LOCK' => array('name' => 'Thermostat Verrouillage', 'family' => 'Thermostat', 'type' => 'Action', 'ignore' => true),
-			'THERMOSTAT_SET_UNLOCK' => array('name' => 'Thermostat Dévéroullage', 'family' => 'Thermostat', 'type' => 'Action', 'ignore' => true),
+			'THERMOSTAT_SET_UNLOCK' => array('name' => 'Thermostat Déverrouillage', 'family' => 'Thermostat', 'type' => 'Action', 'ignore' => true),
 			'THERMOSTAT_LOCK' => array('name' => 'Thermostat Verrouillage', 'family' => 'Thermostat', 'type' => 'Info', 'ignore' => true),
 			'THERMOSTAT_TEMPERATURE_OUTDOOR' => array('name' => 'Thermostat Température Exterieur', 'family' => 'Thermostat', 'type' => 'Info', 'ignore' => true),
 			'THERMOSTAT_STATE_NAME' => array('name' => 'Thermostat Etat (HUMAIN)', 'family' => 'Thermostat', 'type' => 'Info', 'ignore' => true),
