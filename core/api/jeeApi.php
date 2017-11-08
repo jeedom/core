@@ -630,6 +630,22 @@ if (init('type') != '') {
 				$jsonrpc->makeSuccess(utils::o2a($cmd->getHistory($params['startTime'], $params['endTime'])));
 			}
 
+			if ($jsonrpc->getMethod() == 'cmd::save') {
+				$typeEqLogic = $params['eqType_name'] . 'Cmd';
+				if ($typeEqLogic == '' || !class_exists($typeCmd)) {
+					throw new Exception(__('Type incorrect (classe commande inexistante)', __FILE__) . secureXSS($typeCmd));
+				}
+				if (isset($params['id'])) {
+					$cmd = cmd::byId($params['id']);
+				}
+				if (!is_object($cmd)) {
+					$cmd = new cmd();
+				}
+				utils::a2o($cmd, jeedom::fromHumanReadable($params));
+				$cmd->save();
+				$jsonrpc->makeSuccess($cmd);
+			}
+
 			/*             * ************************Scénario*************************** */
 			if ($jsonrpc->getMethod() == 'scenario::all') {
 				$jsonrpc->makeSuccess(utils::o2a(scenario::all()));
