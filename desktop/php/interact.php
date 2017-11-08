@@ -86,8 +86,9 @@ if (count($totalInteract) == 0) {
 	echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucune interaction. Cliquez sur ajouter une interaction pour commencer</span></center>";
 } else {
 	echo "<center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous avez " . count($totalInteract) . " interaction(s) dans " . count($interactListGroup) . " groupes</span></center>";
+	echo '<div class="panel-group" id="accordionInteract">';
 	if (count($interacts[-1]) > 0) {
-		echo '<div class="panel-group" id="accordionInteract">';
+
 		echo '<div class="panel panel-default">';
 		echo '<div class="panel-heading">';
 		echo '<h3 class="panel-title">';
