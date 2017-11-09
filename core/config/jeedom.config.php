@@ -180,7 +180,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'OPENING' => array('name' => 'Porte', 'family' => 'Generic', 'type' => 'Info'),
 			'OPENING_WINDOW' => array('name' => 'Fenêtre', 'family' => 'Generic', 'type' => 'Info'),
 			'SABOTAGE' => array('name' => 'Sabotage', 'family' => 'Generic', 'type' => 'Info'),
-			'CO2' => array('name' => 'CO2 (ppm', 'family' => 'Generic', 'type' => 'Info', 'ignore' => true),
+			'CO2' => array('name' => 'CO2 (ppm)', 'family' => 'Generic', 'type' => 'Info', 'ignore' => true),
 			'VOLTAGE' => array('name' => 'Tension', 'family' => 'Generic', 'type' => 'Info', 'ignore' => true),
 			'NOISE' => array('name' => 'Son (dB)', 'family' => 'Generic', 'type' => 'Info', 'ignore' => true),
 			'PRESSURE' => array('name' => 'Pression', 'family' => 'Generic', 'type' => 'Info', 'ignore' => true),
