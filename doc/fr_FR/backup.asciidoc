@@ -6,7 +6,7 @@ La sauvegarde et restauration de Jeedom permet de sauvegarder celui-ci et de le 
 
 Accessible depuis Administration -> Sauvegarde, cette page permet la gestion des sauvegardes.
 
-Sur cette page vous retrouvez à gauche les paramètres et les boutons d'action et à droite le statut en temps réel de l'action en cours (sauvegarde ou restauration), si vous en avez lancé une.
+Sur cette page vous retrouvez à gauche les paramètres, les boutons d'action et à droite le statut en temps réel de l'action en cours (sauvegarde ou restauration), si vous en avez lancé une.
 
 Sur la gauche on a : 
 
@@ -58,8 +58,8 @@ La sauvegarde dans le cloud permet à Jeedom d'envoyer vos sauvegardes directeme
 Puis dans l'onglet mes backups. Vous pouvez, à partir de cette page, récupérer un backup ou acheter un abonnement (pour 1, 3, 6 ou 12 mois).
 
 [TIP]
-Vous pouvez mettre un nom de sauvegarde plus sympa à partir de l'onglet "Mes Jeedoms" en donnant un nom à ceux-ci.
+Vous pouvez personnaliser le nom des fichiers de sauvegarde à partir de l'onglet "Mes Jeedoms", en évitant toutefois les caractères exotiques.
 
 == Fréquence des backups
 
-Jeedom effectue une sauvegarde tous les jours.Vous pouvez modifier cette heure à partir du "Moteur de tâches" (la tâche est nommée 'Jeedom backup') mais ce n'est pas recommandé car cette heure est calculée par rapport à la charge et l'heure de la sauvegarde du Market.
+Jeedom effectue une sauvegarde tous les jours. Vous pouvez modifier cette heure à partir du "Moteur de tâches" (la tâche est nommée 'Jeedom backup') mais ce n'est pas recommandé car cette heure est calculée par rapport à la charge et l'heure de la sauvegarde du Market.
