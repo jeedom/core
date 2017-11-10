@@ -13,7 +13,7 @@ Dans cet onglet on retrouve des informations générales sur Jeedom :
 * *Clef d'installation* : clef hardware de votre Jeedom sur le market. Si votre Jeedom n'apparaît pas dans la liste de vos Jeedom sur le market il est conseillé de cliquer sur le bouton *Remise à zéro*
 * *Langue* : Langue de votre Jeedom
 * *Générer les traductions* : permet de générer les traductions, attention peut ralentir votre système
-* *Durée de vie des sessions (heure)* : durée de vie des sessions PHP, il est conseillé de ne pas y toucher
+* *Durée de vie des sessions (heure)* : durée de vie des sessions PHP, il déconseillé de toucher à ce paramètre
 * *Date et heure* : votre fuseau horaire
 * *Serveur de temps optionnel* : permet d'ajouter un serveur de temps optionnel (à réserver aux experts)
 * *Ignorer la vérification de l'heure* : indique à Jeedom de ne pas vérifier si l'heure est cohérente. Utile par exemple si vous ne connectez pas Jeedom à Internet et qu'il n'a pas de pile RTC sur le hardware utilisé
@@ -275,7 +275,7 @@ En dessous vous retrouvez un tableau permettant de gérer finement le niveau de 
 
 === Les dépôts
 
-Les dépôts sont des espaces de stockage (et de service) pour pouvoir mettre des backups, récupérer des plugins, récupérer le core de Jeedom....
+Les dépôts sont des espaces de stockage (et de service) pour pouvoir mettre des backups, récupérer des plugins, récupérer le core de Jeedom, etc.
 
 ==== Fichier
 
