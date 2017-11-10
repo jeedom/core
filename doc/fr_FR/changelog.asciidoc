@@ -5,7 +5,7 @@
 * Correction de bugs
 * Possibilité de désactiver une intéraction
 * Ajout d'un éditeur de fichiers (réservé aux utilisateurs expérimentés)
-* Ajout des génériques Types "Lumière Etat (Binaire)", "Lumière Température Couleur" (info), "Lumière Température Couleur" (Action)
+* Ajout des génériques Types "Lumière Etat" (Binaire), "Lumière Température Couleur" (Info), "Lumière Température Couleur" (Action)
 * Possibilité de rendre des mots obligatoires dans une interaction
 
 == 3.1.7
