@@ -631,7 +631,7 @@ if (init('type') != '') {
 			}
 
 			if ($jsonrpc->getMethod() == 'cmd::save') {
-				$typeEqLogic = $params['eqType_name'] . 'Cmd';
+				$typeCmd = $params['eqType_name'] . 'Cmd';
 				if ($typeEqLogic == '' || !class_exists($typeCmd)) {
 					throw new Exception(__('Type incorrect (classe commande inexistante)', __FILE__) . secureXSS($typeCmd));
 				}
