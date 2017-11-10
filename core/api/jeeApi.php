@@ -383,7 +383,7 @@ if (init('type') != '') {
 				}
 				utils::a2o($object, jeedom::fromHumanReadable($params));
 				$object->save();
-				$jsonrpc->makeSuccess($object);
+				$jsonrpc->makeSuccess(utils::o2a($object));
 			}
 
 			/*             * ************************Summary*************************** */
@@ -643,7 +643,7 @@ if (init('type') != '') {
 				}
 				utils::a2o($cmd, jeedom::fromHumanReadable($params));
 				$cmd->save();
-				$jsonrpc->makeSuccess($cmd);
+				$jsonrpc->makeSuccess(utils::o2a($cmd));
 			}
 
 			/*             * ************************Scénario*************************** */
