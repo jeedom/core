@@ -1649,10 +1649,9 @@ class cmd {
 	}
 
 	public function exportApi() {
-		$value = ($this->getType() !== 'action') ? $this->execCmd(null, 2) : $this->getConfiguration('lastCmdValue', null);
 		$return = utils::o2a($this);
 		$return['generic_type'] = $this->getDisplay('generic_type', 'GENERIC_ERROR');
-		$return['currentValue'] = $value;
+		$return['currentValue'] = ($this->getType() !== 'action') ? $this->execCmd(null, 2) : $this->getConfiguration('lastCmdValue', null);
 		return $return;
 	}
 
