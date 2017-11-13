@@ -1308,7 +1308,7 @@ class scenarioExpression {
 						return;
 					}
 					$this->setLog($scenario, __('Suppresion des blocs DANS et A programmés du scénario ', __FILE__));
-					$crons = cron::searchClassAndFunction('scenario', 'doIn', '"scenario_id":' . $scenario->getId());
+					$crons = cron::searchClassAndFunction('scenario', 'doIn', '"scenario_id":' . $scenario->getId() . ',');
 					if (is_array($crons)) {
 						foreach ($crons as $cron) {
 							if ($cron->getState() != 'run') {
