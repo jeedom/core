@@ -373,7 +373,7 @@ Paramètres:
 - query (phrase de la demande)
 - int reply_cmd = NULL : ID de la commande à utiliser pour répondre, si non préciser alors Jeedom vous renvoi la réponse dans le json
 
-=== interact::all
+=== interactQuery::all
 
 Renvoi la liste complete de toute les interactions
 
