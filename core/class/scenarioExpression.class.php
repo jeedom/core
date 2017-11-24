@@ -1043,7 +1043,6 @@ class scenarioExpression {
 					if ($this->getExpression() == 'event' && $key == 'cmd') {
 						continue;
 					}
-
 					if (is_string($value)) {
 						$options[$key] = str_replace('"', '', self::setTags($value, $scenario));
 					}
@@ -1118,7 +1117,7 @@ class scenarioExpression {
 					if (!is_object($cmd)) {
 						throw new Exception(__('Commande introuvable : ', __FILE__) . $options['cmd']);
 					}
-					$cmd->event($options['value']);
+					$cmd->event(self::setTags(trim($options['value']), $_scenario));
 					return;
 				} else if ($this->getExpression() == 'message') {
 					message::add('scenario', $options['message']);
