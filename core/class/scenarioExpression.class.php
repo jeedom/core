@@ -1117,7 +1117,7 @@ class scenarioExpression {
 					if (!is_object($cmd)) {
 						throw new Exception(__('Commande introuvable : ', __FILE__) . $options['cmd']);
 					}
-					$cmd->event(self::setTags(trim($options['value']), $_scenario));
+					$cmd->event(jeedom::evaluateExpression($options['value']));
 					return;
 				} else if ($this->getExpression() == 'message') {
 					message::add('scenario', $options['message']);
