@@ -617,7 +617,7 @@ $('#div_pageContainer').delegate('.div_displayObject > .eqLogic-widget .history'
     }
 });
 
-$('#div_pageContainer').delegate('.div_displayObject > .cmd-widget .history', 'click', function () {
+$('#div_pageContainer').delegate('.div_displayObject > .cmd-widget.history', 'click', function () {
     if (!editOption.state) {
         $('#md_modal').dialog({title: "Historique"}).load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
     }
