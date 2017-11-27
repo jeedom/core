@@ -1462,7 +1462,7 @@ class cmd {
 		if ($this->getCache('ask::variable', 'none') == 'none') {
 			return false;
 		}
-		if ($this->getCache('ask::endtime', null) == null || $this->getCache('ask::endtime', null) < strtotime('now')) {
+		if ($this->getCache('ask::endtime', null) === null || $this->getCache('ask::endtime', null) < strtotime('now')) {
 			return false;
 		}
 		$dataStore = new dataStore();
