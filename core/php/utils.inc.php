@@ -81,7 +81,13 @@ function getTemplate($_folder, $_version, $_filename, $_plugin = '') {
 	return (file_exists($path)) ? file_get_contents($path) : '';
 }
 
-function template_replace($_array, $_subject) {
+/**
+ * 
+ * @param array $_array
+ * @param string $_subject
+ * @return string|array
+ */
+function template_replace(array $_array, $_subject) {
 	return str_replace(array_keys($_array), array_values($_array), $_subject);
 }
 
