@@ -312,7 +312,7 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 				if (is_array($parameter['allow_displayType']) && !in_array($key, $parameter['allow_displayType'])) {
 					continue;
 				}
-				if ($parameter['allow_displayType'] == false) {
+				if ($parameter['allow_displayType'] === false) {
 					continue;
 				}
 				$default = '';
