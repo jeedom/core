@@ -196,7 +196,7 @@ class jeedom {
 			'comment' => '',
 		);
 
-		if ($values['SwapTotal'] != 0 && $values['SwapTotal'] != null) {
+		if ($values['SwapTotal'] != 0 && $values['SwapTotal'] !== null) {
 			$value = round(($values['SwapFree'] / $values['SwapTotal']) * 100);
 			$return[] = array(
 				'name' => __('Swap disponible', __FILE__),
