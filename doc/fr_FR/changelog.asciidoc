@@ -2,6 +2,7 @@
 
 == Next
 
+* JEED-125 : ajout d'un lien vers la documentation de réinitialisation de mot de passe
 * JEED-2 : Amélioration de la gestion de l'heure lors d'un redemarrage
 * JEED-77 : Ajout de la gestion des variables dans l'API http
 * JEED-78 : ajout de la fonction tag pour les scénarios. Attention il faut dans les scénarios utilisant les tags passer de #montag# à tag(montag)
