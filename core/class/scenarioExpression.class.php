@@ -898,6 +898,17 @@ class scenarioExpression {
 		return $return;
 	}
 
+	public static function tag(&$_scenario = null, $_name, $_default = '') {
+		if ($_scenario == null) {
+			return '"' . $_default . '"';
+		}
+		$tags = $_scenario->getTags();
+		if (isset($tags['#' . $_name . '#'])) {
+			return $tags['#' . $_name . '#'];
+		}
+		return '"' . $_default . '"';
+	}
+
 	public static function setTags($_expression, &$_scenario = null, $_quote = false, $_nbCall = 0) {
 		if ($_nbCall > 10) {
 			return $_expression;
@@ -959,6 +970,14 @@ class scenarioExpression {
 						$replace2[$replace_string] = self::trigger($arguments[0], $_scenario);
 					} elseif ($function == 'triggerValue') {
 						$replace2[$replace_string] = self::triggerValue($_scenario);
+					} elseif ($function == 'tag') {
+						if (!isset($arguments[0])) {
+							$arguments[0] = '';
+						}
+						if (!isset($arguments[1])) {
+							$arguments[1] = '';
+						}
+						$replace2[$replace_string] = self::tag($_scenario, $arguments[0], $arguments[1]);
 					} else {
 						$replace2[$replace_string] = call_user_func_array(__CLASS__ . "::" . $function, $arguments);
 
