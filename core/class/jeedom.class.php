@@ -108,16 +108,18 @@ class jeedom {
 		$return[] = array(
 			'name' => __('Démarré', __FILE__),
 			'state' => $state,
-			'result' => ($state) ? __('OK', __FILE__) . ' (' . file_get_contents(self::getTmpFolder() . '/started') . ')' : __('NOK', __FILE__),
+			'result' => ($state) ? __('OK', __FILE__) . ' ' . file_get_contents(self::getTmpFolder() . '/started') : __('NOK', __FILE__),
 			'comment' => '',
 		);
 
 		$state = self::isDateOk();
+		$cache = cache::byKey('hour');
+		$lastKnowDate = $cache->getValue();
 		$return[] = array(
-			'name' => __('Date système', __FILE__),
+			'name' => __('Date système (dernière heure enregistrée)', __FILE__),
 			'state' => $state,
-			'result' => ($state) ? __('OK', __FILE__) : date('Y-m-d H:i:s'),
-			'comment' => '',
+			'result' => ($state) ? __('OK ', __FILE__) . date('Y-m-d H:i:s') . ' (' . $lastKnowDate . ')' : date('Y-m-d H:i:s'),
+			'comment' => ($state) ? '' : __('Si la derniere heure enregistrée est fausse il faut la remettre à zéro <a href="index.php?v=d&p=administration">ici</a>', __FILE__),
 		);
 
 		$state = !user::hasDefaultIdentification();
@@ -669,6 +671,15 @@ class jeedom {
 		if (config::byKey('ignoreHourCheck') == 1) {
 			return true;
 		}
+		$cache = cache::byKey('hour');
+		$lastKnowDate = $cache->getValue();
+		if (strtotime($lastKnowDate) > strtotime('now')) {
+			self::forceSyncHour();
+			sleep(3);
+			if (strtotime($lastKnowDate) > strtotime('now')) {
+				return false;
+			}
+		}
 		$minDateValue = new \DateTime('2017-01-01');
 		$mindate = strtotime($minDateValue->format('Y-m-d 00:00:00'));
 		$maxDateValue = $minDateValue->modify('+6 year')->format('Y-m-d 00:00:00');
@@ -878,6 +889,13 @@ class jeedom {
 	}
 
 	public static function cronHourly() {
+		try {
+			cache::set('hour', date('Y-m-d H:i:s'));
+		} catch (Exception $e) {
+			log::add('jeedom', 'error', $e->getMessage());
+		} catch (Error $e) {
+			log::add('jeedom', 'error', $e->getMessage());
+		}
 		try {
 			foreach (update::listRepo() as $name => $repo) {
 				$class = 'repo_' . $name;

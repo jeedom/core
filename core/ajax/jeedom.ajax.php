@@ -175,6 +175,11 @@ try {
 		ajax::success();
 	}
 
+	if (init('action') == 'resetHour') {
+		$cache = cache::delete('hour');
+		ajax::success();
+	}
+
 	if (init('action') == 'backupupload') {
 		$uploaddir = dirname(__FILE__) . '/../../backup';
 		if (!file_exists($uploaddir)) {

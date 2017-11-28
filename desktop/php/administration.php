@@ -88,8 +88,21 @@ user::isBan();
 						</div>
 					</div>
 					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" >{{Dernière date connue}}</label>
+						<div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
+							<?php
+$cache = cache::byKey('hour');
+$lastKnowDate = $cache->getValue();
+?>
+								<span class="label label-info" style="font-size : 1em;"><?php echo $lastKnowDate ?></span>
+						</div>
+						<div class="col-lg-2 col-md-3 col-sm-3">
+							<a class="btn btn-default form-control" id="bt_resetHour"><i class="fa fa-refresh"></i> {{Remise à zéro}}</a>
+						</div>
+					</div>
+					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Fuseau horaire de votre Jeedom}}">{{Date et heure}}</label>
-						<div class="col-lg-4 col-md-5 col-sm-6 col-xs-6">
+						<div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
 							<select class="configKey form-control" data-l1key="timezone">
 								<option value="Pacific/Midway">(GMT-11:00) Midway Island, Samoa</option>
 								<option value="Pacific/Tahiti">(GMT-10:00) Pacific/Tahiti</option>

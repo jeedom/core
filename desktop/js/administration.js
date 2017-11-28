@@ -275,6 +275,28 @@
     modifyWithoutSave = true;
 });
 
+
+  $('#bt_resetHour').on('click',function(){
+     $.ajax({
+        type: "POST", 
+        url: "core/ajax/jeedom.ajax.php", 
+        data: {
+            action: "resetHour"
+        },
+        dataType: 'json',
+        error: function (request, status, error) {
+            handleAjaxError(request, status, error);
+        },
+        success: function (data) { 
+            if (data.state != 'ok') {
+                $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                return;
+            }
+            loadPage('index.php?v=d&p=administration');
+        }
+    });
+ });
+
  $('#bt_resetHwKey').on('click',function(){
      $.ajax({
         type: "POST", 
