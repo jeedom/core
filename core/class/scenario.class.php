@@ -1152,6 +1152,15 @@ class scenario {
 	 * @throws Exception
 	 */
 	public function stop() {
+		$crons = cron::searchClassAndFunction('scenario', 'doIn', '"scenario_id":' . $this->getId());
+		if (is_array($crons)) {
+			foreach ($crons as $cron) {
+				if ($cron->getState() == 'run') {
+					$cron->halt();
+					$cron->remove();
+				}
+			}
+		}
 		if ($this->running()) {
 			if ($this->getPID() > 0) {
 				system::kill($this->getPID());
