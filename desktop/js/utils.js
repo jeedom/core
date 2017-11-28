@@ -519,6 +519,15 @@ jQuery.fn.findAtDepth = function (selector, maxDepth) {
     return this.find(selector);
 };
 
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+}
+
 
 function chooseIcon(_callback) {
     if ($("#mod_selectIcon").length == 0) {

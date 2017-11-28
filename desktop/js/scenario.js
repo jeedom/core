@@ -134,6 +134,26 @@ $('#in_treeSearch').keyup(function () {
   $('#div_tree').jstree(true).search($('#in_treeSearch').val());
 });
 
+
+$('#in_searchScenario').keyup(function () {
+  var search = $(this).value();
+  if(search == ''){
+    $('.panel-collapse.in').closest('.panel').find('.accordion-toggle').click()
+    $('.scenarioDisplayCard').show();
+    return;
+  }
+  $('.panel-collapse:not(.in)').closest('.panel').find('.accordion-toggle').click()
+  $('.scenarioDisplayCard').hide();
+  $('.scenarioDisplayCard .name').each(function(){
+    var text = $(this).text().toLowerCase();
+    if(text.indexOf(search.toLowerCase()) >= 0){
+      $(this)
+      $(this).closest('.scenarioDisplayCard').show();
+    }
+  });
+  $('.scenarioListContainer').packery();
+});
+
 $('.scenarioAttr[data-l1key=group]').autocomplete({
   source: function (request, response, url) {
     $.ajax({
