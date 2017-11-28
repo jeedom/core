@@ -192,6 +192,23 @@ if (init('type') != '') {
 			echo json_encode(object::fullData());
 			die();
 		}
+		if ($type == 'variable') {
+			log::add('api', 'debug', __('Demande API pour les variables', __FILE__));
+			if (init('value') == '') {
+				$dataStore = dataStore::byTypeLinkIdKey('scenario', -1, trim(init('name')));
+				if (is_object($dataStore)) {
+					echo $dataStore->getValue($_default);
+				}
+			} else {
+				$dataStore = new dataStore();
+				$dataStore->setKey(trim(init('name')));
+				$dataStore->setValue(init('value'));
+				$dataStore->setType('scenario');
+				$dataStore->setLink_id(-1);
+				$dataStore->save();
+			}
+			die();
+		}
 	} catch (Exception $e) {
 		echo $e->getMessage();
 		log::add('jeeEvent', 'error', $e->getMessage());
