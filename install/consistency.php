@@ -154,6 +154,19 @@ try {
 	$cron->setTimeout(30);
 	$cron->save();
 
+	$cron = cron::byClassAndFunction('scenario', 'control');
+	if (!is_object($cron)) {
+		echo "Création de scenario::control\n";
+		$cron = new cron();
+	}
+	$cron->setClass('scenario');
+	$cron->setFunction('control');
+	$cron->setSchedule('* * * * * *');
+	$cron->setEnable(1);
+	$cron->setDeamon(0);
+	$cron->setTimeout(30);
+	$cron->save();
+
 	$cron = cron::byClassAndFunction('jeedom', 'cronDaily');
 	if (!is_object($cron)) {
 		echo "Création de jeedom::cronDaily\n";

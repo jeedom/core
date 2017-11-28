@@ -258,32 +258,44 @@ class scenario {
 			$message = __('Scénario exécuté automatiquement sur programmation', __FILE__);
 			$scenarios = scenario::schedule();
 			$trigger = '#schedule#';
-			if (!jeedom::isDateOk()) {
-				return;
-			}
-			foreach ($scenarios as $key => &$scenario) {
-				if ($scenario->getState() != 'in progress') {
-					if (!$scenario->isDue()) {
+			if (jeedom::isDateOk()) {
+				foreach ($scenarios as $key => &$scenario) {
+					if ($scenario->getState() != 'in progress') {
+						if (!$scenario->isDue()) {
+							unset($scenarios[$key]);
+						}
+					} else {
 						unset($scenarios[$key]);
 					}
-				} else {
-					unset($scenarios[$key]);
 				}
 			}
 		}
-		if (count($scenarios) == 0) {
-			return true;
-		}
-		foreach ($scenarios as $scenario_) {
-			$scenario_->launch($trigger, $message, $_forceSyncMode);
-		}
-		foreach (scenario::all() as $scenario) {
-			if ($scenario->getState() == 'in progress' && !$scenario->running()) {
-				$scenario->setState('error');
+		if (count($scenarios) > 0) {
+			foreach ($scenarios as $scenario_) {
+				$scenario_->launch($trigger, $message, $_forceSyncMode);
 			}
 		}
 		return true;
 	}
+
+	public static function control() {
+		foreach (scenario::all() as $scenario) {
+			if ($scenario->getState() != 'in progress') {
+				continue;
+			}
+			if (!$scenario->running()) {
+				$scenario->setState('error');
+				continue;
+			}
+			$runtime = strtotime('now') - strtotime($scenario->getLastLaunch());
+			if (is_numeric($scenario->getTimeout()) && $scenario->getTimeout() != '' && $scenario->getTimeout() != 0 && $runtime > $scenario->getTimeout()) {
+				$scenario->stop();
+				$scenario->setLog(__('Arret du scénario car il a dépassé son temps de timeout : ', __FILE__) . $scenario->getTimeout() . 's');
+				$scenario->persistLog();
+			}
+		}
+	}
+
 	/**
 	 *
 	 * @param array $_options

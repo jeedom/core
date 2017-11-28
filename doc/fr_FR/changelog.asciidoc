@@ -2,6 +2,7 @@
 
 == Next
 
+* JEED-124 : Corriger la gestion des timeouts des scénarios
 * Correction de bugs
 * Possibilité de désactiver une intéraction
 * Ajout d'un éditeur de fichiers (réservé aux utilisateurs expérimentés)
