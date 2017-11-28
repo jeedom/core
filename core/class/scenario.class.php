@@ -1156,8 +1156,12 @@ class scenario {
 		if (is_array($crons)) {
 			foreach ($crons as $cron) {
 				if ($cron->getState() == 'run') {
-					$cron->halt();
-					$cron->remove();
+					try {
+						$cron->halt();
+						$cron->remove();
+					} catch (Exception $e) {
+						log::add('scenario', 'info', __('Can not stop subtask : ') . print_r($cron->getOption(), true));
+					}
 				}
 			}
 		}
