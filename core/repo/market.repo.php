@@ -466,6 +466,7 @@ class repo_market {
 		} catch (Exception $e) {
 
 		}
+		$uname = shell_exec('uname -a');
 		if (config::byKey('market::username') != '' && config::byKey('market::password') != '') {
 			$params = array(
 				'username' => config::byKey('market::username'),
@@ -478,6 +479,7 @@ class repo_market {
 					'nbMessage' => message::nbMessage(),
 					'nbUpdate' => update::nbNeedUpdate(),
 					'hardware' => (method_exists('jeedom', 'getHardwareName')) ? jeedom::getHardwareName() : '',
+					'uname' => $uname,
 				),
 				'localIp' => $internalIp,
 				'jeedom_name' => config::byKey('name'),
@@ -496,6 +498,12 @@ class repo_market {
 				'localIp' => $internalIp,
 				'jeedom_name' => config::byKey('name'),
 				'plugin_install_list' => plugin::listPlugin(true, false, false, true),
+				'information' => array(
+					'nbMessage' => message::nbMessage(),
+					'nbUpdate' => update::nbNeedUpdate(),
+					'hardware' => (method_exists('jeedom', 'getHardwareName')) ? jeedom::getHardwareName() : '',
+					'uname' => $uname,
+				),
 			));
 		}
 		$jsonrpc->setCb_class('repo_market');
