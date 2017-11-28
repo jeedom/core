@@ -75,5 +75,12 @@ Voici l'URL = http://\#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY#&ty
 
 Renvoie tous les objets, équipements, commandes (et leur valeur si ce sont des infos) en json
 
+== Variable
+
+Voici l'URL = http://\#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY#&type=variable&name=\#NAME#&value=#VALUE#
+
+* *name* : nom de la variable dont on veut la valeur (lecture de la valeur)
+* *value* [optionnel] : si value est précisé alors la variable prendra cette valeur (ecriture d'une valeur)
+
 
 
