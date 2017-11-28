@@ -1204,7 +1204,7 @@ class scenarioExpression {
 							if (is_array($this->getOptions('tags'))) {
 								$actionScenario->setTags($this->getOptions('tags'));
 							}
-							$this->setLog($scenario, __('Lancement du scénario : ', __FILE__) . $actionScenario->getName() . __(' options : ', __FILE__) . print_r($actionScenario->getTags(), true));
+							$this->setLog($scenario, __('Lancement du scénario : ', __FILE__) . $actionScenario->getName() . __(' options : ', __FILE__) . json_encode($actionScenario->getTags()));
 							if ($scenario !== null) {
 								return $actionScenario->launch('scenario', __('Lancement provoqué par le scénario  : ', __FILE__) . $scenario->getHumanName());
 							} else {
@@ -1223,7 +1223,7 @@ class scenarioExpression {
 							if (is_array($this->getOptions('tags'))) {
 								$actionScenario->setTags($this->getOptions('tags'));
 							}
-							$this->setLog($scenario, __('Lancement du scénario : ', __FILE__) . $actionScenario->getName() . __(' options : ', __FILE__) . print_r($actionScenario->getTags(), true));
+							$this->setLog($scenario, __('Lancement du scénario : ', __FILE__) . $actionScenario->getName() . __(' options : ', __FILE__) . json_encode($actionScenario->getTags()));
 							if ($scenario !== null) {
 								return $actionScenario->launch('scenario', __('Lancement provoqué par le scénario  : ', __FILE__) . $scenario->getHumanName(), true);
 							} else {
@@ -1279,7 +1279,7 @@ class scenarioExpression {
 					if (!is_object($cmd)) {
 						throw new Exception(__('Commande introuvable - Vérifiez l\'id : ', __FILE__) . $this->getOptions('cmd'));
 					}
-					$this->setLog($scenario, __('Demande ', __FILE__) . print_r($options_cmd, true));
+					$this->setLog($scenario, __('Demande ', __FILE__) . json_encode($options_cmd));
 					$cmd->setCache('ask::variable', $this->getOptions('variable'));
 					$cmd->setCache('ask::endtime', strtotime('now') + $limit);
 					$cmd->execCmd($options_cmd);
@@ -1387,8 +1387,8 @@ class scenarioExpression {
 						if ($cmd->getSubtype() == 'slider' && isset($options['slider'])) {
 							$options['slider'] = evaluate($options['slider']);
 						}
-						if (is_array($options) && count($options) != 0) {
-							$this->setLog($scenario, __('Exécution de la commande ', __FILE__) . $cmd->getHumanName() . __(" avec comme option(s) : \n", __FILE__) . print_r($options, true));
+						if (is_array($options) && (count($options) > 1 || (isset($options['background']) && $options['background'] == 1))) {
+							$this->setLog($scenario, __('Exécution de la commande ', __FILE__) . $cmd->getHumanName() . __(" avec comme option(s) : \n", __FILE__) . json_encode($options));
 						} else {
 							$this->setLog($scenario, __('Exécution de la commande ', __FILE__) . $cmd->getHumanName());
 						}
