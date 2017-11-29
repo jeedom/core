@@ -12,8 +12,8 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
 <div id='div_alertReportBug'></div>
 <form class="form-horizontal" role="form" id="form_reportBug">
     <div class="panel panel-success">
-       <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-info"></i> {{Etape 1 : Information sur les tickets}}</h3></div>
-       <div class="panel-body">
+     <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-info"></i> {{Etape 1 : Information sur les tickets}}</h3></div>
+     <div class="panel-body">
         {{Merci de vérifier avant toute ouverture de ticket :}}<br/>
         {{- que la question n'a pas déjà été posée sur le <a href='https://jeedom.com/forum'>forum</a>}}<br/>
         {{- que la catégorie est bien sélectionnée pour que votre ticket soit traité dans les plus courts délais}}<br/>
@@ -22,8 +22,8 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
 </div>
 
 <div class="panel panel-primary">
-   <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-cogs"></i> {{Etape 2 : Catégorie et type de la demande}}</h3></div>
-   <div class="panel-body">
+ <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-cogs"></i> {{Etape 2 : Catégorie et type de la demande}}</h3></div>
+ <div class="panel-body">
     <div class="form-group">
         <label class="col-sm-2 control-label">{{Type}}</label>
         <div class="col-sm-2">
@@ -53,8 +53,8 @@ foreach (plugin::listPlugin(true) as $plugin) {
 </div>
 
 <div id="div_reportModalSearchAction" class="panel panel-primary" style="display:none;">
- <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-search"></i> {{Etape 3 : Chercher dans la documentation}}</h3></div>
- <div class="panel-body">
+   <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-search"></i> {{Etape 3 : Chercher dans la documentation}}</h3></div>
+   <div class="panel-body">
     <div class="form-group">
         <label class="col-sm-2 control-label">{{Rechercher}}</label>
         <div class="col-sm-2">
@@ -67,7 +67,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 <div class="panel panel-primary" id="div_reportModalSendAction" style="display:none;">
     <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-pencil"></i> {{Etape 4 : Demande de support}}</h3></div>
     <div class="panel-body">
-     <div class="form-group">
+       <div class="form-group">
         <label class="col-sm-2 control-label">{{Titre}}</label>
         <div class="col-sm-7">
             <input class="form-control ticketAttr" data-l1key="title"/>
@@ -93,10 +93,10 @@ foreach (plugin::listPlugin(true) as $plugin) {
         <div class="form-group">
             <label class="col-sm-5 control-label">{{Ce plugin utilise un gestionnaire de demande de support}}</label>
             <div class="col-sm-2">
-               <a class="btn btn-success" id="bt_reportBugIssueUrl" href="#" target="_blank" style="color:white;"><i class="fa fa-check-circle"></i> {{Accéder}}</a>
-           </div>
-       </div>
-   </div>
+             <a class="btn btn-success" id="bt_reportBugIssueUrl" href="#" target="_blank" style="color:white;"><i class="fa fa-check-circle"></i> {{Accéder}}</a>
+         </div>
+     </div>
+ </div>
 </div>
 </form>
 
@@ -124,7 +124,11 @@ foreach (plugin::listPlugin(true) as $plugin) {
                     return;
                 }
                 $('#bt_sendBugReport').hide();
-                $('#div_alertReportBug').showAlert({message: '{{Votre ticket a bien été ouvert. Nous vous recontacterons prochainement.}}', level: 'success'});
+                if(data.result != ''){
+                    $('#div_alertReportBug').showAlert({message: '{{Votre ticket a bien été ouvert. Vous pouvez le suivre}} <a target="_href" href="'+data.result+'">ici</a>', level: 'success'});
+                }else{
+                    $('#div_alertReportBug').showAlert({message: '{{Votre ticket a bien été ouvert. Un mail va vous être envoyé}}', level: 'success'});
+                }
             }
         });
     });

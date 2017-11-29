@@ -39,9 +39,7 @@ try {
 
 	if (init('action') == 'sendReportBug') {
 		$class = 'repo_' . init('repo');
-		$ticket = json_decode(init('ticket'), true);
-		$class::saveTicket($ticket);
-		ajax::success();
+		ajax::success($class::saveTicket(json_decode(init('ticket'), true)));
 	}
 
 	if (init('action') == 'install') {
