@@ -116,6 +116,14 @@ class ExpressionLanguageTest extends TestCase
         $this->assertSame('($a + $B)', $result);
     }
 
+    public function testStrictEquality()
+    {
+        $expressionLanguage = new ExpressionLanguage();
+        $expression = '123 === a';
+        $result = $expressionLanguage->compile($expression, array('a'));
+        $this->assertSame('(123 === $a)', $result);
+    }
+
     public function testCachingWithDifferentNamesOrder()
     {
         $cacheMock = $this->getMockBuilder('Symfony\Component\ExpressionLanguage\ParserCache\ParserCacheInterface')->getMock();
@@ -161,6 +169,16 @@ class ExpressionLanguageTest extends TestCase
         $el = new ExpressionLanguage();
         $el->evaluate('1 + 1');
         $registerCallback($el);
+    }
+
+    /**
+     * @expectedException \RuntimeException
+     * @expectedExceptionMessageRegExp  /Unable to call method "\w+" of object "\w+"./
+     */
+    public function testCallBadCallable()
+    {
+        $el = new ExpressionLanguage();
+        $el->evaluate('foo.myfunction()', array('foo' => new \stdClass()));
     }
 
     /**
