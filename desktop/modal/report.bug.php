@@ -124,7 +124,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
                     return;
                 }
                 $('#bt_sendBugReport').hide();
-                if(data.result != ''){
+                if(data.result != '' && data.result != null){
                     $('#div_alertReportBug').showAlert({message: '{{Votre ticket a bien été ouvert. Vous pouvez le suivre}} <a target="_href" href="'+data.result+'">ici</a>', level: 'success'});
                 }else{
                     $('#div_alertReportBug').showAlert({message: '{{Votre ticket a bien été ouvert. Un mail va vous être envoyé}}', level: 'success'});
