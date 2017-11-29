@@ -17,8 +17,7 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
         {{Merci de vérifier avant toute ouverture de ticket :}}<br/>
         {{- que la question n'a pas déjà été posée sur le <a href='https://jeedom.com/forum'>forum</a>}}<br/>
         {{- que la catégorie est bien sélectionnée pour que votre ticket soit traité dans les plus courts délais}}<br/>
-        {{- que la réponse n'est pas déjà dans la <a href='https://jeedom.github.io/documentation'>documentation</a>}}<br/>
-        {{N'oubliez pas que poser la question sur le forum vous fournira généralement une réponse plus rapide que par ticket.}}
+        {{- que la réponse n'est pas déjà dans la <a href='https://jeedom.github.io/documentation'>documentation</a>}}
     </div>
 </div>
 
@@ -30,16 +29,17 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
         <div class="col-sm-2">
             <select class="form-control ticketAttr" data-l1key="type">
                 <option value=''>{{Aucun}}</option>
-                <option value='question'>{{Question}}</option>
-                <option value='incident'>{{Incident}}</option>
+                <option value='support'>{{Support}}</option>
+                <option value='Bug'>{{Bug}}</option>
+                <option value='Amélioration'>{{Demande d'amélioration}}</option>
             </select>
         </div>
         <label class="col-sm-2 control-label">{{Catégorie}}</label>
         <div class="col-sm-4">
             <select class="form-control ticketAttr" data-l1key="category">
                 <option value=''>{{Aucune}}</option>
-                <option data-issue="" data-pagehelp="doc/<?php echo config::byKey('language', 'core', 'fr_FR'); ?>/depannage.html">{{Général}}</option>
-                <option data-issue="" data-pagehelp="doc/<?php echo config::byKey('language', 'core', 'fr_FR'); ?>/scenario.html">{{Scénario}}</option>
+                <option data-issue="" value="core" data-pagehelp="doc/<?php echo config::byKey('language', 'core', 'fr_FR'); ?>/depannage.html">{{Général}}</option>
+                <option data-issue="" value="core" data-pagehelp="doc/<?php echo config::byKey('language', 'core', 'fr_FR'); ?>/scenario.html">{{Scénario}}</option>
                 <?php
 foreach (plugin::listPlugin(true) as $plugin) {
 	echo '<option data-issue="' . $plugin->getIssue() . '" value="plugin::' . $plugin->getId() . '" data-pagehelp="' . $plugin->getDocumentation() . '">Plugin ' . $plugin->getName() . '</option>';
