@@ -1388,7 +1388,7 @@ class scenarioExpression {
 							$options['slider'] = evaluate($options['slider']);
 						}
 						if (is_array($options) && (count($options) > 1 || (isset($options['background']) && $options['background'] == 1))) {
-							$this->setLog($scenario, __('Exécution de la commande ', __FILE__) . $cmd->getHumanName() . __(" avec comme option(s) : \n", __FILE__) . json_encode($options));
+							$this->setLog($scenario, __('Exécution de la commande ', __FILE__) . $cmd->getHumanName() . __(" avec comme option(s) : ", __FILE__) . json_encode($options));
 						} else {
 							$this->setLog($scenario, __('Exécution de la commande ', __FILE__) . $cmd->getHumanName());
 						}
