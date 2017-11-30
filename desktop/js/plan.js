@@ -918,8 +918,6 @@ function displayObject(_plan,_html, _noRender) {
     html.css('-moz-transform-origin', '0 0');
     html.css('-moz-transform', 'scale(' + init(_plan.css.zoom, 1) + ')');
     html.addClass('noResize');
-    console.log(html);
-    console.log(_plan);
     if (isset(_plan.display) && isset(_plan.display.width)) {
         html.css('width', init(_plan.display.width, 50));
     }

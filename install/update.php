@@ -42,10 +42,14 @@ $update_begin = false;
 try {
 	require_once dirname(__FILE__) . '/../core/php/core.inc.php';
 	if (count(system::ps('install/update.php', 'sudo')) > 1) {
-		echo "Une mise a jour est deja en cours. Vous devez attendre qu'elle soit finie avant d'en relancer une\n";
-		print_r(system::ps('install/update.php', 'sudo'));
-		echo "[END UPDATE]\n";
-		die();
+		echo "Update in progress. I will wait 10s then retry\n";
+		sleep(10);
+		if (count(system::ps('install/update.php', 'sudo')) > 1) {
+			echo "Update in progress. You must wait until it is finished before restarting new update\n";
+			print_r(system::ps('install/update.php', 'sudo'));
+			echo "[END UPDATE]\n";
+			die();
+		}
 	}
 	echo "****Update jeedom from " . jeedom::version() . " (" . date('Y-m-d H:i:s') . ")****\n";
 	echo "Parameters : " . print_r($_GET, true);
@@ -168,14 +172,30 @@ try {
 					throw new Exception('Unable to unzip file : ' . $tmp);
 				}
 				echo "OK\n";
-				echo "Moving file...";
-				$update_begin = true;
+
 				if (!file_exists($cibDir . '/core')) {
 					$files = ls($cibDir, '*');
 					if (count($files) == 1 && file_exists($cibDir . '/' . $files[0] . 'core')) {
 						$cibDir = $cibDir . '/' . $files[0];
 					}
 				}
+
+				if (init('preUpdate') == 1) {
+					echo "Update updater...";
+					rmove($cibDir . '/install/update.php', dirname(__FILE__) . '/update.php', false, array(), true);
+					echo "OK\n";
+					echo "Remove temporary file...";
+					rrmdir($tmp_dir);
+					echo "OK\n";
+					echo "Wait 10s before relaunch update\n";
+					sleep(10);
+					$_GET['preUpdate'] = 0;
+					jeedom::update($_GET);
+					die();
+				}
+
+				echo "Moving file...";
+				$update_begin = true;
 				rmove($cibDir . '/', dirname(__FILE__) . '/../', false, array(), true);
 				echo "OK\n";
 				echo "Remove temporary file...";
