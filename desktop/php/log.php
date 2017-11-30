@@ -37,20 +37,16 @@ foreach ($list_logfile as $file) {
 	</div>
 	<div class="col-lg-10 col-md-9 col-sm-8">
 		<div class="row">
-		<div class="col-lg-12">
-			<a class="btn btn-danger pull-right" id="bt_removeAllLog"><i class="fa fa-trash-o"></i> {{Supprimer tous}}</a>
-			<a class="btn btn-danger pull-right" id="bt_removeLog"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>
-			<a class="btn btn-warning pull-right" id="bt_clearLog"><i class="fa fa-times"></i> {{Vider}}</a>
-			<a class="btn btn-success pull-right" id="bt_downloadLog"><i class="fa fa-cloud-download"></i> {{Télécharger}}</a>
-			<a class="btn btn-warning pull-right" data-state="1" id="bt_globalLogStopStart"><i class="fa fa-pause"></i> {{Pause}}</a>
-			<input style="max-width: 150px;" class="form-control pull-right" id="in_globalLogSearch" placeholder="{{Rechercher}}" />
+			<div class="col-lg-12">
+				<a class="btn btn-danger pull-right" id="bt_removeAllLog"><i class="fa fa-trash-o"></i> {{Supprimer tous}}</a>
+				<a class="btn btn-danger pull-right" id="bt_removeLog"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>
+				<a class="btn btn-warning pull-right" id="bt_clearLog"><i class="fa fa-times"></i> {{Vider}}</a>
+				<a class="btn btn-success pull-right" id="bt_downloadLog"><i class="fa fa-cloud-download"></i> {{Télécharger}}</a>
+				<a class="btn btn-warning pull-right" data-state="1" id="bt_globalLogStopStart"><i class="fa fa-pause"></i> {{Pause}}</a>
+				<input style="max-width: 150px;" class="form-control pull-right" id="in_globalLogSearch" placeholder="{{Rechercher}}" />
+			</div>
 		</div>
-		</div>
-		<div class="row">
-		<div class="col-lg-12">
-			<pre id='pre_globallog' style='overflow: auto; height: calc(100% - 70px);with:100%;'></pre>
-		</div>
-		</div>
+		<pre id='pre_globallog' style='overflow: auto; height: calc(100% - 50px);width:100%;margin-top: 5px;'></pre>
 	</div>
 </div>
 <?php include_file('desktop', 'log', 'js');?>
