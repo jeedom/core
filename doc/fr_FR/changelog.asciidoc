@@ -2,6 +2,7 @@
 
 == Next
 
+* JEED-19 : Lors d'une mise à jour il est maintenant possible de mettre à jour le script d'update avant la mise à jour
 * JEED-125 : ajout d'un lien vers la documentation de réinitialisation de mot de passe
 * JEED-2 : Amélioration de la gestion de l'heure lors d'un redemarrage
 * JEED-77 : Ajout de la gestion des variables dans l'API http
