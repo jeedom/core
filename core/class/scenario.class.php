@@ -311,11 +311,12 @@ class scenario {
 			$scenario->persistLog();
 			return;
 		}
-		if (isset($_options['tags']) && is_array($_options['tags']) && count($_options['tags']) > 0) {
-			$scenario->setTags($_options['tags']);
-		}
 		$scenarioElement = scenarioElement::byId($_options['scenarioElement_id']);
 		$scenario->setLog(__('************Lancement sous tâche**************', __FILE__));
+		if (isset($_options['tags']) && is_array($_options['tags']) && count($_options['tags']) > 0) {
+			$scenario->setTags($_options['tags']);
+			$scenario->setLog(__('Tags : ', __FILE__) . json_encode($scenario->getTags()));
+		}
 		if (!is_object($scenarioElement) || !is_object($scenario)) {
 			return;
 		}
