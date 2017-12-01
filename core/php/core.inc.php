@@ -33,8 +33,6 @@ try {
 	$configs = config::byKeys(array('timezone', 'log::level'));
 	if (isset($configs['timezone'])) {
 		date_default_timezone_set($configs['timezone']);
-	} else {
-		date_default_timezone_set('Europe/Brussels');
 	}
 } catch (Exception $e) {
 
