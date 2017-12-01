@@ -119,16 +119,19 @@ $('.bt_displayView').on('click', function () {
     }
 });
 
-function editWidgetMode(_mode){
+function editWidgetMode(_mode,_save){
     if(!isset(_mode)){
         if($('#bt_editViewWidgetOrder').attr('data-mode') != undefined && $('#bt_editViewWidgetOrder').attr('data-mode') == 1){
-            editWidgetMode(0);
-            editWidgetMode(1);
+            editWidgetMode(0,false);
+            editWidgetMode(1,false);
         }
         return;
     }
     if(_mode == 0 || _mode == '0'){
-        if( $('.eqLogicZone .eqLogic-widget.ui-draggable').length > 0){
+       if(!isset(_save) || _save){
+         saveCmdOrder();
+     }
+     if( $('.eqLogicZone .eqLogic-widget.ui-draggable').length > 0){
          $('.eqLogicZone .eqLogic-widget').draggable('disable');
          $('.eqLogicZone .eqLogic-widget.allowResize').resizable('destroy');
      }

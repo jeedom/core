@@ -524,8 +524,8 @@ function sleep(milliseconds) {
   for (var i = 0; i < 1e7; i++) {
     if ((new Date().getTime() - start) > milliseconds){
       break;
-    }
   }
+}
 }
 
 
@@ -626,6 +626,40 @@ function taAutosize(){
     autosize.update($('.ta_autosize'));
 }
 
+function saveCmdOrder(_eqLogic_id){
+   var cmds = [];
+   $('.eqLogic-widget:not(.eqLogic_layout_table)').each(function(){
+     var eqLogic = $(this);
+     order = 1;
+     eqLogic.find('.cmd').each(function(){
+        cmd = {};
+        cmd.id = $(this).attr('data-cmd_id');
+        cmd.order = order;
+        cmds.push(cmd);
+        order++;
+    });
+ });
+   $('.eqLogic-widget.eqLogic_layout_table').each(function(){
+     var eqLogic = $(this);
+     order = 1;
+     eqLogic.find('.cmd').each(function(){
+        cmd = {};
+        cmd.id = $(this).attr('data-cmd_id');
+        cmd.line = $(this).closest('td').attr('data-line');
+        cmd.column = $(this).closest('td').attr('data-column');
+        cmd.order = order;
+        cmds.push(cmd);
+        order++;
+    });
+ });
+   jeedom.cmd.setOrder({
+    cmds: cmds,
+    error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    }
+});
+}
+
 
 function editWidgetCmdMode(_mode){
     if(!isset(_mode)){
@@ -657,53 +691,10 @@ function editWidgetCmdMode(_mode){
     $('.eqLogic-widget.allowReorderCmd').off('mouseleave','.cmd');
 }
 }else{
-   $( ".eqLogic-widget.allowReorderCmd.eqLogic_layout_default").sortable({
-    items: ".cmd",
-    stop: function (event, ui) {
-        var cmds = [];
-        var eqLogic = ui.item.closest('.eqLogic-widget');
-        order = 1;
-        eqLogic.find('.cmd').each(function(){
-            cmd = {};
-            cmd.id = $(this).attr('data-cmd_id');
-            cmd.order = order;
-            cmds.push(cmd);
-            order++;
-        });
-        jeedom.cmd.setOrder({
-            cmds: cmds,
-            error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-            }
-        });
-    }
-});
+   $( ".eqLogic-widget.allowReorderCmd.eqLogic_layout_default").sortable({items: ".cmd"});
    $(".eqLogic-widget.eqLogic_layout_table table.tableCmd").addClass('table-bordered');
    $('.eqLogic-widget.eqLogic_layout_table table.tableCmd td').sortable({
-    connectWith: '.eqLogic-widget.eqLogic_layout_table table.tableCmd td',
-    items: ".cmd",
-    stop: function (event, ui) {
-        var cmds = [];
-        var eqLogic = ui.item.closest('.eqLogic-widget');
-        order = 1;
-        eqLogic.find('.cmd').each(function(){
-            cmd = {};
-            cmd.id = $(this).attr('data-cmd_id');
-            cmd.line = $(this).closest('td').attr('data-line');
-            cmd.column = $(this).closest('td').attr('data-column');
-            cmd.order = order;
-            cmds.push(cmd);
-            order++;
-        });
-        jeedom.cmd.setOrder({
-            version : 'dashboard',
-            cmds: cmds,
-            error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-            }
-        });
-    }
-});
+    connectWith: '.eqLogic-widget.eqLogic_layout_table table.tableCmd td',items: ".cmd"});
    $('.eqLogic-widget.allowReorderCmd').on('mouseover','.cmd',function(){
     $('.eqLogic-widget').draggable('disable');
 });
@@ -726,36 +717,39 @@ function editWidgetCmdMode(_mode){
         name: "{{Configuration avancée}}",
         icon : 'fa-cog',
         callback: function(key, opt){
-           $('#md_modal').dialog({title: "{{Configuration du widget}}"});
-           $('#md_modal').load('index.php?v=d&modal=eqLogic.configure&eqLogic_id='+$(this).attr('data-eqLogic_id')).dialog('open');
+            saveCmdOrder($(this).attr('data-eqLogic_id'))
+            $('#md_modal').dialog({title: "{{Configuration du widget}}"});
+            $('#md_modal').load('index.php?v=d&modal=eqLogic.configure&eqLogic_id='+$(this).attr('data-eqLogic_id')).dialog('open');
+        }
+    },
+    sep1 : "---------",
+    layoutDefaut: {
+        name: "{{Defaut}}",
+        icon : 'fa-square-o',
+        disabled:function(key, opt) { 
+            return !$(this).hasClass('allowLayout') || !$(this).hasClass('eqLogic_layout_table'); 
+        },
+        callback: function(key, opt){
+           saveCmdOrder($(this).attr('data-eqLogic_id'))
+           jeedom.eqLogic.simpleSave({
+            eqLogic : {
+                id : $(this).attr('data-eqLogic_id'),
+                display : {'layout::dashboard' : 'default'},
+            },
+            error: function (error) {
+                $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            }
+        });
        }
    },
-   sep1 : "---------",
-   layoutDefaut: {
-    name: "{{Defaut}}",
-    icon : 'fa-square-o',
-    disabled:function(key, opt) { 
-        return !$(this).hasClass('allowLayout') || !$(this).hasClass('eqLogic_layout_table'); 
-    },
-    callback: function(key, opt){
-       jeedom.eqLogic.simpleSave({
-        eqLogic : {
-            id : $(this).attr('data-eqLogic_id'),
-            display : {'layout::dashboard' : 'default'},
-        },
-        error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        }
-    });
-   }
-},
-layoutTable: {
+   layoutTable: {
     name: "{{Table}}",
     icon : 'fa-table',
     disabled:function(key, opt) { 
         return !$(this).hasClass('allowLayout') || $(this).hasClass('eqLogic_layout_table'); 
     },
     callback: function(key, opt){
+       saveCmdOrder($(this).attr('data-eqLogic_id'))   
        jeedom.eqLogic.simpleSave({
         eqLogic : {
             id : $(this).attr('data-eqLogic_id'),
@@ -775,16 +769,17 @@ addTableColumn: {
         return !$(this).hasClass('eqLogic_layout_table'); 
     },
     callback: function(key, opt){
-       jeedom.eqLogic.simpleSave({
-        eqLogic : {
-            id : $(this).attr('data-eqLogic_id'),
-            display : {'layout::dashboard::table::nbColumn' : parseInt($(this).find('table.tableCmd').attr('data-column')) + 1},
-        },
-        error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        }
-    });
-   }
+        saveCmdOrder($(this).attr('data-eqLogic_id'))
+        jeedom.eqLogic.simpleSave({
+            eqLogic : {
+                id : $(this).attr('data-eqLogic_id'),
+                display : {'layout::dashboard::table::nbColumn' : parseInt($(this).find('table.tableCmd').attr('data-column')) + 1},
+            },
+            error: function (error) {
+                $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            }
+        });
+    }
 },
 addTableLine: {
     name: "{{Ajouter ligne}}",
@@ -793,16 +788,17 @@ addTableLine: {
         return !$(this).hasClass('eqLogic_layout_table'); 
     },
     callback: function(key, opt){
-       jeedom.eqLogic.simpleSave({
-        eqLogic : {
-            id : $(this).attr('data-eqLogic_id'),
-            display : {'layout::dashboard::table::nbLine' : parseInt($(this).find('table.tableCmd').attr('data-line')) + 1},
-        },
-        error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        }
-    });
-   }
+        saveCmdOrder($(this).attr('data-eqLogic_id'))
+        jeedom.eqLogic.simpleSave({
+            eqLogic : {
+                id : $(this).attr('data-eqLogic_id'),
+                display : {'layout::dashboard::table::nbLine' : parseInt($(this).find('table.tableCmd').attr('data-line')) + 1},
+            },
+            error: function (error) {
+                $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            }
+        });
+    }
 },
 removeTableColumn: {
     name: "{{Supprimer colonne}}",
@@ -811,16 +807,17 @@ removeTableColumn: {
         return !$(this).hasClass('eqLogic_layout_table'); 
     },
     callback: function(key, opt){
-       jeedom.eqLogic.simpleSave({
-        eqLogic : {
-            id : $(this).attr('data-eqLogic_id'),
-            display : {'layout::dashboard::table::nbColumn' : parseInt($(this).find('table.tableCmd').attr('data-column')) - 1},
-        },
-        error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        }
-    });
-   }
+        saveCmdOrder($(this).attr('data-eqLogic_id'))
+        jeedom.eqLogic.simpleSave({
+            eqLogic : {
+                id : $(this).attr('data-eqLogic_id'),
+                display : {'layout::dashboard::table::nbColumn' : parseInt($(this).find('table.tableCmd').attr('data-column')) - 1},
+            },
+            error: function (error) {
+                $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            }
+        });
+    }
 },
 removeTableLine: {
     name: "{{Supprimer ligne}}",
@@ -829,16 +826,17 @@ removeTableLine: {
         return !$(this).hasClass('eqLogic_layout_table'); 
     },
     callback: function(key, opt){
-       jeedom.eqLogic.simpleSave({
-        eqLogic : {
-            id : $(this).attr('data-eqLogic_id'),
-            display : {'layout::dashboard::table::nbLine' : parseInt($(this).find('table.tableCmd').attr('data-line')) - 1},
-        },
-        error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        }
-    });
-   }
+        saveCmdOrder($(this).attr('data-eqLogic_id'))
+        jeedom.eqLogic.simpleSave({
+            eqLogic : {
+                id : $(this).attr('data-eqLogic_id'),
+                display : {'layout::dashboard::table::nbLine' : parseInt($(this).find('table.tableCmd').attr('data-line')) - 1},
+            },
+            error: function (error) {
+                $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            }
+        });
+    }
 },
 }
 });

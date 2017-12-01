@@ -78,16 +78,19 @@ $('#bt_displayObject').on('click', function () {
     }
 });
 
-function editWidgetMode(_mode){
+function editWidgetMode(_mode,_save){
     if(!isset(_mode)){
         if($('#bt_editDashboardWidgetOrder').attr('data-mode') != undefined && $('#bt_editDashboardWidgetOrder').attr('data-mode') == 1){
-            editWidgetMode(0);
-            editWidgetMode(1);
+            editWidgetMode(0,false);
+            editWidgetMode(1,false);
         }
         return;
     }
     if(_mode == 0){
-     if( $('.div_displayEquipement .eqLogic-widget.ui-resizable').length > 0){
+        if(!isset(_save) || _save){
+           saveCmdOrder();
+       }
+       if( $('.div_displayEquipement .eqLogic-widget.ui-resizable').length > 0){
         $('.div_displayEquipement .eqLogic-widget.allowResize').resizable('destroy');
     }
     if( $('.div_displayEquipement .eqLogic-widget.ui-draggable').length > 0){
