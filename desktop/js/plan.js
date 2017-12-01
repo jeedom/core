@@ -671,13 +671,7 @@ function initEditOption(_state) {
         cancel : '.locked',
         stop: function( event, ui ) {
             savePlan(false,false);
-        },
-        drag: function(evt,ui) {
-            var zoom = $(this).css('zoom');
-            var factor = 1- (1 / zoom)
-            ui.position.top += Math.round((ui.position.top - ui.originalPosition.top) * factor);
-            ui.position.left += Math.round((ui.position.left- ui.originalPosition.left) * factor);
-        }    
+        }   
     });
       if(editOption.highlight){
         $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').addClass('widget-shadow-edit');
