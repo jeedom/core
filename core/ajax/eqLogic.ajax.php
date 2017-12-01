@@ -85,6 +85,45 @@ try {
 		}
 	}
 
+	if (init('action') == 'htmlAlert') {
+		$return = array();
+		foreach (eqLogic::all() as $eqLogic) {
+			if ($eqLogic->getAlert() == '') {
+				continue;
+			}
+			$return[$eqLogic->getId()] = array(
+				'html' => $eqLogic->toHtml(init('version')),
+				'id' => $eqLogic->getId(),
+				'type' => $eqLogic->getEqType_name(),
+				'object_id' => $eqLogic->getObject_id(),
+			);
+		}
+		ajax::success($return);
+	}
+
+	if (init('action') == 'htmlBattery') {
+		$return = array();
+		$list = array();
+		foreach (eqLogic::all() as $eqLogic) {
+			$battery_type = str_replace(array('(', ')'), array('', ''), $eqLogic->getConfiguration('battery_type', ''));
+			if ($eqLogic->getStatus('battery', -2) != -2) {
+				$list[] = $eqLogic;
+			}
+		}
+		usort($list, function ($a, $b) {
+			return ($a->getStatus('battery') < $b->getStatus('battery')) ? -1 : (($a->getStatus('battery') > $b->getStatus('battery')) ? 1 : 0);
+		});
+		foreach ($list as $eqLogic) {
+			$return[$eqLogic->getId()] = array(
+				'html' => $eqLogic->batteryWidget(init('version')),
+				'id' => $eqLogic->getId(),
+				'type' => $eqLogic->getEqType_name(),
+				'object_id' => $eqLogic->getObject_id(),
+			);
+		}
+		ajax::success($return);
+	}
+
 	if (init('action') == 'listByType') {
 		ajax::success(utils::a2o(eqLogic::byType(init('type'))));
 	}
@@ -341,7 +380,7 @@ try {
 			ajax::success(utils::o2a($eqLogic));
 		}
 	}
-	
+
 	if (init('action') == 'getAlert') {
 		$alerts = array();
 		foreach (eqLogic::all() as $eqLogic) {

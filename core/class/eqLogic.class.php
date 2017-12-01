@@ -467,6 +467,47 @@ class eqLogic {
 
 	/*     * *********************Méthodes d'instance************************* */
 
+	public function batteryWidget($_version = 'dashboard') {
+		$html = '';
+		$color = '#2ecc71';
+		$level = 'good';
+		$battery = $this->getConfiguration('battery_type', 'none');
+		if (strpos($battery, ' ') !== false) {
+			$battery = substr(strrchr($battery, " "), 1);
+		}
+		$plugins = $this->getEqType_name();
+		$objets == '';
+		if (is_object($this->getObject())) {
+			$object_name = str_replace(array(' ', '(', ')'), array('_', '', ''), $this->getObject()->getName());
+		}
+		if ($this->getStatus('battery') <= $this->getConfiguration('battery_danger_threshold', config::byKey('battery::danger'))) {
+			$color = '#e74c3c';
+			$level = 'critical';
+		} else if ($this->getStatus('battery') <= $this->getConfiguration('battery_warning_threshold', config::byKey('battery::warning'))) {
+			$color = '#f1c40f';
+			$level = 'warning';
+		}
+		$classAttr = $level . ' ' . $battery . ' ' . $plugins . ' ' . $object_name;
+		$idAttr = $level . '__' . $battery . '__' . $plugins . '__' . $object_name;
+		$html .= '<div class="eqLogic eqLogic-widget ' . $classAttr . '" style="min-width:100px;min-height:150px;background-color:' . $color . '" id="' . $idAttr . '">';
+		if ($_version == 'mobile') {
+			$html .= '<div class="widget-name" style="text-align : center;"><span style="font-size : 1em;">' . $this->getName() . '</span><br/><span style="font-size: 0.95em;position:relative;top:-5px;cursor:default;">' . $object_name . '</span></div>';
+		} else {
+			$html .= '<div class="widget-name" style="text-align : center;"><a href="' . $this->getLinkToConfiguration() . '" style="font-size : 1em;">' . $this->getName() . '</a><br/><span style="font-size: 0.95em;position:relative;top:-5px;cursor:default;">' . $object_name . '</span></div>';
+		}
+		$html .= '<div style="text-align : center;"><span style="font-size:2.2em;font-weight: bold;cursor:default;">' . $this->getStatus('battery', -2) . '</span><span>%</span></div>';
+		$html .= '<div style="text-align : center; cursor:default;">' . __('Le', __FILE__) . $this->getStatus('batteryDatetime', __('inconnue', __FILE__)) . '</div>';
+		if ($this->getConfiguration('battery_type', '') != '') {
+			$html .= '<span class="pull-right" style="font-size : 0.8em;margin-bottom: 3px;margin-right: 5px;cursor:default;" title="Piles">' . $this->getConfiguration('battery_type', '') . '</span>';
+		}
+		$html .= '<span class="pull-left" style="font-size : 0.8em;margin-bottom: 3px;margin-left: 5px;cursor:default;" title="Plugin">' . ucfirst($this->getEqType_name()) . '</span>';
+		if ($this->getConfiguration('battery_danger_threshold') != '' || $this->getConfiguration('battery_warning_threshold') != '') {
+			$html .= '<i class="icon techno-fingerprint41 pull-right" style="position:absolute;bottom: 3px;right: 3px;cursor:default;" title="Seuil manuel défini"></i>';
+		}
+		$html .= '</div>';
+		return $html;
+	}
+
 	public function checkAndUpdateCmd($_logicalId, $_value, $_updateTime = null) {
 		if (is_object($_logicalId)) {
 			$cmd = $_logicalId;
