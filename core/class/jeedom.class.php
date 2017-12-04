@@ -308,11 +308,9 @@ class jeedom {
 
 	public static function apiAccess($_apikey = '', $_plugin = 'core') {
 		if (trim($_apikey) == '') {
-			sleep(5);
 			return false;
 		}
 		if ($_plugin != 'core' && $_plugin != 'proapi' && !self::apiModeResult(config::byKey('api::' . $_plugin . '::mode', 'core', 'enable'))) {
-			sleep(5);
 			return false;
 		}
 		$apikey = self::getApiKey($_plugin);
@@ -329,7 +327,6 @@ class jeedom {
 		$user = user::byHash($_apikey);
 		if (is_object($user)) {
 			if ($user->getOptions('localOnly', 0) == 1 && !self::apiModeResult('whiteip')) {
-				sleep(5);
 				return false;
 			}
 			@session_start();
@@ -338,7 +335,6 @@ class jeedom {
 			log::add('connection', 'info', __('Connexion par API de l\'utilisateur : ', __FILE__) . $user->getLogin());
 			return true;
 		}
-		sleep(5);
 		return false;
 	}
 

@@ -41,6 +41,7 @@ if (init('type') != '') {
 			!jeedom::apiAccess(init('apikey', init('api')), init('type', 'core'))) ||
 			(!jeedom::apiModeResult(config::byKey('api::core::http::mode', init('plugin', 'core'), 'enable')) &&
 				!jeedom::apiModeResult(config::byKey('api::core::http::mode', init('type', 'core'), 'enable')))) {
+			sleep(5);
 			user::failedLogin();
 			throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action 1', __FILE__));
 		}
