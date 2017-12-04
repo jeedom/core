@@ -2,6 +2,7 @@
 
 == Next
 
+* JEED-181 : ajout d'une commande name dans les scénarios pour avoir le nom de la commande ou de l'équipement ou de l'objet
 * JEED-15 : Ajout des batterie et alerte sur la webapp
 * Correction du bugs de déplacement des objets du désign sous firefox
 * JEED-19 : Lors d'une mise à jour il est maintenant possible de mettre à jour le script d'update avant la mise à jour

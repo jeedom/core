@@ -824,6 +824,26 @@ class scenarioExpression {
 		}
 	}
 
+	public static function name($_type, $_cmd_id) {
+		$cmd = cmd::byId(str_replace('#', '', $_cmd_id));
+		if (!is_object($cmd)) {
+			return __('Commande non trouvée', __FILE__);
+		}
+		switch ($_type) {
+			case 'cmd':
+				return $cmd->getName();
+			case 'eqLogic':
+				return $cmd->getEqLogic()->getName();
+			case 'object':
+				$object = $cmd->getEqLogic()->getObject();
+				if (!is_object($object)) {
+					return __('Aucun', __FILE__);
+				}
+				return $object->getName();
+		}
+		return __('Type inconnu', __FILE__);
+	}
+
 	public static function getRequestTags($_expression) {
 		$return = array();
 		preg_match_all("/#([a-zA-Z0-9]*)#/", $_expression, $matches);
