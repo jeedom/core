@@ -2,6 +2,7 @@
 
 == Next
 
+* JEED-18 : Ajout des logs lors de l'ouverture d'un ticket au support
 * JEED-181 : ajout d'une commande name dans les scénarios pour avoir le nom de la commande ou de l'équipement ou de l'objet
 * JEED-15 : Ajout des batterie et alerte sur la webapp
 * Correction du bugs de déplacement des objets du désign sous firefox
