@@ -275,7 +275,7 @@ class repo_market {
 	/*     * ***********************CRON*************************** */
 
 	public static function cronHourly() {
-		sleep(rand(0, 600));
+		sleep(rand(0, 900));
 		try {
 			self::test();
 		} catch (Exception $e) {
