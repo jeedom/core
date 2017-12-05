@@ -281,7 +281,7 @@ Plusieurs fonctions sont disponibles pour les équipements :
 * **tag**(montag,[defaut]) : permet de recuperer la valeur d'un tag ou la valeur par défaut si il n'existe pas
     ** Ex : tag(montag,toto) : renvoi la valeur de "montag" si il existe sinon renvoi la valeur "toto"
 * **name**(type,commande) : permet de recuperer le nom de la commande, de l'équipement ou de l'objet. Type vaut soit cmd, eqLogic ou object
-    ** Ex : tag(eqLogic,#[Salle de bain][Hydrometrie][Humidité]#) : renvoi Hydrometrie   
+    ** Ex : name(eqLogic,#[Salle de bain][Hydrometrie][Humidité]#) : renvoi Hydrometrie   
 
 
 Les périodes et intervalles de ces fonctions peuvent également s'utiliser avec http://php.net/manual/fr/datetime.formats.relative.php[des expressions PHP] comme par exemple :
