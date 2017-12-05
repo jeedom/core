@@ -20,9 +20,15 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
         {{- que la réponse n'est pas déjà dans la <a href='https://jeedom.github.io/documentation'>documentation</a>}}
     </div>
 </div>
+<div class="panel panel-danger">
+   <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-info"></i> {{Etape 2 : Choix du type de demande}}</h3></div>
+   <div class="panel-body">
+    {{IMPORTANT : si vous ouvrez un ticket pour un bug ou une demande d'amélioration celle-ci sont public (donc attention au informations que vous communiquez). Vous pouvez voir la liste des demandes en cours <a href="https://jeedom.atlassian.net/issues/?filter=-5&jql=status%20in%20(%22A%20valider%22%2C%20%22In%20Progress%22%2C%20Planifi%C3%A9%2C%20Reopened%2C%20%22To%20Do%22)%20AND%20resolution%20%3D%20Unresolved%20order%20by%20priority%20DESC%2Cupdated%20DESC" target="_blank">ici</a>. Les demandes public doivent etre parfaitement formuler avec toutes les informations necessaire car vous ne pouvez pas completer la demande par la suite. Toute demande d'un service pack pro est privée.}}
+</div>
+</div>
 
 <div class="panel panel-primary">
- <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-cogs"></i> {{Etape 2 : Catégorie et type de la demande}}</h3></div>
+ <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-cogs"></i> {{Etape 3 : Catégorie et type de la demande}}</h3></div>
  <div class="panel-body">
     <div class="form-group">
         <label class="col-sm-2 control-label">{{Type}}</label>
@@ -53,7 +59,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 </div>
 
 <div id="div_reportModalSearchAction" class="panel panel-primary" style="display:none;">
-   <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-search"></i> {{Etape 3 : Chercher dans la documentation}}</h3></div>
+   <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-search"></i> {{Etape 4 : Chercher dans la documentation}}</h3></div>
    <div class="panel-body">
     <div class="form-group">
         <label class="col-sm-2 control-label">{{Rechercher}}</label>
@@ -65,7 +71,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 </div>
 
 <div class="panel panel-primary" id="div_reportModalSendAction" style="display:none;">
-    <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-pencil"></i> {{Etape 4 : Demande de support}}</h3></div>
+    <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-pencil"></i> {{Etape 5 : Demande de support}}</h3></div>
     <div class="panel-body">
        <div class="form-group">
         <label class="col-sm-2 control-label">{{Titre}}</label>
@@ -88,7 +94,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 </div>
 
 <div class="panel panel-primary" id="div_reportModalPrivateIssue" style="display:none;">
-    <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-pencil"></i> {{Etape 4 : Demande de support}}</h3></div>
+    <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-pencil"></i> {{Etape 5 : Demande de support}}</h3></div>
     <div class="panel-body">
         <div class="form-group">
             <label class="col-sm-5 control-label">{{Ce plugin utilise un gestionnaire de demande de support}}</label>
