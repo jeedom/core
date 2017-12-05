@@ -56,13 +56,13 @@ class jeedom {
 		$cmd = config::byKey('interact::warnme::defaultreturncmd', 'core', '');
 		if ($cmd != '') {
 			if (!cmd::byId(str_replace('#', '', $cmd))) {
-				$return[] = array('detail' => 'Administration', 'help' => 'Commande retour interactions', 'who' => $cmd);
+				$return[] = array('detail' => 'Administration', 'help' => __('Commande retour interactions', __FILE__), 'who' => $cmd);
 			}
 		}
 		$cmd = config::byKey('emailAdmin', 'core', '');
 		if ($cmd != '') {
 			if (!cmd::byId(str_replace('#', '', $cmd))) {
-				$return[] = array('detail' => 'Administration', 'help' => 'Commande information utilisateur', 'who' => $cmd);
+				$return[] = array('detail' => 'Administration', 'help' => __('Commande information utilisateur', __FILE__), 'who' => $cmd);
 			}
 		}
 		foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
@@ -70,7 +70,7 @@ class jeedom {
 			preg_match_all("/#([0-9]*)#/", $cmds, $matches);
 			foreach ($matches[1] as $cmd_id) {
 				if (!cmd::byId($cmd_id)) {
-					$return[] = array('detail' => 'Administration', 'help' => 'Commande sur ' . $value['name'], 'who' => '#' . $cmd_id . '#');
+					$return[] = array('detail' => 'Administration', 'help' => __('Commande sur ', __FILE__) . $value['name'], 'who' => '#' . $cmd_id . '#');
 				}
 			}
 		}

@@ -1096,3 +1096,20 @@ function strContain($_string, $_words) {
 	}
 	return false;
 }
+
+function makeZipSupport() {
+	$jeedom_folder = dirname(__FILE__) . '/../..';
+	$folder = '/tmp/jeedom_support';
+	$outputfile = $jeedom_folder . '/support/jeedom_support_' . date('Y-m-d_His') . '.tar.gz';
+	if (file_exists($folder)) {
+		rrmdir($folder);
+	}
+	mkdir($folder);
+	system('cd ' . $jeedom_folder . '/log;cp -R * "' . $folder . '" > /dev/null');
+	system('sudo dmesg >> ' . $folder . '/dmesg');
+	system('sudo cp /var/log/messages "' . $folder . '/" > /dev/null');
+	system('sudo chmod 777 -R "' . $folder . '" > /dev/null');
+	system('cd ' . $folder . ';tar cfz "' . $outputfile . '" * > /dev/null;chmod 777 ' . $outputfile);
+	rrmdir($folder);
+	return realpath($outputfile);
+}

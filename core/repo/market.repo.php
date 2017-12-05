@@ -420,7 +420,8 @@ class repo_market {
 		}
 		$_ticket['options']['jeedom_version'] = jeedom::version();
 		$_ticket['options']['uname'] = shell_exec('uname -a');
-		if (!$jsonrpc->sendRequest('ticket::save', array('ticket' => $_ticket))) {
+		$support_file = makeZipSupport();
+		if (!$jsonrpc->sendRequest('ticket::save', array('ticket' => $_ticket), 300, array('file' => '@' . $support_file))) {
 			throw new Exception($jsonrpc->getErrorMessage());
 		}
 		return $jsonrpc->getResult();
