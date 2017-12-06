@@ -633,6 +633,7 @@ for ($i = 1; $i <= $eqLogic->getDisplay('layout::dashboard::table::nbLine', 1); 
 
 										$('#bt_eqLogicConfigureSave').on('click', function () {
 											cmds = [];
+											order = 1;
 											$('#tableCmdLayoutConfiguration tbody td').find('.cmdLayout').each(function(){
 												cmd = {};
 												cmd.id = $(this).attr('data-cmd_id');
