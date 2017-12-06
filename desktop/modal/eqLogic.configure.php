@@ -405,33 +405,33 @@ if ($eqLogic->getDisplay('parameters') != '') {
 													</div>
 													<legend><i class="icon techno-fleches"></i> {{Seuils spécifiques Batteries}}</legend>
 													<div class="row">
-													<div class="col-lg-12">
-													<div class="form-group">
-														<label class="col-xs-2 eqLogicAttr label label-danger" style="font-size : 1.8em">{{Danger}}</label>
-														<div class="col-xs-2">
-															<input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_danger_threshold" />
-														</input>
+														<div class="col-lg-12">
+															<div class="form-group">
+																<label class="col-xs-2 eqLogicAttr label label-danger" style="font-size : 1.8em">{{Danger}}</label>
+																<div class="col-xs-2">
+																	<input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_danger_threshold" />
+																</input>
+															</div>
+															<label class="col-xs-2 label label-warning" style="font-size : 1.8em">{{Warning}}</label>
+															<div class="col-xs-2">
+																<input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_warning_threshold" />
+															</div>
+															<label class="col-xs-2 label label-success" style="font-size : 1.8em">{{Ok}}</label>
+														</div>
 													</div>
-													<label class="col-xs-2 label label-warning" style="font-size : 1.8em">{{Warning}}</label>
-													<div class="col-xs-2">
-														<input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_warning_threshold" />
-													</div>
-													<label class="col-xs-2 label label-success" style="font-size : 1.8em">{{Ok}}</label>
-												</div>
-												</div>
 												</div>
 												<legend><i class="fa fa-clock-o"></i> {{Alertes Communications}}</legend>
 												<div class="row">
-												<div class="col-lg-12">
-												<div class="form-group">
-													<label class="col-xs-2 eqLogicAttr label label-danger" style="font-size : 1.8em">{{Danger}}</label>
-													<div class="col-xs-2">
-														<input class="eqLogicAttr form-control" data-l1key="timeout"/>
-													</input>{{(en minute)}}
+													<div class="col-lg-12">
+														<div class="form-group">
+															<label class="col-xs-2 eqLogicAttr label label-danger" style="font-size : 1.8em">{{Danger}}</label>
+															<div class="col-xs-2">
+																<input class="eqLogicAttr form-control" data-l1key="timeout"/>
+															</input>{{(en minute)}}
+														</div>
+													</div>
 												</div>
 											</div>
-												</div>
-												</div>
 										</div>
 										<div role="tabpanel" class="tab-pane" id="eqLogic_comment">
 											<br/>
@@ -529,29 +529,10 @@ for ($i = 1; $i <= $eqLogic->getDisplay('layout::dashboard::table::nbLine', 1); 
 									</div>
 									<script>
 
+
 										$('#tableCmdLayoutConfiguration tbody td .cmdLayoutContainer').sortable({
 											connectWith: '#tableCmdLayoutConfiguration tbody td .cmdLayoutContainer',
-											items: ".cmdLayout",
-											stop: function (event, ui) {
-												var cmds = [];
-												order = 1;
-												$('#tableCmdLayoutConfiguration tbody td').find('.cmdLayout').each(function(){
-													cmd = {};
-													cmd.id = $(this).attr('data-cmd_id');
-													cmd.line = $(this).closest('td').attr('data-line');
-													cmd.column = $(this).closest('td').attr('data-column');
-													cmd.order = order;
-													cmds.push(cmd);
-													order++;
-												});
-												jeedom.cmd.setOrder({
-													version : 'dashboard',
-													cmds: cmds,
-													error: function (error) {
-														$('#md_displayEqLogicConfigure').showAlert({message: error.message, level: 'danger'});
-													}
-												});
-											}
+											items: ".cmdLayout"
 										});
 
 										$('.sel_layout').on('change',function(){
@@ -651,6 +632,23 @@ for ($i = 1; $i <= $eqLogic->getDisplay('layout::dashboard::table::nbLine', 1); 
 										});
 
 										$('#bt_eqLogicConfigureSave').on('click', function () {
+											cmds = [];
+											$('#tableCmdLayoutConfiguration tbody td').find('.cmdLayout').each(function(){
+												cmd = {};
+												cmd.id = $(this).attr('data-cmd_id');
+												cmd.line = $(this).closest('td').attr('data-line');
+												cmd.column = $(this).closest('td').attr('data-column');
+												cmd.order = order;
+												cmds.push(cmd);
+												order++;
+											});
+											jeedom.cmd.setOrder({
+												version : 'dashboard',
+												cmds: cmds,
+												error: function (error) {
+													$('#md_displayEqLogicConfigure').showAlert({message: error.message, level: 'danger'});
+												}
+											});
 											var eqLogic = $('#div_displayEqLogicConfigure').getValues('.eqLogicAttr')[0];
 											if (!isset(eqLogic.display)) {
 												eqLogic.display = {};
