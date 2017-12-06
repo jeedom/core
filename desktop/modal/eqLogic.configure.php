@@ -632,24 +632,7 @@ for ($i = 1; $i <= $eqLogic->getDisplay('layout::dashboard::table::nbLine', 1); 
 										});
 
 										$('#bt_eqLogicConfigureSave').on('click', function () {
-											cmds = [];
-											order = 1;
-											$('#tableCmdLayoutConfiguration tbody td').find('.cmdLayout').each(function(){
-												cmd = {};
-												cmd.id = $(this).attr('data-cmd_id');
-												cmd.line = $(this).closest('td').attr('data-line');
-												cmd.column = $(this).closest('td').attr('data-column');
-												cmd.order = order;
-												cmds.push(cmd);
-												order++;
-											});
-											jeedom.cmd.setOrder({
-												version : 'dashboard',
-												cmds: cmds,
-												error: function (error) {
-													$('#md_displayEqLogicConfigure').showAlert({message: error.message, level: 'danger'});
-												}
-											});
+
 											var eqLogic = $('#div_displayEqLogicConfigure').getValues('.eqLogicAttr')[0];
 											if (!isset(eqLogic.display)) {
 												eqLogic.display = {};
@@ -667,7 +650,27 @@ for ($i = 1; $i <= $eqLogic->getDisplay('layout::dashboard::table::nbLine', 1); 
 													$('#md_displayEqLogicConfigure').showAlert({message: error.message, level: 'danger'});
 												},
 												success: function () {
-													$('#md_displayEqLogicConfigure').showAlert({message: '{{Enregistrement réussi}}', level: 'success'});
+													cmds = [];
+													order = 1;
+													$('#tableCmdLayoutConfiguration tbody td').find('.cmdLayout').each(function(){
+														cmd = {};
+														cmd.id = $(this).attr('data-cmd_id');
+														cmd.line = $(this).closest('td').attr('data-line');
+														cmd.column = $(this).closest('td').attr('data-column');
+														cmd.order = order;
+														cmds.push(cmd);
+														order++;
+													});
+													jeedom.cmd.setOrder({
+														version : 'dashboard',
+														cmds: cmds,
+														error: function (error) {
+															$('#md_displayEqLogicConfigure').showAlert({message: error.message, level: 'danger'});
+														},
+														success : function(){
+															$('#md_displayEqLogicConfigure').showAlert({message: '{{Enregistrement réussi}}', level: 'success'});
+														}
+													});
 												}
 											});
 										});
