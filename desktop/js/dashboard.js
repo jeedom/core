@@ -88,37 +88,27 @@ function editWidgetMode(_mode,_save){
     }
     if(_mode == 0){
         if(!isset(_save) || _save){
-           saveCmdOrder();
-       }
-       if( $('.div_displayEquipement .eqLogic-widget.ui-resizable').length > 0){
+         saveWidgetDisplay({dashboard : 1});
+     }
+     if( $('.div_displayEquipement .eqLogic-widget.ui-resizable').length > 0){
         $('.div_displayEquipement .eqLogic-widget.allowResize').resizable('destroy');
     }
     if( $('.div_displayEquipement .eqLogic-widget.ui-draggable').length > 0){
-       $('.div_displayEquipement .eqLogic-widget').draggable('disable');
-   }
+     $('.div_displayEquipement .eqLogic-widget').draggable('disable');
+ }
 }else{
- $('.div_displayEquipement .eqLogic-widget').draggable('enable');
+   $('.div_displayEquipement .eqLogic-widget').draggable('enable');
 
- $( ".div_displayEquipement .eqLogic-widget.allowResize").resizable({
-  grid: [ 2, 2 ],
-  resize: function( event, ui ) {
-     var el = ui.element;
-     el.closest('.div_displayEquipement').packery();
- },
- stop: function( event, ui ) {
+   $( ".div_displayEquipement .eqLogic-widget.allowResize").resizable({
+      grid: [ 2, 2 ],
+      resize: function( event, ui ) {
+       var el = ui.element;
+       el.closest('.div_displayEquipement').packery();
+   },
+   stop: function( event, ui ) {
     var el = ui.element;
     positionEqLogic(el.attr('data-eqlogic_id'));
     el.closest('.div_displayEquipement').packery();
-    var eqLogic = {id : el.attr('data-eqlogic_id')}
-    eqLogic.display = {};
-    eqLogic.display.width =  Math.floor(el.width() / 2) * 2 + 'px';
-    eqLogic.display.height = Math.floor(el.height() / 2) * 2+ 'px';
-    jeedom.eqLogic.simpleSave({
-        eqLogic : eqLogic,
-        error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        }
-    });
 }
 });
 }
@@ -159,23 +149,7 @@ function getObjectHtml(_object_id){
                 itemElems.draggable();
                 container.packery( 'bindUIDraggableEvents', itemElems );
                 container.packery( 'on', 'dragItemPositioned',function(){
-                    var itemElems = container.packery('getItemElements');
-                    var eqLogics = [];
-                    $(itemElems).each( function( i, itemElem ) {
-                        if($(itemElem).attr('data-eqlogic_id') != undefined){
-                            eqLogic = {};
-                            eqLogic.id =  $(itemElem).attr('data-eqlogic_id');
-                            eqLogic.order = i;
-                            eqLogics.push(eqLogic);
-                        }
-                    });
                     $('.div_displayEquipement').packery();
-                    jeedom.eqLogic.setOrder({
-                        eqLogics: eqLogics,
-                        error: function (error) {
-                            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                        }
-                    });
                 });
             });
             $('#div_ob'+_object_id+'.div_displayEquipement .eqLogic-widget').draggable('disable');
@@ -191,11 +165,11 @@ $('#bt_editDashboardWidgetOrder').on('click',function(){
         editWidgetMode(0);
         $(this).css('color','black');
     }else{
-     $('#div_alert').showAlert({message: "{{Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets}}", level: 'info'});
-     $(this).attr('data-mode',1);
-     editWidgetMode(1);
-     $(this).css('color','rgb(46, 176, 75)');
- }
+       $('#div_alert').showAlert({message: "{{Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder}}", level: 'info'});
+       $(this).attr('data-mode',1);
+       editWidgetMode(1);
+       $(this).css('color','rgb(46, 176, 75)');
+   }
 });
 
 

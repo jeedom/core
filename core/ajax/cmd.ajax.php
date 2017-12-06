@@ -350,7 +350,7 @@ try {
 			}
 			$cmd = cmd::byId($cmd_json['id']);
 			if (!is_object($cmd)) {
-				throw new Exception(__('Commande inconnu verifié l\'id :', __FILE__) . ' ' . $cmd_json['id']);
+				continue;
 			}
 			$cmd->setOrder($cmd_json['order']);
 			$cmd->save();

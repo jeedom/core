@@ -174,21 +174,17 @@ try {
 
 	if (init('action') == 'setOrder') {
 		$eqLogics = json_decode(init('eqLogics'), true);
-		$sql = '';
 		foreach ($eqLogics as $eqLogic_json) {
-			if (!is_numeric($eqLogic_json['id']) || !is_numeric($eqLogic_json['order']) || (isset($eqLogic_json['object_id']) && !is_numeric($eqLogic_json['object_id']))) {
-				throw new Exception("Erreur une des valeurs n'est pas un numérique");
+			if (!isset($eqLogic_json['id']) || trim($eqLogic_json['id']) == '') {
+				continue;
 			}
-			if (isset($eqLogic_json['object_id'])) {
-				if ($eqLogic_json['object_id'] == -1) {
-					$eqLogic_json['object_id'] = "NULL";
-				}
-				$sql .= 'UPDATE eqLogic SET `order`= ' . $eqLogic_json['order'] . ', object_id=' . $eqLogic_json['object_id'] . '  WHERE id=' . $eqLogic_json['id'] . ' ;';
-			} else {
-				$sql .= 'UPDATE eqLogic SET `order`= ' . $eqLogic_json['order'] . '  WHERE id=' . $eqLogic_json['id'] . ' ;';
+			$eqLogic = eqLogic::byId($eqLogic_json['id']);
+			if (!is_object($eqLogic)) {
+				continue;
 			}
+			utils::a2o($eqLogic, $eqLogic_json);
+			$eqLogic->save(true);
 		}
-		DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 		ajax::success();
 	}
 

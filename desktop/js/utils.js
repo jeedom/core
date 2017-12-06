@@ -626,8 +626,9 @@ function taAutosize(){
     autosize.update($('.ta_autosize'));
 }
 
-function saveCmdOrder(_eqLogic_id){
+function saveWidgetDisplay(_params){
    var cmds = [];
+   var eqLogics = [];
    $('.eqLogic-widget:not(.eqLogic_layout_table)').each(function(){
      var eqLogic = $(this);
      order = 1;
@@ -652,7 +653,48 @@ function saveCmdOrder(_eqLogic_id){
         order++;
     });
  });
-   jeedom.cmd.setOrder({
+   if(init(_params['dashboard']) == 1){
+       $('.div_displayEquipement').each(function(){
+        order = 1;
+        $(this).find('.eqLogic-widget').each(function(){
+         var eqLogic = {id :$(this).attr('data-eqlogic_id')}
+         eqLogic.display = {};
+         eqLogic.display.width =  Math.floor($(this).width() / 2) * 2 + 'px';
+         eqLogic.display.height = Math.floor($(this).height() / 2) * 2+ 'px';
+         eqLogic.order = order;
+         eqLogics.push(eqLogic);
+         order++;
+     });
+    });
+       jeedom.eqLogic.setOrder({
+        eqLogics: eqLogics,
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        }
+    });
+   }
+   if(init(_params['view']) == 1){
+     $('.eqLogicZone').each(function(){
+        order = 1;
+        $(this).find('.eqLogic-widget').each(function(){
+         var eqLogic = {id :$(this).attr('data-eqlogic_id')}
+         eqLogic.display = {};
+         eqLogic.display.width =  Math.floor($(this).width() / 2) * 2 + 'px';
+         eqLogic.display.height = Math.floor($(this).height() / 2) * 2+ 'px';
+         eqLogic.viewZone_id = $(this).closest('.eqLogicZone').attr('data-viewZone-id');
+         eqLogic.order = order;
+         eqLogics.push(eqLogic);
+         order++;
+     });
+    });
+     jeedom.view.setEqLogicOrder({
+        eqLogics: eqLogics,
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        }
+    });
+ }
+ jeedom.cmd.setOrder({
     cmds: cmds,
     error: function (error) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -717,7 +759,7 @@ function editWidgetCmdMode(_mode){
         name: "{{Configuration avancée}}",
         icon : 'fa-cog',
         callback: function(key, opt){
-            saveCmdOrder($(this).attr('data-eqLogic_id'))
+            saveWidgetDisplay()
             $('#md_modal').dialog({title: "{{Configuration du widget}}"});
             $('#md_modal').load('index.php?v=d&modal=eqLogic.configure&eqLogic_id='+$(this).attr('data-eqLogic_id')).dialog('open');
         }
@@ -730,7 +772,7 @@ function editWidgetCmdMode(_mode){
             return !$(this).hasClass('allowLayout') || !$(this).hasClass('eqLogic_layout_table'); 
         },
         callback: function(key, opt){
-           saveCmdOrder($(this).attr('data-eqLogic_id'))
+           saveWidgetDisplay()
            jeedom.eqLogic.simpleSave({
             eqLogic : {
                 id : $(this).attr('data-eqLogic_id'),
@@ -749,7 +791,7 @@ function editWidgetCmdMode(_mode){
         return !$(this).hasClass('allowLayout') || $(this).hasClass('eqLogic_layout_table'); 
     },
     callback: function(key, opt){
-       saveCmdOrder($(this).attr('data-eqLogic_id'))   
+       saveWidgetDisplay()   
        jeedom.eqLogic.simpleSave({
         eqLogic : {
             id : $(this).attr('data-eqLogic_id'),
@@ -769,7 +811,7 @@ addTableColumn: {
         return !$(this).hasClass('eqLogic_layout_table'); 
     },
     callback: function(key, opt){
-        saveCmdOrder($(this).attr('data-eqLogic_id'))
+        saveWidgetDisplay()
         jeedom.eqLogic.simpleSave({
             eqLogic : {
                 id : $(this).attr('data-eqLogic_id'),
@@ -788,7 +830,7 @@ addTableLine: {
         return !$(this).hasClass('eqLogic_layout_table'); 
     },
     callback: function(key, opt){
-        saveCmdOrder($(this).attr('data-eqLogic_id'))
+        saveWidgetDisplay()
         jeedom.eqLogic.simpleSave({
             eqLogic : {
                 id : $(this).attr('data-eqLogic_id'),
@@ -807,7 +849,7 @@ removeTableColumn: {
         return !$(this).hasClass('eqLogic_layout_table'); 
     },
     callback: function(key, opt){
-        saveCmdOrder($(this).attr('data-eqLogic_id'))
+        saveWidgetDisplay()
         jeedom.eqLogic.simpleSave({
             eqLogic : {
                 id : $(this).attr('data-eqLogic_id'),
@@ -826,7 +868,7 @@ removeTableLine: {
         return !$(this).hasClass('eqLogic_layout_table'); 
     },
     callback: function(key, opt){
-        saveCmdOrder($(this).attr('data-eqLogic_id'))
+        saveWidgetDisplay()
         jeedom.eqLogic.simpleSave({
             eqLogic : {
                 id : $(this).attr('data-eqLogic_id'),

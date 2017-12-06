@@ -56,25 +56,6 @@
                 var itemElems =  container.find('.eqLogic-widget');
                 itemElems.draggable();
                 container.packery( 'bindUIDraggableEvents', itemElems );
-                container.packery( 'on', 'dragItemPositioned',function(){
-                    var itemElems = container.packery('getItemElements');
-                    var eqLogics = [];
-                    $(itemElems).each( function( i, itemElem ) {
-                        if($(itemElem).attr('data-eqlogic_id') != undefined){
-                            eqLogic = {};
-                            eqLogic.id =  $(itemElem).attr('data-eqlogic_id');
-                            eqLogic.order = i;
-                            eqLogic.viewZone_id = $(itemElem).closest('.eqLogicZone').attr('data-viewZone-id');
-                            eqLogics.push(eqLogic);
-                        }
-                    });
-                    jeedom.view.setEqLogicOrder({
-                        eqLogics: eqLogics,
-                        error: function (error) {
-                            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                        }
-                    });
-                });
             });
 
             $('.eqLogicZone .eqLogic-widget').draggable('disable');
@@ -95,8 +76,6 @@
     }
 });
 }
-
-
 
 $('#div_pageContainer').delegate('.cmd-widget.history', 'click', function () {
     $('#md_modal2').dialog({title: "Historique"});
@@ -129,7 +108,7 @@ function editWidgetMode(_mode,_save){
     }
     if(_mode == 0 || _mode == '0'){
        if(!isset(_save) || _save){
-         saveCmdOrder();
+        saveWidgetDisplay({view : 1});
      }
      if( $('.eqLogicZone .eqLogic-widget.ui-draggable').length > 0){
          $('.eqLogicZone .eqLogic-widget').draggable('disable');
@@ -148,16 +127,6 @@ function editWidgetMode(_mode,_save){
     var el = ui.element;
     positionEqLogic(el.attr('data-eqlogic_id'));
     el.closest('.eqLogicZone').packery();
-    var eqLogic = {id : el.attr('data-eqlogic_id')}
-    eqLogic.display = {};
-    eqLogic.display.width =  Math.floor(el.width() / 2) * 2 + 'px';
-    eqLogic.display.height = Math.floor(el.height() / 2) * 2+ 'px';
-    jeedom.eqLogic.simpleSave({
-        eqLogic : eqLogic,
-        error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        }
-    });
 }
 });
 }

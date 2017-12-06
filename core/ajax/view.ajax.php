@@ -115,9 +115,15 @@ try {
 		$sql = '';
 		foreach ($eqLogics as $eqLogic_json) {
 			if (!isset($eqLogic_json['viewZone_id']) || !is_numeric($eqLogic_json['viewZone_id']) || !is_numeric($eqLogic_json['id']) || !is_numeric($eqLogic_json['order']) || (isset($eqLogic_json['object_id']) && !is_numeric($eqLogic_json['object_id']))) {
-				throw new Exception("Erreur une des valeurs n'est pas un numérique");
+				continue;
 			}
 			$sql .= 'UPDATE viewData SET `order`= ' . $eqLogic_json['order'] . '  WHERE link_id=' . $eqLogic_json['id'] . ' AND  viewZone_id=' . $eqLogic_json['viewZone_id'] . ';';
+			$eqLogic = eqLogic::byId($eqLogic_json['id']);
+			if (!is_object($eqLogic)) {
+				continue;
+			}
+			utils::a2o($eqLogic, $eqLogic_json);
+			$eqLogic->save(true);
 		}
 		if ($sql != '') {
 			DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
