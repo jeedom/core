@@ -1,7 +1,8 @@
 == Changelog
 
-== Next
+== 3.2.0
 
+* Optimisation des modifications d'organisation (taille des widgets, position des équipements, position des commandes) sur le dashboard et les vue. Attention maintenant les modification ne sont sauvegardées que lorsque l'on quitte le mode édition.
 * JEED-18 : Ajout des logs lors de l'ouverture d'un ticket au support
 * JEED-181 : ajout d'une commande name dans les scénarios pour avoir le nom de la commande ou de l'équipement ou de l'objet
 * JEED-15 : Ajout des batterie et alerte sur la webapp
