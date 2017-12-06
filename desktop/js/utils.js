@@ -627,6 +627,9 @@ function taAutosize(){
 }
 
 function saveWidgetDisplay(_params){
+    if(init(_params) == ''){
+        _params = {};
+    }
    var cmds = [];
    var eqLogics = [];
    $('.eqLogic-widget:not(.eqLogic_layout_table)').each(function(){
