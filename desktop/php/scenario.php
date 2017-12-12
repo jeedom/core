@@ -109,7 +109,6 @@ foreach ($scenarioListGroup as $group) {
 if (count($totalScenario) == 0) {
 	echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun scénario. Cliquez sur ajouter un scénario pour commencer</span></center>";
 } else {
-	echo "<center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous avez " . count($totalScenario) . " scénario(s) dans " . count($scenarioListGroup) . " groupe(s)</span></center>";
 	echo '<input class="form-control" placeholder="{{Rechercher}}" style="margin-bottom:4px;" id="in_searchScenario" />';
 	echo '<div class="panel-group" id="accordionScenar">';
 	if (count($scenarios[-1]) > 0) {

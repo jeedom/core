@@ -58,6 +58,26 @@ setTimeout(function(){
   $('.interactListContainer').packery();
 },100);
 
+
+$('#in_searchInteract').keyup(function () {
+  var search = $(this).value();
+  if(search == ''){
+    $('.panel-collapse.in').closest('.panel').find('.accordion-toggle').click()
+    $('.interactDisplayCard').show();
+    return;
+  }
+  $('.panel-collapse:not(.in)').closest('.panel').find('.accordion-toggle').click()
+  $('.interactDisplayCard').hide();
+  $('.interactDisplayCard .name').each(function(){
+    var text = $(this).text().toLowerCase();
+    if(text.indexOf(search.toLowerCase()) >= 0){
+      $(this)
+      $(this).closest('.interactDisplayCard').show();
+    }
+  });
+  $('.interactListContainer').packery();
+});
+
 $("#div_listInteract").trigger('resize');
 
 $('.interactListContainer').packery();
