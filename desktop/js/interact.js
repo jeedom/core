@@ -64,6 +64,7 @@ $('#in_searchInteract').keyup(function () {
   if(search == ''){
     $('.panel-collapse.in').closest('.panel').find('.accordion-toggle').click()
     $('.interactDisplayCard').show();
+    $('.interactListContainer').packery();
     return;
   }
   $('.panel-collapse:not(.in)').closest('.panel').find('.accordion-toggle').click()

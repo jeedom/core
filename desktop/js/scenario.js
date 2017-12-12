@@ -135,12 +135,12 @@ $('#in_treeSearch').keyup(function () {
   $('#div_tree').jstree(true).search($('#in_treeSearch').val());
 });
 
-
 $('#in_searchScenario').keyup(function () {
   var search = $(this).value();
   if(search == ''){
     $('.panel-collapse.in').closest('.panel').find('.accordion-toggle').click()
     $('.scenarioDisplayCard').show();
+    $('.scenarioListContainer').packery();
     return;
   }
   $('.panel-collapse:not(.in)').closest('.panel').find('.accordion-toggle').click()
