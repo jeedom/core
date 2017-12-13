@@ -1,8 +1,8 @@
-= Profils
+= Profil
 
-La page profils vous permet de configurer certains comportements de Jeedom spécifiques à l'utilisateur : page d'accueil, thèmes de la version desktop, de la version mobile, des graphiques... Elle permet aussi de changer votre mot de passe.
+La page Profil vous permet de configurer certains comportements de Jeedom spécifiques à l'utilisateur : page d'accueil, thèmes de la version desktop, de la version mobile, des graphiques... Elle permet aussi de changer votre mot de passe.
 
-Vous retrouvez en haut à droite en cliquant sur le l'icone bonhomme puis profils
+Vous la retrouvez en haut à droite en cliquant sur le l'icône bonhomme puis Profil (suivi de votre identifiant).
 
 == Thèmes
 
@@ -22,25 +22,23 @@ Le panneau thèmes vous permet de régler des paramètres d'interface :
 Vous permet de définir certains comportements de l'interface :
 
 * *Général*
-** *Afficher les menus* : indique à Jeedom d'afficher le panneau de gauche, lorsqu'il existe, pour rappel ce panneau est disponible sur la plupart des pages des plugins, ainsi que la page des scénarios, des interactions, des objets....
-* *Page par défaut*
-** *Desktop* : page par défaut à afficher lors de la connexion en desktop
-** *Mobile* : page par défaut à afficher lors de la connexion en mobile
-* *Objet par défaut sur le dashboard* : objet à afficher par défaut lors de l'arrivée sur le dashboard
-* *Vue par défaut* : vue à afficher par défaut lors de l'arrivée sur le dashboard
-* *Design par défaut* : design à afficher par défaut lors de l'arrivée sur le dashboard
+** *Afficher les menus* : indique à Jeedom d'afficher le panneau de gauche, lorsqu'il existe, pour rappel ce panneau est disponible sur la plupart des pages des plugins, ainsi que la page des scénarii, des interactions, des objets....
+* *Page par défaut* : page par défaut à afficher lors de la connexion en desktop/mobile
+* *Objet par défaut sur le dashboard* : objet à afficher par défaut lors de l'arrivée sur le dashboard/mobile
+* *Vue par défaut* : vue à afficher par défaut lors de l'arrivée sur le dashboard/mobile
+* *Design par défaut* : design à afficher par défaut lors de l'arrivée sur le dashboard/mobile
 ** *Plein écran* : affichage par défaut en plein écran lors de l'arrivée sur les designs
 * *Dashboard*
-** *Déplier le panneau des scénarios* : permet de rendre visible par défaut le menu des scénarios (à droite) sur le dashboard
+** *Déplier le panneau des scénarii* : permet de rendre visible par défaut le menu des scénarii (à droite) sur le dashboard
 ** *Déplier le panneau des objets* : permet de rendre visible par défaut le menu des objets (à gauche) sur le dashboard
 * *Vue*
 ** *Déplier le panneau des vues* : permet de rendre visible par défaut le menu des vues (à gauche) sur les vues
 
 === Sécurité
 
-* *Authentification en 2 étapes* : permet de configurer l'authentification en 2 étape (pour rappels c'est un code changeant toute les XX secondes qui s'affiche sur une application mobile, type google authentificator)
+* *Authentification en 2 étapes* : permet de configurer l'authentification en 2 étapes (pour rappel, c'est un code changeant toutes les X secondes qui s'affiche sur une application mobile, type google authentificator)
 * *Mot de passe* : permet de changer votre mot de passe (ne pas oublier de le retaper en dessous)
-* *Hash de l'utilisateur* : votre clef api d'utilisateur
+* *Hash de l'utilisateur* : votre clef API d'utilisateur
 
 === Notifications
 
