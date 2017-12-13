@@ -377,17 +377,6 @@ try {
 		}
 	}
 
-	if (init('action') == 'getAlert') {
-		$alerts = array();
-		foreach (eqLogic::all() as $eqLogic) {
-			if ($eqLogic->getAlert() == '') {
-				continue;
-			}
-			$alerts[] = $eqLogic->toHtml(init('version'));
-		}
-		ajax::success($alerts);
-	}
-
 	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
