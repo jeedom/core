@@ -36,6 +36,8 @@ try {
 	}
 } catch (Exception $e) {
 
+} catch (Error $e) {
+
 }
 
 try {
@@ -44,12 +46,16 @@ try {
 	}
 } catch (Exception $e) {
 
+} catch (Error $e) {
+
 }
 
 function jeedomCoreAutoload($classname) {
 	try {
 		include_file('core', $classname, 'class');
 	} catch (Exception $e) {
+
+	} catch (Error $e) {
 
 	}
 }
@@ -66,6 +72,9 @@ function jeedomPluginAutoload($_classname) {
 			include_file('core', $classname, 'class', $classname);
 		}
 	} catch (Exception $e) {
+
+	} catch (Error $e) {
+
 	}
 }
 
@@ -75,11 +84,15 @@ function jeedomOtherAutoload($classname) {
 		return;
 	} catch (Exception $e) {
 
+	} catch (Error $e) {
+
 	}
 	try {
 		include_file('core', substr($classname, 5), 'repo');
 		return;
 	} catch (Exception $e) {
+
+	} catch (Error $e) {
 
 	}
 }
