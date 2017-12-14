@@ -26,11 +26,11 @@ sudo chown www-data:www-data core/config/common.config.php
 
 == J'ai des {{...}} partout
 
-La cause la plus fréquente est l'utilisation d'un plugin en version beta, et Jeedom en stable, ou l'inverse. Pour avoir le details de l'erreur il faut regarder le log http.error (dans /var/www/html/log)
+La cause la plus fréquente est l'utilisation d'un plugin en version beta, et Jeedom en stable, ou l'inverse. Pour avoir le détails de l'erreur il faut regarder le log http.error (dans /var/www/html/log)
 
-== Lors d'une commande j'ai une roue qui tourne sans s'arrêter
+== Lors d'une commande, j'ai une roue qui tourne sans s'arrêter
 
-Encore une fois cela est souvent dû à un plugin en beta alors que Jeedom est en stable. Pour voir l'erreur il faut faire F12 puis console
+Encore une fois cela est souvent dû à un plugin en beta alors que Jeedom est en stable. Pour voir l'erreur, il faut faire F12 puis console
 
 == Je n'ai plus accès à Jeedom ni en SSH
 
