@@ -2,7 +2,9 @@
 if (!isConnect()) {
 	throw new Exception('{{Error 401 Unauthorized');
 }
-
+@session_start();
+$_SESSION['user']->refresh();
+@session_write_close();
 $homePage = array(
 	'core::dashboard' => '{{Dashboard}}',
 	'core::view' => '{{Vue}}',
