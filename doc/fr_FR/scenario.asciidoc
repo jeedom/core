@@ -1,137 +1,82 @@
 = Scénario
 
-Voici la partie la plus importante dans la domotique : les scénarios. Véritable cerveau de la domotique c’est ce qui permet d’interagir avec le monde réel de manière "intelligente".
+Voici la partie la plus importante dans la domotique : les scénarios. Véritable cerveau de la domotique, c’est ce qui permet d’interagir avec le monde réel de manière "intelligente".
 
-== La page scénario
+== La page Scénarios
 
-Pour y accéder rien de plus simple, il suffit d'aller sur Outils -> Scénarios : 
+Pour y accéder rien de plus simple, il suffit d'aller sur Outils -> Scénarios. Vous y trouverez la liste des scénarii de votre Jeedom ainsi que des fonctions pour les gérer au mieux : 
 
-image::../images/scenario1.JPG[]
-
-Un fois dessus vous obtenez :
-
-image::../images/scenario.JPG[]
-
-En haut on retrouve une série de 3 boutons : 
-
-* *Ajouter* : permet d'ajouter un scénario
+* *Ajouter* : permet de créer un scénario
 * *Désactiver scénarios* : permet de désactiver tous les scénarios
 * *Voir les variables* : permet de voir les variables, leur valeur ainsi que l'endroit où elle sont utilisées
+* *Vue d'ensemble* : permet d'avoir une vue d'ensemble de tous les scénarios
+* *Testeur d'expression* : permet d'executer un test sur une expression de votre choix et d'en afficher le résultat
 
 [TIP]
-Les scénarios en rouge sont ceux qui sont désactivés
+Les scénarios grisés sont ceux sont désactivés.
 
 [TIP]
-Comme à beaucoup d'endroits sur Jeedom, mettre la souris tout à gauche permet de faire apparaître un menu d'accès rapide (vous pouvez à partir de votre profil le laisser toujours visible).
+Comme à beaucoup d'endroits sur Jeedom, mettre la souris à gauche de l'écran permet de faire apparaître un menu d'accès rapide (à partir de votre profil, vous pouvez le laisser toujours visible).
 
-Il existe 2 modes de scénario : 
+Après avoir cliqué sur "Ajouter", vous devez choisir le nom de votre scénario et vous arrivez sur la page de ses paramètres généraux.
 
-* *Simple* : permet de faire des scénarios très simples type SI ça ALORS fait ça
-* *Avancé* : là vous pouvez tout faire mais cela demande plus de connaissances
+==Général
 
-[IMPORTANT]
-Il est possible de passer un scénario du mode simple au mode avancé mais pas l'inverse
+En haut de cet onglet Général, on retrouve :
 
-Lors de la création, Jeedom va vous demander le type de scénario à faire : 
-
-image::../images/scenario2.JPG[]
-
-
-== Mode simple
-
-Voilà l'interface en mode simple : 
-
-image::../images/scenario9.JPG[]
-
-Vous retrouvez : 
-
-* *Nom* : le nom du scénario
-* *Description* : une description que vous pouvez ajouter pour savoir ce que fait le scénario et faire un suivi par exemple
-* *Actif* : définit si le scénario est actif ou non
-* *Exécuter en avant plan* : permet de lancer le scénario directement et non dans un fil d'exécution séparé. Attention cette option peut être dangereuse car elle met en pause toutes les autres actions du scénario. IL NE FAUT JAMAIS l'activer sur un scénario déclenché par une programmation horaire
-* *Dernier lancement* : la date de dernière exécution du scénario
-* *Etat* : l'état actuel du scénario (en cours, arrêté...)
-
-En haut à droite on retrouve :
-
-* un bouton pour faire un export texte du scénario (pratique pour le montrer sur le forum ou à l'équipe support)
-* un bouton pour avoir le log du scénario
-* un bouton pour dupliquer le scénario
-
-En dessous à gauche vous avez le conditionnement du scénario : 
-
-* *Scénario* : permet d'indiquer si le scénario est programmé (à une date et heure précise) ou s'il est provoqué (comme par exemple la détection d'un mouvement)
-* *A exécuter* : en mode programmé permet de dire s'il doit être exécuté une fois ou de manière répétée
-* *En date du* : s'il n'est exécuté qu'une fois alors il faut indiquer la date et l'heure
-* *Fréquence* : en mode répété vous pouvez choisir la fréquence de répétition
-
-image::../images/scenario10.JPG[]
-
-* *Par* : en mode provoqué vous devez choisir la commande déclenchant le scénario, en cliquant sur le petit bouton à gauche
-
-image::../images/scenario11.JPG[]
-
-* *Condition optionnelle* : permet d'activer ou non un test avant l'exécution du scénario.
-
-image::../images/scenario12.JPG[]
-
-* *Si* : permet de choisir la commande sur laquelle s'applique la condition, en cliquant sur le petit bouton à gauche
-* *Est* : permet de choisir le statut que doit avoir la commande précédente pour que les actions soient exécutées (en fonction de la commande les options peuvent changer)
-
-Enfin sur la droite vous avez les actions, ici très simple il suffit de cliquer sur "Ajouter une action"
-
-=== Exemple allumer sur présence
-
-image::../images/scenario13.JPG[]
-
-Voila un scénario très simple qui allume la lumière en cas de présence
-
-[TIP]
-Ce scénario sera déclenché aussi bien lors de la détection d'une présence que lors du relâchement (fin de présence), il est donc nécessaire de tester la valeur de la présence (ici déclenchée)
-
-[IMPORTANT]
-Il ne faut pas oublier de faire le même genre de scénario mais pour éteindre la lumière lorsque plus personne n'est présent
-
-== Mode avancé
-
-Voici un exemple de scénario en mode avancé :
-
-image::../images/scenario3.JPG[]
-
-En haut la partie générale où l'on retrouve :
-
-* *nom*
+* *ID* : à côté du mot *Général*, l'identifiant du scénario
+* *Nom du scénario* : Le nom de votre scénario
+* *Nom à afficher* : Le nom utilisé pour son affichage
 * *groupe* : permet d'organiser les scénarios
-* *Actif* : Si le scénario est actif ou non
-* *Visible* : Si le scénario est visible ou non
-* *Objet parent* : Le choix d'affecter à un objet parent ou pas
-* *Timeout secondes (0 = illimité)* : La durée d’exécution maximum autorisée
-* *Déclencheurs* : Ensuite vient la partie des déclencheurs qui peuvent soit être un ou plusieurs événements et/ou une programmation (une heure donnée, une fréquence… Cette partie s’écrit à l’aide d’une syntaxe type crontab accessible via la touche, un assistant est disponible en cliquant sur ?. Attention vous pouvez avoir au maximum 28 déclencheurs sur un scénario.
-* *Action* : En haut à droite on retrouve quelques actions utiles comme le lancement forcé du scénario (pour test),la suppression du scénario, la sauvegarde, la génération d'un template (voir le chapitre dédié), l'export, l’arrêt forcé d’un scénario (si en cours), log des dernières exécutions (très pratique pour vérifier le déroulement exact du scénario), la duplication.
-* *Execution en avant plan* : permet de lancer le scénario directement et non dans un fil d'exécution séparé. Attention cette option peut être dangereuse car elle met en pause toute les autres actions du scénario. IL NE FAUT JAMAIS l'activer sur un scénario déclenché par une programmation horaire ou un scénario contenant des actions de type sleep
-* *Enchaîner les commandes sans attendre* : permet d'enchaîner les suites d'actions sans attendre le retour et donc la vérification de la bonne exécution (attention actuellement seuls les plugins openzwave et script sont compatibles)
-* *Pas de log* : indique au scénario de ne pas écrire dans les logs (permet de le rendre un peu plus rapide)
-* *Etat* : état actuel du scénario
+* *Actif* : permet d'activer le scénario
+* *Visible* : permet de rendre visible le scénario
+* *Objet parent* : Affectation à un objet parent
+* *Timeout secondes (0 = illimité)* : La durée d’exécution maximale autorisée
+* *Multi lancement* :
+* *Mode synchrone* :
+* *Log* : Le type de log souhaité pour le scénario
+* *Suivre dans la timeline* : permet de garder un suivi du scénario dans la timeline
+* *Description* : Permet d'écrire un petit texte pour décrire votre scénario
+* *Mode du scénario* : Le scénario peut être programmé, déclenché ou les deux à la fois. Vous aurez ensuite le choix d'indiquer le(s) déclencheur(s) et la/les programmation(s).
 
-Sur la partie basse vient le scénario en lui-même avec un bouton pour ajouter des blocs : 
+[TIP]
+Attention : vous pouvez avoir au maximum 28 déclencheurs/programmations sur un scénario.
+
+En haut, on retrouve quelques fonctions utiles pour gérer notre scénario :
+
+* *statut* : état actuel de votre scénario
+* *variables* : permet d'afficher les variables
+* *Expression* : permet d'afficher le testeur d'expression
+* *Executer* : permet de tester le scénario (N'oubliez pas de sauvegarder au préalable !)
+* *Supprimer* : permet de supprimer le scénario
+* *Sauvegarder* : permet de sauvegarder les changements effectués
+* *Template* : permet d'accéder aux templates et d'en appliquer au scénario
+* *Exporter* : permet d'obtenir une version texte du scénario
+* *Log* : permet d'afficher les logs du scénario
+* *Dupliquer* : permet de copier le scénario en indiquant un nouveau nom
+* *Liens* : permet de visualiser le graphique des éléments en lien avec le scénario
+
+==Scénario
+
+C'est ici que vous allez construire votre scénario. Il faut commencer par ajouter un bloc :
 
 image::../images/scenario4.JPG[]
 
-* *Si/Alors/Sinon* : bloc de base permettant de réaliser des conditions.
-* *Action* : bloc permet de lancer une action simple sans aucune condition ou autre avant
-* *Boucle* : permet de réaliser des boucles de 1 jusqu’à un nombre défini (ou même une valeur d’un capteur, ou nombre aléatoire).
-* *Dans* : permet de lancer une action dans X minute(s) (0 est une valeur possible). La particularité c'est que les actions sont lancées en arrière plan, elles ne bloquent donc pas la suite du scénario. C'est donc un bloc non bloquant.
-* *A* : permet de dire à Jeedom de lancer les actions du bloc A à une heure donnée (sous la forme hhmm). Ce bloc est non bloquant
-* *Code* : permet d’écrire directement en code PHP (demande certaines connaissances et peut être risqué mais permet de n’avoir plus aucune contrainte).
+* *Si/Alors/Sinon* : permet de réaliser des actions sous condition(s).
+* *Action* : permet de lancer une action simple sans aucune condition
+* *Boucle* : permet de réaliser des actions de manière répétitive de 1 jusqu’à un nombre défini (ou même une valeur d’un capteur, ou nombre aléatoire...).
+* *Dans* : permet de lancer une action dans X minute(s) (0 est une valeur possible). La particularité c'est que les actions sont lancées en arrière-plan, elles ne bloquent donc pas la suite du scénario. C'est donc un bloc non bloquant
+* *A* : permet de dire à Jeedom de lancer les actions du bloc à une heure donnée (sous la forme hhmm). Ce bloc est non bloquant
+* *Code* : permet d’écrire directement en code PHP (demande certaines connaissances et peut être risqué mais permet de ne plus avoir aucune contrainte).
 * *Commentaire* : permet d'ajouter des commentaires à son scénario
 
 [TIP]
-Devant chaque bloc (en dessous de la double flèche verticale qui permet de déplacer les blocs) vous avez un petit coche pour désactiver complètement le bloc sans pour autant supprimer celui-ci (permet de faire des tests pour le réactiver plus tard par exemple)
+Devant chaque bloc (en dessous de la double flèche verticale qui permet de déplacer les blocs) vous avez un petit case pour désactiver complètement le bloc sans pour autant supprimer celui-ci (permet de faire des tests pour le réactiver plus tard par exemple)
 
 [NOTE]
 Sur les blocs de type Si/Alors/Sinon vous avez devant des flèches circulaires, elles permettent d'activer ou non la répétition des actions si l'évaluation de la condition donne le même résultat que la précedente évaluation
 
-Pour les conditions, Jeedom essaye de faire en sorte qu’on puisse les écrire le plus possible en langage naturel tout en restant souple. On a donc un bouton permettant de sélectionner un équipement puis on écrit la condition. Il existe une liste de tags permettant d’avoir accès à des variables issues du scénario ou d’un autre, à l’heure, à la date, à un nombre aléatoire….
+Pour les conditions, Jeedom essaye de faire en sorte qu’on puisse les écrire le plus possible en langage naturel tout en restant souple. On a donc un bouton permettant de sélectionner un équipement puis on écrit la condition. Il existe une liste de tags permettant d’avoir accès à des variables issues du scénario ou d’un autre, à l’heure, à la date, à un nombre aléatoire,….
 
 image::../images/scenario5.JPG[]
 
