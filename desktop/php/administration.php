@@ -2,7 +2,9 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
+
 $repos = update::listRepo();
+
 $keys = array('api', 'apipro', 'dns::token', 'market::allowDNS', 'market::allowBeta', 'market::allowAllRepo', 'ldap::enable');
 foreach ($repos as $key => $value) {
 	$keys[] = $key . '::enable';
@@ -91,6 +93,7 @@ user::isBan();
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" >{{Dernière date connue}}</label>
 						<div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
 							<?php
+
 $cache = cache::byKey('hour');
 $lastKnowDate = $cache->getValue();
 ?>
@@ -283,30 +286,32 @@ $lastKnowDate = $cache->getValue();
 						</div>
 					</div>
 					<?php
-foreach (plugin::listPlugin(true) as $plugin) {
-	if (config::byKey('api', $plugin->getId()) == '') {
-		continue;
+if (init('rescue', 0) == 0) {
+	foreach (plugin::listPlugin(true) as $plugin) {
+		if (config::byKey('api', $plugin->getId()) == '') {
+			continue;
+		}
+		echo '<div class="form-group">';
+		echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API pour le plugin}} ' . $plugin->getName() . '">{{Clef API}} ' . $plugin->getName() . '</label>';
+		echo '<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">';
+		echo '<div class="input-group">';
+		echo '<span class="span_apikey">' . config::byKey('api', $plugin->getId()) . '</span>';
+		echo '<span class="input-group-btn">';
+		echo '<a class="btn btn-default form-control bt_regenerate_api" data-plugin="' . $plugin->getId() . '"><i class="fa fa-refresh"></i></a>';
+		echo '</span>';
+		echo '</div>';
+		echo '</div>';
+		echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Accès API}}</label>';
+		echo '<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">';
+		echo '<select class="form-control configKey" data-l1key="api::' . $plugin->getId() . '::mode">';
+		echo '<option value="enable">{{Activé}}</option>';
+		echo '<option value="whiteip">{{IP blanche}}</option>';
+		echo '<option value="localhost">{{Localhost}}</option>';
+		echo '<option value="disable">{{Désactivé}}</option>';
+		echo '</select>';
+		echo '</div>';
+		echo '</div>';
 	}
-	echo '<div class="form-group">';
-	echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API pour le plugin}} ' . $plugin->getName() . '">{{Clef API}} ' . $plugin->getName() . '</label>';
-	echo '<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">';
-	echo '<div class="input-group">';
-	echo '<span class="span_apikey">' . config::byKey('api', $plugin->getId()) . '</span>';
-	echo '<span class="input-group-btn">';
-	echo '<a class="btn btn-default form-control bt_regenerate_api" data-plugin="' . $plugin->getId() . '"><i class="fa fa-refresh"></i></a>';
-	echo '</span>';
-	echo '</div>';
-	echo '</div>';
-	echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Accès API}}</label>';
-	echo '<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">';
-	echo '<select class="form-control configKey" data-l1key="api::' . $plugin->getId() . '::mode">';
-	echo '<option value="enable">{{Activé}}</option>';
-	echo '<option value="whiteip">{{IP blanche}}</option>';
-	echo '<option value="localhost">{{Localhost}}</option>';
-	echo '<option value="disable">{{Désactivé}}</option>';
-	echo '</select>';
-	echo '</div>';
-	echo '</div>';
 }
 ?>
 				</fieldset>
@@ -325,7 +330,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 							<a class="btn btn-danger" href="index.php?v=d&p=system"><i class="fa fa-exclamation-triangle"></i> {{Lancer}}</a>
 						</div>
 					</div>
-					<legend><i class="fa fa-database"></i> {{Editeur de fichier}}</legend>
+					<legend><i class="fa fa-indent"></i> {{Editeur de fichier}}</legend>
 					<div class="alert alert-danger">{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à Jeedom. L'équipe Jeedom se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Editeur}}</label>
@@ -1228,19 +1233,21 @@ foreach ($other_log as $name) {
 	echo '</div>';
 	echo '</div>';
 }
-foreach (plugin::listPlugin(true) as $plugin) {
-	echo '<form class="form-horizontal">';
-	echo '<div class="form-group">';
-	echo '<label class="col-sm-2 control-label">' . $plugin->getName() . '</label>';
-	echo '<div class="col-sm-6">';
-	echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="1000" /> {{Aucun}}</label>';
-	echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="default" /> {{Défaut}}</label>';
-	echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="100" /> {{Debug}}</label>';
-	echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="200" /> {{Info}}</label>';
-	echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="300" /> {{Warning}}</label>';
-	echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="400" /> {{Erreur}}</label>';
-	echo '</div>';
-	echo '</div>';
+if (init('rescue', 0) == 0) {
+	foreach (plugin::listPlugin(true) as $plugin) {
+		echo '<form class="form-horizontal">';
+		echo '<div class="form-group">';
+		echo '<label class="col-sm-2 control-label">' . $plugin->getName() . '</label>';
+		echo '<div class="col-sm-6">';
+		echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="1000" /> {{Aucun}}</label>';
+		echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="default" /> {{Défaut}}</label>';
+		echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="100" /> {{Debug}}</label>';
+		echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="200" /> {{Info}}</label>';
+		echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="300" /> {{Warning}}</label>';
+		echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="400" /> {{Erreur}}</label>';
+		echo '</div>';
+		echo '</div>';
+	}
 }
 ?>
 						</fieldset>

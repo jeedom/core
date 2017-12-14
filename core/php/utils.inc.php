@@ -19,6 +19,10 @@
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
 function include_file($_folder, $_fn, $_type, $_plugin = '') {
+	$_rescue = false;
+	if (isset($_GET['rescue']) && $_GET['rescue'] == 1) {
+		$_rescue = true;
+	}
 	if ($_folder == '3rdparty') {
 		$_fn .= '.' . $_type;
 		$path = dirname(__FILE__) . '/../../' . $_folder . '/' . $_fn;
@@ -58,7 +62,11 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 		if ($_type != 'class') {
 			ob_start();
 			require_once $path;
-			echo translate::exec(ob_get_clean(), $_folder . '/' . $_fn);
+			if ($_rescue) {
+				echo str_replace(array('{{', '}}'), '', ob_get_clean());
+			} else {
+				echo translate::exec(ob_get_clean(), $_folder . '/' . $_fn);
+			}
 			return;
 		}
 		require_once $path;
