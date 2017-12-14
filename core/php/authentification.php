@@ -31,6 +31,14 @@ if (isset($_COOKIE['sess_id'])) {
 }
 @session_start();
 if (!headers_sent()) {
+	$cache = cache::byKey('current_sessions');
+	$sessions = $cache->getValue(array());
+	if (!isset($sessions[session_id()])) {
+		$sessions[session_id()] = array();
+	}
+	$sessions[session_id()]['datetime'] = date('Y-m-d H:i:s');
+	$sessions[session_id()]['ip'] = getClientIp();
+	cache::set('current_sessions', $sessions);
 	setcookie('sess_id', session_id(), time() + 24 * 3600, "/", '', false, true);
 }
 @session_write_close();
@@ -96,21 +104,16 @@ function login($_login, $_password, $_twoFactor = null) {
 			return false;
 		}
 	}
-
+	$cache = cache::byKey('current_sessions');
+	$sessions = $cache->getValue(array());
+	if (!isset($sessions[session_id()])) {
+		$sessions[session_id()] = array();
+	}
+	$sessions[session_id()]['login'] = $user->getLogin();
+	$sessions[session_id()]['user_id'] = $user->getId();
+	cache::set('current_sessions', $sessions);
 	@session_start();
 	$_SESSION['user'] = $user;
-
-	if (init('v') == 'd' && init('registerDevice') == 'on') {
-		$rdk = config::genKey();
-		$registerDevice = $_SESSION['user']->getOptions('registerDevice', array());
-		$registerDevice[sha512($rdk)] = array('datetime' => date('Y-m-d H:i:s'));
-		$_SESSION['user']->setOptions('registerDevice', $registerDevice);
-		$_SESSION['user']->save();
-		setcookie('registerDevice', $_SESSION['user']->getHash() . '-' . $rdk, time() + 365 * 24 * 3600, "/", '', false, true);
-		if (!isset($_COOKIE['jeedom_token'])) {
-			setcookie('jeedom_token', ajax::getToken(), time() + 365 * 24 * 3600, "/", '', false, true);
-		}
-	}
 	@session_write_close();
 	log::add('connection', 'info', __('Connexion de l\'utilisateur : ', __FILE__) . $_login);
 	return true;
@@ -140,14 +143,14 @@ function loginByHash($_key) {
 		sleep(5);
 		return false;
 	}
-
-	@session_start();
-	$_SESSION['user'] = $user;
-	$registerDevice[sha512($key[1])]['datetime'] = date('Y-m-d H:i:s');
-	$_SESSION['user']->setOptions('registerDevice', $registerDevice);
-	$_SESSION['user']->save();
-	@session_write_close();
-	setcookie('registerDevice', $_key, time() + 365 * 24 * 3600, "/", '', false, true);
+	$cache = cache::byKey('current_sessions');
+	$sessions = $cache->getValue(array());
+	if (!isset($sessions[session_id()])) {
+		$sessions[session_id()] = array();
+	}
+	$sessions[session_id()]['login'] = $user->getLogin();
+	$sessions[session_id()]['user_id'] = $user->getId();
+	cache::set('current_sessions', $sessions);
 	if (!isset($_COOKIE['jeedom_token'])) {
 		setcookie('jeedom_token', ajax::getToken(), time() + 365 * 24 * 3600, "/", '', false, true);
 	}

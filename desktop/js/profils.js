@@ -29,9 +29,9 @@ jwerty.key('ctrl+s', function (e) {
 });
 
 $('#bt_configureTwoFactorAuthentification').on('click',function(){
- var profil = $('#div_pageContainer').getValues('.userAttr')[0];
- $('#md_modal').dialog({title: "{{Authentification 2 étapes}}"});
- $("#md_modal").load('index.php?v=d&modal=twoFactor.authentification').dialog('open');
+   var profil = $('#div_pageContainer').getValues('.userAttr')[0];
+   $('#md_modal').dialog({title: "{{Authentification 2 étapes}}"});
+   $("#md_modal").load('index.php?v=d&modal=twoFactor.authentification').dialog('open');
 });
 
 $("#bt_saveProfils").on('click', function (event) {
@@ -140,4 +140,18 @@ $('#bt_removeAllRegisterDevice').on('click',function(){
             window.location.reload();
         }
     });
+});
+
+
+$('.bt_deleteSession').on('click',function(){
+   var id = $(this).closest('tr').attr('data-id'); 
+   jeedom.user.deleteSession({
+    id : id,
+    error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (data) {
+        window.location.reload();
+    }
+});
 });

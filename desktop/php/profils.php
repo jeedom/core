@@ -317,6 +317,38 @@ if ($_SESSION['user']->getOptions('twoFactorAuthentification', 0) == 1) {
   </fieldset>
 </form>
 
+    <form class="form-horizontal">
+        <fieldset>
+            <legend>{{Sessions actives}}</legend>
+            <table class="table table-condensed table-bordered">
+                <thead>
+                    <tr>
+                        <th>{{ID}}</th><th>{{Login}}</th><th>{{IP}}</th><th>{{Date}}</th><th>{{Actions}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+cleanSession();
+$cache = cache::byKey('current_sessions');
+$sessions = $cache->getValue(array());
+foreach ($sessions as $id => $session) {
+	if ($session['user_id'] != $_SESSION['user']->getId()) {
+		continue;
+	}
+	echo '<tr data-id="' . $id . '">';
+	echo '<td>' . $id . '</td>';
+	echo '<td>' . $session['login'] . '</td>';
+	echo '<td>' . $session['ip'] . '</td>';
+	echo '<td>' . $session['datetime'] . '</td>';
+	echo '<td><a class="btn btn-xs btn-danger bt_deleteSession"><i class="fa fa-trash"></i> {{Supprimer}}</a></td>';
+	echo '</tr>';
+}
+?>
+               </tbody>
+           </table>
+       </fieldset>
+   </form>
+
 <form class="form-horizontal">
   <fieldset>
     <legend>{{Péripherique enregistrés}} <a class="btn btn-xs btn-warning pull-right" id="bt_removeAllRegisterDevice"><i class="fa fa-trash"></i> {{Supprimer tout}}</a></legend>
@@ -324,6 +356,7 @@ if ($_SESSION['user']->getOptions('twoFactorAuthentification', 0) == 1) {
       <thead>
         <tr>
           <th>{{Identification}}</th>
+          <th>{{IP}}</th>
           <th>{{Date derniere utilisation}}</th>
           <th>{{Action}}</th>
         </tr>
@@ -334,6 +367,9 @@ foreach ($_SESSION['user']->getOptions('registerDevice') as $key => $value) {
 	echo '<tr data-key="' . $key . '">';
 	echo '<td>';
 	echo $key;
+	echo '</td>';
+	echo '<td>';
+	echo $value['ip'];
 	echo '</td>';
 	echo '<td>';
 	echo $value['datetime'];

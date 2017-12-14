@@ -20,7 +20,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                 <thead>
                     <th>{{Nom d'utilisateur}}</th>
                     <th>{{Actif}}</th>
-                    <th>{{Profils}}</th>
+                    <th>{{Profil}}</th>
                     <th>{{Clef API}}</th>
                     <th>{{Double authentification}}</th>
                     <th>{{Date de dernière connexion}}</th>
@@ -30,6 +30,76 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
             </table>
         </div>
     </div>
+
+    <form class="form-horizontal">
+        <fieldset>
+            <legend>{{Sessions actives}}</legend>
+            <table class="table table-condensed table-bordered">
+                <thead>
+                    <tr>
+                        <th>{{ID}}</th><th>{{Login}}</th><th>{{IP}}</th><th>{{Date}}</th><th>{{Actions}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+cleanSession();
+$cache = cache::byKey('current_sessions');
+$sessions = $cache->getValue(array());
+foreach ($sessions as $id => $session) {
+	echo '<tr data-id="' . $id . '">';
+	echo '<td>' . $id . '</td>';
+	echo '<td>' . $session['login'] . '</td>';
+	echo '<td>' . $session['ip'] . '</td>';
+	echo '<td>' . $session['datetime'] . '</td>';
+	echo '<td><a class="btn btn-xs btn-danger bt_deleteSession"><i class="fa fa-trash"></i> {{Supprimer}}</a></td>';
+	echo '</tr>';
+}
+?>
+               </tbody>
+           </table>
+       </fieldset>
+   </form>
+       <form class="form-horizontal">
+  <fieldset>
+    <legend>{{Péripherique enregistrés}} <a class="btn btn-xs btn-warning pull-right" id="bt_removeAllRegisterDevice"><i class="fa fa-trash"></i> {{Supprimer tout}}</a></legend>
+    <table class="table table-bordered table-condensed">
+      <thead>
+        <tr>
+          <th>{{Identification}}</th>
+          <th>{{Utilisateur}}</th>
+          <th>{{IP}}</th>
+          <th>{{Date derniere utilisation}}</th>
+          <th>{{Action}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+foreach (user::all() as $user) {
+	foreach ($user->getOptions('registerDevice') as $key => $value) {
+		echo '<tr data-key="' . $key . '" data-user_id="' . $user->getId() . '">';
+		echo '<td>';
+		echo $key;
+		echo '</td>';
+		echo '<td>';
+		echo $user->getLogin();
+		echo '</td>';
+		echo '<td>';
+		echo $value['ip'];
+		echo '</td>';
+		echo '<td>';
+		echo $value['datetime'];
+		echo '</td>';
+		echo '<td>';
+		echo '<a class="btn btn-warning btn-xs bt_removeRegisterDevice"><i class="fa fa-trash"></i> {{Supprimer}}</a>';
+		echo '</td>';
+		echo '</tr>';
+	}
+}
+?>
+     </tbody>
+   </table>
+ </fieldset>
+</form>
 
     <div class="modal fade" id="md_newUser">
         <div class="modal-dialog">
