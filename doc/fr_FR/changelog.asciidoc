@@ -2,6 +2,7 @@
 
 == 3.2.0
 
+* JEED-283 : ajout d'un mode rescue à jeedom en rajoutant &rescue=1 dans l'url
 * JEED-8 : ajout du nom du scénario sur le titre de la page lors de l'édition
 * Optimisation des modifications d'organisation (taille des widgets, position des équipements, position des commandes) sur le dashboard et les vue. Attention maintenant les modification ne sont sauvegardées que lorsque l'on quitte le mode édition.
 * JEED-18 : Ajout des logs lors de l'ouverture d'un ticket au support
