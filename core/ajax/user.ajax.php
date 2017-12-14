@@ -46,7 +46,14 @@ try {
 		}
 
 		if (init('storeConnection') == 1) {
-			setcookie('registerDevice', $_SESSION['user']->getHash(), time() + 365 * 24 * 3600, "/", '', false, true);
+			$rdk = config::genKey();
+			$registerDevice = $_SESSION['user']->getOptions('registerDevice', array());
+			$registerDevice[sha512($rdk)] = array('datetime' => date('Y-m-d H:i:s'));
+			@session_start();
+			$_SESSION['user']->setOptions('registerDevice', $registerDevice);
+			$_SESSION['user']->save();
+			@session_write_close();
+			setcookie('registerDevice', $_SESSION['user']->getHash() . '-' . $rdk, time() + 365 * 24 * 3600, "/", '', false, true);
 			if (!isset($_COOKIE['jeedom_token'])) {
 				setcookie('jeedom_token', ajax::getToken(), time() + 365 * 24 * 3600, "/", '', false, true);
 			}
@@ -187,6 +194,20 @@ try {
 
 	if (init('action') == 'removeBanIp') {
 		ajax::success(user::removeBanIp());
+	}
+
+	if (init('action') == 'removeRegisterDevice') {
+		$registerDevice = $_SESSION['user']->getOptions('registerDevice', array());
+		if (init('key') == '') {
+			$registerDevice = array();
+		} elseif (isset($registerDevice[init('key')])) {
+			unset($registerDevice[init('key')]);
+		}
+		@session_start();
+		$_SESSION['user']->setOptions('registerDevice', $registerDevice);
+		$_SESSION['user']->save();
+		@session_write_close();
+		ajax::success();
 	}
 
 	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));

@@ -99,8 +99,14 @@ function login($_login, $_password, $_twoFactor = null) {
 
 	@session_start();
 	$_SESSION['user'] = $user;
+
 	if (init('v') == 'd' && init('registerDevice') == 'on') {
-		setcookie('registerDevice', $_SESSION['user']->getHash(), time() + 365 * 24 * 3600, "/", '', false, true);
+		$rdk = config::genKey();
+		$registerDevice = $_SESSION['user']->getOptions('registerDevice', array());
+		$registerDevice[sha512($rdk)] = array('datetime' => date('Y-m-d H:i:s'));
+		$_SESSION['user']->setOptions('registerDevice', $registerDevice);
+		$_SESSION['user']->save();
+		setcookie('registerDevice', $_SESSION['user']->getHash() . '-' . $rdk, time() + 365 * 24 * 3600, "/", '', false, true);
 		if (!isset($_COOKIE['jeedom_token'])) {
 			setcookie('jeedom_token', ajax::getToken(), time() + 365 * 24 * 3600, "/", '', false, true);
 		}
@@ -111,7 +117,8 @@ function login($_login, $_password, $_twoFactor = null) {
 }
 
 function loginByHash($_key) {
-	$user = user::byHash($_key);
+	$key = explode('-', $_key);
+	$user = user::byHash($key[0]);
 	if (!is_object($user) || $user->getEnable() == 0) {
 		user::failedLogin();
 		sleep(5);
@@ -122,9 +129,18 @@ function loginByHash($_key) {
 		sleep(5);
 		return false;
 	}
+	$registerDevice = $user->getOptions('registerDevice', array());
+	if (!isset($registerDevice[sha512($key[1])])) {
+		user::failedLogin();
+		sleep(5);
+		return false;
+	}
 
 	@session_start();
 	$_SESSION['user'] = $user;
+	$registerDevice[sha512($key[1])]['datetime'] = date('Y-m-d H:i:s');
+	$_SESSION['user']->setOptions('registerDevice', $registerDevice);
+	$_SESSION['user']->save();
 	@session_write_close();
 	setcookie('registerDevice', $_key, time() + 365 * 24 * 3600, "/", '', false, true);
 	if (!isset($_COOKIE['jeedom_token'])) {
@@ -138,6 +154,7 @@ function logout() {
 	@session_start();
 	setcookie('sess_id', '', time() - 3600, "/", '', false, true);
 	setcookie('registerDevice', '', time() - 3600, "/", '', false, true);
+	setcookie('jeedom_token', '', time() - 3600, "/", '', false, true);
 	session_unset();
 	session_destroy();
 	return;
