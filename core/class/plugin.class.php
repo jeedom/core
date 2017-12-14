@@ -49,7 +49,7 @@ class plugin {
 
 	/*     * ***********************Méthodes statiques*************************** */
 
-	public static function byId($_id, $_translate = true) {
+	public static function byId($_id) {
 		global $JEEDOM_INTERNAL_CONFIG;
 		if (is_string($_id) && isset(self::$_cache[$_id])) {
 			return self::$_cache[$_id];
@@ -58,11 +58,11 @@ class plugin {
 			$_id = self::getPathById($_id);
 		}
 		if (!file_exists($_id)) {
-			throw new Exception('Plugin introuvable : ' . $_id);
+			throw new Exception(__('Plugin introuvable : ', __FILE__) . $_id);
 		}
 		$data = json_decode(file_get_contents($_id), true);
 		if (!is_array($data)) {
-			throw new Exception('Plugin introuvable (json invalide) : ' . $_id . ' => ' . print_r($data, true));
+			throw new Exception(__('Plugin introuvable (json invalide) : ', __FILE__) . $_id . ' => ' . print_r($data, true));
 		}
 		$plugin = new plugin();
 		$plugin->id = $data['id'];
