@@ -1,6 +1,6 @@
 = Market
 
-Doc un peu particulière car elle va traiter uniquement de votre page profil du market.
+Documentation un peu particulière car elle va traiter uniquement de votre page profil du market.
 
 Disponible en allant sur votre nom d'utilisateur puis profil à partir du market (un peu comme sur Jeedom).
 
@@ -11,7 +11,7 @@ Celle-ci se décompose en plusieurs parties :
 C'est ici que vous allez pouvoir régler différents paramètres de votre profil : 
 
 * *Profil*
-** *Login* : Votre login sur le market, il ne peut être changé
+** *Login* : Votre identifiant sur le market, il ne peut être changé
 ** *Nom* : Votre nom (cette information n'est utile que pour rendre les mails plus sympa)
 ** *Prénom* : Votre prénom (cette information n'est utile que pour rendre les mails plus sympa)
 ** *Nom d'utilisateur sur le forum* : Votre pseudo sur le forum
@@ -24,7 +24,7 @@ Pour les développeurs :
 
 ** *Nom d'utilisateur sur le forum* : Votre pseudo sur le forum
 ** *Email public* : Votre mail pour recevoir des éventuelles communications de notre part
-** *Compte paypal* : Votre mail de compte Paypal (uniquement utilisé pour payer les developpeurs)
+** *Compte paypal* : Votre mail de compte Paypal (uniquement utilisé pour payer les développeurs)
 
 Pour les pros :
 
@@ -32,20 +32,20 @@ Pour les pros :
 ** *Destinataire des demandes de support* : savoir qui recevra les mails de support (client final, installateur ou les deux)
 
 * *CGU*
-** *Utilisateur* : conditions générales d'utilisation (attention à bien les lire car elles vous engage)
+** *Utilisateur* : conditions générales d'utilisation (attention à bien les lire car elles vous engagent)
 ** *Developpeur* : conditions générales d'utilisation pour les développeurs
 * *Tickets*
 ** *Nombre de tickets* : Nombre de tickets pour le mois en cours ainsi que votre limite
 ** *Support* : bouton pour envoyer une demande de support (accessible aussi par le point d'exclamation en haut à droite sur le market ou sur votre Jeedom)
 
-* *Accés aux betas*
+* *Accès aux betas*
 ** *Activer l'accès aux plugins beta* : permet d'activer l'accès aux plugins betas (attention cela vous interdira tout accès au support)
 
 * *Résumé*
 Ici vous retrouverez un résumé de vos différents droits et services 
 
 [TIP]
-N'oubliez pas de sauvegarder
+N'oubliez pas de sauvegarder.
 
 == Mes Jeedoms
 
@@ -64,19 +64,19 @@ Il est possible que le market vous demande parfois de remettre à zéro vos clef
 ** *IP locale / distante* : IP ou addresse de ce Jeedom, se configure dans Jeedom, si vous ne mettez rien ça sera la dernière IP connue
 ** *DNS* : permet de personnaliser le nom de votre DNS 
 ** *URL* : liste les différentes URL d'accès au Jeedom.
-** *Serveur DNS* : vous indique si le serveur DNS auquel vous êtes rattachés
+** *Serveur DNS* : vous indique le serveur DNS auquel vous êtes rattachés
 ** *Statut du DNS* : permet de voir le statut du DNS
-** *Date de création* : date de création de ce Jeedom sur votre compte market (pour rappel cela se fait automatiquement lorsque vous le liez au market)
+** *Date de création* : date de création de ce Jeedom sur votre compte market (pour rappel, cela se fait automatiquement lorsque vous le liez au market)
 ** *Dernière mise à jour* : dernière communication du Jeedom avec le market
 ** *Hardware* : Nom du hardware du Jeedom
 ** *Version* : la version de Jeedom installée
 
 [TIP]
-N'oubliez pas de sauvegarder
+N'oubliez pas de sauvegarder.
 
 == Mes backups
 
-Sur cette onglet vous pouvez consulter les backups présents sur le market et en télécharger un. En dessous vous avez accès au lien pour acheter 1,3,6 ou 12 mois d'abonnement à la sauvegarde cloud
+Sur cette onglet vous pouvez consulter les sauvegardes présentes sur le market et les télécharger. En dessous vous avez accès au lien pour acheter 1, 3, 6 ou 12 mois d'abonnement à la sauvegarde cloud.
 
 == Mes SMS/Appels
 
@@ -84,13 +84,13 @@ Sur cette onglet vous pouvez consulter votre solde SMS/Appels (utilisable avec l
 
 == Mes achats/promos/dons
 
-Ici vous retrouvez tous vos achats et vous pouvez demander le renvoi du mail de facture ou de reçu
+Ici, vous retrouvez tous vos achats et vous pouvez demander le renvoi du mail de facture ou de reçu.
 
 [IMPORTANT]
-Si vous achetez un plugin officiel vous recevez une facture. En revanche pour un plugin tiers c'est un reçu, pour la facture il faut la demander au développeur
+Si vous achetez un plugin officiel vous recevez une facture. En revanche pour un plugin tiers c'est un reçu, pour la facture il faut la demander au développeur.
 
-Vous pouvez aussi à partir de cet onglet entrer un code promo (un code pour un plugin par exemple que le développeur a pu vous transmettre) et faire un don.
+Vous pouvez aussi, à partir de cet onglet, entrer un code promo (un code pour un plugin, par exemple, que le développeur a pu vous transmettre) et faire un don.
 
-== Mes développments
+== Mes développements
 
-Si vous êtes développeur vous retrouvez ici la liste de toutes vos ventes sur une période, la liste de vos versements ainsi qu'un résumé du nombre de téléchargements, du nombre de ventes...
+Si vous êtes développeur, vous retrouvez ici la liste de toutes vos ventes sur une période, la liste de vos versements ainsi qu'un résumé du nombre de téléchargements, du nombre de ventes...
