@@ -76,23 +76,23 @@ Parfois, il se peut que vous ayez des valeurs incohérentes sur les graphiques. 
 
 = Timeline
 
-La timeline affiche certain évènements de votre domotique sous forme chronologique.
+La timeline affiche certains événements de votre domotique sous forme chronologique.
 
-Pour les voirs vous faut d'abord activer le suivi sur la timeline des commandes ou scénarios voulu : 
+Pour les voir, il vous faut d'abord activer le suivi sur la timeline des commandes ou scénarios voulus : 
 
-* *Scenario* : soit directement sur la page de scénario ou sur la page de résumé de scénario pour le faire en "mass"
-* *Commande* : soit dans la configuration avancé de la commande soit dans la configuration de l'historique pour le faire en "mass"
+* *Scenario* : soit directement sur la page de scénario, soit sur la page de résumé des scénarii pour le faire en "masse"
+* *Commande* : soit dans la configuration avancée de la commande, soit dans la configuration de l'historique pour le faire en "masse"
 
 [TIP]
-Vous avez accès au fenetre de résumé des scénarios ou configuration de l'historique directement à partir de la page de timeline
+Vous avez accès aux fenêtres de résumé des scénarii ou de la configuration de l'historique directement à partir de la page de timeline.
 
-Une fois que vous avez activer le suivi dans la timeline des commandes et scénario voulu vous pourrez voir apparaitre ceux-ci sur la timeline 
+Une fois que vous avez activé le suivi dans la timeline des commandes et scénarii voulus, vous pourrez voir apparaître ceux-ci sur la timeline. 
 
 [IMPORTANT]
-Il faut attendre de nouveau évènement après avoir activer le suivi sur la timeline avant de les voir apparaitre
+Il faut attendre de nouveaux événements après avoir activé le suivi sur la timeline avant de les voir apparaître.
 
-Les cartes sur la timeline affiche : 
+Les cartes sur la timeline affiche :
 
-* *Commande action* : en fond rouge, une icone à droite vous permet d'afficher la fenetre de configuration avancée de la commande
-* *Commande info* : en fond bleu, une icone à droite vous permet d'afficher la fenetre de configuration avancée de la commande
-* *Scénario* : en fond gris, vous avez 2 icônes, une pour afficher le log du scénario et une pour aller sur le scénario
+* *Commande action* : en fond rouge, une icône à droite vous permet d'afficher la fenêtre de configuration avancée de la commande
+* *Commande info* : en fond bleu, une icône à droite vous permet d'afficher la fenêtre de configuration avancée de la commande
+* *Scénario* : en fond gris, vous avez 2 icônes : une pour afficher le log du scénario et une pour aller sur le scénario
