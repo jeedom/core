@@ -323,7 +323,7 @@ if ($_SESSION['user']->getOptions('twoFactorAuthentification', 0) == 1) {
             <table class="table table-condensed table-bordered">
                 <thead>
                     <tr>
-                        <th>{{ID}}</th><th>{{Login}}</th><th>{{IP}}</th><th>{{Date}}</th><th>{{Actions}}</th>
+                        <th>{{ID}}</th><th>{{IP}}</th><th>{{Date}}</th><th>{{Actions}}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -337,10 +337,9 @@ foreach ($sessions as $id => $session) {
 	}
 	echo '<tr data-id="' . $id . '">';
 	echo '<td>' . $id . '</td>';
-	echo '<td>' . $session['login'] . '</td>';
 	echo '<td>' . $session['ip'] . '</td>';
 	echo '<td>' . $session['datetime'] . '</td>';
-	echo '<td><a class="btn btn-xs btn-danger bt_deleteSession"><i class="fa fa-trash"></i> {{Supprimer}}</a></td>';
+	echo '<td><a class="btn btn-xs btn-warning bt_deleteSession"><i class="fa fa-sign-out"></i> {{Déconnecter}}</a></td>';
 	echo '</tr>';
 }
 ?>

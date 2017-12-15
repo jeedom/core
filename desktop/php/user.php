@@ -51,7 +51,7 @@ foreach ($sessions as $id => $session) {
 	echo '<td>' . $session['login'] . '</td>';
 	echo '<td>' . $session['ip'] . '</td>';
 	echo '<td>' . $session['datetime'] . '</td>';
-	echo '<td><a class="btn btn-xs btn-danger bt_deleteSession"><i class="fa fa-trash"></i> {{Supprimer}}</a></td>';
+	echo '<td><a class="btn btn-xs btn-warning bt_deleteSession"><i class="fa fa-sign-out"></i> {{Déconnecter}}</a></td>';
 	echo '</tr>';
 }
 ?>
