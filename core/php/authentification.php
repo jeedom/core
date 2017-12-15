@@ -53,6 +53,7 @@ if (user::isBan()) {
 }
 
 if (!isConnect() && isset($_COOKIE['registerDevice'])) {
+
 	if (loginByHash($_COOKIE['registerDevice'])) {
 		setcookie('registerDevice', $_COOKIE['registerDevice'], time() + 365 * 24 * 3600, "/", '', false, true);
 		if (isset($_COOKIE['jeedom_token'])) {
@@ -115,6 +116,7 @@ function login($_login, $_password, $_twoFactor = null) {
 	@session_start();
 	$_SESSION['user'] = $user;
 	@session_write_close();
+
 	log::add('connection', 'info', __('Connexion de l\'utilisateur : ', __FILE__) . $_login);
 	return true;
 }
@@ -151,6 +153,21 @@ function loginByHash($_key) {
 	$sessions[session_id()]['login'] = $user->getLogin();
 	$sessions[session_id()]['user_id'] = $user->getId();
 	cache::set('current_sessions', $sessions);
+	@session_start();
+	$_SESSION['user'] = $user;
+	@session_write_close();
+	$registerDevice = $_SESSION['user']->getOptions('registerDevice', array());
+	if (!is_array($registerDevice)) {
+		$registerDevice = array();
+	}
+	$registerDevice[sha512($key[1])] = array();
+	$registerDevice[sha512($key[1])]['datetime'] = date('Y-m-d H:i:s');
+	$registerDevice[sha512($key[1])]['ip'] = getClientIp();
+	$registerDevice[sha512($key[1])]['session_id'] = session_id();
+	@session_start();
+	$_SESSION['user']->setOptions('registerDevice', $registerDevice);
+	$_SESSION['user']->save();
+	@session_write_close();
 	if (!isset($_COOKIE['jeedom_token'])) {
 		setcookie('jeedom_token', ajax::getToken(), time() + 365 * 24 * 3600, "/", '', false, true);
 	}
