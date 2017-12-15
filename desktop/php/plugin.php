@@ -13,7 +13,6 @@ $plugins_list = plugin::listPlugin(false, true);
   <div class="col-md-3 col-sm-4" id="sd_pluginList" style="z-index:999;display:none">
     <div class="bs-sidebar">
       <ul id="ul_plugin" class="nav nav-list bs-sidenav">
-       <a class="btn btn-default" id="bt_addPluginFromOtherSource" style="width:100%"><i class="fa fa-plus"></i> {{Ajout depuis une autre source}}</a>
        <li class="filter" style="margin-bottom: 5px;margin-top: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
        <?php
 foreach ($plugins_list as $category_name => $category) {
@@ -40,8 +39,14 @@ foreach ($plugins_list as $category_name => $category) {
 </div>
 
 <div class="col-md-9 col-sm-8" id="div_resumePluginList" style="border-left: solid 1px #EEE; padding-left: 25px;">
- <legend><i class="fa fa-list-alt"></i>  {{Mes plugins}}</legend>
+ <legend><i class="fa fa-cog"></i> {{Gestion}}</legend>
  <div class="pluginListContainer">
+  <div class="cursor" id="bt_addPluginFromOtherSource" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+    <center>
+      <i class="fa fa-plus" style="font-size : 6em;color:#94ca02;"></i>
+    </center>
+    <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>{{Sources}}</center></span>
+  </div>
    <?php
 foreach (update::listRepo() as $key => $value) {
 	if (!$value['enable']) {
@@ -50,19 +55,26 @@ foreach (update::listRepo() as $key => $value) {
 	if (!isset($value['scope']['hasStore']) || !$value['scope']['hasStore']) {
 		continue;
 	}
-	echo '<div class="cursor displayStore" data-repo="' . $key . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+	echo '<div class="cursor displayStore" data-repo="' . $key . '" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
     <center>
-      <i class="fa fa-shopping-cart" style="font-size : 6em;color:#94ca02;margin-top:20px;"></i>
+      <i class="fa fa-shopping-cart" style="font-size : 6em;color:#94ca02;"></i>
     </center>
     <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>' . $value['name'] . '</center></span>
   </div>';
 }
+?>
+</div>
+<legend><i class="fa fa-list-alt"></i> {{Mes plugins}}</legend>
+<input class="form-control" placeholder="{{Rechercher}}" style="margin-bottom:4px;" id="in_searchPlugin" />
+<div class="pluginListContainer">
+<?php
 foreach (plugin::listPlugin() as $plugin) {
 	$opacity = ($plugin->isActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
 	echo '<div class="pluginDisplayCard cursor" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
-	echo "<center>";
+	echo '<center>';
 	echo '<img class="img-responsive" style="width : 120px;" src="' . $plugin->getPathImgIcon() . '" />';
-	echo "</center>";
+	echo '</center>';
+	echo '<span style="display:none;" class="name">' . $plugin->getName() . '</span>';
 	echo '</div>';
 }
 ?>
