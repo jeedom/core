@@ -48,6 +48,9 @@ try {
 		if (init('storeConnection') == 1) {
 			$rdk = config::genKey();
 			$registerDevice = $_SESSION['user']->getOptions('registerDevice', array());
+			if (!is_array($registerDevice)) {
+				$registerDevice = array();
+			}
 			$registerDevice[sha512($rdk)] = array();
 			$registerDevice[sha512($rdk)]['datetime'] = date('Y-m-d H:i:s');
 			$registerDevice[sha512($rdk)]['ip'] = getClientIp();
