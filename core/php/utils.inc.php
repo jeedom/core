@@ -1126,10 +1126,6 @@ function cleanSession() {
 	$cache = cache::byKey('current_sessions');
 	$sessions = $cache->getValue(array());
 	foreach ($cache->getValue(array()) as $id => $session) {
-		if (strtotime($session['datetime']) < (strtotime('now') - ini_get("session.gc_maxlifetime"))) {
-			unset($sessions[$id]);
-			continue;
-		}
 		session_id($id);
 		@session_start();
 		if (!isset($_SESSION['user'])) {
