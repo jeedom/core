@@ -66,7 +66,7 @@ image::../images/scenario4.JPG[]
 * *Action* : permet de lancer une action simple sans aucune condition
 * *Boucle* : permet de réaliser des actions de manière répétitive de 1 jusqu’à un nombre défini (ou même une valeur d’un capteur, ou nombre aléatoire...).
 * *Dans* : permet de lancer une action dans X minute(s) (0 est une valeur possible). La particularité c'est que les actions sont lancées en arrière-plan, elles ne bloquent donc pas la suite du scénario. C'est donc un bloc non bloquant
-* *A* : permet de dire à Jeedom de lancer les actions du bloc à une heure donnée (sous la forme hhmm). Ce bloc est non bloquant. Attention il ne faut pas mettre les 0 initiaux. Ex 30 pour 00h30 ou  146 pour 1h46 et 1050 pour 10h50
+* *A* : permet de dire à Jeedom de lancer les actions du bloc à une heure donnée (sous la forme hhmm). Ce bloc est non bloquant. Ex 0030 pour 00h30 ou  0146 pour 1h46 et 1050 pour 10h50
 * *Code* : permet d’écrire directement en code PHP (demande certaines connaissances et peut être risqué mais permet de ne plus avoir aucune contrainte).
 * *Commentaire* : permet d'ajouter des commentaires à son scénario
 
