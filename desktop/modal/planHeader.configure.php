@@ -24,6 +24,12 @@ sendVarToJS('planHeader', utils::o2a($planHeader));
                 </div>
             </div>
              <div class="form-group">
+                <label class="col-lg-4 control-label">{{Fond transparent}}</label>
+                <div class="col-lg-2">
+                    <input type="checkbox" class="planHeaderAttr" data-l1key="configuration" data-l2key="backgroundTransparent" />
+                </div>
+            </div>
+             <div class="form-group">
                 <label class="col-lg-4 control-label">{{Couleur de fond}}</label>
                 <div class="col-lg-2">
                     <input type="color" class="planHeaderAttr form-control" data-l1key="configuration" data-l2key="backgroundColor" />

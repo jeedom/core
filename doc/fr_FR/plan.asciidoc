@@ -49,6 +49,7 @@ On retrouve ici :
 
 * *Général*
 ** *Nom* : Le nom de votre design
+** *Fond transparent* : rend le fond transparent. Attention si la case est coché la couleur de fond n'est pas utilisée
 ** *Couleur de fond* : couleur de fond du design (blanc par défaut)
 ** *Code* : Code d'accès à votre design (si vide aucun code n'est demandé)
 ** *Icône* : Une icône pour celui-ci (apparait dans le menu de choix de design)

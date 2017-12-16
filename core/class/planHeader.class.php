@@ -104,6 +104,9 @@ class planHeader {
 		if ($this->getConfiguration('desktopSizeY') == '') {
 			$this->setConfiguration('desktopSizeY', 500);
 		}
+		if ($this->getConfiguration('backgroundTransparent') == '') {
+			$this->setConfiguration('backgroundTransparent', 1);
+		}
 		if ($this->getConfiguration('backgroundColor') == '') {
 			$this->setConfiguration('backgroundColor', '#ffffff');
 		}
