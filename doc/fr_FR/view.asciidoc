@@ -1,6 +1,6 @@
 = Vues
 
-Les vues permettent simplement de créer un affichage personnalisé. Ce n'est pas aussi puissant que les designs mais cela permet en quelques minutes d'avoir un affichage plus personnalisé.
+Les vues permettent de créer un affichage personnalisé simple. Ce n'est pas aussi puissant que les designs, mais cela permet en quelques minutes d'avoir un affichage plus personnalisé.
 
 Les vues sont accessibles à partir du menu Accueil -> Vue : 
 
@@ -8,29 +8,34 @@ Les vues sont accessibles à partir du menu Accueil -> Vue :
 Il est possible d'aller directement sur une vue grâce au sous-menu.
 
 [TIP]
-Vous pouvez dans votre profil choisir la vue par défaut lors du clic sur le menu des vues.
+Dans votre profil, vous pouvez choisir la vue par défaut lors du clic sur le menu des vues.
 
 == Les vues
 
 On peut mettre aussi bien des widgets, des graphiques (qui peuvent être composés de plusieurs données) ou des zones tableaux (qui contiennent les widgets des commandes)
 
-Sur cette page, on retrouve un bouton en haut à gauche pour montrer ou masquer la liste des vues ainsi que le bouton pour en ajouter une (Jeedom vous demandera son nom et vous enverra sur la page d'édition) : 
+Sur cette page, en haut à gauche, on retrouve un bouton pour montrer ou masquer la liste des vues ainsi que le bouton pour en ajouter une (Jeedom vous demandera son nom et vous enverra sur la page d'édition) : 
 
 [TIP]
-Vous pouvez dans votre profil modifier cette option pour que la liste des vues soit visible par défaut.
+Dans votre profil, vous pouvez modifier cette option pour que la liste des vues soit visible par défaut.
 
-Un bouton en haut à droite vous permet d'éditer la vue courante.
+En haut à droite, deux options d'édition sont disponibles :
+
+* *L'icône "crayon"* : Permet d'effectuer une édition simple de la page actuelle. Il est alors possible de déplacer et redimensionner les widgets, ainsi que de changer l'ordre de leurs commandes.
+* *Edition complète* : Permet d'accéder à l'édition complète des vues, celle que vous aviez utilisé pour créer les premières déjà présentes.
 
 == Ajout/Edition d'une vue
 
-Le principe est assez simple : une vue est composée de zones (on peut en mettre autant que l'on veut). Chaque zone est de type graphique, widget ou tableau, en fonction du type vous pourrez mettre des widgets d'équipement, de commande ou des graphiques dans celle-ci.
+Une vue est composée de zones (on peut en mettre autant que l'on veut). Chaque zone est de type graphique, widget ou tableau. En fonction du type, vous pourrez y mettre des widgets d'équipement, de commande ou des graphiques.
 
 [TIP]
 Il est possible de déplacer l'ordre des zones par glisser/déposer.
 
-Sur la gauche de la page on retrouve la liste des vues ainsi qu'un bouton d'ajout.
+Sur la gauche de la page on retrouve la liste des vues ainsi qu'un bouton pour créer une nouvelle vue. Le champs *Rechercher* permet de filtrer les vues que vous avez déjà créées.
 
-Au centre vous avez un bouton pour renommer une vue, un bouton d'ajout de zone, un bouton pour voir le résultat, un bouton pour sauvegarder et un bouton pour supprimer la vue.
+Au centre se trouve un bouton pour renommer une vue et un autre pour changer son icône.
+
+A droite, vous trouverez un bouton pour ajouter une zone, un autre pour voir le résultat (ou pour sortir du mode édition), un pour enregistrer les changements effectués et un dernier pour supprimer la vue.
 
 Après avoir cliqué sur le bouton d'ajout de zone, Jeedom vous demandera son nom et son type.
 
@@ -42,17 +47,15 @@ Sur chaque zone vous avez les options générales suivantes :
 
 === Zone de type widget
 
-Une zone de type widget permet d'ajouter des widgets : 
+Une zone de type widget permet d'ajouter des widgets, un bouton supplémentaire est disponible : 
 
-* *Ajouter widget* : permet d'ajouter/modifier des widgets à afficher dans la zone
+* *Ajouter widget* : permet d'ajouter un widget à la zone. Une fenêtre vous demandera de sélectionner l'équipement concerné.
 
 [TIP]
 Vous pouvez supprimer un widget directement en cliquant sur la poubelle devant celui-ci.
 
 [TIP]
 Il est possible de modifier l'ordre des widgets dans la zone par glisser/déposer.
-
-Une fois le bouton d'ajout de widget pressé, vous obtenez une fenêtre qui vous demandera le widget à ajouter
 
 === Zone de type graphique
 
@@ -71,7 +74,7 @@ Quand vous pressez le bouton "Ajouter courbe" jeedom affichera la liste des comm
 * *Echelle* : échelle (droite ou gauche) de la courbe
 * *Escalier* : affiche la courbe en escalier
 * *Empiler* : empile la courbe avec les autres courbes de type empiler
-* *Variation* : graphe seulement les variations avec la valeur précedente
+* *Variation* : graphe seulement les variations avec la valeur précédente
 
 [TIP]
 Il est possible de modifier l'ordre des graphiques dans la zone par glisser/déposer.
@@ -84,10 +87,13 @@ Vous avez ici les boutons :
 * *Ajouter ligne* : permet d'ajouter une colonne au tableau
 
 [NOTE]
-Il est possible de régoraniser les lignes par glisser/déposer mais pas les colonnes
+Il est possible de réorganiser les lignes par glisser/déposer mais pas les colonnes.
 
 Une fois que vous avez ajoutez vos lignes/colonnes vous pouvez ajouter des informations dans les cases : 
 
 * *texte* : juste du texte à écrire
 * *html* : n'importe quel code html (javascript possible mais fortement déconseillé)
 * *widget de commande* : le bouton à droite vous permet de choisir la commande à afficher (attention cela affiche le widget de la commande)
+
+[TIP]
+Vous pouvez utiliser les boutons "poubelle" pour supprimer une ligne ou une colonne entière.
