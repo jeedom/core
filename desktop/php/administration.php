@@ -886,7 +886,7 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Réduire le poid de}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Réduire le poids de}}</label>
 						<div class="col-lg-6 col-md-8 col-sm-8 col-xs-6">
 							<div class="input-group">
 								<span class="input-group-addon">{{1 mot}}</span>
