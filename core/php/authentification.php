@@ -98,6 +98,11 @@ function login($_login, $_password, $_twoFactor = null) {
 		sleep(5);
 		return false;
 	}
+	$sMdp = (!is_sha512($_password)) ? sha512($_password) : $_password;
+	if (network::getUserLocation() == 'external' && $_login == 'admin' && $sMdp == sha512('admin')) {
+		sleep(5);
+		return false;
+	}
 	if (network::getUserLocation() != 'internal' && $user->getOptions('twoFactorAuthentification', 0) == 1 && $user->getOptions('twoFactorAuthentificationSecret') != '') {
 		if (trim($_twoFactor) == '' || $_twoFactor === null || !$user->validateTwoFactorCode($_twoFactor)) {
 			user::failedLogin();
@@ -116,7 +121,6 @@ function login($_login, $_password, $_twoFactor = null) {
 	@session_start();
 	$_SESSION['user'] = $user;
 	@session_write_close();
-
 	log::add('connection', 'info', __('Connexion de l\'utilisateur : ', __FILE__) . $_login);
 	return true;
 }
