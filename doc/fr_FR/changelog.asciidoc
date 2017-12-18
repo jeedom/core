@@ -2,6 +2,7 @@
 
 == 3.2.0
 
+* JEED-290 : On ne peut plus se connecter avec les identifiants par defaut (admin/admin) à distance, seul le réseaux local est autorisé
 * JEED-186 : On peut maintenant choisir la couleur de fonc dans les designs
 * Pour le bloc A possibilité de mettre une heure entre 00h01 et 00h59 en mettant simple les minutes (ex 30 pour 00h30)
 * Ajout des sessions actives et des péripheriques enregistrés sur la page de profils de l'utilisateurs et la page de gestion des utilisateurs
