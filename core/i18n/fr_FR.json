@@ -1405,9 +1405,9 @@
     "desktop\/php\/display.php": {
         "Rechercher": "Rechercher",
         "Inactif": "Inactif",
-        "Nombre d'objet :": "Nombre d'objet :",
-        "Nombre d'équipement :": "Nombre d'équipement :",
-        "Nombre de commande :": "Nombre de commande :",
+        "Nombre d'objets :": "Nombre d'objets :",
+        "Nombre d'équipements :": "Nombre d'équipements :",
+        "Nombre de commandes :": "Nombre de commandes :",
         "Supprimer": "Supprimer",
         "Visible": "Visible",
         "Invisible": "Invisible",
