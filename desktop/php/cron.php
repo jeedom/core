@@ -29,7 +29,7 @@ if (config::byKey('enableCron') == 0) {
             <th class="schedule" style="width: 170px;"><i class="fa fa-question-circle cursor bt_pageHelp" data-name='cronSyntaxe' style="position: relative; width: 10px;"></i> {{Programmation}}</th>
             <th class="timeout" style="width: 150px;">{{Timeout (min)}}</th>
             <th class="lastRun" style="width: 200px;">{{Dernier lancement}}</th>
-            <th class="runtime" style="width: 200px;">{{Derniere durée}}</th>
+            <th class="runtime" style="width: 200px;">{{Dernière durée}}</th>
             <th class="state" style="width: 80px;">{{Statut}}</th>
             <th class="action" style="width: 50px;" data-sorter="false" data-filter="false"></th>
         </tr>
