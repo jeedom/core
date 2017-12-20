@@ -12,7 +12,7 @@ if (!isConnect()) {
 			<th style="cursor:default">{{Père}}</th>
 			<th style="cursor:default" data-sorter="false" data-filter="false">{{Visible}}</th>
 			<th style="cursor:default" data-sorter="false" data-filter="false">{{Masqué}}</th>
-			<th style="cursor:default" data-sorter="false" data-filter="false">{{Résumé Défini}} <sup style="cursor:default" title="Si grisé alors pas remonté en résumé global">?</th>
+			<th style="cursor:default" data-sorter="false" data-filter="false">{{Résumé Défini}} <sup style="cursor:default" title="Si grisé, alors il n'est pas remonté en résumé global">?</th>
 			<th style="cursor:default" data-sorter="false" data-filter="false">{{Résumé Dashboard Masqué}}</th>
 			<th style="cursor:default" data-sorter="false" data-filter="false">{{Résumé Mobile Masqué}}</th>
 		</tr>

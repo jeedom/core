@@ -6,7 +6,7 @@ if (config::byKey('market::address') == '') {
 	throw new Exception('{{Aucune adresse pour le market n\'est renseignée}}');
 }
 if (config::byKey('market::apikey') == '' && config::byKey('market::username') == '') {
-	throw new Exception('{{Aucune clé pour le market n\'est renseignée. Veuillez vous enregistrer sur le market puis renseigner la clé dans Jeedom avant d\'ouvrir un ticket}}');
+	throw new Exception('{{Aucune clé pour le market n\'est renseignée. Veuillez vous enregistrer sur le market, puis renseignez la clé dans Jeedom avant d\'ouvrir un ticket}}');
 }
 ?>
 <div id='div_alertReportBug'></div>
@@ -14,7 +14,7 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
     <div class="panel panel-success">
      <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-info"></i> {{Etape 1 : Information sur les tickets}}</h3></div>
      <div class="panel-body">
-        {{Merci de vérifier avant toute ouverture de ticket :}}<br/>
+        {{Avant toute ouverture de ticket, merci de vérifier :}}<br/>
         {{- que la question n'a pas déjà été posée sur le <a href='https://jeedom.com/forum'>forum</a>}}<br/>
         {{- que la catégorie est bien sélectionnée pour que votre ticket soit traité dans les plus courts délais}}<br/>
         {{- que la réponse n'est pas déjà dans la <a href='https://jeedom.github.io/documentation'>documentation</a>}}
@@ -23,7 +23,7 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
 <div class="panel panel-danger">
    <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-info"></i> {{Etape 2 : Choix du type de demande}}</h3></div>
    <div class="panel-body">
-    {{IMPORTANT : si vous ouvrez un ticket pour un bug ou une demande d'amélioration celle-ci sont public (donc attention au informations que vous communiquez). Vous pouvez voir la liste des demandes en cours <a href="https://jeedom.atlassian.net/issues/?filter=-5&jql=status%20in%20(%22A%20valider%22%2C%20%22In%20Progress%22%2C%20Planifi%C3%A9%2C%20Reopened%2C%20%22To%20Do%22)%20AND%20resolution%20%3D%20Unresolved%20order%20by%20priority%20DESC%2Cupdated%20DESC" target="_blank">ici</a>. Les demandes public doivent etre parfaitement formuler avec toutes les informations necessaire car vous ne pouvez pas completer la demande par la suite. Toute demande d'un service pack pro est privée.}}
+    {{IMPORTANT : si vous ouvrez un ticket pour un bug ou une demande d'amélioration, celles-ci sont publiques (donc attention aux informations que vous communiquez). Vous pouvez voir la liste des demandes en cours <a href="https://jeedom.atlassian.net/issues/?filter=-5&jql=status%20in%20(%22A%20valider%22%2C%20%22In%20Progress%22%2C%20Planifi%C3%A9%2C%20Reopened%2C%20%22To%20Do%22)%20AND%20resolution%20%3D%20Unresolved%20order%20by%20priority%20DESC%2Cupdated%20DESC" target="_blank">ici</a>. Les demandes publiques doivent être parfaitement formulées avec toutes les informations nécessaires car vous ne pourrez pas modifier la demande par la suite. Toute demande d'un service pack pro est privée.}}
 </div>
 </div>
 

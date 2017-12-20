@@ -9,7 +9,7 @@ if (!is_object($user)) {
 }
 sendVarToJs('user_rights', utils::o2a($user));
 if ($user->getProfils() != 'restrict') {
-	echo '<div class="alert alert-danger">{{Attention le compte utilisateur n\'a pas un profils "Utilisateur limité", aucune restriction mise ici ne pourra donc s\'appliquer}}</div>';
+	echo '<div class="alert alert-danger">{{Attention : le compte utilisateur n\'a pas un profil "Utilisateur limité", aucune restriction mise ici ne pourra donc s\'appliquer}}</div>';
 }
 ?>
 <div style="display: none;" id="div_userRightAlert"></div>
