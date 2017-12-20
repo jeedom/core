@@ -119,7 +119,7 @@ try {
 			}
 			if (!is_object($user)) {
 				if (config::byKey('ldap::enable') == '1') {
-					throw new Exception(__('Vous devez desactiver l\'authentification LDAP pour pouvoir ajouter un utilisateur', __FILE__));
+					throw new Exception(__('Vous devez désactiver l\'authentification LDAP pour pouvoir ajouter un utilisateur', __FILE__));
 				}
 				$user = new user();
 			}
@@ -137,14 +137,14 @@ try {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 		if (config::byKey('ldap::enable') == '1') {
-			throw new Exception(__('Vous devez desactiver l\'authentification LDAP pour pouvoir supprimer un utilisateur', __FILE__));
+			throw new Exception(__('Vous devez désactiver l\'authentification LDAP pour pouvoir supprimer un utilisateur', __FILE__));
 		}
 		if (init('id') == $_SESSION['user']->getId()) {
-			throw new Exception(__('Vous ne pouvez supprimer le compte avec lequel vous êtes connecté', __FILE__));
+			throw new Exception(__('Vous ne pouvez pas supprimer le compte avec lequel vous êtes connecté', __FILE__));
 		}
 		$user = user::byId(init('id'));
 		if (!is_object($user)) {
-			throw new Exception('User id inconnu');
+			throw new Exception('User ID inconnu');
 		}
 		$user->remove();
 		ajax::success();
@@ -153,7 +153,7 @@ try {
 	if (init('action') == 'saveProfils') {
 		$user_json = jeedom::fromHumanReadable(json_decode(init('profils'), true));
 		if (isset($user_json['id']) && $user_json['id'] != $_SESSION['user']->getId()) {
-			throw new Exception('401 unautorized');
+			throw new Exception('401 - Accès non autorisé');
 		}
 		@session_start();
 		$_SESSION['user']->refresh();
@@ -189,7 +189,7 @@ try {
 		ajax::success(user::removeBanIp());
 	}
 
-	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
+	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
 	ajax::error(displayExeption($e), $e->getCode());
