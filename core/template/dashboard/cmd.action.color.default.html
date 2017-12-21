@@ -1,20 +1,22 @@
 <div class="cmd cmd-widget" data-type="action" data-subtype="color" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" style="width: 146px;height: 34px;">
-    <div class="input-group input-group-sm" style="width: 100%">
-        <input class="action_colorpicker_change form-control cursor" type="color">
-        <span class="input-group-btn">
-            <a class="btn btn-default action_colorpicker_off" style="background-color:#cmdColor# !important;border-color : transparent !important;">Off</a>
-        </span>
-    </div>
-    <script>
-        jeedom.cmd.update['#id#'] = function(_options){
-          $('.cmd[data-cmd_uid=#uid#] .action_colorpicker_change').value((_options.display_value != '') ? _options.display_value.substr(0,7) : _options.display_value);
-      }
-      $('.cmd[data-cmd_uid=#uid#] .action_colorpicker_off').on('click', function() {
-        jeedom.cmd.update['#id#']({display_value:'#000000'});
+  <div class="input-group input-group-sm" style="width: 100%">
+    <input class="action_colorpicker_change form-control cursor" type="color">
+    <span class="input-group-btn">
+      <a class="btn btn-default action_colorpicker_off" style="background-color:#cmdColor# !important;border-color : transparent !important;">Off</a>
+    </span>
+  </div>
+  <script>
+    jeedom.cmd.update['#id#'] = function(_options){
+     $('.cmd[data-cmd_uid=#uid#]:last .action_colorpicker_change').off('change')
+     $('.cmd[data-cmd_uid=#uid#] .action_colorpicker_change').value((_options.display_value != '') ? _options.display_value.substr(0,7) : _options.display_value);
+     $('.cmd[data-cmd_uid=#uid#]:last .action_colorpicker_change').on('change', function() {
+      jeedom.cmd.execute({id: '#id#', value: {color: $(this).value()}});
     });
-      jeedom.cmd.update['#id#']({display_value:'#state#'});
-      $('.cmd[data-cmd_uid=#uid#]:last .action_colorpicker_change').on('change', function() {
-        jeedom.cmd.execute({id: '#id#', value: {color: $(this).value()}});
-    });
-</script>
+   }
+   $('.cmd[data-cmd_uid=#uid#] .action_colorpicker_off').on('click', function() {
+    jeedom.cmd.update['#id#']({display_value:'#000000'});
+  });
+   jeedom.cmd.update['#id#']({display_value:'#state#'});
+
+ </script>
 </div>
