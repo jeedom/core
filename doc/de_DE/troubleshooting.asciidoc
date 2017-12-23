@@ -46,7 +46,7 @@ Wenn es im Szenario keine Pause gibt, wird geraten das Kontrollkästchen anzukre
 
 == J'ai des instabilités ou des erreurs 504
 
-Vérifiez si votre système de fichiers n'est pas corrompu, en ssh la commande est : "sudo dmesg | grep error"
+Vérifiez si votre système de fichiers n'est pas corrompu, en SSH la commande est : "sudo dmesg | grep error"
 
 == Je ne vois pas tous mes équipements sur le dashboard
 
@@ -60,7 +60,7 @@ Vérifiez que vous avez bien mis les /jeedom si vous utilisez ceux-ci juste apr�
 
 Cela est dû à MySQL qui s'est arrêté, ce n'est pas normal, les cas courants sont : 
 
-* souci de place sur le système de fichiers (peut être vérifié en faisant la commande "df -h", en ssh)
+* souci de place sur le système de fichiers (peut être vérifié en faisant la commande "df -h", en SSH)
 * problème de corruption de fichier(s), arrive souvent suite à un arrêt non propre de Jeedom (coupure de courant)
 
 Leider gibt es nicht viel Auswahl, wenn dies der zweite Fall ist, ist der beste Weg, ein Backup wiederherzustellen (standardmäßig in /usr/share/nginx/www/jeedom/backup verfügbahr), installieren Sie Jeedom neu und stellen die Sicherung wieder her. Sie können auch ssh verwenden, um zu sehen, warum mysql nicht starten möchte: 

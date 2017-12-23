@@ -55,7 +55,7 @@ Cela est dû à MySQL qui s'est arrêté, ce n'est pas normal, les cas courants 
 * Manque de place sur le système de fichiers (peut être vérifié en faisant la commande "df -h", en SSH)
 * Problème de corruption de fichier(s), ce qui arrive souvent suite à un arrêt non propre de Jeedom (coupure de courant)
 
-Malheureusement, il n'y a pas beaucoup de solution si c'est le deuxième cas, le mieux étant de récupérer une sauvegarde (disponible dans /usr/share/nginx/www/jeedom/backup par défaut), de réinstaller Jeedom et de restaurer la sauvegarde. Vous pouvez aussi regarder pourquoi mysql ne veut pas démarrer depuis une console SSH : 
+Malheureusement, il n'y a pas beaucoup de solution si c'est le deuxième cas, le mieux étant de récupérer une sauvegarde (disponible dans /usr/share/nginx/www/jeedom/backup par défaut), de réinstaller Jeedom et de restaurer la sauvegarde. Vous pouvez aussi regarder pourquoi MySQL ne veut pas démarrer depuis une console SSH : 
 [source,bash]
 sudo su -
 service mysql stop

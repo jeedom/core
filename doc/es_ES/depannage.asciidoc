@@ -65,7 +65,7 @@ et redémarrez php "sudo service php5-fpm restart"
 ''''
 
 J'ai des instabilités ou des erreurs 504::
-Vérifiez si votre système de fichiers n'est pas corrompu, en ssh la commande est : "sudo dmesg | grep error"
+Vérifiez si votre système de fichiers n'est pas corrompu, en SSH la commande est : "sudo dmesg | grep error"
 
 ''''
 
@@ -83,13 +83,13 @@ Vérifiez que vous avez bien mis les /jeedom si vous utilisez ceux-ci juste apr�
 
 J'ai l'erreur suivante : SQLSTATE[HY000] [2002] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock'::
 Cela est dû à MySQL qui s'est arrêté, ce n'est pas normal, les cas courants sont : 
-* souci de place sur le système de fichiers (peut être vérifié en faisant la commande "df -h", en ssh)
+* souci de place sur le système de fichiers (peut être vérifié en faisant la commande "df -h", en SSH)
 * problème de corruption de fichier(s), arrive souvent suite à un arrêt non propre de Jeedom (coupure de courant)
 
 Malheureusement, il n'y a pas beaucoup de solution si c'est le deuxième cas, 
 le mieux étant de récupérer un backup (disponible dans /usr/share/nginx/www/jeedom/backup par défaut), 
-de réinstaller Jeedom et de restaurer le backup.
-Vous pouvez aussi en ssh regarder pourquoi mysql ne veut pas démarrer : 
+de réinstaller Jeedom et de restaurer la sauvegarde.
+Vous pouvez aussi en SSH regarder pourquoi MySQL ne veut pas démarrer : 
 [source,bash]
 sudo su -
 service mysql stop
@@ -100,7 +100,7 @@ O consultar el registro: /var/log/mysql/error.log
 ''''
 
 Les boutons Eteindre/Redémarrer ne fonctionnent pas::
-Sur une installation DIY c'est normal, il faut faire en ssh la commande visudo et à la fin du fichier 
+Sur une installation DIY c'est normal, il faut faire en SSH la commande visudo et à la fin du fichier 
 vous devez ajouter : www-data ALL=(ALL) NOPASSWD: ALL.
 
 ''''

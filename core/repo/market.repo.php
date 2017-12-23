@@ -53,7 +53,7 @@ class repo_market {
 		),
 		'parameters_for_add' => array(
 			'version' => array(
-				'name' => 'Version : beta,release, stable',
+				'name' => 'Version : beta, release, stable',
 				'type' => 'input',
 			),
 		),
@@ -213,11 +213,11 @@ class repo_market {
 		}
 		$backup = $market->getResult();
 		if (isset($backup["completed_at"]) && $backup["completed_at"]) {
-			log::add('backupCloud', 'info', 'le backup est déjà sur le cloud');
+			log::add('backupCloud', 'info', 'la sauvegarde est déjà sur le cloud');
 			return false;
 		}
 		if (isset($backup["retry"]) && $backup["retry"] > 5) {
-			log::add('backupCloud', 'info', 'Upload impossible, nombre d\'essais : 5');
+			log::add('backupCloud', 'info', 'Téléversement impossible, nombre d\'essais : 5');
 			return false;
 		}
 		$fileSize = filesize($_path);
@@ -232,7 +232,7 @@ class repo_market {
 
 		}
 		if ($backup["completed_at"] != "") {
-			log::add('backupCloud', 'info', 'le backup a fini l upload');
+			log::add('backupCloud', 'info', 'la sauvegarde a fini le téléversement');
 			return true;
 		}
 	}
@@ -759,7 +759,7 @@ class repo_market {
 				return $tmp;
 				break;
 			default:
-				log::add('update', 'alert', __('Installation de du plugin,widget,scénario...', __FILE__));
+				log::add('update', 'alert', __('Installation des plugin, widget, scénario...', __FILE__));
 				$type = $this->getType();
 				if (class_exists($type) && method_exists($type, 'getFromMarket')) {
 					$type::getFromMarket($this, $tmp);

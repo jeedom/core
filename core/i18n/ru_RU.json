@@ -281,9 +281,9 @@
     },
     "desktop/js/update.js": {
         "Options": "Опции",
-        "Etes-vous sur de vouloir faire les mises à jour ?": "Вы уверены, что желаете выполнить обновление?",
-        "Etes vous sur de vouloir mettre à jour cet objet ?": "Вы уверены, что желаете установить это обновление?",
-        "Etes vous sur de vouloir supprimer cet objet ?": "Вы уверены, что хотите удалить этот элемент?",
+        "Etes-vous sûr de vouloir faire les mises à jour ?": "Вы уверены, что желаете выполнить обновление?",
+        "Etes-vous sûr de vouloir mettre à jour cet objet ?": "Вы уверены, что желаете установить это обновление?",
+        "Etes-vous sûr de vouloir supprimer cet objet ?": "Вы уверены, что хотите удалить этот элемент?",
         "L\\'opération est réussie": "Операция прошла успешно",
         "L\\'opération a échoué": "Операция не удалась",
         "Dernière mise à jour du core : ": "Dernière mise à jour du core :",
@@ -687,7 +687,7 @@
     },
     "core/js/cmd.class.js": {
         "Veuillez indiquer le code ?": "Veuillez indiquer le code ?",
-        "Etes-vous sur de vouloir faire cette action ?": "Etes-vous sur de vouloir faire cette action ?",
+        "Etes-vous sûr de vouloir faire cette action ?": "Etes-vous sûr de vouloir faire cette action ?",
         "Résultat de la commande : ": "Результат команды:",
         "Action exécutée avec succès": "Действие успешно завершено",
         "[Jeedom] Message de test": "[Jeedom] Тестовое сообщение",
@@ -1101,7 +1101,7 @@
         "Aimanter à la grille": "Привязать к сетке",
         "Masquer surbrillance des éléments": "Masquer surbrillance des éléments",
         "Supprimer le design": "Удалить дизайн",
-        "Etes vous sûr de vouloir supprimer ce design ?": "Etes vous sûr de vouloir supprimer ce design ?",
+        "Etes-vous sûr de vouloir supprimer ce design ?": "Etes-vous sûr de vouloir supprimer ce design ?",
         "Creer un design": "Создать дизайн",
         "Dupliquer le design": "Дублировать дизайн",
         "Nom la copie du design ?": "Назовите копию дизайна?",
@@ -1202,7 +1202,7 @@
     },
     "desktop/js/log.js": {
         "Pause": "Пауза",
-        "Etes-vous sur de vouloir supprimer tous les logs ?": "Вы уверены, что желаете удалить все журналы?"
+        "Etes-vous sûr de vouloir supprimer tous les logs ?": "Вы уверены, что желаете удалить все журналы?"
     },
     "desktop/js/plugin.js": {
         "Envoyer sur le": "Envoyer sur le",
@@ -1229,7 +1229,7 @@
         "Warning": "Warning",
         "Error": "Ошибка",
         "Logs": "Журналы",
-        "Etes vous sûr de vouloir supprimer ce plugin ?": "Etes vous sûr de vouloir supprimer ce plugin ?",
+        "Etes-vous sûr de vouloir supprimer ce plugin ?": "Etes-vous sûr de vouloir supprimer ce plugin ?",
         "Market": "Маркет",
         "Sauvegarde de la configuration des panneaux effectuée": "Sauvegarde de la configuration des panneaux effectuée",
         "Sauvegarde des fonctionalités effectuée": "Sauvegarde des fonctionalités effectuée",
@@ -1311,7 +1311,7 @@
         "Etes-vous sûr de vouloir supprimer cet utilisateur ?": "Вы уверены, что хотите удалить этого пользователя?",
         "L\\'utilisateur a bien été supprimé": "Пользователь был удален",
         "Quel est le nouveau mot de passe ?": "Какой новый пароль?",
-        "Etes-vous sur de vouloir changer la clef API de l\\'utilisateur ?": "Etes-vous sur de vouloir changer la clef API de l\\'utilisateur ?",
+        "Etes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "Etes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?",
         "Modification effectuée": "Modification effectuée",
         "Actif": "Активный",
         "Local seulement": "Local seulement",

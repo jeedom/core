@@ -281,9 +281,9 @@
     },
     "desktop/js/update.js": {
         "Options": "Opzioni",
-        "Etes-vous sur de vouloir faire les mises à jour ?": "Sei sicuro di voler aggiornare?",
-        "Etes vous sur de vouloir mettre à jour cet objet ?": "Sei sicuro di voler aggiornare questo oggetto?",
-        "Etes vous sur de vouloir supprimer cet objet ?": "Sei sicuro di voler eliminare questo oggetto?",
+        "Etes-vous sûr de vouloir faire les mises à jour ?": "Sei sicuro di voler aggiornare?",
+        "Etes-vous sûr de vouloir mettre à jour cet objet ?": "Sei sicuro di voler aggiornare questo oggetto?",
+        "Etes-vous sûr de vouloir supprimer cet objet ?": "Sei sicuro di voler eliminare questo oggetto?",
         "L\\'opération est réussie": "Questa operazione è ha avuto esito positivo",
         "L\\'opération a échoué": "L\\'operazione è fallita",
         "Dernière mise à jour du core : ": "Dernière mise à jour du core :",
@@ -687,7 +687,7 @@
     },
     "core/js/cmd.class.js": {
         "Veuillez indiquer le code ?": "Veuillez indiquer le code ?",
-        "Etes-vous sur de vouloir faire cette action ?": "Etes-vous sur de vouloir faire cette action ?",
+        "Etes-vous sûr de vouloir faire cette action ?": "Etes-vous sûr de vouloir faire cette action ?",
         "Résultat de la commande : ": "Risultato del comando:",
         "Action exécutée avec succès": "Azione eseguita con successo",
         "[Jeedom] Message de test": "[Jeedom] Messaggio test",
@@ -1101,7 +1101,7 @@
         "Aimanter à la grille": "Aimanter à la grille",
         "Masquer surbrillance des éléments": "Masquer surbrillance des éléments",
         "Supprimer le design": "Elimina design",
-        "Etes vous sûr de vouloir supprimer ce design ?": "Sei sicuro di voler eliminare il design?",
+        "Etes-vous sûr de vouloir supprimer ce design ?": "Sei sicuro di voler eliminare il design?",
         "Creer un design": "Creer un design",
         "Dupliquer le design": "Duplica il design",
         "Nom la copie du design ?": "Nome della copia del design?",
@@ -1202,7 +1202,7 @@
     },
     "desktop/js/log.js": {
         "Pause": "Pausa",
-        "Etes-vous sur de vouloir supprimer tous les logs ?": "Sei sicuro di voler eliminare tutti i registri?"
+        "Etes-vous sûr de vouloir supprimer tous les logs ?": "Sei sicuro di voler eliminare tutti i registri?"
     },
     "desktop/js/plugin.js": {
         "Envoyer sur le": "Envoyer sur le",
@@ -1229,7 +1229,7 @@
         "Warning": "Avvertimento",
         "Error": "Errore",
         "Logs": "Logs",
-        "Etes vous sûr de vouloir supprimer ce plugin ?": "Sei sicuro di voler eliminare questo plugin?",
+        "Etes-vous sûr de vouloir supprimer ce plugin ?": "Sei sicuro di voler eliminare questo plugin?",
         "Market": "Market",
         "Sauvegarde de la configuration des panneaux effectuée": "Sauvegarde de la configuration des panneaux effectuée",
         "Sauvegarde des fonctionalités effectuée": "Sauvegarde des fonctionalités effectuée",
@@ -1311,7 +1311,7 @@
         "Etes-vous sûr de vouloir supprimer cet utilisateur ?": "Sei sicuro di voler eliminare questo utente ?",
         "L\\'utilisateur a bien été supprimé": "L\\'utente è stato eliminato con successo",
         "Quel est le nouveau mot de passe ?": "Qual\\' è la nuova password?",
-        "Etes-vous sur de vouloir changer la clef API de l\\'utilisateur ?": "Etes-vous sur de vouloir changer la clef API de l\\'utilisateur ?",
+        "Etes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "Etes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?",
         "Modification effectuée": "Modification effectuée",
         "Actif": "Attiva",
         "Local seulement": "Local seulement",

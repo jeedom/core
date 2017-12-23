@@ -44,7 +44,7 @@ Lors d'une réinstallation de Jeedom et en ayant pris l'abonnement de sauvegarde
 Il est possible, en cas de soucis, de faire un backup en ligne de commandes : `sudo php /usr/share/nginx/www/jeedom/install/backup.php` ou `sudo php /var/www/html/install/backup.php` selon votre système
 
 [TIP]
-Il est possible aussi de restaurer un backup en ligne de commandes (par défaut Jeedom restaure le backup le plus récent présent dans le répertoire de backup) : `sudo php /usr/share/nginx/www/jeedom/install/restore.php` ou `sudo php /var/www/html/install/restore.php`
+Il est possible aussi de restaurer un backup en ligne de commandes (par défaut Jeedom restaure la sauvegarde la plus récente présente dans le répertoire de sauvegarde) : `sudo php /usr/share/nginx/www/jeedom/install/restore.php` ou `sudo php /var/www/html/install/restore.php`
 
 == Qu'est-ce qui est sauvegardé ?
 

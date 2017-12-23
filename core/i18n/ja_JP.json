@@ -275,9 +275,9 @@
     },
     "desktop/js/update.js": {
         "Options": "Options",
-        "Etes-vous sur de vouloir faire les mises à jour ?": "Etes-vous sur de vouloir faire les mises à jour ?",
-        "Etes vous sur de vouloir mettre à jour cet objet ?": "Etes vous sur de vouloir mettre à jour cet objet ?",
-        "Etes vous sur de vouloir supprimer cet objet ?": "Etes vous sur de vouloir supprimer cet objet ?",
+        "Etes-vous sûr de vouloir faire les mises à jour ?": "Etes-vous sûr de vouloir faire les mises à jour ?",
+        "Etes-vous sûr de vouloir mettre à jour cet objet ?": "Etes-vous sûr de vouloir mettre à jour cet objet ?",
+        "Etes-vous sûr de vouloir supprimer cet objet ?": "Etes-vous sûr de vouloir supprimer cet objet ?",
         "L\\'opération est réussie": "L\\'opération est réussie",
         "L\\'opération a échoué": "L\\'opération a échoué",
         "Dernière mise à jour du core : ": "Dernière mise à jour du core :",
@@ -675,7 +675,7 @@
     },
     "core/js/cmd.class.js": {
         "Veuillez indiquer le code ?": "Veuillez indiquer le code ?",
-        "Etes-vous sur de vouloir faire cette action ?": "Etes-vous sur de vouloir faire cette action ?",
+        "Etes-vous sûr de vouloir faire cette action ?": "Etes-vous sûr de vouloir faire cette action ?",
         "Résultat de la commande : ": "Résultat de la commande :",
         "Action exécutée avec succès": "Action exécutée avec succès",
         "[Jeedom] Message de test": "[Jeedom] Message de test",
@@ -1085,7 +1085,7 @@
         "Aimanter à la grille": "Aimanter à la grille",
         "Masquer surbrillance des éléments": "Masquer surbrillance des éléments",
         "Supprimer le design": "Supprimer le design",
-        "Etes vous sûr de vouloir supprimer ce design ?": "Etes vous sûr de vouloir supprimer ce design ?",
+        "Etes-vous sûr de vouloir supprimer ce design ?": "Etes-vous sûr de vouloir supprimer ce design ?",
         "Creer un design": "Creer un design",
         "Dupliquer le design": "重複の設計",
         "Nom la copie du design ?": "Nom la copie du design ?",
@@ -1186,7 +1186,7 @@
     },
     "desktop/js/log.js": {
         "Pause": "Pause",
-        "Etes-vous sur de vouloir supprimer tous les logs ?": "Etes-vous sur de vouloir supprimer tous les logs ?"
+        "Etes-vous sûr de vouloir supprimer tous les logs ?": "Etes-vous sûr de vouloir supprimer tous les logs ?"
     },
     "desktop/js/plugin.js": {
         "Envoyer sur le": "Envoyer sur le",
@@ -1213,7 +1213,7 @@
         "Warning": "Warning",
         "Error": "Error",
         "Logs": "Logs",
-        "Etes vous sûr de vouloir supprimer ce plugin ?": "Etes vous sûr de vouloir supprimer ce plugin ?",
+        "Etes-vous sûr de vouloir supprimer ce plugin ?": "Etes-vous sûr de vouloir supprimer ce plugin ?",
         "Market": "Market",
         "Sauvegarde de la configuration des panneaux effectuée": "Sauvegarde de la configuration des panneaux effectuée",
         "Sauvegarde des fonctionalités effectuée": "Sauvegarde des fonctionalités effectuée",
@@ -1295,7 +1295,7 @@
         "Etes-vous sûr de vouloir supprimer cet utilisateur ?": "Etes-vous sûr de vouloir supprimer cet utilisateur ?",
         "L\\'utilisateur a bien été supprimé": "L\\'utilisateur a bien été supprimé",
         "Quel est le nouveau mot de passe ?": "Quel est le nouveau mot de passe ?",
-        "Etes-vous sur de vouloir changer la clef API de l\\'utilisateur ?": "Etes-vous sur de vouloir changer la clef API de l\\'utilisateur ?",
+        "Etes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "Etes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?",
         "Modification effectuée": "Modification effectuée",
         "Actif": "Actif",
         "Local seulement": "Local seulement",

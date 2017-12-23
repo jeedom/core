@@ -17,11 +17,11 @@
  */
 
 if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SERVER['argc'])) {
-	header("Status: 404 Not Found");
+	header("Statut: 404 Page non trouvée");
 	header('HTTP/1.0 404 Not Found');
 	$_SERVER['REDIRECT_STATUS'] = 404;
-	echo "<h1>404 Not Found</h1>";
-	echo "The page that you have requested could not be found.";
+	echo "<h1>404 Non trouvé</h1>";
+	echo "La page que vous demandez ne peut être trouvée.";
 	exit();
 }
 set_time_limit(1800);
@@ -66,7 +66,7 @@ try {
 						$c->getNextRunDate();
 					}
 				} catch (Exception $ex) {
-					echo "Suppression de  : " . $cron->getName() . ' car pas de lancement prévu';
+					echo "Suppression de  : " . $cron->getName() . ' car il n\'y a pas de lancement prévu';
 					$cron->remove();
 				}
 			}
@@ -306,7 +306,7 @@ try {
 		mkdir(dirname(__FILE__) . '/../plugins');
 	}
 	try {
-		echo 'Check jeedom file right...';
+		echo 'Vérifiez les droits sur les fichiers...';
 		jeedom::cleanFileSytemRight();
 		echo "OK\n";
 	} catch (Exception $e) {

@@ -4,7 +4,7 @@ Le sous-menu Plugins, permet de gérer ses plugins, à savoir : les télécharge
 
 == Gestion des plugins
 
-Vous pouvez accèder à la page plugins à partir de Plugins -> Gestion des plugins. Une fois que l'on clique dessus on retrouve la page qui nous présente la liste des plugins. 
+Vous pouvez accéder à la page plugins à partir de Plugins -> Gestion des plugins. Une fois que l'on clique dessus on retrouve la page qui nous présente la liste des plugins. 
 
 [TIP]
 Comme à beaucoup d'endroits sur Jeedom, mettre la souris tout à gauche permet de faire apparaître un menu d'accès rapide (vous pouvez à partir de votre profil le laisser toujours visible).

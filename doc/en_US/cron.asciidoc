@@ -5,7 +5,7 @@ Le menu Moteur de tâches n'est accessible qu'en mode expert. Il informe de tout
 [IMPORTANT]
 En cas de mauvaise manipulation sur cette page, toute demande de support peut vous être refusée.
 
-Pour y accèder il faut aller dans Administration -> Moteur de tâches : 
+Pour y accéder il faut aller dans Administration -> Moteur de tâches : 
 
 A droite, vous avez un bouton pour désactiver ou réactiver toutes les tâches (si vous les désactivez toutes, plus rien ne sera fonctionnel sur votre Jeedom), un bouton pour rafraîchir le tableau des tâches (juste en-dessous), un bouton pour ajouter une tâche et un bouton pour enregistrer vos modifications.
 
