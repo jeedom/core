@@ -281,9 +281,9 @@
     },
     "desktop/js/update.js": {
         "Options": "Options",
-        "Etes-vous sur de vouloir faire les mises à jour ?": "Do you really want to update?",
-        "Etes vous sur de vouloir mettre à jour cet objet ?": "Do you really want to update this object?",
-        "Etes vous sur de vouloir supprimer cet objet ?": "Do you really want to delete this object?",
+        "Etes-vous sûr de vouloir faire les mises à jour ?": "Do you really want to update?",
+        "Etes-vous sûr de vouloir mettre à jour cet objet ?": "Do you really want to update this object?",
+        "Etes-vous sûr de vouloir supprimer cet objet ?": "Do you really want to delete this object?",
         "L\\'opération est réussie": "The operation was successful",
         "L\\'opération a échoué": "The operation failed",
         "Dernière mise à jour du core : ": "Last core update:",
@@ -687,7 +687,7 @@
     },
     "core/js/cmd.class.js": {
         "Veuillez indiquer le code ?": "Please, enter the code",
-        "Etes-vous sur de vouloir faire cette action ?": "Are you sure that you want to complete this action ?",
+        "Etes-vous sûr de vouloir faire cette action ?": "Are you sure that you want to complete this action ?",
         "Résultat de la commande : ": "Result of the command:",
         "Action exécutée avec succès": "Action successful",
         "[Jeedom] Message de test": "[Jeedom] Test message",
@@ -1101,7 +1101,7 @@
         "Aimanter à la grille": "Aimanter à la grille",
         "Masquer surbrillance des éléments": "Masquer surbrillance des éléments",
         "Supprimer le design": "Delete design",
-        "Etes vous sûr de vouloir supprimer ce design ?": "Do you really want to delete this design?",
+        "Etes-vous sûr de vouloir supprimer ce design ?": "Do you really want to delete this design?",
         "Creer un design": "Create a design",
         "Dupliquer le design": "Duplicate design",
         "Nom la copie du design ?": "Name of the copy of the design?",
@@ -1202,7 +1202,7 @@
     },
     "desktop/js/log.js": {
         "Pause": "Pause",
-        "Etes-vous sur de vouloir supprimer tous les logs ?": "Do you really want to delete all logs?"
+        "Etes-vous sûr de vouloir supprimer tous les logs ?": "Do you really want to delete all logs?"
     },
     "desktop/js/plugin.js": {
         "Envoyer sur le": "Send to",
@@ -1229,7 +1229,7 @@
         "Warning": "Warning",
         "Error": "Error",
         "Logs": "Logs",
-        "Etes vous sûr de vouloir supprimer ce plugin ?": "Do you really want to delete this plugin?",
+        "Etes-vous sûr de vouloir supprimer ce plugin ?": "Do you really want to delete this plugin?",
         "Market": "Market",
         "Sauvegarde de la configuration des panneaux effectuée": "Panels' setup saving done",
         "Sauvegarde des fonctionalités effectuée": "Feature backup completed",
@@ -1263,7 +1263,7 @@
         "Nombre de jours de mémorisation des sauvegardes": "Number of day(s) for memorization of backups",
         "Taille totale maximale des backups (Mo)": "Maximum total size of backups (Mo)",
         "Sauvegardes locales": "Local backups",
-        "Sauvegardes disponibles": "Available backups",
+        "Sauvegardes disponibles": "Availabla sauvegardes",
         "Restaurer la sauvegarde": "Restore backup",
         "Restaurer": "Restore",
         "Supprimer la sauvegarde": "Delete backup",
@@ -1311,7 +1311,7 @@
         "Etes-vous sûr de vouloir supprimer cet utilisateur ?": "Do you really want to delete this user ?",
         "L\\'utilisateur a bien été supprimé": "The user has been successfully deleted",
         "Quel est le nouveau mot de passe ?": "What is the new password ?",
-        "Etes-vous sur de vouloir changer la clef API de l\\'utilisateur ?": "Are you sure you want to change the user\\'s API key?",
+        "Etes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "Are you sure you want to change the user\\'s API key?",
         "Modification effectuée": "Change performed",
         "Actif": "Active",
         "Local seulement": "Local only",

@@ -86,7 +86,7 @@ jeedom.cmd.execute = function(_params) {
              }
          }else if(data.code == -32006){
              if ($.mobile) {
-                 var result = confirm("{{Etes vous sur de vouloir faire cette action ?}}")
+                 var result = confirm("{{Etes-vous sûr de vouloir faire cette action ?}}")
                  if(result){
                     _params.confirmAction = 1;
                     jeedom.cmd.execute(_params);
@@ -107,7 +107,7 @@ jeedom.cmd.execute = function(_params) {
                     return data;
                 }
             }else{
-                bootbox.confirm("{{Etes vous sur de vouloir faire cette action ?}}", function (result) {
+                bootbox.confirm("{{Etes-vous sûr de vouloir faire cette action ?}}", function (result) {
                     if(result){
                      _params.confirmAction = 1;
                      jeedom.cmd.execute(_params);
@@ -177,7 +177,7 @@ paramsAJAX.data = {
     value: _params.value || '',
 };
 if(window.location.href.indexOf('p=dashboard') >= 0 || window.location.href.indexOf('p=plan') >= 0 || window.location.href.indexOf('p=view') >= 0 || $.mobile){
-  paramsAJAX.data.utid = utid; 
+  paramsAJAX.data.utid = utid;
 }
 $.ajax(paramsAJAX);
 };
@@ -748,9 +748,9 @@ jeedom.cmd.getSelectModal = function(_options, _callback) {
 
 jeedom.cmd.displayActionOption = function(_expression, _options, _callback) {
     var html = '';
-    $.ajax({ 
-        type: "POST", 
-        url: "core/ajax/scenario.ajax.php", 
+    $.ajax({
+        type: "POST",
+        url: "core/ajax/scenario.ajax.php",
         data: {
             action: 'actionToHtml',
             version: 'scenario',
@@ -763,7 +763,7 @@ jeedom.cmd.displayActionOption = function(_expression, _options, _callback) {
         error: function(request, status, error) {
             handleAjaxError(request, status, error);
         },
-        success: function(data) { 
+        success: function(data) {
             if (data.state != 'ok') {
                 $('#div_alert').showAlert({
                     message: data.result,
@@ -809,7 +809,7 @@ jeedom.cmd.normalizeName = function(_tagname) {
     var name = $.trim(_tagname.toLowerCase().replace('<br/>','').replace('<br>',''));
     if (arrayOn.indexOf(name) >= 0) {
         return 'on';
-    } else if (arrayOff.indexOf(name) >= 0) { 
+    } else if (arrayOff.indexOf(name) >= 0) {
         return 'off';
     }
     if (name.indexOf("lock") == 0) {
@@ -877,7 +877,7 @@ jeedom.cmd.displayDuration = function(_date,_el){
      var h = Math.floor(d / 3600);
      var m = Math.floor(d % 3600 / 60);
      _el.empty().append(((h > 0 ? h + " h " : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min" : "0 min")));
-     var myinterval = setInterval(function(){ 
+     var myinterval = setInterval(function(){
         var d = ((Date.now() + clientServerDiffDatetime) - _el.attr('data-time')) / 1000;
         var h = Math.floor(d / 3600);
         var m = Math.floor(d % 3600 / 60);
@@ -886,7 +886,7 @@ jeedom.cmd.displayDuration = function(_date,_el){
      _el.attr('data-interval',myinterval);
  }else{
      _el.empty().append("0 min");
-     var myinterval = setInterval(function(){ 
+     var myinterval = setInterval(function(){
          if(_el.attr('data-time') < (Date.now()+ clientServerDiffDatetime)){
             var d = ((Date.now() + clientServerDiffDatetime) - _el.attr('data-time')) / 1000;
             var h = Math.floor(d / 3600);

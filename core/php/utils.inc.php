@@ -56,7 +56,7 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 	}
 	$path = dirname(__FILE__) . '/../../' . $_folder . '/' . $_fn;
 	if (!file_exists($path)) {
-		throw new Exception('File not found : ' . $path, 35486);
+		throw new Exception('Fichier introuvable : ' . $path, 35486);
 	}
 	if ($type == 'php') {
 		if ($_type != 'class') {
@@ -605,7 +605,7 @@ function create_zip($source_arr, $destination, $_excludes = array()) {
 	}
 	$zip = new ZipArchive();
 	if (!$zip->open($destination, ZIPARCHIVE::CREATE)) {
-		throw new Exception('Impossible de creer l\'archive ZIP dans le dossier de destination : ' . $destination);
+		throw new Exception('Impossible de créer l\'archive ZIP dans le dossier de destination : ' . $destination);
 	}
 	foreach ($source_arr as $source) {
 		if (!file_exists($source)) {

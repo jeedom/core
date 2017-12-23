@@ -96,7 +96,7 @@
 
  $('#bt_deleteFile').on('click',function(){
  	var path=$(this).attr('data-path');
- 	bootbox.confirm('{{Etes vous sur de vouloir supprimer ce fichier : }} <span style="font-weight: bold ;">' +path + '</span> ?', function (result) {
+ 	bootbox.confirm('{{Etes-vous sûr de vouloir supprimer ce fichier : }} <span style="font-weight: bold ;">' +path + '</span> ?', function (result) {
  		if (result) {
  			jeedom.deleteFile({
  				path : path,

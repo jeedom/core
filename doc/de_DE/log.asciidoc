@@ -4,7 +4,7 @@
 
 Le menu Logs permet de suivre ce qui se passe sur sa domotique. Dans la plupart des cas les logs ne serviront qu'à effectuer du debuggage et à résoudre des problèmes par l'équipe de support. Ce menu est d'ailleurs accessible uniquement en mode expert.
 
-Pour y accèder il faut aller dans Administration -> Logs : 
+Pour y accéder il faut aller dans Administration -> Logs : 
 
 Die Logs-Seite ist ganz einfach, oben links ist ein Dropdown-Menü, dass die Auswahl der Logs ermöglicht und oberen rechts sind 5 Schaltflächen :
 

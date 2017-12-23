@@ -4,7 +4,7 @@ Das Untermenü Plugins, ermöglicht seine Plugins zu Verwalten : sie hochladen, 
 
 == Plugin Verwaltung
 
-Vous pouvez accèder à la page plugins à partir de Plugins -> Gestion des plugins. Une fois que l'on clique dessus on retrouve la page qui nous présente la liste des plugins. 
+Vous pouvez accéder à la page plugins à partir de Plugins -> Gestion des plugins. Une fois que l'on clique dessus on retrouve la page qui nous présente la liste des plugins. 
 
 [TIP]
 Wie an vielen Orten auf Jeedom, wenn man die Maus ganz nach links bewegt ermöglicht es, ein Schnellzugangsmenü sichtbar zu machen(Sie können es in ihrem Profil immer sichtbar machen).

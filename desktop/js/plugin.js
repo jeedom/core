@@ -343,7 +343,7 @@ return false;
 
 $('#span_plugin_delete').delegate('.removePlugin','click',function(){
   var _el = $(this);
-  bootbox.confirm('{{Etes vous sûr de vouloir supprimer ce plugin ?}}', function (result) {
+  bootbox.confirm('{{Etes-vous sûr de vouloir supprimer ce plugin ?}}', function (result) {
     if (result) {
       $.hideAlert();
       jeedom.update.remove({

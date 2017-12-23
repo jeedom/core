@@ -89,7 +89,7 @@ try {
 		}
 		include_file('mobile', $_fn, $_type, $_plugin);
 	} else {
-		echo "Erreur: veuillez contacter l'administrateur";
+		echo "Erreur : veuillez contacter l'administrateur";
 	}
 } catch (Exception $e) {
 	echo $e->getMessage();

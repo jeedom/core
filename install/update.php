@@ -17,11 +17,11 @@
  */
 
 if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SERVER['argc'])) {
-	header("Status: 404 Not Found");
+	header("Statut: 404 Page non trouvée");
 	header('HTTP/1.0 404 Not Found');
 	$_SERVER['REDIRECT_STATUS'] = 404;
-	echo "<h1>404 Not Found</h1>";
-	echo "The page that you have requested could not be found.";
+	echo "<h1>404 Non trouvé</h1>";
+	echo "La page que vous demandez ne peut être trouvée.";
 	exit();
 }
 set_time_limit(1800);
@@ -42,17 +42,17 @@ $update_begin = false;
 try {
 	require_once dirname(__FILE__) . '/../core/php/core.inc.php';
 	if (count(system::ps('install/update.php', 'sudo')) > 1) {
-		echo "Update in progress. I will wait 10s then retry\n";
+		echo "Mise à jour en cour. J'attendrai 10s avant de recommencer\n";
 		sleep(10);
 		if (count(system::ps('install/update.php', 'sudo')) > 1) {
-			echo "Update in progress. You must wait until it is finished before restarting new update\n";
+			echo "Mise à jour en cours. Vous devez attendre jusqu'à ce qu'elle finisse avant de redémarrer une nouvelle mise à jour\n";
 			print_r(system::ps('install/update.php', 'sudo'));
 			echo "[END UPDATE]\n";
 			die();
 		}
 	}
-	echo "****Update jeedom from " . jeedom::version() . " (" . date('Y-m-d H:i:s') . ")****\n";
-	echo "Parameters : " . print_r($_GET, true);
+	echo "****Mise à jour de jeedom depuis " . jeedom::version() . " (" . date('Y-m-d H:i:s') . ")****\n";
+	echo "Paramètres : " . print_r($_GET, true);
 	$curentVersion = config::byKey('version');
 
 	/*         * ************************MISE A JOUR********************************** */
