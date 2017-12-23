@@ -22,7 +22,7 @@ if (!isConnect('admin')) {
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-4 col-xs-6 control-label">{{Nombre de jour(s) de mémorisation des sauvegardes}}</label>
+                        <label class="col-sm-4 col-xs-6 control-label">{{Nombre de jours de mémorisation des sauvegardes}}</label>
                         <div class="col-sm-4 col-xs-6">
                             <input type="text" class="configKey form-control" data-l1key="backup::keepDays" />
                         </div>

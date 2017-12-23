@@ -83,7 +83,7 @@ Vous pouvez :
 * *Opacité* : opacité du widget
 * *Couleur du texte* : couleur du texte
 * *Bordures* : permet d'ajouter une bordure, il faut mettre du code css, proprieté border (ex "3px blue dashed" pour une bordure pointillé de 3px en bleu)
-* *Arrondit des bordures (en px)* : permet d'arrondir les bordure, il faut mettre du code css, proprieté border-radius (ex "10px")
+* *Arrondi des bordures (en px)* : permet d'arrondir les bordure, il faut mettre du code css, proprieté border-radius (ex "10px")
 
 ==== Paramètres optionnels sur la tuile
 
@@ -153,7 +153,7 @@ L'onglet information contient les informations générales sur la commande  :
 
 Vous avez aussi differents boutons : 
 
-* *Cette commande remplace l'id* : permet de remplacer un id de commande par la commande en question, utile si vous avez supprimé un équipement dans jeedom et que vous avez des scénarios utilisant des commandes de celui-ci.
+* *Cette commande remplace l'ID* : permet de remplacer un id de commande par la commande en question, utile si vous avez supprimé un équipement dans jeedom et que vous avez des scénarios utilisant des commandes de celui-ci.
 * *Cette commande remplace la commande* : Remplace une commande par la commande courrante
 * *Remplacer cette commande la commande* : L'inverse, remplace la commande par une autre commande
 
@@ -166,7 +166,7 @@ En-dessous, vous retrouvez la liste des différents équipements, commandes, sc�
 
 Pour une commande de type info :
 
-* *Calcul et arrondit*
+* *Calcul et arrondi*
 ** *Formule de calcul (\#value# pour la valeur)* : vous pouvez ici faire une opération sur la valeur de la commande avant le traitement par Jeedom, exemple : \#value# - 0.2 pour retrancher 0.2 (offset sur un capteur de température)
 ** *Arrondi (chiffre après la virgule)* : permet d'arrondir la valeur de la commande, exemple : mettre 2 pour tranformer 16.643345 en 16.64
 * *Type générique* : cette partie permet de configurer le type générique de la commande (Jeedom essaie de le trouver par lui-même en mode auto). Cette information est utilisée par l'application mobile.
@@ -219,4 +219,4 @@ N'oubliez pas de sauvegarder après toute modification
 Permet de modifier le code du widget juste pour la commande courrante
 
 [NOTE]
-Si vous voulez modifier le code n'oubliez pas de cocher la case "Activer la personalisation du widget"
+Si vous voulez modifier le code n'oubliez pas de cocher la case "Activer la personnalisation du widget"

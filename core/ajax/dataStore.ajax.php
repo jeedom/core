@@ -29,7 +29,7 @@ try {
 	if (init('action') == 'remove') {
 		$dataStore = dataStore::byId(init('id'));
 		if (!is_object($dataStore)) {
-			throw new Exception(__('Data store inconnu. Vérifiez l\'ID : ', __FILE__) . init('id'));
+			throw new Exception(__('Dépôt de données inconnu. Vérifiez l\'ID : ', __FILE__) . init('id'));
 		}
 		$dataStore->remove();
 		ajax::success();
@@ -45,7 +45,7 @@ try {
 			$dataStore = dataStore::byId(init('id'));
 		}
 		if (!is_object($dataStore)) {
-			throw new Exception(__('Data store inconnu. Vérifiez l\'ID : ', __FILE__) . init('id'));
+			throw new Exception(__('Dépôt de données inconnu. Vérifiez l\'ID : ', __FILE__) . init('id'));
 		}
 		$dataStore->setValue(init('value'));
 		$dataStore->save();

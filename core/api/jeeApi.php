@@ -18,11 +18,11 @@
 header('Access-Control-Allow-Origin: *');
 require_once dirname(__FILE__) . "/../php/core.inc.php";
 if (user::isBan() && false) {
-	header("Status: 404 Not Found");
+	header("Status: 404 page introuvable");
 	header('HTTP/1.0 404 Not Found');
 	$_SERVER['REDIRECT_STATUS'] = 404;
-	echo "<h1>404 Not Found</h1>";
-	echo "The page that you have requested could not be found.";
+	echo "<h1>404 - Page introuvable</h1>";
+	echo "La page que vous avez demandée est introuvable.";
 	die();
 }
 if (isset($argv)) {
@@ -43,7 +43,7 @@ if (init('type') != '') {
 				!jeedom::apiModeResult(config::byKey('api::core::http::mode', init('type', 'core'), 'enable')))) {
 			sleep(5);
 			user::failedLogin();
-			throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action 1', __FILE__));
+			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action 1', __FILE__));
 		}
 		if ($type == 'ask') {
 			$cmd = cmd::byId(init('cmd_id'));
@@ -67,10 +67,10 @@ if (init('type') != '') {
 				foreach ($ids as $id) {
 					$cmd = cmd::byId($id);
 					if (!is_object($cmd)) {
-						throw new Exception(__('Aucune commande correspondant à l\'id : ', __FILE__) . secureXSS($id));
+						throw new Exception(__('Aucune commande correspondant à l\'ID : ', __FILE__) . secureXSS($id));
 					}
 					if (init('plugin', 'core') != 'core' && init('plugin', 'core') != $cmd->getEqType()) {
-						throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action 2', __FILE__));
+						throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action 2', __FILE__));
 					}
 					$result[$id] = $cmd->execCmd($_REQUEST);
 				}
@@ -79,10 +79,10 @@ if (init('type') != '') {
 			} else {
 				$cmd = cmd::byId(init('id'));
 				if (!is_object($cmd)) {
-					throw new Exception(__('Aucune commande correspondant à l\'id : ', __FILE__) . secureXSS(init('id')));
+					throw new Exception(__('Aucune commande correspondant à l\'ID : ', __FILE__) . secureXSS(init('id')));
 				}
 				if (init('plugin', 'core') != 'core' && init('plugin', 'core') != $cmd->getEqType()) {
-					throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action 3', __FILE__));
+					throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action 3', __FILE__));
 				}
 				log::add('api', 'debug', __('Exécution de : ', __FILE__) . $cmd->getHumanName());
 				echo $cmd->execCmd($_REQUEST);
@@ -90,7 +90,7 @@ if (init('type') != '') {
 			}
 		}
 		if ($type != init('plugin', 'core') && init('plugin', 'core') != 'core') {
-			throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action 4', __FILE__));
+			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action 4', __FILE__));
 		}
 		if (class_exists($type) && method_exists($type, 'event')) {
 			log::add('api', 'info', __('Appels de ', __FILE__) . secureXSS($type) . '::event()');
@@ -121,10 +121,10 @@ if (init('type') != '') {
 			die();
 		}
 		if ($type == 'scenario') {
-			log::add('api', 'debug', __('Demande api pour les scénarios', __FILE__));
+			log::add('api', 'debug', __('Demande API pour les scénarios', __FILE__));
 			$scenario = scenario::byId(init('id'));
 			if (!is_object($scenario)) {
-				throw new Exception(__('Aucun scénario correspondant à l\'id : ', __FILE__) . secureXSS(init('id')));
+				throw new Exception(__('Aucun scénario correspondant à l\'ID : ', __FILE__) . secureXSS(init('id')));
 			}
 			if (!$scenario->hasRight('w')) {
 				throw new Exception(__('Vous n\'avez pas le droit de faire une action sur ce scénario', __FILE__));
@@ -227,12 +227,12 @@ if (init('type') != '') {
 		$jsonrpc = new jsonrpc($request);
 
 		if (!jeedom::apiModeResult(config::byKey('api::core::jsonrpc::mode', 'core', 'enable'))) {
-			throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action (jsonrpc disable)', __FILE__), -32001);
+			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action (JSON-RPC disable)', __FILE__), -32001);
 		}
 
 		if ($jsonrpc->getJsonrpc() != '2.0') {
 			user::failedLogin();
-			throw new Exception(__('Requête invalide. Version Jsonrpc invalide : ', __FILE__) . $jsonrpc->getJsonrpc(), -32001);
+			throw new Exception(__('Requête invalide. Version JSON-RPC invalide : ', __FILE__) . $jsonrpc->getJsonrpc(), -32001);
 		}
 
 		$params = $jsonrpc->getParams();
@@ -252,7 +252,7 @@ if (init('type') != '') {
 			if (!isset($params['login']) || !isset($params['password']) || $params['login'] == '' || $params['password'] == '') {
 				user::failedLogin();
 				sleep(5);
-				throw new Exception(__('Le login ou le password ne peuvent être vide', __FILE__), -32001);
+				throw new Exception(__('L\'identifiant ou le mot de passe ne peuvent pas être vide', __FILE__), -32001);
 			}
 			$user = user::connect($params['login'], $params['password']);
 			if (!is_object($user) || $user->getEnable() != 1) {
@@ -260,13 +260,13 @@ if (init('type') != '') {
 				$_SESSION['failed'] = (isset($_SESSION['failed'])) ? $_SESSION['failed'] + 1 : 1;
 				@session_write_close();
 				sleep(5);
-				throw new Exception(__('Echec de l\'authentification', __FILE__), -32001);
+				throw new Exception(__('Echec lors de l\'authentification', __FILE__), -32001);
 			}
 			if (network::getUserLocation() != 'internal' && $user->getOptions('twoFactorAuthentification', 0) == 1 && $user->getOptions('twoFactorAuthentificationSecret') != '') {
 				if (!isset($params['twoFactorCode']) || trim($params['twoFactorCode']) == '' || !$user->validateTwoFactorCode($params['twoFactorCode'])) {
 					user::failedLogin();
 					sleep(5);
-					throw new Exception(__('Echec de l\'authentification', __FILE__), -32001);
+					throw new Exception(__('Echec lors de l\'authentification', __FILE__), -32001);
 				}
 			}
 			$jsonrpc->makeSuccess($user->getHash());
@@ -277,11 +277,11 @@ if (init('type') != '') {
 		}
 
 		if (!isset($params['apikey']) && !isset($params['api'])) {
-			throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__), -32001);
+			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
 		}
 
 		if ((isset($params['apikey']) && !jeedom::apiAccess($params['apikey'])) || (isset($params['api']) && !jeedom::apiAccess($params['api']))) {
-			throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__), -32001);
+			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
 		}
 
 		/*             * ************************config*************************** */
@@ -584,7 +584,7 @@ if (init('type') != '') {
 					foreach ($params['id'] as $id) {
 						$cmd = cmd::byId($id);
 						if (!is_object($cmd)) {
-							throw new Exception(__('Cmd introuvable : ', __FILE__) . secureXSS($id), -32702);
+							throw new Exception(__('Commande introuvable : ', __FILE__) . secureXSS($id), -32702);
 						}
 						$eqLogic = $cmd->getEqLogic();
 						if ($cmd->getType() == 'action' && !$eqLogic->hasRight('x')) {
@@ -604,7 +604,7 @@ if (init('type') != '') {
 				} else {
 					$cmd = cmd::byId($params['id']);
 					if (!is_object($cmd)) {
-						throw new Exception(__('Cmd introuvable : ', __FILE__) . secureXSS($params['id']), -32702);
+						throw new Exception(__('Commande introuvable : ', __FILE__) . secureXSS($params['id']), -32702);
 					}
 					$eqLogic = $cmd->getEqLogic();
 					if ($cmd->getType() == 'action' && !$eqLogic->hasRight('x')) {
@@ -627,7 +627,7 @@ if (init('type') != '') {
 			if ($jsonrpc->getMethod() == 'cmd::getStatistique') {
 				$cmd = cmd::byId($params['id']);
 				if (!is_object($cmd)) {
-					throw new Exception('Cmd introuvable : ' . secureXSS($params['id']), -32702);
+					throw new Exception('Commande introuvable : ' . secureXSS($params['id']), -32702);
 				}
 				$jsonrpc->makeSuccess($cmd->getStatistique($params['startTime'], $params['endTime']));
 			}
@@ -635,7 +635,7 @@ if (init('type') != '') {
 			if ($jsonrpc->getMethod() == 'cmd::getTendance') {
 				$cmd = cmd::byId($params['id']);
 				if (!is_object($cmd)) {
-					throw new Exception('Cmd introuvable : ' . secureXSS($params['id']), -32702);
+					throw new Exception('Commande introuvable : ' . secureXSS($params['id']), -32702);
 				}
 				$jsonrpc->makeSuccess($cmd->getTendance($params['startTime'], $params['endTime']));
 			}
@@ -643,7 +643,7 @@ if (init('type') != '') {
 			if ($jsonrpc->getMethod() == 'cmd::getHistory') {
 				$cmd = cmd::byId($params['id']);
 				if (!is_object($cmd)) {
-					throw new Exception('Cmd introuvable : ' . secureXSS($params['id']), -32702);
+					throw new Exception('Commande introuvable : ' . secureXSS($params['id']), -32702);
 				}
 				$jsonrpc->makeSuccess(utils::o2a($cmd->getHistory($params['startTime'], $params['endTime'])));
 			}
@@ -673,7 +673,7 @@ if (init('type') != '') {
 			if ($jsonrpc->getMethod() == 'scenario::byId') {
 				$scenario = scenario::byId($params['id']);
 				if (!is_object($scenario)) {
-					throw new Exception(__('Scenario introuvable : ', __FILE__) . secureXSS($params['id']), -32703);
+					throw new Exception(__('Scénario introuvable : ', __FILE__) . secureXSS($params['id']), -32703);
 				}
 				$jsonrpc->makeSuccess(utils::o2a($scenario));
 			}
@@ -681,7 +681,7 @@ if (init('type') != '') {
 			if ($jsonrpc->getMethod() == 'scenario::changeState') {
 				$scenario = scenario::byId($params['id']);
 				if (!is_object($scenario)) {
-					throw new Exception(__('Scenario introuvable : ', __FILE__) . secureXSS($params['id']), -32702);
+					throw new Exception(__('Scénario introuvable : ', __FILE__) . secureXSS($params['id']), -32702);
 				}
 				if ($params['state'] == 'stop') {
 					$jsonrpc->makeSuccess($scenario->stop());
@@ -697,7 +697,7 @@ if (init('type') != '') {
 					$scenario->setIsActive(0);
 					$jsonrpc->makeSuccess($scenario->save());
 				}
-				throw new Exception(__('Le paramètre "state" ne peut être vide et doit avoir pour valeur [run,stop,enable;disable]', __FILE__));
+				throw new Exception(__('Le paramètre "state" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]', __FILE__));
 			}
 
 			/*             * ************************Log*************************** */

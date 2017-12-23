@@ -936,7 +936,7 @@ if ($cmd->getDisplay('parameters') != '') {
     jeedom.cmd.getSelectModal({cmd: {type: cmdInfo.type, subType: cmdInfo.subType}}, function (result) {
       var target_id = result.cmd.id
       var name = result.human
-      bootbox.confirm('{{Etes-vous sûr de vouloir remplacer l\'id}} <strong>'+name+'</strong> {{par}} <strong>'+cmdInfo.name+'</strong> ?', function (result) {
+      bootbox.confirm('{{Etes-vous sûr de vouloir remplacer l\'ID}} <strong>'+name+'</strong> {{par}} <strong>'+cmdInfo.name+'</strong> ?', function (result) {
         if (result) {
           jeedom.cmd.replaceCmd({
             source_id : target_id,
@@ -955,7 +955,7 @@ if ($cmd->getDisplay('parameters') != '') {
 
 
   $('#bt_cmdConfigureReplaceIdByMe').off('click').on('click',function(){
-    var target_id = prompt("{{Id de commande à remplacer ?}}");
+    var target_id = prompt("{{ID de commande à remplacer ?}}");
     if(target_id == null){
       return;
     }

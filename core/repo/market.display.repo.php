@@ -220,7 +220,7 @@ if ($market->getHardwareCompatibility('Jeedomboard') == 1) {
 ?>
       </div>
       <div class='col-sm-2'>
-       <label class="control-label">{{Nombre d'installation}}</label><br/>
+       <label class="control-label">{{Nombre d'installations}}</label><br/>
        <span class="marketAttr" data-l1key="nbInstall"></span><br/>
        <label class="control-label">{{Nombre de téléchargements}}</label><br/>
        <span class="marketAttr" data-l1key="downloaded"></span>
@@ -310,7 +310,7 @@ if ($market->getLanguage('it_IT') == 1) {
       },
  success: function (data) { // si l'appel a bien fonctionné
  if(market_display_info.type == 'plugin'){
-   bootbox.confirm('{{Voulez vous aller sur la page de configuration de votre nouveau plugin ?}}', function (result) {
+   bootbox.confirm('{{Voulez-vous aller sur la page de configuration de votre nouveau plugin ?}}', function (result) {
      if (result) {
       loadPage('index.php?v=d&p=plugin&id=' + logicalId);
     }

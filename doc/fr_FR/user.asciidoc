@@ -34,4 +34,4 @@ Vous avez ici un tableau qui permet pour chaque équipement et chaque scénario 
 
 * *Aucun* : l'utilisateur ne voit pas l'équipement/scénario
 * *Visualisation* : l'utilisateur voit l'équipement/scénario mais ne peut pas agir dessus
-* *Visualisation et éxecution* : l'utilisateur voit l'équipement/scénario et peut agir dessus (allumer une lampe, lancer le scénario, etc.)
+* *Visualisation et exécution* : l'utilisateur voit l'équipement/scénario et peut agir dessus (allumer une lampe, lancer le scénario, etc.)

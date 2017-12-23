@@ -102,7 +102,7 @@
  $("#table_user").on('click',".bt_changeHash",  function (event) {
     $.hideAlert();
     var user = {id: $(this).closest('tr').find('.userAttr[data-l1key=id]').value()};
-    bootbox.confirm("{{Etês vous sur de vouloir changer la clef API de l\'utilisateur ?}}", function (result) {
+    bootbox.confirm("{{Etes-vous sur de vouloir changer la clef API de l\'utilisateur ?}}", function (result) {
         if (result) {
             user.hash = '';
             jeedom.user.save({
@@ -172,7 +172,7 @@
                 ligne += '<a class="btn btn-xs btn-danger pull-right bt_del_user" style="margin-bottom : 5px;"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>';
                 ligne += '<a class="btn btn-xs btn-warning pull-right bt_change_mdp_user" style="margin-bottom : 5px;"><i class="fa fa-pencil"></i> {{Changer le mot de passe}}</a>';
             }
-             ligne += '<a class="btn btn-xs btn-warning pull-right bt_manage_restrict_rights" style="margin-bottom : 5px;"><i class="fa fa-align-right"></i> {{Gerer les droits}}</a>';
+             ligne += '<a class="btn btn-xs btn-warning pull-right bt_manage_restrict_rights" style="margin-bottom : 5px;"><i class="fa fa-align-right"></i> {{Gérer les droits}}</a>';
             ligne += '</td>';
             ligne += '</tr>';
             var result = $(ligne);

@@ -139,7 +139,7 @@ Il est possible d'activer sur les widgets l'affichage du minimum, de la moyenne,
 
 Permet de surveiller et d'agir sur le cache de Jeedom : 
 
-* *Statistiques* : Nombre d'objet actuellement en cache
+* *Statistiques* : Nombre d'objets actuellement en cache
 * *Nettoyer le cache* : Force la suppression des objets qui ne sont plus utile (Jeedom le fait automatiquement toute les nuits)
 * *Vider toutes les données en cache* : Vide completement le cache (attention cela peut faire perdre des données)
 * *Temps de pause pour le long polling* : Fréquence a laquelle Jeedom verifie si il y a des evenements en attente pour les clients (interface web, application mobile...). Plus ce temps est cours plus l'interface se mettra à jour rapidement, en contre partie cela utilise plus de ressources et peut donc ralentir jeedom

@@ -28,7 +28,7 @@ log::add('tts', 'debug', 'Call tts api : ' . print_r($_GET, true));
 $engine = init('engine', 'pico');
 $text = init('text');
 if ($text == '') {
-	echo __('Aucun text à dire', __FILE__);
+	echo __('Aucun texte à dire', __FILE__);
 	die();
 }
 $text = str_replace(array('[', ']', '#', '{', '}'), '', $text);
@@ -45,7 +45,7 @@ switch ($engine) {
 		shell_exec('pico2wave -l=' . $lang . ' -w=' . $md5 . '.wav "' . $text . '" > /dev/null 2>&1;avconv -i ' . $md5 . '.wav -ar 44100 ' . $volume . ' -ac 2 -ab 192k -f mp3 ' . $filename . ' > /dev/null 2>&1;rm ' . $md5 . '.wav');
 		break;
 	default:
-		echo __('Moteur de voix inconnue : ', __FILE__) . $engine;
+		echo __('Moteur de voix inconnu : ', __FILE__) . $engine;
 		die();
 		break;
 }

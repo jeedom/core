@@ -1059,7 +1059,7 @@ class scenarioExpression {
 			cache::set($key, array('scenarioExpression' => $this, 'scenario' => $scenario), 60);
 			$cmd = dirname(__FILE__) . '/../php/jeeScenarioExpression.php';
 			$cmd .= ' key=' . $key;
-			$this->setLog($scenario, __('Execution du lancement en arriere plan : ', __FILE__) . $key);
+			$this->setLog($scenario, __('Execution du lancement en arrière-plan : ', __FILE__) . $key);
 			system::php($cmd . ' >> /dev/null 2>&1 &');
 			return;
 		}
@@ -1091,7 +1091,7 @@ class scenarioExpression {
 				if ($this->getExpression() == 'icon') {
 					if ($scenario !== null) {
 						$options = $this->getOptions();
-						$this->setLog($scenario, __('Changement de l\'icone du scénario : ', __FILE__) . $options['icon']);
+						$this->setLog($scenario, __('Changement de l\'icône du scénario : ', __FILE__) . $options['icon']);
 						$scenario->setDisplay('icon', $options['icon']);
 						$scenario->save();
 					}
@@ -1137,7 +1137,7 @@ class scenarioExpression {
 							}
 						}
 					}
-					$this->setLog($scenario, __('Aucune durée trouvée pour l\'action sleep ou la durée n\'est pas valide : ', __FILE__) . $options['duration']);
+					$this->setLog($scenario, __('Aucune durée trouvée pour l\'action pause ou la durée n\'est pas valide : ', __FILE__) . $options['duration']);
 					return;
 				} else if ($this->getExpression() == 'stop') {
 					if ($scenario !== null) {
@@ -1173,7 +1173,7 @@ class scenarioExpression {
 				} else if ($this->getExpression() == 'equipement') {
 					$eqLogic = eqLogic::byId(str_replace(array('#eqLogic', '#'), '', $this->getOptions('eqLogic')));
 					if (!is_object($eqLogic)) {
-						throw new Exception(__('Action sur l\'équipement impossible. Equipement introuvable - Vérifiez l\'id : ', __FILE__) . $this->getOptions('eqLogic'));
+						throw new Exception(__('Action sur l\'équipement impossible. Equipement introuvable. Vérifiez l\'ID : ', __FILE__) . $this->getOptions('eqLogic'));
 					}
 					switch ($this->getOptions('action')) {
 						case 'show':
@@ -1209,7 +1209,7 @@ class scenarioExpression {
 						$actionScenario = scenario::byId($this->getOptions('scenario_id'));
 					}
 					if (!is_object($actionScenario)) {
-						throw new Exception(__('Action sur scénario impossible. Scénario introuvable - Vérifiez l\'id : ', __FILE__) . $this->getOptions('scenario_id'));
+						throw new Exception(__('Action sur scénario impossible. Scénario introuvable. Vérifiez l\'ID : ', __FILE__) . $this->getOptions('scenario_id'));
 					}
 					switch ($this->getOptions('action')) {
 						case 'start':
@@ -1245,7 +1245,7 @@ class scenarioExpression {
 							}
 							$this->setLog($scenario, __('Lancement du scénario : ', __FILE__) . $actionScenario->getName() . __(' options : ', __FILE__) . json_encode($actionScenario->getTags()));
 							if ($scenario !== null) {
-								return $actionScenario->launch('scenario', __('Lancement provoqué par le scénario  : ', __FILE__) . $scenario->getHumanName(), true);
+								return $actionScenario->launch('scenario', __('Lancement provoqué par le scénario : ', __FILE__) . $scenario->getHumanName(), true);
 							} else {
 								return $actionScenario->launch('other', __('Lancement provoqué', __FILE__), true);
 							}
@@ -1297,7 +1297,7 @@ class scenarioExpression {
 					$options_cmd = array('title' => $options['question'], 'message' => $options['question'], 'answer' => explode(';', $options['answer']), 'timeout' => $limit, 'variable' => $this->getOptions('variable'));
 					$cmd = cmd::byId(str_replace('#', '', $this->getOptions('cmd')));
 					if (!is_object($cmd)) {
-						throw new Exception(__('Commande introuvable - Vérifiez l\'id : ', __FILE__) . $this->getOptions('cmd'));
+						throw new Exception(__('Commande introuvable. Vérifiez l\'ID : ', __FILE__) . $this->getOptions('cmd'));
 					}
 					$this->setLog($scenario, __('Demande ', __FILE__) . json_encode($options_cmd));
 					$cmd->setCache('ask::variable', $this->getOptions('variable'));
@@ -1329,7 +1329,7 @@ class scenarioExpression {
 					$this->setLog($scenario, __('Réponse ', __FILE__) . $value);
 					return;
 				} else if ($this->getExpression() == 'jeedom_poweroff') {
-					$this->setLog($scenario, __('Lancement de l\'arret de jeedom', __FILE__));
+					$this->setLog($scenario, __('Lancement de l\'arrêt de jeedom', __FILE__));
 					$scenario->persistLog();
 					jeedom::haltSystem();
 					return;
@@ -1345,7 +1345,7 @@ class scenarioExpression {
 					if ($scenario === null) {
 						return;
 					}
-					$this->setLog($scenario, __('Suppresion des blocs DANS et A programmés du scénario ', __FILE__));
+					$this->setLog($scenario, __('Suppression des blocs DANS et A programmés du scénario ', __FILE__));
 					$crons = cron::searchClassAndFunction('scenario', 'doIn', '"scenario_id":' . $scenario->getId() . ',');
 					if (is_array($crons)) {
 						foreach ($crons as $cron) {
@@ -1362,7 +1362,7 @@ class scenarioExpression {
 						case 'view':
 							$view = view::byId($options['view_id']);
 							if (!is_object($view)) {
-								throw new Exception(__('Vue introuvable - Vérifiez l\'id : ', __FILE__) . $options['view_id']);
+								throw new Exception(__('Vue introuvable. Vérifiez l\'ID : ', __FILE__) . $options['view_id']);
 							}
 							$this->setLog($scenario, __('Génération du rapport ', __FILE__) . $view->getName());
 							$cmd_parameters['files'] = array($view->report($options['export_type']));
@@ -1372,7 +1372,7 @@ class scenarioExpression {
 						case 'plan':
 							$plan = planHeader::byId($options['plan_id']);
 							if (!is_object($plan)) {
-								throw new Exception(__('Design introuvable - Vérifiez l\'id : ', __FILE__) . $options['plan_id']);
+								throw new Exception(__('Design introuvable. Vérifiez l\'ID : ', __FILE__) . $options['plan_id']);
 							}
 							$this->setLog($scenario, __('Génération du rapport ', __FILE__) . $plan->getName());
 							$cmd_parameters['files'] = array($plan->report($options['export_type']));
@@ -1382,7 +1382,7 @@ class scenarioExpression {
 						case 'plugin':
 							$plugin = plugin::byId($options['plugin_id']);
 							if (!is_object($plugin)) {
-								throw new Exception(__('Panel introuvable - Vérifiez l\'id : ', __FILE__) . $options['plugin_id']);
+								throw new Exception(__('Panneau introuvable. Vérifiez l\'ID : ', __FILE__) . $options['plugin_id']);
 							}
 							$this->setLog($scenario, __('Génération du rapport ', __FILE__) . $plugin->getName());
 							$cmd_parameters['files'] = array($plugin->report($options['export_type']));
@@ -1396,7 +1396,7 @@ class scenarioExpression {
 					if ($this->getOptions('cmd') != '') {
 						$cmd = cmd::byId(str_replace('#', '', $this->getOptions('cmd')));
 						if (!is_object($cmd)) {
-							throw new Exception(__('Commande introuvable veuillez vérifiez l\'id : ', __FILE__) . $this->getOptions('cmd'));
+							throw new Exception(__('Commande introuvable. veuillez vérifiez l\'ID : ', __FILE__) . $this->getOptions('cmd'));
 						}
 						$this->setLog($scenario, __('Envoi du rapport généré sur ', __FILE__) . $cmd->getHumanName());
 						$cmd->execCmd($cmd_parameters);
