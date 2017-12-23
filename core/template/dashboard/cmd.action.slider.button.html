@@ -11,13 +11,13 @@
      </center>
      <script>
       $('.cmd[data-cmd_uid=#uid#] .bt_plus').on('click', function () {
-        $('.cmd[data-cmd_uid=#uid#] .value').val((parseFloat($('.cmd[data-cmd_uid=#uid#] .value').val()) + 0.5)+' #unite#');
+        jeedom.cmd.update['#id#']({display_value:parseFloat($('.cmd[data-cmd_uid=#uid#] .value').val()) + 0.5});
         $('.cmd[data-cmd_uid=#uid#] .value').trigger('change');
       });
       $('.cmd[data-cmd_uid=#uid#] .bt_minus').on('click', function () {
-        $('.cmd[data-cmd_uid=#uid#] .value').val((parseFloat($('.cmd[data-cmd_uid=#uid#] .value').val()) - 0.5)+' #unite#');
-        $('.cmd[data-cmd_uid=#uid#] .value').trigger('change');
-      });
+       jeedom.cmd.update['#id#']({display_value:parseFloat($('.cmd[data-cmd_uid=#uid#] .value').val()) - 0.5});
+       $('.cmd[data-cmd_uid=#uid#] .value').trigger('change');
+     });
       $('.cmd[data-cmd_uid=#uid#] .value').on('change', function () {
         if (typeof timerHandle !== 'undefined') {
          clearTimeout(timerHandle);
@@ -30,5 +30,9 @@
         }, 1000)
       }    
     });
-  </script>
-</div>
+      jeedom.cmd.update['#id#'] = function(_options){
+        $('.cmd[data-cmd_uid=#uid#] .value').val(_options.display_value+' #unite#');
+      }
+      jeedom.cmd.update['#id#']({display_value:'#state#'});
+    </script>
+  </div>

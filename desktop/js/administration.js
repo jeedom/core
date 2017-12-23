@@ -15,7 +15,15 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
- $('#div_pageContainer').delegate('.configKey[data-l1key="market::allowDNS"]', 'change', function () {
+ var url = document.location.toString();
+ if (url.match('#')) {
+    $('.nav-tabs a[href="#' + url.split('#')[1] + '"]').tab('show');
+} 
+$('.nav-tabs a').on('shown.bs.tab', function (e) {
+    window.location.hash = e.target.hash;
+})
+
+$('#div_pageContainer').delegate('.configKey[data-l1key="market::allowDNS"]', 'change', function () {
     if($(this).value() == 1){
        $('.configKey[data-l1key=externalProtocol]').attr('disabled',true);
        $('.configKey[data-l1key=externalAddr]').attr('disabled',true);
@@ -30,7 +38,7 @@
 });
 
 
- $('#div_pageContainer').delegate('.enableRepository', 'change', function () {
+$('#div_pageContainer').delegate('.enableRepository', 'change', function () {
     if($(this).value() == 1){
         $('.repositoryConfiguration'+$(this).attr('data-repo')).show();
     }else{
@@ -38,7 +46,7 @@
     }
 });
 
- $('#div_pageContainer').delegate('.configKey[data-l1key="ldap:enable"]', 'change', function () {
+$('#div_pageContainer').delegate('.configKey[data-l1key="ldap:enable"]', 'change', function () {
     if($(this).value() == 1){
         $('#div_config_ldap').show();
     }else{
@@ -46,17 +54,17 @@
     }
 });
 
- $('#div_pageContainer').delegate('.configKey[data-l1key="cache::engine"]', 'change', function () {
-     $('.cacheEngine').hide();
-     $('.cacheEngine.'+$(this).value()).show();
- });
+$('#div_pageContainer').delegate('.configKey[data-l1key="cache::engine"]', 'change', function () {
+ $('.cacheEngine').hide();
+ $('.cacheEngine.'+$(this).value()).show();
+});
 
- $('#div_pageContainer').delegate('.configKey[data-l1key="log::engine"]', 'change', function () {
-     $('.logEngine').hide();
-     $('.logEngine.'+$(this).value()).show();
- });
+$('#div_pageContainer').delegate('.configKey[data-l1key="log::engine"]', 'change', function () {
+ $('.logEngine').hide();
+ $('.logEngine.'+$(this).value()).show();
+});
 
- $(".bt_regenerate_api").on('click', function (event) {
+$(".bt_regenerate_api").on('click', function (event) {
     $.hideAlert();
     var el = $(this);
     bootbox.confirm('{{Etes-vous sûr de vouloir réinitialiser la clef API de }}'+el.attr('data-plugin')+' ?', function (result) {
@@ -86,7 +94,7 @@
 
 
 
- $('#bt_forceSyncHour').on('click', function () {
+$('#bt_forceSyncHour').on('click', function () {
     $.hideAlert();
     jeedom.forceSyncHour({
         error: function (error) {
@@ -98,7 +106,7 @@
     });
 });
 
- $('#bt_restartDns').on('click', function () {
+$('#bt_restartDns').on('click', function () {
    $.hideAlert();
    jeedom.config.save({
     configuration: $('#config').getValues('.configKey')[0],
@@ -120,7 +128,7 @@
 });
 
 
- $('#bt_haltDns').on('click', function () {
+$('#bt_haltDns').on('click', function () {
    $.hideAlert();
    jeedom.config.save({
     configuration: $('#config').getValues('.configKey')[0],
@@ -141,27 +149,27 @@
 }); 
 });
 
- $("#bt_cleanCache").on('click', function (event) {
+$("#bt_cleanCache").on('click', function (event) {
     $.hideAlert();
     cleanCache();
 });
 
- $("#bt_flushCache").on('click', function (event) {
+$("#bt_flushCache").on('click', function (event) {
     $.hideAlert();
     flushCache();
 });
 
- $("#bt_clearJeedomLastDate").on('click', function (event) {
+$("#bt_clearJeedomLastDate").on('click', function (event) {
     $.hideAlert();
     clearJeedomDate();
 });
 
- jwerty.key('ctrl+s', function (e) {
+jwerty.key('ctrl+s', function (e) {
     e.preventDefault();
     $("#bt_saveGeneraleConfig").click();
 });
 
- $("#bt_saveGeneraleConfig").on('click', function (event) {
+$("#bt_saveGeneraleConfig").on('click', function (event) {
     $.hideAlert();
     saveConvertColor();
     saveObjectSummary();
@@ -186,7 +194,7 @@
     });
 });
 
- $('#bt_accessDB').on('click', function () {
+$('#bt_accessDB').on('click', function () {
     var href = $(this).attr('data-href');
     bootbox.confirm('{{Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et qu\'en cas de Jeedom non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\'accès est enregistrée) ?}}', function (result) {
         if (result) {
@@ -196,7 +204,7 @@
     });
 });
 
- $("#bt_testLdapConnection").on('click', function (event) {
+$("#bt_testLdapConnection").on('click', function (event) {
     jeedom.config.save({
         configuration: $('#config').getValues('.configKey')[0],
         error: function (error) {
@@ -228,37 +236,37 @@
     return false;
 });
 
- $('#bt_addColorConvert').on('click', function () {
+$('#bt_addColorConvert').on('click', function () {
     addConvertColor();
 });
 
- $('#bt_selectMailCmd').on('click', function () {
+$('#bt_selectMailCmd').on('click', function () {
     jeedom.cmd.getSelectModal({cmd: {type: 'action', subType: 'message'}}, function (result) {
         $('.configKey[data-l1key=emailAdmin]').atCaret('insert', result.human);
     });
 });
 
- $('.bt_selectAlertCmd').on('click', function () {
+$('.bt_selectAlertCmd').on('click', function () {
     var type=$(this).attr('data-type');
     jeedom.cmd.getSelectModal({cmd: {type: 'action', subType: 'message'}}, function (result) {
         $('.configKey[data-l1key="alert::'+type+'Cmd"]').atCaret('insert', result.human);
     });
 });
 
- $('.bt_selectWarnMeCmd').on('click', function () {
+$('.bt_selectWarnMeCmd').on('click', function () {
     jeedom.cmd.getSelectModal({cmd: {type: 'action', subType: 'message'}}, function (result) {
         $('.configKey[data-l1key="interact::warnme::defaultreturncmd"]').value(result.human);
     });
 });
 
- if (getUrlVars('panel') != false) {
-     $('a[href="#'+getUrlVars('panel')+'"]').click();
- }
+if (getUrlVars('panel') != false) {
+ $('a[href="#'+getUrlVars('panel')+'"]').click();
+}
 
- printConvertColor();
+printConvertColor();
 
- $.showLoading();
- jeedom.config.load({
+$.showLoading();
+jeedom.config.load({
     configuration: $('#config').getValues('.configKey:not(.noSet)')[0],
     error: function (error) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -271,54 +279,54 @@
     }
 });
 
- $('#div_pageContainer').delegate('.configKey', 'change', function () {
+$('#div_pageContainer').delegate('.configKey', 'change', function () {
     modifyWithoutSave = true;
 });
 
 
-  $('#bt_resetHour').on('click',function(){
-     $.ajax({
-        type: "POST", 
-        url: "core/ajax/jeedom.ajax.php", 
-        data: {
-            action: "resetHour"
-        },
-        dataType: 'json',
-        error: function (request, status, error) {
-            handleAjaxError(request, status, error);
-        },
-        success: function (data) { 
-            if (data.state != 'ok') {
-                $('#div_alert').showAlert({message: data.result, level: 'danger'});
-                return;
-            }
-            loadPage('index.php?v=d&p=administration');
+$('#bt_resetHour').on('click',function(){
+ $.ajax({
+    type: "POST", 
+    url: "core/ajax/jeedom.ajax.php", 
+    data: {
+        action: "resetHour"
+    },
+    dataType: 'json',
+    error: function (request, status, error) {
+        handleAjaxError(request, status, error);
+    },
+    success: function (data) { 
+        if (data.state != 'ok') {
+            $('#div_alert').showAlert({message: data.result, level: 'danger'});
+            return;
         }
-    });
- });
+        loadPage('index.php?v=d&p=administration');
+    }
+});
+});
 
- $('#bt_resetHwKey').on('click',function(){
-     $.ajax({
-        type: "POST", 
-        url: "core/ajax/jeedom.ajax.php", 
-        data: {
-            action: "resetHwKey"
-        },
-        dataType: 'json',
-        error: function (request, status, error) {
-            handleAjaxError(request, status, error);
-        },
-        success: function (data) { 
-            if (data.state != 'ok') {
-                $('#div_alert').showAlert({message: data.result, level: 'danger'});
-                return;
-            }
-            loadPage('index.php?v=d&p=administration');
+$('#bt_resetHwKey').on('click',function(){
+ $.ajax({
+    type: "POST", 
+    url: "core/ajax/jeedom.ajax.php", 
+    data: {
+        action: "resetHwKey"
+    },
+    dataType: 'json',
+    error: function (request, status, error) {
+        handleAjaxError(request, status, error);
+    },
+    success: function (data) { 
+        if (data.state != 'ok') {
+            $('#div_alert').showAlert({message: data.result, level: 'danger'});
+            return;
         }
-    });
- });
+        loadPage('index.php?v=d&p=administration');
+    }
+});
+});
 
- $('#bt_resetHardwareType').on('click',function(){
+$('#bt_resetHardwareType').on('click',function(){
     jeedom.config.save({
         configuration: {hardware_name : ''},
         error: function (error) {
@@ -330,7 +338,7 @@
     });
 });
 
- $('#bt_removeTimelineEvent').on('click',function(){
+$('#bt_removeTimelineEvent').on('click',function(){
     jeedom.removeTimelineEvents({
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -341,18 +349,18 @@
     });
 });
 
-  $('#bt_removeBanIp').on('click',function(){
+$('#bt_removeBanIp').on('click',function(){
     jeedom.user.removeBanIp({
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {
-            $('#div_alert').showAlert({message: '{{Suppression des IPs bannies réussie}}', level: 'success'});
+            window.location.reload();
         }
     });
 });
 
- function clearJeedomDate() {
+function clearJeedomDate() {
     $.ajax({
         type: "POST", 
         url: "core/ajax/jeedom.ajax.php", 
@@ -700,14 +708,3 @@ function saveObjectSummary() {
         }
     });
 }
-
-//https://stackoverflow.com/questions/7862233/twitter-bootstrap-tabs-go-to-specific-tab-on-page-reload-or-hyperlink
-// Javascript to enable link to tab
-var url = document.location.toString();
-if (url.match('#')) {
-    $('.nav-tabs a[href="#' + url.split('#')[1] + '"]').tab('show');
-} 
-// Change hash for page-reload
-$('.nav-tabs a').on('shown.bs.tab', function (e) {
-    window.location.hash = e.target.hash;
-})

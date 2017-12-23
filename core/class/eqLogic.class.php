@@ -476,9 +476,9 @@ class eqLogic {
 			$battery = substr(strrchr($battery, " "), 1);
 		}
 		$plugins = $this->getEqType_name();
-		$objets == '';
+		$object_name = '';
 		if (is_object($this->getObject())) {
-			$object_name = str_replace(array(' ', '(', ')'), array('_', '', ''), $this->getObject()->getName());
+			$object_name = $this->getObject()->getName();
 		}
 		if ($this->getStatus('battery') <= $this->getConfiguration('battery_danger_threshold', config::byKey('battery::danger'))) {
 			$color = '#e74c3c';

@@ -2,7 +2,9 @@
 if (!isConnect()) {
 	throw new Exception('{{Error 401 Unauthorized');
 }
-
+@session_start();
+$_SESSION['user']->refresh();
+@session_write_close();
 $homePage = array(
 	'core::dashboard' => '{{Dashboard}}',
 	'core::view' => '{{Vue}}',
@@ -15,28 +17,42 @@ foreach (plugin::listPlugin() as $pluginList) {
 }
 ?>
 <div style="margin-top: 5px;">
-<a class="btn btn-success pull-right" id="bt_saveProfils"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
-<ul class="nav nav-tabs" role="tablist">
- <li role="presentation" class="active"><a href="#themetab" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-tint"></i> {{Thèmes}}</a></li>
- <li role="presentation"><a href="#interfacetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-laptop"></i> {{Interface}}</a></li>
- <li role="presentation"><a href="#securitytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="icon securite-key1"></i> {{Sécurité}}</a></li>
- <li role="presentation"><a href="#notificationtab" aria-controls="profile" role="tab" data-toggle="tab"><i class="icon securite-key1"></i> {{Notifications}}</a></li>
-</ul>
+  <a class="btn btn-success pull-right" id="bt_saveProfils"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
+  <ul class="nav nav-tabs" role="tablist">
+   <li role="presentation" class="active"><a href="#themetab" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-tint"></i> {{Thèmes}}</a></li>
+   <li role="presentation"><a href="#interfacetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-laptop"></i> {{Interface}}</a></li>
+   <li role="presentation"><a href="#securitytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="icon securite-key1"></i> {{Sécurité}}</a></li>
+   <li role="presentation"><a href="#notificationtab" aria-controls="profile" role="tab" data-toggle="tab"><i class="icon securite-key1"></i> {{Notifications}}</a></li>
+ </ul>
 
-<div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
+ <div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
   <div role="tabpanel" class="tab-pane active" id="themetab">
     <br/>
     <div class="col-sm-6">
-    <form class="form-horizontal">
-      <fieldset>
-        <div class="form-group">
-          <label class="col-sm-3 control-label">{{Desktop}}</label>
-          <div class="col-sm-3">
-            <select class="userAttr form-control" data-l1key="options" data-l2key="bootstrap_theme">
-              <option value="">Défaut</option>
-              <?php
+      <form class="form-horizontal">
+        <fieldset>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">{{Desktop}}</label>
+            <div class="col-sm-3">
+              <select class="userAttr form-control" data-l1key="options" data-l2key="bootstrap_theme">
+                <option value="">Défaut</option>
+                <?php
 foreach (ls(dirname(__FILE__) . '/../../core/themes') as $dir) {
 	if (is_dir(dirname(__FILE__) . '/../../core/themes/' . $dir . '/desktop')) {
+		echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</option>';
+	}
+}
+?>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">{{Mobile couleur}}</label>
+          <div class="col-sm-3">
+            <select class="userAttr form-control" data-l1key="options" data-l2key="mobile_theme_color">
+              <?php
+foreach (ls(dirname(__FILE__) . '/../../core/themes') as $dir) {
+	if (is_dir(dirname(__FILE__) . '/../../core/themes/' . $dir . '/mobile')) {
 		echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</option>';
 	}
 }
@@ -45,52 +61,38 @@ foreach (ls(dirname(__FILE__) . '/../../core/themes') as $dir) {
         </div>
       </div>
       <div class="form-group">
-        <label class="col-sm-3 control-label">{{Mobile couleur}}</label>
+        <label class="col-sm-3 control-label">{{Graphique Desktop}}</label>
         <div class="col-sm-3">
-          <select class="userAttr form-control" data-l1key="options" data-l2key="mobile_theme_color">
-            <?php
-foreach (ls(dirname(__FILE__) . '/../../core/themes') as $dir) {
-	if (is_dir(dirname(__FILE__) . '/../../core/themes/' . $dir . '/mobile')) {
-		echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</option>';
-	}
-}
-?>
-        </select>
+          <select class="userAttr form-control" data-l1key="options" data-l2key="desktop_highcharts_theme">
+            <option value="">Défaut</option>
+            <option value="dark-blue">Dark-blue</option>
+            <option value="dark-green">Dark-green</option>
+            <option value="dark-unica">Dark-unica</option>
+            <option value="gray">Gray</option>
+            <option value="grid-light">Grid-light</option>
+            <option value="grid">Grid</option>
+            <option value="sand-signika">Sand-signika</option>
+            <option value="skies">Skies</option>
+          </select>
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-3 control-label">{{Graphique Desktop}}</label>
-      <div class="col-sm-3">
-        <select class="userAttr form-control" data-l1key="options" data-l2key="desktop_highcharts_theme">
-          <option value="">Défaut</option>
-          <option value="dark-blue">Dark-blue</option>
-          <option value="dark-green">Dark-green</option>
-          <option value="dark-unica">Dark-unica</option>
-          <option value="gray">Gray</option>
-          <option value="grid-light">Grid-light</option>
-          <option value="grid">Grid</option>
-          <option value="sand-signika">Sand-signika</option>
-          <option value="skies">Skies</option>
-        </select>
+      <div class="form-group">
+        <label class="col-sm-3 control-label">{{Graphique mobile}}</label>
+        <div class="col-sm-3">
+          <select class="userAttr form-control" data-l1key="options" data-l2key="mobile_highcharts_theme">
+            <option value="">Défaut</option>
+            <option value="dark-blue">Dark-blue</option>
+            <option value="dark-green">Dark-green</option>
+            <option value="dark-unica">Dark-unica</option>
+            <option value="gray">Gray</option>
+            <option value="grid-light">Grid-light</option>
+            <option value="grid">Grid</option>
+            <option value="sand-signika">Sand-signika</option>
+            <option value="skies">Skies</option>
+          </select>
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-3 control-label">{{Graphique mobile}}</label>
-      <div class="col-sm-3">
-        <select class="userAttr form-control" data-l1key="options" data-l2key="mobile_highcharts_theme">
-          <option value="">Défaut</option>
-          <option value="dark-blue">Dark-blue</option>
-          <option value="dark-green">Dark-green</option>
-          <option value="dark-unica">Dark-unica</option>
-          <option value="gray">Gray</option>
-          <option value="grid-light">Grid-light</option>
-          <option value="grid">Grid</option>
-          <option value="sand-signika">Sand-signika</option>
-          <option value="skies">Skies</option>
-        </select>
-      </div>
-    </div>
-    <?php
+      <?php
 foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 	echo '<div class="form-group">';
 	echo '<label class="col-sm-3 control-label">{{Opacité par des widgets}} ' . $value['name'] . '</label>';
@@ -100,16 +102,16 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 	echo '</div>';
 }
 ?>
- </fieldset>
-</form>
+   </fieldset>
+ </form>
 </div>
- <div class="col-sm-6">
-<div class="img-responsive" id="div_imgThemeDesktop" style="height: 450px;"></div>
+<div class="col-sm-6">
+  <div class="img-responsive" id="div_imgThemeDesktop" style="height: 450px;"></div>
 </div>
 </div>
 
 <div role="tabpanel" class="tab-pane" id="interfacetab">
-<br/>
+  <br/>
   <form class="form-horizontal">
     <fieldset>
       <legend><i class="fa fa-home"></i>  {{Général}}</legend>
@@ -268,7 +270,7 @@ foreach (planHeader::all() as $plan) {
 </div>
 
 <div role="tabpanel" class="tab-pane" id="securitytab">
-<br/>
+  <br/>
   <form class="form-horizontal">
     <fieldset>
       <?php if (config::byKey('sso:allowRemoteUser') != 1) {
@@ -314,10 +316,78 @@ if ($_SESSION['user']->getOptions('twoFactorAuthentification', 0) == 1) {
     </div>
   </fieldset>
 </form>
+
+    <form class="form-horizontal">
+        <fieldset>
+            <legend>{{Sessions actives}}</legend>
+            <table class="table table-condensed table-bordered">
+                <thead>
+                    <tr>
+                        <th>{{ID}}</th><th>{{IP}}</th><th>{{Date}}</th><th>{{Actions}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+cleanSession();
+$cache = cache::byKey('current_sessions');
+$sessions = $cache->getValue(array());
+foreach ($sessions as $id => $session) {
+	if ($session['user_id'] != $_SESSION['user']->getId()) {
+		continue;
+	}
+	echo '<tr data-id="' . $id . '">';
+	echo '<td>' . $id . '</td>';
+	echo '<td>' . $session['ip'] . '</td>';
+	echo '<td>' . $session['datetime'] . '</td>';
+	echo '<td><a class="btn btn-xs btn-warning bt_deleteSession"><i class="fa fa-sign-out"></i> {{Déconnecter}}</a></td>';
+	echo '</tr>';
+}
+?>
+               </tbody>
+           </table>
+       </fieldset>
+   </form>
+
+<form class="form-horizontal">
+  <fieldset>
+    <legend>{{Péripherique enregistrés}} <a class="btn btn-xs btn-warning pull-right" id="bt_removeAllRegisterDevice"><i class="fa fa-trash"></i> {{Supprimer tout}}</a></legend>
+    <table class="table table-bordered table-condensed">
+      <thead>
+        <tr>
+          <th>{{Identification}}</th>
+          <th>{{IP}}</th>
+          <th>{{Date derniere utilisation}}</th>
+          <th>{{Action}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+foreach ($_SESSION['user']->getOptions('registerDevice') as $key => $value) {
+	echo '<tr data-key="' . $key . '">';
+	echo '<td>';
+	echo $key;
+	echo '</td>';
+	echo '<td>';
+	echo $value['ip'];
+	echo '</td>';
+	echo '<td>';
+	echo $value['datetime'];
+	echo '</td>';
+	echo '<td>';
+	echo '<a class="btn btn-warning btn-xs bt_removeRegisterDevice"><i class="fa fa-trash"></i> {{Supprimer}}</a>';
+	echo '</td>';
+	echo '</tr>';
+}
+
+?>
+     </tbody>
+   </table>
+ </fieldset>
+</form>
 </div>
 
 <div role="tabpanel" class="tab-pane" id="notificationtab">
-<br/>
+  <br/>
   <form class="form-horizontal">
     <fieldset>
       <div class="form-group">

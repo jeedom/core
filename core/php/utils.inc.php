@@ -19,6 +19,10 @@
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
 function include_file($_folder, $_fn, $_type, $_plugin = '') {
+	$_rescue = false;
+	if (isset($_GET['rescue']) && $_GET['rescue'] == 1) {
+		$_rescue = true;
+	}
 	if ($_folder == '3rdparty') {
 		$_fn .= '.' . $_type;
 		$path = dirname(__FILE__) . '/../../' . $_folder . '/' . $_fn;
@@ -58,7 +62,11 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 		if ($_type != 'class') {
 			ob_start();
 			require_once $path;
-			echo translate::exec(ob_get_clean(), $_folder . '/' . $_fn);
+			if ($_rescue) {
+				echo str_replace(array('{{', '}}'), '', ob_get_clean());
+			} else {
+				echo translate::exec(ob_get_clean(), $_folder . '/' . $_fn);
+			}
 			return;
 		}
 		require_once $path;
@@ -869,8 +877,6 @@ function isConnect($_right = '') {
 	$GLOBALS['isConnect::' . $_right] = false;
 	if (session_status() == PHP_SESSION_DISABLED || !isset($_SESSION) || !isset($_SESSION['user'])) {
 		$GLOBALS['isConnect::' . $_right] = false;
-	} else if (isset($_SESSION['apimaster']) && $_SESSION['apimaster']) {
-		$GLOBALS['isConnect::' . $_right] = true;
 	} else if (isset($_SESSION['user']) && is_object($_SESSION['user']) && $_SESSION['user']->is_Connected()) {
 		if ($_right != '') {
 			$GLOBALS['isConnect::' . $_right] = ($_SESSION['user']->getProfils() == $_right);
@@ -1112,4 +1118,36 @@ function makeZipSupport() {
 	system('cd ' . $folder . ';tar cfz "' . $outputfile . '" * > /dev/null;chmod 777 ' . $outputfile);
 	rrmdir($folder);
 	return realpath($outputfile);
+}
+
+function cleanSession() {
+	$saveSession = $_SESSION;
+	$cSsid = session_id();
+	$cache = cache::byKey('current_sessions');
+	$sessions = $cache->getValue(array());
+	foreach ($cache->getValue(array()) as $id => $session) {
+		session_id($id);
+		@session_start();
+		if (!isset($_SESSION['user'])) {
+			@session_write_close();
+			unset($sessions[$id]);
+			continue;
+		}
+		@session_write_close();
+	}
+	session_id($cSsid);
+	@session_start();
+	$_SESSION = $saveSession;
+	@session_write_close();
+	cache::set('current_sessions', $sessions);
+}
+
+function deleteSession($_id) {
+	$cSsid = session_id();
+	@session_start();
+	session_id($_id);
+	session_unset();
+	session_destroy();
+	session_id($cSsid);
+	@session_write_close();
 }

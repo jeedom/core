@@ -135,12 +135,12 @@ $('#in_treeSearch').keyup(function () {
   $('#div_tree').jstree(true).search($('#in_treeSearch').val());
 });
 
-
 $('#in_searchScenario').keyup(function () {
   var search = $(this).value();
   if(search == ''){
     $('.panel-collapse.in').closest('.panel').find('.accordion-toggle').click()
     $('.scenarioDisplayCard').show();
+    $('.scenarioListContainer').packery();
     return;
   }
   $('.panel-collapse:not(.in)').closest('.panel').find('.accordion-toggle').click()
@@ -847,6 +847,9 @@ function printScenario(_id) {
   success: function (data) {
     pColor = 0;
     $('.scenarioAttr').value('');
+    if(data.name){
+      document.title = data.name +' - Jeedom';
+    }
     $('.scenarioAttr[data-l1key=object_id] option:first').attr('selected',true);
     $('.scenarioAttr[data-l1key=object_id]').val('');
     $('#div_pageContainer').setValues(data, '.scenarioAttr');
@@ -1024,12 +1027,12 @@ function addExpression(_expression) {
     case 'action' :
     retour += '<div class="col-xs-1" style="margin-top: 4px">';
     if (!isset(_expression.options) || !isset(_expression.options.background) || _expression.options.background == 0) {
-      retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" style="margin-top : 9px;" title="{{Cocher pour que la commande s\'éxecute en parrallele des autres actions}}"/>';
+      retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" style="margin-top : 9px;" title="{{Cocher pour que la commande s\'exécute en parallèle des autres actions}}"/>';
     } else {
-      retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" checked style="margin-top : 9px;" title="{{Cocher pour que la commande s\'éxecute en parrallele des autres actions}}"/>';
+      retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" checked style="margin-top : 9px;" title="{{Cocher pour que la commande s\'exécute en parallèle des autres actions}}"/>';
     }
     if (!isset(_expression.options) || !isset(_expression.options.enable) || _expression.options.enable == 1) {
-      retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable" checked style="margin-top : 9px;" title="{{Décocher pour desactiver l\'action}}"/>';
+      retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable" checked style="margin-top : 9px;" title="{{Décocher pour désactiver l\'action}}"/>';
     } else {
       retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable" style="margin-top : 9px;" title="{{Décocher pour désactiver l\'action}}"/>';
     }
@@ -1166,7 +1169,7 @@ function addSubElement(_subElement, _pColor) {
     retour += '         <span class="caret"></span>';
     retour += '       </button>';
     retour += '       <ul class="dropdown-menu">';
-    retour += '         <li><a class="bt_addScenarioElement fromSubElement tootlips" href="#" title="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)}}">{{Bloc}}</a></li>';
+    retour += '         <li><a class="bt_addScenarioElement fromSubElement tootlips" href="#" title="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (ex. : SI/ALORS….)}}">{{Bloc}}</a></li>';
     retour += '         <li><a class="bt_addAction" href="#">{{Action}}</a></li>';
     retour += '       </ul>';
     retour += '     </div><p> </p>';
@@ -1259,7 +1262,7 @@ function addSubElement(_subElement, _pColor) {
     retour += '         <span class="caret"></span>';
     retour += '       </button>';
     retour += '       <ul class="dropdown-menu">';
-    retour += '         <li><a class="bt_addScenarioElement fromSubElement tootlips" href="#" title="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)}}">{{Bloc}}</a></li>';
+    retour += '         <li><a class="bt_addScenarioElement fromSubElement tootlips" href="#" title="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (ex. : SI/ALORS….)}}">{{Bloc}}</a></li>';
     retour += '         <li><a class="bt_addAction" href="#">{{Action}}</a></li>';
     retour += '       </ul>';
     retour += '     </div><p> </p>';

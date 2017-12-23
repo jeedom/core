@@ -15,18 +15,26 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
- jwerty.key('ctrl+s', function (e) {
+ var url = document.location.toString();
+ if (url.match('#')) {
+    $('.nav-tabs a[href="#' + url.split('#')[1] + '"]').tab('show');
+} 
+$('.nav-tabs a').on('shown.bs.tab', function (e) {
+    window.location.hash = e.target.hash;
+})
+
+jwerty.key('ctrl+s', function (e) {
     e.preventDefault();
     $("#bt_saveProfils").click();
 });
 
- $('#bt_configureTwoFactorAuthentification').on('click',function(){
-     var profil = $('#div_pageContainer').getValues('.userAttr')[0];
-    $('#md_modal').dialog({title: "{{Authentification 2 étapes}}"});
-    $("#md_modal").load('index.php?v=d&modal=twoFactor.authentification').dialog('open');
+$('#bt_configureTwoFactorAuthentification').on('click',function(){
+   var profil = $('#div_pageContainer').getValues('.userAttr')[0];
+   $('#md_modal').dialog({title: "{{Authentification 2 étapes}}"});
+   $("#md_modal").load('index.php?v=d&modal=twoFactor.authentification').dialog('open');
 });
 
- $("#bt_saveProfils").on('click', function (event) {
+$("#bt_saveProfils").on('click', function (event) {
     $.hideAlert();
     var profil = $('#div_pageContainer').getValues('.userAttr')[0];
     if (profil.password != $('#in_passwordCheck').value()) {
@@ -101,10 +109,49 @@ $('#div_pageContainer').delegate('.userAttr', 'change', function () {
     modifyWithoutSave = true;
 });
 
- $('.bt_selectWarnMeCmd').on('click', function () {
+$('.bt_selectWarnMeCmd').on('click', function () {
     jeedom.cmd.getSelectModal({cmd: {type: 'action', subType: 'message'}}, function (result) {
         $('.userAttr[data-l1key="options"][data-l2key="notification::cmd"]').value(result.human);
     });
 });
 
+$('.bt_removeRegisterDevice').on('click',function(){
+    var key = $(this).closest('tr').attr('data-key');
+    jeedom.user.removeRegisterDevice({
+        key : key,
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+            modifyWithoutSave = false;
+            window.location.reload();
+        }
+    });
+});
 
+$('#bt_removeAllRegisterDevice').on('click',function(){
+    jeedom.user.removeRegisterDevice({
+        key : '',
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+            modifyWithoutSave = false;
+            window.location.reload();
+        }
+    });
+});
+
+
+$('.bt_deleteSession').on('click',function(){
+   var id = $(this).closest('tr').attr('data-id'); 
+   jeedom.user.deleteSession({
+    id : id,
+    error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (data) {
+        window.location.reload();
+    }
+});
+});

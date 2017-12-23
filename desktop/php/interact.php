@@ -85,13 +85,13 @@ foreach ($interactListGroup as $group) {
 if (count($totalInteract) == 0) {
 	echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucune interaction. Cliquez sur ajouter une interaction pour commencer</span></center>";
 } else {
-	echo "<center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous avez " . count($totalInteract) . " interaction(s) dans " . count($interactListGroup) . " groupes</span></center>";
+	echo '<input class="form-control" placeholder="{{Rechercher}}" style="margin-bottom:4px;" id="in_searchInteract" />';
 	echo '<div class="panel-group" id="accordionInteract">';
 	if (count($interacts[-1]) > 0) {
 		echo '<div class="panel panel-default">';
 		echo '<div class="panel-heading">';
 		echo '<h3 class="panel-title">';
-		echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionInteract" href="#config_aucun" style="text-decoration:none;">Aucun - ' . count($interacts[-1]) . ' interaction(s)</a>';
+		echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="" href="#config_aucun" style="text-decoration:none;">Aucun - ' . count($interacts[-1]) . ' interaction(s)</a>';
 		echo '</h3>';
 		echo '</div>';
 		echo '<div id="config_aucun" class="panel-collapse collapse">';
@@ -102,7 +102,7 @@ if (count($totalInteract) == 0) {
 			echo '<div class="interactDisplayCard cursor" data-interact_id="' . $interact->getId() . '" style="text-align: center; background-color : #ffffff; min-height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
 			echo '<img src="core/img/interaction.png" height="90" width="85" />';
 			echo "<br>";
-			echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $interact->getHumanName(true, true, true, true) . '</span>';
+			echo '<span class="name" style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $interact->getHumanName(true, true, true, true) . '</span>';
 			echo '</div>';
 		}
 		echo '</div>';
@@ -116,7 +116,7 @@ if (count($totalInteract) == 0) {
 			echo '<div class="panel panel-default">';
 			echo '<div class="panel-heading">';
 			echo '<h3 class="panel-title">';
-			echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionInteract" href="#config_' . $i . '" style="text-decoration:none;">' . $group['group'] . ' - ' . count($interacts[$group['group']]) . ' interaction(s)</a>';
+			echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="" href="#config_' . $i . '" style="text-decoration:none;">' . $group['group'] . ' - ' . count($interacts[$group['group']]) . ' interaction(s)</a>';
 			echo '</h3>';
 			echo '</div>';
 			echo '<div id="config_' . $i . '" class="panel-collapse collapse">';
@@ -127,7 +127,7 @@ if (count($totalInteract) == 0) {
 				echo '<div class="interactDisplayCard cursor" data-interact_id="' . $interact->getId() . '" style="text-align: center; background-color : #ffffff; min-height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
 				echo '<img src="core/img/interaction.png" height="90" width="85" />';
 				echo "<br>";
-				echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $interact->getHumanName(true, true, true, true) . '</span>';
+				echo '<span class="name" style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $interact->getHumanName(true, true, true, true) . '</span>';
 				echo '</div>';
 			}
 			echo '</div>';

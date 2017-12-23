@@ -654,11 +654,13 @@ function fullScreen(_mode) {
         $('footer').hide();
         $('#div_mainContainer').css('margin-top', '-50px');
         $('#wrap').css('margin-bottom', '0px');
+        $('.div_backgroundPlan').height($('html').height());
     }else{
         $('header').show();
         $('footer').show();
         $('#div_mainContainer').css('margin-top', '0px');
         $('#wrap').css('margin-bottom', '15px');
+        $('.div_backgroundPlan').height($('body').height());
     }
 }
 
@@ -765,6 +767,14 @@ function displayPlan(_code) {
             $('.div_displayObject').height('auto').width('auto');
             if (isset(data.image)) {
                 $('.div_displayObject').append(data.image);
+            }
+            $('.div_backgroundPlan').height($('body').height());
+            if (isset(data.configuration.backgroundTransparent) && data.configuration.backgroundTransparent == 1) {
+                $('.div_backgroundPlan').css('background-color','transparent');
+            }else if (isset(data.configuration.backgroundColor)) {
+                $('.div_backgroundPlan').css('background-color',data.configuration.backgroundColor);
+            }else{
+                $('.div_backgroundPlan').css('background-color','#ffffff');
             }
             if (data.configuration != null && init(data.configuration.desktopSizeX) != '' && init(data.configuration.desktopSizeY) != '') {
                 $('.div_displayObject').height(data.configuration.desktopSizeY).width(data.configuration.desktopSizeX);

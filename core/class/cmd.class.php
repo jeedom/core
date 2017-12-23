@@ -821,10 +821,12 @@ class cmd {
 				if (isset($action['options'])) {
 					$options = $action['options'];
 				}
-				foreach ($_values as $key => $value) {
-					foreach ($options as &$option) {
-						if (!is_array($option)) {
-							$option = str_replace('#' . $key . '#', $value, $option);
+				if (count($_values) > 0) {
+					foreach ($_values as $key => $value) {
+						foreach ($options as &$option) {
+							if (!is_array($option)) {
+								$option = str_replace('#' . $key . '#', $value, $option);
+							}
 						}
 					}
 				}

@@ -32,11 +32,7 @@ class network {
 			return 'external';
 		}
 		$match = $jeedom_ips[0] . '.' . $jeedom_ips[1] . '.' . $jeedom_ips[2] . '.*';
-		if (netMatch($match, $client_ip)) {
-			return 'internal';
-		} else {
-			return 'external';
-		}
+		return netMatch($match, $client_ip) ? 'internal' : 'external';
 	}
 
 	public static function getClientIp() {

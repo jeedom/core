@@ -46,7 +46,20 @@ try {
 		}
 
 		if (init('storeConnection') == 1) {
-			setcookie('registerDevice', $_SESSION['user']->getHash(), time() + 365 * 24 * 3600, "/", '', false, true);
+			$rdk = config::genKey();
+			$registerDevice = $_SESSION['user']->getOptions('registerDevice', array());
+			if (!is_array($registerDevice)) {
+				$registerDevice = array();
+			}
+			$registerDevice[sha512($rdk)] = array();
+			$registerDevice[sha512($rdk)]['datetime'] = date('Y-m-d H:i:s');
+			$registerDevice[sha512($rdk)]['ip'] = getClientIp();
+			$registerDevice[sha512($rdk)]['session_id'] = session_id();
+			setcookie('registerDevice', $_SESSION['user']->getHash() . '-' . $rdk, time() + 365 * 24 * 3600, "/", '', false, true);
+			@session_start();
+			$_SESSION['user']->setOptions('registerDevice', $registerDevice);
+			$_SESSION['user']->save();
+			@session_write_close();
 			if (!isset($_COOKIE['jeedom_token'])) {
 				setcookie('jeedom_token', ajax::getToken(), time() + 365 * 24 * 3600, "/", '', false, true);
 			}
@@ -172,6 +185,59 @@ try {
 
 	if (init('action') == 'get') {
 		ajax::success(jeedom::toHumanReadable(utils::o2a($_SESSION['user'])));
+	}
+
+	if (init('action') == 'removeRegisterDevice') {
+		if (init('user_id') != '') {
+			if (!isConnect('admin')) {
+				throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
+			}
+			$user = user::byId(init('user_id'));
+			if (!is_object($user)) {
+				throw new Exception(__('Utilisateur non trouvé : ', __FILE__) . init('user_id'));
+			}
+			$registerDevice = $user->getOptions('registerDevice', array());
+		} else {
+			$registerDevice = $_SESSION['user']->getOptions('registerDevice', array());
+		}
+
+		if (init('key') == '') {
+			$registerDevice = array();
+		} elseif (isset($registerDevice[init('key')])) {
+			unset($registerDevice[init('key')]);
+		}
+		if (init('user_id') != '') {
+			$user->setOptions('registerDevice', $registerDevice);
+			$user->save();
+		} else {
+			@session_start();
+			$_SESSION['user']->setOptions('registerDevice', $registerDevice);
+			$_SESSION['user']->save();
+			@session_write_close();
+		}
+		ajax::success();
+	}
+
+	if (init('action') == 'deleteSession') {
+		deleteSession(init('id'));
+		$cache = cache::byKey('current_sessions');
+		$sessions = $cache->getValue(array());
+		if (isset($sessions[init('id')])) {
+			$user = user::byId($sessions[init('id')]['user_id']);
+			$registerDevice = $user->getOptions('registerDevice', array());
+			foreach ($user->getOptions('registerDevice', array()) as $key => $value) {
+				if ($value['session_id'] == init('id')) {
+					unset($registerDevice[$key]);
+				}
+			}
+			$user->setOptions('registerDevice', $registerDevice);
+			$user->save();
+		}
+		ajax::success();
+	}
+
+	if (!isConnect('admin')) {
+		throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
 	}
 
 	if (init('action') == 'testLdapConnection') {

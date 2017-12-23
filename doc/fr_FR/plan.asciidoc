@@ -8,13 +8,13 @@ Elle est accessible par Acceuil -> Dashboard
 Il est possible d'aller directement sur un design grâce au sous-menu.
 
 [IMPORTANT]
-Toute les actions ce font par un clic droit sur cette page, attention a bien le faire dans le design. Lors de la création il faut donc le faire au milieu de la page (pour etre sur d'etre sur le design)
+Toutes les actions se font par un clic droit sur cette page, attention à bien le faire dans le design. Lors de la création, il faut donc le faire au milieu de la page (pour être sûr d'être sur le design).
 
 Dans le menu nous retrouvons (clic droit donc) nous retrouvons les actions suivantes : 
 
-* *Designs* : Affiche la liste de vos designs et vous permet de naviguer de dedans
-* *Edition* : Permet de passer en édition
-* *Plein ecran* : Affiche le design en pleine écran
+* *Designs* : Affiche la liste de vos designs et d'y accéder
+* *Edition* : Permet de passer en mode édition
+* *Plein ecran* : Permet d'utiliser toute la page Internet, ce qui enlèvera le menu de Jeedom du haut
 * *Ajouter graphique* : Permet d'ajouter un graphique
 * *Ajouter texte/html* : Permet d'ajouter du texte ou du code html/javascript
 * *Ajouter scénario* : Permet d'ajouter un scénario
@@ -24,31 +24,34 @@ Dans le menu nous retrouvons (clic droit donc) nous retrouvons les actions suiva
 * *Ajouter équipement* : Permet d'ajouter un équipement
 * *Ajouter commande* : Permet d'ajouter une commande
 * *Ajouter image/caméra* : Permet d'ajouter une image ou le flux d'une caméra
-* *Ajouter zone* : Permet d'ajouter une zone transparante cliquable qui pourra executer une serie d'action lors d'un clic (en fonction ou non de l'état d'une autre commande)
+* *Ajouter zone* : Permet d'ajouter une zone transparante cliquable qui pourra executer une série d'actions lors d'un clic (en fonction ou non de l'état d'une autre commande)
 * *Ajouter résumé* : Ajoute les informations d'un résumé d'objet ou général
-* *Affichage *
+* *Affichage*
 ** *Aucune* : N'affiche aucune grille
 ** *10x10* : Affiche une grille de 10 par 10
 ** *15x15* : Affiche une grille de 15 par 15
 ** *20x20* : Affiche une grille de 20 par 20
-** *Aimanter les élements* : Ajoute une aimantation entre les élements pour permettre de les coller plus facilement
-** *Aimanter à la grille* : Ajouter une aimantation des éléments à la grille (attention en fonction du zoom de l'élément cette fonctionalité peut plus ou moins fonctionner) 
-** *Masquer la surbrillance des éléments* : Masque la surbrillance autour des élements
+** *Aimanter les éléments* : Ajoute une aimantation entre les éléments pour permettre de les coller plus facilement
+** *Aimanter à la grille* : Ajoute une aimantation des éléments à la grille (attention : en fonction du zoom de l'élément cette fonctionalité peut plus ou moins fonctionner) 
+** *Masquer la surbrillance des éléments* : Masque la surbrillance autour des éléments
 * *Supprimer le design* : supprime le design
 * *Créer un design* : permet d'ajouter un design
 * *Dupliquer le design* : duplique le design courant
 * *Configurer le design* : accès à la configuration du design
-* *Sauvegarder* : permet de sauvegarder le design (attention il y aussi des sauvegarde automatique lors de certaine action)
+* *Sauvegarder* : permet de sauvegarder le design (attention il y a aussi des sauvegardes automatiques lors de certaines actions)
 
 [IMPORTANT]
-La configuration des éléments du désign se fait par un clic sur ceux-ci
+La configuration des éléments du désign se fait par un clic sur ceux-ci.
 
-== Configuration design
+== Configuration du design
 
 On retrouve ici : 
 
 * *Général*
 ** *Nom* : Le nom de votre design
+** *Fond transparent* : rend le fond transparent. Attention si la case est coché la couleur de fond n'est pas utilisée
+** *Couleur de fond* : couleur de fond du design (blanc par défaut)
+** *Code* : Code d'accès à votre design (si vide aucun code n'est demandé)
 ** *Icône* : Une icône pour celui-ci (apparait dans le menu de choix de design)
 ** *Image* 
 *** *Envoyer* : permet d'ajouter une image de fond au design
@@ -56,13 +59,13 @@ On retrouve ici :
 * *Tailles*
 ** *Taille (LxH)* : Permet de fixer la taille de votre design (cadre gris en mode édition)
 
-== Configuration général des éléments
+== Configuration générale des éléments
 
 [NOTE]
-En fonction du type de l'élement les options peuvent changer
+En fonction du type de l'élément, les options peuvent changer.
 
 [NOTE]
-L'element séléctionné apparait en surbrillance rouge (au lieu de vert pour tous les autres)
+L'élément sélectionné apparait en surbrillance rouge (au lieu de vert pour tous les autres).
 
 === Paramètre d'affichage
 
@@ -74,27 +77,27 @@ L'element séléctionné apparait en surbrillance rouge (au lieu de vert pour to
 
 === Supprimer
 
-Permet de supprimer l'élement
+Permet de supprimer l'élément
 
 === Dupliquer
 
-Permet de dupliquer l'élement
+Permet de dupliquer l'élément
 
 === Verrouiller
 
-Permet de verrouiller l'élement pour plus qu'il soit déplacable ou redimmensionnable
+Permet de verrouiller l'élément pour qu'il ne soit plus déplaçable ou redimmensionnable.
 
 == Graphique
 
 === Paramètre d'affichage
 
 * *Période* : permet de choisir la période d'affichage
-* *Afficher la légende* : permet d'afficher ou non la légende
-* *Afficher le navigateur* : permet d'afficher ou non le navigateur (deuxième graph plus léger en dessous du premier)
-* *Afficher le sélecteur de période* : affiche ou non le sélecteur de période en haut à gauche
-* *Afficher la barre de défilement* : affiche ou non la barre de défilement
+* *Afficher la légende* : affiche la légende
+* *Afficher le navigateur* : affiche le navigateur (deuxième graph plus léger en dessous du premier)
+* *Afficher le sélecteur de période* : affiche le sélecteur de période en haut à gauche
+* *Afficher la barre de défilement* : affiche la barre de défilement
 * *Fond transparent* : rend le fond transparent
-* *Bordure (attention syntaxe CSS, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
+* *Bordure* : permet d'ajouter une bordure, attention la syntaxe est HTML (attention, il faut utiliser une syntaxe CSS, par exemple : solid 1px black)
 
 === Configuration avancée
 
@@ -102,18 +105,18 @@ Permet de choisir les commandes à grapher
 
 == Text/html
 
-* *Icone* : Icone à affiché devant
+* *Icone* : Icone à afficher devant
 * *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
 * *Couleur du texte* : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
-* *Arrondir les angles (ne pas oublier de mettre %, ex 50%)* : permet d'arrondir les angles, ne pas oublier de mettre le %
-* *Bordure (attention syntaxe CSS, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
-* *Taille de la police (ex 50%, il faut bien mettre le signe %)* : permet de modifier la taille de la police
+* *Arrondir les angles* : permet d'arrondir les angles (ne pas oublier de mettre %, ex 50%)
+* *Bordure* : permet d'ajouter une bordure, attention la syntaxe est HTML (il faut utiliser une syntaxe CSS, par exemple : solid 1px black)
+* *Taille de la police* : permet de modifier la taille de la police  (ex 50%, il faut bien mettre le signe %)
 * *Alignement du texte* : permet de choisir l'alignement du texte (gauche/droit/centré)
 * *Gras* : met le texte en gras
-* *Texte* : Texte au code html qui sera dans l'élement
+* *Texte* : Texte au code HTML qui sera dans l'élément
 
 [IMPORTANT]
-Si vous mettez du code html (en particulier du javascript), attention à bien le vérifier avant car vous pouvez si il y a une erreur dedans ou si il écrase un composant Jeedom planter completement le design et il ne restera plus qu'a le supprimer directement base de données
+Si vous mettez du code HTML (en particulier du Javascript), attention à bien le vérifier avant car vous pouvez si il y a une erreur dedans ou si il écrase un composant Jeedom planter completement le design et il ne restera plus qu'a le supprimer directement base de données
 
 == Scénario
 
