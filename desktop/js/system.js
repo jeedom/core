@@ -16,9 +16,7 @@
  */
 
 
- var hWindow = $('#div_rowSystemCommand').parent().outerHeight() - 30;
- $('#div_rowSystemCommand > div').height(hWindow);
- $('#pre_commandResult').height(hWindow - 120);
+
  $('.bt_systemCommand').off('click').on('click',function(){
  	var command = $(this).attr('data-command');
  	$('#pre_commandResult').empty();
