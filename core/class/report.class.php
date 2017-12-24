@@ -38,6 +38,7 @@ class report {
 			mkdir($out, 0775, true);
 		}
 		$out .= date('Y_m_d_H_i_s') . '.' . $_format;
+		$_url .= '&auth=' . user::getAccessKeyForReport();
 		$cmd = 'xvfb-run --server-args="-screen 0, 1280x1200x24" cutycapt --url="' . $_url . '" --out="' . $out . '"';
 		$cmd .= ' --delay=' . config::byKey('report::delay');
 		$cmd .= ' --print-backgrounds=on';

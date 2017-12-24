@@ -64,19 +64,9 @@ class planHeader {
 	/*     * *********************Méthodes d'instance************************* */
 
 	public function report($_format = 'pdf', $_parameters = array()) {
-		if (!isset($_parameters['user'])) {
-			$users = user::byProfils('admin');
-			if (count($users) == 0) {
-				throw new Exception(__('Aucun utilisateur admin trouvé pour la génération du rapport', __FILE__));
-			}
-			$user = $users[0];
-		} else {
-			$user = user::byId($_parameters['user']);
-		}
 		$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=plan';
 		$url .= '&plan_id=' . $this->getId();
 		$url .= '&report=1';
-		$url .= '&auth=' . $user->getHash();
 		return report::generate($url, 'plan', $this->getId(), $_format);
 	}
 
