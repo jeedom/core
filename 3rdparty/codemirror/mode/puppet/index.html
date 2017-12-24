@@ -60,7 +60,7 @@ class automysqlbackup (
     mode => '0750',
   }
 
-# Create an exampla sauvegarde file, useful for reference
+# Create an example backup file, useful for reference
   file { "${etc_dir}/automysqlbackup.conf.example":
     ensure => file,
     owner => 'root',
