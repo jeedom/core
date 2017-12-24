@@ -67,7 +67,7 @@ class planHeader {
 		$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=plan';
 		$url .= '&plan_id=' . $this->getId();
 		$url .= '&report=1';
-		return report::generate($url, 'plan', $this->getId(), $_format);
+		return report::generate($url, 'plan', $this->getId(), $_format, $_parameters);
 	}
 
 	public function copy($_name) {
