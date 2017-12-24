@@ -44,27 +44,16 @@
 $('.bt_dbCommand').off('click').on('click',function(){
   var command = $(this).attr('data-command');
   $('#div_commandResult').empty();
-  if($(this).parent().hasClass('list-group-item-danger')){
-   bootbox.confirm('{{Etes-vous sûr de vouloir éxécuter cette commande : }}<strong>'+command+'</strong> ? {{Celle-ci est classé en dangereuse}}', function (result) {
-    if (result) {
-     jeedom.ssh({
-      command : command,
-      success : function(log){
-       $('#h3_executeCommand').empty().append('{{Commande : }}'+command);
-       $('#div_commandResult').append(dbGenerateTableFromResponse(log));
-     }
-   })
-   }
- });
- }else{
-   jeedom.db({
+  jeedom.db({
     command : command,
+    error: function (error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
     success : function(log){
      $('#h3_executeCommand').empty().append('{{Commande : }}'+command);
      $('#div_commandResult').append(dbGenerateTableFromResponse(log));
    }
  })
- }
 });
 
 $('#ul_listSqlHistory').off('click','.bt_dbCommand').on('click','.bt_dbCommand',function(){
@@ -72,6 +61,9 @@ $('#ul_listSqlHistory').off('click','.bt_dbCommand').on('click','.bt_dbCommand',
   $('#div_commandResult').empty();
   jeedom.db({
     command : command,
+    error: function (error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
     success : function(log){
      $('#h3_executeCommand').empty().append('{{Commande : }}'+command);
      $('#in_specificCommand').value(command)
@@ -85,6 +77,9 @@ $('#bt_validateSpecifiCommand').off('click').on('click',function(){
   $('#div_commandResult').empty();
   jeedom.db({
     command : command,
+    error: function (error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
     success : function(log){
       $('#h3_executeCommand').empty().append('{{Commande : }}'+command);
       $('#div_commandResult').append(dbGenerateTableFromResponse(log));
@@ -103,6 +98,9 @@ $('#in_specificCommand').keypress(function(e) {
    $('#div_commandResult').empty();
    jeedom.db({
     command : command,
+    error: function (error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
     success : function(log){
       $('#h3_executeCommand').empty().append('{{Commande : }}'+command);
       $('#div_commandResult').append(dbGenerateTableFromResponse(log));
