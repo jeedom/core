@@ -916,7 +916,7 @@ class eqLogic {
 			$this->batteryStatus();
 		}
 		if ($this->_timeoutUpdated) {
-			if ($this->getTimeout() == null) {
+			if ($this->getTimeout() === null) {
 				foreach (message::byPluginLogicalId('core', 'noMessage' . $this->getId()) as $message) {
 					$message->remove();
 				}
