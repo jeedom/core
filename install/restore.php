@@ -99,7 +99,6 @@ try {
 
 	echo "Fichier utilisé pour la restauration : " . $backup . "\n";
 
-
 	echo "Backup database access configuration...";
 
 	if (copy(dirname(__FILE__) . '/../core/config/common.config.php', '/tmp/common.config.php')) {
@@ -209,11 +208,11 @@ try {
 	}
 	echo "Temps de la restauration : " . (strtotime('now') - $starttime) . "s\n";
 	echo "***************Fin de la restauration de Jeedom***************\n";
-	echo "[FIN de RESTAURATION REUSSIE]\n";
+	echo "[END RESTORE SUCCESS]\n";
 } catch (Exception $e) {
 	echo 'Erreur durant la restauration : ' . $e->getMessage();
 	echo 'Détails : ' . print_r($e->getTrace(), true);
-	echo "[FIN des ERREURS DE RESTAURATION]\n";
+	echo "[END RESTORE ERROR]\n";
 	jeedom::start();
 	throw $e;
 }

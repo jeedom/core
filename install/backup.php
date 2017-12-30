@@ -85,9 +85,21 @@ try {
 	echo "OK" . "\n";
 
 	echo 'Sauvegarde la base de données...';
+	if (file_exists($jeedom_dir . "/DB_backup.sql")) {
+		unlink($jeedom_dir . "/DB_backup.sql");
+		if (file_exists($jeedom_dir . "/DB_backup.sql")) {
+			system("sudo rm " . $jeedom_dir . "/DB_backup.sql");
+		}
+	}
+	if (file_exists($jeedom_dir . "/DB_backup.sql")) {
+		throw new Exception('Impossible de supprimer la sauvegarde de la base de données. Vérifiez les droits');
+	}
 	system("mysqldump --host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'] . "  > " . $jeedom_dir . "/DB_backup.sql", $rc);
 	if ($rc != 0) {
 		throw new Exception('Echec durant la sauvegarde de la base de données. Vérifiez que mysqldump est présent. Code retourné : ' . $rc);
+	}
+	if (filemtime($jeedom_dir . "/DB_backup.sql") < (strtotime('now') - 1200)) {
+		throw new Exception('Echec durant la sauvegarde de la base de données. Date du fichier de sauvegarde de la base trop vieux. Vérifiez les droits');
 	}
 	echo "OK" . "\n";
 
@@ -119,10 +131,10 @@ try {
 	echo "OK" . "\n";
 
 	if (!file_exists($backup_dir . '/' . $backup_name)) {
-		throw new Exception('Backup failed.Cannot find : ' . $backup_dir . '/' . $backup_name);
+		throw new Exception('Echec du backup. Impossible de trouver : ' . $backup_dir . '/' . $backup_name);
 	}
 
-	echo 'Nettoie l\'ancienne sauvegarde...';
+	echo 'Nettoyage l\'ancienne sauvegarde...';
 	shell_exec('find "' . $backup_dir . '" -mtime +' . config::byKey('backup::keepDays') . ' -delete');
 	echo "OK" . "\n";
 
@@ -212,10 +224,10 @@ try {
 	}
 	echo "Durée de la sauvegarde : " . (strtotime('now') - $starttime) . "s\n";
 	echo "***************Fin de la sauvegarde de Jeedom***************\n";
-	echo "[FIN de SAUVEGARDE REUSSIE]\n";
+	echo "[END BACKUP SUCCESS]\n";
 } catch (Exception $e) {
 	echo 'Erreur durant la sauvegarde : ' . br2nl($e->getMessage());
 	echo 'Détails : ' . print_r($e->getTrace(), true);
-	echo "[FIN des ERREURS DE SAUVEGARDE]\n";
+	echo "[END BACKUP ERROR]\n";
 	throw $e;
 }

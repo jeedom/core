@@ -25,7 +25,7 @@ if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SE
 	exit();
 }
 set_time_limit(1800);
-echo "[START UPDATE]\n";
+echo "[START INSTALL]\n";
 $starttime = strtotime('now');
 if (isset($argv)) {
 	foreach ($argv as $arg) {
@@ -69,9 +69,9 @@ try {
 } catch (Exception $e) {
 	echo 'Erreur durant l\'installation : ' . $e->getMessage();
 	echo 'Détails : ' . print_r($e->getTrace(), true);
-	echo "[FIN des ERREURS D'INSTALLATION]\n";
+	echo "[END INSTALL ERROR]\n";
 	throw $e;
 }
 
 echo "Temps d'installation : " . (strtotime('now') - $starttime) . "s\n";
-echo "[FIN de l'INSTALLATION REUSSIE]\n";
+echo "[END INSTALL SUCCESS]\n";
