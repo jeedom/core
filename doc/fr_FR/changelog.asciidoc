@@ -2,22 +2,22 @@
 
 == 3.2.0
 
-* Correction d'orthographe (merci à dab0u pour son énorme travails)
-* JEED-290 : On ne peut plus se connecter avec les identifiants par defaut (admin/admin) à distance, seul le réseaux local est autorisé
-* JEED-186 : On peut maintenant choisir la couleur de fonc dans les designs
-* Pour le bloc A possibilité de mettre une heure entre 00h01 et 00h59 en mettant simple les minutes (ex 30 pour 00h30)
-* Ajout des sessions actives et des péripheriques enregistrés sur la page de profils de l'utilisateurs et la page de gestion des utilisateurs
-* JEED-284 : la connexion permanant dépend maintenant d'une clef unique utilisateur et péripherique (et non plus que utilisateur)
+* Corrections d'orthographe (merci à dab0u pour son énorme travail)
+* JEED-290 : On ne peut plus se connecter avec les identifiants par défaut (admin/admin) à distance, seul le réseau local est autorisé
+* JEED-186 : On peut maintenant choisir la couleur de fond dans les designs
+* Pour le bloc A, possibilité de mettre une heure entre 00h01 et 00h59 en mettant simplement les minutes (ex 30 pour 00h30)
+* Ajout des sessions actives et des péripheriques enregistrés sur la page de profil de l'utilisateur et la page de gestion des utilisateurs
+* JEED-284 : la connexion permanente dépend maintenant d'une clef unique utilisateur et péripherique (et non plus que utilisateur)
 * JEED-283 : ajout d'un mode rescue à jeedom en rajoutant &rescue=1 dans l'url
 * JEED-8 : ajout du nom du scénario sur le titre de la page lors de l'édition
-* Optimisation des modifications d'organisation (taille des widgets, position des équipements, position des commandes) sur le dashboard et les vue. Attention maintenant les modification ne sont sauvegardées que lorsque l'on quitte le mode édition.
+* Optimisation des modifications d'organisation (taille des widgets, position des équipements, position des commandes) sur le dashboard et les vue. Attention maintenant les modifications ne sont sauvegardées que lorsque l'on quitte le mode édition.
 * JEED-18 : Ajout des logs lors de l'ouverture d'un ticket au support
 * JEED-181 : ajout d'une commande name dans les scénarios pour avoir le nom de la commande ou de l'équipement ou de l'objet
 * JEED-15 : Ajout des batterie et alerte sur la webapp
-* Correction du bugs de déplacement des objets du désign sous firefox
+* Correction du bugs de déplacement des objets du design sous Firefox
 * JEED-19 : Lors d'une mise à jour il est maintenant possible de mettre à jour le script d'update avant la mise à jour
 * JEED-125 : ajout d'un lien vers la documentation de réinitialisation de mot de passe
-* JEED-2 : Amélioration de la gestion de l'heure lors d'un redemarrage
+* JEED-2 : Amélioration de la gestion de l'heure lors d'un redémarrage
 * JEED-77 : Ajout de la gestion des variables dans l'API http
 * JEED-78 : ajout de la fonction tag pour les scénarios. Attention il faut dans les scénarios utilisant les tags passer de #montag# à tag(montag)
 * JEED-124 : Corriger la gestion des timeouts des scénarios
