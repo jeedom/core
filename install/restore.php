@@ -84,7 +84,7 @@ try {
 	}
 
 	if (!file_exists($backup)) {
-		throw new Exception('Sauvegarde introuvable.' . $backup);
+		throw new Exception('Backup not found.' . $backup);
 	}
 
 	try {
@@ -99,7 +99,8 @@ try {
 
 	echo "Fichier utilisé pour la restauration : " . $backup . "\n";
 
-	echo "Configuration d'accès à la base de données de la sauvegarde...";
+
+	echo "Backup database access configuration...";
 
 	if (copy(dirname(__FILE__) . '/../core/config/common.config.php', '/tmp/common.config.php')) {
 		echo 'Can not copy ' . dirname(__FILE__) . "/../core/config/common.config.php\n";

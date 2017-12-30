@@ -14,11 +14,11 @@ if (init('view_id') == '') {
 } else {
 	$view = view::byId(init('view_id'));
 	if (!is_object($view)) {
-		throw new Exception('{{Vue inconnue. Verifier l\'id}}');
+		throw new Exception('{{Vue inconnue. Vérifier l\'ID.}}');
 	}
 }
 if (!is_object($view)) {
-	throw new Exception('{{Aucune vue n\'existe, cliquez <a href="index.php?v=d&p=view_edit">ici</a> pour en créer une}}');
+	throw new Exception('{{Aucune vue n\'existe, cliquez <a href="index.php?v=d&p=view_edit">ici</a> pour en créer une.}}');
 }
 sendVarToJS('view_id', $view->getId());
 ?>

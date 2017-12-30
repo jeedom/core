@@ -441,7 +441,7 @@ echo $CONFIG['db']['password'];
 					</div>
 					<legend>{{Connexion}}</legend>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nombre d'échec toléré}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nombre d'échecs tolérés}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 							<input type="text" class="configKey form-control" data-l1key="security::maxFailedLogin" />
 						</div>
@@ -782,7 +782,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
 			<form class="form-horizontal">
 				<fieldset>
 					<div class="alert alert-info">
-						{{Attention toute modification du moteur de cache nécessite un redémarrage de Jeedom}}
+						{{Attention : toute modification du moteur de cache nécessite un redémarrage de Jeedom}}
 					</div>
 
 					<?php
@@ -800,7 +800,7 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Moteur de cache}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 							<select type="text"  class="configKey form-control" data-l1key="cache::engine" >
-								<option value="FilesystemCache">{{Système de fichier (<?php echo cache::getFolder(); ?>)}}</option>
+								<option value="FilesystemCache">{{Système de fichiers (<?php echo cache::getFolder(); ?>)}}</option>
 								<?php if (class_exists('memcached')) {?>
 								<option value="MemcachedCache">{{Memcached}}</option>
 								<?php }
@@ -868,7 +868,7 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 				<fieldset>
 					<legend>{{Général}}</legend>
 					<div class="alert alert-info">
-						{{Plus la sensibilité est basse (proche de 1) plus la corrrespondance doit être exacte}}
+						{{Plus la sensibilité est basse (proche de 1), plus la correspondance doit être exacte.}}
 					</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Sensibilité}}</label>
@@ -907,20 +907,20 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Regex général d'exclusion pour les interactions}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Regex générale d'exclusion pour les interactions}}</label>
 						<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
 							<textarea type="text" class="configKey form-control" data-l1key="interact::regexpExcludGlobal"></textarea>
 						</div>
 					</div>
 					<legend>{{Interaction automatique, contextuelle & avertissement}}</legend>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer les interactions automatique}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer les interactions automatiques}}</label>
 						<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
 							<input type="checkbox" class="configKey" data-l1key="interact::autoreply::enable" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer les réponses contextuelle}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer les réponses contextuelles}}</label>
 						<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
 							<input type="checkbox" class="configKey" data-l1key="interact::contextual::enable" />
 						</div>
@@ -938,13 +938,13 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer les interactions "previens moi"}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer les interactions "préviens moi"}}</label>
 						<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
 							<input type="checkbox" class="configKey" data-l1key="interact::warnme::enable" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Réponse de type "previens moi" si la phrase commence par}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Réponse de type "préviens moi" si la phrase commence par}}</label>
 						<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
 							<input class="configKey form-control" data-l1key="interact::warnme::start" />
 						</div>
@@ -963,25 +963,25 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 					</div>
 
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonyme pour les objets}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonymes pour les objets}}</label>
 						<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
 							<input class="configKey form-control" data-l1key="interact::autoreply::object::synonym" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonyme pour les équipements}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonymes pour les équipements}}</label>
 						<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
 							<input class="configKey form-control" data-l1key="interact::autoreply::eqLogic::synonym" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonyme pour les commandes}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonymes pour les commandes}}</label>
 						<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
 							<input class="configKey form-control" data-l1key="interact::autoreply::cmd::synonym" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonyme pour les résumé}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonymes pour les résumés}}</label>
 						<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
 							<input class="configKey form-control" data-l1key="interact::autoreply::summary::synonym" />
 						</div>
@@ -1017,7 +1017,7 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nettoyer les rapport plus anciens de (jours)}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nettoyer les rapports plus anciens de (jours)}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
 							<input class="configKey form-control" data-l1key="report::maxdays" />
 						</div>
@@ -1180,13 +1180,13 @@ foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
 					</div>
 					<div class="logEngine SyslogUdp">
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse syslog udp}}</label>
+							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse syslog UDP}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 								<input type="text"  class="configKey form-control" data-l1key="log::syslogudphost" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Port syslog udp}}</label>
+							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Port syslog UDP}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 								<input type="text"  class="configKey form-control" data-l1key="log::syslogudpport" />
 							</div>

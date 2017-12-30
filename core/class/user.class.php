@@ -309,6 +309,32 @@ class user {
 		return false;
 	}
 
+	public static function getAccessKeyForReport() {
+		$user = user::byLogin('internal_report');
+		if (!is_object($user)) {
+			$user = new user();
+			$user->setLogin('internal_report');
+			$google2fa = new Google2FA();
+			$user->setOptions('twoFactorAuthentificationSecret', $google2fa->generateSecretKey());
+			$user->setOptions('twoFactorAuthentification', 1);
+		}
+		$user->setPassword(sha512(config::genKey(255)));
+		$user->setOptions('localOnly', 1);
+		$user->setProfils('admin');
+		$user->setEnable(1);
+		$key = config::genKey();
+		$registerDevice = array(
+			sha512($key) => array(
+				'datetime' => date('Y-m-d H:i:s'),
+				'ip' => '127.0.0.1',
+				'session_id' => 'none',
+			),
+		);
+		$user->setOptions('registerDevice', $registerDevice);
+		$user->save();
+		return $user->getHash() . '-' . $key;
+	}
+
 	/*     * *********************Méthodes d'instance************************* */
 
 	public function preInsert() {

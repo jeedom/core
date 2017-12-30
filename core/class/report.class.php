@@ -38,8 +38,12 @@ class report {
 			mkdir($out, 0775, true);
 		}
 		$out .= date('Y_m_d_H_i_s') . '.' . $_format;
-		$cmd = 'xvfb-run --server-args="-screen 0, 1280x1200x24" cutycapt --url="' . $_url . '" --out="' . $out . '"';
-		$cmd .= ' --delay=' . config::byKey('report::delay');
+		$min_width = (isset($_parameter['width']) && $_parameter['width'] > 800) ? $_parameter['width'] : 1280;
+		$min_height = (isset($_parameter['height']) && $_parameter['height'] > 600) ? $_parameter['height'] : 1280;
+		$delay = (isset($_parameter['delay']) && $_parameter['delay'] > 1000) ? $_parameter['delay'] : config::byKey('report::delay');
+		$_url .= '&auth=' . user::getAccessKeyForReport();
+		$cmd = 'xvfb-run --server-args="-screen 0, 1920x1280x24" cutycapt --min-width=' . $min_width . ' --min-height=' . $min_height . ' --url="' . $_url . '" --out="' . $out . '"';
+		$cmd .= ' --delay=' . $delay;
 		$cmd .= ' --print-backgrounds=on';
 		log::add('report', 'debug', $cmd);
 		com_shell::execute($cmd);

@@ -68,7 +68,7 @@ foreach ($sessions as $id => $session) {
           <th>{{Identification}}</th>
           <th>{{Utilisateur}}</th>
           <th>{{IP}}</th>
-          <th>{{Date derniere utilisation}}</th>
+          <th>{{Date dernière utilisation}}</th>
           <th>{{Action}}</th>
         </tr>
       </thead>
@@ -111,7 +111,7 @@ foreach (user::all() as $user) {
                 <div class="modal-body">
                     <div style="display: none;" id="div_newUserAlert"></div>
                     <center>
-                        <input class="form-control" type="text"  id="in_newUserLogin" placeholder="{{Login}}"/><br/><br/>
+                        <input class="form-control" type="text"  id="in_newUserLogin" placeholder="{{Identifiant}}"/><br/><br/>
                         <input class="form-control" type="password"  id="in_newUserMdp" placeholder="{{Mot de passe}}"/>
                     </center>
                 </div>

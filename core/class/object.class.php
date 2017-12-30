@@ -575,13 +575,6 @@ class object {
 		}
 		$values = array();
 		foreach ($summaries[$_key] as $infos) {
-			$cmd = cmd::byId(str_replace('#', '', $infos['cmd']));
-			if (is_object($cmd)) {
-				$eqLogic = $cmd->getEqLogic();
-			}
-			if (is_object($eqLogic) && $eqLogic->getAlert() != '') {
-				continue;
-			}
 			$value = jeedom::evaluateExpression(cmd::cmdToValue($infos['cmd']));
 			if (isset($infos['invert']) && $infos['invert'] == 1) {
 				$value = !$value;

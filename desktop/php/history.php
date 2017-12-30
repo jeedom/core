@@ -81,7 +81,7 @@ foreach (cmd::allHistoryCmd() as $cmd) {
 					<a class="btn btn-warning btn-sm" id='bt_clearGraph'><i class="fa fa-trash-o"></i> {{Vider}}</a>
 					<input id="in_startDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 150px;position:relative;top:1px;" value="<?php echo $date['start'] ?>"/>
 					<input id="in_endDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 150px;position:relative;top:1px;" value="<?php echo $date['end'] ?>"/>
-					<a class="btn btn-success btn-sm" id='bt_validChangeDate' title="{{Attention une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher}}"><i class="fa fa-check"></i> {{Ok}}</a>
+					<a class="btn btn-success btn-sm" id='bt_validChangeDate' title="{{Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.}}"><i class="fa fa-check"></i> {{Ok}}</a>
 
 					<select class="form-control pull-right" id="sel_groupingType" style="width: 200px;">
 						<option value="">{{Aucun groupement}}</option>

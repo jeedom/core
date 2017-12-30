@@ -874,14 +874,16 @@ jeedom.cmd.displayDuration = function(_date,_el){
    }
    if(_el.attr('data-time') < (Date.now()+ clientServerDiffDatetime)){
      var d = ((Date.now() + clientServerDiffDatetime) - _el.attr('data-time')) / 1000;
-     var h = Math.floor(d / 3600);
+     var j = Math.floor(d / 86400);
+     var h = Math.floor(d % 86400 / 3600);
      var m = Math.floor(d % 3600 / 60);
-     _el.empty().append(((h > 0 ? h + " h " : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min" : "0 min")));
-     var myinterval = setInterval(function(){
+     _el.empty().append(((j > 0 ? j + " j " : "") + (h > 0 ? h + " h " : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min" : "0 min")));
+     var myinterval = setInterval(function(){ 
         var d = ((Date.now() + clientServerDiffDatetime) - _el.attr('data-time')) / 1000;
-        var h = Math.floor(d / 3600);
+        var j = Math.floor(d / 86400);
+        var h = Math.floor(d % 86400 / 3600);
         var m = Math.floor(d % 3600 / 60);
-        _el.empty().append(((h > 0 ? h + " h " : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min" : "0 min")));
+        _el.empty().append(((j > 0 ? j + " j " : "") + (h > 0 ? h + " h " : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min" : "0 min")));
     }, 60000);
      _el.attr('data-interval',myinterval);
  }else{
@@ -889,9 +891,10 @@ jeedom.cmd.displayDuration = function(_date,_el){
      var myinterval = setInterval(function(){
          if(_el.attr('data-time') < (Date.now()+ clientServerDiffDatetime)){
             var d = ((Date.now() + clientServerDiffDatetime) - _el.attr('data-time')) / 1000;
-            var h = Math.floor(d / 3600);
+            var j = Math.floor(d / 86400);
+            var h = Math.floor(d % 86400 / 3600);
             var m = Math.floor(d % 3600 / 60);
-            _el.empty().append(((h > 0 ? h + " h " : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min" : "0 min")));
+            _el.empty().append(((j > 0 ? j + " j " : "") + (h > 0 ? h + " h " : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min" : "0 min")));
         }else{
          _el.empty().append("0 min");
      }
