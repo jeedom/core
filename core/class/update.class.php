@@ -492,7 +492,6 @@ class update {
 				}
 				$this->setRemoteVersion($version);
 			}
-			$change = false;
 			if (version_compare($this->getRemoteVersion(), $this->getLocalVersion(), '>')) {
 				$this->setStatus('update');
 			} else {
