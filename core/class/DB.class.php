@@ -80,7 +80,7 @@ class DB {
 		$stmt = self::getConnection()->prepare($_query);
 		$res = NULL;
 
-		if ($stmt != false && $stmt->execute($_params) != false) {
+		if ($stmt !== false && $stmt->execute($_params) !== false) {
 			if ($_fetchType == self::FETCH_TYPE_ROW) {
 				if ($_fetch_opt === null) {
 					$res = $stmt->fetch($_fetch_param);
