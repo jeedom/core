@@ -435,12 +435,12 @@ $nbMessage = message::nbMessage();
 										</div>
 										<nav class="navbar-collapse collapse">
 											<ul class="nav navbar-nav">
-												<li><a href="index.php?v=d&p=system&rescue=1"><i class="fa fa-terminal"></i> {{Systeme}}</a></li>
+												<li><a href="index.php?v=d&p=system&rescue=1"><i class="fa fa-terminal"></i> {{Système}}</a></li>
 												<li><a href="index.php?v=d&p=database&rescue=1"><i class="fa fa-database"></i> {{Database}}</a></li>
 												<li><a href="index.php?v=d&p=editor&rescue=1"><i class="fa fa-indent"></i> {{Editeur}}</a></li>
-												<li><a href="index.php?v=d&p=custom&rescue=1"><i class="fa fa-pencil-square-o"></i> {{Personalisation}}</a></li>
+												<li><a href="index.php?v=d&p=custom&rescue=1"><i class="fa fa-pencil-square-o"></i> {{Personnalisation}}</a></li>
 												<li><a href="index.php?v=d&p=backup&rescue=1"><i class="fa fa-floppy-o"></i> {{Sauvegarde}}</a></li>
-												<li><a href="index.php?v=d&p=cron&rescue=1"><i class="fa fa-tasks"></i> {{Moteur de tâche}}</a></li>
+												<li><a href="index.php?v=d&p=cron&rescue=1"><i class="fa fa-tasks"></i> {{Moteur de tâches}}</a></li>
 												<li><a href="index.php?v=d&p=log&rescue=1"><i class="fa fa-file-o"></i> {{Log}}</a></li>
 											</ul>
 
@@ -455,7 +455,7 @@ $nbMessage = message::nbMessage();
 										<?php
 try {
 		if (!jeedom::isStarted()) {
-			echo '<div class="alert alert-danger">{{Jeedom est en cours de démarrage veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé}}</div>';
+			echo '<div class="alert alert-danger">{{Jeedom est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.}}</div>';
 		}
 		if (isset($plugin) && is_object($plugin)) {
 			include_file('desktop', $page, 'php', $plugin->getId());
