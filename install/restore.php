@@ -84,7 +84,7 @@ try {
 	}
 
 	if (!file_exists($backup)) {
-		throw new Exception('SBackup not found.' . $backup);
+		throw new Exception('Backup not found.' . $backup);
 	}
 
 	try {
@@ -99,7 +99,7 @@ try {
 
 	echo "File use for restoration : " . $backup . "\n";
 
-	echo "Backup databse acces configuration...";
+	echo "Backup database access configuration...";
 
 	if (copy(dirname(__FILE__) . '/../core/config/common.config.php', '/tmp/common.config.php')) {
 		echo 'Can not copy ' . dirname(__FILE__) . "/../core/config/common.config.php\n";
