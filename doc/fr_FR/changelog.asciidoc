@@ -3,8 +3,8 @@
 == 3.1.7
 
 * Correction de bug (en particulier sur les historiques et fonctions statistiques)
-* Amélioration du système de mise à jour avec une page de note de version (que vous devez vérifier vous-mêmes avant chaque mise à jour !!!!)
-* Correction d'un bug qui recupère les logs lors des restorations
+* Amélioration du système de mise à jour avec une page de note de version (que vous devez vérifier vous-même avant chaque mise à jour !!!!)
+* Correction d'un bug qui recupère les logs lors des restaurations
 
 
 == 3.1
