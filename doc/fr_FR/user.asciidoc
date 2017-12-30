@@ -35,12 +35,4 @@ Vous obtenez un tableau qui permet, pour chaque équipement et chaque scénario,
 
 * *Aucun* : l'utilisateur ne voit pas l'équipement/scénario
 * *Visualisation* : l'utilisateur voit l'équipement/scénario mais ne peut pas agir dessus
-* *Visualisation et execution* : l'utilisateur voit l'équipement/scénario et peut agir dessus (allumer une lampe, lancer le scénario, etc.)
-
-== Sessions actives
-
-Vous avez ici la liste des utilisateurs actuellement connecté, leur ID, le login, leur IP ainsi que la date de derniere communication. En cliquant sur "Déconnecter" cela déconnectera l'utilisateur. Attention si il est sur un péripherique enregistré cela supprimera églagement l'enregistrement.
-
-== Péripherique enregistrés
-
-Vous avez ici la liste de tous les périphérique enregistré sur Jeedom (péripherique étant directement connecté sans passer par l'authentification), l'utilisateur auquel ils sont liée ainsi que la date de derniere utilisation de cette clef. Vous pouvez en cliquant sur "Supprimer" supprimer cette enregistre. Attention si le péripherique est actuellement connecté cela ne le deconnectera pas.
+* *Visualisation et exécution* : l'utilisateur voit l'équipement/scénario et peut agir dessus (allumer une lampe, lancer le scénario, etc.)

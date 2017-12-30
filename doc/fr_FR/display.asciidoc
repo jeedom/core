@@ -150,9 +150,11 @@ L'onglet information contient les informations générales sur la commande  :
 
 Vous avez aussi différents boutons : 
 
-* *Cette commande remplace l'id* : permet de remplacer un id de commande par la commande en question, utile si vous avez supprimé un équipement dans jeedom et que vous avez des scénarii utilisant des commandes de celui-ci.
+
+* *Cette commande remplace l'ID* : permet de remplacer un ID de commande par la commande en question, utile si vous avez supprimé un équipement dans jeedom et que vous avez des scénarios utilisant des commandes de celui-ci.
 * *Cette commande remplace la commande* : Remplace une commande par la commande courante
 * *Remplacer cette commande par la commande* : L'inverse, remplace la commande par une autre commande
+
 
 [NOTE]
 Ce genre d'action remplace les commandes partout dans jeedom (scénario, interaction, commande, équipement....)
@@ -214,5 +216,4 @@ N'oubliez pas de sauvegarder après toute modification.
 Permet de modifier le code du widget juste pour la commande courante.
 
 [NOTE]
-Si vous voulez modifier le code, n'oubliez pas de cocher la case "Activer la personalisation du widget"
-
+Si vous voulez modifier le code n'oubliez pas de cocher la case "Activer la personnalisation du widget"

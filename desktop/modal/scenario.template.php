@@ -4,7 +4,7 @@ if (!isConnect('admin')) {
 }
 $scenario = scenario::byId(init('scenario_id'));
 if (!is_object($scenario)) {
-	throw new Exception('Scenario non trouvé : ' . init('scenario_id'));
+	throw new Exception('Scénario non trouvé : ' . init('scenario_id'));
 }
 sendVarToJS('scenario_template_id', init('scenario_id'));
 ?>
@@ -122,14 +122,14 @@ foreach (update::listRepo() as $key => $value) {
         },
         success: function (data) {
             refreshScenarioTemplateList();
-            $('#md_scenarioTemplate').showAlert({message: 'Création du template réussi', level: 'success'});
+            $('#md_scenarioTemplate').showAlert({message: 'Création du template réussie', level: 'success'});
         }
     });
   });
 
    $('#bt_scenarioTemplateRemove').on('click', function () {
     if($('#ul_scenarioTemplateList li.active').attr('data-template') == undefined){
-        $('#md_scenarioTemplate').showAlert({message: 'Vous devez d\'abord selectionner un template', level: 'danger'});
+        $('#md_scenarioTemplate').showAlert({message: 'Vous devez d\'abord sélectionner un template', level: 'danger'});
         return;
     }
     jeedom.scenario.removeTemplate({
@@ -139,7 +139,7 @@ foreach (update::listRepo() as $key => $value) {
         },
         success: function (data) {
             refreshScenarioTemplateList();
-            $('#md_scenarioTemplate').showAlert({message: 'Suppression du template réussi', level: 'success'});
+            $('#md_scenarioTemplate').showAlert({message: 'Suppression du template réussie', level: 'success'});
         }
     });
 });
@@ -198,7 +198,7 @@ foreach (update::listRepo() as $key => $value) {
 
    $('#bt_scenarioTemplateDownload').on('click',function(){
     if($('#ul_scenarioTemplateList li.active').attr('data-template') == undefined){
-        $('#md_scenarioTemplate').showAlert({message: 'Vous devez d\'abord selectionner un template', level: 'danger'});
+        $('#md_scenarioTemplate').showAlert({message: 'Vous devez d\'abord sélectionner un template', level: 'danger'});
         return;
     }
     window.open('core/php/downloadFile.php?pathfile=core/config/scenario/' + $('#ul_scenarioTemplateList li.active').attr('data-template'), "_blank", null);
@@ -220,7 +220,7 @@ foreach (update::listRepo() as $key => $value) {
             $('#md_scenarioTemplate').showAlert({message: data.result.result, level: 'danger'});
             return;
         }
-        $('#md_scenarioTemplate').showAlert({message: '{{Template ajouté avec succès.}}', level: 'success'});
+        $('#md_scenarioTemplate').showAlert({message: '{{Template ajouté avec succès}}', level: 'success'});
         refreshScenarioTemplateList();
     }
 });

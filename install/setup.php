@@ -31,12 +31,12 @@ if (!file_exists('/tmp/jeedom_tmp_key')) {
 if (init('log') == 1) {
 	if ($tmp_key != init('key')) {
 		if (!headers_sent()) {
-			header("Status: 404 Not Found");
+			header("Statut: 404 Page non trouvée");
 			header('HTTP/1.0 404 Not Found');
 		}
 		$_SERVER['REDIRECT_STATUS'] = 404;
-		echo "<h1>404 Not Found</h1>";
-		echo "The page that you have requested could not be found.";
+		echo "<h1>404 Non trouvé</h1>";
+		echo "La page que vous demandez ne peut être trouvée.";
 		dei();
 	}
 	echo file_get_contents(dirname(__FILE__) . '/../log/jeedom_installation');
@@ -44,12 +44,12 @@ if (init('log') == 1) {
 }
 if (file_exists(dirname(__FILE__) . '/../core/config/common.config.php')) {
 	if (!headers_sent()) {
-		header("Status: 404 Not Found");
+		header("Statut: 404 Page non trouvée");
 		header('HTTP/1.0 404 Not Found');
 	}
 	$_SERVER['REDIRECT_STATUS'] = 404;
-	echo "<h1>404 Not Found</h1>";
-	echo "The page that you have requested could not be found.";
+	echo "<h1>404 Non trouvé</h1>";
+	echo "La page que vous demandez ne peut être trouvée.";
 	exit();
 }
 $needpackages = array('unzip', 'curl', 'ntp');
@@ -75,12 +75,12 @@ $error = false;
 if (version_compare(PHP_VERSION, '5.6.0', '<')) {
 	$error = true;
 	echo '<div class="alert alert-danger" style="margin:15px;">';
-	echo '<center style="font-size:1.2em;">Jeedom need php 5.6 or upper (current : ' . PHP_VERSION . ')</center>';
+	echo '<center style="font-size:1.2em;">Jeedom nécessite PHP 5.6 ou plus (actuellement : ' . PHP_VERSION . ')</center>';
 	echo '</div>';
 }
 if (!file_exists('/etc/cron.d/jeedom')) {
 	echo '<div class="alert alert-warning" style="margin:15px;">';
-	echo '<center style="font-size:1.2em;">Please add crontab line for jeedom (if jeedom has no sudo right this error is normal): </center>';
+	echo '<center style="font-size:1.2em;">Veuillez ajouter une ligne crontab pour Jeedom (si Jeedom n\'a pas les droits sudo, cette erreur est normale) : </center>';
 	echo '<pre>';
 	echo "sudo su -\n";
 	echo 'echo "* * * * * ' . get_current_user() . ' /usr/bin/php /var/www/html/core/php/jeeCron.php >> /dev/null" > /etc/cron.d/jeedom';
@@ -92,7 +92,7 @@ foreach ($needpackages as $needpackage) {
 	if (shell_exec(system::get('cmd_check') . $needpackage . ' | wc -l') == 0) {
 		$error = true;
 		echo '<div class="alert alert-warning" style="margin:15px;">';
-		echo '<center style="font-size:1.2em;">Jeedom need ' . $needpackage . ' package, please do in ssh : </center>';
+		echo '<center style="font-size:1.2em;">Jeedom nécessite le paquet ' . $needpackage . ' . Veuillez faire, en SSH : </center>';
 		echo '<pre>';
 		echo "sudo su -\n";
 		echo system::get('cmd_install') . $needpackage;
@@ -108,7 +108,7 @@ foreach ($needphpextensions as $needphpextension) {
 	}
 	$error = true;
 	echo '<div class="alert alert-warning" style="margin:15px;">';
-	echo '<center style="font-size:1.2em;">Jeedom need ' . $needphpextension . ' php extension, please do in ssh : </center>';
+	echo '<center style="font-size:1.2em;">Jeedom nécessite l\'extension PHP ' . $needphpextension . ' . Veuillez faire, en SSH : </center>';
 	echo '<pre>';
 	echo "sudo su -\n";
 	echo system::get('cmd_install') . ' php5-' . $needphpextension . "\n";
@@ -229,7 +229,7 @@ if ($config) {
 	shell_exec('sudo chown ' . system::get('www-uid') . ':' . system::get('www-gid') . ' -R ' . dirname(__FILE__) . '/../*');
 	if (!is_writable(dirname(__FILE__) . '/../core/config')) {
 		echo '<div class="alert alert-danger" style="margin:15px;">';
-		echo '<center style="font-size:1.2em;">Folder ' . dirname(__FILE__) . '/../core/config' . ' must be writable</center>';
+		echo '<center style="font-size:1.2em;">Le dossier ' . dirname(__FILE__) . '/../core/config' . ' doit être en écriture</center>';
 		echo '</div>';
 		echo '</body>';
 		echo '</html>';

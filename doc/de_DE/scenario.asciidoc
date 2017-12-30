@@ -470,7 +470,7 @@ Il vous suffit de remplir la correspondance des commandes puis de faire applique
 
 == Les logs
 
-Vous pouvez accéder aux logs d'éxecution d'un scénario en cliquant sur le bouton log de celui-ci : 
+Vous pouvez accéder aux logs d'exécution d'un scénario en cliquant sur le bouton log de celui-ci : 
 
 image::../images/scenario17.JPG[]
 

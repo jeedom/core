@@ -33,4 +33,4 @@ C'est à partir de là que vous pouvez modifier les droits d'un utilisateur sur 
 
 * *Voir* : droit de voir le scénario sur le dashboard/vue/design
 * *Editer* : droit de modifier le scénario
-* *Action* : droit de forcer l'éxecution du scénario à partir du dashboard/vue/design
+* *Action* : droit de forcer l'exécution du scénario à partir du dashboard/vue/design

@@ -77,7 +77,7 @@ if ($market->getPurchase() == 1) {
 	}
 
 } else if ($market->getPrivate() == 1) {
-	echo '<div class="alert alert-info">{{Ce plugin est pour le moment privé. Vous devez attendre qu\'il devienne public ou avoir un code pour y accèder}}</div>';
+	echo '<div class="alert alert-info">{{Ce plugin est pour le moment privé. Vous devez attendre qu\'il devienne public ou avoir un code pour y accéder}}</div>';
 } else {
 	if (config::byKey('market::apikey') != '' || (config::byKey('market::username') != '' && config::byKey('market::password') != '')) {
 		$purchase_info = repo_market::getPurchaseInfo();
@@ -89,10 +89,10 @@ if ($market->getPurchase() == 1) {
 echo '<a class="btn btn-default" target="_blank" href="' . config::byKey('market::address') . '/index.php?v=d&p=purchaseItem&user_id=' . $purchase_info['user_id'] . '&type=plugin&id=' . $market->getId() . '"><i class="fa fa-shopping-cart"></i> {{Acheter}}</a>';
 
 		} else {
-			echo '<div class="alert alert-info">{{Cet article est payant vous devez avoir un compte sur le market et avoir renseigné les identifiants market dans Jeedom pour pouvoir l\'acheter}}</div>';
+			echo '<div class="alert alert-info">{{Cet article est payant. Vous devez avoir un compte sur le market et avoir renseigné les identifiants market dans Jeedom pour pouvoir l\'acheter}}</div>';
 		}
 	} else {
-		echo '<div class="alert alert-info">{{Cet article est payant vous devez avoir un compte sur le market et avoir renseigné les identifiants market dans Jeedom pour pouvoir l\'acheter}}</div>';
+		echo '<div class="alert alert-info">{{Cet article est payant. Vous devez avoir un compte sur le market et avoir renseigné les identifiants market dans Jeedom pour pouvoir l\'acheter}}</div>';
 	}
 }
 if (is_object($update)) {
@@ -220,7 +220,7 @@ if ($market->getHardwareCompatibility('Jeedomboard') == 1) {
 ?>
       </div>
       <div class='col-sm-2'>
-       <label class="control-label">{{Nombre d'installation}}</label><br/>
+       <label class="control-label">{{Nombre d'installations}}</label><br/>
        <span class="marketAttr" data-l1key="nbInstall"></span><br/>
        <label class="control-label">{{Nombre de téléchargements}}</label><br/>
        <span class="marketAttr" data-l1key="downloaded"></span>
@@ -310,7 +310,7 @@ if ($market->getLanguage('it_IT') == 1) {
       },
  success: function (data) { // si l'appel a bien fonctionné
  if(market_display_info.type == 'plugin'){
-   bootbox.confirm('{{Voulez vous aller sur la page de configuration de votre nouveau plugin ?}}', function (result) {
+   bootbox.confirm('{{Voulez-vous aller sur la page de configuration de votre nouveau plugin ?}}', function (result) {
      if (result) {
       loadPage('index.php?v=d&p=plugin&id=' + logicalId);
     }

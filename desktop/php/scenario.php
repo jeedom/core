@@ -247,7 +247,7 @@ foreach (object::all() as $object) {
           </div>
            <label class="col-xs-4 control-label">{{Mode synchrone}}</label>
           <div class="col-xs-1">
-            <input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="syncmode" title="{{Le scénario est en mode synchrone. Attention, cela peut rendre le système instable.}}">
+            <input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="syncmode" title="{{Le scénario est en mode synchrone. Attention, cela peut rendre le système instable}}">
           </div>
         </div>
         <div class="form-group">

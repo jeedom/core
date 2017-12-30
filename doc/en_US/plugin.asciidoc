@@ -4,7 +4,7 @@ Plugins submenu allows you to manage plugins, namely : download, update, and act
 
 == Gestion des plugins
 
-Vous pouvez accèder à la page plugins à partir de Plugins -> Gestion des plugins. Une fois que l'on clique dessus on retrouve la page qui nous présente la liste des plugins. 
+Vous pouvez accéder à la page plugins à partir de Plugins -> Gestion des plugins. Une fois que l'on clique dessus on retrouve la page qui nous présente la liste des plugins. 
 
 [TIP]
 Comme à beaucoup d'endroits sur Jeedom, mettre la souris tout à gauche permet de faire apparaître un menu d'accès rapide (vous pouvez à partir de votre profil le laisser toujours visible).
@@ -106,4 +106,4 @@ Il n'est vraiment pas recommandé de mettre un plugin beta sur un Jeedom non bet
 Certains plugins sont payants, dans ce cas la fiche du plugin vous proposera de l'acheter, une fois cela fait il faut attendre une dizaine de minutes (temps de validation du paiement), puis retourner sur la fiche du plugin pour l'installer normalement.
 
 [TIP]
-Vous pouvez aussi ajouter un plugin à Jeedom à partir d'un fichier ou depuis un repository Github. Pour cela, il faut, dans la configuration de Jeedom, activer la fonction adéquate dans la partie "Mises à jour et fichiers". Il sera ensuite possible, en mettant la souris tout à gauche, et en faisant apparaitre le menu de la page plugin, de cliquer sur "Ajout depuis une autre source". Vous pourrez ensuite choisir la source "Fichier". Attention, dans le cas de l'ajout par un fichier zip, le nom du zip doit être le même que l'id du plugin et dès l'ouverture du ZIP un dossier plugin_info doit être présent.
+Vous pouvez aussi ajouter un plugin à Jeedom à partir d'un fichier ou depuis un dépôt Github. Pour cela, il faut, dans la configuration de Jeedom, activer la fonction adéquate dans la partie "Mises à jour et fichiers". Il sera ensuite possible, en mettant la souris tout à gauche, et en faisant apparaitre le menu de la page plugin, de cliquer sur "Ajout depuis une autre source". Vous pourrez ensuite choisir la source "Fichier". Attention, dans le cas de l'ajout par un fichier zip, le nom du zip doit être le même que l'id du plugin et dès l'ouverture du ZIP un dossier plugin_info doit être présent.

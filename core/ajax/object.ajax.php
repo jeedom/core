@@ -32,7 +32,7 @@ try {
 		}
 		$object = object::byId(init('id'));
 		if (!is_object($object)) {
-			throw new Exception(__('Objet inconnu verifiez l\'id', __FILE__));
+			throw new Exception(__('Objet inconnu. Vérifiez l\'ID', __FILE__));
 		}
 		$object->remove();
 		ajax::success();
@@ -41,7 +41,7 @@ try {
 	if (init('action') == 'byId') {
 		$object = object::byId(init('id'));
 		if (!is_object($object)) {
-			throw new Exception(__('Objet inconnu verifié l\'id : ', __FILE__) . init('id'));
+			throw new Exception(__('Objet inconnu. Vérifiez l\'ID ', __FILE__) . init('id'));
 		}
 		ajax::success(jeedom::toHumanReadable(utils::o2a($object)));
 	}
@@ -74,17 +74,17 @@ try {
 	if (init('action') == 'uploadImage') {
 		$object = object::byId(init('id'));
 		if (!is_object($object)) {
-			throw new Exception(__('Objet inconnu verifiez l\'id', __FILE__));
+			throw new Exception(__('Objet inconnu. Vérifiez l\'ID', __FILE__));
 		}
 		if (!isset($_FILES['file'])) {
-			throw new Exception(__('Aucun fichier trouvé. Vérifiez le parametre PHP (post size limit)', __FILE__));
+			throw new Exception(__('Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)', __FILE__));
 		}
 		$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
 		if (!in_array($extension, array('.jpg', '.png'))) {
 			throw new Exception('Extension du fichier non valide (autorisé .jpg .png) : ' . $extension);
 		}
 		if (filesize($_FILES['file']['tmp_name']) > 5000000) {
-			throw new Exception(__('Le fichier est trop gros (maximum 5mo)', __FILE__));
+			throw new Exception(__('Le fichier est trop gros (maximum 5Mo)', __FILE__));
 		}
 		$object->setImage('type', str_replace('.', '', $extension));
 		$object->setImage('size', getimagesize($_FILES['file']['tmp_name']));
@@ -96,7 +96,7 @@ try {
 	if (init('action') == 'getChild') {
 		$object = object::byId(init('id'));
 		if (!is_object($object)) {
-			throw new Exception(__('Objet inconnu verifiez l\'id', __FILE__));
+			throw new Exception(__('Objet inconnu. Vérifiez l\'ID', __FILE__));
 		}
 		$return = utils::o2a($object->getChild());
 		ajax::success($return);
@@ -192,7 +192,7 @@ try {
 		} else {
 			$object = object::byId(init('id'));
 			if (!is_object($object)) {
-				throw new Exception(__('Objet inconnu verifiez l\'id', __FILE__));
+				throw new Exception(__('Objet inconnu. Vérifiez l\'ID', __FILE__));
 			}
 			$info_object = array();
 			$info_object['id'] = $object->getId();
@@ -201,9 +201,8 @@ try {
 		}
 	}
 
-	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
+	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
 	ajax::error(displayExeption($e), $e->getCode());
 }
- 

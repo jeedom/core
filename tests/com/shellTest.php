@@ -55,19 +55,19 @@ class com_shellTest extends \PHPUnit_Framework_TestCase {
 		if (file_exists('foo.txt'))
 		{
 			$this->markTestSkipped(
-					'A file named foo.txt exist. Please remove it.'
+					'Un fichier foo.txt existe. Veuillez le supprimer.'
 			);
 		}
 		$shell = new com_shell('touch foo.txt');
 		$return = $shell->exec();
 		$this->assertEmpty($return);
 		$this->assertTrue(file_exists('foo.txt'));
-		
+
 		$shell = new com_shell('rm foo.txt');
 		$return = $shell->exec();
 		$this->assertEmpty($return);
 		$this->assertFalse(file_exists('foo.txt'));
-		
+
 		$shell = new com_shell('echo foo');
 		$return = $shell->exec();
 		$this->assertSame('foo', $return);
@@ -83,17 +83,17 @@ class com_shellTest extends \PHPUnit_Framework_TestCase {
 		if (file_exists('bar.txt'))
 		{
 			$this->markTestSkipped(
-					'A file named bar.txt exist. Please remove it.'
+					'Un fichier bar.txt existe. Veuillez le supprimer.'
 			);
 		}
 		$result = com_shell::execute('touch bar.txt');
 		$this->assertEmpty($result);
 		$this->assertTrue(file_exists('bar.txt'));
-		
+
 		$result = com_shell::execute('rm bar.txt');
 		$this->assertEmpty($result);
 		$this->assertFalse(file_exists('bar.txt'));
-		
+
 		$result = com_shell::execute('echo bar');
 		$this->assertSame('bar', $result);
 	}

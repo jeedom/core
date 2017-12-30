@@ -42,7 +42,7 @@ Permet l'accès à une interface d'administration système, sorte de console she
 
 === Base de données
 
-* *Administration* : permet d'accèder à une interface d'administration de la base en ligne de commande (ATTENTION en touchant à cela le support peut refuser de vous aider)
+* *Administration* : permet d'accéder à une interface d'administration de la base en ligne de commande (ATTENTION en touchant à cela le support peut refuser de vous aider)
 * *Machine (hostname)* : localisation de la base
 * *Utilisateur* : nom d'utilisateur utilisé par Jeedom
 * *Mot de passe* : mot de passe d'accès à la base utilisée par Jeedom
@@ -287,8 +287,8 @@ Dépôt servant à relier Jeedom à Github.
 
 * *Token* : token pour l'accès au dépôt privé
 * *Utilisateur ou organisation du dépôt pour le core Jeedom* : nom de l'utilisateur ou de l'organisation sur github pour le core
-* *Nom du dépôt pour le core Jeedom* : nom du dépot pour le core
-* *Branche pour le core Jeedom* : branche du dépot pour le core
+* *Nom du dépôt pour le core Jeedom* : nom du dépôt pour le core
+* *Branche pour le core Jeedom* : branche du dépôt pour le core
 
 ==== Market
 

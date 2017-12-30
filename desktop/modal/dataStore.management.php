@@ -40,7 +40,7 @@ sendVarToJS('dataStore_link_id', init('link_id', -1));
                         $('#div_dataStoreManagementAlert').showAlert({message: error.message, level: 'danger'});
                     },
                     success: function (data) {
-                        $('#div_dataStoreManagementAlert').showAlert({message: '{{Data store supprimé}}', level: 'success'});
+                        $('#div_dataStoreManagementAlert').showAlert({message: '{{Dépôt de données supprimé}}', level: 'success'});
                         refreshDataStoreMangementTable();
                     }
                 });
@@ -60,7 +60,7 @@ sendVarToJS('dataStore_link_id', init('link_id', -1));
                 $('#div_dataStoreManagementAlert').showAlert({message: error.message, level: 'danger'});
             },
             success: function (data) {
-                $('#div_dataStoreManagementAlert').showAlert({message: '{{Data store sauvegardé}}', level: 'success'});
+                $('#div_dataStoreManagementAlert').showAlert({message: '{{Dépôt de données sauvegardé}}', level: 'success'});
                 refreshDataStoreMangementTable();
             }
         });

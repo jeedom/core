@@ -57,15 +57,15 @@ foreach (cmd::all() as $cmd) {
 		echo '<div class="form-group">';
 		echo ' <select class="graphDataOption form-control input-sm" data-l1key="configuration" data-l2key="groupingType" style="width : 100px;">';
 		echo '<option value="">{{Aucun groupement}}</option>';
-		echo '<option value="sum::day">{{Sommes par jour}}</option>';
+		echo '<option value="sum::day">{{Somme par jour}}</option>';
 		echo '<option value="average::day">{{Moyenne par jour}}</option>';
 		echo '<option value="low::day">{{Minimum par jour}}</option>';
 		echo '<option value="high::day">{{Maximum par jour}}</option>';
-		echo '<option value="sum::week">{{Sommes par semaine}}</option>';
+		echo '<option value="sum::week">{{Somme par semaine}}</option>';
 		echo '<option value="average::week">{{Moyenne par semaine}}</option>';
 		echo '<option value="low::week">{{Minimum par semaine}}</option>';
 		echo '<option value="high::week">{{Maximum par semaine}}</option>';
-		echo '<option value="sum::month">{{Sommes par mois}}</option>';
+		echo '<option value="sum::month">{{Somme par mois}}</option>';
 		echo '<option value="average::month">{{Moyenne par mois}}</option>';
 		echo '<option value="low::month">{{Minimum par mois}}</option>';
 		echo '<option value="high::month">{{Maximum par mois}}</option>';

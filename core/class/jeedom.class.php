@@ -119,7 +119,7 @@ class jeedom {
 			'name' => __('Date système (dernière heure enregistrée)', __FILE__),
 			'state' => $state,
 			'result' => ($state) ? __('OK ', __FILE__) . date('Y-m-d H:i:s') . ' (' . $lastKnowDate . ')' : date('Y-m-d H:i:s'),
-			'comment' => ($state) ? '' : __('Si la derniere heure enregistrée est fausse il faut la remettre à zéro <a href="index.php?v=d&p=administration">ici</a>', __FILE__),
+			'comment' => ($state) ? '' : __('Si la derniere heure enregistrée est fausse, il faut la remettre à zéro <a href="index.php?v=d&p=administration">ici</a>', __FILE__),
 		);
 
 		$state = !user::hasDefaultIdentification();
@@ -127,7 +127,7 @@ class jeedom {
 			'name' => __('Authentification par défaut', __FILE__),
 			'state' => $state,
 			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
-			'comment' => ($state) ? '' : __('Attention vous avez toujours l\'utilisateur admin/admin de configuré, cela représente une grave faille de sécurité, aller <a href=\'index.php?v=d&p=user\'>ici</a> pour modifier le mot de passe de l\'utilisateur admin', __FILE__),
+			'comment' => ($state) ? '' : __('Attention : vous avez toujours l\'utilisateur admin/admin de configuré, cela représente une grave faille de sécurité, aller <a href=\'index.php?v=d&p=user\'>ici</a> pour modifier le mot de passe de l\'utilisateur admin', __FILE__),
 		);
 
 		$state = self::isCapable('sudo', true);
@@ -135,7 +135,7 @@ class jeedom {
 			'name' => __('Droits sudo', __FILE__),
 			'state' => ($state) ? 1 : 2,
 			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
-			'comment' => ($state) ? '' : __('Appliquer <a href="https://www.jeedom.com/doc/documentation/installation/fr_FR/doc-installation.html#_etape_4_définition_des_droits_root_à_jeedom" targe="_blank">cette étape</a> de l\'installation', __FILE__),
+			'comment' => ($state) ? '' : __('Appliquez les droits root à Jeedom', __FILE__),
 		);
 
 		$return[] = array(
@@ -228,7 +228,7 @@ class jeedom {
 			'name' => __('Configuration réseau interne', __FILE__),
 			'state' => $state,
 			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
-			'comment' => ($state) ? '' : __('Allez sur Administration -> Configuration puis configurez correctement la partie réseau', __FILE__),
+			'comment' => ($state) ? '' : __('Allez sur Administration -> Configuration -> Réseaux, puis configurez correctement la partie réseau', __FILE__),
 		);
 
 		$state = network::test('external');
@@ -236,7 +236,7 @@ class jeedom {
 			'name' => __('Configuration réseau externe', __FILE__),
 			'state' => $state,
 			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
-			'comment' => ($state) ? '' : __('Allez sur Administration -> Configuration puis configurez correctement la partie réseau', __FILE__),
+			'comment' => ($state) ? '' : __('Allez sur Administration -> Configuration -> Réseaux, puis configurez correctement la partie réseau', __FILE__),
 		);
 
 		$cache_health = array('comment' => '', 'name' => __('Persistance du cache', __FILE__));
@@ -596,7 +596,7 @@ class jeedom {
 		}
 		echo " OK\n";
 
-		/*         * **********Arret des crons********************* */
+		/*         * **********arrêt des crons********************* */
 
 		if (cron::jeeCronRun()) {
 			echo "Stop cron master...";
@@ -714,31 +714,31 @@ class jeedom {
 			echo date('Y-m-d H:i:s') . ' starting Jeedom';
 			log::add('starting', 'debug', __('Démarrage de jeedom', __FILE__));
 			try {
-				log::add('starting', 'debug', __('Arret des crons', __FILE__));
+				log::add('starting', 'debug', __('Arrêt des crons', __FILE__));
 				foreach (cron::all() as $cron) {
 					if ($cron->running() && $cron->getClass() != 'jeedom' && $cron->getFunction() != 'cron') {
 						try {
 							$cron->halt();
 						} catch (Exception $e) {
-							log::add('starting', 'error', __('Erreur sur l\'arret d\'une tâche cron : ', __FILE__) . log::exception($e));
+							log::add('starting', 'error', __('Erreur sur l\'arrêt d\'une tâche cron : ', __FILE__) . log::exception($e));
 						} catch (Error $e) {
-							log::add('starting', 'error', __('Erreur sur l\'arret d\'une tâche cron : ', __FILE__) . log::exception($e));
+							log::add('starting', 'error', __('Erreur sur l\'arrêt d\'une tâche cron : ', __FILE__) . log::exception($e));
 						}
 					}
 				}
 			} catch (Exception $e) {
-				log::add('starting', 'error', __('Erreur sur l\'arret des tâches crons : ', __FILE__) . log::exception($e));
+				log::add('starting', 'error', __('Erreur sur l\'arrêt des tâches crons : ', __FILE__) . log::exception($e));
 			} catch (Error $e) {
-				log::add('starting', 'error', __('Erreur sur l\'arret des tâches crons : ', __FILE__) . log::exception($e));
+				log::add('starting', 'error', __('Erreur sur l\'arrêt des tâches crons : ', __FILE__) . log::exception($e));
 			}
 
 			try {
 				log::add('starting', 'debug', __('Restauration du cache', __FILE__));
 				cache::restore();
 			} catch (Exception $e) {
-				log::add('starting', 'error', __('Erreur sur la restoration du cache : ', __FILE__) . log::exception($e));
+				log::add('starting', 'error', __('Erreur sur la restauration du cache : ', __FILE__) . log::exception($e));
 			} catch (Error $e) {
-				log::add('starting', 'error', __('Erreur sur la restoration du cache : ', __FILE__) . log::exception($e));
+				log::add('starting', 'error', __('Erreur sur la restauration du cache : ', __FILE__) . log::exception($e));
 			}
 
 			try {
@@ -762,12 +762,12 @@ class jeedom {
 			}
 
 			try {
-				log::add('starting', 'debug', __('Démarrage des processus internet de jeedom', __FILE__));
+				log::add('starting', 'debug', __('Démarrage des processus Internet de Jeedom', __FILE__));
 				self::start();
 			} catch (Exception $e) {
-				log::add('starting', 'error', __('Erreur sur le démarrage interne de jeedom : ', __FILE__) . log::exception($e));
+				log::add('starting', 'error', __('Erreur sur le démarrage interne de Jeedom : ', __FILE__) . log::exception($e));
 			} catch (Error $e) {
-				log::add('starting', 'error', __('Erreur sur le démarrage interne de jeedom : ', __FILE__) . log::exception($e));
+				log::add('starting', 'error', __('Erreur sur le démarrage interne de Jeedom : ', __FILE__) . log::exception($e));
 			}
 
 			try {
@@ -798,12 +798,12 @@ class jeedom {
 			}
 
 			try {
-				log::add('starting', 'debug', __('Envoi de l\'evenement de démarrage', __FILE__));
+				log::add('starting', 'debug', __('Envoi de l\'événement de démarrage', __FILE__));
 				self::event('start');
 			} catch (Exception $e) {
-				log::add('starting', 'error', __('Erreur sur l\'envoi de l\'evenement de démarrage : ', __FILE__) . log::exception($e));
+				log::add('starting', 'error', __('Erreur sur l\'envoi de l\'événement de démarrage : ', __FILE__) . log::exception($e));
 			} catch (Error $e) {
-				log::add('starting', 'error', __('Erreur sur l\'envoi de l\'evenement de démarrage : ', __FILE__) . log::exception($e));
+				log::add('starting', 'error', __('Erreur sur l\'envoi de l\'événement de démarrage : ', __FILE__) . log::exception($e));
 			}
 
 			try {
@@ -1086,7 +1086,7 @@ class jeedom {
 		if (self::isCapable('sudo')) {
 			exec(system::getCmdSudo() . 'shutdown -h now');
 		} else {
-			throw new Exception(__('Vous pouvez arreter le système', __FILE__));
+			throw new Exception(__('Vous pouvez arrêter le système', __FILE__));
 		}
 	}
 
@@ -1096,7 +1096,7 @@ class jeedom {
 		if (self::isCapable('sudo')) {
 			exec(system::getCmdSudo() . 'reboot');
 		} else {
-			throw new Exception(__('Vous pouvez lancer le reboot du système', __FILE__));
+			throw new Exception(__('Vous pouvez lancer le redémarrage du système', __FILE__));
 		}
 	}
 

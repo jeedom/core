@@ -17,12 +17,12 @@ Lors du téléchargement d'un plugin celui-ci est désactivé par défaut. Il fa
 En haut à droite, quelques boutons : 
 
 * *Documentation* : Permet d'accéder directement à la page de documentation du plugin
-* *Changelog* : permet de voir le changelog du plugin si il existe 
+* *Changelog* : permet de voir le changelog du plugin si il existe
 * *Envoyer sur le Market* : permet d'envoyer le plugin sur le Market (uniquement disponible si vous en êtes l'auteur)
 * *Détails* : permet de retrouver la page du plugin sur le market
 * *Supprimer* : Supprime le plugin de votre Jeedom. Attention cela supprime également définitivement tous les équipements de ce plugin
 
-En dessous à gauche on retrouve une zone état avec : 
+En dessous à gauche on retrouve une zone état avec :
 
 * *Statut* : permet de voir le statut du plugin (actif / inactif)
 * *Version* : la version du plugin installée
@@ -77,7 +77,7 @@ Pour installer un nouveau plugin il suffit de cliquer sur le bouton "Market" (et
 [TIP]
 Vous devez avoir saisi les informations de votre compte du market dans l'administration (Configuration->Mises à jour->Onglet market) afin de retrouver les plugins que vous avez déjà acheté par exemple.
 
-En haut de la fenêtre vous avez des filtres : 
+En haut de la fenêtre vous avez des filtres :
 
 * *Gratuit/Payant* : permet d'afficher uniquement les gratuits ou les payants. 
 * *Officiel/Conseillé* : permet d'afficher uniquement les plugins officiels ou les conseillés
@@ -92,7 +92,7 @@ La petite croix permet de réinitialiser le filtre concerné
 Une fois que vous avez trouvé le plugin voulu, il suffit de cliquer sur celui-ci pour faire apparaître sa fiche. Cette fiche vous donne beaucoup d'informations sur le plugin, notamment : 
 
 * S'il est officiel/recommandé ou s'il est obsolète (il faut vraiment éviter d'installer des plugins obsolètes)
-* 4 actions : 
+* 4 actions :
 ** *Installer stable* : permet d'installer le plugin dans sa version stable
 ** *Installer beta* : permet d'installer le plugin dans sa version beta (seulement pour les betatesteurs)
 ** *Installer pro* : permet d'installer la version pro (très peu utilisé)
@@ -108,4 +108,4 @@ Il n'est vraiment pas recommandé de mettre un plugin beta sur un Jeedom non bet
 Certains plugins sont payants, dans ce cas la fiche du plugin vous proposera de l'acheter, une fois cela fait il faut attendre une dizaine de minutes (temps de validation du paiement), puis retourner sur la fiche du plugin pour l'installer normalement.
 
 [TIP]
-Vous pouvez aussi ajouter un plugin à Jeedom à partir d'un fichier ou depuis un repository Github. Pour cela, il faut activer la fonction adéquate dans la partie administration de Jeedom (Configuration->Onglet Mises à jour->Onglet fichier). Il sera ensuite possible, en mettant la souris tout à gauche, et en faisant apparaitre le menu de la page plugin, de cliquer sur "Ajout depuis une autre source". Vous pourrez ensuite choisir la source "Fichier". Attention, dans le cas de l'ajout par un fichier zip, le nom du zip doit être le même que l'id du plugin et dès l'ouverture du ZIP un dossier plugin_info doit être présent.
+Vous pouvez aussi ajouter un plugin à Jeedom à partir d'un fichier ou depuis un dépôt Github. Pour cela, il faut, dans la configuration de Jeedom, activer la fonction adéquate dans la partie "Mises à jour et fichiers". Il sera ensuite possible, en mettant la souris tout à gauche, et en faisant apparaitre le menu de la page plugin, de cliquer sur "Ajout depuis une autre source". Vous pourrez ensuite choisir la source "Fichier". Attention, dans le cas de l'ajout par un fichier zip, le nom du zip doit être le même que l'ID du plugin et dès l'ouverture du ZIP un dossier plugin_info doit être présent.

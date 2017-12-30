@@ -46,7 +46,7 @@ Permet d'accès à une interface d'administration systeme, sorte de console shel
 
 === Base de données
 
-* *Administration* : permet d'accèder à une interface d'administration de la base en ligne de commande (ATTENTION en touchant à cela le support peut refuser de vous aider)
+* *Administration* : permet d'accéder à une interface d'administration de la base en ligne de commande (ATTENTION en touchant à cela le support peut refuser de vous aider)
 * *Máquina (hostname)* : Ubicación de la base de datos
 * *Usuario* : Nombre de usuario utilizado por Jeedom
 * *Contraseña* : Contraseña de accesso a la base de datos utilizada por Jeedom
@@ -143,7 +143,7 @@ Il est possible d'activer sur les widgets l'affichage du minimum, de la moyenne,
 
 Permet de surveiller et d'agir sur le cache de Jeedom : 
 
-* *Statistiques* : Nombre d'objet actuellement en cache
+* *Statistiques* : Nombre d'objets actuellement en cache
 * *Nettoyer le cache* : Force la suppression des objets qui ne sont plus utile (Jeedom le fait automatiquement toute les nuits)
 * *Vider toutes les données en cache* : Vide completement le cache (attention cela peut faire perdre des données)
 * *Temps de pause pour le long polling* : Fréquence a laquelle Jeedom verifie si il y a des evenements en attente pour les clients (interface web, application mobile...). Plus ce temps est cours plus l'interface se mettra à jour rapidement, en contre partie cela utilise plus de ressources et peut donc ralentir jeedom
@@ -291,8 +291,8 @@ Repositiorio utilizado para conectar Jeedom a Github
 
 * *Token* : Token para el acceso al repositorio privado
 * *Utilisateur ou organisation du dépôt pour le core Jeedom* : nom de l'utilisateur ou de l'organisation sur github pour le core
-* *Nom du dépôt pour le core Jeedom* : nom du dépot pour le core
-* *Branche pour le core Jeedom* : branche du dépot pour le core
+* *Nom du dépôt pour le core Jeedom* : nom du dépôt pour le core
+* *Branche pour le core Jeedom* : branche du dépôt pour le core
 
 ==== Market
 

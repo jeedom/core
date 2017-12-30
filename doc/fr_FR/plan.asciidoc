@@ -109,7 +109,7 @@ Permet de choisir les commandes à grapher
 * *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
 * *Couleur du texte* : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
 * *Arrondir les angles* : permet d'arrondir les angles (ne pas oublier de mettre %, ex 50%)
-* *Bordure* : permet d'ajouter une bordure, attention la syntaxe est HTML (attention, il faut utiliser une syntaxe CSS, par exemple : solid 1px black)
+* *Bordure* : permet d'ajouter une bordure, attention la syntaxe est HTML (il faut utiliser une syntaxe CSS, par exemple : solid 1px black)
 * *Taille de la police* : permet de modifier la taille de la police  (ex 50%, il faut bien mettre le signe %)
 * *Alignement du texte* : permet de choisir l'alignement du texte (gauche/droit/centré)
 * *Gras* : met le texte en gras
@@ -132,8 +132,8 @@ Aucun paramètre spécifique d'affichage
 * *Lien* : Lien vers le design ou la vue en question
 * *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
 * *Couleur du texte* : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
-* *Arrondir les angles (ne pas oublié de mettre %, ex 50%)* : permet d'arrondir les angles, ne pas oublier de mettre le %
-* *Bordure (attention syntax css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
+* *Arrondir les angles (ne pas oublier de mettre %, ex 50%)* : permet d'arrondir les angles, ne pas oublier de mettre le %
+* *Bordure (attention syntaxe CSS, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
 * *Taille de la police (ex 50%, il faut bien mettre le signe %)* : permet de modifier la taille de la police
 * *Alignement du texte* : permet de choisir l'alignement du texte (gauche/droit/centré)
 * *Gras* : met le texte en gras
@@ -200,7 +200,7 @@ Dans ce mode lors du survole ou du clic dans la zone jeedom vous affichera le wi
 * *Lien* : Permet d'indiqué le résumé à afficher (Général pour le globale sinon indiquer l'objet)
 * *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON
 * *Couleur du texte* : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)
-* *Arrondir les angles (ne pas oublié de mettre %, ex 50%)* : permet d'arrondir les angles, ne pas oublier de mettre le %
-* *Bordure (attention syntax css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
+* *Arrondir les angles (ne pas oublier de mettre %, ex 50%)* : permet d'arrondir les angles, ne pas oublier de mettre le %
+* *Bordure (attention syntaxe CSS, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
 * *Taille de la police (ex 50%, il faut bien mettre le signe %)* : permet de modifier la taille de la police
 * *Gras* : met le texte en gras

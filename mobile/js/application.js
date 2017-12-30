@@ -101,14 +101,14 @@ function isset() {
 
 function initApplication(_reinit) {
     $.ajax({
-        type: 'POST', 
-        url: 'core/ajax/jeedom.ajax.php', 
+        type: 'POST',
+        url: 'core/ajax/jeedom.ajax.php',
         data: {
             action: 'getInfoApplication'
         },
         dataType: 'json',
         error: function (request, status, error) {
-            confirm('Erreur de communication.Etes-vous connecté à internet? Voulez-vous ressayer ?');
+            confirm('Erreur de communication. Etes-vous connecté à Internet ? Voulez-vous réessayer ?');
         },
         success: function (data) {
             if (data.state != 'ok') {
@@ -121,7 +121,7 @@ function initApplication(_reinit) {
                     $('#div_alert').showAlert({message: data.result, level: 'danger'});
                 }
                 return;
-            } 
+            }
             if (init(_reinit, false) == false) {
                 $.ajaxSetup({
                     type: "POST",
@@ -327,7 +327,7 @@ function refreshMessageNumber() {
 }
 
 function refreshUpdateNumber() {
-   
+
 }
 
 function notify(_title, _text) {
