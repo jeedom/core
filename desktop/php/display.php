@@ -49,9 +49,9 @@ foreach ($objects as $object) {
 	<label class="checkbox-inline"><input type="checkbox" id="cb_actifDisplay" checked />{{Inactif}}</label>
 </span>
 <center>
-	<span class="label label-default" style="font-size : 1em;cursor : default;">{{Nombre d'objet :}} <?php echo count($objects) ?></span>
-	<span class="label label-info" style="font-size : 1em;cursor : default;">{{Nombre d'équipement :}} <?php echo $nbEqlogic ?></span>
-	<span class="label label-primary" style="font-size : 1em;cursor : default;">{{Nombre de commande :}} <?php echo $nbCmd ?></span>
+	<span class="label label-default" style="font-size : 1em;cursor : default;">{{Nombre d'objets :}} <?php echo count($objects) ?></span>
+	<span class="label label-info" style="font-size : 1em;cursor : default;">{{Nombre d'équipements :}} <?php echo $nbEqlogic ?></span>
+	<span class="label label-primary" style="font-size : 1em;cursor : default;">{{Nombre de commandes :}} <?php echo $nbCmd ?></span>
 </center>
 <br/>
 <a class="btn btn-danger btn-sm" id="bt_removeEqlogic" style="display:none;"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>
