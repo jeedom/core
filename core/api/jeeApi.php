@@ -18,11 +18,11 @@
 header('Access-Control-Allow-Origin: *');
 require_once dirname(__FILE__) . "/../php/core.inc.php";
 if (user::isBan() && false) {
-	header("Status: 404 page introuvable");
-	header('HTTP/1.0 404 Not Found');
-	$_SERVER['REDIRECT_STATUS'] = 404;
-	echo "<h1>404 - Page introuvable</h1>";
-	echo "La page que vous avez demandée est introuvable.";
+	header("Status: 404 Not Found");		
+  	header('HTTP/1.0 404 Not Found');		  
+  	$_SERVER['REDIRECT_STATUS'] = 404;		
+	echo "<h1>404 Not Found</h1>";		 
+	echo "The page that you have requested could not be found.";
 	die();
 }
 if (isset($argv)) {
