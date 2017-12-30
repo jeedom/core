@@ -370,7 +370,7 @@ class interactQuery {
 		if (isset($matches[0]) && isset($matches[0][0])) {
 			$operand = $matches[0][0];
 		}
-		if ($operand == null || $operator == null) {
+		if ($operand === null || $operator === null) {
 			return null;
 		}
 		$test = '#value# ' . $operator . ' ' . $operand;
