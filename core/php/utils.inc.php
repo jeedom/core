@@ -207,7 +207,7 @@ function displayExeption($e) {
 }
 
 function is_json($_string) {
-	return ((is_string($_string) && (is_object(json_decode($_string)) || is_array(json_decode($_string))))) ? true : false;
+	return ((is_string($_string) && is_array(json_decode($_string, true, 512, JSON_BIGINT_AS_STRING)))) ? true : false;
 }
 
 function is_sha1($_string = '') {
