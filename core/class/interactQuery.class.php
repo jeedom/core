@@ -104,7 +104,7 @@ class interactQuery {
 		WHERE LOWER(query)=LOWER(:query)';
 		$query = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 		if (is_object($query)) {
-			log::add('interact', 'debug', 'Je prend : ' . $query->getQuery());
+			log::add('interact', 'debug', 'Je prends : ' . $query->getQuery());
 			return $query;
 		}
 
