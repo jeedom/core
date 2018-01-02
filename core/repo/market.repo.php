@@ -547,11 +547,11 @@ class repo_market {
 			config::save('market::lastCommunication', date('Y-m-d H:i:s'));
 		}
 	}
-	/**
-+         * 
-+         * @param array $_arrayMarket
-+         * @return \self
-+         */
+        /**
+        * 
+        * @param array $_arrayMarket
+        * @return \self
+        */
 	public static function construct(array $_arrayMarket) {
 		$market = new self();
 		if (!isset($_arrayMarket['id'])) {
