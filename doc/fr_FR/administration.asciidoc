@@ -2,7 +2,7 @@
 
 C’est ici que se trouvent la plupart des paramètres de configuration. Bien que nombreux, ils sont pré-configurés par défaut.
 
-La page est accessible par Administration -> Configuration. Vous y trouverez les onglets suivants :
+La page est accessible par *Administration -> Configuration*. Vous y trouverez les onglets suivants :
 
 * <<general,Général>> : Les paramètres généraux de votre Jeedom.
 * <<api,API>> : Les différentes clés API disponibles dans Jeedom.
