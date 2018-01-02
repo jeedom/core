@@ -547,35 +547,47 @@ class repo_market {
 			config::save('market::lastCommunication', date('Y-m-d H:i:s'));
 		}
 	}
-
-	public static function construct($_arrayMarket) {
+        /**
+        * 
+        * @param array $_arrayMarket
+        * @return \self
+        */
+	public static function construct(array $_arrayMarket) {
 		$market = new self();
 		if (!isset($_arrayMarket['id'])) {
 			return;
 		}
-		$market->setId($_arrayMarket['id']);
-		$market->setName($_arrayMarket['name']);
-		$market->setType($_arrayMarket['type']);
-		$market->datetime = json_encode($_arrayMarket['datetime'], JSON_UNESCAPED_UNICODE);
-		$market->setDescription($_arrayMarket['description']);
-		$market->setDownloaded($_arrayMarket['downloaded']);
-		$market->setUser_id($_arrayMarket['user_id']);
-		$market->setVersion($_arrayMarket['version']);
-		$market->setCategorie($_arrayMarket['categorie']);
+		$market->setId($_arrayMarket['id'])
+                        ->setName($_arrayMarket['name'])
+                        ->setType($_arrayMarket['type']);
+                $market->datetime = json_encode($_arrayMarket['datetime'], JSON_UNESCAPED_UNICODE);
+                $market->setDescription($_arrayMarket['description'])
+                        ->setDownloaded($_arrayMarket['downloaded'])
+                        ->setUser_id($_arrayMarket['user_id'])
+                        ->setVersion($_arrayMarket['version'])
+                        ->setCategorie($_arrayMarket['categorie']);
 		$market->status = json_encode($_arrayMarket['status'], JSON_UNESCAPED_UNICODE);
 		$market->setAuthor($_arrayMarket['author']);
-		@$market->setChangelog($_arrayMarket['changelog']);
-		@$market->setDoc($_arrayMarket['doc']);
+		if (isset($_arrayMarket['changelog'] )) {
+                    $market->setChangelog($_arrayMarket['changelog']);
+                }
+		if (isset($_arrayMarket['doc'])) {
+                    $market->setDoc($_arrayMarket['doc']);
+                }
 		$market->setLogicalId($_arrayMarket['logicalId']);
-		@$market->setUtilization($_arrayMarket['utilization']);
-		@$market->setCertification($_arrayMarket['certification']);
-		$market->setPurchase($_arrayMarket['purchase']);
-		$market->setCost($_arrayMarket['cost']);
+		if (isset($_arrayMarket['utilization'])) {
+                    $market->setUtilization($_arrayMarket['utilization']);
+                }
+		if (isset($_arrayMarket['certification'])){
+                    $market->setCertification($_arrayMarket['certification']);
+                }
+		$market->setPurchase($_arrayMarket['purchase'])
+                       ->setCost($_arrayMarket['cost']);
 		$market->rating = ($_arrayMarket['rating']);
-		$market->setBuyer($_arrayMarket['buyer']);
-		$market->setUpdateBy($_arrayMarket['updateBy']);
-		$market->setPrivate($_arrayMarket['private']);
-		$market->setNbInstall($_arrayMarket['nbInstall']);
+		$market->setBuyer($_arrayMarket['buyer']) 
+			->setUpdateBy($_arrayMarket['updateBy'])
+			->setPrivate($_arrayMarket['private'])
+			->setNbInstall($_arrayMarket['nbInstall']);
 		$market->img = json_encode($_arrayMarket['img'], JSON_UNESCAPED_UNICODE);
 		$market->link = json_encode($_arrayMarket['link'], JSON_UNESCAPED_UNICODE);
 		$market->language = json_encode($_arrayMarket['language'], JSON_UNESCAPED_UNICODE);
