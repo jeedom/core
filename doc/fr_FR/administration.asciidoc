@@ -9,7 +9,7 @@ La page est accessible par Administration -> Configuration. Vous y trouverez les
 * <<os-db,>_OS/DB>> : L'accès à la console d'administration et à la base de données de Jeedom.
 * <<securite,Sécurité>> : Les paramètres concernant la sécurité de l'authentification.
 * <<reseaux,Réseaux>> : La configuration de l'accès à Jeedom.
-* <<couleurs,Couleurs>> : Les couleurs utilisés dans les interfaces de Jeedom.
+* <<couleurs,Couleurs>> : Les couleurs utilisées dans les interfaces de Jeedom.
 * <<commandes,Commandes>> : Divers paramètres de calculs utilisés dans l'historisation des commandes.
 * <<cache,Cache>> : Gestion du cache de Jeedom.
 * <<interactions,Interactions>> : Paramètres généraux de la fonction d'interaction dans Jeedom.
@@ -78,11 +78,11 @@ ATTENTION : Si vous modifiez Jeedom avec l'une de ces deux solutions, le support
 
 * *Nombre d'échecs tolérés* : définit le nombre de tentatives successives autorisées avant de bannir l'IP
 * *Temps maximum entre les échecs (en secondes)* : temps maximum pour que 2 tentatives soient considérées comme successives
-* *Durée du bannissement (en secondes), -1 pour infini* : temps de banissement de l'IP
+* *Durée du bannissement (en secondes), -1 pour infini* : temps de bannissement de l'IP
 * *IP "blanche"* : liste des IP qui ne peuvent jamais être bannies
 * *Supprimer les IPs bannies* : Permet de vider la liste des IP actuellement bannies
 
-La liste des IP bannies se trouve au bas de cette page. Vous y trouverez l'IP, la date de bannissement et la date de fin de banissement programmée.
+La liste des IP bannies se trouve au bas de cette page. Vous y trouverez l'IP, la date de bannissement et la date de fin de bannissement programmée.
 
 == [[reseaux]]Réseaux
 
@@ -229,7 +229,7 @@ Cette partie permet de définir les couleurs que Jeedom associera aux mots rouge
 
 Permet de configurer la génération et la gestion des rapports
 
-* *Delai d'attente après génération de la page (en ms)* : Délai d'attente après chargement du rapport pour faire la "photo", à changer si votre rapport est incomplet par exemple.
+* *Délai d'attente après génération de la page (en ms)* : Délai d'attente après chargement du rapport pour faire la "photo", à changer si votre rapport est incomplet par exemple.
 * *Nettoyer les rapports plus anciens de (jours)* : Définit le nombre de jours avant de supprimer un rapport (les rapports prennent un peu de place donc attention à ne pas mettre trop de conservation).
 
 == [[liens]]Liens
@@ -348,7 +348,7 @@ Si le chemin d'accès à votre dossier de sauvegarde samba est : \\192.168.0.1\S
 Alors IP = 192.168.0.1 , Partage = //192.168.0.1/Sauvegardes , Chemin = Domotique/Jeedom
 
 [NOTE]
-Lors de la validation du partage Samba, tel que décrit précédement, une nouvelle forme de sauvegarde apparait dans la partie Administration->Sauvegardes de Jeedom. En l'activant, Jeedom procèdera à son envoi automatique lors de la prochaine sauvegarde. Un test est possible en effectuant une sauvegarde manuelle.
+Lors de la validation du partage Samba, tel que décrit précédemment, une nouvelle forme de sauvegarde apparait dans la partie Administration->Sauvegardes de Jeedom. En l'activant, Jeedom procèdera à son envoi automatique lors de la prochaine sauvegarde. Un test est possible en effectuant une sauvegarde manuelle.
 
 [IMPORTANT]
 Il vous faudra peut-être installer le package smbclient pour que le dépôt fonctionne.
