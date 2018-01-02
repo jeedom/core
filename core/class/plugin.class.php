@@ -380,14 +380,24 @@ class plugin {
 
 	/*     * *********************Méthodes d'instance************************* */
 
+	 /**
+         * 
+         * @param string $_format
+         * @param type $_parameters
+         * @return type
+         * @throws Exception
+         */
 	public function report($_format = 'pdf', $_parameters = array()) {
 		if ($this->getDisplay() == '') {
 			throw new Exception(__('Vous ne pouvez pas faire de rapport sur un plugin sans panneau', __FILE__));
 		}
-		$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=' . $this->getDisplay();
-		$url .= '&m=' . $this->getId();
-		$url .= '&report=1';
-		return report::generate($url, 'plugin', $this->getId(), $_format, $_parameters);
+		$url = network::getNetworkAccess('internal') . '/index.php?' . http_build_query(array(
+                    'v'      => 'd',
+                    'p'      => $this->getDisplay(),
+                    'm'      => $this->getId(),
+                    'report' => '1'));
+
+        return report::generate($url, 'plugin', $this->getId(), $_format, $_parameters);
 	}
 
 	public function isActive() {
