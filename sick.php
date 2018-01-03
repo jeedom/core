@@ -74,7 +74,7 @@ try {
 		$user = (new \user())
 			->setLogin('admin')
 			->setPassword(sha512('admin'))
-			->setRights('admin', 1);
+			->setProfils('admin', 1);
 		$user->save();
 		echo "OK (admin/admin)\n";
 	}
