@@ -2,6 +2,7 @@ nbproject/
 test.php
 core/config/common.config.php
 /plugins
+/data
 sftp-config.json
 
 .idea
