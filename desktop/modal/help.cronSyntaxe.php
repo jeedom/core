@@ -93,7 +93,7 @@ if (!isConnect()) {
                         <tr>
                             <td>{{Minute}}</td>
                             <td>{{Oui}}</td>
-                            <td>0-59}}</td>
+                            <td>0-59</td>
                             <td><code>* / , -</code></td>
                         </tr>
                         <tr>
