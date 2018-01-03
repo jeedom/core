@@ -290,7 +290,7 @@ class scenario {
 			$runtime = strtotime('now') - strtotime($scenario->getLastLaunch());
 			if (is_numeric($scenario->getTimeout()) && $scenario->getTimeout() != '' && $scenario->getTimeout() != 0 && $runtime > $scenario->getTimeout()) {
 				$scenario->stop();
-				$scenario->setLog(__('Arrêt du scénario car il a dépassé son temps autorisé : ', __FILE__) . $scenario->getTimeout() . 's');
+				$scenario->setLog(__('Arret du scénario car il a dépassé son temps de timeout : ', __FILE__) . $scenario->getTimeout() . 's');
 				$scenario->persistLog();
 			}
 		}
@@ -307,7 +307,7 @@ class scenario {
 			return;
 		}
 		if ($scenario->getIsActive() == 0) {
-			$scenario->setLog(__('Scénario désactivé : non lancement de la sous tâche', __FILE__));
+			$scenario->setLog(__('Scénario désactivé non lancement de la sous tâche', __FILE__));
 			$scenario->persistLog();
 			return;
 		}
@@ -639,7 +639,7 @@ class scenario {
 			}
 		}
 		if (!create_zip($moduleFile, $tmp)) {
-			throw new Exception(__('Echec de création de l\'archive zip. Répertoire source : ', __FILE__) . $moduleFile . __(' / Répertoire cible : ', __FILE__) . $tmp);
+			throw new Exception(__('Echec de création du zip. Répertoire source : ', __FILE__) . $moduleFile . __(' / Répertoire cible : ', __FILE__) . $tmp);
 		}
 		return $tmp;
 	}
@@ -1087,9 +1087,9 @@ class scenario {
 					try {
 						$prev = $c->getPreviousRunDate()->getTimestamp();
 					} catch (Exception $e) {
-						return false;
+
 					} catch (Error $e) {
-						return false;
+
 					}
 					$lastCheck = strtotime($this->getLastLaunch());
 					$diff = abs((strtotime('now') - $prev) / 60);
@@ -1161,7 +1161,7 @@ class scenario {
 						$cron->halt();
 						$cron->remove();
 					} catch (Exception $e) {
-						log::add('scenario', 'info', __('Impossible d\'arrêter la sous-tâche : ') . print_r($cron->getOption(), true));
+						log::add('scenario', 'info', __('Can not stop subtask : ') . print_r($cron->getOption(), true));
 					}
 				}
 			}
@@ -1249,7 +1249,7 @@ class scenario {
 			}
 			if ($this->getMode() == 'provoke' || $this->getMode() == 'all') {
 				foreach ($this->getTrigger() as $trigger) {
-					$return .= '    - Evénement : ' . jeedom::toHumanReadable($trigger) . "\n";
+					$return .= '    - Evènement : ' . jeedom::toHumanReadable($trigger) . "\n";
 				}
 			}
 			$return .= "\n";
