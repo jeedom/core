@@ -1087,9 +1087,9 @@ class scenario {
 					try {
 						$prev = $c->getPreviousRunDate()->getTimestamp();
 					} catch (Exception $e) {
-
+						continue;
 					} catch (Error $e) {
-
+						continue;
 					}
 					$lastCheck = strtotime($this->getLastLaunch());
 					$diff = abs((strtotime('now') - $prev) / 60);
