@@ -65,7 +65,7 @@ class user {
 					return false;
 				}
 				log::add("connection", "debug", __('Bind user OK', __FILE__));
-				$result = ldap_search($ad, 'uid=' . $_login . ',' . config::byKey('ldap:basedn'), config::byKey('ldap:filter'));
+				$result = ldap_search($ad, config::byKey('ldap::usersearch') . '=' . $_login . ',' . config::byKey('ldap:basedn'), config::byKey('ldap:filter'));
 				log::add("connection", "info", __('Recherche LDAP (', __FILE__) . $_login . ')');
 				if ($result) {
 					$entries = ldap_get_entries($ad, $result);
