@@ -283,6 +283,14 @@ Paramètres:
 
 - int id
 
+=== scenario::export
+
+Retourne l'export du scénario
+
+Paramètres:
+
+- int id
+
 === scenario::changeState
 
 Change l'état du scénario spécifié.

@@ -18,10 +18,10 @@
 header('Access-Control-Allow-Origin: *');
 require_once dirname(__FILE__) . "/../php/core.inc.php";
 if (user::isBan() && false) {
-	header("Status: 404 Not Found");		
-  	header('HTTP/1.0 404 Not Found');		  
-  	$_SERVER['REDIRECT_STATUS'] = 404;		
-	echo "<h1>404 Not Found</h1>";		 
+	header("Status: 404 Not Found");
+	header('HTTP/1.0 404 Not Found');
+	$_SERVER['REDIRECT_STATUS'] = 404;
+	echo "<h1>404 Not Found</h1>";
 	echo "The page that you have requested could not be found.";
 	die();
 }
@@ -698,6 +698,14 @@ if (init('type') != '') {
 					$jsonrpc->makeSuccess($scenario->save());
 				}
 				throw new Exception(__('Le paramètre "state" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]', __FILE__));
+			}
+
+			if ($jsonrpc->getMethod() == 'scenario::export') {
+				$scenario = scenario::byId($params['id']);
+				if (!is_object($scenario)) {
+					throw new Exception(__('Scénario introuvable : ', __FILE__) . secureXSS($params['id']), -32702);
+				}
+				$jsonrpc->makeSuccess($scenario->export('array'));
 			}
 
 			/*             * ************************Log*************************** */
