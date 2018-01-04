@@ -37,7 +37,7 @@ class log {
 	/*     * ***********************Methode static*************************** */
 
 	public static function getConfig($_key, $_default = '') {
-		if (self::$config == null) {
+		if (self::$config === null) {
 			self::$config = array_merge(config::getLogLevelPlugin(), config::byKeys(array('log::engine', 'log::formatter', 'log::level', 'addMessageForErrorLog', 'maxLineLog')));
 		}
 		if (isset(self::$config[$_key])) {
@@ -243,7 +243,7 @@ class log {
 	public static function liste($_filtre = null) {
 		$return = array();
 		foreach (ls(self::getPathToLog(''), '*') as $log) {
-			if ($_filtre != null && strpos($log, $_filtre) === false) {
+			if ($_filtre !== null && strpos($log, $_filtre) === false) {
 				continue;
 			}
 			if (!is_dir(self::getPathToLog($log))) {

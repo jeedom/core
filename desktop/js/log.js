@@ -48,7 +48,7 @@
 });
 
  $("#bt_removeAllLog").on('click', function(event) {
-  bootbox.confirm("{{Etes-vous sur de vouloir supprimer tous les logs ?}}", function(result) {
+  bootbox.confirm("{{Etes-vous sûr de vouloir supprimer tous les logs ?}}", function(result) {
    if (result) {
     $.ajax({
       type: "POST", 

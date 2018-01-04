@@ -204,7 +204,7 @@ class plan {
 				}
 				scenarioExpression::createAndExec('action', $action['cmd'], $options);
 			} catch (Exception $e) {
-				log::add('design', 'error', __('Erreur lors de l\'éxecution de ', __FILE__) . $action['cmd'] . __('. Détails : ', __FILE__) . $e->getMessage());
+				log::add('design', 'error', __('Erreur lors de l\'exécution de ', __FILE__) . $action['cmd'] . __('. Détails : ', __FILE__) . $e->getMessage());
 			}
 		}
 	}
@@ -298,7 +298,18 @@ class plan {
 				'html' => $html,
 			);
 		} else if ($this->getLink_type() == 'summary') {
-			$html = '<div class="summary-widget" data-summary_id="' . $this->getLink_id() . '" style="min-width:10px;min-height:10px;">';
+			$background_color = 'background-color : '.$this->getCss('background-color', 'black').';';
+ 			if ($this->getDisplay('background-defaut', false)) {
+ 				$background_color = 'background-color : black;';
+ 			}
+ 			if ($this->getDisplay('background-transparent', false)) {
+ 				$background_color = '';
+ 			}
+ 			$color = 'color : '.$this->getCss('color', 'black').';';
+ 			if ($this->getDisplay('color-defaut', false)) {
+ 				$color = '';
+ 			}
+ 			$html = '<div class="summary-widget" data-summary_id="' . $this->getLink_id() . '" style="' . $background_color . $color . ';min-width:10px;min-height:10px;">';
 			$summary = '';
 			if ($this->getLink_id() == 0) {
 				$summary = object::getGlobalHtmlSummary($_version);

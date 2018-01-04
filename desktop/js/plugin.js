@@ -170,7 +170,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
       if(isset(data.display) && data.display != ''){
         $('#div_configPanel').show();
         var config_panel_html = '<div class="form-group">';
-        config_panel_html += '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6 control-label">{{Afficher le panel desktop}}</label>';
+        config_panel_html += '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6 control-label">{{Afficher le panneau desktop}}</label>';
         config_panel_html += '<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">';
         config_panel_html += '<input type="checkbox" class="configKey tooltips" data-l1key="displayDesktopPanel" />';
         config_panel_html += '</div>';
@@ -181,7 +181,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
       if(isset(data.mobile) && data.mobile != ''){
         $('#div_configPanel').show();
         var config_panel_html = '<div class="form-group">';
-        config_panel_html += '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6 control-label">{{Afficher le panel mobile}}</label>';
+        config_panel_html += '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6 control-label">{{Afficher le panneau mobile}}</label>';
         config_panel_html += '<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">';
         config_panel_html += '<input type="checkbox" class="configKey tooltips" data-l1key="displayMobilePanel" />';
         config_panel_html += '</div>';
@@ -246,7 +246,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
      $('#div_plugin_toggleState').html(html);
    }else{
      $('#div_plugin_toggleState').closest('.panel').removeClass('panel-default panel-success').addClass('panel-danger');
-     $('#div_plugin_toggleState').html('{{Votre version de jeedom ne permet pas d\'activer ce plugin}}');
+     $('#div_plugin_toggleState').html('{{Votre version de Jeedom ne permet pas d\'activer ce plugin}}');
    }
    var log_conf = '';
    for(var i in  data.logs){
@@ -343,7 +343,7 @@ return false;
 
 $('#span_plugin_delete').delegate('.removePlugin','click',function(){
   var _el = $(this);
-  bootbox.confirm('{{Etes vous sûr de vouloir supprimer ce plugin ?}}', function (result) {
+  bootbox.confirm('{{Etes-vous sûr de vouloir supprimer ce plugin ?}}', function (result) {
     if (result) {
       $.hideAlert();
       jeedom.update.remove({
@@ -423,7 +423,7 @@ $('#bt_savePluginPanelConfig').off('click').on('click',function(){
     alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
   },
   success: function () {
-    alert_div_plugin_configuration.showAlert({message: '{{Sauvegarde de la configuration des panels effectuée}}', level: 'success'});
+    alert_div_plugin_configuration.showAlert({message: '{{Sauvegarde de la configuration des panneaux effectuée}}', level: 'success'});
     modifyWithoutSave = false;
   }
 });
