@@ -61,7 +61,7 @@ if (!isConnect('admin')) {
 <div id="md_specifyUpdate">
    <form class="form-horizontal">
     <fieldset>
-        <div class="alert alert-danger">{{Avant toute mise à jour, merci de consulter la note de version du core de Jeedom}} <a target="_blank" href="https://github.com/jeedom/core/blob/stable/doc/fr_FR/noteVersion.asciidoc">{{ici}}<a></div>
+        <div class="alert alert-danger">{{Avant toute mise à jour merci de consulter la note de version du core de Jeedom}} <a target="_blank" href="https://github.com/jeedom/core/blob/stable/doc/fr_FR/noteVersion.asciidoc">{{ici}}<a></div>
      <div class="form-group">
          <div class="form-group">
             <label class="col-xs-6 control-label">{{Pré-update (mettre à jour le script d'update avant)}}</label>

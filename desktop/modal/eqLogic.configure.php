@@ -282,7 +282,7 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 													<?php if ($eqLogic->widgetPossibility('custom::border-radius')) {
 		?>
 														<tr>
-															<td>{{Arrondi des bordures (en px)}}</td>
+															<td>{{Arrondit des bordures (en px)}}</td>
 															<?php
 foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 			echo '<td>';
@@ -312,7 +312,7 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 				if (is_array($parameter['allow_displayType']) && !in_array($key, $parameter['allow_displayType'])) {
 					continue;
 				}
-				if ($parameter['allow_displayType'] === false) {
+				if ($parameter['allow_displayType'] == false) {
 					continue;
 				}
 				$default = '';
@@ -427,7 +427,7 @@ if ($eqLogic->getDisplay('parameters') != '') {
 															<label class="col-xs-2 eqLogicAttr label label-danger" style="font-size : 1.8em">{{Danger}}</label>
 															<div class="col-xs-2">
 																<input class="eqLogicAttr form-control" data-l1key="timeout"/>
-															</input>{{(en minutes)}}
+															</input>{{(en minute)}}
 														</div>
 													</div>
 												</div>
@@ -447,20 +447,20 @@ if ($eqLogic->getDisplay('parameters') != '') {
 														<label class="col-sm-2 control-label">{{Disposition}}</label>
 														<div class="col-sm-2">
 															<select class="eqLogicAttr form-control sel_layout" data-l1key="display" data-l2key="layout::dashboard">
-																<option value="default">{{Défaut}}</option>
+																<option value="default">{{Defaut}}</option>
 																<option value="table">{{Tableau}}</option>
 															</select>
 														</div>
 													</div>
 													<div class="widget_layout table" style="display: none;">
 														<div class="form-group">
-															<label class="col-sm-2 control-label">{{Nombre de lignes}}</label>
+															<label class="col-sm-2 control-label">{{Nombre de ligne}}</label>
 															<div class="col-sm-2">
 																<input type="number" class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::nbLine" />
 															</div>
 														</div>
 														<div class="form-group">
-															<label class="col-sm-2 control-label">{{Nombre de colonnes}}</label>
+															<label class="col-sm-2 control-label">{{Nombre de colonne}}</label>
 															<div class="col-sm-2">
 																<input type="number" class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::nbColumn" />
 															</div>
@@ -472,7 +472,7 @@ if ($eqLogic->getDisplay('parameters') != '') {
 															</div>
 														</div>
 														<div class="form-group">
-															<label class="col-sm-2 control-label">{{Style général des cases (CSS)}}</label>
+															<label class="col-sm-2 control-label">{{Style générale des cases (CSS)}}</label>
 															<div class="col-sm-10">
 																<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="styletd" />
 															</div>

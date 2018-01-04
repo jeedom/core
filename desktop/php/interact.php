@@ -83,7 +83,7 @@ foreach ($interactListGroup as $group) {
 <legend><i class="fa fa-comments-o"></i>  {{Mes interactions}}</legend>
 <?php
 if (count($totalInteract) == 0) {
-	echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucune interaction. Cliquez sur ajouter pour commencer.</span></center>";
+	echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucune interaction. Cliquez sur ajouter une interaction pour commencer</span></center>";
 } else {
 	echo '<input class="form-control" placeholder="{{Rechercher}}" style="margin-bottom:4px;" id="in_searchInteract" />';
 	echo '<div class="panel-group" id="accordionInteract">';
@@ -187,7 +187,7 @@ if (count($totalInteract) == 0) {
           </div>
         </div>
         <div class="form-group">
-          <label class="col-sm-2 col-xs-2 control-label">{{Mot(s) obligatoire(s)}}</label>
+          <label class="col-sm-2 col-xs-2 control-label">{{Mot(s) obligatoire}}</label>
           <div class="col-sm-9 col-xs-9">
             <input class="form-control interactAttr" type="text" data-l1key="options" data-l2key="mustcontain"/>
           </div>
@@ -195,7 +195,7 @@ if (count($totalInteract) == 0) {
         <div class="form-group">
           <label class="col-sm-2 col-xs-2 control-label">{{Synonyme}}</label>
           <div class="col-sm-9 col-xs-9">
-            <input class="form-control interactAttr" type="text" data-l1key="options" data-l2key="synonymes" placeholder="" title="{{Remplace les mots par leurs synonymes lors de la génération des commandes}}"/>
+            <input class="form-control interactAttr" type="text" data-l1key="options" data-l2key="synonymes" placeholder="" title="{{Remplace les mots par leur synonymes lors de la génération des commandes}}"/>
           </div>
         </div>
         <div class="form-group">
@@ -216,7 +216,7 @@ if (count($totalInteract) == 0) {
         <div class="form-group">
           <label class="col-sm-2 col-xs-2 control-label">{{Utilisateurs autorisés}}</label>
           <div class="col-sm-9 col-xs-9">
-            <input class="form-control interactAttr" type="text" data-l1key="person" placeholder="" title="{{Liste des utilisateurs (identifiants) séparés par un |}}"/>
+            <input class="form-control interactAttr" type="text" data-l1key="person" placeholder="" title="{{Liste des utilisateurs (login) séparés par un |}}"/>
           </div>
         </div>
         <div class="form-group">
@@ -275,7 +275,7 @@ foreach (cmd::allUnite() as $unite) {
     </div>
   </div>
   <div class="form-group">
-    <label class="col-sm-3 control-label">{{Limiter aux commandes appartenant aux objets}}</label>
+    <label class="col-sm-3 control-label">{{Limiter aux commandes appartenant à l'objet}}</label>
     <div class="col-sm-9">
       <?php
 foreach (object::all() as $object) {
@@ -296,7 +296,7 @@ foreach (eqLogic::allType() as $type) {
 </div>
 
 <div class="form-group">
-  <label class="col-sm-3 control-label">{{Limiter aux catégories}}</label>
+  <label class="col-sm-3 control-label">{{Limiter aux categories}}</label>
   <div class="col-sm-9">
     <?php
 echo '<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="category" data-l3key="noCategory" checked="true" />{{Sans catégorie}}</label> ';

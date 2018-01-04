@@ -102,7 +102,7 @@
  $("#table_user").on('click',".bt_changeHash",  function (event) {
     $.hideAlert();
     var user = {id: $(this).closest('tr').find('.userAttr[data-l1key=id]').value()};
-    bootbox.confirm("{{Etes-vous sûr de vouloir changer la clef API de l\'utilisateur ?}}", function (result) {
+    bootbox.confirm("{{Etês vous sur de vouloir changer la clef API de l\'utilisateur ?}}", function (result) {
         if (result) {
             user.hash = '';
             jeedom.user.save({

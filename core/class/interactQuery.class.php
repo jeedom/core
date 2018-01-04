@@ -104,7 +104,7 @@ class interactQuery {
 		WHERE LOWER(query)=LOWER(:query)';
 		$query = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 		if (is_object($query)) {
-			log::add('interact', 'debug', 'Je prends : ' . $query->getQuery());
+			log::add('interact', 'debug', 'Je prend : ' . $query->getQuery());
 			return $query;
 		}
 
@@ -370,7 +370,7 @@ class interactQuery {
 		if (isset($matches[0]) && isset($matches[0][0])) {
 			$operand = $matches[0][0];
 		}
-		if ($operand === null || $operator === null) {
+		if ($operand == null || $operator == null) {
 			return null;
 		}
 		$test = '#value# ' . $operator . ' ' . $operand;
@@ -506,16 +506,16 @@ class interactQuery {
 		}
 		if ($reply == '' && config::byKey('interact::autoreply::enable') == 1) {
 			$reply = self::autoInteract($_query, $_parameters);
-			log::add('interact', 'debug', 'Je cherche dans les interactions automatiques, résultat : ' . $reply);
+			log::add('interact', 'debug', 'Je cherche dans les interactions automatique, resultat : ' . $reply);
 		}
 		if ($reply == '' && config::byKey('interact::noResponseIfEmpty', 'core', 0) == 0 && (!isset($_parameters['emptyReply']) || $_parameters['emptyReply'] == 0)) {
 			$reply = self::dontUnderstand($_parameters);
-			log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . ".Je n'ai rien compris. J'ai répondu : " . $reply);
+			log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . ".Je n'ai rien compris.J'ai répondu : " . $reply);
 		}
 		if (!is_array($reply)) {
 			$reply = array('reply' => ucfirst($reply));
 		}
-		log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . ". Je réponds : " . print_r($reply, true));
+		log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . ".Je réponds : " . print_r($reply, true));
 		if (is_object($_parameters['reply_cmd']) && isset($_parameters['force_reply_cmd'])) {
 			$_parameters['reply_cmd']->execCmd(array('message' => $reply['reply']));
 			return true;
@@ -723,7 +723,7 @@ class interactQuery {
 		}
 		if ($executeDate !== null && !isset($_parameters['execNow'])) {
 			if (date('Y', $executeDate) < 2000) {
-				return __('Erreur : impossible de calculer la date de programmation', __FILE__);
+				return __('Erreur impossible de calculer la date de programmation', __FILE__);
 			}
 			if ($executeDate < (strtotime('now') + 60)) {
 				$executeDate = strtotime('now') + 60;
@@ -793,9 +793,9 @@ class interactQuery {
 						$replace['#valeur#'] .= ' ' . $return;
 					}
 				} catch (Exception $e) {
-					log::add('interact', 'error', __('Erreur lors de l\'exécution de ', __FILE__) . $action['cmd'] . __('. Détails : ', __FILE__) . $e->getMessage());
+					log::add('interact', 'error', __('Erreur lors de l\'éxecution de ', __FILE__) . $action['cmd'] . __('. Détails : ', __FILE__) . $e->getMessage());
 				} catch (Error $e) {
-					log::add('interact', 'error', __('Erreur lors de l\'exécution de ', __FILE__) . $action['cmd'] . __('. Détails : ', __FILE__) . $e->getMessage());
+					log::add('interact', 'error', __('Erreur lors de l\'éxecution de ', __FILE__) . $action['cmd'] . __('. Détails : ', __FILE__) . $e->getMessage());
 				}
 			}
 		}

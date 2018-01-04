@@ -35,7 +35,7 @@ class history {
 			throw new Exception(__('La commande source n\'existe pas :', __FILE__) . ' ' . $_source_id);
 		}
 		if ($source_cmd->getIsHistorized() != 1) {
-			throw new Exception(__('La commande source n\'est pas historisée', __FILE__));
+			throw new Exception(__('La commande source n\'est pas historiser', __FILE__));
 		}
 		if ($source_cmd->getType() != 'info') {
 			throw new Exception(__('La commande source n\'est pas de type info', __FILE__));
@@ -48,7 +48,7 @@ class history {
 			throw new Exception(__('La commande cible n\'est pas de type info', __FILE__));
 		}
 		if ($target_cmd->getSubType() != $source_cmd->getSubType()) {
-			throw new Exception(__('Le sous-type de la commande cible n\'est pas le même que celui de la commande source', __FILE__));
+			throw new Exception(__('Le sous type de la commande cible n\'est pas le même que celui de la commande source', __FILE__));
 		}
 		if ($target_cmd->getIsHistorized() != 1) {
 			$target_cmd->setIsHistorized(1);

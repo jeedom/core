@@ -29,7 +29,7 @@ class translate {
 	/*     * ***********************Methode static*************************** */
 
 	public static function getConfig($_key, $_default = '') {
-		if (self::$config === null) {
+		if (self::$config == null) {
 			self::$config = config::byKeys(array('language', 'generateTranslation'));
 		}
 		if (isset(self::$config[$_key])) {

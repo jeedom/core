@@ -191,7 +191,7 @@ echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fa 
       <legend><i class="fa fa-search"></i> {{Utilisé par}}
         <a class="btn btn-xs btn-warning pull-right" id="bt_cmdConfigureReplaceMeBy"><i class="fa fa-download" aria-hidden="true"></i> {{Remplacer cette commande par la commande}}</a>
         <a class="btn btn-xs btn-warning pull-right" id="bt_cmdConfigureReplaceByMe"><i class="fa fa-upload" aria-hidden="true"></i> {{Cette commande remplace la commande}}</a>
-        <a class="btn btn-xs btn-warning pull-right" id="bt_cmdConfigureReplaceIdByMe"><i class="fa fa-upload" aria-hidden="true"></i> {{Cette commande remplace l'ID}}</a>
+        <a class="btn btn-xs btn-warning pull-right" id="bt_cmdConfigureReplaceIdByMe"><i class="fa fa-upload" aria-hidden="true"></i> {{Cette commande remplace l'id}}</a>
       </legend>
       <form class="form-horizontal">
         <fieldset id="fd_cmdUsedBy">
@@ -246,7 +246,7 @@ foreach ($usedBy['scenario'] as $usedByScenario) {
 
       <?php if ($cmd->getType() == 'info' && ($cmd->getSubType() == 'numeric' || $cmd->getSubType() == 'binary')) {
 	?>
-       <legend><i class="fa fa-table"></i> {{Calcul et arrondi}}</legend>
+       <legend><i class="fa fa-table"></i> {{Calcul et arrondit}}</legend>
        <div class="form-group">
         <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Formule de calcul (#value# pour la valeur)}}</label>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -472,7 +472,7 @@ foreach ($groups as $group) {
   <fieldset>
     <legend><i class="fa fa-thermometer-three-quarters"></i> {{Gestion des valeurs}}</legend>
     <div class="form-group">
-      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Valeurs interdites (séparées par ";")}}</label>
+      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Valeurs interdites (séparé par ";")}}</label>
       <div class="col-xs-3">
         <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="denyValues" />
       </div>
@@ -520,12 +520,12 @@ foreach ($groups as $group) {
   <div role="tabpanel" class="tab-pane" id="cmd_html">
     <br/>
     <div class="form-group">
-      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Activer la personnalisation du widget}}</label>
+      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Activer la personalisation du widget}}</label>
       <div class="col-xs-2">
         <input type="checkbox" class="cmdAttr" data-l1key="html" data-l2key="enable" />
       </div>
       <div class="col-xs-3">
-        <a class="btn btn-warning" id="bt_reinitHtmlCode"><i class="fa fa-times"></i> {{Réinitialiser la personnalisation}}</a>
+        <a class="btn btn-warning" id="bt_reinitHtmlCode"><i class="fa fa-times"></i> {{Reinitialiser la personalisation}}</a>
       </div>
     </div>
     <legend><i class="fa fa-code"></i> {{Code}}</legend>
@@ -624,7 +624,7 @@ foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
 		echo '</div>';
 		echo '</div>';
 		echo '<div class="form-group">';
-		echo '<label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Pendant plus de (en min, laisser vide pour immédiat)}}</label>';
+		echo '<label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Pendant plus de (en min, laisser vide pour immediat)}}</label>';
 		echo '<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">';
 		echo '<input type="number" class="cmdAttr form-control" data-l1key="alert" data-l2key="' . $level . 'during" />';
 		echo '</div>';
@@ -936,7 +936,7 @@ if ($cmd->getDisplay('parameters') != '') {
     jeedom.cmd.getSelectModal({cmd: {type: cmdInfo.type, subType: cmdInfo.subType}}, function (result) {
       var target_id = result.cmd.id
       var name = result.human
-      bootbox.confirm('{{Etes-vous sûr de vouloir remplacer l\'ID}} <strong>'+name+'</strong> {{par}} <strong>'+cmdInfo.name+'</strong> ?', function (result) {
+      bootbox.confirm('{{Etes-vous sûr de vouloir remplacer l\'id}} <strong>'+name+'</strong> {{par}} <strong>'+cmdInfo.name+'</strong> ?', function (result) {
         if (result) {
           jeedom.cmd.replaceCmd({
             source_id : target_id,
@@ -955,7 +955,7 @@ if ($cmd->getDisplay('parameters') != '') {
 
 
   $('#bt_cmdConfigureReplaceIdByMe').off('click').on('click',function(){
-    var target_id = prompt("{{ID de commande à remplacer ?}}");
+    var target_id = prompt("{{Id de commande à remplacer ?}}");
     if(target_id == null){
       return;
     }
@@ -1076,7 +1076,7 @@ if ($cmd->getDisplay('parameters') != '') {
   if(editorCodeMview != null){
    editorCodeMview.setValue('');
  }
- $('#md_displayCmdConfigure').showAlert({message: '{{Opération effectuée avec succès, n\'oubliez pas de sauvegarder}}', level: 'success'});
+ $('#md_displayCmdConfigure').showAlert({message: '{{Opération faite, n\'oubliez pas de sauvegarder}}', level: 'success'});
 });
 
 
@@ -1166,8 +1166,8 @@ if ($cmd->getDisplay('parameters') != '') {
     var div = '<div class="' + _type + '">';
     div += '<div class="form-group ">';
     div += '<div class="col-sm-1">';
-    div += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'action}}" />';
-    div += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" title="{{Cocher pour que la commande s\'exécute en parallèle des autres actions}}" />';
+    div += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour desactiver l\'action}}" />';
+    div += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" title="{{Cocher pour que la commande s\'éxecute en parrallele des autres actions}}" />';
     div += '</div>';
     div += '<div class="col-sm-4">';
     div += '<div class="input-group">';

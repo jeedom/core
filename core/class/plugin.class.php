@@ -368,7 +368,7 @@ class plugin {
 					shell_exec('rm ' . $return['progress_file']);
 				}
 				config::save('deamonAutoMode', 0, $plugin->getId());
-				log::add($plugin->getId(), 'error', __('Attention : l\'installation des dépendances a dépassé le temps maximum autorisé : ', __FILE__) . $plugin->getMaxDependancyInstallTime() . 'min');
+				log::add($plugin->getId(), 'error', __('Attention l\'installation des dépendances ont dépassées le temps maximum autorisé : ', __FILE__) . $plugin->getMaxDependancyInstallTime() . 'min');
 			}
 			try {
 				$plugin->deamon_start(false, true);
@@ -382,7 +382,7 @@ class plugin {
 
 	public function report($_format = 'pdf', $_parameters = array()) {
 		if ($this->getDisplay() == '') {
-			throw new Exception(__('Vous ne pouvez pas faire de rapport sur un plugin sans panneau', __FILE__));
+			throw new Exception(__('Vous ne pouvez faire un report sur un plugin sans panel', __FILE__));
 		}
 		$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=' . $this->getDisplay();
 		$url .= '&m=' . $this->getId();
@@ -486,11 +486,11 @@ class plugin {
 		if ((strtotime('now') - 60) <= strtotime(config::byKey('lastDependancyInstallTime', $plugin_id))) {
 			$cache = cache::byKey('dependancy' . $this->getID());
 			$cache->remove();
-			throw new Exception(__('Vous devez attendre au moins 60 secondes entre deux lancements d\'installation de dépendances', __FILE__));
+			throw new Exception(__('Vous devez attendre au moins 60s entre 2 lancements d\'installation de dépendances', __FILE__));
 		}
 		$dependancy_info = $this->dependancy_info(true);
 		if ($dependancy_info['state'] == 'in_progress') {
-			throw new Exception(__('Les dépendances sont déjà en cours d\'installation', __FILE__));
+			throw new Exception(__('Les dépendances sont déja en cours d\'installation', __FILE__));
 		}
 		foreach (self::listPlugin(true) as $plugin) {
 			if ($plugin->getId() == $this->getId()) {
@@ -508,15 +508,15 @@ class plugin {
 			if (file_exists($script_array[0])) {
 				if (jeedom::isCapable('sudo')) {
 					$this->deamon_stop();
-					message::add($plugin_id, __('Attention : installation des dépendances lancée', __FILE__));
+					message::add($plugin_id, __('Attention, installation des dépendances lancée', __FILE__));
 					config::save('lastDependancyInstallTime', date('Y-m-d H:i:s'), $plugin_id);
 					exec(system::getCmdSudo() . '/bin/bash ' . $script . ' >> ' . $cmd['log'] . ' 2>&1 &');
 					sleep(1);
 				} else {
-					log::add($plugin_id, 'error', __('Veuillez exécuter le script : ', __FILE__) . '/bin/bash ' . $script);
+					log::add($plugin_id, 'error', __('Veuillez executer le script : ', __FILE__) . '/bin/bash ' . $script);
 				}
 			} else {
-				log::add($plugin_id, 'error', __('Aucun script ne correspond à votre type de Linux : ', __FILE__) . $cmd['script'] . __(' avec #stype# : ', __FILE__) . system::get('type'));
+				log::add($plugin_id, 'error', __('Aucun script ne correspond à votre type de linux : ', __FILE__) . $cmd['script'] . __(' avec #stype# : ', __FILE__) . system::get('type'));
 			}
 		}
 		$cache = cache::byKey('dependancy' . $this->getID());
@@ -590,7 +590,7 @@ class plugin {
 					$inprogress = cache::bykey('deamonStart' . $this->getId() . 'inprogress');
 					$info = $inprogress->getValue(array('state' => 0, 'datetime' => strtotime('now')));
 					if ($info['state'] == 1 && (strtotime('now') - 45) <= $info['datetime']) {
-						throw new Exception(__('Vous devez attendre au moins 45 secondes entre deux lancements du démon', __FILE__));
+						throw new Exception(__('Vous devez attendre au moins 45s entre 2 lancements du démon', __FILE__));
 					}
 					cache::set('deamonStart' . $this->getId() . 'inprogress', array('state' => 1, 'datetime' => strtotime('now')));
 					config::save('lastDeamonLaunchTime', date('Y-m-d H:i:s'), $plugin_id);
@@ -623,7 +623,7 @@ class plugin {
 
 	public function setIsEnable($_state) {
 		if (version_compare(jeedom::version(), $this->getRequire()) == -1 && $_state == 1) {
-			throw new Exception(__('Votre version de Jeedom n\'est pas assez récente pour activer ce plugin', __FILE__));
+			throw new Exception(__('Votre version de jeedom n\'est pas assez récente pour activer ce plugin', __FILE__));
 		}
 		$alreadyActive = config::byKey('active', $this->getId(), 0);
 		if ($_state == 1) {

@@ -154,9 +154,8 @@ class interactDef {
 	public static function deadCmd() {
 		$return = array();
 		foreach (interactDef::all() as $interact) {
-			preg_match_all("/#([0-9]*)#/", $interact->getActions('cmd'), $matches);
-			foreach ($matches[1] as $cmd_id) {
-				if (is_numeric($cmd_id)) {
+			if (is_array($interact->getActions('cmd'))) {
+				foreach ($interact->getActions('cmd') as $actions) {
 					if (!cmd::byId(str_replace('#', '', $actions['cmd']))) {
 						$return[] = array('detail' => 'Interaction ' . $interact->getName() . ' du groupe ' . $interact->getGroup(), 'help' => 'Action', 'who' => $actions['cmd']);
 					}

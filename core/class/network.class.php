@@ -267,10 +267,10 @@ class network {
 			$plugin->setIsEnable(1);
 		}
 		if (!is_object($plugin)) {
-			throw new Exception(__('Le plugin OpenVPN doit être installé', __FILE__));
+			throw new Exception(__('Le plugin openvpn doit être installé', __FILE__));
 		}
 		if (!$plugin->isActive()) {
-			throw new Exception(__('Le plugin OpenVPN doit être actif', __FILE__));
+			throw new Exception(__('Le plugin openvpn doit être actif', __FILE__));
 		}
 		$openvpn = eqLogic::byLogicalId('dnsjeedom', 'openvpn');
 		if (!is_object($openvpn)) {
@@ -306,7 +306,7 @@ class network {
 		$openvpn = self::dns_create();
 		$cmd = $openvpn->getCmd('action', 'start');
 		if (!is_object($cmd)) {
-			throw new Exception(__('La commande de démarrage du DNS est introuvable', __FILE__));
+			throw new Exception(__('La commande de start du DNS est introuvable', __FILE__));
 		}
 		$cmd->execCmd();
 		$interface = $openvpn->getInterfaceName();
@@ -345,7 +345,7 @@ class network {
 		$openvpn = self::dns_create();
 		$cmd = $openvpn->getCmd('action', 'stop');
 		if (!is_object($cmd)) {
-			throw new Exception(__('La commande d\'arrêt du DNS est introuvable', __FILE__));
+			throw new Exception(__('La commande de stop du DNS est introuvable', __FILE__));
 		}
 		$cmd->execCmd();
 	}
@@ -399,7 +399,7 @@ class network {
 		}
 		$gw = shell_exec("ip route show default | awk '/default/ {print $3}'");
 		if ($gw == '') {
-			log::add('network', 'error', __('Souci réseau détecté, redémarrage du réseau', __FILE__));
+			log::add('network', 'error', __('Soucis réseaux detecté, redemarrage du réseaux', __FILE__));
 			exec(system::getCmdSudo() . 'service networking restart');
 			return;
 		}
@@ -407,7 +407,7 @@ class network {
 		if ($return_val == 0) {
 			return;
 		}
-		log::add('network', 'error', __('Souci réseau détecté, redémarrage du réseau', __FILE__));
+		log::add('network', 'error', __('Soucis réseaux detecté, redemarrage du réseaux', __FILE__));
 		exec(system::getCmdSudo() . 'service networking restart');
 	}
 }

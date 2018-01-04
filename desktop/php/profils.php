@@ -47,7 +47,7 @@ foreach (ls(dirname(__FILE__) . '/../../core/themes') as $dir) {
           </div>
         </div>
         <div class="form-group">
-          <label class="col-sm-3 control-label">{{Couleur sur mobile}}</label>
+          <label class="col-sm-3 control-label">{{Mobile couleur}}</label>
           <div class="col-sm-3">
             <select class="userAttr form-control" data-l1key="options" data-l2key="mobile_theme_color">
               <?php
@@ -350,13 +350,13 @@ foreach ($sessions as $id => $session) {
 
 <form class="form-horizontal">
   <fieldset>
-    <legend>{{Péripheriques enregistrés}} <a class="btn btn-xs btn-warning pull-right" id="bt_removeAllRegisterDevice"><i class="fa fa-trash"></i> {{Supprimer tout}}</a></legend>
+    <legend>{{Péripherique enregistrés}} <a class="btn btn-xs btn-warning pull-right" id="bt_removeAllRegisterDevice"><i class="fa fa-trash"></i> {{Supprimer tout}}</a></legend>
     <table class="table table-bordered table-condensed">
       <thead>
         <tr>
           <th>{{Identification}}</th>
           <th>{{IP}}</th>
-          <th>{{Date dernière utilisation}}</th>
+          <th>{{Date derniere utilisation}}</th>
           <th>{{Action}}</th>
         </tr>
       </thead>

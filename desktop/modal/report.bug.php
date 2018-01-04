@@ -6,7 +6,7 @@ if (config::byKey('market::address') == '') {
 	throw new Exception('{{Aucune adresse pour le market n\'est renseignée}}');
 }
 if (config::byKey('market::apikey') == '' && config::byKey('market::username') == '') {
-	throw new Exception('{{Aucune clé pour le market n\'est renseignée. Veuillez vous enregistrer sur le market, puis renseignez la clé dans Jeedom avant d\'ouvrir un ticket}}');
+	throw new Exception('{{Aucune clé pour le market n\'est renseignée. Veuillez vous enregistrer sur le market puis renseigner la clé dans Jeedom avant d\'ouvrir un ticket}}');
 }
 ?>
 <div id='div_alertReportBug'></div>
@@ -15,7 +15,6 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
        <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-info"></i> {{Etape 1 : Information sur les tickets}}</h3></div>
        <div class="panel-body">
         {{Merci de vérifier avant toute ouverture de ticket :}}<br/>
-
         {{- que la question n'a pas déjà été posée sur le <a href='https://jeedom.com/forum'>forum</a>}}<br/>
         {{- que la catégorie est bien sélectionnée pour que votre ticket soit traité dans les plus courts délais}}<br/>
         {{- que la réponse n'est pas déjà dans la <a href='https://jeedom.github.io/documentation'>documentation</a>}}

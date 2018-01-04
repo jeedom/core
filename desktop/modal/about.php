@@ -34,7 +34,7 @@ if (!isConnect()) {
   <div class="col-lg-2">
     <h3>{{Beta-testeur(s)}}</h3>
     <lu>
-      <li>Awesome people</li>
+      <li>Amesome people</li>
     </lu>
   </div>
 </div>

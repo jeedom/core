@@ -104,7 +104,7 @@ class DB {
 	}
 
 	public function __clone() {
-		trigger_error('DB : Cloner cet objet n\'est pas permis', E_USER_ERROR);
+		trigger_error('DB : Cloning this object is not permitted', E_USER_ERROR);
 	}
 
 	public static function optimize() {
@@ -191,7 +191,7 @@ class DB {
 
 	public static function refresh($object) {
 		if (!self::getField($object, 'id')) {
-			throw new Exception('DB ne peut rafraîchir l\'objet sans son ID');
+			throw new Exception('DB cannot refresh object without id');
 		}
 		$parameters = array('id' => self::getField($object, 'id'));
 		$sql = 'SELECT ' . self::buildField(get_class($object)) .

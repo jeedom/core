@@ -6,8 +6,12 @@ if (!isConnect()) {
 
 $scenario = scenario::byId(init('scenario_id'));
 if (!is_object($scenario)) {
-    throw new Exception('{{Scénario introuvable}}');
+    throw new Exception('{{Scenario introuvable}}');
 }
 
 echo '<pre>' . $scenario->export() . '</pre>';
 ?>
+  
+
+
+

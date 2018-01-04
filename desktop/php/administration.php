@@ -86,7 +86,7 @@ user::isBan();
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Durée de vie de votre connexion à Jeedom si vous n'avez pas coché la case enregistrer cet ordinateur}}">{{Durée de vie des sessions (heure)}}</label>
 						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-							<input type="text"  class="configKey form-control" data-l1key="session_lifetime" />
+							<input type="text" class="configKey form-control" data-l1key="session_lifetime" />
 						</div>
 					</div>
 					<div class="form-group">
@@ -207,7 +207,7 @@ $lastKnowDate = $cache->getValue();
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Permet d'ajouter un serveur de temps à Jeedom utilisé lorsque Jeedom force la synchronisation de l'heure}}">{{Serveur de temps optionnel}}</label>
 						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-							<input type="text"  class="configKey form-control" data-l1key="ntp::optionalServer" />
+							<input type="text" class="configKey form-control" data-l1key="ntp::optionalServer" />
 						</div>
 					</div>
 					<div class="form-group">
@@ -383,49 +383,55 @@ echo $CONFIG['db']['password'];
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Hôte}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<input type="text"  class="configKey form-control" data-l1key="ldap:host" />
+								<input type="text" class="configKey form-control" data-l1key="ldap:host" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Port}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<input type="text"  class="configKey form-control" data-l1key="ldap:port" />
+								<input type="text" class="configKey form-control" data-l1key="ldap:port" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Domaine}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<input type="text"  class="configKey form-control" data-l1key="ldap:domain" />
+								<input type="text" class="configKey form-control" data-l1key="ldap:domain" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Base DN}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<input type="text"  class="configKey form-control" data-l1key="ldap:basedn" />
+								<input type="text" class="configKey form-control" data-l1key="ldap:basedn" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nom d'utilisateur}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<input type="text"  class="configKey form-control" data-l1key="ldap:username" />
+								<input type="text" class="configKey form-control" data-l1key="ldap:username" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mot de passe}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<input type="password"  class="configKey form-control" data-l1key="ldap:password" />
+								<input type="password" class="configKey form-control" data-l1key="ldap:password" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Filtre (optionnel)}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<input type="text"  class="configKey form-control" data-l1key="ldap:filter" />
+								<input type="text" class="configKey form-control" data-l1key="ldap:filter" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Champs recherche utilisateur}}</label>
+							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+								<input type="text" class="configKey form-control" data-l1key="ldap::usersearch" />
 							</div>
 						</div>
 						<div class="form-group has-error">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Autoriser REMOTE_USER}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<input type="checkbox"  class="configKey" data-l1key="sso:allowRemoteUser" />
+								<input type="checkbox" class="configKey" data-l1key="sso:allowRemoteUser" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -441,7 +447,7 @@ echo $CONFIG['db']['password'];
 					</div>
 					<legend>{{Connexion}}</legend>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nombre d'échecs tolérés}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nombre d'échec toléré}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 							<input type="text" class="configKey form-control" data-l1key="security::maxFailedLogin" />
 						</div>
@@ -711,49 +717,49 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Afficher les statistiques sur les widgets}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<input type="checkbox"  class="configKey" data-l1key="displayStatsWidget" />
+							<input type="checkbox" class="configKey" data-l1key="displayStatsWidget" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Période de calcul pour min, max, moyenne (en heures)}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<input type="text"  class="configKey form-control" data-l1key="historyCalculPeriod" />
+							<input type="text" class="configKey form-control" data-l1key="historyCalculPeriod" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Période de calcul pour la tendance (en heures)}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<input type="text"  class="configKey form-control" data-l1key="historyCalculTendance" />
+							<input type="text" class="configKey form-control" data-l1key="historyCalculTendance" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Délai avant archivage (en heures)}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<input type="text"  class="configKey form-control" data-l1key="historyArchiveTime" />
+							<input type="text" class="configKey form-control" data-l1key="historyArchiveTime" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Archiver par paquet de (en heures)}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<input type="text"  class="configKey form-control" data-l1key="historyArchivePackage" />
+							<input type="text" class="configKey form-control" data-l1key="historyArchivePackage" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Seuil de calcul de tendance bas}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<input type="text"  class="configKey form-control" data-l1key="historyCalculTendanceThresholddMin" />
+							<input type="text" class="configKey form-control" data-l1key="historyCalculTendanceThresholddMin" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Seuil de calcul de tendance haut}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<input type="text"  class="configKey form-control" data-l1key="historyCalculTendanceThresholddMax" />
+							<input type="text" class="configKey form-control" data-l1key="historyCalculTendanceThresholddMax" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Période d'affichage des graphiques par défaut}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<select  class="configKey form-control" data-l1key="history::defautShowPeriod" >
+							<select class="configKey form-control" data-l1key="history::defautShowPeriod" >
 								<option value="-6 month">{{6 mois}}</option>
 								<option value="-3 month">{{3 mois}}</option>
 								<option value="-1 month">{{1 mois}}</option>
@@ -770,7 +776,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{URL de push globale}}</label>
 						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-							<input type="text"  class="configKey form-control" data-l1key="cmdPushUrl" title="{{Mettez ici l'URL à appeler lors d'une mise à jour de la valeur des commandes. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"/>
+							<input type="text" class="configKey form-control" data-l1key="cmdPushUrl" title="{{Mettez ici l'URL à appeler lors d'une mise à jour de la valeur des commandes. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"/>
 						</div>
 					</div>
 				</fieldset>
@@ -782,7 +788,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
 			<form class="form-horizontal">
 				<fieldset>
 					<div class="alert alert-info">
-						{{Attention : toute modification du moteur de cache nécessite un redémarrage de Jeedom}}
+						{{Attention toute modification du moteur de cache nécessite un redémarrage de Jeedom}}
 					</div>
 
 					<?php
@@ -799,8 +805,8 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Moteur de cache}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<select type="text"  class="configKey form-control" data-l1key="cache::engine" >
-								<option value="FilesystemCache">{{Système de fichiers (<?php echo cache::getFolder(); ?>)}}</option>
+							<select type="text" class="configKey form-control" data-l1key="cache::engine" >
+								<option value="FilesystemCache">{{Système de fichier (<?php echo cache::getFolder(); ?>)}}</option>
 								<?php if (class_exists('memcached')) {?>
 								<option value="MemcachedCache">{{Memcached}}</option>
 								<?php }
@@ -816,13 +822,13 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse Memcache}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<input type="text"  class="configKey form-control" data-l1key="cache::memcacheaddr" />
+								<input type="text" class="configKey form-control" data-l1key="cache::memcacheaddr" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Port Memcache}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<input type="text"  class="configKey form-control" data-l1key="cache::memcacheport" />
+								<input type="text" class="configKey form-control" data-l1key="cache::memcacheport" />
 							</div>
 						</div>
 					</div>
@@ -830,13 +836,13 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse Redis}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<input type="text"  class="configKey form-control" data-l1key="cache::redisaddr" />
+								<input type="text" class="configKey form-control" data-l1key="cache::redisaddr" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Port redis}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<input type="text"  class="configKey form-control" data-l1key="cache::redisport" />
+								<input type="text" class="configKey form-control" data-l1key="cache::redisport" />
 							</div>
 						</div>
 					</div>
@@ -868,7 +874,7 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 				<fieldset>
 					<legend>{{Général}}</legend>
 					<div class="alert alert-info">
-						{{Plus la sensibilité est basse (proche de 1), plus la correspondance doit être exacte.}}
+						{{Plus la sensibilité est basse (proche de 1) plus la corrrespondance doit être exacte}}
 					</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Sensibilité}}</label>
@@ -907,20 +913,20 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Regex générale d'exclusion pour les interactions}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Regex général d'exclusion pour les interactions}}</label>
 						<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
 							<textarea type="text" class="configKey form-control" data-l1key="interact::regexpExcludGlobal"></textarea>
 						</div>
 					</div>
 					<legend>{{Interaction automatique, contextuelle & avertissement}}</legend>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer les interactions automatiques}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer les interactions automatique}}</label>
 						<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
 							<input type="checkbox" class="configKey" data-l1key="interact::autoreply::enable" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer les réponses contextuelles}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer les réponses contextuelle}}</label>
 						<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
 							<input type="checkbox" class="configKey" data-l1key="interact::contextual::enable" />
 						</div>
@@ -938,13 +944,13 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer les interactions "préviens moi"}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer les interactions "previens moi"}}</label>
 						<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
 							<input type="checkbox" class="configKey" data-l1key="interact::warnme::enable" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Réponse de type "préviens moi" si la phrase commence par}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Réponse de type "previens moi" si la phrase commence par}}</label>
 						<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
 							<input class="configKey form-control" data-l1key="interact::warnme::start" />
 						</div>
@@ -954,7 +960,7 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commande de retour par défaut}}</label>
 						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 							<div class="input-group">
-								<input type="text"  class="configKey form-control" data-l1key="interact::warnme::defaultreturncmd" />
+								<input type="text" class="configKey form-control" data-l1key="interact::warnme::defaultreturncmd" />
 								<span class="input-group-btn">
 									<a class="btn btn-default cursor bt_selectWarnMeCmd" title="Rechercher une commande"><i class="fa fa-list-alt"></i></a>
 								</span>
@@ -963,25 +969,25 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 					</div>
 
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonymes pour les objets}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonyme pour les objets}}</label>
 						<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
 							<input class="configKey form-control" data-l1key="interact::autoreply::object::synonym" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonymes pour les équipements}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonyme pour les équipements}}</label>
 						<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
 							<input class="configKey form-control" data-l1key="interact::autoreply::eqLogic::synonym" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonymes pour les commandes}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonyme pour les commandes}}</label>
 						<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
 							<input class="configKey form-control" data-l1key="interact::autoreply::cmd::synonym" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonymes pour les résumés}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonyme pour les résumé}}</label>
 						<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
 							<input class="configKey form-control" data-l1key="interact::autoreply::summary::synonym" />
 						</div>
@@ -1017,7 +1023,7 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nettoyer les rapports plus anciens de (jours)}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nettoyer les rapport plus anciens de (jours)}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
 							<input class="configKey form-control" data-l1key="report::maxdays" />
 						</div>
@@ -1130,7 +1136,7 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commande d'information utilisateur}}</label>
 						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 							<div class="input-group">
-								<input type="text"  class="configKey form-control" data-l1key="emailAdmin" />
+								<input type="text" class="configKey form-control" data-l1key="emailAdmin" />
 								<span class="input-group-btn">
 									<a class="btn btn-default cursor" title="Rechercher une commande" id="bt_selectMailCmd"><i class="fa fa-list-alt"></i></a>
 								</span>
@@ -1154,7 +1160,7 @@ foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
 	echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commande sur}} ' . $value['name'] . '</label>';
 	echo '<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">';
 	echo '<div class="input-group">';
-	echo '<input type="text"  class="configKey form-control" data-l1key="alert::' . $level . 'Cmd" />';
+	echo '<input type="text" class="configKey form-control" data-l1key="alert::' . $level . 'Cmd" />';
 	echo '<span class="input-group-btn">';
 	echo '<a class="btn btn-default cursor bt_selectAlertCmd" title="Rechercher une commande" data-type="' . $level . '"><i class="fa fa-list-alt"></i></a>';
 	echo '</span>';
@@ -1180,15 +1186,15 @@ foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
 					</div>
 					<div class="logEngine SyslogUdp">
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse syslog UDP}}</label>
+							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse syslog udp}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<input type="text"  class="configKey form-control" data-l1key="log::syslogudphost" />
+								<input type="text" class="configKey form-control" data-l1key="log::syslogudphost" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Port syslog UDP}}</label>
+							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Port syslog udp}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<input type="text"  class="configKey form-control" data-l1key="log::syslogudpport" />
+								<input type="text" class="configKey form-control" data-l1key="log::syslogudpport" />
 							</div>
 						</div>
 					</div>
@@ -1259,7 +1265,7 @@ if (init('rescue', 0) == 0) {
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nombre d'échecs avant désactivation de l'équipement}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<input type="text"  class="configKey form-control" data-l1key="numberOfTryBeforeEqLogicDisable" />
+							<input type="text" class="configKey form-control" data-l1key="numberOfTryBeforeEqLogicDisable" />
 						</div>
 					</div>
 					<div class="form-group">
