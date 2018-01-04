@@ -419,7 +419,6 @@ echo $CONFIG['db']['password'];
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Champs recherche utilisateur}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-<<<<<<< HEAD
 								<input type="text" class="configKey form-control" data-l1key="ldap::usersearch" />
 							</div>
 						</div>
@@ -427,9 +426,6 @@ echo $CONFIG['db']['password'];
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Filtre (optionnel)}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 								<input type="text" class="configKey form-control" data-l1key="ldap:filter" />
-=======
-								<input type="text"  class="configKey form-control" data-l1key="ldap:filter" />
->>>>>>> parent of fc6ae1de... add AD compatibility + merge
 							</div>
 						</div>
 						<div class="form-group has-error">
