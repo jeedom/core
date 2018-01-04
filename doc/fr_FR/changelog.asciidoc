@@ -2,6 +2,7 @@
 
 == 3.2.0
 
+* Ajout d'un champs recherche utilisateur pour les connexion LDAP/AD (permet de rendre Jeedom compatible AD)
 * Corrections d'orthographe (merci à dab0u pour son énorme travail)
 * JEED-290 : On ne peut plus se connecter avec les identifiants par défaut (admin/admin) à distance, seul le réseau local est autorisé
 * JEED-186 : On peut maintenant choisir la couleur de fond dans les designs

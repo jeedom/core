@@ -71,6 +71,7 @@ ATTENTION : Si vous modifiez Jeedom avec l'une de ces deux solutions, le support
 * *Base DN* : base DN de votre AD
 * *Nom d'utilisateur* : nom d'utilisateur pour que Jeedom se connecte à l'AD
 * *Mot de passe* : mot de passe pour que Jeedom se connecte à l'AD
+* *Champs recherche utilisateur* : champs de recherche du login utilisateur. En général uid pour LDAP, samaccountname pour Windows AD
 * *Filtre (optionnel)* : filtre sur l'AD (pour la gestion des groupes par exemple)
 * *Autoriser REMOTE_USER* : Active le REMOTE_USER (utilisé en SSO par exemple)
 
