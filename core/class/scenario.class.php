@@ -63,6 +63,14 @@ class scenario {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
+	public static function byString($_string) {
+		$scenario = self::byId(str_replace('#scenario', '', self::fromHumanReadable($_string)));
+		if (!is_object($scenario)) {
+			throw new Exception(__('La commande n\'a pas pu être trouvée : ', __FILE__) . $_string . __(' => ', __FILE__) . self::fromHumanReadable($_string));
+		}
+		return $scenario;
+	}
+
 	/**
 	 * Renvoie tous les objets scenario
 	 * @return [] scenario object scenario

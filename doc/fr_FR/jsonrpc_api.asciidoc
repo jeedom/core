@@ -285,11 +285,21 @@ Paramètres:
 
 === scenario::export
 
-Retourne l'export du scénario
+Retourne l'export du scénario ainsi que le nom humain du scénario
 
 Paramètres:
 
 - int id
+
+=== scenario::import
+
+Permet d'importer un scénario.
+
+Paramètres:
+
+- int id : id du scénario dans lequel importer (vide si création)
+- string humanName : nom humain du scénario (vide si création)
+- array import :  scénario (issue du champs export de scenario::export)
 
 === scenario::changeState
 

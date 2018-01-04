@@ -705,7 +705,45 @@ if (init('type') != '') {
 				if (!is_object($scenario)) {
 					throw new Exception(__('Scénario introuvable : ', __FILE__) . secureXSS($params['id']), -32702);
 				}
-				$jsonrpc->makeSuccess($scenario->export('array'));
+				$jsonrpc->makeSuccess(array('humanName' => $scenario->getHumanName(), 'export' => $scenario->export('array')));
+			}
+
+			if ($jsonrpc->getMethod() == 'scenario::import') {
+				if (isset($params['id'])) {
+					$scenario = scenario::byId($params['id']);
+					if (!is_object($scenario)) {
+						throw new Exception(__('Scénario introuvable : ', __FILE__) . secureXSS($params['id']), -32702);
+					}
+				} else if (isset($params['humanName'])) {
+					$scenario = scenario::byString($params['humanName']);
+					if (!is_object($scenario)) {
+						throw new Exception(__('Scénario introuvable : ', __FILE__) . secureXSS($params['id']), -32702);
+					}
+				} else {
+					$scenario = new scenario();
+					if (isset($params['import']['name'])) {
+						$scenario->setName($params['import']['name']);
+					}
+					if (isset($params['import']['group'])) {
+						$scenario->setName($params['import']['group']);
+					}
+				}
+				if ($scenario->getName() == '') {
+					$scenario->setName(config::genKey());
+				}
+				$scenario->setTrigger(array());
+				$scenario->setSchedule(array());
+				utils::a2o($scenario, $params['import']);
+				$scenario->save();
+				$scenario_element_list = array();
+				if (isset($params['import']['elements'])) {
+					foreach ($params['import']['elements'] as $element_ajax) {
+						$scenario_element_list[] = scenarioElement::saveAjaxElement($element_ajax);
+					}
+					$scenario->setScenarioElement($scenario_element_list);
+				}
+				$scenario->save();
+				$jsonrpc->makeSuccess(utils::o2a($scenario));
 			}
 
 			/*             * ************************Log*************************** */
