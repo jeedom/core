@@ -179,10 +179,10 @@ foreach (update::listRepo() as $key => $value) {
             var html = '';
             for (var i in data) {
                 html += '<div class="form-group templateScenario">';
-                html += '<label class="col-xs-4 control-label">' + data[i] + ' <i class="fa fa-arrow-right"></i></label>';
+                html += '<label class="col-xs-4 control-label">' + i + ' <i class="fa fa-arrow-right"></i></label>';
                 html += '<div class="col-xs-4">';
-                html += '<span class="templateScenarioAttr" data-l1key="begin" style="display : none;" >' + data[i] + '</span>';
-                html += '<input class="form-control templateScenarioAttr" data-l1key="end" />';
+                html += '<span class="templateScenarioAttr" data-l1key="begin" style="display : none;" >' + i + '</span>';
+                html += '<input class="form-control templateScenarioAttr" data-l1key="end" value="'+data[i]+'"/>';
                 html += '</div>';
                 html += '<div class="col-xs-2">';
                 html += '<a class="btn btn-default cursor bt_scenarioTemplateSelectCmd"><i class="fa fa-list-alt"></i></a>';

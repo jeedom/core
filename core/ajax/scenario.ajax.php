@@ -120,7 +120,14 @@ try {
 			preg_match_all("/#\[(.*?)\]\[(.*?)\]\[(.*?)\]#/", $line, $matches, PREG_SET_ORDER);
 			if (count($matches) > 0) {
 				foreach ($matches as $match) {
-					$return[$match[0]] = $match[0];
+					$cmd = null;
+					try {
+						$cmd = cmd::byString($match[0]);
+						$return[$match[0]] = '#' . $cmd->getHumanName() . '#';
+					} catch (Exception $e) {
+						$return[$match[0]] = '';
+					}
+
 				}
 			}
 		}
