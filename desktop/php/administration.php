@@ -440,11 +440,10 @@ echo $CONFIG['db']['password'];
 								<a class="btn btn-default" id="bt_testLdapConnection"><i class="fa fa-cube"></i> Tester</a>
 							</div>
 						</div>
-						<?php } else {
+					</div>
+					<?php } else {
 	echo '<div class="alert alert-info">{{Librairie LDAP non trouvée. Merci de l\'installer avant de pouvoir utiliser la connexion LDAP}}</div>';
 }?>
-
-					</div>
 					<legend>{{Connexion}}</legend>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nombre d'échecs tolérés}}</label>
