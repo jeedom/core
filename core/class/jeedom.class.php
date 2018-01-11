@@ -835,23 +835,21 @@ class jeedom {
 				if (config::byKey('update::check') != '') {
 					$c = new Cron\CronExpression(config::byKey('update::check'), new Cron\FieldFactory);
 					$isDue = $c->isDue();
-					if ($isDue) {
-						if (config::byKey('update::lastCheck') == '' || (strtotime('now') - strtotime(config::byKey('update::lastCheck'))) > 3600) {
-							update::checkAllUpdate();
-							$updates = update::byStatus('update');
-							if (count($updates) > 0) {
-								$toUpdate = '';
-								foreach ($updates as $update) {
-									$toUpdate .= $update->getLogicalId() . ',';
-								}
-							}
-							$updates = update::byStatus('update');
-							if (count($updates) > 0) {
-								message::add('update', __('De nouvelles mises à jour sont disponibles : ', __FILE__) . trim($toUpdate, ','), '', 'newUpdate');
-							}
-							config::save('update::check', rand(1, 59) . ' ' . rand(6, 7) . ' * * *');
+				}
+				if ($isDue && (config::byKey('update::lastCheck') == '' || (strtotime('now') - strtotime(config::byKey('update::lastCheck'))) > 3600)) {
+					update::checkAllUpdate();
+					$updates = update::byStatus('update');
+					if (count($updates) > 0) {
+						$toUpdate = '';
+						foreach ($updates as $update) {
+							$toUpdate .= $update->getLogicalId() . ',';
 						}
 					}
+					$updates = update::byStatus('update');
+					if (count($updates) > 0) {
+						message::add('update', __('De nouvelles mises à jour sont disponibles : ', __FILE__) . trim($toUpdate, ','), '', 'newUpdate');
+					}
+					config::save('update::check', rand(1, 59) . ' ' . rand(6, 7) . ' * * *');
 				}
 
 			} catch (Exception $e) {
