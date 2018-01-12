@@ -836,6 +836,12 @@ class jeedom {
 					$c = new Cron\CronExpression(config::byKey('update::check'), new Cron\FieldFactory);
 					$isDue = $c->isDue();
 				}
+			} catch (Exception $e) {
+
+			} catch (Error $e) {
+
+			}
+			try {
 				if ($isDue && (config::byKey('update::lastCheck') == '' || (strtotime('now') - strtotime(config::byKey('update::lastCheck'))) > 3600)) {
 					update::checkAllUpdate();
 					$updates = update::byStatus('update');
@@ -849,7 +855,7 @@ class jeedom {
 					if (count($updates) > 0) {
 						message::add('update', __('De nouvelles mises à jour sont disponibles : ', __FILE__) . trim($toUpdate, ','), '', 'newUpdate');
 					}
-					config::save('update::check', rand(1, 59) . ' ' . rand(6, 7) . ' * * *');
+					config::save('update::check', rand(1, 59) . ' ' . rand(5, 7) . ' * * *');
 				}
 
 			} catch (Exception $e) {
