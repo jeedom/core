@@ -359,6 +359,9 @@ class interactDef {
 		if ($this->getOptions('allowSyntaxCheck') === '') {
 			$this->setOptions('allowSyntaxCheck', 1);
 		}
+		if ($this->getFiltres('eqLogic_id') == '') {
+			$this->setFiltres('eqLogic_id', 'all');
+		}
 	}
 
 	public function save() {
