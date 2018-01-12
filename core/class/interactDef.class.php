@@ -521,37 +521,39 @@ class interactDef {
 				$values = explode('=', $value);
 				$synonymes[strtolower($values[0])] = explode(',', $values[1]);
 			}
-			$return = array();
 			foreach ($queries as $query) {
-				foreach (self::generateSynonymeVariante($query['query'], $synonymes) as $synonyme) {
-					$query_info = $query;
-					$query_info['query'] = $synonyme;
-					$return[$synonyme] = $query_info;
+				$synonymes = self::generateSynonymeVariante($query['query'], $synonymes);
+				if (count($synonymes) > 0) {
+					foreach ($synonymes as $synonyme) {
+						$query_info = $query;
+						$query_info['query'] = $synonyme;
+						$return[$synonyme] = $query_info;
+					}
 				}
 			}
 		}
 		return $return;
 	}
 
-	public static function generateSynonymeVariante($_text, $_synonymes) {
+	public static function generateSynonymeVariante($_text, $_synonymes, $_deep = 0) {
 		$return = array();
-		if (count($_synonymes) > 0) {
-			foreach ($_synonymes as $replace => $values) {
-				if (stripos($_text, $replace) !== false &&
-					(substr($_text, stripos($_text, $replace) - 1, 1) == ' ' || stripos($_text, $replace) - 1 < 0) &&
-					(substr($_text, stripos($_text, $replace) + strlen($replace), 1) == ' ' || stripos($_text, $replace) + strlen($replace) + 1 > strlen($_text))) {
-					$start = stripos($_text, $replace);
-					foreach (self::generateSynonymeVariante(substr($_text, $start + strlen($replace)), $_synonymes) as $endSentence) {
-						foreach ($values as $value) {
-							$return[] = substr($_text, 0, $start) . $value . $endSentence;
-						}
-					}
-				} else {
-					$return[] = $_text;
+		if (count($_synonymes) == 0) {
+			return $return;
+		}
+		if ($_deep > 10) {
+			return $return;
+		}
+		$_deep++;
+		foreach ($_synonymes as $replace => $values) {
+			foreach ($values as $value) {
+				$result = str_replace($replace, $value, $_text);
+				if ($result != $_text) {
+					$synonymes = $_synonymes;
+					unset($synonymes[$replace]);
+					$return = array_merge($return, self::generateSynonymeVariante($result, $synonymes, $_deep));
+					$return[] = $result;
 				}
 			}
-		} else {
-			$return[] = $_text;
 		}
 		return $return;
 	}
