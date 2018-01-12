@@ -265,7 +265,7 @@ class scenario {
 		} else {
 			$message = __('Scénario exécuté automatiquement sur programmation', __FILE__);
 			$scenarios = scenario::schedule();
-			$trigger = '#schedule#';
+			$trigger = 'schedule';
 			if (jeedom::isDateOk()) {
 				foreach ($scenarios as $key => &$scenario) {
 					if ($scenario->getState() != 'in progress') {
@@ -772,7 +772,7 @@ class scenario {
 		} else {
 			log::add('event', 'info', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclenché par : ', __FILE__) . $_trigger);
 			if ($this->getConfiguration('timeline::enable')) {
-				jeedom::addTimelineEvent(array('type' => 'scenario', 'id' => $this->getId(), 'name' => $this->getHumanName(true), 'datetime' => date('Y-m-d H:i:s'), 'trigger' => $_trigger == '#schedule#' ? 'programmation' : $_trigger));
+				jeedom::addTimelineEvent(array('type' => 'scenario', 'id' => $this->getId(), 'name' => $this->getHumanName(true), 'datetime' => date('Y-m-d H:i:s'), 'trigger' => $_trigger == 'schedule' ? 'programmation' : $_trigger));
 			}
 		}
 		if (count($this->getTags()) == 0) {
