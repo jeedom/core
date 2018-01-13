@@ -331,6 +331,21 @@ class interactQuery {
 		if ($data['cmd']->getType() == 'info') {
 			return trim($data['cmd']->getHumanName() . ' ' . $data['cmd']->execCmd() . ' ' . $data['cmd']->getUnite());
 		} else {
+			if ($data['cmd']->getSubtype() == 'slider') {
+				preg_match_all('/(\d+)/', strtolower(sanitizeAccent($data['query'])), $matches);
+				if (isset($matches[0]) && isset($matches[0][0])) {
+					$data['cmd_parameters']['slider'] = $matches[0][0];
+				}
+			}
+			if ($data['cmd']->getSubtype() == 'color') {
+				$colors = array_change_key_case(config::byKey('convertColor'));
+				foreach ($colors as $name => $value) {
+					if (strpos($data['query'], $name) !== false) {
+						$data['cmd_parameters']['color'] = $value;
+						break;
+					}
+				}
+			}
 			$data['cmd']->execCmd($data['cmd_parameters']);
 			$return = __('C\'est fait', __FILE__) . ' (';
 			$eqLogic = $data['cmd']->getEqLogic();
