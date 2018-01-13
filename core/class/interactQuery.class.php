@@ -281,11 +281,9 @@ class interactQuery {
 			$_parameters['identifier'] = '';
 		}
 		$data = self::findInQuery('object', $_query);
-
 		$data = array_merge($data, self::findInQuery('eqLogic', $data['query'], $data));
 		$data = array_merge($data, self::findInQuery('cmd', $data['query'], $data));
 		if (!isset($data['cmd']) || !is_object($data['cmd'])) {
-
 			$data = array_merge($data, self::findInQuery('summary', $data['query'], $data));
 			log::add('interact', 'debug', print_r($data, true));
 			if (!isset($data['summary'])) {

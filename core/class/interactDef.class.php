@@ -353,6 +353,7 @@ class interactDef {
 		if ($this->getReply() == '') {
 			$this->setReply('#valeur#');
 		}
+		$this->setEnable(1);
 	}
 
 	public function preSave() {
@@ -414,7 +415,6 @@ class interactDef {
 		$plugin_filter = $this->getFiltres('plugin');
 		$visible_filter = $this->getFiltres('visible');
 		$category_filter = $this->getFiltres('category');
-
 		foreach ($inputs as $input) {
 			preg_match_all("/#(.*?)#/", $input, $matches);
 			$matches = $matches[1];
