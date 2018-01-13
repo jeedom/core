@@ -546,7 +546,7 @@ class interactDef {
 		$_deep++;
 		foreach ($_synonymes as $replace => $values) {
 			foreach ($values as $value) {
-				$result = str_replace($replace, $value, $_text);
+				$result = preg_replace('/\b' . $replace . '\b/i', $value, $_text);
 				if ($result != $_text) {
 					$synonymes = $_synonymes;
 					unset($synonymes[$replace]);
