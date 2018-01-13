@@ -582,7 +582,7 @@ class eqLogic {
 			return '';
 		}
 		$version = jeedom::versionAlias($_version, false);
-		if (!$_ignoreHide && $this->getDisplay('showOn' . $version, 1) == 0) {
+		if ($this->getDisplay('showOn' . $version, 1) == 0) {
 			return '';
 		}
 
