@@ -571,7 +571,7 @@ class eqLogic {
 		return true;
 	}
 
-	public function preToHtml($_version = 'dashboard', $_default = array(), $_noCache = false, $_ignoreHide = false) {
+	public function preToHtml($_version = 'dashboard', $_default = array(), $_noCache = false) {
 		if ($_version == '') {
 			throw new Exception(__('La version demandée ne peut pas être vide (mobile, dashboard ou scénario)', __FILE__));
 		}
@@ -726,8 +726,8 @@ class eqLogic {
 		return $replace;
 	}
 
-	public function toHtml($_version = 'dashboard', $_ignoreHide = false) {
-		$replace = $this->preToHtml($_version, array(), false, $_ignoreHide);
+	public function toHtml($_version = 'dashboard') {
+		$replace = $this->preToHtml($_version);
 		if (!is_array($replace)) {
 			return $replace;
 		}

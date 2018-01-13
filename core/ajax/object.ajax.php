@@ -103,7 +103,6 @@ try {
 	}
 
 	if (init('action') == 'toHtml') {
-		$ignoreHide = (init('summary') == '') ? false : true;
 		if (init('id') == '' || init('id') == 'all' || is_json(init('id'))) {
 			if (is_json(init('id'))) {
 				$objects = json_decode(init('id'), true);
@@ -128,7 +127,7 @@ try {
 				}
 				foreach ($eqLogics as $eqLogic) {
 					if (init('category', 'all') == 'all' || $eqLogic->getCategory(init('category')) == 1) {
-						$html .= $eqLogic->toHtml(init('version'), $ignoreHide);
+						$html .= $eqLogic->toHtml(init('version'));
 					}
 				}
 				$return[$i . '::' . $id] = $html;
@@ -145,7 +144,7 @@ try {
 			}
 			foreach ($eqLogics as $eqLogic) {
 				if (init('category', 'all') == 'all' || $eqLogic->getCategory(init('category')) == 1) {
-					$html .= $eqLogic->toHtml(init('version'), $ignoreHide);
+					$html .= $eqLogic->toHtml(init('version'));
 				}
 			}
 			ajax::success($html);
