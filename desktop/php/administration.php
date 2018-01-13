@@ -991,6 +991,18 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 							<input class="configKey form-control" data-l1key="interact::autoreply::summary::synonym" />
 						</div>
 					</div>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonyme commande slider maximum}}</label>
+						<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
+							<input class="configKey form-control" data-l1key="interact::autoreply::cmd::slider::max" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonyme commande slider minimum}}</label>
+						<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
+							<input class="configKey form-control" data-l1key="interact::autoreply::cmd::slider::min" />
+						</div>
+					</div>
 
 					<legend>{{Couleurs}}</legend>
 					<i class="fa fa-plus-circle pull-right cursor" id="bt_addColorConvert" style="font-size: 1.8em;"></i>

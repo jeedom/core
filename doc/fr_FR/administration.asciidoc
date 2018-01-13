@@ -217,6 +217,8 @@ Voici donc les différentes options disponibles :
 * *Synonyme pour les équipements* : Liste des synonymes pour les équipements.
 * *Synonyme pour les commandes* : Liste des synonymes pour les commandes.
 * *Synonyme pour les résumé* : Liste des synonymes pour les résumés.
+* *Synonyme commande slider maximum* : Synonyme pour mettre une commande de type slider au maximum (ex ouvre pour ouvre le volet de la chambre => volet chambre à 100%).
+* *Synonyme commande slider minimum* : Synonyme pour mettre une commande de type slider au minimu (ex ferme pour fermer le volet de la chambre => volet chambre à 0%).
 
 === Couleurs
 

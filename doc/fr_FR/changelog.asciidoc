@@ -2,6 +2,8 @@
 
 == 3.2.0
 
+* Amélioration des interactions automatique
+* Correction de bug sur la gestion des synonyme des interactions
 * Ajout d'un champs recherche utilisateur pour les connexion LDAP/AD (permet de rendre Jeedom compatible AD)
 * Corrections d'orthographe (merci à dab0u pour son énorme travail)
 * JEED-290 : On ne peut plus se connecter avec les identifiants par défaut (admin/admin) à distance, seul le réseau local est autorisé
