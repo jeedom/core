@@ -211,7 +211,7 @@ class interactDef {
 
 	public function checkQuery($_query) {
 		if ($this->getOptions('allowSyntaxCheck', 1) == 1) {
-			$exclude_regexp = "/l'(z|r|t|p|q|s|d|f|g|j|k|l|m|w|x|c|v|b|n)|( |^)la (a|e|y|u|i|o)|( |^)le (a|e|y|u|i|o)|( |^)du (a|e|y|u|i|o)/i";
+			$exclude_regexp = "/l'(z|r|t|p|q|s|d|f|g|j|k|l|m|w|x|c|v|b|n| )|( |^)la (a|e|y|u|i|o)|( |^)le (a|e|y|u|i|o)|( |^)du (a|e|y|u|i|o)/i";
 			if (preg_match($exclude_regexp, $_query)) {
 				return false;
 			}
@@ -328,6 +328,12 @@ class interactDef {
 				'le buanderie',
 				'du buanderie',
 				'la bureau',
+				'de salon',
+				'de maison',
+				'de chambre',
+				'de cuisine',
+				'de espace',
+				'de salle de bain',
 				'(dans|quelqu\'un) entr(é|e)e',
 			);
 			if (preg_match('/( |^)' . implode('( |$)|( |^)', $disallow) . '( |$)/i', $_query)) {
@@ -418,7 +424,7 @@ class interactDef {
 		foreach ($inputs as $input) {
 			preg_match_all("/#(.*?)#/", $input, $matches);
 			$matches = $matches[1];
-			if (in_array('commande', $matches) && (in_array('objet', $matches) || in_array('equipement', $matches))) {
+			if (in_array('commande', $matches) || (in_array('objet', $matches) || in_array('equipement', $matches))) {
 				foreach (object::all() as $object) {
 					if (isset($object_filter[$object->getId()]) && $object_filter[$object->getId()] == 0) {
 						continue;
