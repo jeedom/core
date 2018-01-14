@@ -1093,10 +1093,18 @@ class jeedom {
 	}
 
 	public static function cleanFileSytemRight() {
-		$processUser = posix_getpwuid(posix_geteuid());
-		$processGroup = posix_getgrgid(posix_getegid());
+		$processUser = system::get('www-uid');
+		$processGroup = system::get('www-gid');
+		if ($processUser == '') {
+			$processUser = posix_getpwuid(posix_geteuid());
+			$processUser = $processUser['name'];
+		}
+		if ($processGroup == '') {
+			$processGroup = posix_getgrgid(posix_getegid());
+			$processGroup = $processGroup['name'];
+		}
 		$path = dirname(__FILE__) . '/../../*';
-		exec(system::getCmdSudo() . 'chown -R ' . $processUser['name'] . ':' . $processGroup['name'] . ' ' . $path . ';' . system::getCmdSudo() . 'chmod 775 -R ' . $path);
+		exec(system::getCmdSudo() . 'chown -R ' . $processUser . ':' . $processGroup . ' ' . $path . ';' . system::getCmdSudo() . 'chmod 775 -R ' . $path);
 	}
 
 	public static function checkSpaceLeft() {
