@@ -88,6 +88,7 @@ class repo_market {
 	private $updateBy;
 	private $hardwareCompatibility;
 	private $nbInstall;
+	private $allowVersion = array('stable');
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -547,44 +548,47 @@ class repo_market {
 			config::save('market::lastCommunication', date('Y-m-d H:i:s'));
 		}
 	}
-        /**
-        * 
-        * @param array $_arrayMarket
-        * @return \self
-        */
+	/**
+	 *
+	 * @param array $_arrayMarket
+	 * @return \self
+	 */
 	public static function construct(array $_arrayMarket) {
 		$market = new self();
 		if (!isset($_arrayMarket['id'])) {
 			return;
 		}
 		$market->setId($_arrayMarket['id'])
-                        ->setName($_arrayMarket['name'])
-                        ->setType($_arrayMarket['type']);
-                $market->datetime = json_encode($_arrayMarket['datetime'], JSON_UNESCAPED_UNICODE);
-                $market->setDescription($_arrayMarket['description'])
-                        ->setDownloaded($_arrayMarket['downloaded'])
-                        ->setUser_id($_arrayMarket['user_id'])
-                        ->setVersion($_arrayMarket['version'])
-                        ->setCategorie($_arrayMarket['categorie']);
+			->setName($_arrayMarket['name'])
+			->setType($_arrayMarket['type']);
+		$market->datetime = json_encode($_arrayMarket['datetime'], JSON_UNESCAPED_UNICODE);
+		$market->setDescription($_arrayMarket['description'])
+			->setDownloaded($_arrayMarket['downloaded'])
+			->setUser_id($_arrayMarket['user_id'])
+			->setVersion($_arrayMarket['version'])
+			->setCategorie($_arrayMarket['categorie']);
 		$market->status = json_encode($_arrayMarket['status'], JSON_UNESCAPED_UNICODE);
 		$market->setAuthor($_arrayMarket['author']);
-		if (isset($_arrayMarket['changelog'] )) {
-                    $market->setChangelog($_arrayMarket['changelog']);
-                }
+		if (isset($_arrayMarket['changelog'])) {
+			$market->setChangelog($_arrayMarket['changelog']);
+		}
 		if (isset($_arrayMarket['doc'])) {
-                    $market->setDoc($_arrayMarket['doc']);
-                }
+			$market->setDoc($_arrayMarket['doc']);
+		}
 		$market->setLogicalId($_arrayMarket['logicalId']);
 		if (isset($_arrayMarket['utilization'])) {
-                    $market->setUtilization($_arrayMarket['utilization']);
-                }
-		if (isset($_arrayMarket['certification'])){
-                    $market->setCertification($_arrayMarket['certification']);
-                }
+			$market->setUtilization($_arrayMarket['utilization']);
+		}
+		if (isset($_arrayMarket['certification'])) {
+			$market->setCertification($_arrayMarket['certification']);
+		}
+		if (isset($_arrayMarket['allowVersion'])) {
+			$market->setAllowVersion($_arrayMarket['allowVersion']);
+		}
 		$market->setPurchase($_arrayMarket['purchase'])
-                       ->setCost($_arrayMarket['cost']);
+			->setCost($_arrayMarket['cost']);
 		$market->rating = ($_arrayMarket['rating']);
-		$market->setBuyer($_arrayMarket['buyer']) 
+		$market->setBuyer($_arrayMarket['buyer'])
 			->setUpdateBy($_arrayMarket['updateBy'])
 			->setPrivate($_arrayMarket['private'])
 			->setNbInstall($_arrayMarket['nbInstall']);
@@ -1105,13 +1109,13 @@ class repo_market {
 		return $this;
 	}
 
-	public function getNbInstall() {
-		return $this->nbInstall;
+	public function getAllowVersion() {
+		return $this->allowVersion;
 	}
 
-	public function setNbInstall($nbInstall) {
-		$this->nbInstall = $nbInstall;
-		return $this;
+	public function setVersion($allowVersion) {
+		$this->allowVersion = $allowVersion;
+		return $allowVersion;
 	}
 
 	public function getHardwareCompatibility($_key = '', $_default = '') {

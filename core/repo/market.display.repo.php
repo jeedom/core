@@ -66,13 +66,14 @@ if ($market->getCertification() == 'Obsolète') {
    <br/><br/>
    <?php
 if ($market->getPurchase() == 1) {
-	if ($market->getStatus('pro') == 1) {
+	$allowVersion = $market->getAllowVersion();
+	if ($market->getStatus('pro') == 1 && isset($allowVersion['pro'])) {
 		echo ' <a class="btn btn-warning bt_installFromMarket" data-version="pro" style="color : white;" data-market_logicalId="' . $market->getLogicalId() . '" data-market_id="' . $market->getId() . '" ><i class="fa fa-plus-circle"></i> {{Installer pro}}</a>';
 	}
-	if ($market->getStatus('stable') == 1) {
+	if ($market->getStatus('stable') == 1 && isset($allowVersion['stable'])) {
 		echo ' <a class="btn btn-success bt_installFromMarket" data-version="stable" style="color : white;" data-market_logicalId="' . $market->getLogicalId() . '" data-market_id="' . $market->getId() . '" ><i class="fa fa-plus-circle"></i> {{Installer stable}}</a>';
 	}
-	if ($market->getStatus('beta') == 1) {
+	if ($market->getStatus('beta') == 1 && isset($allowVersion['beta'])) {
 		echo ' <a class="btn btn-warning bt_installFromMarket" data-version="beta" style="color : white;" data-market_logicalId="' . $market->getLogicalId() . '" data-market_id="' . $market->getId() . '" ><i class="fa fa-plus-circle"></i> {{Installer beta}}</a>';
 	}
 
