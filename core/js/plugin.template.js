@@ -350,7 +350,7 @@ $('#div_pageContainer').on( 'click','.cmd .cmdAction[data-action=test]',function
 
 });
 
-$('#div_pageContainer').on( 'dblclick','.cmd input,select,span', function (event) {
+$('#div_pageContainer').on( 'dblclick','.cmd input,select,span,a', function (event) {
    event.stopPropagation();
 });
 

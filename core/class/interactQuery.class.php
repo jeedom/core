@@ -252,6 +252,7 @@ class interactQuery {
 			}
 			return $return;
 		}
+		usort($objects, array("interactQuery", "cmp_objectName"));
 		foreach ($objects as $object) {
 			if (count($synonyms) > 0 && in_array(strtolower($object->getName()), $synonyms)) {
 				$return[$_type] = $object;
@@ -275,17 +276,37 @@ class interactQuery {
 		return $return;
 	}
 
+	public static function cmp_objectName($a, $b) {
+		return (strlen($a->getName()) < strlen($b->getName())) ? +1 : -1;
+	}
+
 	public static function autoInteract($_query, $_parameters = array()) {
 		global $JEEDOM_INTERNAL_CONFIG;
 		if (!isset($_parameters['identifier'])) {
 			$_parameters['identifier'] = '';
 		}
 		$data = self::findInQuery('object', $_query);
-
+		$data['cmd_parameters'] = array();
 		$data = array_merge($data, self::findInQuery('eqLogic', $data['query'], $data));
 		$data = array_merge($data, self::findInQuery('cmd', $data['query'], $data));
+		if (isset($data['eqLogic']) && is_object($data['eqLogic']) && (!isset($data['cmd']) || !is_object($data['cmd']))) {
+			foreach ($data['eqLogic']->getCmd('action') as $cmd) {
+				if ($cmd->getSubtype() == 'slider') {
+					break;
+				}
+			}
+			if (is_object($cmd)) {
+				if (preg_match_all('/' . config::byKey('interact::autoreply::cmd::slider::max') . '/i', $data['query'])) {
+					$data['cmd'] = $cmd;
+					$data['cmd_parameters']['slider'] = $cmd->getConfiguration('maxValue', 100);
+				}
+				if (preg_match_all('/' . config::byKey('interact::autoreply::cmd::slider::min') . '/i', $data['query'])) {
+					$data['cmd'] = $cmd;
+					$data['cmd_parameters']['slider'] = $cmd->getConfiguration('minValue', 0);
+				}
+			}
+		}
 		if (!isset($data['cmd']) || !is_object($data['cmd'])) {
-
 			$data = array_merge($data, self::findInQuery('summary', $data['query'], $data));
 			log::add('interact', 'debug', print_r($data, true));
 			if (!isset($data['summary'])) {
@@ -310,7 +331,22 @@ class interactQuery {
 		if ($data['cmd']->getType() == 'info') {
 			return trim($data['cmd']->getHumanName() . ' ' . $data['cmd']->execCmd() . ' ' . $data['cmd']->getUnite());
 		} else {
-			$data['cmd']->execCmd();
+			if ($data['cmd']->getSubtype() == 'slider') {
+				preg_match_all('/(\d+)/', strtolower(sanitizeAccent($data['query'])), $matches);
+				if (isset($matches[0]) && isset($matches[0][0])) {
+					$data['cmd_parameters']['slider'] = $matches[0][0];
+				}
+			}
+			if ($data['cmd']->getSubtype() == 'color') {
+				$colors = array_change_key_case(config::byKey('convertColor'));
+				foreach ($colors as $name => $value) {
+					if (strpos($data['query'], $name) !== false) {
+						$data['cmd_parameters']['color'] = $value;
+						break;
+					}
+				}
+			}
+			$data['cmd']->execCmd($data['cmd_parameters']);
 			$return = __('C\'est fait', __FILE__) . ' (';
 			$eqLogic = $data['cmd']->getEqLogic();
 			if (is_object($eqLogic)) {
@@ -321,6 +357,9 @@ class interactQuery {
 				$return .= ' ' . $data['cmd']->getEqLogic()->getName();
 			}
 			$return .= ' ' . $data['cmd']->getName();
+			if (isset($data['cmd_parameters']['slider'])) {
+				$return .= ' => ' . $data['cmd_parameters']['slider'] . '%';
+			}
 			return $return . ')';
 		}
 		return '';

@@ -211,7 +211,7 @@ class interactDef {
 
 	public function checkQuery($_query) {
 		if ($this->getOptions('allowSyntaxCheck', 1) == 1) {
-			$exclude_regexp = "/l'(z|r|t|p|q|s|d|f|g|j|k|l|m|w|x|c|v|b|n)|( |^)la (a|e|y|u|i|o)|( |^)le (a|e|y|u|i|o)|( |^)du (a|e|y|u|i|o)/i";
+			$exclude_regexp = "/l'(z|r|t|p|q|s|d|f|g|j|k|l|m|w|x|c|v|b|n| )|( |^)la (a|e|y|u|i|o)|( |^)le (a|e|y|u|i|o)|( |^)du (a|e|y|u|i|o)/i";
 			if (preg_match($exclude_regexp, $_query)) {
 				return false;
 			}
@@ -328,6 +328,12 @@ class interactDef {
 				'le buanderie',
 				'du buanderie',
 				'la bureau',
+				'de salon',
+				'de maison',
+				'de chambre',
+				'de cuisine',
+				'de espace',
+				'de salle de bain',
 				'(dans|quelqu\'un) entr(é|e)e',
 			);
 			if (preg_match('/( |^)' . implode('( |$)|( |^)', $disallow) . '( |$)/i', $_query)) {
@@ -353,11 +359,15 @@ class interactDef {
 		if ($this->getReply() == '') {
 			$this->setReply('#valeur#');
 		}
+		$this->setEnable(1);
 	}
 
 	public function preSave() {
 		if ($this->getOptions('allowSyntaxCheck') === '') {
 			$this->setOptions('allowSyntaxCheck', 1);
+		}
+		if ($this->getFiltres('eqLogic_id') == '') {
+			$this->setFiltres('eqLogic_id', 'all');
 		}
 	}
 
@@ -411,11 +421,10 @@ class interactDef {
 		$plugin_filter = $this->getFiltres('plugin');
 		$visible_filter = $this->getFiltres('visible');
 		$category_filter = $this->getFiltres('category');
-
 		foreach ($inputs as $input) {
 			preg_match_all("/#(.*?)#/", $input, $matches);
 			$matches = $matches[1];
-			if (in_array('commande', $matches) && (in_array('objet', $matches) || in_array('equipement', $matches))) {
+			if (in_array('commande', $matches) || (in_array('objet', $matches) || in_array('equipement', $matches))) {
 				foreach (object::all() as $object) {
 					if (isset($object_filter[$object->getId()]) && $object_filter[$object->getId()] == 0) {
 						continue;
@@ -518,37 +527,39 @@ class interactDef {
 				$values = explode('=', $value);
 				$synonymes[strtolower($values[0])] = explode(',', $values[1]);
 			}
-			$return = array();
 			foreach ($queries as $query) {
-				foreach (self::generateSynonymeVariante($query['query'], $synonymes) as $synonyme) {
-					$query_info = $query;
-					$query_info['query'] = $synonyme;
-					$return[$synonyme] = $query_info;
+				$synonymes = self::generateSynonymeVariante($query['query'], $synonymes);
+				if (count($synonymes) > 0) {
+					foreach ($synonymes as $synonyme) {
+						$query_info = $query;
+						$query_info['query'] = $synonyme;
+						$return[$synonyme] = $query_info;
+					}
 				}
 			}
 		}
 		return $return;
 	}
 
-	public static function generateSynonymeVariante($_text, $_synonymes) {
+	public static function generateSynonymeVariante($_text, $_synonymes, $_deep = 0) {
 		$return = array();
-		if (count($_synonymes) > 0) {
-			foreach ($_synonymes as $replace => $values) {
-				if (stripos($_text, $replace) !== false &&
-					(substr($_text, stripos($_text, $replace) - 1, 1) == ' ' || stripos($_text, $replace) - 1 < 0) &&
-					(substr($_text, stripos($_text, $replace) + strlen($replace), 1) == ' ' || stripos($_text, $replace) + strlen($replace) + 1 > strlen($_text))) {
-					$start = stripos($_text, $replace);
-					foreach (self::generateSynonymeVariante(substr($_text, $start + strlen($replace)), $_synonymes) as $endSentence) {
-						foreach ($values as $value) {
-							$return[] = substr($_text, 0, $start) . $value . $endSentence;
-						}
-					}
-				} else {
-					$return[] = $_text;
+		if (count($_synonymes) == 0) {
+			return $return;
+		}
+		if ($_deep > 10) {
+			return $return;
+		}
+		$_deep++;
+		foreach ($_synonymes as $replace => $values) {
+			foreach ($values as $value) {
+				$result = preg_replace('/\b' . $replace . '\b/i', $value, $_text);
+				if ($result != $_text) {
+					$synonymes = $_synonymes;
+					unset($synonymes[$replace]);
+					$return = array_merge($return, self::generateSynonymeVariante($result, $synonymes, $_deep));
+					$return[] = $result;
 				}
 			}
-		} else {
-			$return[] = $_text;
 		}
 		return $return;
 	}

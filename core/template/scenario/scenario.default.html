@@ -12,7 +12,7 @@
 </div>
 <div class="input-group input-group-sm" style="width: 100%">
     <span class="input-group-addon" id="basic-addon1" style="width: 100px">{{Tags}}</span>
-    <input class="title expressionAttr form-control input-sm" data-l1key="options" data-l2key="tags" value="#tags#" data-cmd_id="#id#" data-uid="#uid#"/>
+    <textarea class="tags expressionAttr form-control ta_autosize" data-l1key="options" data-l2key="tags" rows="1" data-cmd_id="#id#" data-uid="#uid#" style="resize:vertical;" placeholder="{{Tags}}">#tags#</textarea>
 </div>
 <script>
     if ('#action#' != '' && $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=action] option[value=#action#]').html() != undefined) {

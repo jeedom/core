@@ -674,7 +674,6 @@ class jeedom {
 		$mindate = strtotime($minDateValue->format('Y-m-d 00:00:00'));
 		$maxDateValue = $minDateValue->modify('+6 year')->format('Y-m-d 00:00:00');
 		$maxdate = strtotime($maxDateValue);
-
 		if (strtotime('now') < $mindate || strtotime('now') > $maxdate) {
 			self::forceSyncHour();
 			sleep(3);
@@ -829,37 +828,6 @@ class jeedom {
 			event::add('refresh');
 		}
 		self::isDateOk();
-		if (config::byKey('update::autocheck', 'core', 1) == 1) {
-			$isDue = true;
-			try {
-				if (config::byKey('update::check') != '') {
-					$c = new Cron\CronExpression(config::byKey('update::check'), new Cron\FieldFactory);
-					$isDue = $c->isDue();
-					if ($isDue) {
-						if (config::byKey('update::lastCheck') == '' || (strtotime('now') - strtotime(config::byKey('update::lastCheck'))) > 3600) {
-							update::checkAllUpdate();
-							$updates = update::byStatus('update');
-							if (count($updates) > 0) {
-								$toUpdate = '';
-								foreach ($updates as $update) {
-									$toUpdate .= $update->getLogicalId() . ',';
-								}
-							}
-							$updates = update::byStatus('update');
-							if (count($updates) > 0) {
-								message::add('update', __('De nouvelles mises à jour sont disponibles : ', __FILE__) . trim($toUpdate, ','), '', 'newUpdate');
-							}
-							config::save('update::check', rand(1, 59) . ' ' . rand(6, 7) . ' * * *');
-						}
-					}
-				}
-
-			} catch (Exception $e) {
-
-			} catch (Error $e) {
-
-			}
-		}
 	}
 
 	public static function cronDaily() {
@@ -881,6 +849,26 @@ class jeedom {
 	public static function cronHourly() {
 		try {
 			cache::set('hour', date('Y-m-d H:i:s'));
+		} catch (Exception $e) {
+			log::add('jeedom', 'error', $e->getMessage());
+		} catch (Error $e) {
+			log::add('jeedom', 'error', $e->getMessage());
+		}
+		try {
+			if (config::byKey('update::autocheck', 'core', 1) == 1 && (config::byKey('update::lastCheck') == '' || (strtotime('now') - strtotime(config::byKey('update::lastCheck'))) > (23 * 3600))) {
+				update::checkAllUpdate();
+				$updates = update::byStatus('update');
+				if (count($updates) > 0) {
+					$toUpdate = '';
+					foreach ($updates as $update) {
+						$toUpdate .= $update->getLogicalId() . ',';
+					}
+				}
+				$updates = update::byStatus('update');
+				if (count($updates) > 0) {
+					message::add('update', __('De nouvelles mises à jour sont disponibles : ', __FILE__) . trim($toUpdate, ','), '', 'newUpdate');
+				}
+			}
 		} catch (Exception $e) {
 			log::add('jeedom', 'error', $e->getMessage());
 		} catch (Error $e) {
@@ -1105,10 +1093,18 @@ class jeedom {
 	}
 
 	public static function cleanFileSytemRight() {
-		$processUser = posix_getpwuid(posix_geteuid());
-		$processGroup = posix_getgrgid(posix_getegid());
+		$processUser = system::get('www-uid');
+		$processGroup = system::get('www-gid');
+		if ($processUser == '') {
+			$processUser = posix_getpwuid(posix_geteuid());
+			$processUser = $processUser['name'];
+		}
+		if ($processGroup == '') {
+			$processGroup = posix_getgrgid(posix_getegid());
+			$processGroup = $processGroup['name'];
+		}
 		$path = dirname(__FILE__) . '/../../*';
-		exec(system::getCmdSudo() . 'chown -R ' . $processUser['name'] . ':' . $processGroup['name'] . ' ' . $path . ';' . system::getCmdSudo() . 'chmod 775 -R ' . $path);
+		exec(system::getCmdSudo() . 'chown -R ' . $processUser . ':' . $processGroup . ' ' . $path . ';' . system::getCmdSudo() . 'chmod 775 -R ' . $path);
 	}
 
 	public static function checkSpaceLeft() {

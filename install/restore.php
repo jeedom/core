@@ -186,11 +186,11 @@ try {
 	$cache->remove();
 
 	try {
-		echo 'Vérifie les droits sur les fichiers de jeedom...';
-		jeedom::cleanFileSytemRight();
+		echo "Check jeedom consistency...";
+		require_once dirname(__FILE__) . '/consistency.php';
 		echo "OK\n";
-	} catch (Exception $e) {
-		echo "NOK\n";
+	} catch (Exception $ex) {
+		echo "***ERREUR*** " . $ex->getMessage() . "\n";
 	}
 
 	try {

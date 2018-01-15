@@ -123,7 +123,7 @@ try {
 					$eqLogics = eqLogic::byObjectId($id, true, true);
 				} else {
 					$object = object::byId($id);
-					$eqLogics = $object->getEqLogicBySummary(init('summary'), true, true);
+					$eqLogics = $object->getEqLogicBySummary(init('summary'), true, false);
 				}
 				foreach ($eqLogics as $eqLogic) {
 					if (init('category', 'all') == 'all' || $eqLogic->getCategory(init('category')) == 1) {
@@ -140,7 +140,7 @@ try {
 				$eqLogics = eqLogic::byObjectId(init('id'), true, true);
 			} else {
 				$object = object::byId(init('id'));
-				$eqLogics = $object->getEqLogicBySummary(init('summary'), true, true);
+				$eqLogics = $object->getEqLogicBySummary(init('summary'), true, false);
 			}
 			foreach ($eqLogics as $eqLogic) {
 				if (init('category', 'all') == 'all' || $eqLogic->getCategory(init('category')) == 1) {
