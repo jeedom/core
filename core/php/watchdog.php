@@ -49,7 +49,7 @@ if ($rc == 0) {
 	} else {
 		echo "NOK\n";
 		echo "Trying to restart MySql\n";
-		shell_exec('sudo systemctl restart mysql');
+		shell_exec('systemctl restart mysql');
 		echo "Recheck MySql => ";
 		exec('systemctl status mysql', $output, $rc);
 		if ($rc != 0) {
@@ -77,7 +77,7 @@ if ($rc == 0) {
 	} else {
 		echo "NOK\n";
 		echo "Trying to restart Nginx\n";
-		shell_exec('sudo systemctl restart nginx');
+		shell_exec('systemctl restart nginx');
 		echo "Recheck Nginx => ";
 		exec('systemctl status nginx', $output, $rc);
 		if ($rc != 0) {
