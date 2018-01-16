@@ -44,7 +44,6 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
          <?php }
 ?>
        </ul>
-
        <div class="tab-content" id="div_displayCmdConfigure">
         <div role="tabpanel" class="tab-pane active" id="cmd_information">
           <br/>
@@ -59,41 +58,42 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                       <span class="cmdAttr label label-primary" data-l1key="id" style="font-size : 1em;"></span>
                     </div>
                   </div>
-
                   <div class="form-group">
                     <label class="col-xs-4 control-label">{{Logical ID}}</label>
                     <div class="col-xs-4">
                       <span class="cmdAttr label label-primary" data-l1key="logicalId" style="font-size : 1em;"></span>
                     </div>
                   </div>
-
                   <div class="form-group">
                     <label class="col-xs-4 control-label">{{Nom}}</label>
                     <div class="col-xs-4">
                       <span class="cmdAttr label label-primary" data-l1key="name" style="font-size : 1em;"></span>
                     </div>
                   </div>
-
                   <div class="form-group">
                     <label class="col-xs-4 control-label">{{Type}}</label>
                     <div class="col-xs-4">
                       <span class="cmdAttr label label-primary" data-l1key="type" style="font-size : 1em;"></span>
                     </div>
                   </div>
-
                   <div class="form-group">
                     <label class="col-xs-4 control-label">{{Sous-type}}</label>
                     <div class="col-xs-4">
                       <span class="cmdAttr label label-primary" data-l1key="subType" style="font-size : 1em;"></span>
                     </div>
                   </div>
-
+                  <div class="form-group">
+                    <label class="col-xs-4 control-label">{{Commande déclenchant une mise à jour}}</label>
+                    <div class="col-xs-4">
+                      <span class="cmdAttr label label-primary" data-l1key="value" style="font-size : 1em;"></span>
+                    </div>
+                  </div>
                   <?php if ($cmd->getType() == 'action' && $cmd->getSubtype() == 'select') {
 	?>
-                  <div class="form-group">
+                   <div class="form-group">
                     <label class="col-xs-4 control-label">{{Valeurs possibles}}</label>
                     <div class="col-xs-8">
-                    <?php
+                      <?php
 $elements = explode(';', $cmd->getConfiguration('listValue', ''));
 	foreach ($elements as $element) {
 		$coupleArray = explode('|', $element);
@@ -102,12 +102,7 @@ $elements = explode(';', $cmd->getConfiguration('listValue', ''));
 	?>
                     </div>
                   </div>
-
-
                   <?php }?>
-
-
-
                   <?php if ($cmd->getType() == 'info') {?>
                   <div class="form-group">
                     <label class="col-xs-4 control-label">{{Valeur}}</label>
@@ -115,14 +110,12 @@ $elements = explode(';', $cmd->getConfiguration('listValue', ''));
                       <span class="label label-primary" style="font-size : 1em;"><?php echo $cmd->getCache('value') ?></span>
                     </div>
                   </div>
-
                   <div class="form-group">
                     <label class="col-xs-4 control-label">{{Date collecte}}</label>
                     <div class="col-xs-4">
                       <span class="label label-primary" style="font-size : 1em;"><?php echo $cmd->getCache('collectDate') ?></span>
                     </div>
                   </div>
-
                   <div class="form-group">
                     <label class="col-xs-4 control-label">{{Date valeur}}</label>
                     <div class="col-xs-4">
@@ -130,15 +123,12 @@ $elements = explode(';', $cmd->getConfiguration('listValue', ''));
                     </div>
                   </div>
                   <?php }?>
-
-
                 </fieldset>
               </form>
             </div>
             <div class="col-sm-6" >
               <form class="form-horizontal">
                 <fieldset>
-
                  <div class="form-group">
                   <label class="col-xs-4 control-label">{{URL directe}}</label>
                   <div class="col-xs-8">
@@ -147,22 +137,12 @@ echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fa 
 ?>
                   </div>
                 </div>
-
-
                 <div class="form-group">
                   <label class="col-xs-4 control-label">{{Unité}}</label>
                   <div class="col-xs-4">
                     <span class="cmdAttr label label-primary" data-l1key="unite" style="font-size : 1em;"></span>
                   </div>
                 </div>
-
-                <div class="form-group">
-                  <label class="col-xs-4 control-label">{{Commande déclenchant une mise à jour}}</label>
-                  <div class="col-xs-4">
-                    <span class="cmdAttr label label-primary" data-l1key="value" style="font-size : 1em;"></span>
-                  </div>
-                </div>
-
                 <div class="form-group">
                   <label class="col-xs-4 control-label">{{Visible}}</label>
                   <div class="col-xs-4">
@@ -175,6 +155,12 @@ echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fa 
                     <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="timeline::enable" />
                   </div>
                 </div>
+                  <div class="form-group">
+                  <label class="col-xs-4 control-label">{{Interdire dans les interactions automatique}}</label>
+                  <div class="col-xs-4">
+                    <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="interact::auto::disable" />
+                  </div>
+                </div>
                 <div class="iconeGeneric">
                  <label class="col-xs-4 control-label">{{Icône}}</label>
                  <div class="col-xs-4">
@@ -182,7 +168,6 @@ echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fa 
                   <a class="btn btn-default btn-sm" id="bt_cmdConfigureChooseIcon"><i class="fa fa-flag"></i> {{Icône}}</a>
                 </div>
               </div>
-
             </fieldset>
           </form>
         </div>

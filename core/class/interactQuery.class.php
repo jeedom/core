@@ -254,6 +254,9 @@ class interactQuery {
 		}
 		usort($objects, array("interactQuery", "cmp_objectName"));
 		foreach ($objects as $object) {
+			if ($object->getConfiguration('interact::auto::disable', 0) == 1) {
+				continue;
+			}
 			if (count($synonyms) > 0 && in_array(strtolower($object->getName()), $synonyms)) {
 				$return[$_type] = $object;
 				break;
@@ -346,7 +349,7 @@ class interactQuery {
 					}
 				}
 			}
-			$data['cmd']->execCmd($data['cmd_parameters']);
+			//$data['cmd']->execCmd($data['cmd_parameters']);
 			$return = __('C\'est fait', __FILE__) . ' (';
 			$eqLogic = $data['cmd']->getEqLogic();
 			if (is_object($eqLogic)) {
