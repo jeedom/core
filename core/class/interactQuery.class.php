@@ -349,7 +349,7 @@ class interactQuery {
 					}
 				}
 			}
-			//$data['cmd']->execCmd($data['cmd_parameters']);
+			$data['cmd']->execCmd($data['cmd_parameters']);
 			$return = __('C\'est fait', __FILE__) . ' (';
 			$eqLogic = $data['cmd']->getEqLogic();
 			if (is_object($eqLogic)) {
