@@ -471,21 +471,26 @@ class eqLogic {
 		$html = '';
 		$color = '#2ecc71';
 		$level = 'good';
+		$niveau = '3';
 		$battery = $this->getConfiguration('battery_type', 'none');
 		if (strpos($battery, ' ') !== false) {
 			$battery = substr(strrchr($battery, " "), 1);
 		}
 		$plugins = $this->getEqType_name();
-		$object_name = '';
+		$object_name = 'Aucun';
 		if (is_object($this->getObject())) {
 			$object_name = $this->getObject()->getName();
 		}
 		if ($this->getStatus('battery') <= $this->getConfiguration('battery_danger_threshold', config::byKey('battery::danger'))) {
 			$color = '#e74c3c';
 			$level = 'critical';
+			$niveau = '0';
 		} else if ($this->getStatus('battery') <= $this->getConfiguration('battery_warning_threshold', config::byKey('battery::warning'))) {
 			$color = '#f1c40f';
 			$level = 'warning';
+			$niveau = '1';
+		} else if ($this->getStatus('battery') <= 75) {
+			$niveau = '2';
 		}
 		$classAttr = $level . ' ' . $battery . ' ' . $plugins . ' ' . $object_name;
 		$idAttr = $level . '__' . $battery . '__' . $plugins . '__' . $object_name;
@@ -495,7 +500,8 @@ class eqLogic {
 		} else {
 			$html .= '<div class="widget-name" style="text-align : center;"><a href="' . $this->getLinkToConfiguration() . '" style="font-size : 1em;">' . $this->getName() . '</a><br/><span style="font-size: 0.95em;position:relative;top:-5px;cursor:default;">' . $object_name . '</span></div>';
 		}
-		$html .= '<div style="text-align : center;"><span style="font-size:2.2em;font-weight: bold;cursor:default;">' . $this->getStatus('battery', -2) . '</span><span>%</span></div>';
+		$html .= '<div style="text-align : center;font-size:2.2em;font-weight: bold;margin-top:-25px;margin-bottom:-25px"><i class="icon jeedom-batterie' . $niveau . ' tooltips" title="' .  $this->getStatus('battery', -2) . '%" style="font-size :2.5em;"></i></div>';
+		$html .= '<div style="text-align : center;"><span style="font-size:1.2em;font-weight: bold;cursor:default;">' . $this->getStatus('battery', -2) . '</span><span>%</span></div>';
 		$html .= '<div style="text-align : center; cursor:default;">' . __('Le', __FILE__) . $this->getStatus('batteryDatetime', __('inconnue', __FILE__)) . '</div>';
 		if ($this->getConfiguration('battery_type', '') != '') {
 			$html .= '<span class="pull-right" style="font-size : 0.8em;margin-bottom: 3px;margin-right: 5px;cursor:default;" title="Piles">' . $this->getConfiguration('battery_type', '') . '</span>';
