@@ -34,6 +34,7 @@ if (!isConnect('admin')) {
 <script type="text/javascript">
 	var rebooti = '0';
 	var testjeedom = '0';
+	jeedom.rebootSystem();
 
 	function refresh() {
 		$.ajax({
@@ -62,7 +63,6 @@ if (!isConnect('admin')) {
 	}
 
 	function reboot_jeedom(rebooti){
-		jeedom.rebootSystem();
 		$('#div_reboot_jeedom_texte').empty().html('<h6>Merci de patienter...<br />Jeedom est en cours de redémarrage.</h6>');
 		$('#progressbar_reboot').width('25%');
 		setInterval('page_rebootjs(rebooti)', 15000);
