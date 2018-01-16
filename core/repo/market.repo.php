@@ -88,7 +88,7 @@ class repo_market {
 	private $updateBy;
 	private $hardwareCompatibility;
 	private $nbInstall;
-	private $allowVersion = array('stable');
+	private $allowVersion = array();
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -590,8 +590,7 @@ class repo_market {
 		$market->rating = ($_arrayMarket['rating']);
 		$market->setBuyer($_arrayMarket['buyer'])
 			->setUpdateBy($_arrayMarket['updateBy'])
-			->setPrivate($_arrayMarket['private'])
-			->setNbInstall($_arrayMarket['nbInstall']);
+			->setPrivate($_arrayMarket['private']);
 		$market->img = json_encode($_arrayMarket['img'], JSON_UNESCAPED_UNICODE);
 		$market->link = json_encode($_arrayMarket['link'], JSON_UNESCAPED_UNICODE);
 		$market->language = json_encode($_arrayMarket['language'], JSON_UNESCAPED_UNICODE);
@@ -1113,7 +1112,7 @@ class repo_market {
 		return $this->allowVersion;
 	}
 
-	public function setVersion($allowVersion) {
+	public function setAllowVersion($allowVersion) {
 		$this->allowVersion = $allowVersion;
 		return $allowVersion;
 	}
