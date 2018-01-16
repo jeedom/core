@@ -149,6 +149,7 @@ $lastKnowDate = $cache->getValue();
 								<option value="Europe/Lisbon">(GMT) Greenwich Mean Time : Lisbon</option>
 								<option value="Europe/London">(GMT) Greenwich Mean Time : London</option>
 								<option value="Africa/Abidjan">(GMT) Monrovia, Reykjavik</option>
+								<option value="Africa/Casablanca">(GMT) Greenwich Mean Time : Casablanca</option>
 								<option value="Europe/Amsterdam">(GMT+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna</option>
 								<option value="Europe/Belgrade">(GMT+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague</option>
 								<option value="Europe/Brussels">(GMT+01:00) Brussels, Copenhagen, Madrid, Paris</option>
