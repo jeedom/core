@@ -27,8 +27,8 @@ if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SE
 $datetime = date('Y-m-d H:i:s');
 echo "Watchdog Jeedom at " . $datetime . "\n";
 
-$update_in_progress = exec('ps -C apt,dpkg -o pid= |  wc -l');
-if ($update_in_progress != 0) {
+$update_in_progress = exec('ps -C apt,dpkg |  wc -l');
+if ($update_in_progress > 1) {
 	echo 'Update (apt or dpkg) in progress, cancel watchdog';
 	die();
 }
