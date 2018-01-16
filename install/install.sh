@@ -282,7 +282,7 @@ step_10_jeedom_post() {
 	  	fi
 	fi
 	if [ ! -f /etc/cron.d/jeedom_watchdog ]; then
-		echo "* * * * * root /usr/bin/php ${WEBSERVER_HOME}/core/php/watchdog.php >> /dev/null" > /etc/cron.d/jeedom_watchdog
+		echo "*/5 * * * * root /usr/bin/php ${WEBSERVER_HOME}/core/php/watchdog.php >> /dev/null" > /etc/cron.d/jeedom_watchdog
 		if [ $? -ne 0 ]; then
 	    	echo "${ROUGE}Ne peut installer le cron de jeedom - Annulation${NORMAL}"
 	    	exit 1
