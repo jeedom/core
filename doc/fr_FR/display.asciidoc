@@ -167,6 +167,7 @@ L'onglet *Informations* contient les informations générales sur la commande  :
 * *Commande déclenchant une mise à jour* : Donne l'identifiant d'une autre commande qui, si cette autre commande change, va forcer la mise à jour de la commande visualisée.
 * *Visible* : Cochez cette case pour que la commande soit visible.
 * *Suivre dans la timeline* : Cochez cette case pour que cette commande soit visible dans la timeline quand elle est utilisée.
+* *Interdire dans les interactions automatique* : interdit les interactions automatique sur cette commande
 * *Icône* : Permet de changer l'icône de la commande.
 
 Vous avez aussi trois autres boutons oranges en dessous :

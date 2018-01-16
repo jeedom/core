@@ -2,6 +2,7 @@
 
 == 3.2.0
 
+* Possibilité d'interdire une commande dans les interactions automatique
 * Amélioration des interactions automatique
 * Correction de bug sur la gestion des synonyme des interactions
 * Ajout d'un champs recherche utilisateur pour les connexion LDAP/AD (permet de rendre Jeedom compatible AD)
