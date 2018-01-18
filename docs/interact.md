@@ -38,7 +38,7 @@ En haut de page, on trouve 3 boutons :
 > aller dans l’interaction en question et la sauvegarder de nouveau pour
 > créer les phrases de ce nouveau module.
 
-Principe {#_principe}
+Principe 
 ========
 
 Le principe de création est assez simple, on va définir une phrase
@@ -54,7 +54,7 @@ l’interaction n’est pas liée à une action mais une information ou si on
 souhaite réaliser une action particulière après celle-ci (il est aussi
 possible d’exécuter un scénario, de contrôler plusieurs commandes…​).
 
-Configuration {#_configuration}
+Configuration 
 =============
 
 La page de configuration est constituée de plusieurs onglets et de
@@ -69,7 +69,7 @@ boutons :
 
 -   **Dupliquer** : duplique l’interaction courrante
 
-Général {#_général}
+Général 
 =======
 
 -   **Nom** : nom de l’interaction (peut être vide, le nom remplace le
@@ -94,7 +94,7 @@ Général {#_général}
 -   **Utilisateurs autorisés** : limite l’interaction à certains
     utilisateurs (les logins séparés par des |).
 
-Filtres {#_filtres}
+Filtres 
 =======
 
 -   **Limiter aux commandes de type** : permet de n’utiliser que les
@@ -122,20 +122,20 @@ Filtres {#_filtres}
     seul équipement/module (Jeedom crée la liste automatiquement à
     partir des équipements/modules que vous avez).
 
-Action {#_action}
+Action 
 ======
 
 A utiliser si vous voulez cibler une ou plusieurs commandes spécifiques
 ou passer des paramètres particuliers.
 
-Exemples {#_exemples}
+Exemples 
 ========
 
 > **Note**
 >
 > Les captures d’écran peuvent être différentes au vue des évolutions.
 
-Interaction simple {#_interaction_simple}
+Interaction simple 
 ------------------
 
 La façon la plus simple de configurer une interaction, c’est de lui
@@ -170,7 +170,7 @@ action des interactions).
 > sans accent, appuyer sur la touche tabulation de votre clavier pour
 > faire apparaitre le sélecteur de scénario.
 
-Interaction multiple commandes {#_interaction_multiple_commandes}
+Interaction multiple commandes 
 ------------------------------
 
 Nous allons ici voir tout l’intérêt et toute la puissance des
@@ -253,7 +253,7 @@ quelques incohérences du style "un entrée" car si chez vous, vous avez
 une personne étrangère qui ne parle pas correctement le français les
 interactions fonctionneront tout de même.
 
-Personnaliser les réponses {#_personnaliser_les_réponses}
+Personnaliser les réponses 
 --------------------------
 
 Jusqu’à présent, comme réponse à une interaction, nous avions une simple
@@ -273,7 +273,7 @@ une température, un nombre de personnes, etc.
 
 ![interact012](../images/interact012.png)
 
-Conversion binaire {#_conversion_binaire}
+Conversion binaire 
 ------------------
 
 Les conversions binaires s’appliquent aux commandes de type info dont le
@@ -301,7 +301,7 @@ un peu plus longue.
 >
 > Les tags ne fonctionnent pas dans les conversions binaires.
 
-Utilisateurs autorisés {#_utilisateurs_autorisés}
+Utilisateurs autorisés 
 ----------------------
 
 Le champ "Utilisateurs autorisés" permet de n’autoriser que certaines
@@ -313,7 +313,7 @@ Exemple : personne1|personne2
 On peut imaginer qu’une alarme peut être activée ou désactivée par un
 enfant ou un voisin qui viendrait arroser les plantes en votre absence.
 
-Regexp d’exclusion {#_regexp_d_exclusion}
+Regexp d’exclusion 
 ------------------
 
 Il est possible de créer des
@@ -422,7 +422,7 @@ Liens utiles :
 
 -   <https://openclassrooms.com/courses/concevez-votre-site-web-avec-php-et-mysql/les-expressions-regulieres-partie-1-2>
 
-Réponse composée de plusieurs informations {#_réponse_composée_de_plusieurs_informations}
+Réponse composée de plusieurs informations 
 ------------------------------------------
 
 Il est aussi possible de mettre plusieurs commandes info dans une
@@ -435,10 +435,10 @@ réponse avec 3 températures différentes, on peut donc ici mettre un peu
 tout ce que l’on veut afin d’avoir un ensemble d’informations en une
 seule fois.
 
-Y a-t-il quelqu’un dans la chambre ? {#_y_a_t_il_quelqu_un_dans_la_chambre}
+Y a-t-il quelqu’un dans la chambre ? 
 ------------------------------------
 
-### Version basique {#_version_basique}
+### Version basique 
 
 -   La question est donc "y’a-t-il quelqu’un dans la chambre"
 
@@ -455,7 +455,7 @@ d’avoir une réponse personnalisée. On pourrait donc imaginer remplacer
 la réponse de l’exemple par "non il n’y a personne dans la chambre de
 *julie*|oui il y a quelqu’un dans la chambre de *julie*"
 
-### Evolution {#_evolution}
+### Evolution 
 
 -   La question est donc "\#commande\# \[dans la |dans le\] \#objet\#"
 
@@ -478,10 +478,10 @@ prises, ce qui peut être résolu avec le filtrage regexp. Pour rendre
 encore plus flexible on peut ajouter des synonymes, mais dans ce cas il
 ne faudra pas oublier de modifier la regexp.
 
-Connaître la température/humidité/luminosité {#_connaître_la_température_humidité_luminosité}
+Connaître la température/humidité/luminosité 
 --------------------------------------------
 
-### Version basique {#_version_basique_2}
+### Version basique 
 
 On pourrait écrire la phrase en dur comme par exemple "quelle est la
 température du salon", mais il faudrait en faire une pour chaque capteur
@@ -512,7 +512,7 @@ l’humidité, la luminosité des différentes pièces (objet au sens Jeedom).
     type info numérique qui ont une unité, on peut donc décocher des
     unités dans le filtre de droite limité au type qui nous intéresse.
 
-### Evolution {#_evolution_2}
+### Evolution 
 
 On peut donc ajouter des synonymes au nom de commande pour avoir quelque
 chose de plus naturel, ajouter un regexp pour filtrer les commandes qui
@@ -546,10 +546,10 @@ mots dans leur phrase
 > On peut donc soit utiliser les expressions traditionnelles, soit
 > utiliser les expressions simplifiées comme dans cet exemple.
 
-Piloter un dimmer ou un thermostat (slider) {#_piloter_un_dimmer_ou_un_thermostat_slider}
+Piloter un dimmer ou un thermostat (slider) 
 -------------------------------------------
 
-### Version basique {#_version_basique_3}
+### Version basique 
 
 Il est possible de piloter une lampe en pourcentage (variateur) ou un
 thermostat avec les interactions. Voici un exemple pour piloter son
@@ -574,7 +574,7 @@ la valeur on lui passe notre tag *consigne*.
 > scénarios lancés par l’interaction (il faut toutefois que le scénario
 > soit en "Exécuter en avant plan").
 
-### Evolution {#_evolution_3}
+### Evolution 
 
 On peut vouloir piloter toutes les commandes de type curseur avec une
 seule interaction. Avec l’exemple qui suit on va donc pouvoir commander
@@ -600,7 +600,7 @@ Résultat de l’interaction :
 On peut constater que le tag **\#equipement\#** qui n’est pas utilisé
 dans la demande est bien complété dans la réponse.
 
-Piloter la couleur d’un bandeau de LED {#_piloter_la_couleur_d_un_bandeau_de_led}
+Piloter la couleur d’un bandeau de LED 
 --------------------------------------
 
 Il est possible de piloter une commande couleur par les interactions en
@@ -631,10 +631,10 @@ le nom de chaque membre de la famille.
 Une fois configuré, vous dites "Allume le sapin en vert", Jeedom va
 rechercher dans la demande une couleur et l’appliquer à la commande.
 
-Utilisation couplée à un scénario {#_utilisation_couplée_à_un_scénario}
+Utilisation couplée à un scénario 
 ---------------------------------
 
-### Version basique {#_version_basique_4}
+### Version basique 
 
 Il est possible de coupler une interaction à un scénario afin de
 réaliser des actions un peu plus complexes que l’exécution d’une simple
@@ -645,7 +645,7 @@ action ou d’une demande d’information.
 Cette exemple permet donc de lancer le scénario qui est lié dans la
 partie action, on peut bien sûr en avoir plusieurs.
 
-Programmation d’une action avec les interactions {#_programmation_d_une_action_avec_les_interactions}
+Programmation d’une action avec les interactions 
 ------------------------------------------------
 
 Les interactions permettent de faire beaucoup de choses en particulier.

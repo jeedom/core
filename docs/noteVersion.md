@@ -1,4 +1,4 @@
-3.1.6 {#_3_1_6}
+3.1.6 
 =====
 
 Attention cette mise à jour a un bug au niveau du script de mise à jour.
@@ -7,7 +7,7 @@ Après cela vous allez avoir un dashboard vide, c’est normal c’est le
 cache qui s’est vidé il faudra attendre quelques heures le temps qu’il
 se reremplisse.
 
-3.1 {#_3_1}
+3.1 
 ===
 
 -   Attention nous avons changé les pas des widgets cela peut donc avoir

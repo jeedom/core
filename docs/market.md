@@ -6,7 +6,7 @@ market (un peu comme sur Jeedom).
 
 Celle-ci se décompose en plusieurs parties :
 
-Mon profil {#_mon_profil}
+Mon profil 
 ==========
 
 C’est ici que vous allez pouvoir régler différents paramètres de votre
@@ -77,7 +77,7 @@ Pour les pros :
 >
 > N’oubliez pas de sauvegarder
 
-Mes Jeedoms {#_mes_jeedoms}
+Mes Jeedoms 
 ===========
 
 -   **Niveau**
@@ -136,21 +136,21 @@ Mes Jeedoms {#_mes_jeedoms}
 >
 > N’oubliez pas de sauvegarder
 
-Mes backups {#_mes_backups}
+Mes backups 
 ===========
 
 Sur cette onglet vous pouvez consulter les backups présents sur le
 market et en télécharger un. En dessous vous avez accès au lien pour
 acheter 1,3,6 ou 12 mois d’abonnement à la sauvegarde cloud
 
-Mes SMS/Appels {#_mes_sms_appels}
+Mes SMS/Appels 
 ==============
 
 Sur cette onglet vous pouvez consulter votre solde SMS/Appels
 (utilisable avec le plugin Phone market). En dessous vous avez les
 différentes options permettant d’acheter du solde supplémentaire.
 
-Mes achats/promos/dons {#_mes_achats_promos_dons}
+Mes achats/promos/dons 
 ======================
 
 Ici vous retrouvez tous vos achats et vous pouvez demander le renvoi du
@@ -166,7 +166,7 @@ Vous pouvez aussi à partir de cet onglet entrer un code promo (un code
 pour un plugin par exemple que le développeur a pu vous transmettre) et
 faire un don.
 
-Mes développments {#_mes_développments}
+Mes développments 
 =================
 
 Si vous êtes développeur vous retrouvez ici la liste de toutes vos

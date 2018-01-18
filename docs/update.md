@@ -1,4 +1,4 @@
-Description {#_description}
+Description 
 ===========
 
 Le **centre de mise à jour** permet de mettre à jour toutes les
@@ -6,7 +6,7 @@ fonctionnalités de Jeedom, incluant le logiciel de base (core), les
 plugins, les widgets, etc. D’autres fonctions de gestion des extensions
 sont diponibles (supprimer, réinstaller, vérifier, etc)
 
-La page du Centre de mise à jour {#_la_page_du_centre_de_mise_à_jour}
+La page du Centre de mise à jour 
 ================================
 
 Elle est accessible par le menu **Administration → Centre de mise à
@@ -16,7 +16,7 @@ Vous y trouverez, sur la gauche, l’ensemble des fonctionnalités de
 Jeedom et sur la droite une partie **Informations** qui décrit ce qu’il
 s’est passé, quand vous avez lancé une mise à jour.
 
-Les fonctions du haut de la page. {#_les_fonctions_du_haut_de_la_page}
+Les fonctions du haut de la page. 
 ---------------------------------
 
 En haut du tableau, se trouvent les boutons de commande. Jeedom se
@@ -57,7 +57,7 @@ options :
 > Vous pouvez forcer une mise à jour de Jeedom, même si celui-ci ne vous
 > en propose pas.
 
-Le tableau des mises à jour {#_le_tableau_des_mises_à_jour}
+Le tableau des mises à jour 
 ---------------------------
 
 Le tableau se compose de deux onglets :
@@ -108,7 +108,7 @@ chaque élément :
 > A noter que "core : jeedom" signifie "la mise à jour du logiciel de
 > base Jeedom".
 
-Mise à jour en ligne de commande {#_mise_à_jour_en_ligne_de_commande}
+Mise à jour en ligne de commande 
 ================================
 
 Il est possible de faire une mise à jour de Jeedom directement en SSH.

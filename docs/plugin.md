@@ -1,7 +1,7 @@
 Le sous-menu Gestion des plugins permet de manipuler les plugins, à
 savoir : les télécharger, les mettre à jour et les activer,…​
 
-Gestion des plugins {#_gestion_des_plugins}
+Gestion des plugins 
 ===================
 
 Vous pouvez accéder à la page plugins à partir de Plugins → Gestion des
@@ -131,7 +131,7 @@ Enfin on peut retrouver une section Panel qui permettra d’activer ou
 désactiver l’affichage du panel sur le dashboard ou en mobile si le
 plugin en propose un.
 
-Installation d’un plugin {#_installation_d_un_plugin}
+Installation d’un plugin 
 ========================
 
 Pour installer un nouveau plugin il suffit de cliquer sur le bouton

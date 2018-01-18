@@ -1,7 +1,7 @@
 Jeedom a la possibilité d’être sauvegardé et restauré depuis ou à partir
 de différents emplacements.
 
-Configuration {#_configuration}
+Configuration 
 =============
 
 Accessible depuis **Administration → Sauvegardes**, cette page permet la
@@ -11,7 +11,7 @@ Vous y trouvez, à gauche, les paramètres et les boutons d’action. Sur la
 droite, c’est le statut en temps réel de l’action en cours (sauvegarde
 ou restauration), si vous en avez lancé une.
 
-**Sauvegardes** {#__emphasis_role_strong_sauvegardes_emphasis}
+**Sauvegardes** 
 ---------------
 
 -   **Sauvegardes** : Permet de lancer une sauvegarde manuellement et
@@ -39,7 +39,7 @@ ou restauration), si vous en avez lancé une.
     sauvegardes les plus vieilles jusqu’à retomber en-dessous de la
     taille maximale. Il gardera cependant au moins une sauvegarde.
 
-**Sauvegardes Locales** {#__emphasis_role_strong_sauvegardes_locales_emphasis}
+**Sauvegardes Locales** 
 -----------------------
 
 -   **Sauvegardes disponibles** : Liste des sauvegardes disponibles.
@@ -58,7 +58,7 @@ ou restauration), si vous en avez lancé une.
 -   **Télécharger la sauvegarde** : Permet de télécharger sur votre
     ordinateur l’archive de la sauvegarde sélectionnée au-dessus.
 
-**Sauvegardes Market** {#__emphasis_role_strong_sauvegardes_market_emphasis}
+**Sauvegardes Market** 
 ----------------------
 
 -   **Envoi des sauvegardes** : Indique à Jeedom d’envoyer les
@@ -74,7 +74,7 @@ ou restauration), si vous en avez lancé une.
 -   **Restaurer la sauvegarde** : Lance la restauration d’une
     sauvegarde cloud.
 
-**Sauvegardes Samba** {#__emphasis_role_strong_sauvegardes_samba_emphasis}
+**Sauvegardes Samba** 
 ---------------------
 
 -   **Envoi des sauvegardes** : Indique à Jeedom d’envoyer les
@@ -114,7 +114,7 @@ ou restauration), si vous en avez lancé une.
 > `sudo php /usr/share/nginx/www/jeedom/install/restore.php` ou
 > `sudo php /var/www/html/install/restore.php`.
 
-Qu’est-ce qui est sauvegardé ? {#_qu_est_ce_qui_est_sauvegardé}
+Qu’est-ce qui est sauvegardé ? 
 ==============================
 
 Lors d’une sauvegarde, Jeedom va sauvegarder tous ses fichiers et la
@@ -132,7 +132,7 @@ garder le même contrôleur pour retrouver ses modules Zwave.
 > vous avez modifié des paramètres de ce système (notamment via SSH),
 > c’est à vous de trouver un moyen de les récupérer en cas de soucis.
 
-Sauvegarde cloud {#_sauvegarde_cloud}
+Sauvegarde cloud 
 ================
 
 La sauvegarde dans le cloud permet à Jeedom d’envoyer vos sauvegardes
@@ -149,7 +149,7 @@ abonnement (pour 1, 3, 6 ou 12 mois).
 > de l’onglet **Mes Jeedoms**, en évitant toutefois les caractères
 > exotiques.
 
-Fréquence des sauvegardes automatiques {#_fréquence_des_sauvegardes_automatiques}
+Fréquence des sauvegardes automatiques 
 ======================================
 
 Jeedom effectue une sauvegarde automatique tous les jours à la même

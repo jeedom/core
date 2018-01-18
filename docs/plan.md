@@ -88,7 +88,7 @@ actions suivantes :
 > La configuration des éléments du désign se fait par un clic sur
 > ceux-ci.
 
-Configuration du design {#_configuration_du_design}
+Configuration du design 
 =======================
 
 On retrouve ici :
@@ -120,7 +120,7 @@ On retrouve ici :
     -   **Taille (LxH)** : Permet de fixer la taille de votre design
         (cadre gris en mode édition)
 
-Configuration générale des éléments {#_configuration_générale_des_éléments}
+Configuration générale des éléments 
 ===================================
 
 > **Note**
@@ -132,7 +132,7 @@ Configuration générale des éléments {#_configuration_générale_des_élémen
 > L’élément sélectionné apparait en surbrillance rouge (au lieu de vert
 > pour tous les autres).
 
-Paramètre d’affichage {#_paramètre_d_affichage}
+Paramètre d’affichage 
 ---------------------
 
 -   **Profondeur** : permet de choisir le niveau de la profondeur
@@ -145,26 +145,26 @@ Paramètre d’affichage {#_paramètre_d_affichage}
 
 -   **Hauteur (px)** :
 
-Supprimer {#_supprimer}
+Supprimer 
 ---------
 
 Permet de supprimer l’élément
 
-Dupliquer {#_dupliquer}
+Dupliquer 
 ---------
 
 Permet de dupliquer l’élément
 
-Verrouiller {#_verrouiller}
+Verrouiller 
 -----------
 
 Permet de verrouiller l’élément pour qu’il ne soit plus déplaçable ou
 redimmensionnable.
 
-Graphique {#_graphique}
+Graphique 
 =========
 
-Paramètre d’affichage {#_paramètre_d_affichage_2}
+Paramètre d’affichage 
 ---------------------
 
 -   **Période** : permet de choisir la période d’affichage
@@ -185,12 +185,12 @@ Paramètre d’affichage {#_paramètre_d_affichage_2}
     HTML (attention, il faut utiliser une syntaxe CSS, par exemple :
     solid 1px black)
 
-Configuration avancée {#_configuration_avancée}
+Configuration avancée 
 ---------------------
 
 Permet de choisir les commandes à grapher
 
-Text/html {#_text_html}
+Text/html 
 =========
 
 -   **Icone** : Icone à afficher devant
@@ -225,18 +225,18 @@ Text/html {#_text_html}
 > ou si il écrase un composant Jeedom planter completement le design et
 > il ne restera plus qu’a le supprimer directement base de données
 
-Scénario {#_scénario}
+Scénario 
 ========
 
-Paramètre d’affichage {#_paramètre_d_affichage_3}
+Paramètre d’affichage 
 ---------------------
 
 Aucun paramètre spécifique d’affichage
 
-Lien {#_lien}
+Lien 
 ====
 
-Paramètre d’affichage {#_paramètre_d_affichage_4}
+Paramètre d’affichage 
 ---------------------
 
 -   **Nom** : Nom du lien (texte affiché)
@@ -263,38 +263,38 @@ Paramètre d’affichage {#_paramètre_d_affichage_4}
 
 -   **Gras** : met le texte en gras
 
-Equipement {#_equipement}
+Equipement 
 ==========
 
-Paramètre d’affichage {#_paramètre_d_affichage_5}
+Paramètre d’affichage 
 ---------------------
 
 Aucun paramètre spécifique d’affichage
 
-Configuration avancée {#_configuration_avancée_2}
+Configuration avancée 
 ---------------------
 
 Affiche la fenetre de configuration avancé de l’équipement (voir
 documentation Résumé domotique ("display"))
 
-Commande {#_commande}
+Commande 
 ========
 
-Paramètre d’affichage {#_paramètre_d_affichage_6}
+Paramètre d’affichage 
 ---------------------
 
 Aucun paramètre spécifique d’affichage
 
-Configuration avancée {#_configuration_avancée_3}
+Configuration avancée 
 ---------------------
 
 Affiche la fenetre de configuration avancé de la commande (voir
 documentation Résumé domotique ("display"))
 
-Image/Caméra {#_image_caméra}
+Image/Caméra 
 ============
 
-Paramètre d’affichage {#_paramètre_d_affichage_7}
+Paramètre d’affichage 
 ---------------------
 
 -   **Afficher** : défini ceux que vous voulez afficher, image fixe ou
@@ -305,23 +305,23 @@ Paramètre d’affichage {#_paramètre_d_affichage_7}
 
 -   **Caméra** : caméra à afficher (si vous avez choisi caméra)
 
-Zone {#_zone}
+Zone 
 ====
 
-Paramètre d’affichage {#_paramètre_d_affichage_8}
+Paramètre d’affichage 
 ---------------------
 
 -   **Type de zone** : C’est ici que vous choissez le type de la zone :
     Macro simple, Macro Binaire ou Widget au survol
 
-### Macro simple {#_macro_simple}
+### Macro simple 
 
 Dans ce mode la un clic sur la zone execute une ou plusieurs action.
 
 Il vous suffit ici d’indiquer la liste des actions à faire lors du clic
 sur la zone
 
-### Macro binaire {#_macro_binaire}
+### Macro binaire 
 
 Dans ce mode Jeedom va executer la ou les action(s) On ou Off en
 fonction de l’état de la commande que vous donnez. Ex si la commande
@@ -334,7 +334,7 @@ la ou les action(s) off
 Il vous suffit en dessous de mettre les actions à faire pour le on et
 pour le off
 
-### Widget au survol {#_widget_au_survol}
+### Widget au survol 
 
 Dans ce mode lors du survole ou du clic dans la zone jeedom vous
 affichera le widget en question
@@ -349,7 +349,7 @@ affichera le widget en question
 -   **Position** : permet de choisir l’emplacement d’apparition du
     widget (par defaut bas droite)
 
-Résumé {#_résumé}
+Résumé 
 ======
 
 -   **Lien** : Permet d’indiqué le résumé à afficher (Général pour le

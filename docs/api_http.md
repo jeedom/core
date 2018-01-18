@@ -21,7 +21,7 @@ URL.
 > API, propre à votre installation. Pour la trouver, il faut aller dans
 > le menu "Général" → "Configuration" → onglet "Général".
 
-Scénario {#_scénario}
+Scénario 
 ========
 
 Voici l’URL =
@@ -43,7 +43,7 @@ Voici l’URL =
     la forme tags=toto%3D1%20tata%3D2 (à noter que %20 correspond à un
     espace et %3D à = )
 
-Info/Action commande {#_info_action_commande}
+Info/Action commande 
 ====================
 
 Voici l’URL =
@@ -70,7 +70,7 @@ commande.
 > Les paramètres doivent être encodés pour les url, Vous pouvez utiliser
 > un outil, [ici](https://meyerweb.com/eric/tools/dencoder/)
 
-Interaction {#_interaction}
+Interaction 
 ===========
 
 Voici l’URL =
@@ -90,7 +90,7 @@ Voici l’URL =
 -   **reply\_cmd** \[optionnel\] : ID de la commande à utiliser pour
     répondre à la demande
 
-Message {#_message}
+Message 
 =======
 
 Voici l’URL =
@@ -102,7 +102,7 @@ Voici l’URL =
     le message (espace devient %20, = %3D…​). Vous pouvez utiliser un
     outil, [ici](https://meyerweb.com/eric/tools/dencoder/)
 
-Objet {#_objet}
+Objet 
 =====
 
 Voici l’URL =
@@ -110,7 +110,7 @@ Voici l’URL =
 
 Renvoie en json la liste de tous les objets de Jeedom
 
-Equipement {#_equipement}
+Equipement 
 ==========
 
 Voici l’URL =
@@ -119,7 +119,7 @@ Voici l’URL =
 -   **object\_id** : ID de l’objet dont on veut récupérer les
     équipements
 
-Commande {#_commande}
+Commande 
 ========
 
 Voici l’URL =
@@ -128,7 +128,7 @@ Voici l’URL =
 -   **eqLogic\_id** : ID de l’équipement dont on veut récupérer les
     commandes
 
-Full Data {#_full_data}
+Full Data 
 =========
 
 Voici l’URL =
@@ -137,7 +137,7 @@ Voici l’URL =
 Renvoie tous les objets, équipements, commandes (et leur valeur si ce
 sont des infos) en json
 
-Variable {#_variable}
+Variable 
 ========
 
 Voici l’URL =

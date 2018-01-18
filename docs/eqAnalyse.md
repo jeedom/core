@@ -11,7 +11,7 @@ relatives aux équipements de manière centralisée :
 
 -   les commandes orphelines
 
-L’onglet Batteries {#_l_onglet_batteries}
+L’onglet Batteries 
 ==================
 
 Vous pouvez voir sur cet onglet la liste de vos modules sur batterie,
@@ -28,7 +28,7 @@ a été mise à jour. Vous pouvez aussi voir si un seuil spécifique a été
 > (Administration → onglet Equipements), ou par équipement sur la page
 > de configuration avancée de ceux-ci dans l’onglet alertes.
 
-L’onglet Modules en alerte {#_l_onglet_modules_en_alerte}
+L’onglet Modules en alerte 
 ==========================
 
 Sur cet onglet vous verrez en temps réel les modules en alerte. Les
@@ -52,7 +52,7 @@ d’alerte) et un logo en haut à gauche (le type d’alerte)
 > est en "visible" l’alerte sera aussi visible sur le dashboard (dans
 > l’objet concerné)
 
-L’onglet Actions définies {#_l_onglet_actions_définies}
+L’onglet Actions définies 
 =========================
 
 Cet onglet permet de visualiser les actions définies directement sur une
@@ -81,7 +81,7 @@ et synthétise plusieurs choses :
 > Le tableau permet de voir de manière très textuelle les actions
 > définies. D’autres types d’actions définies pourront être rajoutées.
 
-L’onglet Alertes définies {#_l_onglet_alertes_définies}
+L’onglet Alertes définies 
 =========================
 
 Cet onglet permet de voir l’ensemble des alertes définies, vous y
@@ -93,7 +93,7 @@ retrouverez dans un tableau les infos suivantes si elles existent :
 
 -   les différentes alertes danger et warning des commandes
 
-L’onglet Commandes orphelines {#_l_onglet_commandes_orphelines}
+L’onglet Commandes orphelines 
 =============================
 
 Cet onglet vous permet de voir en un coup d’oeil si vous avez des

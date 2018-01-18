@@ -1,7 +1,7 @@
-Changelog {#_changelog}
+Changelog 
 =========
 
-3.2.0 {#_3_2_0}
+3.2.0 
 =====
 
 -   Possibilité d’interdire une commande dans les interactions
@@ -80,7 +80,7 @@ Changelog {#_changelog}
 
 -   Possibilité de rendre des mots obligatoires dans une interaction
 
-3.1.7 {#_3_1_7}
+3.1.7 
 =====
 
 -   Correction de bugs (en particulier sur les historiques et
@@ -92,7 +92,7 @@ Changelog {#_changelog}
 
 -   Correction d’un bug qui récuperait les logs lors des restaurations
 
-3.1 {#_3_1}
+3.1 
 ===
 
 -   Correction de bugs
@@ -215,17 +215,17 @@ Changelog {#_changelog}
 -   Ajout d’un watchdog independant de Jeedom pour verifier le status de
     MySql et Apache
 
-3.0.11 {#_3_0_11}
+3.0.11 
 ======
 
 -   Correction de bugs sur les demandes "ask" en timeout
 
-3.0.10 {#_3_0_10}
+3.0.10 
 ======
 
 -   Correction de bugs sur l’interface de configuration des interactions
 
-3.0 {#_3_0}
+3.0 
 ===
 
 -   Suppression du mode esclave
@@ -462,20 +462,20 @@ Changelog {#_changelog}
 -   Optimisation du chargement des scénarios et pages utilisant des
     actions avec option (type configuration du plugin alarme ou mode)
 
-2.4.6 {#_2_4_6}
+2.4.6 
 =====
 
 -   Amélioration de la gestion de la répétition des valeurs des
     commandes
 
-2.4.5 {#_2_4_5}
+2.4.5 
 =====
 
 -   Correction de bugs
 
 -   Optimisation de la vérification des mises à jour
 
-2.4 {#_2_4}
+2.4 
 ---
 
 -   Optimisation générale
@@ -525,7 +525,7 @@ Changelog {#_changelog}
 -   Possibilité de remplacer une commande par une autre dans tout Jeedom
     (même si la commande à remplacer n’existe plus)
 
-2.3 {#_2_3}
+2.3 
 ---
 
 -   Correction des filtres sur le market
@@ -698,7 +698,7 @@ Changelog {#_changelog}
 -   Ajout d’un tag *begin\_backup*, *end\_backup*, *begin\_update*,
     *end\_update*, *begin\_restore*, *end\_restore* dans les scénarios
 
-2.2 {#_2_2}
+2.2 
 ---
 
 -   Correction de bugs
@@ -725,7 +725,7 @@ Changelog {#_changelog}
 
 -   Refonte de la gestion des thèmes
 
-2.1 {#_2_1}
+2.1 
 ---
 
 -   Refonte du système de cache de Jeedom (utilisation de
@@ -822,7 +822,7 @@ Changelog {#_changelog}
 
 -   Revue du système de partage de scénario
 
-2.0 {#_2_0}
+2.0 
 ---
 
 -   Refonte du système de cache de Jeedom (utilisation de

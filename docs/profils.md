@@ -6,7 +6,7 @@ aussi de changer votre mot de passe.
 Vous la retrouvez en haut à droite en cliquant sur le l’icône bonhomme
 puis Profil (suivi de votre identifiant).
 
-Thèmes {#_thèmes}
+Thèmes 
 ======
 
 Le panneau thèmes vous permet de régler des paramètres d’interface :
@@ -35,7 +35,7 @@ Le panneau thèmes vous permet de régler des paramètres d’interface :
 -   **Opacité par des widgets Mobile** : permet de donner l’opacité
     (entre 0 et 1) des widgets en mobile
 
-Interface {#_interface}
+Interface 
 ---------
 
 Vous permet de définir certains comportements de l’interface :
@@ -75,7 +75,7 @@ Vous permet de définir certains comportements de l’interface :
     -   **Déplier le panneau des vues** : permet de rendre visible par
         défaut le menu des vues (à gauche) sur les vues
 
-Sécurité {#_sécurité}
+Sécurité 
 --------
 
 -   **Authentification en 2 étapes** : permet de configurer
@@ -88,14 +88,14 @@ Sécurité {#_sécurité}
 
 -   **Hash de l’utilisateur** : votre clef API d’utilisateur
 
-### Sessions actives {#_sessions_actives}
+### Sessions actives 
 
 Vous avez ici la liste de vos sessions actuellement connecté, leur ID,
 leur IP ainsi que la date de derniere communication. En cliquant sur
 "Déconnecter" cela déconnectera l’utilisateur. Attention si il est sur
 un péripherique enregistré cela supprimera églagement l’enregistrement.
 
-### Péripherique enregistrés {#_péripherique_enregistrés}
+### Péripherique enregistrés 
 
 Vous retrouvez ici la liste de tous les péripheriques enregistré (qui se
 connecte sans authentification) à votre Jeedom ainsi que la date de
@@ -103,7 +103,7 @@ derniere utilisation. Vous pouvez ici supprimer l’enregistrement d’un
 peripherique. Attention cela ne le deconnecte pas mais empechera juste
 sa reconnection automatique.
 
-Notifications {#_notifications}
+Notifications 
 -------------
 
 -   **Commande de notification utilisateur** : Commande par défaut pour

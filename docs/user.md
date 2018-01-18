@@ -50,7 +50,7 @@ En dessous vous avez un tableau :
     l’utilisateur (attention le profils doit être en
     "utilisateur limité")
 
-Gestion des droits {#_gestion_des_droits}
+Gestion des droits 
 ==================
 
 Lors du clic sur "Gérer les droits" une fenêtre apparait et vous permet

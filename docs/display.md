@@ -1,4 +1,4 @@
-Description {#_description}
+Description 
 ===========
 
 Cette page permet de rassembler sur une seule page les différents
@@ -9,7 +9,7 @@ d’affichage.
 
 Cette page est accessible par **Outils → Résumé domotique**.
 
-Le haut de la page {#_le_haut_de_la_page}
+Le haut de la page 
 ------------------
 
 Sur le haut de la page, on retrouve : \* **Nombre d’objets** : Nombre
@@ -21,7 +21,7 @@ affichés sur cette page. \* **Rechercher** : Permet de rechercher un
 élément particulier. Ce peut être le nom d’un équipement, d’une commande
 ou le nom du plugin par lequel a été créé l’équipement.
 
-Les cadres objet {#_les_cadres_objet}
+Les cadres objet 
 ----------------
 
 En dessous on retrouve un cadre par objet. Dans chaque cadre, on trouve
@@ -49,7 +49,7 @@ sont disponibles. De gauche à droite :
 > ordre ou même les affecter à un autre objet. C’est à partir de l’ordre
 > établi dans cette page que l’affichage du dashboard est calculé.
 
-Les équipements {#_les_équipements}
+Les équipements 
 ---------------
 
 Sur chaque équipement on retrouve :
@@ -87,7 +87,7 @@ de l’équipement permet de les masquer).
 Si vous double-cliquez sur la commande ou que vous cliquez sur la petite
 roue crantée cela fera apparaitre sa fenêtre de configuration.
 
-Configuration avancée d’un équipement {#_configuration_avancée_d_un_équipement}
+Configuration avancée d’un équipement 
 =====================================
 
 > **Tip**
@@ -114,7 +114,7 @@ disponibles :
 
 -   **Supprimer** : Supprime l’équipement.
 
-Onglet Informations {#_onglet_informations}
+Onglet Informations 
 -------------------
 
 L’onglet **Informations** contient les informations générales de
@@ -152,14 +152,14 @@ l’équipement ainsi que ses commandes :
 En dessous vous retrouvez un tableau avec la liste des commandes de
 l’équipement avec, pour chacune, un lien vers leur configuration.
 
-Onglet Affichage {#_onglet_affichage}
+Onglet Affichage 
 ----------------
 
 Dans l’onglet **Affichage**, vous allez pouvoir configurer certains
 comportements d’affichage de la tuile sur le dashboard, les vues, le
 design ainsi qu’en mobile.
 
-### Widget {#_widget}
+### Widget 
 
 -   **Visible** : Cochez la case pour rendre visible l’équipement.
 
@@ -189,7 +189,7 @@ design ainsi qu’en mobile.
     l’arrondi par défaut. Sinon, il faut mettre du code CSS, propriété
     `border-radius` (ex : `10px`)
 
-### Paramètres optionnels sur la tuile {#_paramètres_optionnels_sur_la_tuile}
+### Paramètres optionnels sur la tuile 
 
 En-dessous, on retrouve des paramètres optionnels d’affichage que l’on
 peut appliquer à l’équipement. Ces paramètres sont composés d’un nom et
@@ -202,7 +202,7 @@ question.
 >
 > N’oubliez pas de sauvegarder après toute modification.
 
-Onglet Disposition {#_onglet_disposition}
+Onglet Disposition 
 ------------------
 
 Cette partie vous permet de choisir entre la disposition standard des
@@ -239,7 +239,7 @@ ceci :
 > dessous de l’autre, il ne faut pas oublier de rajouter un retour à la
 > ligne après la première dans la **configuration avancée** de celle-ci.
 
-Onglet Alertes {#_onglet_alertes}
+Onglet Alertes 
 --------------
 
 Cet onglet permet d’avoir les informations sur la batterie de
@@ -266,13 +266,13 @@ depuis 30 minutes, alors il faut le mettre en alerte.
 > Les paramètres globaux sont dans **Administration→Configuration→Logs**
 > (ou **Equipements**)
 
-Onglet Commentaire {#_onglet_commentaire}
+Onglet Commentaire 
 ------------------
 
 Permet d’écrire un commentaire à propos de l’équipement (date de
 changement de la pile, par exemple).
 
-Configuration avancée d’une commande {#_configuration_avancée_d_une_commande}
+Configuration avancée d’une commande 
 ====================================
 
 En premier lieu, en haut à droite, quelques boutons disponibles :
@@ -303,7 +303,7 @@ En premier lieu, en haut à droite, quelques boutons disponibles :
 > En fonction du type de commande, les informations/actions affichées
 > peuvent changer.
 
-Onglet Informations {#_onglet_informations_2}
+Onglet Informations 
 -------------------
 
 L’onglet **Informations** contient les informations générales sur la
@@ -363,10 +363,10 @@ commandes, scénarios ou interactions qui utilisent cette commande. Un
 clic dessus permet d’aller directement sur leur configuration
 respective.
 
-Onglet Configuration {#_onglet_configuration}
+Onglet Configuration 
 --------------------
 
-### Pour une commande de type info : {#_pour_une_commande_de_type_info}
+### Pour une commande de type info : 
 
 -   **Calcul et arrondi**
 
@@ -437,7 +437,7 @@ Onglet Configuration {#_onglet_configuration}
         de la commande, `#humanname#` pour le nom complet de la commande
         (ex : `#[Salle de bain][Hydrometrie][Humidité]#`)
 
-### Pour une commande action : {#_pour_une_commande_action}
+### Pour une commande action : 
 
 -   **Type générique** : Permet de configurer le type générique de la
     commande (Jeedom essaie de le trouver par lui-même en mode auto).
@@ -456,7 +456,7 @@ Onglet Configuration {#_onglet_configuration}
 -   **Action après execution de la commande** : Permet d’ajouter des
     commandes **après** chaque exécution de la commande.
 
-Onglet Alertes {#_onglet_alertes_2}
+Onglet Alertes 
 --------------
 
 Permet de définir un niveau d’alerte (**warning** ou **danger**) en
@@ -469,7 +469,7 @@ minutes alors l’équipement peut passer en alerte **warning**.
 > configurer une commande de type message qui permettra à Jeedom de vous
 > prévenir si on atteint le seuil warning ou danger.
 
-Onglet Affichage {#_onglet_affichage_2}
+Onglet Affichage 
 ----------------
 
 Dans cettre partie, vous allez pouvoir configurer certains comportements
@@ -502,7 +502,7 @@ il faut donc regarder sa fiche sur le Market pour les connaître.
 >
 > N’oubliez pas de sauvegarder après toute modification.
 
-Onglet Code {#_onglet_code}
+Onglet Code 
 -----------
 
 Permet de modifier le code du widget juste pour la commande courante.

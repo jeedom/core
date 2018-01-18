@@ -43,7 +43,7 @@ trouverez les onglets suivants :
     Jeedom et des accès au market, ainsi qu’aux différents moyens
     de sauvegarde.
 
-Général {#__anchor_xml_id_general_xreflabel_general_général}
+Général 
 =======
 
 Dans cet onglet on retrouve des informations générales sur Jeedom :
@@ -83,7 +83,7 @@ Dans cet onglet on retrouve des informations générales sur Jeedom :
     pas Jeedom à Internet et qu’il n’a pas de pile RTC sur le
     matériel utilisé.
 
-API {#__anchor_xml_id_api_xreflabel_api_api}
+API 
 ===
 
 Vous trouvez ici la liste des différentes clés API disponibles dans
@@ -110,7 +110,7 @@ TTS, vous pouvez définir leur portée :
 -   **Activé** : aucune restriction, n’importe quel système ayant accès
     à votre Jeedom pourra accéder à cette API.
 
-&gt;\_OS/DB {#__anchor_xml_id_os_db_xreflabel_os_db_os_db}
+&gt;\_OS/DB 
 ===========
 
 Deux parties réservées aux experts sont présentes dans cet onglet.
@@ -135,10 +135,10 @@ Deux parties réservées aux experts sont présentes dans cet onglet.
     -   **Mot de passe** : mot de passe d’accès à la base de données
         utilisée par Jeedom.
 
-Sécurité {#__anchor_xml_id_securite_xreflabel_securite_sécurité}
+Sécurité 
 ========
 
-LDAP {#_ldap}
+LDAP 
 ----
 
 -   **Activer l’authentification LDAP** : active l’authentification à
@@ -165,7 +165,7 @@ LDAP {#_ldap}
 -   **Autoriser REMOTE\_USER** : Active le REMOTE\_USER (utilisé en SSO
     par exemple)
 
-Connexion {#_connexion}
+Connexion 
 ---------
 
 -   **Nombre d’échecs tolérés** : définit le nombre de tentatives
@@ -186,7 +186,7 @@ La liste des IP bannies se trouve au bas de cette page. Vous y trouverez
 l’IP, la date de bannissement et la date de fin de bannissement
 programmée.
 
-Réseaux {#__anchor_xml_id_reseaux_xreflabel_reseaux_réseaux}
+Réseaux 
 =======
 
 Il faut absolument configurer correctement cette partie importante de
@@ -276,7 +276,7 @@ externe** (depuis un autre réseau notamment depuis Internet).
 > configuration du pare-feu et du filtre parental de votre box Internet
 > (sur livebox il faut par exemple le pare-feu en moyen).
 
-Couleurs {#__anchor_xml_id_couleurs_xreflabel_couleurs_couleurs}
+Couleurs 
 ========
 
 La colorisation des widgets est effectuée en fonction de la catégorie à
@@ -304,7 +304,7 @@ mettre aucune transparence, laissez 1.0 .
 >
 > N’oubliez pas de sauvegarder après toute modification.
 
-Commandes {#__anchor_xml_id_commandes_xreflabel_commandes_commandes}
+Commandes 
 =========
 
 De nombreuses commandes peuvent être historisées. Ainsi, dans
@@ -312,7 +312,7 @@ Analyse→Historique, vous obtenez des graphiques représentant leur
 utilisation. Cet onglet permet de fixer des paramètres globaux à
 l’historisation des commandes.
 
-Historique {#_historique}
+Historique 
 ----------
 
 -   **Afficher les statistiques sur les widgets** : Permet d’afficher
@@ -363,7 +363,7 @@ Historique {#_historique}
 > [ici](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s)
 > pour le détail).
 
-Push {#_push}
+Push 
 ----
 
 **URL de push globale** : permet de rajouter une URL à appeler en cas de
@@ -373,7 +373,7 @@ nom de la commande, **\#cmd\_id\#** pour l’identifiant unique de la
 commande, **\#humanname\#** pour le nom complet de la commande (ex :
 \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\#)
 
-Cache {#__anchor_xml_id_cache_xreflabel_cache_cache}
+Cache 
 =====
 
 Permet de surveiller et d’agir sur le cache de Jeedom :
@@ -392,7 +392,7 @@ Permet de surveiller et d’agir sur le cache de Jeedom :
     l’interface se mettra à jour rapidement, en contre partie cela
     utilise plus de ressources et peut donc ralentir Jeedom.
 
-Interactions {#__anchor_xml_id_interactions_xreflabel_interactions_interactions}
+Interactions 
 ============
 
 Cet onglet permet de fixer des paramètres globaux concernant les
@@ -404,7 +404,7 @@ interactions que vous trouverez dans Outils→Interactions.
 > Administration→Configuration→Logs, puis cocher **Debug** dans la liste
 > du bas. Attention : les logs seront alors très verbeux !
 
-Général {#_général}
+Général 
 -------
 
 Vous avez ici trois paramètres :
@@ -437,7 +437,7 @@ Vous avez ici trois paramètres :
     chapitre **Regexp d’exclusion** de la documentation sur
     les interactions.
 
-Interaction automatique, contextuelle & avertissement {#_interaction_automatique_contextuelle_avertissement}
+Interaction automatique, contextuelle & avertissement 
 -----------------------------------------------------
 
 -   Les **interactions automatiques** permettent à Jeedom de tenter de
@@ -528,7 +528,7 @@ Voici donc les différentes options disponibles :
     commande de type slider au minimu (ex ferme pour fermer le volet de
     la chambre ⇒ volet chambre à 0%).
 
-Couleurs {#_couleurs}
+Couleurs 
 --------
 
 Cette partie permet de définir les couleurs que Jeedom associera aux
@@ -540,7 +540,7 @@ mots rouge/bleu/noir…​ Pour ajouter une couleur :
 
 -   Choisissez la couleur associée en cliquant sur la case de droite.
 
-Rapports {#__anchor_xml_id_rapports_xreflabel_rapports_rapports}
+Rapports 
 ========
 
 Permet de configurer la génération et la gestion des rapports
@@ -554,7 +554,7 @@ Permet de configurer la génération et la gestion des rapports
     un peu de place donc attention à ne pas mettre trop
     de conservation).
 
-Liens {#__anchor_xml_id_liens_xreflabel_liens_liens}
+Liens 
 =====
 
 Permet de configurer les graphiques de liens. Ces liens permettent de
@@ -579,7 +579,7 @@ voir, sous forme d’un graphique, les relations entre les objets, les
 
 -   **Paramètre de render** : Idem.
 
-Résumés {#__anchor_xml_id_resumes_xreflabel_resumes_résumés}
+Résumés 
 =======
 
 Permet d’ajouter des résumés d’objets. Cette information est affichée
@@ -619,10 +619,10 @@ objets :
 -   **Supprimer le résumé** : Le dernier bouton, tout à droite, permet
     de supprimer le résumé de la ligne.
 
-Logs {#__anchor_xml_id_logs_xreflabel_logs_logs}
+Logs 
 ====
 
-Timeline {#_timeline}
+Timeline 
 --------
 
 -   **Nombre maximum d’évènements** : Définit le nombre maximum à
@@ -631,7 +631,7 @@ Timeline {#_timeline}
 -   **Supprimer tous les évènements** : Permet de vider la timeline de
     tous ses évènements enregistrés.
 
-Messages {#_messages}
+Messages 
 --------
 
 -   **Ajouter un message à chaque erreur dans les logs** : si un plugin
@@ -644,7 +644,7 @@ Messages {#_messages}
     **message** qui seront utilisées lors de l’émission de
     nouveaux messages.
 
-Alertes {#_alertes}
+Alertes 
 -------
 
 -   **Ajouter un message à chaque Timeout** : Ajoute un message dans le
@@ -679,7 +679,7 @@ Alertes {#_alertes}
 -   **Commande sur Danger** : Commande de type **message** à utiliser si
     une commande passe en alerte **danger**.
 
-Log {#_log}
+Log 
 ---
 
 -   **Moteur de log** : Permet de changer le moteur de log pour, par
@@ -702,7 +702,7 @@ En dessous vous retrouvez un tableau permettant de gérer finement le
 niveau de log des éléments essentiels de Jeedom ainsi que celui des
 plugins.
 
-Equipements {#__anchor_xml_id_equipements_xreflabel_equipements_equipements}
+Equipements 
 ===========
 
 -   **Nombre d’échecs avant désactivation de l’équipement** : Nombre
@@ -712,10 +712,10 @@ Equipements {#__anchor_xml_id_equipements_xreflabel_equipements_equipements}
 -   **Seuils des piles** : Permet de gérer les seuils d’alertes globaux
     sur les piles.
 
-Mise à jour et fichiers {#__anchor_xml_id_maj_fichiers_xreflabel_maj_fichiers_mise_à_jour_et_fichiers}
+Mise à jour et fichiers 
 =======================
 
-Mise à jour de Jeedom {#_mise_à_jour_de_jeedom}
+Mise à jour de Jeedom 
 ---------------------
 
 -   **Source de mise à jour** : Choisissez la source de mise à jour du
@@ -728,18 +728,18 @@ Mise à jour de Jeedom {#_mise_à_jour_de_jeedom}
     (attention pour éviter de surcharger le market, l’heure de
     vérification peut changer).
 
-Les dépôts {#_les_dépôts}
+Les dépôts 
 ----------
 
 Les dépôts sont des espaces de stockage (et de service) pour pouvoir
 déplacer des sauvegardes, récupérer des plugins, récupérer le core de
 Jeedom, etc.
 
-### Fichier {#_fichier}
+### Fichier 
 
 Dépôt servant à activer l’envoi de plugins par des fichiers.
 
-### Github {#_github}
+### Github 
 
 Dépôt servant à relier Jeedom à Github.
 
@@ -752,7 +752,7 @@ Dépôt servant à relier Jeedom à Github.
 
 -   **Branche pour le core Jeedom** : Branche du dépôt pour le core.
 
-### Market {#_market}
+### Market 
 
 Dépôt servant à relier Jeedom au market, il est vivement conseillé
 d’utiliser ce dépôt. Attention : toute demande de support pourra être
@@ -764,7 +764,7 @@ refusée si vous utilisez un autre dépôt que celui-ci.
 
 -   **Mot de passe** : Votre mot de passe du Market.
 
-### Samba {#_samba}
+### Samba 
 
 Dépôt permettant d’envoyer automatiquement une sauvegarde de Jeedom sur
 un partage Samba (ex : NAS Synology).
@@ -810,7 +810,7 @@ un partage Samba (ex : NAS Synology).
 > première sauvegarde, le dossier ne doit contenir aucun fichier ou
 > dossier).
 
-### URL {#_url}
+### URL 
 
 -   **URL core Jeedom**
 

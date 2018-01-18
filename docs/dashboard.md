@@ -45,7 +45,7 @@ Il est accessible en cliquant sur **Accueil → Dashboard**
 > commande, ou de mettre une alerte sur celle-ci pour que jeedom vous
 > previenne (une seule fois) dès que la valeur passe un certain seuil
 
-Mode édition {#_mode_édition}
+Mode édition 
 ============
 
 En mode édition vous pouvez changer la taille des widgets et leur

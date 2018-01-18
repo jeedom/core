@@ -1,4 +1,4 @@
-Affichage {#_affichage}
+Affichage 
 =========
 
 Le menu Logs permet de suivre ce qui se passe sur sa domotique. Dans la
@@ -31,7 +31,7 @@ boutons :
 > ! si vous le supprimez (en ligne de commande par exemple) celui-ci ne
 > se recréera pas tout seul, il faut redémarrer le système.
 
-Le log "Event" {#_le_log_event}
+Le log "Event" 
 ==============
 
 Le log "Event" est un peu particulier. Tout d’abord pour qu’il

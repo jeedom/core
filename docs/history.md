@@ -4,7 +4,7 @@ quelle commande de type information (binaire ou numérique). Cela vous
 permettra donc par exemple d’historiser une courbe de température, de
 consommation ou les ouvertures d’une porte…​
 
-Principe {#_principe}
+Principe 
 ========
 
 Ici est décrit le principe d’historisation de Jeedom. Il n’est
@@ -13,7 +13,7 @@ d’historisation ou que vous voulez modifier les réglages de
 l’historisation. Les réglages par défaut conviennent dans la plupart des
 cas.
 
-Archivage {#_archivage}
+Archivage 
 ---------
 
 L’archivage de données permet à Jeedom de réduire la quantité de données
@@ -46,7 +46,7 @@ de 1h avec des données qui ont plus de 2h d’ancienneté).
 > type numérique ; sur les commandes de type binaire, Jeedom ne conserve
 > que les dates de changement d’état.
 
-Affichage d’un graphique {#_affichage_d_un_graphique}
+Affichage d’un graphique 
 ========================
 
 Il existe plusieurs moyens d’accéder à l’historique :
@@ -81,7 +81,7 @@ qu’a les configurer une fois).
 
 -   **Colonne**\* : affiche le graphique sous forme de barres.
 
-Graphique sur les vues et les designs {#_graphique_sur_les_vues_et_les_designs}
+Graphique sur les vues et les designs 
 =====================================
 
 Vous pouvez aussi afficher les graphiques sur les vues (nous verrons ici
@@ -108,12 +108,12 @@ Une fois une donnée activée, vous pouvez choisir :
 -   **Variation** : affiche la différence de valeur par rapport au
     point précédent.
 
-Option sur la page d’historique {#_option_sur_la_page_d_historique}
+Option sur la page d’historique 
 ===============================
 
 La page d’historique donne accès à quelques options supplémentaires
 
-Historique calculé {#_historique_calculé}
+Historique calculé 
 ------------------
 
 Permet d’affiché une courbe en fonction d’un calcul sur plusieurs
@@ -130,7 +130,7 @@ de les sauvegarder pour les réafficher plus facilement
 > Il suffit de cliquer sur le nom de l’objet pour le déplier ;
 > apparaissent les commandes historisées qui peuvent être graphées.
 
-Historique de commande {#_historique_de_commande}
+Historique de commande 
 ----------------------
 
 Devant chaque donnée pouvant être graphée, vous retrouvez deux icônes :
@@ -141,7 +141,7 @@ Devant chaque donnée pouvant être graphée, vous retrouvez deux icônes :
 
 -   **Flèche** : permet d’avoir un export CSV des données historisées.
 
-Suppression de valeur incohérente {#_suppression_de_valeur_incohérente}
+Suppression de valeur incohérente 
 =================================
 
 Parfois, il se peut que vous ayez des valeurs incohérentes sur les
@@ -151,7 +151,7 @@ question, en cliquant sur celui-ci directement sur le graphique ; de
 plus, vous pouvez régler le minimum et le maximum autorisés afin
 d’éviter des problèmes futurs.
 
-Timeline {#_timeline}
+Timeline 
 ========
 
 La timeline affiche certains événements de votre domotique sous forme

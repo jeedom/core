@@ -13,7 +13,7 @@ Les vues sont accessibles à partir du menu Accueil → Vue :
 > Vous pouvez dans votre profil choisir la vue par défaut lors du clic
 > sur le menu des vues.
 
-Les vues {#_les_vues}
+Les vues 
 ========
 
 On peut mettre aussi bien des widgets, des graphiques (qui peuvent être
@@ -31,7 +31,7 @@ masquer la liste des vues ainsi que le bouton pour en ajouter une
 
 Un bouton en haut à droite vous permet d’éditer la vue courante.
 
-Ajout/Edition d’une vue {#_ajout_edition_d_une_vue}
+Ajout/Edition d’une vue 
 =======================
 
 Le principe est assez simple : une vue est composée de zones (on peut en
@@ -62,7 +62,7 @@ Sur chaque zone vous avez les options générales suivantes :
 
 -   **Supprimer** : permet de supprimer la zone
 
-Zone de type widget {#_zone_de_type_widget}
+Zone de type widget 
 -------------------
 
 Une zone de type widget permet d’ajouter des widgets :
@@ -83,7 +83,7 @@ Une zone de type widget permet d’ajouter des widgets :
 Une fois le bouton d’ajout de widget pressé, vous obtenez une fenêtre
 qui vous demandera le widget à ajouter
 
-Zone de type graphique {#_zone_de_type_graphique}
+Zone de type graphique 
 ----------------------
 
 Une zone de type graphique permet d’ajouter des graphiques à votre vue,
@@ -124,7 +124,7 @@ fois cela fait vous avez accès aux options suivantes :
 > Il est possible de modifier l’ordre des graphiques dans la zone par
 > glisser/déposer.
 
-Zone de type tableau {#_zone_de_type_tableau}
+Zone de type tableau 
 --------------------
 
 Vous avez ici les boutons :

@@ -36,10 +36,10 @@ le monde réel de manière "intelligente".
 
 -   [Template de scénario](#template)
 
-La page de gestion des Scénarios {#__anchor_xml_id_gestions_xreflabel_gestions_la_page_de_gestion_des_scénarios}
+La page de gestion des Scénarios 
 ================================
 
-Gestion {#__anchor_xml_id_gestion_xreflabel_gestion_gestion}
+Gestion 
 -------
 
 Pour y accéder rien de plus simple, il suffit d’aller sur Outils →
@@ -66,7 +66,7 @@ que des fonctions pour les gérer au mieux :
 -   **Testeur d’expression** : Permet d’executer un test sur une
     expression de votre choix et d’en afficher le résultat.
 
-Mes scénarios {#__anchor_xml_id_messcenarios_xreflabel_messcenarios_mes_scénarios}
+Mes scénarios 
 -------------
 
 Vous trouverez dans cette partie la **liste des scénarios** que vous
@@ -81,7 +81,7 @@ votre profil, vous pouvez le laisser toujours visible). Vous pourrez
 alors **chercher** votre scénario, mais aussi en **ajouter** un par ce
 menu.
 
-Edition d’un scénario {#__anchor_xml_id_edition_xreflabel_edition_edition_d_un_scénario}
+Edition d’un scénario 
 =====================
 
 Après avoir cliqué sur **Ajouter**, vous devez choisir le nom de votre
@@ -118,7 +118,7 @@ En haut, on retrouve quelques fonctions utiles pour gérer notre scénario
 -   **Liens** : Permet de visualiser le graphique des éléments en lien
     avec le scénario.
 
-Onglet Général {#__anchor_xml_id_ongletgeneral_xreflabel_ongletgeneral_onglet_général}
+Onglet Général 
 --------------
 
 Dans l’onglet **Général**, on retrouve les paramètres principaux de
@@ -163,14 +163,14 @@ notre scénario :
 > Attention : vous pouvez avoir au maximum 28
 > déclencheurs/programmations pour un scénario.
 
-Onglet Scénario {#__anchor_xml_id_ongletscenario_xreflabel_ongletscenario_onglet_scénario}
+Onglet Scénario 
 ---------------
 
 C’est ici que vous allez construire votre scénario. Il faut commencer
 par **ajouter un bloc**, avec le bouton situé à droite. Une fois un bloc
 créé, vous pourrez y ajouter un autre **bloc** ou une **action**.
 
-### Les blocs {#_les_blocs}
+### Les blocs 
 
 Voici les différents types de blocs disponibles :
 
@@ -209,7 +209,7 @@ Chacun de ces blocs a ces options pour mieux les manipuler :
 
 -   Le bouton, tout à droite, permet de supprimer le bloc entier.
 
-#### Blocs Si/Alors/Sinon , Boucle, Dans et A {#_blocs_si_alors_sinon_boucle_dans_et_a}
+#### Blocs Si/Alors/Sinon , Boucle, Dans et A 
 
 > **Note**
 >
@@ -247,7 +247,7 @@ Une fois la condition renseignée, vous devez utiliser le bouton
 "ajouter", à gauche, afin d’ajouter un nouveau **bloc** ou une
 **action** dans le bloc actuel.
 
-#### Bloc Code {#_bloc_code}
+#### Bloc Code 
 
 > **Important**
 >
@@ -332,7 +332,7 @@ Scénario
         est écrit seulement à la fin du scénario). Attention ceci peut
         un peu ralentir le scénario.
 
-### Les Actions {#_les_actions}
+### Les Actions 
 
 Les actions ajoutées dans les blocs ont plusieurs options. Dans l’ordre
 :
@@ -358,10 +358,10 @@ Les actions ajoutées dans les blocs ont plusieurs options. Dans l’ordre
 > Suivant la commande sélectionnée, on peut voir apparaître différents
 > champs supplémentaires s’afficher.
 
-Les substitutions possibles {#__anchor_xml_id_substitutions_xreflabel_substitutions_les_substitutions_possibles}
+Les substitutions possibles 
 ===========================
 
-Les déclencheurs {#__anchor_xml_id_declencheurs_xreflabel_declencheurs_les_déclencheurs}
+Les déclencheurs 
 ----------------
 
 Il existe des déclencheurs spécifiques (autre que ceux fournis par les
@@ -386,7 +386,7 @@ jour en mettant : `#variable(nom_variable)#` ou en utilisant l’API HTTP
 décrite
 [ici](https://github.com/jeedom/core/blob/master/doc/fr_FR/api_http.asciidoc).
 
-Opérateurs de comparaison et liens entre les conditions {#__anchor_xml_id_operateurs_xreflabel_operateurs_opérateurs_de_comparaison_et_liens_entre_les_conditions}
+Opérateurs de comparaison et liens entre les conditions 
 -------------------------------------------------------
 
 Vous pouvez utiliser n’importe lequel des symboles suivant pour les
@@ -419,7 +419,7 @@ suivants :
 
 -   `|^` / `XOR` / `xor` : ou exclusif.
 
-Les tags {#__anchor_xml_id_tags_xreflabel_tags_les_tags}
+Les tags 
 --------
 
 Un tag est remplacé lors de l’exécution du scénario par sa valeur. Vous
@@ -485,7 +485,7 @@ déclenché par une interaction :
 > Lorsqu’un scénario est déclenché par une interaction, celui-ci est
 > forcément exécuté en mode rapide.
 
-Les fonctions de calcul {#__anchor_xml_id_calculs_xreflabel_calculs_les_fonctions_de_calcul}
+Les fonctions de calcul 
 -----------------------
 
 Plusieurs fonctions sont disponibles pour les équipements :
@@ -735,7 +735,7 @@ ces différentes fonctions :
 | etrie][Humidité])`                   |                                      |
 +--------------------------------------+--------------------------------------+
 
-Les fonctions mathématiques {#__anchor_xml_id_maths_xreflabel_maths_les_fonctions_mathématiques}
+Les fonctions mathématiques 
 ---------------------------
 
 Une boîte à outils de fonctions génériques peut également servir à
@@ -815,7 +815,7 @@ Et les exemples pratiques :
 |                                      | heures si 130m)                      |
 +--------------------------------------+--------------------------------------+
 
-Les commandes spécifiques {#__anchor_xml_id_commandes_xreflabel_commandes_les_commandes_spécifiques}
+Les commandes spécifiques 
 =========================
 
 En plus des commandes domotiques vous avez accès aux actions suivantes :
@@ -877,7 +877,7 @@ En plus des commandes domotiques vous avez accès aux actions suivantes :
 -   **Supprimer bloc DANS/A programmé** : Permet de supprimer la
     programmation de tous les blocs DANS et A du scénario.
 
-Template de scénario {#__anchor_xml_id_template_xreflabel_template_template_de_scénario}
+Template de scénario 
 ====================
 
 Cette fonctionalité permet de transformer un scénario en template pour
