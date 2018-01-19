@@ -74,7 +74,7 @@ if (init('type') != '') {
 					if (init('plugin', 'core') != 'core' && init('plugin', 'core') != $cmd->getEqType()) {
 						throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action 2', __FILE__));
 					}
-					if (!$cmd->hasRight($USER_GLOBAL)) {
+					if ($_USER_GLOBAL != null && !$cmd->hasRight($USER_GLOBAL)) {
 						continue;
 					}
 					$result[$id] = $cmd->execCmd($_REQUEST);
@@ -89,7 +89,7 @@ if (init('type') != '') {
 				if (init('plugin', 'core') != 'core' && init('plugin', 'core') != $cmd->getEqType()) {
 					throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action 3', __FILE__));
 				}
-				if (!$cmd->hasRight($_USER_GLOBAL)) {
+				if ($_USER_GLOBAL != null && !$cmd->hasRight($_USER_GLOBAL)) {
 					throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action 4', __FILE__));
 				}
 				log::add('api', 'debug', __('Exécution de : ', __FILE__) . $cmd->getHumanName());
@@ -134,7 +134,7 @@ if (init('type') != '') {
 			if (!is_object($scenario)) {
 				throw new Exception(__('Aucun scénario correspondant à l\'ID : ', __FILE__) . secureXSS(init('id')));
 			}
-			if (!$scenario->hasRight('w', $_USER_GLOBAL)) {
+			if ($_USER_GLOBAL != null && !$scenario->hasRight('w', $_USER_GLOBAL)) {
 				throw new Exception(__('Vous n\'avez pas le droit de faire une action sur ce scénario', __FILE__));
 			}
 			switch (init('action')) {
