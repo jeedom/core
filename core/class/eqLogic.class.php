@@ -500,9 +500,9 @@ class eqLogic {
 		} else {
 			$html .= '<div class="widget-name" style="text-align : center;"><a href="' . $this->getLinkToConfiguration() . '" style="font-size : 1em;">' . $this->getName() . '</a><br/><span style="font-size: 0.95em;position:relative;top:-5px;cursor:default;">' . $object_name . '</span></div>';
 		}
-		$html .= '<div style="text-align : center;font-size:2.2em;font-weight: bold;margin-top:-25px;margin-bottom:-25px"><i class="icon jeedom-batterie' . $niveau . ' tooltips" title="' .  $this->getStatus('battery', -2) . '%" style="font-size :2.5em;"></i></div>';
+		$html .= '<div style="text-align : center;font-size:2.2em;font-weight: bold;margin-top:-25px;margin-bottom:-25px"><i class="icon jeedom-batterie' . $niveau . ' tooltips" title="' . $this->getStatus('battery', -2) . '%" style="font-size :2.5em;"></i></div>';
 		$html .= '<div style="text-align : center;"><span style="font-size:1.2em;font-weight: bold;cursor:default;">' . $this->getStatus('battery', -2) . '</span><span>%</span></div>';
-		$html .= '<div style="text-align : center; cursor:default;">' . __('Le', __FILE__) . ' ' . date("d/m/y G:H:s",strtotime($this->getStatus('batteryDatetime', __('inconnue', __FILE__)))) . '</div>';
+		$html .= '<div style="text-align : center; cursor:default;">' . __('Le', __FILE__) . ' ' . date("d/m/y G:H:s", strtotime($this->getStatus('batteryDatetime', __('inconnue', __FILE__)))) . '</div>';
 		if ($this->getConfiguration('battery_type', '') != '') {
 			$html .= '<span class="pull-right" style="font-size : 0.8em;margin-bottom: 3px;margin-right: 5px;cursor:default;" title="Piles">' . $this->getConfiguration('battery_type', '') . '</span>';
 		}
@@ -1098,11 +1098,20 @@ class eqLogic {
 		event::add('eqLogic::update', array('eqLogic_id' => $this->getId()));
 	}
 
-	public function hasRight($_right) {
+	public function hasRight($_right, $_user = null) {
+		if ($_user != null) {
+			if ($_user->getProfils() == 'admin') {
+				return true;
+			}
+			if (strpos($_user->getRights('eqLogic' . $this->getId()), $_right) !== false) {
+				return true;
+			}
+			return false;
+		}
 		if (!isConnect()) {
 			return false;
 		}
-		if (isConnect('admin') || isConnect('user')) {
+		if (isConnect('admin')) {
 			return true;
 		}
 		if (strpos($_SESSION['user']->getRights('eqLogic' . $this->getId()), $_right) !== false) {

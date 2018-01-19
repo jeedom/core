@@ -33,16 +33,18 @@ if (isset($argv)) {
 		}
 	}
 }
-
+GLOBAL $_USER_GLOBAL;
+$_USER_GLOBAL == null;
 if (init('type') != '') {
+
 	try {
 		$type = init('type');
 		if ((!jeedom::apiAccess(init('apikey', init('api')), init('plugin', 'core')) &&
 			!jeedom::apiAccess(init('apikey', init('api')), init('type', 'core'))) ||
 			(!jeedom::apiModeResult(config::byKey('api::core::http::mode', init('plugin', 'core'), 'enable')) &&
 				!jeedom::apiModeResult(config::byKey('api::core::http::mode', init('type', 'core'), 'enable')))) {
-			sleep(5);
 			user::failedLogin();
+			sleep(5);
 			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action 1', __FILE__));
 		}
 		if ($type == 'ask') {
@@ -72,6 +74,9 @@ if (init('type') != '') {
 					if (init('plugin', 'core') != 'core' && init('plugin', 'core') != $cmd->getEqType()) {
 						throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action 2', __FILE__));
 					}
+					if (!$cmd->hasRight($USER_GLOBAL)) {
+						continue;
+					}
 					$result[$id] = $cmd->execCmd($_REQUEST);
 				}
 				echo json_encode($result);
@@ -83,6 +88,9 @@ if (init('type') != '') {
 				}
 				if (init('plugin', 'core') != 'core' && init('plugin', 'core') != $cmd->getEqType()) {
 					throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action 3', __FILE__));
+				}
+				if (!$cmd->hasRight($_USER_GLOBAL)) {
+					throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action 4', __FILE__));
 				}
 				log::add('api', 'debug', __('Exécution de : ', __FILE__) . $cmd->getHumanName());
 				echo $cmd->execCmd($_REQUEST);
@@ -126,7 +134,7 @@ if (init('type') != '') {
 			if (!is_object($scenario)) {
 				throw new Exception(__('Aucun scénario correspondant à l\'ID : ', __FILE__) . secureXSS(init('id')));
 			}
-			if (!$scenario->hasRight('w')) {
+			if (!$scenario->hasRight('w', $_USER_GLOBAL)) {
 				throw new Exception(__('Vous n\'avez pas le droit de faire une action sur ce scénario', __FILE__));
 			}
 			switch (init('action')) {
@@ -256,9 +264,7 @@ if (init('type') != '') {
 			}
 			$user = user::connect($params['login'], $params['password']);
 			if (!is_object($user) || $user->getEnable() != 1) {
-				@session_start();
-				$_SESSION['failed'] = (isset($_SESSION['failed'])) ? $_SESSION['failed'] + 1 : 1;
-				@session_write_close();
+				user::failedLogin();
 				sleep(5);
 				throw new Exception(__('Echec lors de l\'authentification', __FILE__), -32001);
 			}
@@ -317,21 +323,33 @@ if (init('type') != '') {
 			}
 
 			if ($jsonrpc->getMethod() == 'jeedom::halt') {
+				if (is_object($_USER_GLOBAL) && $_USER_GLOBAL->getProfils() != 'admin') {
+					throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
+				}
 				jeedom::haltSystem();
 				$jsonrpc->makeSuccess('ok');
 			}
 
 			if ($jsonrpc->getMethod() == 'jeedom::reboot') {
+				if (is_object($_USER_GLOBAL) && $_USER_GLOBAL->getProfils() != 'admin') {
+					throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
+				}
 				jeedom::rebootSystem();
 				$jsonrpc->makeSuccess('ok');
 			}
 
 			if ($jsonrpc->getMethod() == 'jeedom::update') {
+				if (is_object($_USER_GLOBAL) && $_USER_GLOBAL->getProfils() != 'admin') {
+					throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
+				}
 				jeedom::update('', 0);
 				$jsonrpc->makeSuccess('ok');
 			}
 
 			if ($jsonrpc->getMethod() == 'jeedom::backup') {
+				if (is_object($_USER_GLOBAL) && $_USER_GLOBAL->getProfils() != 'admin') {
+					throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
+				}
 				jeedom::backup(true);
 				$jsonrpc->makeSuccess('ok');
 			}
@@ -496,6 +514,9 @@ if (init('type') != '') {
 					$eqLogic = new $typeEqLogic();
 					$eqLogic->setEqType_name($params['eqType_name']);
 				}
+				if (is_object($_USER_GLOBAL) && $_USER_GLOBAL->getProfils() != 'admin') {
+					throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
+				}
 				utils::a2o($eqLogic, jeedom::fromHumanReadable($params));
 				$eqLogic->save();
 				$dbList = $typeCmd::byEqLogicId($eqLogic->getId());
@@ -586,10 +607,10 @@ if (init('type') != '') {
 						if (!is_object($cmd)) {
 							throw new Exception(__('Commande introuvable : ', __FILE__) . secureXSS($id), -32702);
 						}
-						$eqLogic = $cmd->getEqLogic();
-						if ($cmd->getType() == 'action' && !$eqLogic->hasRight('x')) {
-							throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
+						if (!$cmd->hasRight($USER_GLOBAL)) {
+							continue;
 						}
+						$eqLogic = $cmd->getEqLogic();
 						if (!isset($params['codeAccess'])) {
 							$params['codeAccess'] = '';
 						}
@@ -606,8 +627,7 @@ if (init('type') != '') {
 					if (!is_object($cmd)) {
 						throw new Exception(__('Commande introuvable : ', __FILE__) . secureXSS($params['id']), -32702);
 					}
-					$eqLogic = $cmd->getEqLogic();
-					if ($cmd->getType() == 'action' && !$eqLogic->hasRight('x')) {
+					if (!$cmd->hasRight($USER_GLOBAL)) {
 						throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
 					}
 					if (!isset($params['codeAccess'])) {
@@ -656,8 +676,14 @@ if (init('type') != '') {
 				}
 				if (isset($params['id'])) {
 					$cmd = cmd::byId($params['id']);
+					if (!$cmd->hasRight($USER_GLOBAL)) {
+						throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
+					}
 				}
 				if (!is_object($cmd)) {
+					if (is_object($_USER_GLOBAL) && $_USER_GLOBAL->getProfils() != 'admin') {
+						throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
+					}
 					$cmd = new cmd();
 				}
 				utils::a2o($cmd, jeedom::fromHumanReadable($params));

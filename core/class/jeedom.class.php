@@ -314,7 +314,6 @@ class jeedom {
 			return false;
 		}
 		$apikey = self::getApiKey($_plugin);
-
 		if (trim($apikey) != '' && $apikey == $_apikey) {
 			return true;
 		}
@@ -323,9 +322,8 @@ class jeedom {
 			if ($user->getOptions('localOnly', 0) == 1 && !self::apiModeResult('whiteip')) {
 				return false;
 			}
-			@session_start();
-			$_SESSION['user'] = $user;
-			@session_write_close();
+			GLOBAL $_USER_GLOBAL;
+			$_USER_GLOBAL = $user;
 			log::add('connection', 'info', __('Connexion par API de l\'utilisateur : ', __FILE__) . $user->getLogin());
 			return true;
 		}

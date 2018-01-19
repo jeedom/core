@@ -1386,11 +1386,20 @@ class scenario {
 	 * @param type $_right
 	 * @return boolean
 	 */
-	public function hasRight($_right) {
+	public function hasRight($_right, $_user = null) {
+		if ($_user != null) {
+			if ($_user->getProfils() == 'admin') {
+				return true;
+			}
+			if (strpos($_user->getRights('scenario' . $this->getId()), $_right) !== false) {
+				return true;
+			}
+			return false;
+		}
 		if (!isConnect()) {
 			return false;
 		}
-		if (isConnect('admin') || isConnect('user')) {
+		if (isConnect('admin')) {
 			return true;
 		}
 		if (strpos($_SESSION['user']->getRights('scenario' . $this->getId()), $_right) !== false) {
