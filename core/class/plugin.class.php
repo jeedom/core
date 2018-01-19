@@ -364,8 +364,8 @@ class plugin {
 
 				}
 			} else if ($dependancy_info['state'] == 'in_progress' && $dependancy_info['duration'] > $plugin->getMaxDependancyInstallTime()) {
-				if (isset($return['progress_file']) && file_exists($return['progress_file'])) {
-					shell_exec('rm ' . $return['progress_file']);
+				if (isset($dependancy_info['progress_file']) && file_exists($dependancy_info['progress_file'])) {
+					shell_exec('rm ' . $dependancy_info['progress_file']);
 				}
 				config::save('deamonAutoMode', 0, $plugin->getId());
 				log::add($plugin->getId(), 'error', __('Attention : l\'installation des dépendances a dépassé le temps maximum autorisé : ', __FILE__) . $plugin->getMaxDependancyInstallTime() . 'min');
