@@ -286,7 +286,7 @@ class network {
 		$openvpn->setConfiguration('username', jeedom::getHardwareKey());
 		$openvpn->setConfiguration('password', config::byKey('dns::token'));
 		$openvpn->setConfiguration('compression', 'comp-lzo');
-		$openvpn->setConfiguration('remote_port', config::byKey('vpn::port''core', 1194));
+		$openvpn->setConfiguration('remote_port', config::byKey('vpn::port', 'core', 1194));
 		$openvpn->setConfiguration('auth_mode', 'password');
 		$openvpn->save();
 		if (!file_exists(dirname(__FILE__) . '/../../plugins/openvpn/data')) {
