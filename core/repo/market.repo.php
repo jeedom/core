@@ -528,6 +528,10 @@ class repo_market {
 				config::save('dns::number', $_result['register::dnsNumber']);
 				$restart_dns = true;
 			}
+			if (isset($_result['register::vpnPort']) && config::byKey('vpn::port') != $_result['register::vpnPort']) {
+				config::save('vpn::port', $_result['register::vpnPort']);
+				$restart_dns = true;
+			}
 			if ($restart_dns && config::byKey('market::allowDNS') == 1) {
 				network::dns_start();
 			}
