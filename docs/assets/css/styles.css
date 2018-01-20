@@ -84,3 +84,6 @@ nav ul a,nav {
 .toc a.active{
 	 font-weight: bold;
 }
+.dropdown-content li>a, .dropdown-content li>span{
+	color : #95C12B !important;
+}
