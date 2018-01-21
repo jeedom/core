@@ -38,7 +38,7 @@ En haut de page, on trouve 3 boutons :
 > aller dans l’interaction en question et la sauvegarder de nouveau pour
 > créer les phrases de ce nouveau module.
 
-Principe 
+Prinzip 
 ========
 
 Le principe de création est assez simple, on va définir une phrase

@@ -28,7 +28,7 @@ trouverez les onglets suivants :
     d’interaction dans Jeedom.
 
 -   [Rapports](#rapports) : Paramètres concernant les rapports produits
-    par Jeedom.
+    von Jeedom
 
 -   [Liens](#liens) : Paramètres pour le rendu des graphiques de liens.
 
@@ -130,7 +130,7 @@ Deux parties réservées aux experts sont présentes dans cet onglet.
     du haut. Deux paramètres s’affichent, en dessous, pour information :
 
     -   **Utilisateur** : Nom de l’utilisateur utilisé par Jeedom dans
-        la base de données,
+        Die Datenbank
 
     -   **Mot de passe** : mot de passe d’accès à la base de données
         utilisée par Jeedom.
@@ -186,8 +186,8 @@ La liste des IP bannies se trouve au bas de cette page. Vous y trouverez
 l’IP, la date de bannissement et la date de fin de bannissement
 programmée.
 
-Réseaux 
-=======
+Netzwerke
+=========
 
 Il faut absolument configurer correctement cette partie importante de
 Jeedom, sinon beaucoup de plugins risqueraient de ne pas fonctionner. Il
@@ -211,7 +211,7 @@ externe** (depuis un autre réseau notamment depuis Internet).
     équipement du même réseau que Jeedom (LAN)
 
     -   **OK/NOK** : indique si la configuration réseau interne est
-        correcte
+        richtig
 
     -   **Protocole** : le protocole à utiliser, souvent HTTP
 
