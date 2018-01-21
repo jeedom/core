@@ -331,7 +331,7 @@ distrib_1_spe(){
 }
 
 STEP=0
-VERSION=stable
+VERSION=master
 WEBSERVER_HOME=/var/www/html
 HTML_OUTPUT=0
 MYSQL_ROOT_PASSWD=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
