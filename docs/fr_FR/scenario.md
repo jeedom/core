@@ -623,8 +623,7 @@ exemple :
 Voici des exemples pratiques pour comprendre les valeurs retournées par
 ces différentes fonctions :
 
-| Prise ayant pour valeurs :           | 000 (pendant 10 minutes) 11 (pendant |
-|                                      | 1 heure) 000 (pendant 10 minutes)    |
+| Prise ayant pour valeurs :           | 000 (pendant 10 minutes) 11 (pendant 1 heure) 000 (pendant 10 minutes)    |
 |--------------------------------------|--------------------------------------|
 | `average(prise,période)`             | Renvoie la moyenne des 0 et 1 (peut  |
 |                                      | être influencée par le polling)      |
