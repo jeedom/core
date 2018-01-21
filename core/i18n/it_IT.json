@@ -9,7 +9,7 @@
         "Valeur": "Valore",
         "Aucun": "Nessuno",
         "Erreur execution de la commande ": "Errore eseguendo il comando",
-        "Alerte sur la commande ": "Avviso sul comando",
+        "Alerte sur la commande ": "Alerte sur la commande",
         " niveau ": "livello",
         "[jeedom] Message de ": "[jeedom] Messaggio di ",
         "pendant plus de ": "per più di ",
@@ -35,9 +35,9 @@
     },
     "core/class/plugin.class.php": {
         "Inconnue": "Sconosciuto",
-        "Vous devez attendre au moins 45 secondes entre deux lancements du démon": "Attendere almeno 45s tra 2 avvii del daemon",
+        "Vous devez attendre au moins 45 secondes entre deux lancements du démon": "Vous devez attendre au moins 45 secondes entre deux lancements du démon",
         "Erreur sur la fonction deamon_start du plugin : ": "Errore sulla funzione daemon_start del plugin",
-        "Veuillez exécuter le script : ": "Eseguite lo script:",
+        "Veuillez exécuter le script : ": "Veuillez exécuter le script :",
         "Lancement de : ": "Avvio di :",
         "Gestion automatique désactivée": "Gestione automatica disattivato"
     },
@@ -67,7 +67,7 @@
         "Veuillez trouver ci-joint le rapport ": "Veuillez trouver ci-joint le rapport",
         " du ": "di",
         " généré le ": "généré le",
-        "Aucune durée trouvée pour l'action pause ou la durée n'est pas valide : ": "Aucune durée trouvée pour l'action sleep ou la durée n'est pas valide :",
+        "Aucune durée trouvée pour l'action pause ou la durée n'est pas valide : ": "Aucune durée trouvée pour l'action pause ou la durée n'est pas valide :",
         "[Erreur] Aucune commande trouvée pour ": "[Errore] Nessun ordine trovato per",
         " options : ": "options :"
     },
@@ -173,7 +173,7 @@
         "Limite de la taille totale des sauvegardes à ": "Limita la dimensione totale dei backup a",
         "Envoi de la sauvegarde dans le cloud": "Envoi de la sauvegarde dans le cloud",
         "Nettoyage du dossier temporaire...": "Nettoyage du dossier temporaire...",
-        "Nom de la sauvegarde : ": "Nome del backup:",
+        "Nom de la sauvegarde : ": "Nom de la sauvegarde :",
         "***************Fin de la sauvegarde de Jeedom***************\n": "***************Fine backup Jeedom***************",
         "Echec lors de la compression de la sauvegarde. Sauvegarde introuvable : ": "Echec lors de la compression de la sauvegarde. Sauvegarde introuvable :",
         "Erreur durant la sauvegarde : ": "Erreur durant la sauvegarde :",
@@ -197,7 +197,7 @@
         "Scénarios": "Scene"
     },
     "desktop/php/index.php": {
-        "Basculer la navigation": "Commuta naviazione",
+        "Basculer la navigation": "Basculer la navigation",
         "Accueil": "Principale",
         "Dashboard": "Dashboard",
         "Vue": "Visione",
@@ -218,7 +218,7 @@
         "Gestion des plugins": "Gestione Plugin",
         "Protocole domotique": "Protocollo automazione",
         "Communication": "Comunicazione",
-        "Objets communicants": "Objets communicants",
+        "Objets communiquants": "Objets communicants",
         "Energie": "Energia",
         "Monitoring": "Monitoraggio",
         "Multimédia": "Multimedia",
@@ -281,9 +281,9 @@
     },
     "desktop/js/update.js": {
         "Options": "Opzioni",
-        "Etes-vous sûr de vouloir faire les mises à jour ?": "Sei sicuro di voler aggiornare?",
-        "Etes-vous sûr de vouloir mettre à jour cet objet ?": "Sei sicuro di voler aggiornare questo oggetto?",
-        "Etes-vous sûr de vouloir supprimer cet objet ?": "Sei sicuro di voler eliminare questo oggetto?",
+        "Etes-vous sûr de vouloir faire les mises à jour ?": "Etes-vous sûr de vouloir faire les mises à jour ?",
+        "Etes-vous sûr de vouloir mettre à jour cet objet ?": "Etes-vous sûr de vouloir mettre à jour cet objet ?",
+        "Etes-vous sûr de vouloir supprimer cet objet ?": "Etes-vous sûr de vouloir supprimer cet objet ?",
         "L\\'opération est réussie": "Questa operazione è ha avuto esito positivo",
         "L\\'opération a échoué": "L\\'operazione è fallita",
         "Dernière mise à jour du core : ": "Dernière mise à jour du core :",
@@ -319,7 +319,7 @@
     "core/class/interactQuery.class.php": {
         "J'ai une correspondance  : ": "J'ai une correspondance  :",
         " avec ": "avec",
-        "Correspondance trop éloignée : ": "Correspondance trop éloigné :",
+        "Correspondance trop éloignée : ": "Correspondance trop éloignée :",
         "Désolé je n'ai pas compris": "Désolé je n'ai pas compris",
         "Désolé je n'ai pas compris la demande": "Désolé je n'ai pas compris la demande",
         "Désolé je ne comprends pas la demande": "Désolé je ne comprends pas la demande",
@@ -389,7 +389,7 @@
         "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à Jeedom. L'équipe Jeedom se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "ATTENZIONE : queste operazioni sono rischiose , continuando potreste perdere l' accesso al vostro sistema e a Jeedom . Il team Jeedom si riserva il diritto di rifiutare tutte le domande di supporto in caso di cattiva manipolazione.",
         "Accès à l'interface d'administration": "Accesso all\\'interfaccia di amministrazione",
         "Lancer": "Avvia",
-        "Sécurité": "Sécurité",
+        "Sécurité": "Sicurezza",
         "Nombre d'échecs tolérés": "Nombre d'échecs tolérés",
         "Temps maximum entre les échecs (s)": "Temps maximum entre les échecs (s)",
         "Durée du bannissement (s), -1 pour infini": "Durée du bannissement (s), -1 pour infini",
@@ -403,7 +403,7 @@
         "Machine (hostname)": "Nome host",
         "Utilisateur": "Utente",
         "Mot de passe": "Password",
-        "Configuration réseau": "Configurazione rete",
+        "Configuration réseau": "Configuration réseau",
         "Attention : cette configuration n'est là que pour informer Jeedom de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre Jeedom": "Attention : cette configuration n'est là que pour informer Jeedom de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre Jeedom",
         "Accès interne": "Accès interne",
         "Protocole": "Protocoll",
@@ -515,7 +515,6 @@
         "Warning": "Avvertimento",
         "Erreur": "Erreur",
         "Niveau de log pour": "Niveau de log pour",
-        "Défaut": "Predefinito",
         "Configuration LDAP": "Configurazione LDAP",
         "Activer l'authentification LDAP": "Abilita autenticazione LDAP",
         "Hôte": "Nome Host",
@@ -597,7 +596,7 @@
         "Groupe": "Gruppo",
         "Demande": "Richiesta",
         "Synonyme": "Sinonimo",
-        "Remplace les mots par leurs synonymes lors de la génération des commandes": "Sostituisci parole con i loro sinonimi quando i comandi sono generati",
+        "Remplace les mots par leurs synonymes lors de la génération des commandes": "Remplace les mots par leurs synonymes lors de la génération des commandes",
         "Réponse": "Risposta",
         "Conversion binaire": "Conversione binaria",
         "Convertir les commandes binaires": "Converti comandi binari",
@@ -864,8 +863,8 @@
         "Attendre": "Attendere",
         "Aller au design": "Vai al design",
         "Ajouter un log": "Aggiungi un registro",
-        "Créer un message": "Crea un messaggi",
-        "Activer/Désactiver Masquer/Afficher un équipement": "Attiva/Disattiva Nascondi/Mostra un dispositivo",
+        "Créer un message": "Créer un message",
+        "Activer/Désactiver Masquer/Afficher un équipement": "Activer/Désactiver Masquer/Afficher un équipement",
         "Faire une demande": "Apri una richiesta",
         "Arrêter Jeedom": "Arrêter Jeedom",
         "Retourner un texte/une donnée": "Retourner un texte/une donnée",
@@ -881,7 +880,7 @@
         "Change le design affiché sur tous les navigateurs qui affichent un design par le design demandé": "Modificare il design visualizzato su tutti i browser che visualizzano un design dal quello richiesto",
         "Permet de rajouter un message dans les logs": "Permette di aggiungere un messaggio personalizzato nei registri",
         "Permet d'ajouter une message dans le centre de message": "Permette di aggiungere un messaggio nel centro messaggi",
-        "Permet de modifier les propriétés visible/invisible actif/inactif d'un équipement": "Consente di modificare le proprietà di visibile/invisibile attivo/inattivo di un dispositivo",
+        "Permet de modifier les propriétés visible/invisible actif/inactif d'un équipement": "Permet de modifier les propriétés visible/invisible actif/inactif d'un équipement",
         "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.": "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.",
         "Envoi l'ordre à Jeedom de s'éteindre": "Envoi l'ordre à Jeedom de s'éteindre",
         "Retourne un texte ou une valeur pour une interaction par exemple": "Retourne un texte ou une valeur pour une interaction par exemple",
@@ -1101,7 +1100,7 @@
         "Aimanter à la grille": "Aimanter à la grille",
         "Masquer surbrillance des éléments": "Masquer surbrillance des éléments",
         "Supprimer le design": "Elimina design",
-        "Etes-vous sûr de vouloir supprimer ce design ?": "Sei sicuro di voler eliminare il design?",
+        "Etes-vous sûr de vouloir supprimer ce design ?": "Etes-vous sûr de vouloir supprimer ce design ?",
         "Creer un design": "Creer un design",
         "Dupliquer le design": "Duplica il design",
         "Nom la copie du design ?": "Nome della copia del design?",
@@ -1117,7 +1116,7 @@
         "Nom du design ?": "Nom du design ?"
     },
     "core/com/http.com.php": {
-        "Echec de la requête HTTP : ": "Richiesta http fallita:"
+        "Echec de la requête HTTP : ": "Echec de la requête HTTP :"
     },
     "desktop/php/report.php": {
         "Type": "Tipo",
@@ -1137,7 +1136,7 @@
         "Aperçu": "Aperçu"
     },
     "core/ajax/report.ajax.php": {
-        "Aucune méthode correspondante à : ": "Nessun metodo corrispondente :"
+        "Aucune méthode correspondante à : ": "Aucune méthode correspondante à :"
     },
     "core/php/downloadFile.php": {
         "Fichier non trouvé : ": "File non trovato :",
@@ -1202,7 +1201,7 @@
     },
     "desktop/js/log.js": {
         "Pause": "Pausa",
-        "Etes-vous sûr de vouloir supprimer tous les logs ?": "Sei sicuro di voler eliminare tutti i registri?"
+        "Etes-vous sûr de vouloir supprimer tous les logs ?": "Etes-vous sûr de vouloir supprimer tous les logs ?"
     },
     "desktop/js/plugin.js": {
         "Envoyer sur le": "Envoyer sur le",
@@ -1229,7 +1228,7 @@
         "Warning": "Avvertimento",
         "Error": "Errore",
         "Logs": "Logs",
-        "Etes-vous sûr de vouloir supprimer ce plugin ?": "Sei sicuro di voler eliminare questo plugin?",
+        "Etes-vous sûr de vouloir supprimer ce plugin ?": "Etes-vous sûr de vouloir supprimer ce plugin ?",
         "Market": "Market",
         "Sauvegarde de la configuration des panneaux effectuée": "Sauvegarde de la configuration des panneaux effectuée",
         "Sauvegarde des fonctionalités effectuée": "Sauvegarde des fonctionalités effectuée",
@@ -1260,7 +1259,7 @@
         "Sauvegardes": "Backup",
         "Lancer": "Avvia",
         "Emplacement des sauvegardes": "Cartella backup",
-        "Nombre de jours de mémorisation des sauvegardes": "Numero di giorno(i) per memorizzare i backup",
+        "  ": "Nombre de jours de mémorisation des sauvegardes",
         "Taille totale maximale des backups (Mo)": "Massima dimensione totale dei backup (Mo)",
         "Sauvegardes locales": "Backup locali",
         "Sauvegardes disponibles": "Backup disponibili",
@@ -1405,9 +1404,9 @@
     "desktop/php/display.php": {
         "Rechercher": "Cerca",
         "Inactif": "Inattiva",
-        "Nombre d'objets :": "Numero oggetto :",
-        "Nombre d'équipements :": "Numero di dispositivi :",
-        "Nombre de commandes :": "Numero di comandi:",
+        "Nombre d'objets :": "Nombre d'objets :",
+        "Nombre d'équipements :": "Nombre d'équipements :",
+        "Nombre de commandes :": "Nombre de commandes :",
         "Supprimer": "Elimina",
         "Visible": "Visibile",
         "Invisible": "Invisibile",
@@ -1425,7 +1424,7 @@
         "Configuration de l'équipement": "Configurazione dispositivo",
         "Configuration de l'objet": "Configurazione oggetto",
         "Configuration de la commande": "Impostazione comando",
-        "Etes-vous sûr de vouloir supprimer tous ces équipements ?": "Sei sicuro di voler eliminare tutti questi dispositivi?"
+        "Etes-vous sûr de vouloir supprimer tous ces équipements ?": "Etes-vous sûr de vouloir supprimer tous ces équipements ?"
     },
     "desktop/modal/plugin.dependancy.php": {
         "Nom": "Nome",
@@ -1446,8 +1445,8 @@
         "Attendre": "Attendere",
         "Aller au design": "Vai al design",
         "Ajouter un log": "Aggiungi un registro",
-        "Créer un message": "Crea un messaggi",
-        "Activer/Désactiver Masquer/Afficher un équipement": "Attiva/Disattiva Nascondi/Mostra un dispositivo",
+        "Créer un message": "Créer un message",
+        "Activer/Désactiver Masquer/Afficher un équipement": "Activer/Désactiver Masquer/Afficher un équipement",
         "Faire une demande": "Apri una richiesta",
         "Arrêter Jeedom": "Arrêter Jeedom",
         "Retourner un texte/une donnée": "Retourner un texte/une donnée",
@@ -1464,7 +1463,7 @@
         "Change le design affiché sur tous les navigateurs qui affichent un design par le design demandé": "Modificare il design visualizzato su tutti i browser che visualizzano un design dal quello richiesto",
         "Permet de rajouter un message dans les logs": "Permette di aggiungere un messaggio personalizzato nei registri",
         "Permet d'ajouter une message dans le centre de message": "Permette di aggiungere un messaggio nel centro messaggi",
-        "Permet de modifier les propriétés visible/invisible actif/inactif d'un équipement": "Consente di modificare le proprietà di visibile/invisibile attivo/inattivo di un dispositivo",
+        "Permet de modifier les propriétés visible/invisible actif/inactif d'un équipement": "Permet de modifier les propriétés visible/invisible actif/inactif d'un équipement",
         "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec le plugin SMS, Slack et SARAH.": "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec le plugin SMS, Slack et SARAH.",
         "Envoi l'ordre à Jeedom de s'éteindre": "Envoi l'ordre à Jeedom de s'éteindre",
         "Retourne un texte ou une valeur pour une interaction par exemple": "Retourne un texte ou une valeur pour une interaction par exemple",
@@ -1619,7 +1618,7 @@
         "Equipement": "Dispositivo",
         "Commandes": "Comandi",
         "Scénario": "Scena",
-        "Calcul et arrondi": "Calcolo e arrotondamento",
+        "Calcul et arrondi": "Calcul et arrondi",
         "Formule de calcul (#value# pour la valeur)": "Calcolo formula (#valore# per il valore)",
         "Type générique": "Type générique",
         "Aucun": "Nessuno",
@@ -1711,8 +1710,7 @@
         "Arrondi (chiffre après la virgule)": "Arrotondato (decimale)",
         "Thermostat": "Termostato",
         "Purger l'historique si plus vieux que ": "Purger l'historique si plus vieux que",
-        "1 an": "1 an",
-        "Copie des données historisées": "Copie des données historisées"
+        "1 an": "1 an"
     },
     "desktop/php/object.php": {
         "Ajouter objet": "Aggiungi oggetto",
@@ -1772,8 +1770,8 @@
         "Valeur": "Valore",
         "Utilisée dans": "Usato in",
         "Action": "Azione",
-        "Dépôt de données supprimé": "Dépôt de données eliminato",
-        "Dépôt de données sauvegardé": "Dépôt de données salvato",
+        "Dépôt de données supprimé": "Dépôt de données supprimé",
+        "Dépôt de données sauvegardé": "Dépôt de données sauvegardé",
         "Graphique de lien": "Graphique de lien"
     },
     "core/class/dataStore.class.php": {
@@ -1785,7 +1783,7 @@
         "OK\n": "OK",
         "Décompression du zip...": "Décompression du zip...",
         "Post-installation de ": "Post-installation de",
-        "Action de pré-mise à jour...": "Azione pre-aggiornamento"
+        "Action de pré-mise à jour...": "Action de pré-mise à jour..."
     },
     "core/repo/market.repo.php": {
         "Téléchargement de ": "Téléchargement de"
@@ -1812,7 +1810,7 @@
         "Nombre de téléchargements": "Numero di download",
         "Type": "Tipo",
         "Dernière mise à jour le": "Dernière mise à jour le",
-        "Voulez-vous aller sur la page de configuration de votre nouveau plugin ?": "Desideri andare alle impostazioni del tuo nuovo plugin?",
+        "Voulez-vous aller sur la page de configuration de votre nouveau plugin ?": "Voulez-vous aller sur la page de configuration de votre nouveau plugin ?",
         "Objet installé avec succès": "Oggetto installato con successo"
     },
     "core/class/view.class.php": {
@@ -1860,8 +1858,8 @@
         "Transparent": "Trasparente",
         "Défaut": "Predefinito",
         "Couleur du texte": "Colore testo",
-        "Arrondir les angles (ne pas oublier de mettre %, ex 50%)": "Angoli arrotondati (ricorda di impostare a %, es: 50%)",
-        "Bordure (attention syntaxe CSS, ex : solid 1px black)": "Bordo (Sintassi CSS, es: solid 1px black)",
+        "Arrondir les angles (ne pas oublier de mettre %, ex 50%)": "Arrondir les angles (ne pas oublier de mettre %, ex 50%)",
+        "Bordure (attention syntaxe CSS, ex : solid 1px black)": "Bordure (attention syntaxe CSS, ex : solid 1px black)",
         "Taille de la police (ex 50%, il faut bien mettre le signe %)": "Dimensione dei caratteri (es 50%, dobbiamo mettere il segno%)",
         "Gras": "Grassetto",
         "Normal": "Normal",

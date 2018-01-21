@@ -63,7 +63,7 @@
        <select class="sel_lang">
         {% if site.langs.size >= 2 %}
         {% for lang in site.langs %}
-        <option data-href="index{% if lang != "fr_FR" %}-{{ lang }}{% endif %}.html" value="{{ lang }}">{% if lang == "fr_FR" %}Français{% endif %}{% if lang == "en_US" %}English{% endif %}{% if lang == "ru_RU" %}Russe{% endif %}{% if lang == "de_DE" %}Deutsch{% endif %}{% if lang == "es_ES" %}Spanish{% endif %}{% if lang == "it_IT" %}Italien{% endif %}{% if lang == "id_ID" %}Indien{% endif %}</option>
+        <option value="{{ lang }}">{% if lang == "fr_FR" %}Français{% endif %}{% if lang == "en_US" %}English{% endif %}{% if lang == "ru_RU" %}Russe{% endif %}{% if lang == "de_DE" %}Deutsch{% endif %}{% if lang == "es_ES" %}Spanish{% endif %}{% if lang == "it_IT" %}Italien{% endif %}{% if lang == "id_ID" %}Indien{% endif %}</option>
         {% endfor %}
         {% endif %}
       </select>
@@ -85,17 +85,20 @@
    var title = '{{site.github.project_title}}';
    title = title.replace('plugin-','');
    $('#doc_title').append(title[0].toUpperCase() + title.substring(1))
+      document.title = 'Documentation '+ title[0].toUpperCase() + title.substring(1)
    $(".button-collapse").sideNav();
    $('img').addClass('responsive-img');
    init();
-   var regex = /-([a-zA-Z_]*)\.html/g;
+   var regex = /\/([a-z]{2}_[A-Z]{2})\//g;
    var corresp  = regex.exec(window.location.href)
    if(corresp !== null && corresp[1]){
     $('.sel_lang').val(corresp[1])
   }
   $('select').material_select();
   $('.sel_lang').on('change',function(){
-    window.location.href = $(this).find('option:selected').attr('data-href');
+    var regex = /\/([a-z]{2}_[A-Z]{2})\//g;
+    var corresp  = regex.exec(window.location.href);
+    window.location.href =  window.location.href.replace(corresp[1], $(this).find('option:selected').attr('value'));
   })
   $('#bt_up').on('click',function(){
     window.scrollTo(0, 0);

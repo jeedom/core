@@ -67,7 +67,7 @@
         "Veuillez trouver ci-joint le rapport ": "Veuillez trouver ci-joint le rapport",
         " du ": "   ",
         " généré le ": "généré le",
-        "Aucune durée trouvée pour l'action pause ou la durée n'est pas valide : ": "Aucune durée trouvée pour l'action sleep ou la durée n'est pas valide :",
+        "Aucune durée trouvée pour l'action pause ou la durée n'est pas valide : ": "Aucune durée trouvée pour l'action pause ou la durée n'est pas valide :",
         "[Erreur] Aucune commande trouvée pour ": "[Erreur] Aucune commande trouvée pour",
         " options : ": "options :"
     },
@@ -173,7 +173,7 @@
         "Limite de la taille totale des sauvegardes à ": "Ограничить общий размер резервных копий",
         "Envoi de la sauvegarde dans le cloud": "Envoi de la sauvegarde dans le cloud",
         "Nettoyage du dossier temporaire...": "Nettoyage du dossier temporaire...",
-        "Nom de la sauvegarde : ": "Имя резервной копии:",
+        "Nom de la sauvegarde : ": "Nom de la sauvegarde :",
         "***************Fin de la sauvegarde de Jeedom***************\n": "*************** Конец резервного копирования Jeedom ***************",
         "Echec lors de la compression de la sauvegarde. Sauvegarde introuvable : ": "Echec lors de la compression de la sauvegarde. Sauvegarde introuvable :",
         "Erreur durant la sauvegarde : ": "Erreur durant la sauvegarde :",
@@ -197,7 +197,7 @@
         "Scénarios": "Сценарии"
     },
     "desktop/php/index.php": {
-        "Basculer la navigation": "Включить/выключить навигацию",
+        "Basculer la navigation": "Пропустить навигацию",
         "Accueil": "Домой",
         "Dashboard": "Приборная панель",
         "Vue": "Просмотр",
@@ -218,7 +218,7 @@
         "Gestion des plugins": "Управление Плагинами",
         "Protocole domotique": "Протокол автоматики",
         "Communication": "Связь",
-        "Objets communicants": "Objets communicants",
+        "Objets communiquants": "Objets communicants",
         "Energie": "Энергетика",
         "Monitoring": "Мониторинг",
         "Multimédia": "Мультимедиа",
@@ -281,9 +281,9 @@
     },
     "desktop/js/update.js": {
         "Options": "Опции",
-        "Etes-vous sûr de vouloir faire les mises à jour ?": "Вы уверены, что желаете выполнить обновление?",
-        "Etes-vous sûr de vouloir mettre à jour cet objet ?": "Вы уверены, что желаете установить это обновление?",
-        "Etes-vous sûr de vouloir supprimer cet objet ?": "Вы уверены, что хотите удалить этот элемент?",
+        "Etes-vous sûr de vouloir faire les mises à jour ?": "Etes-vous sûr de vouloir faire les mises à jour ?",
+        "Etes-vous sûr de vouloir mettre à jour cet objet ?": "Etes-vous sûr de vouloir mettre à jour cet objet ?",
+        "Etes-vous sûr de vouloir supprimer cet objet ?": "Etes-vous sûr de vouloir supprimer cet objet ?",
         "L\\'opération est réussie": "Операция прошла успешно",
         "L\\'opération a échoué": "Операция не удалась",
         "Dernière mise à jour du core : ": "Dernière mise à jour du core :",
@@ -313,13 +313,13 @@
         "Installation": "Установка",
         "Configuration": "Конфигурация",
         "Fonctionalités": "Fonctionalités",
-        "Panneau": "Панель",
+        "Panneau": "Panneau",
         "Fonctionnalités": "Fonctionnalités"
     },
     "core/class/interactQuery.class.php": {
         "J'ai une correspondance  : ": "J'ai une correspondance  :",
         " avec ": "avec",
-        "Correspondance trop éloignée : ": "Correspondance trop éloigné :",
+        "Correspondance trop éloignée : ": "Correspondance trop éloignée :",
         "Désolé je n'ai pas compris": "Извините, я не понимаю",
         "Désolé je n'ai pas compris la demande": "Извините, запрос не понятен",
         "Désolé je ne comprends pas la demande": "Извините, запрос не понятен",
@@ -389,7 +389,7 @@
         "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à Jeedom. L'équipe Jeedom se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à Jeedom. L'équipe Jeedom se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.",
         "Accès à l'interface d'administration": "Доступ к интерфейсу управления",
         "Lancer": "Запуск",
-        "Sécurité": "Sécurité",
+        "Sécurité": "Безопасность",
         "Nombre d'échecs tolérés": "Nombre d'échecs tolérés",
         "Temps maximum entre les échecs (s)": "Temps maximum entre les échecs (s)",
         "Durée du bannissement (s), -1 pour infini": "Durée du bannissement (s), -1 pour infini",
@@ -515,7 +515,6 @@
         "Warning": "Warning",
         "Erreur": "Ошибка",
         "Niveau de log pour": "Niveau de log pour",
-        "Défaut": "По умолчанию",
         "Configuration LDAP": "Конфигурация LDAP (облегчённый протокол доступа к каталогам)",
         "Activer l'authentification LDAP": "Активировать LDAP аутентификацию",
         "Hôte": "Хост",
@@ -597,7 +596,7 @@
         "Groupe": "Группа",
         "Demande": "Приложение",
         "Synonyme": "Синоним",
-        "Remplace les mots par leurs synonymes lors de la génération des commandes": "Заменяет слова их синонимами при создании команды",
+        "Remplace les mots par leurs synonymes lors de la génération des commandes": "Remplace les mots par leurs synonymes lors de la génération des commandes",
         "Réponse": "Ответить",
         "Conversion binaire": "Бинарное преобразование",
         "Convertir les commandes binaires": "Преобразование бинарных команд",
@@ -864,7 +863,7 @@
         "Attendre": "Подождать",
         "Aller au design": "Перейти в разработку",
         "Ajouter un log": "Добавить журнал",
-        "Créer un message": "Создать сообщение",
+        "Créer un message": "Créer un message",
         "Activer/Désactiver Masquer/Afficher un équipement": "Activer/Désactiver Masquer/Afficher un équipement",
         "Faire une demande": "Сделать запрос",
         "Arrêter Jeedom": "Остановить Jeedom",
@@ -881,7 +880,7 @@
         "Change le design affiché sur tous les navigateurs qui affichent un design par le design demandé": "Change le design affiché sur tous les navigateurs qui affichent un design par le design demandé",
         "Permet de rajouter un message dans les logs": "Добавить сообщение в лог",
         "Permet d'ajouter une message dans le centre de message": "Permet d'ajouter une message dans le centre de message",
-        "Permet de modifier les propriétés visible/invisible actif/inactif d'un équipement": "Изменить настройки оборудования - видимый/невидимый, активный/неактивный",
+        "Permet de modifier les propriétés visible/invisible actif/inactif d'un équipement": "Permet de modifier les propriétés visible/invisible actif/inactif d'un équipement",
         "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.": "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.",
         "Envoi l'ordre à Jeedom de s'éteindre": "Envoi l'ordre à Jeedom de s'éteindre",
         "Retourne un texte ou une valeur pour une interaction par exemple": "Retourne un texte ou une valeur pour une interaction par exemple",
@@ -978,7 +977,7 @@
         "SVG": "SVG",
         "Exporter": "Экспорт",
         "Design": "Дизайн",
-        "Panneau": "Панель",
+        "Panneau": "Panneau",
         "Plugin": "Плагин"
     },
     "core/template/scenario/gotodesign.default": {
@@ -1117,7 +1116,7 @@
         "Nom du design ?": "Название дизайна ?"
     },
     "core/com/http.com.php": {
-        "Echec de la requête HTTP : ": "Не удалось запросить HTTP:"
+        "Echec de la requête HTTP : ": "Echec de la requête HTTP :"
     },
     "desktop/php/report.php": {
         "Type": "Тип",
@@ -1202,7 +1201,7 @@
     },
     "desktop/js/log.js": {
         "Pause": "Пауза",
-        "Etes-vous sûr de vouloir supprimer tous les logs ?": "Вы уверены, что желаете удалить все журналы?"
+        "Etes-vous sûr de vouloir supprimer tous les logs ?": "Etes-vous sûr de vouloir supprimer tous les logs ?"
     },
     "desktop/js/plugin.js": {
         "Envoyer sur le": "Envoyer sur le",
@@ -1260,7 +1259,7 @@
         "Sauvegardes": "Резервные копии",
         "Lancer": "Запуск",
         "Emplacement des sauvegardes": "Место хранения резервных копий",
-        "Nombre de jours de mémorisation des sauvegardes": "Количество дней для хранения резервных копий",
+        "  ": "Nombre de jours de mémorisation des sauvegardes",
         "Taille totale maximale des backups (Mo)": "Максимальный общий объем резервных копий (MB)",
         "Sauvegardes locales": "Локальные резервные копии",
         "Sauvegardes disponibles": "Доступные резервные копии",
@@ -1446,7 +1445,7 @@
         "Attendre": "Подождать",
         "Aller au design": "Перейти в разработку",
         "Ajouter un log": "Добавить журнал",
-        "Créer un message": "Создать сообщение",
+        "Créer un message": "Créer un message",
         "Activer/Désactiver Masquer/Afficher un équipement": "Activer/Désactiver Masquer/Afficher un équipement",
         "Faire une demande": "Сделать запрос",
         "Arrêter Jeedom": "Остановить Jeedom",
@@ -1464,7 +1463,7 @@
         "Change le design affiché sur tous les navigateurs qui affichent un design par le design demandé": "Change le design affiché sur tous les navigateurs qui affichent un design par le design demandé",
         "Permet de rajouter un message dans les logs": "Добавить сообщение в лог",
         "Permet d'ajouter une message dans le centre de message": "Permet d'ajouter une message dans le centre de message",
-        "Permet de modifier les propriétés visible/invisible actif/inactif d'un équipement": "Изменить настройки оборудования - видимый/невидимый, активный/неактивный",
+        "Permet de modifier les propriétés visible/invisible actif/inactif d'un équipement": "Permet de modifier les propriétés visible/invisible actif/inactif d'un équipement",
         "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec le plugin SMS, Slack et SARAH.": "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec le plugin SMS, Slack et SARAH.",
         "Envoi l'ordre à Jeedom de s'éteindre": "Envoi l'ordre à Jeedom de s'éteindre",
         "Retourne un texte ou une valeur pour une interaction par exemple": "Retourne un texte ou une valeur pour une interaction par exemple",
@@ -1711,8 +1710,7 @@
         "Arrondi (chiffre après la virgule)": "Округление (в десятичной системе)",
         "Thermostat": "Термостат",
         "Purger l'historique si plus vieux que ": "Purger l'historique si plus vieux que",
-        "1 an": "1 an",
-        "Copie des données historisées": "Copie des données historisées"
+        "1 an": "1 an"
     },
     "desktop/php/object.php": {
         "Ajouter objet": "Добавить объект",
@@ -1772,8 +1770,8 @@
         "Valeur": "Значение",
         "Utilisée dans": "Utilisée dans",
         "Action": "Действие",
-        "Dépôt de données supprimé": "Хранилище данных удалено",
-        "Dépôt de données sauvegardé": "Магазин данных сохранен",
+        "Dépôt de données supprimé": "Dépôt de données supprimé",
+        "Dépôt de données sauvegardé": "Dépôt de données sauvegardé",
         "Graphique de lien": "Graphique de lien"
     },
     "core/class/dataStore.class.php": {
@@ -1808,11 +1806,11 @@
         "Auteur": "Автор",
         "Dernière mise à jour par": "Dernière mise à jour par",
         "Lien": "Ссылка",
-        "Nombre d'installations": "Количество установок",
+        "Nombre d'installations": "Nombre d'installations",
         "Nombre de téléchargements": "Количество скачиваний",
         "Type": "Тип",
         "Dernière mise à jour le": "последнее обновление",
-        "Voulez-vous aller sur la page de configuration de votre nouveau plugin ?": "Хотите перейти на страницу установки вашего нового плагина ?",
+        "Voulez-vous aller sur la page de configuration de votre nouveau plugin ?": "Voulez-vous aller sur la page de configuration de votre nouveau plugin ?",
         "Objet installé avec succès": "Пункт успешно установлен"
     },
     "core/class/view.class.php": {
@@ -1861,7 +1859,7 @@
         "Défaut": "По умолчанию",
         "Couleur du texte": "Цвет текста",
         "Arrondir les angles (ne pas oublier de mettre %, ex 50%)": "Закругление углов (не забудьте добавить %, например, 50%)",
-        "Bordure (attention syntaxe CSS, ex : solid 1px black)": "Граница (фокус на синтаксис CSS, например, 1px сплошной черный)",
+        "Bordure (attention syntaxe CSS, ex : solid 1px black)": "Bordure (attention syntaxe CSS, ex : solid 1px black)",
         "Taille de la police (ex 50%, il faut bien mettre le signe %)": "Taille de la police (ex 50%, il faut bien mettre le signe %)",
         "Gras": "Gras",
         "Normal": "Normal",
