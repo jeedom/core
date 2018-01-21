@@ -1720,9 +1720,9 @@ class cmd {
 
 	public function hasRight($_user = null) {
 		if ($this->getType() == 'action') {
-			return $cmd->getEqLogic()->hasRight('x', $_user);
+			return $this->getEqLogic()->hasRight('x', $_user);
 		} else {
-			return $cmd->getEqLogic()->hasRight('r', $_user);
+			return $this->getEqLogic()->hasRight('r', $_user);
 		}
 	}
 
