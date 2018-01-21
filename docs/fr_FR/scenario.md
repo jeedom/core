@@ -623,117 +623,39 @@ exemple :
 Voici des exemples pratiques pour comprendre les valeurs retournées par
 ces différentes fonctions :
 
-+--------------------------------------+--------------------------------------+
 | Prise ayant pour valeurs :           | 000 (pendant 10 minutes) 11 (pendant |
 |                                      | 1 heure) 000 (pendant 10 minutes)    |
-+======================================+======================================+
+|--------------------------------------|--------------------------------------|
 | `average(prise,période)`             | Renvoie la moyenne des 0 et 1 (peut  |
 |                                      | être influencée par le polling)      |
-+--------------------------------------+--------------------------------------+
-| `averageBetween([Salle de bain][Hydr | Renvoie la moyenne de la commande    |
-| ometrie][Humidité],2015-01-01 00:00: | entre le 1 janvier 2015 et le 15     |
-| 00,2015-01-15 00:00:00)`             | janvier 2015                         |
-+--------------------------------------+--------------------------------------+
-| `min(prise,période)`                 | Renvoie 0 : la prise a bien été      |
-|                                      | éteinte dans la période              |
-+--------------------------------------+--------------------------------------+
-| `minBetween([Salle de bain][Hydromet | Renvoie le minimum de la commande    |
-| rie][Humidité],2015-01-01 00:00:00,2 | entre le 1 janvier 2015 et le 15     |
-| 015-01-15 00:00:00)`                 | janvier 2015                         |
-+--------------------------------------+--------------------------------------+
-| `max(prise,période)`                 | Renvoie 1 : la prise a bien été      |
-|                                      | allumée dans la période              |
-+--------------------------------------+--------------------------------------+
-| `maxBetween([Salle de bain][Hydromet | Renvoie le maximum de la commande    |
-| rie][Humidité],2015-01-01 00:00:00,2 | entre le 1 janvier 2015 et le 15     |
-| 015-01-15 00:00:00)`                 | janvier 2015                         |
-+--------------------------------------+--------------------------------------+
-| `duration(prise,1,période)`          | Renvoie 60 : la prise était allumée  |
-|                                      | (à 1) pendant 60 minutes dans la     |
-|                                      | période                              |
-+--------------------------------------+--------------------------------------+
-| `durationBetween([Salon][Prise][Etat | Renvoie la durée en minutes pendant  |
-| ],0,Last Monday,Now)`                | laquelle la prise était éteinte      |
-|                                      | depuis lundi dernier.                |
-+--------------------------------------+--------------------------------------+
-| `statistics(prise,count,période)`    | Renvoie 8 : il y a eu 8 remontées    |
-|                                      | d’état dans la période               |
-+--------------------------------------+--------------------------------------+
+| `averageBetween([Salle de bain][Hydrometrie][Humidité],2015-01-01 00:00:00,2015-01-15 00:00:00)` | Renvoie la moyenne de la commande entre le 1 janvier 2015 et le 15 janvier 2015                         |
+| `min(prise,période)`                 | Renvoie 0 : la prise a bien été éteinte dans la période              |
+| `minBetween([Salle de bain][Hydrometrie][Humidité],2015-01-01 00:00:00,2015-01-15 00:00:00)` | Renvoie le minimum de la commande entre le 1 janvier 2015 et le 15 janvier 2015                         |
+| `max(prise,période)`                 | Renvoie 1 : la prise a bien été allumée dans la période              |
+| `maxBetween([Salle de bain][Hydrometrie][Humidité],2015-01-01 00:00:00,2015-01-15 00:00:00)` | Renvoie le maximum de la commande entre le 1 janvier 2015 et le 15 janvier 2015                         |
+| `duration(prise,1,période)`          | Renvoie 60 : la prise était allumée (à 1) pendant 60 minutes dans la période                              |
+| `durationBetween([Salon][Prise][Etat],0,Last Monday,Now)`   | Renvoie la durée en minutes pendant laquelle la prise était éteinte depuis lundi dernier.                |
+| `statistics(prise,count,période)`    | Renvoie 8 : il y a eu 8 remontées d’état dans la période               |
 | `tendance(prise,période,0.1)`        | Renvoie -1 : tendance à la baisse    |
-+--------------------------------------+--------------------------------------+
-| `stateDuration(prise)`               | Renvoie 600 : la prise est dans son  |
-|                                      | état actuel depuis 600 secondes (10  |
-|                                      | minutes)                             |
-+--------------------------------------+--------------------------------------+
-| `stateDuration(prise,0)`             | Renvoie 600 : la prise est éteinte   |
-|                                      | (à 0) depuis 600 secondes (10        |
-|                                      | minutes)                             |
-+--------------------------------------+--------------------------------------+
-| `stateDuration(prise,1)`             | Renvoie une valeur comprise entre 0  |
-|                                      | et stateDuration(prise) (selon votre |
-|                                      | polling) : la prise n’est pas dans   |
-|                                      | cet état                             |
-+--------------------------------------+--------------------------------------+
-| `lastChangeStateDuration(prise,0)`   | Renvoie 600 : la prise s’est éteinte |
-|                                      | (passage à 0) pour la dernière fois  |
-|                                      | il y a 600 secondes (10 minutes)     |
-+--------------------------------------+--------------------------------------+
-| `lastChangeStateDuration(prise,1)`   | Renvoie 4200 : la prise s’est        |
-|                                      | allumée (passage à 1) pour la        |
-|                                      | dernière fois il y a 4200 secondes   |
-|                                      | (1h10)                               |
-+--------------------------------------+--------------------------------------+
-| `lastStateDuration(prise,0)`         | Renvoie 600 : la prise est éteinte   |
-|                                      | depuis 600 secondes (10 minutes)     |
-+--------------------------------------+--------------------------------------+
-| `lastStateDuration(prise,1)`         | Renvoie 3600 : la prise a été        |
-|                                      | allumée pour la dernière fois        |
-|                                      | pendant 3600 secondes (1h)           |
-+--------------------------------------+--------------------------------------+
-| `stateChanges(prise,période)`        | Renvoie 3 : la prise a changé 3 fois |
-|                                      | d’état pendant la période            |
-+--------------------------------------+--------------------------------------+
-| `stateChanges(prise,0,période)`      | Renvoie 2 : la prise s’est éteinte   |
-|                                      | (passage à 0) deux fois pendant la   |
-|                                      | période                              |
-+--------------------------------------+--------------------------------------+
-| `stateChanges(prise,1,période)`      | Renvoie 1 : la prise s’est allumée   |
-|                                      | (passage à 1) une fois pendant la    |
-|                                      | période                              |
-+--------------------------------------+--------------------------------------+
-| `lastBetween([Salle de bain][Hydrome | Renvoie la dernière température      |
-| trie][Humidité],Yesterday,Today)`    | enregistrée hier.                    |
-+--------------------------------------+--------------------------------------+
-| `variable(plop,10)`                  | Renvoie la valeur de la variable     |
-|                                      | plop ou 10 si elle est vide ou       |
-|                                      | n’existe pas                         |
-+--------------------------------------+--------------------------------------+
-| `scenario([Salle de bain][Lumière][A | Renvoie 1 en cours, 0 si arreté et   |
-| uto])`                               | -1 si desactivé, -2 si le scénario   |
-|                                      | n’existe pas et -3 si l’état n’est   |
-|                                      | pas cohérent                         |
-+--------------------------------------+--------------------------------------+
-| `lastScenarioExecution([Salle de bai | Renvoie 300 si le scénario s’est     |
-| n][Lumière][Auto])`                  | lancé pour la dernière fois il y a 5 |
-|                                      | min                                  |
-+--------------------------------------+--------------------------------------+
-| `collectDate([Salle de bain][Hydrome | Renvoie 2015-01-01 17:45:12          |
-| trie][Humidité])`                    |                                      |
-+--------------------------------------+--------------------------------------+
-| `valueDate([Salle de bain][Hydrometr | Renvoie 2015-01-01 17:50:12          |
-| ie][Humidité])`                      |                                      |
-+--------------------------------------+--------------------------------------+
-| `eqEnable([Aucun][Basilique])`       | Renvoie -2 si l’équipement est       |
-|                                      | introuvable, 1 si l’équipement est   |
-|                                      | actif et 0 s’il est inactif          |
-+--------------------------------------+--------------------------------------+
-| `tag(montag,toto)`                   | Renvoie la valeur de "montag" si il  |
-|                                      | existe sinon renvoie la valeur       |
-|                                      | "toto"                               |
-+--------------------------------------+--------------------------------------+
-| `name(eqLogic,[Salle de bain][Hydrom | Renvoie Hydrometrie                  |
-| etrie][Humidité])`                   |                                      |
-+--------------------------------------+--------------------------------------+
+| `stateDuration(prise)`               | Renvoie 600 : la prise est dans son état actuel depuis 600 secondes (10 minutes)                             |
+| `stateDuration(prise,0)`             | Renvoie 600 : la prise est éteinte (à 0) depuis 600 secondes (10 minutes)                             |
+| `stateDuration(prise,1)`             | Renvoie une valeur comprise entre 0 et stateDuration(prise) (selon votre polling) : la prise n’est pas dans cet état                             |
+| `lastChangeStateDuration(prise,0)`   | Renvoie 600 : la prise s’est éteinte (passage à 0) pour la dernière fois il y a 600 secondes (10 minutes)     |
+| `lastChangeStateDuration(prise,1)`   | Renvoie 4200 : la prise s’est allumée (passage à 1) pour la dernière fois il y a 4200 secondes (1h10)                               |
+| `lastStateDuration(prise,0)`         | Renvoie 600 : la prise est éteinte depuis 600 secondes (10 minutes)     |
+| `lastStateDuration(prise,1)`         | Renvoie 3600 : la prise a été allumée pour la dernière fois pendant 3600 secondes (1h)           |
+| `stateChanges(prise,période)`        | Renvoie 3 : la prise a changé 3 fois d’état pendant la période            |
+| `stateChanges(prise,0,période)`      | Renvoie 2 : la prise s’est éteinte (passage à 0) deux fois pendant la période                              |
+| `stateChanges(prise,1,période)`      | Renvoie 1 : la prise s’est allumée (passage à 1) une fois pendant la  période                              |
+| `lastBetween([Salle de bain][Hydrometrie][Humidité],Yesterday,Today)` | Renvoie la dernière température enregistrée hier.                    |
+| `variable(plop,10)`                  | Renvoie la valeur de la variable plop ou 10 si elle est vide ou n’existe pas                         |
+| `scenario([Salle de bain][Lumière][Auto])` | Renvoie 1 en cours, 0 si arreté et -1 si desactivé, -2 si le scénario n’existe pas et -3 si l’état n’est pas cohérent                         |
+| `lastScenarioExecution([Salle de bain][Lumière][Auto])`   | Renvoie 300 si le scénario s’est lancé pour la dernière fois il y a 5 min                                  |
+| `collectDate([Salle de bain][Hydrometrie][Humidité])`     | Renvoie 2015-01-01 17:45:12          |
+| `valueDate([Salle de bain][Hydrometrie][Humidité])` | Renvoie 2015-01-01 17:50:12          |
+| `eqEnable([Aucun][Basilique])`       | Renvoie -2 si l’équipement est introuvable, 1 si l’équipement est actif et 0 s’il est inactif          |
+| `tag(montag,toto)`                   | Renvoie la valeur de "montag" si il existe sinon renvoie la valeur "toto"                               |
+| `name(eqLogic,[Salle de bain][Hydrometrie][Humidité])`     | Renvoie Hydrometrie                  |
 
 Les fonctions mathématiques 
 ---------------------------
@@ -779,41 +701,19 @@ effectuer des conversions ou des calculs :
 
 Et les exemples pratiques :
 
-+--------------------------------------+--------------------------------------+
+
 | Exemple de fonction                  | Résultat retourné                    |
-+======================================+======================================+
-| `randText(il fait #[salon][oeil][tem | la fonction retournera un de ces     |
-| pérature]#;La température est de #[s | textes aléatoirement à chaque        |
-| alon][oeil][température]#;Actuelleme | exécution.                           |
-| nt on a #[salon][oeil][température]# |                                      |
-| )`                                   |                                      |
-+--------------------------------------+--------------------------------------+
-| `randomColor(40,60)`                 | Retourne une couleur aléatoire       |
-|                                      | proche du vert.                      |
-+--------------------------------------+--------------------------------------+
-| `trigger(#[Salle de bain][Hydrometri | 1 si c’est bien \#\[Salle de         |
-| e][Humidité]#)`                      | bain\]\[Hydrometrie\]\[Humidité\]\#  |
-|                                      | qui a déclenché le scénario sinon 0  |
-+--------------------------------------+--------------------------------------+
-| `triggerValue(#[Salle de bain][Hydro | 80 si l’hydrométrie de \#\[Salle de  |
-| metrie][Humidité]#)`                 | bain\]\[Hydrometrie\]\[Humidité\]\#  |
-|                                      | est de 80 %.                         |
-+--------------------------------------+--------------------------------------+
-| `round(#[Salle de bain][Hydrometrie] | Renvoie 9 si le pourcentage          |
-| [Humidité]# / 10)`                   | d’humidité et 85                     |
-+--------------------------------------+--------------------------------------+
+|--------------------------------------|--------------------------------------|
+| `randText(il fait #[salon][oeil][température]#;La température est de #[salon][oeil][température]#;Actuellement on a #[salon][oeil][température]#)` | la fonction retournera un de ces textes aléatoirement à chaque exécution.                           |
+| `randomColor(40,60)`                 | Retourne une couleur aléatoire  proche du vert.   
+| `trigger(#[Salle de bain][Hydrometrie][Humidité]#)`   | 1 si c’est bien \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\# qui a déclenché le scénario sinon 0  |
+| `triggerValue(#[Salle de bain][Hydrometrie][Humidité]#)` | 80 si l’hydrométrie de \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\# est de 80 %.                         |
+| `round(#[Salle de bain][Hydrometrie][Humidité]# / 10)` | Renvoie 9 si le pourcentage d’humidité et 85                     |
 | `odd(3)`                             | Renvoie 1                            |
-+--------------------------------------+--------------------------------------+
 | `median(15,25,20)`                   | Renvoie 20                           |
-+--------------------------------------+--------------------------------------+
-| `time_op(#time#, -90)`               | s’il est 16h50, renvoie : 1650 -     |
-|                                      | 0130 = 1520                          |
-+--------------------------------------+--------------------------------------+
+| `time_op(#time#, -90)`               | s’il est 16h50, renvoie : 1650 - 0130 = 1520                          |
 | `formatTime(1650)`                   | Renvoie 16h50                        |
-+--------------------------------------+--------------------------------------+
-| `floor(130/60)`                      | Renvoie 2 (minutes si 130s, ou       |
-|                                      | heures si 130m)                      |
-+--------------------------------------+--------------------------------------+
+| `floor(130/60)`                      | Renvoie 2 (minutes si 130s, ou heures si 130m)                      |
 
 Les commandes spécifiques 
 =========================
