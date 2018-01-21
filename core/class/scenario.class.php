@@ -1388,7 +1388,7 @@ class scenario {
 	 */
 	public function hasRight($_right, $_user = null) {
 		if ($_user != null) {
-			if ($_user->getProfils() == 'admin') {
+			if ($_user->getProfils() == 'admin' || $_user->getProfils() == 'user') {
 				return true;
 			}
 			if (strpos($_user->getRights('scenario' . $this->getId()), $_right) !== false) {
@@ -1399,7 +1399,7 @@ class scenario {
 		if (!isConnect()) {
 			return false;
 		}
-		if (isConnect('admin')) {
+		if (isConnect('admin') || isConnect('user')) {
 			return true;
 		}
 		if (strpos($_SESSION['user']->getRights('scenario' . $this->getId()), $_right) !== false) {
