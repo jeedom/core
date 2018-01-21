@@ -67,7 +67,7 @@
         "Veuillez trouver ci-joint le rapport ": "Veuillez trouver ci-joint le rapport",
         " du ": "du",
         " généré le ": "généré le",
-        "Aucune durée trouvée pour l'action pause ou la durée n'est pas valide : ": "Aucune durée trouvée pour l'action sleep ou la durée n'est pas valide :",
+        "Aucune durée trouvée pour l'action pause ou la durée n'est pas valide : ": "Aucune durée trouvée pour l'action pause ou la durée n'est pas valide :",
         "[Erreur] Aucune commande trouvée pour ": "[Erreur] Aucune commande trouvée pour",
         " options : ": "options :"
     },
@@ -104,13 +104,13 @@
     },
     "mobile/html/deamon.html": {
         "Nom": "Nama",
-        "Statut": "Statut",
+        "Statut": "Status",
         "Date lancement": "Date lancement",
         "Action": "Tindakan"
     },
     "mobile/html/cron.html": {
         "Nom": "Nama",
-        "Statut": "Statut",
+        "Statut": "Status",
         "Date lancement": "Date lancement",
         "Action": "Tindakan"
     },
@@ -121,7 +121,7 @@
     },
     "mobile/html/health.html": {
         "Nom": "Nama",
-        "Statut": "Statut",
+        "Statut": "Status",
         "Commentaire": "Komentar"
     },
     "mobile/js/home.js": {
@@ -173,7 +173,7 @@
         "Limite de la taille totale des sauvegardes à ": "Limite de la taille totale des sauvegardes à",
         "Envoi de la sauvegarde dans le cloud": "Envoi de la sauvegarde dans le cloud",
         "Nettoyage du dossier temporaire...": "Nettoyage du dossier temporaire...",
-        "Nom de la sauvegarde : ": "Nom du backup :",
+        "Nom de la sauvegarde : ": "Nom de la sauvegarde :",
         "***************Fin de la sauvegarde de Jeedom***************\n": "***************Fin de la sauvegarde de Jeedom***************",
         "Echec lors de la compression de la sauvegarde. Sauvegarde introuvable : ": "Echec lors de la compression de la sauvegarde. Sauvegarde introuvable :",
         "Erreur durant la sauvegarde : ": "Erreur durant la sauvegarde :",
@@ -197,7 +197,7 @@
         "Scénarios": "Skenario"
     },
     "desktop/php/index.php": {
-        "Basculer la navigation": "Basculer la navigasi",
+        "Basculer la navigation": "Basculer la navigation",
         "Accueil": "Rumah",
         "Dashboard": "Dashboard",
         "Vue": "Pemandangan",
@@ -218,7 +218,7 @@
         "Gestion des plugins": "Manajemen plugin",
         "Protocole domotique": "Protocole domotique",
         "Communication": "Communication",
-        "Objets communicants": "Objets communicants",
+        "Objets communiquants": "Objets communicants",
         "Energie": "Energie",
         "Monitoring": "Monitoring",
         "Multimédia": "Multimédia",
@@ -319,7 +319,7 @@
     "core/class/interactQuery.class.php": {
         "J'ai une correspondance  : ": "J'ai une correspondance  :",
         " avec ": "avec",
-        "Correspondance trop éloignée : ": "Correspondance trop éloigné :",
+        "Correspondance trop éloignée : ": "Correspondance trop éloignée :",
         "Désolé je n'ai pas compris": "Désolé je n'ai pas compris",
         "Désolé je n'ai pas compris la demande": "Désolé je n'ai pas compris la demande",
         "Désolé je ne comprends pas la demande": "Désolé je ne comprends pas la demande",
@@ -389,7 +389,7 @@
         "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à Jeedom. L'équipe Jeedom se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à Jeedom. L'équipe Jeedom se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.",
         "Accès à l'interface d'administration": "Accès à l'interface d'administration",
         "Lancer": "Lancer",
-        "Sécurité": "Sécurité",
+        "Sécurité": "Keamanan",
         "Nombre d'échecs tolérés": "Nombre d'échecs tolérés",
         "Temps maximum entre les échecs (s)": "Temps maximum entre les échecs (s)",
         "Durée du bannissement (s), -1 pour infini": "Durée du bannissement (s), -1 pour infini",
@@ -408,7 +408,7 @@
         "Accès interne": "Accès interne",
         "Protocole": "Protocole",
         "Aucun": "Tak ada",
-        "Statut": "Statut",
+        "Statut": "Status",
         "OK": "OK",
         "Accès externe": "Accès externe",
         "Gestion avancée": "Gestion avancée",
@@ -502,7 +502,7 @@
         "Commande sur": "Commande sur",
         "Log": "Log",
         "Moteur de log": "Moteur de log",
-        "Défaut": "Standar",
+        "Défaut": "Défaut",
         "Syslog": "Syslog",
         "SyslogUdp": "SyslogUdp",
         "Adresse syslog udp": "Adresse syslog udp",
@@ -515,7 +515,6 @@
         "Warning": "Warning",
         "Erreur": "Erreur",
         "Niveau de log pour": "Niveau de log pour",
-        "Défaut": "Défaut",
         "Configuration LDAP": "Konfigurasi LDAP",
         "Activer l'authentification LDAP": "Activer l'authentification LDAP",
         "Hôte": "Hôte",
@@ -1117,7 +1116,7 @@
         "Nom du design ?": "Nom du design ?"
     },
     "core/com/http.com.php": {
-        "Echec de la requête HTTP : ": "Gagal untuk query http:"
+        "Echec de la requête HTTP : ": "Echec de la requête HTTP :"
     },
     "desktop/php/report.php": {
         "Type": "Jenis",
@@ -1215,7 +1214,7 @@
         "Oui": "Ya",
         "Activer": "Mengaktifkan",
         "Non": "Nga",
-        "Statut": "Statut",
+        "Statut": "Status",
         "Actif": "Aktif",
         "Inactif": "Inactif",
         "Action": "Tindakan",
@@ -1223,7 +1222,7 @@
         "Votre version de Jeedom ne permet pas d\\'activer ce plugin": "Votre version de Jeedom ne permet pas d\\'activer ce plugin",
         "Niveau de log local": "Niveau de log local",
         "Aucun": "Tak ada",
-        "Défaut": "Standar",
+        "Défaut": "Défaut",
         "Debug": "Debug",
         "Info": "Info",
         "Warning": "Warning",
@@ -1260,7 +1259,7 @@
         "Sauvegardes": "Backup",
         "Lancer": "Lancer",
         "Emplacement des sauvegardes": "Emplacement des sauvegardes",
-        "Nombre de jours de mémorisation des sauvegardes": "Jumlah hari (s) menyimpan backup",
+        "  ": "Nombre de jours de mémorisation des sauvegardes",
         "Taille totale maximale des backups (Mo)": "Taille totale maximale des backups (Mo)",
         "Sauvegardes locales": "Sauvegardes locales",
         "Sauvegardes disponibles": "Sauvegardes disponibles",
@@ -1386,7 +1385,7 @@
     },
     "desktop/modal/plugin.deamon.php": {
         "Nom": "Nama",
-        "Statut": "Statut",
+        "Statut": "Status",
         "Configuration": "Konfigurasi",
         "(Re)Démarrer": "(Re)Démarrer",
         "Arrêter": "Berhenti",
@@ -1429,7 +1428,7 @@
     },
     "desktop/modal/plugin.dependancy.php": {
         "Nom": "Nama",
-        "Statut": "Statut",
+        "Statut": "Status",
         "Installation": "Installation",
         "Dernière installation": "Dernière installation",
         "Local": "Local",
@@ -1566,7 +1565,7 @@
         "Afficher le nom": "Afficher le nom",
         "Afficher le nom de l'objet": "Afficher le nom de l'objet",
         "Couleur de fond": "Couleur de fond",
-        "Défaut": "Standar",
+        "Défaut": "Défaut",
         "Transparent": "Jelas",
         "Opacité": "Opacité",
         "Entre 0 et 1": "Entre 0 et 1",
@@ -1711,8 +1710,7 @@
         "Arrondi (chiffre après la virgule)": "Arrondi (chiffre après la virgule)",
         "Thermostat": "Thermostat",
         "Purger l'historique si plus vieux que ": "Purger l'historique si plus vieux que",
-        "1 an": "1 an",
-        "Copie des données historisées": "Copie des données historisées"
+        "1 an": "1 an"
     },
     "desktop/php/object.php": {
         "Ajouter objet": "Tambahan obyek",
