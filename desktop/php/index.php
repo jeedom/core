@@ -273,16 +273,6 @@ foreach (planHeader::all() as $plan_menu) {
 		?>
 										</ul>
 									</li>
-																		<li class="dropdown-submenu">
-										<a data-toggle="dropdown" id="bt_gotoPlan"><i class="fa fa-cubes"></i> {{Design 3D}}</a>
-										<ul class="dropdown-menu">
-											<?php
-foreach (plan3dHeader::all() as $plan3d_menu) {
-			echo '<li><a href="index.php?v=d&p=plan3d&plan3d_id=' . $plan3d_menu->getId() . '">' . trim($plan3d_menu->getConfiguration('icon') . ' ' . $plan3d_menu->getName()) . '</a></li>';
-		}
-		?>
-										</ul>
-									</li>
 									<?php
 echo $panel_menu;
 		?>
