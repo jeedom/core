@@ -1,47 +1,7 @@
 C’est ici que se trouvent la plupart des paramètres de configuration.
 Bien que nombreux, ils sont pré-configurés par défaut.
 
-La page est accessible par **Administration → Configuration**. Vous y
-trouverez les onglets suivants :
-
--   [Général](#general) : Les paramètres généraux de votre Jeedom.
-
--   [API](#api) : Les différentes clés API disponibles dans Jeedom.
-
--   [&gt;\_OS/DB](#os-db) : L’accès à la console d’administration et à
-    la base de données de Jeedom.
-
--   [Sécurité](#securite) : Les paramètres concernant la sécurité
-    de l’authentification.
-
--   [Réseaux](#reseaux) : La configuration de l’accès à Jeedom.
-
--   [Couleurs](#couleurs) : Les couleurs utilisées dans les interfaces
-    de Jeedom.
-
--   [Commandes](#commandes) : Divers paramètres de calculs utilisés dans
-    l’historisation des commandes.
-
--   [Cache](#cache) : Gestion du cache de Jeedom.
-
--   [Interactions](#interactions) : Paramètres généraux de la fonction
-    d’interaction dans Jeedom.
-
--   [Rapports](#rapports) : Paramètres concernant les rapports produits
-    von Jeedom
-
--   [Liens](#liens) : Paramètres pour le rendu des graphiques de liens.
-
--   [Résumés](#resumes) : Configuration des résumés d’objets.
-
--   [Logs](#logs) : Paramètres de la Timeline, des messages, des alertes
-    et des logs dans Jeedom.
-
--   [Equipements](#equipements) : Gestion de la santé des équipements.
-
--   [Mises à jour et Fichiers](#maj-fichiers) : Gestion des versions de
-    Jeedom et des accès au market, ainsi qu’aux différents moyens
-    de sauvegarde.
+La page est accessible par **Administration → Configuration**.
 
 Général 
 =======
@@ -130,7 +90,7 @@ Deux parties réservées aux experts sont présentes dans cet onglet.
     du haut. Deux paramètres s’affichent, en dessous, pour information :
 
     -   **Utilisateur** : Nom de l’utilisateur utilisé par Jeedom dans
-        Die Datenbank
+        la base de données,
 
     -   **Mot de passe** : mot de passe d’accès à la base de données
         utilisée par Jeedom.
@@ -186,8 +146,8 @@ La liste des IP bannies se trouve au bas de cette page. Vous y trouverez
 l’IP, la date de bannissement et la date de fin de bannissement
 programmée.
 
-Netzwerke
-=========
+Réseaux 
+=======
 
 Il faut absolument configurer correctement cette partie importante de
 Jeedom, sinon beaucoup de plugins risqueraient de ne pas fonctionner. Il
@@ -211,7 +171,7 @@ externe** (depuis un autre réseau notamment depuis Internet).
     équipement du même réseau que Jeedom (LAN)
 
     -   **OK/NOK** : indique si la configuration réseau interne est
-        richtig
+        correcte
 
     -   **Protocole** : le protocole à utiliser, souvent HTTP
 
