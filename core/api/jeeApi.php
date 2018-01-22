@@ -74,7 +74,7 @@ if (init('type') != '') {
 					if (init('plugin', 'core') != 'core' && init('plugin', 'core') != $cmd->getEqType()) {
 						throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action 2', __FILE__));
 					}
-					if ($_USER_GLOBAL != null && !$cmd->hasRight($USER_GLOBAL)) {
+					if ($_USER_GLOBAL != null && !$cmd->hasRight($_USER_GLOBAL)) {
 						continue;
 					}
 					$result[$id] = $cmd->execCmd($_REQUEST);
@@ -607,7 +607,7 @@ if (init('type') != '') {
 						if (!is_object($cmd)) {
 							throw new Exception(__('Commande introuvable : ', __FILE__) . secureXSS($id), -32702);
 						}
-						if (!$cmd->hasRight($USER_GLOBAL)) {
+						if (!$cmd->hasRight($_USER_GLOBAL)) {
 							continue;
 						}
 						$eqLogic = $cmd->getEqLogic();
@@ -627,7 +627,7 @@ if (init('type') != '') {
 					if (!is_object($cmd)) {
 						throw new Exception(__('Commande introuvable : ', __FILE__) . secureXSS($params['id']), -32702);
 					}
-					if (!$cmd->hasRight($USER_GLOBAL)) {
+					if (!$cmd->hasRight($_USER_GLOBAL)) {
 						throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
 					}
 					if (!isset($params['codeAccess'])) {
@@ -676,7 +676,7 @@ if (init('type') != '') {
 				}
 				if (isset($params['id'])) {
 					$cmd = cmd::byId($params['id']);
-					if (!$cmd->hasRight($USER_GLOBAL)) {
+					if (!$cmd->hasRight($_USER_GLOBAL)) {
 						throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
 					}
 				}
