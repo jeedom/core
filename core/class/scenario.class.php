@@ -776,9 +776,9 @@ class scenario {
 			}
 		}
 		if (count($this->getTags()) == 0) {
-			$this->setLog('Start : ' . $_message . '.');
+			$this->setLog('Start : ' . trim($_message, "'") . '.');
 		} else {
-			$this->setLog('Start : ' . $_message . '. Tags : ' . json_encode($this->getTags()));
+			$this->setLog('Start : ' . trim($_message, "'") . '. Tags : ' . json_encode($this->getTags()));
 		}
 		$this->setLastLaunch(date('Y-m-d H:i:s'));
 		$this->setState('in progress');
