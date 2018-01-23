@@ -2,7 +2,7 @@ Voici une documentation sur les méthodes de l’API. Tout d’abord voici
 les spécifications (JSON RPC 2.0) :
 <http://www.jsonrpc.org/specification>
 
-L’accès à l’API se fait par l’url : *URL\_JEEDOM*/core/api/jeeApi.php
+Der Zugriff auf die API erfolgt über die URL : *URL\_JEEDOM*/core/api/jeeApi.php
 
 Divers 
 ======
