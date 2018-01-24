@@ -790,6 +790,18 @@ class scenarioExpression {
 		}
 		return $date->format('Gi');
 	}
+	
+	public static function time_between($_time,$_start,$_end) {
+		$_time = self::setTags($_time);
+		$_start = self::setTags($_start);
+		$_end = self::setTags($_end);
+		if ($_start < $_end) {
+			$result = (($_time >= $_start) && ($_time < $_end)) ? 1 : 0;
+		} else {
+			$result = (($_time >= $_start) || ($_time < $_end)) ? 1 : 0;
+		}
+		return $result;
+	}
 
 	public static function time($_value) {
 		$_value = self::setTags($_value);
