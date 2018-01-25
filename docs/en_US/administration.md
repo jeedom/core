@@ -1,779 +1,779 @@
-C’est ici que se trouvent la plupart des paramètres de configuration.
-Bien que nombreux, ils sont pré-configurés par défaut.
+This is where most of the configuration parameters are.
+Although many, they are pre-configured by default.
 
-La page est accessible par **Administration → Configuration**.
+The page is accessible by ** Administration → Configuration **.
 
-Général 
+General
 =======
 
-Dans cet onglet on retrouve des informations générales sur Jeedom :
+In this tab we find general information about Jeedom:
 
--   **Nom de votre Jeedom** : Permet d’identifier votre Jeedom,
-    notamment dans le market. Il peut être réutilisé dans les scénarios
-    ou permettre d’identifier une sauvegarde.
+-   ** Name of your Jeedom **: Identifies your Jeedom,
+    especially in the market. It can be reused in scenarios
+    or to identify a backup.
 
--   **Système** : Type de matériel sur lequel est installé le système où
-    votre Jeedom tourne.
+-   ** System **: Type of hardware on which the system is installed where
+    your Jeedom turns.
 
--   **Clef d’installation** : Clef matérielle de votre Jeedom sur
-    le market. Si votre Jeedom n’apparaît pas dans la liste de vos
-    Jeedom sur le market, il est conseillé de cliquer sur le bouton
-    **Remise à zéro**.
+-   ** Installation Key **: Material Key of your Jeedom on
+    the market. If your Jeedom does not appear in the list of your
+    Jeedom on the market, it is advisable to click on the button
+    **Reset**.
 
--   **Langue** : Langue utilisée dans votre Jeedom.
+-   ** Language **: Language used in your Jeedom.
 
--   **Générer les traductions** : Permet de générer les traductions,
-    attention, cela peut ralentir votre système. Option surtout utile
-    pour les développeurs.
+-   ** Generate translations **: Generates translations,
+    be careful, this can slow down your system. Most useful option
+    for developers.
 
--   **Durée de vie des sessions (heure)** : durée de vie des sessions
-    PHP, il est déconseillé de toucher à ce paramètre.
+-   ** Duration of sessions (hour) **: duration of sessions
+    PHP, it is not recommended to touch this parameter.
 
--   **Date et heure** : Choix de votre fuseau horaire. Vous pouvez
-    cliquer sur **Forcer la synchronisation de l’heure** pour rétablir
-    une mauvaise heure affichée en haut à droite.
+-   ** Date & Time **: Choose your time zone. You can
+    click ** Force time synchronization ** to restore
+    a bad time displayed at the top right.
 
--   **Serveur de temps optionnel** : Indique quel serveur de temps doit
-    être utilisé si vous cliquez sur **Forcer la synchronisation de
-    l’heure**. (à réserver aux experts)
+-   ** Optional Time Server **: Indicates which time server should
+    to be used if you click ** Force synchronization of
+    time**. (to be reserved for experts)
 
--   **Ignorer la vérification de l’heure** : indique à Jeedom de ne pas
-    vérifier si l’heure est cohérente entre lui-même et le système sur
-    lequel il tourne. Peut être utile, par exemple, si vous ne connectez
-    pas Jeedom à Internet et qu’il n’a pas de pile RTC sur le
-    matériel utilisé.
+-   ** Ignore time verification **: tells Jeedom not to
+    check if the time is consistent between himself and the system on
+    which he turns. May be useful, for example, if you do not connect
+    not Jeedom to the Internet and that he does not have a PSTN stack on the
+    equipment used.
 
-API 
+API
 ===
 
-Vous trouvez ici la liste des différentes clés API disponibles dans
-votre Jeedom. De base, le core a deux clés API :
+Here you will find the list of different API keys available in
+your Jeedom. Basic, the core has two API keys:
 
--   une générale : autant que possible, il faut éviter de l’utiliser,
+-   a general: as much as possible, avoid using it,
 
--   et une autre pour les professionnels : utilisée pour la gestion
-    de parc. Elle peut être vide.
+-   and another for professionals: used for management
+    of park. It can be empty.
 
--   Puis, vous trouverez une clé API par plugin en ayant besoin.
+-   Then you will find an API key per plugin in need.
 
-Pour chaque clé API de plugin, ainsi que pour les APIs HTTP, JsonRPC et
-TTS, vous pouvez définir leur portée :
+For each API plugin key, as well as for HTTP APIs, JsonRPC and
+TTS, you can define their scope:
 
--   **Désactivée** : la clé API ne peut être utilisée,
+-   ** Disabled **: API key can not be used,
 
--   **IP blanche** : seule une liste d’IPs est autorisée (voir
-    Administration→Configuration→Réseaux),
+-   ** White IP **: Only a list of IPs is allowed (see
+    Administration → Settings → Networks)
 
--   **Localhost** : seules les requêtes venant du système sur lequel est
-    installé Jeedom sont autorisées,
+-   ** Localhost **: only queries coming from the system on which is
+    installed Jeedom are allowed,
 
--   **Activé** : aucune restriction, n’importe quel système ayant accès
-    à votre Jeedom pourra accéder à cette API.
+-   ** Enabled **: No restrictions, any system with access
+    your Jeedom will be able to access this API.
 
-&gt;\_OS/DB 
+&gt; \ _OS / DB
 ===========
 
-Deux parties réservées aux experts sont présentes dans cet onglet.
+Two parts reserved for the experts are present in this tab.
 
-> **Important**
+> ** Important **
 >
-> ATTENTION : Si vous modifiez Jeedom avec l’une de ces deux solutions,
-> le support peut refuser de vous aider.
+> WARNING: If you modify Jeedom with one of these two solutions,
+> the support can refuse to help you.
 
--   **&gt;\_Système** : Permet d’accéder à une interface
-    d’administration système. C’est une sorte de console shell dans
-    laquelle vous pouvez lancer les commandes les plus utiles, notamment
-    pour obtenir des informations sur le système.
+-   ** &gt; \ _System **: Provides access to an interface
+    system administration. It's a kind of shell console in
+    which you can launch the most useful orders, especially
+    to get information about the system.
 
--   **Base de données** : Permet d’accéder à la base de données
-    de Jeedom. Vous pouvez alors lancer des commandes dans le champs
-    du haut. Deux paramètres s’affichent, en dessous, pour information :
+-   ** Database **: Provides access to the database
+    from Jeedom. You can then launch commands in the field
+    from the top. Two parameters are displayed below for information:
 
-    -   **Utilisateur** : Nom de l’utilisateur utilisé par Jeedom dans
-        la base de données,
+    -   ** User **: Name of the user used by Jeedom in
+        the database,
 
-    -   **Mot de passe** : mot de passe d’accès à la base de données
-        utilisée par Jeedom.
+    -   ** Password **: password to access the database
+        used by Jeedom.
 
-Sécurité 
+security
 ========
 
-LDAP 
+LDAP
 ----
 
--   **Activer l’authentification LDAP** : active l’authentification à
-    travers un AD (LDAP)
+-   ** Enable LDAP Authentication **: Enable Authentication to
+    through an AD (LDAP)
 
--   **Hôte** : serveur hébergeant l’AD
+-   ** Host **: server hosting the AD
 
--   **Domaine** : domaine de votre AD
+-   ** Domain **: Domain of your AD
 
--   **Base DN** : base DN de votre AD
+-   ** Base DN **: base DN of your AD
 
--   **Nom d’utilisateur** : nom d’utilisateur pour que Jeedom se
-    connecte à l’AD
+-   ** Username **: Username for Jeedom to
+    connects to the AD
 
--   **Mot de passe** : mot de passe pour que Jeedom se connecte à l’AD
+-   ** Password **: Password for Jeedom to connect to AD
 
--   **Champs recherche utilisateur** : champs de recherche du
-    login utilisateur. En général uid pour LDAP, samaccountname pour
+-   ** User search fields **: search fields from
+    user login. In general uid for LDAP, samaccountname for
     Windows AD
 
--   **Filtre (optionnel)** : filtre sur l’AD (pour la gestion des
-    groupes par exemple)
+-   ** Filter (optional) **: filter on the AD (for the management of
+    groups for example)
 
--   **Autoriser REMOTE\_USER** : Active le REMOTE\_USER (utilisé en SSO
-    par exemple)
+-   ** Allow REMOTE \ _USER **: Activates the REMOTE \ _USER (used in SSO
+    for example)
 
-Connexion 
+Log in
 ---------
 
--   **Nombre d’échecs tolérés** : définit le nombre de tentatives
-    successives autorisées avant de bannir l’IP
+-   ** Number of failures tolerated **: defines the number of attempts
+    successive authorized before banning the IP
 
--   **Temps maximum entre les échecs (en secondes)** : temps maximum
-    pour que 2 tentatives soient considérées comme successives
+-   ** Maximum time between failures (in seconds) **: maximum time
+    for 2 attempts to be considered successive
 
--   **Durée du bannissement (en secondes), -1 pour infini** : temps de
-    bannissement de l’IP
+-   ** Duration of the ban (in seconds), -1 for infinity **: time of
+    IP ban
 
--   **IP "blanche"** : liste des IP qui ne peuvent jamais être bannies
+-   ** "white" IP **: list of IPs that can never be banned
 
--   **Supprimer les IPs bannies** : Permet de vider la liste des IP
-    actuellement bannies
+-   ** Remove banned IPs **: Used to clear IP list
+    currently banned
 
-La liste des IP bannies se trouve au bas de cette page. Vous y trouverez
-l’IP, la date de bannissement et la date de fin de bannissement
-programmée.
+The list of banned IPs is at the bottom of this page. You will find
+the IP, the ban date, and the end date of the ban
+programmed.
 
-Réseaux 
+networks
 =======
 
-Il faut absolument configurer correctement cette partie importante de
-Jeedom, sinon beaucoup de plugins risqueraient de ne pas fonctionner. Il
-est possible d’accéder à Jeedom de deux manières différentes : L'**accès
-interne** (depuis le même réseau local que Jeedom) et l'**accès
-externe** (depuis un autre réseau notamment depuis Internet).
+It is imperative to correctly configure this important part of
+Jeedom, otherwise a lot of plugins might not work. he
+is possible to access Jeedom in two different ways: ** Access
+internal ** (from the same local network as Jeedom) and ** access
+external ** (from another network especially from the Internet).
 
-> **Important**
+> ** Important **
 >
-> Cette partie est juste là pour expliquer à Jeedom son environnement :
-> une modification du port ou de l’IP dans cet onglet ne changera pas le
-> port ou l’IP de Jeedom réellement. Pour cela il faut se connecter en
-> SSH et éditer le fichier /etc/network/interfaces pour l’IP et les
-> fichiers etc/apache2/sites-available/default et
-> etc/apache2/sites-available/default\_ssl (pour le HTTPS).Cependant, en
-> cas de mauvaise manipulation de votre Jeedom, l’équipe Jeedom ne
-> pourra être tenue pour responsable et pourra refuser toute demande de
+> This part is just there to explain to Jeedom his environment:
+> a change to the port or IP in this tab will not change the
+> port or the IP of Jeedom actually. For this you have to connect in
+> SSH and edit the file / etc / network / interfaces for the IP and the
+> files etc / apache2 / sites-available / default and
+> etc / apache2 / sites-available / default \ _ssl (for HTTPS) .However, in
+> case of mishandling your Jeedom, the Jeedom team does not
+> may be held responsible and may refuse any request for
 > support.
 
--   **Accès interne** : informations pour joindre Jeedom à partir d’un
-    équipement du même réseau que Jeedom (LAN)
+-   ** Internal Access **: Information to join Jeedom from a
+    equipment on the same network as Jeedom (LAN)
 
-    -   **OK/NOK** : indique si la configuration réseau interne est
-        correcte
+    -   ** OK / NOK **: indicates if the internal network configuration is
+        correct
 
-    -   **Protocole** : le protocole à utiliser, souvent HTTP
+    -   ** Protocol **: the protocol to use, often HTTP
 
-    -   **Adresse URL ou IP** : IP de Jeedom à renseigner
+    -   ** URL or IP **: Jeedom IP to fill in
 
-    -   **Port** : le port de l’interface web de Jeedom, en général 80.
-        Attention changer le port ici ne change pas le port réel de
-        Jeedom qui restera le même
+    -   ** Port **: The port of the Jeedom web interface, usually 80.
+        Warning changing the port here does not change the actual port of
+        Jeedom that will remain the same
 
-    -   **Complément** : le fragment d’URL complémentaire (exemple
-        : /jeedom) pour accéder à Jeedom.
+    -   ** Complement **: the complementary URL fragment (example
+        : / jeedom) to access Jeedom.
 
--   **Accès externe** : informations pour joindre Jeedom de l’extérieur
-    du réseau local. À ne remplir que si vous n’utilisez pas le DNS
+-   ** External Access **: Information to join Jeedom from the outside
+    of the local network. Only fill in if you do not use DNS
     Jeedom
 
-    -   **OK/NOK** : indique si la configuration réseau externe est
-        correcte
+    -   ** OK / NOK **: indicates if the external network configuration is
+        correct
 
-    -   **Protocole** : protocole utilisé pour l’accès extérieur
+    -   ** Protocol **: protocol used for external access
 
-    -   **Adresse URL ou IP** : IP externe, si elle est fixe. Sinon,
-        donnez l’URL pointant sur l’adresse IP externe de votre réseau.
+    -   ** URL or IP address **: External IP, if it is fixed. If not,
+        give the URL pointing to the external IP address of your network.
 
-    -   **Complément** : le fragment d’URL complémentaire (exemple
-        : /jeedom) pour accéder à Jeedom.
+    -   ** Complement **: the complementary URL fragment (example
+        : / jeedom) to access Jeedom.
 
-> **Tip**
+> ** Tip **
 >
-> Si vous êtes en HTTPS le port est le 443 (par défaut) et en HTTP le
-> port est le 80 (par défaut). Pour utiliser HTTPS depuis l’extérieur,
-> un plugin letsencrypt est maintenant disponible sur le market.
+> If you are in HTTPS the port is 443 (default) and in HTTP the
+> port is 80 (default). To use HTTPS from the outside,
+> a letsencrypt plugin is now available on the market.
 
-> **Tip**
+> ** Tip **
 >
-> Pour savoir si vous avez besoin de définir une valeur dans le champs
-> **complément**, regardez, quand vous vous connectez à Jeedom dans
-> votre navigateur Internet, si vous devez ajouter /jeedom (ou autre
-> chose) après l’IP.
+> To find out if you need to set a value in the field
+> ** add-on **, look, when you log in to Jeedom in
+> your Internet browser, if you need to add / jeedom (or other
+> thing) after the IP.
 
--   **Gestion avancée** : Cette partie peut ne pas apparaitre, en
-    fonction de la compatibilité avec votre matériel. Vous y trouverez
-    la liste de vos interfaces réseaux. Vous pourrez indiquer à Jeedom
-    de ne pas monitorer le réseau en cliquant sur **désactiver la
-    gestion du réseau par Jeedom** (à cocher si Jeedom n’est connecté à
-    aucun réseau)
+-   ** Advanced Management **: This part may not appear, in
+    function of compatibility with your material. You will find
+    the list of your network interfaces. You can tell Jeedom
+    not to monitor the network by clicking ** disable the
+    network management by Jeedom ** (check if Jeedom is connected to
+    no network)
 
--   **Proxy market** : permet un accès distant à votre Jeedom sans avoir
-    besoin d’un DNS, d’une IP fixe ou d’ouvrir les ports de votre box
+-   ** Proxy market **: allows remote access to your Jeedom without having
+    need a DNS, a fixed IP or open the ports of your box
     Internet
 
-    -   **Utiliser les DNS Jeedom** : active les DNS Jeedom (attention
-        cela nécessite au moins un service pack)
+    -   ** Use DNS Jeedom **: activates DNS Jeedom (attention
+        this requires at least one service pack)
 
-    -   **Statut DNS** : statut du DNS HTTP
+    -   ** DNS status **: HTTP DNS status
 
-    -   **Gestion** : permet d’arrêter et relancer le service DNS
+    -   ** Management **: allows to stop and restart the DNS service
 
-> **Important**
+> ** Important **
 >
-> Si vous n’arrivez pas à faire fonctionner le DNS Jeedom, regardez la
-> configuration du pare-feu et du filtre parental de votre box Internet
-> (sur livebox il faut par exemple le pare-feu en moyen).
+> If you can not get the DNS Jeedom working, look at the
+> configure the firewall and the parental filter of your Internet box
+> (on livebox it is necessary for example the average firewall).
 
-Couleurs 
+Colors
 ========
 
-La colorisation des widgets est effectuée en fonction de la catégorie à
-laquelle appartient l’équipement. Parmi les catégories on retrouve le
-chauffage, Sécurité, Energie, lumière, Automatisme, Multimedia, Autre…​
+The colorization of the widgets is done according to the category to
+which equipment belongs. Among the categories we find the
+Heating, Security, Energy, light, Automatism, Multimedia, Other ...
 
-Pour chaque catégorie, on pourra différencier les couleurs de la version
-desktop et de la version mobile. On peut alors changer :
+For each category, we can differentiate the colors of the version
+desktop and mobile version. We can then change:
 
--   la couleur du fond des widgets,
+-   the background color of the widgets,
 
--   la couleur de la commande lorsque le widget est de type graduel (par
-    exemple les lumières, les volets, les températures).
+-   the color of the command when the widget is of gradual type (for
+    example lights, shutters, temperatures).
 
-En cliquant sur la couleur une fenêtre s’ouvre, permettant de choisir sa
-couleur. La croix à côté de la couleur permet de revenir au paramètre
-par défaut.
+By clicking on the color a window opens, allowing to choose its
+color. The cross next to the color returns to the parameter
+by default.
 
-En haut de page, vous pouvez aussi configurer la transparence des
-widgets de manière globale (ce sera la valeur par défaut. Il est
-possible ensuite de modifier cette valeur widget par widget). Pour ne
-mettre aucune transparence, laissez 1.0 .
+At the top of the page, you can also configure the transparency of
+widgets globally (this will be the default value.
+possible then to modify this widget value by widget). Not to
+put no transparency, leave 1.0.
 
-> **Tip**
+> ** Tip **
 >
-> N’oubliez pas de sauvegarder après toute modification.
+> Do not forget to save after any modification.
 
-Commandes 
+Orders
 =========
 
-De nombreuses commandes peuvent être historisées. Ainsi, dans
-Analyse→Historique, vous obtenez des graphiques représentant leur
-utilisation. Cet onglet permet de fixer des paramètres globaux à
-l’historisation des commandes.
+Many commands can be historized. So, in
+Analysis → History, you get graphs representing their
+use. This tab allows you to set global parameters to
+the historization of orders.
 
-Historique 
+Historical
 ----------
 
--   **Afficher les statistiques sur les widgets** : Permet d’afficher
-    les statistiques sur les widgets. Il faut que le widget soit
-    compatible, ce qui est le cas pour la plupart. Il faut aussi que la
-    commande soit de type numérique.
+-   ** View widget statistics **: View
+    widget statistics. The widget must be
+    compatible, which is the case for most. It is also necessary that the
+    command is of numeric type.
 
--   **Période de calcul pour min, max, moyenne (en heures)** : Période
-    de calcul des statistiques (24h par défaut). Il n’est pas possible
-    de mettre moins d’une heure.
+-   ** Calculation period for min, max, average (in hours) **: Period
+    statistics calculation (24h by default). It is not possible
+    to put less than an hour.
 
--   **Période de calcul pour la tendance (en heures)** : Période de
-    calcul des tendances (2h par défaut). Il n’est pas possible de
-    mettre moins d’une heure.
+-   ** Calculation period for the trend (in hours) **: Period of
+    Trend calculation (2h by default). It is not possible to
+    put less than an hour.
 
--   **Délai avant archivage (en heures)** : Indique le délai avant que
-    Jeedom n’archive une donnée (24h par défaut). C’est-à-dire que les
-    données historisées doivent avoir plus de 24h pour être archivées
-    (pour rappel, l’archivage va soit moyenner, soit prendre le maximum
-    ou le minimum de la donnée sur une période qui correspond à la
-    taille des paquets).
+-   ** Delay before archiving (in hours) **: Indicates the delay before
+    Jeedom does not archive any data (24h by default). That is, the
+    historical data must be more than 24 hours to be archived
+    (as a reminder, archiving will either average or take the maximum
+    or the minimum of the data over a period that corresponds to the
+    packet size).
 
--   **Archiver par paquet de (en heures)** : Ce paramètre donne
-    justement la taille des paquets (1h par défaut). Cela signifie par
-    exemple que Jeedom va prendre des périodes de 1h, moyenner et
-    stocker la nouvelle valeur calculée en supprimant les
-    valeurs moyennées.
+-   ** Archive by package of (in hours) **: This setting gives
+    precisely the size of the packets (1h by default). It means by
+    example that Jeedom will take periods of 1h, average and
+    store the new calculated value by deleting the
+    averaged values.
 
--   **Seuil de calcul de tendance basse** : Cette valeur indique la
-    valeur à partir de laquelle Jeedom indique que la tendance est à
-    la baisse. Il doit être négatif (par défaut -0.1).
+-   ** Low Trend Calculation Threshold **: This value indicates the
+    value from which Jeedom indicates that the trend is to
+    the decline. It must be negative (default -0.1).
 
--   **Seuil de calcul de tendance haut** : Même chose pour la hausse.
+-   ** High Trend Calculation Threshold **: Same for upside.
 
--   **Période d’affichage des graphiques par défaut** : Période qui est
-    utilisée par défaut lorsque vous voulez afficher l’historique
-    d’une commande. Plus la période est courte, plus Jeedom sera rapide
-    pour afficher le graphique demandé.
+-   ** Default Graph Display Period **: Period that is
+    used by default when you want to display the history
+    of an order. The shorter the period, the faster Jeedom will be
+    to display the requested graph.
 
-> **Note**
+> ** Note **
 >
-> Le premier paramètre **Afficher les statistiques sur les widgets** est
-> possible mais désactivé par défaut car il rallonge sensiblement le
-> temps d’affichage du dashboard. Si vous activez cette option, par
-> défaut, Jeedom se fonde sur les données des dernières 24h pour
-> calculer ces statistiques. La méthode de calcul de tendance est fondée
-> sur le calcul des moindres carrés (voir
-> [ici](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s)
-> pour le détail).
+> The first parameter ** Show widget statistics ** is
+> possible but disabled by default because it significantly extends the
+> dashboard display time. If you enable this option, by
+> default, Jeedom relies on data from the last 24 hours for
+> calculate these statistics. The trend calculation method is based
+> on the least squares calculation (see
+> [here] (https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s)
+> for the detail).
 
-Push 
+push
 ----
 
-**URL de push globale** : permet de rajouter une URL à appeler en cas de
-mise à jour d’une commande. Vous pouvez utiliser les tags suivants :
-**\#value\#** pour la valeur de la commande, **\#cmd\_name\#** pour le
-nom de la commande, **\#cmd\_id\#** pour l’identifiant unique de la
-commande, **\#humanname\#** pour le nom complet de la commande (ex :
-\#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\#)
+** Global push URL **: allows to add a URL to call in case of
+update an order. You can use the following tags:
+** \ # value \ # ** for the value of the command, ** \ # cmd \ _name \ # ** for the
+the name of the command, ** \ # cmd \ _id \ # ** for the unique identifier of the
+command, ** \ # humanname \ # ** for the full name of the command (ex:
+\ # \ [Bathroom \] \ [Hydrometry \] \ [Humidity \] \ #)
 
-Cache 
+Hidden
 =====
 
-Permet de surveiller et d’agir sur le cache de Jeedom :
+Monitor and act on the Jeedom cache:
 
--   **Statistiques** : Nombre d’objets actuellement en cache
+-   ** Statistics **: Number of objects currently cached
 
--   **Nettoyer le cache** : Force la suppression des objets qui ne sont
-    plus utiles. Jeedom le fait automatiquement toutes les nuits.
+-   ** Clean the cache **: Force the deletion of objects that are not
+    more useful. Jeedom does it automatically every night.
 
--   **Vider toutes les données en cache** : Vide complètement le cache.
-    Attention cela peut faire perdre des données !
+-   ** Empty all cached data **: Completely blanks the cache.
+    Be careful, this can make you lose data!
 
--   **Temps de pause pour le long polling** : Fréquence à laquelle
-    Jeedom vérifie si il y a des événements en attente pour les clients
-    (interface web, application mobile…​). Plus ce temps est court, plus
-    l’interface se mettra à jour rapidement, en contre partie cela
-    utilise plus de ressources et peut donc ralentir Jeedom.
+-   ** Break time for long polling **: Frequency at which
+    Jeedom checks if there are pending events for customers
+    (web interface, mobile application ...). The shorter this time, the more
+    the interface will update quickly, in counter part this
+    uses more resources and can slow down Jeedom.
 
-Interactions 
+interactions
 ============
 
-Cet onglet permet de fixer des paramètres globaux concernant les
-interactions que vous trouverez dans Outils→Interactions.
+This tab allows you to set global parameters for
+interactions that you will find in Tools → Interactions.
 
-> **Tip**
+> ** Tip **
 >
-> Pour activer le log des interactions, il faut aller dans l’onglet
-> Administration→Configuration→Logs, puis cocher **Debug** dans la liste
-> du bas. Attention : les logs seront alors très verbeux !
+> To activate the interaction log, go to the tab
+> Administration → Configuration → Logs, then check ** Debug ** in the list
+> from the bottom. Warning: the logs will be very verbose!
 
-Général 
+General
 -------
 
-Vous avez ici trois paramètres :
+Here you have three parameters:
 
--   **Sensibilité** : il y a 4 niveaux de correspondance (La sensibilité
-    va de 1 (correspond exactement) à 99)
+-   ** Sensitivity **: There are 4 levels of matching (Sensitivity
+    goes from 1 (corresponds exactly to 99)
 
-    -   pour 1 mot : le niveau de correspondance pour les interactions à
-        un seul mot
+    -   for 1 word: the level of correspondence for interactions at
+        only one word
 
-    -   2 mots : le niveau de correspondance pour les interactions à
-        deux mots
+    -   2 words: the level of correspondence for the interactions to
+        two words
 
-    -   3 mots : le niveau de correspondance pour les interactions à
-        trois mots
+    -   3 words: the level of correspondence for the interactions to
+        three words
 
-    -   + de 3 mots : le niveau de correspondance pour les interactions
-        à plus de trois mots
+    -   + of 3 words: the level of correspondence for interactions
+        more than three words
 
--   **Ne pas répondre si l’interaction n’est pas comprise** : par défaut
-    Jeedom répond "je n’ai pas compris" si aucune interaction
-    ne correspond. Il est possible de désactiver ce fonctionnement pour
-    que Jeedom ne réponde rien. Cochez la case pour désactiver
-    la réponse.
+-   ** Do not answer if the interaction is not understood **: default
+    Jeedom answers "I did not understand" if no interaction
+    does not match. It is possible to disable this operation for
+    that Jeedom does not answer anything. Check the box to disable
+    the answer.
 
--   **Regex général d’exclusion pour les interactions** : permet de
-    définir une regexp qui, si elle correspond à une interaction,
-    supprimera automatiquement cette phrase de la génération (réservé
-    aux experts). Pour plus d’informations voir les explications dans le
-    chapitre **Regexp d’exclusion** de la documentation sur
-    les interactions.
+-   ** General exclusion regex for interactions **: allows to
+    define a regexp which, if it corresponds to an interaction,
+    will automatically delete this phrase from the generation (reserved
+    to experts). For more information see explanations in the
+    chapter ** Exclusion Regexp ** of the documentation on
+    the interactions.
 
-Interaction automatique, contextuelle & avertissement 
------------------------------------------------------
+Automatic, contextual & warning interaction
+-------------------------------------------------- ---
 
--   Les **interactions automatiques** permettent à Jeedom de tenter de
-    comprendre une demande d’interaction même si il n’y en a aucune
-    de définie. Il va alors chercher un nom d’objet et/ou d’équipement
-    et/ou de commande pour essayer de répondre au mieux.
+-   The ** automatic interactions ** allow Jeedom to try to
+    understand an interaction request even if there is none
+    defined. He will then look for a name of object and / or equipment
+    and / or command to try to answer the best.
 
--   Les **interactions contextuelles** vous permettent d’enchainer
-    plusieurs demandes sans tout répéter, par exemple :
+-   ** contextual interactions ** let you do it
+    several requests without repeating everything, for example:
 
-    -   *Jeedom gardant le contexte :*
+    -   * Jeedom keeping the context: *
 
-        -   *Vous* : Combien fait-il dans la chambre ?
+        -   * You *: How much is it in the room?
 
-        -   *Jeedom* : Température 25.2 °C
+        -   * Jeedom *: Temperature 25.2 ° C
 
-        -   *Vous* : et dans le salon ?
+        -   * You *: and in the living room?
 
-        -   *Jeedom* : Température 27.2 °C
+        -   * Jeedom *: Temperature 27.2 ° C
 
-    -   *Poser deux questions en une :*
+    -   * Ask two questions in one: *
 
-        -   *Vous* : Combien fait-il dans la chambre et dans le salon ?
+        -   * You *: How much is it in the bedroom and in the living room?
 
-        -   *Jeedom* : Température 23.6 °C, Température 27.2 °C
+        -   * Jeedom *: Temperature 23.6 ° C, Temperature 27.2 ° C
 
--   Les interactions de type **Préviens-moi** permettent de demander à
-    Jeedom de vous prévenir si une commande dépasse/descend ou vaut une
-    certaine valeur.
+-   ** Please warn me ** interactions allow you to ask
+    Jeedom to warn you if an order goes up / down or is worth a
+    certain value.
 
-    -   *Vous* : Préviens-moi si la température du salon dépasse 25°C ?
+    -   * You *: Do you warn me if the living room temperature exceeds 25 ° C?
 
-    -   *Jeedom* : OK (*Dès que la température du salon dépassera 25°C,
-        Jeedom vous le dira, une seule fois*)
+    -   * Jeedom *: OK (* As soon as the living room temperature exceeds 25 ° C,
+        Jeedom will tell you, only once *)
 
-> **Note**
+> ** Note **
 >
-> Par défaut Jeedom vous répondra par le même canal que celui que vous
-> avez utilisé pour lui demander de vous prévenir. Si il n’en trouve
-> pas, il utilisera alors la commande par défaut spécifiée dans cet
-> onglet : **Commande de retour par défaut**.
+> By default, Jeedom will respond to you by the same channel as you
+> used to ask him to warn you. If he does not find
+> no, it will then use the default command specified in this
+> tab: ** Default return command **.
 
-Voici donc les différentes options disponibles :
+Here are the different options available:
 
--   **Activer les interactions automatiques** : Cochez pour activer les
-    interactions automatiques.
+-   ** Enable automatic interactions **: Check to enable
+    automatic interactions.
 
--   **Activer les réponses contextuelles** : Cochez pour activer les
-    interactions contextuelles.
+-   ** Enable Contextual Responses **: Check to enable
+    contextual interactions.
 
--   **Réponse contextuelle prioritaire si la phrase commence par** : Si
-    la phrase commence par le mot que vous renseignez ici, Jeedom va
-    alors prioritiser une réponse contextuelle (vous pouvez mettre
-    plusieurs mots en les séparant par des **;** ).
+-   ** Priority contextual response if the sentence starts with **: If
+    the sentence starts with the word you fill in here, Jeedom is going
+    then prioritize a contextual response (you can put
+    several words by separating them with **; **).
 
--   **Découper une interaction en 2 si elle contient** : Même chose pour
-    le découpage d’une interaction contenant plusieurs questions. Vous
-    donnez ici les mots qui séparent les différentes questions.
+-   ** Cut an interaction in 2 if it contains **: Same thing for
+    the division of an interaction containing several questions. You
+    give here the words that separate the different questions.
 
--   **Activer les interactions "Préviens-moi"** : Cochez pour activer
-    les interactions de type **Préviens-moi**.
+-   ** Enable "Notify me" interactions **: Check to enable
+    ** Please warn me ** type interactions.
 
--   **Réponse de type "Préviens-moi" si la phrase commence par** : Si la
-    phrase commence par ce/ces mot(s) alors Jeedom cherchera à faire une
-    interaction de type **Préviens-moi** (vous pouvez mettre plusieurs
-    mots en les séparant par des **;** ).
+-   ** "Please warn me" answer if the sentence begins with **: If the
+    sentence begins with this / these word (s) then Jeedom will seek to make a
+    ** Please let me know ** interaction (you can put several
+    words by separating them with **; **).
 
--   **Commande de retour par défaut** : Commande de retour par défaut
-    pour une interaction de type **Préviens-moi** (utilisée, notamment,
-    si vous avez programmé l’alerte par l’interface mobile)
+-   ** Default Return Command **: Default Return Command
+    for an ** Please warn me ** interaction (used, in particular,
+    if you have programmed the alert via the mobile interface)
 
--   **Synonyme pour les objets** : Liste des synonymes pour les objets
-    (ex : rdc|rez de chaussé|sous sol|bas;sdb|salle de bain).
+-   ** Synonym for objects **: List of synonyms for objects
+    (ex: ground floor | basement | downstairs | downstairs; bathroom | bathroom).
 
--   **Synonyme pour les équipements** : Liste des synonymes pour
-    les équipements.
+-   ** Synonym for Equipment **: Synonyms List for
+    the equipment.
 
--   **Synonyme pour les commandes** : Liste des synonymes pour
-    les commandes.
+-   ** Synonym for commands **: List of synonyms for
+    the orders.
 
--   **Synonyme pour les résumé** : Liste des synonymes pour les résumés.
+-   ** Synonym for summary **: Synonym list for abstracts.
 
--   **Synonyme commande slider maximum** : Synonyme pour mettre une
-    commande de type slider au maximum (ex ouvre pour ouvre le volet de
-    la chambre ⇒ volet chambre à 100%).
+-   ** Synonym maximum slider command **: Synonym for putting a
+    maximum slider command (ex opens to open the pane of
+    the room ⇒ 100% room shutter).
 
--   **Synonyme commande slider minimum** : Synonyme pour mettre une
-    commande de type slider au minimu (ex ferme pour fermer le volet de
-    la chambre ⇒ volet chambre à 0%).
+-   ** Synonym minimum slider command **: Synonym for putting a
+    slider type control at least (ex closes to close the shutter of
+    the room ⇒ room shutter at 0%).
 
-Couleurs 
+Colors
 --------
 
-Cette partie permet de définir les couleurs que Jeedom associera aux
-mots rouge/bleu/noir…​ Pour ajouter une couleur :
+This part allows to define the colors that Jeedom will associate with
+words red / blue / black ... To add a color:
 
--   Cliquez sur le bouton **+**, à droite,
+-   Click on the ** + ** button, on the right,
 
--   Donnez un nom à votre couleur,
+-   Give a name to your color,
 
--   Choisissez la couleur associée en cliquant sur la case de droite.
+-   Choose the associated color by clicking on the box on the right.
 
-Rapports 
+Reports
 ========
 
-Permet de configurer la génération et la gestion des rapports
+Configure the generation and management of reports
 
--   **Délai d’attente après génération de la page (en ms)** : Délai
-    d’attente après chargement du rapport pour faire la "photo", à
-    changer si votre rapport est incomplet par exemple.
+-   ** Timeout after page generation (in ms) **: Timeout
+    wait after loading the report to make the "photo", to
+    change if your report is incomplete for example.
 
--   **Nettoyer les rapports plus anciens de (jours)** : Définit le
-    nombre de jours avant de supprimer un rapport (les rapports prennent
-    un peu de place donc attention à ne pas mettre trop
-    de conservation).
+-   ** Clean up older reports by (days) **: Sets the
+    number of days before deleting a report (the reports take
+    a little space so be careful not to put too much
+    conservation).
 
-Liens 
+Connections
 =====
 
-Permet de configurer les graphiques de liens. Ces liens permettent de
-voir, sous forme d’un graphique, les relations entre les objets, les
-équipements, les objets, etc.
+Allows you to configure the link graphs. These links allow
+see graphically the relationships between objects,
+equipment, objects, etc.
 
--   **Profondeur pour les scénarios** : Permet de définir, lors de
-    l’affichage d’un graphique de liens d’un scénario, le nombre
-    d’éléments maximum à afficher (plus il y a d’éléments plus le
-    graphique sera lent à générer et plus il sera difficile à lire).
+-   ** Depth for Scenarios **: Allows you to set, when
+    the display of a link graph of a scenario, the number
+    maximum elements to display (plus there are elements plus the
+    graph will be slow to generate and more difficult to read).
 
--   **Profondeur pour les objets** : Idem pour les objets.
+-   ** Depth for objects **: Same for objects.
 
--   **Profondeur pour les équipements** : Idem pour les équipements.
+-   ** Depth for equipment **: Same for equipment.
 
--   **Profondeur pour les commandes** : Idem pour les commandes.
+-   ** Depth for orders **: Same for orders.
 
--   **Profondeur pour les variables** : Idem pour les variables.
+-   ** Depth for variables **: Same for variables.
 
--   **Paramètre de prerender** : Permet d’agir sur la disposition
-    du graphique.
+-   ** Parameter of prerender **: Allows to act on the layout
+    of the graph.
 
--   **Paramètre de render** : Idem.
+-   ** Render parameter **: Idem.
 
-Résumés 
+summaries
 =======
 
-Permet d’ajouter des résumés d’objets. Cette information est affichée
-tout en haut, à droite, dans la barre de menu Jeedom, ou à côté des
-objets :
+Adds summaries of objects. This information is displayed
+at the top, right, in the Jeedom menu bar, or next to
+objects :
 
--   **Clef** : Clé du résumé, à ne surtout pas toucher.
+-   ** Key **: Key summary, not to touch.
 
--   **Nom** : Nom du résumé.
+-   ** Name **: Name of the summary.
 
--   **Calcul** : Méthode de calcul, peut être de type :
+-   ** Calculation **: Method of calculation, can be of type:
 
-    -   **Somme** : fait la somme des différentes valeurs,
+    -   ** Sum **: sum of the different values,
 
-    -   **Moyenne** : fait la moyenne des valeurs,
+    -   ** Average **: averages the values,
 
-    -   **Texte** : affiche textuellement la valeur (surtout pour celles
-        de type chaine de caractères).
+    -   ** Text **: Text displays the value (especially for those
+        type string).
 
--   **Icone** : Icône du résumé.
+-   ** Icon **: Summary icon.
 
--   **Unité** : Unité du résumé.
+-   ** Unit **: Summary Unit.
 
--   **Méthode de comptage** : Si vous comptez une donnée binaire alors
-    il faut mettre cette valeur à binaire, exemple si vous comptez le
-    nombre de lampes allumées mais que vous avez juste la valeur du
-    variateur (0 à 100), alors il faut mettre binaire, comme cela Jeedom
-    considéra que si la valeur est supérieure à 1, alors la lampe
-    est allumée.
+-   ** Counting method **: If you count a binary data then
+    you have to set this value to binary, example if you count the
+    number of lamps lit but you just have the value of the
+    inverter (0 to 100), then you have to put binary, like that Jeedom
+    considered that if the value is greater than 1, then the lamp
+    is on.
 
--   **Afficher si valeur égale 0** : Cochez cette case pour afficher la
-    valeur, même quand elle vaut 0.
+-   ** Show if value equals 0 **: Check this box to display the
+    value, even when it is worth 0.
 
--   **Lier à un virtuel** : Lance la création de commandes virtuelles
-    ayant pour valeur celles du résumé.
+-   ** Link to virtual **: Starts the creation of virtual commands
+    having for value those of the summary.
 
--   **Supprimer le résumé** : Le dernier bouton, tout à droite, permet
-    de supprimer le résumé de la ligne.
+-   ** Delete summary **: The last button, on the far right, allows
+    to delete the summary of the line.
 
-Logs 
+logs
 ====
 
-Timeline 
+timeline
 --------
 
--   **Nombre maximum d’évènements** : Définit le nombre maximum à
-    afficher dans la timeline.
+-   ** Maximum number of events **: Sets the maximum number to
+    show in the timeline.
 
--   **Supprimer tous les évènements** : Permet de vider la timeline de
-    tous ses évènements enregistrés.
+-   ** Delete all events **: Lets you empty the timeline of
+    all of his recorded events.
 
-Messages 
+posts
 --------
 
--   **Ajouter un message à chaque erreur dans les logs** : si un plugin
-    ou Jeedom écrit un message d’erreur dans un log, Jeedom ajoute
-    automatiquement un message dans le centre des messages (au moins
-    vous êtes sûr de ne pas le manquer).
+-   ** Add a message to every error in the logs **: if a plugin
+    or Jeedom writes an error message in a log, Jeedom adds
+    automatically a message in the message center (at least
+    you are sure not to miss it).
 
--   **Commande d’information utilisateur** : Permet de sélectionner une
-    ou plusieurs commandes (à séparer par des **&&** ) de type
-    **message** qui seront utilisées lors de l’émission de
-    nouveaux messages.
+-   ** User Information Command **: Allows you to select a
+    or several commands (to be separated by ** && **) of type
+    ** message ** that will be used when issuing
+    new messages.
 
-Alertes 
+Notifications
 -------
 
--   **Ajouter un message à chaque Timeout** : Ajoute un message dans le
-    centre de message si un équipement tombe en **timeout**.
+-   ** Add a message to each Timeout **: Adds a message in the
+    message center if a device falls ** timeout **.
 
--   **Commande sur Timeout** : Commande de type **message** à utiliser
-    si un équipement est en **timeout**.
+-   ** Command on Timeout **: Command of type ** message ** to use
+    if equipment is ** timeout **.
 
--   **Ajouter un message à chaque Batterie en Warning** : Ajoute un
-    message dans le centre de messages si un équipement a son niveau de
-    batterie en **warning**.
+-   ** Add a message to each Battery in Warning **: Adds a
+    message in the message center if a device has its level of
+    battery ** warning **.
 
--   **Commande sur Batterie en Warning** : Commande de type **message**
-    à utiliser si un équipement à son niveau de batterie en **warning**.
+-   ** Command on Battery in Warning **: Command of type ** message **
+    to use if a device at its battery level ** warning **.
 
--   **Ajouter un message à chaque Batterie en Danger** : Ajoute un
-    message dans le centre de messages si un équipement à son niveau de
-    batterie en **danger**.
+-   ** Add a message to each Battery in Danger **: Adds a
+    message in the message center if a device at its level of
+    battery in ** danger **.
 
--   **Commande sur Batterie en Danger** : Commande de type **message** à
-    utiliser si un équipement à son niveau de batterie en **danger**.
+-   ** Dangerous Battery Control **: ** message ** command at
+    use if equipment at its battery level in ** danger **.
 
--   **Ajouter un message à chaque Warning** : Ajoute un message dans le
-    centre de messages si une commande passe en alerte **warning**.
+-   ** Add a message to each Warning **: Adds a message in the
+    message center if a command goes into alert ** warning **.
 
--   **Commande sur Warning** : Commande de type **message** à utiliser
-    si une commande passe en alerte **warning**.
+-   ** Command on Warning **: Command of type ** message ** to use
+    if a command goes into alert ** warning **.
 
--   **Ajouter un message à chaque Danger** : Ajoute un message dans le
-    centre de messages si une commande passe en alerte **danger**.
+-   ** Add a message to each Danger **: Adds a message in the
+    message center if a command goes into alert ** danger **.
 
--   **Commande sur Danger** : Commande de type **message** à utiliser si
-    une commande passe en alerte **danger**.
+-   ** Command on Danger **: Command of type ** message ** to be used if
+    a command goes on alert ** danger **.
 
-Log 
+log
 ---
 
--   **Moteur de log** : Permet de changer le moteur de log pour, par
-    exemple, les envoyer à un demon syslog(d).
+-   ** Log Engine **: Allows you to change the log engine for, by
+    example, send them to a syslog daemon (d).
 
--   **Format des logs** : Format de log à utiliser (Attention : ça
-    n’affecte pas les logs des démons).
+-   ** Log format **: Log format to use (Attention: it
+    does not affect the logs of the daemons).
 
--   **Nombre de lignes maximum dans un fichier de log** : Définit le
-    nombre maximum de lignes dans un fichier de log. Il est recommandé
-    de ne pas toucher cette valeur, car une valeur trop grande pourrait
-    remplir le système de fichiers et/ou rendre Jeedom incapable
-    d’afficher le log.
+-   ** Maximum number of lines in a log file **: Sets the
+    maximum number of lines in a log file. It is recommended
+    not to touch this value because too much value could be
+    fill the file system and / or make Jeedom unable
+    to display the log.
 
--   **Niveau de log par défaut** : Quand vous sélectionnez "Défaut",
-    pour le niveau d’un log dans Jeedom, c’est celui-ci qui sera
-    alors utilisé.
+-   ** Default log level **: When you select "Default",
+    for the level of a log in Jeedom, this is the one that will be
+    then used.
 
-En dessous vous retrouvez un tableau permettant de gérer finement le
-niveau de log des éléments essentiels de Jeedom ainsi que celui des
+Below you will find a table allowing to manage finely the
+log level of the essential elements of Jeedom as well as that of
 plugins.
 
-Equipements 
+Facilities
 ===========
 
--   **Nombre d’échecs avant désactivation de l’équipement** : Nombre
-    d’échecs de communication avec l’équipement avant désactivation de
-    celui-ci (un message vous préviendra si cela arrive).
+-   ** Number of failures before disabling the equipment **: Number
+    communication failures with equipment before deactivating
+    this one (a message will warn you if this happens).
 
--   **Seuils des piles** : Permet de gérer les seuils d’alertes globaux
-    sur les piles.
+-   ** Stack thresholds **: Manage global alert thresholds
+    on the batteries.
 
-Mise à jour et fichiers 
+Update and files
 =======================
 
-Mise à jour de Jeedom 
+Update of Jeedom
 ---------------------
 
--   **Source de mise à jour** : Choisissez la source de mise à jour du
-    core de Jeedom.
+-   ** Source of Update **: Choose the update source from
+    Jeedom's core.
 
--   **Version du core** : Version du core à récupérer.
+-   ** Core version **: Core version to recover.
 
--   **Vérifier automatiquement s’il y a des mises à jour** : Indique si
-    il faut chercher automatiquement si il y a de nouvelles mises à jour
-    (attention pour éviter de surcharger le market, l’heure de
-    vérification peut changer).
+-   ** Automatically check for updates **: Indicates if
+    you have to search automatically if there are new updates
+    (be careful to avoid overloading the market, the time of
+    verification may change).
 
-Les dépôts 
+Deposits
 ----------
 
-Les dépôts sont des espaces de stockage (et de service) pour pouvoir
-déplacer des sauvegardes, récupérer des plugins, récupérer le core de
+Deposits are storage (and service) spaces for
+move backups, recover plugins, recover the core of
 Jeedom, etc.
 
-### Fichier 
+### File
 
-Dépôt servant à activer l’envoi de plugins par des fichiers.
+Deposit used to activate the sending of plugins by files.
 
-### Github 
+### Github
 
-Dépôt servant à relier Jeedom à Github.
+Deposit used to link Jeedom to Github.
 
--   **Token** : Token pour l’accès au dépôt privé.
+-   ** Token **: Token for private depot access.
 
--   **Utilisateur ou organisation du dépôt pour le core Jeedom** : Nom
-    de l’utilisateur ou de l’organisation sur github pour le core.
+-   ** User or repository organization for Jeedom Core **: Name
+    the user or organization on github for the core.
 
--   **Nom du dépôt pour le core Jeedom** : Nom du dépôt pour le core.
+-   ** Name of the deposit for the core Jeedom **: Name of the deposit for the core.
 
--   **Branche pour le core Jeedom** : Branche du dépôt pour le core.
+-   ** Branch for Jeedom core **: Branch of the deposit for the core.
 
-### Market 
+### Market
 
-Dépôt servant à relier Jeedom au market, il est vivement conseillé
-d’utiliser ce dépôt. Attention : toute demande de support pourra être
-refusée si vous utilisez un autre dépôt que celui-ci.
+Deposit used to connect Jeedom to the market, it is strongly recommended
+to use this deposit. Attention: any support request can be
+refused if you use another deposit than this one.
 
--   **Adresse** : Adresse du Market.
+-   ** Address **: Market Address.
 
--   **Nom d’utilisateur** : Votre nom d’utilisateur sur le Market.
+-   ** Username **: Your username on the Market.
 
--   **Mot de passe** : Votre mot de passe du Market.
+-   ** Password **: Your password for the Market.
 
-### Samba 
+### Samba
 
-Dépôt permettant d’envoyer automatiquement une sauvegarde de Jeedom sur
-un partage Samba (ex : NAS Synology).
+Deposit to automatically send a Jeedom backup on
+a Samba share (ex: NAS Synology).
 
--   **\[Backup\] IP** : IP du serveur Samba.
+-   ** \ [Backup \] IP **: IP of the Samba server.
 
--   **\[Backup\] Utilisateur** : Nom d’utilisateur pour la connexion
-    (les connexions anonymes ne sont pas possibles). Il faut forcément
-    que l’utilisateur ait les droits en lecture ET en écriture sur le
-    répertoire de destination.
+-   ** \ [Backup \] User **: Username for login
+    (anonymous connections are not possible). It must be necessary
+    that the user has the rights to read AND write to the
+    destination directory.
 
--   **\[Backup\] Mot de passe** : Mot de passe de l’utilisateur.
+-   ** \ [Backup \] Password **: Password of the user.
 
--   **\[Backup\] Partage** : Chemin du partage (attention à bien
-    s’arrêter au niveau du partage).
+-   ** \ [Backup \] Sharing **: Share path (be careful
+    stop at the sharing level).
 
--   **\[Backup\] Chemin** : Chemin dans le partage (à mettre en
-    relatif), celui-ci doit exister.
+-   ** \ [Backup \] Path **: Path in the share (to put in
+    relative), this one must exist.
 
-> **Note**
+> ** Note **
 >
-> Si le chemin d’accès à votre dossier de sauvegarde samba est :
-> \\\\192.168.0.1\\Sauvegardes\\Domotique\\Jeedom Alors IP = 192.168.0.1
-> , Partage = //192.168.0.1/Sauvegardes , Chemin = Domotique/Jeedom
+> If the path to your samba backup folder is:
+> \\\\ 192.168.0.1 \\ Backup \\ Domotic \\ Jeedom Then IP = 192.168.0.1
+>, Share = //192.168.0.1/Backups, Path = Domotics / Jeedom
 
-> **Note**
+> ** Note **
 >
-> Lors de la validation du partage Samba, tel que décrit précédemment,
-> une nouvelle forme de sauvegarde apparait dans la partie
-> Administration→Sauvegardes de Jeedom. En l’activant, Jeedom procèdera
-> à son envoi automatique lors de la prochaine sauvegarde. Un test est
-> possible en effectuant une sauvegarde manuelle.
+> When validating the Samba share, as described previously,
+> a new form of backup appears in the game
+> Administration → Jeedom backups. By activating it, Jeedom will proceed
+> to its automatic sending during the next backup. A test is
+> possible by performing a manual backup.
 
-> **Important**
+> ** Important **
 >
-> Il vous faudra peut-être installer le package smbclient pour que le
-> dépôt fonctionne.
+> You may need to install the smbclient package for the
+> deposit works.
 
-> **Important**
+> ** Important **
 >
-> Jeedom doit être le seul à écrire dans ce dossier et il doit être vide
-> par défaut (c’est-à-dire qu’avant la configuration et l’envoi de la
-> première sauvegarde, le dossier ne doit contenir aucun fichier ou
-> dossier).
+> Jeedom must be the only one to write in this folder and it must be empty
+> by default (that is, before configuring and sending the
+> first backup, the folder must not contain any files or
+> file).
 
-### URL 
+### URLs
 
--   **URL core Jeedom**
+-   ** Jeedom Core URL **
 
--   **URL version core Jeedom**
+-   ** Jeedom core version URL **
 
 

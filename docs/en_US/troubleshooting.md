@@ -1,113 +1,113 @@
-J’ai une page blanche 
+I have a blank page
 =====================
 
-Il faut se connecter en SSH à Jeedom et lancer le script
-d’auto-diagnostic :
+You have to connect in SSH to Jeedom and start the script
+self-diagnosis:
 
-``` {.bash}
-sudo chmod +x /var/www/html/health.sh;sudo /var/www/html/health.sh
-```
+`` `{.bash}
+sudo chmod + x /var/www/html/health.sh;sudo /var/www/html/health.sh
+`` `
 
-S’il y a un souci, le script essaiera de le corriger. S’il n’y arrive
-pas, il vous l’indiquera.
+If there is a problem, the script will try to fix it. If he does not
+no, he will tell you.
 
-Vous pouvez aussi regarder le log /var/www/html/http.error . Très
-souvent, celui-ci indique le souci.
+You can also look at the log /var/www/html/http.error. Very
+often, this one indicates the worry.
 
-J’ai un problème d’identifiant BDD 
+I have a BDD ID problem
 ==================================
 
-Il faut réinitialiser ceux-ci :
+You have to reset these:
 
-``` {.bash}
-bdd_password=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
-echo "DROP USER 'jeedom'@'localhost'" | mysql -uroot -p
-echo "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${bdd_password}';" | mysql -uroot -p
-echo "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'localhost';" | mysql -uroot -p
-cd /usr/share/nginx/www/jeedom
-sudo cp core/config/common.config.sample.php core/config/common.config.php
-sudo sed -i -e "s/#PASSWORD#/${bdd_password}/g" core/config/common.config.php
-sudo chown www-data:www-data core/config/common.config.php
-```
+`` `{.bash}
+bdd_password = $ (cat / dev / urandom | tr -cd 'a-f0-9' | head -c 15)
+echo "DROP USER 'jeedom' @ 'localhost'" | mysql -uroot -p
+echo "CREATE USER" jeedom '@' localhost 'IDENTIFIED BY' $ {bdd_password} '; " | mysql -uroot -p
+echo "GRANT ALL PRIVILEGES ON jeedom. * TO 'jeedom' @ 'localhost';" | mysql -uroot -p
+cd / usr / share / nginx / www / jeedom
+sudo core / config / common.config.sample.php core / config / common.config.php
+sudo sed -i -e "s / # PASSWORD # / $ {bdd_password} / g" core / config / common.config.php
+sudo chown www -data: www-data core / config / common.config.php
+`` `
 
-J’ai des {{…​}} partout 
+I have {{...}} everywhere
 =======================
 
-La cause la plus fréquente est l’utilisation d’un plugin en version beta
-et Jeedom en stable, ou l’inverse. Pour avoir le détail de l’erreur, il
-faut regarder le log http.error (dans /var/www/html/log).
+The most common cause is the use of a beta plugin
+and Jeedom in stable, or vice versa. To have the detail of the error, he
+look at the log http.error (in / var / www / html / log).
 
-Lors d’une commande j’ai une roue qui tourne sans s’arrêter 
-===========================================================
+At the time of an order I have a wheel which turns without stopping
+================================================== =========
 
-Encore une fois cela est souvent dû à un plugin en beta alors que Jeedom
-est en stable. Pour voir l’erreur, il faut faire F12 puis console.
+Again this is often due to a beta plugin while Jeedom
+is in stable. To see the error, you have to do F12 then console.
 
-Je n’ai plus accès à Jeedom, ni par l’interface web ni en console par SSH 
-=========================================================================
+I no longer have access to Jeedom, neither through the web interface nor in console by SSH
+================================================== =======================
 
-Cette erreur n’est pas due à Jeedom, mais à un problème avec le système.
-Si celui-ci persiste suite à une réinstallation, il est conseillé de
-voir avec le SAV pour un souci hardware.
+This error is not due to Jeedom, but to a problem with the system.
+If this persists following a reinstallation, it is advisable to
+see with the SAV for a hardware problem.
 
-Mon scénario ne s’arrête plus/pas 
+My scenario does not stop / no
 =================================
 
-Il est conseillé de regarder les commandes exécutées par le scénario,
-souvent cela vient d’une commande qui ne se termine pas.
+It is advisable to look at the commands executed by the scenario,
+often it comes from a command that does not end.
 
-J’ai des instabilités ou des erreurs 504 
+I have instabilities or errors 504
 ========================================
 
-Vérifiez si votre système de fichiers n’est pas corrompu, en SSH la
-commande est : "sudo dmesg | grep error" .
+Check if your filesystem is not corrupted, in SSH the
+command is: "sudo dmesg | grep error".
 
-Je ne vois pas tous mes équipements sur le dashboard 
-====================================================
+I do not see all my equipment on the dashboard
+================================================== ==
 
-Souvent cela est dû au fait que les équipements sont affectés à un objet
-qui n’est pas le fils ou l’objet lui-même du premier objet sélectionné à
-gauche dans l’arbre (vous pouvez configurer celui-ci dans votre profil).
+Often this is because the equipment is assigned to an object
+which is not the son or the object itself of the first object selected to
+left in the tree (you can configure it in your profile).
 
-J’ai l’erreur suivante : SQLSTATE\[HY000\] \[2002\] Can’t connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' 
-====================================================================================================================================
+I have the following error: SQLSTATE \ [HY000 \] \ [2002 \] Can not connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock'
+================================================== ================================================== ================================
 
-Cela est dû à MySQL qui s’est arrêté, ce n’est pas normal, les cas
-courants sont :
+This is due to MySQL that stopped, it's not normal, the cases
+currents are:
 
--   Manque de place sur le système de fichiers (peut être vérifié en
-    faisant la commande "df -h", en SSH)
+-   Lack of space on the file system (can be checked in
+    doing the command "df -h", in SSH)
 
--   Problème de corruption de fichier(s), ce qui arrive souvent suite à
-    un arrêt non propre de Jeedom (coupure de courant)
+-   Problem of file corruption (s), which often happens following
+    a non-clean stop of Jeedom (power failure)
 
-Malheureusement, il n’y a pas beaucoup de solution si c’est le deuxième
-cas, le mieux étant de récupérer une sauvegarde (disponible dans
-/usr/share/nginx/www/jeedom/backup par défaut), de réinstaller Jeedom et
-de restaurer la sauvegarde. Vous pouvez aussi regarder pourquoi MySQL ne
-veut pas démarrer depuis une console SSH :
+Unfortunately, there is not a lot of solution if it's the second
+case, the best is to recover a backup (available in
+/ usr / share / nginx / www / jeedom / backup by default), to reinstall Jeedom and
+to restore the backup. You can also look at why MySQL does not
+do not want to boot from an SSH console:
 
-``` {.bash}
+`` `{.bash}
 sudo su -
-service mysql stop
+mysql stop service
 mysqld --verbose
-```
+`` `
 
-Ou consulter le log : /var/log/mysql/error.log
+Or check the log: /var/log/mysql/error.log
 
-Les boutons Eteindre/Redémarrer ne fonctionnent pas 
-===================================================
+Shutdown / Restart buttons do not work
+================================================== =
 
-Sur une installation DIY c’est normal. En SSH, il faut faire la commande
-visudo et à la fin du fichier vous devez ajouter : www-data ALL=(ALL)
+On a DIY installation it's normal. In SSH, you have to order
+visudo and at the end of the file you have to add: www-data ALL = (ALL)
 NOPASSWD: ALL.
 
-``` {.bash}
+`` `{.bash}
 sudo service apache2 restart
-```
+`` `
 
-Je ne vois pas certains plugins du Market 
+I do not see some plugins in the Market
 =========================================
 
-Ce genre de cas arrive si votre Jeedom n’est pas compatible avec le
-plugin. En général, une mise à jour de jeedom corrige le souci.
+This kind of case happens if your Jeedom is not compatible with the
+plugin. In general, an update of jeedom corrects the problem.

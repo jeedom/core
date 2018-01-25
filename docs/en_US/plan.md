@@ -1,375 +1,375 @@
-Cette page permet de configurer l’affichage de toute votre domotique de
-manière très fine. Celle-ci demande du temps mais sa seule limite est
-votre imagination.
+This page allows you to configure the display of all your home automation
+very fine way. It takes time but its only limit is
+your imagination.
 
-Elle est accessible par Acceuil → Dashboard
+It is accessible by Home → Dashboard
 
-> **Tip**
+> ** Tip **
 >
-> Il est possible d’aller directement sur un design grâce au sous-menu.
+> It is possible to go directly to a design through the submenu.
 
-> **Important**
+> ** Important **
 >
-> Toutes les actions se font par un clic droit sur cette page, attention
-> à bien le faire dans le design. Lors de la création, il faut donc le
-> faire au milieu de la page (pour être sûr d’être sur le design).
+> All actions are done by right clicking on this page, attention
+> to do it well in the design. When creating, you need the
+> do in the middle of the page (to be sure to be on the design).
 
-Dans le menu nous retrouvons (clic droit donc) nous retrouvons les
-actions suivantes :
+In the menu we find (so right click) we find the
+following actions:
 
--   **Designs** : Affiche la liste de vos designs et d’y accéder
+-   ** Designs **: Shows the list of your designs and access them
 
--   **Edition** : Permet de passer en mode édition
+-   ** Edit **: Switch to edit mode
 
--   **Plein ecran** : Permet d’utiliser toute la page Internet, ce qui
-    enlèvera le menu de Jeedom du haut
+-   ** Full Screen **: Allows you to use the entire webpage, which means
+    will remove Jeedom's menu from the top
 
--   **Ajouter graphique** : Permet d’ajouter un graphique
+-   ** Add Chart **: Add a chart
 
--   **Ajouter texte/html** : Permet d’ajouter du texte ou du code
-    html/javascript
+-   ** Add text / html **: Add text or code
+    html / javascript
 
--   **Ajouter scénario** : Permet d’ajouter un scénario
+-   ** Add Scenario **: Add a scenario
 
--   **Ajouter lien**
+-   ** Add link **
 
-    -   **Vers une vue** : Permet d’ajouter un lien vers une vue
+    -   ** To a view **: Adds a link to a view
 
-    -   **Vers un design** : Permet d’ajouter un lien vers un autre
+    -   ** Towards a design **: Adds a link to another
         design
 
--   **Ajouter équipement** : Permet d’ajouter un équipement
+-   ** Add Equipment **: Allows you to add equipment
 
--   **Ajouter commande** : Permet d’ajouter une commande
+-   ** Add command **: Add an order
 
--   **Ajouter image/caméra** : Permet d’ajouter une image ou le flux
-    d’une caméra
+-   ** Add image / camera **: Add an image or feed
+    a camera
 
--   **Ajouter zone** : Permet d’ajouter une zone transparante cliquable
-    qui pourra executer une série d’actions lors d’un clic (en fonction
-    ou non de l’état d’une autre commande)
+-   ** Add Zone **: Allows you to add a clickable transparent area
+    which will be able to execute a series of actions at a click (depending on
+    or not the status of another order)
 
--   **Ajouter résumé** : Ajoute les informations d’un résumé d’objet ou
-    général
+-   ** Add summary **: Adds information from an object summary or
+    general
 
--   **Affichage**
+-   Display ** **
 
-    -   **Aucune** : N’affiche aucune grille
+    -   ** None **: Does not display any grid
 
-    -   **10x10** : Affiche une grille de 10 par 10
+    -   ** 10x10 **: Displays a grid of 10 by 10
 
-    -   **15x15** : Affiche une grille de 15 par 15
+    -   ** 15x15 **: Displays a grid of 15 by 15
 
-    -   **20x20** : Affiche une grille de 20 par 20
+    -   ** 20x20 **: Displays a grid of 20 by 20
 
-    -   **Aimanter les éléments** : Ajoute une aimantation entre les
-        éléments pour permettre de les coller plus facilement
+    -   ** Magnetize elements **: Adds a magnetization between
+        elements to make it easier to glue them
 
-    -   **Aimanter à la grille** : Ajoute une aimantation des éléments à
-        la grille (attention : en fonction du zoom de l’élément cette
-        fonctionalité peut plus ou moins fonctionner)
+    -   ** Magnet at the grid **: Adds a magnetization of the elements to
+        the grid (attention: depending on the zoom of the element this
+        functionality can more or less work)
 
-    -   **Masquer la surbrillance des éléments** : Masque la
-        surbrillance autour des éléments
+    -   ** Hide highlighting of elements **: Hide the
+        highlight around items
 
--   **Supprimer le design** : supprime le design
+-   ** Remove design **: removes design
 
--   **Créer un design** : permet d’ajouter un design
+-   ** Create a design **: add a design
 
--   **Dupliquer le design** : duplique le design courant
+-   ** Duplicate design **: duplicates the current design
 
--   **Configurer le design** : accès à la configuration du design
+-   ** Configure the design **: access to the configuration of the design
 
--   **Sauvegarder** : permet de sauvegarder le design (attention il y a
-    aussi des sauvegardes automatiques lors de certaines actions)
+-   ** Save **: save the design (be careful there is
+    also automatic backups during certain actions)
 
-> **Important**
+> ** Important **
 >
-> La configuration des éléments du désign se fait par un clic sur
-> ceux-ci.
+> The configuration of the design elements is done by clicking on
+> these.
 
-Configuration du design 
+Configuration of the design
 =======================
 
-On retrouve ici :
+We find here:
 
--   **Général**
+-   **General**
 
-    -   **Nom** : Le nom de votre design
+    -   ** Name **: The name of your design
 
-    -   **Fond transparent** : rend le fond transparent. Attention si la
-        case est coché la couleur de fond n’est pas utilisée
+    -   ** Transparent background **: makes the background transparent. Attention if the
+        checkbox is checked the background color is not used
 
-    -   **Couleur de fond** : couleur de fond du design (blanc
-        par défaut)
+    -   ** Background color **: background color of the design (white
+        by default)
 
-    -   **Code** : Code d’accès à votre design (si vide aucun code
-        n’est demandé)
+    -   ** Code **: Code of access to your design (if empty no code
+        is not requested)
 
-    -   **Icône** : Une icône pour celui-ci (apparait dans le menu de
-        choix de design)
+    -   ** Icon **: An icon for it (appears in the menu of
+        design choice)
 
-    -   **Image**
+    -   **Picture**
 
-        -   **Envoyer** : permet d’ajouter une image de fond au design
+        -   ** Send **: add a background image to the design
 
-        -   **Supprimer l’image** : permet de supprimer l’image
+        -   ** Delete image **: delete the image
 
--   **Tailles**
+-   ** ** Sizes
 
-    -   **Taille (LxH)** : Permet de fixer la taille de votre design
-        (cadre gris en mode édition)
+    -   ** Size (LxH) **: Allows you to set the size of your design
+        (gray frame in edit mode)
 
-Configuration générale des éléments 
+General configuration of elements
 ===================================
 
-> **Note**
+> ** Note **
 >
-> En fonction du type de l’élément, les options peuvent changer.
+> Depending on the type of the item, the options may change.
 
-> **Note**
+> ** Note **
 >
-> L’élément sélectionné apparait en surbrillance rouge (au lieu de vert
-> pour tous les autres).
+> The selected item is highlighted in red (instead of green)
+> for all others).
 
-Paramètre d’affichage 
+Display setting
 ---------------------
 
--   **Profondeur** : permet de choisir le niveau de la profondeur
+-   ** Depth **: allows to choose the level of the depth
 
--   **Position X (%)** :
+-   ** Position X (%) **:
 
--   **Position Y (%)** :
+-   ** Y position (%) **:
 
--   **Largeur (px)** :
+-   ** Width (px) **:
 
--   **Hauteur (px)** :
+-   ** Height (px) **:
 
-Supprimer 
+Remove
 ---------
 
-Permet de supprimer l’élément
+Delete the item
 
-Dupliquer 
+Duplicate
 ---------
 
-Permet de dupliquer l’élément
+Duplicate the element
 
-Verrouiller 
+lock
 -----------
 
-Permet de verrouiller l’élément pour qu’il ne soit plus déplaçable ou
+Lock the item so that it is no longer movable or
 redimmensionnable.
 
-Graphique 
+Graphic
 =========
 
-Paramètre d’affichage 
+Display setting
 ---------------------
 
--   **Période** : permet de choisir la période d’affichage
+-   ** Period **: allows you to choose the posting period
 
--   **Afficher la légende** : affiche la légende
+-   ** Show Legend **: Displays the legend
 
--   **Afficher le navigateur** : affiche le navigateur (deuxième graph
-    plus léger en dessous du premier)
+-   ** Show browser **: displays the browser (second graph
+    lighter below the first)
 
--   **Afficher le sélecteur de période** : affiche le sélecteur de
-    période en haut à gauche
+-   ** Show Period Selector **: Displays the
+    period in the upper left
 
--   **Afficher la barre de défilement** : affiche la barre de défilement
+-   ** Show Scroll Bar **: Displays Scroll Bar
 
--   **Fond transparent** : rend le fond transparent
+-   ** Transparent background **: makes the background transparent
 
--   **Bordure** : permet d’ajouter une bordure, attention la syntaxe est
-    HTML (attention, il faut utiliser une syntaxe CSS, par exemple :
+-   ** Border **: allows to add a border, be careful the syntax is
+    HTML (be careful, you have to use a CSS syntax, for example:
     solid 1px black)
 
-Configuration avancée 
+Advanced configuration
 ---------------------
 
-Permet de choisir les commandes à grapher
+Allows you to choose the commands to graph
 
-Text/html 
+Text / html
 =========
 
--   **Icone** : Icone à afficher devant
+-   ** Icon **: Icon to display in front
 
--   **Couleur de fond** : permet de changer la couleur de fond ou de le
-    mettre transparent, ne pas oublier de passer "Défaut" sur NON
+-   ** Background Color **: allows you to change the background color or the
+    put transparent, do not forget to pass "Default" on NO
 
--   **Couleur du texte** : permet de changer la couleur des icônes et
-    des textes (attention à bien passer Défaut sur Non)
+-   ** Text Color **: Change the color of the icons and
+    texts (be careful to pass Default on No)
 
--   **Arrondir les angles** : permet d’arrondir les angles (ne pas
-    oublier de mettre %, ex 50%)
+-   ** Rounding angles **: rounds angles (do not
+    forget to put%, ex 50%)
 
--   **Bordure** : permet d’ajouter une bordure, attention la syntaxe est
-    HTML (il faut utiliser une syntaxe CSS, par exemple : solid
+-   ** Border **: allows to add a border, be careful the syntax is
+    HTML (you have to use a CSS syntax, for example: solid
     1px black)
 
--   **Taille de la police** : permet de modifier la taille de la police
-    (ex 50%, il faut bien mettre le signe %)
+-   ** Font Size **: allows you to change the font size
+    (ex 50%, it is necessary to put the sign%)
 
--   **Alignement du texte** : permet de choisir l’alignement du
-    texte (gauche/droit/centré)
+-   ** Alignment of text **: allows to choose the alignment of the
+    text (left / right / centered)
 
--   **Gras** : met le texte en gras
+-   ** Bold **: puts the text in bold
 
--   **Texte** : Texte au code HTML qui sera dans l’élément
+-   ** Text **: Text to the HTML code that will be in the element
 
-> **Important**
+> ** Important **
 >
-> Si vous mettez du code HTML (en particulier du Javascript), attention
-> à bien le vérifier avant car vous pouvez si il y a une erreur dedans
-> ou si il écrase un composant Jeedom planter completement le design et
-> il ne restera plus qu’a le supprimer directement base de données
+> If you put HTML code (especially Javascript), pay attention
+> to check it before because you can if there is an error in it
+> or if he crushes a Jeedom component completely plant the design and
+> it will only remain to delete it directly database
 
-Scénario 
+Scenario
 ========
 
-Paramètre d’affichage 
+Display setting
 ---------------------
 
-Aucun paramètre spécifique d’affichage
+No specific display settings
 
-Lien 
+Link
 ====
 
-Paramètre d’affichage 
+Display setting
 ---------------------
 
--   **Nom** : Nom du lien (texte affiché)
+-   ** Name **: Name of the link (displayed text)
 
--   **Lien** : Lien vers le design ou la vue en question
+-   ** Link **: Link to the design or view in question
 
--   **Couleur de fond** : permet de changer la couleur de fond ou de le
-    mettre transparent, ne pas oublier de passer "Défaut" sur NON
+-   ** Background Color **: allows you to change the background color or the
+    put transparent, do not forget to pass "Default" on NO
 
--   **Couleur du texte** : permet de changer la couleur des icônes et
-    des textes (attention à bien passer Défaut sur Non)
+-   ** Text Color **: Change the color of the icons and
+    texts (be careful to pass Default on No)
 
--   **Arrondir les angles (ne pas oublier de mettre %, ex 50%)** :
-    permet d’arrondir les angles, ne pas oublier de mettre le %
+-   ** Round the angles (do not forget to put%, ex 50%) **:
+    allows to round the angles, do not forget to put the%
 
--   **Bordure (attention syntaxe CSS, ex : solid 1px black)** : permet
-    d’ajouter une bordure, attention la syntaxe est HTML
+-   ** Border (note CSS syntax, eg solid 1px black) **: allows
+    to add a border, be careful the syntax is HTML
 
--   **Taille de la police (ex 50%, il faut bien mettre le signe %)** :
-    permet de modifier la taille de la police
+-   ** Size of the font (ex 50%, it is necessary to put the sign%) **:
+    allows you to change the font size
 
--   **Alignement du texte** : permet de choisir l’alignement du
-    texte (gauche/droit/centré)
+-   ** Alignment of text **: allows to choose the alignment of the
+    text (left / right / centered)
 
--   **Gras** : met le texte en gras
+-   ** Bold **: puts the text in bold
 
-Equipement 
+Equipment
 ==========
 
-Paramètre d’affichage 
+Display setting
 ---------------------
 
-Aucun paramètre spécifique d’affichage
+No specific display settings
 
-Configuration avancée 
+Advanced configuration
 ---------------------
 
-Affiche la fenetre de configuration avancé de l’équipement (voir
-documentation Résumé domotique ("display"))
+Displays the advanced configuration window of the device (see
+home automation summary ("display")
 
-Commande 
+order
 ========
 
-Paramètre d’affichage 
+Display setting
 ---------------------
 
-Aucun paramètre spécifique d’affichage
+No specific display settings
 
-Configuration avancée 
+Advanced configuration
 ---------------------
 
-Affiche la fenetre de configuration avancé de la commande (voir
-documentation Résumé domotique ("display"))
+Displays the advanced configuration window of the command (see
+home automation summary ("display")
 
-Image/Caméra 
+Picture / Camera
 ============
 
-Paramètre d’affichage 
+Display setting
 ---------------------
 
--   **Afficher** : défini ceux que vous voulez afficher, image fixe ou
-    flux d’une caméra
+-   ** View **: set the ones you want to display, still image or
+    flow of a camera
 
--   **Image** : permet d’envoyer l’image en question (si vous avez
-    choisi une image)
+-   ** Image **: allows to send the image in question (if you have
+    chose an image)
 
--   **Caméra** : caméra à afficher (si vous avez choisi caméra)
+-   ** Camera **: camera to display (if you chose camera)
 
-Zone 
+Zoned
 ====
 
-Paramètre d’affichage 
+Display setting
 ---------------------
 
--   **Type de zone** : C’est ici que vous choissez le type de la zone :
-    Macro simple, Macro Binaire ou Widget au survol
+-   ** Zone Type **: This is where you choose the type of zone:
+    Simple Macro, Binary Macro, or Rollover Widget
 
-### Macro simple 
+### Simple macro
 
-Dans ce mode la un clic sur la zone execute une ou plusieurs action.
+In this mode, one click on the zone performs one or more actions.
 
-Il vous suffit ici d’indiquer la liste des actions à faire lors du clic
-sur la zone
+All you need to do here is list the actions to be done when clicking
+on the area
 
-### Macro binaire 
+### Binary macro
 
-Dans ce mode Jeedom va executer la ou les action(s) On ou Off en
-fonction de l’état de la commande que vous donnez. Ex si la commande
-vaut 0 alors Jeedom executera la ou les action(s) On sinon il executera
-la ou les action(s) off
+In this mode Jeedom will execute the action (s) On or Off in
+depending on the status of the command you give. Ex if the order
+is 0 then Jeedom will execute the action (s) On otherwise it will execute
+the action (s) off
 
--   **Information binaire** : Commande donnant l’état à verifier pour
-    decider de l’action à faire (on ou off)
+-   ** Binary Information **: Command giving the status to check for
+    decide what to do (on or off)
 
-Il vous suffit en dessous de mettre les actions à faire pour le on et
-pour le off
+All you need to do below is to put the actions to be done for one and
+for the off
 
-### Widget au survol 
+### Overflight widget
 
-Dans ce mode lors du survole ou du clic dans la zone jeedom vous
-affichera le widget en question
+In this mode when hovering over or clicking in the jeedom zone you
+will display the widget in question
 
--   **Equipement** : widget à afficher lors du survole ou du clic
+-   ** Equipment **: widget to display when hovering over or clicking
 
--   **Afficher au survol** : si coché affiche le widget au survol
+-   ** Show on flyover **: if checked displays the widget on flyby
 
--   **Afficher sur un clic** : si coché alors le widget est affiché au
-    clic
+-   ** Show on a click **: if ticked then the widget is displayed at
+    click
 
--   **Position** : permet de choisir l’emplacement d’apparition du
-    widget (par defaut bas droite)
+-   ** Position **: allows you to choose the location where the
+    widget (default down right)
 
-Résumé 
+summary
 ======
 
--   **Lien** : Permet d’indiqué le résumé à afficher (Général pour le
-    globale sinon indiquer l’objet)
+-   ** Link **: Allows indicated the summary to display (General for the
+    overall if not indicate the object)
 
--   **Couleur de fond** : permet de changer la couleur de fond ou de le
-    mettre transparent, ne pas oublier de passer "Défaut" sur NON
+-   ** Background Color **: allows you to change the background color or the
+    put transparent, do not forget to pass "Default" on NO
 
--   **Couleur du texte** : permet de changer la couleur des icônes et
-    des textes (attention à bien passer Défaut sur Non)
+-   ** Text Color **: Change the color of the icons and
+    texts (be careful to pass Default on No)
 
--   **Arrondir les angles (ne pas oublier de mettre %, ex 50%)** :
-    permet d’arrondir les angles, ne pas oublier de mettre le %
+-   ** Round the angles (do not forget to put%, ex 50%) **:
+    allows to round the angles, do not forget to put the%
 
--   **Bordure (attention syntaxe CSS, ex : solid 1px black)** : permet
-    d’ajouter une bordure, attention la syntaxe est HTML
+-   ** Border (note CSS syntax, eg solid 1px black) **: allows
+    to add a border, be careful the syntax is HTML
 
--   **Taille de la police (ex 50%, il faut bien mettre le signe %)** :
-    permet de modifier la taille de la police
+-   ** Size of the font (ex 50%, it is necessary to put the sign%) **:
+    allows you to change the font size
 
--   **Gras** : met le texte en gras
+-   ** Bold **: puts the text in bold
 
 
