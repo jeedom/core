@@ -67,13 +67,16 @@ user::isBan();
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Langue de votre Jeedom}}">{{Langue}}</label>
 						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 							<select class="configKey form-control" data-l1key="language">
-								<option value="fr_FR">Français</option>
+								<option value="fr_FR">French</option>
 								<option value="en_US">English</option>
-								<option value="de_DE">Deutsch</option>
-								<option value="es_ES">Español</option>
-								<option value="ru_RU">Pусский</option>
-								<option value="id_ID">Bahasa Indonesia</option>
-								<option value="it_IT">Italiano</option>
+								<option value="de_DE">German</option>
+								<option value="es_ES">Spanish</option>
+								<option value="ru_RU">Russian</option>
+								<option value="id_ID">Indonesian</option>
+								<option value="it_IT">Italian</option>
+								<option value="ja_JP">Japanese</option>
+								<option value="pt_PT">Portuguese</option>
+								<option value="tr">Turkish</option>
 							</select>
 						</div>
 						<div>
