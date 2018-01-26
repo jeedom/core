@@ -1,126 +1,126 @@
-La page Analyse d’équipements vous permet de voir de nombreuses infos
-relatives aux équipements de manière centralisée :
+The Equipment Analysis page allows you to see many informations
+for equipment centrally:
 
--   l’état de vos piles
+-   the state of your batteries
 
--   les modules en alertes
+-   the modules in alerts
 
--   les actions définies
+-   defined actions
 
--   les alertes définies
+-   defined alerts
 
--   les commandes orphelines
+-   Orphaned orders
 
-L’onglet Batteries 
+The Batteries tab
 ==================
 
-Vous pouvez voir sur cet onglet la liste de vos modules sur batterie,
-leur niveau restant (la couleur de la tuile dépend de ce niveau), le
-type et le nombre de piles qu’il faut mettre dans le module, le type du
-module ainsi que la date à laquelle l’information du niveau de batterie
-a été mise à jour. Vous pouvez aussi voir si un seuil spécifique a été
-établi pour le module en particulier (représenté par une main)
+You can see on this tab the list of your battery modules,
+their remaining level (the color of the tile depends on this level), the
+type and number of batteries that must be put in the module, the type of
+module as well as the date at which the battery level information
+has been updated. You can also see if a specific threshold has been
+established for the particular module (represented by a hand)
 
-> **Tip**
+> ** Tip **
 >
-> Les seuils d’alerte/warning sur les niveaux des batteries sont
-> configurables de manière globale dans la configuration de Jeedom
-> (Administration → onglet Equipements), ou par équipement sur la page
-> de configuration avancée de ceux-ci dans l’onglet alertes.
+> The warning / warning thresholds on the battery levels are
+> configurable globally in the Jeedom configuration
+> (Administration → Equipment tab), or by equipment on the page
+> advanced configuration of these in the alerts tab.
 
-L’onglet Modules en alerte 
+The Modules Alert tab
 ==========================
 
-Sur cet onglet vous verrez en temps réel les modules en alerte. Les
-alertes peuvent être de différents types :
+On this tab you will see in real time the modules on alert. The
+alerts can be of different types:
 
--   timeout (configuré dans l’onglet alertes définies)
+-   timeout (configured in the defined alerts tab)
 
--   batterie en warning ou en danger
+-   battery warning or in danger
 
--   commande en warning ou danger (paramétrable dans les paramètres
-    avancées des commandes)
+-   command in warning or danger (parameterizable in the parameters
+    advanced orders)
 
-D’autres types d’alertes pourront éventuellement se retrouver ici.
-Chaque alerte sera représentée par la couleur de la tuile (le niveau
-d’alerte) et un logo en haut à gauche (le type d’alerte)
+Other types of alerts may eventually be found here.
+Each alert will be represented by the color of the tile (the level
+alert) and a logo at the top left (the alert type)
 
-> **Tip**
+> ** Tip **
 >
-> Ici seront affichés tous les modules en alerte même ceux configurés en
-> "non visible". Il est toutefois intéressant de noter que si le module
-> est en "visible" l’alerte sera aussi visible sur le dashboard (dans
-> l’objet concerné)
+> Here will be displayed all modules on alert even those configured in
+> "not visible". It is however interesting to note that if the module
+> is in "visible" the alert will also be visible on the dashboard (in
+> the object concerned)
 
-L’onglet Actions définies 
+The Defined Actions tab
 =========================
 
-Cet onglet permet de visualiser les actions définies directement sur une
-commande. En effet, on peut en mettre sur différentes commandes et il
-peut être difficile de se rappeler de toutes. Cet onglet est là pour ça
-et synthétise plusieurs choses :
+This tab allows you to view the actions defined directly on a
+command. Indeed, we can put on different orders and it
+can be difficult to remember all. This tab is there for that
+and synthesizes several things:
 
--   les actions sur état (que l’on retrouve dans les paramètres avancées
-    des commandes infos et permettant de réaliser une ou plusieurs
-    actions sur la valeur d’une commande - de manière immédiate ou après
-    un délai)
+-   actions on state (found in the advanced parameters
+    info commands and allowing to realize one or more
+    actions on the value of an order - immediately or after
+    a delay)
 
--   les confirmations d’actions (configurable au même endroit sur une
-    commande info et permettant de demander une confirmation pour
-    exécuter une action)
+-   share confirmations (configurable in the same place on a
+    order info and to request a confirmation for
+    perform an action)
 
--   les confirmations avec code (même chose que précédemment mais avec
-    la saisie d’un code)
+-   confirmations with code (same as before but with
+    entering a code)
 
--   les actions pre et post (configurables toujours au même endroit sur
-    une commande action et permettant d’exécuter une ou plusieurs autres
-    actions avant ou après l’action en question)
+-   pre and post actions (always configurable in the same place on
+    an action command and allowing to execute one or more others
+    actions before or after the action in question)
 
-> **Tip**
+> ** Tip **
 >
-> Le tableau permet de voir de manière très textuelle les actions
-> définies. D’autres types d’actions définies pourront être rajoutées.
+> The table allows to see in a very textual way the actions
+> defined. Other types of actions defined can be added.
 
-L’onglet Alertes définies 
+The Alerts tab
 =========================
 
-Cet onglet permet de voir l’ensemble des alertes définies, vous y
-retrouverez dans un tableau les infos suivantes si elles existent :
+This tab allows you to see all the defined alerts, you can
+find in a table the following information if they exist:
 
--   les alertes sur délai de communication
+-   communication delay alerts
 
--   les seuils spécifiques de batterie définis sur un équipement
+-   specific battery thresholds set on a device
 
--   les différentes alertes danger et warning des commandes
+-   the various hazard and warning alerts
 
-L’onglet Commandes orphelines 
+The Orphan Orders tab
 =============================
 
-Cet onglet vous permet de voir en un coup d’oeil si vous avez des
-commandes orphelines utilisées au travers de Jeedom. Une commande
-orpheline est une commande utilisée quelque part mais qui n’existe plus.
-On retrouvera ici l’ensemble de ces commandes, comme par exemple :
+This tab allows you to see at a glance if you have any
+orphan commands used through Jeedom. An order
+orphan is a command used somewhere but no longer exists.
+We will find here all these commands, as for example:
 
--   les commandes orphelines utilisée dans le corps d’un scenario
+-   Orphaned commands used in the body of a scenario
 
--   celles utilisées en déclencheur d’un scénario
+-   those used as a trigger for a scenario
 
-Et utilisées à plein d’autres endroits comme (non exhaustif) :
+And used in many other places like (not exhaustive):
 
--   les interactions
+-   the interactions
 
--   les configurations de jeedom
+-   jeedom's configurations
 
--   en pre ou post action d’une commande
+-   in pre or post action of an order
 
--   en action sur état d’une commande
+-   in action on order status
 
--   dans certains plugins
+-   in some plugins
 
-> **Tip**
+> ** Tip **
 >
-> Le tableau permet de voir de manière très textuelle les commandes
-> orphelines. Son but est de pouvoir identifier rapidement toutes les
-> commandes "orphelines" au travers de tout Jeedom et des plugins. Il se
-> peut que certaines zones ne soient pas analysées, le tableau se verra
-> être de plus en plus exhaustif avec le temps.
+> The table allows to see in a very textual way the commands
+> orphans. Its purpose is to be able to quickly identify all
+> "orphan" commands through all Jeedom and plugins. He is
+> may some areas not be analyzed, the table will be
+> be more and more exhaustive with time.

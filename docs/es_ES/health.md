@@ -1,38 +1,38 @@
-La page de santé de Jeedom vous permet d’avoir un aperçu rapide de
-l’état de santé de votre Jeedom. Elle indique aussi (si les plugins
-l’utilisent) l’état de santé par plugin.
+Página de la salud Jeedom le da una visión general de
+la salud de su Jeedom. También indica (si plugins
+usarlo) por la salud plugin.
 
-La page est accessible par Analyse → Santé
+La página es accesible por análisis de salud →
 
-> **Note**
+> ** Nota **
 >
-> Un clic sur l’icône à droite permet d’accéder au benchmark de votre
+> Un clic en el icono a la derecha proporciona acceso a su punto de referencia
 > Jeedom.
 
-La page santé de Jeedom se présente sous la forme d’un tableau. La 1ere
-vous donne une description de ce que Jeedom vérifie et dont le statut
-est affiché dans la 2ème colonne. Enfin la dernière colonne peut vous
-donner des conseils de résolution si la vérification n’est pas OK.
+La página de la salud Jeedom en forma de una tabla. la primera
+le da una descripción de lo que comprueba Jeedom cuyo estado
+se muestra en la segunda columna. Finalmente la última columna que pueda
+proporcionar sugerencias para solucionar problemas si el control no es correcto.
 
-En dessous vous retrouvez la santé pour chaque plugin, un clic sur le
-nom du plugin donne le detail de santé de celui-ci. A droite vous
-retrouvez les icônes :
+A continuación encontrará la salud para cada plug-in, haga clic en
+nombre del plugin da el detalle de la salud de la misma. A la derecha
+Encuentra los iconos:
 
--   Port d’accès au matériel du plugin (type clef Zwave)
+-   equipos plugin de puerto de acceso (tipo llave Zwave)
 
--   Mode du démon
+-   demonio de la moda
 
--   Affichage de la page de santé des équipements du plugin
+-   Visualización de la página plugin de equipos Salud
 
--   Affichage de la page de configuration du plugin
+-   Viendo la página de configuración del plugin
 
--   Etat global du plugin
+-   estado general del plugin
 
-> **Note**
+> ** Nota **
 >
-> Les icônes peuvent varier en fonction du plugin
+> Los iconos pueden variar dependiendo del plug-in
 
-> **Note**
+> ** Nota **
 >
-> De manière générale, quand la ligne est verte, c’est que tout va bien,
-> et quand c’est rouge, c’est qu’il y a un soucis.
+> En general, cuando la línea es de color verde, es que todo está bien,
+> Y cuando es de color rojo, es que hay una preocupación.

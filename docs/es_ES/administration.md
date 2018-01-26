@@ -1,779 +1,779 @@
-C’est ici que se trouvent la plupart des paramètres de configuration.
-Bien que nombreux, ils sont pré-configurés par défaut.
+Aquí están la mayoría de las opciones de configuración.
+Aunque numerosos, que son pre-configurados por defecto.
 
-La page est accessible par **Administration → Configuration**.
+La página es accesible ** ** Administración → Configuración.
 
-Général 
+general
 =======
 
-Dans cet onglet on retrouve des informations générales sur Jeedom :
+En esta ficha incluir información general sobre Jeedom:
 
--   **Nom de votre Jeedom** : Permet d’identifier votre Jeedom,
-    notamment dans le market. Il peut être réutilisé dans les scénarios
-    ou permettre d’identifier une sauvegarde.
+-   ** Nombre de su Jeedom **: Identifica el Jeedom,
+    particularmente en el mercado. Puede ser reutilizado en los escenarios
+    o para identificar una copia de seguridad.
 
--   **Système** : Type de matériel sur lequel est installé le système où
-    votre Jeedom tourne.
+-   ** ** sistema: Tipo de material que se está ejecutando el sistema en el que
+    Jeedom sus vueltas.
 
--   **Clef d’installation** : Clef matérielle de votre Jeedom sur
-    le market. Si votre Jeedom n’apparaît pas dans la liste de vos
-    Jeedom sur le market, il est conseillé de cliquer sur le bouton
-    **Remise à zéro**.
+-   ** ** Instalación llaves: Las llaves de hardware en el Jeedom
+    el mercado. Si su Jeedom no aparece en la lista de su
+    Jeedom en el mercado, es recomendable hacer clic en el botón
+    Restablecer ** **.
 
--   **Langue** : Langue utilisée dans votre Jeedom.
+-   ** ** Idioma: Idioma utilizado en su Jeedom.
 
--   **Générer les traductions** : Permet de générer les traductions,
-    attention, cela peut ralentir votre système. Option surtout utile
-    pour les développeurs.
+-   ** ** Generar traducciones: Genera traducciones
+    cuidado, puede ralentizar el sistema. opción especialmente útil
+    para los desarrolladores.
 
--   **Durée de vie des sessions (heure)** : durée de vie des sessions
-    PHP, il est déconseillé de toucher à ce paramètre.
+-   ** sesiones de Vida (tiempo) **: sesiones de por vida
+    PHP, no se debe tocar este parámetro.
 
--   **Date et heure** : Choix de votre fuseau horaire. Vous pouvez
-    cliquer sur **Forcer la synchronisation de l’heure** pour rétablir
-    une mauvaise heure affichée en haut à droite.
+-   ** ** Fecha y hora: Elija su zona horaria. Puede
+    ** clic forzar la sincronización de tiempo para restaurar **
+    un mal tiempo que aparece en la parte superior derecha.
 
--   **Serveur de temps optionnel** : Indique quel serveur de temps doit
-    être utilisé si vous cliquez sur **Forcer la synchronisation de
-    l’heure**. (à réserver aux experts)
+-   ** ** Tiempo de servidor opcionales: Especifica el servidor de tiempo debe
+    ser utilizado si hace clic en la sincronización Forzar **
+    ** tiempo. (Para ser reservado para expertos)
 
--   **Ignorer la vérification de l’heure** : indique à Jeedom de ne pas
-    vérifier si l’heure est cohérente entre lui-même et le système sur
-    lequel il tourne. Peut être utile, par exemple, si vous ne connectez
-    pas Jeedom à Internet et qu’il n’a pas de pile RTC sur le
-    matériel utilisé.
+-   ** ** Saltar tiempo de verificación: no dice Jeedom
+    comprobar si el tiempo es coherente entre sí mismo y el sistema de
+    la que gira. Puede ser útil, por ejemplo, si se conecta
+    No Jeedom Internet y que no tiene batería RTC en
+    material utilizado.
 
-API 
+API
 ===
 
-Vous trouvez ici la liste des différentes clés API disponibles dans
-votre Jeedom. De base, le core a deux clés API :
+Aquí puede encontrar la lista de las diferentes clave de API disponibles
+su Jeedom. Básico, el núcleo tiene dos clave de API:
 
--   une générale : autant que possible, il faut éviter de l’utiliser,
+-   en general: tanto como sea posible, evitar el uso de ella,
 
--   et une autre pour les professionnels : utilisée pour la gestion
-    de parc. Elle peut être vide.
+-   y otro para los profesionales utilizan para gestionar
+    Parque. Puede estar vacío.
 
--   Puis, vous trouverez une clé API par plugin en ayant besoin.
+-   A continuación, encontrará una clave de API de plugins que lo necesitan.
 
-Pour chaque clé API de plugin, ainsi que pour les APIs HTTP, JsonRPC et
-TTS, vous pouvez définir leur portée :
+Cada llave API de plugins, y para las API HTTP, y JSONRPC
+TTS, puede definir su alcance:
 
--   **Désactivée** : la clé API ne peut être utilisée,
+-   ** ** Off: clave de la API no se puede utilizar,
 
--   **IP blanche** : seule une liste d’IPs est autorisée (voir
-    Administration→Configuration→Réseaux),
+-   ** ** blanca IP: solamente una lista de direcciones IP está permitido (ver
+    Administración → Configuración → Redes)
 
--   **Localhost** : seules les requêtes venant du système sur lequel est
-    installé Jeedom sont autorisées,
+-   ** ** localhost: Sólo las demandas del sistema en el que está
+    instalado Jeedom están permitidos,
 
--   **Activé** : aucune restriction, n’importe quel système ayant accès
-    à votre Jeedom pourra accéder à cette API.
+-   ** ** En: sin limitaciones, cualquier sistema con acceso
+    su Jeedom puede tener acceso a esta API.
 
-&gt;\_OS/DB 
+&gt; \ _OS / DB
 ===========
 
-Deux parties réservées aux experts sont présentes dans cet onglet.
+Dos partes reservadas a los expertos están presentes en esta ficha.
 
-> **Important**
+> ** Importante **
 >
-> ATTENTION : Si vous modifiez Jeedom avec l’une de ces deux solutions,
-> le support peut refuser de vous aider.
+> ADVERTENCIA: Si cambia Jeedom con una de estas dos soluciones,
+> El vehículo puede negarse a ayudar.
 
--   **&gt;\_Système** : Permet d’accéder à une interface
-    d’administration système. C’est une sorte de console shell dans
-    laquelle vous pouvez lancer les commandes les plus utiles, notamment
-    pour obtenir des informations sur le système.
+-   ** &gt; \ _SYSTEM **: Proporciona acceso a una interfaz
+    Administración del sistema. Es una especie de consola con cáscara
+    y se puede ejecutar los comandos más útiles, incluyendo
+    para obtener información sobre el sistema.
 
--   **Base de données** : Permet d’accéder à la base de données
-    de Jeedom. Vous pouvez alors lancer des commandes dans le champs
-    du haut. Deux paramètres s’affichent, en dessous, pour information :
+-   ** ** Base de datos: Permite acceder a la base de datos
+    de Jeedom. Puede ejecutar comandos en los campos
+    desde lo alto. Se muestran dos configuraciones, a continuación, a título informativo:
 
-    -   **Utilisateur** : Nom de l’utilisateur utilisé par Jeedom dans
-        la base de données,
+    -   ** ** usuario: nombre de usuario utilizado por Jeedom en
+        la base de datos,
 
-    -   **Mot de passe** : mot de passe d’accès à la base de données
-        utilisée par Jeedom.
+    -   ** ** Contraseña: contraseña para acceder a la base de datos
+        utilizado por Jeedom.
 
-Sécurité 
+seguridad
 ========
 
-LDAP 
+LDAP
 ----
 
--   **Activer l’authentification LDAP** : active l’authentification à
-    travers un AD (LDAP)
+-   ** ** Habilitar la autenticación LDAP: Autenticación activa
+    a través de una AD (LDAP)
 
--   **Hôte** : serveur hébergeant l’AD
+-   ** ** Host: el servidor que aloja el anuncio
 
--   **Domaine** : domaine de votre AD
+-   ** ** Dominio: dominio de su anuncio
 
--   **Base DN** : base DN de votre AD
+-   ** ** Base DN: DN base de su anuncio
 
--   **Nom d’utilisateur** : nom d’utilisateur pour que Jeedom se
-    connecte à l’AD
+-   ** ** Nombre de usuario: nombre de usuario que es Jeedom
+    se conecta a la AD
 
--   **Mot de passe** : mot de passe pour que Jeedom se connecte à l’AD
+-   ** ** Contraseña: contraseña para Jeedom se conecta a la AD
 
--   **Champs recherche utilisateur** : champs de recherche du
-    login utilisateur. En général uid pour LDAP, samaccountname pour
-    Windows AD
+-   ** ** Los campos de investigación de usuario: campos de investigación
+    conexión del usuario. Generalmente UID para LDAP, para samaccountname
+    de windows AD
 
--   **Filtre (optionnel)** : filtre sur l’AD (pour la gestion des
-    groupes par exemple)
+-   ** Filtro (opcional) ** filtro en la AD (para la gestión
+    grupos, por ejemplo)
 
--   **Autoriser REMOTE\_USER** : Active le REMOTE\_USER (utilisé en SSO
-    par exemple)
+-   ** Permitir remoto \ _user **: Activa REMOTO \ _user (utilizado en SSO
+    por ejemplo)
 
-Connexion 
+acceder
 ---------
 
--   **Nombre d’échecs tolérés** : définit le nombre de tentatives
-    successives autorisées avant de bannir l’IP
+-   ** ** Número de fallos tolerados: define el número de intentos
+    sucesiva permitidos antes de la prohibición de IP
 
--   **Temps maximum entre les échecs (en secondes)** : temps maximum
-    pour que 2 tentatives soient considérées comme successives
+-   ** Tiempo máximo entre fallos (segundo) **: tiempo máximo
+    por dos intentos sucesivos se consideran
 
--   **Durée du bannissement (en secondes), -1 pour infini** : temps de
-    bannissement de l’IP
+-   ** destierro Tiempo (en segundos), -1 para infinito **: tiempo
+    la prohibición de IP
 
--   **IP "blanche"** : liste des IP qui ne peuvent jamais être bannies
+-   ** "blanco" ** IP: lista de direcciones IP que nunca puede ser expulsado
 
--   **Supprimer les IPs bannies** : Permet de vider la liste des IP
-    actuellement bannies
+-   ** ** Eliminar IPs prohibidas: Para borrar la lista de direcciones IP
+    Actualmente prohibido
 
-La liste des IP bannies se trouve au bas de cette page. Vous y trouverez
-l’IP, la date de bannissement et la date de fin de bannissement
-programmée.
+La lista de IP prohibido es en la parte inferior de esta página. Va a encontrar
+IP, la fecha de expulsión y la fecha final de destierro
+programada.
 
-Réseaux 
+redes
 =======
 
-Il faut absolument configurer correctement cette partie importante de
-Jeedom, sinon beaucoup de plugins risqueraient de ne pas fonctionner. Il
-est possible d’accéder à Jeedom de deux manières différentes : L'**accès
-interne** (depuis le même réseau local que Jeedom) et l'**accès
-externe** (depuis un autre réseau notamment depuis Internet).
+Es esencial para configurar correctamente esta parte importante de
+Jeedom, de lo contrario muchos plugins no podría funcionar. lo
+puede acceder Jeedom dos maneras: El acceso **
+** interna (de la misma red local que Jeedom) y acceso **
+** externa (de otra red, en particular de la Internet).
 
-> **Important**
+> ** Importante **
 >
-> Cette partie est juste là pour expliquer à Jeedom son environnement :
-> une modification du port ou de l’IP dans cet onglet ne changera pas le
-> port ou l’IP de Jeedom réellement. Pour cela il faut se connecter en
-> SSH et éditer le fichier /etc/network/interfaces pour l’IP et les
-> fichiers etc/apache2/sites-available/default et
-> etc/apache2/sites-available/default\_ssl (pour le HTTPS).Cependant, en
-> cas de mauvaise manipulation de votre Jeedom, l’équipe Jeedom ne
-> pourra être tenue pour responsable et pourra refuser toute demande de
-> support.
+> Esta parte es sólo para explicar a Jeedom su entorno:
+> Modificación del puerto o IP en esta ficha no va a cambiar la
+> Puerto o IP realidad Jeedom. A esto hay que conectar
+> SSH y editar / etc / network / interfaces de IP y
+> Archivos etc / apache2 / sites-available / default y
+> etc / apache2 / sites-available / default \ _ssl (por HTTPS) .Sin embargo, en
+> Si manejado mal su Jeedom el equipo Jeedom
+> Se hace responsable y rechazará cualquier
+> Apoyo.
 
--   **Accès interne** : informations pour joindre Jeedom à partir d’un
-    équipement du même réseau que Jeedom (LAN)
+-   ** ** El acceso interno: información para la unión de un Jeedom
+    equipos de la misma red que Jeedom (LAN)
 
-    -   **OK/NOK** : indique si la configuration réseau interne est
-        correcte
+    -   ** OK / NOK **: muestra si la configuración de la red interna
+        correcto
 
-    -   **Protocole** : le protocole à utiliser, souvent HTTP
+    -   ** ** Protocolo: el protocolo a utilizar, a menudo HTTP
 
-    -   **Adresse URL ou IP** : IP de Jeedom à renseigner
+    -   ** ** URL o dirección IP: IP Jeedom para aprender
 
-    -   **Port** : le port de l’interface web de Jeedom, en général 80.
-        Attention changer le port ici ne change pas le port réel de
-        Jeedom qui restera le même
+    -   ** ** Puerto: el puerto de la Jeedom interfaz web, por lo general 80.
+        Precaución cambiar el puerto aquí no cambia el puerto real
+        Jeedom seguirá siendo el mismo
 
-    -   **Complément** : le fragment d’URL complémentaire (exemple
-        : /jeedom) pour accéder à Jeedom.
+    -   Complementar ** **: el fragmento de URL adicional (Ejemplo
+        : / Jeedom) para acceder a Jeedom.
 
--   **Accès externe** : informations pour joindre Jeedom de l’extérieur
-    du réseau local. À ne remplir que si vous n’utilisez pas le DNS
+-   El acceso externo ** ** información para unirse Jeedom fuera
+    LAN. Complete sólo si usted no está utilizando DNS
     Jeedom
 
-    -   **OK/NOK** : indique si la configuration réseau externe est
-        correcte
+    -   ** OK / NOK ** indica si la configuración de red externa
+        correcto
 
-    -   **Protocole** : protocole utilisé pour l’accès extérieur
+    -   ** ** Protocolo: protocolo utilizado para el acceso desde el exterior
 
-    -   **Adresse URL ou IP** : IP externe, si elle est fixe. Sinon,
-        donnez l’URL pointant sur l’adresse IP externe de votre réseau.
+    -   ** ** URL o IP: IP externa, si es fijo. de lo contrario,
+        Dar la URL que apunta a la dirección IP externa de su red.
 
-    -   **Complément** : le fragment d’URL complémentaire (exemple
-        : /jeedom) pour accéder à Jeedom.
+    -   Complementar ** **: el fragmento de URL adicional (Ejemplo
+        : / Jeedom) para acceder a Jeedom.
 
-> **Tip**
+> ** Tip **
 >
-> Si vous êtes en HTTPS le port est le 443 (par défaut) et en HTTP le
-> port est le 80 (par défaut). Pour utiliser HTTPS depuis l’extérieur,
-> un plugin letsencrypt est maintenant disponible sur le market.
+> Si está utilizando el puerto HTTPS es 443 (por defecto) y el HTTP
+> El puerto 80 (por defecto). Para utilizar HTTPS desde fuera,
+> Letsencrypt un plugin ya está disponible en el mercado.
 
-> **Tip**
+> ** Tip **
 >
-> Pour savoir si vous avez besoin de définir une valeur dans le champs
-> **complément**, regardez, quand vous vous connectez à Jeedom dans
-> votre navigateur Internet, si vous devez ajouter /jeedom (ou autre
-> chose) après l’IP.
+> Para averiguar si es necesario establecer un valor en el campo
+> ** ** suplemento, mira, cuando se conecte a Jeedom
+> Su navegador de Internet si es necesario agregar / jeedom (u otro
+> Cosa) después del PI.
 
--   **Gestion avancée** : Cette partie peut ne pas apparaitre, en
-    fonction de la compatibilité avec votre matériel. Vous y trouverez
-    la liste de vos interfaces réseaux. Vous pourrez indiquer à Jeedom
-    de ne pas monitorer le réseau en cliquant sur **désactiver la
-    gestion du réseau par Jeedom** (à cocher si Jeedom n’est connecté à
-    aucun réseau)
+-   ** ** Gestión Avanzada: Esta parte no puede aparecer en
+    dependiendo de la compatibilidad con el hardware. Va a encontrar
+    una lista de las interfaces de red. Se puede decir Jeedom
+    no para supervisar la red haciendo clic fuera **
+    gestión de la red por Jeedom ** (comprobar si Jeedom está conectado a
+    sin red)
 
--   **Proxy market** : permet un accès distant à votre Jeedom sans avoir
-    besoin d’un DNS, d’une IP fixe ou d’ouvrir les ports de votre box
+-   ** ** proxy Mercado: permite el acceso remoto a su Jeedom sin
+    necesitará un DNS, IP fija o puertos abiertos en su caja
     Internet
 
-    -   **Utiliser les DNS Jeedom** : active les DNS Jeedom (attention
-        cela nécessite au moins un service pack)
+    -   ** ** El uso de DNS Jeedom: activa DNS Jeedom (aviso
+        se requiere al menos un paquete de servicio)
 
-    -   **Statut DNS** : statut du DNS HTTP
+    -   ** ** DNS Estado: HTTP de estado de DNS
 
-    -   **Gestion** : permet d’arrêter et relancer le service DNS
+    -   ** ** Gestión: Detener y reiniciar el servicio DNS
 
-> **Important**
+> ** Importante **
 >
-> Si vous n’arrivez pas à faire fonctionner le DNS Jeedom, regardez la
-> configuration du pare-feu et du filtre parental de votre box Internet
-> (sur livebox il faut par exemple le pare-feu en moyen).
+> Si no puede hacer funcionar el Jeedom DNS, ver
+> Controlar el firewall y filtro de los padres de su caja de Internet
+> (Por ejemplo, debe Livebox promedio cortafuegos).
 
-Couleurs 
+colores
 ========
 
-La colorisation des widgets est effectuée en fonction de la catégorie à
-laquelle appartient l’équipement. Parmi les catégories on retrouve le
-chauffage, Sécurité, Energie, lumière, Automatisme, Multimedia, Autre…​
+Colorear los widgets se realiza en base a la categoría
+que posee el equipo. Las categorías incluyen la
+calefacción, seguridad, energía, luz, Automatización, Multimedia, Otros ...
 
-Pour chaque catégorie, on pourra différencier les couleurs de la version
-desktop et de la version mobile. On peut alors changer :
+Para cada categoría, podemos diferenciar la versión en color
+escritorio y la versión móvil. entonces podemos cambiar:
 
--   la couleur du fond des widgets,
+-   el color del fondo del widget,
 
--   la couleur de la commande lorsque le widget est de type graduel (par
-    exemple les lumières, les volets, les températures).
+-   el color del control cuando el widget es un tipo gradual (
+    tales como luces, persianas, temperatura).
 
-En cliquant sur la couleur une fenêtre s’ouvre, permettant de choisir sa
-couleur. La croix à côté de la couleur permet de revenir au paramètre
-par défaut.
+Al hacer clic en la ventana de color se abre, permitiendo elegir su
+color. La cruz junto al color para volver al parámetro
+por defecto.
 
-En haut de page, vous pouvez aussi configurer la transparence des
-widgets de manière globale (ce sera la valeur par défaut. Il est
-possible ensuite de modifier cette valeur widget par widget). Pour ne
-mettre aucune transparence, laissez 1.0 .
+En la parte superior, también se puede ajustar la transparencia de las
+widgets de todo el mundo (este es el valor predeterminado. Es
+entonces posible cambiar este widget widget de por valor). para
+puso ninguna transparencia, permitir a 1,0.
 
-> **Tip**
+> ** Tip **
 >
-> N’oubliez pas de sauvegarder après toute modification.
+> No se olvide de guardar después de la modificación.
 
-Commandes 
+comandos
 =========
 
-De nombreuses commandes peuvent être historisées. Ainsi, dans
-Analyse→Historique, vous obtenez des graphiques représentant leur
-utilisation. Cet onglet permet de fixer des paramètres globaux à
-l’historisation des commandes.
+Muchos comandos se pueden registrar. Así, en
+Análisis → Historia, se obtiene gráficos de su
+utilizar. Esta ficha le permite establecer la configuración global
+el archivo de pedidos.
 
-Historique 
+histórico
 ----------
 
--   **Afficher les statistiques sur les widgets** : Permet d’afficher
-    les statistiques sur les widgets. Il faut que le widget soit
-    compatible, ce qui est le cas pour la plupart. Il faut aussi que la
-    commande soit de type numérique.
+-   ** Muestra estadísticas sobre los widgets **: Muestra
+    Estadísticas de widgets. Necesitamos que el widget es
+    compatibles, como es el caso para la mayoría. También requiere que la
+    el control es digital.
 
--   **Période de calcul pour min, max, moyenne (en heures)** : Période
-    de calcul des statistiques (24h par défaut). Il n’est pas possible
-    de mettre moins d’une heure.
+-   ** período de cálculo para min, max, media (en horas) **: Período
+    cálculo de las estadísticas (24 por defecto). No es possible
+    a menos de una hora.
 
--   **Période de calcul pour la tendance (en heures)** : Période de
-    calcul des tendances (2h par défaut). Il n’est pas possible de
-    mettre moins d’une heure.
+-   ** El período de cálculo de la tendencia (en horas) ** Periodo
+    cálculo de la tendencia (2 horas de forma predeterminada). No es posible
+    poner menos de una hora.
 
--   **Délai avant archivage (en heures)** : Indique le délai avant que
-    Jeedom n’archive une donnée (24h par défaut). C’est-à-dire que les
-    données historisées doivent avoir plus de 24h pour être archivées
-    (pour rappel, l’archivage va soit moyenner, soit prendre le maximum
-    ou le minimum de la donnée sur une période qui correspond à la
-    taille des paquets).
+-   ** Tiempo de archivado (horas) ** Indica el retardo antes
+    Jeedom datos no Archive (24 por defecto). Esto quiere decir que
+    datos históricos deben ser mayores de 24 para ser archivados
+    (Recuerde, el archivo será promediado o tomar el máximo
+    o mínimo de los datos durante un período correspondiente a la
+    tamaño de paquete).
 
--   **Archiver par paquet de (en heures)** : Ce paramètre donne
-    justement la taille des paquets (1h par défaut). Cela signifie par
-    exemple que Jeedom va prendre des périodes de 1h, moyenner et
-    stocker la nouvelle valeur calculée en supprimant les
-    valeurs moyennées.
+-   ** Archivo por paquetes (horas) **: Este parámetro
+    precisamente el tamaño del paquete (1 defecto hr). Esto significa, por
+    ejemplo Jeedom tomará tiempo de 1 h, y promediando
+    almacenar el nuevo valor calculado mediante la eliminación
+    valores promediados.
 
--   **Seuil de calcul de tendance basse** : Cette valeur indique la
-    valeur à partir de laquelle Jeedom indique que la tendance est à
-    la baisse. Il doit être négatif (par défaut -0.1).
+-   ** cálculo de umbral baja tendencia **: Este valor indica el
+    valor a partir del cual Jeedom indica que la tendencia es
+    hacia abajo. Debe ser negativo (-0,1 por defecto).
 
--   **Seuil de calcul de tendance haut** : Même chose pour la hausse.
+-   ** ** cálculo del umbral por encima de la tendencia: Lo mismo para el ascenso.
 
--   **Période d’affichage des graphiques par défaut** : Période qui est
-    utilisée par défaut lorsque vous voulez afficher l’historique
-    d’une commande. Plus la période est courte, plus Jeedom sera rapide
-    pour afficher le graphique demandé.
+-   ** predeterminado periodo de visualización de gráficos ** Periodo es
+    usado por defecto cuando se desea ver el historial
+    un comando. Cuanto más largo sea el período es más corto, será Jeedom rápida
+    para mostrar el gráfico deseado.
 
-> **Note**
+> ** Nota **
 >
-> Le premier paramètre **Afficher les statistiques sur les widgets** est
-> possible mais désactivé par défaut car il rallonge sensiblement le
-> temps d’affichage du dashboard. Si vous activez cette option, par
-> défaut, Jeedom se fonde sur les données des dernières 24h pour
-> calculer ces statistiques. La méthode de calcul de tendance est fondée
-> sur le calcul des moindres carrés (voir
-> [ici](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s)
-> pour le détail).
+> El primer parámetro ** Muestra estadísticas acerca de los widgets es **
+> Posible, pero desactivado por defecto, ya que se extiende de manera significativa la
+> Pantalla del salpicadero tiempo. Si habilita esta opción, por
+> Jeedom por defecto se basa en datos de los últimos 24
+> Calcular estas estadísticas. El método de cálculo se basa tendencia
+> El cálculo del mínimo cuadrado (ver
+> [Aquí] (https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s)
+> Para obtener más detalles).
 
-Push 
+empuje
 ----
 
-**URL de push globale** : permet de rajouter une URL à appeler en cas de
-mise à jour d’une commande. Vous pouvez utiliser les tags suivants :
-**\#value\#** pour la valeur de la commande, **\#cmd\_name\#** pour le
-nom de la commande, **\#cmd\_id\#** pour l’identifiant unique de la
-commande, **\#humanname\#** pour le nom complet de la commande (ex :
-\#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\#)
+** ** URL impulso global: le permite añadir una dirección URL para llamar en caso de
+actualizar un pedido. Puede utilizar las siguientes etiquetas:
+** \ # valor \ # ** para el valor de la orden, ** \ # cmd \ _name \ # ** a
+nombre del comando, ** \ # cmd \ _id \ # ** para el identificador único de la
+control, ** \ # humanname \ # ** para el nombre completo del comando (por ejemplo,
+\ # \ [Baño \] \ [Hydrometrie \] \ [Humedad \] \ #)
 
-Cache 
+cubierta
 =====
 
-Permet de surveiller et d’agir sur le cache de Jeedom :
+Se utiliza para monitorizar y actuar sobre la Jeedom caché:
 
--   **Statistiques** : Nombre d’objets actuellement en cache
+-   ** ** Estadística: número de objetos almacenados en caché
 
--   **Nettoyer le cache** : Force la suppression des objets qui ne sont
-    plus utiles. Jeedom le fait automatiquement toutes les nuits.
+-   ** ** caché limpia: Fuerza de eliminación de objetos que hay
+    más útil. Jeedom realiza automáticamente todas las noches.
 
--   **Vider toutes les données en cache** : Vide complètement le cache.
-    Attention cela peut faire perdre des données !
+-   ** Vaciar todos los datos de la caché **: completamente vacía la memoria caché.
+    Tenga en cuenta que puede perder datos!
 
--   **Temps de pause pour le long polling** : Fréquence à laquelle
-    Jeedom vérifie si il y a des événements en attente pour les clients
-    (interface web, application mobile…​). Plus ce temps est court, plus
-    l’interface se mettra à jour rapidement, en contre partie cela
-    utilise plus de ressources et peut donc ralentir Jeedom.
+-   ** Tiempo de pausa para el sondeo largo **: La velocidad a la que
+    Jeedom comprueba si hay eventos que esperan a clientes
+    (Interfaz web, móvil ...). Durante este tiempo es más corto,
+    la interfaz se actualizará de forma rápida, en parte, en contra de ella
+    utiliza más recursos y puede ralentizar Jeedom.
 
-Interactions 
+interacciones
 ============
 
-Cet onglet permet de fixer des paramètres globaux concernant les
-interactions que vous trouverez dans Outils→Interactions.
+Esta ficha le permite configurar los parámetros globales para
+las interacciones que se encuentra en Herramientas → interacciones.
 
-> **Tip**
+> ** Tip **
 >
-> Pour activer le log des interactions, il faut aller dans l’onglet
-> Administration→Configuration→Logs, puis cocher **Debug** dans la liste
-> du bas. Attention : les logs seront alors très verbeux !
+> Para activar las interacciones de registro, vaya a la pestaña
+> Administración → Configuración → Registros y seleccione Depurar ** ** en la lista
+> Inferior. Advertencia: los registros serán entonces muy detallado!
 
-Général 
+general
 -------
 
-Vous avez ici trois paramètres :
+Aquí tiene tres parámetros:
 
--   **Sensibilité** : il y a 4 niveaux de correspondance (La sensibilité
-    va de 1 (correspond exactement) à 99)
+-   ** ** Sensibilidad: hay 4 niveles de juego (Sensibilidad
+    varía de 1 (exactamente) a 99)
 
-    -   pour 1 mot : le niveau de correspondance pour les interactions à
-        un seul mot
+    -   para 1 palabra coincidente nivel para las interacciones
+        una palabra
 
-    -   2 mots : le niveau de correspondance pour les interactions à
-        deux mots
+    -   2 palabras: el nivel de correspondencia a las interacciones
+        dos palabras
 
-    -   3 mots : le niveau de correspondance pour les interactions à
-        trois mots
+    -   3 palabras: el nivel de correspondencia a las interacciones
+        tres palabras
 
-    -   + de 3 mots : le niveau de correspondance pour les interactions
-        à plus de trois mots
+    -   + 3 palabras: el nivel de correspondencia para las interacciones
+        más de tres palabras
 
--   **Ne pas répondre si l’interaction n’est pas comprise** : par défaut
-    Jeedom répond "je n’ai pas compris" si aucune interaction
-    ne correspond. Il est possible de désactiver ce fonctionnement pour
-    que Jeedom ne réponde rien. Cochez la case pour désactiver
-    la réponse.
+-   ** No responda si no se incluye la interacción **: por defecto
+    Jeedom responde "No entiendo" si no hay interacción
+    partidos. Puede desactivar esta función para
+    Jeedom que responde a nada. Marque la casilla para desactivar
+    la respuesta.
 
--   **Regex général d’exclusion pour les interactions** : permet de
-    définir une regexp qui, si elle correspond à une interaction,
-    supprimera automatiquement cette phrase de la génération (réservé
-    aux experts). Pour plus d’informations voir les explications dans le
-    chapitre **Regexp d’exclusion** de la documentation sur
-    les interactions.
+-   ** exclusión general Regex para la interacción **: Permite
+    definir expresiones regulares que, si corresponde a una interacción,
+    eliminar automáticamente esta generación frase (reservada
+    expertos). Para obtener más información, véase la explicación en el
+    Capítulo ** ** Regexp exclusión de la documentación
+    interacciones.
 
-Interaction automatique, contextuelle & avertissement 
------------------------------------------------------
+Interacción automática, contextuales y de alerta
+-------------------------------------------------- ---
 
--   Les **interactions automatiques** permettent à Jeedom de tenter de
-    comprendre une demande d’interaction même si il n’y en a aucune
-    de définie. Il va alors chercher un nom d’objet et/ou d’équipement
-    et/ou de commande pour essayer de répondre au mieux.
+-   ** ** Las interacciones automatizados permiten Jeedom intentar
+    incluir una solicitud de interacción incluso si no hay
+    de definido. A continuación, buscar un nombre y / o el equipo de objetos
+    y / o control para tratar de responder en el mejor.
 
--   Les **interactions contextuelles** vous permettent d’enchainer
-    plusieurs demandes sans tout répéter, par exemple :
+-   ** ** Las interacciones contextuales que permiten a la cadena
+    varias peticiones sin repetir todo, por ejemplo:
 
-    -   *Jeedom gardant le contexte :*
+    -   * Jeedom manteniendo el contexto: *
 
-        -   *Vous* : Combien fait-il dans la chambre ?
+        -   * * Usted: ¿Cuánto cuesta la habitación?
 
-        -   *Jeedom* : Température 25.2 °C
+        -   Jeedom * *: Temperatura 25,2 ° C
 
-        -   *Vous* : et dans le salon ?
+        -   * Usted *: y en la sala de estar?
 
-        -   *Jeedom* : Température 27.2 °C
+        -   Jeedom * *: Temperatura 27,2 ° C
 
-    -   *Poser deux questions en une :*
+    -   * Pida a dos preguntas en una: *
 
-        -   *Vous* : Combien fait-il dans la chambre et dans le salon ?
+        -   * * Usted: ¿Cuánto es en el dormitorio y en el salón?
 
-        -   *Jeedom* : Température 23.6 °C, Température 27.2 °C
+        -   Jeedom * *: Temperatura 23,6 ° C 27,2 ° C Temperatura
 
--   Les interactions de type **Préviens-moi** permettent de demander à
-    Jeedom de vous prévenir si une commande dépasse/descend ou vaut une
-    certaine valeur.
+-   ** ** Déjame saber el tipo de interacción utilizado para preguntar
+    Jeedom le avise si un pedido excede / cae o es una
+    cierto valor.
 
-    -   *Vous* : Préviens-moi si la température du salon dépasse 25°C ?
+    -   * Usted *: Avisadme si la temperatura de la sala de estar supera los 25 ° C?
 
-    -   *Jeedom* : OK (*Dès que la température du salon dépassera 25°C,
-        Jeedom vous le dira, une seule fois*)
+    -   * * Jeedom: OK (* Tan pronto como la temperatura de la sala de estar excede 25 ° C
+        Jeedom le dirá, una vez *)
 
-> **Note**
+> ** Nota **
 >
-> Par défaut Jeedom vous répondra par le même canal que celui que vous
-> avez utilisé pour lui demander de vous prévenir. Si il n’en trouve
-> pas, il utilisera alors la commande par défaut spécifiée dans cet
-> onglet : **Commande de retour par défaut**.
+> Por defecto Jeedom respuesta por el mismo canal que se
+> Que utilizó para pedirle que le avise. Si él está en
+> No, utilizará el comando predeterminado especificado en este
+> Pestaña:. ** ** orden de restitución por defecto
 
-Voici donc les différentes options disponibles :
+Estas son las opciones disponibles:
 
--   **Activer les interactions automatiques** : Cochez pour activer les
-    interactions automatiques.
+-   ** ** Habilitar interacciones automatizadas: Marque para activar
+    interacciones automatizadas.
 
--   **Activer les réponses contextuelles** : Cochez pour activer les
-    interactions contextuelles.
+-   ** ** Habilitar respuestas contextuales: Marque para activar
+    interacciones contextuales.
 
--   **Réponse contextuelle prioritaire si la phrase commence par** : Si
-    la phrase commence par le mot que vous renseignez ici, Jeedom va
-    alors prioritiser une réponse contextuelle (vous pouvez mettre
-    plusieurs mots en les séparant par des **;** ).
+-   ** Prioridad respuesta contextual si la frase comienza con **: Si
+    la frase que comienza con la palabra que usted ingrese aquí serán Jeedom
+    a continuación, dar prioridad a una respuesta contextual (se puede poner
+    varias palabras separadas por **, **).
 
--   **Découper une interaction en 2 si elle contient** : Même chose pour
-    le découpage d’une interaction contenant plusieurs questions. Vous
-    donnez ici les mots qui séparent les différentes questions.
+-   ** Cortar una interacción si contiene 2 **: Lo mismo para
+    corte de la interacción con varias preguntas. Usted
+    Dar aquí las palabras que separan los diferentes temas.
 
--   **Activer les interactions "Préviens-moi"** : Cochez pour activer
-    les interactions de type **Préviens-moi**.
+-   ** permitir la interacción "Avísame" **: Marque para activar
+    Tipo interacciones ** ** hágamelo saber.
 
--   **Réponse de type "Préviens-moi" si la phrase commence par** : Si la
-    phrase commence par ce/ces mot(s) alors Jeedom cherchera à faire une
-    interaction de type **Préviens-moi** (vous pouvez mettre plusieurs
-    mots en les séparant par des **;** ).
+-   ** Tipo de respuesta "Avísame" si la oración comienza con **: Si
+    frase comienza con este / estos palabra (s) a continuación, tratar de hacer Jeedom
+    tipo de interacción ** ** Avisadme (se puede poner más
+    palabras separadas por **, **).
 
--   **Commande de retour par défaut** : Commande de retour par défaut
-    pour une interaction de type **Préviens-moi** (utilisée, notamment,
-    si vous avez programmé l’alerte par l’interface mobile)
+-   ** ** Comando de retorno por defecto orden de restitución por defecto
+    para un tipo de interacción ** ** Avisadme (utilizadas en particular
+    Si ha programado la alarma por la interfaz móvil)
 
--   **Synonyme pour les objets** : Liste des synonymes pour les objets
-    (ex : rdc|rez de chaussé|sous sol|bas;sdb|salle de bain).
+-   ** ** Sinónimo de artículos: sinónimos para los artículos
+    (Ej baja | planta baja | sótano | baja, cuarto de baño | cuarto de baño).
 
--   **Synonyme pour les équipements** : Liste des synonymes pour
-    les équipements.
+-   ** ** Sinónimo de equipos: lista de sinónimos para
+    los equipos.
 
--   **Synonyme pour les commandes** : Liste des synonymes pour
-    les commandes.
+-   ** ** Sinónimo de órdenes: Lista de los sinónimos de
+    las órdenes.
 
--   **Synonyme pour les résumé** : Liste des synonymes pour les résumés.
+-   ** ** Sinónimo de resumen: Lista de los sinónimos de los resúmenes.
 
--   **Synonyme commande slider maximum** : Synonyme pour mettre une
-    commande de type slider au maximum (ex ouvre pour ouvre le volet de
-    la chambre ⇒ volet chambre à 100%).
+-   ** Máximo control deslizante ** Sinónimo: Sinónimo de poner un
+    Tipo de control deslizante hacia arriba (por ejemplo, se abre para abrir la solapa
+    Habitación ⇒ lado de la habitación 100%).
 
--   **Synonyme commande slider minimum** : Synonyme pour mettre une
-    commande de type slider au minimu (ex ferme pour fermer le volet de
-    la chambre ⇒ volet chambre à 0%).
+-   ** ** mínimo control deslizante Sinónimo: Sinónimo de poner un
+    escriba control deslizante a minimu (ex granja cerca de la solapa
+    ⇒ sala de cámara de componente a 0%).
 
-Couleurs 
+colores
 --------
 
-Cette partie permet de définir les couleurs que Jeedom associera aux
-mots rouge/bleu/noir…​ Pour ajouter une couleur :
+En esta sección se definen los colores se combinan para Jeedom
+palabras rojo / azul / negro ... Para añadir color:
 
--   Cliquez sur le bouton **+**, à droite,
+-   Haga clic en ** ** +, a la derecha,
 
--   Donnez un nom à votre couleur,
+-   Dar un nombre a su color,
 
--   Choisissez la couleur associée en cliquant sur la case de droite.
+-   Elegir el color asociado haciendo clic en el cuadro de la derecha.
 
-Rapports 
+relaciones
 ========
 
-Permet de configurer la génération et la gestion des rapports
+Establece los informes de generación y gestión
 
--   **Délai d’attente après génération de la page (en ms)** : Délai
-    d’attente après chargement du rapport pour faire la "photo", à
-    changer si votre rapport est incomplet par exemple.
+-   ** El tiempo de espera después de la generación de la página (en ms) **: Retardo
+    informe de espera después de la carga a la "foto" de
+    cambiar si su informe es incompleto, por ejemplo.
 
--   **Nettoyer les rapports plus anciens de (jours)** : Définit le
-    nombre de jours avant de supprimer un rapport (les rapports prennent
-    un peu de place donc attention à ne pas mettre trop
-    de conservation).
+-   ** informes limpios de más edad (días) **: Juegos
+    Número de días antes de eliminar un informe (informes son
+    un poco de espacio así que ten cuidado de no poner demasiado
+    conservación).
 
-Liens 
+Vínculos
 =====
 
-Permet de configurer les graphiques de liens. Ces liens permettent de
-voir, sous forme d’un graphique, les relations entre les objets, les
-équipements, les objets, etc.
+Configurar los enlaces gráficos. estos enlaces
+ver, como un gráfico, la relación entre objetos,
+equipo, objetos, etc.
 
--   **Profondeur pour les scénarios** : Permet de définir, lors de
-    l’affichage d’un graphique de liens d’un scénario, le nombre
-    d’éléments maximum à afficher (plus il y a d’éléments plus le
-    graphique sera lent à générer et plus il sera difficile à lire).
+-   ** ** escenarios Profundidad: poner a valor
+    mostrando un gráfico de enlaces de un escenario, el número
+    de indicios máxima (las más elementos en el
+    gráfico será lenta para generar y la más difícil de leer).
 
--   **Profondeur pour les objets** : Idem pour les objets.
+-   ** La profundidad de los artículos **: Lo mismo para los objetos.
 
--   **Profondeur pour les équipements** : Idem pour les équipements.
+-   ** La profundidad para el equipo **: Lo mismo ocurre con el equipo.
 
--   **Profondeur pour les commandes** : Idem pour les commandes.
+-   ** ** controles Profundidad: Lo mismo para los pedidos.
 
--   **Profondeur pour les variables** : Idem pour les variables.
+-   ** La profundidad de las variables **: Lo mismo para las variables.
 
--   **Paramètre de prerender** : Permet d’agir sur la disposition
-    du graphique.
+-   ** ** Parámetro prerender: Para actuar sobre disponibles
+    el gráfico.
 
--   **Paramètre de render** : Idem.
+-   ** ** parámetro de representación: El mismo.
 
-Résumés 
+resúmenes
 =======
 
-Permet d’ajouter des résumés d’objets. Cette information est affichée
-tout en haut, à droite, dans la barre de menu Jeedom, ou à côté des
-objets :
+Añade resúmenes de objetos. Se muestra esta información
+en la parte superior, a la derecha, en la barra de menú Jeedom, o al lado de la
+artículos:
 
--   **Clef** : Clé du résumé, à ne surtout pas toucher.
+-   ** ** Clave: Resumen clave, sobre todo, no tocar.
 
--   **Nom** : Nom du résumé.
+-   ** ** Nombre: Nombre del resumen.
 
--   **Calcul** : Méthode de calcul, peut être de type :
+-   ** ** Cálculo: Método de cálculo, puede ser de tipo:
 
-    -   **Somme** : fait la somme des différentes valeurs,
+    -   ** ** Suma: la suma de los diferentes valores,
 
-    -   **Moyenne** : fait la moyenne des valeurs,
+    -   ** ** media: valores promedio,
 
-    -   **Texte** : affiche textuellement la valeur (surtout pour celles
-        de type chaine de caractères).
+    -   ** ** Texto: muestra textualmente el valor (especialmente para aquellos
+        Tipo de cadena de caracteres).
 
--   **Icone** : Icône du résumé.
+-   ** ** icono: Icono del resumen.
 
--   **Unité** : Unité du résumé.
+-   ** ** Unidad: Resumen de la unidad.
 
--   **Méthode de comptage** : Si vous comptez une donnée binaire alors
-    il faut mettre cette valeur à binaire, exemple si vous comptez le
-    nombre de lampes allumées mais que vous avez juste la valeur du
-    variateur (0 à 100), alors il faut mettre binaire, comme cela Jeedom
-    considéra que si la valeur est supérieure à 1, alors la lampe
-    est allumée.
+-   ** ** recuento Método: Si se cuentan los datos binarios a continuación,
+    hay que poner este valor binario, por ejemplo, si se cuenta el
+    número de luces encendidas pero sólo el valor de la
+    inversor (0 a 100), entonces es necesario a binario, como Jeedom
+    consideró que si el valor es mayor que 1, entonces la lámpara
+    está encendido.
 
--   **Afficher si valeur égale 0** : Cochez cette case pour afficher la
-    valeur, même quand elle vaut 0.
+-   ** Ver si el valor es 0 **: Marque esta casilla para mostrar la
+    valor, incluso cuando es 0.
 
--   **Lier à un virtuel** : Lance la création de commandes virtuelles
-    ayant pour valeur celles du résumé.
+-   ** Enlace a un virtual **: Inicia la creación de unidades virtuales
+    para aquellos que valoran el resumen.
 
--   **Supprimer le résumé** : Le dernier bouton, tout à droite, permet
-    de supprimer le résumé de la ligne.
+-   ** ** Eliminar Resumen: El último botón, de acuerdo, permite
+    quitar la línea de resumen.
 
-Logs 
+troncos
 ====
 
-Timeline 
+línea de tiempo
 --------
 
--   **Nombre maximum d’évènements** : Définit le nombre maximum à
-    afficher dans la timeline.
+-   ** El número máximo de eventos **: Establece el número máximo
+    mostrar en la línea de tiempo.
 
--   **Supprimer tous les évènements** : Permet de vider la timeline de
-    tous ses évènements enregistrés.
+-   ** ** Eliminar todos los eventos: Para vaciar la línea de tiempo
+    todos los eventos grabados.
 
-Messages 
+mensajes
 --------
 
--   **Ajouter un message à chaque erreur dans les logs** : si un plugin
-    ou Jeedom écrit un message d’erreur dans un log, Jeedom ajoute
-    automatiquement un message dans le centre des messages (au moins
-    vous êtes sûr de ne pas le manquer).
+-   ** Añadir un mensaje para cada error en los registros **: Si un plugin
+    Jeedom o escribe un mensaje de error en un registro, añade Jeedom
+    automáticamente un mensaje en el centro de mensajes (al menos
+    que está seguro de no perder).
 
--   **Commande d’information utilisateur** : Permet de sélectionner une
-    ou plusieurs commandes (à séparer par des **&&** ) de type
-    **message** qui seront utilisées lors de l’émission de
-    nouveaux messages.
+-   ** ** información de los usuarios del sistema: Seleccione una
+    o más comandos (para separar por ** && **) escriba
+    ** ** mensaje que se utiliza cuando la emisión
+    nuevos mensajes.
 
-Alertes 
+Notificaciones
 -------
 
--   **Ajouter un message à chaque Timeout** : Ajoute un message dans le
-    centre de message si un équipement tombe en **timeout**.
+-   ** Añadir un mensaje a cada tiempo de espera ** Añade un mensaje al
+    centro de mensajes si se rompe equipo ** ** tiempo de espera.
 
--   **Commande sur Timeout** : Commande de type **message** à utiliser
-    si un équipement est en **timeout**.
+-   ** ** Tiempo de espera de control en: Tipo de comando ** ** enlace a utilizar
+    si el equipo es ** ** tiempo de espera.
 
--   **Ajouter un message à chaque Batterie en Warning** : Ajoute un
-    message dans le centre de messages si un équipement a son niveau de
-    batterie en **warning**.
+-   ** Añadir un mensaje a cada batería en ** Advertencia: Añade
+    mensaje en el centro de mensajes si un dispositivo tiene su nivel
+    ** ** aviso de batería.
 
--   **Commande sur Batterie en Warning** : Commande de type **message**
-    à utiliser si un équipement à son niveau de batterie en **warning**.
+-   ** Comando de la batería en modo de advertencia **: Tipo de comando ** enlace **
+    si va a utilizar el equipo a su aviso de batería baja ** **.
 
--   **Ajouter un message à chaque Batterie en Danger** : Ajoute un
-    message dans le centre de messages si un équipement à son niveau de
-    batterie en **danger**.
+-   ** Añadir un mensaje a cada batería en Peligro ** Añade
+    mensaje en el centro de mensajes si su nivel de equipamiento
+    batería mortales ** **.
 
--   **Commande sur Batterie en Danger** : Commande de type **message** à
-    utiliser si un équipement à son niveau de batterie en **danger**.
+-   ** Control de la batería en Peligro **: Tipo de comando ** ** enlace a
+    realice el trabajo si su nivel de batería amenazando ** **.
 
--   **Ajouter un message à chaque Warning** : Ajoute un message dans le
-    centre de messages si une commande passe en alerte **warning**.
+-   ** Añadir un mensaje a cada uno ** Advertencia: Añade un mensaje en el
+    centro de mensajes si una orden entra en alerta ** ** advertencia.
 
--   **Commande sur Warning** : Commande de type **message** à utiliser
-    si une commande passe en alerte **warning**.
+-   ** Aviso ** de control en: tipo de orden ** enlace ** utilizar
+    Si una orden entra en alerta ** ** advertencia.
 
--   **Ajouter un message à chaque Danger** : Ajoute un message dans le
-    centre de messages si une commande passe en alerte **danger**.
+-   ** Añadir un mensaje a cada peligro ** Añade un mensaje al
+    centro de mensajes si una orden entra en alerta ** ** riesgo.
 
--   **Commande sur Danger** : Commande de type **message** à utiliser si
-    une commande passe en alerte **danger**.
+-   ** ** de control en Peligro: Tipo de comando ** ** enlace de usar si
+    pasar un pedido en alerta ** ** riesgo.
 
-Log 
+log
 ---
 
--   **Moteur de log** : Permet de changer le moteur de log pour, par
-    exemple, les envoyer à un demon syslog(d).
+-   ** ** registro del motor: Cambiar el motor de registro, por
+    ejemplo, los envía a un demonio syslog (d).
 
--   **Format des logs** : Format de log à utiliser (Attention : ça
-    n’affecte pas les logs des démons).
+-   ** ** formato de los registros de formato de registro a utilizar (Advertencia: este
+    no afecta a los demonios logs).
 
--   **Nombre de lignes maximum dans un fichier de log** : Définit le
-    nombre maximum de lignes dans un fichier de log. Il est recommandé
-    de ne pas toucher cette valeur, car une valeur trop grande pourrait
-    remplir le système de fichiers et/ou rendre Jeedom incapable
-    d’afficher le log.
+-   ** El número máximo de líneas en un archivo de registro **: Conjuntos
+    número máximo de líneas en un archivo de registro. Se recomienda
+    no tocar este valor, porque el exceso de valor podría
+    llenar el sistema de archivos y / o incapaz de hacer Jeedom
+    para mostrar el registro.
 
--   **Niveau de log par défaut** : Quand vous sélectionnez "Défaut",
-    pour le niveau d’un log dans Jeedom, c’est celui-ci qui sera
-    alors utilisé.
+-   ** Nivel de registro predeterminado **: Cuando se selecciona "Default"
+    al nivel de una conexión a la Jeedom es la que se
+    entonces utilizado.
 
-En dessous vous retrouvez un tableau permettant de gérer finement le
-niveau de log des éléments essentiels de Jeedom ainsi que celui des
+A continuación encontrará una tabla para gestionar finamente
+log elementos nivel esencial de Jeedom así como la de
 plugins.
 
-Equipements 
+comodidades
 ===========
 
--   **Nombre d’échecs avant désactivation de l’équipement** : Nombre
-    d’échecs de communication avec l’équipement avant désactivation de
-    celui-ci (un message vous préviendra si cela arrive).
+-   ** El número de fallos antes de deshabilitar el equipo **: Número
+    fallos de comunicación con el equipo antes de inhabilitar
+    él (un mensaje le notificará si eso ocurre).
 
--   **Seuils des piles** : Permet de gérer les seuils d’alertes globaux
-    sur les piles.
+-   ** ** Los umbrales de la batería: Administrar los umbrales de alerta mundial
+    en las baterías.
 
-Mise à jour et fichiers 
+Actualización y archivos
 =======================
 
-Mise à jour de Jeedom 
+actualización Jeedom
 ---------------------
 
--   **Source de mise à jour** : Choisissez la source de mise à jour du
-    core de Jeedom.
+-   ** Actualización ** Fuente: Seleccione la fuente de actualización
+    núcleo de Jeedom.
 
--   **Version du core** : Version du core à récupérer.
+-   ** ** Versión núcleo: versión de la base de recuperar.
 
--   **Vérifier automatiquement s’il y a des mises à jour** : Indique si
-    il faut chercher automatiquement si il y a de nouvelles mises à jour
-    (attention pour éviter de surcharger le market, l’heure de
-    vérification peut changer).
+-   ** Comprobar automáticamente si hay actualizaciones **: Si
+    para buscar automáticamente si hay nuevas actualizaciones
+    (Cuidado de no sobrecargar el mercado, el tiempo
+    verificación puede cambiar).
 
-Les dépôts 
+depósitos
 ----------
 
-Les dépôts sont des espaces de stockage (et de service) pour pouvoir
-déplacer des sauvegardes, récupérer des plugins, récupérer le core de
-Jeedom, etc.
+Los depósitos son espacios de almacenamiento (y servicio) para suministrar energía
+mover las copias de seguridad, recuperar plugins recuperar el núcleo de
+Jeedom etc.
 
-### Fichier 
+### expediente
 
-Dépôt servant à activer l’envoi de plugins par des fichiers.
+Depósito para activar el envío de archivos de plugins.
 
-### Github 
+### Github
 
-Dépôt servant à relier Jeedom à Github.
+Depósito para la conexión a Jeedom Github.
 
--   **Token** : Token pour l’accès au dépôt privé.
+-   ** ** simbólico: token de acceso a depósito privado.
 
--   **Utilisateur ou organisation du dépôt pour le core Jeedom** : Nom
-    de l’utilisateur ou de l’organisation sur github pour le core.
+-   ** usuario u organización que presenta para la Jeedom núcleo ** Nombre
+    usuario u organización en github para el núcleo.
 
--   **Nom du dépôt pour le core Jeedom** : Nom du dépôt pour le core.
+-   ** Nombre del depósito para el núcleo Jeedom **: Nombre del depósito para el núcleo.
 
--   **Branche pour le core Jeedom** : Branche du dépôt pour le core.
+-   ** Branch para la Jeedom núcleo **: Branch del depósito para el núcleo.
 
-### Market 
+### mercado
 
-Dépôt servant à relier Jeedom au market, il est vivement conseillé
-d’utiliser ce dépôt. Attention : toute demande de support pourra être
-refusée si vous utilisez un autre dépôt que celui-ci.
+Depósito para conectar Jeedom el mercado, es muy recomendable
+el uso de esta presentación. Advertencia: la solicitud de soporte puede ser
+niega si se utiliza otro depósito él.
 
--   **Adresse** : Adresse du Market.
+-   ** ** Dirección: Dirección del Mercado.
 
--   **Nom d’utilisateur** : Votre nom d’utilisateur sur le Market.
+-   ** ** Usuario: Su nombre de usuario en el mercado.
 
--   **Mot de passe** : Votre mot de passe du Market.
+-   ** ** Contraseña: Tu contraseña mercado.
 
-### Samba 
+### samba
 
-Dépôt permettant d’envoyer automatiquement une sauvegarde de Jeedom sur
-un partage Samba (ex : NAS Synology).
+Depósito para enviar automáticamente una copia de seguridad en Jeedom
+una cuota de Samba (por ejemplo Synology NAS).
 
--   **\[Backup\] IP** : IP du serveur Samba.
+-   ** \ [Backup \] ** IP: IP del servidor Samba.
 
--   **\[Backup\] Utilisateur** : Nom d’utilisateur pour la connexion
-    (les connexions anonymes ne sont pas possibles). Il faut forcément
-    que l’utilisateur ait les droits en lecture ET en écriture sur le
-    répertoire de destination.
+-   ** \ [Backup \] Usuario **: Nombre de usuario para la conexión
+    (Conexiones anónimas no son posibles). Se debe necesariamente
+    el usuario tiene permiso de lectura y escritura en
+    directorio de destino.
 
--   **\[Backup\] Mot de passe** : Mot de passe de l’utilisateur.
+-   ** \ [Backup \] ** Contraseña: contraseña del usuario.
 
--   **\[Backup\] Partage** : Chemin du partage (attention à bien
-    s’arrêter au niveau du partage).
+-   ** \ [Backup \] Compartiendo **: compartir Path (cuidado
+    parar en la división).
 
--   **\[Backup\] Chemin** : Chemin dans le partage (à mettre en
-    relatif), celui-ci doit exister.
+-   ** \ [Backup \] ** Ruta: Camino en las acciones (que es
+    relativa), que debe existir.
 
-> **Note**
+> ** Nota **
 >
-> Si le chemin d’accès à votre dossier de sauvegarde samba est :
-> \\\\192.168.0.1\\Sauvegardes\\Domotique\\Jeedom Alors IP = 192.168.0.1
-> , Partage = //192.168.0.1/Sauvegardes , Chemin = Domotique/Jeedom
+> Si la ruta a la carpeta de copia de seguridad samba es:
+> \\\\ \\ 192.168.0.1 copias de seguridad \\ \\ Home Automation IP = 192.168.0.1 Luego Jeedom
+> Compartir = //192.168.0.1/Sauvegardes, Path = Home Automation / Jeedom
 
-> **Note**
+> ** Nota **
 >
-> Lors de la validation du partage Samba, tel que décrit précédemment,
-> une nouvelle forme de sauvegarde apparait dans la partie
-> Administration→Sauvegardes de Jeedom. En l’activant, Jeedom procèdera
-> à son envoi automatique lors de la prochaine sauvegarde. Un test est
-> possible en effectuant une sauvegarde manuelle.
+> Cuando la validación de la cuota de Samba, como se describe anteriormente,
+> Una nueva forma de copia de seguridad aparece en la parte
+> Administración → Copias de seguridad Jeedom. Mediante la activación, proceda Jeedom
+> Para su transmisión automática en la siguiente copia de seguridad. Una prueba es
+> Posible mediante la realización de una copia de seguridad manual.
 
-> **Important**
+> ** Importante **
 >
-> Il vous faudra peut-être installer le package smbclient pour que le
-> dépôt fonctionne.
+> Es probable que instalar el paquete smbclient para el
+> Trabaja fuerte.
 
-> **Important**
+> ** Importante **
 >
-> Jeedom doit être le seul à écrire dans ce dossier et il doit être vide
-> par défaut (c’est-à-dire qu’avant la configuration et l’envoi de la
-> première sauvegarde, le dossier ne doit contenir aucun fichier ou
-> dossier).
+> Jeedom debe ser el que escribir en esta carpeta y debe estar vacía
+> Por defecto (es decir, antes de la creación y el envío de
+> Primera copia de seguridad, el archivo no debe contener ningún archivo o
+> Carpeta).
 
-### URL 
+### URL
 
--   **URL core Jeedom**
+-   ** ** URL núcleo Jeedom
 
--   **URL version core Jeedom**
+-   ** URL núcleo versión Jeedom **
 
 

@@ -1,84 +1,84 @@
-Une des pages principales de Jeedom affiche un compte-rendu de toute
-votre domotique. Ce compte-rendu (contrairement aux vues et design) est
-auto-généré par Jeedom.
+Una de las páginas principales Jeedom muestra un informe de todos
+su automatización del hogar. Este informe (contrariamente a las opiniones y diseño) es
+auto-generado por Jeedom.
 
-Il est accessible en cliquant sur **Accueil → Dashboard**
+Se accede haciendo clic en Inicio → ** ** tablero de instrumentos
 
-> **Tip**
+> ** Tip **
 >
-> Il est possible d’aller directement sur un objet de votre domotique.
-> Cela permet de n’avoir que les équipements qui vous intéressent et
-> donc de charger la page plus rapidement
+> Es posible ir directamente a un elemento de la domótica.
+> Esto sólo tendrá el equipo que le interesan y
+> Así cargar la página más rápido
 
--   Vous avez en haut à gauche une petite icône pour faire
-    afficher/masquer l’arbre des objets (celui-ci affiche aussi les
-    informations des résumés d’objet)
+-   Tiene la parte superior izquierda un pequeño icono para
+    mostrar / ocultar el árbol de objetos (También muestra
+    resúmenes de objetos de información)
 
--   Au milieu vous pouvez choisir de ne filtrer que sur certains types
-    d’équipements
+-   En el medio se puede optar por filtrar solamente ciertos tipos
+    equipo
 
--   A droite un premier bouton pour passer en mode édition, pour par
-    exemple modifier l’ordre des widgets (à l’aide d’un cliqué déposé
-    sur le widget), vous pouvez aussi dans ce mode édition
-    redimensionner certains widgets et réorganiser l’ordre des commandes
-    à l’intérieur de celui-ci
+-   Justo primer botón para entrar en el modo de edición, por
+    tales como cambiar el orden de widgets (utilizando un depositados hecho clic
+    el widget), también se puede en este modo de edición
+    cambiar el tamaño de algunos widgets y reorganizar los comandos
+    interior de la misma
 
--   Un deuxième bouton pour afficher/masquer les scénarios
+-   Un segundo botón para mostrar escenarios / ocultar
 
--   En cliquant sur un résumé d’objet, vous filtrez pour n’afficher que
-    les équipements ayant pour parent cet objet et qui concernent ce
-    résumé d’objet.
+-   Al hacer clic en un resumen de objetos, filtra para mostrar sólo
+    equipos cuyos padres se oponen y la preocupación de que
+    objeto abstracto.
 
--   Un clic sur une commande de type information permet d’afficher
-    l’historique de la commande (si elle est historisée)
+-   Al hacer clic en un comando muestra información de tipo
+    la historia de la orden (si historizada)
 
-> **Tip**
+> ** Tip **
 >
-> Il est possible, à partir de votre profil, de configurer Jeedom pour
-> que l’arbre des objets et/ou les scénarios soient visibles par défaut
-> lorsque vous arrivez sur le Dashboard
+> Es posible, desde su perfil, ajuste a Jeedom
+> El árbol de objetos y / o escenarios son visibles por defecto
+> Al llegar al cuadro de instrumentos
 
-> **Tip**
+> ** Tip **
 >
-> En mobile un appui long sur une commande de type info permet
-> d’afficher un menu vous proposant soit d’afficher l’historique de la
-> commande, ou de mettre une alerte sur celle-ci pour que jeedom vous
-> previenne (une seule fois) dès que la valeur passe un certain seuil
+> Al pasar una pulsación larga en un tipo de información de mando
+> Para mostrar un menú que muestran ya sea la historia de la
+> Comando, o poner una advertencia sobre el mismo que jeedom
+> Previene (una vez) cuando el valor pasa un cierto umbral
 
-Mode édition 
+el modo de edición
 ============
 
-En mode édition vous pouvez changer la taille des widgets et leur
-disposition sur le dashboard.
+En el modo de edición se puede cambiar el tamaño de los widgets y
+disponible en el tablero de instrumentos.
 
-Vous pouvez aussi éditer la disposition interne des commandes du widget
+También puede editar el diseño interno de los controles de widget
 :
 
--   soit les réorganiser par glisser/déposer
+-   o reorganizar arrastrando / drop
 
--   soit en faisant un clic droit sur le widget. Vous accédez alors à :
+-   ya sea haciendo clic derecho en el widget. A continuación, ir a:
 
-    -   **Configuration avancée** : permet d’accéder à la configuration
-        avancée de la commande
+    -   ** ** Configuración avanzada: permite el acceso a la configuración
+        Mando avanzado
 
-    -   **Standard** : disposition par défaut, tout est en automatique
-        avec juste la possibilité de réorganiser l’ordre des commandes
+    -   ** ** Estándar: diseño predeterminado, todo es automático
+        con sólo la posibilidad de reorganizar los comandos
 
-    -   **Tableau** : permet de mettre les commandes dans un tableau,
-        les colonnes et les lignes s’ajoutent et se suppriment par clic
-        droit, ensuite il suffit de déplacer les commandes dans les
-        cases voulues. Vous pouvez mettre plusieurs commandes par case
+    -   ** ** Tabla: Activar los controles en una tabla,
+        se añaden las columnas y filas y suprimen por clic
+        bien, entonces basta con mover los controles en
+        casillas correspondientes. Puede poner varios comandos por cuadro
 
-    -   **Ajouter colonne** : ajoute une colonne au tableau (accessible
-        uniquement si vous êtes en disposition tableau)
+    -   ** ** Añadir Columna: añade una columna a la tabla (accesible
+        sólo si está disponible la tabla)
 
-    -   **Ajouter ligne** : ajoute une ligne au tableau (accessible
-        uniquement si vous êtes en disposition tableau)
+    -   ** ** línea Añadir: agrega una fila a la tabla (accesible
+        sólo si está disponible la tabla)
 
-    -   **Supprimer colonne** : supprime une colonne au tableau
-        (accessible uniquement si vous êtes en disposition tableau)
+    -   ** ** Eliminar columna: elimina una columna en la tabla
+        (Accesible sólo si está disponible la tabla)
 
-    -   **Supprimer ligne** : supprime une ligne au tableau (accessible
-        uniquement si vous êtes en disposition tableau)
+    -   ** ** Borrar línea: elimina una fila en la tabla (accesible
+        sólo si está disponible la tabla)
 
 
