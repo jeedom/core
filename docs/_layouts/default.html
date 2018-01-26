@@ -99,7 +99,11 @@
   $('.sel_lang').on('change',function(){
     var regex = /\/([a-z]{2}_[A-Z]{2})\//g;
     var corresp  = regex.exec(window.location.href);
-    window.location.href =  window.location.href.replace(corresp[1], $(this).find('option:selected').attr('value'));
+    var url = window.location.href.replace(corresp[1], $(this).find('option:selected').attr('value'));
+    if(url.endsWith('/')){
+      url += 'index';
+    }
+    window.location.href = url;
   })
   $('#bt_up').on('click',function(){
     window.scrollTo(0, 0);
