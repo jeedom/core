@@ -9,11 +9,17 @@
         "Valeur": "Значение",
         "Aucun": "Нет",
         "Erreur execution de la commande ": "Ошибка выполнения команды",
-        "Alerte sur la commande ": "команда оповещения",
+        "Alert sur la commande ": "Alert sur la commande",
         " niveau ": "уровень",
         "[jeedom] Message de ": "[Jeedom] Сообщение",
         "pendant plus de ": "для более",
-        " minute(s)": "минута (ы)"
+        " minute(s)": "минута (ы)",
+        "La commande n'est pas dans la plage de valeur autorisée : ": "La commande n'est pas dans la plage de valeur autorisée :",
+        "[jeedom] ": "[jeedom]",
+        "Equipement désactivé - impossible d'exécuter la commande : [Jardin][Caméras Ext][On]": "Equipement désactivé - impossible d'exécuter la commande : [Jardin][Caméras Ext][On]",
+        "Equipement désactivé - impossible d'exécuter la commande : [Jardin][Caméras Ext][Off]": "Equipement désactivé - impossible d'exécuter la commande : [Jardin][Caméras Ext][Off]",
+        "Erreur exécution de la commande ": "Erreur exécution de la commande",
+        "Impossible de traduire la couleur en code hexadécimal :": "Impossible de traduire la couleur en code hexadécimal :"
     },
     "core/class/scenario.class.php": {
         "Scénario exécuté automatiquement sur événement venant de : ": "Сценарий выполняется автоматически по событию",
@@ -25,21 +31,31 @@
         "************Lancement sous tâche**************": "************ ************** Начиная задачи",
         "************FIN sous tâche**************": "************ ************** юг задача END",
         "Scénario exécuté sur événement : #": "Сценарий выполняется на турнире #",
-        "Aucun": "Нет"
+        "Aucun": "Нет",
+        "Scénario désactivé non lancement de la sous tâche": "Scénario désactivé non lancement de la sous tâche",
+        "Tags : ": "Tags :",
+        "Une commande du scénario : ": "Une commande du scénario :",
+        " est introuvable": "est introuvable"
     },
     "core/class/eqLogic.class.php": {
-        "Aucun": "Нет"
+        "Aucun": "Нет",
+        "inconnue": "Неизвестный",
+        "La version demandée ne peut pas être vide (mobile, dashboard ou scénario)": "La version demandée ne peut pas être vide (mobile, dashboard ou scénario)",
+        "Le": " "
     },
     "core/template/scenario/sleep.default": {
         "Durée": "Продолжительность"
     },
     "core/class/plugin.class.php": {
         "Inconnue": "Неизвестный",
-        "Vous devez attendre au moins 45 secondes entre deux lancements du démon": "Вы должны ждать по крайней мере 45 секунд между запусками дьявола",
+        "Vous devez attendre au moins 45s entre 2 lancements du démon": "Vous devez attendre au moins 45s entre 2 lancements du démon",
         "Erreur sur la fonction deamon_start du plugin : ": "Ошибка на deamon_start функции плагина:",
-        "Veuillez exécuter le script : ": "Пожалуйста, запустите скрипт:",
+        "Veuillez executer le script : ": "Veuillez executer le script :",
         "Lancement de : ": "Запуск:",
-        "Gestion automatique désactivée": "Автоматическое управление отключено"
+        "Gestion automatique désactivée": "Автоматическое управление отключено",
+        "Les crons et démons sont désactivés": "Les crons et démons sont désactivés",
+        "Erreur sur la fonction cron du plugin : ": "Ошибка функции планировщика задач плагина :",
+        "Erreur sur la fonction cron15 du plugin : ": "Erreur sur la fonction cron15 du plugin :"
     },
     "core/class/scenarioSubElement.class.php": {
         "Exécution du sous-élément de type [condition] : ": "Запуск вложенного элемента [состояние]:",
@@ -67,15 +83,28 @@
         "Veuillez trouver ci-joint le rapport ": "Пожалуйста Прилагаю отчет",
         " du ": "   ",
         " généré le ": "генерируется",
-        "Aucune durée trouvée pour l'action pause ou la durée n'est pas valide : ": "Ни один член не найдено разорвать действие или длина является недействительным:",
+        "Aucune durée trouvée pour l'action sleep ou la durée n'est pas valide : ": "Aucune durée trouvée pour l'action sleep ou la durée n'est pas valide :",
         "[Erreur] Aucune commande trouvée pour ": "[Ошибка] Нет заказа найдено",
-        " options : ": "варианты:"
+        " options : ": "варианты:",
+        " avec comme option(s) : ": "как и в случае варианта (ов):",
+        "Affectation de la variable ": "Назначение переменной",
+        " => ": "=>",
+        "Execution du lancement en arriere plan : ": "Execution du lancement en arriere plan :",
+        "Lancement provoqué par le scénario  : ": "Lancement provoqué par le scénario  :",
+        "Action sur scénario impossible. Scénario introuvable - Vérifiez l'id : ": "Action sur scénario impossible. Scénario introuvable - Vérifiez l'id :",
+        "Arrêt forcé du scénario : ": "Arrêt forcé du scénario :",
+        "Commande non trouvée": "Commande non trouvée"
     },
     "core/class/scenarioElement.class.php": {
         "Non exécution des actions pour cause de répétition": "Нет производительность акций из-за повторение",
         "Tâche : ": "задача:",
         " programmé à : ": "запрограммирован на:",
-        " programmée à : ": "запрограммирован на:"
+        " programmée à : ": "запрограммирован на:",
+        " lancement immédiat ": "lancement immédiat",
+        "Expression non valide : ": "Expression non valide :",
+        "SI": "ЕСЛИ",
+        "ALORS": "ТОГДА",
+        "SINON": "ИНАЧЕ"
     },
     "core/js/scenario.class.js": {
         "Sélectionner le scénario": "Выберите сценарий"
@@ -84,11 +113,14 @@
         "Accueil": "Добро пожаловать"
     },
     "core/php/authentification.php": {
-        "Connexion de l'utilisateur par clef : ": "Войти по ключевому слову:"
+        "Connexion de l'utilisateur par clef : ": "Войти по ключевому слову:",
+        "Connexion de l'utilisateur : ": "Логин пользователя:"
     },
     "core/ajax/jeedom.ajax.php": {
         "Vue": "Вид",
-        "Objet": "Объект"
+        "Objet": "Объект",
+        "401 - Accès non autorisé": "401 - Несанкционированный доступ",
+        "Aucune documentation trouvée": "Aucune documentation trouvée"
     },
     "mobile/html/home.html": {
         "Equipements": "Оборудование",
@@ -100,17 +132,18 @@
         "Message(s)": "Сообщение(ия)",
         "Plugins": "Плагины",
         "Autre": "Другой",
-        "Déconnexion": "Выход"
+        "Déconnexion": "Выход",
+        "Plan 3D": "Plan 3D"
     },
     "mobile/html/deamon.html": {
         "Nom": "Имя",
-        "Statut": "Статус",
+        "Status": "Статус",
         "Date lancement": "Дата запуска",
         "Action": "Действие"
     },
     "mobile/html/cron.html": {
         "Nom": "Имя",
-        "Statut": "Статус",
+        "Status": "Статус",
         "Date lancement": "Дата запуска",
         "Action": "Действие"
     },
@@ -121,7 +154,7 @@
     },
     "mobile/html/health.html": {
         "Nom": "Имя",
-        "Statut": "Статус",
+        "Status": "Статус",
         "Commentaire": "Комментарии"
     },
     "mobile/js/home.js": {
@@ -129,7 +162,11 @@
         "Démons": "демоны",
         "Crons": "хрон",
         "Santé": "Здоровье",
-        "Tout": "Все"
+        "Tout": "Все",
+        "Alertes": "Уведомления",
+        "Analyse équipement": "Analyse équipement",
+        "Messages": "Сообщения",
+        "Message(s)": "Сообщение(ия)"
     },
     "core/class/cron.class.php": {
         "Arrêt de ": "Остановка"
@@ -145,7 +182,7 @@
         "Authentification par défaut": "По умолчанию аутентификация",
         "Droits sudo": "права Судо",
         "NOK": "Неактивен",
-        "Appliquer les droits root à Jeedom": "Применить привилегии суперпользователя Jeedom",
+        "Appliquer <a href=\"https://www.jeedom.com/doc/documentation/installation/fr_FR/doc-installation.html#_etape_4_définition_des_droits_root_à_jeedom\" targe=\"_blank\">cette étape</a> de l'installation": "Appliquer <a href=\"https://www.jeedom.com/doc/documentation/installation/fr_FR/doc-installation.html#_etape_4_définition_des_droits_root_à_jeedom\" targe=\"_blank\">cette étape</a> de l'installation",
         "Version Jeedom": "версия Jeedom",
         "Version PHP": "PHP версия",
         "Version OS": "версия ОС",
@@ -156,7 +193,23 @@
         "Persistance du cache": "Постоянство Cache",
         "Mémoire disponible": "доступная память",
         "Swap disponible": "своп доступны",
-        "Charge": "нагрузка"
+        "Charge": "нагрузка",
+        "Erreur cron : les crons sont désactivés. Allez dans Administration -> Moteur de tâches pour les réactiver": "Erreur cron : les crons sont désactivés. Allez dans Administration -> Moteur de tâches pour les réactiver",
+        "Erreur scénario : tous les scénarios sont désactivés. Allez dans Outils -> Scénarios pour les réactiver": "Erreur scénario : tous les scénarios sont désactivés. Allez dans Outils -> Scénarios pour les réactiver",
+        "Date système (dernière heure enregistrée)": "Date système (dernière heure enregistrée)",
+        "OK ": "ОК",
+        "Démarrage de jeedom": "Démarrage de jeedom",
+        "Arret des crons": "Arret des crons",
+        "Restauration du cache": "Restauration du cache",
+        "Nettoyage du cache des péripheriques USB": "Nettoyage du cache des péripheriques USB",
+        "Nettoyage du cache des péripheriques Bluetooth": "Nettoyage du cache des péripheriques Bluetooth",
+        "Démarrage des processus internet de jeedom": "Démarrage des processus internet de jeedom",
+        "Ecriture du fichier ": "Ecriture du fichier",
+        "Vérification de la configuration réseau interne": "Vérification de la configuration réseau interne",
+        "Envoi de l'evenement de démarrage": "Envoi de l'evenement de démarrage",
+        "Démarrage des plugins": "Démarrage des plugins",
+        "Test de connexion au market": "Test de connexion au market",
+        "Démarrage de jeedom fini avec succès": "Démarrage de jeedom fini avec succès"
     },
     "core/class/message.class.php": {
         "Message de ": "Сообщение"
@@ -173,7 +226,7 @@
         "Limite de la taille totale des sauvegardes à ": "Ограничить общий размер резервных копий",
         "Envoi de la sauvegarde dans le cloud": "Отправка резервной копии облака",
         "Nettoyage du dossier temporaire...": "Очистка временной папки ...",
-        "Nom de la sauvegarde : ": "Имя резервной копии:",
+        "Nom du backup : ": "Имя резервной копии:",
         "***************Fin de la sauvegarde de Jeedom***************\n": "*************** Конец резервного копирования Jeedom ***************",
         "Echec lors de la compression de la sauvegarde. Sauvegarde introuvable : ": "Не удалось сжатия резервных копий. Найдено резервное копирование:",
         "Erreur durant la sauvegarde : ": "Ошибка во время резервного копирования:",
@@ -192,12 +245,12 @@
         "Lumière": "Освещение",
         "Automatisme": "Автоматика",
         "Multimedia": "Мультимедиа",
-        "Défaut": "По умолчанию",
+        "Defaut": "По умолчанию",
         "Autre": "Другой",
         "Scénarios": "Сценарии"
     },
     "desktop/php/index.php": {
-        "Basculer la navigation": "Пропустить навигацию",
+        "Toggle navigation": "Включить/выключить навигацию",
         "Accueil": "Домой",
         "Dashboard": "Приборная панель",
         "Vue": "Просмотр",
@@ -218,7 +271,7 @@
         "Gestion des plugins": "Управление Плагинами",
         "Protocole domotique": "Протокол автоматики",
         "Communication": "Связь",
-        "Objets communiquants": "общающихся объектов",
+        "Objets communicants": "Objets communicants",
         "Energie": "Энергетика",
         "Monitoring": "Мониторинг",
         "Multimédia": "Мультимедиа",
@@ -245,7 +298,13 @@
         "Générale": "Главная",
         "Détaillée": "Подробно",
         "Ouverture d'un ticket": "Новый вопрос",
-        "Rapport": "доклад"
+        "Rapport": "доклад",
+        "Confort": "Confort",
+        "Redémarrer": "Перезагрузить",
+        "Eteindre": "Выключить",
+        "Plan 3d": "Plan 3d",
+        "Plan 3d inconnu. Verifier l'id": "Plan 3d inconnu. Verifier l'id",
+        "Design 3D": "Design 3D"
     },
     "desktop/php/message.php": {
         "Vider": "Пусто",
@@ -277,13 +336,20 @@
         "Aucune": "Нет",
         "Mode forcé": "принудительный режим",
         "Tout depuis cette version": "Все, начиная с этой версии",
-        "Valider": "Применить"
+        "Valider": "Применить",
+        "Avant toute mise à jour merci de consulter la note de version du core de Jeedom": "Avant toute mise à jour merci de consulter la note de version du core de Jeedom",
+        "ici": "здесь",
+        "Pré-update (mettre à jour le script d'update avant)": "Pré-update (mettre à jour le script d'update avant)",
+        "Sauvegarder avant": "Sauvegarder avant",
+        "Mettre à jour les plugins": "Mettre à jour les plugins",
+        "Mettre à jour le core": "Mettre à jour le core",
+        "Avant toute mise à jour, merci de consulter la note de version du core de Jeedom": "Avant toute mise à jour, merci de consulter la note de version du core de Jeedom"
     },
     "desktop/js/update.js": {
         "Options": "Опции",
-        "Etes-vous sûr de vouloir faire les mises à jour ?": "Вы уверены, что хотите делать обновления?",
-        "Etes-vous sûr de vouloir mettre à jour cet objet ?": "Вы уверены, что хотите обновить этот предмет?",
-        "Etes-vous sûr de vouloir supprimer cet objet ?": "Вы уверены, что хотите удалить этот пункт?",
+        "Etes-vous sur de vouloir faire les mises à jour ?": "Вы уверены, что желаете выполнить обновление?",
+        "Etes vous sur de vouloir mettre à jour cet objet ?": "Вы уверены, что желаете установить это обновление?",
+        "Etes vous sur de vouloir supprimer cet objet ?": "Вы уверены, что хотите удалить этот элемент?",
         "L\\'opération est réussie": "Операция прошла успешно",
         "L\\'opération a échoué": "Операция не удалась",
         "Dernière mise à jour du core : ": "Последнее обновление ядра:",
@@ -295,7 +361,8 @@
         "Changelog": "Список изменений",
         "Vérifier": "Проверить",
         "Supprimer": "Удалить",
-        "Sauvegarde effectuée": "Резервное копирование произведено"
+        "Sauvegarde effectuée": "Резервное копирование произведено",
+        "L\\'opération est réussie. Merci de faire F5 pour avoir les dernières nouveautés": "L\\'opération est réussie. Merci de faire F5 pour avoir les dernières nouveautés"
     },
     "desktop/php/plugin.php": {
         "Ajout depuis une autre source": "Добавление из другого источника",
@@ -313,13 +380,15 @@
         "Installation": "Установка",
         "Configuration": "Конфигурация",
         "Fonctionalités": "функциональные возможности",
-        "Panneau": "панель",
-        "Fonctionnalités": "черты"
+        "Panel": "Панель",
+        "Fonctionnalités": "черты",
+        "Gestion": "Управление",
+        "Sources": "Sources"
     },
     "core/class/interactQuery.class.php": {
         "J'ai une correspondance  : ": "У меня есть переписка:",
         " avec ": "с",
-        "Correspondance trop éloignée : ": "Переписка слишком далеко:",
+        "Correspondance trop éloigné : ": "Correspondance trop éloigné :",
         "Désolé je n'ai pas compris": "Извините, я не понимаю",
         "Désolé je n'ai pas compris la demande": "Извините, запрос не понятен",
         "Désolé je ne comprends pas la demande": "Извините, запрос не понятен",
@@ -332,7 +401,9 @@
         " de ": "из",
         " dans ": "в",
         "C'est fait": "Это делается",
-        "Erreur : ": "ошибка:"
+        "Erreur : ": "ошибка:",
+        "Correspondance trouvée : ": "Correspondance trouvée :",
+        " mais ne contient pas : ": "mais ne contient pas :"
     },
     "desktop/php/log.php": {
         "Rechercher": "Искать",
@@ -389,8 +460,8 @@
         "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à Jeedom. L'équipe Jeedom se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "ВНИМАНИЕ: эти операции являются рискованными, вы можете потерять доступ к вашей системе и Jeedom. Команда Jeedom оставляет за собой право отказать в просьбе какой-либо поддержки при неправильном обращении.",
         "Accès à l'interface d'administration": "Доступ к интерфейсу управления",
         "Lancer": "Запуск",
-        "Sécurité": "Безопасность",
-        "Nombre d'échecs tolérés": "Количество отказов переносилось",
+        "Securité": "Securité",
+        "Nombre d'échec toléré": "Nombre d'échec toléré",
         "Temps maximum entre les échecs (s)": "Максимальное время наработки на отказ (ы)",
         "Durée du bannissement (s), -1 pour infini": "Время изгнание (ы), -1 для бесконечного",
         "IP \"blanche\"": "IP «белый»",
@@ -403,7 +474,7 @@
         "Machine (hostname)": "Компьютер (hostname)",
         "Utilisateur": "Пользователь",
         "Mot de passe": "Пароль",
-        "Configuration réseau": "Конфигурация сети",
+        "Configuration réseaux": "Конфигурация сети",
         "Attention : cette configuration n'est là que pour informer Jeedom de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre Jeedom": "Внимание: эта конфигурация только для предоставления информации Jeedom конфигурации сети и не оказывает никакого влияния на порты или IP на самом деле использовать для соединения Jeedom",
         "Accès interne": "внутренний доступ",
         "Protocole": "Протокол",
@@ -451,7 +522,7 @@
         "Attention toute modification du moteur de cache nécessite un redémarrage de Jeedom": "Обратите внимание на любые изменения в двигатель кэша необходимо перезапустить Jeedom",
         "Statistiques": "статистика",
         "Moteur de cache": "крышка двигателя",
-        "Système de fichiers (/tmp/jeedom-cache)": "файловая система (/ TMP / jeedom искать)",
+        "Système de fichier (/tmp/jeedom-cache)": "Système de fichier (/tmp/jeedom-cache)",
         "Memcached": "Memcached",
         "Adresse Memcache": "Memcached Адрес",
         "Port Memcache": "Порт Memcached",
@@ -469,19 +540,19 @@
         "1 mot": "1 слово",
         "2 mots": "2 слова",
         "3 mots": "3 слова",
-        "Réduire le poids de": "Снижение веса",
+        "Réduire le poid de": "Réduire le poid de",
         "4 mots": "4 слов",
         "Ne pas répondre si l'interaction n'est pas comprise": "Не отвечайте, если взаимодействие не входит",
         "Regex général d'exclusion pour les interactions": "Regex общее исключение для взаимодействия",
         "Interaction automatique & contextuelle": "автоматический поп и взаимодействие",
-        "Activer les interactions automatiques": "Включение автоматических взаимодействий",
-        "Activer les réponses contextuelles": "Включить контекстные ответы",
+        "Activer les interactions automatique": "Activer les interactions automatique",
+        "Activer les réponses contextuelle": "Activer les réponses contextuelle",
         "Réponse contextuelle prioritaire si la phrase commence par": "Приоритет контекстного ответ, если начинается предложение",
         "Découper une interaction en 2 si elle contient": "Отрежьте взаимодействие 2, если она содержит",
         "Synonyme pour les objets": "Синоним для объектов",
         "Synonyme pour les équipements": "Синоним для оборудования",
         "Synonyme pour les commandes": "Синоним для заказов",
-        "Synonyme pour les résumés": "Синоним для рефератов",
+        "Synonyme pour les résumé": "Synonyme pour les résumé",
         "Couleurs": "цвета",
         "Nom": "Имя",
         "Code HTML": "HTML Код",
@@ -502,7 +573,7 @@
         "Commande sur": "обычай",
         "Log": "Журнал",
         "Moteur de log": "Диспетчер логгирования",
-        "Défaut": "По умолчанию",
+        "Defaut": "По умолчанию",
         "Syslog": "Syslog",
         "SyslogUdp": "SyslogUdp",
         "Adresse syslog udp": "Адрес syslog udp",
@@ -515,6 +586,7 @@
         "Warning": "предупреждение",
         "Erreur": "Ошибка",
         "Niveau de log pour": "уровень журналирования для",
+        "Défaut": "По умолчанию",
         "Configuration LDAP": "Конфигурация LDAP (облегчённый протокол доступа к каталогам)",
         "Activer l'authentification LDAP": "Активировать LDAP аутентификацию",
         "Hôte": "Хост",
@@ -547,8 +619,8 @@
         "Hauteur des rapport (en px)": "Отношение высоты (в рх)",
         "Largeur minimal (en px)": "Минимальная ширина (в рх)",
         "Hauteur minimal (en px)": "минимальная высота (в РХ)",
-        "Nettoyer les rapports plus vieux de (jours)": "Чистые старые отчеты (дни)",
-        "Système de fichiers (/tmp/jeedom/cache)": "файловая система (/ TMP / jeedom / кэш)",
+        "Nettoyer les rapport plus viex de (jours)": "Nettoyer les rapport plus viex de (jours)",
+        "Système de fichier (/tmp/jeedom/cache)": "Système de fichier (/tmp/jeedom/cache)",
         "Démarré : ": "Начало:",
         "Configuration des graphiques de lien": "Настройка ссылок графики",
         "Profondeur pour les scénarios": "Глубина для сценариев",
@@ -560,7 +632,62 @@
         "Administration": "Администрирование",
         "Interface": "интерфейс",
         "Mac": "макинтош",
-        "Nettoyer les rapports plus anciens de (jours)": "Чистые старые отчеты (дни)"
+        "Nettoyer les rapport plus anciens de (jours)": "Nettoyer les rapport plus anciens de (jours)",
+        "API": "API",
+        "OS/DB": "OS/DB",
+        "Réseaux": "Réseaux",
+        "Commandes": "Команды",
+        "Cache": "Cache",
+        "Interactions": "Взаимодействие",
+        "Rapports": "Rapports",
+        "Liens": "связи",
+        "Résumés": "Résumés",
+        "Logs": "Журналы",
+        "Equipements": "Оборудование",
+        "Mises à jour": "Mises à jour",
+        "Dernière date connue": "Dernière date connue",
+        "Editeur de fichier": "Editeur de fichier",
+        "Editeur": "Editeur",
+        "LDAP": "LDAP",
+        "Connexion": "Соединение",
+        "Supprimer les IPs bannies": "Supprimer les IPs bannies",
+        "Supprimer": "удаление",
+        "Interaction automatique, contextuelle & avertissement": "Interaction automatique, contextuelle & avertissement",
+        "Activer les interactions \"previens moi\"": "Activer les interactions \"previens moi\"",
+        "Réponse de type \"previens moi\" si la phrase commence par": "Réponse de type \"previens moi\" si la phrase commence par",
+        "Commande de retour par défaut": "Commande de retour par défaut",
+        "Paramètre de prerender": "Paramètre de prerender",
+        "Paramètre de render": "Paramètre de render",
+        "Timeline": "Timeline",
+        "Nombre maximum d'évènements": "Nombre maximum d'évènements",
+        "Supprimer tous les évènements": "Supprimer tous les évènements",
+        "Librairie LDAP non trouvée. Merci de l'installer avant de pouvoir utiliser la connexion DLAP": "Librairie LDAP non trouvée. Merci de l'installer avant de pouvoir utiliser la connexion DLAP",
+        "Librairie LDAP non trouvée. Merci de l'installer avant de pouvoir utiliser la connexion LDAP": "Librairie LDAP non trouvée. Merci de l'installer avant de pouvoir utiliser la connexion LDAP",
+        "IPs bannies": "IPs bannies",
+        "Sessions active": "Sessions active",
+        "ID": "Идентификатор",
+        "Login": "Логин",
+        "Actions": "Действия",
+        "Réduire le poids de": "Снижение веса",
+        "Champs recherche utilisateur": "Champs recherche utilisateur",
+        "Nombre d'échecs tolérés": "Количество отказов переносилось",
+        "Attention : toute modification du moteur de cache nécessite un redémarrage de Jeedom": "Attention : toute modification du moteur de cache nécessite un redémarrage de Jeedom",
+        "Système de fichiers (/tmp/jeedom/cache)": "файловая система (/ TMP / jeedom / кэш)",
+        "Plus la sensibilité est basse (proche de 1), plus la correspondance doit être exacte.": "Plus la sensibilité est basse (proche de 1), plus la correspondance doit être exacte.",
+        "Regex générale d'exclusion pour les interactions": "Regex générale d'exclusion pour les interactions",
+        "Activer les interactions automatiques": "Включение автоматических взаимодействий",
+        "Activer les réponses contextuelles": "Включить контекстные ответы",
+        "Activer les interactions \"préviens moi\"": "Activer les interactions \"préviens moi\"",
+        "Réponse de type \"préviens moi\" si la phrase commence par": "Réponse de type \"préviens moi\" si la phrase commence par",
+        "Synonymes pour les objets": "Synonymes pour les objets",
+        "Synonymes pour les équipements": "Synonymes pour les équipements",
+        "Synonymes pour les commandes": "Synonymes pour les commandes",
+        "Synonymes pour les résumés": "Synonymes pour les résumés",
+        "Nettoyer les rapports plus anciens de (jours)": "Чистые старые отчеты (дни)",
+        "Adresse syslog UDP": "Adresse syslog UDP",
+        "Port syslog UDP": "Port syslog UDP",
+        "Synonyme commande slider maximum": "Synonyme commande slider maximum",
+        "Synonyme commande slider minimum": "Synonyme commande slider minimum"
     },
     "desktop/js/administration.js": {
         "Etes-vous sûr de vouloir réinitialiser la clef API de ": "Вы уверены, что хотите сбросить ключ API",
@@ -573,14 +700,17 @@
         "Cache nettoyé": "очистить кэш",
         "Test réussi": "успешное испытание",
         "Administration système": "система администрирования",
-        "Création des commandes virtuelles réussies": "Создание успешных виртуальных дисков",
+        "Création des commandes virtuel réussies": "Création des commandes virtuel réussies",
         "Somme": "сумма",
         "Moyenne": "Средний",
         "Texte": "текст",
         "Icône": "Иконка",
         "Aucun": "Нет",
         "Binaire": "двоичный",
-        "Créer virtuel": "Создание виртуального"
+        "Créer virtuel": "Создание виртуального",
+        "Evènement de la timeline supprimé avec succès": "Evènement de la timeline supprimé avec succès",
+        "Suppression des IPs bannies réussie": "Suppression des IPs bannies réussie",
+        "Administration base de données": "Administration base de données"
     },
     "desktop/php/interact.php": {
         "Ajouter interaction": "Добавить взаимодействие",
@@ -596,7 +726,7 @@
         "Groupe": "Группа",
         "Demande": "Приложение",
         "Synonyme": "Синоним",
-        "Remplace les mots par leurs synonymes lors de la génération des commandes": "Заменить слова их синонимами при формировании заказов",
+        "Remplace les mots par leur synonymes lors de la génération des commandes": "Заменяет слова их синонимами при создании команды",
         "Réponse": "Ответить",
         "Conversion binaire": "Бинарное преобразование",
         "Convertir les commandes binaires": "Преобразование бинарных команд",
@@ -621,7 +751,17 @@
         "Voir": "Вид",
         "Nombre de phrases générées": "Количество созданных предложений",
         "Supprimer": "Удалить",
-        "Enregistrer": "Запись"
+        "Enregistrer": "Запись",
+        "Interaction ID :": "Interaction ID :",
+        "Phrase(s)": "Phrase(s)",
+        "Actions": "Действия",
+        "Actif": "Активный",
+        "Mot(s) obligatoire": "Mot(s) obligatoire",
+        "Mot(s) obligatoire(s)": "Mot(s) obligatoire(s)",
+        "Remplace les mots par leurs synonymes lors de la génération des commandes": "Заменить слова их синонимами при формировании заказов",
+        "Liste des utilisateurs (identifiants) séparés par un |": "Liste des utilisateurs (identifiants) séparés par un |",
+        "Limiter aux commandes appartenant aux objets": "Limiter aux commandes appartenant aux objets",
+        "Limiter aux catégories": "Limiter aux catégories"
     },
     "desktop/js/interact.js": {
         "Liste des interactions": "Список взаимодействий",
@@ -676,7 +816,22 @@
         "Retapez le mot de passe": "Введите пароль еще раз",
         "Hash de l'utilisateur": "Hash Пользователь",
         "Regénérer": "регенерировать",
-        "Sauvegarder": "Сохранить"
+        "Sauvegarder": "Сохранить",
+        "Notifications": "Уведомления",
+        "Commande de notification utilisateur": "Commande de notification utilisateur",
+        "Identification": "Identification",
+        "Action": "Действие",
+        "Supprimer": "удаление",
+        "Péripherique enregistrés": "Péripherique enregistrés",
+        "Supprimer tout": "Supprimer tout",
+        "Date derniere utilisation": "Date derniere utilisation",
+        "IP": "IP",
+        "Sessions actives": "Sessions actives",
+        "ID": "Идентификатор",
+        "Login": "Логин",
+        "Date": "Дата",
+        "Actions": "Действия",
+        "Déconnecter": "Déconnecter"
     },
     "desktop/js/profils.js": {
         "Authentification 2 étapes": "Authentication шаги 2",
@@ -686,7 +841,7 @@
     },
     "core/js/cmd.class.js": {
         "Veuillez indiquer le code ?": "Пожалуйста, укажите код?",
-        "Etes-vous sûr de vouloir faire cette action ?": "Вы уверены, что хотите сделать это действие?",
+        "Etes vous sur de vouloir faire cette action ?": "Etes vous sur de vouloir faire cette action ?",
         "Résultat de la commande : ": "Результат команды:",
         "Action exécutée avec succès": "Действие успешно завершено",
         "[Jeedom] Message de test": "[Jeedom] Тестовое сообщение",
@@ -717,7 +872,15 @@
         "Etes-vous sûr de vouloir redémarrer le système ?": "Вы уверены, что хотите перезагрузить?",
         "Evénement en temps réel": "События в реальном времени",
         "Message Jeedom": "Сообщение Jeedom",
-        "Choisissez votre icône": "Выберите иконку"
+        "Choisissez votre icône": "Выберите иконку",
+        "Configuration avancée": "Расширенные настройки",
+        "Configuration du widget": "Настройки виджета",
+        "Defaut": "По умолчанию",
+        "Table": "Table",
+        "Ajouter colonne": "Ajouter colonne",
+        "Ajouter ligne": "Ajouter ligne",
+        "Supprimer colonne": "Supprimer colonne",
+        "Supprimer ligne": "Supprimer ligne"
     },
     "desktop/js/view.js": {
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Вы редактируете вы можете вылепить перемещение виджетов, изменить размер и изменить порядок команд в виджетах"
@@ -733,7 +896,9 @@
         "Assistant cron": "Помощник cron",
         "Annuler": "Отменить",
         "Valider": "Применить",
-        "Sélectionner la commande": "Выберите команду"
+        "Sélectionner la commande": "Выберите команду",
+        "Erreur de connexion": "Erreur de connexion",
+        "Erreur lors de la connexion à jeedom": "Erreur lors de la connexion à jeedom"
     },
     "desktop/php/scenarioAssist.php": {
         "Interface simple": "Простой интерфейс",
@@ -837,12 +1002,12 @@
         "Programmation": "Программирование",
         "Précédent": "Предыдущий",
         "Prochain": "Следующий",
-        "Autoriser plusieurs lancements en parallèle": "Разрешить несколько запусков параллельно",
-        "Le scénario pourra tourner plusieurs fois en même temps": "Сценарий будет работать одновременно несколько раз",
+        "Autoriser plusieurs lancement en parallèle": "Autoriser plusieurs lancement en parallèle",
+        "Le scénario pourra tourné plusieurs fois en même temps": "Le scénario pourra tourné plusieurs fois en même temps",
         "Pas de log": "Нет журнала",
         "Le scénario n'écrit plus de log": "Для сценария нет журнала",
         "Mode synchrone": "синхронно",
-        "Le scénario est en mode synchrone. Attention, cela peut rendre le système instable": "Сценарий в синхронном режиме. Внимание, это может сделать систему нестабильной",
+        "Le scénario est mode synchrone, attention peux rendre le système instable": "Le scénario est mode synchrone, attention peux rendre le système instable",
         "Etat": "Состояние",
         "Exécuter": "Выполнить",
         "Dupliquer le scénario": "Скопируйте сценарий",
@@ -863,11 +1028,11 @@
         "Attendre": "Подождать",
         "Aller au design": "Перейти в разработку",
         "Ajouter un log": "Добавить журнал",
-        "Créer un message": "Создать сообщение",
-        "Activer/Désactiver Masquer/Afficher un équipement": "Включить / выключить Скрыть / Показать оборудование",
+        "Creer un message": "Создать сообщение",
+        "Activer/Desactiver Masquer/Afficher un équipement": "Activer/Desactiver Masquer/Afficher un équipement",
         "Faire une demande": "Сделать запрос",
         "Arrêter Jeedom": "Остановить Jeedom",
-        "Retourner un texte/une donnée": "Возвращает текст / данность",
+        "Retourner un texte/une données": "Retourner un texte/une données",
         "Icône": "Иконка",
         "Alerte": "Предупреждение",
         "Pop-up": "Всплывающий",
@@ -880,21 +1045,32 @@
         "Change le design affiché sur tous les navigateurs qui affichent un design par le design demandé": "Изменение дизайна отображается во всех браузерах, которые отображают дизайн запрашиваемым дизайна",
         "Permet de rajouter un message dans les logs": "Добавить сообщение в лог",
         "Permet d'ajouter une message dans le centre de message": "Добавляет сообщение в центр сообщений",
-        "Permet de modifier les propriétés visible/invisible actif/inactif d'un équipement": "Изменение свойств видимого / невидимый / выключением оборудования",
-        "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.": "Действие, которое позволяет Jeedom применять затем сохранить ответ в переменной. Это действие блокирует и заканчивается только тогда, когда jeedom получает ответ или тайм-аут будет достигнут. На данный момент это действие совместимо только с SMS-плагинов, расслабленные, и Сарра телеграмм.",
+        "Permet de modifier les prorietés visible/invisible actif/inactif d'un équipement": "Изменить настройки оборудования - видимый/невидимый, активный/неактивный",
+        "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finie que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.": "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finie que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.",
         "Envoi l'ordre à Jeedom de s'éteindre": "Отправка заказа на Jeedom исчезновения",
         "Retourne un texte ou une valeur pour une interaction par exemple": "Возвращает текст или значение для взаимодействия, например,",
         "Permet d'affecter une icone au scénario": "Назначить иконку для сценария",
-        "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page jeedom ouverte. Vous pouvez en plus choisir 4 niveaux d'alerte": "Показывает небольшое предупреждение на всех браузерах, которые имеют страницу открытой jeedom. Вы также можете выбрать один из четырех уровней тревоги",
-        "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page jeedom ouverte.": "Отображает всплывающее окно, которое абсолютно необходимо включить во всех браузерах, которые имеют страницу открытой jeedom.",
+        "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte": "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte",
+        "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page jeedom d'ouvert.": "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page jeedom d'ouvert.",
         "Valider": "Применить",
         "Rapport": "доклад",
-        "Permet d'envoyer par une commande message un rapport d'une vue, d'un design ou d'un panneau en PNG/PDF/JPEG/SVG.": "Посылает Control Message представления отчетов, дизайнер или панель PNG / PDF / JPEG / SVG.",
+        "Permet d'envoyer par une commande message un rapport d'une vue, d'un design ou d'un panel en PNG/PDF/JPEG/SVG.": "Permet d'envoyer par une commande message un rapport d'une vue, d'un design ou d'un panel en PNG/PDF/JPEG/SVG.",
         "Graphique": "Графический",
         "Liens": "связи",
         "Multi lancement": "мульти запуск",
         "Défaut": "По умолчанию",
-        "Temps réel": "Окно событий"
+        "Temps réel": "Окно событий",
+        "Activer scénarios": "Включить сценарии",
+        "Template": "Подложка",
+        "Expression": "Expression",
+        "Variables": "Variables",
+        "Général": "общий",
+        "Suivre dans la timeline": "Suivre dans la timeline",
+        "Les executions du scénario pourront etre vu dans la timeline": "Les executions du scénario pourront etre vu dans la timeline",
+        "Timeout en secondes (0 = illimité)": "Timeout en secondes (0 = illimité)",
+        "Le scénario pourra tourner plusieurs fois en même temps": "Сценарий будет работать одновременно несколько раз",
+        "Le scénario est en mode synchrone. Attention, cela peut rendre le système instable": "Сценарий в синхронном режиме. Внимание, это может сделать систему нестабильной",
+        "Les exécutions du scénario pourront être vues dans la timeline.": "Les exécutions du scénario pourront être vues dans la timeline."
     },
     "desktop/js/scenario.js": {
         "Sauvegarde effectuée avec succès": "Резервное копирование завершено успешно",
@@ -964,7 +1140,14 @@
         "CODE": "КОД",
         "ACTION": "ДЕЙСТВИЕ",
         "Graphique de lien": "Link Graph",
-        "Avancé": "передовой"
+        "Avancé": "передовой",
+        "Le bloc Sinon ne peut être supprimé s'il contient des éléments": "Le bloc Sinon ne peut être supprimé s'il contient des éléments",
+        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Cocher pour que la commande s\\'éxecute en parrallele des autres actions",
+        "Décocher pour desactiver l\\'action": "Décocher pour desactiver l\\'action",
+        "Décocher pour désactiver l\\'action": "Décocher pour désactiver l\\'action",
+        "Afficher/masquer le bloc Sinon": "Afficher/masquer le bloc Sinon",
+        "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Cocher pour que la commande s\\'exécute en parallèle des autres actions",
+        "Permet d\\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (ex. : SI/ALORS….)": "Permet d\\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (ex. : SI/ALORS….)"
     },
     "core/template/scenario/report.default": {
         "Vue": "Вид",
@@ -977,8 +1160,11 @@
         "SVG": "SVG",
         "Exporter": "Экспорт",
         "Design": "Дизайн",
-        "Panneau": "панель",
-        "Plugin": "Плагин"
+        "Panel": "Панель",
+        "Plugin": "Плагин",
+        "Largeur  (px)": "Largeur  (px)",
+        "Hauteur (px)": "Hauteur (px)",
+        "Delai (ms)": "Delai (ms)"
     },
     "core/template/scenario/gotodesign.default": {
         "Design": "Дизайн"
@@ -994,7 +1180,9 @@
         "Rechercher": "Искать",
         "Vider les logs": "Очистить логи",
         "Télécharger": "Скачать",
-        "Log vidés avec succès": "Вход опустели успешно"
+        "Log vidés avec succès": "Вход опустели успешно",
+        "Vider le log": "Vider le log",
+        "Log vidé avec succès": "Журнал успешно очищен"
     },
     "__FILE": {
         "[jeedom] Rapport ": "[Jeedom] Отчет",
@@ -1058,22 +1246,26 @@
         "Colonne": "Столбец",
         "Camembert": "камамбер",
         "Aucun groupement": "нет группы",
-        "Somme par jour": "Сумма в день",
+        "Sommes par jour": "Sommes par jour",
         "Moyenne par jour": "среднесуточной",
         "Minimum par jour": "Минимальная ежедневная",
         "Maximum par jour": "Максимально за день",
-        "Somme par semaine": "Количество в неделю",
+        "Sommes par semaine": "Sommes par semaine",
         "Moyenne par semaine": "Средняя за неделю",
         "Minimum par semaine": "Минимум за неделю",
         "Maximum par semaine": "Максимально за неделю",
-        "Somme par mois": "Ежемесячная сумма",
+        "Sommes par mois": "Sommes par mois",
         "Moyenne par mois": "ежемесячно",
         "Minimum par mois": "Минимальный ежемесячный",
         "Maximum par mois": "Максимально за месяц",
         "Droite": "право",
         "Gauche": "слева",
         "Non": "Нет",
-        "Oui": "Да"
+        "Oui": "Да",
+        "Largeur": "Largeur",
+        "Moyenne par année": "В среднем за год",
+        "Minimum par année": "Минимум в год",
+        "Maximum par année": "Максимально за год"
     },
     "desktop/modal/eqLogic.human.insert.php": {
         "Objet": "Объект",
@@ -1100,7 +1292,7 @@
         "Aimanter à la grille": "Привязать к сетке",
         "Masquer surbrillance des éléments": "Скрыть выделенные элементы",
         "Supprimer le design": "Удалить дизайн",
-        "Etes-vous sûr de vouloir supprimer ce design ?": "Вы уверены, что хотите удалить этот проект?",
+        "Etes vous sûr de vouloir supprimer ce design ?": "Etes vous sûr de vouloir supprimer ce design ?",
         "Creer un design": "Создать дизайн",
         "Dupliquer le design": "Дублировать дизайн",
         "Nom la copie du design ?": "Назовите копию дизайна?",
@@ -1113,10 +1305,12 @@
         "Supprimer": "Удалить",
         "Dupliquer": "Дублировать",
         "Verrouiller": "Блокировка",
-        "Nom du design ?": "Название дизайна ?"
+        "Nom du design ?": "Название дизайна ?",
+        "Veuillez indiquer le code ?": "Veuillez indiquer le code ?",
+        "Etes-vous sûr de vouloir supprimer ce design ?": "Вы уверены, что хотите удалить этот проект?"
     },
     "core/com/http.com.php": {
-        "Echec de la requête HTTP : ": "Сбой запроса HTTP:"
+        "Echec de la requête http : ": "Не удалось запросить HTTP:"
     },
     "desktop/php/report.php": {
         "Type": "Тип",
@@ -1136,7 +1330,7 @@
         "Aperçu": "обследование"
     },
     "core/ajax/report.ajax.php": {
-        "Aucune méthode correspondante à : ": "Нет соответствующего метода:"
+        "Aucune methode correspondante à : ": "Нет соответствующего метода:"
     },
     "core/php/downloadFile.php": {
         "Fichier non trouvé : ": "Файл не найден:",
@@ -1164,25 +1358,28 @@
         "Tailles": "Размеры",
         "Taille (LxH)": "Размер (Ш х В)",
         "Image supprimée": "изображение удалено",
-        "Design sauvegardé": "дизайн сохранен"
+        "Design sauvegardé": "дизайн сохранен",
+        "Code d'accès": "Код доступа",
+        "Couleur de fond": "Цвет фона",
+        "Fond transparent": "Прозрачный фон"
     },
     "desktop/modal/cmd.history.php": {
         "Attention une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher": "Предупреждение об избыточном диапазоне дат, который дает слишком большой период времени, что может привести к невозможности расчета и отображения",
         "Ok": "Ок",
         "Aucun groupement": "нет группы",
-        "Somme par jour": "Сумма в день",
+        "Sommes par jour": "Sommes par jour",
         "Moyenne par jour": "среднесуточной",
         "Minimum par jour": "Минимальная ежедневная",
         "Maximum par jour": "Максимально за день",
-        "Somme par semaine": "Количество в неделю",
+        "Sommes par semaine": "Sommes par semaine",
         "Moyenne par semaine": "Средняя за неделю",
         "Minimum par semaine": "Минимум за неделю",
         "Maximum par semaine": "Максимально за неделю",
-        "Somme par mois": "Ежемесячная сумма",
+        "Sommes par mois": "Sommes par mois",
         "Moyenne par mois": "ежемесячно",
         "Minimum par mois": "Минимальный ежемесячный",
         "Maximum par mois": "Максимально за месяц",
-        "Somme par année": "Сумма в год",
+        "Sommes par année": "Sommes par année",
         "Moyenne par année": "В среднем за год",
         "Minimum par année": "Минимум в год",
         "Maximum par année": "Максимально за год",
@@ -1191,16 +1388,23 @@
         "Colonne": "Столбец",
         "Variation": "изменение",
         "Escalier": "лестница",
-        "Historique": "История"
+        "Historique": "История",
+        "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher": "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher",
+        "Somme par jour": "Сумма в день",
+        "Somme par semaine": "Количество в неделю",
+        "Somme par mois": "Ежемесячная сумма",
+        "Somme par année": "Сумма в год"
     },
     "mobile/js/equipment.js": {
         "Tout": "Все"
     },
     "desktop/js/dashboard.js": {
-        "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Вы редактируете вы можете вылепить перемещение виджетов, изменить размер и изменить порядок команд в виджетах"
+        "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Вы редактируете вы можете вылепить перемещение виджетов, изменить размер и изменить порядок команд в виджетах",
+        "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder": "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder"
     },
     "desktop/js/log.js": {
         "Pause": "Пауза",
+        "Etes-vous sur de vouloir supprimer tous les logs ?": "Вы уверены, что желаете удалить все журналы?",
         "Etes-vous sûr de vouloir supprimer tous les logs ?": "Вы уверены, что хотите удалить все журналы?"
     },
     "desktop/js/plugin.js": {
@@ -1209,8 +1413,8 @@
         "Documentation": "Документация",
         "Changelog": "Список изменений",
         "Détails": "Подробности",
-        "Afficher le panneau desktop": "Вид рабочего стола панель",
-        "Afficher le panneau mobile": "Просмотр подвижной панели",
+        "Afficher le panel desktop": "Afficher le panel desktop",
+        "Afficher le panel mobile": "Afficher le panel mobile",
         "Oui": "Да",
         "Activer": "Активировать",
         "Non": "Нет",
@@ -1219,23 +1423,28 @@
         "Inactif": "неактивный",
         "Action": "Действие",
         "Désactiver": "Отключить",
-        "Votre version de Jeedom ne permet pas d\\'activer ce plugin": "Ваша версия Jeedom не позволяет \\ активировать этот плагин",
+        "Votre version de jeedom ne permet pas d\\'activer ce plugin": "Votre version de jeedom ne permet pas d\\'activer ce plugin",
         "Niveau de log local": "Уровень лога по умолчанию",
         "Aucun": "Нет",
-        "Défaut": "По умолчанию",
+        "Defaut": "По умолчанию",
         "Debug": "Отладка",
         "Info": "Информация",
         "Warning": "предупреждение",
         "Error": "Ошибка",
         "Logs": "Журналы",
-        "Etes-vous sûr de vouloir supprimer ce plugin ?": "Вы уверены, что хотите удалить этот плагин?",
+        "Etes vous sûr de vouloir supprimer ce plugin ?": "Etes vous sûr de vouloir supprimer ce plugin ?",
         "Market": "Маркет",
-        "Sauvegarde de la configuration des panneaux effectuée": "Сохранение конфигурации панелей, выполненных",
+        "Sauvegarde de la configuration des panels effectuée": "Sauvegarde de la configuration des panels effectuée",
         "Sauvegarde des fonctionalités effectuée": "Функциональные возможности, выполняемые резервное копирование",
         "Sauvegarde de la configuration des logs effectuée": "Настройки логов сохранены",
         "Log du plugin": "Вход плагин",
         "Sauvegarde effectuée": "Резервное копирование произведено",
-        "Ajouter un plugin": "Добавить плагин"
+        "Ajouter un plugin": "Добавить плагин",
+        "Afficher le panneau desktop": "Вид рабочего стола панель",
+        "Afficher le panneau mobile": "Просмотр подвижной панели",
+        "Votre version de Jeedom ne permet pas d\\'activer ce plugin": "Ваша версия Jeedom не позволяет \\ активировать этот плагин",
+        "Etes-vous sûr de vouloir supprimer ce plugin ?": "Вы уверены, что хотите удалить этот плагин?",
+        "Sauvegarde de la configuration des panneaux effectuée": "Сохранение конфигурации панелей, выполненных"
     },
     "core/repo/market.list.repo.php": {
         "Market Jeedom": "Маркет Jeedom"
@@ -1259,7 +1468,7 @@
         "Sauvegardes": "Резервные копии",
         "Lancer": "Запуск",
         "Emplacement des sauvegardes": "Место хранения резервных копий",
-        "  ": "Количество дней хранения резервных копий",
+        "Nombre de jour(s) de mémorisation des sauvegardes": "Количество дней для хранения резервных копий",
         "Taille totale maximale des backups (Mo)": "Максимальный общий объем резервных копий (MB)",
         "Sauvegardes locales": "Локальные резервные копии",
         "Sauvegardes disponibles": "Доступные резервные копии",
@@ -1303,14 +1512,30 @@
         "Login": "Логин",
         "Mot de passe": "Пароль",
         "Annuler": "Отменить",
-        "Enregistrer": "Запись"
+        "Enregistrer": "Запись",
+        "Sessions active": "Sessions active",
+        "ID": "Идентификатор",
+        "IP": "IP",
+        "Date": "Дата",
+        "Supprimer": "удаление",
+        "Profil": "Профиль",
+        "Sessions actives": "Sessions actives",
+        "Péripherique enregistrés": "Péripherique enregistrés",
+        "Supprimer tout": "Supprimer tout",
+        "Identification": "Identification",
+        "Utilisateur": "Пользователь",
+        "Date derniere utilisation": "Date derniere utilisation",
+        "Action": "Действие",
+        "Déconnecter": "Déconnecter",
+        "Date dernière utilisation": "Date dernière utilisation",
+        "Identifiant": "Войти"
     },
     "desktop/js/user.js": {
         "Sauvegarde effectuée": "Резервное копирование произведено",
         "Etes-vous sûr de vouloir supprimer cet utilisateur ?": "Вы уверены, что хотите удалить этого пользователя?",
         "L\\'utilisateur a bien été supprimé": "Пользователь был удален",
         "Quel est le nouveau mot de passe ?": "Какой новый пароль?",
-        "Etes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "Вы уверены, что хотите изменить ключ API от пользователя \\ «s?",
+        "Etês vous sur de vouloir changer la clef API de l\\'utilisateur ?": "Etês vous sur de vouloir changer la clef API de l\\'utilisateur ?",
         "Modification effectuée": "Изменение сделано",
         "Actif": "Активный",
         "Local seulement": "только локальный",
@@ -1323,7 +1548,10 @@
         "Regenérer clef API": "Регенерация API Key",
         "Supprimer": "Удалить",
         "Changer le mot de passe": "Сменить пароль",
-        "Gérer les droits": "Управление правами"
+        "Gerer les droits": "Gerer les droits",
+        "Régénérer clef API": "Régénérer clef API",
+        "Gérer les droits": "Управление правами",
+        "Etes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "Вы уверены, что хотите изменить ключ API от пользователя \\ «s?"
     },
     "desktop/modal/log.display.php": {
         "Supprimer": "Удалить",
@@ -1347,7 +1575,8 @@
         "Aucune santé spécifique": "Нет конкретного здоровья",
         "NOK": "Неактивен",
         "erreurs": "ошибки",
-        "Démon en mode manuel": "Demon в ручном режиме"
+        "Démon en mode manuel": "Demon в ручном режиме",
+        "Désactivé": "инвалид"
     },
     "desktop/js/health.js": {
         "Configuration du plugin": "плагин конфигурации",
@@ -1376,8 +1605,9 @@
         "Programmation": "Программирование",
         "Timeout (min)": "Тайм-аут (мин)",
         "Dernier lancement": "Последний запуск",
-        "Dernière durée": "последний раз",
-        "Statut": "Статус"
+        "Derniere durée": "Derniere durée",
+        "Statut": "Статус",
+        "Activer le système cron": "Включение системы Cron"
     },
     "desktop/js/cron.js": {
         "Désactiver le système cron": "Отключение системы Cron",
@@ -1404,9 +1634,9 @@
     "desktop/php/display.php": {
         "Rechercher": "Искать",
         "Inactif": "неактивный",
-        "Nombre d'objets :": "Количество объектов:",
-        "Nombre d'équipements :": "Количество устройств:",
-        "Nombre de commandes :": "Количество команд:",
+        "Nombre d'objet :": "Nombre d'objet :",
+        "Nombre d'équipement :": "Nombre d'équipement :",
+        "Nombre de commande :": "Nombre de commande :",
         "Supprimer": "Удалить",
         "Visible": "Видимый",
         "Invisible": "невидимый",
@@ -1424,7 +1654,7 @@
         "Configuration de l'équipement": "Конфигурация оборудования",
         "Configuration de l'objet": "Конфигурация объекта",
         "Configuration de la commande": "управляющий набор",
-        "Etes-vous sûr de vouloir supprimer tous ces équipements ?": "Вы уверены, что хотите удалить все эти объекты?"
+        "Etes-vous sûr de vouloir supprimer tous ces équipement ?": "Etes-vous sûr de vouloir supprimer tous ces équipement ?"
     },
     "desktop/modal/plugin.dependancy.php": {
         "Nom": "Имя",
@@ -1445,11 +1675,11 @@
         "Attendre": "Подождать",
         "Aller au design": "Перейти в разработку",
         "Ajouter un log": "Добавить журнал",
-        "Créer un message": "Создать сообщение",
-        "Activer/Désactiver Masquer/Afficher un équipement": "Включить / выключить Скрыть / Показать оборудование",
+        "Creer un message": "Создать сообщение",
+        "Activer/Desactiver Masquer/Afficher un équipement": "Activer/Desactiver Masquer/Afficher un équipement",
         "Faire une demande": "Сделать запрос",
         "Arrêter Jeedom": "Остановить Jeedom",
-        "Retourner un texte/une donnée": "Возвращает текст / данность",
+        "Retourner un texte/une données": "Retourner un texte/une données",
         "Icône": "Иконка",
         "Alerte": "Предупреждение",
         "Pop-up": "Всплывающий",
@@ -1463,14 +1693,27 @@
         "Change le design affiché sur tous les navigateurs qui affichent un design par le design demandé": "Изменение дизайна отображается во всех браузерах, которые отображают дизайн запрашиваемым дизайна",
         "Permet de rajouter un message dans les logs": "Добавить сообщение в лог",
         "Permet d'ajouter une message dans le centre de message": "Добавляет сообщение в центр сообщений",
-        "Permet de modifier les propriétés visible/invisible actif/inactif d'un équipement": "Изменение свойств видимого / невидимый / выключением оборудования",
-        "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec le plugin SMS, Slack et SARAH.": "Действие, которое позволяет Jeedom применять затем сохранить ответ в переменной. Это действие блокирует и заканчивается только тогда, когда jeedom получает ответ или тайм-аут будет достигнут. На данный момент это действие совместимо только с SMS-плагин, расслабленные и Сарра.",
+        "Permet de modifier les prorietés visible/invisible actif/inactif d'un équipement": "Изменить настройки оборудования - видимый/невидимый, активный/неактивный",
+        "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finie que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec le plugin SMS, Slack et SARAH.": "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finie que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec le plugin SMS, Slack et SARAH.",
         "Envoi l'ordre à Jeedom de s'éteindre": "Отправка заказа на Jeedom исчезновения",
         "Retourne un texte ou une valeur pour une interaction par exemple": "Возвращает текст или значение для взаимодействия, например,",
         "Permet d'affecter une icone au scénario": "Назначить иконку для сценария",
-        "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page jeedom ouverte. Vous pouvez en plus choisir 4 niveaux d'alerte": "Показывает небольшое предупреждение на всех браузерах, которые имеют страницу открытой jeedom. Вы также можете выбрать один из четырех уровней тревоги",
-        "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page jeedom ouverte.": "Отображает всплывающее окно, которое абсолютно необходимо включить во всех браузерах, которые имеют страницу открытой jeedom.",
-        "Permet d'envoyer par une commande message un rapport d'une vue, d'un design ou d'un panneau en PNG/PDF/JPEG/SVG.": "Посылает Control Message представления отчетов, дизайнер или панель PNG / PDF / JPEG / SVG."
+        "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte": "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte",
+        "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page jeedom d'ouvert.": "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page jeedom d'ouvert.",
+        "Permet d'envoyer par une commande message un rapport d'une vue, d'un design ou d'un panel en PNG/PDF/JPEG/SVG.": "Permet d'envoyer par une commande message un rapport d'une vue, d'un design ou d'un panel en PNG/PDF/JPEG/SVG.",
+        "Créer un message": "Создать сообщение",
+        "Activer/Désactiver Masquer/Afficher un équipement": "Включить / выключить Скрыть / Показать оборудование",
+        "Retourner un texte/une donnée": "Возвращает текст / данность",
+        "Supprimer bloc DANS/A programmé": "Supprimer bloc DANS/A programmé",
+        "Permet de faire dire un texte à Jeedom (ne marche que si un onglet Jeedom est ouvert dans le navigateur)": "Permet de faire dire un texte à Jeedom (ne marche que si un onglet Jeedom est ouvert dans le navigateur)",
+        "Sur tous les navigateurs qui affichent un design, le remplace par celui demandé": "Sur tous les navigateurs qui affichent un design, le remplace par celui demandé",
+        "Permet de modifier les proriétés visible/invisible actif/inactif d'un équipement": "Permet de modifier les proriétés visible/invisible actif/inactif d'un équipement",
+        "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que si Jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.": "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que si Jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.",
+        "Permet d'affecter une icône au scénario": "Permet d'affecter une icône au scénario",
+        "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page Jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte": "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page Jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte",
+        "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page Jeedom ouverte.": "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page Jeedom ouverte.",
+        "Permet d'envoyer, par une commande message, un rapport d'une vue, d'un design ou d'un panel en PNG/PDF/JPEG/SVG.": "Permet d'envoyer, par une commande message, un rapport d'une vue, d'un design ou d'un panel en PNG/PDF/JPEG/SVG.",
+        "Permet de supprimer la programmation de tous les blocs DANS et A du scénario": "Permet de supprimer la programmation de tous les blocs DANS et A du scénario"
     },
     "core/template/scenario/scenario.default": {
         "Scénario": "Сценарий",
@@ -1479,7 +1722,9 @@
         "Start (sync)": "Start (синхронизация)",
         "Stop": "Стоп",
         "Activer": "Активировать",
-        "Désactiver": "Отключить"
+        "Désactiver": "Отключить",
+        "Tags": "Tags",
+        "Sélectionner la commande": "Выберите команду"
     },
     "core/template/scenario/icon.default": {
         "Rechercher icône": "значок поиска"
@@ -1505,23 +1750,23 @@
         "Attention une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher": "Предупреждение об избыточном диапазоне дат, который дает слишком большой период времени, что может привести к невозможности расчета и отображения",
         "Ok": "Ок",
         "Aucun groupement": "нет группы",
-        "Somme par heure": "Сумма в час",
+        "Sommes par heure": "Sommes par heure",
         "Moyenne par heure": "В среднем за час",
         "Minimum par heure": "Минимум за час",
         "Maximum par heure": "Максимально за час",
-        "Somme par jour": "Сумма в день",
+        "Sommes par jour": "Sommes par jour",
         "Moyenne par jour": "среднесуточной",
         "Minimum par jour": "Минимальная ежедневная",
         "Maximum par jour": "Максимально за день",
-        "Somme par semaine": "Количество в неделю",
+        "Sommes par semaine": "Sommes par semaine",
         "Moyenne par semaine": "Средняя за неделю",
         "Minimum par semaine": "Минимум за неделю",
         "Maximum par semaine": "Максимально за неделю",
-        "Somme par mois": "Ежемесячная сумма",
+        "Sommes par mois": "Sommes par mois",
         "Moyenne par mois": "ежемесячно",
         "Minimum par mois": "Минимальный ежемесячный",
         "Maximum par mois": "Максимально за месяц",
-        "Somme par année": "Сумма в год",
+        "Sommes par année": "Sommes par année",
         "Moyenne par année": "В среднем за год",
         "Minimum par année": "Минимум в год",
         "Maximum par année": "Максимально за год",
@@ -1529,12 +1774,34 @@
         "Areaspline": "Площадь сплайн",
         "Barre": "Barre",
         "Variation": "изменение",
-        "Escalier": "лестница"
+        "Escalier": "лестница",
+        "Timeline": "Timeline",
+        "Historique calculé": "Historique calculé",
+        "Sélectionner la commande": "Выберите команду",
+        "Vider": "Пусто",
+        "Tous": "Все",
+        "Rafraîchir": "Обновить",
+        "Commandes": "Команды",
+        "Scénarios": "Сценарии",
+        "Tous (Plugins)": "Tous (Plugins)",
+        "Tous (Catégories)": "Tous (Catégories)",
+        "Tous (Objets)": "Tous (Objets)",
+        "Tous (Types)": "Tous (Types)",
+        "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.",
+        "Somme par heure": "Сумма в час",
+        "Somme par jour": "Сумма в день",
+        "Somme par semaine": "Количество в неделю",
+        "Somme par mois": "Ежемесячная сумма",
+        "Somme par année": "Сумма в год"
     },
     "desktop/js/history.js": {
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de ": "Просьба указать дату (Y-м д ч: м: с), перед которым он должен удалить историю \\ «s",
         "Configuration de l'historique des commandes": "управления История конфигурации",
-        "Historique supprimé avec succès": "История успешно удалена"
+        "Historique supprimé avec succès": "История успешно удалена",
+        "Configuration des formules de calcul": "Configuration des formules de calcul",
+        "Résumé scénario": "сценарий Резюме",
+        "Log d'exécution du scénario": "Журнал запуска скрипта",
+        "Configuration de la commande": "управляющий набор"
     },
     "desktop/modal/eqLogic.configure.php": {
         "Supprimer": "Удалить",
@@ -1565,13 +1832,13 @@
         "Afficher le nom": "Показать имя",
         "Afficher le nom de l'objet": "Отображаемое имя объекта",
         "Couleur de fond": "Цвет фона",
-        "Défaut": "По умолчанию",
+        "Defaut": "По умолчанию",
         "Transparent": "Прозрачный",
         "Opacité": "помутнение",
         "Entre 0 et 1": "Между 0 и 1",
         "Couleur du texte": "Цвет текста",
         "Bordures": "границы",
-        "Arrondi des bordures (en px)": "Округление краев (в РХ)",
+        "Arrondit des bordures (en px)": "Arrondit des bordures (en px)",
         "Paramètres optionnels sur la tuile": "Дополнительные параметры ячейки",
         "Valeur": "Значение",
         "Type de batterie": "Тип батареи",
@@ -1586,7 +1853,29 @@
         "Configuration de la commande": "управляющий набор",
         "Logs": "Журналы",
         "Liens": "связи",
-        "Graphique des liens": "Графические ссылки"
+        "Graphique des liens": "Графические ссылки",
+        "Disposition": "Disposition",
+        "Alertes": "Уведомления",
+        "Informations Batteries": "Informations Batteries",
+        "Seuils spécifiques Batteries": "Seuils spécifiques Batteries",
+        "Alertes Communications": "Alertes Communications",
+        "(en minute)": "(en minute)",
+        "Configuration général": "Configuration général",
+        "Tableau": "Tableau",
+        "Nombre de ligne": "Nombre de ligne",
+        "Nombre de colonne": "Nombre de colonne",
+        "Centrer dans les cases": "Centrer dans les cases",
+        "Style générale des cases (CSS)": "Style générale des cases (CSS)",
+        "Style du tableau (CSS)": "Style du tableau (CSS)",
+        "Configuration détaillée": "Configuration détaillée",
+        "Texte de la case": "Texte de la case",
+        "Style de la case (CSS)": "Style de la case (CSS)",
+        "Arrondi des bordures (en px)": "Округление краев (в РХ)",
+        "(en minutes)": "(en minutes)",
+        "Défaut": "По умолчанию",
+        "Nombre de lignes": "Nombre de lignes",
+        "Nombre de colonnes": "Nombre de colonnes",
+        "Style général des cases (CSS)": "Style général des cases (CSS)"
     },
     "desktop/modal/cmd.configure.php": {
         "Enregistrer": "Запись",
@@ -1614,11 +1903,11 @@
         "Utilisé par": "Используется",
         "Remplacer cette commande par la commande": "Заменить эту команду по команде",
         "Cette commande remplace la commande": "Эта команда заменяет команду",
-        "Cette commande remplace l'ID": "Эта команда заменяет идентификатор",
+        "Cette commande remplace l'id": "Cette commande remplace l'id",
         "Equipement": "Оборудование",
         "Commandes": "Команды",
         "Scénario": "Сценарий",
-        "Calcul et arrondi": "Расчет и округления",
+        "Calcul et arrondit": "Calcul et arrondit",
         "Formule de calcul (#value# pour la valeur)": "Формула расчета (в #value# исходное значение)",
         "Type générique": "общий тип",
         "Aucun": "Нет",
@@ -1653,7 +1942,7 @@
         "1 mois": "1 месяц",
         "6 mois": "6 месяцев",
         "Gestion des valeurs": "Управление значений",
-        "Valeurs interdites (séparées par \";\")": "запрещенные значения (разделенные «;»)",
+        "Valeurs interdites (séparé par \";\")": "Valeurs interdites (séparé par \";\")",
         "Valeur retour d'état": "Значение состояния обратной связи",
         "Durée avant retour d'état (min)": "Время заявить обратной связи (мин)",
         "Autres": "другой",
@@ -1663,8 +1952,8 @@
         "Jamais répéter": "Не повторять",
         "Push URL": "толчок URL",
         "Mettez ici l'URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)": "Помещенный здесь URL, чтобы позвонить в обновлении стоимости заказа. Вы можете использовать следующие теги: # # (значение порядка) cmd_id # # (идентификатор команды) и cmd_name # # (название команды)",
-        "Activer la personnalisation du widget": "Включить настройки виджета",
-        "Réinitialiser la personnalisation": "Сброс персонализация",
+        "Activer la personalisation du widget": "Activer la personalisation du widget",
+        "Reinitialiser la personalisation": "Reinitialiser la personalisation",
         "Code": "Код",
         "Dashboard": "Приборная панель",
         "Vue dashboard": "Просмотр панели",
@@ -1674,7 +1963,7 @@
         "Niveau": "Уровень",
         "En": "в",
         "si (#value# pour la valeur)": "если (значение # # для значения)",
-        "Pendant plus de (en min, laisser vide pour immédiat)": "Для более (в мин, позволяют немедленным пусто)",
+        "Pendant plus de (en min, laisser vide pour immediat)": "Pendant plus de (en min, laisser vide pour immediat)",
         "Widget": "Виджет",
         "Vue": "Вид",
         "Afficher le nom": "Показать имя",
@@ -1691,8 +1980,8 @@
         "Etes-vous sûr de vouloir remplacer": "Вы уверены, что хотите заменить",
         "par": "по",
         "Remplacement réalisé avec succès": "Замена успешно",
-        "Etes-vous sûr de vouloir remplacer l\\'ID": "Вы уверены, что хотите заменить \\ «ы ID",
-        "ID de commande à remplacer ?": "ID заказа заменить?",
+        "Etes-vous sûr de vouloir remplacer l\\'id": "Etes-vous sûr de vouloir remplacer l\\'id",
+        "Id de commande à remplacer ?": "Id de commande à remplacer ?",
         "Opération faite, n\\'oubliez pas de sauvegarder": "Операция сделана, не \\ «т забудьте сохранить",
         "Enregistrement réussi": "Регистрация прошла успешно",
         "Modification(s) appliquée(s) avec succès": "Модификация (s) применяется (ы) успешно",
@@ -1705,12 +1994,27 @@
         "Action après exécution de la commande": "Действие после выполнения заказа",
         "Liens": "связи",
         "Graphique des liens": "Графические ссылки",
-        "Copie des données historisées": "Копирование исторических данных",
+        "Copie des données historisé": "Copie des données historisé",
         "Copier l'historique de cette commande sur une autre commande": "Скопируйте историю этой команды в другую команду",
         "Arrondi (chiffre après la virgule)": "Округление (в десятичной системе)",
         "Thermostat": "Термостат",
         "Purger l'historique si plus vieux que ": "Выпустите историю, если старше",
-        "1 an": "1 год"
+        "1 an": "1 год",
+        "Copie des données historisées": "Копирование исторических данных",
+        "Tester": "Тест",
+        "Suivre dans la timeline": "Suivre dans la timeline",
+        "3 mois": "3 месяца",
+        "Décocher pour desactiver l\\'action": "Décocher pour desactiver l\\'action",
+        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Cocher pour que la commande s\\'éxecute en parrallele des autres actions",
+        "Cette commande remplace l'ID": "Эта команда заменяет идентификатор",
+        "Etes-vous sûr de vouloir remplacer l\\'ID": "Вы уверены, что хотите заменить \\ «ы ID",
+        "ID de commande à remplacer ?": "ID заказа заменить?",
+        "Opération effectuée avec succès, n\\'oubliez pas de sauvegarder": "Opération effectuée avec succès, n\\'oubliez pas de sauvegarder",
+        "Décocher pour désactiver l\\'action": "Décocher pour désactiver l\\'action",
+        "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Cocher pour que la commande s\\'exécute en parallèle des autres actions",
+        "Activer la personnalisation du widget": "Включить настройки виджета",
+        "Réinitialiser la personnalisation": "Сброс персонализация",
+        "Interdire dans les interactions automatique": "Interdire dans les interactions automatique"
     },
     "desktop/php/object.php": {
         "Ajouter objet": "Добавить объект",
@@ -1734,7 +2038,12 @@
         "Masquer en mobile": "Скрыть мобильный",
         "Commandes": "Команды",
         "Ajouter une commande": "Добавить команду",
-        "Liens": "связи"
+        "Liens": "связи",
+        "Gestion": "Управление",
+        "Vue d'ensemble": "обзор",
+        "Masquer sur le dashboard": "Masquer sur le dashboard",
+        "Couleur du texte du résumé": "Couleur du texte du résumé",
+        "Taille sur le dashboard (1 à 12)": "Taille sur le dashboard (1 à 12)"
     },
     "desktop/js/object.js": {
         "Sauvegarde effectuée avec succès": "Резервное копирование завершено успешно",
@@ -1743,7 +2052,8 @@
         "Etes-vous sûr de vouloir supprimer l\\'objet": "Вы уверены, что хотите удалить этот объект",
         "Commande": "Команда",
         "Inverser": "Обратный",
-        "Graphique des liens": "Графические ссылки"
+        "Graphique des liens": "Графические ссылки",
+        "Résumé objet": "Résumé objet"
     },
     "desktop/modal/icon.selector.php": {
         "Rechercher": "Искать",
@@ -1770,9 +2080,11 @@
         "Valeur": "Значение",
         "Utilisée dans": "используется в",
         "Action": "Действие",
+        "Data store supprimé": "Хранилище данных удалено",
+        "Data store sauvegardé": "Магазин данных сохранен",
+        "Graphique de lien": "Link Graph",
         "Dépôt de données supprimé": "Депозитные удаленные данные",
-        "Dépôt de données sauvegardé": "Депозит сохраняемых данных",
-        "Graphique de lien": "Link Graph"
+        "Dépôt de données sauvegardé": "Депозит сохраняемых данных"
     },
     "core/class/dataStore.class.php": {
         "Variable :": "переменная:"
@@ -1783,13 +2095,14 @@
         "OK\n": "ОК",
         "Décompression du zip...": "Распакуйте почтовый индекс ...",
         "Post-installation de ": "После установки",
-        "Action de pré-mise à jour...": "Предварительное обновление затем ..."
+        "Action de pre update...": "Action de pre update..."
     },
     "core/repo/market.repo.php": {
-        "Téléchargement de ": "скачать"
+        "Téléchargement de ": "скачать",
+        "Erreur repo_market::getinfo : ": "Erreur repo_market::getinfo :"
     },
     "core/class/network.class.php": {
-        "Le plugin OpenVPN doit être actif": "Плагин OpenVPN должен быть активным"
+        "Le plugin openvpn doit être actif": "Le plugin openvpn doit être actif"
     },
     "core/repo/market.display.repo.php": {
         "Nom": "Имя",
@@ -1806,12 +2119,14 @@
         "Auteur": "Автор",
         "Dernière mise à jour par": "Последнее обновление от",
         "Lien": "Ссылка",
-        "Nombre d'installations": "Количество объектов",
+        "Nombre d'installation": "Количество установок",
         "Nombre de téléchargements": "Количество скачиваний",
         "Type": "Тип",
         "Dernière mise à jour le": "последнее обновление",
-        "Voulez-vous aller sur la page de configuration de votre nouveau plugin ?": "Хотите перейти на страницу конфигурации вашего нового плагина?",
-        "Objet installé avec succès": "Пункт успешно установлен"
+        "Voulez vous aller sur la page de configuration de votre nouveau plugin ?": "Хотите перейти на страницу установки вашего нового плагина ?",
+        "Objet installé avec succès": "Пункт успешно установлен",
+        "Installer": "Installer",
+        "Voulez-vous aller sur la page de configuration de votre nouveau plugin ?": "Хотите перейти на страницу конфигурации вашего нового плагина?"
     },
     "core/class/view.class.php": {
         "Vue :": "Вид:"
@@ -1858,8 +2173,8 @@
         "Transparent": "Прозрачный",
         "Défaut": "По умолчанию",
         "Couleur du texte": "Цвет текста",
-        "Arrondir les angles (ne pas oublier de mettre %, ex 50%)": "Закругление углов (не забудьте добавить %, например, 50%)",
-        "Bordure (attention syntaxe CSS, ex : solid 1px black)": "Border (CSS уход синтаксиса, например 1px черного цвета)",
+        "Arrondir les angles (ne pas oublié de mettre %, ex 50%)": "Закругление углов (не забудьте добавить %, например, 50%)",
+        "Bordure (attention syntax css, ex : solid 1px black)": "Граница (фокус на синтаксис CSS, например, 1px сплошной черный)",
         "Taille de la police (ex 50%, il faut bien mettre le signe %)": "Размер шрифта (например, 50%, мы должны поставить знак%)",
         "Gras": "жир",
         "Normal": "нормальный",
@@ -1870,18 +2185,29 @@
         "Widget au survol": "Виджет эстакада",
         "Action": "Действие",
         "Equipement": "Оборудование",
-        "Afficher au survol": "См обзор",
+        "Afficher au survole": "Afficher au survole",
         "Afficher sur un clic": "Просмотр по клику",
         "Information binaire": "бинарная информация",
         "Action on": "Принятие решения по",
-        "Action off": "Действие от"
+        "Action off": "Действие от",
+        "Alignement du texte": "Alignement du texte",
+        "Par defaut": "Par defaut",
+        "Gauche": "слева",
+        "Droite": "право",
+        "Centré": "Centré",
+        "Position": "Позиция",
+        "Defaut": "По умолчанию",
+        "Haut": "Haut",
+        "Haut Gauche": "Haut Gauche",
+        "Sélectionner un mot-clé": "Выберите ключевое слово"
     },
     "desktop/php/connection.php": {
         "Nom d'utilisateur": "Имя пользователя",
         "Mot de passe": "Пароль",
         "Code à 2 facteurs": "Код 2 фактора",
         "Enregistrer cet ordinateur": "Запомнить параметры входа",
-        "Connexion": "Соединение"
+        "Connexion": "Соединение",
+        "J'ai perdu mon mot de passe": "J'ai perdu mon mot de passe"
     },
     "desktop/modal/jeedom.benchmark.php": {
         "Nom": "Имя",
@@ -1893,9 +2219,391 @@
         "[END UPDATE SUCCESS]": "[ОКОНЧАНИЕ УСПЕШНОГО ОБНОВЛЕНИЯ]"
     },
     "core/api/jeeApi.php": {
-        "Appels de ": "звонки"
+        "Appels de ": "звонки",
+        "Requête invalide. Version Jsonrpc invalide : ": "Requête invalide. Version Jsonrpc invalide :"
     },
     "mobile/js/message.js": {
         "Vider": "Пусто"
+    },
+    "core/php/jeeCron.php": {
+        "Tous les crons sont actuellement désactivés": "Tous les crons sont actuellement désactivés",
+        "Erreur sur ": "Ошибка"
+    },
+    "mobile/js/application.js": {
+        "Résumé": "Резюме",
+        "Historique": "История",
+        "Préviens moi": "Préviens moi",
+        "Me prévenir si": "Me prévenir si",
+        "Erreur lors de la mise à jour": "Erreur lors de la mise à jour",
+        "Nouvelle tentative dans 5s": "Nouvelle tentative dans 5s"
+    },
+    "mobile/js/health.js": {
+        "Rafraichir": "Обновить",
+        "Version desktop": "Настольная версия",
+        "Démons": "Démons",
+        "Crons": "Crons",
+        "Alertes": "Уведомления"
+    },
+    "mobile/js/deamon.js": {
+        "Rafraichir": "Обновить",
+        "Version desktop": "Настольная версия",
+        "Crons": "Crons",
+        "Santé": "Здоровье",
+        "Alertes": "Уведомления"
+    },
+    "mobile/html/history.html": {
+        "Début": "Начало",
+        "Fin": "Конец",
+        "Ok": "Ок",
+        "Aucun groupement": "нет группы",
+        "Sommes par heure": "Sommes par heure",
+        "Moyenne par heure": "Moyenne par heure",
+        "Minimum par heure": "Minimum par heure",
+        "Maximum par heure": "Maximum par heure",
+        "Sommes par jour": "Sommes par jour",
+        "Moyenne par jour": "среднесуточной",
+        "Minimum par jour": "Минимальная ежедневная",
+        "Maximum par jour": "Максимально за день",
+        "Sommes par semaine": "Sommes par semaine",
+        "Moyenne par semaine": "Средняя за неделю",
+        "Minimum par semaine": "Минимум за неделю",
+        "Maximum par semaine": "Максимально за неделю",
+        "Sommes par mois": "Sommes par mois",
+        "Moyenne par mois": "ежемесячно",
+        "Minimum par mois": "Минимальный ежемесячный",
+        "Maximum par mois": "Максимально за месяц",
+        "Sommes par année": "Sommes par année",
+        "Moyenne par année": "В среднем за год",
+        "Minimum par année": "Минимум в год",
+        "Maximum par année": "Максимально за год",
+        "Ligne": "Линия",
+        "Areaspline": "Площадь сплайн",
+        "Barre": "Barre",
+        "Variation": "изменение",
+        "Escalier": "лестница",
+        "Somme par heure": "Somme par heure",
+        "Somme par jour": "Сумма в день",
+        "Somme par semaine": "Количество в неделю",
+        "Somme par mois": "Ежемесячная сумма",
+        "Somme par année": "Сумма в год"
+    },
+    "mobile/modal/warnme.html": {
+        "Valeur": "значение",
+        "Annuler": "Отменить",
+        "Ok": "Ок"
+    },
+    "mobile/js/alert.js": {
+        "Rafraichir": "Обновить",
+        "Version desktop": "Настольная версия",
+        "Crons": "Crons",
+        "Santé": "Здоровье"
+    },
+    "mobile/js/cron.js": {
+        "Rafraichir": "Обновить",
+        "Version desktop": "Настольная версия",
+        "Démons": "Démons",
+        "Santé": "Здоровье",
+        "Alertes": "Уведомления"
+    },
+    "core/ajax/event.ajax.php": {
+        "401 - Accès non autorisé": "401 - Несанкционированный доступ"
+    },
+    "core/class/user.class.php": {
+        "Connexion de l'utilisateur ": "Логин пользователя"
+    },
+    "desktop/php/eqAnalyse.php": {
+        "Batteries": "Batteries",
+        "Modules en alerte": "Modules en alerte",
+        "Actions définies": "Actions définies",
+        "Alertes définies": "Alertes définies",
+        "Commandes orphelines": "Commandes orphelines",
+        "Equipement": "Оборудование",
+        "Commande": "Команда",
+        "Type": "Тип",
+        "Actions": "Действия",
+        "Post exécution": "Post exécution",
+        "Pre exécution": "Pre exécution",
+        "Alertes": "Уведомления",
+        "Timeout": "Тайм-аут",
+        "Seuils batterie": "Seuils batterie",
+        "Détail": "Détail",
+        "Utilisation": "Использование"
+    },
+    "desktop/js/eqAnalyse.js": {
+        "Configuration commande": "Команда конфигурации"
+    },
+    "mobile/html/eqAnalyse.html": {
+        "Batteries": "Batteries",
+        "Alertes": "Уведомления"
+    },
+    "desktop/modal/scenario.summary.php": {
+        "Enregistrer": "Запись",
+        "Rafraîchir": "Обновить",
+        "ID": "Идентификатор",
+        "Scénario": "Сценарий",
+        "Statut": "Статус",
+        "Dernier lancement": "Последний запуск",
+        "Actif": "Активный",
+        "Visible": "видимый",
+        "Multi lancement": "Multi lancement",
+        "Mode synchrone": "Mode synchrone",
+        "Log": "Журнал",
+        "Timeline": "Timeline",
+        "Actions": "Действия",
+        "Erreur": "Ошибка",
+        "En cours": "В процессе",
+        "Arrêté": "Остановленный",
+        "Défaut": "По умолчанию",
+        "Aucun": "нет",
+        "Temps réel": "Окно событий",
+        "Voir les logs": "Voir les logs",
+        "Exécuter": "Выполнить",
+        "Log d'exécution du scénario": "Журнал запуска скрипта"
+    },
+    "desktop/modal/expression.test.php": {
+        "Test": "Тест",
+        "Exécuter": "Выполнить",
+        "Résultat": "результат",
+        "L\\'epression de test ne peut être vide": "L\\'epression de test ne peut être vide",
+        "Attention je pense qu\\'il y a un souci car le résultat est le même que l\\'expression": "Attention je pense qu\\'il y a un souci car le résultat est le même que l\\'expression",
+        "Je vais évaluer : ": "Je vais évaluer :",
+        "Résultat : ": "Résultat :",
+        "L\\'expression de test ne peut être vide": "L\\'expression de test ne peut être vide",
+        "Attention : il doit y avoir un souci, car le résultat est le même que l\\'expression": "Attention : il doit y avoir un souci, car le résultat est le même que l\\'expression"
+    },
+    "desktop/modal/report.bug.php": {
+        "Etape 1 : Information sur les tickets": "Etape 1 : Information sur les tickets",
+        "Merci de vérifier avant toute ouverture de ticket :": "Спасибо за предварительную проверку перед открытием талона",
+        "- que la question n'a pas déjà été posée sur le <a href='https://jeedom.com/forum'>forum</a>": "- que la question n'a pas déjà été posée sur le <a href='https://jeedom.com/forum'>forum</a>",
+        "- que la catégorie est bien sélectionnée pour que votre ticket soit traité dans les plus courts délais": "- que la catégorie est bien sélectionnée pour que votre ticket soit traité dans les plus courts délais",
+        "- que la réponse n'est pas déjà dans la <a href='https://jeedom.github.io/documentation'>documentation</a>": "- que la réponse n'est pas déjà dans la <a href='https://jeedom.github.io/documentation'>documentation</a>",
+        "IMPORTANT : si vous ouvrez un ticket pour un bug ou une demande d'amélioration celle-ci sont public (donc attention au informations que vous communiquez). Vous pouvez voir la liste des demandes en cours <a href=\"https://jeedom.atlassian.net/issues/?filter=-5&jql=status%20in%20(%22A%20valider%22%2C%20%22In%20Progress%22%2C%20Planifi%C3%A9%2C%20Reopened%2C%20%22To%20Do%22)%20AND%20resolution%20%3D%20Unresolved%20order%20by%20priority%20DESC%2Cupdated%20DESC\" target=\"_blank\">ici</a>. Les demandes public doivent etre parfaitement formuler avec toutes les informations necessaire car vous ne pouvez pas completer la demande par la suite. Toute demande d'un service pack pro est privée.": "IMPORTANT : si vous ouvrez un ticket pour un bug ou une demande d'amélioration celle-ci sont public (donc attention au informations que vous communiquez). Vous pouvez voir la liste des demandes en cours <a href=\"https://jeedom.atlassian.net/issues/?filter=-5&jql=status%20in%20(%22A%20valider%22%2C%20%22In%20Progress%22%2C%20Planifi%C3%A9%2C%20Reopened%2C%20%22To%20Do%22)%20AND%20resolution%20%3D%20Unresolved%20order%20by%20priority%20DESC%2Cupdated%20DESC\" target=\"_blank\">ici</a>. Les demandes public doivent etre parfaitement formuler avec toutes les informations necessaire car vous ne pouvez pas completer la demande par la suite. Toute demande d'un service pack pro est privée.",
+        "Etape 2 : Catégorie et type de la demande": "Etape 2 : Catégorie et type de la demande",
+        "Type": "Тип",
+        "Aucun": "нет",
+        "Support": "Поддержка",
+        "Bug": "Bug",
+        "Demande d'amélioration": "Demande d'amélioration",
+        "Catégorie": "категория",
+        "Aucune": "нет",
+        "Général": "общий",
+        "Scénario": "Сценарий",
+        "Etape 3 : Chercher dans la documentation": "Etape 3 : Chercher dans la documentation",
+        "Rechercher": "поиск",
+        "Chercher": "Chercher",
+        "Etape 4 : Demande de support": "Etape 4 : Demande de support",
+        "Titre": "Название",
+        "Message": "Сообщение",
+        "Envoyer": "Отправить",
+        "Ce plugin utilise un gestionnaire de demande de support": "Ce plugin utilise un gestionnaire de demande de support",
+        "Accéder": "Accéder",
+        "Votre ticket a bien été ouvert. Vous pouvez le suivre": "Votre ticket a bien été ouvert. Vous pouvez le suivre",
+        "Votre ticket a bien été ouvert. Un mail va vous être envoyé": "Ваш талон был открыт. Письмо будет направлено",
+        "Etape 2 : Choix du type de demande": "Etape 2 : Choix du type de demande",
+        "Etape 3 : Catégorie et type de la demande": "Etape 3 : Catégorie et type de la demande",
+        "Etape 4 : Chercher dans la documentation": "Etape 4 : Chercher dans la documentation",
+        "Etape 5 : Demande de support": "Etape 5 : Demande de support",
+        "Assistance technique": "Assistance technique",
+        "Rédigez votre question à l'attention de notre service Technique qui y répondra dans les meilleurs délais.": "Rédigez votre question à l'attention de notre service Technique qui y répondra dans les meilleurs délais.",
+        "Vous pouvez déclarer un bug qui sera publié sur notre Bug Tracker public (<strong>ATTENTION</strong> votre message sera public, il pourra être supprimé s'il ne s'agit pas d'un bug,  vous ne recevrez pas d'assistance technique suite à cette déclaration)": "Vous pouvez déclarer un bug qui sera publié sur notre Bug Tracker public (<strong>ATTENTION</strong> votre message sera public, il pourra être supprimé s'il ne s'agit pas d'un bug,  vous ne recevrez pas d'assistance technique suite à cette déclaration)",
+        "Vous pouvez envoyer des proposition d'amélioration qui seront publiée sur notre page publique dédiée et qui pourront être intégrés dans notre roadmap.": "Vous pouvez envoyer des proposition d'amélioration qui seront publiée sur notre page publique dédiée et qui pourront être intégrés dans notre roadmap.",
+        "Voir les bugs": "Voir les bugs",
+        "Voir les propositions d'amélioration": "Voir les propositions d'amélioration"
+    },
+    "core/ajax/cmd.ajax.php": {
+        "Commande inconnu verifié l'id :": "Commande inconnu verifié l'id :",
+        "Cmd ID inconnu : ": "Cmd ID inconnu :"
+    },
+    "desktop/php/custom.php": {
+        "Attention tout ce que vous écrivez ici est global et inclus sur toutes les pages, la moindre erreur peut rendre votre jeedom non fonctionel": "Attention tout ce que vous écrivez ici est global et inclus sur toutes les pages, la moindre erreur peut rendre votre jeedom non fonctionel",
+        "Activer": "активировать",
+        "Sauvegarder": "экономить"
+    },
+    "desktop/js/system.js": {
+        "Etes-vous sûr de vouloir éxécuter cette commande : ": "Etes-vous sûr de vouloir éxécuter cette commande :",
+        "Celle-ci est classé en dangereuse": "Celle-ci est classé en dangereuse",
+        "Commande : ": "команда:"
+    },
+    "desktop/php/database.php": {
+        "Rechercher": "поиск",
+        "Cliquez sur une commande à droite ou tapez une commande personnalisée ci-dessous": "Cliquez sur une commande à droite ou tapez une commande personnalisée ci-dessous",
+        "OK": "ОК"
+    },
+    "desktop/js/database.js": {
+        "Etes-vous sûr de vouloir éxécuter cette commande : ": "Etes-vous sûr de vouloir éxécuter cette commande :",
+        "Celle-ci est classé en dangereuse": "Celle-ci est classé en dangereuse",
+        "Commande : ": "команда:"
+    },
+    "desktop/dashboard.php": {
+        "401 - Accès non autorisé": "401 - Несанкционированный доступ"
+    },
+    "core/ajax/log.ajax.php": {
+        "401 - Accès non autorisé": "401 - Несанкционированный доступ"
+    },
+    "desktop/modal/update.add.php": {
+        "Source": "Источник",
+        "Type de source": "Type de source",
+        "Aucun": "нет",
+        "Configuration": "Конфигурация",
+        "ID logique du plugin": "ID logique du plugin",
+        "Envoyer un plugin": "Envoyer un plugin",
+        "Enregistrer": "Запись",
+        "Enregistrement réussi": "Регистрация прошла успешно"
+    },
+    "core/template/scenario/variable.default": {
+        "Nom": "имя",
+        "Valeur": "значение",
+        "Sélectionner la commande": "Выберите команду"
+    },
+    "desktop/js/3d.js": {
+        "Designs": "Designs",
+        "Edition": "Edition",
+        "Configuration de l\\'objet": "Configuration de l\\'objet",
+        "Widget": "Виджет",
+        "Configuration du plan 3D": "Configuration du plan 3D"
+    },
+    "desktop/php/3d.php": {
+        "Objet": "Объект",
+        "Nom": "имя",
+        "Equipement liée": "Equipement liée",
+        "Informations": "Информация",
+        "Equipement": "Оборудование",
+        "Edition": "Edition",
+        "Sauvegarder": "экономить"
+    },
+    "desktop/modal/plan3d.configure.php": {
+        "Général": "общий",
+        "Sauvegarder": "экономить",
+        "Nom": "имя",
+        "Type de lien": "Type de lien",
+        "Equipement": "Оборудование",
+        "Lien": "Ссылка",
+        "Rechercher d\\'un équipement": "Rechercher d\\'un équipement",
+        "Spécificité": "Spécificité",
+        "Lumière": "Освещение",
+        "Lumière couleur": "Lumière couleur",
+        "Aucun": "нет",
+        "Statut": "Статус",
+        "Rechercher d\\'une commande": "Rechercher d\\'une commande",
+        "Puissance": "Мощность",
+        "Texte": "текст",
+        "Taille du texte": "Taille du texte",
+        "Couleur de fond": "Цвет фона",
+        "Couleur de la bordure": "Couleur de la bordure",
+        "Transparence fond": "Transparence fond",
+        "Transparence bordure": "Transparence bordure",
+        "Couleur du texte": "Цвет текста",
+        "Transparence du texte": "Transparence du texte",
+        "Espacement au dessus de l'objet": "Espacement au dessus de l'objet",
+        "Porte/Fenêtre": "Porte/Fenêtre",
+        "Fênetre": "Fênetre",
+        "Volet": "створка",
+        "Fênetre/Porte": "Fênetre/Porte",
+        "Couleur fênetre/porte ouverte": "Couleur fênetre/porte ouverte",
+        "Couleur fênetre/porte fermée": "Couleur fênetre/porte fermée",
+        "Couleur volet fermé": "Couleur volet fermé",
+        "Supprimer": "удаление",
+        "Couleur conditionnel": "Couleur conditionnel",
+        "Condition": "Condition",
+        "Ajouter": "Добавить",
+        "Couleur": "Цвет"
+    },
+    "core/ajax/plan3d.ajax.php": {
+        "plan3d header inconnu verifiez l'id : ": "plan3d header inconnu verifiez l'id :"
+    },
+    "desktop/modal/plan3dHeader.configure.php": {
+        "Sauvegarder": "экономить",
+        "Général": "общий",
+        "Nom": "имя",
+        "Code d'accès": "Код доступа",
+        "Icône": "Иконка",
+        "Choisir": "Выбрать",
+        "Chemin d'accès": "Chemin d'accès",
+        "Fichier OBJ": "Fichier OBJ",
+        "Fichier MTL": "Fichier MTL",
+        "Tailles": "Размеры",
+        "Taille (LxH)": "Размер (Ш х В)",
+        "Image supprimée": "Image supprimée",
+        "Design sauvegardé": "Design sauvegardé",
+        "Plan 3d sauvegardé": "Plan 3d sauvegardé",
+        "Supprimer": "удаление",
+        "Model 3D": "Model 3D",
+        "Envoyer": "Отправить",
+        "Chargement réussi merci de recharger la page pour voir le résultat": "Chargement réussi merci de recharger la page pour voir le résultat"
+    },
+    "desktop/php/plan3d.php": {
+        "Informations": "Информация"
+    },
+    "desktop/js/plan3d.js": {
+        "Configuration du plan 3D": "Configuration du plan 3D",
+        "Configuration de l\\'objet": "Configuration de l\\'objet",
+        "Chargement...": "Chargement..."
+    },
+    "desktop/3d.php": {
+        "Plan 3d inconnu. Verifier l'id": "Plan 3d inconnu. Verifier l'id"
+    },
+    "desktop/php/system.php": {
+        "Rechercher": "поиск",
+        "Cliquez sur une commande à droite ou tapez une commande personnalisée ci-dessous": "Cliquez sur une commande à droite ou tapez une commande personnalisée ci-dessous",
+        "OK": "ОК"
+    },
+    "core/ajax/eqLogic.ajax.php": {
+        "EqLogic inconnu, vérifiez l'id : ": "EqLogic inconnu, vérifiez l'id :"
+    },
+    "desktop/modal/history.calcul.php": {
+        "Sauvegarder": "экономить",
+        "Ajouter": "Добавить",
+        "Nom": "имя",
+        "Calcul": "Расчёт",
+        "Type": "Тип",
+        "Groupement": "Groupement",
+        "Escalier": "лестница",
+        "Action": "Действие",
+        "Sauvegarde effectuée": "Резервное копирование произведено",
+        "Formule de calcul": "Formule de calcul",
+        "Sélectionner la commande": "Выберите команду",
+        "Ligne": "Линия",
+        "Aire": "Площадь",
+        "Colonne": "Столбец",
+        "Aucun groupement": "нет группы",
+        "Sommes par jour": "Sommes par jour",
+        "Moyenne par jour": "среднесуточной",
+        "Minimum par jour": "Минимальная ежедневная",
+        "Maximum par jour": "Максимально за день",
+        "Sommes par semaine": "Sommes par semaine",
+        "Moyenne par semaine": "Средняя за неделю",
+        "Minimum par semaine": "Минимум за неделю",
+        "Maximum par semaine": "Максимально за неделю",
+        "Sommes par mois": "Sommes par mois",
+        "Moyenne par mois": "ежемесячно",
+        "Minimum par mois": "Минимальный ежемесячный",
+        "Maximum par mois": "Максимально за месяц",
+        "Non": "не",
+        "Oui": "да",
+        "Afficher le graphique": "Afficher le graphique"
+    },
+    "desktop/modal/scenario.template.php": {
+        "Appliquer un template": "Appliquer un template",
+        "Nom du template": "Nom du template",
+        "Template": "Подложка",
+        "Général": "общий",
+        "Gérer": "Gérer",
+        "Partager sur": "Partager sur",
+        "Supprimer": "удаление",
+        "Télécharger": "Скачать",
+        "Paramètres du scénario": "Paramètres du scénario",
+        "Appliquer": "Применить",
+        "Partager sur le market": "Участвовать в Маркете",
+        "Etes-vous sûr de vouloir appliquer le template ? Cela écrasera votre scénario": "Etes-vous sûr de vouloir appliquer le template ? Cela écrasera votre scénario",
+        "Template ajouté avec succès": "Template ajouté avec succès"
+    },
+    "desktop/.php": {
+        "Aucune phrase trouvée": "Aucune phrase trouvée"
+    },
+    "desktop/modal/interact.test.php": {
+        "Demande": "Приложение",
+        "Exécuter": "Выполнить",
+        "Résultat": "результат",
+        "La demande ne peut être vide": "La demande ne peut être vide"
     }
 }

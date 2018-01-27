@@ -85,8 +85,10 @@
    var title = '{{site.github.project_title}}';
    title = title.replace('plugin-','');
    $('#doc_title').append(title[0].toUpperCase() + title.substring(1))
-      document.title = 'Documentation '+ title[0].toUpperCase() + title.substring(1)
+   document.title = 'Documentation Jeedom | '+ title[0].toUpperCase() + title.substring(1)
    $(".button-collapse").sideNav();
+   $('meta[name=description]').remove();
+  $('head').append( '<meta name="description" content="Ceci est la documentation du plugin "'+ title[0].toUpperCase() + title.substring(1).'", lier à la solution domotique Jeedom.">' ); +   $('head').append( '<meta name="description" content="Ceci est la documentation du plugin "'+title[0].toUpperCase()+title.substring(1)+'", lier à la solution domotique Jeedom.">' );
    $('img').addClass('responsive-img');
    $('#div_content table').addClass('striped');
    init();
