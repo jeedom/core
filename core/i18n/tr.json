@@ -14,12 +14,12 @@
         "[jeedom] Message de ": "[jeedom] mesaj",
         "pendant plus de ": "suresinden fazla",
         " minute(s)": "dakika",
-        "La commande n'est pas dans la plage de valeur autorisée : ": "La commande n'est pas dans la plage de valeur autorisée :",
-        "[jeedom] ": "[jeedom]",
-        "Equipement désactivé - impossible d'exécuter la commande : [Jardin][Caméras Ext][On]": "Equipement désactivé - impossible d'exécuter la commande : [Jardin][Caméras Ext][On]",
-        "Equipement désactivé - impossible d'exécuter la commande : [Jardin][Caméras Ext][Off]": "Equipement désactivé - impossible d'exécuter la commande : [Jardin][Caméras Ext][Off]",
-        "Erreur exécution de la commande ": "Erreur exécution de la commande",
-        "Impossible de traduire la couleur en code hexadécimal :": "Impossible de traduire la couleur en code hexadécimal :"
+        "La commande n'est pas dans la plage de valeur autorisée : ": "Komut değerinin izin verilen aralığın dışında geçerli:",
+        "[jeedom] ": "[Jeedom]",
+        "Equipement désactivé - impossible d'exécuter la commande : [Jardin][Caméras Ext][On]": "engellilere uygun - komutunu çalıştırın: [Bahçe] [Kameralar Ext] [On]",
+        "Equipement désactivé - impossible d'exécuter la commande : [Jardin][Caméras Ext][Off]": "[Bahçe] [Kameralar Ext] [Kapalı]: - engellilere uygun komutu çalıştıramazsınız",
+        "Erreur exécution de la commande ": "Hata komutu yürütülürken",
+        "Impossible de traduire la couleur en code hexadécimal :": "onaltılık kod rengini çevirmek açılamıyor:"
     },
     "core/class/scenario.class.php": {
         "Scénario exécuté automatiquement sur événement venant de : ": "Burdan gelen olay üzere otomatik uygulanan senaryo :",
@@ -32,16 +32,16 @@
         "************FIN sous tâche**************": "************Alt görev SON**************",
         "Scénario exécuté sur événement : #": "Olay üzeri uygulanan senaryo : #",
         "Aucun": "Hiçbir",
-        "Scénario désactivé non lancement de la sous tâche": "Scénario désactivé non lancement de la sous tâche",
-        "Tags : ": "Tags :",
-        "Une commande du scénario : ": "Une commande du scénario :",
-        " est introuvable": "est introuvable"
+        "Scénario désactivé non lancement de la sous tâche": "kapalı senaryo görevi altında başlatılmaz",
+        "Tags : ": "etiketler:",
+        "Une commande du scénario : ": "script bir emir:",
+        " est introuvable": "bulunamazsa"
     },
     "core/class/eqLogic.class.php": {
         "Aucun": "Hiçbir",
         "inconnue": "bilinmeyen",
-        "La version demandée ne peut pas être vide (mobile, dashboard ou scénario)": "La version demandée ne peut pas être vide (mobile, dashboard ou scénario)",
-        "Le": "Le"
+        "La version demandée ne peut pas être vide (mobile, dashboard ou scénario)": "İstenen sürümü boş (mobil kontrol panelini veya komut dosyası) olamaz",
+        "Le": ""
     },
     "core/template/scenario/sleep.default": {
         "Durée": "Süre"
@@ -53,9 +53,9 @@
         "Veuillez executer le script : ": "scripti çalıştırın :",
         "Lancement de : ": "Bunun çalıştırılması :",
         "Gestion automatique désactivée": "Otomatik işletme aktif değil",
-        "Les crons et démons sont désactivés": "Les crons et démons sont désactivés",
-        "Erreur sur la fonction cron du plugin : ": "Erreur sur la fonction cron du plugin :",
-        "Erreur sur la fonction cron15 du plugin : ": "Erreur sur la fonction cron15 du plugin :"
+        "Les crons et démons sont désactivés": "cron ve şeytanlar devre dışı bırakılır",
+        "Erreur sur la fonction cron du plugin : ": "Eklentinin cron fonksiyonu üzerine hatası:",
+        "Erreur sur la fonction cron15 du plugin : ": "Eklentinin cron15 fonksiyonu üzerine hatası:"
     },
     "core/class/scenarioSubElement.class.php": {
         "Exécution du sous-élément de type [condition] : ": "Bu tipdeki alt-elementin uygulanması [şart] :",
@@ -87,21 +87,21 @@
         "[Erreur] Aucune commande trouvée pour ": "[Hata] Bunun için hiçbir komuta bulunamadı",
         " options : ": "opsiyonlar :",
         " avec comme option(s) : ": "bu optionlar ile birlikde :",
-        "Affectation de la variable ": "Affectation de la variable",
+        "Affectation de la variable ": "değişkenin Tahsisi",
         " => ": "=>",
-        "Execution du lancement en arriere plan : ": "Execution du lancement en arriere plan :",
-        "Lancement provoqué par le scénario  : ": "Lancement provoqué par le scénario  :",
-        "Action sur scénario impossible. Scénario introuvable - Vérifiez l'id : ": "Action sur scénario impossible. Scénario introuvable - Vérifiez l'id :",
-        "Arrêt forcé du scénario : ": "Arrêt forcé du scénario :",
-        "Commande non trouvée": "Commande non trouvée"
+        "Execution du lancement en arriere plan : ": "Arka planda lansman Yürütme:",
+        "Lancement provoqué par le scénario  : ": "senaryo nedeniyle başlatın:",
+        "Action sur scénario impossible. Scénario introuvable - Vérifiez l'id : ": "imkansız senaryoya Eylem. Bulunan Senaryo - id kontrol edin:",
+        "Arrêt forcé du scénario : ": "Zorla kapatma senaryo:",
+        "Commande non trouvée": "Komut bulunamadı"
     },
     "core/class/scenarioElement.class.php": {
         "Non exécution des actions pour cause de répétition": "Tekrarlala yüzünden eylemlerin çalıştırılamaması",
         "Tâche : ": "Görev :",
         " programmé à : ": "saatine programlanmış",
         " programmée à : ": "Bu saate programlı :",
-        " lancement immédiat ": "lancement immédiat",
-        "Expression non valide : ": "Expression non valide :",
+        " lancement immédiat ": "acil fırlatma",
+        "Expression non valide : ": "Geçersiz ifade:",
         "SI": "EĞER",
         "ALORS": "O takdirde",
         "SINON": "DEĞİLSE"
@@ -114,13 +114,13 @@
     },
     "core/php/authentification.php": {
         "Connexion de l'utilisateur par clef : ": "Kullanicının anahtarla bağlanması",
-        "Connexion de l'utilisateur : ": "Connexion de l'utilisateur :"
+        "Connexion de l'utilisateur : ": "kullanıcı girişi:"
     },
     "core/ajax/jeedom.ajax.php": {
         "Vue": "Izlenme",
         "Objet": "Konu",
         "401 - Accès non autorisé": "401 - Ulaşım yetkisiz",
-        "Aucune documentation trouvée": "Aucune documentation trouvée"
+        "Aucune documentation trouvée": "bulunamadı dokümantasyon"
     },
     "mobile/html/home.html": {
         "Equipements": "Cihazlar",
@@ -133,7 +133,7 @@
         "Plugins": "Ekler",
         "Autre": "Başka",
         "Déconnexion": "Oturumu kapat",
-        "Plan 3D": "Plan 3D"
+        "Plan 3D": "3D Harita"
     },
     "mobile/html/deamon.html": {
         "Nom": "İsim",
@@ -164,7 +164,7 @@
         "Santé": "Sağlık",
         "Tout": "Hepsi",
         "Alertes": "Uyarılar",
-        "Analyse équipement": "Analyse équipement",
+        "Analyse équipement": "analiz ekipmanı",
         "Messages": "Mesajlar",
         "Message(s)": "Mesaj"
     },
@@ -194,22 +194,22 @@
         "Mémoire disponible": "Kullanılabilir hafıza",
         "Swap disponible": "Swap alanı kullanılabilir",
         "Charge": "Şarj",
-        "Erreur cron : les crons sont désactivés. Allez dans Administration -> Moteur de tâches pour les réactiver": "Erreur cron : les crons sont désactivés. Allez dans Administration -> Moteur de tâches pour les réactiver",
-        "Erreur scénario : tous les scénarios sont désactivés. Allez dans Outils -> Scénarios pour les réactiver": "Erreur scénario : tous les scénarios sont désactivés. Allez dans Outils -> Scénarios pour les réactiver",
-        "Date système (dernière heure enregistrée)": "Date système (dernière heure enregistrée)",
+        "Erreur cron : les crons sont désactivés. Allez dans Administration -> Moteur de tâches pour les réactiver": "cron hatası: cron devre dışı bırakılır. yeniden> Görev Engine - Yönetim git",
+        "Erreur scénario : tous les scénarios sont désactivés. Allez dans Outils -> Scénarios pour les réactiver": "Hata senaryo: Tüm senaryolar devre dışı bırakılır. Araçlar -> Senaryolar yeniden",
+        "Date système (dernière heure enregistrée)": "Sistem Tarih (en son kaydedilen zaman)",
         "OK ": "OK",
-        "Démarrage de jeedom": "Démarrage de jeedom",
-        "Arret des crons": "Arret des crons",
-        "Restauration du cache": "Restauration du cache",
-        "Nettoyage du cache des péripheriques USB": "Nettoyage du cache des péripheriques USB",
-        "Nettoyage du cache des péripheriques Bluetooth": "Nettoyage du cache des péripheriques Bluetooth",
-        "Démarrage des processus internet de jeedom": "Démarrage des processus internet de jeedom",
-        "Ecriture du fichier ": "Ecriture du fichier",
-        "Vérification de la configuration réseau interne": "Vérification de la configuration réseau interne",
-        "Envoi de l'evenement de démarrage": "Envoi de l'evenement de démarrage",
-        "Démarrage des plugins": "Démarrage des plugins",
-        "Test de connexion au market": "Test de connexion au market",
-        "Démarrage de jeedom fini avec succès": "Démarrage de jeedom fini avec succès"
+        "Démarrage de jeedom": "Başlangıç ​​jeedom",
+        "Arret des crons": "cron'u durdur",
+        "Restauration du cache": "Gıda Önbellek",
+        "Nettoyage du cache des péripheriques USB": "Önbellek Temizleyici USB çevre birimleri",
+        "Nettoyage du cache des péripheriques Bluetooth": "önbellek Bluetooth aygıtların temizlenmesi",
+        "Démarrage des processus internet de jeedom": "İnternet süreci jeedom Başlangıç",
+        "Ecriture du fichier ": "dosya Yazma",
+        "Vérification de la configuration réseau interne": "iç ağ yapılandırmasını kontrol etme",
+        "Envoi de l'evenement de démarrage": "Gönderme olayı başlatmak",
+        "Démarrage des plugins": "eklentileri Başlangıç",
+        "Test de connexion au market": "Bağlantı Testi Pazar",
+        "Démarrage de jeedom fini avec succès": "jeedom Başlangıç ​​başarıyla tamamlandı"
     },
     "core/class/message.class.php": {
         "Message de ": "dan mesaj"
@@ -299,12 +299,12 @@
         "Détaillée": "Ayrıntılı",
         "Ouverture d'un ticket": "Fiş açılımı",
         "Rapport": "Rapor",
-        "Confort": "Confort",
+        "Confort": "konfor",
         "Redémarrer": "Tekrar başlat",
         "Eteindre": "Kapat",
-        "Plan 3d": "Plan 3d",
-        "Plan 3d inconnu. Verifier l'id": "Plan 3d inconnu. Verifier l'id",
-        "Design 3D": "Design 3D"
+        "Plan 3d": "3d Harita",
+        "Plan 3d inconnu. Verifier l'id": "Bilinmeyen Harita 3D. id edin",
+        "Design 3D": "3 boyutlu tasarım"
     },
     "desktop/php/message.php": {
         "Vider": "Boşalt",
@@ -337,13 +337,13 @@
         "Mode forcé": "Zorlama modu",
         "Tout depuis cette version": "Bu versiyondan itibaren hepsi",
         "Valider": "Onaylayın",
-        "Avant toute mise à jour merci de consulter la note de version du core de Jeedom": "Avant toute mise à jour merci de consulter la note de version du core de Jeedom",
-        "ici": "ici",
-        "Pré-update (mettre à jour le script d'update avant)": "Pré-update (mettre à jour le script d'update avant)",
-        "Sauvegarder avant": "Sauvegarder avant",
-        "Mettre à jour les plugins": "Mettre à jour les plugins",
-        "Mettre à jour le core": "Mettre à jour le core",
-        "Avant toute mise à jour, merci de consulter la note de version du core de Jeedom": "Avant toute mise à jour, merci de consulter la note de version du core de Jeedom"
+        "Avant toute mise à jour merci de consulter la note de version du core de Jeedom": "güncellemeden önce Jeedom çekirdek notları sürümünü kontrol teşekkür ederim",
+        "ici": "burada",
+        "Pré-update (mettre à jour le script d'update avant)": "Ön güncelleme (update komut önce güncelleme)",
+        "Sauvegarder avant": "önce kaydet",
+        "Mettre à jour les plugins": "Güncelleme eklentileri",
+        "Mettre à jour le core": "çekirdek güncelleme",
+        "Avant toute mise à jour, merci de consulter la note de version du core de Jeedom": "herhangi bir güncelleme öncesinde Jeedom çekirdek notları sürümünü kontrol teşekkür ederim"
     },
     "desktop/js/update.js": {
         "Options": "Opsiyonlar",
@@ -362,7 +362,7 @@
         "Vérifier": "Kontrol et",
         "Supprimer": "Sil",
         "Sauvegarde effectuée": "Kayıt yapıladı",
-        "L\\'opération est réussie. Merci de faire F5 pour avoir les dernières nouveautés": "L\\'opération est réussie. Merci de faire F5 pour avoir les dernières nouveautés"
+        "L\\'opération est réussie. Merci de faire F5 pour avoir les dernières nouveautés": "L \\ 'işlemi başarılı olur. En son haberler için F5 için teşekkür ederiz"
     },
     "desktop/php/plugin.php": {
         "Ajout depuis une autre source": "Başka bir karnakdan ekleme",
@@ -383,7 +383,7 @@
         "Panel": "Panel",
         "Fonctionnalités": "Özellikler",
         "Gestion": "Yönetim",
-        "Sources": "Sources"
+        "Sources": "kaynaklar"
     },
     "core/class/interactQuery.class.php": {
         "J'ai une correspondance  : ": "irtibatim var",
@@ -402,8 +402,8 @@
         " dans ": "içinde",
         "C'est fait": "Yapıldı",
         "Erreur : ": "Hata :",
-        "Correspondance trouvée : ": "Correspondance trouvée :",
-        " mais ne contient pas : ": "mais ne contient pas :"
+        "Correspondance trouvée : ": "Yazışmalar bulundu:",
+        " mais ne contient pas : ": "ancak içermiyor:"
     },
     "desktop/php/log.php": {
         "Rechercher": "Arayın",
@@ -634,60 +634,60 @@
         "Mac": "Mac",
         "Nettoyer les rapport plus anciens de (jours)": "Eski raporları temizle (günler)",
         "API": "API",
-        "OS/DB": "OS/DB",
-        "Réseaux": "Réseaux",
+        "OS/DB": "OS / DB",
+        "Réseaux": "ağlar",
         "Commandes": "Komutalar",
-        "Cache": "Cache",
+        "Cache": "kapak",
         "Interactions": "Etkileşim",
-        "Rapports": "Rapports",
+        "Rapports": "ilişkiler",
         "Liens": "Linkler",
-        "Résumés": "Résumés",
+        "Résumés": "özetleri",
         "Logs": "Loglar",
         "Equipements": "Cihazlar",
-        "Mises à jour": "Mises à jour",
-        "Dernière date connue": "Dernière date connue",
-        "Editeur de fichier": "Editeur de fichier",
-        "Editeur": "Editeur",
+        "Mises à jour": "Güncellemeler",
+        "Dernière date connue": "Son bilinen tarih",
+        "Editeur de fichier": "File Editor",
+        "Editeur": "yayımcı",
         "LDAP": "LDAP",
         "Connexion": "Bağlantı",
-        "Supprimer les IPs bannies": "Supprimer les IPs bannies",
+        "Supprimer les IPs bannies": "Sil IP'ler yasaklandı",
         "Supprimer": "Sil",
-        "Interaction automatique, contextuelle & avertissement": "Interaction automatique, contextuelle & avertissement",
-        "Activer les interactions \"previens moi\"": "Activer les interactions \"previens moi\"",
-        "Réponse de type \"previens moi\" si la phrase commence par": "Réponse de type \"previens moi\" si la phrase commence par",
-        "Commande de retour par défaut": "Commande de retour par défaut",
-        "Paramètre de prerender": "Paramètre de prerender",
-        "Paramètre de render": "Paramètre de render",
-        "Timeline": "Timeline",
-        "Nombre maximum d'évènements": "Nombre maximum d'évènements",
-        "Supprimer tous les évènements": "Supprimer tous les évènements",
-        "Librairie LDAP non trouvée. Merci de l'installer avant de pouvoir utiliser la connexion DLAP": "Librairie LDAP non trouvée. Merci de l'installer avant de pouvoir utiliser la connexion DLAP",
-        "Librairie LDAP non trouvée. Merci de l'installer avant de pouvoir utiliser la connexion LDAP": "Librairie LDAP non trouvée. Merci de l'installer avant de pouvoir utiliser la connexion LDAP",
-        "IPs bannies": "IPs bannies",
-        "Sessions active": "Sessions active",
+        "Interaction automatique, contextuelle & avertissement": "Otomatik etkileşim, içeriksel ve uyarı",
+        "Activer les interactions \"previens moi\"": "Enable etkileşimler 'beni uyar'",
+        "Réponse de type \"previens moi\" si la phrase commence par": "cümle başlarsa tipi yanıtı \"beni uyar\"",
+        "Commande de retour par défaut": "Varsayılan dönüş sırası",
+        "Paramètre de prerender": "Parametre PreRender",
+        "Paramètre de render": "Parametre işlemek",
+        "Timeline": "zaman çizelgesi",
+        "Nombre maximum d'évènements": "maksimum olay sayısı",
+        "Supprimer tous les évènements": "Tüm etkinlikleri sil",
+        "Librairie LDAP non trouvée. Merci de l'installer avant de pouvoir utiliser la connexion DLAP": "LDAP kitaplığı bulunamadı. Bağlantıyı kullanmadan önce bunu yüklemeye ederiz DLAP",
+        "Librairie LDAP non trouvée. Merci de l'installer avant de pouvoir utiliser la connexion LDAP": "LDAP kitaplığı bulunamadı. LDAP bağlantısı kullanmak için önce yüklemeniz Teşekkür",
+        "IPs bannies": "IP'ler yasaklandı",
+        "Sessions active": "aktif oturumlar",
         "ID": "ID",
         "Login": "Rumuz",
         "Actions": "Işlemler",
         "Réduire le poids de": "ağırlığı azaltın",
-        "Champs recherche utilisateur": "Champs recherche utilisateur",
+        "Champs recherche utilisateur": "Kullanıcı ara Alanları",
         "Nombre d'échecs tolérés": "başarısızlıkların sayısı tolere",
-        "Attention : toute modification du moteur de cache nécessite un redémarrage de Jeedom": "Attention : toute modification du moteur de cache nécessite un redémarrage de Jeedom",
+        "Attention : toute modification du moteur de cache nécessite un redémarrage de Jeedom": "Uyarı: Herhangi bir değişiklik önbellek motora Jeedom tekrar başlatılmasını gerektiren",
         "Système de fichiers (/tmp/jeedom/cache)": "Dosya sistemi (/ tmp / jeedom / önbellek)",
-        "Plus la sensibilité est basse (proche de 1), plus la correspondance doit être exacte.": "Plus la sensibilité est basse (proche de 1), plus la correspondance doit être exacte.",
-        "Regex générale d'exclusion pour les interactions": "Regex générale d'exclusion pour les interactions",
+        "Plus la sensibilité est basse (proche de 1), plus la correspondance doit être exacte.": "Daha fazla hassasiyet (1'e yakın) düşüktür, daha fazla uyuşma doğru olmalıdır.",
+        "Regex générale d'exclusion pour les interactions": "etkileşim için Genel düzenli ifade dışlama",
         "Activer les interactions automatiques": "Otomatik etkileşimleri etkinleştirme",
         "Activer les réponses contextuelles": "bağlamsal cevapları etkinleştirme",
-        "Activer les interactions \"préviens moi\"": "Activer les interactions \"préviens moi\"",
-        "Réponse de type \"préviens moi\" si la phrase commence par": "Réponse de type \"préviens moi\" si la phrase commence par",
-        "Synonymes pour les objets": "Synonymes pour les objets",
-        "Synonymes pour les équipements": "Synonymes pour les équipements",
-        "Synonymes pour les commandes": "Synonymes pour les commandes",
-        "Synonymes pour les résumés": "Synonymes pour les résumés",
+        "Activer les interactions \"préviens moi\"": "Enable etkileşimler 'beni uyar'",
+        "Réponse de type \"préviens moi\" si la phrase commence par": "cümle başlarsa tipi yanıtı \"beni uyar\"",
+        "Synonymes pour les objets": "nesneler için benzer kelimeler",
+        "Synonymes pour les équipements": "ekipman için benzer kelimeler",
+        "Synonymes pour les commandes": "siparişler için benzer kelimeler",
+        "Synonymes pour les résumés": "özetleri için eşanlamlılar",
         "Nettoyer les rapports plus anciens de (jours)": "Temiz eski raporlar (gün)",
-        "Adresse syslog UDP": "Adresse syslog UDP",
-        "Port syslog UDP": "Port syslog UDP",
-        "Synonyme commande slider maximum": "Synonyme commande slider maximum",
-        "Synonyme commande slider minimum": "Synonyme commande slider minimum"
+        "Adresse syslog UDP": "Adres syslog UDP",
+        "Port syslog UDP": "Sistem Günlüğü UDP Bağlantı Noktası",
+        "Synonyme commande slider maximum": "Maksimum kaydırıcı kontrolü Eşanlamlı",
+        "Synonyme commande slider minimum": "En az sürgü kontrol eşanlamlı"
     },
     "desktop/js/administration.js": {
         "Etes-vous sûr de vouloir réinitialiser la clef API de ": "API anahtarını sıfırlamakdan eminmisiniz",
@@ -708,9 +708,9 @@
         "Aucun": "Hiçbir",
         "Binaire": "İkili",
         "Créer virtuel": "Sanal oluşturma",
-        "Evènement de la timeline supprimé avec succès": "Evènement de la timeline supprimé avec succès",
-        "Suppression des IPs bannies réussie": "Suppression des IPs bannies réussie",
-        "Administration base de données": "Administration base de données"
+        "Evènement de la timeline supprimé avec succès": "Etkinlik Çizelgesi başarıyla silindi",
+        "Suppression des IPs bannies réussie": "yasaklı başarılı IP'leri Çıkarma",
+        "Administration base de données": "Yönetim veritabanı"
     },
     "desktop/php/interact.php": {
         "Ajouter interaction": "Etkileşim ekle",
@@ -752,16 +752,16 @@
         "Nombre de phrases générées": "Üretilen cümle sayısı",
         "Supprimer": "Sil",
         "Enregistrer": "Kaydet",
-        "Interaction ID :": "Interaction ID :",
-        "Phrase(s)": "Phrase(s)",
+        "Interaction ID :": "Etkileşim numarası:",
+        "Phrase(s)": "Terim (ler)",
         "Actions": "Işlemler",
         "Actif": "Aktif",
-        "Mot(s) obligatoire": "Mot(s) obligatoire",
-        "Mot(s) obligatoire(s)": "Mot(s) obligatoire(s)",
+        "Mot(s) obligatoire": "Anahtar (ler) zorunlu",
+        "Mot(s) obligatoire(s)": "Anahtar (lar) istenen (lar)",
         "Remplace les mots par leurs synonymes lors de la génération des commandes": "emir oluşturulurken onların eş anlamlı kelimeler değiştirin",
-        "Liste des utilisateurs (identifiants) séparés par un |": "Liste des utilisateurs (identifiants) séparés par un |",
-        "Limiter aux commandes appartenant aux objets": "Limiter aux commandes appartenant aux objets",
-        "Limiter aux catégories": "Limiter aux catégories"
+        "Liste des utilisateurs (identifiants) séparés par un |": "Kullanıcı bir ayırarak listesi (betimleyici) |",
+        "Limiter aux commandes appartenant aux objets": "nesnelere ait komutlara sınırı",
+        "Limiter aux catégories": "kategorilerine Sınırı"
     },
     "desktop/js/interact.js": {
         "Liste des interactions": "Etkileşimlerin listesi",
@@ -818,20 +818,20 @@
         "Regénérer": "Tekrar üret",
         "Sauvegarder": "Kaydet",
         "Notifications": "Bildirimler",
-        "Commande de notification utilisateur": "Commande de notification utilisateur",
-        "Identification": "Identification",
+        "Commande de notification utilisateur": "kullanıcı bildirim komutu",
+        "Identification": "kimlik",
         "Action": "Eylem",
         "Supprimer": "Sil",
-        "Péripherique enregistrés": "Péripherique enregistrés",
-        "Supprimer tout": "Supprimer tout",
-        "Date derniere utilisation": "Date derniere utilisation",
+        "Péripherique enregistrés": "Çevre birimi kaydedildi",
+        "Supprimer tout": "Tümünü sil",
+        "Date derniere utilisation": "Tarihi geçen kullanım",
         "IP": "IP",
-        "Sessions actives": "Sessions actives",
+        "Sessions actives": "aktif oturumlar",
         "ID": "ID",
         "Login": "Rumuz",
         "Date": "Tarih",
         "Actions": "Işlemler",
-        "Déconnecter": "Déconnecter"
+        "Déconnecter": "kesmek"
     },
     "desktop/js/profils.js": {
         "Authentification 2 étapes": "2 aşamalı kimlik dogrulama",
@@ -876,11 +876,11 @@
         "Configuration avancée": "Gelişmiş ayarlar",
         "Configuration du widget": "Widgetin ayarları",
         "Defaut": "Varsayılan",
-        "Table": "Table",
-        "Ajouter colonne": "Ajouter colonne",
-        "Ajouter ligne": "Ajouter ligne",
-        "Supprimer colonne": "Supprimer colonne",
-        "Supprimer ligne": "Supprimer ligne"
+        "Table": "tablo",
+        "Ajouter colonne": "sütun ekle",
+        "Ajouter ligne": "satır ekle",
+        "Supprimer colonne": "sütun sil",
+        "Supprimer ligne": "satır sil"
     },
     "desktop/js/view.js": {
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Düzenleme modundasınız widgetlerin yerlerini, boylarını değiştirebilir ve widgetler içinde komutaların sıralarını değiştirebilirsiniz"
@@ -897,8 +897,8 @@
         "Annuler": "İptal",
         "Valider": "Onaylayın",
         "Sélectionner la commande": "Komutayı seçin",
-        "Erreur de connexion": "Erreur de connexion",
-        "Erreur lors de la connexion à jeedom": "Erreur lors de la connexion à jeedom"
+        "Erreur de connexion": "Bağlantı Hatası",
+        "Erreur lors de la connexion à jeedom": "jeedom bağlanırken hata"
     },
     "desktop/php/scenarioAssist.php": {
         "Interface simple": "Sade arayüz",
@@ -1060,17 +1060,17 @@
         "Multi lancement": "Çoklu başlatma",
         "Défaut": "Varsayılan",
         "Temps réel": "Gerçek zaman",
-        "Activer scénarios": "Activer scénarios",
+        "Activer scénarios": "senaryolara olanak",
         "Template": "Şablon",
-        "Expression": "Expression",
-        "Variables": "Variables",
+        "Expression": "ifade",
+        "Variables": "değişkenler",
         "Général": "Genel",
-        "Suivre dans la timeline": "Suivre dans la timeline",
-        "Les executions du scénario pourront etre vu dans la timeline": "Les executions du scénario pourront etre vu dans la timeline",
-        "Timeout en secondes (0 = illimité)": "Timeout en secondes (0 = illimité)",
+        "Suivre dans la timeline": "Çizelgesi'nde izleyin",
+        "Les executions du scénario pourront etre vu dans la timeline": "Senaryonun infaz çizelgesinde görülebilir",
+        "Timeout en secondes (0 = illimité)": "saniyede zaman aşımı (0 = sınırsız)",
         "Le scénario pourra tourner plusieurs fois en même temps": "komut aynı anda birkaç kez çalışır",
         "Le scénario est en mode synchrone. Attention, cela peut rendre le système instable": "senaryo senkron modunda. Bu sistem kararsız yapabilir, Uyarı",
-        "Les exécutions du scénario pourront être vues dans la timeline.": "Les exécutions du scénario pourront être vues dans la timeline."
+        "Les exécutions du scénario pourront être vues dans la timeline.": "script infazlar çizelgesinde görülebilir."
     },
     "desktop/js/scenario.js": {
         "Sauvegarde effectuée avec succès": "Kayıt başarıyla sonuçlandı",
@@ -1141,13 +1141,13 @@
         "ACTION": "EYLEM",
         "Graphique de lien": "Bağlantı grafiği",
         "Avancé": "Gelişmiş",
-        "Le bloc Sinon ne peut être supprimé s'il contient des éléments": "Le bloc Sinon ne peut être supprimé s'il contient des éléments",
-        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Cocher pour que la commande s\\'éxecute en parrallele des autres actions",
-        "Décocher pour desactiver l\\'action": "Décocher pour desactiver l\\'action",
-        "Décocher pour désactiver l\\'action": "Décocher pour désactiver l\\'action",
-        "Afficher/masquer le bloc Sinon": "Afficher/masquer le bloc Sinon",
-        "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Cocher pour que la commande s\\'exécute en parallèle des autres actions",
-        "Permet d\\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (ex. : SI/ALORS….)": "Permet d\\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (ex. : SI/ALORS….)"
+        "Le bloc Sinon ne peut être supprimé s'il contient des éléments": "o unsurları içeriyorsa blok silinemez Eğer",
+        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "denetleyin diğer eylemlere ilişkin olarak yürütülen sipariş \\ 'ın",
+        "Décocher pour desactiver l\\'action": "\\ 'ın Eylem devre dışı bırakmak için işaretini kaldırın",
+        "Décocher pour désactiver l\\'action": "\\ Eylem devre dışı bırakmak için işaretini kaldırın",
+        "Afficher/masquer le bloc Sinon": "Gösterme / gizleme bloğu Aksi",
+        "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Komut \\ 'ın paralel diğer eylemler çalışan olup olmadığını kontrol edin",
+        "Permet d\\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (ex. : SI/ALORS….)": "\\ 'Daki ​​senaryoları oluşturmak için gerekli fonksiyonel unsurları ekleyelim (.. mesela SONRA İSE / ...)"
     },
     "core/template/scenario/report.default": {
         "Vue": "Izlenim",
@@ -1162,9 +1162,9 @@
         "Design": "Disayn",
         "Panel": "Panel",
         "Plugin": "Ek",
-        "Largeur  (px)": "Largeur  (px)",
+        "Largeur  (px)": "Genişlik (piksel)",
         "Hauteur (px)": "Yükseklik (px)",
-        "Delai (ms)": "Delai (ms)"
+        "Delai (ms)": "Gecikme (ms)"
     },
     "core/template/scenario/gotodesign.default": {
         "Design": "Disayn"
@@ -1181,8 +1181,8 @@
         "Vider les logs": "Logları boşalt",
         "Télécharger": "İndir",
         "Log vidés avec succès": "Kütük başarıyla boşaltıldı",
-        "Vider le log": "Vider le log",
-        "Log vidé avec succès": "Log vidé avec succès"
+        "Vider le log": "Boş günlüğü",
+        "Log vidé avec succès": "başarıyla temizlendi Log"
     },
     "__FILE": {
         "[jeedom] Rapport ": "[jeedom] Rapor",
@@ -1389,7 +1389,7 @@
         "Variation": "Varyasyon",
         "Escalier": "Merdiven",
         "Historique": "Geçmiş",
-        "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher": "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher",
+        "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher": "Uyarı: çok büyük tarih aralığı hesaplanacak uzun zaman alabilir ve hatta görüntülenemiyor",
         "Somme par jour": "Günde Sum",
         "Somme par semaine": "Haftada Tutar",
         "Somme par mois": "Aylık toplamı",
@@ -1400,7 +1400,7 @@
     },
     "desktop/js/dashboard.js": {
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Düzenleme modundasınız widgetlerin yerlerini, boylarını değiştirebilir ve widgetler içinde komutaların sıralarını değiştirebilirsiniz",
-        "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder": "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder"
+        "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder": "Sen widget'lar taşımak, yeniden boyutlandırmak ve widget'larda komutların sırasını değiştirebilirsiniz düzenleme modunda bulunmaktadır. kaydetmek için düzenleme modundan çıkmak için unutmayın"
     },
     "desktop/js/log.js": {
         "Pause": "Durdur",
@@ -1513,21 +1513,21 @@
         "Mot de passe": "Şifre",
         "Annuler": "Iptal",
         "Enregistrer": "Kaydet",
-        "Sessions active": "Sessions active",
+        "Sessions active": "aktif oturumlar",
         "ID": "ID",
         "IP": "IP",
         "Date": "Tarih",
         "Supprimer": "Sil",
         "Profil": "Profil",
-        "Sessions actives": "Sessions actives",
-        "Péripherique enregistrés": "Péripherique enregistrés",
-        "Supprimer tout": "Supprimer tout",
-        "Identification": "Identification",
+        "Sessions actives": "aktif oturumlar",
+        "Péripherique enregistrés": "Çevre birimi kaydedildi",
+        "Supprimer tout": "Tümünü sil",
+        "Identification": "kimlik",
         "Utilisateur": "Kullanıcı",
-        "Date derniere utilisation": "Date derniere utilisation",
+        "Date derniere utilisation": "Tarihi geçen kullanım",
         "Action": "Eylem",
-        "Déconnecter": "Déconnecter",
-        "Date dernière utilisation": "Date dernière utilisation",
+        "Déconnecter": "kesmek",
+        "Date dernière utilisation": "Geçen kullanım tarihi",
         "Identifiant": "Kimlik numara"
     },
     "desktop/js/user.js": {
@@ -1549,7 +1549,7 @@
         "Supprimer": "Sil",
         "Changer le mot de passe": "Şifreyi değiştir",
         "Gerer les droits": "Hakları yönet",
-        "Régénérer clef API": "Régénérer clef API",
+        "Régénérer clef API": "API Anahtarını yeniden oluştur",
         "Gérer les droits": "Yönetme hakkı",
         "Etes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "Eğer kullanıcı \\ 's API anahtarını değiştirmek istediğinizden emin misiniz?"
     },
@@ -1704,16 +1704,16 @@
         "Créer un message": "mesaj oluştur",
         "Activer/Désactiver Masquer/Afficher un équipement": "/ Devre dışı gizleme / gösterme cihazları etkinleştirme",
         "Retourner un texte/une donnée": "Bir metin Dönüş / verilen bir",
-        "Supprimer bloc DANS/A programmé": "Supprimer bloc DANS/A programmé",
-        "Permet de faire dire un texte à Jeedom (ne marche que si un onglet Jeedom est ouvert dans le navigateur)": "Permet de faire dire un texte à Jeedom (ne marche que si un onglet Jeedom est ouvert dans le navigateur)",
-        "Sur tous les navigateurs qui affichent un design, le remplace par celui demandé": "Sur tous les navigateurs qui affichent un design, le remplace par celui demandé",
-        "Permet de modifier les proriétés visible/invisible actif/inactif d'un équipement": "Permet de modifier les proriétés visible/invisible actif/inactif d'un équipement",
-        "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que si Jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.": "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que si Jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.",
-        "Permet d'affecter une icône au scénario": "Permet d'affecter une icône au scénario",
-        "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page Jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte": "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page Jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte",
-        "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page Jeedom ouverte.": "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page Jeedom ouverte.",
-        "Permet d'envoyer, par une commande message, un rapport d'une vue, d'un design ou d'un panel en PNG/PDF/JPEG/SVG.": "Permet d'envoyer, par une commande message, un rapport d'une vue, d'un design ou d'un panel en PNG/PDF/JPEG/SVG.",
-        "Permet de supprimer la programmation de tous les blocs DANS et A du scénario": "Permet de supprimer la programmation de tous les blocs DANS et A du scénario"
+        "Supprimer bloc DANS/A programmé": "IN / A blok Sil planlanan",
+        "Permet de faire dire un texte à Jeedom (ne marche que si un onglet Jeedom est ouvert dans le navigateur)": "Eğer bir metin Jeedom söylemek verir (sadece çalışan bir Jeedom sekme tarayıcıda açılırsa)",
+        "Sur tous les navigateurs qui affichent un design, le remplace par celui demandé": "istenenden yerine bir tasarım görüntüler tüm tarayıcılar, On",
+        "Permet de modifier les proriétés visible/invisible actif/inactif d'un équipement": "mülkiyet ekipmanının kapalı / görünür / görünmez alındığı değiştirir",
+        "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que si Jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.": "Jeedom sonra uygulamak bir değişkende cevap depolamasına izin verir Eylem. Bu eylem engelleme ve Jeedom bir yanıt aldığında veya zaman aşımı varılması halinde sona erer. Şu an için bu eylem SMS eklentileri, Slack ve SARAH Telgraf ile uyumludur.",
+        "Permet d'affecter une icône au scénario": "Eğer komut dosyasına bir simge atamak için izin verir",
+        "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page Jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte": "Bir sayfa açık Jeedom olan tüm tarayıcılarda küçük uyarısı görüntüler. Ayrıca uyarının dört seviyeleri arasından seçim yapabilirsiniz",
+        "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page Jeedom ouverte.": "kesinlikle açık Jeedom sayfasına sahip tüm tarayıcılarda etkin olmalıdır bir açılır pencere görüntüler.",
+        "Permet d'envoyer, par une commande message, un rapport d'une vue, d'un design ou d'un panel en PNG/PDF/JPEG/SVG.": "Bir komuta, bir bakış bir rapor, bir tasarım veya bir panel PNG / PDF / JPEG / SVG gönder.",
+        "Permet de supprimer la programmation de tous les blocs DANS et A du scénario": "Sil tüm blokları İÇİNDE ve A Senaryo programlama"
     },
     "core/template/scenario/scenario.default": {
         "Scénario": "Senaryo",
@@ -1723,7 +1723,7 @@
         "Stop": "Stop",
         "Activer": "Etkinleştirmek",
         "Désactiver": "Dezaktive edin",
-        "Tags": "Tags",
+        "Tags": "etiketler",
         "Sélectionner la commande": "Komutayı seçin"
     },
     "core/template/scenario/icon.default": {
@@ -1775,19 +1775,19 @@
         "Barre": "çubuk",
         "Variation": "Derecelendirme",
         "Escalier": "Merdiven",
-        "Timeline": "Timeline",
-        "Historique calculé": "Historique calculé",
+        "Timeline": "zaman çizelgesi",
+        "Historique calculé": "Tarih hesaplanmış",
         "Sélectionner la commande": "Komutayı seçin",
         "Vider": "Boşalt",
         "Tous": "Hepsi",
         "Rafraîchir": "Yenile",
         "Commandes": "Komutalar",
         "Scénarios": "Senaryolar",
-        "Tous (Plugins)": "Tous (Plugins)",
-        "Tous (Catégories)": "Tous (Catégories)",
-        "Tous (Objets)": "Tous (Objets)",
-        "Tous (Types)": "Tous (Types)",
-        "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.",
+        "Tous (Plugins)": "Tümü (Eklentileri)",
+        "Tous (Catégories)": "Tümü (Kategoriler)",
+        "Tous (Objets)": "Tümü (Öğeler)",
+        "Tous (Types)": "Hepsi (Tip)",
+        "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Uyarı: uzun sürebilir çok büyük tarih aralığı hesaplandı ve hatta görünmez olmak.",
         "Somme par heure": "Saatte Sum",
         "Somme par jour": "Günde Sum",
         "Somme par semaine": "Haftada Tutar",
@@ -1798,7 +1798,7 @@
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de ": "Geçmişi hangi tarihden (Y-m-d H:m:s) önce silinmesi gerekdiğini girin",
         "Configuration de l'historique des commandes": "Komut geçmişini yapılandırma",
         "Historique supprimé avec succès": "Geçmiş başarıyla silindi",
-        "Configuration des formules de calcul": "Configuration des formules de calcul",
+        "Configuration des formules de calcul": "formüller yapılandırılması",
         "Résumé scénario": "Senaryo özeti",
         "Log d'exécution du scénario": "Senaryonun çalışma logu",
         "Configuration de la commande": "Komutanın ayarları"
@@ -1854,28 +1854,28 @@
         "Logs": "Loglar",
         "Liens": "Linkler",
         "Graphique des liens": "Linkler grafiği",
-        "Disposition": "Disposition",
+        "Disposition": "hüküm",
         "Alertes": "Uyarılar",
-        "Informations Batteries": "Informations Batteries",
-        "Seuils spécifiques Batteries": "Seuils spécifiques Batteries",
-        "Alertes Communications": "Alertes Communications",
-        "(en minute)": "(en minute)",
-        "Configuration général": "Configuration général",
+        "Informations Batteries": "Piller bilgi",
+        "Seuils spécifiques Batteries": "Belirli eşikleri Piller",
+        "Alertes Communications": "uyarısı Haberleşme",
+        "(en minute)": "(Dakika olarak)",
+        "Configuration général": "Genel yapılandırma",
         "Tableau": "Tablo",
-        "Nombre de ligne": "Nombre de ligne",
-        "Nombre de colonne": "Nombre de colonne",
-        "Centrer dans les cases": "Centrer dans les cases",
-        "Style générale des cases (CSS)": "Style générale des cases (CSS)",
-        "Style du tableau (CSS)": "Style du tableau (CSS)",
-        "Configuration détaillée": "Configuration détaillée",
-        "Texte de la case": "Texte de la case",
-        "Style de la case (CSS)": "Style de la case (CSS)",
+        "Nombre de ligne": "numara hattı",
+        "Nombre de colonne": "numara sütunu",
+        "Centrer dans les cases": "Kutularda Merkezi",
+        "Style générale des cases (CSS)": "kutularının genel tarzı (CSS)",
+        "Style du tableau (CSS)": "Tablo Stili (CSS)",
+        "Configuration détaillée": "Detaylı yapılandırma",
+        "Texte de la case": "Metin kutusu",
+        "Style de la case (CSS)": "Stil kutusu (CSS)",
         "Arrondi des bordures (en px)": "(Px) kenarlarının yuvarlama",
-        "(en minutes)": "(en minutes)",
+        "(en minutes)": "(Dakika olarak)",
         "Défaut": "Varsayılan",
-        "Nombre de lignes": "Nombre de lignes",
-        "Nombre de colonnes": "Nombre de colonnes",
-        "Style général des cases (CSS)": "Style général des cases (CSS)"
+        "Nombre de lignes": "Satır sayısı",
+        "Nombre de colonnes": "Sütun sayısı",
+        "Style général des cases (CSS)": "kutularının genel tarzı (CSS)"
     },
     "desktop/modal/cmd.configure.php": {
         "Enregistrer": "Kaydet",
@@ -2002,19 +2002,19 @@
         "1 an": "1 yıl",
         "Copie des données historisées": "Geçmiş verilerinin kopyası",
         "Tester": "Test et",
-        "Suivre dans la timeline": "Suivre dans la timeline",
+        "Suivre dans la timeline": "Çizelgesi'nde izleyin",
         "3 mois": "3 ay",
-        "Décocher pour desactiver l\\'action": "Décocher pour desactiver l\\'action",
-        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Cocher pour que la commande s\\'éxecute en parrallele des autres actions",
+        "Décocher pour desactiver l\\'action": "\\ 'ın Eylem devre dışı bırakmak için işaretini kaldırın",
+        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "denetleyin diğer eylemlere ilişkin olarak yürütülen sipariş \\ 'ın",
         "Cette commande remplace l'ID": "Bu komut kimliğini değiştirir",
         "Etes-vous sûr de vouloir remplacer l\\'ID": "Eğer \\ 'ın kimliğini değiştirmek istediğinizden emin misiniz",
         "ID de commande à remplacer ?": "Kimlik al yerine?",
-        "Opération effectuée avec succès, n\\'oubliez pas de sauvegarder": "Opération effectuée avec succès, n\\'oubliez pas de sauvegarder",
-        "Décocher pour désactiver l\\'action": "Décocher pour désactiver l\\'action",
-        "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Cocher pour que la commande s\\'exécute en parallèle des autres actions",
+        "Opération effectuée avec succès, n\\'oubliez pas de sauvegarder": "Başarıyla yapılan, don \\ 't kaydetmeyi unutmayın",
+        "Décocher pour désactiver l\\'action": "\\ Eylem devre dışı bırakmak için işaretini kaldırın",
+        "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Komut \\ 'ın paralel diğer eylemler çalışan olup olmadığını kontrol edin",
         "Activer la personnalisation du widget": "widget özelleştirme etkinleştirme",
         "Réinitialiser la personnalisation": "Sıfırlama kişiselleştirme",
-        "Interdire dans les interactions automatique": "Interdire dans les interactions automatique"
+        "Interdire dans les interactions automatique": "otomatik etkileşime sınırla"
     },
     "desktop/php/object.php": {
         "Ajouter objet": "Neyse ekle",
@@ -2041,9 +2041,9 @@
         "Liens": "Linkler",
         "Gestion": "Yönetim",
         "Vue d'ensemble": "Genel görünüm",
-        "Masquer sur le dashboard": "Masquer sur le dashboard",
-        "Couleur du texte du résumé": "Couleur du texte du résumé",
-        "Taille sur le dashboard (1 à 12)": "Taille sur le dashboard (1 à 12)"
+        "Masquer sur le dashboard": "dashboard Hide",
+        "Couleur du texte du résumé": "özet metnin rengi",
+        "Taille sur le dashboard (1 à 12)": "pano üzerindeki boyut (1 ila 12)"
     },
     "desktop/js/object.js": {
         "Sauvegarde effectuée avec succès": "Kayıt başarıyla sonuçlandı",
@@ -2053,7 +2053,7 @@
         "Commande": "Komuta",
         "Inverser": "Ters çevir",
         "Graphique des liens": "Linkler grafiği",
-        "Résumé objet": "Résumé objet"
+        "Résumé objet": "öğe Özeti"
     },
     "desktop/modal/icon.selector.php": {
         "Rechercher": "Arayın",
@@ -2099,7 +2099,7 @@
     },
     "core/repo/market.repo.php": {
         "Téléchargement de ": "Bunun indirilmesi",
-        "Erreur repo_market::getinfo : ": "Erreur repo_market::getinfo :"
+        "Erreur repo_market::getinfo : ": "Hata :: repo_market Getınfo:"
     },
     "core/class/network.class.php": {
         "Le plugin openvpn doit être actif": "openvpn eklentisi aktif olmak zorunda"
@@ -2190,15 +2190,15 @@
         "Information binaire": "ikili bilgi",
         "Action on": "işlem on",
         "Action off": "işlem off",
-        "Alignement du texte": "Alignement du texte",
-        "Par defaut": "Par defaut",
+        "Alignement du texte": "Metin Hizalama",
+        "Par defaut": "varsayılan olarak",
         "Gauche": "Sol",
         "Droite": "Sağ",
-        "Centré": "Centré",
+        "Centré": "merkezli",
         "Position": "Pozisyon",
         "Defaut": "Varsayılan",
         "Haut": "Yukarı",
-        "Haut Gauche": "Haut Gauche",
+        "Haut Gauche": "Sol Üst",
         "Sélectionner un mot-clé": "Anahtar kelime seçin"
     },
     "desktop/php/connection.php": {
@@ -2207,7 +2207,7 @@
         "Code à 2 facteurs": "2 haneli kod",
         "Enregistrer cet ordinateur": "Bu bilgisayarı kaydet",
         "Connexion": "Bağlantı",
-        "J'ai perdu mon mot de passe": "J'ai perdu mon mot de passe"
+        "J'ai perdu mon mot de passe": "Şifremi kaybettim"
     },
     "desktop/modal/jeedom.benchmark.php": {
         "Nom": "İsim",
@@ -2220,22 +2220,22 @@
     },
     "core/api/jeeApi.php": {
         "Appels de ": "Arama",
-        "Requête invalide. Version Jsonrpc invalide : ": "Requête invalide. Version Jsonrpc invalide :"
+        "Requête invalide. Version Jsonrpc invalide : ": "Geçersiz istek. Sürüm geçersiz jsonrpc:"
     },
     "mobile/js/message.js": {
         "Vider": "Boşalt"
     },
     "core/php/jeeCron.php": {
-        "Tous les crons sont actuellement désactivés": "Tous les crons sont actuellement désactivés",
+        "Tous les crons sont actuellement désactivés": "Tüm cron şu anda devre dışı",
         "Erreur sur ": "Hata"
     },
     "mobile/js/application.js": {
         "Résumé": "Özet",
         "Historique": "Geçmiş",
-        "Préviens moi": "Préviens moi",
-        "Me prévenir si": "Me prévenir si",
-        "Erreur lors de la mise à jour": "Erreur lors de la mise à jour",
-        "Nouvelle tentative dans 5s": "Nouvelle tentative dans 5s"
+        "Préviens moi": "beni uyar",
+        "Me prévenir si": "eğer bana bildir",
+        "Erreur lors de la mise à jour": "güncellenirken hata",
+        "Nouvelle tentative dans 5s": "5 saniye sonra yeniden dene"
     },
     "mobile/js/health.js": {
         "Rafraichir": "Yenile",
@@ -2281,7 +2281,7 @@
         "Barre": "çubuk",
         "Variation": "Varyasyon",
         "Escalier": "Merdiven",
-        "Somme par heure": "Somme par heure",
+        "Somme par heure": "Saatte Sum",
         "Somme par jour": "Günde Sum",
         "Somme par semaine": "Haftada Tutar",
         "Somme par mois": "Aylık toplamı",
@@ -2309,31 +2309,31 @@
         "401 - Accès non autorisé": "401 - Ulaşım yetkisiz"
     },
     "core/class/user.class.php": {
-        "Connexion de l'utilisateur ": "Connexion de l'utilisateur"
+        "Connexion de l'utilisateur ": "Kullanıcı Girişi"
     },
     "desktop/php/eqAnalyse.php": {
-        "Batteries": "Batteries",
-        "Modules en alerte": "Modules en alerte",
-        "Actions définies": "Actions définies",
-        "Alertes définies": "Alertes définies",
-        "Commandes orphelines": "Commandes orphelines",
+        "Batteries": "piller",
+        "Modules en alerte": "uyarı modülleri",
+        "Actions définies": "İçindeki Paylar",
+        "Alertes définies": "tanımlanmış uyarılar",
+        "Commandes orphelines": "yetim Kontroller",
         "Equipement": "Cihaz",
         "Commande": "Komuta",
         "Type": "Çeşit",
         "Actions": "Işlemler",
-        "Post exécution": "Post exécution",
-        "Pre exécution": "Pre exécution",
+        "Post exécution": "sonrası uygulama",
+        "Pre exécution": "Ön yürütme",
         "Alertes": "Uyarılar",
-        "Timeout": "Timeout",
-        "Seuils batterie": "Seuils batterie",
-        "Détail": "Détail",
+        "Timeout": "Zaman aşımı",
+        "Seuils batterie": "eşikler pil",
+        "Détail": "detay",
         "Utilisation": "Kullanım"
     },
     "desktop/js/eqAnalyse.js": {
         "Configuration commande": "Komuta ayarları"
     },
     "mobile/html/eqAnalyse.html": {
-        "Batteries": "Batteries",
+        "Batteries": "piller",
         "Alertes": "Uyarılar"
     },
     "desktop/modal/scenario.summary.php": {
@@ -2348,7 +2348,7 @@
         "Multi lancement": "Çoklu başlatma",
         "Mode synchrone": "Senkron mod",
         "Log": "Log",
-        "Timeline": "Timeline",
+        "Timeline": "zaman çizelgesi",
         "Actions": "Işlemler",
         "Erreur": "Hata",
         "En cours": "Sürüyor",
@@ -2356,7 +2356,7 @@
         "Défaut": "Varsayılan",
         "Aucun": "Hiçbir",
         "Temps réel": "Gerçek zaman",
-        "Voir les logs": "Voir les logs",
+        "Voir les logs": "Görünüm günlükleri",
         "Exécuter": "Uygula",
         "Log d'exécution du scénario": "Senaryonun çalışma logu"
     },
@@ -2364,74 +2364,74 @@
         "Test": "Test, denetleme",
         "Exécuter": "Uygula",
         "Résultat": "Sonuç",
-        "L\\'epression de test ne peut être vide": "L\\'epression de test ne peut être vide",
-        "Attention je pense qu\\'il y a un souci car le résultat est le même que l\\'expression": "Attention je pense qu\\'il y a un souci car le résultat est le même que l\\'expression",
-        "Je vais évaluer : ": "Je vais évaluer :",
-        "Résultat : ": "Résultat :",
-        "L\\'expression de test ne peut être vide": "L\\'expression de test ne peut être vide",
-        "Attention : il doit y avoir un souci, car le résultat est le même que l\\'expression": "Attention : il doit y avoir un souci, car le résultat est le même que l\\'expression"
+        "L\\'epression de test ne peut être vide": "L \\ 'testi bunalımdan boş olamaz",
+        "Attention je pense qu\\'il y a un souci car le résultat est le même que l\\'expression": "Sonuç \\ ifadesi ile aynıdır çünkü \\ 'bir endişe olduğunu düşünüyorum Uyarı",
+        "Je vais évaluer : ": "Ben değerlendirecektir:",
+        "Résultat : ": "sonuç:",
+        "L\\'expression de test ne peut être vide": "L \\ 'test ifadesi boş olamaz",
+        "Attention : il doit y avoir un souci, car le résultat est le même que l\\'expression": "Uyarı: Sonuç \\ ifadesi olarak aynı olduğu için, bir endişe olmalı"
     },
     "desktop/modal/report.bug.php": {
-        "Etape 1 : Information sur les tickets": "Etape 1 : Information sur les tickets",
+        "Etape 1 : Information sur les tickets": "1. Adım: biletler bilgi",
         "Merci de vérifier avant toute ouverture de ticket :": "Herhangi bir istek/bilet açmadan önce, lütfen kontrol edin:",
-        "- que la question n'a pas déjà été posée sur le <a href='https://jeedom.com/forum'>forum</a>": "- que la question n'a pas déjà été posée sur le <a href='https://jeedom.com/forum'>forum</a>",
-        "- que la catégorie est bien sélectionnée pour que votre ticket soit traité dans les plus courts délais": "- que la catégorie est bien sélectionnée pour que votre ticket soit traité dans les plus courts délais",
-        "- que la réponse n'est pas déjà dans la <a href='https://jeedom.github.io/documentation'>documentation</a>": "- que la réponse n'est pas déjà dans la <a href='https://jeedom.github.io/documentation'>documentation</a>",
-        "IMPORTANT : si vous ouvrez un ticket pour un bug ou une demande d'amélioration celle-ci sont public (donc attention au informations que vous communiquez). Vous pouvez voir la liste des demandes en cours <a href=\"https://jeedom.atlassian.net/issues/?filter=-5&jql=status%20in%20(%22A%20valider%22%2C%20%22In%20Progress%22%2C%20Planifi%C3%A9%2C%20Reopened%2C%20%22To%20Do%22)%20AND%20resolution%20%3D%20Unresolved%20order%20by%20priority%20DESC%2Cupdated%20DESC\" target=\"_blank\">ici</a>. Les demandes public doivent etre parfaitement formuler avec toutes les informations necessaire car vous ne pouvez pas completer la demande par la suite. Toute demande d'un service pack pro est privée.": "IMPORTANT : si vous ouvrez un ticket pour un bug ou une demande d'amélioration celle-ci sont public (donc attention au informations que vous communiquez). Vous pouvez voir la liste des demandes en cours <a href=\"https://jeedom.atlassian.net/issues/?filter=-5&jql=status%20in%20(%22A%20valider%22%2C%20%22In%20Progress%22%2C%20Planifi%C3%A9%2C%20Reopened%2C%20%22To%20Do%22)%20AND%20resolution%20%3D%20Unresolved%20order%20by%20priority%20DESC%2Cupdated%20DESC\" target=\"_blank\">ici</a>. Les demandes public doivent etre parfaitement formuler avec toutes les informations necessaire car vous ne pouvez pas completer la demande par la suite. Toute demande d'un service pack pro est privée.",
-        "Etape 2 : Catégorie et type de la demande": "Etape 2 : Catégorie et type de la demande",
+        "- que la question n'a pas déjà été posée sur le <a href='https://jeedom.com/forum'>forum</a>": "- Soru <a href='https://jeedom.com/forum'> forumu </a> hakkında bir talep gelmediğini",
+        "- que la catégorie est bien sélectionnée pour que votre ticket soit traité dans les plus courts délais": "- kategori biletinizin için seçildiğini kısa sürede işlenecek",
+        "- que la réponse n'est pas déjà dans la <a href='https://jeedom.github.io/documentation'>documentation</a>": "- Cevabı <a href='https://jeedom.github.io/documentation'> dokümanlarına </a> önceden bulunmadığından",
+        "IMPORTANT : si vous ouvrez un ticket pour un bug ou une demande d'amélioration celle-ci sont public (donc attention au informations que vous communiquez). Vous pouvez voir la liste des demandes en cours <a href=\"https://jeedom.atlassian.net/issues/?filter=-5&jql=status%20in%20(%22A%20valider%22%2C%20%22In%20Progress%22%2C%20Planifi%C3%A9%2C%20Reopened%2C%20%22To%20Do%22)%20AND%20resolution%20%3D%20Unresolved%20order%20by%20priority%20DESC%2Cupdated%20DESC\" target=\"_blank\">ici</a>. Les demandes public doivent etre parfaitement formuler avec toutes les informations necessaire car vous ne pouvez pas completer la demande par la suite. Toute demande d'un service pack pro est privée.": "ÖNEMLİ: Hata veya kamu olduğu bir geliştirme isteği için bir bilet açarsanız (böylece verdiğiniz bilgilere dikkat). Bekleyen uygulamaların listesini <a href = \"https://jeedom.atlassian.net/issues/?filter=-5&jql=status%20in%20(%22A%20valider%22%2C%20%22In%20Progress%22%2C%20Planifi%C3%A9%2C%20Reopened% görebilirsiniz 2C%20%22To% 20Do% 22) buradan </a> %20AND 20resolution%20%3D %%% 20Unresolved%20order 20by%20priority 20DESC %%% 2Cupdated 20DESC \"target =\" _ blank \">. Uygulamayı daha sonra tamamlanamıyor nedeniyle Kamu Uygulamalar mükemmel gerekli tüm bilgileri ile formüle edilmelidir. yanlısı bir hizmet paketi herhangi bir talep özeldir.",
+        "Etape 2 : Catégorie et type de la demande": "Adım 2: Boyut ve talep tipi",
         "Type": "Çeşit",
         "Aucun": "Hiçbir",
         "Support": "Destek",
-        "Bug": "Bug",
-        "Demande d'amélioration": "Demande d'amélioration",
+        "Bug": "böcek",
+        "Demande d'amélioration": "İyileştirme İsteği",
         "Catégorie": "Kategori",
         "Aucune": "Hiçbir",
         "Général": "Genel",
         "Scénario": "Senaryo",
-        "Etape 3 : Chercher dans la documentation": "Etape 3 : Chercher dans la documentation",
+        "Etape 3 : Chercher dans la documentation": "3. Adım: belgelerine ara",
         "Rechercher": "Arayın",
-        "Chercher": "Chercher",
-        "Etape 4 : Demande de support": "Etape 4 : Demande de support",
+        "Chercher": "aramak",
+        "Etape 4 : Demande de support": "Adım 4: Destek Talebi",
         "Titre": "Başlık",
         "Message": "Mesaj",
         "Envoyer": "Gönder",
-        "Ce plugin utilise un gestionnaire de demande de support": "Ce plugin utilise un gestionnaire de demande de support",
-        "Accéder": "Accéder",
-        "Votre ticket a bien été ouvert. Vous pouvez le suivre": "Votre ticket a bien été ouvert. Vous pouvez le suivre",
+        "Ce plugin utilise un gestionnaire de demande de support": "Bu eklenti bir destek talebi yöneticisi kullanır",
+        "Accéder": "giriş",
+        "Votre ticket a bien été ouvert. Vous pouvez le suivre": "Bilet açılmıştır. Sen takip edebilirsiniz",
         "Votre ticket a bien été ouvert. Un mail va vous être envoyé": "Tikeniz açıladı. Size mail atılacakdır",
-        "Etape 2 : Choix du type de demande": "Etape 2 : Choix du type de demande",
-        "Etape 3 : Catégorie et type de la demande": "Etape 3 : Catégorie et type de la demande",
-        "Etape 4 : Chercher dans la documentation": "Etape 4 : Chercher dans la documentation",
-        "Etape 5 : Demande de support": "Etape 5 : Demande de support",
-        "Assistance technique": "Assistance technique",
-        "Rédigez votre question à l'attention de notre service Technique qui y répondra dans les meilleurs délais.": "Rédigez votre question à l'attention de notre service Technique qui y répondra dans les meilleurs délais.",
-        "Vous pouvez déclarer un bug qui sera publié sur notre Bug Tracker public (<strong>ATTENTION</strong> votre message sera public, il pourra être supprimé s'il ne s'agit pas d'un bug,  vous ne recevrez pas d'assistance technique suite à cette déclaration)": "Vous pouvez déclarer un bug qui sera publié sur notre Bug Tracker public (<strong>ATTENTION</strong> votre message sera public, il pourra être supprimé s'il ne s'agit pas d'un bug,  vous ne recevrez pas d'assistance technique suite à cette déclaration)",
-        "Vous pouvez envoyer des proposition d'amélioration qui seront publiée sur notre page publique dédiée et qui pourront être intégrés dans notre roadmap.": "Vous pouvez envoyer des proposition d'amélioration qui seront publiée sur notre page publique dédiée et qui pourront être intégrés dans notre roadmap.",
-        "Voir les bugs": "Voir les bugs",
-        "Voir les propositions d'amélioration": "Voir les propositions d'amélioration"
+        "Etape 2 : Choix du type de demande": "Adım 2: İsteğe türünü seçin",
+        "Etape 3 : Catégorie et type de la demande": "Adım 3: Boyut ve talep tipi",
+        "Etape 4 : Chercher dans la documentation": "Adım 4: belgelerine ara",
+        "Etape 5 : Demande de support": "Adım 5: Destek Talebi",
+        "Assistance technique": "teknik yardım",
+        "Rédigez votre question à l'attention de notre service Technique qui y répondra dans les meilleurs délais.": "kısa zamanda cevap vereceğiz Teknik Servis dikkatine sorunuzu yazın.",
+        "Vous pouvez déclarer un bug qui sera publié sur notre Bug Tracker public (<strong>ATTENTION</strong> votre message sera public, il pourra être supprimé s'il ne s'agit pas d'un bug,  vous ne recevrez pas d'assistance technique suite à cette déclaration)": "Bizim kamu Bug Tracker (<strong> UYARI yayınlanacaktır bir hatayı bildirmek için: </ strong> mesajı herkese açık olacaktır, bunun bir hata değilse silinebilir yapmanız almazsınız Bu açıklamada şu teknik yardım)",
+        "Vous pouvez envoyer des proposition d'amélioration qui seront publiée sur notre page publique dédiée et qui pourront être intégrés dans notre roadmap.": "Bizim sayfa adanmış halka yayınlanacak ve bizim yol haritasına entegre edilebilir iyileştirme önerilerini gönderebilirler.",
+        "Voir les bugs": "böcek bakın",
+        "Voir les propositions d'amélioration": "iyileştirme için önerilere bakın"
     },
     "core/ajax/cmd.ajax.php": {
-        "Commande inconnu verifié l'id :": "Commande inconnu verifié l'id :",
-        "Cmd ID inconnu : ": "Cmd ID inconnu :"
+        "Commande inconnu verifié l'id :": "Bilinmeyen komut kimliği doğrulanmış:",
+        "Cmd ID inconnu : ": "bilinmeyen kimliği cmd:"
     },
     "desktop/php/custom.php": {
-        "Attention tout ce que vous écrivez ici est global et inclus sur toutes les pages, la moindre erreur peut rendre votre jeedom non fonctionel": "Attention tout ce que vous écrivez ici est global et inclus sur toutes les pages, la moindre erreur peut rendre votre jeedom non fonctionel",
+        "Attention tout ce que vous écrivez ici est global et inclus sur toutes les pages, la moindre erreur peut rendre votre jeedom non fonctionel": "Dikkatli olun burada ne yazmak global ve tüm sayfalarda yer olduğunu, en ufak bir hata senin olmayan FONKSİYONEL jeedom yapabilirsiniz",
         "Activer": "Etkinleştir",
         "Sauvegarder": "Kaydet"
     },
     "desktop/js/system.js": {
-        "Etes-vous sûr de vouloir éxécuter cette commande : ": "Etes-vous sûr de vouloir éxécuter cette commande :",
-        "Celle-ci est classé en dangereuse": "Celle-ci est classé en dangereuse",
+        "Etes-vous sûr de vouloir éxécuter cette commande : ": "Eğer bu komutu çalıştırmak istediğinizden emin misiniz:",
+        "Celle-ci est classé en dangereuse": "Bu tehlikeli olarak sınıflandırılmıştır",
         "Commande : ": "Komuta :"
     },
     "desktop/php/database.php": {
         "Rechercher": "Arayın",
-        "Cliquez sur une commande à droite ou tapez une commande personnalisée ci-dessous": "Cliquez sur une commande à droite ou tapez une commande personnalisée ci-dessous",
+        "Cliquez sur une commande à droite ou tapez une commande personnalisée ci-dessous": "Sağdaki bir komut tıklayın veya aşağıya özel komutu yazın",
         "OK": "OK"
     },
     "desktop/js/database.js": {
-        "Etes-vous sûr de vouloir éxécuter cette commande : ": "Etes-vous sûr de vouloir éxécuter cette commande :",
-        "Celle-ci est classé en dangereuse": "Celle-ci est classé en dangereuse",
+        "Etes-vous sûr de vouloir éxécuter cette commande : ": "Eğer bu komutu çalıştırmak istediğinizden emin misiniz:",
+        "Celle-ci est classé en dangereuse": "Bu tehlikeli olarak sınıflandırılmıştır",
         "Commande : ": "Komuta :"
     },
     "desktop/dashboard.php": {
@@ -2442,11 +2442,11 @@
     },
     "desktop/modal/update.add.php": {
         "Source": "Kaynak",
-        "Type de source": "Type de source",
+        "Type de source": "Kaynak Tipi",
         "Aucun": "Hiçbir",
         "Configuration": "Ayarlar",
-        "ID logique du plugin": "ID logique du plugin",
-        "Envoyer un plugin": "Envoyer un plugin",
+        "ID logique du plugin": "Eklenti Mantıksal İD",
+        "Envoyer un plugin": "eklentisi gönder",
         "Enregistrer": "Kaydet",
         "Enregistrement réussi": "Başarılı kayıt"
     },
@@ -2458,14 +2458,14 @@
     "desktop/js/3d.js": {
         "Designs": "Disaynlar",
         "Edition": "Düzenleme",
-        "Configuration de l\\'objet": "Configuration de l\\'objet",
+        "Configuration de l\\'objet": "Yapılandırma \\ 'in nesne",
         "Widget": "Widget",
-        "Configuration du plan 3D": "Configuration du plan 3D"
+        "Configuration du plan 3D": "3D harita Yapılandırılması"
     },
     "desktop/php/3d.php": {
         "Objet": "Konu",
         "Nom": "Soyisim",
-        "Equipement liée": "Equipement liée",
+        "Equipement liée": "ilgili ekipman",
         "Informations": "Bilgiler",
         "Equipement": "Cihaz",
         "Edition": "Düzenleme",
@@ -2475,41 +2475,41 @@
         "Général": "Genel",
         "Sauvegarder": "Kaydet",
         "Nom": "Soyisim",
-        "Type de lien": "Type de lien",
+        "Type de lien": "Bağlantı Tipi",
         "Equipement": "Cihaz",
         "Lien": "Link",
         "Rechercher d\\'un équipement": "Cihaz araması",
-        "Spécificité": "Spécificité",
+        "Spécificité": "özgüllük",
         "Lumière": "Işık",
-        "Lumière couleur": "Lumière couleur",
+        "Lumière couleur": "açık renk",
         "Aucun": "Hiçbir",
         "Statut": "Statü",
-        "Rechercher d\\'une commande": "Rechercher d\\'une commande",
+        "Rechercher d\\'une commande": "Arama \\ 'ın komuta",
         "Puissance": "Güç",
         "Texte": "Metin",
-        "Taille du texte": "Taille du texte",
+        "Taille du texte": "Metin Boyutu",
         "Couleur de fond": "Fon rengi",
-        "Couleur de la bordure": "Couleur de la bordure",
-        "Transparence fond": "Transparence fond",
-        "Transparence bordure": "Transparence bordure",
+        "Couleur de la bordure": "Çerçeve Rengi",
+        "Transparence fond": "arka plan saydamlığı",
+        "Transparence bordure": "sınır şeffaflık",
         "Couleur du texte": "Metinin rengi",
-        "Transparence du texte": "Transparence du texte",
-        "Espacement au dessus de l'objet": "Espacement au dessus de l'objet",
-        "Porte/Fenêtre": "Porte/Fenêtre",
-        "Fênetre": "Fênetre",
+        "Transparence du texte": "Metin Şeffaflık",
+        "Espacement au dessus de l'objet": "nesnenin üstündeki Uzay",
+        "Porte/Fenêtre": "Kapı / Pencere",
+        "Fênetre": "Pencere",
         "Volet": "Kepenek",
-        "Fênetre/Porte": "Fênetre/Porte",
-        "Couleur fênetre/porte ouverte": "Couleur fênetre/porte ouverte",
-        "Couleur fênetre/porte fermée": "Couleur fênetre/porte fermée",
-        "Couleur volet fermé": "Couleur volet fermé",
+        "Fênetre/Porte": "/ Kapı Pencere",
+        "Couleur fênetre/porte ouverte": "Renk pencere / kapı açık",
+        "Couleur fênetre/porte fermée": "Renk pencere / kapı kapalı",
+        "Couleur volet fermé": "Renk deklanşör kapalı",
         "Supprimer": "Sil",
-        "Couleur conditionnel": "Couleur conditionnel",
+        "Couleur conditionnel": "koşullu renk",
         "Condition": "Durum",
         "Ajouter": "Ekle",
         "Couleur": "Renk"
     },
     "core/ajax/plan3d.ajax.php": {
-        "plan3d header inconnu verifiez l'id : ": "plan3d header inconnu verifiez l'id :"
+        "plan3d header inconnu verifiez l'id : ": "plan3d bilinmeyen başlık kimliğini kontrol edin:"
     },
     "desktop/modal/plan3dHeader.configure.php": {
         "Sauvegarder": "Kaydet",
@@ -2518,37 +2518,37 @@
         "Code d'accès": "Giriş kodu",
         "Icône": "İkon",
         "Choisir": "Seç",
-        "Chemin d'accès": "Chemin d'accès",
-        "Fichier OBJ": "Fichier OBJ",
-        "Fichier MTL": "Fichier MTL",
+        "Chemin d'accès": "yol",
+        "Fichier OBJ": "OBJ dosya",
+        "Fichier MTL": "dosya MTL",
         "Tailles": "Boyutlar",
         "Taille (LxH)": "Boyut (En x Boy)",
         "Image supprimée": "Fotoğraf silindi",
         "Design sauvegardé": "Disayn kaydedildi",
-        "Plan 3d sauvegardé": "Plan 3d sauvegardé",
+        "Plan 3d sauvegardé": "3d planını kaydettikten",
         "Supprimer": "Sil",
-        "Model 3D": "Model 3D",
+        "Model 3D": "3B Model",
         "Envoyer": "Gönder",
-        "Chargement réussi merci de recharger la page pour voir le résultat": "Chargement réussi merci de recharger la page pour voir le résultat"
+        "Chargement réussi merci de recharger la page pour voir le résultat": "Yükleme Eğer sonucunu görmek için sayfayı yeniden teşekkür başarılı"
     },
     "desktop/php/plan3d.php": {
         "Informations": "Bilgiler"
     },
     "desktop/js/plan3d.js": {
-        "Configuration du plan 3D": "Configuration du plan 3D",
-        "Configuration de l\\'objet": "Configuration de l\\'objet",
-        "Chargement...": "Chargement..."
+        "Configuration du plan 3D": "3D harita Yapılandırılması",
+        "Configuration de l\\'objet": "Yapılandırma \\ 'in nesne",
+        "Chargement...": "Yükleniyor ..."
     },
     "desktop/3d.php": {
-        "Plan 3d inconnu. Verifier l'id": "Plan 3d inconnu. Verifier l'id"
+        "Plan 3d inconnu. Verifier l'id": "Bilinmeyen Harita 3D. id edin"
     },
     "desktop/php/system.php": {
         "Rechercher": "Arayın",
-        "Cliquez sur une commande à droite ou tapez une commande personnalisée ci-dessous": "Cliquez sur une commande à droite ou tapez une commande personnalisée ci-dessous",
+        "Cliquez sur une commande à droite ou tapez une commande personnalisée ci-dessous": "Sağdaki bir komut tıklayın veya aşağıya özel komutu yazın",
         "OK": "OK"
     },
     "core/ajax/eqLogic.ajax.php": {
-        "EqLogic inconnu, vérifiez l'id : ": "EqLogic inconnu, vérifiez l'id :"
+        "EqLogic inconnu, vérifiez l'id : ": "EqLogic, id bilinmeyen kontrol edin:"
     },
     "desktop/modal/history.calcul.php": {
         "Sauvegarder": "Kaydet",
@@ -2560,7 +2560,7 @@
         "Escalier": "Merdiven",
         "Action": "Eylem",
         "Sauvegarde effectuée": "Yedekleme gerçekleştirildi",
-        "Formule de calcul": "Formule de calcul",
+        "Formule de calcul": "formül",
         "Sélectionner la commande": "Komutayı seçin",
         "Ligne": "Hat",
         "Aire": "Alan",
@@ -2580,30 +2580,30 @@
         "Maximum par mois": "Aylık maximum",
         "Non": "Hayır",
         "Oui": "Evet",
-        "Afficher le graphique": "Afficher le graphique"
+        "Afficher le graphique": "Görünüm Grafiği"
     },
     "desktop/modal/scenario.template.php": {
-        "Appliquer un template": "Appliquer un template",
-        "Nom du template": "Nom du template",
+        "Appliquer un template": "Bir şablonu uygula",
+        "Nom du template": "Şablon adı",
         "Template": "Şablon",
         "Général": "Genel",
-        "Gérer": "Gérer",
-        "Partager sur": "Partager sur",
+        "Gérer": "yönetmek",
+        "Partager sur": "Şurada paylaş",
         "Supprimer": "Sil",
         "Télécharger": "İndir",
-        "Paramètres du scénario": "Paramètres du scénario",
+        "Paramètres du scénario": "Senaryo Parametreleri",
         "Appliquer": "Uygula",
         "Partager sur le market": "Marketde paylaşın",
-        "Etes-vous sûr de vouloir appliquer le template ? Cela écrasera votre scénario": "Etes-vous sûr de vouloir appliquer le template ? Cela écrasera votre scénario",
-        "Template ajouté avec succès": "Template ajouté avec succès"
+        "Etes-vous sûr de vouloir appliquer le template ? Cela écrasera votre scénario": "şablonu uygulamak istediğiniz emin misiniz? Bu senaryo üzerine yazılır",
+        "Template ajouté avec succès": "Şablon başarıyla eklendi"
     },
     "desktop/.php": {
-        "Aucune phrase trouvée": "Aucune phrase trouvée"
+        "Aucune phrase trouvée": "Cümle bulunamadı"
     },
     "desktop/modal/interact.test.php": {
         "Demande": "Istek",
         "Exécuter": "Uygula",
         "Résultat": "Sonuç",
-        "La demande ne peut être vide": "La demande ne peut être vide"
+        "La demande ne peut être vide": "istek boş olamaz"
     }
 }

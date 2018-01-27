@@ -4,919 +4,923 @@ cambios
 3.2.0
 =====
 
--   Posibilidad de prohibir a un comando en las interacciones
-    automático
+-   Mise à jour des traductions
 
--   interacciones automáticas mejoradas
+-   Mise à jour des librairies (jquery et highcharts)
 
--   Corregido un fallo en la gestión de las interacciones sinónimas
+-   Possibilité d’interdire une commande dans les interactions
+    automatique
 
--   Adición de un campo de búsqueda para LDAP conexión de usuario / AD
-    (Ayuda a que Jeedom AD compatible)
+-   Amélioration des interactions automatique
 
--   correcciones de ortografía (gracias dab0u por su enorme trabajo)
+-   Correction de bug sur la gestion des synonyme des interactions
 
--   JEED-290: No se puede conectar con los identificadores de
-    predeterminado (admin / admin) de distancia, sólo se permite la red local
+-   Ajout d’un champs recherche utilisateur pour les connexion LDAP/AD
+    (permet de rendre Jeedom compatible AD)
 
--   JEED-186: Ahora puede elegir el color de fondo en
-    diseños
+-   Corrections d’orthographe (merci à dab0u pour son énorme travail)
 
--   En el bloque A, posibilidad de una hora entre 0:01 ET doce y cincuenta y nueve
-    simplemente poniendo los minutos (por ejemplo, doce y treinta 30)
+-   JEED-290 : On ne peut plus se connecter avec les identifiants par
+    défaut (admin/admin) à distance, seul le réseau local est autorisé
 
--   La adición de las sesiones activas y periféricos registrado en
-    Página de perfil de usuario y la página de administración
-    usuarios
+-   JEED-186 : On peut maintenant choisir la couleur de fond dans les
+    designs
 
--   JEED-284: la conexión permanente depende ahora de una clave
-    único usuario y circunvalación (en lugar de usuario)
+-   Pour le bloc A, possibilité de mettre une heure entre 00h01 et 00h59
+    en mettant simplement les minutes (ex 30 pour 00h30)
 
--   JEED-283: Adición de un modo de rescate mediante la adición de jeedom y rescate = 1
-    en la url
+-   Ajout des sessions actives et des péripheriques enregistrés sur la
+    page de profil de l’utilisateur et la page de gestion des
+    utilisateurs
 
--   JEED-8: Añadir el nombre del escenario en el título de la página cuando
-    edición
+-   JEED-284 : la connexion permanente dépend maintenant d’une clef
+    unique utilisateur et péripherique (et non plus que utilisateur)
 
--   Optimización de los cambios en la organización (widgets de tamaño,
-    equipos de posición, los comandos de posición) en el salpicadero
-    y ver. Cuidado ahora los cambios no son
-    salvo cuando se sale del modo de edición.
+-   JEED-283 : ajout d’un mode rescue à jeedom en rajoutant &rescue=1
+    dans l’url
 
--   JEED-18: Adición de registros al abrir un ticket de soporte
+-   JEED-8 : ajout du nom du scénario sur le titre de la page lors de
+    l’édition
 
--   JEED-181: la adición de un comando de nombre en los escenarios de
-    el nombre del comando o equipo u objeto
+-   Optimisation des modifications d’organisation (taille des widgets,
+    position des équipements, position des commandes) sur le dashboard
+    et les vue. Attention maintenant les modifications ne sont
+    sauvegardées que lorsque l’on quitte le mode édition.
 
--   JEED-15: Se ha añadido la batería y alerta sobre la aplicación de web
+-   JEED-18 : Ajout des logs lors de l’ouverture d’un ticket au support
 
--   errores corregidos en movimiento de objetos de diseño en Firefox
+-   JEED-181 : ajout d’une commande name dans les scénarios pour avoir
+    le nom de la commande ou de l’équipement ou de l’objet
 
--   JEED-19: Cuando una actualización, ahora es posible
-    actualizar el script de actualización antes de actualizar
+-   JEED-15 : Ajout des batterie et alerte sur la webapp
 
--   JEED-125: Se ha añadido un enlace para restablecer la documentación
-    contraseña
+-   Correction du bugs de déplacement des objets du design sous Firefox
 
--   JEED-2: Mejora de la gestión del tiempo en el reinicio
+-   JEED-19 : Lors d’une mise à jour il est maintenant possible de
+    mettre à jour le script d’update avant la mise à jour
 
--   JEED-77: Adición de gestión de etiquetas en API HTTP
+-   JEED-125 : ajout d’un lien vers la documentation de réinitialisation
+    de mot de passe
 
--   JEED-78: se ha añadido la etiqueta de acuerdo con los escenarios. advirtiendo que
-    estar en escenarios usando las etiquetas pasan Montag * *
-    Para etiquetar (Montag)
+-   JEED-2 : Amélioration de la gestion de l’heure lors d’un redémarrage
 
--   JEED-124: escenarios de gestión correcta tiempos de espera
+-   JEED-77 : Ajout de la gestion des variables dans l’API http
 
--   errores corregidos
+-   JEED-78 : ajout de la fonction tag pour les scénarios. Attention il
+    faut dans les scénarios utilisant les tags passer de *montag*
+    à tag(montag)
 
--   Capacidad para desactivar una interacción
+-   JEED-124 : Corriger la gestion des timeouts des scénarios
 
--   La adición de un editor de archivos (sólo para
-    avanzado)
+-   Correction de bugs
 
--   La adición de los tipos genéricos "estado de luz" (binario), "Luz
-    Temperatura de color "(Información)," temperatura de color ligero "(Acción)
+-   Possibilité de désactiver une intéraction
 
--   Posibilidad de hacer palabras de enlace en una interacción
+-   Ajout d’un éditeur de fichiers (réservé aux
+    utilisateurs expérimentés)
 
-3.1.7
+-   Ajout des génériques Types "Lumière Etat" (Binaire), "Lumière
+    Température Couleur" (Info), "Lumière Température Couleur" (Action)
+
+-   Possibilité de rendre des mots obligatoires dans une interaction
+
+3.1.7 
 =====
 
--   Corrección de errores (especialmente en histórico y
-    funciones estadísticas)
+-   Correction de bugs (en particulier sur les historiques et
+    fonctions statistiques)
 
--   sistema de actualización mejorado con una página de notas
-    Versión (es necesario comprobar usted mismo antes de cada actualización
-    día !!!!)
+-   Amélioration du système de mises à jour avec une page de notes de
+    version (que vous devez vérifier vous même avant chaque mise à
+    jour !!!!)
 
--   Se ha corregido un error que fue a buscar los registros durante la restauración
+-   Correction d’un bug qui récuperait les logs lors des restaurations
 
-3.1
+3.1 
 ===
 
--   errores corregidos
+-   Correction de bugs
 
--   optimización global de Jeedom (en las clases de carga
-    plugins, casi la hora dividido por 3)
+-   Optimisation globale de Jeedom (sur le chargement des classes de
+    plugins, temps presque divisé par 3)
 
--   Soporte Debian 9
+-   Support de Debian 9
 
--   Modo OnePage (cambio de página sin volver a cargar la página entera, simplemente
-    la parte que cambia)
+-   Mode onepage (changement de page sans recharger toute la page, juste
+    la partie qui change)
 
--   Añadida la opción de ocultar objetos en el salpicadero, pero
-    permite tener siempre en la lista
+-   Ajout d’une option pour masquer les objets sur le dashboard mais qui
+    permet de toujours les avoir dans la liste
 
--   Haciendo doble clic sobre un nodo en el gráfico de enlace (a excepción de
-    variables) lleva en su página de configuración
+-   Un double-clic sur un noeud sur le graphique de lien (sauf pour
+    les variables) amène sur sa page de configuration
 
--   Posibilidad de texto a la izquierda / derecha / centro de
-    diseños para elementos como texto / foto / diseño
+-   Possibilité de mettre le texte à gauche/droit/au centre sur les
+    designs pour les élements de type texte/vue/design
 
--   Añadiendo resúmenes objetos en el salpicadero (lista de objetos
-    a la izquierda)
+-   Ajout des résumés d’objets sur le dashboard (liste des objets
+    à gauche)
 
--   La adición de las interacciones de tipo "Avisar si el"
+-   Ajout des interactions de type "previens-moi-si"
 
--   escenarios página de inicio opinión
+-   Revue de la page d’acceuil des scénarios
 
--   La adición de un historial de comandos para los comandos SQL o sistema de
-    en la interfaz de Jeedom
+-   Ajout d’un historique de commandes pour les commandes SQL ou système
+    dans l’interface de Jeedom
 
--   Posibilidad de los gráficos históricos de pedidos
-    webapp (manteniendo pulsado el control)
+-   Possibilité d’avoir les graphiques d’historiques des commandes en
+    webapp (par appui long sur la commande)
 
--   Añadiendo el progreso de la actualización de la aplicación web
+-   Ajout de l’avancement de l’update de la webapp
 
--   Recuperación de error de actualización de la aplicación web
+-   Reprise en cas d’erreur de mise à jour de la webapp
 
--   La eliminación de escenarios "simples" (con configuración redundante
-    órdenes avanzadas)
+-   Suppression des scénarios "simples" (redondant avec la configuration
+    avancée des commandes)
 
--   La adición de escotilla en gráficos para distinguir día
+-   Ajout de hachurage sur les graphs pour distinguer les jours
 
--   Revisión de las interacciones página
+-   Refonte de la page des interactions
 
--   Refundición de la página de perfiles
+-   Refonte de la page profils
 
--   rediseñada página de administración
+-   Refonte de la page d’administration
 
--   La adición de un "salud" en los objetos
+-   Ajout d’une "santé" sur les objets
 
--   corrección de error en el nivel de batería del equipo
+-   Correction de bug sur le niveau de batterie des équipements
 
--   Adición de método en el núcleo para la gestión de comandos muertas
-    (Debe entonces ser implementado en el plug-in)
+-   Ajout de méthode dans le core pour la gestion des commandes mortes
+    (doit être ensuite implementée dans le plugin)
 
--   Capacidad de historizar comandos basados ​​en texto
+-   Possibilité d’historiser des commandes de type texte
 
--   En la página de la historia ahora se puede trazar
-    un cálculo
+-   Sur la page historique vous pouvez maintenant faire le graphique
+    d’un calcul
 
--   Adición de una gestión fórmula para histórico
+-   Ajout d’une gestion de formule de calcul pour les historiques
 
--   actualización de la documentación:
+-   Remise à jour de toute la documentation :
 
-    -   Todos los documentos se han revisado
+    -   Toute les docs ont été revues
 
-    -   Eliminación de imágenes para una fácil actualización y
-        plurilingüe
+    -   Suppression des images pour faciliter la mise à jour et le
+        multilingue
 
--   Más opciones de la configuración del tamaño de la zona de
-    vistas
+-   Plus de choix possibles sur les réglage des tailles de zone dans les
+    vues
 
--   Posibilidad de elegir el color del objeto de texto Resumen
+-   Possibilité de choisir la couleur du texte du résumé d’objet
 
--   Adición de eliminar \ escenarios de acción para _inat
-    cancelar todos los bloques de programación de IN / A
+-   Ajout d’une action remove\_inat dans les scénarios permettant
+    d’annuler toutes les programmations des bloc DANS/A
 
--   Posibilidad de diseños para los widgets para elegir visión general
-    la posición del widget
+-   Possibilité dans les designs pour les widgets au survol de choisir
+    la position du widget
 
--   La adición de un parámetro de respuesta \ _cmd en las interacciones para especificar
-    el identificador del comando utilizar para satisfacer
+-   Ajout d’un parametre reply\_cmd sur les interactions pour spécifier
+    l’id de la commande à utiliser pour répondre
 
--   Adición de una línea de tiempo en la página Historial (atención debe estar
-    activado en todos los órdenes y / o escenario que desea
-    ver aparecer)
+-   Ajout d’une timeline sur la page historique (attention doit etre
+    activée sur chaque commande et/ou scénario que vous voulez
+    voir apparaitre)
 
--   Posibilidad de vaciar los acontecimientos de la línea de tiempo
+-   Possibilité de vider les évènements de la timeline
 
--   Posibilidad de IPs prohibidas vacías
+-   Possibilité de vider les IPs bannies
 
--   Corrección / mejora en la gestión de cuentas de usuario
+-   Correction/amélioration de la gestion des comptes utilisateurs
 
-    -   Posibilidad de eliminar la cuenta de administrador básica
+    -   Possibilité de supprimer le compte admin de base
 
-    -   paso normal de la última administrador de Prevención
+    -   Prévention du passage en normal du derniere administrateur
 
-    -   Adición de seguridad para evitar la eliminación de la cuenta con
-        en el que está conectada
+    -   Ajout d’une sécurité pour éviter la suppression du compte avec
+        lequel on est connecté
 
--   Posibilidad en la configuración de equipos avanzados para
-    la disposición de los mandos de los widgets de la tabla de modo de
-    choissisant para cada caja de control o para
+-   Possibilité dans la configuration avancé des équipements de mettre
+    la disposition des commandes dans le widgets en mode table en
+    choissisant pour chaque commande la case ou la mettre
 
--   Posibilidad de reorganizar los widgets de los equipos
-    Tablero de instrumentos (en la manera de la edición, haga clic derecho en el widget)
+-   Possibilité de reorganiser les widgets des équipements depuis le
+    dashboard (en mode edition clic droit sur le widget)
 
--   Cambiar el tono de widgets (40 \ * 80-10 \ * 10). Tenga en cuenta que
-    tendrá un impacto en su diseño de tablero de mandos / foto / diseño
+-   Changement du pas des widgets (de 40\*80 à 10\*10). Attention cela
+    va impacter la disposition sur votre dashboard/vue/design
 
--   Posibilidad de dar un tamaño de 1 a 12 objetos en
-    salpicadero
+-   Possibilité de donner une taille de 1 à 12 aux objets sur le
+    dashboard
 
--   Capacidad para iniciar independientemente escenarios de acción (y
-    plug-in tipo de modo / alarma si está habilitado) al lado del otro
+-   Possibilité de lancer independament les actions des scénarios (et
+    plugin type mode/alarm si compatible) en parallèle des autres
 
--   Posibilidad de añadir un código de acceso a un diseño
+-   Possibilité d’ajouter un code d’accès à un design
 
--   La adición de un organismo de control independiente de Jeedom para comprobar el estado de
-    MySQL y Apache
+-   Ajout d’un watchdog independant de Jeedom pour verifier le status de
+    MySql et Apache
 
-3.0.11
+3.0.11 
 ======
 
--   Solución de errores en aplicaciones de "preguntar" en tiempo de espera
+-   Correction de bugs sur les demandes "ask" en timeout
 
-3.0.10
+3.0.10 
 ======
 
--   Solución de errores en las interacciones de la interfaz de configuración
+-   Correction de bugs sur l’interface de configuration des interactions
 
-3.0
+3.0 
 ===
 
--   La eliminación del modo esclavo
+-   Suppression du mode esclave
 
--   Capacidad de desencadenar un guión sobre un cambio de
+-   Possibilité de déclencher un scénario sur un changement d’une
     variable
 
--   Actualizaciones de variables ahora desencadenan la actualización
-    Los comandos de un equipo virtual (necesita la última versión
-    plug-in)
+-   Les mises à jour de variables déclenchent maintenant la mise à jour
+    des commandes d’un équipement virtuel (il faut la dernière version
+    du plugin)
 
--   Capacidad de tener un icono en los controles de información de tipo
+-   Possibilité d’avoir une icone sur les commandes de type info
 
--   Posibilidad de los controles para mostrar el nombre y el icono
+-   Possibilité sur les commandes d’afficher le nom et l’icone
 
--   Añadir acción "alerta" sobre escenarios: mensaje de la parte superior de
+-   Ajout d’une action "alert" sur les scénarios : message en haut dans
     jeedom
 
--   La adición de unos escenarios de acción "pop-up": mensaje para validar
+-   Ajout d’une action "popup" sur les scénarios : message à valider
 
--   Reproductores de comandos puede tener ahora un método
-    para actualizar que impide que una llamada AJAX a Jeedom
+-   Les widgets des commandes peuvent maintenant avoir une méthode
+    d’update ce qui évite un appel ajax à Jeedom
 
--   Widgets escenarios se actualizan sin llamada AJAX
-    para el widget
+-   Les widgets des scénarios sont maintenant mis à jour sans appel ajax
+    pour avoir le widget
 
--   El resumen general y las habitaciones se actualizan definitiva
+-   Le résumé global et des pièces sont maintenant mis à jour sans appel
     ajax
 
--   Un clic en un elemento de un resumen de automatización del hogar que aporta una visión
-    detalle de la misma
+-   Un clic sur un élément d’un résumé domotique vous amène sur une vue
+    détaillée de celui-ci
 
--   Ahora puede poner en los comandos de tipo resumen
-    texto
+-   Vous pouvez maintenant mettre dans les résumés des commandes de type
+    texte
 
--   Cambiante en el deslizador deslizador ayuda de nadie (corrección de errores
-    deslizadores de eventos dobles)
+-   Changement des bootstraps slider en slider (correction du bug du
+    double événement des sliders)
 
--   vistas automáticas de copia de seguridad cuando se hace clic en el "ver
-    resultado "
+-   Sauvegarde automatique des vues lors du clic sur le bouton "voir le
+    résultat"
 
--   Capacidad de tener los documentos localmente
+-   Possibilité d’avoir les docs en local
 
--   Los desarrolladores de terceros pueden añadir su propio sistema
-    boletos de gestión
+-   Les développeurs tiers peuvent ajouter leur propre système de
+    gestion de tickets
 
--   Derechos de configuración de usuario rediseñada (todo es en
-    la página de administración de usuarios)
+-   Refonte de la configuration des droits utilisateurs (tout est sur la
+    page de gestion des utilisateurs)
 
--   libs Actualizado: jQuery (en 3.0), jQuery Mobile, hightstock
-    clasificador y la mesa son impresionantes,
+-   Mise à jour des libs : jquery (en 3.0) , jquery mobile, hightstock
+    et table sorter, font-awesome
 
--   diseños grandes de mejora:
+-   Grosse amélioration des designs:
 
-    -   Todas las acciones son ahora accesibles desde una
-        botón derecho del ratón
+    -   Toutes les actions sont maintenant accessibles à partir d’un
+        clic droit
 
-    -   Posibilidad de añadir un solo comando
+    -   Possibilité d’ajouter une commande seule
 
-    -   Posibilidad de añadir un flujo de imágenes o vídeo
+    -   Possibilité d’ajouter une image ou un flux vidéo
 
-    -   Posibilidad de añadir áreas de ubicación (hacer clic):
+    -   Possibilité d’ajouter des zones (emplacement cliquable) :
 
-        -   tipo de área de macro: el lanzamiento de una serie de acciones en una
-            haga clic en él
+        -   Zone de type macro : lance une série d’actions lors d’un
+            clic dessus
 
-        -   área binaria: el lanzamiento de una serie de acciones en una
-            haga clic en él de acuerdo con el estado de un pedido
+        -   Zone de type binaire : lance une série d’actions lors d’un
+            clic dessus en fonction de l’état d’une commande
 
-        -   widget de tipo de zona muestra un widget para hacer clic o vuelco
-            zona
+        -   Zone de type widget : affiche un widget au clic ou au survol
+            de la zone
 
-    -   optimización de código general
+    -   Optimisation générale du code
 
-    -   Posibilidad de mostrar una cuadrícula y la elección de
-        tamaño (10x10,15x15 o 30x30)
+    -   Possibilité de faire apparaître une grille et de choisir sa
+        taille (10x10,15x15 ou 30x30)
 
-    -   Capacidad de activar una magnetización de widgets en la parrilla
+    -   Possibilité d’activer une aimantation des widgets sur la grille
 
-    -   Capacidad de activar una magnetización ellos Widgets
+    -   Possibilité d’activer une aimantation des widgets entre eux
 
-    -   Algunos tipos de widgets ahora pueden ser duplicadas
+    -   Certains types de widgets peuvent maintenant être dupliqués
 
-    -   Capacidad de bloquear un elemento
+    -   Possibilité de verrouiller un élément
 
--   Plugins ahora pueden utilizar una clave de API que es su
-    propio
+-   Les plugins peuvent maintenant utiliser une clef api qui leur est
+    propre
 
--   La adición de las interacciones automatizadas, Jeedom tratará de entender
-    la sentencia para realizar la acción y responder
+-   Ajout d’interactions automatiques, Jeedom va essayer de comprendre
+    la phrase, d’exécuter l’action et de répondre
 
--   La adición de la gestión de los demonios Versión móvil
+-   Ajout de la gestion des démons en version mobile
 
--   Adición de gestión de la versión móvil de cron
+-   Ajout de la gestion des crons en version mobile
 
--   Añadir determinada información de salud en una versión móvil
+-   Ajout de certaines informations de santé en version mobile
 
--   Agregando a los módulos de la batería página de alerta
+-   Ajout sur la page batterie des modules en alerte
 
--   Objetos sin widgets se ocultan automáticamente en el salpicadero
+-   Les objets sans widget sont automatiquement masqués sur le dashboard
 
--   Añadido botón en la configuración avanzada de una
-    equipos / un comando para ver los eventos
-    del mismo / la última
+-   Ajout d’un bouton dans la configuration avancée d’un
+    équipement/d’une commande pour voir les événements de
+    celui-ci/celle-ci
 
--   Desencadena una secuencia de comandos puede ser ahora
-    condiciones
+-   Les déclencheurs d’un scénario peuvent maintenant être des
+    conditions
 
--   Haciendo doble clic en una línea de comandos (en la página
-    configuración) ahora se abre la configuración avanzada
-    esta
+-   Un double clic sur la ligne d’une commande (sur la page
+    de configuration) ouvre maintenant la configuration avancée de
+    celle-ci
 
--   Posibilidad de prohibir ciertos valores para un control (en el
-    configuración avanzada de los mismos)
+-   Possibilité d’interdire certaines valeurs pour une commande (dans la
+    configuration avancée de celle-ci)
 
--   Adición de campos de configuración en el estado automático de vuelta
-    (Ej retorno a 0 después de 4 minutos) en la configuración avanzada de
-    orden
+-   Ajout des champs de configuration sur le retour d’état automatique
+    (ex revenir à 0 au bout de 4min) dans la configuration avancée d’une
+    commande
 
--   Adición de una función ValueDate en escenarios (ver
-    documentación de escenario)
+-   Ajout d’une fonction valueDate dans les scénarios (voir
+    documentation des scénarios)
 
--   Posibilidad de escenarios para cambiar el valor de un control
-    con el "evento" acción
+-   Possibilité dans les scénarios de modifier la valeur d’une commande
+    avec l’action "event"
 
--   Añadir un campo de comentarios de la configuración avanzada de
-    equipo
+-   Ajout d’un champ commentaire sur la configuration avancée d’un
+    équipement
 
--   Añadido a los controles del sistema de advertencia con 2 niveles:
-    advertencia y peligro. La configuración está en la configuración
-    comandos avanzados (Info único tipo de curso). Puede
-    ver módulos de advertencia en la página → Equipo de análisis. Usted
-    puede configurar las acciones de alerta en la página
-    Configuración general Jeedom
+-   Ajout d’un système d’alerte sur les commandes avec 2 niveaux :
+    alerte et danger. La configuration se trouve dans la configuration
+    avancée des commandes (de type info seulement bien sûr). Vous pouvez
+    voir les modules en alerte sur la page Analyse → Equipements. Vous
+    pouvez configurer les actions sur alerte sur la page de
+    configuration générale de Jeedom
 
--   Adición de una zona de "tabla" en vistas que pueden mostrar una o
-    más columnas por caja. Las cajas también apoyan el código HTML
+-   Ajout d’une zone "tableau" sur les vues qui permet d’afficher une ou
+    plusieurs colonnes par case. Les cases supportent aussi le code HTML
 
--   Jeedom ahora puede funcionar sin privilegios de root (experimental).
-    Atención porque sin privilegios de root debe iniciar manualmente
-    guiones para las dependencias de plugins
+-   Jeedom peut maintenant tourner sans les droits root (expérimental).
+    Attention car sans les droits root vous devrez manuellement lancer
+    les scripts pour les dépendances des plugins
 
--   Optimizar el cálculo de expresiones (sólo etiquetas de cálculo
-    si está presente en la expresión)
+-   Optimisation du calcul des expressions (calcul des tags uniquement
+    si présents dans l’expression)
 
--   Agregando a la función de la API para acceder al resumen (Global
-    y el objeto)
+-   Ajout dans l’API de fonction pour avoir accès au résumé (global
+    et d’objet)
 
--   Capacidad de restringir el acceso de cada clave de API basada
-    IP
+-   Possibilité de restreindre l’accès de chaque clef api en fonction de
+    l’IP
 
--   la historia sobre Posibilidad de combinaciones por hora o
-    año
+-   Possibilité sur l’historique de faire des regroupements par heure ou
+    année
 
--   El tiempo de espera en el comando de espera puede ser ahora un cálculo
+-   Le timeout sur la commande wait peut maintenant être un calcul
 
--   Se ha corregido un error en el que "en los parámetros de una acción
+-   Correction d’un bug s’il y a des " dans les paramètres d’une action
 
--   El cambio a de hash SHA512 para la contraseña (la sha1
-    se vea comprometida)
+-   Passage au sha512 pour le hash des mots de passe (le sha1
+    étant compromis)
 
--   Se ha corregido un error en la gestión de la caché que le hizo grasa
-    indefinidamente
+-   Correction d’un bug dans la gestion du cache qui le faisait grossir
+    indéfiniment
 
--   acceso fijo a la documentación de los plugins de terceros si no tienen
-    sin doc localmente
+-   Correction de l’accès à la doc des plugins tiers si ceux-ci n’ont
+    pas de doc en local
 
--   Las interacciones pueden tener en cuenta la noción de contexto (en
-    de acuerdo con la solicitud anterior y la anterior)
+-   Les interactions peuvent prendre en compte la notion de contexte (en
+    fonction de la demande précédente ainsi que celle d’avant)
 
--   Capacidad para ponderar las palabras de acuerdo con su tamaño
-    analizar la comprensión
+-   Possibilité de pondérer les mots en fonction de leur taille pour
+    l’analyse de la compréhension
 
--   Plugins ahora pueden añadir interacciones
+-   Les plugins peuvent maintenant ajouter des interactions
 
--   Las interacciones pueden ahora enviar archivos y más
-    la respuesta
+-   Les interactions peuvent maintenant renvoyer des fichiers en plus de
+    la réponse
 
--   Capacidad de ver la página de configuración del plugin del
-    funcionalidad de estos (Interact, cron ...) y desactivar
-    unitario
+-   Possibilité de voir sur la page de configuration des plugins les
+    fonctionalités de ceux-ci (interact, cron…​) et de les désactiver
+    unitairement
 
--   interacciones automáticas pueden devolver valores de
-    resúmenes
+-   Les interactions automatiques peuvent renvoyer les valeurs des
+    résumés
 
--   Capacidad para definir synomymes para los objetos, equipos,
-    órdenes y los resúmenes que serán utilizados en las respuestas
-    contextual y resúmenes
+-   Possibilité de définir des synomymes pour les objets, équipements,
+    commandes et résumés qui seront utilisés dans les réponses
+    contextuelles et résumés
 
--   Jeedom puede gestionar múltiples interacciones relacionadas (contextualmente)
-    uno. Ellos deben estar separados por una palabra clave (por defecto).
-    Ejemplo: "¿Cómo está haciendo en el dormitorio y en el salón?" o
-    "Enciende la luz de la cocina y el dormitorio."
+-   Jeedom sait gérer plusieurs interactions liées (contextuellement)
+    en une. Elles doivent être séparées par un mot clef (par défaut et).
+    Exemple : "Combien fait-il dans la chambre et dans le salon ?" ou
+    "Allume la lumière de la cuisine et de la chambre."
 
--   El estado de los escenarios en la página de edición está siendo
-    actualizar dinámicamente
+-   Le statut des scénarios sur la page d’édition est maintenant mis à
+    jour dynamiquement
 
--   Posibilidad de exportar una vista en PDF, PNG, SVG, JPEG o con
+-   Possibilité d’exporter une vue en PDF, PNG, SVG ou JPEG avec la
     Comando "informe" en un escenario
 
--   Capacidad de exportar un diseño en formato PDF, PNG, SVG, JPEG o con
-    Comando "informe" en un escenario
+-   Possibilité d’exporter un design en PDF, PNG, SVG ou JPEG avec la
+    commande "report" dans un scénario
 
--   Capacidad de exportar una amplia gama de plug-in PDF, PNG, SVG o JPEG
-    con el "informe" de comandos en un script
+-   Possibilité d’exporter un panel d’un plugin en PDF, PNG, SVG ou JPEG
+    avec la commande "report" dans un scénario
 
--   Se ha añadido una página de gestión de informes (o volver a descargar
-    eliminar)
+-   Ajout d’une page de gestion de rapport (pour les retélécharger ou
+    les supprimer)
 
--   Se ha corregido un error en la fecha de la última subida de un evento
-    para algunos plugins (alarma)
+-   Correction d’un bug sur la date de dernière remontée d’un événement
+    pour certains plugins (alarme)
 
--   Se ha corregido un error de visualización con Chrome 55
+-   Correction d’un bug d’affichage avec Chrome 55
 
--   La optimización de copia de seguridad (en un tiempo RPi2 se divide por 2)
+-   Optimisation du backup (sur un RPi2 le temps est divisé par 2)
 
--   La optimización de la restauración
+-   Optimisation de la restauration
 
--   Optimización del proceso de actualización
+-   Optimisation du processus de mise à jour
 
--   La estandarización de jeedom tmp, ahora todo está en / tmp / jeedom
+-   Uniformisation du tmp jeedom, maintenant tout est dans /tmp/jeedom
 
--   Posibilidad de un gráfico de los diversos enlaces de un escenario,
-    equipo, objeto, o variable de control
+-   Possibilité d’avoir un graph des différentes liaisons d’un scénario,
+    équipement, objet, commande ou variable
 
--   Posibilidad de ajustar la profundidad de los gráficos de enlace
-    de acuerdo con el objeto original
+-   Possibilité de régler la profondeur des graphiques de lien en
+    fonction de l’objet d’origine
 
--   Capacidad de tener los registros en los escenarios en tiempo real (ralentiza
-    la ejecución de escenarios)
+-   Possibilité d’avoir les logs des scénarios en temps réel (ralentit
+    l’exécution des scénarios)
 
--   Capacidad para cambiar las etiquetas en el lanzamiento de un escenario
+-   Possibilité de passer des tags lors du lancement d’un scénario
 
--   escenarios y las páginas que utilizan la optimización de carga
-    opción de acciones (tipo plug-in de alarma de configuración o modo)
+-   Optimisation du chargement des scénarios et pages utilisant des
+    actions avec option (type configuration du plugin alarme ou mode)
 
-2.4.6
+2.4.6 
 =====
 
--   Mejora de la gestión de los valores de repetición
-    comandos
+-   Amélioration de la gestion de la répétition des valeurs des
+    commandes
 
-2.4.5
+2.4.5 
 =====
 
--   errores corregidos
+-   Correction de bugs
 
--   Optimización de la verificación de cambios
+-   Optimisation de la vérification des mises à jour
 
-2.4
+2.4 
 ---
 
--   optimización general
+-   Optimisation générale
 
-    -   agrupación de consultas SQL
+    -   Regroupement de requêtes SQL
 
-    -   Eliminación de consultas innecesarias
+    -   Suppression de requêtes inutiles
 
-    -   Pasaje pid almacenamiento en caché, el estado y escenarios últimos lanzamiento
+    -   Passage en cache du pid, état et dernier lancement des scénarios
 
-    -   Pasaje pid almacenamiento en caché, el estado y el último lanzamiento de cron
+    -   Passage en cache du pid, état et dernier lancement des crons
 
-    -   En el 99% de los casos de solicitud a través de escritura basado en
-        operación nominal (Jeedom configuración de este modo hacia fuera,
-        modificaciones, instalación, actualización ...)
+    -   Dans 99% des cas plus de requête d’écriture sur la base en
+        fonctionnement nominal (donc hors configuration de Jeedom,
+        modifications, installation, mise à jour…​)
 
--   Extracción de la fail2ban (tan fácilmente eludidas mediante el envío de una
-    falsa dirección IP), se acelera Jeedom
+-   Suppression du fail2ban (car facilement contournable en envoyant une
+    fausse adresse ip), cela permet d’accélérer Jeedom
 
--   Adición a la interacción de una opción no categoría para
-    uno puede generar interacciones en equipo sin
-    categoría
+-   Ajout dans les interactions d’une option sans catégorie pour que
+    l’on puisse générer des interactions sur des équipements sans
+    catégorie
 
--   Agregando a los escenarios de un botón de selección del equipo de
-    controles de tipo deslizante
+-   Ajout dans les scénarios d’un bouton de choix d’équipement sur les
+    commandes de type slider
 
--   2.3.7 Actualización de arranque
+-   Mise à jour de bootstrap en 2.3.7
 
--   Añadiendo el concepto de resumen de automatización del hogar (permite conocer una
-    De repente, el número de luces encendidas, la puerta abierta, el
-    persianas, ventanas, potencia, detección de movimiento ...).
-    Todo esto establece la página de gestión de objetos
+-   Ajout de la notion de résumé domotique (permet de connaitre d’un
+    seul coup le nombre de lumières à ON, les porte ouvertes, les
+    volets, les fenêtres, la puissance, les détections de mouvement…​).
+    Tout cela se configure sur la page de gestion des objets
 
--   La adición de pre y puesto de mando de un comando. disparadores
-    todo el tiempo una acción antes o después de otra acción. también puede
-    permitir que un equipo de sincronización, por ejemplo, 2
-    luces siempre encienden junto con la misma intensidad.
+-   Ajout de pre et post commande sur une commande. Permet de déclencher
+    tout le temps une action avant ou après une autre action. Peut aussi
+    permettre de synchroniser des équipements pour, par exemple, que 2
+    lumières s’allument toujours ensemble avec la même intensité.
 
--   listenner Optimización
+-   Optimisation des listenner
 
--   modal Adición para mostrar la información en bruto (atributo
-    el objeto base) de un equipo o de control
+-   Ajout de modal pour afficher les informations brutes (attribut de
+    l’objet en base) d’un équipement ou d’une commande
 
--   Posibilidad de copiar la historia de un pedido en otro
-    orden
+-   Possibilité de copier l’historique d’une commande sur une autre
+    commande
 
--   Posibilidad de sustitución de una orden por otro a lo largo de Jeedom
-    (Incluso si la orden reemplazar ya no existe)
+-   Possibilité de remplacer une commande par une autre dans tout Jeedom
+    (même si la commande à remplacer n’existe plus)
 
-2.3
+2.3 
 ---
 
--   filtros de corrección en el mercado
+-   Correction des filtres sur le market
 
--   casilla de verificación de la corrección en las vistas de edición de página (en una
-    área de gráficos)
+-   Correction des checkbox sur la page d’édition des vues (sur une
+    zone graphique)
 
--   historizar casilla de verificación de corrección, visible y en el reverso
-    tabla de comandos
+-   Correction des checkbox historiser, visible et inverser dans le
+    tableau des commandes
 
--   Corregidos los problemas en la traducción de Javascript
+-   Correction d’un soucis sur la traduction des javascripts
 
--   Adición de una clase plugin: objeto comunicante
+-   Ajout d’une catégorie de plugin : objet communiquant
 
--   Añadiendo GENÉRICO \ _TYPE
+-   Ajout de GENERIC\_TYPE
 
--   Extracción de nuevos filtros y la parte superior de los plugins del curso
-    el mercado
+-   Suppression des filtres nouveau et top sur le parcours des plugins
+    du market
 
--   Cambiar el nombre de la categoría por defecto en el camino de los plugins
-    mercado en el "Top y la novedad"
+-   Renommage de la catégorie par defaut sur le parcours des plugins du
+    market en "Top et nouveauté"
 
--   Corrección de filtros gratuitos y de pago de los complementos del curso
-    el mercado
+-   Correction des filtres gratuit et payant sur le parcours des plugins
+    du market
 
--   Se ha corregido un error que podría dar lugar a la duplicación de las curvas
-    en la página Historial
+-   Correction d’un bug qui pouvait amener à une duplication des courbes
+    sur la page d’historique
 
--   Se ha corregido un error en los escenarios de valor de tiempo de espera
+-   Correction d’un bug sur la valeur de timeout des scénarios
 
--   la corrección de un error en la pantalla de widgets en las vistas
-    tomó la versión salpicadero
+-   correction d’un bug sur l’affichage des widgets dans les vues qui
+    prenait la version dashboard
 
--   Se ha corregido un error en diseños que podrían utilizar
-    salpicadero configuración de widgets en lugar diseña
+-   Correction d’un bug sur les designs qui pouvait utiliser la
+    configuration des widgets du dashboard au lieu des designs
 
--   Solución de errores en la copia de seguridad / restauración si el nombre de jeedom
-    contiene caracteres especiales
+-   Correction de bugs de la sauvegarde/restauration si le nom du jeedom
+    contient des caractères spéciaux
 
--   Optimización de la organización de la lista de tipos genéricos
+-   Optimisation de l’organisation de la liste des generic type
 
--   Visualización mejorada de configuración avanzada
-    comodidades
+-   Amélioration de l’affichage de la configuration avancée des
+    équipements
 
--   interfaz de acceso fijo para la copia de seguridad
+-   Correction de l’interface d’accès au backup depuis
 
--   Almacenamiento de la configuración en la prueba de mercado
+-   Sauvegarde de la configuration lors du test du market
 
--   Preparación para la eliminación de bootstrapswtich en plugins
+-   Préparation à la suppression des bootstrapswtich dans les plugins
 
--   Se ha corregido un error en el tipo de widget llamado para diseños
-    (En lugar de tablero Dplan)
+-   Correction d’un bug sur le type de widget demandé pour les designs
+    (dashboard au lieu de dplan)
 
--   corrección de errores en el controlador de eventos
+-   correction de bug sur le gestionnaire d’événements
 
--   paso azar de la copia de seguridad por la noche (entre 02:10 ET 03:59) a
-    evitar la sobrecarga de las preocupaciones del mercado
+-   passage en aléatoire du backup la nuit (entre 2h10 et 3h59) pour
+    éviter les soucis de surcharge du market
 
--   widget de mercado fijo
+-   Correction du market de widget
 
--   Se ha corregido un error en el acceso al mercado (tiempo de espera)
+-   Correction d’un bug sur l’accès au market (timeout)
 
--   La corrección de un error en la apertura de las entradas
+-   Correction d’un bug sur l’ouverture des tickets
 
--   Se ha corregido un error de página en blanco cuando se actualiza si el
-    / Tmp es demasiado pequeño (tenga en cuenta la corrección en vigor
-    actualizar el n + 1)
+-   Correction d’un bug de page blanche lors de la mise à jour si le
+    /tmp est trop petit (attention la correction prend effet à
+    l’update n+1)
 
--   Adición de una etiqueta jeedom * \ * _name en los escenarios (dado el nombre
-    la jeedom)
+-   Ajout d’un tag *jeedom\_name* dans les scénarios (donne le nom
+    du jeedom)
 
--   errores corregidos
+-   Correction de bugs
 
--   Mover todos los archivos temporales en / tmp
+-   Déplacement de tous les fichiers temporaire dans /tmp
 
--   plugins que envían mejoradas (dos2unix automático
-    archivos \ *. sh)
+-   Amélioration de l’envoi des plugins (dos2unix automatique sur les
+    fichiers \*.sh)
 
--   Refundición de la página de registro
+-   Refonte de la page de log
 
--   La adición de un tema para darksobre móvil
+-   Ajout d’un thème darksobre pour mobile
 
--   Capacidad para que los desarrolladores añadir opciones
-    configuración del widget en los widgets específicos (tipo Sonos
-    Koubachi y otros)
+-   Possibilité pour les developpeurs d’ajouter des options de
+    configuration des widget sur les widgets spécifique (type sonos,
+    koubachi et autre)
 
--   Optimización de los registros (gracias @ kwizer15)
+-   Optimisation des logs (merci @kwizer15)
 
--   Posibilidad de elegir el formato de registro
+-   Possibilité de choisir le format des logs
 
--   Otros código de optimización (gracias @ kwizer15)
+-   Optimisation diverse du code (merci @kwizer15)
 
--   Paso de conexión del módulo con el mercado (será
-    un jeedom no relacionada con el mercado)
+-   Passage en module de la connexion avec le market (permettra d’avoir
+    un jeedom sans aucun lien au market)
 
--   Adición de un "repo" (conexión de enchufe con
-    la) Archivo de mercado (permite enviar un archivo zip que contiene el plug-in)
+-   Ajout d’un "repo" (module de connexion type la connexion avec
+    le market) fichier (permet d’envoi un zip contenant le plugin)
 
--   Se ha añadido una github "repo" (permite su uso como fuente de GitHub
-    plug-in, con el sistema de administración de actualizaciones)
+-   Ajout d’un "repo" github (permet d’utiliser github comme source de
+    plugin, avec systeme de gestion de mise à jour)
 
--   Se ha añadido una URL "repo" (URL permite su uso como fuente de complemento)
+-   Ajout d’un "repo" URL (permet d’utiliser URL comme source de plugin)
 
--   Se ha añadido un "repo" Samba (utilizado para empujar las copias de seguridad en una
-    Samba servidor y recuperar los plugins)
+-   Ajout d’un "repo" Samba (utilisable pour pousser des backups sur un
+    serveur samba et récupérer des plugins)
 
--   Se ha añadido un FTP "repo" (utilizado para empujar las copias de seguridad en una
-    servidor FTP y recuperar los plugins)
+-   Ajout d’un "repo" FTP (utilisable pour pousser des backups sur un
+    serveur FTP et récupérer des plugins)
 
--   Agregando a cierta "repo" la capacidad de recuperar el núcleo de
+-   Ajout pour certain "repo" de la possibilité de recuperer le core de
     jeedom
 
--   Incorporar la prueba automática de código (gracias @ kwizer15)
+-   Ajout de tests automatique du code (merci @kwizer15)
 
--   Posibilidad de mostrar paneles / Hide el móvil y plugins
-    o de escritorio (paneles ahora por defecto cuidadosas están ocultos)
+-   Possibilité d’afficher/masquer les panels des plugins sur mobile et
+    ou desktop (attention maintenant par défaut les panels sont masqués)
 
--   Capacidad para desactivar las actualizaciones de un plugin (y
-    la verificación)
+-   Possibilité de désactiver les mises à jour d’un plugin (ainsi que
+    la vérification)
 
--   Posibilidad obligó a la comprobación de cambios de un plugin
+-   Possibilité de forcé la verification des mises à jour d’un plugin
 
--   Centro de Actualización rediseño leve
+-   Légère refonte du centre de mise à jour
 
--   Capacidad de deshabilitar la comprobación automática de actualizaciones
-    día
+-   Possibilité de désactiver la vérification automatique des mises à
+    jour
 
--   Se ha corregido un error que poner todos los datos a 0 después de una
-    reanudar
+-   Correction d’un bug qui remettait toute les données à 0 suite à un
+    redémarrage
 
--   Capacidad para configurar el nivel de registro de un plug-in directamente
-    en la página de configuración de ella
+-   Possibilité de configurer le niveau de log d’un plugin directement
+    sur la page de configuration de celui-ci
 
--   Capacidad para ver los registros de un plugin directamente en el
-    página de configuración de la misma
+-   Possibilité de consulter les logs d’un plugin directement sur la
+    page de configuration de celui-ci
 
--   Extracción de inicio en los demonios de depuración, se mantiene el nivel
-    logs del diablo es el mismo que el plugin
+-   Suppression du démarrage en debug des démons, maintenant le niveau
+    de logs du démon est le même que celui du plugin
 
--   Limpieza tercer lib
+-   Nettoyage de lib tierce
 
--   Eliminar la voz de respuesta (dicha función en los escenarios
-    trabajado tan bien)
+-   Suppression de responsive voice (fonction dit dans les scénarios qui
+    marchait de moins en moins bien)
 
--   Fija varios falla de seguridad
+-   Correction de plusieurs faille de sécurité
 
--   Adición de un síncronos escenarios modo (anteriormente
-    de modo rápido)
+-   Ajout d’un mode synchrone sur les scénarios (anciennement
+    mode rapide)
 
--   Capacidad para introducir manualmente la posición de los widgets en%
-    diseño
+-   Possibilité de rentrer manuellement la position des widgets en % sur
+    les design
 
--   Refundición de la página de configuración del plugin
+-   Refonte de la page de configuration des plugins
 
--   Capacidad para configurar la transparencia de los widgets
+-   Possibilité de configurer la transparence des widgets
 
--   Adición de acción jeedom \ _poweroff en escenarios para detener
+-   Ajout de l’action jeedom\_poweroff dans les scénarios pour arrêter
     jeedom
 
--   Volver al escenario de la acción \ _return para hacer un retorno a
-    interacción (u otro) de un guión
+-   Retour de l’action scenario\_return pour faire un retour à une
+    intéraction (ou autre) à partir d’un scénario
 
--   El cambio a largo sondeo para actualizar la interfaz de tiempo
-    real
+-   Passage en long polling pour la mise à jour de l’interface en temps
+    réel
 
--   La corrección de un error de actualización cuando widget de múltiples
+-   Correction d’un bug lors de refresh multiple de widget
 
--   La optimización de los equipos reproductores de actualización y los controles
+-   Optimisation de la mise à jour des widgets commandes et équipements
 
--   La adición de una etiqueta * comience \ _backup * * Final \ _backup * * comenzará \ _update *
-    * Fin \ _update * * comenzará \ _restore * * Final \ _restore * en los escenarios
+-   Ajout d’un tag *begin\_backup*, *end\_backup*, *begin\_update*,
+    *end\_update*, *begin\_restore*, *end\_restore* dans les scénarios
 
-2.2
+2.2 
 ---
 
--   errores corregidos
+-   Correction de bugs
 
--   Simplificar el acceso a las configuraciones de plugins
-    Página de la salud
+-   Simplification de l’accès aux configurations des plugins à partir de
+    la page santé
 
--   Adición de un icono que indica si el daemon se inicia en la depuración o no
+-   Ajout d’une icône indiquant si le démon est démarré en debug ou non
 
--   Añadir una página de configuración global histórica
-    (Disponible en la página de la historia)
+-   Ajout d’une page de configuration globale des historiques
+    (accessible à partir de la page historique)
 
--   correcciones de errores para ventana acoplable
+-   Correction de bugs pour docker
 
--   Capacidad de permitir a un usuario conectarse únicamente a
-    desde una posición en la red local
+-   Possibilité d’autoriser un utilisateur à se connecter uniquement à
+    partir d’un poste sur le réseau local
 
--   widgets de configuración rediseñada (ver que se
-    seguramente reanudar la configuración de algunos widgets)
+-   Refonte de la configuration des widgets (attention il faudra
+    sûrement reprendre la configuration de certains widgets)
 
--   El fortalecimiento del manejo de los widgets de error
+-   Renforcement de la gestion des erreurs sur les widgets
 
--   La posibilidad de organizar vistas
+-   Possibilité de réordonner les vues
 
--   Refundición de la gestión de temas
+-   Refonte de la gestion des thèmes
 
-2.1
+2.1 
 ---
 
--   sistema de caché Jeedom rediseñado (usando
-    Doctrina caché). Esto permite, por ejemplo, para conectar un Jeedom
-    repetir o servidor memcached. Jeedom por defecto utiliza un sistema de
-    archivos (en lugar de la base de datos MySQL descargando de este modo una
-    bit), que se encuentra en / tmp por lo que es recomendable si usted
-    tiene más de 512 MB de RAM para montar el directorio / tmp tmpfs (RAM
-    más velocidad y menos desgaste en la tarjeta SD, lo
-    64mb tamaño recomendado). Atención al reiniciar
-    Jeedom se limpia la caché por lo que tiene que esperar a la
-    Ascenso información completa
+-   Refonte du système de cache de Jeedom (utilisation de
+    doctrine cache). Cela permet par exemple de connecter Jeedom à un
+    serveur redis ou memcached. Par défaut Jeedom utilise un système de
+    fichiers (et non plus la BDD MySQL ce qui permet de la décharger un
+    peu), celui-ci se trouve dans /tmp il est donc conseillé si vous
+    avez plus de 512 Mo de RAM de monter le /tmp en tmpfs (en RAM pour
+    plus de rapidité et une diminution de l’usure de la carte SD, je
+    recommande une taille de 64mo). Attention lors du redémarrage de
+    Jeedom le cache est vidé il faut donc attendre pour avoir la
+    remontée de toutes les infos
 
--   rediseño del sistema de registro (usando monolog) que permite
-    la integración de los sistemas de log (de tipo syslog (d))
+-   Refonte du système de log (utilisation de monolog) qui permet une
+    intégration à des systèmes de logs (type syslog(d))
 
--   tablero optimización de la carga
+-   Optimisation du chargement du dashboard
 
--   muchos advertencia fijo
+-   Correction de nombreux warning
 
--   Posibilidad durante una llamada a la API para pasar unas etiquetas de escenarios
-    en la url
+-   Possibilité lors d’un appel api à un scénario de passer des tags
+    dans l’url
 
--   Soporte Apache
+-   Support d’apache
 
--   cargador de muelle de optimización con el apoyo oficial de los trabajadores portuarios
+-   Optimisation pour docker avec support officiel de docker
 
--   Synology optimización
+-   Optimisation pour les synology
 
--   Soporte + optimización php7
+-   Support + optimisation pour php7
 
--   Menú Rediseño Jeedom
+-   Refonte des menus Jeedom
 
--   Eliminar toda la parte de gestión de red: IP fijo inalámbrico ...
-    (Seguramente regresar como un plug-in). PRECAUCIÓN este no es el
-    modo maestro / esclavo de jeedom que se elimina
+-   Suppression de toute la partie gestion réseau : wifi, ip fixe…
+    (reviendra sûrement sous forme de plugin). ATTENTION ce n’est pas le
+    mode maître/esclave de jeedom qui est supprimé
 
--   La eliminación de la indicación de batería de los widgets
+-   Suppression de l’indication de batterie sur les widgets
 
--   Adición de una página que resume el estado de todos los equipos de
-    batería
+-   Ajout d’une page qui résume le statut de tous les équipements sur
+    batterie
 
--   Rediseñado DNS Jeedom, utilizando OpenVPN (y por lo tanto
-    openvpn plugin)
+-   Refonte du DNS Jeedom, utilisation d’openvpn (et donc du
+    plugin openvpn)
 
--   actualizar todas las bibliotecas
+-   Mise à jour de toutes les libs
 
--   Interacción: la adición de un sistema de análisis sintáctico (permite
-    eliminar las interacciones con grandes errores de sintaxis como "
-    la recamara ")
+-   Interaction : ajout d’un système d’analyse syntaxique (permet de
+    supprimer les interactions avec de grosses erreurs de syntaxe type «
+    le chambre »)
 
--   Eliminación de la actualización de la interfaz por nodejs (pasaje
-    tirando cada segundo en la lista de eventos)
+-   Suppression de la mise à jour de l’interface par nodejs (passage en
+    pulling toutes les secondes sur la liste des événements)
 
--   Posibilidad para aplicaciones de terceros para solicitar en la API
-    eventos
+-   Possibilité pour les applications tierces de demander par l’api les
+    événements
 
--   La revisión del sistema de "valor de acción" con la posibilidad
-    varias acciones y también el complemento de todas las acciones posibles
-    en los escenarios (tenga en cuenta que puede tomar todo
-    reconfigurar después de la actualización)
+-   Refonte du système « d’action sur valeur » avec possibilité de faire
+    plusieurs actions et aussi l’ajout de toutes les actions possibles
+    dans les scénarios (attention il faudra peut-être toutes les
+    reconfigurer suite à la mise à jour)
 
--   Capacidad de desactivar un bloque en un escenario
+-   Possibilité de désactiver un bloc dans un scénario
 
--   Agregando a los desarrolladores de sistema de información sobre herramientas de ayuda. Hay que
-    en una etiqueta a la clase de "ayuda" y poner un atributo
-    ayuda-ayuda de datos con el mensaje deseado. Esto permite Jeedom
-    añade automáticamente al final de la etiqueta de un icono "? "y
-    paso elevado que aparezca el texto de ayuda
+-   Ajout pour les développeurs d’un système d’aide tooltips. Il faut
+    sur un label mettre la classe « help » et mettre un attribut
+    data-help avec le message d’aide souhaité. Cela permet à Jeedom
+    d’ajouter automatiquement à la fin de votre label une icône « ? » et
+    au survol d’afficher le texte d’aide
 
--   Cambio de la actualización de los procesos centrales, ya no exigen
-    el archivo comprimido en el mercado, pero ahora directamente a Github
+-   Changement du processus de mise à jour du core, on ne demande plus
+    l’archive au Market mais directement à Github maintenant
 
--   instalación Adición de dependencias centralizado en
+-   Ajout d’un système centralisé d’installation des dépendances sur les
     plugins
 
--   Refundición de la página de administración de plugins
+-   Refonte de la page de gestion des plugins
 
--   Adición de la dirección MAC de las diferentes interfaces
+-   Ajout des adresses mac des différentes interfaces
 
--   Adición de conexión con doble autenticación
+-   Ajout de la connexion en double authentification
 
--   La eliminación de la picadillo de conexión (por razones de seguridad)
+-   Suppression de la connexion par hash (pour des raisons de sécurité)
 
--   Adición de un sistema de distribución de SO
+-   Ajout d’un système d’administration OS
 
--   Adición de widgets de normas Jeedom
+-   Ajout de widgets standards Jeedom
 
--   Adición de una beta en el sistema para encontrar Jeedom IP en la red
-    (Debe ser conectado Jeedom en la red, y luego ir al mercado y
-    haga clic en "Mis Jeedoms" en su perfil)
+-   Ajout d’un système en beta pour trouver l’IP de Jeedom sur le réseau
+    (il faut connecter Jeedom sur le réseau, puis aller sur le market et
+    cliquer sur « Mes Jeedoms » dans votre profil)
 
--   Agregando a otros escenarios de un probador de expresión
+-   Ajout sur la page des scénarios d’un testeur d’expression
 
--   Revisión del sistema de intercambio de escenario
+-   Revue du système de partage de scénario
 
-2.0
+2.0 
 ---
 
--   sistema de caché Jeedom rediseñado (usando
-    Doctrina caché). Esto permite, por ejemplo, para conectar un Jeedom
-    repetir o servidor memcached. Jeedom por defecto utiliza un sistema de
-    archivos (en lugar de la base de datos MySQL descargando de este modo una
-    bit), que se encuentra en / tmp por lo que es recomendable si usted
-    tiene más de 512 MB de RAM para montar el directorio / tmp tmpfs (RAM
-    más velocidad y menos desgaste en la tarjeta SD, lo
-    64mb tamaño recomendado). Atención al reiniciar
-    Jeedom se limpia la caché por lo que tiene que esperar a la
-    Ascenso información completa
+-   Refonte du système de cache de Jeedom (utilisation de
+    doctrine cache). Cela permet par exemple de connecter Jeedom à un
+    serveur redis ou memcached. Par défaut Jeedom utilise un système de
+    fichiers (et non plus la BDD MySQL ce qui permet de la décharger un
+    peu), celui-ci se trouve dans /tmp il est donc conseillé si vous
+    avez plus de 512 Mo de RAM de monter le /tmp en tmpfs (en RAM pour
+    plus de rapidité et une diminution de l’usure de la carte SD, je
+    recommande une taille de 64mo). Attention lors du redémarrage de
+    Jeedom le cache est vidé il faut donc attendre pour avoir la
+    remontée de toutes les infos
 
--   rediseño del sistema de registro (usando monolog) que permite
-    la integración de los sistemas de log (de tipo syslog (d))
+-   Refonte du système de log (utilisation de monolog) qui permet une
+    intégration à des systèmes de logs (type syslog(d))
 
--   tablero optimización de la carga
+-   Optimisation du chargement du dashboard
 
--   muchos advertencia fijo
+-   Correction de nombreux warning
 
--   Posibilidad durante una llamada a la API para pasar unas etiquetas de escenarios
-    en la url
+-   Possibilité lors d’un appel api à un scénario de passer des tags
+    dans l’url
 
--   Soporte Apache
+-   Support d’apache
 
--   cargador de muelle de optimización con el apoyo oficial de los trabajadores portuarios
+-   Optimisation pour docker avec support officiel de docker
 
--   Synology optimización
+-   Optimisation pour les synology
 
--   Soporte + optimización php7
+-   Support + optimisation pour php7
 
--   Menú Rediseño Jeedom
+-   Refonte des menus Jeedom
 
--   Eliminar toda la parte de gestión de red: IP fijo inalámbrico ...
-    (Seguramente regresar como un plug-in). PRECAUCIÓN este no es el
-    modo maestro / esclavo de jeedom que se elimina
+-   Suppression de toute la partie gestion réseau : wifi, ip fixe…
+    (reviendra sûrement sous forme de plugin). ATTENTION ce n’est pas le
+    mode maître/esclave de jeedom qui est supprimé
 
--   La eliminación de la indicación de batería de los widgets
+-   Suppression de l’indication de batterie sur les widgets
 
--   Adición de una página que resume el estado de todos los equipos de
-    batería
+-   Ajout d’une page qui résume le statut de tous les équipements sur
+    batterie
 
--   Rediseñado DNS Jeedom, utilizando OpenVPN (y por lo tanto
-    openvpn plugin)
+-   Refonte du DNS Jeedom, utilisation d’openvpn (et donc du
+    plugin openvpn)
 
--   actualizar todas las bibliotecas
+-   Mise à jour de toutes les libs
 
--   Interacción: la adición de un sistema de análisis sintáctico (permite
-    eliminar las interacciones con grandes errores de sintaxis como "
-    la recamara ")
+-   Interaction : ajout d’un système d’analyse syntaxique (permet de
+    supprimer les interactions avec de grosses erreurs de syntaxe type «
+    le chambre »)
 
--   Eliminación de la actualización de la interfaz por nodejs (pasaje
-    tirando cada segundo en la lista de eventos)
+-   Suppression de la mise à jour de l’interface par nodejs (passage en
+    pulling toutes les secondes sur la liste des événements)
 
--   Posibilidad para aplicaciones de terceros para solicitar en la API
-    eventos
+-   Possibilité pour les applications tierces de demander par l’api les
+    événements
 
--   La revisión del sistema de "valor de acción" con la posibilidad
-    varias acciones y también el complemento de todas las acciones posibles
-    en los escenarios (tenga en cuenta que puede tomar todo
-    reconfigurar después de la actualización)
+-   Refonte du système « d’action sur valeur » avec possibilité de faire
+    plusieurs actions et aussi l’ajout de toutes les actions possibles
+    dans les scénarios (attention il faudra peut-être toutes les
+    reconfigurer suite à la mise à jour)
 
--   Capacidad de desactivar un bloque en un escenario
+-   Possibilité de désactiver un bloc dans un scénario
 
--   Agregando a los desarrolladores de sistema de información sobre herramientas de ayuda. Hay que
-    en una etiqueta a la clase de "ayuda" y poner un atributo
-    ayuda-ayuda de datos con el mensaje deseado. Esto permite Jeedom
-    añade automáticamente al final de la etiqueta de un icono "? "y
-    paso elevado que aparezca el texto de ayuda
+-   Ajout pour les développeurs d’un système d’aide tooltips. Il faut
+    sur un label mettre la classe « help » et mettre un attribut
+    data-help avec le message d’aide souhaité. Cela permet à Jeedom
+    d’ajouter automatiquement à la fin de votre label une icône « ? » et
+    au survol d’afficher le texte d’aide
 
--   Cambio de la actualización de los procesos centrales, ya no exigen
-    el archivo comprimido en el mercado, pero ahora directamente a Github
+-   Changement du processus de mise à jour du core, on ne demande plus
+    l’archive au Market mais directement à Github maintenant
 
--   instalación Adición de dependencias centralizado en
+-   Ajout d’un système centralisé d’installation des dépendances sur les
     plugins
 
--   Refundición de la página de administración de plugins
+-   Refonte de la page de gestion des plugins
 
--   Adición de la dirección MAC de las diferentes interfaces
+-   Ajout des adresses mac des différentes interfaces
 
--   Adición de conexión con doble autenticación
+-   Ajout de la connexion en double authentification
 
--   La eliminación de la picadillo de conexión (por razones de seguridad)
+-   Suppression de la connexion par hash (pour des raisons de sécurité)
 
--   Adición de un sistema de distribución de SO
+-   Ajout d’un système d’administration OS
 
--   Adición de widgets de normas Jeedom
+-   Ajout de widgets standards Jeedom
 
--   Adición de una beta en el sistema para encontrar Jeedom IP en la red
-    (Debe ser conectado Jeedom en la red, y luego ir al mercado y
-    haga clic en "Mis Jeedoms" en su perfil)
+-   Ajout d’un système en beta pour trouver l’IP de Jeedom sur le réseau
+    (il faut connecter Jeedom sur le réseau, puis aller sur le market et
+    cliquer sur « Mes Jeedoms » dans votre profil)
 
--   Agregando a otros escenarios de un probador de expresión
+-   Ajout sur la page des scénarios d’un testeur d’expression
 
--   Revisión del sistema de intercambio de escenario
+-   Revue du système de partage de scénario
 
 

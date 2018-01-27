@@ -4,919 +4,923 @@ Changelog
 3.2.0
 =====
 
--   Ability to prohibit an order in interactions
-    automatic
+-   Mise à jour des traductions
 
--   Improved automatic interactions
+-   Mise à jour des librairies (jquery et highcharts)
 
--   Fixed bug on synonymous management of interactions
+-   Possibilité d’interdire une commande dans les interactions
+    automatique
 
--   Adding a user search field for LDAP / AD connections
-    (allows to make Jeedom compatible AD)
+-   Amélioration des interactions automatique
 
--   Spelling corrections (thanks to dab0u for his huge work)
+-   Correction de bug sur la gestion des synonyme des interactions
 
--   JEED-290: You can not connect with IDs anymore
-    Default (admin / admin) remote, only LAN is allowed
+-   Ajout d’un champs recherche utilisateur pour les connexion LDAP/AD
+    (permet de rendre Jeedom compatible AD)
 
--   JEED-186: We can now choose the background color in the
+-   Corrections d’orthographe (merci à dab0u pour son énorme travail)
+
+-   JEED-290 : On ne peut plus se connecter avec les identifiants par
+    défaut (admin/admin) à distance, seul le réseau local est autorisé
+
+-   JEED-186 : On peut maintenant choisir la couleur de fond dans les
     designs
 
--   For block A, possibility to set an hour between 00:01 and 00:59
-    by simply putting the minutes (ex 30 for 00:30)
+-   Pour le bloc A, possibilité de mettre une heure entre 00h01 et 00h59
+    en mettant simplement les minutes (ex 30 pour 00h30)
 
--   Adding active sessions and devices registered on the
-    user's profile page and the management page of the
-    users
+-   Ajout des sessions actives et des péripheriques enregistrés sur la
+    page de profil de l’utilisateur et la page de gestion des
+    utilisateurs
 
--   JEED-284: the permanent connection now depends on a key
-    unique user and peripheral (and not only user)
+-   JEED-284 : la connexion permanente dépend maintenant d’une clef
+    unique utilisateur et péripherique (et non plus que utilisateur)
 
--   JEED-283: adding a rescue mode to jeedom by adding & rescue = 1
-    in the url
+-   JEED-283 : ajout d’un mode rescue à jeedom en rajoutant &rescue=1
+    dans l’url
 
--   JEED-8: adding the name of the scenario to the page title when
-    edition
+-   JEED-8 : ajout du nom du scénario sur le titre de la page lors de
+    l’édition
 
--   Optimizing organizational changes (widget size,
-    position of the equipment, position of the controls) on the dashboard
-    and the views. Attention now the changes are only
-    saved only when leaving the edit mode.
+-   Optimisation des modifications d’organisation (taille des widgets,
+    position des équipements, position des commandes) sur le dashboard
+    et les vue. Attention maintenant les modifications ne sont
+    sauvegardées que lorsque l’on quitte le mode édition.
 
--   JEED-18: Adding logs when opening a ticket to support
+-   JEED-18 : Ajout des logs lors de l’ouverture d’un ticket au support
 
--   JEED-181: adding a name command in scenarios to have
-    the name of the order or equipment or object
+-   JEED-181 : ajout d’une commande name dans les scénarios pour avoir
+    le nom de la commande ou de l’équipement ou de l’objet
 
--   JEED-15: Add battery and alert on the webapp
+-   JEED-15 : Ajout des batterie et alerte sur la webapp
 
--   Fix bugs for moving design objects in Firefox
+-   Correction du bugs de déplacement des objets du design sous Firefox
 
--   JEED-19: During an update it is now possible to
-    update the update script before updating
+-   JEED-19 : Lors d’une mise à jour il est maintenant possible de
+    mettre à jour le script d’update avant la mise à jour
 
--   JEED-125: Adding a link to the reset documentation
-    password
+-   JEED-125 : ajout d’un lien vers la documentation de réinitialisation
+    de mot de passe
 
--   JEED-2: Improved time management during a reboot
+-   JEED-2 : Amélioration de la gestion de l’heure lors d’un redémarrage
 
--   JEED-77: Adding variable management in the http API
+-   JEED-77 : Ajout de la gestion des variables dans l’API http
 
--   JEED-78: Added the tag function for scenarios. Attention he
-    must in scenarios using tags pass of * montag *
-    to tag (montag)
+-   JEED-78 : ajout de la fonction tag pour les scénarios. Attention il
+    faut dans les scénarios utilisant les tags passer de *montag*
+    à tag(montag)
 
--   JEED-124: Correcting the management of timeouts of scenarios
+-   JEED-124 : Corriger la gestion des timeouts des scénarios
 
--   Bugfix
+-   Correction de bugs
 
--   Ability to disable an interaction
+-   Possibilité de désactiver une intéraction
 
--   Adding a file editor (reserved for
-    experienced users)
+-   Ajout d’un éditeur de fichiers (réservé aux
+    utilisateurs expérimentés)
 
--   Added Generic Types "Light State" (Binary), "Light
-    Color Temperature "(Info)," Color Temperature Light "(Action)
+-   Ajout des génériques Types "Lumière Etat" (Binaire), "Lumière
+    Température Couleur" (Info), "Lumière Température Couleur" (Action)
 
--   Ability to make mandatory words in an interaction
+-   Possibilité de rendre des mots obligatoires dans une interaction
 
-3.1.7
+3.1.7 
 =====
 
--   Bug fixes (especially on the logs and
-    statistical functions)
+-   Correction de bugs (en particulier sur les historiques et
+    fonctions statistiques)
 
--   Improvement of the system of updates with a page of notes of
-    version (which you must check yourself before each update).
-    day !!!!
+-   Amélioration du système de mises à jour avec une page de notes de
+    version (que vous devez vérifier vous même avant chaque mise à
+    jour !!!!)
 
--   Fixed a bug that recovered logs during restores
+-   Correction d’un bug qui récuperait les logs lors des restaurations
 
-3.1
+3.1 
 ===
 
--   Bugfix
+-   Correction de bugs
 
--   Global optimization of Jeedom (on the loading of classes of
-    plugins, time almost divided by 3)
+-   Optimisation globale de Jeedom (sur le chargement des classes de
+    plugins, temps presque divisé par 3)
 
--   Debian Support 9
+-   Support de Debian 9
 
--   Onepage mode (page change without reloading the entire page, just
-    the part that changes)
+-   Mode onepage (changement de page sans recharger toute la page, juste
+    la partie qui change)
 
--   Added an option to hide objects on the dashboard but which
-    always have them in the list
+-   Ajout d’une option pour masquer les objets sur le dashboard mais qui
+    permet de toujours les avoir dans la liste
 
--   Double-click on a node on the link graph (except for
-    variables) brings to its configuration page
+-   Un double-clic sur un noeud sur le graphique de lien (sauf pour
+    les variables) amène sur sa page de configuration
 
--   Possibility to put the text on the left / right / center on the
-    designs for text / view / design elements
+-   Possibilité de mettre le texte à gauche/droit/au centre sur les
+    designs pour les élements de type texte/vue/design
 
--   Adding object summaries to the dashboard (list of objects
-    to the left)
+-   Ajout des résumés d’objets sur le dashboard (liste des objets
+    à gauche)
 
--   Added "prevites-me-si" interactions
+-   Ajout des interactions de type "previens-moi-si"
 
--   Review of the homepage of the scenarios
+-   Revue de la page d’acceuil des scénarios
 
--   Adding a command history for SQL or system commands
-    in the Jeedom interface
+-   Ajout d’un historique de commandes pour les commandes SQL ou système
+    dans l’interface de Jeedom
 
--   Possibility to have the order history graphs in
-    webapp (by long press on the command)
+-   Possibilité d’avoir les graphiques d’historiques des commandes en
+    webapp (par appui long sur la commande)
 
--   Adding the progress of the update of the webapp
+-   Ajout de l’avancement de l’update de la webapp
 
--   Resume in case of error updating the webapp
+-   Reprise en cas d’erreur de mise à jour de la webapp
 
--   Deleting "simple" scenarios (redundant with the configuration
-    advanced orders)
+-   Suppression des scénarios "simples" (redondant avec la configuration
+    avancée des commandes)
 
--   Added hatching on graphs to distinguish days
+-   Ajout de hachurage sur les graphs pour distinguer les jours
 
--   Recasting of the interactions page
+-   Refonte de la page des interactions
 
--   Redesign of the profiles page
+-   Refonte de la page profils
 
--   Recast of the administration page
+-   Refonte de la page d’administration
 
--   Adding a "health" on objects
+-   Ajout d’une "santé" sur les objets
 
--   Fixed bug on the battery level of equipment
+-   Correction de bug sur le niveau de batterie des équipements
 
--   Added method in the core for dead order management
-    (must then be implemented in the plugin)
+-   Ajout de méthode dans le core pour la gestion des commandes mortes
+    (doit être ensuite implementée dans le plugin)
 
--   Possibility to save text commands
+-   Possibilité d’historiser des commandes de type texte
 
--   On the history page you can now make the graph
-    a calculation
+-   Sur la page historique vous pouvez maintenant faire le graphique
+    d’un calcul
 
--   Add Calculation Formula Management for History
+-   Ajout d’une gestion de formule de calcul pour les historiques
 
--   Update of all documentation:
+-   Remise à jour de toute la documentation :
 
-    -   All docs have been reviewed
+    -   Toute les docs ont été revues
 
-    -   Deleting images to make it easier to update and
-        multilingual
+    -   Suppression des images pour faciliter la mise à jour et le
+        multilingue
 
--   More choices on setting zone sizes in
-    views
+-   Plus de choix possibles sur les réglage des tailles de zone dans les
+    vues
 
--   Ability to choose the text color of the object summary
+-   Possibilité de choisir la couleur du texte du résumé d’objet
 
--   Added a remove \ _inat action in scenarios that allow
-    to cancel all the programming of the IN / A blocks
+-   Ajout d’une action remove\_inat dans les scénarios permettant
+    d’annuler toutes les programmations des bloc DANS/A
 
--   Possibility in the designs for widgets to flyover to choose
-    the position of the widget
+-   Possibilité dans les designs pour les widgets au survol de choisir
+    la position du widget
 
--   Added reply \ _cmd parameter on interactions to specify
-    the id of the command to use to answer
+-   Ajout d’un parametre reply\_cmd sur les interactions pour spécifier
+    l’id de la commande à utiliser pour répondre
 
--   Add a timeline on the history page (attention must be
-    activated on every command and / or scenario you want
-    see appear)
+-   Ajout d’une timeline sur la page historique (attention doit etre
+    activée sur chaque commande et/ou scénario que vous voulez
+    voir apparaitre)
 
--   Ability to clear timeline events
+-   Possibilité de vider les évènements de la timeline
 
--   Ability to empty banned IPs
+-   Possibilité de vider les IPs bannies
 
--   Correction / improvement of user accounts management
+-   Correction/amélioration de la gestion des comptes utilisateurs
 
-    -   Ability to delete basic admin account
+    -   Possibilité de supprimer le compte admin de base
 
-    -   Prevention of the transition to normal of the last administrator
+    -   Prévention du passage en normal du derniere administrateur
 
-    -   Added security to avoid deleting the account with
-        which one is connected
+    -   Ajout d’une sécurité pour éviter la suppression du compte avec
+        lequel on est connecté
 
--   Possibility in advanced configuration of equipment to put
-    the layout of the commands in the widgets in table mode in
-    choosing for each order the box or put it
+-   Possibilité dans la configuration avancé des équipements de mettre
+    la disposition des commandes dans le widgets en mode table en
+    choissisant pour chaque commande la case ou la mettre
 
--   Possibility of reorganizing the equipment widgets since the
-    dashboard (in edit mode right click on the widget)
+-   Possibilité de reorganiser les widgets des équipements depuis le
+    dashboard (en mode edition clic droit sur le widget)
 
--   Changing the step of the widgets (from 40 \ * 80 to 10 \ * 10). Attention this
-    will impact the layout on your dashboard / view / design
+-   Changement du pas des widgets (de 40\*80 à 10\*10). Attention cela
+    va impacter la disposition sur votre dashboard/vue/design
 
--   Ability to give a size from 1 to 12 to objects on the
+-   Possibilité de donner une taille de 1 à 12 aux objets sur le
     dashboard
 
--   Possibility of independently launching the actions of the scenarios (and
-    plugin type mode / alarm if compatible) in parallel with others
+-   Possibilité de lancer independament les actions des scénarios (et
+    plugin type mode/alarm si compatible) en parallèle des autres
 
--   Ability to add an access code to a design
+-   Possibilité d’ajouter un code d’accès à un design
 
--   Addition of a watchdog independent of Jeedom to check the status of
-    MySql and Apache
+-   Ajout d’un watchdog independant de Jeedom pour verifier le status de
+    MySql et Apache
 
-3.0.11
+3.0.11 
 ======
 
--   Bug fixes on "ask" requests in timeout
+-   Correction de bugs sur les demandes "ask" en timeout
 
-3.0.10
+3.0.10 
 ======
 
--   Bug fixes on the interaction configuration interface
+-   Correction de bugs sur l’interface de configuration des interactions
 
-3.0
+3.0 
 ===
 
--   Deleting the slave mode
+-   Suppression du mode esclave
 
--   Ability to trigger a scenario on a change of one
+-   Possibilité de déclencher un scénario sur un changement d’une
     variable
 
--   Variable updates now trigger the update
-    commands from a virtual device (you need the latest version
-    of the plugin)
+-   Les mises à jour de variables déclenchent maintenant la mise à jour
+    des commandes d’un équipement virtuel (il faut la dernière version
+    du plugin)
 
--   Ability to have an icon on the info type commands
+-   Possibilité d’avoir une icone sur les commandes de type info
 
--   Possibility on the commands to display the name and the icon
+-   Possibilité sur les commandes d’afficher le nom et l’icone
 
--   Added an "alert" action on the scenarios: message at the top in
+-   Ajout d’une action "alert" sur les scénarios : message en haut dans
     jeedom
 
--   Adding a "popup" action on the scenarios: message to validate
+-   Ajout d’une action "popup" sur les scénarios : message à valider
 
--   The widgets of the commands can now have a method
-    update which avoids an ajax call to Jeedom
+-   Les widgets des commandes peuvent maintenant avoir une méthode
+    d’update ce qui évite un appel ajax à Jeedom
 
--   Scenario widgets are now updated without ajax call
-    to have the widget
+-   Les widgets des scénarios sont maintenant mis à jour sans appel ajax
+    pour avoir le widget
 
--   The global summary and parts are now updated without appeal
+-   Le résumé global et des pièces sont maintenant mis à jour sans appel
     ajax
 
--   A click on an element of a home automation summary will take you to a view
-    detailed of it
+-   Un clic sur un élément d’un résumé domotique vous amène sur une vue
+    détaillée de celui-ci
 
--   You can now put in the summaries type orders
-    text
+-   Vous pouvez maintenant mettre dans les résumés des commandes de type
+    texte
 
--   Slider bootstrap change in slider (bug fix
-    double slider event)
+-   Changement des bootstraps slider en slider (correction du bug du
+    double événement des sliders)
 
--   Automatic saving of the views when clicking on the "see the
-    result"
+-   Sauvegarde automatique des vues lors du clic sur le bouton "voir le
+    résultat"
 
--   Possibility to have local docs
+-   Possibilité d’avoir les docs en local
 
--   Third-party developers can add their own system of
-    ticket management
+-   Les développeurs tiers peuvent ajouter leur propre système de
+    gestion de tickets
 
--   Redesign of user rights configuration (everything is on the
-    user management page)
+-   Refonte de la configuration des droits utilisateurs (tout est sur la
+    page de gestion des utilisateurs)
 
--   Updated libs: jquery (in 3.0), jquery mobile, hightstock
-    and sorter table, make-awesome
+-   Mise à jour des libs : jquery (en 3.0) , jquery mobile, hightstock
+    et table sorter, font-awesome
 
--   Big improvement of the designs:
+-   Grosse amélioration des designs:
 
-    -   All actions are now accessible from a
-        right click
+    -   Toutes les actions sont maintenant accessibles à partir d’un
+        clic droit
 
-    -   Ability to add a single command
+    -   Possibilité d’ajouter une commande seule
 
-    -   Ability to add an image or a video stream
+    -   Possibilité d’ajouter une image ou un flux vidéo
 
-    -   Ability to add zones (clickable location):
+    -   Possibilité d’ajouter des zones (emplacement cliquable) :
 
-        -   Macro-type zone: launches a series of actions during a
-            click on it
+        -   Zone de type macro : lance une série d’actions lors d’un
+            clic dessus
 
-        -   Binary type zone: launches a series of actions during a
-            click on it depending on the status of an order
+        -   Zone de type binaire : lance une série d’actions lors d’un
+            clic dessus en fonction de l’état d’une commande
 
-        -   Widget type zone: displays a widget by clicking or by hovering
-            of the area
+        -   Zone de type widget : affiche un widget au clic ou au survol
+            de la zone
 
-    -   General optimization of the code
+    -   Optimisation générale du code
 
-    -   Ability to display a grid and choose its
-        size (10x10,15x15 or 30x30)
+    -   Possibilité de faire apparaître une grille et de choisir sa
+        taille (10x10,15x15 ou 30x30)
 
-    -   Ability to activate a magnetization of widgets on the grid
+    -   Possibilité d’activer une aimantation des widgets sur la grille
 
-    -   Ability to activate a magnetization of widgets between them
+    -   Possibilité d’activer une aimantation des widgets entre eux
 
-    -   Some types of widgets can now be duplicated
+    -   Certains types de widgets peuvent maintenant être dupliqués
 
-    -   Ability to lock an item
+    -   Possibilité de verrouiller un élément
 
--   Plugins can now use an API key that is
-    clean
+-   Les plugins peuvent maintenant utiliser une clef api qui leur est
+    propre
 
--   Adding automatic interactions, Jeedom will try to understand
-    the sentence, execute the action and answer
+-   Ajout d’interactions automatiques, Jeedom va essayer de comprendre
+    la phrase, d’exécuter l’action et de répondre
 
--   Adding mobile version daemon management
+-   Ajout de la gestion des démons en version mobile
 
--   Adding mobile cron management
+-   Ajout de la gestion des crons en version mobile
 
--   Addition of some health information in mobile version
+-   Ajout de certaines informations de santé en version mobile
 
--   Add on the battery page modules on alert
+-   Ajout sur la page batterie des modules en alerte
 
--   Objects without widget are automatically hidden on the dashboard
+-   Les objets sans widget sont automatiquement masqués sur le dashboard
 
--   Adding a button in the advanced configuration of a
-    equipment / order to see the events of
-    thereof / the latter
+-   Ajout d’un bouton dans la configuration avancée d’un
+    équipement/d’une commande pour voir les événements de
+    celui-ci/celle-ci
 
--   The triggers of a scenario can now be
-    terms
+-   Les déclencheurs d’un scénario peuvent maintenant être des
+    conditions
 
--   A double click on the line of an order (on the page
-    configuration) now opens the advanced configuration of
-    this one
+-   Un double clic sur la ligne d’une commande (sur la page
+    de configuration) ouvre maintenant la configuration avancée de
+    celle-ci
 
--   Possibility to prohibit certain values ​​for an order (in the
-    advanced configuration of it)
+-   Possibilité d’interdire certaines valeurs pour une commande (dans la
+    configuration avancée de celle-ci)
 
--   Adding configuration fields on automatic status feedback
-    (eg return to 0 after 4min) in the advanced configuration of a
-    order
+-   Ajout des champs de configuration sur le retour d’état automatique
+    (ex revenir à 0 au bout de 4min) dans la configuration avancée d’une
+    commande
 
--   Added a valueDate function in the scenarios (see
-    documentation of scenarios)
+-   Ajout d’une fonction valueDate dans les scénarios (voir
+    documentation des scénarios)
 
--   Possibility in scenarios to change the value of an order
-    with the action "event"
+-   Possibilité dans les scénarios de modifier la valeur d’une commande
+    avec l’action "event"
 
--   Added a comment field on the advanced configuration of a
-    equipment
+-   Ajout d’un champ commentaire sur la configuration avancée d’un
+    équipement
 
--   Addition of an alert system on orders with 2 levels:
-    alert and danger. The configuration is in the configuration
-    advanced commands (info-only, of course). You can
-    see the modules on alert on the Analysis → Equipment page. You
-    can configure actions on alert on the page of
-    general configuration of Jeedom
+-   Ajout d’un système d’alerte sur les commandes avec 2 niveaux :
+    alerte et danger. La configuration se trouve dans la configuration
+    avancée des commandes (de type info seulement bien sûr). Vous pouvez
+    voir les modules en alerte sur la page Analyse → Equipements. Vous
+    pouvez configurer les actions sur alerte sur la page de
+    configuration générale de Jeedom
 
--   Added a "table" area on the views that can display one or
-    several columns per box. The boxes also support the HTML code
+-   Ajout d’une zone "tableau" sur les vues qui permet d’afficher une ou
+    plusieurs colonnes par case. Les cases supportent aussi le code HTML
 
--   Jeedom can now run without root rights (experimental).
-    Attention because without the root rights you will have to manually launch
-    scripts for plugin dependencies
+-   Jeedom peut maintenant tourner sans les droits root (expérimental).
+    Attention car sans les droits root vous devrez manuellement lancer
+    les scripts pour les dépendances des plugins
 
--   Optimization of calculation of expressions (calculation of tags only
-    if present in the expression)
+-   Optimisation du calcul des expressions (calcul des tags uniquement
+    si présents dans l’expression)
 
--   Add in the function API to access the summary (global
-    and object)
+-   Ajout dans l’API de fonction pour avoir accès au résumé (global
+    et d’objet)
 
--   Ability to restrict access of each API key according to
-    IP
+-   Possibilité de restreindre l’accès de chaque clef api en fonction de
+    l’IP
 
--   Possibility on the history to group by hour or
-    year
+-   Possibilité sur l’historique de faire des regroupements par heure ou
+    année
 
--   The timeout on the wait command can now be a calculation
+-   Le timeout sur la commande wait peut maintenant être un calcul
 
--   Fixed a bug if there are "in the parameters of an action
+-   Correction d’un bug s’il y a des " dans les paramètres d’une action
 
--   Switch to sha512 for hash passwords (sha1
-    being compromised)
+-   Passage au sha512 pour le hash des mots de passe (le sha1
+    étant compromis)
 
--   Fixed a bug in cache management that made him fatter
-    indefinitely
+-   Correction d’un bug dans la gestion du cache qui le faisait grossir
+    indéfiniment
 
--   Fixed access to 3rd party plugins doc if they did not
-    no doc locally
+-   Correction de l’accès à la doc des plugins tiers si ceux-ci n’ont
+    pas de doc en local
 
--   Interactions can take into account the notion of context (in
-    according to the previous request as well as the previous one)
+-   Les interactions peuvent prendre en compte la notion de contexte (en
+    fonction de la demande précédente ainsi que celle d’avant)
 
--   Ability to weight words by size for
-    understanding analysis
+-   Possibilité de pondérer les mots en fonction de leur taille pour
+    l’analyse de la compréhension
 
--   Plugins can now add interactions
+-   Les plugins peuvent maintenant ajouter des interactions
 
--   Interactions can now return files in addition to
-    the answer
+-   Les interactions peuvent maintenant renvoyer des fichiers en plus de
+    la réponse
 
--   Ability to see on the plugins configuration page the
-    features of these (interact, cron ...) and disable them
-    unitary
+-   Possibilité de voir sur la page de configuration des plugins les
+    fonctionalités de ceux-ci (interact, cron…​) et de les désactiver
+    unitairement
 
--   Automatic interactions can return the values ​​of
-    summaries
+-   Les interactions automatiques peuvent renvoyer les valeurs des
+    résumés
 
--   Ability to define synonymous for objects, equipment,
-    orders and summaries that will be used in the answers
-    Contextual and summary
+-   Possibilité de définir des synomymes pour les objets, équipements,
+    commandes et résumés qui seront utilisés dans les réponses
+    contextuelles et résumés
 
--   Jeedom knows how to manage several related interactions (contextually)
-    in one. They must be separated by a keyword (default and).
-    Example: "How much is in the bedroom and living room?" or
-    "Turn on the light of the kitchen and the bedroom."
+-   Jeedom sait gérer plusieurs interactions liées (contextuellement)
+    en une. Elles doivent être séparées par un mot clef (par défaut et).
+    Exemple : "Combien fait-il dans la chambre et dans le salon ?" ou
+    "Allume la lumière de la cuisine et de la chambre."
 
--   The status of the scenarios on the edit page is now set to
-    dynamically
+-   Le statut des scénarios sur la page d’édition est maintenant mis à
+    jour dynamiquement
 
--   Ability to export a view in PDF, PNG, SVG or JPEG with the
+-   Possibilité d’exporter une vue en PDF, PNG, SVG ou JPEG avec la
     report command in a scenario
 
--   Ability to export a design in PDF, PNG, SVG or JPEG with the
-    report command in a scenario
+-   Possibilité d’exporter un design en PDF, PNG, SVG ou JPEG avec la
+    commande "report" dans un scénario
 
--   Ability to export a panel of a plugin in PDF, PNG, SVG or JPEG
-    with the "report" command in a scenario
+-   Possibilité d’exporter un panel d’un plugin en PDF, PNG, SVG ou JPEG
+    avec la commande "report" dans un scénario
 
--   Adding a report management page (to re-download or
-    delete them)
+-   Ajout d’une page de gestion de rapport (pour les retélécharger ou
+    les supprimer)
 
--   Fixed a bug on the last date of an event
-    for some plugins (alarm)
+-   Correction d’un bug sur la date de dernière remontée d’un événement
+    pour certains plugins (alarme)
 
--   Fixed a display bug with Chrome 55
+-   Correction d’un bug d’affichage avec Chrome 55
 
--   Backup optimization (on a RPi2 the time is divided by 2)
+-   Optimisation du backup (sur un RPi2 le temps est divisé par 2)
 
--   Optimization of the restoration
+-   Optimisation de la restauration
 
--   Optimization of the updating process
+-   Optimisation du processus de mise à jour
 
--   Uniformization of the jeedom tmp, now everything is in / tmp / jeedom
+-   Uniformisation du tmp jeedom, maintenant tout est dans /tmp/jeedom
 
--   Possibility to have a graph of the different links of a scenario,
-    equipment, object, order or variable
+-   Possibilité d’avoir un graph des différentes liaisons d’un scénario,
+    équipement, objet, commande ou variable
 
--   Ability to adjust the depth of the link graphics in
-    function of the original object
+-   Possibilité de régler la profondeur des graphiques de lien en
+    fonction de l’objet d’origine
 
--   Possibility to have logs of scenarios in real time (slows down
-    the execution of the scenarios)
+-   Possibilité d’avoir les logs des scénarios en temps réel (ralentit
+    l’exécution des scénarios)
 
--   Ability to pass tags when launching a scenario
+-   Possibilité de passer des tags lors du lancement d’un scénario
 
--   Optimizing the loading of scenarios and pages using
-    actions with option (type configuration of the alarm plugin or mode)
+-   Optimisation du chargement des scénarios et pages utilisant des
+    actions avec option (type configuration du plugin alarme ou mode)
 
-2.4.6
+2.4.6 
 =====
 
--   Improvement of the management of the repetition of the values ​​of
-    orders
+-   Amélioration de la gestion de la répétition des valeurs des
+    commandes
 
-2.4.5
+2.4.5 
 =====
 
--   Bugfix
+-   Correction de bugs
 
--   Optimizing update checking
+-   Optimisation de la vérification des mises à jour
 
-2.4
+2.4 
 ---
 
--   General optimization
+-   Optimisation générale
 
-    -   Grouping of SQL queries
+    -   Regroupement de requêtes SQL
 
-    -   Deleting unnecessary queries
+    -   Suppression de requêtes inutiles
 
-    -   Pid caching, state and last scenario launch
+    -   Passage en cache du pid, état et dernier lancement des scénarios
 
-    -   Pid caching, state and last launch of crons
+    -   Passage en cache du pid, état et dernier lancement des crons
 
-    -   In 99% of cases no more write requests on the base in
-        nominal operation (thus excluding Jeedom configuration,
-        changes, installation, update ...)
+    -   Dans 99% des cas plus de requête d’écriture sur la base en
+        fonctionnement nominal (donc hors configuration de Jeedom,
+        modifications, installation, mise à jour…​)
 
--   Deleting the fail2ban (because easily bypassing by sending a
-    false IP address), this speeds up Jeedom
+-   Suppression du fail2ban (car facilement contournable en envoyant une
+    fausse adresse ip), cela permet d’accélérer Jeedom
 
--   Add in the interactions of an option without category for that
-    we can generate interactions on equipment without
-    category
+-   Ajout dans les interactions d’une option sans catégorie pour que
+    l’on puisse générer des interactions sur des équipements sans
+    catégorie
 
--   Addition in the scenarios of a button of choice of equipment on the
-    slider commands
+-   Ajout dans les scénarios d’un bouton de choix d’équipement sur les
+    commandes de type slider
 
--   Update of bootstrap in 2.3.7
+-   Mise à jour de bootstrap en 2.3.7
 
--   Addition of the concept of home automation summary (allows to know of a
-    only once the number of lights ON, the doors open, the
-    shutters, windows, power, motion detections ...).
-    All of this is configured on the object management page
+-   Ajout de la notion de résumé domotique (permet de connaitre d’un
+    seul coup le nombre de lumières à ON, les porte ouvertes, les
+    volets, les fenêtres, la puissance, les détections de mouvement…​).
+    Tout cela se configure sur la page de gestion des objets
 
--   Added pre and post command on a command. Trigger
-    all the time an action before or after another action. Can also
-    to synchronize equipment for, for example, 2
-    lights always light up together with the same intensity.
+-   Ajout de pre et post commande sur une commande. Permet de déclencher
+    tout le temps une action avant ou après une autre action. Peut aussi
+    permettre de synchroniser des équipements pour, par exemple, que 2
+    lumières s’allument toujours ensemble avec la même intensité.
 
--   Optimizing listenner
+-   Optimisation des listenner
 
--   Added modal to display raw information (attribute of
-    the object in base) of an equipment or an order
+-   Ajout de modal pour afficher les informations brutes (attribut de
+    l’objet en base) d’un équipement ou d’une commande
 
--   Ability to copy the history of one order to another
-    order
+-   Possibilité de copier l’historique d’une commande sur une autre
+    commande
 
--   Ability to replace one order with another in any Jeedom
-    (even if the order to be replaced no longer exists)
+-   Possibilité de remplacer une commande par une autre dans tout Jeedom
+    (même si la commande à remplacer n’existe plus)
 
-2.3
+2.3 
 ---
 
--   Correction of filters on the market
+-   Correction des filtres sur le market
 
--   Fixed checkboxes on the edit page of the views (on a
-    graphic area)
+-   Correction des checkbox sur la page d’édition des vues (sur une
+    zone graphique)
 
--   Fixed checkboxes to be historized, visible and reversed in the
-    command board
+-   Correction des checkbox historiser, visible et inverser dans le
+    tableau des commandes
 
--   Fixed a problem with the translation of javascripts
+-   Correction d’un soucis sur la traduction des javascripts
 
--   Adding a plugin category: object communicating
+-   Ajout d’une catégorie de plugin : objet communiquant
 
--   Adding GENERIC \ _TYPE
+-   Ajout de GENERIC\_TYPE
 
--   Remove new and top filters on the plugins path
-    of the market
+-   Suppression des filtres nouveau et top sur le parcours des plugins
+    du market
 
--   Renaming the default category on the course of the plugins of the
-    market in "Top and new"
+-   Renommage de la catégorie par defaut sur le parcours des plugins du
+    market en "Top et nouveauté"
 
--   Fixed free and paid filters on the plugins path
-    of the market
+-   Correction des filtres gratuit et payant sur le parcours des plugins
+    du market
 
--   Fixed a bug that could lead to duplicate curves
-    on the history page
+-   Correction d’un bug qui pouvait amener à une duplication des courbes
+    sur la page d’historique
 
--   Fixed a bug on the timeout value of scenarios
+-   Correction d’un bug sur la valeur de timeout des scénarios
 
--   fixed a bug on the display of widgets in the views that
-    was taking the dashboard version
+-   correction d’un bug sur l’affichage des widgets dans les vues qui
+    prenait la version dashboard
 
--   Fixed a bug on designs that could use the
-    set up dashboard widgets instead of designs
+-   Correction d’un bug sur les designs qui pouvait utiliser la
+    configuration des widgets du dashboard au lieu des designs
 
--   Fixed backup / restore bugs if the name of the jeedom
-    contains special characters
+-   Correction de bugs de la sauvegarde/restauration si le nom du jeedom
+    contient des caractères spéciaux
 
--   Optimization of the organization of the generic type list
+-   Optimisation de l’organisation de la liste des generic type
 
--   Improved display of advanced configuration of
-    amenities
+-   Amélioration de l’affichage de la configuration avancée des
+    équipements
 
--   Correction of the access interface to the backup since
+-   Correction de l’interface d’accès au backup depuis
 
--   Backup of the configuration during the market test
+-   Sauvegarde de la configuration lors du test du market
 
--   Preparing to remove bootstrapswtich in plugins
+-   Préparation à la suppression des bootstrapswtich dans les plugins
 
--   Fixed a bug on the type of widget requested for designs
-    (dashboard instead of dplan)
+-   Correction d’un bug sur le type de widget demandé pour les designs
+    (dashboard au lieu de dplan)
 
--   bug fix on the event handler
+-   correction de bug sur le gestionnaire d’événements
 
--   random backup of the backup at night (between 2:10 and 3:59) for
-    avoid the worries of overloading the market
+-   passage en aléatoire du backup la nuit (entre 2h10 et 3h59) pour
+    éviter les soucis de surcharge du market
 
--   Correction of the widget market
+-   Correction du market de widget
 
--   Fixed a bug on market access (timeout)
+-   Correction d’un bug sur l’accès au market (timeout)
 
--   Fixed a bug on opening tickets
+-   Correction d’un bug sur l’ouverture des tickets
 
--   Fixed a blank page bug when updating if the
-    / tmp is too small (attention correction takes effect at
-    the update n + 1)
+-   Correction d’un bug de page blanche lors de la mise à jour si le
+    /tmp est trop petit (attention la correction prend effet à
+    l’update n+1)
 
--   Added a * jeedom \ _name * tag in the scenarios (gives the name
-    of the jeedom)
+-   Ajout d’un tag *jeedom\_name* dans les scénarios (donne le nom
+    du jeedom)
 
--   Bugfix
+-   Correction de bugs
 
--   Moving all temporary files in / tmp
+-   Déplacement de tous les fichiers temporaire dans /tmp
 
--   Improved sending plugins (automatic dos2unix on the
-    \ *. sh files)
+-   Amélioration de l’envoi des plugins (dos2unix automatique sur les
+    fichiers \*.sh)
 
--   Recast of the log page
+-   Refonte de la page de log
 
--   Adding a mobile darksobre theme
+-   Ajout d’un thème darksobre pour mobile
 
--   Possibility for developers to add options for
-    widget configuration on specific widgets (type sonos,
-    koubachi and other)
+-   Possibilité pour les developpeurs d’ajouter des options de
+    configuration des widget sur les widgets spécifique (type sonos,
+    koubachi et autre)
 
--   Log optimization (thanks @ kwizer15)
+-   Optimisation des logs (merci @kwizer15)
 
--   Possibility of choosing the format of the logs
+-   Possibilité de choisir le format des logs
 
--   Various optimization of the code (thanks @ kwizer15)
+-   Optimisation diverse du code (merci @kwizer15)
 
--   Passage in module of the connection with the market (will allow to have
-    a jeedom without any link to the market)
+-   Passage en module de la connexion avec le market (permettra d’avoir
+    un jeedom sans aucun lien au market)
 
--   Addition of a "repo" (connection module type the connection with
-    the market) file (allows to send a zip containing the plugin)
+-   Ajout d’un "repo" (module de connexion type la connexion avec
+    le market) fichier (permet d’envoi un zip contenant le plugin)
 
--   Added a "repo" github (allows to use github as source of
-    plugin, with update management system)
+-   Ajout d’un "repo" github (permet d’utiliser github comme source de
+    plugin, avec systeme de gestion de mise à jour)
 
--   Added a "repo" URL (allows to use URL as a plugin source)
+-   Ajout d’un "repo" URL (permet d’utiliser URL comme source de plugin)
 
--   Added a "repo" Samba (usable to push backups on a
-    samba server and get some plugins)
+-   Ajout d’un "repo" Samba (utilisable pour pousser des backups sur un
+    serveur samba et récupérer des plugins)
 
--   Added FTP "repo" (used to push backups on a
-    FTP server and recover plugins)
+-   Ajout d’un "repo" FTP (utilisable pour pousser des backups sur un
+    serveur FTP et récupérer des plugins)
 
--   Added for some "repo" the possibility of recovering the core of
+-   Ajout pour certain "repo" de la possibilité de recuperer le core de
     jeedom
 
--   Added automatic code tests (thanks @ kwizer15)
+-   Ajout de tests automatique du code (merci @kwizer15)
 
--   Ability to show / hide plugins panels on mobile and
-    or desktop (beware now by default the panels are hidden)
+-   Possibilité d’afficher/masquer les panels des plugins sur mobile et
+    ou desktop (attention maintenant par défaut les panels sont masqués)
 
--   Ability to disable updates to a plugin (as well as
-    the cheking process)
+-   Possibilité de désactiver les mises à jour d’un plugin (ainsi que
+    la vérification)
 
--   Ability to force check for updates to a plugin
+-   Possibilité de forcé la verification des mises à jour d’un plugin
 
--   Slightly redesigned update center
+-   Légère refonte du centre de mise à jour
 
--   Ability to disable automatic check of updates
-    day
+-   Possibilité de désactiver la vérification automatique des mises à
+    jour
 
--   Fixed a bug that reset all data to 0 after a
-    restart
+-   Correction d’un bug qui remettait toute les données à 0 suite à un
+    redémarrage
 
--   Ability to configure the log level of a plugin directly
-    on the configuration page of it
+-   Possibilité de configurer le niveau de log d’un plugin directement
+    sur la page de configuration de celui-ci
 
--   Ability to view the logs of a plugin directly on the
-    configuration page of it
+-   Possibilité de consulter les logs d’un plugin directement sur la
+    page de configuration de celui-ci
 
--   Removed Debug debugging daemons, now level
-    log of the daemon is the same as the plugin
+-   Suppression du démarrage en debug des démons, maintenant le niveau
+    de logs du démon est le même que celui du plugin
 
--   Third Party Cleanup
+-   Nettoyage de lib tierce
 
--   Deleting responsive voice (function says in scenarios that
-    walked less and less well)
+-   Suppression de responsive voice (fonction dit dans les scénarios qui
+    marchait de moins en moins bien)
 
--   Fixed several security vulnerabilities
+-   Correction de plusieurs faille de sécurité
 
--   Addition of a synchronous mode on the scenarios (formerly
-    fast mode)
+-   Ajout d’un mode synchrone sur les scénarios (anciennement
+    mode rapide)
 
--   Ability to manually enter the position of widgets in% on
-    design
+-   Possibilité de rentrer manuellement la position des widgets en % sur
+    les design
 
--   Redesign of the plugins configuration page
+-   Refonte de la page de configuration des plugins
 
--   Ability to configure widget transparency
+-   Possibilité de configurer la transparence des widgets
 
--   Adding the jeedom \ _poweroff action in the scenarios to stop
+-   Ajout de l’action jeedom\_poweroff dans les scénarios pour arrêter
     jeedom
 
--   Back from the action scenario \ _return to make a return to a
-    interaction (or other) from a scenario
+-   Retour de l’action scenario\_return pour faire un retour à une
+    intéraction (ou autre) à partir d’un scénario
 
--   Pass in long polling for updating the interface in time
-    real
+-   Passage en long polling pour la mise à jour de l’interface en temps
+    réel
 
--   Fixed a bug during multiple widget refresh
+-   Correction d’un bug lors de refresh multiple de widget
 
--   Optimizing the update of orders and equipment widgets
+-   Optimisation de la mise à jour des widgets commandes et équipements
 
--   Added tag * begin \ _backup *, * end \ _backup *, * begin \ _update *,
-    * end \ _update *, * begin \ _restore *, * end \ _restore * in scenarios
+-   Ajout d’un tag *begin\_backup*, *end\_backup*, *begin\_update*,
+    *end\_update*, *begin\_restore*, *end\_restore* dans les scénarios
 
-2.2
+2.2 
 ---
 
--   Bugfix
+-   Correction de bugs
 
--   Simplified access to plug-in configurations from
-    the health page
+-   Simplification de l’accès aux configurations des plugins à partir de
+    la page santé
 
--   Added an icon indicating whether the daemon is debugged or not
+-   Ajout d’une icône indiquant si le démon est démarré en debug ou non
 
--   Adding an overall configuration history page
-    (accessible from the history page)
+-   Ajout d’une page de configuration globale des historiques
+    (accessible à partir de la page historique)
 
--   Bug fixes for docker
+-   Correction de bugs pour docker
 
--   Ability to allow a user to sign in only to
-    from a station on the local network
+-   Possibilité d’autoriser un utilisateur à se connecter uniquement à
+    partir d’un poste sur le réseau local
 
--   Redesigned configuration of widgets (be careful it will take
-    surely resume the configuration of some widgets)
+-   Refonte de la configuration des widgets (attention il faudra
+    sûrement reprendre la configuration de certains widgets)
 
--   Enhanced error handling on widgets
+-   Renforcement de la gestion des erreurs sur les widgets
 
--   Ability to reorder views
+-   Possibilité de réordonner les vues
 
--   Overhaul of theme management
+-   Refonte de la gestion des thèmes
 
-2.1
+2.1 
 ---
 
--   Overhaul of the Jeedom cache system (use of
-    doctrine cache). This allows for example to connect Jeedom to a
-    server redis or memcached. By default Jeedom uses a system of
-    files (and no longer MySQL database which allows to unload it
-    little), this one is in / tmp so it is advisable if you
-    have more than 512 MB of RAM to mount the / tmp in tmpfs (in RAM for
-    more speed and less wear and tear on the SD card, I
-    recommend a size of 64mo). Be careful when restarting
-    Jeedom the cache is emptied so you have to wait to get the
-    feedback of all the infos
+-   Refonte du système de cache de Jeedom (utilisation de
+    doctrine cache). Cela permet par exemple de connecter Jeedom à un
+    serveur redis ou memcached. Par défaut Jeedom utilise un système de
+    fichiers (et non plus la BDD MySQL ce qui permet de la décharger un
+    peu), celui-ci se trouve dans /tmp il est donc conseillé si vous
+    avez plus de 512 Mo de RAM de monter le /tmp en tmpfs (en RAM pour
+    plus de rapidité et une diminution de l’usure de la carte SD, je
+    recommande une taille de 64mo). Attention lors du redémarrage de
+    Jeedom le cache est vidé il faut donc attendre pour avoir la
+    remontée de toutes les infos
 
--   Redesign of the log system (use of monolog) which allows a
-    integration with log systems (syslog type (d))
+-   Refonte du système de log (utilisation de monolog) qui permet une
+    intégration à des systèmes de logs (type syslog(d))
 
--   Optimizing dashboard loading
+-   Optimisation du chargement du dashboard
 
--   Fixed many warnings
+-   Correction de nombreux warning
 
--   Possibility during a call api to a scenario to pass tags
-    in the url
+-   Possibilité lors d’un appel api à un scénario de passer des tags
+    dans l’url
 
--   Apache support
+-   Support d’apache
 
--   Docker optimization with official docker support
+-   Optimisation pour docker avec support officiel de docker
 
--   Optimization for synology
+-   Optimisation pour les synology
 
--   Support + optimization for php7
+-   Support + optimisation pour php7
 
--   Redesign of Jeedom menus
+-   Refonte des menus Jeedom
 
--   Deleting all the network management part: wifi, fixed ip ...
-    (will surely come back as a plugin). ATTENTION this is not the
-    jeedom master / slave mode that is deleted
+-   Suppression de toute la partie gestion réseau : wifi, ip fixe…
+    (reviendra sûrement sous forme de plugin). ATTENTION ce n’est pas le
+    mode maître/esclave de jeedom qui est supprimé
 
--   Deleting the battery indication on widgets
+-   Suppression de l’indication de batterie sur les widgets
 
--   Added a page that summarizes the status of all equipment on
-    drums
+-   Ajout d’une page qui résume le statut de tous les équipements sur
+    batterie
 
--   Redesign of the DNS Jeedom, use of openvpn (and therefore the
-    openvpn plugin)
+-   Refonte du DNS Jeedom, utilisation d’openvpn (et donc du
+    plugin openvpn)
 
--   Update all the libs
+-   Mise à jour de toutes les libs
 
--   Interaction: adding a parsing system (allows to
-    remove interactions with large syntax errors like "
-    the bedroom ")
+-   Interaction : ajout d’un système d’analyse syntaxique (permet de
+    supprimer les interactions avec de grosses erreurs de syntaxe type «
+    le chambre »)
 
--   Removal of the update of the interface by nodejs (change to
-    pulling every second on the list of events)
+-   Suppression de la mise à jour de l’interface par nodejs (passage en
+    pulling toutes les secondes sur la liste des événements)
 
--   Possibility for third-party applications to request by API
-    events
+-   Possibilité pour les applications tierces de demander par l’api les
+    événements
 
--   Overhaul of the "action on value" system with the possibility of making
-    several actions and also adding all possible actions
-    in the scenarios (be careful it may take all
-    reconfigure following the update)
+-   Refonte du système « d’action sur valeur » avec possibilité de faire
+    plusieurs actions et aussi l’ajout de toutes les actions possibles
+    dans les scénarios (attention il faudra peut-être toutes les
+    reconfigurer suite à la mise à jour)
 
--   Ability to disable a block in a scenario
+-   Possibilité de désactiver un bloc dans un scénario
 
--   Adding for developers a tooltips help system. It is necessary
-    on a label put the class "help" and put an attribute
-    data-help with the desired help message. This allows Jeedom
-    to add automatically at the end of your label an icon "? And
-    on flyover to display help text
+-   Ajout pour les développeurs d’un système d’aide tooltips. Il faut
+    sur un label mettre la classe « help » et mettre un attribut
+    data-help avec le message d’aide souhaité. Cela permet à Jeedom
+    d’ajouter automatiquement à la fin de votre label une icône « ? » et
+    au survol d’afficher le texte d’aide
 
--   Change the process of updating the core, we do not ask anymore
-    the archive at the Market but directly to Github now
+-   Changement du processus de mise à jour du core, on ne demande plus
+    l’archive au Market mais directement à Github maintenant
 
--   Addition of a centralized system for installing dependencies on
+-   Ajout d’un système centralisé d’installation des dépendances sur les
     plugins
 
--   Redesign of the plugins management page
+-   Refonte de la page de gestion des plugins
 
--   Adding mac addresses of different interfaces
+-   Ajout des adresses mac des différentes interfaces
 
--   Adding the dual authentication connection
+-   Ajout de la connexion en double authentification
 
--   Deleting the hash connection (for security reasons)
+-   Suppression de la connexion par hash (pour des raisons de sécurité)
 
--   Adding an OS administration system
+-   Ajout d’un système d’administration OS
 
--   Adding standard Jeedom widgets
+-   Ajout de widgets standards Jeedom
 
--   Adding a beta system to find the Jeedom IP on the network
-    (You have to connect Jeedom on the network, then go to the market and
-    click on "My Jeedoms" in your profile)
+-   Ajout d’un système en beta pour trouver l’IP de Jeedom sur le réseau
+    (il faut connecter Jeedom sur le réseau, puis aller sur le market et
+    cliquer sur « Mes Jeedoms » dans votre profil)
 
--   Add on the page of the scenarios of an expression tester
+-   Ajout sur la page des scénarios d’un testeur d’expression
 
--   Review of the scenario sharing system
+-   Revue du système de partage de scénario
 
-2.0
+2.0 
 ---
 
--   Overhaul of the Jeedom cache system (use of
-    doctrine cache). This allows for example to connect Jeedom to a
-    server redis or memcached. By default Jeedom uses a system of
-    files (and no longer MySQL database which allows to unload it
-    little), this one is in / tmp so it is advisable if you
-    have more than 512 MB of RAM to mount the / tmp in tmpfs (in RAM for
-    more speed and less wear and tear on the SD card, I
-    recommend a size of 64mo). Be careful when restarting
-    Jeedom the cache is emptied so you have to wait to get the
-    feedback of all the infos
+-   Refonte du système de cache de Jeedom (utilisation de
+    doctrine cache). Cela permet par exemple de connecter Jeedom à un
+    serveur redis ou memcached. Par défaut Jeedom utilise un système de
+    fichiers (et non plus la BDD MySQL ce qui permet de la décharger un
+    peu), celui-ci se trouve dans /tmp il est donc conseillé si vous
+    avez plus de 512 Mo de RAM de monter le /tmp en tmpfs (en RAM pour
+    plus de rapidité et une diminution de l’usure de la carte SD, je
+    recommande une taille de 64mo). Attention lors du redémarrage de
+    Jeedom le cache est vidé il faut donc attendre pour avoir la
+    remontée de toutes les infos
 
--   Redesign of the log system (use of monolog) which allows a
-    integration with log systems (syslog type (d))
+-   Refonte du système de log (utilisation de monolog) qui permet une
+    intégration à des systèmes de logs (type syslog(d))
 
--   Optimizing dashboard loading
+-   Optimisation du chargement du dashboard
 
--   Fixed many warnings
+-   Correction de nombreux warning
 
--   Possibility during a call api to a scenario to pass tags
-    in the url
+-   Possibilité lors d’un appel api à un scénario de passer des tags
+    dans l’url
 
--   Apache support
+-   Support d’apache
 
--   Docker optimization with official docker support
+-   Optimisation pour docker avec support officiel de docker
 
--   Optimization for synology
+-   Optimisation pour les synology
 
--   Support + optimization for php7
+-   Support + optimisation pour php7
 
--   Redesign of Jeedom menus
+-   Refonte des menus Jeedom
 
--   Deleting all the network management part: wifi, fixed ip ...
-    (will surely come back as a plugin). ATTENTION this is not the
-    jeedom master / slave mode that is deleted
+-   Suppression de toute la partie gestion réseau : wifi, ip fixe…
+    (reviendra sûrement sous forme de plugin). ATTENTION ce n’est pas le
+    mode maître/esclave de jeedom qui est supprimé
 
--   Deleting the battery indication on widgets
+-   Suppression de l’indication de batterie sur les widgets
 
--   Added a page that summarizes the status of all equipment on
-    drums
+-   Ajout d’une page qui résume le statut de tous les équipements sur
+    batterie
 
--   Redesign of the DNS Jeedom, use of openvpn (and therefore the
-    openvpn plugin)
+-   Refonte du DNS Jeedom, utilisation d’openvpn (et donc du
+    plugin openvpn)
 
--   Update all the libs
+-   Mise à jour de toutes les libs
 
--   Interaction: adding a parsing system (allows to
-    remove interactions with large syntax errors like "
-    the bedroom ")
+-   Interaction : ajout d’un système d’analyse syntaxique (permet de
+    supprimer les interactions avec de grosses erreurs de syntaxe type «
+    le chambre »)
 
--   Removal of the update of the interface by nodejs (change to
-    pulling every second on the list of events)
+-   Suppression de la mise à jour de l’interface par nodejs (passage en
+    pulling toutes les secondes sur la liste des événements)
 
--   Possibility for third-party applications to request by API
-    events
+-   Possibilité pour les applications tierces de demander par l’api les
+    événements
 
--   Overhaul of the "action on value" system with the possibility of making
-    several actions and also adding all possible actions
-    in the scenarios (be careful it may take all
-    reconfigure following the update)
+-   Refonte du système « d’action sur valeur » avec possibilité de faire
+    plusieurs actions et aussi l’ajout de toutes les actions possibles
+    dans les scénarios (attention il faudra peut-être toutes les
+    reconfigurer suite à la mise à jour)
 
--   Ability to disable a block in a scenario
+-   Possibilité de désactiver un bloc dans un scénario
 
--   Adding for developers a tooltips help system. It is necessary
-    on a label put the class "help" and put an attribute
-    data-help with the desired help message. This allows Jeedom
-    to add automatically at the end of your label an icon "? And
-    on flyover to display help text
+-   Ajout pour les développeurs d’un système d’aide tooltips. Il faut
+    sur un label mettre la classe « help » et mettre un attribut
+    data-help avec le message d’aide souhaité. Cela permet à Jeedom
+    d’ajouter automatiquement à la fin de votre label une icône « ? » et
+    au survol d’afficher le texte d’aide
 
--   Change the process of updating the core, we do not ask anymore
-    the archive at the Market but directly to Github now
+-   Changement du processus de mise à jour du core, on ne demande plus
+    l’archive au Market mais directement à Github maintenant
 
--   Addition of a centralized system for installing dependencies on
+-   Ajout d’un système centralisé d’installation des dépendances sur les
     plugins
 
--   Redesign of the plugins management page
+-   Refonte de la page de gestion des plugins
 
--   Adding mac addresses of different interfaces
+-   Ajout des adresses mac des différentes interfaces
 
--   Adding the dual authentication connection
+-   Ajout de la connexion en double authentification
 
--   Deleting the hash connection (for security reasons)
+-   Suppression de la connexion par hash (pour des raisons de sécurité)
 
--   Adding an OS administration system
+-   Ajout d’un système d’administration OS
 
--   Adding standard Jeedom widgets
+-   Ajout de widgets standards Jeedom
 
--   Adding a beta system to find the Jeedom IP on the network
-    (You have to connect Jeedom on the network, then go to the market and
-    click on "My Jeedoms" in your profile)
+-   Ajout d’un système en beta pour trouver l’IP de Jeedom sur le réseau
+    (il faut connecter Jeedom sur le réseau, puis aller sur le market et
+    cliquer sur « Mes Jeedoms » dans votre profil)
 
--   Add on the page of the scenarios of an expression tester
+-   Ajout sur la page des scénarios d’un testeur d’expression
 
--   Review of the scenario sharing system
+-   Revue du système de partage de scénario
 
 
