@@ -263,11 +263,12 @@ class network {
 			$update->doUpdate();
 			$plugin = plugin::byId('openvpn');
 		}
-		if (!$plugin->isActive()) {
-			$plugin->setIsEnable(1);
-		}
 		if (!is_object($plugin)) {
 			throw new Exception(__('Le plugin OpenVPN doit être installé', __FILE__));
+		}
+		if (!$plugin->isActive()) {
+			$plugin->setIsEnable(1);
+			$plugin->dependancy_install();
 		}
 		if (!$plugin->isActive()) {
 			throw new Exception(__('Le plugin OpenVPN doit être actif', __FILE__));
@@ -337,9 +338,6 @@ class network {
 
 	public static function dns_stop() {
 		if (config::byKey('dns::token') == '') {
-			return;
-		}
-		if (config::byKey('market::allowDNS') != 1) {
 			return;
 		}
 		$openvpn = self::dns_create();
