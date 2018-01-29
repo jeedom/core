@@ -232,9 +232,9 @@ Commandes (capteurs et actionneurs):
 
 Log :
 -   log::add('filename','level','message');
--   filename : Nom du fichier de log.
--   level : [debug], [info], [error], [event].
--   message : Message à écrire dans les logs.
+  -   filename : Nom du fichier de log.
+  -   level : [debug], [info], [error], [event].
+  -   message : Message à écrire dans les logs.
 
 Scénario :
 -   $scenario->getName(); : Retourne le nom du scénario courant.
