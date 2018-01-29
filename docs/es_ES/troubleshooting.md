@@ -1,23 +1,23 @@
-J’ai une page blanche 
+Tengo una página en blanco
 =====================
 
-Il faut se connecter en SSH à Jeedom et lancer le script
-d’auto-diagnostic :
+Tienes que SSH en Jeedom y ejecutar el script
+Autodiagnóstico:
 
 ``` {.bash}
 sudo chmod +x /var/www/html/health.sh;sudo /var/www/html/health.sh
 ```
 
-S’il y a un souci, le script essaiera de le corriger. S’il n’y arrive
-pas, il vous l’indiquera.
+Si hay una preocupación, el guión va a tratar de solucionarlo. Si sucede
+no, que se lo dirá.
 
-Vous pouvez aussi regarder le log /var/www/html/http.error . Très
-souvent, celui-ci indique le souci.
+También puede ver el registro de /var/www/html/http.error. muy
+A menudo, esto indica una preocupación.
 
-J’ai un problème d’identifiant BDD 
+Tengo un problema de identificación de BDD
 ==================================
 
-Il faut réinitialiser ceux-ci :
+Tenemos que restablecer los siguientes:
 
 ``` {.bash}
 bdd_password=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
@@ -30,62 +30,62 @@ sudo sed -i -e "s/#PASSWORD#/${bdd_password}/g" core/config/common.config.php
 sudo chown www-data:www-data core/config/common.config.php
 ```
 
-J’ai des {{…​}} partout 
+Tengo {{...}} en todas partes
 =======================
 
-La cause la plus fréquente est l’utilisation d’un plugin en version beta
-et Jeedom en stable, ou l’inverse. Pour avoir le détail de l’erreur, il
-faut regarder le log http.error (dans /var/www/html/log).
+La causa más común es el uso de una beta plug-in
+y Jeedom estable, o viceversa. La lista completa del error,
+debe mirar el http.error registro (en / var / www / html / log).
 
-Lors d’une commande j’ai une roue qui tourne sans s’arrêter 
-===========================================================
+Al realizar el pedido Tengo una rueda que gira sin parar
+================================================== =========
 
-Encore une fois cela est souvent dû à un plugin en beta alors que Jeedom
-est en stable. Pour voir l’erreur, il faut faire F12 puis console.
+De nuevo, esto es a menudo debido a un plugin en fase beta, mientras que Jeedom
+es estable. Para ver el error, hay que F12 y la consola.
 
-Je n’ai plus accès à Jeedom, ni par l’interface web ni en console par SSH 
-=========================================================================
+Ya no tengo acceso a Jeedom oa través de la interfaz web o mediante SSH consola
+================================================== =======================
 
-Cette erreur n’est pas due à Jeedom, mais à un problème avec le système.
-Si celui-ci persiste suite à une réinstallation, il est conseillé de
-voir avec le SAV pour un souci hardware.
+Este error no se debe a Jeedom, pero un problema con el sistema.
+Si persiste después de la reinstalación, se recomienda
+ver con el servicio de una preocupación de hardware.
 
-Mon scénario ne s’arrête plus/pas 
+Mi escenario no se detiene / no
 =================================
 
-Il est conseillé de regarder les commandes exécutées par le scénario,
-souvent cela vient d’une commande qui ne se termine pas.
+Es recomendable mirar los comandos ejecutados por el guión,
+a menudo se trata de un comando que no termina.
 
-J’ai des instabilités ou des erreurs 504 
+I inestabilidades o errores 504
 ========================================
 
-Vérifiez si votre système de fichiers n’est pas corrompu, en SSH la
-commande est : "sudo dmesg | grep error" .
+Compruebe si su sistema de archivos no está dañado por la SSH
+comando "sudo dmesg | grep error".
 
-Je ne vois pas tous mes équipements sur le dashboard 
-====================================================
+No veo todo mi equipo en el salpicadero
+================================================== ==
 
-Souvent cela est dû au fait que les équipements sont affectés à un objet
-qui n’est pas le fils ou l’objet lui-même du premier objet sélectionné à
-gauche dans l’arbre (vous pouvez configurer celui-ci dans votre profil).
+A menudo esto se debe al hecho de que las instalaciones son asignados a un objeto
+no el hijo o el propio objeto del primer objeto seleccionado
+la izquierda en el árbol (se puede establecer en su perfil).
 
-J’ai l’erreur suivante : SQLSTATE\[HY000\] \[2002\] Can’t connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' 
-====================================================================================================================================
+Tengo el siguiente error: SQLSTATE \ [HY000 \] \ [2002 \] No se puede conectar al servidor MySQL local a través de socket '/var/run/mysqld/mysqld.sock'
+================================================== ================================================== ================================
 
-Cela est dû à MySQL qui s’est arrêté, ce n’est pas normal, les cas
-courants sont :
+Esto se debe a MySQL que se detuvo, no es normal, caso
+comunes son:
 
--   Manque de place sur le système de fichiers (peut être vérifié en
-    faisant la commande "df -h", en SSH)
+-   La falta de espacio en el sistema de archivos (se puede comprobar
+    haciendo que el comando "df -h" SSH)
 
--   Problème de corruption de fichier(s), ce qui arrive souvent suite à
-    un arrêt non propre de Jeedom (coupure de courant)
+-   tema (s) la corrupción de archivos, que a menudo sucede después de
+    un cierre no está correctamente Jeedom (corte de corriente)
 
-Malheureusement, il n’y a pas beaucoup de solution si c’est le deuxième
-cas, le mieux étant de récupérer une sauvegarde (disponible dans
-/usr/share/nginx/www/jeedom/backup par défaut), de réinstaller Jeedom et
-de restaurer la sauvegarde. Vous pouvez aussi regarder pourquoi MySQL ne
-veut pas démarrer depuis une console SSH :
+Por desgracia, no hay muchos solución si se trata de la segunda
+caso lo mejor es restaurar una copia de seguridad (disponible
+/ Usr / share / nginx / www / jeedom / default copia de seguridad), y volver a instalar Jeedom
+restaurar la copia de seguridad. También puede analizar por qué MySQL
+querer arrancar desde una consola SSH:
 
 ``` {.bash}
 sudo su -
@@ -93,21 +93,21 @@ service mysql stop
 mysqld --verbose
 ```
 
-Ou consulter le log : /var/log/mysql/error.log
+O consulte el registro de: /var/log/mysql/error.log
 
-Les boutons Eteindre/Redémarrer ne fonctionnent pas 
-===================================================
+Los botones de apagado / reinicio no funciona
+================================================== =
 
-Sur une installation DIY c’est normal. En SSH, il faut faire la commande
-visudo et à la fin du fichier vous devez ajouter : www-data ALL=(ALL)
-NOPASSWD: ALL.
+En un sistema de bricolaje es normal. SSH, usted tiene que controlar
+visudo y al final del archivo debe añadir: www-data ALL = (ALL)
+NOPASSWD: TODOS.
 
 ``` {.bash}
 sudo service apache2 restart
 ```
 
-Je ne vois pas certains plugins du Market 
+No veo algunos plugins Mercado
 =========================================
 
-Ce genre de cas arrive si votre Jeedom n’est pas compatible avec le
-plugin. En général, une mise à jour de jeedom corrige le souci.
+Tales casos ocurren si su Jeedom no es compatible con el
+plugin. En general, una actualización corrige preocupación jeedom.

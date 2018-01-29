@@ -1,8 +1,12 @@
-Changelog 
+Changelog
 =========
 
-3.2.0 
+3.2.0
 =====
+
+-   Mise à jour des traductions
+
+-   Mise à jour des librairies (jquery et highcharts)
 
 -   Possibilité d’interdire une commande dans les interactions
     automatique
@@ -424,7 +428,7 @@ Changelog
     jour dynamiquement
 
 -   Possibilité d’exporter une vue en PDF, PNG, SVG ou JPEG avec la
-    commande "report" dans un scénario
+    report command in a scenario
 
 -   Possibilité d’exporter un design en PDF, PNG, SVG ou JPEG avec la
     commande "report" dans un scénario

@@ -239,9 +239,9 @@ class plugin {
 				try {
 					$plugin_id::cron5();
 				} catch (Exception $e) {
-					log::add($plugin_id, 'error', __('Erreur sur la fonction cron15 du plugin : ', __FILE__) . $e->getMessage());
+					log::add($plugin_id, 'error', __('Erreur sur la fonction cron5 du plugin : ', __FILE__) . $e->getMessage());
 				} catch (Error $e) {
-					log::add($plugin_id, 'error', __('Erreur sur la fonction cron15 du plugin : ', __FILE__) . $e->getMessage());
+					log::add($plugin_id, 'error', __('Erreur sur la fonction cron5 du plugin : ', __FILE__) . $e->getMessage());
 				}
 			}
 		}

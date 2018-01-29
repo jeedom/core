@@ -1,0 +1,3 @@
+<script>
+window.location.href = 'fr_FR/';
+</script>

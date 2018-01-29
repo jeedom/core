@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v5.0.10 (2017-03-31)
+ * @license Highcharts JS v6.0.4 (2017-12-15)
  * Plugin for displaying a message when there is no data visible in chart.
  *
  * (c) 2010-2017 Highsoft AS
@@ -33,35 +33,122 @@
 
         // Add language option
         extend(defaultOptions.lang, {
+            /**
+             * The text to display when the chart contains no data. Requires the
+             * no-data module, see [noData](#noData).
+             * 
+             * @type {String}
+             * @default No data to display
+             * @since 3.0.8
+             * @product highcharts
+             * @apioption lang.noData
+             */
             noData: 'No data to display'
         });
 
         // Add default display options for message
+        /**
+         * Options for displaying a message like "No data to display". 
+         * This feature requires the file no-data-to-display.js to be loaded in the page. 
+         * The actual text to display is set in the lang.noData option.
+         * @type {Object}
+         * @optionparent noData
+         */
         defaultOptions.noData = {
+
+            /**
+             * An object of additional SVG attributes for the no-data label.
+             * 
+             * @type {Object}
+             * @since 3.0.8
+             * @product highcharts highstock
+             * @apioption noData.attr
+             */
+
+            /**
+             * The position of the no-data label, relative to the plot area.
+             * 
+             * @type {Object}
+             * @default { "x": 0, "y": 0, "align": "center", "verticalAlign": "middle" }
+             * @since 3.0.8
+             */
             position: {
+
+                /**
+                 * Horizontal offset of the label, in pixels.
+                 * 
+                 * @type {Number}
+                 * @default 0
+                 * @product highcharts highstock
+                 */
                 x: 0,
+
+                /**
+                 * Vertical offset of the label, in pixels.
+                 * 
+                 * @type {Number}
+                 * @default 0
+                 * @product highcharts highstock
+                 */
                 y: 0,
+
+                /**
+                 * Horizontal alignment of the label.
+                 * 
+                 * @validvalue ["left", "center", "right"]
+                 * @type {String}
+                 * @default center
+                 */
                 align: 'center',
+
+                /**
+                 * Vertical alignment of the label.
+                 * 
+                 * @validvalue ["top", "middle", "bottom"]
+                 * @type {String}
+                 * @default middle
+                 * @product highcharts highstock
+                 */
                 verticalAlign: 'middle'
             }
-            // useHTML: false
+
+            /**
+             * Whether to insert the label as HTML, or as pseudo-HTML rendered with
+             * SVG.
+             * 
+             * @type {Boolean}
+             * @default false
+             * @since 4.1.10
+             * @product highcharts highstock
+             * @apioption noData.useHTML
+             */
         };
 
 
 
-        /**
-         * Define hasData functions for series. These return true if there are data points on this series within the plot area
-         */
-        function hasDataPie() {
-            return !!this.points.length; /* != 0 */
-        }
 
-        each(['pie', 'gauge', 'waterfall', 'bubble', 'treemap'], function(type) {
+        // Define hasData function for non-cartesian seris. Returns true if the series
+        // has points at all.
+        each([
+            'bubble',
+            'gauge',
+            'heatmap',
+            'pie',
+            'sankey',
+            'treemap',
+            'waterfall'
+        ], function(type) {
             if (seriesTypes[type]) {
-                seriesTypes[type].prototype.hasData = hasDataPie;
+                seriesTypes[type].prototype.hasData = function() {
+                    return !!this.points.length; /* != 0 */
+                };
             }
         });
 
+        /**
+         * Define hasData functions for series. These return true if there are data
+         * points on this series within the plot area.
+         */
         H.Series.prototype.hasData = function() {
             return this.visible && this.dataMax !== undefined && this.dataMin !== undefined; // #3703
         };
@@ -123,27 +210,18 @@
                 }
             }
 
-            return false;
+            return chart.loadingShown; // #4588
         };
 
         /**
-         * Show no-data message if there is no data in sight. Otherwise, hide it.
+         * Add event listener to handle automatic show or hide no-data message
          */
-        function handleNoData() {
-            var chart = this;
-            if (chart.hasData()) {
-                chart.hideNoData();
+        H.addEvent(chartPrototype, 'render', function handleNoData() {
+            if (this.hasData()) {
+                this.hideNoData();
             } else {
-                chart.showNoData();
+                this.showNoData();
             }
-        }
-
-        /**
-         * Add event listener to handle automatic display of no-data message
-         */
-        chartPrototype.callbacks.push(function(chart) {
-            H.addEvent(chart, 'load', handleNoData);
-            H.addEvent(chart, 'redraw', handleNoData);
         });
 
     }(Highcharts));

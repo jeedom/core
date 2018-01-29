@@ -4,6 +4,10 @@ Changelog
 3.2.0 
 =====
 
+-   Mise à jour des traductions
+
+-   Mise à jour des librairies (jquery et highcharts)
+
 -   Possibilité d’interdire une commande dans les interactions
     automatique
 

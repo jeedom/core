@@ -211,7 +211,7 @@ class interactDef {
 
 	public function checkQuery($_query) {
 		if ($this->getOptions('allowSyntaxCheck', 1) == 1) {
-			$exclude_regexp = "/l'(z|r|t|p|q|s|d|f|g|j|k|l|m|w|x|c|v|b|n| )|( |^)la (a|e|y|u|i|o)|( |^)le (a|e|y|u|i|o)|( |^)du (a|e|y|u|i|o)/i";
+			$exclude_regexp = "/l'(z|r|t|p|q|s|d|f|g|j|k|l|m|w|x|c|v|b|n|y| )|( |^)la (a|e|u|i|o)|( |^)le (a|e|u|i|o)|( |^)du (a|e|u|i|o)/i";
 			if (preg_match($exclude_regexp, $_query)) {
 				return false;
 			}

@@ -1,22 +1,22 @@
-Le centre des messages regroupe tous les messages importants que vous
-devez regarder. Il se retrouve à côté de l’heure en haut a droite.
+The message center contains all the important messages that you
+must watch. He finds himself next to the time at the top right.
 
-Il n’est accessible que lorsqu’il y a des messages en cliquant sur le
-nombre de messages.
+It is accessible only when there are messages by clicking on the
+number of messages.
 
-Il est assez simple. Il vous montre la date et l’heure du message, le
-plugin qui l’a émis et le message en question. Vous pouvez, en appuyant
-sur le bouton au tout début de la ligne d’un message, supprimer le
-message en question (il reviendra si le problème est toujours
-d’actualité).
+It is quite simple. It shows you the date and time of the message, the
+plugin that issued it and the message in question. You can, by pressing
+on the button at the very beginning of the line of a message, delete the
+message (it will come back if the problem is still
+news).
 
-En haut, on retrouve un sélecteur pour filtrer les messages sur un
-plugin particulier et tout à droite un bouton pour vider tous les
+At the top, there is a selector to filter the messages on a
+particular plugin and all right a button to empty all
 messages.
 
 > **Tip**
 >
-> Lorsque vous avez une erreur dans le centre des messages, essayez
-> d’abord de supprimer le message puis voir si l’erreur revient avant de
-> contacter le support. Il arrive que ce soit juste dû à un souci de
-> connexion réseau.
+> When you have an error in the message center, try
+> first delete the message and then see if the error comes back before
+> contact the support. Sometimes it's just due to a concern for
+> network connection.
