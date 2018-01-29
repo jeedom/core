@@ -2,40 +2,6 @@ Voici la partie la plus importante dans la domotique : les scénarios.
 Véritable cerveau de la domotique, c’est ce qui permet d’interagir avec
 le monde réel de manière "intelligente".
 
--   [La page de gestion des scénarios](#gestions)
-
-    -   [Gestion](#gestion) : La gestion globale des scénarios.
-
-    -   [Mes scénarios](#messcenarios) : La liste des scénarios créés.
-
--   [Edition d’un scénario](#edition)
-
-    -   [Onglet Général](#ongletgeneral) : Les paramètres généraux
-        d’un scénario.
-
-    -   [Onglet Scénario](#ongletscenario) : La page de confection d’un
-        scénario, avec la présentation des différents blocs.
-
--   [Les substitutions](#substitutions)
-
-    -   [déclencheurs](#declencheurs) : Des déclencheurs propres
-        à Jeedom.
-
-    -   [Opérateurs](#operateurs) : Ce qui permet de comparer
-        des valeurs.
-
-    -   [tags](#tags) : Les tags inclus dans Jeedom.
-
-    -   [fonctions de calculs](#calculs) : Les fonctions de calcul
-        de valeurs.
-
-    -   [fonctions mathématiques](#maths) : Les opérations
-        mathématiques disponibles.
-
--   [Les commandes spécifiques](#commandes)
-
--   [Template de scénario](#template)
-
 La page de gestion des Scénarios 
 ================================
 
