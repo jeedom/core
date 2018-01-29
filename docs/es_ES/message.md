@@ -14,7 +14,7 @@ Top incluye un selector para filtrar los mensajes de
 en particular plugin y el botón derecho de todo Borrar todo
 mensajes.
 
-> ** Tip **
+> **Tip**
 >
 > Cuando se tiene un error en el Centro de mensajes, intente
 > Para borrar primero el mensaje y ver si el error viene antes

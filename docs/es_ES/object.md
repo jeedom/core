@@ -56,28 +56,28 @@ Aquí están las diferentes características para configurar un objeto:
     del objeto. Este texto será sobre el color ** ** etiqueta. A usted
     elegir un color para que el texto sea legible.
 
--   ** El color de texto abstracto **: Elija el color
+-   **El color de texto abstracto**: Elija el color
     Resumen de Resultados del objeto en el tablero de instrumentos.
 
--   ** Tamaño en tablero de instrumentos (1 a 12) **: Establece el ancho
+-   **Tamaño en tablero de instrumentos (1 a 12)**: Establece el ancho
     la visualización de este objeto en el tablero de instrumentos. Por ejemplo: si
     `6` para poner dos objetos que siguen en la lista, entonces
     será al lado del otro en el salpicadero. Si pones `3` cuatro
     objetos que siguen, van a estar juntos.
 
-> ** Tip **
+> **Tip**
 >
 > Se puede cambiar el orden de visualización de los objetos en el salpicadero.
 > En el menú de la izquierda de la página, utilice las flechas verticales
 > En arrastrar / soltar para darles un nuevo lugar.
 
-> ** Tip **
+> **Tip**
 >
 > Se puede ver un gráfico que representa todos los elementos de Jeedom
 > Se adjunta a este artículo haciendo clic en los enlaces de botones ** ** superior
 > Derecho.
 
-> ** Tip **
+> **Tip**
 >
 > Cuando se crea un dispositivo y ningún padre se ha establecido,
 > Tendrá como padre: ** ** Nº
@@ -111,12 +111,12 @@ considerada en abstracto. Usted tiene la opción de seleccionar el
 controlar cualquier equipo Jeedom, incluso si no lo hace
 objeto padre.
 
-> ** Tip **
+> **Tip**
 >
 > Si desea agregar un tipo de resumen o para configurar el
 > Método de cálculo de la unidad, el icono y el nombre de un resumen,
 > Tiene que ir a la configuración general de Jeedom:
-> ** Administración → Configuración → ficha Resúmenes **.
+> **Administración → Configuración → ficha Resúmenes**.
 
 visión de conjunto
 ==============
@@ -137,10 +137,10 @@ Jeedom, y su configuración:
 -   ** ** Resumen Definido: Especifica el número de resumen de pedidos. este
     que es de color azul se refleja en el resumen general.
 
--   ** Resumen del tablero de instrumentos Ocultos resúmenes ** Indica ocultos
+-   **Resumen del tablero de instrumentos Ocultos resúmenes** Indica ocultos
     el tablero de instrumentos.
 
--   ** Resumen móvil Oculto ** Indica resúmenes ocultos
+-   **Resumen móvil Oculto** Indica resúmenes ocultos
     el móvil.
 
 

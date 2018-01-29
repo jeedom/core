@@ -9,7 +9,7 @@ plugins. Once we click on it, we find the list of
 plugins in alphabetical order and a link to the market. Plugins
 disabled are grayed out.
 
-> ** Tip **
+> **Tip**
 >
 > As in many places on Jeedom, put the mouse on the far left
 > allows you to display a quick access menu (you can
@@ -20,40 +20,40 @@ By clicking on a plugin you access its configuration. At the top you
 find the name of the plugin, then parentheses its name in Jeedom
 (ID) and finally the type of version installed (stable, beta).
 
-> ** Important **
+> **Important**
 >
 > When downloading a plugin this one is deactivated by default.
 > So you have to activate it on your own.
 
 At the top right, some buttons:
 
--   ** Documentation **: Allows direct access to the page of
+-   **Documentation**: Allows direct access to the page of
     plugin documentation
 
--   ** Changelog **: allows to see the changelog of the plugin if it exists
+-   **Changelog**: allows to see the changelog of the plugin if it exists
 
--   ** Send on the Market **: allows to send the plugin on the Market
+-   **Send on the Market**: allows to send the plugin on the Market
     (only available if you are the author)
 
--   ** Details **: allows to find the plugin page on the market
+-   **Details**: allows to find the plugin page on the market
 
--   ** Delete **: Removes the plugin from your Jeedom. Attention this
+-   **Delete**: Removes the plugin from your Jeedom. Attention this
     also permanently removes all the equipment from this plugin
 
 Below left is a state area with:
 
--   ** Status **: allows to see the status of the plugin (active / inactive)
+-   **Status**: allows to see the status of the plugin (active / inactive)
 
--   ** Version **: the version of the installed plugin
+-   **Version**: the version of the installed plugin
 
--   ** Author **: the author of the plugin
+-   **Author**: the author of the plugin
 
--   ** Action **: Enable or disable the plugin
+-   **Action**: Enable or disable the plugin
 
--   ** Jeedom version **: Indicates the minimum Jeedom version required
+-   **Jeedom version**: Indicates the minimum Jeedom version required
     for the plugin
 
--   ** License **: Indicates the license of the plugin that will usually be
+-   **License**: Indicates the license of the plugin that will usually be
     AGPL
 
 On the right we find the Log zone which allows to define the log level
@@ -65,39 +65,39 @@ additional items are displayed under the areas listed above.
 
 Dependencies:
 
--   ** Name **: usually will be local
+-   **Name**: usually will be local
 
--   ** Status **: will tell you if the dependencies are OK or KO
+-   **Status**: will tell you if the dependencies are OK or KO
 
--   ** Installation **: will install or reinstall the
+-   **Installation**: will install or reinstall the
     dependencies (if you do not do it manually and they are
     KO, Jeedom will do it himself after a while)
 
--   ** Last installation **: date of last installation of
+-   **Last installation**: date of last installation of
     outbuildings
 
 Demon:
 
--   ** Name **: usually will be local
+-   **Name**: usually will be local
 
--   ** Status **: will tell you if the daemon is OK or KO
+-   **Status**: will tell you if the daemon is OK or KO
 
--   ** Configuration **: will be OK if all the criteria for the daemon
+-   **Configuration**: will be OK if all the criteria for the daemon
     turn together or give the cause of blocking
 
--   ** (Re) Start **: start or restart the daemon
+-   **(Re) Start**: start or restart the daemon
 
--   ** Stop **: allows to stop the demon (Only in case
+-   **Stop**: allows to stop the demon (Only in case
     automatic management is disabled)
 
--   ** Automatic management **: allows to activate or deactivate the management
+-   **Automatic management**: allows to activate or deactivate the management
     automatically (which allows Jeedom to manage the daemon and the
     restart if necessary, unless against indication it is advisable to
     leave automatic management active)
 
--   ** Last launch **: date of last demon launch
+-   **Last launch**: date of last demon launch
 
-> ** Tip **
+> **Tip**
 >
 > Some plugins have a configuration part. If so, she
 > will appear under the dependencies and demon areas described above.
@@ -107,21 +107,21 @@ Demon:
 Below we find an area features. This one allows to see
 if the plugin uses a Jeedom core function such as:
 
--   ** Interact **: specific interactions
+-   **Interact**: specific interactions
 
--   ** Cron **: a cron per minute
+-   **Cron**: a cron per minute
 
--   ** Cron5 **: one cron every 5 minutes
+-   **Cron5**: one cron every 5 minutes
 
--   ** Cron15 **: every 15 minutes
+-   **Cron15**: every 15 minutes
 
--   ** Cron30 **: every 30 minutes
+-   **Cron30**: every 30 minutes
 
--   ** CronHourly **: every hour
+-   **CronHourly**: every hour
 
--   ** CronDaily **: every day
+-   **CronDaily**: every day
 
-> ** Tip **
+> **Tip**
 >
 > If the plugin uses one of these functions. You will specifically
 > forbid him to do so by unchecking the box "activate" which will be
@@ -138,7 +138,7 @@ To install a new plugin just click on the button
 "Market" (and that Jeedom is connected to the Internet). After a short time
 loading you will get the page.
 
-> ** Tip **
+> **Tip**
 >
 > You must have entered the information of your account of the market in
 > administration (Configuration → Updates → Market tab) in order to
@@ -146,25 +146,25 @@ loading you will get the page.
 
 At the top of the window you have filters:
 
--   ** Free / Paid **: allows to display only the free or
+-   **Free / Paid**: allows to display only the free or
     the paying ones.
 
--   ** Official / Advisor **: only show plugins
+-   **Official / Advisor**: only show plugins
     officials or advisers
 
--   ** Installed / Uninstalled **: only show plugins
+-   **Installed / Uninstalled**: only show plugins
     installed or not installed
 
--   ** Category ** drop-down menu: displays only
+-   **Category** drop-down menu: displays only
     some categories of plugins
 
--   ** Search **: allows to search for a plugin (in the name or the
+-   **Search**: allows to search for a plugin (in the name or the
     description of it)
 
--   ** Username **: Displays the username used for the
+-   **Username**: Displays the username used for the
     connection to the Market as well as the status of the connection
 
-> ** Tip **
+> **Tip**
 >
 > The small cross resets the filter concerned
 
@@ -177,16 +177,16 @@ information about the plugin, including:
 
 -   4 actions:
 
-    -   ** Install stable **: allows to install the plugin in its
+    -   **Install stable**: allows to install the plugin in its
         stable version
 
-    -   ** Install beta **: allows to install the plugin in its
+    -   **Install beta**: allows to install the plugin in its
         beta version (only for betatestors)
 
-    -   ** Install pro **: allows to install the pro version (very
+    -   **Install pro**: allows to install the pro version (very
         little used)
 
-    -   ** Delete **: If the plugin is currently installed, this
+    -   **Delete**: If the plugin is currently installed, this
         button allows to delete it
 
 Below, you will find the description of the plugin, the compatibility
@@ -199,20 +199,20 @@ change history, a "Documentation" button that returns
 to the plugin documentation. Then you have the language available
 and the various information on the date of the latest stable release.
 
-> ** Important **
+> **Important**
 >
 > It is not really recommended to put a beta plugin on a
 > Jeedom non beta, a lot of worries of operation can in
 > result.
 
-> ** Important **
+> **Important**
 >
 > Some plugins are paying, in this case the plugin plug you
 > will offer to buy it, once done it is necessary to wait for a
 > ten minutes (payment validation time), then return
 > on the plugin plug to install it normally.
 
-> ** Tip **
+> **Tip**
 >
 > You can also add a plugin to Jeedom from a file or
 > from a Github repository. For this, it is necessary, in the configuration of

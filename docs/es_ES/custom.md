@@ -10,7 +10,7 @@ Versión móvil.
 Para los incautos que quieren descubrir CSS
 <Http://css.mammouthland.net/premiers-pas-en-css.php>
 
-> ** Importante **
+> **Importante**
 >
 > Cualquier error en una de estas secuencias de comandos puede hacer totalmente Jeedom
 > No disponible tendrá que conectar a través de SSH y eliminar

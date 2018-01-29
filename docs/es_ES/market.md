@@ -28,7 +28,7 @@ perfil:
 
     -   ** ** Idioma: Su lengua
 
-    -   ** && Contraseña Confirmar contraseña **: a
+    -   **&& Contraseña Confirmar contraseña**: a
         cambiar su contraseña
 
 Para los desarrolladores:
@@ -45,7 +45,7 @@ Para los profesionales:
 
 -   ** ** cuenta de correo instalador: Su contactos de correo electrónico Pro
 
--   ** Receptor de solicitudes de apoyo **: que recibirá
+-   **Receptor de solicitudes de apoyo**: que recibirá
     apoyo mail (cliente final, instalador o ambos)
 
     -   ** ** Condiciones
@@ -67,13 +67,13 @@ Para los profesionales:
 
     -   ** ** El acceso a versiones beta
 
--   ** Habilitar el acceso a los plugins beta **: Habilitar el acceso
+-   **Habilitar el acceso a los plugins beta**: Habilitar el acceso
     plugins betas (tenga en cuenta que va a prohibir cualquier acceso al soporte)
 
     -   ** ** Resumen Aquí encontrará un resumen de su diferente
         derechos y servicios
 
-> ** Tip **
+> **Tip**
 >
 > No se olvide de guardar
 
@@ -84,17 +84,17 @@ mis Jeedoms
 
     -   Jeedom ** **: el nivel de Service Pack
 
-    -   ** Introduzca un número de paquete de servicio **: introduzca su
+    -   **Introduzca un número de paquete de servicio**: introduzca su
         servicio de número de paquete (que está en el correo enviado por
         Jeedom en el pedido)
 
 -   ** ** Instalación Llave
 
-    -   ** Número de instalación de llaves ** muestra el número
+    -   **Número de instalación de llaves** muestra el número
         Jeedom de las instalaciones actualmente vinculada a su cuenta y
         que el límite
 
-> ** Tip **
+> **Tip**
 >
 > Es posible que el mercado a veces exige que restablezca
 > Su instalación de llaves, esto es normal, simplemente seguirlo
@@ -108,7 +108,7 @@ mis Jeedoms
 
     -   ** ** Estado: para ver el estado de Jeedom en cuestión
 
-    -   ** / ** IP remota local o la dirección IP de este Jeedom si
+    -   **/** IP remota local o la dirección IP de este Jeedom si
         Jeedom se establece, si usted no pone nada lo hará
         la última conocida IP
 
@@ -132,7 +132,7 @@ mis Jeedoms
 
     -   ** ** Versión: versión instalada Jeedom
 
-> ** Tip **
+> **Tip**
 >
 > No se olvide de guardar
 
@@ -156,7 +156,7 @@ Compras / especiales / donaciones
 Aquí encontrará todas sus compras y se puede solicitar la devolución de
 factura o recibo electrónico
 
-> ** Importante **
+> **Importante**
 >
 > Si usted compra un plugin oficial recibe una factura. en
 > Sin embargo, para una tercera plugin es un recibo de la factura debe

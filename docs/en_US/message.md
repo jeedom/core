@@ -14,7 +14,7 @@ At the top, there is a selector to filter the messages on a
 particular plugin and all right a button to empty all
 messages.
 
-> ** Tip **
+> **Tip**
 >
 > When you have an error in the message center, try
 > first delete the message and then see if the error comes back before

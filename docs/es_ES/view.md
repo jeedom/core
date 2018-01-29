@@ -4,11 +4,11 @@ minutos para tener una vista personalizada.
 
 Las vistas son accesibles desde el menú Inicio → Vista:
 
-> ** Tip **
+> **Tip**
 >
 > Es posible ir directamente a una vista por el submenú.
 
-> ** Tip **
+> **Tip**
 >
 > Se puede elegir un perfil en la vista por defecto cuando se hace clic
 > El menú de vistas.
@@ -24,7 +24,7 @@ En esta página, hay un botón de arriba a la izquierda para mostrar u
 ocultar las vistas de lista y el botón para añadir una
 (Jeedom pregunte por su nombre y le enviará a la página de edición):
 
-> ** Tip **
+> **Tip**
 >
 > Puede editar su perfil de esto a la lista
 > Vistas visibles por defecto.
@@ -39,7 +39,7 @@ poner tantas como desee). Cada zona está gráficamente tipo de widget
 o una tabla, dependiendo del tipo que puede poner los widgets
 equipos, control o gráficos en el mismo.
 
-> ** Tip **
+> **Tip**
 >
 > Puede moverse por las zonas de arrastrar / soltar.
 
@@ -70,12 +70,12 @@ Un tipo de widget de casilla para añadir widgets:
 -   ** ** Añadir componente: añadir / editar los widgets
     mostrado en el área
 
-> ** Tip **
+> **Tip**
 >
 > Puede eliminar un widget directamente haciendo clic en el
 > Basura antes de ella.
 
-> ** Tip **
+> **Tip**
 >
 > Puede cambiar el orden de los widgets en la zona
 > Arrastrar / soltar.
@@ -109,7 +109,7 @@ Una vez hecho esto usted tiene las siguientes opciones:
 -   ** ** Grupo: le permite agrupar los datos (estándar máximo
     por día)
 
--   ** Escala **: escala (derecha o izquierda) de la curva
+-   **Escala**: escala (derecha o izquierda) de la curva
 
 -   ** ** Escalera: muestra la curva de escalera
 
@@ -119,7 +119,7 @@ Una vez hecho esto usted tiene las siguientes opciones:
 -   ** ** Variación: gráfico sólo cambia con el valor
     anterior
 
-> ** Tip **
+> **Tip**
 >
 > Es posible cambiar el orden de las cartas en la zona
 > Arrastrar / soltar.
@@ -133,7 +133,7 @@ Aquí tienes los botones:
 
 -   ** ** Añadir línea: añadir una línea en la tabla
 
-> ** Nota **
+> **Nota**
 >
 > Puede régoraniser líneas de arrastrar / soltar, pero no
 > Columnas

@@ -11,21 +11,21 @@ The Logs page is quite simple, in the top left a drop-down list
 allowing the choice of log to look, in the top right you have 5
 buttons:
 
--   ** Search **: allows you to filter the log poster
+-   **Search**: allows you to filter the log poster
 
--   ** Pause / Resume **: Pause / resume the update
+-   **Pause / Resume**: Pause / resume the update
     real time logs
 
--   ** Download **: allows you to download the current log,
+-   **Download**: allows you to download the current log,
 
--   ** Empty **: allows to empty the current log,
+-   **Empty**: allows to empty the current log,
 
--   ** Delete **: deletes the current log, if Jeedom has
+-   **Delete**: deletes the current log, if Jeedom has
     need it will recreate it automatically,
 
--   ** Delete all logs **: delete all the logs present.
+-   **Delete all logs**: delete all the logs present.
 
-> ** Tip **
+> **Tip**
 >
 > Note that the http.error log can not be deleted. It is essential
 >! if you delete it (in command line for example) this one does not

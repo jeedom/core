@@ -20,19 +20,19 @@ El panel de temas le permite ajustar los parámetros de la interfaz:
 -   ** ** gráficos de escritorio: Establecer el tema por defecto
     la moda de escritorio gráficos
 
--   ** móviles ** Gráfico: establecer el tema predeterminado
+-   **móviles** Gráfico: establecer el tema predeterminado
     gráficos en modo móvil
 
 -   ** ** La opacidad de los widgets del Dashboard: para dar opacidad
     (Entre 0 y 1) de los widgets en el tablero de instrumentos
 
--   ** La opacidad Diseño de los widgets **: dar opacidad
+-   **La opacidad Diseño de los widgets**: dar opacidad
     (Entre 0 y 1) de widgets en diseños
 
--   ** La opacidad de los widgets Vista **: para dar opacidad (entre
+-   **La opacidad de los widgets Vista**: para dar opacidad (entre
     0 y 1) de widgets en vistas
 
--   ** La opacidad de los widgets móviles **: permite dar opacidad
+-   **La opacidad de los widgets móviles**: permite dar opacidad
     (Entre 0 y 1) de widgets móviles
 
 interfaz
@@ -40,7 +40,7 @@ interfaz
 
 Se puede definir ciertos comportamientos de la interfaz:
 
--   ** General **
+-   **General**
 
     -   ** ** Muestra los menús dice panel de visualización Jeedom
         la izquierda, en su caso, para devolver este panel es
@@ -50,7 +50,7 @@ Se puede definir ciertos comportamientos de la interfaz:
 -   ** ** defecto Página: página por defecto para mostrar cuando
     escritorio conexión / móvil
 
--   ** objeto predeterminado en el salpicadero ** objeto a visualizar de forma predeterminada
+-   **objeto predeterminado en el salpicadero** objeto a visualizar de forma predeterminada
     a su llegada en el salpicadero / móvil
 
 -   ** ** Vista predeterminada: Ver para mostrar de forma predeterminada a la llegada de
@@ -64,15 +64,15 @@ Se puede definir ciertos comportamientos de la interfaz:
 
 -   ** ** tablero de instrumentos
 
-    -   ** Se desarrollan los escenarios del panel **: permite hacer visible
+    -   **Se desarrollan los escenarios del panel**: permite hacer visible
         escenarios de incumplimiento del menú (derecha) en el salpicadero
 
-    -   ** Se desarrollan los objetos del panel **: permite hacer visible
+    -   **Se desarrollan los objetos del panel**: permite hacer visible
         elementos de menú por defecto (izquierda) en el salpicadero
 
 -   ** ** Ver
 
-    -   ** Se desarrollan las vistas del panel **: permite hacer visible
+    -   **Se desarrollan las vistas del panel**: permite hacer visible
         menú de puntos de vista por defecto (izquierda) en vistas
 
 seguridad
@@ -106,7 +106,7 @@ su reconexión automática.
 Notificaciones
 -------------
 
--   ** Control de usuario de notificación **: control por defecto para
+-   **Control de usuario de notificación**: control por defecto para
     join (control de mensajes estándar)
 
 

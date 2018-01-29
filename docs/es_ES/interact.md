@@ -30,7 +30,7 @@ En la parte superior, hay 3 botones:
 -   ** ** Prueba de la que se abre un cuadro de diálogo para escribir y
     probar una frase.
 
-> ** Tip **
+> **Tip**
 >
 > Si usted tiene una interacción que genera las sentencias por las luces
 > Por ejemplo, y se añade un nuevo módulo de control
@@ -67,7 +67,7 @@ botones:
 
 -   ** ** Eliminar: Eliminar la interacción actual
 
--   ** Duplicar **: duplica la interacción Courrante
+-   **Duplicar**: duplica la interacción Courrante
 
 general
 =======
@@ -78,7 +78,7 @@ general
 -   ** ** Grupo: la interacción del grupo, que ayuda a organizar
     (Puede estar vacío, estará en el grupo "no").
 
--   ** activo **: Habilitar o deshabilitar la interacción.
+-   **activo**: Habilitar o deshabilitar la interacción.
 
 -   ** ** Solicitud generador de frases (obligatorio).
 
@@ -97,17 +97,17 @@ general
 filtros
 =======
 
--   ** Límite de escribir comandos **: utilizar sólo
+-   **Límite de escribir comandos**: utilizar sólo
     Las acciones típicas, información o 2 tipos.
 
--   ** Límite de comandos que permite subtipo ** límite
+-   **Límite de comandos que permite subtipo** límite
     la generación de uno o más subtipos.
 
--   ** Límite de comandos que permite la unidad ** límite
+-   **Límite de comandos que permite la unidad** límite
     la generación de una o más unidades (Jeedom crea la lista
     automáticamente de las unidades definidas en sus pedidos).
 
--   ** Límite a órdenes pertenecientes al objeto ** permite límite
+-   **Límite a órdenes pertenecientes al objeto** permite límite
     generar uno o más objetos (Jeedom crea la lista
     de forma automática a partir de los objetos que haya creado).
 
@@ -118,7 +118,7 @@ filtros
 -   ** ** Límite categoría: limita la generación de
     o más categorías.
 
--   ** Límite de equipos **: puede limitar la generación de
+-   **Límite de equipos**: puede limitar la generación de
     un dispositivo / módulo (Jeedom crea automáticamente la lista
     de dispositivos / módulos de usted).
 
@@ -131,7 +131,7 @@ o pasar parámetros especiales.
 Ejemplos
 ========
 
-> ** Nota **
+> **Nota**
 >
 > Las capturas de pantalla pueden diferir en vista de la evolución.
 
@@ -164,7 +164,7 @@ sola frase imaginar acción combinada entre varios comandos y
 escenarios (que también pueden desencadenar escenarios en el juego
 la acción de las interacciones).
 
-> ** Tip **
+> **Tip**
 >
 > Para agregar una secuencia de comandos, crear una nueva acción, escribir "escenario"
 > Sin acento, presione Tab en su teclado para
@@ -179,7 +179,7 @@ frases a un grupo de comandos.
 
 Vamos a recuperar lo que se ha hecho anteriormente, eliminar acciones
 se había añadido, y en lugar de la sentencia fija en "Solicitud"
-vamos a utilizar etiquetas ** \ # comando \ # ** y ** \ # Equipo \ # **.
+vamos a utilizar etiquetas **\ # comando \ #** y **\ # Equipo \ #**.
 Por lo tanto, Jeedom sustituirá estas etiquetas con el nombre del comando y el nombre de
 el equipo (se puede ver la importancia de los nombres
 Control / características coherentes).
@@ -216,7 +216,7 @@ sinónimo (s) a utilizar:
 Aquí podemos ver un poco nueva sintaxis de sinónimos. Un nombre
 el control puede tener varios sinónimos, aquí "nosotros" es sinónimo
 "Luz" y "luz". La sintaxis es "* * nombre del comando"
-*** *** = "sinónimo * 1 *" *** *** "sinónimo * 2 *" (se puede poner como muchos
+****** = "sinónimo * 1 *"*** *** "sinónimo * 2 *" (se puede poner como muchos
 sinónimo desea). A continuación, añadir sinónimos a otro
 nombre del comando, sólo tiene que añadir después de la última barra de sinónimos
 vertical "* | *" tras laquel se puede nombrar el nuevo
@@ -297,7 +297,7 @@ separación y finalmente la respuesta si el comando es 1. Aquí
 Las respuestas son simplemente no y sí, pero se puede poner una sentencia
 un poco más.
 
-> ** Aviso **
+> **Aviso**
 >
 > Las etiquetas no funcionan en las conversiones binarias.
 
@@ -535,12 +535,12 @@ temperatura / humedad / brillo.
 
 Podemos ver una expresión regular:
 
-** (batería | latencia | presión | velocidad | consumo) **
+**(batería | latencia | presión | velocidad | consumo)**
 
 Esto eliminará todos los pedidos que tienen uno de estos
 palabras en su sentencia
 
-> ** Nota **
+> **Nota**
 >
 > La expresión regular que aquí hay una versión simplificada para facilitar su uso.
 > Tenemos la posibilidad de utilizar las expresiones tradicionales o
@@ -557,7 +557,7 @@ conducir una lámpara con interacciones:
 
 ![interact022](../images/interact022.png)
 
-Como se ve, hay aquí en la demanda Etiquetado ** \ # set \ # ** (nos
+Como se ve, hay aquí en la demanda Etiquetado **\ # set \ #** (nos
 puede poner lo que quiera) que se incluye en el orden de
 inversor para aplicar el valor deseado. Para ello, contamos con 3 partes
 : \ * Aplicación: en el que se crea una etiqueta que representará el valor
@@ -566,7 +566,7 @@ la respuesta para asegurarse Jeedom entiende correctamente la solicitud.
 \ * Acción: se pone una acción sobre la lámpara que desea y la unidad
 el valor que le nuestro conjunto * * etiqueta de transferencia.
 
-> ** Nota **
+> **Nota**
 >
 > Se puede utilizar cualquier etiqueta, excepto los ya utilizados por
 > Jeedom, puede haber varios para conducir tales
@@ -585,7 +585,7 @@ un conjunto de frases de controlar.
 
 En esta interacción, no hay ningún control en la parte de acción, se
 dejó Jeedom generar etiquetas de la lista de frases pueden ser
-ver la etiqueta ** \ # deslizador \ # **. Es imperativo el uso de esta etiqueta para
+ver la etiqueta **\ # deslizador \ #**. Es imperativo el uso de esta etiqueta para
 instrucciones en un múltiples comandos de interacción, puede que no sea
 la última palabra de la frase. También se puede ver en el ejemplo que nos
 ser utilizado en la respuesta una etiqueta que no es parte de la
@@ -597,7 +597,7 @@ Resultado de la interacción:
 
 ![interact034](../images/interact034.png)
 
-Podemos ver que la etiqueta ** \ # Equipo \ # ** que no se utiliza
+Podemos ver que la etiqueta **\ # Equipo \ #** que no se utiliza
 en la aplicación se completa en la respuesta.
 
 Controlar el color de un panel LED
@@ -656,7 +656,7 @@ etiquetas Use \ #time \ # (si definimos una hora específica) o
 
 ![interact23](../images/interact23.JPG)
 
-> ** Nota **
+> **Nota**
 >
 > Usted se dará cuenta en la respuesta de la etiqueta \ #value \ # contiene
 > En el caso de una interacción en tiempo de programación programada

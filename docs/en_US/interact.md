@@ -22,12 +22,12 @@ Interactions:
 
 At the top of the page, there are 3 buttons:
 
--   ** Add **: which allows to create new interactions.
+-   **Add**: which allows to create new interactions.
 
--   ** Regenerate **: who will recreate all interactions (can be
+-   **Regenerate**: who will recreate all interactions (can be
     very long &gt; 5mn).
 
--   ** Test **: which opens a dialog box for writing and
+-   **Test**: which opens a dialog box for writing and
     test a sentence.
 
 > **Tip**
@@ -60,65 +60,65 @@ Configuration
 The configuration page consists of several tabs and
 buttons:
 
--   ** Phrases **: Displays the number of phrases in the interaction (one click
+-   **Phrases**: Displays the number of phrases in the interaction (one click
     above you shows them)
 
--   ** Save **: saves the current interaction
+-   **Save**: saves the current interaction
 
--   ** Delete **: delete the current interaction
+-   **Delete**: delete the current interaction
 
--   ** Duplicate **: Duplicate the current interaction
+-   **Duplicate**: Duplicate the current interaction
 
 General
 =======
 
--   ** Name **: name of the interaction (may be empty, the name replaces the
+-   **Name**: name of the interaction (may be empty, the name replaces the
     text of the request in the list of interactions).
 
--   ** Group **: Interaction group, this allows to organize them
+-   **Group**: Interaction group, this allows to organize them
     (may be empty, so will be in the "none" group).
 
--   ** Active **: Enable or disable the interaction.
+-   **Active**: Enable or disable the interaction.
 
--   ** Request **: the generating model sentence (required).
+-   **Request**: the generating model sentence (required).
 
--   ** Synonym **: allows you to define synonyms on the names
+-   **Synonym**: allows you to define synonyms on the names
     some orders.
 
--   ** Answer **: the answer to provide.
+-   **Answer**: the answer to provide.
 
--   ** Binary conversion **: converts binary values ​​to
+-   **Binary conversion**: converts binary values ​​to
     open / closed for example (only for type orders
     binary info).
 
--   ** Authorized Users **: limits the interaction to certain
+-   **Authorized Users**: limits the interaction to certain
     users (logins separated by |).
 
 filters
 =======
 
--   ** Limit to type ** commands: allows you to use only
+-   **Limit to type** commands: allows you to use only
     types actions, info or both types.
 
--   ** Limit to commands with subtype **: limits
+-   **Limit to commands with subtype**: limits
     generation to one or more subtypes.
 
--   ** Limit orders with unit **: allows to limit the
+-   **Limit orders with unit**: allows to limit the
     generation to one or more units (Jeedom creates the list
     automatically from the units defined in your orders).
 
--   ** Limit to the commands belonging to the object **: allows to limit
+-   **Limit to the commands belonging to the object**: allows to limit
     generation to one or more objects (Jeedom creates the list
     automatically from the objects you have created).
 
--   ** Limit to the plugin **: allows to limit the generation to one or
+-   **Limit to the plugin**: allows to limit the generation to one or
     several plugins (Jeedom automatically creates the list from
     installed plugins).
 
--   ** Limit to category **: Limit generation to one
+-   **Limit to category**: Limit generation to one
     or more categories.
 
--   ** Limit to Equipment **: Limit generation to one
+-   **Limit to Equipment**: Limit generation to one
     only equipment / module (Jeedom automatically creates the list
     from the equipment / modules you have).
 
@@ -131,7 +131,7 @@ or pass particular parameters.
 Examples
 ========
 
-> ** Note **
+> **Note**
 >
 > Screenshots may be different in view of developments.
 
@@ -164,7 +164,7 @@ single sentence imagine combined actions between various commands and
 various scenarios (we can also trigger scenarios in the game
 interaction action).
 
-> ** Tip **
+> **Tip**
 >
 > To add a scenario, create a new action, write "scenario"
 > without accent, press the tab key on your keyboard for
@@ -179,7 +179,7 @@ phrases for a whole group of commands.
 
 We will resume what has been done above, delete the actions that
 had been added, and instead of the fixed sentence, in "Request",
-we will use the ** \ # command \ # ** and ** \ # equipment \ # ** tags.
+we will use the **\ # command \ #** and **\ # equipment \ #** tags.
 Jeedom will replace these tags by the name of the commands and the name of
 equipment (we can see the importance of having names of
 coherent control / equipment).
@@ -216,7 +216,7 @@ synonym (s) to use:
 We can see here a syntax a little new for synonyms. A name
 can have several synonyms, here "on" is synonymous
 "turn on" and "turn on". The syntax is therefore "* name of the command *"
-*** = *** "* synonym 1 *" ***, *** "* synonym 2 *" (we can put as many
+***=*** "* synonym 1 *" ***, *** "* synonym 2 *" (we can put as many
 synonymous that we want). Then, to add synonyms for another
 command name, just add after the last synonym a bar
 vertical "* | *" after which you can again name the
@@ -287,17 +287,17 @@ kept that light).
 As can be seen here, I have kept almost the same structure
 for the request (it is voluntary to focus on
 specificities). Of course, I adapted the synonyms to have some
-coherent thing. On the other hand, for the answer, it is ** imperative ** to
+coherent thing. On the other hand, for the answer, it is **imperative** to
 put only \ #value \ # that represents the 0 or 1 that Jeedom is going
 replace with the following binary conversion.
 
-The field ** binary conversion ** must contain 2 answers: first the
+The field **binary conversion** must contain 2 answers: first the
 answer if the value of the command is 0, then a vertical bar "|"
 of separation and finally the answer if the order is worth 1. Here the
 answers are simply no and yes but we could put a sentence
 a little longer.
 
-> ** Warning **
+> **Warning**
 >
 > Tags do not work in binary conversions.
 
@@ -535,12 +535,12 @@ temperature / humidity / brightness.
 
 We can see a regexp:
 
-** (battery | latency | pressure | speed | consumption) **
+**(battery | latency | pressure | speed | consumption)**
 
 This allows you to delete all orders that have one of these
 words in their sentence
 
-> ** Note **
+> **Note**
 >
 > The regexp here is a simplified version for simple use.
 > We can either use traditional expressions or
@@ -557,7 +557,7 @@ dimmer on a lamp with interactions:
 
 ![interact022](../images/interact022.png)
 
-As we see, there is here in the application the tag ** \ # setpoint \ # ** (on
+As we see, there is here in the application the tag **\ # setpoint \ #** (on
 can put what we want) which is included in the order of the
 drive to apply the desired value. To do this, we have 3 parts
 : \ * Request: in which we create a tag that will represent the value
@@ -566,7 +566,7 @@ the answer to be sure that Jeedom correctly understood the request.
 \ * Action: we put an action on the lamp that we want to control and in
 the value is passed to us our tag * deposit *.
 
-> ** Note **
+> **Note**
 >
 > Any tag can be used except those already used by
 > Jeedom, there may be several to control for example
@@ -585,7 +585,7 @@ set of sentences to control them.
 
 In this interaction, we have no command in the action part, we
 lets Jeedom generate from the tags the list of sentences, we can
-see the ** \ # slider \ # ** tag. It is imperative to use this tag for
+see the **\ # slider \ #** tag. It is imperative to use this tag for
 setpoints in a multiple interaction commands it may not be
 the last word of the sentence. We can also see in the example that we
 can use in the response a tag that is not part of the
@@ -597,7 +597,7 @@ Result of the interaction:
 
 ![interact034](../images/interact034.png)
 
-We can see that the tag ** \ # equipment \ # ** which is not used
+We can see that the tag **\ # equipment \ #** which is not used
 in the application is well completed in the answer.
 
 Driving the color of an LED headband
@@ -656,7 +656,7 @@ to use the tags \ #time \ # (if we define a precise time) or
 
 ![interact23](../images/interact23.JPG)
 
-> ** Note **
+> **Note**
 >
 > You will notice in the answer the tag \ #value \ # it contains
 > in the case of a programmed interaction the programming time

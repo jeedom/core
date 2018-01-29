@@ -8,14 +8,14 @@ JSON RPC 2.0 y otro a través de URL y petición HTTP.
 Esta API es fácil de usar con las peticiones HTTP a través de simples
 URL.
 
-> ** Nota **
+> **Nota**
 >
 > En esta documentación \ # ip \ _JEEDOM \ # es su URL
 > El acceso a Jeedom. Esto es (a menos que esté conectado a la red
 > Dirección local) de Internet que se utiliza para acceder Jeedom
 > Desde el exterior.
 
-> ** Nota **
+> **Nota**
 >
 > En esta documentación \ #API \ _key \ # es la clave
 > API específica para su instalación. Para encontrarlo, vaya a
@@ -58,14 +58,14 @@ Avanzado (el icono "reductor") y no verá una URL que contenga
 Ya que todo dependiendo del tipo y subtipo de
 mando.
 
-> ** Nota **
+> **Nota**
 >
 > Es posible que los campos \ #ID \ # para pasar varios pedidos
 > Una vez, para eso se necesita para pasar una matriz en JSON (por ejemplo,
 > 5B12,58,23% 5D%, se ha observado que \ [y \] debe ser codificada en el que el% 5B
 >% Y 5D). El retorno será un Jeedom JSON
 
-> ** Nota **
+> **Nota**
 >
 > Los parámetros deben ser codificados para la dirección URL, puede utilizar
 > Una herramienta, [aquí] (https://meyerweb.com/eric/tools/dencoder/)
@@ -87,7 +87,7 @@ Aquí está la URL =
 -   ** ** Perfil \ [opcional \] nombre de usuario de la persona
     la activación de la interacción
 
--   ** respuesta \ _cmd ** \ [opcional \]: Identificación del comando de
+-   **respuesta \ _cmd** \ [opcional \]: Identificación del comando de
     satisfacer la demanda
 
 mensaje
@@ -116,7 +116,7 @@ equipo
 Aquí está la URL =
 [Http: // \ # ip \ _JEEDOM \ # / jeedom / core / api / jeeApi.php apikey = \ #APIKEY \ # & type = & eqLogic objeto \ _id = \ #OBJECT \ _ID \ #?] (Http: // # IP_JEEDOM # / jeedom / core / api / jeeApi.php? apikey apikey = # # & type = eqLogic y object_id = # # oBJECT_ID)
 
--   ** objeto \ _id **: ID del objeto que se va recuperando
+-   **objeto \ _id**: ID del objeto que se va recuperando
     comodidades
 
 orden
@@ -125,7 +125,7 @@ orden
 Aquí está la URL =
 [Http: // \ # ip \ _JEEDOM \ # / jeedom / core / api / jeeApi.php apikey = \ #APIKEY \ # & type = comando y eqLogic \ _id = \ #EQLOGIC \ _ID \ #?] (Http: // # IP_JEEDOM # / jeedom / core / api / jeeApi.php? apikey apikey = # # & type = comando y eqLogic_id = # # eQLOGIC_ID)
 
--   ** eqLogic \ _id **: Identificación de equipos que deben ser recuperada
+-   **eqLogic \ _id**: Identificación de equipos que deben ser recuperada
     comandos
 
 Los datos completa

@@ -21,7 +21,7 @@ módulo y la información de fecha de la carga de la batería
 se ha actualizado. También puede ver si un determinado umbral era
 establecido para el módulo en particular (representado por una mano)
 
-> ** Tip **
+> **Tip**
 >
 > Los umbrales de alerta / advertencia en los niveles de la batería
 > A nivel mundial configurable en el Jeedom configuración
@@ -45,7 +45,7 @@ Otros tipos de alertas finalmente va a terminar aquí.
 Cada alerta estará representada por el color de la baldosa (el nivel
 Alerta) y un logotipo en la parte superior izquierda (tipo de aviso)
 
-> ** Tip **
+> **Tip**
 >
 > A continuación, se publicarán todos alerta incluso los módulos configurados
 > "No visible". Sin embargo, es interesante observar que si el módulo
@@ -76,7 +76,7 @@ y sintetiza varias cosas:
     comando de acción y para la realización de uno o varios de los demás
     acciones antes o después de la acción en cuestión)
 
-> ** Tip **
+> **Tip**
 >
 > En la tabla le permite ver las acciones tanto de texto
 > Definido. Se pueden añadir otros tipos de acciones definidas.
@@ -117,7 +117,7 @@ Y se utiliza en muchos otros lugares como (no exhaustiva):
 
 -   en algunos plugins
 
-> ** Tip **
+> **Tip**
 >
 > En la tabla le permite ver los comandos de texto tanto
 > Huérfano. Su objetivo es identificar rápidamente todos

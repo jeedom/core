@@ -32,7 +32,7 @@ Aquí dos ajustes, uno para el tamaño del paquete y la otra es saber
 desde la hora de hacer (de aviso predeterminado para este son paquetes
 1 hora con datos que tiene más de 2 horas de edad).
 
-> ** Tip **
+> **Tip**
 >
 > Si ha seguido usted debe tener una alta precisión en
 > Última 2 horas. Sin embargo, cuando me conecto a 17h,
@@ -40,7 +40,7 @@ desde la hora de hacer (de aviso predeterminado para este son paquetes
 > Para evitar el consumo de recursos innecesariamente, la tarea hecha
 > Archivado lleva a cabo sólo una vez al día, por la tarde.
 
-> ** Importante **
+> **Importante**
 >
 > Por supuesto, este principio archivado sólo se aplica a las órdenes
 > Tipo numérico; los comandos binarios, no enlatados Jeedom
@@ -77,7 +77,7 @@ tiene el conjunto una vez).
 
 -   ** ** Línea: muestra el gráfico en filas.
 
--   ** zona **: muestra la forma gráfica de un área.
+-   **zona**: muestra la forma gráfica de un área.
 
 -   Columna ** ** \ *: muestra el gráfico de barras.
 
@@ -93,7 +93,7 @@ Una vez activados los datos, se puede elegir:
 
 -   ** ** color: el color de la curva.
 
--   ** Tipo **: el tipo de gráfico (área, fila o columna).
+-   **Tipo**: el tipo de gráfico (área, fila o columna).
 
 -   ** ** Escala: porque se puede poner varias curvas (datos)
     en el mismo gráfico, es posible distinguir las escalas
@@ -125,7 +125,7 @@ La vida \] \ [Humedad \] \ [Temperatura \] *)
 También tiene acceso a una fórmulas de gestión que le permite
 guardarlos para el remostrado más fácil
 
-> ** Tip **
+> **Tip**
 >
 > Basta con hacer clic en el nombre del objeto a desarrollarse;
 > Aparecen los comandos que pueden ser historizar graphées.
@@ -166,7 +166,7 @@ controles o escenarios apropiados:
 -   ** ** Orden ya sea en la configuración de control avanzada,
     ya sea en la historia de configuración para que sea a la "masa"
 
-> ** Tip **
+> **Tip**
 >
 > Puede acceder a los escenarios ventanas sumarias o
 > Historia de la configuración directamente desde la página
@@ -175,7 +175,7 @@ controles o escenarios apropiados:
 Una vez que haya participado en la línea de tiempo de los comandos y
 escenarios apropiados, verá aparecer en la línea de tiempo.
 
-> ** Importante **
+> **Importante**
 >
 > Los nuevos eventos después de la activación de la monitorización debe esperar
 > En la línea de tiempo antes de ver el espectáculo.

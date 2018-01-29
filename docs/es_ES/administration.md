@@ -8,7 +8,7 @@ general
 
 En esta ficha incluir información general sobre Jeedom:
 
--   ** Nombre de su Jeedom **: Identifica el Jeedom,
+-   **Nombre de su Jeedom**: Identifica el Jeedom,
     particularmente en el mercado. Puede ser reutilizado en los escenarios
     o para identificar una copia de seguridad.
 
@@ -26,11 +26,11 @@ En esta ficha incluir información general sobre Jeedom:
     cuidado, puede ralentizar el sistema. opción especialmente útil
     para los desarrolladores.
 
--   ** sesiones de Vida (tiempo) **: sesiones de por vida
+-   **sesiones de Vida (tiempo)**: sesiones de por vida
     PHP, no se debe tocar este parámetro.
 
 -   ** ** Fecha y hora: Elija su zona horaria. Puede
-    ** clic forzar la sincronización de tiempo para restaurar **
+    **clic forzar la sincronización de tiempo para restaurar**
     un mal tiempo que aparece en la parte superior derecha.
 
 -   ** ** Tiempo de servidor opcionales: Especifica el servidor de tiempo debe
@@ -75,12 +75,12 @@ TTS, puede definir su alcance:
 
 Dos partes reservadas a los expertos están presentes en esta ficha.
 
-> ** Importante **
+> **Importante**
 >
 > ADVERTENCIA: Si cambia Jeedom con una de estas dos soluciones,
 > El vehículo puede negarse a ayudar.
 
--   ** &gt; \ _SYSTEM **: Proporciona acceso a una interfaz
+-   **&gt; \ _SYSTEM**: Proporciona acceso a una interfaz
     Administración del sistema. Es una especie de consola con cáscara
     y se puede ejecutar los comandos más útiles, incluyendo
     para obtener información sobre el sistema.
@@ -119,10 +119,10 @@ LDAP
     conexión del usuario. Generalmente UID para LDAP, para samaccountname
     de windows AD
 
--   ** Filtro (opcional) ** filtro en la AD (para la gestión
+-   **Filtro (opcional)** filtro en la AD (para la gestión
     grupos, por ejemplo)
 
--   ** Permitir remoto \ _user **: Activa REMOTO \ _user (utilizado en SSO
+-   **Permitir remoto \ _user**: Activa REMOTO \ _user (utilizado en SSO
     por ejemplo)
 
 acceder
@@ -131,13 +131,13 @@ acceder
 -   ** ** Número de fallos tolerados: define el número de intentos
     sucesiva permitidos antes de la prohibición de IP
 
--   ** Tiempo máximo entre fallos (segundo) **: tiempo máximo
+-   **Tiempo máximo entre fallos (segundo)**: tiempo máximo
     por dos intentos sucesivos se consideran
 
--   ** destierro Tiempo (en segundos), -1 para infinito **: tiempo
+-   **destierro Tiempo (en segundos), -1 para infinito**: tiempo
     la prohibición de IP
 
--   ** "blanco" ** IP: lista de direcciones IP que nunca puede ser expulsado
+-   **"blanco"** IP: lista de direcciones IP que nunca puede ser expulsado
 
 -   ** ** Eliminar IPs prohibidas: Para borrar la lista de direcciones IP
     Actualmente prohibido
@@ -152,10 +152,10 @@ redes
 Es esencial para configurar correctamente esta parte importante de
 Jeedom, de lo contrario muchos plugins no podría funcionar. lo
 puede acceder Jeedom dos maneras: El acceso **
-** interna (de la misma red local que Jeedom) y acceso **
+**interna (de la misma red local que Jeedom) y acceso**
 ** externa (de otra red, en particular de la Internet).
 
-> ** Importante **
+> **Importante**
 >
 > Esta parte es sólo para explicar a Jeedom su entorno:
 > Modificación del puerto o IP en esta ficha no va a cambiar la
@@ -170,7 +170,7 @@ puede acceder Jeedom dos maneras: El acceso **
 -   ** ** El acceso interno: información para la unión de un Jeedom
     equipos de la misma red que Jeedom (LAN)
 
-    -   ** OK / NOK **: muestra si la configuración de la red interna
+    -   **OK / NOK**: muestra si la configuración de la red interna
         correcto
 
     -   ** ** Protocolo: el protocolo a utilizar, a menudo HTTP
@@ -188,7 +188,7 @@ puede acceder Jeedom dos maneras: El acceso **
     LAN. Complete sólo si usted no está utilizando DNS
     Jeedom
 
-    -   ** OK / NOK ** indica si la configuración de red externa
+    -   **OK / NOK** indica si la configuración de red externa
         correcto
 
     -   ** ** Protocolo: protocolo utilizado para el acceso desde el exterior
@@ -199,13 +199,13 @@ puede acceder Jeedom dos maneras: El acceso **
     -   Complementar ** **: el fragmento de URL adicional (Ejemplo
         : / Jeedom) para acceder a Jeedom.
 
-> ** Tip **
+> **Tip**
 >
 > Si está utilizando el puerto HTTPS es 443 (por defecto) y el HTTP
 > El puerto 80 (por defecto). Para utilizar HTTPS desde fuera,
 > Letsencrypt un plugin ya está disponible en el mercado.
 
-> ** Tip **
+> **Tip**
 >
 > Para averiguar si es necesario establecer un valor en el campo
 > ** ** suplemento, mira, cuando se conecte a Jeedom
@@ -230,7 +230,7 @@ puede acceder Jeedom dos maneras: El acceso **
 
     -   ** ** Gestión: Detener y reiniciar el servicio DNS
 
-> ** Importante **
+> **Importante**
 >
 > Si no puede hacer funcionar el Jeedom DNS, ver
 > Controlar el firewall y filtro de los padres de su caja de Internet
@@ -260,7 +260,7 @@ widgets de todo el mundo (este es el valor predeterminado. Es
 entonces posible cambiar este widget widget de por valor). para
 puso ninguna transparencia, permitir a 1,0.
 
-> ** Tip **
+> **Tip**
 >
 > No se olvide de guardar después de la modificación.
 
@@ -275,46 +275,46 @@ el archivo de pedidos.
 histórico
 ----------
 
--   ** Muestra estadísticas sobre los widgets **: Muestra
+-   **Muestra estadísticas sobre los widgets**: Muestra
     Estadísticas de widgets. Necesitamos que el widget es
     compatibles, como es el caso para la mayoría. También requiere que la
     el control es digital.
 
--   ** período de cálculo para min, max, media (en horas) **: Período
+-   **período de cálculo para min, max, media (en horas)**: Período
     cálculo de las estadísticas (24 por defecto). No es possible
     a menos de una hora.
 
--   ** El período de cálculo de la tendencia (en horas) ** Periodo
+-   **El período de cálculo de la tendencia (en horas)** Periodo
     cálculo de la tendencia (2 horas de forma predeterminada). No es posible
     poner menos de una hora.
 
--   ** Tiempo de archivado (horas) ** Indica el retardo antes
+-   **Tiempo de archivado (horas)** Indica el retardo antes
     Jeedom datos no Archive (24 por defecto). Esto quiere decir que
     datos históricos deben ser mayores de 24 para ser archivados
     (Recuerde, el archivo será promediado o tomar el máximo
     o mínimo de los datos durante un período correspondiente a la
     tamaño de paquete).
 
--   ** Archivo por paquetes (horas) **: Este parámetro
+-   **Archivo por paquetes (horas)**: Este parámetro
     precisamente el tamaño del paquete (1 defecto hr). Esto significa, por
     ejemplo Jeedom tomará tiempo de 1 h, y promediando
     almacenar el nuevo valor calculado mediante la eliminación
     valores promediados.
 
--   ** cálculo de umbral baja tendencia **: Este valor indica el
+-   **cálculo de umbral baja tendencia**: Este valor indica el
     valor a partir del cual Jeedom indica que la tendencia es
     hacia abajo. Debe ser negativo (-0,1 por defecto).
 
 -   ** ** cálculo del umbral por encima de la tendencia: Lo mismo para el ascenso.
 
--   ** predeterminado periodo de visualización de gráficos ** Periodo es
+-   **predeterminado periodo de visualización de gráficos** Periodo es
     usado por defecto cuando se desea ver el historial
     un comando. Cuanto más largo sea el período es más corto, será Jeedom rápida
     para mostrar el gráfico deseado.
 
-> ** Nota **
+> **Nota**
 >
-> El primer parámetro ** Muestra estadísticas acerca de los widgets es **
+> El primer parámetro **Muestra estadísticas acerca de los widgets es**
 > Posible, pero desactivado por defecto, ya que se extiende de manera significativa la
 > Pantalla del salpicadero tiempo. Si habilita esta opción, por
 > Jeedom por defecto se basa en datos de los últimos 24
@@ -328,9 +328,9 @@ empuje
 
 ** ** URL impulso global: le permite añadir una dirección URL para llamar en caso de
 actualizar un pedido. Puede utilizar las siguientes etiquetas:
-** \ # valor \ # ** para el valor de la orden, ** \ # cmd \ _name \ # ** a
-nombre del comando, ** \ # cmd \ _id \ # ** para el identificador único de la
-control, ** \ # humanname \ # ** para el nombre completo del comando (por ejemplo,
+**\ # valor \ #** para el valor de la orden, **\ # cmd \ _name \ #** a
+nombre del comando, **\ # cmd \ _id \ #** para el identificador único de la
+control, **\ # humanname \ #** para el nombre completo del comando (por ejemplo,
 \ # \ [Baño \] \ [Hydrometrie \] \ [Humedad \] \ #)
 
 cubierta
@@ -343,10 +343,10 @@ Se utiliza para monitorizar y actuar sobre la Jeedom caché:
 -   ** ** caché limpia: Fuerza de eliminación de objetos que hay
     más útil. Jeedom realiza automáticamente todas las noches.
 
--   ** Vaciar todos los datos de la caché **: completamente vacía la memoria caché.
+-   **Vaciar todos los datos de la caché**: completamente vacía la memoria caché.
     Tenga en cuenta que puede perder datos!
 
--   ** Tiempo de pausa para el sondeo largo **: La velocidad a la que
+-   **Tiempo de pausa para el sondeo largo**: La velocidad a la que
     Jeedom comprueba si hay eventos que esperan a clientes
     (Interfaz web, móvil ...). Durante este tiempo es más corto,
     la interfaz se actualizará de forma rápida, en parte, en contra de ella
@@ -358,7 +358,7 @@ interacciones
 Esta ficha le permite configurar los parámetros globales para
 las interacciones que se encuentra en Herramientas → interacciones.
 
-> ** Tip **
+> **Tip**
 >
 > Para activar las interacciones de registro, vaya a la pestaña
 > Administración → Configuración → Registros y seleccione Depurar ** ** en la lista
@@ -384,13 +384,13 @@ Aquí tiene tres parámetros:
     -   + 3 palabras: el nivel de correspondencia para las interacciones
         más de tres palabras
 
--   ** No responda si no se incluye la interacción **: por defecto
+-   **No responda si no se incluye la interacción**: por defecto
     Jeedom responde "No entiendo" si no hay interacción
     partidos. Puede desactivar esta función para
     Jeedom que responde a nada. Marque la casilla para desactivar
     la respuesta.
 
--   ** exclusión general Regex para la interacción **: Permite
+-   **exclusión general Regex para la interacción**: Permite
     definir expresiones regulares que, si corresponde a una interacción,
     eliminar automáticamente esta generación frase (reservada
     expertos). Para obtener más información, véase la explicación en el
@@ -433,7 +433,7 @@ Interacción automática, contextuales y de alerta
     -   * * Jeedom: OK (* Tan pronto como la temperatura de la sala de estar excede 25 ° C
         Jeedom le dirá, una vez *)
 
-> ** Nota **
+> **Nota**
 >
 > Por defecto Jeedom respuesta por el mismo canal que se
 > Que utilizó para pedirle que le avise. Si él está en
@@ -448,19 +448,19 @@ Estas son las opciones disponibles:
 -   ** ** Habilitar respuestas contextuales: Marque para activar
     interacciones contextuales.
 
--   ** Prioridad respuesta contextual si la frase comienza con **: Si
+-   **Prioridad respuesta contextual si la frase comienza con**: Si
     la frase que comienza con la palabra que usted ingrese aquí serán Jeedom
     a continuación, dar prioridad a una respuesta contextual (se puede poner
     varias palabras separadas por **, **).
 
--   ** Cortar una interacción si contiene 2 **: Lo mismo para
+-   **Cortar una interacción si contiene 2**: Lo mismo para
     corte de la interacción con varias preguntas. Usted
     Dar aquí las palabras que separan los diferentes temas.
 
--   ** permitir la interacción "Avísame" **: Marque para activar
+-   **permitir la interacción "Avísame"**: Marque para activar
     Tipo interacciones ** ** hágamelo saber.
 
--   ** Tipo de respuesta "Avísame" si la oración comienza con **: Si
+-   **Tipo de respuesta "Avísame" si la oración comienza con**: Si
     frase comienza con este / estos palabra (s) a continuación, tratar de hacer Jeedom
     tipo de interacción ** ** Avisadme (se puede poner más
     palabras separadas por **, **).
@@ -480,7 +480,7 @@ Estas son las opciones disponibles:
 
 -   ** ** Sinónimo de resumen: Lista de los sinónimos de los resúmenes.
 
--   ** Máximo control deslizante ** Sinónimo: Sinónimo de poner un
+-   **Máximo control deslizante** Sinónimo: Sinónimo de poner un
     Tipo de control deslizante hacia arriba (por ejemplo, se abre para abrir la solapa
     Habitación ⇒ lado de la habitación 100%).
 
@@ -505,11 +505,11 @@ relaciones
 
 Establece los informes de generación y gestión
 
--   ** El tiempo de espera después de la generación de la página (en ms) **: Retardo
+-   **El tiempo de espera después de la generación de la página (en ms)**: Retardo
     informe de espera después de la carga a la "foto" de
     cambiar si su informe es incompleto, por ejemplo.
 
--   ** informes limpios de más edad (días) **: Juegos
+-   **informes limpios de más edad (días)**: Juegos
     Número de días antes de eliminar un informe (informes son
     un poco de espacio así que ten cuidado de no poner demasiado
     conservación).
@@ -526,13 +526,13 @@ equipo, objetos, etc.
     de indicios máxima (las más elementos en el
     gráfico será lenta para generar y la más difícil de leer).
 
--   ** La profundidad de los artículos **: Lo mismo para los objetos.
+-   **La profundidad de los artículos**: Lo mismo para los objetos.
 
--   ** La profundidad para el equipo **: Lo mismo ocurre con el equipo.
+-   **La profundidad para el equipo**: Lo mismo ocurre con el equipo.
 
 -   ** ** controles Profundidad: Lo mismo para los pedidos.
 
--   ** La profundidad de las variables **: Lo mismo para las variables.
+-   **La profundidad de las variables**: Lo mismo para las variables.
 
 -   ** ** Parámetro prerender: Para actuar sobre disponibles
     el gráfico.
@@ -570,10 +570,10 @@ artículos:
     consideró que si el valor es mayor que 1, entonces la lámpara
     está encendido.
 
--   ** Ver si el valor es 0 **: Marque esta casilla para mostrar la
+-   **Ver si el valor es 0**: Marque esta casilla para mostrar la
     valor, incluso cuando es 0.
 
--   ** Enlace a un virtual **: Inicia la creación de unidades virtuales
+-   **Enlace a un virtual**: Inicia la creación de unidades virtuales
     para aquellos que valoran el resumen.
 
 -   ** ** Eliminar Resumen: El último botón, de acuerdo, permite
@@ -585,7 +585,7 @@ troncos
 línea de tiempo
 --------
 
--   ** El número máximo de eventos **: Establece el número máximo
+-   **El número máximo de eventos**: Establece el número máximo
     mostrar en la línea de tiempo.
 
 -   ** ** Eliminar todos los eventos: Para vaciar la línea de tiempo
@@ -594,49 +594,49 @@ línea de tiempo
 mensajes
 --------
 
--   ** Añadir un mensaje para cada error en los registros **: Si un plugin
+-   **Añadir un mensaje para cada error en los registros**: Si un plugin
     Jeedom o escribe un mensaje de error en un registro, añade Jeedom
     automáticamente un mensaje en el centro de mensajes (al menos
     que está seguro de no perder).
 
 -   ** ** información de los usuarios del sistema: Seleccione una
-    o más comandos (para separar por ** && **) escriba
+    o más comandos (para separar por **&&**) escriba
     ** ** mensaje que se utiliza cuando la emisión
     nuevos mensajes.
 
 Notificaciones
 -------
 
--   ** Añadir un mensaje a cada tiempo de espera ** Añade un mensaje al
+-   **Añadir un mensaje a cada tiempo de espera** Añade un mensaje al
     centro de mensajes si se rompe equipo ** ** tiempo de espera.
 
--   ** ** Tiempo de espera de control en: Tipo de comando ** ** enlace a utilizar
+-   **** Tiempo de espera de control en: Tipo de comando** ** enlace a utilizar
     si el equipo es ** ** tiempo de espera.
 
--   ** Añadir un mensaje a cada batería en ** Advertencia: Añade
+-   **Añadir un mensaje a cada batería en** Advertencia: Añade
     mensaje en el centro de mensajes si un dispositivo tiene su nivel
     ** ** aviso de batería.
 
--   ** Comando de la batería en modo de advertencia **: Tipo de comando ** enlace **
+-   **Comando de la batería en modo de advertencia**: Tipo de comando **enlace**
     si va a utilizar el equipo a su aviso de batería baja ** **.
 
--   ** Añadir un mensaje a cada batería en Peligro ** Añade
+-   **Añadir un mensaje a cada batería en Peligro** Añade
     mensaje en el centro de mensajes si su nivel de equipamiento
     batería mortales ** **.
 
--   ** Control de la batería en Peligro **: Tipo de comando ** ** enlace a
+-   **Control de la batería en Peligro**: Tipo de comando ** ** enlace a
     realice el trabajo si su nivel de batería amenazando ** **.
 
--   ** Añadir un mensaje a cada uno ** Advertencia: Añade un mensaje en el
+-   **Añadir un mensaje a cada uno** Advertencia: Añade un mensaje en el
     centro de mensajes si una orden entra en alerta ** ** advertencia.
 
--   ** Aviso ** de control en: tipo de orden ** enlace ** utilizar
+-   **Aviso** de control en: tipo de orden **enlace** utilizar
     Si una orden entra en alerta ** ** advertencia.
 
--   ** Añadir un mensaje a cada peligro ** Añade un mensaje al
+-   **Añadir un mensaje a cada peligro** Añade un mensaje al
     centro de mensajes si una orden entra en alerta ** ** riesgo.
 
--   ** ** de control en Peligro: Tipo de comando ** ** enlace de usar si
+-   **** de control en Peligro: Tipo de comando** ** enlace de usar si
     pasar un pedido en alerta ** ** riesgo.
 
 log
@@ -648,13 +648,13 @@ log
 -   ** ** formato de los registros de formato de registro a utilizar (Advertencia: este
     no afecta a los demonios logs).
 
--   ** El número máximo de líneas en un archivo de registro **: Conjuntos
+-   **El número máximo de líneas en un archivo de registro**: Conjuntos
     número máximo de líneas en un archivo de registro. Se recomienda
     no tocar este valor, porque el exceso de valor podría
     llenar el sistema de archivos y / o incapaz de hacer Jeedom
     para mostrar el registro.
 
--   ** Nivel de registro predeterminado **: Cuando se selecciona "Default"
+-   **Nivel de registro predeterminado**: Cuando se selecciona "Default"
     al nivel de una conexión a la Jeedom es la que se
     entonces utilizado.
 
@@ -665,7 +665,7 @@ plugins.
 comodidades
 ===========
 
--   ** El número de fallos antes de deshabilitar el equipo **: Número
+-   **El número de fallos antes de deshabilitar el equipo**: Número
     fallos de comunicación con el equipo antes de inhabilitar
     él (un mensaje le notificará si eso ocurre).
 
@@ -678,12 +678,12 @@ Actualización y archivos
 actualización Jeedom
 ---------------------
 
--   ** Actualización ** Fuente: Seleccione la fuente de actualización
+-   **Actualización** Fuente: Seleccione la fuente de actualización
     núcleo de Jeedom.
 
 -   ** ** Versión núcleo: versión de la base de recuperar.
 
--   ** Comprobar automáticamente si hay actualizaciones **: Si
+-   **Comprobar automáticamente si hay actualizaciones**: Si
     para buscar automáticamente si hay nuevas actualizaciones
     (Cuidado de no sobrecargar el mercado, el tiempo
     verificación puede cambiar).
@@ -705,12 +705,12 @@ Depósito para la conexión a Jeedom Github.
 
 -   ** ** simbólico: token de acceso a depósito privado.
 
--   ** usuario u organización que presenta para la Jeedom núcleo ** Nombre
+-   **usuario u organización que presenta para la Jeedom núcleo** Nombre
     usuario u organización en github para el núcleo.
 
--   ** Nombre del depósito para el núcleo Jeedom **: Nombre del depósito para el núcleo.
+-   **Nombre del depósito para el núcleo Jeedom**: Nombre del depósito para el núcleo.
 
--   ** Branch para la Jeedom núcleo **: Branch del depósito para el núcleo.
+-   **Branch para la Jeedom núcleo**: Branch del depósito para el núcleo.
 
 ### mercado
 
@@ -729,28 +729,28 @@ niega si se utiliza otro depósito él.
 Depósito para enviar automáticamente una copia de seguridad en Jeedom
 una cuota de Samba (por ejemplo Synology NAS).
 
--   ** \ [Backup \] ** IP: IP del servidor Samba.
+-   **\ [Backup \]** IP: IP del servidor Samba.
 
--   ** \ [Backup \] Usuario **: Nombre de usuario para la conexión
+-   **\ [Backup \] Usuario**: Nombre de usuario para la conexión
     (Conexiones anónimas no son posibles). Se debe necesariamente
     el usuario tiene permiso de lectura y escritura en
     directorio de destino.
 
--   ** \ [Backup \] ** Contraseña: contraseña del usuario.
+-   **\ [Backup \]** Contraseña: contraseña del usuario.
 
--   ** \ [Backup \] Compartiendo **: compartir Path (cuidado
+-   **\ [Backup \] Compartiendo**: compartir Path (cuidado
     parar en la división).
 
--   ** \ [Backup \] ** Ruta: Camino en las acciones (que es
+-   **\ [Backup \]** Ruta: Camino en las acciones (que es
     relativa), que debe existir.
 
-> ** Nota **
+> **Nota**
 >
 > Si la ruta a la carpeta de copia de seguridad samba es:
 > \\\\ \\ 192.168.0.1 copias de seguridad \\ \\ Home Automation IP = 192.168.0.1 Luego Jeedom
 > Compartir = //192.168.0.1/Sauvegardes, Path = Home Automation / Jeedom
 
-> ** Nota **
+> **Nota**
 >
 > Cuando la validación de la cuota de Samba, como se describe anteriormente,
 > Una nueva forma de copia de seguridad aparece en la parte
@@ -758,12 +758,12 @@ una cuota de Samba (por ejemplo Synology NAS).
 > Para su transmisión automática en la siguiente copia de seguridad. Una prueba es
 > Posible mediante la realización de una copia de seguridad manual.
 
-> ** Importante **
+> **Importante**
 >
 > Es probable que instalar el paquete smbclient para el
 > Trabaja fuerte.
 
-> ** Importante **
+> **Importante**
 >
 > Jeedom debe ser el que escribir en esta carpeta y debe estar vacía
 > Por defecto (es decir, antes de la creación y el envío de
@@ -774,6 +774,6 @@ una cuota de Samba (por ejemplo Synology NAS).
 
 -   ** ** URL núcleo Jeedom
 
--   ** URL núcleo versión Jeedom **
+-   **URL núcleo versión Jeedom**
 
 

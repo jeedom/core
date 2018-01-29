@@ -11,28 +11,28 @@ themes
 
 The themes panel allows you to adjust interface settings:
 
--   ** Desktop **: themes to use in desktop mode, be careful only the
+-   **Desktop**: themes to use in desktop mode, be careful only the
     default theme is officially supported by Jeedom
 
--   ** Mobile color **: allows to choose the color of the interface
+-   **Mobile color**: allows to choose the color of the interface
     (here everything is supported)
 
--   ** Desktop Graphic **: Set the default theme for
+-   **Desktop Graphic**: Set the default theme for
     graphics in desktop mode
 
--   ** Mobile Chart **: Set the default theme for
+-   **Mobile Chart**: Set the default theme for
     mobile graphics
 
--   ** Opacity with Dashboard widgets **: gives opacity
+-   **Opacity with Dashboard widgets**: gives opacity
     (between 0 and 1) widgets on the dashboard
 
--   ** Opacity with Design widgets **: gives opacity
+-   **Opacity with Design widgets**: gives opacity
     (between 0 and 1) widgets on the designs
 
--   ** Opacity with View widgets **: allows to give the opacity (between
+-   **Opacity with View widgets**: allows to give the opacity (between
     0 and 1) widgets on views
 
--   ** Opacity with Mobile widgets **: gives opacity
+-   **Opacity with Mobile widgets**: gives opacity
     (between 0 and 1) mobile widgets
 
 Interface
@@ -42,51 +42,51 @@ Allows you to define certain interface behaviors:
 
 -   **General**
 
-    -   ** Show menus **: tells Jeedom to display the panel
+    -   **Show menus**: tells Jeedom to display the panel
         left, when it exists, as a reminder this panel is
         available on most pages of plugins, as well as the
         page of scenarios, interactions, objects ....
 
--   ** Default Page **: Default page to display when
+-   **Default Page**: Default page to display when
     desktop / mobile connection
 
--   ** Default object on the dashboard **: object to display by default
+-   **Default object on the dashboard**: object to display by default
     when arriving on the dashboard / mobile
 
--   ** Default view **: view to display by default when arriving on
+-   **Default view**: view to display by default when arriving on
     the dashboard / mobile
 
--   ** Default Design **: Design to display by default when
+-   **Default Design**: Design to display by default when
     the arrival on the dashboard / mobile
 
-    -   ** Full Screen **: default full screen view when
+    -   **Full Screen**: default full screen view when
         the arrival on the designs
 
 -   ** ** Dashboard
 
-    -   ** Unfold the Scenarios Panel **: make visible
+    -   **Unfold the Scenarios Panel**: make visible
         default the scenario menu (right) on the dashboard
 
-    -   ** Unfold objects panel **: allows to make visible by
+    -   **Unfold objects panel**: allows to make visible by
         default the objects menu (left) on the dashboard
 
 -   **View**
 
-    -   ** Unfold view panel **: make visible by
+    -   **Unfold view panel**: make visible by
         default view menu (left) on views
 
 security
 --------
 
--   ** 2-step authentication **: allows you to configure
+-   **2-step authentication**: allows you to configure
     2-step authentication (as a reminder, it's a changing code
     every X seconds that appears on a mobile app, type
     google authenticator)
 
--   ** Password **: allows you to change your password (do not
+-   **Password**: allows you to change your password (do not
     forget to retype it below)
 
--   ** User Hash **: Your User API Key
+-   **User Hash**: Your User API Key
 
 ### Active sessions
 
@@ -106,7 +106,7 @@ its automatic reconnection.
 Notifications
 -------------
 
--   ** User Notification Command **: Default Command for
+-   **User Notification Command**: Default Command for
     reach you (message type command)
 
 

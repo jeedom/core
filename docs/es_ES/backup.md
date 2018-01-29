@@ -27,13 +27,13 @@ o restauración), si se puso en marcha una.
     cambiar. Si usted es una ruta relativa, su origen es
     donde instaló Jeedom.
 
--   ** Número de días (s) para el almacenamiento de copias de seguridad **: Número de
+-   **Número de días (s) para el almacenamiento de copias de seguridad**: Número de
     Días para guardar copias de seguridad. Una vez que este período de tiempo, la
     Se eliminarán las copias de seguridad. Tenga cuidado de no poner un número
     de días demasiado alto, de lo contrario el sistema de archivos puede
     estar saturado.
 
--   ** tamaño total máximo de copias de seguridad (MB) **: Restringe
+-   **tamaño total máximo de copias de seguridad (MB)**: Restringe
     el espacio ocupado por todas las copias de seguridad en el archivo
     copia de seguridad. Si se supera este valor, se eliminará Jeedom
     las copias de seguridad más antiguas a caer por debajo de la
@@ -61,7 +61,7 @@ o restauración), si se puso en marcha una.
 ** ** Mercado de copia de seguridad
 ----------------------
 
--   ** Envío de copias de seguridad ** Indica enviar el Jeedom
+-   **Envío de copias de seguridad** Indica enviar el Jeedom
     copias de seguridad en la nube de Mercado, se debe tener
     tomó la suscripción.
 
@@ -77,7 +77,7 @@ o restauración), si se puso en marcha una.
 Las copias de seguridad Samba ** **
 ---------------------
 
--   ** Envío de copias de seguridad ** Indica enviar el Jeedom
+-   **Envío de copias de seguridad** Indica enviar el Jeedom
     copias de seguridad en la parte de la samba establecen aquí
     Administración → Configuración → Actualizaciones Tab.
 
@@ -126,7 +126,7 @@ diferente, porque no es posible guardar las inclusiones.
 Se incluyen directamente en el controlador, por lo que
 mantener el mismo controlador para encontrar sus módulos Zwave.
 
-> ** Nota **
+> **Nota**
 >
 > El sistema instalado en él Jeedom no se guarda. si
 > ¿Ha cambiado los parámetros del sistema (especialmente a través de SSH)
@@ -139,11 +139,11 @@ La copia de seguridad de la nube permite Jeedom enviar las copias de seguridad
 directamente en el mercado. Esto le permite restaurar fácilmente
 y asegúrese de no perderlos. El mercado conserva el último 6
 copias de seguridad. Para suscribirse sólo tiene que ir a su página
-** ** perfil en el mercado, entonces, en mis copias de seguridad ** ** pestaña. Usted
+**** perfil en el mercado, entonces, en mis copias de seguridad** ** pestaña. Usted
 puede, desde esta página, recoger una copia de seguridad o comprar
 suscripción (para 1, 3, 6 o 12 meses).
 
-> ** Tip **
+> **Tip**
 >
 > Usted puede personalizar el nombre de los archivos de copia de seguridad de
 > Ficha ** ** Mi Jeedoms, pero evite caracteres

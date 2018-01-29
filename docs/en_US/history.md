@@ -32,7 +32,7 @@ here 2 parameters, one for packet size and another for knowing
 from when to do it (for default callback these are packets
 1 hour with data that have more than 2 hours of seniority).
 
-> ** Tip **
+> **Tip**
 >
 > If you have followed correctly you should have a high precision on the
 > Last 2 hours only. Yet when I connect at 17h,
@@ -40,7 +40,7 @@ from when to do it (for default callback these are packets
 > to avoid consuming resources unnecessarily, the task that makes
 > Archiving only takes place once a day, in the evening.
 
-> ** Important **
+> **Important**
 >
 > Of course, this archiving principle only applies to
 > digital type; on the binary type commands, Jeedom only keeps
@@ -69,17 +69,17 @@ week because, by default I want it to be only a week - see
 (These settings are kept from one display to another, so you do not have
 than configure them once).
 
--   ** Staircase **: Displays the curve in the form of a
+-   **Staircase**: Displays the curve in the form of a
     staircase or continuous display.
 
--   ** Variation **: Displays the difference in value from the
+-   **Variation**: Displays the difference in value from the
     previous point.
 
--   ** Line **: Displays the chart as lines.
+-   **Line**: Displays the chart as lines.
 
--   ** Area **: Displays the chart as an area.
+-   **Area**: Displays the chart as an area.
 
--   ** Column ** \ *: Displays the graph as bars.
+-   **Column** \ *: Displays the graph as bars.
 
 Graphics on views and designs
 =====================================
@@ -91,21 +91,21 @@ the options :
 
 Once a data is activated, you can choose:
 
--   ** Color **: the color of the curve.
+-   **Color**: the color of the curve.
 
--   ** Type **: The type of chart (area, row or column).
+-   **Type**: The type of chart (area, row or column).
 
--   ** Scale **: since you can put several curves (data)
+-   **Scale**: since you can put several curves (data)
     on the same graph, it is possible to distinguish the scales
     (right or left).
 
--   ** Staircase **: Displays the curve in the form of a
+-   **Staircase**: Displays the curve in the form of a
     staircase or continuous display
 
--   ** Stack **: allows you to stack the values ​​of the curves (see
+-   **Stack**: allows you to stack the values ​​of the curves (see
     below for the result).
 
--   ** Variation **: Displays the difference in value from the
+-   **Variation**: Displays the difference in value from the
     previous point.
 
 Option on the history page
@@ -125,7 +125,7 @@ Life \] \ [Humidity \] \ [Temperature \] *)
 You also have access to a calculation formulas management that allows you
 save them for easier viewing
 
-> ** Tip **
+> **Tip**
 >
 > Just click on the name of the object to unfold it;
 > appear the historized commands that can be graphed.
@@ -135,11 +135,11 @@ Order History
 
 Before each data that can be graphed, you will find two icons:
 
--   ** Trash **: Deletes the recorded data; then
+-   **Trash**: Deletes the recorded data; then
     of click, Jeedom asks whether to delete the data before a
     certain date or all the data.
 
--   ** Arrow **: allows to have a CSV export of the historized data.
+-   **Arrow**: allows to have a CSV export of the historized data.
 
 Invalid value deletion
 =================================
@@ -160,13 +160,13 @@ chronological.
 To see them, you must first activate the tracking on the timeline of
 desired commands or scenarios:
 
--   ** Scenario **: either directly on the scenario page, or on the
+-   **Scenario**: either directly on the scenario page, or on the
     Scenarios summary page to do it in "mass"
 
--   ** Command **: either in the advanced configuration of the command,
+-   **Command**: either in the advanced configuration of the command,
     in the configuration of the history to do it in "mass"
 
-> ** Tip **
+> **Tip**
 >
 > You have access to the summary windows of the scenarios or the
 > history configuration directly from the page of
@@ -175,20 +175,20 @@ desired commands or scenarios:
 Once you have enabled tracking in the timeline of commands and
 scenarios, you can see them appear on the timeline.
 
-> ** Important **
+> **Important**
 >
 > You have to wait for new events after activating the follow-up
 > on the timeline before seeing them appear.
 
 The cards on the timeline display:
 
--   ** Action command **: in red background, an icon on the right allows you
+-   **Action command**: in red background, an icon on the right allows you
     to display the advanced configuration window of the command
 
--   ** Info command **: in blue background, an icon on the right allows you
+-   **Info command**: in blue background, an icon on the right allows you
     to display the advanced configuration window of the command
 
--   ** Scenario **: in gray background, you have 2 icons: one to display
+-   **Scenario**: in gray background, you have 2 icons: one to display
     the log of the scenario and one to go on the scenario
 
 

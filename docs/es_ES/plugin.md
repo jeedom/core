@@ -9,7 +9,7 @@ plugins. Una vez que se hace clic, la lista de encontrar
 plugins en orden alfabético y un enlace para el mercado. plugins
 personas con discapacidad se atenúan.
 
-> ** Tip **
+> **Tip**
 >
 > Al igual que en muchos lugares en Jeedom, poner el ratón mientras la izquierda
 > Para que aparezca un menú de acceso rápido (se puede
@@ -20,7 +20,7 @@ Al hacer clic en un plugin de acceso de configuración. por encima de usted
 encontrar el nombre del plugin y los soportes nombre en Jeedom
 (ID) y, finalmente, el tipo versión instalada (estable, beta).
 
-> ** Importante **
+> **Importante**
 >
 > Al descargar un plugin que está desactivado por defecto.
 > Esto requiere que se activa por sí mismo.
@@ -65,7 +65,7 @@ Adicionales aparecen en las áreas mencionadas anteriormente.
 
 dependencias:
 
--   ** Nombre: ** generalmente ser local
+-   **Nombre:** generalmente ser local
 
 -   ** ** Estado: dirá si las dependencias son OK o KO
 
@@ -78,14 +78,14 @@ dependencias:
 
 demonio:
 
--   ** Nombre: ** generalmente ser local
+-   **Nombre:** generalmente ser local
 
 -   ** ** Estado: le diga si el diablo está OK o KO
 
 -   ** ** Configuración va a estar bien si todos los criterios para el diablo
     correr juntos o dar a la causa de la obstrucción
 
--   ** (Re) Inicio **: para iniciar o reiniciar el demonio
+-   **(Re) Inicio**: para iniciar o reiniciar el demonio
 
 -   ** ** Detener: Detener el demonio (sólo en el caso
     gestión automática está desactivada)
@@ -97,7 +97,7 @@ demonio:
 
 -   ** ** Último lanzamiento: fecha de la última puesta en marcha del diablo
 
-> ** Tip **
+> **Tip**
 >
 > Algunos plugins tienen una sección de configuración. Si ese es el caso,
 > Aparecen en las dependencias y áreas demonio descritos anteriormente.
@@ -121,7 +121,7 @@ si el plugin utiliza una de las funciones básicas Jeedom como:
 
 -   ** ** CronDaily: diario
 
-> ** Tip **
+> **Tip**
 >
 > Si el plugin utiliza una de estas funciones. Puede específicamente
 > Prohibirle hacerlo desmarcando "Activar" para ser
@@ -138,7 +138,7 @@ Para instalar un nuevo plugin simplemente haga clic en el botón
 "Mercado" (y Jeedom está conectado a Internet). Después de un breve periodo de tiempo
 cargar obtendrá la página.
 
-> ** Tip **
+> **Tip**
 >
 > Debe haber introducido la información de su cuenta en el mercado
 > Administración (Configuración → → pestaña Actualizaciones de mercado) a
@@ -146,13 +146,13 @@ cargar obtendrá la página.
 
 En la parte superior de la ventana que tiene filtros:
 
--   ** libre / Pago **: sólo muestra los libres o
+-   **libre / Pago**: sólo muestra los libres o
     pagar.
 
--   Oficial ** / ** recomendados: Muestra sólo los plugins
+-   Oficial **/** recomendados: Muestra sólo los plugins
     oficial o recomendadas
 
--   Ubicado ** / ** no se instala: Muestra sólo los plugins
+-   Ubicado **/** no se instala: Muestra sólo los plugins
     instalado o no instalado
 
 -   ** ** Categoría Hover: muestra solamente
@@ -164,7 +164,7 @@ En la parte superior de la ventana que tiene filtros:
 -   ** ** Nombre de usuario: Muestra el nombre de usuario utilizado para
     conexión con el mercado y el estado de conexión
 
-> ** Tip **
+> **Tip**
 >
 > La pequeña cruz restablece el filtro en cuestión
 
@@ -199,20 +199,20 @@ el historial de cambios, un botón de "documentación" que devuelve
 la documentación del plugin. Entonces usted tiene el idioma disponibles
 y diversa información sobre la fecha de la última versión estable.
 
-> ** Importante **
+> **Importante**
 >
 > Está realmente no recomienda poner un plugin beta en una
 > Jeedom no beta, muchas preocupaciones pueden operar
 > Resultado.
 
-> ** Importante **
+> **Importante**
 >
 > Algunos plugins están pagando, en este caso el plugin se conecta
 > Oferta de compra, una vez hecho esto se necesita una
 > Diez minutos (tiempo de confirmación de pago) y el retorno
 > En el archivo plugin para instalar normalmente.
 
-> ** Tip **
+> **Tip**
 >
 > También puede añadir un plugin para Jeedom desde un archivo o
 > A partir de un repositorio de Github. Para ello, tenemos que, en la configuración

@@ -4,7 +4,7 @@ usarlo) por la salud plugin.
 
 La página es accesible por análisis de salud →
 
-> ** Nota **
+> **Nota**
 >
 > Un clic en el icono a la derecha proporciona acceso a su punto de referencia
 > Jeedom.
@@ -28,11 +28,11 @@ Encuentra los iconos:
 
 -   estado general del plugin
 
-> ** Nota **
+> **Nota**
 >
 > Los iconos pueden variar dependiendo del plug-in
 
-> ** Nota **
+> **Nota**
 >
 > En general, cuando la línea es de color verde, es que todo está bien,
 > Y cuando es de color rojo, es que hay una preocupación.

@@ -11,9 +11,9 @@ La página Registros es bastante simple, arriba a la izquierda un combo
 permitiendo la elección del registro que debe buscar en la parte superior derecha tienes 5
 botones:
 
--   ** Buscar **: para filtrar la pantalla de registro
+-   **Buscar**: para filtrar la pantalla de registro
 
--   ** Pausa / Reanudar **: para hacer una pausa / toma de curriculum vitae
+-   **Pausa / Reanudar**: para hacer una pausa / toma de curriculum vitae
     en los registros de tiempo real
 
 -   ** ** Descargar: descarga el registro actual,
@@ -25,7 +25,7 @@ botones:
 
 -   ** ** Eliminar todos los registros: borra todos los registros actuales.
 
-> ** Tip **
+> **Tip**
 >
 > Tenga en cuenta que el registro de http.error no se puede eliminar. Es esencial
 >! si se quita el (línea de comandos, por ejemplo) lo hace

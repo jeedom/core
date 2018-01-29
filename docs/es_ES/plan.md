@@ -4,11 +4,11 @@ su imaginación.
 
 Es accesible por Home Inicio →
 
-> ** Tip **
+> **Tip**
 >
 > Es posible ir directamente a un diseño por el submenú.
 
-> ** Importante **
+> **Importante**
 >
 > Todas las acciones se realizan haciendo clic derecho en esta página, tenga cuidado
 > Para hacerlo bien en el diseño. Al crear, por lo que tiene la
@@ -26,7 +26,7 @@ siguiente:
 
 -   ** ** Añadir gráficos: Agrega un gráfico
 
--   ** Añadir text / html **: Permite añadir texto o código
+-   **Añadir text / html**: Permite añadir texto o código
     html / javascript
 
 -   ** ** Añadir escenario: añade un guión
@@ -35,14 +35,14 @@ siguiente:
 
     -   Hacia ** ** Ver: añade un vínculo a una vista
 
-    -   ** Hacia un diseño **: Le permite agregar un enlace a otro
+    -   **Hacia un diseño**: Le permite agregar un enlace a otro
         diseño
 
 -   ** ** equipos Añadir: Añade el equipo
 
 -   ** ** Añadir comando: Añade un comando
 
--   ** Añadir imagen / ** Cámara: Puede añadir una imagen o un arroyo
+-   **Añadir imagen /** Cámara: Puede añadir una imagen o un arroyo
     una cámara
 
 -   ** ** Añadir área: Añade un área seleccionable transparente
@@ -54,7 +54,7 @@ siguiente:
 
 -   Mostrar ** **
 
-    -   ** No **: muestra ninguna cuadrícula
+    -   **No**: muestra ninguna cuadrícula
 
     -   10x10 ** **: Muestra una cuadrícula de 10 por 10
 
@@ -83,7 +83,7 @@ siguiente:
 -   ** ** Guardar: Guarda el diseño (cuidado allí
     copias de seguridad automáticas como cuando ciertas acciones)
 
-> ** Importante **
+> **Importante**
 >
 > La configuración de los elementos de diseño se realiza haciendo clic en
 > Ellos.
@@ -93,11 +93,11 @@ diseño de configuración
 
 Aquí nos encontramos con:
 
--   ** General **
+-   **General**
 
     -   ** ** Nombre: El nombre de su diseño
 
-    -   ** fondo transparente **: hace que la parte inferior transparente. Tenga cuidado si el
+    -   **fondo transparente**: hace que la parte inferior transparente. Tenga cuidado si el
         cuadro se comprueba el color de fondo no se usa
 
     -   ** ** Color del fondo: color de fondo del diseño (blanco
@@ -117,17 +117,17 @@ Aquí nos encontramos con:
 
 -   ** ** Tamaños
 
-    -   ** Tamaño (W x H) **: Esto establece el tamaño de su diseño
+    -   **Tamaño (W x H)**: Esto establece el tamaño de su diseño
         (Caja gris en modo de edición)
 
 elementos de configuración generales
 ===================================
 
-> ** Nota **
+> **Nota**
 >
 > Dependiendo del tipo de elemento, las opciones pueden cambiar.
 
-> ** Nota **
+> **Nota**
 >
 > El elemento seleccionado aparece resaltado en rojo (en vez de verde
 > Para todos los demás).
@@ -137,13 +137,13 @@ ajuste de la pantalla
 
 -   ** ** Profundidad: Selecciona el nivel de profundidad
 
--   ** Posición X (%) **:
+-   **Posición X (%)**:
 
--   ** Posición Y (%) **:
+-   **Posición Y (%)**:
 
--   ** Ancho (px) **:
+-   **Ancho (px)**:
 
--   ** Altura (px) **:
+-   **Altura (px)**:
 
 eliminar
 ---------
@@ -201,7 +201,7 @@ Text / html
 -   ** ** El color del texto: Cambiar el color de los iconos y
     textos (tenga cuidado al pasar por defecto desactivado)
 
--   ** Redondear las esquinas **: se utiliza para redondear las esquinas (no
+-   **Redondear las esquinas**: se utiliza para redondear las esquinas (no
     olvide%, es decir 50%)
 
 -   ** ** Frontera: Añade una sintaxis cuidado frontera es
@@ -218,7 +218,7 @@ Text / html
 
 -   ** ** Texto: código HTML de texto que estarán en el elemento
 
-> ** Importante **
+> **Importante**
 >
 > Si pones HTML (especialmente Javascript), el enfoque
 > Compruebe hacia fuera el frente como sea posible si hay un error en
@@ -249,13 +249,13 @@ ajuste de la pantalla
 -   ** ** El color del texto: Cambiar el color de los iconos y
     textos (tenga cuidado al pasar por defecto desactivado)
 
--   ** Ronda de las esquinas (no olvide%, es decir 50%) **:
+-   **Ronda de las esquinas (no olvide%, es decir 50%)**:
     ayuda a cortar las esquinas, no se olvide de poner el%
 
--   ** Frontera (cuidado de la sintaxis CSS, por ejemplo, de 1 píxel negro sólido) **: permite
+-   **Frontera (cuidado de la sintaxis CSS, por ejemplo, de 1 píxel negro sólido)**: permite
     añadir un borde, el enfoque es la sintaxis HTML
 
--   ** Tamaño de la fuente (por ejemplo 50%, hay que poner el signo%) **:
+-   **Tamaño de la fuente (por ejemplo 50%, hay que poner el signo%)**:
     Le permite cambiar el tamaño de la fuente
 
 -   ** ** Alineación de texto: Elija la alineación
@@ -361,13 +361,13 @@ resumen
 -   ** ** El color del texto: Cambiar el color de los iconos y
     textos (tenga cuidado al pasar por defecto desactivado)
 
--   ** Ronda de las esquinas (no olvide%, es decir 50%) **:
+-   **Ronda de las esquinas (no olvide%, es decir 50%)**:
     ayuda a cortar las esquinas, no se olvide de poner el%
 
--   ** Frontera (cuidado de la sintaxis CSS, por ejemplo, de 1 píxel negro sólido) **: permite
+-   **Frontera (cuidado de la sintaxis CSS, por ejemplo, de 1 píxel negro sólido)**: permite
     añadir un borde, el enfoque es la sintaxis HTML
 
--   ** Tamaño de la fuente (por ejemplo 50%, hay que poner el signo%) **:
+-   **Tamaño de la fuente (por ejemplo 50%, hay que poner el signo%)**:
     Le permite cambiar el tamaño de la fuente
 
 -   ** ** Negrita: poner el texto en negrita

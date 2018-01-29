@@ -2,7 +2,7 @@ Se informa a todas las tareas de aplicaciones que se ejecutan en el Jeedom
 servidor. Este menú es utilizar a sabiendas, o
 solicitar soporte técnico.
 
-> ** Importante **
+> **Importante**
 >
 > En caso de mal manejo de esta página, cualquier solicitud
 > Soporte puede ser negado.
@@ -12,7 +12,7 @@ Para llegar a ella hay que ir a Administración → ** ** tareas motoras
 
 En la parte superior derecha, usted tiene:
 
--   ** Desactivar el sistema cron **: un botón para desactivar o
+-   **Desactivar el sistema cron**: un botón para desactivar o
     reactivar todas las tareas (si deshabilita todo
     nada va a ser funcional en su Jeedom)
 
@@ -27,10 +27,10 @@ A continuación tiene la imagen de todas las tareas existentes
 muy recomendable no cambiar nunca información sobre este
 página). En esta tabla son:
 
--   ** \ # **: Identificación de la tarea, puede ser útil para establecer el vínculo entre una
+-   **\ #**: Identificación de la tarea, puede ser útil para establecer el vínculo entre una
     proceso en ejecución y lo que realmente hace
 
--   ** Acción: ** un botón para iniciar o detener la tarea basada
+-   **Acción:** un botón para iniciar o detener la tarea basada
     su estatus
 
 -   ** ** activo: si la tarea está activa (se puede lanzar

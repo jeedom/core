@@ -4,7 +4,7 @@ auto-generado por Jeedom.
 
 Se accede haciendo clic en Inicio → ** ** tablero de instrumentos
 
-> ** Tip **
+> **Tip**
 >
 > Es posible ir directamente a un elemento de la domótica.
 > Esto sólo tendrá el equipo que le interesan y
@@ -32,13 +32,13 @@ Se accede haciendo clic en Inicio → ** ** tablero de instrumentos
 -   Al hacer clic en un comando muestra información de tipo
     la historia de la orden (si historizada)
 
-> ** Tip **
+> **Tip**
 >
 > Es posible, desde su perfil, ajuste a Jeedom
 > El árbol de objetos y / o escenarios son visibles por defecto
 > Al llegar al cuadro de instrumentos
 
-> ** Tip **
+> **Tip**
 >
 > Al pasar una pulsación larga en un tipo de información de mando
 > Para mostrar un menú que muestran ya sea la historia de la

@@ -4,11 +4,11 @@ minutes to have a more personalized display.
 
 Views can be accessed from the Home → View menu:
 
-> ** Tip **
+> **Tip**
 >
 > It is possible to go directly to a view through the submenu.
 
-> ** Tip **
+> **Tip**
 >
 > In your profile, you can choose the default view when clicking
 > on the view menu.
@@ -24,7 +24,7 @@ On this page, there is a button at the top left to show or
 hide the list of views as well as the button to add one
 (Jeedom will ask you his name and send you to the edit page):
 
-> ** Tip **
+> **Tip**
 >
 > You can in your profile modify this option so that the list
 > views are visible by default.
@@ -39,7 +39,7 @@ put as much as you want). Each zone is of graphic type, widget
 or table, depending on the type you can put widgets
 equipment, control or graphics in it.
 
-> ** Tip **
+> **Tip**
 >
 > It is possible to move the order of the zones by drag and drop.
 
@@ -55,27 +55,27 @@ his name and his type.
 
 On each zone you have the following general options:
 
--   ** Width **: Sets the width of the area (when in
+-   **Width**: Sets the width of the area (when in
     desktop only)
 
--   ** Edit **: change the name of the area
+-   **Edit**: change the name of the area
 
--   ** Delete **: deletes the area
+-   **Delete**: deletes the area
 
 Widget type zone
 -------------------
 
 A widget type zone allows you to add widgets:
 
--   ** Add widget **: allows you to add / edit widgets to
+-   **Add widget**: allows you to add / edit widgets to
     show in the box
 
-> ** Tip **
+> **Tip**
 >
 > You can delete a widget directly by clicking on the
 > trash in front of it.
 
-> ** Tip **
+> **Tip**
 >
 > It is possible to change the order of the widgets in the area by
 > drag and drop.
@@ -89,37 +89,37 @@ Graphic type area
 A graphical zone allows adding graphics to your view,
 it has the following options:
 
--   ** Period **: allows you to choose the display period of the
+-   **Period**: allows you to choose the display period of the
     graphs (30 min, 1 day, 1 week, 1 month, 1 year or all)
 
--   ** Add curve **: allows to add / modify graphs
+-   **Add curve**: allows to add / modify graphs
 
 When you press the "Add curve" button Jeedom displays the list
 historical commands and you can choose which one (s) to add, a
 Once done, you have access to the following options:
 
--   ** Trash **: remove the command from the chart
+-   **Trash**: remove the command from the chart
 
--   ** Name **: name of the graphed command
+-   **Name**: name of the graphed command
 
--   ** Color **: color of the curve
+-   **Color**: color of the curve
 
--   ** Type **: type of the curve
+-   **Type**: type of the curve
 
--   ** Grouping **: allows to group the data (maximum type
+-   **Grouping**: allows to group the data (maximum type
     per day)
 
--   ** Scale **: scale (right or left) of the curve
+-   **Scale**: scale (right or left) of the curve
 
--   ** Staircase **: displays the staircase curve
+-   **Staircase**: displays the staircase curve
 
--   ** Stack **: Stacks the curve with the other curves of type
+-   **Stack**: Stacks the curve with the other curves of type
     stack
 
--   ** Variation **: graph only variations with value
+-   **Variation**: graph only variations with value
     former
 
-> ** Tip **
+> **Tip**
 >
 > It is possible to change the order of the charts in the area by
 > drag and drop.
@@ -129,11 +129,11 @@ Array type area
 
 You have here the buttons:
 
--   ** Add column **: add a column to the table
+-   **Add column**: add a column to the table
 
--   ** Add line **: add a line to the table
+-   **Add line**: add a line to the table
 
-> ** Note **
+> **Note**
 >
 > It is possible to regore the lines by drag and drop but not
 > the columns
@@ -141,12 +141,12 @@ You have here the buttons:
 Once you have add your rows / columns you can add
 information in the boxes:
 
--   ** text **: just text to write
+-   **text**: just text to write
 
--   ** html **: any html code (javascript possible but
+-   **html**: any html code (javascript possible but
     strongly discouraged)
 
--   ** command widget **: the button on the right allows you to choose
+-   **command widget**: the button on the right allows you to choose
     the command to display (be careful this displays the widget of
     the command)
 

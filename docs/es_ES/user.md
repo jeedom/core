@@ -57,7 +57,7 @@ Al hacer clic en "Administrar los derechos" aparece una ventana y le permite
 finamente gestionar los derechos de los usuarios. La primera muestra de la ficha
 los diferentes equipos. La segunda presenta los escenarios.
 
-> ** Importante **
+> **Importante**
 >
 > El perfil debe ser limitada o ninguna restricción puso aquí
 > Se considerará
@@ -65,7 +65,7 @@ los diferentes equipos. La segunda presenta los escenarios.
 Se obtiene una tabla que, para cada dispositivo y cada
 escenario, definir derechos de usuario:
 
--   ** No **: el usuario no ve el equipo / escenario
+-   **No**: el usuario no ve el equipo / escenario
 
 -   ** ** Visualización: el usuario ve el equipo / escenario, pero
     no puede actuar sobre ella
