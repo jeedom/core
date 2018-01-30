@@ -829,11 +829,18 @@ class repo_market {
 					'tmp',
 					'.git',
 					'.DStore',
+					'Thumbs.db',
+					'@SynoEAStream'
 				);
 				if (property_exists($plugin_id, '_excludeOnSendPlugin')) {
 					$exclude = array_merge($plugin_id::$_excludeOnSendPlugin);
 				}
 				exec('find ' . realpath(dirname(__FILE__) . '/../../plugins/' . $plugin_id) . ' -name "*.sh" -type f -exec dos2unix {} \;');
+				exec('find ' . realpath(dirname(__FILE__) . '/../../plugins/' . $plugin_id) . ' -name "*.php" -type f -exec php -l {} \;', $output);
+				$output = preg_grep("/No syntax errors detected in /", $output, PREG_GREP_INVERT);
+				if ( count($output) != 0 ) {
+					throw new Exception(__('Erreur PHP : ', __FILE__) . implode("\n",$output));
+				}
 				rcopy(realpath(dirname(__FILE__) . '/../../plugins/' . $plugin_id), $cibDir, true, $exclude, true);
 				if (file_exists($cibDir . '/data')) {
 					rrmdir($cibDir . '/data');
