@@ -662,10 +662,14 @@ function saveWidgetDisplay(_params){
          eqLogic.display = {};
          eqLogic.display.width =  Math.floor($(this).width() / 2) * 2 + 'px';
          eqLogic.display.height = Math.floor($(this).height() / 2) * 2+ 'px';
-         eqLogic.order = order;
-         eqLogics.push(eqLogic);
-         order++;
-     });
+         if($(this).attr('data-order') != undefined){
+            eqLogic.order = $(this).attr('data-order');
+        }else{
+            eqLogic.order = order;
+        }
+        eqLogics.push(eqLogic);
+        order++;
+    });
     });
        jeedom.eqLogic.setOrder({
         eqLogics: eqLogics,
