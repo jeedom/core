@@ -871,10 +871,12 @@ class cmd {
 				$options['color'] = cmd::convertColor($options['color']);
 			}
 			$str_option = '';
-			if (is_array($options) && count($options) > 0) {
-				$str_option = str_replace(array("\n", '  ', 'Array', '>'), '', print_r($options, true));
+			if (is_array($options) && count($options) > 1) {
+				log::add('event', 'info', __('Exécution de la commande ', __FILE__) . $this->getHumanName() . __(' avec les paramètres ', __FILE__) . json_encode($options, true));
+			} else {
+				log::add('event', 'info', __('Exécution de la commande ', __FILE__) . $this->getHumanName());
 			}
-			log::add('event', 'info', __('Exécution de la commande ', __FILE__) . $this->getHumanName() . __(' avec les paramètres ', __FILE__) . $str_option);
+
 			if ($this->getConfiguration('timeline::enable')) {
 				jeedom::addTimelineEvent(array('type' => 'cmd', 'subtype' => 'action', 'id' => $this->getId(), 'name' => $this->getHumanName(true), 'datetime' => date('Y-m-d H:i:s'), 'options' => $str_option));
 			}
