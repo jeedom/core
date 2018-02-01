@@ -871,7 +871,7 @@ class cmd {
 				$options['color'] = cmd::convertColor($options['color']);
 			}
 			$str_option = '';
-			if (is_array($options) && count($options) > 1) {
+			if (is_array($options) && ((count($options) > 1 && isset($options['uid'])) || count($options) > 0)) {
 				log::add('event', 'info', __('Exécution de la commande ', __FILE__) . $this->getHumanName() . __(' avec les paramètres ', __FILE__) . json_encode($options, true));
 			} else {
 				log::add('event', 'info', __('Exécution de la commande ', __FILE__) . $this->getHumanName());

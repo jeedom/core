@@ -4,6 +4,8 @@ Changelog
 3.2.0 
 =====
 
+-   Correction d'un bug de droits suite à une restoration d'un backup
+
 -   Mise à jour des traductions
 
 -   Mise à jour des librairies (jquery et highcharts)
