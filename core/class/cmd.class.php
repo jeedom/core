@@ -802,7 +802,6 @@ class cmd {
 		if ($this->getEqType() == '') {
 			$this->setEqType($this->getEqLogic()->getEqType_name());
 		}
-		print_r($this);
 		DB::save($this);
 		if ($this->_needRefreshWidget) {
 			$this->getEqLogic()->refreshWidget();
