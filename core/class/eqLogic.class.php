@@ -25,6 +25,7 @@ class eqLogic {
 	protected $id;
 	protected $name;
 	protected $logicalId = '';
+	protected $generic_type;
 	protected $object_id = null;
 	protected $eqType_name;
 	protected $eqReal_id = null;
@@ -1558,6 +1559,15 @@ class eqLogic {
 
 	public function setCategory($_key, $_value) {
 		$this->category = utils::setJsonAttr($this->category, $_key, $_value);
+		return $this;
+	}
+
+	public function getGenericType() {
+		return $this->generic_type;
+	}
+
+	public function setGenericType($_generic_type) {
+		$this->generic_type = $_generic_type;
 		return $this;
 	}
 

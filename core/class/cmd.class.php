@@ -24,6 +24,7 @@ class cmd {
 
 	protected $id;
 	protected $logicalId;
+	protected $generic_type;
 	protected $eqType;
 	protected $name;
 	protected $order;
@@ -1736,6 +1737,15 @@ class cmd {
 
 	public function getName() {
 		return $this->name;
+	}
+
+	public function getGenericType() {
+		return $this->generic_type;
+	}
+
+	public function setGenericType($_generic_type) {
+		$this->generic_type = $_generic_type;
+		return $this;
 	}
 
 	public function getType() {
