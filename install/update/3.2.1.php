@@ -4,6 +4,6 @@ foreach (cmd::all() as $cmd) {
 	if ($cmd->getDisplay('generic_type') == '') {
 		continue;
 	}
-	$cmd->setGenericType($cmd->getDisplay('generic_type'));
+	$cmd->setGeneric_type($cmd->getDisplay('generic_type'));
 	$cmd->save();
 }

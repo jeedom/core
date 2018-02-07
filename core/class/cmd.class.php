@@ -147,6 +147,35 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
+	public static function byGenericType($_generic_type, $_eqLogic_id = null, $_one = false) {
+		if (is_array($_generic_type)) {
+			$in = '';
+			foreach ($_generic_type as $value) {
+				$in .= "'" . $value . "',";
+			}
+			$values = array();
+			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+		FROM cmd
+		WHERE generic_type IN (' . trim($in, ',') . ')';
+		} else {
+			$values = array(
+				'generic_type' => $_generic_type,
+			);
+			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+		FROM cmd
+		WHERE generic_type=:generic_type';
+		}
+		if ($_eqLogic_id !== null) {
+			$values['eqLogic_id'] = $_eqLogic_id;
+			$sql .= ' AND `eqLogic_id`=:eqLogic_id';
+		}
+		$sql .= ' ORDER BY `order`';
+		if ($_one) {
+			return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
+		}
+		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
+	}
+
 	public static function searchConfiguration($_configuration, $_eqType = null) {
 		$values = array(
 			'configuration' => '%' . $_configuration . '%',
@@ -210,7 +239,25 @@ class cmd {
 		FROM cmd
 		WHERE eqLogic_id=:eqLogic_id
 		AND logicalId=:logicalId';
+		if ($_type !== null) {
+			$values['type'] = $_type;
+			$sql .= ' AND type=:type';
+		}
+		if ($_multiple) {
+			return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
+		}
+		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
+	}
 
+	public static function byEqLogicIdAndGenericType($_eqLogic_id, $_generic_type, $_multiple = false, $_type = null) {
+		$values = array(
+			'eqLogic_id' => $_eqLogic_id,
+			'generic_type' => $_generic_type,
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+		FROM cmd
+		WHERE eqLogic_id=:eqLogic_id
+		AND generic_type=:generic_type';
 		if ($_type !== null) {
 			$values['type'] = $_type;
 			$sql .= ' AND type=:type';
@@ -755,6 +802,7 @@ class cmd {
 		if ($this->getEqType() == '') {
 			$this->setEqType($this->getEqLogic()->getEqType_name());
 		}
+		print_r($this);
 		DB::save($this);
 		if ($this->_needRefreshWidget) {
 			$this->getEqLogic()->refreshWidget();
@@ -1655,7 +1703,6 @@ class cmd {
 
 	public function exportApi() {
 		$return = utils::o2a($this);
-		$return['generic_type'] = $this->getDisplay('generic_type', 'GENERIC_ERROR');
 		$return['currentValue'] = ($this->getType() !== 'action') ? $this->execCmd(null, 2) : $this->getConfiguration('lastCmdValue', null);
 		return $return;
 	}
@@ -1739,11 +1786,11 @@ class cmd {
 		return $this->name;
 	}
 
-	public function getGenericType() {
+	public function getGeneric_type() {
 		return $this->generic_type;
 	}
 
-	public function setGenericType($_generic_type) {
+	public function setGeneric_type($_generic_type) {
 		$this->generic_type = $_generic_type;
 		return $this;
 	}

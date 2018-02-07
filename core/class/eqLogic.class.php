@@ -1453,6 +1453,28 @@ class eqLogic {
 		return $cmds;
 	}
 
+	public function getCmdByGenericType($_type = null, $_generic_type = null, $_visible = null, $_multiple = false) {
+		if ($_generic_type !== null) {
+			if (isset($this->_cmds[$_generic_type . '.' . $_multiple . '.' . $_type])) {
+				return $this->_cmds[$_generic_type . '.' . $_multiple . '.' . $_type];
+			}
+			$cmds = cmd::byEqLogicIdAndGenericType($this->id, $_generic_type, $_multiple, $_type);
+		} else {
+			$cmds = cmd::byEqLogicId($this->id, $_type, $_visible, $this);
+		}
+		if (is_array($cmds)) {
+			foreach ($cmds as $cmd) {
+				$cmd->setEqLogic($this);
+			}
+		} elseif (is_object($cmds)) {
+			$cmds->setEqLogic($this);
+		}
+		if ($_generic_type !== null && is_object($cmds)) {
+			$this->_cmds[$_generic_type . '.' . $_multiple . '.' . $_type] = $cmds;
+		}
+		return $cmds;
+	}
+
 	public function searchCmdByConfiguration($_configuration, $_type = null) {
 		return cmd::searchConfigurationEqLogic($this->id, $_configuration, $_type);
 	}
