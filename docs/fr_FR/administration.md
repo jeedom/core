@@ -765,6 +765,19 @@ un partage Samba (ex : NAS Synology).
 
 > **Important**
 >
+> Le protocole Samba comporte plusieurs versions, la v1 est compromise niveau 
+> sécurité et sur certains NAS vous pouvez obliger le client à utiliser la v2
+> ou la v3 pour se connecter. Donc si vous avez une erreur protocol negotiation
+> failed: NT_STATUS_INVAID_NETWORK_RESPONSE il y a de forte chance que coté NAS
+> la restriction soit en place. Vous devez alors modifier sur l'OS de votre Jeedom
+> le fichier /etc/samba/smb.conf et y ajouter ces deux lignes :
+> client max protocol = SMB3
+> client min protocol = SMB2
+> Le smbclient coté Jeedom utilisera alors v2 où v3 et en mettant SMB3 aux 2 uniquement
+> SMB3. A vous donc d'adapter en fonction des restrictions côté NAS ou autre serveur Samba
+
+> **Important**
+>
 > Jeedom doit être le seul à écrire dans ce dossier et il doit être vide
 > par défaut (c’est-à-dire qu’avant la configuration et l’envoi de la
 > première sauvegarde, le dossier ne doit contenir aucun fichier ou
