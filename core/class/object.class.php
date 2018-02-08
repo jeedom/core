@@ -575,7 +575,7 @@ class object {
 		}
 		$values = array();
 		foreach ($summaries[$_key] as $infos) {
-			if (isset($infos['enable']) && $infos['cmd'] == 0) {
+			if (isset($infos['enable']) && $infos['enable'] == 0) {
 				continue;
 			}
 			$value = jeedom::evaluateExpression(cmd::cmdToValue($infos['cmd']));
