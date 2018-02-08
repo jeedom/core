@@ -900,7 +900,7 @@ class cmd {
 			return $this->getCache('value', '');
 		}
 		$eqLogic = $this->getEqLogic();
-		if (!is_object($eqLogic) || $eqLogic->getIsEnable() != 1) {
+		if ($this->getType() != 'info' && (!is_object($eqLogic) || $eqLogic->getIsEnable() != 1)) {
 			throw new Exception(__('Equipement désactivé - impossible d\'exécuter la commande : ' . $this->getHumanName(), __FILE__));
 		}
 		try {

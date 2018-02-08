@@ -516,6 +516,9 @@ class eqLogic {
 	}
 
 	public function checkAndUpdateCmd($_logicalId, $_value, $_updateTime = null) {
+		if ($this->getIsEnable() == 0) {
+			return false;
+		}
 		if (is_object($_logicalId)) {
 			$cmd = $_logicalId;
 		} else {
