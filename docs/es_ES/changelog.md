@@ -4,6 +4,8 @@ cambios
 3.2.0
 =====
 
+-   Correction d'un bug de droits suite à une restoration d'un backup
+
 -   Mise à jour des traductions
 
 -   Mise à jour des librairies (jquery et highcharts)
@@ -428,7 +430,7 @@ cambios
     jour dynamiquement
 
 -   Possibilité d’exporter une vue en PDF, PNG, SVG ou JPEG avec la
-    Comando "informe" en un escenario
+    commande "report" dans un scénario
 
 -   Possibilité d’exporter un design en PDF, PNG, SVG ou JPEG avec la
     commande "report" dans un scénario

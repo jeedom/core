@@ -14,6 +14,8 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
+ var CURRENT_FOLDER=rootPath
+ printFileFolder(CURRENT_FOLDER);
 
  $('#div_treeFolder').off('click').on('select_node.jstree', function (node, selected) {
  	if (selected.node.a_attr['data-path'] != undefined) {
@@ -32,7 +34,6 @@
  				$('#div_alert').showAlert({message: error.message, level: 'danger'});
  			},
  			success : function(data){
- 				$('#bt_createFile').attr('data-path',path);
  				var li = '';
  				for(var i in data){
  					node = ref.create_node(sel, {"type":"folder","text":data[i],state:{opened:true},a_attr:{'data-path':path+data[i]}});
@@ -48,6 +49,7 @@
  }});
 
  function printFileFolder(_path){
+ 	CURRENT_FOLDER = _path;
  	jeedom.getFileFolder({
  		type : 'files',
  		path : _path,
@@ -105,6 +107,10 @@
  				},
  				success : function(data){
  					$('#div_alert').showAlert({message: '{{Fichier enregistré avec succès}}', level: 'success'});
+ 					$('#ta_fileContent').empty();
+ 					$('#ta_fileContent').value('');
+ 					taAutosize();
+ 					printFileFolder(CURRENT_FOLDER);
  				}
  			});
  		}
@@ -112,17 +118,17 @@
  })
 
  $('#bt_createFile').on('click',function(){
- 	var path=$(this).attr('data-path');
  	bootbox.prompt("Nom du fichier ?", function (result) {
  		if (result !== null) {
  			jeedom.createFile({
- 				path : path,
+ 				path : CURRENT_FOLDER,
  				name :result,
  				error: function (error) {
  					$('#div_alert').showAlert({message: error.message, level: 'danger'});
  				},
  				success : function(data){
  					$('#div_alert').showAlert({message: '{{Fichier enregistré avec succès}}', level: 'success'});
+ 					printFileFolder(CURRENT_FOLDER);
  				}
  			});
  		}

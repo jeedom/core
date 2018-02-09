@@ -746,29 +746,42 @@ a Samba share (ex: NAS Synology).
 
 > **Note**
 >
-> If the path to your samba backup folder is:
-> \\\\ 192.168.0.1 \\ Backup \\ Domotic \\ Jeedom Then IP = 192.168.0.1
->, Share = //192.168.0.1/Backups, Path = Domotics / Jeedom
+> Si le chemin d’accès à votre dossier de sauvegarde samba est :
+> \\\\192.168.0.1\\Sauvegardes\\Domotique\\Jeedom Alors IP = 192.168.0.1
+> , Partage = //192.168.0.1/Sauvegardes , Chemin = Domotique/Jeedom
 
 > **Note**
 >
-> When validating the Samba share, as described previously,
-> a new form of backup appears in the game
-> Administration → Jeedom backups. By activating it, Jeedom will proceed
-> to its automatic sending during the next backup. A test is
-> possible by performing a manual backup.
+> Lors de la validation du partage Samba, tel que décrit précédemment,
+> une nouvelle forme de sauvegarde apparait dans la partie
+> Administration→Sauvegardes de Jeedom. En l’activant, Jeedom procèdera
+> à son envoi automatique lors de la prochaine sauvegarde. Un test est
+> possible en effectuant une sauvegarde manuelle.
 
 > **Important**
 >
-> You may need to install the smbclient package for the
-> deposit works.
+> Il vous faudra peut-être installer le package smbclient pour que le
+> dépôt fonctionne.
 
 > **Important**
 >
-> Jeedom must be the only one to write in this folder and it must be empty
-> by default (that is, before configuring and sending the
-> first backup, the folder must not contain any files or
-> file).
+> Le protocole Samba comporte plusieurs versions, la v1 est compromise niveau 
+> sécurité et sur certains NAS vous pouvez obliger le client à utiliser la v2
+> ou la v3 pour se connecter. Donc si vous avez une erreur protocol negotiation
+> failed: NT_STATUS_INVAID_NETWORK_RESPONSE il y a de forte chance que coté NAS
+> la restriction soit en place. Vous devez alors modifier sur l'OS de votre Jeedom
+> le fichier /etc/samba/smb.conf et y ajouter ces deux lignes :
+> client max protocol = SMB3
+> client min protocol = SMB2
+> Le smbclient coté Jeedom utilisera alors v2 où v3 et en mettant SMB3 aux 2 uniquement
+> SMB3. A vous donc d'adapter en fonction des restrictions côté NAS ou autre serveur Samba
+
+> **Important**
+>
+> Jeedom doit être le seul à écrire dans ce dossier et il doit être vide
+> par défaut (c’est-à-dire qu’avant la configuration et l’envoi de la
+> première sauvegarde, le dossier ne doit contenir aucun fichier ou
+> dossier).
 
 ### URLs
 

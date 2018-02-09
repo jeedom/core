@@ -2,6 +2,8 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
+$rootPath = dirname(__FILE__) . '/../../';
+sendVarToJS('rootPath', $rootPath);
 ?>
 
 <div class="row row-overflow">
@@ -10,7 +12,7 @@ if (!isConnect('admin')) {
 		<div id="div_treeFolder">
 			<ul id="ul_Folder">
 				<?php
-foreach (ls(dirname(__FILE__) . '/../../', '*', false, array('folders')) as $folder) {
+foreach (ls($rootPath, '*', false, array('folders')) as $folder) {
 	echo '<li data-jstree=\'{"opened":true}\'><a data-path="' . dirname(__FILE__) . '/../../' . $folder . '">' . $folder . '</a></li>';
 }
 ?>

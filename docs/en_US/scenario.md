@@ -44,7 +44,7 @@ désactivés.
 Comme dans de nombreuses pages de Jeedom, mettre la souris à gauche de
 l’écran permet de faire apparaître un menu d’accès rapide (à partir de
 votre profil, vous pouvez le laisser toujours visible). Vous pourrez
-alors **chercher** votre scénario, mais aussi en **ajouter** un par ce
+alors **chercher**votre scénario, mais aussi en**ajouter** un par ce
 menu.
 
 Edition d’un scénario 
@@ -55,7 +55,7 @@ scénario et vous êtes redirigés vers la page de ses paramètres généraux.
 En haut, on retrouve quelques fonctions utiles pour gérer notre scénario
 :
 
--   **ID** : A côté du mot **Général**, c’est l’identifiant du scénario.
+-   **ID**: A côté du mot**Général**, c’est l’identifiant du scénario.
 
 -   **statut** : Etat actuel de votre scénario.
 
@@ -134,7 +134,7 @@ Onglet Scénario
 
 C’est ici que vous allez construire votre scénario. Il faut commencer
 par **ajouter un bloc**, avec le bouton situé à droite. Une fois un bloc
-créé, vous pourrez y ajouter un autre **bloc** ou une **action**.
+créé, vous pourrez y ajouter un autre **bloc**ou une**action**.
 
 ### Les blocs 
 
@@ -194,7 +194,7 @@ sélectionner un élément à tester :
     Jeedom ouvre une fenêtre pour vous demander quel test vous souhaitez
     effectuer sur celle-ci. Si vous choisissez de **Ne rien mettre**,
     Jeedom ajoutera la commande sans comparaison. Vous pouvez également
-    choisir **et** ou **ou** devant **Ensuite** pour enchaîner des tests
+    choisir **et**ou**ou**devant**Ensuite** pour enchaîner des tests
     sur différents équipements.
 
 -   **Rechercher un scénario** : Permet de chercher un scénario
