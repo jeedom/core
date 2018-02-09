@@ -1916,6 +1916,10 @@ class cmd {
 	}
 
 	public function setDisplay($_key, $_value) {
+		if ($_key = 'generic_type') {
+			$this->setGeneric_type($_value);
+			return;
+		}
 		$this->display = utils::setJsonAttr($this->display, $_key, $_value);
 		$this->_needRefreshWidget = true;
 	}
