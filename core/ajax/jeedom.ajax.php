@@ -87,6 +87,8 @@ try {
 				$page = 'scenario';
 			} else if (init('page') == 'view_edit') {
 				$page = 'view';
+			} else if (init('page') == 'plan') {
+				$page = 'design';
 			}
 			ajax::success('https://jeedom.github.io/core/' . config::byKey('language', 'core', 'fr_FR') . '/' . secureXSS($page));
 		}
