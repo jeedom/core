@@ -255,6 +255,10 @@ try {
 		ajax::success(user::removeBanIp());
 	}
 
+	if (init('action') == 'supportAccess') {
+		ajax::success(user::supportAccess(init('enable')));
+	}
+
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {

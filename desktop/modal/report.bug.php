@@ -66,20 +66,8 @@ foreach (plugin::listPlugin(true) as $plugin) {
 </div>
 </div>
 
-<div id="div_reportModalSearchAction" class="panel panel-primary" style="display:none;">
- <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-search"></i> {{Etape 4 : Chercher dans la documentation}}</h3></div>
- <div class="panel-body">
-    <div class="form-group">
-        <label class="col-sm-2 control-label">{{Rechercher}}</label>
-        <div class="col-sm-2">
-            <a class="btn btn-default" id="bt_searchOnFaq"><i class="fa fa-search"></i> {{Chercher}}</a>
-        </div>
-    </div>
-</div>
-</div>
-
 <div class="panel panel-primary" id="div_reportModalSendAction" style="display:none;">
-    <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-pencil"></i> {{Etape 5 : Demande de support}}</h3></div>
+    <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-pencil"></i> {{Etape 4 : Demande de support}}</h3></div>
     <div class="panel-body">
      <div class="form-group">
         <label class="col-sm-2 control-label">{{Titre}}</label>
@@ -96,13 +84,14 @@ foreach (plugin::listPlugin(true) as $plugin) {
         </div>
     </div>
     <div class="form-actions" style="height: 20px;">
+        <label style="margin-left: 140px;"><input type="checkbox" class="ticketAttr" data-l1key="openSupport" checked="checked" /> {{Ouvrir un accès au support}}</label>
         <a class="btn btn-success pull-right" id="bt_sendBugReport" style="color:white;"><i class="fa fa-check-circle"></i> {{Envoyer}}</a>
     </div>
 </div>
 </div>
 
 <div class="panel panel-primary" id="div_reportModalPrivateIssue" style="display:none;">
-    <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-pencil"></i> {{Etape 5 : Demande de support}}</h3></div>
+    <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-pencil"></i> {{Etape 4 : Demande de support}}</h3></div>
     <div class="panel-body">
         <div class="form-group">
             <label class="col-sm-5 control-label">{{Ce plugin utilise un gestionnaire de demande de support}}</label>
@@ -147,23 +136,11 @@ foreach (plugin::listPlugin(true) as $plugin) {
         });
     });
 
-    $('#bt_searchOnFaq').on('click',function(){
-        var issue = $('.ticketAttr[data-l1key=category] option:selected').attr('data-issue');
-        if(issue != ''){
-            $('#bt_reportBugIssueUrl').attr('href',issue);
-            $('#div_reportModalPrivateIssue').show();
-        }else{
-            $('#div_reportModalSendAction').show();
-        }
-        window.open($('.ticketAttr[data-l1key=category] option:selected').attr('data-pagehelp'), '_blank');
-    });
-
     $('.ticketAttr[data-l1key=type],.ticketAttr[data-l1key=category]').on('change',function(){
         if($('.ticketAttr[data-l1key=type]').value() != '' && $('.ticketAttr[data-l1key=category]').value() != ''){
-            $('#div_reportModalSearchAction').show();
+            $('#div_reportModalSendAction').show();
         }else{
-            $('#div_reportModalSearchAction').hide();
+            $('#div_reportModalSendAction').hide();
         }
-        $('#div_reportModalSendAction').hide();
     });
 </script>

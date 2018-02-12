@@ -9,39 +9,48 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 
   <!--********************Onglet utilisateur********************************-->
   <div class="tab-pane" id="user">
-    <legend><i class="icon personne-toilet1"></i>  {{Liste des utilisateurs :}}</legend>
-    <a class="btn btn-success pull-right" id="bt_saveUser"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
-    <?php if (config::byKey('ldap::enable') != '1') {?>
-      <a class="btn btn-warning pull-right" id="bt_addUser"><i class="fa fa-plus-circle"></i> {{Ajouter un utilisateur}}</a>
-      <br/><br/>
-      <?php }
-?>
-      <table class="table table-condensed table-bordered" id="table_user">
-        <thead>
-          <th>{{Utilisateur}}</th>
-          <th style="width: 100px;">{{Actif}}</th>
-          <th>{{Profil}}</th>
-          <th>{{Clef API}}</th>
-          <th>{{Double authentification}}</th>
-          <th>{{Dernière connexion}}</th>
-          <th>{{Actions}}</th>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </div>
-  </div>
+    <br/>
+    <legend><i class="icon personne-toilet1"></i>  {{Liste des utilisateurs}}
+      <a class="btn btn-success btn-xs pull-right" id="bt_saveUser"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
+      <?php if (config::byKey('ldap::enable') != '1') {
+	$user = user::byLogin('jeedom_support');
+	if (!is_object($user)) {
+		echo ' <a class="btn btn-success btn-xs pull-right" id="bt_supportAccess" data-enable="1"><i class="fa fa-user"></i> {{Activer accès support}}</a>';
+	} else {
+		echo ' <a class="btn btn-danger btn-xs pull-right" id="bt_supportAccess" data-enable="0"><i class="fa fa-user"></i> {{Désactiver accès support}}</a>';
+	}
+	?>
 
-  <form class="form-horizontal">
-    <fieldset>
-      <legend>{{Sessions actives}}</legend>
-      <table class="table table-condensed table-bordered">
-        <thead>
-          <tr>
-            <th>{{ID}}</th><th>{{Login}}</th><th>{{IP}}</th><th>{{Date}}</th><th>{{Actions}}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php
+       <a class="btn btn-warning btn-xs  pull-right" id="bt_addUser"><i class="fa fa-plus-circle"></i> {{Ajouter un utilisateur}}</a>
+       <?php }
+?>
+     </legend>
+     <table class="table table-condensed table-bordered" id="table_user">
+      <thead>
+        <th>{{Utilisateur}}</th>
+        <th style="width: 100px;">{{Actif}}</th>
+        <th>{{Profil}}</th>
+        <th>{{Clef API}}</th>
+        <th>{{Double authentification}}</th>
+        <th>{{Dernière connexion}}</th>
+        <th>{{Actions}}</th>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+
+<form class="form-horizontal">
+  <fieldset>
+    <legend>{{Sessions actives}}</legend>
+    <table class="table table-condensed table-bordered">
+      <thead>
+        <tr>
+          <th>{{ID}}</th><th>{{Login}}</th><th>{{IP}}</th><th>{{Date}}</th><th>{{Actions}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
 cleanSession();
 $cache = cache::byKey('current_sessions');
 $sessions = $cache->getValue(array());
@@ -55,11 +64,11 @@ foreach ($sessions as $id => $session) {
 	echo '</tr>';
 }
 ?>
-       </tbody>
-     </table>
-   </fieldset>
- </form>
- <form class="form-horizontal">
+     </tbody>
+   </table>
+ </fieldset>
+</form>
+<form class="form-horizontal">
   <fieldset>
     <legend>{{Péripherique enregistrés}} <a class="btn btn-xs btn-warning pull-right" id="bt_removeAllRegisterDevice"><i class="fa fa-trash"></i> {{Supprimer tout}}</a></legend>
     <table class="table table-bordered table-condensed">
