@@ -233,3 +233,8 @@ Je ne vois pas certains plugins du Market
 
 Ce genre de cas arrive si votre Jeedom n’est pas compatible avec le
 plugin. En général, une mise à jour de jeedom corrige le souci.
+
+J'ai un équipement en timeout mais je ne le vois pas sur le dashboard
+=========================================
+
+Les alerte sont classé par priorité, de la moins importante à la plus importante : timeout, batterie warning, batterie danger, alerte warning, alerte danger
