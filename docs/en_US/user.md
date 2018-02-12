@@ -4,8 +4,8 @@ director
 
 Accessible by Administration → Users.
 
-At the top right you have a button to add a user and a
-to save.
+En haut à droite vous avez un bouton pour ajouter un utilisateur, un
+pour sauvegarder et un bouton pour ouvrir un accès au support.
 
 Below you have a table:
 
