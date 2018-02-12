@@ -42,7 +42,7 @@ $update_begin = false;
 try {
 	require_once dirname(__FILE__) . '/../core/php/core.inc.php';
 	if (count(system::ps('install/update.php', 'sudo')) > 1) {
-		echo "Mise à jour en cour. J'attendrai 10s avant de recommencer\n";
+		echo "Mise à jour en cours. J'attendrai 10s avant de recommencer\n";
 		sleep(10);
 		if (count(system::ps('install/update.php', 'sudo')) > 1) {
 			echo "Mise à jour en cours. Vous devez attendre jusqu'à ce qu'elle finisse avant de redémarrer une nouvelle mise à jour\n";
