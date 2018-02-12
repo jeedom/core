@@ -109,3 +109,13 @@ Sur quelles plateformes Jeedom peut-il fonctionner ?
 Pour que Jeedom fonctionne, il faut une plateforme linux avec les droits
 root ou un système type docker. Il ne fonctionne donc pas sur une
 plateforme android pure.
+
+Je ne peux mettre à jour certain plugin "Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets)..." ? 
+====================================================
+
+Cela peut etre du à plusieurs chose, il faut : 
+
+- Vérifier que votre Jeedom est toujours connecté au market (dans la page d'administration de jeedom, partie mise à jour vous avez un bouton de test)
+- Vérifier que le compte market à bien acheté le plugin en question
+- Vérifier que vous avez bien de la place sur Jeedom (la page santé vous l'indiquera)
+- Vérifier que votre version de Jeedom est bien compatible avec le plugin
