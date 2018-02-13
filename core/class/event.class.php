@@ -44,17 +44,22 @@ class event {
 			if (!is_array($value)) {
 				$value = array();
 			}
-			$value[] = array('datetime' => getmicrotime(), 'name' => $_event, 'option' => $_option);
+			$datetime = getmicrotime();
+			$count = count($value);
+			if ($count > 0) {
+				$lastDatetime = $value[$count - 1]['datetime'];
+				if ($datetime <= $lastDatetime) {
+					$datetime = $lastDatetime + 1;
+				}
+			}
+
+			$value[] = array('datetime' => $datetime, 'name' => $_event, 'option' => $_option);
 			cache::set('event', json_encode(array_slice($value, -self::$limit, self::$limit)));
 			flock($fd, LOCK_UN);
 		}
 	}
 
 	public static function adds($_event, $_values = array()) {
-		$value = array();
-		foreach ($_values as $option) {
-			$value[] = array('datetime' => getmicrotime(), 'name' => $_event, 'option' => $option);
-		}
 		$waitIfLocked = true;
 		$fd = self::getFileDescriptorLock();
 		if (flock($fd, LOCK_EX, $waitIfLocked)) {
@@ -63,6 +68,21 @@ class event {
 			if (!is_array($value_src)) {
 				$value_src = array();
 			}
+			$datetime = getmicrotime();
+			$count = count($value_src);
+			if ($count > 0) {
+				$lastDatetime = $value_src[$count - 1]['datetime'];
+				if ($datetime <= $lastDatetime) {
+					$datetime = $lastDatetime + 1;
+				}
+			}
+
+			$value = array();
+			foreach ($_values as $option) {
+				$value[] = array('datetime' => $datetime, 'name' => $_event, 'option' => $option);
+				$datetime += 0.0001;
+			}
+
 			cache::set('event', json_encode(array_slice(array_merge($value_src, $value), -self::$limit, self::$limit)));
 			flock($fd, LOCK_UN);
 		}
@@ -90,7 +110,7 @@ class event {
 	}
 
 	private static function changesSince($_datetime) {
-		$return = array('datetime' => getmicrotime(), 'result' => array());
+		$return = array('datetime' => $_datetime, 'result' => array());
 		$cache = cache::byKey('event');
 		$events = json_decode($cache->getValue('[]'), true);
 		if (!is_array($events)) {
@@ -98,6 +118,7 @@ class event {
 		}
 		$values = array_reverse($events);
 		if (count($values) > 0) {
+			$return['datetime'] = $values[0]['datetime'];
 			foreach ($values as $value) {
 				if ($value['datetime'] <= $_datetime) {
 					break;
