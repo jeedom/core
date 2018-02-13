@@ -612,8 +612,12 @@ effectuer des conversions ou des calculs :
     avec time=temps (ex : 1530) et value=valeur à ajouter ou à
     soustraire en minutes.
 
--   formatTime(time) : Permet de formater le retour d’une chaine
-    #time#.
+-   `time_between(time,start,end)` : Permet de tester si un temps est
+    entre deux valeurs avec `time=temps` (ex : 1530), `start=temps`, `end=temps`.
+    Les valeurs start et end peuvent être à cheval sur minuit.
+
+-   `formatTime(time)` : Permet de formater le retour d’une chaine
+    `#time#`.
 
 -   floor(time/60) : Permet de convertir des secondes en minutes, ou
     des minutes en heures (floor(time/3600) pour des secondes
