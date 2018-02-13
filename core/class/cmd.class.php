@@ -802,6 +802,9 @@ class cmd {
 		if ($this->getEqType() == '') {
 			$this->setEqType($this->getEqLogic()->getEqType_name());
 		}
+		if ($this->getDisplay('generic_type') !== '' && $this->getGeneric_type() == '') {
+			$this->setGeneric_type($this->getDisplay('generic_type'));
+		}
 		DB::save($this);
 		if ($this->_needRefreshWidget) {
 			$this->getEqLogic()->refreshWidget();
@@ -1916,10 +1919,6 @@ class cmd {
 	}
 
 	public function setDisplay($_key, $_value) {
-		if ($_key = 'generic_type') {
-			$this->setGeneric_type($_value);
-			return;
-		}
 		$this->display = utils::setJsonAttr($this->display, $_key, $_value);
 		$this->_needRefreshWidget = true;
 	}
