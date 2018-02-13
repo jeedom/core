@@ -923,7 +923,7 @@ class scenarioExpression {
 	}
 
 	public static function tag(&$_scenario = null, $_name, $_default = '') {
-		if ($_scenario == null) {
+		if ($_scenario === null) {
 			return '"' . $_default . '"';
 		}
 		$tags = $_scenario->getTags();
