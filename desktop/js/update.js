@@ -207,13 +207,17 @@ function addUpdate(_update) {
   var tr = '<tr data-id="' + init(_update.id) + '" data-logicalId="' + init(_update.logicalId) + '" data-type="' + init(_update.type) + '">';
   tr += '<td style="width:40px;cursor:default;"><span class="updateAttr label ' + labelClass +'" data-l1key="status" style="font-size:0.8em;text-transform: uppercase;"></span>';
   tr += '</td>';
-  tr += '<td style="cursor:default;"><span class="updateAttr" data-l1key="id" style="display:none;"></span><span class="updateAttr" data-l1key="source"></span> / <span class="updateAttr" data-l1key="type"></span> : <span class="updateAttr label label-info" data-l1key="name" style="font-size:0.8em;"></span></td>';
-  tr += '<td style="width:135px;"><span class="updateAttr label label-primary" data-l1key="localVersion" style="font-size:0.8em;cursor:default;" title="{{Dernière version : }}'+_update.remoteVersion+'"></span></td>';
-  tr += '<td style="width:180px;cursor:default;">';
-  tr += '<input type="checkbox" class="updateAttr" data-l1key="configuration" data-l2key="doNotUpdate"><span style="font-size:0.9em;">{{Ne pas mettre à jour}}</span>';
-  tr += '</td>';
-  tr += '<td>';
-  if (_update.status == 'update') {
+  tr += '<td style="cursor:default;"><span class="updateAttr" data-l1key="id" style="display:none;"></span><span class="updateAttr" data-l1key="source"></span> / <span class="updateAttr" data-l1key="type"></span> : <span class="updateAttr label label-info" data-l1key="name" style="font-size:0.8em;"></span>';
+  if(_update.configuration && _update.configuration.version){
+    tr += ' <span class="label label-warning">'+_update.configuration.version+'</span>';
+}
+tr += '</td>';
+tr += '<td style="width:135px;"><span class="updateAttr label label-primary" data-l1key="localVersion" style="font-size:0.8em;cursor:default;" title="{{Dernière version : }}'+_update.remoteVersion+'"></span></td>';
+tr += '<td style="width:180px;cursor:default;">';
+tr += '<input type="checkbox" class="updateAttr" data-l1key="configuration" data-l2key="doNotUpdate"><span style="font-size:0.9em;">{{Ne pas mettre à jour}}</span>';
+tr += '</td>';
+tr += '<td>';
+if (_update.status == 'update') {
     tr += '<a class="btn btn-info btn-xs update" style="margin-bottom : 5px;" title="{{Mettre à jour}}"><i class="fa fa-refresh"></i> {{Mettre à jour}}</a> ';
 }else if (_update.type != 'core') {
     tr += '<a class="btn btn-info btn-xs update" style="margin-bottom : 5px;" title="{{Re-installer}}"><i class="fa fa-refresh"></i> {{Reinstaller}}</a> ';
