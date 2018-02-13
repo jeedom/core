@@ -1111,7 +1111,7 @@ function makeZipSupport() {
 		rrmdir($folder);
 	}
 	mkdir($folder);
-	system('cd ' . $jeedom_folder . '/log;cp -R * "' . $folder . '" > /dev/null');
+	system('cd ' . $jeedom_folder . '/log;cp -R * "' . $folder . '" > /dev/null;cp -R .[^.]* "' . $folder . '" > /dev/null');
 	system('sudo dmesg >> ' . $folder . '/dmesg');
 	system('sudo cp /var/log/messages "' . $folder . '/" > /dev/null');
 	system('sudo chmod 777 -R "' . $folder . '" > /dev/null');

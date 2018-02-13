@@ -365,7 +365,7 @@ foreach ($sessions as $id => $session) {
 foreach ($_SESSION['user']->getOptions('registerDevice') as $key => $value) {
 	echo '<tr data-key="' . $key . '">';
 	echo '<td>';
-	echo $key;
+	echo substr($key, 0, 10) . '...';
 	echo '</td>';
 	echo '<td>';
 	echo $value['ip'];

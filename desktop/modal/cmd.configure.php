@@ -257,7 +257,7 @@ foreach ($usedBy['scenario'] as $usedByScenario) {
       <div class="form-group">
         <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Valeur}}</label>
         <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-          <select class="cmdAttr form-control" data-l1key="display" data-l2key="generic_type">
+          <select class="cmdAttr form-control" data-l1key="generic_type">
             <option value="">{{Aucun}}</option>
             <?php
 $groups = array();

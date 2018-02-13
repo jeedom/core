@@ -4,8 +4,8 @@ d’administrateur
 
 Accessible par Administration → Utilisateurs.
 
-En haut à droite vous avez un bouton pour ajouter un utilisateur et un
-pour sauvegarder.
+En haut à droite vous avez un bouton pour ajouter un utilisateur, un
+pour sauvegarder et un bouton pour ouvrir un accès au support.
 
 En dessous vous avez un tableau :
 

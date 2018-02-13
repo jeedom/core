@@ -1,8 +1,16 @@
-Changelog 
+Changelog
 =========
 
-3.2.0 
+3.2.1 
 =====
+
+-   Ajout d'une option permettant d'ouvrir facilement un accès pour le support (sur la page utilisateur et lors de l'ouverture d'un ticket)
+
+-   Correction d'un bug de droits suite à une restoration d'un backup
+
+-   Mise à jour des traductions
+
+-   Mise à jour des librairies (jquery et highcharts)
 
 -   Possibilité d’interdire une commande dans les interactions
     automatique

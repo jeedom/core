@@ -85,8 +85,10 @@
    var title = '{{site.github.project_title}}';
    title = title.replace('plugin-','');
    $('#doc_title').append(title[0].toUpperCase() + title.substring(1))
-      document.title = 'Documentation '+ title[0].toUpperCase() + title.substring(1)
+   document.title = 'Documentation Jeedom | '+ title[0].toUpperCase() + title.substring(1)
    $(".button-collapse").sideNav();
+   $('meta[name=description]').remove();
+   $('head').append( '<meta name="description" content="Ceci est la documentation du plugin "'+ title[0].toUpperCase() + title.substring(1)+'", lier à la solution domotique Jeedom.">' ); 
    $('img').addClass('responsive-img');
    $('#div_content table').addClass('striped');
    init();
@@ -99,7 +101,11 @@
   $('.sel_lang').on('change',function(){
     var regex = /\/([a-z]{2}_[A-Z]{2})\//g;
     var corresp  = regex.exec(window.location.href);
-    window.location.href =  window.location.href.replace(corresp[1], $(this).find('option:selected').attr('value'));
+    var url = window.location.href.replace(corresp[1], $(this).find('option:selected').attr('value'));
+    if(url.endsWith('/')){
+      url += 'index';
+    }
+    window.location.href = url;
   })
   $('#bt_up').on('click',function(){
     window.scrollTo(0, 0);

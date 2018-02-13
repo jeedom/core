@@ -428,7 +428,18 @@ class repo_market {
 		if (!$jsonrpc->sendRequest('ticket::save', array('ticket' => $_ticket), 300, array('file' => '@' . $support_file))) {
 			throw new Exception($jsonrpc->getErrorMessage());
 		}
+		if ($_ticket['openSupport'] == 1) {
+			user::supportAccess(true);
+		}
 		return $jsonrpc->getResult();
+	}
+
+	public static function supportAccess($_enable = true, $_key = '') {
+		$jsonrpc = self::getJsonRpc();
+		$url = network::getNetworkAccess('external') . '/index.php?auth=' . $_key;
+		if (!$jsonrpc->sendRequest('register::supportAccess', array('enable' => $_enable, 'url' => $url))) {
+			throw new Exception($jsonrpc->getErrorMessage());
+		}
 	}
 
 	public static function getPassword() {

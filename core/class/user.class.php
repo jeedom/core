@@ -335,6 +335,36 @@ class user {
 		return $user->getHash() . '-' . $key;
 	}
 
+	public static function supportAccess($_enable = true) {
+		if ($_enable) {
+			$user = user::byLogin('jeedom_support');
+			if (!is_object($user)) {
+				$user = new user();
+				$user->setLogin('jeedom_support');
+			}
+			$user->setPassword(sha512(config::genKey(255)));
+			$user->setProfils('admin');
+			$user->setEnable(1);
+			$key = config::genKey();
+			$registerDevice = array(
+				sha512($key) => array(
+					'datetime' => date('Y-m-d H:i:s'),
+					'ip' => '127.0.0.1',
+					'session_id' => 'none',
+				),
+			);
+			$user->setOptions('registerDevice', $registerDevice);
+			$user->save();
+			repo_market::supportAccess(true, $user->getHash() . '-' . $key);
+		} else {
+			$user = user::byLogin('jeedom_support');
+			if (is_object($user)) {
+				$user->remove();
+			}
+			repo_market::supportAccess(false);
+		}
+	}
+
 	/*     * *********************Méthodes d'instance************************* */
 
 	public function preInsert() {
@@ -363,6 +393,14 @@ class user {
 	public function preRemove() {
 		if (count(user::byProfils('admin', true)) == 1 && $this->getProfils() == 'admin') {
 			throw new Exception(__('Vous ne pouvez supprimer le dernier administrateur', __FILE__));
+		}
+		cleanSession();
+		$cache = cache::byKey('current_sessions');
+		$sessions = $cache->getValue(array());
+		foreach ($sessions as $id => $session) {
+			if ($session['login'] == $this->getLogin()) {
+				deleteSession($id);
+			}
 		}
 	}
 

@@ -1,126 +1,126 @@
-La page Analyse d’équipements vous permet de voir de nombreuses infos
-relatives aux équipements de manière centralisée :
+El análisis de la página de equipos le permite ver muchas informaciones
+relativa a los equipos en el centro:
 
--   l’état de vos piles
+-   el estado de la batería
 
--   les modules en alertes
+-   las alertas módulos
 
--   les actions définies
+-   las acciones definidas
 
--   les alertes définies
+-   alertas definidas
 
--   les commandes orphelines
+-   órdenes huérfanos
 
-L’onglet Batteries 
+La lengüeta de la batería
 ==================
 
-Vous pouvez voir sur cet onglet la liste de vos modules sur batterie,
-leur niveau restant (la couleur de la tuile dépend de ce niveau), le
-type et le nombre de piles qu’il faut mettre dans le module, le type du
-module ainsi que la date à laquelle l’information du niveau de batterie
-a été mise à jour. Vous pouvez aussi voir si un seuil spécifique a été
-établi pour le module en particulier (représenté par une main)
+Se puede ver en esta pestaña lista de sus módulos de batería
+su nivel restante (el color de la baldosa depende de ese nivel), la
+tipo y cantidad de baterías para poner en el módulo, el tipo de
+módulo y la información de fecha de la carga de la batería
+se ha actualizado. También puede ver si un determinado umbral era
+establecido para el módulo en particular (representado por una mano)
 
 > **Tip**
 >
-> Les seuils d’alerte/warning sur les niveaux des batteries sont
-> configurables de manière globale dans la configuration de Jeedom
-> (Administration → onglet Equipements), ou par équipement sur la page
-> de configuration avancée de ceux-ci dans l’onglet alertes.
+> Los umbrales de alerta / advertencia en los niveles de la batería
+> A nivel mundial configurable en el Jeedom configuración
+> (Pestaña Administración → Instalaciones), o el equipo en la página
+> Configuración avanzada del mismo en la pestaña de alertas.
 
-L’onglet Modules en alerte 
+La pestaña Módulos en alerta
 ==========================
 
-Sur cet onglet vous verrez en temps réel les modules en alerte. Les
-alertes peuvent être de différents types :
+En esta pestaña se verá módulos de alerta en tiempo real. la
+Las alertas pueden ser de diferentes tipos:
 
--   timeout (configuré dans l’onglet alertes définies)
+-   tiempo de espera (configurado en la pestaña de alertas definido)
 
--   batterie en warning ou en danger
+-   aviso de batería o en peligro de extinción
 
--   commande en warning ou danger (paramétrable dans les paramètres
-    avancées des commandes)
+-   advertencia o peligro de comandos (configurable en los ajustes
+    comandos avanzados)
 
-D’autres types d’alertes pourront éventuellement se retrouver ici.
-Chaque alerte sera représentée par la couleur de la tuile (le niveau
-d’alerte) et un logo en haut à gauche (le type d’alerte)
-
-> **Tip**
->
-> Ici seront affichés tous les modules en alerte même ceux configurés en
-> "non visible". Il est toutefois intéressant de noter que si le module
-> est en "visible" l’alerte sera aussi visible sur le dashboard (dans
-> l’objet concerné)
-
-L’onglet Actions définies 
-=========================
-
-Cet onglet permet de visualiser les actions définies directement sur une
-commande. En effet, on peut en mettre sur différentes commandes et il
-peut être difficile de se rappeler de toutes. Cet onglet est là pour ça
-et synthétise plusieurs choses :
-
--   les actions sur état (que l’on retrouve dans les paramètres avancées
-    des commandes infos et permettant de réaliser une ou plusieurs
-    actions sur la valeur d’une commande - de manière immédiate ou après
-    un délai)
-
--   les confirmations d’actions (configurable au même endroit sur une
-    commande info et permettant de demander une confirmation pour
-    exécuter une action)
-
--   les confirmations avec code (même chose que précédemment mais avec
-    la saisie d’un code)
-
--   les actions pre et post (configurables toujours au même endroit sur
-    une commande action et permettant d’exécuter une ou plusieurs autres
-    actions avant ou après l’action en question)
+Otros tipos de alertas finalmente va a terminar aquí.
+Cada alerta estará representada por el color de la baldosa (el nivel
+Alerta) y un logotipo en la parte superior izquierda (tipo de aviso)
 
 > **Tip**
 >
-> Le tableau permet de voir de manière très textuelle les actions
-> définies. D’autres types d’actions définies pourront être rajoutées.
+> A continuación, se publicarán todos alerta incluso los módulos configurados
+> "No visible". Sin embargo, es interesante observar que si el módulo
+> ¿Es "visible" alerta también será visible en el salpicadero (en
+> El objeto en cuestión)
 
-L’onglet Alertes définies 
+La ficha Acciones definido
 =========================
 
-Cet onglet permet de voir l’ensemble des alertes définies, vous y
-retrouverez dans un tableau les infos suivantes si elles existent :
+Este registro le permite ver las acciones definidas directamente en una
+mando. De hecho, se puede poner en diferentes órdenes y
+puede ser difícil recordar todo. Esta ficha es sólo eso
+y sintetiza varias cosas:
 
--   les alertes sur délai de communication
+-   acciones sobre el estado (que se encuentra en la configuración avanzada
+    información y comandos para realizar uno o más
+    acciones sobre el valor de una orden - de forma inmediata o después de
+    un retraso)
 
--   les seuils spécifiques de batterie définis sur un équipement
+-   confirmaciones de patrimonio (configurables en el mismo lugar en una
+    controlar la información y para pedir la confirmación
+    realizar una acción)
 
--   les différentes alertes danger et warning des commandes
+-   confirmaciones con código (igual que antes, pero con
+    introducción de un código)
 
-L’onglet Commandes orphelines 
+-   la acción pre y post (configurable siempre en el mismo lugar de
+    comando de acción y para la realización de uno o varios de los demás
+    acciones antes o después de la acción en cuestión)
+
+> **Tip**
+>
+> En la tabla le permite ver las acciones tanto de texto
+> Definido. Se pueden añadir otros tipos de acciones definidas.
+
+La ficha Alertas definido
+=========================
+
+Esta ficha le permite ver todas las alertas definidas, se quiere
+encontrará una tabla con la siguiente información si está disponible:
+
+-   el retraso en la comunicación de alertas
+
+-   umbrales específicos de baterías en el equipo
+
+-   varias órdenes de alertas de peligro y advertencias
+
+El huérfano ficha Comandos
 =============================
 
-Cet onglet vous permet de voir en un coup d’oeil si vous avez des
-commandes orphelines utilisées au travers de Jeedom. Une commande
-orpheline est une commande utilisée quelque part mais qui n’existe plus.
-On retrouvera ici l’ensemble de ces commandes, comme par exemple :
+Esta ficha le permite ver de un vistazo si usted tiene
+comandos huérfanos utilizan a través de Jeedom. Un pedido
+Huérfano es un comando utilizado en alguna parte, pero que ya no existe.
+Aquí encontramos todos estos comandos, tales como:
 
--   les commandes orphelines utilisée dans le corps d’un scenario
+-   huérfanos comandos utilizados en el cuerpo de un escenario
 
--   celles utilisées en déclencheur d’un scénario
+-   los utilizados en un escenario de gatillo
 
-Et utilisées à plein d’autres endroits comme (non exhaustif) :
+Y se utiliza en muchos otros lugares como (no exhaustiva):
 
--   les interactions
+-   interacciones
 
--   les configurations de jeedom
+-   jeedom configuración
 
--   en pre ou post action d’une commande
+-   en la acción pre o post de un control
 
--   en action sur état d’une commande
+-   acción sobre el estado del pedido
 
--   dans certains plugins
+-   en algunos plugins
 
 > **Tip**
 >
-> Le tableau permet de voir de manière très textuelle les commandes
-> orphelines. Son but est de pouvoir identifier rapidement toutes les
-> commandes "orphelines" au travers de tout Jeedom et des plugins. Il se
-> peut que certaines zones ne soient pas analysées, le tableau se verra
-> être de plus en plus exhaustif avec le temps.
+> En la tabla le permite ver los comandos de texto tanto
+> Huérfano. Su objetivo es identificar rápidamente todos
+> órdenes "huérfanos" a través de toda Jeedom y plugins. El se
+> Algunas áreas no pueden ser analizados, la tabla será
+> Ser más amplia en el tiempo.

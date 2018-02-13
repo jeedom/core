@@ -223,7 +223,7 @@ if (_update.type != 'core') {
        tr += '<a class="btn btn-default btn-xs cursor" target="_blank" href="'+_update.plugin.changelog+'" style="margin-bottom : 5px;"><i class="fa fa-book"></i> {{Changelog}}</a>';       
    }     
 }else{        
-  tr += '<a class="btn btn-default btn-xs" href="https://github.com/jeedom/core/blob/stable/doc/fr_FR/changelog.asciidoc" target="_blank" style="margin-bottom : 5px;"><i class="fa fa-book"></i> {{Changelog}}</a>';      
+  tr += '<a class="btn btn-default btn-xs" href="https://jeedom.github.io/core/fr_FR/changelog" target="_blank" style="margin-bottom : 5px;"><i class="fa fa-book"></i> {{Changelog}}</a>';      
 }
 tr += '<a class="btn btn-info btn-xs pull-right checkUpdate" style="margin-bottom : 5px;" ><i class="fa fa-check"></i> {{Vérifier}}</a>';
 if (_update.type != 'core') {

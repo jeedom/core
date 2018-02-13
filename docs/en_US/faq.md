@@ -1,111 +1,240 @@
-Jeedom nécessite-t-il un abonnement ? 
+Does Jeedom require a subscription?
 =====================================
 
-Non, Jeedom est pleinement utilisable sans aucune nécessité de quelque
-abonnement que ce soit. Cependant, il existe des services proposés pour
-les sauvegardes ou les appel/SMS, mais qui restent réellement
-optionnels.
+No, Jeedom is fully usable without any need of
+subscription whatever. However, there are services offered for
+backups or calls / SMS but that actually stay
+optional.
 
-Jeedom utilise-t-il des serveurs extérieurs pour fonctionner ? 
-==============================================================
+Does Jeedom use external servers to work?
+================================================== ============
 
-Non, Jeedom n’utilise pas d’infrastructure type "Cloud". Tout se fait en
-local et vous n’avez pas besoin de nos serveurs pour que votre
-installation fonctionne. Seuls les services comme le Market, la
-sauvegarde en ligne ou le DNS Jeedom nécessitent l’utilisation de nos
-serveurs.
+No, Jeedom does not use cloud infrastructure. Everything is done in
+local and you do not need our servers for your
+installation works. Only services like the Market, the
+online backup or the Jeedom DNS require the use of our
+servers.
 
-Peut-on réordonner les commandes d’un équipement ? 
+Can we reorder orders for equipment?
 ==================================================
 
-Oui c’est possible, il suffit de glisser/déposer les commandes de votre
-objet sur sa configuration.
+Yes it is possible, just drag and drop the commands of your
+object on its configuration.
 
-Peut-on éditer le style des widgets ? 
+Can we edit the style of the widgets?
 =====================================
 
-Oui c’est possible, soit en passant par le plugin widget, ou en
-utilisant la page Général → Affichage
+Yes it is possible, either through the widget plugin, or in
+using the General → Display page
 
-Peut-on mettre plusieurs fois le même équipement sur un design ? 
-================================================================
+Can we put the same equipment several times on a design?
+================================================== ==============
 
-Non ce n’est pas possible, mais vous pouvez dupliquer celui-ci grâce au
-plugin virtuel.
+No it is not possible, but you can duplicate it thanks to
+virtual plugin.
 
-Comment changer une donnée erronée de l’historique ? 
-====================================================
+How to change an erroneous data in the history?
+================================================== ==
 
-Il suffit, sur une courbe historique de la commande, de cliquer sur le
-point en question. Si vous laissez le champs vierge, alors la valeur
-sera supprimée.
+It suffices, on a historical curve of the order, to click on the
+point in question. If you leave the field blank, then the value
+will be deleted.
 
-Combien de temps dure une sauvegarde ? 
+How long does a backup take?
 ======================================
 
-Il n’y a pas de durée standard, cela dépend du système et du volume de
-données à sauvegarder, mais il peut prendre plus de 5 minutes, c’est
+There is no standard duration, it depends on the system and the volume of
+data to back up, but it can take more than 5 minutes, that's
 normal.
 
-Y a-t-il une application mobile dédiée ? 
+Is there a dedicated mobile app?
 ========================================
 
-Jeedom possède une version mobile adaptée à l’utilisation sur mobile et
-tablette. Il existe aussi une application native pour Android et iOS.
+Jeedom has a mobile version suitable for use on mobile and
+Tablet. There is also a native app for Android and iOS.
 
-Quels sont les identifiants pour me connecter la première fois ? 
-================================================================
+What are the credentials to login the first time?
+================================================== ==============
 
-Lors de votre première connexion à Jeedom (et même après si vous ne les
-avez pas modifiés), le nom d’utilisateur et le mot de passe par défaut
-sont admin/admin. A la première connexion, il vous est fortement
-recommandé de modifier ces identifiants pour plus de sécurité.
+When you first connect to Jeedom (and even if you do not
+have not changed), the default username and password
+are admin / admin. At the first connection, it is strongly
+recommended to modify these identifiers for more security.
 
-Peut-on mettre Jeedom en https ? 
+Can we put Jeedom in https?
 ================================
 
-Oui : \* Soit vous avez un pack power ou plus, dans ce cas il vous
-suffit d’utiliser le DNS Jeedom. \* Soit avez un DNS et vous savez
-mettre en place un certificat valide, dans ce cas c’est une installation
-standard d’un certificat.
+Yes: \ * Either you have a power pack or more, in which case you
+Just use the Jeedom DNS. \ * Either have a DNS and you know
+set up a valid certificate, in this case it is an installation
+standard of a certificate.
 
-Comment remettre à plat les droits ? 
+How to flatten rights?
 ====================================
 
-En SSH faites :
+In SSH do:
 
-``` {.bash}
+`` `{.bash}
 sudo su -
-chmod -R 775 /var/www/html
-chown -R www-data:www-data /var/www/html
-```
+chmod -R 775 / var / www / html
+chown -R www-data: www-data / var / www / html
+`` `
 
-Où se trouvent les sauvegardes de Jeedom ? 
+Where are the Jeedom backups?
 ==========================================
 
-Elles sont dans le dossier /var/www/html/backup
+They are in the folder / var / www / html / backup
 
-Comment mettre à jour Jeedom en SSH ? 
+How to update Jeedom in SSH?
 =====================================
 
-En SSH faites :
+In SSH do:
+
+`` `{.bash}
+sudo su -
+php /var/www/html/install/update.php
+chmod -R 775 / var / www / html
+chown -R www-data: www-data / var / www / html
+`` `
+
+Is Webapp compatible with Symbian?
+=======================================
+
+The webapp requires a smartphone that supports HTML5 and CSS3. She
+is therefore not compatible with Symbian.
+
+On which platforms can Jeedom work?
+================================================== ==
+
+For Jeedom to work, you need a linux platform with rights
+root or docker type system. So it does not work on a
+pure android platform.
+
+Je ne peux mettre à jour certain plugin "Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets)..." ? 
+====================================================
+
+Cela peut etre du à plusieurs chose, il faut : 
+
+- Vérifier que votre Jeedom est toujours connecté au market (dans la page d'administration de jeedom, partie mise à jour vous avez un bouton de test)
+- Vérifier que le compte market à bien acheté le plugin en question
+- Vérifier que vous avez bien de la place sur Jeedom (la page santé vous l'indiquera)
+- Vérifier que votre version de Jeedom est bien compatible avec le plugin
+
+J’ai une page blanche 
+=====================
+
+Il faut se connecter en SSH à Jeedom et lancer le script
+d’auto-diagnostic :
+
+``` {.bash}
+sudo chmod +x /var/www/html/health.sh;sudo /var/www/html/health.sh
+```
+
+S’il y a un souci, le script essaiera de le corriger. S’il n’y arrive
+pas, il vous l’indiquera.
+
+Vous pouvez aussi regarder le log /var/www/html/http.error . Très
+souvent, celui-ci indique le souci.
+
+J’ai un problème d’identifiant BDD 
+==================================
+
+Il faut réinitialiser ceux-ci :
+
+``` {.bash}
+bdd_password=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
+echo "DROP USER 'jeedom'@'localhost'" | mysql -uroot -p
+echo "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${bdd_password}';" | mysql -uroot -p
+echo "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'localhost';" | mysql -uroot -p
+cd /usr/share/nginx/www/jeedom
+sudo cp core/config/common.config.sample.php core/config/common.config.php
+sudo sed -i -e "s/#PASSWORD#/${bdd_password}/g" core/config/common.config.php
+sudo chown www-data:www-data core/config/common.config.php
+```
+
+J’ai des {{…​}} partout 
+=======================
+
+La cause la plus fréquente est l’utilisation d’un plugin en version beta
+et Jeedom en stable, ou l’inverse. Pour avoir le détail de l’erreur, il
+faut regarder le log http.error (dans /var/www/html/log).
+
+Lors d’une commande j’ai une roue qui tourne sans s’arrêter 
+===========================================================
+
+Encore une fois cela est souvent dû à un plugin en beta alors que Jeedom
+est en stable. Pour voir l’erreur, il faut faire F12 puis console.
+
+Je n’ai plus accès à Jeedom, ni par l’interface web ni en console par SSH 
+=========================================================================
+
+Cette erreur n’est pas due à Jeedom, mais à un problème avec le système.
+Si celui-ci persiste suite à une réinstallation, il est conseillé de
+voir avec le SAV pour un souci hardware.
+
+Mon scénario ne s’arrête plus/pas 
+=================================
+
+Il est conseillé de regarder les commandes exécutées par le scénario,
+souvent cela vient d’une commande qui ne se termine pas.
+
+J’ai des instabilités ou des erreurs 504 
+========================================
+
+Vérifiez si votre système de fichiers n’est pas corrompu, en SSH la
+commande est : "sudo dmesg | grep error" .
+
+Je ne vois pas tous mes équipements sur le dashboard 
+====================================================
+
+Souvent cela est dû au fait que les équipements sont affectés à un objet
+qui n’est pas le fils ou l’objet lui-même du premier objet sélectionné à
+gauche dans l’arbre (vous pouvez configurer celui-ci dans votre profil).
+
+J’ai l’erreur suivante : SQLSTATE\[HY000\] \[2002\] Can’t connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' 
+====================================================================================================================================
+
+Cela est dû à MySQL qui s’est arrêté, ce n’est pas normal, les cas
+courants sont :
+
+-   Manque de place sur le système de fichiers (peut être vérifié en
+    faisant la commande "df -h", en SSH)
+
+-   Problème de corruption de fichier(s), ce qui arrive souvent suite à
+    un arrêt non propre de Jeedom (coupure de courant)
+
+Malheureusement, il n’y a pas beaucoup de solution si c’est le deuxième
+cas, le mieux étant de récupérer une sauvegarde (disponible dans
+/usr/share/nginx/www/jeedom/backup par défaut), de réinstaller Jeedom et
+de restaurer la sauvegarde. Vous pouvez aussi regarder pourquoi MySQL ne
+veut pas démarrer depuis une console SSH :
 
 ``` {.bash}
 sudo su -
-php /var/www/html/install/update.php
-chmod -R 775 /var/www/html
-chown -R www-data:www-data /var/www/html
+service mysql stop
+mysqld --verbose
 ```
 
-La Webapp est-elle compatible Symbian ? 
-=======================================
+Ou consulter le log : /var/log/mysql/error.log
 
-La webapp nécessite un smartphone supportant le HTML5 et le CSS3. Elle
-n’est donc malheureusement pas compatible Symbian.
+Les boutons Eteindre/Redémarrer ne fonctionnent pas 
+===================================================
 
-Sur quelles plateformes Jeedom peut-il fonctionner ? 
-====================================================
+Sur une installation DIY c’est normal. En SSH, il faut faire la commande
+visudo et à la fin du fichier vous devez ajouter : www-data ALL=(ALL)
+NOPASSWD: ALL.
 
-Pour que Jeedom fonctionne, il faut une plateforme linux avec les droits
-root ou un système type docker. Il ne fonctionne donc pas sur une
-plateforme android pure.
+``` {.bash}
+sudo service apache2 restart
+```
+
+Je ne vois pas certains plugins du Market 
+=========================================
+
+Ce genre de cas arrive si votre Jeedom n’est pas compatible avec le
+plugin. En général, une mise à jour de jeedom corrige le souci.
+
+J'ai un équipement en timeout mais je ne le vois pas sur le dashboard
+=========================================
+
+Les alerte sont classé par priorité, de la moins importante à la plus importante : timeout, batterie warning, batterie danger, alerte warning, alerte danger
