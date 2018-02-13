@@ -68,7 +68,7 @@ sendVarToJS('dataStore_link_id', init('link_id', -1));
 
         $('#table_dataStore').delegate('.bt_graphDataStore', 'click', function() {
             var tr = $(this).closest('tr');
-            $('#md_modal2').dialog({title: "{{Graphique de lien}}"});
+            $('#md_modal2').dialog({title: "{{Graphique de lien(s)}}"});
             $("#md_modal2").load('index.php?v=d&modal=graph.link&filter_type=dataStore&filter_id='+tr.attr('data-dataStore_id')).dialog('open');
         });
 

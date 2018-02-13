@@ -714,7 +714,7 @@ $('#div_pageContainer').off('mouseout','.bt_sortable').on('mouseout','.bt_sortab
 });
 
 $('#bt_graphScenario').off('click').on('click', function () {
-  $('#md_modal').dialog({title: "{{Graphique de lien}}"});
+  $('#md_modal').dialog({title: "{{Graphique de lien(s)}}"});
   $("#md_modal").load('index.php?v=d&modal=graph.link&filter_type=scenario&filter_id='+$('.scenarioAttr[data-l1key=id]').value()).dialog('open');
 });
 
