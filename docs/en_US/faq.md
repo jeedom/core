@@ -133,7 +133,7 @@ sudo chmod +x /var/www/html/health.sh;sudo /var/www/html/health.sh
 S’il y a un souci, le script essaiera de le corriger. S’il n’y arrive
 pas, il vous l’indiquera.
 
-Vous pouvez aussi regarder le log /var/www/html/http.error . Très
+Vous pouvez aussi regarder le log /var/www/html/log/http.error. Très
 souvent, celui-ci indique le souci.
 
 J’ai un problème d’identifiant BDD 
@@ -205,7 +205,7 @@ courants sont :
 
 Malheureusement, il n’y a pas beaucoup de solution si c’est le deuxième
 cas, le mieux étant de récupérer une sauvegarde (disponible dans
-/usr/share/nginx/www/jeedom/backup par défaut), de réinstaller Jeedom et
+/var/www/html/backup par défaut), de réinstaller Jeedom et
 de restaurer la sauvegarde. Vous pouvez aussi regarder pourquoi MySQL ne
 veut pas démarrer depuis une console SSH :
 
