@@ -13,7 +13,7 @@ if (!isConnect()) {
         <option value="gotodesign">{{Aller au design}}</option>
         <option value="log" class="scenarioOnly">{{Ajouter un log}}</option>
         <option value="message">{{Créer un message}}</option>
-        <option value="equipement">{{Activer/Désactiver Masquer/Afficher un équipement}}</option>
+        <option value="equipment">{{Activer/Désactiver Masquer/Afficher un équipement}}</option>
         <option value="ask">{{Faire une demande}}</option>
         <option value="jeedom_poweroff">{{Arrêter Jeedom}}</option>
         <option value="scenario_return" class="scenarioOnly">{{Retourner un texte/une donnée}}</option>
