@@ -480,7 +480,7 @@ class scenarioExpression {
 		return history::stateChanges($cmd_id, $_value, $startHist, date('Y-m-d H:i:s'));
 	}
 
-	public static function stateChangesBetween($_cmd_id, $_value, $_startDate, $_endDate) {
+	public static function stateChangesBetween($_cmd_id, $_value, $_startDate, $_endDate = null) {
 		if (!is_numeric(str_replace('#', '', $_cmd_id))) {
 			$cmd = cmd::byId(str_replace('#', '', cmd::humanReadableToCmd($_cmd_id)));
 		} else { $cmd = cmd::byId(str_replace('#', '', $_cmd_id));}
