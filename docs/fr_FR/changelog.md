@@ -4,6 +4,8 @@ Changelog
 3.2.1 
 =====
 
+-   JEED-365 : Suppression de "Commande d’information utilisateur" pour etre remplacé par des actions sur message. Permet de lancer plusieurs commande differentes, de lancer un scénario... Attention si vous aviez une "Commande d’information utilisateur" il faut la reconfigurer.
+
 -   Ajout d'une option permettant d'ouvrir facilement un accès pour le support (sur la page utilisateur et lors de l'ouverture d'un ticket)
 
 -   Correction d'un bug de droits suite à une restoration d'un backup

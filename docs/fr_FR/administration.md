@@ -599,10 +599,9 @@ Messages
     automatiquement un message dans le centre des messages (au moins
     vous êtes sûr de ne pas le manquer).
 
--   **Commande d’information utilisateur** : Permet de sélectionner une
-    ou plusieurs commandes (à séparer par des **&&** ) de type
-    **message** qui seront utilisées lors de l’émission de
-    nouveaux messages.
+-   **Action sur message** : Permet de faire une action lors de l'ajout d'un message dans le centre de message. Vous avez 2 tags pour ces actions : 
+        - #message# : message en question
+        - #plugin# : plugin qui a déclenché le message
 
 Alertes 
 -------

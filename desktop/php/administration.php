@@ -1148,16 +1148,12 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commande d'information utilisateur}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Action sur message}}</label>
 						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-							<div class="input-group">
-								<input type="text"  class="configKey form-control" data-l1key="emailAdmin" />
-								<span class="input-group-btn">
-									<a class="btn btn-default cursor" title="Rechercher une commande" id="bt_selectMailCmd"><i class="fa fa-list-alt"></i></a>
-								</span>
-							</div>
+							<a class="btn btn-success" id="bt_addActionOnMessage"><i class="fa fa-plus-circle"></i> {{Ajouter}}</a>
 						</div>
 					</div>
+					<div id="div_actionOnMessage"></div>
 				</fieldset>
 			</form>
 			<form class="form-horizontal">
