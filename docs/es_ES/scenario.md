@@ -109,8 +109,7 @@ notre scénario :
 -   **Multi lancement** : Cochez cette case si vous souhaitez que le
     scénario puisse être lancé plusieurs fois en même temps.
 
--   **Mode synchrone** : Attention, cela peut rendre le
-    système instable.
+-   **Mode synchrone** : Lance le scénario dans le thread courant au lieu d'un thread dédié. Ca permet d'augmenter la vitesse de lancement du scénario mais cela peut rendre le système instable.
 
 -   **Log** : Le type de log souhaité pour le scénario.
 
