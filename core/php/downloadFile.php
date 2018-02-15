@@ -23,7 +23,10 @@ try {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 	}
-	$pathfile = calculPath(urldecode(init('pathfile')));
+	$pathfile = realpath(calculPath(urldecode(init('pathfile'))));
+	if ($pathfile === false) {
+		throw new Exception(__('401 - Accès non autorisé', __FILE__));
+	}
 	if (strpos($pathfile, '.php') !== false) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
