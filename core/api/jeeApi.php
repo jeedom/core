@@ -34,7 +34,7 @@ if (isset($argv)) {
 	}
 }
 GLOBAL $_USER_GLOBAL;
-$_USER_GLOBAL == null;
+$_USER_GLOBAL = null;
 if (init('type') != '') {
 
 	try {
