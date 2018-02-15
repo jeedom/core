@@ -46,7 +46,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
     <table class="table table-condensed table-bordered">
       <thead>
         <tr>
-          <th>{{ID}}</th><th>{{Login}}</th><th>{{IP}}</th><th>{{Date}}</th><th>{{Actions}}</th>
+          <th style="width: 250px;">{{ID}}</th><th style="width: 250px;">{{Utilisateur}}</th><th style="width: 250px;">{{IP}}</th><th style="width: 250px;">{{Date}}</th><th>{{Actions}}</th>
         </tr>
       </thead>
       <tbody>
@@ -74,10 +74,10 @@ foreach ($sessions as $id => $session) {
     <table class="table table-bordered table-condensed">
       <thead>
         <tr>
-          <th>{{Identification}}</th>
-          <th>{{Utilisateur}}</th>
-          <th>{{IP}}</th>
-          <th>{{Date dernière utilisation}}</th>
+          <th style="width: 250px;">{{ID}}</th>
+          <th style="width: 250px;">{{Utilisateur}}</th>
+          <th style="width: 250px;">{{IP}}</th>
+          <th style="width: 250px;">{{Date}}</th>
           <th>{{Action}}</th>
         </tr>
       </thead>
