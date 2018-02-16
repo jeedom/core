@@ -528,9 +528,9 @@ class interactDef {
 				$synonymes[strtolower($values[0])] = explode(',', $values[1]);
 			}
 			foreach ($queries as $query) {
-				$synonymes = self::generateSynonymeVariante($query['query'], $synonymes);
-				if (count($synonymes) > 0) {
-					foreach ($synonymes as $synonyme) {
+				$_synonymes = self::generateSynonymeVariante($query['query'], $synonymes);
+				if (count($_synonymes) > 0) {
+					foreach ($_synonymes as $synonyme) {
 						$query_info = $query;
 						$query_info['query'] = $synonyme;
 						$return[$synonyme] = $query_info;
