@@ -372,7 +372,7 @@
         "Version": "Version",
         "Version Jeedom": "Jeedom Version",
         "Auteur": "Autor",
-        "License": "Lizenz",
+        "License": "License",
         "Log": "Log",
         "Sauvegarder": "Speichern",
         "Dépendances": "Abhängigkeiten",
@@ -889,7 +889,7 @@
         "Sélectionner un équipement": "Wählen Sie ein Gerät"
     },
     "core/js/log.class.js": {
-        "Reprendre": "Zusammenfassung",
+        "Reprendre": "Fortsetzen",
         "Pause": "Pause"
     },
     "core/js/jeedom.class.js": {
