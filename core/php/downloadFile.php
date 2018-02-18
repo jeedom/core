@@ -40,7 +40,7 @@ try {
 		}
 	}
 	if (!isConnect('admin')) {
-		$adminFiles = array('log', 'backup', '.sql', 'scenario');
+		$adminFiles = array('log', 'backup', '.sql', 'scenario', '.tar', '.gz');
 		foreach ($adminFiles as $adminFile) {
 			if (strpos($pathfile, $adminFile) !== false) {
 				throw new Exception(__('401 - Accès non autorisé', __FILE__));
