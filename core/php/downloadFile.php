@@ -32,7 +32,14 @@ try {
 	}
 	$rootPath = realpath(dirname(__FILE__) . '/../../');
 	if (strpos($pathfile, $rootPath) === false) {
-		throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		if (config::byKey('recordDir', 'camera') != '' && substr(config::byKey('recordDir', 'camera'), 0, 1) == '/') {
+			$cameraPath = realpath(config::byKey('recordDir', 'camera'));
+			if (strpos($pathfile, $cameraPath) === false) {
+				throw new Exception(__('401 - Accès non autorisé', __FILE__));
+			}
+		} else {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
 	}
 	if (strpos($pathfile, '*') === false) {
 		if (!file_exists($pathfile)) {
