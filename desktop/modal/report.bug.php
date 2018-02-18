@@ -39,7 +39,7 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
    <div class="panel-body">
     <div class="form-group">
         <label class="col-sm-2 control-label">{{Type}}</label>
-        <div class="col-sm-2">
+        <div class="col-sm-4">
             <select class="form-control ticketAttr" data-l1key="type">
                 <option value=''>{{Aucun}}</option>
                 <option value='support'>{{Assistance technique}}</option>
