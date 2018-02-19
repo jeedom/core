@@ -37,6 +37,17 @@
 });
 
 
+ $('.updateOption[data-l1key=force]').on('click',function(){
+    if($(this).value() == 1){
+        $('.updateOption[data-l1key="backup::before"]').value(0);
+        $('.updateOption[data-l1key="backup::before"]').attr('disabled','disabled');
+
+    }else{
+        $('.updateOption[data-l1key="backup::before"]').attr('disabled',false);
+    }
+});
+
+
  $('#bt_doUpdate').on('click', function () {
     $("#md_specifyUpdate").dialog('close');
     var options = $('#md_specifyUpdate').getValues('.updateOption')[0];
