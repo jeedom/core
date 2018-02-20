@@ -114,7 +114,7 @@ if ($market->getCertification() != 'Officiel') {
 	echo '<div class="alert alert-warning">{{Attention ce plugin n\'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée}}</div>';
 }
 $compatibilityHardware = $market->getHardwareCompatibility();
-if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && $compatibilityHardware[jeedom::getHardwareName()] != 1) {
+if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && isset($compatibilityHardware[jeedom::getHardwareName()]) && $compatibilityHardware[jeedom::getHardwareName()] != 1) {
 	echo '<div class="alert alert-danger">{{Attention ce plugin ne semble pas être compatible avec votre système}}</div>';
 }
 ?>
