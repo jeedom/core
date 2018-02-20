@@ -205,16 +205,18 @@ if ($market->getHardwareCompatibility('Jeedomboard') == 1) {
         <span><?php echo $market->getUpdateBy(); ?></span>
       </div>
       <div class='col-sm-2'>
-        <label class="control-label">{{Lien}}</label><br/>
-        <?php if ($market->getLink('video') != '' && $market->getLink('video') != 'null') {?>
-        <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('video'); ?>"><i class="fa fa-youtube"></i> Video</a><br/>
-        <?php }
+       <label class="control-label">{{Taille}}</label><br/>
+       <span><?php echo $market->getParameters('size'); ?></span><br/>
+       <label class="control-label">{{Lien}}</label><br/>
+       <?php if ($market->getLink('video') != '' && $market->getLink('video') != 'null') {?>
+       <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('video'); ?>"><i class="fa fa-youtube"></i> Video</a><br/>
+       <?php }
 ?>
-        <?php if ($market->getLink('forum') != '' && $market->getLink('forum') != 'null') {?>
-        <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('forum'); ?>"><i class="fa fa-users"></i> Forum</a><br/>
-        <?php }
+       <?php if ($market->getLink('forum') != '' && $market->getLink('forum') != 'null') {?>
+       <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('forum'); ?>"><i class="fa fa-users"></i> Forum</a><br/>
+       <?php }
 ?>
-      </div>
+     </div>
      <div class='col-sm-1'>
       <label class="control-label">{{Type}}</label><br/>
       <span class="marketAttr" data-l1key="type"></span>
@@ -252,9 +254,9 @@ if ($market->getLanguage('it_IT') == 1) {
 </div>
 
 <style>
-  .slick-prev:before, .slick-next:before {
-    color : #707070;
-  }
+.slick-prev:before, .slick-next:before {
+  color : #707070;
+}
 </style>
 <script>
 
