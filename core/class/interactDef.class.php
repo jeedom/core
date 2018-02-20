@@ -157,8 +157,8 @@ class interactDef {
 			preg_match_all("/#([0-9]*)#/", $interact->getActions('cmd'), $matches);
 			foreach ($matches[1] as $cmd_id) {
 				if (is_numeric($cmd_id)) {
-					if (!cmd::byId(str_replace('#', '', $actions['cmd']))) {
-						$return[] = array('detail' => 'Interaction ' . $interact->getName() . ' du groupe ' . $interact->getGroup(), 'help' => 'Action', 'who' => $actions['cmd']);
+					if (!cmd::byId(str_replace('#', '', $cmd_id))) {
+						$return[] = array('detail' => 'Interaction ' . $interact->getName() . ' du groupe ' . $interact->getGroup(), 'help' => 'Action', 'who' => '#' . $cmd_id . '#');
 					}
 				}
 			}
