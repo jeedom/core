@@ -68,8 +68,8 @@ class event {
 		}
 	}
 
-	public static function changes($_datetime, $_longPolling = null, $_plugin = null) {
-		$return = self::filterEvent(self::changesSince($_datetime), $_plugin);
+	public static function changes($_datetime, $_longPolling = null, $_filter = null) {
+		$return = self::filterEvent(self::changesSince($_datetime), $_filter);
 		if ($_longPolling === null || count($return['result']) > 0) {
 			return $return;
 		}
@@ -83,20 +83,20 @@ class event {
 				sleep(round($waitTime));
 			}
 			sleep(1);
-			$return = self::filterEvent(self::changesSince($_datetime), $_plugin);
+			$return = self::filterEvent(self::changesSince($_datetime), $_filter);
 			$i++;
 		}
 		return $return;
 	}
 
-	private static function filterEvent($_data = array(), $_plugin = null) {
-		if ($_plugin == null) {
+	private static function filterEvent($_data = array(), $_filter = null) {
+		if ($_filter == null) {
 			return $_data;
 		}
 		$return = array('datetime' => $_data['datetime'], 'result' => array());
 		$filters = cache::byKey('mobile::event')->getValue(array());
 		foreach ($_data['result'] as $value) {
-			if (isset($_plugin::$_listenEvents) && !in_array($value['name'], $_plugin::$_listenEvents)) {
+			if (isset($_filter::$_listenEvents) && !in_array($value['name'], $_filter::$_listenEvents)) {
 				continue;
 			}
 			if ($value['name'] == 'cmd::update' && !in_array($value['option']['cmd_id'], $filters)) {
