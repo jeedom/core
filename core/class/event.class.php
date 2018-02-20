@@ -93,15 +93,19 @@ class event {
 		if ($_plugin == null) {
 			return $_data;
 		}
-		$return = array();
+		$return = array('result');
 		$filters = cache::byKey('mobile::event')->getValue(array());
 		foreach ($_data as $value) {
+			if (!isset($value['name'])) {
+				$return['result'][] = $value;
+				continue;
+			}
 			if ($value['name'] != 'cmd::update') {
-				$return[] = $value;
+				$return['result'][] = $value;
 				continue;
 			}
 			if (in_array($value['option']['cmd_id'], $filters)) {
-				$return[] = $value;
+				$return['result'][] = $value;
 				continue;
 			}
 		}
