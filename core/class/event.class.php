@@ -93,11 +93,10 @@ class event {
 		if ($_plugin == null) {
 			return $_data;
 		}
-		$return = array('result');
+		$return = array('datetime' => $_data['datetime'], 'result' => array());
 		$filters = cache::byKey('mobile::event')->getValue(array());
-		foreach ($_data as $value) {
+		foreach ($_data['result'] as $value) {
 			if (!isset($value['name'])) {
-				$return['result'][] = $value;
 				continue;
 			}
 			if ($value['name'] != 'cmd::update') {
