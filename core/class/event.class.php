@@ -68,8 +68,8 @@ class event {
 		}
 	}
 
-	public static function changes($_datetime, $_longPolling = null) {
-		$return = self::changesSince($_datetime);
+	public static function changes($_datetime, $_longPolling = null, $_plugin = null) {
+		$return = self::filterEvent(self::changesSince($_datetime), $_plugin);
 		if ($_longPolling === null || count($return['result']) > 0) {
 			return $return;
 		}
@@ -83,8 +83,27 @@ class event {
 				sleep(round($waitTime));
 			}
 			sleep(1);
-			$return = self::changesSince($_datetime);
+			$return = self::filterEvent(self::changesSince($_datetime), $_plugin);
 			$i++;
+		}
+		return $return;
+	}
+
+	private static function filterEvent($_data = array(), $_plugin = null) {
+		if ($_plugin == null) {
+			return $_data;
+		}
+		$return = array();
+		$filters = cache::byKey('mobile::event')->getValue(array());
+		foreach ($_data as $value) {
+			if ($value['name'] != 'cmd::update') {
+				$return[] = $value;
+				continue;
+			}
+			if (in_array($value['option']['cmd_id'], $filters)) {
+				$return[] = $value;
+				continue;
+			}
 		}
 		return $return;
 	}

@@ -365,7 +365,11 @@ if (init('type') != '') {
 				if (isset($params['longPolling'])) {
 					$longPolling = $params['longPolling'];
 				}
-				$jsonrpc->makeSuccess(event::changes($params['datetime'], $longPolling));
+				$plugin = null;
+				if (isset($params['plugin'])) {
+					$plugin = $params['plugin'];
+				}
+				$jsonrpc->makeSuccess(event::changes($params['datetime'], $longPolling, $plugin));
 			}
 
 			/*             * ************************Plugin*************************** */
