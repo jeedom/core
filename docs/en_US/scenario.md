@@ -314,9 +314,9 @@ comparaisons dans les conditions :
 
 -   == : égal à,
 
--   > : strictement supérieur à,
+-   \> : strictement supérieur à,
 
--   >= : supérieur ou égal à,
+-   \>= : supérieur ou égal à,
 
 -   < : strictement inférieur à,
 
