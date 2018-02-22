@@ -1317,12 +1317,12 @@ class cmd {
 	}
 
 	public function checkCmdAlert($_value) {
-		if ($this->getConfiguration('jeedomCheckCmdOperator') == '' || $this->getConfiguration('jeedomCheckCmdTest') == '' || $this->getConfiguration('jeedomCheckCmdTime') == '' || is_nan($this->getConfiguration('jeedomCheckCmdTime'))) {
+		if ($this->getConfiguration('jeedomCheckCmdOperator') == '' || $this->getConfiguration('jeedomCheckCmdTest') == '' || is_nan($this->getConfiguration('jeedomCheckCmdTime', 0))) {
 			return;
 		}
 		$check = jeedom::evaluateExpression($_value . $this->getConfiguration('jeedomCheckCmdOperator') . $this->getConfiguration('jeedomCheckCmdTest'));
 		if ($check == 1 || $check || $check == '1') {
-			if ($this->getConfiguration('jeedomCheckCmdTime') == 0) {
+			if ($this->getConfiguration('jeedomCheckCmdTime', 0) == 0) {
 				$this->executeAlertCmdAction();
 				return;
 			}
