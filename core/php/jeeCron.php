@@ -44,7 +44,6 @@ if (init('cron_id') != '') {
 	$datetimeStart = strtotime('now');
 	$cron = cron::byId(init('cron_id'));
 	if (!is_object($cron)) {
-		echo 'Cron non trouvé';
 		die();
 	}
 
