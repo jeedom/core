@@ -93,8 +93,11 @@ class event {
 		if ($_filter == null) {
 			return $_data;
 		}
+		$filters = cache::byKey($_filter . '::event')->getValue(array());
+		if (count($filters) == 0) {
+			return $_data;
+		}
 		$return = array('datetime' => $_data['datetime'], 'result' => array());
-		$filters = cache::byKey('mobile::event')->getValue(array());
 		foreach ($_data['result'] as $value) {
 			if (isset($_filter::$_listenEvents) && !in_array($value['name'], $_filter::$_listenEvents)) {
 				continue;
