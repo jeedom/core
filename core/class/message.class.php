@@ -161,7 +161,7 @@ class message {
 				'#plugin#' => $this->getPlugin(),
 				'#message#' => $this->getMessage(),
 			);
-			$actions = json_decode(config::byKey('actionOnMessage'), true);
+			$actions = config::byKey('actionOnMessage');
 			if (is_array($actions) && count($actions) > 0) {
 				foreach ($actions as $action) {
 					$options = array();

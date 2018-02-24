@@ -790,8 +790,8 @@ class scenarioExpression {
 		}
 		return $date->format('Gi');
 	}
-	
-	public static function time_between($_time,$_start,$_end) {
+
+	public static function time_between($_time, $_start, $_end) {
 		$_time = self::setTags($_time);
 		$_start = self::setTags($_start);
 		$_end = self::setTags($_end);
