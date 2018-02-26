@@ -94,7 +94,7 @@ class scenarioSubElement {
 	}
 
 	public function getExpression() {
-		if (count($this->_expression) > 0) {
+		if (is_array($this->_expression) && count($this->_expression) > 0) {
 			return $this->_expression;
 		}
 		$this->_expression = scenarioExpression::byscenarioSubElementId($this->getId());

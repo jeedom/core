@@ -276,7 +276,7 @@ class scenarioElement {
 			$this->_subelement[$_type] = scenarioSubElement::byScenarioElementId($this->getId(), $_type);
 			return $this->_subelement[$_type];
 		} else {
-			if (count($this->_subelement[-1]) > 0) {
+			if (isset($this->_subelement[-1]) && is_array($this->_subelement[-1]) && count($this->_subelement[-1]) > 0) {
 				return $this->_subelement[-1];
 			}
 			$this->_subelement[-1] = scenarioSubElement::byScenarioElementId($this->getId(), $_type);
