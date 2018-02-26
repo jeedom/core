@@ -105,7 +105,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
       }else{
         $('#span_plugin_install_date').html('');
       }
-      $('#span_plugin_licence').html(data.licence);
+      $('#span_plugin_license').html(data.license);
       if($.trim(data.installation) == '' || $.trim(data.installation) == 'Aucune'){
         $('#span_plugin_installation').closest('.panel').hide();
       }else{
@@ -383,7 +383,7 @@ if (sel_plugin_id != -1) {
   } else {
     $('#ul_plugin .li_plugin:first').click();
   }
-} 
+}
 
 $('#bt_returnToThumbnailDisplay').on('click',function(){
   $('#div_resumePluginList').show();

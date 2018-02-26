@@ -110,36 +110,36 @@ Para el trabajo Jeedom, necesita una plataforma Linux con los derechos
 raíz o un sistema típico ventana acoplable. Por lo que no funciona en una
 plataforma Android puro.
 
-Je ne peux mettre à jour certain plugin "Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets)..." ? 
+No puedo actualizar algún plugin "Error al descargar el archivo. Vuelva a intentarlo más tarde (tamaño menos de 100 bytes)..."? 
 ====================================================
 
-Cela peut etre du à plusieurs chose, il faut : 
+Esto puede ser debido a varias cosas, es necesario : 
 
-- Vérifier que votre Jeedom est toujours connecté au market (dans la page d'administration de jeedom, partie mise à jour vous avez un bouton de test)
-- Vérifier que le compte market à bien acheté le plugin en question
-- Vérifier que vous avez bien de la place sur Jeedom (la page santé vous l'indiquera)
-- Vérifier que votre version de Jeedom est bien compatible avec le plugin
+- Comprueba que tu Jeedom sigue conectado al market (en la página de administración de jeedom, Centro de actualizaciónes, tienes un botón de prueba)
+- Verifique que la cuenta de mercado ha adquirido el plugin en cuestión.
+- Comprueba que tienes espacio en Jeedom (la página de salud te lo dirá)
+- Comprueba que tu versión de Jeedom es compatible con el plugin
 
-J’ai une page blanche 
-=====================
+Tengo una página en blanco 
+===========================
 
-Il faut se connecter en SSH à Jeedom et lancer le script
-d’auto-diagnostic :
+Necesitas conectar por SSH a Jeedom y ejecutar el script
+de autodiagnóstico :
 
 ``` {.bash}
 sudo chmod +x /var/www/html/health.sh;sudo /var/www/html/health.sh
 ```
 
-S’il y a un souci, le script essaiera de le corriger. S’il n’y arrive
-pas, il vous l’indiquera.
+Si hay un problema, el script intentará solucionarlo. Si no puede hacerlo
+el te lo informará.
 
-Vous pouvez aussi regarder le log /var/www/html/log/http.error. Très
-souvent, celui-ci indique le souci.
+También puede ver el error en el registro /var/www/html/log/http.error. Muy
+a menudo indica el problema.
 
-J’ai un problème d’identifiant BDD 
-==================================
+Tengo un problema con el identificador BDD 
+===========================================
 
-Il faut réinitialiser ceux-ci :
+Estos deben ser reseteados :
 
 ``` {.bash}
 bdd_password=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
@@ -152,12 +152,12 @@ sudo sed -i -e "s/#PASSWORD#/${bdd_password}/g" core/config/common.config.php
 sudo chown www-data:www-data core/config/common.config.php
 ```
 
-J’ai des {{…​}} partout 
-=======================
+Tengo {{…​}} por todas partes 
+==============================
 
-La cause la plus fréquente est l’utilisation d’un plugin en version beta
-et Jeedom en stable, ou l’inverse. Pour avoir le détail de l’erreur, il
-faut regarder le log http.error (dans /var/www/html/log).
+La causa más frecuente es el uso de un plugin en versión beta.
+y Jeedom en estable, o viceversa. Para obtener los detalles del error,
+ver el registro de http.error. (en /var/www/html/log).
 
 Lors d’une commande j’ai une roue qui tourne sans s’arrêter 
 ===========================================================

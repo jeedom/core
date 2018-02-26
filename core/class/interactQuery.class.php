@@ -841,6 +841,9 @@ class interactQuery {
 				}
 			}
 		}
+		if ($interactDef->getOptions('waitBeforeReply') != '' && $interactDef->getOptions('waitBeforeReply') != 0 && is_numeric($interactDef->getOptions('waitBeforeReply'))) {
+			sleep($interactDef->getOptions('waitBeforeReply'));
+		}
 		$reply = jeedom::evaluateExpression($reply);
 		$replace['#valeur#'] = trim($replace['#valeur#']);
 		$replace['#profile#'] = isset($_parameters['profile']) ? $_parameters['profile'] : '';

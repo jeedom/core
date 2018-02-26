@@ -21,7 +21,7 @@
     closeText: '',
     autoOpen: false,
     modal: true,
-    height: 450,
+    height: 500,
     width: 600,
     open: function () {
         $("body").css({overflow: 'hidden'});
@@ -34,6 +34,17 @@
  $('#bt_updateJeedom').on('click', function () {
   $('#md_specifyUpdate').dialog({title: "{{Options}}"});
   $("#md_specifyUpdate").dialog('open');
+});
+
+
+ $('.updateOption[data-l1key=force]').on('click',function(){
+    if($(this).value() == 1){
+        $('.updateOption[data-l1key="backup::before"]').value(0);
+        $('.updateOption[data-l1key="backup::before"]').attr('disabled','disabled');
+
+    }else{
+        $('.updateOption[data-l1key="backup::before"]').attr('disabled',false);
+    }
 });
 
 
@@ -217,15 +228,17 @@ tr += '<td style="width:180px;cursor:default;">';
 tr += '<input type="checkbox" class="updateAttr" data-l1key="configuration" data-l2key="doNotUpdate"><span style="font-size:0.9em;">{{Ne pas mettre à jour}}</span>';
 tr += '</td>';
 tr += '<td>';
-if (_update.status == 'update') {
-    tr += '<a class="btn btn-info btn-xs update" style="margin-bottom : 5px;" title="{{Mettre à jour}}"><i class="fa fa-refresh"></i> {{Mettre à jour}}</a> ';
-}else if (_update.type != 'core') {
-    tr += '<a class="btn btn-info btn-xs update" style="margin-bottom : 5px;" title="{{Re-installer}}"><i class="fa fa-refresh"></i> {{Reinstaller}}</a> ';
+if (_update.type != 'core') {   
+    if (_update.status == 'update') {
+        tr += '<a class="btn btn-info btn-xs update" style="margin-bottom : 5px;" title="{{Mettre à jour}}"><i class="fa fa-refresh"></i> {{Mettre à jour}}</a> ';
+    }else if (_update.type != 'core') {
+        tr += '<a class="btn btn-info btn-xs update" style="margin-bottom : 5px;" title="{{Re-installer}}"><i class="fa fa-refresh"></i> {{Reinstaller}}</a> ';
+    }
 }
 if (_update.type != 'core') {       
-   if (isset(_update.plugin) && isset(_update.plugin.changelog) && _update.plugin.changelog != '') {     
-       tr += '<a class="btn btn-default btn-xs cursor" target="_blank" href="'+_update.plugin.changelog+'" style="margin-bottom : 5px;"><i class="fa fa-book"></i> {{Changelog}}</a>';       
-   }     
+ if (isset(_update.plugin) && isset(_update.plugin.changelog) && _update.plugin.changelog != '') {     
+     tr += '<a class="btn btn-default btn-xs cursor" target="_blank" href="'+_update.plugin.changelog+'" style="margin-bottom : 5px;"><i class="fa fa-book"></i> {{Changelog}}</a>';       
+ }     
 }else{        
   tr += '<a class="btn btn-default btn-xs" href="https://jeedom.github.io/core/fr_FR/changelog" target="_blank" style="margin-bottom : 5px;"><i class="fa fa-book"></i> {{Changelog}}</a>';      
 }
@@ -252,8 +265,8 @@ $('#bt_saveUpdate').on('click',function(){
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {
-           $('#div_alert').showAlert({message: '{{Sauvegarde effectuée}}', level: 'success'});
-           printUpdate();
-       }
-   });
+         $('#div_alert').showAlert({message: '{{Sauvegarde effectuée}}', level: 'success'});
+         printUpdate();
+     }
+ });
 });

@@ -250,7 +250,7 @@ jeedom.user.removeBanIp = function(_params) {
 };
 
 jeedom.user.removeRegisterDevice = function(_params) {
-    var paramsRequired = ['key'];
+    var paramsRequired = [];
     var paramsSpecifics = {};
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired);

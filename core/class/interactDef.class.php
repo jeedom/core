@@ -24,7 +24,6 @@ class interactDef {
 
 	private $id;
 	private $name;
-	private $position;
 	private $filtres;
 	private $query;
 	private $reply;
@@ -51,18 +50,18 @@ class interactDef {
 		if ($_group === '') {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM interactDef
-        ORDER BY position';
+        ORDER BY name,query';
 		} else if ($_group === null) {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM interactDef
         WHERE (`group` IS NULL OR `group` = "")
-        ORDER BY position';
+        ORDER BY name,query';
 		} else {
 			$values['group'] = $_group;
 			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM interactDef
         WHERE `group`=:group
-        ORDER BY position';
+        ORDER BY name,query';
 		}
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
@@ -154,19 +153,23 @@ class interactDef {
 	public static function deadCmd() {
 		$return = array();
 		foreach (interactDef::all() as $interact) {
-			preg_match_all("/#([0-9]*)#/", $interact->getActions('cmd'), $matches);
-			foreach ($matches[1] as $cmd_id) {
-				if (is_numeric($cmd_id)) {
-					if (!cmd::byId(str_replace('#', '', $actions['cmd']))) {
-						$return[] = array('detail' => 'Interaction ' . $interact->getName() . ' du groupe ' . $interact->getGroup(), 'help' => 'Action', 'who' => $actions['cmd']);
+			if (is_string($interact->getActions('cmd')) && $interact->getActions('cmd') != '') {
+				preg_match_all("/#([0-9]*)#/", $interact->getActions('cmd'), $matches);
+				foreach ($matches[1] as $cmd_id) {
+					if (is_numeric($cmd_id)) {
+						if (!cmd::byId(str_replace('#', '', $cmd_id))) {
+							$return[] = array('detail' => 'Interaction ' . $interact->getName() . ' du groupe ' . $interact->getGroup(), 'help' => 'Action', 'who' => '#' . $cmd_id . '#');
+						}
 					}
 				}
 			}
-			preg_match_all("/#([0-9]*)#/", $interact->getReply(), $matches);
-			foreach ($matches[1] as $cmd_id) {
-				if (is_numeric($cmd_id)) {
-					if (!cmd::byId(str_replace('#', '', $cmd_id))) {
-						$return[] = array('detail' => 'Interaction ' . $interact->getName() . ' du groupe ' . $interact->getGroup(), 'help' => 'Réponse', 'who' => '#' . $cmd_id . '#');
+			if (is_string($interact->getReply()) && $interact->getReply() != '') {
+				preg_match_all("/#([0-9]*)#/", $interact->getReply(), $matches);
+				foreach ($matches[1] as $cmd_id) {
+					if (is_numeric($cmd_id)) {
+						if (!cmd::byId(str_replace('#', '', $cmd_id))) {
+							$return[] = array('detail' => 'Interaction ' . $interact->getName() . ' du groupe ' . $interact->getGroup(), 'help' => 'Réponse', 'who' => '#' . $cmd_id . '#');
+						}
 					}
 				}
 			}
@@ -651,15 +654,6 @@ class interactDef {
 
 	public function setFiltres($_key, $_value) {
 		$this->filtres = utils::setJsonAttr($this->filtres, $_key, $_value);
-		return $this;
-	}
-
-	public function getPosition() {
-		return $this->position;
-	}
-
-	public function setPosition($position) {
-		$this->position = $position;
 		return $this;
 	}
 

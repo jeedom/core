@@ -114,19 +114,29 @@ class cmd {
 		return array_merge($result1, $result2);
 	}
 
-	public static function byEqLogicId($_eqLogic_id, $_type = null, $_visible = null, $_eqLogic = null) {
-		$values = array(
-			'eqLogic_id' => $_eqLogic_id,
-		);
-		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+	public static function byEqLogicId($_eqLogic_id, $_type = null, $_visible = null, $_eqLogic = null, $_has_generic_type = null) {
+		$values = array();
+		if (is_array($_eqLogic_id)) {
+			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+		FROM cmd
+		WHERE eqLogic_id IN (' . implode(',', $_eqLogic_id) . ')';
+		} else {
+			$values = array(
+				'eqLogic_id' => $_eqLogic_id,
+			);
+			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM cmd
 		WHERE eqLogic_id=:eqLogic_id';
+		}
 		if ($_type !== null) {
 			$values['type'] = $_type;
 			$sql .= ' AND `type`=:type';
 		}
 		if ($_visible !== null) {
 			$sql .= ' AND `isVisible`=1';
+		}
+		if ($_has_generic_type) {
+			$sql .= ' AND `generic_type` IS NOT NULL';
 		}
 		$sql .= ' ORDER BY `order`,`name`';
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__), $_eqLogic);
@@ -804,6 +814,7 @@ class cmd {
 		}
 		if ($this->getDisplay('generic_type') !== '' && $this->getGeneric_type() == '') {
 			$this->setGeneric_type($this->getDisplay('generic_type'));
+			$this->setDisplay('generic_type', '');
 		}
 		DB::save($this);
 		if ($this->_needRefreshWidget) {
@@ -1306,12 +1317,12 @@ class cmd {
 	}
 
 	public function checkCmdAlert($_value) {
-		if ($this->getConfiguration('jeedomCheckCmdOperator') == '' || $this->getConfiguration('jeedomCheckCmdTest') == '' || $this->getConfiguration('jeedomCheckCmdTime') == '' || is_nan($this->getConfiguration('jeedomCheckCmdTime'))) {
+		if ($this->getConfiguration('jeedomCheckCmdOperator') == '' || $this->getConfiguration('jeedomCheckCmdTest') == '' || is_nan($this->getConfiguration('jeedomCheckCmdTime', 0))) {
 			return;
 		}
 		$check = jeedom::evaluateExpression($_value . $this->getConfiguration('jeedomCheckCmdOperator') . $this->getConfiguration('jeedomCheckCmdTest'));
 		if ($check == 1 || $check || $check == '1') {
-			if ($this->getConfiguration('jeedomCheckCmdTime') == 0) {
+			if ($this->getConfiguration('jeedomCheckCmdTime', 0) == 0) {
 				$this->executeAlertCmdAction();
 				return;
 			}

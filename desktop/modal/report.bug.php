@@ -24,7 +24,7 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
  <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-info"></i> {{Etape 2 : Choix du type de demande}}</h3></div>
  <div class="panel-body">
    <strong>{{Assistance technique}}</strong> : {{Rédigez votre question à l'attention de notre service Technique qui y répondra dans les meilleurs délais.}}<br/><br/>
-   <strong>{{Bug}}</strong> : {{Vous pouvez déclarer un bug qui sera publié sur notre Bug Tracker public (<strong>ATTENTION</strong> votre message sera public, il pourra être supprimé s'il ne s'agit pas d'un bug,  vous ne recevrez pas d'assistance technique suite à cette déclaration)}}<br/><br/>
+   <strong>{{Rapport}}</strong> : {{Vous pouvez déclarer un bug qui sera publié sur notre Bug Tracker public (<strong>ATTENTION</strong> votre message sera public, il pourra être supprimé s'il ne s'agit pas d'un bug,  vous ne recevrez pas d'assistance technique suite à cette déclaration)}}<br/><br/>
    <strong>{{Demande d'amélioration}}</strong> : {{Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre feuille de route.}}<br/><br/>
 
    <center>
@@ -39,11 +39,11 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
    <div class="panel-body">
     <div class="form-group">
         <label class="col-sm-2 control-label">{{Type}}</label>
-        <div class="col-sm-2">
+        <div class="col-sm-4">
             <select class="form-control ticketAttr" data-l1key="type">
                 <option value=''>{{Aucun}}</option>
-                <option value='support'>{{Support}}</option>
-                <option value='Bug'>{{Bug}}</option>
+                <option value='support'>{{Assistance technique}}</option>
+                <option value='Bug'>{{Rapport}}</option>
                 <option value='Amélioration'>{{Demande d'amélioration}}</option>
             </select>
         </div>

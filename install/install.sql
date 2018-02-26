@@ -355,7 +355,6 @@ CREATE TABLE IF NOT EXISTS `interactDef` (
   `person` VARCHAR(255) NULL,
   `options` TEXT NULL,
   `filtres` TEXT NULL,
-  `position` INT NULL,
   `group` VARCHAR(127) NULL DEFAULT NULL,
   `actions` TEXT NULL,
   PRIMARY KEY (`id`))

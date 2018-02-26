@@ -188,6 +188,21 @@ try {
 	}
 
 	if (init('action') == 'removeRegisterDevice') {
+		if (init('key') == '' && init('user_id') == '') {
+			if (!isConnect('admin')) {
+				throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
+			}
+			foreach (user::all() as $user) {
+				if ($user->getId() == $_SESSION['user']->getId()) {
+					$_SESSION['user']->setOptions('registerDevice', array());
+					$_SESSION['user']->save();
+				} else {
+					$user->setOptions('registerDevice', array());
+					$user->save();
+				}
+			}
+			ajax::success();
+		}
 		if (init('user_id') != '') {
 			if (!isConnect('admin')) {
 				throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);

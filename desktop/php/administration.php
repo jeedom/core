@@ -334,7 +334,7 @@ if (init('rescue', 0) == 0) {
 							<a class="btn btn-danger" href="index.php?v=d&p=system"><i class="fa fa-exclamation-triangle"></i> {{Lancer}}</a>
 						</div>
 					</div>
-					<legend><i class="fa fa-indent"></i> {{Editeur de fichier}}</legend>
+					<legend><i class="fa fa-indent"></i> {{Editeur de fichiers}}</legend>
 					<div class="alert alert-danger">{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à Jeedom. L'équipe Jeedom se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Editeur}}</label>

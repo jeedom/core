@@ -86,6 +86,7 @@ class repo_market {
 	private $language;
 	private $private;
 	private $updateBy;
+	private $parameters;
 	private $hardwareCompatibility;
 	private $nbInstall;
 	private $allowVersion = array();
@@ -619,6 +620,11 @@ class repo_market {
 		}
 		$market->setIsAuthor($_arrayMarket['isAuthor']);
 
+		if (isset($_arrayMarket['parameters']) && is_array($_arrayMarket['parameters'])) {
+			foreach ($_arrayMarket['parameters'] as $key => $value) {
+				$market->setParameters($key, $value);
+			}
+		}
 		return $market;
 	}
 
@@ -1138,6 +1144,15 @@ class repo_market {
 
 	public function setHardwareCompatibility($_key, $_value) {
 		$this->hardwareCompatibility = utils::setJsonAttr($this->hardwareCompatibility, $_key, $_value);
+		return $this;
+	}
+
+	public function getParameters($_key = '', $_default = '') {
+		return utils::getJsonAttr($this->parameters, $_key, $_default);
+	}
+
+	public function setParameters($_key, $_value) {
+		$this->parameters = utils::setJsonAttr($this->parameters, $_key, $_value);
 		return $this;
 	}
 
