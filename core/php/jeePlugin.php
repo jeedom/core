@@ -36,7 +36,7 @@ if (isset($argv)) {
 	}
 }
 try {
-	set_time_limit(config::byKey('maxExecTimeScript', 10));
+	set_time_limit(config::byKey('maxExecTimeScript', 'core', 10));
 
 	$plugin_id = init('plugin_id');
 	if ($plugin_id == '') {

@@ -588,7 +588,7 @@ class plugin {
 					return;
 				}
 				if ($deamon_info['launchable'] == 'ok' && $deamon_info['state'] == 'nok' && method_exists($plugin_id, 'deamon_start')) {
-					$inprogress = cache::bykey('deamonStart' . $this->getId() . 'inprogress');
+					$inprogress = cache::byKey('deamonStart' . $this->getId() . 'inprogress');
 					$info = $inprogress->getValue(array('state' => 0, 'datetime' => strtotime('now')));
 					if ($info['state'] == 1 && (strtotime('now') - 45) <= $info['datetime']) {
 						throw new Exception(__('Vous devez attendre au moins 45 secondes entre deux lancements du démon', __FILE__));
