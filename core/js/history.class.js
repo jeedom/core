@@ -459,8 +459,6 @@ jeedom.history.drawChart = function (_params) {
 });
 }
 
-
-
 jeedom.history.generatePlotBand = function (_startTime, _endTime) {
     var plotBands = [];
     if((_endTime - _startTime) > (7* 86400000)){
