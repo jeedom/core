@@ -312,4 +312,3 @@ $JEEDOM_INTERNAL_CONFIG = array(
 		),
 	),
 );
- 
