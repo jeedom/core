@@ -621,7 +621,7 @@ foreach ($repos as $key => $value) {
 	if ($configs[$key . '::enable'] == 0) {
 		continue;
 	}
-	echo '<legend>{{Proxy}} ' . $value['name'] . '</legend>';
+	echo '<legend>{{DNS}} ' . $value['name'] . '</legend>';
 	if ($configs['dns::token'] == '') {
 		echo '<div class="alert alert-warning">{{Attention : cette fonctionnalité n\'est pas disponible dans le service pack community (voir votre service pack sur votre page profil sur le market)}}</div>';
 		continue;
