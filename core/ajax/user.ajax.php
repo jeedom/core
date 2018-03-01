@@ -239,14 +239,16 @@ try {
 		$sessions = $cache->getValue(array());
 		if (isset($sessions[init('id')])) {
 			$user = user::byId($sessions[init('id')]['user_id']);
-			$registerDevice = $user->getOptions('registerDevice', array());
-			foreach ($user->getOptions('registerDevice', array()) as $key => $value) {
-				if ($value['session_id'] == init('id')) {
-					unset($registerDevice[$key]);
+			if (is_object($user)) {
+				$registerDevice = $user->getOptions('registerDevice', array());
+				foreach ($user->getOptions('registerDevice', array()) as $key => $value) {
+					if ($value['session_id'] == init('id')) {
+						unset($registerDevice[$key]);
+					}
 				}
+				$user->setOptions('registerDevice', $registerDevice);
+				$user->save();
 			}
-			$user->setOptions('registerDevice', $registerDevice);
-			$user->save();
 		}
 		ajax::success();
 	}

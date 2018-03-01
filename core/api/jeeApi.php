@@ -281,13 +281,43 @@ try {
 	if ($jsonrpc->getMethod() == 'ping') {
 		$jsonrpc->makeSuccess('pong');
 	}
+	if (isset($params['session']) && $params['session']) {
+		ini_set('session.gc_maxlifetime', 24 * 3600);
+		ini_set('session.use_cookies', 1);
+		ini_set('session.cookie_httponly', 1);
+		if (isset($params['sess_id']) && $params['sess_id'] != '') {
+			session_id($params['sess_id']);
+		}
+		@session_start();
+		$cache = cache::byKey('current_sessions');
+		$sessions = $cache->getValue(array());
+		if (!isset($sessions[session_id()])) {
+			$sessions[session_id()] = array();
+		}
 
-	if (!isset($params['apikey']) && !isset($params['api'])) {
-		throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
+		$sessions[session_id()]['datetime'] = date('Y-m-d H:i:s');
+		$sessions[session_id()]['ip'] = getClientIp();
+		cache::set('current_sessions', $sessions);
+		@session_write_close();
+		$jsonrpc->setAdditionnalParams(array('sess_id' => session_id()));
+		if (isset($_SESSION['user']) && is_object($_SESSION['user'])) {
+			$_USER_GLOBAL = $_SESSION['user'];
+		}
 	}
 
-	if ((isset($params['apikey']) && !jeedom::apiAccess($params['apikey'])) || (isset($params['api']) && !jeedom::apiAccess($params['api']))) {
-		throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
+	if (!is_object($_USER_GLOBAL)) {
+		if (!isset($params['apikey']) && !isset($params['api'])) {
+			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
+		}
+
+		if ((isset($params['apikey']) && !jeedom::apiAccess($params['apikey'])) || (isset($params['api']) && !jeedom::apiAccess($params['api']))) {
+			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
+		}
+		if (isset($params['session']) && $params['session']) {
+			@session_start();
+			$_SESSION['user'] = $_USER_GLOBAL;
+			@session_write_close();
+		}
 	}
 
 	/*             * ************************config*************************** */
