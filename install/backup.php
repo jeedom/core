@@ -123,6 +123,10 @@ try {
 		config::byKey('backup::path'),
 	);
 
+	if (config::byKey('recordDir', 'camera') != '') {
+		$excludes[] = config::byKey('recordDir', 'camera');
+	}
+
 	$exclude = '';
 	foreach ($excludes as $folder) {
 		$exclude .= ' --exclude="' . $folder . '"';
