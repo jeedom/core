@@ -1,55 +1,55 @@
-Aquí están la mayoría de las opciones de configuración.
-Aunque numerosos, que son pre-configurados por defecto.
+Aquí es donde se encuentran la mayoría de los parámetros de configuración.
+Aunque muchos de ellos están preconfigurados por defecto
 
-La página es accesible ** ** Administración → Configuración.
+La página es accesible desde **Administración → Configuración**.
 
-general
+General
 =======
 
-En esta ficha incluir información general sobre Jeedom:
+En esta pestaña encontrará información general sobre Jeedom :
 
--   **Nombre de su Jeedom**: Identifica el Jeedom,
+-   **Nombre de su Jeedom ** : Te permite identificar su Jeedom,
     particularmente en el mercado. Puede ser reutilizado en los escenarios
     o para identificar una copia de seguridad.
 
--   ** ** sistema: Tipo de material que se está ejecutando el sistema en el que
-    Jeedom sus vueltas.
+-   **Sstema** : Tipo de hardware en el que se instala el sistema donde
+    tu Jeedom está ejecutandose.
 
--   ** ** Instalación llaves: Las llaves de hardware en el Jeedom
-    el mercado. Si su Jeedom no aparece en la lista de su
+-   **Clave de instalación** : Clave de hardware de su Jeedom sobre
+    el mercado. Si su Jeedom no aparece en la lista de sus
     Jeedom en el mercado, es recomendable hacer clic en el botón
-    Restablecer ** **.
+    **Restablecer a 0**.
 
--   ** ** Idioma: Idioma utilizado en su Jeedom.
+-   **Idioma** : Idioma utilizado en su Jeedom.
 
--   ** ** Generar traducciones: Genera traducciones
+-   **Generar traducciones** : Genera traducciones
     cuidado, puede ralentizar el sistema. opción especialmente útil
     para los desarrolladores.
 
--   **sesiones de Vida (tiempo)**: sesiones de por vida
-    PHP, no se debe tocar este parámetro.
+-   **Duración de las sesiones (hora/s) **: Duración de las sesiones
+    PHP, no se recomienda tocar este parámetro.
 
--   ** ** Fecha y hora: Elija su zona horaria. Puede
-    **clic forzar la sincronización de tiempo para restaurar**
-    un mal tiempo que aparece en la parte superior derecha.
+-   **Fecha y hora** : Elija su zona horaria. Puede
+    hacer clic en **Sincronización forzada de la hora** para restablecer
+    una hora incorrecta, mostrada arriba a la derecha.
 
--   ** ** Tiempo de servidor opcionales: Especifica el servidor de tiempo debe
-    ser utilizado si hace clic en la sincronización Forzar **
-    ** tiempo. (Para ser reservado para expertos)
+-   **Servidor de Tiempo Opcional** : Indique qué servidor de tiempo usar
+    para ser utilizado si hace clic en **Sincronización forzada de
+    la hora**. (sólo para expertos)
 
--   ** ** Saltar tiempo de verificación: no dice Jeedom
+-   **Ignorar la verificación horaria** : le dice a Jeedom que no debe
     comprobar si el tiempo es coherente entre sí mismo y el sistema de
-    la que gira. Puede ser útil, por ejemplo, si se conecta
-    No Jeedom Internet y que no tiene batería RTC en
-    material utilizado.
+    donde se ejecuta Puede ser útil, por ejemplo, si se conecta
+    Jeedom Internet o no tiene batería RTC en el 
+    hardware utilizado.
 
 API
 ===
 
-Aquí puede encontrar la lista de las diferentes clave de API disponibles
-su Jeedom. Básico, el núcleo tiene dos clave de API:
+Aquí encontrará una lista de las diferentes claves API disponibles en
+su Jeedom. Básicamente, el núcleo tiene dos claves API:
 
--   en general: tanto como sea posible, evitar el uso de ella,
+-   una general: en la medida de lo posible, evitar su utilización,
 
 -   y otro para los profesionales utilizan para gestionar
     Parque. Puede estar vacío.
