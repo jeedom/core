@@ -646,61 +646,61 @@ Les commandes spécifiques
 
 En plus des commandes domotiques vous avez accès aux actions suivantes :
 
--   **Pause** : Pause de x seconde(s).
+-   **Pause** (sleep) : Pause de x seconde(s).
 
--   **variable** : Création/modification d’une variable ou de la valeur
+-   **variable** (variable) : Création/modification d’une variable ou de la valeur
     d’une variable.
 
--   **Scénario** : Permet de contrôler des scénarios. La partie tags
+-   **Scénario** (scenario) : Permet de contrôler des scénarios. La partie tags
     permet d’envoyer des tags au scénario, ex : montag=2 (attention il
     ne faut utiliser que des lettre de a à z. Pas de majuscule, pas
     d’accent et pas de caractères spéciaux). On récupere le tag dans le
     scénario cible avec la fonction tag(montag).
 
--   **stop** : Arrête le scénario.
+-   **Stop** (stop) : Arrête le scénario.
 
--   **Attendre** : Attend jusqu’à ce que la condition soit valide
+-   **Attendre** (wait) : Attend jusqu’à ce que la condition soit valide
     (maximum 2h), le timeout est en seconde(s).
 
--   **Aller au design** : Change le design affiché sur tous les
+-   **Aller au design** (gotodesign) : Change le design affiché sur tous les
     navigateurs par le design demandé.
 
--   **Ajouter un log** : Permet de rajouter un message dans les logs.
+-   **Ajouter un log** (log) : Permet de rajouter un message dans les logs.
 
--   **Créer un message** : Permet d’ajouter un message dans le centre
+-   **Créer un message** (message) : Permet d’ajouter un message dans le centre
     de message.
 
--   **Activer/Désactiver Masquer/afficher un équipement** : Permet de
+-   **Activer/Désactiver Masquer/afficher un équipement** (equipment) : Permet de
     modifier les propriétés d’un équipement
     visible/invisible, actif/inactif.
 
--   **Faire une demande** : Permet d’indiquer à Jeedom qu’il faut poser
+-   **Faire une demande** (ask) : Permet d’indiquer à Jeedom qu’il faut poser
     une question à l’utilisateur. La réponse est stockée dans une
     variable, il suffit ensuite de tester sa valeur. Pour le moment
     seuls les plugins sms et slack sont compatibles. Attention, cette
     fonction est bloquante. Tant qu’il n’y a pas de réponse ou que le
     timeout n’est pas atteint le scénario attend.
 
--   **Arrêter Jeedom** : Demande à Jeedom de s’éteindre.
+-   **Arrêter Jeedom** (jeedom_poweroff) : Demande à Jeedom de s’éteindre.
 
--   **Retourner un texte/une donnée** : Retourne un texte ou une valeur
+-   **Retourner un texte/une donnée** (scenario_return) : Retourne un texte ou une valeur
     pour une interaction par exemple.
 
--   **Icône** : Permet de changer l’icône de représentation du scénario.
+-   **Icône** (icon) : Permet de changer l’icône de représentation du scénario.
 
--   **Alerte** : Permet d’afficher un petit message d’alerte sur tous
+-   **Alerte** (alert) : Permet d’afficher un petit message d’alerte sur tous
     les navigateurs qui ont une page Jeedom ouverte. Vous pouvez, en
     plus, choisir 4 niveaux d’alerte.
 
--   **Pop-up** : Permet d’afficher un pop-up qui doit absolument être
+-   **Pop-up** (popup) : Permet d’afficher un pop-up qui doit absolument être
     validé sur tous les navigateurs qui ont une page jeedom ouverte.
 
--   **Rapport** : Permet d’exporter une vue au format (PDF,PNG, JPEG
+-   **Rapport** (report) : Permet d’exporter une vue au format (PDF,PNG, JPEG
     ou SVG) et de l’envoyer par le biais d’une commande de type message.
     Attention si votre accès Internet est en HTTPS non-signé, cette
     fonctionalité ne marchera pas. Il faut du HTTP ou HTTPS signé.
 
--   **Supprimer bloc DANS/A programmé** : Permet de supprimer la
+-   **Supprimer bloc DANS/A programmé** (remove_intat) : Permet de supprimer la
     programmation de tous les blocs DANS et A du scénario.
 
 Template de scénario 
