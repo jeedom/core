@@ -4,7 +4,9 @@ Changelog
 3.2.1 
 =====
 
-- Ajout d'un délai configurable avant réponse sur les intéractions (permet d'attendre que le retour d'état se fasse par exemple)
+-   JEED-417 : ajout d'une fonction time_diff dans les scénarios
+
+-   Ajout d'un délai configurable avant réponse sur les intéractions (permet d'attendre que le retour d'état se fasse par exemple)
 
 -   JEED-365 : Suppression de "Commande d’information utilisateur" pour etre remplacé par des actions sur message. Permet de lancer plusieurs commande differentes, de lancer un scénario... Attention si vous aviez une "Commande d’information utilisateur" il faut la reconfigurer.
 
