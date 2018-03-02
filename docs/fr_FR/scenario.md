@@ -616,7 +616,7 @@ effectuer des conversions ou des calculs :
     Les valeurs start et end peuvent être à cheval sur minuit.
 
 -   `time_diff(date1,date1[,format])` : Permet de connaitre la difference entre 2 dates (les dates doivent être au format AAAA/MM/JJ HH:MM:SS).
-    Par defaut (si vous ne mettez rien pour format) la méthode retour le nombre total de jour. Vous pouvez lui demander en seconde (s), minute (m), heure (h). Exemple en seconde `time_diff('2018-02-02 14:55:00','2018-02-25 14:55:00','s')`
+    Par defaut (si vous ne mettez rien pour format) la méthode retour le nombre total de jour. Vous pouvez lui demander en seconde (s), minute (m), heure (h). Exemple en seconde `time_diff(2018-02-02 14:55:00,2018-02-25 14:55:00,s)`
 
 -   `formatTime(time)` : Permet de formater le retour d’une chaine
     `#time#`.
