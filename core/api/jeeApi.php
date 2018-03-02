@@ -294,9 +294,12 @@ try {
 		if (!isset($sessions[session_id()])) {
 			$sessions[session_id()] = array();
 		}
-
 		$sessions[session_id()]['datetime'] = date('Y-m-d H:i:s');
 		$sessions[session_id()]['ip'] = getClientIp();
+		if (isset($_SESSION['user']) && is_object($_SESSION['user'])) {
+			$sessions[session_id()]['login'] = $_SESSION['user']->getLogin();
+			$sessions[session_id()]['user_id'] = $_SESSION['user']->getId();
+		}
 		cache::set('current_sessions', $sessions);
 		@session_write_close();
 		$jsonrpc->setAdditionnalParams(array('sess_id' => session_id()));
@@ -313,7 +316,7 @@ try {
 		if ((isset($params['apikey']) && !jeedom::apiAccess($params['apikey'])) || (isset($params['api']) && !jeedom::apiAccess($params['api']))) {
 			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
 		}
-		if (isset($params['session']) && $params['session']) {
+		if (is_object($_USER_GLOBAL) && isset($params['session']) && $params['session']) {
 			@session_start();
 			$_SESSION['user'] = $_USER_GLOBAL;
 			@session_write_close();
