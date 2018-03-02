@@ -322,7 +322,6 @@ try {
 			@session_write_close();
 		}
 	}
-
 	/*             * ************************config*************************** */
 	if ($jsonrpc->getMethod() == 'config::byKey') {
 		if (!isset($params['default'])) {
