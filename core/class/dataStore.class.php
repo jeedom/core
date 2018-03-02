@@ -50,7 +50,8 @@ class dataStore {
                 FROM dataStore
                 WHERE `type`=:type
                     AND `link_id`=:link_id
-                    AND `key`=:key';
+                    AND `key`=:key
+                ORDER BY `key`';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
