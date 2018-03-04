@@ -112,6 +112,9 @@ class repo_market {
 					$update->setStatus($market_info['status']);
 					$update->setConfiguration('market', $market_info['market']);
 					$update->setRemoteVersion($market_info['datetime']);
+					if ($update->getConfiguration('version') == '') {
+						$update->setConfiguration('version', 'stable');
+					}
 					$update->save();
 				}
 			}
