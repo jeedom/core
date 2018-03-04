@@ -1,4 +1,4 @@
-/*! Widget: Build Table - updated 3/26/2015 (v2.21.3) *//*
+/*! Widget: Build Table - updated 4/2/2017 (v2.28.6) *//*
  * for tableSorter v2.16.0+
  * by Rob Garrison
  */
@@ -12,6 +12,8 @@
 	// data.header contains an array of header titles
 	// data.rows contains an array of rows which contains an array of cells
 	bt = ts.buildTable = function(tar, c){
+		// add build options to defaults to prevent warnings
+		$.extend(true, ts.defaults.widgetOptions, bt.defaults);
 		// add table if one doesn't exist
 		var $tbl = tar.nodeName === 'TABLE' ? $(tar) : $('<table>').appendTo(tar),
 			table = $tbl[0],
@@ -78,6 +80,9 @@
 			runType(d);
 		}
 	};
+
+	// add data to defaults for validator; value must be falsy!
+	ts.defaults.data = '';
 
 	bt.defaults = {
 		// *** build widget core ***

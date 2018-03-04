@@ -1,4 +1,4 @@
-/*! Widget: grouping - updated 9/1/2016 (v2.27.6) *//*
+/*! Widget: grouping - updated 9/27/2017 (v2.29.0) *//*
  * Requires tablesorter v2.8+ and jQuery 1.7+
  * by Rob Garrison
  */
@@ -172,7 +172,10 @@
 
 		groupHeaderHTML : function( c, wo, data ) {
 			var name = ( data.currentGroup || '' ).toString().replace(/</g, '&lt;').replace(/>/g, '&gt;');
-			return '<tr class="group-header ' + c.selectorRemove.slice(1) +
+			return '<tr class="group-header ' + c.selectorRemove.slice(1) + ' ' +
+				// prevent grouping row from being hidden by the columnSelector;
+				// classHasSpan option added 2.29.0
+				( wo.columnSelector_classHasSpan || 'hasSpan' ) +
 				'" unselectable="on" ' + ( c.tabIndex ? 'tabindex="0" ' : '' ) + 'data-group-index="' +
 				data.groupIndex + '">' +
 				'<td colspan="' + c.columns + '">' +
@@ -221,6 +224,10 @@
 					}
 				}
 			}
+			if ( ts.hasWidget( c.table, 'columnSelector' ) ) {
+				// make sure to handle the colspan adjustments of the grouping rows
+				ts.columnSelector.setUpColspan( c, wo );
+			}
 		},
 		insertGroupHeader: function( c, wo, data ) {
 			var $header = c.$headerIndexed[ data.column ],
@@ -234,7 +241,8 @@
 				if ( $.isFunction( wo.group_formatter ) ) {
 					data.currentGroup = wo.group_formatter( ( data.group || '' ).toString(), data.column, c.table, c, wo, data ) || data.group;
 				}
-				data.$row.before( tsg.groupHeaderHTML( c, wo, data ) );
+				// add first() for grouping with childRows
+				data.$row.first().before( tsg.groupHeaderHTML( c, wo, data ) );
 				if ( wo.group_saveGroups && !data.savedGroup && wo.group_collapsed && wo.group_collapsible ) {
 					// all groups start collapsed; data.groupIndex is 1 more than the expected index.
 					wo.group_collapsedGroups[ wo.group_collapsedGroup ].push( data.currentGroup + data.groupIndex );
