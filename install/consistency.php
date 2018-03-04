@@ -317,11 +317,11 @@ try {
 	if (config::byKey('api') == '') {
 		config::save('api', config::genKey());
 	}
-	if (file_exists(dirname(__FILE__) . '/../../core/nodeJS')) {
-		shell_exec(system::getCmdSudo() . 'rm -rf ' . dirname(__FILE__) . '/../../core/nodeJS');
+	if (file_exists(dirname(__FILE__) . '/../core/nodeJS')) {
+		shell_exec(system::getCmdSudo() . 'rm -rf ' . dirname(__FILE__) . '/../core/nodeJS');
 	}
-	if (file_exists(dirname(__FILE__) . '/../../script/ngrok')) {
-		shell_exec(system::getCmdSudo() . 'rm -rf ' . dirname(__FILE__) . '/../../script/ngrok');
+	if (file_exists(dirname(__FILE__) . '/../script/ngrok')) {
+		shell_exec(system::getCmdSudo() . 'rm -rf ' . dirname(__FILE__) . '/../script/ngrok');
 	}
 	try {
 		foreach (eqLogic::all() as $eqLogic) {
@@ -348,6 +348,10 @@ try {
 		if ($change) {
 			$cmd->save();
 		}
+	}
+
+	if (file_exists(dirname(__FILE__) . '/../core/template/scenario/equipement.default.html')) {
+		unlink(dirname(__FILE__) . '/../core/template/scenario/equipement.default.html');
 	}
 } catch (Exception $e) {
 	echo "Error : ";
