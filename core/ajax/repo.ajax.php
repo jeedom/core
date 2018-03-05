@@ -51,11 +51,10 @@ try {
 		$update = update::byTypeAndLogicalId($repo->getType(), $repo->getLogicalId());
 		if (!is_object($update)) {
 			$update = new update();
-			$update->setLogicalId($repo->getLogicalId());
-			$update->setType($repo->getType());
-			$update->setLocalVersion($repo->getDatetime(init('version', 'stable')));
-
 		}
+		$update->setLogicalId($repo->getLogicalId());
+		$update->setType($repo->getType());
+		$update->setLocalVersion($repo->getDatetime(init('version', 'stable')));
 		$update->setConfiguration('version', init('version', 'stable'));
 		$update->save();
 		$update->doUpdate();

@@ -300,20 +300,20 @@ if ($market->getLanguage('it_IT') == 1) {
       error: function (error) {
         $('#div_alertMarketDisplay').showAlert({message: error.message, level: 'danger'});
       },
- success: function (data) { // si l'appel a bien fonctionné
- if(market_display_info.type == 'plugin'){
-   bootbox.confirm('{{Voulez-vous aller sur la page de configuration de votre nouveau plugin ?}}', function (result) {
-     if (result) {
-      loadPage('index.php?v=d&p=plugin&id=' + logicalId);
+      success: function (data) {
+       if(market_display_info.type == 'plugin'){
+         bootbox.confirm('{{Voulez-vous aller sur la page de configuration de votre nouveau plugin ?}}', function (result) {
+           if (result) {
+            loadPage('index.php?v=d&p=plugin&id=' + logicalId);
+          }
+        });
+       }
+       if ( typeof refreshListAfterMarketObjectInstall == 'function'){
+        refreshListAfterMarketObjectInstall()
+      }
+      $('#div_alertMarketDisplay').showAlert({message: '{{Objet installé avec succès}}', level: 'success'})
     }
   });
- }
- if ( typeof refreshListAfterMarketObjectInstall == 'function'){
-  refreshListAfterMarketObjectInstall()
-}
-$('#div_alertMarketDisplay').showAlert({message: '{{Objet installé avec succès}}', level: 'success'})
-}
-});
 
   });
 
@@ -325,11 +325,11 @@ $('#div_alertMarketDisplay').showAlert({message: '{{Objet installé avec succès
       error: function (error) {
         $('#div_alertMarketDisplay').showAlert({message: error.message, level: 'danger'});
       },
- success: function (data) { // si l'appel a bien fonctionné
- $.showLoading();
- window.location.reload();
-}
-});
+      success: function (data) {
+       $.showLoading();
+       window.location.reload();
+     }
+   });
   });
 
   $('#in_myRating').on('change', function () {

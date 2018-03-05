@@ -139,7 +139,8 @@ try {
 			if ($new) {
 				throw $e;
 			} else {
-				$old_update->save();
+				$update = $old_update;
+				$update->save();
 			}
 		}
 		ajax::success(utils::o2a($update));
