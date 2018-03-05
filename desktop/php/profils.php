@@ -350,7 +350,7 @@ foreach ($sessions as $id => $session) {
 
 <form class="form-horizontal">
   <fieldset>
-    <legend>{{Péripheriques enregistrés}} <a class="btn btn-xs btn-warning pull-right" id="bt_removeAllRegisterDevice"><i class="fa fa-trash"></i> {{Supprimer tout}}</a></legend>
+    <legend>{{Périphériques enregistrés}} <a class="btn btn-xs btn-warning pull-right" id="bt_removeAllRegisterDevice"><i class="fa fa-trash"></i> {{Supprimer tout}}</a></legend>
     <table class="table table-bordered table-condensed">
       <thead>
         <tr>
