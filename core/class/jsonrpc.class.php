@@ -28,6 +28,7 @@ class jsonrpc {
 	private $startTime;
 	private $applicationName;
 	private $additionnalParams = array();
+	private $additionalResultParameter;
 
 	/*     * ********Static******************* */
 
@@ -52,6 +53,13 @@ class jsonrpc {
 	}
 
 	public function makeError($_code, $_message) {
+		if (is_json($this->additionalResultParameter) && is_array($_result)) {
+			foreach (json_decode($this->additionalResultParameter, true) as $key => $value) {
+				if (!isset($_result[$key])) {
+					$_result[$key] = $value;
+				}
+			}
+		}
 		$return = array(
 			'jsonrpc' => '2.0',
 			'id' => $this->id,
@@ -70,6 +78,13 @@ class jsonrpc {
 	}
 
 	public function makeSuccess($_result = 'ok') {
+		if (is_json($this->additionalResultParameter) && is_array($_result)) {
+			foreach (json_decode($this->additionalResultParameter, true) as $key => $value) {
+				if (!isset($_result[$key])) {
+					$_result[$key] = $value;
+				}
+			}
+		}
 		$return = array(
 			'jsonrpc' => '2.0',
 			'id' => $this->id,
@@ -130,6 +145,14 @@ class jsonrpc {
 			unset($params['id']);
 		}
 		$this->additionnalParams = $params;
+	}
+
+	public function setAdditionalResultParameter($_key, $_value) {
+		$this->additionalResultParameter = utils::setJsonAttr($this->additionalResultParameter, $_key, $_value);
+	}
+
+	public function getAdditionalResultParameter($_key = '', $_default = '') {
+		return utils::getJsonAttr($this->additionalResultParameter, $_key, $_default);
 	}
 
 }
