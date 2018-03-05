@@ -302,7 +302,7 @@ try {
 		}
 		cache::set('current_sessions', $sessions);
 		@session_write_close();
-		$jsonrpc->setAdditionnalParams(array('sess_id' => session_id()));
+		$jsonrpc->setAdditionnalParams('sess_id', session_id());
 		if (isset($_SESSION['user']) && is_object($_SESSION['user'])) {
 			$_USER_GLOBAL = $_SESSION['user'];
 		}

@@ -130,21 +130,15 @@ class jsonrpc {
 		return $this;
 	}
 
-	public function getAdditionnalParams() {
-		return $this->additionnalParams;
+	public function getAdditionnalParams($_key = '', $_default = '') {
+		return utils::getJsonAttr($this->additionnalParams, $_key, $_default);
 	}
 
-	public function setAdditionnalParams($params) {
-		if (isset($params['result'])) {
-			unset($params['result']);
+	public function setAdditionnalParams($_key, $_value) {
+		if (in_array($_key, array('result', 'jsonrpc', 'id'))) {
+			return;
 		}
-		if (isset($params['jsonrpc'])) {
-			unset($params['jsonrpc']);
-		}
-		if (isset($params['id'])) {
-			unset($params['id']);
-		}
-		$this->additionnalParams = $params;
+		$this->additionnalParams = utils::setJsonAttr($this->additionnalParams, $_key, $_value);
 	}
 
 	public function setAdditionalResultParameter($_key, $_value) {
