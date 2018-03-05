@@ -51,8 +51,8 @@ try {
 			die();
 		}
 	}
-	echo "****Mise à jour de jeedom depuis " . jeedom::version() . " (" . date('Y-m-d H:i:s') . ")****\n";
-	echo "Paramètres : " . print_r($_GET, true);
+	echo "****Update from " . jeedom::version() . " (" . date('Y-m-d H:i:s') . ")****\n";
+	echo "Paramters : " . print_r($_GET, true);
 	$curentVersion = config::byKey('version');
 
 	/*         * ************************MISE A JOUR********************************** */
@@ -113,7 +113,7 @@ try {
 		jeedom::stop();
 		if (init('update::reapply') == '' && config::byKey('update::allowCore', 'core', 1) != 0) {
 			try {
-				echo 'Clean temporary file (tmp)...';
+				echo 'Clean temporary files (tmp)...';
 				shell_exec('rm -rf ' . dirname(__FILE__) . '/../install/update/*');
 				echo "OK\n";
 			} catch (Exception $e) {
@@ -150,7 +150,7 @@ try {
 					throw new Exception('Download failed please retry later');
 				}
 				echo "OK\n";
-				echo "Cleaning folder...";
+				echo "Cleaning folders...";
 				$cibDir = jeedom::getTmpFolder('install/unzip');
 				if (file_exists($cibDir)) {
 					rrmdir($cibDir);
@@ -184,7 +184,7 @@ try {
 					echo "Update updater...";
 					rmove($cibDir . '/install/update.php', dirname(__FILE__) . '/update.php', false, array(), true);
 					echo "OK\n";
-					echo "Remove temporary file...";
+					echo "Remove temporary files...";
 					rrmdir($tmp_dir);
 					echo "OK\n";
 					echo "Wait 10s before relaunch update\n";
@@ -194,11 +194,11 @@ try {
 					die();
 				}
 
-				echo "Moving file...";
+				echo "Moving files...";
 				$update_begin = true;
 				rmove($cibDir . '/', dirname(__FILE__) . '/../', false, array(), true);
 				echo "OK\n";
-				echo "Remove temporary file...";
+				echo "Remove temporary files...";
 				rrmdir($tmp_dir);
 				echo "OK\n";
 				config::save('update::lastDateCore', date('Y-m-d H:i:s'));
