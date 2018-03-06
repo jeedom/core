@@ -60,7 +60,7 @@ class user {
 				$ad = ldap_connect(config::byKey('ldap:host'), config::byKey('ldap:port'));
 				ldap_set_option($ad, LDAP_OPT_PROTOCOL_VERSION, 3);
 				ldap_set_option($ad, LDAP_OPT_REFERRALS, 0);
-				$sLink_identifier = '=' . $_login . config::byKey('ldap::complement') . ',' . config::byKey('ldap:basedn');
+				$sLink_identifier = '=' . $_login . config::byKey('ldap:complement') . ',' . config::byKey('ldap:basedn');
 				log::add("connection", "debug", __('$sLink_identifier : ', __FILE__).$sLink_identifier);
 				if (!ldap_bind($ad, "uid" . $sLink_identifier, $_mdp)) {
 					log::add("connection", "info", __('Mot de passe erroné (', __FILE__) . $_login . ')');
