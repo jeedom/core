@@ -52,6 +52,7 @@ try {
 		if (!is_object($update)) {
 			$update = new update();
 		}
+		$update->setSource(init('repo'));
 		$update->setLogicalId($repo->getLogicalId());
 		$update->setType($repo->getType());
 		$update->setLocalVersion($repo->getDatetime(init('version', 'stable')));

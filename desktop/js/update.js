@@ -31,13 +31,13 @@
     }
 });
 
- $('#bt_updateJeedom').on('click', function () {
+ $('#bt_updateJeedom').off('click').on('click', function () {
   $('#md_specifyUpdate').dialog({title: "{{Options}}"});
   $("#md_specifyUpdate").dialog('open');
 });
 
 
- $('.updateOption[data-l1key=force]').on('click',function(){
+ $('.updateOption[data-l1key=force]').off('click').on('click',function(){
     if($(this).value() == 1){
         $('.updateOption[data-l1key="backup::before"]').value(0);
         $('.updateOption[data-l1key="backup::before"]').attr('disabled','disabled');
@@ -48,7 +48,7 @@
 });
 
 
- $('#bt_doUpdate').on('click', function () {
+ $('#bt_doUpdate').off('click').on('click', function () {
     $("#md_specifyUpdate").dialog('close');
     var options = $('#md_specifyUpdate').getValues('.updateOption')[0];
     $.hideAlert();
@@ -63,7 +63,7 @@
     });
 });
 
- $('#bt_checkAllUpdate').on('click', function () {
+ $('#bt_checkAllUpdate').off('click').on('click', function () {
     $.hideAlert();
     jeedom.update.checkAll({
         error: function (error) {
