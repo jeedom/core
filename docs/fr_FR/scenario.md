@@ -335,9 +335,9 @@ suivants :
 
 -   && / ET / et / AND / and : et,
 
--   || / OU / ou / OR / or : ou,
+-   \|| / OU / ou / OR / or : ou,
 
--   |^ / XOR / xor : ou exclusif.
+-   \|^ / XOR / xor : ou exclusif.
 
 Les tags 
 --------
