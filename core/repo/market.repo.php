@@ -211,7 +211,7 @@ class repo_market {
 		return $status;
 	}
 
-	public static function sendBackupCloud($_path, $_chunksize = 1024000) {
+	public static function sendBackupCloud($_path, $_chunksize = 4096000) {
 		$market = self::getJsonRpc();
 		if (!$market->sendRequest('backup::create', array('filename' => pathinfo($_path, PATHINFO_BASENAME), 'filesize' => filesize($_path), 'chunksize' => $_chunksize, 'checksum' => md5_file($_path)))) {
 			throw new Exception($market->getError());
