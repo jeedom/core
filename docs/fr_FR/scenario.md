@@ -750,3 +750,22 @@ les commandes peuvent être différentes, Jeedom vous demande la
 correspondance des commandes entre celles présentes lors de la création
 du template et celles présentes chez vous. Il vous suffit de remplir la
 correspondance des commandes puis de faire appliquer.
+
+Ajout de fonction php 
+====================
+
+> **IMPORTANT**
+>
+> L'ajout de fonction PHP est reservé aux utilisateurs avancé. La moindre erreur peut faire planter votre Jeedom
+
+## Mise en place
+
+Aller dans la configuration de Jeedom, puis OS/DB et lancer l'éditeur de fichier.
+
+Allez dans le dossier data puis php et cliquez sur le fichier user.function.class.php.
+
+C'est dans cette class que vous devez ajouter vos fonctions, vous y trouverez un exemple de fonction basique. 
+
+> **IMPORTANT**
+>
+> Si vous avez un soucis vous pouvez toujours revenir au fichier d'origine en copier le contenu de user.function.class.sample.php dans  user.function.class.php

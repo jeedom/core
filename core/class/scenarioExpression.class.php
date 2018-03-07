@@ -962,6 +962,9 @@ class scenarioExpression {
 	}
 
 	public static function setTags($_expression, &$_scenario = null, $_quote = false, $_nbCall = 0) {
+		if (file_exists(dirname(__FILE__) . '/../../data/php/user.function.class.php')) {
+			require_once dirname(__FILE__) . '/../../data/php/user.function.class.php';
+		}
 		if ($_nbCall > 10) {
 			return $_expression;
 		}
@@ -1032,8 +1035,9 @@ class scenarioExpression {
 						$replace2[$replace_string] = self::tag($_scenario, $arguments[0], $arguments[1]);
 					} else {
 						$replace2[$replace_string] = call_user_func_array(__CLASS__ . "::" . $function, $arguments);
-
 					}
+				}if (class_exists('userFunction') && method_exists('userFunction', $function)) {
+					$replace2[$replace_string] = call_user_func_array('userFunction' . "::" . $function, $arguments);
 				} else {
 					if (function_exists($function)) {
 						foreach ($arguments as &$argument) {

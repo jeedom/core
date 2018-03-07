@@ -23,7 +23,7 @@ foreach (ls($rootPath, '*', false, array('folders')) as $folder) {
 
 	<div class="col-lg-2">
 		<legend><i class="fa fa-file"></i> {{Fichiers}}</legend>
-		<div id="div_fileList"></div>
+		<div id="div_fileList" style="list-style-type: none;"></div>
 	</div>
 
 	<div class="col-lg-8">

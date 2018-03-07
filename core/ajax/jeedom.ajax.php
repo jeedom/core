@@ -309,7 +309,11 @@ try {
 		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql'))) {
 			throw new Exception(__('Vous ne pouvez éditer ce type d\'extension : ' . $pathinfo['extension'], __FILE__));
 		}
-		ajax::success(touch(init('path') . init('name')));
+		touch(init('path') . init('name'));
+		if (!file_exists(init('path') . init('name'))) {
+			throw new Exception(__('Impossible de créer le fichier, vérifiez les droits', __FILE__));
+		}
+		ajax::success();
 	}
 
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
