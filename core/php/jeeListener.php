@@ -56,5 +56,3 @@ if (init('listener_id') == '') {
 	}
 	$listener->execute(init('event_id'), init('value'));
 }
-?>
-
