@@ -62,6 +62,4 @@ try {
 	log::add(init('plugin_id', 'plugin'), 'error', $e->getMessage());
 	die($e->getMessage());
 }
-?>
-
-
+ 

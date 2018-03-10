@@ -51,7 +51,7 @@ try {
 		if (!file_exists($pathfile)) {
 			throw new Exception(__('Fichier non trouvé : ', __FILE__) . $pathfile);
 		}
-	} else if (is_dir(str_replace('*', '', $pathfile))) {
+	} elseif (is_dir(str_replace('*', '', $pathfile))) {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
@@ -77,4 +77,3 @@ try {
 	echo $e->getMessage();
 }
 
-?>
