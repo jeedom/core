@@ -547,6 +547,12 @@ class repo_market {
 				config::save('vpn::port', $_result['register::vpnPort']);
 				$restart_dns = true;
 			}
+			if (isset($_result['user::backupServer']) && config::byKey('market::backupServer') != $_result['user::backupServer']) {
+				config::save('market::backupServer', $_result['user::backupServer']);
+			}
+			if (isset($_result['user::backupPassword']) && config::byKey('market::backupPassword') != $_result['user::backupPassword']) {
+				config::save('market::backupPassword', $_result['user::backupPassword']);
+			}
 			if ($restart_dns && config::byKey('market::allowDNS') == 1) {
 				network::dns_start();
 			}
