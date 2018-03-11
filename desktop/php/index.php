@@ -465,12 +465,12 @@ try {
 	} catch (Exception $e) {
 		ob_end_clean();
 		echo '<div class="alert alert-danger div_alert">';
-		echo displayExeption($e);
+		echo displayException($e);
 		echo '</div>';
 	} catch (Error $e) {
 		ob_end_clean();
 		echo '<div class="alert alert-danger div_alert">';
-		echo displayExeption($e);
+		echo displayException($e);
 		echo '</div>';
 	}
 	?>
