@@ -197,7 +197,7 @@ function mySqlIsHere() {
 	return is_object(DB::getConnection());
 }
 
-function displayExeption($e) {
+function displayExeption(Exception $e) {
 	$message = '<span id="span_errorMessage">' . $e->getMessage() . '</span>';
 	if (DEBUG) {
 		$message .= '<a class="pull-right bt_errorShowTrace cursor">Show traces</a>';
