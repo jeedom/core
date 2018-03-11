@@ -14,27 +14,27 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
-$(function () {
+ $(function () {
     if (!$.mobile) {
         jeedom.init();
     }
 });
 
-function getTemplate(_folder, _version, _filename, _replace) {
+ function getTemplate(_folder, _version, _filename, _replace) {
     if (_folder == 'core') {
         var path = _folder + '/template/' + _version + '/' + _filename;
     } else {
         var path = 'plugins/' + _folder + '/desktop/template/' + _version + '/' + _filename;
     }
     var template = '';
-    $.ajax({// fonction permettant de faire de l'ajax
-        type: "POST", // methode de transmission des données au fichier php
-        url: path, // url du fichier php
+    $.ajax({
+        type: "POST", 
+        url: path,
         async: false,
         error: function (request, status, error) {
             handleAjaxError(request, status, error);
         },
-        success: function (data) { // si l'appel a bien fonctionné
+        success: function (data) { 
             if (isset(_replace) && _replace != null) {
                 for (i in _replace) {
                     var reg = new RegExp(i, "g");
