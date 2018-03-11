@@ -86,6 +86,7 @@ class repo_market {
 	private $language;
 	private $private;
 	private $updateBy;
+	private $parameters;
 	private $hardwareCompatibility;
 	private $nbInstall;
 	private $allowVersion = array();
@@ -111,6 +112,9 @@ class repo_market {
 					$update->setStatus($market_info['status']);
 					$update->setConfiguration('market', $market_info['market']);
 					$update->setRemoteVersion($market_info['datetime']);
+					if ($update->getConfiguration('version') == '') {
+						$update->setConfiguration('version', 'stable');
+					}
 					$update->save();
 				}
 			}
@@ -207,7 +211,7 @@ class repo_market {
 		return $status;
 	}
 
-	public static function sendBackupCloud($_path, $_chunksize = 1024000) {
+	public static function sendBackupCloud($_path, $_chunksize = 4096000) {
 		$market = self::getJsonRpc();
 		if (!$market->sendRequest('backup::create', array('filename' => pathinfo($_path, PATHINFO_BASENAME), 'filesize' => filesize($_path), 'chunksize' => $_chunksize, 'checksum' => md5_file($_path)))) {
 			throw new Exception($market->getError());
@@ -543,6 +547,12 @@ class repo_market {
 				config::save('vpn::port', $_result['register::vpnPort']);
 				$restart_dns = true;
 			}
+			if (isset($_result['user::backupServer']) && config::byKey('market::backupServer') != $_result['user::backupServer']) {
+				config::save('market::backupServer', $_result['user::backupServer']);
+			}
+			if (isset($_result['user::backupPassword']) && config::byKey('market::backupPassword') != $_result['user::backupPassword']) {
+				config::save('market::backupPassword', $_result['user::backupPassword']);
+			}
 			if ($restart_dns && config::byKey('market::allowDNS') == 1) {
 				network::dns_start();
 			}
@@ -619,6 +629,11 @@ class repo_market {
 		}
 		$market->setIsAuthor($_arrayMarket['isAuthor']);
 
+		if (isset($_arrayMarket['parameters']) && is_array($_arrayMarket['parameters'])) {
+			foreach ($_arrayMarket['parameters'] as $key => $value) {
+				$market->setParameters($key, $value);
+			}
+		}
 		return $market;
 	}
 
@@ -1138,6 +1153,15 @@ class repo_market {
 
 	public function setHardwareCompatibility($_key, $_value) {
 		$this->hardwareCompatibility = utils::setJsonAttr($this->hardwareCompatibility, $_key, $_value);
+		return $this;
+	}
+
+	public function getParameters($_key = '', $_default = '') {
+		return utils::getJsonAttr($this->parameters, $_key, $_default);
+	}
+
+	public function setParameters($_key, $_value) {
+		$this->parameters = utils::setJsonAttr($this->parameters, $_key, $_value);
 		return $this;
 	}
 

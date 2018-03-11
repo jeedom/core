@@ -104,7 +104,7 @@ try {
 
 	$cron = cron::byClassAndFunction('plugin', 'cronDaily');
 	if (!is_object($cron)) {
-		echo "Création de plugin::cronDaily\n";
+		echo "Create plugin::cronDaily\n";
 		$cron = new cron();
 	}
 	$cron->setClass('plugin');
@@ -117,7 +117,7 @@ try {
 
 	$cron = cron::byClassAndFunction('jeedom', 'backup');
 	if (!is_object($cron)) {
-		echo "Création de jeedom::backup\n";
+		echo "Create jeedom::backup\n";
 		$cron = new cron();
 	}
 	$cron->setClass('jeedom');
@@ -130,7 +130,7 @@ try {
 
 	$cron = cron::byClassAndFunction('plugin', 'cronHourly');
 	if (!is_object($cron)) {
-		echo "Création de plugin::cronHourly\n";
+		echo "Create plugin::cronHourly\n";
 		$cron = new cron();
 	}
 	$cron->setClass('plugin');
@@ -143,7 +143,7 @@ try {
 
 	$cron = cron::byClassAndFunction('scenario', 'check');
 	if (!is_object($cron)) {
-		echo "Création de scenario::check\n";
+		echo "Create scenario::check\n";
 		$cron = new cron();
 	}
 	$cron->setClass('scenario');
@@ -156,7 +156,7 @@ try {
 
 	$cron = cron::byClassAndFunction('scenario', 'control');
 	if (!is_object($cron)) {
-		echo "Création de scenario::control\n";
+		echo "Create scenario::control\n";
 		$cron = new cron();
 	}
 	$cron->setClass('scenario');
@@ -169,7 +169,7 @@ try {
 
 	$cron = cron::byClassAndFunction('jeedom', 'cronDaily');
 	if (!is_object($cron)) {
-		echo "Création de jeedom::cronDaily\n";
+		echo "Create jeedom::cronDaily\n";
 		$cron = new cron();
 	}
 	$cron->setClass('jeedom');
@@ -182,7 +182,7 @@ try {
 
 	$cron = cron::byClassAndFunction('jeedom', 'cronHourly');
 	if (!is_object($cron)) {
-		echo "Création de jeedom::cronHourly\n";
+		echo "Create jeedom::cronHourly\n";
 		$cron = new cron();
 	}
 	$cron->setClass('jeedom');
@@ -195,7 +195,7 @@ try {
 
 	$cron = cron::byClassAndFunction('jeedom', 'cron5');
 	if (!is_object($cron)) {
-		echo "Création de jeedom::cron5\n";
+		echo "Create jeedom::cron5\n";
 		$cron = new cron();
 	}
 	$cron->setClass('jeedom');
@@ -208,7 +208,7 @@ try {
 
 	$cron = cron::byClassAndFunction('jeedom', 'cron');
 	if (!is_object($cron)) {
-		echo "Création de jeedom::cron\n";
+		echo "Create jeedom::cron\n";
 		$cron = new cron();
 	}
 	$cron->setClass('jeedom');
@@ -220,7 +220,7 @@ try {
 
 	$cron = cron::byClassAndFunction('plugin', 'cron');
 	if (!is_object($cron)) {
-		echo "Création de plugin::cron\n";
+		echo "Create plugin::cron\n";
 		$cron = new cron();
 	}
 	$cron->setClass('plugin');
@@ -232,7 +232,7 @@ try {
 
 	$cron = cron::byClassAndFunction('plugin', 'cron5');
 	if (!is_object($cron)) {
-		echo "Création de plugin::cron5\n";
+		echo "Create plugin::cron5\n";
 		$cron = new cron();
 	}
 	$cron->setClass('plugin');
@@ -244,7 +244,7 @@ try {
 
 	$cron = cron::byClassAndFunction('plugin', 'cron15');
 	if (!is_object($cron)) {
-		echo "Création de plugin::cron15\n";
+		echo "Create plugin::cron15\n";
 		$cron = new cron();
 	}
 	$cron->setClass('plugin');
@@ -256,7 +256,7 @@ try {
 
 	$cron = cron::byClassAndFunction('plugin', 'cron30');
 	if (!is_object($cron)) {
-		echo "Création de plugin::cron30\n";
+		echo "Create plugin::cron30\n";
 		$cron = new cron();
 	}
 	$cron->setClass('plugin');
@@ -268,7 +268,7 @@ try {
 
 	$cron = cron::byClassAndFunction('plugin', 'checkDeamon');
 	if (!is_object($cron)) {
-		echo "Création de plugin::checkDeamon\n";
+		echo "Create plugin::checkDeamon\n";
 		$cron = new cron();
 	}
 	$cron->setClass('plugin');
@@ -280,7 +280,7 @@ try {
 
 	$cron = cron::byClassAndFunction('cache', 'persist');
 	if (!is_object($cron)) {
-		echo "Création de cache::persist\n";
+		echo "Create cache::persist\n";
 		$cron = new cron();
 	}
 	$cron->setClass('cache');
@@ -292,7 +292,7 @@ try {
 
 	$cron = cron::byClassAndFunction('history', 'archive');
 	if (!is_object($cron)) {
-		echo "Création de history::archive\n";
+		echo "Create history::archive\n";
 		$cron = new cron();
 	}
 	$cron->setClass('history');
@@ -317,11 +317,11 @@ try {
 	if (config::byKey('api') == '') {
 		config::save('api', config::genKey());
 	}
-	if (file_exists(dirname(__FILE__) . '/../../core/nodeJS')) {
-		shell_exec(system::getCmdSudo() . 'rm -rf ' . dirname(__FILE__) . '/../../core/nodeJS');
+	if (file_exists(dirname(__FILE__) . '/../core/nodeJS')) {
+		shell_exec(system::getCmdSudo() . 'rm -rf ' . dirname(__FILE__) . '/../core/nodeJS');
 	}
-	if (file_exists(dirname(__FILE__) . '/../../script/ngrok')) {
-		shell_exec(system::getCmdSudo() . 'rm -rf ' . dirname(__FILE__) . '/../../script/ngrok');
+	if (file_exists(dirname(__FILE__) . '/../script/ngrok')) {
+		shell_exec(system::getCmdSudo() . 'rm -rf ' . dirname(__FILE__) . '/../script/ngrok');
 	}
 	try {
 		foreach (eqLogic::all() as $eqLogic) {
@@ -348,6 +348,14 @@ try {
 		if ($change) {
 			$cmd->save();
 		}
+	}
+
+	if (file_exists(dirname(__FILE__) . '/../core/template/scenario/equipement.default.html')) {
+		unlink(dirname(__FILE__) . '/../core/template/scenario/equipement.default.html');
+	}
+
+	if (!file_exists(dirname(__FILE__) . '/../data/php/user.function.class.php')) {
+		copy(dirname(__FILE__) . '/../data/php/user.function.class.sample.php', dirname(__FILE__) . '/../data/php/user.function.class.php');
 	}
 } catch (Exception $e) {
 	echo "Error : ";

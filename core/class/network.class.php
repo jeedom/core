@@ -293,7 +293,14 @@ class network {
 		if (!file_exists(dirname(__FILE__) . '/../../plugins/openvpn/data')) {
 			shell_exec('mkdir -p ' . dirname(__FILE__) . '/../../plugins/openvpn/data');
 		}
-		copy(dirname(__FILE__) . '/../../script/ca_dns.crt', dirname(__FILE__) . '/../../plugins/openvpn/data/ca_' . $openvpn->getConfiguration('key') . '.crt');
+		$path_ca = dirname(__FILE__) . '/../../plugins/openvpn/data/ca_' . $openvpn->getConfiguration('key') . '.crt';
+		if (file_exists($path_ca)) {
+			unlink($path_ca);
+		}
+		copy(dirname(__FILE__) . '/../../script/ca_dns.crt', $path_ca);
+		if (!file_exists($path_ca)) {
+			throw new Exception(__('Impossible de créer le fichier  : ', __FILE__) . $path_ca);
+		}
 		return $openvpn;
 	}
 

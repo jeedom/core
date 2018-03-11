@@ -126,6 +126,10 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'CAMERA_DEZOOM' => array('name' => 'Zoom caméra vers l\'arrière', 'family' => 'Caméra', 'type' => 'Action'),
 			'CAMERA_STOP' => array('name' => 'Stop caméra', 'family' => 'Caméra', 'type' => 'Action'),
 			'CAMERA_PRESET' => array('name' => 'Preset caméra', 'family' => 'Caméra', 'type' => 'Action'),
+			'CAMERA_URL' => array('name' => 'URL caméra', 'family' => 'Caméra', 'type' => 'info'),
+			'CAMERA_RECORD_STATE' => array('name' => 'État enregistrement caméra', 'family' => 'Caméra', 'type' => 'info'),
+			'CAMERA_RECORD' => array('name' => 'Enregistrement caméra', 'family' => 'Caméra', 'type' => 'Action'),
+			'CAMERA_TAKE' => array('name' => 'Snapshot caméra', 'family' => 'Caméra', 'type' => 'Action'),
 			'MODE_STATE' => array('name' => 'Mode', 'family' => 'Mode', 'type' => 'Info'),
 			'MODE_SET_STATE' => array('name' => 'Mode', 'family' => 'Mode', 'type' => 'Action'),
 			'ALARM_STATE' => array('name' => 'Alarme état', 'family' => 'Alarme', 'type' => 'Info', 'ignore' => true),
@@ -311,4 +315,3 @@ $JEEDOM_INTERNAL_CONFIG = array(
 		),
 	),
 );
- 

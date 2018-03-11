@@ -114,7 +114,7 @@ if ($market->getCertification() != 'Officiel') {
 	echo '<div class="alert alert-warning">{{Attention ce plugin n\'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée}}</div>';
 }
 $compatibilityHardware = $market->getHardwareCompatibility();
-if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && $compatibilityHardware[jeedom::getHardwareName()] != 1) {
+if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && isset($compatibilityHardware[jeedom::getHardwareName()]) && $compatibilityHardware[jeedom::getHardwareName()] != 1) {
 	echo '<div class="alert alert-danger">{{Attention ce plugin ne semble pas être compatible avec votre système}}</div>';
 }
 ?>
@@ -205,16 +205,18 @@ if ($market->getHardwareCompatibility('Jeedomboard') == 1) {
         <span><?php echo $market->getUpdateBy(); ?></span>
       </div>
       <div class='col-sm-2'>
-        <label class="control-label">{{Lien}}</label><br/>
-        <?php if ($market->getLink('video') != '' && $market->getLink('video') != 'null') {?>
-        <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('video'); ?>"><i class="fa fa-youtube"></i> Video</a><br/>
-        <?php }
+       <label class="control-label">{{Taille}}</label><br/>
+       <span><?php echo $market->getParameters('size'); ?></span><br/>
+       <label class="control-label">{{Lien}}</label><br/>
+       <?php if ($market->getLink('video') != '' && $market->getLink('video') != 'null') {?>
+       <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('video'); ?>"><i class="fa fa-youtube"></i> Video</a><br/>
+       <?php }
 ?>
-        <?php if ($market->getLink('forum') != '' && $market->getLink('forum') != 'null') {?>
-        <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('forum'); ?>"><i class="fa fa-users"></i> Forum</a><br/>
-        <?php }
+       <?php if ($market->getLink('forum') != '' && $market->getLink('forum') != 'null') {?>
+       <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('forum'); ?>"><i class="fa fa-users"></i> Forum</a><br/>
+       <?php }
 ?>
-      </div>
+     </div>
      <div class='col-sm-1'>
       <label class="control-label">{{Type}}</label><br/>
       <span class="marketAttr" data-l1key="type"></span>
@@ -252,9 +254,9 @@ if ($market->getLanguage('it_IT') == 1) {
 </div>
 
 <style>
-  .slick-prev:before, .slick-next:before {
-    color : #707070;
-  }
+.slick-prev:before, .slick-next:before {
+  color : #707070;
+}
 </style>
 <script>
 
@@ -298,20 +300,20 @@ if ($market->getLanguage('it_IT') == 1) {
       error: function (error) {
         $('#div_alertMarketDisplay').showAlert({message: error.message, level: 'danger'});
       },
- success: function (data) { // si l'appel a bien fonctionné
- if(market_display_info.type == 'plugin'){
-   bootbox.confirm('{{Voulez-vous aller sur la page de configuration de votre nouveau plugin ?}}', function (result) {
-     if (result) {
-      loadPage('index.php?v=d&p=plugin&id=' + logicalId);
+      success: function (data) {
+       if(market_display_info.type == 'plugin'){
+         bootbox.confirm('{{Voulez-vous aller sur la page de configuration de votre nouveau plugin ?}}', function (result) {
+           if (result) {
+            loadPage('index.php?v=d&p=plugin&id=' + logicalId);
+          }
+        });
+       }
+       if ( typeof refreshListAfterMarketObjectInstall == 'function'){
+        refreshListAfterMarketObjectInstall()
+      }
+      $('#div_alertMarketDisplay').showAlert({message: '{{Objet installé avec succès}}', level: 'success'})
     }
   });
- }
- if ( typeof refreshListAfterMarketObjectInstall == 'function'){
-  refreshListAfterMarketObjectInstall()
-}
-$('#div_alertMarketDisplay').showAlert({message: '{{Objet installé avec succès}}', level: 'success'})
-}
-});
 
   });
 
@@ -323,11 +325,11 @@ $('#div_alertMarketDisplay').showAlert({message: '{{Objet installé avec succès
       error: function (error) {
         $('#div_alertMarketDisplay').showAlert({message: error.message, level: 'danger'});
       },
- success: function (data) { // si l'appel a bien fonctionné
- $.showLoading();
- window.location.reload();
-}
-});
+      success: function (data) {
+       $.showLoading();
+       window.location.reload();
+     }
+   });
   });
 
   $('#in_myRating').on('change', function () {

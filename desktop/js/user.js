@@ -177,16 +177,16 @@
                 if(isset(data[i].options) && isset(data[i].options.twoFactorAuthentification) && data[i].options.twoFactorAuthentification == 1 && isset(data[i].options.twoFactorAuthentificationSecret) && data[i].options.twoFactorAuthentificationSecret != ''){
                     ligne += '<span class="label label-success" style="font-size:1em;">{{OK}}</span>';
                 }else{
-                   ligne += '<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>';
-               }
-               ligne += '</td>';
-               ligne += '<td>';
-               ligne += '<span class="userAttr" data-l1key="options" data-l2key="lastConnection"></span>';
-               ligne += '</td>';
-               ligne += '<td>';
-               if(disable == ''){
-                   ligne += '<a class="cursor bt_changeHash btn btn-warning btn-xs pull-right" title="{{Renouveler la clef API}}"><i class="fa fa-refresh"></i> {{Régénérer API}}</a>';
-                   if (ldapEnable != '1') {
+                 ligne += '<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>';
+             }
+             ligne += '</td>';
+             ligne += '<td>';
+             ligne += '<span class="userAttr" data-l1key="options" data-l2key="lastConnection"></span>';
+             ligne += '</td>';
+             ligne += '<td>';
+             if(disable == ''){
+                 ligne += '<a class="cursor bt_changeHash btn btn-warning btn-xs pull-right" title="{{Renouveler la clef API}}"><i class="fa fa-refresh"></i> {{Régénérer API}}</a>';
+                 if (ldapEnable != '1') {
                     ligne += '<a class="btn btn-xs btn-danger pull-right bt_del_user" style="margin-bottom : 5px;"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>';
                     ligne += '<a class="btn btn-xs btn-warning pull-right bt_change_mdp_user" style="margin-bottom : 5px;"><i class="fa fa-pencil"></i> {{Mot de passe}}</a>';
                 }
@@ -211,8 +211,8 @@ $('#table_user').delegate('.bt_manage_restrict_rights', 'click', function () {
 });
 
 $('.bt_deleteSession').on('click',function(){
- var id = $(this).closest('tr').attr('data-id'); 
- jeedom.user.deleteSession({
+   var id = $(this).closest('tr').attr('data-id'); 
+   jeedom.user.deleteSession({
     id : id,
     error: function (error) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -230,6 +230,18 @@ $('.bt_removeRegisterDevice').on('click',function(){
     jeedom.user.removeRegisterDevice({
         key : key,
         user_id : user_id,
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+            modifyWithoutSave = false;
+            window.location.reload();
+        }
+    });
+});
+
+$('#bt_removeAllRegisterDevice').on('click',function(){
+    jeedom.user.removeRegisterDevice({
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },

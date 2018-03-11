@@ -209,7 +209,7 @@ class scenarioElement {
 				$_scenario->setLog(__('Tâche : ', __FILE__) . $this->getId() . __(' lancement immédiat ', __FILE__));
 				system::php($cmd);
 			} else {
-				$crons = cron::searchClassAndFunction('scenario', 'doIn', '"scenarioElement_id":' . $this->getId());
+				$crons = cron::searchClassAndFunction('scenario', 'doIn', '"scenarioElement_id":' . $this->getId() . ',');
 				if (is_array($crons)) {
 					foreach ($crons as $cron) {
 						if ($cron->getState() != 'run') {
@@ -247,7 +247,7 @@ class scenarioElement {
 				$next = date('Y-m-d') . ' ' . substr($next, 0, 2) . ':' . substr($next, 2, 4);
 			}
 			$next = strtotime($next);
-			$crons = cron::searchClassAndFunction('scenario', 'doIn', '"scenarioElement_id":' . $this->getId());
+			$crons = cron::searchClassAndFunction('scenario', 'doIn', '"scenarioElement_id":' . $this->getId() . ',');
 			if (is_array($crons)) {
 				foreach ($crons as $cron) {
 					if ($cron->getState() != 'run') {
@@ -276,7 +276,7 @@ class scenarioElement {
 			$this->_subelement[$_type] = scenarioSubElement::byScenarioElementId($this->getId(), $_type);
 			return $this->_subelement[$_type];
 		} else {
-			if (count($this->_subelement[-1]) > 0) {
+			if (isset($this->_subelement[-1]) && is_array($this->_subelement[-1]) && count($this->_subelement[-1]) > 0) {
 				return $this->_subelement[-1];
 			}
 			$this->_subelement[-1] = scenarioSubElement::byScenarioElementId($this->getId(), $_type);

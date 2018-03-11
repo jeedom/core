@@ -123,11 +123,15 @@ try {
 		config::byKey('backup::path'),
 	);
 
+	if (config::byKey('recordDir', 'camera') != '') {
+		$excludes[] = config::byKey('recordDir', 'camera');
+	}
+
 	$exclude = '';
 	foreach ($excludes as $folder) {
 		$exclude .= ' --exclude="' . $folder . '"';
 	}
-	system('cd ' . $jeedom_dir . ';tar cfz "' . $backup_dir . '/' . $backup_name . '" ' . $exclude . ' * > /dev/null');
+	system('cd ' . $jeedom_dir . ';tar cfz "' . $backup_dir . '/' . $backup_name . '" ' . $exclude . ' . > /dev/null');
 	echo "OK" . "\n";
 
 	if (!file_exists($backup_dir . '/' . $backup_name)) {

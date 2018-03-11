@@ -25,7 +25,7 @@ class plugin {
 	private $id;
 	private $name;
 	private $description;
-	private $licence;
+	private $license;
 	private $installation;
 	private $author;
 	private $require;
@@ -68,7 +68,8 @@ class plugin {
 		$plugin->id = $data['id'];
 		$plugin->name = $data['name'];
 		$plugin->description = (isset($data['description'])) ? $data['description'] : '';
-		$plugin->licence = (isset($data['licence'])) ? $data['licence'] : '';
+		$plugin->license = (isset($data['licence'])) ? $data['licence'] : '';
+		$plugin->license = (isset($data['license'])) ? $data['license'] : $plugin->license;
 		$plugin->author = (isset($data['author'])) ? $data['author'] : '';
 		$plugin->installation = (isset($data['installation'])) ? $data['installation'] : '';
 		$plugin->hasDependency = (isset($data['hasDependency'])) ? $data['hasDependency'] : 0;
@@ -587,7 +588,7 @@ class plugin {
 					return;
 				}
 				if ($deamon_info['launchable'] == 'ok' && $deamon_info['state'] == 'nok' && method_exists($plugin_id, 'deamon_start')) {
-					$inprogress = cache::bykey('deamonStart' . $this->getId() . 'inprogress');
+					$inprogress = cache::byKey('deamonStart' . $this->getId() . 'inprogress');
 					$info = $inprogress->getValue(array('state' => 0, 'datetime' => strtotime('now')));
 					if ($info['state'] == 1 && (strtotime('now') - 45) <= $info['datetime']) {
 						throw new Exception(__('Vous devez attendre au moins 45 secondes entre deux lancements du démon', __FILE__));
@@ -844,8 +845,8 @@ class plugin {
 		return $this->category;
 	}
 
-	public function getLicence() {
-		return $this->licence;
+	public function getLicense() {
+		return $this->license;
 	}
 
 	public function getFilepath() {

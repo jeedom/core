@@ -68,8 +68,8 @@ class event {
 		}
 	}
 
-	public static function changes($_datetime, $_longPolling = null) {
-		$return = self::changesSince($_datetime);
+	public static function changes($_datetime, $_longPolling = null, $_filter = null) {
+		$return = self::filterEvent(self::changesSince($_datetime), $_filter);
 		if ($_longPolling === null || count($return['result']) > 0) {
 			return $return;
 		}
@@ -83,8 +83,26 @@ class event {
 				sleep(round($waitTime));
 			}
 			sleep(1);
-			$return = self::changesSince($_datetime);
+			$return = self::filterEvent(self::changesSince($_datetime), $_filter);
 			$i++;
+		}
+		return $return;
+	}
+
+	private static function filterEvent($_data = array(), $_filter = null) {
+		if ($_filter == null) {
+			return $_data;
+		}
+		$filters = cache::byKey($_filter . '::event')->getValue(array());
+		$return = array('datetime' => $_data['datetime'], 'result' => array());
+		foreach ($_data['result'] as $value) {
+			if (isset($_filter::$_listenEvents) && !in_array($value['name'], $_filter::$_listenEvents)) {
+				continue;
+			}
+			if (count($filters) != 0 && $value['name'] == 'cmd::update' && !in_array($value['option']['cmd_id'], $filters)) {
+				continue;
+			}
+			$return['result'][] = $value;
 		}
 		return $return;
 	}

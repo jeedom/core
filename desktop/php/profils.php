@@ -128,7 +128,7 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
       <legend><i class="fa fa-file-o"></i>  {{Page par défaut}}</legend>
       <div class="form-group">
         <label class="col-sm-3 control-label">{{Desktop}}</label>
-        <div class="col-sm-3">
+        <div class="col-sm-2">
           <select class="userAttr form-control" data-l1key="options" data-l2key="homePage">
             <?php
 foreach ($homePage as $key => $value) {
@@ -350,7 +350,7 @@ foreach ($sessions as $id => $session) {
 
 <form class="form-horizontal">
   <fieldset>
-    <legend>{{Péripheriques enregistrés}} <a class="btn btn-xs btn-warning pull-right" id="bt_removeAllRegisterDevice"><i class="fa fa-trash"></i> {{Supprimer tout}}</a></legend>
+    <legend>{{Périphériques enregistrés}} <a class="btn btn-xs btn-warning pull-right" id="bt_removeAllRegisterDevice"><i class="fa fa-trash"></i> {{Supprimer tout}}</a></legend>
     <table class="table table-bordered table-condensed">
       <thead>
         <tr>

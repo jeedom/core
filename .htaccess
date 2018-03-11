@@ -35,15 +35,23 @@ Options -Indexes
 </IfModule>
 
 <IfModule mod_headers.c>
-	<FilesMatch "\.(css|js|png|jpeg|jpg|ttf|woff)$">
-		Header set Cache-Control "max-age=7200"
+	<FilesMatch "\.(css|js|png|jpeg|jpg|ttf|woff|woff2|svg)$">
+		Header merge Cache-Control public
+		ExpiresDefault "access plus 2 hours"
 	</FilesMatch>
-	<FilesMatch ".*(getResources.php)">
-		Header set Cache-Control "max-age=7200"
+	<FilesMatch ".*(getResource.php)">
+		Header merge Cache-Control public
+		ExpiresDefault "access plus 2 hours"
 	</FilesMatch>
 	<FilesMatch ".*(getJS.php)">
-		Header set Cache-Control "max-age=7200"
+		Header merge Cache-Control public
+		ExpiresDefault "access plus 2 hours"
 	</FilesMatch>
+	<If "%{QUERY_STRING} =~ /(md5=.+|version=.+|v=[0-9].*)/">
+		ExpiresDefault "access plus 1 year"
+		Header merge Cache-Control public
+		Header merge Cache-Control immutable
+	</If>
 </IfModule>
 
 <IfModule mod_mime.c>

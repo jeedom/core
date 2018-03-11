@@ -334,7 +334,7 @@ if (init('rescue', 0) == 0) {
 							<a class="btn btn-danger" href="index.php?v=d&p=system"><i class="fa fa-exclamation-triangle"></i> {{Lancer}}</a>
 						</div>
 					</div>
-					<legend><i class="fa fa-indent"></i> {{Editeur de fichier}}</legend>
+					<legend><i class="fa fa-indent"></i> {{Editeur de fichiers}}</legend>
 					<div class="alert alert-danger">{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à Jeedom. L'équipe Jeedom se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Editeur}}</label>
@@ -621,7 +621,7 @@ foreach ($repos as $key => $value) {
 	if ($configs[$key . '::enable'] == 0) {
 		continue;
 	}
-	echo '<legend>{{Proxy}} ' . $value['name'] . '</legend>';
+	echo '<legend>{{DNS (proxy)}} ' . $value['name'] . '</legend>';
 	if ($configs['dns::token'] == '') {
 		echo '<div class="alert alert-warning">{{Attention : cette fonctionnalité n\'est pas disponible dans le service pack community (voir votre service pack sur votre page profil sur le market)}}</div>';
 		continue;
@@ -1148,16 +1148,12 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commande d'information utilisateur}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Action sur message}}</label>
 						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-							<div class="input-group">
-								<input type="text"  class="configKey form-control" data-l1key="emailAdmin" />
-								<span class="input-group-btn">
-									<a class="btn btn-default cursor" title="Rechercher une commande" id="bt_selectMailCmd"><i class="fa fa-list-alt"></i></a>
-								</span>
-							</div>
+							<a class="btn btn-success" id="bt_addActionOnMessage"><i class="fa fa-plus-circle"></i> {{Ajouter}}</a>
 						</div>
 					</div>
+					<div id="div_actionOnMessage"></div>
 				</fieldset>
 			</form>
 			<form class="form-horizontal">
