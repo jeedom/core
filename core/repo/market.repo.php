@@ -321,6 +321,9 @@ class repo_market {
 		}
 
 		system('cd ' . $restore_dir . ';tar cfz "' . $backup_dir . '/' . $backup_name . '" . > /dev/null');
+		if (file_exists($restore_dir)) {
+			com_shell::execute(system::getCmdSudo() . ' rm -rf ' . $restore_dir);
+		}
 		jeedom::restore($backup_dir . '/' . $backup_name, true);
 	}
 
