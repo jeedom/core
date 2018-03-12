@@ -274,13 +274,35 @@ class repo_market {
 			if (strpos($line, 'Full') === false && strpos($line, 'Incremental') === false) {
 				continue;
 			}
-			$return[] = $line;
+			$return[] = trim(substr($line, 0, -1));
 		}
 		return $return;
 	}
 
 	public static function retoreBackup($_backup) {
-
+		$backup_dir = calculPath(config::byKey('backup::path'));
+		if (!file_exists($backup_dir)) {
+			mkdir($backup_dir, 0770, true);
+		}
+		if (!is_writable($backup_dir)) {
+			throw new Exception('Impossible d\'accéder au dossier de sauvegarde. Veuillez vérifier les droits : ' . $backup_dir);
+		}
+		$restore_dir = '/tmp/jeedom_cloud_restore';
+		if (file_exists($restore_dir)) {
+			com_shell::execute(system::getCmdSudo() . ' rm -rf ' . $restore_dir);
+		}
+		mkdir($restore_dir);
+		$timestamp = strtotime(trim(str_replace(array('Full', 'Incremental'), '', $_backup)));
+		$backup_name = str_replace(' ', '_', 'backup-cloud-' . config::byKey('market::cloud::backup::name') . '-' . date("Y-m-d-H\hi", $timestamp) . '.tar.gz');
+		$cmd = system::getCmdSudo() . ' PASSPHRASE="' . config::byKey('market::cloud::backup::password') . '"';
+		$cmd .= ' duplicity --file-to-restore /';
+		$cmd .= ' --time ' . $timestamp;
+		$cmd .= ' webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::backupPassword');
+		$cmd .= '@' . config::byKey('market::backupServer') . '/remote.php/webdav/' . config::byKey('market::cloud::backup::name');
+		$cmd .= ' ' . $restore_dir;
+		com_shell::execute($cmd);
+		system('cd ' . $restore_dir . ';tar cfz "' . $backup_dir . '/' . $backup_name . '" . > /dev/null');
+		jeedom::restore($backup_dir . '/' . $backup_name, true);
 	}
 
 	/*     * ***********************CRON*************************** */
