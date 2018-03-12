@@ -27,13 +27,13 @@ try {
 	ajax::init();
 
 	if (init('action') == 'uploadCloud') {
-		repo_market::sendBackup(init('backup'));
+		repo_market::backup_send(init('backup'));
 		ajax::success();
 	}
 
 	if (init('action') == 'restoreCloud') {
 		$class = 'repo_' . init('repo');
-		$class::retoreBackup(init('backup'));
+		$class::backup_restore(init('backup'));
 		ajax::success();
 	}
 

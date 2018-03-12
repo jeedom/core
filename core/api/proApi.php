@@ -758,11 +758,11 @@ try {
 		}
 
 		if ($jsonrpc->getMethod() == 'backup::listMarket') {
-			$jsonrpc->makeSuccess(repo_market::listeBackup());
+			$jsonrpc->makeSuccess(repo_market::backup_list());
 		}
 
 		if ($jsonrpc->getMethod() == 'backup::restoreMarket') {
-			repo_market::retoreBackup($params['backup'], true);
+			repo_market::backup_restore($params['backup'], true);
 			$jsonrpc->makeSuccess();
 		}
 

@@ -169,7 +169,7 @@ class repo_samba {
 		}
 	}
 
-	public static function sendBackup($_path) {
+	public static function backup_send($_path) {
 		$pathinfo = pathinfo($_path);
 		$cmd = 'cd ' . $pathinfo['dirname'] . ';';
 		$cmd .= self::makeSambaCommand('cd ' . config::byKey('samba::backup::folder') . ';put ' . $pathinfo['basename']);
@@ -177,7 +177,7 @@ class repo_samba {
 		self::cleanBackupFolder();
 	}
 
-	public static function listeBackup() {
+	public static function backup_list() {
 		$return = array();
 		foreach (self::ls(config::byKey('samba::backup::folder')) as $file) {
 			$return[] = $file['filename'];
@@ -185,7 +185,7 @@ class repo_samba {
 		return $return;
 	}
 
-	public static function retoreBackup($_backup) {
+	public static function backup_restore($_backup) {
 		$backup_dir = calculPath(config::byKey('backup::path'));
 		$cmd = 'cd ' . $backup_dir . ';';
 		$cmd .= self::makeSambaCommand('cd ' . config::byKey('samba::backup::folder') . ';get ' . $_backup);

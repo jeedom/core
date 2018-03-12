@@ -92,7 +92,7 @@ foreach (update::listRepo() as $rkey => $value) {
 	echo '</div>';
 	echo '</div>';
 	try {
-		$listeCloudBackup = $class::listeBackup();
+		$listeCloudBackup = $class::backup_list();
 	} catch (Exception $e) {
 		$listeCloudBackup = array();
 		echo '<div class="alert alert-danger">' . $e->getMessage() . '</div>';

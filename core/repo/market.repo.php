@@ -214,7 +214,7 @@ class repo_market {
 		}
 	}
 
-	public static function sendBackup($_path) {
+	public static function backup_send($_path) {
 		if (config::byKey('market::backupServer') == '' || config::byKey('market::backupPassword') == '') {
 			throw new Exception(__('Aucun serveur de backup defini. Avez vous bien un abonnement au backup cloud ?', __FILE__));
 		}
@@ -266,7 +266,33 @@ class repo_market {
 		return null;
 	}
 
-	public static function listeBackup() {
+	public static function backup_clean($_nb = 4, $_keepIncremental = true) {
+		if (config::byKey('market::backupServer') == '' || config::byKey('market::backupPassword') == '') {
+			return;
+		}
+		if (config::byKey('market::cloud::backup::password') == '') {
+			return;
+		}
+		$cmd = system::getCmdSudo();
+		if ($_keepIncremental) {
+			$cmd .= ' duplicity remove-all-but-n-full ' . $_nb . ' --force ';
+		} else {
+			$cmd .= ' duplicity remove-all-inc-of-but-n-full ' . $_nb . ' --force ';
+		}
+		$cmd .= ' --ssl-no-check-certificate';
+		$cmd .= ' webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::backupPassword');
+		$cmd .= '@' . config::byKey('market::backupServer') . '/remote.php/webdav/' . config::byKey('market::cloud::backup::name');
+		try {
+			com_shell::execute($cmd);
+		} catch (Exception $e) {
+			if (self::backup_errorAnalyzed($e->getMessage()) != null) {
+				throw new Exception('[restore cloud] ' . self::backup_errorAnalyzed($e->getMessage()));
+			}
+			throw new Exception('[restore cloud] ' . $e->getMessage());
+		}
+	}
+
+	public static function backup_list() {
 		if (config::byKey('market::backupServer') == '' || config::byKey('market::backupPassword') == '') {
 			return array();
 		}
@@ -290,7 +316,7 @@ class repo_market {
 		return $return;
 	}
 
-	public static function retoreBackup($_backup) {
+	public static function backup_restore($_backup) {
 		$backup_dir = calculPath(config::byKey('backup::path'));
 		if (!file_exists($backup_dir)) {
 			mkdir($backup_dir, 0770, true);
@@ -319,7 +345,6 @@ class repo_market {
 			}
 			throw new Exception('[restore cloud] ' . $e->getMessage());
 		}
-
 		system('cd ' . $restore_dir . ';tar cfz "' . $backup_dir . '/' . $backup_name . '" . > /dev/null');
 		if (file_exists($restore_dir)) {
 			com_shell::execute(system::getCmdSudo() . ' rm -rf ' . $restore_dir);

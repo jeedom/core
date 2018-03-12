@@ -205,7 +205,7 @@ try {
 			$class = 'repo_' . $key;
 			echo 'Send backup ' . $value['name'] . '...';
 			try {
-				$class::sendBackup($backup_dir . '/' . $backup_name);
+				$class::backup_send($backup_dir . '/' . $backup_name);
 			} catch (Exception $e) {
 				log::add('backup', 'error', $e->getMessage());
 				echo '/!\ ' . br2nl($e->getMessage()) . ' /!\\';
