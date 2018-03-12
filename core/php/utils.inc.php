@@ -202,7 +202,7 @@ function displayExeption($e) {
     return displayException($e);
 }
 
-function displayException(Exception $e) {
+function displayException($e) {
 	$message = '<span id="span_errorMessage">' . $e->getMessage() . '</span>';
 	if (DEBUG) {
 		$message .= '<a class="pull-right bt_errorShowTrace cursor">Show traces</a>';
