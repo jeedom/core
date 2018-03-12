@@ -57,7 +57,7 @@ class repo_market {
 			),
 			'cloud::backup::password' => array(
 				'name' => '[Backup cloud] Mot de passe',
-				'type' => 'input',
+				'type' => 'password',
 			),
 		),
 		'parameters_for_add' => array(
@@ -246,13 +246,24 @@ class repo_market {
 		try {
 			com_shell::execute($cmd);
 		} catch (Exception $e) {
+			if (self::backup_errorAnalyzed($e->getMessage()) != null) {
+				throw new Exception('[backup cloud] ' . self::backup_errorAnalyzed($e->getMessage()));
+			}
 			if (strpos($e->getMessage(), 'another instance is already running') === false) {
-				throw new Exception($e);
+				throw new Exception('[backup cloud] ' . $e->getMessage());
 			}
 			system::kill('duplicity');
 			shell_exec(system::getCmdSudo() . ' rm -rf ~/.cache/duplicity/*');
 			com_shell::execute($cmd);
+
 		}
+	}
+
+	public static function backup_errorAnalyzed($_error) {
+		if (strpos($_error, 'decryption failed: Bad session key') !== false) {
+			return __('Clef de chiffrement invalide. Si vous oubliez votre mot de passe aucune récupération n\'est possible. Veuillez supprimer le backup à partir de votre page profil sur le market', __FILE__);
+		}
+		return null;
 	}
 
 	public static function listeBackup() {
@@ -300,7 +311,15 @@ class repo_market {
 		$cmd .= ' webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::backupPassword');
 		$cmd .= '@' . config::byKey('market::backupServer') . '/remote.php/webdav/' . config::byKey('market::cloud::backup::name');
 		$cmd .= ' ' . $restore_dir;
-		com_shell::execute($cmd);
+		try {
+			com_shell::execute($cmd);
+		} catch (Exception $e) {
+			if (self::backup_errorAnalyzed($e->getMessage()) != null) {
+				throw new Exception('[restore cloud] ' . self::backup_errorAnalyzed($e->getMessage()));
+			}
+			throw new Exception('[restore cloud] ' . $e->getMessage());
+		}
+
 		system('cd ' . $restore_dir . ';tar cfz "' . $backup_dir . '/' . $backup_name . '" . > /dev/null');
 		jeedom::restore($backup_dir . '/' . $backup_name, true);
 	}
