@@ -223,7 +223,18 @@ class repo_market {
 		}
 		self::backup_createFolderIsNotExist();
 		$base_dir = realpath(dirname(__FILE__) . '/../../');
-		$excludes = array($base_dir . '/test', $base_dir . '/backup', $base_dir . '/log');
+		$excludes = array(
+			$base_dir . '/tmp',
+			$base_dir . '/log',
+			$base_dir . '/backup',
+			$base_dir . '/.git',
+			$base_dir . '/.log',
+			$base_dir . '/core/config/common.config.php',
+			$base_dir . '/' . config::byKey('backup::path'),
+		);
+		if (config::byKey('recordDir', 'camera') != '') {
+			$excludes[] = $base_dir . '/' . config::byKey('recordDir', 'camera');
+		}
 		$cmd = system::getCmdSudo() . ' PASSPHRASE="' . config::byKey('market::cloud::backup::password') . '"';
 		$cmd .= ' duplicity incremental --full-if-older-than 1W';
 		foreach ($excludes as $exclude) {
