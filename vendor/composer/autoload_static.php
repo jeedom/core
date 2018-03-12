@@ -7,8 +7,15 @@ namespace Composer\Autoload;
 class ComposerStaticInitc7412053f01762e82bf4bede3f471ac6
 {
     public static $files = array (
+        '383eaff206634a77a1be54e64e6459c7' => __DIR__ . '/..' . '/sabre/uri/lib/functions.php',
+        '3569eecfeed3bcf0bad3c998a494ecb8' => __DIR__ . '/..' . '/sabre/xml/lib/Deserializer/functions.php',
+        '93aa591bc4ca510c520999e34229ee79' => __DIR__ . '/..' . '/sabre/xml/lib/Serializer/functions.php',
+        '2b9d0f43f9552984cfa82fee95491826' => __DIR__ . '/..' . '/sabre/event/lib/coroutine.php',
+        'd81bab31d3feb45bfe2f283ea3c8fdf7' => __DIR__ . '/..' . '/sabre/event/lib/Loop/functions.php',
+        'a1cce3d26cc15c00fcd0b3354bd72c88' => __DIR__ . '/..' . '/sabre/event/lib/Promise/functions.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
+        'ebdb698ed4152ae445614b69b5e4bb6a' => __DIR__ . '/..' . '/sabre/http/lib/functions.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
         'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
@@ -21,6 +28,15 @@ class ComposerStaticInitc7412053f01762e82bf4bede3f471ac6
             'Symfony\\Polyfill\\Php56\\' => 23,
             'Symfony\\Component\\ExpressionLanguage\\' => 37,
             'Symfony\\Component\\EventDispatcher\\' => 34,
+            'Sabre\\Xml\\' => 10,
+            'Sabre\\VObject\\' => 14,
+            'Sabre\\Uri\\' => 10,
+            'Sabre\\HTTP\\' => 11,
+            'Sabre\\Event\\' => 12,
+            'Sabre\\DAV\\' => 10,
+            'Sabre\\DAVACL\\' => 13,
+            'Sabre\\CardDAV\\' => 14,
+            'Sabre\\CalDAV\\' => 13,
         ),
         'P' => 
         array (
@@ -35,6 +51,8 @@ class ComposerStaticInitc7412053f01762e82bf4bede3f471ac6
         'L' => 
         array (
             'League\\OAuth2\\Client\\' => 21,
+            'League\\Flysystem\\WebDAV\\' => 24,
+            'League\\Flysystem\\' => 17,
         ),
         'G' => 
         array (
@@ -74,6 +92,42 @@ class ComposerStaticInitc7412053f01762e82bf4bede3f471ac6
         array (
             0 => __DIR__ . '/..' . '/symfony/event-dispatcher',
         ),
+        'Sabre\\Xml\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sabre/xml/lib',
+        ),
+        'Sabre\\VObject\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sabre/vobject/lib',
+        ),
+        'Sabre\\Uri\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sabre/uri/lib',
+        ),
+        'Sabre\\HTTP\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sabre/http/lib',
+        ),
+        'Sabre\\Event\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sabre/event/lib',
+        ),
+        'Sabre\\DAV\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sabre/dav/lib/DAV',
+        ),
+        'Sabre\\DAVACL\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sabre/dav/lib/DAVACL',
+        ),
+        'Sabre\\CardDAV\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sabre/dav/lib/CardDAV',
+        ),
+        'Sabre\\CalDAV\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sabre/dav/lib/CalDAV',
+        ),
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
@@ -93,6 +147,14 @@ class ComposerStaticInitc7412053f01762e82bf4bede3f471ac6
         'League\\OAuth2\\Client\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/oauth2-client/src',
+        ),
+        'League\\Flysystem\\WebDAV\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/flysystem-webdav/src',
+        ),
+        'League\\Flysystem\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/flysystem/src',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (

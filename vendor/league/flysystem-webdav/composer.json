@@ -1,0 +1,33 @@
+{
+    "name": "league/flysystem-webdav",
+    "description": "Flysystem adapter for WebDAV",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Frank de Jonge",
+            "email": "info@frenky.net"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "league/flysystem": "~1.0",
+        "sabre/dav": "~3.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.0",
+        "mockery/mockery": "~0.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "League\\Flysystem\\WebDAV\\": "src"
+        }
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
