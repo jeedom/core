@@ -1,0 +1,74 @@
+<?php
+if (!isConnect()) {
+	throw new Exception('{{401 - Accès non autorisé}}');
+}
+$plan3dHeader = null;
+$list_plan3dHeader = plan3dHeader::all();
+if (init('plan3d_id') == '') {
+	if ($_SESSION['user']->getOptions('defaultDesktopPlan3d') != '') {
+		$plan3dHeader = plan3dHeader::byId($_SESSION['user']->getOptions('defaultDesktopPlan3d'));
+	}
+	if (!is_object($plan3dHeader)) {
+		$plan3dHeader = $list_plan3dHeader[0];
+	}
+} else {
+	$plan3dHeader = plan3dHeader::byId(init('plan3d_id'));
+	if (!is_object($plan3dHeader)) {
+		$plan3dHeader = $list_plan3dHeader[0];
+	}
+}
+if (!is_object($plan3dHeader)) {
+	throw new Exception('{{Aucune plan3d n\'existe}}');
+}
+sendVarToJS('plan3dHeader_id', $plan3dHeader->getId());
+?>
+<div class="row <?php
+if (init('fullscreen') != 1) {
+	echo 'row-overflow';
+}
+?>">
+<div class="col-lg-10" style="height: 100%" id="div_colPlan3d">
+	<div class="div_background3d" style="height: 100%">
+		<div class="container-fluid" id="div_display3d" style="position: relative;padding:0;user-select: none;-khtml-user-select: none;-o-user-select: none;-moz-user-select: -moz-none;-webkit-user-select: none;height: 100%">
+		</div>
+	</div>
+</div>
+<div class="col-lg-2 bs-sidebar" id="div_colMenu">
+<div id="div_btEdit" style="display: none;">
+		<a class="btn btn-default btn-xs" id="bt_plan3dHeaderConfigure"><i class="fa fa-cogs"></i></a>
+		<a class="btn btn-default btn-xs" id="bt_plan3dHeaderAdd"><i class="fa fa-plus"></i></a>
+		<a class="btn btn-default btn-xs" id="bt_showAllObject"><i class="fa fa-eye"></i></a>
+	</div>
+	<legend>{{Informations}}
+		<a class="btn btn-default btn-xs pull-right" id="bt_editMode"><i class="fa fa-pencil"></i></a>
+		<a class="btn btn-default btn-xs pull-right" id="bt_plan3dHeaderFullScreen"><i class="fa fa-desktop"></i></a>
+	</legend>
+
+	<ul id="ul_plan3d" class="nav nav-list bs-sidenav">
+		<?php
+$plan3dHeaders = plan3dHeader::all();
+foreach ($plan3dHeaders as $li_plan3dHeader) {
+	if ($li_plan3dHeader->getId() == $plan3dHeader->getId()) {
+		echo '<li class="cursor active" ><a data-3d_id="' . $li_plan3dHeader->getId() . '" href="index.php?v=d&p=plan3d&plan3d_id=' . $li_plan3dHeader->getId() . '" style="padding: 2px 0px;">' . $li_plan3dHeader->getName() . '</a></li>';
+	} else {
+		echo '<li class="cursor" ><a data-3d_id="' . $li_plan3dHeader->getId() . '" href="index.php?v=d&p=plan3d&plan3d_id=' . $li_plan3dHeader->getId() . '" style="padding: 2px 0px;">' . $li_plan3dHeader->getName() . '</a></li>';
+	}
+}
+?>
+	</ul>
+</div>
+</div>
+
+<div id="md_plan3dWidget" style="position : fixed;top:60px;left:20px"></div>
+
+<?php
+include_file('3rdparty', 'three.js/three.min', 'js');
+include_file('3rdparty', 'three.js/loaders/LoaderSupport', 'js');
+include_file('3rdparty', 'three.js/loaders/OBJLoader', 'js');
+include_file('3rdparty', 'three.js/loaders/MTLLoader', 'js');
+include_file('3rdparty', 'three.js/controls/TrackballControls', 'js');
+include_file('3rdparty', 'three.js/controls/OrbitControls', 'js');
+include_file('3rdparty', 'three.js/renderers/Projector', 'js');
+include_file('3rdparty', 'three.js/objects/Sky', 'js');
+include_file('desktop', 'plan3d', 'js');
+?>
