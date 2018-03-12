@@ -27,7 +27,7 @@ try {
 	ajax::init();
 
 	if (init('action') == 'uploadCloud') {
-		repo_market::sendBackupCloud(init('backup'));
+		repo_market::sendBackup(init('backup'));
 		ajax::success();
 	}
 

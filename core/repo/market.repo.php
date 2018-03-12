@@ -50,6 +50,15 @@ class repo_market {
 				'name' => 'Mot de passe',
 				'type' => 'password',
 			),
+
+			'cloud::backup::name' => array(
+				'name' => '[Backup cloud] Nom',
+				'type' => 'input',
+			),
+			'cloud::backup::password' => array(
+				'name' => '[Backup cloud] Mot de passe',
+				'type' => 'input',
+			),
 		),
 		'parameters_for_add' => array(
 			'version' => array(
@@ -183,98 +192,65 @@ class repo_market {
 	/*     * ***********************BACKUP*************************** */
 
 	public static function sendBackup($_path) {
-		$market = self::getJsonRpc();
-		$file = array(
-			'file' => '@' . realpath($_path),
-		);
-		if (!$market->sendRequest('backup::upload', array(), 7200, $file)) {
-			throw new Exception($market->getError());
+		if (config::byKey('market::backupServer') == '' || config::byKey('market::backupPassword') == '') {
+			throw new Exception(__('Aucun serveur de backup defini. Avez vous bien un abonnement au backup cloud ?', __FILE__));
 		}
-	}
-
-	public static function uploadChunk($path, $chunkStart, $chunkEnd, $id, $fileSize) {
-		$market = self::getJsonRpc();
-		$file = fopen($path, "r");
-		fseek($file, $chunkStart - $fileSize, SEEK_END);
-		$chunkSize = (($diff = $chunkEnd - $chunkStart) < 10240) ? 10240 : $diff;
-		$chunk = fread($file, $chunkSize);
-		$tmp = tmpfile();
-		$path = stream_get_meta_data($tmp);
-		fwrite($tmp, $chunk);
-		$rangeHeader = array('chunkStart' => $chunkStart, 'chunkEnd' => $chunkEnd, 'chunkSize' => $chunkSize, 'fileSize' => $fileSize);
-		if (!$market->sendRequest('backup::put', array('id' => $id, 'rangeHeader' => $rangeHeader), 7300, array('file' => '@' . $path['uri']))) {
-			fclose($tmp);
-			throw new Exception($market->getError());
+		if (config::byKey('market::cloud::backup::password') == '') {
+			throw new Exception(__('Vous devez obligatoirement avoir un mot de passe pour le backup cloud', __FILE__));
 		}
-		$status = $market->getResult();
-		fclose($tmp);
-		return $status;
-	}
-
-	public static function sendBackupCloud($_path, $_chunksize = 4096000) {
-		$market = self::getJsonRpc();
-		if (!$market->sendRequest('backup::create', array('filename' => pathinfo($_path, PATHINFO_BASENAME), 'filesize' => filesize($_path), 'chunksize' => $_chunksize, 'checksum' => md5_file($_path)))) {
-			throw new Exception($market->getError());
-		}
-		$backup = $market->getResult();
-		if (isset($backup["completed_at"]) && $backup["completed_at"]) {
-			log::add('backupCloud', 'info', 'la sauvegarde est déjà sur le cloud');
-			return false;
-		}
-		if (isset($backup["retry"]) && $backup["retry"] > 5) {
-			log::add('backupCloud', 'info', 'Téléversement impossible, nombre d\'essais : 5');
-			return false;
-		}
-		$fileSize = filesize($_path);
-		while (!$backup["completed_at"]) {
-			try {
-				$backup = repo_market::uploadChunk($_path, $backup["chunk_start"], $backup["chunk_end"], $backup["id"], $fileSize);
-			} catch (Exception $e) {
-				echo $e->getMessage() . "\n";
-				repo_market::sendBackupCloud($_path);
-				break;
+		$client = new Sabre\DAV\Client(array(
+			'baseUri' => 'https://' . config::byKey('market::backupServer'),
+			'userName' => config::byKey('market::username'),
+			'password' => config::byKey('market::backupPassword'),
+		));
+		$adapter = new League\Flysystem\WebDAV\WebDAVAdapter($client);
+		$filesystem = new League\Flysystem\Filesystem($adapter);
+		$folders = $filesystem->listContents('/remote.php/webdav/');
+		$found = false;
+		if (count($folders) > 0) {
+			foreach ($folders as $folder) {
+				if ($folder['basename'] == config::byKey('market::cloud::backup::name')) {
+					$found = true;
+					break;
+				}
 			}
-
 		}
-		if ($backup["completed_at"] != "") {
-			log::add('backupCloud', 'info', 'la sauvegarde a fini le téléversement');
-			return true;
+		if (!$found) {
+			$filesystem->createDir('/remote.php/webdav/' . config::byKey('market::cloud::backup::name'));
 		}
+		shell_exec(system::getCmdSudo() . ' rm -rf ~/.cache/duplicity/*');
+		$base_dir = realpath(dirname(__FILE__) . '/../../');
+		$excludes = array($base_dir . '/test', $base_dir . '/backup', $base_dir . '/log');
+		$cmd = system::getCmdSudo() . ' PASSPHRASE="' . config::byKey('market::cloud::backup::password') . '"';
+		$cmd .= ' duplicity incremental --full-if-older-than 1W';
+		foreach ($excludes as $exclude) {
+			$cmd .= ' --exclude ' . $exclude;
+		}
+		$cmd .= ' --ssl-no-check-certificate';
+		$cmd .= ' ' . $base_dir . '  webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::backupPassword');
+		$cmd .= '@' . config::byKey('market::backupServer') . '/remote.php/webdav/' . config::byKey('market::cloud::backup::name');
+		com_shell::execute($cmd);
 	}
 
 	public static function listeBackup() {
-		$market = self::getJsonRpc();
-		if (!$market->sendRequest('backup::liste', array())) {
-			throw new Exception($market->getError());
+		$return = array();
+		$cmd = system::getCmdSudo();
+		$cmd .= ' duplicity collection-status';
+		$cmd .= ' --ssl-no-check-certificate';
+		$cmd .= ' webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::backupPassword');
+		$cmd .= '@' . config::byKey('market::backupServer') . '/remote.php/webdav/' . config::byKey('market::cloud::backup::name');
+		$results = explode("\n", com_shell::execute($cmd));
+		foreach ($results as $line) {
+			if (strpos($line, 'Full') === false && strpos($line, 'Incremental') === false) {
+				continue;
+			}
+			$return[] = $line;
 		}
-		return $market->getResult();
+		return $return;
 	}
 
 	public static function retoreBackup($_backup) {
-		$url = config::byKey('market::address') . "/core/php/downloadBackup.php?backup=" . $_backup . '&hwkey=' . jeedom::getHardwareKey() . '&username=' . urlencode(config::byKey('market::username')) . '&password=' . self::getPassword() . '&password_type=sha1';
-		$tmp_dir = jeedom::getTmpFolder('market');
-		$tmp = $tmp_dir . '/' . $_backup;
-		$opts = array(
-			"ssl" => array(
-				"verify_peer" => false,
-				"verify_peer_name" => false,
-			),
-		);
-		file_put_contents($tmp, fopen($url, 'r', false, stream_context_create($opts)));
-		if (!file_exists($tmp)) {
-			throw new Exception(__('Impossible de télécharger la sauvegarde : ', __FILE__) . $url . '.');
-		}
-		if (!file_exists(dirname(__FILE__) . '/../../backup/')) {
-			mkdir(dirname(__FILE__) . '/../../backup/');
-		}
-		$backup_path = dirname(__FILE__) . '/../../backup/' . $_backup;
-		if (!copy($tmp, $backup_path)) {
-			throw new Exception(__('Impossible de copier le fichier de  : ', __FILE__) . $tmp . '.');
-		}
-		if (!file_exists($backup_path)) {
-			throw new Exception(__('Impossible de trouver le fichier : ', __FILE__) . $backup_path . '.');
-		}
-		jeedom::restore('backup/' . $_backup, true);
+
 	}
 
 	/*     * ***********************CRON*************************** */

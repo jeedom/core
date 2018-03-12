@@ -205,11 +205,7 @@ try {
 			$class = 'repo_' . $key;
 			echo 'Send backup ' . $value['name'] . '...';
 			try {
-				if ($class == 'repo_market') {
-					repo_market::sendBackupCloud($backup_dir . '/' . $backup_name);
-				} else {
-					$class::sendBackup($backup_dir . '/' . $backup_name);
-				}
+				$class::sendBackup($backup_dir . '/' . $backup_name);
 			} catch (Exception $e) {
 				log::add('backup', 'error', $e->getMessage());
 				echo '/!\ ' . br2nl($e->getMessage()) . ' /!\\';

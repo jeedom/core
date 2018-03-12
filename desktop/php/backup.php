@@ -91,14 +91,6 @@ foreach (update::listRepo() as $rkey => $value) {
 	echo '<input type="checkbox" class="configKey" data-l1key="' . $rkey . '::cloudUpload" />';
 	echo '</div>';
 	echo '</div>';
-	if ($class == 'repo_market') {
-		echo '<div class="form-group">';
-		echo '<label class="col-sm-4 col-xs-6 control-label">{{Envoyer la sauvegarde locale sélectionnée}}</label>';
-		echo '<div class="col-sm-4 col-xs-6">';
-		echo '<a class="btn btn-success bt_uploadCloudBackup" data-repo="' . $rkey . '"> <i class="fa fa-file"></i> {{Envoyer}}</a>';
-		echo '</div>';
-		echo '</div>';
-	}
 	try {
 		$listeCloudBackup = $class::listeBackup();
 	} catch (Exception $e) {

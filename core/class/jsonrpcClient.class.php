@@ -78,7 +78,6 @@ class jsonrpcClient {
 			return false;
 		}
 		$result = json_decode(trim($this->rawResult), true);
-
 		if (isset($result['result'])) {
 			$this->result = $result['result'];
 			if ($this->getCb_class() != '') {
