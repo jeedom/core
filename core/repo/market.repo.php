@@ -222,7 +222,6 @@ class repo_market {
 			throw new Exception(__('Vous devez obligatoirement avoir un mot de passe pour le backup cloud', __FILE__));
 		}
 		self::backup_createFolderIsNotExist();
-		shell_exec(system::getCmdSudo() . ' rm -rf ~/.cache/duplicity/*');
 		$base_dir = realpath(dirname(__FILE__) . '/../../');
 		$excludes = array($base_dir . '/test', $base_dir . '/backup', $base_dir . '/log');
 		$cmd = system::getCmdSudo() . ' PASSPHRASE="' . config::byKey('market::cloud::backup::password') . '"';
@@ -233,10 +232,25 @@ class repo_market {
 		$cmd .= ' --ssl-no-check-certificate';
 		$cmd .= ' ' . $base_dir . '  webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::backupPassword');
 		$cmd .= '@' . config::byKey('market::backupServer') . '/remote.php/webdav/' . config::byKey('market::cloud::backup::name');
-		com_shell::execute($cmd);
+		try {
+			com_shell::execute($cmd);
+		} catch (Exception $e) {
+			if (strpos($e->getMessage(), 'another instance is already running') === false) {
+				throw new Exception($e);
+			}
+			system::kill('duplicity');
+			shell_exec(system::getCmdSudo() . ' rm -rf ~/.cache/duplicity/*');
+			com_shell::execute($cmd);
+		}
 	}
 
 	public static function listeBackup() {
+		if (config::byKey('market::backupServer') == '' || config::byKey('market::backupPassword') == '') {
+			return array();
+		}
+		if (config::byKey('market::cloud::backup::password') == '') {
+			return array();
+		}
 		self::backup_createFolderIsNotExist();
 		$return = array();
 		$cmd = system::getCmdSudo();

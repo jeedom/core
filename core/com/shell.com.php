@@ -31,11 +31,11 @@ class com_shell {
 
 	/*     * ********************Functions static********************* */
 
-        /**
-         * @access public
-         * @param type $_cmd
-         * @param type $_background
-         */
+	/**
+	 * @access public
+	 * @param type $_cmd
+	 * @param type $_background
+	 */
 	public function __construct($_cmd = null, $_background = false) {
 		$this->setBackground($_background);
 		if ($_cmd !== null) {
@@ -91,10 +91,13 @@ class com_shell {
 		$retval = 0;
 		$return = array();
 		foreach ($this->cmds as $cmd) {
+			if (strpos($cmd, '2>&1') === false) {
+				$cmd .= ' 2>&1';
+			}
 			exec($cmd, $output, $retval);
 			$return[] = implode("\n", $output);
 			if ($retval != 0) {
-				throw new Exception('Erreur dans l\'exécution du terminal, la valeur retournée est : ' . $retval . '. Détails : ' . print_r($return, true));
+				throw new Exception('Erreur dans l\'exécution du terminal, la valeur retournée est : ' . $retval . '. Détails : ' . implode("\n", $output));
 			}
 			$this->history[] = $cmd;
 		}
