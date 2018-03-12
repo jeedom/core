@@ -191,13 +191,7 @@ class repo_market {
 
 	/*     * ***********************BACKUP*************************** */
 
-	public static function sendBackup($_path) {
-		if (config::byKey('market::backupServer') == '' || config::byKey('market::backupPassword') == '') {
-			throw new Exception(__('Aucun serveur de backup defini. Avez vous bien un abonnement au backup cloud ?', __FILE__));
-		}
-		if (config::byKey('market::cloud::backup::password') == '') {
-			throw new Exception(__('Vous devez obligatoirement avoir un mot de passe pour le backup cloud', __FILE__));
-		}
+	public static function backup_createFolderIsNotExist() {
 		$client = new Sabre\DAV\Client(array(
 			'baseUri' => 'https://' . config::byKey('market::backupServer'),
 			'userName' => config::byKey('market::username'),
@@ -218,6 +212,16 @@ class repo_market {
 		if (!$found) {
 			$filesystem->createDir('/remote.php/webdav/' . config::byKey('market::cloud::backup::name'));
 		}
+	}
+
+	public static function sendBackup($_path) {
+		if (config::byKey('market::backupServer') == '' || config::byKey('market::backupPassword') == '') {
+			throw new Exception(__('Aucun serveur de backup defini. Avez vous bien un abonnement au backup cloud ?', __FILE__));
+		}
+		if (config::byKey('market::cloud::backup::password') == '') {
+			throw new Exception(__('Vous devez obligatoirement avoir un mot de passe pour le backup cloud', __FILE__));
+		}
+		self::backup_createFolderIsNotExist();
 		shell_exec(system::getCmdSudo() . ' rm -rf ~/.cache/duplicity/*');
 		$base_dir = realpath(dirname(__FILE__) . '/../../');
 		$excludes = array($base_dir . '/test', $base_dir . '/backup', $base_dir . '/log');
@@ -233,6 +237,7 @@ class repo_market {
 	}
 
 	public static function listeBackup() {
+		self::backup_createFolderIsNotExist();
 		$return = array();
 		$cmd = system::getCmdSudo();
 		$cmd .= ' duplicity collection-status';
