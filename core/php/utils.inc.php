@@ -594,48 +594,48 @@ function convertDayEnToFr($_day) {
 
 function convertDayFromEn($_day) {
 	$result = $_day;
-    $daysMapping = [
-        'fr_FR' => [
-            'Monday' =>    'Lundi',    'Mon' => 'Lundi',
-            'monday' =>    'lundi',    'mon' => 'lundi',
-            'Tuesday' =>   'Mardi',    'Tue' => 'Mardi',
-            'tuesday' =>   'mardi',    'tue' => 'mardi',
-            'Wednesday' => 'Mercredi', 'Wed' => 'Mercredi',
-            'wednesday' => 'mercredi', 'wed' => 'mercredi',
-            'Thursday' =>  'Jeudi',    'Thu' => 'Jeudi',
-            'thursday' =>  'jeudi',    'thu' => 'jeudi',
-            'Friday' =>    'Vendredi', 'Fri' => 'Vendredi',
-            'friday' =>    'vendredi', 'fri' => 'vendredi',
-            'Saturday' =>  'Samedi',   'Sat' => 'Samedi',
-            'saturday' =>  'samedi',   'sat' => 'samedi',
-            'Sunday' =>    'Dimanche', 'Sun' => 'Dimanche',
-            'sunday' =>    'dimanche', 'sun' => 'dimanche'
-        ],
-        'de_DE' => [
-            'Monday' => 'Montag',       'Mon' => 'Montag',
-            'monday' => 'montag',       'mon' => 'montag',
-            'Tuesday' => 'Dienstag',    'Tue' => 'Dienstag',
-            'tuesday' => 'dienstag',    'tue' => 'dienstag',
-            'Wednesday' => 'Mittwoch',  'Wed' => 'Mittwoch',
-            'wednesday' => 'mittwoch',  'wed' => 'mittwoch',
-            'Thursday' => 'Donnerstag', 'Thu' => 'Donnerstag',
-            'thursday' => 'donnerstag', 'thu' => 'donnerstag',
-            'Friday' => 'Freitag',      'Fri' => 'Freitag',
-            'friday' => 'freitag',      'fri' => 'freitag',
-            'Saturday' => 'Samstag',    'Sat' => 'Samstag',
-            'saturday' => 'samstag',    'sat' => 'samstag',
-            'Sunday' => 'Sonntag',      'Sun' => 'Sonntag',
-            'sunday' => 'sonntag',      'sun' => 'sonntag'
-        ]
-    ];
-    $language = config::byKey('language', 'core', 'fr_FR');
-    if (array_key_exists($language, $daysMapping)) {
-        $daysArray = $daysMapping[$language];
-        if (array_key_exists($_day, $daysArray)) {
-            $result = $daysArray[$_day];
-        }
-    }
-    return $result;
+	$daysMapping = array(
+		'fr_FR' => array(
+			'Monday' => 'Lundi', 'Mon' => 'Lundi',
+			'monday' => 'lundi', 'mon' => 'lundi',
+			'Tuesday' => 'Mardi', 'Tue' => 'Mardi',
+			'tuesday' => 'mardi', 'tue' => 'mardi',
+			'Wednesday' => 'Mercredi', 'Wed' => 'Mercredi',
+			'wednesday' => 'mercredi', 'wed' => 'mercredi',
+			'Thursday' => 'Jeudi', 'Thu' => 'Jeudi',
+			'thursday' => 'jeudi', 'thu' => 'jeudi',
+			'Friday' => 'Vendredi', 'Fri' => 'Vendredi',
+			'friday' => 'vendredi', 'fri' => 'vendredi',
+			'Saturday' => 'Samedi', 'Sat' => 'Samedi',
+			'saturday' => 'samedi', 'sat' => 'samedi',
+			'Sunday' => 'Dimanche', 'Sun' => 'Dimanche',
+			'sunday' => 'dimanche', 'sun' => 'dimanche',
+		),
+		'de_DE' => array(
+			'Monday' => 'Montag', 'Mon' => 'Montag',
+			'monday' => 'montag', 'mon' => 'montag',
+			'Tuesday' => 'Dienstag', 'Tue' => 'Dienstag',
+			'tuesday' => 'dienstag', 'tue' => 'dienstag',
+			'Wednesday' => 'Mittwoch', 'Wed' => 'Mittwoch',
+			'wednesday' => 'mittwoch', 'wed' => 'mittwoch',
+			'Thursday' => 'Donnerstag', 'Thu' => 'Donnerstag',
+			'thursday' => 'donnerstag', 'thu' => 'donnerstag',
+			'Friday' => 'Freitag', 'Fri' => 'Freitag',
+			'friday' => 'freitag', 'fri' => 'freitag',
+			'Saturday' => 'Samstag', 'Sat' => 'Samstag',
+			'saturday' => 'samstag', 'sat' => 'samstag',
+			'Sunday' => 'Sonntag', 'Sun' => 'Sonntag',
+			'sunday' => 'sonntag', 'sun' => 'sonntag',
+		),
+	);
+	$language = config::byKey('language', 'core', 'fr_FR');
+	if (array_key_exists($language, $daysMapping)) {
+		$daysArray = $daysMapping[$language];
+		if (array_key_exists($_day, $daysArray)) {
+			$result = $daysArray[$_day];
+		}
+	}
+	return $result;
 }
 
 function create_zip($source_arr, $destination, $_excludes = array()) {
