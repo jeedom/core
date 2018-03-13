@@ -60,12 +60,14 @@ class user {
 				$ad = ldap_connect(config::byKey('ldap:host'), config::byKey('ldap:port'));
 				ldap_set_option($ad, LDAP_OPT_PROTOCOL_VERSION, 3);
 				ldap_set_option($ad, LDAP_OPT_REFERRALS, 0);
-				if (!ldap_bind($ad, 'uid=' . $_login . ',' . config::byKey('ldap:basedn'), $_mdp)) {
+				$sLink_identifier = '=' . $_login . config::byKey('ldap:complement') . ',' . config::byKey('ldap:basedn');
+				log::add("connection", "debug", __('$sLink_identifier : ', __FILE__).$sLink_identifier);
+				if (!ldap_bind($ad, "uid" . $sLink_identifier, $_mdp)) {
 					log::add("connection", "info", __('Mot de passe erroné (', __FILE__) . $_login . ')');
 					return false;
 				}
 				log::add("connection", "debug", __('Bind user OK', __FILE__));
-				$result = ldap_search($ad, config::byKey('ldap::usersearch') . '=' . $_login . ',' . config::byKey('ldap:basedn'), config::byKey('ldap:filter'));
+				$result = ldap_search($ad, config::byKey('ldap::usersearch') . $sLink_identifier, config::byKey('ldap:filter'));
 				log::add("connection", "info", __('Recherche LDAP (', __FILE__) . $_login . ')');
 				if ($result) {
 					$entries = ldap_get_entries($ad, $result);
