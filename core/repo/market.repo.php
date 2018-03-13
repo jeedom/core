@@ -226,6 +226,7 @@ class repo_market {
 		if (config::byKey('market::cloud::backup::password') == '') {
 			throw new Exception(__('Vous devez obligatoirement avoir un mot de passe pour le backup cloud', __FILE__));
 		}
+		shell_exec(system::getCmdSudo() . ' rm -rf /tmp/duplicity-*-tempdir');
 		self::backup_createFolderIsNotExist();
 		$base_dir = realpath(dirname(__FILE__) . '/../../');
 		$excludes = array(
@@ -241,11 +242,11 @@ class repo_market {
 			$excludes[] = $base_dir . '/' . config::byKey('recordDir', 'camera');
 		}
 		$cmd = system::getCmdSudo() . ' PASSPHRASE="' . config::byKey('market::cloud::backup::password') . '"';
-		//$cmd .= ' duplicity incremental --full-if-older-than ' . config::byKey('market::cloud::backup::fullfrequency', 'core', '1M');
-		$cmd .= ' duplicity incremental --full-if-older-than 1s';
+		$cmd .= ' duplicity incremental --full-if-older-than ' . config::byKey('market::cloud::backup::fullfrequency', 'core', '1M');
 		foreach ($excludes as $exclude) {
 			$cmd .= ' --exclude ' . $exclude;
 		}
+		$cmd .= ' --num-retries 1';
 		$cmd .= ' --ssl-no-check-certificate';
 		$cmd .= ' ' . $base_dir . '  webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::backupPassword');
 		$cmd .= '@' . config::byKey('market::backupServer') . '/remote.php/webdav/' . config::byKey('market::cloud::backup::name');
@@ -255,14 +256,15 @@ class repo_market {
 			if (self::backup_errorAnalyzed($e->getMessage()) != null) {
 				throw new Exception('[backup cloud] ' . self::backup_errorAnalyzed($e->getMessage()));
 			}
-			if (strpos($e->getMessage(), 'another instance is already running') === false) {
-				throw new Exception('[backup cloud] ' . $e->getMessage());
+			if (strpos($e->getMessage(), 'Insufficient Storage') !== false) {
+				self::backup_clean();
 			}
 			system::kill('duplicity');
+			shell_exec(system::getCmdSudo() . ' rm -rf /tmp/duplicity-*-tempdir');
 			shell_exec(system::getCmdSudo() . ' rm -rf ~/.cache/duplicity/*');
 			com_shell::execute($cmd);
-
 		}
+		shell_exec(system::getCmdSudo() . ' rm -rf /tmp/duplicity-*-tempdir');
 	}
 
 	public static function backup_errorAnalyzed($_error) {
@@ -272,7 +274,7 @@ class repo_market {
 		return null;
 	}
 
-	public static function backup_clean($_nb = null, $_keepIncremental = false) {
+	public static function backup_clean($_nb = null) {
 		if (config::byKey('market::backupServer') == '' || config::byKey('market::backupPassword') == '') {
 			return;
 		}
@@ -283,21 +285,18 @@ class repo_market {
 			$_nb = 0;
 			$lists = self::backup_list();
 			foreach ($lists as $name) {
-				if (strpos($name, 'Full')) {
+				if (strpos($name, 'Full') !== false) {
 					$_nb++;
 				}
 			}
-			$_nb = ($_nb - 2 < 0) ? 0 : $_nb - 2;
+			$_nb = ($_nb - 2 < 1) ? 1 : $_nb - 2;
 		}
 		$cmd = system::getCmdSudo();
-		if ($_keepIncremental) {
-			$cmd .= ' duplicity remove-all-but-n-full ' . $_nb . ' --force ';
-		} else {
-			$cmd .= ' duplicity remove-all-inc-of-but-n-full ' . $_nb . ' --force ';
-		}
+		$cmd .= ' duplicity remove-all-but-n-full ' . $_nb . ' --force ';
 		$cmd .= ' --ssl-no-check-certificate';
 		$cmd .= ' webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::backupPassword');
 		$cmd .= '@' . config::byKey('market::backupServer') . '/remote.php/webdav/' . config::byKey('market::cloud::backup::name');
+		log::add('market', 'error', $cmd);
 		try {
 			com_shell::execute($cmd);
 		} catch (Exception $e) {

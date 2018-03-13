@@ -196,7 +196,7 @@ class network {
 		}
 	}
 
-	public static function test($_mode = 'external', $_timeout = 10) {
+	public static function test($_mode = 'external', $_timeout = 5) {
 		if (config::byKey('network::disableMangement') == 1) {
 			return true;
 		}
