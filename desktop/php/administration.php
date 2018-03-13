@@ -1389,6 +1389,13 @@ foreach ($repos as $key => $value) {
 			case 'password':
 				echo '<input type="password" class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
 				break;
+			case 'select':
+				echo '<select class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '">';
+				foreach ($parameter['values'] as $key => $value) {
+					echo '<option value="' . $key . '">' . $value . '</option>';
+				}
+				echo '</select>';
+				break;
 		}
 		echo '</div>';
 		echo '</div>';

@@ -198,8 +198,8 @@ function mySqlIsHere() {
 }
 
 function displayExeption($e) {
-    trigger_error('La fonction displayExeption devient displayException', E_USER_DEPRECATED);
-    return displayException($e);
+	trigger_error('La fonction displayExeption devient displayException', E_USER_DEPRECATED);
+	return displayException($e);
 }
 
 function displayException($e) {
@@ -274,24 +274,24 @@ function getVersion($_name) {
 }
 
 // got from https://github.com/zendframework/zend-stdlib/issues/58
-function polyfill_glob_brace( $pattern, $flags ) {
+function polyfill_glob_brace($pattern, $flags) {
 	static $next_brace_sub;
-	if ( ! $next_brace_sub ) {
+	if (!$next_brace_sub) {
 		// Find the end of the sub-pattern in a brace expression.
-		$next_brace_sub = function ( $pattern, $current ) {
-			$length  = strlen( $pattern );
-			$depth   = 0;
+		$next_brace_sub = function ($pattern, $current) {
+			$length = strlen($pattern);
+			$depth = 0;
 
-			while ( $current < $length ) {
-				if ( '\\' === $pattern[ $current ] ) {
-					if ( ++$current === $length ) {
+			while ($current < $length) {
+				if ('\\' === $pattern[$current]) {
+					if (++$current === $length) {
 						break;
 					}
 					$current++;
 				} else {
-					if ( ( '}' === $pattern[ $current ] && $depth-- === 0 ) || ( ',' === $pattern[ $current ] && 0 === $depth ) ) {
+					if (('}' === $pattern[$current] && $depth-- === 0) || (',' === $pattern[$current] && 0 === $depth)) {
 						break;
-					} elseif ( '{' === $pattern[ $current++ ] ) {
+					} elseif ('{' === $pattern[$current++]) {
 						$depth++;
 					}
 				}
@@ -301,28 +301,28 @@ function polyfill_glob_brace( $pattern, $flags ) {
 		};
 	}
 
-	$length = strlen( $pattern );
+	$length = strlen($pattern);
 
 	// Find first opening brace.
-	for ( $begin = 0; $begin < $length; $begin++ ) {
-		if ( '\\' === $pattern[ $begin ] ) {
+	for ($begin = 0; $begin < $length; $begin++) {
+		if ('\\' === $pattern[$begin]) {
 			$begin++;
-		} elseif ( '{' === $pattern[ $begin ] ) {
+		} elseif ('{' === $pattern[$begin]) {
 			break;
 		}
 	}
 
 	// Find comma or matching closing brace.
-	if ( null === ( $next = $next_brace_sub( $pattern, $begin + 1 ) ) ) {
-		return glob( $pattern, $flags );
+	if (null === ($next = $next_brace_sub($pattern, $begin + 1))) {
+		return glob($pattern, $flags);
 	}
 
 	$rest = $next;
 
 	// Point `$rest` to matching closing brace.
-	while ( '}' !== $pattern[ $rest ] ) {
-		if ( null === ( $rest = $next_brace_sub( $pattern, $rest + 1 ) ) ) {
-			return glob( $pattern, $flags );
+	while ('}' !== $pattern[$rest]) {
+		if (null === ($rest = $next_brace_sub($pattern, $rest + 1))) {
+			return glob($pattern, $flags);
 		}
 	}
 
@@ -331,27 +331,27 @@ function polyfill_glob_brace( $pattern, $flags ) {
 
 	// For each comma-separated subpattern.
 	do {
-		$subpattern = substr( $pattern, 0, $begin )
-					. substr( $pattern, $p, $next - $p )
-					. substr( $pattern, $rest + 1 );
+		$subpattern = substr($pattern, 0, $begin)
+		. substr($pattern, $p, $next - $p)
+		. substr($pattern, $rest + 1);
 
-		if ( ( $result = polyfill_glob_brace( $subpattern, $flags ) ) ) {
-			$paths = array_merge( $paths, $result );
+		if (($result = polyfill_glob_brace($subpattern, $flags))) {
+			$paths = array_merge($paths, $result);
 		}
 
-		if ( '}' === $pattern[ $next ] ) {
+		if ('}' === $pattern[$next]) {
 			break;
 		}
 
-		$p    = $next + 1;
-		$next = $next_brace_sub( $pattern, $p );
-	} while ( null !== $next );
+		$p = $next + 1;
+		$next = $next_brace_sub($pattern, $p);
+	} while (null !== $next);
 
-	return array_values( array_unique( $paths ) );
+	return array_values(array_unique($paths));
 }
 
-function glob_brace( $pattern, $flags = 0 ) {
-	if(defined("GLOB_BRACE")) {
+function glob_brace($pattern, $flags = 0) {
+	if (defined("GLOB_BRACE")) {
 		return glob($pattern, $flags + GLOB_BRACE);
 	} else {
 		return polyfill_glob_brace($pattern, $flags);

@@ -59,6 +59,11 @@ class repo_market {
 				'name' => '[Backup cloud] Mot de passe',
 				'type' => 'password',
 			),
+			'cloud::backup::fullfrequency' => array(
+				'name' => '[Backup cloud] Fréquence backup full',
+				'type' => 'select',
+				'values' => array('1M' => 'Toutes les mois', '1W' => 'Toutes les semaines', '1D' => 'Toutes les jours'),
+			),
 		),
 		'parameters_for_add' => array(
 			'version' => array(
@@ -236,7 +241,7 @@ class repo_market {
 			$excludes[] = $base_dir . '/' . config::byKey('recordDir', 'camera');
 		}
 		$cmd = system::getCmdSudo() . ' PASSPHRASE="' . config::byKey('market::cloud::backup::password') . '"';
-		$cmd .= ' duplicity incremental --full-if-older-than 1W';
+		$cmd .= ' duplicity incremental --full-if-older-than ' . config::byKey('market::cloud::backup::fullfrequency', 'core', '1M');
 		foreach ($excludes as $exclude) {
 			$cmd .= ' --exclude ' . $exclude;
 		}
@@ -313,7 +318,7 @@ class repo_market {
 			}
 			$return[] = trim(substr($line, 0, -1));
 		}
-		return $return;
+		return array_reverse($return);
 	}
 
 	public static function backup_restore($_backup) {
