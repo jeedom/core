@@ -588,102 +588,54 @@ function date_fr($date_en) {
 }
 
 function convertDayEnToFr($_day) {
-	switch (config::byKey('language', 'core', 'fr_FR')) {
-		case 'fr_FR':
-			if ($_day == 'Monday' || $_day == 'Mon') {
-				return 'Lundi';
-			}
-			if ($_day == 'monday' || $_day == 'mon') {
-				return 'lundi';
-			}
+	trigger_error('La fonction convertDayEnToFr devient convertDayFromEn', E_USER_DEPRECATED);
+	return convertDayFromEn($_day);
+}
 
-			if ($_day == 'Tuesday' || $_day == 'Tue') {
-				return 'Mardi';
-			}
-			if ($_day == 'tuesday' || $_day == 'tue') {
-				return 'mardi';
-			}
-
-			if ($_day == 'Wednesday' || $_day == 'Wed') {
-				return 'Mercredi';
-			}
-			if ($_day == 'wednesday' || $_day == 'wed') {
-				return 'mercredi';
-			}
-
-			if ($_day == 'Thursday' || $_day == 'Thu') {
-				return 'Jeudi';
-			}
-			if ($_day == 'thursday' || $_day == 'thu') {
-				return 'Jeudi';
-			}
-
-			if ($_day == 'Friday' || $_day == 'Fri') {
-				return 'Vendredi';
-			}
-			if ($_day == 'friday' || $_day == 'fri') {
-				return 'vendredi';
-			}
-
-			if ($_day == 'Saturday' || $_day == 'Sat') {
-				return 'Samedi';
-			}
-			if ($_day == 'saturday' || $_day == 'sat') {
-				return 'samedi';
-			}
-
-			if ($_day == 'Sunday' || $_day == 'Sun') {
-				return 'Dimanche';
-			}
-			if ($_day == 'sunday' || $_day == 'sun') {
-				return 'dimanche';
-			}
-		case 'de_DE':
-			if ($_day == 'Monday' || $_day == 'Mon') {
-				return 'Montag';
-			}
-			if ($_day == 'monday' || $_day == 'mon') {
-				return 'montag';
-			}
-			if ($_day == 'Tuesday' || $_day == 'Tue') {
-				return 'Donnerstag';
-			}
-			if ($_day == 'tuesday' || $_day == 'tue') {
-				return 'donnerstag';
-			}
-			if ($_day == 'Wednesday' || $_day == 'Wed') {
-				return 'Mittwoch';
-			}
-			if ($_day == 'wednesday' || $_day == 'wed') {
-				return 'mittwoch';
-			}
-			if ($_day == 'Thursday' || $_day == 'Thu') {
-				return 'Donnerstag';
-			}
-			if ($_day == 'thursday' || $_day == 'thu') {
-				return 'Donnerstag';
-			}
-			if ($_day == 'Friday' || $_day == 'Fri') {
-				return 'Freitag';
-			}
-			if ($_day == 'friday' || $_day == 'fri') {
-				return 'freitag';
-			}
-			if ($_day == 'Saturday' || $_day == 'Sat') {
-				return 'Samstag';
-			}
-			if ($_day == 'saturday' || $_day == 'sat') {
-				return 'samstag';
-			}
-			if ($_day == 'Sunday' || $_day == 'Sun') {
-				return 'Sonntag';
-			}
-			if ($_day == 'sunday' || $_day == 'sun') {
-				return 'Sonntag';
-			}
-	}
-
-	return $_day;
+function convertDayFromEn($_day) {
+	$result = $_day;
+    $daysMapping = [
+        'fr_FR' => [
+            'Monday' =>    'Lundi',    'Mon' => 'Lundi',
+            'monday' =>    'lundi',    'mon' => 'lundi',
+            'Tuesday' =>   'Mardi',    'Tue' => 'Mardi',
+            'tuesday' =>   'mardi',    'tue' => 'mardi',
+            'Wednesday' => 'Mercredi', 'Wed' => 'Mercredi',
+            'wednesday' => 'mercredi', 'wed' => 'mercredi',
+            'Thursday' =>  'Jeudi',    'Thu' => 'Jeudi',
+            'thursday' =>  'jeudi',    'thu' => 'jeudi',
+            'Friday' =>    'Vendredi', 'Fri' => 'Vendredi',
+            'friday' =>    'vendredi', 'fri' => 'vendredi',
+            'Saturday' =>  'Samedi',   'Sat' => 'Samedi',
+            'saturday' =>  'samedi',   'sat' => 'samedi',
+            'Sunday' =>    'Dimanche', 'Sun' => 'Dimanche',
+            'sunday' =>    'dimanche', 'sun' => 'dimanche'
+        ],
+        'de_DE' => [
+            'Monday' => 'Montag',       'Mon' => 'Montag',
+            'monday' => 'montag',       'mon' => 'montag',
+            'Tuesday' => 'Dienstag',    'Tue' => 'Dienstag',
+            'tuesday' => 'dienstag',    'tue' => 'dienstag',
+            'Wednesday' => 'Mittwoch',  'Wed' => 'Mittwoch',
+            'wednesday' => 'mittwoch',  'wed' => 'mittwoch',
+            'Thursday' => 'Donnerstag', 'Thu' => 'Donnerstag',
+            'thursday' => 'donnerstag', 'thu' => 'donnerstag',
+            'Friday' => 'Freitag',      'Fri' => 'Freitag',
+            'friday' => 'freitag',      'fri' => 'freitag',
+            'Saturday' => 'Samstag',    'Sat' => 'Samstag',
+            'saturday' => 'samstag',    'sat' => 'samstag',
+            'Sunday' => 'Sonntag',      'Sun' => 'Sonntag',
+            'sunday' => 'sonntag',      'sun' => 'sonntag'
+        ]
+    ];
+    $language = config::byKey('language', 'core', 'fr_FR');
+    if (array_key_exists($language, $daysMapping)) {
+        $daysArray = $daysMapping[$language];
+        if (array_key_exists($_day, $daysArray)) {
+            $result = $daysArray[$_day];
+        }
+    }
+    return $result;
 }
 
 function create_zip($source_arr, $destination, $_excludes = array()) {
