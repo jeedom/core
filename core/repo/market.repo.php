@@ -296,7 +296,6 @@ class repo_market {
 		$cmd .= ' --ssl-no-check-certificate';
 		$cmd .= ' webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::backupPassword');
 		$cmd .= '@' . config::byKey('market::backupServer') . '/remote.php/webdav/' . config::byKey('market::cloud::backup::name');
-		log::add('market', 'error', $cmd);
 		try {
 			com_shell::execute($cmd);
 		} catch (Exception $e) {
