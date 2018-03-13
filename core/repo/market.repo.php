@@ -241,7 +241,8 @@ class repo_market {
 			$excludes[] = $base_dir . '/' . config::byKey('recordDir', 'camera');
 		}
 		$cmd = system::getCmdSudo() . ' PASSPHRASE="' . config::byKey('market::cloud::backup::password') . '"';
-		$cmd .= ' duplicity incremental --full-if-older-than ' . config::byKey('market::cloud::backup::fullfrequency', 'core', '1M');
+		//$cmd .= ' duplicity incremental --full-if-older-than ' . config::byKey('market::cloud::backup::fullfrequency', 'core', '1M');
+		$cmd .= ' duplicity incremental --full-if-older-than 1s';
 		foreach ($excludes as $exclude) {
 			$cmd .= ' --exclude ' . $exclude;
 		}
@@ -271,12 +272,22 @@ class repo_market {
 		return null;
 	}
 
-	public static function backup_clean($_nb = 4, $_keepIncremental = true) {
+	public static function backup_clean($_nb = null, $_keepIncremental = false) {
 		if (config::byKey('market::backupServer') == '' || config::byKey('market::backupPassword') == '') {
 			return;
 		}
 		if (config::byKey('market::cloud::backup::password') == '') {
 			return;
+		}
+		if ($_nb == null) {
+			$_nb = 0;
+			$lists = self::backup_list();
+			foreach ($lists as $name) {
+				if (strpos($name, 'Full')) {
+					$_nb++;
+				}
+			}
+			$_nb = ($_nb - 2 < 0) ? 0 : $_nb - 2;
 		}
 		$cmd = system::getCmdSudo();
 		if ($_keepIncremental) {
