@@ -34,6 +34,7 @@ $js_file = array(
 	'core/js/message.class.js',
 	'core/js/scenario.class.js',
 	'core/js/plan.class.js',
+	'core/js/plan3d.class.js',
 	'3rdparty/jquery.packery/jquery.packery.js',
 );
 if (file_exists(dirname(__FILE__) . '/mobile/custom/custom.js')) {

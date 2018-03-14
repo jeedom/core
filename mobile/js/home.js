@@ -6,6 +6,8 @@ function initHome() {
     $('#bottompanel_otherActionList').append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="cron" data-title="{{Crons}}"><i class="fa fa-cogs" ></i> {{Crons}}</a>');
     $('#bottompanel_otherActionList').append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="health" data-title="{{Santé}}"><i class="icon divers-caduceus3" ></i> {{Santé}}</a>');
     $('#bottompanel_otherActionList').append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="eqAnalyse" data-title="{{Analyse équipement}}"><i class="fa fa-battery-full" ></i> {{Analyse équipement}}</a>');
+    $('#bottompanel_otherActionList').append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="scenario" data-title="{{Scénarios}}"><i class="fa fa-cogs"></i> {{Scénario}}</a>');
+
 
     jeedom.object.all({
         error: function (error) {
@@ -57,6 +59,19 @@ function initHome() {
                 li += '<a class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" href="index.php?v=d&p=plan&plan_id=' + planHeader[i].id + '" data-ajax="false">' +init(planHeader[i].configuration['icon'])+' '+ planHeader[i].name + '</a>'
             }
             $('#bottompanel_planList').empty().append(li);
+        }
+    });
+
+    jeedom.plan3d.allHeader({
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (plan3dHeader) {
+            var li = '';
+            for (var i in plan3dHeader) {
+                li += '<a class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" href="index.php?v=d&p=plan3d&plan3d_id=' + plan3dHeader[i].id + '" data-ajax="false">' +init(plan3dHeader[i].configuration['icon'])+' '+ plan3dHeader[i].name + '</a>'
+            }
+            $('#bottompanel_plan3dList').empty().append(li);
         }
     });
 
