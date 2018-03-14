@@ -1,6 +1,12 @@
 Changelog 
 =========
 
+3.3.0
+=====
+
+-   Ajout d'un affichage 3D
+-   Refonte du systeme de backup cloud (backup incrémental et crypté)
+
 3.2.2
 =====
 

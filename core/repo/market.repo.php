@@ -62,7 +62,7 @@ class repo_market {
 			'cloud::backup::fullfrequency' => array(
 				'name' => '[Backup cloud] Fréquence backup full',
 				'type' => 'select',
-				'values' => array('1M' => 'Toutes les mois', '1W' => 'Toutes les semaines', '1D' => 'Toutes les jours'),
+				'values' => array('1D' => 'Toutes les jours', '1W' => 'Toutes les semaines', '1M' => 'Toutes les mois'),
 			),
 		),
 		'parameters_for_add' => array(

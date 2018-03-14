@@ -723,6 +723,12 @@ refusée si vous utilisez un autre dépôt que celui-ci.
 
 -   **Mot de passe** : Votre mot de passe du Market.
 
+-   **[Backup cloud] Nom** : Nom de votre backup cloud (attention doit etre unique pour chaque Jeedom sous risque qu'il s'écrase entre eux)
+
+-   **[Backup cloud] Mot de passe** : Mot de passe du backup cloud. IMPORTANT vous ne devez surtout pas le perdre, il n'y a aucun moyen de le recuperer. Sans celui-ci vous ne pourrez restorer votre Jeedom
+
+-   **[Backup cloud] Fréquence backup full** : Fréquence du backup cloud full. Un backup full est plus long qu'un incrémentale (qui n'envoi que les difference). Il est recommandé d'en faire 1 par mois
+
 ### Samba 
 
 Dépôt permettant d’envoyer automatiquement une sauvegarde de Jeedom sur
