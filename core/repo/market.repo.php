@@ -294,6 +294,7 @@ class repo_market {
 		$cmd = system::getCmdSudo();
 		$cmd .= ' duplicity remove-all-but-n-full ' . $_nb . ' --force ';
 		$cmd .= ' --ssl-no-check-certificate';
+		$cmd .= ' --num-retries 1';
 		$cmd .= ' webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::backupPassword');
 		$cmd .= '@' . config::byKey('market::backupServer') . '/remote.php/webdav/' . config::byKey('market::cloud::backup::name');
 		try {
@@ -318,8 +319,11 @@ class repo_market {
 		$cmd = system::getCmdSudo();
 		$cmd .= ' duplicity collection-status';
 		$cmd .= ' --ssl-no-check-certificate';
+		$cmd .= ' --num-retries 1';
+		$cmd .= ' --timeout 2';
 		$cmd .= ' webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::backupPassword');
 		$cmd .= '@' . config::byKey('market::backupServer') . '/remote.php/webdav/' . config::byKey('market::cloud::backup::name');
+		shell_exec(system::getCmdSudo() . ' rm -rf ~/.cache/duplicity/*');
 		$results = explode("\n", com_shell::execute($cmd));
 		foreach ($results as $line) {
 			if (strpos($line, 'Full') === false && strpos($line, 'Incremental') === false) {
@@ -348,6 +352,7 @@ class repo_market {
 		$cmd = system::getCmdSudo() . ' PASSPHRASE="' . config::byKey('market::cloud::backup::password') . '"';
 		$cmd .= ' duplicity --file-to-restore /';
 		$cmd .= ' --time ' . $timestamp;
+		$cmd .= ' --num-retries 1';
 		$cmd .= ' webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::backupPassword');
 		$cmd .= '@' . config::byKey('market::backupServer') . '/remote.php/webdav/' . config::byKey('market::cloud::backup::name');
 		$cmd .= ' ' . $restore_dir;
