@@ -56,7 +56,7 @@ if (init('rescue', 0) == 0) {
 					$title = ucfirst($plugin->getName()) . ' - Jeedom';
 				}
 				$plugin_menu .= '<li style="padding-right:10px"><a href="index.php?v=d&m=' . $pluginList->getId() . '&p=' . $pluginList->getIndex() . '"><img class="img-responsive" style="width : 20px;display:inline-block;" src="' . $pluginList->getPathImgIcon() . '" /> ' . $pluginList->getName() . '</a></li>';
-				if ($pluginList->getDisplay() != '' && config::bykey('displayDesktopPanel', $pluginList->getId(), 0) != 0) {
+				if ($pluginList->getDisplay() != '' && config::byKey('displayDesktopPanel', $pluginList->getId(), 0) != 0) {
 					$panel_menu .= '<li style="padding-right:10px"><a href="index.php?v=d&m=' . $pluginList->getId() . '&p=' . $pluginList->getDisplay() . '"><img class="img-responsive" style="width : 20px;display:inline-block;" src="' . $pluginList->getPathImgIcon() . '" /> ' . $pluginList->getName() . '</a></li>';
 				}
 				if ($pluginList->getEventjs() == 1) {
@@ -84,7 +84,6 @@ if (init('rescue', 0) == 0) {
 		var clientDatetime = new Date();
 		var clientServerDiffDatetime = (<?php echo strtotime('now'); ?> * 1000) - clientDatetime.getTime();
 		var serverDatetime = <?php echo getmicrotime(); ?>;
-		var io = null;
 	</script>
 	<?php
 if (!isConnect() || $_SESSION['user']->getOptions('bootstrap_theme') == '') {
@@ -269,6 +268,16 @@ foreach (view::all() as $view_menu) {
 											<?php
 foreach (planHeader::all() as $plan_menu) {
 			echo '<li><a href="index.php?v=d&p=plan&plan_id=' . $plan_menu->getId() . '">' . trim($plan_menu->getConfiguration('icon') . ' ' . $plan_menu->getName()) . '</a></li>';
+		}
+		?>
+										</ul>
+									</li>
+																		<li class="dropdown-submenu">
+										<a data-toggle="dropdown" id="bt_gotoPlan"><i class="fa fa-cubes"></i> {{Design 3D}}</a>
+										<ul class="dropdown-menu">
+											<?php
+foreach (plan3dHeader::all() as $plan3d_menu) {
+			echo '<li><a href="index.php?v=d&p=plan3d&plan3d_id=' . $plan3d_menu->getId() . '">' . trim($plan3d_menu->getConfiguration('icon') . ' ' . $plan3d_menu->getName()) . '</a></li>';
 		}
 		?>
 										</ul>
