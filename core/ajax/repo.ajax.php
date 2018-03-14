@@ -124,6 +124,11 @@ try {
 		ajax::success();
 	}
 
+	if (init('action') == 'backupList') {
+		$class = 'repo_' . init('repo');
+		ajax::success($class::backup_list());
+	}
+
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 
 	/*     * *********Catch exeption*************** */

@@ -225,6 +225,9 @@
                 $('#bt_' + _log + 'Jeedom .fa-refresh').hide();
                 $('.bt_' + _log + 'Jeedom .fa-refresh').hide();
                 updateListBackup();
+                for(var i in REPO_LIST){
+                    updateRepoListBackup(REPO_LIST[i]);
+                }
             }
         }
     });
@@ -241,6 +244,27 @@ function updateListBackup() {
                 options += '<option value="' + i + '">' + data[i] + '</option>';
             }
             $('#sel_restoreBackup').html(options);
+        }
+    });
+}
+
+for(var i in REPO_LIST){
+    updateRepoListBackup(REPO_LIST[i]);
+}
+
+function updateRepoListBackup(_repo) {
+    jeedom.repo.backupList({
+        repo : _repo,
+        global : false,
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+            var options = '';
+            for (var i in data) {
+                options += '<option value="' + i + '">' + data[i] + '</option>';
+            }
+            $('.sel_restoreCloudBackup[data-repo='+_repo+']').empty().html(options);
         }
     });
 }

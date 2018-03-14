@@ -2,6 +2,9 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
+echo '<script>';
+echo 'REPO_LIST = []';
+echo '</script>';
 ?>
 <div id="backup">
     <div class="row row-overflow">
@@ -91,26 +94,15 @@ foreach (update::listRepo() as $rkey => $value) {
 	echo '<input type="checkbox" class="configKey" data-l1key="' . $rkey . '::cloudUpload" />';
 	echo '</div>';
 	echo '</div>';
-	try {
-		$listeCloudBackup = $class::backup_list();
-	} catch (Exception $e) {
-		$listeCloudBackup = array();
-		echo '<div class="alert alert-danger">' . $e->getMessage() . '</div>';
-	}
 	echo '<div class="form-group">';
 	echo '<label class="col-sm-4 col-xs-6 control-label">{{Sauvegardes disponibles}}</label>';
 	echo '<div class="col-sm-6 col-xs-6">';
-	echo '<select class="form-control sel_restoreCloudBackup">';
-	try {
-		foreach ($listeCloudBackup as $key => $backup) {
-			if (is_numeric($key)) {
-				echo '<option>' . $backup . '</option>';
-			}
-		}
-	} catch (Exception $e) {
-
-	}
+	echo '<select class="form-control sel_restoreCloudBackup" data-repo="' . $rkey . '">';
+	echo '<option>{{Chargement...}}</option>';
 	echo '</select>';
+	echo '<script>';
+	echo 'REPO_LIST.push("' . $rkey . '");';
+	echo '</script>';
 	echo '</div>';
 	echo '</div>';
 	echo '<div class="form-group">';
