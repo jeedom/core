@@ -67,7 +67,7 @@ class repo_market {
 		),
 		'parameters_for_add' => array(
 			'version' => array(
-				'name' => 'Version : beta, release, stable',
+				'name' => 'Version : beta, stable',
 				'type' => 'input',
 			),
 		),
