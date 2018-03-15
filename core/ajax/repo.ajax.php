@@ -27,22 +27,26 @@ try {
 	ajax::init();
 
 	if (init('action') == 'uploadCloud') {
+		unautorizedInDemo();
 		repo_market::backup_send(init('backup'));
 		ajax::success();
 	}
 
 	if (init('action') == 'restoreCloud') {
+		unautorizedInDemo();
 		$class = 'repo_' . init('repo');
 		$class::backup_restore(init('backup'));
 		ajax::success();
 	}
 
 	if (init('action') == 'sendReportBug') {
+		unautorizedInDemo();
 		$class = 'repo_' . init('repo');
 		ajax::success($class::saveTicket(json_decode(init('ticket'), true)));
 	}
 
 	if (init('action') == 'install') {
+		unautorizedInDemo();
 		$class = 'repo_' . init('repo');
 		$repo = $class::byId(init('id'));
 		if (!is_object($repo)) {
@@ -69,6 +73,7 @@ try {
 	}
 
 	if (init('action') == 'remove') {
+		unautorizedInDemo();
 		$class = 'repo_' . init('repo');
 		$repo = $class::byId(init('id'));
 		if (!is_object($market)) {
@@ -84,6 +89,7 @@ try {
 	}
 
 	if (init('action') == 'save') {
+		unautorizedInDemo();
 		$class = 'repo_' . init('repo');
 		$repo_ajax = json_decode(init('market'), true);
 		try {
@@ -115,6 +121,7 @@ try {
 	}
 
 	if (init('action') == 'setRating') {
+		unautorizedInDemo();
 		$class = 'repo_' . init('repo');
 		$repo = $class::byId(init('id'));
 		if (!is_object($repo)) {

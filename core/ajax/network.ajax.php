@@ -27,12 +27,14 @@ try {
 	ajax::init();
 
 	if (init('action') == 'restartDns') {
+		unautorizedInDemo();
 		config::save('market::allowDNS', 1);
 		network::dns_start();
 		ajax::success();
 	}
 
 	if (init('action') == 'stopDns') {
+		unautorizedInDemo();
 		config::save('market::allowDNS', 0);
 		network::dns_stop();
 		ajax::success();

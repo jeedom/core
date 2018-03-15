@@ -157,6 +157,7 @@ try {
 	}
 
 	if (init('action') == 'setIsEnable') {
+		unautorizedInDemo();
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
@@ -189,6 +190,7 @@ try {
 	}
 
 	if (init('action') == 'removes') {
+		unautorizedInDemo();
 		$eqLogics = json_decode(init('eqLogics'), true);
 		foreach ($eqLogics as $id) {
 			$eqLogic = eqLogic::byId($id);
@@ -204,6 +206,7 @@ try {
 	}
 
 	if (init('action') == 'setIsVisibles') {
+		unautorizedInDemo();
 		$eqLogics = json_decode(init('eqLogics'), true);
 		foreach ($eqLogics as $id) {
 			$eqLogic = eqLogic::byId($id);
@@ -236,6 +239,7 @@ try {
 	}
 
 	if (init('action') == 'simpleSave') {
+		unautorizedInDemo();
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
@@ -254,6 +258,7 @@ try {
 	}
 
 	if (init('action') == 'copy') {
+		unautorizedInDemo();
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
@@ -268,6 +273,7 @@ try {
 	}
 
 	if (init('action') == 'remove') {
+		unautorizedInDemo();
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
@@ -297,6 +303,7 @@ try {
 	}
 
 	if (init('action') == 'save') {
+		unautorizedInDemo();
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}

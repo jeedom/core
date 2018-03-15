@@ -27,11 +27,13 @@ try {
 	ajax::init(true);
 
 	if (init('action') == 'flush') {
+		unautorizedInDemo();
 		cache::flush();
 		ajax::success();
 	}
 
 	if (init('action') == 'clean') {
+		unautorizedInDemo();
 		cache::clean();
 		ajax::success();
 	}

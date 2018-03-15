@@ -31,6 +31,7 @@ try {
 	}
 
 	if (init('action') == 'all') {
+		unautorizedInDemo();
 		$return = array();
 		foreach (update::all(init('filter')) as $update) {
 			$infos = utils::o2a($update);
@@ -39,7 +40,6 @@ try {
 					$plugin = plugin::byId($update->getLogicalId());
 					if (is_object($plugin)) {
 						$infos['plugin'] = array();
-						$infos['plugin']['changelog'] = $plugin->getChangelog();
 					}
 				} catch (Exception $e) {
 
@@ -56,6 +56,7 @@ try {
 	}
 
 	if (init('action') == 'update') {
+		unautorizedInDemo();
 		log::clear('update');
 		$update = update::byId(init('id'));
 		if (!is_object($update)) {
@@ -88,6 +89,7 @@ try {
 	}
 
 	if (init('action') == 'remove') {
+		unautorizedInDemo();
 		update::findNewUpdateObject();
 		$update = update::byId(init('id'));
 		if (!is_object($update)) {
@@ -118,6 +120,7 @@ try {
 	}
 
 	if (init('action') == 'save') {
+		unautorizedInDemo();
 		$new = false;
 		$update_json = json_decode(init('update'), true);
 		if (isset($update_json['id'])) {
@@ -147,11 +150,13 @@ try {
 	}
 
 	if (init('action') == 'saves') {
+		unautorizedInDemo();
 		utils::processJsonObject('update', init('updates'));
 		ajax::success();
 	}
 
 	if (init('action') == 'preUploadFile') {
+		unautorizedInDemo();
 		$uploaddir = '/tmp';
 		if (!file_exists($uploaddir)) {
 			throw new Exception(__('Répertoire de téléversement non trouvé : ', __FILE__) . $uploaddir);

@@ -170,6 +170,7 @@ try {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
+		unautorizedInDemo();
 		$cmd_ajax = jeedom::fromHumanReadable(json_decode(init('cmd'), true));
 		$cmd = cmd::byId($cmd_ajax['id']);
 		if (!is_object($cmd)) {

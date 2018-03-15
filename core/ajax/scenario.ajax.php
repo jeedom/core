@@ -365,6 +365,7 @@ try {
 	}
 
 	if (init('action') == 'templateupload') {
+		unautorizedInDemo();
 		$uploaddir = dirname(__FILE__) . '/../../core/config/scenario/';
 		if (!file_exists($uploaddir)) {
 			mkdir($uploaddir);

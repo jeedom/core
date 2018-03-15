@@ -71,6 +71,7 @@ try {
 	}
 
 	if (init('action') == 'toggle') {
+		unautorizedInDemo();
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
@@ -106,6 +107,7 @@ try {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
+		unautorizedInDemo();
 		$plugin = plugin::byId(init('id'));
 		if (!is_object($plugin)) {
 			ajax::success();
@@ -131,6 +133,7 @@ try {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
+		unautorizedInDemo();
 		$plugin_id = init('id');
 		$plugin = plugin::byId(init('id'));
 		if (!is_object($plugin)) {
@@ -143,6 +146,7 @@ try {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
+		unautorizedInDemo();
 		$plugin = plugin::byId(init('id'));
 		if (!is_object($plugin)) {
 			ajax::success();
@@ -154,6 +158,7 @@ try {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
+		unautorizedInDemo();
 		$plugin = plugin::byId(init('id'));
 		if (!is_object($plugin)) {
 			ajax::success();
