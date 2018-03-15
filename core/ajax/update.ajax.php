@@ -31,7 +31,6 @@ try {
 	}
 
 	if (init('action') == 'all') {
-		unautorizedInDemo();
 		$return = array();
 		foreach (update::all(init('filter')) as $update) {
 			$infos = utils::o2a($update);
@@ -51,6 +50,7 @@ try {
 	}
 
 	if (init('action') == 'checkAllUpdate') {
+		unautorizedInDemo();
 		update::checkAllUpdate();
 		ajax::success();
 	}
@@ -103,6 +103,7 @@ try {
 	}
 
 	if (init('action') == 'checkUpdate') {
+		unautorizedInDemo();
 		$update = update::byId(init('id'));
 		if (!is_object($update)) {
 			$update = update::byLogicalId(init('id'));
@@ -115,6 +116,7 @@ try {
 	}
 
 	if (init('action') == 'updateAll') {
+		unautorizedInDemo();
 		jeedom::update(json_decode(init('options', '{}'), true));
 		ajax::success();
 	}
