@@ -45,7 +45,7 @@ foreach ($plugins_list as $category_name => $category) {
     <center>
       <i class="fa fa-plus" style="font-size : 6em;color:#94ca02;"></i>
     </center>
-    <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>{{Sources}}</center></span>
+    <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>{{Plugins}}</center></span>
   </div>
    <?php
 foreach (update::listRepo() as $key => $value) {
