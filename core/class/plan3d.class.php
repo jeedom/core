@@ -245,6 +245,9 @@ class plan3d {
 				$return['color'] = '';
 				$return['cmds'] = array();
 				$conditions = $this->getConfiguration('3d::widget::conditionalColor::condition');
+				if (!is_array($conditions) || count($conditions) == 0) {
+					return $return;
+				}
 				foreach ($conditions as $condition) {
 					if (!isset($condition['color'])) {
 						continue;
