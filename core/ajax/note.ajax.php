@@ -26,14 +26,23 @@ try {
 	}
 
 	if (init('action') == 'all') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
 		ajax::success(utils::o2a(note::all()));
 	}
 
 	if (init('action') == 'byId') {
-		ajax::success(utils::o2a(note::byId('id')));
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		ajax::success(utils::o2a(note::byId(init('id'))));
 	}
 
 	if (init('action') == 'save') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
 		$note_json = json_decode(init('note'), true);
 		if (isset($note_json['id'])) {
 			$note = note::byId($note_json['id']);
@@ -46,7 +55,10 @@ try {
 		ajax::success(utils::o2a($note));
 	}
 
-	if (init('action') == 'get') {
+	if (init('action') == 'remove') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
 		$note = note::byId(init('id'));
 		if (!is_object($note)) {
 			throw new Exception(__('Note inconnue. Vérifiez l\'ID', __FILE__));

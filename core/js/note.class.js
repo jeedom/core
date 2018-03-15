@@ -37,7 +37,7 @@ jeedom.note.remove = function(_params) {
     $.ajax(paramsAJAX);
 }
 
-jeedom.note.get = function(_params) {
+jeedom.note.byId = function(_params) {
     var paramsRequired = ['id'];
     var paramsSpecifics = {};
     try {

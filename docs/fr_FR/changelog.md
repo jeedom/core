@@ -6,6 +6,7 @@ Changelog
 
 -   Ajout d'un affichage 3D
 -   Refonte du systeme de backup cloud (backup incrémental et crypté)
+-   Ajout d'un systeme de prise de note intégré (dans Analyse -> Note)
 
 3.2.2
 =====
