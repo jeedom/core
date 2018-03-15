@@ -1,12 +1,10 @@
-Jeedom met à disposition des développeurs et des utilisateurs une API
-complète afin de pouvoir piloter Jeedom depuis n’importe quel objet
-connecté.
+Jeedom bietet Entwicklern und Anwendern eine umfassende API, um
+Jeedom von jedem angeschlossenen Objekt zu steuern.
 
-Deux API sont disponibles : une orientée développeur qui se pilote en
-JSON RPC 2.0 et une autre via URL et requête HTTP.
+Zwei API´s sind verfügbar : Eines ist auf Programmierer ausgerichtet,
+gesteuert mit JSON RPC 2.0 und ein anderes via URL und der HTTP Abfrage. 
 
-Cette API s’utilise très facilement par de simples requêtes HTTP via
-URL.
+Diese API ist einfach, mit einfachen HTTP-Anfragen über eine URL zu verwenden.
 
 > **Note**
 >
