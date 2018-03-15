@@ -174,6 +174,7 @@ try {
 	}
 
 	if (init('action') == 'setOrder') {
+		unautorizedInDemo();
 		$eqLogics = json_decode(init('eqLogics'), true);
 		foreach ($eqLogics as $eqLogic_json) {
 			if (!isset($eqLogic_json['id']) || trim($eqLogic_json['id']) == '') {
@@ -223,6 +224,7 @@ try {
 	}
 
 	if (init('action') == 'setIsEnables') {
+		unautorizedInDemo();
 		$eqLogics = json_decode(init('eqLogics'), true);
 		foreach ($eqLogics as $id) {
 			$eqLogic = eqLogic::byId($id);
@@ -358,8 +360,6 @@ try {
 						$cmd_order++;
 						$enableList[$cmd->getId()] = true;
 					}
-
-					//suppression des entrées non innexistante.
 					foreach ($dbList as $dbObject) {
 						if (!isset($enableList[$dbObject->getId()]) && !$dbObject->dontRemoveCmd()) {
 							$dbObject->remove();

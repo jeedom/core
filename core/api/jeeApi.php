@@ -36,7 +36,6 @@ if (isset($argv)) {
 GLOBAL $_USER_GLOBAL;
 $_USER_GLOBAL = null;
 if (init('type') != '') {
-
 	try {
 		$type = init('type');
 		if ((!jeedom::apiAccess(init('apikey', init('api')), init('plugin', 'core')) &&

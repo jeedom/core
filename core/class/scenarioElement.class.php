@@ -170,7 +170,6 @@ class scenarioElement {
 			}
 			return $this->getSubElement('action')->execute($_scenario);
 		} else if ($this->getType() == 'code') {
-			unautorizedInDemo();
 			if ($this->getSubElement('code')->getOptions('enable', 1) == 0) {
 				return true;
 			}
