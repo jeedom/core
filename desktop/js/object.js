@@ -292,6 +292,6 @@ function addSummaryInfo(_el, _summary) {
 }
 
 $('.bt_showObjectSummary').off('click').on('click', function () {
-  $('#md_modal').dialog({title: "{{Résumé objet}}"});
+  $('#md_modal').dialog({title: "{{Résumé Objets}}"});
   $("#md_modal").load('index.php?v=d&modal=object.summary').dialog('open');
 });
