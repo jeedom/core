@@ -185,6 +185,7 @@ try {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
+		unautorizedInDemo();
 		$cmds = json_decode(init('cmd'), true);
 		foreach ($cmds as $cmd_ajax) {
 			$cmd = cmd::byId($cmd_ajax['id']);
