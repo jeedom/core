@@ -228,6 +228,7 @@ try {
 	}
 
 	if (init('action') == 'forceSyncHour') {
+		unautorizedInDemo();
 		ajax::success(jeedom::forceSyncHour());
 	}
 
@@ -284,10 +285,12 @@ try {
 	}
 
 	if (init('action') == 'removeTimelineEvents') {
+		unautorizedInDemo();
 		ajax::success(jeedom::removeTimelineEvent());
 	}
 
 	if (init('action') == 'getFileFolder') {
+		unautorizedInDemo();
 		ajax::success(ls(init('path'), '*', false, array(init('type'))));
 	}
 
