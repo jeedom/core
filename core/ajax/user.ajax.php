@@ -93,6 +93,20 @@ try {
 		ajax::success($result);
 	}
 
+	if (init('action') == 'removeTwoFactorCode') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		unautorizedInDemo();
+		$user = user::byId(init('id'));
+		if (!is_object($user)) {
+			throw new Exception('User ID inconnu');
+		}
+		$user->setOptions('twoFactorAuthentification', 0);
+		$user->save();
+		ajax::success($result);
+	}
+
 	if (init('action') == 'isConnect') {
 		ajax::success();
 	}

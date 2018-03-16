@@ -62,7 +62,7 @@ if (!isConnect('admin')) {
 		}
 	});
 
-	$('#ul_noteList').on('click','.li_noteDisplay',function(){
+	$('#ul_noteList').on('.li_noteDisplay','click',function(){
 		$('.li_noteDisplay').removeClass('active');
 		$(this).addClass('active');
 		jeedom.note.byId({
