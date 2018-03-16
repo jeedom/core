@@ -1875,6 +1875,7 @@ class cmd {
 
 	public function setEqLogic_id($eqLogic_id) {
 		$this->eqLogic_id = $eqLogic_id;
+		return $this;
 	}
 
 	public function setIsHistorized($isHistorized) {
