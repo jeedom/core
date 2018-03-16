@@ -53,8 +53,6 @@ $other_file = array(
 	'core/css/core.css',
 	'3rdparty/jquery.utils/jquery.utils.css',
 	'mobile/css/commun.css',
-	'3rdparty/fork-awesome/fonts/forkawesome-webfont.woff2',
-	'3rdparty/fork-awesome/css/fork-awesome.min.css',
 	'3rdparty/font-awesome/fonts/fontawesome-webfont.woff2',
 	'3rdparty/font-awesome/css/font-awesome.min.css',
 	'3rdparty/jquery.mobile/images/ajax-loader.gif',
