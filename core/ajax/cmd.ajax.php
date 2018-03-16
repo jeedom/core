@@ -99,10 +99,12 @@ try {
 	}
 
 	if (init('action') == 'copyHistoryToCmd') {
+		unautorizedInDemo();
 		ajax::success(history::copyHistoryToCmd(init('source_id'), init('target_id')));
 	}
 
 	if (init('action') == 'replaceCmd') {
+		unautorizedInDemo();
 		ajax::success(jeedom::replaceTag(array('#' . str_replace('#', '', init('source_id')) . '#' => '#' . str_replace('#', '', init('target_id')) . '#')));
 	}
 
