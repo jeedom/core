@@ -176,7 +176,7 @@
                 ligne += '<td>';
                 if(isset(data[i].options) && isset(data[i].options.twoFactorAuthentification) && data[i].options.twoFactorAuthentification == 1 && isset(data[i].options.twoFactorAuthentificationSecret) && data[i].options.twoFactorAuthentificationSecret != ''){
                     ligne += '<span class="label label-success" style="font-size:1em;">{{OK}}</span>';
-                    ligne += ' <a class="btn btn-danger btn-xs bt_disableTwoFactorAuthentification"><i class="fa fa-times"></i> {{Désactiver}}</span>';
+                    ligne += ' <a class="btn btn-danger btn-sm bt_disableTwoFactorAuthentification"><i class="fa fa-times"></i> {{Désactiver}}</span>';
                 }else{
                    ligne += '<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>';
                }
@@ -213,9 +213,8 @@ $('#table_user').on( 'click','.bt_manage_restrict_rights', function () {
 
 
 $('#table_user').on( 'click', '.bt_disableTwoFactorAuthentification',function () {
-    var id = $(this).closest('tr').attr('data-id'); 
     jeedom.user.removeTwoFactorCode({
-        id : id,
+        id :  $(this).closest('tr').find('.userAttr[data-l1key=id]').value(),
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
