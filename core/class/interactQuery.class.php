@@ -176,9 +176,19 @@ class interactQuery {
 			return null;
 		}
 		$interactDef = $closest->getInteractDef();
-		if ($interactDef->getOptions('mustcontain') != '' && strpos($_query, interactDef::sanitizeQuery($interactDef->getOptions('mustcontain'))) === false) {
-			log::add('interact', 'debug', __('Correspondance trouvée : ', __FILE__) . $query->getQuery() . __(' mais ne contient pas : ', __FILE__) . interactDef::sanitizeQuery($interactDef->getOptions('mustcontain')));
-			return null;
+		if ($interactDef->getOptions('mustcontain') != '') {
+			$mustContains = explode('|', $interactDef->getOptions('mustcontain'));
+			$findMustContain = false;
+			foreach ($mustContains as $mustContain) {
+				if (strpos($_query, interactDef::sanitizeQuery($mustContain)) !== false) {
+					$findMustContain = true;
+					break;
+				}
+			}
+			if (!$findMustContain) {
+				log::add('interact', 'debug', __('Correspondance trouvée : ', __FILE__) . $query->getQuery() . __(' mais ne contient pas : ', __FILE__) . interactDef::sanitizeQuery($interactDef->getOptions('mustcontain')));
+				return null;
+			}
 		}
 		log::add('interact', 'debug', __('J\'ai une correspondance  : ', __FILE__) . $closest->getQuery() . __(' avec ', __FILE__) . $shortest);
 		return $closest;
