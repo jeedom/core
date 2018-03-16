@@ -41,7 +41,7 @@ try {
 
 	try {
 		echo "Envoie l'événement de début de sauvegarde...";
-		jeedom::event('begin_backup', true);
+		jeedom::event('begin_backup', true) . "\n";
 		echo "OK\n";
 	} catch (Exception $e) {
 		echo '***ERREUR*** ' . $e->getMessage();
