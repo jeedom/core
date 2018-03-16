@@ -929,12 +929,6 @@ function isConnect($_right = '') {
 	return $GLOBALS['isConnect::' . $_right];
 }
 
-function unautorizedInDemo() {
-	if ($_SESSION['user']->getLogin() == 'demo') {
-		throw new Exception(__('Cette action n\'est pas autorisée en mode démo', __FILE__));
-	}
-}
-
 function ZipErrorMessage($code) {
 	switch ($code) {
 		case 0:
