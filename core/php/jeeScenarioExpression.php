@@ -36,7 +36,7 @@ if (isset($argv)) {
 
 $cache = cache::byKey(init('key'))->getValue();
 if (!isset($cache['scenarioExpression'])) {
-	if ($cache['scenario'] != null) {
+	if ($cache['scenario'] !== null) {
 		$cache['scenario']->setLog(__('Lancement en arrière-plan non trouvé : ', __FILE__) . init('key'));
 		$cache['scenario']->persistLog();
 	}
