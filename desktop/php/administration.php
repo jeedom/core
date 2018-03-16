@@ -137,6 +137,7 @@ $lastKnowDate = $cache->getValue();
 								<option value="America/Campo_Grande">(GMT-04:00) Brazil</option>
 								<option value="America/Goose_Bay">(GMT-04:00) Atlantic Time (Goose Bay)</option>
 								<option value="America/Glace_Bay">(GMT-04:00) Atlantic Time (Canada)</option>
+								<option value="America/Guadeloupe">(GMT-04:00) Guadeloupe</option>
 								<option value="America/St_Johns">(GMT-03:30) Newfoundland</option>
 								<option value="America/Araguaina">(GMT-03:00) UTC-3</option>
 								<option value="America/Montevideo">(GMT-03:00) Montevideo</option>
