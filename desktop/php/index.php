@@ -303,7 +303,7 @@ if (isConnect('admin')) {
 									<?php
 if (isConnect('admin')) {
 			?>
-										<li><a href="#" id="bt_showNoteManager"><i class="fa fa-tachometer"></i> {{Note}}</a></li>
+										<li><a href="#" id="bt_showNoteManager"><i class="fa fa-sticky-note-o"></i> {{Note}}</a></li>
 										<li><a href="index.php?v=d&p=log"><i class="fa fa-file-o"></i> {{Logs}}</a></li>
 										<li><a href="index.php?v=d&p=eqAnalyse"><i class="fa fa-battery-full"></i> {{Equipements}}</a></li>
 										<li class="divider"></li>
