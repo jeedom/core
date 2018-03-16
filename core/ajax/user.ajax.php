@@ -81,6 +81,7 @@ try {
 	ajax::init();
 
 	if (init('action') == 'validateTwoFactorCode') {
+		unautorizedInDemo();
 		@session_start();
 		$_SESSION['user']->refresh();
 		$result = $_SESSION['user']->validateTwoFactorCode(init('code'));
