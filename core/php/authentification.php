@@ -53,7 +53,6 @@ if (user::isBan()) {
 }
 
 if (!isConnect() && isset($_COOKIE['registerDevice'])) {
-
 	if (loginByHash($_COOKIE['registerDevice'])) {
 		setcookie('registerDevice', $_COOKIE['registerDevice'], time() + 365 * 24 * 3600, "/", '', false, true);
 		if (isset($_COOKIE['jeedom_token'])) {

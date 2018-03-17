@@ -81,7 +81,7 @@ Sécurité
 -   **Authentification en 2 étapes** : permet de configurer
     l’authentification en 2 étapes (pour rappel, c’est un code changeant
     toutes les X secondes qui s’affiche sur une application mobile, type
-    google authentificator)
+    google authentificator). A noter que la double authentification ne sera demandée que pour les connexions externe. Pour les connexion local le code ne sera donc pas demandé.
 
 -   **Mot de passe** : permet de changer votre mot de passe (ne pas
     oublier de le retaper en dessous)

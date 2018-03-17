@@ -25,7 +25,7 @@ $google2fa_url = $google2fa->getQRCodeGoogleUrl(
 			<hr/>
 			{{Veuillez installer une application d’authentification sur votre appareil mobile. Si vous n’en avez pas encore installé une, Jeedom prend en charge les applications d’authentification suivantes : Google Authenticator (Android, iOS, BlackBerry), Authenticator (Windows Phone).}}
 			<hr/>
-			<strong>{{IMPORTANT : si votre Jeedom n'est plus à l'heure vous ne pourrez pas vous connecter du tout}}</strong>
+			{{A noter que la double authentification n'est necessaire que pour les connexions externe, elle ne sera donc pas active sur une connexion local.}}
 		</div>
 
 	</div>
