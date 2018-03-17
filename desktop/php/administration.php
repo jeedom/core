@@ -137,6 +137,7 @@ $lastKnowDate = $cache->getValue();
 								<option value="America/Campo_Grande">(GMT-04:00) Brazil</option>
 								<option value="America/Goose_Bay">(GMT-04:00) Atlantic Time (Goose Bay)</option>
 								<option value="America/Glace_Bay">(GMT-04:00) Atlantic Time (Canada)</option>
+								<option value="America/Guadeloupe">(GMT-04:00) Guadeloupe</option>
 								<option value="America/St_Johns">(GMT-03:30) Newfoundland</option>
 								<option value="America/Araguaina">(GMT-03:00) UTC-3</option>
 								<option value="America/Montevideo">(GMT-03:00) Montevideo</option>
@@ -324,9 +325,9 @@ if (init('rescue', 0) == 0) {
 
 		<div role="tabpanel" class="tab-pane" id="ostab">
 			<br/>
+			<div class="alert alert-danger">{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à Jeedom. L'équipe Jeedom se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}</div>
 			<form class="form-horizontal">
 				<fieldset>
-					<div class="alert alert-danger">{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à Jeedom. L'équipe Jeedom se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}</div>
 					<legend><i class="fa fa-terminal"></i> {{Système}}</legend>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Administration}}</label>
@@ -335,7 +336,6 @@ if (init('rescue', 0) == 0) {
 						</div>
 					</div>
 					<legend><i class="fa fa-indent"></i> {{Editeur de fichiers}}</legend>
-					<div class="alert alert-danger">{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à Jeedom. L'équipe Jeedom se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Editeur}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
@@ -343,7 +343,6 @@ if (init('rescue', 0) == 0) {
 						</div>
 					</div>
 					<legend><i class="fa fa-database"></i> {{Base de données}}</legend>
-					<div class="alert alert-danger">{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à Jeedom. L'équipe Jeedom se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Administration}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
@@ -1388,6 +1387,13 @@ foreach ($repos as $key => $value) {
 				break;
 			case 'password':
 				echo '<input type="password" class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
+				break;
+			case 'select':
+				echo '<select class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '">';
+				foreach ($parameter['values'] as $key => $value) {
+					echo '<option value="' . $key . '">' . $value . '</option>';
+				}
+				echo '</select>';
 				break;
 		}
 		echo '</div>';

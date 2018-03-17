@@ -30,6 +30,7 @@ try {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
+		unautorizedInDemo();
 		if (init('plugin') == 'core') {
 			config::save('api', config::genKey());
 			ajax::success(config::byKey('api'));
@@ -71,6 +72,7 @@ try {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
+		unautorizedInDemo();
 		$values = json_decode(init('value'), true);
 		foreach ($values as $key => $value) {
 			config::save($key, jeedom::fromHumanReadable($value), init('plugin', 'core'));
@@ -79,6 +81,7 @@ try {
 	}
 
 	if (init('action') == 'removeKey') {
+		unautorizedInDemo();
 		$keys = init('key');
 		if ($keys == '') {
 			throw new Exception(__('Aucune clef demandée', __FILE__));

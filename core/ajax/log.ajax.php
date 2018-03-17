@@ -27,16 +27,19 @@ try {
 	ajax::init();
 
 	if (init('action') == 'clear') {
+		unautorizedInDemo();
 		log::clear(init('log'));
 		ajax::success();
 	}
 
 	if (init('action') == 'remove') {
+		unautorizedInDemo();
 		log::remove(init('log'));
 		ajax::success();
 	}
 
 	if (init('action') == 'removeAll') {
+		unautorizedInDemo();
 		log::removeAll();
 		ajax::success();
 	}

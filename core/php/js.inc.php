@@ -35,10 +35,11 @@ include_file('core', 'backup', 'class.js');
 include_file('core', 'interact', 'class.js');
 include_file('core', 'update', 'class.js');
 include_file('core', 'plan', 'class.js');
+include_file('core', 'plan3d', 'class.js');
 include_file('core', 'log', 'class.js');
 include_file('core', 'repo', 'class.js');
 include_file('core', 'network', 'class.js');
 include_file('core', 'dataStore', 'class.js');
 include_file('core', 'cache', 'class.js');
 include_file('core', 'report', 'class.js');
-?>
+include_file('core', 'note', 'class.js');

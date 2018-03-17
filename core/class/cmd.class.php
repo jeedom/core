@@ -1454,7 +1454,7 @@ class cmd {
 			$message .= ' => ' . str_replace('#value#', $_value, $this->getAlert($_level . 'if'));
 			log::add('event', 'info', $message);
 			$eqLogic = $this->getEqLogic();
-			if (config::ByKey('alert::addMessageOn' . ucfirst($_level)) == 1) {
+			if (config::byKey('alert::addMessageOn' . ucfirst($_level)) == 1) {
 				message::add($eqLogic->getEqType_name(), $message);
 			}
 			$cmds = explode(('&&'), config::byKey('alert::' . $_level . 'Cmd'));

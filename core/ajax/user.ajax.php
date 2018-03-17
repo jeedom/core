@@ -84,6 +84,7 @@ try {
 	ajax::init();
 
 	if (init('action') == 'validateTwoFactorCode') {
+		unautorizedInDemo();
 		@session_start();
 		$_SESSION['user']->refresh();
 		$result = $_SESSION['user']->validateTwoFactorCode(init('code'));
@@ -92,6 +93,20 @@ try {
 			$_SESSION['user']->save();
 		}
 		@session_write_close();
+		ajax::success($result);
+	}
+
+	if (init('action') == 'removeTwoFactorCode') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		unautorizedInDemo();
+		$user = user::byId(init('id'));
+		if (!is_object($user)) {
+			throw new Exception('User ID inconnu');
+		}
+		$user->setOptions('twoFactorAuthentification', 0);
+		$user->save();
 		ajax::success($result);
 	}
 
@@ -115,6 +130,7 @@ try {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
+		unautorizedInDemo();
 		$users = array();
 		foreach (user::all() as $user) {
 			$user_info = utils::o2a($user);
@@ -127,6 +143,7 @@ try {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
+		unautorizedInDemo();
 		$users = json_decode(init('users'), true);
 		$user = null;
 		foreach ($users as &$user_json) {
@@ -152,6 +169,7 @@ try {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
+		unautorizedInDemo();
 		if (config::byKey('ldap::enable') == '1') {
 			throw new Exception(__('Vous devez désactiver l\'authentification LDAP pour pouvoir supprimer un utilisateur', __FILE__));
 		}
@@ -167,6 +185,7 @@ try {
 	}
 
 	if (init('action') == 'saveProfils') {
+		unautorizedInDemo();
 		$user_json = jeedom::fromHumanReadable(json_decode(init('profils'), true));
 		if (isset($user_json['id']) && $user_json['id'] != $_SESSION['user']->getId()) {
 			throw new Exception('401 - Accès non autorisé');
@@ -191,6 +210,7 @@ try {
 	}
 
 	if (init('action') == 'removeRegisterDevice') {
+		unautorizedInDemo();
 		if (init('key') == '' && init('user_id') == '') {
 			if (!isConnect('admin')) {
 				throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
@@ -237,6 +257,7 @@ try {
 	}
 
 	if (init('action') == 'deleteSession') {
+		unautorizedInDemo();
 		deleteSession(init('id'));
 		$cache = cache::byKey('current_sessions');
 		$sessions = $cache->getValue(array());
@@ -264,6 +285,7 @@ try {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
+		unautorizedInDemo();
 		$connection = user::connectToLDAP();
 		if ($connection === false) {
 			throw new Exception();
@@ -272,10 +294,12 @@ try {
 	}
 
 	if (init('action') == 'removeBanIp') {
+		unautorizedInDemo();
 		ajax::success(user::removeBanIp());
 	}
 
 	if (init('action') == 'supportAccess') {
+		unautorizedInDemo();
 		ajax::success(user::supportAccess(init('enable')));
 	}
 

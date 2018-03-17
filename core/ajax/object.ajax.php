@@ -27,6 +27,7 @@ try {
 	ajax::init();
 
 	if (init('action') == 'remove') {
+		unautorizedInDemo();
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
@@ -56,6 +57,7 @@ try {
 	}
 
 	if (init('action') == 'save') {
+		unautorizedInDemo();
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
@@ -72,6 +74,7 @@ try {
 	}
 
 	if (init('action') == 'uploadImage') {
+		unautorizedInDemo();
 		$object = object::byId(init('id'));
 		if (!is_object($object)) {
 			throw new Exception(__('Objet inconnu. Vérifiez l\'ID', __FILE__));

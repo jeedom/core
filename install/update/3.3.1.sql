@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS `note` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(127) NULL,
+  `text` TEXT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;

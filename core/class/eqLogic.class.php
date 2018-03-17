@@ -274,7 +274,7 @@ class eqLogic {
 						$message = __('Attention', __FILE__) . ' ' . $eqLogic->getHumanName();
 						$message .= __(' n\'a pas envoyé de message depuis plus de ', __FILE__) . $noReponseTimeLimit . __(' min (vérifiez les piles)', __FILE__);
 						$eqLogic->setStatus('timeout', 1);
-						if (config::ByKey('alert::addMessageOnTimeout') == 1) {
+						if (config::byKey('alert::addMessageOnTimeout') == 1) {
 							message::add('core', $message, '', $logicalId);
 						}
 						$cmds = explode(('&&'), config::byKey('alert::timeoutCmd'));
@@ -1041,7 +1041,7 @@ class eqLogic {
 			}
 			$this->setStatus('batterydanger', 1);
 			if ($prevStatus == 0) {
-				if (config::ByKey('alert::addMessageOnBatterydanger') == 1) {
+				if (config::byKey('alert::addMessageOnBatterydanger') == 1) {
 					message::add($this->getEqType_name(), $message, '', $logicalId);
 				}
 				$cmds = explode(('&&'), config::byKey('alert::batterydangerCmd'));
@@ -1067,7 +1067,7 @@ class eqLogic {
 			$this->setStatus('batterywarning', 1);
 			$this->setStatus('batterydanger', 0);
 			if ($prevStatus == 0) {
-				if (config::ByKey('alert::addMessageOnBatterywarning') == 1) {
+				if (config::byKey('alert::addMessageOnBatterywarning') == 1) {
 					message::add($this->getEqType_name(), $message, '', $logicalId);
 				}
 				$cmds = explode(('&&'), config::byKey('alert::batterywarningCmd'));

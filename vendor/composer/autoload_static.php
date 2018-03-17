@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitc7412053f01762e82bf4bede3f471ac6
+class ComposerStaticInit5a0c414efab2298f121e5cbed8bbcba9
 {
     public static $files = array (
         '383eaff206634a77a1be54e64e6459c7' => __DIR__ . '/..' . '/sabre/uri/lib/functions.php',
@@ -13,12 +13,9 @@ class ComposerStaticInitc7412053f01762e82bf4bede3f471ac6
         '2b9d0f43f9552984cfa82fee95491826' => __DIR__ . '/..' . '/sabre/event/lib/coroutine.php',
         'd81bab31d3feb45bfe2f283ea3c8fdf7' => __DIR__ . '/..' . '/sabre/event/lib/Loop/functions.php',
         'a1cce3d26cc15c00fcd0b3354bd72c88' => __DIR__ . '/..' . '/sabre/event/lib/Promise/functions.php',
-        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
-        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         'ebdb698ed4152ae445614b69b5e4bb6a' => __DIR__ . '/..' . '/sabre/http/lib/functions.php',
-        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
-        '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
         'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
+        '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -41,7 +38,6 @@ class ComposerStaticInitc7412053f01762e82bf4bede3f471ac6
         'P' => 
         array (
             'Psr\\Log\\' => 8,
-            'Psr\\Http\\Message\\' => 17,
             'PragmaRX\\Google2FA\\' => 19,
         ),
         'M' => 
@@ -50,15 +46,11 @@ class ComposerStaticInitc7412053f01762e82bf4bede3f471ac6
         ),
         'L' => 
         array (
-            'League\\OAuth2\\Client\\' => 21,
             'League\\Flysystem\\WebDAV\\' => 24,
             'League\\Flysystem\\' => 17,
         ),
         'G' => 
         array (
-            'GuzzleHttp\\Psr7\\' => 16,
-            'GuzzleHttp\\Promise\\' => 19,
-            'GuzzleHttp\\' => 11,
             'Github\\' => 7,
         ),
         'D' => 
@@ -132,10 +124,6 @@ class ComposerStaticInitc7412053f01762e82bf4bede3f471ac6
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
-        'Psr\\Http\\Message\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-        ),
         'PragmaRX\\Google2FA\\' => 
         array (
             0 => __DIR__ . '/..' . '/pragmarx/google2fa/src',
@@ -144,10 +132,6 @@ class ComposerStaticInitc7412053f01762e82bf4bede3f471ac6
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
-        'League\\OAuth2\\Client\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/league/oauth2-client/src',
-        ),
         'League\\Flysystem\\WebDAV\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/flysystem-webdav/src',
@@ -155,18 +139,6 @@ class ComposerStaticInitc7412053f01762e82bf4bede3f471ac6
         'League\\Flysystem\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/flysystem/src',
-        ),
-        'GuzzleHttp\\Psr7\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
-        ),
-        'GuzzleHttp\\Promise\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/guzzlehttp/promises/src',
-        ),
-        'GuzzleHttp\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
         ),
         'Github\\' => 
         array (
@@ -195,20 +167,6 @@ class ComposerStaticInitc7412053f01762e82bf4bede3f471ac6
                 1 => __DIR__ . '/..' . '/touki/ftp/tests',
             ),
         ),
-        'S' => 
-        array (
-            'SecurityLib' => 
-            array (
-                0 => __DIR__ . '/..' . '/ircmaxell/security-lib/lib',
-            ),
-        ),
-        'R' => 
-        array (
-            'RandomLib' => 
-            array (
-                0 => __DIR__ . '/..' . '/ircmaxell/random-lib/lib',
-            ),
-        ),
         'G' => 
         array (
             'Guzzle\\Tests' => 
@@ -225,9 +183,9 @@ class ComposerStaticInitc7412053f01762e82bf4bede3f471ac6
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitc7412053f01762e82bf4bede3f471ac6::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitc7412053f01762e82bf4bede3f471ac6::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitc7412053f01762e82bf4bede3f471ac6::$prefixesPsr0;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit5a0c414efab2298f121e5cbed8bbcba9::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit5a0c414efab2298f121e5cbed8bbcba9::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit5a0c414efab2298f121e5cbed8bbcba9::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }

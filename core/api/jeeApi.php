@@ -36,7 +36,6 @@ if (isset($argv)) {
 GLOBAL $_USER_GLOBAL;
 $_USER_GLOBAL = null;
 if (init('type') != '') {
-
 	try {
 		$type = init('type');
 		if ((!jeedom::apiAccess(init('apikey', init('api')), init('plugin', 'core')) &&
@@ -183,22 +182,26 @@ if (init('type') != '') {
 		}
 		if ($type == 'object') {
 			log::add('api', 'debug', __('Demande API pour les objets', __FILE__));
-			echo json_encode(utils::o2a(object::all()));
+			header('Content-Type: application/json');
+			echo json_encode(utils::o2a(object::all()), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE, 1024);
 			die();
 		}
 		if ($type == 'eqLogic') {
 			log::add('api', 'debug', __('Demande API pour les équipements', __FILE__));
-			echo json_encode(utils::o2a(eqLogic::byObjectId(init('object_id'))));
+			header('Content-Type: application/json');
+			echo json_encode(utils::o2a(eqLogic::byObjectId(init('object_id'))), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE, 1024);
 			die();
 		}
 		if ($type == 'command') {
 			log::add('api', 'debug', __('Demande API pour les commandes', __FILE__));
-			echo json_encode(utils::o2a(cmd::byEqLogicId(init('eqLogic_id'))));
+			header('Content-Type: application/json');
+			echo json_encode(utils::o2a(cmd::byEqLogicId(init('eqLogic_id'))), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE, 1024);
 			die();
 		}
 		if ($type == 'fullData') {
 			log::add('api', 'debug', __('Demande API pour les commandes', __FILE__));
-			echo json_encode(object::fullData());
+			header('Content-Type: application/json');
+			echo json_encode(object::fullData(), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE, 1024);
 			die();
 		}
 		if ($type == 'variable') {

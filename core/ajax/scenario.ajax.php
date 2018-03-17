@@ -103,6 +103,7 @@ try {
 	}
 
 	if (init('action') == 'removeTemplate') {
+		unautorizedInDemo();
 		$path = dirname(__FILE__) . '/../config/scenario';
 		if (file_exists($path . '/' . init('template'))) {
 			unlink($path . '/' . init('template'));
@@ -135,6 +136,7 @@ try {
 	}
 
 	if (init('action') == 'applyTemplate') {
+		unautorizedInDemo();
 		$path = dirname(__FILE__) . '/../config/scenario';
 		if (!file_exists($path . '/' . init('template'))) {
 			throw new Exception('Fichier non trouvé : ' . $path . '/' . init('template'));
@@ -187,6 +189,7 @@ try {
 	}
 
 	if (init('action') == 'saveAll') {
+		unautorizedInDemo();
 		$scenarios = json_decode(init('scenarios'), true);
 		if (is_array($scenarios)) {
 			foreach ($scenarios as $scenario_ajax) {
@@ -243,6 +246,7 @@ try {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
+		unautorizedInDemo();
 		$scenario = scenario::byId(init('id'));
 		if (!is_object($scenario)) {
 			throw new Exception(__('Scénario ID inconnu', __FILE__));
@@ -275,6 +279,7 @@ try {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
+		unautorizedInDemo();
 		$scenario = scenario::byId(init('id'));
 		if (!is_object($scenario)) {
 			throw new Exception(__('Scénario ID inconnu', __FILE__));
@@ -302,6 +307,7 @@ try {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
+		unautorizedInDemo();
 		$time_dependance = 0;
 		foreach (array('#time#', '#seconde#', '#heure#', '#minute#', '#jour#', '#mois#', '#annee#', '#timestamp#', '#date#', '#semaine#', '#sjour#', '#njour#', '#smois#') as $keyword) {
 			if (strpos(init('scenario'), $keyword) !== false) {
@@ -365,6 +371,7 @@ try {
 	}
 
 	if (init('action') == 'templateupload') {
+		unautorizedInDemo();
 		$uploaddir = dirname(__FILE__) . '/../../core/config/scenario/';
 		if (!file_exists($uploaddir)) {
 			mkdir($uploaddir);

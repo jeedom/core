@@ -21,6 +21,7 @@ try {
 	if (!isConnect() && !jeedom::apiAccess(init('apikey'))) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
+	unautorizedInDemo();
 	$pathfile = realpath(calculPath(urldecode(init('pathfile'))));
 	if ($pathfile === false) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -76,4 +77,3 @@ try {
 } catch (Exception $e) {
 	echo $e->getMessage();
 }
-

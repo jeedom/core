@@ -46,13 +46,13 @@ try {
 		sleep(10);
 		if (count(system::ps('install/update.php', 'sudo')) > 1) {
 			echo "Update in progress. You need to wait before update\n";
-			print_r(system::ps('install/update.php', 'sudo'));
+			json_encode(system::ps('install/update.php', 'sudo')) . "\n";
 			echo "[END UPDATE]\n";
 			die();
 		}
 	}
 	echo "****Update from " . jeedom::version() . " (" . date('Y-m-d H:i:s') . ")****\n";
-	echo "Paramters : " . print_r($_GET, true);
+	echo "Parameters : " . json_encode($_GET) . "\n";
 	$curentVersion = config::byKey('version');
 
 	/*         * ************************MISE A JOUR********************************** */

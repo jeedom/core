@@ -198,8 +198,8 @@ function mySqlIsHere() {
 }
 
 function displayExeption($e) {
-    trigger_error('La fonction displayExeption devient displayException', E_USER_DEPRECATED);
-    return displayException($e);
+	trigger_error('La fonction displayExeption devient displayException', E_USER_DEPRECATED);
+	return displayException($e);
 }
 
 function displayException($e) {
@@ -274,24 +274,24 @@ function getVersion($_name) {
 }
 
 // got from https://github.com/zendframework/zend-stdlib/issues/58
-function polyfill_glob_brace( $pattern, $flags ) {
+function polyfill_glob_brace($pattern, $flags) {
 	static $next_brace_sub;
-	if ( ! $next_brace_sub ) {
+	if (!$next_brace_sub) {
 		// Find the end of the sub-pattern in a brace expression.
-		$next_brace_sub = function ( $pattern, $current ) {
-			$length  = strlen( $pattern );
-			$depth   = 0;
+		$next_brace_sub = function ($pattern, $current) {
+			$length = strlen($pattern);
+			$depth = 0;
 
-			while ( $current < $length ) {
-				if ( '\\' === $pattern[ $current ] ) {
-					if ( ++$current === $length ) {
+			while ($current < $length) {
+				if ('\\' === $pattern[$current]) {
+					if (++$current === $length) {
 						break;
 					}
 					$current++;
 				} else {
-					if ( ( '}' === $pattern[ $current ] && $depth-- === 0 ) || ( ',' === $pattern[ $current ] && 0 === $depth ) ) {
+					if (('}' === $pattern[$current] && $depth-- === 0) || (',' === $pattern[$current] && 0 === $depth)) {
 						break;
-					} elseif ( '{' === $pattern[ $current++ ] ) {
+					} elseif ('{' === $pattern[$current++]) {
 						$depth++;
 					}
 				}
@@ -301,28 +301,28 @@ function polyfill_glob_brace( $pattern, $flags ) {
 		};
 	}
 
-	$length = strlen( $pattern );
+	$length = strlen($pattern);
 
 	// Find first opening brace.
-	for ( $begin = 0; $begin < $length; $begin++ ) {
-		if ( '\\' === $pattern[ $begin ] ) {
+	for ($begin = 0; $begin < $length; $begin++) {
+		if ('\\' === $pattern[$begin]) {
 			$begin++;
-		} elseif ( '{' === $pattern[ $begin ] ) {
+		} elseif ('{' === $pattern[$begin]) {
 			break;
 		}
 	}
 
 	// Find comma or matching closing brace.
-	if ( null === ( $next = $next_brace_sub( $pattern, $begin + 1 ) ) ) {
-		return glob( $pattern, $flags );
+	if (null === ($next = $next_brace_sub($pattern, $begin + 1))) {
+		return glob($pattern, $flags);
 	}
 
 	$rest = $next;
 
 	// Point `$rest` to matching closing brace.
-	while ( '}' !== $pattern[ $rest ] ) {
-		if ( null === ( $rest = $next_brace_sub( $pattern, $rest + 1 ) ) ) {
-			return glob( $pattern, $flags );
+	while ('}' !== $pattern[$rest]) {
+		if (null === ($rest = $next_brace_sub($pattern, $rest + 1))) {
+			return glob($pattern, $flags);
 		}
 	}
 
@@ -331,27 +331,27 @@ function polyfill_glob_brace( $pattern, $flags ) {
 
 	// For each comma-separated subpattern.
 	do {
-		$subpattern = substr( $pattern, 0, $begin )
-					. substr( $pattern, $p, $next - $p )
-					. substr( $pattern, $rest + 1 );
+		$subpattern = substr($pattern, 0, $begin)
+		. substr($pattern, $p, $next - $p)
+		. substr($pattern, $rest + 1);
 
-		if ( ( $result = polyfill_glob_brace( $subpattern, $flags ) ) ) {
-			$paths = array_merge( $paths, $result );
+		if (($result = polyfill_glob_brace($subpattern, $flags))) {
+			$paths = array_merge($paths, $result);
 		}
 
-		if ( '}' === $pattern[ $next ] ) {
+		if ('}' === $pattern[$next]) {
 			break;
 		}
 
-		$p    = $next + 1;
-		$next = $next_brace_sub( $pattern, $p );
-	} while ( null !== $next );
+		$p = $next + 1;
+		$next = $next_brace_sub($pattern, $p);
+	} while (null !== $next);
 
-	return array_values( array_unique( $paths ) );
+	return array_values(array_unique($paths));
 }
 
-function glob_brace( $pattern, $flags = 0 ) {
-	if(defined("GLOB_BRACE")) {
+function glob_brace($pattern, $flags = 0) {
+	if (defined("GLOB_BRACE")) {
 		return glob($pattern, $flags + GLOB_BRACE);
 	} else {
 		return polyfill_glob_brace($pattern, $flags);
@@ -588,102 +588,54 @@ function date_fr($date_en) {
 }
 
 function convertDayEnToFr($_day) {
-	switch (config::byKey('language', 'core', 'fr_FR')) {
-		case 'fr_FR':
-			if ($_day == 'Monday' || $_day == 'Mon') {
-				return 'Lundi';
-			}
-			if ($_day == 'monday' || $_day == 'mon') {
-				return 'lundi';
-			}
+	trigger_error('La fonction convertDayEnToFr devient convertDayFromEn', E_USER_DEPRECATED);
+	return convertDayFromEn($_day);
+}
 
-			if ($_day == 'Tuesday' || $_day == 'Tue') {
-				return 'Mardi';
-			}
-			if ($_day == 'tuesday' || $_day == 'tue') {
-				return 'mardi';
-			}
-
-			if ($_day == 'Wednesday' || $_day == 'Wed') {
-				return 'Mercredi';
-			}
-			if ($_day == 'wednesday' || $_day == 'wed') {
-				return 'mercredi';
-			}
-
-			if ($_day == 'Thursday' || $_day == 'Thu') {
-				return 'Jeudi';
-			}
-			if ($_day == 'thursday' || $_day == 'thu') {
-				return 'Jeudi';
-			}
-
-			if ($_day == 'Friday' || $_day == 'Fri') {
-				return 'Vendredi';
-			}
-			if ($_day == 'friday' || $_day == 'fri') {
-				return 'vendredi';
-			}
-
-			if ($_day == 'Saturday' || $_day == 'Sat') {
-				return 'Samedi';
-			}
-			if ($_day == 'saturday' || $_day == 'sat') {
-				return 'samedi';
-			}
-
-			if ($_day == 'Sunday' || $_day == 'Sun') {
-				return 'Dimanche';
-			}
-			if ($_day == 'sunday' || $_day == 'sun') {
-				return 'dimanche';
-			}
-		case 'de_DE':
-			if ($_day == 'Monday' || $_day == 'Mon') {
-				return 'Montag';
-			}
-			if ($_day == 'monday' || $_day == 'mon') {
-				return 'montag';
-			}
-			if ($_day == 'Tuesday' || $_day == 'Tue') {
-				return 'Donnerstag';
-			}
-			if ($_day == 'tuesday' || $_day == 'tue') {
-				return 'donnerstag';
-			}
-			if ($_day == 'Wednesday' || $_day == 'Wed') {
-				return 'Mittwoch';
-			}
-			if ($_day == 'wednesday' || $_day == 'wed') {
-				return 'mittwoch';
-			}
-			if ($_day == 'Thursday' || $_day == 'Thu') {
-				return 'Donnerstag';
-			}
-			if ($_day == 'thursday' || $_day == 'thu') {
-				return 'Donnerstag';
-			}
-			if ($_day == 'Friday' || $_day == 'Fri') {
-				return 'Freitag';
-			}
-			if ($_day == 'friday' || $_day == 'fri') {
-				return 'freitag';
-			}
-			if ($_day == 'Saturday' || $_day == 'Sat') {
-				return 'Samstag';
-			}
-			if ($_day == 'saturday' || $_day == 'sat') {
-				return 'samstag';
-			}
-			if ($_day == 'Sunday' || $_day == 'Sun') {
-				return 'Sonntag';
-			}
-			if ($_day == 'sunday' || $_day == 'sun') {
-				return 'Sonntag';
-			}
+function convertDayFromEn($_day) {
+	$result = $_day;
+	$daysMapping = array(
+		'fr_FR' => array(
+			'Monday' => 'Lundi', 'Mon' => 'Lundi',
+			'monday' => 'lundi', 'mon' => 'lundi',
+			'Tuesday' => 'Mardi', 'Tue' => 'Mardi',
+			'tuesday' => 'mardi', 'tue' => 'mardi',
+			'Wednesday' => 'Mercredi', 'Wed' => 'Mercredi',
+			'wednesday' => 'mercredi', 'wed' => 'mercredi',
+			'Thursday' => 'Jeudi', 'Thu' => 'Jeudi',
+			'thursday' => 'jeudi', 'thu' => 'jeudi',
+			'Friday' => 'Vendredi', 'Fri' => 'Vendredi',
+			'friday' => 'vendredi', 'fri' => 'vendredi',
+			'Saturday' => 'Samedi', 'Sat' => 'Samedi',
+			'saturday' => 'samedi', 'sat' => 'samedi',
+			'Sunday' => 'Dimanche', 'Sun' => 'Dimanche',
+			'sunday' => 'dimanche', 'sun' => 'dimanche',
+		),
+		'de_DE' => array(
+			'Monday' => 'Montag', 'Mon' => 'Montag',
+			'monday' => 'montag', 'mon' => 'montag',
+			'Tuesday' => 'Dienstag', 'Tue' => 'Dienstag',
+			'tuesday' => 'dienstag', 'tue' => 'dienstag',
+			'Wednesday' => 'Mittwoch', 'Wed' => 'Mittwoch',
+			'wednesday' => 'mittwoch', 'wed' => 'mittwoch',
+			'Thursday' => 'Donnerstag', 'Thu' => 'Donnerstag',
+			'thursday' => 'donnerstag', 'thu' => 'donnerstag',
+			'Friday' => 'Freitag', 'Fri' => 'Freitag',
+			'friday' => 'freitag', 'fri' => 'freitag',
+			'Saturday' => 'Samstag', 'Sat' => 'Samstag',
+			'saturday' => 'samstag', 'sat' => 'samstag',
+			'Sunday' => 'Sonntag', 'Sun' => 'Sonntag',
+			'sunday' => 'sonntag', 'sun' => 'sonntag',
+		),
+	);
+	$language = config::byKey('language', 'core', 'fr_FR');
+	if (array_key_exists($language, $daysMapping)) {
+		$daysArray = $daysMapping[$language];
+		if (array_key_exists($_day, $daysArray)) {
+			$result = $daysArray[$_day];
+		}
 	}
-
-	return $_day;
+	return $result;
 }
 
 function create_zip($source_arr, $destination, $_excludes = array()) {
@@ -1240,4 +1192,10 @@ function deleteSession($_id) {
 	session_destroy();
 	session_id($cSsid);
 	@session_write_close();
+}
+
+function unautorizedInDemo() {
+	if ($_SESSION['user']->getLogin() == 'demo') {
+		throw new Exception(__('Cette action n\'est pas autorisée en mode démo', __FILE__));
+	}
 }

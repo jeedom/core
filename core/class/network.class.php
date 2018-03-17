@@ -48,9 +48,15 @@ class network {
 		return '';
 	}
 
-	public static function getNetworkAccess($_mode = 'auto', $_protocole = '', $_default = '', $_test = true) {
+	public static function getNetworkAccess($_mode = 'auto', $_protocole = '', $_default = '', $_test = false) {
 		if ($_mode == 'auto') {
 			$_mode = self::getUserLocation();
+		}
+		if ($_mode == 'internal' && config::byKey('internalAddr', 'core', '') == '') {
+			self::checkConf($_mode);
+		}
+		if ($_mode == 'external' && config::byKey('market::allowDNS') != 1 && config::byKey('externalAddr', 'core', '') == '') {
+			self::checkConf($_mode);
 		}
 		if ($_test && !self::test($_mode)) {
 			self::checkConf($_mode);
@@ -196,7 +202,7 @@ class network {
 		}
 	}
 
-	public static function test($_mode = 'external', $_timeout = 10) {
+	public static function test($_mode = 'external', $_timeout = 5) {
 		if (config::byKey('network::disableMangement') == 1) {
 			return true;
 		}

@@ -7,8 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Touki\\FTP' => array($vendorDir . '/touki/ftp/lib', $vendorDir . '/touki/ftp/tests'),
-    'SecurityLib' => array($vendorDir . '/ircmaxell/security-lib/lib'),
-    'RandomLib' => array($vendorDir . '/ircmaxell/random-lib/lib'),
     'Guzzle\\Tests' => array($vendorDir . '/guzzle/guzzle/tests'),
     'Guzzle' => array($vendorDir . '/guzzle/guzzle/src'),
 );

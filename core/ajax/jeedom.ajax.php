@@ -121,6 +121,7 @@ try {
 	}
 
 	if (init('action') == 'ssh') {
+		unautorizedInDemo();
 		$command = init('command');
 		if (strpos($command, '2>&1') === false && strpos($command, '>') === false) {
 			$command .= ' 2>&1';
@@ -131,6 +132,7 @@ try {
 	}
 
 	if (init('action') == 'db') {
+		unautorizedInDemo();
 		ajax::success(DB::prepare(init('command'), array(), DB::FETCH_TYPE_ALL));
 	}
 
@@ -139,6 +141,7 @@ try {
 	}
 
 	if (init('action') == 'update') {
+		unautorizedInDemo();
 		jeedom::update();
 		ajax::success();
 	}
@@ -150,16 +153,19 @@ try {
 	}
 
 	if (init('action') == 'backup') {
+		unautorizedInDemo();
 		jeedom::backup(true);
 		ajax::success();
 	}
 
 	if (init('action') == 'restore') {
+		unautorizedInDemo();
 		jeedom::restore(init('backup'), true);
 		ajax::success();
 	}
 
 	if (init('action') == 'removeBackup') {
+		unautorizedInDemo();
 		jeedom::removeBackup(init('backup'));
 		ajax::success();
 	}
@@ -173,6 +179,7 @@ try {
 	}
 
 	if (init('action') == 'resetHwKey') {
+		unautorizedInDemo();
 		config::save('jeedom::installKey', '');
 		ajax::success();
 	}
@@ -183,6 +190,7 @@ try {
 	}
 
 	if (init('action') == 'backupupload') {
+		unautorizedInDemo();
 		$uploaddir = dirname(__FILE__) . '/../../backup';
 		if (!file_exists($uploaddir)) {
 			mkdir($uploaddir);
@@ -210,18 +218,22 @@ try {
 	}
 
 	if (init('action') == 'haltSystem') {
+		unautorizedInDemo();
 		ajax::success(jeedom::haltSystem());
 	}
 
 	if (init('action') == 'rebootSystem') {
+		unautorizedInDemo();
 		ajax::success(jeedom::rebootSystem());
 	}
 
 	if (init('action') == 'forceSyncHour') {
+		unautorizedInDemo();
 		ajax::success(jeedom::forceSyncHour());
 	}
 
 	if (init('action') == 'saveCustom') {
+		unautorizedInDemo();
 		$path = dirname(__FILE__) . '/../../';
 		if (init('version') != 'desktop' && init('version') != 'mobile') {
 			throw new Exception(__('La version ne peut être que desktop ou mobile', __FILE__));
@@ -273,14 +285,17 @@ try {
 	}
 
 	if (init('action') == 'removeTimelineEvents') {
+		unautorizedInDemo();
 		ajax::success(jeedom::removeTimelineEvent());
 	}
 
 	if (init('action') == 'getFileFolder') {
+		unautorizedInDemo();
 		ajax::success(ls(init('path'), '*', false, array(init('type'))));
 	}
 
 	if (init('action') == 'getFileContent') {
+		unautorizedInDemo();
 		$pathinfo = pathinfo(init('path'));
 		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql'))) {
 			throw new Exception(__('Vous ne pouvez éditer ce type d\'extension : ' . $pathinfo['extension'], __FILE__));
@@ -289,6 +304,7 @@ try {
 	}
 
 	if (init('action') == 'setFileContent') {
+		unautorizedInDemo();
 		$pathinfo = pathinfo(init('path'));
 		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql'))) {
 			throw new Exception(__('Vous ne pouvez éditer ce type d\'extension : ' . $pathinfo['extension'], __FILE__));
@@ -297,6 +313,7 @@ try {
 	}
 
 	if (init('action') == 'deleteFile') {
+		unautorizedInDemo();
 		$pathinfo = pathinfo(init('path'));
 		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql'))) {
 			throw new Exception(__('Vous ne pouvez éditer ce type d\'extension : ' . $pathinfo['extension'], __FILE__));
@@ -305,6 +322,7 @@ try {
 	}
 
 	if (init('action') == 'createFile') {
+		unautorizedInDemo();
 		$pathinfo = pathinfo(init('name'));
 		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql'))) {
 			throw new Exception(__('Vous ne pouvez éditer ce type d\'extension : ' . $pathinfo['extension'], __FILE__));

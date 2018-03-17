@@ -57,7 +57,7 @@ class log {
 				$handler = new SyslogHandler(self::getLogLevel($_log));
 				break;
 			case 'SyslogUdp':
-				$handler = new SyslogUdpHandler(config::byKey('log::syslogudphost'), config::byKey('log::syslogudpport'));
+				$handler = new SyslogUdpHandler(config::byKey('log::syslogudphost'), config::byKey('log::syslogudpport'), 'user', self::getLogLevel($_log));
 				break;
 			case 'StreamHandler':
 			default:

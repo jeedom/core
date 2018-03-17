@@ -39,7 +39,6 @@ try {
 					$plugin = plugin::byId($update->getLogicalId());
 					if (is_object($plugin)) {
 						$infos['plugin'] = array();
-						$infos['plugin']['changelog'] = $plugin->getChangelog();
 					}
 				} catch (Exception $e) {
 
@@ -51,11 +50,13 @@ try {
 	}
 
 	if (init('action') == 'checkAllUpdate') {
+		unautorizedInDemo();
 		update::checkAllUpdate();
 		ajax::success();
 	}
 
 	if (init('action') == 'update') {
+		unautorizedInDemo();
 		log::clear('update');
 		$update = update::byId(init('id'));
 		if (!is_object($update)) {
@@ -88,6 +89,7 @@ try {
 	}
 
 	if (init('action') == 'remove') {
+		unautorizedInDemo();
 		update::findNewUpdateObject();
 		$update = update::byId(init('id'));
 		if (!is_object($update)) {
@@ -101,6 +103,7 @@ try {
 	}
 
 	if (init('action') == 'checkUpdate') {
+		unautorizedInDemo();
 		$update = update::byId(init('id'));
 		if (!is_object($update)) {
 			$update = update::byLogicalId(init('id'));
@@ -113,11 +116,13 @@ try {
 	}
 
 	if (init('action') == 'updateAll') {
+		unautorizedInDemo();
 		jeedom::update(json_decode(init('options', '{}'), true));
 		ajax::success();
 	}
 
 	if (init('action') == 'save') {
+		unautorizedInDemo();
 		$new = false;
 		$update_json = json_decode(init('update'), true);
 		if (isset($update_json['id'])) {
@@ -147,11 +152,13 @@ try {
 	}
 
 	if (init('action') == 'saves') {
+		unautorizedInDemo();
 		utils::processJsonObject('update', init('updates'));
 		ajax::success();
 	}
 
 	if (init('action') == 'preUploadFile') {
+		unautorizedInDemo();
 		$uploaddir = '/tmp';
 		if (!file_exists($uploaddir)) {
 			throw new Exception(__('Répertoire de téléversement non trouvé : ', __FILE__) . $uploaddir);

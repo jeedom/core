@@ -34,6 +34,7 @@ $js_file = array(
 	'core/js/message.class.js',
 	'core/js/scenario.class.js',
 	'core/js/plan.class.js',
+	'core/js/plan3d.class.js',
 	'3rdparty/jquery.packery/jquery.packery.js',
 );
 if (file_exists(dirname(__FILE__) . '/mobile/custom/custom.js')) {
@@ -52,8 +53,8 @@ $other_file = array(
 	'core/css/core.css',
 	'3rdparty/jquery.utils/jquery.utils.css',
 	'mobile/css/commun.css',
-	'3rdparty/fork-awesome/fonts/forkawesome-webfont.woff2',
-	'3rdparty/fork-awesome/css/fork-awesome.min.css',
+	'3rdparty/font-awesome/fonts/fontawesome-webfont.woff2',
+	'3rdparty/font-awesome/css/font-awesome.min.css',
 	'3rdparty/jquery.mobile/images/ajax-loader.gif',
 	'core/img/logo-jeedom-petit-nom-couleur-128x128.png',
 	'core/img/logo-jeedom-sans-nom-couleur-25x25.png',
