@@ -102,37 +102,36 @@ Hier ist die URL =
 Objekt
 =====
 
-Voici l’URL =
+InhaltHier ist die URL =
 [http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=object](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=object)
 
-Renvoie en json la liste de tous les objets de Jeedom
+Gibt die Liste aller Jeedom-Objekte in json zurück.
 
-Equipement 
+Geräte
 ==========
 
-Voici l’URL =
+Hier ist die URL =
 [http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=eqLogic&object\_id=\#OBJECT\_ID\#](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=eqLogic&object_id=#OBJECT_ID#)
 
--   **object\_id** : ID de l’objet dont on veut récupérer les
-    équipements
+-   **object_id** : ID des Objekts, dessen Gerät wir wiederherstellen
+    wollen
 
-Commande 
+Befehle
 ========
 
-Voici l’URL =
+Hier ist die URL =
 [http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=command&eqLogic\_id=\#EQLOGIC\_ID\#](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=command&eqLogic_id=#EQLOGIC_ID#)
 
--   **eqLogic\_id** : ID de l’équipement dont on veut récupérer les
-    commandes
+-   **eqLogic\_id** :  ID der Geräte, deren Befehl man wiederbekommen 
+    will
 
-Full Data 
+Vollständige Daten
 =========
 
-Voici l’URL =
+Hier ist die URL =
 [http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=fullData](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=fullData)
 
-Renvoie tous les objets, équipements, commandes (et leur valeur si ce
-sont des infos) en json
+Gibt alle Objekte, Geräte, Befehle (und deren Wert, wenn es sich um Informationen handelt) in json zurück.
 
 Variable 
 ========
