@@ -1875,6 +1875,7 @@ class cmd {
 
 	public function setEqLogic_id($eqLogic_id) {
 		$this->eqLogic_id = $eqLogic_id;
+		return $this;
 	}
 
 	public function setIsHistorized($isHistorized) {
@@ -1889,6 +1890,7 @@ class cmd {
 
 	public function setEventOnly($eventOnly) {
 		trigger_error('This method is deprecated', E_USER_DEPRECATED);
+		return $this;
 	}
 
 	public function getHtml($_key = '', $_default = '') {
