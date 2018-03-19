@@ -380,11 +380,6 @@ class scenario {
 	public static function consystencyCheck($_needsReturn = false) {
 		$return = array();
 		foreach (self::all() as $scenario) {
-			if ($scenario->getGroup() == '') {
-				$group = 'aucun';
-			} else {
-				$group = $scenario->getGroup();
-			}
 			if ($scenario->getIsActive() != 1) {
 				if (!$_needsReturn) {
 					continue;
@@ -398,7 +393,7 @@ class scenario {
 				preg_match_all("/#([0-9]*)#/", $trigger_list, $matches);foreach ($matches[1] as $cmd_id) {
 					if (is_numeric($cmd_id)) {
 						if ($_needsReturn) {
-							$return[] = array('detail' => 'Scénario ' . $scenario->getName() . ' du groupe ' . $group, 'help' => 'Déclencheur du scénario', 'who' => '#' . $cmd_id . '#');
+							$return[] = array('detail' => 'Scénario ' . $scenario->getHumanName(), 'help' => 'Déclencheur du scénario', 'who' => '#' . $cmd_id . '#');
 						} else {
 							log::add('scenario', 'error', __('Un déclencheur du scénario : ', __FILE__) . $scenario->getHumanName() . __(' est introuvable', __FILE__));
 						}
