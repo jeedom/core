@@ -113,6 +113,14 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 						</fieldset>
 					</form>
 				</div>
+				<div class="col-sm-4" >
+					<div class="form-group">
+						<label class="col-sm-2 control-label">{{Tag}}</label>
+						<div class="col-sm-10">
+							<input class="eqLogicAttr form-control" data-l1key="tags" />
+						</div>
+					</div>
+				</div>
 				<div class="col-sm-12" >
 					<legend>{{Commandes}}</legend>
 					<table class="table table-bordered table-condensed">

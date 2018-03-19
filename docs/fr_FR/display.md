@@ -149,6 +149,8 @@ l’équipement ainsi que ses commandes :
 -   **Dernière mise à jour** : Date de dernière communication
     avec l’équipement.
 
+-   **Tags** : tags de l'équipement, à séparer par des ','. Il permet sur le dashboard de faire des filtre personalisés
+
 En dessous vous retrouvez un tableau avec la liste des commandes de
 l’équipement avec, pour chacune, un lien vers leur configuration.
 

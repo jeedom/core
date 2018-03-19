@@ -37,6 +37,7 @@ class eqLogic {
 	protected $display;
 	protected $order;
 	protected $comment;
+	protected $tags;
 	protected $_debug = false;
 	protected $_object = null;
 	private static $_templateArray = array();
@@ -46,6 +47,22 @@ class eqLogic {
 	protected $_cmds = array();
 
 	/*     * ***********************Méthodes statiques*************************** */
+
+	public static function getAllTags() {
+		$sql = 'SELECT tags
+        FROM eqLogic
+        WHERE tags IS NOT NULL
+        	AND tags!=""';
+		$results = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
+		$return = array();
+		foreach ($results as $result) {
+			$tags = explode(',', $result['tags']);
+			foreach ($tags as $tag) {
+				$return[$tag] = $tag;
+			}
+		}
+		return $return;
+	}
 
 	public static function byId($_id) {
 		if ($_id == '') {
@@ -1602,6 +1619,15 @@ class eqLogic {
 
 	public function setComment($_comment) {
 		$this->comment = $_comment;
+		return $this;
+	}
+
+	public function getTags() {
+		return $this->tags;
+	}
+
+	public function setTags($_tags) {
+		$this->tags = str_replace(array("'", '<', '>'), "", $_tags);
 		return $this;
 	}
 

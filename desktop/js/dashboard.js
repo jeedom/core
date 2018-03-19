@@ -15,14 +15,28 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
- var category_dashabord = getUrlVars('category');
- if(category_dashabord == false){
-    category_dashabord = 'all';
-}
 
-var summary_dashabord = getUrlVars('summary');
-if(summary_dashabord == false){
-    summary_dashabord = '';
+$('#sel_eqLogicCategory').on('change',function(){
+    SEL_CATEGORY = $(this).value();
+    gotoFilterDashboardPage();
+});
+
+$('#sel_eqLogicTags').on('change',function(){
+    SEL_TAG = $(this).value();
+    gotoFilterDashboardPage();
+});
+
+function gotoFilterDashboardPage(){
+    var url = 'index.php?v=d&p=dashboard';
+    url += '&category='+SEL_CATEGORY;
+    url += '&tag='+SEL_TAG;
+    if(SEL_OBJECT_ID != ''){
+        url += '&object_id='+SEL_OBJECT_ID;
+    }
+     if(SEL_SUMMARY != ''){
+        url += '&summary='+SEL_SUMMARY;
+    }
+    loadPage(url);
 }
 
 $('#div_pageContainer').on( 'click','.eqLogic-widget .history', function () {
@@ -119,8 +133,9 @@ function getObjectHtml(_object_id){
   jeedom.object.toHtml({
     id: _object_id,
     version: 'dashboard',
-    category : category_dashabord,
-    summary : summary_dashabord,
+    category : SEL_CATEGORY,
+    summary : SEL_SUMMARY,
+    tag : SEL_TAG,
     error: function (error) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },

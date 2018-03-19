@@ -2,7 +2,10 @@
 if (!isConnect()) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-
+sendVarToJs('SEL_OBJECT_ID', init('object_id'));
+sendVarToJs('SEL_CATEGORY', init('category', 'all'));
+sendVarToJs('SEL_TAG', init('tag', 'all'));
+sendVarToJs('SEL_SUMMARY', init('summary'));
 if (init('object_id') == '') {
 	$object = object::byId($_SESSION['user']->getOptions('defaultDashboardObject'));
 } else {
@@ -64,24 +67,49 @@ if ($_SESSION['user']->getOptions('displayScenarioByDefault') == 1) {
 <?php }
 ?>
 <div style="text-align : center;">
-	<?php
+	<form class="form-inline">
+		<div class="form-group">
+			<label>{{Catégorie}}</label>
+			<select id="sel_eqLogicCategory" class="form-control input-sm form-inline">
+				<?php
 if (init('category', 'all') == 'all') {
-	echo '<a href="index.php?v=d&p=dashboard&object_id=' . init('object_id') . '&category=all&summary=' . init('summary') . '" class="btn btn-primary btn-sm categoryAction" style="margin-bottom: 5px;margin-right: 3px;"><i class="fa fa-asterisk"></i> {{Tous}}</a>';
+	echo '<option value="all" selected> {{Toute}}</option>';
 } else {
-	echo '<a href="index.php?v=d&p=dashboard&object_id=' . init('object_id') . '&category=all&summary=' . init('summary') . '" class="btn btn-default btn-sm categoryAction" style="margin-bottom: 5px;margin-right: 3px;"><i class="fa fa-asterisk"></i> {{Tous}}</a>';
+	echo '<option value="all"> {{Toute}}</option>';
 }
 foreach (jeedom::getConfiguration('eqLogic:category', true) as $key => $value) {
 	if (init('category', 'all') == $key) {
-		echo '<a href="index.php?v=d&p=dashboard&object_id=' . init('object_id') . '&category=' . $key . '&summary=' . init('summary') . '" class="btn btn-primary btn-sm categoryAction" data-l1key="' . $key . '" style="margin-bottom: 5px;margin-right: 3px;"><i class="' . $value['icon'] . '"></i> {{' . $value['name'] . '}}</a>';
+		echo '<option value="' . $key . '" selected> {{' . $value['name'] . '}}</option>';
 	} else {
-		echo '<a href="index.php?v=d&p=dashboard&object_id=' . init('object_id') . '&category=' . $key . '&summary=' . init('summary') . '" class="btn btn-default btn-sm categoryAction" data-l1key="' . $key . '" style="margin-bottom: 5px;margin-right: 3px;"><i class="' . $value['icon'] . '"></i> {{' . $value['name'] . '}}</a>';
+		echo '<option value="' . $key . '"> {{' . $value['name'] . '}}</option>';
 	}
 }
 ?>
+			</select>
+		</div>
+		<label>{{Tags}}</label>
+		<select id="sel_eqLogicTags" class="form-control input-sm form-inline">
+			<?php
+if (init('tag', 'all') == 'all') {
+	echo '<option value="all" selected> {{Tous}}</option>';
+} else {
+	echo '<option value="all"> {{Tous}}</option>';
+}
+$knowTags = eqLogic::getAllTags();
+foreach ($knowTags as $tag) {
+	if (init('tag', 'all') == $tag) {
+		echo '<option value="' . $tag . '" selected> ' . $tag . '</option>';
+	} else {
+		echo '<option value="' . $tag . '"> ' . $tag . '</option>';
+	}
+}
+?>
+		</select>
+	</form>
 </div>
 <?php include_file('desktop', 'dashboard', 'js');?>
 <div class="row" >
-<?php
+	<?php
 if (init('object_id') != '') {
 	echo '<div class="col-md-12">';
 } else {

@@ -7,6 +7,7 @@ Changelog
 -   Ajout d'un affichage 3D
 -   Refonte du systeme de backup cloud (backup incrémental et crypté)
 -   Ajout d'un systeme de prise de note intégré (dans Analyse -> Note)
+-   Ajout de la notion de tag sur les équipements (se trouve dans la configuration avancée de l'équipement)
 
 3.2.2
 =====

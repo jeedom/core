@@ -129,9 +129,13 @@ try {
 					$eqLogics = $object->getEqLogicBySummary(init('summary'), true, false);
 				}
 				foreach ($eqLogics as $eqLogic) {
-					if (init('category', 'all') == 'all' || $eqLogic->getCategory(init('category')) == 1) {
-						$html .= $eqLogic->toHtml(init('version'));
+					if (init('category', 'all') != 'all' && $eqLogic->getCategory(init('category')) != 1) {
+						continue;
 					}
+					if (init('tag', 'all') != 'all' && strpos($eqLogic->getTags(), init('tag')) === false) {
+						continue;
+					}
+					$html .= $eqLogic->toHtml(init('version'));
 				}
 				$return[$i . '::' . $id] = $html;
 				$i++;
@@ -146,9 +150,13 @@ try {
 				$eqLogics = $object->getEqLogicBySummary(init('summary'), true, false);
 			}
 			foreach ($eqLogics as $eqLogic) {
-				if (init('category', 'all') == 'all' || $eqLogic->getCategory(init('category')) == 1) {
-					$html .= $eqLogic->toHtml(init('version'));
+				if (init('category', 'all') != 'all' && $eqLogic->getCategory(init('category')) != 1) {
+					continue;
 				}
+				if (init('tag', 'all') != 'all' && strpos($eqLogic->getTags(), init('tag')) === false) {
+					continue;
+				}
+				$html .= $eqLogic->toHtml(init('version'));
 			}
 			ajax::success($html);
 		}
