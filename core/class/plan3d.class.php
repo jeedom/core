@@ -152,6 +152,8 @@ class plan3d {
 			'3d::widget::text::texttransparency' => 1,
 			'3d::widget::text::space::z' => 10,
 			'3d::widget::door::shutterclose' => '#0000ff',
+			'3d::widget::door::windowclose' => '#ff0000',
+			'3d::widget::door::windowopen' => '#00ff00',
 			'3d::widget::door::rotate::0' => 'left',
 			'3d::widget::door::rotate::1' => 'front',
 			'3d::widget::door::rotate::way' => 1,
