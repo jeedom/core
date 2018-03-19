@@ -13,8 +13,10 @@ sftp-config.json
 
 data/*
 !data/.htaccess
-!data/3d/.htaccess
 !data/php
+!data/3d
+data/3d/*
+!3d/.htaccess
 
 log/*
 !log/.htaccess
@@ -22,4 +24,4 @@ log/*
 tmp/*
 !tmp/.htaccess
 
-
+!.htaccess
