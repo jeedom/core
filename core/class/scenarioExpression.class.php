@@ -1568,7 +1568,7 @@ class scenarioExpression {
 			return jeedom::toHumanReadable($this->getExpression());
 		}
 		if ($this->getType() == 'code') {
-
+			return '(code) ' . $this->getExpression();
 		}
 	}
 

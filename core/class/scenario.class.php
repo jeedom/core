@@ -374,9 +374,7 @@ class scenario {
 		$sql .= ')';
 		DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
 	}
-	/**
-	 *
-	 */
+
 	public static function consystencyCheck($_needsReturn = false) {
 		$return = array();
 		foreach (self::all() as $scenario) {
@@ -393,10 +391,9 @@ class scenario {
 			if ($scenario->getMode() == 'provoke' || $scenario->getMode() == 'all') {
 				$trigger_list = '';
 				foreach ($scenario->getTrigger() as $trigger) {
-					$trigger_list .= cmd::cmdToHumanReadable($trigger);
+					$trigger_list .= cmd::cmdToHumanReadable($trigger) . '_';
 				}
-				preg_match_all("/#([0-9]*)#/", $trigger_list, $matches);
-				foreach ($matches[1] as $cmd_id) {
+				preg_match_all("/#([0-9]*)#/", $trigger_list, $matches);foreach ($matches[1] as $cmd_id) {
 					if (is_numeric($cmd_id)) {
 						if ($_needsReturn) {
 							$return[] = array('detail' => 'Scénario ' . $scenario->getName() . ' du groupe ' . $group, 'help' => 'Déclencheur du scénario', 'who' => '#' . $cmd_id . '#');
@@ -408,22 +405,13 @@ class scenario {
 			}
 			$expression_list = '';
 			foreach ($scenario->getElement() as $element) {
-				foreach ($element->getSubElement() as $subElement) {
-					foreach ($subElement->getExpression() as $expression) {
-						$expression_list .= cmd::cmdToHumanReadable($expression->getExpression()) . ' _ ';
-						if (is_array($expression->getOptions())) {
-							foreach ($expression->getOptions() as $key => $value) {
-								$expression_list .= cmd::cmdToHumanReadable($value) . ' _ ';
-							}
-						}
-					}
-				}
+				$expression_list .= cmd::cmdToHumanReadable(json_encode($element->getAjaxElement()));
 			}
 			preg_match_all("/#([0-9]*)#/", $expression_list, $matches);
 			foreach ($matches[1] as $cmd_id) {
 				if (is_numeric($cmd_id)) {
 					if ($_needsReturn) {
-						$return[] = array('detail' => 'Scénario ' . $scenario->getName() . ' du groupe ' . $group, 'help' => 'Utilisé dans le scénario', 'who' => '#' . $cmd_id . '#');
+						$return[] = array('detail' => 'Scénario ' . $scenario->getHumanName(), 'help' => 'Utilisé dans le scénario', 'who' => '#' . $cmd_id . '#');
 					} else {
 						log::add('scenario', 'error', __('Une commande du scénario : ', __FILE__) . $scenario->getHumanName() . __(' est introuvable', __FILE__));
 					}
