@@ -3,6 +3,9 @@ test.php
 core/config/common.config.php
 /plugins
 /data
+!data/.htaccess
+!data/3d/.htaccess
+!data/php
 sftp-config.json
 
 .idea
