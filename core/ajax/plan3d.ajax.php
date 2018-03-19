@@ -143,8 +143,8 @@ try {
 		if (!in_array($extension, array('.zip'))) {
 			throw new Exception('Extension du fichier non valide (autorisé .zip) : ' . $extension);
 		}
-		if (filesize($_FILES['file']['tmp_name']) > 100000000) {
-			throw new Exception(__('Le fichier est trop gros (maximum 100Mo)', __FILE__));
+		if (filesize($_FILES['file']['tmp_name']) > 150000000) {
+			throw new Exception(__('Le fichier est trop gros (maximum 150Mo)', __FILE__));
 		}
 		$uploaddir = '/tmp';
 		if (!move_uploaded_file($_FILES['file']['tmp_name'], $uploaddir . '/' . $_FILES['file']['name'])) {

@@ -273,7 +273,7 @@ foreach (planHeader::all() as $plan_menu) {
 										</ul>
 									</li>
 																		<li class="dropdown-submenu">
-										<a data-toggle="dropdown" id="bt_gotoPlan"><i class="fa fa-cubes"></i> {{Design 3D}}</a>
+										<a data-toggle="dropdown" id="bt_gotoPlan3d"><i class="fa fa-cubes"></i> {{Design 3D}}</a>
 										<ul class="dropdown-menu">
 											<?php
 foreach (plan3dHeader::all() as $plan3d_menu) {

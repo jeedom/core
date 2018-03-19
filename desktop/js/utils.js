@@ -348,6 +348,11 @@ if (isset(jeedom_langage)) {
         loadPage('index.php?v=d&p=plan');
     });
 
+      $('#bt_gotoPlan3d').on('click',function(){
+        $('ul.dropdown-menu [data-toggle=dropdown]').parent().parent().parent().siblings().removeClass('open');
+        loadPage('index.php?v=d&p=plan3d');
+    });
+
     $('#bt_messageModal').on('click',function(){
         $('#md_modal').dialog({title: "{{Message Jeedom}}"});
         $('#md_modal').load('index.php?v=d&p=message&ajax=1').dialog('open');
