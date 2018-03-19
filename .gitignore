@@ -11,10 +11,10 @@ sftp-config.json
 
 /plugins
 
-/data
-!/data/.htaccess
-!/data/3d/.htaccess
-!/data/php
+data/*
+!data/.htaccess
+!data/3d/.htaccess
+!data/php
 
 log/*
 !log/.htaccess
