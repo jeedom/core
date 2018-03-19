@@ -639,8 +639,8 @@ try {
 		}
 
 		if ($jsonrpc->getMethod() == 'cmd::execCmd') {
+			$return = array();
 			if (is_array($params['id'])) {
-				$return = array();
 				foreach ($params['id'] as $id) {
 					$cmd = cmd::byId($id);
 					if (!is_object($cmd)) {
@@ -659,7 +659,11 @@ try {
 					if ($cmd->getType() == 'action' && $cmd->getConfiguration('actionConfirm') == 1 && $params['confirmAction'] != 1) {
 						throw new Exception(__('Cette action nécessite une confirmation', __FILE__), -32006);
 					}
-					$return[$id] = array('value' => $cmd->execCmd($params['options']), 'collectDate' => $cmd->getCollectDate());
+					if ($cmd->getType() == 'info') {
+						$return[$id] = array('value' => $cmd->execCmd($params['options']), 'collectDate' => $cmd->getCollectDate());
+					} else {
+						$cmd->execCmd($params['options']);
+					}
 				}
 			} else {
 				$cmd = cmd::byId($params['id']);
@@ -678,7 +682,11 @@ try {
 				if ($cmd->getType() == 'action' && $cmd->getConfiguration('actionConfirm') == 1 && $params['confirmAction'] != 1) {
 					throw new Exception(__('Cette action nécessite une confirmation', __FILE__), -32006);
 				}
-				$return = array('value' => $cmd->execCmd($params['options']), 'collectDate' => $cmd->getCollectDate());
+				if ($cmd->getType() == 'info') {
+					$return = array('value' => $cmd->execCmd($params['options']), 'collectDate' => $cmd->getCollectDate());
+				} else {
+					$cmd->execCmd($params['options']);
+				}
 			}
 			$jsonrpc->makeSuccess($return);
 		}
