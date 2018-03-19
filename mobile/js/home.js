@@ -56,7 +56,11 @@ function initHome() {
         success: function (planHeader) {
             var li = '';
             for (var i in planHeader) {
-                li += '<a class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" href="index.php?v=d&p=plan&plan_id=' + planHeader[i].id + '" data-ajax="false">' +init(planHeader[i].configuration['icon'])+' '+ planHeader[i].name + '</a>'
+                var icon = '';
+                if (isset(planHeader[i].configuration) && isset(planHeader[i].configuration.icon)) {
+                    icon = planHeader[i].configuration.icon;
+                }
+                li += '<a class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" href="index.php?v=d&p=plan&plan_id=' + planHeader[i].id + '" data-ajax="false">' +icon+' '+ planHeader[i].name + '</a>'
             }
             $('#bottompanel_planList').empty().append(li);
         }
@@ -69,11 +73,14 @@ function initHome() {
         success: function (plan3dHeader) {
             var li = '';
             for (var i in plan3dHeader) {
-                li += '<a class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" href="index.php?v=d&p=plan3d&plan3d_id=' + plan3dHeader[i].id + '" data-ajax="false">' +init(plan3dHeader[i].configuration['icon'])+' '+ plan3dHeader[i].name + '</a>'
+             if (isset(plan3dHeader[i].configuration) && isset(plan3dHeader[i].configuration.icon)) {
+                icon = plan3dHeader[i].configuration.icon;
             }
-            $('#bottompanel_plan3dList').empty().append(li);
+            li += '<a class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" href="index.php?v=d&p=plan3d&plan3d_id=' + plan3dHeader[i].id + '" data-ajax="false">' +icon+' '+ plan3dHeader[i].name + '</a>'
         }
-    });
+        $('#bottompanel_plan3dList').empty().append(li);
+    }
+});
 
 
     if (plugins.length > 0) {
@@ -93,9 +100,9 @@ function initHome() {
         if(li != ''){
             $('#bottompanel_pluginList').empty().append(li);
         }else{
-           $('#bt_listPlugin').hide();   
-       }
-   } else {
+         $('#bt_listPlugin').hide();   
+     }
+ } else {
     $('#bt_listPlugin').hide();
 }
 
