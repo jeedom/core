@@ -133,16 +133,16 @@ Hier ist die URL =
 
 Gibt alle Objekte, Geräte, Befehle (und deren Wert, wenn es sich um Informationen handelt) in json zurück.
 
-Variable 
+Variable
 ========
 
-Voici l’URL =
+Hier ist die URL =
 [http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=variable&name=\#NAME\#&value=](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=variable&name=#NAME#&value=)*VALUE*
 
--   **name** : nom de la variable dont on veut la valeur (lecture de
-    la valeur)
+-   **name** : Name der Variablen, deren Wert man haben will (Lesen 
+    des Wertes)
 
--   **value** \[optionnel\] : si "value" est précisé alors la variable
-    prendra cette valeur (écriture d’une valeur)
+-   **value** [optional] : Wenn "value" angegeben wird, wird die Variable diesen 
+    Wert annehmen (einen Wert schreiben)
 
 
