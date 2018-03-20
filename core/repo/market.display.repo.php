@@ -181,7 +181,7 @@ if ($market->getHardwareCompatibility('Jeedomboard') == 1) {
           <div class="form-group">
             <label class="col-sm-4 control-label">{{Ma Note}}</label>
             <div class="col-sm-8">
-              <span><input type="number" class="rating" id="in_myRating" data-max="5" data-empty-value="0" data-min="1" data-clearable="Effacer" value="<?php echo $market->getRating('user') ?>" /></span>
+              <span><input style="display:none;" type="number" class="rating" id="in_myRating" data-max="5" data-empty-value="0" data-min="1" data-clearable="Effacer" value="<?php echo $market->getRating('user') ?>" /></span>
             </div>
           </div><br/>
           <?php }
