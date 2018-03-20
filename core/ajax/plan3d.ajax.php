@@ -27,6 +27,10 @@ try {
 	ajax::init();
 
 	if (init('action') == 'save') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		unautorizedInDemo();
 		$plan3ds = json_decode(init('plan3ds'), true);
 		foreach ($plan3ds as $plan3d_ajax) {
 			@$plan3d = plan3d::byId($plan3d_ajax['id']);
@@ -50,6 +54,10 @@ try {
 	}
 
 	if (init('action') == 'create') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		unautorizedInDemo();
 		$plan3d = new plan3d();
 		utils::a2o($plan3d, json_decode(init('plan3d'), true));
 		$plan3d->save();
@@ -75,6 +83,10 @@ try {
 	}
 
 	if (init('action') == 'remove') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		unautorizedInDemo();
 		$plan3d = plan3d::byId(init('id'));
 		if (!is_object($plan3d)) {
 			throw new Exception(__('Aucun plan3d correspondant', __FILE__));
@@ -86,6 +98,7 @@ try {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
+		unautorizedInDemo();
 		$plan3dHeader = plan3dHeader::byId(init('id'));
 		if (!is_object($plan3dHeader)) {
 			throw new Exception(__('Objet inconnu verifiez l\'id', __FILE__));
@@ -118,6 +131,10 @@ try {
 	}
 
 	if (init('action') == 'saveplan3dHeader') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		unautorizedInDemo();
 		$plan3dHeader_ajax = json_decode(init('plan3dHeader'), true);
 		$plan3dHeader = null;
 		if (isset($plan3dHeader_ajax['id'])) {
@@ -132,6 +149,10 @@ try {
 	}
 
 	if (init('action') == 'uploadModel') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		unautorizedInDemo();
 		$plan3dHeader = plan3dHeader::byId(init('id'));
 		if (!is_object($plan3dHeader)) {
 			throw new Exception(__('Objet inconnu. Vérifiez l\'ID', __FILE__));

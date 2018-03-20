@@ -27,6 +27,10 @@ try {
 	ajax::init();
 
 	if (init('action') == 'save') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		unautorizedInDemo();
 		$plans = json_decode(init('plans'), true);
 		foreach ($plans as $plan_ajax) {
 			@$plan = plan::byId($plan_ajax['id']);
@@ -59,6 +63,10 @@ try {
 	}
 
 	if (init('action') == 'create') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		unautorizedInDemo();
 		$plan = new plan();
 		utils::a2o($plan, json_decode(init('plan'), true));
 		$plan->save();
@@ -66,6 +74,10 @@ try {
 	}
 
 	if (init('action') == 'copy') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		unautorizedInDemo();
 		$plan = plan::byId(init('id'));
 		if (!is_object($plan)) {
 			throw new Exception(__('Aucun plan correspondant', __FILE__));
@@ -82,6 +94,10 @@ try {
 	}
 
 	if (init('action') == 'remove') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		unautorizedInDemo();
 		$plan = plan::byId(init('id'));
 		if (!is_object($plan)) {
 			throw new Exception(__('Aucun plan correspondant', __FILE__));
@@ -93,6 +109,7 @@ try {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
+		unautorizedInDemo();
 		$planHeader = planHeader::byId(init('id'));
 		if (!is_object($planHeader)) {
 			throw new Exception(__('Objet inconnu. Vérifiez l\'ID', __FILE__));
@@ -126,6 +143,10 @@ try {
 	}
 
 	if (init('action') == 'savePlanHeader') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		unautorizedInDemo();
 		$planHeader_ajax = json_decode(init('planHeader'), true);
 		$planHeader = null;
 		if (isset($planHeader_ajax['id'])) {
@@ -140,6 +161,10 @@ try {
 	}
 
 	if (init('action') == 'copyPlanHeader') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		unautorizedInDemo();
 		$planHeader = planHeader::byId(init('id'));
 		if (!is_object($planHeader)) {
 			throw new Exception(__('Plan header inconnu. Vérifiez l\'ID ', __FILE__) . init('id'));
@@ -148,6 +173,10 @@ try {
 	}
 
 	if (init('action') == 'removeImageHeader') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		unautorizedInDemo();
 		$planHeader = planHeader::byId(init('id'));
 		if (!is_object($planHeader)) {
 			throw new Exception(__('Plan header inconnu. Vérifiez l\'ID ', __FILE__) . init('id'));
@@ -160,6 +189,10 @@ try {
 	}
 
 	if (init('action') == 'uploadImage') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		unautorizedInDemo();
 		$planHeader = planHeader::byId(init('id'));
 		if (!is_object($planHeader)) {
 			throw new Exception(__('Objet inconnu. Vérifiez l\'ID', __FILE__));
@@ -187,6 +220,10 @@ try {
 	}
 
 	if (init('action') == 'uploadImagePlan') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		unautorizedInDemo();
 		$plan = plan::byId(init('id'));
 		if (!is_object($plan)) {
 			throw new Exception(__('Objet inconnu. Vérifiez l\'ID', __FILE__));
