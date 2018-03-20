@@ -164,17 +164,17 @@ class scenarioElement {
 			}
 			return $this->getSubElement('else')->execute($_scenario);
 
-		} else if ($this->getType() == 'action') {
+		} elseif ($this->getType() == 'action') {
 			if ($this->getSubElement('action')->getOptions('enable', 1) == 0) {
 				return true;
 			}
 			return $this->getSubElement('action')->execute($_scenario);
-		} else if ($this->getType() == 'code') {
+		} elseif ($this->getType() == 'code') {
 			if ($this->getSubElement('code')->getOptions('enable', 1) == 0) {
 				return true;
 			}
 			return $this->getSubElement('code')->execute($_scenario);
-		} else if ($this->getType() == 'for') {
+		} elseif ($this->getType() == 'for') {
 			$for = $this->getSubElement('for');
 			if ($for->getOptions('enable', 1) == 0) {
 				return true;
@@ -190,7 +190,7 @@ class scenarioElement {
 				$return = $this->getSubElement('do')->execute($_scenario);
 			}
 			return $return;
-		} else if ($this->getType() == 'in') {
+		} elseif ($this->getType() == 'in') {
 			$in = $this->getSubElement('in');
 			if ($in->getOptions('enable', 1) == 0) {
 				return true;
@@ -229,7 +229,7 @@ class scenarioElement {
 				$_scenario->setLog(__('Tâche : ', __FILE__) . $this->getId() . __(' programmé à : ', __FILE__) . date('Y-m-d H:i:s', $next) . ' (+ ' . $time . ' min)');
 			}
 			return true;
-		} else if ($this->getType() == 'at') {
+		} elseif ($this->getType() == 'at') {
 			$at = $this->getSubElement('at');
 			if ($at->getOptions('enable', 1) == 0) {
 				return true;
