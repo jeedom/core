@@ -82,8 +82,13 @@ nav ul a,nav {
 	line-height: 24px !important;
 }
 .toc a.active{
-	 font-weight: bold;
+	font-weight: bold;
 }
 .dropdown-content li>a, .dropdown-content li>span{
 	color : #95C12B !important;
+}
+@-moz-document url-prefix() {
+	.side-nav {
+		height: 100% !important;
+	}
 }

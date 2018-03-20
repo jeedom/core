@@ -1,36 +1,32 @@
 Beschreibung 
 ===========
 
-Le **centre de mise à jour** permet de mettre à jour toutes les
-fonctionnalités de Jeedom, incluant le logiciel de base (core), les
-plugins, les widgets, etc. D’autres fonctions de gestion des extensions
-sont diponibles (supprimer, réinstaller, vérifier, etc)
+Das **Update Center** ermöglicht es Ihnen, alle Funktionen von Jeedom zu
+aktualisieren, einschließlich Kernsoftware, Plugins, Widgets usw.. Weitere
+Funktionen zur Verwaltung von Erweiterungen sind verfügbar (Löschen,
+Neuinstallieren, Prüfen usw.).
 
-La page du Centre de mise à jour 
+Die Update Center Seite
 ================================
 
-Elle est accessible par le menu **Administration → Centre de mise à
-jour**.
+Sie ist über das Menü **Administration → Update Center**
+erreichbar.
 
-Vous y trouverez, sur la gauche, l’ensemble des fonctionnalités de
-Jeedom et sur la droite une partie **Informations** qui décrit ce qu’il
-s’est passé, quand vous avez lancé une mise à jour.
+Sie finden auf der linken Seite alle Funktionen von Jeedom und auf der rechten Seite den **Informations**-Teil, in dem angezeigt wird, was passiert wenn ein ein Update gestartet wird.
 
-Les fonctions du haut de la page. 
+Die Funktionen oben auf der Seite.
 ---------------------------------
 
-En haut du tableau, se trouvent les boutons de commande. Jeedom se
-connecte périodiquement avec le Market pour voir si des mises à jour
-sont disponibles (la date de dernière vérification est indiquée en haut
-à gauche du tableau). Si vous voulez réaliser une vérification manuelle,
-vous pouvez appuyer sur le bouton "Vérifier les mises à jour".
+In oberem Teil der Tabelle befinden sich die Schaltflächen. Jeedom
+verbindet sich regelmäßig mit dem Markt um zu sehen, ob Updates
+verfügbar sind (das Datum der letzten Prüfung wird am oberen Rand auf der
+linken Seite der Tabelle angezeigt). Wenn Sie eine manuelle Überprüfung
+durchführen möchten, klicken Sie die Schaltfläche "Nach Updates suchen" an.
 
-Le bouton **Mettre à jour** permet de mettre à jour l’ensemble de
-Jeedom. Une fois que vous avez cliqué dessus, on obtient ces différentes
-options :
+Die Schaltfläche **Updaten** wird verwendet, um das Jeedom Paket zu aktualisieren. Sobald Sie darauf klicken, erhalten Sie diese verschiedenen Optionen :
 
--   **Sauvegarder avant** : Effectue une sauvegarde de Jeedom avant
-    d’effectuer la mise à jour.
+-   **Vorher speichern** : Führt vor dem Update eine Jeedom-Sicherung 
+    durch.
 
 -   **Mettre à jour les plugins** : Permet d’inclure les plugins dans la
     mise à jour.
