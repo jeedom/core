@@ -125,6 +125,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
                     $('#div_alertReportBug').showAlert({message: data.result, level: 'danger'});
                     return;
                 }
+                $('#form_reportBug').hide();
                 $('#bt_sendBugReport').hide();
                 if(data.result != '' && data.result != null){
                     $('#div_alertReportBug').showAlert({message: '{{Votre ticket a bien été ouvert. Vous pouvez le suivre}} <a target="_href" href="'+data.result+'">ici</a>', level: 'success'});
