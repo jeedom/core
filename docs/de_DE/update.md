@@ -28,68 +28,67 @@ Die Schaltfläche **Updaten** wird verwendet, um das Jeedom Paket zu aktualisier
 -   **Vorher speichern** : Führt vor dem Update eine Jeedom-Sicherung 
     durch.
 
--   **Mettre à jour les plugins** : Permet d’inclure les plugins dans la
-    mise à jour.
+-   **Plugins aktualisieren** : Ermöglicht Plugins im Update zu
+    integrieren.
 
--   **Mettre à jour le core** : Permet d’inclure le noyau de Jeedom dans
-    la mise à jour.
+-   **Kern aktualisieren** : Ermöglicht Ihnen, den Jeedom-Kernel in das
+    Update aufzunehmen.
 
--   **Mode forcé** : Effectue la mise à jour en mode forcé, c’est-à-dire
-    que, même s’il y a une erreur, Jeedom continue et ne restaurera pas
-    la sauvegarde.
+-   **Zwangsbetrieb** : Führt das Update im erzwungenen Modus durch, das
+    heißt, selbst wenn ein Fehler auftritt, fährt Jeedom fort und wird das Backup
+    nicht wiederherstellen.
 
--   **Mise à jour à réappliquer** : Permet de réappliquer une mise
-    à jour. (NB : Toutes les mises à jour ne peuvent être réappliquées.)
+-   **Update wieder anwenden** : Ermöglicht es Ihnen, ein Update erneut zu
+    installieren. (Hinweis : Nicht alle Updates können erneut angewendet werden.)
 
-> **Important**
+> **Wichtig**
 >
-> Avant une mise à jour, par défaut, Jeedom va faire une sauvegarde. En
-> cas de souci lors de l’application d’une mise à jour, Jeedom va
-> automatiquement restaurer la sauvegarde faite juste avant. Ce principe
-> n’est valable que pour les mises à jour de Jeedom et non des plugins.
+>Vor der Aktualisierung wird Jeedom standardmäßig eine Sicherungskopie
+> erstellen. Bei Problemen beim Anwenden eines Updates wird Jeedom
+> automatisch die zuvor erstellte Sicherung wiederherstellen. Dieses Prinzip
+> gilt natürlich nur für Jeedom Updates, nicht für Plugins.
 
 > **Tip**
 >
-> Vous pouvez forcer une mise à jour de Jeedom, même si celui-ci ne vous
-> en propose pas.
+> Sie können ein Update von Jeedom erzwingen, auch wenn es Ihnen nicht
+> angeboten wird.
 
-Le tableau des mises à jour 
+Die Tabelle der Aktualisierungen
 ---------------------------
 
-Le tableau se compose de deux onglets :
+Der Tabelle besteht aus zwei Registerkarten :
 
--   **Core et Plugins** : Contient le logiciel de base de Jeedom et la
-    liste des plugins installés.
+-   **Kern und Plugins** : Enthält die Basissoftware von Jeedom und 
+    die Liste der installierten Plugins.
 
--   **Autre** : Contient les widgets, les scripts, etc.
+-   **Andere** : Enthält Widgets, Skripte usw.
 
-Vous y trouverez les informations suivants : \* **Statut** : OK ou NOK.
-Permet de connaître l’état actuel du plugin. \* **Nom** : Vous y
-trouverez la provenance de l’élément, le type d’élément et son nom. \*
-**Version**: Indique la version précise de l’élément. \***Options** :
-Cochez cette case si vous ne souhaitez pas que cet élément soit mis à
-jour lors de la mise à jour générale (Bouton **Mettre à jour**).
+Hier finden Sie folgende Informationen: * **Status** : OK oder NOK. Zeigt den
+aktuellen Status des Plugins an. * **Name** : Sie sehen die Quelle des
+Elements, den Typ des Elements und seinen Namen. * **Version** : Gibt die
+genaue Version des Elements an. * **Optionen** : Aktivieren Sie dieses
+Kontrollkästchen, wenn das Element während des allgemeinen Updates
+nicht aktualisiert werden soll (Schaltfläche **Updaten**).
 
 > **Tip**
 >
-> Pour chaque tableau, la première ligne permet de filter suivant
-> l’état, le nom ou la version des éléments présents.
+> Für jede Tabelle können Sie in der ersten Zeile nach dem Status, den
+> Namen oder der Version des vorhandenen Elemente filtern.
 
-Sur chaque ligne, vous pouvez utiliser les fonctions suivants pour
-chaque élément :
+In jeder Zeile können Sie  für jedes Element die folgenden Aktionen vdurchführen :
 
--   **Réinstaller** : Force la réinstallation.
+-   **Neu installieren** : Erzwingt eine Neuinstallation.
 
--   **Supprimer** : Permet de le désinstaller.
+-   **Löschen** : Ermöglicht das Elemente zu löschen.
 
--   **Vérifier** : Interroge la source des mises à jour pour savoir si
-    une nouvelle mise à jour est disponible.
+-   **Prüfen** : Überprüft die Update-Quelle, um herauszufinden, 
+    ob ein neues Update verfügbar ist.
 
--   **Mettre à jour** : Permet de mettre à jour l’élément (si celui-ci a
-    une mise à jour).
+-   **Update** : Ermöglicht das Element zu aktualisieren (wenn ein 
+    Update verfügbar ist).
 
--   **Changelog** : Permet d’accéder à la liste des changements de la
-    mise à jour.
+-   **Änderungsprotokoll** : Bietet Zugriff auf die Liste der Änderungen der 
+    Updates.
 
 > **Important**
 >
