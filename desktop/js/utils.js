@@ -264,6 +264,7 @@ if (isset(jeedom_langage)) {
     });
 
     $('#bt_jeedomAbout').on('click', function () {
+        $('#md_modal').dialog({title: "{{A propos}}"});
         $('#md_modal').load('index.php?v=d&modal=about').dialog('open');
     });
 
