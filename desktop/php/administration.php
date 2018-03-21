@@ -1390,8 +1390,8 @@ foreach ($repos as $key => $value) {
 				break;
 			case 'select':
 				echo '<select class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '">';
-				foreach ($parameter['values'] as $key => $value) {
-					echo '<option value="' . $key . '">' . $value . '</option>';
+				foreach ($parameter['values'] as $optkey => $optval) {
+					echo '<option value="' . $optkey . '">' . $optval . '</option>';
 				}
 				echo '</select>';
 				break;
