@@ -130,6 +130,7 @@ include_file('3rdparty', 'highstock/highstock', 'js');
 include_file('3rdparty', 'highstock/highcharts-more', 'js');
 include_file('3rdparty', 'highstock/modules/solid-gauge', 'js');
 include_file('3rdparty', 'highstock/modules/exporting', 'js');
+include_file('3rdparty', 'highstock/modules/export-data', 'js');
 include_file('desktop', 'utils', 'js');
 include_file('3rdparty', 'jquery.toastr/jquery.toastr.min', 'js');
 include_file('3rdparty', 'jquery.at.caret/jquery.at.caret.min', 'js');
