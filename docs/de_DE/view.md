@@ -1,24 +1,22 @@
-Les vues permettent simplement de créer un affichage personnalisé. Ce
-n’est pas aussi puissant que les designs mais cela permet en quelques
-minutes d’avoir un affichage plus personnalisé.
+In der Ansicht können einfache persönliche Ansichten erstellt werden, sie sind nicht so fortgeschritten wie die im Design, aber es erlaubt in wenigen Minuten eine eigene Anzeige zu haben.
 
-Les vues sont accessibles à partir du menu Accueil → Vue :
+Die Ansichten sind über das Menü  Mein Haus → Ansicht erreichbar :
 
 > **Tip**
 >
-> Il est possible d’aller directement sur une vue grâce au sous-menu.
+> Es ist möglich, direkt zu einer Ansicht über das Untermenü wechseln.
 
 > **Tip**
 >
-> Vous pouvez dans votre profil choisir la vue par défaut lors du clic
-> sur le menu des vues.
+> Sie können ein Profil in der Standardansicht wählen, wenn sie auf das
+> Menü Ansichten klicken. 
 
 Die Ansichten 
 ========
 
-On peut mettre aussi bien des widgets, des graphiques (qui peuvent être
-composés de plusieurs données) ou des zones tableau (qui contiennent les
-widgets des commandes).
+Sie können auch Widgets, Grafiken (die aus mehreren Daten bestehen
+können) oder Tabellenbereiche (die die Widgets der Befehle 
+enthalten) einfügen.
 
 Sur cette page, on retrouve un bouton en haut à gauche pour montrer ou
 masquer la liste des vues ainsi que le bouton pour en ajouter une

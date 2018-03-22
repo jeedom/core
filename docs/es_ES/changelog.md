@@ -4,6 +4,8 @@ cambios
 3.2.2
 =====
 
+-   Possibilité d'afficher les graphiques sous forme de tableau ou d'exporter ceux-ci en csv ou xls
+
 -   Les utilisateurs peuvent maintenant ajouter leur propre fonction php pour les scénarios. Voir documentation des scénarios pour la mise en place
 
 -   JEED-417 : ajout d'une fonction time_diff dans les scénarios

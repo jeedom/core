@@ -90,41 +90,40 @@ In jeder Zeile können Sie  für jedes Element die folgenden Aktionen vdurchfüh
 -   **Änderungsprotokoll** : Bietet Zugriff auf die Liste der Änderungen der 
     Updates.
 
-> **Important**
+> **Wichtig**
 >
-> Si le changelog est vide mais que vous avez tout de même une mise à
-> jour, cela signifie que c’est la documentation qui a été mise à jour.
-> Il n’est donc pas nécessaire de demander au développeur les
-> changements, vu qu’il n’y en a pas forcément. (c’est souvent une mise
-> à jour de la traduction de la documentation)
+> Wenn das Änderungsprotokoll leer ist, aber Sie noch ein Update haben,
+> bedeutet dies, dass die Dokumentation aktualisiert wurde. Es ist daher
+> nicht notwendig, vom Entwickler die Veränderungen zu verlangen, da es
+> nicht unbedingt notwendig ist. (Dies ist oft ein Update der Dokumentations > Übersetzung.)
 
 > **Tip**
 >
-> A noter que "core : jeedom" signifie "la mise à jour du logiciel de
-> base Jeedom".
+> Beachten Sie, dass "core : jeedom" "Aktualisierung der Jeedom
+> Kernsoftware" bedeutet.
 
-Mise à jour en ligne de commande 
+Update in der Kommandozeile
 ================================
 
-Il est possible de faire une mise à jour de Jeedom directement en SSH.
-Une fois connecté, voilà la commande à effectuer :
+Es ist möglich, Jeedom direkt in SSH zu aktualisieren. Sobald die Verbindung
+hergestellt ist, folgt der folgende Befehl :
 
     sudo php /var/www/html/install/update.php
 
-Les paramètres possibles sont :
+Die möglichen Parameter sind :
 
--   **`mode`** : `force`, pour lancer une mise à jour en mode forcé (ne
-    tient pas compte des erreurs).
+-   **`mode`** : `force`, um ein Update im erzwungenen Modus zu starten (be
+    rücksichtigt keine Fehler).
 
--   **`version`** : suivi du numéro de version, pour réappliquer les
-    changements depuis cette version.
+-   **`version`** : gefolgt von der Versionsnummer, um Änderungen von 
+    dieser Version erneut anzuwenden.
 
-Voici un exemple de syntaxe pour faire une mise à jour forcée en
-réappliquant les changements depuis la 1.188.0 :
+Im Folgenden finden Sie eine Beispielsyntax für eine erzwungene
+Aktualisierung durch erneutes Anwenden des Updates von Version 1.188.0 :
 
     sudo php  /var/www/html/install/update.php mode=force version=1.188.0
 
-Attention, après une mise à jour en ligne de commande, il faut
-réappliquer les droits sur le dossier Jeedom :
+Achtung nach einem Update in der Komandozeile müssen Sie die Rechte an
+den Jeedom Ordner erneut anwenden :
 
     chown -R www-data:www-data /var/www/html
