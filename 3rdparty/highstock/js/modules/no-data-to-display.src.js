@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v6.0.4 (2017-12-15)
+ * @license Highcharts JS v6.0.7 (2018-02-16)
  * Plugin for displaying a message when there is no data visible in chart.
  *
  * (c) 2010-2017 Highsoft AS
@@ -40,7 +40,9 @@
              * @type {String}
              * @default No data to display
              * @since 3.0.8
-             * @product highcharts
+             * @product highcharts highstock
+             * @sample highcharts/no-data-to-display/no-data-line
+             *         No-data text
              * @apioption lang.noData
              */
             noData: 'No data to display'
@@ -49,9 +51,14 @@
         // Add default display options for message
         /**
          * Options for displaying a message like "No data to display". 
-         * This feature requires the file no-data-to-display.js to be loaded in the page. 
-         * The actual text to display is set in the lang.noData option.
+         * This feature requires the file no-data-to-display.js to be loaded in the
+         * page. The actual text to display is set in the lang.noData option.
          * @type {Object}
+         *
+         * @sample highcharts/no-data-to-display/no-data-line
+         *         Line chart with no-data module
+         * @sample highcharts/no-data-to-display/no-data-pie
+         *         Pie chart with no-data module
          * @optionparent noData
          */
         defaultOptions.noData = {
@@ -63,6 +70,17 @@
              * @since 3.0.8
              * @product highcharts highstock
              * @apioption noData.attr
+             */
+
+            /**
+             * Whether to insert the label as HTML, or as pseudo-HTML rendered with
+             * SVG.
+             * 
+             * @type {Boolean}
+             * @default false
+             * @since 4.1.10
+             * @product highcharts highstock
+             * @apioption noData.useHTML
              */
 
             /**
@@ -111,17 +129,6 @@
                  */
                 verticalAlign: 'middle'
             }
-
-            /**
-             * Whether to insert the label as HTML, or as pseudo-HTML rendered with
-             * SVG.
-             * 
-             * @type {Boolean}
-             * @default false
-             * @since 4.1.10
-             * @product highcharts highstock
-             * @apioption noData.useHTML
-             */
         };
 
 
@@ -140,7 +147,7 @@
         ], function(type) {
             if (seriesTypes[type]) {
                 seriesTypes[type].prototype.hasData = function() {
-                    return !!this.points.length; /* != 0 */
+                    return !!this.points.length; // != 0
                 };
             }
         });
@@ -150,7 +157,11 @@
          * points on this series within the plot area.
          */
         H.Series.prototype.hasData = function() {
-            return this.visible && this.dataMax !== undefined && this.dataMin !== undefined; // #3703
+            return (
+                this.visible &&
+                this.dataMax !== undefined &&
+                this.dataMin !== undefined // #3703
+            );
         };
 
         /**
@@ -182,7 +193,11 @@
 
                 chart.noDataLabel.add();
 
-                chart.noDataLabel.align(extend(chart.noDataLabel.getBBox(), noDataOptions.position), false, 'plotBox');
+                chart.noDataLabel.align(
+                    extend(chart.noDataLabel.getBBox(), noDataOptions.position),
+                    false,
+                    'plotBox'
+                );
             }
         };
 

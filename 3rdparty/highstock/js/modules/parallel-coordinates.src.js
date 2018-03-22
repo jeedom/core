@@ -1,5 +1,5 @@
 /**
- * @license  Highcharts JS v6.0.4 (2017-12-15)
+ * @license  Highcharts JS v6.0.7 (2018-02-16)
  *
  * Support for parallel coordinates in Highcharts
  *
@@ -23,7 +23,7 @@
          *
          * License: www.highcharts.com/license
          */
-        /* eslint max-len: ["warn", 80, 4] */
+
 
         /**
          * Extensions for parallel coordinates plot.
@@ -460,10 +460,11 @@
                             this, {
                                 value: this.y
                             }
-                        )
+                        ),
+                        chart.time
                     );
                 } else if (yAxis.isDatetimeAxis) {
-                    formattedValue = H.dateFormat(
+                    formattedValue = chart.time.dateFormat(
                         yAxisOptions.dateTimeLabelFormats[
                             yAxis.tickPositions.info.unitName
                         ],

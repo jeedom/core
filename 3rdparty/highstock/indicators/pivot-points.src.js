@@ -1,5 +1,5 @@
 /**
- * @license  Highcharts JS v6.0.4 (2017-12-15)
+ * @license  Highcharts JS v6.0.7 (2018-02-16)
  *
  * Indicator series type for Highstock
  *
@@ -42,8 +42,8 @@
 
         H.seriesType('pivotpoints', 'sma',
             /**
-             * Pivot points indicator. This series requires `linkedTo`
-             * option to be set and should be loaded after `stock/indicators/indicators.js` file.
+             * Pivot points indicator. This series requires the `linkedTo` option to be
+             * set and should be loaded after `stock/indicators/indicators.js` file.
              *
              * @extends {plotOptions.sma}
              * @product highstock
@@ -53,15 +53,15 @@
              * @optionparent plotOptions.pivotpoints
              */
             {
-                name: 'Pivot Points (28)',
                 /**
                  * @excluding index
                  */
                 params: {
                     period: 28,
                     /**
-                     * Algorithm used to calculate ressistance and support lines based on pivot points.
-                     * Implemented algorithms: `'standard'`, `'fibonacci'` and `'camarilla'`
+                     * Algorithm used to calculate ressistance and support lines based
+                     * on pivot points. Implemented algorithms: `'standard'`,
+                     * `'fibonacci'` and `'camarilla'`
                      * 
                      * @type {String}
                      * @since 6.0.0
@@ -81,6 +81,7 @@
                     approximation: 'averages'
                 }
             }, {
+                nameBase: 'Pivot Points',
                 pointArrayMap: ['R4', 'R3', 'R2', 'R1', 'P', 'S1', 'S2', 'S3', 'S4'],
                 pointValKey: 'P',
                 toYData: function(point) {
@@ -177,8 +178,9 @@
                     if (indicator.options.dataLabels.enabled) {
                         pointsLength = indicator.points.length;
 
-                        // For every Ressitance/Support group we need to render labels
-                        // Add one more item, which will just store dataLabels from previous iteration
+                        // For every Ressitance/Support group we need to render labels.
+                        // Add one more item, which will just store dataLabels from
+                        // previous iteration
                         each(pointMapping.concat([false]), function(position, k) {
                             i = pointsLength;
                             while (i--) {
@@ -186,7 +188,8 @@
 
                                 if (!position) {
                                     // Store S4 dataLabel too:
-                                    point['dataLabel' + pointMapping[k - 1]] = point.dataLabel;
+                                    point['dataLabel' + pointMapping[k - 1]] =
+                                        point.dataLabel;
                                 } else {
                                     point.y = point[position];
                                     point.pivotLine = position;
@@ -195,10 +198,14 @@
 
                                     // Store previous label
                                     if (k) {
-                                        point['dataLabel' + pointMapping[k - 1]] = point.dataLabel;
+                                        point['dataLabel' + pointMapping[k - 1]] =
+                                            point.dataLabel;
                                     }
 
-                                    point.dataLabel = currentLabel = currentLabel && currentLabel.element ? currentLabel : null;
+                                    point.dataLabel = currentLabel =
+                                        currentLabel && currentLabel.element ?
+                                        currentLabel :
+                                        null;
                                 }
                             }
                             SMA.prototype.drawDataLabels.apply(indicator, arguments);
@@ -211,7 +218,7 @@
                         yVal = series.yData,
                         yValLen = yVal ? yVal.length : 0,
                         placement = this[params.algorithm + 'Placement'],
-                        PP = [], // 0- from, 1- to, 2- R1, 3- R2, 4- pivot, 5- S1, 6- S2 etc.
+                        PP = [], // 0- from, 1- to, 2- R1, 3- R2, 4- pivot, 5- S1 etc.
                         endTimestamp,
                         xData = [],
                         yData = [],
@@ -254,7 +261,8 @@
 
                     // We don't know exact position in ordinal axis
                     // So we use simple logic:
-                    // Get first point in last range, calculate visible average range and multiply by period
+                    // Get first point in last range, calculate visible average range
+                    // and multiply by period
                     this.endPoint = slicedX[0] +
                         ((endTimestamp - slicedX[0]) / slicedXLen) * period;
 
@@ -339,8 +347,8 @@
         );
 
         /**
-         * A pivot points indicator. If the [type](#series.pivotpoints.type) option is not
-         * specified, it is inherited from [chart.type](#chart.type).
+         * A pivot points indicator. If the [type](#series.pivotpoints.type) option is
+         * not specified, it is inherited from [chart.type](#chart.type).
          *
          * For options that apply to multiple series, it is recommended to add
          * them to the [plotOptions.series](#plotOptions.series) options structure.

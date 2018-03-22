@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v6.0.4 (2017-12-15)
+ * @license Highcharts JS v6.0.7 (2018-02-16)
  * Drag-panes module
  *
  * (c) 2010-2017 Highsoft AS
@@ -25,6 +25,7 @@
          * License: www.highcharts.com/license
          */
 
+
         var hasTouch = H.hasTouch,
             merge = H.merge,
             wrap = H.wrap,
@@ -46,11 +47,10 @@
                  *
                  * This feature requires the `drag-panes.js` module.
                  *
-                 * @product highstock
-                 * @default 10%
-                 *
-                 * @type {Number|String}
-                 * @sample {highstock} stock/yaxis/resize-min-max-length minLength and maxLength
+                 * @type      {Number|String}
+                 * @product   highstock
+                 * @sample    {highstock} stock/yaxis/resize-min-max-length
+                 *            minLength and maxLength
                  * @apioption yAxis.minLength
                  */
                 minLength: '10%',
@@ -61,21 +61,24 @@
                  *
                  * This feature requires the `drag-panes.js` module.
                  *
-                 * @product highstock
-                 * @default 100%
-                 *
-                 * @type {String|Number}
-                 * @sample {highstock} stock/yaxis/resize-min-max-length minLength and maxLength
+                 * @type      {String|Number}
+                 * @product   highstock
+                 * @sample    {highstock} stock/yaxis/resize-min-max-length
+                 *            minLength and maxLength
                  * @apioption yAxis.maxLength
                  */
                 maxLength: '100%',
 
                 /**
-                 * Options for axis resizing for Drag Panes module.
-                 *
-                 * This feature requires the `drag-panes.js` module.
+                 * Options for axis resizing. This feature requires the
+                 * `drag-panes.js` -
+                 * [classic](http://code.highcharts.com/stock/modules/drag-panes.js) or
+                 * [styled](http://code.highcharts.com/stock/js/modules/drag-panes.js)
+                 * mode - module.
                  *
                  * @product highstock
+                 * @sample	{highstock} stock/demo/candlestick-and-volume
+                 *          Axis resizing enabled
                  * @optionparent yAxis.resize
                  */
                 resize: {
@@ -95,10 +98,12 @@
                          *
                          * This feature requires the `drag-panes.js` module.
                          *
-                         * @type {Array.<String|Number>}
+                         * @type    {Array.<String|Number>}
                          * @default []
-                         * @sample {highstock} stock/yaxis/multiple-resizers Three panes with resizers
-                         * @sample {highstock} stock/yaxis/resize-multiple-axes One resizer controlling multiple axes
+                         * @sample  {highstock} stock/yaxis/multiple-resizers
+                         *          Three panes with resizers
+                         * @sample  {highstock} stock/yaxis/resize-multiple-axes
+                         *          One resizer controlling multiple axes
                          */
                         next: [],
 
@@ -108,10 +113,11 @@
                          *
                          * This feature requires the `drag-panes.js` module.
                          *
-                         * @type {Array.<String|Number>}
-                         * @default []
-                         * @sample {highstock} stock/yaxis/multiple-resizers Three panes with resizers
-                         * @sample {highstock} stock/yaxis/resize-multiple-axes One resizer controlling multiple axes
+                         * @type    {Array.<String|Number>}
+                         * @sample  {highstock} stock/yaxis/multiple-resizers
+                         *          Three panes with resizers
+                         * @sample  {highstock} stock/yaxis/resize-multiple-axes
+                         *          One resizer controlling multiple axes
                          */
                         prev: []
                     },
@@ -121,7 +127,8 @@
                      *
                      * This feature requires the `drag-panes.js` module.
                      *
-                     * @sample {highstock} stock/demo/candlestick-and-volume Enabled resizer
+                     * @sample {highstock} stock/demo/candlestick-and-volume
+                     *         Enabled resizer
                      */
                     enabled: false,
 
@@ -370,7 +377,10 @@
                             minLength, maxLength;
 
                         // Skip if axis is not found
-                        if (!axisOptions) {
+                        // or it is navigator's yAxis (#7732)
+                        if (!axisOptions ||
+                            axisOptions.id === 'navigator-y-axis'
+                        ) {
                             return;
                         }
 
@@ -535,6 +545,14 @@
 
         // Prevent any hover effects while dragging a control line of AxisResizer.
         wrap(Pointer.prototype, 'runPointActions', function(proceed) {
+            if (!this.chart.activeResizer) {
+                proceed.apply(this, Array.prototype.slice.call(arguments, 1));
+            }
+        });
+
+        // Prevent default drag action detection while dragging a control line
+        // of AxisResizer. (#7563)
+        wrap(Pointer.prototype, 'drag', function(proceed) {
             if (!this.chart.activeResizer) {
                 proceed.apply(this, Array.prototype.slice.call(arguments, 1));
             }

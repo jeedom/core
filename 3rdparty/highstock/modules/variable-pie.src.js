@@ -1,5 +1,5 @@
 /**
- * @license  Highcharts JS v6.0.4 (2017-12-15)
+ * @license  Highcharts JS v6.0.7 (2018-02-16)
  *
  * Variable Pie module for Highcharts
  *
@@ -24,7 +24,7 @@
          *
          * License: www.highcharts.com/license
          */
-        /* eslint max-len: ["warn", 80, 4] */
+
 
         var pick = H.pick,
             each = H.each,
@@ -129,7 +129,7 @@
                 sizeBy: 'area',
 
                 tooltip: {
-                    pointFormat: '<span style="color:{point.color}">\u25CF</span> {series.name}<br/>Value: {point.y}<br/>Size: {point.z}<br/>' // eslint-disable-line max-len
+                    pointFormat: '<span style="color:{point.color}">\u25CF</span> {series.name}<br/>Value: {point.y}<br/>Size: {point.z}<br/>'
                 }
             }, {
                 pointArrayMap: ['y', 'z'],
@@ -308,10 +308,12 @@
                     series.getX = function(y, left, point) {
                         var radii = point.series.radii[point.index];
                         angle = Math.asin(
-                            Math.min(
-                                (y - positions[1]) /
-                                (radii + point.labelDistance),
-                                1
+                            Math.max( // #7663
+                                Math.min(
+                                    (y - positions[1]) /
+                                    (radii + point.labelDistance),
+                                    1
+                                ), -1
                             )
                         );
                         return positions[0] +

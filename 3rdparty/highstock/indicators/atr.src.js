@@ -1,5 +1,5 @@
 /**
- * @license  Highcharts JS v6.0.4 (2017-12-15)
+ * @license  Highcharts JS v6.0.7 (2018-02-16)
  *
  * Indicator series type for Highstock
  *
@@ -57,7 +57,8 @@
          */
         seriesType('atr', 'sma',
             /**
-             * Average true range indicator (ATR). This series requires `linkedTo` option to be set.
+             * Average true range indicator (ATR). This series requires `linkedTo`
+             * option to be set.
              * 
              * @extends {plotOptions.sma}
              * @product highstock
@@ -66,7 +67,6 @@
              * @optionparent plotOptions.atr
              */
             {
-                name: 'ATR (14)',
                 params: {
                     period: 14
                 }
@@ -90,7 +90,10 @@
                         [xValue, yValue]
                     ];
 
-                    if ((xVal.length <= period) || !isArray(yVal[0]) || yVal[0].length !== 4) {
+                    if (
+                        (xVal.length <= period) || !isArray(yVal[0]) ||
+                        yVal[0].length !== 4
+                    ) {
                         return false;
                     }
 
@@ -99,7 +102,14 @@
                         accumulateAverage(points, xVal, yVal, i);
 
                         if (period < range) {
-                            point = populateAverage(points, xVal, yVal, i, period, prevATR);
+                            point = populateAverage(
+                                points,
+                                xVal,
+                                yVal,
+                                i,
+                                period,
+                                prevATR
+                            );
                             prevATR = point[1];
                             ATR.push(point);
                             xData.push(point[0]);

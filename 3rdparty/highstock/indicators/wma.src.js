@@ -1,5 +1,5 @@
 /**
- * @license  Highcharts JS v6.0.4 (2017-12-15)
+ * @license  Highcharts JS v6.0.7 (2018-02-16)
  *
  * Indicator series type for Highstock
  *
@@ -75,7 +75,6 @@
              * @optionparent plotOptions.wma
              */
             {
-                name: 'WMA (9)',
                 params: {
                     index: 3,
                     period: 9

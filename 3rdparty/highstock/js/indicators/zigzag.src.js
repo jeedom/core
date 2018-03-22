@@ -1,5 +1,5 @@
 /**
- * @license  Highcharts JS v6.0.4 (2017-12-15)
+ * @license  Highcharts JS v6.0.7 (2018-02-16)
  *
  * Indicator series type for Highstock
  *
@@ -46,7 +46,6 @@
              * @optionparent plotOptions.zigzag
              */
             {
-                name: 'Zig Zag (1%)',
                 /**
                  * @excluding index,period
                  */
@@ -88,6 +87,9 @@
                     deviation: 1
                 }
             }, {
+                nameComponents: ['deviation'],
+                nameSuffixes: ['%'],
+                nameBase: 'Zig Zag',
                 getValues: function(series, params) {
                     var lowIndex = params.lowIndex,
                         highIndex = params.highIndex,

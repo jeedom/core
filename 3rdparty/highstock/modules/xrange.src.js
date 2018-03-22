@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v6.0.4 (2017-12-15)
+ * @license Highcharts JS v6.0.7 (2018-02-16)
  * X-range series
  *
  * (c) 2010-2017 Torstein Honsi, Lars A. V. Cabrera
@@ -23,12 +23,6 @@
          * License: www.highcharts.com/license
          */
 
-        /**
-         * @todo
-         * - JSDoc
-         * - New series checklist
-         */
-
 
         var defined = H.defined,
             color = H.Color,
@@ -49,22 +43,43 @@
          * The X-range series displays ranges on the X axis, typically time intervals
          * with a start and end date.
          * 
-         * @extends {plotOptions.column}
-         * @excluding boostThreshold,crisp,cropThreshold,depth,edgeColor,edgeWidth,
-         *         findNearestPointBy,getExtremesFromAll,grouping,groupPadding,
-         *         negativeColor,pointInterval,pointIntervalUnit,pointPlacement,
-         *         pointRange,pointStart,softThreshold,stacking,threshold,data
-         * @product highcharts
-         * @sample {highcharts} highcharts/demo/x-range/
-         *         X-range
-         * @sample {highcharts} highcharts/css/x-range/
-         *         Styled mode X-range
-         * @sample {highcharts} highcharts/chart/inverted-xrange/
-         *         Inverted X-range
-         * @since 6.0.0
+         * @extends      {plotOptions.column}
+         * @excluding    boostThreshold,crisp,cropThreshold,depth,edgeColor,edgeWidth,
+         *               findNearestPointBy,getExtremesFromAll,grouping,groupPadding,
+         *               negativeColor,pointInterval,pointIntervalUnit,pointPlacement,
+         *               pointRange,pointStart,softThreshold,stacking,threshold,data
+         * @product      highcharts highstock
+         * @sample       {highcharts} highcharts/demo/x-range/
+         *               X-range
+         * @sample       {highcharts} highcharts/css/x-range/
+         *               Styled mode X-range
+         * @sample       {highcharts} highcharts/chart/inverted-xrange/
+         *               Inverted X-range
+         * @since        6.0.0
          * @optionparent plotOptions.xrange
          */
         seriesType('xrange', 'column', {
+            /**
+             * A partial fill for each point, typically used to visualize how much of
+             * a task is performed. The partial fill object can be set either on series
+             * or point level. 
+             *
+             * @sample    {highcharts} highcharts/demo/x-range
+             *            X-range with partial fill
+             * @type      {Object}
+             * @product   highcharts highstock
+             * @apioption plotOptions.xrange.partialFill
+             */
+
+            /**
+             * The fill color to be used for partial fills. Defaults to a darker shade
+             * of the point color.
+             *
+             * @type      {Color}
+             * @product   highcharts highstock
+             * @apioption plotOptions.xrange.partialFill.fill
+             */
+
             /**
              * In an X-range series, this option makes all points of the same Y-axis
              * category the same color.
@@ -95,25 +110,6 @@
             },
             borderRadius: 3,
             pointRange: 0
-            /**
-             * A partial fill for each point, typically used to visualize how much of
-             * a task is performed. The partial fill object can be set either on series
-             * or point level. 
-             *
-             * @sample {highcharts} highcharts/demo/x-range
-             *         X-range with partial fill
-             * @type  {Object}
-             * @product highcharts
-             * @apioption plotOptions.xrange.partialFill
-             */
-            /**
-             * The fill color to be used for partial fills. Defaults to a darker shade
-             * of the point color.
-             *
-             * @type {Color}
-             * @product highcharts
-             * @apioption plotOptions.xrange.partialFill.fill
-             */
 
         }, {
             type: 'xrange',
@@ -246,7 +242,13 @@
                     point.clipRectArgs = {
                         x: shapeArgs.x,
                         y: shapeArgs.y,
-                        width: Math.round(shapeArgs.width * partialFill),
+                        width: Math.max(
+                            Math.round(
+                                length * partialFill +
+                                (point.plotX - plotX)
+                            ),
+                            0
+                        ),
                         height: shapeArgs.height
                     };
                 }
@@ -265,9 +267,9 @@
              * This override turns point.graphic into a group containing the original
              * graphic and an overlay displaying the partial fill.
              *
-             * @param  {Object} point an instance of Point in the series
-             * @param  {string} verb 'animate' (animates changes) or 'attr' (sets
-             *                       options)
+             * @param   {Object} point an instance of Point in the series
+             * @param   {string} verb 'animate' (animates changes) or 'attr' (sets
+             *                   options)
              * @returns {void}
              */
             drawPoint: function(point, verb) {
@@ -387,7 +389,7 @@
             	//retVal['stroke-width'] = 0;
             	return retVal;
             }
-            */
+            //*/
 
             // Point class properties
         }, {
@@ -418,7 +420,7 @@
                     }
                 }
 
-                this.colorIndex = this.y % colorCount;
+                this.colorIndex = pick(this.options.colorIndex, this.y % colorCount);
 
                 return this;
             },
@@ -475,16 +477,16 @@
          * 
          * For options that apply to multiple series, it is recommended to add
          * them to the [plotOptions.series](#plotOptions.series) options structure.
-         * To apply to all series of this specific type, apply it to [plotOptions.
-         * xrange](#plotOptions.xrange).
+         * To apply to all series of this specific type, apply it to
+         * [plotOptions.xrange](#plotOptions.xrange).
          * 
-         * @type {Object}
-         * @extends series,plotOptions.xrange
+         * @type      {Object}
+         * @extends   series,plotOptions.xrange
          * @excluding boostThreshold,crisp,cropThreshold,depth,edgeColor,edgeWidth,
-         *         findNearestPointBy,getExtremesFromAll,grouping,groupPadding,
-         *         negativeColor,pointInterval,pointIntervalUnit,pointPlacement,
-         *         pointRange,pointStart,softThreshold,stacking,threshold,data
-         * @product highcharts highstock
+         *            findNearestPointBy,getExtremesFromAll,grouping,groupPadding,
+         *            negativeColor,pointInterval,pointIntervalUnit,pointPlacement,
+         *            pointRange,pointStart,softThreshold,stacking,threshold
+         * @product   highcharts highstock
          * @apioption series.xrange
          */
 
@@ -511,25 +513,29 @@
          *     }]
          *  ```
          * 
-         * @type {Array<Object|Array|Number>}
-         * @extends series.line.data
-         * @sample {highcharts} highcharts/chart/reflow-true/ Numerical values
-         * @sample {highcharts} highcharts/series/data-array-of-arrays/ Arrays of numeric x and y
-         * @sample {highcharts} highcharts/series/data-array-of-arrays-datetime/ Arrays of datetime x and y
-         * @sample {highcharts} highcharts/series/data-array-of-name-value/ Arrays of point.name and y
-         * @sample {highcharts} highcharts/series/data-array-of-objects/ Config objects
-         * @product highcharts highstock
+         * @type      {Array<Object|Array|Number>}
+         * @extends   series.line.data
+         * @sample    {highcharts} highcharts/chart/reflow-true/
+         *            Numerical values
+         * @sample    {highcharts} highcharts/series/data-array-of-arrays/
+         *            Arrays of numeric x and y
+         * @sample    {highcharts} highcharts/series/data-array-of-arrays-datetime/
+         *            Arrays of datetime x and y
+         * @sample    {highcharts} highcharts/series/data-array-of-name-value/
+         *            Arrays of point.name and y
+         * @sample    {highcharts} highcharts/series/data-array-of-objects/
+         *            Config objects
+         * @product   highcharts highstock
          * @apioption series.xrange.data
          */
-
 
         /**
          * The ending X value of the range point.
          *
-         * @sample {highcharts} highcharts/demo/x-range
-         *         X-range
-         * @type  {Number}
-         * @product highcharts
+         * @sample    {highcharts} highcharts/demo/x-range
+         *            X-range
+         * @type      {Number}
+         * @product   highcharts highstock
          * @apioption plotOptions.xrange.data.x2
          */
 
@@ -538,10 +544,10 @@
          * a task is performed. The partial fill object can be set either on series
          * or point level. 
          *
-         * @sample {highcharts} highcharts/demo/x-range
-         *         X-range with partial fill
-         * @type  {Object|Number}
-         * @product highcharts
+         * @sample    {highcharts} highcharts/demo/x-range
+         *            X-range with partial fill
+         * @type      {Object|Number}
+         * @product   highcharts highstock
          * @apioption plotOptions.xrange.data.partialFill
          */
 
@@ -549,8 +555,8 @@
          * The amount of the X-range point to be filled. Values can be 0-1 and are 
          * converted to percentages in the default data label formatter.
          *
-         * @type {Number}
-         * @product highcharts
+         * @type      {Number}
+         * @product   highcharts highstock
          * @apioption plotOptions.xrange.data.partialFill.amount
          */
 
@@ -558,8 +564,8 @@
          * The fill color to be used for partial fills. Defaults to a darker shade
          * of the point color.
          *
-         * @type {Color}
-         * @product highcharts
+         * @type      {Color}
+         * @product   highcharts highstock
          * @apioption plotOptions.xrange.data.partialFill.fill
          */
 

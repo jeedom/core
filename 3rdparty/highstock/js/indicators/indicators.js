@@ -1,5 +1,5 @@
 /*
-  Highcharts JS v6.0.4 (2017-12-15)
+  Highcharts JS v6.0.7 (2018-02-16)
 
  Indicator series type for Highstock
 
@@ -7,6 +7,7 @@
 
  License: www.highcharts.com/license
 */
-(function(e){"object"===typeof module&&module.exports?module.exports=e:e(Highcharts)})(function(e){(function(c){var e=c.each,p=c.error,h=c.Series,q=c.isArray,k=c.addEvent;c=c.seriesType;c("sma","line",{name:"SMA (14)",tooltip:{valueDecimals:4},linkedTo:void 0,params:{index:0,period:14}},{bindTo:{series:!0,eventName:"updatedData"},calculateOn:"init",init:function(b,d){function c(){var b=a.getValues(a.linkedParent,a.options.params)||{values:[],xData:[],yData:[]};a.xData=b.xData;a.yData=b.yData;a.options.data=
-b.values;!1===a.bindTo.series&&(delete a.processedXData,a.isDirty=!0,a.redraw());a.isDirtyData=!1}var a=this;h.prototype.init.call(a,b,d);b.linkSeries();a.dataEventsToUnbind=[];if(!a.linkedParent)return p("Series "+a.options.linkedTo+" not found! Check `linkedTo`.");a.dataEventsToUnbind.push(k(a.bindTo.series?a.linkedParent:a.linkedParent.xAxis,a.bindTo.eventName,c));if("init"===a.calculateOn)c();else var e=k(a.chart,a.calculateOn,function(){c();e()});return a},getValues:function(b,d){var c=d.period,
-a=b.xData;b=b.yData;var e=b.length,f=0,l=0,h=[],k=[],n=[],g=-1,m;if(a.length<c)return!1;for(q(b[0])&&(g=d.index?d.index:0);f<c-1;)l+=0>g?b[f]:b[f][g],f++;for(d=f;d<e;d++)l+=0>g?b[d]:b[d][g],m=[a[d],l/c],h.push(m),k.push(m[0]),n.push(m[1]),l-=0>g?b[d-f]:b[d-f][g];return{values:h,xData:k,yData:n}},destroy:function(){e(this.dataEventsToUnbind,function(b){b()});h.prototype.destroy.call(this)}})})(e)});
+(function(e){"object"===typeof module&&module.exports?module.exports=e:e(Highcharts)})(function(e){(function(c){var e=c.pick,h=c.each,p=c.error,k=c.Series,q=c.isArray,l=c.addEvent;c=c.seriesType;c("sma","line",{name:void 0,tooltip:{valueDecimals:4},linkedTo:void 0,params:{index:0,period:14}},{bindTo:{series:!0,eventName:"updatedData"},nameComponents:["period"],nameSuffixes:[],calculateOn:"init",init:function(b,d){function c(){var b=a.getValues(a.linkedParent,a.options.params)||{values:[],xData:[],
+yData:[]};a.xData=b.xData;a.yData=b.yData;a.options.data=b.values;!1===a.bindTo.series&&(delete a.processedXData,a.isDirty=!0,a.redraw());a.isDirtyData=!1}var a=this;k.prototype.init.call(a,b,d);b.linkSeries();a.dataEventsToUnbind=[];if(!a.linkedParent)return p("Series "+a.options.linkedTo+" not found! Check `linkedTo`.");a.dataEventsToUnbind.push(l(a.bindTo.series?a.linkedParent:a.linkedParent.xAxis,a.bindTo.eventName,c));if("init"===a.calculateOn)c();else var e=l(a.chart,a.calculateOn,function(){c();
+e()});return a},getName:function(){var b=this.name,d=[];b||(h(this.nameComponents,function(b,a){d.push(this.options.params[b]+e(this.nameSuffixes[a],""))},this),b=(this.nameBase||this.type.toUpperCase())+(this.nameComponents?" ("+d.join(", ")+")":""));return b},getValues:function(b,d){var c=d.period,a=b.xData;b=b.yData;var e=b.length,f=0,m=0,h=[],k=[],l=[],g=-1,n;if(a.length<c)return!1;for(q(b[0])&&(g=d.index?d.index:0);f<c-1;)m+=0>g?b[f]:b[f][g],f++;for(d=f;d<e;d++)m+=0>g?b[d]:b[d][g],n=[a[d],m/
+c],h.push(n),k.push(n[0]),l.push(n[1]),m-=0>g?b[d-f]:b[d-f][g];return{values:h,xData:k,yData:l}},destroy:function(){h(this.dataEventsToUnbind,function(b){b()});k.prototype.destroy.call(this)}})})(e)});

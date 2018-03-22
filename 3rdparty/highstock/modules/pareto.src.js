@@ -1,5 +1,5 @@
 /**
- * @license  Highcharts JS v6.0.4 (2017-12-15)
+ * @license  Highcharts JS v6.0.7 (2018-02-16)
  *
  * Pareto series type for Highcharts
  *
@@ -32,7 +32,8 @@
          **************************************************************************** */
 
         /**
-         * Provides methods for auto setting/updating series data based on the based series data,
+         * Provides methods for auto setting/updating series data based on the based
+         * series data.
          * 
          * @mixin
          **/
@@ -53,9 +54,10 @@
             },
 
             /**
-             * Method to be implemented - inside the method the series has already access to the base series
-             * via m `this.baseSeries` and the bases data is initialised. It should
-             * return data in the format accepted by Series.setData() method
+             * Method to be implemented - inside the method the series has already access
+             * to the base series via m `this.baseSeries` and the bases data is
+             * initialised. It should return data in the format accepted by
+             * `Series.setData()` method
              *
              * @returns {Array} - an array of data
              **/
@@ -111,14 +113,22 @@
                     updatedDataRemover,
                     destroyRemover;
 
-                updatedDataRemover = addEvent(derivedSeries.baseSeries, 'updatedData', function() {
-                    derivedSeries.setDerivedData();
-                });
+                updatedDataRemover = addEvent(
+                    derivedSeries.baseSeries,
+                    'updatedData',
+                    function() {
+                        derivedSeries.setDerivedData();
+                    }
+                );
 
-                destroyRemover = addEvent(derivedSeries.baseSeries, 'destroy', function() {
-                    derivedSeries.baseSeries = null;
-                    derivedSeries.initialised = false;
-                });
+                destroyRemover = addEvent(
+                    derivedSeries.baseSeries,
+                    'destroy',
+                    function() {
+                        derivedSeries.baseSeries = null;
+                        derivedSeries.initialised = false;
+                    }
+                );
 
                 derivedSeries.eventRemovers.push(
                     updatedDataRemover,
@@ -172,7 +182,7 @@
          */
 
         /**
-         * A pareto diagram is a type of chart that contains both bars and a line graph, 
+         * A pareto diagram is a type of chart that contains both bars and a line graph,
          * where individual values are represented in descending order by bars, 
          * and the cumulative total is represented by the line.
          * 
@@ -183,9 +193,10 @@
          * @since 6.0.0
          * @excluding allAreas,boostThreshold,borderColor,borderRadius,
          *         borderWidth,crisp,colorAxis,depth,data,edgeColor,edgeWidth,
-         *         findNearestPointBy,gapSize,gapUnit,grouping,groupPadding,groupZPadding,maxPointWidth,
-         *         keys,negativeColor,pointInterval,pointIntervalUnit,pointPadding,
-         *         pointPlacement,pointRange,pointStart,pointWidth,shadow,step,softThreshold,
+         *         findNearestPointBy,gapSize,gapUnit,grouping,groupPadding,
+         *         groupZPadding,maxPointWidth,keys,negativeColor,pointInterval,
+         *         pointIntervalUnit,pointPadding,pointPlacement,pointRange,pointStart,
+         *         pointWidth,shadow,step,softThreshold,
          *         stacking,threshold,zoneAxis,zones
          * @optionparent plotOptions.pareto
          */
@@ -208,7 +219,10 @@
                         yValues = this.baseSeries.yData,
                         sum = this.sumPointsPercents(yValues, xValues, null, true);
 
-                    this.setData(this.sumPointsPercents(yValues, xValues, sum, false), false);
+                    this.setData(
+                        this.sumPointsPercents(yValues, xValues, sum, false),
+                        false
+                    );
                 }
             },
             /**
@@ -232,7 +246,9 @@
                             sumY += point;
                         } else {
                             percentPoint = (point / sum) * 100;
-                            percentPoints.push([xValues[i], correctFloat(sumPercent + percentPoint)]);
+                            percentPoints.push(
+                                [xValues[i], correctFloat(sumPercent + percentPoint)]
+                            );
                             sumPercent += percentPoint;
                         }
                     }

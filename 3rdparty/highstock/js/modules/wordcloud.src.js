@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v6.0.4 (2017-12-15)
+ * @license Highcharts JS v6.0.7 (2018-02-16)
  *
  * (c) 2016 Highsoft AS
  * Authors: Jon Arild Nygard
@@ -515,7 +515,9 @@
                     renderer = chart.renderer,
                     testElement = renderer.text().add(group),
                     placed = [],
-                    placementStrategy = series.placementStrategy[options.placementStrategy],
+                    placementStrategy = series.placementStrategy[
+                        options.placementStrategy
+                    ],
                     spiral = series.spirals[options.spiral],
                     rotation = options.rotation,
                     scale,
@@ -730,8 +732,9 @@
          * 
          * 2.  An array of objects with named values. The objects are point
          * configuration objects as seen below. If the total number of data
-         * points exceeds the series' [turboThreshold](#series.arearange.turboThreshold),
-         * this option is not available.
+         * points exceeds the series'
+         * [turboThreshold](#series.arearange.turboThreshold), this option is not
+         * available.
          * 
          *  ```js
          *     data: [{
@@ -770,7 +773,13 @@
          * @product highcharts
          * @apioption series.sunburst.data.weight
          */
-        H.seriesType('wordcloud', 'column', wordCloudOptions, wordCloudSeries, wordCloudPoint);
+        H.seriesType(
+            'wordcloud',
+            'column',
+            wordCloudOptions,
+            wordCloudSeries,
+            wordCloudPoint
+        );
 
     }(Highcharts, draw));
 }));

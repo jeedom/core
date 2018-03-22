@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v6.0.4 (2017-12-15)
+ * @license Highcharts JS v6.0.7 (2018-02-16)
  *
  * (c) 2009-2017 Torstein Honsi
  *
@@ -19,6 +19,7 @@
          *
          * License: www.highcharts.com/license
          */
+        /* eslint max-len: 0 */
         var Axis = H.Axis,
             Chart = H.Chart,
             color = H.color,
@@ -127,38 +128,48 @@
                      */
 
                     /**
-                     * The start of the value range that the data class represents, relating
-                     * to the point value.
+                     * The start of the value range that the data class represents,
+                     * relating to the point value.
+                     *
+                     * The range of each `dataClass` is closed in both ends, but can be
+                     * overridden by the next `dataClass`.
                      * 
-                     * @type {Number}
-                     * @product highcharts highmaps
+                     * @type      {Number}
+                     * @product   highcharts highmaps
                      * @apioption colorAxis.dataClasses.from
                      */
 
                     /**
-                     * The name of the data class as it appears in the legend. If no name
-                     * is given, it is automatically created based on the `from` and `to`
-                     * values. For full programmatic control, [legend.labelFormatter](#legend.
-                     * labelFormatter) can be used. In the formatter, `this.from` and `this.
-                     * to` can be accessed.
+                     * The name of the data class as it appears in the legend.
+                     * If no name is given, it is automatically created based on the
+                     * `from` and `to` values. For full programmatic control,
+                     * [legend.labelFormatter](#legend.labelFormatter) can be used.
+                     * In the formatter, `this.from` and `this.to` can be accessed.
                      * 
-                     * @type {String}
-                     * @sample {highmaps} maps/coloraxis/dataclasses-name/ Named data classes
-                     * @sample {highmaps} maps/coloraxis/dataclasses-labelformatter/ Formatted data classes
-                     * @product highcharts highmaps
+                     * @type      {String}
+                     * @sample    {highmaps} maps/coloraxis/dataclasses-name/
+                     *            Named data classes
+                     * @sample    {highmaps} maps/coloraxis/dataclasses-labelformatter/
+                     *            Formatted data classes
+                     * @product   highcharts highmaps
                      * @apioption colorAxis.dataClasses.name
                      */
 
                     /**
-                     * The end of the value range that the data class represents, relating
-                     * to the point value.
+                     * The end of the value range that the data class represents,
+                     * relating to the point value.
+                     *
+                     * The range of each `dataClass` is closed in both ends, but can be
+                     * overridden by the next `dataClass`.
                      * 
-                     * @type {Number}
-                     * @product highcharts highmaps
+                     * @type      {Number}
+                     * @product   highcharts highmaps
                      * @apioption colorAxis.dataClasses.to
                      */
 
-                    /** @ignore */
+                    /** 
+                     * @ignore
+                     */
                     lineWidth: 0,
 
                     /**
@@ -269,8 +280,8 @@
 
                     /**
                      * The triangular marker on a scalar color axis that points to the
-                     * value of the hovered area. To disable the marker, set `marker:
-                     * null`.
+                     * value of the hovered area. To disable the marker, set
+                     * `marker: null`.
                      * 
                      * @type {Object}
                      * @sample {highmaps} maps/coloraxis/marker/ Black marker
@@ -289,7 +300,9 @@
                             duration: 50
                         },
 
-                        /** @ignore */
+                        /** 
+                         * @ignore
+                         */
                         width: 0.01
 
                     },
@@ -393,6 +406,15 @@
                      * @type {Boolean}
                      * @product highcharts highmaps
                      * @apioption colorAxis.reversed
+                     */
+
+                    /**
+                     * Fires when the legend item belonging to the colorAxis is clicked.
+                     * One parameter, `event`, is passed to the function.
+                     * 
+                     * @type      {Function}
+                     * @product   highcharts highmaps
+                     * @apioption colorAxis.events.legendItemClick
                      */
 
                     /**
@@ -1102,7 +1124,7 @@
          * @sample highcharts/demo/heatmap-canvas/
          *         Heavy heatmap
          * @extends {plotOptions.scatter}
-         * @excluding marker,pointRange
+         * @excluding marker,pointRange,pointPlacement
          * @product highcharts highmaps
          * @optionparent plotOptions.heatmap
          */
@@ -1110,6 +1132,8 @@
 
             /**
              * Animation is disabled by default on the heatmap series.
+             *
+             * @type {Boolean|Object}
              */
             animation: false,
 
@@ -1153,6 +1177,18 @@
              * @apioption plotOptions.heatmap.colsize
              */
 
+            /**
+             * The row size - how many Y axis units each heatmap row should span.
+             * 
+             * @type {Number}
+             * @sample {highcharts} maps/demo/heatmap/ 1 by default
+             * @sample {highmaps} maps/demo/heatmap/ 1 by default
+             * @default 1
+             * @since 4.0
+             * @product highcharts highmaps
+             * @apioption plotOptions.heatmap.rowsize
+             */
+
 
 
             dataLabels: {
@@ -1167,7 +1203,9 @@
                 padding: 0 // #3837
             },
 
-            /** @ignore */
+            /** 
+             * @ignore
+             */
             marker: null,
 
             /**	@ignore */
@@ -1179,26 +1217,25 @@
 
             states: {
 
-                normal: {
-                    animation: true
-                },
-
                 hover: {
+                    /** 
+                     * @ignore
+                     */
                     halo: false, // #3406, halo is disabled on heatmaps by default
+
+                    /**
+                     * How much to brighten the point on interaction. Requires the main
+                     * color to be defined in hex or rgb(a) format.
+                     *
+                     * In styled mode, the hover brightening is by default replaced
+                     * with a fill-opacity set in the `.highcharts-point:hover` rule.
+                     * 
+                     * @type {Number}
+                     * @product highcharts highmaps
+                     */
                     brightness: 0.2
                 }
             }
-            /**
-             * The row size - how many Y axis units each heatmap row should span.
-             * 
-             * @type {Number}
-             * @sample {highcharts} maps/demo/heatmap/ 1 by default
-             * @sample {highmaps} maps/demo/heatmap/ 1 by default
-             * @default 1
-             * @since 4.0
-             * @product highcharts highmaps
-             * @apioption plotOptions.heatmap.rowsize
-             */
 
         }, merge(colorSeriesMixin, {
             pointArrayMap: ['y', 'value'],
@@ -1319,7 +1356,7 @@
          * 
          * @type {Object}
          * @extends series,plotOptions.heatmap
-         * @excluding dataParser,dataURL,stack
+         * @excluding dataParser,dataURL,marker,pointRange,stack
          * @product highcharts highmaps
          * @apioption series.heatmap
          */
@@ -1368,11 +1405,16 @@
          * @type {Array<Object|Array>}
          * @extends series.line.data
          * @excluding marker
-         * @sample {highcharts} highcharts/chart/reflow-true/ Numerical values
-         * @sample {highcharts} highcharts/series/data-array-of-arrays/ Arrays of numeric x and y
-         * @sample {highcharts} highcharts/series/data-array-of-arrays-datetime/ Arrays of datetime x and y
-         * @sample {highcharts} highcharts/series/data-array-of-name-value/ Arrays of point.name and y
-         * @sample {highcharts} highcharts/series/data-array-of-objects/ Config objects
+         * @sample {highcharts} highcharts/chart/reflow-true/
+         *         Numerical values
+         * @sample {highcharts} highcharts/series/data-array-of-arrays/
+         *         Arrays of numeric x and y
+         * @sample {highcharts} highcharts/series/data-array-of-arrays-datetime/
+         *         Arrays of datetime x and y
+         * @sample {highcharts} highcharts/series/data-array-of-name-value/
+         *         Arrays of point.name and y
+         * @sample {highcharts} highcharts/series/data-array-of-objects/
+         *         Config objects
          * @product highcharts highmaps
          * @apioption series.heatmap.data
          */

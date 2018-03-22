@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v6.0.4 (2017-12-15)
+ * @license Highcharts JS v6.0.7 (2018-02-16)
  * StaticScale
  *
  * (c) 2016 Torstein Honsi, Lars A. V. Cabrera

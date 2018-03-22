@@ -1,5 +1,5 @@
 /**
- * @license  Highcharts JS v6.0.4 (2017-12-15)
+ * @license  Highcharts JS v6.0.7 (2018-02-16)
  *
  * Indicator series type for Highstock
  *
@@ -25,7 +25,9 @@
                 low = yVal[i][2],
                 close = yVal[i][3],
                 volume = yValVolume[i],
-                adY = close === high && close === low || high === low ? 0 : ((2 * close - low - high) / (high - low)) * volume,
+                adY = close === high && close === low || high === low ?
+                0 :
+                ((2 * close - low - high) / (high - low)) * volume,
                 adX = xVal[i];
 
             return [adX, adY];
@@ -39,7 +41,8 @@
          */
         seriesType('ad', 'sma',
             /**
-             * Accumulation Distribution (AD). This series requires `linkedTo` option to be set.
+             * Accumulation Distribution (AD). This series requires `linkedTo` option to
+             * be set.
              * 
              * @extends {plotOptions.sma}
              * @product highstock
@@ -49,7 +52,6 @@
              * @optionparent plotOptions.ad
              */
             {
-                name: 'Accumulation/Distribution',
                 params: {
                     /**
                      * The id of volume series which is mandatory.
@@ -63,6 +65,8 @@
                     volumeSeriesID: 'volume'
                 }
             }, {
+                nameComponents: false,
+                nameBase: 'Accumulation/Distribution',
                 getValues: function(series, params) {
                     var period = params.period,
                         xVal = series.xData,

@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v6.0.4 (2017-12-15)
+ * @license Highcharts JS v6.0.7 (2018-02-16)
  * Client side exporting module
  *
  * (c) 2015 Torstein Honsi / Oystein Moseng
@@ -309,18 +309,27 @@
                 var textElements = dummySVGContainer.getElementsByTagName('text'),
                     titleElements,
                     svgData,
-                    svgElementStyle = dummySVGContainer
-                    .getElementsByTagName('svg')[0].style;
+                    // Copy style property to element from parents if it's not there.
+                    // Searches up hierarchy until it finds prop, or hits the chart
+                    // container.
+                    setStylePropertyFromParents = function(el, propName) {
+                        var curParent = el;
+                        while (curParent && curParent !== dummySVGContainer) {
+                            if (curParent.style[propName]) {
+                                el.style[propName] = curParent.style[propName];
+                                break;
+                            }
+                            curParent = curParent.parentNode;
+                        }
+                    };
 
-                // Workaround for the text styling. Making sure it does pick up the root
-                // element
+                // Workaround for the text styling. Making sure it does pick up settings
+                // for parent elements.
                 each(textElements, function(el) {
                     // Workaround for the text styling. making sure it does pick up the
                     // root element
                     each(['font-family', 'font-size'], function(property) {
-                        if (!el.style[property] && svgElementStyle[property]) {
-                            el.style[property] = svgElementStyle[property];
-                        }
+                        setStylePropertyFromParents(el, property);
                     });
                     el.style['font-family'] = (
                         el.style['font-family'] &&
@@ -392,7 +401,7 @@
                 // First, try to get PNG by rendering on canvas
                 Highcharts.imageToDataUrl(
                     svgurl,
-                    imageType, { /* args */ },
+                    imageType, {},
                     scale,
                     function(imageURL) {
                         // Success
@@ -670,7 +679,7 @@
 
         // Extend the default options to use the local exporter logic
         merge(true, Highcharts.getOptions().exporting, {
-            libURL: 'https://code.highcharts.com/6.0.4/lib/',
+            libURL: 'https://code.highcharts.com/6.0.7/lib/',
 
             // When offline-exporting is loaded, redefine the menu item definitions
             // related to download.

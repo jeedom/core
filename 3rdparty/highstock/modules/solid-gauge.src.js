@@ -1,5 +1,5 @@
 /**
- * @license  Highcharts JS v6.0.4 (2017-12-15)
+ * @license  Highcharts JS v6.0.7 (2018-02-16)
  * Solid angular gauge module
  *
  * (c) 2010-2017 Torstein Honsi
@@ -22,7 +22,7 @@
          *
          * License: www.highcharts.com/license
          */
-
+        /* eslint max-len: 0 */
 
         var pInt = H.pInt,
             pick = H.pick,
@@ -169,15 +169,11 @@
          *
          * @sample highcharts/demo/gauge-solid/ Solid gauges
          * @extends plotOptions.gauge
-         * @excluding dial,pivot
+         * @excluding dial,pivot,wrap
          * @product highcharts
          * @optionparent plotOptions.solidgauge
          */
         var solidGaugeOptions = {
-            /**
-             * Whether to give each point an individual color.
-             */
-            colorByPoint: true
             /**
              * Whether the strokes of the solid gauge should be `round` or `square`.
              * 
@@ -188,6 +184,19 @@
              * @since 4.2.2
              * @product highcharts
              * @apioption plotOptions.solidgauge.linecap
+             */
+
+            /**
+             * Allow the gauge to overshoot the end of the perimeter axis by this
+             * many degrees. Say if the gauge axis goes from 0 to 60, a value of
+             * 100, or 1000, will show 5 degrees beyond the end of the axis when this
+             * option is set to 5.
+             * 
+             * @type      {Number}
+             * @default   0
+             * @since     3.0.10
+             * @product   highcharts
+             * @apioption plotOptions.solidgauge.overshoot
              */
 
             /**
@@ -212,6 +221,11 @@
              * @product highcharts
              * @apioption plotOptions.solidgauge.threshold
              */
+
+            /**
+             * Whether to give each point an individual color.
+             */
+            colorByPoint: true
 
         };
 
@@ -364,10 +378,14 @@
          * To apply to all series of this specific type, apply it to [plotOptions.
          * solidgauge](#plotOptions.solidgauge).
          * 
-         * @type {Object}
-         * @extends series,plotOptions.solidgauge
-         * @excluding dataParser,dataURL,stack
-         * @product highcharts
+         * @type      {Object}
+         * @extends   series,plotOptions.solidgauge
+         * @excluding animationLimit,boostThreshold,connectEnds,connectNulls,
+         *            cropThreshold,dashStyle,dataParser,dataURL,dial,
+         *            findNearestPointBy,getExtremesFromAll,marker,negativeColor,
+         *            pointPlacement,pivot,shadow,softThreshold,stack,stacking,states,
+         *            step,threshold,turboThreshold,wrap,zoneAxis,zones
+         * @product   highcharts
          * @apioption series.solidgauge
          */
 
@@ -403,11 +421,16 @@
          * 
          * @type {Array<Object|Number>}
          * @extends series.gauge.data
-         * @sample {highcharts} highcharts/chart/reflow-true/ Numerical values
-         * @sample {highcharts} highcharts/series/data-array-of-arrays/ Arrays of numeric x and y
-         * @sample {highcharts} highcharts/series/data-array-of-arrays-datetime/ Arrays of datetime x and y
-         * @sample {highcharts} highcharts/series/data-array-of-name-value/ Arrays of point.name and y
-         * @sample {highcharts} highcharts/series/data-array-of-objects/ Config objects
+         * @sample {highcharts} highcharts/chart/reflow-true/
+         *         Numerical values
+         * @sample {highcharts} highcharts/series/data-array-of-arrays/
+         *         Arrays of numeric x and y
+         * @sample {highcharts} highcharts/series/data-array-of-arrays-datetime/
+         *         Arrays of datetime x and y
+         * @sample {highcharts} highcharts/series/data-array-of-name-value/
+         *         Arrays of point.name and y
+         * @sample {highcharts} highcharts/series/data-array-of-objects/
+         *         Config objects    
          * @product highcharts
          * @apioption series.solidgauge.data
          */

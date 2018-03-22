@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v6.0.4 (2017-12-15)
+ * @license Highcharts JS v6.0.7 (2018-02-16)
  * Old IE (v6, v7, v8) module for Highcharts v6+.
  *
  * (c) 2010-2017 Highsoft AS
@@ -69,7 +69,7 @@
          * @since 2.3.0
          */
         H.getOptions().global.VMLRadialGradientURL =
-            'http://code.highcharts.com/6.0.4/gfx/vml-radial-gradient.png';
+            'http://code.highcharts.com/6.0.7/gfx/vml-radial-gradient.png';
 
 
         // Utilites
@@ -243,6 +243,34 @@
                     });
 
                 return svg;
+            };
+
+            /**
+             * VML namespaces can't be added until after complete. Listening
+             * for Perini's doScroll hack is not enough.
+             *
+             * @todo: Move this to the oldie.js module.
+             * @private
+             */
+            Chart.prototype.isReadyToRender = function() {
+                var chart = this;
+
+                // Note: win == win.top is required
+                if (!svg &&
+                    (
+                        win == win.top && // eslint-disable-line eqeqeq
+                        doc.readyState !== 'complete'
+                    )
+                ) {
+                    doc.attachEvent('onreadystatechange', function() {
+                        doc.detachEvent('onreadystatechange', chart.firstRender);
+                        if (doc.readyState === 'complete') {
+                            chart.firstRender();
+                        }
+                    });
+                    return false;
+                }
+                return true;
             };
 
             // IE compatibility hack for generating SVG content that it doesn't really
@@ -651,6 +679,12 @@
                         this.element.setAttribute(key, value);
                     }
                 },
+                getAttr: function(key) {
+                    if (this.docMode8) { // IE8 setAttribute bug
+                        return this.element[key];
+                    }
+                    return this.element.getAttribute(key);
+                },
                 classSetter: function(value) {
                     // IE8 Standards mode has problems retrieving the className unless set like this.
                     // IE8 Standards can't set the class name before the element is appended.
@@ -660,9 +694,9 @@
                     var strokeElem = element.getElementsByTagName('stroke')[0] ||
                         createElement(this.renderer.prepVML(['<stroke/>']), null, null, element);
                     strokeElem[key] = value || 'solid';
+                    // Because changing stroke-width will change the dash length and
+                    // cause an epileptic effect
                     this[key] = value;
-                    /* because changing stroke-width will change the dash length
-				and cause an epileptic effect */
                 },
                 dSetter: function(value, key, element) {
                     var i,
@@ -773,6 +807,12 @@
                 },
                 zIndexSetter: function(value, key, element) {
                     element.style[key] = value;
+                },
+                fillGetter: function() {
+                    return this.getAttr('fillcolor') || '';
+                },
+                strokeGetter: function() {
+                    return this.getAttr('strokecolor') || '';
                 }
             };
             VMLElement['stroke-opacitySetter'] = VMLElement['fill-opacitySetter'];
@@ -1359,6 +1399,21 @@
             // general renderer
             H.Renderer = VMLRenderer;
         }
+
+        SVGRenderer.prototype.getSpanWidth = function(wrapper, tspan) {
+            var renderer = this,
+                bBox = wrapper.getBBox(true),
+                actualWidth = bBox.width;
+
+            // Old IE cannot measure the actualWidth for SVG elements (#2314)
+            if (!svg && renderer.forExport) {
+                actualWidth = renderer.measureSpanWidth(
+                    tspan.firstChild.data,
+                    wrapper.styles
+                );
+            }
+            return actualWidth;
+        };
 
         // This method is used with exporting in old IE, when emulating SVG (see #2314)
         SVGRenderer.prototype.measureSpanWidth = function(text, styles) {

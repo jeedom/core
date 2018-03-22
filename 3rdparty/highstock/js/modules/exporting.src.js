@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v6.0.4 (2017-12-15)
+ * @license Highcharts JS v6.0.7 (2018-02-16)
  * Exporting module
  *
  * (c) 2010-2017 Torstein Honsi
@@ -23,7 +23,7 @@
          * License: www.highcharts.com/license
          */
 
-        /* eslint indent:0 */
+        /* eslint indent:0, max-len: 0 */
 
         // create shortcuts
         var defaultOptions = H.defaultOptions,
@@ -217,6 +217,19 @@
                  */
 
                 /**
+                 * The vertical offset of the button's position relative to its
+                 * `verticalAlign`.
+                 * 
+                 * @type {Number}
+                 * @sample {highcharts} highcharts/navigation/buttonoptions-verticalalign/ Buttons at lower right
+                 * @sample {highstock} highcharts/navigation/buttonoptions-verticalalign/ Buttons at lower right
+                 * @sample {highmaps} highcharts/navigation/buttonoptions-verticalalign/ Buttons at lower right
+                 * @default 0
+                 * @since 2.0
+                 * @apioption navigation.buttonOptions.y
+                 */
+
+                /**
                  * The vertical alignment of the buttons. Can be one of "top", "middle"
                  * or "bottom".
                  * 
@@ -243,19 +256,6 @@
                  * @apioption navigation.buttonOptions.width
                  */
                 width: 24
-
-                /**
-                 * The vertical offset of the button's position relative to its
-                 * `verticalAlign`.
-                 * 
-                 * @type {Number}
-                 * @sample {highcharts} highcharts/navigation/buttonoptions-verticalalign/ Buttons at lower right
-                 * @sample {highstock} highcharts/navigation/buttonoptions-verticalalign/ Buttons at lower right
-                 * @sample {highmaps} highcharts/navigation/buttonoptions-verticalalign/ Buttons at lower right
-                 * @default 0
-                 * @since 2.0
-                 * @apioption navigation.buttonOptions.y
-                 */
             }
         };
 
@@ -529,9 +529,10 @@
                      * 
                      * @validvalue ["circle", "square", "diamond", "triangle", "triangle-down", "menu"]
                      * @type {String}
-                     * @sample {highcharts} highcharts/exporting/buttons-contextbutton-symbol/ Use a circle for symbol
-                     * @sample {highstock} highcharts/exporting/buttons-contextbutton-symbol/ Use a circle for symbol
-                     * @sample {highmaps} highcharts/exporting/buttons-contextbutton-symbol/ Use a circle for symbol
+                     * @sample highcharts/exporting/buttons-contextbutton-symbol/
+                     *         Use a circle for symbol
+                     * @sample highcharts/exporting/buttons-contextbutton-symbol-custom/
+                     *         Custom shape as symbol
                      * @default menu
                      * @since 2.0
                      */
@@ -539,7 +540,7 @@
 
                     /**
                      * The key to a [lang](#lang) option setting that is used for the
-                     * button`s title tooltip. When the key is `contextButtonTitle`, it
+                     * button's title tooltip. When the key is `contextButtonTitle`, it
                      * refers to [lang.contextButtonTitle](#lang.contextButtonTitle)
                      * that defaults to "Chart context menu".
                      * @type {String}
@@ -776,7 +777,7 @@
                     .replace(/url\(("|&quot;)(\S+)("|&quot;)\)/g, 'url($2)')
                     .replace(/url\([^#]+#/g, 'url(#')
                     .replace(/<svg /, '<svg xmlns:xlink="http://www.w3.org/1999/xlink" ')
-                    .replace(/ (NS[0-9]+\:)?href=/g, ' xlink:href=') // #3567
+                    .replace(/ (|NS[0-9]+\:)href=/g, ' xlink:href=') // #3567
                     .replace(/\n/, ' ')
                     // Any HTML added to the container after the SVG (#894)
                     .replace(/<\/svg>.*?$/, '</svg>')
@@ -1285,7 +1286,7 @@
                     .addClass(options.className)
                     .attr({
 
-                        title: chart.options.lang[btnOptions._titleKey],
+                        title: pick(chart.options.lang[btnOptions._titleKey], ''),
                         zIndex: 3 // #4955
                     });
                 button.menuClassName = options.menuClassName || 'highcharts-menu-' + chart.btnCount++;
@@ -1395,7 +1396,8 @@
             /[lL]ogical(Width|Height)$/,
             /perspective/,
             /TapHighlightColor/,
-            /^transition/
+            /^transition/,
+            /^length$/ // #7700
             // /^text (border|color|cursor|height|webkitBorder)/
         ];
         SVGRenderer.prototype.unstyledElements = [
@@ -1417,7 +1419,24 @@
                 whitelist = renderer.inlineWhitelist, // For IE
                 unstyledElements = renderer.unstyledElements,
                 defaultStyles = {},
-                dummySVG;
+                dummySVG,
+                iframe,
+                iframeDoc;
+
+            // Create an iframe where we read default styles without pollution from this
+            // body
+            iframe = doc.createElement('iframe');
+            css(iframe, {
+                width: '1px',
+                height: '1px',
+                visibility: 'hidden'
+            });
+            doc.body.appendChild(iframe);
+            iframeDoc = iframe.contentWindow.document;
+            iframeDoc.open();
+            iframeDoc.write('<svg xmlns="http://www.w3.org/2000/svg"></svg>');
+            iframeDoc.close();
+
 
             /**
              * Make hyphenated property names out of camelCase
@@ -1471,8 +1490,13 @@
                     }
 
                     if (!blacklisted) {
-                        // If parent node has the same style, it gets inherited, no need to inline it
-                        if (parentStyles[prop] !== val && defaultStyles[node.nodeName][prop] !== val) {
+                        // If parent node has the same style, it gets inherited, no need
+                        // to inline it. Top-level props should be diffed against parent
+                        // (#7687).
+                        if (
+                            (parentStyles[prop] !== val || node.nodeName === 'svg') &&
+                            defaultStyles[node.nodeName][prop] !== val
+                        ) {
                             // Attributes
                             if (inlineToAttributes.indexOf(prop) !== -1) {
                                 node.setAttribute(hyphenate(prop), val);
@@ -1490,12 +1514,15 @@
 
                     // Get default styles from the browser so that we don't have to add these
                     if (!defaultStyles[node.nodeName]) {
+                        /*
                         if (!dummySVG) {
-                            dummySVG = doc.createElementNS(H.SVG_NS, 'svg');
-                            dummySVG.setAttribute('version', '1.1');
-                            doc.body.appendChild(dummySVG);
+                        	dummySVG = doc.createElementNS(H.SVG_NS, 'svg');
+                        	dummySVG.setAttribute('version', '1.1');
+                        	doc.body.appendChild(dummySVG);
                         }
-                        dummy = doc.createElementNS(node.namespaceURI, node.nodeName);
+                        */
+                        dummySVG = iframeDoc.getElementsByTagName('svg')[0];
+                        dummy = iframeDoc.createElementNS(node.namespaceURI, node.nodeName);
                         dummySVG.appendChild(dummy);
                         defaultStyles[node.nodeName] = merge(win.getComputedStyle(dummy, null)); // Copy, so we can remove the node
                         dummySVG.removeChild(dummy);
@@ -1636,7 +1663,7 @@
             		chart.renderTo.parentNode.appendChild(pre);
             	};
             }
-            // */
+            //*/
         });
 
     }(Highcharts));

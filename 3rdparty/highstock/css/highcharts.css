@@ -806,3 +806,15 @@ text.highcharts-drilldown-data-label,
   stroke-width: 1px;
   stroke: #333333;
 }
+
+/* Annotations module */
+.highcharts-annotation-label-box {
+  stroke-width: 1px;
+  stroke: #000000;
+  fill: #000000;
+  fill-opacity: 0.75;
+}
+
+.highcharts-annotation-label text {
+  fill: #e6e6e6;
+}

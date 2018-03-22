@@ -1,5 +1,5 @@
 /**
- * @license  Highcharts JS v6.0.4 (2017-12-15)
+ * @license  Highcharts JS v6.0.7 (2018-02-16)
  *
  * Indicator series type for Highstock
  *
@@ -17,7 +17,8 @@
 }(function(Highcharts) {
     (function(H) {
 
-        var each = H.each,
+        var pick = H.pick,
+            each = H.each,
             error = H.error,
             Series = H.Series,
             isArray = H.isArray,
@@ -32,7 +33,8 @@
          */
         seriesType('sma', 'line',
             /**
-             * Simple moving average indicator (SMA). This series requires `linkedTo` option to be set.
+             * Simple moving average indicator (SMA). This series requires `linkedTo`
+             * option to be set.
              * 
              * @extends {plotOptions.line}
              * @product highstock
@@ -40,19 +42,21 @@
              * @since 6.0.0
              * @excluding
              * 			allAreas,colorAxis,compare,compareBase,joinBy,keys,stacking,
-             * 			showInNavigator,navigatorOptions,pointInterval,pointIntervalUnit,
-             *			pointPlacement,pointRange,pointStart,joinBy
+             * 			showInNavigator,navigatorOptions,pointInterval,
+             * 			pointIntervalUnit,pointPlacement,pointRange,pointStart,joinBy
              * @optionparent plotOptions.sma
              */
             {
                 /**
-                 * The series name.
+                 * The name of the series as shown in the legend, tooltip etc. If not
+                 * set, it will be based on a technical indicator type and default 
+                 * params.
                  * 
                  * @type {String}
                  * @since 6.0.0
                  * @product highstock
                  */
-                name: 'SMA (14)',
+                name: undefined,
                 tooltip: {
                     /**
                      * Number of decimals in indicator series.
@@ -64,7 +68,8 @@
                     valueDecimals: 4
                 },
                 /**
-                 * The main series ID that indicator will be based on. Required for this indicator.
+                 * The main series ID that indicator will be based on. Required for this
+                 * indicator.
                  * 
                  * @type {String}
                  * @since 6.0.0
@@ -73,8 +78,9 @@
                 linkedTo: undefined,
                 params: {
                     /**
-                     * The point index which indicator calculations will base.
-                     * For example using OHLC data, index=2 means the indicator will be calculated using Low values.
+                     * The point index which indicator calculations will base. For
+                     * example using OHLC data, index=2 means the indicator will be
+                     * calculated using Low values.
                      * 
                      * @type {Number}
                      * @since 6.0.0
@@ -95,6 +101,8 @@
                     series: true,
                     eventName: 'updatedData'
                 },
+                nameComponents: ['period'],
+                nameSuffixes: [], // e.g. Zig Zag uses extra '%'' in the legend name
                 calculateOn: 'init',
                 init: function(chart, options) {
                     var indicator = this;
@@ -124,7 +132,8 @@
                         indicator.yData = processedData.yData;
                         indicator.options.data = processedData.values;
 
-                        //	Removal of processedXData property is required because on first translate processedXData array is empty
+                        //	Removal of processedXData property is required because on
+                        //	first translate processedXData array is empty
                         if (indicator.bindTo.series === false) {
                             delete indicator.processedXData;
 
@@ -166,6 +175,29 @@
                     }
 
                     return indicator;
+                },
+                getName: function() {
+                    var name = this.name,
+                        params = [];
+
+                    if (!name) {
+
+                        each(
+                            this.nameComponents,
+                            function(component, index) {
+                                params.push(
+                                    this.options.params[component] +
+                                    pick(this.nameSuffixes[index], '')
+                                );
+                            },
+                            this
+                        );
+
+                        name = (this.nameBase || this.type.toUpperCase()) +
+                            (this.nameComponents ? ' (' + params.join(', ') + ')' : '');
+                    }
+
+                    return name;
                 },
                 getValues: function(series, params) {
                     var period = params.period,

@@ -1,5 +1,5 @@
 /**
- * @license  Highcharts JS v6.0.4 (2017-12-15)
+ * @license  Highcharts JS v6.0.7 (2018-02-16)
  *
  * Indicator series type for Highstock
  *
@@ -61,7 +61,10 @@
 
                     for (i = loopLength; i > 0; i--) {
                         distance = xData[i] - xData[i - 1];
-                        if (closestDataRange === UNDEFINED || distance < closestDataRange) {
+                        if (
+                            closestDataRange === UNDEFINED ||
+                            distance < closestDataRange
+                        ) {
                             closestDataRange = distance;
                         }
                     }
@@ -79,7 +82,8 @@
          */
         seriesType('ikh', 'sma',
             /**
-             * Ichimoku Kinko Hyo (IKH). This series requires `linkedTo` option to be set.
+             * Ichimoku Kinko Hyo (IKH). This series requires `linkedTo` option to be
+             * set.
              * 
              * @extends {plotOptions.sma}
              * @product highstock
@@ -88,12 +92,11 @@
              * @since 6.0.0
              * @excluding
              * 			allAreas,colorAxis,compare,compareBase,joinBy,keys,stacking,
-             * 			showInNavigator,navigatorOptions,pointInterval,pointIntervalUnit,
-             *			pointPlacement,pointRange,pointStart
+             * 			showInNavigator,navigatorOptions,pointInterval,
+             * 			pointIntervalUnit,pointPlacement,pointRange,pointStart
              * @optionparent plotOptions.ikh
              */
             {
-                name: 'IKH (52, 26, 9)',
                 params: {
                     period: 26,
                     /**
@@ -282,8 +285,15 @@
                     approximation: 'averages'
                 }
             }, {
-                pointArrayMap: ['tenkanSen', 'kijunSen', 'chikouSpan', 'senkouSpanA', 'senkouSpanB'],
+                pointArrayMap: [
+                    'tenkanSen',
+                    'kijunSen',
+                    'chikouSpan',
+                    'senkouSpanA',
+                    'senkouSpanB'
+                ],
                 pointValKey: 'tenkanSen',
+                nameComponents: ['periodSenkouSpanB', 'period', 'periodTenkan'],
                 init: function() {
                     SMA.prototype.init.apply(this, arguments);
 
@@ -345,7 +355,8 @@
                                     true
                                 );
 
-                                // add extra parameters for support tooltip in moved lines
+                                // add extra parameters for support tooltip in moved
+                                // lines
                                 point.plotY = point['plot' + value];
                                 point.tooltipPos = [point.plotX, point['plot' + value]];
                                 point.isNull = false;
@@ -399,18 +410,32 @@
                     }
 
                     // Modify options and generate lines:
-                    each(['tenkanLine', 'kijunLine', 'chikouLine', 'senkouSpanA', 'senkouSpanB', 'senkouSpan'], function(lineName, i) {
+                    each([
+                        'tenkanLine',
+                        'kijunLine',
+                        'chikouLine',
+                        'senkouSpanA',
+                        'senkouSpanB',
+                        'senkouSpan'
+                    ], function(lineName, i) {
                         // First line is rendered by default option
                         indicator.points = allIchimokuPoints[i];
-                        indicator.options = merge(mainLineOptions[lineName].styles, gappedExtend);
+                        indicator.options = merge(
+                            mainLineOptions[lineName].styles,
+                            gappedExtend
+                        );
                         indicator.graph = indicator['graph' + lineName];
 
-                        // For span, we need an access to the next points, used in getGraphPath()
+                        // For span, we need an access to the next points, used in
+                        // getGraphPath()
                         indicator.nextPoints = allIchimokuPoints[i - 1];
                         if (i === 5) {
 
                             indicator.points = allIchimokuPoints[i - 1];
-                            indicator.options = merge(mainLineOptions[lineName].styles, gappedExtend);
+                            indicator.options = merge(
+                                mainLineOptions[lineName].styles,
+                                gappedExtend
+                            );
                             indicator.graph = indicator['graph' + lineName];
                             indicator.nextPoints = allIchimokuPoints[i - 2];
 
@@ -506,7 +531,11 @@
                         SSB;
 
                     // ikh requires close value
-                    if (xVal.length <= period || !isArray(yVal[0]) || yVal[0].length !== 4) {
+                    if (
+                        xVal.length <= period ||
+                        !isArray(yVal[0]) ||
+                        yVal[0].length !== 4
+                    ) {
                         return false;
                     }
 

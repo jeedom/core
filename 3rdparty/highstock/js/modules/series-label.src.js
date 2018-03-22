@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v6.0.4 (2017-12-15)
+ * @license Highcharts JS v6.0.7 (2018-02-16)
  *
  * (c) 2009-2017 Torstein Honsi
  *
@@ -32,6 +32,7 @@
          * http://jsfiddle.net/highcharts/264Nm/
          * http://jsfiddle.net/highcharts/y5A37/
          */
+        /* eslint max-len: 0 */
 
 
         var labelDistance = 3,

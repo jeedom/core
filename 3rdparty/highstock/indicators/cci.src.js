@@ -1,5 +1,5 @@
 /**
- * @license  Highcharts JS v6.0.4 (2017-12-15)
+ * @license  Highcharts JS v6.0.7 (2018-02-16)
  *
  * Indicator series type for Highstock
  *
@@ -47,7 +47,8 @@
          */
         seriesType('cci', 'sma',
             /**
-             * Commodity Channel Index (CCI). This series requires `linkedTo` option to be set.
+             * Commodity Channel Index (CCI). This series requires `linkedTo` option to
+             * be set.
              * 
              * @extends {plotOptions.sma}
              * @product highstock
@@ -56,7 +57,6 @@
              * @optionparent plotOptions.cci
              */
             {
-                name: 'CCI (14)',
                 params: {
                     period: 14
                 }
@@ -75,7 +75,11 @@
                         CCIPoint, p, len, smaTP, TPtemp, meanDev, i;
 
                     // CCI requires close value
-                    if (xVal.length <= period || !isArray(yVal[0]) || yVal[0].length !== 4) {
+                    if (
+                        xVal.length <= period ||
+                        !isArray(yVal[0]) ||
+                        yVal[0].length !== 4
+                    ) {
                         return false;
                     }
 

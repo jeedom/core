@@ -1,5 +1,5 @@
 /**
- * @license  Highcharts JS v6.0.4 (2017-12-15)
+ * @license  Highcharts JS v6.0.7 (2018-02-16)
  *
  * Indicator series type for Highstock
  *
@@ -28,12 +28,23 @@
             points.push([xValue, yValue]);
         }
 
-        function populateAverage(points, xVal, yVal, i, EMApercent, calEMA, index, SMA) {
+        function populateAverage(
+            points,
+            xVal,
+            yVal,
+            i,
+            EMApercent,
+            calEMA,
+            index,
+            SMA
+        ) {
             var x = xVal[i - 1],
                 yValue = index < 0 ? yVal[i - 1] : yVal[i - 1][index],
                 y;
 
-            y = calEMA === 0 ? SMA : ((yValue * EMApercent) + (calEMA * (1 - EMApercent)));
+            y = calEMA === undefined ?
+                SMA :
+                ((yValue * EMApercent) + (calEMA * (1 - EMApercent)));
 
             return [x, y];
         }
@@ -45,7 +56,8 @@
          */
         seriesType('ema', 'sma',
             /**
-             * Exponential moving average indicator (EMA). This series requires `linkedTo` option to be set.
+             * Exponential moving average indicator (EMA). This series requires the
+             * `linkedTo` option to be set.
              * 
              * @extends {plotOptions.sma}
              * @product highstock
@@ -55,7 +67,6 @@
              * @optionparent plotOptions.ema
              */
             {
-                name: 'EMA (14)',
                 params: {
                     index: 0,
                     period: 14
@@ -67,7 +78,6 @@
                         yVal = series.yData,
                         yValLen = yVal ? yVal.length : 0,
                         EMApercent = (2 / (period + 1)),
-                        calEMA = 0,
                         range = 0,
                         sum = 0,
                         EMA = [],
@@ -76,8 +86,9 @@
                         index = -1,
                         points = [],
                         SMA = 0,
-                        i,
-                        EMAPoint;
+                        calEMA,
+                        EMAPoint,
+                        i;
 
                     // Check period, if bigger than points length, skip
                     if (xVal.length < period) {
@@ -101,7 +112,16 @@
 
                     // Calculate value one-by-one for each period in visible data
                     for (i = range; i < yValLen; i++) {
-                        EMAPoint = populateAverage(points, xVal, yVal, i, EMApercent, calEMA, index, SMA);
+                        EMAPoint = populateAverage(
+                            points,
+                            xVal,
+                            yVal,
+                            i,
+                            EMApercent,
+                            calEMA,
+                            index,
+                            SMA
+                        );
                         EMA.push(EMAPoint);
                         xData.push(EMAPoint[0]);
                         yData.push(EMAPoint[1]);
@@ -110,7 +130,15 @@
                         accumulateAverage(points, xVal, yVal, i, index);
                     }
 
-                    EMAPoint = populateAverage(points, xVal, yVal, i, EMApercent, calEMA, index);
+                    EMAPoint = populateAverage(
+                        points,
+                        xVal,
+                        yVal,
+                        i,
+                        EMApercent,
+                        calEMA,
+                        index
+                    );
                     EMA.push(EMAPoint);
                     xData.push(EMAPoint[0]);
                     yData.push(EMAPoint[1]);
@@ -167,7 +195,8 @@
          */
         seriesType('macd', 'sma',
             /**
-             * Moving Average Convergence Divergence (MACD). This series requires `linkedTo` option to be set.
+             * Moving Average Convergence Divergence (MACD). This series requires
+             * `linkedTo` option to be set.
              * 
              * @extends {plotOptions.sma}
              * @product highstock
@@ -176,7 +205,6 @@
              * @optionparent plotOptions.macd
              */
             {
-                name: 'MACD (26, 12, 9)',
                 params: {
                     /**
                      * The short period for indicator calculations.
@@ -277,6 +305,7 @@
                 dataGrouping: 'averages',
                 minPointLength: 0
             }, {
+                nameComponents: ['longPeriod', 'shortPeriod', 'signalPeriod'],
                 // "y" value is treated as Histogram data
                 pointArrayMap: ['y', 'signal', 'MACD'],
                 parallelArrays: ['x', 'y', 'signal', 'MACD'],
@@ -315,7 +344,10 @@
                     each(indicator.points, function(point) {
                         each([point.signal, point.MACD], function(value, i) {
                             if (value !== null) {
-                                point[plotNames[i]] = indicator.yAxis.toPixels(value, true);
+                                point[plotNames[i]] = indicator.yAxis.toPixels(
+                                    value,
+                                    true
+                                );
                             }
                         });
                     });
@@ -367,7 +399,10 @@
                     // Modify options and generate smoothing line:
                     each(['macd', 'signal'], function(lineName, i) {
                         indicator.points = otherSignals[i];
-                        indicator.options = merge(mainLineOptions[lineName + 'Line'].styles, gappedExtend);
+                        indicator.options = merge(
+                            mainLineOptions[lineName + 'Line'].styles,
+                            gappedExtend
+                        );
                         indicator.graph = indicator['graph' + lineName];
                         SMA.prototype.drawGraph.call(indicator);
                         indicator['graph' + lineName] = indicator.graph;
@@ -380,12 +415,12 @@
                 },
                 getValues: function(series, params) {
                     var j = 0,
-                        shortEMA,
-                        longEMA,
                         MACD = [],
                         xMACD = [],
                         yMACD = [],
                         signalLine = [],
+                        shortEMA,
+                        longEMA,
                         i;
 
                     // Calculating the short and long EMA used when calculating the MACD
@@ -401,19 +436,22 @@
                     longEMA = longEMA.values;
 
 
-                    // Subtract each Y value from the EMA's and create the new dataset (MACD)
+                    // Subtract each Y value from the EMA's and create the new dataset
+                    // (MACD)
                     for (i = 1; i <= shortEMA.length; i++) {
-                        if (longEMA[i - 1] && longEMA[i - 1][1]) {
+                        if (defined(longEMA[i - 1]) && defined(longEMA[i - 1][1])) {
                             MACD.push([
                                 shortEMA[i + params.shortPeriod + 1][0],
                                 0,
                                 null,
-                                shortEMA[i + params.shortPeriod + 1][1] - longEMA[i - 1][1]
+                                shortEMA[i + params.shortPeriod + 1][1] -
+                                longEMA[i - 1][1]
                             ]);
                         }
                     }
 
-                    // Set the Y and X data of the MACD. This is used in calculating the signal line.
+                    // Set the Y and X data of the MACD. This is used in calculating the
+                    // signal line.
                     for (i = 0; i < MACD.length; i++) {
                         xMACD.push(MACD[i][0]);
                         yMACD.push([0, null, MACD[i][3]]);
@@ -430,7 +468,8 @@
 
                     signalLine = signalLine.values;
 
-                    // Setting the MACD Histogram. In comparison to the loop with pure MACD this loop uses MACD x value not xData.
+                    // Setting the MACD Histogram. In comparison to the loop with pure
+                    // MACD this loop uses MACD x value not xData.
                     for (i = 0; i < MACD.length; i++) {
                         if (MACD[i][0] >= signalLine[0][0]) { // detect the first point
 

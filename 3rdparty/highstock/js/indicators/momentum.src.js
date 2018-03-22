@@ -1,5 +1,5 @@
 /**
- * @license  Highcharts JS v6.0.4 (2017-12-15)
+ * @license  Highcharts JS v6.0.7 (2018-02-16)
  *
  * Indicator series type for Highstock
  *
@@ -46,11 +46,11 @@
              * @optionparent plotOptions.momentum
              */
             {
-                name: 'Momentum (14)',
                 params: {
                     period: 14
                 }
             }, {
+                nameBase: 'Momentum',
                 getValues: function(series, params) {
                     var period = params.period,
                         xVal = series.xData,

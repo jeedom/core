@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v6.0.4 (2017-12-15)
+ * @license Highcharts JS v6.0.7 (2018-02-16)
  *
  * (c) 2016 Highsoft AS
  * Authors: Jon Arild Nygard
@@ -26,8 +26,8 @@
             relativeLength = H.relativeLength;
         H.CenteredSeriesMixin = {
             /**
-             * Get the center of the pie based on the size and center options relative to the
-             * plot area. Borrowed by the polar and gauge series types.
+             * Get the center of the pie based on the size and center options relative
+             * to the plot area. Borrowed by the polar and gauge series types.
              */
             getCenter: function() {
 
@@ -38,7 +38,12 @@
                     plotWidth = chart.plotWidth - 2 * slicingRoom,
                     plotHeight = chart.plotHeight - 2 * slicingRoom,
                     centerOption = options.center,
-                    positions = [pick(centerOption[0], '50%'), pick(centerOption[1], '50%'), options.size || '100%', options.innerSize || 0],
+                    positions = [
+                        pick(centerOption[0], '50%'),
+                        pick(centerOption[1], '50%'),
+                        options.size || '100%',
+                        options.innerSize || 0
+                    ],
                     smallestSize = Math.min(plotWidth, plotHeight),
                     i,
                     value;
@@ -51,8 +56,9 @@
                     // i == 1: centerY, relative to height
                     // i == 2: size, relative to smallestSize
                     // i == 3: innerSize, relative to size
-                    positions[i] = relativeLength(value, [plotWidth, plotHeight, smallestSize, positions[2]][i]) +
-                        (handleSlicingRoom ? slicingRoom : 0);
+                    positions[i] = relativeLength(
+                        value, [plotWidth, plotHeight, smallestSize, positions[2]][i]
+                    ) + (handleSlicingRoom ? slicingRoom : 0);
 
                 }
                 // innerSize cannot be larger than size (#3632)
@@ -137,13 +143,18 @@
     var result = (function(H) {
         var each = H.each,
             extend = H.extend,
+            isArray = H.isArray,
             isBoolean = function(x) {
                 return typeof x === 'boolean';
             },
             isFn = function(x) {
                 return typeof x === 'function';
             },
-            pick = H.pick;
+            isObject = H.isObject,
+            isNumber = H.isNumber,
+            merge = H.merge,
+            pick = H.pick,
+            reduce = H.reduce;
         // TODO Combine buildTree and buildNode with setTreeValues
         // TODO Remove logic from Treemap and make it utilize this mixin.
         var setTreeValues = function setTreeValues(tree, options) {
@@ -201,7 +212,7 @@
 
         var getColor = function getColor(node, options) {
             var index = options.index,
-                levelMap = options.levelMap,
+                mapOptionsToLevel = options.mapOptionsToLevel,
                 parentColor = options.parentColor,
                 parentColorIndex = options.parentColorIndex,
                 series = options.series,
@@ -231,19 +242,14 @@
 
             if (node) {
                 point = points[node.i];
-                level = levelMap[node.levelDynamic] || {};
-                getColorByPoint = (
-                    point &&
-                    (
-                        isBoolean(level.colorByPoint) ?
-                        level.colorByPoint :
-                        !!series.options.colorByPoint
-                    )
-                );
+                level = mapOptionsToLevel[node.level] || {};
+                getColorByPoint = point && level.colorByPoint;
 
                 if (getColorByPoint) {
-                    colorIndexByPoint = point.index %
-                        (colors ? colors.length : series.chart.options.chart.colorCount);
+                    colorIndexByPoint = point.index % (colors ?
+                        colors.length :
+                        series.chart.options.chart.colorCount
+                    );
                     colorByPoint = colors && colors[colorIndexByPoint];
                 }
 
@@ -271,8 +277,72 @@
             };
         };
 
+        /**
+         * getLevelOptions - Creates a map from level number to its given options.
+         * @param {Object} params Object containing parameters.
+         * @param {Object} params.defaults Object containing default options. The
+         * default options are merged with the userOptions to get the final options for
+         * a specific level.
+         * @param {Number} params.from The lowest level number.
+         * @param {Array} params.levels User options from series.levels.
+         * @param {Number} params.to The highest level number.
+         * @return {null|Object} Returns a map from level number to its given options.
+         * Returns null if invalid input parameters.
+         */
+        var getLevelOptions = function getLevelOptions(params) {
+            var result = null,
+                defaults,
+                converted,
+                i,
+                from,
+                to,
+                levels;
+            if (isObject(params)) {
+                result = {};
+                from = isNumber(params.from) ? params.from : 1;
+                levels = params.levels;
+                converted = {};
+                defaults = isObject(params.defaults) ? params.defaults : {};
+                if (isArray(levels)) {
+                    converted = reduce(levels, function(obj, item) {
+                        var level,
+                            levelIsConstant,
+                            options;
+                        if (isObject(item) && isNumber(item.level)) {
+                            options = merge({}, item);
+                            levelIsConstant = (
+                                isBoolean(options.levelIsConstant) ?
+                                options.levelIsConstant :
+                                defaults.levelIsConstant
+                            );
+                            // Delete redundant properties.
+                            delete options.levelIsConstant;
+                            delete options.level;
+                            // Calculate which level these options apply to.
+                            level = item.level + (levelIsConstant ? 0 : from - 1);
+                            if (isObject(obj[level])) {
+                                extend(obj[level], options);
+                            } else {
+                                obj[level] = options;
+                            }
+                        }
+                        return obj;
+                    }, {});
+                }
+                to = isNumber(params.to) ? params.to : 1;
+                for (i = 0; i <= to; i++) {
+                    result[i] = merge({},
+                        defaults,
+                        isObject(converted[i]) ? converted[i] : {}
+                    );
+                }
+            }
+            return result;
+        };
+
         var result = {
             getColor: getColor,
+            getLevelOptions: getLevelOptions,
             setTreeValues: setTreeValues
         };
         return result;
@@ -284,6 +354,7 @@
          *
          * License: www.highcharts.com/license
          */
+        /* eslint max-len: 0 */
 
         var seriesType = H.seriesType,
             seriesTypes = H.seriesTypes,
@@ -293,11 +364,13 @@
             noop = H.noop,
             each = H.each,
             getColor = mixinTreeSeries.getColor,
+            getLevelOptions = mixinTreeSeries.getLevelOptions,
             grep = H.grep,
             isBoolean = function(x) {
                 return typeof x === 'boolean';
             },
             isNumber = H.isNumber,
+            isObject = H.isObject,
             isString = H.isString,
             pick = H.pick,
             Series = H.Series,
@@ -310,7 +383,7 @@
                 });
             },
             reduce = H.reduce,
-            // @todo find correct name for this function. 
+            // @todo find correct name for this function.
             // @todo Similar to reduce, this function is likely redundant
             recursive = function(item, func, context) {
                 var next;
@@ -326,7 +399,7 @@
          * laid out in varying ways depending on options.
          *
          * @sample highcharts/demo/treemap-large-dataset/ Treemap
-         * 
+         *
          * @extends {plotOptions.scatter}
          * @excluding marker
          * @product highcharts
@@ -337,7 +410,7 @@
             /**
              * When enabled the user can click on a point which is a parent and
              * zoom in on its children.
-             * 
+             *
              * @type {Boolean}
              * @sample {highcharts} highcharts/plotoptions/treemap-allowdrilltonode/ Enabled
              * @default false
@@ -355,7 +428,7 @@
              * crop threshold, the series data is cropped to only contain points
              * that fall within the plot area. The advantage of cropping away invisible
              * points is to increase performance on large series.
-             * 
+             *
              * @type {Number}
              * @default 300
              * @since 4.1.0
@@ -368,7 +441,7 @@
              * or just the leaf nodes. When this option is undefined, it will be
              * true by default. However when allowDrillToNode is true, then it will
              * be false by default.
-             * 
+             *
              * @type {Boolean}
              * @sample {highcharts} highcharts/plotoptions/treemap-interactbyleaf-false/ False
              * @sample {highcharts} highcharts/plotoptions/treemap-interactbyleaf-true-and-allowdrilltonode/ InteractByLeaf and allowDrillToNode is true
@@ -379,7 +452,7 @@
 
             /**
              * The sort index of the point inside the treemap level.
-             * 
+             *
              * @type {Number}
              * @sample {highcharts} highcharts/plotoptions/treemap-sortindex/ Sort by years
              * @since 4.1.10
@@ -412,7 +485,7 @@
             /**
              * Whether to display this series type or specific series item in the
              * legend.
-             * 
+             *
              * @type {Boolean}
              * @default false
              * @product highcharts
@@ -423,7 +496,7 @@
              * @ignore
              */
             marker: false,
-
+            colorByPoint: false,
             /**
              * @extends plotOptions.heatmap.dataLabels
              * @since 4.1.0
@@ -447,7 +520,7 @@
             /**
              * Whether to ignore hidden points when the layout algorithm runs.
              * If `false`, hidden points will leave open spaces.
-             * 
+             *
              * @type {Boolean}
              * @default true
              * @since 5.0.8
@@ -459,7 +532,7 @@
              * This option decides which algorithm is used for setting position
              * and dimensions of the points. Can be one of `sliceAndDice`, `stripes`,
              *  `squarified` or `strip`.
-             * 
+             *
              * @validvalue ["sliceAndDice", "stripes", "squarified", "strip"]
              * @type {String}
              * @see [How to write your own algorithm](http://www.highcharts.com/docs/chart-
@@ -477,7 +550,7 @@
             /**
              * Defines which direction the layout algorithm will start drawing.
              *  Possible values are "vertical" and "horizontal".
-             * 
+             *
              * @validvalue ["vertical", "horizontal"]
              * @type {String}
              * @default vertical
@@ -490,7 +563,7 @@
              * Enabling this option will make the treemap alternate the drawing
              * direction between vertical and horizontal. The next levels starting
              * direction will always be the opposite of the previous.
-             * 
+             *
              * @type {Boolean}
              * @sample {highcharts} highcharts/plotoptions/treemap-alternatestartingdirection-true/ Enabled
              * @default false
@@ -504,7 +577,7 @@
              * set to false the first level visible when drilling is considered
              * to be level one. Otherwise the level will be the same as the tree
              * structure.
-             * 
+             *
              * @type {Boolean}
              * @default true
              * @since 4.1.0
@@ -523,6 +596,14 @@
                 position: {
 
                     /**
+                     * Vertical alignment of the button.
+                     *
+                     * @default top
+                     * @validvalue ["top", "middle", "bottom"]
+                     * @apioption plotOptions.treemap.drillUpButton.position.verticalAlign
+                     */
+
+                    /**
                      * Horizontal alignment of the button.
                      * @validvalue ["left", "center", "right"]
                      */
@@ -539,22 +620,149 @@
                      * Vertical offset of the button.
                      */
                     y: 10
-
-                    /**
-                     * Vertical alignment of the button.
-                     *
-                     * @default top
-                     * @validvalue ["top", "middle", "bottom"]
-                     * @apioption plotOptions.treemap.drillUpButton.position.verticalAlign
-                     */
                 }
             },
+
+
+            /**
+             * Set options on specific levels. Takes precedence over series options,
+             * but not point options.
+             *
+             * @type {Array<Object>}
+             * @sample {highcharts} highcharts/plotoptions/treemap-levels/
+             *         Styling dataLabels and borders
+             * @sample {highcharts} highcharts/demo/treemap-with-levels/
+             *         Different layoutAlgorithm
+             * @since 4.1.0
+             * @product highcharts
+             * @apioption plotOptions.treemap.levels
+             */
+
+            /**
+             * Can set a `borderColor` on all points which lies on the same level.
+             *
+             * @type {Color}
+             * @since 4.1.0
+             * @product highcharts
+             * @apioption plotOptions.treemap.levels.borderColor
+             */
+
+            /**
+             * Set the dash style of the border of all the point which lies on the
+             * level. See <a href"#plotoptions.scatter.dashstyle">
+             * plotOptions.scatter.dashStyle</a> for possible options.
+             *
+             * @type {String}
+             * @since 4.1.0
+             * @product highcharts
+             * @apioption plotOptions.treemap.levels.borderDashStyle
+             */
+
+            /**
+             * Can set the borderWidth on all points which lies on the same level.
+             *
+             * @type {Number}
+             * @since 4.1.0
+             * @product highcharts
+             * @apioption plotOptions.treemap.levels.borderWidth
+             */
+
+            /**
+             * Can set a color on all points which lies on the same level.
+             *
+             * @type {Color}
+             * @since 4.1.0
+             * @product highcharts
+             * @apioption plotOptions.treemap.levels.color
+             */
+
+            /**
+             * A configuration object to define how the color of a child varies from the
+             * parent's color. The variation is distributed among the children of node.
+             * For example when setting brightness, the brightness change will range
+             * from the parent's original brightness on the first child, to the amount
+             * set in the `to` setting on the last node. This allows a gradient-like
+             * color scheme that sets children out from each other while highlighting
+             * the grouping on treemaps and sectors on sunburst charts.
+             *
+             * @type {Object}
+             * @sample highcharts/demo/sunburst/ Sunburst with color variation
+             * @since 6.0.0
+             * @product highcharts
+             * @apioption plotOptions.treemap.levels.colorVariation
+             */
+
+            /**
+             * The key of a color variation. Currently supports `brightness` only.
+             *
+             * @type {String}
+             * @validvalue ["brightness"]
+             * @since 6.0.0
+             * @product highcharts
+             * @apioption plotOptions.treemap.levels.colorVariation.key
+             */
+
+            /**
+             * The ending value of a color variation. The last sibling will receive this
+             * value.
+             *
+             * @type {Number}
+             * @since 6.0.0
+             * @product highcharts
+             * @apioption plotOptions.treemap.levels.colorVariation.to
+             */
+
+            /**
+             * Can set the options of dataLabels on each point which lies on the
+             * level. [plotOptions.treemap.dataLabels](#plotOptions.treemap.dataLabels)
+             * for possible values.
+             *
+             * @type {Object}
+             * @default undefined
+             * @since 4.1.0
+             * @product highcharts
+             * @apioption plotOptions.treemap.levels.dataLabels
+             */
+
+            /**
+             * Can set the layoutAlgorithm option on a specific level.
+             *
+             * @validvalue ["sliceAndDice", "stripes", "squarified", "strip"]
+             * @type {String}
+             * @since 4.1.0
+             * @product highcharts
+             * @apioption plotOptions.treemap.levels.layoutAlgorithm
+             */
+
+            /**
+             * Can set the layoutStartingDirection option on a specific level.
+             *
+             * @validvalue ["vertical", "horizontal"]
+             * @type {String}
+             * @since 4.1.0
+             * @product highcharts
+             * @apioption plotOptions.treemap.levels.layoutStartingDirection
+             */
+
+            /**
+             * Decides which level takes effect from the options set in the levels
+             * object.
+             *
+             * @type {Number}
+             * @sample {highcharts} highcharts/plotoptions/treemap-levels/
+             *         Styling of both levels
+             * @since 4.1.0
+             * @product highcharts
+             * @apioption plotOptions.treemap.levels.level
+             */
+
+
 
             // Presentational options
 
             /**
              * The color of the border surrounding each tree map item.
-             * 
+             *
              * @type {Color}
              * @default #e6e6e6
              * @product highcharts
@@ -569,7 +777,7 @@
             /**
              * The opacity of a point in treemap. When a point has children, the
              * visibility of the children is determined by the opacity.
-             * 
+             *
              * @type {Number}
              * @default 0.15
              * @since 4.2.4
@@ -579,7 +787,7 @@
 
             /**
              * A wrapper object for all the series options in specific states.
-             * 
+             *
              * @extends plotOptions.heatmap.states
              * @product highcharts
              */
@@ -587,7 +795,7 @@
 
                 /**
                  * Options for the hovered series
-                 * 
+                 *
                  * @extends plotOptions.heatmap.states.hover
                  * @excluding halo
                  * @product highcharts
@@ -614,7 +822,7 @@
                     /**
                      * The opacity of a point in treemap. When a point has children,
                      * the visibility of the children is determined by the opacity.
-                     * 
+                     *
                      * @type {Number}
                      * @default 0.75
                      * @since 4.2.4
@@ -631,137 +839,6 @@
 
 
 
-            /**
-             * Set options on specific levels. Takes precedence over series options,
-             * but not point options.
-             * 
-             * @type {Array<Object>}
-             * @sample {highcharts} highcharts/plotoptions/treemap-levels/
-             *         Styling dataLabels and borders
-             * @sample {highcharts} highcharts/demo/treemap-with-levels/
-             *         Different layoutAlgorithm
-             * @since 4.1.0
-             * @product highcharts
-             * @apioption plotOptions.treemap.levels
-             */
-
-            /**
-             * Can set a `borderColor` on all points which lies on the same level.
-             * 
-             * @type {Color}
-             * @since 4.1.0
-             * @product highcharts
-             * @apioption plotOptions.treemap.levels.borderColor
-             */
-
-            /**
-             * Set the dash style of the border of all the point which lies on the
-             * level. See <a href"#plotoptions.scatter.dashstyle">
-             * plotOptions.scatter.dashStyle</a> for possible options.
-             * 
-             * @type {String}
-             * @since 4.1.0
-             * @product highcharts
-             * @apioption plotOptions.treemap.levels.borderDashStyle
-             */
-
-            /**
-             * Can set the borderWidth on all points which lies on the same level.
-             * 
-             * @type {Number}
-             * @since 4.1.0
-             * @product highcharts
-             * @apioption plotOptions.treemap.levels.borderWidth
-             */
-
-            /**
-             * Can set a color on all points which lies on the same level.
-             * 
-             * @type {Color}
-             * @since 4.1.0
-             * @product highcharts
-             * @apioption plotOptions.treemap.levels.color
-             */
-
-            /**
-             * A configuration object to define how the color of a child varies from the
-             * parent's color. The variation is distributed among the children of node.
-             * For example when setting brightness, the brightness change will range
-             * from the parent's original brightness on the first child, to the amount
-             * set in the `to` setting on the last node. This allows a gradient-like
-             * color scheme that sets children out from each other while highlighting
-             * the grouping on treemaps and sectors on sunburst charts.
-             * 
-             * @type {Object}
-             * @sample highcharts/demo/sunburst/ Sunburst with color variation
-             * @since 6.0.0
-             * @product highcharts
-             * @apioption plotOptions.treemap.levels.colorVariation
-             */
-
-            /**
-             * The key of a color variation. Currently supports `brightness` only.
-             *  
-             * @type {String}
-             * @validvalue ["brightness"]
-             * @since 6.0.0
-             * @product highcharts
-             * @apioption plotOptions.treemap.levels.colorVariation.key
-             */
-
-            /**
-             * The ending value of a color variation. The last sibling will receive this
-             * value.
-             *  
-             * @type {Number}
-             * @since 6.0.0
-             * @product highcharts
-             * @apioption plotOptions.treemap.levels.colorVariation.to
-             */
-
-            /**
-             * Can set the options of dataLabels on each point which lies on the
-             * level. [plotOptions.treemap.dataLabels](#plotOptions.treemap.dataLabels)
-             * for possible values.
-             * 
-             * @type {Object}
-             * @default undefined
-             * @since 4.1.0
-             * @product highcharts
-             * @apioption plotOptions.treemap.levels.dataLabels
-             */
-
-            /**
-             * Can set the layoutAlgorithm option on a specific level.
-             * 
-             * @validvalue ["sliceAndDice", "stripes", "squarified", "strip"]
-             * @type {String}
-             * @since 4.1.0
-             * @product highcharts
-             * @apioption plotOptions.treemap.levels.layoutAlgorithm
-             */
-
-            /**
-             * Can set the layoutStartingDirection option on a specific level.
-             * 
-             * @validvalue ["vertical", "horizontal"]
-             * @type {String}
-             * @since 4.1.0
-             * @product highcharts
-             * @apioption plotOptions.treemap.levels.layoutStartingDirection
-             */
-
-            /**
-             * Decides which level takes effect from the options set in the levels
-             * object.
-             * 
-             * @type {Number}
-             * @sample {highcharts} highcharts/plotoptions/treemap-levels/
-             *         Styling of both levels
-             * @since 4.1.0
-             * @product highcharts
-             * @apioption plotOptions.treemap.levels.level
-             */
 
             // Prototype members
         }, {
@@ -912,7 +989,8 @@
             calculateChildrenAreas: function(parent, area) {
                 var series = this,
                     options = series.options,
-                    level = this.levelMap[parent.levelDynamic + 1],
+                    mapOptionsToLevel = series.mapOptionsToLevel,
+                    level = mapOptionsToLevel[parent.level + 1],
                     algorithm = pick((series[level && level.layoutAlgorithm] && level.layoutAlgorithm), options.layoutAlgorithm),
                     alternate = options.alternateStartingDirection,
                     childrenValues = [],
@@ -957,7 +1035,7 @@
                         crispCorr = 0;
 
 
-                    // Get the crisp correction in classic mode. For this to work in 
+                    // Get the crisp correction in classic mode. For this to work in
                     // styled mode, we would need to first add the shape (without x, y,
                     // width and height), then read the rendered stroke width using
                     // point.graphic.strokeWidth(), then modify and apply the shapeArgs.
@@ -1006,7 +1084,7 @@
                     colorInfo = getColor(node, {
                         colors: colors,
                         index: index,
-                        levelMap: series.levelMap,
+                        mapOptionsToLevel: series.mapOptionsToLevel,
                         parentColor: parentColor,
                         parentColorIndex: colorIndex,
                         series: series,
@@ -1228,6 +1306,7 @@
             },
             translate: function() {
                 var series = this,
+                    options = series.options,
                     rootId = series.rootNode = pick(series.rootNode, series.options.rootId, ''),
                     rootNode,
                     pointValues,
@@ -1237,14 +1316,17 @@
 
                 // Call prototype function
                 Series.prototype.translate.call(series);
-                // Create a object map from level to options
-                series.levelMap = reduce(series.options.levels || [],
-                    function(arr, item) {
-                        arr[item.level] = item;
-                        return arr;
-                    }, {});
                 tree = series.tree = series.getTree(); // @todo Only if series.isDirtyData is true
                 rootNode = series.nodeMap[rootId];
+                series.mapOptionsToLevel = getLevelOptions({
+                    from: rootNode.level + 1,
+                    levels: options.levels,
+                    to: tree.height,
+                    defaults: {
+                        levelIsConstant: series.options.levelIsConstant,
+                        colorByPoint: options.colorByPoint
+                    }
+                });
                 if (
                     rootId !== '' &&
                     (!rootNode || !rootNode.children.length)
@@ -1286,7 +1368,7 @@
                 };
                 series.nodeMap[''].values = seriesArea = merge(pointValues, {
                     width: (pointValues.width * series.axisRatio),
-                    direction: (series.options.layoutStartingDirection === 'vertical' ? 0 : 1),
+                    direction: (options.layoutStartingDirection === 'vertical' ? 0 : 1),
                     val: tree.val
                 });
                 series.calculateChildrenAreas(tree, seriesArea);
@@ -1294,12 +1376,12 @@
                 // Logic for point colors
                 if (series.colorAxis) {
                     series.translateColors();
-                } else if (!series.options.colorByPoint) {
+                } else if (!options.colorByPoint) {
                     series.setColorRecursive(series.tree);
                 }
 
                 // Update axis extremes according to the root node.
-                if (series.options.allowDrillToNode) {
+                if (options.allowDrillToNode) {
                     val = rootNode.pointValues;
                     series.xAxis.setExtremes(val.x, val.x + val.width, false);
                     series.yAxis.setExtremes(val.y, val.y + val.height, false);
@@ -1318,13 +1400,14 @@
              */
             drawDataLabels: function() {
                 var series = this,
+                    mapOptionsToLevel = series.mapOptionsToLevel,
                     points = grep(series.points, function(n) {
                         return n.node.visible;
                     }),
                     options,
                     level;
                 each(points, function(point) {
-                    level = series.levelMap[point.node.levelDynamic];
+                    level = mapOptionsToLevel[point.node.level];
                     // Set options to new object to avoid problems with scope
                     options = {
                         style: {}
@@ -1375,7 +1458,12 @@
              * Get presentational attributes
              */
             pointAttribs: function(point, state) {
-                var level = point && this.levelMap[point.node.levelDynamic] || {},
+                var series = this,
+                    mapOptionsToLevel = (
+                        isObject(series.mapOptionsToLevel) ?
+                        series.mapOptionsToLevel : {}
+                    ),
+                    level = point && mapOptionsToLevel[point.node.level] || {},
                     options = this.options,
                     attr,
                     stateOptions = (state && options.states[state]) || {},
@@ -1452,7 +1540,7 @@
 
 
 
-                // If drillToNode is allowed, set a point cursor on clickables & add drillId to point 
+                // If drillToNode is allowed, set a point cursor on clickables & add drillId to point
                 if (series.options.allowDrillToNode) {
                     each(points, function(point) {
                         if (point.graphic) {
@@ -1468,7 +1556,7 @@
                 var series = this,
                     point = event.point,
                     drillId = point && point.drillId;
-                // If a drill id is returned, add click event and cursor. 
+                // If a drill id is returned, add click event and cursor.
                 if (isString(drillId)) {
                     point.setState(''); // Remove hover
                     series.drillToNode(drillId);
@@ -1652,12 +1740,12 @@
         /**
          * A `treemap` series. If the [type](#series.treemap.type) option is
          * not specified, it is inherited from [chart.type](#chart.type).
-         * 
+         *
          * For options that apply to multiple series, it is recommended to add
          * them to the [plotOptions.series](#plotOptions.series) options structure.
          * To apply to all series of this specific type, apply it to [plotOptions.
          * treemap](#plotOptions.treemap).
-         * 
+         *
          * @type {Object}
          * @extends series,plotOptions.treemap
          * @excluding dataParser,dataURL,stack
@@ -1668,19 +1756,19 @@
         /**
          * An array of data points for the series. For the `treemap` series
          * type, points can be given in the following ways:
-         * 
+         *
          * 1.  An array of numerical values. In this case, the numerical values
          * will be interpreted as `value` options. Example:
-         * 
+         *
          *  ```js
          *  data: [0, 5, 3, 5]
          *  ```
-         * 
+         *
          * 2.  An array of objects with named values. The objects are point
          * configuration objects as seen below. If the total number of data
          * points exceeds the series' [turboThreshold](#series.treemap.turboThreshold),
          * this option is not available.
-         * 
+         *
          *  ```js
          *     data: [{
          *         value: 9,
@@ -1692,15 +1780,20 @@
          *         color: "#FF00FF"
          *     }]
          *  ```
-         * 
+         *
          * @type {Array<Object|Number>}
          * @extends series.heatmap.data
          * @excluding x,y
-         * @sample {highcharts} highcharts/chart/reflow-true/ Numerical values
-         * @sample {highcharts} highcharts/series/data-array-of-arrays/ Arrays of numeric x and y
-         * @sample {highcharts} highcharts/series/data-array-of-arrays-datetime/ Arrays of datetime x and y
-         * @sample {highcharts} highcharts/series/data-array-of-name-value/ Arrays of point.name and y
-         * @sample {highcharts} highcharts/series/data-array-of-objects/ Config objects
+         * @sample {highcharts} highcharts/chart/reflow-true/
+         *         Numerical values
+         * @sample {highcharts} highcharts/series/data-array-of-arrays/
+         *         Arrays of numeric x and y
+         * @sample {highcharts} highcharts/series/data-array-of-arrays-datetime/
+         *         Arrays of datetime x and y
+         * @sample {highcharts} highcharts/series/data-array-of-name-value/
+         *         Arrays of point.name and y
+         * @sample {highcharts} highcharts/series/data-array-of-objects/
+         *         Config objects    
          * @product highcharts
          * @apioption series.treemap.data
          */
@@ -1708,7 +1801,7 @@
         /**
          * The value of the point, resulting in a relative area of the point
          * in the treemap.
-         * 
+         *
          * @type {Number}
          * @product highcharts
          * @apioption series.treemap.data.value
@@ -1718,7 +1811,7 @@
          * Serves a purpose only if a `colorAxis` object is defined in the chart
          * options. This value will decide which color the point gets from the
          * scale of the colorAxis.
-         * 
+         *
          * @type {Number}
          * @default undefined
          * @since 4.1.0
@@ -1731,7 +1824,7 @@
          * value should be the id of the point which is the parent. If no points
          * has a matching id, or this option is undefined, then the parent will
          * be set to the root.
-         * 
+         *
          * @type {String}
          * @sample {highcharts} highcharts/point/parent/ Point parent
          * @sample {highcharts} highcharts/demo/treemap-with-levels/ Example where parent id is not matching
@@ -1752,20 +1845,24 @@
          * This is an experimental Highcharts module which enables visualization
          * of a word cloud.
          */
+        /* eslint max-len: 0 */
         var CenteredSeriesMixin = H.CenteredSeriesMixin,
             Series = H.Series,
             each = H.each,
             extend = H.extend,
             getCenter = CenteredSeriesMixin.getCenter,
             getColor = mixinTreeSeries.getColor,
+            getLevelOptions = mixinTreeSeries.getLevelOptions,
             getStartAndEndRadians = CenteredSeriesMixin.getStartAndEndRadians,
             grep = H.grep,
+            inArray = H.inArray,
             isBoolean = function(x) {
                 return typeof x === 'boolean';
             },
             isNumber = H.isNumber,
             isObject = H.isObject,
             isString = H.isString,
+            keys = H.keys,
             merge = H.merge,
             noop = H.noop,
             pick = H.pick,
@@ -1775,6 +1872,89 @@
             setTreeValues = mixinTreeSeries.setTreeValues,
             reduce = H.reduce;
 
+        // TODO introduce step, which should default to 1.
+        var range = function range(from, to) {
+            var result = [],
+                i;
+            if (isNumber(from) && isNumber(to) && from <= to) {
+                for (i = from; i <= to; i++) {
+                    result.push(i);
+                }
+            }
+            return result;
+        };
+
+        /**
+         * @param {Object} levelOptions Map of level to its options.
+         * @param {Object} params Object containing parameters.
+         * @param {Number} params.innerRadius
+         * @param {Number} params.outerRadius
+         * @
+         */
+        var calculateLevelSizes = function calculateLevelSizes(levelOptions, params) {
+            var result,
+                p = isObject(params) ? params : {},
+                totalWeight = 0,
+                diffRadius,
+                levels,
+                levelsNotIncluded,
+                remainingSize,
+                from,
+                to;
+
+            if (isObject(levelOptions)) {
+                result = merge({}, levelOptions); // Copy levelOptions
+                from = isNumber(p.from) ? p.from : 0;
+                to = isNumber(p.to) ? p.to : 0;
+                levels = range(from, to);
+                levelsNotIncluded = grep(keys(result), function(k) {
+                    return inArray(+k, levels) === -1;
+                });
+                diffRadius = remainingSize = isNumber(p.diffRadius) ? p.diffRadius : 0;
+                /**
+                 * Convert percentage to pixels.
+                 * Calculate the remaining size to divide between "weight" levels.
+                 * Calculate total weight to use in convertion from weight to pixels.
+                 */
+                each(levels, function(level) {
+                    var options = result[level],
+                        unit = options.levelSize.unit,
+                        value = options.levelSize.value;
+                    if (unit === 'weight') {
+                        totalWeight += value;
+                    } else if (unit === 'percentage') {
+                        options.levelSize = {
+                            unit: 'pixels',
+                            value: (value / 100) * diffRadius
+                        };
+                        remainingSize -= options.levelSize.value;
+                    } else if (unit === 'pixels') {
+                        remainingSize -= value;
+                    }
+                });
+
+                // Convert weight to pixels.
+                each(levels, function(level) {
+                    var options = result[level],
+                        weight;
+                    if (options.levelSize.unit === 'weight') {
+                        weight = options.levelSize.value;
+                        result[level].levelSize = {
+                            unit: 'pixels',
+                            value: (weight / totalWeight) * remainingSize
+                        };
+                    }
+                });
+                // Set all levels not included in interval [from,to] to have 0 pixels.
+                each(levelsNotIncluded, function(level) {
+                    result[level].levelSize = {
+                        value: 0,
+                        unit: 'pixels'
+                    };
+                });
+            }
+            return result;
+        };
 
         /**
          * getEndPoint - Find a set of coordinates given a start coordinates, an angle,
@@ -1799,8 +1979,13 @@
                 total = parent.val,
                 x = parent.x,
                 y = parent.y,
+                radius = (
+                    isObject(options.levelSize) && isNumber(options.levelSize.value) ?
+                    options.levelSize.value :
+                    0
+                ),
                 innerRadius = parent.r,
-                outerRadius = innerRadius + parent.radius,
+                outerRadius = innerRadius + radius,
                 slicedOffset = isNumber(options.slicedOffset) ? options.slicedOffset : 0;
 
             return reduce(children || [], function(arr, child) {
@@ -1809,11 +1994,11 @@
                     radiansCenter = startAngle + (radians / 2),
                     offsetPosition = getEndPoint(x, y, radiansCenter, slicedOffset),
                     values = {
-                        x: child.sliced && child.id !== options.idRoot ? offsetPosition.x : x,
-                        y: child.sliced && child.id !== options.idRoot ? offsetPosition.y : y,
+                        x: child.sliced ? offsetPosition.x : x,
+                        y: child.sliced ? offsetPosition.y : y,
                         innerR: innerRadius,
                         r: outerRadius,
-                        radius: parent.radius,
+                        radius: radius,
                         start: startAngle,
                         end: startAngle + radians
                     };
@@ -1826,10 +2011,6 @@
         var getDlOptions = function getDlOptions(params) {
             // Set options to new object to avoid problems with scope
             var shape = isObject(params.shapeArgs) ? params.shapeArgs : {},
-                optionsSeries = (
-                    isObject(params.optionsSeries) ?
-                    params.optionsSeries.dataLabels : {}
-                ),
                 optionsPoint = (
                     isObject(params.optionsPoint) ?
                     params.optionsPoint.dataLabels : {}
@@ -1843,7 +2024,7 @@
                     style: {
                         width: shape.radius
                     }
-                }, optionsSeries, optionsLevel, optionsPoint),
+                }, optionsLevel, optionsPoint),
                 rotationRad,
                 rotation;
             if (!isNumber(options.rotation)) {
@@ -1960,9 +2141,8 @@
                 colorInfo = getColor(node, {
                     colors: chart && chart.options && chart.options.colors,
                     colorIndex: series.colorIndex,
-                    colorByPoint: series.colorByPoint,
                     index: options.index,
-                    levelMap: options.levelMap,
+                    mapOptionsToLevel: options.mapOptionsToLevel,
                     parentColor: nodeParent && nodeParent.color,
                     parentColorIndex: nodeParent && nodeParent.colorIndex,
                     series: options.series,
@@ -1973,7 +2153,8 @@
             if (point) {
                 point.color = node.color;
                 point.colorIndex = node.colorIndex;
-                node.sliced = point.sliced;
+                // Set slicing on node, but avoid slicing the top node.
+                node.sliced = (node.id !== options.idRoot) ? point.sliced : false;
             }
             return node;
         };
@@ -1985,7 +2166,7 @@
          *
          * @extends {plotOptions.pie}
          * @sample highcharts/demo/sunburst Sunburst chart
-         * @excluding allAreas, center, clip, colorAxis, compare, compareBase,
+         * @excluding allAreas, clip, colorAxis, compare, compareBase,
          *            dataGrouping, depth, endAngle, gapSize, gapUnit,
          *            ignoreHiddenPoint, innerSize, joinBy, legendType, linecap,
          *            minSize, navigatorOptions, pointRange
@@ -1993,15 +2174,115 @@
          * @optionparent plotOptions.sunburst
          */
         var sunburstOptions = {
+
+            /**
+             * Set options on specific levels. Takes precedence over series options,
+             * but not point options.
+             *
+             * @type {Array<Object>}
+             * @sample highcharts/demo/sunburst Sunburst chart
+             * @apioption plotOptions.sunburst.levels
+             */
+
+            /**
+             * Can set a `borderColor` on all points which lies on the same level.
+             *
+             * @type {Color}
+             * @apioption plotOptions.sunburst.levels.borderColor
+             */
+
+            /**
+             * Can set a `borderWidth` on all points which lies on the same level.
+             *
+             * @type {Number}
+             * @apioption plotOptions.sunburst.levels.borderWidth
+             */
+
+            /**
+             * Can set a `borderDashStyle` on all points which lies on the same level.
+             *
+             * @type {String}
+             * @apioption plotOptions.sunburst.levels.borderDashStyle
+             */
+
+            /**
+             * Can set a `color` on all points which lies on the same level.
+             *
+             * @type {Color}
+             * @apioption plotOptions.sunburst.levels.color
+             */
+
+            /**
+             * Can set a `colorVariation` on all points which lies on the same level.
+             *
+             * @type {Object}
+             * @apioption plotOptions.sunburst.levels.colorVariation
+             */
+
+            /**
+             * The key of a color variation. Currently supports `brightness` only.
+             *
+             * @type {String}
+             * @apioption plotOptions.sunburst.levels.colorVariation.key
+             */
+
+            /**
+             * The ending value of a color variation. The last sibling will receive this
+             * value.
+             *
+             * @type {Number}
+             * @apioption plotOptions.sunburst.levels.colorVariation.to
+             */
+
+            /**
+             * Can set a `dataLabels` on all points which lies on the same level.
+             *
+             * @type {Object}
+             * @apioption plotOptions.sunburst.levels.dataLabels
+             */
+
+            /**
+             * Can set a `levelSize` on all points which lies on the same level.
+             *
+             * @type {Object}
+             * @apioption plotOptions.sunburst.levels.levelSize
+             */
+
+            /**
+             * Can set a `rotation` on all points which lies on the same level.
+             *
+             * @type {Number}
+             * @apioption plotOptions.sunburst.levels.rotation
+             */
+
+            /**
+             * Can set a `rotationMode` on all points which lies on the same level.
+             *
+             * @type {String}
+             * @apioption plotOptions.sunburst.levels.rotationMode
+             */
+
+            /**
+             * When enabled the user can click on a point which is a parent and
+             * zoom in on its children.
+             *
+             * @sample highcharts/demo/sunburst
+             *         Allow drill to node
+             * @type {Boolean}
+             * @default false
+             * @apioption plotOptions.sunburst.allowDrillToNode
+             */
+
             /**
              * The center of the sunburst chart relative to the plot area. Can be
              * percentages or pixel values.
              *
-             * @type {Array<String|Number>}
+             * @type {Array<String|Number>}	
              * @sample {highcharts} highcharts/plotoptions/pie-center/ Centered at 100, 100
              * @product highcharts
              */
             center: ['50%', '50%'],
+            colorByPoint: false,
             /**
              * @extends plotOptions.series.dataLabels
              * @excluding align,allowOverlap,staggerLines,step
@@ -2036,86 +2317,39 @@
              * structure.
              */
             levelIsConstant: true,
+            /**
+             * Determines the width of the ring per level.
+             * @since 6.0.5
+             * @sample {highcharts} highcharts/plotoptions/sunburst-levelsize/ Sunburst with various sizes per level
+             */
+            levelSize: {
+                /**
+                 * The value used for calculating the width of the ring. Its' affect is
+                 * determined by `levelSize.unit`.
+                 * @sample {highcharts} highcharts/plotoptions/sunburst-levelsize/ Sunburst with various sizes per level
+                 */
+                value: 1,
+                /**
+                 * How to interpret `levelSize.value`.
+                 * `percentage` gives a width relative to result of outer radius minus
+                 * inner radius.
+                 * `pixels` gives the ring a fixed width in pixels.
+                 * `weight` takes the remaining width after percentage and pixels, and
+                 * distributes it accross all "weighted" levels. The value relative to the
+                 * sum of all weights determines the width.
+                 * @validvalue ["percentage", "pixels", "weight"]
+                 * @sample {highcharts} highcharts/plotoptions/sunburst-levelsize/ Sunburst with various sizes per level
+                 */
+                unit: 'weight'
+            },
+            /**
+             * If a point is sliced, moved out from the center, how many pixels
+             * should it be moved?.
+             *
+             * @since 6.0.4
+             * @sample highcharts/plotoptions/sunburst-sliced Sliced sunburst
+             */
             slicedOffset: 10
-            /**
-             * Set options on specific levels. Takes precedence over series options,
-             * but not point options.
-             *
-             * @type {Array<Object>}
-             * @sample highcharts/demo/sunburst Sunburst chart
-             * @apioption plotOptions.sunburst.levels
-             */
-            /**
-             * Can set a `borderColor` on all points which lies on the same level.
-             *
-             * @type {Color}
-             * @apioption plotOptions.sunburst.levels.borderColor
-             */
-            /**
-             * Can set a `borderWidth` on all points which lies on the same level.
-             *
-             * @type {Number}
-             * @apioption plotOptions.sunburst.levels.borderWidth
-             */
-            /**
-             * Can set a `borderDashStyle` on all points which lies on the same level.
-             *
-             * @type {String}
-             * @apioption plotOptions.sunburst.levels.borderDashStyle
-             */
-            /**
-             * Can set a `color` on all points which lies on the same level.
-             *
-             * @type {Color}
-             * @apioption plotOptions.sunburst.levels.color
-             */
-            /**
-             * Can set a `colorVariation` on all points which lies on the same level.
-             *
-             * @type {Object}
-             * @apioption plotOptions.sunburst.levels.colorVariation
-             */
-            /**
-             * The key of a color variation. Currently supports `brightness` only.
-             *
-             * @type {String}
-             * @apioption plotOptions.sunburst.levels.colorVariation.key
-             */
-            /**
-             * The ending value of a color variation. The last sibling will receive this
-             * value.
-             *
-             * @type {Number}
-             * @apioption plotOptions.sunburst.levels.colorVariation.to
-             */
-            /**
-             * Can set a `dataLabels` on all points which lies on the same level.
-             *
-             * @type {Object}
-             * @apioption plotOptions.sunburst.levels.dataLabels
-             */
-            /**
-             * Can set a `rotation` on all points which lies on the same level.
-             *
-             * @type {Number}
-             * @apioption plotOptions.sunburst.levels.rotation
-             */
-            /**
-             * Can set a `rotationMode` on all points which lies on the same level.
-             *
-             * @type {String}
-             * @apioption plotOptions.sunburst.levels.rotationMode
-             */
-            /**
-             * When enabled the user can click on a point which is a parent and
-             * zoom in on its children.
-             *
-             * @sample highcharts/demo/sunburst
-             *         Allow drill to node
-             * @type {Boolean}
-             * @default false
-             * @apioption plotOptions.sunburst.allowDrillToNode
-             */
         };
 
         /**
@@ -2125,7 +2359,7 @@
             drawDataLabels: noop, // drawDataLabels is called in drawPoints
             drawPoints: function drawPoints() {
                 var series = this,
-                    levelMap = series.levelMap,
+                    mapOptionsToLevel = series.mapOptionsToLevel,
                     shapeRoot = series.shapeRoot,
                     group = series.group,
                     hasRendered = series.hasRendered,
@@ -2177,7 +2411,7 @@
                 }
                 each(points, function(point) {
                     var node = point.node,
-                        level = levelMap[node.levelDynamic],
+                        level = mapOptionsToLevel[node.level],
                         shapeExisting = point.shapeExisting || {},
                         shape = node.shapeArgs || {},
                         animationInfo,
@@ -2216,7 +2450,6 @@
                     point.dlOptions = getDlOptions({
                         level: level,
                         optionsPoint: point.options,
-                        optionsSeries: series.options,
                         shapeArgs: shape
                     });
                     if (!addedHack && visible) {
@@ -2266,21 +2499,22 @@
             /*
              * Set the shape arguments on the nodes. Recursive from root down.
              */
-            setShapeArgs: function(parent, parentValues, options) {
+            setShapeArgs: function(parent, parentValues, mapOptionsToLevel) {
                 var childrenValues = [],
+                    level = parent.level + 1,
+                    options = mapOptionsToLevel[level],
                     // Collect all children which should be included
                     children = grep(parent.children, function(n) {
                         return n.visible;
-                    });
+                    }),
+                    twoPi = 6.28; // Two times Pi.
                 childrenValues = this.layoutAlgorithm(parentValues, children, options);
                 each(children, function(child, index) {
                     var values = childrenValues[index],
                         angle = values.start + ((values.end - values.start) / 2),
                         radius = values.innerR + ((values.r - values.innerR) / 2),
-                        isCircle = (
-                            values.innerR === 0 &&
-                            (values.end - values.start) > 6.28
-                        ),
+                        radians = (values.end - values.start),
+                        isCircle = (values.innerR === 0 && radians > twoPi),
                         center = (
                             isCircle ? {
                                 x: values.x,
@@ -2296,14 +2530,11 @@
                                 child.val
                             ) :
                             child.childrenTotal
-                        ),
-                        innerArcFraction = (values.end - values.start) / (2 * Math.PI),
-                        perimeter = 2 * Math.PI * values.innerR;
-
+                        );
                     // The inner arc length is a convenience for data label filters.
                     if (this.points[child.i]) {
-                        this.points[child.i].innerArcLength =
-                            innerArcFraction * perimeter;
+                        this.points[child.i].innerArcLength = radians * values.innerR;
+                        this.points[child.i].outerArcLength = radians * values.r;
                     }
 
                     child.shapeArgs = merge(values, {
@@ -2315,7 +2546,7 @@
                     });
                     // If node has children, then call method recursively
                     if (child.children.length) {
-                        this.setShapeArgs(child, child.values, options);
+                        this.setShapeArgs(child, child.values, mapOptionsToLevel);
                     }
                 }, this);
             },
@@ -2328,56 +2559,64 @@
                     radians = series.startAndEndRadians = getStartAndEndRadians(options.startAngle, options.endAngle),
                     innerRadius = positions[3] / 2,
                     outerRadius = positions[2] / 2,
+                    diffRadius = outerRadius - innerRadius,
                     idRoot = series.rootNode = pick(series.rootNode, options.rootId, ''),
                     mapIdToNode = series.nodeMap,
+                    mapOptionsToLevel,
                     idTop,
                     nodeRoot = mapIdToNode && mapIdToNode[idRoot],
                     nodeTop,
-                    radiusPerLevel,
                     tree,
-                    height,
                     values;
                 series.shapeRoot = nodeRoot && nodeRoot.shapeArgs;
                 // Call prototype function
                 Series.prototype.translate.call(series);
-                // Create a object map from level to options
-                series.levelMap = reduce(series.options.levels || [],
-                    function(arr, item) {
-                        arr[item.level] = item;
-                        return arr;
-                    }, {});
                 // @todo Only if series.isDirtyData is true
                 tree = series.tree = series.getTree();
                 mapIdToNode = series.nodeMap;
                 nodeRoot = mapIdToNode[idRoot];
                 idTop = isString(nodeRoot.parent) ? nodeRoot.parent : '';
                 nodeTop = mapIdToNode[idTop];
+                mapOptionsToLevel = getLevelOptions({
+                    from: nodeRoot.level > 0 ? nodeRoot.level : 1,
+                    levels: series.options.levels,
+                    to: tree.height,
+                    defaults: {
+                        colorByPoint: options.colorByPoint,
+                        dataLabels: options.dataLabels,
+                        levelIsConstant: options.levelIsConstant,
+                        levelSize: options.levelSize,
+                        slicedOffset: options.slicedOffset
+                    }
+                });
+                // NOTE consider doing calculateLevelSizes in a callback to getLevelOptions
+                mapOptionsToLevel = calculateLevelSizes(mapOptionsToLevel, {
+                    diffRadius: diffRadius,
+                    from: nodeRoot.level > 0 ? nodeRoot.level : 1,
+                    to: tree.height
+                });
                 // TODO Try to combine setTreeValues & setColorRecursive to avoid
                 //  unnecessary looping.
                 setTreeValues(tree, {
                     before: cbSetTreeValuesBefore,
                     idRoot: idRoot,
                     levelIsConstant: options.levelIsConstant,
-                    levelMap: series.levelMap,
+                    mapOptionsToLevel: mapOptionsToLevel,
                     mapIdToNode: mapIdToNode,
                     points: series.points,
                     series: series
                 });
-                height = (idRoot === idTop) ? nodeRoot.height : nodeRoot.height + 1;
-                radiusPerLevel = (outerRadius - innerRadius) / height;
                 values = mapIdToNode[''].shapeArgs = {
                     end: radians.end,
                     r: innerRadius,
-                    radius: radiusPerLevel,
                     start: radians.start,
-                    val: nodeTop.val,
+                    val: nodeRoot.val,
                     x: positions[0],
                     y: positions[1]
                 };
-                this.setShapeArgs(nodeTop, values, {
-                    idRoot: idRoot,
-                    slicedOffset: options.slicedOffset
-                });
+                this.setShapeArgs(nodeTop, values, mapOptionsToLevel);
+                // Set mapOptionsToLevel on series for use in drawPoints.
+                series.mapOptionsToLevel = mapOptionsToLevel;
             },
 
             /**
@@ -2424,6 +2663,10 @@
                     // Delete this function to allow it only once
                     this.animate = null;
                 }
+            },
+            utils: {
+                calculateLevelSizes: calculateLevelSizes,
+                range: range
             }
         };
 
@@ -2486,11 +2729,13 @@
          */
 
         /**
-         * Whether to display a slice offset from the center.
+         * Whether to display a slice offset from the center. When a sunburst point is 
+         * sliced, its children are also offset.
          *
          * @type {Boolean}
          * @default false
          * @since 6.0.4
+         * @sample highcharts/plotoptions/sunburst-sliced Sliced sunburst
          * @product highcharts
          * @apioption series.sunburst.data.sliced
          */

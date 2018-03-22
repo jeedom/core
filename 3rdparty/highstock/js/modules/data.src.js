@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v6.0.4 (2017-12-15)
+ * @license Highcharts JS v6.0.7 (2018-02-16)
  * Data module
  *
  * (c) 2012-2017 Torstein Honsi
@@ -22,8 +22,6 @@
          *
          * License: www.highcharts.com/license
          */
-
-        /* global jQuery */
 
         // Utilities
         var win = Highcharts.win,
@@ -55,6 +53,91 @@
                 Array.prototype.some.call(arr, fn, ctx);
             };
         }
+
+        /**
+         * @typedef {Object} AjaxSettings
+         * @property {String} url - The URL to call
+         * @property {('get'|'post'|'update'|'delete')} type - The verb to use
+         * @property {('json'|'xml'|'text'|'octet')} dataType - The data type expected
+         * @property {Function} success - Function to call on success
+         * @property {Function} error - Function to call on error
+         * @property {Object} data - The payload to send
+         * @property {Object} headers - The headers; keyed on header name
+         */
+
+        /**
+         * Perform an Ajax call.
+         *
+         * @memberof Highcharts
+         * @param {AjaxSettings} - The Ajax settings to use
+         *
+         */
+        Highcharts.ajax = function(attr) {
+            var options = Highcharts.merge(true, {
+                    url: false,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: false,
+                    error: false,
+                    data: false,
+                    headers: {}
+                }, attr),
+                headers = {
+                    json: 'application/json',
+                    xml: 'application/xml',
+                    text: 'text/plain',
+                    octet: 'application/octet-stream'
+                },
+                r = new XMLHttpRequest();
+
+            function handleError(xhr, err) {
+                if (options.error) {
+                    options.error(xhr, err);
+                } else {
+                    // Maybe emit a highcharts error event here
+                }
+            }
+
+            if (!options.url) {
+                return false;
+            }
+
+            r.open(options.type.toUpperCase(), options.url, true);
+            r.setRequestHeader(
+                'Content-Type',
+                headers[options.dataType] || headers.text
+            );
+
+            Highcharts.objectEach(options.headers, function(val, key) {
+                r.setRequestHeader(key, val);
+            });
+
+            r.onreadystatechange = function() {
+                var res;
+
+                if (r.readyState === 4) {
+                    if (r.status === 200) {
+                        res = r.responseText;
+                        if (options.dataType === 'json') {
+                            try {
+                                res = JSON.parse(res);
+                            } catch (e) {
+                                return handleError(r, e);
+                            }
+                        }
+                        return options.success && options.success(res);
+                    }
+
+                    handleError(r, r.responseText);
+                }
+            };
+
+            try {
+                options.data = JSON.stringify(options.data);
+            } catch (e) {}
+
+            r.send(options.data || true);
+        };
 
         /**
          * The Data module provides a simplified interface for adding data to
@@ -138,7 +221,8 @@
          * *   `dd/mm/YY`
          * *   `mm/dd/YY`
          *
-         * @validvalue [undefined, "YYYY/mm/dd", "dd/mm/YYYY", "mm/dd/YYYY", "dd/mm/YYYY", "dd/mm/YY", "mm/dd/YY"]
+         * @validvalue [undefined, "YYYY/mm/dd", "dd/mm/YYYY", "mm/dd/YYYY",
+         *             "dd/mm/YYYY", "dd/mm/YY", "mm/dd/YY"]
          * @type {String}
          * @see [data.parseDate](#data.parseDate)
          * @sample {highcharts} highcharts/data/dateformat-auto/ Best guess date format
@@ -207,9 +291,9 @@
          */
 
         /**
-         * The Google Spreadsheet worksheet to use in combination with [googleSpreadsheetKey](#data.
-         * googleSpreadsheetKey). The available id's from your sheet can be
-         * read from `https://spreadsheets.google.com/feeds/worksheets/{key}/public/basic`
+         * The Google Spreadsheet worksheet to use in combination with
+         * [googleSpreadsheetKey](#data.googleSpreadsheetKey). The available id's from
+         * your sheet can be read from `https://spreadsheets.google.com/feeds/worksheets/{key}/public/basic`.
          *
          * @type {String}
          * @sample {highcharts} highcharts/data/google-spreadsheet/ Load a Google Spreadsheet
@@ -258,8 +342,8 @@
         /**
          * A callback function to access the parsed columns, the two-dimentional
          * input data array directly, before they are interpreted into series
-         * data and categories. Return `false` to stop completion, or call `this.
-         * complete()` to continue async.
+         * data and categories. Return `false` to stop completion, or call
+         * `this.complete()` to continue async.
          *
          * @type {Function}
          * @see [data.complete](#data.complete)
@@ -352,16 +436,29 @@
              * Initialize the Data object with the given options
              */
             init: function(options, chartOptions) {
+
+                var decimalPoint = options.decimalPoint;
+
+                if (decimalPoint !== '.' && decimalPoint !== ',') {
+                    decimalPoint = undefined;
+                }
                 this.options = options;
                 this.chartOptions = chartOptions;
-                this.columns = options.columns || this.rowsToColumns(options.rows) || [];
+                this.columns = (
+                    options.columns ||
+                    this.rowsToColumns(options.rows) || []
+                );
                 this.firstRowAsNames = pick(options.firstRowAsNames, true);
-                this.decimalRegex = options.decimalPoint && new RegExp('^(-?[0-9]+)' + options.decimalPoint + '([0-9]+)$');
 
-                // This is a two-dimensional array holding the raw, trimmed string values
-                // with the same organisation as the columns array. It makes it possible
-                // for example to revert from interpreted timestamps to string-based
-                // categories.
+                this.decimalRegex = (
+                    decimalPoint &&
+                    new RegExp('^(-?[0-9]+)' + decimalPoint + '([0-9]+)$') // eslint-disable-line security/detect-non-literal-regexp
+                );
+
+                // This is a two-dimensional array holding the raw, trimmed string
+                // values with the same organisation as the columns array. It makes it
+                // possible for example to revert from interpreted timestamps to
+                // string-based categories.
                 this.rawColumns = [];
 
                 // No need to parse or interpret anything
@@ -384,21 +481,29 @@
             },
 
             /**
-             * Get the column distribution. For example, a line series takes a single column for
-             * Y values. A range series takes two columns for low and high values respectively,
-             * and an OHLC series takes four columns.
+             * Get the column distribution. For example, a line series takes a single
+             * column for Y values. A range series takes two columns for low and high
+             * values respectively, and an OHLC series takes four columns.
              */
             getColumnDistribution: function() {
                 var chartOptions = this.chartOptions,
                     options = this.options,
                     xColumns = [],
                     getValueCount = function(type) {
-                        return (Highcharts.seriesTypes[type || 'line'].prototype.pointArrayMap || [0]).length;
+                        return (
+                            Highcharts.seriesTypes[type || 'line'].prototype
+                            .pointArrayMap || [0]
+                        ).length;
                     },
                     getPointArrayMap = function(type) {
-                        return Highcharts.seriesTypes[type || 'line'].prototype.pointArrayMap;
+                        return Highcharts.seriesTypes[type || 'line']
+                            .prototype.pointArrayMap;
                     },
-                    globalType = chartOptions && chartOptions.chart && chartOptions.chart.type,
+                    globalType = (
+                        chartOptions &&
+                        chartOptions.chart &&
+                        chartOptions.chart.type
+                    ),
                     individualCounts = [],
                     seriesBuilders = [],
                     seriesIndex = 0,
@@ -413,7 +518,8 @@
                     xColumns.push(mapping.x || 0);
                 });
 
-                // If there are no defined series with x-columns, use the first column as x column
+                // If there are no defined series with x-columns, use the first column
+                // as x column
                 if (xColumns.length === 0) {
                     xColumns.push(0);
                 }
@@ -422,7 +528,8 @@
                 // the mapping options.
                 each((options && options.seriesMapping) || [], function(mapping) {
                     var builder = new SeriesBuilder(),
-                        numberOfValueColumnsNeeded = individualCounts[seriesIndex] || getValueCount(globalType),
+                        numberOfValueColumnsNeeded = individualCounts[seriesIndex] ||
+                        getValueCount(globalType),
                         seriesArr = (chartOptions && chartOptions.series) || [],
                         series = seriesArr[seriesIndex] || {},
                         pointArrayMap = getPointArrayMap(series.type || globalType) || ['y'];
@@ -441,8 +548,8 @@
                     // Add missing columns
                     for (i = 0; i < numberOfValueColumnsNeeded; i++) {
                         if (!builder.hasReader(pointArrayMap[i])) {
-                            // builder.addNextColumnReader(pointArrayMap[i]);
-                            // Create and add a column reader for the next free column index
+                            // Create and add a column reader for the next free column
+                            // index
                             builder.addColumnReader(undefined, pointArrayMap[i]);
                         }
                     }
@@ -466,8 +573,8 @@
             },
 
             /**
-             * When the data is parsed into columns, either by CSV, table, GS or direct input,
-             * continue with other operations.
+             * When the data is parsed into columns, either by CSV, table, GS or direct
+             * input, continue with other operations.
              */
             dataFound: function() {
 
@@ -498,9 +605,16 @@
                     options = inOptions || this.options,
                     csv = options.csv,
                     columns,
-                    startRow = typeof options.startRow !== 'undefined' && options.startRow ? options.startRow : 0,
+                    startRow = (
+                        typeof options.startRow !== 'undefined' && options.startRow ?
+                        options.startRow :
+                        0
+                    ),
                     endRow = options.endRow || Number.MAX_VALUE,
-                    startColumn = typeof options.startColumn !== 'undefined' && options.startColumn ? options.startColumn : 0,
+                    startColumn = (
+                        typeof options.startColumn !== 'undefined' &&
+                        options.startColumn
+                    ) ? options.startColumn : 0,
                     endColumn = options.endColumn || Number.MAX_VALUE,
                     itemDelimiter,
                     lines,
@@ -762,8 +876,8 @@
                             options.decimalPoint = ',';
                         }
 
-                        // Apply a new decimal regex based on the pressumed decimal sep.
-                        self.decimalRegex = new RegExp(
+                        // Apply a new decimal regex based on the presumed decimal sep.
+                        self.decimalRegex = new RegExp( // eslint-disable-line security/detect-non-literal-regexp
                             '^(-?[0-9]+)' +
                             options.decimalPoint +
                             '([0-9]+)$'
@@ -797,7 +911,10 @@
                     }
 
                     for (; i < limit; i++) {
-                        if (typeof data[i] !== 'undefined' && data[i] && data[i].length) {
+                        if (
+                            typeof data[i] !== 'undefined' &&
+                            data[i] && data[i].length
+                        ) {
                             thing = data[i]
                                 .trim()
                                 .replace(/\//g, ' ')
@@ -817,7 +934,9 @@
 
                                     if (thing[j]) {
 
-                                        max[j] = (!max[j] || max[j] < thing[j]) ? thing[j] : max[j];
+                                        max[j] = (!max[j] || max[j] < thing[j]) ?
+                                            thing[j] :
+                                            max[j];
 
                                         if (typeof stable[j] !== 'undefined') {
                                             if (stable[j] !== thing[j]) {
@@ -851,7 +970,11 @@
                         // This handles a few edge cases with hard to guess dates
                         for (j = 0; j < stable.length; j++) {
                             if (stable[j] !== false) {
-                                if (max[j] > 12 && guessedFormat[j] !== 'YY' && guessedFormat[j] !== 'YYYY') {
+                                if (
+                                    max[j] > 12 &&
+                                    guessedFormat[j] !== 'YY' &&
+                                    guessedFormat[j] !== 'YYYY'
+                                ) {
                                     guessedFormat[j] = 'YY';
                                 }
                             } else if (max[j] > 12 && guessedFormat[j] === 'mm') {
@@ -869,7 +992,8 @@
 
                         calculatedFormat = guessedFormat.join('/');
 
-                        // If the caculated format is not valid, we need to present an error.
+                        // If the caculated format is not valid, we need to present an
+                        // error.
 
                         if (!(options.dateFormats || self.dateFormats)[calculatedFormat]) {
                             // This should emit an event instead
@@ -947,7 +1071,11 @@
                     //		isBlank = trimmed === '',
                     //		items;
 
-                    //	if (rowNo >= startRow && rowNo <= endRow && !isComment && !isBlank) {
+                    //	if (
+                    //		rowNo >= startRow &&
+                    //		rowNo <= endRow &&
+                    //		!isComment && !isBlank
+                    //	) {
                     //		items = line.split(itemDelimiter);
                     //		each(items, function (item, colNo) {
                     //			if (colNo >= startColumn && colNo <= endColumn) {
@@ -990,12 +1118,17 @@
                     each(table.getElementsByTagName('tr'), function(tr, rowNo) {
                         if (rowNo >= startRow && rowNo <= endRow) {
                             each(tr.children, function(item, colNo) {
-                                if ((item.tagName === 'TD' || item.tagName === 'TH') && colNo >= startColumn && colNo <= endColumn) {
+                                if (
+                                    (item.tagName === 'TD' || item.tagName === 'TH') &&
+                                    colNo >= startColumn &&
+                                    colNo <= endColumn
+                                ) {
                                     if (!columns[colNo - startColumn]) {
                                         columns[colNo - startColumn] = [];
                                     }
 
-                                    columns[colNo - startColumn][rowNo - startRow] = item.innerHTML;
+                                    columns[colNo - startColumn][rowNo - startRow] =
+                                        item.innerHTML;
                                 }
                             });
                         }
@@ -1012,6 +1145,10 @@
                 var self = this,
                     options = this.options,
                     googleSpreadsheetKey = options.googleSpreadsheetKey,
+                    // use sheet 1 as the default rather than od6
+                    // as the latter sometimes cause issues (it looks like it can
+                    // be renamed in some cases, ref. a fogbugz case).
+                    worksheet = options.googleSpreadsheetWorksheet || 1,
                     columns = this.columns,
                     startRow = options.startRow || 0,
                     endRow = options.endRow || Number.MAX_VALUE,
@@ -1020,67 +1157,107 @@
                     gr, // google row
                     gc; // google column
 
-                if (googleSpreadsheetKey) {
-                    jQuery.ajax({
+                /*
+                 * Fetch the actual spreadsheet using XMLHttpRequest
+                 */
+                function fetchSheet(fn) {
+                    var url = [
+                        'https://spreadsheets.google.com/feeds/cells',
+                        googleSpreadsheetKey,
+                        worksheet,
+                        'public/values?alt=json'
+                    ].join('/');
+
+                    Highcharts.ajax({
+                        url: url,
                         dataType: 'json',
-                        url: 'https://spreadsheets.google.com/feeds/cells/' +
-                            googleSpreadsheetKey + '/' + (options.googleSpreadsheetWorksheet || 'od6') +
-                            '/public/values?alt=json-in-script&callback=?',
-                        error: options.error,
-                        success: function(json) {
-                            // Prepare the data from the spreadsheat
-                            var cells = json.feed.entry,
-                                cell,
-                                cellCount = cells.length,
-                                colCount = 0,
-                                rowCount = 0,
-                                i;
-
-                            // First, find the total number of columns and rows that
-                            // are actually filled with data
-                            for (i = 0; i < cellCount; i++) {
-                                cell = cells[i];
-                                colCount = Math.max(colCount, cell.gs$cell.col);
-                                rowCount = Math.max(rowCount, cell.gs$cell.row);
-                            }
-
-                            // Set up arrays containing the column data
-                            for (i = 0; i < colCount; i++) {
-                                if (i >= startColumn && i <= endColumn) {
-                                    // Create new columns with the length of either end-start or rowCount
-                                    columns[i - startColumn] = [];
-
-                                    // Setting the length to avoid jslint warning
-                                    columns[i - startColumn].length = Math.min(rowCount, endRow - startRow);
-                                }
-                            }
-
-                            // Loop over the cells and assign the value to the right
-                            // place in the column arrays
-                            for (i = 0; i < cellCount; i++) {
-                                cell = cells[i];
-                                gr = cell.gs$cell.row - 1; // rows start at 1
-                                gc = cell.gs$cell.col - 1; // columns start at 1
-
-                                // If both row and col falls inside start and end
-                                // set the transposed cell value in the newly created columns
-                                if (gc >= startColumn && gc <= endColumn &&
-                                    gr >= startRow && gr <= endRow) {
-                                    columns[gc - startColumn][gr - startRow] = cell.content.$t;
-                                }
-                            }
-
-                            // Insert null for empty spreadsheet cells (#5298)
-                            each(columns, function(column) {
-                                for (i = 0; i < column.length; i++) {
-                                    if (column[i] === undefined) {
-                                        column[i] = null;
-                                    }
-                                }
-                            });
-
-                            self.dataFound();
+                        success: fn,
+                        error: function(xhr, text) {
+                            return options.error && options.error(text, xhr);
                         }
+                    });
+                }
+
+                if (googleSpreadsheetKey) {
+                    fetchSheet(function(json) {
+                        // Prepare the data from the spreadsheat
+                        var cells = json.feed.entry,
+                            cell,
+                            cellCount = cells.length,
+                            colCount = 0,
+                            rowCount = 0,
+                            val,
+                            cellInner,
+                            i;
+
+                        // First, find the total number of columns and rows that
+                        // are actually filled with data
+                        for (i = 0; i < cellCount; i++) {
+                            cell = cells[i];
+                            colCount = Math.max(colCount, cell.gs$cell.col);
+                            rowCount = Math.max(rowCount, cell.gs$cell.row);
+                        }
+
+                        // Set up arrays containing the column data
+                        for (i = 0; i < colCount; i++) {
+                            if (i >= startColumn && i <= endColumn) {
+                                // Create new columns with the length of either
+                                // end-start or rowCount
+                                columns[i - startColumn] = [];
+
+                                // Setting the length to avoid jslint warning
+                                columns[i - startColumn].length = Math.min(
+                                    rowCount,
+                                    endRow - startRow
+                                );
+                            }
+                        }
+
+                        // Loop over the cells and assign the value to the right
+                        // place in the column arrays
+                        for (i = 0; i < cellCount; i++) {
+                            cell = cells[i];
+                            gr = cell.gs$cell.row - 1; // rows start at 1
+                            gc = cell.gs$cell.col - 1; // columns start at 1
+
+                            // If both row and col falls inside start and end set the
+                            // transposed cell value in the newly created columns
+                            if (gc >= startColumn && gc <= endColumn &&
+                                gr >= startRow && gr <= endRow) {
+
+                                cellInner = cell.gs$cell || cell.content;
+
+                                val = null;
+
+                                if (cellInner.numericValue) {
+                                    if (cellInner.$t.indexOf('/') >= 0 ||
+                                        cellInner.$t.indexOf('-') >= 0) {
+                                        // This is a date - for future reference.
+                                        val = cellInner.$t;
+                                    } else if (cellInner.$t.indexOf('%') > 0) {
+                                        // Percentage
+                                        val = parseFloat(cellInner.numericValue) * 100;
+                                    } else {
+                                        val = parseFloat(cellInner.numericValue);
+                                    }
+                                } else if (cellInner.$t && cellInner.$t.length) {
+                                    val = cellInner.$t;
+                                }
+
+                                columns[gc - startColumn][gr - startRow] = val;
+                            }
+                        }
+
+                        // Insert null for empty spreadsheet cells (#5298)
+                        each(columns, function(column) {
+                            for (i = 0; i < column.length; i++) {
+                                if (column[i] === undefined) {
+                                    column[i] = null;
+                                }
+                            }
+                        });
+
+                        self.dataFound();
                     });
                 }
             },
@@ -1137,7 +1314,11 @@
                     descending,
                     columnTypes = this.options.columnTypes || [],
                     columnType = columnTypes[col],
-                    forceCategory = isXColumn && ((chartOptions && chartOptions.xAxis && splat(chartOptions.xAxis)[0].type === 'category') || columnType === 'string');
+                    forceCategory = isXColumn && ((
+                        chartOptions &&
+                        chartOptions.xAxis &&
+                        splat(chartOptions.xAxis)[0].type === 'category'
+                    ) || columnType === 'string');
 
                 if (!rawColumns[col]) {
                     rawColumns[col] = [];
@@ -1154,7 +1335,8 @@
                         rawColumns[col][row] = trimVal;
                     }
 
-                    // Disable number or date parsing by setting the X axis type to category
+                    // Disable number or date parsing by setting the X axis type to
+                    // category
                     if (forceCategory || (row === 0 && firstRowAsNames)) {
                         column[row] = '' + trimVal;
 
@@ -1162,8 +1344,12 @@
 
                         column[row] = floatVal;
 
-                        // If the number is greater than milliseconds in a year, assume datetime
-                        if (floatVal > 365 * 24 * 3600 * 1000 && columnType !== 'float') {
+                        // If the number is greater than milliseconds in a year, assume
+                        // datetime
+                        if (
+                            floatVal > 365 * 24 * 3600 * 1000 &&
+                            columnType !== 'float'
+                        ) {
                             column.isDatetime = true;
                         } else {
                             column.isNumeric = true;
@@ -1173,28 +1359,31 @@
                             descending = floatVal > column[row + 1];
                         }
 
-                        // String, continue to determine if it is a date string or really a string
+                        // String, continue to determine if it is a date string or really a
+                        // string
                     } else {
                         if (trimVal && trimVal.length) {
                             dateVal = this.parseDate(val);
                         }
 
                         // Only allow parsing of dates if this column is an x-column
-                        if (isXColumn && isNumber(dateVal) && columnType !== 'float') { // is date
+                        if (isXColumn && isNumber(dateVal) && columnType !== 'float') {
                             backup[row] = val;
                             column[row] = dateVal;
                             column.isDatetime = true;
 
-                            // Check if the dates are uniformly descending or ascending. If they
-                            // are not, chances are that they are a different time format, so check
-                            // for alternative.
+                            // Check if the dates are uniformly descending or ascending.
+                            // If they are not, chances are that they are a different
+                            // time format, so check for alternative.
                             if (column[row + 1] !== undefined) {
                                 diff = dateVal > column[row + 1];
                                 if (diff !== descending && descending !== undefined) {
                                     if (this.alternativeFormat) {
                                         this.dateFormat = this.alternativeFormat;
                                         row = column.length;
-                                        this.alternativeFormat = this.dateFormats[this.dateFormat].alternative;
+                                        this.alternativeFormat =
+                                            this.dateFormats[this.dateFormat]
+                                            .alternative;
                                     } else {
                                         column.unsorted = true;
                                     }
@@ -1211,15 +1400,17 @@
                     }
                 }
 
-                // If strings are intermixed with numbers or dates in a parsed column, it is an indication
-                // that parsing went wrong or the data was not intended to display as numbers or dates and
-                // parsing is too aggressive. Fall back to categories. Demonstrated in the
+                // If strings are intermixed with numbers or dates in a parsed column,
+                // it is an indication that parsing went wrong or the data was not
+                // intended to display as numbers or dates and parsing is too
+                // aggressive. Fall back to categories. Demonstrated in the
                 // highcharts/demo/column-drilldown sample.
                 if (isXColumn && column.mixed) {
                     columns[col] = rawColumns[col];
                 }
 
-                // If the 0 column is date or number and descending, reverse all columns.
+                // If the 0 column is date or number and descending, reverse all
+                // columns.
                 if (isXColumn && descending && this.options.sort) {
                     for (col = 0; col < columns.length; col++) {
                         columns[col].reverse();
@@ -1231,8 +1422,8 @@
             },
 
             /**
-             * A collection of available date formats, extendable from the outside to support
-             * custom date formats.
+             * A collection of available date formats, extendable from the outside to
+             * support custom date formats.
              */
             dateFormats: {
                 'YYYY/mm/dd': {
@@ -1279,7 +1470,8 @@
             },
 
             /**
-             * Parse a date and return it as a number. Overridable through options.parseDate.
+             * Parse a date and return it as a number. Overridable through
+             * `options.parseDate`.
              */
             parseDate: function(val) {
                 var parseDate = this.options.parseDate,
@@ -1324,9 +1516,13 @@
                     // Fall back to Date.parse
                     if (!match) {
                         match = Date.parse(val);
-                        // External tools like Date.js and MooTools extend Date object and
-                        // returns a date.
-                        if (typeof match === 'object' && match !== null && match.getTime) {
+                        // External tools like Date.js and MooTools extend Date object
+                        // and returns a date.
+                        if (
+                            typeof match === 'object' &&
+                            match !== null &&
+                            match.getTime
+                        ) {
                             ret = match.getTime() - match.getTimezoneOffset() * 60000;
 
                             // Timestamp
@@ -1439,13 +1635,19 @@
 
                     // Use the next columns for series
                     series = [];
-                    freeIndexes = this.getFreeIndexes(columns.length, this.valueCount.seriesBuilders);
+                    freeIndexes = this.getFreeIndexes(
+                        columns.length,
+                        this.valueCount.seriesBuilders
+                    );
 
                     // Populate defined series
-                    for (seriesIndex = 0; seriesIndex < this.valueCount.seriesBuilders.length; seriesIndex++) {
+                    for (
+                        seriesIndex = 0; seriesIndex < this.valueCount.seriesBuilders.length; seriesIndex++
+                    ) {
                         builder = this.valueCount.seriesBuilders[seriesIndex];
 
-                        // If the builder can be populated with remaining columns, then add it to allBuilders
+                        // If the builder can be populated with remaining columns, then
+                        // add it to allBuilders
                         if (builder.populateColumns(freeIndexes)) {
                             allSeriesBuilders.push(builder);
                         }
@@ -1463,18 +1665,26 @@
                         }
 
                         for (i = 0; i < this.valueCount.global; i++) {
-                            // Create and add a column reader for the next free column index
-                            builder.addColumnReader(undefined, this.valueCount.globalPointArrayMap[i]);
+                            // Create and add a column reader for the next free column
+                            // index
+                            builder.addColumnReader(
+                                undefined,
+                                this.valueCount.globalPointArrayMap[i]
+                            );
                         }
 
-                        // If the builder can be populated with remaining columns, then add it to allBuilders
+                        // If the builder can be populated with remaining columns, then
+                        // add it to allBuilders
                         if (builder.populateColumns(freeIndexes)) {
                             allSeriesBuilders.push(builder);
                         }
                     }
 
                     // Get the data-type from the first series x column
-                    if (allSeriesBuilders.length > 0 && allSeriesBuilders[0].readers.length > 0) {
+                    if (
+                        allSeriesBuilders.length > 0 &&
+                        allSeriesBuilders[0].readers.length > 0
+                    ) {
                         typeCol = columns[allSeriesBuilders[0].readers[0].columnIndex];
                         if (typeCol !== undefined) {
                             if (typeCol.isDatetime) {
@@ -1484,9 +1694,12 @@
                             }
                         }
                     }
-                    // Axis type is category, then the "x" column should be called "name"
+                    // Axis type is category, then the "x" column should be called
+                    // "name"
                     if (type === 'category') {
-                        for (seriesIndex = 0; seriesIndex < allSeriesBuilders.length; seriesIndex++) {
+                        for (
+                            seriesIndex = 0; seriesIndex < allSeriesBuilders.length; seriesIndex++
+                        ) {
                             builder = allSeriesBuilders[seriesIndex];
                             for (r = 0; r < builder.readers.length; r++) {
                                 if (builder.readers[r].configName === 'x') {
@@ -1497,10 +1710,13 @@
                     }
 
                     // Read data for all builders
-                    for (seriesIndex = 0; seriesIndex < allSeriesBuilders.length; seriesIndex++) {
+                    for (
+                        seriesIndex = 0; seriesIndex < allSeriesBuilders.length; seriesIndex++
+                    ) {
                         builder = allSeriesBuilders[seriesIndex];
 
-                        // Iterate down the cells of each column and add data to the series
+                        // Iterate down the cells of each column and add data to the
+                        // series
                         data = [];
                         for (j = 0; j < columns[0].length; j++) {
                             data[j] = builder.read(columns, j);
@@ -1537,8 +1753,8 @@
                         options.complete(chartOptions);
                     }
 
-                    // The afterComplete hook is used internally to avoid conflict with the externally
-                    // available complete option.
+                    // The afterComplete hook is used internally to avoid conflict with
+                    // the externally available complete option.
                     if (options.afterComplete) {
                         options.afterComplete(chartOptions);
                     }
@@ -1567,39 +1783,49 @@
 
         // Extend Chart.init so that the Chart constructor accepts a new configuration
         // option group, data.
-        Highcharts.wrap(Highcharts.Chart.prototype, 'init', function(proceed, userOptions, callback) {
-            var chart = this;
+        Highcharts.wrap(
+            Highcharts.Chart.prototype,
+            'init',
+            function(proceed, userOptions, callback) {
+                var chart = this;
 
-            if (userOptions && userOptions.data) {
-                chart.data = new Data(Highcharts.extend(userOptions.data, {
+                if (userOptions && userOptions.data) {
+                    chart.data = new Data(Highcharts.extend(userOptions.data, {
 
-                    afterComplete: function(dataOptions) {
-                        var i, series;
+                        afterComplete: function(dataOptions) {
+                            var i, series;
 
-                        // Merge series configs
-                        if (userOptions.hasOwnProperty('series')) {
-                            if (typeof userOptions.series === 'object') {
-                                i = Math.max(userOptions.series.length, dataOptions.series.length);
-                                while (i--) {
-                                    series = userOptions.series[i] || {};
-                                    userOptions.series[i] = Highcharts.merge(series, dataOptions.series[i]);
+                            // Merge series configs
+                            if (userOptions.hasOwnProperty('series')) {
+                                if (typeof userOptions.series === 'object') {
+                                    i = Math.max(
+                                        userOptions.series.length,
+                                        dataOptions.series.length
+                                    );
+                                    while (i--) {
+                                        series = userOptions.series[i] || {};
+                                        userOptions.series[i] = Highcharts.merge(
+                                            series,
+                                            dataOptions.series[i]
+                                        );
+                                    }
+                                } else { // Allow merging in dataOptions.series (#2856)
+                                    delete userOptions.series;
                                 }
-                            } else { // Allow merging in dataOptions.series (#2856)
-                                delete userOptions.series;
                             }
+
+                            // Do the merge
+                            userOptions = Highcharts.merge(dataOptions, userOptions);
+
+                            proceed.call(chart, userOptions, callback);
                         }
-
-                        // Do the merge
-                        userOptions = Highcharts.merge(dataOptions, userOptions);
-
-                        proceed.call(chart, userOptions, callback);
-                    }
-                }), userOptions);
-                chart.data.chart = chart;
-            } else {
-                proceed.call(chart, userOptions, callback);
+                    }), userOptions);
+                    chart.data.chart = chart;
+                } else {
+                    proceed.call(chart, userOptions, callback);
+                }
             }
-        });
+        );
 
         /**
          * Creates a new SeriesBuilder. A SeriesBuilder consists of a number
