@@ -99,11 +99,17 @@ try {
 	}
 
 	if (init('action') == 'copyHistoryToCmd') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
 		unautorizedInDemo();
 		ajax::success(history::copyHistoryToCmd(init('source_id'), init('target_id')));
 	}
 
 	if (init('action') == 'replaceCmd') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
 		unautorizedInDemo();
 		ajax::success(jeedom::replaceTag(array('#' . str_replace('#', '', init('source_id')) . '#' => '#' . str_replace('#', '', init('target_id')) . '#')));
 	}
@@ -118,6 +124,9 @@ try {
 	}
 
 	if (init('action') == 'usedBy') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
 		$cmd = cmd::byId(init('id'));
 		if (!is_object($cmd)) {
 			throw new Exception(__('Commande inconnue : ', __FILE__) . init('id'), 9999);
