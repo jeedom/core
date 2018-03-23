@@ -91,13 +91,13 @@ class network {
 		}
 		if ($_mode == 'external') {
 			if ($_protocole == 'ip') {
-				if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '') {
+				if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '' && config::byKey('network::disableMangement') == 0) {
 					return getIpFromString(config::byKey('jeedom::url'));
 				}
 				return getIpFromString(config::byKey('externalAddr'));
 			}
 			if ($_protocole == 'ip:port') {
-				if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '') {
+				if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '' && config::byKey('network::disableMangement') == 0) {
 					$url = parse_url(config::byKey('jeedom::url'));
 					if (isset($url['host'])) {
 						if (isset($url['port'])) {
@@ -110,7 +110,7 @@ class network {
 				return config::byKey('externalAddr') . ':' . config::byKey('externalPort', 'core', 80);
 			}
 			if ($_protocole == 'proto:dns:port' || $_protocole == 'proto:ip:port') {
-				if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '') {
+				if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '' && config::byKey('network::disableMangement') == 0) {
 					$url = parse_url(config::byKey('jeedom::url'));
 					$return = '';
 					if (isset($url['scheme'])) {
@@ -127,7 +127,7 @@ class network {
 				return config::byKey('externalProtocol') . config::byKey('externalAddr') . ':' . config::byKey('externalPort', 'core', 80);
 			}
 			if ($_protocole == 'proto:dns' || $_protocole == 'proto:ip') {
-				if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '') {
+				if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '' && config::byKey('network::disableMangement') == 0) {
 					$url = parse_url(config::byKey('jeedom::url'));
 					$return = '';
 					if (isset($url['scheme'])) {
@@ -144,7 +144,7 @@ class network {
 				return config::byKey('externalProtocol') . config::byKey('externalAddr');
 			}
 			if ($_protocole == 'dns:port') {
-				if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '') {
+				if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '' && config::byKey('network::disableMangement') == 0) {
 					$url = parse_url(config::byKey('jeedom::url'));
 					if (isset($url['host'])) {
 						if (isset($url['port'])) {
@@ -157,7 +157,7 @@ class network {
 				return config::byKey('externalAddr') . ':' . config::byKey('externalPort', 'core', 80);
 			}
 			if ($_protocole == 'proto') {
-				if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '') {
+				if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '' && config::byKey('network::disableMangement') == 0) {
 					$url = parse_url(config::byKey('jeedom::url'));
 					if (isset($url['scheme'])) {
 						return $url['scheme'] . '://';
@@ -165,7 +165,7 @@ class network {
 				}
 				return config::byKey('externalProtocol');
 			}
-			if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '') {
+			if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '' && config::byKey('network::disableMangement') == 0) {
 				return trim(config::byKey('jeedom::url') . '/' . trim(config::byKey('externalComplement', 'core', ''), '/'), '/');
 			}
 			return trim(config::byKey('externalProtocol') . config::byKey('externalAddr') . ':' . config::byKey('externalPort', 'core', 80) . '/' . trim(config::byKey('externalComplement'), '/'), '/');
@@ -238,9 +238,6 @@ class network {
 
 	public static function dns_create() {
 		if (config::byKey('dns::token') == '') {
-			return;
-		}
-		if (config::byKey('market::allowDNS') != 1) {
 			return;
 		}
 		try {
