@@ -18,55 +18,55 @@ Sie können auch Widgets, Grafiken (die aus mehreren Daten bestehen
 können) oder Tabellenbereiche (die die Widgets der Befehle 
 enthalten) einfügen.
 
-Sur cette page, on retrouve un bouton en haut à gauche pour montrer ou
-masquer la liste des vues ainsi que le bouton pour en ajouter une
-(Jeedom vous demandera son nom et vous enverra sur la page d’édition) :
+Auf dieser Seite finden Sie oben links eine Schaltfläche zum ein- oder
+ausblenden der Ansichten Liste, sowie die Schaltfläche zum hinzufügen
+(Jeedom wird Sie nach einen Namen fragen und Sie kommen anschließend auf die Bearbeitungsseite).
 
 > **Tip**
 >
-> Vous pouvez dans votre profil modifier cette option pour que la liste
-> des vues soit visible par défaut.
+> Sie können in Ihrem Profil diese Option ändern, damit die Liste der
+> Ansichten standardmäßig sichtbar ist.
 
-Un bouton en haut à droite vous permet d’éditer la vue courante.
+Mit der Schaltfläche oben rechts können Sie die aktuelle Ansicht bearbeiten.
 
-Ajout/Edition d’une vue 
+Hinzufügen/Bearbeiten einer Ansicht
 =======================
 
-Le principe est assez simple : une vue est composée de zones (on peut en
-mettre autant que l’on veut). Chaque zone est de type graphique, widget
-ou tableau, en fonction du type vous pourrez mettre des widgets
-d’équipement, de commande ou des graphiques dans celle-ci.
+Das Prinzip ist ganz einfach : Eine Ansicht besteht aus Bereichen (Sie
+können so viele verwenden wie Sie wollen). Jeder Bereich kann vom Typ
+Grafik, Widget oder Tabelle sein, je nach dem Typ, sind Sie in der Lage von
+den Geräten, Widgets, Befehle oder Grafiken in diesem zu verwenden.
 
 > **Tip**
 >
-> Il est possible de déplacer l’ordre des zones par glisser/déposer.
+> Es ist möglich, die Reihenfolge der Bereiche durch Ziehen und Ablegen zu verschieben.
 
-Sur la gauche de la page on retrouve la liste des vues ainsi qu’un
-bouton d’ajout.
+Auf der linken Seite befindet sich die Liste der Ansichten sowie eine
+Schaltfläche zum hinzufügen.
 
-Au centre vous avez un bouton pour renommer une vue, un bouton d’ajout
-de zone, un bouton pour voir le résultat, un bouton pour sauvegarder et
-un bouton pour supprimer la vue.
+Im Zentrum haben Sie eine Schaltfläche, zum umbenennen einer Ansicht,
+eine Schaltfläche Bereich hinzufügen, eine Schaltfläche zum Speichern und
+eine Schaltfläche zum löschen der Ansicht. 
 
-Après avoir cliqué sur le bouton d’ajout de zone, Jeedom vous demandera
-son nom et son type.
+Nachdem die Schaltfläche "Bereich hinzufügen" geklickt wurde, bittet Sie
+Jeedom einen Namen und den Typ einzugeben.
 
-Sur chaque zone vous avez les options générales suivantes :
+Für jeden Bereich haben Sie folgende allgemeine Optionen :
 
--   **Largeur** : définit la largeur de la zone (en mode
-    desktop seulement)
+-   **Breite** : Definiert die Breite des Bereiches (nur im
+    Desktop-Modus verfügbar).
 
--   **Editer** : permet de changer le nom de la zone
+-   **Bearbeiten** : Erlaubt den Namen des Bereichs zu ändern.
 
--   **Supprimer** : permet de supprimer la zone
+-   **Löschen** : Ermöglicht den Bereich zu löschen.
 
-Zone de type widget 
+Bereich, Widget-Typ
 -------------------
 
-Une zone de type widget permet d’ajouter des widgets :
+In einem Bereich vom Typ Widget, können Sie Widgets hinzufügen :
 
--   **Ajouter widget** : permet d’ajouter/modifier des widgets à
-    afficher dans la zone
+-   **Widget hinzufügen** : Ermöglicht das Hinzufügen/Bearbeiten von Widgets 
+    zur Anzeige in dem Bereich
 
 > **Tip**
 >
