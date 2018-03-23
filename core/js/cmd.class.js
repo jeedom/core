@@ -867,7 +867,8 @@ jeedom.cmd.setOrder = function(_params) {
 
 
 jeedom.cmd.displayDuration = function(_date,_el){
-    var timeInMillis = Date.parse(_date);
+    var arrDate = _date.split(/-|\s|:/);
+    var timeInMillis = new Date(arrDate[0], arrDate[1] -1, arrDate[2], arrDate[3], arrDate[4], arrDate[5]).getTime();
     _el.attr('data-time',timeInMillis);
     if(_el.attr('data-interval') != undefined){
        clearInterval(_el.attr('data-interval'));
