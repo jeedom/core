@@ -373,3 +373,9 @@ Résumé
 -   **Gras** : met le texte en gras
 
 
+FAQ 
+======
+
+>**Je n'arrive plus à éditer mon design**
+>
+>Si vous avais mis un widget ou une image qui prend quasiment la totalité du design il faut bien cliquer en dehors du widget ou de l'image pour avoir accès au menu par clic droit.
