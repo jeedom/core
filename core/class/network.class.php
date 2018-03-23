@@ -234,9 +234,6 @@ class network {
 		if (config::byKey('dns::token') == '') {
 			return;
 		}
-		if (config::byKey('market::allowDNS') != 1) {
-			return;
-		}
 		try {
 			$plugin = plugin::byId('openvpn');
 			if (!is_object($plugin)) {
