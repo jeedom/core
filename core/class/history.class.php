@@ -450,7 +450,7 @@ class history {
 		} else {
 			$values['value'] = $_value;
 		}
-		$sql = 'SELECT *
+		$sql = 'SELECT `datetime`
 				FROM (
 					SELECT `datetime`
 					FROM  `history`
@@ -461,7 +461,7 @@ class history {
 					FROM  `historyArch`
 					WHERE  `cmd_id`=:cmd_id
 					AND  `value` =:value
-					) as dt
+					) as `datetime`
 			ORDER BY  `datetime` DESC
 			LIMIT 1';
 		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
@@ -472,7 +472,7 @@ class history {
 		if ($values['value'] == $cValue) {
 			return strtotime('now') - strtotime($lastDatetime);
 		}
-		$sql = 'SELECT  *
+		$sql = 'SELECT  `datetime`
 				FROM (
 					SELECT `datetime`
 					FROM  `history`
@@ -483,7 +483,7 @@ class history {
 					FROM  `historyArch`
 					WHERE  `cmd_id`=:cmd_id
 					AND  `value` <>:value
-					) as dt
+					) as `datetime`
 			ORDER BY  `datetime` DESC
 			LIMIT 1';
 		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
