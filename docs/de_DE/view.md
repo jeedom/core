@@ -70,16 +70,16 @@ In einem Bereich vom Typ Widget, können Sie Widgets hinzufügen :
 
 > **Tip**
 >
-> Vous pouvez supprimer un widget directement en cliquant sur la
-> poubelle devant celui-ci.
+> Sie können ein Widget direkt löschen, indem Sie auf den Papierkorb davor
+> klicken.
 
 > **Tip**
 >
-> Il est possible de modifier l’ordre des widgets dans la zone par
-> glisser/déposer.
+> Es ist möglich, die Reihenfolge der Widgets in dem Bereich durch Ziehen
+> und Ablegen zu ändern.
 
-Une fois le bouton d’ajout de widget pressé, vous obtenez une fenêtre
-qui vous demandera le widget à ajouter
+Sobald die Schaltfläche zum Hinzufügen eines Widgets gedrückt wird, wird
+ein Fenster angezeigt, in dem Sie aufgefordert werden, das Widget hinzuzufügen.
 
 Zone de type graphique 
 ----------------------
