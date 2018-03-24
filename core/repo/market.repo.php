@@ -373,7 +373,7 @@ class repo_market {
 
 	/******************************MONITORING********************************/
 
-	public static function installMonitoring() {
+	public static function monitoring_install() {
 		if (file_exists('/etc/zabbix')) {
 			return;
 		}
@@ -389,11 +389,10 @@ class repo_market {
 			}
 		}
 		shell_exec('sudo apt-get -y install zabbix-agent');
-		shell_exec('sudo systemctl enable zabbix-agent');
 	}
 
-	public static function startMonitoring() {
-		self::installMonitoring();
+	public static function monitoring_start() {
+		self::monitoring_install();
 		$cmd = "sudo chmod -R 777 /etc/zabbix;";
 		$cmd .= "sudo sed -i '/ServerActive=/d' /etc/zabbix/zabbix_agentd.conf;";
 		$cmd .= "sudo sed -i '/Hostname=/d' /etc/zabbix/zabbix_agentd.conf;";
@@ -409,6 +408,17 @@ class repo_market {
 		$cmd .= 'sudo echo "TLSPSKFile=/etc/zabbix/zabbix_psk" >> /etc/zabbix/zabbix_agentd.conf;';
 		$cmd .= 'sudo echo "' . config::byKey('market::monitoringPsk') . '" > /etc/zabbix/zabbix_psk;';
 		$cmd .= 'sudo systemctl restart zabbix-agent;';
+		$cmd .= 'sudo systemctl enable zabbix-agent;';
+		shell_exec($cmd);
+	}
+
+	public static function monitoring_status() {
+		return (count(system::ps('zabbix')) > 0);
+	}
+
+	public static function monitoring_stop() {
+		$cmd = 'sudo systemctl stop zabbix-agent;';
+		$cmd .= 'sudo systemctl disable zabbix-agent;';
 		shell_exec($cmd);
 	}
 
@@ -424,6 +434,36 @@ class repo_market {
 		} catch (Exception $e) {
 
 		}
+	}
+
+	public static function cron5() {
+		try {
+			$monitoring_state = self::monitoring_status();
+			if (config::byKey('market::monitoringServer') != '' && !$monitoring_state) {
+				self::monitoring_start();
+			}
+			if (config::byKey('market::monitoringServer') == '' && $monitoring_state) {
+				self::monitoring_stop();
+			}
+		} catch (Exception $e) {
+
+		}
+	}
+
+	/*******************************health********************************/
+
+	public static function health() {
+		$return = array();
+		if (config::byKey('market::monitoringServer') != '') {
+			$monitoring_state = self::monitoring_status();
+			$return[] = array(
+				'name' => __('Cloud monitoring actif', __FILE__),
+				'state' => $monitoring_state,
+				'result' => ($monitoring_state) ? __('OK', __FILE__) : __('NOK', __FILE__),
+				'comment' => '',
+			);
+		}
+		return $return;
 	}
 
 	/*     * ***********************INFO*************************** */

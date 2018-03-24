@@ -256,6 +256,18 @@ class jeedom {
 			$state = network::test('external');
 		}
 		$return[] = $cache_health;
+
+		foreach (update::listRepo() as $repo) {
+			if (!$repo['enable']) {
+				continue;
+			}
+			$class = $repo['class'];
+			if (!class_exists($class) || !method_exists($class, 'health')) {
+				continue;
+			}
+			$return += array_merge($return, $class::health());
+		}
+
 		return $return;
 	}
 
