@@ -450,7 +450,7 @@ class history {
 		} else {
 			$values['value'] = $_value;
 		}
-		$sql = 'SELECT  `datetime`
+		$sql = 'SELECT *
 				FROM (
 					SELECT `datetime`
 					FROM  `history`
@@ -472,7 +472,7 @@ class history {
 		if ($values['value'] == $cValue) {
 			return strtotime('now') - strtotime($lastDatetime);
 		}
-		$sql = 'SELECT  `datetime`
+		$sql = 'SELECT  *
 				FROM (
 					SELECT `datetime`
 					FROM  `history`
