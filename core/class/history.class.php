@@ -461,7 +461,7 @@ class history {
 					FROM  `historyArch`
 					WHERE  `cmd_id`=:cmd_id
 					AND  `value` =:value
-					) as dt
+					) as `datetime`
 			ORDER BY  `datetime` DESC
 			LIMIT 1';
 		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
@@ -483,7 +483,7 @@ class history {
 					FROM  `historyArch`
 					WHERE  `cmd_id`=:cmd_id
 					AND  `value` <>:value
-					) as dt
+					) as `datetime`
 			ORDER BY  `datetime` DESC
 			LIMIT 1';
 		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
