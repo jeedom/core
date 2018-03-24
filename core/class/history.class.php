@@ -450,7 +450,7 @@ class history {
 		} else {
 			$values['value'] = $_value;
 		}
-		$sql = 'SELECT  ' . DB::buildField(__CLASS__) . '
+		$sql = 'SELECT `datetime`
 				FROM (
 					SELECT `datetime`
 					FROM  `history`
@@ -472,7 +472,7 @@ class history {
 		if ($values['value'] == $cValue) {
 			return strtotime('now') - strtotime($lastDatetime);
 		}
-		$sql = 'SELECT  ' . DB::buildField(__CLASS__) . '
+		$sql = 'SELECT `datetime`
 				FROM (
 					SELECT `datetime`
 					FROM  `history`
@@ -512,7 +512,7 @@ class history {
 			UNION ALL
 			SELECT *
 			FROM  historyArch
-			WHERE  cmd_id=:cmd_id
+			WHERE cmd_id=:cmd_id
 		) as dt
 		ORDER BY  `datetime` DESC';
 		$histories = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
