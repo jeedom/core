@@ -43,13 +43,13 @@ class config {
 		}
 		return self::$defaultConfiguration[$_plugin];
 	}
-        /**
+	/**
 	 * Ajoute une clef à la config
-         * @param string $_key
-         * @param string | object | array $_value
-         * @param string $_plugin
-         * @return boolean
-         */
+	 * @param string $_key
+	 * @param string | object | array $_value
+	 * @param string $_plugin
+	 * @return boolean
+	 */
 	public static function save($_key, $_value, $_plugin = 'core') {
 		if (is_object($_value) || is_array($_value)) {
 			$_value = json_encode($_value, JSON_UNESCAPED_UNICODE);
@@ -270,9 +270,14 @@ class config {
 		}
 	}
 
+	public static function preConfig_market_password($_value) {
+		if (!is_sha1($_value)) {
+			return sha1($_value);
+		}
+		return $_value;
+	}
+
 	/*     * *********************Methode d'instance************************* */
 
 	/*     * **********************Getteur Setteur*************************** */
 }
-
-

@@ -5,7 +5,7 @@ if (!isConnect('admin')) {
 
 $repos = update::listRepo();
 
-$keys = array('api', 'apipro', 'dns::token', 'market::allowDNS', 'market::allowBeta', 'market::allowAllRepo', 'ldap::enable');
+$keys = array('api', 'apipro', 'dns::token', 'market::allowDNS', 'ldap::enable');
 foreach ($repos as $key => $value) {
 	$keys[] = $key . '::enable';
 }

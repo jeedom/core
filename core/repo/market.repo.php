@@ -371,6 +371,47 @@ class repo_market {
 		jeedom::restore($backup_dir . '/' . $backup_name, true);
 	}
 
+	/******************************MONITORING********************************/
+
+	public static function installMonitoring() {
+		if (file_exists('/etc/zabbix')) {
+			return;
+		}
+		if (strpos(php_uname(), 'x86_64') !== false) {
+			if (file_exists('/etc/debian_version')) {
+				$deb_version = file_get_contents('/etc/debian_version');
+				if (version_compare($deb_version, '9', '>=')) {
+					shell_exec('cd /tmp/;sudo wget http://repo.zabbix.com/zabbix/3.4/debian/pool/main/z/zabbix-release/zabbix-release_3.4-1+stretch_all.deb;sudo dpkg -i zabbix-release_3.4-1+stretch_all.deb;sudo rm zabbix-release_3.4-1+stretch_all.deb');
+				} else {
+					shell_exec('cd /tmp/;sudo wget http://repo.zabbix.com/zabbix/3.4/debian/pool/main/z/zabbix-release/zabbix-release_3.4-1+jessie_all.deb;sudo dpkg -i zabbix-release_3.4-1+jessie_all.deb;sudo rm zabbix-release_3.4-1+jessie_all.deb');
+				}
+				shell_exec('sudo apt-get update');
+			}
+		}
+		shell_exec('sudo apt-get -y install zabbix-agent');
+		shell_exec('sudo systemctl enable zabbix-agent');
+	}
+
+	public static function startMonitoring() {
+		self::installMonitoring();
+		$cmd = "sudo chmod -R 777 /etc/zabbix;";
+		$cmd .= "sudo sed -i '/ServerActive=/d' /etc/zabbix/zabbix_agentd.conf;";
+		$cmd .= "sudo sed -i '/Hostname=/d' /etc/zabbix/zabbix_agentd.conf;";
+		$cmd .= "sudo sed -i '/TLSConnect=/d' /etc/zabbix/zabbix_agentd.conf;";
+		$cmd .= "sudo sed -i '/TLSAccept=/d' /etc/zabbix/zabbix_agentd.conf;";
+		$cmd .= "sudo sed -i '/TLSPSKIdentity=/d' /etc/zabbix/zabbix_agentd.conf;";
+		$cmd .= "sudo sed -i '/TLSPSKFile=/d' /etc/zabbix/zabbix_agentd.conf;";
+		$cmd .= 'sudo echo "ServerActive=' . config::byKey('market::monitoringServer') . '" >> /etc/zabbix/zabbix_agentd.conf;';
+		$cmd .= 'sudo echo "Hostname=' . config::byKey('market::monitoringName') . '" >> /etc/zabbix/zabbix_agentd.conf;';
+		$cmd .= 'sudo echo "TLSConnect=psk" >> /etc/zabbix/zabbix_agentd.conf;';
+		$cmd .= 'sudo echo "TLSAccept=psk" >> /etc/zabbix/zabbix_agentd.conf;';
+		$cmd .= 'sudo echo "TLSPSKIdentity=' . config::byKey('market::monitoringPskIdentity') . '" >> /etc/zabbix/zabbix_agentd.conf;';
+		$cmd .= 'sudo echo "TLSPSKFile=/etc/zabbix/zabbix_psk" >> /etc/zabbix/zabbix_agentd.conf;';
+		$cmd .= 'sudo echo "' . config::byKey('market::monitoringPsk') . '" > /etc/zabbix/zabbix_psk;';
+		$cmd .= 'sudo systemctl restart zabbix-agent;';
+		shell_exec($cmd);
+	}
+
 	/*     * ***********************CRON*************************** */
 
 	public static function cronHourly() {
@@ -647,19 +688,23 @@ class repo_market {
 			if (isset($_result['user::backupPassword']) && config::byKey('market::backupPassword') != $_result['user::backupPassword']) {
 				config::save('market::backupPassword', $_result['user::backupPassword']);
 			}
+			if (isset($_result['user::monitoringServer']) && config::byKey('market::monitoringServer') != $_result['user::monitoringServer']) {
+				config::save('market::monitoringServer', $_result['user::monitoringServer']);
+			}
+			if (isset($_result['register::monitoringPsk']) && config::byKey('market::monitoringPsk') != $_result['register::monitoringPsk']) {
+				config::save('market::monitoringPsk', $_result['register::monitoringPsk']);
+			}
+			if (isset($_result['register::monitoringPskIdentity']) && config::byKey('market::monitoringPskIdentity') != $_result['register::monitoringPskIdentity']) {
+				config::save('market::monitoringPskIdentity', $_result['register::monitoringPskIdentity']);
+			}
+			if (isset($_result['register::monitoringName']) && config::byKey('market::monitoringName') != $_result['register::monitoringName']) {
+				config::save('market::monitoringName', $_result['register::monitoringName']);
+			}
 			if ($restart_dns && config::byKey('market::allowDNS') == 1) {
 				network::dns_start();
 			}
-			if (config::byKey('market::allowDNS') == 1) {
-				if (isset($_result['jeedom::url']) && config::byKey('jeedom::url') != $_result['jeedom::url']) {
-					config::save('jeedom::url', $_result['jeedom::url']);
-				}
-			}
-			if (isset($_result['market::allowBeta']) && config::byKey('market::allowBeta') != $_result['market::allowBeta']) {
-				config::save('market::allowBeta', $_result['market::allowBeta']);
-			}
-			if (isset($_result['market::allowAllRepo']) && config::byKey('market::allowAllRepo') != $_result['market::allowAllRepo']) {
-				config::save('market::allowAllRepo', $_result['market::allowAllRepo']);
+			if (config::byKey('market::allowDNS') == 1 && isset($_result['jeedom::url']) && config::byKey('jeedom::url') != $_result['jeedom::url']) {
+				config::save('jeedom::url', $_result['jeedom::url']);
 			}
 			if (isset($_result['register::hwkey_nok']) && $_result['register::hwkey_nok'] == 1) {
 				config::save('jeedom::installKey', '');
