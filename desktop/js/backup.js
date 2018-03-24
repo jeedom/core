@@ -65,7 +65,7 @@
 
  $("#bt_restoreJeedom").on('click', function (event) {
     var el = $(this);
-    bootbox.confirm('{{Etes-vous sûr de vouloir restaurer Jeedom avec}} <b>' + $('#sel_restoreBackup option:selected').text() + '</b> ? {{Une fois lancée cette opération ne peut être annulée}}', function (result) {
+    bootbox.confirm('{{Etes-vous sûr de vouloir restaurer Jeedom avec}} <b>' + $('#sel_restoreBackup option:selected').text() + '</b> ? {{Une fois lancée cette opération ne peut être annulée.}}<span style="color:red;font-weight: bold;">IMPORTANT la restoration d\'un backup n\'est opération riquée et est à utiliser qu\'en dernier recours</span>', function (result) {
         if (result) {
             $.hideAlert();
             el.find('.fa-refresh').show();
