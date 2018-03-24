@@ -460,7 +460,7 @@ class repo_market {
 				'name' => __('Cloud monitoring actif', __FILE__),
 				'state' => $monitoring_state,
 				'result' => ($monitoring_state) ? __('OK', __FILE__) : __('NOK', __FILE__),
-				'comment' => '',
+				'comment' => __('Attention 10 minutes si le service ne redémarre pas contacter le support', __FILE__),
 			);
 		}
 		return $return;
@@ -710,6 +710,7 @@ class repo_market {
 	public static function postJsonRpc(&$_result) {
 		if (is_array($_result)) {
 			$restart_dns = false;
+			$restart_monitoring = false;
 			if (isset($_result['register::dnsToken']) && config::byKey('dns::token') != $_result['register::dnsToken']) {
 				config::save('dns::token', $_result['register::dnsToken']);
 				$restart_dns = true;
@@ -724,21 +725,30 @@ class repo_market {
 			}
 			if (isset($_result['user::backupServer']) && config::byKey('market::backupServer') != $_result['user::backupServer']) {
 				config::save('market::backupServer', $_result['user::backupServer']);
+				$restart_monitoring = true;
 			}
 			if (isset($_result['user::backupPassword']) && config::byKey('market::backupPassword') != $_result['user::backupPassword']) {
 				config::save('market::backupPassword', $_result['user::backupPassword']);
+				$restart_monitoring = true;
 			}
 			if (isset($_result['user::monitoringServer']) && config::byKey('market::monitoringServer') != $_result['user::monitoringServer']) {
 				config::save('market::monitoringServer', $_result['user::monitoringServer']);
+				$restart_monitoring = true;
 			}
 			if (isset($_result['register::monitoringPsk']) && config::byKey('market::monitoringPsk') != $_result['register::monitoringPsk']) {
 				config::save('market::monitoringPsk', $_result['register::monitoringPsk']);
+				$restart_monitoring = true;
 			}
 			if (isset($_result['register::monitoringPskIdentity']) && config::byKey('market::monitoringPskIdentity') != $_result['register::monitoringPskIdentity']) {
 				config::save('market::monitoringPskIdentity', $_result['register::monitoringPskIdentity']);
+				$restart_monitoring = true;
 			}
 			if (isset($_result['register::monitoringName']) && config::byKey('market::monitoringName') != $_result['register::monitoringName']) {
 				config::save('market::monitoringName', $_result['register::monitoringName']);
+				$restart_monitoring = true;
+			}
+			if ($restart_monitoring) {
+				self::monitoring_stop();
 			}
 			if ($restart_dns && config::byKey('market::allowDNS') == 1) {
 				network::dns_start();
@@ -1030,11 +1040,7 @@ class repo_market {
 					rrmdir($cibDir);
 				}
 				mkdir($cibDir);
-				$exclude = array(
-					'tmp',
-					'.git',
-					'.DStore',
-				);
+				$exclude = array('tmp', '.git', '.DStore');
 				if (property_exists($plugin_id, '_excludeOnSendPlugin')) {
 					$exclude = array_merge($plugin_id::$_excludeOnSendPlugin);
 				}
