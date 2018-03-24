@@ -710,6 +710,18 @@ class jeedom {
 			log::add('network', 'error', 'network::cron : ' . $e->getMessage());
 		}
 		try {
+			foreach (update::listRepo() as $name => $repo) {
+				$class = 'repo_' . $name;
+				if (class_exists($class) && method_exists($class, 'cron5') && config::byKey($name . '::enable') == 1) {
+					$class::cronHourly();
+				}
+			}
+		} catch (Exception $e) {
+			log::add('jeedom', 'error', $e->getMessage());
+		} catch (Error $e) {
+			log::add('jeedom', 'error', $e->getMessage());
+		}
+		try {
 			eqLogic::checkAlive();
 		} catch (Exception $e) {
 
