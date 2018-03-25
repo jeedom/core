@@ -713,7 +713,7 @@ class jeedom {
 			foreach (update::listRepo() as $name => $repo) {
 				$class = 'repo_' . $name;
 				if (class_exists($class) && method_exists($class, 'cron5') && config::byKey($name . '::enable') == 1) {
-					$class::cronHourly();
+					$class::cron5();
 				}
 			}
 		} catch (Exception $e) {
