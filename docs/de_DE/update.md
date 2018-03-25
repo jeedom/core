@@ -48,7 +48,7 @@ Die Schaltfläche **Updaten** wird verwendet, um das Jeedom Paket zu aktualisier
 > automatisch die zuvor erstellte Sicherung wiederherstellen. Dieses Prinzip
 > gilt natürlich nur für Jeedom Updates, nicht für Plugins.
 
-> **Tip**
+> **Tipp**
 >
 > Sie können ein Update von Jeedom erzwingen, auch wenn es Ihnen nicht
 > angeboten wird.
@@ -70,7 +70,7 @@ genaue Version des Elements an. * **Optionen** : Aktivieren Sie dieses
 Kontrollkästchen, wenn das Element während des allgemeinen Updates
 nicht aktualisiert werden soll (Schaltfläche **Updaten**).
 
-> **Tip**
+> **Tipp**
 >
 > Für jede Tabelle können Sie in der ersten Zeile nach dem Status, den
 > Namen oder der Version des vorhandenen Elemente filtern.
@@ -97,7 +97,7 @@ In jeder Zeile können Sie  für jedes Element die folgenden Aktionen vdurchfüh
 > nicht notwendig, vom Entwickler die Veränderungen zu verlangen, da es
 > nicht unbedingt notwendig ist. (Dies ist oft ein Update der Dokumentations > Übersetzung.)
 
-> **Tip**
+> **Tipp**
 >
 > Beachten Sie, dass "core : jeedom" "Aktualisierung der Jeedom
 > Kernsoftware" bedeutet.

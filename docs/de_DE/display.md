@@ -246,7 +246,7 @@ Cet onglet permet d’avoir les informations sur la batterie de
 l’équipement et de définir des alertes par rapport à celle-ci. Voici les
 types d’informations que l’on peut trouver :
 
--   **Type de pile**,
+-   **Batterietyp**,
 
 -   **Dernière remontée de l’information**,
 
