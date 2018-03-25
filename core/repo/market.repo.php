@@ -422,6 +422,22 @@ class repo_market {
 		shell_exec($cmd);
 	}
 
+	public static function monitoring_allow() {
+		if (config::byKey('market::monitoringServer') == '') {
+			return false;
+		}
+		if (config::byKey('market::monitoringName') == '') {
+			return false;
+		}
+		if (config::byKey('market::monitoringPskIdentity') == '') {
+			return false;
+		}
+		if (config::byKey('market::monitoringPsk') == '') {
+			return false;
+		}
+		return true;
+	}
+
 	/*     * ***********************CRON*************************** */
 
 	public static function cronHourly() {
@@ -439,10 +455,10 @@ class repo_market {
 	public static function cron5() {
 		try {
 			$monitoring_state = self::monitoring_status();
-			if (config::byKey('market::monitoringServer') != '' && !$monitoring_state) {
+			if (self::monitoring_allow() && !$monitoring_state) {
 				self::monitoring_start();
 			}
-			if (config::byKey('market::monitoringServer') == '' && $monitoring_state) {
+			if (!self::monitoring_allow() && $monitoring_state) {
 				self::monitoring_stop();
 			}
 		} catch (Exception $e) {
