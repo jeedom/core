@@ -377,18 +377,19 @@ class repo_market {
 		if (file_exists('/etc/zabbix')) {
 			return;
 		}
+		$logfile = log::getPathToLog('market_zabbix_installation');
 		if (strpos(php_uname(), 'x86_64') !== false) {
 			if (file_exists('/etc/debian_version')) {
 				$deb_version = file_get_contents('/etc/debian_version');
 				if (version_compare($deb_version, '9', '>=')) {
-					shell_exec('cd /tmp/;sudo wget http://repo.zabbix.com/zabbix/3.4/debian/pool/main/z/zabbix-release/zabbix-release_3.4-1+stretch_all.deb;sudo dpkg -i zabbix-release_3.4-1+stretch_all.deb;sudo rm zabbix-release_3.4-1+stretch_all.deb');
+					shell_exec('cd /tmp/;sudo wget http://repo.zabbix.com/zabbix/3.4/debian/pool/main/z/zabbix-release/zabbix-release_3.4-1+stretch_all.deb >> ' . $logfile . ' 2>&1;sudo dpkg -i zabbix-release_3.4-1+stretch_all.deb  >> ' . $logfile . ' 2>&1;sudo rm zabbix-release_3.4-1+stretch_all.deb  >> ' . $logfile . ' 2>&1');
 				} else {
-					shell_exec('cd /tmp/;sudo wget http://repo.zabbix.com/zabbix/3.4/debian/pool/main/z/zabbix-release/zabbix-release_3.4-1+jessie_all.deb;sudo dpkg -i zabbix-release_3.4-1+jessie_all.deb;sudo rm zabbix-release_3.4-1+jessie_all.deb');
+					shell_exec('cd /tmp/;sudo wget http://repo.zabbix.com/zabbix/3.4/debian/pool/main/z/zabbix-release/zabbix-release_3.4-1+jessie_all.deb  >> ' . $logfile . ' 2>&1;sudo dpkg -i zabbix-release_3.4-1+jessie_all.deb  >> ' . $logfile . ' 2>&1;sudo rm zabbix-release_3.4-1+jessie_all.deb  >> ' . $logfile . ' 2>&1');
 				}
-				shell_exec('sudo apt-get update');
+				shell_exec('sudo apt-get update  >> ' . $logfile . ' 2>&1');
 			}
 		}
-		shell_exec('sudo apt-get -y install zabbix-agent');
+		shell_exec('sudo apt-get -y install zabbix-agent  >> ' . $logfile . ' 2>&1');
 	}
 
 	public static function monitoring_start() {
