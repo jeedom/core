@@ -80,10 +80,16 @@ try {
 			throw new Exception(__('Impossible de trouver l\'objet associé : ', __FILE__) . init('id'));
 		}
 		$update = update::byTypeAndLogicalId($repo->getType(), $repo->getLogicalId());
-		if (is_object($update)) {
-			$update->remove();
-		} else {
-			$market->remove();
+		try {
+			if (is_object($update)) {
+				$update->remove();
+			} else {
+				$market->remove();
+			}
+		} catch (Exception $e) {
+			if (is_object($update)) {
+				$update->deleteObjet();
+			}
 		}
 		ajax::success();
 	}
