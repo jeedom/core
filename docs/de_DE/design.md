@@ -95,7 +95,7 @@ On retrouve ici :
 
 -   **Général**
 
-    -   **Nom** : Le nom de votre design
+    -   **Name** : Der Name Ihres Designs
 
     -   **Fond transparent** : rend le fond transparent. Attention si la
         case est coché la couleur de fond n’est pas utilisée
@@ -378,3 +378,7 @@ FAQ
 >**Je n'arrive plus à éditer mon design**
 >
 >Si vous avais mis un widget ou une image qui prend quasiment la totalité du design il faut bien cliquer en dehors du widget ou de l'image pour avoir accès au menu par clic droit.
+
+>**Supprimer un design qui ne marche plus**
+>
+>Dans la partie administration puis OS/DB faire "select * from planHeader" recuperer l'id du design en question et faire un "delete from planHeader where id=#TODO#" et "delete from plan where planHeader_id=#todo#" en replacant bien #TODO# par l'id du design trouvé précedement.

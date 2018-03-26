@@ -126,9 +126,9 @@ Jeedom, ainsi que leur configuration :
 
 -   **ID** : ID de l’objet.
 
--   **Objet** : Nom de l’objet.
+-   **Objekt** : Der Name des Objekts.
 
--   **Père** : Nom de l’objet parent.
+-   **Vater** : Name des übergeordneten Objekts.
 
 -   **Visible** : Visibilité de l’objet.
 

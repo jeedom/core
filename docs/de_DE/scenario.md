@@ -90,7 +90,7 @@ Registerkarte Allgemein
 Dans l’onglet **Général**, on retrouve les paramètres principaux de
 notre scénario :
 
--   **Nom du scénario** : Le nom de votre scénario.
+-   **Szenariorname** : Der Name Ihres Szenarios.
 
 -   **Nom à afficher** : Le nom utilisé pour son affichage.
 

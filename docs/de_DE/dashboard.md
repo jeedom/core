@@ -1,18 +1,18 @@
-Une des pages principales de Jeedom affiche un compte-rendu de toute
-votre domotique. Ce compte-rendu (contrairement aux vues et design) est
-auto-généré par Jeedom.
+Das ist die Hauptseite von Jeedom, es zeigt eine Übersicht über die ganze
+Heimautomation. Dieser Bericht (im Gegensatz zu den Ansichten und
+Design) wird von Jeedom selbst erzeugt.
 
-Il est accessible en cliquant sur **Accueil → Dashboard**
+Es kann zugegriffen werden, indem Sie auf **Mein Haus → Armaturenbrett** klicken.
 
 > **Tip**
 >
-> Il est possible d’aller directement sur un objet de votre domotique.
-> Cela permet de n’avoir que les équipements qui vous intéressent et
-> donc de charger la page plus rapidement
+> Es ist möglich, direkt zu einem Objekt Ihrer Hausautomation zu gehen.
+> Dadurch können Sie nur das Gerät wählen, das Sie interessiert, und die
+> Seite wird daher schneller geladen.
 
--   Vous avez en haut à gauche une petite icône pour faire
-    afficher/masquer l’arbre des objets (celui-ci affiche aussi les
-    informations des résumés d’objet)
+-   Oben links haben Sie ein kleines Symbol, um den Objektbaum
+    ein-/auszublenden (dieser zeigt auch die Informationen
+    der Objektzusammenfassungen an)
 
 -   Au milieu vous pouvez choisir de ne filtrer que sur certains types
     d’équipements

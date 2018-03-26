@@ -122,7 +122,7 @@ l’équipement ainsi que ses commandes :
 
 -   **ID** : Identifiant unique dans la base de données de Jeedom.
 
--   **Nom** : Nom de l’équipement.
+-   **Name** : Gerätename
 
 -   **ID logique** : Identifiant logique de l’équipement (peut
     être vide).
@@ -314,7 +314,7 @@ commande :
 -   **ID logique** : Identifiant logique de la commande (peut
     être vide).
 
--   **Nom** : Nom de la commande.
+-   **Name** : Name des Befehls.
 
 -   **Type** : Type de la commande (action ou info).
 

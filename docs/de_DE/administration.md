@@ -548,7 +548,7 @@ objets :
 
 -   **Clef** : Clé du résumé, à ne surtout pas toucher.
 
--   **Nom** : Nom du résumé.
+-   **Name** : Der Name der Zusammenfassung.
 
 -   **Calcul** : Méthode de calcul, peut être de type :
 
@@ -720,7 +720,7 @@ refusée si vous utilisez un autre dépôt que celui-ci.
 
 -   **Adresse** : Adresse du Market.
 
--   **Nom d’utilisateur** : Votre nom d’utilisateur sur le Market.
+-   **Benutzername** : Ihr Benutzername auf dem Markt.
 
 -   **Mot de passe** : Votre mot de passe du Market.
 
