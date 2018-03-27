@@ -466,7 +466,7 @@ class history {
 			LIMIT 1';
 		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 		$lastDatetime = $result['datetime'];
-		if ($lastDatetime == '' || strtotime($lastDatetime) == false) {
+		if ($lastDatetime == '' || strtotime($lastDatetime) === false) {
 			return -1;
 		}
 		if ($values['value'] == $cValue) {
@@ -487,7 +487,7 @@ class history {
 			ORDER BY  `datetime` DESC
 			LIMIT 1';
 		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-		if ($result['datetime'] == '' || strtotime($result['datetime']) == false || strtotime($result['datetime']) < strtotime($lastDatetime)) {
+		if ($result['datetime'] == '' || strtotime($result['datetime']) === false || strtotime($result['datetime']) < strtotime($lastDatetime)) {
 			return -1;
 		}
 		return strtotime($result['datetime']) - strtotime($lastDatetime);
