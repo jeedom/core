@@ -284,7 +284,7 @@ foreach (cmd::allUnite() as $unite) {
     <label class="col-sm-3 control-label">{{Limiter aux commandes appartenant aux objets}}</label>
     <div class="col-sm-9">
       <?php
-foreach (object::all() as $object) {
+foreach (jeeObject::all() as $object) {
 	echo '<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="object" data-l3key="' . $object->getId() . '" checked="true" />' . $object->getName() . '</label> ';
 }
 ?>

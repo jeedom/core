@@ -318,24 +318,24 @@ try {
 		}
 
 		/*             * ************************Object*************************** */
-		if ($jsonrpc->getMethod() == 'object::all') {
-			$jsonrpc->makeSuccess(utils::o2a(object::all()));
+		if ($jsonrpc->getMethod() == 'jeeObject::all') {
+			$jsonrpc->makeSuccess(utils::o2a(jeeObject::all()));
 		}
 
-		if ($jsonrpc->getMethod() == 'object::byId') {
-			$object = object::byId($params['id']);
+		if ($jsonrpc->getMethod() == 'jeeObject::byId') {
+			$object = jeeObject::byId($params['id']);
 			if (!is_object($object)) {
 				throw new Exception('Objet introuvable : ' . secureXSS($params['id']), -32601);
 			}
 			$jsonrpc->makeSuccess(utils::o2a($object));
 		}
 
-		if ($jsonrpc->getMethod() == 'object::full') {
-			$jsonrpc->makeSuccess(object::fullData());
+		if ($jsonrpc->getMethod() == 'jeeObject::full') {
+			$jsonrpc->makeSuccess(jeeObject::fullData());
 		}
 
-		if ($jsonrpc->getMethod() == 'object::fullById') {
-			$object = object::byId($params['id']);
+		if ($jsonrpc->getMethod() == 'jeeObject::fullById') {
+			$object = jeeObject::byId($params['id']);
 			if (!is_object($object)) {
 				throw new Exception('Objet introuvable : ' . secureXSS($params['id']), -32601);
 			}

@@ -1283,7 +1283,7 @@ class cmd {
 		}
 		listener::check($this->getId(), $value);
 		if (!$repeat) {
-			object::checkSummaryUpdate($this->getId());
+			jeeObject::checkSummaryUpdate($this->getId());
 		}
 		$this->addHistoryValue($value, $this->getCollectDate());
 		$this->checkReturnState($value);

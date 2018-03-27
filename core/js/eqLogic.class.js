@@ -36,11 +36,11 @@ jeedom.eqLogic.save = function (_params) {
             if (isset(jeedom.eqLogic.cache.byId[data.result.id])) {
                 delete jeedom.eqLogic.cache.byId[data.result.id];
             }
-            if (isset(jeedom.object.cache.all)) {
-                delete jeedom.object.cache.all;
+            if (isset(jeedom.jeeObject.cache.all)) {
+                delete jeedom.jeeObject.cache.all;
             }
-            if (isset(jeedom.object.cache.getEqLogic[data.result.object_id])) {
-                delete jeedom.object.cache.getEqLogic[data.result.object_id];
+            if (isset(jeedom.jeeObject.cache.getEqLogic[data.result.object_id])) {
+                delete jeedom.jeeObject.cache.getEqLogic[data.result.object_id];
             }
             return data;
         }

@@ -130,7 +130,7 @@ editWidgetCmdMode(_mode);
 }
 
 function getObjectHtml(_object_id){
-  jeedom.object.toHtml({
+  jeedom.jeeObject.toHtml({
     id: _object_id,
     version: 'dashboard',
     category : SEL_CATEGORY,

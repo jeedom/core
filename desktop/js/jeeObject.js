@@ -82,7 +82,7 @@ function loadObjectConfiguration(_id){
     $('.li_object').removeClass('active');
     $(this).addClass('active');
     $('.li_object[data-object_id='+_id+']').addClass('active');
-    jeedom.object.byId({
+    jeedom.jeeObject.byId({
         id: _id,
         cache: false,
         error: function (error) {
@@ -122,14 +122,14 @@ function loadObjectConfiguration(_id){
 $("#bt_addObject,#bt_addObject2").on('click', function (event) {
     bootbox.prompt("Nom de l'objet ?", function (result) {
         if (result !== null) {
-            jeedom.object.save({
+            jeedom.jeeObject.save({
                 object: {name: result, isVisible: 1},
                 error: function (error) {
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function (data) {
                     modifyWithoutSave = false;
-                    loadPage('index.php?v=d&p=object&id=' + data.id + '&saveSuccessFull=1');
+                    loadPage('index.php?v=d&p=jeeObject&id=' + data.id + '&saveSuccessFull=1');
                     $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
                 }
             });
@@ -149,22 +149,22 @@ $('.objectAttr[data-l1key=display][data-l2key=icon]').on('dblclick',function(){
 $("#bt_saveObject").on('click', function (event) {
     if ($('.li_object.active').attr('data-object_id') != undefined) {
         var object = $('.object').getValues('.objectAttr')[0];
-        if (!isset(object.configuration)) {
-            object.configuration = {};
+        if (!isset(jeeObject.configuration)) {
+            jeeObject.configuration = {};
         }
-        if (!isset(object.configuration.summary)) {
-            object.configuration.summary = {};
+        if (!isset(jeeObject.configuration.summary)) {
+            jeeObject.configuration.summary = {};
         }
         $('.object .div_summary').each(function () {
             var type = $(this).attr('data-type');
-            object.configuration.summary[type] = [];
+            jeeObject.configuration.summary[type] = [];
             summaries = {};
             $(this).find('.summary').each(function () {
                 var summary = $(this).getValues('.summaryAttr')[0];
-                object.configuration.summary[type].push(summary);
+                jeeObject.configuration.summary[type].push(summary);
             });
         });
-        jeedom.object.save({
+        jeedom.jeeObject.save({
             object: object,
             error: function (error) {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -186,14 +186,14 @@ $("#bt_removeObject").on('click', function (event) {
         $.hideAlert();
         bootbox.confirm('{{Etes-vous sûr de vouloir supprimer l\'objet}} <span style="font-weight: bold ;">' + $('.li_object.active a').text() + '</span> ?', function (result) {
             if (result) {
-                jeedom.object.remove({
+                jeedom.jeeObject.remove({
                     id: $('.li_object.active').attr('data-object_id'),
                     error: function (error) {
                         $('#div_alert').showAlert({message: error.message, level: 'danger'});
                     },
                     success: function () {
                         modifyWithoutSave = false;
-                        loadPage('index.php?v=d&p=object&removeSuccessFull=1');
+                        loadPage('index.php?v=d&p=jeeObject&removeSuccessFull=1');
                     }
                 });
             }
@@ -217,7 +217,7 @@ $("#ul_object").sortable({
         $('#ul_object .li_object').each(function () {
             objects.push($(this).attr('data-object_id'));
         });
-        jeedom.object.setOrder({
+        jeedom.jeeObject.setOrder({
             objects: objects,
             error: function (error) {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -293,5 +293,5 @@ function addSummaryInfo(_el, _summary) {
 
 $('.bt_showObjectSummary').off('click').on('click', function () {
   $('#md_modal').dialog({title: "{{Résumé Objets}}"});
-  $("#md_modal").load('index.php?v=d&modal=object.summary').dialog('open');
+  $("#md_modal").load('index.php?v=d&modal=jeeObject.summary').dialog('open');
 });

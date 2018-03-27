@@ -16,7 +16,7 @@ if (!isConnect()) {
                 <select class='form-control'>
                     <option value="-1">{{Aucun}}</option>
                     <?php
-foreach (object::all() as $object) {
+foreach (jeeObject::all() as $object) {
 	echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
 }
 
@@ -61,7 +61,7 @@ foreach (object::all() as $object) {
     }
 
     mod_insertEqLogic.changeObjectEqLogic = function(_select) {
-        jeedom.object.getEqLogic({
+        jeedom.jeeObject.getEqLogic({
             id: _select.value(),
             orderByName : true,
             error: function(error) {

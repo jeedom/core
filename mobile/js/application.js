@@ -168,7 +168,7 @@ function initApplication(_reinit) {
                     $("head").append(data);
                     $.include(include, function () {
                         deviceInfo = getDeviceType();
-                        jeedom.object.summaryUpdate([{object_id:'global'}])
+                        jeedom.jeejeeObject.summaryUpdate([{object_id:'global'}])
                         if(getUrlVars('p') == 'view'){
                            page('view', 'Vue',getUrlVars('view_id'));
                        }else if (isset(userProfils) && userProfils != null && isset(userProfils.homePageMobile) && userProfils.homePageMobile != 'home' && getUrlVars('p') != 'home') {

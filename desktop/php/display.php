@@ -4,7 +4,7 @@ if (!isConnect('admin')) {
 }
 $nbEqlogic = 0;
 $nbCmd = 0;
-$objects = object::all();
+$objects = jeeObject::all();
 $eqLogics = array();
 $cmds = array();
 $eqLogics[-1] = eqLogic::byObjectId(null, false);
@@ -104,7 +104,7 @@ foreach ($objects as $object) {
 	echo '<legend style="color : ' . $object->getDisplay('tagTextColor', $defaultTextColor) . ';cursor : default">' . $object->getDisplay('icon') . '  ' . $object->getName();
 	echo '<i class="fa fa-chevron-down pull-right showEqLogic cursor" title="{{Voir les équipements}}"></i>';
 	echo '<i style="position:relative;top : 3px;" class="fa fa-cog pull-right cursor configureObject" title="{{Configuration avancée}}"></i>';
-	echo '<a style="position:relative;top : 3px;color:' . $object->getDisplay('tagTextColor', $defaultTextColor) . '" href="index.php?v=d&p=object&id=' . $object->getId() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'objet}}"><i class="fa fa-external-link"></i></a>';
+	echo '<a style="position:relative;top : 3px;color:' . $object->getDisplay('tagTextColor', $defaultTextColor) . '" href="index.php?v=d&p=jeeObject&id=' . $object->getId() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'objet}}"><i class="fa fa-external-link"></i></a>';
 
 	echo '</legend>';
 	echo '<ul class="eqLogicSortable">';

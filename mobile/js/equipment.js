@@ -1,5 +1,5 @@
 function initEquipment(_object_id) {
-  jeedom.object.all({
+  jeedom.jeeObject.all({
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
@@ -19,7 +19,7 @@ function initEquipment(_object_id) {
       }
       li += '</ul>';
       panel(li);
-      jeedom.object.summaryUpdate(summaries);
+      jeedom.jeejeeObject.summaryUpdate(summaries);
     }
   });
   if (isset(_object_id)) {
@@ -29,7 +29,7 @@ function initEquipment(_object_id) {
       _object_id = temp[0];
       summary = temp[1];
     }
-    jeedom.object.toHtml({
+    jeedom.jeeObject.toHtml({
       id: _object_id,
       version: 'mobile',
       summary :summary,
@@ -38,7 +38,7 @@ function initEquipment(_object_id) {
       },
       success: function (html) {
         if(_object_id == 'all' || _object_id == ''){
-         jeedom.object.all({
+         jeedom.jeeObject.all({
           error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
           },
@@ -69,7 +69,7 @@ function initEquipment(_object_id) {
          }
          try {
            $('#div_displayEquipement').empty().html(div).trigger('create');
-           jeedom.object.summaryUpdate(summaries)
+           jeedom.jeejeeObject.summaryUpdate(summaries)
          }catch(err) {
           console.log(err);
         }
@@ -81,7 +81,7 @@ function initEquipment(_object_id) {
     });  
        }else{
          $('#div_displayEquipement').empty().html('<div class="nd2-card objectSummaryHide" style="max-width:100% !important;"><div class="card-title has-supporting-text" style="padding:4px;font-size:0.6em;"><center><span class="objectSummary'+_object_id+'" data-version="mobile"></span></center></div></div><div class="objectHtml">'+html+'</div>').trigger('create');
-         jeedom.object.summaryUpdate([{object_id:_object_id}]);
+         jeedom.jeejeeObject.summaryUpdate([{object_id:_object_id}]);
          setTileSize('.eqLogic');
          setTimeout(function () {
           $('#div_displayEquipement > .objectHtml').packery({gutter : 4});

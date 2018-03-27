@@ -9,7 +9,7 @@ function initHome() {
     $('#bottompanel_otherActionList').append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="scenario" data-title="{{Scénarios}}"><i class="fa fa-cogs"></i> {{Scénario}}</a>');
 
 
-    jeedom.object.all({
+    jeedom.jeeObject.all({
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
@@ -28,7 +28,7 @@ function initHome() {
                 }
             }
             $('#bottompanel_objectList').empty().append(li);
-            jeedom.object.summaryUpdate(summaries);
+            jeedom.jeejeeObject.summaryUpdate(summaries);
         }
     });
 

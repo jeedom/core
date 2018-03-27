@@ -46,7 +46,7 @@ jeedom.changes = function(){
             eqLogic_update.push(data.result[i].option);
             continue;
         }
-        if(data.result[i].name == 'object::summary::update'){
+        if(data.result[i].name == 'jeeObject::summary::update'){
             object_summary_update.push(data.result[i].option);
             continue;
         }
@@ -63,7 +63,7 @@ if(eqLogic_update.length > 0){
    $('body').trigger('eqLogic::update',[eqLogic_update]);
 }
 if(object_summary_update.length > 0){
-    $('body').trigger('object::summary::update',[object_summary_update]);
+    $('body').trigger('jeeObject::summary::update',[object_summary_update]);
 }
 setTimeout(jeedom.changes, 1);
 },
@@ -117,8 +117,8 @@ jeedom.init = function () {
     $('body').on('eqLogic::update', function (_event,_options) {
         jeedom.eqLogic.refreshValue(_options);
     });
-    $('body').on('object::summary::update', function (_event,_options) {
-        jeedom.object.summaryUpdate(_options);
+    $('body').on('jeeObject::summary::update', function (_event,_options) {
+        jeedom.jeejeeObject.summaryUpdate(_options);
     });
 
     $('body').on('ui::update', function (_event,_options) {

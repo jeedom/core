@@ -227,7 +227,7 @@ if (count($totalScenario) == 0) {
               <select class="scenarioAttr form-control" data-l1key="object_id">
                 <option value="">{{Aucun}}</option>
                 <?php
-foreach (object::all() as $object) {
+foreach (jeeObject::all() as $object) {
 	echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
 }
 ?>

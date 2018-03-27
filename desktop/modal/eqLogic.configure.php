@@ -616,7 +616,7 @@ for ($i = 1; $i <= $eqLogic->getDisplay('layout::dashboard::table::nbLine', 1); 
 										});
 										$('#bt_eqLogicConfigureRawObject').off('click').on('click',function(){
 											$('#md_modal2').dialog({title: "{{Informations brutes}}"});
-											$("#md_modal2").load('index.php?v=d&modal=object.display&class=eqLogic&id='+eqLogicInfo.id).dialog('open');
+											$("#md_modal2").load('index.php?v=d&modal=jeejeeObject.display&class=eqLogic&id='+eqLogicInfo.id).dialog('open');
 										})
 										$('#bt_addWidgetParameters').off().on('click', function () {
 											var tr = '<tr>';

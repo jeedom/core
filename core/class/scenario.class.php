@@ -1312,7 +1312,7 @@ class scenario {
 	 * @return object
 	 */
 	public function getObject() {
-		return object::byId($this->object_id);
+		return jeeObject::byId($this->object_id);
 	}
 	/**
 	 *

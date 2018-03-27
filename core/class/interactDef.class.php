@@ -428,7 +428,7 @@ class interactDef {
 			preg_match_all("/#(.*?)#/", $input, $matches);
 			$matches = $matches[1];
 			if (in_array('commande', $matches) || (in_array('objet', $matches) || in_array('equipement', $matches))) {
-				foreach (object::all() as $object) {
+				foreach (jeeObject::all() as $object) {
 					if (isset($object_filter[$object->getId()]) && $object_filter[$object->getId()] == 0) {
 						continue;
 					}

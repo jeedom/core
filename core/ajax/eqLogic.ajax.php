@@ -27,7 +27,7 @@ try {
 	ajax::init();
 
 	if (init('action') == 'getEqLogicObject') {
-		$object = object::byId(init('object_id'));
+		$object = jeeObject::byId(init('object_id'));
 
 		if (!is_object($object)) {
 			throw new Exception(__('Objet inconnu. Vérifiez l\'ID', __FILE__));

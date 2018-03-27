@@ -169,7 +169,7 @@ class plan {
 			$cmd = cmd::byId($this->getLink_id());
 			return $cmd;
 		} else if ($this->getLink_type() == 'summary') {
-			$object = object::byId($this->getLink_id());
+			$object = jeeObject::byId($this->getLink_id());
 			return $object;
 		}
 		return null;
@@ -298,21 +298,21 @@ class plan {
 				'html' => $html,
 			);
 		} else if ($this->getLink_type() == 'summary') {
-			$background_color = 'background-color : '.$this->getCss('background-color', 'black').';';
- 			if ($this->getDisplay('background-defaut', false)) {
- 				$background_color = 'background-color : black;';
- 			}
- 			if ($this->getDisplay('background-transparent', false)) {
- 				$background_color = '';
- 			}
- 			$color = 'color : '.$this->getCss('color', 'black').';';
- 			if ($this->getDisplay('color-defaut', false)) {
- 				$color = '';
- 			}
- 			$html = '<div class="summary-widget" data-summary_id="' . $this->getLink_id() . '" style="' . $background_color . $color . ';min-width:10px;min-height:10px;">';
+			$background_color = 'background-color : ' . $this->getCss('background-color', 'black') . ';';
+			if ($this->getDisplay('background-defaut', false)) {
+				$background_color = 'background-color : black;';
+			}
+			if ($this->getDisplay('background-transparent', false)) {
+				$background_color = '';
+			}
+			$color = 'color : ' . $this->getCss('color', 'black') . ';';
+			if ($this->getDisplay('color-defaut', false)) {
+				$color = '';
+			}
+			$html = '<div class="summary-widget" data-summary_id="' . $this->getLink_id() . '" style="' . $background_color . $color . ';min-width:10px;min-height:10px;">';
 			$summary = '';
 			if ($this->getLink_id() == 0) {
-				$summary = object::getGlobalHtmlSummary($_version);
+				$summary = jeeObject::getGlobalHtmlSummary($_version);
 			} else {
 				$object = $this->getLink();
 				if (is_object($object)) {

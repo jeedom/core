@@ -152,7 +152,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
 			<select class="form-control pull-right" id="sel_objectsTimeline" style="width: 140px;">
 				<option value="all">{{Tous (Objets)}}</option>
 				<?php
-foreach (object::all() as $object) {
+foreach (jeeObject::all() as $object) {
 	echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
 }
 ?>

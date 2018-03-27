@@ -14,7 +14,7 @@ sendVarToJS('select_id', init('id', '-1'));
         <a id="bt_addObject" class="btn btn-default" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-plus-circle"></i> {{Ajouter objet}}</a>
         <li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
         <?php
-$allObject = object::buildTree(null, false);
+$allObject = jeeObject::buildTree(null, false);
 foreach ($allObject as $object) {
 	$margin = 15 * $object->getConfiguration('parentNumber');
 	echo '<li class="cursor li_object bt_sortable" data-object_id="' . $object->getId() . '" data-object_name="' . $object->getName() . '" data-object_icon=\'' . $object->getDisplay('icon', '<i class="fa fa-lemon-o"></i>') . '\'>';
@@ -242,4 +242,4 @@ $active = ' active';
 </div>
 </div>
 
-<?php include_file("desktop", "object", "js");?>
+<?php include_file("desktop", "jeeObject", "js");?>

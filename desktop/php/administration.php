@@ -973,7 +973,7 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonymes pour les objets}}</label>
 						<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
-							<input class="configKey form-control" data-l1key="interact::autoreply::object::synonym" />
+							<input class="configKey form-control" data-l1key="interact::autoreply::jeeObject::synonym" />
 						</div>
 					</div>
 					<div class="form-group">
@@ -1060,7 +1060,7 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Profondeur pour les objets}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-							<input class="configKey form-control" data-l1key="graphlink::object::drill" />
+							<input class="configKey form-control" data-l1key="graphlink::jeeObject::drill" />
 						</div>
 					</div>
 					<div class="form-group">

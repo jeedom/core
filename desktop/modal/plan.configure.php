@@ -141,7 +141,7 @@ sendVarToJS('id', $plan->getId());
       <option value="-1">{{Aucun}}</option>
       <option value="0">{{Général}}</option>
       <?php
-foreach (object::all() as $object) {
+foreach (jeeObject::all() as $object) {
 	echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
 }
 ?>
