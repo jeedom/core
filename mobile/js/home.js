@@ -28,7 +28,7 @@ function initHome() {
                 }
             }
             $('#bottompanel_objectList').empty().append(li);
-            jeedom.jeejeeObject.summaryUpdate(summaries);
+            jeedom.jeeObject.summaryUpdate(summaries);
         }
     });
 

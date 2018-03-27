@@ -216,7 +216,7 @@ jeedom.jeeObject.setOrder = function(_params) {
 };
 
 
-jeedom.jeejeeObject.summaryUpdate = function(_params) {
+jeedom.jeeObject.summaryUpdate = function(_params) {
     var objects = {};
     var sends = {};
     for(var i in _params){

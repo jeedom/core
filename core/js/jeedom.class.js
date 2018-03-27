@@ -118,7 +118,7 @@ jeedom.init = function () {
         jeedom.eqLogic.refreshValue(_options);
     });
     $('body').on('jeeObject::summary::update', function (_event,_options) {
-        jeedom.jeejeeObject.summaryUpdate(_options);
+        jeedom.jeeObject.summaryUpdate(_options);
     });
 
     $('body').on('ui::update', function (_event,_options) {
