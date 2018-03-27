@@ -82,6 +82,7 @@ class view {
 	}
 
 	public function remove() {
+		jeedom::addRemoveHistory(array('id' => $this->getId(), 'name' => $this->getName(), 'date' => date('Y-m-d H:i:s'), 'type' => 'view'));
 		return DB::remove($this);
 	}
 

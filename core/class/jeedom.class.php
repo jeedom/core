@@ -49,6 +49,20 @@ class jeedom {
 		com_shell::execute(system::getCmdSudo() . 'chmod 777 ' . $path . ' > /dev/null 2>&1;');
 		unlink($path);
 	}
+	public static function addRemoveHistory($_data) {
+		try {
+			if (file_exists(dirname(__FILE__) . '/../../data/remove_history.json')) {
+				$remove_history = json_decode(file_get_contents(dirname(__FILE__) . '/../../data/cmd/remove_history.json'), true);
+			}
+			if (!is_array($remove_history)) {
+				$remove_history = array();
+			}
+			$remove_history[] = $_data;
+			file_put_contents(dirname(__FILE__) . '/../../data/remove_history.json', json_encode($remove_history));
+		} catch (Exception $e) {
+
+		}
+	}
 
 	public static function deadCmd() {
 		global $JEEDOM_INTERNAL_CONFIG;

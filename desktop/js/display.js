@@ -67,14 +67,14 @@
 });
 
  $('.configureEqLogic').on('click',function(){
-     $('#md_modal').dialog({title: "{{Configuration de l'équipement}}"});
-     $('#md_modal').load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $(this).closest('.eqLogic').attr('data-id')).dialog('open');
- });
+   $('#md_modal').dialog({title: "{{Configuration de l'équipement}}"});
+   $('#md_modal').load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $(this).closest('.eqLogic').attr('data-id')).dialog('open');
+});
 
  $('.configureObject').on('click',function(){
-     $('#md_modal').dialog({title: "{{Configuration de l'objet}}"});
-     $('#md_modal').load('index.php?v=d&modal=object.configure&object_id=' + $(this).closest('.object').attr('data-id')).dialog('open');
- });
+   $('#md_modal').dialog({title: "{{Configuration de l'objet}}"});
+   $('#md_modal').load('index.php?v=d&modal=object.configure&object_id=' + $(this).closest('.object').attr('data-id')).dialog('open');
+});
 
  $('.showCmd').on('click',function(){
     if($(this).hasClass('fa-chevron-right')){
@@ -105,14 +105,14 @@
 });
 
  $( ".cmd" ).on('dblclick',function(){
-   $('#md_modal').dialog({title: "{{Configuration de la commande}}"});
-   $('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open');
-});
+     $('#md_modal').dialog({title: "{{Configuration de la commande}}"});
+     $('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open');
+ });
 
  $('.configureCmd').on('click',function(){
-     $('#md_modal').dialog({title: "{{Configuration de la commande}}"});
-     $('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.cmd').attr('data-id')).dialog('open');
- });
+   $('#md_modal').dialog({title: "{{Configuration de la commande}}"});
+   $('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.cmd').attr('data-id')).dialog('open');
+});
 
  $('#in_search').on('keyup',function(){
     var search = $(this).value().toLowerCase();
@@ -194,9 +194,9 @@
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success : function(){
-           loadPage('index.php?v=d&p=display');
-        }
-    });
+         loadPage('index.php?v=d&p=display');
+     }
+ });
 });
 
  $('.bt_setIsEnable').on('click',function(){
@@ -216,4 +216,9 @@
             loadPage('index.php?v=d&p=display');
         }
     });
+});
+
+ $('#bt_removeHistory').on('click',function(){
+    $('#md_modal').dialog({title: "{{Historique des supression}}"});
+    $('#md_modal').load('index.php?v=d&modal=remove.history').dialog('open');
 });

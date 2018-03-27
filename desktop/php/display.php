@@ -44,6 +44,9 @@ foreach ($objects as $object) {
 	}
 </style>
 <br/>
+<span class="pull-left">
+	<a class="btn btn-default btn-sm" id="bt_removeHistory"><i class="fa fa-trash" aria-hidden="true"></i> {{Historique des suppressions}}</a>
+</span>
 <span class="pull-right">
 	<input class="form-control pull-right" id="in_search" placeholder="{{Rechercher}}" style="width : 200px;"/>
 	<label class="checkbox-inline"><input type="checkbox" id="cb_actifDisplay" checked />{{Inactif}}</label>

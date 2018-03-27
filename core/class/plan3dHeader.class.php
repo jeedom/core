@@ -77,6 +77,7 @@ class plan3dHeader {
 		if (file_exists($cibDir)) {
 			rrmdir($cibDir);
 		}
+		jeedom::addRemoveHistory(array('id' => $this->getId(), 'name' => $this->getName(), 'date' => date('Y-m-d H:i:s'), 'type' => 'plan3d'));
 		DB::remove($this);
 	}
 

@@ -21,6 +21,8 @@ affichés sur cette page. \* **Rechercher** : Permet de rechercher un
 élément particulier. Ce peut être le nom d’un équipement, d’une commande
 ou le nom du plugin par lequel a été créé l’équipement.
 
+Vous avez aussi un bouton "Historique des suppressions" qui vous permettra d'afficher l'historique des commandes, équipements, objets, vue, design, deisgn 3d, scénario et utilisateur supprimés.
+
 Les cadres objet 
 ----------------
 

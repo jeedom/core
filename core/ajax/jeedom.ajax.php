@@ -334,6 +334,12 @@ try {
 		ajax::success();
 	}
 
+	if(init('action') == 'emptyRemoveHistory'){
+		unautorizedInDemo();
+		unlink(dirname(__FILE__) . '/../../data/remove_history.json'));
+		ajax::success();
+	}
+
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {

@@ -873,6 +873,7 @@ class eqLogic {
 		$this->emptyCacheWidget();
 		cache::delete('eqLogicCacheAttr' . $this->getId());
 		cache::delete('eqLogicStatusAttr' . $this->getId());
+		jeedom::addRemoveHistory(array('id' => $this->getId(), 'name' => $this->getHumanName(), 'date' => date('Y-m-d H:i:s'), 'type' => 'eqLogic'));
 		return DB::remove($this);
 	}
 

@@ -1,0 +1,59 @@
+<?php
+if (!isConnect('admin')) {
+	throw new Exception('{{401 - Accès non autorisé}}');
+}
+if (file_exists(dirname(__FILE__) . '/../../data/remove_history.json')) {
+	$remove_history = json_decode(file_get_contents(dirname(__FILE__) . '/../../data/remove_history.json'), true);
+}
+if (!is_array($remove_history)) {
+	$remove_history = array();
+}
+?>
+<div id="div_alertRemoveHistory"></div>
+<a class="btn btn-danger btn-sm pull-right" id="bt_emptyRemoveHistory"><i class="fa fa-times"></i> {{Vider}}</a>
+<br/><br/>
+<table class="table table-condensed table-bordered">
+	<thead>
+		<tr>
+			<th>{{Date}}</th>
+			<th>{{Type}}</th>
+			<th>{{ID}}</th>
+			<th>{{Nom}}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php
+if (count($remove_history) > 0) {
+	foreach ($remove_history as $remove) {
+		echo '<tr>';
+		echo '<td>';
+		echo $remove['date'];
+		echo '</td>';
+		echo '<td>';
+		echo $remove['type'];
+		echo '</td>';
+		echo '<td>';
+		echo $remove['id'];
+		echo '</td>';
+		echo '<td>';
+		echo $remove['name'];
+		echo '</td>';
+		echo '</tr>';
+	}
+}
+?>
+	</tbody>
+</table>
+
+<script>
+	$('#bt_emptyRemoveHistory').on('click',function(){
+		jeedom.emptyRemoveHistory({
+			error: function (error) {
+				$('#div_alertRemoveHistory').showAlert({message: error.message, level: 'danger'});
+			},
+			success: function (data) {
+				$('#div_alertRemoveHistory').showAlert({message: '{{Historique vidée avec succès}}', level: 'success'});
+			}
+		});
+	});
+</script>

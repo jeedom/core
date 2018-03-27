@@ -646,3 +646,21 @@ jeedom.createFile = function(_params) {
     };
     $.ajax(paramsAJAX);
 };
+
+jeedom.emptyRemoveHistory = function(_params) {
+ var paramsRequired = [];
+    var paramsSpecifics = {};
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+    paramsAJAX.data = {
+        action: 'emptyRemoveHistory',
+    };
+    $.ajax(paramsAJAX);
+};

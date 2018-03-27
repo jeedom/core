@@ -966,6 +966,7 @@ class scenario {
 			unlink(dirname(__FILE__) . '/../../log/scenarioLog/scenario' . $this->getId() . '.log');
 		}
 		cache::delete('scenarioCacheAttr' . $this->getId());
+		jeedom::addRemoveHistory(array('id' => $this->getId(), 'name' => $this->getHumanName(), 'date' => date('Y-m-d H:i:s'), 'type' => 'scenario'));
 		return DB::remove($this);
 	}
 	/**

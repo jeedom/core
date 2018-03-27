@@ -405,6 +405,7 @@ class user {
 	}
 
 	public function remove() {
+		jeedom::addRemoveHistory(array('id' => $this->getId(), 'name' => $this->getLogin(), 'date' => date('Y-m-d H:i:s'), 'type' => 'user'));
 		return DB::remove($this);
 	}
 
