@@ -58,6 +58,7 @@ class jeedom {
 				$remove_history = array();
 			}
 			$remove_history[] = $_data;
+			$remove_history = array_slice($remove_history, -200, 200);
 			file_put_contents(dirname(__FILE__) . '/../../data/remove_history.json', json_encode($remove_history));
 		} catch (Exception $e) {
 
