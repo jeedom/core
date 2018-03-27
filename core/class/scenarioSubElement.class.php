@@ -63,7 +63,7 @@ class scenarioSubElement {
 	/*     * *********************Methode d'instance************************* */
 
 	public function execute(&$_scenario = null) {
-		if ($_scenario != null && !$_scenario->getDo()) {
+		if ($_scenario !== null && !$_scenario->getDo()) {
 			return;
 		}
 		if ($this->getSubtype() == 'action') {
