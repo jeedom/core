@@ -90,7 +90,7 @@ class event {
 	}
 
 	private static function filterEvent($_data = array(), $_filter = null) {
-		if ($_filter == null) {
+		if ($_filter === null) {
 			return $_data;
 		}
 		$filters = cache::byKey($_filter . '::event')->getValue(array());
