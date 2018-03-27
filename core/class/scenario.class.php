@@ -1372,7 +1372,7 @@ class scenario {
 	 * @return boolean
 	 */
 	public function hasRight($_right, $_user = null) {
-		if ($_user != null) {
+		if ($_user !== null) {
 			if ($_user->getProfils() == 'admin' || $_user->getProfils() == 'user') {
 				return true;
 			}
