@@ -3,8 +3,8 @@ if (!isConnect()) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 ?>
-<div id="div_alertObjectSummary"></div>
-<table class="table table-bordered table-condensed tablesorter" id="table_ObjectSummary">
+<div id="div_alertJeeObjectSummary"></div>
+<table class="table table-bordered table-condensed tablesorter" id="table_jeeObjectSummary">
 	<thead>
 		<tr>
 			<th style="cursor:default">{{ID}}</th>

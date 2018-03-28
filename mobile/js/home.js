@@ -23,11 +23,11 @@ function initHome() {
                     if (isset(objects[i].display) && isset(objects[i].display.icon)) {
                         icon = objects[i].display.icon;
                     }
-                    li += '<a href="#" class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="equipment" data-title="' + icon.replace(/\"/g, "\'") + ' ' + objects[i].name.replace(/\"/g, "\'") + '" data-option="' + objects[i].id + '"><span>' + icon + '</span> ' + objects[i].name + '<span style="float:right;font-size:0.6em;color:#787c84;"><span class="objectSummary'+objects[i].id+'" data-version="mobile"></span></span></a>';
+                    li += '<a href="#" class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="equipment" data-title="' + icon.replace(/\"/g, "\'") + ' ' + objects[i].name.replace(/\"/g, "\'") + '" data-option="' + objects[i].id + '"><span>' + icon + '</span> ' + objects[i].name + '<span style="float:right;font-size:0.6em;color:#787c84;"><span class="jeeObjectSummary'+objects[i].id+'" data-version="mobile"></span></span></a>';
                     summaries.push({object_id : objects[i].id})
                 }
             }
-            $('#bottompanel_objectList').empty().append(li);
+            $('#bottompanel_jeeObjectList').empty().append(li);
             jeedom.jeeObject.summaryUpdate(summaries);
         }
     });

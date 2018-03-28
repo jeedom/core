@@ -1101,8 +1101,8 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 			<br/>
 			<form class="form-horizontal">
 				<fieldset>
-					<i class="fa fa-plus-circle pull-right cursor" id="bt_addObjectSummary" style="font-size: 1.8em;"></i>
-					<table class="table table-condensed table-bordered" id="table_objectSummary" >
+					<i class="fa fa-plus-circle pull-right cursor" id="bt_addJeeObjectSummary" style="font-size: 1.8em;"></i>
+					<table class="table table-condensed table-bordered" id="table_jeeObjectSummary" >
 						<thead>
 							<tr>
 								<th>{{Clef}}</th>

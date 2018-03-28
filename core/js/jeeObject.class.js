@@ -79,7 +79,7 @@ jeedom.jeeObject.all = function(_params) {
         return;
     }
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
-    paramsAJAX.url = 'core/ajax/object.ajax.php';
+    paramsAJAX.url = 'core/ajax/jeeObject.ajax.php';
     paramsAJAX.data = {
         action: 'all',
     };
@@ -97,7 +97,7 @@ jeedom.jeeObject.toHtml = function(_params) {
     }
     var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
-    paramsAJAX.url = 'core/ajax/object.ajax.php';
+    paramsAJAX.url = 'core/ajax/jeeObject.ajax.php';
     paramsAJAX.data = {
         action: 'toHtml',
         id: ($.isArray(_params.id)) ? json_encode(_params.id) : _params.id,
@@ -130,7 +130,7 @@ jeedom.jeeObject.remove = function(_params) {
     }
     var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
-    paramsAJAX.url = 'core/ajax/object.ajax.php';
+    paramsAJAX.url = 'core/ajax/jeeObject.ajax.php';
     paramsAJAX.data = {
         action: 'remove',
         id: _params.id
@@ -159,7 +159,7 @@ jeedom.jeeObject.save = function(_params) {
     }
     var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
-    paramsAJAX.url = 'core/ajax/object.ajax.php';
+    paramsAJAX.url = 'core/ajax/jeeObject.ajax.php';
     paramsAJAX.data = {
         action: 'save',
         object: json_encode(_params.object),
@@ -188,7 +188,7 @@ jeedom.jeeObject.byId = function(_params) {
         return;
     }
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
-    paramsAJAX.url = 'core/ajax/object.ajax.php';
+    paramsAJAX.url = 'core/ajax/jeeObject.ajax.php';
     paramsAJAX.data = {
         action: 'byId',
         id: _params.id
@@ -207,7 +207,7 @@ jeedom.jeeObject.setOrder = function(_params) {
     }
     var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
-    paramsAJAX.url = 'core/ajax/object.ajax.php';
+    paramsAJAX.url = 'core/ajax/jeeObject.ajax.php';
     paramsAJAX.data = {
         action: 'setOrder',
         objects: json_encode(_params.objects)
@@ -220,24 +220,24 @@ jeedom.jeeObject.summaryUpdate = function(_params) {
     var objects = {};
     var sends = {};
     for(var i in _params){
-        var object = $('.objectSummary' + _params[i].object_id);
+        var object = $('.jeeObjectSummary' + _params[i].object_id);
         if (object.html() == undefined || object.attr('data-version') == undefined) {
             continue;
         }
         if(isset(_params[i]['keys'])){
             var updated = false;
             for(var j in _params[i]['keys']){
-                var keySpan = object.find('.objectSummary'+j);
+                var keySpan = object.find('.jeeObjectSummary'+j);
                 if(keySpan.html() != undefined){
                     updated = true;
-                    if(keySpan.closest('.objectSummaryParent').attr('data-displayZeroValue') == 0 && _params[i]['keys'][j]['value'] === 0){
-                        keySpan.closest('.objectSummaryParent').hide();
+                    if(keySpan.closest('.jeeObjectSummaryParent').attr('data-displayZeroValue') == 0 && _params[i]['keys'][j]['value'] === 0){
+                        keySpan.closest('.jeeObjectSummaryParent').hide();
                         continue;
                     }
                     if(_params[i]['keys'][j]['value'] === null){
                         continue;
                     }
-                    keySpan.closest('.objectSummaryParent').show();
+                    keySpan.closest('.jeeObjectSummaryParent').show();
                     keySpan.empty().append(_params[i]['keys'][j]['value']);
                 }
             }
@@ -257,11 +257,11 @@ jeedom.jeeObject.summaryUpdate = function(_params) {
         success: function (result) {
             for(var i in result){
                 objects[i].object.replaceWith($(result[i].html));
-                if($('.objectSummary' + i).closest('.objectSummaryHide') != []){
+                if($('.jeeObjectSummary' + i).closest('.jeeObjectSummaryHide') != []){
                     if($(result[i].html).html() == ''){
-                        $('.objectSummary' + i).closest('.objectSummaryHide').hide();
+                        $('.jeeObjectSummary' + i).closest('.jeeOjectSummaryHide').hide();
                     }else{
-                        $('.objectSummary' + i).closest('.objectSummaryHide').show();
+                        $('.jeeObjectSummary' + i).closest('.jeeObjectSummaryHide').show();
                     }
                 }
             }
@@ -275,7 +275,7 @@ jeedom.jeeObject.summaryUpdate = function(_params) {
     }
     var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
-    paramsAJAX.url = 'core/ajax/object.ajax.php';
+    paramsAJAX.url = 'core/ajax/jeeObject.ajax.php';
     paramsAJAX.data = {
         action: 'getSummaryHtml',
         ids: json_encode(sends),

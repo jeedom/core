@@ -13,7 +13,7 @@ function initEquipment(_object_id) {
           if (isset(objects[i].display) && isset(objects[i].display.icon)) {
             icon = objects[i].display.icon;
           }
-          li += '<li><a href="#" class="link" data-page="equipment" data-title="' + icon.replace(/\"/g, "\'") + ' ' + objects[i].name + '" data-option="' + objects[i].id + '"><span>' + icon + '</span> ' + objects[i].name + '<span style="float:right;font-size:0.6em;color:#787c84;"><span class="objectSummary'+objects[i].id+'" data-version="mobile"></span></span></a></li>';
+          li += '<li><a href="#" class="link" data-page="equipment" data-title="' + icon.replace(/\"/g, "\'") + ' ' + objects[i].name + '" data-option="' + objects[i].id + '"><span>' + icon + '</span> ' + objects[i].name + '<span style="float:right;font-size:0.6em;color:#787c84;"><span class="jeeObjectSummary'+objects[i].id+'" data-version="mobile"></span></span></a></li>';
           summaries.push({object_id : objects[i].id})
         }
       }
@@ -59,8 +59,8 @@ function initEquipment(_object_id) {
              }
            }
            div += '</legend>';
-           div += '<div class="nd2-card objectSummaryHide" style="max-width:100% !important;"><div class="card-title has-supporting-text" style="padding:4px;font-size:0.6em;"><center><span class="objectSummary'+id+'" data-version="mobile"></span></center></div></div>';
-           div += '<div class="objectHtml">';
+           div += '<div class="nd2-card jeeObjectSummaryHide" style="max-width:100% !important;"><div class="card-title has-supporting-text" style="padding:4px;font-size:0.6em;"><center><span class="jeeObjectSummary'+id+'" data-version="mobile"></span></center></div></div>';
+           div += '<div class="jeeObjectHtml">';
            div += html[i]
            div += '</div>';
            div += '</div>';
@@ -75,16 +75,16 @@ function initEquipment(_object_id) {
         }
         setTileSize('.eqLogic');
         setTimeout(function () {
-          $('.div_displayEquipement .objectHtml').packery({gutter : 4});
+          $('.div_displayEquipement .jeeObjectHtml').packery({gutter : 4});
         }, 10);
       }
     });  
        }else{
-         $('#div_displayEquipement').empty().html('<div class="nd2-card objectSummaryHide" style="max-width:100% !important;"><div class="card-title has-supporting-text" style="padding:4px;font-size:0.6em;"><center><span class="objectSummary'+_object_id+'" data-version="mobile"></span></center></div></div><div class="objectHtml">'+html+'</div>').trigger('create');
+         $('#div_displayEquipement').empty().html('<div class="nd2-card jeeObjectSummaryHide" style="max-width:100% !important;"><div class="card-title has-supporting-text" style="padding:4px;font-size:0.6em;"><center><span class="jeeObjectSummary'+_object_id+'" data-version="mobile"></span></center></div></div><div class="jeeObjectHtml">'+html+'</div>').trigger('create');
          jeedom.jeeObject.summaryUpdate([{object_id:_object_id}]);
          setTileSize('.eqLogic');
          setTimeout(function () {
-          $('#div_displayEquipement > .objectHtml').packery({gutter : 4});
+          $('#div_displayEquipement > .jeeObjectHtml').packery({gutter : 4});
         }, 10);
        }
 
@@ -98,9 +98,9 @@ function initEquipment(_object_id) {
     deviceInfo = getDeviceType();
     setTileSize('.eqLogic');
     if(_object_id == 'all'){
-      $('.div_displayEquipement > .objectHtml').packery({gutter : 4});
+      $('.div_displayEquipement > .jeeObjectHtml').packery({gutter : 4});
     }else{
-     $('#div_displayEquipement > .objectHtml').packery({gutter : 4}); 
+     $('#div_displayEquipement > .jeeObjectHtml').packery({gutter : 4}); 
    }
  });
 }

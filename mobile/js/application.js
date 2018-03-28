@@ -33,7 +33,7 @@ $(function () {
     });
 
 
-    $('body').on('click','.objectSummaryParent',function(){
+    $('body').on('click','.jeeObjectSummaryParent',function(){
        modal(false);
        panel(false);
        page('equipment', '{{Résumé}}', $(this).data('object_id')+':'+$(this).data('summary'));

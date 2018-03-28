@@ -291,7 +291,7 @@ function addSummaryInfo(_el, _summary) {
     _el.find('.summary:last').setValues(_summary, '.summaryAttr');
 }
 
-$('.bt_showObjectSummary').off('click').on('click', function () {
+$('.bt_showJeeObjectSummary').off('click').on('click', function () {
   $('#md_modal').dialog({title: "{{Résumé Objets}}"});
   $("#md_modal").load('index.php?v=d&modal=jeeObject.summary').dialog('open');
 });

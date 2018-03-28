@@ -359,7 +359,7 @@ if (isset(jeedom_langage)) {
         $('#md_modal').load('index.php?v=d&p=message&ajax=1').dialog('open');
     });
 
-    $('body').on('click','.objectSummaryParent',function(){
+    $('body').on('click','.jeeObjectSummaryParent',function(){
        loadPage('index.php?v=d&p=dashboard&summary='+$(this).data('summary')+'&object_id='+$(this).data('object_id'));
    });
 
