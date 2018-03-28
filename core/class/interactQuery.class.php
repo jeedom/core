@@ -152,6 +152,10 @@ class interactQuery {
 				$shortest = $lev;
 			}
 		}
+		if ($shortest < 0) {
+			log::add('interact', 'debug', __('Aucune correspondance trouvée', __FILE__));
+			return null;
+		}
 		$weigh = array(1 => config::byKey('interact::weigh1'), 2 => config::byKey('interact::weigh2'), 3 => config::byKey('interact::weigh3'), 4 => config::byKey('interact::weigh4'));
 		foreach (str_word_count($_query, 1) as $word) {
 			if (isset($weigh[strlen($word)])) {
