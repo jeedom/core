@@ -468,7 +468,7 @@ try {
 				$jsonrpc->makeSuccess(jeeObject::getGlobalSummary($params['key']));
 			}
 			$return = array();
-			$def = config::byKey('object:summary');
+			$def = config::byKey('jeeObject:summary');
 			foreach ($def as $key => $value) {
 				$return[$key] = jeeObject::getGlobalSummary($key);
 			}

@@ -234,7 +234,7 @@ class interactQuery {
 				$objects = cmd::all();
 			}
 		} elseif ($_type == 'summary') {
-			foreach (config::byKey('object:summary') as $key => $value) {
+			foreach (config::byKey('jeeObject:summary') as $key => $value) {
 				if (count($synonyms) > 0 && in_array(strtolower($value['name']), $synonyms)) {
 					$return[$_type] = $value;
 					break;

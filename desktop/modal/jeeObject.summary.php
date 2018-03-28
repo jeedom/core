@@ -40,7 +40,7 @@ foreach ($allObject as $object) {
 		echo '<td><span class="label label-danger" style="font-size : 1em;" title="{{Non}}"><i class="fa fa-times"></i></span></td>';
 	}
 	echo '<td>';
-	foreach (config::byKey('object:summary') as $key => $value) {
+	foreach (config::byKey('jeeObject:summary') as $key => $value) {
 		$title = '';
 		foreach ($object->getConfiguration('summary')[$key] as $summary) {
 			if (cmd::byId(str_replace('#', '', $summary['cmd']))) {
@@ -59,14 +59,14 @@ foreach ($allObject as $object) {
 	}
 	echo '</td>';
 	echo '<td>';
-	foreach (config::byKey('object:summary') as $key => $value) {
+	foreach (config::byKey('jeeObject:summary') as $key => $value) {
 		if ($object->getConfiguration('summary::hide::desktop::' . $key) == 1) {
 			echo '<a style="cursor:default;text-decoration:none;" title="' . $value['name'] . '">' . $value['icon'] . '</a>  ';
 		}
 	}
 	echo '</td>';
 	echo '<td>';
-	foreach (config::byKey('object:summary') as $key => $value) {
+	foreach (config::byKey('jeeObject:summary') as $key => $value) {
 		if ($object->getConfiguration('summary::hide::mobile::' . $key) == 1) {
 			echo '<a style="cursor:default;text-decoration:none;" title="' . $value['name'] . '">' . $value['icon'] . '</a>  ';
 		}
