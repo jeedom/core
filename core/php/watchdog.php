@@ -37,16 +37,16 @@ if ($update_in_progress > 1) {
 	echo 'Update (apt or dpkg) in progress, cancel watchdog';
 	die();
 }
-
+$output = array();
 /******************************Database***************************************/
 
 /********************************MySQL****************************************/
 echo 'Check MySql => ';
-$output = array();
 $rc = 0;
-exec('systemctl is-enabled mysql 2>&1', $output, $rc);
-if ($rc == 0) {
-	$output = array();
+$enable = false;
+
+$enable = (file_exists('/etc/rc2.d/S01mysql') || file_exists('/etc/rc3.d/S01mysql') || file_exists('/etc/rc4.d/S01mysql') || file_exists('/etc/rc5.d/S01mysql'));
+if ($enable) {
 	$rc = 0;
 	exec('systemctl status mysql', $output, $rc);
 	if ($rc == 0) {
@@ -70,11 +70,9 @@ if ($rc == 0) {
 
 /********************************Nginx****************************************/
 echo 'Check Nginx => ';
-$output = array();
 $rc = 0;
-exec('systemctl is-enabled nginx 2>&1', $output, $rc);
-if ($rc == 0) {
-	$output = array();
+$enable = (file_exists('/etc/rc2.d/S01nginx') || file_exists('/etc/rc3.d/S01nginx') || file_exists('/etc/rc4.d/S01nginx') || file_exists('/etc/rc5.d/S01nginx'));
+if ($enable) {
 	$rc = 0;
 	exec('systemctl status nginx', $output, $rc);
 	if ($rc == 0) {
@@ -95,11 +93,9 @@ if ($rc == 0) {
 
 /********************************Apache****************************************/
 echo 'Check Apache => ';
-$output = array();
 $rc = 0;
-exec('systemctl is-enabled apache2 2>&1', $output, $rc);
-if ($rc == 0) {
-	$output = array();
+$enable = (file_exists('/etc/rc2.d/S01apache2') || file_exists('/etc/rc3.d/S01apache2') || file_exists('/etc/rc4.d/S01apache2') || file_exists('/etc/rc5.d/S01apache2'));
+if ($enable) {
 	$rc = 0;
 	exec('systemctl status apache2', $output, $rc);
 	if ($rc == 0) {
