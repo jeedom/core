@@ -49,6 +49,7 @@ class eqLogic {
 	/*     * ***********************Méthodes statiques*************************** */
 
 	public static function getAllTags() {
+		$values = array();
 		$sql = 'SELECT tags
         FROM eqLogic
         WHERE tags IS NOT NULL
