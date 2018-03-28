@@ -334,9 +334,9 @@ try {
 		ajax::success();
 	}
 
-	if(init('action') == 'emptyRemoveHistory'){
+	if (init('action') == 'emptyRemoveHistory') {
 		unautorizedInDemo();
-		unlink(dirname(__FILE__) . '/../../data/remove_history.json'));
+		unlink(dirname(__FILE__) . '/../../data/remove_history.json');
 		ajax::success();
 	}
 
