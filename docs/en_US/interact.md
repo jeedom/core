@@ -82,10 +82,12 @@ General
 
 -   **Request**: the generating model sentence (required).
 
--   **Synonym**: allows you to define synonyms on the names
-    some orders.
+-   **Regexp de correspondance obligatoire** : Expression reguliere qui si remplis doit absolument valider la phrase de la demande
 
--   **Answer**: the answer to provide.
+-   **Synonyme** : permet de définir des synonymes sur les noms
+    des commandes.
+
+-   **Réponse** : la réponse à fournir.
 
 -   **Attendre avant de répondre (s)** : permet d'ajouter un délai de X secondes avant de generer la réponse. Ca permet par exemple d'attendre que le retour d'état d'une lampe se fasse avant de réponse.
 
