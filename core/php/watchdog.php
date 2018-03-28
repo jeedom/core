@@ -44,8 +44,7 @@ $output = array();
 echo 'Check MySql => ';
 $rc = 0;
 $enable = false;
-
-$enable = (file_exists('/etc/rc2.d/S01mysql') || file_exists('/etc/rc3.d/S01mysql') || file_exists('/etc/rc4.d/S01mysql') || file_exists('/etc/rc5.d/S01mysql'));
+$enable = (shell_exec('ls -l /etc/rc[2-5].d/S0?mysql 2>/dev/null | wc -l') > 0);
 if ($enable) {
 	$rc = 0;
 	exec('systemctl status mysql', $output, $rc);
@@ -71,7 +70,7 @@ if ($enable) {
 /********************************Nginx****************************************/
 echo 'Check Nginx => ';
 $rc = 0;
-$enable = (file_exists('/etc/rc2.d/S01nginx') || file_exists('/etc/rc3.d/S01nginx') || file_exists('/etc/rc4.d/S01nginx') || file_exists('/etc/rc5.d/S01nginx'));
+$enable = (shell_exec('ls -l /etc/rc[2-5].d/S0?nginx 2>/dev/null | wc -l') > 0);
 if ($enable) {
 	$rc = 0;
 	exec('systemctl status nginx', $output, $rc);
@@ -94,7 +93,7 @@ if ($enable) {
 /********************************Apache****************************************/
 echo 'Check Apache => ';
 $rc = 0;
-$enable = (file_exists('/etc/rc2.d/S01apache2') || file_exists('/etc/rc3.d/S01apache2') || file_exists('/etc/rc4.d/S01apache2') || file_exists('/etc/rc5.d/S01apache2'));
+$enable = (shell_exec('ls -l /etc/rc[2-5].d/S0?apache2 2>/dev/null | wc -l') > 0);
 if ($enable) {
 	$rc = 0;
 	exec('systemctl status apache2', $output, $rc);
