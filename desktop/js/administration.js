@@ -656,8 +656,8 @@ $('#bt_accessDbAdministration').on('click',function(){
 
 /**************************Summary***********************************/
 
-$('#bt_addObjectSummary').on('click', function () {
-    addObjectSummary();
+$('#bt_addJeeObjectSummary').on('click', function () {
+    addJeeObjectSummary();
 });
 
 $('#div_pageContainer').undelegate('.jeeObjectSummary .jeeObjectSummaryAction[data-l1key=chooseIcon]', 'click').delegate('.jeeObjectSummary .jeeObjectSummaryAction[data-l1key=chooseIcon]', 'click', function () {

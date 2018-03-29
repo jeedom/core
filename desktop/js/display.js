@@ -18,11 +18,11 @@
   connectWith: ".eqLogicSortable",
   stop: function (event, ui) {
     var eqLogics = [];
-    var object = ui.item.closest('.object');
+    var jeeObject = ui.item.closest('.jeeObject');
     order = 1;
-    object.find('.eqLogic').each(function(){
+    jeeObject.find('.eqLogic').each(function(){
         eqLogic = {};
-        eqLogic.jeeObject_id = object.attr('data-id');
+        eqLogic.jeeObject_id = jeeObject.attr('data-id');
         eqLogic.id = $(this).attr('data-id');
         eqLogic.order = order;
         eqLogics.push(eqLogic);
@@ -71,9 +71,9 @@
    $('#md_modal').load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $(this).closest('.eqLogic').attr('data-id')).dialog('open');
 });
 
- $('.configureObject').on('click',function(){
+ $('.configureJeeObject').on('click',function(){
    $('#md_modal').dialog({title: "{{Configuration de l'objet}}"});
-   $('#md_modal').load('index.php?v=d&modal=object.configure&jeeObject_id=' + $(this).closest('.object').attr('data-id')).dialog('open');
+   $('#md_modal').load('index.php?v=d&modal=jeeObject.configure&jeeObject_id=' + $(this).closest('.jeeObject').attr('data-id')).dialog('open');
 });
 
  $('.showCmd').on('click',function(){
@@ -89,10 +89,10 @@
  $('.showEqLogic').on('click',function(){
     if($(this).hasClass('fa-chevron-right')){
         $(this).removeClass('fa-chevron-right').addClass('fa-chevron-down');
-        $(this).closest('.object').find('.eqLogic').show();
+        $(this).closest('.jeeObject').find('.eqLogic').show();
     }else{
         $(this).removeClass('fa-chevron-down').addClass('fa-chevron-right');
-        $(this).closest('.object').find('.eqLogic').hide();
+        $(this).closest('.jeeObject').find('.eqLogic').hide();
     }
 });
 

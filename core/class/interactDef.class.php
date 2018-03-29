@@ -417,7 +417,7 @@ class interactDef {
 	public function generateQueryVariant() {
 		$inputs = self::generateTextVariant($this->getQuery());
 		$return = array();
-		$jeeObject_filter = $this->getFiltres('object');
+		$jeeObject_filter = $this->getFiltres('jeeObject');
 		$type_filter = $this->getFiltres('type');
 		$subtype_filter = $this->getFiltres('subtype');
 		$unite_filter = $this->getFiltres('unite');
@@ -432,7 +432,7 @@ class interactDef {
 					if (isset($jeeObject_filter[$jeeObject->getId()]) && $jeeObject_filter[$jeeObject->getId()] == 0) {
 						continue;
 					}
-					if (isset($visible_filter['object']) && $visible_filter['object'] == 1 && $jeeObject->getIsVisible() != 1) {
+					if (isset($visible_filter['jeeObject']) && $visible_filter['jeeObject'] == 1 && $jeeObject->getIsVisible() != 1) {
 						continue;
 					}
 					foreach ($jeeObject->getEqLogic() as $eqLogic) {

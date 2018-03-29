@@ -520,7 +520,7 @@ Plusieurs fonctions sont disponibles pour les équipements :
 
 -   name(type,commande) : Permet de récuperer le nom de la commande,
     de l’équipement ou de l’objet. Type vaut soit cmd, eqLogic ou
-    object :
+    jeeOject :
 
 Les périodes et intervalles de ces fonctions peuvent également
 s’utiliser avec [des expressions

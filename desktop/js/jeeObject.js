@@ -24,30 +24,30 @@ if (getUrlVars('removeSuccessFull') == 1) {
 }
 
 if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1) && !jQuery.support.touch){
-    $('#sd_objectList').hide();
-    $('#div_resumeObjectList').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
+    $('#sd_jeeObjectList').hide();
+    $('#div_resumeJeeObjectList').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
     $('#div_conf').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
 
-    $('#bt_displayObject').on('mouseenter',function(){
+    $('#bt_displayJeeObject').on('mouseenter',function(){
        var timer = setTimeout(function(){
-        $('#bt_displayObject').find('i').hide();
-        $('#div_resumeObjectList').addClass('col-lg-10 col-md-10 col-sm-9').removeClass('col-lg-12');
+        $('#bt_displayJeeObject').find('i').hide();
+        $('#div_resumeJeeObjectList').addClass('col-lg-10 col-md-10 col-sm-9').removeClass('col-lg-12');
         $('#div_conf').addClass('col-lg-10 col-md-10 col-sm-9').removeClass('col-lg-12');
-        $('#sd_objectList').show();
-        $('.objectListContainer').packery();
+        $('#sd_jeeObjectList').show();
+        $('.jeeObjectListContainer').packery();
     }, 100);
        $(this).data('timerMouseleave', timer)
    }).on("mouseleave", function(){
       clearTimeout($(this).data('timerMouseleave'));
   });
 
-   $('#sd_objectList').on('mouseleave',function(){
+   $('#sd_jeeObjectList').on('mouseleave',function(){
     var timer = setTimeout(function(){
-       $('#sd_objectList').hide();
-       $('#bt_displayObject').find('i').show();
-       $('#div_resumeObjectList').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
+       $('#sd_jeeObjectList').hide();
+       $('#bt_displayJeeObject').find('i').show();
+       $('#div_resumeJeeObjectList').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
        $('#div_conf').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
-       $('.objectListContainer').packery();
+       $('.jeeObjectListContainer').packery();
    }, 300);
     $(this).data('timerMouseleave', timer);
 }).on("mouseenter", function(){
@@ -55,33 +55,33 @@ if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1)
 });
 }
 
-$('#bt_graphObject').on('click', function () {
+$('#bt_graphJeeObject').on('click', function () {
   $('#md_modal').dialog({title: "{{Graphique des liens}}"});
-  $("#md_modal").load('index.php?v=d&modal=graph.link&filter_type=object&filter_id='+$('.objectAttr[data-l1key=id]').value()).dialog('open');
+  $("#md_modal").load('index.php?v=d&modal=graph.link&filter_type=jeeObject&filter_id='+$('.jeeObjectAttr[data-l1key=id]').value()).dialog('open');
 });
 
 setTimeout(function(){
-  $('.objectListContainer').packery();
+  $('.jeeObjectListContainer').packery();
 },100);
 
 $('#bt_returnToThumbnailDisplay').on('click',function(){
     $('#div_conf').hide();
-    $('#div_resumeObjectList').show();
-    $('.objectListContainer').packery();
+    $('#div_resumeJee0bjectList').show();
+    $('.jeeObjectListContainer').packery();
 });
 
-$(".li_object,.objectDisplayCard").on('click', function (event) {
-   loadObjectConfiguration($(this).attr('data-jeeObject_id'));
-   $('.objectname_resume').empty().append($(this).attr('data-object_icon')+'  '+$(this).attr('data-object_name'));
+$(".li_jeeObject,.jeeObjectDisplayCard").on('click', function (event) {
+   loadJeeObjectConfiguration($(this).attr('data-jeeObject_id'));
+   $('.jeeObjectname_resume').empty().append($(this).attr('data-jeeObject_icon')+'  '+$(this).attr('data-jeeObject_name'));
    return false;
 });
 
-function loadObjectConfiguration(_id){
+function loadJeeObjectConfiguration(_id){
     $('#div_conf').show();
-    $('#div_resumeObjectList').hide();
-    $('.li_object').removeClass('active');
+    $('#div_resumeJeeObjectList').hide();
+    $('.li_jeeObject').removeClass('active');
     $(this).addClass('active');
-    $('.li_object[data-jeeObject_id='+_id+']').addClass('active');
+    $('.li_jeeObject[data-jeeObject_id='+_id+']').addClass('active');
     jeedom.jeeObject.byId({
         id: _id,
         cache: false,
@@ -89,15 +89,15 @@ function loadObjectConfiguration(_id){
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {
-            $('.objectAttr').value('');
-            $('.objectAttr[data-l1key=father_id] option').show();
+            $('.jeeObjectAttr').value('');
+            $('.jeeObjectAttr[data-l1key=father_id] option').show();
             $('#summarytab input[type=checkbox]').value(0);
-            $('.object').setValues(data, '.objectAttr');
+            $('.jeeObject').setValues(data, '.jeeObjectAttr');
             if(data['display'] == ''){
-                $('.objectAttr[data-l1key=display][data-l2key=tagColor]').value('#9b59b6');
-                $('.objectAttr[data-l1key=display][data-l2key=tagTextColor]').value('#ffffff');
+                $('.jeeObjectAttr[data-l1key=display][data-l2key=tagColor]').value('#9b59b6');
+                $('.jeeObjectAttr[data-l1key=display][data-l2key=tagTextColor]').value('#ffffff');
             }
-            $('.objectAttr[data-l1key=father_id] option[value=' + data.id + ']').hide();
+            $('.jeeObjectAttr[data-l1key=father_id] option[value=' + data.id + ']').hide();
             $('.div_summary').empty();
             $('.tabnumber').empty();
             if (isset(data.configuration) && isset(data.configuration.summary)) {
@@ -119,11 +119,11 @@ function loadObjectConfiguration(_id){
     });
 }
 
-$("#bt_addObject,#bt_addObject2").on('click', function (event) {
+$("#bt_addJeeObject,#bt_addJeeObject2").on('click', function (event) {
     bootbox.prompt("Nom de l'objet ?", function (result) {
         if (result !== null) {
             jeedom.jeeObject.save({
-                object: {name: result, isVisible: 1},
+                jeeObject: {name: result, isVisible: 1},
                 error: function (error) {
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
@@ -139,23 +139,23 @@ $("#bt_addObject,#bt_addObject2").on('click', function (event) {
 
 jwerty.key('ctrl+s', function (e) {
     e.preventDefault();
-    $("#bt_saveObject").click();
+    $("#bt_saveJeeObject").click();
 });
 
-$('.objectAttr[data-l1key=display][data-l2key=icon]').on('dblclick',function(){
-    $('.objectAttr[data-l1key=display][data-l2key=icon]').value('');
+$('.jeeObjectAttr[data-l1key=display][data-l2key=icon]').on('dblclick',function(){
+    $('.jeeObjectAttr[data-l1key=display][data-l2key=icon]').value('');
 });
 
-$("#bt_saveObject").on('click', function (event) {
-    if ($('.li_object.active').attr('data-jeeObject_id') != undefined) {
-        var object = $('.object').getValues('.objectAttr')[0];
+$("#bt_saveJeeObject").on('click', function (event) {
+    if ($('.li_jeeObject.active').attr('data-jeeObject_id') != undefined) {
+        var jeeObject = $('.jeeObject').getValues('.jeeObjectAttr')[0];
         if (!isset(jeeObject.configuration)) {
             jeeObject.configuration = {};
         }
         if (!isset(jeeObject.configuration.summary)) {
             jeeObject.configuration.summary = {};
         }
-        $('.object .div_summary').each(function () {
+        $('.jeeObject .div_summary').each(function () {
             var type = $(this).attr('data-type');
             jeeObject.configuration.summary[type] = [];
             summaries = {};
@@ -165,13 +165,13 @@ $("#bt_saveObject").on('click', function (event) {
             });
         });
         jeedom.jeeObject.save({
-            object: object,
+            jeeObject: jeeObject,
             error: function (error) {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
             },
             success: function (data) {
                 modifyWithoutSave = false;
-                loadObjectConfiguration(data.id);
+                loadJeeObjectConfiguration(data.id);
                 $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
             }
         });
@@ -181,8 +181,8 @@ $("#bt_saveObject").on('click', function (event) {
     return false;
 });
 
-$("#bt_removeObject").on('click', function (event) {
-    if ($('.li_object.active').attr('data-jeeObject_id') != undefined) {
+$("#bt_removeJeeObject").on('click', function (event) {
+    if ($('.li_jeeObject.active').attr('data-jeeObject_id') != undefined) {
         $.hideAlert();
         bootbox.confirm('{{Etes-vous sûr de vouloir supprimer l\'objet}} <span style="font-weight: bold ;">' + $('.li_object.active a').text() + '</span> ?', function (result) {
             if (result) {
@@ -204,45 +204,45 @@ $("#bt_removeObject").on('click', function (event) {
     return false;
 });
 
-$("#ul_object").sortable({
+$("#ul_jeeObject").sortable({
     axis: "y",
     cursor: "move",
-    items: ".li_object",
+    items: ".li_jeeObject",
     placeholder: "ui-state-highlight",
     tolerance: "intersect",
     forcePlaceholderSize: true,
     dropOnEmpty: true,
     stop: function (event, ui) {
-        var objects = [];
-        $('#ul_object .li_object').each(function () {
-            objects.push($(this).attr('data-jeeObject_id'));
+        var jeeObjects = [];
+        $('#ul_jeeObject .li_jeeObject').each(function () {
+            jeeObjects.push($(this).attr('data-jeeObject_id'));
         });
         jeedom.jeeObject.setOrder({
-            objects: objects,
+            jeeObjects: jeeObjects,
             error: function (error) {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
             }
         });
     }
 });
-$("#ul_object").sortable("enable");
+$("#ul_jeeObject").sortable("enable");
 
 
 $('#bt_chooseIcon').on('click', function () {
     chooseIcon(function (_icon) {
-        $('.objectAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
+        $('.jeeObjectAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
     });
 });
 
 if (is_numeric(getUrlVars('id'))) {
-    if ($('#ul_object .li_object[data-jeeObject_id=' + getUrlVars('id') + ']').length != 0) {
-        $('#ul_object .li_object[data-jeeObject_id=' + getUrlVars('id') + ']').click();
+    if ($('#ul_jeeObject .li_jeeObject[data-jeeObject_id=' + getUrlVars('id') + ']').length != 0) {
+        $('#ul_jeeObject .li_jeeObject[data-jeeObject_id=' + getUrlVars('id') + ']').click();
     } else {
-        $('#ul_object .li_object:first').click();
+        $('#ul_jeeObject .li_jeeObject:first').click();
     }
 } 
 
-$('#div_pageContainer').delegate('.objectAttr', 'change', function () {
+$('#div_pageContainer').delegate('.jeeObjectAttr', 'change', function () {
     modifyWithoutSave = true;
 });
 

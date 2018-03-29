@@ -679,7 +679,7 @@ class cmd {
 		}
 		$eqLogic = $cmd->getEqLogic();
 		$jeeObject = $eqLogic->getJeeObject();
-		$return['object'] = is_object($jeeObject) ? $jeeObject->getId() : 'aucun';
+		$return['jeeOject'] = is_object($jeeObject) ? $jeeObject->getId() : 'aucun';
 		$return['plugins'] = $eqLogic->getEqType_name();
 		$return['category'] = $eqLogic->getCategory();
 

@@ -382,7 +382,7 @@ try {
 		}
 
 		if ($jsonrpc->getMethod() == 'eqLogic::byObjectId') {
-			$jsonrpc->makeSuccess(utils::o2a(eqLogic::byJeeObjectId($params['object_id'])));
+			$jsonrpc->makeSuccess(utils::o2a(eqLogic::byJeeObjectId($params['jeeOject_id'])));
 		}
 
 		if ($jsonrpc->getMethod() == 'eqLogic::byId') {

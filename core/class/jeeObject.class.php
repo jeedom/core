@@ -632,7 +632,7 @@ class jeeObject {
 		if ($_drill === null) {
 			$_drill = config::byKey('graphlink::jeeObject::drill');
 		}
-		if (isset($_data['node']['object' . $this->getId()])) {
+		if (isset($_data['node']['jeeObject' . $this->getId()])) {
 			return;
 		}
 		$_level++;
@@ -641,7 +641,7 @@ class jeeObject {
 		}
 		$icon = findCodeIcon($this->getDisplay('icon'));
 		$_data['node']['object' . $this->getId()] = array(
-			'id' => 'object' . $this->getId(),
+			'id' => 'jeeObject' . $this->getId(),
 			'name' => $this->getName(),
 			'icon' => $icon['icon'],
 			'fontfamily' => $icon['fontfamily'],
@@ -653,13 +653,13 @@ class jeeObject {
 			'url' => 'index.php?v=d&p=jeeObject&id=' . $this->getId(),
 		);
 		$use = $this->getUse();
-		addGraphLink($this, 'object', $this->getEqLogic(), 'eqLogic', $_data, $_level, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
-		addGraphLink($this, 'object', $use['cmd'], 'cmd', $_data, $_level, $_drill);
-		addGraphLink($this, 'object', $use['scenario'], 'scenario', $_data, $_level, $_drill);
-		addGraphLink($this, 'object', $use['eqLogic'], 'eqLogic', $_data, $_level, $_drill);
-		addGraphLink($this, 'object', $use['dataStore'], 'dataStore', $_data, $_level, $_drill);
-		addGraphLink($this, 'object', $this->getChild(), 'object', $_data, $_level, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
-		addGraphLink($this, 'object', $this->getScenario(), 'scenario', $_data, $_level, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
+		addGraphLink($this, 'jeeObject', $this->getEqLogic(), 'eqLogic', $_data, $_level, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
+		addGraphLink($this, 'jeeObject', $use['cmd'], 'cmd', $_data, $_level, $_drill);
+		addGraphLink($this, 'jeeObject', $use['scenario'], 'scenario', $_data, $_level, $_drill);
+		addGraphLink($this, 'jeeObject', $use['eqLogic'], 'eqLogic', $_data, $_level, $_drill);
+		addGraphLink($this, 'jeeObject', $use['dataStore'], 'dataStore', $_data, $_level, $_drill);
+		addGraphLink($this, 'jeeObject', $this->getChild(), 'jeeObject', $_data, $_level, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
+		addGraphLink($this, 'jeeObject', $this->getScenario(), 'scenario', $_data, $_level, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
 		return $_data;
 	}
 
@@ -744,11 +744,11 @@ class jeeObject {
 	}
 
 	public function getCache($_key = '', $_default = '') {
-		return utils::getJsonAttr(cache::byKey('objectCacheAttr' . $this->getId())->getValue(), $_key, $_default);
+		return utils::getJsonAttr(cache::byKey('jeeObjectCacheAttr' . $this->getId())->getValue(), $_key, $_default);
 	}
 
 	public function setCache($_key, $_value = null) {
-		cache::set('objectCacheAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('objectCacheAttr' . $this->getId())->getValue(), $_key, $_value));
+		cache::set('jeeObjectCacheAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('jeeObjectCacheAttr' . $this->getId())->getValue(), $_key, $_value));
 	}
 
 }

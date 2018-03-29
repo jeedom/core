@@ -695,7 +695,7 @@ class scenario {
 			return null;
 		}
 		$jeeObject = $scenario->getJeeObject();
-		$return['object'] = is_object($jeeObject) ? $jeeObject->getId() : 'aucun';
+		$return['jeeObject'] = is_object($jeeObject) ? $jeeObject->getId() : 'aucun';
 		$return['html'] = '<div class="scenario" data-id="' . $_event['id'] . '">'
 			. '<div style="background-color:#e7e7e7;padding:1px;font-size:0.9em;font-weight: bold;cursor:help;">' . $_event['name'] . ' <i class="fa fa-file-text-o pull-right cursor bt_scenarioLog"></i> <i class="fa fa-share pull-right cursor bt_gotoScenario"></i></div>'
 			. '<div style="background-color:white;padding:1px;font-size:0.8em;cursor:default;">Déclenché par ' . $_event['trigger'] . '<div/>'
@@ -1480,7 +1480,7 @@ class scenario {
 		);
 		$use = $this->getUse();
 		$usedBy = $this->getUsedBy();
-		addGraphLink($this, 'scenario', $this->getJeeObject(), 'object', $_data, $_level + 1, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
+		addGraphLink($this, 'scenario', $this->getJeeObject(), 'jeeObject', $_data, $_level + 1, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
 		addGraphLink($this, 'scenario', $use['cmd'], 'cmd', $_data, $_level, $_drill);
 		addGraphLink($this, 'scenario', $use['scenario'], 'scenario', $_data, $_level, $_drill);
 		addGraphLink($this, 'scenario', $use['eqLogic'], 'eqLogic', $_data, $_level, $_drill);

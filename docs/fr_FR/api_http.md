@@ -106,7 +106,7 @@ Objet
 =====
 
 Voici l’URL =
-[http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=object](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=object)
+[http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=jeeobject](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=jeeobject)
 
 Renvoie en json la liste de tous les objets de Jeedom
 
@@ -114,9 +114,9 @@ Equipement
 ==========
 
 Voici l’URL =
-[http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=eqLogic&object\_id=\#OBJECT\_ID\#](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=eqLogic&object_id=#OBJECT_ID#)
+[http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=eqLogic&jeeobject\_id=\#JEEOBJECT\_ID\#](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=eqLogic&jeeobject_id=#JEEOBJECT_ID#)
 
--   **object\_id** : ID de l’objet dont on veut récupérer les
+-   **jeeobject\_id** : ID de l’objet dont on veut récupérer les
     équipements
 
 Commande 

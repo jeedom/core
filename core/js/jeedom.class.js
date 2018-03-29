@@ -63,7 +63,6 @@ if(eqLogic_update.length > 0){
    $('body').trigger('eqLogic::update',[eqLogic_update]);
 }
 if(jeeObject_summary_update.length > 0){
-    console.log(jeeObject_summary_update);
     $('body').trigger('jeeObject::summary::update',[jeeObject_summary_update]);
 }
 setTimeout(jeedom.changes, 1);

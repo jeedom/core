@@ -181,7 +181,13 @@ if (init('type') != '') {
 			die();
 		}
 		if ($type == 'object') {
-			log::add('api', 'debug', __('Demande API pour les objets', __FILE__));
+			log::add('api', 'debug', __('Demande API pour les jeeObjets', __FILE__));
+			header('Content-Type: application/json');
+			echo json_encode(utils::o2a(jeeObject::all()), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE, 1024);
+			die();
+		}
+		if ($type == 'jeeObject') {
+			log::add('api', 'debug', __('Demande API pour les jeeObjets', __FILE__));
 			header('Content-Type: application/json');
 			echo json_encode(utils::o2a(jeeObject::all()), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE, 1024);
 			die();
@@ -515,7 +521,7 @@ try {
 		}
 
 		if ($jsonrpc->getMethod() == 'eqLogic::byObjectId') {
-			$jsonrpc->makeSuccess(utils::o2a(eqLogic::byJeeObjectId($params['object_id'])));
+			$jsonrpc->makeSuccess(utils::o2a(eqLogic::byJeeObjectId($params['jeeObject_id'])));
 		}
 
 		if ($jsonrpc->getMethod() == 'eqLogic::byId') {

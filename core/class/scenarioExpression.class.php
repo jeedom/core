@@ -866,7 +866,7 @@ class scenarioExpression {
 				return $cmd->getName();
 			case 'eqLogic':
 				return $cmd->getEqLogic()->getName();
-			case 'object':
+			case 'jeeObject':
 				$jeeObject = $cmd->getEqLogic()->getJeeObject();
 				if (!is_object($jeeObject)) {
 					return __('Aucun', __FILE__);

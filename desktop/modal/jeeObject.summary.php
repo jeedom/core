@@ -19,8 +19,8 @@ if (!isConnect()) {
 	</thead>
 	<tbody>
 <?php
-$allObject = jeeObject::buildTree(null, false);
-foreach ($allObject as $jeeObject) {
+$alljeeObject = jeeObject::buildTree(null, false);
+foreach ($alljeeObject as $jeeObject) {
 	echo '<tr><td><span class="label label-info" style="font-size : 1em;">' . $jeeObject->getId() . '</span></td>';
 	echo '<td><span style="font-size : 1.3em;">' . $jeeObject->getHumanName(true, true) . '</span></td>';
 	$father = $jeeObject->getFather();

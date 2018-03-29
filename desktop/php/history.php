@@ -60,12 +60,12 @@ foreach (cmd::allHistoryCmd() as $cmd) {
 		$jeeObject = $eqLogic->getJeeObject();
 		if (is_object($jeeObject)) {
 			if ($jeeObject->getDisplay('tagColor') != '') {
-				echo '<span class="label cursor displayObject" data-jeeObject_id="o' . $eqLogic->getJeeObject_id() . '" style="text-shadow : none;background-color:' . $jeeObject->getDisplay('tagColor') . ';color:' . $jeeObject->getDisplay('tagTextColor', 'white') . '">' . $jeeObject->getName() . ' <i class="fa fa-arrow-circle-right"></i></span>';
+				echo '<span class="label cursor displayJeeObject" data-jeeObject_id="o' . $eqLogic->getJeeObject_id() . '" style="text-shadow : none;background-color:' . $jeeObject->getDisplay('tagColor') . ';color:' . $jeeObject->getDisplay('tagTextColor', 'white') . '">' . $jeeObject->getName() . ' <i class="fa fa-arrow-circle-right"></i></span>';
 			} else {
-				echo '<span class="label label-primary cursor displayObject" data-jeeObject_id="o' . $eqLogic->getJeeObject_id() . '" style="text-shadow : none;">' . $jeeObject->getName() . ' <i class="fa fa-arrow-circle-right"></i></span>';
+				echo '<span class="label label-primary cursor displayJeeObject" data-jeeObject_id="o' . $eqLogic->getJeeObject_id() . '" style="text-shadow : none;">' . $jeeObject->getName() . ' <i class="fa fa-arrow-circle-right"></i></span>';
 			}
 		} else {
-			echo '<span class="label label-default cursor displayObject" data-jeeObject_id="o' . $eqLogic->getJeeObject_id() . '" style="text-shadow : none;">' . __('Aucun', __FILE__) . ' <i class="fa fa-arrow-circle-right"></i></span>';
+			echo '<span class="label label-default cursor displayJeeObject" data-jeeObject_id="o' . $eqLogic->getJeeObject_id() . '" style="text-shadow : none;">' . __('Aucun', __FILE__) . ' <i class="fa fa-arrow-circle-right"></i></span>';
 		}
 		echo '<br/>';
 		echo '<div class="cmdList" data-jeeObject_id="o' . $eqLogic->getJeeObject_id() . '" style="display:none;margin-left : 20px;">';
@@ -149,7 +149,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
 }
 ?>
 			</select>
-			<select class="form-control pull-right" id="sel_objectsTimeline" style="width: 140px;">
+			<select class="form-control pull-right" id="sel_jeeObjectsTimeline" style="width: 140px;">
 				<option value="all">{{Tous (Objets)}}</option>
 				<?php
 foreach (jeeObject::all() as $jeeObject) {

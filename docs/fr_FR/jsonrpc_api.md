@@ -209,7 +209,7 @@ Retourne tous les équipements appartenant à l’objet spécifié
 
 Paramètres:
 
--   int object\_id
+-   int jeeObject\_id
 
 eqLogic::byTypeAndId 
 --------------------
@@ -241,7 +241,7 @@ Paramètres:
 
 -   string logicalId = ''
 
--   int object\_id = null
+-   int jeeOject\_id = null
 
 -   int eqReal\_id = null
 

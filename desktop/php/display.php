@@ -65,7 +65,7 @@ foreach ($jeeObjects as $jeeObject) {
 <br/>
 <br/>
 <div class="row row-same-height">
-	<div class="col-xs-4 object col-xs-height" data-id="-1">
+	<div class="col-xs-4 jeeObject col-xs-height" data-id="-1">
 		<legend style="cursor : default"><i class="fa fa-circle-o"></i>  {{Aucun}} <i class="fa fa-chevron-down pull-right showEqLogic cursor" title="{{Voir les équipements}}"></i></legend>
 		<ul class="eqLogicSortable">
 			<?php
@@ -103,10 +103,10 @@ foreach ($jeeObjects as $jeeObject) {
 	if ($i == 0) {
 		echo '<div class="row row-same-height">';
 	}
-	echo '<div class="col-xs-4 object col-xs-height" data-id="' . $jeeObject->getId() . '" style="background-color : ' . $jeeObject->getDisplay('tagColor') . ';color : ' . $jeeObject->getDisplay('tagTextColor', $defaultTextColor) . '">';
+	echo '<div class="col-xs-4 jeeObject col-xs-height" data-id="' . $jeeObject->getId() . '" style="background-color : ' . $jeeObject->getDisplay('tagColor') . ';color : ' . $jeeObject->getDisplay('tagTextColor', $defaultTextColor) . '">';
 	echo '<legend style="color : ' . $jeeObject->getDisplay('tagTextColor', $defaultTextColor) . ';cursor : default">' . $jeeObject->getDisplay('icon') . '  ' . $jeeObject->getName();
 	echo '<i class="fa fa-chevron-down pull-right showEqLogic cursor" title="{{Voir les équipements}}"></i>';
-	echo '<i style="position:relative;top : 3px;" class="fa fa-cog pull-right cursor configureObject" title="{{Configuration avancée}}"></i>';
+	echo '<i style="position:relative;top : 3px;" class="fa fa-cog pull-right cursor configureJeeObject" title="{{Configuration avancée}}"></i>';
 	echo '<a style="position:relative;top : 3px;color:' . $jeeObject->getDisplay('tagTextColor', $defaultTextColor) . '" href="index.php?v=d&p=jeeObject&id=' . $jeeObject->getId() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'objet}}"><i class="fa fa-external-link"></i></a>';
 
 	echo '</legend>';

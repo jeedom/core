@@ -139,7 +139,7 @@ jeedom.object.remove = function(_params) {
 };
 
 jeedom.object.save = function(_params) {
-    var paramsRequired = ['object'];
+    var paramsRequired = ['jeeObject'];
     var paramsSpecifics = {
         pre_success: function(data) {
             if (isset(jeedom.object.cache.all)) {
@@ -162,7 +162,7 @@ jeedom.object.save = function(_params) {
     paramsAJAX.url = 'core/ajax/object.ajax.php';
     paramsAJAX.data = {
         action: 'save',
-        object: json_encode(_params.object),
+        jeeObject: json_encode(_params.jeeObject),
     };
     $.ajax(paramsAJAX);
 };

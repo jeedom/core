@@ -79,7 +79,7 @@
     });
 });
 
- $('.displayObject').on('click', function () {
+ $('.displayJeeObject').on('click', function () {
     var list = $('.cmdList[data-jeeObject_id=' + $(this).attr('data-jeeObject_id') + ']');
     if (list.is(':visible')) {
         $(this).find('i.fa').removeClass('fa-arrow-circle-down').addClass('fa-arrow-circle-right');
@@ -306,7 +306,7 @@ $("#sel_typesTimeline").change(function(){
     displayTimeline();
 });
 
-$("#sel_objectsTimeline").change(function(){
+$("#sel_jeeObjectsTimeline").change(function(){
     displayTimeline();
 });
 
@@ -356,7 +356,7 @@ function displayTimeline(){
     var typefilter = $("#sel_typesTimeline").value();
     var pluginfilter = $("#sel_pluginsTimeline").value();
     var categoryfilter = $("#sel_categoryTimeline").value();
-    var objectfilter = $("#sel_objectsTimeline").value();
+    var jeeObjectfilter = $("#sel_jeeObjectsTimeline").value();
     var end = new Date();
     var start = new Date();
     start.setTime(end.getTime() -  3600 * 1000);
@@ -381,7 +381,7 @@ function displayTimeline(){
              if (pluginfilter != 'all' && data[i].plugins != pluginfilter && typefilter != 'scenario') {
                  continue;
              }
-             if (objectfilter != 'all' && data[i].object != objectfilter) {
+             if (jeeObjectfilter != 'all' && data[i].jeeObject != jeeObjectfilter) {
                  continue;
              }
              if (categoryfilter != 'all' && typefilter != 'scenario'){
