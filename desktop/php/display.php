@@ -4,7 +4,7 @@ if (!isConnect('admin')) {
 }
 $nbEqlogic = 0;
 $nbCmd = 0;
-$objects = jeeObject::all();
+$jeeObjects = jeeObject::all();
 $eqLogics = array();
 $cmds = array();
 $eqLogics[-1] = eqLogic::byJeeObjectId(null, false);
@@ -13,13 +13,13 @@ foreach ($eqLogics[-1] as $eqLogic) {
 	$nbCmd += count($cmds[$eqLogic->getId()]);
 }
 $nbEqlogic += count($eqLogics[-1]);
-foreach ($objects as $object) {
-	$eqLogics[$object->getId()] = $object->getEqLogic(false, false);
-	foreach ($eqLogics[$object->getId()] as $eqLogic) {
+foreach ($jeeObjects as $jeeObject) {
+	$eqLogics[$jeeObject->getId()] = $jeeObject->getEqLogic(false, false);
+	foreach ($eqLogics[$jeeObject->getId()] as $eqLogic) {
 		$cmds[$eqLogic->getId()] = $eqLogic->getCmd();
 		$nbCmd += count($cmds[$eqLogic->getId()]);
 	}
-	$nbEqlogic += count($eqLogics[$object->getId()]);
+	$nbEqlogic += count($eqLogics[$jeeObject->getId()]);
 }
 ?>
 <style>
@@ -52,7 +52,7 @@ foreach ($objects as $object) {
 	<label class="checkbox-inline"><input type="checkbox" id="cb_actifDisplay" checked />{{Inactif}}</label>
 </span>
 <center>
-	<span class="label label-default" style="font-size : 1em;cursor : default;">{{Nombre d'objets :}} <?php echo count($objects) ?></span>
+	<span class="label label-default" style="font-size : 1em;cursor : default;">{{Nombre d'objets :}} <?php echo count($jeeObjects) ?></span>
 	<span class="label label-info" style="font-size : 1em;cursor : default;">{{Nombre d'équipements :}} <?php echo $nbEqlogic ?></span>
 	<span class="label label-primary" style="font-size : 1em;cursor : default;">{{Nombre de commandes :}} <?php echo $nbCmd ?></span>
 </center>
@@ -98,20 +98,20 @@ foreach ($eqLogics[-1] as $eqLogic) {
 	</div>
 	<?php
 $i = 1;
-foreach ($objects as $object) {
-	$defaultTextColor = ($object->getDisplay('tagColor') == '') ? 'black' : 'white';
+foreach ($jeeObjects as $jeeObject) {
+	$defaultTextColor = ($jeeObject->getDisplay('tagColor') == '') ? 'black' : 'white';
 	if ($i == 0) {
 		echo '<div class="row row-same-height">';
 	}
-	echo '<div class="col-xs-4 object col-xs-height" data-id="' . $object->getId() . '" style="background-color : ' . $object->getDisplay('tagColor') . ';color : ' . $object->getDisplay('tagTextColor', $defaultTextColor) . '">';
-	echo '<legend style="color : ' . $object->getDisplay('tagTextColor', $defaultTextColor) . ';cursor : default">' . $object->getDisplay('icon') . '  ' . $object->getName();
+	echo '<div class="col-xs-4 object col-xs-height" data-id="' . $jeeObject->getId() . '" style="background-color : ' . $jeeObject->getDisplay('tagColor') . ';color : ' . $jeeObject->getDisplay('tagTextColor', $defaultTextColor) . '">';
+	echo '<legend style="color : ' . $jeeObject->getDisplay('tagTextColor', $defaultTextColor) . ';cursor : default">' . $jeeObject->getDisplay('icon') . '  ' . $jeeObject->getName();
 	echo '<i class="fa fa-chevron-down pull-right showEqLogic cursor" title="{{Voir les équipements}}"></i>';
 	echo '<i style="position:relative;top : 3px;" class="fa fa-cog pull-right cursor configureObject" title="{{Configuration avancée}}"></i>';
-	echo '<a style="position:relative;top : 3px;color:' . $object->getDisplay('tagTextColor', $defaultTextColor) . '" href="index.php?v=d&p=jeeObject&id=' . $object->getId() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'objet}}"><i class="fa fa-external-link"></i></a>';
+	echo '<a style="position:relative;top : 3px;color:' . $jeeObject->getDisplay('tagTextColor', $defaultTextColor) . '" href="index.php?v=d&p=jeeObject&id=' . $jeeObject->getId() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'objet}}"><i class="fa fa-external-link"></i></a>';
 
 	echo '</legend>';
 	echo '<ul class="eqLogicSortable">';
-	foreach ($eqLogics[$object->getId()] as $eqLogic) {
+	foreach ($eqLogics[$jeeObject->getId()] as $eqLogic) {
 		echo '<li class="alert alert-info eqLogic cursor" data-id="' . $eqLogic->getId() . '" data-enable="' . $eqLogic->getIsEnable() . '" data-name="' . $eqLogic->getName() . '" data-type="' . $eqLogic->getEqType_name() . '">';
 		echo '<input type="checkbox" class="cb_selEqLogic" /> ';
 		echo $eqLogic->getName() . ' ';

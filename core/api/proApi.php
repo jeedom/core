@@ -323,11 +323,11 @@ try {
 		}
 
 		if ($jsonrpc->getMethod() == 'jeeObject::byId') {
-			$object = jeeObject::byId($params['id']);
-			if (!is_object($object)) {
+			$jeeObject = jeeObject::byId($params['id']);
+			if (!is_object($jeeObject)) {
 				throw new Exception('Objet introuvable : ' . secureXSS($params['id']), -32601);
 			}
-			$jsonrpc->makeSuccess(utils::o2a($object));
+			$jsonrpc->makeSuccess(utils::o2a($jeeObject));
 		}
 
 		if ($jsonrpc->getMethod() == 'jeeObject::full') {
@@ -335,13 +335,13 @@ try {
 		}
 
 		if ($jsonrpc->getMethod() == 'jeeObject::fullById') {
-			$object = jeeObject::byId($params['id']);
-			if (!is_object($object)) {
-				throw new Exception('Objet introuvable : ' . secureXSS($params['id']), -32601);
+			$jeeObject = jeeObject::byId($params['id']);
+			if (!is_object($jeeObject)) {
+				throw new Exception('JeeObjet introuvable : ' . secureXSS($params['id']), -32601);
 			}
-			$return = utils::o2a($object);
+			$return = utils::o2a($jeeObject);
 			$return['eqLogics'] = array();
-			foreach ($object->getEqLogic() as $eqLogic) {
+			foreach ($jeeObject->getEqLogic() as $eqLogic) {
 				$eqLogic_return = utils::o2a($eqLogic);
 				$eqLogic_return['cmds'] = array();
 				foreach ($eqLogic->getCmd() as $cmd) {

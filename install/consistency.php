@@ -332,8 +332,8 @@ try {
 	}
 
 	try {
-		foreach (jeeObject::all() as $object) {
-			$object->save();
+		foreach (jeeObject::all() as $jeeObject) {
+			$jeeObject->save();
 		}
 	} catch (Exception $exc) {
 

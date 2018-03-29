@@ -420,11 +420,11 @@ try {
 		}
 
 		if ($jsonrpc->getMethod() == 'jeeObject::byId') {
-			$object = jeeObject::byId($params['id']);
-			if (!is_object($object)) {
+			$jeeObject = jeeObject::byId($params['id']);
+			if (!is_object($jeeObject)) {
 				throw new Exception(__('Objet introuvable : ', __FILE__) . secureXSS($params['id']), -32601);
 			}
-			$jsonrpc->makeSuccess(utils::o2a($object));
+			$jsonrpc->makeSuccess(utils::o2a($jeeObject));
 		}
 
 		if ($jsonrpc->getMethod() == 'jeeObject::full') {
@@ -432,13 +432,13 @@ try {
 		}
 
 		if ($jsonrpc->getMethod() == 'jeeObject::fullById') {
-			$object = jeeObject::byId($params['id']);
-			if (!is_object($object)) {
+			$jeeObject = jeeObject::byId($params['id']);
+			if (!is_object($jeeObject)) {
 				throw new Exception(__('Objet introuvable : ', __FILE__) . secureXSS($params['id']), -32601);
 			}
-			$return = utils::o2a($object);
+			$return = utils::o2a($jeeObject);
 			$return['eqLogics'] = array();
-			foreach ($object->getEqLogic() as $eqLogic) {
+			foreach ($jeeObject->getEqLogic() as $eqLogic) {
 				$eqLogic_return = utils::o2a($eqLogic);
 				$eqLogic_return['cmds'] = array();
 				foreach ($eqLogic->getCmd() as $cmd) {
@@ -451,14 +451,14 @@ try {
 
 		if ($jsonrpc->getMethod() == 'jeeObject::save') {
 			if (isset($params['id'])) {
-				$object = jeeObject::byId($params['id']);
+				$jeeObject = jeeObject::byId($params['id']);
 			}
-			if (!is_object($object)) {
-				$object = new object();
+			if (!is_object($jeeObject)) {
+				$jeeObject = new object();
 			}
-			utils::a2o($object, jeedom::fromHumanReadable($params));
-			$object->save();
-			$jsonrpc->makeSuccess(utils::o2a($object));
+			utils::a2o($jeeObject, jeedom::fromHumanReadable($params));
+			$jeeObject->save();
+			$jsonrpc->makeSuccess(utils::o2a($jeeObject));
 		}
 
 		/*             * ************************Summary*************************** */
@@ -476,9 +476,9 @@ try {
 		}
 
 		if ($jsonrpc->getMethod() == 'summary::byId') {
-			$object = jeeObject::byId($params['id']);
-			if (!is_object($object)) {
-				throw new Exception(__('Objet introuvable : ', __FILE__) . secureXSS($params['id']), -32601);
+			$jeeObject = jeeObject::byId($params['id']);
+			if (!is_object($jeeObject)) {
+				throw new Exception(__('JeeObjet introuvable : ', __FILE__) . secureXSS($params['id']), -32601);
 			}
 			if (!isset($params['key'])) {
 				$params['key'] = '';
@@ -486,7 +486,7 @@ try {
 			if (!isset($params['raw'])) {
 				$params['raw'] = false;
 			}
-			$jsonrpc->makeSuccess($object->getSummary($params['key'], $params['raw']));
+			$jsonrpc->makeSuccess($jeeObject->getSummary($params['key'], $params['raw']));
 		}
 
 		/*             * ************************datastore*************************** */

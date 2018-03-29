@@ -57,12 +57,12 @@ foreach (cmd::allHistoryCmd() as $cmd) {
 		if ($jeeObject_id != -1) {
 			echo '</div>';
 		}
-		$object = $eqLogic->getObject();
-		if (is_object($object)) {
-			if ($object->getDisplay('tagColor') != '') {
-				echo '<span class="label cursor displayObject" data-jeeObject_id="o' . $eqLogic->getJeeObject_id() . '" style="text-shadow : none;background-color:' . $object->getDisplay('tagColor') . ';color:' . $object->getDisplay('tagTextColor', 'white') . '">' . $object->getName() . ' <i class="fa fa-arrow-circle-right"></i></span>';
+		$jeeObject = $eqLogic->getJeeObject();
+		if (is_object($jeeObject)) {
+			if ($jeeObject->getDisplay('tagColor') != '') {
+				echo '<span class="label cursor displayObject" data-jeeObject_id="o' . $eqLogic->getJeeObject_id() . '" style="text-shadow : none;background-color:' . $jeeObject->getDisplay('tagColor') . ';color:' . $jeeObject->getDisplay('tagTextColor', 'white') . '">' . $jeeObject->getName() . ' <i class="fa fa-arrow-circle-right"></i></span>';
 			} else {
-				echo '<span class="label label-primary cursor displayObject" data-jeeObject_id="o' . $eqLogic->getJeeObject_id() . '" style="text-shadow : none;">' . $object->getName() . ' <i class="fa fa-arrow-circle-right"></i></span>';
+				echo '<span class="label label-primary cursor displayObject" data-jeeObject_id="o' . $eqLogic->getJeeObject_id() . '" style="text-shadow : none;">' . $jeeObject->getName() . ' <i class="fa fa-arrow-circle-right"></i></span>';
 			}
 		} else {
 			echo '<span class="label label-default cursor displayObject" data-jeeObject_id="o' . $eqLogic->getJeeObject_id() . '" style="text-shadow : none;">' . __('Aucun', __FILE__) . ' <i class="fa fa-arrow-circle-right"></i></span>';
@@ -152,8 +152,8 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
 			<select class="form-control pull-right" id="sel_objectsTimeline" style="width: 140px;">
 				<option value="all">{{Tous (Objets)}}</option>
 				<?php
-foreach (jeeObject::all() as $object) {
-	echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
+foreach (jeeObject::all() as $jeeObject) {
+	echo '<option value="' . $jeeObject->getId() . '">' . $jeeObject->getName() . '</option>';
 }
 ?>
 			</select>

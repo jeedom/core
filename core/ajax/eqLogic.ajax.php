@@ -27,14 +27,14 @@ try {
 	ajax::init();
 
 	if (init('action') == 'getEqLogicObject') {
-		$object = jeeObject::byId(init('object_id'));
+		$jeeObject = jeeObject::byId(init('object_id'));
 
-		if (!is_object($object)) {
+		if (!is_object($jeeObject)) {
 			throw new Exception(__('Objet inconnu. Vérifiez l\'ID', __FILE__));
 		}
-		$return = utils::o2a($object);
+		$return = utils::o2a($jeeObject);
 		$return['eqLogic'] = array();
-		foreach ($object->getEqLogic() as $eqLogic) {
+		foreach ($jeeObject->getEqLogic() as $eqLogic) {
 			if ($eqLogic->getIsVisible() == '1') {
 				$info_eqLogic = array();
 				$info_eqLogic['id'] = $eqLogic->getId();
@@ -128,14 +128,14 @@ try {
 		ajax::success(utils::a2o(eqLogic::byType(init('type'))));
 	}
 
-	if (init('action') == 'listByObjectAndCmdType') {
-		$object_id = (init('object_id') != -1) ? init('object_id') : null;
-		ajax::success(eqLogic::listByObjectAndCmdType($object_id, init('typeCmd'), init('subTypeCmd')));
+	if (init('action') == 'listByJeeObjectAndCmdType') {
+		$jeeObject_id = (init('object_id') != -1) ? init('object_id') : null;
+		ajax::success(eqLogic::listByJeeObjectAndCmdType($jeeObject_id, init('typeCmd'), init('subTypeCmd')));
 	}
 
 	if (init('action') == 'listByObject') {
-		$object_id = (init('object_id') != -1) ? init('object_id') : null;
-		ajax::success(utils::o2a(eqLogic::byJeeObjectId($object_id, init('onlyEnable', true), init('onlyVisible', false), init('eqType_name', null), init('logicalId', null), init('orderByName', false))));
+		$jeeObject_id = (init('object_id') != -1) ? init('object_id') : null;
+		ajax::success(utils::o2a(eqLogic::byJeeObjectId($jeeObject_id, init('onlyEnable', true), init('onlyVisible', false), init('eqType_name', null), init('logicalId', null), init('orderByName', false))));
 	}
 
 	if (init('action') == 'listByTypeAndCmdType') {
@@ -146,9 +146,9 @@ try {
 			$info['eqLogic'] = utils::o2a($eqLogic);
 			$info['object'] = array('name' => 'Aucun');
 			if (is_object($eqLogic)) {
-				$object = $eqLogic->getObject();
-				if (is_object($object)) {
-					$info['object'] = utils::o2a($eqLogic->getObject());
+				$jeeObject = $eqLogic->getJeeObject();
+				if (is_object($jeeObject)) {
+					$info['object'] = utils::o2a($eqLogic->getJeeObject());
 				}
 			}
 			$return[] = $info;

@@ -442,18 +442,18 @@ class scenario {
 	}
 
 	/**
-	 * @name byObjectNameGroupNameScenarioName()
-	 * @param object $_object_name
+	 * @name byJeeObjectNameGroupNameScenarioName()
+	 * @param object $_jeeObject_name
 	 * @param type $_group_name
 	 * @param type $_scenario_name
 	 * @return type
 	 */
-	public static function byObjectNameGroupNameScenarioName($_object_name, $_group_name, $_scenario_name) {
+	public static function byJeeObjectNameGroupNameScenarioName($_jeeObject_name, $_group_name, $_scenario_name) {
 		$values = array(
 			'scenario_name' => html_entity_decode($_scenario_name),
 		);
 
-		if ($_object_name == __('Aucun', __FILE__)) {
+		if ($_jeeObject_name == __('Aucun', __FILE__)) {
 			if ($_group_name == __('Aucun', __FILE__)) {
 				$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
 				FROM scenario s
@@ -469,7 +469,7 @@ class scenario {
 				AND `group`=:group_name';
 			}
 		} else {
-			$values['object_name'] = $_object_name;
+			$values['object_name'] = $_jeeObject_name;
 			if ($_group_name == __('Aucun', __FILE__)) {
 				$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
 				FROM scenario s
@@ -573,7 +573,7 @@ class scenario {
 			$countMatches = count($matches[0]);
 			for ($i = 0; $i < $countMatches; $i++) {
 				if (isset($matches[1][$i]) && isset($matches[2][$i]) && isset($matches[3][$i])) {
-					$scenario = self::byObjectNameGroupNameScenarioName($matches[1][$i], $matches[2][$i], $matches[3][$i]);
+					$scenario = self::byJeeObjectNameGroupNameScenarioName($matches[1][$i], $matches[2][$i], $matches[3][$i]);
 					if (is_object($scenario)) {
 						$text = str_replace($matches[0][$i], '#scenario' . $scenario->getId() . '#', $text);
 					}
@@ -694,8 +694,8 @@ class scenario {
 		if (!is_object($scenario)) {
 			return null;
 		}
-		$object = $scenario->getObject();
-		$return['object'] = is_object($object) ? $object->getId() : 'aucun';
+		$jeeObject = $scenario->getJeeObject();
+		$return['object'] = is_object($jeeObject) ? $jeeObject->getId() : 'aucun';
 		$return['html'] = '<div class="scenario" data-id="' . $_event['id'] . '">'
 			. '<div style="background-color:#e7e7e7;padding:1px;font-size:0.9em;font-weight: bold;cursor:help;">' . $_event['name'] . ' <i class="fa fa-file-text-o pull-right cursor bt_scenarioLog"></i> <i class="fa fa-share pull-right cursor bt_gotoScenario"></i></div>'
 			. '<div style="background-color:white;padding:1px;font-size:0.8em;cursor:default;">Déclenché par ' . $_event['trigger'] . '<div/>'
@@ -1247,7 +1247,7 @@ class scenario {
 			$return = '';
 			$return .= '- Nom du scénario : ' . $this->getName() . "\n";
 			if (is_numeric($this->getJeeObject_id())) {
-				$return .= '- Objet parent : ' . $this->getObject()->getName() . "\n";
+				$return .= '- Objet parent : ' . $this->getJeeObject()->getName() . "\n";
 			}
 			$return .= '- Mode du scénario : ' . $this->getMode() . "\n";
 			$schedules = $this->getSchedule();
@@ -1330,7 +1330,7 @@ class scenario {
 	 *
 	 * @return object
 	 */
-	public function getObject() {
+	public function getJeeObject() {
 		return jeeObject::byId($this->jeeObject_id);
 	}
 	/**
@@ -1345,15 +1345,15 @@ class scenario {
 	public function getHumanName($_complete = false, $_noGroup = false, $_tag = false, $_prettify = false, $_withoutScenarioName = false) {
 		$name = '';
 		if (is_numeric($this->getJeeObject_id())) {
-			$object = $this->getObject();
+			$jeeObject = $this->getJeeObject();
 			if ($_tag) {
-				if ($object->getDisplay('tagColor') != '') {
-					$name .= '<span class="label" style="text-shadow : none;background-color:' . $object->getDisplay('tagColor') . ' !important;color:' . $object->getDisplay('tagTextColor', 'white') . ' !important">' . $object->getName() . '</span>';
+				if ($jeeObject->getDisplay('tagColor') != '') {
+					$name .= '<span class="label" style="text-shadow : none;background-color:' . $jeeObject->getDisplay('tagColor') . ' !important;color:' . $jeeObject->getDisplay('tagTextColor', 'white') . ' !important">' . $jeeObject->getName() . '</span>';
 				} else {
-					$name .= '<span class="label label-primary" style="text-shadow : none;">' . $object->getName() . '</span>';
+					$name .= '<span class="label label-primary" style="text-shadow : none;">' . $jeeObject->getName() . '</span>';
 				}
 			} else {
-				$name .= '[' . $object->getName() . ']';
+				$name .= '[' . $jeeObject->getName() . ']';
 			}
 		} else {
 			if ($_complete) {
@@ -1480,7 +1480,7 @@ class scenario {
 		);
 		$use = $this->getUse();
 		$usedBy = $this->getUsedBy();
-		addGraphLink($this, 'scenario', $this->getObject(), 'object', $_data, $_level + 1, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
+		addGraphLink($this, 'scenario', $this->getJeeObject(), 'object', $_data, $_level + 1, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
 		addGraphLink($this, 'scenario', $use['cmd'], 'cmd', $_data, $_level, $_drill);
 		addGraphLink($this, 'scenario', $use['scenario'], 'scenario', $_data, $_level, $_drill);
 		addGraphLink($this, 'scenario', $use['eqLogic'], 'eqLogic', $_data, $_level, $_drill);

@@ -15,12 +15,12 @@ sendVarToJS('select_id', init('id', '-1'));
         <li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
         <?php
 $allObject = jeeObject::buildTree(null, false);
-foreach ($allObject as $object) {
-	$margin = 15 * $object->getConfiguration('parentNumber');
-	echo '<li class="cursor li_object bt_sortable" data-jeeObject_id="' . $object->getId() . '" data-object_name="' . $object->getName() . '" data-object_icon=\'' . $object->getDisplay('icon', '<i class="fa fa-lemon-o"></i>') . '\'>';
+foreach ($allObject as $jeeObject) {
+	$margin = 15 * $jeeObject->getConfiguration('parentNumber');
+	echo '<li class="cursor li_object bt_sortable" data-jeeObject_id="' . $jeeObject->getId() . '" data-object_name="' . $jeeObject->getName() . '" data-object_icon=\'' . $jeeObject->getDisplay('icon', '<i class="fa fa-lemon-o"></i>') . '\'>';
 	echo '<i class="fa fa-arrows-v pull-left cursor"></i>';
 	echo '<a><span style="position:relative;left:' . $margin . 'px;">';
-	echo $object->getHumanName(true, true);
+	echo $jeeObject->getHumanName(true, true);
 	echo '</span></a>';
 	echo '</li>';
 }
@@ -51,14 +51,14 @@ foreach ($allObject as $object) {
   <legend><i class="fa fa-picture-o"></i>  {{Mes objets}}</legend>
   <div class="objectListContainer">
    <?php
-foreach ($allObject as $object) {
-	echo '<div class="objectDisplayCard cursor" data-jeeObject_id="' . $object->getId() . '" data-object_name="' . $object->getName() . '" data-object_icon=\'' . $object->getDisplay('icon', '<i class="fa fa-lemon-o"></i>') . '\' style="background-color : #ffffff; height : 160px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+foreach ($allObject as $jeeObject) {
+	echo '<div class="objectDisplayCard cursor" data-jeeObject_id="' . $jeeObject->getId() . '" data-object_name="' . $jeeObject->getName() . '" data-object_icon=\'' . $jeeObject->getDisplay('icon', '<i class="fa fa-lemon-o"></i>') . '\' style="background-color : #ffffff; height : 160px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 	echo "<center style='margin-top:10px;'>";
-	echo str_replace('></i>', ' style="font-size : 6em;color:#767676;"></i>', $object->getDisplay('icon', '<i class="fa fa-lemon-o"></i>'));
+	echo str_replace('></i>', ' style="font-size : 6em;color:#767676;"></i>', $jeeObject->getDisplay('icon', '<i class="fa fa-lemon-o"></i>'));
 	echo "</center>";
-	echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $object->getName() . '</center></span><br/>';
+	echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $jeeObject->getName() . '</center></span><br/>';
 	echo '<center style="font-size :0.7em">';
-	echo $object->getHtmlSummary();
+	echo $jeeObject->getHtmlSummary();
 	echo "</center>";
 	echo '</div>';
 }
@@ -95,8 +95,8 @@ foreach ($allObject as $object) {
             <select class="form-control objectAttr" data-l1key="father_id">
               <option value="">{{Aucun}}</option>
               <?php
-foreach ($allObject as $object) {
-	echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
+foreach ($allObject as $jeeObject) {
+	echo '<option value="' . $jeeObject->getId() . '">' . $jeeObject->getName() . '</option>';
 }
 ?>
            </select>

@@ -247,8 +247,8 @@ if (!isConnect()) {
 										<a data-toggle="dropdown" id="bt_gotoDashboard" href="index.php?v=d&p=dashboard"><i class="fa fa-dashboard"></i> {{Dashboard}}</a>
 										<ul class="dropdown-menu scrollable-menu" role="menu" style="height: auto;max-height: 600px; overflow-x: hidden;">
 											<?php
-foreach (jeeObject::buildTree(null, false) as $object_li) {
-			echo '<li><a href="index.php?v=d&p=dashboard&jeeObject_id=' . $object_li->getId() . '">' . $object_li->getHumanName(true) . '</a></li>';
+foreach (jeeObject::buildTree(null, false) as $jeeObject_li) {
+			echo '<li><a href="index.php?v=d&p=dashboard&jeeObject_id=' . $jeeObject_li->getId() . '">' . $jeeObject_li->getHumanName(true) . '</a></li>';
 		}
 		?>
 										</ul>

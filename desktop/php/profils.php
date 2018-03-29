@@ -159,8 +159,8 @@ foreach ($homePage as $key => $value) {
     <div class="col-sm-2">
       <select class="userAttr form-control" data-l1key="options" data-l2key="defaultDashboardObject">
         <?php
-foreach (jeeObject::all() as $object) {
-	echo "<option value='" . $object->getId() . "'>" . $object->getName() . "</option>";
+foreach (jeeObject::all() as $jeeObject) {
+	echo "<option value='" . $jeeObject->getId() . "'>" . $jeeObject->getName() . "</option>";
 }
 ?>
      </select>
@@ -170,8 +170,8 @@ foreach (jeeObject::all() as $object) {
     <select class="userAttr form-control" data-l1key="options" data-l2key="defaultMobileObject">
       <option value='all'>{{Tout}}</option>
       <?php
-foreach (jeeObject::all() as $object) {
-	echo "<option value='" . $object->getId() . "'>" . $object->getName() . "</option>";
+foreach (jeeObject::all() as $jeeObject) {
+	echo "<option value='" . $jeeObject->getId() . "'>" . $jeeObject->getName() . "</option>";
 }
 ?>
    </select>

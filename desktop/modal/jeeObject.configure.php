@@ -2,11 +2,11 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-$object = jeeObject::byId(init('jeeObject_id'));
-if (!is_object($object)) {
+$jeeObject = jeeObject::byId(init('jeeObject_id'));
+if (!is_object($jeeObject)) {
 	throw new Exception('Objet non trouvé : ' . init('jeeObject_id'));
 }
-sendVarToJS('objectInfo', utils::o2a($object));
+sendVarToJS('objectInfo', utils::o2a($jeeObject));
 ?>
 <div id='div_displayObjectConfigure'>
     <legend>{{Informations}}</legend>

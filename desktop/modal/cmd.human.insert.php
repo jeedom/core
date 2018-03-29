@@ -17,8 +17,8 @@ if (!isConnect()) {
                 <select class='form-control'>
                     <option value="-1">{{Aucun}}</option>
                     <?php
-foreach (jeeObject::all() as $object) {
-	echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
+foreach (jeeObject::all() as $jeeObject) {
+	echo '<option value="' . $jeeObject->getId() . '">' . $jeeObject->getName() . '</option>';
 }
 
 ?>

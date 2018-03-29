@@ -484,7 +484,7 @@ class jeeObject {
 		$eqLogics = eqLogic::byJeeObjectId($this->getId(), $_onlyEnable, $_onlyVisible, $_eqType_name, $_logicalId);
 		if (is_array($eqLogics)) {
 			foreach ($eqLogics as &$eqLogic) {
-				$eqLogic->setObject($this);
+				$eqLogic->setJeeObject($this);
 			}
 		}
 		return $eqLogics;
@@ -511,7 +511,7 @@ class jeeObject {
 		if (is_array($eqLogics)) {
 			foreach ($eqLogics as $eqLogic) {
 				if (isset($eqLogics_id[$eqLogic->getId()])) {
-					$eqLogic->setObject($this);
+					$eqLogic->setJeeObject($this);
 					$return[] = $eqLogic;
 				}
 			}
