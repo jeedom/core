@@ -39,7 +39,7 @@ try {
 				$info_eqLogic = array();
 				$info_eqLogic['id'] = $eqLogic->getId();
 				$info_eqLogic['type'] = $eqLogic->getEqType_name();
-				$info_eqLogic['object_id'] = $eqLogic->getObject_id();
+				$info_eqLogic['object_id'] = $eqLogic->getJeeObject_id();
 				$info_eqLogic['html'] = $eqLogic->toHtml(init('version'));
 				$return['eqLogic'][] = $info_eqLogic;
 			}
@@ -67,7 +67,7 @@ try {
 					'html' => $eqLogic->toHtml($value['version']),
 					'id' => $eqLogic->getId(),
 					'type' => $eqLogic->getEqType_name(),
-					'object_id' => $eqLogic->getObject_id(),
+					'object_id' => $eqLogic->getJeeObject_id(),
 				);
 			}
 			ajax::success($return);
@@ -79,7 +79,7 @@ try {
 			$info_eqLogic = array();
 			$info_eqLogic['id'] = $eqLogic->getId();
 			$info_eqLogic['type'] = $eqLogic->getEqType_name();
-			$info_eqLogic['object_id'] = $eqLogic->getObject_id();
+			$info_eqLogic['object_id'] = $eqLogic->getJeeObject_id();
 			$info_eqLogic['html'] = $eqLogic->toHtml(init('version'));
 			ajax::success($info_eqLogic);
 		}
@@ -95,7 +95,7 @@ try {
 				'html' => $eqLogic->toHtml(init('version')),
 				'id' => $eqLogic->getId(),
 				'type' => $eqLogic->getEqType_name(),
-				'object_id' => $eqLogic->getObject_id(),
+				'object_id' => $eqLogic->getJeeObject_id(),
 			);
 		}
 		ajax::success($return);
@@ -118,7 +118,7 @@ try {
 				'html' => $eqLogic->batteryWidget(init('version')),
 				'id' => $eqLogic->getId(),
 				'type' => $eqLogic->getEqType_name(),
-				'object_id' => $eqLogic->getObject_id(),
+				'object_id' => $eqLogic->getJeeObject_id(),
 			);
 		}
 		ajax::success($return);

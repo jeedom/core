@@ -1228,7 +1228,7 @@ class scenario {
 		if ($_mode == 'text') {
 			$return = '';
 			$return .= '- Nom du scénario : ' . $this->getName() . "\n";
-			if (is_numeric($this->getObject_id())) {
+			if (is_numeric($this->getJeeObject_id())) {
 				$return .= '- Objet parent : ' . $this->getObject()->getName() . "\n";
 			}
 			$return .= '- Mode du scénario : ' . $this->getMode() . "\n";
@@ -1326,7 +1326,7 @@ class scenario {
 	 */
 	public function getHumanName($_complete = false, $_noGroup = false, $_tag = false, $_prettify = false, $_withoutScenarioName = false) {
 		$name = '';
-		if (is_numeric($this->getObject_id())) {
+		if (is_numeric($this->getJeeObject_id())) {
 			$object = $this->getObject();
 			if ($_tag) {
 				if ($object->getDisplay('tagColor') != '') {
@@ -1779,12 +1779,20 @@ class scenario {
 	 * @param type $_default
 	 * @return type
 	 */
+	public function getJeeObject_id($_default = null) {
+		if ($this->object_id == '' || !is_numeric($this->object_id)) {
+			return $_default;
+		}
+		return $this->object_id;
+	}
+
 	public function getObject_id($_default = null) {
 		if ($this->object_id == '' || !is_numeric($this->object_id)) {
 			return $_default;
 		}
 		return $this->object_id;
 	}
+
 	/**
 	 *
 	 * @param type $_default
@@ -1801,8 +1809,21 @@ class scenario {
 	 * @param type $object_id
 	 * @return $this
 	 */
+	public function setJeeObject_id($object_id = null) {
+		if ($object_id != $this->getJeeObject_id()) {
+			$this->_changeState = true;
+		}
+		$this->object_id = (!is_numeric($object_id)) ? null : $object_id;
+		return $this;
+	}
+
+	/**
+	 *
+	 * @param type $object_id
+	 * @return $this
+	 */
 	public function setObject_id($object_id = null) {
-		if ($object_id != $this->getObject_id()) {
+		if ($object_id != $this->getJeeObject_id()) {
 			$this->_changeState = true;
 		}
 		$this->object_id = (!is_numeric($object_id)) ? null : $object_id;

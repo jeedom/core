@@ -392,7 +392,7 @@ class jeeObject {
 			$virtual->setIsEnable(1);
 			$virtual->setLogicalId('summary' . $jeeObject->getId());
 			$virtual->setEqType_name('virtual');
-			$virtual->setObject_id($jeeObject->getId());
+			$virtual->setJeeObject_id($jeeObject->getId());
 			$virtual->save();
 			$jeeObject->setConfiguration('summary_virtual_id', $virtual->getId());
 			$jeeObject->save();

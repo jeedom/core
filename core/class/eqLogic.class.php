@@ -1247,7 +1247,7 @@ class eqLogic {
 		$eqLogic = clone $this;
 		$eqLogic->setId('');
 		$eqLogic->setLogicalId('');
-		$eqLogic->setObject_id('');
+		$eqLogic->setJeeObject_id('');
 		$eqLogic->setIsEnable('');
 		$eqLogic->setIsVisible('');
 		$eqLogic->setTimeout('');
@@ -1373,7 +1373,7 @@ class eqLogic {
 		addGraphLink($this, 'eqLogic', $usedBy['interactDef'], 'interactDef', $_data, $_level, $_drill, array('dashvalue' => '2,6', 'lengthfactor' => 0.6));
 		addGraphLink($this, 'eqLogic', $usedBy['plan'], 'plan', $_data, $_level, $_drill, array('dashvalue' => '2,6', 'lengthfactor' => 0.6));
 		addGraphLink($this, 'eqLogic', $usedBy['view'], 'view', $_data, $_level, $_drill, array('dashvalue' => '2,6', 'lengthfactor' => 0.6));
-		if (!isset($_data['object' . $this->getObject_id()])) {
+		if (!isset($_data['object' . $this->getJeeObject_id()])) {
 			addGraphLink($this, 'eqLogic', $this->getObject(), 'object', $_data, $_level, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
 		}
 		return $_data;
@@ -1417,6 +1417,10 @@ class eqLogic {
 
 	public function getLogicalId() {
 		return $this->logicalId;
+	}
+
+	public function getJeeObject_id() {
+		return $this->object_id;
 	}
 
 	public function getObject_id() {
@@ -1525,6 +1529,11 @@ class eqLogic {
 
 	public function setLogicalId($logicalId) {
 		$this->logicalId = $logicalId;
+		return $this;
+	}
+
+	public function setJeeObject_id($object_id = null) {
+		$this->object_id = (!is_numeric($object_id)) ? null : $object_id;
 		return $this;
 	}
 
