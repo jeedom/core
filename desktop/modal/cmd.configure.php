@@ -844,7 +844,7 @@ if ($cmd->getDisplay('parameters') != '') {
   $('#div_displayCmdConfigure').setValues(cmdInfo, '.cmdAttr');
   $('#bt_cmdConfigureRawObject').off('click').on('click',function(){
     $('#md_modal2').dialog({title: "{{Informations}}"});
-    $("#md_modal2").load('index.php?v=d&modal=jeejeeObject.display&class=cmd&id='+cmdInfo.id).dialog('open');
+    $("#md_modal2").load('index.php?v=d&modal=object.display&class=cmd&id='+cmdInfo.id).dialog('open');
   });
   $('#bt_cmdConfigureGraph').on('click', function () {
     $('#md_modal2').dialog({title: "{{Graphique des liens}}"});
