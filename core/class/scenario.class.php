@@ -469,13 +469,13 @@ class scenario {
 				AND `group`=:group_name';
 			}
 		} else {
-			$values['object_name'] = $_jeeObject_name;
+			$values['jeeObject_name'] = $_jeeObject_name;
 			if ($_group_name == __('Aucun', __FILE__)) {
 				$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
 				FROM scenario s
 				INNER JOIN jeeObject ob ON s.jeeObject_id=ob.id
 				WHERE s.name=:scenario_name
-				AND ob.name=:object_name
+				AND ob.name=:jeeObject_name
 				AND (`group` IS NULL OR `group`=""  OR `group`="Aucun" OR `group`="None")';
 			} else {
 				$values['group_name'] = $_group_name;
@@ -483,7 +483,7 @@ class scenario {
 				FROM scenario s
 				INNER JOIN jeeObject ob ON s.jeeObject_id=ob.id
 				WHERE s.name=:scenario_name
-				AND ob.name=:object_name
+				AND ob.name=:jeeObject_name
 				AND `group`=:group_name';
 			}
 		}

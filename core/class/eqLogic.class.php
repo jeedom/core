@@ -376,13 +376,13 @@ class eqLogic {
 		} else {
 			$values = array(
 				'eqLogic_name' => $_eqLogic_name,
-				'object_name' => $_jeeObject_name,
+				'jeeObject_name' => $_jeeObject_name,
 			);
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 'el') . '
             FROM eqLogic el
             INNER JOIN jeeObject ob ON el.jeeObject_id=ob.id
             WHERE el.name=:eqLogic_name
-            AND ob.name=:object_name';
+            AND ob.name=:jeeObject_name';
 		}
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}

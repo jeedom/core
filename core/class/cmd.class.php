@@ -349,21 +349,21 @@ class cmd {
 			AND el.name=:eqLogic_name
 			AND el.jeeObject_id IS NULL';
 		} else {
-			$values['object_name'] = $_jeeObject_name;
+			$values['jeeObject_name'] = $_jeeObject_name;
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 'c') . '
 			FROM cmd c
 			INNER JOIN eqLogic el ON c.eqLogic_id=el.id
 			INNER JOIN jeeObject ob ON el.jeeObject_id=ob.id
 			WHERE c.name=:cmd_name
 			AND el.name=:eqLogic_name
-			AND ob.name=:object_name';
+			AND ob.name=:jeeObject_name';
 		}
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 
 	public static function byObjectNameCmdName($_jeeObject_name, $_cmd_name) {
 		$values = array(
-			'object_name' => $_jeeObject_name,
+			'jeeObject_name' => $_jeeObject_name,
 			'cmd_name' => $_cmd_name,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__, 'c') . '
@@ -371,7 +371,7 @@ class cmd {
 		INNER JOIN eqLogic el ON c.eqLogic_id=el.id
 		INNER JOIN jeeObject ob ON el.jeeObject_id=ob.id
 		WHERE c.name=:cmd_name
-		AND ob.name=:object_name';
+		AND ob.name=:jeeObject_name';
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 
