@@ -622,7 +622,7 @@ class jeeObject {
 				if ($allowDisplayZero == 0 && $result == 0) {
 					$style = 'display:none;';
 				}
-				$return .= '<span style="margin-right:5px;' . $style . '" class="jeeObjectSummaryParent cursor" data-summary="' . $key . '" data-object_id="' . $this->getId() . '" data-displayZeroValue="' . $allowDisplayZero . '">' . $value['icon'] . ' <sup><span class="ojeeOjectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . '</span></sup>';
+				$return .= '<span style="margin-right:5px;' . $style . '" class="jeeObjectSummaryParent cursor" data-summary="' . $key . '" data-jeeObject_id="' . $this->getId() . '" data-displayZeroValue="' . $allowDisplayZero . '">' . $value['icon'] . ' <sup><span class="ojeeOjectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . '</span></sup>';
 			}
 		}
 		return trim($return) . '</span>';
@@ -640,7 +640,7 @@ class jeeObject {
 			return $_data;
 		}
 		$icon = findCodeIcon($this->getDisplay('icon'));
-		$_data['node']['object' . $this->getId()] = array(
+		$_data['node']['jeeObject' . $this->getId()] = array(
 			'id' => 'jeeObject' . $this->getId(),
 			'name' => $this->getName(),
 			'icon' => $icon['icon'],

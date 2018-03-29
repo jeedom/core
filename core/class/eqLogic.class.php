@@ -1359,6 +1359,7 @@ class eqLogic {
 	public function toArray() {
 		$return = utils::o2a($this, true);
 		$return['status'] = $this->getStatus();
+		$return['object_id'] = $this->getJeeObject_id();
 		return $return;
 	}
 
