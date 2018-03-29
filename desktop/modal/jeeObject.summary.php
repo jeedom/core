@@ -42,18 +42,21 @@ foreach ($alljeeObject as $jeeObject) {
 	echo '<td>';
 	foreach (config::byKey('jeeObject:summary') as $key => $value) {
 		$title = '';
-		foreach ($jeeObject->getConfiguration('summary')[$key] as $summary) {
-			if (cmd::byId(str_replace('#', '', $summary['cmd']))) {
-				$title .= '&#10;' . cmd::byId(str_replace('#', '', $summary['cmd']))->getHumanName();
-			} else {
-				$title .= '&#10;' . $summary['cmd'];
+		$sumarries = $jeeObject->getConfiguration('summary');
+		if (isset($sumarries[$key])) {
+			foreach ($sumarries[$key] as $summary) {
+				if (cmd::byId(str_replace('#', '', $summary['cmd']))) {
+					$title .= '&#10;' . cmd::byId(str_replace('#', '', $summary['cmd']))->getHumanName();
+				} else {
+					$title .= '&#10;' . $summary['cmd'];
+				}
 			}
-		}
-		if (count($jeeObject->getConfiguration('summary')[$key]) > 0) {
-			if ($jeeObject->getConfiguration('summary::global::' . $key) == 1) {
-				echo '<a style="cursor:default;text-decoration:none;" title="' . $value['name'] . $title . '">' . $value['icon'] . '<sup> ' . count($jeeObject->getConfiguration('summary')[$key]) . '</sup></a>  ';
-			} else {
-				echo '<a style="cursor:default;color:grey;text-decoration:none;" title="' . $value['name'] . $title . '">' . $value['icon'] . '<sup> ' . count($jeeObject->getConfiguration('summary')[$key]) . '</sup></a>  ';
+			if (count($sumarries[$key]) > 0) {
+				if ($jeeObject->getConfiguration('summary::global::' . $key) == 1) {
+					echo '<a style="cursor:default;text-decoration:none;" title="' . $value['name'] . $title . '">' . $value['icon'] . '<sup> ' . count($jeeObject->getConfiguration('summary')[$key]) . '</sup></a>  ';
+				} else {
+					echo '<a style="cursor:default;color:grey;text-decoration:none;" title="' . $value['name'] . $title . '">' . $value['icon'] . '<sup> ' . count($jeeObject->getConfiguration('summary')[$key]) . '</sup></a>  ';
+				}
 			}
 		}
 	}
