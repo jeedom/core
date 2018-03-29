@@ -850,8 +850,8 @@ function printScenario(_id) {
     if(data.name){
       document.title = data.name +' - Jeedom';
     }
-    $('.scenarioAttr[data-l1key=object_id] option:first').attr('selected',true);
-    $('.scenarioAttr[data-l1key=object_id]').val('');
+    $('.scenarioAttr[data-l1key=jeeObject_id] option:first').attr('selected',true);
+    $('.scenarioAttr[data-l1key=jeeObject_id]').val('');
     $('#div_pageContainer').setValues(data, '.scenarioAttr');
     data.lastLaunch = (data.lastLaunch == null) ? '{{Jamais}}' : data.lastLaunch;
     $('#span_lastLaunch').text(data.lastLaunch);

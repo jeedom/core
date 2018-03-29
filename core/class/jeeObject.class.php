@@ -40,7 +40,7 @@ class jeeObject {
 			'id' => $_id,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM object
+                FROM jeeObject
                 WHERE id=:id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
@@ -50,14 +50,14 @@ class jeeObject {
 			'name' => $_name,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM object
+                FROM jeeObject
                 WHERE name=:name';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
 	public static function all($_onlyVisible = false) {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM object ';
+                FROM jeeObject ';
 		if ($_onlyVisible) {
 			$sql .= ' WhERE isVisible = 1';
 		}
@@ -65,9 +65,9 @@ class jeeObject {
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function rootObject($_all = false, $_onlyVisible = false) {
+	public static function root($_all = false, $_onlyVisible = false) {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM object
+                FROM jeeObject
                 WHERE father_id IS NULL';
 		if ($_onlyVisible) {
 			$sql .= ' AND isVisible = 1';
@@ -80,12 +80,12 @@ class jeeObject {
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function buildTree($_object = null, $_visible = true) {
+	public static function buildTree($_jeeObject = null, $_visible = true) {
 		$return = array();
-		if (!is_object($_object)) {
-			$jeeObject_list = self::rootObject(true, $_visible);
+		if (!is_object($_jeeObject)) {
+			$jeeObject_list = self::root(true, $_visible);
 		} else {
-			$jeeObject_list = $_object->getChild($_visible);
+			$jeeObject_list = $_jeeObject->getChild($_visible);
 		}
 		if (is_array($jeeObject_list) && count($jeeObject_list) > 0) {
 			foreach ($jeeObject_list as $jeeObject) {
@@ -97,9 +97,12 @@ class jeeObject {
 	}
 
 	public static function fullData($_restrict = array()) {
+		if (isset($_restrict['object']) && !isset($_restrict['jeeObject'])) {
+			$_restrict['jeeObject'] = $_restrict['object'];
+		}
 		$return = array();
 		foreach (self::all(true) as $jeeObject) {
-			if (!isset($_restrict['object']) || !is_array($_restrict['object']) || isset($_restrict['object'][$jeeObject->getId()])) {
+			if (!isset($_restrict['jeeObject']) || !is_array($_restrict['jeeObject']) || isset($_restrict['jeeObject'][$jeeObject->getId()])) {
 				$jeeObject_return = utils::o2a($jeeObject);
 				$jeeObject_return['eqLogics'] = array();
 				foreach ($jeeObject->getEqLogic(true, true) as $eqLogic) {
@@ -129,7 +132,7 @@ class jeeObject {
 			'configuration' => '%' . $_search . '%',
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-		FROM object
+		FROM jeeObject
 		WHERE `configuration` LIKE :configuration';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
@@ -160,7 +163,7 @@ class jeeObject {
 			if (!is_array($summaries)) {
 				continue;
 			}
-			$event = array('object_id' => $jeeObject->getId(), 'keys' => array());
+			$event = array('jeeObject_id' => $jeeObject->getId(), 'keys' => array());
 			foreach ($summaries as $key => $summary) {
 				foreach ($summary as $cmd_info) {
 					preg_match_all("/#([0-9]*)#/", $cmd_info['cmd'], $matches);
@@ -168,7 +171,7 @@ class jeeObject {
 						if ($cmd_id == $_cmd_id) {
 							$value = $jeeObject->getSummary($key);
 							$event['keys'][$key] = array('value' => $value);
-							$toRefreshCmd[] = array('key' => $key, 'object' => $jeeObject, 'value' => $value);
+							$toRefreshCmd[] = array('key' => $key, 'jeeObject' => $jeeObject, 'value' => $value);
 							if ($jeeObject->getConfiguration('summary::global::' . $key, 0) == 1) {
 								$global[$key] = 1;
 							}
@@ -184,7 +187,7 @@ class jeeObject {
 					if ($jeeObject->getConfiguration('summary_virtual_id') == '') {
 						continue;
 					}
-					$virtual = eqLogic::byId($value['object']->getConfiguration('summary_virtual_id'));
+					$virtual = eqLogic::byId($value['jeeObject']->getConfiguration('summary_virtual_id'));
 					if (!is_object($virtual)) {
 						$jeeObject->getConfiguration('summary_virtual_id', '');
 						$jeeObject->save();
@@ -201,7 +204,7 @@ class jeeObject {
 			}
 		}
 		if (count($global) > 0) {
-			$event = array('object_id' => 'global', 'keys' => array());
+			$event = array('jeeObject_id' => 'global', 'keys' => array());
 			foreach ($global as $key => $value) {
 				try {
 					$result = self::getGlobalSummary($key);
@@ -459,7 +462,7 @@ class jeeObject {
 			'id' => $this->id,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM object
+                FROM jeeObject
                 WHERE father_id=:id';
 		if ($_visible) {
 			$sql .= ' AND isVisible=1 ';
@@ -478,7 +481,7 @@ class jeeObject {
 	}
 
 	public function getEqLogic($_onlyEnable = true, $_onlyVisible = false, $_eqType_name = null, $_logicalId = null) {
-		$eqLogics = eqLogic::byObjectId($this->getId(), $_onlyEnable, $_onlyVisible, $_eqType_name, $_logicalId);
+		$eqLogics = eqLogic::byJeeObjectId($this->getId(), $_onlyEnable, $_onlyVisible, $_eqType_name, $_logicalId);
 		if (is_array($eqLogics)) {
 			foreach ($eqLogics as &$eqLogic) {
 				$eqLogic->setObject($this);
@@ -496,7 +499,7 @@ class jeeObject {
 		if (!isset($summaries[$_summary])) {
 			return array();
 		}
-		$eqLogics = eqLogic::byObjectId($this->getId(), $_onlyEnable, $_onlyVisible, $_eqType_name, $_logicalId);
+		$eqLogics = eqLogic::byJeeObjectId($this->getId(), $_onlyEnable, $_onlyVisible, $_eqType_name, $_logicalId);
 		$eqLogics_id = array();
 		foreach ($summaries[$_summary] as $infos) {
 			$cmd = cmd::byId(str_replace('#', '', $infos['cmd']));
@@ -517,15 +520,15 @@ class jeeObject {
 	}
 
 	public function getScenario($_onlyEnable = true, $_onlyVisible = false) {
-		return scenario::byObjectId($this->getId(), $_onlyEnable, $_onlyVisible);
+		return scenario::byJeeObjectId($this->getId(), $_onlyEnable, $_onlyVisible);
 	}
 
 	public function preRemove() {
-		dataStore::removeByTypeLinkId('object', $this->getId());
+		dataStore::removeByTypeLinkId('jeeObject', $this->getId());
 	}
 
 	public function remove() {
-		jeedom::addRemoveHistory(array('id' => $this->getId(), 'name' => $this->getName(), 'date' => date('Y-m-d H:i:s'), 'type' => 'object'));
+		jeedom::addRemoveHistory(array('id' => $this->getId(), 'name' => $this->getName(), 'date' => date('Y-m-d H:i:s'), 'type' => 'jeeObject'));
 		return DB::remove($this);
 	}
 

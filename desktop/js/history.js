@@ -80,7 +80,7 @@
 });
 
  $('.displayObject').on('click', function () {
-    var list = $('.cmdList[data-object_id=' + $(this).attr('data-object_id') + ']');
+    var list = $('.cmdList[data-jeeObject_id=' + $(this).attr('data-jeeObject_id') + ']');
     if (list.is(':visible')) {
         $(this).find('i.fa').removeClass('fa-arrow-circle-down').addClass('fa-arrow-circle-right');
         list.hide();

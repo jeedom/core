@@ -224,7 +224,7 @@ if (count($totalScenario) == 0) {
            <div class="form-group">
             <label class="col-xs-5 control-label" >{{Objet parent}}</label>
             <div class="col-xs-6">
-              <select class="scenarioAttr form-control" data-l1key="object_id">
+              <select class="scenarioAttr form-control" data-l1key="jeeObject_id">
                 <option value="">{{Aucun}}</option>
                 <?php
 foreach (jeeObject::all() as $object) {

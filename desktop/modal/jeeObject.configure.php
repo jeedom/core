@@ -2,9 +2,9 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-$object = jeeObject::byId(init('object_id'));
+$object = jeeObject::byId(init('jeeObject_id'));
 if (!is_object($object)) {
-	throw new Exception('Objet non trouvé : ' . init('object_id'));
+	throw new Exception('Objet non trouvé : ' . init('jeeObject_id'));
 }
 sendVarToJS('objectInfo', utils::o2a($object));
 ?>

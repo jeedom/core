@@ -135,7 +135,7 @@ try {
 
 	if (init('action') == 'listByObject') {
 		$object_id = (init('object_id') != -1) ? init('object_id') : null;
-		ajax::success(utils::o2a(eqLogic::byObjectId($object_id, init('onlyEnable', true), init('onlyVisible', false), init('eqType_name', null), init('logicalId', null), init('orderByName', false))));
+		ajax::success(utils::o2a(eqLogic::byJeeObjectId($object_id, init('onlyEnable', true), init('onlyVisible', false), init('eqType_name', null), init('logicalId', null), init('orderByName', false))));
 	}
 
 	if (init('action') == 'listByTypeAndCmdType') {

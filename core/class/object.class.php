@@ -21,4 +21,7 @@ require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 
 class object extends jeeObject {
 
+	public function getTableName() {
+		return 'jeeObject';
+	}
 }

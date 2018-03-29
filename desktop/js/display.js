@@ -22,7 +22,7 @@
     order = 1;
     object.find('.eqLogic').each(function(){
         eqLogic = {};
-        eqLogic.object_id = object.attr('data-id');
+        eqLogic.jeeObject_id = object.attr('data-id');
         eqLogic.id = $(this).attr('data-id');
         eqLogic.order = order;
         eqLogics.push(eqLogic);
@@ -73,7 +73,7 @@
 
  $('.configureObject').on('click',function(){
    $('#md_modal').dialog({title: "{{Configuration de l'objet}}"});
-   $('#md_modal').load('index.php?v=d&modal=object.configure&object_id=' + $(this).closest('.object').attr('data-id')).dialog('open');
+   $('#md_modal').load('index.php?v=d&modal=object.configure&jeeObject_id=' + $(this).closest('.object').attr('data-id')).dialog('open');
 });
 
  $('.showCmd').on('click',function(){

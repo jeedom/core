@@ -32,7 +32,7 @@ class scenario {
 	private $trigger;
 	private $_log;
 	private $timeout = 0;
-	private $object_id = null;
+	private $jeeObject_id = null;
 	private $isVisible = 1;
 	private $display;
 	private $description;
@@ -80,7 +80,7 @@ class scenario {
 		if ($_group === '') {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
 			FROM scenario s
-			INNER JOIN object ob ON s.object_id=ob.id';
+			INNER JOIN jeeObject ob ON s.jeeObject_id=ob.id';
 			if ($_type !== null) {
 				$values['type'] = $_type;
 				$sql .= ' WHERE `type`=:type';
@@ -92,7 +92,7 @@ class scenario {
 			}
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
 			FROM scenario s
-			WHERE s.object_id IS NULL';
+			WHERE s.jeeObject_id IS NULL';
 			if ($_type !== null) {
 				$values['type'] = $_type;
 				$sql .= ' AND `type`=:type';
@@ -103,7 +103,7 @@ class scenario {
 		} elseif ($_group === null) {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
 			FROM scenario s
-			INNER JOIN object ob ON s.object_id=ob.id
+			INNER JOIN jeeObject ob ON s.jeeObject_id=ob.id
 			WHERE (`group` IS NULL OR `group` = "")';
 			if ($_type !== null) {
 				$values['type'] = $_type;
@@ -117,7 +117,7 @@ class scenario {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
 			FROM scenario s
 			WHERE (`group` IS NULL OR `group` = "")
-			AND s.object_id IS NULL';
+			AND s.jeeObject_id IS NULL';
 			if ($_type !== null) {
 				$values['type'] = $_type;
 				$sql .= ' AND `type`=:type';
@@ -131,7 +131,7 @@ class scenario {
 			);
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
 			FROM scenario s
-			INNER JOIN object ob ON s.object_id=ob.id
+			INNER JOIN jeeObject ob ON s.jeeObject_id=ob.id
 			WHERE `group`=:group';
 			if ($_type !== null) {
 				$values['type'] = $_type;
@@ -142,7 +142,7 @@ class scenario {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
 			FROM scenario s
 			WHERE `group`=:group
-			AND s.object_id IS NULL';
+			AND s.jeeObject_id IS NULL';
 			if ($_type !== null) {
 				$values['type'] = $_type;
 				$sql .= ' AND `type`=:type';
@@ -213,20 +213,38 @@ class scenario {
 	}
 	/**
 	 *
-	 * @param type $_object_id
+	 * @param type $_jeeObject_id
 	 * @param type $_onlyEnable
 	 * @param type $_onlyVisible
 	 * @return type
 	 */
-	public static function byObjectId($_object_id, $_onlyEnable = true, $_onlyVisible = false) {
+	public static function byJeeObjectId($_jeeObject_id, $_onlyEnable = true, $_onlyVisible = false) {
 		$values = array();
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM scenario';
-		if ($_object_id === null) {
-			$sql .= ' WHERE object_id IS NULL';
+		if ($_jeeObject_id === null) {
+			$sql .= ' WHERE jeeObject_id IS NULL';
 		} else {
-			$values['object_id'] = $_object_id;
-			$sql .= ' WHERE object_id=:object_id';
+			$values['jeeObject_id'] = $_jeeObject_id;
+			$sql .= ' WHERE jeeObject_id=:jeeObject_id';
+		}
+		if ($_onlyEnable) {
+			$sql .= ' AND isActive = 1';
+		}
+		if ($_onlyVisible) {
+			$sql .= ' AND isVisible = 1';
+		}
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+	}
+	public static function byObjectId($_jeeObject_id, $_onlyEnable = true, $_onlyVisible = false) {
+		$values = array();
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+		FROM scenario';
+		if ($_jeeObject_id === null) {
+			$sql .= ' WHERE jeeObject_id IS NULL';
+		} else {
+			$values['jeeObject_id'] = $_jeeObject_id;
+			$sql .= ' WHERE jeeObject_id=:jeeObject_id';
 		}
 		if ($_onlyEnable) {
 			$sql .= ' AND isActive = 1';
@@ -441,13 +459,13 @@ class scenario {
 				FROM scenario s
 				WHERE s.name=:scenario_name
 				AND (`group` IS NULL OR `group`=""  OR `group`="Aucun" OR `group`="None")
-				AND s.object_id IS NULL';
+				AND s.jeeObject_id IS NULL';
 			} else {
 				$values['group_name'] = $_group_name;
 				$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
 				FROM scenario s
 				WHERE s.name=:scenario_name
-				AND s.object_id IS NULL
+				AND s.jeeObject_id IS NULL
 				AND `group`=:group_name';
 			}
 		} else {
@@ -455,7 +473,7 @@ class scenario {
 			if ($_group_name == __('Aucun', __FILE__)) {
 				$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
 				FROM scenario s
-				INNER JOIN object ob ON s.object_id=ob.id
+				INNER JOIN jeeObject ob ON s.jeeObject_id=ob.id
 				WHERE s.name=:scenario_name
 				AND ob.name=:object_name
 				AND (`group` IS NULL OR `group`=""  OR `group`="Aucun" OR `group`="None")';
@@ -463,7 +481,7 @@ class scenario {
 				$values['group_name'] = $_group_name;
 				$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
 				FROM scenario s
-				INNER JOIN object ob ON s.object_id=ob.id
+				INNER JOIN jeeObject ob ON s.jeeObject_id=ob.id
 				WHERE s.name=:scenario_name
 				AND ob.name=:object_name
 				AND `group`=:group_name';
@@ -1278,8 +1296,8 @@ class scenario {
 			if (isset($return['hlogs'])) {
 				unset($return['hlogs']);
 			}
-			if (isset($return['object_id'])) {
-				unset($return['object_id']);
+			if (isset($return['jeeObject_id'])) {
+				unset($return['jeeObject_id']);
 			}
 			if (isset($return['pid'])) {
 				unset($return['pid']);
@@ -1313,7 +1331,7 @@ class scenario {
 	 * @return object
 	 */
 	public function getObject() {
-		return jeeObject::byId($this->object_id);
+		return jeeObject::byId($this->jeeObject_id);
 	}
 	/**
 	 *
@@ -1780,17 +1798,17 @@ class scenario {
 	 * @return type
 	 */
 	public function getJeeObject_id($_default = null) {
-		if ($this->object_id == '' || !is_numeric($this->object_id)) {
+		if ($this->jeeObject_id == '' || !is_numeric($this->jeeObject_id)) {
 			return $_default;
 		}
-		return $this->object_id;
+		return $this->jeeObject_id;
 	}
 
 	public function getObject_id($_default = null) {
-		if ($this->object_id == '' || !is_numeric($this->object_id)) {
+		if ($this->jeeObject_id == '' || !is_numeric($this->jeeObject_id)) {
 			return $_default;
 		}
-		return $this->object_id;
+		return $this->jeeObject_id;
 	}
 
 	/**
@@ -1806,27 +1824,27 @@ class scenario {
 	}
 	/**
 	 *
-	 * @param type $object_id
+	 * @param type $jeeObject_id
 	 * @return $this
 	 */
-	public function setJeeObject_id($object_id = null) {
-		if ($object_id != $this->getJeeObject_id()) {
+	public function setJeeObject_id($jeeObject_id = null) {
+		if ($jeeObject_id != $this->getJeeObject_id()) {
 			$this->_changeState = true;
 		}
-		$this->object_id = (!is_numeric($object_id)) ? null : $object_id;
+		$this->jeeObject_id = (!is_numeric($jeeObject_id)) ? null : $jeeObject_id;
 		return $this;
 	}
 
 	/**
 	 *
-	 * @param type $object_id
+	 * @param type $jeeObject_id
 	 * @return $this
 	 */
-	public function setObject_id($object_id = null) {
-		if ($object_id != $this->getJeeObject_id()) {
+	public function setObject_id($jeeObject_id = null) {
+		if ($jeeObject_id != $this->getJeeObject_id()) {
 			$this->_changeState = true;
 		}
-		$this->object_id = (!is_numeric($object_id)) ? null : $object_id;
+		$this->jeeObject_id = (!is_numeric($jeeObject_id)) ? null : $jeeObject_id;
 		return $this;
 	}
 	/**

@@ -1,4 +1,4 @@
-function initEquipment(_object_id) {
+function initEquipment(_jeeObject_id) {
   jeedom.jeeObject.all({
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -14,7 +14,7 @@ function initEquipment(_object_id) {
             icon = objects[i].display.icon;
           }
           li += '<li><a href="#" class="link" data-page="equipment" data-title="' + icon.replace(/\"/g, "\'") + ' ' + objects[i].name + '" data-option="' + objects[i].id + '"><span>' + icon + '</span> ' + objects[i].name + '<span style="float:right;font-size:0.6em;color:#787c84;"><span class="jeeObjectSummary'+objects[i].id+'" data-version="mobile"></span></span></a></li>';
-          summaries.push({object_id : objects[i].id})
+          summaries.push({jeeObject_id : objects[i].id})
         }
       }
       li += '</ul>';
@@ -22,22 +22,22 @@ function initEquipment(_object_id) {
       jeedom.jeeObject.summaryUpdate(summaries);
     }
   });
-  if (isset(_object_id)) {
+  if (isset(_jeeObject_id)) {
     summary = '';
-    if(_object_id.indexOf(':') != -1){
-      temp = _object_id.split(':');
-      _object_id = temp[0];
+    if(_jeeObject_id.indexOf(':') != -1){
+      temp = _jeeObject_id.split(':');
+      _jeeObject_id = temp[0];
       summary = temp[1];
     }
     jeedom.jeeObject.toHtml({
-      id: _object_id,
+      id: _jeeObject_id,
       version: 'mobile',
       summary :summary,
       error: function (error) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
       },
       success: function (html) {
-        if(_object_id == 'all' || _object_id == ''){
+        if(_jeeObject_id == 'all' || _jeeObject_id == ''){
          jeedom.jeeObject.all({
           error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -65,7 +65,7 @@ function initEquipment(_object_id) {
            div += '</div>';
            div += '</div>';
            number = 1;
-           summaries.push({object_id : id})
+           summaries.push({jeeObject_id : id})
          }
          try {
            $('#div_displayEquipement').empty().html(div).trigger('create');
@@ -80,8 +80,8 @@ function initEquipment(_object_id) {
       }
     });  
        }else{
-         $('#div_displayEquipement').empty().html('<div class="nd2-card jeeObjectSummaryHide" style="max-width:100% !important;"><div class="card-title has-supporting-text" style="padding:4px;font-size:0.6em;"><center><span class="jeeObjectSummary'+_object_id+'" data-version="mobile"></span></center></div></div><div class="jeeObjectHtml">'+html+'</div>').trigger('create');
-         jeedom.jeeObject.summaryUpdate([{object_id:_object_id}]);
+         $('#div_displayEquipement').empty().html('<div class="nd2-card jeeObjectSummaryHide" style="max-width:100% !important;"><div class="card-title has-supporting-text" style="padding:4px;font-size:0.6em;"><center><span class="jeeObjectSummary'+_jeeObject_id+'" data-version="mobile"></span></center></div></div><div class="jeeObjectHtml">'+html+'</div>').trigger('create');
+         jeedom.jeeObject.summaryUpdate([{jeeObject_id:_jeeObject_id}]);
          setTileSize('.eqLogic');
          setTimeout(function () {
           $('#div_displayEquipement > .jeeObjectHtml').packery({gutter : 4});
@@ -97,7 +97,7 @@ function initEquipment(_object_id) {
   $(window).on("orientationchange", function (event) {
     deviceInfo = getDeviceType();
     setTileSize('.eqLogic');
-    if(_object_id == 'all'){
+    if(_jeeObject_id == 'all'){
       $('.div_displayEquipement > .jeeObjectHtml').packery({gutter : 4});
     }else{
      $('#div_displayEquipement > .jeeObjectHtml').packery({gutter : 4}); 

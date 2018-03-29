@@ -61,7 +61,7 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 							<div class="form-group">
 								<label class="col-sm-4 control-label">{{ID de l'objet}}</label>
 								<div class="col-sm-4">
-									<span class="eqLogicAttr label label-primary" data-l1key="object_id" style="font-size : 1em;"></span>
+									<span class="eqLogicAttr label label-primary" data-l1key="jeeObject_id" style="font-size : 1em;"></span>
 								</div>
 							</div>
 							<div class="form-group">

@@ -52,7 +52,7 @@ jeedom.jeeObject.getEqLogic = function(_params) {
     paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
     paramsAJAX.data = {
         action: "listByObject",
-        object_id: _params.id,
+        jeeObject_id: _params.id,
         onlyEnable: _params.onlyEnable || 0,
         orderByName : _params.orderByName || 0
     };
@@ -162,7 +162,7 @@ jeedom.jeeObject.save = function(_params) {
     paramsAJAX.url = 'core/ajax/jeeObject.ajax.php';
     paramsAJAX.data = {
         action: 'save',
-        object: json_encode(_params.object),
+        jeeObject: json_encode(_params.object),
     };
     $.ajax(paramsAJAX);
 };
@@ -210,24 +210,24 @@ jeedom.jeeObject.setOrder = function(_params) {
     paramsAJAX.url = 'core/ajax/jeeObject.ajax.php';
     paramsAJAX.data = {
         action: 'setOrder',
-        objects: json_encode(_params.objects)
+        jeeObjects: json_encode(_params.objects)
     };
     $.ajax(paramsAJAX);
 };
 
 
 jeedom.jeeObject.summaryUpdate = function(_params) {
-    var objects = {};
+    var jeeObjects = {};
     var sends = {};
     for(var i in _params){
-        var object = $('.jeeObjectSummary' + _params[i].object_id);
-        if (object.html() == undefined || object.attr('data-version') == undefined) {
+        var jeeObject = $('.jeeObjectSummary' + _params[i].jeeObject_id);
+        if (jeeObject.html() == undefined || jeeObject.attr('data-version') == undefined) {
             continue;
         }
         if(isset(_params[i]['keys'])){
             var updated = false;
             for(var j in _params[i]['keys']){
-                var keySpan = object.find('.jeeObjectSummary'+j);
+                var keySpan = jeeObject.find('.jeeObjectSummary'+j);
                 if(keySpan.html() != undefined){
                     updated = true;
                     if(keySpan.closest('.jeeObjectSummaryParent').attr('data-displayZeroValue') == 0 && _params[i]['keys'][j]['value'] === 0){
@@ -245,10 +245,10 @@ jeedom.jeeObject.summaryUpdate = function(_params) {
                 continue;
             }
         }
-        objects[_params[i].object_id] = {object : object, version : object.attr('data-version')};
-        sends[_params[i].object_id] = {version : object.attr('data-version')};
+        jeeObjects[_params[i].jeeObject_id] = {jeeObject : jeeObject, version : jeeObject.attr('data-version')};
+        sends[_params[i].jeeObject_id] = {version : jeeObject.attr('data-version')};
     }
-    if (Object.keys(objects).length == 0){
+    if (Object.keys(jeeObjects).length == 0){
         return;
     }
     var paramsRequired = [];
@@ -256,7 +256,7 @@ jeedom.jeeObject.summaryUpdate = function(_params) {
         global: false,
         success: function (result) {
             for(var i in result){
-                objects[i].object.replaceWith($(result[i].html));
+                jeeObjects[i].jeeObject.replaceWith($(result[i].html));
                 if($('.jeeObjectSummary' + i).closest('.jeeObjectSummaryHide') != []){
                     if($(result[i].html).html() == ''){
                         $('.jeeObjectSummary' + i).closest('.jeeOjectSummaryHide').hide();

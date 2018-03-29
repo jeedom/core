@@ -98,7 +98,7 @@ class cmd {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__, 'c') . '
 		FROM cmd c
 		INNER JOIN eqLogic el ON c.eqLogic_id=el.id
-		INNER JOIN object ob ON el.object_id=ob.id
+		INNER JOIN jeeObject ob ON el.object_id=ob.id
 		WHERE isHistorized=1
 		AND type=\'info\'';
 		$sql .= ' ORDER BY ob.name,el.name,c.name';
@@ -353,7 +353,7 @@ class cmd {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 'c') . '
 			FROM cmd c
 			INNER JOIN eqLogic el ON c.eqLogic_id=el.id
-			INNER JOIN object ob ON el.object_id=ob.id
+			INNER JOIN jeeObject ob ON el.object_id=ob.id
 			WHERE c.name=:cmd_name
 			AND el.name=:eqLogic_name
 			AND ob.name=:object_name';
@@ -369,7 +369,7 @@ class cmd {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__, 'c') . '
 		FROM cmd c
 		INNER JOIN eqLogic el ON c.eqLogic_id=el.id
-		INNER JOIN object ob ON el.object_id=ob.id
+		INNER JOIN jeeObject ob ON el.object_id=ob.id
 		WHERE c.name=:cmd_name
 		AND ob.name=:object_name';
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));

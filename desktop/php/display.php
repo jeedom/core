@@ -7,7 +7,7 @@ $nbCmd = 0;
 $objects = jeeObject::all();
 $eqLogics = array();
 $cmds = array();
-$eqLogics[-1] = eqLogic::byObjectId(null, false);
+$eqLogics[-1] = eqLogic::byJeeObjectId(null, false);
 foreach ($eqLogics[-1] as $eqLogic) {
 	$cmds[$eqLogic->getId()] = $eqLogic->getCmd();
 	$nbCmd += count($cmds[$eqLogic->getId()]);

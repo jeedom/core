@@ -71,7 +71,7 @@ $('#bt_returnToThumbnailDisplay').on('click',function(){
 });
 
 $(".li_object,.objectDisplayCard").on('click', function (event) {
-   loadObjectConfiguration($(this).attr('data-object_id'));
+   loadObjectConfiguration($(this).attr('data-jeeObject_id'));
    $('.objectname_resume').empty().append($(this).attr('data-object_icon')+'  '+$(this).attr('data-object_name'));
    return false;
 });
@@ -81,7 +81,7 @@ function loadObjectConfiguration(_id){
     $('#div_resumeObjectList').hide();
     $('.li_object').removeClass('active');
     $(this).addClass('active');
-    $('.li_object[data-object_id='+_id+']').addClass('active');
+    $('.li_object[data-jeeObject_id='+_id+']').addClass('active');
     jeedom.jeeObject.byId({
         id: _id,
         cache: false,
@@ -147,7 +147,7 @@ $('.objectAttr[data-l1key=display][data-l2key=icon]').on('dblclick',function(){
 });
 
 $("#bt_saveObject").on('click', function (event) {
-    if ($('.li_object.active').attr('data-object_id') != undefined) {
+    if ($('.li_object.active').attr('data-jeeObject_id') != undefined) {
         var object = $('.object').getValues('.objectAttr')[0];
         if (!isset(jeeObject.configuration)) {
             jeeObject.configuration = {};
@@ -182,12 +182,12 @@ $("#bt_saveObject").on('click', function (event) {
 });
 
 $("#bt_removeObject").on('click', function (event) {
-    if ($('.li_object.active').attr('data-object_id') != undefined) {
+    if ($('.li_object.active').attr('data-jeeObject_id') != undefined) {
         $.hideAlert();
         bootbox.confirm('{{Etes-vous sûr de vouloir supprimer l\'objet}} <span style="font-weight: bold ;">' + $('.li_object.active a').text() + '</span> ?', function (result) {
             if (result) {
                 jeedom.jeeObject.remove({
-                    id: $('.li_object.active').attr('data-object_id'),
+                    id: $('.li_object.active').attr('data-jeeObject_id'),
                     error: function (error) {
                         $('#div_alert').showAlert({message: error.message, level: 'danger'});
                     },
@@ -215,7 +215,7 @@ $("#ul_object").sortable({
     stop: function (event, ui) {
         var objects = [];
         $('#ul_object .li_object').each(function () {
-            objects.push($(this).attr('data-object_id'));
+            objects.push($(this).attr('data-jeeObject_id'));
         });
         jeedom.jeeObject.setOrder({
             objects: objects,
@@ -235,8 +235,8 @@ $('#bt_chooseIcon').on('click', function () {
 });
 
 if (is_numeric(getUrlVars('id'))) {
-    if ($('#ul_object .li_object[data-object_id=' + getUrlVars('id') + ']').length != 0) {
-        $('#ul_object .li_object[data-object_id=' + getUrlVars('id') + ']').click();
+    if ($('#ul_object .li_object[data-jeeObject_id=' + getUrlVars('id') + ']').length != 0) {
+        $('#ul_object .li_object[data-jeeObject_id=' + getUrlVars('id') + ']').click();
     } else {
         $('#ul_object .li_object:first').click();
     }

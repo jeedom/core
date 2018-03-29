@@ -16,7 +16,7 @@ ALTER DATABASE CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 -- -----------------------------------------------------
 -- Table `object`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `object` (
+CREATE TABLE IF NOT EXISTS `jeeObject` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `father_id` INT(11) NULL DEFAULT NULL,
@@ -26,11 +26,11 @@ CREATE TABLE IF NOT EXISTS `object` (
   `display` TEXT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `name_UNIQUE` (`name` ASC),
-  INDEX `fk_object_object1_idx1` (`father_id` ASC),
+  INDEX `fk_jeeObject_jeeObject1_idx1` (`father_id` ASC),
   INDEX `position` (`position` ASC),
-  CONSTRAINT `fk_object_object1`
+  CONSTRAINT `fk_object_jeeObject1`
     FOREIGN KEY (`father_id`)
-    REFERENCES `object` (`id`)
+    REFERENCES `jeeObject` (`id`)
     ON DELETE SET NULL
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `eqLogic` (
   `name` VARCHAR(127) NOT NULL,
   `generic_type` VARCHAR(255) NULL,
   `logicalId` VARCHAR(127) NULL,
-  `object_id` INT NULL,
+  `jeeObject_id` INT NULL,
   `eqType_name` VARCHAR(127) NOT NULL,
   `configuration` TEXT NULL,
   `isVisible` TINYINT(1) NULL,
@@ -76,13 +76,13 @@ CREATE TABLE IF NOT EXISTS `eqLogic` (
   `order` INT NULL DEFAULT '1',
   `comment` TEXT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `unique` (`name` ASC, `object_id` ASC),
+  UNIQUE INDEX `unique` (`name` ASC, `jeeObject_id` ASC),
   INDEX `eqTypeName` (`eqType_name` ASC),
   INDEX `name` (`name` ASC),
   INDEX `logical_id` (`logicalId` ASC),
   INDEX `generic_type` (`generic_type` ASC),
   INDEX `logica_id_eqTypeName` (`logicalId` ASC, `eqType_name` ASC),
-  INDEX `object_id` (`object_id` ASC),
+  INDEX `jeeObject_id` (`jeeObject_id` ASC),
   INDEX `timeout` (`timeout` ASC),
   INDEX `eqReal_id` (`eqReal_id` ASC),
   CONSTRAINT `fk_eqLogic_jeenode1`
@@ -90,9 +90,9 @@ CREATE TABLE IF NOT EXISTS `eqLogic` (
     REFERENCES `eqReal` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
-  CONSTRAINT `fk_eqLogic_object1`
-    FOREIGN KEY (`object_id`)
-    REFERENCES `object` (`id`)
+  CONSTRAINT `fk_eqLogic_jeeObject1`
+    FOREIGN KEY (`jeeObject_id`)
+    REFERENCES `jeeObject` (`id`)
     ON DELETE SET NULL
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
@@ -180,21 +180,21 @@ CREATE TABLE IF NOT EXISTS `scenario` (
   `trigger` VARCHAR(255) NULL DEFAULT NULL,
   `timeout` INT(11) NULL DEFAULT NULL,
   `isVisible` TINYINT(1) NULL DEFAULT '1',
-  `object_id` INT(11) NULL DEFAULT NULL,
+  `jeeObject_id` INT(11) NULL DEFAULT NULL,
   `display` TEXT NULL,
   `description` TEXT NULL,
   `configuration` TEXT NULL,
   `type` VARCHAR(127) NULL DEFAULT 'expert',
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `name` (`group` ASC, `object_id` ASC, `name` ASC),
+  UNIQUE INDEX `name` (`group` ASC, `jeeObject_id` ASC, `name` ASC),
   INDEX `group` (`group` ASC),
-  INDEX `fk_scenario_object1_idx` (`object_id` ASC),
+  INDEX `fk_scenario_jeeObject1_idx` (`jeeObject_id` ASC),
   INDEX `trigger` (`trigger` ASC),
   INDEX `mode` (`mode` ASC),
   INDEX `modeTriger` (`mode` ASC, `trigger` ASC),
-  CONSTRAINT `fk_scenario_object1`
-    FOREIGN KEY (`object_id`)
-    REFERENCES `object` (`id`)
+  CONSTRAINT `fk_scenario_jeeObject1`
+    FOREIGN KEY (`jeeObject_id`)
+    REFERENCES `jeeObject` (`id`)
     ON DELETE SET NULL
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
@@ -281,8 +281,7 @@ CREATE TABLE IF NOT EXISTS `view` (
   `order` INT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `name_UNIQUE` (`name` ASC))
-ENGINE = InnoDB
-COMMENT = '<double-click to overwrite multiple objects>';
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -302,8 +301,7 @@ CREATE TABLE IF NOT EXISTS `viewZone` (
     REFERENCES `view` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
-ENGINE = InnoDB
-COMMENT = '<double-click to overwrite multiple objects>';
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -325,8 +323,7 @@ CREATE TABLE IF NOT EXISTS `viewData` (
     REFERENCES `viewZone` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
-ENGINE = InnoDB
-COMMENT = '<double-click to overwrite multiple objects>';
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------

@@ -31,20 +31,20 @@ try {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
-		$object = jeeObject::byId(init('id'));
-		if (!is_object($object)) {
-			throw new Exception(__('Objet inconnu. Vérifiez l\'ID', __FILE__));
+		$jeeObject = jeeObject::byId(init('id'));
+		if (!is_object($jeeObject)) {
+			throw new Exception(__('jeeObject inconnu. Vérifiez l\'ID', __FILE__));
 		}
-		$object->remove();
+		$jeeObject->remove();
 		ajax::success();
 	}
 
 	if (init('action') == 'byId') {
-		$object = jeeObject::byId(init('id'));
-		if (!is_object($object)) {
-			throw new Exception(__('Objet inconnu. Vérifiez l\'ID ', __FILE__) . init('id'));
+		$jeeObject = jeeObject::byId(init('id'));
+		if (!is_object($jeeObject)) {
+			throw new Exception(__('jeeObject inconnu. Vérifiez l\'ID ', __FILE__) . init('id'));
 		}
-		ajax::success(jeedom::toHumanReadable(utils::o2a($object)));
+		ajax::success(jeedom::toHumanReadable(utils::o2a($jeeObject)));
 	}
 
 	if (init('action') == 'createSummaryVirtual') {
@@ -61,23 +61,23 @@ try {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
-		$object_json = json_decode(init('object'), true);
-		if (isset($object_json['id'])) {
-			$object = jeeObject::byId($object_json['id']);
+		$jeeObject_json = json_decode(init('jeeObject'), true);
+		if (isset($jeeObject_json['id'])) {
+			$jeeObject = jeeObject::byId($jeeObject_json['id']);
 		}
-		if (!isset($object) || !is_object($object)) {
-			$object = new object();
+		if (!isset($jeeObject) || !is_object($jeeObject)) {
+			$jeeObject = new jeeObject();
 		}
-		utils::a2o($object, jeedom::fromHumanReadable($object_json));
-		$object->save();
-		ajax::success(utils::o2a($object));
+		utils::a2o($jeeObject, jeedom::fromHumanReadable($jeeObject_json));
+		$jeeObject->save();
+		ajax::success(utils::o2a($jeeObject));
 	}
 
 	if (init('action') == 'uploadImage') {
 		unautorizedInDemo();
-		$object = jeeObject::byId(init('id'));
-		if (!is_object($object)) {
-			throw new Exception(__('Objet inconnu. Vérifiez l\'ID', __FILE__));
+		$jeeObject = jeeObject::byId(init('id'));
+		if (!is_object($jeeObject)) {
+			throw new Exception(__('jeeObject inconnu. Vérifiez l\'ID', __FILE__));
 		}
 		if (!isset($_FILES['file'])) {
 			throw new Exception(__('Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)', __FILE__));
@@ -89,44 +89,44 @@ try {
 		if (filesize($_FILES['file']['tmp_name']) > 5000000) {
 			throw new Exception(__('Le fichier est trop gros (maximum 5Mo)', __FILE__));
 		}
-		$object->setImage('type', str_replace('.', '', $extension));
-		$object->setImage('size', getimagesize($_FILES['file']['tmp_name']));
-		$object->setImage('data', base64_encode(file_get_contents($_FILES['file']['tmp_name'])));
-		$object->save();
+		$jeeObject->setImage('type', str_replace('.', '', $extension));
+		$jeeObject->setImage('size', getimagesize($_FILES['file']['tmp_name']));
+		$jeeObject->setImage('data', base64_encode(file_get_contents($_FILES['file']['tmp_name'])));
+		$jeeObject->save();
 		ajax::success();
 	}
 
 	if (init('action') == 'getChild') {
-		$object = jeeObject::byId(init('id'));
-		if (!is_object($object)) {
-			throw new Exception(__('Objet inconnu. Vérifiez l\'ID', __FILE__));
+		$jeeObject = jeeObject::byId(init('id'));
+		if (!is_object($jeeObject)) {
+			throw new Exception(__('jeeObject inconnu. Vérifiez l\'ID', __FILE__));
 		}
-		$return = utils::o2a($object->getChild());
+		$return = utils::o2a($jeeObject->getChild());
 		ajax::success($return);
 	}
 
 	if (init('action') == 'toHtml') {
 		if (init('id') == '' || init('id') == 'all' || is_json(init('id'))) {
 			if (is_json(init('id'))) {
-				$objects = json_decode(init('id'), true);
+				$jeeObjects = json_decode(init('id'), true);
 			} else {
-				$objects = array();
-				foreach (jeeObject::all() as $object) {
-					if ($object->getConfiguration('hideOnDashboard', 0) == 1) {
+				$jeeObjects = array();
+				foreach (jeeObject::all() as $jeeObject) {
+					if ($jeeObject->getConfiguration('hideOnDashboard', 0) == 1) {
 						continue;
 					}
-					$objects[] = $object->getId();
+					$jeeObjects[] = $jeeObject->getId();
 				}
 			}
 			$return = array();
 			$i = 0;
-			foreach ($objects as $id) {
+			foreach ($jeeObjects as $id) {
 				$html = '';
 				if (init('summary') == '') {
-					$eqLogics = eqLogic::byObjectId($id, true, true);
+					$eqLogics = eqLogic::byJeeObjectId($id, true, true);
 				} else {
-					$object = jeeObject::byId($id);
-					$eqLogics = $object->getEqLogicBySummary(init('summary'), true, false);
+					$jeeObject = jeeObject::byId($id);
+					$eqLogics = $jeeObject->getEqLogicBySummary(init('summary'), true, false);
 				}
 				foreach ($eqLogics as $eqLogic) {
 					if (init('category', 'all') != 'all' && $eqLogic->getCategory(init('category')) != 1) {
@@ -144,10 +144,10 @@ try {
 		} else {
 			$html = '';
 			if (init('summary') == '') {
-				$eqLogics = eqLogic::byObjectId(init('id'), true, true);
+				$eqLogics = eqLogic::byJeeObjectId(init('id'), true, true);
 			} else {
-				$object = jeeObject::byId(init('id'));
-				$eqLogics = $object->getEqLogicBySummary(init('summary'), true, false);
+				$jeeObject = jeeObject::byId(init('id'));
+				$eqLogics = $jeeObject->getEqLogicBySummary(init('summary'), true, false);
 			}
 			foreach ($eqLogics as $eqLogic) {
 				if (init('category', 'all') != 'all' && $eqLogic->getCategory(init('category')) != 1) {
@@ -167,11 +167,11 @@ try {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 		$position = 1;
-		foreach (json_decode(init('objects'), true) as $id) {
-			$object = jeeObject::byId($id);
-			if (is_object($object)) {
-				$object->setPosition($position);
-				$object->save();
+		foreach (json_decode(init('jeeObjects'), true) as $id) {
+			$jeeObject = jeeObject::byId($id);
+			if (is_object($jeeObject)) {
+				$jeeObject->setPosition($position);
+				$jeeObject->save();
 				$position++;
 			}
 		}
@@ -189,26 +189,26 @@ try {
 					);
 					continue;
 				}
-				$object = jeeObject::byId($id);
-				if (!is_object($object)) {
+				$jeeObject = jeeObject::byId($id);
+				if (!is_object($jeeObject)) {
 					continue;
 				}
-				$return[$object->getId()] = array(
-					'html' => $object->getHtmlSummary($value['version']),
-					'id' => $object->getId(),
+				$return[$jeeObject->getId()] = array(
+					'html' => $jeeObject->getHtmlSummary($value['version']),
+					'id' => $jeeObject->getId(),
 				);
 			}
 
 			ajax::success($return);
 		} else {
-			$object = jeeObject::byId(init('id'));
-			if (!is_object($object)) {
-				throw new Exception(__('Objet inconnu. Vérifiez l\'ID', __FILE__));
+			$jeeObject = jeeObject::byId(init('id'));
+			if (!is_object($jeeObject)) {
+				throw new Exception(__('jeeObject inconnu. Vérifiez l\'ID', __FILE__));
 			}
-			$info_object = array();
-			$info_object['id'] = $object->getId();
-			$info_object['html'] = $object->getHtmlSummary(init('version'));
-			ajax::success($info_object);
+			$infojeeObject = array();
+			$info_jeeObject['id'] = $jeeObject->getId();
+			$info_jeeObject['html'] = $jeeObject->getHtmlSummary(init('version'));
+			ajax::success($info_jeeObject);
 		}
 	}
 

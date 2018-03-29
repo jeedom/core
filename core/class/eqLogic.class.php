@@ -26,7 +26,7 @@ class eqLogic {
 	protected $name;
 	protected $logicalId = '';
 	protected $generic_type;
-	protected $object_id = null;
+	protected $jeeObject_id = null;
 	protected $eqType_name;
 	protected $eqReal_id = null;
 	protected $isVisible = 0;
@@ -95,7 +95,7 @@ class eqLogic {
 	public static function all($_onlyEnable = false) {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__, 'el') . '
         FROM eqLogic el
-        LEFT JOIN object ob ON el.object_id=ob.id';
+        LEFT JOIN jeeObject ob ON el.jeeObject_id=ob.id';
 		if ($_onlyEnable) {
 			$sql .= ' AND isEnable=1';
 		}
@@ -113,15 +113,46 @@ class eqLogic {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function byObjectId($_object_id, $_onlyEnable = true, $_onlyVisible = false, $_eqType_name = null, $_logicalId = null, $_orderByName = false) {
+	public static function byJeeObjectId($_jeeObject_id, $_onlyEnable = true, $_onlyVisible = false, $_eqType_name = null, $_logicalId = null, $_orderByName = false) {
 		$values = array();
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM eqLogic';
-		if ($_object_id === null) {
-			$sql .= ' WHERE object_id IS NULL';
+		if ($_jeeObject_id === null) {
+			$sql .= ' WHERE jeeObject_id IS NULL';
 		} else {
-			$values['object_id'] = $_object_id;
-			$sql .= ' WHERE object_id=:object_id';
+			$values['jeeObject_id'] = $_jeeObject_id;
+			$sql .= ' WHERE jeeObject_id=:jeeObject_id';
+		}
+		if ($_onlyEnable) {
+			$sql .= ' AND isEnable = 1';
+		}
+		if ($_onlyVisible) {
+			$sql .= ' AND isVisible = 1';
+		}
+		if ($_eqType_name !== null) {
+			$values['eqType_name'] = $_eqType_name;
+			$sql .= ' AND eqType_name=:eqType_name';
+		}
+		if ($_logicalId !== null) {
+			$values['logicalId'] = $_logicalId;
+			$sql .= ' AND logicalId=:logicalId';
+		}
+		if ($_orderByName) {
+			$sql .= ' ORDER BY `name`';
+		} else {
+			$sql .= ' ORDER BY `order`,category';
+		}
+		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
+	}
+	public static function byObjectId($_jeeObject_id, $_onlyEnable = true, $_onlyVisible = false, $_eqType_name = null, $_logicalId = null, $_orderByName = false) {
+		$values = array();
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+        FROM eqLogic';
+		if ($_jeeObject_id === null) {
+			$sql .= ' WHERE jeeObject_id IS NULL';
+		} else {
+			$values['jeeObject_id'] = $_jeeObject_id;
+			$sql .= ' WHERE jeeObject_id=:jeeObject_id';
 		}
 		if ($_onlyEnable) {
 			$sql .= ' AND isEnable = 1';
@@ -166,7 +197,7 @@ class eqLogic {
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__, 'el') . '
         FROM eqLogic el
-        LEFT JOIN object ob ON el.object_id=ob.id
+        LEFT JOIN jeeObject ob ON el.jeeObject_id=ob.id
         WHERE eqType_name=:eqType_name ';
 		if ($_onlyEnable) {
 			$sql .= ' AND isEnable=1';
@@ -247,17 +278,17 @@ class eqLogic {
 		}
 	}
 
-	public static function listByObjectAndCmdType($_object_id, $_typeCmd, $subTypeCmd = '') {
+	public static function listByObjectAndCmdType($_jeeObject_id, $_typeCmd, $subTypeCmd = '') {
 		$values = array();
 		$sql = 'SELECT DISTINCT(el.id),el.name
         FROM eqLogic el
         INNER JOIN cmd c ON c.eqLogic_id=el.id
         WHERE ';
-		if ($_object_id === null) {
-			$sql .= ' object_id IS NULL ';
-		} elseif ($_object_id != '') {
-			$values['object_id'] = $_object_id;
-			$sql .= ' object_id=:object_id ';
+		if ($_jeeObject_id === null) {
+			$sql .= ' jeeObject_id IS NULL ';
+		} elseif ($_jeeObject_id != '') {
+			$values['jeeObject_id'] = $_jeeObject_id;
+			$sql .= ' jeeObject_id=:jeeObject_id ';
 		}
 		if ($subTypeCmd != '') {
 			$values['subTypeCmd'] = $subTypeCmd;
@@ -341,7 +372,7 @@ class eqLogic {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
             FROM eqLogic
             WHERE name=:eqLogic_name
-            AND object_id IS NULL';
+            AND jeeObject_id IS NULL';
 		} else {
 			$values = array(
 				'eqLogic_name' => $_eqLogic_name,
@@ -349,7 +380,7 @@ class eqLogic {
 			);
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 'el') . '
             FROM eqLogic el
-            INNER JOIN object ob ON el.object_id=ob.id
+            INNER JOIN jeeObject ob ON el.jeeObject_id=ob.id
             WHERE el.name=:eqLogic_name
             AND ob.name=:object_name';
 		}
@@ -1420,16 +1451,16 @@ class eqLogic {
 	}
 
 	public function getJeeObject_id() {
-		return $this->object_id;
+		return $this->jeeObject_id;
 	}
 
 	public function getObject_id() {
-		return $this->object_id;
+		return $this->jeeObject_id;
 	}
 
 	public function getObject() {
 		if ($this->_object === null) {
-			$this->setObject(jeeObject::byId($this->object_id));
+			$this->setObject(jeeObject::byId($this->jeeObject_id));
 		}
 		return $this->_object;
 	}
@@ -1532,13 +1563,13 @@ class eqLogic {
 		return $this;
 	}
 
-	public function setJeeObject_id($object_id = null) {
-		$this->object_id = (!is_numeric($object_id)) ? null : $object_id;
+	public function setJeeObject_id($jeeObject_id = null) {
+		$this->jeeObject_id = (!is_numeric($jeeObject_id)) ? null : $jeeObject_id;
 		return $this;
 	}
 
-	public function setObject_id($object_id = null) {
-		$this->object_id = (!is_numeric($object_id)) ? null : $object_id;
+	public function setObject_id($jeeObject_id = null) {
+		$this->jeeObject_id = (!is_numeric($jeeObject_id)) ? null : $jeeObject_id;
 		return $this;
 	}
 

@@ -2,17 +2,17 @@
 if (!isConnect()) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-sendVarToJs('SEL_OBJECT_ID', init('object_id'));
+sendVarToJs('SEL_JEEOBJECT_ID', init('jeeObject_id'));
 sendVarToJs('SEL_CATEGORY', init('category', 'all'));
 sendVarToJs('SEL_TAG', init('tag', 'all'));
 sendVarToJs('SEL_SUMMARY', init('summary'));
-if (init('object_id') == '') {
+if (init('jeeObject_id') == '') {
 	$object = jeeObject::byId($_SESSION['user']->getOptions('defaultDashboardObject'));
 } else {
-	$object = jeeObject::byId(init('object_id'));
+	$object = jeeObject::byId(init('jeeObject_id'));
 }
 if (!is_object($object)) {
-	$object = jeeObject::rootObject();
+	$object = jeeObject::root();
 }
 if (!is_object($object)) {
 	throw new Exception('{{Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets.<br/> Si vous ne savez pas quoi faire ou que c\'est la première fois que vous utilisez Jeedom, n\'hésitez pas à consulter cette <a href="https://jeedom.github.io/documentation/premiers-pas/fr_FR/index" target="_blank">page</a> et celle-là si vous avez un pack : <a href="https://jeedom.com/start" target="_blank">page</a>}}');
@@ -36,9 +36,9 @@ $allObject = jeeObject::buildTree(null, true);
 foreach ($allObject as $object_li) {
 	$margin = 5 * $object_li->getConfiguration('parentNumber');
 	if ($object_li->getId() == $object->getId()) {
-		echo '<li class="cursor li_object active" ><a data-object_id="' . $object_li->getId() . '" data-href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '&category=' . init('category', 'all') . '" style="padding: 2px 0px;"><span style="position:relative;left:' . $margin . 'px;font-size:0.85em;">' . $object_li->getHumanName(true, true) . '</span><span style="font-size : 0.65em;float:right;position:relative;top:7px;">' . $object_li->getHtmlSummary() . '</span></a></li>';
+		echo '<li class="cursor li_object active" ><a data-jeeObject_id="' . $object_li->getId() . '" data-href="index.php?v=d&p=dashboard&jeeObject_id=' . $object_li->getId() . '&category=' . init('category', 'all') . '" style="padding: 2px 0px;"><span style="position:relative;left:' . $margin . 'px;font-size:0.85em;">' . $object_li->getHumanName(true, true) . '</span><span style="font-size : 0.65em;float:right;position:relative;top:7px;">' . $object_li->getHtmlSummary() . '</span></a></li>';
 	} else {
-		echo '<li class="cursor li_object" ><a data-object_id="' . $object_li->getId() . '" data-href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '&category=' . init('category', 'all') . '" style="padding: 2px 0px;"><span style="position:relative;left:' . $margin . 'px;font-size:0.85em;">' . $object_li->getHumanName(true, true) . '</span><span style="font-size : 0.65em;float:right;position:relative;top:7px;">' . $object_li->getHtmlSummary() . '</span></a></li>';
+		echo '<li class="cursor li_object" ><a data-jeeObject_id="' . $object_li->getId() . '" data-href="index.php?v=d&p=dashboard&jeeObject_id=' . $object_li->getId() . '&category=' . init('category', 'all') . '" style="padding: 2px 0px;"><span style="position:relative;left:' . $margin . 'px;font-size:0.85em;">' . $object_li->getHumanName(true, true) . '</span><span style="font-size : 0.65em;float:right;position:relative;top:7px;">' . $object_li->getHtmlSummary() . '</span></a></li>';
 	}
 }
 ?>
@@ -110,12 +110,12 @@ foreach ($knowTags as $tag) {
 <?php include_file('desktop', 'dashboard', 'js');?>
 <div class="row" >
 	<?php
-if (init('object_id') != '') {
+if (init('jeeObject_id') != '') {
 	echo '<div class="col-md-12">';
 } else {
 	echo '<div class="col-md-' . $object->getDisplay('dashboard::size', 12) . '">';
 }
-echo '<div data-object_id="' . $object->getId() . '" class="div_object">';
+echo '<div data-jeeObject_id="' . $object->getId() . '" class="div_object">';
 echo '<legend style="margin-bottom : 0px;"><a class="div_object" style="text-decoration:none" href="index.php?v=d&p=jeeObject&id=' . $object->getId() . '">' . $object->getDisplay('icon') . ' ' . $object->getName() . '</a><span style="font-size : 0.6em;margin-left:10px;">' . $object->getHtmlSummary() . '</span></legend>';
 echo '<div class="div_displayEquipement" id="div_ob' . $object->getId() . '" style="width: 100%;padding-top:3px;margin-bottom : 3px;">';
 echo '<script>getObjectHtml(' . $object->getId() . ')</script>';
@@ -127,7 +127,7 @@ foreach ($child_object as $child) {
 		continue;
 	}
 	echo '<div class="col-md-' . $child->getDisplay('dashboard::size', 12) . '">';
-	echo '<div data-object_id="' . $child->getId() . '" style="margin-bottom : 3px;" class="div_object">';
+	echo '<div data-jeeObject_id="' . $child->getId() . '" style="margin-bottom : 3px;" class="div_object">';
 	echo '<legend style="margin-bottom : 0px;"><a style="text-decoration:none" href="index.php?v=d&p=jeeObject&id=' . $child->getId() . '">' . $child->getDisplay('icon') . ' ' . $child->getName() . '</a><span style="font-size : 0.6em;margin-left:10px;">' . $child->getHtmlSummary() . '</span></legend>';
 	echo '<div class="div_displayEquipement" id="div_ob' . $child->getId() . '" style="width: 100%;padding-top:3px;margin-bottom : 3px;">';
 	echo '<script>getObjectHtml(' . $child->getId() . ')</script>';

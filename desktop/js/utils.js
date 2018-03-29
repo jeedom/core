@@ -360,7 +360,7 @@ if (isset(jeedom_langage)) {
     });
 
     $('body').on('click','.jeeObjectSummaryParent',function(){
-       loadPage('index.php?v=d&p=dashboard&summary='+$(this).data('summary')+'&object_id='+$(this).data('object_id'));
+       loadPage('index.php?v=d&p=dashboard&summary='+$(this).data('summary')+'&jeeObject_id='+$(this).data('jeeObject_id'));
    });
 
     initPage();

@@ -17,7 +17,7 @@ sendVarToJS('select_id', init('id', '-1'));
 $allObject = jeeObject::buildTree(null, false);
 foreach ($allObject as $object) {
 	$margin = 15 * $object->getConfiguration('parentNumber');
-	echo '<li class="cursor li_object bt_sortable" data-object_id="' . $object->getId() . '" data-object_name="' . $object->getName() . '" data-object_icon=\'' . $object->getDisplay('icon', '<i class="fa fa-lemon-o"></i>') . '\'>';
+	echo '<li class="cursor li_object bt_sortable" data-jeeObject_id="' . $object->getId() . '" data-object_name="' . $object->getName() . '" data-object_icon=\'' . $object->getDisplay('icon', '<i class="fa fa-lemon-o"></i>') . '\'>';
 	echo '<i class="fa fa-arrows-v pull-left cursor"></i>';
 	echo '<a><span style="position:relative;left:' . $margin . 'px;">';
 	echo $object->getHumanName(true, true);
@@ -52,7 +52,7 @@ foreach ($allObject as $object) {
   <div class="objectListContainer">
    <?php
 foreach ($allObject as $object) {
-	echo '<div class="objectDisplayCard cursor" data-object_id="' . $object->getId() . '" data-object_name="' . $object->getName() . '" data-object_icon=\'' . $object->getDisplay('icon', '<i class="fa fa-lemon-o"></i>') . '\' style="background-color : #ffffff; height : 160px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+	echo '<div class="objectDisplayCard cursor" data-jeeObject_id="' . $object->getId() . '" data-object_name="' . $object->getName() . '" data-object_icon=\'' . $object->getDisplay('icon', '<i class="fa fa-lemon-o"></i>') . '\' style="background-color : #ffffff; height : 160px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 	echo "<center style='margin-top:10px;'>";
 	echo str_replace('></i>', ' style="font-size : 6em;color:#767676;"></i>', $object->getDisplay('icon', '<i class="fa fa-lemon-o"></i>'));
 	echo "</center>";
