@@ -84,17 +84,7 @@ CREATE TABLE IF NOT EXISTS `eqLogic` (
   INDEX `logica_id_eqTypeName` (`logicalId` ASC, `eqType_name` ASC),
   INDEX `jeeObject_id` (`jeeObject_id` ASC),
   INDEX `timeout` (`timeout` ASC),
-  INDEX `eqReal_id` (`eqReal_id` ASC),
-  CONSTRAINT `fk_eqLogic_jeenode1`
-    FOREIGN KEY (`eqReal_id`)
-    REFERENCES `eqReal` (`id`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `fk_eqLogic_jeeObject1`
-    FOREIGN KEY (`jeeObject_id`)
-    REFERENCES `jeeObject` (`id`)
-    ON DELETE SET NULL
-    ON UPDATE CASCADE)
+  INDEX `eqReal_id` (`eqReal_id` ASC)
 ENGINE = InnoDB;
 
 
@@ -191,12 +181,7 @@ CREATE TABLE IF NOT EXISTS `scenario` (
   INDEX `fk_scenario_jeeObject1_idx` (`jeeObject_id` ASC),
   INDEX `trigger` (`trigger` ASC),
   INDEX `mode` (`mode` ASC),
-  INDEX `modeTriger` (`mode` ASC, `trigger` ASC),
-  CONSTRAINT `fk_scenario_jeeObject1`
-    FOREIGN KEY (`jeeObject_id`)
-    REFERENCES `jeeObject` (`id`)
-    ON DELETE SET NULL
-    ON UPDATE CASCADE)
+  INDEX `modeTriger` (`mode` ASC, `trigger` ASC)
 ENGINE = InnoDB;
 
 
