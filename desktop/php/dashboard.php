@@ -116,8 +116,8 @@ if (init('jeeObject_id') != '') {
 	echo '<div class="col-md-' . $jeeObject->getDisplay('dashboard::size', 12) . '">';
 }
 echo '<div data-jeeObject_id="' . $jeeObject->getId() . '" class="div_jeeOject">';
-echo '<legend style="margin-bottom : 0px;"><a class="div_jeeobject" style="text-decoration:none" href="index.php?v=d&p=jeeObject&id=' . $jeeObject->getId() . '">' . $jeeObject->getDisplay('icon') . ' ' . $jeeObject->getName() . '</a><span style="font-size : 0.6em;margin-left:10px;">' . $jeeObject->getHtmlSummary() . '</span></legend>';
-echo '<div class="div_displayEquipement" id="div_jeeOb' . $jeeObject->getId() . '" style="width: 100%;padding-top:3px;margin-bottom : 3px;">';
+echo '<legend style="margin-bottom : 0px;"><a class="div_object" style="text-decoration:none" href="index.php?v=d&p=jeeObject&id=' . $jeeObject->getId() . '">' . $jeeObject->getDisplay('icon') . ' ' . $jeeObject->getName() . '</a><span style="font-size : 0.6em;margin-left:10px;">' . $jeeObject->getHtmlSummary() . '</span></legend>';
+echo '<div class="div_displayEquipement" id="div_ob' . $jeeObject->getId() . '" style="width: 100%;padding-top:3px;margin-bottom : 3px;">';
 echo '<script>getJeeObjectHtml(' . $jeeObject->getId() . ')</script>';
 echo '</div>';
 echo '</div>';
