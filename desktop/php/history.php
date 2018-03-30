@@ -47,31 +47,31 @@ $date = array(
 						</li>
 						<li class="filter"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" /></li>
 						<?php
-$jeeObject_id = -1;
+$object_id = -1;
 foreach (cmd::allHistoryCmd() as $cmd) {
 	$eqLogic = $cmd->getEqLogic();
 	if (!$eqLogic->hasRight('r')) {
 		continue;
 	}
-	if ($jeeObject_id != $eqLogic->getJeeObject_id()) {
-		if ($jeeObject_id != -1) {
+	if ($object_id != $eqLogic->getObject_id()) {
+		if ($object_id != -1) {
 			echo '</div>';
 		}
-		$jeeObject = $eqLogic->getJeeObject();
-		if (is_object($jeeObject)) {
-			if ($jeeObject->getDisplay('tagColor') != '') {
-				echo '<span class="label cursor displayJeeObject" data-jeeObject_id="o' . $eqLogic->getJeeObject_id() . '" style="text-shadow : none;background-color:' . $jeeObject->getDisplay('tagColor') . ';color:' . $jeeObject->getDisplay('tagTextColor', 'white') . '">' . $jeeObject->getName() . ' <i class="fa fa-arrow-circle-right"></i></span>';
+		$object = $eqLogic->getObject();
+		if (is_object($object)) {
+			if ($object->getDisplay('tagColor') != '') {
+				echo '<span class="label cursor displayObject" data-object_id="o' . $eqLogic->getObject_id() . '" style="text-shadow : none;background-color:' . $object->getDisplay('tagColor') . ';color:' . $object->getDisplay('tagTextColor', 'white') . '">' . $object->getName() . ' <i class="fa fa-arrow-circle-right"></i></span>';
 			} else {
-				echo '<span class="label label-primary cursor displayJeeObject" data-jeeObject_id="o' . $eqLogic->getJeeObject_id() . '" style="text-shadow : none;">' . $jeeObject->getName() . ' <i class="fa fa-arrow-circle-right"></i></span>';
+				echo '<span class="label label-primary cursor displayObject" data-object_id="o' . $eqLogic->getObject_id() . '" style="text-shadow : none;">' . $object->getName() . ' <i class="fa fa-arrow-circle-right"></i></span>';
 			}
 		} else {
-			echo '<span class="label label-default cursor displayJeeObject" data-jeeObject_id="o' . $eqLogic->getJeeObject_id() . '" style="text-shadow : none;">' . __('Aucun', __FILE__) . ' <i class="fa fa-arrow-circle-right"></i></span>';
+			echo '<span class="label label-default cursor displayObject" data-object_id="o' . $eqLogic->getObject_id() . '" style="text-shadow : none;">' . __('Aucun', __FILE__) . ' <i class="fa fa-arrow-circle-right"></i></span>';
 		}
 		echo '<br/>';
-		echo '<div class="cmdList" data-jeeObject_id="o' . $eqLogic->getJeeObject_id() . '" style="display:none;margin-left : 20px;">';
+		echo '<div class="cmdList" data-object_id="o' . $eqLogic->getObject_id() . '" style="display:none;margin-left : 20px;">';
 	}
 	echo '<li class="cursor li_history" data-cmd_id="' . $cmd->getId() . '"><a class="history"><i class="fa fa-trash-o remove"></i> ' . $cmd->getEqLogic()->getName() . ' - ' . $cmd->getName() . '</a></li>';
-	$jeeObject_id = $eqLogic->getJeeObject_id();
+	$object_id = $eqLogic->getObject_id();
 }
 ?>
 					</ul>
@@ -149,11 +149,11 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
 }
 ?>
 			</select>
-			<select class="form-control pull-right" id="sel_jeeObjectsTimeline" style="width: 140px;">
+			<select class="form-control pull-right" id="sel_objectsTimeline" style="width: 140px;">
 				<option value="all">{{Tous (Objets)}}</option>
 				<?php
-foreach (jeeObject::all() as $jeeObject) {
-	echo '<option value="' . $jeeObject->getId() . '">' . $jeeObject->getName() . '</option>';
+foreach (jeeObject::all() as $object) {
+	echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
 }
 ?>
 			</select>

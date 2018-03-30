@@ -36,7 +36,7 @@ jeedom.changes = function(){
      jeedom.datetime = data.datetime;
      var cmd_update = [];
      var eqLogic_update = [];
-     var jeeObject_summary_update = [];
+     var object_summary_update = [];
      for(var i in data.result){
         if(data.result[i].name == 'cmd::update'){
             cmd_update.push(data.result[i].option);
@@ -47,7 +47,7 @@ jeedom.changes = function(){
             continue;
         }
         if(data.result[i].name == 'jeeObject::summary::update'){
-            jeeObject_summary_update.push(data.result[i].option);
+            object_summary_update.push(data.result[i].option);
             continue;
         }
         if(isset(data.result[i].option)){
@@ -62,8 +62,8 @@ if(cmd_update.length > 0){
 if(eqLogic_update.length > 0){
    $('body').trigger('eqLogic::update',[eqLogic_update]);
 }
-if(jeeObject_summary_update.length > 0){
-    $('body').trigger('jeeObject::summary::update',[jeeObject_summary_update]);
+if(object_summary_update.length > 0){
+    $('body').trigger('jeeObject::summary::update',[object_summary_update]);
 }
 setTimeout(jeedom.changes, 1);
 },
@@ -118,7 +118,7 @@ jeedom.init = function () {
         jeedom.eqLogic.refreshValue(_options);
     });
     $('body').on('jeeObject::summary::update', function (_event,_options) {
-        jeedom.jeeObject.summaryUpdate(_options);
+        jeedom.object.summaryUpdate(_options);
     });
 
     $('body').on('ui::update', function (_event,_options) {
@@ -176,7 +176,7 @@ jeedom.init = function () {
     $('body').on('message::refreshMessageNumber', function (_event,_options) {
         refreshMessageNumber();
     });
-      $('body').on('update::refreshUpdateNumber', function (_event,_options) {
+    $('body').on('update::refreshUpdateNumber', function (_event,_options) {
         refreshUpdateNumber();
     });
     $('body').on('notify', function (_event,_options) {
@@ -531,136 +531,137 @@ jeedom.getTimelineEvents = function(_params) {
 
 jeedom.removeTimelineEvents = function(_params) {
  var paramsRequired = [];
-    var paramsSpecifics = {};
-    try {
-        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
-    } catch (e) {
-        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-        return;
-    }
-    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    var paramsAJAX = jeedom.private.getParamsAJAX(params);
-    paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
-    paramsAJAX.data = {
-        action: 'removeTimelineEvents'
-    };
-    $.ajax(paramsAJAX);
+ var paramsSpecifics = {};
+ try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+} catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+}
+var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+var paramsAJAX = jeedom.private.getParamsAJAX(params);
+paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+paramsAJAX.data = {
+    action: 'removeTimelineEvents'
+};
+$.ajax(paramsAJAX);
 };
 
 
 jeedom.getFileFolder = function(_params) {
  var paramsRequired = ['type','path'];
-    var paramsSpecifics = {};
-    try {
-        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
-    } catch (e) {
-        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-        return;
-    }
-    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    var paramsAJAX = jeedom.private.getParamsAJAX(params);
-    paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
-    paramsAJAX.data = {
-        action: 'getFileFolder',
-        type : _params.type,
-        path : _params.path,
-    };
-    $.ajax(paramsAJAX);
+ var paramsSpecifics = {};
+ try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+} catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+}
+var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+var paramsAJAX = jeedom.private.getParamsAJAX(params);
+paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+paramsAJAX.data = {
+    action: 'getFileFolder',
+    type : _params.type,
+    path : _params.path,
+};
+$.ajax(paramsAJAX);
 };
 
 jeedom.getFileContent = function(_params) {
  var paramsRequired = ['path'];
-    var paramsSpecifics = {};
-    try {
-        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
-    } catch (e) {
-        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-        return;
-    }
-    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    var paramsAJAX = jeedom.private.getParamsAJAX(params);
-    paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
-    paramsAJAX.data = {
-        action: 'getFileContent',
-        path : _params.path,
-    };
-    $.ajax(paramsAJAX);
+ var paramsSpecifics = {};
+ try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+} catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+}
+var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+var paramsAJAX = jeedom.private.getParamsAJAX(params);
+paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+paramsAJAX.data = {
+    action: 'getFileContent',
+    path : _params.path,
+};
+$.ajax(paramsAJAX);
 };
 
 jeedom.setFileContent = function(_params) {
  var paramsRequired = ['path','content'];
-    var paramsSpecifics = {};
-    try {
-        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
-    } catch (e) {
-        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-        return;
-    }
-    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    var paramsAJAX = jeedom.private.getParamsAJAX(params);
-    paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
-    paramsAJAX.data = {
-        action: 'setFileContent',
-        path : _params.path,
-        content : _params.content,
-    };
-    $.ajax(paramsAJAX);
+ var paramsSpecifics = {};
+ try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+} catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+}
+var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+var paramsAJAX = jeedom.private.getParamsAJAX(params);
+paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+paramsAJAX.data = {
+    action: 'setFileContent',
+    path : _params.path,
+    content : _params.content,
+};
+$.ajax(paramsAJAX);
 };
 
 
 jeedom.deleteFile = function(_params) {
  var paramsRequired = ['path'];
-    var paramsSpecifics = {};
-    try {
-        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
-    } catch (e) {
-        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-        return;
-    }
-    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    var paramsAJAX = jeedom.private.getParamsAJAX(params);
-    paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
-    paramsAJAX.data = {
-        action: 'deleteFile',
-        path : _params.path,
-    };
-    $.ajax(paramsAJAX);
+ var paramsSpecifics = {};
+ try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+} catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+}
+var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+var paramsAJAX = jeedom.private.getParamsAJAX(params);
+paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+paramsAJAX.data = {
+    action: 'deleteFile',
+    path : _params.path,
+};
+$.ajax(paramsAJAX);
 };
 
 jeedom.createFile = function(_params) {
  var paramsRequired = ['path','name'];
-    var paramsSpecifics = {};
-    try {
-        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
-    } catch (e) {
-        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-        return;
-    }
-    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    var paramsAJAX = jeedom.private.getParamsAJAX(params);
-    paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
-    paramsAJAX.data = {
-        action: 'createFile',
-        path : _params.path,
-        name : _params.name,
-    };
-    $.ajax(paramsAJAX);
+ var paramsSpecifics = {};
+ try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+} catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+}
+var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+var paramsAJAX = jeedom.private.getParamsAJAX(params);
+paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+paramsAJAX.data = {
+    action: 'createFile',
+    path : _params.path,
+    name : _params.name,
 };
+$.ajax(paramsAJAX);
+};
+
 
 jeedom.emptyRemoveHistory = function(_params) {
  var paramsRequired = [];
-    var paramsSpecifics = {};
-    try {
-        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
-    } catch (e) {
-        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-        return;
-    }
-    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    var paramsAJAX = jeedom.private.getParamsAJAX(params);
-    paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
-    paramsAJAX.data = {
-        action: 'emptyRemoveHistory',
-    };
-    $.ajax(paramsAJAX);
+ var paramsSpecifics = {};
+ try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+} catch (e) {
+   (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+   return;
+}
+var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+var paramsAJAX = jeedom.private.getParamsAJAX(params);
+paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+paramsAJAX.data = {
+    action: 'emptyRemoveHistory',
+};
+$.ajax(paramsAJAX);
 };

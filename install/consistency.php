@@ -39,8 +39,8 @@ if (isset($argv)) {
 try {
 	require_once dirname(__FILE__) . '/../core/php/core.inc.php';
 
-	if (config::byKey('jeeObject:summary') == '' || !is_array(config::byKey('jeeObject:summary'))) {
-		config::save('jeeObject:summary',
+	if (config::byKey('object:summary') == '' || !is_array(config::byKey('object:summary'))) {
+		config::save('object:summary',
 			array('security' => array('key' => 'security', 'name' => 'Alerte', 'calcul' => 'sum', 'icon' => '<i class="icon jeedom-alerte2"></i>', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
 				'motion' => array('key' => 'motion', 'name' => 'Mouvement', 'calcul' => 'sum', 'icon' => '<i class="icon jeedom-mouvement"></i>', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
 				'door' => array('key' => 'door', 'name' => 'Porte', 'calcul' => 'sum', 'icon' => '<i class="icon jeedom-porte-ouverte"></i>', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
@@ -332,8 +332,8 @@ try {
 	}
 
 	try {
-		foreach (jeeObject::all() as $jeeObject) {
-			$jeeObject->save();
+		foreach (object::all() as $object) {
+			$object->save();
 		}
 	} catch (Exception $exc) {
 

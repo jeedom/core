@@ -169,8 +169,8 @@ class plan {
 			$cmd = cmd::byId($this->getLink_id());
 			return $cmd;
 		} else if ($this->getLink_type() == 'summary') {
-			$jeeObject = jeeObject::byId($this->getLink_id());
-			return $jeeObject;
+			$object = jeeObject::byId($this->getLink_id());
+			return $object;
 		}
 		return null;
 	}
@@ -314,9 +314,9 @@ class plan {
 			if ($this->getLink_id() == 0) {
 				$summary = jeeObject::getGlobalHtmlSummary($_version);
 			} else {
-				$jeeObject = $this->getLink();
-				if (is_object($jeeObject)) {
-					$summary = $jeeObject->getHtmlSummary($_version);
+				$object = $this->getLink();
+				if (is_object($object)) {
+					$summary = $object->getHtmlSummary($_version);
 				}
 			}
 			if ($summary == '') {

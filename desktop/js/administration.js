@@ -170,7 +170,7 @@ jwerty.key('ctrl+s', function (e) {
 $("#bt_saveGeneraleConfig").on('click', function (event) {
     $.hideAlert();
     saveConvertColor();
-    saveJeeObjectSummary();
+    saveObjectSummary();
     var config = $('#config').getValues('.configKey')[0];
     config.actionOnMessage = json_encode($('#div_actionOnMessage .actionOnMessage').getValues('.expressionAttr'));
     jeedom.config.save({
@@ -656,29 +656,29 @@ $('#bt_accessDbAdministration').on('click',function(){
 
 /**************************Summary***********************************/
 
-$('#bt_addJeeObjectSummary').on('click', function () {
-    addJeeObjectSummary();
+$('#bt_addObjectSummary').on('click', function () {
+    addObjectSummary();
 });
 
-$('#div_pageContainer').undelegate('.jeeObjectSummary .jeeObjectSummaryAction[data-l1key=chooseIcon]', 'click').delegate('.jeeObjectSummary .jeeObjectSummaryAction[data-l1key=chooseIcon]', 'click', function () {
-    var objectSummary = $(this).closest('.jeeObjectSummary');
+$('#div_pageContainer').undelegate('.objectSummary .objectSummaryAction[data-l1key=chooseIcon]', 'click').delegate('.objectSummary .objectSummaryAction[data-l1key=chooseIcon]', 'click', function () {
+    var objectSummary = $(this).closest('.objectSummary');
     chooseIcon(function (_icon) {
-        objectSummary.find('.jeeObjectSummaryAttr[data-l1key=icon]').empty().append(_icon);
+        objectSummary.find('.objectSummaryAttr[data-l1key=icon]').empty().append(_icon);
     });
 });
 
-$('#div_pageContainer').undelegate('.jeeObjectSummary .jeeObjectSummaryAction[data-l1key=remove]', 'click').delegate('.jeeObjectSummary .jeeObjectSummaryAction[data-l1key=remove]', 'click', function () {
-    $(this).closest('.jeeObjectSummary').remove();
+$('#div_pageContainer').undelegate('.objectSummary .objectSummaryAction[data-l1key=remove]', 'click').delegate('.objectSummary .objectSummaryAction[data-l1key=remove]', 'click', function () {
+    $(this).closest('.objectSummary').remove();
 });
 
-$('#div_pageContainer').undelegate('.jeeObjectSummary .jeeObjectSummaryAction[data-l1key=createVirtual]', 'click').delegate('.jeeObjectSummary .jeeObjectSummaryAction[data-l1key=createVirtual]', 'click', function () {
-    var jeeObjectSummary = $(this).closest('.jeeObjectSummary');
+$('#div_pageContainer').undelegate('.objectSummary .objectSummaryAction[data-l1key=createVirtual]', 'click').delegate('.objectSummary .objectSummaryAction[data-l1key=createVirtual]', 'click', function () {
+    var objectSummary = $(this).closest('.objectSummary');
     $.ajax({
         type: "POST", 
-        url: "core/ajax/jeeObject.ajax.php", 
+        url: "core/ajax/object.ajax.php", 
         data: {
             action: "createSummaryVirtual",
-            key: jeeObjectSummary.find('.jeeObjectSummaryAttr[data-l1key=key]').value()
+            key: objectSummary.find('.objectSummaryAttr[data-l1key=key]').value()
         },
         dataType: 'json',
         error: function (request, status, error) {
@@ -694,18 +694,18 @@ $('#div_pageContainer').undelegate('.jeeObjectSummary .jeeObjectSummaryAction[da
     });
 });
 
-$("#table_objectSummary").sortable({axis: "y", cursor: "move", items: ".jeeObjectSummary", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
+$("#table_objectSummary").sortable({axis: "y", cursor: "move", items: ".objectSummary", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
 
 
-printJeeObjectSummary();
+printObjectSummary();
 
-function printJeeObjectSummary() {
+function printObjectSummary() {
     $.ajax({
         type: "POST", 
         url: "core/ajax/config.ajax.php", 
         data: {
             action: "getKey",
-            key: 'jeeObject:summary'
+            key: 'object:summary'
         },
         dataType: 'json',
         error: function (request, status, error) {
@@ -716,7 +716,7 @@ function printJeeObjectSummary() {
                 $('#div_alert').showAlert({message: data.result, level: 'danger'});
                 return;
             }
-            $('#table_jeeObjectSummary tbody').empty();
+            $('#table_objectSummary tbody').empty();
             for (var i in data.result) {
              if(isset(data.result[i].key) && data.result[i].key == ''){
                 continue;
@@ -727,66 +727,66 @@ function printJeeObjectSummary() {
             if(!isset(data.result[i].key)){
                 data.result[i].key = i.toLowerCase().stripAccents().replace(/\_/g, '').replace(/\-/g, '').replace(/\&/g, '').replace(/\s/g, '');
             }
-            addJeeObjectSummary(data.result[i]);
+            addObjectSummary(data.result[i]);
         }
         modifyWithoutSave = false;
     }
 });
 }
 
-function addJeeObjectSummary(_summary) {
-    var tr = '<tr class="jeeObjectSummary">';
+function addObjectSummary(_summary) {
+    var tr = '<tr class="objectSummary">';
     tr += '<td>';
-    tr += '<input class="jeeObjectSummaryAttr form-control input-sm" data-l1key="key" />';
+    tr += '<input class="objectSummaryAttr form-control input-sm" data-l1key="key" />';
     tr += '</td>';
     tr += '<td>';
-    tr += '<input class="jeeObjectSummaryAttr form-control input-sm" data-l1key="name" />';
+    tr += '<input class="objectSummaryAttr form-control input-sm" data-l1key="name" />';
     tr += '</td>';
     tr += '<td>';
-    tr += '<select class="jeeObjectSummaryAttr form-control input-sm" data-l1key="calcul">';
+    tr += '<select class="objectSummaryAttr form-control input-sm" data-l1key="calcul">';
     tr += '<option value="sum">{{Somme}}</option>';
     tr += '<option value="avg">{{Moyenne}}</option>';
     tr += '<option value="text">{{Texte}}</option>';
     tr += '</select>';
     tr += '</td>';
     tr += '<td>';
-    tr += '<a class="jeeObjectSummaryAction btn btn-default btn-sm" data-l1key="chooseIcon"><i class="fa fa-flag"></i> {{Icône}}</a>';
-    tr += '<span class="jeeObjectSummaryAttr" data-l1key="icon" style="margin-left : 10px;"></span>';
+    tr += '<a class="objectSummaryAction btn btn-default btn-sm" data-l1key="chooseIcon"><i class="fa fa-flag"></i> {{Icône}}</a>';
+    tr += '<span class="objectSummaryAttr" data-l1key="icon" style="margin-left : 10px;"></span>';
     tr += '</td>';
     tr += '<td>';
-    tr += '<input class="jeeObjectSummaryAttr form-control input-sm" data-l1key="unit" />';
+    tr += '<input class="objectSummaryAttr form-control input-sm" data-l1key="unit" />';
     tr += '</td>';
     tr += '<td>';
-    tr += '<select class="jeeObjectSummaryAttr form-control input-sm" data-l1key="count">';
+    tr += '<select class="objectSummaryAttr form-control input-sm" data-l1key="count">';
     tr += '<option value="">{{Aucun}}</option>';
     tr += '<option value="binary">{{Binaire}}</option>';
     tr += '</select>';
     tr += '</td>';
     tr += '<td>';
-    tr += '<center><input type="checkbox" class="jeeObjectSummaryAttr" data-l1key="allowDisplayZero" /></center>';
+    tr += '<center><input type="checkbox" class="objectSummaryAttr" data-l1key="allowDisplayZero" /></center>';
     tr += '</td>';
     tr += '<td>';
     if(isset(_summary) && isset(_summary.key) && _summary.key != ''){
-        tr += '<a class="btn btn-success btn-sm jeeObjectSummaryAction" data-l1key="createVirtual"><i class="fa fa-puzzle-piece"></i> {{Créer virtuel}}</a>';
+        tr += '<a class="btn btn-success btn-sm objectSummaryAction" data-l1key="createVirtual"><i class="fa fa-puzzle-piece"></i> {{Créer virtuel}}</a>';
     }
     tr += '</td>';
     tr += '<td>';
-    tr += '<a class="jeeObjectSummaryAction cursor" data-l1key="remove"><i class="fa fa-minus-circle"></i></a>';
+    tr += '<a class="objectSummaryAction cursor" data-l1key="remove"><i class="fa fa-minus-circle"></i></a>';
     tr += '</td>';
     tr += '</tr>';
-    $('#table_jeeObjectSummary tbody').append(tr);
+    $('#table_objectSummary tbody').append(tr);
     if (isset(_summary)){
-     $('#table_jeeObjectSummary tbody tr:last').setValues(_summary, '.jeeObjectSummaryAttr');
+     $('#table_objectSummary tbody tr:last').setValues(_summary, '.objectSummaryAttr');
  }
  if(isset(_summary) && isset(_summary.key) && _summary.key != ''){
-    $('#table_jeeObjectSummary tbody tr:last .jeeObjectSummaryAttr[data-l1key=key]').attr('disabled','disabled');
+    $('#table_objectSummary tbody tr:last .objectSummaryAttr[data-l1key=key]').attr('disabled','disabled');
 }
 modifyWithoutSave = true;
 }
 
-function saveJeeObjectSummary() {
+function saveObjectSummary() {
     summary = {};
-    temp = $('#table_jeeObjectSummary tbody tr').getValues('.jeeObjectSummaryAttr');
+    temp = $('#table_objectSummary tbody tr').getValues('.objectSummaryAttr');
     for(var i in temp){
         temp[i].key = temp[i].key.toLowerCase().stripAccents().replace(/\_/g, '').replace(/\-/g, '').replace(/\&/g, '').replace(/\s/g, '')
         if(temp[i].key == ''){
@@ -794,7 +794,7 @@ function saveJeeObjectSummary() {
         }
         summary[temp[i].key] = temp[i]
     }
-    value = {'jeeObject:summary' : summary};
+    value = {'object:summary' : summary};
     $.ajax({
         type: "POST", 
         url: "core/ajax/config.ajax.php", 
@@ -811,7 +811,7 @@ function saveJeeObjectSummary() {
                 $('#div_alert').showAlert({message: data.result, level: 'danger'});
                 return;
             }
-            printJeeObjectSummary();
+            printObjectSummary();
             modifyWithoutSave = false;
         }
     });

@@ -1,5 +1,4 @@
 <?php
-
 /* This file is part of Jeedom.
  *
  * Jeedom is free software: you can redistribute it and/or modify
@@ -15,7 +14,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
-
 if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SERVER['argc'])) {
 	header("Statut: 404 Page non trouvée");
 	header('HTTP/1.0 404 Not Found');
@@ -31,7 +29,6 @@ if ($wathdog_in_progress > 1) {
 	echo 'Watchdog in progress, cancel watchdog (' . $wathdog_in_progress . ')';
 	die();
 }
-
 $update_in_progress = exec('ps -C apt,dpkg |  wc -l');
 if ($update_in_progress > 1) {
 	echo 'Update (apt or dpkg) in progress, cancel watchdog';
@@ -39,7 +36,6 @@ if ($update_in_progress > 1) {
 }
 $output = array();
 /******************************Database***************************************/
-
 /********************************MySQL****************************************/
 echo 'Check MySql => ';
 $rc = 0;
@@ -64,9 +60,7 @@ if ($enable) {
 } else {
 	echo "NOT_ENABLED\n";
 }
-
 /******************************Web Server**************************************/
-
 /********************************Nginx****************************************/
 echo 'Check Nginx => ';
 $rc = 0;
@@ -89,7 +83,6 @@ if ($enable) {
 } else {
 	echo "NOT_ENABLED\n";
 }
-
 /********************************Apache****************************************/
 echo 'Check Apache => ';
 $rc = 0;

@@ -28,7 +28,7 @@ $js_file = array(
 	'core/js/history.class.js',
 	'core/js/config.class.js',
 	'core/js/jeedom.class.js',
-	'core/js/jeeObject.class.js',
+	'core/js/object.class.js',
 	'core/js/plugin.class.js',
 	'core/js/view.class.js',
 	'core/js/message.class.js',

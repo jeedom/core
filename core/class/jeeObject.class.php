@@ -40,7 +40,7 @@ class jeeObject {
 			'id' => $_id,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM jeeObject
+                FROM object
                 WHERE id=:id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
@@ -50,14 +50,14 @@ class jeeObject {
 			'name' => $_name,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM jeeObject
+                FROM object
                 WHERE name=:name';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
 	public static function all($_onlyVisible = false) {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM jeeObject ';
+                FROM object ';
 		if ($_onlyVisible) {
 			$sql .= ' WhERE isVisible = 1';
 		}
@@ -65,9 +65,9 @@ class jeeObject {
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function root($_all = false, $_onlyVisible = false) {
+	public static function rootObject($_all = false, $_onlyVisible = false) {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM jeeObject
+                FROM object
                 WHERE father_id IS NULL';
 		if ($_onlyVisible) {
 			$sql .= ' AND isVisible = 1';
@@ -80,32 +80,29 @@ class jeeObject {
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function buildTree($_jeeObject = null, $_visible = true) {
+	public static function buildTree($_object = null, $_visible = true) {
 		$return = array();
-		if (!is_object($_jeeObject)) {
-			$jeeObject_list = self::root(true, $_visible);
+		if (!is_object($_object)) {
+			$object_list = self::rootObject(true, $_visible);
 		} else {
-			$jeeObject_list = $_jeeObject->getChild($_visible);
+			$object_list = $_object->getChild($_visible);
 		}
-		if (is_array($jeeObject_list) && count($jeeObject_list) > 0) {
-			foreach ($jeeObject_list as $jeeObject) {
-				$return[] = $jeeObject;
-				$return = array_merge($return, self::buildTree($jeeObject, $_visible));
+		if (is_array($object_list) && count($object_list) > 0) {
+			foreach ($object_list as $object) {
+				$return[] = $object;
+				$return = array_merge($return, self::buildTree($object, $_visible));
 			}
 		}
 		return $return;
 	}
 
 	public static function fullData($_restrict = array()) {
-		if (isset($_restrict['object']) && !isset($_restrict['jeeObject'])) {
-			$_restrict['jeeObject'] = $_restrict['object'];
-		}
 		$return = array();
-		foreach (self::all(true) as $jeeObject) {
-			if (!isset($_restrict['jeeObject']) || !is_array($_restrict['jeeObject']) || isset($_restrict['jeeObject'][$jeeObject->getId()])) {
-				$jeeObject_return = utils::o2a($jeeObject);
-				$jeeObject_return['eqLogics'] = array();
-				foreach ($jeeObject->getEqLogic(true, true) as $eqLogic) {
+		foreach (jeeObject::all(true) as $object) {
+			if (!isset($_restrict['object']) || !is_array($_restrict['object']) || isset($_restrict['object'][$object->getId()])) {
+				$object_return = utils::o2a($object);
+				$object_return['eqLogics'] = array();
+				foreach ($object->getEqLogic(true, true) as $eqLogic) {
 					if (!isset($_restrict['eqLogic']) || !is_array($_restrict['eqLogic']) || isset($_restrict['eqLogic'][$eqLogic->getId()])) {
 						$eqLogic_return = utils::o2a($eqLogic);
 						$eqLogic_return['cmds'] = array();
@@ -118,10 +115,10 @@ class jeeObject {
 								$eqLogic_return['cmds'][] = $cmd_return;
 							}
 						}
-						$jeeObject_return['eqLogics'][] = $eqLogic_return;
+						$object_return['eqLogics'][] = $eqLogic_return;
 					}
 				}
-				$return[] = $jeeObject_return;
+				$return[] = $object_return;
 			}
 		}
 		return $return;
@@ -132,18 +129,18 @@ class jeeObject {
 			'configuration' => '%' . $_search . '%',
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-		FROM jeeObject
+		FROM object
 		WHERE `configuration` LIKE :configuration';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
 	public static function deadCmd() {
 		$return = array();
-		foreach (self::all() as $jeeObject) {
-			foreach ($jeeObject->getConfiguration('summary', '') as $key => $summary) {
+		foreach (jeeObject::all() as $object) {
+			foreach ($object->getConfiguration('summary', '') as $key => $summary) {
 				foreach ($summary as $cmdInfo) {
 					if (!cmd::byId(str_replace('#', '', $cmdInfo['cmd']))) {
-						$return[] = array('detail' => 'Résumé ' . $jeeObject->getName(), 'help' => config::byKey('jeeObject:summary')[$key]['name'], 'who' => $cmdInfo['cmd']);
+						$return[] = array('detail' => 'Résumé ' . $object->getName(), 'help' => config::byKey('object:summary')[$key]['name'], 'who' => $cmdInfo['cmd']);
 					}
 				}
 			}
@@ -152,27 +149,27 @@ class jeeObject {
 	}
 
 	public static function checkSummaryUpdate($_cmd_id) {
-		$jeeObjects = self::searchConfiguration('#' . $_cmd_id . '#');
-		if (count($jeeObjects) == 0) {
+		$objects = self::searchConfiguration('#' . $_cmd_id . '#');
+		if (count($objects) == 0) {
 			return;
 		}
 		$toRefreshCmd = array();
 		$global = array();
-		foreach ($jeeObjects as $jeeObject) {
-			$summaries = $jeeObject->getConfiguration('summary');
+		foreach ($objects as $object) {
+			$summaries = $object->getConfiguration('summary');
 			if (!is_array($summaries)) {
 				continue;
 			}
-			$event = array('jeeObject_id' => $jeeObject->getId(), 'keys' => array());
+			$event = array('object_id' => $object->getId(), 'keys' => array());
 			foreach ($summaries as $key => $summary) {
 				foreach ($summary as $cmd_info) {
 					preg_match_all("/#([0-9]*)#/", $cmd_info['cmd'], $matches);
 					foreach ($matches[1] as $cmd_id) {
 						if ($cmd_id == $_cmd_id) {
-							$value = $jeeObject->getSummary($key);
+							$value = $object->getSummary($key);
 							$event['keys'][$key] = array('value' => $value);
-							$toRefreshCmd[] = array('key' => $key, 'jeeObject' => $jeeObject, 'value' => $value);
-							if ($jeeObject->getConfiguration('summary::global::' . $key, 0) == 1) {
+							$toRefreshCmd[] = array('key' => $key, 'object' => $object, 'value' => $value);
+							if ($object->getConfiguration('summary::global::' . $key, 0) == 1) {
 								$global[$key] = 1;
 							}
 						}
@@ -184,13 +181,13 @@ class jeeObject {
 		if (count($toRefreshCmd) > 0) {
 			foreach ($toRefreshCmd as $value) {
 				try {
-					if ($jeeObject->getConfiguration('summary_virtual_id') == '') {
+					if ($object->getConfiguration('summary_virtual_id') == '') {
 						continue;
 					}
-					$virtual = eqLogic::byId($value['jeeObject']->getConfiguration('summary_virtual_id'));
+					$virtual = eqLogic::byId($value['object']->getConfiguration('summary_virtual_id'));
 					if (!is_object($virtual)) {
-						$jeeObject->getConfiguration('summary_virtual_id', '');
-						$jeeObject->save();
+						$object->getConfiguration('summary_virtual_id', '');
+						$object->save();
 						continue;
 					}
 					$cmd = $virtual->getCmd('info', $value['key']);
@@ -204,10 +201,10 @@ class jeeObject {
 			}
 		}
 		if (count($global) > 0) {
-			$event = array('jeeObject_id' => 'global', 'keys' => array());
+			$event = array('object_id' => 'global', 'keys' => array());
 			foreach ($global as $key => $value) {
 				try {
-					$result = self::getGlobalSummary($key);
+					$result = jeeObject::getGlobalSummary($key);
 					if ($result === null) {
 						continue;
 					}
@@ -236,14 +233,14 @@ class jeeObject {
 		if ($_key == '') {
 			return null;
 		}
-		$def = config::byKey('jeeObject:summary');
-		$jeeObjects = self::all();
+		$def = config::byKey('object:summary');
+		$objects = self::all();
 		$value = array();
-		foreach ($jeeObjects as $jeeObject) {
-			if ($jeeObject->getConfiguration('summary::global::' . $_key, 0) == 0) {
+		foreach ($objects as $object) {
+			if ($object->getConfiguration('summary::global::' . $_key, 0) == 0) {
 				continue;
 			}
-			$result = $jeeObject->getSummary($_key, true);
+			$result = $object->getSummary($_key, true);
 			if ($result === null || !is_array($result)) {
 				continue;
 			}
@@ -259,19 +256,19 @@ class jeeObject {
 	}
 
 	public static function getGlobalHtmlSummary($_version = 'desktop') {
-		$jeeObjects = self::all();
-		$def = config::byKey('jeeObject:summary');
+		$objects = self::all();
+		$def = config::byKey('object:summary');
 		$values = array();
-		$return = '<span class="jeeObjectSummaryglobal" data-version="' . $_version . '">';
+		$return = '<span class="objectSummaryglobal" data-version="' . $_version . '">';
 		foreach ($def as $key => $value) {
-			foreach ($jeeObjects as $jeeObject) {
-				if ($jeeObject->getConfiguration('summary::global::' . $key, 0) == 0) {
+			foreach ($objects as $object) {
+				if ($object->getConfiguration('summary::global::' . $key, 0) == 0) {
 					continue;
 				}
 				if (!isset($values[$key])) {
 					$values[$key] = array();
 				}
-				$result = $jeeObject->getSummary($key, true);
+				$result = $object->getSummary($key, true);
 				if ($result === null || !is_array($result)) {
 					continue;
 				}
@@ -296,8 +293,8 @@ class jeeObject {
 			if ($allowDisplayZero == 0 && $result == 0) {
 				$style = 'display:none;';
 			}
-			$return .= '<span class="jeeObjectSummaryParent cursor" data-summary="' . $key . '" data-object_id="" style="margin-right:' . $margin . 'px;' . $style . '" data-displayZeroValue="' . $allowDisplayZero . '">';
-			$return .= $def[$key]['icon'] . ' <sup><span class="jeeObjectSummary' . $key . '">' . $result . '</span> ' . $def[$key]['unit'] . '</sup>';
+			$return .= '<span class="objectSummaryParent cursor" data-summary="' . $key . '" data-object_id="" style="margin-right:' . $margin . 'px;' . $style . '" data-displayZeroValue="' . $allowDisplayZero . '">';
+			$return .= $def[$key]['icon'] . ' <sup><span class="objectSummary' . $key . '">' . $result . '</span> ' . $def[$key]['unit'] . '</sup>';
 			$return .= '</span>';
 		}
 		return trim($return) . '</span>';
@@ -307,7 +304,7 @@ class jeeObject {
 		if ($_key == '') {
 			return;
 		}
-		$def = config::byKey('jeeObject:summary');
+		$def = config::byKey('object:summary');
 		if (!isset($def[$_key])) {
 			return;
 		}
@@ -377,15 +374,15 @@ class jeeObject {
 		$cmd->setUnite($def[$_key]['unit']);
 		$cmd->save();
 
-		foreach (jeeObject::all() as $jeeObject) {
-			$summaries = $jeeObject->getConfiguration('summary');
+		foreach (jeeObject::all() as $object) {
+			$summaries = $object->getConfiguration('summary');
 			if (!is_array($summaries)) {
 				continue;
 			}
 			if (!isset($summaries[$_key]) || !is_array($summaries[$_key]) || count($summaries[$_key]) == 0) {
 				continue;
 			}
-			$virtual = eqLogic::byLogicalId('summary' . $jeeObject->getId(), 'virtual');
+			$virtual = eqLogic::byLogicalId('summary' . $object->getId(), 'virtual');
 			if (!is_object($virtual)) {
 				$virtual = new virtual();
 				$virtual->setName(__('Résumé', __FILE__));
@@ -393,12 +390,12 @@ class jeeObject {
 				$virtual->setIsEnable(1);
 			}
 			$virtual->setIsEnable(1);
-			$virtual->setLogicalId('summary' . $jeeObject->getId());
+			$virtual->setLogicalId('summary' . $object->getId());
 			$virtual->setEqType_name('virtual');
-			$virtual->setJeeObject_id($jeeObject->getId());
+			$virtual->setObject_id($object->getId());
 			$virtual->save();
-			$jeeObject->setConfiguration('summary_virtual_id', $virtual->getId());
-			$jeeObject->save();
+			$object->setConfiguration('summary_virtual_id', $virtual->getId());
+			$object->save();
 			$cmd = $virtual->getCmd('info', $_key);
 			if (!is_object($cmd)) {
 				$cmd = new virtualCmd();
@@ -419,6 +416,10 @@ class jeeObject {
 	}
 
 	/*     * *********************Méthodes d'instance************************* */
+
+	public function getTableName() {
+		return 'object';
+	}
 
 	public function checkTreeConsistency($_fathers = array()) {
 		$father = $this->getFather();
@@ -462,7 +463,7 @@ class jeeObject {
 			'id' => $this->id,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM jeeObject
+                FROM object
                 WHERE father_id=:id';
 		if ($_visible) {
 			$sql .= ' AND isVisible=1 ';
@@ -481,17 +482,17 @@ class jeeObject {
 	}
 
 	public function getEqLogic($_onlyEnable = true, $_onlyVisible = false, $_eqType_name = null, $_logicalId = null) {
-		$eqLogics = eqLogic::byJeeObjectId($this->getId(), $_onlyEnable, $_onlyVisible, $_eqType_name, $_logicalId);
+		$eqLogics = eqLogic::byObjectId($this->getId(), $_onlyEnable, $_onlyVisible, $_eqType_name, $_logicalId);
 		if (is_array($eqLogics)) {
 			foreach ($eqLogics as &$eqLogic) {
-				$eqLogic->setJeeObject($this);
+				$eqLogic->setObject($this);
 			}
 		}
 		return $eqLogics;
 	}
 
 	public function getEqLogicBySummary($_summary = '', $_onlyEnable = true, $_onlyVisible = false, $_eqType_name = null, $_logicalId = null) {
-		$def = config::byKey('jeeObject:summary');
+		$def = config::byKey('object:summary');
 		if ($_summary == '' || !isset($def[$_summary])) {
 			return null;
 		}
@@ -499,7 +500,7 @@ class jeeObject {
 		if (!isset($summaries[$_summary])) {
 			return array();
 		}
-		$eqLogics = eqLogic::byJeeObjectId($this->getId(), $_onlyEnable, $_onlyVisible, $_eqType_name, $_logicalId);
+		$eqLogics = eqLogic::byObjectId($this->getId(), $_onlyEnable, $_onlyVisible, $_eqType_name, $_logicalId);
 		$eqLogics_id = array();
 		foreach ($summaries[$_summary] as $infos) {
 			$cmd = cmd::byId(str_replace('#', '', $infos['cmd']));
@@ -511,7 +512,7 @@ class jeeObject {
 		if (is_array($eqLogics)) {
 			foreach ($eqLogics as $eqLogic) {
 				if (isset($eqLogics_id[$eqLogic->getId()])) {
-					$eqLogic->setJeeObject($this);
+					$eqLogic->setObject($this);
 					$return[] = $eqLogic;
 				}
 			}
@@ -520,15 +521,15 @@ class jeeObject {
 	}
 
 	public function getScenario($_onlyEnable = true, $_onlyVisible = false) {
-		return scenario::byJeeObjectId($this->getId(), $_onlyEnable, $_onlyVisible);
+		return scenario::byObjectId($this->getId(), $_onlyEnable, $_onlyVisible);
 	}
 
 	public function preRemove() {
-		dataStore::removeByTypeLinkId('jeeObject', $this->getId());
+		dataStore::removeByTypeLinkId('object', $this->getId());
 	}
 
 	public function remove() {
-		jeedom::addRemoveHistory(array('id' => $this->getId(), 'name' => $this->getName(), 'date' => date('Y-m-d H:i:s'), 'type' => 'jeeObject'));
+		jeedom::addRemoveHistory(array('id' => $this->getId(), 'name' => $this->getName(), 'date' => date('Y-m-d H:i:s'), 'type' => 'object'));
 		return DB::remove($this);
 	}
 
@@ -569,7 +570,7 @@ class jeeObject {
 	}
 
 	public function getSummary($_key = '', $_raw = false) {
-		$def = config::byKey('jeeObject:summary');
+		$def = config::byKey('object:summary');
 		if ($_key == '' || !isset($def[$_key])) {
 			return null;
 		}
@@ -604,8 +605,8 @@ class jeeObject {
 	}
 
 	public function getHtmlSummary($_version = 'desktop') {
-		$return = '<span class="jeeObjectSummary' . $this->getId() . '" data-version="' . $_version . '">';
-		foreach (config::byKey('jeeObject:summary') as $key => $value) {
+		$return = '<span class="objectSummary' . $this->getId() . '" data-version="' . $_version . '">';
+		foreach (config::byKey('object:summary') as $key => $value) {
 			if ($this->getConfiguration('summary::hide::' . $_version . '::' . $key, 0) == 1) {
 				continue;
 			}
@@ -622,7 +623,7 @@ class jeeObject {
 				if ($allowDisplayZero == 0 && $result == 0) {
 					$style = 'display:none;';
 				}
-				$return .= '<span style="margin-right:5px;' . $style . '" class="jeeObjectSummaryParent cursor" data-summary="' . $key . '" data-jeeObject_id="' . $this->getId() . '" data-displayZeroValue="' . $allowDisplayZero . '">' . $value['icon'] . ' <sup><span class="ojeeOjectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . '</span></sup>';
+				$return .= '<span style="margin-right:5px;' . $style . '" class="objectSummaryParent cursor" data-summary="' . $key . '" data-object_id="' . $this->getId() . '" data-displayZeroValue="' . $allowDisplayZero . '">' . $value['icon'] . ' <sup><span class="objectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . '</span></sup>';
 			}
 		}
 		return trim($return) . '</span>';
@@ -632,7 +633,7 @@ class jeeObject {
 		if ($_drill === null) {
 			$_drill = config::byKey('graphlink::jeeObject::drill');
 		}
-		if (isset($_data['node']['jeeObject' . $this->getId()])) {
+		if (isset($_data['node']['object' . $this->getId()])) {
 			return;
 		}
 		$_level++;
@@ -640,8 +641,8 @@ class jeeObject {
 			return $_data;
 		}
 		$icon = findCodeIcon($this->getDisplay('icon'));
-		$_data['node']['jeeObject' . $this->getId()] = array(
-			'id' => 'jeeObject' . $this->getId(),
+		$_data['node']['object' . $this->getId()] = array(
+			'id' => 'object' . $this->getId(),
 			'name' => $this->getName(),
 			'icon' => $icon['icon'],
 			'fontfamily' => $icon['fontfamily'],
@@ -650,16 +651,16 @@ class jeeObject {
 			'texty' => -35,
 			'textx' => 0,
 			'title' => $this->getHumanName(),
-			'url' => 'index.php?v=d&p=jeeObject&id=' . $this->getId(),
+			'url' => 'index.php?v=d&p=object&id=' . $this->getId(),
 		);
 		$use = $this->getUse();
-		addGraphLink($this, 'jeeObject', $this->getEqLogic(), 'eqLogic', $_data, $_level, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
-		addGraphLink($this, 'jeeObject', $use['cmd'], 'cmd', $_data, $_level, $_drill);
-		addGraphLink($this, 'jeeObject', $use['scenario'], 'scenario', $_data, $_level, $_drill);
-		addGraphLink($this, 'jeeObject', $use['eqLogic'], 'eqLogic', $_data, $_level, $_drill);
-		addGraphLink($this, 'jeeObject', $use['dataStore'], 'dataStore', $_data, $_level, $_drill);
-		addGraphLink($this, 'jeeObject', $this->getChild(), 'jeeObject', $_data, $_level, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
-		addGraphLink($this, 'jeeObject', $this->getScenario(), 'scenario', $_data, $_level, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
+		addGraphLink($this, 'object', $this->getEqLogic(), 'eqLogic', $_data, $_level, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
+		addGraphLink($this, 'object', $use['cmd'], 'cmd', $_data, $_level, $_drill);
+		addGraphLink($this, 'object', $use['scenario'], 'scenario', $_data, $_level, $_drill);
+		addGraphLink($this, 'object', $use['eqLogic'], 'eqLogic', $_data, $_level, $_drill);
+		addGraphLink($this, 'object', $use['dataStore'], 'dataStore', $_data, $_level, $_drill);
+		addGraphLink($this, 'object', $this->getChild(), 'object', $_data, $_level, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
+		addGraphLink($this, 'object', $this->getScenario(), 'scenario', $_data, $_level, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
 		return $_data;
 	}
 
@@ -744,11 +745,11 @@ class jeeObject {
 	}
 
 	public function getCache($_key = '', $_default = '') {
-		return utils::getJsonAttr(cache::byKey('jeeObjectCacheAttr' . $this->getId())->getValue(), $_key, $_default);
+		return utils::getJsonAttr(cache::byKey('objectCacheAttr' . $this->getId())->getValue(), $_key, $_default);
 	}
 
 	public function setCache($_key, $_value = null) {
-		cache::set('jeeObjectCacheAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('jeeObjectCacheAttr' . $this->getId())->getValue(), $_key, $_value));
+		cache::set('objectCacheAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('objectCacheAttr' . $this->getId())->getValue(), $_key, $_value));
 	}
 
 }

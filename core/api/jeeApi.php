@@ -181,13 +181,7 @@ if (init('type') != '') {
 			die();
 		}
 		if ($type == 'object') {
-			log::add('api', 'debug', __('Demande API pour les jeeObjets', __FILE__));
-			header('Content-Type: application/json');
-			echo json_encode(utils::o2a(jeeObject::all()), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE, 1024);
-			die();
-		}
-		if ($type == 'jeeObject') {
-			log::add('api', 'debug', __('Demande API pour les jeeObjets', __FILE__));
+			log::add('api', 'debug', __('Demande API pour les objets', __FILE__));
 			header('Content-Type: application/json');
 			echo json_encode(utils::o2a(jeeObject::all()), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE, 1024);
 			die();
@@ -195,7 +189,7 @@ if (init('type') != '') {
 		if ($type == 'eqLogic') {
 			log::add('api', 'debug', __('Demande API pour les équipements', __FILE__));
 			header('Content-Type: application/json');
-			echo json_encode(utils::o2a(eqLogic::byJeeObjectId(init('object_id'))), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE, 1024);
+			echo json_encode(utils::o2a(eqLogic::byObjectId(init('object_id'))), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE, 1024);
 			die();
 		}
 		if ($type == 'command') {
@@ -426,11 +420,11 @@ try {
 		}
 
 		if ($jsonrpc->getMethod() == 'jeeObject::byId') {
-			$jeeObject = jeeObject::byId($params['id']);
-			if (!is_object($jeeObject)) {
+			$object = jeeObject::byId($params['id']);
+			if (!is_object($object)) {
 				throw new Exception(__('Objet introuvable : ', __FILE__) . secureXSS($params['id']), -32601);
 			}
-			$jsonrpc->makeSuccess(utils::o2a($jeeObject));
+			$jsonrpc->makeSuccess(utils::o2a($object));
 		}
 
 		if ($jsonrpc->getMethod() == 'jeeObject::full') {
@@ -438,13 +432,13 @@ try {
 		}
 
 		if ($jsonrpc->getMethod() == 'jeeObject::fullById') {
-			$jeeObject = jeeObject::byId($params['id']);
-			if (!is_object($jeeObject)) {
+			$object = jeeObject::byId($params['id']);
+			if (!is_object($object)) {
 				throw new Exception(__('Objet introuvable : ', __FILE__) . secureXSS($params['id']), -32601);
 			}
-			$return = utils::o2a($jeeObject);
+			$return = utils::o2a($object);
 			$return['eqLogics'] = array();
-			foreach ($jeeObject->getEqLogic() as $eqLogic) {
+			foreach ($object->getEqLogic() as $eqLogic) {
 				$eqLogic_return = utils::o2a($eqLogic);
 				$eqLogic_return['cmds'] = array();
 				foreach ($eqLogic->getCmd() as $cmd) {
@@ -457,14 +451,14 @@ try {
 
 		if ($jsonrpc->getMethod() == 'jeeObject::save') {
 			if (isset($params['id'])) {
-				$jeeObject = jeeObject::byId($params['id']);
+				$object = jeeObject::byId($params['id']);
 			}
-			if (!is_object($jeeObject)) {
-				$jeeObject = new object();
+			if (!is_object($object)) {
+				$object = new jeeObject();
 			}
-			utils::a2o($jeeObject, jeedom::fromHumanReadable($params));
-			$jeeObject->save();
-			$jsonrpc->makeSuccess(utils::o2a($jeeObject));
+			utils::a2o($object, jeedom::fromHumanReadable($params));
+			$object->save();
+			$jsonrpc->makeSuccess(utils::o2a($object));
 		}
 
 		/*             * ************************Summary*************************** */
@@ -474,7 +468,7 @@ try {
 				$jsonrpc->makeSuccess(jeeObject::getGlobalSummary($params['key']));
 			}
 			$return = array();
-			$def = config::byKey('jeeObject:summary');
+			$def = config::byKey('object:summary');
 			foreach ($def as $key => $value) {
 				$return[$key] = jeeObject::getGlobalSummary($key);
 			}
@@ -482,9 +476,9 @@ try {
 		}
 
 		if ($jsonrpc->getMethod() == 'summary::byId') {
-			$jeeObject = jeeObject::byId($params['id']);
-			if (!is_object($jeeObject)) {
-				throw new Exception(__('JeeObjet introuvable : ', __FILE__) . secureXSS($params['id']), -32601);
+			$object = jeeObject::byId($params['id']);
+			if (!is_object($object)) {
+				throw new Exception(__('Objet introuvable : ', __FILE__) . secureXSS($params['id']), -32601);
 			}
 			if (!isset($params['key'])) {
 				$params['key'] = '';
@@ -492,7 +486,7 @@ try {
 			if (!isset($params['raw'])) {
 				$params['raw'] = false;
 			}
-			$jsonrpc->makeSuccess($jeeObject->getSummary($params['key'], $params['raw']));
+			$jsonrpc->makeSuccess($object->getSummary($params['key'], $params['raw']));
 		}
 
 		/*             * ************************datastore*************************** */
@@ -521,7 +515,7 @@ try {
 		}
 
 		if ($jsonrpc->getMethod() == 'eqLogic::byObjectId') {
-			$jsonrpc->makeSuccess(utils::o2a(eqLogic::byJeeObjectId($params['jeeObject_id'])));
+			$jsonrpc->makeSuccess(utils::o2a(eqLogic::byObjectId($params['object_id'])));
 		}
 
 		if ($jsonrpc->getMethod() == 'eqLogic::byId') {

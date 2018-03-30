@@ -114,7 +114,7 @@ try {
 		$eqLogics = json_decode(init('eqLogics'), true);
 		$sql = '';
 		foreach ($eqLogics as $eqLogic_json) {
-			if (!isset($eqLogic_json['viewZone_id']) || !is_numeric($eqLogic_json['viewZone_id']) || !is_numeric($eqLogic_json['id']) || !is_numeric($eqLogic_json['order']) || (isset($eqLogic_json['jeeObject_id']) && !is_numeric($eqLogic_json['jeeObject_id'])) || (isset($eqLogic_json['object_id']) && !is_numeric($eqLogic_json['object_id']))) {
+			if (!isset($eqLogic_json['viewZone_id']) || !is_numeric($eqLogic_json['viewZone_id']) || !is_numeric($eqLogic_json['id']) || !is_numeric($eqLogic_json['order']) || (isset($eqLogic_json['object_id']) && !is_numeric($eqLogic_json['object_id']))) {
 				continue;
 			}
 			$sql .= 'UPDATE viewData SET `order`= ' . $eqLogic_json['order'] . '  WHERE link_id=' . $eqLogic_json['id'] . ' AND  viewZone_id=' . $eqLogic_json['viewZone_id'] . ';';

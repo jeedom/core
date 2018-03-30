@@ -139,7 +139,7 @@ jeedom.object.remove = function(_params) {
 };
 
 jeedom.object.save = function(_params) {
-    var paramsRequired = ['jeeObject'];
+    var paramsRequired = ['object'];
     var paramsSpecifics = {
         pre_success: function(data) {
             if (isset(jeedom.object.cache.all)) {
@@ -162,7 +162,7 @@ jeedom.object.save = function(_params) {
     paramsAJAX.url = 'core/ajax/object.ajax.php';
     paramsAJAX.data = {
         action: 'save',
-        jeeObject: json_encode(_params.jeeObject),
+        object: json_encode(_params.object),
     };
     $.ajax(paramsAJAX);
 };
@@ -259,7 +259,7 @@ jeedom.object.summaryUpdate = function(_params) {
                 objects[i].object.replaceWith($(result[i].html));
                 if($('.objectSummary' + i).closest('.objectSummaryHide') != []){
                     if($(result[i].html).html() == ''){
-                        $('.objectSummary' + i).closest('.jeeOjectSummaryHide').hide();
+                        $('.objectSummary' + i).closest('.objectSummaryHide').hide();
                     }else{
                         $('.objectSummary' + i).closest('.objectSummaryHide').show();
                     }

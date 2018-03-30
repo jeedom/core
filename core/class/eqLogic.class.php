@@ -26,7 +26,7 @@ class eqLogic {
 	protected $name;
 	protected $logicalId = '';
 	protected $generic_type;
-	protected $jeeObject_id = null;
+	protected $object_id = null;
 	protected $eqType_name;
 	protected $eqReal_id = null;
 	protected $isVisible = 0;
@@ -39,7 +39,7 @@ class eqLogic {
 	protected $comment;
 	protected $tags;
 	protected $_debug = false;
-	protected $_jeeObject = null;
+	protected $_object = null;
 	private static $_templateArray = array();
 	protected $_needRefreshWidget = false;
 	protected $_timeoutUpdated = false;
@@ -95,7 +95,7 @@ class eqLogic {
 	public static function all($_onlyEnable = false) {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__, 'el') . '
         FROM eqLogic el
-        LEFT JOIN jeeObject ob ON el.jeeObject_id=ob.id';
+        LEFT JOIN object ob ON el.object_id=ob.id';
 		if ($_onlyEnable) {
 			$sql .= ' AND isEnable=1';
 		}
@@ -113,46 +113,15 @@ class eqLogic {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function byJeeObjectId($_jeeObject_id, $_onlyEnable = true, $_onlyVisible = false, $_eqType_name = null, $_logicalId = null, $_orderByName = false) {
+	public static function byObjectId($_object_id, $_onlyEnable = true, $_onlyVisible = false, $_eqType_name = null, $_logicalId = null, $_orderByName = false) {
 		$values = array();
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM eqLogic';
-		if ($_jeeObject_id === null) {
-			$sql .= ' WHERE jeeObject_id IS NULL';
+		if ($_object_id === null) {
+			$sql .= ' WHERE object_id IS NULL';
 		} else {
-			$values['jeeObject_id'] = $_jeeObject_id;
-			$sql .= ' WHERE jeeObject_id=:jeeObject_id';
-		}
-		if ($_onlyEnable) {
-			$sql .= ' AND isEnable = 1';
-		}
-		if ($_onlyVisible) {
-			$sql .= ' AND isVisible = 1';
-		}
-		if ($_eqType_name !== null) {
-			$values['eqType_name'] = $_eqType_name;
-			$sql .= ' AND eqType_name=:eqType_name';
-		}
-		if ($_logicalId !== null) {
-			$values['logicalId'] = $_logicalId;
-			$sql .= ' AND logicalId=:logicalId';
-		}
-		if ($_orderByName) {
-			$sql .= ' ORDER BY `name`';
-		} else {
-			$sql .= ' ORDER BY `order`,category';
-		}
-		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
-	}
-	public static function byObjectId($_jeeObject_id, $_onlyEnable = true, $_onlyVisible = false, $_eqType_name = null, $_logicalId = null, $_orderByName = false) {
-		$values = array();
-		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM eqLogic';
-		if ($_jeeObject_id === null) {
-			$sql .= ' WHERE jeeObject_id IS NULL';
-		} else {
-			$values['jeeObject_id'] = $_jeeObject_id;
-			$sql .= ' WHERE jeeObject_id=:jeeObject_id';
+			$values['object_id'] = $_object_id;
+			$sql .= ' WHERE object_id=:object_id';
 		}
 		if ($_onlyEnable) {
 			$sql .= ' AND isEnable = 1';
@@ -197,7 +166,7 @@ class eqLogic {
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__, 'el') . '
         FROM eqLogic el
-        LEFT JOIN jeeObject ob ON el.jeeObject_id=ob.id
+        LEFT JOIN object ob ON el.object_id=ob.id
         WHERE eqType_name=:eqType_name ';
 		if ($_onlyEnable) {
 			$sql .= ' AND isEnable=1';
@@ -278,17 +247,17 @@ class eqLogic {
 		}
 	}
 
-	public static function listByJeeObjectAndCmdType($_jeeObject_id, $_typeCmd, $subTypeCmd = '') {
+	public static function listByObjectAndCmdType($_object_id, $_typeCmd, $subTypeCmd = '') {
 		$values = array();
 		$sql = 'SELECT DISTINCT(el.id),el.name
         FROM eqLogic el
         INNER JOIN cmd c ON c.eqLogic_id=el.id
         WHERE ';
-		if ($_jeeObject_id === null) {
-			$sql .= ' jeeObject_id IS NULL ';
-		} elseif ($_jeeObject_id != '') {
-			$values['jeeObject_id'] = $_jeeObject_id;
-			$sql .= ' jeeObject_id=:jeeObject_id ';
+		if ($_object_id === null) {
+			$sql .= ' object_id IS NULL ';
+		} elseif ($_object_id != '') {
+			$values['object_id'] = $_object_id;
+			$sql .= ' object_id=:object_id ';
 		}
 		if ($subTypeCmd != '') {
 			$values['subTypeCmd'] = $subTypeCmd;
@@ -364,25 +333,25 @@ class eqLogic {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function byObjectNameEqLogicName($_jeeObject_name, $_eqLogic_name) {
-		if ($_jeeObject_name == __('Aucun', __FILE__)) {
+	public static function byObjectNameEqLogicName($_object_name, $_eqLogic_name) {
+		if ($_object_name == __('Aucun', __FILE__)) {
 			$values = array(
 				'eqLogic_name' => $_eqLogic_name,
 			);
 			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
             FROM eqLogic
             WHERE name=:eqLogic_name
-            AND jeeObject_id IS NULL';
+            AND object_id IS NULL';
 		} else {
 			$values = array(
 				'eqLogic_name' => $_eqLogic_name,
-				'jeeObject_name' => $_jeeObject_name,
+				'object_name' => $_object_name,
 			);
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 'el') . '
             FROM eqLogic el
-            INNER JOIN jeeObject ob ON el.jeeObject_id=ob.id
+            INNER JOIN object ob ON el.object_id=ob.id
             WHERE el.name=:eqLogic_name
-            AND ob.name=:jeeObject_name';
+            AND ob.name=:object_name';
 		}
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
@@ -527,9 +496,9 @@ class eqLogic {
 			$battery = substr(strrchr($battery, " "), 1);
 		}
 		$plugins = $this->getEqType_name();
-		$jeeObject_name = 'Aucun';
-		if (is_object($this->getJeeObject())) {
-			$jeeObject_name = $this->getJeeObject()->getName();
+		$object_name = 'Aucun';
+		if (is_object($this->getObject())) {
+			$object_name = $this->getObject()->getName();
 		}
 		if ($this->getStatus('battery') <= $this->getConfiguration('battery_danger_threshold', config::byKey('battery::danger'))) {
 			$color = '#e74c3c';
@@ -542,13 +511,13 @@ class eqLogic {
 		} else if ($this->getStatus('battery') <= 75) {
 			$niveau = '2';
 		}
-		$classAttr = $level . ' ' . $battery . ' ' . $plugins . ' ' . $jeeObject_name;
-		$idAttr = $level . '__' . $battery . '__' . $plugins . '__' . $jeeObject_name;
+		$classAttr = $level . ' ' . $battery . ' ' . $plugins . ' ' . $object_name;
+		$idAttr = $level . '__' . $battery . '__' . $plugins . '__' . $object_name;
 		$html .= '<div class="eqLogic eqLogic-widget ' . $classAttr . '" style="min-width:100px;min-height:150px;background-color:' . $color . '" id="' . $idAttr . '">';
 		if ($_version == 'mobile') {
-			$html .= '<div class="widget-name" style="text-align : center;"><span style="font-size : 1em;">' . $this->getName() . '</span><br/><span style="font-size: 0.95em;position:relative;top:-5px;cursor:default;">' . $jeeObject_name . '</span></div>';
+			$html .= '<div class="widget-name" style="text-align : center;"><span style="font-size : 1em;">' . $this->getName() . '</span><br/><span style="font-size: 0.95em;position:relative;top:-5px;cursor:default;">' . $object_name . '</span></div>';
 		} else {
-			$html .= '<div class="widget-name" style="text-align : center;"><a href="' . $this->getLinkToConfiguration() . '" style="font-size : 1em;">' . $this->getName() . '</a><br/><span style="font-size: 0.95em;position:relative;top:-5px;cursor:default;">' . $jeeObject_name . '</span></div>';
+			$html .= '<div class="widget-name" style="text-align : center;"><a href="' . $this->getLinkToConfiguration() . '" style="font-size : 1em;">' . $this->getName() . '</a><br/><span style="font-size: 0.95em;position:relative;top:-5px;cursor:default;">' . $object_name . '</span></div>';
 		}
 		$html .= '<div style="text-align : center;font-size:2.2em;font-weight: bold;margin-top:-25px;margin-bottom:-25px"><i class="icon jeedom-batterie' . $niveau . ' tooltips" title="' . $this->getStatus('battery', -2) . '%" style="font-size :2.5em;"></i></div>';
 		$html .= '<div style="text-align : center;"><span style="font-size:1.2em;font-weight: bold;cursor:default;">' . $this->getStatus('battery', -2) . '</span><span>%</span></div>';
@@ -715,8 +684,8 @@ class eqLogic {
 			$replace['#refresh_id#'] = $refresh_cmd->getId();
 		}
 		if ($this->getDisplay('showObjectNameOn' . $version, 0) == 1) {
-			$jeeObject = $this->getJeeObject();
-			$replace['#object_name#'] = (is_object($jeeObject)) ? '(' . $jeeObject->getName() . ')' : '';
+			$object = $this->getObject();
+			$replace['#object_name#'] = (is_object($object)) ? '(' . $object->getName() . ')' : '';
 		}
 		if ($this->getDisplay('showNameOn' . $version, 1) == 0) {
 			$replace['#hideEqLogicName#'] = 'display:none;';
@@ -997,16 +966,16 @@ class eqLogic {
 
 	public function getHumanName($_tag = false, $_prettify = false) {
 		$name = '';
-		$jeeObject = $this->getJeeObject();
-		if (is_object($jeeObject)) {
+		$object = $this->getObject();
+		if (is_object($object)) {
 			if ($_tag) {
-				if ($jeeObject->getDisplay('tagColor') != '') {
-					$name .= '<span class="label" style="text-shadow : none;background-color:' . $jeeObject->getDisplay('tagColor') . ';color:' . $jeeObject->getDisplay('tagTextColor', 'white') . '">' . $jeeObject->getName() . '</span>';
+				if ($object->getDisplay('tagColor') != '') {
+					$name .= '<span class="label" style="text-shadow : none;background-color:' . $object->getDisplay('tagColor') . ';color:' . $object->getDisplay('tagTextColor', 'white') . '">' . $object->getName() . '</span>';
 				} else {
-					$name .= '<span class="label label-primary" style="text-shadow : none;">' . $jeeObject->getName() . '</span>';
+					$name .= '<span class="label label-primary" style="text-shadow : none;">' . $object->getName() . '</span>';
 				}
 			} else {
-				$name .= '[' . $jeeObject->getName() . ']';
+				$name .= '[' . $object->getName() . ']';
 			}
 		} else {
 			if ($_tag) {
@@ -1278,7 +1247,7 @@ class eqLogic {
 		$eqLogic = clone $this;
 		$eqLogic->setId('');
 		$eqLogic->setLogicalId('');
-		$eqLogic->setJeeObject_id('');
+		$eqLogic->setObject_id('');
 		$eqLogic->setIsEnable('');
 		$eqLogic->setIsVisible('');
 		$eqLogic->setTimeout('');
@@ -1359,7 +1328,6 @@ class eqLogic {
 	public function toArray() {
 		$return = utils::o2a($this, true);
 		$return['status'] = $this->getStatus();
-		$return['object_id'] = $this->getJeeObject_id();
 		return $return;
 	}
 
@@ -1405,8 +1373,8 @@ class eqLogic {
 		addGraphLink($this, 'eqLogic', $usedBy['interactDef'], 'interactDef', $_data, $_level, $_drill, array('dashvalue' => '2,6', 'lengthfactor' => 0.6));
 		addGraphLink($this, 'eqLogic', $usedBy['plan'], 'plan', $_data, $_level, $_drill, array('dashvalue' => '2,6', 'lengthfactor' => 0.6));
 		addGraphLink($this, 'eqLogic', $usedBy['view'], 'view', $_data, $_level, $_drill, array('dashvalue' => '2,6', 'lengthfactor' => 0.6));
-		if (!isset($_data['jeeObject' . $this->getJeeObject_id()])) {
-			addGraphLink($this, 'eqLogic', $this->getJeeObject(), 'jeeObject', $_data, $_level, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
+		if (!isset($_data['object' . $this->getObject_id()])) {
+			addGraphLink($this, 'eqLogic', $this->getObject(), 'object', $_data, $_level, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
 		}
 		return $_data;
 	}
@@ -1451,30 +1419,19 @@ class eqLogic {
 		return $this->logicalId;
 	}
 
-	public function getJeeObject_id() {
-		return $this->jeeObject_id;
-	}
-
 	public function getObject_id() {
-		return $this->jeeObject_id;
-	}
-
-	public function getJeeObject() {
-		if ($this->_jeeObject === null) {
-			$this->setJeeObject(jeeObject::byId($this->jeeObject_id));
-		}
-		return $this->_jeeObject;
+		return $this->object_id;
 	}
 
 	public function getObject() {
-		if ($this->_jeeObject === null) {
-			$this->setJeeObject(jeeObject::byId($this->jeeObject_id));
+		if ($this->_object === null) {
+			$this->setObject(jeeObject::byId($this->object_id));
 		}
-		return $this->_jeeObject;
+		return $this->_object;
 	}
 
-	public function setJeeObject($_jeeObject) {
-		$this->_jeeObject = $_jeeObject;
+	public function setObject($_object) {
+		$this->_object = $_object;
 		return $this;
 	}
 
@@ -1571,13 +1528,8 @@ class eqLogic {
 		return $this;
 	}
 
-	public function setJeeObject_id($jeeObject_id = null) {
-		$this->jeeObject_id = (!is_numeric($jeeObject_id)) ? null : $jeeObject_id;
-		return $this;
-	}
-
-	public function setObject_id($jeeObject_id = null) {
-		$this->jeeObject_id = (!is_numeric($jeeObject_id)) ? null : $jeeObject_id;
+	public function setObject_id($object_id = null) {
+		$this->object_id = (!is_numeric($object_id)) ? null : $object_id;
 		return $this;
 	}
 

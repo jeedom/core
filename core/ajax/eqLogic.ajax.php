@@ -27,19 +27,19 @@ try {
 	ajax::init();
 
 	if (init('action') == 'getEqLogicObject') {
-		$jeeObject = jeeObject::byId(init('jeeObject_id'));
+		$object = jeeObject::byId(init('object_id'));
 
-		if (!is_object($jeeObject)) {
+		if (!is_object($object)) {
 			throw new Exception(__('Objet inconnu. Vérifiez l\'ID', __FILE__));
 		}
-		$return = utils::o2a($jeeObject);
+		$return = utils::o2a($object);
 		$return['eqLogic'] = array();
-		foreach ($jeeObject->getEqLogic() as $eqLogic) {
+		foreach ($object->getEqLogic() as $eqLogic) {
 			if ($eqLogic->getIsVisible() == '1') {
 				$info_eqLogic = array();
 				$info_eqLogic['id'] = $eqLogic->getId();
 				$info_eqLogic['type'] = $eqLogic->getEqType_name();
-				$info_eqLogic['jeeObject_id'] = $eqLogic->getJeeObject_id();
+				$info_eqLogic['object_id'] = $eqLogic->getObject_id();
 				$info_eqLogic['html'] = $eqLogic->toHtml(init('version'));
 				$return['eqLogic'][] = $info_eqLogic;
 			}
@@ -67,7 +67,7 @@ try {
 					'html' => $eqLogic->toHtml($value['version']),
 					'id' => $eqLogic->getId(),
 					'type' => $eqLogic->getEqType_name(),
-					'jeeObject_id' => $eqLogic->getJeeObject_id(),
+					'object_id' => $eqLogic->getObject_id(),
 				);
 			}
 			ajax::success($return);
@@ -79,7 +79,7 @@ try {
 			$info_eqLogic = array();
 			$info_eqLogic['id'] = $eqLogic->getId();
 			$info_eqLogic['type'] = $eqLogic->getEqType_name();
-			$info_eqLogic['jeeObject_id'] = $eqLogic->getJeeObject_id();
+			$info_eqLogic['object_id'] = $eqLogic->getObject_id();
 			$info_eqLogic['html'] = $eqLogic->toHtml(init('version'));
 			ajax::success($info_eqLogic);
 		}
@@ -95,7 +95,7 @@ try {
 				'html' => $eqLogic->toHtml(init('version')),
 				'id' => $eqLogic->getId(),
 				'type' => $eqLogic->getEqType_name(),
-				'jeeObject_id' => $eqLogic->getJeeObject_id(),
+				'object_id' => $eqLogic->getObject_id(),
 			);
 		}
 		ajax::success($return);
@@ -118,7 +118,7 @@ try {
 				'html' => $eqLogic->batteryWidget(init('version')),
 				'id' => $eqLogic->getId(),
 				'type' => $eqLogic->getEqType_name(),
-				'jeeObject_id' => $eqLogic->getJeeObject_id(),
+				'object_id' => $eqLogic->getObject_id(),
 			);
 		}
 		ajax::success($return);
@@ -128,14 +128,14 @@ try {
 		ajax::success(utils::a2o(eqLogic::byType(init('type'))));
 	}
 
-	if (init('action') == 'listByJeeObjectAndCmdType') {
-		$jeeObject_id = (init('jeeObject_id') != -1) ? init('jeeObject_id') : null;
-		ajax::success(eqLogic::listByJeeObjectAndCmdType($jeeObject_id, init('typeCmd'), init('subTypeCmd')));
+	if (init('action') == 'listByObjectAndCmdType') {
+		$object_id = (init('object_id') != -1) ? init('object_id') : null;
+		ajax::success(eqLogic::listByObjectAndCmdType($object_id, init('typeCmd'), init('subTypeCmd')));
 	}
 
 	if (init('action') == 'listByObject') {
-		$jeeObject_id = (init('jeeObject_id') != -1) ? init('jeeObject_id') : null;
-		ajax::success(utils::o2a(eqLogic::byJeeObjectId($jeeObject_id, init('onlyEnable', true), init('onlyVisible', false), init('eqType_name', null), init('logicalId', null), init('orderByName', false))));
+		$object_id = (init('object_id') != -1) ? init('object_id') : null;
+		ajax::success(utils::o2a(eqLogic::byObjectId($object_id, init('onlyEnable', true), init('onlyVisible', false), init('eqType_name', null), init('logicalId', null), init('orderByName', false))));
 	}
 
 	if (init('action') == 'listByTypeAndCmdType') {
@@ -144,11 +144,11 @@ try {
 		foreach ($results as $result) {
 			$eqLogic = eqLogic::byId($result['id']);
 			$info['eqLogic'] = utils::o2a($eqLogic);
-			$info['jeeObject'] = array('name' => 'Aucun');
+			$info['object'] = array('name' => 'Aucun');
 			if (is_object($eqLogic)) {
-				$jeeObject = $eqLogic->getJeeObject();
-				if (is_object($jeeObject)) {
-					$info['jeeObject'] = utils::o2a($eqLogic->getJeeObject());
+				$object = $eqLogic->getObject();
+				if (is_object($object)) {
+					$info['object'] = utils::o2a($eqLogic->getObject());
 				}
 			}
 			$return[] = $info;

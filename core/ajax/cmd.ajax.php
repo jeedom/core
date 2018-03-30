@@ -75,17 +75,17 @@ try {
 	}
 
 	if (init('action') == 'getByObjectNameEqNameCmdName') {
-		$cmd = cmd::byObjectNameEqLogicNameCmdName(init('jeeObject_name'), init('eqLogic_name'), init('cmd_name'));
+		$cmd = cmd::byObjectNameEqLogicNameCmdName(init('object_name'), init('eqLogic_name'), init('cmd_name'));
 		if (!is_object($cmd)) {
-			throw new Exception(__('Cmd inconnu : ', __FILE__) . init('jeeObject_name') . '/' . init('eqLogic_name') . '/' . init('cmd_name'));
+			throw new Exception(__('Cmd inconnu : ', __FILE__) . init('object_name') . '/' . init('eqLogic_name') . '/' . init('cmd_name'));
 		}
 		ajax::success($cmd->getId());
 	}
 
 	if (init('action') == 'getByObjectNameCmdName') {
-		$cmd = cmd::byObjectNameCmdName(init('jeeObject_name'), init('cmd_name'));
+		$cmd = cmd::byObjectNameCmdName(init('object_name'), init('cmd_name'));
 		if (!is_object($cmd)) {
-			throw new Exception(__('Cmd inconnu : ', __FILE__) . init('jeeObject_name') . '/' . init('cmd_name'), 9999);
+			throw new Exception(__('Cmd inconnu : ', __FILE__) . init('object_name') . '/' . init('cmd_name'), 9999);
 		}
 		ajax::success(utils::o2a($cmd));
 	}
@@ -171,8 +171,8 @@ try {
 		$eqLogic = $cmd->getEqLogic();
 		$return['eqLogic_name'] = $eqLogic->getName();
 		$return['plugin'] = $eqLogic->getEqType_Name();
-		if ($eqLogic->getJeeObject_id() > 0) {
-			$return['jeeObject_name'] = $eqLogic->getJeeObject()->getName();
+		if ($eqLogic->getObject_id() > 0) {
+			$return['object_name'] = $eqLogic->getObject()->getName();
 		}
 		ajax::success($return);
 	}

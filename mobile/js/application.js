@@ -33,10 +33,10 @@ $(function () {
     });
 
 
-    $('body').on('click','.jeeObjectSummaryParent',function(){
+    $('body').on('click','.objectSummaryParent',function(){
        modal(false);
        panel(false);
-       page('equipment', '{{Résumé}}', $(this).data('jeeObject_id')+':'+$(this).data('summary'));
+       page('equipment', '{{Résumé}}', $(this).data('object_id')+':'+$(this).data('summary'));
    });
 
     $('body').on('taphold','.cmd[data-type=info]',function(){
@@ -168,7 +168,7 @@ function initApplication(_reinit) {
                     $("head").append(data);
                     $.include(include, function () {
                         deviceInfo = getDeviceType();
-                        jeedom.jeeObject.summaryUpdate([{jeeObject_id:'global'}])
+                        jeedom.object.summaryUpdate([{object_id:'global'}])
                         if(getUrlVars('p') == 'view'){
                            page('view', 'Vue',getUrlVars('view_id'));
                        }else if (isset(userProfils) && userProfils != null && isset(userProfils.homePageMobile) && userProfils.homePageMobile != 'home' && getUrlVars('p') != 'home') {

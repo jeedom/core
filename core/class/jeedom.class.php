@@ -49,6 +49,7 @@ class jeedom {
 		com_shell::execute(system::getCmdSudo() . 'chmod 777 ' . $path . ' > /dev/null 2>&1;');
 		unlink($path);
 	}
+
 	public static function addRemoveHistory($_data) {
 		try {
 			if (file_exists(dirname(__FILE__) . '/../../data/remove_history.json')) {

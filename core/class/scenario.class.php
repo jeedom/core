@@ -32,7 +32,7 @@ class scenario {
 	private $trigger;
 	private $_log;
 	private $timeout = 0;
-	private $jeeObject_id = null;
+	private $object_id = null;
 	private $isVisible = 1;
 	private $display;
 	private $description;
@@ -80,7 +80,7 @@ class scenario {
 		if ($_group === '') {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
 			FROM scenario s
-			INNER JOIN jeeObject ob ON s.jeeObject_id=ob.id';
+			INNER JOIN object ob ON s.object_id=ob.id';
 			if ($_type !== null) {
 				$values['type'] = $_type;
 				$sql .= ' WHERE `type`=:type';
@@ -92,7 +92,7 @@ class scenario {
 			}
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
 			FROM scenario s
-			WHERE s.jeeObject_id IS NULL';
+			WHERE s.object_id IS NULL';
 			if ($_type !== null) {
 				$values['type'] = $_type;
 				$sql .= ' AND `type`=:type';
@@ -103,7 +103,7 @@ class scenario {
 		} elseif ($_group === null) {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
 			FROM scenario s
-			INNER JOIN jeeObject ob ON s.jeeObject_id=ob.id
+			INNER JOIN object ob ON s.object_id=ob.id
 			WHERE (`group` IS NULL OR `group` = "")';
 			if ($_type !== null) {
 				$values['type'] = $_type;
@@ -117,7 +117,7 @@ class scenario {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
 			FROM scenario s
 			WHERE (`group` IS NULL OR `group` = "")
-			AND s.jeeObject_id IS NULL';
+			AND s.object_id IS NULL';
 			if ($_type !== null) {
 				$values['type'] = $_type;
 				$sql .= ' AND `type`=:type';
@@ -131,7 +131,7 @@ class scenario {
 			);
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
 			FROM scenario s
-			INNER JOIN jeeObject ob ON s.jeeObject_id=ob.id
+			INNER JOIN object ob ON s.object_id=ob.id
 			WHERE `group`=:group';
 			if ($_type !== null) {
 				$values['type'] = $_type;
@@ -142,7 +142,7 @@ class scenario {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
 			FROM scenario s
 			WHERE `group`=:group
-			AND s.jeeObject_id IS NULL';
+			AND s.object_id IS NULL';
 			if ($_type !== null) {
 				$values['type'] = $_type;
 				$sql .= ' AND `type`=:type';
@@ -213,38 +213,20 @@ class scenario {
 	}
 	/**
 	 *
-	 * @param type $_jeeObject_id
+	 * @param type $_object_id
 	 * @param type $_onlyEnable
 	 * @param type $_onlyVisible
 	 * @return type
 	 */
-	public static function byJeeObjectId($_jeeObject_id, $_onlyEnable = true, $_onlyVisible = false) {
+	public static function byObjectId($_object_id, $_onlyEnable = true, $_onlyVisible = false) {
 		$values = array();
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM scenario';
-		if ($_jeeObject_id === null) {
-			$sql .= ' WHERE jeeObject_id IS NULL';
+		if ($_object_id === null) {
+			$sql .= ' WHERE object_id IS NULL';
 		} else {
-			$values['jeeObject_id'] = $_jeeObject_id;
-			$sql .= ' WHERE jeeObject_id=:jeeObject_id';
-		}
-		if ($_onlyEnable) {
-			$sql .= ' AND isActive = 1';
-		}
-		if ($_onlyVisible) {
-			$sql .= ' AND isVisible = 1';
-		}
-		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
-	}
-	public static function byObjectId($_jeeObject_id, $_onlyEnable = true, $_onlyVisible = false) {
-		$values = array();
-		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-		FROM scenario';
-		if ($_jeeObject_id === null) {
-			$sql .= ' WHERE jeeObject_id IS NULL';
-		} else {
-			$values['jeeObject_id'] = $_jeeObject_id;
-			$sql .= ' WHERE jeeObject_id=:jeeObject_id';
+			$values['object_id'] = $_object_id;
+			$sql .= ' WHERE object_id=:object_id';
 		}
 		if ($_onlyEnable) {
 			$sql .= ' AND isActive = 1';
@@ -442,48 +424,48 @@ class scenario {
 	}
 
 	/**
-	 * @name byJeeObjectNameGroupNameScenarioName()
-	 * @param object $_jeeObject_name
+	 * @name byObjectNameGroupNameScenarioName()
+	 * @param object $_object_name
 	 * @param type $_group_name
 	 * @param type $_scenario_name
 	 * @return type
 	 */
-	public static function byJeeObjectNameGroupNameScenarioName($_jeeObject_name, $_group_name, $_scenario_name) {
+	public static function byObjectNameGroupNameScenarioName($_object_name, $_group_name, $_scenario_name) {
 		$values = array(
 			'scenario_name' => html_entity_decode($_scenario_name),
 		);
 
-		if ($_jeeObject_name == __('Aucun', __FILE__)) {
+		if ($_object_name == __('Aucun', __FILE__)) {
 			if ($_group_name == __('Aucun', __FILE__)) {
 				$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
 				FROM scenario s
 				WHERE s.name=:scenario_name
 				AND (`group` IS NULL OR `group`=""  OR `group`="Aucun" OR `group`="None")
-				AND s.jeeObject_id IS NULL';
+				AND s.object_id IS NULL';
 			} else {
 				$values['group_name'] = $_group_name;
 				$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
 				FROM scenario s
 				WHERE s.name=:scenario_name
-				AND s.jeeObject_id IS NULL
+				AND s.object_id IS NULL
 				AND `group`=:group_name';
 			}
 		} else {
-			$values['jeeObject_name'] = $_jeeObject_name;
+			$values['object_name'] = $_object_name;
 			if ($_group_name == __('Aucun', __FILE__)) {
 				$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
 				FROM scenario s
-				INNER JOIN jeeObject ob ON s.jeeObject_id=ob.id
+				INNER JOIN object ob ON s.object_id=ob.id
 				WHERE s.name=:scenario_name
-				AND ob.name=:jeeObject_name
+				AND ob.name=:object_name
 				AND (`group` IS NULL OR `group`=""  OR `group`="Aucun" OR `group`="None")';
 			} else {
 				$values['group_name'] = $_group_name;
 				$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
 				FROM scenario s
-				INNER JOIN jeeObject ob ON s.jeeObject_id=ob.id
+				INNER JOIN object ob ON s.object_id=ob.id
 				WHERE s.name=:scenario_name
-				AND ob.name=:jeeObject_name
+				AND ob.name=:object_name
 				AND `group`=:group_name';
 			}
 		}
@@ -573,7 +555,7 @@ class scenario {
 			$countMatches = count($matches[0]);
 			for ($i = 0; $i < $countMatches; $i++) {
 				if (isset($matches[1][$i]) && isset($matches[2][$i]) && isset($matches[3][$i])) {
-					$scenario = self::byJeeObjectNameGroupNameScenarioName($matches[1][$i], $matches[2][$i], $matches[3][$i]);
+					$scenario = self::byObjectNameGroupNameScenarioName($matches[1][$i], $matches[2][$i], $matches[3][$i]);
 					if (is_object($scenario)) {
 						$text = str_replace($matches[0][$i], '#scenario' . $scenario->getId() . '#', $text);
 					}
@@ -694,8 +676,8 @@ class scenario {
 		if (!is_object($scenario)) {
 			return null;
 		}
-		$jeeObject = $scenario->getJeeObject();
-		$return['jeeObject'] = is_object($jeeObject) ? $jeeObject->getId() : 'aucun';
+		$object = $scenario->getObject();
+		$return['object'] = is_object($object) ? $object->getId() : 'aucun';
 		$return['html'] = '<div class="scenario" data-id="' . $_event['id'] . '">'
 			. '<div style="background-color:#e7e7e7;padding:1px;font-size:0.9em;font-weight: bold;cursor:help;">' . $_event['name'] . ' <i class="fa fa-file-text-o pull-right cursor bt_scenarioLog"></i> <i class="fa fa-share pull-right cursor bt_gotoScenario"></i></div>'
 			. '<div style="background-color:white;padding:1px;font-size:0.8em;cursor:default;">Déclenché par ' . $_event['trigger'] . '<div/>'
@@ -1246,8 +1228,8 @@ class scenario {
 		if ($_mode == 'text') {
 			$return = '';
 			$return .= '- Nom du scénario : ' . $this->getName() . "\n";
-			if (is_numeric($this->getJeeObject_id())) {
-				$return .= '- Objet parent : ' . $this->getJeeObject()->getName() . "\n";
+			if (is_numeric($this->getObject_id())) {
+				$return .= '- Objet parent : ' . $this->getObject()->getName() . "\n";
 			}
 			$return .= '- Mode du scénario : ' . $this->getMode() . "\n";
 			$schedules = $this->getSchedule();
@@ -1296,8 +1278,8 @@ class scenario {
 			if (isset($return['hlogs'])) {
 				unset($return['hlogs']);
 			}
-			if (isset($return['jeeObject_id'])) {
-				unset($return['jeeObject_id']);
+			if (isset($return['object_id'])) {
+				unset($return['object_id']);
 			}
 			if (isset($return['pid'])) {
 				unset($return['pid']);
@@ -1330,8 +1312,8 @@ class scenario {
 	 *
 	 * @return object
 	 */
-	public function getJeeObject() {
-		return jeeObject::byId($this->jeeObject_id);
+	public function getObject() {
+		return jeeObject::byId($this->object_id);
 	}
 	/**
 	 *
@@ -1344,16 +1326,16 @@ class scenario {
 	 */
 	public function getHumanName($_complete = false, $_noGroup = false, $_tag = false, $_prettify = false, $_withoutScenarioName = false) {
 		$name = '';
-		if (is_numeric($this->getJeeObject_id())) {
-			$jeeObject = $this->getJeeObject();
+		if (is_numeric($this->getObject_id())) {
+			$object = $this->getObject();
 			if ($_tag) {
-				if ($jeeObject->getDisplay('tagColor') != '') {
-					$name .= '<span class="label" style="text-shadow : none;background-color:' . $jeeObject->getDisplay('tagColor') . ' !important;color:' . $jeeObject->getDisplay('tagTextColor', 'white') . ' !important">' . $jeeObject->getName() . '</span>';
+				if ($object->getDisplay('tagColor') != '') {
+					$name .= '<span class="label" style="text-shadow : none;background-color:' . $object->getDisplay('tagColor') . ' !important;color:' . $object->getDisplay('tagTextColor', 'white') . ' !important">' . $object->getName() . '</span>';
 				} else {
-					$name .= '<span class="label label-primary" style="text-shadow : none;">' . $jeeObject->getName() . '</span>';
+					$name .= '<span class="label label-primary" style="text-shadow : none;">' . $object->getName() . '</span>';
 				}
 			} else {
-				$name .= '[' . $jeeObject->getName() . ']';
+				$name .= '[' . $object->getName() . ']';
 			}
 		} else {
 			if ($_complete) {
@@ -1480,7 +1462,7 @@ class scenario {
 		);
 		$use = $this->getUse();
 		$usedBy = $this->getUsedBy();
-		addGraphLink($this, 'scenario', $this->getJeeObject(), 'jeeObject', $_data, $_level + 1, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
+		addGraphLink($this, 'scenario', $this->getObject(), 'object', $_data, $_level + 1, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
 		addGraphLink($this, 'scenario', $use['cmd'], 'cmd', $_data, $_level, $_drill);
 		addGraphLink($this, 'scenario', $use['scenario'], 'scenario', $_data, $_level, $_drill);
 		addGraphLink($this, 'scenario', $use['eqLogic'], 'eqLogic', $_data, $_level, $_drill);
@@ -1797,20 +1779,12 @@ class scenario {
 	 * @param type $_default
 	 * @return type
 	 */
-	public function getJeeObject_id($_default = null) {
-		if ($this->jeeObject_id == '' || !is_numeric($this->jeeObject_id)) {
-			return $_default;
-		}
-		return $this->jeeObject_id;
-	}
-
 	public function getObject_id($_default = null) {
-		if ($this->jeeObject_id == '' || !is_numeric($this->jeeObject_id)) {
+		if ($this->object_id == '' || !is_numeric($this->object_id)) {
 			return $_default;
 		}
-		return $this->jeeObject_id;
+		return $this->object_id;
 	}
-
 	/**
 	 *
 	 * @param type $_default
@@ -1824,27 +1798,14 @@ class scenario {
 	}
 	/**
 	 *
-	 * @param type $jeeObject_id
+	 * @param type $object_id
 	 * @return $this
 	 */
-	public function setJeeObject_id($jeeObject_id = null) {
-		if ($jeeObject_id != $this->getJeeObject_id()) {
+	public function setObject_id($object_id = null) {
+		if ($object_id != $this->getObject_id()) {
 			$this->_changeState = true;
 		}
-		$this->jeeObject_id = (!is_numeric($jeeObject_id)) ? null : $jeeObject_id;
-		return $this;
-	}
-
-	/**
-	 *
-	 * @param type $jeeObject_id
-	 * @return $this
-	 */
-	public function setObject_id($jeeObject_id = null) {
-		if ($jeeObject_id != $this->getJeeObject_id()) {
-			$this->_changeState = true;
-		}
-		$this->jeeObject_id = (!is_numeric($jeeObject_id)) ? null : $jeeObject_id;
+		$this->object_id = (!is_numeric($object_id)) ? null : $object_id;
 		return $this;
 	}
 	/**

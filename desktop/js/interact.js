@@ -313,7 +313,7 @@ function displayInteract(_id){
      $('.interactAttr[data-l1key=filtres][data-l2key=type]').value(1);
      $('.interactAttr[data-l1key=filtres][data-l2key=subtype]').value(1);
      $('.interactAttr[data-l1key=filtres][data-l2key=unite]').value(1);
-     $('.interactAttr[data-l1key=filtres][data-l2key=jeeObject]').value(1);
+     $('.interactAttr[data-l1key=filtres][data-l2key=object]').value(1);
      $('.interactAttr[data-l1key=filtres][data-l2key=plugin]').value(1);
      $('.interactAttr[data-l1key=filtres][data-l2key=category]').value(1);
      if(isset(data.filtres) && isset(data.filtres.type) && $.isPlainObject(data.filtres.type)){
@@ -331,9 +331,9 @@ function displayInteract(_id){
    $('.interactAttr[data-l1key=filtres][data-l2key=unite][data-l3key="'+i+'"]').value(data.filtres.unite[i]);
  }
 }
-if(isset(data.filtres) && isset(data.filtres.jeeObject) && $.isPlainObject(data.filtres.jeeObject)){
-  for(var i in data.filtres.jeeObject){
-   $('.interactAttr[data-l1key=filtres][data-l2key=jeeObject][data-l3key='+i+']').value(data.filtres.jeeObject[i]);
+if(isset(data.filtres) && isset(data.filtres.object) && $.isPlainObject(data.filtres.object)){
+  for(var i in data.filtres.object){
+   $('.interactAttr[data-l1key=filtres][data-l2key=object][data-l3key='+i+']').value(data.filtres.object[i]);
  }
 }
 if(isset(data.filtres) && isset(data.filtres.plugin) && $.isPlainObject(data.filtres.plugin)){

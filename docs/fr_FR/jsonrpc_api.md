@@ -85,19 +85,19 @@ Paramètres :
 API JSON Objet 
 ==============
 
-jeeObject::all 
+object::all 
 -----------
 
 Retourne la liste de tous les objets
 
-jeeObject::full 
+object::full 
 ------------
 
 Retourne la liste de tous les objets, avec pour chaque objet tous ses
 équipements et pour chaque équipement toutes ses commandes ainsi que les
 états de celles-ci (pour les commandes de type info)
 
-jeeObject::fullById 
+object::fullById 
 ----------------
 
 Retourne un objet avec tous ses équipements et pour chaque équipement
@@ -108,7 +108,7 @@ Paramètres :
 
 -   int id
 
-jeeObject::byId 
+object::byId 
 ------------
 
 Retourne l’objet spécifié
@@ -117,14 +117,14 @@ Paramètres:
 
 -   int id
 
-jeeObject::fullById 
+object::fullById 
 ----------------
 
 Retourne un objet, ses équipements et pour chaque équipement toutes ses
 commandes ainsi que les états de cellse-ci (pour les commandes de type
 info)
 
-jeeObject::save 
+object::save 
 ------------
 
 Retourne l’objet spécifié
@@ -209,7 +209,7 @@ Retourne tous les équipements appartenant à l’objet spécifié
 
 Paramètres:
 
--   int jeeObject\_id
+-   int object\_id
 
 eqLogic::byTypeAndId 
 --------------------
@@ -241,7 +241,7 @@ Paramètres:
 
 -   string logicalId = ''
 
--   int jeeOject\_id = null
+-   int object\_id = null
 
 -   int eqReal\_id = null
 
@@ -698,7 +698,7 @@ Récupération de la liste des objets :
 
 ``` {.php}
 $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
-if($jsonrpc->sendRequest('jeeObject::all', array())){
+if($jsonrpc->sendRequest('object::all', array())){
     print_r($jsonrpc->getResult());
 }else{
     echo $jsonrpc->getError();

@@ -98,7 +98,7 @@ class cmd {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__, 'c') . '
 		FROM cmd c
 		INNER JOIN eqLogic el ON c.eqLogic_id=el.id
-		INNER JOIN jeeObject ob ON el.jeeObject_id=ob.id
+		INNER JOIN object ob ON el.object_id=ob.id
 		WHERE isHistorized=1
 		AND type=\'info\'';
 		$sql .= ' ORDER BY ob.name,el.name,c.name';
@@ -106,7 +106,7 @@ class cmd {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__, 'c') . '
 		FROM cmd c
 		INNER JOIN eqLogic el ON c.eqLogic_id=el.id
-		WHERE el.jeeObject_id IS NULL
+		WHERE el.object_id IS NULL
 		AND isHistorized=1
 		AND type=\'info\'';
 		$sql .= ' ORDER BY el.name,c.name';
@@ -335,43 +335,43 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function byObjectNameEqLogicNameCmdName($_jeeObject_name, $_eqLogic_name, $_cmd_name) {
+	public static function byObjectNameEqLogicNameCmdName($_object_name, $_eqLogic_name, $_cmd_name) {
 		$values = array(
 			'eqLogic_name' => $_eqLogic_name,
 			'cmd_name' => (html_entity_decode($_cmd_name) != '') ? html_entity_decode($_cmd_name) : $_cmd_name,
 		);
 
-		if ($_jeeObject_name == __('Aucun', __FILE__)) {
+		if ($_object_name == __('Aucun', __FILE__)) {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 'c') . '
 			FROM cmd c
 			INNER JOIN eqLogic el ON c.eqLogic_id=el.id
 			WHERE c.name=:cmd_name
 			AND el.name=:eqLogic_name
-			AND el.jeeObject_id IS NULL';
+			AND el.object_id IS NULL';
 		} else {
-			$values['jeeObject_name'] = $_jeeObject_name;
+			$values['object_name'] = $_object_name;
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 'c') . '
 			FROM cmd c
 			INNER JOIN eqLogic el ON c.eqLogic_id=el.id
-			INNER JOIN jeeObject ob ON el.jeeObject_id=ob.id
+			INNER JOIN object ob ON el.object_id=ob.id
 			WHERE c.name=:cmd_name
 			AND el.name=:eqLogic_name
-			AND ob.name=:jeeObject_name';
+			AND ob.name=:object_name';
 		}
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function byObjectNameCmdName($_jeeObject_name, $_cmd_name) {
+	public static function byObjectNameCmdName($_object_name, $_cmd_name) {
 		$values = array(
-			'jeeObject_name' => $_jeeObject_name,
+			'object_name' => $_object_name,
 			'cmd_name' => $_cmd_name,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__, 'c') . '
 		FROM cmd c
 		INNER JOIN eqLogic el ON c.eqLogic_id=el.id
-		INNER JOIN jeeObject ob ON el.jeeObject_id=ob.id
+		INNER JOIN object ob ON el.object_id=ob.id
 		WHERE c.name=:cmd_name
-		AND ob.name=:jeeObject_name';
+		AND ob.name=:object_name';
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 
@@ -678,8 +678,8 @@ class cmd {
 			return null;
 		}
 		$eqLogic = $cmd->getEqLogic();
-		$jeeObject = $eqLogic->getJeeObject();
-		$return['jeeOject'] = is_object($jeeObject) ? $jeeObject->getId() : 'aucun';
+		$object = $eqLogic->getObject();
+		$return['object'] = is_object($object) ? $object->getId() : 'aucun';
 		$return['plugins'] = $eqLogic->getEqType_name();
 		$return['category'] = $eqLogic->getCategory();
 

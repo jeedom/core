@@ -80,7 +80,7 @@ class dataStore {
 	/*     * *********************Méthodes d'instance************************* */
 
 	public function preSave() {
-		$allowType = array('cmd', 'jeeObject', 'object', 'eqLogic', 'scenario', 'eqReal');
+		$allowType = array('cmd', 'object', 'eqLogic', 'scenario', 'eqReal');
 		if (!in_array($this->getType(), $allowType)) {
 			throw new Exception(__('Le type doit être un des suivants : ', __FILE__) . print_r($allowType, true));
 		}

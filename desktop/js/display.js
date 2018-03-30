@@ -18,11 +18,11 @@
   connectWith: ".eqLogicSortable",
   stop: function (event, ui) {
     var eqLogics = [];
-    var jeeObject = ui.item.closest('.jeeObject');
+    var object = ui.item.closest('.object');
     order = 1;
-    jeeObject.find('.eqLogic').each(function(){
+    object.find('.eqLogic').each(function(){
         eqLogic = {};
-        eqLogic.jeeObject_id = jeeObject.attr('data-id');
+        eqLogic.object_id = object.attr('data-id');
         eqLogic.id = $(this).attr('data-id');
         eqLogic.order = order;
         eqLogics.push(eqLogic);
@@ -71,9 +71,9 @@
    $('#md_modal').load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $(this).closest('.eqLogic').attr('data-id')).dialog('open');
 });
 
- $('.configureJeeObject').on('click',function(){
+ $('.configureObject').on('click',function(){
    $('#md_modal').dialog({title: "{{Configuration de l'objet}}"});
-   $('#md_modal').load('index.php?v=d&modal=jeeObject.configure&jeeObject_id=' + $(this).closest('.jeeObject').attr('data-id')).dialog('open');
+   $('#md_modal').load('index.php?v=d&modal=object.configure&object_id=' + $(this).closest('.object').attr('data-id')).dialog('open');
 });
 
  $('.showCmd').on('click',function(){
@@ -89,10 +89,10 @@
  $('.showEqLogic').on('click',function(){
     if($(this).hasClass('fa-chevron-right')){
         $(this).removeClass('fa-chevron-right').addClass('fa-chevron-down');
-        $(this).closest('.jeeObject').find('.eqLogic').show();
+        $(this).closest('.object').find('.eqLogic').show();
     }else{
         $(this).removeClass('fa-chevron-down').addClass('fa-chevron-right');
-        $(this).closest('.jeeObject').find('.eqLogic').hide();
+        $(this).closest('.object').find('.eqLogic').hide();
     }
 });
 
@@ -221,4 +221,4 @@
  $('#bt_removeHistory').on('click',function(){
     $('#md_modal').dialog({title: "{{Historique des supression}}"});
     $('#md_modal').load('index.php?v=d&modal=remove.history').dialog('open');
-});
+});     

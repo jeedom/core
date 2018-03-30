@@ -24,7 +24,7 @@ foreach (cmd::all() as $cmd) {
 		continue;
 	}
 	if ($eqLogic->getIsVisible() == 1 && $cmd->getIsHistorized() == 1) {
-		$jeeObject = $cmd->getEqLogic()->getJeeObject();
+		$object = $cmd->getEqLogic()->getObject();
 		echo '<tr data-link_id="' . $cmd->getId() . '" data-type="graph" data-viewDataType="cmd">';
 		echo '<td>';
 		echo '<input type="checkbox" class="enable" />';
@@ -32,8 +32,8 @@ foreach (cmd::all() as $cmd) {
 		echo '</td>';
 		echo '<td class="object_name">';
 		echo '<input class="graphDataOption" data-l1key="type" value="cmd" hidden/>';
-		if (is_object($jeeObject)) {
-			echo $jeeObject->getName();
+		if (is_object($object)) {
+			echo $object->getName();
 		}
 		echo '</td>';
 		echo '<td class="name">';

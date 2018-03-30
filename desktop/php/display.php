@@ -4,44 +4,44 @@ if (!isConnect('admin')) {
 }
 $nbEqlogic = 0;
 $nbCmd = 0;
-$jeeObjects = jeeObject::all();
+$objects = jeeObject::all();
 $eqLogics = array();
 $cmds = array();
-$eqLogics[-1] = eqLogic::byJeeObjectId(null, false);
+$eqLogics[-1] = eqLogic::byObjectId(null, false);
 foreach ($eqLogics[-1] as $eqLogic) {
 	$cmds[$eqLogic->getId()] = $eqLogic->getCmd();
 	$nbCmd += count($cmds[$eqLogic->getId()]);
 }
 $nbEqlogic += count($eqLogics[-1]);
-foreach ($jeeObjects as $jeeObject) {
-	$eqLogics[$jeeObject->getId()] = $jeeObject->getEqLogic(false, false);
-	foreach ($eqLogics[$jeeObject->getId()] as $eqLogic) {
+foreach ($objects as $object) {
+	$eqLogics[$object->getId()] = $object->getEqLogic(false, false);
+	foreach ($eqLogics[$object->getId()] as $eqLogic) {
 		$cmds[$eqLogic->getId()] = $eqLogic->getCmd();
 		$nbCmd += count($cmds[$eqLogic->getId()]);
 	}
-	$nbEqlogic += count($eqLogics[$jeeObject->getId()]);
+	$nbEqlogic += count($eqLogics[$object->getId()]);
 }
 ?>
 <style>
-	.eqLogicSortable{
-		list-style-type: none;
-		min-height: 20px;
-		padding-left: 0px;
-	}
-	.eqLogicSortable li {
-		margin: 0 2px 2px 2px;
-		padding: 5px;
-	}
+.eqLogicSortable{
+	list-style-type: none;
+	min-height: 20px;
+	padding-left: 0px;
+}
+.eqLogicSortable li {
+	margin: 0 2px 2px 2px;
+	padding: 5px;
+}
 
-	.cmdSortable{
-		list-style-type: none;
-		min-height: 20px;
-		padding-left: 0px;
-	}
-	.cmdSortable li {
-		margin: 0 2px 2px 2px;
-		padding: 5px;
-	}
+.cmdSortable{
+	list-style-type: none;
+	min-height: 20px;
+	padding-left: 0px;
+}
+.cmdSortable li {
+	margin: 0 2px 2px 2px;
+	padding: 5px;
+}
 </style>
 <br/>
 <span class="pull-left">
@@ -52,7 +52,7 @@ foreach ($jeeObjects as $jeeObject) {
 	<label class="checkbox-inline"><input type="checkbox" id="cb_actifDisplay" checked />{{Inactif}}</label>
 </span>
 <center>
-	<span class="label label-default" style="font-size : 1em;cursor : default;">{{Nombre d'objets :}} <?php echo count($jeeObjects) ?></span>
+	<span class="label label-default" style="font-size : 1em;cursor : default;">{{Nombre d'objets :}} <?php echo count($objects) ?></span>
 	<span class="label label-info" style="font-size : 1em;cursor : default;">{{Nombre d'équipements :}} <?php echo $nbEqlogic ?></span>
 	<span class="label label-primary" style="font-size : 1em;cursor : default;">{{Nombre de commandes :}} <?php echo $nbCmd ?></span>
 </center>
@@ -65,7 +65,7 @@ foreach ($jeeObjects as $jeeObject) {
 <br/>
 <br/>
 <div class="row row-same-height">
-	<div class="col-xs-4 jeeObject col-xs-height" data-id="-1">
+	<div class="col-xs-4 object col-xs-height" data-id="-1">
 		<legend style="cursor : default"><i class="fa fa-circle-o"></i>  {{Aucun}} <i class="fa fa-chevron-down pull-right showEqLogic cursor" title="{{Voir les équipements}}"></i></legend>
 		<ul class="eqLogicSortable">
 			<?php
@@ -98,20 +98,20 @@ foreach ($eqLogics[-1] as $eqLogic) {
 	</div>
 	<?php
 $i = 1;
-foreach ($jeeObjects as $jeeObject) {
-	$defaultTextColor = ($jeeObject->getDisplay('tagColor') == '') ? 'black' : 'white';
+foreach ($objects as $object) {
+	$defaultTextColor = ($object->getDisplay('tagColor') == '') ? 'black' : 'white';
 	if ($i == 0) {
 		echo '<div class="row row-same-height">';
 	}
-	echo '<div class="col-xs-4 jeeObject col-xs-height" data-id="' . $jeeObject->getId() . '" style="background-color : ' . $jeeObject->getDisplay('tagColor') . ';color : ' . $jeeObject->getDisplay('tagTextColor', $defaultTextColor) . '">';
-	echo '<legend style="color : ' . $jeeObject->getDisplay('tagTextColor', $defaultTextColor) . ';cursor : default">' . $jeeObject->getDisplay('icon') . '  ' . $jeeObject->getName();
+	echo '<div class="col-xs-4 object col-xs-height" data-id="' . $object->getId() . '" style="background-color : ' . $object->getDisplay('tagColor') . ';color : ' . $object->getDisplay('tagTextColor', $defaultTextColor) . '">';
+	echo '<legend style="color : ' . $object->getDisplay('tagTextColor', $defaultTextColor) . ';cursor : default">' . $object->getDisplay('icon') . '  ' . $object->getName();
 	echo '<i class="fa fa-chevron-down pull-right showEqLogic cursor" title="{{Voir les équipements}}"></i>';
-	echo '<i style="position:relative;top : 3px;" class="fa fa-cog pull-right cursor configureJeeObject" title="{{Configuration avancée}}"></i>';
-	echo '<a style="position:relative;top : 3px;color:' . $jeeObject->getDisplay('tagTextColor', $defaultTextColor) . '" href="index.php?v=d&p=jeeObject&id=' . $jeeObject->getId() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'objet}}"><i class="fa fa-external-link"></i></a>';
+	echo '<i style="position:relative;top : 3px;" class="fa fa-cog pull-right cursor configureObject" title="{{Configuration avancée}}"></i>';
+	echo '<a style="position:relative;top : 3px;color:' . $object->getDisplay('tagTextColor', $defaultTextColor) . '" href="index.php?v=d&p=object&id=' . $object->getId() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'objet}}"><i class="fa fa-external-link"></i></a>';
 
 	echo '</legend>';
 	echo '<ul class="eqLogicSortable">';
-	foreach ($eqLogics[$jeeObject->getId()] as $eqLogic) {
+	foreach ($eqLogics[$object->getId()] as $eqLogic) {
 		echo '<li class="alert alert-info eqLogic cursor" data-id="' . $eqLogic->getId() . '" data-enable="' . $eqLogic->getIsEnable() . '" data-name="' . $eqLogic->getName() . '" data-type="' . $eqLogic->getEqType_name() . '">';
 		echo '<input type="checkbox" class="cb_selEqLogic" /> ';
 		echo $eqLogic->getName() . ' ';

@@ -188,8 +188,8 @@ class plan3d {
 			$cmd = cmd::byId($this->getLink_id());
 			return $cmd;
 		} else if ($this->getLink_type() == 'summary') {
-			$jeeObject = jeeObject::byId($this->getLink_id());
-			return $jeeObject;
+			$object = jeeObject::byId($this->getLink_id());
+			return $object;
 		}
 		return null;
 	}

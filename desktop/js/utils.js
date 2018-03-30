@@ -359,8 +359,8 @@ if (isset(jeedom_langage)) {
         $('#md_modal').load('index.php?v=d&p=message&ajax=1').dialog('open');
     });
 
-    $('body').on('click','.jeeObjectSummaryParent',function(){
-       loadPage('index.php?v=d&p=dashboard&summary='+$(this).data('summary')+'&jeeObject_id='+$(this).data('jeeObject_id'));
+    $('body').on('click','.objectSummaryParent',function(){
+       loadPage('index.php?v=d&p=dashboard&summary='+$(this).data('summary')+'&object_id='+$(this).data('object_id'));
    });
 
     initPage();

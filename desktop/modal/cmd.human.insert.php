@@ -13,12 +13,12 @@ if (!isConnect()) {
     </thead>
     <tbody>
         <tr>
-            <td class="mod_insertCmdValue_jeeObject">
+            <td class="mod_insertCmdValue_object">
                 <select class='form-control'>
                     <option value="-1">{{Aucun}}</option>
                     <?php
-foreach (jeeObject::all() as $jeeObject) {
-	echo '<option value="' . $jeeObject->getId() . '">' . $jeeObject->getName() . '</option>';
+foreach (jeeObject::all() as $object) {
+	echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
 }
 
 ?>
@@ -36,11 +36,11 @@ foreach (jeeObject::all() as $jeeObject) {
     mod_insertCmd.options = {};
     mod_insertCmd.options.cmd = {};
     mod_insertCmd.options.eqLogic = {};
-    mod_insertCmd.options.jeeObject = {};
+    mod_insertCmd.options.object = {};
 
 
-    $("#table_mod_insertCmdValue_valueEqLogicToMessage").delegate("td.mod_insertCmdValue_jeeObject select", 'change', function () {
-        mod_insertCmd.changeJeeObjectCmd($('#table_mod_insertCmdValue_valueEqLogicToMessage td.mod_insertCmdValue_jeeObject select'), mod_insertCmd.options);
+    $("#table_mod_insertCmdValue_valueEqLogicToMessage").delegate("td.mod_insertCmdValue_object select", 'change', function () {
+        mod_insertCmd.changeObjectCmd($('#table_mod_insertCmdValue_valueEqLogicToMessage td.mod_insertCmdValue_object select'), mod_insertCmd.options);
     });
 
     mod_insertCmd.setOptions = function (_options) {
@@ -51,23 +51,23 @@ foreach (jeeObject::all() as $jeeObject) {
         if (!isset(mod_insertCmd.options.eqLogic)) {
             mod_insertCmd.options.eqLogic = {};
         }
-        if (!isset(mod_insertCmd.options.jeeObject)) {
-            mod_insertCmd.options.jeeObject = {};
+        if (!isset(mod_insertCmd.options.object)) {
+            mod_insertCmd.options.object = {};
         }
-        if (isset(mod_insertCmd.options.jeeObject.id)) {
-            $('#table_mod_insertCmdValue_valueEqLogicToMessage td.mod_insertCmdValue_jeeObject select').value(mod_insertCmd.options.jeeObject.id);
+        if (isset(mod_insertCmd.options.object.id)) {
+            $('#table_mod_insertCmdValue_valueEqLogicToMessage td.mod_insertCmdValue_object select').value(mod_insertCmd.options.object.id);
         }
-        mod_insertCmd.changeJeeObjectCmd($('#table_mod_insertCmdValue_valueEqLogicToMessage td.mod_insertCmdValue_jeeObject select'), mod_insertCmd.options);
+        mod_insertCmd.changeObjectCmd($('#table_mod_insertCmdValue_valueEqLogicToMessage td.mod_insertCmdValue_object select'), mod_insertCmd.options);
     }
 
     mod_insertCmd.getValue = function () {
-        var jeeObject_name = $('#table_mod_insertCmdValue_valueEqLogicToMessage tbody tr:first .mod_insertCmdValue_jeeObject select option:selected').html();
+        var object_name = $('#table_mod_insertCmdValue_valueEqLogicToMessage tbody tr:first .mod_insertCmdValue_object select option:selected').html();
         var equipement_name = $('#table_mod_insertCmdValue_valueEqLogicToMessage tbody tr:first .mod_insertCmdValue_eqLogic select option:selected').html();
         var cmd_name = $('#table_mod_insertCmdValue_valueEqLogicToMessage tbody tr:first .mod_insertCmdValue_cmd select option:selected').html();
         if (cmd_name == undefined) {
             return '';
         }
-        return '#[' + jeeObject_name + '][' + equipement_name + '][' + cmd_name + ']#';
+        return '#[' + object_name + '][' + equipement_name + '][' + cmd_name + ']#';
     }
 
     mod_insertCmd.getCmdId = function () {
@@ -82,8 +82,8 @@ foreach (jeeObject::all() as $jeeObject) {
         return $('#table_mod_insertCmdValue_valueEqLogicToMessage tbody tr:first .mod_insertCmdValue_cmd select option:selected').attr('data-subType');
     }
 
-    mod_insertCmd.changeJeeObjectCmd = function (_select) {
-        jeedom.jeeObject.getEqLogic({
+    mod_insertCmd.changeObjectCmd = function (_select) {
+        jeedom.object.getEqLogic({
             id: _select.value(),
             orderByName : true,
             error: function (error) {
@@ -102,7 +102,7 @@ foreach (jeeObject::all() as $jeeObject) {
                 _select.closest('tr').find('.mod_insertCmdValue_eqLogic select').change(function () {
                     mod_insertCmd.changeEqLogic($(this), mod_insertCmd.options);
                 });
-                if (isset(mod_insertCmd.options.jeeObject.id)) {
+                if (isset(mod_insertCmd.options.object.id)) {
                     _select.closest('tr').find('.mod_insertCmdValue_eqLogic select').value(mod_insertCmd.options.eqLogic.id);
                 }
                 mod_insertCmd.changeEqLogic(_select.closest('tr').find('.mod_insertCmdValue_eqLogic select'), mod_insertCmd.options);
@@ -128,5 +128,5 @@ mod_insertCmd.changeEqLogic = function (_select) {
     });
 }
 
-mod_insertCmd.changeJeeObjectCmd($('#table_mod_insertCmdValue_valueEqLogicToMessage td.mod_insertCmdValue_jeeObject select'), mod_insertCmd.options);
+mod_insertCmd.changeObjectCmd($('#table_mod_insertCmdValue_valueEqLogicToMessage td.mod_insertCmdValue_object select'), mod_insertCmd.options);
 </script>

@@ -417,7 +417,7 @@ class interactDef {
 	public function generateQueryVariant() {
 		$inputs = self::generateTextVariant($this->getQuery());
 		$return = array();
-		$jeeObject_filter = $this->getFiltres('jeeObject');
+		$object_filter = $this->getFiltres('object');
 		$type_filter = $this->getFiltres('type');
 		$subtype_filter = $this->getFiltres('subtype');
 		$unite_filter = $this->getFiltres('unite');
@@ -428,14 +428,14 @@ class interactDef {
 			preg_match_all("/#(.*?)#/", $input, $matches);
 			$matches = $matches[1];
 			if (in_array('commande', $matches) || (in_array('objet', $matches) || in_array('equipement', $matches))) {
-				foreach (jeeObject::all() as $jeeObject) {
-					if (isset($jeeObject_filter[$jeeObject->getId()]) && $jeeObject_filter[$jeeObject->getId()] == 0) {
+				foreach (jeeObject::all() as $object) {
+					if (isset($object_filter[$object->getId()]) && $object_filter[$object->getId()] == 0) {
 						continue;
 					}
-					if (isset($visible_filter['jeeObject']) && $visible_filter['jeeObject'] == 1 && $jeeObject->getIsVisible() != 1) {
+					if (isset($visible_filter['object']) && $visible_filter['object'] == 1 && $object->getIsVisible() != 1) {
 						continue;
 					}
-					foreach ($jeeObject->getEqLogic() as $eqLogic) {
+					foreach ($object->getEqLogic() as $eqLogic) {
 						if ($this->getFiltres('eqLogic_id', 'all') != 'all' && $eqLogic->getId() != $this->getFiltres('eqLogic_id')) {
 							continue;
 						}
@@ -486,7 +486,7 @@ class interactDef {
 							}
 
 							$replace = array(
-								'#objet#' => strtolower($jeeObject->getName()),
+								'#objet#' => strtolower($object->getName()),
 								'#commande#' => strtolower($cmd->getName()),
 								'#equipement#' => strtolower($eqLogic->getName()),
 							);

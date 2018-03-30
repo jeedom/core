@@ -213,32 +213,32 @@ class interactQuery {
 		$return['query'] = strtolower(sanitizeAccent($_query));
 		$return[$_type] = null;
 		$synonyms = self::getQuerySynonym($return['query'], $_type);
-		if ($_type == 'jeeObject') {
-			$jeeObjects = jeeObject::all();
+		if ($_type == 'object') {
+			$objects = jeeObject::all();
 		} elseif ($_type == 'eqLogic') {
-			if ($_data !== null && is_object($_data['jeeObject'])) {
-				$jeeObjects = $_data['jeeObject']->getEqLogic();
+			if ($_data !== null && is_object($_data['object'])) {
+				$objects = $_data['object']->getEqLogic();
 			} else {
-				$jeeObjects = eqLogic::all(true);
+				$objects = eqLogic::all(true);
 			}
 		} elseif ($_type == 'cmd') {
 			if ($_data !== null && is_object($_data['eqLogic'])) {
-				$jeeObjects = $_data['eqLogic']->getCmd();
-			} elseif ($_data !== null && is_object($_data['jeeObject'])) {
-				$jeeObjects = array();
-				foreach ($_data['jeeObject']->getEqLogic() as $eqLogic) {
+				$objects = $_data['eqLogic']->getCmd();
+			} elseif ($_data !== null && is_object($_data['object'])) {
+				$objects = array();
+				foreach ($_data['object']->getEqLogic() as $eqLogic) {
 					if ($eqLogic->getIsEnable() == 0) {
 						continue;
 					}
 					foreach ($eqLogic->getCmd() as $cmd) {
-						$jeeObjects[] = $cmd;
+						$objects[] = $cmd;
 					}
 				}
 			} else {
-				$jeeObjects = cmd::all();
+				$objects = cmd::all();
 			}
 		} elseif ($_type == 'summary') {
-			foreach (config::byKey('jeeObject:summary') as $key => $value) {
+			foreach (config::byKey('object:summary') as $key => $value) {
 				if (count($synonyms) > 0 && in_array(strtolower($value['name']), $synonyms)) {
 					$return[$_type] = $value;
 					break;
@@ -256,17 +256,17 @@ class interactQuery {
 			}
 			return $return;
 		}
-		usort($jeeObjects, array("interactQuery", "cmp_objectName"));
-		foreach ($jeeObjects as $jeeObject) {
-			if ($jeeObject->getConfiguration('interact::auto::disable', 0) == 1) {
+		usort($objects, array("interactQuery", "cmp_objectName"));
+		foreach ($objects as $object) {
+			if ($object->getConfiguration('interact::auto::disable', 0) == 1) {
 				continue;
 			}
-			if (count($synonyms) > 0 && in_array(strtolower($jeeObject->getName()), $synonyms)) {
-				$return[$_type] = $jeeObject;
+			if (count($synonyms) > 0 && in_array(strtolower($object->getName()), $synonyms)) {
+				$return[$_type] = $object;
 				break;
 			}
-			if (self::autoInteractWordFind($return['query'], $jeeObject->getName())) {
-				$return[$_type] = $jeeObject;
+			if (self::autoInteractWordFind($return['query'], $object->getName())) {
+				$return[$_type] = $object;
 				break;
 			}
 		}
@@ -292,7 +292,7 @@ class interactQuery {
 		if (!isset($_parameters['identifier'])) {
 			$_parameters['identifier'] = '';
 		}
-		$data = self::findInQuery('jeeObject', $_query);
+		$data = self::findInQuery('object', $_query);
 		$data['cmd_parameters'] = array();
 		$data = array_merge($data, self::findInQuery('eqLogic', $data['query'], $data));
 		$data = array_merge($data, self::findInQuery('cmd', $data['query'], $data));
@@ -321,9 +321,9 @@ class interactQuery {
 			}
 			$return = $data['summary']['name'];
 			$value = '';
-			if (is_object($data['jeeObject'])) {
-				$return .= ' ' . $data['jeeObject']->getName();
-				$value = $data['jeeObject']->getSummary($data['summary']['key']);
+			if (is_object($data['object'])) {
+				$return .= ' ' . $data['object']->getName();
+				$value = $data['object']->getSummary($data['summary']['key']);
 			}
 			if (trim($value) === '') {
 				$value = jeeObject::getGlobalSummary($data['summary']['key']);
@@ -357,9 +357,9 @@ class interactQuery {
 			$return = __('C\'est fait', __FILE__) . ' (';
 			$eqLogic = $data['cmd']->getEqLogic();
 			if (is_object($eqLogic)) {
-				$jeeObject = $eqLogic->getJeeObject();
-				if (is_object($jeeObject)) {
-					$return .= $jeeObject->getName();
+				$object = $eqLogic->getObject();
+				if (is_object($object)) {
+					$return .= $object->getName();
 				}
 				$return .= ' ' . $data['cmd']->getEqLogic()->getName();
 			}
@@ -427,7 +427,7 @@ class interactQuery {
 		$listener = new listener();
 		$listener->setClass('interactQuery');
 		$listener->setFunction('warnMeExecute');
-		$data = self::findInQuery('jeeObject', $_query);
+		$data = self::findInQuery('object', $_query);
 		$data = array_merge($data, self::findInQuery('eqLogic', $data['query'], $data));
 		$data = array_merge($data, self::findInQuery('cmd', $data['query'], $data));
 		if (!isset($data['cmd']) || !is_object($data['cmd'])) {
@@ -598,19 +598,19 @@ class interactQuery {
 			if (!is_object($current['eqLogic'])) {
 				return $return;
 			}
-			$current['jeeObject'] = $current['eqLogic']->getJeeObject();
+			$current['object'] = $current['eqLogic']->getObject();
 			$humanName = $current['cmd']->getHumanName();
 		} else {
 			$humanName = strtolower(sanitizeAccent($lastCmd));
-			$current = self::findInQuery('jeeObject', $humanName);
+			$current = self::findInQuery('object', $humanName);
 			$current = array_merge($current, self::findInQuery('summary', $current['query'], $current));
 		}
 
-		$data = self::findInQuery('jeeObject', $_query);
+		$data = self::findInQuery('object', $_query);
 		$data = array_merge($data, self::findInQuery('eqLogic', $data['query'], $data));
 		$data = array_merge($data, self::findInQuery('cmd', $data['query'], $data));
-		if (isset($data['jeeObject']) && is_object($current['jeeObject'])) {
-			$humanName = self::replaceForContextual($current['jeeObject']->getName(), $data['jeeObject']->getName(), $humanName);
+		if (isset($data['object']) && is_object($current['object'])) {
+			$humanName = self::replaceForContextual($current['object']->getName(), $data['object']->getName(), $humanName);
 		}
 		if (isset($data['cmd']) && is_object($current['cmd'])) {
 			$humanName = self::replaceForContextual($current['cmd']->getName(), $data['cmd']->getName(), $humanName);
@@ -820,9 +820,9 @@ class interactQuery {
 						$eqLogic = $cmd->getEqLogic();
 						if (is_object($eqLogic)) {
 							$replace['#equipement#'] = $eqLogic->getName();
-							$jeeObject = $eqLogic->getJeeObject();
-							if (is_object($jeeObject)) {
-								$replace['#objet#'] = $jeeObject->getName();
+							$object = $eqLogic->getObject();
+							if (is_object($object)) {
+								$replace['#objet#'] = $object->getName();
 							}
 						}
 					}

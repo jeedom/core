@@ -44,9 +44,9 @@ try {
 		}
 		$return['userProfils']['defaultMobileObjectName'] = __('Objet', __FILE__);
 		if ($_SESSION['user']->getOptions('defaultDashboardObject') != '') {
-			$jeeObject = jeeObject::byId($_SESSION['user']->getOptions('defaultDashboardObject'));
-			if (is_object($jeeObject)) {
-				$return['userProfils']['defaultMobileObjectName'] = $jeeObject->getName();
+			$object = jeeObject::byId($_SESSION['user']->getOptions('defaultDashboardObject'));
+			if (is_object($object)) {
+				$return['userProfils']['defaultMobileObjectName'] = $object->getName();
 			}
 		}
 

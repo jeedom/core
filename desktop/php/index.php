@@ -247,8 +247,8 @@ if (!isConnect()) {
 										<a data-toggle="dropdown" id="bt_gotoDashboard" href="index.php?v=d&p=dashboard"><i class="fa fa-dashboard"></i> {{Dashboard}}</a>
 										<ul class="dropdown-menu scrollable-menu" role="menu" style="height: auto;max-height: 600px; overflow-x: hidden;">
 											<?php
-foreach (jeeObject::buildTree(null, false) as $jeeObject_li) {
-			echo '<li><a href="index.php?v=d&p=dashboard&jeeObject_id=' . $jeeObject_li->getId() . '">' . $jeeObject_li->getHumanName(true) . '</a></li>';
+foreach (jeeObject::buildTree(null, false) as $object_li) {
+			echo '<li><a href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '">' . $object_li->getHumanName(true) . '</a></li>';
 		}
 		?>
 										</ul>
@@ -320,7 +320,7 @@ if (isConnect('admin')) {
 								<li class="dropdown cursor">
 									<a data-toggle="dropdown"><i class="fa fa-wrench"></i> <span class="hidden-xs hidden-sm hidden-md">{{Outils}}</span> <b class="caret"></b></a>
 									<ul class="dropdown-menu" role="menu">
-										<li><a href="index.php?v=d&p=jeeObject"><i class="fa fa-picture-o"></i> {{Objets}}</a></li>
+										<li><a href="index.php?v=d&p=object"><i class="fa fa-picture-o"></i> {{Objets}}</a></li>
 										<li><a href="index.php?v=d&p=interact"><i class="fa fa-comments-o"></i> {{Interactions}}</a></li>
 										<li><a href="index.php?v=d&p=display"><i class="fa fa-th"></i> {{Résumé domotique}}</a></li>
 										<li><a href = "index.php?v=d&p=scenario"><i class = "fa fa-cogs"></i> {{Scénarios}}</a></li>

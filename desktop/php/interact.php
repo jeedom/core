@@ -284,8 +284,8 @@ foreach (cmd::allUnite() as $unite) {
     <label class="col-sm-3 control-label">{{Limiter aux commandes appartenant aux objets}}</label>
     <div class="col-sm-9">
       <?php
-foreach (jeeObject::all() as $jeeObject) {
-	echo '<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="jeeObject" data-l3key="' . $jeeObject->getId() . '" checked="true" />' . $jeeObject->getName() . '</label> ';
+foreach (jeeObject::all() as $object) {
+	echo '<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="object" data-l3key="' . $object->getId() . '" checked="true" />' . $object->getName() . '</label> ';
 }
 ?>
    </div>
@@ -316,7 +316,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $id => $category) {
   <label class="col-sm-3 control-label">{{Limiter aux visibles}}</label>
   <div class="col-sm-9">
    <?php
-foreach (array('jeeObject' => 'Objets', 'eqlogic' => 'Equipements', 'cmd' => 'Commandes') as $id => $name) {
+foreach (array('object' => 'Objets', 'eqlogic' => 'Equipements', 'cmd' => 'Commandes') as $id => $name) {
 	echo '<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="visible" data-l3key="' . $id . '" />' . $name . '</label> ';
 }
 ?>
