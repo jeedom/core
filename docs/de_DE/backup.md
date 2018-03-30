@@ -1,7 +1,7 @@
 Jeedom a la possibilité d’être sauvegardé et restauré depuis ou à partir
 de différents emplacements.
 
-Configuration 
+Konfiguration
 =============
 
 Accessible depuis **Administration → Sauvegardes**, cette page permet la
