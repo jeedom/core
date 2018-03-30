@@ -168,17 +168,18 @@ if (count($totalScenario) == 0) {
 </div>
 
 <div id="div_editScenario" class="col-xs-10" style="border-left: solid 1px #EEE; padding-left: 25px;display: none;" >
- <a class="btn btn-default btn-sm pull-right" id="bt_graphScenario"><i class="fa fa-object-group"></i> {{Liens}}</a>
- <a class="btn btn-default btn-sm pull-right" id="bt_copyScenario"><i class="fa fa-copy"></i> {{Dupliquer}}</a>
- <a class="btn btn-default btn-sm pull-right" id="bt_logScenario"><i class="fa fa-file-text-o"></i> {{Log}}</a>
- <a class="btn btn-default btn-sm pull-right" id="bt_exportScenario"><i class="fa fa fa-share"></i> {{Exporter}}</a>
+ <a class="btn btn-default btn-sm pull-right" id="bt_graphScenario" title="{{Liens}}"><i class="fa fa-object-group"></i></a>
+ <a class="btn btn-default btn-sm pull-right" id="bt_copyScenario" title="{{Dupliquer}}"><i class="fa fa-copy"></i></a>
+ <a class="btn btn-default btn-sm pull-right" id="bt_logScenario" title="{{Log}}"><i class="fa fa-file-text-o"></i></a>
+ <a class="btn btn-default btn-sm pull-right" id="bt_exportScenario" title="{{Exporter}}"><i class="fa fa fa-share"></i></a>
  <a class="btn btn-danger btn-sm pull-right" id="bt_stopScenario"><i class="fa fa-stop"></i> {{Arrêter}}</a>
- <a class="btn btn-default btn-sm pull-right" id="bt_templateScenario"><i class="fa fa-cubes"></i> {{Template}}</a>
+ <a class="btn btn-default btn-sm pull-right" id="bt_templateScenario" title="{{Template}}"><i class="fa fa-cubes"></i></a>
  <a class="btn btn-success btn-sm pull-right" id="bt_saveScenario2"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
  <a class="btn btn-danger btn-sm pull-right" id="bt_delScenario2"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
  <a class="btn btn-warning btn-sm pull-right" id="bt_testScenario2" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.}}'><i class="fa fa-gamepad"></i> {{Exécuter}}</a>
  <a class="btn btn-primary btn-sm pull-right bt_showExpressionTest"><i class="fa fa-check"></i> {{Expression}}</a>
  <a class="btn btn-primary btn-sm pull-right" id="bt_displayScenarioVariable"><i class="fa fa-eye"></i> {{Variables}}</a>
+ <a class="btn btn-default btn-sm pull-right bt_addScenarioElement"><i class="fa fa-plus-circle"></i> {{Ajouter bloc}}</a>
  <span id="span_ongoing" class="label pull-right" style="font-size : 1em;position:relative;top:5px;"></span>
 
  <ul class="nav nav-tabs" role="tablist">

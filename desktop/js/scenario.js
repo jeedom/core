@@ -351,6 +351,9 @@ $('#div_pageContainer').off('click','.helpSelectCron').on('click','.helpSelectCr
 
 $('#div_pageContainer').off('click','.bt_addScenarioElement').on( 'click','.bt_addScenarioElement', function (event) {
   var elementDiv = $(this).closest('.element');
+  if(elementDiv.html() == undefined){
+     elementDiv = $('#div_scenarioElement');
+  }
   var expression = false;
   if ($(this).hasClass('fromSubElement')) {
     elementDiv = $(this).closest('.subElement').find('.expressions').eq(0);
@@ -857,7 +860,6 @@ function printScenario(_id) {
     $('#span_lastLaunch').text(data.lastLaunch);
 
     $('#div_scenarioElement').empty();
-    $('#div_scenarioElement').append('<a class="btn btn-default btn-sm pull-right bt_addScenarioElement tootlips" title="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)}}"><i class="fa fa-plus-circle"></i> {{Ajouter bloc}}</a><br/><br/>');
     $('.provokeMode').empty();
     $('.scheduleMode').empty();
     $('.scenarioAttr[data-l1key=mode]').trigger('change');
