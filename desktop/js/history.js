@@ -225,46 +225,53 @@ $('#bt_validChangeDate').on('click',function(){
 
 function addChart(_cmd_id, _action,_options) {
     if (_action == 0) {
-        if (isset(jeedom.history.chart['div_graph']) && jeedom.history.chart['div_graph'].chart.get(_cmd_id) !== undefined) {
-            jeedom.history.chart['div_graph'].chart.get(_cmd_id).remove();
-        }
-    } else {
-        lastId = _cmd_id
-        if(init(_options) == ''){
-            _options = {};
-            if(_cmd_id.indexOf('#') != 1){
-                _options.graphType = $('#sel_chartType').value()
-                _options.groupingType = $('#sel_groupingType').value()
-                _options.graphStep =  ($('#cb_step').value() == 0) ? false : true;
-            }
-        }
-        jeedom.history.drawChart({
-            cmd_id: _cmd_id,
-            el: 'div_graph',
-            dateRange : 'all',
-            dateStart : $('#in_startDate').value(),
-            dateEnd :  $('#in_endDate').value(),
-            height : $('#div_graph').height(),
-            option : _options,
-            success: function (data) {
-                if(isset(data.cmd) && isset(data.cmd.display)){
-                    if (init(data.cmd.display.graphStep) != '') {
-                        $('#cb_step').off().value(init(data.cmd.display.graphStep));
-                    }
-                    if (init(data.cmd.display.graphType) != '') {
-                        $('#sel_chartType').off().value(init(data.cmd.display.graphType));
-                    }
-                    if (init(data.cmd.display.groupingType) != '') {
-                        $('#sel_groupingType').off().value(init(data.cmd.display.groupingType));
-                    }
-                    if (init(data.cmd.display.graphDerive) != '') {
-                        $('#cb_derive').off().value(init(data.cmd.display.graphDerive));
-                    }
+        if (isset(jeedom.history.chart['div_graph']) && isset(jeedom.history.chart['div_graph'].chart) && isset(jeedom.history.chart['div_graph'].chart.series)) {
+         $(jeedom.history.chart['div_graph'].chart.series).each(function(i, serie){
+             try {
+                if(serie.options.id == _cmd_id){
+                    serie.remove();
                 }
-                initHistoryTrigger();
+            }catch(error) {
             }
         });
+     }
+ } else {
+    lastId = _cmd_id
+    if(init(_options) == ''){
+        _options = {};
+        if(_cmd_id.indexOf('#') != 1){
+            _options.graphType = $('#sel_chartType').value()
+            _options.groupingType = $('#sel_groupingType').value()
+            _options.graphStep =  ($('#cb_step').value() == 0) ? false : true;
+        }
     }
+    jeedom.history.drawChart({
+        cmd_id: _cmd_id,
+        el: 'div_graph',
+        dateRange : 'all',
+        dateStart : $('#in_startDate').value(),
+        dateEnd :  $('#in_endDate').value(),
+        height : $('#div_graph').height(),
+        option : _options,
+        success: function (data) {
+            if(isset(data.cmd) && isset(data.cmd.display)){
+                if (init(data.cmd.display.graphStep) != '') {
+                    $('#cb_step').off().value(init(data.cmd.display.graphStep));
+                }
+                if (init(data.cmd.display.graphType) != '') {
+                    $('#sel_chartType').off().value(init(data.cmd.display.graphType));
+                }
+                if (init(data.cmd.display.groupingType) != '') {
+                    $('#sel_groupingType').off().value(init(data.cmd.display.groupingType));
+                }
+                if (init(data.cmd.display.graphDerive) != '') {
+                    $('#cb_derive').off().value(init(data.cmd.display.graphDerive));
+                }
+            }
+            initHistoryTrigger();
+        }
+    });
+}
 }
 
 /**************TIMELINE********************/

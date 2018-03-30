@@ -5,8 +5,15 @@
 
  function addChart(_cmd_id, _action) {
  	if (_action == 0) {
- 		if (isset(jeedom.history.chart['div_graph']) && jeedom.history.chart['div_graph'].chart.get(parseInt(_cmd_id)) !== null) {
- 			jeedom.history.chart['div_graph'].chart.get(parseInt(_cmd_id)).remove();
+ 		if (isset(jeedom.history.chart['div_graph']) && isset(jeedom.history.chart['div_graph'].chart) && isset(jeedom.history.chart['div_graph'].chart.series)) {
+ 			$(jeedom.history.chart['div_graph'].chart.series).each(function(i, serie){
+ 				try {
+ 					if(serie.options.id == _cmd_id){
+ 						serie.remove();
+ 					}
+ 				}catch(error) {
+ 				}
+ 			});
  		}
  	} else {
  		lastId = _cmd_id
