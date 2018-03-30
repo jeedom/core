@@ -13,14 +13,15 @@ $sqls[] = "CREATE UNIQUE INDEX `uniqueJeeObject` ON `eqLogic` (`name` ASC, `jeeO
 $sqls[] = "UPDATE `scenario` SET `object_id`=NULL;";
 $sqls[] = "UPDATE `eqLogic` SET `object_id`=NULL;";
 $sqls[] = "ALTER TABLE `scenario` DROP INDEX `name`;";
-$sqls[] = "ALTER TABLE `scenario` DROP FOREIGN KEY `fk_scenario_object1`;";
-$sqls[] = "ALTER TABLE `scenario` DROP INDEX `fk_scenario_object1_idx`;";
+$sqls[] = "ALTER TABLE `scenario` DROP FOREIGN KEY `fk_scenario_object1_idx`;";
+$sqls[] = "ALTER TABLE `scenario` DROP INDEX `object_id`;";
 $sqls[] = "ALTER TABLE `scenario` DROP `object_id`;";
+$sqls[] = "ALTER TABLE `scenario` DROP `fk_scenario_object1_idx`;";
+
 $sqls[] = "ALTER TABLE `eqLogic` DROP INDEX `unique`;";
 $sqls[] = "ALTER TABLE `eqLogic` DROP FOREIGN KEY `fk_eqLogic_object1`;";
 $sqls[] = "ALTER TABLE `eqLogic` DROP INDEX `object_id`;";
 $sqls[] = "ALTER TABLE `eqLogic` DROP `object_id`;";
-
 foreach ($sqls as $sql) {
 	try {
 		DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
