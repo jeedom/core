@@ -132,8 +132,8 @@ foreach (plugin::listPlugin(true) as $plugin) {
 		$js_file[] = 'plugins/' . $plugin->getId() . '/mobile/js/event.js';
 	}
 	if ($plugin->getMobile() != '') {
-		if (file_exists(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/doc/images/' . $plugin->getId() . '_icon.png')) {
-			$other_file[] = 'plugins/' . $plugin->getId() . '/doc/images/' . $plugin->getId() . '_icon.png';
+		if (file_exists(dirname(__FILE__) . '/' . $plugin->getPathImgIcon())) {
+			$other_file[] = $plugin->getPathImgIcon();
 		}
 		if (method_exists($plugin->getId(), 'mobileManifest')) {
 			$plugin_id = $plugin->getId();
