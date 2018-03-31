@@ -120,26 +120,25 @@ Dies kann auf mehrere Dinge zurückgeführt werden, es ist notwendig :
 - Stellen Sie sicher, dass Sie Platz auf Jeedom haben ( auf der Gesundheitsseite wird es ihnen angezeigt)
 - Vérifier que votre version de Jeedom est bien compatible avec le plugin
 
-J’ai une page blanche 
+Ich habe eine leere Seite.
 =====================
 
-Il faut se connecter en SSH à Jeedom et lancer le script
-d’auto-diagnostic :
+Sie müssen eine Verbindung mit SSH zu Jeedom herstellen, und führen
+sie dann ein Selbsttest-Skript aus :
 
 ``` {.bash}
 sudo chmod +x /var/www/html/health.sh;sudo /var/www/html/health.sh
 ```
 
-S’il y a un souci, le script essaiera de le corriger. S’il n’y arrive
-pas, il vous l’indiquera.
+Wenn es Probleme gibt, versucht das Skript sie zu korrigieren, wenn das
+nicht funktioniert, werden sie informiert.
 
-Vous pouvez aussi regarder le log /var/www/html/log/http.error. Très
-souvent, celui-ci indique le souci.
+Sie können sich auch das Protokoll /var/www/html/log/http.error ansehen. Sehr oft zeigt dieses die Probleme an.
 
-J’ai un problème d’identifiant BDD 
+Ich habe ein Problem mit der BDD-Kennung
 ==================================
 
-Il faut réinitialiser ceux-ci :
+Sie müssen diese Zurücksetzen :
 
 ``` {.bash}
 bdd_password=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
@@ -159,43 +158,42 @@ La cause la plus fréquente est l’utilisation d’un plugin en version beta
 et Jeedom en stable, ou l’inverse. Pour avoir le détail de l’erreur, il
 faut regarder le log http.error (dans /var/www/html/log).
 
-Lors d’une commande j’ai une roue qui tourne sans s’arrêter 
+Bei einem Befehl habe ich ein Rad, das sich dreht, ohne stehen zu bleiben
 ===========================================================
 
-Encore une fois cela est souvent dû à un plugin en beta alors que Jeedom
-est en stable. Pour voir l’erreur, il faut faire F12 puis console.
+Wiederum ist dies oft aufgrund eines Beta Plugin während Jeedom stabiler ist.
+Um den Fehler zu sehen, müssen Sie F12 drücken dann die Konsole ausführen.
 
-Je n’ai plus accès à Jeedom, ni par l’interface web ni en console par SSH 
+Ich habe keinen Zugriff mehr auf Jeedom, weder über das Webinterface noch in der Konsole mit SSH
 =========================================================================
 
-Cette erreur n’est pas due à Jeedom, mais à un problème avec le système.
-Si celui-ci persiste suite à une réinstallation, il est conseillé de
-voir avec le SAV pour un souci hardware.
+Dieser Fehler ist nicht in Jeedom sondern ein Problem in dem System.
+Wenn das Problem infolge einer Reinstallation besteht, wird 
+empfohlen, mit Service die Hardware-Problemen anzusehen .
 
-Mon scénario ne s’arrête plus/pas 
+Mein Szenario hört nicht mehr auf
 =================================
 
-Il est conseillé de regarder les commandes exécutées par le scénario,
-souvent cela vient d’une commande qui ne se termine pas.
+Er wird empfohlen die Befehle anzusehen, die das Scenario ausführen, oft
+kommt das von einem Befehl, der nicht endet .
 
-J’ai des instabilités ou des erreurs 504 
+Ich habe Instabilitäten oder Fehler 504
 ========================================
 
-Vérifiez si votre système de fichiers n’est pas corrompu, en SSH la
-commande est : "sudo dmesg | grep error" .
+Überprüfen Sie, ob das Dateisystem nicht beschädigt ist, in SSH ist der Befehl : "sudo dmesg | grep error" .
 
-Je ne vois pas tous mes équipements sur le dashboard 
+Ich sehe nicht, alle meine Geräte auf dem Armaturenbrett
 ====================================================
 
 Souvent cela est dû au fait que les équipements sont affectés à un objet
 qui n’est pas le fils ou l’objet lui-même du premier objet sélectionné à
 gauche dans l’arbre (vous pouvez configurer celui-ci dans votre profil).
 
-J’ai l’erreur suivante : SQLSTATE\[HY000\] \[2002\] Can’t connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' 
+Ich habe die folgende Fehlermeldung : SQLSTATE [HY000] [2002] Kann nicht auf lokalen MySQL-Server verbinden '/var/run/mysqld/mysqld.sock'
 ====================================================================================================================================
 
-Cela est dû à MySQL qui s’est arrêté, ce n’est pas normal, les cas
-courants sont :
+Dass ist MySQL-Code der sich aufgehängt hat, das ist nicht normal, die
+üblichen Probleme sind :
 
 -   Manque de place sur le système de fichiers (peut être vérifié en
     faisant la commande "df -h", en SSH)
@@ -215,9 +213,9 @@ service mysql stop
 mysqld --verbose
 ```
 
-Ou consulter le log : /var/log/mysql/error.log
+Oder in das Protokoll sehen  : /var/log/mysql/error.log
 
-Les boutons Eteindre/Redémarrer ne fonctionnent pas 
+Die Ausschalten/Neustart Schaltflächen funktionieren nicht
 ===================================================
 
 Sur une installation DIY c’est normal. En SSH, il faut faire la commande
@@ -231,8 +229,8 @@ sudo service apache2 restart
 Je ne vois pas certains plugins du Market 
 =========================================
 
-Ce genre de cas arrive si votre Jeedom n’est pas compatible avec le
-plugin. En général, une mise à jour de jeedom corrige le souci.
+Diese Art von Ereignissen kommen vor, wenn Ihr Jeedom mit dem Plugin nicht
+kompatibel ist. Im Allgemeinen verbessert eine Jeedom Aktualisierung diese Probleme.
 
 J'ai un équipement en timeout mais je ne le vois pas sur le dashboard
 =========================================
