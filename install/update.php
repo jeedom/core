@@ -112,13 +112,6 @@ try {
 		}
 		jeedom::stop();
 		if (init('update::reapply') == '' && config::byKey('update::allowCore', 'core', 1) != 0) {
-			try {
-				echo 'Clean temporary files (tmp)...';
-				shell_exec('rm -rf ' . dirname(__FILE__) . '/../install/update/*');
-				echo "OK\n";
-			} catch (Exception $e) {
-				echo '***ERROR*** ' . $e->getMessage() . "\n";
-			}
 			$tmp_dir = jeedom::getTmpFolder('install');
 			$tmp = $tmp_dir . '/jeedom_update.zip';
 			try {
@@ -193,13 +186,29 @@ try {
 					jeedom::update($_GET);
 					die();
 				}
-
+				try {
+					echo 'Clean temporary files (tmp)...';
+					shell_exec('rm -rf ' . dirname(__FILE__) . '/../install/update/*');
+					shell_exec('rm -rf ' . dirname(__FILE__) . '/../doc');
+					shell_exec('rm -rf ' . dirname(__FILE__) . '/../docs');
+					shell_exec('rm -rf ' . dirname(__FILE__) . '/../support');
+					echo "OK\n";
+				} catch (Exception $e) {
+					echo '***ERROR*** ' . $e->getMessage() . "\n";
+				}
 				echo "Moving files...";
 				$update_begin = true;
 				rmove($cibDir . '/', dirname(__FILE__) . '/../', false, array(), true);
 				echo "OK\n";
 				echo "Remove temporary files...";
 				rrmdir($tmp_dir);
+				try {
+					shell_exec('rm -rf ' . dirname(__FILE__) . '/../tests');
+					shell_exec('rm -rf ' . dirname(__FILE__) . '/../.travis.yml');
+					shell_exec('rm -rf ' . dirname(__FILE__) . '/../phpunit.xml.dist');
+				} catch (Exception $e) {
+					echo '***ERROR*** ' . $e->getMessage() . "\n";
+				}
 				echo "OK\n";
 				config::save('update::lastDateCore', date('Y-m-d H:i:s'));
 			} catch (Exception $e) {
