@@ -55,7 +55,7 @@ if (!isConnect('admin')) {
 					$('#div_noteManagementAlert').showAlert({message: error.message, level: 'danger'});
 				},
 				success: function (notes) {
-					$('#div_noteManagementAlert').showAlert({message: '{{Note crée avec succès}}', level: 'success'});
+					$('#div_noteManagementAlert').showAlert({message: '{{Note créée avec succès}}', level: 'success'});
 					updateNoteList();
 				}
 			});
