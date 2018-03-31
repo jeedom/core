@@ -322,6 +322,16 @@ class update {
 						}
 						$zip->close();
 						unlink($tmp);
+						try {
+							if (file_exists(dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId() . '/doc')) {
+								shell_exec('sudo rm -rf ' . dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId() . '/doc');
+							}
+							if (file_exists(dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId() . '/docs')) {
+								shell_exec('sudo rm -rf ' . dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId() . '/docs');
+							}
+						} catch (Exception $e) {
+
+						}
 						if (!file_exists($cibDir . '/plugin_info')) {
 							$files = ls($cibDir, '*');
 							if (count($files) == 1 && file_exists($cibDir . '/' . $files[0] . 'plugin_info')) {
