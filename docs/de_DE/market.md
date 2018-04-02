@@ -1,8 +1,7 @@
-Doc un peu particulière car elle va traiter uniquement de votre page
-profil du market.
+Die Dokumentation ist etwas Besonderes, weil sie sich nur mit Ihrer
+Profilseiteauf dem Markt befassen wird.
 
-Disponible en allant sur votre nom d’utilisateur puis profil à partir du
-market (un peu comme sur Jeedom).
+Verfügbar, indem Sie zu Ihrem Benutzernamen dann Profil vom Markt gehen (ein bisschen wie Jeedom).
 
 Er besteht aus mehreren Teilen :
 
@@ -14,68 +13,68 @@ profil :
 
 -   **Profil**
 
-    -   **Login** : Votre login sur le market, il ne peut être changé
+    -   **Login** : Ihre Anmeldung auf dem Markt, es kann nicht geändert werden.
 
-    -   **Nom** : Votre nom (cette information n’est utile que pour
-        rendre les mails plus sympa)
+    -   **Name** : Ihr Name (Diese Information ist sinnvoll, um freundliche 
+        E-Mails zubekommen)
 
-    -   **Prénom** : Votre prénom (cette information n’est utile que
-        pour rendre les mails plus sympa)
+    -   **Vorname** : Ihren Vorname (Diese Information ist sinnvoll,
+        um freundliche E-Mails zubekommen)
 
-    -   **Nom d’utilisateur sur le forum** : Votre pseudo sur le forum
+    -   **Benutzername im Forum** : Ihr Nickname im Forum
 
     -   **Email** : Ihre E-Mail
 
-    -   **Langue** : Votre langue
+    -   **Sprache** : Ihre Sprache
 
-    -   **Mot de passe && Confirmer le mot de passe** : permet de
-        changer votre mot passe
+    -   **Passwort && Passwort bestätigen** : Um ihr
+        Passwort zu ändern.
 
-Pour les développeurs :
+Für die Entwickler :
 
--   **Nom d’utilisateur sur le forum** : Votre pseudo sur le forum
+-   **Benutzername im Forum** : Ihr Nickname im Forum
 
--   **Email public** : Votre mail pour recevoir des éventuelles
-    communications de notre part
+-   ** öffentlich E-Mail** : Ihre E-Mail, um Mitteilungen von 
+    uns zu erhalten
 
--   **Compte paypal** : Votre mail de compte Paypal (uniquement utilisé
-    pour payer les developpeurs)
+-   **Paypal Konto** : Ihre E-Mail vom Paypal Konto (wird nur verwendet,
+    um die Entwickler zu bezahlen)
 
-Pour les pros :
+Für die Profis :
 
--   **Compte mail installateur** : Votre mail de contact pro
+-   **E-Mail-Installer-Konto** : Ihre E-Mail-Kontakt-Adresse
 
--   **Destinataire des demandes de support** : savoir qui recevra les
-    mails de support (client final, installateur ou les deux)
+-   **Empfänger von Supportanfragen** : Wer erhält Support-E-Mails
+    (Endkunde, Installateur oder beides)
 
-    -   **CGU**
+    -   **CGU** AGB allgemeine Geschäftsbedingungen
 
--   **Utilisateur** : conditions générales d’utilisation (attention à
-    bien les lire car elles vous engage)
+-   **Benutzer** : Allgemeine Geschäftsbedingungen (Achtung, vor 
+    Benutzung gut durchlesen)
 
--   **Developpeur** : conditions générales d’utilisation pour les
-    développeurs
+-   **Entwickler** : Allgemeine Geschäftsbedingungen für 
+    Entwickler
 
-    -   **Tickets**
+    -   **Gutscheine**
 
--   **Nombre de tickets** : Nombre de tickets pour le mois en cours
-    ainsi que votre limite
+-   **Gutschein Anzahl** : Anzahl der Gutscheine für den laufenden Monat, 
+    sowie Ihr Limit
 
--   **Support** : bouton pour envoyer une demande de support (accessible
-    aussi par le point d’exclamation en haut à droite sur le market ou
-    sur votre Jeedom)
+-   **Support** : Schaltfläche, um eine Support-Anfrage zu senden (auch
+    zugänglich durch das Ausrufezeichen am rechten oberen Rand auf dem 
+    Markt oder auf ihrem Jeedom). 
 
-    -   **Accés aux betas**
+    -   **Zugriff auf Betas**
 
--   **Activer l’accès aux plugins beta** : permet d’activer l’accès aux
-    plugins betas (attention cela vous interdira tout accès au support)
+-   **Zugriff auf die Beta-Plugins aktivieren** : Ermöglicht es, den Zugang zu den 
+    Beta Plugins zu aktivieren (Achtung, dadurch wird Ihnen den Zugriff auf den Support verboten)
 
-    -   **Résumé** Ici vous retrouverez un résumé de vos différents
-        droits et services
+    -   **Zusammenfassung** : Hier finden Sie eine Zusammenfassung Ihrer
+        verschiedenen Rechte und Dienstleistungen
 
-> **Tip**
+> **Tipp**
 >
-> N’oubliez pas de sauvegarder
+> Vergessen Sie nicht, zu speichern !
 
 Mes Jeedoms 
 ===========

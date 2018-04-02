@@ -118,7 +118,7 @@ Dies kann auf mehrere Dinge zurückgeführt werden, es ist notwendig :
 - Überprüfen Sie, dass Ihr Jeedom immer noch mit dem Markt verbunden ist (auf der Jeedom Administration Page, im Abschnitt Update haben Sie eine Test-Schaltfläche)
 - Überprüfen Sie das auf dem Markt-Konto das betreffende Plugin richtig gekauft wurde
 - Stellen Sie sicher, dass Sie Platz auf Jeedom haben ( auf der Gesundheitsseite wird es ihnen angezeigt)
-- Vérifier que votre version de Jeedom est bien compatible avec le plugin
+- Überprüfen Sie, ob Ihre Version von Jeedom mit dem Plugin kompatibel ist
 
 Ich habe eine leere Seite.
 =====================
@@ -151,12 +151,12 @@ sudo sed -i -e "s/#PASSWORD#/${bdd_password}/g" core/config/common.config.php
 sudo chown www-data:www-data core/config/common.config.php
 ```
 
-J’ai des {{…​}} partout 
+Ich habe überall {{…​}}
 =======================
 
-La cause la plus fréquente est l’utilisation d’un plugin en version beta
-et Jeedom en stable, ou l’inverse. Pour avoir le détail de l’erreur, il
-faut regarder le log http.error (dans /var/www/html/log).
+Die häufigste Ursache ist die Verwendung eines Beta-Plugins und Jeedom
+im stabilen Zustand oder umgekehrt. Details zum Fehler finden Sie im
+Protokoll http.error (in /var/www/html/log).
 
 Bei einem Befehl habe ich ein Rad, das sich dreht, ohne stehen zu bleiben
 ===========================================================
@@ -185,9 +185,7 @@ Ich habe Instabilitäten oder Fehler 504
 Ich sehe nicht, alle meine Geräte auf dem Armaturenbrett
 ====================================================
 
-Souvent cela est dû au fait que les équipements sont affectés à un objet
-qui n’est pas le fils ou l’objet lui-même du premier objet sélectionné à
-gauche dans l’arbre (vous pouvez configurer celui-ci dans votre profil).
+Oft ist dies aufgrund der Tatsache, dass die Geräte zu einem Objekt zugeordnet sind, nicht der Sohn oder das Objekt selbst des ersten ausgewählten Objekts im Baum links ist (Sie können es in Ihrem Profil einstellen).
 
 Ich habe die folgende Fehlermeldung : SQLSTATE [HY000] [2002] Kann nicht auf lokalen MySQL-Server verbinden '/var/run/mysqld/mysqld.sock'
 ====================================================================================================================================
@@ -195,17 +193,17 @@ Ich habe die folgende Fehlermeldung : SQLSTATE [HY000] [2002] Kann nicht auf lok
 Dass ist MySQL-Code der sich aufgehängt hat, das ist nicht normal, die
 üblichen Probleme sind :
 
--   Manque de place sur le système de fichiers (peut être vérifié en
-    faisant la commande "df -h", en SSH)
+-   Platzmangel im Dateisystem (kann mit dem Befehl
+    "df -h" in SSH überprüft werden)
 
--   Problème de corruption de fichier(s), ce qui arrive souvent suite à
-    un arrêt non propre de Jeedom (coupure de courant)
+-   Dateikorruptionsproblem(e), die häufig aufgrund einer nicht sauberen 
+    Jeedom-Abschaltung (Stromausfall) auftreten
 
-Malheureusement, il n’y a pas beaucoup de solution si c’est le deuxième
-cas, le mieux étant de récupérer une sauvegarde (disponible dans
-/var/www/html/backup par défaut), de réinstaller Jeedom et
-de restaurer la sauvegarde. Vous pouvez aussi regarder pourquoi MySQL ne
-veut pas démarrer depuis une console SSH :
+Leider gibt es nicht viele Lösung, wenn es das letztere ist, das Beste ist, eine
+Sicherung (standardmäßig in /var/www/html/backup verfügbar)
+wiederherzustellen, Jeedom neu installieren und die Sicherung
+wiederherstellen. Sie können auch sehen, warum MySQL nicht von einer
+SSH-Konsole aus starten möchte :
 
 ``` {.bash}
 sudo su -
@@ -218,21 +216,21 @@ Oder in das Protokoll sehen  : /var/log/mysql/error.log
 Die Ausschalten/Neustart Schaltflächen funktionieren nicht
 ===================================================
 
-Sur une installation DIY c’est normal. En SSH, il faut faire la commande
-visudo et à la fin du fichier vous devez ajouter : www-data ALL=(ALL)
-NOPASSWD: ALL.
+Bei einer DIY-Installation ist das normal. In SSH müssen Sie den Befehl
+visudo ausführen und am Ende der Datei müssen Sie folgendes hinzufügen :
+www-data ALL=(ALL)NOPASSWD: ALL .
 
 ``` {.bash}
 sudo service apache2 restart
 ```
 
-Je ne vois pas certains plugins du Market 
+Ich sehe einige Plugins nicht im Markt
 =========================================
 
 Diese Art von Ereignissen kommen vor, wenn Ihr Jeedom mit dem Plugin nicht
 kompatibel ist. Im Allgemeinen verbessert eine Jeedom Aktualisierung diese Probleme.
 
-J'ai un équipement en timeout mais je ne le vois pas sur le dashboard
+Ich habe ein Gerät in Timeout, aber ich sehe es nicht auf dem Armaturenbrett
 =========================================
 
-Les alerte sont classé par priorité, de la moins importante à la plus importante : timeout, batterie warning, batterie danger, alerte warning, alerte danger
+Die Alarme werden nach Priorität klassifiziert, von den unwichtigsten bis zu den wichtigsten: Timeout, Batterie-Warnung, Batterie-Gefahr, Alarm-Warnung, Alarm-Gefahr
