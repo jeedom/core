@@ -325,7 +325,7 @@ class repo_market {
 		$cmd .= ' duplicity collection-status';
 		$cmd .= ' --ssl-no-check-certificate';
 		$cmd .= ' --num-retries 1';
-		$cmd .= ' --timeout 10';
+		$cmd .= ' --timeout 60';
 		$cmd .= ' webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::backupPassword');
 		$cmd .= '@' . config::byKey('market::backupServer') . '/remote.php/webdav/' . config::byKey('market::cloud::backup::name');
 		shell_exec(system::getCmdSudo() . ' rm -rf ~/.cache/duplicity/*');
