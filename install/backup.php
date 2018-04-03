@@ -118,6 +118,8 @@ try {
 		'log',
 		'docs',
 		'doc',
+		'tests',
+		'support',
 		'log',
 		'backup',
 		'.git',
