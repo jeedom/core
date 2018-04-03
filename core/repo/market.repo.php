@@ -233,6 +233,11 @@ class repo_market {
 			$base_dir . '/tmp',
 			$base_dir . '/log',
 			$base_dir . '/backup',
+			$base_dir . '/doc',
+			$base_dir . '/docs',
+			$base_dir . '/plugins/*/doc',
+			$base_dir . '/plugins/*/docs',
+			$base_dir . '/tests',
 			$base_dir . '/.git',
 			$base_dir . '/.log',
 			$base_dir . '/core/config/common.config.php',
@@ -244,7 +249,7 @@ class repo_market {
 		$cmd = system::getCmdSudo() . ' PASSPHRASE="' . config::byKey('market::cloud::backup::password') . '"';
 		$cmd .= ' duplicity incremental --full-if-older-than ' . config::byKey('market::cloud::backup::fullfrequency', 'core', '1M');
 		foreach ($excludes as $exclude) {
-			$cmd .= ' --exclude ' . $exclude;
+			$cmd .= ' --exclude "' . $exclude . '"';
 		}
 		$cmd .= ' --num-retries 1';
 		$cmd .= ' --ssl-no-check-certificate';
