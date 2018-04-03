@@ -120,7 +120,6 @@ try {
 		'doc',
 		'tests',
 		'support',
-		'log',
 		'backup',
 		'.git',
 		'.log',
