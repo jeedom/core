@@ -76,18 +76,18 @@ Für die Profis :
 >
 > Vergessen Sie nicht, zu speichern !
 
-Mes Jeedoms 
+Meine Jeedoms
 ===========
 
--   **Niveau**
+-   **Ebene**
 
-    -   **Jeedom** : votre niveau de service pack
+    -   **Jeedom** : Ihre Service Pack Ebene
 
-    -   **Entrer un numéro de service pack** : permet d’entrer votre
-        numéro de service pack (il se trouve dans le mail envoyé par
-        Jeedom lors de votre commande)
+    -   **Geben Sie eine Service-Pack-Nummer ein** : Ermöglicht es ihnen eine
+        Service-Pack-Nummer einzugeben (Sie ist in der E-Mail von Jeedom,
+        die bei der Bestellung versendet wurde)
 
--   **Clef d’installation**
+-   **Installationsschlüssel**
 
     -   **Nombre de clefs d’installation** : affiche le nombre
         d’installations Jeedom actuellement liées à votre compte ainsi
