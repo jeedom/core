@@ -150,7 +150,7 @@ class listener {
 		if (count($this->getOption()) > 0) {
 			$option = $this->getOption();
 		}
-		if (isset($option['background']) && $option['background'] == false) {
+		if (isset($option['background']) && $option['background'] === false) {
 			$this->execute($_event, $_value);
 		} else {
 			$cmd = dirname(__FILE__) . '/../php/jeeListener.php';
