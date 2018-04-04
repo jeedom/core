@@ -149,7 +149,7 @@ class plugin {
 			}
 			foreach ($results as $result) {
 				try {
-					$listPlugin[] = plugin::byId($result['plugin'], $_translate);
+					$listPlugin[] = plugin::byId($result['plugin']);
 				} catch (Exception $e) {
 					log::add('plugin', 'error', $e->getMessage(), 'pluginNotFound::' . $result['plugin']);
 				} catch (Error $e) {
@@ -165,7 +165,7 @@ class plugin {
 						continue;
 					}
 					try {
-						$listPlugin[] = plugin::byId($pathInfoPlugin, $_translate);
+						$listPlugin[] = plugin::byId($pathInfoPlugin);
 					} catch (Exception $e) {
 						log::add('plugin', 'error', $e->getMessage(), 'pluginNotFound::' . $pathInfoPlugin);
 					} catch (Error $e) {
