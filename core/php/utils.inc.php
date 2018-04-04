@@ -99,7 +99,6 @@ function init($_name, $_default = '') {
 		return $_GET[$_name];
 	}
 	if (isset($_POST[$_name])) {
-		$cache[$_name] = $_POST[$_name];
 		return $_POST[$_name];
 	}
 	if (isset($_REQUEST[$_name])) {
