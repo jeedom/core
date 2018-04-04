@@ -926,7 +926,7 @@ class eqLogic {
 			$this->batteryStatus();
 		}
 		if ($this->_timeoutUpdated) {
-			if ($this->getTimeout() == null) {
+			if (($this->getTimeout() === null) || ($this->getTimeout() == 0) ) {
 				foreach (message::byPluginLogicalId('core', 'noMessage' . $this->getId()) as $message) {
 					$message->remove();
 				}
@@ -1057,7 +1057,7 @@ class eqLogic {
 					}
 				}
 			}
-		} else if ($_pourcent != '' && $_pourcent < $warning_threshold) {
+		} elseif ($_pourcent != '' && $_pourcent < $warning_threshold) {
 			$prevStatus = $this->getStatus('batterywarning', 0);
 			$logicalId = 'warningBattery' . $this->getId();
 			$message = 'Le module ' . $this->getEqType_name() . ' ' . $this->getHumanName() . ' a moins de ' . $warning_threshold . '% de batterie (niveau warning avec ' . $_pourcent . '% de batterie)';
@@ -1103,7 +1103,7 @@ class eqLogic {
 	}
 
 	public function hasRight($_right, $_user = null) {
-		if ($_user != null) {
+		if ($_user !== null) {
 			if ($_user->getProfils() == 'admin' || $_user->getProfils() == 'user') {
 				return true;
 			}
