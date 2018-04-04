@@ -116,6 +116,10 @@ try {
 	$excludes = array(
 		'tmp',
 		'log',
+		'docs',
+		'doc',
+		'tests',
+		'support',
 		'backup',
 		'.git',
 		'.log',
