@@ -265,7 +265,7 @@ try {
 					$info = scenario::timelineDisplay($event);
 					break;
 			}
-			if ($info != null) {
+			if ($info !== null) {
 				$return[] = $info;
 			}
 		}
