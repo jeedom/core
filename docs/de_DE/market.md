@@ -89,31 +89,31 @@ Meine Jeedoms
 
 -   **Installationsschlüssel**
 
-    -   **Nombre de clefs d’installation** : affiche le nombre
-        d’installations Jeedom actuellement liées à votre compte ainsi
-        que la limite autorisée
+    -   **Anzahl der Installationsschlüssel** : Zeigt die Anzahl
+        der Jeedom-Installationen, die derzeit mit Ihrem Konto verknüpft sind,
+        und die zulässige Anzahl an.
 
 > **Tip**
 >
-> Il est possible que le market vous demande parfois de remettre à zéro
-> vos clefs d’installation, c’est normal, il suffit de suivre ce qu’il
-> vous demande
+> Es ist möglich, dass Sie der Markt mal bittet, den Installationsschlüssel
+> wieder auf null zu stellen, das ist normal, folgen Sie einfach den
+> Anweisungen.
 
--   **Mes Jeedoms** : c’est ici que sont listés tous vos Jeedom
+-   **Mein Jeedom** : Hier sind alle Ihre Jeedoms aufgelistet
 
-    -   **Nom** : le nom que vous voulez donner à votre Jeedom (se
-        retrouve dans le nom du backup si vous avez l’abonnement de
-        sauvegarde cloud)
+    -   **Name** : Der Name, den Sie Ihrem Jeedom geben möchten (wird
+        im Namen des Backups verwendet, wenn Sie das Cloud-Backup-
+        Abonnement haben)
 
-    -   **Etat** : permet de voir l’état du Jeedom en question
+    -   **Zustand** : ermöglicht es Ihnen, den Status der Jeedoms abzufragen
 
-    -   **IP locale / distante** : IP ou addresse de ce Jeedom, se
-        configure dans Jeedom, si vous ne mettez rien ça sera la
-        dernière IP connue
+    -   **Lokale/Remote IP** : IP oder Adresse von den Jeedoms,
+        ist in Jeedom konfiguriert, wenn Sie nichts festlegen, wird das die
+        letzte bekannt IP sein
 
-    -   **DNS** : permet de personnaliser le nom de votre DNS
+    -   **DNS** : ermöglicht es, den Namen Ihrer DNS anzupassen
 
-    -   **URL** : liste les différentes URL d’accès au Jeedom.
+    -   **URL** : listet die verschiedenen Zugangs-URLs zu Jeedom auf.
 
     -   **Serveur DNS** : vous indique si le serveur DNS auquel vous
         êtes rattachés
