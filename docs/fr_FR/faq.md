@@ -238,3 +238,14 @@ J'ai un équipement en timeout mais je ne le vois pas sur le dashboard
 =========================================
 
 Les alerte sont classé par priorité, de la moins importante à la plus importante : timeout, batterie warning, batterie danger, alerte warning, alerte danger
+
+Mon Jeedom affiche en permanance "En cours de démarrage" même après 1h ? 
+=====================================
+
+Si vous etes en DIY et sous Debian 9 ou plus, vérifiez qu'il n'y a pas eu une mise à jour d'Apache et donc le retour du privateTmp (visible en faisant `ls /tmp` et voir si il y a un dossier private\*Apache). Si c'est le cas il faut faire :
+
+``` 
+mkdir /etc/systemd/system/apache2.service.d
+echo "[Service]" > /etc/systemd/system/apache2.service.d/privatetmp.conf
+echo "PrivateTmp=no" >> /etc/systemd/system/apache2.service.d/privatetmp.conf
+``` 
