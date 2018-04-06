@@ -192,12 +192,12 @@ if ($market->getHardwareCompatibility('Jeedomboard') == 1) {
       </div>
     </div>
     <div class='col-sm-6'>
-      <legend>Utilisation</legend>
+      <legend>{{Utilisation}}</legend>
       <span class="marketAttr" data-l1key="utilization" style="word-wrap: break-word;white-space: -moz-pre-wrap;white-space: pre-wrap;" ></span>
     </div>
   </div>
   <br/>
-  <legend>Informations complementaires</legend>
+  <legend>{{Informations complementaires}}</legend>
   <div class="form-group">
     <div class='row'>
       <div class='col-sm-2'>
@@ -220,7 +220,7 @@ if ($market->getHardwareCompatibility('Jeedomboard') == 1) {
       <span class="marketAttr" data-l1key="type"></span>
     </div>
     <div class='col-sm-2'>
-      <label class="control-label">Langue disponible</label><br/>
+      <label class="control-label">{{Langue disponible}}</label><br/>
       <?php
 echo '<img src="core/img/francais.png" width="30" />';
 if ($market->getLanguage('en_US') == 1) {
