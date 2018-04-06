@@ -930,7 +930,7 @@ class scenarioExpression {
 				case '#njour#':
 					$return['#njour#'] = (int) date('w');
 					break;
-				case '#jeedom_name#':
+				case '#name#':
 					$return['#jeedom_name#'] = '"' . config::byKey('name') . '"';
 					break;
 				case '#hostname#':
@@ -1368,6 +1368,11 @@ class scenarioExpression {
 					$this->setLog($scenario, __('Lancement de l\'arret de jeedom', __FILE__));
 					$scenario->persistLog();
 					jeedom::haltSystem();
+					return;
+				} elseif ($this->getExpression() == 'jeedom_reboot') {
+					$this->setLog($scenario, __('Lancement du reboot de jeedom', __FILE__));
+					$scenario->persistLog();
+					jeedom::rebootSystem();
 					return;
 				} elseif ($this->getExpression() == 'scenario_return') {
 					$this->setLog($scenario, __('Demande de retour d\'information : ', __FILE__) . $options['message']);
