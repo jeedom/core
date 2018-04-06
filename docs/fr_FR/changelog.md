@@ -9,6 +9,7 @@ Changelog
 -   Ajout d'un systeme de prise de note intégré (dans Analyse -> Note)
 -   Ajout de la notion de tag sur les équipements (se trouve dans la configuration avancée de l'équipement)
 -   Ajout d'un système d'historique sur la suppression des commandes, équipements, objets, vue, design, deisgn 3d, scénario et utilisateur
+-   Ajout de l'action jeedom_reboot pour lancer un redémarrage de Jeedom
 
 3.2.2
 =====
