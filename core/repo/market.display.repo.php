@@ -51,6 +51,7 @@ echo '<img src="' . $default_image . '" data-original="' . $urlPath . '"  class=
    <input class="form-control marketAttr" data-l1key="id" style="display: none;">
    <span class="marketAttr" data-l1key="name" placeholder="{{Nom}}" style="font-size: 3em;font-weight: bold;"></span>
    <br/>
+   <span style="font-size: 1.5em;font-weight: bold;color:#707070;">by <?php echo $market->getAuthor(); ?></span><br/>
    <?php
 if ($market->getCertification() == 'Officiel') {
 	echo '<span style="font-size : 1.5em;color:#707070">Officiel</span><br/>';
@@ -62,7 +63,8 @@ if ($market->getCertification() == 'Obsolète') {
 	echo '<span style="font-size: 1.5em;font-weight: bold;color:#e74c3c;">Obsolète</span><br/>';
 }
 ?>
-   <span class="marketAttr" data-l1key="categorie" style="font-size: 1em;font-weight: bold;"></span>
+
+   <span class="marketAttr" data-l1key="categorie" style="font-size: 1em;font-weight: bold;color:#707070;"></span>
    <br/><br/>
    <?php
 if ($market->getPurchase() == 1) {
@@ -198,12 +200,6 @@ if ($market->getHardwareCompatibility('Jeedomboard') == 1) {
   <legend>Informations complementaires</legend>
   <div class="form-group">
     <div class='row'>
-      <div class='col-sm-2'>
-        <label class="control-label">{{Auteur}}</label><br/>
-        <span><?php echo $market->getAuthor(); ?></span><br/>
-        <label class="control-label">{{Dernière mise à jour par}}</label><br/>
-        <span><?php echo $market->getUpdateBy(); ?></span>
-      </div>
       <div class='col-sm-2'>
        <label class="control-label">{{Taille}}</label><br/>
        <span><?php echo $market->getParameters('size'); ?></span><br/>
