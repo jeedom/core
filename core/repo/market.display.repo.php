@@ -202,7 +202,9 @@ if ($market->getHardwareCompatibility('Jeedomboard') == 1) {
     <div class='row'>
       <div class='col-sm-2'>
        <label class="control-label">{{Taille}}</label><br/>
-       <span><?php echo $market->getParameters('size'); ?></span><br/>
+       <span><?php echo $market->getParameters('size'); ?></span>
+     </div>
+     <div class='col-sm-2'>
        <label class="control-label">{{Lien}}</label><br/>
        <?php if ($market->getLink('video') != '' && $market->getLink('video') != 'null') {?>
        <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('video'); ?>"><i class="fa fa-youtube"></i> Video</a><br/>
