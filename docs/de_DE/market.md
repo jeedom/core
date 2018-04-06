@@ -8,8 +8,7 @@ Er besteht aus mehreren Teilen :
 Mein Profil 
 ==========
 
-C’est ici que vous allez pouvoir régler différents paramètres de votre
-profil :
+Hier können sie verschiedene Einstellungen Ihres Profiles anpassen :
 
 -   **Profil**
 
@@ -115,59 +114,57 @@ Meine Jeedoms
 
     -   **URL** : listet die verschiedenen Zugangs-URLs zu Jeedom auf.
 
-    -   **Serveur DNS** : vous indique si le serveur DNS auquel vous
-        êtes rattachés
+    -   **DNS Server** : zeigt Ihnen den DNS-Server an, wenn Sie mit im
+        verbunden sind
 
-    -   **Statut du DNS** : permet de voir le statut du DNS
+    -   **DNS-Status** : Zeigt den Status des DNS an
 
-    -   **Date de création** : date de création de ce Jeedom sur votre
-        compte market (pour rappel cela se fait automatiquement lorsque
-        vous le liez au market)
+    -   **Erstellungsdatum** : Datum der Erstellung des Jeedoms auf Ihrem
+        Marktkonto (zur Erinnerung, dies geschieht automatisch, wenn Sie es mit
+        dem Markt verbinden)
 
-    -   **Dernière mise à jour** : dernière communication du Jeedom avec
-        le market
+    -   **Zuletzt aktualisiert** : die letzte Kommunikation von Jeedom mit 
+        dem Markt
 
     -   **Hardware** : Name der Jeedom Hardware
 
-    -   **Version** : la version de Jeedom installée
+    -   **Version** : installierte Jeedom Version
 
-> **Tip**
+> **Tipp**
 >
-> N’oubliez pas de sauvegarder
+> Vergessen Sie nicht, zu speichern !
 
-Mes backups 
+Meine Sicherungen
 ===========
 
-Sur cette onglet vous pouvez consulter les backups présents sur le
-market et en télécharger un. En dessous vous avez accès au lien pour
-acheter 1,3,6 ou 12 mois d’abonnement à la sauvegarde cloud
+Auf dieser Registerkarte können sie die vorhandenen Sicherungen auf dem
+Markt ansehen und herunterladen. Im folgenden haben sie Zugriff auf die
+Links, zum kauf von einem 1,3,6 oder 12-Monats-Abonnement für die Backup Cloud.
 
-Mes SMS/Appels 
+Meine SMS/Anrufe
 ==============
 
-Sur cette onglet vous pouvez consulter votre solde SMS/Appels
-(utilisable avec le plugin Phone market). En dessous vous avez les
-différentes options permettant d’acheter du solde supplémentaire.
+Auf dieser Registerkarte können Sie Ihr SMS/Anruf Guthaben (mit dem Plugin Telefon Markt) abrufen. Im Folgenden haben Sie die verschiedenen Möglichkeiten, zusätzliches Guthaben zu kaufen.
 
-Mes achats/promos/dons 
+Meine Einkäufe/Gutscheine/Spenden
 ======================
 
-Ici vous retrouvez tous vos achats et vous pouvez demander le renvoi du
-mail de facture ou de reçu
+Hier finden sie all ihre Einkäufe und Sie können die Überweisung der E-Mail
+Rechnung oder Quittung anfordern.
 
 > **Important**
 >
-> Si vous achetez un plugin officiel vous recevez une facture. En
-> revanche pour un plugin tiers c’est un reçu, pour la facture il faut
-> la demander au développeur
+> Wenn sie ein offizielles Plugin kaufen, erhalten sie eine Rechnung, im
+> Gegensatz zu einem Plugin von dritten, ist das eine Quittung, für die
+> Rechnung muss man den Entwickler fragen.
 
-Vous pouvez aussi à partir de cet onglet entrer un code promo (un code
-pour un plugin par exemple que le développeur a pu vous transmettre) et
-faire un don.
+Sie können auch darin einen Gutscheincode eingeben (zum Beispiel ein
+Code für ein Plugin, dass der Entwickler an sie weitergegeben hat) und eine
+Spende machen.  
 
-Mes développments 
+Meine Entwicklungen
 =================
 
-Si vous êtes développeur vous retrouvez ici la liste de toutes vos
-ventes sur une période, la liste de vos versements ainsi qu’un résumé du
-nombre de téléchargements, du nombre de ventes…​
+Wenn sie Entwickler sind finden sie hier eine Liste aller Verkäufe über einen
+Zeitraum, die Liste der Zahlungen und eine Übersicht über die Anzahl der
+Downloads, die Zahl der Verkäufe ...
