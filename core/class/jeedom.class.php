@@ -256,6 +256,13 @@ class jeedom {
 			$state = network::test('external');
 		}
 		$return[] = $cache_health;
+		$state = shell_exec('systemctl show apache2 | grep  PrivateTmp | grep yes | wc -l');
+		$return[] = array(
+			'name' => __('Apache private tmp', __FILE__),
+			'state' => $state,
+			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
+			'comment' => ($state) ? '' : __('Veuillez désactiver le private tmp d\'Apache (Jeedom ne peut marcher avec). Voir ', __FILE__) . '<a href="https://jeedom.github.io/core/fr_FR/faq#tocAnchor-1-29" target="_blank">' . __('ici', __FILE__) . '</a>',
+		);
 		return $return;
 	}
 
