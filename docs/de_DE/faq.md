@@ -234,3 +234,14 @@ Ich habe ein Gerät in Timeout, aber ich sehe es nicht auf dem Armaturenbrett
 =========================================
 
 Die Alarme werden nach Priorität klassifiziert, von den unwichtigsten bis zu den wichtigsten: Timeout, Batterie-Warnung, Batterie-Gefahr, Alarm-Warnung, Alarm-Gefahr
+
+Mon Jeedom affiche en permanance "En cours de démarrage" même après 1h ? 
+=====================================
+
+Si vous etes en DIY et sous Debian 9 ou plus, vérifiez qu'il n'y a pas eu une mise à jour d'Apache et donc le retour du privateTmp (visible en faisant `ls /tmp` et voir si il y a un dossier private\*Apache). Si c'est le cas il faut faire :
+
+``` 
+mkdir /etc/systemd/system/apache2.service.d
+echo "[Service]" > /etc/systemd/system/apache2.service.d/privatetmp.conf
+echo "PrivateTmp=no" >> /etc/systemd/system/apache2.service.d/privatetmp.conf
+```
