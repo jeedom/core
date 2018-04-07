@@ -116,6 +116,9 @@ class history {
 				$archivePackage = '0' . $archivePackage;
 			}
 		}
+		if ($archiveDatetime === false) {
+			$archiveDatetime = date('Y-m-d H:i:s', strtotime('- 1 hours'));
+		}
 		$values = array(
 			'archiveDatetime' => $archiveDatetime,
 		);
@@ -130,12 +133,14 @@ class history {
 			}
 			if ($cmd->getConfiguration('historyPurge', '') != '') {
 				$purgeTime = date('Y-m-d H:i:s', strtotime($cmd->getConfiguration('historyPurge', '')));
-				$values = array(
-					'cmd_id' => $cmd->getId(),
-					'datetime' => $purgeTime,
-				);
-				$sql = 'DELETE FROM historyArch WHERE cmd_id=:cmd_id AND `datetime` < :datetime';
-				DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+				if ($purgeTime !== false) {
+					$values = array(
+						'cmd_id' => $cmd->getId(),
+						'datetime' => $purgeTime,
+					);
+					$sql = 'DELETE FROM historyArch WHERE cmd_id=:cmd_id AND `datetime` < :datetime';
+					DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+				}
 			}
 			if (!$JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth'] || $cmd->getConfiguration('historizeMode', 'avg') == 'none') {
 				$values = array(
