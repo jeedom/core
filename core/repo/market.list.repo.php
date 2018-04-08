@@ -6,10 +6,11 @@ if (!isConnect('admin')) {
 $type = init('type', null);
 $categorie = init('categorie', null);
 $name = init('name', null);
+$author = init('author', null);
 if ($name == 'false') {
 	$name = null;
 }
-if ($name === null && $categorie === null && init('certification', null) === null && init('cost', null) === null && $type == 'plugin') {
+if ($author == null && $name === null && $categorie === null && init('certification', null) === null && init('cost', null) === null && $type == 'plugin') {
 	$default = true;
 	$markets = repo_market::byFilter(array(
 		'status' => 'stable',
@@ -30,6 +31,7 @@ if ($name === null && $categorie === null && init('certification', null) === nul
 			'type' => $type,
 			'categorie' => $categorie,
 			'name' => $name,
+			'author' => $author,
 			'cost' => init('cost', null),
 			'timeState' => init('timeState'),
 			'certification' => init('certification', null),
@@ -59,10 +61,10 @@ function displayWidgetName($_name) {
 	}
 	switch ($name[1]) {
 		case 'info':
-			$result .= '<i class="fa fa-eye fa-fw" title="Widget de type information"></i> ';
+			$result .= '<i class="fa fa-eye fa-fw" title="{{Widget de type information}}"></i> ';
 			break;
 		case 'action':
-			$result .= '<i class="fa fa-exclamation-circle fa-fw" title="Widget de type action"></i> ';
+			$result .= '<i class="fa fa-exclamation-circle fa-fw" title="{{Widget de type action}}"></i> ';
 			break;
 		default:
 			$result .= $name[1];
@@ -166,8 +168,8 @@ function displayWidgetSubtype($_name) {
 		<?php if (init('type', 'plugin') == 'plugin') {?>
 		<div class="form-group">
 			<div class="btn-group" >
-				<a class="btn btn-default bt_pluginFilter <?php echo (init('cost') == 'free') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('cost', 'free'); ?>">Gratuit</a>
-				<a class="btn btn-default bt_pluginFilter <?php echo (init('cost') == 'paying') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('cost', 'paying'); ?>">Payant</a>
+				<a class="btn btn-default bt_pluginFilter <?php echo (init('cost') == 'free') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('cost', 'free'); ?>">{{Gratuit}}</a>
+				<a class="btn btn-default bt_pluginFilter <?php echo (init('cost') == 'paying') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('cost', 'paying'); ?>">{{Payant}}</a>
 				<a class="btn btn-default bt_pluginFilter" data-href="<?php echo buildUrl('cost', ''); ?>"><i class="fa fa-times"></i></a>
 			</div>
 		</div>
@@ -175,21 +177,21 @@ function displayWidgetSubtype($_name) {
 ?>
 		<div class="form-group">
 			<div class="btn-group" >
-				<a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Officiel') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Officiel'); ?>">Officiel</a>
-				<a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Conseillé') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Conseillé'); ?>">Conseillé</a>
+				<a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Officiel') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Officiel'); ?>">{{Officiel}}</a>
+				<a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Conseillé') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Conseillé'); ?>">{{Conseillé}}</a>
 				<a class="btn btn-default bt_pluginFilter" data-href="<?php echo buildUrl('certification', ''); ?>"><i class="fa fa-times"></i></a>
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="btn-group" >
-				<a class="btn btn-default bt_installFilter" data-state="-1">Installé</a>
-				<a class="btn btn-default bt_installFilter" data-state="1">Non installé</a>
+				<a class="btn btn-default bt_installFilter" data-state="-1">{{Installé}}</a>
+				<a class="btn btn-default bt_installFilter" data-state="1">{{Non installé}}</a>
 				<a class="btn btn-default bt_installFilter" data-state="0"><i class="fa fa-times"></i></a>
 			</div>
 		</div>
 		<div class="form-group">
 			<select class="form-control" id="sel_categorie" data-href='<?php echo buildUrl('categorie', ''); ?>'>
-				<option value="">Top et nouveautés</option>
+				<option value="">{{Top et nouveautés}}</option>
 				<?php
 foreach (repo_market::distinctCategorie($type) as $id => $category) {
 	if (trim($category) != '' && is_numeric($id)) {
@@ -242,7 +244,7 @@ foreach ($markets as $market) {
 	$update = update::byLogicalId($market->getLogicalId());
 	$category = $market->getCategorie();
 	if ($category == '') {
-		$category = 'Aucune';
+		$category = '{{Aucune}}';
 	}
 	if ($categorie != $category) {
 		$categorie = $category;

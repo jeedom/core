@@ -51,16 +51,16 @@ echo '<img src="' . $default_image . '" data-original="' . $urlPath . '"  class=
    <input class="form-control marketAttr" data-l1key="id" style="display: none;">
    <span class="marketAttr" data-l1key="name" placeholder="{{Nom}}" style="font-size: 3em;font-weight: bold;"></span>
    <br/>
-   <span style="font-size: 1.5em;font-weight: bold;color:#707070;">by <?php echo $market->getAuthor(); ?></span><br/>
+   <span class="span_author cursor" style="font-size: 1.5em;font-weight: bold;color:#707070;" data-author="<?php echo $market->getAuthor(); ?>">by <?php echo $market->getAuthor(); ?></span><br/>
    <?php
 if ($market->getCertification() == 'Officiel') {
 	echo '<span style="font-size : 1.5em;color:#707070">Officiel</span><br/>';
 }
 if ($market->getCertification() == 'Conseillé') {
-	echo '<span style="font-size: 1.5em;font-weight: bold;color:#707070;">Conseillé</span><br/>';
+	echo '<span style="font-size: 1.5em;font-weight: bold;color:#707070;">{{Conseillé}}</span><br/>';
 }
 if ($market->getCertification() == 'Obsolète') {
-	echo '<span style="font-size: 1.5em;font-weight: bold;color:#e74c3c;">Obsolète</span><br/>';
+	echo '<span style="font-size: 1.5em;font-weight: bold;color:#e74c3c;">{{Obsolète}}</span><br/>';
 }
 ?>
 
@@ -340,5 +340,11 @@ if ($market->getLanguage('it_IT') == 1) {
       $('#div_alertMarketDisplay').showAlert({message: error.message, level: 'danger'});
     }
   });
+  });
+
+  $('.span_author').off('click').on('click',function(){
+    $('#md_modal2').dialog('close');
+    $('#md_modal').dialog({title: "{{Market}}"});
+    $('#md_modal').load('index.php?v=d&modal=update.list&type=plugin&repo=market&author='+encodeURI($(this).attr('data-author'))).dialog('open');
   });
 </script>
