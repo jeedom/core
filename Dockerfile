@@ -25,9 +25,9 @@ RUN /root/install_docker.sh -s 4;exit 0
 RUN /root/install_docker.sh -s 5;exit 0
 RUN /root/install_docker.sh -s 7;exit 0
 RUN /root/install_docker.sh -s 10;exit 0
+RUN systemctl disable apache2;exit 0
+RUN systemctl disable sshd;exit 0
 
 ADD install/OS_specific/Docker/init.sh /root/init.sh
 RUN chmod +x /root/init.sh
 CMD ["/root/init.sh"]
-
-EXPOSE 22 80
