@@ -4,12 +4,12 @@ if (!isConnect()) {
 }
 ?>
 <legend>
-    Mes premiers pas dans Jeedom
+    {{Mes premiers pas dans}} <?php echo config::byKey('product_name'); ?>
     <a class='btn btn-default btn-xs pull-right' id='bt_doNotDisplayFirstUse'><i class="fa fa-eye-slash"></i> Ne plus afficher</a>
 </legend>
 <div id="div_alertFirstUse"></div>
 <center>
-    {{Bienvenue dans Jeedom, et merci d'avoir choisi cet outil pour votre habitat connecté. Voici 3 guides pour bien débuter avec Jeedom : }}
+    {{Bienvenue dans}} <?php echo config::byKey('product_name'); ?> {{, et merci d'avoir choisi cet outil pour votre habitat connecté. Voici 3 guides pour bien débuter avec}} <?php echo config::byKey('product_name'); ?> :
 </center>
 <br/><br/>
 

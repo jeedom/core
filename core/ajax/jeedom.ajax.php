@@ -33,6 +33,9 @@ try {
 		$return = array();
 		$return['jeedom_token'] = ajax::getToken();
 		$return['user_id'] = $_SESSION['user']->getId();
+		$return['product_name'] = config::byKey('product_name');
+		$return['product_icon'] = config::byKey('product_icon');
+		$return['product_image'] = config::byKey('product_image');
 		$return['serverDatetime'] = getmicrotime();
 		$return['userProfils'] = $_SESSION['user']->getOptions();
 		$return['userProfils']['defaultMobileViewName'] = __('Vue', __FILE__);

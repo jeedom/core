@@ -123,6 +123,8 @@ function initApplication(_reinit) {
                 return;
             }
             if (init(_reinit, false) == false) {
+                document.title = data.result.product_name;
+                $('#favicon').attr("href", data.result.product_icon);
                 $.ajaxSetup({
                     type: "POST",
                     data: {

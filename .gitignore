@@ -15,6 +15,7 @@ data/*
 !data/.htaccess
 !data/php
 !data/3d
+!data/custom
 data/3d/*
 !3d/.htaccess
 

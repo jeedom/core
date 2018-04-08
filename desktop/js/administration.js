@@ -198,7 +198,7 @@ $("#bt_saveGeneraleConfig").on('click', function (event) {
 
 $('#bt_accessDB').on('click', function () {
     var href = $(this).attr('data-href');
-    bootbox.confirm('{{Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et qu\'en cas de Jeedom non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\'accès est enregistrée) ?}}', function (result) {
+    bootbox.confirm('{{Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et qu\'en cas de}} '+JEEDOM_PRODUCT_NAME+' {{non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\'accès est enregistrée) ?}}', function (result) {
         if (result) {
             var win = window.open(href, '_blank');
             win.focus();

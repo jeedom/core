@@ -15,8 +15,8 @@ if (!isConnect()) {
         <option value="message">{{Créer un message}}</option>
         <option value="equipment">{{Activer/Désactiver Masquer/Afficher un équipement}}</option>
         <option value="ask">{{Faire une demande}}</option>
-        <option value="jeedom_poweroff">{{Arrêter Jeedom}}</option>
-        <option value="jeedom_reboot">{{Reémarrer Jeedom}}</option>
+        <option value="jeedom_poweroff">{{Arrêter}} <?php echo config::byKey('product_name'); ?></option>
+        <option value="jeedom_reboot">{{Reémarrer}} <?php echo config::byKey('product_name'); ?></option>
         <option value="scenario_return" class="scenarioOnly">{{Retourner un texte/une donnée}}</option>
         <option value="icon" class="scenarioOnly">{{Icône}}</option>
         <option value="alert">{{Alerte}}</option>
@@ -47,7 +47,7 @@ if (!isConnect()) {
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription say" style="display:none;">
-    {{Permet de faire dire un texte à Jeedom (ne marche que si un onglet Jeedom est ouvert dans le navigateur)}}
+    {{Permet de faire dire un texte à}} <?php echo config::byKey('product_name'); ?> {{(ne marche que si un onglet Jeedom est ouvert dans le navigateur)}}
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription gotodesign" style="display:none;">
@@ -87,7 +87,7 @@ if (!isConnect()) {
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription popup" style="display:none;">
-    {{Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page Jeedom ouverte.}}
+    {{Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page}} <?php echo config::byKey('product_name'); ?> {{ouverte.}}
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription report" style="display:none;">

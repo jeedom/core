@@ -6,7 +6,7 @@ if (config::byKey('market::address') == '') {
 	throw new Exception('{{Aucune adresse pour le market n\'est renseignée}}');
 }
 if (config::byKey('market::apikey') == '' && config::byKey('market::username') == '') {
-	throw new Exception('{{Aucune clé pour le market n\'est renseignée. Veuillez vous enregistrer sur le market, puis renseignez la clé dans Jeedom avant d\'ouvrir un ticket}}');
+	throw new Exception('{{Aucun compte market n\'est renseigné. Veuillez vous enregistrer sur le market, puis renseignez vos identifiants dans}} ' . config::byKey('product_name') . ' {{avant d\'ouvrir un ticket}}');
 }
 ?>
 <div id='div_alertReportBug'></div>

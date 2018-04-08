@@ -31,6 +31,9 @@ class config {
 		if (!isset(self::$defaultConfiguration[$_plugin])) {
 			if ($_plugin == 'core') {
 				self::$defaultConfiguration[$_plugin] = parse_ini_file(dirname(__FILE__) . '/../../core/config/default.config.ini', true);
+				if (file_exists(dirname(__FILE__) . '/../../data/custom/custom.config.ini')) {
+					self::$defaultConfiguration[$_plugin] = array_merge(self::$defaultConfiguration[$_plugin], parse_ini_file(dirname(__FILE__) . '/../../data/custom/custom.config.ini', true));
+				}
 			} else {
 				$filename = dirname(__FILE__) . '/../../plugins/' . $_plugin . '/core/config/' . $_plugin . '.config.ini';
 				if (file_exists($filename)) {
