@@ -21,9 +21,10 @@
  	if (selected.node.a_attr['data-path'] != undefined) {
  		path = selected.node.a_attr['data-path'];
  		printFileFolder(path);
- 		var ref = $('#div_treeFolder').jstree(true);
+ 		ref = $('#div_treeFolder').jstree(true);
  		sel = ref.get_selected()[0];
- 		var nodesList = ref.get_children_dom(sel);
+ 		ref.open_node(sel);
+ 		nodesList = ref.get_children_dom(sel);
  		if(nodesList.length != 0){
  			return;
  		}
@@ -34,7 +35,6 @@
  				$('#div_alert').showAlert({message: error.message, level: 'danger'});
  			},
  			success : function(data){
- 				var li = '';
  				for(var i in data){
  					node = ref.create_node(sel, {"type":"folder","text":data[i],state:{opened:true},a_attr:{'data-path':path+data[i]}});
  					$('li#'+node+' a').addClass('li_folder');

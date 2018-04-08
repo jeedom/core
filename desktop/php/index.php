@@ -131,6 +131,7 @@ include_file('3rdparty', 'highstock/highstock', 'js');
 include_file('3rdparty', 'highstock/highcharts-more', 'js');
 include_file('3rdparty', 'highstock/modules/solid-gauge', 'js');
 include_file('3rdparty', 'highstock/modules/exporting', 'js');
+include_file('3rdparty', 'highstock/modules/export-data', 'js');
 include_file('desktop', 'utils', 'js');
 include_file('3rdparty', 'jquery.toastr/jquery.toastr.min', 'js');
 include_file('3rdparty', 'jquery.at.caret/jquery.at.caret.min', 'js');
@@ -245,7 +246,7 @@ if (!isConnect()) {
 
 									<li class="dropdown-submenu">
 										<a data-toggle="dropdown" id="bt_gotoDashboard" href="index.php?v=d&p=dashboard"><i class="fa fa-dashboard"></i> {{Dashboard}}</a>
-										<ul class="dropdown-menu">
+										<ul class="dropdown-menu scrollable-menu" role="menu" style="height: auto;max-height: 600px; overflow-x: hidden;">
 											<?php
 foreach (object::buildTree(null, false) as $object_li) {
 			echo '<li><a href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '">' . $object_li->getHumanName(true) . '</a></li>';
@@ -465,12 +466,12 @@ try {
 	} catch (Exception $e) {
 		ob_end_clean();
 		echo '<div class="alert alert-danger div_alert">';
-		echo displayExeption($e);
+		echo displayException($e);
 		echo '</div>';
 	} catch (Error $e) {
 		ob_end_clean();
 		echo '<div class="alert alert-danger div_alert">';
-		echo displayExeption($e);
+		echo displayException($e);
 		echo '</div>';
 	}
 	?>

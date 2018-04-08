@@ -152,6 +152,10 @@ class interactQuery {
 				$shortest = $lev;
 			}
 		}
+		if ($shortest < 0) {
+			log::add('interact', 'debug', __('Aucune correspondance trouvée', __FILE__));
+			return null;
+		}
 		$weigh = array(1 => config::byKey('interact::weigh1'), 2 => config::byKey('interact::weigh2'), 3 => config::byKey('interact::weigh3'), 4 => config::byKey('interact::weigh4'));
 		foreach (str_word_count($_query, 1) as $word) {
 			if (isset($weigh[strlen($word)])) {
@@ -176,7 +180,7 @@ class interactQuery {
 			return null;
 		}
 		$interactDef = $closest->getInteractDef();
-		if ($interactDef->getOptions('mustcontain') != '' && strpos($_query, interactDef::sanitizeQuery($interactDef->getOptions('mustcontain'))) === false) {
+		if ($interactDef->getOptions('mustcontain') != '' && !preg_match($interactDef->getOptions('mustcontain'), $_query)) {
 			log::add('interact', 'debug', __('Correspondance trouvée : ', __FILE__) . $query->getQuery() . __(' mais ne contient pas : ', __FILE__) . interactDef::sanitizeQuery($interactDef->getOptions('mustcontain')));
 			return null;
 		}

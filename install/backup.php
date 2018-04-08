@@ -116,12 +116,20 @@ try {
 	$excludes = array(
 		'tmp',
 		'log',
+		'docs',
+		'doc',
+		'tests',
+		'support',
 		'backup',
 		'.git',
 		'.log',
 		'core/config/common.config.php',
 		config::byKey('backup::path'),
 	);
+
+	if (config::byKey('recordDir', 'camera') != '') {
+		$excludes[] = config::byKey('recordDir', 'camera');
+	}
 
 	$exclude = '';
 	foreach ($excludes as $folder) {

@@ -126,7 +126,7 @@ class scenarioElement {
 	}
 
 	public function execute(&$_scenario = null) {
-		if ($_scenario != null && !$_scenario->getDo()) {
+		if ($_scenario !== null && !$_scenario->getDo()) {
 			return;
 		}
 		if ($this->getType() == 'if') {
@@ -164,17 +164,17 @@ class scenarioElement {
 			}
 			return $this->getSubElement('else')->execute($_scenario);
 
-		} else if ($this->getType() == 'action') {
+		} elseif ($this->getType() == 'action') {
 			if ($this->getSubElement('action')->getOptions('enable', 1) == 0) {
 				return true;
 			}
 			return $this->getSubElement('action')->execute($_scenario);
-		} else if ($this->getType() == 'code') {
+		} elseif ($this->getType() == 'code') {
 			if ($this->getSubElement('code')->getOptions('enable', 1) == 0) {
 				return true;
 			}
 			return $this->getSubElement('code')->execute($_scenario);
-		} else if ($this->getType() == 'for') {
+		} elseif ($this->getType() == 'for') {
 			$for = $this->getSubElement('for');
 			if ($for->getOptions('enable', 1) == 0) {
 				return true;
@@ -190,7 +190,7 @@ class scenarioElement {
 				$return = $this->getSubElement('do')->execute($_scenario);
 			}
 			return $return;
-		} else if ($this->getType() == 'in') {
+		} elseif ($this->getType() == 'in') {
 			$in = $this->getSubElement('in');
 			if ($in->getOptions('enable', 1) == 0) {
 				return true;
@@ -209,7 +209,7 @@ class scenarioElement {
 				$_scenario->setLog(__('Tâche : ', __FILE__) . $this->getId() . __(' lancement immédiat ', __FILE__));
 				system::php($cmd);
 			} else {
-				$crons = cron::searchClassAndFunction('scenario', 'doIn', '"scenarioElement_id":' . $this->getId());
+				$crons = cron::searchClassAndFunction('scenario', 'doIn', '"scenarioElement_id":' . $this->getId() . ',');
 				if (is_array($crons)) {
 					foreach ($crons as $cron) {
 						if ($cron->getState() != 'run') {
@@ -229,7 +229,7 @@ class scenarioElement {
 				$_scenario->setLog(__('Tâche : ', __FILE__) . $this->getId() . __(' programmé à : ', __FILE__) . date('Y-m-d H:i:s', $next) . ' (+ ' . $time . ' min)');
 			}
 			return true;
-		} else if ($this->getType() == 'at') {
+		} elseif ($this->getType() == 'at') {
 			$at = $this->getSubElement('at');
 			if ($at->getOptions('enable', 1) == 0) {
 				return true;
@@ -247,7 +247,7 @@ class scenarioElement {
 				$next = date('Y-m-d') . ' ' . substr($next, 0, 2) . ':' . substr($next, 2, 4);
 			}
 			$next = strtotime($next);
-			$crons = cron::searchClassAndFunction('scenario', 'doIn', '"scenarioElement_id":' . $this->getId());
+			$crons = cron::searchClassAndFunction('scenario', 'doIn', '"scenarioElement_id":' . $this->getId() . ',');
 			if (is_array($crons)) {
 				foreach ($crons as $cron) {
 					if ($cron->getState() != 'run') {
@@ -276,7 +276,7 @@ class scenarioElement {
 			$this->_subelement[$_type] = scenarioSubElement::byScenarioElementId($this->getId(), $_type);
 			return $this->_subelement[$_type];
 		} else {
-			if (count($this->_subelement[-1]) > 0) {
+			if (isset($this->_subelement[-1]) && is_array($this->_subelement[-1]) && count($this->_subelement[-1]) > 0) {
 				return $this->_subelement[-1];
 			}
 			$this->_subelement[-1] = scenarioSubElement::byScenarioElementId($this->getId(), $_type);

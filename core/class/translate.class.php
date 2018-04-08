@@ -155,7 +155,7 @@ class translate {
 	}
 
 	public static function getLanguage() {
-		if (self::$language == null) {
+		if (self::$language === null) {
 			self::$language = self::getConfig('language', 'fr_FR');
 		}
 		return self::$language;

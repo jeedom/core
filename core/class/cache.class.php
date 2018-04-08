@@ -48,7 +48,7 @@ class cache {
 			->setKey($_key)
 			->setValue($_value)
 			->setLifetime($_lifetime);
-		if ($_options != null) {
+		if ($_options !== null) {
 			$cache->options = json_encode($_options, JSON_UNESCAPED_UNICODE);
 		}
 		return $cache->save();

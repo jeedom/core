@@ -1,6 +1,11 @@
 #!/bin/bash
 echo 'Start init'
 
+if ! [ -f /.dockerinit ]; then
+	touch /.dockerinit
+	chmod 755 /.dockerinit
+fi
+
 if [ -z ${ROOT_PASSWORD} ]; then
 	ROOT_PASSWORD=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 20)
 	echo "Use generate password : ${ROOT_PASSWORD}"

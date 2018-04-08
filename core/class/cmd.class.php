@@ -1875,6 +1875,7 @@ class cmd {
 
 	public function setEqLogic_id($eqLogic_id) {
 		$this->eqLogic_id = $eqLogic_id;
+		return $this;
 	}
 
 	public function setIsHistorized($isHistorized) {
@@ -1889,6 +1890,7 @@ class cmd {
 
 	public function setEventOnly($eventOnly) {
 		trigger_error('This method is deprecated', E_USER_DEPRECATED);
+		return $this;
 	}
 
 	public function getHtml($_key = '', $_default = '') {
@@ -1901,6 +1903,7 @@ class cmd {
 		}
 		$this->html = utils::setJsonAttr($this->html, $_key, $_value);
 		$this->_needRefreshWidget = true;
+		return $this;
 	}
 
 	public function getTemplate($_key = '', $_default = '') {
@@ -1910,6 +1913,7 @@ class cmd {
 	public function setTemplate($_key, $_value) {
 		$this->template = utils::setJsonAttr($this->template, $_key, $_value);
 		$this->_needRefreshWidget = true;
+		return $this;
 	}
 
 	public function getConfiguration($_key = '', $_default = '') {
@@ -1923,6 +1927,7 @@ class cmd {
 			}
 		}
 		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
+		return $this;
 	}
 
 	public function getDisplay($_key = '', $_default = '') {
@@ -1932,6 +1937,7 @@ class cmd {
 	public function setDisplay($_key, $_value) {
 		$this->display = utils::setJsonAttr($this->display, $_key, $_value);
 		$this->_needRefreshWidget = true;
+		return $this;
 	}
 
 	public function getAlert($_key = '', $_default = '') {
@@ -1990,6 +1996,7 @@ class cmd {
 	public function setOrder($order) {
 		$this->order = $order;
 		$this->_needRefreshWidget = true;
+		return $this;
 	}
 
 	public function getLogicalId() {

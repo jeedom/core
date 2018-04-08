@@ -87,7 +87,7 @@ class system {
 	public static function ps($_find, $_without = null) {
 		$return = array();
 		$cmd = '(ps ax || ps w) | grep -ie "' . $_find . '" | grep -v "grep"';
-		if ($_without != null) {
+		if ($_without !== null) {
 			if (!is_array($_without)) {
 				$_without = array($_without);
 			}

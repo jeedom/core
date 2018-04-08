@@ -524,20 +524,21 @@ class interactDef {
 			}
 		}
 		if ($this->getOptions('synonymes') != '') {
-			$queries = $return;
 			$synonymes = array();
 			foreach (explode('|', $this->getOptions('synonymes')) as $value) {
 				$values = explode('=', $value);
 				$synonymes[strtolower($values[0])] = explode(',', $values[1]);
 			}
-			foreach ($queries as $query) {
-				$synonymes = self::generateSynonymeVariante($query['query'], $synonymes);
-				if (count($synonymes) > 0) {
-					foreach ($synonymes as $synonyme) {
-						$query_info = $query;
-						$query_info['query'] = $synonyme;
-						$return[$synonyme] = $query_info;
-					}
+			$result = array();
+			foreach ($return as $query) {
+				$results = self::generateSynonymeVariante($query['query'], $synonymes);
+				if (count($results) == 0) {
+					continue;
+				}
+				foreach ($results as $result) {
+					$query_info = $query;
+					$query_info['query'] = $result;
+					$return[$result] = $query_info;
 				}
 			}
 		}

@@ -112,6 +112,9 @@ class repo_market {
 					$update->setStatus($market_info['status']);
 					$update->setConfiguration('market', $market_info['market']);
 					$update->setRemoteVersion($market_info['datetime']);
+					if ($update->getConfiguration('version') == '') {
+						$update->setConfiguration('version', 'stable');
+					}
 					$update->save();
 				}
 			}
@@ -208,7 +211,7 @@ class repo_market {
 		return $status;
 	}
 
-	public static function sendBackupCloud($_path, $_chunksize = 1024000) {
+	public static function sendBackupCloud($_path, $_chunksize = 4096000) {
 		$market = self::getJsonRpc();
 		if (!$market->sendRequest('backup::create', array('filename' => pathinfo($_path, PATHINFO_BASENAME), 'filesize' => filesize($_path), 'chunksize' => $_chunksize, 'checksum' => md5_file($_path)))) {
 			throw new Exception($market->getError());
@@ -425,8 +428,7 @@ class repo_market {
 		}
 		$_ticket['options']['jeedom_version'] = jeedom::version();
 		$_ticket['options']['uname'] = shell_exec('uname -a');
-		$support_file = makeZipSupport();
-		if (!$jsonrpc->sendRequest('ticket::save', array('ticket' => $_ticket), 300, array('file' => '@' . $support_file))) {
+		if (!$jsonrpc->sendRequest('ticket::save', array('ticket' => $_ticket), 300)) {
 			throw new Exception($jsonrpc->getErrorMessage());
 		}
 		if ($_ticket['openSupport'] == 1) {
@@ -543,6 +545,12 @@ class repo_market {
 			if (isset($_result['register::vpnPort']) && config::byKey('vpn::port') != $_result['register::vpnPort']) {
 				config::save('vpn::port', $_result['register::vpnPort']);
 				$restart_dns = true;
+			}
+			if (isset($_result['user::backupServer']) && config::byKey('market::backupServer') != $_result['user::backupServer']) {
+				config::save('market::backupServer', $_result['user::backupServer']);
+			}
+			if (isset($_result['user::backupPassword']) && config::byKey('market::backupPassword') != $_result['user::backupPassword']) {
+				config::save('market::backupPassword', $_result['user::backupPassword']);
 			}
 			if ($restart_dns && config::byKey('market::allowDNS') == 1) {
 				network::dns_start();

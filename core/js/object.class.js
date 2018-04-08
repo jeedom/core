@@ -53,8 +53,8 @@ jeedom.object.getEqLogic = function(_params) {
     paramsAJAX.data = {
         action: "listByObject",
         object_id: _params.id,
-        onlyEnable: _params.onlyEnable || false,
-        orderByName : _params.orderByName || false
+        onlyEnable: _params.onlyEnable || 0,
+        orderByName : _params.orderByName || 0
     };
     $.ajax(paramsAJAX);
 };

@@ -181,7 +181,7 @@ if ($market->getHardwareCompatibility('Jeedomboard') == 1) {
           <div class="form-group">
             <label class="col-sm-4 control-label">{{Ma Note}}</label>
             <div class="col-sm-8">
-              <span><input type="number" class="rating" id="in_myRating" data-max="5" data-empty-value="0" data-min="1" data-clearable="Effacer" value="<?php echo $market->getRating('user') ?>" /></span>
+              <span><input style="display:none;" type="number" class="rating" id="in_myRating" data-max="5" data-empty-value="0" data-min="1" data-clearable="Effacer" value="<?php echo $market->getRating('user') ?>" /></span>
             </div>
           </div><br/>
           <?php }
@@ -300,20 +300,20 @@ if ($market->getLanguage('it_IT') == 1) {
       error: function (error) {
         $('#div_alertMarketDisplay').showAlert({message: error.message, level: 'danger'});
       },
- success: function (data) { // si l'appel a bien fonctionné
- if(market_display_info.type == 'plugin'){
-   bootbox.confirm('{{Voulez-vous aller sur la page de configuration de votre nouveau plugin ?}}', function (result) {
-     if (result) {
-      loadPage('index.php?v=d&p=plugin&id=' + logicalId);
+      success: function (data) {
+       if(market_display_info.type == 'plugin'){
+         bootbox.confirm('{{Voulez-vous aller sur la page de configuration de votre nouveau plugin ?}}', function (result) {
+           if (result) {
+            loadPage('index.php?v=d&p=plugin&id=' + logicalId);
+          }
+        });
+       }
+       if ( typeof refreshListAfterMarketObjectInstall == 'function'){
+        refreshListAfterMarketObjectInstall()
+      }
+      $('#div_alertMarketDisplay').showAlert({message: '{{Objet installé avec succès}}', level: 'success'})
     }
   });
- }
- if ( typeof refreshListAfterMarketObjectInstall == 'function'){
-  refreshListAfterMarketObjectInstall()
-}
-$('#div_alertMarketDisplay').showAlert({message: '{{Objet installé avec succès}}', level: 'success'})
-}
-});
 
   });
 
@@ -325,11 +325,11 @@ $('#div_alertMarketDisplay').showAlert({message: '{{Objet installé avec succès
       error: function (error) {
         $('#div_alertMarketDisplay').showAlert({message: error.message, level: 'danger'});
       },
- success: function (data) { // si l'appel a bien fonctionné
- $.showLoading();
- window.location.reload();
-}
-});
+      success: function (data) {
+       $.showLoading();
+       window.location.reload();
+     }
+   });
   });
 
   $('#in_myRating').on('change', function () {

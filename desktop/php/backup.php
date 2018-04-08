@@ -75,7 +75,7 @@ if (!isConnect('admin')) {
             <?php
 
 foreach (update::listRepo() as $rkey => $value) {
-	if ($value['scope']['backup'] == false) {
+	if ($value['scope']['backup'] === false) {
 		continue;
 	}
 	if ($value['enable'] == 0) {

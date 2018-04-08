@@ -1,4 +1,4 @@
-/* Widget: columnSelector (responsive table widget) - updated 9/28/2016 (v2.27.8) *//*
+/* Widget: columnSelector (responsive table widget) - updated 9/27/2017 (v2.29.0) *//*
  * Requires tablesorter v2.8+ and jQuery 1.7+
  * by Justin Hallett & Rob Garrison
  */
@@ -113,7 +113,7 @@
 		},
 
 		setupSelector: function(c, wo) {
-			var index, name, $header, priority, col, colId,
+			var index, name, $header, priority, col, colId, $el,
 				colSel = c.selector,
 				$container = colSel.$container,
 				useStorage = wo.columnSelector_saveColumns && ts.storage,
@@ -149,10 +149,13 @@
 					saved[colId] : (typeof wo.columnSelector_columns[colId] !== 'undefined' && wo.columnSelector_columns[colId] !== null) ?
 					wo.columnSelector_columns[colId] : (state === 'true' || state !== 'false');
 				colSel.$column[colId] = $(this);
-
-				// set default col title
-				name = $header.attr(wo.columnSelector_name) || $header.text();
 				if ($container.length) {
+					// set default col title
+					name = $header.attr(wo.columnSelector_name) || $header.text().trim();
+					if (typeof wo.columnSelector_layoutCustomizer === 'function') {
+						$el = $header.find('.' + ts.css.headerIn);
+						name = wo.columnSelector_layoutCustomizer( $el.length ? $el : $header, name, parseInt(colId, 10) );
+					}
 					colSel.$wrapper[colId] = $(wo.columnSelector_layout.replace(/\{name\}/g, name)).appendTo($container);
 					colSel.$checkbox[colId] = colSel.$wrapper[colId]
 						// input may not be wrapped within the layout template
@@ -266,16 +269,16 @@
 				c.$table.triggerHandler(wo.columnSelector_updated);
 			}
 		},
-		addSelectors: function( prefix, column ) {
+		addSelectors: function( wo, prefix, column ) {
 			var array = [],
 				temp = ' col:nth-child(' + column + ')';
 			array.push(prefix + temp + ',' + prefix + '_extra_table' + temp);
-			temp = ' tr:not(.hasSpan) th:nth-child(' + column + ')';
+			temp = ' tr:not(.' + wo.columnSelector_classHasSpan + ') th[data-column="' + ( column - 1 ) + '"]';
 			array.push(prefix + temp + ',' + prefix + '_extra_table' + temp);
-			temp = ' tr:not(.hasSpan) td:nth-child(' + column + ')';
+			temp = ' tr:not(.' + wo.columnSelector_classHasSpan + ') td:nth-child(' + column + ')';
 			array.push(prefix + temp + ',' + prefix + '_extra_table' + temp);
 			// for other cells in colspan columns
-			temp = ' tr td:not(' + prefix + 'HasSpan)[data-column="' + (column - 1) + '"]';
+			temp = ' tr td:not(' + prefix + wo.columnSelector_classHasSpan + ')[data-column="' + (column - 1) + '"]';
 			array.push(prefix + temp + ',' + prefix + '_extra_table' + temp);
 			return array;
 		},
@@ -298,7 +301,7 @@
 					isHidden[ column + 1 ] = ts.getData( c.$headerIndexed[ column ], col, 'columnSelector' ) === 'false';
 					if ( isHidden[ column + 1 ] ) {
 						// hide columnSelector false column (in auto mode)
-						mediaAll = mediaAll.concat( tsColSel.addSelectors( prefix, column + 1 ) );
+						mediaAll = mediaAll.concat( tsColSel.addSelectors( wo, prefix, column + 1 ) );
 					}
 				}
 			}
@@ -310,7 +313,7 @@
 					column = parseInt($(this).attr('data-column'), 10) + 1;
 					// don't reveal columnSelector false columns
 					if ( !isHidden[ column ] ) {
-						breaks = breaks.concat( tsColSel.addSelectors( prefix, column ) );
+						breaks = breaks.concat( tsColSel.addSelectors( wo, prefix, column ) );
 					}
 				});
 				if (breaks.length) {
@@ -340,7 +343,7 @@
 			colSel.$container.find('input[data-column]').filter('[data-column!="auto"]').each(function(){
 				if (!this.checked) {
 					column = parseInt( $(this).attr('data-column'), 10 ) + 1;
-					styles = styles.concat( tsColSel.addSelectors( prefix, column ) );
+					styles = styles.concat( tsColSel.addSelectors( wo, prefix, column ) );
 				}
 				$(this).toggleClass( wo.columnSelector_cssChecked, this.checked );
 			});
@@ -370,10 +373,10 @@
 				if ( span > 1 ) {
 					hasSpans = true;
 					$cells.eq( index )
-						.addClass( c.namespace.slice( 1 ) + 'columnselectorHasSpan' )
+						.addClass( c.namespace.slice( 1 ) + 'columnselector' + wo.columnSelector_classHasSpan )
 						.attr( 'data-col-span', span );
 					// add data-column values
-					ts.computeColumnIndex( $cells.eq( index ).parent().addClass( 'hasSpan' ) );
+					ts.computeColumnIndex( $cells.eq( index ).parent().addClass( wo.columnSelector_classHasSpan ) );
 				}
 			}
 			// only add resize end if using media queries
@@ -399,7 +402,9 @@
 				autoModeOn = wo.columnSelector_mediaquery && colSel.auto,
 				// find all header/footer cells in case a regular column follows a colspan; see #1238
 				$headers = c.$table.children( 'thead, tfoot' ).children().children()
-					.add( $(c.namespace + '_extra_table').children( 'thead, tfoot' ).children().children() ),
+					.add( $(c.namespace + '_extra_table').children( 'thead, tfoot' ).children().children() )
+					// include grouping widget headers (they have colspans!)
+					.add( c.$table.find( '.group-header' ).children() ),
 				len = $headers.length;
 			for ( index = 0; index < len; index++ ) {
 				$cell = $headers.eq(index);
@@ -419,7 +424,7 @@
 						$cell.addClass( filtered );
 					}
 				} else if ( typeof colSel.states[ col ] !== 'undefined' && colSel.states[ col ] !== null ) {
-					$cell.toggleClass( filtered, !colSel.states[ col ] );
+					$cell.toggleClass( filtered, !autoModeOn && !colSel.states[ col ] );
 				}
 			}
 		},
@@ -497,6 +502,9 @@
 
 			// container layout
 			columnSelector_layout : '<label><input type="checkbox">{name}</label>',
+			// layout customizer callback called for each column
+			// function($cell, name, column){ return name || $cell.html(); }
+			columnSelector_layoutCustomizer : null,
 			// data attribute containing column name to use in the selector container
 			columnSelector_name : 'data-selector-name',
 
@@ -527,6 +535,8 @@
 			// class name added to checked checkboxes - this fixes an issue with Chrome not updating FontAwesome
 			// applied icons; use this class name (input.checked) instead of input:checked
 			columnSelector_cssChecked : 'checked',
+			// class name added to rows that have a span (e.g. grouping widget & other rows inside the tbody)
+			columnSelector_classHasSpan : 'hasSpan',
 			// event triggered when columnSelector completes
 			columnSelector_updated : 'columnUpdate'
 		},
@@ -535,12 +545,17 @@
 		},
 		remove: function(table, c, wo, refreshing) {
 			var csel = c.selector;
-			if ( csel) { csel.$container.empty(); }
 			if ( refreshing || !csel ) { return; }
-			if (csel.$popup) { csel.$popup.empty(); }
+			if ( csel ) { csel.$container.empty(); }
+			if ( csel.$popup ) { csel.$popup.empty(); }
 			csel.$style.remove();
 			csel.$breakpoints.remove();
-			$( c.namespace + 'columnselectorHasSpan' ).removeClass( wo.filter_filteredRow || 'filtered' );
+			$( c.namespace + 'columnselector' + wo.columnSelector_classHasSpan )
+				.removeClass( wo.filter_filteredRow || 'filtered' );
+			c.$table.find('[data-col-span]').each(function(indx, el) {
+				var $el = $(el);
+				$el.attr('colspan', $el.attr('data-col-span'));
+			});
 			c.$table.off('updateAll' + namespace + ' update' + namespace);
 		}
 

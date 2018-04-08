@@ -803,6 +803,22 @@ class scenarioExpression {
 		return $result;
 	}
 
+	public static function time_diff($_date1, $_date2, $_format = 'd') {
+		$date1 = new DateTime($_date1);
+		$date2 = new DateTime($_date2);
+		$interval = $date1->diff($date2);
+		if ($_format == 's') {
+			return $interval->format('%s') + 60 * $interval->format('%m') + 3600 * $interval->format('%s') + 86400 * $interval->format('%a');
+		}
+		if ($_format == 'm') {
+			return $interval->format('%m') + 60 * $interval->format('%s') + 1410 * $interval->format('%a');
+		}
+		if ($_format == 'h') {
+			return $interval->format('%s') + 24 * $interval->format('%a');
+		}
+		return $interval->format('%a');
+	}
+
 	public static function time($_value) {
 		$_value = self::setTags($_value);
 		try {
@@ -935,7 +951,7 @@ class scenarioExpression {
 	}
 
 	public static function tag(&$_scenario = null, $_name, $_default = '') {
-		if ($_scenario == null) {
+		if ($_scenario === null) {
 			return '"' . $_default . '"';
 		}
 		$tags = $_scenario->getTags();
@@ -946,6 +962,9 @@ class scenarioExpression {
 	}
 
 	public static function setTags($_expression, &$_scenario = null, $_quote = false, $_nbCall = 0) {
+		if (file_exists(dirname(__FILE__) . '/../../data/php/user.function.class.php')) {
+			require_once dirname(__FILE__) . '/../../data/php/user.function.class.php';
+		}
 		if ($_nbCall > 10) {
 			return $_expression;
 		}
@@ -1016,8 +1035,9 @@ class scenarioExpression {
 						$replace2[$replace_string] = self::tag($_scenario, $arguments[0], $arguments[1]);
 					} else {
 						$replace2[$replace_string] = call_user_func_array(__CLASS__ . "::" . $function, $arguments);
-
 					}
+				}if (class_exists('userFunction') && method_exists('userFunction', $function)) {
+					$replace2[$replace_string] = call_user_func_array('userFunction' . "::" . $function, $arguments);
 				} else {
 					if (function_exists($function)) {
 						foreach ($arguments as &$argument) {

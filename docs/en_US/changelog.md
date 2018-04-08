@@ -1,10 +1,16 @@
 Changelog
 =========
 
-3.2.1 
+3.2.2
 =====
 
-- Ajout d'un délai configurable avant réponse sur les intéractions (permet d'attendre que le retour d'état se fasse par exemple)
+-   Possibilité d'afficher les graphiques sous forme de tableau ou d'exporter ceux-ci en csv ou xls
+
+-   Les utilisateurs peuvent maintenant ajouter leur propre fonction php pour les scénarios. Voir documentation des scénarios pour la mise en place
+
+-   JEED-417 : ajout d'une fonction time_diff dans les scénarios
+
+-   Ajout d'un délai configurable avant réponse sur les intéractions (permet d'attendre que le retour d'état se fasse par exemple)
 
 -   JEED-365 : Suppression de "Commande d’information utilisateur" pour etre remplacé par des actions sur message. Permet de lancer plusieurs commande differentes, de lancer un scénario... Attention si vous aviez une "Commande d’information utilisateur" il faut la reconfigurer.
 

@@ -27,6 +27,7 @@ class jsonrpc {
 	private $id = 99999;
 	private $startTime;
 	private $applicationName;
+	private $additionnalParams = array();
 
 	/*     * ********Static******************* */
 
@@ -59,6 +60,7 @@ class jsonrpc {
 				'message' => $_message,
 			),
 		);
+		$return = array_merge($return, $this->getAdditionnalParams());
 		if (init('callback') != '') {
 			echo init('callback') . '(' . json_encode($return) . ')';
 		} else {
@@ -73,6 +75,7 @@ class jsonrpc {
 			'id' => $this->id,
 			'result' => $_result,
 		);
+		$return = array_merge($return, $this->getAdditionnalParams());
 		if (init('callback') != '') {
 			echo init('callback') . '(' . json_encode($return) . ')';
 		} else {
@@ -110,6 +113,17 @@ class jsonrpc {
 	public function setApplicationName($applicationName) {
 		$this->applicationName = $applicationName;
 		return $this;
+	}
+
+	public function getAdditionnalParams($_key = '', $_default = '') {
+		return utils::getJsonAttr($this->additionnalParams, $_key, $_default);
+	}
+
+	public function setAdditionnalParams($_key, $_value) {
+		if (in_array($_key, array('result', 'jsonrpc', 'id'))) {
+			return;
+		}
+		$this->additionnalParams = utils::setJsonAttr($this->additionnalParams, $_key, $_value);
 	}
 
 }

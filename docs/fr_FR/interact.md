@@ -82,6 +82,8 @@ Général
 
 -   **Demande** : la phrase modèle génératrice (obligatoire).
 
+-   **Regexp de correspondance obligatoire** : Expression reguliere qui si remplis doit absolument valider la phrase de la demande
+
 -   **Synonyme** : permet de définir des synonymes sur les noms
     des commandes.
 
