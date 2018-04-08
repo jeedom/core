@@ -390,7 +390,7 @@ $nbMessage = message::nbMessage();
 												<li><a href="index.php?v=m" class="noOnePageLoad"><i class="fa fa-mobile"></i> {{Version mobile}}</a></li>
 												<li class="divider"></li>
 												<li><a href="#" id="bt_jeedomAbout"><i class="fa fa-info-circle"></i> {{Version}} v<?php echo jeedom::version(); ?></a></li>
-												<?php	if (jeedom::isCapable('sudo')) {
+												<?php	if (jeedom::isCapable('sudo') && isConnect('admin')) {
 			echo '<li class="divider"></li>';
 			echo '<li class="cursor"><a id="bt_rebootSystem" state="0"><i class="fa fa-repeat"></i> {{Redémarrer}}</a></li>';
 			echo '<li class="cursor"><a id="bt_haltSystem" state="0"><i class="fa fa-power-off"></i> {{Eteindre}}</a></li>';
