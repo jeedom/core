@@ -25,6 +25,11 @@ if [ -z ${SSH_PORT} ]; then
 	echo "Port ${SSH_PORT}" >> /etc/ssh/sshd_config
 fi
 
+if [ -z ${MODE_HOST} ]; then
+	echo 'Update /etc/hosts for host mode'
+	echo "127.0.0.1 localhost jeedom" > /etc/hosts
+fi
+
 if [ -f /var/www/html/core/config/common.config.php ]; then
 	echo 'Jeedom is already install'
 else
