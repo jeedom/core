@@ -3,6 +3,9 @@ FROM debian:latest
 MAINTAINER info@jeedom.com
 
 ENV SHELL_ROOT_PASSWORD Mjeedom96
+ENV APACHE_PORT 80
+ENV SSH_PORT 22
+ENV MODE_HOST 0
 
 RUN apt-get update && apt-get install -y wget openssh-server supervisor mysql-client
 
