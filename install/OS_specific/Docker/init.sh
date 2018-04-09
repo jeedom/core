@@ -13,19 +13,19 @@ fi
 
 echo "root:${ROOT_PASSWORD}" | chpasswd
 
-if [ -z ${APACHE_PORT} ]; then
+if [ ! -z ${APACHE_PORT} ]; then
 	echo 'Change apache listen port to : '${APACHE_PORT}
 	echo "Listen ${APACHE_PORT}" > /etc/apache2/ports.conf
 	sed -i -E "s/\<VirtualHost \*:(.*)\>/VirtualHost \*:${APACHE_PORT}/" /etc/apache2/sites-enabled/000-default.conf
 fi	
 
-if [ -z ${SSH_PORT} ]; then
+if [ ! -z ${SSH_PORT} ]; then
 	echo 'Change SSH listen port to : '${APACHE_PORT}
 	sed '/Port /d' /etc/ssh/sshd_config
 	echo "Port ${SSH_PORT}" >> /etc/ssh/sshd_config
 fi
 
-if [ -z ${MODE_HOST} ]; then
+if [ ! -z ${MODE_HOST} ] && [ ${MODE_HOST} -eq 1 ]; then
 	echo 'Update /etc/hosts for host mode'
 	echo "127.0.0.1 localhost jeedom" > /etc/hosts
 fi
