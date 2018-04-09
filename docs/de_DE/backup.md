@@ -1,37 +1,34 @@
-Jeedom a la possibilité d’être sauvegardé et restauré depuis ou à partir
-de différents emplacements.
+Jeedom kann von verschiedenen Standorten aus gesichert und
+wiederhergestellt werden.
 
 Konfiguration
 =============
 
-Accessible depuis **Administration → Sauvegardes**, cette page permet la
-gestion des sauvegardes.
+Erreichbar unter **Verwaltung → Sicherungen**, diese Seite ermöglicht die Verwaltung von Sicherungen.
 
-Vous y trouvez, à gauche, les paramètres et les boutons d’action. Sur la
-droite, c’est le statut en temps réel de l’action en cours (sauvegarde
-ou restauration), si vous en avez lancé une.
+Auf der linken Seite befinden sich die Parameter und die Aktions Schaltflächen. Auf der rechten Seite ist der Echtzeitstatus der aktuellen Aktion (Sicherung oder Wiederherstellung), wenn Sie etwas gestartet haben.
 
 **Sicherungen** 
 ---------------
 
--   **Sauvegardes** : Permet de lancer une sauvegarde manuellement et
-    immédiatement (utile si vous voulez faire un changement critique.
-    Cela vous permettra de revenir en arrière). Vous avez aussi un
-    bouton pour lancer une sauvegarde sans envoyer l’archive sur le
-    cloud (nécessite un abonnement voir plus bas). L’envoi d’une
-    sauvegarde sur le cloud peut prendre un certain temps. Cette option
-    permet donc d’éviter une perte de temps trop importante.
+-   **Sicherungen** : Ermöglicht Ihnen, eine Sicherung manuell und sofort zu
+    starten (nützlich, wenn Sie eine kritische Änderung vornehmen möchten, 
+    damit Sie zurückgehen können). Sie haben auch eine Schaltfläche, um eine 
+    Sicherung zu starten, ohne das Archiv an die Cloud zu senden
+    (Abonnement erforderlich, siehe unten). Das Senden einer
+    Sicherung in die Cloud kann eine Weile dauern. Diese Option
+    ermöglicht es, einen zu großen Zeitverlust zu vermeiden.
 
--   **Emplacement des sauvegardes** : Indique le dossier dans lequel
-    Jeedom copie les sauvegardes. Il est recommandé de ne pas
-    le changer. Si vous êtes en chemin relatif, son origine est
-    l’endroit où Jeedom est installé.
+-   **Sicherungsort** : legt den Ordner fest, in dem Jeedom die Backups
+    speichert. Es wird empfohlen, ihn nicht zu ändern. Wenn Sie sich
+    auf einem relativen Pfad befinden,
+    ist das der Ursprung von Jeedom.
 
--   **Nombre de jour(s) de mémorisation des sauvegardes** : Nombre de
-    jours de sauvegarde à garder. Une fois ce délai passé, les
-    sauvegardes seront supprimées. Attention de ne pas mettre un nombre
-    de jours trop élevé, sinon votre système de fichiers peut
-    être saturé.
+-   **Anzahl der Tag(e) zum Speichern der Sicherungskopie** : Anzahl der
+    Tage, an denen die Sicherung aufbewahrt werden soll. Sobald diese Zeit
+    verstrichen ist, werden die Backups gelöscht. Achten Sie darauf, dass Sie die
+    Anzahl der Tage nicht zu hoch setzen, da Ihr Dateisystem sonst
+    überlastet ist.
 
 -   **Taille totale maximale des sauvegardes (Mo)** : Permet de limiter
     la place prise par l’ensemble des sauvegardes dans le dossier
