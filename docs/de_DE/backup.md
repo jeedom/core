@@ -30,40 +30,40 @@ Auf der linken Seite befinden sich die Parameter und die Aktions Schaltflächen.
     Anzahl der Tage nicht zu hoch setzen, da Ihr Dateisystem sonst
     überlastet ist.
 
--   **Taille totale maximale des sauvegardes (Mo)** : Permet de limiter
-    la place prise par l’ensemble des sauvegardes dans le dossier
-    de sauvegarde. Si cette valeur est dépassée, Jeedom va supprimer les
-    sauvegardes les plus vieilles jusqu’à retomber en-dessous de la
-    taille maximale. Il gardera cependant au moins une sauvegarde.
+-   **Maximale Gesamtgröße der Backups (MB)** : Ermöglicht Ihnen, den
+    Speicherplatz aller Backups im Backup-Ordner zu begrenzen. Wenn dieser
+    Wert überschritten wird, löscht Jeedom die ältesten Backups, bis die
+    maximale Größe unterschritten wird. Es wird jedoch mindestens
+    eine Sicherung beibehalten.
 
-**Sauvegardes Locales** 
+**Lokale Sicherung**
 -----------------------
 
--   **Sauvegardes disponibles** : Liste des sauvegardes disponibles.
+-   **Verfügbare Sicherungen** : Liste der verfügbaren Sicherungen.
 
--   **Restaurer la sauvegarde** : Lance la restauration de la sauvegarde
-    sélectionnée au-dessus.
+-   **Sicherung wiederherstellen** : Startet die Wiederherstellung des oben
+    ausgewählten Backups.
 
--   **Supprimer la sauvegarde** : Supprime la sauvegarde sélectionnée
-    au-dessus, uniquement dans le dossier local.
+-   **Sicherung löschen** : Löscht die oben ausgewählte Sicherung,
+    nur im lokalen Ordner.
 
--   **Envoyer une sauvegarde** : Permet d’envoyer dans le dossier des
-    sauvegardes une archive se trouvant sur l’ordinateur que l’on
-    utilise actuellement (permet par exemple de restaurer une archive
-    précédemment récupérée sur un nouveau Jeedom ou une réinstallation).
+-   **Sicherungskopie senden** : Erlaubt das Senden einer Sicherungs Datei des
+    Archivs, zu dem aktuellen Computer den man gerade benutzt
+    (zum Beispiel, zum Wiederherstellen eines zuvor auf einem neuen
+    Jeedom gefundenen Archivs oder einer Neuinstallation).
 
--   **Télécharger la sauvegarde** : Permet de télécharger sur votre
-    ordinateur l’archive de la sauvegarde sélectionnée au-dessus.
+-   **Sicherungskopie herunterladen** : Ermöglicht Ihnen, das Archiv des
+    oben ausgewählten Backups auf Ihren Computer herunterzuladen.
 
-**Sauvegardes Market** 
+**Markt Sicherung**
 ----------------------
 
--   **Envoi des sauvegardes** : Indique à Jeedom d’envoyer les
-    sauvegardes sur le cloud du Market, attention il faut avoir
-    pris l’abonnement.
+-   **Sicherungskopie senden** : Sagt Jeedom, dass Sicherungskopien in die
+    Markt Cloud gesendet werden sollen, Achtung, Sie müssen
+    das Abonnement annehmen.
 
--   **Envoyer une sauvegarde** : Permet d’envoyer sur le cloud une
-    archive de sauvegarde située sur votre ordinateur.
+-   **Ausgewählte lokale Backup senden** :  Sie können ein Cloud-Sicherungs-
+    Archiv auf Ihrem Computer zu senden.
 
 -   **Sauvegardes disponibles** : Liste des sauvegardes
     cloud disponibles.
