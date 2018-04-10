@@ -62,9 +62,13 @@ if ($market->getCertification() == 'Conseillé') {
 if ($market->getCertification() == 'Obsolète') {
 	echo '<span style="font-size: 1.5em;font-weight: bold;color:#e74c3c;">{{Obsolète}}</span><br/>';
 }
+global $JEEDOM_INTERNAL_CONFIG;
+if (isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$market->getCategorie()])) {
+	echo '<span style="font-size: 1em;font-weight: bold;color:#707070;"><i class="fa ' . $JEEDOM_INTERNAL_CONFIG['plugin']['category'][$market->getCategorie()]['icon'] . '"></i> ' . $JEEDOM_INTERNAL_CONFIG['plugin']['category'][$market->getCategorie()]['name'] . '</span>';
+} else {
+	echo '<span style="font-size: 1em;font-weight: bold;color:#707070;">' . $market->getCategorie() . '</span>';
+}
 ?>
-
-   <span class="marketAttr" data-l1key="categorie" style="font-size: 1em;font-weight: bold;color:#707070;"></span>
    <br/><br/>
    <?php
 if ($market->getPurchase() == 1) {
