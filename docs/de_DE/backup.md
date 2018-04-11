@@ -65,53 +65,53 @@ Auf der linken Seite befinden sich die Parameter und die Aktions Schaltflächen.
 -   **Ausgewählte lokale Backup senden** :  Sie können ein Cloud-Sicherungs-
     Archiv auf Ihrem Computer zu senden.
 
--   **Sauvegardes disponibles** : Liste des sauvegardes
-    cloud disponibles.
+-   **Verfügbare Sicherungen** :  Liste der verfügbaren
+    Cloud Sicherungen.
 
--   **Restaurer la sauvegarde** : Lance la restauration d’une
-    sauvegarde cloud.
+-   **Sicherung wiederherstellen** : Startet die Wiederherstellung einer
+    Cloud Sicherung.
 
-**Sauvegardes Samba** 
+**Samba Sicherung**
 ---------------------
 
--   **Envoi des sauvegardes** : Indique à Jeedom d’envoyer les
-    sauvegardes sur le partage samba configuré ici
-    Administration→Configuration→Onglet Mises à jour.
+-   **Sicherungskopie senden** : Weist Jeedom an, dass die Sicherung an die
+    hier Administration → Konfiguration → Registerkarte Updates
+    konfigurierte Samba-Freigabe gesendet werden sollen.
 
--   **Sauvegardes disponibles** : Liste des sauvegardes
-    samba disponibles.
+-   **Verfügbare Sicherungen** :  Liste der verfügbaren
+    Samba Sicherungen.
 
--   **Restaurer la sauvegarde** : Lance la restauration de la sauvegarde
-    samba sélectionnée au-dessus.
-
-> **Tip**
->
-> Selon ce qui sera activé, dans la page
-> Administration→Configuration→Onglet Mises à jour, vous pouvez voir
-> plus ou moins de sections.
+-   **Sicherung wiederherstellen** : Startet die Wiederherstellung der oben 
+    ausgewählten Samba Sicherung.
 
 > **Tip**
 >
-> Lors d’une réinstallation de Jeedom et en ayant pris l’abonnement de
-> sauvegarde vers le cloud du market, vous devez renseigner votre compte
-> Market sur votre nouveau Jeedom (Administration→Configuration→Onglet
-> Mises à jour) puis venir ici pour lancer la restauration.
+> Je nachdem, was aktiviert ist, können Sie auf
+> Administration → Konfiguration → Registerkarte Updates, mehr oder
+> weniger Bereiche sehen.
 
 > **Tip**
 >
-> Il est possible, en cas de soucis, de faire une sauvegarde en ligne de
-> commande : `sudo php /usr/share/nginx/www/jeedom/install/backup.php`
-> ou `sudo php /var/www/html/install/backup.php` selon votre système.
+> Bei der Neuinstallation von Jeedom und der Aufnahme des Backup
+> Abonnements in die Cloud des Marktes, müssen Sie Ihr Market-Konto auf 
+> Ihrem neuen Jeedom eingeben (Administration → Konfiguration →
+> Registerkarte Updates) und dann hierher kommen, um die Wiederherstellung zu starten.
 
 > **Tip**
 >
-> Il est possible aussi de restaurer une sauvegarde en ligne de
-> commandes (par défaut, Jeedom restaure la sauvegarde la plus récente
-> présente dans le répertoire de sauvegarde) :
-> `sudo php /usr/share/nginx/www/jeedom/install/restore.php` ou
-> `sudo php /var/www/html/install/restore.php`.
+> Bei Problemen können Sie in der Komandozeile eine Sicherungskopie
+> erstellen : `sudo php /usr/share/nginx/www/jeedom/install/backup.php`
+> oder `sudo php /var/www/html/install/backup.php` abhängig von Ihrem System.
 
-Qu’est-ce qui est sauvegardé ? 
+> **Tip**
+>
+> Es ist auch möglich, eine Sicherung von der Komandozeile aus
+> wiederherzustellen (standardmäßig stellt Jeedom die letzte Sicherung im
+> Sicherungsverzeichnis wieder her) : `sudo php /usr/share/ngin
+> /www/jeedom/install/restore.php` oder `sudo php /var/www/html/instal
+> /restore.php` .
+
+Was wird gespeichert ?
 ==============================
 
 Lors d’une sauvegarde, Jeedom va sauvegarder tous ses fichiers et la
