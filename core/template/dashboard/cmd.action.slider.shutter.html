@@ -2,14 +2,21 @@
     <center>
         <div style="font-weight: bold;font-size : 12px;#hideCmdName#">#name_display#</div>
         <span class="cursor iconCmd#uid# iconCmd" style="font-size: 2.5em;"></span>
-        <div class="slider" style="margin : 5px 10px 8px 10px;width: 80px;" value="#state#" ></div>
+        <div style="display:inline-block;">
+    <div class="slider" style="margin : 5px 10px 8px 10px;width: 80px;" value="#state#"></div>
+	<span class="value#uid#" style="display:none; font-weight:bold;position: absolute;z-index: 1;padding: 2px 5px 2px 5px;background: #cmdColor#;border-radius:5px;top: 50%;left: 50%;transform: translate(-50%, 150%);"/>
+	</div>
     </center>
     <script>
       jeedom.cmd.update['#id#'] = function(_options){
         $(".cmd[data-cmd_id=#id#] .slider").slider({
             min: ('#minValue#' == '') ? 0 : parseInt('#minValue#'),
             max: ('#maxValue#' == '') ? 100 : parseInt('#maxValue#'),
-            value: ('#state#' == '') ? 0 : parseInt(_options.display_value)
+            value: ('#state#' == '') ? 0 : parseInt(_options.display_value),
+			slide: function(event, ui) {
+				$(".value#uid#").show()
+    $(".value#uid#").html(ui.value);
+  }
         });
         if (parseInt(_options.display_value) > 0) {
            $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-volet-ferme"></i>');
@@ -31,6 +38,7 @@ $('.iconCmd#uid#').off().on('click', function() {
 });
 $(".cmd[data-cmd_uid=#uid#] .slider").on('slidestop', function (event,ui) {
     jeedom.cmd.execute({id: '#id#', value: {slider: ui.value}});
+    $(".value#uid#").hide();
 });
 </script>
 </div>
