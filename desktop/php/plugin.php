@@ -108,10 +108,6 @@ foreach (plugin::listPlugin() as $plugin) {
             </div>
           </div>
           <div class="form-group">
-            <label class="col-sm-2 control-label">{{Auteur}}</label>
-            <div class="col-sm-4">
-              <span id="span_plugin_author" style="position:relative;top:9px;"></span>
-            </div>
             <label class="col-sm-2 control-label">{{License}}</label>
             <div class="col-sm-4">
               <span id="span_plugin_license" style="position:relative;top:9px;"></span>

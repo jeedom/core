@@ -1171,7 +1171,6 @@ if ($cmd->getDisplay('parameters') != '') {
     taAutosize();
   }
 
-
   $('#bt_cmdConfigureSaveOn').on('click',function(){
     var cmd = $('#div_displayCmdConfigure').getValues('.cmdAttr')[0];
     if (!isset(cmd.display)) {
@@ -1192,10 +1191,12 @@ if ($cmd->getDisplay('parameters') != '') {
           state = true;
           $(this).attr('data-state', 1);
           $(this).find('i').removeClass('fa-check-circle-o').addClass('fa-circle-o');
+          $('#table_cmdConfigureSelectMultiple tbody tr .selectMultipleApplyCmd').value(1);
         } else {
           state = false;
           $(this).attr('data-state', 0);
           $(this).find('i').removeClass('fa-circle-o').addClass('fa-check-circle-o');
+          $('#table_cmdConfigureSelectMultiple tbody tr .selectMultipleApplyCmd').value(0);
         }
       });
 

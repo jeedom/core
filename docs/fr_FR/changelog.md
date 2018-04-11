@@ -10,6 +10,7 @@ Changelog
 -   Ajout de la notion de tag sur les équipements (se trouve dans la configuration avancée de l'équipement)
 -   Ajout d'un système d'historique sur la suppression des commandes, équipements, objets, vue, design, deisgn 3d, scénario et utilisateur
 -   Ajout de l'action jeedom_reboot pour lancer un redémarrage de Jeedom
+-   Ajout d'option dans la fenetre de generation de cron
 
 3.2.2
 =====

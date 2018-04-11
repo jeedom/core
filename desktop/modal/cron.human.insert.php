@@ -60,20 +60,27 @@ if (!isConnect()) {
             $('#mod_cron_div_scheduleConfig').append(html);
             $('#mod_cron_div_cronGenerator').empty().cron({
                 initial: '* * * * *',
+                customValues: {
+                    "5 Minutes" : "*/5 * * * *",
+                    "10 Minutes" : "*/10 * * * *",
+                    "15 Minutes" : "*/15 * * * *",
+                    "20 Minutes" : "*/20 * * * *",
+                    "30 Minutes" : "*/30 * * * *",
+                },
                 onChange: function () {
                     $('#mod_cron_span_cronResult').text($(this).cron("value"));
                 }
             });
         }
     });
-$('#mod_cron_sel_scheduleMode').trigger('change');
+    $('#mod_cron_sel_scheduleMode').trigger('change');
 
-function mod_insertCron() {
-}
+    function mod_insertCron() {
+    }
 
 
 
-mod_insertCron.getValue = function () {
-    return $('#mod_cron_span_cronResult').text();
-}
+    mod_insertCron.getValue = function () {
+        return $('#mod_cron_span_cronResult').text();
+    }
 </script>

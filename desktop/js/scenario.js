@@ -352,25 +352,25 @@ $('#div_pageContainer').off('click','.helpSelectCron').on('click','.helpSelectCr
 $('#div_pageContainer').off('click','.bt_addScenarioElement').on( 'click','.bt_addScenarioElement', function (event) {
   var elementDiv = $(this).closest('.element');
   if(elementDiv.html() == undefined){
-     elementDiv = $('#div_scenarioElement');
+   elementDiv = $('#div_scenarioElement');
+ }
+ var expression = false;
+ if ($(this).hasClass('fromSubElement')) {
+  elementDiv = $(this).closest('.subElement').find('.expressions').eq(0);
+  expression = true;
+}
+$('#md_addElement').modal('show');
+$("#bt_addElementSave").off('click').on('click', function (event) {
+  if (expression) {
+    elementDiv.append(addExpression({type: 'element', element: {type: $("#in_addElementType").value()}}));
+  } else {
+    $('#div_scenarioElement .span_noScenarioElement').remove();
+    elementDiv.append(addElement({type: $("#in_addElementType").value()}));
   }
-  var expression = false;
-  if ($(this).hasClass('fromSubElement')) {
-    elementDiv = $(this).closest('.subElement').find('.expressions').eq(0);
-    expression = true;
-  }
-  $('#md_addElement').modal('show');
-  $("#bt_addElementSave").off('click').on('click', function (event) {
-    if (expression) {
-      elementDiv.append(addExpression({type: 'element', element: {type: $("#in_addElementType").value()}}));
-    } else {
-      $('#div_scenarioElement .span_noScenarioElement').remove();
-      elementDiv.append(addElement({type: $("#in_addElementType").value()}));
-    }
-    setEditor();
-    updateSortable();
-    $('#md_addElement').modal('hide');
-  });
+  setEditor();
+  updateSortable();
+  $('#md_addElement').modal('hide');
+});
 });
 
 $('#div_pageContainer').off('click','.bt_removeElement').on('click','.bt_removeElement',  function (event) {
@@ -1104,8 +1104,8 @@ function addSubElement(_subElement, _pColor) {
   switch (_subElement.type) {
     case 'if' :
     retour += '  <input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
-    retour += '  <div style="display:table-cell; width: 15px;vertical-align: top; padding-top: 5px;">';
-    retour += '     <i class="fa fa-arrows-v pull-left cursor bt_sortable"></i>';
+    retour += '  <div style="display:table-cell; width: 35px;vertical-align: top; padding-top: 5px;">';
+    retour += '     <i class="fa fa-arrows-v pull-left cursor bt_sortable" style="position:relative;top:5px;"></i>';
     if(!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1){
       retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="Décocher pour désactiver l\'élément"/>';
     }else{
@@ -1113,8 +1113,10 @@ function addSubElement(_subElement, _pColor) {
     }
     retour += '  </div>';
     retour += '  <div style="display:table-cell; width: 50px;vertical-align: top;">';
-    retour += '  <legend style="margin-bottom: 0px; color : white;border : none;">{{SI}}</legend>';
+    retour += '  <legend style="margin-bottom: 0px; color : white;border : none;">{{SI}}';
+     retour += ' </legend>';
     retour += '  </div>';
+
     retour += '  <div style="display:table-cell; width: 35px;vertical-align: top; padding-top: 5px;">';
     if(!isset(_subElement.options) || !isset(_subElement.options.allowRepeatCondition) || _subElement.options.allowRepeatCondition == 0){
       retour += '<a style="height : 30px;" class="btn btn-default btn-xs cursor subElementAttr tooltips pull-right" title="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="0"><span class="fa-stack"><i class="fa fa-refresh fa-stack-1x"></i></span></a>';

@@ -191,15 +191,18 @@ function displayWidgetSubtype($_name) {
 		</div>
 		<div class="form-group">
 			<select class="form-control" id="sel_categorie" data-href='<?php echo buildUrl('categorie', ''); ?>'>
-				<option value="">{{Top et nouveautés}}</option>
 				<?php
-foreach (repo_market::distinctCategorie($type) as $id => $category) {
-	if (trim($category) != '' && is_numeric($id)) {
-		echo '<option value="' . $category . '"';
-		echo (init('categorie') == $category) ? 'selected >' : '>';
-		echo $category;
-		echo '</option>';
-	}
+if (init('categorie') == '') {
+	echo '<option value="" selected>{{Top et nouveautés}}</option>';
+} else {
+	echo '<option value="">{{Top et nouveautés}}</option>';
+}
+global $JEEDOM_INTERNAL_CONFIG;
+foreach ($JEEDOM_INTERNAL_CONFIG['plugin']['category'] as $key => $value) {
+	echo '<option value="' . $key . '"';
+	echo (init('categorie') == $key) ? 'selected >' : '>';
+	echo $value['name'];
+	echo '</option>';
 }
 ?>
 		</select>
@@ -252,7 +255,12 @@ foreach ($markets as $market) {
 			if (!$first) {
 				echo '</div>';
 			}
-			echo '<legend style="border-bottom: 1px solid #34495e; color : #34495e;" data-category="' . $nCategory . '">' . ucfirst($categorie) . '</legend>';
+			global $JEEDOM_INTERNAL_CONFIG;
+			if (isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$categorie])) {
+				echo '<legend style="border-bottom: 1px solid #34495e; color : #34495e;" data-category="' . $nCategory . '"><i class="fa ' . $JEEDOM_INTERNAL_CONFIG['plugin']['category']['name'] . '"></i> ' . ucfirst($JEEDOM_INTERNAL_CONFIG['plugin']['category']['name']) . '</legend>';
+			} else {
+				echo '<legend style="border-bottom: 1px solid #34495e; color : #34495e;" data-category="' . $nCategory . '">' . ucfirst($categorie) . '</legend>';
+			}
 			echo '<div class="pluginContainer" data-category="' . $nCategory . '">';
 		}
 		$first = false;
