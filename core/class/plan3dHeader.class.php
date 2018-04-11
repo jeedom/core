@@ -73,8 +73,8 @@ class plan3dHeader {
 	}
 
 	public function remove() {
-		$cibDir = dirname(__FILE__) . '/../../' . $this->getConfiguration('path');
-		if (file_exists($cibDir)) {
+		$cibDir = dirname(__FILE__) . '/../../' . $this->getConfiguration('path','');
+		if (file_exists($cibDir) && $this->getConfiguration('path','') != '') {
 			rrmdir($cibDir);
 		}
 		jeedom::addRemoveHistory(array('id' => $this->getId(), 'name' => $this->getName(), 'date' => date('Y-m-d H:i:s'), 'type' => 'plan3d'));

@@ -19,16 +19,12 @@
        $('.cmd[data-cmd_uid=#uid#] .value').trigger('change');
      });
       $('.cmd[data-cmd_uid=#uid#] .value').on('change', function () {
-        if (typeof timerHandle !== 'undefined') {
-         clearTimeout(timerHandle);
-         timerHandle = setTimeout(function() {
+        if (typeof timerHandle#uid# !== 'undefined') {
+         clearTimeout(timerHandle#uid#);
+       }
+	   timerHandle#uid# = setTimeout(function() {
           jeedom.cmd.execute({id:'#id#', value: {slider: $('.cmd[data-cmd_uid=#uid#] .value').val().replace("#unite#", "").replace(" ", "")}});
         }, 1000)
-       } else {
-        timerHandle = setTimeout(function() {
-          jeedom.cmd.execute({id:'#id#', value: {slider: $('.cmd[data-cmd_uid=#uid#] .value').val().replace("#unite#", "").replace(" ", "")}});
-        }, 1000)
-      }    
     });
       jeedom.cmd.update['#id#'] = function(_options){
         $('.cmd[data-cmd_uid=#uid#] .value').val(_options.display_value+' #unite#');
