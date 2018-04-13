@@ -305,9 +305,6 @@ foreach ($markets as $market) {
 		case 'plugin':
 			$default_image = 'core/img/no-image-plugin.png';
 			break;
-		case 'camera':
-			$default_image = 'core/img/no-image-camera.png';
-			break;
 		case 'script':
 			$default_image = 'core/img/no-image-script.png';
 			break;
@@ -324,8 +321,9 @@ foreach ($markets as $market) {
 
 	echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $market->getName() . '</span>';
 
-	$note = $market->getRating();
+	echo '<span style="position : absolute;bottom : 25px;right : 12px;font-size : 0.7em;color:#999999;"><span style="font-size : 0.8em;">{{par}}</span> ' . $market->getAuthor() . '</span>';
 
+	$note = $market->getRating();
 	echo '<span style="position : absolute;bottom : 5px;left : 5px;font-size : 0.7em;">';
 	for ($i = 1; $i < 6; $i++) {
 		if ($i <= $note) {
