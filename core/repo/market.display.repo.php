@@ -51,7 +51,7 @@ echo '<img src="' . $default_image . '" data-original="' . $urlPath . '"  class=
    <input class="form-control marketAttr" data-l1key="id" style="display: none;">
    <span class="marketAttr" data-l1key="name" placeholder="{{Nom}}" style="font-size: 3em;font-weight: bold;"></span>
    <br/>
-   <span class="span_author cursor" style="font-size: 1.5em;font-weight: bold;color:#707070;" data-author="<?php echo $market->getAuthor(); ?>">by <?php echo $market->getAuthor(); ?></span><br/>
+   <span class="span_author cursor" style="font-size: 1.5em;font-weight: bold;color:#707070;" data-author="<?php echo $market->getAuthor(); ?>">{{Développé par}} <?php echo $market->getAuthor(); ?></span><br/>
    <?php
 if ($market->getCertification() == 'Officiel') {
 	echo '<span style="font-size : 1.5em;color:#707070">Officiel</span><br/>';
@@ -65,8 +65,10 @@ if ($market->getCertification() == 'Obsolète') {
 global $JEEDOM_INTERNAL_CONFIG;
 if (isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$market->getCategorie()])) {
 	echo '<span style="font-size: 1em;font-weight: bold;color:#707070;"><i class="fa ' . $JEEDOM_INTERNAL_CONFIG['plugin']['category'][$market->getCategorie()]['icon'] . '"></i> ' . $JEEDOM_INTERNAL_CONFIG['plugin']['category'][$market->getCategorie()]['name'] . '</span>';
+	sendVarToJS('market_display_info_category', $JEEDOM_INTERNAL_CONFIG['plugin']['category'][$market->getCategorie()]['name']);
 } else {
 	echo '<span style="font-size: 1em;font-weight: bold;color:#707070;">' . $market->getCategorie() . '</span>';
+	sendVarToJS('market_display_info_category', $market->getCategorie());
 }
 ?>
    <br/><br/>
@@ -283,6 +285,8 @@ if ($market->getLanguage('it_IT') == 1) {
   });
 
   $('body').setValues(market_display_info, '.marketAttr');
+
+  $('#div_alertMarketDisplay').closest('.ui-dialog').find('.ui-dialog-title').text('Market Jeedom - '+market_display_info_category);
 
   $('.marketAttr[data-l1key=description]').html(linkify(market_display_info.description));
   $('.marketAttr[data-l1key=utilization]').html(linkify(market_display_info.utilization));
