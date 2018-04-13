@@ -17,7 +17,7 @@ sendVarToJS('scenario_template_id', init('scenario_id'));
     <div class="bs-sidebar nav nav-list bs-sidenav" >
         <center>
             <span class="btn btn-default btn-file">
-                <i class="fa fa-cloud-upload"></i> {{Appliquer un template}}<input id="bt_uploadScenarioTemplate" type="file" name="file" data-url="core/ajax/scenario.ajax.php?action=templateupload&jeedom_token=<?php echo ajax::getToken(); ?>" style="display : inline-block;">
+                <i class="fa fa-cloud-upload"></i> {{Envoyer un template}}<input id="bt_uploadScenarioTemplate" type="file" name="file" data-url="core/ajax/scenario.ajax.php?action=templateupload&jeedom_token=<?php echo ajax::getToken(); ?>" style="display : inline-block;">
             </span>
         </center>
         <br/>
@@ -67,7 +67,7 @@ foreach (update::listRepo() as $key => $value) {
             </div>
         </div>
         <div id='div_scenarioTemplateParametreConfiguration' style='display : none;'>
-            <legend>{{Paramètres du scénario}}<a class='btn btn-warning btn-xs pull-right' id='bt_scenarioTemplateApply'><i class="fa fa-check-circle"></i> {{Appliquer}}</a></legend>
+            <legend>{{Paramètres du scénario}}<a class='btn btn-success btn-xs pull-right' id='bt_scenarioTemplateApply'><i class="fa fa-check-circle"></i> {{Appliquer}}</a></legend>
             <div id='div_scenarioTemplateParametreList'></div>
         </div>
     </form>
