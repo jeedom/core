@@ -1,58 +1,58 @@
-Cette page permet de configurer l’affichage de toute votre domotique de
-manière très fine. Celle-ci demande du temps mais sa seule limite est
-votre imagination.
+Esta página le permite configurar la visualización de todo su sistema domótico de
+manera más personal. Esto lleva tiempo pero su único límite es
+su imaginación.
 
-Elle est accessible par Acceuil → Dashboard
+Es accesible a través de Inicio→ Dashboard
 
-> **Tip**
+> **Consejo**
 >
-> Il est possible d’aller directement sur un design grâce au sous-menu.
+> Puede ir directamente a un diseño a través del submenú.
 
-> **Important**
+> **Importante**
 >
-> Toutes les actions se font par un clic droit sur cette page, attention
-> à bien le faire dans le design. Lors de la création, il faut donc le
-> faire au milieu de la page (pour être sûr d’être sur le design).
+> Todas las acciones se realizan con un clic derecho en esta página, atención
+> al hacer bien el diseño. Por lo tanto, al crear, es necesario de
+> hacer en el centro de la página (para asegurarse de estar en el diseño).
 
-Dans le menu nous retrouvons (clic droit donc) nous retrouvons les
-actions suivantes :
+En el menú encontramos (clic derecho por lo tanto) la ópciones
+siguientes :
 
--   **Designs** : Affiche la liste de vos designs et d’y accéder
+-   **Diseños** : Muestra una lista de sus diseños y accede a ellos
 
--   **Edition** : Permet de passer en mode édition
+-   **Edición** : Cambiar al modo de edición
 
--   **Plein ecran** : Permet d’utiliser toute la page Internet, ce qui
-    enlèvera le menu de Jeedom du haut
+-   **Pantalla completa** : Le permite utilizar toda la página de navegación, que
+    eliminará el menú de Jeedom de la parte superior
 
--   **Ajouter graphique** : Permet d’ajouter un graphique
+-   **Agregar gráfico** : Le permite agregar un gráfico
 
--   **Ajouter texte/html** : Permet d’ajouter du texte ou du code
+-   **Añadir texto/html** : Añadir texto o código
     html/javascript
 
--   **Ajouter scénario** : Permet d’ajouter un scénario
+-   **Agregar escenario** : Le permite agregar un escenario
 
--   **Ajouter lien**
+-   **Añadir enlace**
 
-    -   **Vers une vue** : Permet d’ajouter un lien vers une vue
+    -   **A una vista** : Añadir un enlace a una vista
 
-    -   **Vers un design** : Permet d’ajouter un lien vers un autre
-        design
+    -   **A un diseño** : Permite añadir un enlace a otro diseño
+        diseño
 
--   **Ajouter équipement** : Permet d’ajouter un équipement
+-   **Agregar dispositivo** : Le permite agregar dispositivo
 
--   **Ajouter commande** : Permet d’ajouter une commande
+-   **Agregar comando** : Le permite agregar un comando
 
--   **Ajouter image/caméra** : Permet d’ajouter une image ou le flux
-    d’une caméra
+-   **Agregar imagen/cámara** : Le permite agregar una imagen o video
+    de una cámara
 
 -   **Ajouter zone** : Permet d’ajouter une zone transparante cliquable
-    qui pourra executer une série d’actions lors d’un clic (en fonction
-    ou non de l’état d’une autre commande)
+    que será capaz de ejecutar una serie de acciones al hacer clic (según
+    o no del status de otra comando)
 
--   **Ajouter résumé** : Ajoute les informations d’un résumé d’objet ou
-    général
+-   **Agregar resumen** : Agrega información a un resumen de objeto o
+    general
 
--   **Affichage**
+-   **Visualizar**
 
     -   **Aucune** : N’affiche aucune grille
 
