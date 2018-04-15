@@ -108,34 +108,41 @@ if (!isConnect()) {
 		html += '</div>';
 		html += '</td>';
 		html += '<td>';
-		html += '<select class="form-control input-sm calculHistoryAttr" data-l1key="graphType" style="width : 140px;">'
-		html +=  '<option value="line">{{Ligne}}</option>'
-		html +=  '<option value="area">{{Aire}}</option>'
-		html +=  '<option value="column">{{Colonne}}</option>'
-		html +=  '</select>'
+		html += '<select class="form-control input-sm calculHistoryAttr" data-l1key="graphType" style="width : 140px;">';
+		html +=  '<option value="line">{{Ligne}}</option>';
+		html +=  '<option value="area">{{Aire}}</option>';
+		html +=  '<option value="column">{{Colonne}}</option>';
+		html +=  '</select>';
 		html += '</td>';
 		html += '<td>';
-		html += '<select class="form-control input-sm calculHistoryAttr" data-l1key="groupingType" style="width : 190px;">'
-		html += '<option value="">{{Aucun groupement}}</option>'
-		html += '<option value="sum::day">{{Somme par jour}}</option>'
-		html += '<option value="average::day">{{Moyenne par jour}}</option>'
-		html += '<option value="low::day">{{Minimum par jour}}</option>'
-		html += '<option value="high::day">{{Maximum par jour}}</option>'
-		html += '<option value="sum::week">{{Somme par semaine}}</option>'
-		html += '<option value="average::week">{{Moyenne par semaine}}</option>'
-		html += '<option value="low::week">{{Minimum par semaine}}</option>'
-		html += '<option value="high::week">{{Maximum par semaine}}</option>'
-		html += '<option value="sum::month">{{Somme par mois}}</option>'
-		html += '<option value="average::month">{{Moyenne par mois}}</option>'
-		html += '<option value="low::month">{{Minimum par mois}}</option>'
-		html += '<option value="high::month">{{Maximum par mois}}</option>'
-		html +=  '</select>'
+		html += '<select class="form-control input-sm calculHistoryAttr" data-l1key="groupingType" style="width : 190px;">';
+		html += '<option value="">{{Aucun groupement}}</option>';
+		html += '<option value="sum::hour">{{Somme par heure}}</option>';
+		html += '<option value="average::hour">{{Moyenne par heure}}</option>';
+		html += '<option value="low::hour">{{Minimum par heure}}</option>';
+		html += '<option value="sum::day">{{Somme par jour}}</option>';
+		html += '<option value="high::hour">{{Maximum par heure}}</option>';
+		html += '<option value="average::day">{{Moyenne par jour}}</option>';
+		html += '<option value="low::day">{{Minimum par jour}}</option>';
+		html += '<option value="high::day">{{Maximum par jour}}</option>';
+		html += '<option value="sum::week">{{Somme par semaine}}</option>';
+		html += '<option value="average::week">{{Moyenne par semaine}}</option>';
+		html += '<option value="low::week">{{Minimum par semaine}}</option>';
+		html += '<option value="high::week">{{Maximum par semaine}}</option>';
+		html += '<option value="sum::month">{{Somme par mois}}</option>';
+		html += '<option value="average::month">{{Moyenne par mois}}</option>';
+		html += '<option value="low::month">{{Minimum par mois}}</option>';
+		html += '<option value="high::month">{{Maximum par mois}}</option>';
+		html += '<option value="average::year">{{Moyenne par année}}</option>';
+		html += '<option value="low::year">{{Minimum par année}}</option>';
+		html += '<option value="high::year">{{Maximum par année}}</option>';
+		html +=  '</select>';
 		html += '</td>';
 		html += '<td>';
-		html += '<select class="form-control input-sm calculHistoryAttr" data-l1key="graphStep" style="width : 90px;">'
-		html += '<option value="0">{{Non}}</option>'
-		html += '<option value="1">{{Oui}}</option>'
-		html += '</select>'
+		html += '<select class="form-control input-sm calculHistoryAttr" data-l1key="graphStep" style="width : 90px;">';
+		html += '<option value="0">{{Non}}</option>';
+		html += '<option value="1">{{Oui}}</option>';
+		html += '</select>';
 		html += '</td>';
 		html += '<td>';
 		html += '<a class="btn btn-danger btn-sm pull-right bt_removeCalculHistory"><i class="fa fa-trash"></i></a>';
