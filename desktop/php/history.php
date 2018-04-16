@@ -70,7 +70,11 @@ foreach (cmd::allHistoryCmd() as $cmd) {
 		echo '<br/>';
 		echo '<div class="cmdList" data-object_id="o' . $eqLogic->getObject_id() . '" style="display:none;margin-left : 20px;">';
 	}
-	echo '<li class="cursor li_history" data-cmd_id="' . $cmd->getId() . '"><a class="history"><i class="fa fa-trash-o remove"></i> ' . $cmd->getEqLogic()->getName() . ' - ' . $cmd->getName() . '</a></li>';
+	echo '<li class="cursor li_history" data-cmd_id="' . $cmd->getId() . '"><a class="history"><i class="fa fa-trash-o remove"></i> ';
+	if ($cmd->getSubType() == 'string') {
+		echo '<i class="fa fa-share export"></i> ';
+	}
+	echo $cmd->getEqLogic()->getName() . ' - ' . $cmd->getName() . '</a></li>';
 	$object_id = $eqLogic->getObject_id();
 }
 ?>
