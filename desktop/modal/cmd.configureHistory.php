@@ -14,6 +14,7 @@ if (!isConnect('admin')) {
       <tr>
        <th data-filter="false" data-sorter="checkbox">{{Historisé}}</th>
        <th data-filter="false" data-sorter="checkbox">{{Timeline}} <a class="btn btn-danger btn-xs pull-right" id="bt_canceltimeline" style="color : white;" ><i class="fa fa-times"></i></a><a class="btn btn-success btn-xs pull-right" id="bt_applytimeline" style="color : white;" ><i class="fa fa-check"></i></a></th>
+       <th>{{Type}}</th>
        <th>{{Nom}}</th>
        <th>{{Plugin}}</th>
        <th data-sorter="select-text">{{Mode de lissage}}</th>
@@ -27,6 +28,7 @@ $list_cmd = array();
 foreach (cmd::all() as $cmd) {
 	$info_cmd = utils::o2a($cmd);
 	$info_cmd['humanName'] = $cmd->getHumanName(true);
+	$info_cmd['type'] = $cmd->getType() . ' / ' . $cmd->getSubtype();
 	$eqLogic = $cmd->getEqLogic();
 	$info_cmd['plugins'] = $eqLogic->getEqType_name();
 	$list_cmd[] = $info_cmd;
@@ -57,6 +59,9 @@ function addCommandHistory(_cmd){
   tr += '</td>';
   tr += '<td>';
   tr += '<input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="timeline::enable" />';
+  tr += '</td>';
+   tr += '<td>';
+  tr += '<span class="cmdAttr" data-l1key="type"></span>';
   tr += '</td>';
   tr += '<td>';
   tr += '<span class="cmdAttr" data-l1key="id" style="display:none;"></span>';
