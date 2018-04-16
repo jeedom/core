@@ -25,7 +25,7 @@ if (!isConnect('admin')) {
                             <th data-sorter="false" style="width:50px;"></th>
                             <th>{{Nom}}</th>
                             <th>{{Version}}</th>
-                            <th data-sorter="false" data-filter="false">{{Options}}</th>
+                            <th data-sorter="checkbox" data-filter="false">{{Options}}</th>
                             <th data-sorter="false" data-filter="false">{{Actions}}</th>
                         </tr>
                     </thead>

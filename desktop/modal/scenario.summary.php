@@ -14,12 +14,12 @@ if (!isConnect()) {
 			<th>{{Scénario}}</th>
 			<th>{{Statut}}</th>
 			<th>{{Dernier lancement}}</th>
-			<th data-sorter="false" data-filter="false">{{Actif}}</th>
-			<th data-sorter="false" data-filter="false">{{Visible}}</th>
-			<th data-sorter="false" data-filter="false">{{Multi lancement}}</th>
-			<th data-sorter="false" data-filter="false">{{Mode synchrone}}</th>
-			<th data-sorter="false" data-filter="false">{{Log}}</th>
-			<th data-sorter="false" data-filter="false">{{Timeline}}</th>
+			<th data-sorter="checkbox" data-filter="false">{{Actif}}</th>
+			<th data-sorter="checkbox" data-filter="false">{{Visible}}</th>
+			<th data-sorter="checkbox" data-filter="false">{{Multi lancement}}</th>
+			<th data-sorter="checkbox" data-filter="false">{{Mode synchrone}}</th>
+			<th data-sorter="select-text">{{Log}}</th>
+			<th data-sorter="checkbox" data-filter="false">{{Timeline}}</th>
 			<th data-sorter="false" data-filter="false">{{Actions}}</th>
 		</tr>
 	</thead>

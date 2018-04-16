@@ -12,12 +12,12 @@ if (!isConnect('admin')) {
    <table class="table table-bordered table-condensed tablesorter" id="table_cmdConfigureHistory" style="width:100%">
      <thead>
       <tr>
-       <th data-sorter="false" data-filter="false">{{Historisé}}</th>
-       <th data-sorter="false" data-filter="false">{{Timeline}} <a class="btn btn-danger btn-xs pull-right" id="bt_canceltimeline" style="color : white;" ><i class="fa fa-times"></i></a><a class="btn btn-success btn-xs pull-right" id="bt_applytimeline" style="color : white;" ><i class="fa fa-check"></i></a></th>
+       <th data-filter="false" data-sorter="checkbox">{{Historisé}}</th>
+       <th data-filter="false" data-sorter="checkbox">{{Timeline}} <a class="btn btn-danger btn-xs pull-right" id="bt_canceltimeline" style="color : white;" ><i class="fa fa-times"></i></a><a class="btn btn-success btn-xs pull-right" id="bt_applytimeline" style="color : white;" ><i class="fa fa-check"></i></a></th>
        <th>{{Nom}}</th>
        <th>{{Plugin}}</th>
-       <th data-sorter="false" data-filter="false">{{Mode de lissage}}</th>
-       <th data-sorter="false" data-filter="false">{{Purge de l'historique si plus vieux}}</th>
+       <th data-sorter="select-text">{{Mode de lissage}}</th>
+       <th data-sorter="select-text">{{Purge de l'historique si plus vieux}}</th>
        <th data-sorter="false" data-filter="false">{{Action}}</th>
      </tr>
    </thead>
@@ -38,6 +38,7 @@ sendVarToJs('cmds_history_configure', $list_cmd);
 
 <script>
  initTableSorter();
+ $("#table_cmdConfigureHistory").tablesorter({headers:{0:{sorter:'checkbox'}}});
  table_history = [];
  for (var i in cmds_history_configure) {
   table_history.push(addCommandHistory(cmds_history_configure[i]));

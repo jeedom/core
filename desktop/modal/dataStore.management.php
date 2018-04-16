@@ -2,21 +2,18 @@
 if (!isConnect()) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-include_file('3rdparty', 'jquery.tablesorter/theme.bootstrap', 'css');
-include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.min', 'js');
-include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'js');
 sendVarToJS('dataStore_type', init('type'));
 sendVarToJS('dataStore_link_id', init('link_id', -1));
 ?>
 <div style="display: none;" id="div_dataStoreManagementAlert"></div>
 <a class="btn btn-default" id="bt_dataStoreManagementAdd" style="margin-bottom: 5px;"><i class="fa fa-plus"></i> {{Ajouter}}</a>
-<table id="table_dataStore" class="table table-condensed tabl-bordered" style="width: 100%">
+<table id="table_dataStore" class="table table-condensed table-bordered tablesorter" style="width: 100%">
     <thead>
         <tr>
-            <th>{{Nom}}</th>
-            <th>{{Valeur}}</th>
+            <th data-sorter="input">{{Nom}}</th>
+            <th data-sorter="input">{{Valeur}}</th>
             <th>{{Utilisée dans}}</th>
-            <th style="min-width: 100px;">{{Action}}</th>
+            <th data-sorter="false" data-filter="false" style="min-width: 100px;">{{Action}}</th>
         </tr>
     </thead>
     <tbody>
@@ -27,9 +24,7 @@ sendVarToJS('dataStore_link_id', init('link_id', -1));
 <script>
     $(function() {
         initTableSorter();
-
         refreshDataStoreMangementTable();
-
         $('#table_dataStore').delegate('.bt_removeDataStore', 'click', function() {
             var tr = $(this).closest('tr');
             bootbox.confirm('Etes-vous sûr de vouloir supprimer la variable <span style="font-weight: bold ;">' + tr.find('.key').value() + '</span> ?', function(result) {

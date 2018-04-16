@@ -156,6 +156,7 @@ include_file('3rdparty', 'jquery.fileupload/jquery.fileupload', 'js');
 include_file('3rdparty', 'jquery.tablesorter/theme.bootstrap', 'css');
 include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.min', 'js');
 include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'js');
+include_file('3rdparty', 'jquery.tablesorter/parsers/parser-input-select.min', 'js');
 include_file('3rdparty', 'datetimepicker/jquery.datetimepicker', 'js');
 include_file('3rdparty', 'datetimepicker/jquery.datetimepicker', 'css');
 include_file('3rdparty', 'jquery.cron/jquery.cron.min', 'js');

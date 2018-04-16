@@ -26,7 +26,7 @@ if ($user->getProfils() != 'restrict') {
 			<thead>
 				<tr>
 					<th>{{Equipement}}</th>
-					<th data-sorter="false" data-filter="false">{{Droits}}</th>
+					<th data-sorter="select-text">{{Droits}}</th>
 				</tr>
 			</thead>
 			<tbody>
