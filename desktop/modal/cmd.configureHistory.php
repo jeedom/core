@@ -28,7 +28,6 @@ $list_cmd = array();
 foreach (cmd::all() as $cmd) {
 	$info_cmd = utils::o2a($cmd);
 	$info_cmd['humanName'] = $cmd->getHumanName(true);
-	$info_cmd['type'] = $cmd->getType() . ' / ' . $cmd->getSubtype();
 	$eqLogic = $cmd->getEqLogic();
 	$info_cmd['plugins'] = $eqLogic->getEqType_name();
 	$list_cmd[] = $info_cmd;
@@ -60,8 +59,8 @@ function addCommandHistory(_cmd){
   tr += '<td>';
   tr += '<input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="timeline::enable" />';
   tr += '</td>';
-   tr += '<td>';
-  tr += '<span class="cmdAttr" data-l1key="type"></span>';
+  tr += '<td>';
+  tr += '<span class="cmdAttr">'+_cmd.type+' / '+_cmd.subType+'</span>';
   tr += '</td>';
   tr += '<td>';
   tr += '<span class="cmdAttr" data-l1key="id" style="display:none;"></span>';
@@ -133,23 +132,24 @@ $('#bt_cmdConfigureCmdHistoryApply').on('click',function(){
       $('#md_cmdConfigureHistory').showAlert({message: error.message, level: 'danger'});
     },
     success: function (data) {
-     $('#md_cmdConfigureHistory').showAlert({message: '{{Modifications sauvegardées avec succès}}', level: 'success'});
-   }
- });
+      $("#table_cmdConfigureHistory").trigger("update");
+      $('#md_cmdConfigureHistory').showAlert({message: '{{Modifications sauvegardées avec succès}}', level: 'success'});
+    }
+  });
 });
 
 $('#bt_canceltimeline').on('click',function(){
   $('.cmdAttr[data-l1key=configuration][data-l2key="timeline::enable"]:visible').each(function(){
-	$(this).prop('checked', false);
-	$(this).closest('tr').attr('data-change','1');
-  });
+   $(this).prop('checked', false);
+   $(this).closest('tr').attr('data-change','1');
+ });
 });
 
 $('#bt_applytimeline').on('click',function(){
   $('.cmdAttr[data-l1key=configuration][data-l2key="timeline::enable"]:visible').each(function(){
-	$(this).prop('checked', true);
-	 $(this).closest('tr').attr('data-change','1');
-  });
+   $(this).prop('checked', true);
+   $(this).closest('tr').attr('data-change','1');
+ });
 });
 
 </script>
