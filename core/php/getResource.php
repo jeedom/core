@@ -61,9 +61,6 @@ if (file_exists($file)) {
 	}
 	if ($pathinfo['extension'] == 'js') {
 		if (strpos($pathinfo['filename'], '.min') !== false) {
-			if (strpos($pathinfo['filename'], '.gzip') !== false) {
-				header('Content-Encoding: gzip');
-			}
 			echo file_get_contents($file);
 			die();
 		}
@@ -78,18 +75,14 @@ if (file_exists($file)) {
 		}
 		$minifier = new Minify\JS();
 		$minifier->add($content);
-		header('Content-Encoding: gzip');
-		echo $minifier->gzip($tempAssestsFolder . '/' . $etagFile . '.gzip.min.' . $pathinfo['extension']);
+		echo $minifier->minify($tempAssestsFolder . '/' . $etagFile . '.min.' . $pathinfo['extension']);
 	} elseif ($pathinfo['extension'] == 'css') {
 		if (strpos($pathinfo['filename'], '.min.') !== false || config::byKey('developperMode') == 1) {
-			if (strpos($pathinfo['filename'], '.gzip') !== false) {
-				header('Content-Encoding: gzip');
-			}
 			echo file_get_contents($file);
 			die();
 		}
 		$minifier = new Minify\CSS($file);
-		echo $minifier->gzip($tempAssestsFolder . '/' . $etagFile . '.gzip.min.' . $pathinfo['extension']);
+		echo $minifier->minify($tempAssestsFolder . '/' . $etagFile . '.min.' . $pathinfo['extension']);
 	}
 	exit;
 }
