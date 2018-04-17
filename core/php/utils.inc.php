@@ -33,13 +33,13 @@ function include_file($_folder, $_fn, $_type, $_plugin = '', $_pathOnly = false)
 			$paths[] = include_file($file['folder'], $file['fn'], $_type, $plugin, true);
 			$outputfilename .= md5($paths[count($paths) - 1]);
 		}
-		$minFile = jeedom::getTmpFolder('assets') . '/' . sha1($outputfilename) . '.min.' . $extension;
+		$minFile = jeedom::getTmpFolder('assets') . '/' . sha1($outputfilename) . '.gzip.min.' . $extension;
 		if (!file_exists($minFile)) {
 			$minifier = (in_array($_type, array('js', 'class.js'))) ? new Minify\JS() : new Minify\CSS();
 			foreach ($paths as $path) {
 				$minifier->add(translate::exec(file_get_contents($path), $path, true));
 			}
-			$minifier->minify($minFile);
+			$minifier->gzip($minFile);
 		}
 		echo '<script type="text/javascript" src="core/php/getResource.php?file=' . $minFile . '&lang=' . translate::getLanguage() . '"></script>';
 		return;
