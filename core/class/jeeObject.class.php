@@ -137,6 +137,9 @@ class jeeObject {
 	public static function deadCmd() {
 		$return = array();
 		foreach (jeeObject::all() as $object) {
+			if (!is_array($object->getConfiguration('summary', '')) || count($object->getConfiguration('summary', '')) == 0) {
+				continue;
+			}
 			foreach ($object->getConfiguration('summary', '') as $key => $summary) {
 				foreach ($summary as $cmdInfo) {
 					if (!cmd::byId(str_replace('#', '', $cmdInfo['cmd']))) {
