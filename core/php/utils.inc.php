@@ -101,7 +101,7 @@ function include_file($_folder, $_fn, $_type, $_plugin = '', $_pathOnly = false)
 		return;
 	}
 	if ($type == 'css') {
-		if ($_folder != '3rdparty') {
+		if ($_folder != '3rdparty' && $_type != 'custom.css' && $_type != 'themes.css') {
 			echo '<link href="core/php/getResource.php?file=' . $_folder . '/' . $_fn . '&md5=' . md5_file($path) . '" rel="stylesheet" />';
 		} else {
 			echo '<link href="' . $_folder . '/' . $_fn . '?md5=' . md5_file($path) . '" rel="stylesheet" />';
