@@ -357,7 +357,9 @@ try {
 	if (!file_exists(dirname(__FILE__) . '/../data/php/user.function.class.php')) {
 		copy(dirname(__FILE__) . '/../data/php/user.function.class.sample.php', dirname(__FILE__) . '/../data/php/user.function.class.php');
 	}
-	cache::emptyAssets();
+	if (method_exists('cache', 'emptyAssets')) {
+		cache::emptyAssets();
+	}
 } catch (Exception $e) {
 	echo "Error : ";
 	echo $e->getMessage();
