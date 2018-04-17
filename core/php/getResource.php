@@ -32,10 +32,6 @@ if (config::byKey('developperMode') == 0) {
 	if (file_exists($minFile)) {
 		$file = $minFile;
 	}
-	$minFile = $tempAssestsFolder . '/' . md5_file($file) . '.gzip.min.' . $pathinfo['extension'];
-	if (file_exists($minFile)) {
-		$file = $minFile;
-	}
 	$pathinfo = pathinfo($file);
 }
 if (file_exists($file)) {
@@ -86,11 +82,14 @@ if (file_exists($file)) {
 		echo $minifier->gzip($tempAssestsFolder . '/' . $etagFile . '.gzip.min.' . $pathinfo['extension']);
 	} elseif ($pathinfo['extension'] == 'css') {
 		if (strpos($pathinfo['filename'], '.min.') !== false || config::byKey('developperMode') == 1) {
+			if (strpos($pathinfo['filename'], '.gzip') !== false) {
+				header('Content-Encoding: gzip');
+			}
 			echo file_get_contents($file);
 			die();
 		}
 		$minifier = new Minify\CSS($file);
-		echo $minifier->minify($tempAssestsFolder . '/' . $etagFile . '.min.' . $pathinfo['extension']);
+		echo $minifier->gzip($tempAssestsFolder . '/' . $etagFile . '.gzip.min.' . $pathinfo['extension']);
 	}
 	exit;
 }
