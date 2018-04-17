@@ -16,34 +16,9 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-use MatthiasMullie\Minify;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
-function include_file($_folder, $_fn, $_type, $_plugin = '', $_pathOnly = false) {
-	if (is_array($_folder) && in_array($_type, array('css', 'js', 'class.js'))) {
-		$outputfilename = '';
-		$extension = in_array($_type, array('js', 'class.js')) ? 'js' : 'css';
-		$paths = array();
-		foreach ($_folder as $file) {
-			$plugin = isset($file['plugin']) ? $file['plugin'] : $_plugin;
-			if (config::byKey('developperMode') == 1) {
-				include_file($file['folder'], $file['fn'], $_type, $plugin);
-				continue;
-			}
-			$paths[] = include_file($file['folder'], $file['fn'], $_type, $plugin, true);
-			$outputfilename .= md5($paths[count($paths) - 1]);
-		}
-		$minFile = jeedom::getTmpFolder('assets') . '/' . sha1($outputfilename) . '.min.' . $extension;
-		if (!file_exists($minFile)) {
-			$minifier = (in_array($_type, array('js', 'class.js'))) ? new Minify\JS() : new Minify\CSS();
-			foreach ($paths as $path) {
-				$minifier->add($path);
-			}
-			$minifier->minify($minFile);
-		}
-		echo '<script type="text/javascript" src="core/php/getResource.php?file=' . $minFile . '&lang=' . translate::getLanguage() . '"></script>';
-		return;
-	}
+function include_file($_folder, $_fn, $_type, $_plugin = '') {
 	$_rescue = false;
 	if (isset($_GET['rescue']) && $_GET['rescue'] == 1) {
 		$_rescue = true;
@@ -82,9 +57,6 @@ function include_file($_folder, $_fn, $_type, $_plugin = '', $_pathOnly = false)
 	$path = dirname(__FILE__) . '/../../' . $_folder . '/' . $_fn;
 	if (!file_exists($path)) {
 		throw new Exception('Fichier introuvable : ' . $path, 35486);
-	}
-	if ($_pathOnly) {
-		return $path;
 	}
 	if ($type == 'php') {
 		if ($_type != 'class') {
