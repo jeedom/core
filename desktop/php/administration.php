@@ -79,11 +79,11 @@ user::isBan();
 								<option value="tr">Turkish</option>
 							</select>
 						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mode développement}}</label>
-						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-							<input type="checkbox" class="configKey" data-l1key="developperMode" />
+						<div>
+							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Générer les traductions}}</label>
+							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+								<input type="checkbox" class="configKey" data-l1key="generateTranslation" title="{{Option pour les développeurs permettant à}} <?php echo config::byKey('product_name'); ?> {{de générer les phrases à traduire}}" />
+							</div>
 						</div>
 					</div>
 					<div class="form-group">

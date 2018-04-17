@@ -73,11 +73,7 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 		return;
 	}
 	if ($type == 'css') {
-		if ($_folder != '3rdparty') {
-			echo '<link href="core/php/getResource.php?file=' . $_folder . '/' . $_fn . '&md5=' . md5_file($path) . '" rel="stylesheet" />';
-		} else {
-			echo '<link href="' . $_folder . '/' . $_fn . '?md5=' . md5_file($path) . '" rel="stylesheet" />';
-		}
+		echo '<link href="' . $_folder . '/' . $_fn . '?md5=' . md5_file($path) . '" rel="stylesheet" />';
 		return;
 	}
 	if ($type == 'js') {

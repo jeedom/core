@@ -16,18 +16,10 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 require_once dirname(__FILE__) . '/core.inc.php';
-use MatthiasMullie\Minify;
 $file = dirname(__FILE__) . '/../../' . init('file');
 $pathinfo = pathinfo($file);
 if ($pathinfo['extension'] != 'js' && $pathinfo['extension'] != 'css') {
 	die();
-}
-if (config::byKey('developperMode') == 0) {
-	$tempAssestsFolder = jeedom::getTmpFolder('assets');
-	$minFile = $tempAssestsFolder . '/' . md5_file($file) . '.min.' . $pathinfo['extension'];
-	if (file_exists($minFile)) {
-		$file = $minFile;
-	}
 }
 if (file_exists($file)) {
 	switch ($pathinfo['extension']) {
@@ -55,29 +47,13 @@ if (file_exists($file)) {
 		exit;
 	}
 	if ($pathinfo['extension'] == 'js') {
-		if (strpos($pathinfo['filename'], '.min.') !== false) {
-			echo file_get_contents($file);
-			die();
-		}
 		if (strpos($file, '3rdparty') !== false) {
-			$content = file_get_contents($file);
-		} else {
-			$content = translate::exec(file_get_contents($file), init('file'), true);
-		}
-		if (config::byKey('developperMode') == 1) {
-			echo $content;
-			die();
-		}
-		$minifier = new Minify\JS();
-		$minifier->add($content);
-		echo $minifier->minify($tempAssestsFolder . '/' . $etagFile . '.min.' . $pathinfo['extension']);
-	} elseif ($pathinfo['extension'] == 'css') {
-		if (strpos($pathinfo['filename'], '.min.') !== false || config::byKey('developperMode') == 1) {
 			echo file_get_contents($file);
-			die();
+		} else {
+			echo translate::exec(file_get_contents($file), init('file'), true);
 		}
-		$minifier = new Minify\CSS($file);
-		echo $minifier->minify($tempAssestsFolder . '/' . $etagFile . '.min.' . $pathinfo['extension']);
+	} elseif ($pathinfo['extension'] == 'css') {
+		echo file_get_contents($file);
 	}
 	exit;
 }
