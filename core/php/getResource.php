@@ -60,7 +60,7 @@ if (file_exists($file)) {
 		exit;
 	}
 	if ($pathinfo['extension'] == 'js') {
-		if (strpos($pathinfo['filename'], '.min') !== false) {
+		if (strpos($pathinfo['filename'], '.min.') !== false) {
 			echo file_get_contents($file);
 			die();
 		}
