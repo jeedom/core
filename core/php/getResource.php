@@ -15,6 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
+
 require_once dirname(__FILE__) . '/core.inc.php';
 $file = dirname(__FILE__) . '/../../' . init('file');
 $pathinfo = pathinfo($file);
@@ -46,6 +47,7 @@ if (file_exists($file)) {
 		header('HTTP/1.1 304 Not Modified');
 		exit;
 	}
+	ob_start("ob_gzhandler");
 	if ($pathinfo['extension'] == 'js') {
 		if (strpos($file, '3rdparty') !== false) {
 			echo file_get_contents($file);
@@ -55,5 +57,6 @@ if (file_exists($file)) {
 	} elseif ($pathinfo['extension'] == 'css') {
 		echo file_get_contents($file);
 	}
+	ob_end_clean();
 	exit;
 }
