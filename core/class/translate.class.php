@@ -30,7 +30,7 @@ class translate {
 
 	public static function getConfig($_key, $_default = '') {
 		if (self::$config === null) {
-			self::$config = config::byKeys(array('language', 'generateTranslation'));
+			self::$config = config::byKeys(array('language', 'developperMode'));
 		}
 		if (isset(self::$config[$_key])) {
 			return self::$config[$_key];
@@ -57,7 +57,7 @@ class translate {
 		}
 		$language = self::getLanguage();
 
-		if ($language == 'fr_FR' && self::getConfig('generateTranslation') != 1) {
+		if ($language == 'fr_FR' && self::getConfig('developperMode') != 1) {
 			return preg_replace("/{{(.*?)}}/s", '$1', $_content);
 		}
 		if (substr($_name, 0, 1) == '/') {
