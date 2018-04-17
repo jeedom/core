@@ -22,8 +22,6 @@ return array(
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
     'PragmaRX\\Google2FA\\' => array($vendorDir . '/pragmarx/google2fa/src'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
-    'MatthiasMullie\\PathConverter\\' => array($vendorDir . '/matthiasmullie/path-converter/src'),
-    'MatthiasMullie\\Minify\\' => array($vendorDir . '/matthiasmullie/minify/src'),
     'League\\Flysystem\\WebDAV\\' => array($vendorDir . '/league/flysystem-webdav/src'),
     'League\\Flysystem\\' => array($vendorDir . '/league/flysystem/src'),
     'Github\\' => array($vendorDir . '/knplabs/github-api/lib/Github'),

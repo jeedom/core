@@ -43,8 +43,6 @@ class ComposerStaticInit5a0c414efab2298f121e5cbed8bbcba9
         'M' => 
         array (
             'Monolog\\' => 8,
-            'MatthiasMullie\\PathConverter\\' => 29,
-            'MatthiasMullie\\Minify\\' => 22,
         ),
         'L' => 
         array (
@@ -133,14 +131,6 @@ class ComposerStaticInit5a0c414efab2298f121e5cbed8bbcba9
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
-        ),
-        'MatthiasMullie\\PathConverter\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/matthiasmullie/path-converter/src',
-        ),
-        'MatthiasMullie\\Minify\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/matthiasmullie/minify/src',
         ),
         'League\\Flysystem\\WebDAV\\' => 
         array (
