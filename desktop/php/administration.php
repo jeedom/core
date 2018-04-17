@@ -82,8 +82,11 @@ user::isBan();
 					</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mode développement}}</label>
-						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+						<div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
 							<input type="checkbox" class="configKey" data-l1key="developperMode" />
+						</div>
+						<div class="col-lg-2 col-md-3 col-sm-3">
+							<a class="btn btn-default form-control" id="bt_cacheEmptyAssets"><i class="fa fa-trash"></i> {{Vider le cache assets}}</a>
 						</div>
 					</div>
 					<div class="form-group">

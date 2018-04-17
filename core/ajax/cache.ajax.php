@@ -42,6 +42,12 @@ try {
 		ajax::success(cache::stats());
 	}
 
+	if (init('action') == 'emptyAssets') {
+		unautorizedInDemo();
+		cache::emptyAssets();
+		ajax::success();
+	}
+
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {

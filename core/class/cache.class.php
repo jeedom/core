@@ -360,6 +360,12 @@ class cache {
 		}
 	}
 
+	public static function emptyAssets() {
+		if (file_exists(jeedom::getTmpFolder('assets'))) {
+			rrmdir(jeedom::getTmpFolder('assets'));
+		}
+	}
+
 	/*     * *********************Methode d'instance************************* */
 
 	public function save() {

@@ -357,9 +357,7 @@ try {
 	if (!file_exists(dirname(__FILE__) . '/../data/php/user.function.class.php')) {
 		copy(dirname(__FILE__) . '/../data/php/user.function.class.sample.php', dirname(__FILE__) . '/../data/php/user.function.class.php');
 	}
-	if (file_exists(jeedom::getTmpFolder('assets'))) {
-		rrmdir(jeedom::getTmpFolder('assets'));
-	}
+	cache::emptyAssets();
 } catch (Exception $e) {
 	echo "Error : ";
 	echo $e->getMessage();
