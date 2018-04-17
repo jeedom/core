@@ -301,7 +301,6 @@ try {
 	$cron->setTimeout(240);
 	$cron->setDeamon(0);
 	$cron->save();
-
 	if (!file_exists(dirname(__FILE__) . '/../plugins')) {
 		mkdir(dirname(__FILE__) . '/../plugins');
 	}
@@ -312,7 +311,6 @@ try {
 	} catch (Exception $e) {
 		echo "NOK\n";
 	}
-
 	config::save('hardware_name', '');
 	if (config::byKey('api') == '') {
 		config::save('api', config::genKey());
@@ -330,7 +328,6 @@ try {
 	} catch (Exception $e) {
 
 	}
-
 	try {
 		foreach (object::all() as $object) {
 			$object->save();
@@ -338,7 +335,6 @@ try {
 	} catch (Exception $exc) {
 
 	}
-
 	foreach (cmd::all() as $cmd) {
 		$change = false;
 		if ($cmd->getConfiguration('jeedomCheckCmdCmdActionId') != '') {
@@ -349,11 +345,9 @@ try {
 			$cmd->save();
 		}
 	}
-
 	if (file_exists(dirname(__FILE__) . '/../core/template/scenario/equipement.default.html')) {
 		unlink(dirname(__FILE__) . '/../core/template/scenario/equipement.default.html');
 	}
-
 	if (!file_exists(dirname(__FILE__) . '/../data/php/user.function.class.php')) {
 		copy(dirname(__FILE__) . '/../data/php/user.function.class.sample.php', dirname(__FILE__) . '/../data/php/user.function.class.php');
 	}
