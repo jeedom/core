@@ -120,50 +120,53 @@ include_file('3rdparty', 'jquery/jquery.min', 'js');
 	</script>
 	<?php
 include_file('3rdparty', 'font-noto/font-noto', 'css');
-include_file('3rdparty', 'jquery.utils/jquery.utils', 'js');
-include_file('core', 'core', 'js');
-include_file('3rdparty', 'bootstrap/bootstrap.min', 'js');
-include_file('3rdparty', 'jquery.ui/jquery-ui.min', 'js');
-include_file('3rdparty', 'jquery.ui/jquery.ui.datepicker.fr', 'js');
+
+$includes_js = array();
+$includes_js[] = array('folder' => '3rdparty', 'fn' => 'jquery.utils/jquery.utils');
+$includes_js[] = array('folder' => 'core', 'fn' => 'core');
+$includes_js[] = array('folder' => '3rdparty', 'fn' => 'bootstrap/bootstrap.min', 'js');
+$includes_js[] = array('folder' => '3rdparty', 'fn' => 'jquery.ui/jquery-ui.min', 'js');
+$includes_js[] = array('folder' => '3rdparty', 'fn' => 'jquery.ui/jquery.ui.datepicker.fr');
+$includes_js[] = array('folder' => '3rdparty', 'fn' => 'bootbox/bootbox.min', 'js');
+$includes_js[] = array('folder' => '3rdparty', 'fn' => 'highstock/highstock', 'js');
+$includes_js[] = array('folder' => '3rdparty', 'fn' => 'highstock/highcharts-more', 'js');
+$includes_js[] = array('folder' => '3rdparty', 'fn' => 'highstock/modules/solid-gauge', 'js');
+$includes_js[] = array('folder' => '3rdparty', 'fn' => 'highstock/modules/exporting', 'js');
+$includes_js[] = array('folder' => '3rdparty', 'fn' => 'highstock/modules/export-data', 'js');
+$includes_js[] = array('folder' => '3rdparty', 'fn' => 'jquery.toastr/jquery.toastr.min', 'js');
+$includes_js[] = array('folder' => '3rdparty', 'fn' => 'jquery.at.caret/jquery.at.caret.min', 'js');
+$includes_js[] = array('folder' => '3rdparty', 'fn' => 'jwerty/jwerty', 'js');
+$includes_js[] = array('folder' => '3rdparty', 'fn' => 'jquery.packery/jquery.packery', 'js');
+$includes_js[] = array('folder' => '3rdparty', 'fn' => 'jquery.lazyload/jquery.lazyload', 'js');
+$includes_js[] = array('folder' => '3rdparty', 'fn' => 'codemirror/lib/codemirror', 'js');
+$includes_js[] = array('folder' => '3rdparty', 'fn' => 'codemirror/addon/edit/matchbrackets', 'js');
+$includes_js[] = array('folder' => '3rdparty', 'fn' => 'codemirror/mode/htmlmixed/htmlmixed', 'js');
+$includes_js[] = array('folder' => '3rdparty', 'fn' => 'codemirror/mode/clike/clike', 'js');
+$includes_js[] = array('folder' => '3rdparty', 'fn' => 'codemirror/mode/php/php', 'js');
+$includes_js[] = array('folder' => '3rdparty', 'fn' => 'codemirror/mode/xml/xml', 'js');
+$includes_js[] = array('folder' => '3rdparty', 'fn' => 'codemirror/mode/javascript/javascript', 'js');
+$includes_js[] = array('folder' => '3rdparty', 'fn' => 'codemirror/mode/css/css', 'js');
+$includes_js[] = array('folder' => '3rdparty', 'fn' => 'jquery.tree/jstree.min', 'js');
+$includes_js[] = array('folder' => '3rdparty', 'fn' => 'jquery.fileupload/jquery.ui.widget', 'js');
+$includes_js[] = array('folder' => '3rdparty', 'fn' => 'jquery.fileupload/jquery.iframe-transport', 'js');
+$includes_js[] = array('folder' => '3rdparty', 'fn' => 'jquery.fileupload/jquery.fileupload', 'js');
+$includes_js[] = array('folder' => '3rdparty', 'fn' => 'jquery.tablesorter/jquery.tablesorter.min', 'js');
+$includes_js[] = array('folder' => '3rdparty', 'fn' => 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'js');
+$includes_js[] = array('folder' => '3rdparty', 'fn' => 'jquery.tablesorter/parsers/parser-input-select.min', 'js');
+$includes_js[] = array('folder' => '3rdparty', 'fn' => 'datetimepicker/jquery.datetimepicker', 'js');
+$includes_js[] = array('folder' => '3rdparty', 'fn' => 'jquery.cron/jquery.cron.min', 'js');
+$includes_js[] = array('folder' => '3rdparty', 'fn' => 'jquery.contextMenu/jquery.contextMenu.min', 'js');
+$includes_js[] = array('folder' => '3rdparty', 'fn' => 'autosize/autosize.min', 'js');
+$includes_js[] = array('folder' => 'desktop', 'fn' => 'utils', 'js');
+include_file($includes_js, null, 'js');
 include_file('core', 'js.inc', 'php');
-include_file('3rdparty', 'bootbox/bootbox.min', 'js');
-include_file('3rdparty', 'highstock/highstock', 'js');
-include_file('3rdparty', 'highstock/highcharts-more', 'js');
-include_file('3rdparty', 'highstock/modules/solid-gauge', 'js');
-include_file('3rdparty', 'highstock/modules/exporting', 'js');
-include_file('3rdparty', 'highstock/modules/export-data', 'js');
-include_file('desktop', 'utils', 'js');
-include_file('3rdparty', 'jquery.toastr/jquery.toastr.min', 'js');
-include_file('3rdparty', 'jquery.at.caret/jquery.at.caret.min', 'js');
-include_file('3rdparty', 'jwerty/jwerty', 'js');
-include_file('3rdparty', 'jquery.packery/jquery.packery', 'js');
-include_file('3rdparty', 'jquery.lazyload/jquery.lazyload', 'js');
 include_file('3rdparty', 'jquery.sew/jquery.sew', 'css');
-include_file('3rdparty', 'codemirror/lib/codemirror', 'js');
 include_file('3rdparty', 'codemirror/lib/codemirror', 'css');
-include_file('3rdparty', 'codemirror/addon/edit/matchbrackets', 'js');
-include_file('3rdparty', 'codemirror/mode/htmlmixed/htmlmixed', 'js');
-include_file('3rdparty', 'codemirror/mode/clike/clike', 'js');
-include_file('3rdparty', 'codemirror/mode/php/php', 'js');
-include_file('3rdparty', 'codemirror/mode/xml/xml', 'js');
-include_file('3rdparty', 'codemirror/mode/javascript/javascript', 'js');
-include_file('3rdparty', 'codemirror/mode/css/css', 'js');
 include_file('3rdparty', 'jquery.tree/themes/default/style.min', 'css');
-include_file('3rdparty', 'jquery.tree/jstree.min', 'js');
-include_file('3rdparty', 'jquery.fileupload/jquery.ui.widget', 'js');
-include_file('3rdparty', 'jquery.fileupload/jquery.iframe-transport', 'js');
-include_file('3rdparty', 'jquery.fileupload/jquery.fileupload', 'js');
 include_file('3rdparty', 'jquery.tablesorter/theme.bootstrap', 'css');
-include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.min', 'js');
-include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'js');
-include_file('3rdparty', 'jquery.tablesorter/parsers/parser-input-select.min', 'js');
-include_file('3rdparty', 'datetimepicker/jquery.datetimepicker', 'js');
 include_file('3rdparty', 'datetimepicker/jquery.datetimepicker', 'css');
-include_file('3rdparty', 'jquery.cron/jquery.cron.min', 'js');
 include_file('3rdparty', 'jquery.cron/jquery.cron', 'css');
 include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'css');
-include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'js');
-include_file('3rdparty', 'autosize/autosize.min', 'js');
 if (init('rescue', 0) == 0 && $configs['enableCustomCss'] == 1) {
 	if (file_exists(dirname(__FILE__) . '/../custom/custom.css')) {
 		include_file('desktop', '', 'custom.css');
@@ -172,6 +175,7 @@ if (init('rescue', 0) == 0 && $configs['enableCustomCss'] == 1) {
 		include_file('desktop', '', 'custom.js');
 	}
 }
+
 try {
 	if (isConnect()) {
 		if (init('rescue', 0) == 0 && is_dir(dirname(__FILE__) . '/../../core/themes/' . $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop')) {

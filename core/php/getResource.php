@@ -17,7 +17,11 @@
  */
 require_once dirname(__FILE__) . '/core.inc.php';
 use MatthiasMullie\Minify;
-$file = dirname(__FILE__) . '/../../' . init('file');
+if (strpos(init('file'), '/tmp/jeedom/assets') === false) {
+	$file = dirname(__FILE__) . '/../../' . init('file');
+} else {
+	$file = init('file');
+}
 $pathinfo = pathinfo($file);
 if ($pathinfo['extension'] != 'js' && $pathinfo['extension'] != 'css') {
 	die();
@@ -28,6 +32,7 @@ if (config::byKey('developperMode') == 0) {
 	if (file_exists($minFile)) {
 		$file = $minFile;
 	}
+	$pathinfo = pathinfo($file);
 }
 if (file_exists($file)) {
 	switch ($pathinfo['extension']) {
