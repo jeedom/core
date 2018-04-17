@@ -37,7 +37,7 @@ function include_file($_folder, $_fn, $_type, $_plugin = '', $_pathOnly = false)
 		if (!file_exists($minFile)) {
 			$minifier = (in_array($_type, array('js', 'class.js'))) ? new Minify\JS() : new Minify\CSS();
 			foreach ($paths as $path) {
-				$minifier->add($path);
+				$minifier->add(translate::exec(file_get_contents($path), $path, true));
 			}
 			$minifier->minify($minFile);
 		}
