@@ -66,7 +66,7 @@ class update {
 				}
 			}
 		}
-		if (!$findCore) {
+		if (!$findCore && ($_filter == '' || $_filter == 'core')) {
 			$update = new update();
 			$update->setType('core');
 			$update->setLogicalId('jeedom');
