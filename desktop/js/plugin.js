@@ -143,7 +143,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
           if(data.status.owner[i] != 1){
             continue;
           }
-          $('#span_plugin_market').append('<a class="btn btn-warning btn-xs sendPluginTo" data-repo="'+i+'" data-logicalId="' + data.id + '"><i class="fas fa-cloud-upload"></i> {{Envoyer sur le}} '+i+'</a> ');
+          $('#span_plugin_market').append('<a class="btn btn-warning btn-xs sendPluginTo" data-repo="'+i+'" data-logicalId="' + data.id + '"><i class="fas fa-cloud-upload-alt"></i> {{Envoyer sur le}} '+i+'</a> ');
         }
       }
       $('#span_plugin_delete').empty().append('<a class="btn btn-danger btn-xs removePlugin" data-market_logicalId="' + data.id + '"><i class="fas fa-trash"></i> {{Supprimer}}</a> ');

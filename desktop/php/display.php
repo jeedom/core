@@ -57,7 +57,7 @@ foreach ($objects as $object) {
 	<span class="label label-primary" style="font-size : 1em;cursor : default;">{{Nombre de commandes :}} <?php echo $nbCmd ?></span>
 </center>
 <br/>
-<a class="btn btn-danger btn-sm" id="bt_removeEqlogic" style="display:none;"><i class="fas fa-trash-o"></i> {{Supprimer}}</a>
+<a class="btn btn-danger btn-sm" id="bt_removeEqlogic" style="display:none;"><i class="far fa-trash-alt"></i> {{Supprimer}}</a>
 <a class="btn btn-success btn-sm bt_setIsVisible" data-value="1" style="display:none;"><i class="fas fa-eye"></i> {{Visible}}</a>
 <a class="btn btn-warning btn-sm bt_setIsVisible" data-value="0" style="display:none;"><i class="fas fa-eye-slash"></i> {{Invisible}}</a>
 <a class="btn btn-success btn-sm bt_setIsEnable" data-value="1" style="display:none;"><i class="fas fa-check"></i> {{Actif}}</a>

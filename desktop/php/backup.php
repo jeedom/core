@@ -56,21 +56,21 @@ echo '</script>';
                     <div class="form-group">
                         <label class="col-sm-4 col-xs-6 control-label">{{Supprimer la sauvegarde}}</label>
                         <div class="col-sm-4 col-xs-6">
-                            <a class="btn btn-danger" id="bt_removeBackup"><i class="fas fa-trash-o"></i> {{Supprimer}}</a>
+                            <a class="btn btn-danger" id="bt_removeBackup"><i class="far fa-trash-alt"></i> {{Supprimer}}</a>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-4 col-xs-6 control-label">{{Envoyer une sauvegarde}}</label>
                         <div class="col-sm-8 col-xs-6">
                             <span class="btn btn-default btn-file">
-                                <i class="fas fa-cloud-upload"></i> {{Envoyer}}<input id="bt_uploadBackup" type="file" name="file" data-url="core/ajax/jeedom.ajax.php?action=backupupload&jeedom_token=<?php echo ajax::getToken(); ?>">
+                                <i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input id="bt_uploadBackup" type="file" name="file" data-url="core/ajax/jeedom.ajax.php?action=backupupload&jeedom_token=<?php echo ajax::getToken(); ?>">
                             </span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-4 col-xs-6 control-label">{{Télécharger la sauvegarde}}</label>
                         <div class="col-sm-4 col-xs-6">
-                            <a class="btn btn-success" id="bt_downloadBackup"><i class="fas fa-cloud-download"></i> {{Télécharger}}</a>
+                            <a class="btn btn-success" id="bt_downloadBackup"><i class="fas fa-cloud-download-alt"></i> {{Télécharger}}</a>
                         </div>
                     </div>
                 </fieldset>

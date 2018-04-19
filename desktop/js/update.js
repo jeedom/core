@@ -244,7 +244,7 @@ if (_update.type != 'core') {
 }
 tr += '<a class="btn btn-info btn-xs pull-right checkUpdate" style="margin-bottom : 5px;" ><i class="fas fa-check"></i> {{Vérifier}}</a>';
 if (_update.type != 'core') {
-    tr += '<a class="btn btn-danger btn-xs pull-right remove" style="margin-bottom : 5px;" ><i class="fas fa-trash-o"></i> {{Supprimer}}</a>';  
+    tr += '<a class="btn btn-danger btn-xs pull-right remove" style="margin-bottom : 5px;" ><i class="far fa-trash-alt"></i> {{Supprimer}}</a>';  
 }
 tr += '</td>';
 tr += '</tr>';

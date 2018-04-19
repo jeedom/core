@@ -46,7 +46,7 @@ sendVarToJS('plan3dHeader', utils::o2a($plan3dHeader));
                 <label class="col-lg-4 control-label">{{Model 3D}}</label>
                 <div class="col-lg-8">
                   <span class="btn btn-default btn-file">
-                    <i class="fas fa-cloud-upload"></i> {{Envoyer}}<input  id="bt_upload3dModel" type="file" name="file" style="display: inline-block;">
+                    <i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  id="bt_upload3dModel" type="file" name="file" style="display: inline-block;">
                 </span>
             </div>
         </div>

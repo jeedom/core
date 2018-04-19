@@ -17,7 +17,7 @@ sendVarToJS('scenario_template_id', init('scenario_id'));
     <div class="bs-sidebar nav nav-list bs-sidenav" >
         <center>
             <span class="btn btn-default btn-file">
-                <i class="fas fa-cloud-upload"></i> {{Envoyer un template}}<input id="bt_uploadScenarioTemplate" type="file" name="file" data-url="core/ajax/scenario.ajax.php?action=templateupload&jeedom_token=<?php echo ajax::getToken(); ?>" style="display : inline-block;">
+                <i class="fas fa-cloud-upload-alt"></i> {{Envoyer un template}}<input id="bt_uploadScenarioTemplate" type="file" name="file" data-url="core/ajax/scenario.ajax.php?action=templateupload&jeedom_token=<?php echo ajax::getToken(); ?>" style="display : inline-block;">
             </span>
         </center>
         <br/>
@@ -59,11 +59,11 @@ foreach (update::listRepo() as $key => $value) {
 	if (!isset($value['scope']['hasScenarioStore']) || !$value['scope']['hasScenarioStore']) {
 		continue;
 	}
-	echo '<a class="btn btn-warning bt_scenarioTemplateShare" data-repo="' . $key . '"><i class="fas fa-cloud-upload"></i> {{Partager sur}} ' . $value['name'] . '</a>';
+	echo '<a class="btn btn-warning bt_scenarioTemplateShare" data-repo="' . $key . '"><i class="fas fa-cloud-upload-alt"></i> {{Partager sur}} ' . $value['name'] . '</a>';
 }
 ?>
                 <a class='btn btn-danger' id='bt_scenarioTemplateRemove'><i class="fas fa-times"></i> {{Supprimer}}</a>
-                <a class="btn btn-primary" id="bt_scenarioTemplateDownload"><i class="fas fa-cloud-download"></i> {{Télécharger}}</a>
+                <a class="btn btn-primary" id="bt_scenarioTemplateDownload"><i class="fas fa-cloud-download-alt"></i> {{Télécharger}}</a>
             </div>
         </div>
         <div id='div_scenarioTemplateParametreConfiguration' style='display : none;'>

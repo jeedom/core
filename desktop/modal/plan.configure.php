@@ -69,7 +69,7 @@ sendVarToJS('id', $plan->getId());
     <label class="col-lg-4 control-label">{{Image}}</label>
     <div class="col-lg-8">
       <span class="btn btn-default btn-file">
-        <i class="fas fa-cloud-upload"></i> {{Envoyer}}<input  id="bt_uploadImagePlan" type="file" name="file" style="display: inline-block;">
+        <i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  id="bt_uploadImagePlan" type="file" name="file" style="display: inline-block;">
       </span>
     </div>
   </div>

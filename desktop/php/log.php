@@ -38,10 +38,10 @@ foreach ($list_logfile as $file) {
 	<div class="col-lg-10 col-md-9 col-sm-8">
 		<div class="row">
 			<div class="col-lg-12">
-				<a class="btn btn-danger pull-right" id="bt_removeAllLog"><i class="fas fa-trash-o"></i> {{Supprimer tous}}</a>
-				<a class="btn btn-danger pull-right" id="bt_removeLog"><i class="fas fa-trash-o"></i> {{Supprimer}}</a>
+				<a class="btn btn-danger pull-right" id="bt_removeAllLog"><i class="far fa-trash-alt"></i> {{Supprimer tous}}</a>
+				<a class="btn btn-danger pull-right" id="bt_removeLog"><i class="far fa-trash-alt"></i> {{Supprimer}}</a>
 				<a class="btn btn-warning pull-right" id="bt_clearLog"><i class="fas fa-times"></i> {{Vider}}</a>
-				<a class="btn btn-success pull-right" id="bt_downloadLog"><i class="fas fa-cloud-download"></i> {{Télécharger}}</a>
+				<a class="btn btn-success pull-right" id="bt_downloadLog"><i class="fas fa-cloud-download-alt"></i> {{Télécharger}}</a>
 				<a class="btn btn-warning pull-right" data-state="1" id="bt_globalLogStopStart"><i class="fas fa-pause"></i> {{Pause}}</a>
 				<input style="max-width: 150px;" class="form-control pull-right" id="in_globalLogSearch" placeholder="{{Rechercher}}" />
 			</div>

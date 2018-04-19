@@ -54,7 +54,7 @@ sendVarToJS('planHeader', utils::o2a($planHeader));
                 <label class="col-lg-4 control-label">{{Image}}</label>
                 <div class="col-lg-8">
                   <span class="btn btn-default btn-file">
-                    <i class="fas fa-cloud-upload"></i> {{Envoyer}}<input  id="bt_uploadImage" type="file" name="file" style="display: inline-block;">
+                    <i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  id="bt_uploadImage" type="file" name="file" style="display: inline-block;">
                 </span>
                 <a class="btn btn-danger" id="bt_removeBackgroundImage"><i class="fas fa-trash"></i> {{Supprimer l'image}}</a>
             </div>

@@ -263,7 +263,7 @@ function addEditviewZone(_viewZone) {
         var id = $('#div_viewZones .viewZone').length;
         var div = '<div class="viewZone" data-toggle="tab" id="div_viewZone'+id+'">';
         div += '<legend style="height: 35px;"><span class="viewZoneAttr" data-l1key="name"></span>';
-        div += '<a class="btn btn-danger btn-xs pull-right bt_removeviewZone"><i class="fas fa-trash-o"></i> Supprimer</a>';
+        div += '<a class="btn btn-danger btn-xs pull-right bt_removeviewZone"><i class="far fa-trash-alt"></i> Supprimer</a>';
         div += ' <a class="btn btn-warning btn-xs pull-right bt_editviewZone"><i class="fas fa-pencil"></i> Editer</a>';
         if (init(_viewZone.type, 'widget') == 'graph') {
          div += '<a class="btn btn-primary btn-xs pull-right bt_addViewGraph"><i class="fas fa-plus-circle"></i> Ajouter courbe</a>';
@@ -320,13 +320,13 @@ div += '<thead>';
 div += '<tr>';
 div += '<td></td>';
 for(i=0;i<_viewZone.configuration.nbcol;i++){
-    div += '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="col"><i class="fas fa-trash-o"></a></td>';
+    div += '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="col"><i class="far fa-trash-alt"></a></td>';
 }
 div += '</thead>';
 div += '<tbody>';
 for(j=0;j<_viewZone.configuration.nbline;j++){
     div += '<tr class="viewData">';
-    div += '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="line"><i class="fas fa-trash-o"></a></td>';
+    div += '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="line"><i class="far fa-trash-alt"></a></td>';
     for(i=0;i<_viewZone.configuration.nbcol;i++){
         div += '<td><input class="form-control viewDataAttr" data-l1key="configuration" data-l2key="'+j+'" data-l3key="'+i+'" style="width:calc(100% - 50px);display: inline-block;" /> <a class="btn btn-default bt_listEquipementInfo" style="margin-top:-3px;"><i class="fas fa-list-alt"></i></a></td>';
     }
@@ -356,7 +356,7 @@ $('#div_viewZones').on('click','.bt_addViewTable',function(){
     var table = $(this).closest('.viewZone').find('table.div_viewData');
     if($(this).attr('data-type') == 'line'){
         var line = '<tr class="viewData">';
-        line += '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="line"><i class="fas fa-trash-o"></a></td>';
+        line += '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="line"><i class="far fa-trash-alt"></a></td>';
         for(i=0;i<table.find('tbody tr:first td').length - 1;i++){
          line += '<td><input class="form-control viewDataAttr" data-l1key="configuration" style="width:calc(100% - 50px);display: inline-block;" /> <a class="btn btn-default bt_listEquipementInfo" style="margin-top:-3px;"><i class="fas fa-list-alt"></i></a></td>';
      }
@@ -364,7 +364,7 @@ $('#div_viewZones').on('click','.bt_addViewTable',function(){
      table.find('tbody').append(line);
 
  }else if($(this).attr('data-type') == 'col'){
-    table.find('thead tr').append('<td><a class="btn btn-danger bt_removeAddViewTable" data-type="col"><i class="fas fa-trash-o"></a></td>');
+    table.find('thead tr').append('<td><a class="btn btn-danger bt_removeAddViewTable" data-type="col"><i class="far fa-trash-alt"></a></td>');
     table.find('tbody tr').each(function(){
      $(this).append('<td><input class="form-control viewDataAttr" data-l1key="configuration" style="width:calc(100% - 50px);display: inline-block;" /> <a class="btn btn-default bt_listEquipementInfo" style="margin-top:-3px;"><i class="fas fa-list-alt"></i></a></td>')
  });
@@ -402,7 +402,7 @@ function addGraphService(_viewData){
         _viewData.configuration = {};
     }
     var tr = '<tr class="viewData" style="cursor : move;">';
-    tr += '<td><i class="fas fa-trash-o cursor bt_removeViewData"></i></td>';
+    tr += '<td><i class="far fa-trash-alt cursor bt_removeViewData"></i></td>';
     tr += '<td>';
     tr += '<input class="viewDataAttr" data-l1key="link_id" style="display  : none;"/>';
     tr += '<input class="viewDataAttr" data-l1key="type" style="display  : none;"/>';
@@ -494,7 +494,7 @@ function addWidgetService(_viewData){
         _viewData.configuration = {};
     }
     var tr = '<tr class="viewData" style="cursor : move;">';
-    tr += '<td><i class="fas fa-trash-o cursor bt_removeViewData"></i></td>';
+    tr += '<td><i class="far fa-trash-alt cursor bt_removeViewData"></i></td>';
     tr += '<td>';
     tr += '<input class="viewDataAttr" data-l1key="link_id" style="display  : none;"/>';
     tr += '<input class="viewDataAttr" data-l1key="type" style="display  : none;"/>';

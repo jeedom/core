@@ -70,7 +70,7 @@ foreach (cmd::allHistoryCmd() as $cmd) {
 		echo '<br/>';
 		echo '<div class="cmdList" data-object_id="o' . $eqLogic->getObject_id() . '" style="display:none;margin-left : 20px;">';
 	}
-	echo '<li class="cursor li_history" data-cmd_id="' . $cmd->getId() . '"><a class="history"><i class="fas fa-trash-o remove"></i> ';
+	echo '<li class="cursor li_history" data-cmd_id="' . $cmd->getId() . '"><a class="history"><i class="far fa-trash-alt remove"></i> ';
 	if ($cmd->getSubType() == 'string') {
 		echo '<i class="fas fa-share export"></i> ';
 	}
@@ -82,7 +82,7 @@ foreach (cmd::allHistoryCmd() as $cmd) {
 				</div>
 
 				<div class="col-lg-9 col-md-8 col-sm-7" style="border-left: solid 1px #EEE; padding-left: 25px;height: 550px;">
-					<a class="btn btn-warning btn-sm" id='bt_clearGraph'><i class="fas fa-trash-o"></i> {{Vider}}</a>
+					<a class="btn btn-warning btn-sm" id='bt_clearGraph'><i class="far fa-trash-alt"></i> {{Vider}}</a>
 					<input id="in_startDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 150px;position:relative;top:1px;" value="<?php echo $date['start'] ?>"/>
 					<input id="in_endDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 150px;position:relative;top:1px;" value="<?php echo $date['end'] ?>"/>
 					<a class="btn btn-success btn-sm" id='bt_validChangeDate' title="{{Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.}}"><i class="fas fa-check"></i> {{Ok}}</a>
