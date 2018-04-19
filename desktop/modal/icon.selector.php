@@ -1,6 +1,6 @@
 <?php
 if (!isConnect()) {
-    throw new Exception('{{401 - Accès non autorisé}}');
+	throw new Exception('{{401 - Accès non autorisé}}');
 }
 ?>
 
@@ -29,32 +29,32 @@ if (!isConnect()) {
 <input class="form-control pull-right" placeholder="{{Rechercher}}" id="in_iconSelectorSearch" />
 <?php
 foreach (ls('core/css/icon', '*') as $dir) {
-    if (is_dir('core/css/icon/' . $dir) && file_exists('core/css/icon/' . $dir . '/style.css')) {
-        $css = file_get_contents('core/css/icon/' . $dir . '/style.css');
-        $research = strtolower(str_replace('/', '', $dir));
-        preg_match_all("/\." . $research . "-(.*?):/", $css, $matches, PREG_SET_ORDER);
-        $height = (ceil(count($matches) / 14) * 40) + 80;
-        echo '<div style="height : ' . $height . 'px;"><legend>{{' . str_replace('/', '', $dir) . '}}</legend>';
+	if (is_dir('core/css/icon/' . $dir) && file_exists('core/css/icon/' . $dir . '/style.css')) {
+		$css = file_get_contents('core/css/icon/' . $dir . '/style.css');
+		$research = strtolower(str_replace('/', '', $dir));
+		preg_match_all("/\." . $research . "-(.*?):/", $css, $matches, PREG_SET_ORDER);
+		$height = (ceil(count($matches) / 14) * 40) + 80;
+		echo '<div style="height : ' . $height . 'px;"><legend>{{' . str_replace('/', '', $dir) . '}}</legend>';
 
-        $number = 1;
-        foreach ($matches as $match) {
-            if (isset($match[0])) {
-                if ($number == 1) {
-                    echo '<div class="row">';
-                }
-                echo '<div class="col-lg-1 divIconSel">';
-                $icon = str_replace(array(':', '.'), '', $match[0]);
-                echo '<center><span class="iconSel"><i class=\'icon ' . $icon . '\'></i></span><br/><span class="iconDesc">' . $icon . '</span></center>';
-                echo '</div>';
-                if ($number == 12) {
-                    echo '</div>';
-                    $number = 0;
-                }
-                $number++;
-            }
-        }
-        echo "</div><br/>";
-    }
+		$number = 1;
+		foreach ($matches as $match) {
+			if (isset($match[0])) {
+				if ($number == 1) {
+					echo '<div class="row">';
+				}
+				echo '<div class="col-lg-1 divIconSel">';
+				$icon = str_replace(array(':', '.'), '', $match[0]);
+				echo '<center><span class="iconSel"><i class=\'icon ' . $icon . '\'></i></span><br/><span class="iconDesc">' . $icon . '</span></center>';
+				echo '</div>';
+				if ($number == 12) {
+					echo '</div>';
+					$number = 0;
+				}
+				$number++;
+			}
+		}
+		echo "</div><br/>";
+	}
 }
 ?>
 <div style="height: 650px;">
@@ -168,7 +168,7 @@ foreach (ls('core/css/icon', '*') as $dir) {
         <div class="col-lg-1 divIconSel"><center><span class="iconSel"><i class='fa fa-bar-chart-o'></i></span><br/><span class="iconDesc">fa-bar-chart-o</span></div>
         <div class="col-lg-1 divIconSel"><center><span class="iconSel"><i class='fa fa-key'></i></span><br/><span class="iconDesc">fa-key</span></div>
         <div class="col-lg-1 divIconSel"><center><span class="iconSel"><i class='fa fa-heart-o'></i></span><br/><span class="iconDesc">fa-heart-o</span></div>
-        <div class="col-lg-1 divIconSel"><center><span class="iconSel"><i class='fa fa-sign-out'></i></span><br/><span class="iconDesc">fa-sign-out</span></div>
+        <div class="col-lg-1 divIconSel"><center><span class="iconSel"><i class='fas fa-sign-out-alt'></i></span><br/><span class="iconDesc">fa-sign-out</span></div>
         <div class="col-lg-1 divIconSel"><center><span class="iconSel"><i class='fa fa-thumb-tack'></i></span><br/><span class="iconDesc">fa-thumb-tack</span></div>
         <div class="col-lg-1 divIconSel"><center><span class="iconSel"><i class='fa fa-sign-in'></i></span><br/><span class="iconDesc">fa-sign-in</span></div>
         <div class="col-lg-1 divIconSel"><center><span class="iconSel"><i class='fa fa-phone'></i></span><br/><span class="iconDesc">fa-phone</span></div>

@@ -320,7 +320,7 @@ foreach ($groups as $group) {
 	?>
  <form class="form-horizontal">
   <fieldset>
-   <legend><i class="fa fa-sign-out"></i> {{Action sur la valeur}}</legend>
+   <legend><i class="fas fa-sign-out-alt"></i> {{Action sur la valeur}}</legend>
    <div class="form-group">
     <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action sur valeur, si}}</label>
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
@@ -363,7 +363,7 @@ foreach ($groups as $group) {
 	?>
  <form class="form-horizontal">
   <fieldset>
-   <legend><i class="fa fa-sign-out"></i> {{Action avant exécution de la commande}}</legend>
+   <legend><i class="fas fa-sign-out-alt"></i> {{Action avant exécution de la commande}}</legend>
    <div class="form-group">
     <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action}}</label>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -381,7 +381,7 @@ foreach ($groups as $group) {
 </form>
 <form class="form-horizontal">
   <fieldset>
-    <legend><i class="fa fa-sign-out"></i> {{Action après exécution de la commande}}</legend>
+    <legend><i class="fas fa-sign-out-alt"></i> {{Action après exécution de la commande}}</legend>
     <div class="form-group">
       <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action}}</label>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
