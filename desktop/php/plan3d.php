@@ -35,13 +35,13 @@ if (init('fullscreen') != 1) {
 </div>
 <div class="col-lg-2 bs-sidebar" id="div_colMenu">
 <div id="div_btEdit" style="display: none;">
-		<a class="btn btn-default btn-xs" id="bt_plan3dHeaderConfigure"><i class="fa fa-cogs"></i></a>
-		<a class="btn btn-default btn-xs" id="bt_plan3dHeaderAdd"><i class="fa fa-plus"></i></a>
-		<a class="btn btn-default btn-xs" id="bt_showAllObject"><i class="fa fa-eye"></i></a>
+		<a class="btn btn-default btn-xs" id="bt_plan3dHeaderConfigure"><i class="fas fa-cogs"></i></a>
+		<a class="btn btn-default btn-xs" id="bt_plan3dHeaderAdd"><i class="fas fa-plus"></i></a>
+		<a class="btn btn-default btn-xs" id="bt_showAllObject"><i class="fas fa-eye"></i></a>
 	</div>
 	<legend>{{Informations}}
-		<a class="btn btn-default btn-xs pull-right" id="bt_editMode"><i class="fa fa-pencil"></i></a>
-		<a class="btn btn-default btn-xs pull-right" id="bt_plan3dHeaderFullScreen"><i class="fa fa-desktop"></i></a>
+		<a class="btn btn-default btn-xs pull-right" id="bt_editMode"><i class="fas fa-pencil"></i></a>
+		<a class="btn btn-default btn-xs pull-right" id="bt_plan3dHeaderFullScreen"><i class="fas fa-desktop"></i></a>
 	</legend>
 
 	<ul id="ul_plan3d" class="nav nav-list bs-sidenav">

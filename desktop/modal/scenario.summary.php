@@ -4,8 +4,8 @@ if (!isConnect()) {
 }
 ?>
 <div id="div_alertScenarioSummary"></div>
-<a class="btn btn-success btn-sm pull-right" id="bt_saveSummaryScenario"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
-<a class="btn btn-default btn-sm pull-right" id="bt_refreshSummaryScenario"><i class="fa fa-refresh"></i> {{Rafraîchir}}</a>
+<a class="btn btn-success btn-sm pull-right" id="bt_saveSummaryScenario"><i class="fas fa-check-circle"></i> {{Enregistrer}}</a>
+<a class="btn btn-default btn-sm pull-right" id="bt_refreshSummaryScenario"><i class="fas fa-refresh"></i> {{Rafraîchir}}</a>
 <br/><br/>
 <table class="table table-bordered table-condensed tablesorter" id="table_scenarioSummary">
 	<thead>
@@ -95,11 +95,11 @@ if (!isConnect()) {
 					tr += '<center><input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="timeline::enable"></center>';
 					tr += '</td>';
 					tr += '<td>';
-					tr += '<a class="btn btn-default tooltips btn-xs bt_summarayViewLog" title="{{Voir les logs}}"><i class="fa fa-file-o"></i></a> ';
+					tr += '<a class="btn btn-default tooltips btn-xs bt_summarayViewLog" title="{{Voir les logs}}"><i class="far fa-file"></i></a> ';
 					if(data[i].state == 'in_progress'){
-						tr += '<a class="btn btn-danger tooltips btn-xs bt_sumarrayStopScenario" title="{{Exécuter}}"><i class="fa fa-stop"></i></a>';
+						tr += '<a class="btn btn-danger tooltips btn-xs bt_sumarrayStopScenario" title="{{Exécuter}}"><i class="fas fa-stop"></i></a>';
 					}else{
-						tr += '<a class="btn btn-success tooltips btn-xs bt_summarayLaunchScenario" title="{{Exécuter}}"><i class="fa fa-play"></i></a>';
+						tr += '<a class="btn btn-success tooltips btn-xs bt_summarayLaunchScenario" title="{{Exécuter}}"><i class="fas fa-play"></i></a>';
 					}
 					tr += '</td>';
 					tr += '</tr>';

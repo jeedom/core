@@ -55,6 +55,7 @@ $other_file = array(
 	'mobile/css/commun.css',
 	'3rdparty/font-awesome/fonts/fontawesome-webfont.woff2',
 	'3rdparty/font-awesome/css/font-awesome.min.css',
+	'3rdparty/font-awesome5/css/fontawesome-all.min.css',
 	'3rdparty/jquery.mobile/images/ajax-loader.gif',
 	'core/img/logo-jeedom-petit-nom-couleur-128x128.png',
 	'core/img/logo-jeedom-sans-nom-couleur-25x25.png',

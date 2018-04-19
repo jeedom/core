@@ -52,10 +52,10 @@
         success: function () {
             if (el.attr('data-state') == 1) {
                 el.removeClass('btn-success').addClass('btn-danger').attr('data-state', 0);
-                el.empty().html('<i class="fa fa-times"></i> {{Désactiver le système cron}}');
+                el.empty().html('<i class="fas fa-times"></i> {{Désactiver le système cron}}');
             } else {
                 el.removeClass('btn-danger').addClass('btn-success').attr('data-state', 1);
-                el.empty().html('<i class="fa fa-check"></i> {{Activer le système cron}}</a>');
+                el.empty().html('<i class="fas fa-check"></i> {{Activer le système cron}}</a>');
             }
         }
     });
@@ -128,10 +128,10 @@ function addCron(_cron) {
     tr += '<td>';
     if(init(_cron.deamon) == 0){
         if (init(_cron.state) == 'run') {
-            tr += '<a class="btn btn-danger btn-xs stop" style="color : white;"><i class="fa fa-stop"></i></a>';
+            tr += '<a class="btn btn-danger btn-xs stop" style="color : white;"><i class="fas fa-stop"></i></a>';
         }
         if (init(_cron.state) != '' && init(_cron.state) != 'starting' && init(_cron.state) != 'run' && init(_cron.state) != 'stoping') {
-            tr += '<a class="btn btn-success btn-xs start" style="color : white;"><i class="fa fa-play"></i></a>';
+            tr += '<a class="btn btn-success btn-xs start" style="color : white;"><i class="fas fa-play"></i></a>';
         }
     }
     tr += '</td>';
@@ -181,7 +181,7 @@ function addCron(_cron) {
     tr += '<span class="' + label + '">' + init(_cron.state) + '</span>';
     tr += '</td>';
     tr += '<td class="action">';
-    tr += '<i class="fa fa-minus-circle remove pull-right cursor"></i>';
+    tr += '<i class="fas fa-minus-circle remove pull-right cursor"></i>';
     tr += '</td>';
     tr += '</tr>';
     var result = $(tr);

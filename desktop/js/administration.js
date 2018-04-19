@@ -296,12 +296,12 @@ function addActionOnMessage(_action) {
     div += '<div class="col-sm-4">';
     div += '<div class="input-group">';
     div += '<span class="input-group-btn">';
-    div += '<a class="btn btn-default bt_removeAction btn-sm"><i class="fa fa-minus-circle"></i></a>';
+    div += '<a class="btn btn-default bt_removeAction btn-sm"><i class="fas fa-minus-circle"></i></a>';
     div += '</span>';
     div += '<input class="expressionAttr form-control input-sm cmdAction" data-l1key="cmd" />';
     div += '<span class="input-group-btn">';
-    div += '<a class="btn btn-default btn-sm listAction" title="{{Sélectionner un mot-clé}}"><i class="fa fa-tasks"></i></a>';
-    div += '<a class="btn btn-default btn-sm listCmdAction"><i class="fa fa-list-alt"></i></a>';
+    div += '<a class="btn btn-default btn-sm listAction" title="{{Sélectionner un mot-clé}}"><i class="fas fa-tasks"></i></a>';
+    div += '<a class="btn btn-default btn-sm listCmdAction"><i class="fas fa-list-alt"></i></a>';
     div += '</span>';
     div += '</div>';
     div += '</div>';
@@ -750,7 +750,7 @@ function addObjectSummary(_summary) {
     tr += '</select>';
     tr += '</td>';
     tr += '<td>';
-    tr += '<a class="objectSummaryAction btn btn-default btn-sm" data-l1key="chooseIcon"><i class="fa fa-flag"></i> {{Icône}}</a>';
+    tr += '<a class="objectSummaryAction btn btn-default btn-sm" data-l1key="chooseIcon"><i class="fas fa-flag"></i> {{Icône}}</a>';
     tr += '<span class="objectSummaryAttr" data-l1key="icon" style="margin-left : 10px;"></span>';
     tr += '</td>';
     tr += '<td>';
@@ -767,11 +767,11 @@ function addObjectSummary(_summary) {
     tr += '</td>';
     tr += '<td>';
     if(isset(_summary) && isset(_summary.key) && _summary.key != ''){
-        tr += '<a class="btn btn-success btn-sm objectSummaryAction" data-l1key="createVirtual"><i class="fa fa-puzzle-piece"></i> {{Créer virtuel}}</a>';
+        tr += '<a class="btn btn-success btn-sm objectSummaryAction" data-l1key="createVirtual"><i class="fas fa-puzzle-piece"></i> {{Créer virtuel}}</a>';
     }
     tr += '</td>';
     tr += '<td>';
-    tr += '<a class="objectSummaryAction cursor" data-l1key="remove"><i class="fa fa-minus-circle"></i></a>';
+    tr += '<a class="objectSummaryAction cursor" data-l1key="remove"><i class="fas fa-minus-circle"></i></a>';
     tr += '</td>';
     tr += '</tr>';
     $('#table_objectSummary tbody').append(tr);

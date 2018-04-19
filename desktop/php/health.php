@@ -6,7 +6,7 @@ $starttime = getmicrotime();
 ?>
 <br/>
 <legend style=""><i class="icon divers-caduceus3" style=""></i> {{Santé de Jeedom}}
-	<i class="fas fa-tachometer-alt pull-right cursor" id="bt_benchmarkJeedom"></i>
+	<i class="fas fa-tachometer-alt"-alt pull-right cursor" id="bt_benchmarkJeedom"></i>
 </legend>
 <table class="table table-condensed table-bordered">
 	<thead><tr><th style="width : 250px;"></th><th style="width : 500px;">{{Résultat}}</th><th style="">{{Conseil}}</th></tr></thead>
@@ -49,9 +49,9 @@ foreach (plugin::listPlugin(true) as $plugin) {
 	$asPending = 0;
 	if ($plugin->getHasOwnDeamon() == 1) {
 		if ($plugin->deamon_info()['auto'] == 1) {
-			$daemonInfo = ' <i class="fa fa-university pull-right" style="color:grey;font-size:0.8em" title="{{Démon en mode automatique}}"></i>';
+			$daemonInfo = ' <i class="fas fa-university pull-right" style="color:grey;font-size:0.8em" title="{{Démon en mode automatique}}"></i>';
 		} else {
-			$daemonInfo = ' <i class="fa fa-university pull-right" style="color:#ff4c4c;font-size:0.8em" title="{{Démon en mode manuel}}"></i>';
+			$daemonInfo = ' <i class="fas fa-university pull-right" style="color:#ff4c4c;font-size:0.8em" title="{{Démon en mode manuel}}"></i>';
 		}
 	}
 	if (config::byKey('port', $plugin->getId()) != '') {
@@ -59,7 +59,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 	}
 	if (file_exists(dirname(plugin::getPathById($plugin_id)) . '/../desktop/modal/health.php')) {
 		$hasSpecificHealth = 1;
-		$hasSpecificHealthIcon = '  <i data-pluginname="' . $plugin->getName() . '" data-pluginid="' . $plugin->getId() . '" class="fa fa-medkit bt_healthSpecific pull-right cursor" style="color:grey;font-size:0.8em" title="Santé spécifique"></i>';
+		$hasSpecificHealthIcon = '  <i data-pluginname="' . $plugin->getName() . '" data-pluginid="' . $plugin->getId() . '" class="fas fa-medkit bt_healthSpecific pull-right cursor" style="color:grey;font-size:0.8em" title="Santé spécifique"></i>';
 	}
 	if ($plugin->getHasDependency() == 1 || $plugin->getHasOwnDeamon() == 1 || method_exists($plugin->getId(), 'health') || $hasSpecificHealth == 1) {
 		if ($count == 0) {
@@ -208,7 +208,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 		$globalhtml .= '<img class="img-responsive" style="width : 20px;display:inline-block;" src="' . $plugin->getPathImgIcon() . '" /> ';
 		$globalhtml .= '{{Santé }} ' . $plugin->getName() . '</a> ';
 		$globalhtml .= $errorMessage . $pendingMessage;
-		$globalhtml .= '<i class="fa fa-cogs bt_configurationPlugin cursor pull-right" style="color:grey;font-size:0.8em" data-pluginid="' . $plugin->getId() . '"></i> ' . $hasSpecificHealthIcon . $daemonInfo . $port;
+		$globalhtml .= '<i class="fas fa-cogs bt_configurationPlugin cursor pull-right" style="color:grey;font-size:0.8em" data-pluginid="' . $plugin->getId() . '"></i> ' . $hasSpecificHealthIcon . $daemonInfo . $port;
 		$globalhtml .= '</h3>';
 		$globalhtml .= '</div>';
 		$globalhtml .= '<div id="config_' . $plugin->getId() . '" class="panel-collapse collapse">';

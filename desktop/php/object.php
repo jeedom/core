@@ -5,20 +5,20 @@ if (!isConnect('admin')) {
 sendVarToJS('select_id', init('id', '-1'));
 ?>
 
-<div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;background-color:#f6f6f6;" class="div_smallSideBar" id="bt_displayObject"><i class="fa fa-arrow-circle-o-right" style="color : #b6b6b6;"></i></div>
+<div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;background-color:#f6f6f6;" class="div_smallSideBar" id="bt_displayObject"><i class="fas fa-arrow-circle-o-right" style="color : #b6b6b6;"></i></div>
 
 <div class="row row-overflow">
   <div class="col-md-2 col-sm-3" id="sd_objectList" style="z-index:999">
     <div class="bs-sidebar">
       <ul id="ul_object" class="nav nav-list bs-sidenav">
-        <a id="bt_addObject" class="btn btn-default" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-plus-circle"></i> {{Ajouter objet}}</a>
+        <a id="bt_addObject" class="btn btn-default" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fas fa-plus-circle"></i> {{Ajouter objet}}</a>
         <li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
         <?php
 $allObject = jeeObject::buildTree(null, false);
 foreach ($allObject as $object) {
 	$margin = 15 * $object->getConfiguration('parentNumber');
-	echo '<li class="cursor li_object bt_sortable" data-object_id="' . $object->getId() . '" data-object_name="' . $object->getName() . '" data-object_icon=\'' . $object->getDisplay('icon', '<i class="fa fa-lemon-o"></i>') . '\'>';
-	echo '<i class="fa fa-arrows-v pull-left cursor"></i>';
+	echo '<li class="cursor li_object bt_sortable" data-object_id="' . $object->getId() . '" data-object_name="' . $object->getName() . '" data-object_icon=\'' . $object->getDisplay('icon', '<i class="fas fa-lemon-o"></i>') . '\'>';
+	echo '<i class="fas fa-arrows-v pull-left cursor"></i>';
 	echo '<a><span style="position:relative;left:' . $margin . 'px;">';
 	echo $object->getHumanName(true, true);
 	echo '</span></a>';
@@ -30,31 +30,31 @@ foreach ($allObject as $object) {
  </div>
 
  <div class="col-lg-10 col-md-10 col-sm-9" id="div_resumeObjectList" style="border-left: solid 1px #EEE; padding-left: 25px;">
-   <legend><i class="fa fa-cog"></i>  {{Gestion}}</legend>
+   <legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
    <div class="objectListContainer">
      <div class="cursor" id="bt_addObject2" style="background-color : #ffffff; height : 160px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
        <br/>
        <center style='margin-top:-14px;'>
-         <i class="fa fa-plus-circle" style="font-size : 6em;color:#94ca02;margin-top:5px;"></i>
+         <i class="fas fa-plus-circle" style="font-size : 6em;color:#94ca02;margin-top:5px;"></i>
        </center>
        <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>Ajouter</center></span>
      </div>
      <div class="cursor bt_showObjectSummary" style="text-align: center; background-color : #ffffff; height : 160px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
       <br/>
       <center style='margin-top:-14px;'>
-        <i class="fa fa-list" style="font-size : 6em;color:#337ab7;margin-top:5px;"></i>
+        <i class="fas fa-list" style="font-size : 6em;color:#337ab7;margin-top:5px;"></i>
       </center>
       <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7">{{Vue d'ensemble}}</span>
     </div>
   </div>
 
-  <legend><i class="fa fa-picture-o"></i>  {{Mes objets}}</legend>
+  <legend><i class="fas fa-picture-o"></i>  {{Mes objets}}</legend>
   <div class="objectListContainer">
    <?php
 foreach ($allObject as $object) {
-	echo '<div class="objectDisplayCard cursor" data-object_id="' . $object->getId() . '" data-object_name="' . $object->getName() . '" data-object_icon=\'' . $object->getDisplay('icon', '<i class="fa fa-lemon-o"></i>') . '\' style="background-color : #ffffff; height : 160px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+	echo '<div class="objectDisplayCard cursor" data-object_id="' . $object->getId() . '" data-object_name="' . $object->getName() . '" data-object_icon=\'' . $object->getDisplay('icon', '<i class="fas fa-lemon-o"></i>') . '\' style="background-color : #ffffff; height : 160px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 	echo "<center style='margin-top:10px;'>";
-	echo str_replace('></i>', ' style="font-size : 6em;color:#767676;"></i>', $object->getDisplay('icon', '<i class="fa fa-lemon-o"></i>'));
+	echo str_replace('></i>', ' style="font-size : 6em;color:#767676;"></i>', $object->getDisplay('icon', '<i class="fas fa-lemon-o"></i>'));
 	echo "</center>";
 	echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $object->getName() . '</center></span><br/>';
 	echo '<center style="font-size :0.7em">';
@@ -67,14 +67,14 @@ foreach ($allObject as $object) {
 </div>
 
 <div class="col-md-10 col-sm-9 object" style="display: none;" id="div_conf">
- <a class="btn btn-success pull-right" id="bt_saveObject"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
- <a class="btn btn-danger pull-right" id="bt_removeObject"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
- <a class="btn btn-default pull-right" id="bt_graphObject"><i class="fa fa-object-group"></i> {{Liens}}</a>
+ <a class="btn btn-success pull-right" id="bt_saveObject"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
+ <a class="btn btn-danger pull-right" id="bt_removeObject"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
+ <a class="btn btn-default pull-right" id="bt_graphObject"><i class="fas fa-object-group"></i> {{Liens}}</a>
 
  <ul class="nav nav-tabs" role="tablist">
-   <li role="presentation"><a class="cursor" aria-controls="home" role="tab" id="bt_returnToThumbnailDisplay"><i class="fa fa-arrow-circle-left"></i></a></li>
-   <li role="presentation" class="active"><a href="#objecttab" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-tachometer"></i> {{Objet}}</a></li>
-   <li role="presentation"><a href="#summarytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-list-alt"></i> {{Résumé}}</a></li>
+   <li role="presentation"><a class="cursor" aria-controls="home" role="tab" id="bt_returnToThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>
+   <li role="presentation" class="active"><a href="#objecttab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Objet}}</a></li>
+   <li role="presentation"><a href="#summarytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Résumé}}</a></li>
  </ul>
 
  <div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
@@ -120,7 +120,7 @@ foreach ($allObject as $object) {
         <div class="objectAttr" data-l1key="display" data-l2key="icon" style="font-size : 1.5em;"></div>
       </div>
       <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4">
-        <a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fa fa-flag"></i> {{Choisir}}</a>
+        <a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
       </div>
     </div>
     <div class="form-group">
@@ -209,7 +209,7 @@ echo '<tr>';
   </form>
   <form class="form-horizontal">
     <fieldset>
-      <legend style="cursor:default;"><i class="fa fa-tachometer"></i>  {{Commandes}}</legend>
+      <legend style="cursor:default;"><i class="fas fa-tachometer-alt"></i>  {{Commandes}}</legend>
       <ul class="nav nav-tabs" role="tablist">
         <?php
 $active = 'active';
@@ -224,7 +224,7 @@ $active = 'active';
 $active = ' active';
 	foreach (config::byKey('object:summary') as $key => $value) {
 		echo '<div role="tabpanel" class="tab-pane type' . $key . $active . '" data-type="' . $key . '" id="summarytab' . $key . '">';
-		echo '<a class="btn btn-sm btn-success pull-right addSummary" data-type="' . $key . '"><i class="fa fa-plus-circle"></i> {{Ajouter une commande}}</a>';
+		echo '<a class="btn btn-sm btn-success pull-right addSummary" data-type="' . $key . '"><i class="fas fa-plus-circle"></i> {{Ajouter une commande}}</a>';
 		echo '<br/>';
 		echo '<div class="div_summary" data-type="' . $key . '"></div>';
 		echo '</div>';

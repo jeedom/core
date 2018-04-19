@@ -302,12 +302,12 @@ if (isConnect('admin')) {
 }
 		?>
 									<li class="divider"></li>
-									<li><a href="#" id="bt_showEventInRealTime"><i class="fas fa-tachometer"></i> {{Temps réel}}</a></li>
+									<li><a href="#" id="bt_showEventInRealTime"><i class="fas fa-tachometer-alt"></i> {{Temps réel}}</a></li>
 									<?php
 if (isConnect('admin')) {
 			?>
-										<li><a href="#" id="bt_showNoteManager"><i class="fas fa-sticky-note-o"></i> {{Note}}</a></li>
-										<li><a href="index.php?v=d&p=log"><i class="fas fa-file-o"></i> {{Logs}}</a></li>
+										<li><a href="#" id="bt_showNoteManager"><i class="fas fa-sticky-note"></i> {{Note}}</a></li>
+										<li><a href="index.php?v=d&p=log"><i class="far fa-file"></i> {{Logs}}</a></li>
 										<li><a href="index.php?v=d&p=eqAnalyse"><i class="fas fa-battery-full"></i> {{Equipements}}</a></li>
 										<li class="divider"></li>
 										<li><a href="index.php?v=d&p=health"><i class="fas fa-medkit"></i> {{Santé}}</a></li>
@@ -323,7 +323,7 @@ if (isConnect('admin')) {
 									<a data-toggle="dropdown"><i class="fas fa-wrench"></i> <span class="hidden-xs hidden-sm hidden-md">{{Outils}}</span> <b class="caret"></b></a>
 									<ul class="dropdown-menu" role="menu">
 										<li><a href="index.php?v=d&p=object"><i class="fas fa-picture-o"></i> {{Objets}}</a></li>
-										<li><a href="index.php?v=d&p=interact"><i class="fas fa-comments-o"></i> {{Interactions}}</a></li>
+										<li><a href="index.php?v=d&p=interact"><i class="far fa-comments"></i> {{Interactions}}</a></li>
 										<li><a href="index.php?v=d&p=display"><i class="fas fa-th"></i> {{Résumé domotique}}</a></li>
 										<li><a href = "index.php?v=d&p=scenario"><i class = "fa fa-cogs"></i> {{Scénarios}}</a></li>
 									</ul>
@@ -454,7 +454,7 @@ $nbMessage = message::nbMessage();
 												<li><a href="index.php?v=d&p=custom&rescue=1"><i class="fas fa-pencil-square-o"></i> {{Personnalisation}}</a></li>
 												<li><a href="index.php?v=d&p=backup&rescue=1"><i class="fas fa-floppy-o"></i> {{Sauvegarde}}</a></li>
 												<li><a href="index.php?v=d&p=cron&rescue=1"><i class="fas fa-tasks"></i> {{Moteur de tâches}}</a></li>
-												<li><a href="index.php?v=d&p=log&rescue=1"><i class="fas fa-file-o"></i> {{Log}}</a></li>
+												<li><a href="index.php?v=d&p=log&rescue=1"><i class="far fa-file"></i> {{Log}}</a></li>
 											</ul>
 
 										</nav>

@@ -6,7 +6,7 @@ sendVarToJS('dataStore_type', init('type'));
 sendVarToJS('dataStore_link_id', init('link_id', -1));
 ?>
 <div style="display: none;" id="div_dataStoreManagementAlert"></div>
-<a class="btn btn-default" id="bt_dataStoreManagementAdd" style="margin-bottom: 5px;"><i class="fa fa-plus"></i> {{Ajouter}}</a>
+<a class="btn btn-default" id="bt_dataStoreManagementAdd" style="margin-bottom: 5px;"><i class="fas fa-plus"></i> {{Ajouter}}</a>
 <table id="table_dataStore" class="table table-condensed table-bordered tablesorter" style="width: 100%">
     <thead>
         <tr>
@@ -78,9 +78,9 @@ sendVarToJS('dataStore_link_id', init('link_id', -1));
             tr += '<td>';
             tr += '</td>';
             tr += '<td>';
-            tr += '<a class="btn btn-success pull-right btn-sm bt_saveDataStore" style="color : white"><i class="fa fa-check"></i></a>';
-            tr += '<a class="btn btn-danger pull-right btn-sm bt_removeDataStore" style="color : white"><i class="fa fa-trash-o"></i></a>';
-            tr += '<a class="btn btn-default pull-right btn-sm bt_graphDataStore"><i class="fa fa-object-group"></i></a>';
+            tr += '<a class="btn btn-success pull-right btn-sm bt_saveDataStore" style="color : white"><i class="fas fa-check"></i></a>';
+            tr += '<a class="btn btn-danger pull-right btn-sm bt_removeDataStore" style="color : white"><i class="fas fa-trash-o"></i></a>';
+            tr += '<a class="btn btn-default pull-right btn-sm bt_graphDataStore"><i class="fas fa-object-group"></i></a>';
             tr += '</td>';
             tr += '</tr>';
             $('#table_dataStore tbody').append(tr);
@@ -117,9 +117,9 @@ sendVarToJS('dataStore_link_id', init('link_id', -1));
                 }
                 tr += '</td>';
                 tr += '<td>';
-                tr += '<a class="btn btn-success pull-right btn-sm bt_saveDataStore" style="color : white"><i class="fa fa-check"></i></a>';
-                tr += '<a class="btn btn-danger pull-right btn-sm bt_removeDataStore" style="color : white"><i class="fa fa-trash-o"></i></a>';
-                tr += '<a class="btn btn-default pull-right btn-sm bt_graphDataStore"><i class="fa fa-object-group"></i></a>';
+                tr += '<a class="btn btn-success pull-right btn-sm bt_saveDataStore" style="color : white"><i class="fas fa-check"></i></a>';
+                tr += '<a class="btn btn-danger pull-right btn-sm bt_removeDataStore" style="color : white"><i class="fas fa-trash-o"></i></a>';
+                tr += '<a class="btn btn-default pull-right btn-sm bt_graphDataStore"><i class="fas fa-object-group"></i></a>';
                 tr += '</td>';
                 tr += '</tr>';
             }

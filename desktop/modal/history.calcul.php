@@ -20,8 +20,8 @@ if (!isConnect()) {
 }
 ?>
 <div id="div_alertHistoryCalcul"></div>
-<a class='btn btn-success pull-right' id="bt_saveCalculHistory"><i class="fa fa-check"></i> {{Sauvegarder}}</a>
-<a class='btn btn-success pull-right' id="bt_addCalculHistory"><i class="fa fa-plus"></i> {{Ajouter}}</a>
+<a class='btn btn-success pull-right' id="bt_saveCalculHistory"><i class="fas fa-check"></i> {{Sauvegarder}}</a>
+<a class='btn btn-success pull-right' id="bt_addCalculHistory"><i class="fas fa-plus"></i> {{Ajouter}}</a>
 <br/><br/>
 <table class="table table-bordered" id="table_calculHisotry">
 	<thead>
@@ -103,7 +103,7 @@ if (!isConnect()) {
 		html += '<div class="input-group input-group-sm" style="width: 100%">';
 		html += '<input class="form-control calculHistoryAttr" data-l1key="calcul" placeholder="{{Formule de calcul}}" />';
 		html += '<span class="input-group-btn">';
-		html += '<a class="btn btn-default bt_findCmdCalculHistory" title="{{Sélectionner la commande}}"><i class="fa fa-list-alt"></i></a>';
+		html += '<a class="btn btn-default bt_findCmdCalculHistory" title="{{Sélectionner la commande}}"><i class="fas fa-list-alt"></i></a>';
 		html += '</span>';
 		html += '</div>';
 		html += '</td>';
@@ -138,8 +138,8 @@ if (!isConnect()) {
 		html += '</select>'
 		html += '</td>';
 		html += '<td>';
-		html += '<a class="btn btn-danger btn-sm pull-right bt_removeCalculHistory"><i class="fa fa-trash"></i></a>';
-		html += '<a class="btn btn-default btn-sm pull-right bt_displayGraphCalculHistory" title="{{Afficher le graphique}}"><i class="fa fa-bar-chart"></i></a>';
+		html += '<a class="btn btn-danger btn-sm pull-right bt_removeCalculHistory"><i class="fas fa-trash"></i></a>';
+		html += '<a class="btn btn-default btn-sm pull-right bt_displayGraphCalculHistory" title="{{Afficher le graphique}}"><i class="fas fa-bar-chart"></i></a>';
 		html += '</td>';
 		html += '</tr>';
 		$('#table_calculHisotry tbody').append(html);

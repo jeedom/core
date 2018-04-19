@@ -16,23 +16,23 @@ user::isBan();
 ?>
 <br/>
 <div id="config">
-	<a class="btn btn-success pull-right" id="bt_saveGeneraleConfig"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
+	<a class="btn btn-success pull-right" id="bt_saveGeneraleConfig"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
 	<ul class="nav nav-tabs" role="tablist">
-		<li role="presentation" class="active"><a href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-wrench"></i> {{Général}}</a></li>
-		<li role="presentation"><a href="#apitab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fa fa-key"></i> {{API}}</a></li>
-		<li role="presentation"><a href="#ostab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fa fa-terminal"></i> {{OS/DB}}</a></li>
-		<li role="presentation"><a href="#securitytab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fa fa-shield"></i> {{Securité}}</a></li>
-		<li role="presentation"><a href="#networktab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fa fa-rss"></i> {{Réseaux}}</a></li>
-		<li role="presentation"><a href="#colortab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fa fa-tint"></i> {{Couleurs}}</a></li>
+		<li role="presentation" class="active"><a href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-wrench"></i> {{Général}}</a></li>
+		<li role="presentation"><a href="#apitab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-key"></i> {{API}}</a></li>
+		<li role="presentation"><a href="#ostab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-terminal"></i> {{OS/DB}}</a></li>
+		<li role="presentation"><a href="#securitytab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-shield"></i> {{Securité}}</a></li>
+		<li role="presentation"><a href="#networktab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-rss"></i> {{Réseaux}}</a></li>
+		<li role="presentation"><a href="#colortab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-tint"></i> {{Couleurs}}</a></li>
 		<li role="presentation"><a href="#commandtab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="icon divers-table29"></i> {{Commandes}}</a></li>
-		<li role="presentation"><a href="#cachetab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fa fa-hdd-o"></i> {{Cache}}</a></li>
-		<li role="presentation"><a href="#interacttab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fa fa-microphone"></i> {{Interactions}}</a></li>
-		<li role="presentation"><a href="#repporttab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fa fa-newspaper-o"></i> {{Rapports}}</a></li>
-		<li role="presentation"><a href="#grephlinktab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fa fa-sitemap"></i> {{Liens}}</a></li>
-		<li role="presentation"><a href="#summarytab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fa fa-table"></i> {{Résumés}}</a></li>
-		<li role="presentation"><a href="#logtab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fa fa-pencil-square-o"></i> {{Logs}}</a></li>
+		<li role="presentation"><a href="#cachetab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-hdd-o"></i> {{Cache}}</a></li>
+		<li role="presentation"><a href="#interacttab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-microphone"></i> {{Interactions}}</a></li>
+		<li role="presentation"><a href="#repporttab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-newspaper-o"></i> {{Rapports}}</a></li>
+		<li role="presentation"><a href="#grephlinktab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-sitemap"></i> {{Liens}}</a></li>
+		<li role="presentation"><a href="#summarytab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-table"></i> {{Résumés}}</a></li>
+		<li role="presentation"><a href="#logtab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-pencil-square-o"></i> {{Logs}}</a></li>
 		<li role="presentation"><a href="#eqlogictab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="icon divers-svg"></i> {{Equipements}}</a></li>
-		<li role="presentation"><a href="#updatetab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fa fa-credit-card"></i> {{Mises à jour}}</a></li>
+		<li role="presentation"><a href="#updatetab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-credit-card"></i> {{Mises à jour}}</a></li>
 	</ul>
 	<div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
 		<div role="tabpanel" class="tab-pane active" id="generaltab">
@@ -51,7 +51,7 @@ user::isBan();
 							<span class="label label-info" style="font-size : 1em;"><?php echo jeedom::getHardwareName() ?></span>
 						</div>
 						<div class="col-lg-2 col-md-3 col-sm-3">
-							<a class="btn btn-default form-control" id="bt_resetHardwareType"><i class="fa fa-refresh"></i> {{Rafraîchir}}</a>
+							<a class="btn btn-default form-control" id="bt_resetHardwareType"><i class="fas fa-refresh"></i> {{Rafraîchir}}</a>
 						</div>
 					</div>
 					<div class="form-group">
@@ -60,7 +60,7 @@ user::isBan();
 							<span class="label label-info" style="font-size : 1em;"><?php echo jeedom::getHardwareKey() ?></span>
 						</div>
 						<div class="col-lg-2 col-md-3 col-sm-3">
-							<a class="btn btn-default form-control" id="bt_resetHwKey"><i class="fa fa-refresh"></i> {{Remise à zéro}}</a>
+							<a class="btn btn-default form-control" id="bt_resetHwKey"><i class="fas fa-refresh"></i> {{Remise à zéro}}</a>
 						</div>
 					</div>
 					<div class="form-group">
@@ -103,7 +103,7 @@ $lastKnowDate = $cache->getValue();
 							<span class="label label-info" style="font-size : 1em;"><?php echo $lastKnowDate ?></span>
 						</div>
 						<div class="col-lg-2 col-md-3 col-sm-3">
-							<a class="btn btn-default form-control" id="bt_resetHour"><i class="fa fa-refresh"></i> {{Remise à zéro}}</a>
+							<a class="btn btn-default form-control" id="bt_resetHour"><i class="fas fa-refresh"></i> {{Remise à zéro}}</a>
 						</div>
 					</div>
 					<div class="form-group">
@@ -206,7 +206,7 @@ $lastKnowDate = $cache->getValue();
 							</select>
 						</div>
 						<div class="col-lg-4 col-md-5 col-sm-6 col-xs-6">
-							<a class="btn btn-primary" id="bt_forceSyncHour"><i class="fa fa-clock-o"></i> {{Forcer la synchronisation de l'heure}}</a>
+							<a class="btn btn-primary" id="bt_forceSyncHour"><i class="fas fa-clock-o"></i> {{Forcer la synchronisation de l'heure}}</a>
 						</div>
 					</div>
 					<div class="form-group">
@@ -266,7 +266,7 @@ $lastKnowDate = $cache->getValue();
 							<div class="input-group">
 								<span class="span_apikey"><?php echo $configs['api']; ?></span>
 								<span class="input-group-btn">
-									<a class="btn btn-default form-control bt_regenerate_api" data-plugin="core"><i class="fa fa-refresh"></i></a>
+									<a class="btn btn-default form-control bt_regenerate_api" data-plugin="core"><i class="fas fa-refresh"></i></a>
 								</span>
 							</div>
 						</div>
@@ -278,7 +278,7 @@ $lastKnowDate = $cache->getValue();
 							<div class="input-group">
 								<span class="span_apikey"><?php echo $configs['apipro']; ?></span>
 								<span class="input-group-btn">
-									<a class="btn btn-default form-control bt_regenerate_api" data-plugin="pro"><i class="fa fa-refresh"></i></a>
+									<a class="btn btn-default form-control bt_regenerate_api" data-plugin="pro"><i class="fas fa-refresh"></i></a>
 								</span>
 							</div>
 						</div>
@@ -302,7 +302,7 @@ if (init('rescue', 0) == 0) {
 		echo '<div class="input-group">';
 		echo '<span class="span_apikey">' . config::byKey('api', $plugin->getId()) . '</span>';
 		echo '<span class="input-group-btn">';
-		echo '<a class="btn btn-default form-control bt_regenerate_api" data-plugin="' . $plugin->getId() . '"><i class="fa fa-refresh"></i></a>';
+		echo '<a class="btn btn-default form-control bt_regenerate_api" data-plugin="' . $plugin->getId() . '"><i class="fas fa-refresh"></i></a>';
 		echo '</span>';
 		echo '</div>';
 		echo '</div>';
@@ -328,25 +328,25 @@ if (init('rescue', 0) == 0) {
 			<div class="alert alert-danger">{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à}} <?php echo config::byKey('product_name'); ?>{{. L'équipe}} <?php echo config::byKey('product_name'); ?> {{se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}</div>
 			<form class="form-horizontal">
 				<fieldset>
-					<legend><i class="fa fa-terminal"></i> {{Système}}</legend>
+					<legend><i class="fas fa-terminal"></i> {{Système}}</legend>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Administration}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<a class="btn btn-danger" href="index.php?v=d&p=system"><i class="fa fa-exclamation-triangle"></i> {{Lancer}}</a>
+							<a class="btn btn-danger" href="index.php?v=d&p=system"><i class="fas fa-exclamation-triangle"></i> {{Lancer}}</a>
 						</div>
 					</div>
-					<legend><i class="fa fa-indent"></i> {{Editeur de fichiers}}</legend>
+					<legend><i class="fas fa-indent"></i> {{Editeur de fichiers}}</legend>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Editeur}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<a class="btn btn-danger" href="index.php?v=d&p=editor"><i class="fa fa-exclamation-triangle"></i> {{Lancer}}</a>
+							<a class="btn btn-danger" href="index.php?v=d&p=editor"><i class="fas fa-exclamation-triangle"></i> {{Lancer}}</a>
 						</div>
 					</div>
-					<legend><i class="fa fa-database"></i> {{Base de données}}</legend>
+					<legend><i class="fas fa-database"></i> {{Base de données}}</legend>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Administration}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<a class="btn btn-danger" href="index.php?v=d&p=database"><i class="fa fa-exclamation-triangle"></i> {{Lancer}}</a>
+							<a class="btn btn-danger" href="index.php?v=d&p=database"><i class="fas fa-exclamation-triangle"></i> {{Lancer}}</a>
 						</div>
 					</div>
 					<div class="form-group">
@@ -440,7 +440,7 @@ echo $CONFIG['db']['password'];
 						<div class="form-group">
 							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"></div>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<a class="btn btn-default" id="bt_testLdapConnection"><i class="fa fa-cube"></i> Tester</a>
+								<a class="btn btn-default" id="bt_testLdapConnection"><i class="fas fa-cube"></i> Tester</a>
 							</div>
 						</div>
 					</div>
@@ -477,7 +477,7 @@ echo $CONFIG['db']['password'];
 			</form>
 			<form class="form-horizontal">
 				<fieldset>
-					<legend>{{IPs bannies}} <a class="btn btn-warning btn-xs pull-right" id="bt_removeBanIp"><i class="fa fa-trash"></i> {{Supprimer}}</a></legend>
+					<legend>{{IPs bannies}} <a class="btn btn-warning btn-xs pull-right" id="bt_removeBanIp"><i class="fas fa-trash"></i> {{Supprimer}}</a></legend>
 					<table class="table table-condensed table-bordered">
 						<thead>
 							<tr>
@@ -678,14 +678,14 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
 	echo '<input type="color" class="configKey form-control cursor noSet input-sm" data-l1key="eqLogic:category:' . $key . ':color" value="' . $category['color'] . '" />';
 	echo '</div>';
 	echo '<div class="col-sm-1">';
-	echo '<a class="btn btn-default btn-sm bt_resetColor" data-l1key="eqLogic:category:' . $key . ':color" title="{{Remettre par défaut}}"><i class="fa fa-times"></i></a>';
+	echo '<a class="btn btn-default btn-sm bt_resetColor" data-l1key="eqLogic:category:' . $key . ':color" title="{{Remettre par défaut}}"><i class="fas fa-times"></i></a>';
 	echo '</div>';
 	echo '<label class="col-sm-3 control-label">{{Dashboard couleur commande}}</label>';
 	echo '<div class="col-sm-2">';
 	echo '<input type="color" class="configKey form-control cursor noSet input-sm" data-l1key="eqLogic:category:' . $key . ':cmdColor" value="' . $category['cmdColor'] . '" />';
 	echo '</div>';
 	echo '<div class="col-sm-1">';
-	echo '<a class="btn btn-default btn-sm bt_resetColor" data-l1key="eqLogic:category:' . $key . ':cmdColor" title="{{Remettre par défaut}}"><i class="fa fa-times"></i></a>';
+	echo '<a class="btn btn-default btn-sm bt_resetColor" data-l1key="eqLogic:category:' . $key . ':cmdColor" title="{{Remettre par défaut}}"><i class="fas fa-times"></i></a>';
 	echo '</div>';
 	echo '</div>';
 	echo '<div class="form-group">';
@@ -694,14 +694,14 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
 	echo '<input type="color" class="configKey form-control cursor noSet input-sm" data-l1key="eqLogic:category:' . $key . ':mcolor" value="' . $category['mcolor'] . '"/>';
 	echo '</div>';
 	echo '<div class="col-sm-1">';
-	echo '<a class="btn btn-default btn-sm bt_resetColor" data-l1key="eqLogic:category:' . $key . ':mcolor" title="{{Remettre par défaut}}"><i class="fa fa-times"></i></a>';
+	echo '<a class="btn btn-default btn-sm bt_resetColor" data-l1key="eqLogic:category:' . $key . ':mcolor" title="{{Remettre par défaut}}"><i class="fas fa-times"></i></a>';
 	echo '</div>';
 	echo '<label class="col-sm-3 control-label">{{Mobile couleur commande}}</label>';
 	echo '<div class="col-sm-2">';
 	echo '<input type="color" class="configKey form-control cursor noSet input-sm" data-l1key="eqLogic:category:' . $key . ':mcmdColor" value="' . $category['mcmdColor'] . '" />';
 	echo '</div>';
 	echo '<div class="col-sm-1">';
-	echo '<a class="btn btn-default btn-sm bt_resetColor" data-l1key="eqLogic:category:' . $key . ':mcmdColor" title="{{Remettre par défaut}}"><i class="fa fa-times"></i></a>';
+	echo '<a class="btn btn-default btn-sm bt_resetColor" data-l1key="eqLogic:category:' . $key . ':mcmdColor" title="{{Remettre par défaut}}"><i class="fas fa-times"></i></a>';
 	echo '</div>';
 	echo '</div>';
 }
@@ -851,13 +851,13 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nettoyer le cache}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<a class="btn btn-warning" id="bt_cleanCache"><i class="fa fa-magic"></i> {{Nettoyer}}</a>
+							<a class="btn btn-warning" id="bt_cleanCache"><i class="fas fa-magic"></i> {{Nettoyer}}</a>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Vider toutes les données en cache}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<a class="btn btn-danger" id="bt_flushCache"><i class="fa fa-trash"></i> {{Vider}}</a>
+							<a class="btn btn-danger" id="bt_flushCache"><i class="fas fa-trash"></i> {{Vider}}</a>
 						</div>
 					</div>
 					<div class="form-group">
@@ -964,7 +964,7 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 							<div class="input-group">
 								<input type="text"  class="configKey form-control" data-l1key="interact::warnme::defaultreturncmd" />
 								<span class="input-group-btn">
-									<a class="btn btn-default cursor bt_selectWarnMeCmd" title="Rechercher une commande"><i class="fa fa-list-alt"></i></a>
+									<a class="btn btn-default cursor bt_selectWarnMeCmd" title="Rechercher une commande"><i class="fas fa-list-alt"></i></a>
 								</span>
 							</div>
 						</div>
@@ -1008,7 +1008,7 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 					</div>
 
 					<legend>{{Couleurs}}</legend>
-					<i class="fa fa-plus-circle pull-right cursor" id="bt_addColorConvert" style="font-size: 1.8em;"></i>
+					<i class="fas fa-plus-circle pull-right cursor" id="bt_addColorConvert" style="font-size: 1.8em;"></i>
 					<table class="table table-condensed table-bordered" id="table_convertColor" >
 						<thead>
 							<tr>
@@ -1101,7 +1101,7 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 			<br/>
 			<form class="form-horizontal">
 				<fieldset>
-					<i class="fa fa-plus-circle pull-right cursor" id="bt_addObjectSummary" style="font-size: 1.8em;"></i>
+					<i class="fas fa-plus-circle pull-right cursor" id="bt_addObjectSummary" style="font-size: 1.8em;"></i>
 					<table class="table table-condensed table-bordered" id="table_objectSummary" >
 						<thead>
 							<tr>
@@ -1136,7 +1136,7 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Supprimer tous les évènements}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<a type="text" class="btn btn-danger" id="bt_removeTimelineEvent" ><i class="fa fa-trash"></i> {{Supprimer}}</a>
+							<a type="text" class="btn btn-danger" id="bt_removeTimelineEvent" ><i class="fas fa-trash"></i> {{Supprimer}}</a>
 						</div>
 					</div>
 					<legend>{{Messages}}</legend>
@@ -1149,7 +1149,7 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Action sur message}}</label>
 						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-							<a class="btn btn-success" id="bt_addActionOnMessage"><i class="fa fa-plus-circle"></i> {{Ajouter}}</a>
+							<a class="btn btn-success" id="bt_addActionOnMessage"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
 						</div>
 					</div>
 					<div id="div_actionOnMessage"></div>
@@ -1172,7 +1172,7 @@ foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
 	echo '<div class="input-group">';
 	echo '<input type="text"  class="configKey form-control" data-l1key="alert::' . $level . 'Cmd" />';
 	echo '<span class="input-group-btn">';
-	echo '<a class="btn btn-default cursor bt_selectAlertCmd" title="Rechercher une commande" data-type="' . $level . '"><i class="fa fa-list-alt"></i></a>';
+	echo '<a class="btn btn-default cursor bt_selectAlertCmd" title="Rechercher une commande" data-type="' . $level . '"><i class="fas fa-list-alt"></i></a>';
 	echo '</span>';
 	echo '</div>';
 	echo '</div>';
@@ -1403,7 +1403,7 @@ foreach ($repos as $key => $value) {
 		echo '<div class="form-group">';
 		echo '<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Tester}}</label>';
 		echo '<div class="col-sm-4">';
-		echo '<a class="btn btn-default testRepoConnection" data-repo="' . $key . '"><i class="fa fa-check"></i> {{Tester}}</a>';
+		echo '<a class="btn btn-default testRepoConnection" data-repo="' . $key . '"><i class="fas fa-check"></i> {{Tester}}</a>';
 		echo '</div>';
 		echo '</div>';
 	}

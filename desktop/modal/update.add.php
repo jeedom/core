@@ -77,7 +77,7 @@ foreach ($repos as $key => $value) {
 			case 'file':
 				echo '<input class="updateAttr form-control" data-l1key="configuration" data-l2key="' . $pKey . '" style="display:none;" />';
 				echo '<span class="btn btn-default btn-file">';
-				echo '<i class="fa fa-cloud-upload"></i> {{Envoyer un plugin}}<input id="bt_uploadPlugin" data-key="' . $pKey . '" type="file" name="file" data-url="core/ajax/update.ajax.php?action=preUploadFile&jeedom_token=' . ajax::getToken() . '" style="display : inline-block;">';
+				echo '<i class="fas fa-cloud-upload"></i> {{Envoyer un plugin}}<input id="bt_uploadPlugin" data-key="' . $pKey . '" type="file" name="file" data-url="core/ajax/update.ajax.php?action=preUploadFile&jeedom_token=' . ajax::getToken() . '" style="display : inline-block;">';
 				echo '</span>';
 				break;
 		}
@@ -88,7 +88,7 @@ foreach ($repos as $key => $value) {
 	echo '</div>';
 }
 ?>
- 		<a class="btn btn-success pull-right" id="bt_repoAddSaveUpdate"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
+ 		<a class="btn btn-success pull-right" id="bt_repoAddSaveUpdate"><i class="fas fa-check-circle"></i> {{Enregistrer}}</a>
  	</fieldset>
  </form>
 

@@ -143,19 +143,19 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
           if(data.status.owner[i] != 1){
             continue;
           }
-          $('#span_plugin_market').append('<a class="btn btn-warning btn-xs sendPluginTo" data-repo="'+i+'" data-logicalId="' + data.id + '"><i class="fa fa-cloud-upload"></i> {{Envoyer sur le}} '+i+'</a> ');
+          $('#span_plugin_market').append('<a class="btn btn-warning btn-xs sendPluginTo" data-repo="'+i+'" data-logicalId="' + data.id + '"><i class="fas fa-cloud-upload"></i> {{Envoyer sur le}} '+i+'</a> ');
         }
       }
-      $('#span_plugin_delete').empty().append('<a class="btn btn-danger btn-xs removePlugin" data-market_logicalId="' + data.id + '"><i class="fa fa-trash"></i> {{Supprimer}}</a> ');
+      $('#span_plugin_delete').empty().append('<a class="btn btn-danger btn-xs removePlugin" data-market_logicalId="' + data.id + '"><i class="fas fa-trash"></i> {{Supprimer}}</a> ');
       $('#span_plugin_doc').empty();
       if(isset(data.documentation) && data.documentation != ''){
-        $('#span_plugin_doc').append('<a class="btn btn-primary btn-xs" target="_blank" href="'+data.documentation+'"><i class="fa fa-book"></i> {{Documentation}}</a> ');
+        $('#span_plugin_doc').append('<a class="btn btn-primary btn-xs" target="_blank" href="'+data.documentation+'"><i class="fas fa-book"></i> {{Documentation}}</a> ');
       }
       if(isset(data.changelog) && data.changelog != ''){
-        $('#span_plugin_doc').append('<a class="btn btn-primary btn-xs" target="_blank" href="'+data.changelog+'"><i class="fa fa-book"></i> {{Changelog}}</a> ');
+        $('#span_plugin_doc').append('<a class="btn btn-primary btn-xs" target="_blank" href="'+data.changelog+'"><i class="fas fa-book"></i> {{Changelog}}</a> ');
       }
       if(isset(data.info.display) && data.info.display != ''){
-        $('#span_plugin_doc').append('<a class="btn btn-primary btn-xs" target="_blank" href="'+data.info.display+'"><i class="fa fa-book"></i> {{Détails}}</a> ');
+        $('#span_plugin_doc').append('<a class="btn btn-primary btn-xs" target="_blank" href="'+data.info.display+'"><i class="fas fa-book"></i> {{Détails}}</a> ');
       }
 
       if (data.checkVersion != -1) {
@@ -235,9 +235,9 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
       html += '<label class="col-sm-2 control-label">{{Action}}</label>';
       html += '<div class="col-sm-4">';
       if (data.activate == 1) {
-       html += '<a class="btn btn-danger btn-sm togglePlugin" data-state="0" data-plugin_id="' + data.id + '" style="position:relative;top:-2px;"><i class="fa fa-times"></i> {{Désactiver}}</a>';
+       html += '<a class="btn btn-danger btn-sm togglePlugin" data-state="0" data-plugin_id="' + data.id + '" style="position:relative;top:-2px;"><i class="fas fa-times"></i> {{Désactiver}}</a>';
      }else{
-       html += '<a class="btn btn-success btn-sm togglePlugin" data-state="1" data-plugin_id="' + data.id + '" style="position:relative;top:-2px;"><i class="fa fa-check"></i> {{Activer}}</a>';
+       html += '<a class="btn btn-success btn-sm togglePlugin" data-state="1" data-plugin_id="' + data.id + '" style="position:relative;top:-2px;"><i class="fas fa-check"></i> {{Activer}}</a>';
      }
      html += '</div>';
      html += '</div>';
@@ -265,7 +265,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
      log_conf += '<label class="col-sm-2 control-label">{{Logs}}</label>';
      log_conf += '<div class="col-sm-10">';
      for(j in data.logs[i].log){
-      log_conf += '<a class="btn btn-info bt_plugin_conf_view_log" data-slaveId="'+data.logs[i].id+'" data-log="'+data.logs[i].log[j]+'"><i class="fa fa-paperclip"></i>  '+data.logs[i].log[j].charAt(0).toUpperCase() + data.logs[i].log[j].slice(1)+'</a> ';
+      log_conf += '<a class="btn btn-info bt_plugin_conf_view_log" data-slaveId="'+data.logs[i].id+'" data-log="'+data.logs[i].log[j]+'"><i class="fas fa-paperclip"></i>  '+data.logs[i].log[j].charAt(0).toUpperCase() + data.logs[i].log[j].slice(1)+'</a> ';
     }
     log_conf += '</div>';
     log_conf += '</div>';

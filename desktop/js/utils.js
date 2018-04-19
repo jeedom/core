@@ -438,7 +438,7 @@ function initTableSorter() {
 function initHelp(){
     $('.help').each(function(){
         if($(this).attr('data-help') != undefined){
-            $(this).append(' <sup><i class="fa fa-question-circle tooltips" title="'+$(this).attr('data-help')+'" style="font-size : 1em;color:grey;"></i></sup>');
+            $(this).append(' <sup><i class="fas fa-question-circle tooltips" title="'+$(this).attr('data-help')+'" style="font-size : 1em;color:grey;"></i></sup>');
         }
     });
 }

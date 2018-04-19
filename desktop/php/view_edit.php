@@ -23,12 +23,12 @@ if (!isConnect('admin')) {
     <div class="col-lg-2 col-md-3 col-sm-4">
         <div class="bs-sidebar">
             <ul id="ul_view" class="nav nav-list bs-sidenav">
-                <a id="bt_addView" class="btn btn-default" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-plus-circle"></i> {{Créer une vue}}</a>
+                <a id="bt_addView" class="btn btn-default" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fas fa-plus-circle"></i> {{Créer une vue}}</a>
                 <li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
                 <?php
 foreach (view::all() as $view) {
 	echo '<li class="cursor li_view" data-view_id="' . $view->getId() . '">';
-	echo '<i class="fa fa-arrows-v pull-left cursor"></i>';
+	echo '<i class="fas fa-arrows-v pull-left cursor"></i>';
 	echo '<a style="position:relative;left:15px;">' . trim($view->getDisplay('icon')) . ' ' . $view->getName() . '</a>';
 	echo '</li>';
 }
@@ -39,13 +39,13 @@ foreach (view::all() as $view) {
 
    <div class="col-lg-10 col-md-9 col-sm-8" style="display: none;" id="div_view">
     <legend style="height: 35px;">
-        <a class="btn btn-default btn-xs" id="bt_editView"><i class="fa fa-pencil"></i> {{Renommer}}</a>
-        <a class="btn btn-default btn-xs" id="bt_chooseIcon"><i class="fa fa-flag"></i> {{Icone}}</a>
+        <a class="btn btn-default btn-xs" id="bt_editView"><i class="fas fa-pencil"></i> {{Renommer}}</a>
+        <a class="btn btn-default btn-xs" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Icone}}</a>
         <span class="viewAttr cursor" data-l1key="display" data-l2key="icon"></span>
-        <a class="btn btn-danger btn-xs pull-right" id="bt_removeView"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
-        <a class="btn btn-success btn-xs pull-right" id="bt_saveView"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
-        <a class="btn btn-primary btn-xs pull-right" id="bt_viewResult"><i class="fa fa fa-eye"></i> {{Voir le résultat}}</a>
-        <a class="btn btn-default btn-xs pull-right" id="bt_addviewZone"><i class="fa fa-plus-circle"></i> {{Ajouter une zone}}</a>
+        <a class="btn btn-danger btn-xs pull-right" id="bt_removeView"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
+        <a class="btn btn-success btn-xs pull-right" id="bt_saveView"><i class="fas fa-check-circle"></i> {{Enregistrer}}</a>
+        <a class="btn btn-primary btn-xs pull-right" id="bt_viewResult"><i class="fas fa fa-eye"></i> {{Voir le résultat}}</a>
+        <a class="btn btn-default btn-xs pull-right" id="bt_addviewZone"><i class="fas fa-plus-circle"></i> {{Ajouter une zone}}</a>
     </legend>
 
     <div id="div_viewZones" style="margin-top: 10px;"></div>
@@ -84,7 +84,7 @@ foreach (view::all() as $view) {
             </div>
             <div class="modal-footer">
                 <a class="btn btn-danger" data-dismiss="modal">{{Annuler}}</a>
-                <a class="btn btn-success" id="bt_addEditviewZoneSave"><i class="fa fa-save"></i> {{Enregistrer}}</a>
+                <a class="btn btn-success" id="bt_addEditviewZoneSave"><i class="fas fa-save"></i> {{Enregistrer}}</a>
             </div>
         </div>
     </div>

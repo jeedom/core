@@ -230,21 +230,21 @@ tr += '</td>';
 tr += '<td>';
 if (_update.type != 'core') {   
     if (_update.status == 'update') {
-        tr += '<a class="btn btn-info btn-xs update" style="margin-bottom : 5px;" title="{{Mettre à jour}}"><i class="fa fa-refresh"></i> {{Mettre à jour}}</a> ';
+        tr += '<a class="btn btn-info btn-xs update" style="margin-bottom : 5px;" title="{{Mettre à jour}}"><i class="fas fa-refresh"></i> {{Mettre à jour}}</a> ';
     }else if (_update.type != 'core') {
-        tr += '<a class="btn btn-info btn-xs update" style="margin-bottom : 5px;" title="{{Re-installer}}"><i class="fa fa-refresh"></i> {{Reinstaller}}</a> ';
+        tr += '<a class="btn btn-info btn-xs update" style="margin-bottom : 5px;" title="{{Re-installer}}"><i class="fas fa-refresh"></i> {{Reinstaller}}</a> ';
     }
 }
 if (_update.type != 'core') {       
  if (isset(_update.plugin) && isset(_update.plugin.changelog) && _update.plugin.changelog != '') {     
-     tr += '<a class="btn btn-default btn-xs cursor" target="_blank" href="'+_update.plugin.changelog+'" style="margin-bottom : 5px;"><i class="fa fa-book"></i> {{Changelog}}</a>';       
+     tr += '<a class="btn btn-default btn-xs cursor" target="_blank" href="'+_update.plugin.changelog+'" style="margin-bottom : 5px;"><i class="fas fa-book"></i> {{Changelog}}</a>';       
  }     
 }else{        
-  tr += '<a class="btn btn-default btn-xs" href="https://jeedom.github.io/core/fr_FR/changelog" target="_blank" style="margin-bottom : 5px;"><i class="fa fa-book"></i> {{Changelog}}</a>';      
+  tr += '<a class="btn btn-default btn-xs" href="https://jeedom.github.io/core/fr_FR/changelog" target="_blank" style="margin-bottom : 5px;"><i class="fas fa-book"></i> {{Changelog}}</a>';      
 }
-tr += '<a class="btn btn-info btn-xs pull-right checkUpdate" style="margin-bottom : 5px;" ><i class="fa fa-check"></i> {{Vérifier}}</a>';
+tr += '<a class="btn btn-info btn-xs pull-right checkUpdate" style="margin-bottom : 5px;" ><i class="fas fa-check"></i> {{Vérifier}}</a>';
 if (_update.type != 'core') {
-    tr += '<a class="btn btn-danger btn-xs pull-right remove" style="margin-bottom : 5px;" ><i class="fa fa-trash-o"></i> {{Supprimer}}</a>';  
+    tr += '<a class="btn btn-danger btn-xs pull-right remove" style="margin-bottom : 5px;" ><i class="fas fa-trash-o"></i> {{Supprimer}}</a>';  
 }
 tr += '</td>';
 tr += '</tr>';

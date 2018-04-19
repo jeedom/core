@@ -5,7 +5,7 @@ if (!isConnect()) {
 ?>
 <legend>
     {{Mes premiers pas dans}} <?php echo config::byKey('product_name'); ?>
-    <a class='btn btn-default btn-xs pull-right' id='bt_doNotDisplayFirstUse'><i class="fa fa-eye-slash"></i> Ne plus afficher</a>
+    <a class='btn btn-default btn-xs pull-right' id='bt_doNotDisplayFirstUse'><i class="fas fa-eye-slash"></i> Ne plus afficher</a>
 </legend>
 <div id="div_alertFirstUse"></div>
 <center>
@@ -17,7 +17,7 @@ if (!isConnect()) {
     <div class="col-xs-4">
        <center>
         <a href="https://jeedom.com/start" target="_blank">
-            <i class="fa fa-picture-o" style="font-size:12em;"></i><br/>
+            <i class="fas fa-picture-o" style="font-size:12em;"></i><br/>
             {{Guide de démarrage}}
         </a>
     </center>
@@ -25,7 +25,7 @@ if (!isConnect()) {
 <div class="col-xs-4">
    <center>
     <a href="https://jeedom.github.io/documentation/premiers-pas/fr_FR/index" target="_blank">
-        <i class="fa fa-check-square" style="font-size:12em;"></i><br/>
+        <i class="fas fa-check-square" style="font-size:12em;"></i><br/>
         {{Documentation de démarrage}}
     </a>
 </center>
@@ -33,7 +33,7 @@ if (!isConnect()) {
 <div class="col-xs-4">
  <center>
     <a href="https://jeedom.github.io/documentation" target="_blank">
-        <i class="fa fa-book" style="font-size:12em;"></i><br/>
+        <i class="fas fa-book" style="font-size:12em;"></i><br/>
         {{Documentation}}
     </a>
 </center>

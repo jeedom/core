@@ -68,16 +68,16 @@ switch ($deamon_info['launchable']) {
 			</td>
 
 			<td>
-				<a class="btn btn-success btn-sm bt_startDeamon" style="position:relative;top:-5px;"><i class="fa fa-play"></i></a>
+				<a class="btn btn-success btn-sm bt_startDeamon" style="position:relative;top:-5px;"><i class="fas fa-play"></i></a>
 			</td>
 			<td>
-				<a class="btn btn-danger btn-sm bt_stopDeamon" style="position:relative;top:-5px;"><i class="fa fa-stop"></i></a>
+				<a class="btn btn-danger btn-sm bt_stopDeamon" style="position:relative;top:-5px;"><i class="fas fa-stop"></i></a>
 			</td>
 			<td>
 				<?php if ($deamon_info['auto'] == 1) {?>
-					<a class="btn btn-danger btn-sm bt_changeAutoMode" data-mode="0" style="position:relative;top:-5px;"><i class="fa fa-times"></i> {{Désactiver}}</a>
+					<a class="btn btn-danger btn-sm bt_changeAutoMode" data-mode="0" style="position:relative;top:-5px;"><i class="fas fa-times"></i> {{Désactiver}}</a>
 					<?php } else {?>
-						<a class="btn btn-success btn-sm bt_changeAutoMode" data-mode="1" style="position:relative;top:-5px;"><i class="fa fa-magic"></i> {{Activer}}</a>
+						<a class="btn btn-success btn-sm bt_changeAutoMode" data-mode="1" style="position:relative;top:-5px;"><i class="fas fa-magic"></i> {{Activer}}</a>
 						<?php }
 ?>
 					</td>
@@ -144,14 +144,14 @@ sendVarToJs('refresh_deamon_info', $refresh);
 							$('.bt_stopDeamon').hide();
 							$('.bt_changeAutoMode').removeClass('btn-success').addClass('btn-danger');
 							$('.bt_changeAutoMode').attr('data-mode',0);
-							$('.bt_changeAutoMode').html('<i class="fa fa-times"></i> {{Désactiver}}');
+							$('.bt_changeAutoMode').html('<i class="fas fa-times"></i> {{Désactiver}}');
 						}else{
 							if(data.launchable == 'ok' && data.state == 'ok'){
 								$('.bt_stopDeamon').show();
 							}
 							$('.bt_changeAutoMode').removeClass('btn-danger').addClass('btn-success');
 							$('.bt_changeAutoMode').attr('data-mode',1);
-							$('.bt_changeAutoMode').html('<i class="fa fa-magic"></i> {{Activer}}');
+							$('.bt_changeAutoMode').html('<i class="fas fa-magic"></i> {{Activer}}');
 						}
 						if(!nok){
 							$("#div_plugin_deamon").closest('.panel').removeClass('panel-danger').addClass('panel-success');

@@ -17,8 +17,8 @@ sendVarToJS('id', $plan3d->getId());
 <form class="form-horizontal">
 	<fieldset id="fd_plan3dConfigure">
 		<legend>{{Général}}
-			<a class='btn btn-success btn-xs pull-right cursor' style="color: white;" id='bt_saveConfigurePlan3d'><i class="fa fa-check"></i> {{Sauvegarder}}</a>
-			<a class='btn btn-danger btn-xs pull-right cursor' style="color: white;" id='bt_removeConfigurePlan3d'><i class="fa fa-times"></i> {{Supprimer}}</a>
+			<a class='btn btn-success btn-xs pull-right cursor' style="color: white;" id='bt_saveConfigurePlan3d'><i class="fas fa-check"></i> {{Sauvegarder}}</a>
+			<a class='btn btn-danger btn-xs pull-right cursor' style="color: white;" id='bt_removeConfigurePlan3d'><i class="fas fa-times"></i> {{Supprimer}}</a>
 		</legend>
 		<input type="text"  class="plan3dAttr form-control" data-l1key="id" style="display: none;"/>
 		<div class="form-group">
@@ -41,7 +41,7 @@ sendVarToJS('id', $plan3d->getId());
 				<input type="text" class="plan3dAttr form-control" data-l1key="link_id" />
 			</div>
 			<div class="col-lg-2">
-				<a class="btn btn-default" id="bt_selEqLogic" title="{{Rechercher d\'un équipement}}"><i class="fa fa-list-alt"></i></a>
+				<a class="btn btn-default" id="bt_selEqLogic" title="{{Rechercher d\'un équipement}}"><i class="fas fa-list-alt"></i></a>
 			</div>
 		</div>
 		<div class="form-group">
@@ -62,7 +62,7 @@ sendVarToJS('id', $plan3d->getId());
 				<input type="text" class="plan3dAttr form-control" data-l1key="configuration" data-l2key="cmd::state"/>
 			</div>
 			<div class="col-lg-2">
-				<a class="btn btn-default" id="bt_selCmd" title="{{Rechercher d\'une commande}}"><i class="fa fa-list-alt"></i></a>
+				<a class="btn btn-default" id="bt_selCmd" title="{{Rechercher d\'une commande}}"><i class="fas fa-list-alt"></i></a>
 			</div>
 		</div>
 		<!---*********************************LIGHT************************************** -->
@@ -88,7 +88,7 @@ sendVarToJS('id', $plan3d->getId());
 				<textarea type="text" class="plan3dAttr form-control" data-l1key="configuration" data-l2key="3d::widget::text::text"></textarea>
 			</div>
 			<div class="col-lg-1">
-				<a class="btn btn-default" id="bt_addTextCommand" title="{{Rechercher d\'une commande}}"><i class="fa fa-list-alt"></i></a>
+				<a class="btn btn-default" id="bt_addTextCommand" title="{{Rechercher d\'une commande}}"><i class="fas fa-list-alt"></i></a>
 			</div>
 		</div>
 		<div class="form-group specificity specificity_text">
@@ -150,7 +150,7 @@ sendVarToJS('id', $plan3d->getId());
 						<input type="text" class="plan3dAttr form-control" data-l1key="configuration" data-l2key="3d::widget::door::window"/>
 					</div>
 					<div class="col-lg-2">
-						<a class="btn btn-default" id="bt_selWindow" title="{{Rechercher d\'une commande}}"><i class="fa fa-list-alt"></i></a>
+						<a class="btn btn-default" id="bt_selWindow" title="{{Rechercher d\'une commande}}"><i class="fas fa-list-alt"></i></a>
 					</div>
 				</div>
 				<legend>{{Rotation}}</legend>
@@ -241,7 +241,7 @@ sendVarToJS('id', $plan3d->getId());
 						<input type="text" class="plan3dAttr form-control" data-l1key="configuration" data-l2key="3d::widget::door::shutter"/>
 					</div>
 					<div class="col-lg-2">
-						<a class="btn btn-default" id="bt_selShutter" title="{{Rechercher d\'une commande}}"><i class="fa fa-list-alt"></i></a>
+						<a class="btn btn-default" id="bt_selShutter" title="{{Rechercher d\'une commande}}"><i class="fas fa-list-alt"></i></a>
 					</div>
 				</div>
 				<legend>{{Masquer quand le volet est ouvert}}</legend>
@@ -281,7 +281,7 @@ sendVarToJS('id', $plan3d->getId());
 
 		<!---*********************************conditionalColor************************************** -->
 		<div class="specificity specificity_conditionalColor">
-			<legend>{{Condition}} <a class="btn btn-xs btn-success pull-right" id="bt_addCondition"><i class="fa fa-plus"></i> {{Ajouter}}</a></legend>
+			<legend>{{Condition}} <a class="btn btn-xs btn-success pull-right" id="bt_addCondition"><i class="fas fa-plus"></i> {{Ajouter}}</a></legend>
 			<div id="div_conditionColor"></div>
 		</div>
 		<script>
@@ -310,11 +310,11 @@ sendVarToJS('id', $plan3d->getId());
 				div += '<div class="col-sm-9">';
 				div += '<div class="input-group">';
 				div += '<span class="input-group-btn">';
-				div += '<a class="btn btn-default bt_removeConditionalColor btn-sm"><i class="fa fa-minus-circle"></i></a>';
+				div += '<a class="btn btn-default bt_removeConditionalColor btn-sm"><i class="fas fa-minus-circle"></i></a>';
 				div += '</span>';
 				div += '<input class="conditionalColorAttr form-control input-sm" data-l1key="cmd" />';
 				div += '<span class="input-group-btn">';
-				div += '<a class="btn btn-sm listCmdInfoConditionalColor btn-default"><i class="fa fa-list-alt"></i></a>';
+				div += '<a class="btn btn-sm listCmdInfoConditionalColor btn-default"><i class="fas fa-list-alt"></i></a>';
 				div += '</span>';
 				div += '</div>';
 				div += '</div>';

@@ -9,13 +9,13 @@ echo '</script>';
 <div id="backup">
     <div class="row row-overflow">
         <div class="col-sm-6">
-            <legend><i class="fa fa-floppy-o"></i>  {{Sauvegardes}}</legend>
+            <legend><i class="fas fa-floppy-o"></i>  {{Sauvegardes}}</legend>
             <form class="form-horizontal">
                 <fieldset>
                     <div class="form-group">
                         <label class="col-sm-4 col-xs-6 control-label">{{Sauvegardes}}</label>
                         <div class="col-sm-8 col-xs-6">
-                            <a class="btn btn-success bt_backupJeedom"><i class="fa fa-refresh fa-spin" style="display : none;"></i> <i class="fa fa-floppy-o"></i> {{Lancer}}</a>
+                            <a class="btn btn-success bt_backupJeedom"><i class="fas fa-refresh fa-spin" style="display : none;"></i> <i class="fas fa-floppy-o"></i> {{Lancer}}</a>
                         </div>
                     </div>
                     <div class="form-group">
@@ -38,7 +38,7 @@ echo '</script>';
                     </div>
                 </fieldset>
             </form>
-            <legend><i class="fa fa-folder-open"></i>  {{Sauvegardes locales}}</legend>
+            <legend><i class="fas fa-folder-open"></i>  {{Sauvegardes locales}}</legend>
             <form class="form-horizontal">
                 <fieldset>
                     <div class="form-group">
@@ -50,27 +50,27 @@ echo '</script>';
                     <div class="form-group">
                         <label class="col-sm-4 col-xs-6 control-label">{{Restaurer la sauvegarde}}</label>
                         <div class="col-sm-4 col-xs-6">
-                            <a class="btn btn-warning" id="bt_restoreJeedom"><i class="fa fa-refresh fa-spin" style="display : none;"></i> <i class="fa fa-file"></i> {{Restaurer}}</a>
+                            <a class="btn btn-warning" id="bt_restoreJeedom"><i class="fas fa-refresh fa-spin" style="display : none;"></i> <i class="far fa-file"></i> {{Restaurer}}</a>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-4 col-xs-6 control-label">{{Supprimer la sauvegarde}}</label>
                         <div class="col-sm-4 col-xs-6">
-                            <a class="btn btn-danger" id="bt_removeBackup"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>
+                            <a class="btn btn-danger" id="bt_removeBackup"><i class="fas fa-trash-o"></i> {{Supprimer}}</a>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-4 col-xs-6 control-label">{{Envoyer une sauvegarde}}</label>
                         <div class="col-sm-8 col-xs-6">
                             <span class="btn btn-default btn-file">
-                                <i class="fa fa-cloud-upload"></i> {{Envoyer}}<input id="bt_uploadBackup" type="file" name="file" data-url="core/ajax/jeedom.ajax.php?action=backupupload&jeedom_token=<?php echo ajax::getToken(); ?>">
+                                <i class="fas fa-cloud-upload"></i> {{Envoyer}}<input id="bt_uploadBackup" type="file" name="file" data-url="core/ajax/jeedom.ajax.php?action=backupupload&jeedom_token=<?php echo ajax::getToken(); ?>">
                             </span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-4 col-xs-6 control-label">{{Télécharger la sauvegarde}}</label>
                         <div class="col-sm-4 col-xs-6">
-                            <a class="btn btn-success" id="bt_downloadBackup"><i class="fa fa-cloud-download"></i> {{Télécharger}}</a>
+                            <a class="btn btn-success" id="bt_downloadBackup"><i class="fas fa-cloud-download"></i> {{Télécharger}}</a>
                         </div>
                     </div>
                 </fieldset>
@@ -85,7 +85,7 @@ foreach (update::listRepo() as $rkey => $value) {
 		continue;
 	}
 	$class = 'repo_' . $rkey;
-	echo '<legend><i class="fa fa-cloud"></i> {{Sauvegardes}} ' . $value['name'] . '</legend>';
+	echo '<legend><i class="fas fa-cloud"></i> {{Sauvegardes}} ' . $value['name'] . '</legend>';
 	echo '<form class="form-horizontal repo">';
 	echo '<fieldset>';
 	echo '<div class="form-group">';
@@ -108,7 +108,7 @@ foreach (update::listRepo() as $rkey => $value) {
 	echo '<div class="form-group">';
 	echo '<label class="col-sm-4 col-xs-6 control-label">{{Restaurer la sauvegarde}}</label>';
 	echo '<div class="col-sm-4 col-xs-6">';
-	echo '<a class="btn btn-warning bt_restoreRepoBackup" data-repo="' . $rkey . '"><i class="fa fa-refresh fa-spin" style="display : none;"></i> <i class="fa fa-file"></i> {{Restaurer}}</a>';
+	echo '<a class="btn btn-warning bt_restoreRepoBackup" data-repo="' . $rkey . '"><i class="fas fa-refresh fa-spin" style="display : none;"></i> <i class="far fa-file"></i> {{Restaurer}}</a>';
 	echo '</div>';
 	echo '</div>';
 	echo '</fieldset>';
@@ -117,11 +117,11 @@ foreach (update::listRepo() as $rkey => $value) {
 ?>
 
         <div class="form-actions" style="height: 20px;">
-            <a class="btn btn-success" id="bt_saveBackup"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
+            <a class="btn btn-success" id="bt_saveBackup"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
         </div>
     </div>
     <div class="col-sm-6">
-        <legend><i class="fa fa-info-circle"></i>  {{Informations}}</legend>
+        <legend><i class="fas fa-info-circle"></i>  {{Informations}}</legend>
         <pre id="pre_backupInfo" style="overflow: scroll;"></pre>
     </div>
 </div>

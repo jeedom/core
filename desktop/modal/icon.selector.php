@@ -79,7 +79,7 @@ foreach (ls('core/css/icon', '*') as $dir) {
         <div class="col-lg-1 divIconSel"><center><span class="iconSel"><i class='fa fa-cog'></i></span><br/><span class="iconDesc">fa-cog</span></div>
         <div class="col-lg-1 divIconSel"><center><span class="iconSel"><i class='fa fa-trash-o'></i></span><br/><span class="iconDesc">fa-trash-o</span></div>
         <div class="col-lg-1 divIconSel"><center><span class="iconSel"><i class='fa fa-home'></i></span><br/><span class="iconDesc">fa-home</span></div>
-        <div class="col-lg-1 divIconSel"><center><span class="iconSel"><i class='fa fa-file-o'></i></span><br/><span class="iconDesc">fa-file-o</span></div>
+        <div class="col-lg-1 divIconSel"><center><span class="iconSel"><i class='fa fa-file"'></i></span><br/><span class="iconDesc">fa-file"</span></div>
         <div class="col-lg-1 divIconSel"><center><span class="iconSel"><i class='fa fa-clock-o'></i></span><br/><span class="iconDesc">fa-clock-o</span></div>
         <div class="col-lg-1 divIconSel"><center><span class="iconSel"><i class='fa fa-road'></i></span><br/><span class="iconDesc">fa-road</span></div>
         <div class="col-lg-1 divIconSel"><center><span class="iconSel"><i class='fa fa-download'></i></span><br/><span class="iconDesc">fa-download</span></div>
@@ -198,7 +198,7 @@ foreach (ls('core/css/icon', '*') as $dir) {
         <div class="col-lg-1 divIconSel"><center><span class="iconSel"><i class='fa fa-columns'></i></span><br/><span class="iconDesc">fa-columns</span></div>
         <div class="col-lg-1 divIconSel"><center><span class="iconSel"><i class='fa fa-envelope'></i></span><br/><span class="iconDesc">fa-envelope</span></div>
         <div class="col-lg-1 divIconSel"><center><span class="iconSel"><i class='fa fa-gavel'></i></span><br/><span class="iconDesc">fa-gavel</span></div>
-        <div class="col-lg-1 divIconSel"><center><span class="iconSel"><i class='fa fa-tachometer'></i></span><br/><span class="iconDesc">fa-tachometer</span></div>
+        <div class="col-lg-1 divIconSel"><center><span class="iconSel"><i class='fa fa-tachometer-alt"'></i></span><br/><span class="iconDesc">fa-tachometer-alt"</span></div>
         <div class="col-lg-1 divIconSel"><center><span class="iconSel"><i class='fa fa-bolt'></i></span><br/><span class="iconDesc">fa-bolt</span></div>
     </div>
     <div class="row">

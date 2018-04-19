@@ -20,7 +20,7 @@ foreach (cmd::all() as $cmd) {
 sendVarToJs('cmds_history_configure', $list_cmd);
 ?>
   <div style="display: none;" id="md_cmdConfigureHistory"></div>
-    <a class="btn btn-success btn-sm pull-right" id="bt_cmdConfigureCmdHistoryApply" style="color : white;" ><i class="fa fa-check"></i> {{Valider}}</a>
+    <a class="btn btn-success btn-sm pull-right" id="bt_cmdConfigureCmdHistoryApply" style="color : white;" ><i class="fas fa-check"></i> {{Valider}}</a>
   <center><span class="label label-info" style="font-size: 1em;">{{Commande(s) historisée(s) : }}<?php echo $count['history'] ?> - {{Commande(s) timeline : }}<?php echo $count['timeline'] ?></span></center>
 
   <br/>
@@ -28,7 +28,7 @@ sendVarToJs('cmds_history_configure', $list_cmd);
    <thead>
     <tr>
      <th data-filter="false" data-sorter="checkbox">{{Historisé}}</th>
-     <th data-filter="false" data-sorter="checkbox">{{Timeline}} <a class="btn btn-danger btn-xs pull-right" id="bt_canceltimeline" style="color : white;" ><i class="fa fa-times"></i></a><a class="btn btn-success btn-xs pull-right" id="bt_applytimeline" style="color : white;" ><i class="fa fa-check"></i></a></th>
+     <th data-filter="false" data-sorter="checkbox">{{Timeline}} <a class="btn btn-danger btn-xs pull-right" id="bt_canceltimeline" style="color : white;" ><i class="fas fa-times"></i></a><a class="btn btn-success btn-xs pull-right" id="bt_applytimeline" style="color : white;" ><i class="fas fa-check"></i></a></th>
      <th>{{Type}}</th>
      <th>{{Nom}}</th>
      <th>{{Plugin}}</th>
@@ -99,9 +99,9 @@ function addCommandHistory(_cmd){
   tr += '</td>';
   tr += '<td>';
   if(_cmd.type == 'info'){
-    tr += '<a class="btn btn-default btn-sm pull-right cursor bt_configureHistoryExportData" data-id="'  +_cmd.id+ '"><i class="fa fa-share export"></i></a>';
+    tr += '<a class="btn btn-default btn-sm pull-right cursor bt_configureHistoryExportData" data-id="'  +_cmd.id+ '"><i class="fas fa-share export"></i></a>';
   }
-  tr += '<a class="btn btn-default btn-sm pull-right cursor bt_configureHistoryAdvanceCmdConfiguration" data-id="'  +_cmd.id+ '"><i class="fa fa-cogs"></i></a>';
+  tr += '<a class="btn btn-default btn-sm pull-right cursor bt_configureHistoryAdvanceCmdConfiguration" data-id="'  +_cmd.id+ '"><i class="fas fa-cogs"></i></a>';
   tr += '</td>';
   tr += '</tr>';
   var result = $(tr);
