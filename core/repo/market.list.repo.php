@@ -255,9 +255,8 @@ foreach ($markets as $market) {
 			if (!$first) {
 				echo '</div>';
 			}
-			global $JEEDOM_INTERNAL_CONFIG;
 			if (isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$categorie])) {
-				echo '<legend style="border-bottom: 1px solid #34495e; color : #34495e;" data-category="' . $nCategory . '"><i class="fa ' . $JEEDOM_INTERNAL_CONFIG['plugin']['category']['name'] . '"></i> ' . ucfirst($JEEDOM_INTERNAL_CONFIG['plugin']['category']['name']) . '</legend>';
+				echo '<legend style="border-bottom: 1px solid #34495e; color : #34495e;" data-category="' . $nCategory . '"><i class="fa ' . $JEEDOM_INTERNAL_CONFIG['plugin']['category'][$categorie]['icon'] . '"></i> ' . ucfirst($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$categorie]['name']) . '</legend>';
 			} else {
 				echo '<legend style="border-bottom: 1px solid #34495e; color : #34495e;" data-category="' . $nCategory . '">' . ucfirst($categorie) . '</legend>';
 			}
