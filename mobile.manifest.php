@@ -59,6 +59,7 @@ $other_file = array(
 	'3rdparty/jquery.mobile/images/ajax-loader.gif',
 	'core/img/logo-jeedom-petit-nom-couleur-128x128.png',
 	'core/img/logo-jeedom-sans-nom-couleur-25x25.png',
+	'3rdparty/font-awesome5/webfonts/fa-solid-900.woff2',
 	'3rdparty/jquery.mobile/css/fonts/fontawesome-webfont.woff2?v=4.3.0',
 	'3rdparty/roboto/Roboto-Black.ttf',
 	'3rdparty/roboto/Roboto-BlackItalic.ttf',
