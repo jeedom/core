@@ -591,7 +591,7 @@ class plugin {
 					$info = $inprogress->getValue(array('datetime' => strtotime('now')-60));
 					$info['datetime'] = (isset($info['datetime'])) ? $info['datetime'] : strtotime('now')-60;
 					if (abs(strtotime('now') - $info['datetime']) < 45) {
-						throw new Exception(__('Vous devez attendre au moins 45 secondes entre deux lancements du démon', __FILE__));
+						throw new Exception(__('Vous devez attendre au moins 45 secondes entre deux lancements du démon. Dernier lancement : ' .date("d/m/Y H:i:s A T",$info['datetime']), __FILE__));
 					}
 					cache::set('deamonStart' . $this->getId() . 'inprogress', array('datetime' => strtotime('now')));
 					config::save('lastDeamonLaunchTime', date('Y-m-d H:i:s'), $plugin_id);
