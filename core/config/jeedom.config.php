@@ -54,7 +54,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'programming' => array('name' => 'Programmation', 'icon' => 'fa-code'),
 			'organization' => array('name' => 'Organisation', 'icon' => 'fa-calendar', 'alias' => array('travel', 'finance')),
 			'weather' => array('name' => 'Météo', 'icon' => 'fa-sun-o'),
-			'communication' => array('name' => 'Communication', 'icon' => 'fa-fa-comment'),
+			'communication' => array('name' => 'Communication', 'icon' => 'fa-comment'),
 			'devicecommunication' => array('name' => 'Objets connectés', 'icon' => 'fa-language'),
 			'multimedia' => array('name' => 'Multimédia', 'icon' => 'fa-sliders'),
 			'wellness' => array('name' => 'Confort', 'icon' => 'fa-user'),

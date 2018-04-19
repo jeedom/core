@@ -19,7 +19,7 @@ if (is_array($interactListGroup)) {
     <div class="bs-sidebar nav nav-list bs-sidenav" >
       <a id="bt_addInteract" class="btn btn-default" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fas fa-plus-circle"></i> {{Ajouter interaction}}</a>
       <a id="bt_regenerateInteract" class="btn btn-warning" style="width : 100%;margin-top : 5px;margin-bottom: 5px;text-shadow : none;"><i class="fas fa-refresh"></i> {{Regénérer}}</a>
-      <a id="bt_testInteract" class="btn btn-primary" style="width : 100%;margin-top : 5px;margin-bottom: 5px;text-shadow : none;"><i class="fas fa-fa-comment"></i> {{Tester}}</a>
+      <a id="bt_testInteract" class="btn btn-primary" style="width : 100%;margin-top : 5px;margin-bottom: 5px;text-shadow : none;"><i class="fas fa-comment"></i> {{Tester}}</a>
       <input id='in_treeSearch' class='form-control' placeholder="{{Rechercher}}" />
       <div id="div_tree">
        <ul id="ul_interact" >
@@ -74,7 +74,7 @@ foreach ($interactListGroup as $group) {
  </div>
  <div class="cursor" id="bt_testInteract2" style="background-color : #ffffff; height : 120px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 140px;margin-left : 10px;" >
    <center>
-    <i class="fas fa-fa-comment" style="font-size : 6em;color:#337ab7;"></i>
+    <i class="fas fa-comment" style="font-size : 6em;color:#337ab7;"></i>
   </center>
   <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Tester}}</center></span>
 </div>
