@@ -249,3 +249,8 @@ mkdir /etc/systemd/system/apache2.service.d
 echo "[Service]" > /etc/systemd/system/apache2.service.d/privatetmp.conf
 echo "PrivateTmp=no" >> /etc/systemd/system/apache2.service.d/privatetmp.conf
 ```
+
+J'ai un soucis d'heure sur mes historiques
+=========================================
+
+Essayez de vider le cache de chrome, l'affichage des historique est calculé par rapport à l'heure du navigateur.

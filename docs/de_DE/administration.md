@@ -189,7 +189,7 @@ Netzwerk, insbesondere vom Internet).
     Jeedom
 
     -   **OK/NOK** : indique si la configuration réseau externe est
-        correcte
+        richtig
 
     -   **Protokolle** : verwendetes Protokoll für den Zugriff von außen 
 
@@ -217,7 +217,7 @@ Netzwerk, insbesondere vom Internet).
     la liste de vos interfaces réseaux. Vous pourrez indiquer à Jeedom
     de ne pas monitorer le réseau en cliquant sur **désactiver la
     gestion du réseau par Jeedom** (à cocher si Jeedom n’est connecté à
-    aucun réseau)
+    keine Netwerke)
 
 -   **Proxy market** : permet un accès distant à votre Jeedom sans avoir
     besoin d’un DNS, d’une IP fixe ou d’ouvrir les ports de votre box
@@ -236,12 +236,10 @@ Netzwerk, insbesondere vom Internet).
 > configuration du pare-feu et du filtre parental de votre box Internet
 > (sur livebox il faut par exemple le pare-feu en moyen).
 
-Couleurs 
-========
+Farben
+======
 
-La colorisation des widgets est effectuée en fonction de la catégorie à
-laquelle appartient l’équipement. Parmi les catégories on retrouve le
-chauffage, Sécurité, Energie, lumière, Automatisme, Multimedia, Autre…​
+Die farbliche Kennzeichnung der Widgets erfolgt entsprechend der Kategorie des Widgets. Unter die Kategorien umfassen Heizung, Licht, Automation etc.... 
 
 Pour chaque catégorie, on pourra différencier les couleurs de la version
 desktop et de la version mobile. On peut alors changer :
@@ -323,7 +321,7 @@ Historique
 > [ici](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s)
 > pour le détail).
 
-Push 
+Push
 ----
 
 **URL de push globale** : permet de rajouter une URL à appeler en cas de
@@ -344,7 +342,7 @@ Permet de surveiller et d’agir sur le cache de Jeedom :
     plus utiles. Jeedom le fait automatiquement toutes les nuits.
 
 -   **Vider toutes les données en cache** : Vide complètement le cache.
-    Attention cela peut faire perdre des données !
+    Achtung, Daten könnten verschwinden 
 
 -   **Temps de pause pour le long polling** : Fréquence à laquelle
     Jeedom vérifie si il y a des événements en attente pour les clients
@@ -352,8 +350,8 @@ Permet de surveiller et d’agir sur le cache de Jeedom :
     l’interface se mettra à jour rapidement, en contre partie cela
     utilise plus de ressources et peut donc ralentir Jeedom.
 
-Interactions 
-============
+Interaktion
+==========
 
 Cet onglet permet de fixer des paramètres globaux concernant les
 interactions que vous trouverez dans Outils→Interactions.
@@ -376,10 +374,10 @@ Vous avez ici trois paramètres :
         un seul mot
 
     -   2 mots : le niveau de correspondance pour les interactions à
-        deux mots
+        zwei Wörter
 
     -   3 mots : le niveau de correspondance pour les interactions à
-        trois mots
+        drei Wörter
 
     -   + de 3 mots : le niveau de correspondance pour les interactions
         à plus de trois mots
@@ -388,14 +386,14 @@ Vous avez ici trois paramètres :
     Jeedom répond "je n’ai pas compris" si aucune interaction
     ne correspond. Il est possible de désactiver ce fonctionnement pour
     que Jeedom ne réponde rien. Cochez la case pour désactiver
-    la réponse.
+    Die Antwort.
 
 -   **Regex général d’exclusion pour les interactions** : permet de
     définir une regexp qui, si elle correspond à une interaction,
     supprimera automatiquement cette phrase de la génération (réservé
     aux experts). Pour plus d’informations voir les explications dans le
     chapitre **Regexp d’exclusion** de la documentation sur
-    les interactions.
+    Interaktion.
 
 Interaction automatique, contextuelle & avertissement 
 -----------------------------------------------------
@@ -412,7 +410,7 @@ Interaction automatique, contextuelle & avertissement
 
         -   *Vous* : Combien fait-il dans la chambre ?
 
-        -   *Jeedom* : Température 25.2 °C
+        -   *Jeedom* : Temperatur 25.2 °C 
 
         -   *Vous* : et dans le salon ?
 

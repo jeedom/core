@@ -51,18 +51,26 @@ echo '<img src="' . $default_image . '" data-original="' . $urlPath . '"  class=
    <input class="form-control marketAttr" data-l1key="id" style="display: none;">
    <span class="marketAttr" data-l1key="name" placeholder="{{Nom}}" style="font-size: 3em;font-weight: bold;"></span>
    <br/>
+   <span class="span_author cursor" style="font-size: 1.5em;font-weight: bold;color:#707070;" data-author="<?php echo $market->getAuthor(); ?>">{{Développé par}} <?php echo $market->getAuthor(); ?></span><br/>
    <?php
 if ($market->getCertification() == 'Officiel') {
 	echo '<span style="font-size : 1.5em;color:#707070">Officiel</span><br/>';
 }
 if ($market->getCertification() == 'Conseillé') {
-	echo '<span style="font-size: 1.5em;font-weight: bold;color:#707070;">Conseillé</span><br/>';
+	echo '<span style="font-size: 1.5em;font-weight: bold;color:#707070;">{{Conseillé}}</span><br/>';
 }
 if ($market->getCertification() == 'Obsolète') {
-	echo '<span style="font-size: 1.5em;font-weight: bold;color:#e74c3c;">Obsolète</span><br/>';
+	echo '<span style="font-size: 1.5em;font-weight: bold;color:#e74c3c;">{{Obsolète}}</span><br/>';
+}
+global $JEEDOM_INTERNAL_CONFIG;
+if (isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$market->getCategorie()])) {
+	echo '<span style="font-size: 1em;font-weight: bold;color:#707070;"><i class="fa ' . $JEEDOM_INTERNAL_CONFIG['plugin']['category'][$market->getCategorie()]['icon'] . '"></i> ' . $JEEDOM_INTERNAL_CONFIG['plugin']['category'][$market->getCategorie()]['name'] . '</span>';
+	sendVarToJS('market_display_info_category', $JEEDOM_INTERNAL_CONFIG['plugin']['category'][$market->getCategorie()]['name']);
+} else {
+	echo '<span style="font-size: 1em;font-weight: bold;color:#707070;">' . $market->getCategorie() . '</span>';
+	sendVarToJS('market_display_info_category', $market->getCategorie());
 }
 ?>
-   <span class="marketAttr" data-l1key="categorie" style="font-size: 1em;font-weight: bold;"></span>
    <br/><br/>
    <?php
 if ($market->getPurchase() == 1) {
@@ -80,7 +88,7 @@ if ($market->getPurchase() == 1) {
 		if (isset($purchase_info['user_id']) && is_numeric($purchase_info['user_id'])) {
 
 			?>
-     <a class="btn btn-default" href='https://market.jeedom.fr/index.php?v=d&p=profils' target="_blank"><i class="fa fa-eur"></i> Code promo</a>
+     <a class="btn btn-default" href='https://market.jeedom.fr/index.php?v=d&p=profils' target="_blank"><i class="fa fa-eur"></i> {{Code promo}}</a>
      <?php
 echo '<a class="btn btn-default" target="_blank" href="' . config::byKey('market::address') . '/index.php?v=d&p=purchaseItem&user_id=' . $purchase_info['user_id'] . '&type=plugin&id=' . $market->getId() . '"><i class="fa fa-shopping-cart"></i> {{Acheter}}</a>';
 
@@ -190,23 +198,19 @@ if ($market->getHardwareCompatibility('Jeedomboard') == 1) {
       </div>
     </div>
     <div class='col-sm-6'>
-      <legend>Utilisation</legend>
+      <legend>{{Utilisation}}</legend>
       <span class="marketAttr" data-l1key="utilization" style="word-wrap: break-word;white-space: -moz-pre-wrap;white-space: pre-wrap;" ></span>
     </div>
   </div>
   <br/>
-  <legend>Informations complementaires</legend>
+  <legend>{{Informations complementaires}}</legend>
   <div class="form-group">
     <div class='row'>
       <div class='col-sm-2'>
-        <label class="control-label">{{Auteur}}</label><br/>
-        <span><?php echo $market->getAuthor(); ?></span><br/>
-        <label class="control-label">{{Dernière mise à jour par}}</label><br/>
-        <span><?php echo $market->getUpdateBy(); ?></span>
-      </div>
-      <div class='col-sm-2'>
        <label class="control-label">{{Taille}}</label><br/>
-       <span><?php echo $market->getParameters('size'); ?></span><br/>
+       <span><?php echo $market->getParameters('size'); ?></span>
+     </div>
+     <div class='col-sm-2'>
        <label class="control-label">{{Lien}}</label><br/>
        <?php if ($market->getLink('video') != '' && $market->getLink('video') != 'null') {?>
        <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('video'); ?>"><i class="fa fa-youtube"></i> Video</a><br/>
@@ -222,7 +226,7 @@ if ($market->getHardwareCompatibility('Jeedomboard') == 1) {
       <span class="marketAttr" data-l1key="type"></span>
     </div>
     <div class='col-sm-2'>
-      <label class="control-label">Langue disponible</label><br/>
+      <label class="control-label">{{Langue disponible}}</label><br/>
       <?php
 echo '<img src="core/img/francais.png" width="30" />';
 if ($market->getLanguage('en_US') == 1) {
@@ -281,6 +285,8 @@ if ($market->getLanguage('it_IT') == 1) {
   });
 
   $('body').setValues(market_display_info, '.marketAttr');
+
+  $('#div_alertMarketDisplay').closest('.ui-dialog').find('.ui-dialog-title').text('Market Jeedom - '+market_display_info_category);
 
   $('.marketAttr[data-l1key=description]').html(linkify(market_display_info.description));
   $('.marketAttr[data-l1key=utilization]').html(linkify(market_display_info.utilization));
@@ -342,5 +348,11 @@ if ($market->getLanguage('it_IT') == 1) {
       $('#div_alertMarketDisplay').showAlert({message: error.message, level: 'danger'});
     }
   });
+  });
+
+  $('.span_author').off('click').on('click',function(){
+    $('#md_modal2').dialog('close');
+    $('#md_modal').dialog({title: "{{Market}}"});
+    $('#md_modal').load('index.php?v=d&modal=update.list&type=plugin&repo=market&author='+encodeURI($(this).attr('data-author'))).dialog('open');
   });
 </script>

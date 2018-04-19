@@ -1,6 +1,6 @@
-Aquí es una documentación de los métodos de la API. En primer lugar aquí
-especificaciones (JSON RPC 2.0):
-<Http://www.jsonrpc.org/specification>
+Aquí está la documentación sobre los métodos API. Lo primero de todo aquí
+Las especificaciones (JSON RPC 2.0) :
+<http://www.jsonrpc.org/specification>
 
 El acceso a la API es a través de la URL: URL * \ * _JEEDOM / core / api / jeeApi.php
 
@@ -10,14 +10,14 @@ Diverso
 de ping
 ----
 
-Devuelve el tenis, para probar la comunicación con Jeedom
+Devuelve pong, para probar la comunicación con Jeedom
 
-versión
+version
 -------
 
 Devuelve la versión de Jeedom
 
-fecha y hora
+datetime 
 --------
 
 Devuelve la fecha y hora Jeedom en microsegundos
@@ -30,7 +30,7 @@ Config :: byKey
 
 Devuelve un valor de configuración.
 
-Configuraciones :
+Parámetros :
 
 -   clave de cadena: el valor de configuración de tecla para volver
 
@@ -56,16 +56,16 @@ Configuraciones :
 JSON API Evento
 ==============
 
-Evento :: cambios
+event::changes 
 --------------
 
 Devuelve lista de cambios desde la fecha y hora como un parámetro
 (Debe estar en microsegundos). También responderá en el
 fecha y hora actuales Jeedom (reutilización para la consulta siguiente)
 
-Configuraciones :
+Parámetros:
 
--   int fecha y hora
+-   int datetime
 
 JSON API plug-in
 ===============
@@ -75,7 +75,7 @@ Plugin :: listPlugin
 
 Devuelve una lista de todos los plugins
 
-Configuraciones :
+Parámetros:
 
 -   activateOnly int = 0 (sólo devuelve la lista de plug-ins habilitados)
 
@@ -85,12 +85,12 @@ Configuraciones :
 JSON API de objetos
 ==============
 
-objetar :: todas
+object::all 
 -----------
 
 Devuelve una lista de todos los objetos
 
-:: objetos completo
+object::full 
 ------------
 
 Devuelve una lista de todos los objetos, con cada objeto de todo
@@ -104,76 +104,76 @@ Devuelve un objeto con todas sus instalaciones y equipos para cada
 todos los mandos y las declaraciones de éstos (por
 comandos de información de tipo)
 
-Configuraciones :
+Parámetros:
 
 -   int id
 
-:: BYID objeto
+object::byId 
 ------------
 
 Devuelve el objeto especificado
 
-Configuraciones:
+Parámetros:
 
 -   int id
 
-:: fullById objeto
+object::fullById 
 ----------------
 
 Devuelve un objeto, instalaciones y equipos para cada todo
 órdenes y las declaraciones de cellse que (para los comandos de tipo
 info)
 
-objetar :: save
+object::save 
 ------------
 
 Devuelve el objeto especificado
 
-Configuraciones:
+Parámetros:
 
 -   id int (en blanco si se trata de una creación)
 
--   nombre de la cadena
+-   string name
 
--   int padre \ _id = null
+-   int father\_id = null
 
--   int = 0 isVisible
+-   int isVisible = 0
 
--   posición int
+-   int position
 
--   configuración de la matriz
+-   array configuration
 
--   gama de visualización
+-   array display
 
 JSON API Resumen
 ================
 
-Resumen Global ::
+summary::global 
 ---------------
 
 Respaldar el resumen general de parámetro clave pasado
 
-Configuraciones:
+Parámetros:
 
--   string clave: clave (opcional) del resumen deseada, si está vacío entonces Jeedom
+-   string key : clave (opcional) del resumen deseada, si está vacío entonces Jeedom
     hace referencia a la síntesis de todas las llaves
 
-Resumen :: BYID
+summary::byId 
 -------------
 
 Devuelve resumen para el identificador de objeto
 
-Configuraciones:
+Parámetros:
 
--   int id: ID del objeto
+-   int id : id de objeto
 
--   string clave: clave (opcional) del resumen deseada, si está vacío entonces Jeedom
-    hace referencia a la síntesis de todas las llaves
+-   string key : (opcional), clave para el resumen deseado, si está vacío, entonces Jeedom
+    enviará el resumen de todas las claves
 
 JSON API EqLogic
 ================
 
-:: todas eqLogic
+eqLogic::all 
 ------------
 
 Devuelve una lista de todos los equipos
@@ -189,7 +189,7 @@ eqLogic :: BYID
 
 Devuelve el equipo especificado
 
-Configuraciones:
+Parámetros:
 
 -   int id
 
@@ -198,16 +198,16 @@ eqLogic :: byType
 
 Volver todo el equipo que pertenece al tipo (plugin) especificado
 
-Configuraciones:
+Parámetros:
 
--   tipo de cadena
+-   string type
 
 eqLogic :: byObjectId
 -------------------
 
 Devolver todo el material que pertenece al objeto especificado
 
-Configuraciones:
+Parámetros:
 
 -   int objeto \ _id
 
@@ -220,7 +220,7 @@ Array (....)) ⇒array 'eqType2' ( 'id'⇒ ...' cmds ⇒ matriz (....)) ...., �
 array ( 'id'⇒ ...' 'cmds ⇒ matriz (....)) ⇒ matriz ID2 (' id'⇒ ... ⇒ '' cmds
 Array (....)) ..)
 
-Configuraciones:
+Parámetros:
 
 -   tipos de cadena \ [\] = array eqType de servicios e instalaciones
 
