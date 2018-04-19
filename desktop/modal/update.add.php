@@ -88,7 +88,7 @@ foreach ($repos as $key => $value) {
 	echo '</div>';
 }
 ?>
- 		<a class="btn btn-success pull-right" id="bt_repoAddSaveUpdate"><i class="fas fa-check-circle"></i> {{Enregistrer}}</a>
+ 		<a class="btn btn-success pull-right" id="bt_repoAddSaveUpdate"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
  	</fieldset>
  </form>
 

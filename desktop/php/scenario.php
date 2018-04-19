@@ -174,7 +174,7 @@ if (count($totalScenario) == 0) {
  <a class="btn btn-default btn-sm pull-right" id="bt_exportScenario" title="{{Exporter}}"><i class="fas fa fa-share"></i></a>
  <a class="btn btn-danger btn-sm pull-right" id="bt_stopScenario"><i class="fas fa-stop"></i> {{Arrêter}}</a>
  <a class="btn btn-default btn-sm pull-right" id="bt_templateScenario" title="{{Template}}"><i class="fas fa-cubes"></i></a>
- <a class="btn btn-success btn-sm pull-right" id="bt_saveScenario2"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
+ <a class="btn btn-success btn-sm pull-right" id="bt_saveScenario2"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
  <a class="btn btn-danger btn-sm pull-right" id="bt_delScenario2"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
  <a class="btn btn-warning btn-sm pull-right" id="bt_testScenario2" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.}}'><i class="fas fa-gamepad"></i> {{Exécuter}}</a>
  <a class="btn btn-primary btn-sm pull-right bt_showExpressionTest"><i class="fas fa-check"></i> {{Expression}}</a>
@@ -333,7 +333,7 @@ foreach (jeeObject::all() as $object) {
       </div>
       <div class="modal-footer">
         <a class="btn btn-danger" data-dismiss="modal"><i class="fas fa-minus-circle"></i> {{Annuler}}</a>
-        <a class="btn btn-success" id="bt_copyScenarioSave"><i class="fas fa-check-circle"></i> {{Enregistrer}}</a>
+        <a class="btn btn-success" id="bt_copyScenarioSave"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
       </div>
     </div>
   </div>
@@ -390,7 +390,7 @@ foreach (jeeObject::all() as $object) {
     </div>
     <div class="modal-footer">
       <a class="btn btn-danger" data-dismiss="modal"><i class="fas fa-minus-circle"></i> {{Annuler}}</a>
-      <a class="btn btn-success" id="bt_addElementSave"><i class="fas fa-check-circle"></i> {{Enregistrer}}</a>
+      <a class="btn btn-success" id="bt_addElementSave"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
     </div>
   </div>
 </div>

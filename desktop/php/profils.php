@@ -17,7 +17,7 @@ foreach (plugin::listPlugin() as $pluginList) {
 }
 ?>
 <div style="margin-top: 5px;">
-  <a class="btn btn-success pull-right" id="bt_saveProfils"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
+  <a class="btn btn-success pull-right" id="bt_saveProfils"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
   <ul class="nav nav-tabs" role="tablist">
    <li role="presentation" class="active"><a href="#themetab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tint"></i> {{Thèmes}}</a></li>
    <li role="presentation"><a href="#interfacetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-laptop"></i> {{Interface}}</a></li>

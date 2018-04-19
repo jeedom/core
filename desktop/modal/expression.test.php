@@ -18,7 +18,7 @@ if (!isConnect('admin')) {
 	</div>
 </form>
 </br>
-<legend><i class="fas fa-sign-in"></i>  {{Résultat}}</legend>
+<legend><i class="fas fa-sign-in-alt"></i>  {{Résultat}}</legend>
 <div id="div_expressionTestResult"></div>
 
 <script>

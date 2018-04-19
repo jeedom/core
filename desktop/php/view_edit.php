@@ -28,7 +28,7 @@ if (!isConnect('admin')) {
                 <?php
 foreach (view::all() as $view) {
 	echo '<li class="cursor li_view" data-view_id="' . $view->getId() . '">';
-	echo '<i class="fas fa-arrows-v pull-left cursor"></i>';
+	echo '<i class="fas fa-arrows-alt-v pull-left cursor"></i>';
 	echo '<a style="position:relative;left:15px;">' . trim($view->getDisplay('icon')) . ' ' . $view->getName() . '</a>';
 	echo '</li>';
 }
@@ -39,11 +39,11 @@ foreach (view::all() as $view) {
 
    <div class="col-lg-10 col-md-9 col-sm-8" style="display: none;" id="div_view">
     <legend style="height: 35px;">
-        <a class="btn btn-default btn-xs" id="bt_editView"><i class="fas fa-pencil"></i> {{Renommer}}</a>
+        <a class="btn btn-default btn-xs" id="bt_editView"><i class="fas fa-pencil-alt"></i> {{Renommer}}</a>
         <a class="btn btn-default btn-xs" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Icone}}</a>
         <span class="viewAttr cursor" data-l1key="display" data-l2key="icon"></span>
         <a class="btn btn-danger btn-xs pull-right" id="bt_removeView"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
-        <a class="btn btn-success btn-xs pull-right" id="bt_saveView"><i class="fas fa-check-circle"></i> {{Enregistrer}}</a>
+        <a class="btn btn-success btn-xs pull-right" id="bt_saveView"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
         <a class="btn btn-primary btn-xs pull-right" id="bt_viewResult"><i class="fas fa fa-eye"></i> {{Voir le résultat}}</a>
         <a class="btn btn-default btn-xs pull-right" id="bt_addviewZone"><i class="fas fa-plus-circle"></i> {{Ajouter une zone}}</a>
     </legend>

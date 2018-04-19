@@ -68,10 +68,10 @@ echo $view->getName();
 	<?php
 if (init('noControl') == '') {
 	if (isConnect('admin')) {
-		?> <a href="index.php?v=d&p=view_edit&view_id=<?php echo $view->getId(); ?>" class="btn btn-warning btn-xs pull-right reportModeHidden"><i class="fas fa-pencil"></i> {{Edition complète}}</a><?php }
+		?> <a href="index.php?v=d&p=view_edit&view_id=<?php echo $view->getId(); ?>" class="btn btn-warning btn-xs pull-right reportModeHidden"><i class="fas fa-pencil-alt"></i> {{Edition complète}}</a><?php }
 	?>
 
-			<i class="fas fa-pencil pull-right cursor reportModeHidden" id="bt_editViewWidgetOrder" data-mode="0"></i>
+			<i class="fas fa-pencil-alt pull-right cursor reportModeHidden" id="bt_editViewWidgetOrder" data-mode="0"></i>
 			<?php }
 ?>
 		</legend>

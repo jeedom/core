@@ -67,7 +67,7 @@ foreach (update::listRepo() as $key => $value) {
             </div>
         </div>
         <div id='div_scenarioTemplateParametreConfiguration' style='display : none;'>
-            <legend>{{Paramètres du scénario}}<a class='btn btn-success btn-xs pull-right' id='bt_scenarioTemplateApply'><i class="fas fa-check-circle"></i> {{Appliquer}}</a></legend>
+            <legend>{{Paramètres du scénario}}<a class='btn btn-success btn-xs pull-right' id='bt_scenarioTemplateApply'><i class="far fa-check-circle"></i> {{Appliquer}}</a></legend>
             <div id='div_scenarioTemplateParametreList'></div>
         </div>
     </form>

@@ -66,7 +66,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 </div>
 
 <div class="panel panel-primary" id="div_reportModalSendAction" style="display:none;">
-    <div class="panel-heading"><h3 class="panel-title"><i class="fas fa-pencil"></i> {{Etape 4 : Demande de support}}</h3></div>
+    <div class="panel-heading"><h3 class="panel-title"><i class="fas fa-pencil-alt"></i> {{Etape 4 : Demande de support}}</h3></div>
     <div class="panel-body">
      <div class="form-group">
         <label class="col-sm-2 control-label">{{Titre}}</label>
@@ -84,18 +84,18 @@ foreach (plugin::listPlugin(true) as $plugin) {
     </div>
     <div class="form-actions" style="height: 20px;">
         <label style="margin-left: 140px;"><input type="checkbox" class="ticketAttr" data-l1key="openSupport" checked="checked" /> {{Ouvrir un accès au support}}</label>
-        <a class="btn btn-success pull-right" id="bt_sendBugReport" style="color:white;"><i class="fas fa-check-circle"></i> {{Envoyer}}</a>
+        <a class="btn btn-success pull-right" id="bt_sendBugReport" style="color:white;"><i class="far fa-check-circle"></i> {{Envoyer}}</a>
     </div>
 </div>
 </div>
 
 <div class="panel panel-primary" id="div_reportModalPrivateIssue" style="display:none;">
-    <div class="panel-heading"><h3 class="panel-title"><i class="fas fa-pencil"></i> {{Etape 4 : Demande de support}}</h3></div>
+    <div class="panel-heading"><h3 class="panel-title"><i class="fas fa-pencil-alt"></i> {{Etape 4 : Demande de support}}</h3></div>
     <div class="panel-body">
         <div class="form-group">
             <label class="col-sm-5 control-label">{{Ce plugin utilise un gestionnaire de demande de support}}</label>
             <div class="col-sm-2">
-               <a class="btn btn-success" id="bt_reportBugIssueUrl" href="#" target="_blank" style="color:white;"><i class="fas fa-check-circle"></i> {{Accéder}}</a>
+               <a class="btn btn-success" id="bt_reportBugIssueUrl" href="#" target="_blank" style="color:white;"><i class="far fa-check-circle"></i> {{Accéder}}</a>
            </div>
        </div>
    </div>

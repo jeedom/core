@@ -66,7 +66,7 @@ foreach ($objects as $object) {
 <br/>
 <div class="row row-same-height">
 	<div class="col-xs-4 object col-xs-height" data-id="-1">
-		<legend style="cursor : default"><i class="fas fa-circle-o"></i>  {{Aucun}} <i class="fas fa-chevron-down pull-right showEqLogic cursor" title="{{Voir les équipements}}"></i></legend>
+		<legend style="cursor : default"><i class="far fa-circle"></i>  {{Aucun}} <i class="fas fa-chevron-down pull-right showEqLogic cursor" title="{{Voir les équipements}}"></i></legend>
 		<ul class="eqLogicSortable">
 			<?php
 foreach ($eqLogics[-1] as $eqLogic) {

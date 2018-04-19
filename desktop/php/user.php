@@ -11,7 +11,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
   <div class="tab-pane" id="user">
     <br/>
     <legend><i class="icon personne-toilet1"></i>  {{Liste des utilisateurs}}
-      <a class="btn btn-success btn-xs pull-right" id="bt_saveUser"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
+      <a class="btn btn-success btn-xs pull-right" id="bt_saveUser"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
       <?php if (config::byKey('ldap::enable') != '1') {
 	$user = user::byLogin('jeedom_support');
 	if (!is_object($user)) {
@@ -126,7 +126,7 @@ foreach (user::all() as $user) {
       </div>
       <div class="modal-footer">
         <a class="btn btn-default" data-dismiss="modal">{{Annuler}}</a>
-        <a class="btn btn-primary" id="bt_newUserSave"><i class="fas fa-check-circle"></i> {{Enregistrer}}</a>
+        <a class="btn btn-primary" id="bt_newUserSave"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
       </div>
     </div>
   </div>

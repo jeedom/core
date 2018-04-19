@@ -18,7 +18,7 @@ $allObject = jeeObject::buildTree(null, false);
 foreach ($allObject as $object) {
 	$margin = 15 * $object->getConfiguration('parentNumber');
 	echo '<li class="cursor li_object bt_sortable" data-object_id="' . $object->getId() . '" data-object_name="' . $object->getName() . '" data-object_icon=\'' . $object->getDisplay('icon', '<i class="fas fa-lemon-o"></i>') . '\'>';
-	echo '<i class="fas fa-arrows-v pull-left cursor"></i>';
+	echo '<i class="fas fa-arrows-alt-v pull-left cursor"></i>';
 	echo '<a><span style="position:relative;left:' . $margin . 'px;">';
 	echo $object->getHumanName(true, true);
 	echo '</span></a>';
@@ -67,7 +67,7 @@ foreach ($allObject as $object) {
 </div>
 
 <div class="col-md-10 col-sm-9 object" style="display: none;" id="div_conf">
- <a class="btn btn-success pull-right" id="bt_saveObject"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
+ <a class="btn btn-success pull-right" id="bt_saveObject"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
  <a class="btn btn-danger pull-right" id="bt_removeObject"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
  <a class="btn btn-default pull-right" id="bt_graphObject"><i class="fas fa-object-group"></i> {{Liens}}</a>
 

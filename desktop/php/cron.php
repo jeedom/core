@@ -4,7 +4,7 @@ if (!isConnect('admin')) {
 }
 ?>
 
-<a class="btn btn-success pull-right" id="bt_save" style="margin-top: 5px;"><i class="fas fa-check-circle"></i> {{Enregistrer}}</a>
+<a class="btn btn-success pull-right" id="bt_save" style="margin-top: 5px;"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
 <a class="btn btn-default pull-right" id="bt_addCron" style="margin-top: 5px;"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
 <a class="btn btn-default pull-right" id="bt_refreshCron" style="margin-top: 5px;"><i class="fas fa-refresh"></i> {{Rafraîchir}}</a>
 <?php

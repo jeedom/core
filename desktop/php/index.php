@@ -374,7 +374,7 @@ $nbMessage = message::nbMessage();
 												<li><a href="index.php?v=d&p=backup"><i class="fas fa-floppy-o"></i> {{Sauvegardes}}</a></li>
 												<li><a href="index.php?v=d&p=update"><i class="fas fa-refresh"></i> {{Centre de mise à jour}}</a></li>
 												<li><a href="index.php?v=d&p=cron"><i class="fas fa-tasks"></i> {{Moteur de tâches}}</a></li>
-												<li><a href="index.php?v=d&p=custom"><i class="fas fa-pencil-square-o"></i> {{Personnalisation avancée}}</a></li>
+												<li><a href="index.php?v=d&p=custom"><i class="fas fa-pencil-alt-square-o"></i> {{Personnalisation avancée}}</a></li>
 												<li role="separator" class="divider"></li>
 												<li><a href="index.php?v=d&p=user"><i class="fas fa-users"></i> {{Utilisateurs}}</a></li>
 											</ul>
@@ -451,7 +451,7 @@ $nbMessage = message::nbMessage();
 												<li><a href="index.php?v=d&p=system&rescue=1"><i class="fas fa-terminal"></i> {{Système}}</a></li>
 												<li><a href="index.php?v=d&p=database&rescue=1"><i class="fas fa-database"></i> {{Database}}</a></li>
 												<li><a href="index.php?v=d&p=editor&rescue=1"><i class="fas fa-indent"></i> {{Editeur}}</a></li>
-												<li><a href="index.php?v=d&p=custom&rescue=1"><i class="fas fa-pencil-square-o"></i> {{Personnalisation}}</a></li>
+												<li><a href="index.php?v=d&p=custom&rescue=1"><i class="fas fa-pencil-alt-square-o"></i> {{Personnalisation}}</a></li>
 												<li><a href="index.php?v=d&p=backup&rescue=1"><i class="fas fa-floppy-o"></i> {{Sauvegarde}}</a></li>
 												<li><a href="index.php?v=d&p=cron&rescue=1"><i class="fas fa-tasks"></i> {{Moteur de tâches}}</a></li>
 												<li><a href="index.php?v=d&p=log&rescue=1"><i class="far fa-file"></i> {{Log}}</a></li>

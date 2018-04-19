@@ -117,7 +117,7 @@ foreach (update::listRepo() as $rkey => $value) {
 ?>
 
         <div class="form-actions" style="height: 20px;">
-            <a class="btn btn-success" id="bt_saveBackup"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
+            <a class="btn btn-success" id="bt_saveBackup"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
         </div>
     </div>
     <div class="col-sm-6">

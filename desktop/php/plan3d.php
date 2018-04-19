@@ -40,7 +40,7 @@ if (init('fullscreen') != 1) {
 		<a class="btn btn-default btn-xs" id="bt_showAllObject"><i class="fas fa-eye"></i></a>
 	</div>
 	<legend>{{Informations}}
-		<a class="btn btn-default btn-xs pull-right" id="bt_editMode"><i class="fas fa-pencil"></i></a>
+		<a class="btn btn-default btn-xs pull-right" id="bt_editMode"><i class="fas fa-pencil-alt"></i></a>
 		<a class="btn btn-default btn-xs pull-right" id="bt_plan3dHeaderFullScreen"><i class="fas fa-desktop"></i></a>
 	</legend>
 

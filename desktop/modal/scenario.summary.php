@@ -4,7 +4,7 @@ if (!isConnect()) {
 }
 ?>
 <div id="div_alertScenarioSummary"></div>
-<a class="btn btn-success btn-sm pull-right" id="bt_saveSummaryScenario"><i class="fas fa-check-circle"></i> {{Enregistrer}}</a>
+<a class="btn btn-success btn-sm pull-right" id="bt_saveSummaryScenario"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
 <a class="btn btn-default btn-sm pull-right" id="bt_refreshSummaryScenario"><i class="fas fa-refresh"></i> {{Rafraîchir}}</a>
 <br/><br/>
 <table class="table table-bordered table-condensed tablesorter" id="table_scenarioSummary">

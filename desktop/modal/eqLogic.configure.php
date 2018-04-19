@@ -12,7 +12,7 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 ?>
 <div style="display: none;" id="md_displayEqLogicConfigure"></div>
 
-<a class="btn btn-success pull-right btn-sm" id="bt_eqLogicConfigureSave"><i class="fas fa-check-circle"></i> {{Enregistrer}}</a>
+<a class="btn btn-success pull-right btn-sm" id="bt_eqLogicConfigureSave"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
 <a class="btn btn-danger pull-right btn-sm" id="bt_eqLogicConfigureRemove"><i class="fas fa-times"></i> {{Supprimer}}</a>
 <a class="btn btn-default pull-right btn-sm" id="bt_eqLogicConfigureRawObject"><i class="fas fa-info"></i> {{Informations}}</a>
 <a class="btn btn-default pull-right btn-sm" id="bt_eqLogicConfigureLogRealTime"><i class="far fa-file"></i> {{Log}}</a>
@@ -359,7 +359,7 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 												<?php
 if ($eqLogic->widgetPossibility('custom::optionalParameters')) {
 		?>
-													<legend><i class="fas fa-pencil-square-o"></i> {{Paramètres optionnels sur la tuile}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fas fa-plus-circle"></i> Ajouter</a></legend>
+													<legend><i class="fas fa-pencil-alt-square-o"></i> {{Paramètres optionnels sur la tuile}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fas fa-plus-circle"></i> Ajouter</a></legend>
 													<table class="table table-bordered table-condensed" id="table_widgetParameters">
 														<thead>
 															<tr>

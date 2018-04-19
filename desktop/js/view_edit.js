@@ -264,7 +264,7 @@ function addEditviewZone(_viewZone) {
         var div = '<div class="viewZone" data-toggle="tab" id="div_viewZone'+id+'">';
         div += '<legend style="height: 35px;"><span class="viewZoneAttr" data-l1key="name"></span>';
         div += '<a class="btn btn-danger btn-xs pull-right bt_removeviewZone"><i class="far fa-trash-alt"></i> Supprimer</a>';
-        div += ' <a class="btn btn-warning btn-xs pull-right bt_editviewZone"><i class="fas fa-pencil"></i> Editer</a>';
+        div += ' <a class="btn btn-warning btn-xs pull-right bt_editviewZone"><i class="fas fa-pencil-alt"></i> Editer</a>';
         if (init(_viewZone.type, 'widget') == 'graph') {
          div += '<a class="btn btn-primary btn-xs pull-right bt_addViewGraph"><i class="fas fa-plus-circle"></i> Ajouter courbe</a>';
      }else  if (init(_viewZone.type, 'widget') == 'table') {

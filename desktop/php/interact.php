@@ -145,7 +145,7 @@ if (count($totalInteract) == 0) {
 <div class="interact col-xs-10" style="display: none;" id="div_conf">
   <a class="btn btn-default pull-right" id="bt_duplicate"><i class="far fa-files-o"></i> {{Dupliquer}}</a>
   <a class="btn btn-danger pull-right" id="bt_removeInteract"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
-  <a class="btn btn-success pull-right" id="bt_saveInteract"><i class="fas fa-check-circle"></i> {{Enregistrer}}</a>
+  <a class="btn btn-success pull-right" id="bt_saveInteract"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
   <a class="btn btn-default displayInteracQuery pull-right"><i class="fas fa-eye"></i> {{Phrase(s)}} <span class="label label-success interactAttr" data-l1key="nbInteractQuery"></span></a>
 
   <ul class="nav nav-tabs" role="tablist">

@@ -92,7 +92,7 @@ foreach (plugin::listPlugin() as $plugin) {
  <div class="row">
   <div class="col-md-6 col-sm-12">
     <div class="panel panel-default">
-     <div class="panel-heading"><h3 class="panel-title"><i class="fas fa-circle-o-notch"></i> {{Etat}}</h3></div>
+     <div class="panel-heading"><h3 class="panel-title"><i class="far fa-circle-notch"></i> {{Etat}}</h3></div>
      <div class="panel-body">
       <div id="div_plugin_toggleState"></div>
       <form class="form-horizontal">
@@ -121,7 +121,7 @@ foreach (plugin::listPlugin() as $plugin) {
 <div class="col-md-6 col-sm-12">
   <div class="panel panel-primary" id="div_configLog">
     <div class="panel-heading"><h3 class="panel-title"><i class="far fa-file"></i> {{Log}}
-      <a class="btn btn-success btn-xs pull-right" id="bt_savePluginLogConfig"><i class="fas fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
+      <a class="btn btn-success btn-xs pull-right" id="bt_savePluginLogConfig"><i class="far fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
     </h3></div>
     <div class="panel-body">
       <form class="form-horizontal">
@@ -165,7 +165,7 @@ foreach (plugin::listPlugin() as $plugin) {
 
 <div class="panel panel-primary">
   <div class="panel-heading"><h3 class="panel-title"><i class="fas fa-cogs"></i> {{Configuration}}
-    <a class="btn btn-success btn-xs pull-right" id="bt_savePluginConfig"><i class="fas fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
+    <a class="btn btn-success btn-xs pull-right" id="bt_savePluginConfig"><i class="far fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
   </h3></div>
   <div class="panel-body">
     <div id="div_plugin_configuration"></div>
@@ -180,7 +180,7 @@ foreach (plugin::listPlugin() as $plugin) {
 <div class="col-md-6 col-sm-12">
   <div class="panel panel-primary" id="div_functionalityPanel">
     <div class="panel-heading"><h3 class="panel-title"><i class="fas fa-picture-o"></i> {{Fonctionnalités}}
-      <a class="btn btn-success btn-xs pull-right" id="bt_savePluginFunctionalityConfig"><i class="fas fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
+      <a class="btn btn-success btn-xs pull-right" id="bt_savePluginFunctionalityConfig"><i class="far fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
     </h3></div>
     <div class="panel-body">
       <form class="form-horizontal">
@@ -194,7 +194,7 @@ foreach (plugin::listPlugin() as $plugin) {
  <div class="col-md-6 col-sm-12">
   <div class="panel panel-primary" id="div_configPanel">
     <div class="panel-heading"><h3 class="panel-title"><i class="fas fa-picture-o"></i> {{Panel}}
-      <a class="btn btn-success btn-xs pull-right" id="bt_savePluginPanelConfig"><i class="fas fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
+      <a class="btn btn-success btn-xs pull-right" id="bt_savePluginPanelConfig"><i class="far fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
     </h3></div>
     <div class="panel-body">
       <form class="form-horizontal">

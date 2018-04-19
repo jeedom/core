@@ -19,7 +19,7 @@ $cmd_widgetDashboard = cmd::availableWidget('dashboard');
 $cmd_widgetMobile = cmd::availableWidget('mobile');
 ?>
   <div style="display: none;" id="md_displayCmdConfigure"></div>
-  <a class="btn btn-success btn-sm pull-right" id="bt_cmdConfigureSave"><i class="fas fa-check-circle"></i> {{Enregistrer}}</a>
+  <a class="btn btn-success btn-sm pull-right" id="bt_cmdConfigureSave"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
   <a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureSaveOn"><i class="fas fa-plus-circle"></i> {{Appliquer à}}</a>
   <a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureRawObject"><i class="fas fa-info"></i> {{Informations}}</a>
   <a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureLogRealTime"><i class="far fa-file"></i> {{Log}}</a>
@@ -765,7 +765,7 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 <br/><br/>
 <?php if ($cmd->widgetPossibility('custom::optionalParameters')) {
 		?>
-  <legend><i class="fas fa-pencil-square-o"></i> {{Paramètres optionnels widget}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParametersCmd"><i class="fas fa-plus-circle"></i> Ajouter</a></legend>
+  <legend><i class="fas fa-pencil-alt-square-o"></i> {{Paramètres optionnels widget}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParametersCmd"><i class="fas fa-plus-circle"></i> Ajouter</a></legend>
   <table class="table table-bordered table-condensed" id="table_widgetParametersCmd">
     <thead class="table table-bordered">
       <tr>
