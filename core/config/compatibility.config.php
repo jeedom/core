@@ -18,8 +18,9 @@
 
 global $JEEDOM_COMPATIBILIY_CONFIG;
 $JEEDOM_COMPATIBILIY_CONFIG = array(
-	'Jeedomboard' => array('wifi', 'ipfix', 'systemUpdate'),
-	'RPI/RPI2' => array(),
-	'Docker' => array(),
-	'DIY' => array(),
+	'miniplus' => array('wifi', 'ipfix', 'systemUpdate'),
+	'smart' => array('systemUpdate'),
+	'rpi' => array(),
+	'docker' => array(),
+	'diy' => array(),
 );
