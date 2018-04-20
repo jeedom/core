@@ -159,16 +159,16 @@ foreach ($market->getImg('screenshot') as $screenshot) {
     <div class='col-sm-6'>
       <legend>{{Compatibilité plateforme}}</legend>
       <?php
-if ($market->getHardwareCompatibility('DIY') == 1) {
+if ($market->getHardwareCompatibility('diy') == 1) {
 	echo '<img src="core/img/logo_diy.png" style="width:60px;height:60px;" />';
 }
-if ($market->getHardwareCompatibility('RPI/RPI2') == 1) {
+if ($market->getHardwareCompatibility('rpi') == 1) {
 	echo '<img src="core/img/logo_rpi12.png" style="width:60px;height:60px;" />';
 }
-if ($market->getHardwareCompatibility('Docker') == 1) {
+if ($market->getHardwareCompatibility('docker') == 1) {
 	echo '<img src="core/img/logo_docker.png" style="width:60px;height:60px;" />';
 }
-if ($market->getHardwareCompatibility('Jeedomboard') == 1) {
+if ($market->getHardwareCompatibility('miniplus') == 1) {
 	echo '<img src="core/img/logo_jeedomboard.png" style="width:60px;height:60px;" />';
 }
 ?>
