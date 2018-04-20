@@ -92,3 +92,15 @@ nav ul a,nav {
 		height: 100% !important;
 	}
 }
+@media print {
+	.hide-on-print {
+		height: 0px !important;
+		visibility: hidden  !important;
+	}
+	.show-on-print {
+		display:block !important;
+	}
+	#div_content {
+		padding-left : 0px !important; 
+	}
+}
