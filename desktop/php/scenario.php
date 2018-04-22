@@ -18,12 +18,12 @@ if (is_array($scenarioListGroup)) {
   background-color: #94CA02;
 }
 </style>
-<div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;background-color:#f6f6f6;" class="div_smallSideBar" id="bt_displayScenarioList"><i class="fa fa-arrow-circle-o-right" style="color : #b6b6b6;"></i></div>
+<div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;background-color:#f6f6f6;" class="div_smallSideBar" id="bt_displayScenarioList"><i class="fas fa-arrow-circle-o-right" style="color : #b6b6b6;"></i></div>
 
 <div class="row row-overflow">
   <div class="col-xs-2" id="div_listScenario" style="z-index:999">
     <div class="bs-sidebar nav nav-list bs-sidenav" >
-      <a class="btn btn-default" id="bt_addScenario" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-plus-circle cursor" ></i> {{Nouveau scénario}}</a>
+      <a class="btn btn-default" id="bt_addScenario" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fas fa-plus-circle cursor" ></i> {{Nouveau scénario}}</a>
       <input id='in_treeSearch' class='form-control' placeholder="{{Rechercher}}" />
       <div id="div_tree">
         <ul id="ul_scenario" >
@@ -64,21 +64,21 @@ foreach ($scenarioListGroup as $group) {
 
 <div id="scenarioThumbnailDisplay" class="col-xs-10" style="border-left: solid 1px #EEE; padding-left: 25px;">
  <div class="scenarioListContainer">
-   <legend><i class="fa fa-cog"></i>  {{Gestion}}</legend>
+   <legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
    <div class="cursor" id="bt_addScenario2" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
-    <i class="fa fa-plus-circle" style="font-size : 6em;color:#94ca02;"></i>
+    <i class="fas fa-plus-circle" style="font-size : 6em;color:#94ca02;"></i>
     <br>
     <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02">{{Ajouter}}</span>
   </div>
   <?php if (config::byKey('enableScenario') == 0) {?>
     <div class="cursor" id="bt_changeAllScenarioState2" data-state="1" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
-     <i class="fa fa-check" style="font-size : 6em;color:#5cb85c;"></i>
+     <i class="fas fa-check" style="font-size : 6em;color:#5cb85c;"></i>
      <br>
      <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#5cb85c">{{Activer scénarios}}</span>
    </div>
    <?php } else {?>
    <div class="cursor" id="bt_changeAllScenarioState2" data-state="0" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
-     <i class="fa fa-times" style="font-size : 6em;color:#d9534f;"></i>
+     <i class="fas fa-times" style="font-size : 6em;color:#d9534f;"></i>
      <br>
      <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#d9534f">{{Désactiver scénarios}}</span>
    </div>
@@ -86,19 +86,19 @@ foreach ($scenarioListGroup as $group) {
 ?>
 
    <div class="cursor" id="bt_displayScenarioVariable2" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
-    <i class="fa fa-eye" style="font-size : 6em;color:#337ab7;"></i>
+    <i class="fas fa-eye" style="font-size : 6em;color:#337ab7;"></i>
     <br>
     <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7">{{Voir variables}}</span>
   </div>
 
   <div class="cursor bt_showScenarioSummary" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
-    <i class="fa fa-list" style="font-size : 6em;color:#337ab7;"></i>
+    <i class="fas fa-list" style="font-size : 6em;color:#337ab7;"></i>
     <br>
     <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7">{{Vue d'ensemble}}</span>
   </div>
 
   <div class="cursor bt_showExpressionTest" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
-    <i class="fa fa-check" style="font-size : 6em;color:#337ab7;"></i>
+    <i class="fas fa-check" style="font-size : 6em;color:#337ab7;"></i>
     <br>
     <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7">{{Testeur d'expression}}</span>
   </div>
@@ -168,24 +168,24 @@ if (count($totalScenario) == 0) {
 </div>
 
 <div id="div_editScenario" class="col-xs-10" style="border-left: solid 1px #EEE; padding-left: 25px;display: none;" >
- <a class="btn btn-default btn-sm pull-right" id="bt_graphScenario" title="{{Liens}}"><i class="fa fa-object-group"></i></a>
- <a class="btn btn-default btn-sm pull-right" id="bt_copyScenario" title="{{Dupliquer}}"><i class="fa fa-copy"></i></a>
- <a class="btn btn-default btn-sm pull-right" id="bt_logScenario" title="{{Log}}"><i class="fa fa-file-text-o"></i></a>
- <a class="btn btn-default btn-sm pull-right" id="bt_exportScenario" title="{{Exporter}}"><i class="fa fa fa-share"></i></a>
- <a class="btn btn-danger btn-sm pull-right" id="bt_stopScenario"><i class="fa fa-stop"></i> {{Arrêter}}</a>
- <a class="btn btn-default btn-sm pull-right" id="bt_templateScenario" title="{{Template}}"><i class="fa fa-cubes"></i></a>
- <a class="btn btn-success btn-sm pull-right" id="bt_saveScenario2"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
- <a class="btn btn-danger btn-sm pull-right" id="bt_delScenario2"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
- <a class="btn btn-warning btn-sm pull-right" id="bt_testScenario2" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.}}'><i class="fa fa-gamepad"></i> {{Exécuter}}</a>
- <a class="btn btn-primary btn-sm pull-right bt_showExpressionTest"><i class="fa fa-check"></i> {{Expression}}</a>
- <a class="btn btn-primary btn-sm pull-right" id="bt_displayScenarioVariable"><i class="fa fa-eye"></i> {{Variables}}</a>
- <a class="btn btn-default btn-sm pull-right bt_addScenarioElement"><i class="fa fa-plus-circle"></i> {{Ajouter bloc}}</a>
+ <a class="btn btn-default btn-sm pull-right" id="bt_graphScenario" title="{{Liens}}"><i class="fas fa-object-group"></i></a>
+ <a class="btn btn-default btn-sm pull-right" id="bt_copyScenario" title="{{Dupliquer}}"><i class="fas fa-copy"></i></a>
+ <a class="btn btn-default btn-sm pull-right" id="bt_logScenario" title="{{Log}}"><i class="far fa-file-alt"></i></a>
+ <a class="btn btn-default btn-sm pull-right" id="bt_exportScenario" title="{{Exporter}}"><i class="fas fa fa-share"></i></a>
+ <a class="btn btn-danger btn-sm pull-right" id="bt_stopScenario"><i class="fas fa-stop"></i> {{Arrêter}}</a>
+ <a class="btn btn-default btn-sm pull-right" id="bt_templateScenario" title="{{Template}}"><i class="fas fa-cubes"></i></a>
+ <a class="btn btn-success btn-sm pull-right" id="bt_saveScenario2"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
+ <a class="btn btn-danger btn-sm pull-right" id="bt_delScenario2"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
+ <a class="btn btn-warning btn-sm pull-right" id="bt_testScenario2" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.}}'><i class="fas fa-gamepad"></i> {{Exécuter}}</a>
+ <a class="btn btn-primary btn-sm pull-right bt_showExpressionTest"><i class="fas fa-check"></i> {{Expression}}</a>
+ <a class="btn btn-primary btn-sm pull-right" id="bt_displayScenarioVariable"><i class="fas fa-eye"></i> {{Variables}}</a>
+ <a class="btn btn-default btn-sm pull-right bt_addScenarioElement"><i class="fas fa-plus-circle"></i> {{Ajouter bloc}}</a>
  <span id="span_ongoing" class="label pull-right" style="font-size : 1em;position:relative;top:5px;"></span>
 
  <ul class="nav nav-tabs" role="tablist">
-   <li role="presentation"><a class="cursor" aria-controls="home" role="tab" id="bt_scenarioThumbnailDisplay"><i class="fa fa-arrow-circle-left"></i></a></li>
-   <li role="presentation" class="active"><a href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-tachometer"></i> {{Général}} (ID : <span class="scenarioAttr" data-l1key="id" ></span>)</a></li>
-   <li role="presentation"><a id="bt_scenarioTab" href="#scenariotab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-filter"></i> {{Scénario}}</a></li>
+   <li role="presentation"><a class="cursor" aria-controls="home" role="tab" id="bt_scenarioThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>
+   <li role="presentation" class="active"><a href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Général}} (ID : <span class="scenarioAttr" data-l1key="id" ></span>)</a></li>
+   <li role="presentation"><a id="bt_scenarioTab" href="#scenariotab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-filter"></i> {{Scénario}}</a></li>
  </ul>
 </ul>
 <div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
@@ -287,8 +287,8 @@ foreach (jeeObject::all() as $object) {
             <option value="all">{{Les deux}}</option>
           </select>
           <span class="input-group-btn">
-            <a class="btn btn-default btn-sm" id="bt_addTrigger"><i class="fa fa-plus-square"></i> {{Déclencheur}}</a>
-            <a class="btn btn-default btn-sm" id="bt_addSchedule"><i class="fa fa-plus-square"></i> {{Programmation}}</a>
+            <a class="btn btn-default btn-sm" id="bt_addTrigger"><i class="fas fa-plus-square"></i> {{Déclencheur}}</a>
+            <a class="btn btn-default btn-sm" id="bt_addSchedule"><i class="fas fa-plus-square"></i> {{Programmation}}</a>
           </span>
         </div>
       </div>
@@ -332,8 +332,8 @@ foreach (jeeObject::all() as $object) {
         </center>
       </div>
       <div class="modal-footer">
-        <a class="btn btn-danger" data-dismiss="modal"><i class="fa fa-minus-circle"></i> {{Annuler}}</a>
-        <a class="btn btn-success" id="bt_copyScenarioSave"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
+        <a class="btn btn-danger" data-dismiss="modal"><i class="fas fa-minus-circle"></i> {{Annuler}}</a>
+        <a class="btn btn-success" id="bt_copyScenarioSave"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
       </div>
     </div>
   </div>
@@ -389,8 +389,8 @@ foreach (jeeObject::all() as $object) {
 
     </div>
     <div class="modal-footer">
-      <a class="btn btn-danger" data-dismiss="modal"><i class="fa fa-minus-circle"></i> {{Annuler}}</a>
-      <a class="btn btn-success" id="bt_addElementSave"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
+      <a class="btn btn-danger" data-dismiss="modal"><i class="fas fa-minus-circle"></i> {{Annuler}}</a>
+      <a class="btn btn-success" id="bt_addElementSave"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
     </div>
   </div>
 </div>

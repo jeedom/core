@@ -10,7 +10,7 @@ if (!isConnect('admin')) {
 		<span class="input-group-addon" style="width: 100px">{{Demande}}</span>
 		<input class="form-control" id="in_testInteractQuery">
 		<span class="input-group-btn">
-			<a class="btn btn-default" id="bt_executeInteractOk"><i class="fa fa-bolt"></i> {{Exécuter}}</a>
+			<a class="btn btn-default" id="bt_executeInteractOk"><i class="fas fa-bolt"></i> {{Exécuter}}</a>
 		</span>
 	</div>
 </form>
@@ -39,7 +39,7 @@ if (!isConnect('admin')) {
 			success: function (data) {
 				$('#div_interactTestResult').empty();
 				for(var i in data){
-					$('#div_interactTestResult').append('<div class="alert alert-info"><i class="fa fa-comment"></i> '+i+' => '+data[i]+'</div>');
+					$('#div_interactTestResult').append('<div class="alert alert-info"><i class="fas fa-comment"></i> '+i+' => '+data[i]+'</div>');
 				}
 
 			}

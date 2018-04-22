@@ -4,14 +4,14 @@ if (!isConnect('admin')) {
 }
 ?>
 
-<a class="btn btn-success pull-right" id="bt_save" style="margin-top: 5px;"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
-<a class="btn btn-default pull-right" id="bt_addCron" style="margin-top: 5px;"><i class="fa fa-plus-circle"></i> {{Ajouter}}</a>
-<a class="btn btn-default pull-right" id="bt_refreshCron" style="margin-top: 5px;"><i class="fa fa-refresh"></i> {{Rafraîchir}}</a>
+<a class="btn btn-success pull-right" id="bt_save" style="margin-top: 5px;"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
+<a class="btn btn-default pull-right" id="bt_addCron" style="margin-top: 5px;"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
+<a class="btn btn-default pull-right" id="bt_refreshCron" style="margin-top: 5px;"><i class="fas fa-refresh"></i> {{Rafraîchir}}</a>
 <?php
 if (config::byKey('enableCron') == 0) {
-	echo '<a class="btn btn-success pull-right" id="bt_changeCronState" data-state="1" style="margin-top: 5px;"><i class="fa fa-check"></i> {{Activer le système cron}}</a>';
+	echo '<a class="btn btn-success pull-right" id="bt_changeCronState" data-state="1" style="margin-top: 5px;"><i class="fas fa-check"></i> {{Activer le système cron}}</a>';
 } else {
-	echo '<a class="btn btn-danger pull-right" id="bt_changeCronState" data-state="0" style="margin-top: 5px;"><i class="fa fa-times"></i> {{Désactiver le système cron}}</a>';
+	echo '<a class="btn btn-danger pull-right" id="bt_changeCronState" data-state="0" style="margin-top: 5px;"><i class="fas fa-times"></i> {{Désactiver le système cron}}</a>';
 }
 ?>
 <br/><br/>
@@ -26,7 +26,7 @@ if (config::byKey('enableCron') == 0) {
             <th class="once" style="width: 80px;">{{Unique}}</th>
             <th class="class" style="width: 120px;">{{Classe}}</th>
             <th class="function" style="width: 120px;">{{Fonction}}</th>
-            <th class="schedule" style="width: 170px;"><i class="fa fa-question-circle cursor bt_pageHelp" data-name='cronSyntaxe' style="position: relative; width: 10px;"></i> {{Programmation}}</th>
+            <th class="schedule" style="width: 170px;"><i class="fas fa-question-circle cursor bt_pageHelp" data-name='cronSyntaxe' style="position: relative; width: 10px;"></i> {{Programmation}}</th>
             <th class="timeout" style="width: 150px;">{{Timeout (min)}}</th>
             <th class="lastRun" style="width: 200px;">{{Dernier lancement}}</th>
             <th class="runtime" style="width: 200px;">{{Dernière durée}}</th>

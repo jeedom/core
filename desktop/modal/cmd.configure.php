@@ -19,35 +19,35 @@ $cmd_widgetDashboard = cmd::availableWidget('dashboard');
 $cmd_widgetMobile = cmd::availableWidget('mobile');
 ?>
   <div style="display: none;" id="md_displayCmdConfigure"></div>
-  <a class="btn btn-success btn-sm pull-right" id="bt_cmdConfigureSave"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
-  <a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureSaveOn"><i class="fa fa-plus-circle"></i> {{Appliquer à}}</a>
-  <a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureRawObject"><i class="fa fa-info"></i> {{Informations}}</a>
-  <a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureLogRealTime"><i class="fa fa-file"></i> {{Log}}</a>
-  <a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureGraph"><i class="fa fa-object-group"></i> {{Liens}}</a>
-  <a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureTest"><i class="fa fa-rss"></i> {{Tester}}</a>
+  <a class="btn btn-success btn-sm pull-right" id="bt_cmdConfigureSave"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
+  <a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureSaveOn"><i class="fas fa-plus-circle"></i> {{Appliquer à}}</a>
+  <a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureRawObject"><i class="fas fa-info"></i> {{Informations}}</a>
+  <a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureLogRealTime"><i class="far fa-file"></i> {{Log}}</a>
+  <a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureGraph"><i class="fas fa-object-group"></i> {{Liens}}</a>
+  <a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureTest"><i class="fas fa-rss"></i> {{Tester}}</a>
   <div role="tabpanel">
     <ul class="nav nav-tabs" role="tablist">
-      <li role="presentation" class="active"><a href="#cmd_information" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-info-circle"></i> {{Informations}}</a></li>
-      <li role="presentation"><a href="#cmd_configuration" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-wrench"></i> {{Configuration}}</a></li>
+      <li role="presentation" class="active"><a href="#cmd_information" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-info-circle"></i> {{Informations}}</a></li>
+      <li role="presentation"><a href="#cmd_configuration" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-wrench"></i> {{Configuration}}</a></li>
       <?php if ($cmd->getType() == 'info') {?>
-      <li role="presentation"><a href="#cmd_alert" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-exclamation-triangle"></i> {{Alertes}}</a></li>
+      <li role="presentation"><a href="#cmd_alert" aria-controls="messages" role="tab" data-toggle="tab"><i class="fas fa-exclamation-triangle"></i> {{Alertes}}</a></li>
       <?php }
 ?>
       <?php if ($cmd->widgetPossibility('custom')) {
 	?>
-       <li role="presentation"><a href="#cmd_display" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-desktop"></i> {{Affichage}}</a></li>
+       <li role="presentation"><a href="#cmd_display" aria-controls="messages" role="tab" data-toggle="tab"><i class="fas fa-desktop"></i> {{Affichage}}</a></li>
        <?php }
 ?>
        <?php if ($cmd->widgetPossibility('custom::htmlCode')) {
 	?>
-         <li role="presentation"><a href="#cmd_html" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-code-fork"></i> {{Code}}</a></li>
+         <li role="presentation"><a href="#cmd_html" aria-controls="messages" role="tab" data-toggle="tab"><i class="fas fa-code-fork"></i> {{Code}}</a></li>
          <?php }
 ?>
        </ul>
        <div class="tab-content" id="div_displayCmdConfigure">
         <div role="tabpanel" class="tab-pane active" id="cmd_information">
           <br/>
-          <legend><i class="fa fa-list-alt"></i> {{Général}}</legend>
+          <legend><i class="fas fa-list-alt"></i> {{Général}}</legend>
           <div class="row">
             <div class="col-sm-6" >
               <form class="form-horizontal">
@@ -133,7 +133,7 @@ $elements = explode(';', $cmd->getConfiguration('listValue', ''));
                   <label class="col-xs-4 control-label">{{URL directe}}</label>
                   <div class="col-xs-8">
                     <?php
-echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fa fa-external-link"></i> URL</a>';
+echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fas fa-external-link"></i> URL</a>';
 ?>
                   </div>
                 </div>
@@ -165,7 +165,7 @@ echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fa 
                  <label class="col-xs-4 control-label">{{Icône}}</label>
                  <div class="col-xs-4">
                   <span class="cmdAttr label label-info cursor" data-l1key="display" data-l2key="icon" style="font-size : 1.5em;" ></span>
-                  <a class="btn btn-default btn-sm" id="bt_cmdConfigureChooseIcon"><i class="fa fa-flag"></i> {{Icône}}</a>
+                  <a class="btn btn-default btn-sm" id="bt_cmdConfigureChooseIcon"><i class="fas fa-flag"></i> {{Icône}}</a>
                 </div>
               </div>
             </fieldset>
@@ -173,10 +173,10 @@ echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fa 
         </div>
       </div>
 
-      <legend><i class="fa fa-search"></i> {{Utilisé par}}
-        <a class="btn btn-xs btn-warning pull-right" id="bt_cmdConfigureReplaceMeBy"><i class="fa fa-download" aria-hidden="true"></i> {{Remplacer cette commande par la commande}}</a>
-        <a class="btn btn-xs btn-warning pull-right" id="bt_cmdConfigureReplaceByMe"><i class="fa fa-upload" aria-hidden="true"></i> {{Cette commande remplace la commande}}</a>
-        <a class="btn btn-xs btn-warning pull-right" id="bt_cmdConfigureReplaceIdByMe"><i class="fa fa-upload" aria-hidden="true"></i> {{Cette commande remplace l'ID}}</a>
+      <legend><i class="fas fa-search"></i> {{Utilisé par}}
+        <a class="btn btn-xs btn-warning pull-right" id="bt_cmdConfigureReplaceMeBy"><i class="fas fa-download" aria-hidden="true"></i> {{Remplacer cette commande par la commande}}</a>
+        <a class="btn btn-xs btn-warning pull-right" id="bt_cmdConfigureReplaceByMe"><i class="fas fa-upload" aria-hidden="true"></i> {{Cette commande remplace la commande}}</a>
+        <a class="btn btn-xs btn-warning pull-right" id="bt_cmdConfigureReplaceIdByMe"><i class="fas fa-upload" aria-hidden="true"></i> {{Cette commande remplace l'ID}}</a>
       </legend>
       <form class="form-horizontal">
         <fieldset id="fd_cmdUsedBy">
@@ -231,7 +231,7 @@ foreach ($usedBy['scenario'] as $usedByScenario) {
 
       <?php if ($cmd->getType() == 'info' && ($cmd->getSubType() == 'numeric' || $cmd->getSubType() == 'binary')) {
 	?>
-       <legend><i class="fa fa-table"></i> {{Calcul et arrondi}}</legend>
+       <legend><i class="fas fa-table"></i> {{Calcul et arrondi}}</legend>
        <div class="form-group">
         <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Formule de calcul (#value# pour la valeur)}}</label>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -253,7 +253,7 @@ foreach ($usedBy['scenario'] as $usedByScenario) {
   </form>
   <form class="form-horizontal">
     <fieldset>
-      <legend><i class="fa fa-building"></i> {{Type générique}}</legend>
+      <legend><i class="fas fa-building"></i> {{Type générique}}</legend>
       <div class="form-group">
         <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Valeur}}</label>
         <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
@@ -299,7 +299,7 @@ foreach ($groups as $group) {
 
 <form class="form-horizontal">
   <fieldset>
-   <legend><i class="fa fa-exclamation-triangle"></i> {{Restriction de l'action}}</legend>
+   <legend><i class="fas fa-exclamation-triangle"></i> {{Restriction de l'action}}</legend>
    <div class="form-group">
     <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Confirmer l'action}}</label>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -320,7 +320,7 @@ foreach ($groups as $group) {
 	?>
  <form class="form-horizontal">
   <fieldset>
-   <legend><i class="fa fa-sign-out"></i> {{Action sur la valeur}}</legend>
+   <legend><i class="fas fa-sign-out-alt"></i> {{Action sur la valeur}}</legend>
    <div class="form-group">
     <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action sur valeur, si}}</label>
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
@@ -343,7 +343,7 @@ foreach ($groups as $group) {
 <div class="form-group">
   <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action}}</label>
   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-    <a class="btn btn-success" id="bt_addActionCheckCmd"><i class="fa fa-plus-circle"></i> {{Ajouter}}</a>
+    <a class="btn btn-success" id="bt_addActionCheckCmd"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
   </div>
 </div>
 <div id="div_actionCheckCmd"></div>
@@ -363,11 +363,11 @@ foreach ($groups as $group) {
 	?>
  <form class="form-horizontal">
   <fieldset>
-   <legend><i class="fa fa-sign-out"></i> {{Action avant exécution de la commande}}</legend>
+   <legend><i class="fas fa-sign-out-alt"></i> {{Action avant exécution de la commande}}</legend>
    <div class="form-group">
     <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action}}</label>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-      <a class="btn btn-success" id="bt_addActionPreExecCmd"><i class="fa fa-plus-circle"></i> {{Ajouter}}</a>
+      <a class="btn btn-success" id="bt_addActionPreExecCmd"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
     </div>
   </div>
   <div id="div_actionPreExecCmd"></div>
@@ -381,11 +381,11 @@ foreach ($groups as $group) {
 </form>
 <form class="form-horizontal">
   <fieldset>
-    <legend><i class="fa fa-sign-out"></i> {{Action après exécution de la commande}}</legend>
+    <legend><i class="fas fa-sign-out-alt"></i> {{Action après exécution de la commande}}</legend>
     <div class="form-group">
       <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action}}</label>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-        <a class="btn btn-success" id="bt_addActionPostExecCmd"><i class="fa fa-plus-circle"></i> {{Ajouter}}</a>
+        <a class="btn btn-success" id="bt_addActionPostExecCmd"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
       </div>
     </div>
     <div id="div_actionPostExecCmd"></div>
@@ -404,7 +404,7 @@ foreach ($groups as $group) {
 	?>
  <form class="form-horizontal">
   <fieldset>
-   <legend><i class="fa fa-bar-chart-o"></i> {{Historique}}</legend>
+   <legend><i class="fas fa-bar-chart-o"></i> {{Historique}}</legend>
    <div class="form-group">
     <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Historiser}}</label>
     <div class="col-xs-1">
@@ -443,7 +443,7 @@ foreach ($groups as $group) {
  <div class="form-group">
   <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Copie des données historisées}}</label>
   <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-    <a class="btn btn-warning" id="bt_cmdConfigureCopyHistory"><i class="fa fa-clone"></i> {{Copier l'historique de cette commande sur une autre commande}}</a>
+    <a class="btn btn-warning" id="bt_cmdConfigureCopyHistory"><i class="fas fa-clone"></i> {{Copier l'historique de cette commande sur une autre commande}}</a>
   </div>
 </div>
 <?php }
@@ -455,7 +455,7 @@ foreach ($groups as $group) {
 <?php if ($cmd->getType() == 'info') {?>
 <form class="form-horizontal">
   <fieldset>
-    <legend><i class="fa fa-thermometer-three-quarters"></i> {{Gestion des valeurs}}</legend>
+    <legend><i class="fas fa-thermometer-three-quarters"></i> {{Gestion des valeurs}}</legend>
     <div class="form-group">
       <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Valeurs interdites (séparées par ";")}}</label>
       <div class="col-xs-3">
@@ -478,7 +478,7 @@ foreach ($groups as $group) {
 </form>
 <form class="form-horizontal">
   <fieldset>
-    <legend><i class="fa fa-plus"></i> {{Autres}}</legend>
+    <legend><i class="fas fa-plus"></i> {{Autres}}</legend>
     <div class="form-group">
       <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Gestion de la répétition des valeurs}}</label>
       <div class="col-xs-3">
@@ -504,7 +504,7 @@ foreach ($groups as $group) {
 	?>
   <div role="tabpanel" class="tab-pane" id="cmd_html">
     <br/>
-    <a class="btn btn-warning btn-sm pull-right" id="bt_reinitHtmlCode" style="position:relative;top:-3px;"><i class="fa fa-times"></i> {{Réinitialiser la personnalisation}}</a>
+    <a class="btn btn-warning btn-sm pull-right" id="bt_reinitHtmlCode" style="position:relative;top:-3px;"><i class="fas fa-times"></i> {{Réinitialiser la personnalisation}}</a>
     <div class="form-group">
       <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Activer la personnalisation du widget}}</label>
       <div class="col-xs-2">
@@ -624,7 +624,7 @@ foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
 	?>
    <div role="tabpanel" class="tab-pane" id="cmd_display">
     <br/>
-    <legend><i class="fa fa-tint"></i> {{Widget}}</legend>
+    <legend><i class="fas fa-tint"></i> {{Widget}}</legend>
     <table class="table table-bordered table-condensed">
       <thead>
         <tr>
@@ -765,7 +765,7 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 <br/><br/>
 <?php if ($cmd->widgetPossibility('custom::optionalParameters')) {
 		?>
-  <legend><i class="fa fa-pencil-square-o"></i> {{Paramètres optionnels widget}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParametersCmd"><i class="fa fa-plus-circle"></i> Ajouter</a></legend>
+  <legend><i class="fas fa-pencil-alt-square-o"></i> {{Paramètres optionnels widget}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParametersCmd"><i class="fas fa-plus-circle"></i> Ajouter</a></legend>
   <table class="table table-bordered table-condensed" id="table_widgetParametersCmd">
     <thead class="table table-bordered">
       <tr>
@@ -786,7 +786,7 @@ if ($cmd->getDisplay('parameters') != '') {
 				echo '<input class="form-control value" value="' . $value . '" />';
 				echo '</td>';
 				echo '<td>';
-				echo '<a class="btn btn-danger btn-xs removeWidgetParameter"><i class="fa fa-times"></i> Supprimer</a>';
+				echo '<a class="btn btn-danger btn-xs removeWidgetParameter"><i class="fas fa-times"></i> Supprimer</a>';
 				echo '</td>';
 				echo '</tr>';
 			}
@@ -835,7 +835,7 @@ if ($cmd->getDisplay('parameters') != '') {
     tr += '<input class="form-control value" />';
     tr += '</td>';
     tr += '<td>';
-    tr += '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fa fa-times"></i> Supprimer</a>';
+    tr += '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fas fa-times"></i> Supprimer</a>';
     tr += '</td>';
     tr += '</tr>';
     $('#table_widgetParametersCmd tbody').append(tr);
@@ -1155,11 +1155,11 @@ if ($cmd->getDisplay('parameters') != '') {
     div += '<div class="col-sm-4">';
     div += '<div class="input-group">';
     div += '<span class="input-group-btn">';
-    div += '<a class="btn btn-default btn-sm bt_removeAction" data-type="' + _type + '"><i class="fa fa-minus-circle"></i></a>';
+    div += '<a class="btn btn-default btn-sm bt_removeAction" data-type="' + _type + '"><i class="fas fa-minus-circle"></i></a>';
     div += '</span>';
     div += '<input class="expressionAttr form-control input-sm cmdAction" data-l1key="cmd" data-type="' + _type + '" />';
     div += '<span class="input-group-btn">';
-    div += '<a class="btn btn-default btn-sm listCmd" data-type="' + _type + '"><i class="fa fa-list-alt"></i></a>';
+    div += '<a class="btn btn-default btn-sm listCmd" data-type="' + _type + '"><i class="fas fa-list-alt"></i></a>';
     div += '</span>';
     div += '</div>';
     div += '</div>';
@@ -1170,7 +1170,6 @@ if ($cmd->getDisplay('parameters') != '') {
     $('#div_' + _type + ' .' + _type + ':last').setValues(_action, '.expressionAttr');
     taAutosize();
   }
-
 
   $('#bt_cmdConfigureSaveOn').on('click',function(){
     var cmd = $('#div_displayCmdConfigure').getValues('.cmdAttr')[0];
@@ -1192,10 +1191,12 @@ if ($cmd->getDisplay('parameters') != '') {
           state = true;
           $(this).attr('data-state', 1);
           $(this).find('i').removeClass('fa-check-circle-o').addClass('fa-circle-o');
+          $('#table_cmdConfigureSelectMultiple tbody tr .selectMultipleApplyCmd').value(1);
         } else {
           state = false;
           $(this).attr('data-state', 0);
           $(this).find('i').removeClass('fa-circle-o').addClass('fa-check-circle-o');
+          $('#table_cmdConfigureSelectMultiple tbody tr .selectMultipleApplyCmd').value(0);
         }
       });
 

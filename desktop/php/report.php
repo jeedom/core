@@ -8,7 +8,7 @@ $report_path = dirname(__FILE__) . '/../../data/report/';
 	<div class="col-lg-2 col-md-3 col-sm-3" style="margin-top : 4px;">
 		<div class="bs-sidebar" style="margin-top : 4px;">
 			<ul id="ul_region" class="nav nav-list bs-sidenav">
-				<li class="nav-header"><i class="fa fa-bars"></i> {{Type}}</li>
+				<li class="nav-header"><i class="fas fa-bars"></i> {{Type}}</li>
 				<li class="cursor li_type active" data-type="view"><a>{{Vues}}</a></li>
 				<li class="cursor li_type" data-type="plan"><a>{{Design}}</a></li>
 				<li class="cursor li_type" data-type="plugin"><a>{{Plugin}}</a></li>
@@ -17,7 +17,7 @@ $report_path = dirname(__FILE__) . '/../../data/report/';
 
 		<div class="bs-sidebar reportType view">
 			<ul id="ul_view" class="nav nav-list bs-sidenav">
-				<li class="nav-header"><i class="fa fa-picture-o"></i> {{Vues}}</li>
+				<li class="nav-header"><i class="fas fa-picture-o"></i> {{Vues}}</li>
 				<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
 				<?php
 foreach (view::all() as $view) {
@@ -30,7 +30,7 @@ foreach (view::all() as $view) {
 
 		<div class="bs-sidebar reportType plan" style="display:none">
 			<ul id="ul_plan" class="nav nav-list bs-sidenav">
-				<li class="nav-header"><i class="fa fa-paint-brush"></i> {{Design}}</li>
+				<li class="nav-header"><i class="fas fa-paint-brush"></i> {{Design}}</li>
 				<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
 				<?php
 foreach (planHeader::all() as $plan) {
@@ -44,7 +44,7 @@ foreach (planHeader::all() as $plan) {
 
 		<div class="bs-sidebar reportType plugin" style="display:none">
 			<ul id="ul_plan" class="nav nav-list bs-sidenav">
-				<li class="nav-header"><i class="fa fa-paint-brush"></i> {{Design}}</li>
+				<li class="nav-header"><i class="fas fa-paint-brush"></i> {{Design}}</li>
 				<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
 				<?php
 foreach (plugin::listPlugin(true) as $plugin) {
@@ -62,7 +62,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 	<div class="col-lg-2 col-md-3 col-sm-3" style="margin-top : 4px;">
 		<div class="bs-sidebar" style="margin-top : 4px;">
 			<ul id="ul_report" class="nav nav-list bs-sidenav">
-				<li class="nav-header"><i class="fa fa-newspaper-o"></i> {{Rapport}}</li>
+				<li class="nav-header"><i class="fas fa-newspaper-o"></i> {{Rapport}}</li>
 				<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
 			</ul>
 		</div>
@@ -72,9 +72,9 @@ foreach (plugin::listPlugin(true) as $plugin) {
 		<form class="form-horizontal">
 			<fieldset>
 				<legend>{{Général}}
-					<a class="btn btn-danger btn-xs pull-right" id="bt_removeAll"><i class="fa fa-trash"></i> {{Tout supprimer}}</a>
-					<a class="btn btn-warning btn-xs pull-right" id="bt_remove"><i class="fa fa-times"></i> {{Supprimer}}</a>
-					<a class="btn btn-success btn-xs pull-right" id="bt_download"><i class="fa fa-download"></i> {{Télécharger}}</a>
+					<a class="btn btn-danger btn-xs pull-right" id="bt_removeAll"><i class="fas fa-trash"></i> {{Tout supprimer}}</a>
+					<a class="btn btn-warning btn-xs pull-right" id="bt_remove"><i class="fas fa-times"></i> {{Supprimer}}</a>
+					<a class="btn btn-success btn-xs pull-right" id="bt_download"><i class="fas fa-download"></i> {{Télécharger}}</a>
 				</legend>
 				<div class="form-group">
 					<label class="col-sm-2 col-xs-2 control-label">{{Nom}}</label>

@@ -136,6 +136,13 @@ class scenarioElement {
 			$result = $this->getSubElement('if')->execute($_scenario);
 			if (is_string($result) && strlen($result) > 1) {
 				$_scenario->setLog(__('Expression non valide : ', __FILE__) . $result);
+				$expresssion_str = '';
+				if ($this->getSubElement('if')->getSubtype() == 'condition' && is_array($this->getSubElement('if')->getExpression())) {
+					foreach ($this->getSubElement('if')->getExpression() as $expression) {
+						$expresssion_str = $expression->getExpression();
+					}
+				}
+				message::add('scenario', __('Expression non valide  [', __FILE__) . $expresssion_str . __('] trouvée dans le scénario : ', __FILE__) . $_scenario->getHumanName(), '', 'invalidExprScenarioElement::' . $this->getId());
 				return;
 			}
 			if ($result) {

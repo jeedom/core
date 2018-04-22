@@ -191,15 +191,18 @@ function displayWidgetSubtype($_name) {
 		</div>
 		<div class="form-group">
 			<select class="form-control" id="sel_categorie" data-href='<?php echo buildUrl('categorie', ''); ?>'>
-				<option value="">{{Top et nouveautés}}</option>
 				<?php
-foreach (repo_market::distinctCategorie($type) as $id => $category) {
-	if (trim($category) != '' && is_numeric($id)) {
-		echo '<option value="' . $category . '"';
-		echo (init('categorie') == $category) ? 'selected >' : '>';
-		echo $category;
-		echo '</option>';
-	}
+if (init('categorie') == '') {
+	echo '<option value="" selected>{{Top et nouveautés}}</option>';
+} else {
+	echo '<option value="">{{Top et nouveautés}}</option>';
+}
+global $JEEDOM_INTERNAL_CONFIG;
+foreach ($JEEDOM_INTERNAL_CONFIG['plugin']['category'] as $key => $value) {
+	echo '<option value="' . $key . '"';
+	echo (init('categorie') == $key) ? 'selected >' : '>';
+	echo $value['name'];
+	echo '</option>';
 }
 ?>
 		</select>
@@ -252,7 +255,11 @@ foreach ($markets as $market) {
 			if (!$first) {
 				echo '</div>';
 			}
-			echo '<legend style="border-bottom: 1px solid #34495e; color : #34495e;" data-category="' . $nCategory . '">' . ucfirst($categorie) . '</legend>';
+			if (isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$categorie])) {
+				echo '<legend style="border-bottom: 1px solid #34495e; color : #34495e;" data-category="' . $nCategory . '"><i class="fa ' . $JEEDOM_INTERNAL_CONFIG['plugin']['category'][$categorie]['icon'] . '"></i> ' . ucfirst($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$categorie]['name']) . '</legend>';
+			} else {
+				echo '<legend style="border-bottom: 1px solid #34495e; color : #34495e;" data-category="' . $nCategory . '">' . ucfirst($categorie) . '</legend>';
+			}
 			echo '<div class="pluginContainer" data-category="' . $nCategory . '">';
 		}
 		$first = false;
@@ -297,9 +304,6 @@ foreach ($markets as $market) {
 		case 'plugin':
 			$default_image = 'core/img/no-image-plugin.png';
 			break;
-		case 'camera':
-			$default_image = 'core/img/no-image-camera.png';
-			break;
 		case 'script':
 			$default_image = 'core/img/no-image-script.png';
 			break;
@@ -316,8 +320,9 @@ foreach ($markets as $market) {
 
 	echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $market->getName() . '</span>';
 
-	$note = $market->getRating();
+	echo '<span style="position : absolute;bottom : 25px;right : 12px;font-size : 0.7em;color:#999999;"><span style="font-size : 0.8em;">{{par}}</span> ' . $market->getAuthor() . '</span>';
 
+	$note = $market->getRating();
 	echo '<span style="position : absolute;bottom : 5px;left : 5px;font-size : 0.7em;">';
 	for ($i = 1; $i < 6; $i++) {
 		if ($i <= $note) {

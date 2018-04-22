@@ -17,10 +17,10 @@ foreach (plugin::listPlugin() as $pluginList) {
 }
 ?>
 <div style="margin-top: 5px;">
-  <a class="btn btn-success pull-right" id="bt_saveProfils"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
+  <a class="btn btn-success pull-right" id="bt_saveProfils"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
   <ul class="nav nav-tabs" role="tablist">
-   <li role="presentation" class="active"><a href="#themetab" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-tint"></i> {{Thèmes}}</a></li>
-   <li role="presentation"><a href="#interfacetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-laptop"></i> {{Interface}}</a></li>
+   <li role="presentation" class="active"><a href="#themetab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tint"></i> {{Thèmes}}</a></li>
+   <li role="presentation"><a href="#interfacetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-laptop"></i> {{Interface}}</a></li>
    <li role="presentation"><a href="#securitytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="icon securite-key1"></i> {{Sécurité}}</a></li>
    <li role="presentation"><a href="#notificationtab" aria-controls="profile" role="tab" data-toggle="tab"><i class="icon securite-key1"></i> {{Notifications}}</a></li>
  </ul>
@@ -114,7 +114,7 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
   <br/>
   <form class="form-horizontal">
     <fieldset>
-      <legend><i class="fa fa-home"></i>  {{Général}}</legend>
+      <legend><i class="fas fa-home"></i>  {{Général}}</legend>
       <div class="form-group">
         <label class="col-sm-3 control-label">{{Afficher les menus}}</label>
         <div class="col-sm-1">
@@ -125,7 +125,7 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
   </form>
   <form class="form-horizontal">
     <fieldset>
-      <legend><i class="fa fa-file-o"></i>  {{Page par défaut}}</legend>
+      <legend><i class="far fa-file"></i>  {{Page par défaut}}</legend>
       <div class="form-group">
         <label class="col-sm-3 control-label">{{Desktop}}</label>
         <div class="col-sm-2">
@@ -153,7 +153,7 @@ foreach ($homePage as $key => $value) {
 </form>
 <form class="form-horizontal">
   <fieldset>
-   <legend><i class="fa fa-columns"></i>  {{Objet par défaut sur le dashboard}}</legend>
+   <legend><i class="fas fa-columns"></i>  {{Objet par défaut sur le dashboard}}</legend>
    <div class="form-group">
     <label class="col-sm-3 control-label">{{Desktop}}</label>
     <div class="col-sm-2">
@@ -181,7 +181,7 @@ foreach (jeeObject::all() as $object) {
 </form>
 <form class="form-horizontal">
   <fieldset>
-   <legend><i class="fa fa-eye"></i>  {{Vue par défaut}}</legend>
+   <legend><i class="fas fa-eye"></i>  {{Vue par défaut}}</legend>
    <div class="form-group">
     <label class="col-sm-3 control-label">{{Desktop}}</label>
     <div class="col-sm-2">
@@ -208,7 +208,7 @@ foreach (view::all() as $view) {
 </form>
 <form class="form-horizontal">
   <fieldset>
-    <legend><i class="fa fa-paint-brush"></i>  {{Design par défaut}}</legend>
+    <legend><i class="fas fa-paint-brush"></i>  {{Design par défaut}}</legend>
     <div class="form-group">
       <label class="col-sm-3 control-label">{{Desktop}}</label>
       <div class="col-sm-2">
@@ -241,7 +241,7 @@ foreach (planHeader::all() as $plan) {
 </form>
 <form class="form-horizontal">
   <fieldset>
-    <legend><i class="fa fa-tachometer"></i>  {{Dashboard}}</legend>
+    <legend><i class="fas fa-tachometer-alt"></i>  {{Dashboard}}</legend>
     <div class="form-group">
       <label class="col-sm-3 control-label">{{Déplier le panneau des scénarios}}</label>
       <div class="col-sm-1">
@@ -258,7 +258,7 @@ foreach (planHeader::all() as $plan) {
 </form>
 <form class="form-horizontal">
   <fieldset>
-    <legend><i class="fa fa-picture-o"></i>  {{Vue}}</legend>
+    <legend><i class="fas fa-picture-o"></i>  {{Vue}}</legend>
     <div class="form-group">
       <label class="col-sm-3 control-label">{{Déplier le panneau des vues}}</label>
       <div class="col-sm-1">
@@ -278,7 +278,7 @@ foreach (planHeader::all() as $plan) {
        <div class="form-group">
         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Authentification en 2 étapes}}</label>
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-         <a class="btn btn-default" id="bt_configureTwoFactorAuthentification"><i class="fa fa-cogs"></i> {{Configurer}}</a>
+         <a class="btn btn-default" id="bt_configureTwoFactorAuthentification"><i class="fas fa-cogs"></i> {{Configurer}}</a>
        </div>
        <?php
 if ($_SESSION['user']->getOptions('twoFactorAuthentification', 0) == 1) {
@@ -311,7 +311,7 @@ if ($_SESSION['user']->getOptions('twoFactorAuthentification', 0) == 1) {
         <span class="userAttr" data-l1key="hash"></span>
       </div>
       <div class="col-lg-2 col-md-3 col-sm-3">
-        <a class="btn btn-default form-control" id="bt_genUserKeyAPI"><i class="fa fa-refresh"></i> {{Regénérer}}</a>
+        <a class="btn btn-default form-control" id="bt_genUserKeyAPI"><i class="fas fa-refresh"></i> {{Regénérer}}</a>
       </div>
     </div>
   </fieldset>
@@ -339,7 +339,7 @@ foreach ($sessions as $id => $session) {
 	echo '<td>' . $id . '</td>';
 	echo '<td>' . $session['ip'] . '</td>';
 	echo '<td>' . $session['datetime'] . '</td>';
-	echo '<td><a class="btn btn-xs btn-warning bt_deleteSession"><i class="fa fa-sign-out"></i> {{Déconnecter}}</a></td>';
+	echo '<td><a class="btn btn-xs btn-warning bt_deleteSession"><i class="fas fa-sign-out-alt"></i> {{Déconnecter}}</a></td>';
 	echo '</tr>';
 }
 ?>
@@ -350,7 +350,7 @@ foreach ($sessions as $id => $session) {
 
 <form class="form-horizontal">
   <fieldset>
-    <legend>{{Périphériques enregistrés}} <a class="btn btn-xs btn-warning pull-right" id="bt_removeAllRegisterDevice"><i class="fa fa-trash"></i> {{Supprimer tout}}</a></legend>
+    <legend>{{Périphériques enregistrés}} <a class="btn btn-xs btn-warning pull-right" id="bt_removeAllRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer tout}}</a></legend>
     <table class="table table-bordered table-condensed">
       <thead>
         <tr>
@@ -374,7 +374,7 @@ foreach ($_SESSION['user']->getOptions('registerDevice') as $key => $value) {
 	echo $value['datetime'];
 	echo '</td>';
 	echo '<td>';
-	echo '<a class="btn btn-warning btn-xs bt_removeRegisterDevice"><i class="fa fa-trash"></i> {{Supprimer}}</a>';
+	echo '<a class="btn btn-warning btn-xs bt_removeRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer}}</a>';
 	echo '</td>';
 	echo '</tr>';
 }
@@ -396,7 +396,7 @@ foreach ($_SESSION['user']->getOptions('registerDevice') as $key => $value) {
           <div class="input-group">
             <input type="text" class="userAttr form-control" data-l1key="options" data-l2key="notification::cmd" />
             <span class="input-group-btn">
-              <a class="btn btn-default cursor bt_selectWarnMeCmd" title="Rechercher une commande"><i class="fa fa-list-alt"></i></a>
+              <a class="btn btn-default cursor bt_selectWarnMeCmd" title="Rechercher une commande"><i class="fas fa-list-alt"></i></a>
             </span>
           </div>
         </div>

@@ -22,7 +22,7 @@
   $(".li_log").removeClass('active');
   $(this).addClass('active');
   $('#bt_globalLogStopStart').removeClass('btn-success').addClass('btn-warning');
-  $('#bt_globalLogStopStart').html('<i class="fa fa-pause"></i> {{Pause}}');
+  $('#bt_globalLogStopStart').html('<i class="fas fa-pause"></i> {{Pause}}');
   $('#bt_globalLogStopStart').attr('data-state',1);
   jeedom.log.autoupdate({
     log : $(this).attr('data-log'),

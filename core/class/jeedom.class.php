@@ -1184,14 +1184,17 @@ class jeedom {
 		if (config::byKey('hardware_name') != '') {
 			return config::byKey('hardware_name');
 		}
-		$result = 'DIY';
+		$result = 'diy';
 		$uname = shell_exec('uname -a');
 		if (file_exists('/.dockerinit')) {
-			$result = 'Docker';
+			$result = 'docker';
 		} else if (file_exists('/usr/bin/raspi-config')) {
-			$result = 'RPI/RPI2';
+			$result = 'rpi';
 		} else if (strpos($uname, 'cubox') !== false || strpos($uname, 'imx6') !== false || file_exists('/media/boot/multiboot/meson64_odroidc2.dtb.linux')) {
-			$result = 'Jeedomboard';
+			$result = 'miniplus';
+		}
+		if (file_exists('/media/boot/multiboot/meson64_odroidc2.dtb.linux')) {
+			$result = 'smart';
 		}
 		config::save('hardware_name', $result);
 		return config::byKey('hardware_name');

@@ -16,9 +16,9 @@ sendVarToJS('plan3dHeader', utils::o2a($plan3dHeader));
 <div id="div_plan3dHeaderConfigure">
     <form class="form-horizontal">
         <fieldset>
-            <legend><i class="fa fa-cog"></i> {{Général}}
-                <a class='btn btn-danger btn-xs pull-right cursor' style="color: white;" id='bt_removeConfigureplan3dHeader'><i class="fa fa-times"></i> {{Supprimer}}</a>
-                <a class='btn btn-success btn-xs pull-right cursor' style="color: white;" id='bt_saveConfigureplan3dHeader'><i class="fa fa-check"></i> {{Sauvegarder}}</a>
+            <legend><i class="fas fa-cog"></i> {{Général}}
+                <a class='btn btn-danger btn-xs pull-right cursor' style="color: white;" id='bt_removeConfigureplan3dHeader'><i class="fas fa-times"></i> {{Supprimer}}</a>
+                <a class='btn btn-success btn-xs pull-right cursor' style="color: white;" id='bt_saveConfigureplan3dHeader'><i class="fas fa-check"></i> {{Sauvegarder}}</a>
             </legend>
             <input type="text"  class="plan3dHeaderAttr form-control" data-l1key="id" style="display: none;"/>
             <div class="form-group">
@@ -39,14 +39,14 @@ sendVarToJS('plan3dHeader', utils::o2a($plan3dHeader));
                     <div class="plan3dHeaderAttr" data-l1key="configuration" data-l2key="icon" ></div>
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4">
-                    <a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fa fa-flag"></i> {{Choisir}}</a>
+                    <a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-lg-4 control-label">{{Model 3D}}</label>
                 <div class="col-lg-8">
                   <span class="btn btn-default btn-file">
-                    <i class="fa fa-cloud-upload"></i> {{Envoyer}}<input  id="bt_upload3dModel" type="file" name="file" style="display: inline-block;">
+                    <i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  id="bt_upload3dModel" type="file" name="file" style="display: inline-block;">
                 </span>
             </div>
         </div>

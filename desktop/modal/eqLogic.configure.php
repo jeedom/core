@@ -12,25 +12,25 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 ?>
 <div style="display: none;" id="md_displayEqLogicConfigure"></div>
 
-<a class="btn btn-success pull-right btn-sm" id="bt_eqLogicConfigureSave"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
-<a class="btn btn-danger pull-right btn-sm" id="bt_eqLogicConfigureRemove"><i class="fa fa-times"></i> {{Supprimer}}</a>
-<a class="btn btn-default pull-right btn-sm" id="bt_eqLogicConfigureRawObject"><i class="fa fa-info"></i> {{Informations}}</a>
-<a class="btn btn-default pull-right btn-sm" id="bt_eqLogicConfigureLogRealTime"><i class="fa fa-file"></i> {{Log}}</a>
-<a class="btn btn-default pull-right btn-sm" id="bt_eqLogicConfigureGraph"><i class="fa fa-object-group"></i> {{Liens}}</a>
+<a class="btn btn-success pull-right btn-sm" id="bt_eqLogicConfigureSave"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
+<a class="btn btn-danger pull-right btn-sm" id="bt_eqLogicConfigureRemove"><i class="fas fa-times"></i> {{Supprimer}}</a>
+<a class="btn btn-default pull-right btn-sm" id="bt_eqLogicConfigureRawObject"><i class="fas fa-info"></i> {{Informations}}</a>
+<a class="btn btn-default pull-right btn-sm" id="bt_eqLogicConfigureLogRealTime"><i class="far fa-file"></i> {{Log}}</a>
+<a class="btn btn-default pull-right btn-sm" id="bt_eqLogicConfigureGraph"><i class="fas fa-object-group"></i> {{Liens}}</a>
 
 <ul class="nav nav-tabs" role="tablist">
-	<li role="presentation" class="active"><a href="#eqLogic_information" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-info-circle"></i> {{Informations}}</a></li>
+	<li role="presentation" class="active"><a href="#eqLogic_information" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-info-circle"></i> {{Informations}}</a></li>
 	<?php if ($eqLogic->widgetPossibility('custom')) {
 	?>
-		<li role="presentation"><a href="#eqLogic_display" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-desktop"></i> {{Affichage}}</a></li>
+		<li role="presentation"><a href="#eqLogic_display" aria-controls="messages" role="tab" data-toggle="tab"><i class="fas fa-desktop"></i> {{Affichage}}</a></li>
 		<?php if ($eqLogic->widgetPossibility('custom::layout')) {
 		?>
-			<li role="presentation"><a href="#eqLogic_layout" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-th"></i> {{Disposition}}</a></li>
+			<li role="presentation"><a href="#eqLogic_layout" aria-controls="messages" role="tab" data-toggle="tab"><i class="fas fa-th"></i> {{Disposition}}</a></li>
 			<?php }
 }
 ?>
-		<li role="presentation"><a href="#eqLogic_alert" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-exclamation-triangle"></i> {{Alertes}}</a></li>
-		<li role="presentation"><a href="#eqLogic_comment" aria-controls="messages" role="tab" data-toggle="tab" id="bt_EqLogicConfigurationTabComment"><i class="fa fa-commenting-o"></i> {{Commentaire}}</a></li>
+		<li role="presentation"><a href="#eqLogic_alert" aria-controls="messages" role="tab" data-toggle="tab"><i class="fas fa-exclamation-triangle"></i> {{Alertes}}</a></li>
+		<li role="presentation"><a href="#eqLogic_comment" aria-controls="messages" role="tab" data-toggle="tab" id="bt_EqLogicConfigurationTabComment"><i class="fas fa-commenting-o"></i> {{Commentaire}}</a></li>
 	</ul>
 
 	<div class="tab-content" id="div_displayEqLogicConfigure">
@@ -136,7 +136,7 @@ foreach ($eqLogic->getCmd() as $cmd) {
 	echo '<tr>';
 	echo '<td>' . $cmd->getHumanName() . '</td>';
 	echo '<td>';
-	echo '<a class="btn btn-default btn-xs pull-right cursor bt_advanceCmdConfigurationOnEqLogicConfiguration" data-id="' . $cmd->getId() . '"><i class="fa fa-cogs"></i></a>';
+	echo '<a class="btn btn-default btn-xs pull-right cursor bt_advanceCmdConfigurationOnEqLogicConfiguration" data-id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></a>';
 	echo '</td>';
 	echo '</tr>';
 }
@@ -150,7 +150,7 @@ foreach ($eqLogic->getCmd() as $cmd) {
 	?>
 			<div role="tabpanel" class="tab-pane" id="eqLogic_display">
 				<br/>
-				<legend><i class="fa fa-tint"></i> {{Widget}}</legend>
+				<legend><i class="fas fa-tint"></i> {{Widget}}</legend>
 				<table class="table table-bordered table-condensed">
 					<thead>
 						<tr>
@@ -159,9 +159,9 @@ foreach ($eqLogic->getCmd() as $cmd) {
 foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 		echo '<th style="width:20%">{{' . $value['name'] . '}}';
 		if (in_array($key, array('plan', 'view'))) {
-			echo '<i class="fa fa-eye pull-right cursor bt_displayWidget" data-version="d' . $key . '" aria-hidden="true"></i>';
+			echo '<i class="fas fa-eye pull-right cursor bt_displayWidget" data-version="d' . $key . '" aria-hidden="true"></i>';
 		} elseif ($key == 'dashboard') {
-			echo '<i class="fa fa-eye pull-right cursor bt_displayWidget" data-version="' . $key . '" aria-hidden="true"></i>';
+			echo '<i class="fas fa-eye pull-right cursor bt_displayWidget" data-version="' . $key . '" aria-hidden="true"></i>';
 		}
 		echo '</th>';
 	}
@@ -359,7 +359,7 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 												<?php
 if ($eqLogic->widgetPossibility('custom::optionalParameters')) {
 		?>
-													<legend><i class="fa fa-pencil-square-o"></i> {{Paramètres optionnels sur la tuile}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fa fa-plus-circle"></i> Ajouter</a></legend>
+													<legend><i class="fas fa-pencil-alt-square-o"></i> {{Paramètres optionnels sur la tuile}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fas fa-plus-circle"></i> Ajouter</a></legend>
 													<table class="table table-bordered table-condensed" id="table_widgetParameters">
 														<thead>
 															<tr>
@@ -380,7 +380,7 @@ if ($eqLogic->getDisplay('parameters') != '') {
 				echo '<input class="form-control value" value="' . $value . '" />';
 				echo '</td>';
 				echo '<td>';
-				echo '<a class="btn btn-danger btn-xs removeWidgetParameter"><i class="fa fa-times"></i> Supprimer</a>';
+				echo '<a class="btn btn-danger btn-xs removeWidgetParameter"><i class="fas fa-times"></i> Supprimer</a>';
 				echo '</td>';
 				echo '</tr>';
 			}
@@ -396,7 +396,7 @@ if ($eqLogic->getDisplay('parameters') != '') {
 ?>
 												<div role="tabpanel" class="tab-pane" id="eqLogic_alert">
 													<br/>
-													<legend><i class="fa fa-info-circle"></i> {{Informations Batteries}}</legend>
+													<legend><i class="fas fa-info-circle"></i> {{Informations Batteries}}</legend>
 													<div class="row">
 														<div class="col-sm-4" >
 															<form class="form-horizontal">
@@ -428,7 +428,7 @@ if ($eqLogic->getDisplay('parameters') != '') {
 														</div>
 													</div>
 												</div>
-												<legend><i class="fa fa-clock-o"></i> {{Alertes Communications}}</legend>
+												<legend><i class="fas fa-clock-o"></i> {{Alertes Communications}}</legend>
 												<div class="row">
 													<div class="col-lg-12">
 														<div class="form-group">
@@ -627,7 +627,7 @@ for ($i = 1; $i <= $eqLogic->getDisplay('layout::dashboard::table::nbLine', 1); 
 											tr += '<input class="form-control value" />';
 											tr += '</td>';
 											tr += '<td>';
-											tr += '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fa fa-times"></i> Supprimer</a>';
+											tr += '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fas fa-times"></i> Supprimer</a>';
 											tr += '</td>';
 											tr += '</tr>';
 											$('#table_widgetParameters tbody').append(tr);

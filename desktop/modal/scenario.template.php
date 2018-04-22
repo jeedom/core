@@ -17,7 +17,7 @@ sendVarToJS('scenario_template_id', init('scenario_id'));
     <div class="bs-sidebar nav nav-list bs-sidenav" >
         <center>
             <span class="btn btn-default btn-file">
-                <i class="fa fa-cloud-upload"></i> {{Appliquer un template}}<input id="bt_uploadScenarioTemplate" type="file" name="file" data-url="core/ajax/scenario.ajax.php?action=templateupload&jeedom_token=<?php echo ajax::getToken(); ?>" style="display : inline-block;">
+                <i class="fas fa-cloud-upload-alt"></i> {{Envoyer un template}}<input id="bt_uploadScenarioTemplate" type="file" name="file" data-url="core/ajax/scenario.ajax.php?action=templateupload&jeedom_token=<?php echo ajax::getToken(); ?>" style="display : inline-block;">
             </span>
         </center>
         <br/>
@@ -29,7 +29,7 @@ foreach (update::listRepo() as $key => $value) {
 	if (!isset($value['scope']['hasScenarioStore']) || !$value['scope']['hasScenarioStore']) {
 		continue;
 	}
-	echo '<center><a class="btn btn-default bt_scenarioTemplateDisplayStore" style="width : 91%" data-repo="' . $key . '"><i class="fa fa-shopping-cart"></i> ' . $value['name'] . '</a></center><br/>';
+	echo '<center><a class="btn btn-default bt_scenarioTemplateDisplayStore" style="width : 91%" data-repo="' . $key . '"><i class="fas fa-shopping-cart"></i> ' . $value['name'] . '</a></center><br/>';
 }
 ?>
         <div class="form-group" style="position:relative;left : -5px;">
@@ -37,7 +37,7 @@ foreach (update::listRepo() as $key => $value) {
               <input class='form-control' id='in_newTemplateName' placeholder="{{Nom du template}}" />
           </div>
           <div class="col-xs-2">
-              <a class="btn btn-default" id="bt_scenarioTemplateConvert"><i class="fa fa-plus-circle cursor" ></i></a>
+              <a class="btn btn-default" id="bt_scenarioTemplateConvert"><i class="fas fa-plus-circle cursor" ></i></a>
           </div>
       </div><br/><br/>
       <legend>{{Template}}</legend>
@@ -59,15 +59,15 @@ foreach (update::listRepo() as $key => $value) {
 	if (!isset($value['scope']['hasScenarioStore']) || !$value['scope']['hasScenarioStore']) {
 		continue;
 	}
-	echo '<a class="btn btn-warning bt_scenarioTemplateShare" data-repo="' . $key . '"><i class="fa fa-cloud-upload"></i> {{Partager sur}} ' . $value['name'] . '</a>';
+	echo '<a class="btn btn-warning bt_scenarioTemplateShare" data-repo="' . $key . '"><i class="fas fa-cloud-upload-alt"></i> {{Partager sur}} ' . $value['name'] . '</a>';
 }
 ?>
-                <a class='btn btn-danger' id='bt_scenarioTemplateRemove'><i class="fa fa-times"></i> {{Supprimer}}</a>
-                <a class="btn btn-primary" id="bt_scenarioTemplateDownload"><i class="fa fa-cloud-download"></i> {{Télécharger}}</a>
+                <a class='btn btn-danger' id='bt_scenarioTemplateRemove'><i class="fas fa-times"></i> {{Supprimer}}</a>
+                <a class="btn btn-primary" id="bt_scenarioTemplateDownload"><i class="fas fa-cloud-download-alt"></i> {{Télécharger}}</a>
             </div>
         </div>
         <div id='div_scenarioTemplateParametreConfiguration' style='display : none;'>
-            <legend>{{Paramètres du scénario}}<a class='btn btn-warning btn-xs pull-right' id='bt_scenarioTemplateApply'><i class="fa fa-check-circle"></i> {{Appliquer}}</a></legend>
+            <legend>{{Paramètres du scénario}}<a class='btn btn-success btn-xs pull-right' id='bt_scenarioTemplateApply'><i class="far fa-check-circle"></i> {{Appliquer}}</a></legend>
             <div id='div_scenarioTemplateParametreList'></div>
         </div>
     </form>
@@ -179,13 +179,13 @@ foreach (update::listRepo() as $key => $value) {
             var html = '';
             for (var i in data) {
                 html += '<div class="form-group templateScenario">';
-                html += '<label class="col-xs-4 control-label">' + i + ' <i class="fa fa-arrow-right"></i></label>';
+                html += '<label class="col-xs-4 control-label">' + i + ' <i class="fas fa-arrow-right"></i></label>';
                 html += '<div class="col-xs-4">';
                 html += '<span class="templateScenarioAttr" data-l1key="begin" style="display : none;" >' + i + '</span>';
                 html += '<input class="form-control templateScenarioAttr" data-l1key="end" value="'+data[i]+'"/>';
                 html += '</div>';
                 html += '<div class="col-xs-2">';
-                html += '<a class="btn btn-default cursor bt_scenarioTemplateSelectCmd"><i class="fa fa-list-alt"></i></a>';
+                html += '<a class="btn btn-default cursor bt_scenarioTemplateSelectCmd"><i class="fas fa-list-alt"></i></a>';
                 html += '</div>';
                 html += '</div>';
             }

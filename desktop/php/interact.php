@@ -13,13 +13,13 @@ if (is_array($interactListGroup)) {
 }
 ?>
 
-<div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;background-color:#f6f6f6;" class="div_smallSideBar" id="bt_displayInteractList"><i class="fa fa-arrow-circle-o-right" style="color : #b6b6b6;"></i></div>
+<div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;background-color:#f6f6f6;" class="div_smallSideBar" id="bt_displayInteractList"><i class="fas fa-arrow-circle-o-right" style="color : #b6b6b6;"></i></div>
 <div class="row row-overflow">
   <div class="col-xs-2" id="div_listInteract" style="z-index:999">
     <div class="bs-sidebar nav nav-list bs-sidenav" >
-      <a id="bt_addInteract" class="btn btn-default" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-plus-circle"></i> {{Ajouter interaction}}</a>
-      <a id="bt_regenerateInteract" class="btn btn-warning" style="width : 100%;margin-top : 5px;margin-bottom: 5px;text-shadow : none;"><i class="fa fa-refresh"></i> {{Regénérer}}</a>
-      <a id="bt_testInteract" class="btn btn-primary" style="width : 100%;margin-top : 5px;margin-bottom: 5px;text-shadow : none;"><i class="fa fa-comment-o"></i> {{Tester}}</a>
+      <a id="bt_addInteract" class="btn btn-default" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fas fa-plus-circle"></i> {{Ajouter interaction}}</a>
+      <a id="bt_regenerateInteract" class="btn btn-warning" style="width : 100%;margin-top : 5px;margin-bottom: 5px;text-shadow : none;"><i class="fas fa-refresh"></i> {{Regénérer}}</a>
+      <a id="bt_testInteract" class="btn btn-primary" style="width : 100%;margin-top : 5px;margin-bottom: 5px;text-shadow : none;"><i class="fas fa-comment"></i> {{Tester}}</a>
       <input id='in_treeSearch' class='form-control' placeholder="{{Rechercher}}" />
       <div id="div_tree">
        <ul id="ul_interact" >
@@ -59,28 +59,28 @@ foreach ($interactListGroup as $group) {
 </div>
 <div id="interactThumbnailDisplay" class="col-xs-10" style="border-left: solid 1px #EEE; padding-left: 25px;">
  <div class="interactListContainer">
-   <legend><i class="fa fa-cog"></i>  {{Gestion}}</legend>
+   <legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
    <div class="cursor" id="bt_addInteract2" style="background-color : #ffffff; height : 120px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 140px;margin-left : 10px;" >
      <center>
-      <i class="fa fa-plus-circle" style="font-size : 6em;color:#94ca02;"></i>
+      <i class="fas fa-plus-circle" style="font-size : 6em;color:#94ca02;"></i>
     </center>
     <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>{{Ajouter}}</center></span>
   </div>
   <div class="cursor" id="bt_regenerateInteract2" style="background-color : #ffffff; height : 120px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 140px;margin-left : 10px;" >
    <center>
-     <i class="fa fa-refresh" style="font-size : 6em;color:#f0ad4e;"></i>
+     <i class="fas fa-refresh" style="font-size : 6em;color:#f0ad4e;"></i>
    </center>
    <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#f0ad4e"><center>{{Regénérer}}</center></span>
  </div>
  <div class="cursor" id="bt_testInteract2" style="background-color : #ffffff; height : 120px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 140px;margin-left : 10px;" >
    <center>
-    <i class="fa fa-comment-o" style="font-size : 6em;color:#337ab7;"></i>
+    <i class="fas fa-comment" style="font-size : 6em;color:#337ab7;"></i>
   </center>
   <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Tester}}</center></span>
 </div>
 </div>
 
-<legend><i class="fa fa-comments-o"></i>  {{Mes interactions}}</legend>
+<legend><i class="far fa-comments"></i>  {{Mes interactions}}</legend>
 <?php
 if (count($totalInteract) == 0) {
 	echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucune interaction. Cliquez sur ajouter pour commencer.</span></center>";
@@ -143,16 +143,16 @@ if (count($totalInteract) == 0) {
 </div>
 
 <div class="interact col-xs-10" style="display: none;" id="div_conf">
-  <a class="btn btn-default pull-right" id="bt_duplicate"><i class="fa fa-files-o"></i> {{Dupliquer}}</a>
-  <a class="btn btn-danger pull-right" id="bt_removeInteract"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
-  <a class="btn btn-success pull-right" id="bt_saveInteract"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
-  <a class="btn btn-default displayInteracQuery pull-right"><i class="fa fa-eye"></i> {{Phrase(s)}} <span class="label label-success interactAttr" data-l1key="nbInteractQuery"></span></a>
+  <a class="btn btn-default pull-right" id="bt_duplicate"><i class="far fa-files-o"></i> {{Dupliquer}}</a>
+  <a class="btn btn-danger pull-right" id="bt_removeInteract"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
+  <a class="btn btn-success pull-right" id="bt_saveInteract"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
+  <a class="btn btn-default displayInteracQuery pull-right"><i class="fas fa-eye"></i> {{Phrase(s)}} <span class="label label-success interactAttr" data-l1key="nbInteractQuery"></span></a>
 
   <ul class="nav nav-tabs" role="tablist">
-   <li role="presentation"><a class="cursor" aria-controls="home" role="tab" id="bt_interactThumbnailDisplay"><i class="fa fa-arrow-circle-left"></i></a></li>
-   <li role="presentation" class="active"><a href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-tachometer"></i> {{Général}}</a></li>
-   <li role="presentation"><a href="#filtertab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-filter"></i> {{Filtres}}</a></li>
-   <li role="presentation"><a href="#actiontab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-cogs"></i> {{Actions}}</a></li>
+   <li role="presentation"><a class="cursor" aria-controls="home" role="tab" id="bt_interactThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>
+   <li role="presentation" class="active"><a href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Général}}</a></li>
+   <li role="presentation"><a href="#filtertab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-filter"></i> {{Filtres}}</a></li>
+   <li role="presentation"><a href="#actiontab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-cogs"></i> {{Actions}}</a></li>
  </ul>
 </ul>
 
@@ -204,7 +204,7 @@ if (count($totalInteract) == 0) {
             <textarea class="form-control interactAttr ta_autosize" type="text" data-l1key="reply" placeholder=""></textarea>
           </div>
           <div class="col-sm-1">
-            <a class="btn btn-default cursor listEquipementInfoReply input-sm"><i class="fa fa-list-alt "></i></a>
+            <a class="btn btn-default cursor listEquipementInfoReply input-sm"><i class="fas fa-list-alt "></i></a>
           </div>
         </div>
           <div class="form-group">
@@ -340,7 +340,7 @@ foreach (eqLogic::all() as $eqLogic) {
 </div>
 
 <div role="tabpanel" class="tab-pane" id="actiontab">
-  <a class="btn btn-success btn-sm pull-right" id="bt_addAction" style="margin-top:5px;"><i class="fa fa-plus-circle"></i> {{Ajouter}}</a>
+  <a class="btn btn-success btn-sm pull-right" id="bt_addAction" style="margin-top:5px;"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
   <br/><br/>
   <form class="form-horizontal">
     <fieldset>

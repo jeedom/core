@@ -21,10 +21,10 @@ if (!isConnect('admin')) {
 sendVarToJS('log_display_name', init('log', 'event'));
 sendVarToJS('log_default_search', init('search', ''));
 ?>
-<a class="btn btn-danger pull-right" id="bt_logdisplayremoveLog"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>
-<a class="btn btn-warning pull-right" id="bt_logdisplayclearLog"><i class="fa fa-times"></i> {{Vider}}</a>
-<a class="btn btn-success pull-right" id="bt_logdisplaydownloadLog"><i class="fa fa-cloud-download"></i> {{Télécharger}}</a>
-<a class="btn btn-warning pull-right" data-state="1" id="bt_eventLogStopStart"><i class="fa fa-pause"></i> {{Pause}}</a>
+<a class="btn btn-danger pull-right" id="bt_logdisplayremoveLog"><i class="far fa-trash-alt"></i> {{Supprimer}}</a>
+<a class="btn btn-warning pull-right" id="bt_logdisplayclearLog"><i class="fas fa-times"></i> {{Vider}}</a>
+<a class="btn btn-success pull-right" id="bt_logdisplaydownloadLog"><i class="fas fa-cloud-download-alt"></i> {{Télécharger}}</a>
+<a class="btn btn-warning pull-right" data-state="1" id="bt_eventLogStopStart"><i class="fas fa-pause"></i> {{Pause}}</a>
 <input class="form-control pull-right" id="in_eventLogSearch" style="width : 300px;" placeholder="{{Rechercher}}" />
 <br/><br/><br/>
 <pre id='pre_eventlog' style='overflow: auto; height: calc(100% - 65px);with:90%;'></pre>

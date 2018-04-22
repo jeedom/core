@@ -1,6 +1,6 @@
 function initMessage() {
     var rightPanel = '<ul data-role="listview" class="ui-icon-alt">';
-    rightPanel += '<li><a id="bt_clearMessage" href="#"><i class="fa fa-trash-o"></i> {{Vider}}</a></li>';
+    rightPanel += '<li><a id="bt_clearMessage" href="#"><i class="far fa-trash-alt"></i> {{Vider}}</a></li>';
     rightPanel += '</ul>';
     panel(rightPanel);
 
@@ -44,7 +44,7 @@ function getAllMessage(_plugin) {
             var tbody = '';
             for (var i in  messages) {
                 tbody += '<tr data-message_id="' + messages[i].id + '">';
-                tbody += '<td><center><i class="fa fa-trash-o cursor removeMessage"></i></center></td>';
+                tbody += '<td><center><i class="far fa-trash-alt cursor removeMessage"></i></center></td>';
                 tbody += '<td class="datetime">' + messages[i].date + '</td>';
                 tbody += '<td class="plugin">' + messages[i].plugin + '</td>';
                 tbody += '<td class="message">' + $('<textarea />').html(messages[i].message).text() + '</td>';

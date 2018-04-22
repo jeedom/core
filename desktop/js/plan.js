@@ -516,12 +516,12 @@ $('#div_pageContainer').delegate('.plan-link-widget', 'click', function () {
 $('#div_pageContainer').on( 'click','.zone-widget:not(.zoneEqLogic)', function () {
     var el = $(this);
     if (!editOption.state) {
-        el.append('<center class="loading"><i class="fa fa-spinner fa-spin fa-4x"></i></center>');
+        el.append('<center class="loading"><i class="fas fa-spinner fa-spin fa-4x"></i></center>');
         jeedom.plan.execute({
             id: el.attr('data-plan_id'),
             error: function (error) {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                el.empty().append('<center class="loading"><i class="fa fa-times fa-4x"></i></center>');
+                el.empty().append('<center class="loading"><i class="fas fa-times fa-4x"></i></center>');
                 setTimeout(function() {
                    el.empty();
                    clickedOpen = false;

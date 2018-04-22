@@ -9,16 +9,16 @@ if (!isConnect('admin')) {
 
 <form class="form-horizontal" onsubmit="return false;">
 	<div class="input-group input-group-sm" style="width: 100%">
-		<span class="input-group-addon" style="width: 100px"><i class="fa fa-random"></i>  {{Test}}</span>
+		<span class="input-group-addon" style="width: 100px"><i class="fas fa-random"></i>  {{Test}}</span>
 		<input class="form-control" id="in_testExpression">
 		<span class="input-group-btn">
-			<a class="btn btn-default" id="bt_searchInfoCmd"><i class="fa fa-list-alt"></i></a>
-			<a class="btn btn-default" id="bt_executeExpressionOk"><i class="fa fa-bolt"></i> {{Exécuter}}</a>
+			<a class="btn btn-default" id="bt_searchInfoCmd"><i class="fas fa-list-alt"></i></a>
+			<a class="btn btn-default" id="bt_executeExpressionOk"><i class="fas fa-bolt"></i> {{Exécuter}}</a>
 		</span>
 	</div>
 </form>
 </br>
-<legend><i class="fa fa-sign-in"></i>  {{Résultat}}</legend>
+<legend><i class="fas fa-sign-in-alt"></i>  {{Résultat}}</legend>
 <div id="div_expressionTestResult"></div>
 
 <script>

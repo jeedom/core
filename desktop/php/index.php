@@ -48,7 +48,7 @@ if (init('rescue', 0) == 0) {
 				$name = $JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]['name'];
 			}
 
-			$plugin_menu .= '<li class="dropdown-submenu"><a data-toggle="dropdown"><i class="fa ' . $icon . '"></i> {{' . $name . '}}</a>';
+			$plugin_menu .= '<li class="dropdown-submenu"><a data-toggle="dropdown"><i class="fas ' . $icon . '"></i> {{' . $name . '}}</a>';
 			$plugin_menu .= '<ul class="dropdown-menu">';
 			foreach ($category as $pluginList) {
 				if ($pluginList->getId() == init('m')) {
@@ -156,6 +156,7 @@ include_file('3rdparty', 'jquery.fileupload/jquery.fileupload', 'js');
 include_file('3rdparty', 'jquery.tablesorter/theme.bootstrap', 'css');
 include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.min', 'js');
 include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'js');
+include_file('3rdparty', 'jquery.tablesorter/parsers/parser-input-select.min', 'js');
 include_file('3rdparty', 'datetimepicker/jquery.datetimepicker', 'js');
 include_file('3rdparty', 'datetimepicker/jquery.datetimepicker', 'css');
 include_file('3rdparty', 'jquery.cron/jquery.cron.min', 'js');
@@ -241,11 +242,11 @@ if (!isConnect()) {
 					<nav class="navbar-collapse collapse">
 						<ul class="nav navbar-nav">
 							<li class="dropdown cursor">
-								<a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-home"></i> <span class="hidden-xs hidden-sm hidden-md">{{Accueil}}</span> <b class="caret"></b></a>
+								<a class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-home"></i> <span class="hidden-xs hidden-sm hidden-md">{{Accueil}}</span> <b class="caret"></b></a>
 								<ul class="dropdown-menu">
 
 									<li class="dropdown-submenu">
-										<a data-toggle="dropdown" id="bt_gotoDashboard" href="index.php?v=d&p=dashboard"><i class="fa fa-dashboard"></i> {{Dashboard}}</a>
+										<a data-toggle="dropdown" id="bt_gotoDashboard" href="index.php?v=d&p=dashboard"><i class="fas fa-tachometer-alt"></i> {{Dashboard}}</a>
 										<ul class="dropdown-menu scrollable-menu" role="menu" style="height: auto;max-height: 600px; overflow-x: hidden;">
 											<?php
 foreach (jeeObject::buildTree(null, false) as $object_li) {
@@ -255,7 +256,7 @@ foreach (jeeObject::buildTree(null, false) as $object_li) {
 										</ul>
 									</li>
 									<li class="dropdown-submenu">
-										<a data-toggle="dropdown" id="bt_gotoView"><i class="fa fa-picture-o"></i> {{Vue}}</a>
+										<a data-toggle="dropdown" id="bt_gotoView"><i class="fas fa-picture-o"></i> {{Vue}}</a>
 										<ul class="dropdown-menu">
 											<?php
 foreach (view::all() as $view_menu) {
@@ -265,7 +266,7 @@ foreach (view::all() as $view_menu) {
 										</ul>
 									</li>
 									<li class="dropdown-submenu">
-										<a data-toggle="dropdown" id="bt_gotoPlan"><i class="fa fa-paint-brush"></i> {{Design}}</a>
+										<a data-toggle="dropdown" id="bt_gotoPlan"><i class="fas fa-paint-brush"></i> {{Design}}</a>
 										<ul class="dropdown-menu">
 											<?php
 foreach (planHeader::all() as $plan_menu) {
@@ -275,7 +276,7 @@ foreach (planHeader::all() as $plan_menu) {
 										</ul>
 									</li>
 																		<li class="dropdown-submenu">
-										<a data-toggle="dropdown" id="bt_gotoPlan3d"><i class="fa fa-cubes"></i> {{Design 3D}}</a>
+										<a data-toggle="dropdown" id="bt_gotoPlan3d"><i class="fas fa-cubes"></i> {{Design 3D}}</a>
 										<ul class="dropdown-menu">
 											<?php
 foreach (plan3dHeader::all() as $plan3d_menu) {
@@ -290,26 +291,26 @@ echo $panel_menu;
 								</ul>
 							</li>
 							<li class="dropdown cursor">
-								<a data-toggle="dropdown"><i class="fa fa-stethoscope"></i> <span class="hidden-xs hidden-sm hidden-md">{{Analyse}}</span> <b class="caret"></b></a>
+								<a data-toggle="dropdown"><i class="fas fa-stethoscope"></i> <span class="hidden-xs hidden-sm hidden-md">{{Analyse}}</span> <b class="caret"></b></a>
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="index.php?v=d&p=history"><i class="fa fa-bar-chart-o"></i> {{Historique}}</a></li>
+									<li><a href="index.php?v=d&p=history"><i class="fas fa-bar-chart-o"></i> {{Historique}}</a></li>
 									<?php
 if (isConnect('admin')) {
 			?>
-										<li><a href="index.php?v=d&p=report"><i class="fa fa-newspaper-o"></i> {{Rapport}}</a></li>
+										<li><a href="index.php?v=d&p=report"><i class="fas fa-newspaper-o"></i> {{Rapport}}</a></li>
 										<?php
 }
 		?>
 									<li class="divider"></li>
-									<li><a href="#" id="bt_showEventInRealTime"><i class="fa fa-tachometer"></i> {{Temps réel}}</a></li>
+									<li><a href="#" id="bt_showEventInRealTime"><i class="fas fa-tachometer-alt"></i> {{Temps réel}}</a></li>
 									<?php
 if (isConnect('admin')) {
 			?>
-										<li><a href="#" id="bt_showNoteManager"><i class="fa fa-sticky-note-o"></i> {{Note}}</a></li>
-										<li><a href="index.php?v=d&p=log"><i class="fa fa-file-o"></i> {{Logs}}</a></li>
-										<li><a href="index.php?v=d&p=eqAnalyse"><i class="fa fa-battery-full"></i> {{Equipements}}</a></li>
+										<li><a href="#" id="bt_showNoteManager"><i class="fas fa-sticky-note"></i> {{Note}}</a></li>
+										<li><a href="index.php?v=d&p=log"><i class="far fa-file"></i> {{Logs}}</a></li>
+										<li><a href="index.php?v=d&p=eqAnalyse"><i class="fas fa-battery-full"></i> {{Equipements}}</a></li>
 										<li class="divider"></li>
-										<li><a href="index.php?v=d&p=health"><i class="fa fa-medkit"></i> {{Santé}}</a></li>
+										<li><a href="index.php?v=d&p=health"><i class="fas fa-medkit"></i> {{Santé}}</a></li>
 										<?php
 }
 		?>
@@ -319,18 +320,18 @@ if (isConnect('admin')) {
 if (isConnect('admin')) {
 			?>
 								<li class="dropdown cursor">
-									<a data-toggle="dropdown"><i class="fa fa-wrench"></i> <span class="hidden-xs hidden-sm hidden-md">{{Outils}}</span> <b class="caret"></b></a>
+									<a data-toggle="dropdown"><i class="fas fa-wrench"></i> <span class="hidden-xs hidden-sm hidden-md">{{Outils}}</span> <b class="caret"></b></a>
 									<ul class="dropdown-menu" role="menu">
-										<li><a href="index.php?v=d&p=object"><i class="fa fa-picture-o"></i> {{Objets}}</a></li>
-										<li><a href="index.php?v=d&p=interact"><i class="fa fa-comments-o"></i> {{Interactions}}</a></li>
-										<li><a href="index.php?v=d&p=display"><i class="fa fa-th"></i> {{Résumé domotique}}</a></li>
+										<li><a href="index.php?v=d&p=object"><i class="fas fa-picture-o"></i> {{Objets}}</a></li>
+										<li><a href="index.php?v=d&p=interact"><i class="far fa-comments"></i> {{Interactions}}</a></li>
+										<li><a href="index.php?v=d&p=display"><i class="fas fa-th"></i> {{Résumé domotique}}</a></li>
 										<li><a href = "index.php?v=d&p=scenario"><i class = "fa fa-cogs"></i> {{Scénarios}}</a></li>
 									</ul>
 								</li>
 								<li class="dropdown cursor">
-									<a data-toggle="dropdown"><i class="fa fa-tasks"></i> <span class="hidden-xs hidden-sm hidden-md">{{Plugins}}</span> <b class="caret"></b></a>
+									<a data-toggle="dropdown"><i class="fas fa-tasks"></i> <span class="hidden-xs hidden-sm hidden-md">{{Plugins}}</span> <b class="caret"></b></a>
 									<ul class="dropdown-menu" role="menu">
-										<li><a href="index.php?v=d&p=plugin"><i class="fa fa-tags"></i> {{Gestion des plugins}}</a></li>
+										<li><a href="index.php?v=d&p=plugin"><i class="fas fa-tags"></i> {{Gestion des plugins}}</a></li>
 										<li role="separator" class="divider"></li>
 										<?php
 echo $plugin_menu;
@@ -367,43 +368,43 @@ $nbMessage = message::nbMessage();
 									<?php if (isConnect('admin')) {
 			?>
 										<li class="dropdown">
-											<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-cogs"></i><span class="caret"></span></a>
+											<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fas fa-cogs"></i><span class="caret"></span></a>
 											<ul class="dropdown-menu">
-												<li><a href="index.php?v=d&p=administration" tabindex="0"><i class="fa fa-wrench"></i> {{Configuration}}</a></li>
-												<li><a href="index.php?v=d&p=backup"><i class="fa fa-floppy-o"></i> {{Sauvegardes}}</a></li>
-												<li><a href="index.php?v=d&p=update"><i class="fa fa-refresh"></i> {{Centre de mise à jour}}</a></li>
-												<li><a href="index.php?v=d&p=cron"><i class="fa fa-tasks"></i> {{Moteur de tâches}}</a></li>
-												<li><a href="index.php?v=d&p=custom"><i class="fa fa-pencil-square-o"></i> {{Personnalisation avancée}}</a></li>
+												<li><a href="index.php?v=d&p=administration" tabindex="0"><i class="fas fa-wrench"></i> {{Configuration}}</a></li>
+												<li><a href="index.php?v=d&p=backup"><i class="fas fa-floppy-o"></i> {{Sauvegardes}}</a></li>
+												<li><a href="index.php?v=d&p=update"><i class="fas fa-refresh"></i> {{Centre de mise à jour}}</a></li>
+												<li><a href="index.php?v=d&p=cron"><i class="fas fa-tasks"></i> {{Moteur de tâches}}</a></li>
+												<li><a href="index.php?v=d&p=custom"><i class="fas fa-pencil-alt-square-o"></i> {{Personnalisation avancée}}</a></li>
 												<li role="separator" class="divider"></li>
-												<li><a href="index.php?v=d&p=user"><i class="fa fa-users"></i> {{Utilisateurs}}</a></li>
+												<li><a href="index.php?v=d&p=user"><i class="fas fa-users"></i> {{Utilisateurs}}</a></li>
 											</ul>
 										</li>
 										<?php }
 		?>
 										<li class="dropdown">
 											<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-												<i class="fa fa-user"></i>
+												<i class="fas fa-user"></i>
 												<span class="caret"></span>
 											</a>
 											<ul class="dropdown-menu">
-												<li><a href="index.php?v=d&p=profils"><i class="fa fa-briefcase"></i> {{Profil}} <?php echo $_SESSION['user']->getLogin(); ?></a></li>
+												<li><a href="index.php?v=d&p=profils"><i class="fas fa-briefcase"></i> {{Profil}} <?php echo $_SESSION['user']->getLogin(); ?></a></li>
 												<li class="divider"></li>
-												<li><a href="index.php?v=m" class="noOnePageLoad"><i class="fa fa-mobile"></i> {{Version mobile}}</a></li>
+												<li><a href="index.php?v=m" class="noOnePageLoad"><i class="fas fa-mobile"></i> {{Version mobile}}</a></li>
 												<li class="divider"></li>
-												<li><a href="#" id="bt_jeedomAbout"><i class="fa fa-info-circle"></i> {{Version}} v<?php echo jeedom::version(); ?></a></li>
+												<li><a href="#" id="bt_jeedomAbout"><i class="fas fa-info-circle"></i> {{Version}} v<?php echo jeedom::version(); ?></a></li>
 												<?php	if (jeedom::isCapable('sudo') && isConnect('admin')) {
 			echo '<li class="divider"></li>';
-			echo '<li class="cursor"><a id="bt_rebootSystem" state="0"><i class="fa fa-repeat"></i> {{Redémarrer}}</a></li>';
-			echo '<li class="cursor"><a id="bt_haltSystem" state="0"><i class="fa fa-power-off"></i> {{Eteindre}}</a></li>';
+			echo '<li class="cursor"><a id="bt_rebootSystem" state="0"><i class="fas fa-repeat"></i> {{Redémarrer}}</a></li>';
+			echo '<li class="cursor"><a id="bt_haltSystem" state="0"><i class="fas fa-power-off"></i> {{Eteindre}}</a></li>';
 
 		}
 		?>
 												<li class="divider"></li>
-												<li><a href="index.php?v=d&logout=1" class="noOnePageLoad"><i class="fa fa-sign-out"></i> {{Se déconnecter}}</a></li>
+												<li><a href="index.php?v=d&logout=1" class="noOnePageLoad"><i class="fas fa-sign-out-alt"></i> {{Se déconnecter}}</a></li>
 											</ul>
 										</li>
 										<li>
-											<a id="bt_getHelpPage" class="cursor" data-plugin="<?php echo init('m'); ?>" data-page="<?php echo init('p'); ?>" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>
+											<a id="bt_getHelpPage" class="cursor" data-plugin="<?php echo init('m'); ?>" data-page="<?php echo init('p'); ?>" title="{{Aide sur la page en cours}}"><i class="fas fa-question-circle" ></i></a>
 										</li>
 										<?php if (isConnect('admin')) {
 			?>
@@ -411,11 +412,11 @@ $nbMessage = message::nbMessage();
 												<?php if (isset($plugin) && is_object($plugin) && $plugin->getIssue() != '') {
 				?>
 													<a target="_blank" href="<?php echo $plugin->getIssue() ?>" title="{{Envoyer un rapport de bug}}">
-														<i class="fa fa-exclamation-circle" ></i>
+														<i class="fas fa-exclamation-circle" ></i>
 													</a>
 													<?php } else {?>
 													<a class="bt_reportBug cursor" title="{{Envoyer un rapport de bug}}">
-														<i class="fa fa-exclamation-circle" ></i>
+														<i class="fas fa-exclamation-circle" ></i>
 													</a>
 													<?php }?>
 												</li>
@@ -447,13 +448,13 @@ $nbMessage = message::nbMessage();
 										</div>
 										<nav class="navbar-collapse collapse">
 											<ul class="nav navbar-nav">
-												<li><a href="index.php?v=d&p=system&rescue=1"><i class="fa fa-terminal"></i> {{Système}}</a></li>
-												<li><a href="index.php?v=d&p=database&rescue=1"><i class="fa fa-database"></i> {{Database}}</a></li>
-												<li><a href="index.php?v=d&p=editor&rescue=1"><i class="fa fa-indent"></i> {{Editeur}}</a></li>
-												<li><a href="index.php?v=d&p=custom&rescue=1"><i class="fa fa-pencil-square-o"></i> {{Personnalisation}}</a></li>
-												<li><a href="index.php?v=d&p=backup&rescue=1"><i class="fa fa-floppy-o"></i> {{Sauvegarde}}</a></li>
-												<li><a href="index.php?v=d&p=cron&rescue=1"><i class="fa fa-tasks"></i> {{Moteur de tâches}}</a></li>
-												<li><a href="index.php?v=d&p=log&rescue=1"><i class="fa fa-file-o"></i> {{Log}}</a></li>
+												<li><a href="index.php?v=d&p=system&rescue=1"><i class="fas fa-terminal"></i> {{Système}}</a></li>
+												<li><a href="index.php?v=d&p=database&rescue=1"><i class="fas fa-database"></i> {{Database}}</a></li>
+												<li><a href="index.php?v=d&p=editor&rescue=1"><i class="fas fa-indent"></i> {{Editeur}}</a></li>
+												<li><a href="index.php?v=d&p=custom&rescue=1"><i class="fas fa-pencil-alt-square-o"></i> {{Personnalisation}}</a></li>
+												<li><a href="index.php?v=d&p=backup&rescue=1"><i class="fas fa-floppy-o"></i> {{Sauvegarde}}</a></li>
+												<li><a href="index.php?v=d&p=cron&rescue=1"><i class="fas fa-tasks"></i> {{Moteur de tâches}}</a></li>
+												<li><a href="index.php?v=d&p=log&rescue=1"><i class="far fa-file"></i> {{Log}}</a></li>
 											</ul>
 
 										</nav>

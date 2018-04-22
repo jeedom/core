@@ -15,7 +15,7 @@
             <div class="checkbox">
 		        <label><input type="checkbox" id="cb_storeConnection">{{Enregistrer cet ordinateur}}</label>
             </div>
-		    <button class="btn-lg btn-primary btn-block" id="bt_login_validate"><i class="fa fa-sign-in"></i> {{Connexion}}</button>
+		    <button class="btn-lg btn-primary btn-block" id="bt_login_validate"><i class="fas fa-sign-in-alt"></i> {{Connexion}}</button>
             <a href="https://jeedom.github.io/documentation/howto/fr_FR/reset.password" target="_blank">{{J'ai perdu mon mot de passe}}</a>
         </div>
     </div>

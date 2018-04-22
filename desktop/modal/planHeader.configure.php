@@ -15,7 +15,7 @@ sendVarToJS('planHeader', utils::o2a($planHeader));
 <div id="div_planHeaderConfigure">
     <form class="form-horizontal">
         <fieldset>
-            <legend><i class="fa fa-cog"></i> {{Général}}<a class='btn btn-success btn-xs pull-right cursor' style="color: white;" id='bt_saveConfigurePlanHeader'><i class="fa fa-check"></i> {{Sauvegarder}}</a></legend>
+            <legend><i class="fas fa-cog"></i> {{Général}}<a class='btn btn-success btn-xs pull-right cursor' style="color: white;" id='bt_saveConfigurePlanHeader'><i class="fas fa-check"></i> {{Sauvegarder}}</a></legend>
             <input type="text"  class="planHeaderAttr form-control" data-l1key="id" style="display: none;"/>
             <div class="form-group">
                 <label class="col-lg-4 control-label">{{Nom}}</label>
@@ -47,16 +47,16 @@ sendVarToJS('planHeader', utils::o2a($planHeader));
                     <div class="planHeaderAttr" data-l1key="configuration" data-l2key="icon" ></div>
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4">
-                    <a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fa fa-flag"></i> {{Choisir}}</a>
+                    <a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-lg-4 control-label">{{Image}}</label>
                 <div class="col-lg-8">
                   <span class="btn btn-default btn-file">
-                    <i class="fa fa-cloud-upload"></i> {{Envoyer}}<input  id="bt_uploadImage" type="file" name="file" style="display: inline-block;">
+                    <i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  id="bt_uploadImage" type="file" name="file" style="display: inline-block;">
                 </span>
-                <a class="btn btn-danger" id="bt_removeBackgroundImage"><i class="fa fa-trash"></i> {{Supprimer l'image}}</a>
+                <a class="btn btn-danger" id="bt_removeBackgroundImage"><i class="fas fa-trash"></i> {{Supprimer l'image}}</a>
             </div>
         </div>
     </fieldset>

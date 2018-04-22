@@ -13,7 +13,7 @@ if (!isConnect()) {
             <th style="width: 50px;">#</th>
             <th style="width: 150px;">{{Objet}}</th>
             <th style="width: 150px;">{{Nom}}</th>
-            <th>{{Affichage}}</th>
+            <th data-sorter="false" data-filter="false">{{Affichage}}</th>
         </tr>
     </thead>
     <tbody>

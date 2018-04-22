@@ -1,8 +1,8 @@
 function initCron() {
   var rightPanel = '<ul data-role="listview" class="ui-icon-alt">';
-  rightPanel += '<li><a id="bt_refreshCron" href="#"><i class="fa fa-refresh"></i> {{Rafraichir}}</a></li>';
-  rightPanel += '<li><a class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" href="index.php?v=d"><i class="fa fa-desktop"></i> {{Version desktop}}</a></li>';
-  rightPanel += '<li><a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="deamon" data-title="{{Démons}}"><i class="fa fa-bug" ></i> {{Démons}}</a></li>';
+  rightPanel += '<li><a id="bt_refreshCron" href="#"><i class="fas fa-refresh"></i> {{Rafraichir}}</a></li>';
+  rightPanel += '<li><a class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" href="index.php?v=d"><i class="fas fa-desktop"></i> {{Version desktop}}</a></li>';
+  rightPanel += '<li><a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="deamon" data-title="{{Démons}}"><i class="fas fa-bug" ></i> {{Démons}}</a></li>';
   rightPanel += '<li><a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="health" data-title="{{Santé}}"><i class="icon divers-caduceus3" ></i> {{Santé}}</a></li>';
   rightPanel += '<li><a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="alert" data-title="{{Alertes}}"><i class="icon jeedom-alerte" ></i> {{Alertes}}</a></li>';
   rightPanel += '</ul>';
@@ -34,8 +34,8 @@ function initCron() {
          html += crons[i].lastRun;
          html += '</td>';
          html += '<td>';
-         html += '<a class="bt_cronAction ui-btn ui-mini ui-btn-inline ui-btn-raised clr-primary" data-action="start" data-id="'+crons[i].id+'"><i class="fa fa-play"></i></a> ';
-         html += '<a class="bt_cronAction ui-btn ui-mini ui-btn-inline ui-btn-raised clr-warning" data-action="stop" data-id="'+crons[i].id+'"><i class="fa fa-stop"></i></a> ';
+         html += '<a class="bt_cronAction ui-btn ui-mini ui-btn-inline ui-btn-raised clr-primary" data-action="start" data-id="'+crons[i].id+'"><i class="fas fa-play"></i></a> ';
+         html += '<a class="bt_cronAction ui-btn ui-mini ui-btn-inline ui-btn-raised clr-warning" data-action="stop" data-id="'+crons[i].id+'"><i class="fas fa-stop"></i></a> ';
          html += '</td>';
          html += '</tr>';
        }

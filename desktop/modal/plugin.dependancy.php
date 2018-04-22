@@ -32,7 +32,7 @@ switch ($dependancy_info['state']) {
 		echo '<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>';
 		break;
 	case 'in_progress':
-		echo '<span class="label label-primary" style="font-size:1em;"><i class="fa fa-spinner fa-spin"></i> {{Installation en cours}}';
+		echo '<span class="label label-primary" style="font-size:1em;"><i class="fas fa-spinner fa-spin"></i> {{Installation en cours}}';
 		if (isset($dependancy_info['progression']) && $dependancy_info['progression'] !== '') {
 			echo ' - ' . $dependancy_info['progression'] . ' %';
 		}
@@ -48,7 +48,7 @@ switch ($dependancy_info['state']) {
 ?>
 			</td>
 			<td>
-				<a class="btn btn-warning btn-sm launchInstallPluginDependancy" style="position:relative;top:-5px;"><i class="fa fa-bicycle"></i> {{Relancer}}</a>
+				<a class="btn btn-warning btn-sm launchInstallPluginDependancy" style="position:relative;top:-5px;"><i class="fas fa-bicycle"></i> {{Relancer}}</a>
 			</td>
 			<td class="td_lastLaunchDependancy">
 				<?php echo $dependancy_info['last_launch'] ?>
@@ -74,7 +74,7 @@ switch ($dependancy_info['state']) {
 					case 'in_progress':
 					nok = true;
 					$("#div_plugin_dependancy").closest('.panel').removeClass('panel-success panel-danger').addClass('panel-info');
-					var html = '<span class="label label-primary" style="font-size:1em;"><i class="fa fa-spinner fa-spin"></i> {{Installation en cours}}';
+					var html = '<span class="label label-primary" style="font-size:1em;"><i class="fas fa-spinner fa-spin"></i> {{Installation en cours}}';
 					if(isset(data.progression) && data.progression !== ''){
 						html += ' - '+data.progression+' %';
 					}

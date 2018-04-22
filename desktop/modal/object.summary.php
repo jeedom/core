@@ -30,14 +30,14 @@ foreach ($allObject as $object) {
 		echo '<td><span class="label label-info" style="font-size : 1em;"></span></td>';
 	}
 	if ($object->getIsVisible()) {
-		echo '<td><span class="label label-success" style="font-size : 1em;" title="{{Oui}}"><i class="fa fa-check"></i></span></td>';
+		echo '<td><span class="label label-success" style="font-size : 1em;" title="{{Oui}}"><i class="fas fa-check"></i></span></td>';
 	} else {
-		echo '<td><span class="label label-danger" style="font-size : 1em;" title="{{Non}}"><i class="fa fa-times"></i></span></td>';
+		echo '<td><span class="label label-danger" style="font-size : 1em;" title="{{Non}}"><i class="fas fa-times"></i></span></td>';
 	}
 	if ($object->getConfiguration("hideOnDashboard", 0) == 1) {
-		echo '<td><span class="label label-success" style="font-size : 1em;" title="{{Oui}}"><i class="fa fa-check"></i></span></td>';
+		echo '<td><span class="label label-success" style="font-size : 1em;" title="{{Oui}}"><i class="fas fa-check"></i></span></td>';
 	} else {
-		echo '<td><span class="label label-danger" style="font-size : 1em;" title="{{Non}}"><i class="fa fa-times"></i></span></td>';
+		echo '<td><span class="label label-danger" style="font-size : 1em;" title="{{Non}}"><i class="fas fa-times"></i></span></td>';
 	}
 	echo '<td>';
 	foreach (config::byKey('object:summary') as $key => $value) {

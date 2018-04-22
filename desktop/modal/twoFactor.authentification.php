@@ -19,7 +19,7 @@ $google2fa_url = $google2fa->getQRCodeGoogleUrl(
 ?>
 	<div id="div_alertTwoFactorAuthentification"></div>
 	<div class="panel panel-warning">
-		<div class="panel-heading"><h3 class="panel-title"><i class="fa fa-cogs"></i> {{Etape 1 : Installation sur le téléphone}}</h3></div>
+		<div class="panel-heading"><h3 class="panel-title"><i class="fas fa-cogs"></i> {{Etape 1 : Installation sur le téléphone}}</h3></div>
 		<div class="panel-body">
 			{{La vérification en 2 étapes fournit une couche supplémentaire de protection pour votre compte}} <?php echo config::byKey('product_name'); ?>{{. Une fois la vérification en 2 étapes configurée, votre mot de passe sera nécessaire en plus d’un code de vérification unique pour vous connecter à}} <?php echo config::byKey('product_name'); ?>{{. Veuillez noter qu’un appareil mobile sera nécessaire pour générer des codes de vérification.}}
 			<hr/>
@@ -31,7 +31,7 @@ $google2fa_url = $google2fa->getQRCodeGoogleUrl(
 	</div>
 
 	<div class="panel panel-primary">
-		<div class="panel-heading"><h3 class="panel-title"><i class="fa fa-cogs"></i> {{Etape 2 : Configuration}}</h3></div>
+		<div class="panel-heading"><h3 class="panel-title"><i class="fas fa-cogs"></i> {{Etape 2 : Configuration}}</h3></div>
 		<div class="panel-body">
 			<center>
 				{{Ouvrez et configurez l’application d’authentification en scannant le code QR ci-dessous.}}<br/>
@@ -42,7 +42,7 @@ $google2fa_url = $google2fa->getQRCodeGoogleUrl(
 	</div>
 
 	<div class="panel panel-success">
-		<div class="panel-heading"><h3 class="panel-title"><i class="fa fa-cogs"></i> {{Etape 3 : vérification}}</h3></div>
+		<div class="panel-heading"><h3 class="panel-title"><i class="fas fa-cogs"></i> {{Etape 3 : vérification}}</h3></div>
 		<div class="panel-body">
 			<form class="form-horizontal">
 				<fieldset>

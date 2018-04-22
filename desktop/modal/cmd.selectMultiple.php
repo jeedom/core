@@ -10,8 +10,8 @@ if (!is_object($cmd)) {
 
   <div style="display: none;" id="md_cmdConfigureSelectMultipleAlert"></div>
   <div>
-  	<a class="btn btn-default" id="bt_cmdConfigureSelectMultipleAlertToogle" data-state="0"><i class="fa fa-check-circle-o"></i> {{Basculer}}</a>
-  	<a class="btn btn-success pull-right" id="bt_cmdConfigureSelectMultipleAlertApply" style="color : white;" ><i class="fa fa-check"></i> {{Valider}}</a>
+  	<a class="btn btn-default" id="bt_cmdConfigureSelectMultipleAlertToogle" data-state="0"><i class="far fa-check-circle"></i> {{Basculer}}</a>
+  	<a class="btn btn-success pull-right" id="bt_cmdConfigureSelectMultipleAlertApply" style="color : white;" ><i class="fas fa-check"></i> {{Valider}}</a>
   </div>
   <br/>
   <table class="table table-bordered table-condensed tablesorter" id="table_cmdConfigureSelectMultiple">

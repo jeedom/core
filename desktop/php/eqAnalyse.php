@@ -16,11 +16,11 @@ usort($list, function ($a, $b) {
 ?>
 <br/>
 <ul class="nav nav-tabs" role="tablist" id="ul_tabBatteryAlert">
-	<li role="presentation" class="active batteries"><a href="#battery" aria-controls="battery" role="tab" data-toggle="tab"><i class="fa fa-battery-full"></i> {{Batteries}}</a></li>
-	<li role="presentation" class="alerts"><a href="#alertEqlogic" aria-controls="alertEqlogic" role="tab" data-toggle="tab"><i class="fa fa-exclamation-triangle"></i> {{Modules en alerte}}</a></li>
-	<li role="presentation"><a href="#actionCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fa fa-gears"></i> {{Actions définies}}</a></li>
-	<li role="presentation"><a href="#alertCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fa fa-bell"></i> {{Alertes définies}}</a></li>
-	<li role="presentation"><a href="#deadCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fa fa-snapchat-ghost"></i> {{Commandes orphelines}}</a></li>
+	<li role="presentation" class="active batteries"><a href="#battery" aria-controls="battery" role="tab" data-toggle="tab"><i class="fas fa-battery-full"></i> {{Batteries}}</a></li>
+	<li role="presentation" class="alerts"><a href="#alertEqlogic" aria-controls="alertEqlogic" role="tab" data-toggle="tab"><i class="fas fa-exclamation-triangle"></i> {{Modules en alerte}}</a></li>
+	<li role="presentation"><a href="#actionCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fas fa-gears"></i> {{Actions définies}}</a></li>
+	<li role="presentation"><a href="#alertCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fas fa-bell"></i> {{Alertes définies}}</a></li>
+	<li role="presentation"><a href="#deadCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fas fa-snapchat-ghost"></i> {{Commandes orphelines}}</a></li>
 </ul>
 
 <div class="tab-content">
@@ -79,7 +79,7 @@ foreach (eqLogic::all() as $eqLogic) {
 			echo trim($actions, '|');
 			echo '</td>';
 			echo '<td>';
-			echo '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fa fa-cogs"></i></a>';
+			echo '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></a>';
 			echo '</td>';
 			echo '</tr>';
 		}
@@ -94,7 +94,7 @@ foreach (eqLogic::all() as $eqLogic) {
 			echo trim($actions, '|');
 			echo '</td>';
 			echo '<td>';
-			echo '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fa fa-cogs"></i></a>';
+			echo '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></a>';
 			echo '</td>';
 			echo '</tr>';
 		}
@@ -107,7 +107,7 @@ foreach (eqLogic::all() as $eqLogic) {
 			echo trim($actions, '|');
 			echo '</td>';
 			echo '<td>';
-			echo '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fa fa-cogs"></i></a>';
+			echo '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></a>';
 			echo '</td>';
 			echo '</tr>';
 		}
@@ -120,7 +120,7 @@ foreach (eqLogic::all() as $eqLogic) {
 			echo 'Confirmation de l\'action' . $code;
 			echo '</td>';
 			echo '<td>';
-			echo '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fa fa-cogs"></i></a>';
+			echo '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></a>';
 			echo '</td>';
 			echo '</tr>';
 		}
@@ -129,7 +129,7 @@ foreach (eqLogic::all() as $eqLogic) {
 			echo 'Code de confirmation de l\'action';
 			echo '</td>';
 			echo '<td>';
-			echo '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fa fa-cogs"></i></a>';
+			echo '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></a>';
 			echo '</td>';
 			echo '</tr>';
 		}
