@@ -32,8 +32,8 @@ class cache {
 
 	/*     * ***********************Methode static*************************** */
 
-	public static function getFolder() {
-		$return = jeedom::getTmpFolder('cache');
+	public static function getFolder($_subFolder = '') {
+		$return = jeedom::getTmpFolder('cache' . $_subFolder);
 		if (!file_exists($return)) {
 			mkdir($return, 0777);
 		}
@@ -99,7 +99,7 @@ class cache {
 	 * @static
 	 * @return type
 	 */
-	public static function getCache() {
+	public static function getCache($_subFolder = '') {
 		if (self::$cache !== null) {
 			return self::$cache;
 		}
@@ -114,10 +114,10 @@ class cache {
 		}
 		switch ($engine) {
 			case 'FilesystemCache':
-				self::$cache = new \Doctrine\Common\Cache\FilesystemCache(self::getFolder());
+				self::$cache = new \Doctrine\Common\Cache\FilesystemCache(self::getFolder($_subFolder));
 				break;
 			case 'PhpFileCache':
-				self::$cache = new \Doctrine\Common\Cache\FilesystemCache(self::getFolder());
+				self::$cache = new \Doctrine\Common\Cache\FilesystemCache(self::getFolder($_subFolder));
 				break;
 			case 'MemcachedCache':
 				$memcached = new Memcached();
@@ -132,7 +132,7 @@ class cache {
 				self::$cache->setRedis($redis);
 				break;
 			default:
-				self::$cache = new \Doctrine\Common\Cache\FilesystemCache(self::getFolder());
+				self::$cache = new \Doctrine\Common\Cache\FilesystemCache(self::getFolder($_subFolder));
 				break;
 		}
 		return self::$cache;
