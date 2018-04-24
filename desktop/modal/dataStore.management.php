@@ -10,7 +10,7 @@ sendVarToJS('dataStore_link_id', init('link_id', -1));
 ?>
 <div style="display: none;" id="div_dataStoreManagementAlert"></div>
 <a class="btn btn-default" id="bt_dataStoreManagementAdd" style="margin-bottom: 5px;"><i class="fa fa-plus"></i> {{Ajouter}}</a>
-<table id="table_dataStore" class="table table-condensed tabl-bordered" style="width: 100%">
+<table id="table_dataStore" class="table table-condensed table-bordered tablesorter" style="width: 100%">
     <thead>
         <tr>
             <th>{{Nom}}</th>
