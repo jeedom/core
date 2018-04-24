@@ -13,6 +13,11 @@ Changelog
 -   Ajout d'option dans la fenetre de generation de cron
 -   Un message est maintenant ajouté si une expression invalide est trouvée lors de l'éxecution d'un scénario
 
+3.2.3
+=====
+
+-   Amélioration de l'export des graphiques et de l'affichage en mode table
+
 3.2.2
 =====
 
