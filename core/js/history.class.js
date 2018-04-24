@@ -352,7 +352,10 @@ jeedom.history.drawChart = function (_params) {
                     href: '',
                 },
                 navigator: {
-                    enabled:  _params.showNavigator
+                    enabled:  _params.showNavigator,
+                    series: { 
+                        includeInCSVExport: false 
+                    }
                 },
                 exporting: { 
                     enabled: _params.enableExport || ($.mobile) ? false : true 
