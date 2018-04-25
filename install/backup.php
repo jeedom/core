@@ -220,6 +220,14 @@ try {
 	echo "Nom de la sauvegarde : " . $backup_dir . '/' . $backup_name . "\n";
 
 	try {
+		echo 'Vérifiez les droits sur les fichiers...';
+		jeedom::cleanFileSytemRight();
+		echo "OK\n";
+	} catch (Exception $e) {
+		echo "NOK\n";
+	}
+
+	try {
 		echo 'Envoi l\'événement de fin de sauvegarde...';
 		jeedom::event('end_backup');
 		echo "OK\n";
