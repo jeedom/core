@@ -632,6 +632,7 @@ class repo_market {
 	public static function postJsonRpc(&$_result) {
 		if (is_array($_result)) {
 			$restart_dns = false;
+			$restart_monitoring = false;
 			if (isset($_result['register::dnsToken']) && config::byKey('dns::token') != $_result['register::dnsToken']) {
 				config::save('dns::token', $_result['register::dnsToken']);
 				$restart_dns = true;
