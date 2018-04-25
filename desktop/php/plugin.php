@@ -92,7 +92,7 @@ foreach (plugin::listPlugin() as $plugin) {
  <div class="row">
   <div class="col-md-6 col-sm-12">
     <div class="panel panel-default">
-     <div class="panel-heading"><h3 class="panel-title"><i class="far fa-circle-notch"></i> {{Etat}}</h3></div>
+     <div class="panel-heading"><h3 class="panel-title"><i class="fas fa-circle-notch"></i> {{Etat}}</h3></div>
      <div class="panel-body">
       <div id="div_plugin_toggleState"></div>
       <form class="form-horizontal">

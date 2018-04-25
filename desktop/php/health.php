@@ -6,7 +6,7 @@ $starttime = getmicrotime();
 ?>
 <br/>
 <legend style=""><i class="icon divers-caduceus3" style=""></i> {{Santé de Jeedom}}
-	<i class="fas fa-tachometer-alt"-alt pull-right cursor" id="bt_benchmarkJeedom"></i>
+	<i class="fas fa-tachometer-alt pull-right cursor" id="bt_benchmarkJeedom"></i>
 </legend>
 <table class="table table-condensed table-bordered">
 	<thead><tr><th style="width : 250px;"></th><th style="width : 500px;">{{Résultat}}</th><th style="">{{Conseil}}</th></tr></thead>

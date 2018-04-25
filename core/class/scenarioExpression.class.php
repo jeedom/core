@@ -1036,7 +1036,7 @@ class scenarioExpression {
 					} else {
 						$replace2[$replace_string] = call_user_func_array(__CLASS__ . "::" . $function, $arguments);
 					}
-				}if (class_exists('userFunction') && method_exists('userFunction', $function)) {
+				} else if (class_exists('userFunction') && method_exists('userFunction', $function)) {
 					$replace2[$replace_string] = call_user_func_array('userFunction' . "::" . $function, $arguments);
 				} else {
 					if (function_exists($function)) {
