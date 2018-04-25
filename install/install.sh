@@ -50,7 +50,7 @@ step_2_mainpackage() {
 	apt-get -y install software-properties-common
 	apt-get -y install libexpat1 ssl-cert
 	apt-get -y install apt-transport-https
-	apt-get -y install xvfb cutycapt
+	apt-get -y install xvfb cutycapt xauth
 	apt-get -y install duplicity
 	add-apt-repository non-free
 	apt-get update
