@@ -10,7 +10,7 @@ Changelog
 3.2.2
 =====
 
--   Suppression de l'ancien systeme de mise à jour des widget (déprécié depuis la version 3.0). Attention si votre widget n'utilise pas le nouveau systeme il y a des risques de disfonctionnement (dédoublement de celui-ci en l'occurence). Exemple de widget [ici](https://github.com/jeedom/core/tree/beta/core/template/dashboard)
+-   Suppression de l'ancien systeme de mise à jour des widget (déprécié depuis la version 3.0). Attention si votre widget n'utilise pas le nouveau systeme il y a des risques de dysfonctionnement (dédoublement de celui-ci en l’occurrence). Exemple de widget [ici](https://github.com/jeedom/core/tree/beta/core/template/dashboard)
 -   Possibilité d'afficher les graphiques sous forme de tableau ou d'exporter ceux-ci en csv ou xls
 
 -   Les utilisateurs peuvent maintenant ajouter leur propre fonction php pour les scénarios. Voir documentation des scénarios pour la mise en place
