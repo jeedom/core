@@ -62,7 +62,7 @@
         "Exécution du sous-élément de type [action] : ": "Ejecución de sub-elemento de tipo [acción]:"
     },
     "core/class/scenarioExpression.class.php": {
-        "Evaluation de la condition : [": "Evaluación de la condición: [",
+        "Evaluation de la condition : [": "Evaluación de la condición : [",
         "Vrai": "Verdadero",
         "Action stop": "Parada de acción",
         "Exécution d'un bloc élément : ": "Ejecución de un bloque de elementos :",
@@ -653,7 +653,7 @@
         "Supprimer les IPs bannies": "Eliminar IPs prohibidas",
         "Supprimer": "Borrar",
         "Interaction automatique, contextuelle & avertissement": "Interacción automática, contextuales y de alerta",
-        "Activer les interactions \"previens moi\"": "Permitir a las interacciones de los avisarme '",
+        "Activer les interactions \"previens moi\"": "Habilitar las interacciones \"notifíqueme\"",
         "Réponse de type \"previens moi\" si la phrase commence par": "Tipo de respuesta \"Advertirme\" si comienza la sentencia",
         "Commande de retour par défaut": "orden de restitución por defecto",
         "Paramètre de prerender": "prerender parámetro",
@@ -677,7 +677,7 @@
         "Regex générale d'exclusion pour les interactions": "exclusión regex general para la interacción",
         "Activer les interactions automatiques": "Habilitar interacciones automatizadas",
         "Activer les réponses contextuelles": "Habilitar respuestas contextuales",
-        "Activer les interactions \"préviens moi\"": "Permitir a las interacciones de los avisarme '",
+        "Activer les interactions \"préviens moi\"": "Habilitar las interacciones \"notifíqueme\"",
         "Réponse de type \"préviens moi\" si la phrase commence par": "Tipo de respuesta \"avisarme\" si comienza la sentencia",
         "Synonymes pour les objets": "Sinónimos de objetos",
         "Synonymes pour les équipements": "Sinónimos de equipos",
@@ -1129,7 +1129,7 @@
         "Autoriser ou non la répétition des actions si l\\'évaluation de la condition est la même que la précédente": "Permitir o no permitir la repetición de acciones si la evaluación de la condición es la misma que la anterior",
         "ALORS": "ENTONCES",
         "Ajouter": "Añadir",
-        "Bloc": "Bloquear",
+        "Bloc": "Bloque",
         "Action": "Acción",
         "SINON": "SI NO",
         "Décocher pour désactiver l\\'élément": "Desactive para desactivar elemento",
@@ -1142,12 +1142,12 @@
         "Graphique de lien": "Gráfico de enlace",
         "Avancé": "Avanzado",
         "Le bloc Sinon ne peut être supprimé s'il contient des éléments": "Si el bloque no se puede eliminar si contiene elementos",
-        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Compruebe que la orden \\ 's ejecutado en paralelo a otras acciones",
-        "Décocher pour desactiver l\\'action": "Desactive la casilla para desactivar Acción 's \\",
+        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Compruebe que el comando se ejecuta en paralelo con las otras acciones",
+        "Décocher pour desactiver l\\'action": "Desactive la casilla para desactivar Acción",
         "Décocher pour désactiver l\\'action": "Desactive la casilla para desactivar \\ Acción",
         "Afficher/masquer le bloc Sinon": "Mostrar / ocultar bloque lo contrario",
-        "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Compruebe si la ejecución del comando \\ 's en otras acciones paralelas",
-        "Permet d\\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (ex. : SI/ALORS….)": "Lets \\ 'añadir elementos funcionales esenciales para crear sus escenarios (por ejemplo .. SI / ENTONCES ...)"
+        "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Verificar que el comando se ejecute en paralelo con las otras acciones",
+        "Permet d\\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (ex. : SI/ALORS….)": "Permite añadir elementos funcionales esenciales para crear sus escenarios (por ejemplo .. SI / ENTONCES ...)"
     },
     "core/template/scenario/report.default": {
         "Vue": "Vista",
@@ -1551,7 +1551,7 @@
         "Gerer les droits": "Gestión de permisos",
         "Régénérer clef API": "Regenerar clave de API",
         "Gérer les droits": "Gestión de derechos",
-        "Etes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "¿Seguro que desea cambiar la clave de API de usuario \\ 's?"
+        "Etes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "¿Está seguro de que desea cambiar la clave de la API del usuario?"
     },
     "desktop/modal/log.display.php": {
         "Supprimer": "Borrar",
@@ -2004,14 +2004,14 @@
         "Tester": "Probar",
         "Suivre dans la timeline": "Siga la línea de tiempo",
         "3 mois": "3 meses",
-        "Décocher pour desactiver l\\'action": "Desactive la casilla para desactivar Acción 's \\",
-        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Compruebe que la orden \\ 's ejecutado en paralelo a otras acciones",
+        "Décocher pour desactiver l\\'action": "Desactive la casilla para deshabilitar la acción",
+        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Compruebe que el comando se ejecuta en paralelo con las otras acciones",
         "Cette commande remplace l'ID": "Este comando reemplaza el ID",
-        "Etes-vous sûr de vouloir remplacer l\\'ID": "¿Seguro que desea reemplazar 's \\ ID",
+        "Etes-vous sûr de vouloir remplacer l\\'ID": "¿Estás seguro de que quieres reemplazar el ID?",
         "ID de commande à remplacer ?": "ID del pedido para reemplazar?",
-        "Opération effectuée avec succès, n\\'oubliez pas de sauvegarder": "realiza con éxito, don \\ 't se olvide de guardar",
+        "Opération effectuée avec succès, n\\'oubliez pas de sauvegarder": "Operación completada con éxito, no olvide guardar",
         "Décocher pour désactiver l\\'action": "Desactive la casilla para desactivar \\ Acción",
-        "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Compruebe si la ejecución del comando \\ 's en otras acciones paralelas",
+        "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Verificar que el comando se ejecute en paralelo con las otras acciones",
         "Activer la personnalisation du widget": "Permitir la personalización del widget",
         "Réinitialiser la personnalisation": "Restablecer la personalización",
         "Interdire dans les interactions automatique": "Prohibir interacción automática en"
@@ -2365,10 +2365,10 @@
         "Exécuter": "Ejecutar",
         "Résultat": "Resultado",
         "L\\'epression de test ne peut être vide": "La expresión de prueba no puede estar vacía",
-        "Attention je pense qu\\'il y a un souci car le résultat est le même que l\\'expression": "Advertencia Creo que \\ 'no es una preocupación, ya que el resultado es el mismo que el \\ expresión",
+        "Attention je pense qu\\'il y a un souci car le résultat est le même que l\\'expression": "Advertencia Creo que hay un problema, ya que el resultado es el mismo que el expresión",
         "Je vais évaluer : ": "Voy a evaluar:",
         "Résultat : ": "Resultado:",
-        "L\\'expression de test ne peut être vide": "expresión de la prueba L \\ 'no puede estar vacía",
+        "L\\'expression de test ne peut être vide": "La expresión de prueba no puede estar vacía",
         "Attention : il doit y avoir un souci, car le résultat est le même que l\\'expression": "Advertencia: debe ser una preocupación, ya que el resultado es el mismo que el \\ expresión"
     },
     "desktop/modal/report.bug.php": {
@@ -2458,7 +2458,7 @@
     "desktop/js/3d.js": {
         "Designs": "Diseños",
         "Edition": "Edición",
-        "Configuration de l\\'objet": "objeto de configuración \\ 's",
+        "Configuration de l\\'objet": "Configuración del objeto",
         "Widget": "Widget",
         "Configuration du plan 3D": "Configuración de un mapa en 3D"
     },
@@ -2484,7 +2484,7 @@
         "Lumière couleur": "color de la luz",
         "Aucun": "Ninguna",
         "Statut": "Estado",
-        "Rechercher d\\'une commande": "comando de búsqueda \\ 's",
+        "Rechercher d\\'une commande": "Buscar un comando",
         "Puissance": "Potencia",
         "Texte": "Texto",
         "Taille du texte": "Tamaño del texto",
@@ -2536,7 +2536,7 @@
     },
     "desktop/js/plan3d.js": {
         "Configuration du plan 3D": "Configuración de un mapa en 3D",
-        "Configuration de l\\'objet": "objeto de configuración \\ 's",
+        "Configuration de l\\'objet": "Configuración del objeto",
         "Chargement...": "Cargando ..."
     },
     "desktop/3d.php": {

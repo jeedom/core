@@ -1,6 +1,12 @@
 cambios
 =========
 
+3.2.3
+=====
+
+-   Bugfix sur les fonctions min/max....
+-   Amélioration de l'export des graphiques et de l'affichage en mode table
+
 3.2.2
 =====
 
