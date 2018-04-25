@@ -106,6 +106,7 @@ class update {
 		$class = 'repo_' . $_id;
 		$return = array(
 			'name' => $class::$_name,
+			'class' => $class,
 			'configuration' => $class::$_configuration,
 			'scope' => $class::$_scope,
 		);
