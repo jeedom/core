@@ -54,14 +54,16 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 cleanSession();
 $cache = cache::byKey('current_sessions');
 $sessions = $cache->getValue(array());
-foreach ($sessions as $id => $session) {
-	echo '<tr data-id="' . $id . '">';
-	echo '<td>' . $id . '</td>';
-	echo '<td>' . $session['login'] . '</td>';
-	echo '<td>' . $session['ip'] . '</td>';
-	echo '<td>' . $session['datetime'] . '</td>';
-	echo '<td><a class="btn btn-xs btn-warning bt_deleteSession"><i class="fas fa-sign-out-alt"></i> {{Déconnecter}}</a></td>';
-	echo '</tr>';
+if (is_array($sessions) && count($sessions) > 0) {
+	foreach ($sessions as $id => $session) {
+		echo '<tr data-id="' . $id . '">';
+		echo '<td>' . $id . '</td>';
+		echo '<td>' . $session['login'] . '</td>';
+		echo '<td>' . $session['ip'] . '</td>';
+		echo '<td>' . $session['datetime'] . '</td>';
+		echo '<td><a class="btn btn-xs btn-warning bt_deleteSession"><i class="fa fa-sign-out"></i> {{Déconnecter}}</a></td>';
+		echo '</tr>';
+	}
 }
 ?>
      </tbody>
@@ -84,6 +86,9 @@ foreach ($sessions as $id => $session) {
       <tbody>
         <?php
 foreach (user::all() as $user) {
+	if (!is_array($user->getOptions('registerDevice')) || count($user->getOptions('registerDevice')) == 0) {
+		continue;
+	}
 	foreach ($user->getOptions('registerDevice') as $key => $value) {
 		echo '<tr data-key="' . $key . '" data-user_id="' . $user->getId() . '">';
 		echo '<td>';
