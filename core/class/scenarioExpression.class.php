@@ -808,13 +808,13 @@ class scenarioExpression {
 		$date2 = new DateTime($_date2);
 		$interval = $date1->diff($date2);
 		if ($_format == 's') {
-			return $interval->format('%s') + 60 * $interval->format('%m') + 3600 * $interval->format('%s') + 86400 * $interval->format('%a');
+			return $interval->format('%s') + 60 * $interval->format('%m') + 3600 * $interval->format('%h') + 86400 * $interval->format('%a');
 		}
 		if ($_format == 'm') {
-			return $interval->format('%m') + 60 * $interval->format('%s') + 1410 * $interval->format('%a');
+			return $interval->format('%i') + 60 * $interval->format('%h') + 1440 * $interval->format('%a');
 		}
 		if ($_format == 'h') {
-			return $interval->format('%s') + 24 * $interval->format('%a');
+			return $interval->format('%h') + 24 * $interval->format('%a');
 		}
 		return $interval->format('%a');
 	}
