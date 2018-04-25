@@ -1,6 +1,14 @@
 Changelog 
 =========
 
+3.2.4
+=====
+
+- Correction de bugs
+- Correction d'un bugs sur certaine modale en Espagnol
+- Correction d'une erreur de calcul sur timee_diff
+- Préparation pour le futur système d'alerting
+
 3.2.3
 =====
 
