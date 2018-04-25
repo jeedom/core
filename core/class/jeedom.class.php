@@ -263,6 +263,17 @@ class jeedom {
 			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
 			'comment' => ($state) ? '' : __('Veuillez désactiver le private tmp d\'Apache (Jeedom ne peut marcher avec). Voir ', __FILE__) . '<a href="https://jeedom.github.io/core/fr_FR/faq#tocAnchor-1-29" target="_blank">' . __('ici', __FILE__) . '</a>',
 		);
+		
+		foreach (update::listRepo() as $repo) {
+			if (!$repo['enable']) {
+				continue;
+			}
+			$class = $repo['class'];
+			if (!class_exists($class) || !method_exists($class, 'health')) {
+				continue;
+			}
+			$return += array_merge($return, $class::health());
+		}
 		return $return;
 	}
 
