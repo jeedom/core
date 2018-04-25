@@ -33,7 +33,7 @@ if (isset($_COOKIE['sess_id'])) {
 if (!headers_sent()) {
 	$cache = cache::byKey('current_sessions');
 	$sessions = $cache->getValue(array());
-	if (!isset($sessions[session_id()])) {
+	if (!isset($sessions[session_id()]) || !is_array($sessions[session_id()])) {
 		$sessions[session_id()] = array();
 	}
 	$sessions[session_id()]['datetime'] = date('Y-m-d H:i:s');
