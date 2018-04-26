@@ -154,7 +154,7 @@ if (init('type') != '') {
 					} else if (is_array(init('tags'))) {
 						$scenario->setTags(init('tags'));
 					}
-					$scenario->launch(false, __('Exécution provoquée par un appel API ', __FILE__));
+					$scenario->launch('api', __('Exécution provoquée par un appel API ', __FILE__));
 					break;
 				case 'stop':
 					log::add('api', 'debug', __('Arrêt scénario de : ', __FILE__) . $scenario->getHumanName());
