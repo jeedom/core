@@ -225,7 +225,9 @@ function addUpdate(_update) {
 tr += '</td>';
 tr += '<td style="width:135px;"><span class="updateAttr label label-primary" data-l1key="localVersion" style="font-size:0.8em;cursor:default;" title="{{Dernière version : }}'+_update.remoteVersion+'"></span></td>';
 tr += '<td style="width:180px;cursor:default;">';
-tr += '<input type="checkbox" class="updateAttr" data-l1key="configuration" data-l2key="doNotUpdate"><span style="font-size:0.9em;">{{Ne pas mettre à jour}}</span>';
+if (_update.type != 'core') {  
+    tr += '<input type="checkbox" class="updateAttr" data-l1key="configuration" data-l2key="doNotUpdate"><span style="font-size:0.9em;">{{Ne pas mettre à jour}}</span>';
+}
 tr += '</td>';
 tr += '<td>';
 if (_update.type != 'core') {   
@@ -236,9 +238,9 @@ if (_update.type != 'core') {
     }
 }
 if (_update.type != 'core') {       
- if (isset(_update.plugin) && isset(_update.plugin.changelog) && _update.plugin.changelog != '') {     
-     tr += '<a class="btn btn-default btn-xs cursor" target="_blank" href="'+_update.plugin.changelog+'" style="margin-bottom : 5px;"><i class="fas fa-book"></i> {{Changelog}}</a>';       
- }     
+   if (isset(_update.plugin) && isset(_update.plugin.changelog) && _update.plugin.changelog != '') {     
+       tr += '<a class="btn btn-default btn-xs cursor" target="_blank" href="'+_update.plugin.changelog+'" style="margin-bottom : 5px;"><i class="fas fa-book"></i> {{Changelog}}</a>';       
+   }     
 }else{        
   tr += '<a class="btn btn-default btn-xs" href="https://jeedom.github.io/core/fr_FR/changelog" target="_blank" style="margin-bottom : 5px;"><i class="fas fa-book"></i> {{Changelog}}</a>';      
 }
@@ -265,8 +267,8 @@ $('#bt_saveUpdate').on('click',function(){
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {
-         $('#div_alert').showAlert({message: '{{Sauvegarde effectuée}}', level: 'success'});
-         printUpdate();
-     }
- });
+           $('#div_alert').showAlert({message: '{{Sauvegarde effectuée}}', level: 'success'});
+           printUpdate();
+       }
+   });
 });
