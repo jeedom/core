@@ -254,3 +254,19 @@ J'ai un soucis d'heure sur mes historiques
 =========================================
 
 Essayez de vider le cache de chrome, l'affichage des historique est calculé par rapport à l'heure du navigateur.
+
+J'ai l'erreur "Soucis réseaux detecté, redemarrage du réseaux"
+=========================================
+
+Jeedom ne trouve pas ou n'arrive pas a un pinguer la gateway. En général ca arrive si la box adsl redémarre (en particulier les livebox) et que Jeeodm n'a pas redemarré ou a redemarré plus vite que la box. Par sécurité il vous dit donc qu'il a trouvé un soucis et relance le processus de connection réseaux. Vous pouvez désactiver ce mécanisme en allant dans la configuration de Jeedom et en désactivant la gestion du réqseaux par Jeedom.
+
+J'ai le message "Echec durant la sauvegarde de la base de données. Vérifiez que mysqldump est présent."
+=========================================
+Ca veut dire que Jeedom n'arrive pas a backuper la base de donnée ce qu'i peut laisser penser a un soucis de corrumption de base de données et de filesystem. Il n'y a malheureusement pas de commande miracle pour corriger. Le mieux est de lancer un backup et d'analyser la log de celui-ci. Dans les cas connu de soucis nous avons
+
+- une table de la base corrompu => la c'est mal partie il faut voir pour essayer de réparer et si ca marche pas repartir du dernier bon backup (si vous etês sur garde SD c'est le bon moment pour la changer)
+- pas assez de place sur le filesystem => regarder la page santé celle-ci peut vous l'indiquer
+
+Je n'arrive plus a me connecter a mon Jeedom
+=========================================
+Depuis Jeedom 3.2 il n'est plus possible de se connecter avec admin/admin à distance pour des raison evidente de sécurité. Les identifiants admin/admin ne marche plus que en local. Attention si vous passer par le DNS même en local vous êtes forcement identifié comme à distance. Autre point par defaut seul les ip sur 192.168.*.* ou 127.0.0.1 sont reconnu comme local. Cela se configure dans l'administration de Jeedom partie sécurité puis IP "blanche". Si malgrès tout ca vous n'arrivez toujours pas à vous connecter il faut utiliser la procedure de remise à zéro de mot de passe (voir dans les tuto/how to)
