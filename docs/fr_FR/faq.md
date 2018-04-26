@@ -270,3 +270,11 @@ Ca veut dire que Jeedom n'arrive pas a backuper la base de donnée ce qu'i peut 
 Je n'arrive plus a me connecter a mon Jeedom
 =========================================
 Depuis Jeedom 3.2 il n'est plus possible de se connecter avec admin/admin à distance pour des raison evidente de sécurité. Les identifiants admin/admin ne marche plus que en local. Attention si vous passer par le DNS même en local vous êtes forcement identifié comme à distance. Autre point par defaut seul les ip sur 192.168.*.* ou 127.0.0.1 sont reconnu comme local. Cela se configure dans l'administration de Jeedom partie sécurité puis IP "blanche". Si malgrès tout ca vous n'arrivez toujours pas à vous connecter il faut utiliser la procedure de remise à zéro de mot de passe (voir dans les tuto/how to)
+
+J'ai des erreurs de type "Class 'eqLogic' not found", des fichiers semblent etre manquant
+=========================================
+C'est une erreur assez grave le plus simple est de faire 
+mkdir -p /root/tmp/cd /root/tmp;wget https://github.com/jeedom/core/archive/master.zip
+unzip master.zip
+ensuite aller dans le dossier extrait
+puis copier tous les fichier dans /var/www/html
