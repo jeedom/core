@@ -476,7 +476,7 @@ class scenarioExpression {
 				$_value = null;
 			}
 		}
-		$startHist = date('Y-m-d H:i:s', strtotime($_period));
+		$startHist = date('Y-m-d H:i:s', strtotime('-' . $_period));
 		return history::stateChanges($cmd_id, $_value, $startHist, date('Y-m-d H:i:s'));
 	}
 
