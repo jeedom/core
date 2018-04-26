@@ -21,7 +21,7 @@
     closeText: '',
     autoOpen: false,
     modal: true,
-    height: 500,
+    height: 600,
     width: 600,
     open: function () {
         $("body").css({overflow: 'hidden'});
