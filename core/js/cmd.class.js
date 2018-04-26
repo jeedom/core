@@ -308,88 +308,16 @@ jeedom.cmd.test = function(_params) {
 };
 
 jeedom.cmd.refreshValue = function(_params) {
-    var paramsRequired = [];
-    var cmds = {};
-    var sends = {};
     for(var i in _params){
         var cmd = $('.cmd[data-cmd_id=' + _params[i].cmd_id + ']');
         if (cmd.html() == undefined || cmd.hasClass('noRefresh')) {
             continue;
         }
-        if (!isset(_params[i].global) || !_params[i].global) {
-            if (isset(jeedom.cmd.update) && isset(jeedom.cmd.update[_params[i].cmd_id])) {
-                jeedom.cmd.update[_params[i].cmd_id](_params[i]);
-                continue;
-            }
-        }
-        version = null;
-        if (cmd.closest('.eqLogic').attr('data-version') != undefined) {
-            version = cmd.closest('.eqLogic').attr('data-version');
-        }
-         if (cmd.attr('data-version') != undefined) {
-            version =cmd.attr('data-version');
-        }
-        if(version == null){
+        if (!isset(jeedom.cmd.update) || !isset(jeedom.cmd.update[_params[i].cmd_id])) {
             continue;
         }
-        cmds[_params[i].cmd_id] = {cmd : cmd, version : version};
-        sends[_params[i].cmd_id] = {version : version};
+        jeedom.cmd.update[_params[i].cmd_id](_params[i]);
     }
-    if (Object.keys(cmds).length == 0){
-        return;
-    }
-    var paramsSpecifics = {
-        global: false,
-        success: function(result) {
-           for(var i in result){
-            var cmd = cmds[i].cmd;
-            var html = $(result[i].html);
-            if(html.attr('data-cmd_uid') != 'undefined'){
-                cmd.attr('data-cmd_uid',html.attr('data-cmd_uid'));
-            }
-            cmd.empty().html(html.children());
-            cmd.attr("class", html.attr("class"));
-            var top =  cmd.css('top');
-            var left =  cmd.css('left');
-            var width =  cmd.css('width');
-            var height =  cmd.css('height');
-            var margin =  cmd.css('margin');
-            var padding =  cmd.css('padding');
-            var position =  cmd.css('position');
-            var transform_origin =  cmd.css('transform-origin');
-            var transform =  cmd.css('transform');
-            var zindex =  cmd.css('z-index');
-            cmd.attr("style", html.attr("style"));
-            cmd.css('top',top);
-            cmd.css('left',left);
-            cmd.css('width',width);
-            cmd.css('height',height);
-            cmd.css('margin',margin);
-            cmd.css('padding',padding);
-            cmd.css('position',position);
-            cmd.css('transform-origin',transform_origin);
-            cmd.css('transform',transform);
-            cmd.css('z-index',zindex);
-            if ($.mobile) {
-                $('.cmd[data-cmd_id=' + i + ']').trigger("create");
-            }
-        }
-    }
-};
-try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
-} catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
-}
-var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-var paramsAJAX = jeedom.private.getParamsAJAX(params);
-paramsAJAX.url = 'core/ajax/cmd.ajax.php';
-paramsAJAX.data = {
-    action: 'toHtml',
-    ids: json_encode(sends),
-};
-$.ajax(paramsAJAX);
 };
 
 jeedom.cmd.toHtml = function (_params) {
