@@ -26,23 +26,27 @@ if (!is_numeric($session_lifetime)) {
 ini_set('session.gc_maxlifetime', $session_lifetime * 3600);
 ini_set('session.use_cookies', 1);
 ini_set('session.cookie_httponly', 1);
+$old_sess_id = session_id();
+
 if (isset($_COOKIE['sess_id'])) {
 	session_id($_COOKIE['sess_id']);
 }
 @session_start();
 if (!headers_sent()) {
-	$cache = cache::byKey('current_sessions');
-	$sessions = $cache->getValue(array());
-	if (!isset($sessions[session_id()]) || !is_array($sessions[session_id()])) {
-		$sessions[session_id()] = array();
+	if (!isset($_SESSION['alreadyRegister'])) {
+		$cache = cache::byKey('current_sessions');
+		$sessions = $cache->getValue(array());
+		if (!isset($sessions[session_id()]) || !is_array($sessions[session_id()])) {
+			$sessions[session_id()] = array();
+		}
+		$sessions[session_id()]['datetime'] = date('Y-m-d H:i:s');
+		$sessions[session_id()]['ip'] = getClientIp();
+		cache::set('current_sessions', $sessions);
+		setcookie('sess_id', session_id(), time() + 24 * 3600, "/", '', false, true);
+		$_SESSION['alreadyRegister'] = 1;
 	}
-	$sessions[session_id()]['datetime'] = date('Y-m-d H:i:s');
-	$sessions[session_id()]['ip'] = getClientIp();
-	cache::set('current_sessions', $sessions);
-	setcookie('sess_id', session_id(), time() + 24 * 3600, "/", '', false, true);
 }
 @session_write_close();
-
 if (user::isBan()) {
 	header("Statut: 404 Page non trouvée");
 	header('HTTP/1.0 404 Not Found');
