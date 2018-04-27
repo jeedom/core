@@ -116,15 +116,15 @@ class DB {
 		}
 	}
 
-	public function beginTransaction() {
+	public static function beginTransaction() {
 		self::getConnection()->beginTransaction();
 	}
 
-	public function commit() {
+	public static function commit() {
 		self::getConnection()->commit();
 	}
 
-	public function rollBack() {
+	public static function rollBack() {
 		self::getConnection()->rollBack();
 	}
 
