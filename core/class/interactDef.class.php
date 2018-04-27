@@ -527,6 +527,9 @@ class interactDef {
 			$synonymes = array();
 			foreach (explode('|', $this->getOptions('synonymes')) as $value) {
 				$values = explode('=', $value);
+				if (count($values) != 2) {
+					continue;
+				}
 				$synonymes[strtolower($values[0])] = explode(',', $values[1]);
 			}
 			$result = array();
