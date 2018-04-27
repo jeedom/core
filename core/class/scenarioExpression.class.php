@@ -1205,7 +1205,7 @@ class scenarioExpression {
 					event::add('jeedom::alertPopup', $options['message']);
 					$this->setLog($scenario, __('Affichage du popup : ', __FILE__) . $options['message']);
 					return;
-				} elseif ($this->getExpression() == 'equipment') {
+				} elseif ($this->getExpression() == 'equipment' || $this->getExpression() == 'equipement') {
 					$eqLogic = eqLogic::byId(str_replace(array('#eqLogic', '#'), '', $this->getOptions('eqLogic')));
 					if (!is_object($eqLogic)) {
 						throw new Exception(__('Action sur l\'équipement impossible. Equipement introuvable - Vérifiez l\'id : ', __FILE__) . $this->getOptions('eqLogic'));
