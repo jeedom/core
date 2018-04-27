@@ -388,6 +388,9 @@ class interactDef {
 			DB::beginTransaction();
 			foreach ($queries as $query) {
 				$query['query'] = self::sanitizeQuery($query['query']);
+				if (trim($query['query']) == '') {
+					continue;
+				}
 				if (!$this->checkQuery($query['query'])) {
 					continue;
 				}
@@ -559,7 +562,7 @@ class interactDef {
 		$_deep++;
 		foreach ($_synonymes as $replace => $values) {
 			foreach ($values as $value) {
-				$result = preg_replace('/\b' . $replace . '\b/i', $value, $_text);
+				$result = @preg_replace('/\b' . $replace . '\b/i', $value, $_text);
 				if ($result != $_text) {
 					$synonymes = $_synonymes;
 					unset($synonymes[$replace]);
