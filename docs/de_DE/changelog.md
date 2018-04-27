@@ -1,6 +1,12 @@
 Änderungsprotokoll 
 =========
 
+3.2.5
+=====
+
+- Correction de bugs
+- Réactivation des interactions (inactive a cause de la mise à jour)
+
 3.2.4
 =====
 
