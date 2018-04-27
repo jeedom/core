@@ -1157,6 +1157,7 @@ class cmd {
 				$replace['#valueName#'] = $this->getName();
 				$replace['#unite#'] = $this->getUnite();
 			}
+			$replace['#state#'] = str_replace(array("\'", "'"), array("'", "\'"), $replace['#state#']);
 			$parameters = $this->getDisplay('parameters');
 			if (is_array($parameters)) {
 				foreach ($parameters as $key => $value) {
