@@ -11,13 +11,10 @@
         "Erreur execution de la commande ": "Erreur execution de la commande ",
         "Alert sur la commande ": "Alert sur la commande ",
         " niveau ": " niveau ",
-        "[jeedom] Message de ": "[jeedom] Message de ",
         "pendant plus de ": "pendant plus de ",
         " minute(s)": " minute(s)",
         "La commande n'est pas dans la plage de valeur autorisée : ": "La commande n'est pas dans la plage de valeur autorisée : ",
-        "[jeedom] ": "[jeedom] ",
-        "Equipement désactivé - impossible d'exécuter la commande : [Jardin][Caméras Ext][On]": "Equipement désactivé - impossible d'exécuter la commande : [Jardin][Caméras Ext][On]",
-        "Equipement désactivé - impossible d'exécuter la commande : [Jardin][Caméras Ext][Off]": "Equipement désactivé - impossible d'exécuter la commande : [Jardin][Caméras Ext][Off]",
+        "Equipement désactivé - impossible d'exécuter la commande : ": "Equipement désactivé - impossible d'exécuter la commande : ",
         "Erreur exécution de la commande ": "Erreur exécution de la commande ",
         "Impossible de traduire la couleur en code hexadécimal :": "Impossible de traduire la couleur en code hexadécimal :"
     },
@@ -57,9 +54,7 @@
         "Erreur sur la fonction cron du plugin : ": "Erreur sur la fonction cron du plugin : ",
         "Erreur sur la fonction cron15 du plugin : ": "Erreur sur la fonction cron15 du plugin : ",
         "Erreur sur la fonction cron5 du plugin : ": "Erreur sur la fonction cron5 du plugin : ",
-        "Vous devez attendre au moins 45 secondes entre deux lancements du démon. Dernier lancement : 2018-04-20 10:28:11": "Vous devez attendre au moins 45 secondes entre deux lancements du démon. Dernier lancement : 2018-04-20 10:28:11",
-        "Vous devez attendre au moins 45 secondes entre deux lancements du démon. Dernier lancement : 2018-04-20 10:28:58": "Vous devez attendre au moins 45 secondes entre deux lancements du démon. Dernier lancement : 2018-04-20 10:28:58",
-        "Vous devez attendre au moins 45 secondes entre deux lancements du démon. Dernier lancement : 2018-04-23 14:15:02": "Vous devez attendre au moins 45 secondes entre deux lancements du démon. Dernier lancement : 2018-04-23 14:15:02"
+        "Vous devez attendre au moins 45 secondes entre deux lancements du démon. Dernier lancement : ": "Vous devez attendre au moins 45 secondes entre deux lancements du démon. Dernier lancement : "
     },
     "core\/class\/scenarioSubElement.class.php": {
         "Exécution du sous-élément de type [condition] : ": "Exécution du sous-élément de type [condition] : ",
