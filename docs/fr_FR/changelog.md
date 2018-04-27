@@ -1,6 +1,13 @@
 Changelog 
 =========
 
+3.2.6
+=====
+
+- Correction de bugs
+- Mise à jour de la docs
+- Uniformisation des noms de certaine commande dans les scénarios
+
 3.2.5
 =====
 
