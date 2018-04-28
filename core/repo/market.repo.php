@@ -276,6 +276,74 @@ class repo_market {
 		}
 		jeedom::restore('backup/' . $_backup, true);
 	}
+	
+	/******************************MONITORING********************************/
+
+	public static function monitoring_install() {
+		if (file_exists('/etc/zabbix')) {
+			return;
+		}
+		$logfile = log::getPathToLog('market_zabbix_installation');
+		if (strpos(php_uname(), 'x86_64') !== false) {
+			if (file_exists('/etc/debian_version')) {
+				$deb_version = file_get_contents('/etc/debian_version');
+				if (version_compare($deb_version, '9', '>=')) {
+					shell_exec('cd /tmp/;sudo wget http://repo.zabbix.com/zabbix/3.4/debian/pool/main/z/zabbix-release/zabbix-release_3.4-1+stretch_all.deb >> ' . $logfile . ' 2>&1;sudo dpkg -i zabbix-release_3.4-1+stretch_all.deb  >> ' . $logfile . ' 2>&1;sudo rm zabbix-release_3.4-1+stretch_all.deb  >> ' . $logfile . ' 2>&1');
+				} else {
+					shell_exec('cd /tmp/;sudo wget http://repo.zabbix.com/zabbix/3.4/debian/pool/main/z/zabbix-release/zabbix-release_3.4-1+jessie_all.deb  >> ' . $logfile . ' 2>&1;sudo dpkg -i zabbix-release_3.4-1+jessie_all.deb  >> ' . $logfile . ' 2>&1;sudo rm zabbix-release_3.4-1+jessie_all.deb  >> ' . $logfile . ' 2>&1');
+				}
+				shell_exec('sudo apt-get update  >> ' . $logfile . ' 2>&1');
+			}
+		}
+		shell_exec('sudo apt-get -y install zabbix-agent  >> ' . $logfile . ' 2>&1');
+	}
+
+	public static function monitoring_start() {
+		self::monitoring_install();
+		$cmd = "sudo chmod -R 777 /etc/zabbix;";
+		$cmd .= "sudo sed -i '/ServerActive=/d' /etc/zabbix/zabbix_agentd.conf;";
+		$cmd .= "sudo sed -i '/Hostname=/d' /etc/zabbix/zabbix_agentd.conf;";
+		$cmd .= "sudo sed -i '/TLSConnect=/d' /etc/zabbix/zabbix_agentd.conf;";
+		$cmd .= "sudo sed -i '/TLSAccept=/d' /etc/zabbix/zabbix_agentd.conf;";
+		$cmd .= "sudo sed -i '/TLSPSKIdentity=/d' /etc/zabbix/zabbix_agentd.conf;";
+		$cmd .= "sudo sed -i '/TLSPSKFile=/d' /etc/zabbix/zabbix_agentd.conf;";
+		$cmd .= 'sudo echo "ServerActive=' . config::byKey('market::monitoringServer') . '" >> /etc/zabbix/zabbix_agentd.conf;';
+		$cmd .= 'sudo echo "Hostname=' . config::byKey('market::monitoringName') . '" >> /etc/zabbix/zabbix_agentd.conf;';
+		$cmd .= 'sudo echo "TLSConnect=psk" >> /etc/zabbix/zabbix_agentd.conf;';
+		$cmd .= 'sudo echo "TLSAccept=psk" >> /etc/zabbix/zabbix_agentd.conf;';
+		$cmd .= 'sudo echo "TLSPSKIdentity=' . config::byKey('market::monitoringPskIdentity') . '" >> /etc/zabbix/zabbix_agentd.conf;';
+		$cmd .= 'sudo echo "TLSPSKFile=/etc/zabbix/zabbix_psk" >> /etc/zabbix/zabbix_agentd.conf;';
+		$cmd .= 'sudo echo "' . config::byKey('market::monitoringPsk') . '" > /etc/zabbix/zabbix_psk;';
+		$cmd .= 'sudo systemctl restart zabbix-agent;';
+		$cmd .= 'sudo systemctl enable zabbix-agent;';
+		shell_exec($cmd);
+	}
+
+	public static function monitoring_status() {
+		return (count(system::ps('zabbix')) > 0);
+	}
+
+	public static function monitoring_stop() {
+		$cmd = 'sudo systemctl stop zabbix-agent;';
+		$cmd .= 'sudo systemctl disable zabbix-agent;';
+		shell_exec($cmd);
+	}
+
+	public static function monitoring_allow() {
+		if (config::byKey('market::monitoringServer') == '') {
+			return false;
+		}
+		if (config::byKey('market::monitoringName') == '') {
+			return false;
+		}
+		if (config::byKey('market::monitoringPskIdentity') == '') {
+			return false;
+		}
+		if (config::byKey('market::monitoringPsk') == '') {
+			return false;
+		}
+		return true;
+	}
 
 	/*     * ***********************CRON*************************** */
 
@@ -289,6 +357,36 @@ class repo_market {
 		} catch (Exception $e) {
 
 		}
+	}
+	
+	public static function cron5() {
+		try {
+			$monitoring_state = self::monitoring_status();
+			if (self::monitoring_allow() && !$monitoring_state) {
+				self::monitoring_start();
+			}
+			if (!self::monitoring_allow() && $monitoring_state) {
+				self::monitoring_stop();
+			}
+		} catch (Exception $e) {
+
+		}
+	}
+	
+	/*******************************health********************************/
+
+	public static function health() {
+		$return = array();
+		if (config::byKey('market::monitoringServer') != '') {
+			$monitoring_state = self::monitoring_status();
+			$return[] = array(
+				'name' => __('Cloud monitoring actif', __FILE__),
+				'state' => $monitoring_state,
+				'result' => ($monitoring_state) ? __('OK', __FILE__) : __('NOK', __FILE__),
+				'comment' => __('Attention 10 minutes si le service ne redémarre pas contacter le support', __FILE__),
+			);
+		}
+		return $return;
 	}
 
 	/*     * ***********************INFO*************************** */
@@ -534,6 +632,7 @@ class repo_market {
 	public static function postJsonRpc(&$_result) {
 		if (is_array($_result)) {
 			$restart_dns = false;
+			$restart_monitoring = false;
 			if (isset($_result['register::dnsToken']) && config::byKey('dns::token') != $_result['register::dnsToken']) {
 				config::save('dns::token', $_result['register::dnsToken']);
 				$restart_dns = true;
@@ -551,6 +650,25 @@ class repo_market {
 			}
 			if (isset($_result['user::backupPassword']) && config::byKey('market::backupPassword') != $_result['user::backupPassword']) {
 				config::save('market::backupPassword', $_result['user::backupPassword']);
+			}
+			if (isset($_result['user::monitoringServer']) && config::byKey('market::monitoringServer') != $_result['user::monitoringServer']) {
+				config::save('market::monitoringServer', $_result['user::monitoringServer']);
+				$restart_monitoring = true;
+			}
+			if (isset($_result['register::monitoringPsk']) && config::byKey('market::monitoringPsk') != $_result['register::monitoringPsk']) {
+				config::save('market::monitoringPsk', $_result['register::monitoringPsk']);
+				$restart_monitoring = true;
+			}
+			if (isset($_result['register::monitoringPskIdentity']) && config::byKey('market::monitoringPskIdentity') != $_result['register::monitoringPskIdentity']) {
+				config::save('market::monitoringPskIdentity', $_result['register::monitoringPskIdentity']);
+				$restart_monitoring = true;
+			}
+			if (isset($_result['register::monitoringName']) && config::byKey('market::monitoringName') != $_result['register::monitoringName']) {
+				config::save('market::monitoringName', $_result['register::monitoringName']);
+				$restart_monitoring = true;
+			}
+			if ($restart_monitoring) {
+				self::monitoring_stop();
 			}
 			if ($restart_dns && config::byKey('market::allowDNS') == 1) {
 				network::dns_start();

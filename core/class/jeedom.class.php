@@ -263,6 +263,17 @@ class jeedom {
 			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
 			'comment' => ($state) ? '' : __('Veuillez désactiver le private tmp d\'Apache (Jeedom ne peut marcher avec). Voir ', __FILE__) . '<a href="https://jeedom.github.io/core/fr_FR/faq#tocAnchor-1-29" target="_blank">' . __('ici', __FILE__) . '</a>',
 		);
+		
+		foreach (update::listRepo() as $repo) {
+			if (!$repo['enable']) {
+				continue;
+			}
+			$class = $repo['class'];
+			if (!class_exists($class) || !method_exists($class, 'health')) {
+				continue;
+			}
+			$return += array_merge($return, $class::health());
+		}
 		return $return;
 	}
 
@@ -703,6 +714,18 @@ class jeedom {
 			log::add('network', 'error', 'network::cron : ' . $e->getMessage());
 		} catch (Error $e) {
 			log::add('network', 'error', 'network::cron : ' . $e->getMessage());
+		}
+		try {
+			foreach (update::listRepo() as $name => $repo) {
+				$class = 'repo_' . $name;
+				if (class_exists($class) && method_exists($class, 'cron5') && config::byKey($name . '::enable') == 1) {
+					$class::cron5();
+				}
+			}
+		} catch (Exception $e) {
+			log::add('jeedom', 'error', $e->getMessage());
+		} catch (Error $e) {
+			log::add('jeedom', 'error', $e->getMessage());
 		}
 		try {
 			eqLogic::checkAlive();

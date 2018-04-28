@@ -94,6 +94,7 @@ class update {
 			$class = 'repo_' . str_replace('.repo.php', '', $file);
 			$return[str_replace('.repo.php', '', $file)] = array(
 				'name' => $class::$_name,
+				'class' => $class,
 				'configuration' => $class::$_configuration,
 				'scope' => $class::$_scope,
 			);
@@ -106,6 +107,7 @@ class update {
 		$class = 'repo_' . $_id;
 		$return = array(
 			'name' => $class::$_name,
+			'class' => $class,
 			'configuration' => $class::$_configuration,
 			'scope' => $class::$_scope,
 		);

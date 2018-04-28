@@ -98,7 +98,7 @@ if (init('type') != '') {
 			}
 		}
 		if ($type != init('plugin', 'core') && init('plugin', 'core') != 'core') {
-			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action 4, IP : ', __FILE__)) . getClientIp();
+			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action 4, IP : ', __FILE__). getClientIp());
 		}
 		if (class_exists($type) && method_exists($type, 'event')) {
 			log::add('api', 'info', __('Appels de ', __FILE__) . secureXSS($type) . '::event()');
@@ -154,7 +154,7 @@ if (init('type') != '') {
 					} else if (is_array(init('tags'))) {
 						$scenario->setTags(init('tags'));
 					}
-					$scenario->launch(false, __('Exécution provoquée par un appel API ', __FILE__));
+					$scenario->launch('api', __('Exécution provoquée par un appel API ', __FILE__));
 					break;
 				case 'stop':
 					log::add('api', 'debug', __('Arrêt scénario de : ', __FILE__) . $scenario->getHumanName());
@@ -647,7 +647,7 @@ try {
 					if (!is_object($cmd)) {
 						throw new Exception(__('Commande introuvable : ', __FILE__) . secureXSS($id), -32702);
 					}
-					if (!$cmd->hasRight($_USER_GLOBAL)) {
+					if (is_object($_USER_GLOBAL) && !$cmd->hasRight($_USER_GLOBAL)) {
 						continue;
 					}
 					$eqLogic = $cmd->getEqLogic();
@@ -667,7 +667,7 @@ try {
 				if (!is_object($cmd)) {
 					throw new Exception(__('Commande introuvable : ', __FILE__) . secureXSS($params['id']), -32702);
 				}
-				if (!$cmd->hasRight($_USER_GLOBAL)) {
+				if (is_object($_USER_GLOBAL) && !$cmd->hasRight($_USER_GLOBAL)) {
 					throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
 				}
 				if (!isset($params['codeAccess'])) {
@@ -716,7 +716,7 @@ try {
 			}
 			if (isset($params['id'])) {
 				$cmd = cmd::byId($params['id']);
-				if (!$cmd->hasRight($_USER_GLOBAL)) {
+				if (is_object($_USER_GLOBAL) && !$cmd->hasRight($_USER_GLOBAL)) {
 					throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
 				}
 			}

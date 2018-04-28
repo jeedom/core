@@ -1,9 +1,38 @@
 Changelog
 =========
 
+3.2.6
+=====
+
+- Correction de bugs
+- Mise à jour de la docs
+- Uniformisation des noms de certaine commande dans les scénarios
+- Optimisation des performances
+
+3.2.5
+=====
+
+- Correction de bugs
+- Réactivation des interactions (inactive a cause de la mise à jour)
+
+3.2.4
+=====
+
+- Correction de bugs
+- Correction d'un bugs sur certaine modale en Espagnol
+- Correction d'une erreur de calcul sur timee_diff
+- Préparation pour le futur système d'alerting
+
+3.2.3
+=====
+
+-   Bugfix sur les fonctions min/max....
+-   Amélioration de l'export des graphiques et de l'affichage en mode table
+
 3.2.2
 =====
 
+-   Suppression de l'ancien systeme de mise à jour des widget (déprécié depuis la version 3.0). Attention si votre widget n'utilise pas le nouveau systeme il y a des risques de dysfonctionnement (dédoublement de celui-ci en l’occurrence). Exemple de widget [ici](https://github.com/jeedom/core/tree/beta/core/template/dashboard)
 -   Possibilité d'afficher les graphiques sous forme de tableau ou d'exporter ceux-ci en csv ou xls
 
 -   Les utilisateurs peuvent maintenant ajouter leur propre fonction php pour les scénarios. Voir documentation des scénarios pour la mise en place

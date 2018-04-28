@@ -159,7 +159,7 @@ class network {
 				}
 				return config::byKey('externalProtocol');
 			}
-			if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '') {
+			if (config::byKey('dns::token') != '' && config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '') {
 				return trim(config::byKey('jeedom::url') . '/' . trim(config::byKey('externalComplement', 'core', ''), '/'), '/');
 			}
 			return trim(config::byKey('externalProtocol') . config::byKey('externalAddr') . ':' . config::byKey('externalPort', 'core', 80) . '/' . trim(config::byKey('externalComplement'), '/'), '/');

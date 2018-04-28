@@ -50,7 +50,7 @@ step_2_mainpackage() {
 	apt-get -y install software-properties-common
 	apt-get -y install libexpat1 ssl-cert
 	apt-get -y install apt-transport-https
-	apt-get -y install xvfb cutycapt
+	apt-get -y install xvfb cutycapt xauth
 	add-apt-repository non-free
 	apt-get update
 	apt-get -y install libav-tools
@@ -159,7 +159,7 @@ step_7_jeedom_customization() {
 
 	for file in $(find / -iname php.ini -type f); do
 		echo "Update php file ${file}"
-		sed -i 's/max_execution_time = 30/max_execution_time = 300/g' ${file} > /dev/null 2>&1
+		sed -i 's/max_execution_time = 30/max_execution_time = 600/g' ${file} > /dev/null 2>&1
 	    sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 1G/g' ${file} > /dev/null 2>&1
 	    sed -i 's/post_max_size = 8M/post_max_size = 1G/g' ${file} > /dev/null 2>&1
 	    sed -i 's/expose_php = On/expose_php = Off/g' ${file} > /dev/null 2>&1
@@ -173,7 +173,7 @@ step_7_jeedom_customization() {
 		for subfolder in apache2 cli; do
 	    	if [ -f /etc/${folder}/${subfolder}/php.ini ]; then
 	    		echo "Update php file /etc/${folder}/${subfolder}/php.ini"
-				sed -i 's/max_execution_time = 30/max_execution_time = 300/g' /etc/${folder}/${subfolder}/php.ini > /dev/null 2>&1
+				sed -i 's/max_execution_time = 30/max_execution_time = 600/g' /etc/${folder}/${subfolder}/php.ini > /dev/null 2>&1
 			    sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 1G/g' /etc/${folder}/${subfolder}/php.ini > /dev/null 2>&1
 			    sed -i 's/post_max_size = 8M/post_max_size = 1G/g' /etc/${folder}/${subfolder}/php.ini > /dev/null 2>&1
 			    sed -i 's/expose_php = On/expose_php = Off/g' /etc/${folder}/${subfolder}/php.ini > /dev/null 2>&1

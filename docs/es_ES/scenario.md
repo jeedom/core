@@ -390,7 +390,7 @@ pouvez utiliser les tags suivants :
 
 -   #hostname# : Nom de la machine Jeedom,
 
--   #trigger# : Nom de la commande qui a déclenché le scénario.
+-   #trigger# : Peut etre le nom de la commande qui a déclenché le scénario, 'api' si le lancement a été déclenché par l'API, 'schedule' si il a été lancé par une programmation, 'user' si il a été lancé manuellement ou 'interact' si il a été lancé depuis une interaction
 
 Vous avez aussi les tags suivants en plus si votre scénario a été
 déclenché par une interaction :
@@ -670,7 +670,7 @@ En plus des commandes domotiques vous avez accès aux actions suivantes :
 -   **Créer un message** (message) : Permet d’ajouter un message dans le centre
     de message.
 
--   **Activer/Désactiver Masquer/afficher un équipement** (equipment) : Permet de
+-   **Activer/Désactiver Masquer/afficher un équipement** (equipement) : Permet de
     modifier les propriétés d’un équipement
     visible/invisible, actif/inactif.
 
