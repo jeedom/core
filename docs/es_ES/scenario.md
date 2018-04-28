@@ -670,7 +670,7 @@ En plus des commandes domotiques vous avez accès aux actions suivantes :
 -   **Créer un message** (message) : Permet d’ajouter un message dans le centre
     de message.
 
--   **Activer/Désactiver Masquer/afficher un équipement** (equipment) : Permet de
+-   **Activer/Désactiver Masquer/afficher un équipement** (equipement) : Permet de
     modifier les propriétés d’un équipement
     visible/invisible, actif/inactif.
 
