@@ -197,13 +197,13 @@ class history {
 				$values = array(
 					'cmd_id' => $sensors['cmd_id'],
 					'oldest' => $oldest['oldest'],
-					'archivePackage' => $archivePackage,
+					'archivePackage' => '-' . $archivePackage,
 				);
 
 				$sql = 'SELECT ' . $mode . '(CAST(value AS DECIMAL(12,2))) as value,
 						FROM_UNIXTIME(AVG(UNIX_TIMESTAMP(`datetime`))) as datetime
 						FROM history
-						WHERE TIMEDIFF(`datetime`,:oldest)<:archivePackage
+						WHERE addtime(`datetime`,:archivePackage)<:oldest
 						AND cmd_id=:cmd_id';
 				$avg = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 
@@ -217,10 +217,10 @@ class history {
 				$values = array(
 					'cmd_id' => $sensors['cmd_id'],
 					'oldest' => $oldest['oldest'],
-					'archivePackage' => $archivePackage,
+					'archivePackage' => '-' . $archivePackage,
 				);
 				$sql = 'DELETE FROM history
-						WHERE TIMEDIFF(`datetime`,:oldest)<:archivePackage
+						WHERE addtime(`datetime`,:archivePackage)<:oldest
 						AND cmd_id=:cmd_id';
 				DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 
