@@ -53,9 +53,9 @@ chmod 755 -R /var/www/html
 chown -R www-data:www-data /var/www/html
 
 echo 'Start apache2'
-systemctl start apache2
+systemctl restart apache2
 
 echo 'Start sshd'
-systemctl start sshd
+systemctl restart sshd
 
 /usr/bin/supervisord

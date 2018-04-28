@@ -917,7 +917,7 @@ class cmd {
 		}
 		$eqLogic = $this->getEqLogic();
 		if ($this->getType() != 'info' && (!is_object($eqLogic) || $eqLogic->getIsEnable() != 1)) {
-			throw new Exception(__('Equipement désactivé - impossible d\'exécuter la commande : ' . $this->getHumanName(), __FILE__));
+			throw new Exception(__('Equipement désactivé - impossible d\'exécuter la commande : ', __FILE__) . $this->getHumanName());
 		}
 		try {
 			if ($_options !== null && $_options !== '') {
@@ -1101,6 +1101,7 @@ class cmd {
 			if (method_exists($this, 'formatValueWidget')) {
 				$replace['#state#'] = $this->formatValueWidget($replace['#state#']);
 			}
+			$replace['#state#'] = str_replace(array("\'", "'"), array("'", "\'"), $replace['#state#']);
 			$replace['#collectDate#'] = $this->getCollectDate();
 			$replace['#valueDate#'] = $this->getValueDate();
 			$replace['#alertLevel#'] = $this->getCache('alertLevel', 'none');
@@ -1156,6 +1157,7 @@ class cmd {
 				$replace['#valueName#'] = $this->getName();
 				$replace['#unite#'] = $this->getUnite();
 			}
+			$replace['#state#'] = str_replace(array("\'", "'"), array("'", "\'"), $replace['#state#']);
 			$parameters = $this->getDisplay('parameters');
 			if (is_array($parameters)) {
 				foreach ($parameters as $key => $value) {

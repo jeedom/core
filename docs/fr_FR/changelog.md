@@ -13,6 +13,20 @@ Changelog
 -   Ajout d'option dans la fenetre de generation de cron
 -   Un message est maintenant ajouté si une expression invalide est trouvée lors de l'éxecution d'un scénario
 
+3.2.5
+=====
+
+- Correction de bugs
+- Réactivation des interactions (inactive a cause de la mise à jour)
+
+3.2.4
+=====
+
+- Correction de bugs
+- Correction d'un bugs sur certaine modale en Espagnol
+- Correction d'une erreur de calcul sur timee_diff
+- Préparation pour le futur système d'alerting
+
 3.2.3
 =====
 

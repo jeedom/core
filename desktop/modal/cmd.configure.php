@@ -133,7 +133,7 @@ $elements = explode(';', $cmd->getConfiguration('listValue', ''));
                   <label class="col-xs-4 control-label">{{URL directe}}</label>
                   <div class="col-xs-8">
                     <?php
-echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fas fa-external-link"></i> URL</a>';
+echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fas fa-external-link-alt"></i> URL</a>';
 ?>
                   </div>
                 </div>
