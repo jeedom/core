@@ -1,6 +1,6 @@
 <?php
 header('Content-type: text/cache-manifest');
-require_once dirname(__FILE__) . "/core/php/core.inc.php";
+require_once __DIR__ . "/core/php/core.inc.php";
 
 $js_file = array(
 	'3rdparty/highstock/highcharts-more.js',
