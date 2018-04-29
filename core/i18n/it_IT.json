@@ -170,8 +170,8 @@
         "Analyse équipement": "apparecchiature di analisi",
         "Messages": "Messaggi",
         "Message(s)": "Messaggio(i)",
-        "Scénarios": "Scénarios",
-        "Scénario": "Scénario"
+        "Scénarios": "Scene",
+        "Scénario": "Scena"
     },
     "core/class/cron.class.php": {
         "Arrêt de ": "Ferma"
@@ -215,7 +215,7 @@
         "Démarrage des plugins": "A partire plugin",
         "Test de connexion au market": "Test Market Connection",
         "Démarrage de jeedom fini avec succès": "jeedom partenza terminata con successo",
-        "Connexion par API de l'utilisateur : ": "Connexion par API de l'utilisateur :",
+        "Connexion par API de l'utilisateur : ": "Connessione tramite API utilizzatore :",
         "Arrêt des crons": "Arrêt des crons",
         "Démarrage des processus Internet de Jeedom": "Démarrage des processus Internet de Jeedom",
         "Envoi de l'événement de démarrage": "Envoi de l'événement de démarrage",
@@ -258,7 +258,7 @@
         "Defaut": "Predefinito",
         "Autre": "Altro",
         "Scénarios": "Scene",
-        "Catégorie": "Catégorie",
+        "Catégorie": "categoria",
         "Toute": "Toute",
         "Tags": "Tags"
     },
@@ -318,7 +318,7 @@
         "Plan 3d": "3d Mappa",
         "Plan 3d inconnu. Verifier l'id": "Unknown Map 3D. Controllare l'ID",
         "Design 3D": "progettazione 3D",
-        "Note": "Note",
+        "Note": "Grado",
         "Jeedom est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.": "Jeedom est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé."
     },
     "desktop/php/message.php": {
@@ -422,7 +422,7 @@
         "Correspondance trouvée : ": "Corrispondenza trovato:",
         " mais ne contient pas : ": "ma non contiene:",
         "Alerte : ": "Alerte :",
-        " valeur : ": "valeur :"
+        " valeur : ": "valore :"
     },
     "desktop/php/log.php": {
         "Rechercher": "Cerca",
@@ -710,7 +710,7 @@
         "Editeur de fichiers": "Editeur de fichiers",
         "DNS (proxy)": "DNS (proxy)",
         "Action sur message": "Action sur message",
-        "Ajouter": "Ajouter",
+        "Ajouter": "Aggiungi",
         "Nom de votre Jeedom2 (utilisé notamment par le market)": "Nom de votre Jeedom2 (utilisé notamment par le market)",
         "Nom de votre": "Nom de votre",
         "Clef d'installation qui permet d'identifier votre": "Clef d'installation qui permet d'identifier votre",
@@ -762,12 +762,12 @@
         "Evènement de la timeline supprimé avec succès": "Evento Timeline cancellato con successo",
         "Suppression des IPs bannies réussie": "Rimozione di indirizzi IP di successo vietati",
         "Administration base de données": "database di Administration",
-        "Décocher pour desactiver l\\'action": "Décocher pour desactiver l\\'action",
-        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Cocher pour que la commande s\\'éxecute en parrallele des autres actions",
-        "Sélectionner un mot-clé": "Sélectionner un mot-clé",
+        "Décocher pour desactiver l\\'action": "Deselezionare per disabilitare azione \\ 's",
+        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Controllare l'ordine di 's \\ eseguiti in parallelo ad altre azioni",
+        "Sélectionner un mot-clé": "Seleziona una parola chiave",
         "Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et qu\\'en cas de": "Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et qu\\'en cas de",
         "non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\\'accès est enregistrée) ?": "non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\\'accès est enregistrée) ?",
-        "Opération réalisée avec succès": "Opération réalisée avec succès"
+        "Opération réalisée avec succès": "Processo eseguito con successo"
     },
     "desktop/php/interact.php": {
         "Ajouter interaction": "Aggiungi interazione",
@@ -946,7 +946,7 @@
         "Supprimer colonne": "Eliminare la colonna",
         "Supprimer ligne": "Elimina fila",
         "A propos": "A propos",
-        "Note": "Note"
+        "Note": "Grado"
     },
     "desktop/js/view.js": {
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Sei in modalità modifica. Puoi spostare e ridimensionare i widget e riordinare i comandi in essi"
@@ -1138,7 +1138,7 @@
         "Le scénario pourra tourner plusieurs fois en même temps": "Lo script verrà eseguito più volte contemporaneamente",
         "Le scénario est en mode synchrone. Attention, cela peut rendre le système instable": "Lo script è in modalità sincrona. Attenzione, questo può rendere il sistema instabile",
         "Les exécutions du scénario pourront être vues dans la timeline.": "Le esecuzioni dello script può essere visto nella timeline.",
-        "Ajouter bloc": "Ajouter bloc"
+        "Ajouter bloc": "Aggiungi blocco"
     },
     "desktop/js/scenario.js": {
         "Sauvegarde effectuée avec succès": "Backup completato correttamente",
@@ -1520,14 +1520,14 @@
     },
     "core/repo/market.list.repo.php": {
         "Market Jeedom": "Market Jeedom",
-        "Gratuit": "Gratuit",
-        "Payant": "Payant",
-        "Officiel": "Officiel",
+        "Gratuit": "Gratis",
+        "Payant": "Pagate",
+        "Officiel": "Ufficiale",
         "Conseillé": "Conseillé",
         "Installé": "Installé",
         "Non installé": "Non installé",
         "Top et nouveautés": "Top et nouveautés",
-        "Aucune": "Aucune",
+        "Aucune": "no",
         "par": "par"
     },
     "desktop/js/report.js": {
@@ -1582,7 +1582,7 @@
         "L\\'opération a échoué": "L\\'operazione è fallita",
         "Etes-vous sûr de vouloir envoyer une sauvegarde de Jeedom sur le cloud ? Une fois lancée cette opération ne peut être annulée": "Sei sicuro che si desidera inviare una copia di backup Jeedom nuvola? Una volta lanciato questa operazione non può essere annullata",
         "Etes-vous sûr de vouloir restaurer Jeedom avec la sauvegarde": "Etes-vous sûr de vouloir restaurer Jeedom avec la sauvegarde",
-        "Une fois lancée cette opération ne peut être annulée.": "Une fois lancée cette opération ne peut être annulée.",
+        "Une fois lancée cette opération ne peut être annulée.": "Una volta lanciata, questa operazione non può essere annullata.",
         "Etes-vous sûr de vouloir faire une sauvegarde de": "Etes-vous sûr de vouloir faire une sauvegarde de",
         "? Une fois lancée cette opération ne peut être annulée": "? Une fois lancée cette opération ne peut être annulée",
         "Etes-vous sûr de vouloir envoyer une sauvegarde de": "Etes-vous sûr de vouloir envoyer une sauvegarde de",
@@ -1648,11 +1648,11 @@
         "Régénérer clef API": "Rigenerare API Key",
         "Gérer les droits": "Gestione dei diritti",
         "Etes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "Sei sicuro di voler modificare la chiave API di s utente \\'?",
-        "Local": "Local",
-        "Désactiver": "Désactiver",
+        "Local": "Locale",
+        "Désactiver": "Disattiva",
         "Régénérer API": "Régénérer API",
-        "Mot de passe": "Mot de passe",
-        "Droits": "Droits"
+        "Mot de passe": "Password",
+        "Droits": "Diritti"
     },
     "desktop/modal/log.display.php": {
         "Supprimer": "Elimina",
@@ -2166,7 +2166,7 @@
         "Inverser": "Inverti",
         "Graphique des liens": "link grafici",
         "Résumé objet": "Sommario voce",
-        "Activer": "Activer",
+        "Activer": "attivare",
         "Résumé Objets": "Résumé Objets"
     },
     "desktop/modal/icon.selector.php": {
@@ -2247,12 +2247,12 @@
         "Installer": "Installa",
         "Voulez-vous aller sur la page de configuration de votre nouveau plugin ?": "Vuoi andare alla pagina di configurazione del nuovo plugin?",
         "Taille": "Taille",
-        "Utilisation": "Utilisation",
+        "Utilisation": "Utilizzo",
         "Informations complementaires": "Informations complementaires",
-        "Langue disponible": "Langue disponible",
+        "Langue disponible": "Lingue disponibili",
         "Market": "Market",
         "Conseillé": "Conseillé",
-        "Attention ce plugin n'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée": "Attention ce plugin n'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée",
+        "Attention ce plugin n'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée": "Attenzione ! Il plugin non è ufficiale. Se l\\'installazione dovesse causare problemi diretti o indirezzi, jeedom si riserva il diritto di rifiutare richieste di supporto",
         "Développé par": "Développé par"
     },
     "core/class/view.class.php": {
@@ -2540,7 +2540,7 @@
         "Vous pouvez envoyer des proposition d'amélioration qui seront publiée sur notre page publique dédiée et qui pourront être intégrés dans notre roadmap.": "È possibile inviare proposte di miglioramento che sarà pubblicato sulla nostra pagina pubblica dedicata e può essere integrato nella nostra tabella di marcia.",
         "Voir les bugs": "Vedi gli insetti",
         "Voir les propositions d'amélioration": "Vedere proposte di miglioramento",
-        "Rapport": "Rapport",
+        "Rapport": "rapporto",
         "Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre feuille de route.": "Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre feuille de route.",
         "Ouvrir un accès au support": "Ouvrir un accès au support",
         "Vous venez de déclarer un bug qui sera publié sur notre Bug Tracker public.<br/>Vous pouvez le suivre": "Vous venez de déclarer un bug qui sera publié sur notre Bug Tracker public.<br/>Vous pouvez le suivre"
@@ -2644,20 +2644,20 @@
         "Condition": "Condizione",
         "Ajouter": "Aggiungi",
         "Couleur": "Colore",
-        "Etat": "Etat",
+        "Etat": "Stato",
         "Rotation": "Rotation",
-        "Activer": "Activer",
-        "Ouverture": "Ouverture",
-        "Gauche": "Gauche",
-        "Droite": "Droite",
+        "Activer": "attivare",
+        "Ouverture": "apertura",
+        "Gauche": "Sinistra",
+        "Droite": "Destra",
         "Devant": "Devant",
         "Derriere": "Derriere",
-        "Normal": "Normal",
+        "Normal": "normale",
         "Inversé": "Inversé",
         "Translation": "Translation",
         "Sens": "Sens",
-        "Haut": "Haut",
-        "Bas": "Bas",
+        "Haut": "In Cima",
+        "Bas": "In Basso",
         "Répeter": "Répeter",
         "Masquer quand la porte/fenêtre est ouverte": "Masquer quand la porte/fenêtre est ouverte",
         "Couleur ouverte": "Couleur ouverte",
@@ -2753,7 +2753,7 @@
         "Partager sur le market": "Condividi sul Market",
         "Etes-vous sûr de vouloir appliquer le template ? Cela écrasera votre scénario": "Sei sicuro di voler applicare il modello? Questo cancellerà la tua scena",
         "Template ajouté avec succès": "Modello aggiunto correttamente",
-        "Envoyer un template": "Envoyer un template"
+        "Envoyer un template": "Invia un modello"
     },
     "desktop/.php": {
         "Aucune phrase trouvée": "Nessun frasi trovato"
@@ -2765,9 +2765,9 @@
         "La demande ne peut être vide": "La domanda non può essere vuota"
     },
     "desktop/modal/note.manager.php": {
-        "Supprimer": "Supprimer",
-        "Sauvegarder": "Sauvegarder",
-        "Ajouter": "Ajouter",
+        "Supprimer": "rimuovere",
+        "Sauvegarder": "salvare",
+        "Ajouter": "Aggiungi",
         "Note crée avec succès": "Note crée avec succès",
         "Note sauvegardée avec succès": "Note sauvegardée avec succès",
         "Etês vous sur de vouloir supprimer la note : ": "Etês vous sur de vouloir supprimer la note :",
@@ -2775,60 +2775,60 @@
         "Note créée avec succès": "Note créée avec succès"
     },
     "desktop/modal/cmd.selectMultiple.php": {
-        "Basculer": "Basculer",
-        "Valider": "Valider",
-        "Nom": "Nom"
+        "Basculer": "Attiva/Disattiva",
+        "Valider": "Convalida",
+        "Nom": "Nome"
     },
     "desktop/modal/cmd.configureHistory.php": {
-        "Valider": "Valider",
+        "Valider": "Convalida",
         "Historisé": "Historisé",
-        "Timeline": "Timeline",
-        "Nom": "Nom",
+        "Timeline": "cronologia",
+        "Nom": "Nome",
         "Plugin": "Plugin",
-        "Mode de lissage": "Mode de lissage",
+        "Mode de lissage": "Modalità livellamento",
         "Purge de l'historique si plus vieux": "Purge de l'historique si plus vieux",
-        "Action": "Action",
-        "Moyenne": "Moyenne",
-        "Minimum": "Minimum",
-        "Maximum": "Maximum",
-        "Aucun": "Aucun",
-        "Jamais": "Jamais",
-        "1 jour": "1 jour",
-        "7 jours": "7 jours",
-        "1 mois": "1 mois",
-        "3 mois": "3 mois",
-        "6 mois": "6 mois",
+        "Action": "Azione",
+        "Moyenne": "Media",
+        "Minimum": "Minimo",
+        "Maximum": "Massimo",
+        "Aucun": "no",
+        "Jamais": "Mai",
+        "1 jour": "1 giorno",
+        "7 jours": "7 giorni",
+        "1 mois": "1 mese",
+        "3 mois": "3 mesi",
+        "6 mois": "6 mesi",
         "1 an": "1 an",
-        "Configuration de la commande": "Configuration de la commande",
+        "Configuration de la commande": "Impostazione comando",
         "Modifications sauvegardées avec succès": "Modifications sauvegardées avec succès",
-        "Type": "Type",
+        "Type": "Tipo",
         "Commande(s) historisée(s) : ": "Commande(s) historisée(s) :",
         "Commande(s) timeline : ": "Commande(s) timeline :"
     },
     "desktop/modal/user.rights.php": {
         "Attention : le compte utilisateur n'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s'appliquer": "Attention : le compte utilisateur n'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s'appliquer",
-        "Sauvegarder": "Sauvegarder",
-        "Equipements": "Equipements",
-        "Scénarios": "Scénarios",
-        "Equipement": "Equipement",
-        "Droits": "Droits",
-        "Aucun": "Aucun",
+        "Sauvegarder": "salvare",
+        "Equipements": "Dispositivi",
+        "Scénarios": "Scene",
+        "Equipement": "Dispositivo",
+        "Droits": "Diritti",
+        "Aucun": "no",
         "Visualisation": "Visualisation",
         "Visualisation et exécution": "Visualisation et exécution",
-        "Scénario": "Scénario",
-        "Sauvegarde effectuée": "Sauvegarde effectuée"
+        "Scénario": "Scena",
+        "Sauvegarde effectuée": "Backup completato"
     },
     "desktop/modal/object.summary.php": {
         "ID": "ID",
-        "Objet": "Objet",
-        "Père": "Père",
-        "Visible": "Visible",
+        "Objet": "Oggetto",
+        "Père": "Oggetto padre",
+        "Visible": "visibile",
         "Masqué": "Masqué",
         "Résumé Défini": "Résumé Défini",
         "Résumé Dashboard Masqué": "Résumé Dashboard Masqué",
         "Résumé Mobile Masqué": "Résumé Mobile Masqué",
-        "Oui": "Oui",
-        "Non": "Non"
+        "Oui": "sì",
+        "Non": "non"
     },
     "3rdparty/jquery.tablesorter/jquery.tablesorter.widgets.min.js": {
         "label": "label",

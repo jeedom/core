@@ -14,7 +14,7 @@
         "pendant plus de ": "für mehr als",
         " minute(s)": "Minute(n)",
         "La commande n'est pas dans la plage de valeur autorisée : ": "Der Befehl ist nicht im Bereich der zugelassenen Werte :",
-        "Equipement désactivé - impossible d'exécuter la commande : ": "Equipement désactivé - impossible d'exécuter la commande :",
+        "Equipement désactivé - impossible d'exécuter la commande : ": "Gerät deaktiviert - Befehl kann nicht ausgeführt werden :",
         "Erreur exécution de la commande ": "Fehler beim Ausführen des Befehls",
         "Impossible de traduire la couleur en code hexadécimal :": "Farbe kann nicht in Hexadezimalcode übersetzt werden :"
     },
@@ -53,8 +53,8 @@
         "Les crons et démons sont désactivés": "Crons und Dämonen sind deaktiviert",
         "Erreur sur la fonction cron du plugin : ": "Fehler in der Cron Funktion des Plugins : ",
         "Erreur sur la fonction cron15 du plugin : ": "Fehler in der cron15-Funktion des Plugins :",
-        "Erreur sur la fonction cron5 du plugin : ": "Erreur sur la fonction cron5 du plugin :",
-        "Vous devez attendre au moins 45 secondes entre deux lancements du démon. Dernier lancement : ": "Vous devez attendre au moins 45 secondes entre deux lancements du démon. Dernier lancement :"
+        "Erreur sur la fonction cron5 du plugin : ": "Fehler in der cron5-Funktion des Plugins :",
+        "Vous devez attendre au moins 45 secondes entre deux lancements du démon. Dernier lancement : ": "Sie müssen mindestens 45 Sekunden zwischen zwei Starts des Daemon warten. Letzter Start :"
     },
     "core/class/scenarioSubElement.class.php": {
         "Exécution du sous-élément de type [condition] : ": "Ausführung des Unterelementes des Typs [Bedingung]:",
@@ -93,7 +93,7 @@
         "Action sur scénario impossible. Scénario introuvable - Vérifiez l'id : ": "Das Szenario ist unmöglich auszuführen. Szenario ist unauffindbar - ID überprüfen :",
         "Arrêt forcé du scénario : ": "Erzwungener Stopp des Szenarios :",
         "Commande non trouvée": "Befehl wurde nicht gefunden",
-        "Scénario : ": "Scénario :"
+        "Scénario : ": "Szenario :"
     },
     "core/class/scenarioElement.class.php": {
         "Non exécution des actions pour cause de répétition": "Nicht ausführen der Aktion wegen der Wiederholung ",
@@ -105,8 +105,8 @@
         "SI": "WENN",
         "ALORS": "DANN",
         "SINON": "SONST",
-        "Expression non valide  (": "Expression non valide  (",
-        ") trouvée dans le scénario : ": ") trouvée dans le scénario :"
+        "Expression non valide  (": "Ungültiger Ausdruck (",
+        ") trouvée dans le scénario : ": ") im Szenario gefunden :"
     },
     "core/js/scenario.class.js": {
         "Sélectionner le scénario": "Szenario auswählen"
@@ -170,8 +170,8 @@
         "Analyse équipement": "Geräte Analyse",
         "Messages": "Nachricht",
         "Message(s)": "Nachricht (en)",
-        "Scénarios": "Scénarios",
-        "Scénario": "Scénario"
+        "Scénarios": "Szenarien",
+        "Scénario": "Szenario"
     },
     "core/class/cron.class.php": {
         "Arrêt de ": "Stoppen"
@@ -215,7 +215,7 @@
         "Démarrage des plugins": "Plugins starten",
         "Test de connexion au market": "Test der Verbindung zum Markt",
         "Démarrage de jeedom fini avec succès": "Jeedom Start erfolgreich durchgeführt",
-        "Connexion par API de l'utilisateur : ": "Connexion par API de l'utilisateur :",
+        "Connexion par API de l'utilisateur : ": "Verbindung durch Benutzer API: ",
         "Arrêt des crons": "Arrêt des crons",
         "Démarrage des processus Internet de Jeedom": "Démarrage des processus Internet de Jeedom",
         "Envoi de l'événement de démarrage": "Envoi de l'événement de démarrage",
@@ -258,9 +258,9 @@
         "Defaut": "Standard",
         "Autre": "Andere",
         "Scénarios": "Szenarien",
-        "Catégorie": "Catégorie",
+        "Catégorie": "Kategorie",
         "Toute": "Toute",
-        "Tags": "Tags"
+        "Tags": "Stichworte"
     },
     "desktop/php/index.php": {
         "Toggle navigation": "Schalter Steuerung",
@@ -318,7 +318,7 @@
         "Plan 3d": "3D Plan",
         "Plan 3d inconnu. Verifier l'id": "Unbekannter 3D-Plan. Überprüfen Sie die ID",
         "Design 3D": "3D Design",
-        "Note": "Note",
+        "Note": "Hinweis",
         "Jeedom est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.": "Jeedom est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé."
     },
     "desktop/php/message.php": {
@@ -359,7 +359,7 @@
         "Mettre à jour les plugins": "Plugins aktualisieren",
         "Mettre à jour le core": "Kern aktualisieren",
         "Avant toute mise à jour, merci de consulter la note de version du core de Jeedom": "Vor jedem Update konsultieren Sie bitte die Jeedom Core Versions Hinweise",
-        "L'option suivante n'est à modifier que sur demande du support sinon il faut ABSOLUMENT qu'elle soit sur \"Aucune\"": "L'option suivante n'est à modifier que sur demande du support sinon il faut ABSOLUMENT qu'elle soit sur \"Aucune\""
+        "L'option suivante n'est à modifier que sur demande du support sinon il faut ABSOLUMENT qu'elle soit sur \"Aucune\"": "Die folgende Option soll nur auf Anfrage der Unterstützung geändert werden, ansonsten ist es ABSOLUT notwendig, dass sie auf \"keine\" steht"
     },
     "desktop/js/update.js": {
         "Options": "Optionen",
@@ -421,8 +421,8 @@
         "Erreur : ": "Fehler :",
         "Correspondance trouvée : ": "Korrespondenz gefunden :",
         " mais ne contient pas : ": "aber enthält keine :",
-        "Alerte : ": "Alerte :",
-        " valeur : ": "valeur :"
+        "Alerte : ": "Alarm :",
+        " valeur : ": "Wert :"
     },
     "desktop/php/log.php": {
         "Rechercher": "Suchen nach",
@@ -710,7 +710,7 @@
         "Editeur de fichiers": "Editeur de fichiers",
         "DNS (proxy)": "DNS (proxy)",
         "Action sur message": "Action sur message",
-        "Ajouter": "Ajouter",
+        "Ajouter": "Hinzufügen",
         "Nom de votre Jeedom2 (utilisé notamment par le market)": "Nom de votre Jeedom2 (utilisé notamment par le market)",
         "Nom de votre": "Nom de votre",
         "Clef d'installation qui permet d'identifier votre": "Clef d'installation qui permet d'identifier votre",
@@ -762,12 +762,12 @@
         "Evènement de la timeline supprimé avec succès": "Ereignise der Timeline wurden erfolgreich gelöscht",
         "Suppression des IPs bannies réussie": "Gesperrte IPs erfolgreich gelöscht",
         "Administration base de données": "Datenbankverwaltung",
-        "Décocher pour desactiver l\\'action": "Décocher pour desactiver l\\'action",
-        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Cocher pour que la commande s\\'éxecute en parrallele des autres actions",
-        "Sélectionner un mot-clé": "Sélectionner un mot-clé",
-        "Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et qu\\'en cas de": "Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et qu\\'en cas de",
+        "Décocher pour desactiver l\\'action": "Deaktivieren Sie diese Option, um die Aktion zu deaktivieren",
+        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Überprüfen Sie, ob der Befehl parallel zu den anderen Aktionen ausgeführt wird",
+        "Sélectionner un mot-clé": "Schlüsselwort auswählen",
+        "Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et qu\\'en cas de": "Achtung, diese Operation ist riskant.",
         "non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\\'accès est enregistrée) ?": "non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\\'accès est enregistrée) ?",
-        "Opération réalisée avec succès": "Opération réalisée avec succès"
+        "Opération réalisée avec succès": "Vorgang erfolgreich durchgeführt"
     },
     "desktop/php/interact.php": {
         "Ajouter interaction": "Interaktion hinzufügen",
@@ -821,7 +821,7 @@
         "Limiter aux catégories": "Beschränken auf Kategorien",
         "Regexp de correspondance obligatoire": "Regexp de correspondance obligatoire",
         "Attendre avant de répondre (s)": "Attendre avant de répondre (s)",
-        "Permet d'attendre le temps que l'état d'une lampe soit mise à jour par exemple": "Permet d'attendre le temps que l'état d'une lampe soit mise à jour par exemple"
+        "Permet d'attendre le temps que l'état d'une lampe soit mise à jour par exemple": "Sie können warten, dass beispielsweise der Zustand einer Lampe aktualisiert wird"
     },
     "desktop/js/interact.js": {
         "Liste des interactions": "Interaktionsliste",
@@ -893,8 +893,8 @@
         "Actions": "Aktion",
         "Déconnecter": "Abmelden",
         "Couleur sur mobile": "Couleur sur mobile",
-        "Périphériques enregistrés": "Périphériques enregistrés",
-        "Date dernière utilisation": "Date dernière utilisation"
+        "Périphériques enregistrés": "Registrierte Peripheriegeräte",
+        "Date dernière utilisation": "Letztes Nutzungsdatum"
     },
     "desktop/js/profils.js": {
         "Authentification 2 étapes": "2 Authentifizierung Schritte",
@@ -912,7 +912,7 @@
         "Info": "Info",
         "Action": "Aktion",
         "Sélectionner la commande": "Befehl auswählen",
-        "Etes-vous sûr de vouloir faire cette action ?": "Etes-vous sûr de vouloir faire cette action ?"
+        "Etes-vous sûr de vouloir faire cette action ?": "Sind Sie sicher, dass Sie diese Aktion ausführen möchten ?"
     },
     "core/js/history.class.js": {
         "Il n\\'existe encore aucun historique pour cette commande :": "Es ist noch keine Chronik für diesen Befehl vorhanden :",
@@ -946,7 +946,7 @@
         "Supprimer colonne": "Spalte löschen",
         "Supprimer ligne": "Zeile löschen",
         "A propos": "A propos",
-        "Note": "Note"
+        "Note": "Hinweis"
     },
     "desktop/js/view.js": {
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Sie befinden sich im Bearbeitungsmodus Sie können Widgets verschieben, skalieren und die Reihenfolge der Befehle in den Widgets ändern"
@@ -965,7 +965,7 @@
         "Sélectionner la commande": "Befehl auswählen",
         "Erreur de connexion": "Verbindungsfehler",
         "Erreur lors de la connexion à jeedom": "Fehler beim Verbinden mit Jeedom",
-        "Erreur lors de la connexion à Jeedom": "Erreur lors de la connexion à Jeedom"
+        "Erreur lors de la connexion à Jeedom": "Fehler beim Verbinden mit Jeedom"
     },
     "desktop/php/scenarioAssist.php": {
         "Interface simple": "Einfaches Interface",
@@ -1138,7 +1138,7 @@
         "Le scénario pourra tourner plusieurs fois en même temps": "Das Szenario kann mehrer Mal gleichzeitig verwendet werden",
         "Le scénario est en mode synchrone. Attention, cela peut rendre le système instable": "Das Szenario befindet sich im synchronen Modus. Achtung, dies kann das System instabil machen.",
         "Les exécutions du scénario pourront être vues dans la timeline.": "Die Ausführungen des Szenarios sind in der Timeline zu sehen",
-        "Ajouter bloc": "Ajouter bloc"
+        "Ajouter bloc": "Block hinzufügen"
     },
     "desktop/js/scenario.js": {
         "Sauvegarde effectuée avec succès": "Speichern erfolgreich abgeschlossen",
@@ -1216,7 +1216,7 @@
         "Afficher/masquer le bloc Sinon": "Block SONST anzeigen/verbergen",
         "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Überprüfen Sie, ob der Befehl parallel zu den anderen Aktionen ausgeführt wird",
         "Permet d\\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (ex. : SI/ALORS….)": "Erlaubt, wesentliche funktionelle Elemente hinzuzufügen, um Ihre Szenarien zu erstellen (z.B.: WENN/DANN….)",
-        "Graphique de lien(s)": "Graphique de lien(s)"
+        "Graphique de lien(s)": "Grafik-Links"
     },
     "core/template/scenario/report.default": {
         "Vue": "Ansicht",
@@ -1380,7 +1380,7 @@
     },
     "core/com/http.com.php": {
         "Echec de la requête http : ": "Fehler bei der http abfrage:",
-        "Echec de la requête HTTP : ": "Echec de la requête HTTP :"
+        "Echec de la requête HTTP : ": "Fehler bei der HTTP Abfrage :"
     },
     "desktop/php/report.php": {
         "Type": "Typ",
@@ -1515,20 +1515,20 @@
         "Votre version de Jeedom ne permet pas d\\'activer ce plugin": "Ihre Jeedom Version erlaubt nicht dieses Plugin zu aktivieren",
         "Etes-vous sûr de vouloir supprimer ce plugin ?": "Sind Sie sicher, daß Sie dieses Plugin löschen wollen ?",
         "Sauvegarde de la configuration des panneaux effectuée": "Sicherung der Panel Konfiguration erfolgreich",
-        "Votre version de": "Votre version de",
-        "ne permet pas d\\'activer ce plugin": "ne permet pas d\\'activer ce plugin"
+        "Votre version de": "Ihre Version von",
+        "ne permet pas d\\'activer ce plugin": "nicht dieses Plugin zu aktivieren"
     },
     "core/repo/market.list.repo.php": {
         "Market Jeedom": "Jeedom Markt",
-        "Gratuit": "Gratuit",
-        "Payant": "Payant",
-        "Officiel": "Officiel",
-        "Conseillé": "Conseillé",
+        "Gratuit": "kostenlos",
+        "Payant": "Gebührenpflichtig",
+        "Officiel": "Offizielle",
+        "Conseillé": "Empfohlen",
         "Installé": "Installé",
         "Non installé": "Non installé",
         "Top et nouveautés": "Top et nouveautés",
-        "Aucune": "Aucune",
-        "par": "par"
+        "Aucune": "Ohne",
+        "par": "Von"
     },
     "desktop/js/report.js": {
         "Aucun aperçu possible en pdf": "Keine Übersicht mit pdf möglich"
@@ -1565,9 +1565,9 @@
         "Sauvegarder": "Speichern",
         "Informations": "Information",
         "Envoyer la sauvegarde locale sélectionnée": "Ausgewählte lokale Backup senden",
-        "Nombre de jours de mémorisation des sauvegardes": "Nombre de jours de mémorisation des sauvegardes",
-        "Taille totale maximale des sauvegardes (Mo)": "Taille totale maximale des sauvegardes (Mo)",
-        "Chargement...": "Chargement..."
+        "Nombre de jours de mémorisation des sauvegardes": "Anzahl der Tage zum Speichern der Sicherungskopie",
+        "Taille totale maximale des sauvegardes (Mo)": "Maximale Gesamtgröße der Sicherung (MB)",
+        "Chargement...": "Wird geladen ..."
     },
     "desktop/js/backup.js": {
         "Sauvegarde réussie": "Speichern erfolgreich",
@@ -1581,14 +1581,14 @@
         "L\\'opération est réussie": "Der Vorgang ist erfolgreich abgeschlossen",
         "L\\'opération a échoué": "Der Vorgang ist fehlgeschlagen",
         "Etes-vous sûr de vouloir envoyer une sauvegarde de Jeedom sur le cloud ? Une fois lancée cette opération ne peut être annulée": "Sind Sie sicher, dass Sie ein Jeedom Backup in die Cloud senden möchten? Nach dem Start kann dieser Vorgang nicht mehr abgebrochen werden.",
-        "Etes-vous sûr de vouloir restaurer Jeedom avec la sauvegarde": "Etes-vous sûr de vouloir restaurer Jeedom avec la sauvegarde",
-        "Une fois lancée cette opération ne peut être annulée.": "Une fois lancée cette opération ne peut être annulée.",
-        "Etes-vous sûr de vouloir faire une sauvegarde de": "Etes-vous sûr de vouloir faire une sauvegarde de",
-        "? Une fois lancée cette opération ne peut être annulée": "? Une fois lancée cette opération ne peut être annulée",
-        "Etes-vous sûr de vouloir envoyer une sauvegarde de": "Etes-vous sûr de vouloir envoyer une sauvegarde de",
-        "sur le cloud ? Une fois lancée cette opération ne peut être annulée": "sur le cloud ? Une fois lancée cette opération ne peut être annulée",
-        "Etes-vous sûr de vouloir restaurer": "Etes-vous sûr de vouloir restaurer",
-        "avec la sauvegarde Cloud": "avec la sauvegarde Cloud"
+        "Etes-vous sûr de vouloir restaurer Jeedom avec la sauvegarde": "Sind Sie sicher, dass Sie Jeedom mit der Sicherung wiederherstellen möchten",
+        "Une fois lancée cette opération ne peut être annulée.": "Nach dem Start kann dieser Vorgang nicht rückgängig gemacht werden.",
+        "Etes-vous sûr de vouloir faire une sauvegarde de": "Sind Sie sicher, dass Sie eine Sicherungskopie erstellen möchten",
+        "? Une fois lancée cette opération ne peut être annulée": "? Nach dem Start kann dieser Vorgang nicht abgebrochen werden",
+        "Etes-vous sûr de vouloir envoyer une sauvegarde de": "Sind Sie sicher, dass Sie eine Sicherungskopie senden möchten",
+        "sur le cloud ? Une fois lancée cette opération ne peut être annulée": "auf der Cloud? Nach dem Start kann dieser Vorgang nicht abgebrochen werden",
+        "Etes-vous sûr de vouloir restaurer": "Sind Sie sicher, dass Sie das wiederherstellen möchten",
+        "avec la sauvegarde Cloud": "mit Cloud-Sicherung"
     },
     "desktop/php/user.php": {
         "Liste des utilisateurs :": "Benutzerliste :",
@@ -1621,10 +1621,10 @@
         "Déconnecter": "Abmelden",
         "Date dernière utilisation": "Letztes Nutzungsdatum",
         "Identifiant": "Benutzername",
-        "Liste des utilisateurs": "Liste des utilisateurs",
-        "Activer accès support": "Activer accès support",
-        "Dernière connexion": "Dernière connexion",
-        "Périphériques enregistrés": "Périphériques enregistrés"
+        "Liste des utilisateurs": "Benutzerliste",
+        "Activer accès support": "Zugriff auf Support aktivieren",
+        "Dernière connexion": "Letzten Verbindung",
+        "Périphériques enregistrés": "Registrierte Peripheriegeräte"
     },
     "desktop/js/user.js": {
         "Sauvegarde effectuée": "Sicherungskopie hergestellt",
@@ -1648,11 +1648,11 @@
         "Régénérer clef API": "API-Schlüssel regenerieren",
         "Gérer les droits": "Rechte verwalten",
         "Etes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "Sind Sie sicher, dass Sie den API-Schlüssel des Benutzers ändern wollen ?",
-        "Local": "Local",
-        "Désactiver": "Désactiver",
-        "Régénérer API": "Régénérer API",
-        "Mot de passe": "Mot de passe",
-        "Droits": "Droits"
+        "Local": "Lokal",
+        "Désactiver": "deaktivieren",
+        "Régénérer API": "API regenerieren",
+        "Mot de passe": "Passwort",
+        "Droits": "Rechte"
     },
     "desktop/modal/log.display.php": {
         "Supprimer": "Löschen",
@@ -1709,7 +1709,7 @@
         "Derniere durée": "Letzte Dauer",
         "Statut": "Status",
         "Activer le système cron": "Cron-System aktivieren",
-        "Dernière durée": "Dernière durée"
+        "Dernière durée": "Letzte Dauer"
     },
     "desktop/js/cron.js": {
         "Désactiver le système cron": "Cron-System deaktivieren",
@@ -1751,18 +1751,18 @@
         "Non visible": "nicht sichtbar",
         "Non actif": "nicht aktiv",
         "Aller sur la configuration de l'objet": "Auf die Konfiguration des Objektes gehen",
-        "Historique des suppressions": "Historique des suppressions",
-        "Nombre d'objets :": "Nombre d'objets :",
-        "Nombre d'équipements :": "Nombre d'équipements :",
-        "Nombre de commandes :": "Nombre de commandes :"
+        "Historique des suppressions": "den Verlauf Löschen",
+        "Nombre d'objets :": "Anzahl der Objekte :",
+        "Nombre d'équipements :": "Anzahl der Geräte :",
+        "Nombre de commandes :": "Anzahl der Befehle :"
     },
     "desktop/js/display.js": {
         "Configuration de l'équipement": "Geräte Konfiguration",
         "Configuration de l'objet": "Objekt Konfiguration",
         "Configuration de la commande": "Befehl Konfiguration",
         "Etes-vous sûr de vouloir supprimer tous ces équipement ?": "Sind Sie sicher, dass Sie alle Geräte löschen möchten ?",
-        "Etes-vous sûr de vouloir supprimer tous ces équipements ?": "Etes-vous sûr de vouloir supprimer tous ces équipements ?",
-        "Historique des supression": "Historique des supression"
+        "Etes-vous sûr de vouloir supprimer tous ces équipements ?": "Sind Sie sicher, dass Sie alle Geräte löschen möchten ?",
+        "Historique des supression": "Löschungsverlauf"
     },
     "desktop/modal/plugin.dependancy.php": {
         "Nom": "Name",
@@ -2124,9 +2124,9 @@
         "Activer la personnalisation du widget": "Widget-Anpassung aktivieren",
         "Réinitialiser la personnalisation": "Reset Personalisierung",
         "Interdire dans les interactions automatique": "Verbieten automatische Interaktion in",
-        "Calcul et arrondi": "Calcul et arrondi",
+        "Calcul et arrondi": "Berechnung und Runden",
         "Valeurs interdites (séparées par \";\")": "Valeurs interdites (séparées par \";\")",
-        "Pendant plus de (en min, laisser vide pour immédiat)": "Pendant plus de (en min, laisser vide pour immédiat)"
+        "Pendant plus de (en min, laisser vide pour immédiat)": "Für mehr als (in min, leer lassen für sofort)"
     },
     "desktop/php/object.php": {
         "Ajouter objet": "Objekt hinzufügen",
@@ -2166,8 +2166,8 @@
         "Inverser": "umgekehrt",
         "Graphique des liens": "Grafik-Links",
         "Résumé objet": "Objekt Zusammenfassung",
-        "Activer": "Activer",
-        "Résumé Objets": "Résumé Objets"
+        "Activer": "aktivieren",
+        "Résumé Objets": "Objekt Zusammenfassung"
     },
     "desktop/modal/icon.selector.php": {
         "Rechercher": "Suchen nach",
@@ -2199,7 +2199,7 @@
         "Graphique de lien": "Link Graph",
         "Dépôt de données supprimé": "Datenarchiv gelöscht",
         "Dépôt de données sauvegardé": "Datenarchiv gespeichert",
-        "Graphique de lien(s)": "Graphique de lien(s)"
+        "Graphique de lien(s)": "Grafik-Links"
     },
     "core/class/dataStore.class.php": {
         "Variable :": "Variable :"
@@ -2215,9 +2215,9 @@
     "core/repo/market.repo.php": {
         "Téléchargement de ": "Herunterladen von ",
         "Erreur repo_market::getinfo : ": "Fehler repo_market::getinfo :",
-        "Cloud monitoring actif": "Cloud monitoring actif",
+        "Cloud monitoring actif": "Cloud Monitoring aktiv",
         "NOK": "NOK",
-        "Attention 10 minutes si le service ne redémarre pas contacter le support": "Attention 10 minutes si le service ne redémarre pas contacter le support",
+        "Attention 10 minutes si le service ne redémarre pas contacter le support": "Achtung 10 Minuten, wenn der Dienst nicht neu startet, kontaktieren Sie den Support",
         "OK": "OK"
     },
     "core/class/network.class.php": {
@@ -2246,14 +2246,14 @@
         "Objet installé avec succès": "Objekt erfolgreich installiert",
         "Installer": "installieren",
         "Voulez-vous aller sur la page de configuration de votre nouveau plugin ?": "Wollen sie auf die Konfigurationsseite Ihres neuen Plugins gehen?",
-        "Taille": "Taille",
-        "Utilisation": "Utilisation",
+        "Taille": "Größe",
+        "Utilisation": "Einsatz",
         "Informations complementaires": "Informations complementaires",
-        "Langue disponible": "Langue disponible",
-        "Market": "Market",
-        "Conseillé": "Conseillé",
-        "Attention ce plugin n'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée": "Attention ce plugin n'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée",
-        "Développé par": "Développé par"
+        "Langue disponible": "Verfügbare Sprachen",
+        "Market": "Markt",
+        "Conseillé": "Empfohlen",
+        "Attention ce plugin n'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée": "Vorsicht! Dieses Plugin ist kein offizielles Plugin im Falle von Schwierigkeiten (direkt oder indirekt), kann eine Supportanfrage  verweigert werden.",
+        "Développé par": "Entwickelt von"
     },
     "core/class/view.class.php": {
         "Vue :": "Ansicht :"
@@ -2540,7 +2540,7 @@
         "Vous pouvez envoyer des proposition d'amélioration qui seront publiée sur notre page publique dédiée et qui pourront être intégrés dans notre roadmap.": "Sie können Verbesserungsvorschläge senden, die auf unserer öffentlichen Seite veröffentlicht werden und in unsere Roadmap integriert werden können.",
         "Voir les bugs": "Die Fehler sehen",
         "Voir les propositions d'amélioration": "Sehen Sie Verbesserungsvorschläge",
-        "Rapport": "Rapport",
+        "Rapport": "Bericht",
         "Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre feuille de route.": "Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre feuille de route.",
         "Ouvrir un accès au support": "Ouvrir un accès au support",
         "Vous venez de déclarer un bug qui sera publié sur notre Bug Tracker public.<br/>Vous pouvez le suivre": "Vous venez de déclarer un bug qui sera publié sur notre Bug Tracker public.<br/>Vous pouvez le suivre"
@@ -2553,8 +2553,8 @@
         "Attention tout ce que vous écrivez ici est global et inclus sur toutes les pages, la moindre erreur peut rendre votre jeedom non fonctionel": "Achtung, alles was Sie hier schreiben ist auf alle Seiten, der kleinste Fehler kann Ihr Jeedom nicht funktionieren lassen. ",
         "Activer": "aktivieren",
         "Sauvegarder": "Speichern",
-        "Attention : tout ce que vous écrivez ici est global et inclus sur toutes les pages. La moindre erreur peut rendre votre": "Attention : tout ce que vous écrivez ici est global et inclus sur toutes les pages. La moindre erreur peut rendre votre",
-        "non fonctionel.": "non fonctionel."
+        "Attention : tout ce que vous écrivez ici est global et inclus sur toutes les pages. La moindre erreur peut rendre votre": "Achtung : alles was Sie hier schreiben ist auf alle Seiten, der kleinste Fehler kann Ihr Jeedom nicht funktionieren lassen. ",
+        "non fonctionel.": "nicht funktional."
     },
     "desktop/js/system.js": {
         "Etes-vous sûr de vouloir éxécuter cette commande : ": "Sind Sie sicher, dass sie diesen Befehl ausführen möchten :  ",
@@ -2644,20 +2644,20 @@
         "Condition": "Bedingung",
         "Ajouter": "Hinzufügen",
         "Couleur": "Farbe",
-        "Etat": "Etat",
+        "Etat": "Zustand",
         "Rotation": "Rotation",
-        "Activer": "Activer",
-        "Ouverture": "Ouverture",
-        "Gauche": "Gauche",
-        "Droite": "Droite",
+        "Activer": "aktivieren",
+        "Ouverture": "Öffnung",
+        "Gauche": "links",
+        "Droite": "Recht",
         "Devant": "Devant",
         "Derriere": "Derriere",
         "Normal": "Normal",
         "Inversé": "Inversé",
         "Translation": "Translation",
         "Sens": "Sens",
-        "Haut": "Haut",
-        "Bas": "Bas",
+        "Haut": "oben",
+        "Bas": "niedrig",
         "Répeter": "Répeter",
         "Masquer quand la porte/fenêtre est ouverte": "Masquer quand la porte/fenêtre est ouverte",
         "Couleur ouverte": "Couleur ouverte",
@@ -2753,7 +2753,7 @@
         "Partager sur le market": "auf dem Markt Teilen",
         "Etes-vous sûr de vouloir appliquer le template ? Cela écrasera votre scénario": "Sind Sie sicher, das Sie die Vorlage anwenden wollen? Dies wird Ihr Szenario überschreiben",
         "Template ajouté avec succès": "Vorlage erfolgreich hinzugefügt",
-        "Envoyer un template": "Envoyer un template"
+        "Envoyer un template": " Vorlage senden"
     },
     "desktop/.php": {
         "Aucune phrase trouvée": "Keine Sätze gefunden"
@@ -2765,9 +2765,9 @@
         "La demande ne peut être vide": "Die Anwendung darf nicht leer sein"
     },
     "desktop/modal/note.manager.php": {
-        "Supprimer": "Supprimer",
-        "Sauvegarder": "Sauvegarder",
-        "Ajouter": "Ajouter",
+        "Supprimer": "Löschen",
+        "Sauvegarder": "Speichern",
+        "Ajouter": "Hinzufügen",
         "Note crée avec succès": "Note crée avec succès",
         "Note sauvegardée avec succès": "Note sauvegardée avec succès",
         "Etês vous sur de vouloir supprimer la note : ": "Etês vous sur de vouloir supprimer la note :",
@@ -2775,60 +2775,60 @@
         "Note créée avec succès": "Note créée avec succès"
     },
     "desktop/modal/cmd.selectMultiple.php": {
-        "Basculer": "Basculer",
-        "Valider": "Valider",
-        "Nom": "Nom"
+        "Basculer": "Schalter",
+        "Valider": "Prüfen",
+        "Nom": "Name"
     },
     "desktop/modal/cmd.configureHistory.php": {
-        "Valider": "Valider",
+        "Valider": "Prüfen",
         "Historisé": "Historisé",
         "Timeline": "Timeline",
-        "Nom": "Nom",
+        "Nom": "Name",
         "Plugin": "Plugin",
-        "Mode de lissage": "Mode de lissage",
+        "Mode de lissage": "Modus Glättung",
         "Purge de l'historique si plus vieux": "Purge de l'historique si plus vieux",
-        "Action": "Action",
-        "Moyenne": "Moyenne",
+        "Action": "Aktion",
+        "Moyenne": "Durchschnitt",
         "Minimum": "Minimum",
         "Maximum": "Maximum",
-        "Aucun": "Aucun",
-        "Jamais": "Jamais",
-        "1 jour": "1 jour",
-        "7 jours": "7 jours",
-        "1 mois": "1 mois",
-        "3 mois": "3 mois",
-        "6 mois": "6 mois",
+        "Aucun": "Ohne",
+        "Jamais": "noch nie",
+        "1 jour": "1 Tag",
+        "7 jours": "7 Tage",
+        "1 mois": "1 Monat",
+        "3 mois": "3 Monate",
+        "6 mois": "6 Monate",
         "1 an": "1 an",
-        "Configuration de la commande": "Configuration de la commande",
+        "Configuration de la commande": "Befehl Konfiguration",
         "Modifications sauvegardées avec succès": "Modifications sauvegardées avec succès",
-        "Type": "Type",
+        "Type": "Typ",
         "Commande(s) historisée(s) : ": "Commande(s) historisée(s) :",
         "Commande(s) timeline : ": "Commande(s) timeline :"
     },
     "desktop/modal/user.rights.php": {
         "Attention : le compte utilisateur n'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s'appliquer": "Attention : le compte utilisateur n'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s'appliquer",
-        "Sauvegarder": "Sauvegarder",
-        "Equipements": "Equipements",
-        "Scénarios": "Scénarios",
-        "Equipement": "Equipement",
-        "Droits": "Droits",
-        "Aucun": "Aucun",
+        "Sauvegarder": "Speichern",
+        "Equipements": "Geräte",
+        "Scénarios": "Szenarien",
+        "Equipement": "Gerät",
+        "Droits": "Rechte",
+        "Aucun": "Ohne",
         "Visualisation": "Visualisation",
         "Visualisation et exécution": "Visualisation et exécution",
-        "Scénario": "Scénario",
-        "Sauvegarde effectuée": "Sauvegarde effectuée"
+        "Scénario": "Szenario",
+        "Sauvegarde effectuée": "Sicherungskopie hergestellt"
     },
     "desktop/modal/object.summary.php": {
         "ID": "ID",
-        "Objet": "Objet",
-        "Père": "Père",
-        "Visible": "Visible",
+        "Objet": "Objekt",
+        "Père": "Vater",
+        "Visible": "Sichtbar",
         "Masqué": "Masqué",
         "Résumé Défini": "Résumé Défini",
         "Résumé Dashboard Masqué": "Résumé Dashboard Masqué",
         "Résumé Mobile Masqué": "Résumé Mobile Masqué",
-        "Oui": "Oui",
-        "Non": "Non"
+        "Oui": "Ja",
+        "Non": "Nein"
     },
     "3rdparty/jquery.tablesorter/jquery.tablesorter.widgets.min.js": {
         "label": "label",

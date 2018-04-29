@@ -170,8 +170,8 @@
         "Analyse équipement": "аналитическое оборудование",
         "Messages": "Сообщения",
         "Message(s)": "Сообщение(ия)",
-        "Scénarios": "Scénarios",
-        "Scénario": "Scénario"
+        "Scénarios": "Сценарии",
+        "Scénario": "Сценарий"
     },
     "core/class/cron.class.php": {
         "Arrêt de ": "Остановка"
@@ -258,7 +258,7 @@
         "Defaut": "По умолчанию",
         "Autre": "Другой",
         "Scénarios": "Сценарии",
-        "Catégorie": "Catégorie",
+        "Catégorie": "категория",
         "Toute": "Toute",
         "Tags": "Tags"
     },
@@ -318,7 +318,7 @@
         "Plan 3d": "3D-карта",
         "Plan 3d inconnu. Verifier l'id": "Unknown Map 3D. Проверьте идентификатор",
         "Design 3D": "3D дизайн",
-        "Note": "Note",
+        "Note": "Заметки",
         "Jeedom est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.": "Jeedom est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé."
     },
     "desktop/php/message.php": {
@@ -400,7 +400,7 @@
         "Fonctionnalités": "черты",
         "Gestion": "Управление",
         "Sources": "источники",
-        "Plugins": "Plugins"
+        "Plugins": "Плагины"
     },
     "core/class/interactQuery.class.php": {
         "J'ai une correspondance  : ": "У меня есть переписка:",
@@ -422,7 +422,7 @@
         "Correspondance trouvée : ": "Переписка найдено:",
         " mais ne contient pas : ": "но не содержит:",
         "Alerte : ": "Alerte :",
-        " valeur : ": "valeur :"
+        " valeur : ": "значение:"
     },
     "desktop/php/log.php": {
         "Rechercher": "Искать",
@@ -710,7 +710,7 @@
         "Editeur de fichiers": "Editeur de fichiers",
         "DNS (proxy)": "DNS (proxy)",
         "Action sur message": "Action sur message",
-        "Ajouter": "Ajouter",
+        "Ajouter": "Добавить",
         "Nom de votre Jeedom2 (utilisé notamment par le market)": "Nom de votre Jeedom2 (utilisé notamment par le market)",
         "Nom de votre": "Nom de votre",
         "Clef d'installation qui permet d'identifier votre": "Clef d'installation qui permet d'identifier votre",
@@ -762,12 +762,12 @@
         "Evènement de la timeline supprimé avec succès": "Хронология событий успешно удалена",
         "Suppression des IPs bannies réussie": "Удаление успешных IP-адресов запрещены",
         "Administration base de données": "администрирование баз данных",
-        "Décocher pour desactiver l\\'action": "Décocher pour desactiver l\\'action",
-        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Cocher pour que la commande s\\'éxecute en parrallele des autres actions",
-        "Sélectionner un mot-clé": "Sélectionner un mot-clé",
+        "Décocher pour desactiver l\\'action": "Снимите флажок, чтобы отключить Action \\ «ы",
+        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Проверьте порядок \\ «s выполняться параллельно с другими действиями",
+        "Sélectionner un mot-clé": "Выберите ключевое слово",
         "Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et qu\\'en cas de": "Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et qu\\'en cas de",
         "non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\\'accès est enregistrée) ?": "non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\\'accès est enregistrée) ?",
-        "Opération réalisée avec succès": "Opération réalisée avec succès"
+        "Opération réalisée avec succès": "Операция выполнена успешно"
     },
     "desktop/php/interact.php": {
         "Ajouter interaction": "Добавить взаимодействие",
@@ -946,7 +946,7 @@
         "Supprimer colonne": "Удалить столбец",
         "Supprimer ligne": "Удалить строку",
         "A propos": "A propos",
-        "Note": "Note"
+        "Note": "Заметки"
     },
     "desktop/js/view.js": {
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Вы редактируете вы можете вылепить перемещение виджетов, изменить размер и изменить порядок команд в виджетах"
@@ -1138,7 +1138,7 @@
         "Le scénario pourra tourner plusieurs fois en même temps": "Сценарий будет работать одновременно несколько раз",
         "Le scénario est en mode synchrone. Attention, cela peut rendre le système instable": "Сценарий в синхронном режиме. Внимание, это может сделать систему нестабильной",
         "Les exécutions du scénario pourront être vues dans la timeline.": "Расстрелы сценария можно увидеть на временной шкале.",
-        "Ajouter bloc": "Ajouter bloc"
+        "Ajouter bloc": "Добавить блок"
     },
     "desktop/js/scenario.js": {
         "Sauvegarde effectuée avec succès": "Резервное копирование завершено успешно",
@@ -1520,14 +1520,14 @@
     },
     "core/repo/market.list.repo.php": {
         "Market Jeedom": "Маркет Jeedom",
-        "Gratuit": "Gratuit",
-        "Payant": "Payant",
-        "Officiel": "Officiel",
+        "Gratuit": "Бесплатно",
+        "Payant": "Платно",
+        "Officiel": "Официальное",
         "Conseillé": "Conseillé",
         "Installé": "Installé",
         "Non installé": "Non installé",
         "Top et nouveautés": "Top et nouveautés",
-        "Aucune": "Aucune",
+        "Aucune": "нет",
         "par": "par"
     },
     "desktop/js/report.js": {
@@ -1648,11 +1648,11 @@
         "Régénérer clef API": "Регенерация API Key",
         "Gérer les droits": "Управление правами",
         "Etes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "Вы уверены, что хотите изменить ключ API от пользователя \\ «s?",
-        "Local": "Local",
-        "Désactiver": "Désactiver",
+        "Local": "Локальный",
+        "Désactiver": "Отключить",
         "Régénérer API": "Régénérer API",
-        "Mot de passe": "Mot de passe",
-        "Droits": "Droits"
+        "Mot de passe": "Пароль",
+        "Droits": "Права"
     },
     "desktop/modal/log.display.php": {
         "Supprimer": "Удалить",
@@ -2166,7 +2166,7 @@
         "Inverser": "Обратный",
         "Graphique des liens": "Графические ссылки",
         "Résumé objet": "пункт Резюме",
-        "Activer": "Activer",
+        "Activer": "активировать",
         "Résumé Objets": "Résumé Objets"
     },
     "desktop/modal/icon.selector.php": {
@@ -2216,9 +2216,9 @@
         "Téléchargement de ": "скачать",
         "Erreur repo_market::getinfo : ": "Ошибка :: repo_market GetInfo:",
         "Cloud monitoring actif": "Cloud monitoring actif",
-        "NOK": "NOK",
+        "NOK": "Неактивен",
         "Attention 10 minutes si le service ne redémarre pas contacter le support": "Attention 10 minutes si le service ne redémarre pas contacter le support",
-        "OK": "OK"
+        "OK": "ОК"
     },
     "core/class/network.class.php": {
         "Le plugin openvpn doit être actif": "Плагин OpenVPN должен быть активным"
@@ -2246,13 +2246,13 @@
         "Objet installé avec succès": "Пункт успешно установлен",
         "Installer": "устанавливать",
         "Voulez-vous aller sur la page de configuration de votre nouveau plugin ?": "Хотите перейти на страницу конфигурации вашего нового плагина?",
-        "Taille": "Taille",
-        "Utilisation": "Utilisation",
+        "Taille": "Размер",
+        "Utilisation": "Использование",
         "Informations complementaires": "Informations complementaires",
-        "Langue disponible": "Langue disponible",
-        "Market": "Market",
+        "Langue disponible": "Доступные языки",
+        "Market": "Маркет",
         "Conseillé": "Conseillé",
-        "Attention ce plugin n'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée": "Attention ce plugin n'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée",
+        "Attention ce plugin n'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée": "Внимание: Этот плагин не является официальным, в случае неприятностей с ним (прямо или косвенно) любая просьба о поддержке может быть отклонена",
         "Développé par": "Développé par"
     },
     "core/class/view.class.php": {
@@ -2540,7 +2540,7 @@
         "Vous pouvez envoyer des proposition d'amélioration qui seront publiée sur notre page publique dédiée et qui pourront être intégrés dans notre roadmap.": "Вы можете отправить предложения по улучшению, которые будут опубликованы на нашей странице, посвященной общественности и могут быть интегрированы в нашу дорожную карту.",
         "Voir les bugs": "Смотрите ошибки",
         "Voir les propositions d'amélioration": "См предложения по улучшению",
-        "Rapport": "Rapport",
+        "Rapport": "доклад",
         "Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre feuille de route.": "Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre feuille de route.",
         "Ouvrir un accès au support": "Ouvrir un accès au support",
         "Vous venez de déclarer un bug qui sera publié sur notre Bug Tracker public.<br/>Vous pouvez le suivre": "Vous venez de déclarer un bug qui sera publié sur notre Bug Tracker public.<br/>Vous pouvez le suivre"
@@ -2644,19 +2644,19 @@
         "Condition": "состояние",
         "Ajouter": "Добавить",
         "Couleur": "Цвет",
-        "Etat": "Etat",
+        "Etat": "Состояние",
         "Rotation": "Rotation",
-        "Activer": "Activer",
-        "Ouverture": "Ouverture",
-        "Gauche": "Gauche",
-        "Droite": "Droite",
+        "Activer": "активировать",
+        "Ouverture": "Открытие",
+        "Gauche": "слева",
+        "Droite": "право",
         "Devant": "Devant",
         "Derriere": "Derriere",
-        "Normal": "Normal",
+        "Normal": "нормальный",
         "Inversé": "Inversé",
         "Translation": "Translation",
         "Sens": "Sens",
-        "Haut": "Haut",
+        "Haut": "топ",
         "Bas": "Bas",
         "Répeter": "Répeter",
         "Masquer quand la porte/fenêtre est ouverte": "Masquer quand la porte/fenêtre est ouverte",
@@ -2765,9 +2765,9 @@
         "La demande ne peut être vide": "Запрос не может быть пустым"
     },
     "desktop/modal/note.manager.php": {
-        "Supprimer": "Supprimer",
-        "Sauvegarder": "Sauvegarder",
-        "Ajouter": "Ajouter",
+        "Supprimer": "удаление",
+        "Sauvegarder": "экономить",
+        "Ajouter": "Добавить",
         "Note crée avec succès": "Note crée avec succès",
         "Note sauvegardée avec succès": "Note sauvegardée avec succès",
         "Etês vous sur de vouloir supprimer la note : ": "Etês vous sur de vouloir supprimer la note :",
@@ -2775,60 +2775,60 @@
         "Note créée avec succès": "Note créée avec succès"
     },
     "desktop/modal/cmd.selectMultiple.php": {
-        "Basculer": "Basculer",
-        "Valider": "Valider",
-        "Nom": "Nom"
+        "Basculer": "Переключатель",
+        "Valider": "Применить",
+        "Nom": "имя"
     },
     "desktop/modal/cmd.configureHistory.php": {
-        "Valider": "Valider",
+        "Valider": "Применить",
         "Historisé": "Historisé",
-        "Timeline": "Timeline",
-        "Nom": "Nom",
-        "Plugin": "Plugin",
-        "Mode de lissage": "Mode de lissage",
+        "Timeline": "хронология",
+        "Nom": "имя",
+        "Plugin": "Плагин",
+        "Mode de lissage": "Режим сглаживания",
         "Purge de l'historique si plus vieux": "Purge de l'historique si plus vieux",
-        "Action": "Action",
-        "Moyenne": "Moyenne",
-        "Minimum": "Minimum",
-        "Maximum": "Maximum",
-        "Aucun": "Aucun",
-        "Jamais": "Jamais",
-        "1 jour": "1 jour",
-        "7 jours": "7 jours",
-        "1 mois": "1 mois",
-        "3 mois": "3 mois",
-        "6 mois": "6 mois",
+        "Action": "Действие",
+        "Moyenne": "Средний",
+        "Minimum": "Минимум",
+        "Maximum": "Максимум",
+        "Aucun": "нет",
+        "Jamais": "Никогда",
+        "1 jour": "1 день",
+        "7 jours": "7 дней",
+        "1 mois": "1 месяц",
+        "3 mois": "3 месяца",
+        "6 mois": "6 месяцев",
         "1 an": "1 an",
-        "Configuration de la commande": "Configuration de la commande",
+        "Configuration de la commande": "управляющий набор",
         "Modifications sauvegardées avec succès": "Modifications sauvegardées avec succès",
-        "Type": "Type",
+        "Type": "Тип",
         "Commande(s) historisée(s) : ": "Commande(s) historisée(s) :",
         "Commande(s) timeline : ": "Commande(s) timeline :"
     },
     "desktop/modal/user.rights.php": {
         "Attention : le compte utilisateur n'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s'appliquer": "Attention : le compte utilisateur n'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s'appliquer",
-        "Sauvegarder": "Sauvegarder",
-        "Equipements": "Equipements",
-        "Scénarios": "Scénarios",
-        "Equipement": "Equipement",
-        "Droits": "Droits",
-        "Aucun": "Aucun",
+        "Sauvegarder": "экономить",
+        "Equipements": "Оборудование",
+        "Scénarios": "Сценарии",
+        "Equipement": "Оборудование",
+        "Droits": "Права",
+        "Aucun": "нет",
         "Visualisation": "Visualisation",
         "Visualisation et exécution": "Visualisation et exécution",
-        "Scénario": "Scénario",
-        "Sauvegarde effectuée": "Sauvegarde effectuée"
+        "Scénario": "Сценарий",
+        "Sauvegarde effectuée": "Резервное копирование произведено"
     },
     "desktop/modal/object.summary.php": {
-        "ID": "ID",
-        "Objet": "Objet",
-        "Père": "Père",
-        "Visible": "Visible",
+        "ID": "Идентификатор",
+        "Objet": "Объект",
+        "Père": "Родитель",
+        "Visible": "видимый",
         "Masqué": "Masqué",
         "Résumé Défini": "Résumé Défini",
         "Résumé Dashboard Masqué": "Résumé Dashboard Masqué",
         "Résumé Mobile Masqué": "Résumé Mobile Masqué",
-        "Oui": "Oui",
-        "Non": "Non"
+        "Oui": "да",
+        "Non": "не"
     },
     "3rdparty/jquery.tablesorter/jquery.tablesorter.widgets.min.js": {
         "label": "label",
