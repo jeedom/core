@@ -30,7 +30,7 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 }
 ?>
 		<li role="presentation"><a href="#eqLogic_alert" aria-controls="messages" role="tab" data-toggle="tab"><i class="fas fa-exclamation-triangle"></i> {{Alertes}}</a></li>
-		<li role="presentation"><a href="#eqLogic_comment" aria-controls="messages" role="tab" data-toggle="tab" id="bt_EqLogicConfigurationTabComment"><i class="fas fa-commenting-o"></i> {{Commentaire}}</a></li>
+		<li role="presentation"><a href="#eqLogic_comment" aria-controls="messages" role="tab" data-toggle="tab" id="bt_EqLogicConfigurationTabComment"><i class="fas fa-comment-alt"></i> {{Commentaire}}</a></li>
 	</ul>
 
 	<div class="tab-content" id="div_displayEqLogicConfigure">
