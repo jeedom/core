@@ -13,7 +13,7 @@ if (is_array($interactListGroup)) {
 }
 ?>
 
-<div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;background-color:#f6f6f6;" class="div_smallSideBar" id="bt_displayInteractList"><i class="fas fa-arrow-circle-o-right" style="color : #b6b6b6;"></i></div>
+<div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;background-color:#f6f6f6;" class="div_smallSideBar" id="bt_displayInteractList"><i class="far fa-arrow-alt-circle-right" style="color : #b6b6b6;"></i></div>
 <div class="row row-overflow">
   <div class="col-xs-2" id="div_listInteract" style="z-index:999">
     <div class="bs-sidebar nav nav-list bs-sidenav" >
