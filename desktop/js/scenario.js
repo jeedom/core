@@ -51,7 +51,8 @@
  {val: 'collectDate(cmd)'},
  {val: 'valueDate(cmd)'},
  {val: 'eqEnable(equipement)'},
- {val: 'name(type,commande)'}
+ {val: 'name(type,commande)'},
+ {val: 'value(commande)'}
  ];
  autoCompleteAction = ['report','sleep', 'variable', 'scenario', 'stop', 'wait','gotodesign','log','message','equipment','ask','jeedom_poweroff','scenario_return','alert','popup','icon','event','remove_inat'];
 

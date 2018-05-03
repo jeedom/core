@@ -676,7 +676,7 @@ class scenarioExpression {
 	}
 
 	public static function collectDate($_cmd, $_format = 'Y-m-d H:i:s') {
-		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd)));
+		$cmd = cmd::byId(trim(str_replace('#', '', cmd::humanReadableToCmd('#' . str_replace('#', '', $_cmd_id) . '#'))));
 		if (!is_object($cmd)) {
 			return -1;
 		}
@@ -688,12 +688,20 @@ class scenarioExpression {
 	}
 
 	public static function valueDate($_cmd_id, $_format = 'Y-m-d H:i:s') {
-		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
+		$cmd = cmd::byId(trim(str_replace('#', '', cmd::humanReadableToCmd('#' . str_replace('#', '', $_cmd_id) . '#'))));
 		if (!is_object($cmd)) {
 			return '';
 		}
 		$cmd->execCmd();
 		return date($_format, strtotime($cmd->getValueDate()));
+	}
+
+	public static function value($_cmd_id) {
+		$cmd = cmd::byId(trim(str_replace('#', '', cmd::humanReadableToCmd('#' . str_replace('#', '', $_cmd_id) . '#'))));
+		if (!is_object($cmd)) {
+			return '';
+		}
+		return $cmd->execCmd();
 	}
 
 	public static function randomColor($_rangeLower, $_rangeHighter) {
