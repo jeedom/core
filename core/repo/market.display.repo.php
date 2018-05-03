@@ -59,8 +59,8 @@ if ($market->getCertification() == 'Officiel') {
 if ($market->getCertification() == 'Conseillé') {
 	echo '<span style="font-size: 1.5em;font-weight: bold;color:#707070;">{{Conseillé}}</span><br/>';
 }
-if ($market->getCertification() == 'Legagcy') {
-	echo '<span style="font-size: 1.5em;font-weight: bold;color:#9b59b6;">{{Legagcy}}</span><br/>';
+if ($market->getCertification() == 'Legacy') {
+	echo '<span style="font-size: 1.5em;font-weight: bold;color:#9b59b6;">{{Legacy}}</span><br/>';
 }
 if ($market->getCertification() == 'Obsolète') {
 	echo '<span style="font-size: 1.5em;font-weight: bold;color:#e74c3c;">{{Obsolète}}</span><br/>';
