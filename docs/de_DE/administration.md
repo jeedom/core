@@ -122,14 +122,14 @@ LDAP
 -    **Filter (optional)** : Filter auf dem AD (zum Beispiel für 
     Gruppenmanagement)
 
--   **Autoriser REMOTE\_USER** : Active le REMOTE\_USER (utilisé en SSO
+-   **REMOTE_USER zulassen** : REMOTE_USER aktivieren (zum Beispiel 
     verwendet in SSO)
 
 Verbindung 
 ---------
 
--   **Anzahl der tolerierten Fehler** : Legt die Anzahl der aufeinander folgenden Versuche fest, bevor die IP verboten wird.
-    successives autorisées avant de bannir l’IP
+-   **Anzahl der tolerierten Fehler** : Legt die Anzahl der aufeinander 
+    folgenden Versuche fest, bevor die IP verboten wird.
 
 -   **Maximale Zeit zwischen Fehlern (in Sekunden)** : maximale Zeit für 2 
     Versuche, die als aufeinanderfolgend betrachtet werden
@@ -178,26 +178,26 @@ Netzwerk, insbesondere vom Internet).
     -   **URL oder IP Adresse** : Die Jeedom IP-Adresse eintragen.
 
     -   **Port** : Der Port des Webinterface von Jeedom, allgemein 80.
-        Attention changer le port ici ne change pas le port réel de
-        Jeedom qui restera le même
+        Achtung, den Port hier zu ändern, ändert tatsächlich nicht den 
+        Jeedom Port, er wird derselbe bleiben.
 
-    -   **Complément** : le fragment d’URL complémentaire (exemple
-        : /jeedom) pour accéder à Jeedom.
+    -   **Ergänzung** : das komplementäre URL-Fragment (Beispiel
+        /jeedom) um auf Jeedom zuzugreifen.
 
--   **Accès externe** : informations pour joindre Jeedom de l’extérieur
-    du réseau local. À ne remplir que si vous n’utilisez pas le DNS
-    Jeedom
+-   **Externer Zugriff** : Angaben, um von außerhalb des lokalen Netzwerks 
+    auf Jeedom zuzugreifen. Füllen Sie dies nur aus, wenn Sie die
+    Jeedom DNS nicht verwenden.
 
-    -   **OK/NOK** : indique si la configuration réseau externe est
-        richtig
+    -   **OK/NOK** : Zeigt an, ob die externe Netzwerkkonfiguration
+        korrekt ist.
 
     -   **Protokolle** : verwendetes Protokoll für den Zugriff von außen 
 
-    -   **Adresse URL ou IP** : IP externe, si elle est fixe. Sinon,
-        donnez l’URL pointant sur l’adresse IP externe de votre réseau.
+    -   **URL oder IP Adresse** : Externe IP-Adresse, wenn es behoben wird.
+        Andernfalls geben Sie die URL für die externe IP-Adresse Ihres Netzwerks.
 
-    -   **Complément** : le fragment d’URL complémentaire (exemple
-        : /jeedom) pour accéder à Jeedom.
+    -   **Ergänzung** : das komplementäre URL-Fragment (Beispiel
+        /jeedom) um auf Jeedom zuzugreifen.
 
 > **Tip**
 >
