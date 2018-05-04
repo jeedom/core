@@ -516,7 +516,7 @@ class repo_market {
 			$_ticket['user_plugin'] .= $plugin->getId();
 			$update = $plugin->getUpdate();
 			if (is_object($update)) {
-				$_ticket['user_plugin'] .= '[' . $update->getConfiguration('version', 'stable') . ',' . $update->getLocalVersion() . ']';
+				$_ticket['user_plugin'] .= '[' . $update->getConfiguration('version', 'stable'). ',' . $update->getSource() . ',' . $update->getLocalVersion() . ']';
 			}
 			$_ticket['user_plugin'] .= ',';
 		}
