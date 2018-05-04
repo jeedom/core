@@ -52,11 +52,9 @@ class jeedom {
 
 	public static function addRemoveHistory($_data) {
 		try {
+			$remove_history = array();
 			if (file_exists(dirname(__FILE__) . '/../../data/remove_history.json')) {
-				$remove_history = json_decode(file_get_contents(dirname(__FILE__) . '/../../data/cmd/remove_history.json'), true);
-			}
-			if (!is_array($remove_history)) {
-				$remove_history = array();
+				$remove_history = json_decode(file_get_contents(dirname(__FILE__) . '/../../data/remove_history.json'), true);
 			}
 			$remove_history[] = $_data;
 			$remove_history = array_slice($remove_history, -200, 200);
