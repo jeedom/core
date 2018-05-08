@@ -1,6 +1,13 @@
 Changelog 
 =========
 
+3.2.7
+=====
+
+- Correction de bugs
+- Mise à jour de la docs
+- Possibilité d'utiliser les tags dans les conditions des blocs "A" et "DANS"
+
 3.2.6
 =====
 
