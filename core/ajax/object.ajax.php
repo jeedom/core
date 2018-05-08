@@ -53,7 +53,18 @@ try {
 	}
 
 	if (init('action') == 'all') {
-		ajax::success(utils::o2a(jeeObject::buildTree()));
+		$objects = jeeObject::buildTree();
+		if (init('onlyHasEqLogic') != '') {
+			$return = array();
+			foreach ($objects as $object) {
+				if ($object->getIsVisible() != 1 || count($object->getEqLogic(true, false, init('onlyHasEqLogic'), null, true)) == 0) {
+					continue;
+				}
+				$return[] = $object;
+			}
+			$objects = $return;
+		}
+		ajax::success(utils::o2a($objects));
 	}
 
 	if (init('action') == 'save') {
