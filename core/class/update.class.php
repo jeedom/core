@@ -546,6 +546,10 @@ class update {
 		return DB::remove($this);
 	}
 
+	public function postRemove() {
+		event::add('update::refreshUpdateNumber');
+	}
+
 	public function refresh() {
 		DB::refresh($this);
 	}
