@@ -1236,6 +1236,8 @@ class cmd {
 			$display_value = ($value == 1) ? 0 : 1;
 		} else if ($this->getSubType() == 'numeric' && trim($value) === '') {
 			$display_value = 0;
+		} else if ($this->getSubType() == 'binary' && trim($value) === '') {
+			$display_value = 0;
 		}
 		if ($repeat && $this->getConfiguration('repeatEventManagement', 'auto') == 'never') {
 			$this->addHistoryValue($value, $this->getCollectDate());
