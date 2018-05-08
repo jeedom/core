@@ -7,6 +7,7 @@ Changelog
 - Correction de bugs
 - Mise à jour de la docs
 - Possibilité d'utiliser les tags dans les conditions des blocs "A" et "DANS"
+- Correction du bugs des catégories market pour les widgets/scripts/scénarios...
 
 3.2.6
 =====
