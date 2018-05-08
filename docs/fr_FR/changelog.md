@@ -14,6 +14,21 @@ Changelog
 -   Un message est maintenant ajouté si une expression invalide est trouvée lors de l'éxecution d'un scénario
 -   Ajout d'une commande dans les scénarios : value(commande) permet d'avoir la valeur d'une commande si elle n'est pas donnée automatiquement par jeedom (cas lors du stockage du nom de la commande dans une variable)
 
+3.2.7
+=====
+
+- Correction de bugs
+- Mise à jour de la docs
+- Possibilité d'utiliser les tags dans les conditions des blocs "A" et "DANS"
+
+3.2.6
+=====
+
+- Correction de bugs
+- Mise à jour de la docs
+- Uniformisation des noms de certaine commande dans les scénarios
+- Optimisation des performances
+
 3.2.5
 =====
 
