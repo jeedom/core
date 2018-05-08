@@ -991,9 +991,8 @@ class jeedom {
 		return scenario::fromHumanReadable(eqLogic::fromHumanReadable(cmd::humanReadableToCmd($_input)));
 	}
 
-	public static function evaluateExpression($_input) {
+	public static function evaluateExpression($_input, $_scenario = null) {
 		try {
-			$_scenario = null;
 			$_input = scenarioExpression::setTags($_input, $_scenario, true);
 			$result = evaluate($_input);
 			if (is_bool($result) || is_numeric($result)) {
