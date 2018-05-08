@@ -195,8 +195,7 @@ class scenarioElement {
 			if ($in->getOptions('enable', 1) == 0) {
 				return true;
 			}
-			$in = $in->getExpression();
-			$time = ceil(str_replace('.', ',', jeedom::evaluateExpression($in[0]->getExpression())));
+			$time = ceil(str_replace('.', ',', jeedom::evaluateExpression($in->getExpression()[0]->getExpression(), $_scenario)));
 			if (!is_numeric($time) || $time < 0) {
 				$time = 0;
 			}
@@ -234,8 +233,7 @@ class scenarioElement {
 			if ($at->getOptions('enable', 1) == 0) {
 				return true;
 			}
-			$at = $at->getExpression();
-			$next = jeedom::evaluateExpression($at[0]->getExpression());
+			$next = jeedom::evaluateExpression($at->getExpression()[0]->getExpression(), $_scenario);
 			if (!is_numeric($next) || $next < 0) {
 				throw new Exception(__('Bloc type A : ', __FILE__) . $this->getId() . __(', heure programmée invalide : ', __FILE__) . $next);
 			}
