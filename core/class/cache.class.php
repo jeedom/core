@@ -17,7 +17,7 @@
  */
 
 /* * ***************************Includes********************************* */
-require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
+require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class cache {
 	/*     * *************************Attributs****************************** */
@@ -178,7 +178,7 @@ class cache {
 				return;
 		}
 		try {
-			com_shell::execute('rm -rf ' . dirname(__FILE__) . '/../../cache.tar.gz;cd ' . $cache_dir . ';tar cfz ' . dirname(__FILE__) . '/../../cache.tar.gz * 2>&1 > /dev/null;chmod 775 ' . dirname(__FILE__) . '/../../cache.tar.gz;chown ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . dirname(__FILE__) . '/../../cache.tar.gz;chmod 777 -R ' . $cache_dir . ' 2>&1 > /dev/null');
+			com_shell::execute('rm -rf ' . __DIR__ . '/../../cache.tar.gz;cd ' . $cache_dir . ';tar cfz ' . __DIR__ . '/../../cache.tar.gz * 2>&1 > /dev/null;chmod 775 ' . __DIR__ . '/../../cache.tar.gz;chown ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . __DIR__ . '/../../cache.tar.gz;chmod 777 -R ' . $cache_dir . ' 2>&1 > /dev/null');
 		} catch (Exception $e) {
 
 		}
@@ -189,7 +189,7 @@ class cache {
 		if (config::byKey('cache::engine') != 'FilesystemCache' && config::byKey('cache::engine') != 'PhpFileCache') {
 			return true;
 		}
-		$filename = dirname(__FILE__) . '/../../cache.tar.gz';
+		$filename = __DIR__ . '/../../cache.tar.gz';
 		if (!file_exists($filename)) {
 			return false;
 		}
@@ -210,7 +210,7 @@ class cache {
 			default:
 				return;
 		}
-		if (!file_exists(dirname(__FILE__) . '/../../cache.tar.gz')) {
+		if (!file_exists(__DIR__ . '/../../cache.tar.gz')) {
 			$cmd = 'mkdir ' . $cache_dir . ';';
 			$cmd .= 'chmod -R 777 ' . $cache_dir . ';';
 			com_shell::execute($cmd);
@@ -219,7 +219,7 @@ class cache {
 		$cmd = 'rm -rf ' . $cache_dir . ';';
 		$cmd .= 'mkdir ' . $cache_dir . ';';
 		$cmd .= 'cd ' . $cache_dir . ';';
-		$cmd .= 'tar xfz ' . dirname(__FILE__) . '/../../cache.tar.gz;';
+		$cmd .= 'tar xfz ' . __DIR__ . '/../../cache.tar.gz;';
 		$cmd .= 'chmod -R 777 ' . $cache_dir . ' 2>&1 > /dev/null;';
 		com_shell::execute($cmd);
 	}

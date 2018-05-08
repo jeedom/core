@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
+require_once __DIR__ . '/../../core/php/core.inc.php';
 foreach (cmd::all() as $cmd) {
 	if ($cmd->getDisplay('generic_type') == '') {
 		continue;

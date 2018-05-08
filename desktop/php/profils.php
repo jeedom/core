@@ -37,8 +37,8 @@ foreach (plugin::listPlugin() as $pluginList) {
               <select class="userAttr form-control" data-l1key="options" data-l2key="bootstrap_theme">
                 <option value="">Défaut</option>
                 <?php
-foreach (ls(dirname(__FILE__) . '/../../core/themes') as $dir) {
-	if (is_dir(dirname(__FILE__) . '/../../core/themes/' . $dir . '/desktop')) {
+foreach (ls(__DIR__ . '/../../core/themes') as $dir) {
+	if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/desktop')) {
 		echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</option>';
 	}
 }
@@ -51,8 +51,8 @@ foreach (ls(dirname(__FILE__) . '/../../core/themes') as $dir) {
           <div class="col-sm-3">
             <select class="userAttr form-control" data-l1key="options" data-l2key="mobile_theme_color">
               <?php
-foreach (ls(dirname(__FILE__) . '/../../core/themes') as $dir) {
-	if (is_dir(dirname(__FILE__) . '/../../core/themes/' . $dir . '/mobile')) {
+foreach (ls(__DIR__ . '/../../core/themes') as $dir) {
+	if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/mobile')) {
 		echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</option>';
 	}
 }

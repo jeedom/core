@@ -17,7 +17,7 @@
  */
 
 /* * ***************************Includes********************************* */
-require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
+require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class scenarioExpression {
 	/*     * *************************Attributs****************************** */
@@ -969,8 +969,8 @@ class scenarioExpression {
 	}
 
 	public static function setTags($_expression, &$_scenario = null, $_quote = false, $_nbCall = 0) {
-		if (file_exists(dirname(__FILE__) . '/../../data/php/user.function.class.php')) {
-			require_once dirname(__FILE__) . '/../../data/php/user.function.class.php';
+		if (file_exists(__DIR__ . '/../../data/php/user.function.class.php')) {
+			require_once __DIR__ . '/../../data/php/user.function.class.php';
 		}
 		if ($_nbCall > 10) {
 			return $_expression;
@@ -1100,7 +1100,7 @@ class scenarioExpression {
 				$key = 'scenarioElement' . config::genKey(10);
 			}
 			cache::set($key, array('scenarioExpression' => $this, 'scenario' => $scenario), 60);
-			$cmd = dirname(__FILE__) . '/../php/jeeScenarioExpression.php';
+			$cmd = __DIR__ . '/../php/jeeScenarioExpression.php';
 			$cmd .= ' key=' . $key;
 			$this->setLog($scenario, __('Execution du lancement en arriere plan : ', __FILE__) . $key);
 			system::php($cmd . ' >> /dev/null 2>&1 &');

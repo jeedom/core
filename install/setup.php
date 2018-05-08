@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__FILE__) . '/../core/class/system.class.php';
+require_once __DIR__ . '/../core/class/system.class.php';
 
 function init($_name, $_default = '') {
 	if (isset($_GET[$_name])) {
@@ -39,10 +39,10 @@ if (init('log') == 1) {
 		echo "La page que vous demandez ne peut être trouvée.";
 		dei();
 	}
-	echo file_get_contents(dirname(__FILE__) . '/../log/jeedom_installation');
+	echo file_get_contents(__DIR__ . '/../log/jeedom_installation');
 	die();
 }
-if (file_exists(dirname(__FILE__) . '/../core/config/common.config.php')) {
+if (file_exists(__DIR__ . '/../core/config/common.config.php')) {
 	if (!headers_sent()) {
 		header("Statut: 404 Page non trouvée");
 		header('HTTP/1.0 404 Not Found');
@@ -225,11 +225,11 @@ if ($config) {
 			</div>
 		</form>
 		<?php } else {
-	shell_exec('sudo chmod 775 -R ' . dirname(__FILE__) . '/../*');
-	shell_exec('sudo chown ' . system::get('www-uid') . ':' . system::get('www-gid') . ' -R ' . dirname(__FILE__) . '/../*');
-	if (!is_writable(dirname(__FILE__) . '/../core/config')) {
+	shell_exec('sudo chmod 775 -R ' . __DIR__ . '/../*');
+	shell_exec('sudo chown ' . system::get('www-uid') . ':' . system::get('www-gid') . ' -R ' . __DIR__ . '/../*');
+	if (!is_writable(__DIR__ . '/../core/config')) {
 		echo '<div class="alert alert-danger" style="margin:15px;">';
-		echo '<center style="font-size:1.2em;">Le dossier ' . dirname(__FILE__) . '/../core/config' . ' doit être en écriture</center>';
+		echo '<center style="font-size:1.2em;">Le dossier ' . __DIR__ . '/../core/config' . ' doit être en écriture</center>';
 		echo '</div>';
 		echo '</body>';
 		echo '</html>';
@@ -242,9 +242,9 @@ if ($config) {
 		'#PORT#' => init('port'),
 		'#HOST#' => init('hostname'),
 	);
-	$config = str_replace(array_keys($replace), $replace, file_get_contents(dirname(__FILE__) . '/../core/config/common.config.sample.php'));
-	file_put_contents(dirname(__FILE__) . '/../core/config/common.config.php', $config);
-	shell_exec('php ' . dirname(__FILE__) . '/install.php mode=force > ' . dirname(__FILE__) . '/../log/jeedom_installation 2>&1 &');
+	$config = str_replace(array_keys($replace), $replace, file_get_contents(__DIR__ . '/../core/config/common.config.sample.php'));
+	file_put_contents(__DIR__ . '/../core/config/common.config.php', $config);
+	shell_exec('php ' . __DIR__ . '/install.php mode=force > ' . __DIR__ . '/../log/jeedom_installation 2>&1 &');
 	echo '<div id="div_alertMessage" class="alert alert-warning" style="margin:15px;">';
 	echo '<center style="font-size:1.2em;"><i class="fa fa-spinner fa-spin"></i> The installation jeedom is ongoing.</center>';
 	echo '</div>';

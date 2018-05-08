@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
-require_once dirname(__FILE__) . "/../php/core.inc.php";
+require_once __DIR__ . "/../php/core.inc.php";
 if (!jeedom::apiModeResult(config::byKey('api::core::tts::mode', 'core', 'enable'))) {
 	echo __('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__);
 	die();

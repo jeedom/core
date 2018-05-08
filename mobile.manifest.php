@@ -1,6 +1,6 @@
 <?php
 header('Content-type: text/cache-manifest');
-require_once dirname(__FILE__) . "/core/php/core.inc.php";
+require_once __DIR__ . "/core/php/core.inc.php";
 
 $js_file = array(
 	'3rdparty/highstock/highcharts-more.js',
@@ -37,7 +37,7 @@ $js_file = array(
 	'core/js/plan3d.class.js',
 	'3rdparty/jquery.packery/jquery.packery.js',
 );
-if (file_exists(dirname(__FILE__) . '/mobile/custom/custom.js')) {
+if (file_exists(__DIR__ . '/mobile/custom/custom.js')) {
 	$js_file[] = 'mobile/custom/custom.js';
 }
 
@@ -76,11 +76,11 @@ $other_file = array(
 	'3rdparty/jquery.mobile/css/fonts/roboto/Roboto-Medium-webfont.woff',
 
 );
-if (file_exists(dirname(__FILE__) . '/mobile/custom/custom.css')) {
+if (file_exists(__DIR__ . '/mobile/custom/custom.css')) {
 	$other_file[] = 'mobile/custom/custom.css';
 }
 
-$root_dir = dirname(__FILE__) . '/core/css/icon/';
+$root_dir = __DIR__ . '/core/css/icon/';
 foreach (ls($root_dir, '*') as $dir) {
 	if (is_dir($root_dir . $dir) && file_exists($root_dir . $dir . '/style.css')) {
 		$other_file[] = 'core/css/icon/' . $dir . 'style.css';
@@ -90,12 +90,12 @@ foreach (ls($root_dir, '*') as $dir) {
 	}
 }
 
-foreach (ls(dirname(__FILE__) . '/core/themes') as $dir) {
-	if (is_dir(dirname(__FILE__) . '/core/themes/' . $dir . '/mobile')) {
-		if (file_exists(dirname(__FILE__) . 'core/themes/' . $dir . 'mobile/' . trim($dir, '/') . '.css')) {
+foreach (ls(__DIR__ . '/core/themes') as $dir) {
+	if (is_dir(__DIR__ . '/core/themes/' . $dir . '/mobile')) {
+		if (file_exists(__DIR__ . 'core/themes/' . $dir . 'mobile/' . trim($dir, '/') . '.css')) {
 			$other_file[] = 'core/themes/' . $dir . 'mobile/' . trim($dir, '/') . '.css';
 		}
-		if (file_exists(dirname(__FILE__) . '/core/themes/' . $dir . 'mobile/' . trim($dir, '/') . '.js')) {
+		if (file_exists(__DIR__ . '/core/themes/' . $dir . 'mobile/' . trim($dir, '/') . '.js')) {
 			$other_file[] = 'core/themes/' . $dir . 'mobile/' . trim($dir, '/') . '.js';
 		}
 	}
@@ -107,11 +107,11 @@ CACHE:
 <?php
 echo '#LANG : ' . translate::getLanguage();
 foreach (plugin::listPlugin(true) as $plugin) {
-	foreach (ls(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/core/template/mobile', '*') as $file) {
-		if (is_dir(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/core/template/mobile/' . $file)) {
-			foreach (ls(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/core/template/mobile/' . $file, '*') as $file2) {
-				if (is_dir(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/core/template/mobile/' . $file . $file2)) {
-					foreach (ls(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/core/template/mobile/' . $file . $file2, '*') as $file3) {
+	foreach (ls(__DIR__ . '/plugins/' . $plugin->getId() . '/core/template/mobile', '*') as $file) {
+		if (is_dir(__DIR__ . '/plugins/' . $plugin->getId() . '/core/template/mobile/' . $file)) {
+			foreach (ls(__DIR__ . '/plugins/' . $plugin->getId() . '/core/template/mobile/' . $file, '*') as $file2) {
+				if (is_dir(__DIR__ . '/plugins/' . $plugin->getId() . '/core/template/mobile/' . $file . $file2)) {
+					foreach (ls(__DIR__ . '/plugins/' . $plugin->getId() . '/core/template/mobile/' . $file . $file2, '*') as $file3) {
 						if (strpos($file3, '.js') !== false) {
 							$js_file[] = 'plugins/' . $plugin->getId() . '/core/template/mobile/' . $file . $file2 . $file3;
 						} elseif (strpos($file3, '.css') !== false || strpos($file3, '.png') !== false || strpos($file3, '.jpg') !== false || strpos($file3, '.ttf') !== false || strpos($file3, '.woff') !== false) {
@@ -130,11 +130,11 @@ foreach (plugin::listPlugin(true) as $plugin) {
 			$other_file[] = 'plugins/' . $plugin->getId() . '/core/template/mobile/' . $file;
 		}
 	}
-	if ($plugin->getEventjs() == 1 && file_exists(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/mobile/js/event.js')) {
+	if ($plugin->getEventjs() == 1 && file_exists(__DIR__ . '/plugins/' . $plugin->getId() . '/mobile/js/event.js')) {
 		$js_file[] = 'plugins/' . $plugin->getId() . '/mobile/js/event.js';
 	}
 	if ($plugin->getMobile() != '') {
-		if (file_exists(dirname(__FILE__) . '/' . $plugin->getPathImgIcon())) {
+		if (file_exists(__DIR__ . '/' . $plugin->getPathImgIcon())) {
 			$other_file[] = $plugin->getPathImgIcon();
 		}
 		if (method_exists($plugin->getId(), 'mobileManifest')) {
@@ -145,26 +145,26 @@ foreach (plugin::listPlugin(true) as $plugin) {
 				log::add($plugin_id, 'error', __('Erreur sur la fonction mobileManifest du plugin : ', __FILE__) . $e->getMessage());
 			}
 		}
-		foreach (ls(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/mobile/js', '*.js') as $file) {
+		foreach (ls(__DIR__ . '/plugins/' . $plugin->getId() . '/mobile/js', '*.js') as $file) {
 			echo "\n";
-			if (file_exists(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/mobile/js/' . $file)) {
-				echo '#' . md5_file(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/mobile/js/' . $file);
+			if (file_exists(__DIR__ . '/plugins/' . $plugin->getId() . '/mobile/js/' . $file)) {
+				echo '#' . md5_file(__DIR__ . '/plugins/' . $plugin->getId() . '/mobile/js/' . $file);
 				echo "\n";
 			}
 			echo 'core/php/getJS.php?file=plugins/' . $plugin->getId() . '/mobile/js/' . $file . "\n";
 		}
-		foreach (ls(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/mobile/html', '*.html') as $file) {
+		foreach (ls(__DIR__ . '/plugins/' . $plugin->getId() . '/mobile/html', '*.html') as $file) {
 			echo "\n";
-			if (file_exists(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/mobile/html/' . $file)) {
-				echo '#' . md5_file(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/mobile/html/' . $file);
+			if (file_exists(__DIR__ . '/plugins/' . $plugin->getId() . '/mobile/html/' . $file)) {
+				echo '#' . md5_file(__DIR__ . '/plugins/' . $plugin->getId() . '/mobile/html/' . $file);
 				echo "\n";
 			}
 			echo 'index.php?v=m&ajax=1&p=' . substr($file, 0, -5) . '&m=' . $plugin->getId() . "\n";
 		}
-		foreach (ls(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/mobile/modal', '*.html') as $file) {
+		foreach (ls(__DIR__ . '/plugins/' . $plugin->getId() . '/mobile/modal', '*.html') as $file) {
 			echo "\n";
-			if (file_exists(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/mobile/modal/' . $file)) {
-				echo '#' . md5_file(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/mobile/modal/' . $file);
+			if (file_exists(__DIR__ . '/plugins/' . $plugin->getId() . '/mobile/modal/' . $file)) {
+				echo '#' . md5_file(__DIR__ . '/plugins/' . $plugin->getId() . '/mobile/modal/' . $file);
 				echo "\n";
 			}
 			echo 'index.php?v=m&ajax=1&modal=' . substr($file, 0, -5) . '&m=' . $plugin->getId() . "\n";
@@ -174,19 +174,19 @@ foreach (plugin::listPlugin(true) as $plugin) {
 
 foreach ($js_file as $file) {
 	echo "\n";
-	if (file_exists(dirname(__FILE__) . '/' . $file)) {
-		echo '#' . md5_file(dirname(__FILE__) . '/' . $file);
+	if (file_exists(__DIR__ . '/' . $file)) {
+		echo '#' . md5_file(__DIR__ . '/' . $file);
 		echo "\n";
 	}
 	echo 'core/php/getJS.php?file=' . $file;
 	echo "\n";
-	echo 'core/php/getJS.php?file=' . $file . '&md5=' . md5_file(dirname(__FILE__) . '/' . $file);
+	echo 'core/php/getJS.php?file=' . $file . '&md5=' . md5_file(__DIR__ . '/' . $file);
 	echo "\n";
 }
 foreach ($other_file as $file) {
 	echo "\n";
-	if (file_exists(dirname(__FILE__) . '/' . $file)) {
-		echo '#' . md5_file(dirname(__FILE__) . '/' . $file);
+	if (file_exists(__DIR__ . '/' . $file)) {
+		echo '#' . md5_file(__DIR__ . '/' . $file);
 		echo "\n";
 	}
 	echo $file;
@@ -194,8 +194,8 @@ foreach ($other_file as $file) {
 }
 foreach (ls('mobile/js', '*.js') as $file) {
 	echo "\n";
-	if (file_exists(dirname(__FILE__) . '/mobile/js/' . $file)) {
-		echo '#' . md5_file(dirname(__FILE__) . '/mobile/js/' . $file);
+	if (file_exists(__DIR__ . '/mobile/js/' . $file)) {
+		echo '#' . md5_file(__DIR__ . '/mobile/js/' . $file);
 		echo "\n";
 	}
 	echo 'core/php/getResource.php?file=mobile/js/' . $file;
@@ -203,8 +203,8 @@ foreach (ls('mobile/js', '*.js') as $file) {
 }
 foreach (ls('mobile/html', '*.html') as $file) {
 	echo "\n";
-	if (file_exists(dirname(__FILE__) . '/mobile/html/' . $file)) {
-		echo '#' . md5_file(dirname(__FILE__) . '/mobile/html/' . $file);
+	if (file_exists(__DIR__ . '/mobile/html/' . $file)) {
+		echo '#' . md5_file(__DIR__ . '/mobile/html/' . $file);
 		echo "\n";
 	}
 	echo 'index.php?v=m&ajax=1&p=' . substr($file, 0, -5);
@@ -213,8 +213,8 @@ foreach (ls('mobile/html', '*.html') as $file) {
 
 foreach (ls('mobile/modal', '*.html') as $file) {
 	echo "\n";
-	if (file_exists(dirname(__FILE__) . '/mobile/modal/' . $file)) {
-		echo '#' . md5_file(dirname(__FILE__) . '/mobile/modal/' . $file);
+	if (file_exists(__DIR__ . '/mobile/modal/' . $file)) {
+		echo '#' . md5_file(__DIR__ . '/mobile/modal/' . $file);
 		echo "\n";
 	}
 	echo 'index.php?v=m&ajax=1&modal=' . substr($file, 0, -5);

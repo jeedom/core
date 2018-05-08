@@ -17,7 +17,7 @@
  */
 
 /* * ***************************Includes********************************* */
-require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
+require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class listener {
 	/*     * *************************Attributs****************************** */
@@ -131,7 +131,7 @@ class listener {
 	}
 
 	public static function backgroundCalculDependencyCmd($_event) {
-		$cmd = dirname(__FILE__) . '/../php/jeeListener.php';
+		$cmd = __DIR__ . '/../php/jeeListener.php';
 		$cmd .= ' event_id=' . $_event;
 		system::php($cmd . ' >> /dev/null 2>&1 &');
 	}
@@ -153,7 +153,7 @@ class listener {
 		if (isset($option['background']) && $option['background'] == false) {
 			$this->execute($_event, $_value);
 		} else {
-			$cmd = dirname(__FILE__) . '/../php/jeeListener.php';
+			$cmd = __DIR__ . '/../php/jeeListener.php';
 			$cmd .= ' listener_id=' . $this->getId() . ' event_id=' . $_event . ' value=' . $_value;
 			system::php($cmd . ' >> /dev/null 2>&1 &');
 		}

@@ -15,11 +15,11 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
-require_once dirname(__FILE__) . '/utils.inc.php';
+require_once __DIR__ . '/utils.inc.php';
 echo '<link rel="stylesheet" href="3rdparty/font-awesome5/css/fontawesome-all.min.css">' . "\n";
 echo '<link rel="stylesheet" href="3rdparty/font-awesome/css/font-awesome.min.css">' . "\n";
 
-$root_dir = dirname(__FILE__) . '/../../core/css/icon/';
+$root_dir = __DIR__ . '/../../core/css/icon/';
 
 foreach (ls($root_dir, '*') as $dir) {
 	if (is_dir($root_dir . $dir) && file_exists($root_dir . $dir . '/style.css')) {

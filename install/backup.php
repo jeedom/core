@@ -36,7 +36,7 @@ if (isset($argv)) {
 }
 
 try {
-	require_once dirname(__FILE__) . '/../core/php/core.inc.php';
+	require_once __DIR__ . '/../core/php/core.inc.php';
 	echo "***************Start of Jeedom backup at " . date('Y-m-d H:i:s') . "***************\n";
 
 	try {
@@ -48,7 +48,7 @@ try {
 	}
 
 	global $CONFIG;
-	$jeedom_dir = realpath(dirname(__FILE__) . '/..');
+	$jeedom_dir = realpath(__DIR__ . '/..');
 	$backup_dir = calculPath(config::byKey('backup::path'));
 	if (!file_exists($backup_dir)) {
 		mkdir($backup_dir, 0770, true);

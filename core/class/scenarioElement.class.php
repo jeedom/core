@@ -17,7 +17,7 @@
  */
 
 /* * ***************************Includes********************************* */
-require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
+require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class scenarioElement {
 	/*     * *************************Attributs****************************** */
@@ -208,7 +208,7 @@ class scenarioElement {
 				$time = 0;
 			}
 			if ($time == 0) {
-				$cmd = dirname(__FILE__) . '/../../core/php/jeeScenario.php ';
+				$cmd = __DIR__ . '/../../core/php/jeeScenario.php ';
 				$cmd .= ' scenario_id=' . $_scenario->getId();
 				$cmd .= ' scenarioElement_id=' . $this->getId();
 				$cmd .= ' tags=' . escapeshellarg(json_encode($_scenario->getTags()));

@@ -17,7 +17,7 @@
  */
 
 try {
-	require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
+	require_once __DIR__ . '/../../core/php/core.inc.php';
 	include_file('core', 'authentification', 'php');
 
 	if (!isConnect()) {
@@ -87,7 +87,7 @@ try {
 		if (!is_object($scenario)) {
 			throw new Exception(__('Scénario ID inconnu : ', __FILE__) . init('id'));
 		}
-		$path = dirname(__FILE__) . '/../config/scenario';
+		$path = __DIR__ . '/../config/scenario';
 		if (!file_exists($path)) {
 			mkdir($path);
 		}
@@ -104,7 +104,7 @@ try {
 
 	if (init('action') == 'removeTemplate') {
 		unautorizedInDemo();
-		$path = dirname(__FILE__) . '/../config/scenario';
+		$path = __DIR__ . '/../config/scenario';
 		if (file_exists($path . '/' . init('template'))) {
 			unlink($path . '/' . init('template'));
 		}
@@ -112,7 +112,7 @@ try {
 	}
 
 	if (init('action') == 'loadTemplateDiff') {
-		$path = dirname(__FILE__) . '/../config/scenario';
+		$path = __DIR__ . '/../config/scenario';
 		if (!file_exists($path . '/' . init('template'))) {
 			throw new Exception('Fichier non trouvé : ' . $path . '/' . init('template'));
 		}
@@ -137,7 +137,7 @@ try {
 
 	if (init('action') == 'applyTemplate') {
 		unautorizedInDemo();
-		$path = dirname(__FILE__) . '/../config/scenario';
+		$path = __DIR__ . '/../config/scenario';
 		if (!file_exists($path . '/' . init('template'))) {
 			throw new Exception('Fichier non trouvé : ' . $path . '/' . init('template'));
 		}
@@ -269,8 +269,8 @@ try {
 		if (!$scenario->hasRight('w')) {
 			throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
 		}
-		if (file_exists(dirname(__FILE__) . '/../../log/scenarioLog/scenario' . $scenario->getId() . '.log')) {
-			unlink(dirname(__FILE__) . '/../../log/scenarioLog/scenario' . $scenario->getId() . '.log');
+		if (file_exists(__DIR__ . '/../../log/scenarioLog/scenario' . $scenario->getId() . '.log')) {
+			unlink(__DIR__ . '/../../log/scenarioLog/scenario' . $scenario->getId() . '.log');
 		}
 		ajax::success();
 	}
@@ -372,7 +372,7 @@ try {
 
 	if (init('action') == 'templateupload') {
 		unautorizedInDemo();
-		$uploaddir = dirname(__FILE__) . '/../../core/config/scenario/';
+		$uploaddir = __DIR__ . '/../../core/config/scenario/';
 		if (!file_exists($uploaddir)) {
 			mkdir($uploaddir);
 		}

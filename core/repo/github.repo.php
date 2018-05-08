@@ -18,7 +18,7 @@
 
 /* * ***************************Includes********************************* */
 
-require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
+require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class repo_github {
 	/*     * *************************Attributs****************************** */
@@ -118,8 +118,8 @@ class repo_github {
 	}
 
 	public static function downloadObject($_update) {
-		$allowedRepo = array('jeedom','lunarok');
-		if (!in_array($_update->getConfiguration('user'), $allowed)){
+		$allowedRepo = array('jeedom', 'lunarok');
+		if (!in_array($_update->getConfiguration('user'), $allowed)) {
 			throw new Exception(__('Dépot github non autorisé : ', __FILE__) . $_update->getConfiguration('user'));
 		}
 		$client = self::getGithubClient();

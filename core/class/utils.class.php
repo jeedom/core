@@ -17,7 +17,7 @@
  */
 
 /* * ***************************Includes********************************* */
-require_once dirname(__FILE__) . '/../php/core.inc.php';
+require_once __DIR__ . '/../php/core.inc.php';
 
 class utils {
 	/*     * *************************Attributs****************************** */

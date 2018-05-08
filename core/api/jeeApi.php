@@ -16,7 +16,7 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 header('Access-Control-Allow-Origin: *');
-require_once dirname(__FILE__) . "/../php/core.inc.php";
+require_once __DIR__ . "/../php/core.inc.php";
 if (user::isBan() && false) {
 	header("Status: 404 Not Found");
 	header('HTTP/1.0 404 Not Found');

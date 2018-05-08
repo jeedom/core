@@ -17,7 +17,7 @@
  */
 
 /* * ***************************Includes********************************* */
-require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
+require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class cron {
 	/*     * *************************Attributs****************************** */
@@ -249,7 +249,7 @@ class cron {
 	 * @throws Exception
 	 */
 	public function run($_noErrorReport = false) {
-		$cmd = dirname(__FILE__) . '/../php/jeeCron.php';
+		$cmd = __DIR__ . '/../php/jeeCron.php';
 		$cmd .= ' "cron_id=' . $this->getId() . '"';
 		if (!$this->running()) {
 			system::php($cmd . ' >> ' . log::getPathToLog('cron_execution') . ' 2>&1 &');
@@ -562,5 +562,3 @@ class cron {
 	}
 
 }
-
-

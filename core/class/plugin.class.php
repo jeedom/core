@@ -17,7 +17,7 @@
  */
 
 /* * ***************************Includes********************************* */
-require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
+require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class plugin {
 	/*     * *************************Attributs****************************** */
@@ -85,7 +85,7 @@ class plugin {
 		$plugin->changelog = (isset($data['changelog'])) ? str_replace('#language#', config::byKey('language', 'core', 'fr_FR'), $data['changelog']) : '';
 		$plugin->documentation = (isset($data['documentation'])) ? str_replace('#language#', config::byKey('language', 'core', 'fr_FR'), $data['documentation']) : '';
 		$plugin->mobile = '';
-		if (file_exists(dirname(__FILE__) . '/../../plugins/' . $data['id'] . '/mobile/html')) {
+		if (file_exists(__DIR__ . '/../../plugins/' . $data['id'] . '/mobile/html')) {
 			$plugin->mobile = (isset($data['mobile'])) ? $data['mobile'] : $data['id'];
 		}
 		if (isset($data['include'])) {
@@ -122,11 +122,11 @@ class plugin {
 	}
 
 	public static function getPathById($_id) {
-		return dirname(__FILE__) . '/../../plugins/' . $_id . '/plugin_info/info.json';
+		return __DIR__ . '/../../plugins/' . $_id . '/plugin_info/info.json';
 	}
 
 	public function getPathToConfigurationById() {
-		if (file_exists(dirname(__FILE__) . '/../../plugins/' . $this->id . '/plugin_info/configuration.php')) {
+		if (file_exists(__DIR__ . '/../../plugins/' . $this->id . '/plugin_info/configuration.php')) {
 			return 'plugins/' . $this->id . '/plugin_info/configuration.php';
 		} else {
 			return '';
@@ -157,7 +157,7 @@ class plugin {
 				}
 			}
 		} else {
-			$rootPluginPath = dirname(__FILE__) . '/../../plugins';
+			$rootPluginPath = __DIR__ . '/../../plugins';
 			foreach (ls($rootPluginPath, '*') as $dirPlugin) {
 				if (is_dir($rootPluginPath . '/' . $dirPlugin)) {
 					$pathInfoPlugin = $rootPluginPath . '/' . $dirPlugin . 'plugin_info/info.json';
@@ -406,10 +406,10 @@ class plugin {
 			return $this->launch($_function, true);
 		}
 		if (strpos($_function, 'pre_') !== false) {
-			log::add('plugin', 'debug', 'Recherche de ' . dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/plugin_info/pre_install.php');
-			if (file_exists(dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/plugin_info/pre_install.php')) {
+			log::add('plugin', 'debug', 'Recherche de ' . __DIR__ . '/../../plugins/' . $this->getId() . '/plugin_info/pre_install.php');
+			if (file_exists(__DIR__ . '/../../plugins/' . $this->getId() . '/plugin_info/pre_install.php')) {
 				log::add('plugin', 'debug', 'Fichier d\'installation trouvé pour  : ' . $this->getId());
-				require_once dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/plugin_info/pre_install.php';
+				require_once __DIR__ . '/../../plugins/' . $this->getId() . '/plugin_info/pre_install.php';
 				ob_start();
 				$function = $this->getId() . '_' . $_function;
 				if (function_exists($this->getId() . '_' . $_function)) {
@@ -418,10 +418,10 @@ class plugin {
 				return ob_get_clean();
 			}
 		} else {
-			log::add('plugin', 'debug', 'Recherche de ' . dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/plugin_info/install.php');
-			if (file_exists(dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/plugin_info/install.php')) {
+			log::add('plugin', 'debug', 'Recherche de ' . __DIR__ . '/../../plugins/' . $this->getId() . '/plugin_info/install.php');
+			if (file_exists(__DIR__ . '/../../plugins/' . $this->getId() . '/plugin_info/install.php')) {
 				log::add('plugin', 'debug', 'Fichier d\'installation trouvé pour  : ' . $this->getId());
-				require_once dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/plugin_info/install.php';
+				require_once __DIR__ . '/../../plugins/' . $this->getId() . '/plugin_info/install.php';
 				ob_start();
 				$function = $this->getId() . '_' . $_function;
 				if (function_exists($this->getId() . '_' . $_function)) {
@@ -722,7 +722,7 @@ class plugin {
 		if (!$_callInstallFunction && (!class_exists($this->getId()) || !method_exists($this->getId(), $_function))) {
 			throw new Exception('Il n\'existe aucune méthode : ' . $this->getId() . '::' . $_function . '()');
 		}
-		$cmd = dirname(__FILE__) . '/../../core/php/jeePlugin.php ';
+		$cmd = __DIR__ . '/../../core/php/jeePlugin.php ';
 		$cmd .= ' plugin_id=' . $this->getId();
 		$cmd .= ' function=' . $_function;
 		$cmd .= ' callInstallFunction=' . $_callInstallFunction;
@@ -739,7 +739,7 @@ class plugin {
 	}
 
 	public function getTranslation($_language) {
-		$dir = dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/core/i18n';
+		$dir = __DIR__ . '/../../plugins/' . $this->getId() . '/core/i18n';
 		if (!file_exists($dir)) {
 			@mkdir($dir, 0775, true);
 		}
@@ -759,7 +759,7 @@ class plugin {
 	}
 
 	public function saveTranslation($_language, $_translation) {
-		$dir = dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/core/i18n';
+		$dir = __DIR__ . '/../../plugins/' . $this->getId() . '/core/i18n';
 		if (!file_exists($dir)) {
 			mkdir($dir, 0775, true);
 		}
@@ -771,16 +771,16 @@ class plugin {
 	}
 
 	public function getPathImgIcon() {
-		if (file_exists(dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/plugin_info/' . $this->getId() . '_icon.png')) {
+		if (file_exists(__DIR__ . '/../../plugins/' . $this->getId() . '/plugin_info/' . $this->getId() . '_icon.png')) {
 			return 'plugins/' . $this->getId() . '/plugin_info/' . $this->getId() . '_icon.png';
 		}
-		if (file_exists(dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/doc/images/' . $this->getId() . '_icon.png')) {
+		if (file_exists(__DIR__ . '/../../plugins/' . $this->getId() . '/doc/images/' . $this->getId() . '_icon.png')) {
 			return 'plugins/' . $this->getId() . '/doc/images/' . $this->getId() . '_icon.png';
 		}
-		if (file_exists(dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/plugin_info/' . strtolower($this->getId()) . '_icon.png')) {
+		if (file_exists(__DIR__ . '/../../plugins/' . $this->getId() . '/plugin_info/' . strtolower($this->getId()) . '_icon.png')) {
 			return 'plugins/' . $this->getId() . '/plugin_info/' . strtolower($this->getId()) . '_icon.png';
 		}
-		if (file_exists(dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/doc/images/' . strtolower($this->getId()) . '_icon.png')) {
+		if (file_exists(__DIR__ . '/../../plugins/' . $this->getId() . '/doc/images/' . strtolower($this->getId()) . '_icon.png')) {
 			return 'plugins/' . $this->getId() . '/doc/images/' . strtolower($this->getId()) . '_icon.png';
 		}
 		return 'core/img/no-image-plugin.png';

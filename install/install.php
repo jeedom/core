@@ -37,7 +37,7 @@ if (isset($argv)) {
 }
 
 try {
-	require_once dirname(__FILE__) . '/../core/php/core.inc.php';
+	require_once __DIR__ . '/../core/php/core.inc.php';
 	if (count(system::ps('install/install.php', 'sudo')) > 1) {
 		echo "Une mise à jour/installation est déjà en cours. Vous devez attendre qu'elle soit finie avant d'en relancer une\n";
 		print_r(system::ps('install/install.php', 'sudo'));
@@ -50,13 +50,13 @@ try {
 		throw new Exception('Jeedom nécessite PHP 5.6 ou plus (actuellement : ' . PHP_VERSION . ')');
 	}
 	echo "\nInstallation de Jeedom " . jeedom::version() . "\n";
-	$sql = file_get_contents(dirname(__FILE__) . '/install.sql');
+	$sql = file_get_contents(__DIR__ . '/install.sql');
 	echo "Installation de la base de données...";
 	DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 	echo "OK\n";
 	echo "Post installation...\n";
 	config::save('api', config::genKey());
-	require_once dirname(__FILE__) . '/consistency.php';
+	require_once __DIR__ . '/consistency.php';
 	echo "Ajout de l'utilisateur (admin,admin)\n";
 	$user = new user();
 	$user->setLogin('admin');

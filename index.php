@@ -16,7 +16,7 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 try {
-	if (!file_exists(dirname(__FILE__) . '/core/config/common.config.php')) {
+	if (!file_exists(__DIR__ . '/core/config/common.config.php')) {
 		header("location: install/setup.php");
 	}
 
@@ -37,7 +37,7 @@ try {
 		}
 		die();
 	}
-	require_once dirname(__FILE__) . "/core/php/core.inc.php";
+	require_once __DIR__ . "/core/php/core.inc.php";
 	if (isset($_GET['v']) && $_GET['v'] == 'd') {
 		if (isset($_GET['modal'])) {
 			try {

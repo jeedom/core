@@ -2,7 +2,7 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-$report_path = dirname(__FILE__) . '/../../data/report/';
+$report_path = __DIR__ . '/../../data/report/';
 ?>
 <div class="row row-overflow">
 	<div class="col-lg-2 col-md-3 col-sm-3" style="margin-top : 4px;">

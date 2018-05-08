@@ -2,8 +2,8 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-if (file_exists(dirname(__FILE__) . '/../../data/remove_history.json')) {
-	$remove_history = json_decode(file_get_contents(dirname(__FILE__) . '/../../data/remove_history.json'), true);
+if (file_exists(__DIR__ . '/../../data/remove_history.json')) {
+	$remove_history = json_decode(file_get_contents(__DIR__ . '/../../data/remove_history.json'), true);
 }
 if (!is_array($remove_history)) {
 	$remove_history = array();

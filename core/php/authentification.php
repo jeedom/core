@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
-require_once dirname(__FILE__) . '/core.inc.php';
+require_once __DIR__ . '/core.inc.php';
 
 $configs = config::byKeys(array('session_lifetime', 'sso:allowRemoteUser'));
 

@@ -17,7 +17,7 @@
  */
 
 /* * ***************************Includes********************************* */
-require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
+require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class update {
 	/*     * *************************Attributs****************************** */
@@ -86,7 +86,7 @@ class update {
 
 	public static function listRepo() {
 		$return = array();
-		foreach (ls(dirname(__FILE__) . '/../repo', '*.repo.php') as $file) {
+		foreach (ls(__DIR__ . '/../repo', '*.repo.php') as $file) {
 			if (substr_count($file, '.') != 2) {
 				continue;
 			}
@@ -262,7 +262,7 @@ class update {
 	}
 
 	public static function listCoreUpdate() {
-		return ls(dirname(__FILE__) . '/../../install/update', '*');
+		return ls(__DIR__ . '/../../install/update', '*');
 	}
 
 	/*     * *********************Méthodes d'instance************************* */
@@ -323,11 +323,11 @@ class update {
 						$zip->close();
 						unlink($tmp);
 						try {
-							if (file_exists(dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId() . '/doc')) {
-								shell_exec('sudo rm -rf ' . dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId() . '/doc');
+							if (file_exists(__DIR__ . '/../../plugins/' . $this->getLogicalId() . '/doc')) {
+								shell_exec('sudo rm -rf ' . __DIR__ . '/../../plugins/' . $this->getLogicalId() . '/doc');
 							}
-							if (file_exists(dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId() . '/docs')) {
-								shell_exec('sudo rm -rf ' . dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId() . '/docs');
+							if (file_exists(__DIR__ . '/../../plugins/' . $this->getLogicalId() . '/docs')) {
+								shell_exec('sudo rm -rf ' . __DIR__ . '/../../plugins/' . $this->getLogicalId() . '/docs');
 							}
 						} catch (Exception $e) {
 
@@ -338,7 +338,7 @@ class update {
 								$cibDir = $cibDir . '/' . $files[0];
 							}
 						}
-						rmove($cibDir . '/', dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId(), false, array(), true);
+						rmove($cibDir . '/', __DIR__ . '/../../plugins/' . $this->getLogicalId(), false, array(), true);
 						rrmdir($cibDir);
 						$cibDir = jeedom::getTmpFolder('market') . '/' . $this->getLogicalId();
 						if (file_exists($cibDir)) {
@@ -400,7 +400,7 @@ class update {
 			}
 			switch ($this->getType()) {
 				case 'plugin':
-					$cibDir = dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId();
+					$cibDir = __DIR__ . '/../../plugins/' . $this->getLogicalId();
 					if (file_exists($cibDir)) {
 						rrmdir($cibDir);
 					}
@@ -411,16 +411,16 @@ class update {
 	}
 
 	public function preInstallUpdate() {
-		if (!file_exists(dirname(__FILE__) . '/../../plugins')) {
-			mkdir(dirname(__FILE__) . '/../../plugins');
-			@chown(dirname(__FILE__) . '/../../plugins', system::getWWWUid());
-			@chgrp(dirname(__FILE__) . '/../../plugins', system::getWWWGid());
-			@chmod(dirname(__FILE__) . '/../../plugins', 0775);
+		if (!file_exists(__DIR__ . '/../../plugins')) {
+			mkdir(__DIR__ . '/../../plugins');
+			@chown(__DIR__ . '/../../plugins', system::getWWWUid());
+			@chgrp(__DIR__ . '/../../plugins', system::getWWWGid());
+			@chmod(__DIR__ . '/../../plugins', 0775);
 		}
 		log::add('update', 'alert', __('Début de la mise à jour de : ', __FILE__) . $this->getLogicalId() . "\n");
 		switch ($this->getType()) {
 			case 'plugin':
-				$cibDir = dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId();
+				$cibDir = __DIR__ . '/../../plugins/' . $this->getLogicalId();
 				if (!file_exists($cibDir) && !mkdir($cibDir, 0775, true)) {
 					throw new Exception(__('Impossible de créer le dossier  : ' . $cibDir . '. Problème de droits ?', __FILE__));
 				}

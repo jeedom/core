@@ -17,7 +17,7 @@
  */
 
 /* * ***************************Includes********************************* */
-require_once dirname(__FILE__) . '/../php/core.inc.php';
+require_once __DIR__ . '/../php/core.inc.php';
 
 class translate {
 	/*     * *************************Attributs****************************** */
@@ -110,7 +110,7 @@ class translate {
 	}
 
 	public static function getPathTranslationFile($_language) {
-		return dirname(__FILE__) . '/../i18n/' . $_language . '.json';
+		return __DIR__ . '/../i18n/' . $_language . '.json';
 	}
 
 	public static function loadTranslation() {

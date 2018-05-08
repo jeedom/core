@@ -17,7 +17,7 @@
  */
 
 try {
-	require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
+	require_once __DIR__ . '/../../core/php/core.inc.php';
 	include_file('core', 'authentification', 'php');
 
 	if (!isConnect()) {

@@ -25,7 +25,7 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 	}
 	if ($_folder == '3rdparty') {
 		$_fn .= '.' . $_type;
-		$path = dirname(__FILE__) . '/../../' . $_folder . '/' . $_fn;
+		$path = __DIR__ . '/../../' . $_folder . '/' . $_fn;
 		$type = $_type;
 	} else {
 		$config = array(
@@ -54,7 +54,7 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 	if ($_plugin != '') {
 		$_folder = 'plugins/' . $_plugin . '/' . $_folder;
 	}
-	$path = dirname(__FILE__) . '/../../' . $_folder . '/' . $_fn;
+	$path = __DIR__ . '/../../' . $_folder . '/' . $_fn;
 	if (!file_exists($path)) {
 		throw new Exception('Fichier introuvable : ' . $path, 35486);
 	}
@@ -84,8 +84,8 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 
 function getTemplate($_folder, $_version, $_filename, $_plugin = '') {
 	$path = ($_plugin == '')
-	? dirname(__FILE__) . '/../../' . $_folder . '/template/' . $_version . '/' . $_filename . '.html'
-	: dirname(__FILE__) . '/../../plugins/' . $_plugin . '/core/template/' . $_version . '/' . $_filename . '.html';
+	? __DIR__ . '/../../' . $_folder . '/template/' . $_version . '/' . $_filename . '.html'
+	: __DIR__ . '/../../plugins/' . $_plugin . '/core/template/' . $_version . '/' . $_filename . '.html';
 	return (file_exists($path)) ? file_get_contents($path) : '';
 }
 
@@ -191,7 +191,7 @@ function getClientIp() {
 }
 
 function mySqlIsHere() {
-	require_once dirname(__FILE__) . '/../class/DB.class.php';
+	require_once __DIR__ . '/../class/DB.class.php';
 	return is_object(DB::getConnection());
 }
 
@@ -245,7 +245,7 @@ function cleanPath($path) {
 }
 
 function getRootPath() {
-	return cleanPath(dirname(__FILE__) . '/../../');
+	return cleanPath(__DIR__ . '/../../');
 }
 
 function hadFileRight($_allowPath, $_path) {
@@ -686,7 +686,7 @@ function br2nl($string) {
 
 function calculPath($_path) {
 	if (strpos($_path, '/') !== 0) {
-		return dirname(__FILE__) . '/../../' . $_path;
+		return __DIR__ . '/../../' . $_path;
 	}
 	return $_path;
 }
@@ -1078,15 +1078,15 @@ function findCodeIcon($_icon) {
 	$icon = trim(str_replace(array('fa ', 'icon ', '></i>', '<i', 'class="', '"'), '', trim($_icon)));
 	$re = '/.' . $icon . ':.*\n.*content:.*"(.*?)";/m';
 
-	$css = file_get_contents(dirname(__FILE__) . '/../../3rdparty/font-awesome/css/font-awesome.css');
+	$css = file_get_contents(__DIR__ . '/../../3rdparty/font-awesome/css/font-awesome.css');
 	preg_match($re, $css, $matches);
 	if (isset($matches[1])) {
 		return array('icon' => trim($matches[1], '\\'), 'fontfamily' => 'FontAwesome');
 	}
 
-	foreach (ls(dirname(__FILE__) . '/../css/icon', '*') as $dir) {
-		if (is_dir(dirname(__FILE__) . '/../css/icon/' . $dir) && file_exists(dirname(__FILE__) . '/../css/icon/' . $dir . '/style.css')) {
-			$css = file_get_contents(dirname(__FILE__) . '/../css/icon/' . $dir . '/style.css');
+	foreach (ls(__DIR__ . '/../css/icon', '*') as $dir) {
+		if (is_dir(__DIR__ . '/../css/icon/' . $dir) && file_exists(__DIR__ . '/../css/icon/' . $dir . '/style.css')) {
+			$css = file_get_contents(__DIR__ . '/../css/icon/' . $dir . '/style.css');
 			preg_match($re, $css, $matches);
 			if (isset($matches[1])) {
 				return array('icon' => trim($matches[1], '\\'), 'fontfamily' => trim($dir, '/'));
@@ -1147,7 +1147,7 @@ function strContain($_string, $_words) {
 }
 
 function makeZipSupport() {
-	$jeedom_folder = dirname(__FILE__) . '/../..';
+	$jeedom_folder = __DIR__ . '/../..';
 	$folder = '/tmp/jeedom_support';
 	$outputfile = $jeedom_folder . '/support/jeedom_support_' . date('Y-m-d_His') . '.tar.gz';
 	if (file_exists($folder)) {

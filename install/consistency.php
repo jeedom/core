@@ -37,7 +37,7 @@ if (isset($argv)) {
 }
 
 try {
-	require_once dirname(__FILE__) . '/../core/php/core.inc.php';
+	require_once __DIR__ . '/../core/php/core.inc.php';
 
 	if (config::byKey('object:summary') == '' || !is_array(config::byKey('object:summary'))) {
 		config::save('object:summary',
@@ -302,8 +302,8 @@ try {
 	$cron->setDeamon(0);
 	$cron->save();
 
-	if (!file_exists(dirname(__FILE__) . '/../plugins')) {
-		mkdir(dirname(__FILE__) . '/../plugins');
+	if (!file_exists(__DIR__ . '/../plugins')) {
+		mkdir(__DIR__ . '/../plugins');
 	}
 	try {
 		echo 'Vérifiez les droits sur les fichiers...';
@@ -317,11 +317,11 @@ try {
 	if (config::byKey('api') == '') {
 		config::save('api', config::genKey());
 	}
-	if (file_exists(dirname(__FILE__) . '/../core/nodeJS')) {
-		shell_exec(system::getCmdSudo() . 'rm -rf ' . dirname(__FILE__) . '/../core/nodeJS');
+	if (file_exists(__DIR__ . '/../core/nodeJS')) {
+		shell_exec(system::getCmdSudo() . 'rm -rf ' . __DIR__ . '/../core/nodeJS');
 	}
-	if (file_exists(dirname(__FILE__) . '/../script/ngrok')) {
-		shell_exec(system::getCmdSudo() . 'rm -rf ' . dirname(__FILE__) . '/../script/ngrok');
+	if (file_exists(__DIR__ . '/../script/ngrok')) {
+		shell_exec(system::getCmdSudo() . 'rm -rf ' . __DIR__ . '/../script/ngrok');
 	}
 	try {
 		foreach (eqLogic::all() as $eqLogic) {
@@ -350,8 +350,8 @@ try {
 		}
 	}
 
-	if (!file_exists(dirname(__FILE__) . '/../data/php/user.function.class.php')) {
-		copy(dirname(__FILE__) . '/../data/php/user.function.class.sample.php', dirname(__FILE__) . '/../data/php/user.function.class.php');
+	if (!file_exists(__DIR__ . '/../data/php/user.function.class.php')) {
+		copy(__DIR__ . '/../data/php/user.function.class.sample.php', __DIR__ . '/../data/php/user.function.class.php');
 	}
 } catch (Exception $e) {
 	echo "Error : ";

@@ -17,7 +17,7 @@
  */
 
 /* * ***************************Includes********************************* */
-require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
+require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class planHeader {
 	/*     * *************************Attributs****************************** */
@@ -115,7 +115,7 @@ class planHeader {
 		if ($this->getImage('data') == '') {
 			return '';
 		}
-		$dir = dirname(__FILE__) . '/../../core/img/plan';
+		$dir = __DIR__ . '/../../core/img/plan';
 		if (!file_exists($dir)) {
 			mkdir($dir);
 		}

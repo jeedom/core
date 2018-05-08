@@ -1,7 +1,7 @@
 <?php
-require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
+require_once __DIR__ . '/../../core/php/core.inc.php';
 echo 'Add Jeedom watchdog';
-$cdir = dirname(__FILE__);
+$cdir = __DIR__;
 if (!file_exists('/etc/cron.d/jeedom_watchdog')) {
 	file_put_contents('/tmp/jeedom_watchdog', '* * * * * root /usr/bin/php ' . $cdir . '/../../core/php/watchdog.php >> /dev/null' . "\n");
 	exec('sudo mv /tmp/jeedom_watchdog /etc/cron.d/jeedom_watchdog;sudo chown root:root /etc/cron.d/jeedom_watchdog');

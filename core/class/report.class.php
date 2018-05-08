@@ -17,21 +17,21 @@
  */
 
 /* * ***************************Includes********************************* */
-require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
+require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class report {
 	/*     * *************************Attributs****************************** */
 
 	/*     * ***********************Methode static*************************** */
 	public static function clean() {
-		if (!file_exists(dirname(__FILE__) . '/../../data/report')) {
+		if (!file_exists(__DIR__ . '/../../data/report')) {
 			return;
 		}
-		shell_exec('find ' . dirname(__FILE__) . '/../../data/report -type f -mtime +' . config::byKey('report::maxdays') . ' -delete');
+		shell_exec('find ' . __DIR__ . '/../../data/report -type f -mtime +' . config::byKey('report::maxdays') . ' -delete');
 	}
 
 	public static function generate($_url, $_type, $_name, $_format = 'pdf', $_parameter = array()) {
-		$out = dirname(__FILE__) . '/../../data/report/';
+		$out = __DIR__ . '/../../data/report/';
 		$out .= $_type . '/';
 		$out .= $_name . '/';
 		if (!file_exists($out)) {

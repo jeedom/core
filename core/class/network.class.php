@@ -17,7 +17,7 @@
  */
 
 /* * ***************************Includes********************************* */
-require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
+require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class network {
 
@@ -293,14 +293,14 @@ class network {
 		$openvpn->setConfiguration('remote_port', config::byKey('vpn::port', 'core', 1194));
 		$openvpn->setConfiguration('auth_mode', 'password');
 		$openvpn->save();
-		if (!file_exists(dirname(__FILE__) . '/../../plugins/openvpn/data')) {
-			shell_exec('mkdir -p ' . dirname(__FILE__) . '/../../plugins/openvpn/data');
+		if (!file_exists(__DIR__ . '/../../plugins/openvpn/data')) {
+			shell_exec('mkdir -p ' . __DIR__ . '/../../plugins/openvpn/data');
 		}
-		$path_ca = dirname(__FILE__) . '/../../plugins/openvpn/data/ca_' . $openvpn->getConfiguration('key') . '.crt';
+		$path_ca = __DIR__ . '/../../plugins/openvpn/data/ca_' . $openvpn->getConfiguration('key') . '.crt';
 		if (file_exists($path_ca)) {
 			unlink($path_ca);
 		}
-		copy(dirname(__FILE__) . '/../../script/ca_dns.crt', $path_ca);
+		copy(__DIR__ . '/../../script/ca_dns.crt', $path_ca);
 		if (!file_exists($path_ca)) {
 			throw new Exception(__('Impossible de créer le fichier  : ', __FILE__) . $path_ca);
 		}

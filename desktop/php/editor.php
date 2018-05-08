@@ -2,7 +2,7 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-$rootPath = dirname(__FILE__) . '/../../';
+$rootPath = __DIR__ . '/../../';
 sendVarToJS('rootPath', $rootPath);
 ?>
 
@@ -13,7 +13,7 @@ sendVarToJS('rootPath', $rootPath);
 			<ul id="ul_Folder">
 				<?php
 foreach (ls($rootPath, '*', false, array('folders')) as $folder) {
-	echo '<li data-jstree=\'{"opened":true}\'><a data-path="' . dirname(__FILE__) . '/../../' . $folder . '">' . $folder . '</a></li>';
+	echo '<li data-jstree=\'{"opened":true}\'><a data-path="' . __DIR__ . '/../../' . $folder . '">' . $folder . '</a></li>';
 }
 ?>
 			</ul>

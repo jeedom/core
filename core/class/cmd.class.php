@@ -17,7 +17,7 @@
  */
 
 /* * ***************************Includes********************************* */
-require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
+require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class cmd {
 	/*     * *************************Attributs****************************** */
@@ -579,7 +579,7 @@ class cmd {
 	}
 
 	public static function availableWidget($_version) {
-		$path = dirname(__FILE__) . '/../template/' . $_version;
+		$path = __DIR__ . '/../template/' . $_version;
 		$files = ls($path, 'cmd.*', false, array('files', 'quiet'));
 		$return = array();
 		foreach ($files as $file) {
@@ -594,7 +594,7 @@ class cmd {
 				$return[$informations[1]][$informations[2]][$informations[3]] = array('name' => $informations[3], 'location' => 'core');
 			}
 		}
-		$path = dirname(__FILE__) . '/../../plugins/widget/core/template/' . $_version;
+		$path = __DIR__ . '/../../plugins/widget/core/template/' . $_version;
 		if (file_exists($path)) {
 			$files = ls($path, 'cmd.*', false, array('files', 'quiet'));
 			foreach ($files as $file) {

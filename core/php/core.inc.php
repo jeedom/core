@@ -16,14 +16,14 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 date_default_timezone_set('Europe/Brussels');
-require_once dirname(__FILE__) . '/../../vendor/autoload.php';
-require_once dirname(__FILE__) . '/../config/common.config.php';
-require_once dirname(__FILE__) . '/../class/DB.class.php';
-require_once dirname(__FILE__) . '/../class/config.class.php';
-require_once dirname(__FILE__) . '/../class/jeedom.class.php';
-require_once dirname(__FILE__) . '/../class/plugin.class.php';
-require_once dirname(__FILE__) . '/../class/translate.class.php';
-require_once dirname(__FILE__) . '/utils.inc.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/../config/common.config.php';
+require_once __DIR__ . '/../class/DB.class.php';
+require_once __DIR__ . '/../class/config.class.php';
+require_once __DIR__ . '/../class/jeedom.class.php';
+require_once __DIR__ . '/../class/plugin.class.php';
+require_once __DIR__ . '/../class/translate.class.php';
+require_once __DIR__ . '/utils.inc.php';
 include_file('core', 'jeedom', 'config');
 include_file('core', 'compatibility', 'config');
 include_file('core', 'utils', 'class');

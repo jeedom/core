@@ -17,7 +17,7 @@
  */
 
 /* * ***************************Includes********************************* */
-require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
+require_once __DIR__ . '/../../core/php/core.inc.php';
 use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\SyslogHandler;
@@ -169,7 +169,7 @@ class log {
 	}
 
 	public static function getPathToLog($_log = 'core') {
-		return dirname(__FILE__) . '/../../log/' . $_log;
+		return __DIR__ . '/../../log/' . $_log;
 	}
 
 	/**

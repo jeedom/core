@@ -16,7 +16,7 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-require_once dirname(__FILE__) . "/../php/core.inc.php";
+require_once __DIR__ . "/../php/core.inc.php";
 
 if (isset($argv)) {
 	foreach ($argv as $arg) {
@@ -206,7 +206,7 @@ try {
 				if (config::byKey('cache::engine') != 'FilesystemCache' && config::byKey('cache::engine') != 'PhpFileCache') {
 					$result = 'OK';
 				} else {
-					$filename = dirname(__FILE__) . '/../../cache.tar.gz';
+					$filename = __DIR__ . '/../../cache.tar.gz';
 					$result = 'OK (' . date('Y-m-d H:i:s', filemtime($filename)) . ')';
 				}
 			} else {
@@ -672,7 +672,7 @@ try {
 				throw new Exception(__('Aucun esclave correspondant à l\'ID : ', __FILE__) . secureXSS($params['slave_id']));
 			}
 			if (substr(config::byKey('backup::path'), 0, 1) != '/') {
-				$backup_dir = dirname(__FILE__) . '/../../' . config::byKey('backup::path');
+				$backup_dir = __DIR__ . '/../../' . config::byKey('backup::path');
 			} else {
 				$backup_dir = config::byKey('backup::path');
 			}
@@ -704,7 +704,7 @@ try {
 				throw new Exception(__('Seul un esclave peut restaurer une sauvegarde', __FILE__));
 			}
 			if (substr(config::byKey('backup::path'), 0, 1) != '/') {
-				$uploaddir = dirname(__FILE__) . '/../../' . config::byKey('backup::path');
+				$uploaddir = __DIR__ . '/../../' . config::byKey('backup::path');
 			} else {
 				$uploaddir = config::byKey('backup::path');
 			}

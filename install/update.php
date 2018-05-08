@@ -40,7 +40,7 @@ $update = false;
 $backup_ok = false;
 $update_begin = false;
 try {
-	require_once dirname(__FILE__) . '/../core/php/core.inc.php';
+	require_once __DIR__ . '/../core/php/core.inc.php';
 	if (count(system::ps('install/update.php', 'sudo')) > 1) {
 		echo "Update in progress. I will wait 10s\n";
 		sleep(10);
@@ -175,7 +175,7 @@ try {
 
 				if (init('preUpdate') == 1) {
 					echo "Update updater...";
-					rmove($cibDir . '/install/update.php', dirname(__FILE__) . '/update.php', false, array(), true);
+					rmove($cibDir . '/install/update.php', __DIR__ . '/update.php', false, array(), true);
 					echo "OK\n";
 					echo "Remove temporary files...";
 					rrmdir($tmp_dir);
@@ -188,24 +188,24 @@ try {
 				}
 				try {
 					echo 'Clean temporary files (tmp)...';
-					shell_exec('rm -rf ' . dirname(__FILE__) . '/../install/update/*');
-					shell_exec('rm -rf ' . dirname(__FILE__) . '/../doc');
-					shell_exec('rm -rf ' . dirname(__FILE__) . '/../docs');
-					shell_exec('rm -rf ' . dirname(__FILE__) . '/../support');
+					shell_exec('rm -rf ' . __DIR__ . '/../install/update/*');
+					shell_exec('rm -rf ' . __DIR__ . '/../doc');
+					shell_exec('rm -rf ' . __DIR__ . '/../docs');
+					shell_exec('rm -rf ' . __DIR__ . '/../support');
 					echo "OK\n";
 				} catch (Exception $e) {
 					echo '***ERROR*** ' . $e->getMessage() . "\n";
 				}
 				echo "Moving files...";
 				$update_begin = true;
-				rmove($cibDir . '/', dirname(__FILE__) . '/../', false, array(), true);
+				rmove($cibDir . '/', __DIR__ . '/../', false, array(), true);
 				echo "OK\n";
 				echo "Remove temporary files...";
 				rrmdir($tmp_dir);
 				try {
-					shell_exec('rm -rf ' . dirname(__FILE__) . '/../tests');
-					shell_exec('rm -rf ' . dirname(__FILE__) . '/../.travis.yml');
-					shell_exec('rm -rf ' . dirname(__FILE__) . '/../phpunit.xml.dist');
+					shell_exec('rm -rf ' . __DIR__ . '/../tests');
+					shell_exec('rm -rf ' . __DIR__ . '/../.travis.yml');
+					shell_exec('rm -rf ' . __DIR__ . '/../phpunit.xml.dist');
 				} catch (Exception $e) {
 					echo '***ERROR*** ' . $e->getMessage() . "\n";
 				}
@@ -221,7 +221,7 @@ try {
 		}
 
 		if (init('update::reapply') != '') {
-			$updateSql = dirname(__FILE__) . '/update/' . init('update::reapply') . '.sql';
+			$updateSql = __DIR__ . '/update/' . init('update::reapply') . '.sql';
 			if (file_exists($updateSql)) {
 				try {
 					echo "Disable constraint...";
@@ -264,7 +264,7 @@ try {
 					}
 				}
 			}
-			$updateScript = dirname(__FILE__) . '/update/' . init('update::reapply') . '.php';
+			$updateScript = __DIR__ . '/update/' . init('update::reapply') . '.php';
 			if (file_exists($updateScript)) {
 				try {
 					echo "Update system into : " . init('update::reapply') . "\n";
@@ -282,7 +282,7 @@ try {
 		} else {
 			while (version_compare(jeedom::version(), $curentVersion, '>')) {
 				$nextVersion = incrementVersion($curentVersion);
-				$updateSql = dirname(__FILE__) . '/update/' . $nextVersion . '.sql';
+				$updateSql = __DIR__ . '/update/' . $nextVersion . '.sql';
 				if (file_exists($updateSql)) {
 					try {
 						echo "Disable constraint...";
@@ -325,7 +325,7 @@ try {
 						}
 					}
 				}
-				$updateScript = dirname(__FILE__) . '/update/' . $nextVersion . '.php';
+				$updateScript = __DIR__ . '/update/' . $nextVersion . '.php';
 				if (file_exists($updateScript)) {
 					try {
 						echo "Update system into : " . $nextVersion . "...";
@@ -345,7 +345,7 @@ try {
 		}
 		try {
 			echo "Check jeedom consistency...";
-			require_once dirname(__FILE__) . '/consistency.php';
+			require_once __DIR__ . '/consistency.php';
 			echo "OK\n";
 		} catch (Exception $ex) {
 			echo "***ERREUR*** " . $ex->getMessage() . "\n";

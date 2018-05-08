@@ -90,7 +90,7 @@ if (!isConnect() || $_SESSION['user']->getOptions('bootstrap_theme') == '') {
 	include_file('3rdparty', 'bootstrap/css/bootstrap.min', 'css');
 } else {
 	try {
-		if (init('rescue', 0) == 0 && is_dir(dirname(__FILE__) . '/../../core/themes/' . $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop') && file_exists(dirname(__FILE__) . '/../../core/themes/' . $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop/' . $_SESSION['user']->getOptions('bootstrap_theme') . '.css')) {
+		if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' . $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop/' . $_SESSION['user']->getOptions('bootstrap_theme') . '.css')) {
 			include_file('core', $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop/' . $_SESSION['user']->getOptions('bootstrap_theme'), 'themes.css');
 		} else {
 			include_file('3rdparty', 'bootstrap/css/bootstrap.min', 'css');
@@ -165,24 +165,24 @@ include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'css');
 include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'js');
 include_file('3rdparty', 'autosize/autosize.min', 'js');
 if (init('rescue', 0) == 0 && $configs['enableCustomCss'] == 1) {
-	if (file_exists(dirname(__FILE__) . '/../custom/custom.css')) {
+	if (file_exists(__DIR__ . '/../custom/custom.css')) {
 		include_file('desktop', '', 'custom.css');
 	}
-	if (file_exists(dirname(__FILE__) . '/../custom/custom.js')) {
+	if (file_exists(__DIR__ . '/../custom/custom.js')) {
 		include_file('desktop', '', 'custom.js');
 	}
 }
 try {
 	if (isConnect()) {
-		if (init('rescue', 0) == 0 && is_dir(dirname(__FILE__) . '/../../core/themes/' . $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop')) {
-			if (file_exists(dirname(__FILE__) . '/../../core/themes/' . $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop/' . $_SESSION['user']->getOptions('bootstrap_theme') . '.js')) {
+		if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' . $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop')) {
+			if (file_exists(__DIR__ . '/../../core/themes/' . $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop/' . $_SESSION['user']->getOptions('bootstrap_theme') . '.js')) {
 				include_file('core', $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop/' . $_SESSION['user']->getOptions('bootstrap_theme'), 'themes.js');
 			}
 		}
 		if (init('rescue', 0) == 0 && $_SESSION['user']->getOptions('desktop_highcharts_theme') != '') {
 			try {
-				if (is_dir(dirname(__FILE__) . '/../../core/themes/' . $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop')) {
-					if (file_exists(dirname(__FILE__) . '/../../core/themes/' . $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop/' . $_SESSION['user']->getOptions('bootstrap_theme') . '.js')) {
+				if (is_dir(__DIR__ . '/../../core/themes/' . $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop')) {
+					if (file_exists(__DIR__ . '/../../core/themes/' . $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop/' . $_SESSION['user']->getOptions('bootstrap_theme') . '.js')) {
 						include_file('core', $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop/' . $_SESSION['user']->getOptions('bootstrap_theme'), 'themes.js');
 					}
 				}

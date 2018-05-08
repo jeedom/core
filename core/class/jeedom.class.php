@@ -17,7 +17,7 @@
  */
 
 /* * ***************************Includes********************************* */
-require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
+require_once __DIR__ . '/../../core/php/core.inc.php';
 global $JEEDOM_INTERNAL_CONFIG;
 class jeedom {
 	/*     * *************************Attributs****************************** */
@@ -27,11 +27,11 @@ class jeedom {
 	/*     * ***********************Methode static*************************** */
 
 	public static function addTimelineEvent($_event) {
-		file_put_contents(dirname(__FILE__) . '/../../data/timeline.json', json_encode($_event) . "\n", FILE_APPEND);
+		file_put_contents(__DIR__ . '/../../data/timeline.json', json_encode($_event) . "\n", FILE_APPEND);
 	}
 
 	public static function getTimelineEvent() {
-		$path = dirname(__FILE__) . '/../../data/timeline.json';
+		$path = __DIR__ . '/../../data/timeline.json';
 		if (!file_exists($path)) {
 			return array();
 		}
@@ -45,7 +45,7 @@ class jeedom {
 	}
 
 	public static function removeTimelineEvent() {
-		$path = dirname(__FILE__) . '/../../data/timeline.json';
+		$path = __DIR__ . '/../../data/timeline.json';
 		com_shell::execute(system::getCmdSudo() . 'chmod 777 ' . $path . ' > /dev/null 2>&1;');
 		unlink($path);
 	}
@@ -53,12 +53,12 @@ class jeedom {
 	public static function addRemoveHistory($_data) {
 		try {
 			$remove_history = array();
-			if (file_exists(dirname(__FILE__) . '/../../data/remove_history.json')) {
-				$remove_history = json_decode(file_get_contents(dirname(__FILE__) . '/../../data/remove_history.json'), true);
+			if (file_exists(__DIR__ . '/../../data/remove_history.json')) {
+				$remove_history = json_decode(file_get_contents(__DIR__ . '/../../data/remove_history.json'), true);
 			}
 			$remove_history[] = $_data;
 			$remove_history = array_slice($remove_history, -200, 200);
-			file_put_contents(dirname(__FILE__) . '/../../data/remove_history.json', json_encode($remove_history));
+			file_put_contents(__DIR__ . '/../../data/remove_history.json', json_encode($remove_history));
 		} catch (Exception $e) {
 
 		}
@@ -259,7 +259,7 @@ class jeedom {
 				$cache_health['state'] = true;
 				$cache_health['result'] = __('OK', __FILE__);
 			} else {
-				$filename = dirname(__FILE__) . '/../../cache.tar.gz';
+				$filename = __DIR__ . '/../../cache.tar.gz';
 				$cache_health['state'] = true;
 				$cache_health['result'] = __('OK', __FILE__) . ' (' . date('Y-m-d H:i:s', filemtime($filename)) . ')';
 			}
@@ -294,7 +294,7 @@ class jeedom {
 	}
 
 	public static function sick() {
-		$cmd = dirname(__FILE__) . '/../../sick.php';
+		$cmd = __DIR__ . '/../../sick.php';
 		$cmd .= ' >> ' . log::getPathToLog('sick') . ' 2>&1';
 		system::php($cmd);
 	}
@@ -494,17 +494,17 @@ class jeedom {
 	public static function backup($_background = false) {
 		if ($_background) {
 			log::clear('backup');
-			$cmd = dirname(__FILE__) . '/../../install/backup.php';
+			$cmd = __DIR__ . '/../../install/backup.php';
 			$cmd .= ' >> ' . log::getPathToLog('backup') . ' 2>&1 &';
 			system::php($cmd, true);
 		} else {
-			require_once dirname(__FILE__) . '/../../install/backup.php';
+			require_once __DIR__ . '/../../install/backup.php';
 		}
 	}
 
 	public static function listBackup() {
 		if (substr(config::byKey('backup::path'), 0, 1) != '/') {
-			$backup_dir = dirname(__FILE__) . '/../../' . config::byKey('backup::path');
+			$backup_dir = __DIR__ . '/../../' . config::byKey('backup::path');
 		} else {
 			$backup_dir = config::byKey('backup::path');
 		}
@@ -527,13 +527,13 @@ class jeedom {
 	public static function restore($_backup = '', $_background = false) {
 		if ($_background) {
 			log::clear('restore');
-			$cmd = dirname(__FILE__) . '/../../install/restore.php "backup=' . $_backup . '"';
+			$cmd = __DIR__ . '/../../install/restore.php "backup=' . $_backup . '"';
 			$cmd .= ' >> ' . log::getPathToLog('restore') . ' 2>&1 &';
 			system::php($cmd, true);
 		} else {
 			global $BACKUP_FILE;
 			$BACKUP_FILE = $_backup;
-			require_once dirname(__FILE__) . '/../../install/restore.php';
+			require_once __DIR__ . '/../../install/restore.php';
 		}
 	}
 
@@ -547,7 +547,7 @@ class jeedom {
 				$params .= '"' . $key . '"="' . $value . '" ';
 			}
 		}
-		$cmd = dirname(__FILE__) . '/../../install/update.php ' . $params;
+		$cmd = __DIR__ . '/../../install/update.php ' . $params;
 		$cmd .= ' >> ' . log::getPathToLog('update') . ' 2>&1 &';
 		system::php($cmd);
 	}
@@ -600,8 +600,8 @@ class jeedom {
 	}
 
 	public static function version() {
-		if (file_exists(dirname(__FILE__) . '/../config/version')) {
-			return trim(file_get_contents(dirname(__FILE__) . '/../config/version'));
+		if (file_exists(__DIR__ . '/../config/version')) {
+			return trim(file_get_contents(__DIR__ . '/../config/version'));
 		}
 		return '';
 	}
@@ -1147,12 +1147,12 @@ class jeedom {
 			$processGroup = posix_getgrgid(posix_getegid());
 			$processGroup = $processGroup['name'];
 		}
-		$path = dirname(__FILE__) . '/../../*';
+		$path = __DIR__ . '/../../*';
 		exec(system::getCmdSudo() . 'chown -R ' . $processUser . ':' . $processGroup . ' ' . $path . ';' . system::getCmdSudo() . 'chmod 775 -R ' . $path);
 	}
 
 	public static function checkSpaceLeft() {
-		$path = dirname(__FILE__) . '/../../';
+		$path = __DIR__ . '/../../';
 		return round(disk_free_space($path) / disk_total_space($path) * 100);
 	}
 

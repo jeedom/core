@@ -17,7 +17,7 @@
  */
 
 try {
-	require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
+	require_once __DIR__ . '/../../core/php/core.inc.php';
 	include_file('core', 'authentification', 'php');
 
 	if (!isConnect()) {
@@ -178,7 +178,7 @@ try {
 			$plan3dHeader->setConfiguration('path', 'data/3d/' . config::genKey() . '/');
 		}
 		$file = $uploaddir . '/' . $_FILES['file']['name'];
-		$cibDir = dirname(__FILE__) . '/../../' . $plan3dHeader->getConfiguration('path');
+		$cibDir = __DIR__ . '/../../' . $plan3dHeader->getConfiguration('path');
 		$zip = new ZipArchive;
 		$res = $zip->open($file);
 		if ($res === TRUE) {

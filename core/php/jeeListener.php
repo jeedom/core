@@ -25,7 +25,7 @@ if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SE
 	exit();
 }
 
-require_once dirname(__FILE__) . "/core.inc.php";
+require_once __DIR__ . "/core.inc.php";
 
 if (isset($argv)) {
 	foreach ($argv as $arg) {

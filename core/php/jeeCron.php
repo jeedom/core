@@ -34,7 +34,7 @@ if (isset($argv)) {
 	}
 }
 
-require_once dirname(__FILE__) . "/core.inc.php";
+require_once __DIR__ . "/core.inc.php";
 
 if (init('cron_id') != '') {
 	if (jeedom::isStarted() && config::byKey('enableCron', 'core', 1, true) == 0) {

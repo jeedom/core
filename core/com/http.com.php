@@ -17,7 +17,7 @@
  */
 
 /* ------------------------------------------------------------ Inclusions */
-require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
+require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class com_http {
 	/*     * ***********************Attributs************************* */
@@ -48,13 +48,13 @@ class com_http {
 
 	/*     * ************* Fonctions ************************************ */
 
-        /**
-         *
-         * @param int $_timeout
-         * @param int $_maxRetry
-         * @return string
-         * @throws Exception
-         */
+	/**
+	 *
+	 * @param int $_timeout
+	 * @param int $_maxRetry
+	 * @return string
+	 * @throws Exception
+	 */
 	public function exec($_timeout = 2, $_maxRetry = 3) {
 		$nbRetry = 0;
 		while ($nbRetry < $_maxRetry) {

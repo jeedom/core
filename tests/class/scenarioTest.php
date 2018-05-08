@@ -77,7 +77,7 @@ class scenarioTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testPersistLog() {
-		$path = dirname(__FILE__) . '/../../log/scenarioLog/scenarioTest.log';
+		$path = __DIR__ . '/../../log/scenarioLog/scenarioTest.log';
 		if (file_exists($path)) {
 			$this->markTestSkipped('Le fichier "' . $path . '" existe déjà. Veuillez le supprimer.');
 		}

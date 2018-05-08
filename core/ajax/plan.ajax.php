@@ -17,7 +17,7 @@
  */
 
 try {
-	require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
+	require_once __DIR__ . '/../../core/php/core.inc.php';
 	include_file('core', 'authentification', 'php');
 
 	if (!isConnect()) {
@@ -184,7 +184,7 @@ try {
 		$planHeader->setImage('data', '');
 		$planHeader->setImage('sha1', '');
 		$planHeader->save();
-		@rrmdir(dirname(__FILE__) . '/../../core/img/plan');
+		@rrmdir(__DIR__ . '/../../core/img/plan');
 		ajax::success();
 	}
 
@@ -215,7 +215,7 @@ try {
 		$planHeader->setConfiguration('desktopSizeX', $img_size[0]);
 		$planHeader->setConfiguration('desktopSizeY', $img_size[1]);
 		$planHeader->save();
-		@rrmdir(dirname(__FILE__) . '/../../core/img/plan');
+		@rrmdir(__DIR__ . '/../../core/img/plan');
 		ajax::success();
 	}
 
@@ -238,7 +238,7 @@ try {
 		if (filesize($_FILES['file']['tmp_name']) > 5000000) {
 			throw new Exception(__('Le fichier est trop gros (maximum 5Mo)', __FILE__));
 		}
-		$uploaddir = dirname(__FILE__) . '/../img/plan_' . $plan->getId();
+		$uploaddir = __DIR__ . '/../img/plan_' . $plan->getId();
 		if (!file_exists($uploaddir)) {
 			mkdir($uploaddir, 0777);
 		}

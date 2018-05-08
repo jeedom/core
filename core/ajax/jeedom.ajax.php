@@ -17,7 +17,7 @@
  */
 
 try {
-	require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
+	require_once __DIR__ . '/../../core/php/core.inc.php';
 	include_file('core', 'authentification', 'php');
 
 	if (!isConnect()) {
@@ -63,8 +63,8 @@ try {
 		}
 		$return['custom'] = array('js' => false, 'css' => false);
 		if (config::byKey('enableCustomCss', 'core', 1) == 1) {
-			$return['custom']['js'] = file_exists(dirname(__FILE__) . '/../../mobile/custom/custom.js');
-			$return['custom']['css'] = file_exists(dirname(__FILE__) . '/../../mobile/custom/custom.css');
+			$return['custom']['js'] = file_exists(__DIR__ . '/../../mobile/custom/custom.js');
+			$return['custom']['css'] = file_exists(__DIR__ . '/../../mobile/custom/custom.css');
 		}
 		ajax::success($return);
 	}
@@ -194,7 +194,7 @@ try {
 
 	if (init('action') == 'backupupload') {
 		unautorizedInDemo();
-		$uploaddir = dirname(__FILE__) . '/../../backup';
+		$uploaddir = __DIR__ . '/../../backup';
 		if (!file_exists($uploaddir)) {
 			mkdir($uploaddir);
 		}
@@ -237,7 +237,7 @@ try {
 
 	if (init('action') == 'saveCustom') {
 		unautorizedInDemo();
-		$path = dirname(__FILE__) . '/../../';
+		$path = __DIR__ . '/../../';
 		if (init('version') != 'desktop' && init('version') != 'mobile') {
 			throw new Exception(__('La version ne peut être que desktop ou mobile', __FILE__));
 		}
@@ -339,7 +339,7 @@ try {
 
 	if (init('action') == 'emptyRemoveHistory') {
 		unautorizedInDemo();
-		unlink(dirname(__FILE__) . '/../../data/remove_history.json');
+		unlink(__DIR__ . '/../../data/remove_history.json');
 		ajax::success();
 	}
 

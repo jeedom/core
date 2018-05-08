@@ -36,7 +36,7 @@ if (isset($argv)) {
 }
 
 try {
-	require_once dirname(__FILE__) . '/../core/php/core.inc.php';
+	require_once __DIR__ . '/../core/php/core.inc.php';
 	echo "***************Début de la restauration de Jeedom " . date('Y-m-d H:i:s') . "***************\n";
 
 	try {
@@ -54,7 +54,7 @@ try {
 	}
 	if (!isset($_GET['backup']) || $_GET['backup'] == '') {
 		if (substr(config::byKey('backup::path'), 0, 1) != '/') {
-			$backup_dir = dirname(__FILE__) . '/../' . config::byKey('backup::path');
+			$backup_dir = __DIR__ . '/../' . config::byKey('backup::path');
 		} else {
 			$backup_dir = config::byKey('backup::path');
 		}
@@ -80,7 +80,7 @@ try {
 		$backup = $_GET['backup'];
 	}
 	if (substr($backup, 0, 1) != '/') {
-		$backup = dirname(__FILE__) . '/../' . $backup;
+		$backup = __DIR__ . '/../' . $backup;
 	}
 
 	if (!file_exists($backup)) {
@@ -95,14 +95,14 @@ try {
 		echo '***ERREUR*** ' . $e->getMessage();
 	}
 
-	$jeedom_dir = realpath(dirname(__FILE__) . '/../');
+	$jeedom_dir = realpath(__DIR__ . '/../');
 
 	echo "Fichier utilisé pour la restauration : " . $backup . "\n";
 
 	echo "Backup database access configuration...";
 
-	if (copy(dirname(__FILE__) . '/../core/config/common.config.php', '/tmp/common.config.php')) {
-		echo 'Can not copy ' . dirname(__FILE__) . "/../core/config/common.config.php\n";
+	if (copy(__DIR__ . '/../core/config/common.config.php', '/tmp/common.config.php')) {
+		echo 'Can not copy ' . __DIR__ . "/../core/config/common.config.php\n";
 	}
 
 	echo "OK\n";
@@ -158,9 +158,9 @@ try {
 	}
 	echo "OK\n";
 
-	if (!file_exists(dirname(__FILE__) . '/../core/config/common.config.php')) {
+	if (!file_exists(__DIR__ . '/../core/config/common.config.php')) {
 		echo "Restauration du fichier de configuration de la base de données...";
-		copy('/tmp/common.config.php', dirname(__FILE__) . '/../core/config/common.config.php');
+		copy('/tmp/common.config.php', __DIR__ . '/../core/config/common.config.php');
 		echo "OK\n";
 	}
 
@@ -187,7 +187,7 @@ try {
 
 	try {
 		echo "Check jeedom consistency...";
-		require_once dirname(__FILE__) . '/consistency.php';
+		require_once __DIR__ . '/consistency.php';
 		echo "OK\n";
 	} catch (Exception $ex) {
 		echo "***ERREUR*** " . $ex->getMessage() . "\n";

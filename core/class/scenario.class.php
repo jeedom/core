@@ -17,7 +17,7 @@
  */
 
 /* * ***************************Includes********************************* */
-require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
+require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class scenario {
 	/*     * *************************Attributs****************************** */
@@ -614,7 +614,7 @@ class scenario {
 	 * @return type
 	 */
 	public static function getTemplate($_template = '') {
-		$path = dirname(__FILE__) . '/../config/scenario';
+		$path = __DIR__ . '/../config/scenario';
 		if (isset($_template) && $_template != '') {
 
 		}
@@ -624,7 +624,7 @@ class scenario {
 	/*     * *************************MARKET**************************************** */
 
 	public static function shareOnMarket(&$market) {
-		$moduleFile = dirname(__FILE__) . '/../config/scenario/' . $market->getLogicalId() . '.json';
+		$moduleFile = __DIR__ . '/../config/scenario/' . $market->getLogicalId() . '.json';
 		if (!file_exists($moduleFile)) {
 			throw new Exception('Impossible de trouver le fichier de configuration ' . $moduleFile);
 		}
@@ -646,7 +646,7 @@ class scenario {
 	 * @throws Exception
 	 */
 	public static function getFromMarket(&$market, $_path) {
-		$cibDir = dirname(__FILE__) . '/../config/scenario/';
+		$cibDir = __DIR__ . '/../config/scenario/';
 		if (!file_exists($cibDir)) {
 			mkdir($cibDir);
 		}
@@ -720,7 +720,7 @@ class scenario {
 			if (count($this->getTags()) != '') {
 				$this->setCache('tags', $this->getTags());
 			}
-			$cmd = dirname(__FILE__) . '/../../core/php/jeeScenario.php ';
+			$cmd = __DIR__ . '/../../core/php/jeeScenario.php ';
 			$cmd .= ' scenario_id=' . $this->getId();
 			$cmd .= ' trigger=' . escapeshellarg($_trigger);
 			$cmd .= ' "message=' . escapeshellarg(sanitizeAccent($_message)) . '"';
@@ -800,8 +800,8 @@ class scenario {
 		$scenarioCopy->setScenarioElement($scenario_element_list);
 		$scenarioCopy->setLog('');
 		$scenarioCopy->save();
-		if (file_exists(dirname(__FILE__) . '/../../log/scenarioLog/scenario' . $scenarioCopy->getId() . '.log')) {
-			unlink(dirname(__FILE__) . '/../../log/scenarioLog/scenario' . $scenarioCopy->getId() . '.log');
+		if (file_exists(__DIR__ . '/../../log/scenarioLog/scenario' . $scenarioCopy->getId() . '.log')) {
+			unlink(__DIR__ . '/../../log/scenarioLog/scenario' . $scenarioCopy->getId() . '.log');
 		}
 		return $scenarioCopy;
 	}
@@ -962,8 +962,8 @@ class scenario {
 			$element->remove();
 		}
 		$this->emptyCacheWidget();
-		if (file_exists(dirname(__FILE__) . '/../../log/scenarioLog/scenario' . $this->getId() . '.log')) {
-			unlink(dirname(__FILE__) . '/../../log/scenarioLog/scenario' . $this->getId() . '.log');
+		if (file_exists(__DIR__ . '/../../log/scenarioLog/scenario' . $this->getId() . '.log')) {
+			unlink(__DIR__ . '/../../log/scenarioLog/scenario' . $this->getId() . '.log');
 		}
 		cache::delete('scenarioCacheAttr' . $this->getId());
 		jeedom::addRemoveHistory(array('id' => $this->getId(), 'name' => $this->getHumanName(), 'date' => date('Y-m-d H:i:s'), 'type' => 'scenario'));
@@ -1405,7 +1405,7 @@ class scenario {
 		if ($this->getConfiguration('logmode', 'default') == 'none') {
 			return;
 		}
-		$path = dirname(__FILE__) . '/../../log/scenarioLog';
+		$path = __DIR__ . '/../../log/scenarioLog';
 		if (!file_exists($path)) {
 			mkdir($path);
 		}

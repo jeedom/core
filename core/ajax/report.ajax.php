@@ -18,7 +18,7 @@
 
 try {
 
-	require_once dirname(__FILE__) . '/../php/core.inc.php';
+	require_once __DIR__ . '/../php/core.inc.php';
 	include_file('core', 'authentification', 'php');
 
 	if (!isConnect('admin')) {
@@ -29,7 +29,7 @@ try {
 
 	if (init('action') == 'list') {
 		$return = array();
-		$path = dirname(__FILE__) . '/../../data/report/' . init('type') . '/' . init('id') . '/';
+		$path = __DIR__ . '/../../data/report/' . init('type') . '/' . init('id') . '/';
 		foreach (ls($path, '*') as $value) {
 			$return[$value] = array('name' => $value);
 		}
@@ -37,7 +37,7 @@ try {
 	}
 
 	if (init('action') == 'get') {
-		$path = dirname(__FILE__) . '/../../data/report/' . init('type') . '/' . init('id') . '/' . init('report');
+		$path = __DIR__ . '/../../data/report/' . init('type') . '/' . init('id') . '/' . init('report');
 		$return = pathinfo($path);
 		$return['path'] = $path;
 		$return['type'] = init('type');
@@ -46,7 +46,7 @@ try {
 	}
 
 	if (init('action') == 'remove') {
-		$path = dirname(__FILE__) . '/../../data/report/' . init('type') . '/' . init('id') . '/' . init('report');
+		$path = __DIR__ . '/../../data/report/' . init('type') . '/' . init('id') . '/' . init('report');
 		if (file_exists($path)) {
 			unlink($path);
 		}
@@ -57,7 +57,7 @@ try {
 	}
 
 	if (init('action') == 'removeAll') {
-		$path = dirname(__FILE__) . '/../../data/report/' . init('type') . '/' . init('id') . '/';
+		$path = __DIR__ . '/../../data/report/' . init('type') . '/' . init('id') . '/';
 		foreach (ls($path, '*') as $value) {
 			unlink($path . $value);
 		}

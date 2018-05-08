@@ -18,7 +18,7 @@
 
 /* * ***************************Includes********************************* */
 
-require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
+require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class repo_market {
 	/*     * *************************Attributs****************************** */
@@ -228,7 +228,7 @@ class repo_market {
 		}
 		shell_exec(system::getCmdSudo() . ' rm -rf /tmp/duplicity-*-tempdir');
 		self::backup_createFolderIsNotExist();
-		$base_dir = realpath(dirname(__FILE__) . '/../../');
+		$base_dir = realpath(__DIR__ . '/../../');
 		$excludes = array(
 			$base_dir . '/tmp',
 			$base_dir . '/log',
@@ -1065,8 +1065,8 @@ class repo_market {
 				if (property_exists($plugin_id, '_excludeOnSendPlugin')) {
 					$exclude = array_merge($plugin_id::$_excludeOnSendPlugin);
 				}
-				exec('find ' . realpath(dirname(__FILE__) . '/../../plugins/' . $plugin_id) . ' -name "*.sh" -type f -exec dos2unix {} \;');
-				rcopy(realpath(dirname(__FILE__) . '/../../plugins/' . $plugin_id), $cibDir, true, $exclude, true);
+				exec('find ' . realpath(__DIR__ . '/../../plugins/' . $plugin_id) . ' -name "*.sh" -type f -exec dos2unix {} \;');
+				rcopy(realpath(__DIR__ . '/../../plugins/' . $plugin_id), $cibDir, true, $exclude, true);
 				if (file_exists($cibDir . '/data')) {
 					rrmdir($cibDir . '/data');
 				}

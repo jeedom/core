@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
+require_once __DIR__ . '/../../core/php/core.inc.php';
 echo 'Move cache and tmp jeedom to new folder (/tmp/jeedom). It can take some times....';
 jeedom::stop();
 shell_exec('sudo mkdir -p /tmp/jeedom');
