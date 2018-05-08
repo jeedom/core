@@ -63,7 +63,9 @@ jeedom.object.all = function(_params) {
     var paramsRequired = [];
     var paramsSpecifics = {
         pre_success: function(data) {
-            jeedom.object.cache.all = data.result;
+            if(!isset(_params.onlyHasEqLogic)){
+                jeedom.object.cache.all = data.result;
+            }
             return data;
         }
     };
