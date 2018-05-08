@@ -56,7 +56,7 @@ try {
 		if (init('onlyHasEqLogic') != '') {
 			$return = array();
 			foreach ($objects as $object) {
-				if (count($object->getEqLogic(true, false, init('onlyHasEqLogic'), null, true)) == 0) {
+				if (count($object->getEqLogic(true, false, init('onlyHasEqLogic'), null, init('searchOnchild', true))) == 0) {
 					continue;
 				}
 				$return[] = $object;
