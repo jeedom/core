@@ -244,7 +244,7 @@ class scenarioElement {
 			$at = $at->getExpression();
 			$next = jeedom::evaluateExpression($at[0]->getExpression());
 			if (!is_numeric($next) || $next < 0) {
-				$_scenario->setLog(__('Erreur dans bloc (type A) : ', __FILE__) . $this->getId() . __(', heure programmée invalide : ', __FILE__) . $next);
+				throw new Exception(__('Bloc type A : ', __FILE__) . $this->getId() . __(', heure programmée invalide : ', __FILE__) . $next);
 			}
 			if ($next < date('Gi', strtotime('+1 minute' . date('G:i')))) {
 				$next = str_repeat('0', 4 - strlen($next)) . $next;
@@ -254,6 +254,9 @@ class scenarioElement {
 				$next = date('Y-m-d') . ' ' . substr($next, 0, 2) . ':' . substr($next, 2, 4);
 			}
 			$next = strtotime($next);
+			if (strtotime($next) < strtotime('now')) {
+				throw new Exception(__('Bloc type A : ', __FILE__) . $this->getId() . __(', heure programmée invalide : ', __FILE__) . date('Y-m-d H:i:00', $next));
+			}
 			$crons = cron::searchClassAndFunction('scenario', 'doIn', '"scenarioElement_id":' . $this->getId() . ',');
 			if (is_array($crons)) {
 				foreach ($crons as $cron) {
