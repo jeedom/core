@@ -74,7 +74,7 @@ jeedom.object.all = function(_params) {
         return;
     }
     var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    if (isset(jeedom.object.cache.all)) {
+    if (isset(jeedom.object.cache.all) && !isset(_params.onlyHasEqLogic)) {
         params.success(jeedom.object.cache.all);
         return;
     }
@@ -82,6 +82,7 @@ jeedom.object.all = function(_params) {
     paramsAJAX.url = 'core/ajax/object.ajax.php';
     paramsAJAX.data = {
         action: 'all',
+        onlyHasEqLogic : _params.onlyHasEqLogic || ''
     };
     $.ajax(paramsAJAX);
 };
