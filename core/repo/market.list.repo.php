@@ -198,12 +198,23 @@ if (init('categorie') == '') {
 } else {
 	echo '<option value="">{{Top et nouveautés}}</option>';
 }
-global $JEEDOM_INTERNAL_CONFIG;
-foreach ($JEEDOM_INTERNAL_CONFIG['plugin']['category'] as $key => $value) {
-	echo '<option value="' . $key . '"';
-	echo (init('categorie') == $key) ? 'selected >' : '>';
-	echo $value['name'];
-	echo '</option>';
+if ($type !== null && $type != 'plugin') {
+	foreach (repo_market::distinctCategorie($type) as $id => $category) {
+		if (trim($category) != '' && is_numeric($id)) {
+			echo '<option value="' . $category . '"';
+			echo (init('categorie') == $category) ? 'selected >' : '>';
+			echo $category;
+			echo '</option>';
+		}
+	}
+} else {
+	global $JEEDOM_INTERNAL_CONFIG;
+	foreach ($JEEDOM_INTERNAL_CONFIG['plugin']['category'] as $key => $value) {
+		echo '<option value="' . $key . '"';
+		echo (init('categorie') == $key) ? 'selected >' : '>';
+		echo $value['name'];
+		echo '</option>';
+	}
 }
 ?>
 		</select>
