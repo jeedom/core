@@ -182,14 +182,11 @@ class scenarioElement {
 			}
 			return $this->getSubElement('code')->execute($_scenario);
 		} else if ($this->getType() == 'for') {
-			$for = $this->getSubElement('for');
-			if ($for->getOptions('enable', 1) == 0) {
+			if ($this->getSubElement('for')->getOptions('enable', 1) == 0) {
 				return true;
 			}
-			$limits = $for->getExpression();
-			$limits = intval(jeedom::evaluateExpression($limits[0]->getExpression()));
+			$limits = intval($this->getSubElement('for')->execute($_scenario));
 			if (!is_numeric($limits)) {
-				$_scenario->setLog(__('[ERREUR] La condition pour une boucle doit être numérique : ', __FILE__) . $limits);
 				throw new Exception(__('La condition pour une boucle doit être numérique : ', __FILE__) . $limits);
 			}
 			$return = false;
@@ -198,11 +195,10 @@ class scenarioElement {
 			}
 			return $return;
 		} else if ($this->getType() == 'in') {
-			$in = $this->getSubElement('in');
-			if ($in->getOptions('enable', 1) == 0) {
+			if ($this->getSubElement('in')->getOptions('enable', 1) == 0) {
 				return true;
 			}
-			$time = ceil(str_replace('.', ',', jeedom::evaluateExpression($in->getExpression()[0]->getExpression(), $_scenario)));
+			$time = ceil(str_replace('.', ',', $this->getSubElement('in')->execute($_scenario)));
 			if (!is_numeric($time) || $time < 0) {
 				$time = 0;
 			}
@@ -236,12 +232,10 @@ class scenarioElement {
 			}
 			return true;
 		} else if ($this->getType() == 'at') {
-			$at = $this->getSubElement('at');
-			if ($at->getOptions('enable', 1) == 0) {
+			if ($this->getSubElement('at')->getOptions('enable', 1) == 0) {
 				return true;
 			}
-			$_scenario->setLog($at->getExpression()[0]->getExpression());
-			$next = jeedom::evaluateExpression($at->getExpression()[0]->getExpression(), $_scenario);
+			$next = $this->getSubElement('at')->execute($_scenario);
 			if (!is_numeric($next) || $next < 0) {
 				throw new Exception(__('Bloc type A : ', __FILE__) . $this->getId() . __(', heure programmée invalide : ', __FILE__) . $next);
 			}
