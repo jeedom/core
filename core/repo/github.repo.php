@@ -119,7 +119,7 @@ class repo_github {
 
 	public static function downloadObject($_update) {
 		$allowedRepo = array('jeedom', 'lunarok');
-		if (!in_array($_update->getConfiguration('user'), $allowed)) {
+		if (!in_array($_update->getConfiguration('user'), $allowedRepo)) {
 			throw new Exception(__('Dépot github non autorisé : ', __FILE__) . $_update->getConfiguration('user'));
 		}
 		$client = self::getGithubClient();
