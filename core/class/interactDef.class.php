@@ -537,7 +537,7 @@ class interactDef {
 			}
 			$result = array();
 			foreach ($return as $query) {
-				$results = self::generateSynonymeVariante($query['query'], $synonymes);
+				$results = self::generateSynonymeVariante(self::sanitizeQuery($query['query']), $synonymes);
 				if (count($results) == 0) {
 					continue;
 				}
@@ -562,7 +562,7 @@ class interactDef {
 		$_deep++;
 		foreach ($_synonymes as $replace => $values) {
 			foreach ($values as $value) {
-				$result = @preg_replace('/\b' . $replace . '\b/i', $value, $_text);
+				$result = @preg_replace('/\b' . self::sanitizeQuery($replace) . '\b/iu', self::sanitizeQuery($value), $_text);
 				if ($result != $_text) {
 					$synonymes = $_synonymes;
 					unset($synonymes[$replace]);
