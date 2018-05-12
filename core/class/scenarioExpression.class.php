@@ -858,6 +858,9 @@ class scenarioExpression {
 	public static function name($_type, $_cmd_id) {
 		$cmd = cmd::byId(str_replace('#', '', $_cmd_id));
 		if (!is_object($cmd)) {
+			$cmd = cmd::byId(trim(str_replace('#', '', cmd::humanReadableToCmd('#' . str_replace('#', '', $_cmd_id) . '#'))));
+		}
+		if (!is_object($cmd)) {
 			return __('Commande non trouvée', __FILE__);
 		}
 		switch ($_type) {
