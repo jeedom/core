@@ -74,7 +74,7 @@ function addCommandHistory(_cmd){
   tr += '<span class="cmdAttr" data-l1key="plugins"></span>';
   tr += '</td>';
   tr += '<td>';
-  if(_cmd.type == 'info'){
+  if(_cmd.type == 'info' && _cmd.subType == 'numeric'){
     tr += '<div class="form-group">';
     tr += '<select class="form-control cmdAttr input-sm" data-l1key="configuration" data-l2key="historizeMode">';
     tr += '<option value="avg">{{Moyenne}}</option>';
