@@ -10,13 +10,23 @@
        </div>
      </center>
      <script>
+         
+      var min;
+      var max;   
+         
       $('.cmd[data-cmd_uid=#uid#] .bt_plus').on('click', function () {
-        jeedom.cmd.update['#id#']({display_value:parseFloat($('.cmd[data-cmd_uid=#uid#] .value').val()) + 0.5});
-        $('.cmd[data-cmd_uid=#uid#] .value').trigger('change');
+        max = ('#maxValue#' == '') ?  Number.MAX_VALUE : parseFloat('#maxValue#');
+        if (parseFloat($('.cmd[data-cmd_uid=#uid#] .value').val()) <= max - 0.5 ){     
+          jeedom.cmd.update['#id#']({display_value:parseFloat($('.cmd[data-cmd_uid=#uid#] .value').val()) + 0.5});
+          $('.cmd[data-cmd_uid=#uid#] .value').trigger('change');
+        }  
       });
       $('.cmd[data-cmd_uid=#uid#] .bt_minus').on('click', function () {
-       jeedom.cmd.update['#id#']({display_value:parseFloat($('.cmd[data-cmd_uid=#uid#] .value').val()) - 0.5});
-       $('.cmd[data-cmd_uid=#uid#] .value').trigger('change');
+      	min= ('#minValue#' == '') ? Number.MIN_VALUE : parseFloat('#minValue#');
+        if (parseFloat($('.cmd[data-cmd_uid=#uid#] .value').val()) >= min + 0.5 ){     
+          jeedom.cmd.update['#id#']({display_value:parseFloat($('.cmd[data-cmd_uid=#uid#] .value').val()) - 0.5});
+          $('.cmd[data-cmd_uid=#uid#] .value').trigger('change');
+        }
      });
       $('.cmd[data-cmd_uid=#uid#] .value').on('change', function () {
         if (typeof timerHandle !== 'undefined') {
