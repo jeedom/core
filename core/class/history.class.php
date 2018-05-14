@@ -647,7 +647,7 @@ class history {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 	}
 
-	public static function getHistoryFromCalcul($_strcalcul, $_dateStart = null, $_dateEnd = null) {
+	public static function getHistoryFromCalcul($_strcalcul, $_dateStart = null, $_dateEnd = null, $_noCalcul = false) {
 		$now = strtotime('now');
 		$archiveTime = (config::byKey('historyArchiveTime') + 1) * 3600 + 86400;
 		$packetTime = (config::byKey('historyArchivePackage')) * 3600;
@@ -697,6 +697,10 @@ class history {
 				}
 				$datetime = floatval(strtotime($datetime . " UTC"));
 				$calcul = template_replace($cmd_history, $_strcalcul);
+				if ($_noCalcul) {
+					$value[$datetime] = $calcul;
+					continue;
+				}
 				try {
 					$result = floatval(jeedom::evaluateExpression($calcul));
 					$value[$datetime] = $result;
