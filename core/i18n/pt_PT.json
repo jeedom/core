@@ -170,8 +170,8 @@
         "Analyse équipement": "equipamentos de análise",
         "Messages": "mensagens",
         "Message(s)": "Mensagem (s)",
-        "Scénarios": "Scénarios",
-        "Scénario": "Scénario"
+        "Scénarios": "Cenas",
+        "Scénario": "cenário"
     },
     "core/class/cron.class.php": {
         "Arrêt de ": "paragem"
@@ -258,7 +258,7 @@
         "Defaut": "omissão",
         "Autre": "outro",
         "Scénarios": "Cenas",
-        "Catégorie": "Catégorie",
+        "Catégorie": "categoria",
         "Toute": "Toute",
         "Tags": "Tags"
     },
@@ -400,7 +400,7 @@
         "Fonctionnalités": "recursos",
         "Gestion": "gestão",
         "Sources": "fontes",
-        "Plugins": "Plugins"
+        "Plugins": "plugins"
     },
     "core/class/interactQuery.class.php": {
         "J'ai une correspondance  : ": "Eu tenho uma correspondência:",
@@ -422,7 +422,7 @@
         "Correspondance trouvée : ": "A correspondência encontrada:",
         " mais ne contient pas : ": "mas não contém:",
         "Alerte : ": "Alerte :",
-        " valeur : ": "valeur :"
+        " valeur : ": "valor:"
     },
     "desktop/php/log.php": {
         "Rechercher": "Pesquisar",
@@ -710,7 +710,7 @@
         "Editeur de fichiers": "Editeur de fichiers",
         "DNS (proxy)": "DNS (proxy)",
         "Action sur message": "Action sur message",
-        "Ajouter": "Ajouter",
+        "Ajouter": "adicionar",
         "Nom de votre Jeedom2 (utilisé notamment par le market)": "Nom de votre Jeedom2 (utilisé notamment par le market)",
         "Nom de votre": "Nom de votre",
         "Clef d'installation qui permet d'identifier votre": "Clef d'installation qui permet d'identifier votre",
@@ -762,12 +762,12 @@
         "Evènement de la timeline supprimé avec succès": "Timeline evento que foi excluído com sucesso",
         "Suppression des IPs bannies réussie": "Removendo IPs de sucesso proibidos",
         "Administration base de données": "banco de dados de administração",
-        "Décocher pour desactiver l\\'action": "Décocher pour desactiver l\\'action",
-        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Cocher pour que la commande s\\'éxecute en parrallele des autres actions",
-        "Sélectionner un mot-clé": "Sélectionner un mot-clé",
+        "Décocher pour desactiver l\\'action": "Desmarque para desativar Ação 's \\",
+        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Verifique a ordem \\ 's executadas em paralelo com outras acções",
+        "Sélectionner un mot-clé": "Selecione uma palavra-chave",
         "Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et qu\\'en cas de": "Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et qu\\'en cas de",
         "non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\\'accès est enregistrée) ?": "non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\\'accès est enregistrée) ?",
-        "Opération réalisée avec succès": "Opération réalisée avec succès"
+        "Opération réalisée avec succès": "Operação concluída com êxito"
     },
     "desktop/php/interact.php": {
         "Ajouter interaction": "Adicionar interação",
@@ -1520,14 +1520,14 @@
     },
     "core/repo/market.list.repo.php": {
         "Market Jeedom": "mercado Jeedom",
-        "Gratuit": "Gratuit",
+        "Gratuit": "livre",
         "Payant": "Payant",
-        "Officiel": "Officiel",
+        "Officiel": "oficial",
         "Conseillé": "Conseillé",
         "Installé": "Installé",
         "Non installé": "Non installé",
         "Top et nouveautés": "Top et nouveautés",
-        "Aucune": "Aucune",
+        "Aucune": "não",
         "par": "par"
     },
     "desktop/js/report.js": {
@@ -1648,10 +1648,10 @@
         "Régénérer clef API": "Regenerar chave API",
         "Gérer les droits": "direitos Gerenciando",
         "Etes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "Tem certeza de que deseja alterar a chave de API do usuário \\ 's?",
-        "Local": "Local",
-        "Désactiver": "Désactiver",
+        "Local": "local",
+        "Désactiver": "desativar",
         "Régénérer API": "Régénérer API",
-        "Mot de passe": "Mot de passe",
+        "Mot de passe": "senha",
         "Droits": "Droits"
     },
     "desktop/modal/log.display.php": {
@@ -2166,7 +2166,7 @@
         "Inverser": "inverter",
         "Graphique des liens": "ligações gráficos",
         "Résumé objet": "Resumo artigo",
-        "Activer": "Activer",
+        "Activer": "ativar",
         "Résumé Objets": "Résumé Objets"
     },
     "desktop/modal/icon.selector.php": {
@@ -2218,7 +2218,7 @@
         "Cloud monitoring actif": "Cloud monitoring actif",
         "NOK": "NOK",
         "Attention 10 minutes si le service ne redémarre pas contacter le support": "Attention 10 minutes si le service ne redémarre pas contacter le support",
-        "OK": "OK"
+        "OK": "ok"
     },
     "core/class/network.class.php": {
         "Le plugin openvpn doit être actif": "O plugin OpenVPN deve estar ativo"
@@ -2247,10 +2247,10 @@
         "Installer": "instalar",
         "Voulez-vous aller sur la page de configuration de votre nouveau plugin ?": "Quer ir para a página de configuração de seu novo plugin?",
         "Taille": "Taille",
-        "Utilisation": "Utilisation",
+        "Utilisation": "uso",
         "Informations complementaires": "Informations complementaires",
         "Langue disponible": "Langue disponible",
-        "Market": "Market",
+        "Market": "mercado",
         "Conseillé": "Conseillé",
         "Attention ce plugin n'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée": "Attention ce plugin n'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée",
         "Développé par": "Développé par"
@@ -2540,7 +2540,7 @@
         "Vous pouvez envoyer des proposition d'amélioration qui seront publiée sur notre page publique dédiée et qui pourront être intégrés dans notre roadmap.": "Você pode enviar sugestões de melhoria que será publicado na nossa página pública dedicada e pode ser integrado em nosso roteiro.",
         "Voir les bugs": "Veja os erros",
         "Voir les propositions d'amélioration": "Veja sugestões de melhoria",
-        "Rapport": "Rapport",
+        "Rapport": "relatório",
         "Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre feuille de route.": "Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre feuille de route.",
         "Ouvrir un accès au support": "Ouvrir un accès au support",
         "Vous venez de déclarer un bug qui sera publié sur notre Bug Tracker public.<br/>Vous pouvez le suivre": "Vous venez de déclarer un bug qui sera publié sur notre Bug Tracker public.<br/>Vous pouvez le suivre"
@@ -2644,19 +2644,19 @@
         "Condition": "condição",
         "Ajouter": "adicionar",
         "Couleur": "cor",
-        "Etat": "Etat",
+        "Etat": "estado",
         "Rotation": "Rotation",
-        "Activer": "Activer",
-        "Ouverture": "Ouverture",
-        "Gauche": "Gauche",
-        "Droite": "Droite",
+        "Activer": "ativar",
+        "Ouverture": "abertura",
+        "Gauche": "esquerda",
+        "Droite": "direito",
         "Devant": "Devant",
         "Derriere": "Derriere",
-        "Normal": "Normal",
+        "Normal": "normal",
         "Inversé": "Inversé",
         "Translation": "Translation",
         "Sens": "Sens",
-        "Haut": "Haut",
+        "Haut": "topo",
         "Bas": "Bas",
         "Répeter": "Répeter",
         "Masquer quand la porte/fenêtre est ouverte": "Masquer quand la porte/fenêtre est ouverte",
@@ -2765,9 +2765,9 @@
         "La demande ne peut être vide": "O pedido não pode estar vazio"
     },
     "desktop/modal/note.manager.php": {
-        "Supprimer": "Supprimer",
-        "Sauvegarder": "Sauvegarder",
-        "Ajouter": "Ajouter",
+        "Supprimer": "remover",
+        "Sauvegarder": "salvar",
+        "Ajouter": "adicionar",
         "Note crée avec succès": "Note crée avec succès",
         "Note sauvegardée avec succès": "Note sauvegardée avec succès",
         "Etês vous sur de vouloir supprimer la note : ": "Etês vous sur de vouloir supprimer la note :",
@@ -2776,59 +2776,59 @@
     },
     "desktop/modal/cmd.selectMultiple.php": {
         "Basculer": "Basculer",
-        "Valider": "Valider",
-        "Nom": "Nom"
+        "Valider": "validar",
+        "Nom": "nome"
     },
     "desktop/modal/cmd.configureHistory.php": {
-        "Valider": "Valider",
+        "Valider": "validar",
         "Historisé": "Historisé",
-        "Timeline": "Timeline",
-        "Nom": "Nom",
+        "Timeline": "cronograma",
+        "Nom": "nome",
         "Plugin": "Plugin",
         "Mode de lissage": "Mode de lissage",
         "Purge de l'historique si plus vieux": "Purge de l'historique si plus vieux",
-        "Action": "Action",
-        "Moyenne": "Moyenne",
+        "Action": "ação",
+        "Moyenne": "média",
         "Minimum": "Minimum",
         "Maximum": "Maximum",
-        "Aucun": "Aucun",
-        "Jamais": "Jamais",
-        "1 jour": "1 jour",
+        "Aucun": "não",
+        "Jamais": "sempre",
+        "1 jour": "1 dia",
         "7 jours": "7 jours",
-        "1 mois": "1 mois",
-        "3 mois": "3 mois",
-        "6 mois": "6 mois",
+        "1 mois": "1 mês",
+        "3 mois": "3 meses",
+        "6 mois": "6 meses",
         "1 an": "1 an",
-        "Configuration de la commande": "Configuration de la commande",
+        "Configuration de la commande": "Set Controle",
         "Modifications sauvegardées avec succès": "Modifications sauvegardées avec succès",
-        "Type": "Type",
+        "Type": "tipo",
         "Commande(s) historisée(s) : ": "Commande(s) historisée(s) :",
         "Commande(s) timeline : ": "Commande(s) timeline :"
     },
     "desktop/modal/user.rights.php": {
         "Attention : le compte utilisateur n'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s'appliquer": "Attention : le compte utilisateur n'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s'appliquer",
-        "Sauvegarder": "Sauvegarder",
-        "Equipements": "Equipements",
-        "Scénarios": "Scénarios",
-        "Equipement": "Equipement",
+        "Sauvegarder": "salvar",
+        "Equipements": "instalações",
+        "Scénarios": "Cenas",
+        "Equipement": "equipamento",
         "Droits": "Droits",
-        "Aucun": "Aucun",
+        "Aucun": "não",
         "Visualisation": "Visualisation",
         "Visualisation et exécution": "Visualisation et exécution",
-        "Scénario": "Scénario",
-        "Sauvegarde effectuée": "Sauvegarde effectuée"
+        "Scénario": "cenário",
+        "Sauvegarde effectuée": "backup feito"
     },
     "desktop/modal/object.summary.php": {
         "ID": "ID",
-        "Objet": "Objet",
-        "Père": "Père",
-        "Visible": "Visible",
+        "Objet": "objeto",
+        "Père": "Pai",
+        "Visible": "visível",
         "Masqué": "Masqué",
         "Résumé Défini": "Résumé Défini",
         "Résumé Dashboard Masqué": "Résumé Dashboard Masqué",
         "Résumé Mobile Masqué": "Résumé Mobile Masqué",
-        "Oui": "Oui",
-        "Non": "Non"
+        "Oui": "sim",
+        "Non": "não"
     },
     "3rdparty/jquery.tablesorter/jquery.tablesorter.widgets.min.js": {
         "label": "label",

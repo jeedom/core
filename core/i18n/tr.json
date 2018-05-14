@@ -170,8 +170,8 @@
         "Analyse équipement": "analiz ekipmanı",
         "Messages": "Mesajlar",
         "Message(s)": "Mesaj",
-        "Scénarios": "Scénarios",
-        "Scénario": "Scénario"
+        "Scénarios": "Senaryolar",
+        "Scénario": "Senaryo"
     },
     "core/class/cron.class.php": {
         "Arrêt de ": "Kadar durma"
@@ -258,7 +258,7 @@
         "Defaut": "Varsayılan",
         "Autre": "Başka",
         "Scénarios": "Senaryolar",
-        "Catégorie": "Catégorie",
+        "Catégorie": "Kategori",
         "Toute": "Toute",
         "Tags": "Tags"
     },
@@ -318,7 +318,7 @@
         "Plan 3d": "3d Harita",
         "Plan 3d inconnu. Verifier l'id": "Bilinmeyen Harita 3D. id edin",
         "Design 3D": "3 boyutlu tasarım",
-        "Note": "Note",
+        "Note": "Not",
         "Jeedom est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.": "Jeedom est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé."
     },
     "desktop/php/message.php": {
@@ -400,7 +400,7 @@
         "Fonctionnalités": "Özellikler",
         "Gestion": "Yönetim",
         "Sources": "kaynaklar",
-        "Plugins": "Plugins"
+        "Plugins": "Eklentiler"
     },
     "core/class/interactQuery.class.php": {
         "J'ai une correspondance  : ": "irtibatim var",
@@ -422,7 +422,7 @@
         "Correspondance trouvée : ": "Yazışmalar bulundu:",
         " mais ne contient pas : ": "ancak içermiyor:",
         "Alerte : ": "Alerte :",
-        " valeur : ": "valeur :"
+        " valeur : ": "değer :"
     },
     "desktop/php/log.php": {
         "Rechercher": "Arayın",
@@ -710,7 +710,7 @@
         "Editeur de fichiers": "Editeur de fichiers",
         "DNS (proxy)": "DNS (proxy)",
         "Action sur message": "Action sur message",
-        "Ajouter": "Ajouter",
+        "Ajouter": "Ekle",
         "Nom de votre Jeedom2 (utilisé notamment par le market)": "Nom de votre Jeedom2 (utilisé notamment par le market)",
         "Nom de votre": "Nom de votre",
         "Clef d'installation qui permet d'identifier votre": "Clef d'installation qui permet d'identifier votre",
@@ -762,12 +762,12 @@
         "Evènement de la timeline supprimé avec succès": "Etkinlik Çizelgesi başarıyla silindi",
         "Suppression des IPs bannies réussie": "yasaklı başarılı IP'leri Çıkarma",
         "Administration base de données": "Yönetim veritabanı",
-        "Décocher pour desactiver l\\'action": "Décocher pour desactiver l\\'action",
-        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Cocher pour que la commande s\\'éxecute en parrallele des autres actions",
-        "Sélectionner un mot-clé": "Sélectionner un mot-clé",
+        "Décocher pour desactiver l\\'action": "\\ 'ın Eylem devre dışı bırakmak için işaretini kaldırın",
+        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "denetleyin diğer eylemlere ilişkin olarak yürütülen sipariş \\ 'ın",
+        "Sélectionner un mot-clé": "Anahtar kelime seçin",
         "Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et qu\\'en cas de": "Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et qu\\'en cas de",
         "non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\\'accès est enregistrée) ?": "non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\\'accès est enregistrée) ?",
-        "Opération réalisée avec succès": "Opération réalisée avec succès"
+        "Opération réalisée avec succès": "Operasyon başarıyla tamamlandı"
     },
     "desktop/php/interact.php": {
         "Ajouter interaction": "Etkileşim ekle",
@@ -946,7 +946,7 @@
         "Supprimer colonne": "sütun sil",
         "Supprimer ligne": "satır sil",
         "A propos": "A propos",
-        "Note": "Note"
+        "Note": "Not"
     },
     "desktop/js/view.js": {
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Düzenleme modundasınız widgetlerin yerlerini, boylarını değiştirebilir ve widgetler içinde komutaların sıralarını değiştirebilirsiniz"
@@ -1138,7 +1138,7 @@
         "Le scénario pourra tourner plusieurs fois en même temps": "komut aynı anda birkaç kez çalışır",
         "Le scénario est en mode synchrone. Attention, cela peut rendre le système instable": "senaryo senkron modunda. Bu sistem kararsız yapabilir, Uyarı",
         "Les exécutions du scénario pourront être vues dans la timeline.": "script infazlar çizelgesinde görülebilir.",
-        "Ajouter bloc": "Ajouter bloc"
+        "Ajouter bloc": "Blok ekleyin"
     },
     "desktop/js/scenario.js": {
         "Sauvegarde effectuée avec succès": "Kayıt başarıyla sonuçlandı",
@@ -1520,15 +1520,15 @@
     },
     "core/repo/market.list.repo.php": {
         "Market Jeedom": "Jeedom market",
-        "Gratuit": "Gratuit",
-        "Payant": "Payant",
-        "Officiel": "Officiel",
+        "Gratuit": "Bedava",
+        "Payant": "Ödemeli",
+        "Officiel": "Resmi",
         "Conseillé": "Conseillé",
         "Installé": "Installé",
         "Non installé": "Non installé",
         "Top et nouveautés": "Top et nouveautés",
-        "Aucune": "Aucune",
-        "par": "par"
+        "Aucune": "Hiçbir",
+        "par": "tarafından"
     },
     "desktop/js/report.js": {
         "Aucun aperçu possible en pdf": "Pdf olarak önizlenim mevcut değil"
@@ -1582,7 +1582,7 @@
         "L\\'opération a échoué": "Operasyon başarısız sonuçlandı",
         "Etes-vous sûr de vouloir envoyer une sauvegarde de Jeedom sur le cloud ? Une fois lancée cette opération ne peut être annulée": "Buluta bir Jeedom kaydı göndermek istediğinizden eminmisiniz ? Başlatıldıkdan sonra bu işlem iptal edilemez",
         "Etes-vous sûr de vouloir restaurer Jeedom avec la sauvegarde": "Etes-vous sûr de vouloir restaurer Jeedom avec la sauvegarde",
-        "Une fois lancée cette opération ne peut être annulée.": "Une fois lancée cette opération ne peut être annulée.",
+        "Une fois lancée cette opération ne peut être annulée.": "Bu işlem başlandıktan sonra iptal edilemez.",
         "Etes-vous sûr de vouloir faire une sauvegarde de": "Etes-vous sûr de vouloir faire une sauvegarde de",
         "? Une fois lancée cette opération ne peut être annulée": "? Une fois lancée cette opération ne peut être annulée",
         "Etes-vous sûr de vouloir envoyer une sauvegarde de": "Etes-vous sûr de vouloir envoyer une sauvegarde de",
@@ -1648,11 +1648,11 @@
         "Régénérer clef API": "API Anahtarını yeniden oluştur",
         "Gérer les droits": "Yönetme hakkı",
         "Etes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "Eğer kullanıcı \\ 's API anahtarını değiştirmek istediğinizden emin misiniz?",
-        "Local": "Local",
-        "Désactiver": "Désactiver",
+        "Local": "Yerel",
+        "Désactiver": "Dezaktive edin",
         "Régénérer API": "Régénérer API",
-        "Mot de passe": "Mot de passe",
-        "Droits": "Droits"
+        "Mot de passe": "Şifre",
+        "Droits": "Haklar"
     },
     "desktop/modal/log.display.php": {
         "Supprimer": "Sil",
@@ -2166,7 +2166,7 @@
         "Inverser": "Ters çevir",
         "Graphique des liens": "Linkler grafiği",
         "Résumé objet": "öğe Özeti",
-        "Activer": "Activer",
+        "Activer": "Etkinleştir",
         "Résumé Objets": "Résumé Objets"
     },
     "desktop/modal/icon.selector.php": {
@@ -2246,10 +2246,10 @@
         "Objet installé avec succès": "Nesne başariyla yüklendi",
         "Installer": "Yükle",
         "Voulez-vous aller sur la page de configuration de votre nouveau plugin ?": "Yeni eklenti yapılandırma sayfasına gitmek ister misiniz?",
-        "Taille": "Taille",
-        "Utilisation": "Utilisation",
+        "Taille": "Boy",
+        "Utilisation": "Kullanım",
         "Informations complementaires": "Informations complementaires",
-        "Langue disponible": "Langue disponible",
+        "Langue disponible": "Mevcut diller",
         "Market": "Market",
         "Conseillé": "Conseillé",
         "Attention ce plugin n'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée": "Attention ce plugin n'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée",
@@ -2540,7 +2540,7 @@
         "Vous pouvez envoyer des proposition d'amélioration qui seront publiée sur notre page publique dédiée et qui pourront être intégrés dans notre roadmap.": "Bizim sayfa adanmış halka yayınlanacak ve bizim yol haritasına entegre edilebilir iyileştirme önerilerini gönderebilirler.",
         "Voir les bugs": "böcek bakın",
         "Voir les propositions d'amélioration": "iyileştirme için önerilere bakın",
-        "Rapport": "Rapport",
+        "Rapport": "Rapor",
         "Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre feuille de route.": "Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre feuille de route.",
         "Ouvrir un accès au support": "Ouvrir un accès au support",
         "Vous venez de déclarer un bug qui sera publié sur notre Bug Tracker public.<br/>Vous pouvez le suivre": "Vous venez de déclarer un bug qui sera publié sur notre Bug Tracker public.<br/>Vous pouvez le suivre"
@@ -2644,20 +2644,20 @@
         "Condition": "Durum",
         "Ajouter": "Ekle",
         "Couleur": "Renk",
-        "Etat": "Etat",
+        "Etat": "Durum",
         "Rotation": "Rotation",
-        "Activer": "Activer",
-        "Ouverture": "Ouverture",
-        "Gauche": "Gauche",
-        "Droite": "Droite",
+        "Activer": "Etkinleştir",
+        "Ouverture": "Açılış",
+        "Gauche": "Sol",
+        "Droite": "Sağ",
         "Devant": "Devant",
         "Derriere": "Derriere",
         "Normal": "Normal",
         "Inversé": "Inversé",
         "Translation": "Translation",
         "Sens": "Sens",
-        "Haut": "Haut",
-        "Bas": "Bas",
+        "Haut": "Yukarı",
+        "Bas": "Aşağı",
         "Répeter": "Répeter",
         "Masquer quand la porte/fenêtre est ouverte": "Masquer quand la porte/fenêtre est ouverte",
         "Couleur ouverte": "Couleur ouverte",
@@ -2765,9 +2765,9 @@
         "La demande ne peut être vide": "istek boş olamaz"
     },
     "desktop/modal/note.manager.php": {
-        "Supprimer": "Supprimer",
-        "Sauvegarder": "Sauvegarder",
-        "Ajouter": "Ajouter",
+        "Supprimer": "Sil",
+        "Sauvegarder": "Kaydet",
+        "Ajouter": "Ekle",
         "Note crée avec succès": "Note crée avec succès",
         "Note sauvegardée avec succès": "Note sauvegardée avec succès",
         "Etês vous sur de vouloir supprimer la note : ": "Etês vous sur de vouloir supprimer la note :",
@@ -2775,60 +2775,60 @@
         "Note créée avec succès": "Note créée avec succès"
     },
     "desktop/modal/cmd.selectMultiple.php": {
-        "Basculer": "Basculer",
-        "Valider": "Valider",
-        "Nom": "Nom"
+        "Basculer": "Değiştir",
+        "Valider": "Onaylayın",
+        "Nom": "Soyisim"
     },
     "desktop/modal/cmd.configureHistory.php": {
-        "Valider": "Valider",
+        "Valider": "Onaylayın",
         "Historisé": "Historisé",
-        "Timeline": "Timeline",
-        "Nom": "Nom",
-        "Plugin": "Plugin",
-        "Mode de lissage": "Mode de lissage",
+        "Timeline": "zaman çizelgesi",
+        "Nom": "Soyisim",
+        "Plugin": "Eklenti",
+        "Mode de lissage": "Pürüzsüzleştirme yöntemi",
         "Purge de l'historique si plus vieux": "Purge de l'historique si plus vieux",
-        "Action": "Action",
-        "Moyenne": "Moyenne",
+        "Action": "Eylem",
+        "Moyenne": "Ortalama",
         "Minimum": "Minimum",
         "Maximum": "Maximum",
-        "Aucun": "Aucun",
-        "Jamais": "Jamais",
-        "1 jour": "1 jour",
-        "7 jours": "7 jours",
-        "1 mois": "1 mois",
-        "3 mois": "3 mois",
-        "6 mois": "6 mois",
-        "1 an": "1 an",
-        "Configuration de la commande": "Configuration de la commande",
+        "Aucun": "Hiçbir",
+        "Jamais": "Hiçbir zaman",
+        "1 jour": "1 gün",
+        "7 jours": "7 gün",
+        "1 mois": "1 ay",
+        "3 mois": "3 ay",
+        "6 mois": "6 ay",
+        "1 an": "1 yıl",
+        "Configuration de la commande": "Komutanın ayarları",
         "Modifications sauvegardées avec succès": "Modifications sauvegardées avec succès",
-        "Type": "Type",
+        "Type": "Çeşit",
         "Commande(s) historisée(s) : ": "Commande(s) historisée(s) :",
         "Commande(s) timeline : ": "Commande(s) timeline :"
     },
     "desktop/modal/user.rights.php": {
         "Attention : le compte utilisateur n'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s'appliquer": "Attention : le compte utilisateur n'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s'appliquer",
-        "Sauvegarder": "Sauvegarder",
-        "Equipements": "Equipements",
-        "Scénarios": "Scénarios",
-        "Equipement": "Equipement",
-        "Droits": "Droits",
-        "Aucun": "Aucun",
+        "Sauvegarder": "Kaydet",
+        "Equipements": "Cihazlar",
+        "Scénarios": "Senaryolar",
+        "Equipement": "Cihaz",
+        "Droits": "Haklar",
+        "Aucun": "Hiçbir",
         "Visualisation": "Visualisation",
         "Visualisation et exécution": "Visualisation et exécution",
-        "Scénario": "Scénario",
-        "Sauvegarde effectuée": "Sauvegarde effectuée"
+        "Scénario": "Senaryo",
+        "Sauvegarde effectuée": "Yedekleme gerçekleştirildi"
     },
     "desktop/modal/object.summary.php": {
         "ID": "ID",
-        "Objet": "Objet",
-        "Père": "Père",
-        "Visible": "Visible",
+        "Objet": "Konu",
+        "Père": "Baba",
+        "Visible": "Görülebilir",
         "Masqué": "Masqué",
         "Résumé Défini": "Résumé Défini",
         "Résumé Dashboard Masqué": "Résumé Dashboard Masqué",
         "Résumé Mobile Masqué": "Résumé Mobile Masqué",
-        "Oui": "Oui",
-        "Non": "Non"
+        "Oui": "Evet",
+        "Non": "Hayır"
     },
     "3rdparty/jquery.tablesorter/jquery.tablesorter.widgets.min.js": {
         "label": "label",

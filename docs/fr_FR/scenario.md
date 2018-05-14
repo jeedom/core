@@ -135,6 +135,10 @@ C’est ici que vous allez construire votre scénario. Il faut commencer
 par **ajouter un bloc**, avec le bouton situé à droite. Une fois un bloc
 créé, vous pourrez y ajouter un autre **bloc** ou une **action**.
 
+> **Tip**
+>
+> Dans les condition et action il vaut mieux privilégier les guillemets simples (') au lieu des doubles (")
+
 ### Les blocs 
 
 Voici les différents types de blocs disponibles :

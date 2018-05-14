@@ -170,8 +170,8 @@
         "Analyse équipement": "分析機器",
         "Messages": "投稿",
         "Message(s)": "メッセージ（S）",
-        "Scénarios": "Scénarios",
-        "Scénario": "Scénario"
+        "Scénarios": "シナリオ",
+        "Scénario": "シナリオ"
     },
     "core/class/cron.class.php": {
         "Arrêt de ": "停車"
@@ -258,7 +258,7 @@
         "Defaut": "デフォルト",
         "Autre": "他の",
         "Scénarios": "シナリオ",
-        "Catégorie": "Catégorie",
+        "Catégorie": "カテゴリ",
         "Toute": "Toute",
         "Tags": "Tags"
     },
@@ -400,7 +400,7 @@
         "Fonctionnalités": "特長",
         "Gestion": "管理",
         "Sources": "ソース",
-        "Plugins": "Plugins"
+        "Plugins": "プラグイン"
     },
     "core/class/interactQuery.class.php": {
         "J'ai une correspondance  : ": "私は対応しています：",
@@ -422,7 +422,7 @@
         "Correspondance trouvée : ": "対応が見つかりました：",
         " mais ne contient pas : ": "しかし、含まれていません。",
         "Alerte : ": "Alerte :",
-        " valeur : ": "valeur :"
+        " valeur : ": "値："
     },
     "desktop/php/log.php": {
         "Rechercher": "検索する",
@@ -710,7 +710,7 @@
         "Editeur de fichiers": "Editeur de fichiers",
         "DNS (proxy)": "DNS (proxy)",
         "Action sur message": "Action sur message",
-        "Ajouter": "Ajouter",
+        "Ajouter": "加えます",
         "Nom de votre Jeedom2 (utilisé notamment par le market)": "Nom de votre Jeedom2 (utilisé notamment par le market)",
         "Nom de votre": "Nom de votre",
         "Clef d'installation qui permet d'identifier votre": "Clef d'installation qui permet d'identifier votre",
@@ -762,12 +762,12 @@
         "Evènement de la timeline supprimé avec succès": "イベントのタイムラインが正常に削除します",
         "Suppression des IPs bannies réussie": "禁止され成功したIPアドレスを削除します",
         "Administration base de données": "管理データベース",
-        "Décocher pour desactiver l\\'action": "Décocher pour desactiver l\\'action",
-        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Cocher pour que la commande s\\'éxecute en parrallele des autres actions",
-        "Sélectionner un mot-clé": "Sélectionner un mot-clé",
+        "Décocher pour desactiver l\\'action": "\\「sのアクションを無効にするにはチェックを外し",
+        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "他のアクションを並列に実行するための\\「sのチェック",
+        "Sélectionner un mot-clé": "キーワードを選択",
         "Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et qu\\'en cas de": "Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et qu\\'en cas de",
         "non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\\'accès est enregistrée) ?": "non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\\'accès est enregistrée) ?",
-        "Opération réalisée avec succès": "Opération réalisée avec succès"
+        "Opération réalisée avec succès": "操作は正常に完了しました"
     },
     "desktop/php/interact.php": {
         "Ajouter interaction": "インタラクションを追加",
@@ -1520,14 +1520,14 @@
     },
     "core/repo/market.list.repo.php": {
         "Market Jeedom": "市場Jeedom",
-        "Gratuit": "Gratuit",
+        "Gratuit": "自由な",
         "Payant": "Payant",
-        "Officiel": "Officiel",
+        "Officiel": "公式",
         "Conseillé": "Conseillé",
         "Installé": "Installé",
         "Non installé": "Non installé",
         "Top et nouveautés": "Top et nouveautés",
-        "Aucune": "Aucune",
+        "Aucune": "いいえ",
         "par": "par"
     },
     "desktop/js/report.js": {
@@ -1648,10 +1648,10 @@
         "Régénérer clef API": "APIキーを再生成",
         "Gérer les droits": "管理権",
         "Etes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "あなたはユーザー\\「sののAPIキーを変更してもよろしいですか？",
-        "Local": "Local",
-        "Désactiver": "Désactiver",
+        "Local": "ローカル",
+        "Désactiver": "無効化",
         "Régénérer API": "Régénérer API",
-        "Mot de passe": "Mot de passe",
+        "Mot de passe": "パスワード",
         "Droits": "Droits"
     },
     "desktop/modal/log.display.php": {
@@ -2166,7 +2166,7 @@
         "Inverser": "逆",
         "Graphique des liens": "グラフィックリンク",
         "Résumé objet": "アイテムの概要",
-        "Activer": "Activer",
+        "Activer": "アクティブ",
         "Résumé Objets": "Résumé Objets"
     },
     "desktop/modal/icon.selector.php": {
@@ -2247,10 +2247,10 @@
         "Installer": "インストール",
         "Voulez-vous aller sur la page de configuration de votre nouveau plugin ?": "あなたの新しいプラグインの設定ページに行きたいですか？",
         "Taille": "Taille",
-        "Utilisation": "Utilisation",
+        "Utilisation": "使用",
         "Informations complementaires": "Informations complementaires",
         "Langue disponible": "Langue disponible",
-        "Market": "Market",
+        "Market": "市場",
         "Conseillé": "Conseillé",
         "Attention ce plugin n'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée": "Attention ce plugin n'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée",
         "Développé par": "Développé par"
@@ -2540,7 +2540,7 @@
         "Vous pouvez envoyer des proposition d'amélioration qui seront publiée sur notre page publique dédiée et qui pourront être intégrés dans notre roadmap.": "あなたは私たちのページ専用のパブリックに公開され、私たちのロードマップに統合することができます改善のための提案を送信することができます。",
         "Voir les bugs": "バグを参照してください。",
         "Voir les propositions d'amélioration": "改善のための提案を参照してください。",
-        "Rapport": "Rapport",
+        "Rapport": "レポート",
         "Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre feuille de route.": "Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre feuille de route.",
         "Ouvrir un accès au support": "Ouvrir un accès au support",
         "Vous venez de déclarer un bug qui sera publié sur notre Bug Tracker public.<br/>Vous pouvez le suivre": "Vous venez de déclarer un bug qui sera publié sur notre Bug Tracker public.<br/>Vous pouvez le suivre"
@@ -2644,19 +2644,19 @@
         "Condition": "条件",
         "Ajouter": "加えます",
         "Couleur": "カラー",
-        "Etat": "Etat",
+        "Etat": "状態",
         "Rotation": "Rotation",
-        "Activer": "Activer",
+        "Activer": "アクティブ",
         "Ouverture": "Ouverture",
-        "Gauche": "Gauche",
-        "Droite": "Droite",
+        "Gauche": "左",
+        "Droite": "右",
         "Devant": "Devant",
         "Derriere": "Derriere",
-        "Normal": "Normal",
+        "Normal": "ノーマル",
         "Inversé": "Inversé",
         "Translation": "Translation",
         "Sens": "Sens",
-        "Haut": "Haut",
+        "Haut": "トップ",
         "Bas": "Bas",
         "Répeter": "Répeter",
         "Masquer quand la porte/fenêtre est ouverte": "Masquer quand la porte/fenêtre est ouverte",
@@ -2765,9 +2765,9 @@
         "La demande ne peut être vide": "リクエストは空にすることはできません"
     },
     "desktop/modal/note.manager.php": {
-        "Supprimer": "Supprimer",
-        "Sauvegarder": "Sauvegarder",
-        "Ajouter": "Ajouter",
+        "Supprimer": "取り除きます",
+        "Sauvegarder": "セーブ",
+        "Ajouter": "加えます",
         "Note crée avec succès": "Note crée avec succès",
         "Note sauvegardée avec succès": "Note sauvegardée avec succès",
         "Etês vous sur de vouloir supprimer la note : ": "Etês vous sur de vouloir supprimer la note :",
@@ -2776,59 +2776,59 @@
     },
     "desktop/modal/cmd.selectMultiple.php": {
         "Basculer": "Basculer",
-        "Valider": "Valider",
-        "Nom": "Nom"
+        "Valider": "検証",
+        "Nom": "名前"
     },
     "desktop/modal/cmd.configureHistory.php": {
-        "Valider": "Valider",
+        "Valider": "検証",
         "Historisé": "Historisé",
-        "Timeline": "Timeline",
-        "Nom": "Nom",
-        "Plugin": "Plugin",
+        "Timeline": "タイムライン",
+        "Nom": "名前",
+        "Plugin": "プラグイン",
         "Mode de lissage": "Mode de lissage",
         "Purge de l'historique si plus vieux": "Purge de l'historique si plus vieux",
-        "Action": "Action",
-        "Moyenne": "Moyenne",
+        "Action": "アクション",
+        "Moyenne": "平均",
         "Minimum": "Minimum",
         "Maximum": "Maximum",
-        "Aucun": "Aucun",
-        "Jamais": "Jamais",
-        "1 jour": "1 jour",
+        "Aucun": "いいえ",
+        "Jamais": "今までに",
+        "1 jour": "1日",
         "7 jours": "7 jours",
-        "1 mois": "1 mois",
-        "3 mois": "3 mois",
-        "6 mois": "6 mois",
+        "1 mois": "1ヶ月",
+        "3 mois": "3ヶ月",
+        "6 mois": "6ヵ月",
         "1 an": "1 an",
-        "Configuration de la commande": "Configuration de la commande",
+        "Configuration de la commande": "設定された制御",
         "Modifications sauvegardées avec succès": "Modifications sauvegardées avec succès",
-        "Type": "Type",
+        "Type": "タイプ",
         "Commande(s) historisée(s) : ": "Commande(s) historisée(s) :",
         "Commande(s) timeline : ": "Commande(s) timeline :"
     },
     "desktop/modal/user.rights.php": {
         "Attention : le compte utilisateur n'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s'appliquer": "Attention : le compte utilisateur n'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s'appliquer",
-        "Sauvegarder": "Sauvegarder",
-        "Equipements": "Equipements",
-        "Scénarios": "Scénarios",
-        "Equipement": "Equipement",
+        "Sauvegarder": "セーブ",
+        "Equipements": "施設",
+        "Scénarios": "シナリオ",
+        "Equipement": "設備",
         "Droits": "Droits",
-        "Aucun": "Aucun",
+        "Aucun": "いいえ",
         "Visualisation": "Visualisation",
         "Visualisation et exécution": "Visualisation et exécution",
-        "Scénario": "Scénario",
-        "Sauvegarde effectuée": "Sauvegarde effectuée"
+        "Scénario": "シナリオ",
+        "Sauvegarde effectuée": "バックアップ作ら"
     },
     "desktop/modal/object.summary.php": {
         "ID": "ID",
-        "Objet": "Objet",
+        "Objet": "オブジェクト",
         "Père": "Père",
-        "Visible": "Visible",
+        "Visible": "目に見えます",
         "Masqué": "Masqué",
         "Résumé Défini": "Résumé Défini",
         "Résumé Dashboard Masqué": "Résumé Dashboard Masqué",
         "Résumé Mobile Masqué": "Résumé Mobile Masqué",
-        "Oui": "Oui",
-        "Non": "Non"
+        "Oui": "はい",
+        "Non": "ではありません"
     },
     "3rdparty/jquery.tablesorter/jquery.tablesorter.widgets.min.js": {
         "label": "label",

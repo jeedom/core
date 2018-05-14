@@ -195,7 +195,7 @@ foreach (planHeader::all() as $plan) {
     <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="background-defaut" checked />
   </div>
 </div>
-<div class="form-group link_type link_plan link_view link_text">
+<div class="form-group link_type link_plan link_view link_text link_summary">
   <label class="col-lg-4 control-label">{{Couleur du texte}}</label>
   <div class="col-lg-2">
     <input type="color" class="planAttr form-control" data-l1key="css" data-l2key="color" />

@@ -52,7 +52,18 @@ try {
 	}
 
 	if (init('action') == 'all') {
-		ajax::success(utils::o2a(object::buildTree()));
+		$objects = jeeObject::buildTree();
+		if (init('onlyHasEqLogic') != '') {
+			$return = array();
+			foreach ($objects as $object) {
+				if (count($object->getEqLogic(true, false, init('onlyHasEqLogic'), null, init('searchOnchild', true))) == 0) {
+					continue;
+				}
+				$return[] = $object;
+			}
+			$objects = $return;
+		}
+		ajax::success(utils::o2a($objects));
 	}
 
 	if (init('action') == 'save') {
