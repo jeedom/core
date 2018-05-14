@@ -17,10 +17,12 @@ if (init('plan3d_id') == '') {
 		$plan3dHeader = $list_plan3dHeader[0];
 	}
 }
-if (!is_object($plan3dHeader)) {
-	throw new Exception('{{Aucune plan3d n\'existe}}');
+if (is_object($plan3dHeader)) {
+	sendVarToJS('plan3dHeader_id', $plan3dHeader->getId());
+} else {
+	sendVarToJS('plan3dHeader_id', -1);
 }
-sendVarToJS('plan3dHeader_id', $plan3dHeader->getId());
+
 ?>
 <div class="row <?php
 if (init('fullscreen') != 1) {

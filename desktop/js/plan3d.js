@@ -164,6 +164,9 @@
  }, false );
 
  function display3d(_id){
+ 	if(_id == -1){
+ 		return;
+ 	}
  	jeedom.plan3d.getHeader({
  		id : _id,
  		error : function(error){
