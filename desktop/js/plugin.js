@@ -458,10 +458,10 @@ $('#bt_savePluginLogConfig').off('click').on('click',function(){
 $('#div_plugin_log').on('click','.bt_plugin_conf_view_log',function(){
  if($('#md_modal').is(':visible')){
    $('#md_modal2').dialog({title: "{{Log du plugin}}"});
-   $("#md_modal2").load('index.php?v=d&modal=log.display&log='+$(this).attr('data-log')+'&slaveId='+$(this).attr('data-slaveId')).dialog('open');
+   $("#md_modal2").load('index.php?v=d&modal=log.display&log='+$(this).attr('data-log')).dialog('open');
  }else{
    $('#md_modal').dialog({title: "{{Log du plugin}}"});
-   $("#md_modal").load('index.php?v=d&modal=log.display&log='+$(this).attr('data-log')+'&slaveId='+$(this).attr('data-slaveId')).dialog('open');
+   $("#md_modal").load('index.php?v=d&modal=log.display&log='+$(this).attr('data-log')).dialog('open');
  }
 });
 
