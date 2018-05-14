@@ -19,7 +19,7 @@ if (config::byKey('enableCron') == 0) {
     <thead>
         <tr>
             <th class="id" style="width: 40px;">#</th>
-            <th class="" style="width: 50px;" data-sorter="false" data-filter="false"></th>
+            <th class="" style="width: 80px;" data-sorter="false" data-filter="false"></th>
             <th class="enable" style="width: 80px;">{{Actif}}</th>
             <th class="pid" style="width: 100px;">{{PID}}</th>
             <th class="deamons" style="width: 120px;">{{Démon}}</th>

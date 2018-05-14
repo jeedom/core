@@ -87,6 +87,11 @@
     });
 });
 
+ $("#table_cron").delegate(".display", 'click', function () {
+    $('#md_modal').dialog({title: "{{Détails du cron}}"});
+    $("#md_modal").load('index.php?v=d&modal=object.display&class=cron&id='+$(this).closest('tr').attr('id')).dialog('open');
+});
+
  $('#table_cron').delegate('.cronAttr[data-l1key=deamon]', 'change', function () {
     if ($(this).value() == 1) {
         $(this).closest('tr').find('.cronAttr[data-l1key=deamonSleepTime]').show();
@@ -103,18 +108,18 @@
     $.showLoading();
     jeedom.cron.all({
         success: function (data) {
-         $.showLoading();
-         $('#table_cron tbody').empty();
-         var tr = [];
-         for (var i in data) {
-           tr.push(addCron(data[i]));
-       }
-       $('#table_cron tbody').append(tr);
-       $("#table_cron").trigger("update");
-       modifyWithoutSave = false;
-       $.hideLoading();
-   }
-});
+           $.showLoading();
+           $('#table_cron tbody').empty();
+           var tr = [];
+           for (var i in data) {
+             tr.push(addCron(data[i]));
+         }
+         $('#table_cron tbody').append(tr);
+         $("#table_cron").trigger("update");
+         modifyWithoutSave = false;
+         $.hideLoading();
+     }
+ });
 }
 
 function addCron(_cron) {
@@ -126,12 +131,13 @@ function addCron(_cron) {
     var tr = '<tr id="' + init(_cron.id) + '">';
     tr += '<td class="option"><span class="cronAttr" data-l1key="id"></span></td>';
     tr += '<td>';
+    tr += '<a class="btn btn-default btn-xs display"><i class="fas fa-file"></i></a>';
     if(init(_cron.deamon) == 0){
         if (init(_cron.state) == 'run') {
-            tr += '<a class="btn btn-danger btn-xs stop" style="color : white;"><i class="fas fa-stop"></i></a>';
+            tr += ' <a class="btn btn-danger btn-xs stop" style="color : white;"><i class="fas fa-stop"></i></a>';
         }
         if (init(_cron.state) != '' && init(_cron.state) != 'starting' && init(_cron.state) != 'run' && init(_cron.state) != 'stoping') {
-            tr += '<a class="btn btn-success btn-xs start" style="color : white;"><i class="fas fa-play"></i></a>';
+            tr += ' <a class="btn btn-success btn-xs start" style="color : white;"><i class="fas fa-play"></i></a>';
         }
     }
     tr += '</td>';

@@ -31,7 +31,7 @@ page). Dans ce tableau on retrouve :
     processus qui tourne et ce qu’il fait vraiment
 
 -   **Action** : un bouton pour lancer ou arrêter la tâche en fonction
-    de son statut
+    de son statut et un bouton pour voir le cron dans le details (tel que stocké en base)
 
 -   **Actif** : indique si la tâche est active (peut être lancée
     par Jeedom) ou non
