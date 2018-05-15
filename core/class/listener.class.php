@@ -155,7 +155,7 @@ class listener {
 		} else {
 			$cmd = __DIR__ . '/../php/jeeListener.php';
 			$cmd .= ' listener_id=' . $this->getId() . ' event_id=' . $_event . ' value=' . $_value;
-			system::php($cmd . ' >> /dev/null 2>&1 &');
+			system::php($cmd . ' >> ' . log::getPathToLog('listener_execution') . ' 2>&1 &');
 		}
 	}
 
