@@ -228,7 +228,7 @@ class scenarioElement {
 				$next = strtotime('+ ' . $time . ' min');
 				$cron->setSchedule(cron::convertDateToCron($next));
 				$cron->save();
-				$_scenario->setLog(__('Tâche : ', __FILE__) . $this->getId() . __(' programmé à : ', __FILE__) . date('Y-m-d H:i:s', $next) . ' (+ ' . $time . ' min)');
+				$_scenario->setLog(__('Tâche : ', __FILE__) . $this->getId() . __(' programmée à : ', __FILE__) . date('Y-m-d H:i:s', $next) . ' (+ ' . $time . ' min)');
 			}
 			return true;
 		} else if ($this->getType() == 'at') {
