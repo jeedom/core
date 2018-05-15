@@ -356,6 +356,9 @@ try {
 			$return = array();
 			$params = json_decode(init('params'), true);
 			foreach ($params as $param) {
+				if (!isset($param['options'])) {
+					$param['options'] = array();
+				}
 				$html = scenarioExpression::getExpressionOptions($param['expression'], $param['options']);
 				if (!isset($html['html']) || $html['html'] == '') {
 					continue;
