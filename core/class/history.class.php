@@ -703,7 +703,7 @@ class history {
 				$datetime = floatval(strtotime($datetime . " UTC"));
 				$calcul = template_replace($cmd_history, $_strcalcul);
 				if ($_noCalcul) {
-					$value[date('Y-m-d H:i:s', $datetime)] = $calcul;
+					$value[$datetime] = $calcul;
 					continue;
 				}
 				try {
